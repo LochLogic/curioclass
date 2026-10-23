@@ -1,17 +1,121 @@
 {
   "style": "Picture-book fairy tale look, like a modern illustrated edition of The Three Little Pigs. Rounded friendly characters, expressive faces, never scary.",
   "assets": [
-    {"name": "pig", "prompt": "A small cheerful pink pig in blue overalls standing upright, facing the viewer, smiling, front view, full body.", "width": 220, "cutout": true},
-    {"name": "pig-shock", "ref": "pig", "prompt": "The same pig, surprised: wide eyes, mouth open, hands up.", "width": 220, "cutout": true},
-    {"name": "pig-wet", "ref": "pig", "prompt": "The same pig, soaking wet and grumpy, water dripping from ears and overalls.", "width": 220, "cutout": true},
-    {"name": "pig-cold", "ref": "pig", "prompt": "The same pig shivering in the cold, hugging itself, slightly blue cheeks, frosty breath.", "width": 220, "cutout": true},
-    {"name": "pig-cozy", "ref": "pig", "prompt": "The same pig sitting wrapped in a red blanket, holding a steaming mug, very content.", "width": 220, "cutout": true},
-    {"name": "pig-wave", "ref": "pig", "prompt": "The same pig waving hello happily with one hand raised.", "width": 220, "cutout": true},
-    {"name": "wolf", "prompt": "A lanky grey cartoon wolf standing on two legs in a scruffy brown vest, side view facing right, sly but goofy grin. Silly, not scary.", "width": 320, "cutout": true},
-    {"name": "wolf-huff", "ref": "wolf", "prompt": "The same wolf, side view facing right, cheeks puffed up enormously, chest swollen, about to blow.", "width": 320, "cutout": true},
-    {"name": "wolf-blow", "ref": "wolf", "prompt": "The same wolf, side view facing right, blowing as hard as it can, lips pursed, fur and vest flapping.", "width": 320, "cutout": true},
-    {"name": "wolf-dizzy", "ref": "wolf", "prompt": "The same wolf flat on its back, exhausted and dizzy, tongue out, legs in the air.", "width": 320, "cutout": true},
-    {"name": "meadow", "prompt": "Wide landscape background: soft rolling green hills, a few round trees at the far edges, a dirt path, a big sky with gentle clouds. The middle foreground is empty open grass where a house will be placed. 16:9.", "width": 1200, "quality": 78},
-    {"name": "room", "prompt": "Cozy inside of a tiny pig's cottage: plank floor, a small rug, a wooden chair and a little window. Empty center for a character. Square.", "width": 360, "quality": 78}
+    {
+      "name": "pig",
+      "prompt": "A small cheerful pink pig in blue overalls standing upright, facing the viewer, smiling, front view, full body.",
+      "width": 220,
+      "cutout": true
+    },
+    {
+      "name": "pig-shock",
+      "ref": "pig",
+      "prompt": "The same pig, surprised: wide eyes, mouth open, hands up.",
+      "width": 220,
+      "cutout": true
+    },
+    {
+      "name": "pig-wet",
+      "ref": "pig",
+      "prompt": "The same pig, soaking wet and grumpy, water dripping from ears and overalls.",
+      "width": 220,
+      "cutout": true
+    },
+    {
+      "name": "pig-cold",
+      "ref": "pig",
+      "prompt": "The same pig shivering in the cold, hugging itself, slightly blue cheeks, frosty breath.",
+      "width": 220,
+      "cutout": true
+    },
+    {
+      "name": "pig-cozy",
+      "ref": "pig",
+      "prompt": "The same pig sitting wrapped in a red blanket, holding a steaming mug, very content.",
+      "width": 220,
+      "cutout": true
+    },
+    {
+      "name": "pig-wave",
+      "ref": "pig",
+      "prompt": "The same pig waving hello happily with one hand raised.",
+      "width": 220,
+      "cutout": true
+    },
+    {
+      "name": "wolf",
+      "prompt": "A lanky grey cartoon wolf standing on two legs in a scruffy brown vest, side view facing right, sly but goofy grin. Silly, not scary.",
+      "width": 320,
+      "cutout": true
+    },
+    {
+      "name": "wolf-huff",
+      "ref": "wolf",
+      "prompt": "The same wolf, side view facing right, cheeks puffed up enormously, chest swollen, about to blow.",
+      "width": 320,
+      "cutout": true
+    },
+    {
+      "name": "wolf-blow",
+      "ref": "wolf",
+      "prompt": "The same wolf, full body standing on two legs from head to feet, side view facing right, blowing as hard as it can with lips pursed and a big gust of air coming out, fur and vest flapping.",
+      "width": 320,
+      "cutout": true
+    },
+    {
+      "name": "wolf-dizzy",
+      "ref": "wolf",
+      "prompt": "The same wolf flat on its back, exhausted and dizzy, tongue out, legs in the air.",
+      "width": 320,
+      "cutout": true
+    },
+    {
+      "name": "meadow",
+      "prompt": "Empty landscape background only: soft rolling green hills, a few round trees at the far left and far right edges, a big soft blue sky with gentle clouds, open flat grass across the whole lower half. Absolutely no characters, no animals, no people, no houses, no path. 16:9.",
+      "width": 1200,
+      "quality": 78
+    },
+    {
+      "name": "room",
+      "prompt": "Cozy inside of a tiny pig's cottage: plank floor, a small rug, a wooden chair and a little window. Empty center for a character. Square.",
+      "width": 360,
+      "quality": 78
+    },
+    {
+      "name": "tex-straw",
+      "prompt": "A seamless tileable square texture that fills the entire image edge to edge, viewed straight on, no perspective, no border, no objects: bundled golden straw thatch, horizontal bundles. Even lighting.",
+      "width": 192,
+      "quality": 80
+    },
+    {
+      "name": "tex-sticks",
+      "prompt": "A seamless tileable square texture that fills the entire image edge to edge, viewed straight on, no perspective, no border, no objects: rough brown wooden sticks and twigs lashed side by side, vertical. Even lighting.",
+      "width": 192,
+      "quality": 80
+    },
+    {
+      "name": "tex-bricks",
+      "prompt": "A seamless tileable square texture that fills the entire image edge to edge, viewed straight on, no perspective, no border, no objects: red clay bricks with cream mortar in a running bond. Even lighting.",
+      "width": 192,
+      "quality": 80
+    },
+    {
+      "name": "tex-wool",
+      "prompt": "A seamless tileable square texture that fills the entire image edge to edge, viewed straight on, no perspective, no border, no objects: thick cream sheep wool felt, soft fluffy curls. Even lighting.",
+      "width": 192,
+      "quality": 80
+    },
+    {
+      "name": "tex-paper",
+      "prompt": "A seamless tileable square texture that fills the entire image edge to edge, viewed straight on, no perspective, no border, no objects: plain white paper sheets taped together, faint blue lines. Even lighting.",
+      "width": 192,
+      "quality": 80
+    },
+    {
+      "name": "tex-metal",
+      "prompt": "A seamless tileable square texture that fills the entire image edge to edge, viewed straight on, no perspective, no border, no objects: grey corrugated metal sheet with a few rivets. Even lighting.",
+      "width": 192,
+      "quality": 80
+    }
   ]
 }

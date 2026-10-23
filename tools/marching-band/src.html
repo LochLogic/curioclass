@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Marching Band · Odd, even and arrays · Curio Class</title>
+<meta name="description" content="Line up a marching band in pairs and rows to discover odd and even numbers and arrays. Grade 2 math, teacher-led on the big screen. Works offline.">
+<!--
+MARCHING BAND (Curio Class)
+Grade 2 math: odd and even (2.OA.C.3) and arrays as repeated addition (2.OA.C.4).
+Teacher-led on a projector or smartboard; students call out what they see.
+Two ways to line up the band:
+  Partners: 1-20 musicians march in pairs. Does everyone get a partner? (odd and even)
+  Rows:     up to 5 rows and 5 columns. 3 rows of 4 is 4 + 4 + 4 = 12. (arrays)
+No score and no quiz. Clicking a musician makes them play. Sound is off until turned on.
+One file, no network requests, nothing stored. Content CC BY 4.0, code MIT. curioclass.org
+-->
+<style>
+:root{
+  --field:#3f8f4e;--field-2:#46995a;--line:#e9f5e6;--ink:#1f2430;--paper:#fbf8f1;--card:#fff;
+  --accent:#e4572e;--accent-ink:#b23a17;--gold:#f2c94c;--sky:#cfe8f5;--muted:#5e6472;--focus:#2f5bd3;
+  font-family:'Segoe UI',system-ui,-apple-system,Roboto,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{background:var(--paper);color:var(--ink);display:grid;grid-template-rows:auto 1fr auto;min-height:100vh}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:4px solid var(--focus);outline-offset:3px}
+
+header{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:12px 20px;background:var(--card);border-bottom:2px solid #ece4d2}
+h1{margin:0;font:700 clamp(22px,3vw,32px)/1.1 Georgia,'Times New Roman',serif;letter-spacing:-.01em;margin-right:auto}
+h1 small{display:block;font:500 14px/1.3 'Segoe UI',system-ui,sans-serif;color:var(--muted);letter-spacing:0}
+.seg{display:flex;background:#f1ebde;border-radius:999px;padding:5px;gap:4px}
+.seg button{border:0;background:none;border-radius:999px;padding:12px 22px;font-weight:700;font-size:18px;min-height:56px}
+.seg button[aria-pressed="true"]{background:var(--ink);color:#fff}
+.icon-btn{border:2px solid #e2d8c3;background:var(--card);border-radius:999px;min-width:56px;min-height:56px;padding:0 16px;font-weight:700;font-size:17px;display:inline-flex;align-items:center;gap:8px}
+.icon-btn[aria-pressed="true"]{border-color:var(--accent);background:#fff1ec}
+
+main{display:grid;grid-template-columns:1fr;gap:0;min-height:0}
+@media (min-width:980px){main{grid-template-columns:1fr 340px}}
+
+.stage{position:relative;background:var(--field);min-height:360px;overflow:hidden}
+.stage svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.musician{cursor:pointer}
+.musician .bob{transform-box:fill-box;transform-origin:50% 100%}
+.musician.hop .bob{animation:hop .45s cubic-bezier(.3,1.6,.5,1)}
+@keyframes hop{40%{transform:translateY(-18%)}}
+.musician .leg{transform-box:fill-box;transform-origin:50% 0}
+.marching .musician .leg-l{animation:legup var(--step,1s) ease-in-out infinite}
+.marching .musician .leg-r{animation:legup var(--step,1s) ease-in-out infinite;animation-delay:calc(var(--step,1s) / -2)}
+@keyframes legup{0%,50%,100%{transform:none}25%{transform:translateY(-16px)}}
+.marching .musician .bob{animation:bob calc(var(--step,1s) / 2) ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-4%)}}
+.march[aria-pressed="true"]{background:var(--ink);box-shadow:0 6px 0 #000}
+.alone circle.glow{animation:pulse 1.2s ease-in-out infinite alternate}
+@keyframes pulse{to{opacity:.25}}
+
+.panel{background:var(--card);border-left:2px solid #ece4d2;padding:20px;display:flex;flex-direction:column;gap:18px}
+@media (max-width:979px){.panel{border-left:0;border-top:2px solid #ece4d2}}
+.counter{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:10px}
+.counter .lbl{grid-column:1/-1;font-weight:700;font-size:15px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.counter output{text-align:center;font:700 64px/1 Georgia,serif}
+.step{width:72px;height:72px;border-radius:20px;border:2px solid #e2d8c3;background:#fbf8f1;font-size:40px;font-weight:700;line-height:1}
+.step:hover{border-color:var(--ink)}
+.step:disabled{opacity:.35;cursor:default}
+.march{border:0;background:var(--accent);color:#fff;border-radius:999px;font-weight:800;font-size:24px;min-height:72px;box-shadow:0 6px 0 var(--accent-ink)}
+.march:active{transform:translateY(3px);box-shadow:0 3px 0 var(--accent-ink)}
+.ways{font-size:16px;color:var(--muted)}
+.ways b{color:var(--ink)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.chips span{background:#f1ebde;border-radius:999px;padding:6px 12px;font-weight:700;color:var(--ink)}
+.hidden{display:none!important}
+
+footer.sentence{padding:16px 20px;background:var(--ink);color:#fff;display:flex;align-items:center;gap:18px;flex-wrap:wrap;min-height:96px}
+.eq{font:700 clamp(26px,4vw,46px)/1.15 Georgia,serif;letter-spacing:.01em}
+.eq .em{color:var(--gold)}
+.say{font-size:clamp(16px,1.8vw,21px);opacity:.92;max-width:46ch}
+/* Compact layout for small windows, like the preview frame on the tool page */
+@media (max-width:760px),(max-height:560px){
+  header{padding:8px 12px;gap:8px}
+  h1{font-size:20px}
+  h1 small{display:none}
+  .seg button{min-height:40px;padding:6px 14px;font-size:15px}
+  .icon-btn{min-height:40px;min-width:40px;padding:0 10px;font-size:14px}
+  main{grid-template-columns:1fr;grid-template-rows:1fr auto}
+  .stage{min-height:150px}
+  .panel{flex-direction:row;flex-wrap:wrap;align-items:center;gap:10px;padding:10px 12px;border-left:0;border-top:2px solid #ece4d2}
+  .panel > p{display:none}
+  #rows-ctl:not(.hidden){display:flex!important;gap:10px}
+  .counter{grid-template-columns:auto auto auto;gap:6px}
+  .counter .lbl{font-size:11px}
+  .counter output{font-size:30px;min-width:1.4em}
+  .step{width:44px;height:44px;font-size:24px;border-radius:12px}
+  .march{min-height:48px;font-size:17px;padding:0 18px;flex:1;box-shadow:0 4px 0 var(--accent-ink)}
+  .ways{display:none}
+  footer.sentence{min-height:0;padding:8px 12px;gap:10px}
+  .eq{font-size:24px}
+  .say{font-size:14px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header>
+  <h1>Marching Band<small>Odd and even · rows and columns</small></h1>
+  <div class="seg" role="group" aria-label="How the band lines up">
+    <button id="m-pairs" aria-pressed="true">Partners</button>
+    <button id="m-rows" aria-pressed="false">Rows</button>
+  </div>
+  <button class="icon-btn" id="sound" aria-pressed="true" aria-label="Sound">🔔 Sound</button>
+  <button class="icon-btn" id="read" aria-label="Read the sentence aloud">🔊 Read</button>
+</header>
+
+<main>
+  <div class="stage" id="stage">
+    <svg id="field" viewBox="0 0 1000 560" role="img" aria-labelledby="field-desc">
+      <desc id="field-desc">A marching band standing on a football field.</desc>
+      <defs>
+        <pattern id="stripes" width="100" height="400" patternUnits="userSpaceOnUse">
+          <rect width="50" height="400" style="fill:var(--field)"/><rect x="50" width="50" height="400" style="fill:var(--field-2)"/>
+        </pattern>
+        <g id="person">
+          <!-- legs are drawn per musician so they can step; this is the upper body -->
+          <rect x="-17" y="4" width="34" height="40" rx="10" style="fill:var(--coat)"/>
+          <path d="M-17 14h34M-17 24h34" style="stroke:var(--gold)" stroke-width="3"/>
+          <!-- head and tall hat -->
+          <circle cx="0" cy="-8" r="12" style="fill:var(--skin)"/>
+          <rect x="-11" y="-42" width="22" height="30" rx="4" fill="#1f2430"/>
+          <rect x="-12" y="-16" width="24" height="5" rx="2" style="fill:var(--gold)"/>
+          <path d="M0 -42c-3-14 8-20 10-24 1 8-3 16-10 24z" style="fill:var(--plume)"/>
+        </g>
+        <g id="drum"><ellipse cx="0" cy="30" rx="20" ry="7" fill="#fff" stroke="#1f2430" stroke-width="2"/><path d="M-20 30v18a20 7 0 0 0 40 0V30" style="fill:var(--accent)" stroke="#1f2430" stroke-width="2"/><path d="M-20 34l10 14 10-14 10 14 10-14" fill="none" stroke="#fff" stroke-width="2"/></g>
+        <g id="trumpet"><path d="M14 18h22" style="stroke:var(--gold)" stroke-width="5" stroke-linecap="round"/><path d="M34 12l12-6v24l-12-6z" style="fill:var(--gold)"/></g>
+        <g id="tuba"><circle cx="20" cy="18" r="16" fill="none" style="stroke:var(--gold)" stroke-width="6"/><path d="M28 2l14-12h10l-6 18" style="fill:var(--gold)"/></g>
+        <g id="flute"><path d="M10 22l40-12" stroke="#c9ced8" stroke-width="5" stroke-linecap="round"/></g>
+        <g id="cymbals"><ellipse cx="-24" cy="22" rx="6" ry="16" style="fill:var(--gold)"/><ellipse cx="24" cy="22" rx="6" ry="16" style="fill:var(--gold)"/></g>
+      </defs>
+      <rect x="-3000" y="-3000" width="7000" height="3250" fill="#bfe1f3"/>
+      <rect x="-3000" y="240" width="7000" height="3000" fill="#4f9e3a"/>
+      <image href="art:stadium" x="-100" y="-60" width="1200" height="670" preserveAspectRatio="xMidYMid slice"/>
+      <g id="band"></g>
+    </svg>
+  </div>
+
+  <aside class="panel" aria-label="Controls">
+    <div id="pairs-ctl" class="counter">
+      <span class="lbl" id="n-lbl">Musicians</span>
+      <button class="step" id="n-minus" aria-label="One fewer musician">−</button>
+      <output id="n-out" aria-labelledby="n-lbl" aria-live="polite">7</output>
+      <button class="step" id="n-plus" aria-label="One more musician">+</button>
+    </div>
+    <div id="rows-ctl" class="hidden" style="display:grid;gap:18px">
+      <div class="counter">
+        <span class="lbl" id="r-lbl">Rows</span>
+        <button class="step" id="r-minus" aria-label="One fewer row">−</button>
+        <output id="r-out" aria-labelledby="r-lbl" aria-live="polite">3</output>
+        <button class="step" id="r-plus" aria-label="One more row">+</button>
+      </div>
+      <div class="counter">
+        <span class="lbl" id="c-lbl">In each row</span>
+        <button class="step" id="c-minus" aria-label="One fewer in each row">−</button>
+        <output id="c-out" aria-labelledby="c-lbl" aria-live="polite">4</output>
+        <button class="step" id="c-plus" aria-label="One more in each row">+</button>
+      </div>
+      <div class="ways" id="ways"></div>
+    </div>
+    <button class="march" id="march">March! 🥁</button>
+    <p class="ways" style="margin:0">Tip: click any musician to hear them play.</p>
+  </aside>
+</main>
+
+<footer class="sentence" aria-live="polite">
+  <div class="eq" id="eq"></div>
+  <div class="say" id="say"></div>
+</footer>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const SVGNS = 'http://www.w3.org/2000/svg';
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // Illustrated musicians (hat to waist; legs are drawn so they can march). [width, height] of each image.
+  const INSTRUMENTS = [
+    {k: 'drum', art: 'art:drum', size: [184, 300]},
+    {k: 'trumpet', art: 'art:trumpet', size: [157, 300]},
+    {k: 'tuba', art: 'art:tuba', size: [259, 300]},
+    {k: 'flute', art: 'art:flute', size: [217, 300]},
+    {k: 'cymbals', art: 'art:cymbals', size: [156, 300]},
+  ];
+  const H = 138; // drawn height of a musician from plume to waist
+  const WORDS = ['zero','one','two','three','four','five','six','seven','eight','nine','ten','eleven','twelve','thirteen','fourteen','fifteen','sixteen','seventeen','eighteen','nineteen','twenty','twenty-one','twenty-two','twenty-three','twenty-four','twenty-five'];
+
+  const state = {mode: 'pairs', n: 7, r: 3, c: 4, sound: true, found: {}};
+  const band = $('band');
+
+  // ---------- sound (off until the teacher turns it on) ----------
+  let ctx;
+  const audio = () => (ctx ||= new (window.AudioContext || window.webkitAudioContext)());
+  function noise(dur, filterType, freq, gain) {
+    const a = audio(), len = a.sampleRate * dur, buf = a.createBuffer(1, len, a.sampleRate), d = buf.getChannelData(0);
+    for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * (1 - i / len);
+    const src = a.createBufferSource(), f = a.createBiquadFilter(), g = a.createGain();
+    src.buffer = buf; f.type = filterType; f.frequency.value = freq; g.gain.value = gain;
+    src.connect(f).connect(g).connect(a.destination); src.start();
+  }
+  function tone(type, freq, dur, gain, when = 0) {
+    const a = audio(), o = a.createOscillator(), g = a.createGain(), t = a.currentTime + when;
+    o.type = type; o.frequency.value = freq;
+    g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(gain, t + 0.02); g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    o.connect(g).connect(a.destination); o.start(t); o.stop(t + dur + 0.05);
+  }
+  function play(kind) {
+    if (!state.sound) return;
+    if (kind === 'drum') { noise(0.25, 'lowpass', 400, 0.9); tone('sine', 90, 0.25, 0.5); }
+    if (kind === 'trumpet') { tone('sawtooth', 523, 0.18, 0.12); tone('sawtooth', 659, 0.25, 0.12, 0.16); }
+    if (kind === 'tuba') { tone('square', 87, 0.35, 0.12); }
+    if (kind === 'flute') { tone('sine', 880, 0.3, 0.2); tone('sine', 988, 0.3, 0.15, 0.2); }
+    if (kind === 'cymbals') { noise(0.6, 'highpass', 5000, 0.5); }
+  }
+
+  // ---------- layout ----------
+  function positions() {
+    // Partners: pairs side by side, two lines, front to back. Rows: an r by c grid.
+    const out = [];
+    if (state.mode === 'pairs') {
+      const cols = Math.ceil(state.n / 2);
+      for (let i = 0; i < state.n; i++) out.push({col: Math.floor(i / 2), row: i % 2, alone: state.n % 2 === 1 && i === state.n - 1});
+      return {list: out, rows: 2, cols};
+    }
+    for (let r = 0; r < state.r; r++) for (let c = 0; c < state.c; c++) out.push({col: c, row: r, alone: false});
+    return {list: out, rows: state.r, cols: state.c};
+  }
+
+  function draw() {
+    const {list, rows, cols} = positions();
+    const top = 285, bottom = 535, left = 60, right = 940;
+    const gapX = Math.min(120, (right - left) / Math.max(cols, 1));
+    const gapY = Math.min(110, (bottom - top) / Math.max(rows, 1));
+    const scale = Math.min(1.35, gapX / 88, gapY / 100);
+    const x0 = 500 - (gapX * (cols - 1)) / 2, y0 = (top + bottom) / 2 - (gapY * (rows - 1)) / 2;
+    band.replaceChildren();
+    list.forEach((p, i) => {
+      const inst = INSTRUMENTS[(p.col + p.row * 2) % INSTRUMENTS.length];
+      const g = document.createElementNS(SVGNS, 'g');
+      g.setAttribute('class', 'musician' + (p.alone ? ' alone' : ''));
+      g.setAttribute('transform', `translate(${x0 + p.col * gapX} ${y0 + p.row * gapY - 30 * scale}) scale(${scale})`);
+      g.setAttribute('tabindex', '0');
+      g.setAttribute('role', 'button');
+      g.setAttribute('aria-label', `${inst.k} player${p.alone ? ', no partner' : ''}`);
+      g.innerHTML = (p.alone ? '<circle class="glow" cx="0" cy="20" r="56" fill="#f2c94c" opacity=".55"/>' : '') +
+        '<ellipse cx="0" cy="74" rx="24" ry="5" fill="#0003"/>' +
+        `<g class="leg leg-l"><rect x="-14" y="34" width="12" height="38" rx="5" fill="#26324a"/><rect x="-9" y="34" width="2.5" height="34" fill="#f2c94c"/><rect x="-17" y="67" width="16" height="8" rx="4" fill="#111"/></g>` +
+        `<g class="leg leg-r"><rect x="2" y="34" width="12" height="38" rx="5" fill="#26324a"/><rect x="7" y="34" width="2.5" height="34" fill="#f2c94c"/><rect x="1" y="67" width="16" height="8" rx="4" fill="#111"/></g>` +
+        `<g class="bob"><image href="${inst.art}" x="${-H * inst.size[0] / inst.size[1] / 2}" y="${42 - H}" width="${H * inst.size[0] / inst.size[1]}" height="${H}"/></g>`;
+      const hop = () => { g.classList.remove('hop'); void g.getBBox(); g.classList.add('hop'); play(inst.k); };
+      g.addEventListener('click', hop);
+      g.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); hop(); } });
+      band.append(g);
+    });
+    if (state.mode === 'pairs') {
+      // brackets that pair partners up
+      for (let c = 0; c < Math.floor(state.n / 2); c++) {
+        const r = document.createElementNS(SVGNS, 'rect');
+        const x = x0 + c * gapX;
+        Object.entries({x: x - 34 * scale, y: y0 - 80 * scale, width: 68 * scale, height: gapY + 150 * scale, rx: 20 * scale,
+          fill: 'none', stroke: '#fff', 'stroke-width': 3, 'stroke-dasharray': '8 8', opacity: .8}).forEach(([k, v]) => r.setAttribute(k, v));
+        band.prepend(r);
+      }
+    }
+    sentence();
+  }
+
+  // ---------- the sentence along the bottom ----------
+  function sentence() {
+    const eq = $('eq'), say = $('say');
+    if (state.mode === 'pairs') {
+      const n = state.n, half = Math.floor(n / 2), odd = n % 2 === 1;
+      if (n === 1) {
+        eq.innerHTML = '1 = <span class="em">1 alone</span>';
+        say.textContent = 'One musician, no partner yet. One is odd.';
+      } else if (odd) {
+        eq.innerHTML = `${half} + ${half} + <span class="em">1</span> = ${n}`;
+        say.textContent = `${cap(WORDS[n])} musicians make ${WORDS[half]} pairs, and one has no partner. ${cap(WORDS[n])} is odd.`;
+      } else {
+        eq.innerHTML = `${half} + ${half} = ${n}`;
+        say.textContent = `Everyone has a partner! ${cap(WORDS[n])} is even: ${WORDS[half]} plus ${WORDS[half]}.`;
+      }
+      return;
+    }
+    const {r, c} = state, total = r * c;
+    eq.innerHTML = Array(r).fill(c).join(' + ') + ` = <span class="em">${total}</span>`;
+    say.textContent = `${cap(WORDS[r])} ${r === 1 ? 'row' : 'rows'} of ${WORDS[c]} make ${WORDS[total]}. ${cap(WORDS[total])} is ${total % 2 ? 'odd' : 'even'}.`;
+    (state.found[total] ||= new Set()).add(`${r} ${r === 1 ? 'row' : 'rows'} of ${c}`);
+    const ways = [...state.found[total]];
+    $('ways').innerHTML = `<b>Ways you've lined up ${total}:</b><div class="chips">${ways.map(w => `<span>${w}</span>`).join('')}</div>` +
+      (ways.length === 1 ? '<div style="margin-top:8px">Can you find another way?</div>' : '');
+  }
+  const cap = s => s[0].toUpperCase() + s.slice(1);
+
+  // ---------- controls ----------
+  function setMode(m) {
+    state.mode = m;
+    $('m-pairs').setAttribute('aria-pressed', m === 'pairs');
+    $('m-rows').setAttribute('aria-pressed', m === 'rows');
+    $('pairs-ctl').classList.toggle('hidden', m !== 'pairs');
+    $('rows-ctl').classList.toggle('hidden', m !== 'rows');
+    draw();
+  }
+  function bind(minus, plus, key, lo, hi, out) {
+    const sync = () => { $(out).textContent = state[key]; $(minus).disabled = state[key] <= lo; $(plus).disabled = state[key] >= hi; };
+    $(minus).onclick = () => { state[key] = Math.max(lo, state[key] - 1); sync(); draw(); };
+    $(plus).onclick = () => { state[key] = Math.min(hi, state[key] + 1); sync(); draw(); };
+    sync();
+  }
+  bind('n-minus', 'n-plus', 'n', 1, 20, 'n-out');
+  bind('r-minus', 'r-plus', 'r', 1, 5, 'r-out');
+  bind('c-minus', 'c-plus', 'c', 1, 5, 'c-out');
+  $('m-pairs').onclick = () => setMode('pairs');
+  $('m-rows').onclick = () => setMode('rows');
+
+  $('sound').onclick = e => {
+    state.sound = !state.sound;
+    e.currentTarget.setAttribute('aria-pressed', state.sound);
+    e.currentTarget.textContent = state.sound ? '🔔 Sound' : '🔇 Sound';
+    if (state.sound) play('drum');
+  };
+  // ---------- Read aloud: pick the most natural voice this browser offers ----------
+  // Ranked by name: "Natural"/"Neural" (Edge), "Premium"/"Enhanced" (Apple), Google voices (Chrome).
+  // Some of these voices are online voices: the browser sends the sentence (never anything a student typed) to its maker.
+  function bestVoice() {
+    const voices = speechSynthesis.getVoices().filter(v => /^en(-|_|$)/i.test(v.lang));
+    const score = v => (/natural|neural/i.test(v.name) ? 50 : 0) + (/premium|enhanced/i.test(v.name) ? 40 : 0) +
+      (/google/i.test(v.name) ? 30 : 0) + (/aria|jenny|ava|samantha|libby|sonia/i.test(v.name) ? 10 : 0) +
+      (/en-US/i.test(v.lang) ? 5 : 0) + (v.default ? 1 : 0);
+    return voices.sort((a, b) => score(b) - score(a))[0] || null;
+  }
+  if ('speechSynthesis' in window) speechSynthesis.getVoices();
+  $('read').onclick = () => {
+    if (!('speechSynthesis' in window)) return;
+    speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance($('say').textContent);
+    const v = bestVoice();
+    if (v) { u.voice = v; u.lang = v.lang; }
+    u.rate = 0.92; u.pitch = 1.05;
+    speechSynthesis.speak(u);
+  };
+
+  // ---------- March! The band marches in place to "When the Saints Go Marching In" (traditional) ----------
+  const BEAT = 0.42; // seconds per beat
+  const C = 72, D = 74, E = 76, F = 77, G = 79, R = null;
+  // [note, beats]
+  const SAINTS = [
+    [R, 1], [C, 1], [E, 1], [F, 1], [G, 4],
+    [R, 1], [C, 1], [E, 1], [F, 1], [G, 4],
+    [R, 1], [C, 1], [E, 1], [F, 1], [G, 2], [E, 2], [C, 2], [E, 2], [D, 4],
+    [R, 2], [E, 1], [E, 1], [D, 1], [C, 3], [C, 1], [E, 2], [G, 2], [G, 1], [F, 3],
+    [R, 1], [E, 1], [F, 1], [G, 2], [E, 2], [C, 2], [D, 2], [C, 4],
+  ];
+  const hz = m => 440 * Math.pow(2, (m - 69) / 12);
+  function brass(when, midi, dur) {
+    const a = audio();
+    [[1, 0.09, 'sawtooth'], [0.5, 0.05, 'square']].forEach(([mult, gain, type]) => {
+      const o = a.createOscillator(), f = a.createBiquadFilter(), g = a.createGain();
+      o.type = type; o.frequency.value = hz(midi) * mult;
+      f.type = 'lowpass'; f.frequency.setValueAtTime(900, when); f.frequency.linearRampToValueAtTime(2200, when + 0.06);
+      g.gain.setValueAtTime(0.0001, when); g.gain.exponentialRampToValueAtTime(gain, when + 0.03);
+      g.gain.setValueAtTime(gain, when + Math.max(0.05, dur - 0.08)); g.gain.exponentialRampToValueAtTime(0.0001, when + dur);
+      o.connect(f).connect(g).connect(bus || a.destination); o.start(when); o.stop(when + dur + 0.05);
+    });
+  }
+  function drumHit(when, kind) {
+    const a = audio(), len = a.sampleRate * 0.18, buf = a.createBuffer(1, len, a.sampleRate), d = buf.getChannelData(0);
+    for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, 3);
+    const s = a.createBufferSource(), f = a.createBiquadFilter(), g = a.createGain();
+    s.buffer = buf; f.type = kind === 'bass' ? 'lowpass' : 'bandpass'; f.frequency.value = kind === 'bass' ? 160 : 1800;
+    g.gain.value = kind === 'bass' ? 1.4 : 0.35;
+    s.connect(f).connect(g).connect(bus || a.destination); s.start(when);
+    if (kind === 'bass') {
+      const o = a.createOscillator(), og = a.createGain();
+      o.frequency.setValueAtTime(110, when); o.frequency.exponentialRampToValueAtTime(50, when + 0.15);
+      og.gain.setValueAtTime(0.6, when); og.gain.exponentialRampToValueAtTime(0.0001, when + 0.2);
+      o.connect(og).connect(bus || a.destination); o.start(when); o.stop(when + 0.25);
+    }
+  }
+  function tuba(when, midi) {
+    const a = audio(), o = a.createOscillator(), f = a.createBiquadFilter(), g = a.createGain();
+    o.type = 'sawtooth'; o.frequency.value = hz(midi); f.type = 'lowpass'; f.frequency.value = 500;
+    g.gain.setValueAtTime(0.0001, when); g.gain.exponentialRampToValueAtTime(0.12, when + 0.03); g.gain.exponentialRampToValueAtTime(0.0001, when + BEAT * 0.9);
+    o.connect(f).connect(g).connect(bus || a.destination); o.start(when); o.stop(when + BEAT);
+  }
+  let bus = null;
+  function playSaints() {
+    const a = audio(), start = a.currentTime + 0.1;
+    bus = a.createGain(); bus.connect(a.destination);
+    let t = 0;
+    SAINTS.forEach(([n, beats]) => { if (n) brass(start + t * BEAT, n, beats * BEAT * 0.95); t += beats; });
+    const total = t;
+    // oom-pah tuba (C and G) and drums on every beat, bass drum on 1 and 3
+    for (let b = 0; b < total; b++) {
+      const when = start + b * BEAT;
+      drumHit(when, b % 2 === 0 ? 'bass' : 'snare');
+      if (b % 2 === 0) tuba(when, b % 4 === 0 ? 36 : 43);
+    }
+    noiseAt(start + total * BEAT, 0.9);
+    return total * BEAT + 0.4;
+  }
+  function noiseAt(when, dur) {
+    const a = audio(), len = a.sampleRate * dur, buf = a.createBuffer(1, len, a.sampleRate), d = buf.getChannelData(0);
+    for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * (1 - i / len);
+    const s = a.createBufferSource(), f = a.createBiquadFilter(), g = a.createGain();
+    s.buffer = buf; f.type = 'highpass'; f.frequency.value = 5000; g.gain.value = 0.45;
+    s.connect(f).connect(g).connect(bus || a.destination); s.start(when);
+  }
+
+  let marchTimer = 0;
+  function stopMarch() {
+    clearTimeout(marchTimer); marchTimer = 0;
+    $('field').classList.remove('marching');
+    $('march').setAttribute('aria-pressed', 'false');
+    $('march').textContent = 'March! 🥁';
+    if (bus) { bus.disconnect(); bus = null; }
+  }
+  $('march').onclick = () => {
+    if (marchTimer) return stopMarch();
+    const field = $('field');
+    field.style.setProperty('--step', `${BEAT * 2}s`);
+    field.classList.add('marching');
+    $('march').setAttribute('aria-pressed', 'true');
+    $('march').textContent = 'Stop ■';
+    const seconds = state.sound ? playSaints() : 8;
+    marchTimer = setTimeout(stopMarch, seconds * 1000);
+  };
+
+  // keyboard shortcuts for the teacher at the board
+  addEventListener('keydown', e => {
+    if (e.target.closest && e.target.closest('button, [role=button]') && (e.key === 'Enter' || e.key === ' ')) return;
+    if (e.key === '+' || e.key === '=') (state.mode === 'pairs' ? $('n-plus') : $('c-plus')).click();
+    if (e.key === '-') (state.mode === 'pairs' ? $('n-minus') : $('c-minus')).click();
+    if (e.key.toLowerCase() === 'm') $('march').click();
+  });
+
+  draw();
+})();
+</script>
+</body>
+</html>

@@ -1,11 +1,70 @@
 {
   "style": "Bright, cheerful marching band characters. Children of many different skin tones and hair styles. Front view, standing straight at attention, same size and pose for every musician so they line up neatly.",
   "assets": [
-    {"name": "drum", "prompt": "A child marching band drummer in a red band uniform with gold braid, tall black shako hat with a white plume, a snare drum on a strap at the waist, holding sticks. Full body, front view.", "width": 160, "cutout": true, "crop": [0, 0.72]},
-    {"name": "trumpet", "ref": "drum", "prompt": "Another child in the same band: blue uniform with gold braid, same hat style with a gold plume, playing a shiny trumpet. Same pose, full body, front view.", "width": 160, "cutout": true, "crop": [0, 0.72]},
-    {"name": "tuba", "ref": "drum", "prompt": "Another child in the same band: green uniform with gold braid, same hat style with a white plume, holding a big gold sousaphone. Same pose, full body, front view.", "width": 160, "cutout": true, "crop": [0, 0.72]},
-    {"name": "flute", "ref": "drum", "prompt": "Another child in the same band: purple uniform with gold braid, same hat style with a gold plume, playing a silver flute held to the side. Same pose, full body, front view.", "width": 160, "cutout": true, "crop": [0, 0.72]},
-    {"name": "cymbals", "ref": "drum", "prompt": "Another child in the same band: orange uniform with gold braid, same hat style with a white plume, holding two gold cymbals. Same pose, full body, front view.", "width": 160, "cutout": true, "crop": [0, 0.72]},
-    {"name": "stadium", "prompt": "Wide background: a sunny school football field with bright green striped grass and white yard lines in the foreground, small cheering stands and pennant flags in the distance, blue sky. Seen from slightly above. The grass area is empty. 16:9.", "width": 1400, "quality": 78}
+    {
+      "name": "drum",
+      "prompt": "A girl with dark brown skin and curly black hair in puffs, red band uniform with gold braid and white cross straps, a white snare drum at her waist, holding drumsticks. Tall black shako hat with gold trim and a plume. Full body from the top of the plume down to the shoes, standing straight at attention facing the viewer, feet together, the instrument held close in front of the body.",
+      "cutout": true,
+      "crop": [
+        0,
+        0.66
+      ],
+      "height": 300
+    },
+    {
+      "name": "trumpet",
+      "ref": "drum",
+      "prompt": "A boy with light tan skin and short straight black hair, blue band uniform with gold braid, playing a shiny gold trumpet pointed slightly up. Tall black shako hat with gold trim and a plume. Full body from the top of the plume down to the shoes, standing straight at attention facing the viewer, feet together, the instrument held close in front of the body.",
+      "cutout": true,
+      "crop": [
+        0,
+        0.66
+      ],
+      "height": 300,
+      "ref_mode": "style"
+    },
+    {
+      "name": "tuba",
+      "ref": "drum",
+      "prompt": "A boy with medium brown skin and short wavy hair, bright GREEN band uniform (not red) with gold braid, holding a gold sousaphone that wraps around his body. Tall black shako hat with gold trim and a plume. Full body from the top of the plume down to the shoes, standing straight at attention facing the viewer, feet together, the instrument held close in front of the body.",
+      "cutout": true,
+      "crop": [
+        0,
+        0.66
+      ],
+      "height": 300,
+      "ref_mode": "style"
+    },
+    {
+      "name": "flute",
+      "ref": "drum",
+      "prompt": "A girl with light skin, freckles and a red ponytail, purple band uniform with gold braid, playing a silver flute held to the side. Tall black shako hat with gold trim and a plume. Full body from the top of the plume down to the shoes, standing straight at attention facing the viewer, feet together, the instrument held close in front of the body.",
+      "cutout": true,
+      "crop": [
+        0,
+        0.66
+      ],
+      "height": 300,
+      "ref_mode": "style"
+    },
+    {
+      "name": "cymbals",
+      "ref": "drum",
+      "prompt": "A girl with brown skin and long black braids, bright ORANGE band uniform (not red) with gold braid, holding two big gold cymbals up in front of her chest, one in each hand. Tall black shako hat with gold trim and a plume. Full body from the top of the plume down to the shoes, standing straight at attention facing the viewer, feet together, the instrument held close in front of the body.",
+      "cutout": true,
+      "crop": [
+        0,
+        0.66
+      ],
+      "height": 300,
+      "ref_mode": "style"
+    },
+    {
+      "name": "stadium",
+      "prompt": "Empty landscape background: a sunny school football field seen from the sideline, bright green striped grass with white yard lines filling the lower two thirds, low bleachers with tiny pennant flags far away at the horizon, soft blue sky with a few clouds. Nobody is on the field. 16:9.",
+      "width": 1400,
+      "quality": 78,
+      "skip_style": true
+    }
   ]
 }

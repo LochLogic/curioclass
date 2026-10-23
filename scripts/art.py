@@ -8,7 +8,9 @@ Reads tools/<tool-id>/art/prompts.json:
 
 Needs GEMINI_API_KEY (environment, or the Windows user setting). CURIO_IMAGE_MODEL overrides the model.
 Asset options: "ref": "<other asset>" sends that asset's raw image along so a character stays consistent;
-"crop": [top, bottom] keeps only that vertical slice (0-1), e.g. a musician from hat to waist.
+"ref_mode": "style" matches only the drawing style and outfit, not the character;
+"crop": [top, bottom] keeps that vertical slice (0-1) of the cut-out figure, e.g. a musician from hat to waist;
+"height" sizes by height instead of width, so a set of characters lines up.
 Raw images go to art/raw/ (not committed); finished art/<name>.webp is committed and bundled
 into the tool by scripts/bundle_tool.py. See docs/ART.md for the house style.
 """
@@ -19,7 +21,7 @@ import numpy as np
 from PIL import Image
 
 ROOT = Path(__file__).resolve().parent.parent
-MODEL = os.environ.get('CURIO_IMAGE_MODEL', 'gemini-2.5-flash-image')
+MODEL = os.environ.get('CURIO_IMAGE_MODEL', 'gemini-3.1-flash-image')
 HOUSE_STYLE = ("Warm storybook illustration for a children's classroom tool. Soft gouache and colored-pencil texture, "
                "clean confident shapes, gentle shading, friendly proportions, rich but not neon colors. "
                "No text, no letters, no watermark, no border, no frame.")
@@ -82,20 +84,28 @@ def main():
         if out.exists() and not force:
             print(f'skip {name} (exists; --force to redo)')
             continue
-        prompt = ' '.join([HOUSE_STYLE, spec.get('style', ''), asset['prompt'], CUTOUT if asset.get('cutout') else ''])
+        tool_style = '' if asset.get('skip_style') else spec.get('style', '')  # backgrounds skip character notes
+        prompt = ' '.join([HOUSE_STYLE, tool_style, asset['prompt'], CUTOUT if asset.get('cutout') else ''])
         raw = art / 'raw' / f'{name}.png'
         refs = [Image.open(art / 'raw' / f'{asset["ref"]}.png')] if asset.get('ref') else []
-        if refs:
+        if refs and asset.get('ref_mode') == 'style':
+            prompt += (' Match only the drawing style, line quality, proportions and uniform design of the reference image.'
+                       ' Draw a different child with a different face, skin tone and hair.')
+        elif refs:
             prompt += ' Match the character design, colors and drawing style of the reference image exactly.'
         img = generate(prompt, refs)
         img.save(raw)
+        if asset.get('cutout'):
+            img = cut_out(img)
         if asset.get('crop'):
             top, bottom = asset['crop']
             img = img.crop((0, round(img.height * top), img.width, round(img.height * bottom)))
-        if asset.get('cutout'):
-            img = cut_out(img)
-        w = asset.get('width', 512)
-        img = img.resize((w, round(img.height * w / img.width)), Image.LANCZOS)
+        if asset.get('height'):
+            h = asset['height']
+            img = img.resize((round(img.width * h / img.height), h), Image.LANCZOS)
+        else:
+            w = asset.get('width', 512)
+            img = img.resize((w, round(img.height * w / img.width)), Image.LANCZOS)
         img.save(out, 'WEBP', quality=asset.get('quality', 82), method=6)
         print(f'made {name}: {img.width}x{img.height}, {out.stat().st_size // 1024} KB')
 

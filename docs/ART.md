@@ -29,7 +29,7 @@ Store the key as a Windows user setting, never in the repo or in chat. In PowerS
 [Environment]::SetEnvironmentVariable('GEMINI_API_KEY', (Read-Host 'Gemini API key'), 'User')
 ```
 
-`scripts/art.py` reads it from there. Model: `gemini-2.5-flash-image` by default (override with `CURIO_IMAGE_MODEL`). Image generation is billed per image, at a few cents each.
+`scripts/art.py` reads it from there. Model: `gemini-3.1-flash-image` by default (override with `CURIO_IMAGE_MODEL`). Image generation is billed per image, at a few cents each.
 
 ## Provenance
 
