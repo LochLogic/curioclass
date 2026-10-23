@@ -50,7 +50,7 @@ tools/<tool-id>/
 ## The HTML file should
 
 - Be keyboard usable with visible focus, use 44px or larger targets (larger for K-2), and never use color as the only signal.
-- Respect `prefers-reduced-motion`.
+- Respect `prefers-reduced-motion` as the starting point, with a Motion button in the header that overrides it (remembered in localStorage `curio-motion`, shared across tools). Many school laptops have Windows animation effects off without anyone choosing it. Turning motion off removes movement only: story pacing and timers stay the same, so sound and pictures stay in step.
 - Credit sources and licenses in a comment near the top.
 - Feel like itself. There is no shared visual template on purpose: tools can each have their own look. The site provides the consistent frame around them.
 

@@ -97,7 +97,7 @@ footer.sentence{padding:16px 20px;background:var(--ink);color:#fff;display:flex;
   .eq{font-size:24px}
   .say{font-size:14px}
 }
-@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+.calm *{animation:none!important;transition:none!important}
 </style>
 </head>
 <body>
@@ -107,6 +107,7 @@ footer.sentence{padding:16px 20px;background:var(--ink);color:#fff;display:flex;
     <button id="m-pairs" aria-pressed="true">Partners</button>
     <button id="m-rows" aria-pressed="false">Rows</button>
   </div>
+  <button class="icon-btn" id="motion" aria-pressed="true" title="Turn animation on or off">✨ Motion</button>
   <button class="icon-btn" id="sound" aria-pressed="true" aria-label="Sound">🔔 Sound</button>
   <button class="icon-btn" id="read" aria-label="Read the sentence aloud">🔊 Read</button>
 </header>
@@ -178,7 +179,20 @@ footer.sentence{padding:16px 20px;background:var(--ink);color:#fff;display:flex;
 (() => {
   const $ = id => document.getElementById(id);
   const SVGNS = 'http://www.w3.org/2000/svg';
-  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // Motion follows the device's "reduce motion" setting until the teacher picks, then the choice is remembered
+  let reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  try { const m = localStorage.getItem('curio-motion'); if (m) reduce = m === 'calm'; } catch {}
+  function showMotion() {
+    document.body.classList.toggle('calm', reduce);
+    $('motion').setAttribute('aria-pressed', !reduce);
+    $('motion').textContent = reduce ? '⏸ Motion' : '✨ Motion';
+  }
+  showMotion();
+  $('motion').onclick = () => {
+    reduce = !reduce;
+    try { localStorage.setItem('curio-motion', reduce ? 'calm' : 'on'); } catch {}
+    showMotion();
+  };
   // Illustrated musicians (hat to waist; legs are drawn so they can march). [width, height] of each image.
   const INSTRUMENTS = [
     {k: 'drum', art: 'art:drum', size: [184, 300]},
