@@ -187,12 +187,15 @@ S:\Education snippets\            (rename to S:\OpenBench once name is picked)
 
 - [x] Review concept pieces, derive house style
 - [x] Draft name shortlist, verbiage, voice, license, IA, SEO plan, tech structure
-- [ ] Cory picks name (and license)
-- [ ] Check domain and trademark for the chosen name
-- [ ] Create folder layout and move the two concepts into tools\ (needs Cory's OK)
-- [ ] Write `templates\tool-starter.html` from the house style
-- [ ] Seed `subjects.csv` and `grades.csv`
-- [ ] Private git repo, Eleventy skeleton with home, tool page template, the two tools
+- [x] Name: Curio Class; license CC BY 4.0 (content) + MIT (code)
+- [x] Domain and trademark check; Cory buying curioclass.org
+- [x] Folder layout at S:\CurioClass, concepts moved into tools\
+- [x] templates\tool-starter.html (band skins, opening reveal, bell, read-aloud, Practice/Challenge, a11y)
+- [x] Seeded data\: grades, bands, subjects, tool-types, tools; modules.csv header only (Phase 1)
+- [x] Private repo LochLogic/curioclass
+- [ ] Teacher notes + meta for the two tools; cite Elements data sources
+- [ ] Homepage + tool page mockup to judge the look
+- [ ] Eleventy skeleton (after mockup is approved)
 
 ## Later phases (for reference)
 - Phase 1: modules.csv for K-12 across all subjects, aligned to CCSS / NGSS / C3 and a state baseline
