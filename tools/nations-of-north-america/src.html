@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nations of North America · Native nations and the land · Curio Class</title>
+<meta name="description" content="A map of ten regions of North America and the Native nations whose homelands are there: the land, food, homes and ways of life that fit each environment, and where each nation is today. Then match clues to regions. Grade 5 social studies. Works offline.">
+<!--
+NATIONS OF NORTH AMERICA (Curio Class)
+Grade 5 social studies, C3 D2.His.2.3-5 (change and continuity) and D2.Geo.6.3-5 (how environment shapes
+the way people live). Ten culture areas of the United States and Canada, the regions scholars often use to
+compare ways of life before European contact. Each region links the environment to food, homes and ways of life,
+and names some of the nations whose homelands are there, in the present tense: these nations are here today.
+Region borders are approximate on purpose; homelands overlapped and changed. Mexico and Central America, home
+to many more nations, are outside this tool.
+Map: Natural Earth via world-atlas 2.0.2 (public domain), Albers equal-area projection, built by scripts/na_map.py.
+Landscape paintings generated with Google Gemini, edited for Curio Class; they show land and animals only.
+One file, no network requests. Content CC BY 4.0, code MIT. curioclass.org
+-->
+<style>
+:root{
+  --paper:#f6f1e6;--card:#fffcf5;--ink:#2b2622;--muted:#6a6158;--line:#e2d7c3;--focus:#2a6fdb;--sea:#cfe3ec;--land:#efe8d8;--brand:#5a3b25;
+  font-family:'Segoe UI',system-ui,-apple-system,Roboto,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0;height:100%}
+body{background:var(--paper);color:var(--ink);display:grid;grid-template-rows:auto 1fr;min-height:100vh}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+header{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 18px;background:var(--brand);color:#fbf3e6}
+h1{margin:0 auto 0 0;font:700 clamp(21px,2.6vw,29px)/1.1 Georgia,'Times New Roman',serif}
+h1 small{display:block;font:400 14px/1.3 'Segoe UI',sans-serif;color:#e3d2bd}
+.seg{display:inline-flex;border:1px solid #8a6a50;border-radius:999px;overflow:hidden}
+.seg button{border:0;background:#6d4a31;color:#fbf3e6;min-height:44px;padding:0 16px;font-weight:600;font-size:15px}
+.seg button[aria-pressed="true"]{background:#f1c76b;color:#2b1d00}
+
+main{display:grid;grid-template-columns:minmax(0,1fr) 400px;min-height:0}
+@media (max-width:900px){main{grid-template-columns:1fr}}
+.mapbox{position:relative;min-height:360px;background:var(--sea)}
+.mapbox svg{position:absolute;inset:0;width:100%;height:100%}
+.country{fill:var(--land);stroke:#b9ab92;stroke-width:.8}
+.region{stroke:#fffcf5;stroke-width:2;cursor:pointer;opacity:.86;transition:opacity .2s}
+.region:hover,.region:focus-visible{opacity:1;stroke:#2b2622;stroke-width:2.5;outline:none}
+.region.on{opacity:1;stroke:#2b2622;stroke-width:3.5}
+.region.dim{opacity:.35}
+.region.right{stroke:#1f7a4d;stroke-width:4;opacity:1}
+.region.wrong{animation:wrong .6s}
+@keyframes wrong{30%{opacity:.2}}
+.rlabel{font:700 15px 'Segoe UI',sans-serif;fill:#2b2622;paint-order:stroke;stroke:#fffcf5cc;stroke-width:4px;text-anchor:middle;pointer-events:none}
+.note-map{position:absolute;left:12px;bottom:10px;max-width:280px;font-size:12.5px;line-height:1.35;color:#3d4f58;background:#ffffffb8;border-radius:8px;padding:6px 8px}
+
+.panel{background:var(--card);border-left:1px solid var(--line);display:flex;flex-direction:column;overflow:auto}
+@media (max-width:900px){.panel{border-left:0;border-top:1px solid var(--line)}}
+.hero{position:relative}
+.hero img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover}
+.hero h2{position:absolute;left:0;right:0;bottom:0;margin:0;padding:24px 16px 10px;font:700 26px/1.1 Georgia,serif;color:#fff;background:linear-gradient(transparent,#000a)}
+.body{padding:12px 16px 16px;display:flex;flex-direction:column;gap:10px}
+.body h3{margin:6px 0 0;font:700 12px/1 'Segoe UI',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.body p{margin:0;font-size:15.5px;line-height:1.5}
+.facts{display:grid;gap:8px}
+.fact{display:grid;grid-template-columns:30px 1fr;gap:8px;align-items:start;font-size:15px;line-height:1.45}
+.fact i{font-style:normal;font-size:22px;line-height:1.2}
+.fact b{display:block;font-size:13px;color:var(--muted)}
+.nations{margin:0;padding:0;list-style:none;display:grid;gap:6px}
+.nations li{background:#f4ede0;border-radius:10px;padding:7px 10px;font-size:14.5px;line-height:1.4}
+.nations li b{font-size:15.5px}
+.today{background:#e9f3ec;border-left:5px solid #1f7a4d;border-radius:8px;padding:8px 10px;font-size:14.5px;line-height:1.45}
+.intro{padding:18px 16px;display:flex;flex-direction:column;gap:12px}
+.intro h2{margin:0;font:700 24px/1.2 Georgia,serif}
+.intro p{margin:0;font-size:16px;line-height:1.5}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips button{border:1px solid var(--line);background:#fff;border-radius:999px;min-height:40px;padding:0 12px;font-size:14px;font-weight:600;display:flex;align-items:center;gap:6px}
+.chips button i{width:12px;height:12px;border-radius:50%;display:inline-block}
+.clue{background:#fff;border:2px solid var(--line);border-radius:14px;padding:12px 14px;font:600 19px/1.4 Georgia,serif}
+.say{border-radius:10px;padding:9px 11px;font-size:15px;line-height:1.45;background:#eef5f0;border-left:5px solid #1f7a4d;margin:0}
+.say.warn{background:#fbefe6;border-color:#c0602a}
+.say:empty{display:none}
+.btn{border:0;border-radius:12px;min-height:48px;background:var(--brand);color:#fff;font:700 16px 'Segoe UI',sans-serif;padding:0 14px}
+.btn.soft{background:#ece4d4;color:var(--ink)}
+.score{font-size:14px;color:var(--muted)}
+.calm .region{transition:none}.calm .region.wrong{animation:none}
+@media (max-height:660px),(max-width:760px){header{padding:6px 10px} h1{font-size:18px} h1 small{display:none} .seg button{min-height:36px;font-size:13px}}
+</style>
+</head>
+<body>
+<header>
+  <h1>Nations of North America <small>The land shapes how people live. These nations are still here today.</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-explore" aria-pressed="true">Explore</button>
+    <button id="m-quiz" aria-pressed="false">Which region?</button>
+  </div>
+</header>
+<main>
+  <div class="mapbox" id="mapbox">
+    <svg id="map" role="group" aria-label="Map of North America divided into ten regions"></svg>
+    <p class="note-map">Region borders are approximate. Homelands overlapped and changed over time. Mexico and Central America are home to many more nations not shown here.</p>
+  </div>
+  <aside class="panel" id="panel" aria-live="polite"></aside>
+</main>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  let reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  try { const m = localStorage.getItem('curio-motion'); if (m) reduce = m === 'calm'; } catch {}
+  document.body.classList.toggle('calm', reduce);
+  const MAP = "json:na";
+
+  // ---------- ten regions ----------
+  const R = {
+    arctic: {n: 'Arctic', c: '#b7afd8', img: 'art:arctic',
+      land: 'Treeless tundra and frozen seas. Winters are long and dark, and summers are short and bright.',
+      food: 'Seals, whales, walrus, caribou and fish. It is too cold to farm.',
+      home: 'Sod houses for winter, snow houses (igluit) built while traveling in winter, and skin tents in summer.',
+      life: 'Kayaks and larger umiak boats for hunting at sea, dog sleds, and warm clothing of caribou skin and sealskin. Every part of an animal was used.',
+      nations: [['Inuit', 'Northern Canada, Alaska and Greenland. Nunavut, a territory of Canada with an Inuit majority, was created in 1999.'],
+        ['Iñupiat', 'Northern Alaska'], ['Yup\'ik and Yupik', 'Western Alaska'], ['Unangan (Aleut)', 'The Aleutian Islands of Alaska']]},
+    subarctic: {n: 'Subarctic', c: '#8fb48a', img: 'art:subarctic',
+      land: 'Huge forests of spruce and birch called the boreal forest, thousands of lakes and rivers, and very cold winters.',
+      food: 'Caribou, moose, fish, hares and berries. Summers are too short for farming.',
+      home: 'Cone-shaped lodges covered with hides or birchbark, moved with the seasons.',
+      life: 'Snowshoes and toboggans in winter, birchbark canoes in summer. Small family groups traveled to follow the animals.',
+      nations: [['Cree', 'Across Canada, from Alberta to Quebec, one of the largest First Nations'], ['Dene peoples', 'Northwestern Canada'],
+        ['Innu', 'Quebec and Labrador'], ['Gwich\'in', 'Alaska, Yukon and the Northwest Territories']]},
+    northwest: {n: 'Northwest Coast', c: '#4f9a7a', img: 'art:northwest',
+      land: 'A rainy coast with giant cedar forests, rivers full of salmon, and a rich ocean.',
+      food: 'Salmon (dried and smoked for winter), halibut, shellfish and berries. The Makah also hunted whales.',
+      home: 'Large houses of cedar planks where several related families lived together.',
+      life: 'Carved cedar canoes, clothing and baskets woven from cedar bark, tall carved poles that tell family histories, and potlatch feasts where the hosts give gifts.',
+      nations: [['Tlingit', 'Southeast Alaska'], ['Haida', 'Haida Gwaii in British Columbia, and Alaska'], ['Kwakwaka\'wakw', 'British Columbia'],
+        ['Coast Salish peoples', 'Washington and British Columbia'], ['Makah', 'The tip of Washington\'s Olympic Peninsula']]},
+    plateau: {n: 'Plateau', c: '#c2a66c', img: 'art:plateau',
+      land: 'High land between mountain ranges, crossed by big rivers like the Columbia and the Fraser.',
+      food: 'Salmon caught at river falls, camas and other roots dug in meadows, berries and deer.',
+      home: 'Pit houses dug partly into the ground for winter, and lodges covered with woven mats in summer.',
+      life: 'Big gatherings at fishing places to fish and trade. After horses arrived in the 1700s, the Nez Perce became famous horse breeders.',
+      nations: [['Nez Perce (Nimiipuu)', 'Idaho'], ['Yakama', 'Washington'], ['Umatilla, Cayuse and Walla Walla', 'Oregon'],
+        ['Secwépemc', 'British Columbia'], ['Coeur d\'Alene (Schitsu\'umsh)', 'Idaho']]},
+    basin: {n: 'Great Basin', c: '#d7c18e', img: 'art:basin',
+      land: 'A dry land of valleys and mountains, where rivers never reach the ocean and little rain falls.',
+      food: 'Pine nuts from pinyon trees, seeds, roots, rabbits, fish from lakes, and even insects.',
+      home: 'Brush shelters and cone-shaped houses called wickiups, quick to build.',
+      life: 'Small family groups moved through the seasons to where food was ripe. Their tightly woven baskets could even hold water.',
+      nations: [['Shoshone', 'Nevada, Idaho, Utah and Wyoming'], ['Paiute', 'Nevada, California, Oregon, Utah and Arizona'], ['Ute', 'Utah and Colorado'], ['Washoe', 'Around Lake Tahoe in Nevada and California']]},
+    california: {n: 'California', c: '#e6b95a', img: 'art:california',
+      land: 'Mild weather, oak-covered hills, rich valleys and a long coast.',
+      food: 'Acorns, ground into flour and washed to take away the bitter taste, plus fish, shellfish, deer and seeds.',
+      home: 'Many styles: houses of tule reeds, bark or brush, and some built partly underground.',
+      life: 'Some of the finest baskets in the world, like Pomo baskets. The Chumash built plank canoes called tomol. Many small nations spoke many different languages.',
+      nations: [['Pomo', 'Northern California'], ['Chumash', 'The southern California coast'], ['Ohlone', 'The San Francisco Bay area'], ['Miwok', 'Central California'], ['Yurok', 'Along the Klamath River']]},
+    southwest: {n: 'Southwest', c: '#d47f55', img: 'art:southwest',
+      land: 'Deserts, mesas and canyons, with little rain and hot summers.',
+      food: 'Corn, beans and squash grown with careful use of water, plus wild plants and game.',
+      home: 'Pueblos of stone and adobe, several stories high. The Diné build hogans of logs and earth.',
+      life: 'Farming, pottery and weaving. Some pueblos, like Acoma and Taos, have been lived in for about a thousand years.',
+      nations: [['Hopi', 'Arizona'], ['Zuni (A:shiwi)', 'New Mexico'], ['Pueblos such as Acoma and Taos', 'New Mexico'],
+        ['Diné (Navajo)', 'Arizona, New Mexico and Utah, the largest reservation in the United States'], ['Apache', 'Arizona, New Mexico and Oklahoma'], ['Tohono O\'odham', 'Southern Arizona']]},
+    plains: {n: 'Plains', c: '#dcc867', img: 'art:plains',
+      land: 'Wide grasslands with few trees, hot summers and cold, windy winters.',
+      food: 'Bison (buffalo) for meat, plus wild plants. Some nations farmed corn along the rivers.',
+      home: 'Tipis of bison hide that could be packed up and moved. Farming nations like the Mandan and Pawnee built earth lodges.',
+      life: 'The bison gave food, clothing, tools and shelter. People hunted on foot and used dogs to carry loads. Horses, brought by the Spanish, later changed life on the Plains.',
+      nations: [['Lakota and Dakota', 'The Dakotas, Minnesota, Nebraska and Montana; part of the Oceti Sakowin'], ['Nakoda (Assiniboine)', 'Fort Belknap and Fort Peck in Montana, and Saskatchewan and Alberta'],
+        ['Cheyenne', 'Montana and Oklahoma'], ['Apsáalooke (Crow)', 'Montana'], ['Niitsitapi (Blackfeet)', 'Montana and Alberta'], ['Comanche', 'Oklahoma'], ['Mandan, Hidatsa and Arikara', 'North Dakota']]},
+    northeast: {n: 'Northeast Woodlands', c: '#7fae63', img: 'art:northeast',
+      land: 'Thick forests, lakes and rivers, with cold snowy winters and warm summers.',
+      food: 'The Three Sisters (corn, beans and squash), deer, fish, wild rice around the Great Lakes, and maple sap boiled into syrup and sugar.',
+      home: 'Haudenosaunee longhouses of bark, shared by several families of one clan. Algonquian-speaking nations built dome-shaped wigwams.',
+      life: 'Birchbark canoes on the lakes and rivers. The Haudenosaunee Confederacy joined nations together under the Great Law of Peace.',
+      nations: [['Haudenosaunee', 'Mohawk, Oneida, Onondaga, Cayuga, Seneca and Tuscarora, in New York, Ontario and Quebec'],
+        ['Anishinaabe', 'Ojibwe, Odawa and Potawatomi, around the Great Lakes'], ['Wampanoag', 'Massachusetts'], ['Lenape (Delaware)', 'Oklahoma, Wisconsin and Ontario today; homelands in New Jersey and nearby'], ['Mi\'kmaq', 'Atlantic Canada and Maine']]},
+    southeast: {n: 'Southeast', c: '#9cc06e', img: 'art:southeast',
+      land: 'Warm and wet, with rich soil, long rivers, forests and swamps.',
+      food: 'Corn, beans, squash and sunflowers grown in big fields, plus deer, turkey, fish and nuts.',
+      home: 'Towns of houses with wooden frames, clay-plastered walls and thatched roofs, built around a plaza and a council house. In Florida, Seminole chickees have open sides for the heat.',
+      life: 'Long ago, Mississippian peoples built huge earthen mounds and cities. In the 1830s the United States forced many Southeast nations to move west to Indian Territory, now Oklahoma.',
+      nations: [['Cherokee', 'Cherokee Nation and United Keetoowah Band in Oklahoma; Eastern Band in North Carolina'], ['Muscogee (Creek)', 'Oklahoma, Alabama'],
+        ['Choctaw', 'Oklahoma and Mississippi'], ['Chickasaw', 'Oklahoma'], ['Seminole', 'Florida and Oklahoma']]},
+  };
+  const KEYS = Object.keys(R);
+  const CLUES = [
+    ['Cedar plank houses, carved canoes and salmon feasts', 'northwest'],
+    ['Snow houses while traveling, and kayaks on icy seas', 'arctic'],
+    ['Acorn flour and some of the finest baskets in the world', 'california'],
+    ['Bison hides for tipis, clothing and tools', 'plains'],
+    ['Pine nuts and quick brush shelters in a dry land where rivers never reach the sea', 'basin'],
+    ['Bark longhouses and the Three Sisters: corn, beans and squash', 'northeast'],
+    ['Stone and adobe pueblos, several stories high, on desert mesas', 'southwest'],
+    ['Snowshoes, birchbark canoes and caribou in a huge spruce forest', 'subarctic'],
+    ['Salmon caught at river falls and camas roots dug in meadows', 'plateau'],
+    ['Farming towns around a plaza and council house, in warm river valleys', 'southeast'],
+  ];
+
+  // ---------- map ----------
+  const NS = 'http://www.w3.org/2000/svg';
+  const el = (tag, a, parent) => { const e = document.createElementNS(NS, tag); for (const k in a) e.setAttribute(k, a[k]); parent && parent.append(e); return e; };
+  const svg = $('map');
+  svg.setAttribute('viewBox', '120 40 860 840');
+  svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+  for (const c of MAP.countries) el('path', {d: c.d, class: 'country'}, svg);
+  const LABEL = {northwest: [-40, 20], california: [-30, 10], plateau: [0, -6]};
+  for (const k of KEYS) {
+    const p = el('path', {d: MAP.regions[k], class: 'region', fill: R[k].c, tabindex: 0, role: 'button', 'aria-label': R[k].n, 'data-k': k}, svg);
+    p.onclick = () => pick(k);
+    p.onkeydown = e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(k); } };
+  }
+  for (const k of KEYS) {
+    const [x, y] = MAP.centers[k], d = LABEL[k] || [0, 0];
+    const t = el('text', {x: x + d[0], y: y + d[1], class: 'rlabel'}, svg);
+    t.textContent = R[k].n;
+  }
+  const mark = (fn) => [...svg.querySelectorAll('.region')].forEach(fn);
+
+  // ---------- explore ----------
+  const st = {mode: 'explore', cur: null, clue: 0, tries: 0, right: 0, order: []};
+  function intro() {
+    mark(p => p.classList.remove('on', 'dim', 'right'));
+    $('panel').innerHTML = `<div class="intro"><h2>Ten regions, many nations</h2>
+      <p>Long before Europeans arrived, hundreds of Native nations lived across North America. Each nation's way of life fit its land: what grew there, which animals lived there, and how cold or dry it was.</p>
+      <p><b>Tap a region</b> on the map to see its land, food, homes and ways of life, and some of the nations whose homelands are there.</p>
+      <div class="chips">${KEYS.map(k => `<button data-k="${k}"><i style="background:${R[k].c}"></i>${R[k].n}</button>`).join('')}</div>
+      <p class="today">Today there are more than 570 federally recognized tribal nations in the United States and more than 600 First Nations in Canada, plus Inuit and Métis communities. They have their own governments, languages and cultures.</p></div>`;
+    $('panel').querySelectorAll('.chips button').forEach(b => b.onclick = () => pick(b.dataset.k));
+  }
+  function show(k) {
+    const r = R[k];
+    st.cur = k;
+    mark(p => { p.classList.toggle('on', p.dataset.k === k); p.classList.toggle('dim', p.dataset.k !== k); });
+    $('panel').innerHTML = `<div class="hero"><img src="${r.img}" alt="The land of the ${r.n} region"><h2>${r.n}</h2></div>
+      <div class="body">
+        <div class="facts">
+          <div class="fact"><i aria-hidden="true">🏞️</i><div><b>The land</b>${r.land}</div></div>
+          <div class="fact"><i aria-hidden="true">🍽️</i><div><b>Food</b>${r.food}</div></div>
+          <div class="fact"><i aria-hidden="true">🏠</i><div><b>Homes</b>${r.home}</div></div>
+          <div class="fact"><i aria-hidden="true">🛶</i><div><b>Ways of life</b>${r.life}</div></div>
+        </div>
+        <h3>Some nations of this region, and where they are today</h3>
+        <ul class="nations">${r.nations.map(([n, w]) => `<li><b>${n}</b><br>${w}</li>`).join('')}</ul>
+        <p class="today">These nations are still here, with their own governments, languages and traditions. Many still fish, hunt, farm and gather in the ways described here, alongside modern life.</p>
+        <button class="btn soft" id="back">← All regions</button>
+      </div>`;
+    $('back').onclick = () => { st.cur = null; intro(); };
+    $('panel').scrollTop = 0;
+  }
+
+  // ---------- which region? ----------
+  function quiz() {
+    st.order = CLUES.map((_, i) => i).sort(() => Math.random() - .5);
+    st.clue = 0; st.right = 0;
+    nextClue();
+  }
+  function nextClue() {
+    mark(p => p.classList.remove('on', 'dim', 'right'));
+    if (st.clue >= st.order.length) {
+      $('panel').innerHTML = `<div class="intro"><h2>All ten regions!</h2><p>You matched ${st.right} of ${CLUES.length} on the first try.</p>
+        <p>Talk about it: which clue was hardest? How did the land help you decide?</p><button class="btn" id="again">Play again</button></div>`;
+      $('again').onclick = quiz;
+      return;
+    }
+    st.tries = 0;
+    const [c] = CLUES[st.order[st.clue]];
+    $('panel').innerHTML = `<div class="intro"><h3 style="margin:0;font:700 12px 'Segoe UI';letter-spacing:.12em;text-transform:uppercase;color:var(--muted)">Clue ${st.clue + 1} of ${CLUES.length}</h3>
+      <div class="clue">${c}</div><p>Which region's land fits this way of life? <b>Tap it on the map.</b></p><p class="say" id="say"></p>
+      <div id="qacts"></div><p class="score" id="score">First-try matches: ${st.right}</p></div>`;
+  }
+  function answer(k) {
+    const [c, want] = CLUES[st.order[st.clue]];
+    const p = svg.querySelector(`[data-k="${k}"]`);
+    if (k !== want) {
+      st.tries++;
+      p.classList.remove('wrong'); void p.getBBox(); p.classList.add('wrong');
+      $('say').className = 'say warn';
+      $('say').innerHTML = `Not the ${R[k].n}: ${R[k].land.charAt(0).toLowerCase() + R[k].land.slice(1)} Think about what the clue needs.`;
+      return;
+    }
+    if (!st.tries) st.right++;
+    $('score').textContent = `First-try matches: ${st.right}`;
+    p.classList.add('right');
+    $('say').className = 'say';
+    $('say').innerHTML = `Yes, the <b>${R[want].n}</b>. ${R[want].land}`;
+    $('qacts').innerHTML = '<button class="btn" id="nx">Next clue →</button> <button class="btn soft" id="more">Read about it</button>';
+    $('nx').onclick = () => { st.clue++; nextClue(); };
+    $('more').onclick = () => { setMode('explore'); show(want); };
+  }
+
+  function pick(k) { st.mode === 'quiz' ? (st.clue < st.order.length && !svg.querySelector('.region.right') && answer(k)) : show(k); }
+  function setMode(m) {
+    st.mode = m;
+    $('m-explore').setAttribute('aria-pressed', m === 'explore'); $('m-quiz').setAttribute('aria-pressed', m === 'quiz');
+    m === 'quiz' ? quiz() : intro();
+  }
+  $('m-explore').onclick = () => setMode('explore');
+  $('m-quiz').onclick = () => setMode('quiz');
+
+  window.__na = {st, show, setMode, answer, R, CLUES};  // for checking frames
+  setMode('explore');
+})();
+</script>
+</body>
+</html>

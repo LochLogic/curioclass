@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Idiom Island · Idioms and everyday expressions · Curio Class</title>
+<meta name="description" content="Explore an island where every place is an English idiom. See what it would mean word for word, then what people really mean, hear it said, read it in a sentence and check your understanding. English language development, grades 6-8. Works offline.">
+<!--
+IDIOM ISLAND (Curio Class)
+English language development, grades 6-8, WIDA ELD Standard 1 (social and instructional language), module
+"Idioms and Everyday Expressions".
+Twelve places on an island, one idiom each. A card shows the literal picture (what the words say) next to the
+real meaning (what people mean), with a recording of the idiom, its meaning and an example sentence, then a
+three-choice check. Stamps collect in a passport, kept on this device only.
+One file, no network requests. Illustrations and recorded speech generated with Google Gemini, edited for
+Curio Class. Content CC BY 4.0, code MIT. curioclass.org
+-->
+<style>
+:root{
+  --paper:#f2f7f6;--card:#fffdf7;--ink:#1f2a30;--muted:#5b6870;--line:#d7e3e1;--focus:#2a6fdb;--brand:#0f6e7a;--sun:#ffc642;--coral:#e8664a;
+  font-family:'Segoe UI',system-ui,-apple-system,Roboto,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0;height:100%}
+body{background:var(--paper);color:var(--ink);display:grid;grid-template-rows:auto 1fr;min-height:100vh}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+header{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 18px;background:var(--brand);color:#effafa}
+h1{margin:0 auto 0 0;font:800 clamp(21px,2.8vw,30px)/1.1 'Trebuchet MS','Segoe UI',sans-serif}
+h1 small{display:block;font:400 14px/1.3 'Segoe UI',sans-serif;color:#bfe5e6}
+.icon-btn{border:1px solid #3d8d97;background:#167b88;color:#effafa;border-radius:999px;min-height:44px;padding:0 14px;font-weight:600;font-size:15px}
+.stamps-n{font-weight:700;background:#0b5660;border-radius:999px;padding:8px 14px}
+
+main{display:grid;grid-template-columns:minmax(0,1fr) 420px;min-height:0}
+@media (max-width:900px){main{grid-template-columns:1fr}}
+.stage{position:relative;overflow:hidden;min-height:320px;background:#5fc3c8}
+.scene{position:absolute;left:50%;top:50%;width:1000px;height:562px;transform:translate(-50%,-50%) scale(var(--s,1))}
+.scene>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pin{position:absolute;transform:translate(-50%,-100%);border:0;background:none;padding:0;display:flex;flex-direction:column;align-items:center}
+.pin b{background:#fffdf7;border:3px solid var(--ink);border-radius:12px;padding:3px 9px;font:800 15px/1.1 'Trebuchet MS',sans-serif;white-space:nowrap;box-shadow:0 3px 0 #0003}
+.pin i{width:4px;height:22px;background:var(--ink)}
+.pin s{width:14px;height:6px;border-radius:50%;background:#0005;text-decoration:none}
+.pin.done b{background:var(--sun)}
+.pin.done b::before{content:'★ '}
+.pin.on b{background:var(--coral);color:#fff}
+.pin:hover b{transform:translateY(-2px)}
+
+.panel{background:var(--card);border-left:1px solid var(--line);overflow:auto;display:flex;flex-direction:column}
+@media (max-width:900px){.panel{border-left:0;border-top:1px solid var(--line)}}
+.intro{padding:16px;display:flex;flex-direction:column;gap:12px}
+.intro h2{margin:0;font:800 24px/1.2 'Trebuchet MS',sans-serif}
+.intro p{margin:0;font-size:16px;line-height:1.5}
+.passport{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.passport button{aspect-ratio:1;border:2px dashed #b8cfcc;border-radius:50%;background:#fff;font:700 11.5px/1.15 'Trebuchet MS',sans-serif;color:var(--muted);padding:4px}
+.passport button.done{border:3px solid var(--coral);color:var(--coral);background:#fff3ee;transform:rotate(-8deg)}
+.card{padding:14px 16px 18px;display:flex;flex-direction:column;gap:10px}
+.place{font:700 12px/1 'Segoe UI',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.idiom{margin:0;font:800 28px/1.15 'Trebuchet MS',sans-serif;color:var(--brand)}
+.pics{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.pics figure{margin:0;background:#f4f1e8;border-radius:12px;overflow:hidden}
+.pics img{display:block;width:100%;aspect-ratio:1;object-fit:cover}
+.pics figcaption{padding:6px 8px;font-size:13px;line-height:1.3}
+.pics figcaption b{display:block;font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+.pics .lit b{color:var(--coral)} .pics .real b{color:var(--brand)}
+.pics .real.hide img{filter:blur(14px) grayscale(.6)}
+.pics .real.hide figcaption{color:var(--muted)}
+.meaning{margin:0;font-size:18px;line-height:1.4}
+.example{margin:0;background:#eef7f6;border-left:5px solid var(--brand);border-radius:8px;padding:8px 10px;font-size:16.5px;line-height:1.45}
+.example mark{background:#ffe9a8;border-radius:4px;padding:0 2px}
+.play{display:flex;gap:6px;flex-wrap:wrap}
+.play button{border:2px solid var(--brand);background:#fff;color:var(--brand);border-radius:999px;min-height:40px;padding:0 12px;font-weight:700;font-size:14px}
+.q{margin:4px 0 0;font:700 16px 'Segoe UI',sans-serif}
+.opts{display:grid;gap:6px}
+.opts button{border:2px solid var(--line);background:#fff;border-radius:12px;min-height:46px;padding:6px 12px;text-align:left;font-size:15.5px}
+.opts button.right{border-color:#1f8a5b;background:#e3f4ea}
+.opts button.wrong{border-color:var(--coral);background:#fdece7}
+.say{margin:0;border-radius:10px;padding:8px 10px;font-size:15px;line-height:1.4;background:#e3f4ea}
+.say:empty{display:none}
+.nav{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.nav button{border:2px solid var(--ink);background:#fff;border-radius:12px;min-height:46px;font-weight:700;font-size:15px}
+.nav button.go{background:var(--brand);color:#fff;border-color:var(--brand)}
+@media (max-height:660px),(max-width:760px){header{padding:6px 10px} h1{font-size:18px} h1 small{display:none} .icon-btn{min-height:36px;font-size:13px} .idiom{font-size:22px}}
+</style>
+</head>
+<body>
+<header>
+  <h1>Idiom Island <small>Every place is an idiom. What do the words say, and what do people mean?</small></h1>
+  <span class="stamps-n" id="stamps-n"></span>
+  <button class="icon-btn" id="map-btn">🗺️ Passport</button>
+</header>
+<main>
+  <div class="stage" id="stage">
+    <div class="scene" id="scene"><img src="art:island" alt="Idiom Island, seen from above"></div>
+  </div>
+  <aside class="panel" id="panel" aria-live="polite"></aside>
+</main>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const fit = () => {
+    const r = $('stage').getBoundingClientRect();
+    $('scene').style.setProperty('--s', Math.min(r.width / 1000, r.height / 562));
+  };
+  new ResizeObserver(fit).observe($('stage'));
+
+  // ---------- twelve places, twelve idioms ----------
+  // xy: where the place's flag stands on the island picture (1000 x 562)
+  const I = [
+    {k: 'cats', place: 'Cloudburst Peak', xy: [215, 120], idiom: "It's raining cats and dogs", lit: 'Cats and dogs falling from the sky', mean: 'It is raining very hard.',
+     ex: "Bring an umbrella. <mark>It's raining cats and dogs</mark> out there!", opts: ['It is raining very hard.', 'Pets are running around outside.', 'The weather is changing quickly.']},
+    {k: 'cake', place: 'Bakery Bay', xy: [395, 272], idiom: 'A piece of cake', lit: 'A slice of cake', mean: 'Something very easy.',
+     ex: 'The spelling test was <mark>a piece of cake</mark>. I knew every word.', opts: ['Something very easy.', 'A small reward.', 'Something sweet but not healthy.']},
+    {k: 'ice', place: 'Iceberg Point', xy: [390, 125], idiom: 'Break the ice', lit: 'Cracking a block of ice', mean: 'Do or say something that helps people relax and start talking.',
+     ex: 'On the first day, our teacher played a name game to <mark>break the ice</mark>.', opts: ['Help people relax and start talking.', 'Ruin a fun moment.', 'Start an argument.']},
+    {k: 'weather', place: 'Drizzle Hill', xy: [548, 135], idiom: 'Under the weather', lit: 'Standing under a rain cloud', mean: 'Feeling a little sick.',
+     ex: 'Maya stayed home today because she was feeling <mark>under the weather</mark>.', opts: ['Feeling a little sick.', 'Standing outside in the rain.', 'In a bad mood about the weather.']},
+    {k: 'beans', place: 'Bean Farm', xy: [560, 282], idiom: 'Spill the beans', lit: 'A jar of beans spilling', mean: 'Tell a secret, often too early.',
+     ex: "Don't <mark>spill the beans</mark> about Dad's surprise party!", opts: ['Tell a secret.', 'Make a big mess.', 'Cook dinner for everyone.']},
+    {k: 'books', place: 'Library Village', xy: [472, 232], idiom: 'Hit the books', lit: 'Punching a stack of books', mean: 'Study hard.',
+     ex: 'I have a big test tomorrow, so tonight I need to <mark>hit the books</mark>.', opts: ['Study hard.', 'Get angry at school.', 'Put the books away.']},
+    {k: 'moon', place: 'Moonlight Lagoon', xy: [560, 432], idiom: 'Once in a blue moon', lit: 'A bright blue moon', mean: 'Very rarely; almost never.',
+     ex: 'It snows in our town only <mark>once in a blue moon</mark>.', opts: ['Very rarely.', 'Every night.', 'At the end of each month.']},
+    {k: 'pigs', place: 'Pig Meadow', xy: [735, 388], idiom: 'When pigs fly', lit: 'Pigs flying with wings', mean: 'Never. It will not happen.',
+     ex: '"Will your little brother ever clean his room?" "Sure, <mark>when pigs fly</mark>!"', opts: ['Never.', 'Very soon.', 'Only on a farm.']},
+    {k: 'horses', place: 'Horse Ranch', xy: [625, 322], idiom: 'Hold your horses', lit: 'Holding back two horses', mean: 'Wait. Slow down and be patient.',
+     ex: "<mark>Hold your horses</mark>! We can't open the presents until everyone is here.", opts: ['Wait and be patient.', 'Hurry up.', 'Take care of the animals.']},
+    {k: 'butterflies', place: 'Butterfly Garden', xy: [745, 292], idiom: 'Butterflies in my stomach', lit: 'Butterflies flying out of a tummy', mean: 'A nervous, fluttery feeling.',
+     ex: 'I had <mark>butterflies in my stomach</mark> before my piano recital.', opts: ['A nervous feeling.', 'Feeling hungry.', 'Feeling very sleepy.']},
+    {k: 'hotwater', place: 'Hot Springs', xy: [225, 400], idiom: 'In hot water', lit: 'Sitting in a pot of hot water', mean: 'In trouble.',
+     ex: 'Jamal was <mark>in hot water</mark> after he forgot his homework three days in a row.', opts: ['In trouble.', 'Relaxing.', 'Cooking something.']},
+    {k: 'court', place: 'Tennis Court', xy: [390, 412], idiom: 'The ball is in your court', lit: 'A tennis ball on your side', mean: 'It is your turn to decide or to act.',
+     ex: 'I said sorry and asked to be friends again. Now <mark>the ball is in your court</mark>.', opts: ['It is your turn to decide.', 'You lost the game.', 'You need more practice.']},
+  ];
+  const ART = {cats: ['art:cats-l', 'art:cats-r'], cake: ['art:cake-l', 'art:cake-r'], ice: ['art:ice-l', 'art:ice-r'], weather: ['art:weather-l', 'art:weather-r'], beans: ['art:beans-l', 'art:beans-r'], books: ['art:books-l', 'art:books-r'], moon: ['art:moon-l', 'art:moon-r'], pigs: ['art:pigs-l', 'art:pigs-r'], horses: ['art:horses-l', 'art:horses-r'], butterflies: ['art:butterflies-l', 'art:butterflies-r'], hotwater: ['art:hotwater-l', 'art:hotwater-r'], court: ['art:court-l', 'art:court-r']};
+  let done = new Set();
+  try { done = new Set(JSON.parse(localStorage.getItem('idiom-island') || '[]')); } catch {}
+  const keep = () => { try { localStorage.setItem('idiom-island', JSON.stringify([...done])); } catch {} };
+  const plain = s => s.replace(/<[^>]+>/g, '');
+  const st = {cur: null};
+
+  // ---------- pins on the island ----------
+  for (const [n, it] of I.entries()) {
+    const b = document.createElement('button');
+    b.className = 'pin'; b.dataset.k = it.k;
+    b.style.left = it.xy[0] + 'px'; b.style.top = it.xy[1] + 'px';
+    b.innerHTML = `<b>${it.place}</b><i></i><s></s>`;
+    b.setAttribute('aria-label', `${it.place}: ${it.idiom}`);
+    b.onclick = () => open(n);
+    $('scene').append(b);
+  }
+  function pins() {
+    $('scene').querySelectorAll('.pin').forEach(p => { p.classList.toggle('done', done.has(p.dataset.k)); p.classList.toggle('on', st.cur !== null && I[st.cur].k === p.dataset.k); });
+    $('stamps-n').textContent = `★ ${done.size} of ${I.length} stamps`;
+  }
+
+  // ---------- passport ----------
+  function passport() {
+    st.cur = null; pins(); stopTalk();
+    $('panel').innerHTML = `<div class="intro"><h2>Welcome to Idiom Island!</h2>
+      <p>An <b>idiom</b> is a group of words that means something different from what the words say one by one. "It's raining cats and dogs" is not about pets!</p>
+      <p><b>Tap a place</b> on the map. See what the words say, then what people really mean, and listen to it. Answer the check to earn a stamp.</p>
+      <div class="passport">${I.map((it, n) => `<button data-n="${n}" class="${done.has(it.k) ? 'done' : ''}" title="${it.idiom}">${done.has(it.k) ? '★<br>' : ''}${it.place}</button>`).join('')}</div>
+      ${done.size === I.length ? '<p class="say">All twelve stamps! Try using three of these idioms in your own sentences today.</p>' : ''}</div>`;
+    $('panel').querySelectorAll('.passport button').forEach(b => b.onclick = () => open(+b.dataset.n));
+  }
+  $('map-btn').onclick = passport;
+
+  // ---------- one idiom ----------
+  function open(n) {
+    const it = I[n], got = done.has(it.k);
+    st.cur = n; pins();
+    const opts = it.opts.map((o, j) => [o, j === 0]).sort(() => Math.random() - .5);
+    $('panel').innerHTML = `<div class="card">
+      <div class="place">📍 ${it.place}</div>
+      <h2 class="idiom">"${it.idiom}"</h2>
+      <div class="play"><button id="p-idiom">🔊 Hear it</button><button id="p-mean">🔊 Meaning</button><button id="p-ex">🔊 Example</button></div>
+      <div class="pics">
+        <figure class="lit"><img src="${ART[it.k][0]}" alt="${it.lit}"><figcaption><b>What the words say</b>${it.lit}</figcaption></figure>
+        <figure class="real ${got ? '' : 'hide'}" id="real"><img src="${ART[it.k][1]}" alt="What it really means"><figcaption><b>What people mean</b>${got ? it.mean : 'Answer the check to see it.'}</figcaption></figure>
+      </div>
+      <p class="example">${it.ex}</p>
+      <p class="q">What does "${it.idiom.toLowerCase()}" really mean?</p>
+      <div class="opts" id="opts">${opts.map(([o, r]) => `<button data-r="${r}">${o}</button>`).join('')}</div>
+      <p class="say" id="say"></p>
+      <div class="nav"><button id="back">🗺️ Passport</button><button class="go" id="next">Next place →</button></div></div>`;
+    $('p-idiom').onclick = () => talk(it.idiom + '.');
+    $('p-mean').onclick = () => talk('It means: ' + it.mean);
+    $('p-ex').onclick = () => talk(plain(it.ex));
+    $('back').onclick = passport;
+    $('next').onclick = () => open((n + 1) % I.length);
+    $('opts').querySelectorAll('button').forEach(b => b.onclick = () => {
+      const right = b.dataset.r === 'true';
+      b.classList.add(right ? 'right' : 'wrong');
+      if (!right) { $('say').style.background = '#fdece7'; $('say').textContent = 'Not quite. Read the example sentence again: what is happening?'; return; }
+      $('say').style.background = ''; $('say').innerHTML = `<b>Yes!</b> "${it.idiom}" means: ${it.mean.charAt(0).toLowerCase() + it.mean.slice(1)} ${done.has(it.k) ? '' : 'You earned a stamp. ★'}`;
+      $('real').classList.remove('hide'); $('real').querySelector('figcaption').innerHTML = `<b>What people mean</b>${it.mean}`;
+      $('opts').querySelectorAll('button').forEach(x => x.disabled = true);
+      done.add(it.k); keep(); pins(); chime();
+      talk('It means: ' + it.mean);
+    });
+    $('panel').scrollTop = 0;
+    talk(it.idiom + '.');
+  }
+
+  // ---------- sound and voice ----------
+  let ctx;
+  function chime() {
+    try {
+      const a = ctx ||= new (window.AudioContext || window.webkitAudioContext)();
+      [660, 880, 1320].forEach((f, i) => { const o = a.createOscillator(), g = a.createGain(), t = a.currentTime + i * .1;
+        o.type = 'triangle'; o.frequency.value = f; g.gain.setValueAtTime(.0001, t); g.gain.exponentialRampToValueAtTime(.08, t + .02); g.gain.exponentialRampToValueAtTime(.0001, t + .3);
+        o.connect(g).connect(a.destination); o.start(t); o.stop(t + .35); });
+    } catch {}
+  }
+  // recorded lines (scripts/voice.py) play when the exact text has one; anything else uses the browser voice
+  const CLIPS = "voice:*";
+  const allLines = () => I.flatMap(it => [it.idiom + '.', 'It means: ' + it.mean, plain(it.ex)]);
+  let clip = null;
+  function stopTalk() { if (clip) { clip.pause(); clip = null; } if ('speechSynthesis' in window) speechSynthesis.cancel(); }
+  function bestVoice() {
+    const voices = speechSynthesis.getVoices().filter(v => /^en(-|_|$)/i.test(v.lang));
+    const score = v => (/natural|neural/i.test(v.name) ? 50 : 0) + (/google/i.test(v.name) ? 30 : 0) + (/en-US/i.test(v.lang) ? 5 : 0) - (/david|mark|zira|desktop/i.test(v.name) ? 20 : 0);
+    return voices.sort((a, b) => score(b) - score(a))[0] || null;
+  }
+  function talk(text) {
+    stopTalk();
+    if (CLIPS[text]) { clip = new Audio(CLIPS[text]); clip.play().catch(() => {}); return; }
+    if (!('speechSynthesis' in window)) return;
+    const u = new SpeechSynthesisUtterance(text), v = bestVoice();
+    if (v) { u.voice = v; u.lang = v.lang; }
+    u.rate = .9; speechSynthesis.speak(u);
+  }
+
+  window.__ii = {I, open, passport, allLines, done};  // for checking frames
+  passport();
+})();
+</script>
+</body>
+</html>

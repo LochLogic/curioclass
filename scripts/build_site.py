@@ -88,7 +88,7 @@ for c in read('tools-concepts.csv'):
         t['notes_html'] = markdown.markdown(notes.read_text(encoding='utf-8')) if notes.exists() else ''
         t['preview'] = (folder / 'preview.svg').exists()
         span = re.search(r'(K|\d+)(?:-(\d+))?$', t['meta'].get('grades_label', ''))
-        t['fit'] = expand(f'{span[1].lower()}-{span[2] or span[1]}') if span else m['grades']
+        t['fit'] = expand(f'{span[1]}-{span[2] or span[1]}'.lower()) if span else m['grades']
     tools.append(t)
 by_module = defaultdict(list)
 for t in tools:

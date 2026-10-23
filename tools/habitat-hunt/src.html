@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Habitat Hunt · Habitats and biodiversity · Curio Class</title>
+<meta name="description" content="Hunt for the plants and animals hiding in a rainforest, a desert, a pond and a backyard. Tap each living thing to add it to the field journal, then compare how many different kinds live in each habitat. Grade 2 science, teacher-led. Works offline.">
+<!--
+HABITAT HUNT (Curio Class)
+Grade 2 science, NGSS 2-LS4-1 (make observations of plants and animals to compare the diversity of life in
+different habitats).
+Teacher-led on a projector. Four habitats, each with plants and animals to find. Tapping one adds it to the
+field journal: its name, whether it is a plant or an animal, and how many we saw. Some kinds hide more than once
+(three leafcutter ants are one kind). Compare shows the number of different kinds in each habitat as a bar
+graph: that number is the habitat's diversity. Kinds and numbers are a classroom model, not a survey.
+One file, no network requests. Illustrations and recorded speech generated with Google Gemini, edited for
+Curio Class. Content CC BY 4.0, code MIT. curioclass.org
+-->
+<style>
+:root{
+  --paper:#f7f3e6;--ink:#2a2a2e;--muted:#64606a;--line:#e3dac7;--focus:#2f5bd3;--brand:#3f6b2f;--plant:#3f9a4a;--animal:#d0742b;
+  font-family:'Segoe UI',system-ui,-apple-system,Roboto,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0;height:100%}
+body{background:var(--paper);color:var(--ink);display:grid;grid-template-rows:auto 1fr;min-height:100vh}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:4px solid var(--focus);outline-offset:3px}
+header{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 18px;background:var(--brand);color:#f4faef}
+h1{margin:0 auto 0 0;font:800 clamp(22px,3vw,32px)/1.1 'Trebuchet MS','Segoe UI',sans-serif}
+h1 small{display:block;font:500 15px/1.3 'Segoe UI',sans-serif;color:#d3e6c8}
+.seg{display:inline-flex;border:2px solid #6b9358;border-radius:999px;overflow:hidden}
+.seg button{border:0;background:#4f7d3c;color:#f4faef;min-height:52px;padding:0 14px;font-weight:700;font-size:16px}
+.seg button[aria-pressed="true"]{background:#ffd34d;color:#332600}
+.icon-btn{border:2px solid #6b9358;background:#4f7d3c;color:#f4faef;border-radius:999px;min-height:52px;padding:0 14px;font-weight:700;font-size:16px}
+
+main{display:grid;grid-template-columns:minmax(0,1fr) 330px;min-height:0}
+@media (max-width:760px){main{grid-template-columns:1fr}}
+.stage{position:relative;overflow:hidden;min-height:340px;background:#6a8f55}
+.scene{position:absolute;left:50%;top:50%;width:1000px;height:620px;transform:translate(-50%,-50%) scale(var(--s,1))}
+.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.thing{position:absolute;border:0;background:none;padding:0;transform:translate(-50%,-100%);cursor:pointer}
+.thing img{display:block;height:100%;width:auto;filter:drop-shadow(0 3px 3px #0004)}
+.thing.flip img{transform:scaleX(-1)}
+.thing.found img{filter:drop-shadow(0 0 6px #fff) drop-shadow(0 0 3px #ffd34d)}
+.thing.pop{animation:pop .6s ease-out}
+@keyframes pop{30%{transform:translate(-50%,-100%) scale(1.25)}}
+.tag{position:absolute;transform:translate(-50%,-100%);background:#fff;border:3px solid var(--ink);border-radius:14px;padding:4px 12px;font:800 22px/1.1 'Trebuchet MS',sans-serif;white-space:nowrap;pointer-events:none;box-shadow:0 4px 0 #0003;z-index:5}
+.tag small{display:block;font:700 15px 'Trebuchet MS',sans-serif}
+.tag .p{color:var(--plant)} .tag .a{color:var(--animal)}
+.chart{position:absolute;inset:0;background:#fffdf6;display:flex;flex-direction:column;padding:24px 40px}
+.chart h2{margin:0 0 6px;font:800 30px 'Trebuchet MS',sans-serif;text-align:center}
+.chart p{margin:0 0 10px;text-align:center;font:600 19px 'Segoe UI',sans-serif;color:var(--muted)}
+.bars{flex:1;display:grid;grid-template-columns:repeat(4,1fr);gap:28px;align-items:end;padding:0 20px;border-bottom:4px solid var(--ink)}
+.bar{display:flex;flex-direction:column-reverse;align-items:center;gap:3px}
+.bar i{width:100%;height:24px;border-radius:5px;display:block;animation:grow .4s ease-out both}
+.bar i.p{background:var(--plant)} .bar i.a{background:var(--animal)}
+.bar b{font:800 30px 'Trebuchet MS',sans-serif}
+@keyframes grow{from{transform:scaleY(0)}}
+.names{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;padding:8px 20px 0;text-align:center;font:800 20px 'Trebuchet MS',sans-serif}
+.names span{font:600 14px 'Segoe UI',sans-serif;color:var(--muted);display:block}
+
+.panel{background:#fffcf4;border-left:3px solid var(--line);padding:14px 16px;display:flex;flex-direction:column;gap:10px;overflow:auto}
+@media (max-width:760px){.panel{border-left:0;border-top:3px solid var(--line)}}
+.hint{margin:0;font:600 18px/1.35 'Segoe UI',sans-serif;color:var(--muted)}
+.hint b{color:var(--ink)}
+.count{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.count div{border-radius:14px;padding:8px 10px;color:#fff;font:700 15px 'Trebuchet MS',sans-serif}
+.count div b{display:block;font-size:30px}
+.count .p{background:var(--plant)} .count .a{background:var(--animal)}
+.journal{margin:0;padding:0;list-style:none;display:grid;gap:5px}
+.journal li{display:grid;grid-template-columns:44px 1fr auto;gap:8px;align-items:center;background:#f3ecdc;border-radius:12px;padding:4px 10px 4px 4px;font:700 17px 'Trebuchet MS',sans-serif;animation:grow .3s ease-out}
+.journal li img{width:44px;height:40px;object-fit:contain}
+.journal li small{display:block;font:600 13px 'Segoe UI',sans-serif}
+.journal li .n{font:800 17px 'Trebuchet MS',sans-serif;color:var(--muted)}
+.more{margin:0;font:700 16px 'Trebuchet MS',sans-serif;color:var(--brand)}
+.calm .thing.pop,.calm .bar i,.calm .journal li{animation:none}
+@media (max-width:760px),(max-height:640px){
+  header{padding:6px 12px} h1{font-size:19px} h1 small{display:none}
+  .seg button,.icon-btn{min-height:38px;font-size:13px;padding:0 9px}
+  .hint{font-size:14px}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Habitat Hunt <small>Find every living thing. Which habitat has the most kinds?</small></h1>
+  <div class="seg" role="group" aria-label="Habitat" id="tabs"></div>
+  <button class="icon-btn" id="motion" aria-pressed="true" title="Turn animation on or off">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+</header>
+<main>
+  <div class="stage" id="stage">
+    <div class="scene" id="scene"></div>
+  </div>
+  <aside class="panel">
+    <p class="hint" id="hint"></p>
+    <div class="count" id="count"></div>
+    <p class="more" id="more"></p>
+    <ul class="journal" id="journal"></ul>
+  </aside>
+</main>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  let reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  try { const m = localStorage.getItem('curio-motion'); if (m) reduce = m === 'calm'; } catch {}
+  function showMotion() {
+    document.body.classList.toggle('calm', reduce);
+    $('motion').setAttribute('aria-pressed', !reduce);
+    $('motion').textContent = reduce ? '⏸ Motion' : '✨ Motion';
+  }
+  showMotion();
+  $('motion').onclick = () => { reduce = !reduce; try { localStorage.setItem('curio-motion', reduce ? 'calm' : 'on'); } catch {} showMotion(); };
+  const fit = () => {
+    const r = $('stage').getBoundingClientRect();
+    $('scene').style.setProperty('--s', Math.min(r.width / 1000, r.height / 620));
+  };
+  new ResizeObserver(fit).observe($('stage'));
+
+  // ---------- four habitats ----------
+  // each kind: name, plant or animal, picture, and where it hides: [x, y of its bottom, height, flip]
+  const P = 'plant', A = 'animal';
+  const H = {
+    rainforest: {n: 'Rainforest', e: '🌴', bg: 'art:bg-rainforest', about: 'warm and very rainy all year', kinds: [
+      {k: 'fern', n: 'Fern', t: P, img: 'art:fern', at: [[120, 600, 170]]},
+      {k: 'bromeliad', n: 'Bromeliad', t: P, img: 'art:bromeliad', at: [[640, 330, 90]]},
+      {k: 'orchid', n: 'Orchid', t: P, img: 'art:orchid', at: [[270, 260, 100]]},
+      {k: 'philodendron', n: 'Philodendron', t: P, img: 'art:philodendron', at: [[870, 610, 200]]},
+      {k: 'toucan', n: 'Toucan', t: A, img: 'art:toucan', at: [[420, 170, 100]]},
+      {k: 'sloth', n: 'Sloth', t: A, img: 'art:sloth', at: [[760, 200, 120]]},
+      {k: 'treefrog', n: 'Red-eyed tree frog', t: A, img: 'art:treefrog', at: [[560, 470, 55]]},
+      {k: 'jaguar', n: 'Jaguar', t: A, img: 'art:jaguar', at: [[380, 590, 95]]},
+      {k: 'morpho', n: 'Blue morpho butterfly', t: A, img: 'art:morpho', at: [[200, 380, 50], [700, 110, 40]]},
+      {k: 'leafcutter', n: 'Leafcutter ant', t: A, img: 'art:leafcutter', at: [[520, 600, 30], [560, 604, 28], [600, 600, 30]]},
+      {k: 'monkey', n: 'Howler monkey', t: A, img: 'art:monkey', at: [[120, 230, 120]]},
+      {k: 'macaw', n: 'Scarlet macaw', t: A, img: 'art:macaw', at: [[910, 260, 120]]},
+      {k: 'boa', n: 'Emerald tree boa', t: A, img: 'art:boa', at: [[320, 420, 70]]},
+      {k: 'dartfrog', n: 'Poison dart frog', t: A, img: 'art:dartfrog', at: [[700, 560, 36]]},
+    ]},
+    desert: {n: 'Desert', e: '🌵', bg: 'art:bg-desert', about: 'hot and very dry', kinds: [
+      {k: 'saguaro', n: 'Saguaro cactus', t: P, img: 'art:saguaro', at: [[200, 560, 300], [820, 470, 160]]},
+      {k: 'pricklypear', n: 'Prickly pear cactus', t: P, img: 'art:pricklypear', at: [[560, 580, 120]]},
+      {k: 'brittlebush', n: 'Brittlebush', t: P, img: 'art:brittlebush', at: [[380, 520, 80], [680, 600, 90]]},
+      {k: 'roadrunner', n: 'Roadrunner', t: A, img: 'art:roadrunner', at: [[460, 600, 90]]},
+      {k: 'jackrabbit', n: 'Jackrabbit', t: A, img: 'art:jackrabbit', at: [[900, 590, 90, true]]},
+      {k: 'hornedlizard', n: 'Horned lizard', t: A, img: 'art:hornedlizard', at: [[300, 600, 40]]},
+      {k: 'tortoise', n: 'Desert tortoise', t: A, img: 'art:tortoise', at: [[700, 500, 50]]},
+    ]},
+    pond: {n: 'Pond', e: '🐸', bg: 'art:bg-pond', about: 'wet: fresh water and muddy banks', kinds: [
+      {k: 'cattail', n: 'Cattail', t: P, img: 'art:cattail', at: [[80, 400, 220], [930, 380, 180]]},
+      {k: 'waterlily', n: 'Water lily', t: P, img: 'art:waterlily', at: [[420, 330, 50], [640, 350, 45]]},
+      {k: 'frog', n: 'Frog', t: A, img: 'art:frog', at: [[425, 312, 45]]},
+      {k: 'turtle', n: 'Painted turtle', t: A, img: 'art:turtle', at: [[760, 340, 55]]},
+      {k: 'duck', n: 'Mallard duck', t: A, img: 'art:duck', at: [[260, 330, 70]]},
+      {k: 'dragonfly', n: 'Dragonfly', t: A, img: 'art:dragonfly', at: [[560, 200, 45]]},
+      {k: 'sunfish', n: 'Sunfish', t: A, img: 'art:sunfish', at: [[330, 480, 45], [700, 520, 40, true]]},
+      {k: 'strider', n: 'Water strider', t: A, img: 'art:strider', at: [[520, 300, 28], [600, 320, 26], [470, 345, 28]]},
+      {k: 'heron', n: 'Great blue heron', t: A, img: 'art:heron', at: [[860, 360, 230, true]]},
+      {k: 'pondsnail', n: 'Pond snail', t: A, img: 'art:pondsnail', at: [[180, 600, 28]]},
+    ]},
+    backyard: {n: 'Backyard', e: '🏡', bg: 'art:bg-backyard', about: 'a yard near people\'s homes', kinds: [
+      {k: 'maple', n: 'Maple tree', t: P, img: 'art:maple', at: [[150, 500, 360]]},
+      {k: 'dandelion', n: 'Dandelion', t: P, img: 'art:dandelion', at: [[480, 500, 70], [620, 520, 60]]},
+      {k: 'sunflower', n: 'Sunflower', t: P, img: 'art:sunflower', at: [[880, 560, 260]]},
+      {k: 'robin', n: 'Robin', t: A, img: 'art:robin', at: [[560, 470, 60]]},
+      {k: 'squirrel', n: 'Squirrel', t: A, img: 'art:squirrel', at: [[260, 520, 70]]},
+      {k: 'earthworm', n: 'Earthworm', t: A, img: 'art:earthworm', at: [[420, 600, 26], [700, 606, 24]]},
+      {k: 'ladybug', n: 'Ladybug', t: A, img: 'art:ladybug', at: [[860, 420, 26], [520, 488, 22]]},
+      {k: 'honeybee', n: 'Honeybee', t: A, img: 'art:honeybee', at: [[820, 330, 32], [760, 260, 30]]},
+      {k: 'cottontail', n: 'Cottontail rabbit', t: A, img: 'art:cottontail', at: [[700, 540, 70, true]]},
+    ]},
+  };
+  const KEYS = Object.keys(H);
+  const st = {h: 'rainforest', found: Object.fromEntries(KEYS.map(k => [k, new Map()])), sound: true, view: 'hunt'};
+
+  // ---------- tabs ----------
+  $('tabs').replaceChildren(...[...KEYS, 'compare'].map(k => {
+    const b = document.createElement('button');
+    b.textContent = k === 'compare' ? '📊 Compare' : `${H[k].e} ${H[k].n}`;
+    b.dataset.k = k;
+    b.onclick = () => k === 'compare' ? compare() : habitat(k);
+    return b;
+  }));
+  const tabs = k => [...$('tabs').children].forEach(b => b.setAttribute('aria-pressed', b.dataset.k === k));
+
+  // ---------- one habitat ----------
+  function habitat(k) {
+    st.h = k; st.view = 'hunt'; tabs(k);
+    const h = H[k], sc = $('scene');
+    sc.replaceChildren();
+    const bg = document.createElement('img'); bg.className = 'bg'; bg.src = h.bg; bg.alt = `${h.n} habitat`; sc.append(bg);
+    for (const kind of h.kinds) for (const [x, y, ht, flip] of kind.at) {
+      const b = document.createElement('button');
+      b.className = 'thing' + (flip ? ' flip' : '');
+      Object.assign(b.style, {left: x + 'px', top: y + 'px', height: ht + 'px'});
+      if (st.found[k].get(kind.k)?.has(b.style.left + b.style.top)) b.classList.add('found');
+      b.innerHTML = `<img src="${kind.img}" alt="">`;
+      b.setAttribute('aria-label', kind.n);
+      b.dataset.k = kind.k;
+      b.onclick = () => find(kind, b, x, y - ht);
+      sc.append(b);
+    }
+    journal();
+    $('hint').innerHTML = `<b>The ${h.n.toLowerCase()} is ${h.about}.</b> What living things can you find? Tap each one you spot. Count every plant and every animal!`;
+    say(`Welcome to the ${h.n.toLowerCase()}. What living things can you find?`);
+  }
+  function find(kind, b, x, y) {
+    const seen = st.found[st.h], first = !seen.has(kind.k);
+    const spots = seen.get(kind.k) || new Set();
+    const id = b.style.left + b.style.top;
+    const newSpot = !spots.has(id);
+    spots.add(id); seen.set(kind.k, spots);
+    b.classList.add('found');
+    if (!reduce) { b.classList.remove('pop'); void b.offsetWidth; b.classList.add('pop'); }
+    $('scene').querySelector('.tag')?.remove();
+    const tag = document.createElement('div');
+    tag.className = 'tag';
+    tag.style.left = Math.max(90, Math.min(910, x)) + 'px'; tag.style.top = Math.max(60, y - 6) + 'px';
+    tag.innerHTML = `${kind.n}<small class="${kind.t === P ? 'p' : 'a'}">${kind.t === P ? '🌱 a plant' : '🐾 an animal'}</small>`;
+    $('scene').append(tag);
+    clearTimeout(tag._t); setTimeout(() => tag.remove(), 2200);
+    (kind.t === P ? SFX.plant : SFX.animal)();
+    if (first) say(`${kind.n}. ${kind.t === P ? 'A plant.' : 'An animal.'}`);
+    else if (newSpot) say(`Another ${kind.n.toLowerCase()}!`);
+    journal();
+    if (first && seen.size === H[st.h].kinds.length) setTimeout(() => say(`You found all ${seen.size} kinds of living things in the ${H[st.h].n.toLowerCase()}!`), 1500);
+  }
+  function journal() {
+    const h = H[st.h], seen = st.found[st.h];
+    const kinds = h.kinds.filter(k => seen.has(k.k));
+    const plants = kinds.filter(k => k.t === P).length, animals = kinds.length - plants;
+    $('count').innerHTML = `<div class="p"><b>${plants}</b>kinds of plants</div><div class="a"><b>${animals}</b>kinds of animals</div>`;
+    const total = kinds.reduce((s, k) => s + seen.get(k.k).size, 0);
+    $('more').textContent = kinds.length === h.kinds.length ? `All ${kinds.length} kinds found! ${total} living things in all.` : kinds.length ? `${kinds.length} kinds so far. More are hiding!` : 'Your field journal is empty. Start looking!';
+    $('journal').innerHTML = kinds.map(k => `<li><img src="${k.img}" alt=""><span>${k.n}<small style="color:${k.t === P ? 'var(--plant)' : 'var(--animal)'}">${k.t === P ? 'plant' : 'animal'}</small></span><span class="n">× ${seen.get(k.k).size}</span></li>`).join('');
+  }
+
+  // ---------- compare ----------
+  function compare() {
+    st.view = 'compare'; tabs('compare');
+    const max = Math.max(...KEYS.map(k => H[k].kinds.length));
+    const sc = $('scene');
+    sc.innerHTML = `<div class="chart"><h2>How many different kinds did we find?</h2><p>Each block is one kind of living thing: <span style="color:var(--plant)">■ plants</span> and <span style="color:var(--animal)">■ animals</span>.</p>
+      <div class="bars">${KEYS.map(k => {
+        const seen = st.found[k], ks = H[k].kinds.filter(x => seen.has(x.k));
+        return `<div class="bar"><b>${ks.length}</b>${ks.map((x, j) => `<i class="${x.t === P ? 'p' : 'a'}" title="${x.n}" style="animation-delay:${j * 60}ms;height:${Math.min(28, 380 / max)}px"></i>`).join('')}</div>`;
+      }).join('')}</div>
+      <div class="names">${KEYS.map(k => `<div>${H[k].e} ${H[k].n}<span>${st.found[k].size === H[k].kinds.length ? 'all found' : `${H[k].kinds.length - st.found[k].size} still hiding`}</span></div>`).join('')}</div></div>`;
+    const done = KEYS.every(k => st.found[k].size === H[k].kinds.length);
+    $('hint').innerHTML = done ? '<b>Which habitat has the most different kinds of living things?</b> The rainforest! Ask: why might a warm, rainy place have so many kinds? Which habitat has the fewest? Why?'
+      : '<b>Compare the habitats.</b> Some living things are still hiding. Go back and find them all, then compare again.';
+    $('count').innerHTML = ''; $('more').textContent = ''; $('journal').innerHTML = '';
+    say(done ? 'Which habitat has the most different kinds of living things?' : 'Some living things are still hiding. Go back and find them all.');
+  }
+
+  // ---------- sound and voice ----------
+  let ctx;
+  const audio = () => (ctx ||= new (window.AudioContext || window.webkitAudioContext)());
+  function tone(type, f0, f1, dur, gain, when = 0) {
+    if (!st.sound) return;
+    const a = audio(), o = a.createOscillator(), g = a.createGain(), t = a.currentTime + when;
+    o.type = type; o.frequency.setValueAtTime(f0, t); o.frequency.exponentialRampToValueAtTime(f1, t + dur);
+    g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(gain, t + 0.02); g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    o.connect(g).connect(a.destination); o.start(t); o.stop(t + dur + 0.05);
+  }
+  const SFX = {plant: () => [523, 784].forEach((f, i) => tone('sine', f, f, .25, .08, i * .1)), animal: () => [659, 988].forEach((f, i) => tone('triangle', f, f, .2, .08, i * .1))};
+  $('sound').onclick = e => {
+    st.sound = !st.sound;
+    e.currentTarget.setAttribute('aria-pressed', st.sound);
+    e.currentTarget.textContent = st.sound ? '🔔 Sound' : '🔇 Sound';
+    if (!st.sound) stopTalk();
+  };
+  // recorded lines (scripts/voice.py) play when the exact text has one; anything else uses the browser voice
+  const CLIPS = "voice:*";
+  const allLines = () => [...KEYS.flatMap(k => [`Welcome to the ${H[k].n.toLowerCase()}. What living things can you find?`, `You found all ${H[k].kinds.length} kinds of living things in the ${H[k].n.toLowerCase()}!`,
+    ...H[k].kinds.flatMap(x => [`${x.n}. ${x.t === P ? 'A plant.' : 'An animal.'}`, ...(x.at.length > 1 ? [`Another ${x.n.toLowerCase()}!`] : [])])]),
+    'Which habitat has the most different kinds of living things?', 'Some living things are still hiding. Go back and find them all.'];
+  let clip = null;
+  function stopTalk() { if (clip) { clip.pause(); clip = null; } if ('speechSynthesis' in window) speechSynthesis.cancel(); }
+  function bestVoice() {
+    const voices = speechSynthesis.getVoices().filter(v => /^en(-|_|$)/i.test(v.lang));
+    const score = v => (/natural|neural/i.test(v.name) ? 50 : 0) + (/google/i.test(v.name) ? 30 : 0) + (/en-US/i.test(v.lang) ? 5 : 0) - (/david|mark|zira|desktop/i.test(v.name) ? 20 : 0);
+    return voices.sort((a, b) => score(b) - score(a))[0] || null;
+  }
+  function say(text) {
+    if (!st.sound) return;
+    stopTalk();
+    if (CLIPS[text]) { clip = new Audio(CLIPS[text]); clip.play().catch(() => {}); return; }
+    if (!('speechSynthesis' in window)) return;
+    const u = new SpeechSynthesisUtterance(text), v = bestVoice();
+    if (v) { u.voice = v; u.lang = v.lang; }
+    u.rate = .92; speechSynthesis.speak(u);
+  }
+
+  window.__hh = {st, H, habitat, compare, find, allLines};  // for checking frames
+  habitat('rainforest');
+})();
+</script>
+</body>
+</html>

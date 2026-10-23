@@ -1,0 +1,18 @@
+{
+  "id": "me-on-the-map",
+  "status": "beta",
+  "driver": "teacher",
+  "modes": [],
+  "grades_label": "Grade K",
+  "third_party": [],
+  "updated": "2026-10-23",
+  "hook": "Zoom out from my room to my home, street, town, state, country, continent and planet Earth, and back again. Each place shrinks into a glowing box on the next map.",
+  "outcome": "Describe where I live as places inside bigger places, and tell land from water on a map",
+  "minutes": "10-20",
+  "sources": [
+    "Illustrations generated with Google Gemini, edited for Curio Class",
+    "Narration recorded with Gemini text-to-speech",
+    "US states: us-atlas v3 from US Census Bureau boundaries (public domain)",
+    "North America: Natural Earth via world-atlas 2.0.2 (public domain)"
+  ]
+}

@@ -108,6 +108,97 @@
       "key": "magenta",
       "aspect": "4:3",
       "width": 520
+    },
+    {
+      "name": "s-stand-bed",
+      "prompt": "A teenager standing on top of a plain bed in the middle of the picture, both feet on the mattress, seen from the side. Plain light wall behind. Nothing else.",
+      "aspect": "1:1",
+      "width": 460,
+      "quality": 80
+    },
+    {
+      "name": "s-walk-car",
+      "prompt": "A person walking along a sidewalk past a parked small red car, side view: the car is parked in the middle of the picture, and the person is on the left side of it walking toward the right. Simple street, plain background.",
+      "aspect": "1:1",
+      "width": 460,
+      "quality": 80
+    },
+    {
+      "name": "s-down-hill",
+      "prompt": "A small blue car driving down a long straight smooth slope that goes down from the upper left to the lower right, side view, simple grassy hill, plain sky.",
+      "aspect": "1:1",
+      "width": 460,
+      "quality": 80
+    },
+    {
+      "name": "s-two-stand",
+      "prompt": "Two friends standing still side by side on a plain floor, facing the viewer, a little apart, one on the left in a yellow shirt and one on the right in a purple shirt. Plain light wall behind. Full body.",
+      "aspect": "1:1",
+      "width": 460,
+      "quality": 80
+    },
+    {
+      "name": "s-cat-wall",
+      "prompt": "An orange cat sitting on top of a low brick garden wall in the middle of the picture, side view. Simple garden, plain sky.",
+      "aspect": "1:1",
+      "width": 460,
+      "quality": 80
+    },
+    {
+      "name": "s-cup-falls",
+      "prompt": "A coffee mug falling off the right edge of a plain wooden table toward the floor, mid-fall, with small motion lines, side view. Plain light wall behind. Nothing else.",
+      "aspect": "1:1",
+      "width": 460,
+      "quality": 80
+    },
+    {
+      "name": "s-jump-bed",
+      "prompt": "A child jumping from the floor up onto a plain bed, mid-jump, the child starting on the left and landing on the bed on the right, side view. Plain light wall behind.",
+      "aspect": "1:1",
+      "width": 460,
+      "quality": 80
+    },
+    {
+      "name": "s-cat-walk-under",
+      "prompt": "An orange cat walking underneath a plain wooden table from left to right, side view, the cat in the middle under the table. Plain light wall behind. Nothing else.",
+      "aspect": "1:1",
+      "width": 460,
+      "quality": 80
+    },
+    {
+      "name": "s-cars-pass",
+      "prompt": "Side view of a straight road. A small red car on the left side of the picture, with its front bumper and headlights pointing RIGHT, driving to the right. A small blue car on the right side of the picture, with its front bumper and headlights pointing LEFT, driving to the left. The two cars face each other, about to pass in their own lanes. Short motion lines behind each car (behind the red car on its left, behind the blue car on its right). Simple plain background.",
+      "aspect": "1:1",
+      "width": 460,
+      "quality": 80
+    },
+    {
+      "name": "s-walk-to-car",
+      "prompt": "A person walking toward a parked small green car to get in, side view: the person on the left walking right, the car parked on the right side of the picture. Simple street, plain background.",
+      "aspect": "1:1",
+      "width": 460,
+      "quality": 80
+    },
+    {
+      "name": "s-two-cups",
+      "prompt": "Two coffee mugs standing side by side on a plain wooden table, a teal mug on the left and an orange mug on the right, close together, seen from the front at eye level. Plain light wall behind.",
+      "aspect": "1:1",
+      "width": 460,
+      "quality": 80
+    },
+    {
+      "name": "s-jump-off",
+      "prompt": "A gray cat jumping down from the top of a plain wooden table to the floor, mid-jump, the table on the left and the cat leaping down toward the lower right, side view. Plain light wall behind.",
+      "aspect": "1:1",
+      "width": 460,
+      "quality": 80
+    },
+    {
+      "name": "s-stand-car",
+      "prompt": "A person standing still next to a parked small yellow car, side view: the car on the left half of the picture and the person standing just to the right of it. Simple street, plain background.",
+      "aspect": "1:1",
+      "width": 460,
+      "quality": 80
     }
   ]
 }

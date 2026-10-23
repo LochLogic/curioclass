@@ -38,6 +38,7 @@ Lessons from refining Marching Band and Three Pigs Lab (October 2026). Run throu
 
 - **Sound on by default** for teacher-led tools, with a Sound toggle.
 - **Read uses the best voice the browser has** (`bestVoice()` ranking: natural/neural, then Google, then the rest; the Windows desktop voices David, Mark and Zira rank last). Chrome loads its voice list late, so tools hold the first utterance until `voiceschanged`, or it plays in the robotic default. Speak at pitch 1: a raised pitch makes Google's voice sound synthetic.
+- **Recorded speech beats any browser voice.** Chrome on Windows offers only Google US English and the old desktop voices, which teachers hear as robotic. For fixed lines, record them: list every line in `voice/lines.json`, run `python scripts/voice.py <tool-id>` (Gemini text-to-speech, MP3 at 24 kbps), and put the token `"voice:*"` in src.html; the bundler turns it into a {text: audio} map. Speak lines that exactly match a recording, and keep names and other variable words on screen rather than in the spoken line. Unrecorded lines fall back to the browser voice. The speech models allow about 100 lines a day each, and a minute of speech adds about 240 KB to the file.
 - **Sounds fit the length of their beat,** so they never run past what is on screen.
 
 ## Checking it

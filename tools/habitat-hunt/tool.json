@@ -1,0 +1,17 @@
+{
+  "id": "habitat-hunt",
+  "status": "beta",
+  "driver": "teacher",
+  "modes": [],
+  "grades_label": "Grade 2",
+  "third_party": [],
+  "updated": "2026-10-23",
+  "hook": "Hunt for the plants and animals hiding in a rainforest, a desert, a pond and a backyard, fill the field journal, then compare how many different kinds live in each habitat.",
+  "outcome": "Observe and count the kinds of plants and animals in different habitats and compare their diversity",
+  "minutes": "15-30",
+  "sources": [
+    "Illustrations generated with Google Gemini, edited for Curio Class",
+    "Narration recorded with Gemini text-to-speech",
+    "Sounds generated in the browser"
+  ]
+}

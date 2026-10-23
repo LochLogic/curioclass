@@ -1,0 +1,75 @@
+{
+  "house_style": "Detailed painterly landscape illustration for an upper-elementary social studies tool, like a museum diorama painting: realistic land, plants, animals and light, rich natural color. No people, no buildings, no dwellings, no objects made by people, no text, no watermark, no border, no frame.",
+  "assets": [
+    {
+      "name": "arctic",
+      "prompt": "The Arctic coast in spring: flat treeless tundra meeting a frozen sea with sea ice and open leads of dark water, a few seals resting on the ice, low golden sun, snow patches.",
+      "aspect": "16:9",
+      "width": 760,
+      "quality": 72
+    },
+    {
+      "name": "subarctic",
+      "prompt": "The northern boreal forest: dark spruce and white birch trees around a calm lake, a moose wading at the shore, autumn colors, cold clear sky.",
+      "aspect": "16:9",
+      "width": 760,
+      "quality": 72
+    },
+    {
+      "name": "northwest",
+      "prompt": "The Pacific Northwest coast: giant western red cedar trees in a misty green rainforest beside an ocean inlet, salmon jumping in a river mouth, rocky shore, rain clouds.",
+      "aspect": "16:9",
+      "width": 760,
+      "quality": 72
+    },
+    {
+      "name": "plateau",
+      "prompt": "The Columbia Plateau: a wide river rushing over rocky falls between dark basalt cliffs, dry golden grassland above, blue camas flowers blooming in a meadow in the foreground.",
+      "aspect": "16:9",
+      "width": 760,
+      "quality": 72
+    },
+    {
+      "name": "basin",
+      "prompt": "The Great Basin: a dry valley of silver-green sagebrush, low pinyon pine and juniper trees on rocky hills, a distant salt lake shining, mountains far away, a jackrabbit.",
+      "aspect": "16:9",
+      "width": 760,
+      "quality": 72
+    },
+    {
+      "name": "california",
+      "prompt": "California: rolling golden hills with spreading oak trees full of acorns, a green valley, the Pacific Ocean in the distance, poppies in the foreground.",
+      "aspect": "16:9",
+      "width": 760,
+      "quality": 72
+    },
+    {
+      "name": "southwest",
+      "prompt": "The American Southwest: tall red and orange mesas and a canyon, desert plants, a dry riverbed with a thin stream and green cottonwood trees, big blue sky.",
+      "aspect": "16:9",
+      "width": 760,
+      "quality": 72
+    },
+    {
+      "name": "plains",
+      "prompt": "The Great Plains: an endless sea of tall prairie grass under a huge sky, a large herd of bison grazing, a winding creek with a few cottonwood trees.",
+      "aspect": "16:9",
+      "width": 760,
+      "quality": 72
+    },
+    {
+      "name": "northeast",
+      "prompt": "The northeastern woodlands: a forest of maple, birch and pine in early autumn around a clear lake, wild rice growing in the shallows, a deer at the edge of the water.",
+      "aspect": "16:9",
+      "width": 760,
+      "quality": 72
+    },
+    {
+      "name": "southeast",
+      "prompt": "The southeastern woodlands: a wide warm river winding through tall forests and fertile green floodplain fields, cypress trees standing in the water, a heron, humid golden light.",
+      "aspect": "16:9",
+      "width": 760,
+      "quality": 72
+    }
+  ]
+}

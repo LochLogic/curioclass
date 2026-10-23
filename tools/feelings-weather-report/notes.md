@@ -24,6 +24,6 @@ Feelings are like weather. Every kind of weather is okay, it can change during t
 ## Good to know
 
 - The class forecast is a check-in, not a survey. If a child picks a stormy feeling, follow up quietly later, the way you usually would.
-- Sound and Bear's voice start on. **Read** reads the words under the screen.
+- Sound and Bear's voice start on. Bear's lines are recorded with a natural voice, so they sound the same in every browser. **Read** replays the last thing Bear said.
 - Turn **Motion** off for a calmer screen; the weather stays, it just stops moving.
 - Teacher-led on a projector or smartboard. The buttons are big enough for children to tap.

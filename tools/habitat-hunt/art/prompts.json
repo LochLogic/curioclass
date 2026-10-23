@@ -1,0 +1,292 @@
+{
+  "style": "Bright nature picture-book look for a second-grade science tool: each plant and animal easy to recognize from across a classroom, accurate shapes and colors.",
+  "assets": [
+    {
+      "name": "bg-rainforest",
+      "prompt": "Empty background: inside a lush tropical rainforest at a child's eye level. Tall tree trunks with buttress roots at the sides, hanging vines, layers of green leaves high up, misty light beams, a mossy log on the forest floor and soft earth. Leave plenty of open space on the trunks, branches and ground. No animals, no flowers, no people.",
+      "aspect": "16:9",
+      "width": 1400,
+      "quality": 76,
+      "trim": 0.03
+    },
+    {
+      "name": "bg-desert",
+      "prompt": "Empty background: a wide sunny desert at a child's eye level. Sandy ground with a few rocks and pebbles, a low red rock mesa far away, a clear blue sky. Wide open sandy space. No plants, no cactus, no animals, no people.",
+      "aspect": "16:9",
+      "width": 1400,
+      "quality": 76,
+      "trim": 0.03
+    },
+    {
+      "name": "bg-pond",
+      "prompt": "Empty background: a calm freshwater pond at a child's eye level, seen from the grassy bank. The bottom half is clear pond water with a little underwater view of sand and stones near the bottom edge, the top part shows the far grassy bank, a few distant trees and blue sky. No plants in the water, no animals, no people.",
+      "aspect": "16:9",
+      "width": 1400,
+      "quality": 76,
+      "trim": 0.03
+    },
+    {
+      "name": "bg-backyard",
+      "prompt": "Empty background: a sunny family backyard at a child's eye level. Green lawn, a brown garden bed of soil along the bottom, a wooden fence behind, a blue sky with soft clouds. Wide open space. No trees, no flowers, no animals, no people, no toys.",
+      "aspect": "16:9",
+      "width": 1400,
+      "quality": 76,
+      "trim": 0.03
+    },
+    {
+      "name": "fern",
+      "prompt": "A lush green tropical fern plant, whole plant.",
+      "cutout": true,
+      "key": "magenta",
+      "height": 200
+    },
+    {
+      "name": "bromeliad",
+      "prompt": "A tropical bromeliad plant with a rosette of stiff leaves and a bright red center.",
+      "cutout": true,
+      "key": "magenta",
+      "height": 150
+    },
+    {
+      "name": "orchid",
+      "prompt": "A wild purple and white tropical orchid growing on a short piece of mossy tree branch, with a few blooms and thick green leaves and roots. No pot.",
+      "cutout": true,
+      "key": "magenta",
+      "height": 160
+    },
+    {
+      "name": "philodendron",
+      "prompt": "A clump of giant heart-shaped tropical leaves (philodendron), whole plant.",
+      "cutout": true,
+      "key": "magenta",
+      "height": 230
+    },
+    {
+      "name": "toucan",
+      "prompt": "A toco toucan with a big orange bill, perched on a short branch, side view.",
+      "cutout": true,
+      "height": 150
+    },
+    {
+      "name": "sloth",
+      "prompt": "A three-toed sloth hanging upside down from a short branch, smiling gently.",
+      "cutout": true,
+      "height": 170
+    },
+    {
+      "name": "treefrog",
+      "prompt": "A red-eyed tree frog, bright green with red eyes and orange feet, clinging to nothing, front three-quarter view.",
+      "cutout": true,
+      "key": "magenta",
+      "height": 80
+    },
+    {
+      "name": "jaguar",
+      "prompt": "A jaguar resting and peeking out, lying down, side view, gentle expression.",
+      "cutout": true,
+      "height": 130
+    },
+    {
+      "name": "morpho",
+      "prompt": "A blue morpho butterfly with bright shiny blue wings open, seen from above.",
+      "cutout": true,
+      "height": 70
+    },
+    {
+      "name": "leafcutter",
+      "prompt": "A leafcutter ant carrying a small piece of green leaf above its head, side view.",
+      "cutout": true,
+      "height": 50
+    },
+    {
+      "name": "monkey",
+      "prompt": "A howler monkey sitting, dark reddish-brown fur, long tail hanging down.",
+      "cutout": true,
+      "height": 160
+    },
+    {
+      "name": "macaw",
+      "prompt": "A scarlet macaw with red, yellow and blue feathers perched on a short branch.",
+      "cutout": true,
+      "height": 170
+    },
+    {
+      "name": "boa",
+      "prompt": "An emerald tree boa snake, bright green with white markings, coiled loosely over a short branch, friendly.",
+      "cutout": true,
+      "key": "magenta",
+      "height": 110
+    },
+    {
+      "name": "dartfrog",
+      "prompt": "A small blue poison dart frog with black spots, side view.",
+      "cutout": true,
+      "height": 55
+    },
+    {
+      "name": "saguaro",
+      "prompt": "A tall saguaro cactus with two arms, whole plant from the ground up.",
+      "cutout": true,
+      "key": "magenta",
+      "height": 330
+    },
+    {
+      "name": "pricklypear",
+      "prompt": "A prickly pear cactus with flat paddle pads and a few pink fruits, whole plant.",
+      "cutout": true,
+      "key": "magenta",
+      "height": 150
+    },
+    {
+      "name": "brittlebush",
+      "prompt": "A round desert brittlebush shrub covered in small yellow daisy flowers with silvery leaves.",
+      "cutout": true,
+      "key": "magenta",
+      "height": 120
+    },
+    {
+      "name": "roadrunner",
+      "prompt": "A greater roadrunner bird standing, long tail up, crest raised, side view.",
+      "cutout": true,
+      "height": 120
+    },
+    {
+      "name": "jackrabbit",
+      "prompt": "A black-tailed jackrabbit sitting with very long ears up, side view.",
+      "cutout": true,
+      "height": 120
+    },
+    {
+      "name": "hornedlizard",
+      "prompt": "A horned lizard, flat round body with little spikes, sandy colors, seen from the side and slightly above.",
+      "cutout": true,
+      "height": 60
+    },
+    {
+      "name": "tortoise",
+      "prompt": "A desert tortoise walking, high domed brown shell, side view.",
+      "cutout": true,
+      "height": 80
+    },
+    {
+      "name": "cattail",
+      "prompt": "A clump of cattail plants with tall thin leaves and brown fuzzy cattail heads.",
+      "cutout": true,
+      "key": "magenta",
+      "height": 260
+    },
+    {
+      "name": "waterlily",
+      "prompt": "A water lily: a few round green lily pads floating flat with one pink lily flower, seen from a low angle.",
+      "cutout": true,
+      "key": "magenta",
+      "height": 70
+    },
+    {
+      "name": "frog",
+      "prompt": "A green frog sitting, side view, friendly.",
+      "cutout": true,
+      "key": "magenta",
+      "height": 70
+    },
+    {
+      "name": "turtle",
+      "prompt": "A painted turtle sitting on a small rock, side view, dark shell with red and yellow edges.",
+      "cutout": true,
+      "height": 80
+    },
+    {
+      "name": "duck",
+      "prompt": "A male mallard duck swimming, green head, side view, only the part above the water line.",
+      "cutout": true,
+      "height": 100
+    },
+    {
+      "name": "dragonfly",
+      "prompt": "A blue dragonfly with clear wings spread, seen from above.",
+      "cutout": true,
+      "height": 60
+    },
+    {
+      "name": "sunfish",
+      "prompt": "A bluegill sunfish swimming, side view.",
+      "cutout": true,
+      "height": 60
+    },
+    {
+      "name": "heron",
+      "prompt": "A great blue heron standing tall on long legs, side view.",
+      "cutout": true,
+      "height": 280
+    },
+    {
+      "name": "pondsnail",
+      "prompt": "A pond snail with a pointed spiral shell, side view.",
+      "cutout": true,
+      "height": 40
+    },
+    {
+      "name": "dandelion",
+      "prompt": "A dandelion plant with jagged leaves and two yellow flowers and one white fluffy seed head.",
+      "cutout": true,
+      "key": "magenta",
+      "height": 110
+    },
+    {
+      "name": "sunflower",
+      "prompt": "A tall sunflower plant with one big yellow flower and green leaves.",
+      "cutout": true,
+      "key": "magenta",
+      "height": 280
+    },
+    {
+      "name": "maple",
+      "prompt": "A young maple tree with a full round green crown, whole tree from the ground up.",
+      "cutout": true,
+      "key": "magenta",
+      "height": 380
+    },
+    {
+      "name": "robin",
+      "prompt": "An American robin with an orange breast standing on the ground, side view.",
+      "cutout": true,
+      "height": 80
+    },
+    {
+      "name": "squirrel",
+      "prompt": "A gray squirrel sitting up holding an acorn, bushy tail curled, side view.",
+      "cutout": true,
+      "height": 100
+    },
+    {
+      "name": "earthworm",
+      "prompt": "One pink earthworm wiggling, side view.",
+      "cutout": true,
+      "height": 40
+    },
+    {
+      "name": "ladybug",
+      "prompt": "A red ladybug with black spots, seen from above.",
+      "cutout": true,
+      "height": 40
+    },
+    {
+      "name": "honeybee",
+      "prompt": "A honeybee flying, wings out, side view.",
+      "cutout": true,
+      "height": 45
+    },
+    {
+      "name": "cottontail",
+      "prompt": "An eastern cottontail rabbit sitting, fluffy white tail, side view.",
+      "cutout": true,
+      "height": 90
+    },
+    {
+      "name": "strider",
+      "prompt": "A water strider insect standing on the surface of water on its long thin legs, seen from above and a little to the side.",
+      "cutout": true,
+      "height": 50
+    }
+  ]
+}

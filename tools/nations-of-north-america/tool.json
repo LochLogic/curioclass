@@ -1,0 +1,19 @@
+{
+  "id": "nations-of-north-america",
+  "status": "beta",
+  "driver": "students or teacher",
+  "modes": [
+    "Explore",
+    "Which region?"
+  ],
+  "grades_label": "Grade 5",
+  "third_party": [],
+  "updated": "2026-10-23",
+  "hook": "A map of ten regions of North America and the Native nations whose homelands are there: the land, food, homes and ways of life that fit each place, and where each nation is today.",
+  "outcome": "Explain how the environment shaped the ways of life of Native nations in different regions, and name nations that live there today",
+  "minutes": "20-40",
+  "sources": [
+    "Landscape paintings generated with Google Gemini (land and animals only), edited for Curio Class",
+    "Map: Natural Earth via world-atlas 2.0.2 (public domain); region borders are approximate"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "house_style": "Playful contemporary cartoon illustration for a middle-school English learners tool: bold friendly shapes, expressive faces, bright colors, a light sense of humor, diverse kids. No text, no letters, no speech bubbles, no watermark, no border, no frame.",
+  "assets": [
+    {"name": "island", "prompt": "A storybook treasure-map style island seen from above in a calm turquoise sea. Spread around the island: a tall snowy mountain peak with dark rain clouds over it in the upper left, an icy bay with small icebergs on the top edge, a green hill under a little rain cloud, a sandy beach with palm trees, a tiny village with a bakery, a small library building, a farm with bean fields and a barn, a fenced ranch with horses, a flower garden full of butterflies, steaming hot springs pools, a tennis court, a calm lagoon, a meadow with pigs, a lighthouse. Lots of space between the places. No text, no labels, no people.", "aspect": "16:9", "width": 1400, "quality": 78},
+    {"name": "cats-l", "prompt": "Cute cartoon cats and dogs gently floating down out of gray rain clouds like raindrops over a town street, some holding tiny umbrellas, all happy and safe.", "aspect": "1:1", "width": 360, "quality": 76},
+    {"name": "cats-r", "prompt": "A very heavy rainstorm pouring down on a city street, people hurrying with umbrellas, big puddles splashing.", "aspect": "1:1", "width": 360, "quality": 76},
+    {"name": "cake-l", "prompt": "A giant slice of strawberry layer cake on a plate, with a fork, shining like a prize.", "aspect": "1:1", "width": 360, "quality": 76},
+    {"name": "cake-r", "prompt": "A relaxed middle-school student at a desk finishing a test easily, smiling, pencil down, leaning back.", "aspect": "1:1", "width": 360, "quality": 76},
+    {"name": "ice-l", "prompt": "Two middle-school kids with toy hammers cracking a big block of ice between them, chips of ice flying.", "aspect": "1:1", "width": 360, "quality": 76},
+    {"name": "ice-r", "prompt": "Two new classmates on the first day of school, laughing together at a lunch table after being shy.", "aspect": "1:1", "width": 360, "quality": 76},
+    {"name": "weather-l", "prompt": "A kid standing outside on a sunny day with one small personal gray rain cloud raining only on them.", "aspect": "1:1", "width": 360, "quality": 76},
+    {"name": "weather-r", "prompt": "A kid in bed with a cold, blanket pulled up, tissues and a cup of tea on the nightstand, a little tired.", "aspect": "1:1", "width": 360, "quality": 76},
+    {"name": "beans-l", "prompt": "A glass jar tipped over, lots of colorful beans spilling across a kitchen floor.", "aspect": "1:1", "width": 360, "quality": 76},
+    {"name": "beans-r", "prompt": "A kid whispering into a friend's ear while the friend gasps with wide eyes, about a secret surprise party being planned behind them.", "aspect": "1:1", "width": 360, "quality": 76},
+    {"name": "books-l", "prompt": "A kid in cartoon boxing gloves playfully punching a tall stack of books.", "aspect": "1:1", "width": 360, "quality": 76},
+    {"name": "books-r", "prompt": "A focused teenager studying hard at a desk with open textbooks, notes and a lamp at night.", "aspect": "1:1", "width": 360, "quality": 76},
+    {"name": "moon-l", "prompt": "A huge glowing bright blue full moon in a starry night sky over a calm sea.", "aspect": "1:1", "width": 360, "quality": 76},
+    {"name": "moon-r", "prompt": "Kids in a warm town with palm trees amazed and catching rare snowflakes, a very unusual event.", "aspect": "1:1", "width": 360, "quality": 76},
+    {"name": "pigs-l", "prompt": "Cheerful pink pigs flying through a blue sky with tiny white wings.", "aspect": "1:1", "width": 360, "quality": 76},
+    {"name": "pigs-r", "prompt": "A teenager with a very messy bedroom shrugging and smiling, while a parent in the doorway raises an eyebrow, not believing it will ever be clean.", "aspect": "1:1", "width": 360, "quality": 76},
+    {"name": "horses-l", "prompt": "A kid in cowboy boots pulling back on the reins of two excited horses that want to run.", "aspect": "1:1", "width": 360, "quality": 76},
+    {"name": "horses-r", "prompt": "A coach holding up a hand to gently stop an eager student who is about to start a race too early.", "aspect": "1:1", "width": 360, "quality": 76},
+    {"name": "butterflies-l", "prompt": "Colorful cartoon butterflies fluttering out of a surprised kid's shirt near the tummy.", "aspect": "1:1", "width": 360, "quality": 76},
+    {"name": "butterflies-r", "prompt": "A nervous kid waiting backstage before a school play, hands pressed to the tummy, peeking at the audience.", "aspect": "1:1", "width": 360, "quality": 76},
+    {"name": "hotwater-l", "prompt": "A surprised kid sitting in a giant steaming cooking pot of hot water like a bath, cartoon and funny, not scary.", "aspect": "1:1", "width": 360, "quality": 76},
+    {"name": "hotwater-r", "prompt": "A kid sitting outside the principal's office with a worried face after breaking a window with a baseball, the ball and the cracked window visible.", "aspect": "1:1", "width": 360, "quality": 76},
+    {"name": "court-l", "prompt": "A tennis ball bouncing on one side of a tennis court in front of a surprised kid holding a racket.", "aspect": "1:1", "width": 360, "quality": 76},
+    {"name": "court-r", "prompt": "A kid thinking hard about a choice while a friend waits patiently for the answer, two paths to choose between.", "aspect": "1:1", "width": 360, "quality": 76}
+  ]
+}

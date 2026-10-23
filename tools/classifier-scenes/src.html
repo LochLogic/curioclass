@@ -9,7 +9,7 @@
 CLASSIFIER SCENES (Curio Class)
 American Sign Language, grades 6-12, ACTFL Intermediate Mid (presentational and interpretive communication),
 module "Classifiers and Space".
-Seven pictures. For each one students decide the ground (the larger object that stays still, usually set up
+Twenty pictures. For each one students decide the ground (the larger object that stays still, usually set up
 first and held on the non-dominant hand), choose a classifier handshape for each object, place the objects in
 signing space from the signer's own point of view, and add movement. Then they play it back with an English
 gloss and flip to the viewer's view, which is mirrored.
@@ -67,9 +67,22 @@ main{display:grid;grid-template-columns:minmax(0,1fr) 340px;min-height:0}
 .panel{background:var(--card);border-left:1px solid var(--line);padding:12px 16px;display:flex;flex-direction:column;gap:12px;overflow:auto}
 @media (max-width:900px){.panel{border-left:0;border-top:1px solid var(--line)}}
 .panel h2{margin:0;font:700 12px/1 'Segoe UI',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
-.steps{display:flex;gap:5px}
-.steps i{flex:1;height:7px;border-radius:4px;background:var(--line)}
-.steps i.on{background:var(--brand)}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin:0;padding:0;list-style:none}
+.steps li{border-top:6px solid var(--line);padding-top:4px;font:700 12px/1.2 'Segoe UI',sans-serif;color:var(--muted)}
+.steps li.on{border-color:var(--brand);color:var(--ink)}
+.steps li.now{border-color:var(--figure);color:var(--figure)}
+.cue{position:absolute;left:30px;right:30px;top:40px;height:310px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;pointer-events:none;text-align:center;font:700 20px/1.3 'Segoe UI',sans-serif;color:#5a6274;padding:0 30px}
+.cue .ghost{width:96px;height:96px;border-radius:50%;border:5px dashed var(--figure);background:#fff9;display:grid;place-items:center;animation:pulse 1.4s ease-in-out infinite}
+.cue .ghost.g{border-color:var(--ground)}
+.cue .ghost img{max-width:70px;max-height:70px;opacity:.75}
+.cue.follow{display:block}
+.cue.follow .ghost{position:absolute;margin:-48px 0 0 -48px}
+.cue.follow span{display:none}
+@keyframes pulse{50%{transform:scale(1.08)}}
+.nav{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:auto;padding-top:10px;border-top:1px solid var(--line)}
+.nav button{border:2px solid var(--brand);background:#fff;color:var(--brand);border-radius:12px;min-height:46px;font-weight:700;font-size:15px}
+.btn.go{background:var(--figure)}
+.calm .cue .ghost{animation:none}
 .q{margin:0;font:600 18px/1.4 'Segoe UI',sans-serif}
 .q b{color:var(--figure)}
 .q b.g{color:var(--ground)}
@@ -119,18 +132,20 @@ main{display:grid;grid-template-columns:minmax(0,1fr) 340px;min-height:0}
         <img class="signer" id="signer" src="art:signer" alt="">
         <span class="side l" id="side-l">← signer's left</span><span class="side r" id="side-r">signer's right →</span>
         <svg id="paths" aria-hidden="true"><defs><marker id="arrow" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0L10,5L0,10z" fill="#d4621f"/></marker></defs><g id="path-g"></g></svg>
+        <div class="cue" id="cue" aria-hidden="true"></div>
         <div id="toks"></div>
       </div>
     </div>
   </div>
   <aside class="panel">
     <div class="list" id="list" aria-label="Pictures"></div>
-    <div class="steps" id="steps" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+    <ol class="steps" id="steps"><li>1 · What stays still</li><li>2 · Handshapes</li><li>3 · Place</li><li>4 · Play</li></ol>
     <p class="q" id="q"></p>
     <div class="opts" id="opts"></div>
     <div class="hs" id="hs" hidden></div>
     <p class="say" id="say"></p>
     <div class="row" id="acts"></div>
+    <div class="nav"><button id="prev">← Previous picture</button><button id="next">Next picture →</button></div>
   </aside>
 </main>
 
@@ -168,6 +183,14 @@ main{display:grid;grid-template-columns:minmax(0,1fr) 340px;min-height:0}
   // objects: name, handshape, moves. ground: index of the still object, 'either' or 'both' (both move).
   // check(p) gets placed points {x,y} (y grows downward) and returns '' when the layout matches the picture.
   const near = (a, b, dx) => Math.abs(a.x - b.x) < dx;
+  // reusable checks: p[0] ground, p[1] figure (or where it starts), p[2] where the figure ends
+  const ON = (g, f) => p => p[1].y > p[0].y - 25 ? `The ${f} is <b>on top of</b> the ${g}. Place it higher than the ${g}.` : !near(p[0], p[1], 80) ? `Put the ${f} right above the ${g}.` : '';
+  const BESIDE = (a, b) => p => Math.abs(p[0].y - p[1].y) > 60 ? `The ${a} and the ${b} are <b>side by side</b>, at the same height.` : p[1].x < p[0].x ? `In the picture the ${b} is on the <b>right</b>. Signers show the scene the way they see it.` : p[1].x - p[0].x > 260 ? 'They are close together. Move them nearer.' : '';
+  const PAST = (g, f) => p => !(p[1].x < p[0].x - 40 && p[2].x > p[0].x + 40) ? `The ${f} starts on one side of the ${g} and ends on the <b>other</b> side, going left to right like the picture.` : Math.abs((p[1].y + p[2].y) / 2 - p[0].y) > 110 ? `Keep the ${f} near the ${g} as it passes.` : '';
+  const UNDER_PATH = (g, f) => p => !(p[1].y > p[0].y + 25 && p[2].y > p[0].y + 25) ? `The ${f} stays <b>under</b> the ${g} the whole way. Keep both points lower than the ${g}.` : !(p[1].x < p[0].x - 30 && p[2].x > p[0].x + 30) ? `The ${f} walks from the left side to the right side.` : '';
+  const ONTO = (g, f) => p => !(p[1].y > p[0].y + 15 && p[1].x < p[0].x) ? `The ${f} starts on the <b>floor</b>, lower than the ${g} and to its left.` : !(p[2].y < p[0].y - 15 && near(p[0], p[2], 90)) ? `The ${f} ends <b>on top of</b> the ${g}.` : '';
+  const OFF = (g, f) => p => !(p[1].y < p[0].y - 15 && near(p[0], p[1], 90)) ? `The ${f} starts <b>on top of</b> the ${g}.` : !(p[2].y > p[0].y + 20 && p[2].x > p[0].x + 20) ? `The ${f} ends <b>down on the floor</b>, lower than the ${g} and to its right.` : '';
+  const TO = (g, f) => p => !(p[1].x < p[0].x - 100) ? `The ${f} starts a little way off, to the <b>left</b> of the ${g}.` : Math.hypot(p[2].x - p[0].x, p[2].y - p[0].y) > 110 ? `The ${f} ends up right <b>next to</b> the ${g}.` : '';
   const SCENES = [
     {img: 'art:s-cup', t: 'A cup is on the table.', o: [{n: 'table', hs: 'b'}, {n: 'cup', hs: 'c'}], ground: 0,
      gloss: ['TABLE', 'CL:B (flat table here)', 'CUP', 'CL:C (cup sitting on the table)'],
@@ -190,6 +213,35 @@ main{display:grid;grid-template-columns:minmax(0,1fr) 340px;min-height:0}
     {img: 'art:s-jump', t: 'A cat jumps up onto the table.', o: [{n: 'table', hs: 'b'}, {n: 'cat', hs: 'bentv', move: true}], ground: 0,
      gloss: ['TABLE', 'CL:B (flat table here)', 'CAT', 'CL:bent-V (cat jumps up onto it)'],
      check: p => !(p[1].y > p[0].y + 15 && p[1].x < p[0].x) ? 'The cat starts on the <b>floor</b>, lower than the table and to its left.' : !(p[2].y < p[0].y - 15 && near(p[0], p[2], 90)) ? 'The cat ends <b>on top of</b> the table.' : ''},
+    {img: 'art:s-stand-bed', t: 'A person stands on the bed.', o: [{n: 'bed', hs: 'b'}, {n: 'person', hs: 'v'}], ground: 0,
+     gloss: ['BED', 'CL:B (flat bed here)', 'PERSON', 'CL:upside-down-V (person standing on the bed)'], check: ON('bed', 'person')},
+    {img: 'art:s-walk-car', t: 'A person walks past a parked car.', o: [{n: 'car', hs: 'three'}, {n: 'person', hs: 'one', move: true}], ground: 0,
+     gloss: ['CAR', 'CL:3 (car parked here)', 'PERSON', 'CL:1 (person walks past the car)'], check: PAST('car', 'person')},
+    {img: 'art:s-down-hill', t: 'A car drives down a hill.', o: [{n: 'hill', hs: 'b'}, {n: 'car', hs: 'three', move: true}], ground: 0,
+     gloss: ['HILL', 'CL:B (slope going down to the right)', 'CAR', 'CL:3 (car drives down the slope)'],
+     check: p => !(p[2].x > p[1].x + 60 && p[2].y > p[1].y + 40) ? 'The car goes <b>down</b> the hill toward the right. End lower and farther right than you start.' : ''},
+    {img: 'art:s-two-stand', t: 'Two friends stand side by side.', o: [{n: 'friend in yellow', hs: 'one'}, {n: 'friend in purple', hs: 'one'}], ground: 'either',
+     gloss: ['TWO FRIEND', 'CL:1 (one stands here)', 'CL:1 (the other stands next to them)'], check: BESIDE('friend in yellow', 'friend in purple')},
+    {img: 'art:s-cat-wall', t: 'A cat sits on a wall.', o: [{n: 'wall', hs: 'b'}, {n: 'cat', hs: 'bentv'}], ground: 0,
+     gloss: ['WALL', 'CL:B (wall here)', 'CAT', 'CL:bent-V (cat sitting on top of it)'], check: ON('wall', 'cat')},
+    {img: 'art:s-cup-falls', t: 'A cup falls off the table.', o: [{n: 'table', hs: 'b'}, {n: 'cup', hs: 'c', move: true}], ground: 0,
+     gloss: ['TABLE', 'CL:B (flat table here)', 'CUP', 'CL:C (cup falls off the edge)'], check: OFF('table', 'cup')},
+    {img: 'art:s-jump-bed', t: 'A child jumps up onto the bed.', o: [{n: 'bed', hs: 'b'}, {n: 'child', hs: 'v', move: true}], ground: 0,
+     gloss: ['BED', 'CL:B (flat bed here)', 'CHILD', 'CL:upside-down-V (child jumps up onto it)'], check: ONTO('bed', 'child')},
+    {img: 'art:s-cat-walk-under', t: 'A cat walks under the table.', o: [{n: 'table', hs: 'b'}, {n: 'cat', hs: 'bentv', move: true}], ground: 0,
+     gloss: ['TABLE', 'CL:B (flat table here)', 'CAT', 'CL:bent-V (cat walks along underneath)'], check: UNDER_PATH('table', 'cat')},
+    {img: 'art:s-cars-pass', t: 'Two cars pass each other going opposite ways.', o: [{n: 'red car', hs: 'three', move: true}, {n: 'blue car', hs: 'three', move: true}], ground: 'both',
+     gloss: ['TWO CAR', 'CL:3 + CL:3 (one on each side)', 'drive toward each other and pass'],
+     check: p => p[0].x > p[1].x ? 'The red car starts on the <b>left</b> and the blue car on the right, like the picture.' : !(p[2].x > p[3].x) ? 'They <b>pass</b> each other: the red car ends up on the right and the blue car on the left.' : ''},
+    {img: 'art:s-walk-to-car', t: 'A person walks up to a car.', o: [{n: 'car', hs: 'three'}, {n: 'person', hs: 'one', move: true}], ground: 0,
+     gloss: ['CAR', 'CL:3 (car parked here)', 'PERSON', 'CL:1 (person walks up to it)'], check: TO('car', 'person')},
+    {img: 'art:s-two-cups', t: 'Two cups sit side by side.', o: [{n: 'teal cup', hs: 'c'}, {n: 'orange cup', hs: 'c'}], ground: 'either',
+     gloss: ['TWO CUP', 'CL:C (one cup here)', 'CL:C (the other cup next to it)'], check: BESIDE('teal cup', 'orange cup')},
+    {img: 'art:s-jump-off', t: 'A cat jumps down off the table.', o: [{n: 'table', hs: 'b'}, {n: 'cat', hs: 'bentv', move: true}], ground: 0,
+     gloss: ['TABLE', 'CL:B (flat table here)', 'CAT', 'CL:bent-V (cat jumps down to the floor)'], check: OFF('table', 'cat')},
+    {img: 'art:s-stand-car', t: 'A person stands next to a car.', o: [{n: 'car', hs: 'three'}, {n: 'person', hs: 'one'}], ground: 0,
+     gloss: ['CAR', 'CL:3 (car parked here)', 'PERSON', 'CL:1 (person standing next to it)'],
+     check: p => p[1].x < p[0].x + 30 ? 'In the picture the person stands to the <b>right</b> of the car.' : Math.abs(p[1].y - p[0].y) > 90 || p[1].x - p[0].x > 200 ? 'The person is right <b>next to</b> the car. Move them closer.' : ''},
   ];
 
   const st = {i: 0, step: 0, ground: null, hs: [], pts: [], need: [], view: 'signer', lefty: false, done: new Set(), busy: false};
@@ -198,7 +250,7 @@ main{display:grid;grid-template-columns:minmax(0,1fr) 340px;min-height:0}
   function load(i) {
     if (st.busy) return;
     const s = SCENES[i];
-    Object.assign(st, {i, step: 0, ground: null, hs: [], pts: [], need: [], view: 'signer'});
+    Object.assign(st, {i, step: 1, ground: null, hs: [], pts: [], need: [], view: 'signer'});
     $('pic').src = s.img; $('pic').alt = s.t; $('pic-t').textContent = s.t; $('pic-n').textContent = `Picture ${i + 1} of ${SCENES.length}`;
     $('gloss').innerHTML = '';
     viewer(false); draw();
@@ -219,16 +271,17 @@ main{display:grid;grid-template-columns:minmax(0,1fr) 340px;min-height:0}
     const ok = s.ground === k || (s.ground === 'either' && k !== 'both');
     if (!ok) {
       $('say').className = 'say warn';
-      $('say').innerHTML = s.ground === 'both' ? 'Look again: in this picture <b>both</b> people are moving. Neither one stays still.'
+      $('say').innerHTML = s.ground === 'both' ? 'Look again: in this picture <b>both</b> of them are moving. Neither one stays still.'
         : k === 'both' ? `Look again: one of them stays still. Which one doesn't move?`
         : `The ${s.o[k].n} ${s.o[k].move ? 'moves' : 'is the smaller thing, placed on or near the ground'}. The ground is usually bigger and stays still.`;
       return;
     }
     st.ground = k;
     $('say').className = 'say';
-    $('say').innerHTML = s.ground === 'both' ? 'Right: both people move, so each hand is one person, and both hands move at once.'
-      : s.ground === 'either' ? `Right: both cars are still. Either can be the ground. You chose the ${s.o[k].n}, so set it up first.`
+    $('say').innerHTML = s.ground === 'both' ? 'Right: both of them move, so each hand shows one of them, and both hands move at once.'
+      : s.ground === 'either' ? `Right: both stay still, so either one can be the ground. You chose the ${s.o[k].n}, so set it up first.`
       : `Right: the ${s.o[k].n} stays still. Set it up first.`;
+    st.step = 2;
     st.order = s.ground === 'both' ? [0, 1] : [k, ...s.o.map((_, j) => j).filter(j => j !== k)];
     st.h = 0;
     pickHand();
@@ -284,14 +337,15 @@ main{display:grid;grid-template-columns:minmax(0,1fr) 340px;min-height:0}
   };
   $('space').addEventListener('pointerdown', e => {
     if (st.step !== 3 || st.busy || st.pts.length >= st.need.length) return;
-    st.pts.push(local(e)); st.drag = true; $('space').setPointerCapture(e.pointerId);
+    st.pts.push(local(e)); st.drag = true; $('space').setPointerCapture(e.pointerId); cue();
     draw();
   });
-  $('space').addEventListener('pointermove', e => { if (st.drag) { st.pts[st.pts.length - 1] = local(e); draw(); } });
+  $('space').addEventListener('pointermove', e => { if (st.drag) { st.pts[st.pts.length - 1] = local(e); draw(); } else if (st.step === 3 && e.pointerType === 'mouse') cue(local(e)); });
+  $('space').addEventListener('pointerleave', () => { if (!st.drag && st.step === 3) cue(); });
   $('space').addEventListener('pointerup', () => {
     if (!st.drag) return;
     st.drag = false;
-    if (st.pts.length < st.need.length) { prompt(); return; }
+    if (st.pts.length < st.need.length) { prompt(); cue(); return; }
     check();
   });
   function check() {
@@ -306,14 +360,15 @@ main{display:grid;grid-template-columns:minmax(0,1fr) 340px;min-height:0}
     if (why) {
       $('say').className = 'say warn'; $('say').innerHTML = why;
       $('q').innerHTML = 'Not quite. Try placing them again.';
-      acts([['Try again', () => { st.pts = []; draw(); prompt(); acts(); }, 'soft']]);
+      acts([['Try again', () => { st.pts = []; draw(); prompt(); cue(); acts(); }, 'soft']]);
       return;
     }
     st.step = 4; steps(4); st.done.add(st.i); list();
+    [...$('steps').children].forEach(x => x.classList.add('on'));
     $('q').innerHTML = 'That matches the picture. <b>Play it</b> to see the order, then flip to the viewer\'s view.';
     $('say').className = 'say';
     $('say').innerHTML = s.ground === 'both' ? 'Both hands move at once, each on its own side.' : `The ${s.o[st.ground].n} is set up first and held still while the ${s.o.filter((_, j) => j !== st.ground).map(o => o.n).join(' and ')} ${s.o.some(o => o.move) ? 'moves' : 'is placed'}.`;
-    acts([['▶ Play it', play], ['Viewer\'s view', () => viewer(st.view === 'signer'), 'soft'], ['Next picture →', () => load((st.i + 1) % SCENES.length), 'soft']]);
+    acts([['▶ Play it', play], ['Viewer\'s view', () => viewer(st.view === 'signer'), 'soft'], ['Next picture →', () => load((st.i + 1) % SCENES.length), 'go']]);
     play();
   }
 
@@ -398,7 +453,21 @@ main{display:grid;grid-template-columns:minmax(0,1fr) 340px;min-height:0}
   }
 
   // ---------- panel bits ----------
-  function steps(n) { [...$('steps').children].forEach((s, k) => s.classList.toggle('on', k < n)); }
+  function steps(n) {
+    [...$('steps').children].forEach((s, k) => { s.classList.toggle('on', k < n - 1); s.classList.toggle('now', k === n - 1); });
+    cue();
+  }
+  // a big cue inside the signing space says what to do next
+  function cue(at) {
+    const c = $('cue'), s = SCENES[st.i], n = st.need[st.pts.length];
+    c.className = 'cue';
+    if (st.step === 3 && n && !st.drag) {
+      const g = n.j === st.ground, h = HS[st.hs[n.j]];
+      c.innerHTML = `<div class="ghost${g ? ' g' : ''}"><img src="${h.img}" alt=""></div><span>Tap here to place the ${s.o[n.j].n}${n.end ? ' where it ends' : s.o[n.j].move ? ' where it starts' : ''}</span>`;
+      if (at) { c.classList.add('follow'); const gh = c.firstChild; gh.style.left = (at.x - 30) + 'px'; gh.style.top = (at.y - 40) + 'px'; }
+    } else if (st.step < 3) c.innerHTML = `<span>${st.step <= 1 ? 'Step 1: look at the picture, then answer on the right →' : 'Step 2: pick each handshape on the right →'}</span>`;
+    else c.innerHTML = '';
+  }
   function acts(list = []) {
     $('acts').replaceChildren(...list.map(([label, fn, cls]) => { const b = document.createElement('button'); b.className = 'btn ' + (cls || ''); b.textContent = label; b.onclick = fn; return b; }));
   }
@@ -412,6 +481,8 @@ main{display:grid;grid-template-columns:minmax(0,1fr) 340px;min-height:0}
       return b;
     }));
   }
+  $('prev').onclick = () => load((st.i + SCENES.length - 1) % SCENES.length);
+  $('next').onclick = () => load((st.i + 1) % SCENES.length);
   $('lefty').onclick = () => { st.lefty = !st.lefty; $('lefty').setAttribute('aria-pressed', st.lefty); draw(); };
 
   window.__cs = {st, load, pickGround, startPlace, check, play, viewer, draw, SCENES};  // for checking frames

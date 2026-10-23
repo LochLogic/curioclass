@@ -361,7 +361,7 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
     press(n); weather(n); bear(n);
     banner(F[n].e, cap(n), `${F[n].w}. ${F[n].body}`);
     $('tip').innerHTML = `<b>What helps:</b> ${F[n].help}`;
-    say(`${cap(n)}. ${F[n].w}. ${F[n].body} What helps? ${F[n].help}`);
+    say(meetLine(n));
   }
 
   // Stories
@@ -385,7 +385,7 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
     banner(F[n].e, `${s.who} might feel ${n}.`, line, 'story');
     $('tip').innerHTML = `<b>Kind words or a good idea:</b> ${s.kind}`;
     $('hint').innerHTML = `Weather for this story: ${list.join(', ')}. Ask: what could we say or do to help ${s.who}?`;
-    say(`${s.who} might feel ${n}. ${line} ${s.kind}`);
+    say([`${cap(n)}.`, fits ? 'That makes sense!' : 'Feelings can be different!', s.kind]);
   }
 
   // Class forecast: anonymous counts, never saved
@@ -424,7 +424,7 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
     const text = `${most} ${F[top].w.toLowerCase()}${rest.length ? `, with some ${rest.join(' and some ')}` : ''}.`;
     banner(F[top].e, "Today's class forecast", text);
     $('tip').innerHTML = 'All weather is okay, and weather always changes. If you have stormy or rainy feelings today, you can talk to a grown-up you trust.';
-    say(`Here is today's class forecast. ${text} All weather is okay, and weather always changes.`);
+    say(["Here is today's class forecast.", `${most} ${F[top].w.toLowerCase()}.`, 'All weather is okay, and weather always changes.']);
   }
   function clearClass() {
     NAMES.forEach(n => state.tally[n] = 0);
@@ -440,7 +440,7 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
     $('class-btns').hidden = m !== 'class';
     $('board').hidden = m !== 'class';
     $('tip').innerHTML = ''; press(null);
-    speechSynthesis?.cancel?.();
+    stopTalk();
     if (m === 'meet') {
       weather(null, true); bear('happy');
       banner('👋', 'Hi! I\'m Bear.', 'Today\'s report is about feelings. Tap a weather to meet a feeling.');
@@ -464,7 +464,7 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
     state.sound = !state.sound;
     e.currentTarget.setAttribute('aria-pressed', state.sound);
     e.currentTarget.textContent = state.sound ? '🔔 Sound' : '🔇 Sound';
-    if (!state.sound) speechSynthesis?.cancel?.();
+    if (!state.sound) stopTalk();
   };
   function bestVoice() {
     const voices = speechSynthesis.getVoices().filter(v => /^en(-|_|$)/i.test(v.lang));
@@ -485,19 +485,44 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
     };
     speechSynthesis.getVoices();
   }
-  function say(text, force) {
-    if ((!state.sound && !force) || !('speechSynthesis' in window)) return;
-    speechSynthesis.cancel();
-    const u = new SpeechSynthesisUtterance(text.replace(/[\u{1F300}-\u{1FAFF}☀-➿]/gu, ''));
-    const v = bestVoice();
-    if (v) { u.voice = v; u.lang = v.lang; }
-    u.rate = .92; u.pitch = 1; speechSynthesis.speak(u);
+  // recorded lines (scripts/voice.py) play when the exact text has one; anything else uses the browser voice
+  const CLIPS = "voice:*";
+  const meetLine = n => `${cap(n)}. ${F[n].w}. ${F[n].body} What helps? ${F[n].help}`;
+  const allLines = () => [
+    ...NAMES.map(meetLine), ...STORIES.map(s => `${s.t} How might ${s.who} feel?`), ...NAMES.map(n => `${cap(n)}.`),
+    'That makes sense!', 'Feelings can be different!', ...STORIES.map(s => s.kind), 'Thanks for sharing!',
+    'No weather yet! Tap the weather that matches how you feel right now.', "Here is today's class forecast.",
+    ...NAMES.flatMap(n => ['Mostly', 'Partly'].map(m => `${m} ${F[n].w.toLowerCase()}.`)), 'All weather is okay, and weather always changes.'];
+  let talk = 0, clip = null, last = [];
+  function stopTalk() { talk++; if (clip) { clip.pause(); clip = null; } if ('speechSynthesis' in window) speechSynthesis.cancel(); }
+  function speakOne(text) {
+    return new Promise(done => {
+      if (CLIPS[text]) {
+        clip = new Audio(CLIPS[text]);
+        clip.onended = clip.onerror = () => done();
+        clip.play().catch(() => done());
+        return;
+      }
+      if (!('speechSynthesis' in window)) return done();
+      const u = new SpeechSynthesisUtterance(text.replace(/[\u{1F300}-\u{1FAFF}☀-➿]/gu, ''));
+      const v = bestVoice();
+      if (v) { u.voice = v; u.lang = v.lang; }
+      u.rate = .92; u.pitch = 1; u.onend = u.onerror = () => done();
+      speechSynthesis.speak(u);
+    });
   }
-  $('read').onclick = () => say($('banner').dataset.text || $('hint').textContent, true);
+  async function say(parts, force) {
+    if (!state.sound && !force) return;
+    stopTalk();
+    const me = talk;
+    last = [].concat(parts);
+    for (const p of last) { if (me !== talk) return; await speakOne(p); await wait(120); }
+  }
+  $('read').onclick = () => say(last.length ? last : [$('banner').dataset.text || $('hint').textContent], true);
 
   $('bear-a').src = F.happy.img;
   board();
-  window.__fw = {state, setMode, tap, forecast, weather};  // for checking frames
+  window.__fw = {state, setMode, tap, forecast, weather, allLines};  // for checking frames
   setMode('meet');
 })();
 </script>

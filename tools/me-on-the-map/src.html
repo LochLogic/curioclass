@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Me on the Map · Zoom out from my room to planet Earth · Curio Class</title>
+<meta name="description" content="Zoom out from a bedroom to a home, a street, a town, your state, the United States, North America and planet Earth, and back in again. Kids point out each level, then tap the maps to find land and water. Kindergarten social studies, teacher-led. Works offline.">
+<!--
+ME ON THE MAP (Curio Class)
+Kindergarten social studies, C3 D2.Geo.1.K-2 (construct maps of familiar places) and D2.Geo.2.K-2 (describe
+where places are, land and water).
+Teacher-led on a projector. Eight nested places, each seen from above like a map: my room, my home, my street,
+my town, my state, my country, my continent and planet Earth. Each zoom shrinks the place you just saw into a
+glowing box on the next map, so children see that each place is inside the next one. The teacher picks the
+state (and can name the town and drag its star); that is kept on this device only. Land or water: tap a map.
+State shapes: us-atlas v3 from US Census Bureau boundaries (public domain), Albers USA, as in State Quest.
+North America: Natural Earth via world-atlas 2.0.2 (public domain), built by scripts/na_map.py.
+One file, no network requests. Illustrations and narration generated with Google Gemini, edited for Curio Class.
+Content CC BY 4.0, code MIT. curioclass.org
+-->
+<style>
+:root{
+  --paper:#fbf6ea;--ink:#2a2730;--muted:#625d6c;--line:#e8dcc6;--focus:#2f5bd3;--brand:#2f6f5e;--glow:#ffcf33;
+  font-family:'Segoe UI',system-ui,-apple-system,Roboto,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0;height:100%}
+body{background:var(--paper);color:var(--ink);display:grid;grid-template-rows:auto 1fr;min-height:100vh}
+button,select,input{font:inherit;color:inherit}
+button,select{cursor:pointer}
+:focus-visible{outline:4px solid var(--focus);outline-offset:3px}
+header{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:12px 20px;background:var(--brand);color:#f3fbf7}
+h1{margin:0 auto 0 0;font:800 clamp(22px,3vw,32px)/1.1 'Trebuchet MS','Segoe UI',sans-serif}
+h1 small{display:block;font:500 15px/1.3 'Segoe UI',sans-serif;color:#cfe8de}
+.icon-btn{border:2px solid #4f8f7d;background:#3b7d6b;color:#f3fbf7;border-radius:999px;min-height:52px;padding:0 16px;font-weight:700;font-size:16px}
+
+main{display:grid;grid-template-columns:minmax(0,1fr) 320px;min-height:0}
+@media (max-width:760px){main{grid-template-columns:1fr}}
+.stage{position:relative;overflow:hidden;min-height:340px;background:#dfeee8}
+.scene{position:absolute;left:50%;top:50%;width:1000px;height:620px;transform:translate(-50%,-50%) scale(var(--s,1))}
+.title{position:absolute;left:0;right:0;top:8px;text-align:center;font:800 34px/1.1 'Trebuchet MS',sans-serif}
+.title span{display:block;font:700 20px/1.3 'Trebuchet MS',sans-serif;color:#4a4652}
+.view{position:absolute;left:50px;top:84px;width:900px;height:506px;border-radius:22px;overflow:hidden;background:#9fd0ea;box-shadow:0 0 0 8px #fff,0 0 0 11px #2a2730,0 16px 30px #0004}
+.layer{position:absolute;inset:0;transform-origin:0 0}
+.layer img.full{width:100%;height:100%;object-fit:cover;display:block}
+.layer svg{width:100%;height:100%;display:block}
+.box{position:absolute;border:6px solid var(--glow);border-radius:8px;box-shadow:0 0 0 4px #fff8,0 0 26px 6px #ffcf33aa;pointer-events:none}
+.box.blink{animation:blink 1s ease-in-out 3}
+@keyframes blink{50%{opacity:.15}}
+.me{position:absolute;width:120px;transform:translate(-50%,-100%);pointer-events:none;filter:drop-shadow(0 6px 6px #0004)}
+.pin{position:absolute;transform:translate(-50%,-100%);pointer-events:none;font:800 18px 'Trebuchet MS',sans-serif;text-align:center}
+.pin b{display:block;background:#fff;border:3px solid #2a2730;border-radius:10px;padding:2px 8px;margin-bottom:2px;white-space:nowrap}
+.pin i{display:block;width:26px;height:26px;margin:0 auto;background:#e0393e;border:3px solid #fff;border-radius:50% 50% 50% 0;transform:rotate(-45deg);box-shadow:0 3px 6px #0005}
+.say{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:#fff;border:4px solid #2a2730;border-radius:20px;padding:8px 22px;font:800 40px 'Trebuchet MS',sans-serif;pointer-events:none;opacity:0;transition:opacity .25s}
+.say.on{opacity:1}
+
+.panel{background:#fffcf4;border-left:3px solid var(--line);padding:14px 16px;display:flex;flex-direction:column;gap:12px;overflow:auto}
+@media (max-width:760px){.panel{border-left:0;border-top:3px solid var(--line)}}
+.hint{margin:0;font:600 18px/1.35 'Segoe UI',sans-serif;color:var(--muted)}
+.hint b{color:var(--ink)}
+.zoom{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.big{border:0;border-radius:16px;min-height:72px;font:800 21px/1.1 'Trebuchet MS','Segoe UI',sans-serif;color:#fff;background:var(--brand);box-shadow:0 5px 0 #0004;padding:6px 10px}
+.big:active:not(:disabled){transform:translateY(3px);box-shadow:0 2px 0 #0004}
+.big:disabled{opacity:.35;cursor:default}
+.big.in{background:#c2572e}
+.ladder{display:flex;flex-direction:column-reverse;gap:4px;margin:0;padding:0;list-style:none}
+.ladder li button{width:100%;display:flex;align-items:center;gap:10px;border:2px solid transparent;background:#f2ebdd;border-radius:12px;min-height:40px;padding:3px 10px;font:700 16px 'Trebuchet MS',sans-serif;text-align:left}
+.ladder li button i{font-style:normal;display:inline-grid;place-items:center;width:26px;height:26px;border-radius:6px;background:#fff;border:2px solid #2a2730;font-size:12px}
+.ladder li button[aria-current="true"]{border-color:#2a2730;background:var(--glow)}
+.row{display:flex;gap:8px;flex-wrap:wrap}
+.soft{border:2px solid var(--line);background:#fff;border-radius:12px;min-height:46px;padding:0 12px;font-weight:700;font-size:15px}
+.soft[aria-pressed="true"]{background:#2a2730;color:#fff;border-color:#2a2730}
+details{font-size:15px}
+details label{display:block;margin:8px 0 4px;font-weight:700}
+details select,details input{width:100%;min-height:42px;border:2px solid var(--line);border-radius:10px;padding:0 8px;background:#fff}
+.calm .box.blink{animation:none}
+@media (max-width:760px),(max-height:640px){
+  header{padding:6px 12px} h1{font-size:19px} h1 small{display:none}
+  .icon-btn{min-height:38px;font-size:13px;padding:0 10px}
+  .big{min-height:50px;font-size:17px} .hint{font-size:14px}
+  .ladder li button{min-height:32px;font-size:13px}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Me on the Map <small>Zoom out from my room all the way to planet Earth.</small></h1>
+  <button class="icon-btn" id="motion" aria-pressed="true" title="Turn animation on or off">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+  <button class="icon-btn" id="read">🔊 Read</button>
+</header>
+<main>
+  <div class="stage" id="stage">
+    <div class="scene" id="scene">
+      <div class="title" id="title" aria-live="polite"></div>
+      <div class="view" id="view"><div class="say" id="say"></div></div>
+    </div>
+  </div>
+  <aside class="panel">
+    <p class="hint" id="hint"></p>
+    <div class="zoom"><button class="big in" id="in">➕ Zoom in</button><button class="big" id="out">➖ Zoom out</button></div>
+    <div class="row"><button class="soft" id="where">👀 Show where</button><button class="soft" id="lw" aria-pressed="false">💧 Land or water?</button></div>
+    <ol class="ladder" id="ladder"></ol>
+    <details id="setup"><summary><b>Teacher setup</b>: your state and town</summary>
+      <label for="state">Our state</label><select id="state"></select>
+      <label for="town">Our town's name (optional)</label><input id="town" maxlength="30" placeholder="Our town">
+      <p style="font-size:13px;color:var(--muted);margin:6px 0 0">Saved on this device only. On the state map, drag the star to where your town is.</p>
+    </details>
+  </aside>
+</main>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  let reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  try { const m = localStorage.getItem('curio-motion'); if (m) reduce = m === 'calm'; } catch {}
+  function showMotion() {
+    document.body.classList.toggle('calm', reduce);
+    $('motion').setAttribute('aria-pressed', !reduce);
+    $('motion').textContent = reduce ? '⏸ Motion' : '✨ Motion';
+  }
+  showMotion();
+  $('motion').onclick = () => { reduce = !reduce; try { localStorage.setItem('curio-motion', reduce ? 'calm' : 'on'); } catch {} showMotion(); };
+  const wait = ms => new Promise(r => setTimeout(r, ms));
+  const fit = () => {
+    const r = $('stage').getBoundingClientRect();
+    $('scene').style.setProperty('--s', Math.min(r.width / 1000, r.height / 620));
+  };
+  new ResizeObserver(fit).observe($('stage'));
+
+  const STATES = "json:states", NA = "json:na";
+  const VW = 900, VH = 506;
+  const store = {state: 'Montana', town: '', star: null};
+  try { Object.assign(store, JSON.parse(localStorage.getItem('me-on-the-map') || '{}')); } catch {}
+  const keep = () => { try { localStorage.setItem('me-on-the-map', JSON.stringify(store)); } catch {} };
+  const townName = () => store.town.trim() || 'our town';
+
+  // ---------- the eight places; box = where the smaller place sits, in this view's 900 x 506 pixels ----------
+  const LEVELS = [
+    {k: 'room', n: 'My room', img: 'art:room', say: 'This is my room. Here I am!'},
+    {k: 'home', n: 'My home', img: 'art:home', box: [390, 190, 120, 100], say: 'My room is inside my home.'},
+    {k: 'street', n: 'My street', img: 'art:street', box: [492, 88, 84, 92], say: 'My home is on my street.'},
+    {k: 'town', n: 'My town', img: 'art:town', box: [405, 215, 80, 60], say: 'My street is in my town.', show: () => `My street is in ${townName()}.`},
+    {k: 'state', n: 'My state', vec: 'state', say: 'My town is in my state.', show: () => `${cap(townName())} is in my state, ${store.state}.`},
+    {k: 'country', n: 'My country', vec: 'country', say: 'My state is in my country, the United States.', show: () => `${store.state} is in my country, the United States.`},
+    {k: 'continent', n: 'My continent', vec: 'continent', say: 'The United States is on my continent, North America.'},
+    {k: 'earth', n: 'Planet Earth', img: 'art:earth', earth: true, box: [395, 140, 150, 140], say: 'North America is on our planet, Earth. Everyone we know lives here!'},
+  ];
+  const cap = s => s[0].toUpperCase() + s.slice(1);
+  const said = l => l.say, shown = l => l.show ? l.show() : l.say;
+  const st = {i: 0, busy: false, lw: false, sound: true};
+
+  // ---------- drawing one place ----------
+  const NS = 'http://www.w3.org/2000/svg';
+  const el = (tag, a, parent) => { const e = document.createElementNS(NS, tag); for (const k in a) e.setAttribute(k, a[k]); parent && parent.append(e); return e; };
+  const stateOf = () => STATES.find(s => s.n === store.state) || STATES[0];
+  function bbox(d) {  // bounding box of a path's numbers
+    const n = d.match(/-?\d+(\.\d+)?/g).map(Number);
+    let x0 = 1e9, y0 = 1e9, x1 = -1e9, y1 = -1e9;
+    for (let i = 0; i < n.length; i += 2) { x0 = Math.min(x0, n[i]); x1 = Math.max(x1, n[i]); y0 = Math.min(y0, n[i + 1]); y1 = Math.max(y1, n[i + 1]); }
+    return [x0, y0, x1 - x0, y1 - y0];
+  }
+  // fit a box of source coordinates into the view with padding: returns the viewBox string and a mapper to view pixels
+  function fitBox([x, y, w, h], pad) {
+    const s = Math.min((VW - pad * 2) / w, (VH - pad * 2) / h);
+    const vw = VW / s, vh = VH / s, vx = x + w / 2 - vw / 2, vy = y + h / 2 - vh / 2;
+    return {vb: `${vx} ${vy} ${vw} ${vh}`, map: ([px, py]) => [(px - vx) * s, (py - vy) * s], s};
+  }
+  function build(i) {
+    const L = LEVELS[i], layer = document.createElement('div');
+    layer.className = 'layer';
+    layer.dataset.i = i;
+    if (L.img) {
+      layer.innerHTML = L.earth ? `<svg viewBox="0 0 900 506"><rect width="900" height="506" fill="#0b1630"/>${stars()}</svg><img src="${L.img}" alt="Planet Earth" style="position:absolute;left:217px;top:0;width:466px;height:466px;margin-top:20px;border-radius:50%">`
+        : `<img class="full" src="${L.img}" alt="${L.n}, seen from above">`;
+      if (i === 0) { const me = document.createElement('img'); me.src = 'art:kid'; me.className = 'me'; me.alt = 'Me'; me.style.left = '450px'; me.style.top = '330px'; layer.append(me); }
+      if (L.k === 'town') addPin(layer, [445, 245], 'My street');
+      layer._box = L.box;
+      return layer;
+    }
+    const svg = el('svg', {preserveAspectRatio: 'xMidYMid meet'}); layer.append(svg);
+    if (L.vec === 'state') {
+      const s = stateOf(), f = fitBox(bbox(s.d), 50);
+      svg.setAttribute('viewBox', f.vb);
+      el('rect', {x: -5000, y: -5000, width: 20000, height: 20000, fill: '#bfe0c9', 'data-water': ''}, svg);
+      el('path', {d: s.d, fill: '#f6e7a6', stroke: '#2a2730', 'stroke-width': 2 / f.s * 1.2, 'data-land': ''}, svg);
+      const b = bbox(s.d), star = store.star && store.star.state === s.n ? store.star.p : [b[0] + b[2] / 2, b[1] + b[3] / 2];
+      const [px, py] = f.map(star);
+      addPin(layer, [px, py], cap(townName()), true);
+      layer._box = [px - 30, py - 26, 60, 52];
+      layer._fit = f; layer._state = s;
+      // drag the town's star
+      svg.onpointerdown = e => {
+        if (st.lw) return;
+        const pin = layer.querySelector('.pin');
+        const move = ev => {
+          const r = svg.getBoundingClientRect(), k = r.width / VW;
+          const x = (ev.clientX - r.left) / k, y = (ev.clientY - r.top) / k;
+          pin.style.left = x + 'px'; pin.style.top = y + 'px';
+          store.star = {state: s.n, p: [x / f.s + Number(f.vb.split(' ')[0]), y / f.s + Number(f.vb.split(' ')[1])]};
+        };
+        move(e);
+        const up = () => { removeEventListener('pointermove', move); removeEventListener('pointerup', up); keep(); };
+        addEventListener('pointermove', move); addEventListener('pointerup', up);
+      };
+    }
+    if (L.vec === 'country') {
+      const f = fitBox([0, 0, 900, 565], 16);
+      svg.setAttribute('viewBox', f.vb);
+      el('rect', {x: -500, y: -500, width: 2000, height: 2000, fill: '#9fd0ea', 'data-water': ''}, svg);
+      for (const s of STATES) el('path', {d: s.d, fill: s.n === store.state ? '#f2b33d' : '#f6efd9', stroke: '#8b8270', 'stroke-width': 1, 'data-land': ''}, svg);
+      const sb = bbox(stateOf().d), [x0, y0] = f.map([sb[0], sb[1]]);
+      layer._box = [x0 - 6, y0 - 6, sb[2] * f.s + 12, sb[3] * f.s + 12];
+    }
+    if (L.vec === 'continent') {
+      const f = fitBox([120, 60, 860, 820], 10);
+      svg.setAttribute('viewBox', f.vb);
+      el('rect', {x: -500, y: -500, width: 2500, height: 2500, fill: '#9fd0ea', 'data-water': ''}, svg);
+      for (const c of NA.countries) el('path', {d: c.d, fill: c.id === '840' ? '#f2b33d' : c.id === '124' ? '#f6efd9' : c.id === '484' ? '#e9e2c6' : '#f1ead2', stroke: '#8b8270', 'stroke-width': 1.2, 'data-land': ''}, svg);
+      // frame the biggest piece of the United States (the lower 48 states)
+      const parts = NA.countries.find(c => c.id === '840').d.split('M').filter(Boolean).map(p => bbox('M' + p));
+      const main = parts.sort((a, b) => b[2] * b[3] - a[2] * a[3])[0], [x0, y0] = f.map([main[0], main[1]]);
+      layer._box = [x0 - 6, y0 - 6, main[2] * f.s + 12, main[3] * f.s + 12];
+    }
+    return layer;
+  }
+  function stars() { let s = ''; for (let k = 0; k < 70; k++) s += `<circle cx="${(k * 137) % 900}" cy="${(k * 89) % 506}" r="${k % 3 ? 1 : 1.8}" fill="#fff" opacity=".7"/>`; return s; }
+  function addPin(layer, [x, y], label, star) {
+    const p = document.createElement('div');
+    p.className = 'pin'; p.style.left = x + 'px'; p.style.top = y + 'px';
+    p.innerHTML = `<b>${star ? '⭐ ' : ''}${label}</b><i></i>`;
+    layer.append(p);
+  }
+
+  // ---------- zooming ----------
+  let cur = null;
+  function show(i) {
+    $('view').querySelectorAll('.layer').forEach(l => l.remove());
+    cur = build(i);
+    $('view').prepend(cur);
+    label(i);
+  }
+  const boxEl = () => { let b = $('view').querySelector('.box'); if (!b) { b = document.createElement('div'); b.className = 'box'; $('view').append(b); } return b; };
+  function showBox(on) {
+    const b = boxEl(), L = cur._box;
+    b.hidden = !on || !L || st.i === 0;
+    if (L) Object.assign(b.style, {left: L[0] + 'px', top: L[1] + 'px', width: L[2] + 'px', height: L[3] + 'px'});
+  }
+  // a transform that puts the rectangle r of a 900 x 506 layer over the whole view
+  const into = r => { const k = Math.min(VW / r[2], VH / r[3]); return `translate(${VW / 2 - (r[0] + r[2] / 2) * k}px,${VH / 2 - (r[1] + r[3] / 2) * k}px) scale(${k})`; };
+  const outOf = r => { const k = Math.min(r[2] / VW, r[3] / VH); return `translate(${r[0] + r[2] / 2 - VW / 2 * k}px,${r[1] + r[3] / 2 - VH / 2 * k}px) scale(${k})`; };
+  const anim = (node, frames, ms) => reduce ? (node.style.opacity = frames[frames.length - 1].opacity ?? '', wait(ms))
+    : Promise.race([node.animate(frames, {duration: ms, easing: 'ease-in-out', fill: 'forwards'}).finished, wait(ms + 150)]);
+  async function go(to) {
+    if (st.busy || to < 0 || to >= LEVELS.length || to === st.i) return;
+    st.busy = true; sync();
+    const step = to > st.i ? 1 : -1;
+    while (st.i !== to) {
+      const next = st.i + step, old = cur, nl = build(next);
+      showBox(false);
+      if (step > 0) {
+        // zooming out: the new place starts huge around the box, the old place shrinks into the box
+        const r = nl._box;
+        $('view').prepend(nl);
+        SFX.out();
+        await Promise.all([anim(nl, [{transform: into(r), opacity: 0}, {transform: 'none', opacity: 1}], 1400),
+                           anim(old, [{transform: 'none', opacity: 1}, {transform: outOf(r), opacity: 0}], 1400)]);
+      } else {
+        const r = old._box;
+        $('view').prepend(nl);
+        SFX.in();
+        await Promise.all([anim(nl, [{transform: outOf(r), opacity: 0}, {transform: 'none', opacity: 1}], 1400),
+                           anim(old, [{transform: 'none', opacity: 1}, {transform: into(r), opacity: 0}], 1400)]);
+      }
+      old.remove(); nl.getAnimations?.().forEach(a => a.cancel()); nl.style.opacity = '';
+      cur = nl; st.i = next; label(next);
+      if (st.i !== to) await wait(250);
+    }
+    showBox(true);
+    if (step > 0) { boxEl().classList.remove('blink'); void boxEl().offsetWidth; boxEl().classList.add('blink'); }
+    st.busy = false; sync();
+    talk(said(LEVELS[st.i]));
+  }
+
+  function label(i) {
+    const L = LEVELS[i];
+    $('title').innerHTML = `${L.n}<span>${shown(L)}</span>`;
+    $('hint').innerHTML = i === 0 ? '<b>Start here.</b> Ask: what do you see in this room? Then press <b>Zoom out</b>.'
+      : `<b>${L.n}.</b> The glowing box shows ${LEVELS[i - 1].n.toLowerCase()}. Ask a child to come and point to it. ${i < LEVELS.length - 1 ? 'Then zoom out again.' : 'Now zoom back in, all the way home!'}`;
+    sync();
+  }
+  function sync() {
+    $('in').disabled = st.busy || st.i === 0;
+    $('out').disabled = st.busy || st.i === LEVELS.length - 1;
+    [...$('ladder').children].forEach((li, k) => li.firstChild.setAttribute('aria-current', k === st.i));
+    $('lw').disabled = !LEVELS[st.i].vec;
+    if (!LEVELS[st.i].vec && st.lw) { st.lw = false; $('lw').setAttribute('aria-pressed', 'false'); }
+  }
+  $('ladder').replaceChildren(...LEVELS.map((L, k) => {
+    const li = document.createElement('li'), b = document.createElement('button');
+    b.innerHTML = `<i>${k + 1}</i>${L.n}`;
+    b.onclick = () => go(k);
+    li.append(b); return li;
+  }));
+  $('out').onclick = () => go(st.i + 1);
+  $('in').onclick = () => go(st.i - 1);
+  $('where').onclick = () => { if (st.i === 0) { talk('Here I am, in my room!'); return; } showBox(true); boxEl().classList.remove('blink'); void boxEl().offsetWidth; boxEl().classList.add('blink'); talk(`Here is ${LEVELS[st.i - 1].n.toLowerCase()}.`); };
+
+  // ---------- land or water ----------
+  $('lw').onclick = () => { st.lw = !st.lw; $('lw').setAttribute('aria-pressed', st.lw); if (st.lw) talk('Tap the map. Is it land, or water?'); };
+  $('view').addEventListener('click', e => {
+    if (!st.lw || st.busy) return;
+    const land = e.target.closest('[data-land]'), water = e.target.closest('[data-water]');
+    if (!land && !water) return;
+    const s = $('say');
+    s.textContent = land ? '🌳 Land!' : '💧 Water!';
+    s.style.color = land ? '#3b7d2a' : '#1f6fb0';
+    s.classList.add('on'); clearTimeout(s._t); s._t = setTimeout(() => s.classList.remove('on'), 1300);
+    (land ? SFX.land : SFX.water)();
+    talk(land ? 'Land!' : 'Water!');
+  });
+
+  // ---------- setup ----------
+  $('state').innerHTML = STATES.map(s => s.n).sort().map(n => `<option${n === store.state ? ' selected' : ''}>${n}</option>`).join('');
+  $('town').value = store.town;
+  $('state').onchange = e => { store.state = e.target.value; keep(); show(st.i); showBox(true); };
+  $('town').oninput = e => { store.town = e.target.value; keep(); };
+  $('town').onchange = () => { show(st.i); showBox(true); };
+
+  // ---------- sound and voice ----------
+  let ctx;
+  const audio = () => (ctx ||= new (window.AudioContext || window.webkitAudioContext)());
+  function tone(type, f0, f1, dur, gain, when = 0) {
+    if (!st.sound) return;
+    const a = audio(), o = a.createOscillator(), g = a.createGain(), t = a.currentTime + when;
+    o.type = type; o.frequency.setValueAtTime(f0, t); o.frequency.exponentialRampToValueAtTime(f1, t + dur);
+    g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(gain, t + 0.02); g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    o.connect(g).connect(a.destination); o.start(t); o.stop(t + dur + 0.05);
+  }
+  const SFX = {
+    out: () => tone('sine', 900, 220, 1.3, .08), in: () => tone('sine', 220, 900, 1.3, .08),
+    land: () => [392, 523].forEach((f, i) => tone('triangle', f, f, .2, .1, i * .12)),
+    water: () => { tone('sine', 600, 300, .25, .1); tone('sine', 700, 350, .25, .08, .15); },
+  };
+  $('sound').onclick = e => {
+    st.sound = !st.sound;
+    e.currentTarget.setAttribute('aria-pressed', st.sound);
+    e.currentTarget.textContent = st.sound ? '🔔 Sound' : '🔇 Sound';
+    if (!st.sound) stopTalk();
+  };
+  // recorded lines (scripts/voice.py) play when the exact text has one; anything else uses the browser voice
+  const CLIPS = "voice:*";
+  const allLines = () => [...LEVELS.map(l => l.say), 'Here I am, in my room!', 'Tap the map. Is it land, or water?', 'Land!', 'Water!',
+    ...LEVELS.slice(0, -1).map(l => `Here is ${l.n.toLowerCase()}.`)];
+  let talkN = 0, clip = null;
+  function stopTalk() { talkN++; if (clip) { clip.pause(); clip = null; } if ('speechSynthesis' in window) speechSynthesis.cancel(); }
+  function bestVoice() {
+    const voices = speechSynthesis.getVoices().filter(v => /^en(-|_|$)/i.test(v.lang));
+    const score = v => (/natural|neural/i.test(v.name) ? 50 : 0) + (/premium|enhanced/i.test(v.name) ? 40 : 0) +
+      (/google/i.test(v.name) ? 30 : 0) + (/aria|jenny|ava|samantha|libby|sonia/i.test(v.name) ? 10 : 0) +
+      (/en-US/i.test(v.lang) ? 5 : 0) + (v.default ? 1 : 0) - (/david|mark|zira|desktop/i.test(v.name) ? 20 : 0);
+    return voices.sort((a, b) => score(b) - score(a))[0] || null;
+  }
+  if ('speechSynthesis' in window) {
+    const speak = speechSynthesis.speak.bind(speechSynthesis);
+    speechSynthesis.speak = u => {
+      if (speechSynthesis.getVoices().length) return speak(u);
+      let done = false;
+      const go2 = () => { if (done) return; done = true; const v = bestVoice(); if (v) { u.voice = v; u.lang = v.lang; } speak(u); };
+      speechSynthesis.addEventListener('voiceschanged', go2, {once: true});
+      setTimeout(go2, 1500);
+    };
+    speechSynthesis.getVoices();
+  }
+  function talk(text, force) {
+    if (!st.sound && !force) return;
+    stopTalk();
+    if (CLIPS[text]) { clip = new Audio(CLIPS[text]); clip.play().catch(() => {}); return; }
+    if (!('speechSynthesis' in window)) return;
+    const u = new SpeechSynthesisUtterance(text), v = bestVoice();
+    if (v) { u.voice = v; u.lang = v.lang; }
+    u.rate = .92; u.pitch = 1; speechSynthesis.speak(u);
+  }
+  $('read').onclick = () => talk(said(LEVELS[st.i]), true);
+
+  window.__mm = {st, go, show, showBox, LEVELS, allLines, store};  // for checking frames
+  show(0); showBox(true);
+})();
+</script>
+</body>
+</html>

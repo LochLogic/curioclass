@@ -96,6 +96,9 @@ input[type=range]{width:100%;accent-color:var(--brass);height:28px;margin:0}
 .mlist button i{font-style:normal;font:700 15px Georgia,serif;color:var(--brass);width:22px}
 .mlist button.done::after{content:'✓';margin-left:auto;color:var(--teal);font-weight:800}
 .reveal{background:#eef6f4;border-left:4px solid var(--teal);border-radius:8px;padding:8px 10px;font-size:15px;line-height:1.45}
+.mnav{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.back{border:2px solid var(--deep);background:#fff;color:var(--deep);border-radius:12px;min-height:46px;font-weight:700;font-size:15px}
+.back:hover{background:#eef3f6}
 .link{border:0;background:none;color:var(--focus);text-decoration:underline;padding:0;font-size:14px;min-height:32px}
 .calm *{animation:none!important}
 
@@ -559,7 +562,7 @@ input[type=range]{width:100%;accent-color:var(--brass);height:28px;margin:0}
       <p class="note" id="mnote" style="margin-top:8px">Pick your prediction.</p>
       <div id="mreveal"></div>
       <div class="row" style="display:flex;gap:10px;margin-top:8px;align-items:center"><button class="go" id="mgo" disabled style="flex:1">Launch ▶</button></div>
-      <div style="display:flex;justify-content:space-between"><button class="link" id="mback">← All missions</button><button class="link" id="mtune">Change the settings</button></div>`;
+      <div class="mnav"><button class="back" id="mback">☰ All missions</button><button class="back" id="mnext">Next mission →</button></div><button class="link" id="mtune">Change the settings</button>`;
     $('mchoices').replaceChildren(...m.c.map((c, k) => {
       const b = document.createElement('button');
       b.textContent = c; b.setAttribute('aria-pressed', 'false');
@@ -572,6 +575,7 @@ input[type=range]{width:100%;accent-color:var(--brass);height:28px;margin:0}
       else await launch();
     };
     $('mback').onclick = () => !st.busy && openList();
+    $('mnext').onclick = () => !st.busy && openMission((i + 1) % MISSIONS.length);
     $('mtune').onclick = () => { if (st.busy) return; $('setup').hidden = false; $('mcard').scrollIntoView({block: 'nearest'}); };
     const span = m.view === 'span';
     st.view = span ? 'span' : 'miss';

@@ -1,0 +1,47 @@
+{
+  "style": "Bright picture-book map look for a kindergarten geography lesson: everything seen from straight above like a map, simple clear shapes, cheerful colors.",
+  "assets": [
+    {
+      "name": "room",
+      "prompt": "A child's bedroom seen from directly above like a map: a bed with a colorful quilt and pillow, a round rug in the middle, a toy box, a small desk and chair, a bookshelf, a window and a door. The room fills the whole picture. No people, no writing.",
+      "aspect": "16:9",
+      "width": 1200,
+      "quality": 78
+    },
+    {
+      "name": "home",
+      "prompt": "A family house and its yard seen from directly above like a map: the house roof in the center, a driveway, a green lawn, one tree, a small garden, a fence around the yard, a sidewalk across the bottom. No people, no writing.",
+      "aspect": "16:9",
+      "width": 1200,
+      "quality": 78
+    },
+    {
+      "name": "street",
+      "prompt": "A neighborhood street seen from directly above like a map: a straight street across the middle, a row of houses with yards on each side, sidewalks, trees, a couple of parked cars. No people, no writing.",
+      "aspect": "16:9",
+      "width": 1200,
+      "quality": 78
+    },
+    {
+      "name": "town",
+      "prompt": "A small town seen from high above like a picture map: neighborhoods of tiny houses, a main street with shops, a school with a playground, a park with a pond, a river with a bridge, farm fields at the edges. No people, no writing. Absolutely no words, letters, labels or signs anywhere in the picture.",
+      "aspect": "16:9",
+      "width": 1200,
+      "quality": 78
+    },
+    {
+      "name": "earth",
+      "prompt": "Planet Earth seen from space with North America in the center, the blue oceans, green and brown land, white clouds, perfectly round, filling the frame edge to edge with the round edge just touching all four sides, on pure black. Evenly lit.",
+      "aspect": "1:1",
+      "width": 560,
+      "quality": 82
+    },
+    {
+      "name": "kid",
+      "prompt": "A cheerful kindergarten child waving hello, wearing a red shirt and blue overalls, full body from head to feet, front view.",
+      "cutout": true,
+      "aspect": "3:4",
+      "height": 220
+    }
+  ]
+}

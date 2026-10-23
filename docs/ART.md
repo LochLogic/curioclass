@@ -43,3 +43,8 @@ Store the key as a Windows user setting, never in the repo or in chat. In PowerS
 ## Provenance
 
 Generated art is credited in each tool's `tool.json` sources as "Illustrations generated with Google Gemini, edited for Curio Class." Review every image before it ships: no text artifacts, no odd hands, and every child-facing character friendly and inclusive.
+
+## Data files and recorded speech
+
+- `"json:<name>"` in src.html is replaced by `tools/<id>/<name>.json` at bundle time (map paths, state shapes). `scripts/na_map.py` builds the North America map used by Nations of North America and Me on the Map.
+- `"voice:*"` is replaced by the tool's recorded lines from `scripts/voice.py` (see POLISH.md, Sound and voice). Raw speech is kept in `voice/raw/` (not committed), so `--reencode` is free.

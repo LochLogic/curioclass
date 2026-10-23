@@ -26,6 +26,8 @@ ASL describes where things are by placing them in the space in front of the sign
 
 ## Good to know
 
+- There are twenty pictures: things on, under and next to each other, things that move past, up, down, onto and off, and pairs that both stay still or both move. The numbered buttons jump to any picture, and **Previous** and **Next** step through them.
+- The steps along the top of the panel (What stays still, Handshapes, Place, Play) show where you are, and the signing space says what to do next.
 - This tool practices the **spatial grammar** of classifiers. It does not show how full signs are made, and the hand pictures are drawings, not a signing model. Learn and check signs with your ASL teacher and with Deaf signers.
 - Classifier choices can vary between signers and regions (some signers use different handshapes for an animal, for example). Treat the tool's answers as one common way, and compare with Deaf signers' own descriptions.
 - The gloss under the picture writes signs in capital letters, with the classifier and its meaning. A gloss is a study aid, not how the signs look.
