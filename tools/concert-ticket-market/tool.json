@@ -1,0 +1,16 @@
+{
+  "id": "concert-ticket-market",
+  "status": "beta",
+  "driver": "students or teacher",
+  "modes": ["Explore", "Tour"],
+  "grades_label": "Grades 11-12",
+  "third_party": [],
+  "updated": "2026-10-23",
+  "hook": "Set the ticket price and watch the line, the empty seats and the resellers. Then take the show on tour and find each city's price from the sales.",
+  "outcome": "Explain shortages, surpluses, price ceilings and market-clearing prices with supply and demand",
+  "minutes": "20-40",
+  "sources": [
+    "Illustrations generated with Google Gemini, edited for Curio Class",
+    "Demand numbers are a teaching model, not data about any real artist or venue"
+  ]
+}

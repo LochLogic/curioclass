@@ -5,7 +5,8 @@
 --force draws again; --rekey only redoes the cutout and sizing from the saved original in art/raw/ (free).
 
 Reads tools/<tool-id>/art/prompts.json:
-    {"style": "optional extra style notes",
+    {"house_style": "optional, replaces the storybook house style (older grades)",
+     "style": "optional extra style notes",
      "assets": [{"name": "pig", "prompt": "a cheerful pink pig ...", "width": 360, "cutout": true}]}
 
 Needs GEMINI_API_KEY (environment, or the Windows user setting). CURIO_IMAGE_MODEL overrides the model.
@@ -15,6 +16,7 @@ Asset options: "ref": "<other asset>" sends that asset's raw image along so a ch
 "height" sizes by height instead of width, so a set of characters lines up;
 "aspect": "9:16" (or "3:4", "16:9"...) sets the frame shape, e.g. portrait for a full-length figure.
 "key": "magenta" draws on magenta instead of green, for green subjects (lettuce, frogs, leaves).
+"cutout": "keyed" removes the key color without the subject-alone wording, e.g. a scene whose sky is drawn flat green.
 "trim": 0.03 shaves that fraction off every side, for backgrounds that come back with a painted frame.
 Raw images go to art/raw/ (not committed); finished art/<name>.webp is committed and bundled
 into the tool by scripts/bundle_tool.py. See docs/ART.md for the house style.
@@ -62,7 +64,7 @@ def generate(prompt, refs=(), aspect=None):
     raise RuntimeError('no image in response')
 
 
-def cut_out(img):
+def cut_out(img, scene=False):
     """Key out the background (green or magenta), soften the edge, and remove color spill.
 
     Keys by distance from the actual background color (sampled at the border) rather than by "how green",
@@ -70,7 +72,8 @@ def cut_out(img):
     are very close to the key color (a gap between an arm and the body)."""
     from scipy import ndimage
     a = np.asarray(img).astype(np.float32)
-    border = np.concatenate([a[0, :, :3], a[-1, :, :3], a[:, 0, :3], a[:, -1, :3]])
+    # a keyed scene (flat sky above a landscape) only touches the key along the top
+    border = a[0, :, :3] if scene else np.concatenate([a[0, :, :3], a[-1, :, :3], a[:, 0, :3], a[:, -1, :3]])
     key = np.median(border, axis=0)
     dist = np.sqrt(((a[..., :3] - key) ** 2).sum(-1))
     alpha = np.clip((dist - 25) / 45, 0, 1)
@@ -78,10 +81,11 @@ def cut_out(img):
     edge = np.unique(np.concatenate([labels[0], labels[-1], labels[:, 0], labels[:, -1]]))
     background = np.isin(labels, edge[edge > 0]) | (dist < 25)
     near = ndimage.binary_dilation(background, iterations=3)  # keep the soft keyed edge next to real background
-    alpha = np.where(near, alpha, 1)
+    if not scene:  # a scene keys sky showing through leaves too, wherever it is
+        alpha = np.where(near, alpha, 1)
     # drop specks and faint ground shadows that are not part of the figure
     blobs, count = ndimage.label(alpha > .5)
-    if count > 1:
+    if count > 1 and not scene:
         sizes = ndimage.sum(np.ones_like(alpha), blobs, range(1, count + 1))
         keep = np.isin(blobs, 1 + np.flatnonzero(sizes >= sizes.max() * .02))
         alpha = np.where(ndimage.binary_dilation(keep, iterations=2), alpha, 0)
@@ -89,10 +93,14 @@ def cut_out(img):
     edge_px = (alpha > .05) & (alpha < 1)
     fg = (a[..., :3] - (1 - alpha[..., None]) * key) / np.maximum(alpha[..., None], .05)
     a[..., :3] = np.where(edge_px[..., None], fg, a[..., :3])
+    if scene:  # painted leaves blend toward the flat sky color; pull that cast back out
+        k = int(np.argmax(key)) if key.max() - key.min() > 100 else None
+        if k == 1:  # green sky: green may not exceed the brighter of red and blue by much
+            a[..., 1] = np.minimum(a[..., 1], np.maximum(a[..., 0], a[..., 2]) * 1.08 + 4)
     a[..., 3] = alpha * 255
     out = Image.fromarray(a.clip(0, 255).astype(np.uint8), 'RGBA')
     box = out.getchannel('A').point(lambda v: 255 if v > 128 else 0).getbbox()  # faint haze doesn't stretch the frame
-    return out.crop(box) if box else out
+    return out.crop(box) if box and not scene else out
 
 
 def main():
@@ -112,7 +120,7 @@ def main():
             print(f'skip {name} (exists; --force to redo)')
             continue
         tool_style = '' if asset.get('skip_style') else spec.get('style', '')  # backgrounds skip character notes
-        prompt = ' '.join([HOUSE_STYLE, tool_style, asset['prompt'], CUTOUT.format(key=KEYS[asset.get('key', 'green')]) if asset.get('cutout') else ''])
+        prompt = ' '.join([spec.get('house_style', HOUSE_STYLE), tool_style, asset['prompt'], CUTOUT.format(key=KEYS[asset.get('key', 'green')]) if asset.get('cutout') is True else ''])
         raw = art / 'raw' / f'{name}.png'
         refs = [Image.open(art / 'raw' / f'{asset["ref"]}.png')] if asset.get('ref') else []
         if refs and asset.get('ref_mode') == 'style':
@@ -128,7 +136,7 @@ def main():
         if asset.get('trim'):  # shave a painted frame off every side
             t = asset['trim']; img = img.crop((round(img.width * t), round(img.height * t), round(img.width * (1 - t)), round(img.height * (1 - t))))
         if asset.get('cutout'):
-            img = cut_out(img)
+            img = cut_out(img, scene=asset['cutout'] == 'keyed')
         if asset.get('crop'):
             top, bottom = asset['crop']
             img = img.crop((0, round(img.height * top), img.width, round(img.height * bottom)))

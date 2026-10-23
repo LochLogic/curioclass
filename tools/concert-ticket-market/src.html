@@ -1,0 +1,481 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Concert Ticket Market · Supply, demand and shortages · Curio Class</title>
+<meta name="description" content="Set the ticket price for a sold-out-or-not concert and watch supply and demand respond: lines, empty seats, resellers and price caps. Then take the show on tour and find each city's price from the sales. Grade 12 economics. Works offline.">
+<!--
+CONCERT TICKET MARKET (Curio Class)
+Grade 12 economics, C3 D2.Eco.3.9-12 (how incentives shape what is produced and distributed) and
+D2.Eco.4.9-12 (how market structure and prices shape what is produced and distributed).
+One arena with a fixed number of seats (supply is a vertical line for one night), and a straight-line demand
+curve: fans who want a ticket at each price. Below the market-clearing price there's a shortage, a line,
+and room for resellers; above it, empty seats. Scenarios shift demand or supply, and a price cap shows a
+binding ceiling. Tour mode hides the demand curve: students find each city's price from what each night shows.
+The numbers are a model for discussion, not data about any real artist or venue.
+One file, no network requests. Illustrations generated with Google Gemini, edited for Curio Class.
+Content CC BY 4.0, code MIT. curioclass.org
+-->
+<style>
+:root{
+  --bg:#15112b;--panel:#1d1838;--card:#262047;--line:#3a3366;--text:#f3effa;--muted:#b3abd3;
+  --paper:#fbf7ef;--ink:#231d33;--grid:#e6ded0;--demand:#d6336c;--supply:#2f7fc1;--price:#e8a33d;--focus:#8fb8ff;
+  font-family:'Segoe UI',system-ui,-apple-system,Roboto,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0;height:100%}
+body{background:var(--bg);color:var(--text);display:grid;grid-template-rows:auto 1fr;min-height:100vh}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--focus);outline-offset:3px}
+header{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 18px;background:#0e0b1f;border-bottom:1px solid var(--line)}
+h1{margin:0 auto 0 0;font:800 clamp(20px,2.6vw,28px)/1.1 'Segoe UI',system-ui,sans-serif;letter-spacing:-.01em}
+h1 small{display:block;font:400 14px/1.3 'Segoe UI',sans-serif;color:var(--muted)}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden}
+.seg button{border:0;background:var(--card);min-height:44px;padding:0 16px;font-weight:600;font-size:15px}
+.seg button[aria-pressed="true"]{background:var(--price);color:#231400}
+.icon-btn{border:1px solid var(--line);background:var(--card);border-radius:999px;min-height:44px;padding:0 14px;font-weight:600;font-size:15px}
+.icon-btn[aria-pressed="true"]{border-color:var(--price)}
+
+main{display:grid;grid-template-rows:minmax(0,1fr) auto;min-height:0}
+.views{display:grid;grid-template-columns:1fr 1fr;min-height:0}
+@media (max-width:760px){.views{grid-template-columns:1fr;grid-template-rows:1fr 1fr}}
+.view{position:relative;overflow:hidden;min-height:240px}
+.view svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible;touch-action:none}
+#scene-view{background:#2a1f45}
+#chart-view{background:var(--paper);color:var(--ink)}
+
+.controls{display:grid;grid-template-columns:minmax(250px,1.1fr) minmax(280px,1.4fr) minmax(260px,1.2fr);gap:14px;padding:12px 16px;background:var(--panel);border-top:1px solid var(--line)}
+@media (max-width:1000px){.controls{grid-template-columns:1fr 1fr}.story{grid-column:1/-1}}
+.story{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px;font-size:15px;line-height:1.4}
+.story b{color:var(--price)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:8px}
+.stat{background:#1a1533;border-radius:8px;padding:5px 7px}
+.stat span{display:block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.stat b{font-size:17px;color:var(--text)}
+.slider label{display:flex;justify-content:space-between;font-size:14px;color:var(--muted)}
+.slider label b{color:var(--price);font-size:20px}
+input[type=range]{width:100%;accent-color:var(--price);height:30px}
+.row{display:flex;gap:6px;flex-wrap:wrap}
+.btn{border:1px solid var(--line);background:var(--card);border-radius:10px;min-height:42px;padding:0 12px;font-weight:600;font-size:14px}
+.btn[aria-pressed="true"]{border-color:var(--price);background:#3a2f1c}
+.btn.primary{background:var(--price);color:#231400;border-color:var(--price)}
+.btn:disabled{opacity:.45;cursor:default}
+.mini{font-size:13px;color:var(--muted);margin:6px 0 0}
+table.log{width:100%;border-collapse:collapse;font-size:13px;margin-top:6px}
+table.log th,table.log td{padding:3px 5px;text-align:right;border-bottom:1px solid var(--line)}
+table.log th:first-child,table.log td:first-child{text-align:left}
+table.log th{color:var(--muted);font-weight:600}
+
+.fan-in{animation:fanin .5s ease-out both}
+@keyframes fanin{from{opacity:0;transform:translateY(16px)}}
+.sway{animation:sway 3s ease-in-out infinite;transform-box:fill-box;transform-origin:50% 100%}
+@keyframes sway{50%{transform:rotate(1.5deg)}}
+.glow{animation:glow 2.4s ease-in-out infinite}
+@keyframes glow{50%{opacity:.75}}
+.calm *{animation:none!important;transition:none!important}
+
+@media (max-height:660px),(max-width:760px){
+  header{padding:6px 10px} h1{font-size:18px} h1 small{display:none}
+  .seg button,.icon-btn{min-height:34px;font-size:13px;padding:0 10px}
+  .controls{padding:6px 8px;gap:6px}
+  .story{font-size:13px;padding:6px 8px}.stats{margin-top:4px}.stat b{font-size:14px}
+  .btn{min-height:32px;font-size:12px}
+  input[type=range]{height:22px}
+}
+@media (max-height:660px) and (min-width:701px){.controls{grid-template-columns:1.1fr 1.4fr 1.25fr}.story{grid-column:auto}.stats{display:none}}
+</style>
+</head>
+<body>
+<header>
+  <h1>Concert Ticket Market <small>Set the price. Watch the line, the empty seats and the resellers.</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="mode-explore" aria-pressed="true">Explore</button>
+    <button id="mode-tour" aria-pressed="false">Tour</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true" title="Turn animation on or off">✨ Motion</button>
+</header>
+<main>
+  <div class="views">
+    <div class="view" id="scene-view">
+      <svg id="scene" viewBox="0 0 800 600" role="img" aria-labelledby="scene-desc">
+        <desc id="scene-desc">The arena on show night: a seat map shows sold and empty seats, fans who could not get tickets wait in line, and a reseller appears when there is a shortage.</desc>
+        <defs>
+          <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#000" flood-opacity=".4"/></filter>
+          <linearGradient id="sky-fade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#353052"/><stop offset="1" stop-color="#353052" stop-opacity="0"/></linearGradient>
+        </defs>
+        <rect x="-3000" y="-3000" width="7000" height="3010" fill="#353052"/>
+        <image id="arena" href="art:arena" x="-138" y="0" width="1076" height="600"/>
+        <use href="#arena" transform="translate(-276 0) scale(-1 1)"/>
+        <use href="#arena" transform="translate(1876 0) scale(-1 1)"/>
+        <rect x="-3000" y="-2" width="7000" height="40" fill="url(#sky-fade)"/>
+        <rect x="-3000" y="598" width="7000" height="3000" fill="#1b1e42"/>
+        <g id="marquee"></g>
+        <g id="queue"></g>
+        <g id="reseller"></g>
+        <g id="seatmap" transform="translate(16 16)" filter="url(#shadow)"></g>
+      </svg>
+    </div>
+    <div class="view" id="chart-view">
+      <svg id="chart" viewBox="0 0 620 560" role="img" aria-labelledby="chart-desc">
+        <desc id="chart-desc">A supply and demand graph: price on the vertical axis, number of tickets on the horizontal axis. The demand line slopes down, the seat supply is a vertical line, and a draggable horizontal line marks your price.</desc>
+        <defs>
+          <pattern id="hatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="8" height="8" fill="#d6336c" opacity=".08"/><line x1="0" y1="0" x2="0" y2="8" stroke="#d6336c" stroke-width="3" opacity=".35"/></pattern>
+        </defs>
+        <rect x="-3000" y="-3000" width="7000" height="7000" fill="#fbf7ef"/>
+        <g id="axes"></g>
+        <g id="areas"></g>
+        <g id="curves"></g>
+        <g id="points"></g>
+        <g id="price-g"></g>
+      </svg>
+    </div>
+  </div>
+
+  <div class="controls">
+    <div class="story" aria-live="polite">
+      <div id="story"></div>
+      <div class="stats">
+        <div class="stat"><span>Fans who want in</span><b id="s-want"></b></div>
+        <div class="stat"><span>Seats</span><b id="s-seats"></b></div>
+        <div class="stat"><span>Ticket revenue</span><b id="s-rev"></b></div>
+      </div>
+    </div>
+    <div>
+      <div class="slider"><label for="price">Ticket price <b id="price-out"></b></label><input type="range" id="price" min="10" max="340" step="5"></div>
+      <div class="row" id="explore-btns">
+        <button class="btn" data-sc="viral" aria-pressed="false">🔥 Song goes viral</button>
+        <button class="btn" data-sc="reviews" aria-pressed="false">👎 Bad reviews</button>
+        <button class="btn" data-sc="second" aria-pressed="false">➕ Second night</button>
+        <button class="btn" data-sc="cap" aria-pressed="false">🏛 Price cap $75</button>
+      </div>
+      <div class="row" id="tour-btns" hidden>
+        <button class="btn primary" id="sell">🎟 Open sales for night <span id="night-n">1</span></button>
+        <button class="btn" id="next-city" hidden>Next city ✈</button>
+      </div>
+    </div>
+    <div>
+      <div class="row" id="explore-side">
+        <button class="btn" id="show-eq" aria-pressed="false">Show the market-clearing price</button>
+        <button class="btn" id="reset">Reset</button>
+      </div>
+      <p class="mini" id="side-note">Drag the gold price line on the graph, or use the slider.</p>
+      <div id="tour-side" hidden>
+        <table class="log"><thead><tr><th>Night</th><th>Price</th><th>Sold</th><th>Line / empty</th><th>Revenue</th></tr></thead><tbody id="log"></tbody></table>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const SVGNS = 'http://www.w3.org/2000/svg';
+  // Motion follows the device's "reduce motion" setting until someone picks, then the choice is remembered
+  let reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  try { const m = localStorage.getItem('curio-motion'); if (m) reduce = m === 'calm'; } catch {}
+  function showMotion() {
+    document.body.classList.toggle('calm', reduce);
+    $('motion').setAttribute('aria-pressed', !reduce);
+    $('motion').textContent = reduce ? '⏸ Motion' : '✨ Motion';
+  }
+  showMotion();
+  $('motion').onclick = () => {
+    reduce = !reduce;
+    try { localStorage.setItem('curio-motion', reduce ? 'calm' : 'on'); } catch {}
+    showMotion();
+  };
+  const el = (tag, attrs, parent) => {
+    const n = document.createElementNS(SVGNS, tag);
+    for (const k in attrs) n.setAttribute(k, attrs[k]);
+    if (parent) parent.append(n);
+    return n;
+  };
+  const fmt = n => Math.round(n).toLocaleString('en-US');
+  const money = n => '$' + Math.round(n).toLocaleString('en-US');
+
+  // ---------- the market ----------
+  // Demand: fans who want a ticket at price p, a straight line a - b*p. Supply for one night: the seats.
+  const BASE = {a: 5000, b: 20, seats: 2000};
+  const state = {mode: 'explore', price: 60, sc: new Set(), showEq: false, tour: null};
+  function market() {
+    if (state.mode === 'tour') return state.tour.city;
+    let {a, b, seats} = BASE;
+    if (state.sc.has('viral')) a += 2000;
+    if (state.sc.has('reviews')) a -= 1500;
+    if (state.sc.has('second')) seats *= 2;
+    return {a, b, seats, cap: state.sc.has('cap') ? 75 : null};
+  }
+  const want = (m, p) => Math.max(0, m.a - m.b * p);
+  const clearing = m => Math.max(0, (m.a - m.seats) / m.b);     // where fans who want in = seats
+  // The price that brings in the most money for this seat count (sometimes it leaves seats empty)
+  function bestPrice(m) {
+    let best = 0, bp = 0;
+    for (let p = 5; p <= 400; p += 1) { const r = p * Math.min(want(m, p), m.seats); if (r > best) { best = r; bp = p; } }
+    return {price: bp, revenue: best};
+  }
+
+  // ---------- chart ----------
+  const X0 = 78, X1 = 590, Y0 = 470, Y1 = 30, QMAX = 8000, PMAX = 360;
+  const qx = q => X0 + q / QMAX * (X1 - X0);
+  const py = p => Y0 - p / PMAX * (Y0 - Y1);
+  const yToP = y => (Y0 - y) / (Y0 - Y1) * PMAX;
+  (() => {
+    let s = '';
+    for (let p = 0; p <= PMAX; p += 50) s += `<line x1="${X0}" y1="${py(p)}" x2="${X1}" y2="${py(p)}" stroke="#e6ded0"/><text x="${X0 - 8}" y="${py(p) + 5}" text-anchor="end" font-size="13" fill="#6b6280">$${p}</text>`;
+    for (let q = 0; q <= QMAX; q += 1000) s += `<line x1="${qx(q)}" y1="${Y0}" x2="${qx(q)}" y2="${Y1}" stroke="#efe8dc"/><text x="${qx(q)}" y="${Y0 + 20}" text-anchor="middle" font-size="13" fill="#6b6280">${q ? q / 1000 + 'k' : 0}</text>`;
+    s += `<line x1="${X0}" y1="${Y0}" x2="${X1}" y2="${Y0}" stroke="#231d33" stroke-width="2"/><line x1="${X0}" y1="${Y0}" x2="${X0}" y2="${Y1 - 6}" stroke="#231d33" stroke-width="2"/>
+      <text x="${(X0 + X1) / 2}" y="${Y0 + 46}" text-anchor="middle" font-size="15" font-weight="700" fill="#231d33">Tickets (number of fans or seats)</text>
+      <text transform="translate(20 ${(Y0 + Y1) / 2}) rotate(-90)" text-anchor="middle" font-size="15" font-weight="700" fill="#231d33">Ticket price</text>`;
+    $('axes').innerHTML = s;
+  })();
+  // a two-line label with a paper-coloured halo so it reads over lines and shading
+  function label(parent, x, y, lines, color) {
+    const t = el('text', {x, y, 'text-anchor': 'middle', 'font-size': 14, 'font-weight': 700, fill: color, stroke: '#fbf7ef', 'stroke-width': 4, 'paint-order': 'stroke'}, parent);
+    lines.forEach((s, i) => { const ts = el('tspan', {x, dy: i ? 17 : 0}, t); ts.textContent = s; });
+  }
+  function drawChart() {
+    const m = market(), p = state.price, w = want(m, p), pc = clearing(m), tour = state.mode === 'tour';
+    const showDemand = !tour || state.tour.reveal;
+    const A = $('areas'), C = $('curves'), P = $('price-g'), D = $('points');
+    A.replaceChildren(); C.replaceChildren(); P.replaceChildren(); D.replaceChildren();
+    const sold = Math.min(w, m.seats);
+    // revenue: price times tickets sold
+    if (showDemand) el('rect', {x: X0, y: py(p), width: qx(sold) - X0, height: Y0 - py(p), fill: '#e8a33d', opacity: .22}, A);
+    if (showDemand && sold > 600 && Y0 - py(p) > 40) label(A, (X0 + qx(sold)) / 2, (py(p) + Y0) / 2 - 4, ['Revenue', money(p * sold)], '#8a5a12');
+    // below the clearing price: the gap resellers can capture
+    if (showDemand && w > m.seats && pc > p) {
+      el('rect', {x: X0, y: py(pc), width: qx(m.seats) - X0, height: py(p) - py(pc), fill: 'url(#hatch)'}, A);
+      if (py(p) - py(pc) > 44) label(A, (X0 + qx(m.seats)) / 2, (py(pc) + py(p)) / 2 - 4, ['Resellers’ gap', money((pc - p) * m.seats)], '#a3204f');
+    }
+    // supply: the seats
+    el('line', {x1: qx(m.seats), y1: Y0, x2: qx(m.seats), y2: Y1, stroke: '#2f7fc1', 'stroke-width': 4}, C);
+    el('text', {x: qx(m.seats) + 8, y: Y1 + 16, 'font-size': 14, 'font-weight': 800, fill: '#2f7fc1'}, C).textContent = `Supply: ${fmt(m.seats)} seats`;
+    // demand
+    if (showDemand) {
+      const pTop = Math.min(PMAX, m.a / m.b);
+      el('line', {x1: qx(want(m, 0)), y1: py(0), x2: qx(want(m, pTop)), y2: py(pTop), stroke: '#d6336c', 'stroke-width': 4, 'stroke-linecap': 'round'}, C);
+      let lp = Math.max(25, pTop * .12);
+      if (Math.abs(lp - p) < 45) lp = pTop * .72;   // keep the label clear of your price line
+      el('text', {x: qx(want(m, lp)) + 12, y: py(lp) - 4, 'font-size': 15, 'font-weight': 800, fill: '#d6336c', stroke: '#fbf7ef', 'stroke-width': 4, 'paint-order': 'stroke'}, C).textContent = 'Demand';
+      if (state.showEq || tour) {
+        el('circle', {cx: qx(m.seats), cy: py(pc), r: 7, fill: '#231d33'}, C);
+        el('line', {x1: X0, y1: py(pc), x2: qx(m.seats), y2: py(pc), stroke: '#231d33', 'stroke-dasharray': '5 5'}, C);
+        el('text', {x: qx(m.seats) + 10, y: py(pc) - 8, 'font-size': 14, 'font-weight': 700, fill: '#231d33'}, C).textContent = `Market clears at ${money(pc)}`;
+      }
+    }
+    // tour: what each night revealed about demand
+    if (tour) state.tour.nights.forEach((n, i) => {
+      el('circle', {cx: qx(n.want), cy: py(n.price), r: 7, fill: '#fff', stroke: '#d6336c', 'stroke-width': 3}, D);
+      el('text', {x: qx(n.want) + 10, y: py(n.price) + 5, 'font-size': 13, fill: '#a3204f'}, D).textContent = `night ${i + 1}`;
+    });
+    // price cap
+    if (m.cap) {
+      el('line', {x1: X0, y1: py(m.cap), x2: X1, y2: py(m.cap), stroke: '#231d33', 'stroke-width': 2, 'stroke-dasharray': '2 4'}, C);
+      el('text', {x: X1, y: py(m.cap) + 18, 'text-anchor': 'end', 'font-size': 13, 'font-weight': 700, fill: '#231d33'}, C).textContent = 'Legal price cap';
+    }
+    // the shortage or surplus at your price, as a bracket along the price line
+    if (showDemand && w !== m.seats) {
+      const short = w > m.seats, xa = qx(Math.min(w, m.seats)), xb = qx(Math.max(w, m.seats));
+      el('path', {d: `M${xa} ${py(p) - 14}V${py(p) - 22}H${xb}V${py(p) - 14}`, fill: 'none', stroke: short ? '#d6336c' : '#2f7fc1', 'stroke-width': 2.5}, P);
+      el('text', {x: (xa + xb) / 2, y: py(p) - 28, 'text-anchor': 'middle', 'font-size': 14, 'font-weight': 800, fill: short ? '#d6336c' : '#2f7fc1', stroke: '#fbf7ef', 'stroke-width': 5, 'paint-order': 'stroke'}, P).textContent =
+        short ? `Shortage: ${fmt(w - m.seats)} fans` : `Surplus: ${fmt(m.seats - w)} empty seats`;
+      el('circle', {cx: qx(w), cy: py(p), r: 6, fill: '#d6336c'}, P);
+    }
+    // your price: a line you can drag
+    const g = el('g', {id: 'price-handle', style: 'cursor:ns-resize'}, P);
+    el('rect', {x: X0, y: py(p) - 14, width: X1 - X0, height: 28, fill: 'transparent'}, g);
+    el('line', {x1: X0, y1: py(p), x2: X1, y2: py(p), stroke: '#e8a33d', 'stroke-width': 4}, g);
+    el('rect', {x: X1 - 98, y: py(p) - 15, width: 98, height: 30, rx: 15, fill: '#e8a33d'}, g);
+    el('text', {x: X1 - 49, y: py(p) + 6, 'text-anchor': 'middle', 'font-size': 16, 'font-weight': 800, fill: '#231400'}, g).textContent = `↕ ${money(p)}`;
+  }
+
+  // ---------- scene ----------
+  // the marquee: drawn over the blank sign in the painting
+  $('marquee').innerHTML = `<g class="glow"><text x="535" y="226" text-anchor="middle" font-family="Impact,'Arial Black',sans-serif" font-size="38" fill="#3a2350" letter-spacing="2">THE PAPER LANTERNS</text>
+    <text x="535" y="258" text-anchor="middle" font-family="'Segoe UI',sans-serif" font-size="17" font-weight="700" fill="#7a3a55" letter-spacing="3">ONE NIGHT ONLY</text></g>`;
+  const FANS = [['art:fan1', 115], ['art:fan2', 89], ['art:fan3', 117], ['art:fan4', 108]];
+  // Spots in the line, from the doors out toward the viewer; each figure stands for 150 fans
+  const SPOTS = (() => {
+    const s = [];
+    for (let i = 0; i < 24; i++) {
+      const t = i / 23;
+      s.push({x: 520 - t * 470 + (i % 2) * 14, y: 400 + t * 170, k: .42 + t * .62});
+    }
+    return s;
+  })();
+  function drawScene(m, w) {
+    const short = Math.max(0, w - m.seats);
+    const n = Math.min(SPOTS.length, Math.ceil(short / 150));
+    const q = $('queue');
+    // keep figures that are already standing; add or remove at the end of the line
+    while (q.children.length > n) q.lastElementChild.remove();
+    for (let i = q.children.length; i < n; i++) {
+      const s = SPOTS[i], [href, w0] = FANS[i % 4], h = 170 * s.k, wd = h * w0 / 300;
+      const g = el('g', {transform: `translate(${s.x} ${s.y})`}, q);
+      g.innerHTML = `<g class="fan-in"><g class="sway" style="animation-delay:${-i * .37}s"><ellipse cy="2" rx="${wd * .45}" ry="${h * .03}" fill="#000" opacity=".3"/><image href="${href}" x="${-wd / 2}" y="${-h}" width="${wd}" height="${h}"/></g></g>`;
+    }
+    // the line is drawn back to front so nearer fans overlap farther ones
+    const r = $('reseller');
+    const pc = clearing(m);
+    const showRe = short > 0 && (state.mode === 'explore' || state.tour.reveal || state.tour.nights.length);
+    if (short > 0 && showRe) {
+      if (!r.firstChild) r.innerHTML = `<g transform="translate(690 560)"><g class="fan-in"><ellipse cy="2" rx="30" ry="5" fill="#000" opacity=".3"/><image href="art:reseller" x="-33" y="-196" width="67" height="196"/></g></g>`;
+      let sign = r.querySelector('.sign');
+      if (!sign) { sign = el('g', {class: 'sign', transform: 'translate(690 340)'}, r); }
+      const price = state.mode === 'tour' && !state.tour.reveal ? '???' : money(pc);
+      sign.innerHTML = `<rect x="-70" y="-34" width="140" height="56" rx="8" fill="#fffbe8" stroke="#231d33" stroke-width="3" transform="rotate(-4)"/>
+        <text y="-11" text-anchor="middle" font-size="13" font-weight="700" fill="#231d33" transform="rotate(-4)">TICKETS! ONLY</text>
+        <text y="13" text-anchor="middle" font-family="Impact,'Arial Black',sans-serif" font-size="24" fill="#d6336c" transform="rotate(-4)">${price}</text>`;
+    } else r.replaceChildren();
+    drawSeats(m, Math.min(w, m.seats));
+  }
+  // Seat map: 100 seats-worth of dots around a stage; filled = sold
+  function drawSeats(m, sold) {
+    const g = $('seatmap'), per = m.seats / 100, filled = Math.round(sold / per);
+    let s = `<rect width="232" height="190" rx="12" fill="#fbf7ef"/>
+      <text x="12" y="22" font-size="13" font-weight="800" fill="#231d33" letter-spacing=".06em">SEAT MAP</text>
+      <text x="220" y="22" text-anchor="end" font-size="12" fill="#6b6280">1 dot = ${fmt(per)} seats</text>
+      <rect x="86" y="150" width="60" height="22" rx="4" fill="#231d33"/><text x="116" y="166" text-anchor="middle" font-size="11" font-weight="700" fill="#fbf7ef">STAGE</text>`;
+    let i = 0;
+    for (let row = 0; row < 5; row++) {
+      const R = 44 + row * 14, count = 14 + row * 3;
+      for (let k = 0; k < count && i < 100; k++, i++) {
+        const a = Math.PI * (1.08 + .84 * k / (count - 1));
+        const x = 116 + Math.cos(a) * R * 1.02, y = 152 + Math.sin(a) * R;
+        s += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="4.6" fill="${i < filled ? '#d6336c' : '#d9d2c4'}"/>`;
+      }
+    }
+    // fill any remainder on a last short row
+    for (; i < 100; i++) s += `<circle cx="${30 + (i - 96) * 12}" cy="180" r="4.6" fill="${i < filled ? '#d6336c' : '#d9d2c4'}"/>`;
+    s += `<text x="12" y="184" font-size="12" fill="#6b6280">${filled === 100 ? 'Sold out' : `${100 - filled}% empty`}</text>`;
+    g.innerHTML = s;
+  }
+
+  // ---------- words ----------
+  function tell() {
+    const m = market(), p = state.price, w = want(m, p), pc = clearing(m), sold = Math.min(w, m.seats);
+    $('price-out').textContent = money(p);
+    $('s-want').textContent = state.mode === 'tour' && !state.tour.reveal ? '?' : fmt(w);
+    $('s-seats').textContent = fmt(m.seats);
+    $('s-rev').textContent = money(p * sold);
+    if (state.mode === 'tour') {
+      const last = state.tour.nights.at(-1);
+      if (!state.tour.reveal) $('s-rev').textContent = last ? money(last.price * last.sold) : '–';
+      return;
+    }
+    let t;
+    if (m.cap && p >= m.cap) t = `The city caps prices at <b>$75</b>, so you can't charge more. ` + (want(m, 75) > m.seats ? `At $75, ${fmt(want(m, 75))} fans want ${fmt(m.seats)} seats: the cap keeps a shortage in place, and resellers can still ask about <b>${money(pc)}</b>.` : 'Here the cap is above the market-clearing price, so it changes nothing.');
+    else if (Math.abs(w - m.seats) < m.b * 2.5) t = `At <b>${money(p)}</b>, the fans who want tickets match the seats. <b>The market clears</b>: no line, no empty seats, and little room for resellers.`;
+    else if (w > m.seats) t = `At <b>${money(p)}</b>, ${fmt(w)} fans want tickets but there are only ${fmt(m.seats)} seats. <b>${fmt(w - m.seats)} fans</b> are left in line, and resellers can sell for about <b>${money(pc)}</b>.`;
+    else t = `At <b>${money(p)}</b>, only ${fmt(w)} fans want tickets. <b>${fmt(m.seats - w)} seats</b> sit empty. ${p > bestPrice(m).price + 10 ? 'Lowering the price would bring in more money.' : 'Fewer tickets sold, but each one costs more.'}`;
+    if (state.sc.has('second') && !m.cap) { const bp = bestPrice(m); t += ` <span style="color:var(--muted)">(With two nights, the most money comes at about ${money(bp.price)}${want(m, bp.price) < m.seats ? ', even with seats left empty' : ''}.)</span>`; }
+    $('story').innerHTML = t;
+  }
+  function draw() {
+    const m = market();
+    if (m.cap && state.price > m.cap) state.price = m.cap;
+    $('price').max = m.cap || 340;
+    $('price').value = state.price;
+    // on tour, the arena shows what happened on the last night, not the price you are still choosing
+    const last = state.mode === 'tour' && !state.tour.reveal ? state.tour.nights.at(-1) : null;
+    const hidden = state.mode === 'tour' && !state.tour.reveal;
+    drawChart(); drawScene(m, hidden ? (last ? last.want : 0) : want(m, state.price)); tell();
+  }
+
+  // ---------- controls ----------
+  $('price').oninput = e => { state.price = +e.target.value; draw(); };
+  const chart = $('chart');
+  let dragging = false;
+  chart.addEventListener('pointerdown', e => {
+    if (!e.target.closest('#price-handle')) return;
+    dragging = true; chart.setPointerCapture(e.pointerId); e.preventDefault();
+  });
+  chart.addEventListener('pointermove', e => {
+    if (!dragging) return;
+    const pt = chart.createSVGPoint(); pt.x = e.clientX; pt.y = e.clientY;
+    const p = yToP(pt.matrixTransform(chart.getScreenCTM().inverse()).y);
+    const m = market();
+    state.price = Math.max(10, Math.min(m.cap || 340, Math.round(p / 5) * 5));
+    draw();
+  });
+  chart.addEventListener('pointerup', () => dragging = false);
+  chart.addEventListener('pointercancel', () => dragging = false);
+  // keyboard: arrows on the graph move the price
+  chart.tabIndex = 0;
+  chart.addEventListener('keydown', e => {
+    const k = {ArrowUp: 5, ArrowRight: 5, ArrowDown: -5, ArrowLeft: -5}[e.key];
+    if (!k) return;
+    e.preventDefault();
+    state.price = Math.max(10, Math.min(market().cap || 340, state.price + k)); draw();
+  });
+  document.querySelectorAll('[data-sc]').forEach(b => b.onclick = () => {
+    const k = b.dataset.sc;
+    state.sc.has(k) ? state.sc.delete(k) : state.sc.add(k);
+    if (k === 'viral' && state.sc.has('reviews')) state.sc.delete('reviews');
+    if (k === 'reviews' && state.sc.has('viral')) state.sc.delete('viral');
+    document.querySelectorAll('[data-sc]').forEach(x => x.setAttribute('aria-pressed', state.sc.has(x.dataset.sc)));
+    draw();
+  });
+  $('show-eq').onclick = e => { state.showEq = !state.showEq; e.currentTarget.setAttribute('aria-pressed', state.showEq); draw(); };
+  $('reset').onclick = () => {
+    state.sc.clear(); state.price = 60; state.showEq = false;
+    document.querySelectorAll('[data-sc], #show-eq').forEach(x => x.setAttribute('aria-pressed', 'false'));
+    draw();
+  };
+
+  // ---------- tour ----------
+  const CITIES = ['Denver', 'Atlanta', 'Chicago', 'Seattle', 'Austin', 'Nashville', 'Phoenix', 'Boston'];
+  function newCity(i = 0) {
+    const seats = [1500, 2000, 2500, 3000][Math.floor(Math.random() * 4)];
+    const b = 12 + Math.floor(Math.random() * 18);
+    const a = Math.round(seats + b * (60 + Math.random() * 180));   // clears somewhere between $60 and $240
+    state.tour = {i, name: CITIES[i % CITIES.length], city: {a, b, seats, cap: null}, nights: [], reveal: false, total: state.tour?.total || 0, best: state.tour?.best || 0};
+    state.price = 100;
+    $('log').innerHTML = '';
+    $('sell').disabled = false; $('next-city').hidden = true; $('night-n').textContent = 1;
+    $('queue').replaceChildren(); $('reseller').replaceChildren();
+    $('story').innerHTML = `<b>${state.tour.name}</b>: ${fmt(seats)} seats, three nights. You can't see demand here. Pick a price, open sales, and learn from what happens.`;
+    draw();
+  }
+  $('sell').onclick = () => {
+    const t = state.tour, m = t.city, p = state.price, w = want(m, p), sold = Math.min(w, m.seats);
+    t.nights.push({price: p, want: w, sold});
+    const n = t.nights.length;
+    $('log').insertAdjacentHTML('beforeend', `<tr><td>${n}</td><td>${money(p)}</td><td>${fmt(sold)}</td><td>${w > m.seats ? `line ${fmt(w - m.seats)}` : w < m.seats ? `${fmt(m.seats - w)} empty` : 'none'}</td><td>${money(p * sold)}</td></tr>`);
+    let msg = w > m.seats ? `Night ${n}: sold out in minutes, with <b>${fmt(w - m.seats)} fans</b> left in line. Resellers are busy.`
+      : w < m.seats ? `Night ${n}: <b>${fmt(m.seats - w)} seats</b> stayed empty.` : `Night ${n}: exactly sold out, nobody turned away.`;
+    if (n >= 3) {
+      t.reveal = true;
+      const best = bestPrice(m), earned = t.nights.reduce((s, x) => s + x.price * x.sold, 0);
+      t.total += earned; t.best += best.revenue * 3;
+      msg += ` <br>Demand revealed: the market cleared at <b>${money(clearing(m))}</b>. Your three nights earned ${money(earned)}, <b>${Math.round(earned / (best.revenue * 3) * 100)}%</b> of the best possible. Tour so far: ${Math.round(t.total / t.best * 100)}%.`;
+      $('sell').disabled = true; $('next-city').hidden = false;
+    } else msg += ' Each night’s sales add a point on the demand curve. Set the next price.';
+    $('night-n').textContent = Math.min(3, n + 1);
+    $('story').innerHTML = msg;
+    draw();
+  };
+  $('next-city').onclick = () => newCity(state.tour.i + 1);
+
+  function setMode(mode) {
+    state.mode = mode;
+    $('mode-explore').setAttribute('aria-pressed', mode === 'explore');
+    $('mode-tour').setAttribute('aria-pressed', mode === 'tour');
+    const tour = mode === 'tour';
+    $('explore-btns').hidden = $('explore-side').hidden = tour;
+    $('tour-btns').hidden = $('tour-side').hidden = !tour;
+    $('side-note').textContent = tour ? 'Each night is one try. Pick the price, then open sales.' : 'Drag the gold price line on the graph, or use the slider.';
+    $('queue').replaceChildren(); $('reseller').replaceChildren();
+    if (tour) { state.tour = null; newCity(0); } else { state.price = 60; draw(); }
+  }
+  $('mode-explore').onclick = () => setMode('explore');
+  $('mode-tour').onclick = () => setMode('tour');
+
+  window.__market = {state, draw, setMode};  // for checking frames
+  draw();
+})();
+</script>
+</body>
+</html>

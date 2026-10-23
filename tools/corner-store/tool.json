@@ -1,0 +1,17 @@
+{
+  "id": "corner-store",
+  "status": "beta",
+  "driver": "teacher",
+  "modes": [],
+  "grades_label": "Grade 2",
+  "third_party": [],
+  "updated": "2026-10-23",
+  "hook": "Run a snack stand with the class: count each customer's coins, count up to make change, and close when the bell rings at 3:45.",
+  "outcome": "Count coins and bills, make change by counting up, and tell time to five minutes",
+  "minutes": "15-20",
+  "sources": [
+    "Illustrations generated with Google Gemini, edited for Curio Class",
+    "Coins drawn at their true relative sizes from US Mint specifications",
+    "Sounds generated in the browser"
+  ]
+}

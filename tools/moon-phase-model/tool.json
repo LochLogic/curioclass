@@ -1,0 +1,16 @@
+{
+  "id": "moon-phase-model",
+  "status": "beta",
+  "driver": "students or teacher",
+  "modes": ["Explore", "Predict"],
+  "grades_label": "Grades 6-8",
+  "third_party": [],
+  "updated": "2026-10-23",
+  "hook": "Drag the Moon around Earth and see the same moment from space and from a backyard. Then find out why we don't get an eclipse every month.",
+  "outcome": "Use a model of the Sun, Earth and Moon to explain phases, rise times and eclipses",
+  "minutes": "15-30",
+  "sources": [
+    "Illustrations generated with Google Gemini, edited for Curio Class",
+    "Model simplified for teaching: not to scale, tilt exaggerated"
+  ]
+}

@@ -24,6 +24,10 @@ Full-length characters: set `"aspect": "9:16"` so Gemini draws a portrait frame 
 
 Other options (see the top of `scripts/art.py`): `"key": "magenta"` for green subjects like lettuce, `"trim": 0.03` for backgrounds that come back with a painted frame. Small square scenes (like the evidence photos in Resource Detective) need no cutout at all.
 
+Older grades: set `"house_style"` at the top of `prompts.json` to replace the storybook style (Moon Phase Model uses a planetarium look, Concert Ticket Market an editorial magazine look).
+
+Scenes with a changing sky: ask for the sky as flat pure green and set `"cutout": "keyed"`. The sky becomes transparent (including gaps in leaves) and the tool paints its own sky behind it (Moon Phase Model's backyard). Keep the sky open: tall trees or walls hide anything the tool draws behind them.
+
 Budget: about 30-80 KB per character and 100-150 KB per background as WebP, which keeps a tool well under the 2 MB limit.
 
 ## Gemini key

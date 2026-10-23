@@ -21,6 +21,7 @@ Lessons from refining Marching Band and Three Pigs Lab (October 2026). Run throu
 ## Layout
 
 - **Nothing overlaps by accident.** Rows of figures stand in perspective (smaller and higher toward the back), with no figure covering another.
+- **Keep the action area clear.** If the tool draws things into a painted scene (a Moon in the sky, a line of fans), check the painting has room for them there. A tall tree in the art hid the Moon for a quarter of the sky.
 - **Test the extremes.** Smallest and largest counts, the widest and narrowest stage, the compact iframe on the tool page.
 - **Ruled lines come from the rows,** never from a repeating background that drifts.
 
@@ -28,6 +29,10 @@ Lessons from refining Marching Band and Three Pigs Lab (October 2026). Run throu
 
 - **Anything shown twice must match.** If the pig shivers in the Inside window, the pig seen through the glass shivers too.
 - **Words match the state.** Grammar ("brick walls"), counts, plurals.
+
+## Games and quizzes
+
+- **Nothing on screen gives the answer away.** In a predict or hidden-information mode, check every slider, readout, label, graph area and scene detail. A day slider gave away the Moon's position, and the arena line showed demand before sales opened.
 
 ## Sound and voice
 

@@ -1,0 +1,581 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Moon Phase Model · Phases and eclipses from space and your backyard · Curio Class</title>
+<meta name="description" content="Drag the Moon around Earth and watch its phase change from space and from a backyard at the same moment. Explore rise times, the tilt behind eclipses, and predict the Moon's position. Grade 6 science. Works offline.">
+<!--
+MOON PHASE MODEL (Curio Class)
+Grade 6 science, NGSS MS-ESS1-1 (develop and use a model of the Earth-Sun-Moon system to describe the
+cyclic patterns of lunar phases, eclipses of the Sun and Moon, and seasons).
+Two linked views of one moment: space (looking down on the North Pole, Sun to the right) and a backyard
+facing south, at mid-northern latitudes. Drag the Moon to change the day of the cycle; drag the observer
+("you") around Earth to change the time of day. The tilt view shows why eclipses need the Moon to cross
+Earth's orbital plane at new or full moon.
+Simplified on purpose: sizes and distances are not to scale, the Moon's 5° tilt is exaggerated, and the sky
+is drawn as if the Moon and Sun moved along the celestial equator.
+One file, no network requests. Illustrations generated with Google Gemini, edited for Curio Class.
+Content CC BY 4.0, code MIT. curioclass.org
+-->
+<style>
+:root{
+  --night:#0b1228;--panel:#121b38;--card:#1a2549;--line:#2c3a68;--text:#e9eef9;--muted:#9fb0d6;--gold:#f2c14e;--focus:#7fb2ff;
+  font-family:'Segoe UI',system-ui,-apple-system,Roboto,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0;height:100%}
+body{background:var(--night);color:var(--text);display:grid;grid-template-rows:auto 1fr;min-height:100vh}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--focus);outline-offset:3px}
+header{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 18px;background:#070c1c;border-bottom:1px solid var(--line)}
+h1{margin:0 auto 0 0;font:700 clamp(20px,2.6vw,28px)/1.1 Georgia,'Times New Roman',serif;letter-spacing:.01em}
+h1 small{display:block;font:italic 400 14px/1.3 Georgia,serif;color:var(--muted)}
+.icon-btn{border:1px solid var(--line);background:var(--card);border-radius:999px;min-height:44px;padding:0 14px;font-weight:600;font-size:15px}
+.icon-btn[aria-pressed="true"]{border-color:var(--gold);color:#fff}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden}
+.seg button{border:0;background:var(--card);min-height:44px;padding:0 16px;font-weight:600;font-size:15px}
+.seg button[aria-pressed="true"]{background:var(--gold);color:#1a1300}
+
+main{display:grid;grid-template-rows:minmax(0,1fr) auto;min-height:0}
+.views{display:grid;grid-template-columns:1fr 1fr;min-height:0}
+@media (max-width:700px){.views{grid-template-columns:1fr;grid-template-rows:1fr 1fr}}
+.view{position:relative;overflow:hidden;min-height:240px}
+.view svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible;touch-action:none}
+#space-view{background:#03050d;border-right:1px solid var(--line)}
+#yard-view{background:#1a2550}
+.tag{position:absolute;top:10px;left:12px;z-index:1;font:700 12px/1 'Segoe UI',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);background:#0009;padding:6px 9px;border-radius:6px}
+.drag{cursor:grab}.drag:active{cursor:grabbing}
+
+.controls{display:grid;grid-template-columns:minmax(230px,1.1fr) minmax(260px,1.4fr) minmax(250px,1.3fr);gap:14px;padding:12px 16px;background:var(--panel);border-top:1px solid var(--line)}
+@media (max-width:980px){.controls{grid-template-columns:1fr 1fr}.readout{grid-column:1/-1}}
+.readout{display:flex;gap:12px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+.readout svg{width:58px;height:58px;flex:none}
+.readout h2{margin:0;font:700 21px/1.1 Georgia,serif}
+.readout p{margin:3px 0 0;font-size:14px;line-height:1.35;color:var(--muted)}
+.readout p b{color:var(--text);font-weight:600}
+.sliders{display:grid;gap:8px}
+.slider label{display:flex;justify-content:space-between;font-size:14px;color:var(--muted)}
+.slider label b{color:var(--text);font-weight:600}
+input[type=range]{width:100%;accent-color:var(--gold);height:28px}
+.btns{display:grid;gap:8px;align-content:start}
+.row{display:flex;gap:6px;flex-wrap:wrap}
+.btn{border:1px solid var(--line);background:var(--card);border-radius:10px;min-height:44px;padding:0 12px;font-weight:600;font-size:14px}
+.btn[aria-pressed="true"]{border-color:var(--gold);background:#2b2a1c}
+.btn.primary{background:var(--gold);color:#1a1300;border-color:var(--gold)}
+.btn:disabled{opacity:.45;cursor:default}
+.phases{display:grid;grid-template-columns:repeat(8,1fr);gap:4px}
+.phases button{border:1px solid var(--line);background:#0b1228;border-radius:8px;padding:4px 0;min-height:44px;display:grid;place-items:center}
+.phases svg{width:28px;height:28px}
+.msg{margin:0;font-size:14px;line-height:1.35;color:var(--gold);min-height:19px}
+
+.calm *{animation:none!important;transition:none!important}
+.fade{transition:opacity .4s}
+
+@media (max-height:640px),(max-width:700px){
+  header{padding:6px 10px} h1{font-size:18px} h1 small{display:none}
+  .icon-btn,.seg button{min-height:34px;font-size:13px;padding:0 10px}
+  .controls{padding:6px 8px;gap:6px}
+  .readout{padding:5px 8px}.readout svg{width:40px;height:40px}.readout h2{font-size:16px}.readout p{font-size:12px}
+  .btn{min-height:34px;font-size:12px}.phases button{min-height:32px}.phases svg{width:20px;height:20px}
+  input[type=range]{height:20px}
+}
+@media (max-height:660px) and (min-width:701px){.controls{grid-template-columns:1.1fr 1.4fr 1.25fr}.readout{grid-column:auto}}
+</style>
+</head>
+<body>
+<header>
+  <h1>Moon Phase Model <small>One moment, two views: from space and from your backyard.</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="mode-explore" aria-pressed="true">Explore</button>
+    <button id="mode-predict" aria-pressed="false">Predict</button>
+  </div>
+  <button class="icon-btn" id="tilt" aria-pressed="false" title="Show the Moon's tilted orbit and eclipses">🌗 Tilt and eclipses</button>
+  <button class="icon-btn" id="motion" aria-pressed="true" title="Turn animation on or off">✨ Motion</button>
+</header>
+<main>
+  <div class="views">
+    <div class="view" id="space-view">
+      <span class="tag">Space · looking down on the North Pole</span>
+      <svg id="space" viewBox="0 0 600 600" role="img" aria-labelledby="space-desc">
+        <desc id="space-desc">Earth in the middle, the Moon on its orbit, and sunlight coming from the right. Drag the Moon to change the day, and drag the marked person on Earth to change the time.</desc>
+        <defs>
+          <radialGradient id="sunglow" cx="1" cy=".5" r=".9"><stop offset="0" stop-color="#fff3c0" stop-opacity=".95"/><stop offset=".25" stop-color="#ffcf5a" stop-opacity=".5"/><stop offset="1" stop-color="#ff9a2a" stop-opacity="0"/></radialGradient>
+          <clipPath id="earth-clip"><circle r="56"/></clipPath>
+          <clipPath id="moon-clip"><circle r="24"/></clipPath>
+          <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#ffd77a"/></marker>
+          <linearGradient id="umbra" x1="1" x2="0"><stop offset="0" stop-color="#000" stop-opacity=".55"/><stop offset="1" stop-color="#000" stop-opacity="0"/></linearGradient>
+        </defs>
+        <rect x="-2000" y="-2000" width="4600" height="4600" fill="#03050d"/>
+        <g id="stars-space"></g>
+        <rect x="380" y="-2000" width="2400" height="4600" fill="url(#sunglow)"/>
+        <g id="rays"></g>
+        <text x="590" y="590" text-anchor="end" font-size="13" fill="#6f7fa8" font-style="italic">Not to scale</text>
+        <g id="shadow-g"></g>
+        <circle cx="300" cy="300" r="210" fill="none" stroke="#5d6da0" stroke-width="1.5" stroke-dasharray="4 6"/>
+        <g id="earth-g" transform="translate(300 300)"></g>
+        <g id="you-g" transform="translate(300 300)"></g>
+        <g id="moon-g"></g>
+        <g id="tilt-g"></g>
+      </svg>
+    </div>
+    <div class="view" id="yard-view">
+      <span class="tag">Your backyard · facing south</span>
+      <svg id="yard" viewBox="0 0 800 600" role="img" aria-labelledby="yard-desc">
+        <desc id="yard-desc">The sky over a backyard at the chosen time, showing the Moon's shape and where it is, or that it has set.</desc>
+        <defs>
+          <linearGradient id="sky" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="430">
+            <stop id="sky-top" offset="0" stop-color="#060b1f"/><stop id="sky-low" offset="1" stop-color="#1a2550"/>
+          </linearGradient>
+          <radialGradient id="sun-halo"><stop offset="0" stop-color="#fffbe6"/><stop offset=".35" stop-color="#fff2b0" stop-opacity=".7"/><stop offset="1" stop-color="#ffd36a" stop-opacity="0"/></radialGradient>
+          <clipPath id="ymoon-clip"><circle r="34"/></clipPath>
+        </defs>
+        <rect x="-3000" y="-3000" width="7000" height="3400" fill="url(#sky)"/>
+        <g id="stars" class="fade"></g>
+        <g id="sky-sun"></g>
+        <g id="sky-moon"></g>
+        <!-- the backyard, mirrored at the sides so wide screens never show its edge -->
+        <g id="ground">
+          <rect x="-3000" y="700" width="7000" height="3000" fill="#37688b"/>
+          <image id="yard-img" href="art:backyard" x="-138" y="110" width="1076" height="600"/>
+          <use href="#yard-img" transform="translate(-276 0) scale(-1 1)"/>
+          <use href="#yard-img" transform="translate(1876 0) scale(-1 1)"/>
+          <image href="art:stargazer" x="388" y="440" width="46" height="158"/>
+        </g>
+        <g font-size="17" font-weight="700" fill="#e9eef9" text-anchor="middle" stroke="#0b1228" stroke-width="4" paint-order="stroke" opacity=".9">
+          <text x="40" y="402">East</text><text x="400" y="402">South</text><text x="760" y="402">West</text>
+        </g>
+        <g id="yard-caption"></g>
+      </svg>
+    </div>
+  </div>
+
+  <div class="controls">
+    <div class="readout" aria-live="polite">
+      <svg id="ro-icon" viewBox="-30 -30 60 60" aria-hidden="true"></svg>
+      <div><h2 id="ro-name">First quarter</h2><p id="ro-detail"></p><p id="ro-rise"></p></div>
+    </div>
+    <div class="sliders">
+      <div class="slider" id="day-row"><label for="day">Day of the Moon’s cycle <b id="day-out"></b></label><input type="range" id="day" min="0" max="29.5" step="0.1"></div>
+      <div class="slider"><label for="hour">Time in your backyard <b id="hour-out"></b></label><input type="range" id="hour" min="0" max="24" step="0.25"></div>
+      <p class="msg" id="msg"></p>
+    </div>
+    <div class="btns">
+      <div class="row">
+        <button class="btn" id="play-days" aria-pressed="false">▶ Play days</button>
+        <button class="btn" id="play-hours" aria-pressed="false">▶ Play hours</button>
+        <button class="btn primary" id="check" hidden>Check my Moon</button>
+        <button class="btn" id="new-q" hidden>New sky</button>
+      </div>
+      <div class="phases" id="phases" role="group" aria-label="Jump to a phase"></div>
+    </div>
+  </div>
+</main>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const SVGNS = 'http://www.w3.org/2000/svg';
+  // Motion follows the device's "reduce motion" setting until someone picks, then the choice is remembered
+  let reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  try { const m = localStorage.getItem('curio-motion'); if (m) reduce = m === 'calm'; } catch {}
+  function showMotion() {
+    document.body.classList.toggle('calm', reduce);
+    $('motion').setAttribute('aria-pressed', !reduce);
+    $('motion').textContent = reduce ? '⏸ Motion' : '✨ Motion';
+  }
+  showMotion();
+  $('motion').onclick = () => {
+    reduce = !reduce;
+    try { localStorage.setItem('curio-motion', reduce ? 'calm' : 'on'); } catch {}
+    showMotion();
+  };
+
+  const MONTH = 29.53;                       // days from new moon to new moon
+  const rad = d => d * Math.PI / 180;
+  const wrap = d => ((d + 180) % 360 + 360) % 360 - 180;   // to -180..180
+  const el = (tag, attrs, parent) => {
+    const n = document.createElementNS(SVGNS, tag);
+    for (const k in attrs) n.setAttribute(k, attrs[k]);
+    if (parent) parent.append(n);
+    return n;
+  };
+
+  // state: day of the cycle (0 = new moon) and the hour in the backyard (0-24)
+  const state = {day: 7.4, hour: 18, tilt: false, mode: 'explore', playing: null, quiz: null, guess: null, streak: 0};
+  const moonAngle = () => (state.day / MONTH) * 360;        // counterclockwise from the Sun direction
+  const youAngle = () => (state.hour - 12) * 15;            // noon faces the Sun, 6 pm is a quarter turn on
+
+  // ---------- phase words ----------
+  const PHASES = [
+    {a: 0, name: 'New moon'}, {a: 45, name: 'Waxing crescent'}, {a: 90, name: 'First quarter'}, {a: 135, name: 'Waxing gibbous'},
+    {a: 180, name: 'Full moon'}, {a: 225, name: 'Waning gibbous'}, {a: 270, name: 'Third quarter'}, {a: 315, name: 'Waning crescent'},
+  ];
+  function phaseOf(a) {
+    a = ((a % 360) + 360) % 360;
+    return PHASES[Math.round(a / 45) % 8];
+  }
+  const litPct = a => Math.round((1 - Math.cos(rad(a))) / 2 * 100);
+  function clock(h) {
+    h = ((h % 24) + 24) % 24;
+    let hh = Math.floor(h), mm = Math.round((h - hh) * 60);
+    if (mm === 60) { hh = (hh + 1) % 24; mm = 0; }
+    if (hh === 0 && mm === 0) return 'midnight';
+    if (hh === 12 && mm === 0) return 'noon';
+    return `${hh % 12 || 12}:${String(mm).padStart(2, '0')} ${hh < 12 ? 'am' : 'pm'}`;
+  }
+  // The lit part of the Moon as seen from the Northern Hemisphere: waxing lit on the right, waning on the left
+  function phasePath(a, r) {
+    a = ((a % 360) + 360) % 360;
+    const waxing = a <= 180, k = Math.cos(rad(a)), rx = Math.abs(k) * r;
+    const sweep = k > 0 ? 0 : 1;  // crescent: the terminator bows toward the lit side
+    const d = `M0 ${-r}A${r} ${r} 0 0 1 0 ${r}A${rx} ${r} 0 0 ${sweep} 0 ${-r}Z`;
+    return {d, flip: !waxing};
+  }
+
+  // ---------- space view ----------
+  (() => {
+    let s = '';
+    for (let i = 0; i < 140; i++) s += `<circle cx="${(Math.random() * 1600 - 500).toFixed(0)}" cy="${(Math.random() * 1600 - 500).toFixed(0)}" r="${(Math.random() * 1.1 + .3).toFixed(1)}" fill="#fff" opacity="${(Math.random() * .6 + .2).toFixed(2)}"/>`;
+    $('stars-space').innerHTML = s;
+    let r = '';
+    for (const y of [120, 210, 300, 390, 480]) r += `<line x1="590" y1="${y}" x2="${y === 300 ? 380 : 520}" y2="${y}" stroke="#ffd77a" stroke-width="2" opacity=".7" marker-end="url(#arrow)"/>`;
+    $('rays').innerHTML = r + '<text x="585" y="104" text-anchor="end" font-size="14" fill="#ffd77a">Sunlight</text>';
+    let st = '';
+    for (let i = 0; i < 90; i++) {
+      const y = Math.random() * 720 - 300, x = Math.random() * 1700 - 450;
+      st += `<circle cx="${x.toFixed(0)}" cy="${y.toFixed(0)}" r="${(Math.random() * 1.2 + .4).toFixed(1)}" fill="#fff" opacity="${(Math.random() * .6 + .3).toFixed(2)}"/>`;
+    }
+    $('stars').innerHTML = st;
+  })();
+  function drawSpace() {
+    const m = moonAngle(), y = youAngle();
+    // Earth turns with the observer, so the person stays on the same spot of land
+    $('earth-g').innerHTML = `<g clip-path="url(#earth-clip)"><image href="art:earth" x="-62" y="-62" width="124" height="124" transform="rotate(${-y})"/>
+      <rect x="-60" y="-60" width="60" height="120" fill="#000" opacity=".62"/></g>
+      <circle r="56" fill="none" stroke="#9cc8ff" stroke-width="1.5" opacity=".6"/>`;
+    // you: a pin on the surface, with your horizon (everything above that line is your sky)
+    const showYou = state.mode === 'explore' || state.quiz?.done;
+    $('you-g').innerHTML = `<g transform="rotate(${-y})" class="drag" id="you-handle">
+      <line x1="56" y1="-150" x2="56" y2="150" stroke="#7fe3a0" stroke-width="2" stroke-dasharray="6 5" opacity=".75"/>
+      <path d="M56 0L74 -8L74 8Z" fill="#7fe3a0"/>
+      <circle cx="80" r="7" fill="#7fe3a0" stroke="#03050d" stroke-width="2"/>
+      <circle cx="80" r="22" fill="transparent"/>
+      </g>
+      <text x="${Math.cos(rad(y)) * 112}" y="${-Math.sin(rad(y)) * 112 + 5}" text-anchor="middle" font-size="15" font-weight="700" fill="#7fe3a0">You</text>
+      <text x="${Math.cos(rad(y + 90)) * 128}" y="${-Math.sin(rad(y + 90)) * 128 + 5}" text-anchor="middle" font-size="12" fill="#7fe3a0" opacity=".8">${showYou ? 'your horizon' : ''}</text>`;
+    // the Moon: always lit on the side facing the Sun
+    const hide = state.mode === 'predict' && !state.quiz?.done;
+    const ma = hide ? state.guess : m;
+    const g = $('moon-g');
+    g.replaceChildren();
+    if (ma == null) {
+      el('text', {x: 300, y: 70, 'text-anchor': 'middle', 'font-size': 16, fill: '#f2c14e'}, g).textContent = 'Drag the Moon to where you think it is';
+    }
+    const at = ma ?? 0, mx = 300 + Math.cos(rad(at)) * 210, my = 300 - Math.sin(rad(at)) * 210;
+    const mg = el('g', {transform: `translate(${mx} ${my})`, class: 'drag', id: 'moon-handle'}, g);
+    mg.innerHTML = `<circle r="40" fill="transparent"/><g clip-path="url(#moon-clip)" opacity="${ma == null ? .45 : 1}"><image href="art:moon" x="-25" y="-25" width="50" height="50"/>
+      <rect x="-26" y="-26" width="26" height="52" fill="#000" opacity=".72"/>
+      ${!hide && eclipse(m)?.type === 'lunar' ? `<circle r="24" fill="#b23d1e" opacity="${(eclipse(m).strength * .7).toFixed(2)}" style="mix-blend-mode:multiply"/>` : ''}</g>
+      <circle r="24" fill="none" stroke="${hide ? '#f2c14e' : '#ddd'}" stroke-width="${hide ? 2 : 1}" ${ma == null ? 'stroke-dasharray="4 4"' : ''}/>`;
+    if (state.mode === 'predict' && state.quiz?.done) {
+      // show the guess too
+      const gx = 300 + Math.cos(rad(state.guess)) * 210, gy = 300 - Math.sin(rad(state.guess)) * 210;
+      el('circle', {cx: gx, cy: gy, r: 26, fill: 'none', stroke: '#f2c14e', 'stroke-width': 2, 'stroke-dasharray': '5 4'}, g);
+      el('text', {x: gx, y: gy - 34, 'text-anchor': 'middle', 'font-size': 13, fill: '#f2c14e'}, g).textContent = 'your guess';
+    }
+    drawShadows(m);
+    drawTilt(m);
+  }
+  // Earth's and the Moon's shadows, when the tilt view is on and they line up
+  function drawShadows(m) {
+    const g = $('shadow-g');
+    g.innerHTML = '';
+    if (!state.tilt || state.mode === 'predict') return;
+    // Earth's shadow points away from the Sun; the Moon's shadow points at Earth when it is between
+    el('path', {d: 'M300 244L40 280L40 320L300 356Z', fill: '#000', opacity: .55}, g);
+    el('path', {d: 'M300 244L40 280L40 320L300 356Z', fill: 'none', stroke: '#6f7fa8', 'stroke-dasharray': '3 5', opacity: .6}, g);
+    el('text', {x: 60, y: 274, 'font-size': 12, fill: '#9fb0d6'}, g).textContent = 'Earth’s shadow';
+  }
+  // Side view: the Moon's orbit is tilted, so most months it passes above or below the Sun-Earth line
+  function drawTilt(m) {
+    const g = $('tilt-g');
+    g.replaceChildren();
+    if (!state.tilt || state.mode === 'predict') return;
+    const box = el('g', {transform: 'translate(10 470)'}, g);
+    el('rect', {width: 290, height: 120, rx: 10, fill: '#0b1228', stroke: '#2c3a68'}, box);
+    el('text', {x: 10, y: 20, 'font-size': 12, 'font-weight': 700, fill: '#9fb0d6', 'letter-spacing': '.1em'}, box).textContent = 'SIDE VIEW (TILT EXAGGERATED)';
+    const node = season() ? 0 : 90, cx = 145, cy = 72, R = 118;
+    const z = a => Math.sin(rad(a - node)) * 26 * (season() ? 1 : 1);  // height above the Sun-Earth plane
+    el('line', {x1: 8, y1: cy, x2: 282, y2: cy, stroke: '#ffd77a', 'stroke-width': 1, 'stroke-dasharray': '3 4', opacity: .7}, box);
+    el('text', {x: 282, y: cy - 6, 'text-anchor': 'end', 'font-size': 11, fill: '#ffd77a'}, box).textContent = 'to the Sun →';
+    // the orbit seen edge-on: a thin tilted ellipse
+    const pts = [];
+    for (let a = 0; a <= 360; a += 10) pts.push(`${cx + Math.cos(rad(a)) * R},${cy - z(a)}`);
+    el('polyline', {points: pts.join(' '), fill: 'none', stroke: '#5d6da0', 'stroke-width': 1.2}, box);
+    el('circle', {cx, cy, r: 9, fill: '#4f8fd8'}, box);
+    const mx = cx + Math.cos(rad(m)) * R, my = cy - z(m);
+    el('circle', {cx: mx, cy: my, r: 6, fill: '#ddd'}, box);
+    // eclipse check
+    const e = eclipse(m);
+    const note = el('text', {x: 10, y: 112, 'font-size': 12, fill: e ? '#ff9f7a' : '#9fb0d6'}, box);
+    const near = Math.abs(wrap(m)) < 12 ? 'new' : Math.abs(wrap(m - 180)) < 12 ? 'full' : null;
+    note.textContent = e ? (e.type === 'solar' ? 'In line at new moon: a solar eclipse!' : 'In line at full moon: a lunar eclipse!')
+      : near ? `${near === 'new' ? 'New' : 'Full'} moon, but the Moon is ${z(m) > 0 ? 'above' : 'below'} the line: no eclipse.` : season() ? 'Eclipse season: the line-up happens at new and full moon.' : 'Most months the Moon misses the Sun-Earth line.';
+  }
+  const season = () => $('season')?.getAttribute('aria-pressed') === 'true';
+  // An eclipse needs the tilt view's eclipse season and a near-perfect line-up
+  function eclipse(m) {
+    if (!state.tilt || !season()) return null;
+    const dn = Math.abs(wrap(m)), df = Math.abs(wrap(m - 180));
+    if (dn < 6) return {type: 'solar', strength: 1 - dn / 6};
+    if (df < 10) return {type: 'lunar', strength: 1 - df / 10};
+    return null;
+  }
+
+  // ---------- backyard view ----------
+  // Positions in the south-facing sky: d is how far round from overhead (positive = toward the east)
+  const skyXY = d => ({x: 400 - Math.sin(rad(d)) * 380, y: 428 - Math.cos(rad(d)) * 360});
+  const mix = (a, b, t) => {
+    const p = s => [1, 3, 5].map(i => parseInt(s.slice(i, i + 2), 16));
+    const [x, y] = [p(a), p(b)];
+    return '#' + x.map((v, i) => Math.round(v + (y[i] - v) * t).toString(16).padStart(2, '0')).join('');
+  };
+  function drawYard() {
+    const m = moonAngle(), y = youAngle();
+    const dSun = wrap(0 - y), sunAlt = 90 - Math.abs(dSun);
+    const dMoon = wrap((state.mode === 'predict' && !state.quiz?.done ? state.quiz.a : m) - y), moonAlt = 90 - Math.abs(dMoon);
+    const ma = state.mode === 'predict' && !state.quiz?.done ? state.quiz.a : m;
+    const e = state.mode === 'explore' ? eclipse(m) : null;
+    // sky colour from the Sun's height: day, twilight, night (and dimmed by a solar eclipse)
+    let top, low, light;
+    if (sunAlt > 6) { top = '#3f86d4'; low = '#a9d3f3'; light = 1; }
+    else if (sunAlt > -14) {
+      const t = (6 - sunAlt) / 20;
+      top = t < .5 ? mix('#3f86d4', '#2a3f7a', t * 2) : mix('#2a3f7a', '#081028', (t - .5) * 2);
+      low = t < .5 ? mix('#a9d3f3', '#f0a070', t * 2) : mix('#f0a070', '#1a2550', (t - .5) * 2);
+      light = 1 - t;
+    } else { top = '#060b1f'; low = '#1a2550'; light = 0; }
+    if (e?.type === 'solar' && sunAlt > 0) { top = mix(top, '#0a1030', e.strength * .9); low = mix(low, '#2a2f55', e.strength * .9); light *= 1 - e.strength * .8; }
+    $('sky-top').setAttribute('stop-color', top); $('sky-low').setAttribute('stop-color', low);
+    $('stars').style.opacity = Math.max(0, 1 - light * 2.2);
+    $('ground').style.filter = `brightness(${(1 + light * .55).toFixed(2)})`;
+    // the Sun
+    const sg = $('sky-sun');
+    sg.replaceChildren();
+    if (sunAlt > -2) {
+      const p = skyXY(dSun);
+      el('circle', {cx: p.x, cy: p.y, r: 110, fill: 'url(#sun-halo)', opacity: e?.type === 'solar' ? 1 - e.strength * .7 : 1}, sg);
+      el('circle', {cx: p.x, cy: p.y, r: 34, fill: '#fff8dc'}, sg);
+    }
+    // the Moon
+    const g = $('sky-moon');
+    g.replaceChildren();
+    if (moonAlt > -2) {
+      const p = skyXY(dMoon), ph = phasePath(ma, 34);
+      const mg = el('g', {transform: `translate(${p.x} ${p.y})`}, g);
+      if (e?.type === 'solar') {
+        // the new moon slides across the Sun's face
+        const off = wrap(m) / 6 * 68;
+        mg.setAttribute('transform', `translate(${p.x - off} ${p.y})`);
+        el('circle', {r: 34, fill: '#141a2e'}, mg);
+      } else {
+        // the unlit part: faint earthshine at night, invisible against a bright sky
+        el('image', {href: 'art:moon', x: -36, y: -36, width: 72, height: 72, 'clip-path': 'url(#ymoon-clip)', opacity: (.14 * (1 - light)).toFixed(2)}, mg);
+        // the lit part: the phase shape clips the Moon picture (flipped for a waning Moon, picture unflipped)
+        const flip = ph.flip ? 'scale(-1 1)' : '';
+        const cp = el('clipPath', {id: 'lit-clip'}, mg);
+        el('path', {d: ph.d, transform: flip}, cp);
+        el('image', {href: 'art:moon', x: -36, y: -36, width: 72, height: 72, 'clip-path': 'url(#lit-clip)', opacity: light > .5 ? .8 : 1}, mg);
+        if (e?.type === 'lunar') el('path', {d: ph.d, transform: flip, fill: '#b23d1e', opacity: (e.strength * .78).toFixed(2), style: 'mix-blend-mode:multiply'}, mg);
+      }
+    }
+    // caption
+    const cap = $('yard-caption');
+    cap.replaceChildren();
+    const lines = [clock(state.hour)];
+    const hidden = state.mode === 'predict' && !state.quiz?.done;
+    if (moonAlt <= -2) lines.push('The Moon is below the horizon now.');
+    else if (!hidden && phaseOf(ma).a === 0 && !e) lines.push('New moon: it’s up with the Sun, but its lit side faces away from us.');
+    else if (sunAlt > 6 && !e) lines.push(`The Moon is up in the daytime, in the ${dMoon > 8 ? 'east' : dMoon < -8 ? 'west' : 'south'}.`);
+    else lines.push(`The Moon is in the ${moonAlt > 70 ? 'south, high up' : dMoon > 8 ? 'east' : dMoon < -8 ? 'west' : 'south'}.`);
+    if (e?.type === 'solar') lines.push(sunAlt > 0 ? 'Solar eclipse! The Moon covers the Sun.' : 'A solar eclipse is happening, but it’s night here.');
+    if (e?.type === 'lunar') lines.push(moonAlt > 0 ? 'Lunar eclipse! Earth’s shadow turns the Moon red.' : 'A lunar eclipse is happening, but the Moon has set here.');
+    const box = el('foreignObject', {x: 14, y: 470, width: 340, height: 120}, cap);
+    box.innerHTML = `<div xmlns="http://www.w3.org/1999/xhtml" style="background:#0b1228cc;border:1px solid #2c3a68;border-radius:10px;padding:7px 10px;font:600 14px/1.35 'Segoe UI',sans-serif;color:#e9eef9"><b style="color:#f2c14e;font-size:16px">${lines[0]}</b><br>${lines.slice(1).join('<br>')}</div>`;
+  }
+
+  // ---------- readout and controls ----------
+  function iconMarkup(a, r = 26) {
+    const ph = phasePath(a, r);
+    return `<circle r="${r}" fill="#2a3458"/><path d="${ph.d}" fill="#f1ead2" transform="${ph.flip ? 'scale(-1 1)' : ''}"/><circle r="${r}" fill="none" stroke="#56648f"/>`;
+  }
+  function drawReadout() {
+    const hidden = state.mode === 'predict' && !state.quiz?.done;
+    const m = moonAngle();
+    if (hidden) {
+      $('ro-icon').innerHTML = `<circle r="26" fill="#2a3458"/><text y="9" text-anchor="middle" font-size="26" fill="#f2c14e">?</text>`;
+      $('ro-name').textContent = 'Where is the Moon?';
+      $('ro-detail').innerHTML = 'Look at the backyard sky. Then drag the Moon in space to where it must be.';
+      $('ro-rise').textContent = '';
+      return;
+    }
+    $('ro-icon').innerHTML = iconMarkup(m);
+    $('ro-name').textContent = phaseOf(m).name;
+    $('ro-detail').innerHTML = `Day <b>${state.day.toFixed(1)}</b> of 29.5 · <b>${litPct(m)}%</b> of the side facing us is lit`;
+    // it rises about 50 minutes later each day: 6 am at new moon, 6 pm at full moon
+    const rise = 6 + m / 15;
+    const r5 = h => Math.round(h * 12) / 12;  // to the nearest 5 minutes; these are rough times
+    $('ro-rise').innerHTML = `Rises about <b>${clock(r5(rise))}</b>, highest about <b>${clock(r5(rise + 6))}</b>, sets about <b>${clock(r5(rise + 12))}</b>`;
+  }
+  function draw() {
+    $('day').value = state.day; $('hour').value = state.hour;
+    $('day-out').textContent = `day ${state.day.toFixed(1)}`;
+    $('hour-out').textContent = clock(state.hour);
+    drawSpace(); drawYard(); drawReadout();
+  }
+
+  $('phases').innerHTML = PHASES.map(p => `<button data-a="${p.a}" title="${p.name}" aria-label="${p.name}"><svg viewBox="-30 -30 60 60">${iconMarkup(p.a)}</svg></button>`).join('');
+  // Jumping to a phase also picks a good time to look for it
+  function bestHour(a) {
+    const transit = 12 + a / 15;                                      // when it is highest
+    const t = ((transit % 24) + 24) % 24;
+    if (t > 7 && t < 17) return a < 180 ? 19.5 : 5.5;                // highest in daylight: look just after sunset or before sunrise
+    return t;
+  }
+  $('phases').querySelectorAll('button').forEach(b => b.onclick = () => {
+    if (state.mode !== 'explore') return;
+    stop();
+    const a = +b.dataset.a;
+    state.day = a / 360 * MONTH; state.hour = a === 0 ? 12 : bestHour(a);
+    draw();
+  });
+  $('day').oninput = e => { stop(); state.day = +e.target.value; draw(); };
+  $('hour').oninput = e => { stop(); state.hour = +e.target.value; draw(); };
+
+  // playing: days at a fixed time of night, or hours through one day (the Moon creeps on about half a degree an hour)
+  let last = 0;
+  function frame(t) {
+    if (!state.playing) return;
+    const dt = Math.min(.1, (t - (last || t)) / 1000); last = t;
+    if (state.playing === 'days') state.day = (state.day + dt * 1.6) % MONTH;
+    else { state.hour = (state.hour + dt * 2.4) % 24; state.day = (state.day + dt * 2.4 / 24) % MONTH; }
+    draw();
+    requestAnimationFrame(frame);
+  }
+  function play(kind) {
+    if (state.playing === kind) return stop();
+    stop(); state.playing = kind; last = 0;
+    $(kind === 'days' ? 'play-days' : 'play-hours').setAttribute('aria-pressed', 'true');
+    $(kind === 'days' ? 'play-days' : 'play-hours').textContent = '⏸ Pause';
+    requestAnimationFrame(frame);
+  }
+  function stop() {
+    state.playing = null;
+    $('play-days').setAttribute('aria-pressed', 'false'); $('play-days').textContent = '▶ Play days';
+    $('play-hours').setAttribute('aria-pressed', 'false'); $('play-hours').textContent = '▶ Play hours';
+  }
+  $('play-days').onclick = () => play('days');
+  $('play-hours').onclick = () => play('hours');
+
+  // ---------- dragging in space ----------
+  const svg = $('space');
+  function svgPoint(e) {
+    const p = svg.createSVGPoint(); p.x = e.clientX; p.y = e.clientY;
+    return p.matrixTransform(svg.getScreenCTM().inverse());
+  }
+  let dragging = null;
+  svg.addEventListener('pointerdown', e => {
+    const t = e.target.closest('#moon-handle, #you-handle');
+    if (!t) return;
+    if (state.mode === 'predict' && (t.id === 'you-handle' || state.quiz?.done)) return;
+    dragging = t.id; stop(); svg.setPointerCapture(e.pointerId); e.preventDefault();
+  });
+  svg.addEventListener('pointermove', e => {
+    if (!dragging) return;
+    const p = svgPoint(e), a = (Math.atan2(-(p.y - 300), p.x - 300) * 180 / Math.PI + 360) % 360;
+    if (dragging === 'moon-handle') {
+      if (state.mode === 'predict') { state.guess = a; $('check').disabled = false; }
+      else state.day = a / 360 * MONTH;
+    } else state.hour = (a / 15 + 12) % 24;
+    draw();
+  });
+  svg.addEventListener('pointerup', () => dragging = null);
+  svg.addEventListener('pointercancel', () => dragging = null);
+  // keyboard: arrows nudge the Moon (or, with Shift, the time)
+  svg.tabIndex = 0;
+  svg.addEventListener('keydown', e => {
+    const k = {ArrowLeft: -1, ArrowDown: -1, ArrowRight: 1, ArrowUp: 1}[e.key];
+    if (!k) return;
+    e.preventDefault(); stop();
+    if (state.mode === 'predict' && !state.quiz.done) { state.guess = ((state.guess ?? 0) + k * 5 + 360) % 360; $('check').disabled = false; }
+    else if (state.mode === 'predict') return;
+    else if (e.shiftKey) state.hour = (state.hour + k * .5 + 24) % 24;
+    else state.day = (state.day + k * .25 + MONTH) % MONTH;
+    draw();
+  });
+
+  // ---------- tilt and eclipses ----------
+  $('tilt').onclick = () => {
+    state.tilt = !state.tilt;
+    $('tilt').setAttribute('aria-pressed', state.tilt);
+    $('season-row').hidden = !state.tilt || state.mode !== 'explore';
+    draw();
+  };
+  // the eclipse-season switch lives with the buttons
+  const seasonRow = document.createElement('div');
+  seasonRow.className = 'row'; seasonRow.id = 'season-row'; seasonRow.hidden = true;
+  seasonRow.innerHTML = `<button class="btn" id="season" aria-pressed="false">Eclipse season: off</button>`;
+  document.querySelector('.btns').append(seasonRow);
+  $('season').onclick = e => {
+    const on = e.currentTarget.getAttribute('aria-pressed') !== 'true';
+    e.currentTarget.setAttribute('aria-pressed', on);
+    e.currentTarget.textContent = `Eclipse season: ${on ? 'on' : 'off'}`;
+    $('msg').textContent = on ? 'Now the tilted orbit crosses the Sun-Earth line right at new and full moon. Try both.' : '';
+    draw();
+  };
+
+  // ---------- predict mode ----------
+  function newQuestion() {
+    const a = [45, 90, 135, 180, 225, 270, 315][Math.floor(Math.random() * 7)] + (Math.random() * 16 - 8);
+    state.quiz = {a, done: false}; state.guess = null;
+    state.day = a / 360 * MONTH; state.hour = bestHour(a) + (Math.random() - .5);
+    $('check').disabled = true; $('check').hidden = false; $('new-q').hidden = true;
+    $('msg').textContent = `Streak: ${state.streak}. The time is ${clock(state.hour)}.`;
+    draw();
+  }
+  function setMode(mode) {
+    stop(); state.mode = mode;
+    $('mode-explore').setAttribute('aria-pressed', mode === 'explore');
+    $('mode-predict').setAttribute('aria-pressed', mode === 'predict');
+    const quiz = mode === 'predict';
+    ['play-days', 'play-hours'].forEach(id => $(id).hidden = quiz);
+    $('phases').style.visibility = quiz ? 'hidden' : '';
+    $('day-row').hidden = quiz; $('hour').disabled = quiz;
+    $('season-row').hidden = quiz || !state.tilt;
+    $('check').hidden = $('new-q').hidden = !quiz;
+    $('msg').textContent = '';
+    if (quiz) newQuestion(); else { state.quiz = null; draw(); }
+  }
+  $('mode-explore').onclick = () => setMode('explore');
+  $('mode-predict').onclick = () => setMode('predict');
+  $('check').onclick = () => {
+    if (state.guess == null) return;
+    const off = Math.abs(wrap(state.guess - state.quiz.a));
+    state.quiz.done = true;
+    const ok = off <= 25;
+    state.streak = ok ? state.streak + 1 : 0;
+    $('msg').textContent = ok ? `Yes! ${phaseOf(state.quiz.a).name}. Streak: ${state.streak}.`
+      : `Not quite: it’s a ${phaseOf(state.quiz.a).name.toLowerCase()}. Hint: the lit side always faces the Sun, and you are looking out from the green dot.`;
+    $('check').hidden = true; $('new-q').hidden = false;
+    draw();
+  };
+  $('new-q').onclick = newQuestion;
+
+  window.__moon = {state, draw, setMode};  // for checking frames
+  draw();
+})();
+</script>
+</body>
+</html>

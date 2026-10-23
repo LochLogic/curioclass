@@ -1,0 +1,12 @@
+{
+  "house_style": "Contemporary editorial illustration for a high-school economics tool, like a feature in a modern magazine: flat but textured shapes, confident color, grounded adult proportions, subtle grain. No text, no letters, no logos, no watermark, no border, no frame.",
+  "style": "Night-out concert energy: deep indigo, magenta and warm amber light.",
+  "assets": [
+    {"name": "arena", "prompt": "Empty background: the outside of a big concert arena at dusk, seen from the plaza in front. Glowing glass entrance doors, a large blank glowing marquee panel above the doors with nothing on it, string lights, a wide empty paved plaza in the foreground, city towers behind. No people, no writing, no logos.", "skip_style": false, "aspect": "16:9", "width": 1400, "quality": 78},
+    {"name": "fan1", "prompt": "A young woman concert fan waiting in line, wearing a band T-shirt and denim jacket, holding her phone, hopeful expression. Full body from head to feet, standing, three-quarter view facing left.", "cutout": true, "aspect": "9:16", "height": 300},
+    {"name": "fan2", "prompt": "A young man concert fan waiting in line, in a hoodie and beanie with headphones around his neck, arms crossed, a little impatient. Full body from head to feet, standing, three-quarter view facing left.", "cutout": true, "aspect": "9:16", "height": 300},
+    {"name": "fan3", "prompt": "A teen concert fan with curly hair in a bright jacket, checking the time on a watch, eager. Full body from head to feet, standing, three-quarter view facing left.", "cutout": true, "aspect": "9:16", "height": 300},
+    {"name": "fan4", "prompt": "A middle-aged parent waiting in a concert line, holding two folded jackets, patient smile. Full body from head to feet, standing, three-quarter view facing left.", "cutout": true, "aspect": "9:16", "height": 300},
+    {"name": "reseller", "prompt": "A slick, comical ticket reseller in a long camel coat and sunglasses, fanning out a hand of concert tickets with a sly grin. Not menacing, more like a cartoon hustler. Full body from head to feet, standing, three-quarter view facing right.", "cutout": true, "aspect": "9:16", "height": 320}
+  ]
+}

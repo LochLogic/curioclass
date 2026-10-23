@@ -1,0 +1,34 @@
+{
+  "house_style": "Detailed painterly science illustration for a middle-school astronomy tool, like a modern planetarium exhibit. Realistic proportions, rich color, subtle brush texture. No text, no letters, no labels, no watermark, no border, no frame.",
+  "assets": [
+    {
+      "name": "moon",
+      "prompt": "The full Moon, realistic, with its true maria and craters, perfectly round, filling the frame edge to edge with the round edge just touching all four sides, on pure black. Evenly lit, no shadow side.",
+      "aspect": "1:1",
+      "width": 420,
+      "quality": 84
+    },
+    {
+      "name": "earth",
+      "prompt": "Planet Earth seen from directly above the North Pole: the white Arctic ice cap in the exact center, the continents around it, swirling white clouds, deep blue oceans. Perfectly round, filling the frame edge to edge with the round edge just touching all four sides, on pure black. Evenly lit.",
+      "aspect": "1:1",
+      "width": 420,
+      "quality": 84
+    },
+    {
+      "name": "backyard",
+      "prompt": "A wide-open suburban backyard at twilight, seen from the back lawn. A low wooden fence runs straight across the picture about two thirds of the way down, with a few low shrubs along it and, far beyond it, a distant line of small rooftops and treetops just peeking over the fence. A grassy lawn fills the bottom third. Nothing tall in the picture: no big trees, no poles, no house walls up close. Everything is softly lit in cool blue evening light. The whole sky, everything above the fence and the distant rooftops (the top two thirds of the picture), is one perfectly flat solid pure green (#00FF00), with no clouds, stars or moon. Keep that green out of the lawn, fence, shrubs and roofs.",
+      "cutout": "keyed",
+      "aspect": "16:9",
+      "width": 1400,
+      "quality": 80
+    },
+    {
+      "name": "stargazer",
+      "prompt": "A middle-school kid in a hoodie and sneakers, seen from behind, standing on grass and looking up at the night sky, one hand pointing up. Full body from head to feet, cool blue evening light.",
+      "cutout": true,
+      "aspect": "9:16",
+      "height": 300
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "style": "Sunny picture-book neighborhood look, like a cozy story about a kids' snack stand. Animal neighbors are round, friendly and expressive.",
+  "assets": [
+    {
+      "name": "street",
+      "prompt": "Empty background: a sunny neighborhood street seen from behind a snack stand, at a child's eye level. A wide sidewalk in the foreground, a few cozy houses with gardens across a quiet street, leafy trees, a little red-brick school in the distance, soft blue sky with a few clouds. No stand, no counter, no awning, no people, no animals, no writing. 16:9.",
+      "skip_style": true,
+      "aspect": "16:9",
+      "width": 1400,
+      "quality": 78,
+      "trim": 0.05
+    },
+    {
+      "name": "bunny",
+      "prompt": "A cheerful white rabbit kid in a striped yellow sweater, holding out one paw as if paying at a counter, big smile. Upper body only, from the tips of the ears down to the waist, as if standing behind a shop counter. Nothing in front of the bunny: no counter, no table, no furniture, no objects.",
+      "cutout": true,
+      "aspect": "3:4",
+      "height": 400
+    },
+    {
+      "name": "raccoon",
+      "prompt": "A friendly raccoon kid wearing a red baseball cap and blue backpack straps, grinning, one paw raised in a wave. Upper body only, from the top of the cap down to the waist, as if standing behind a shop counter.",
+      "cutout": true,
+      "aspect": "3:4",
+      "height": 400
+    },
+    {
+      "name": "turtle",
+      "prompt": "A kindly old turtle grandpa with round glasses, a brown knit cardigan and a gentle smile, standing upright on two legs. Upper body only, from the top of the head down to the waist, as if standing behind a shop counter.",
+      "cutout": true,
+      "aspect": "3:4",
+      "height": 400,
+      "crop": [
+        0,
+        0.62
+      ]
+    },
+    {
+      "name": "fox",
+      "prompt": "An excited young fox in a green hoodie, eyes bright, paws together in front of the chest. Upper body only, from the tips of the ears down to the waist, as if standing behind a shop counter.",
+      "cutout": true,
+      "aspect": "3:4",
+      "height": 400
+    },
+    {
+      "name": "hedgehog",
+      "prompt": "A shy, sweet hedgehog kid wearing a little purple scarf, smiling softly. Upper body only, from the top of the spines down to the waist, as if standing behind a shop counter.",
+      "cutout": true,
+      "aspect": "3:4",
+      "height": 400
+    },
+    {
+      "name": "lemonade",
+      "prompt": "A clear plastic cup of pale yellow lemonade with ice cubes, a lemon slice on the rim and a striped straw. Seen from the side.",
+      "cutout": true,
+      "width": 220
+    },
+    {
+      "name": "pretzel",
+      "prompt": "One big soft golden-brown pretzel with coarse salt, seen from the front.",
+      "cutout": true,
+      "width": 220
+    },
+    {
+      "name": "apple",
+      "prompt": "One shiny red apple with a short stem and a single green leaf.",
+      "cutout": true,
+      "key": "magenta",
+      "width": 220
+    },
+    {
+      "name": "cookie",
+      "prompt": "One big round chocolate chip cookie, seen from the front, slightly tilted.",
+      "cutout": true,
+      "width": 220
+    },
+    {
+      "name": "popcorn",
+      "prompt": "A small red-and-white striped paper bag overflowing with fluffy popcorn.",
+      "cutout": true,
+      "width": 220
+    },
+    {
+      "name": "juice",
+      "prompt": "A small purple grape juice box with a bendy straw poking out of the top, plain with no writing.",
+      "cutout": true,
+      "width": 220
+    }
+  ]
+}
