@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Three Pigs Lab · Test materials · Curio Class</title>
+<meta name="description" content="Build a pig's house from straw, sticks, bricks, glass and more, then test it: wolf, rain, peek and cold night. Grade 2 science, teacher-led. Works offline.">
+<!--
+THREE PIGS LAB (Curio Class)
+Grade 2 science, NGSS 2-PS1-1 (describe and classify materials by their properties)
+and 2-PS1-2 (test which materials have the properties that best suit a purpose).
+Teacher-led on a projector: the class picks wall and roof materials, predicts, then runs a test.
+Tests: Wolf (strength), Rain (waterproof), Peek (see-through), Cold night (keeps warm).
+Results collect in a lab notebook. No score: the point is "which material is best for which job?"
+Material properties are simplified for 2nd grade, on a 0-3 scale.
+One file, no network requests, nothing stored. Content CC BY 4.0, code MIT. curioclass.org
+-->
+<style>
+:root{
+  --paper:#fff9ec;--paper-2:#f5ead2;--ink:#2b2420;--muted:#6b5f55;--line:#e4d5b5;--accent:#d2553a;--accent-ink:#9c3a24;
+  --sky:#bfe3f2;--grass:#8cc06b;--grass-2:#7ab25a;--focus:#2f5bd3;--pig:#f5a9b8;--pig-ink:#d97c90;
+  font-family:'Segoe UI',system-ui,-apple-system,Roboto,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{background:var(--paper);color:var(--ink);display:grid;grid-template-rows:auto 1fr;min-height:100vh}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:4px solid var(--focus);outline-offset:3px}
+header{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:12px 20px;border-bottom:3px double var(--line)}
+h1{margin:0 auto 0 0;font:700 clamp(22px,3vw,32px)/1.1 Georgia,'Times New Roman',serif}
+h1 small{display:block;font:italic 500 15px/1.3 Georgia,serif;color:var(--muted)}
+.icon-btn{border:2px solid var(--line);background:#fff;border-radius:999px;min-height:52px;padding:0 16px;font-weight:700;font-size:16px}
+.icon-btn[aria-pressed="true"]{border-color:var(--accent);background:#fff0ea}
+
+main{display:grid;grid-template-columns:1fr;min-height:0}
+@media (min-width:1000px){main{grid-template-columns:minmax(0,1fr) 400px}}
+.left{display:grid;grid-template-rows:minmax(300px,1fr) auto;min-height:0}
+.stage{position:relative;overflow:hidden;background:var(--sky)}
+.stage svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.result{position:absolute;left:50%;top:16px;transform:translateX(-50%);background:#fff;border:3px solid var(--ink);border-radius:18px;padding:10px 20px;font:700 clamp(18px,2.4vw,28px)/1.2 Georgia,serif;box-shadow:0 6px 0 #0002;max-width:90%;text-align:center}
+.result:empty{display:none}
+
+.panel{background:#fff;border-left:3px double var(--line);padding:16px 18px;display:flex;flex-direction:column;gap:14px;overflow:auto}
+@media (max-width:999px){.panel{border-left:0;border-top:3px double var(--line)}}
+.panel h2{margin:0;font:700 14px/1 'Segoe UI',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.mats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.mat{border:2px solid var(--line);background:var(--paper);border-radius:14px;padding:6px 4px 8px;display:grid;justify-items:center;gap:4px;font-size:14px;font-weight:600;min-height:76px}
+.mat svg{width:46px;height:34px;border-radius:6px;border:1.5px solid #0002}
+.mat[aria-pressed="true"]{border-color:var(--ink);background:#fff;box-shadow:inset 0 0 0 2px var(--ink)}
+.tests{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.test{border:0;border-radius:16px;min-height:64px;font-weight:800;font-size:18px;color:#fff;box-shadow:0 5px 0 #0003}
+.test:active{transform:translateY(3px);box-shadow:0 2px 0 #0003}
+.test:disabled{opacity:.5;cursor:default}
+.t-wolf{background:#6b6f7a}.t-rain{background:#3a7bb8}.t-peek{background:#c98a2c}.t-cold{background:#4a5aa8}
+.predict{font:italic 16px/1.4 Georgia,serif;color:var(--muted);margin:0}
+
+.notebook{background:#fffdf6;border-top:3px double var(--line);padding:12px 18px 16px;background-image:linear-gradient(#e9dcc0 1px,transparent 1px);background-size:100% 30px}
+.notebook h2{margin:0 0 6px;font:700 20px Georgia,serif}
+table{border-collapse:collapse;width:100%;font-size:15px}
+th,td{text-align:left;padding:6px 10px;border-bottom:1px solid var(--line)}
+th{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+td.mat-name{font-weight:700}
+.empty{color:var(--muted);font-style:italic}
+.ask{margin:10px 0 0;font:italic 17px/1.4 Georgia,serif}
+
+.shake{animation:shake .12s linear 12}
+@keyframes shake{25%{transform:translateX(-6px) rotate(-1deg)}75%{transform:translateX(6px) rotate(1deg)}}
+.fly{animation:fly 1.4s cubic-bezier(.5,0,.9,.6) forwards}
+@keyframes fly{to{transform:translate(900px,-260px) rotate(70deg);opacity:0}}
+.fall{animation:fall 1s ease-in forwards;transform-origin:50% 100%;transform-box:fill-box}
+@keyframes fall{60%{transform:rotate(-8deg)}to{transform:rotate(-80deg) translateY(10px);opacity:.15}}
+.puff{animation:puff 1.6s ease-out forwards}
+@keyframes puff{from{opacity:0;transform:translateX(0)}20%{opacity:.9}to{opacity:0;transform:translateX(360px)}}
+.drop{animation:drop .7s linear infinite}
+@keyframes drop{from{transform:translateY(-60px)}to{transform:translateY(560px)}}
+.flake{animation:flake 3s linear infinite}
+@keyframes flake{from{transform:translateY(-40px)}to{transform:translateY(600px)}}
+.wolf-in{animation:wolfin .6s ease-out forwards}
+@keyframes wolfin{from{transform:translateX(-260px)}to{transform:translateX(0)}}
+.shiver{animation:shake .1s linear 20}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+@media (max-width:760px),(max-height:560px){
+  header{padding:6px 12px}
+  h1{font-size:19px} h1 small{display:none}
+  .icon-btn{min-height:38px;font-size:13px;padding:0 10px}
+  main{grid-template-columns:1fr}
+  .left{grid-template-rows:minmax(170px,1fr)}
+  .notebook{display:none}
+  .panel{padding:8px 10px;gap:6px}
+  .panel h2,.predict{display:none}
+  .mats{grid-template-columns:repeat(7,1fr);gap:4px}
+  .mat{min-height:0;padding:3px;font-size:10px}
+  .mat svg{width:30px;height:20px}
+  .tests{grid-template-columns:repeat(4,1fr);gap:6px}
+  .test{min-height:40px;font-size:13px}
+  .result{font-size:15px;padding:6px 12px;top:8px}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Three Pigs Lab<small>Which material is best for the job?</small></h1>
+  <button class="icon-btn" id="sound" aria-pressed="false">🔇 Sound</button>
+  <button class="icon-btn" id="read">🔊 Read</button>
+</header>
+
+<main>
+  <div class="left">
+    <div class="stage">
+      <svg id="scene" viewBox="0 0 1000 560" role="img" aria-labelledby="scene-desc">
+        <desc id="scene-desc">A pig's house standing in a grassy field.</desc>
+        <defs id="defs"></defs>
+        <rect id="sky" x="-3000" y="-3000" width="7000" height="3440" fill="#bfe3f2"/>
+        <g id="sun"><circle cx="840" cy="90" r="42" fill="#ffd25e"/></g>
+        <rect x="-3000" y="440" width="7000" height="3000" fill="#8cc06b"/>
+        <path d="M-3000 440h7000" stroke="#7ab25a" stroke-width="6"/>
+        <g id="weather"></g>
+        <g id="house"></g>
+        <g id="wolf" style="display:none"></g>
+        <g id="fx"></g>
+      </svg>
+      <div class="result" id="result" role="status" aria-live="polite"></div>
+    </div>
+    <section class="notebook" aria-labelledby="nb-h">
+      <h2 id="nb-h">Lab notebook</h2>
+      <table>
+        <thead><tr><th>Material</th><th>Wolf (walls)</th><th>Rain (roof)</th><th>Peek (walls)</th><th>Cold night (walls)</th></tr></thead>
+        <tbody id="nb"><tr><td colspan="5" class="empty">Run a test and your results show up here.</td></tr></tbody>
+      </table>
+      <p class="ask" id="ask">Which material would you choose for walls? For a window? For a blanket?</p>
+    </section>
+  </div>
+
+  <aside class="panel" aria-label="Build and test">
+    <h2 id="w-h">Walls</h2>
+    <div class="mats" id="walls" role="group" aria-labelledby="w-h"></div>
+    <h2 id="r-h">Roof</h2>
+    <div class="mats" id="roofs" role="group" aria-labelledby="r-h"></div>
+    <h2>Test it</h2>
+    <p class="predict" id="predict">What do you think will happen? Predict first!</p>
+    <div class="tests">
+      <button class="test t-wolf" data-test="wolf">🐺 Wolf</button>
+      <button class="test t-rain" data-test="rain">🌧️ Rain</button>
+      <button class="test t-peek" data-test="peek">👀 Peek</button>
+      <button class="test t-cold" data-test="cold">❄️ Cold night</button>
+    </div>
+  </aside>
+</main>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const NS = 'http://www.w3.org/2000/svg';
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Simplified properties on a 0-3 scale: strong, waterproof, see-through, warm
+  const MATS = {
+    straw:  {name: 'Straw',  strong: 0, water: 1, see: 0, warm: 2, pat: '<rect width="24" height="24" fill="#f2cf66"/><path d="M0 4h24M0 10h24M0 16h24M0 22h24" stroke="#c99a2e" stroke-width="2"/><path d="M3 0v24M11 0v24M19 0v24" stroke="#e4b84a" stroke-width="1"/>'},
+    sticks: {name: 'Sticks', adj: 'Stick', strong: 1, water: 1, see: 0, warm: 1, pat: '<rect width="24" height="24" fill="#b88552"/><path d="M4 0v24M12 0v24M20 0v24" stroke="#7a522c" stroke-width="5"/><circle cx="4" cy="8" r="1.5" fill="#5c3c1e"/><circle cx="20" cy="17" r="1.5" fill="#5c3c1e"/>'},
+    bricks: {name: 'Bricks', adj: 'Brick', strong: 3, water: 3, see: 0, warm: 2, pat: '<rect width="24" height="24" fill="#e8dcc8"/><rect x="1" y="1" width="22" height="10" fill="#c4553b"/><rect x="-11" y="13" width="22" height="10" fill="#b84a32"/><rect x="13" y="13" width="22" height="10" fill="#c4553b"/>'},
+    glass:  {name: 'Glass',  strong: 2, water: 3, see: 3, warm: 1, pat: '<rect width="24" height="24" fill="#d9f0fb" fill-opacity=".45"/><path d="M4 18L18 4M10 22L22 10" stroke="#fff" stroke-width="2.5" stroke-opacity=".9"/>'},
+    wool:   {name: 'Wool',   strong: 0, water: 0, see: 0, warm: 3, pat: '<rect width="24" height="24" fill="#f4eee2"/><g fill="none" stroke="#d8cbb2" stroke-width="2"><circle cx="6" cy="6" r="4"/><circle cx="18" cy="8" r="4"/><circle cx="10" cy="18" r="4"/><circle cx="22" cy="20" r="4"/></g>'},
+    paper:  {name: 'Paper',  strong: 0, water: 0, see: 1, warm: 1, pat: '<rect width="24" height="24" fill="#ffffff"/><path d="M0 6h24M0 14h24M0 22h24" stroke="#bcd6ea" stroke-width="1.5"/><path d="M5 0v24" stroke="#f0b4b4" stroke-width="1.5"/>'},
+    metal:  {name: 'Metal',  strong: 3, water: 3, see: 0, warm: 0, pat: '<rect width="24" height="24" fill="#a9b2bc"/><path d="M0 12h24" stroke="#8a939d" stroke-width="2"/><circle cx="4" cy="4" r="1.6" fill="#6f7882"/><circle cx="20" cy="4" r="1.6" fill="#6f7882"/><circle cx="4" cy="20" r="1.6" fill="#6f7882"/><circle cx="20" cy="20" r="1.6" fill="#6f7882"/>'},
+  };
+  const adj = k => MATS[k].adj || MATS[k].name;
+  const state = {walls: 'straw', roof: 'straw', sound: false, busy: false, notes: {}};
+
+  // ---------- patterns and swatches ----------
+  $('defs').innerHTML = Object.entries(MATS).map(([k, m]) =>
+    `<pattern id="p-${k}" width="24" height="24" patternUnits="userSpaceOnUse">${m.pat}</pattern>`).join('');
+  function swatches(el, part) {
+    el.innerHTML = Object.entries(MATS).map(([k, m]) =>
+      `<button class="mat" data-mat="${k}" aria-pressed="${state[part] === k}">` +
+      `<svg viewBox="0 0 48 34" aria-hidden="true"><rect width="48" height="34" fill="url(#sw-${k})"/><defs><pattern id="sw-${k}" width="24" height="24" patternUnits="userSpaceOnUse">${m.pat}</pattern></defs></svg>${m.name}</button>`).join('');
+    el.addEventListener('click', e => {
+      const b = e.target.closest('.mat'); if (!b || state.busy) return;
+      state[part] = b.dataset.mat;
+      el.querySelectorAll('.mat').forEach(x => x.setAttribute('aria-pressed', x === b));
+      setResult(''); drawHouse();
+      $('predict').textContent = `${adj(state.walls)} walls and a ${MATS[state.roof].name.toLowerCase()} roof. Predict first, then test!`;
+    });
+  }
+  swatches($('walls'), 'walls');
+  swatches($('roofs'), 'roof');
+
+  // ---------- the house and the pig ----------
+  function pig(x, y, s = 1, wet = false, cold = false) {
+    return `<g transform="translate(${x} ${y}) scale(${s})" class="${cold ? 'shiver' : ''}">
+      <ellipse cx="0" cy="34" rx="34" ry="26" fill="var(--pig)" stroke="var(--pig-ink)" stroke-width="3"/>
+      <circle cx="0" cy="0" r="26" fill="var(--pig)" stroke="var(--pig-ink)" stroke-width="3"/>
+      <path d="M-22 -16l-6-18 16 8zM22 -16l6-18-16 8z" fill="var(--pig)" stroke="var(--pig-ink)" stroke-width="3" stroke-linejoin="round"/>
+      <ellipse cx="0" cy="6" rx="12" ry="9" fill="#f7c1cc" stroke="var(--pig-ink)" stroke-width="2.5"/>
+      <circle cx="-4" cy="6" r="2.2" fill="var(--pig-ink)"/><circle cx="4" cy="6" r="2.2" fill="var(--pig-ink)"/>
+      <circle cx="-10" cy="-8" r="3" fill="var(--ink)"/><circle cx="10" cy="-8" r="3" fill="var(--ink)"/>
+      ${wet ? '<path d="M-30 -30q4 8 0 12q-4-4 0-12zM28 -20q4 8 0 12q-4-4 0-12zM0 -40q4 8 0 12q-4-4 0-12z" fill="#4a90d9"/>' : ''}
+      ${cold ? '<path d="M-8 22q8 -6 16 0" stroke="var(--ink)" stroke-width="2.5" fill="none"/>' : '<path d="M-8 18q8 8 16 0" stroke="var(--ink)" stroke-width="2.5" fill="none"/>'}
+    </g>`;
+  }
+  function drawHouse(opts = {}) {
+    const w = MATS[state.walls], see = w.see;
+    // The pig stands inside; see-through walls let you see it
+    $('house').innerHTML = `
+      <g id="house-body">
+        <ellipse cx="500" cy="446" rx="190" ry="14" fill="#0002"/>
+        <g id="walls-g">
+          <rect x="350" y="250" width="300" height="190" fill="#f6e9cf" stroke="var(--ink)" stroke-width="5"/>
+          ${pig(560, 360, 1, opts.wet, opts.cold)}
+          <rect x="350" y="250" width="300" height="190" fill="url(#p-${state.walls})" fill-opacity="${[1, .82, .45, .3][see]}" stroke="var(--ink)" stroke-width="5"/>
+          <rect x="415" y="330" width="60" height="110" rx="30" fill="#7a522c" stroke="var(--ink)" stroke-width="4"/>
+          <circle cx="462" cy="388" r="4" fill="#f2cf66"/>
+        </g>
+        <g id="roof-g">
+          <path d="M320 256L500 130L680 256Z" fill="url(#p-${state.roof})" stroke="var(--ink)" stroke-width="5" stroke-linejoin="round"/>
+        </g>
+      </g>`;
+  }
+
+  // ---------- results and notebook ----------
+  function setResult(text) { $('result').textContent = text; }
+  const WORDS = {
+    wolf: ['Blew away!', 'Fell down', 'Wobbled, but stood', "Didn't budge"],
+    rain: ['Soaked through', 'Drip, drip, drip', 'A few drips', 'Stayed dry'],
+    peek: ["Can't see in", 'Just a shadow', 'A little bit', 'See right through!'],
+    cold: ['Freezing!', 'Chilly', 'Warm enough', 'Cozy'],
+  };
+  function note(mat, test, level) {
+    (state.notes[mat] ||= {})[test] = level;
+    const rows = Object.entries(state.notes).map(([k, n]) =>
+      `<tr><td class="mat-name">${MATS[k].name}</td>${['wolf', 'rain', 'peek', 'cold'].map(t =>
+        `<td>${n[t] === undefined ? '<span class="empty">?</span>' : WORDS[t][n[t]]}</td>`).join('')}</tr>`).join('');
+    $('nb').innerHTML = rows;
+    const tested = Object.keys(state.notes).length;
+    $('ask').textContent = tested < 3
+      ? 'Try a few more materials. Which would you choose for walls? For a window? For a blanket?'
+      : 'Look at your notebook. Is any one material best at everything? Why might builders mix materials?';
+  }
+
+  // ---------- sound (off until turned on) ----------
+  let ctx;
+  function noise(dur, type, freq, gain) {
+    if (!state.sound) return;
+    ctx ||= new (window.AudioContext || window.webkitAudioContext)();
+    const len = ctx.sampleRate * dur, buf = ctx.createBuffer(1, len, ctx.sampleRate), d = buf.getChannelData(0);
+    for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * Math.sin(Math.PI * i / len);
+    const s = ctx.createBufferSource(), f = ctx.createBiquadFilter(), g = ctx.createGain();
+    s.buffer = buf; f.type = type; f.frequency.value = freq; g.gain.value = gain;
+    s.connect(f).connect(g).connect(ctx.destination); s.start();
+  }
+
+  // ---------- tests ----------
+  const wait = ms => new Promise(r => setTimeout(r, reduce ? Math.min(ms, 300) : ms));
+  function busy(on) { state.busy = on; document.querySelectorAll('.test, .mat').forEach(b => b.disabled = on); }
+
+  async function wolfTest() {
+    const lvl = MATS[state.walls].strong;
+    const wolf = $('wolf');
+    wolf.innerHTML = `<g transform="translate(150 330)">
+      <path d="M-40 110l10-60h50l10 60z" fill="#7c8088" stroke="var(--ink)" stroke-width="4"/>
+      <circle cx="0" cy="20" r="44" fill="#8a8e96" stroke="var(--ink)" stroke-width="4"/>
+      <path d="M-30 -14l-6-34 22 18zM30 -14l6-34-22 18z" fill="#8a8e96" stroke="var(--ink)" stroke-width="4" stroke-linejoin="round"/>
+      <path d="M20 22q40 -8 52 6q-30 14 -52 4z" fill="#a3a7ae" stroke="var(--ink)" stroke-width="4"/>
+      <circle cx="68" cy="24" r="6" fill="var(--ink)"/>
+      <circle cx="-8" cy="6" r="5" fill="var(--ink)"/><circle cx="18" cy="4" r="5" fill="var(--ink)"/>
+      <circle cx="40" cy="36" r="14" fill="#c0c3c9" stroke="var(--ink)" stroke-width="3"/>
+    </g>`;
+    wolf.style.display = '';
+    wolf.setAttribute('class', 'wolf-in');
+    setResult('He huffs... and he puffs...');
+    await wait(700);
+    noise(1.6, 'bandpass', 500, 1.2);
+    $('fx').innerHTML = [0, 1, 2, 3, 4].map(i =>
+      `<path class="puff" style="animation-delay:${i * .15}s" d="M240 ${330 + i * 22}q60 -14 120 0" stroke="#ffffff" stroke-width="8" fill="none" stroke-linecap="round"/>`).join('');
+    await wait(500);
+    const body = $('house-body'), walls = $('walls-g');
+    if (lvl === 0) { body.setAttribute('class', 'fly'); noise(.8, 'lowpass', 900, .8); }
+    else if (lvl === 1) { walls.setAttribute('class', 'fall'); $('roof-g').setAttribute('class', 'fall'); noise(.6, 'lowpass', 300, 1); }
+    else body.setAttribute('class', lvl === 2 ? 'shake' : '');
+    await wait(1400);
+    setResult(`${adj(state.walls)} walls: ${WORDS.wolf[lvl]}`);
+    note(state.walls, 'wolf', lvl);
+    await wait(1800);
+    wolf.style.display = 'none'; $('fx').innerHTML = ''; drawHouse();
+  }
+
+  async function rainTest() {
+    const lvl = MATS[state.roof].water;
+    $('sky').setAttribute('fill', '#8fa3b3'); $('sun').style.display = 'none';
+    $('weather').innerHTML = `<g fill="#9fb4c4"><ellipse cx="320" cy="70" rx="150" ry="50"/><ellipse cx="560" cy="60" rx="180" ry="60"/><ellipse cx="780" cy="80" rx="140" ry="48"/></g>` +
+      Array.from({length: 60}, (_, i) => `<path class="drop" style="animation-delay:${(i % 12) * .06}s" d="M${(i * 53) % 1000} 0v24" stroke="#4a90d9" stroke-width="4" stroke-linecap="round"/>`).join('');
+    noise(2.6, 'highpass', 2500, .5);
+    setResult('A rainstorm rolls in...');
+    await wait(1500);
+    drawHouse({wet: lvl < 2});
+    if (lvl < 3) $('fx').innerHTML = Array.from({length: 4 - lvl}, (_, i) =>
+      `<path class="drop" style="animation-duration:1.4s;animation-delay:${i * .3}s" d="M${500 + i * 30 - 45} 150v18" stroke="#4a90d9" stroke-width="5" stroke-linecap="round"/>`).join('');
+    setResult(`${adj(state.roof)} roof: ${WORDS.rain[lvl]}`);
+    note(state.roof, 'rain', lvl);
+    await wait(2600);
+    $('weather').innerHTML = ''; $('fx').innerHTML = ''; $('sky').setAttribute('fill', '#bfe3f2'); $('sun').style.display = ''; drawHouse();
+  }
+
+  async function peekTest() {
+    const lvl = MATS[state.walls].see;
+    setResult('Is anybody home? Take a peek...');
+    $('fx').innerHTML = `<g transform="translate(760 300)"><circle r="46" fill="#ffffff66" stroke="var(--ink)" stroke-width="7"/><path d="M30 34l40 40" stroke="var(--ink)" stroke-width="12" stroke-linecap="round"/></g>`;
+    await wait(1400);
+    setResult(`${adj(state.walls)} walls: ${WORDS.peek[lvl]}`);
+    note(state.walls, 'peek', lvl);
+    await wait(2000);
+    $('fx').innerHTML = '';
+  }
+
+  async function coldTest() {
+    const lvl = MATS[state.walls].warm;
+    $('sky').setAttribute('fill', '#1d2a4a'); $('sun').style.display = 'none';
+    $('weather').innerHTML = `<circle cx="160" cy="90" r="34" fill="#f4f1de"/>` +
+      Array.from({length: 40}, (_, i) => `<circle class="flake" style="animation-delay:${(i % 10) * .3}s" cx="${(i * 71) % 1000}" cy="0" r="5" fill="#fff"/>`).join('');
+    setResult('A cold, snowy night...');
+    await wait(1200);
+    drawHouse({cold: lvl < 2});
+    const temp = [5, 12, 19, 24][lvl];
+    $('fx').innerHTML = `<g transform="translate(700 270)"><rect x="-14" y="0" width="28" height="140" rx="14" fill="#fff" stroke="var(--ink)" stroke-width="4"/>
+      <rect x="-6" y="${130 - temp * 4.5}" width="12" height="${temp * 4.5}" rx="6" fill="${lvl < 2 ? '#4a90d9' : '#d2553a'}"/>
+      <circle cx="0" cy="146" r="20" fill="${lvl < 2 ? '#4a90d9' : '#d2553a'}" stroke="var(--ink)" stroke-width="4"/></g>`;
+    setResult(`${adj(state.walls)} walls: ${WORDS.cold[lvl]}`);
+    note(state.walls, 'cold', lvl);
+    await wait(2800);
+    $('weather').innerHTML = ''; $('fx').innerHTML = ''; $('sky').setAttribute('fill', '#bfe3f2'); $('sun').style.display = ''; drawHouse();
+  }
+
+  const TESTS = {wolf: wolfTest, rain: rainTest, peek: peekTest, cold: coldTest};
+  document.querySelectorAll('.test').forEach(b => b.addEventListener('click', async () => {
+    if (state.busy) return;
+    busy(true);
+    try { await TESTS[b.dataset.test](); } finally { busy(false); }
+  }));
+
+  $('sound').onclick = e => {
+    state.sound = !state.sound;
+    e.currentTarget.setAttribute('aria-pressed', state.sound);
+    e.currentTarget.textContent = state.sound ? '🔔 Sound' : '🔇 Sound';
+  };
+  $('read').onclick = () => {
+    if (!('speechSynthesis' in window)) return;
+    speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance($('result').textContent || $('predict').textContent);
+    u.rate = .9; speechSynthesis.speak(u);
+  };
+
+  drawHouse();
+})();
+</script>
+</body>
+</html>

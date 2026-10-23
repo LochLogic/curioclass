@@ -217,3 +217,48 @@ section.block { padding: 56px 0 8px; }
 .search-results { display: grid; gap: 8px; margin-top: 20px; }
 .search-results a { display: block; padding: 12px 16px; background: var(--card); border: 1px solid var(--line); border-radius: 12px; text-decoration: none; }
 .search-results a small { color: var(--muted); display: block; }
+
+/* ---- Browse layout: sticky section sidebar, modules in two columns ---- */
+.title-dot { display: inline-block; width: .55em; height: .55em; border-radius: 8px; margin-right: 12px; vertical-align: middle; }
+.browse { display: grid; gap: 32px; margin-top: 18px; }
+@media (min-width: 900px) { .browse { grid-template-columns: 220px minmax(0, 1fr); } }
+.browse-nav { display: none; }
+@media (min-width: 900px) {
+  .browse-nav { display: block; position: sticky; top: 88px; align-self: start; max-height: calc(100vh - 110px); overflow: auto; padding-right: 4px; }
+}
+.browse-nav .eyebrow { margin: 6px 0 10px; }
+.browse-nav nav { display: grid; gap: 2px; }
+.browse-nav a { display: grid; grid-template-columns: 12px 1fr auto; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 10px; text-decoration: none; font-size: 15px; font-weight: 500; color: var(--muted); }
+.browse-nav a i { width: 12px; height: 12px; border-radius: 4px; }
+.browse-nav a b { font: 600 12px var(--sans); color: var(--muted); }
+.browse-nav a:hover { background: var(--paper-2); color: var(--ink); }
+.browse-nav a[aria-current] { background: var(--card); color: var(--ink); box-shadow: inset 3px 0 0 var(--accent), 0 1px 2px #1f24300d; }
+.ready-toggle { display: flex; align-items: center; gap: 10px; margin-top: 18px; padding: 12px 10px; border-top: 1px solid var(--line); font-size: 14px; font-weight: 600; cursor: pointer; }
+.ready-toggle input { width: 18px; height: 18px; accent-color: var(--teal); }
+.jump { display: block; position: sticky; top: 76px; z-index: 5; margin-bottom: 8px; }
+.jump select { width: 100%; padding: 12px 14px; border: 1.5px solid var(--ink); border-radius: 12px; background: var(--card); font: 600 16px var(--sans); }
+@media (min-width: 900px) { .jump { display: none; } }
+
+.ready-now { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 20px; margin-bottom: 8px; }
+.ready-now h2 { font-size: 24px; margin-bottom: 14px; }
+.ready-now .shelf { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+.browse-group { padding-top: 26px; scroll-margin-top: 84px; }
+.group-head { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; margin-bottom: 14px; }
+.group-head h2 { font-size: clamp(24px, 2.6vw, 30px); }
+.group-head h2 a { text-decoration: none; }
+.group-head span { font-size: 14px; color: var(--muted); }
+.module-grid { display: grid; gap: 14px; }
+@media (min-width: 900px) { .module-grid { grid-template-columns: 1fr 1fr; } }
+.module-card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px; display: flex; flex-direction: column; gap: 10px; }
+.module-card h3 { font-size: 19px; }
+.module-card .desc { margin: -4px 0 0; font-size: 14px; color: var(--muted); }
+.module-tools { display: grid; gap: 8px; margin-top: auto; }
+.tool-chip { display: flex; align-items: center; gap: 12px; padding: 10px 12px; border: 1.5px dashed #c9bfa8; border-radius: 12px; text-decoration: none; background: var(--paper); }
+.tool-chip b { display: block; font: 600 16px var(--serif); }
+.tool-chip small { display: block; font-size: 13px; color: var(--muted); margin-top: 2px; }
+.tool-chip:hover { border-color: var(--ink); }
+.tool-chip.ready { border: 1.5px solid var(--teal); background: #f2f8f7; }
+.tool-chip img, .tool-chip .thumb { width: 64px; height: 40px; border-radius: 6px; object-fit: cover; flex: none; background: var(--paper-2); display: grid; place-items: center; font: 600 italic 18px var(--serif); }
+.tool-chip .tag.built { font-size: 11px; padding: 3px 7px; }
+.ready-only .module-card:not([data-ready]), .ready-only .browse-group:not([data-ready]), .ready-only .browse-nav a[data-empty] { display: none; }
+.none-ready { color: var(--muted); font-style: italic; }

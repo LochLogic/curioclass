@@ -138,26 +138,51 @@ shutil.copytree(SITE / 'assets', DIST / 'assets')
 render('home.html', '/', built=built, bench_sample=[t for t in bench if t['title'] in
        ('Bug Hunt', 'Balance the Beam', 'Fed Chair', 'Fair Use Court')], bands=bands)
 
+def browse_page(path, title, lede, trail, sections, nav_label, **extra):
+    """Grade, band and subject pages: sticky section nav, modules in two columns, ready tools first."""
+    seen, ready = set(), []
+    for s in sections:
+        s['ready'] = any(t['built'] for m in s['mods'] for t in m['tools'])
+        for m in s['mods']:
+            for t in m['tools']:
+                if t['built'] and t['tool_id'] not in seen:
+                    seen.add(t['tool_id'])
+                    ready.append(t)
+    count = sum(len(m['tools']) for s in sections for m in s['mods'])
+    render('browse.html', path, title=title, lede=lede.format(count=count, n=len(sections)), trail=trail,
+           sections=sections, nav_label=nav_label, ready=ready, count=count, **extra)
+
+
+def subject_sections(mods):
+    return [dict(id=s['subject_id'], label=s['short'], color=s['color'], href=f'/subjects/{s["subject_id"]}/',
+                 note=s['primary_standards'], mods=ms) for s, ms in module_groups(mods)]
+
+
 # grades and bands
 render('grades.html', '/grades/', bands=bands, grades=grades)
 for g in GRADES:
-    mods = [m for m in modules.values() if g in m['grades']]
-    render('grade.html', f'/grades/{g}/', title=grade_label(g), grade=g, band=grades[g]['band'],
-           groups=module_groups(mods), count=sum(len(by_module[m['module_id']]) for m in mods))
+    lede = ('Teacher-led on the big screen. ' if grades[g]['band'] == 'k2' else '') + '{count} tools across {n} subjects.'
+    browse_page(f'/grades/{g}/', grade_label(g), lede, [('Grades', '/grades/'), (grade_label(g), None)],
+                subject_sections([m for m in modules.values() if g in m['grades']]), 'Subjects',
+                subtitle='for every subject')
 for bid, b in bands.items():
-    mods = [m for m in modules.values() if set(m['grades']) & set(b['grade_list'])]
-    render('grade.html', f'/grades/{BAND_SLUG[bid]}/', title=b['label'], grade=None, band=bid, band_info=b,
-           groups=module_groups(mods), count=sum(len(by_module[m['module_id']]) for m in mods))
+    browse_page(f'/grades/{BAND_SLUG[bid]}/', b['label'], b['notes'].split(';')[0] + '. {count} tools across {n} subjects.',
+                [('Grades', '/grades/'), (b['label'], None)],
+                subject_sections([m for m in modules.values() if set(m['grades']) & set(b['grade_list'])]), 'Subjects',
+                subtitle='for every subject', show_grade=True)
 
 # subjects
 render('subjects.html', '/subjects/', counts={s: sum(1 for t in tools if t['module']['subject'] == s) for s in subjects})
 for sid, s in subjects.items():
-    mods = [m for m in modules.values() if m['subject'] == sid]
     by_grade = defaultdict(list)
-    for m in mods:
-        by_grade[m['grade']].append(dict(m, tools=by_module[m['module_id']]))
+    for m in modules.values():
+        if m['subject'] == sid:
+            by_grade[m['grade']].append(dict(m, tools=by_module[m['module_id']]))
     order = sorted(by_grade, key=lambda g: (GRADES.index(g.split('-')[0]), -len(expand(g))))
-    render('subject.html', f'/subjects/{sid}/', s=s, by_grade=[(g, by_grade[g]) for g in order], count=len(mods))
+    sections = [dict(id=f'grade-{g}', label=grade_label(g), color=s['color'], href=grade_href(g), note='', mods=by_grade[g])
+                for g in order]
+    browse_page(f'/subjects/{sid}/', s['label'], 'Aligned to ' + s['primary_standards'] + '. {count} tools.',
+                [('Subjects', '/subjects/'), (s['label'], None)], sections, 'Grades', subtitle='K-12', color=s['color'])
 
 # play styles and collections
 render('styles.html', '/styles/', counts={f: sum(1 for t in tools if t['format'] == f) for f in formats})

@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% from "macros.html" import card, chip, crumbs %}
+{% block title %}{{ title }}: free interactive tools{% if subtitle %} {{ subtitle }}{% endif %} · Curio Class{% endblock %}
+{% block description %}{{ count }} interactive tools for {{ title | lower }}{% if subtitle %} {{ subtitle }}{% endif %}. Free, no sign-up, works offline.{% endblock %}
+{% block main %}
+<div class="wrap">
+  {{ crumbs(trail) }}
+  <div class="page-head">
+    <h1>{% if color %}<span class="title-dot" style="background:var(--{{ color }})"></span>{% endif %}{{ title }}</h1>
+    <p>{{ lede }}</p>
+  </div>
+
+  <div class="browse">
+    <aside class="browse-nav" aria-label="{{ nav_label }}">
+      <p class="eyebrow">{{ nav_label }}</p>
+      <nav id="browse-links">
+        {% for s in sections %}
+        <a href="#{{ s.id }}" data-target="{{ s.id }}"{% if not s.ready %} data-empty{% endif %}><i style="background:var(--{{ s.color }})"></i><span>{{ s.label }}</span><b>{{ s.mods | length }}</b></a>
+        {% endfor %}
+      </nav>
+      <label class="ready-toggle"><input type="checkbox" id="ready-only"> Ready to use only</label>
+    </aside>
+
+    <div class="browse-main">
+      <label class="jump"><span class="sr-only">{{ nav_label }}</span>
+        <select id="jump">
+          <option value="">{{ nav_label }}…</option>
+          {% for s in sections %}<option value="{{ s.id }}">{{ s.label }} ({{ s.mods | length }})</option>{% endfor %}
+        </select>
+      </label>
+
+      {% if ready %}
+      <section class="ready-now" aria-labelledby="ready-h">
+        <h2 id="ready-h">Ready now</h2>
+        <div class="shelf">{% for t in ready %}{{ card(t) }}{% endfor %}</div>
+      </section>
+      {% endif %}
+
+      <p class="none-ready" id="none-ready" hidden>Nothing here is built yet. Everything on this page is still on the bench.</p>
+
+      {% for s in sections %}
+      <section class="group browse-group" id="{{ s.id }}"{% if s.ready %} data-ready{% endif %}>
+        <div class="group-head">
+          <h2>{% if s.href %}<a href="{{ s.href }}">{{ s.label }}</a>{% else %}{{ s.label }}{% endif %}</h2>
+          {% if s.note %}<span>{{ s.note }}</span>{% endif %}
+        </div>
+        <div class="module-grid">
+          {% for m in s.mods %}
+          {% set has_ready = m.tools | selectattr('built') | list | length > 0 %}
+          <article class="module-card"{% if has_ready %} data-ready{% endif %}>
+            <h3>{{ m.title }}</h3>
+            <p class="desc">{% if show_grade %}{{ grade_label(m.grade) }} · {% endif %}{{ m.description }}</p>
+            <div class="module-tools">{% for t in m.tools %}{{ chip(t) }}{% endfor %}</div>
+          </article>
+          {% endfor %}
+        </div>
+      </section>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script>
+(() => {
+  const links = [...document.querySelectorAll('#browse-links a')];
+  const groups = [...document.querySelectorAll('.browse-group')];
+  const byId = Object.fromEntries(links.map(a => [a.dataset.target, a]));
+
+  // Highlight the section you're reading
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { links.forEach(a => a.removeAttribute('aria-current')); byId[e.target.id]?.setAttribute('aria-current', 'true'); } });
+  }, {rootMargin: '-90px 0px -70% 0px'});
+  groups.forEach(g => io.observe(g));
+
+  // Phone: jump menu
+  document.getElementById('jump').addEventListener('change', e => {
+    if (e.target.value) document.getElementById(e.target.value).scrollIntoView({behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'});
+  });
+
+  // "Ready to use only" filter, remembered on this device
+  const box = document.getElementById('ready-only');
+  const apply = () => {
+    document.body.classList.toggle('ready-only', box.checked);
+    document.getElementById('none-ready').hidden = !box.checked || groups.some(g => g.hasAttribute('data-ready'));
+    try { localStorage.setItem('curio-ready-only', box.checked ? '1' : ''); } catch (e) {}
+  };
+  try { box.checked = localStorage.getItem('curio-ready-only') === '1'; } catch (e) {}
+  box.addEventListener('change', apply);
+  apply();
+})();
+</script>
+{% endblock %}

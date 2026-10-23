@@ -25,6 +25,19 @@
 {% endif %}
 {% endmacro %}
 
+{% macro chip(t) %}
+{% if t.built %}
+<a class="tool-chip ready" href="{{ t.url }}">
+  {% if t.preview %}<img src="{{ t.url }}preview.svg" alt="" loading="lazy">{% else %}<span class="thumb">{{ t.format_info.label[0] }}</span>{% endif %}
+  <span><b>{{ t.title }}</b><small><span class="tag built">Ready</span> {{ t.format_info.label }}</small></span>
+</a>
+{% else %}
+<a class="tool-chip" href="{{ t.url }}">
+  <span><b>{{ t.title }}</b><small>On the bench · {{ t.format_info.label }}</small></span>
+</a>
+{% endif %}
+{% endmacro %}
+
 {% macro shelf(items) %}
 {% set ready = items | selectattr('built') | list %}
 {% set sketched = items | rejectattr('built') | list %}
