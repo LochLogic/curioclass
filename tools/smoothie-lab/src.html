@@ -47,14 +47,18 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
 .jug{position:absolute;left:300px;top:76px;width:253px;height:470px;pointer-events:none}
 .jug .fill{position:absolute;inset:0;clip-path:polygon(9.5% 11%,74.5% 11%,70% 51.5%,13.5% 51.5%)}
 .layers{position:absolute;left:0;right:0;bottom:49%;display:flex;flex-direction:column-reverse;transition:height .5s}
-.layers i{display:block;border-top:2px solid #ffffffa0}
+.layers i{display:block;margin-bottom:-7px;background-repeat:repeat;background-size:auto 46px;
+  /* each scoop is a heap of that fruit with a wavy bottom edge tucked into the scoop below */
+  -webkit-mask:linear-gradient(#000,#000) top/100% calc(100% - 7px) no-repeat,url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='36' height='8'%3E%3Cpath d='M0 0H36V3Q27 9 18 3T0 3Z'/%3E%3C/svg%3E") bottom/36px 8px repeat-x;
+          mask:linear-gradient(#000,#000) top/100% calc(100% - 7px) no-repeat,url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='36' height='8'%3E%3Cpath d='M0 0H36V3Q27 9 18 3T0 3Z'/%3E%3C/svg%3E") bottom/36px 8px repeat-x}
+.layers i:first-child{margin-bottom:0;-webkit-mask:none;mask:none}
+.ticks{position:absolute;left:15%;bottom:49%;height:40%;width:16px;background:linear-gradient(to top,#ffffffd0 0 2px,transparent 2px) 0 100%/100% calc(100% / 24) repeat-y;filter:drop-shadow(0 0 1px #0006)}
 .liquid{position:absolute;left:0;right:0;bottom:49%;border-radius:0 0 8px 8px;transition:height .8s,background .8s}
 .liquid::after{content:'';position:absolute;left:0;right:0;top:0;height:14px;background:#ffffff55;border-radius:50%}
 .bowls{position:absolute;left:20px;top:410px;display:grid;grid-template-columns:repeat(4,64px);gap:8px}
 .bowl{position:relative;width:64px;height:120px;border:0;background:none;padding:0}
-.bowl img{position:absolute;left:-14px;bottom:28px;width:92px;height:70px;object-fit:contain;transition:transform .15s}
+.bowl img{position:absolute;left:-14px;bottom:8px;width:92px;height:76px;object-fit:contain;object-position:50% 100%;transition:transform .15s;filter:drop-shadow(0 6px 3px #0003)}
 .bowl:hover img{transform:translateY(-4px)}
-.bowl span{position:absolute;left:-4px;right:-4px;bottom:0;height:34px;border-radius:0 0 36px 36px;background:linear-gradient(#ffffff,#dfe9e5);box-shadow:0 4px 0 #0002}
 .bowl:disabled{opacity:.35;cursor:default}
 .flyer{position:absolute;width:60px;height:46px;object-fit:contain;pointer-events:none;z-index:5}
 .bubble{position:absolute;left:600px;top:16px;width:380px;background:#fff;border:3px solid #1f2b27;border-radius:18px;padding:10px 14px;font:700 19px/1.3 'Trebuchet MS','Segoe UI',sans-serif;box-shadow:0 5px 0 #0003;z-index:3}
@@ -124,7 +128,7 @@ td.hit{background:#fff1b8}
     <div class="scene" id="scene">
       <img id="owner" src="art:owner" alt="The smoothie bar owner">
       <div class="counter"></div>
-      <div class="jug" id="jug"><div class="fill"><div class="layers" id="layers"></div><div class="liquid" id="liquid"></div></div></div>
+      <div class="jug" id="jug"><div class="fill"><div class="layers" id="layers"></div><div class="liquid" id="liquid"></div></div><div class="ticks" title="Each mark is one scoop"></div></div>
       <img id="blender" src="art:blender" alt="">
       <div class="bowls" id="bowls"></div>
       <div class="order" id="order"></div>
@@ -261,12 +265,16 @@ td.hit{background:#fff1b8}
       $('liquid').style.height = '0%';
       $('layers').style.height = h + '%';
       // each scoop is its own band, so the layers are a tape diagram you can count
-      $('layers').replaceChildren(...ids.flatMap(k => Array.from({length: state.n[k]}, () => {
+      // one heap per fruit, each tucked into the one below with a wavy edge
+      const used = ids.filter(k => state.n[k]);
+      $('layers').replaceChildren(...used.map((k, j) => {
         const i = document.createElement('i');
-        i.style.height = (100 / Math.max(t, 1)) + '%';
-        i.style.background = `rgb(${F[k].color.join(',')})`;
+        i.style.height = `calc(${100 * state.n[k] / Math.max(t, 1)}% + ${j ? 7 : 0}px)`;
+        i.style.backgroundColor = `rgb(${F[k].color.join(',')})`;
+        i.style.backgroundImage = `url(${F[k].art})`;
+        i.style.backgroundPosition = `${(j * 37) % 100}% 50%`;
         return i;
-      })));
+      }));
     }
   }
   function drawControls() {
@@ -279,7 +287,7 @@ td.hit{background:#fff1b8}
       minus.onclick = () => change(row.dataset.id, -1);
       plus.onclick = () => change(row.dataset.id, 1);
     }
-    $('bowls').innerHTML = ids.map(k => `<button class="bowl" data-id="${k}" title="Add a scoop of ${F[k].name}" aria-label="Add a scoop of ${F[k].name}"><img src="${F[k].art}" alt=""><span></span></button>`).join('');
+    $('bowls').innerHTML = ids.map(k => `<button class="bowl" data-id="${k}" title="Add a scoop of ${F[k].name}" aria-label="Add a scoop of ${F[k].name}"><img src="${F[k].art}" alt=""></button>`).join('');
     for (const b of $('bowls').children) b.onclick = () => change(b.dataset.id, 1, b);
     readout();
   }

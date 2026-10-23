@@ -459,10 +459,21 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
     const voices = speechSynthesis.getVoices().filter(v => /^en(-|_|$)/i.test(v.lang));
     const score = v => (/natural|neural/i.test(v.name) ? 50 : 0) + (/premium|enhanced/i.test(v.name) ? 40 : 0) +
       (/google/i.test(v.name) ? 30 : 0) + (/aria|jenny|ava|samantha|libby|sonia/i.test(v.name) ? 10 : 0) +
-      (/en-US/i.test(v.lang) ? 5 : 0) + (v.default ? 1 : 0);
+      (/en-US/i.test(v.lang) ? 5 : 0) + (v.default ? 1 : 0) - (/david|mark|zira|desktop/i.test(v.name) ? 20 : 0);
     return voices.sort((a, b) => score(b) - score(a))[0] || null;
   }
-  if ('speechSynthesis' in window) speechSynthesis.getVoices();
+  if ('speechSynthesis' in window) {
+    // Chrome fills its voice list late; hold an early utterance until the good voices load, or it falls back to a robotic default
+    const speak = speechSynthesis.speak.bind(speechSynthesis);
+    speechSynthesis.speak = u => {
+      if (speechSynthesis.getVoices().length) return speak(u);
+      let done = false;
+      const go = () => { if (done) return; done = true; const v = bestVoice(); if (v) { u.voice = v; u.lang = v.lang; } speak(u); };
+      speechSynthesis.addEventListener('voiceschanged', go, {once: true});
+      setTimeout(go, 1500);
+    };
+    speechSynthesis.getVoices();
+  }
   $('read').onclick = () => {
     if (!('speechSynthesis' in window)) return;
     speechSynthesis.cancel();
@@ -470,7 +481,7 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
     const u = new SpeechSynthesisUtterance(text);
     const v = bestVoice();
     if (v) { u.voice = v; u.lang = v.lang; }
-    u.rate = .92; u.pitch = 1.08; speechSynthesis.speak(u);
+    u.rate = .95; u.pitch = 1; speechSynthesis.speak(u);
   };
 
   window.__lg = {state, go, add, run};  // for checking frames

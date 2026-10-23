@@ -68,6 +68,7 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
   font:700 28px/1.25 'Trebuchet MS','Segoe UI',sans-serif;box-shadow:0 6px 0 #0004}
 .strip b{color:var(--accent)}
 .strip mark{background:#ffe28a;border-radius:8px;padding:0 6px;color:inherit}
+.crumb{position:absolute;width:9px;height:9px;border-radius:2px;background:#b9dfe4;box-shadow:0 1px 0 #0003}
 .spark{position:absolute;width:16px;height:16px;border-radius:50%;background:#ffd34d;box-shadow:0 0 12px #ffd34d}
 
 .panel{background:#fffaf0;border-left:3px solid var(--line);padding:14px 16px;display:flex;flex-direction:column;gap:10px;overflow:auto}
@@ -233,6 +234,7 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
     untap: () => tone('triangle', 440, 440, .1, .08),
     hiss: () => noise(.5, 2500, .18, 'highpass'),
     thud: () => { noise(.35, 160, 1.1); tone('sine', 120, 45, .4, .5); },
+    crack: () => { noise(.08, 3500, .9, 'highpass'); noise(.25, 900, .7); noise(.18, 2200, .5, 'bandpass', .07); },
     boing: () => { tone('sine', 300, 900, .25, .16); tone('sine', 900, 500, .2, .08, .22); },
     whoosh: () => noise(.6, 1400, .3, 'bandpass'),
     ding: () => { tone('sine', 1319, 1319, .5, .14); tone('sine', 1760, 1760, .6, .1, .12); },
@@ -344,15 +346,9 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
     if (!reduce) $('scene').animate([{translate: '0 0'}, {translate: '0 6px'}, {translate: '0 -3px'}, {translate: '0 0'}], {duration: 260});
     await Promise.all(tiles.filter(t => t.word === 2).map(t => anim(t.el, [{transform: `translate(${t.x}px,0) scaleY(1)`}, {transform: `translate(${t.x}px,0) scale(1.08,.8)`}, {transform: `translate(${t.x}px,0) scaleY(1)`}], 320)));
     for (const t of tiles) t.el.classList.remove('mark');
-    // the dropped letters pop out and tumble off the belt
-    SFX.boing();
-    const out = tiles.filter(dropped);
-    out.forEach((t, k) => {
-      const dx = (k - (out.length - 1) / 2) * 90 + 40;  // tumble right, away from the words
-      anim(t.el, [{transform: `translate(${t.x}px,0) rotate(0)`, opacity: 1},
-                  {transform: `translate(${t.x + dx * .6}px,-170px) rotate(${dx > 0 ? 160 : -160}deg)`, opacity: 1, offset: .45},
-                  {transform: `translate(${t.x + dx * 1.5}px,330px) rotate(${dx > 0 ? 380 : -380}deg)`, opacity: 0}], 1300, 'ease-out');
-    });
+    // the press breaks the dropped letters into pieces that scatter off the belt
+    SFX.crack();
+    for (const t of tiles.filter(dropped)) shatter(t);
     await wait(500);
     await pressTo([{top: HEAD_DOWN + 'px'}, {top: HEAD_DOWN - 60 + 'px'}], 300, 'ease-out');
     // the rest slide together, leaving a gap where the letters were
@@ -393,11 +389,49 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
     for (const t of tiles) t.el.classList.remove('made');
     await Promise.all(tiles.filter(t => !dropped(t)).map(t => anim(t.el, [{transform: t.el.style.transform}, {transform: `translate(${t.x}px,0)`}], 700)));
     SFX.whoosh();
+    // the broken letters come back whole
     await Promise.all(tiles.filter(dropped).map(t => anim(t.el, [{transform: `translate(${t.x}px,-260px) rotate(-200deg)`, opacity: 0}, {transform: `translate(${t.x}px,0) rotate(0)`, opacity: 1}], 900, 'cubic-bezier(.3,1.4,.5,1)')));
     $('plus').style.opacity = 1;
     state.phase = 'ready';
     strip(sentence(w, false), w.s.replace('{}', w.a + ' ' + w.b));
     state.busy = false; hint();
+  }
+
+  // Pieces that cover a tile: each one is a copy of the tile clipped to one shard
+  const SHARDS = [
+    [[0, 0], [48, 0], [32, 42], [0, 58]],
+    [[48, 0], [100, 0], [100, 32], [62, 46], [32, 42]],
+    [[0, 58], [32, 42], [62, 46], [48, 100], [0, 100]],
+    [[62, 46], [100, 32], [100, 72], [76, 100], [48, 100]],
+    [[100, 72], [100, 100], [76, 100]],
+  ];
+  function shatter(t) {
+    t.el.style.opacity = 0;
+    SHARDS.forEach((poly, k) => {
+      const piece = t.el.cloneNode(true);
+      piece.classList.remove('mark');
+      piece.removeAttribute('id'); piece.tabIndex = -1; piece.setAttribute('aria-hidden', 'true');
+      piece.style.opacity = 1;
+      piece.style.clipPath = `polygon(${poly.map(([x, y]) => `${x}% ${y}%`).join(',')})`;
+      $('tiles').append(piece);
+      // fly away from the middle of the tile, then fall
+      const cx = poly.reduce((a, p) => a + p[0], 0) / poly.length - 50, cy = poly.reduce((a, p) => a + p[1], 0) / poly.length - 50;
+      const dx = cx * 3.2 + 30, up = 60 + Math.abs(cy) + k * 12, spin = (cx >= 0 ? 1 : -1) * (120 + k * 70);
+      anim(piece, [{transform: `translate(${t.x}px,0) rotate(0)`, opacity: 1},
+                   {transform: `translate(${t.x + dx}px,${-up}px) rotate(${spin / 2}deg)`, opacity: 1, offset: .35},
+                   {transform: `translate(${t.x + dx * 2.2}px,320px) rotate(${spin}deg)`, opacity: 0}], 1400, 'ease-out').then(() => piece.remove());
+    });
+    // a puff of crumbs
+    if (reduce) return;
+    for (let i = 0; i < 10; i++) {
+      const c = document.createElement('i');
+      c.className = 'crumb';
+      c.style.left = t.x + 31 + 'px'; c.style.top = Y + 50 + 'px';
+      $('scene').append(c);
+      const a = Math.PI * (1 + Math.random()), r = 50 + Math.random() * 60;
+      c.animate([{transform: 'translate(0,0)', opacity: 1}, {transform: `translate(${Math.cos(a) * r}px,${Math.sin(a) * r * .6}px)`, opacity: 0}],
+                {duration: 700, easing: 'ease-out'}).finished.then(() => c.remove());
+    }
   }
 
   function sparks(x, y) {
@@ -447,17 +481,28 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
     const voices = speechSynthesis.getVoices().filter(v => /^en(-|_|$)/i.test(v.lang));
     const score = v => (/natural|neural/i.test(v.name) ? 50 : 0) + (/premium|enhanced/i.test(v.name) ? 40 : 0) +
       (/google/i.test(v.name) ? 30 : 0) + (/aria|jenny|ava|samantha|libby|sonia/i.test(v.name) ? 10 : 0) +
-      (/en-US/i.test(v.lang) ? 5 : 0) + (v.default ? 1 : 0);
+      (/en-US/i.test(v.lang) ? 5 : 0) + (v.default ? 1 : 0) - (/david|mark|zira|desktop/i.test(v.name) ? 20 : 0);
     return voices.sort((a, b) => score(b) - score(a))[0] || null;
   }
-  if ('speechSynthesis' in window) speechSynthesis.getVoices();
+  if ('speechSynthesis' in window) {
+    // Chrome fills its voice list late; hold an early utterance until the good voices load, or it falls back to a robotic default
+    const speak = speechSynthesis.speak.bind(speechSynthesis);
+    speechSynthesis.speak = u => {
+      if (speechSynthesis.getVoices().length) return speak(u);
+      let done = false;
+      const go = () => { if (done) return; done = true; const v = bestVoice(); if (v) { u.voice = v; u.lang = v.lang; } speak(u); };
+      speechSynthesis.addEventListener('voiceschanged', go, {once: true});
+      setTimeout(go, 1500);
+    };
+    speechSynthesis.getVoices();
+  }
   function say(text, lead = '') {
     if (!state.sound || !('speechSynthesis' in window)) return;
     speechSynthesis.cancel();
     const u = new SpeechSynthesisUtterance(lead + text);
     const v = bestVoice();
     if (v) { u.voice = v; u.lang = v.lang; }
-    u.rate = .88; u.pitch = 1.05; speechSynthesis.speak(u);
+    u.rate = .95; u.pitch = 1; speechSynthesis.speak(u);
   }
   $('read').onclick = () => {
     const w = state.cur;
