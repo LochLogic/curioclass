@@ -13,6 +13,7 @@ Warm storybook illustration: soft gouache and colored-pencil texture, clean shap
 ```
 tools/<id>/art/prompts.json   what to draw (committed)
 python scripts/art.py <id>    draws it: raw PNG to art/raw/ (not committed), finished art/<name>.webp (committed)
+python scripts/art.py <id> --rekey   redoes only the cutout and sizing from art/raw/ (no new drawing, free)
 tools/<id>/src.html           the tool source, referencing images as art:<name>
 python scripts/bundle_tool.py inlines them -> tools/<id>/<id>.html (one offline file, as the contract requires)
 ```
