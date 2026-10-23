@@ -1,0 +1,13 @@
+{
+  "id": "state-quest",
+  "status": "beta",
+  "hook": "Click a state, name it, fill the map. Practice at your own pace, or take the three-strike Challenge.",
+  "outcome": "Locate and name all 50 US states",
+  "driver": "students or teacher",
+  "minutes": "10-20",
+  "modes": ["Practice", "Challenge"],
+  "grades_label": "Grades 3-8",
+  "sources": ["Map: us-atlas v3, derived from US Census Bureau boundaries (public domain)"],
+  "third_party": [],
+  "updated": "2026-10-11"
+}

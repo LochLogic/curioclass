@@ -68,7 +68,7 @@ Browsing paths (from the Phase 1 decisions plus this phase):
 - **Health topics** (growing up, substance use, mental health) are configurable to district policy and link to support resources.
 - **No student data leaves the device.** Recording, journaling and question-box tools store only in the browser.
 - **Finance tools are educational only.** They use historical index data, never picks or advice.
-- **Existing tools mapped:** The Elements Inspector → Chemistry, atomic structure. State Quest → grade 4, US regions and states.
+- **Existing tools mapped:** Elements Inspector → Chemistry, atomic structure. State Quest → grade 4, US regions and states.
 
 ## Not a quiz bank (Cory, 2026-10-23)
 

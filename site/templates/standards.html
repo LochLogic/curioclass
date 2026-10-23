@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Browse by standard · Curio Class{% endblock %}
+{% block main %}
+<div class="wrap">
+  <div class="page-head"><h1>Standards</h1><p>Every tool is aligned to the national framework for its subject. Most state standards are built on these, so a code here usually maps straight to yours.</p></div>
+  {% for fw, codes in by_fw %}
+  <section class="group">
+    <h2>{{ fw }}</h2><p>{{ codes | length }} codes</p>
+    <p class="std-list" style="line-height:2.1">{% for c in codes %}<a href="/standards/{{ slug(c) }}/"><code>{{ c }}</code></a> {% endfor %}</p>
+  </section>
+  {% endfor %}
+</div>
+{% endblock %}

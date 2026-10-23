@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% from "macros.html" import shelf, crumbs %}
+{% set m = t.module %}
+{% block title %}{{ t.title }}: free interactive {{ t.format_info.label | lower }}, {{ t.meta.grades_label | lower }} · Curio Class{% endblock %}
+{% block description %}{{ t.meta.hook }} Free, no sign-up, works offline.{% endblock %}
+{% block main %}
+<div class="wrap">
+  {{ crumbs([(grade_label(m.grade), grade_href(m.grade)), (t.subject_info.short, '/subjects/' ~ m.subject ~ '/'), (m.title, None)]) }}
+  <div class="tool-hero">
+    <div class="stage">
+      <iframe title="{{ t.title }}" src="{{ t.url }}{{ t.file }}" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;border:0;background:#fff"></iframe>
+    </div>
+    <div class="tool-info">
+      <p class="eyebrow">{{ t.format_info.label }} · {{ t.meta.grades_label }}{% if t.meta.status == 'beta' %} · Beta{% endif %}</p>
+      <h1>{{ t.title }}</h1>
+      <p class="hook">{{ t.meta.hook }}</p>
+      <div class="actions">
+        <a class="btn primary" href="{{ t.url }}{{ t.file }}" target="_blank" rel="noopener">▶ Play full screen</a>
+        <a class="btn" href="{{ t.url }}{{ t.file }}" download>Download</a>
+        <a class="btn" href="#p-embed" onclick="document.getElementById('t-embed').click()">Embed</a>
+      </div>
+      <dl class="facts">
+        <dt>Students will</dt><dd>{{ t.meta.outcome }}</dd>
+        <dt>Who drives</dt><dd>{{ {'teacher': 'Teacher on the big screen', 'students': 'Students on devices', 'students or teacher': 'Students on devices, or teacher on the big screen'}[t.meta.driver] }}</dd>
+        <dt>Time</dt><dd>{{ t.meta.minutes }}{% if t.meta.minutes[0].isdigit() %} minutes{% endif %}</dd>
+        <dt>Modes</dt><dd>{{ t.meta.modes | join(' · ') if t.meta.modes else 'Just explore, no score' }}</dd>
+        <dt>Works offline</dt><dd>Yes, one {{ t.size_kb }} KB file</dd>
+        {% if collection %}<dt>Collection</dt><dd><a href="/collections/{{ t.family }}/">{{ t.family.replace('-', ' ') | title }}</a></dd>{% endif %}
+      </dl>
+    </div>
+  </div>
+
+  <div class="tabs" role="tablist" aria-label="About this tool">
+    <button role="tab" aria-selected="true" aria-controls="p-notes" id="t-notes">Teacher notes</button>
+    <button role="tab" aria-selected="false" aria-controls="p-std" id="t-std">Standards</button>
+    <button role="tab" aria-selected="false" aria-controls="p-embed" id="t-embed">Embed and download</button>
+    <button role="tab" aria-selected="false" aria-controls="p-src" id="t-src">Sources and license</button>
+  </div>
+  <div class="panel notes-body" role="tabpanel" id="p-notes" aria-labelledby="t-notes">
+    {% if t.notes_html %}{{ t.notes_html | safe }}{% else %}<p>Teacher notes coming soon.</p>{% endif %}
+  </div>
+  <div class="panel" role="tabpanel" id="p-std" aria-labelledby="t-std" hidden>
+    {% for c in m.codes %}<div class="std"><a href="/standards/{{ slug(c) }}/"><code>{{ c }}</code></a><span>{{ std_framework[c] }}</span></div>{% endfor %}
+    <p style="color:var(--muted);font-size:14px">National frameworks. Your state's standards are usually built on these.</p>
+  </div>
+  <div class="panel" role="tabpanel" id="p-embed" aria-labelledby="t-embed" hidden>
+    <p>Paste this into Google Classroom, Canvas, Schoology or a class website:</p>
+    <div class="embed-box">&lt;iframe src="https://curioclass.org{{ t.url }}{{ t.file }}" width="100%" height="640" title="{{ t.title }}" loading="lazy"&gt;&lt;/iframe&gt;</div>
+    <p>Or <a href="{{ t.url }}{{ t.file }}" download>download the single HTML file</a>. It runs offline in any browser, from a USB stick or a shared drive.</p>
+  </div>
+  <div class="panel" role="tabpanel" id="p-src" aria-labelledby="t-src" hidden>
+    {% for s in t.meta.sources %}<p>{{ s }}</p>{% endfor %}
+    {% for s in t.meta.third_party %}<p>Includes {{ s }}.</p>{% endfor %}
+    <p>Curio Class content is <a href="/license/">CC BY 4.0</a> and code is MIT. Use it, share it, adapt it. Just credit Curio Class.</p>
+  </div>
+
+  {% if related %}
+  <section class="block" style="padding-top:24px"><div class="block-head"><h2>Nearby on the shelf</h2></div>{{ shelf(related) }}</section>
+  {% endif %}
+</div>
+{% endblock %}
+{% block scripts %}
+<script>
+document.querySelectorAll('[role=tab]').forEach(tab => tab.addEventListener('click', () => {
+  document.querySelectorAll('[role=tab]').forEach(t => {
+    t.setAttribute('aria-selected', t === tab);
+    document.getElementById(t.getAttribute('aria-controls')).hidden = t !== tab;
+  });
+}));
+</script>
+{% endblock %}

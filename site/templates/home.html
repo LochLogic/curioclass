@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% from "macros.html" import card %}
+{% block title %}Curio Class · Hands-on lessons for every grade, free forever{% endblock %}
+{% block main %}
+<div class="wrap">
+  <section class="hero">
+    <div class="hero-grid">
+      <div>
+        <p class="eyebrow">Free for every classroom, K-12</p>
+        <h1>A cabinet of <em>curious</em> things to learn with.</h1>
+        <p class="lede">Interactive tools to project, share or download. Explore the elements, find every state, build a bridge. Some are games, most are just good to poke at.</p>
+        <form class="search" role="search" action="/search/">
+          <label class="sr-only" for="q">Search tools</label>
+          <input id="q" name="q" type="search" placeholder="Search a topic, grade or standard">
+          <button>Search</button>
+        </form>
+        <p class="search-hint">Try <a href="/search/?q=fractions"><code>fractions</code></a>, <a href="/search/?q=revolution"><code>revolution</code></a> or <a href="/search/?q=MS-PS1-4"><code>MS-PS1-4</code></a></p>
+      </div>
+      {% include "cabinet.html" %}
+    </div>
+  </section>
+
+  <div class="promise">
+    <span>Free forever</span><span>No sign-up</span><span>No ads or tracking</span><span>Works offline</span><span>Download any tool</span>
+  </div>
+
+  <section class="block" aria-labelledby="grades-h">
+    <div class="block-head"><h2 id="grades-h">Pick a grade</h2><a href="/grades/">All grades and bands →</a></div>
+    <div class="grades">
+      {% for bid, b in bands.items() %}
+      <div class="band">
+        <h3><a href="/grades/{{ BAND_SLUG[bid] }}/" style="text-decoration:none">{{ b.label | replace('Grades ', '') }}</a></h3>
+        <p>{{ b.notes.split(';')[0] }}</p>
+        <div class="chips">{% for g in b.grade_list %}<a href="/grades/{{ g }}/">{{ grade_short(g) }}</a>{% endfor %}</div>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="ready-h">
+    <div class="block-head"><h2 id="ready-h">Ready to use</h2><a href="/tools/">All {{ n_built }} →</a></div>
+    <div class="shelf">{% for t in built %}{{ card(t) }}{% endfor %}</div>
+  </section>
+
+  <section class="block" aria-labelledby="styles-h">
+    <div class="block-head"><h2 id="styles-h">Pick a play style</h2><a href="/styles/">All {{ formats | length }} styles →</a></div>
+    <div class="styles">
+      <a class="style-card free" href="/styles/#explore"><b>Just explore</b><span>No score, no quiz. Click around and wonder.</span></a>
+      {% for fid in ['showdown', 'mystery', 'simulator', 'tycoon', 'studio'] %}
+      <a class="style-card" href="/styles/{{ fid }}/"><b>{{ formats[fid].label }}</b><span>{{ formats[fid].what_it_feels_like.split(';')[0] }}</span></a>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="subj-h">
+    <div class="block-head"><h2 id="subj-h">Subjects</h2></div>
+    <div class="subjects">
+      {% for sid, s in subjects.items() %}<a href="/subjects/{{ sid }}/"><i style="background:var(--{{ s.color }})"></i>{{ s.short }}</a>{% endfor %}
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="bench-h">
+    <div class="block-head"><h2 id="bench-h">On the bench</h2><a href="/bench/">See all {{ n_bench }} →</a></div>
+    <p style="margin:-10px 0 20px;color:var(--muted);max-width:60ch">Tools we've sketched but haven't built yet. They show up here first.</p>
+    <div class="bench">{% for t in bench_sample %}{{ card(t) }}{% endfor %}</div>
+  </section>
+</div>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% from "macros.html" import shelf, crumbs %}
+{% block title %}{{ title }} · Curio Class{% endblock %}
+{% block robots %}{% if path.startswith('/bench/') or path.startswith('/standards/') %}<meta name="robots" content="noindex">{% endif %}{% endblock %}
+{% block main %}
+<div class="wrap">
+  {% if crumb %}{{ crumbs([crumb, (title, None)]) }}{% endif %}
+  <div class="page-head"><h1>{{ title }}</h1><p>{{ lede }}</p></div>
+  <p class="count">{{ items | length }} tools</p>
+  {{ shelf(items) }}
+</div>
+{% endblock %}

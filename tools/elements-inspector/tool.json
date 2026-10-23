@@ -1,0 +1,13 @@
+{
+  "id": "elements-inspector",
+  "status": "beta",
+  "hook": "Spin a 3D atom, light up its emission spectrum and wander the whole periodic table. No quiz, just curiosity.",
+  "outcome": "Explore how atomic structure connects to each element's place and properties",
+  "driver": "students or teacher",
+  "minutes": "Open-ended",
+  "modes": [],
+  "grades_label": "Grades 6-12",
+  "sources": ["Emission lines: NIST Handbook of Basic Atomic Spectroscopic Data (elements 1-99)"],
+  "third_party": ["Three.js r128 (MIT)"],
+  "updated": "2026-10-22"
+}

@@ -1,0 +1,55 @@
+# The Site
+
+A static site generated from the catalog data. No server, no database, no npm.
+
+## Build and check
+
+```
+python scripts/build_db.py       # modules + standards database (after editing data/modules)
+python scripts/check_concepts.py --write   # tool concepts catalog (after editing data/concepts)
+python scripts/check_tools.py    # every built tool meets docs/TOOL-CONTRACT.md
+python scripts/build_site.py     # writes dist/ (about 1,550 pages)
+python scripts/check_site.py     # no broken internal links, nothing loaded from other hosts
+```
+
+Needs Python with `jinja2` and `markdown`. `dist/` is generated and not committed.
+
+## Layout
+
+| Path | What |
+|---|---|
+| `site/templates/` | Jinja2 page templates (`base.html` frame, `macros.html` cards) |
+| `site/templates/pages/` | About, teachers, privacy, accessibility, license |
+| `site/assets/` | `curio.css`, self-hosted fonts, icon |
+| `site/mockups/` | The original design mockups (reference only) |
+| `tools/<id>/` | Built tools (see TOOL-CONTRACT.md) |
+
+## Pages generated
+
+| URL | Page | In sitemap |
+|---|---|---|
+| `/` | Home | yes |
+| `/grades/`, `/grades/<k..12>/`, `/grades/<k-2, 3-5, 6-8, 9-12>/` | Grade and band pages | yes |
+| `/subjects/`, `/subjects/<id>/` | Subject pages | yes |
+| `/styles/`, `/styles/<format>/` | Play styles | yes |
+| `/collections/`, `/collections/<family>/` | Tool families across grades | yes |
+| `/standards/` | Standards index | yes |
+| `/standards/<code>/` | Tools for one code | no (noindex until more tools are built) |
+| `/tools/` | Built tools | yes |
+| `/tools/<id>/` | Tool page (built) | yes |
+| `/tools/<id>/` | On the bench page (unbuilt) | no (noindex) |
+| `/tools/<id>/<id>.html` | The tool file itself: play and download | n/a |
+| `/bench/` | All unbuilt concepts | no |
+| `/search/` | Client-side search over `search-index.json` | no |
+
+## How a concept becomes a built tool
+
+1. Build the tool as one HTML file following docs/TOOL-CONTRACT.md.
+2. Put it in `tools/<id>/` with `tool.json` (and ideally `notes.md` and `preview.svg`), where `<id>` is the concept's `tool_id`.
+3. Run the checks and the build. The bench page becomes a full tool page, it moves into the sitemap, and it shows up on the shelf everywhere.
+
+## Not done yet
+
+- Deploy: Cloudflare Pages project for curioclass.org (build locally, upload `dist/`), after Cory buys the domain
+- Dark mode
+- Preview images for future tools (cards fall back to a format pattern)

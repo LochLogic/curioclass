@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Search · Curio Class{% endblock %}
+{% block robots %}<meta name="robots" content="noindex">{% endblock %}
+{% block main %}
+<div class="wrap">
+  <div class="page-head"><h1>Search</h1><p>Search by topic, tool name, grade, subject, play style or standard code. Searching happens on your device.</p></div>
+  <form class="search" role="search" style="margin-top:20px" onsubmit="return false">
+    <label class="sr-only" for="q">Search tools</label>
+    <input id="q" name="q" type="search" placeholder="Try fractions, volcano, Grade 3 or MS-PS1-4" autofocus>
+    <button>Search</button>
+  </form>
+  <p class="count" id="count" role="status" aria-live="polite" style="margin-top:16px"></p>
+  <div class="search-results" id="results"></div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script>
+(async () => {
+  const q = document.getElementById('q'), out = document.getElementById('results'), count = document.getElementById('count');
+  const data = await fetch('/search-index.json').then(r => r.json());
+  const esc = s => s.replace(/[&<>"]/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c]));
+  const run = () => {
+    const terms = q.value.toLowerCase().split(/\s+/).filter(Boolean);
+    if (!terms.length) { out.innerHTML = ''; count.textContent = ''; return; }
+    const hits = data.filter(d => {
+      const hay = [d.t, d.g, d.s, d.f, d.m, d.c, d.d].join(' ').toLowerCase();
+      return terms.every(t => hay.includes(t));
+    }).sort((a, b) => b.b - a.b);
+    count.textContent = hits.length + (hits.length === 1 ? ' tool' : ' tools');
+    out.innerHTML = hits.slice(0, 80).map(d =>
+      '<a href="' + d.u + '"><b>' + esc(d.t) + '</b>' + (d.b ? ' <span class="tag built">Ready</span>' : '') +
+      '<small>' + [d.g, d.s, d.f, d.m].map(esc).join(' · ') + '</small></a>').join('');
+  };
+  q.value = new URLSearchParams(location.search).get('q') || '';
+  q.addEventListener('input', run);
+  run();
+})();
+</script>
+{% endblock %}

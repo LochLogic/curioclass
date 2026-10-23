@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% from "macros.html" import shelf, crumbs %}
+{% block title %}{{ title }}: free interactive tools for every subject · Curio Class{% endblock %}
+{% block description %}{{ count }} interactive tools for {{ title | lower }}, across every subject. Free, no sign-up, works offline.{% endblock %}
+{% block main %}
+<div class="wrap">
+  {{ crumbs([('Grades', '/grades/'), (title, None)]) }}
+  <div class="page-head">
+    <h1>{{ title }}</h1>
+    <p>{% if band_info %}{{ band_info.notes.split(';')[0] }}. {% elif band == 'k2' %}Teacher-led on the big screen. {% endif %}{{ count }} tools across {{ groups | length }} subjects.</p>
+  </div>
+  {% for s, mods in groups %}
+  <section class="group" id="{{ s.subject_id }}">
+    <h2><a href="/subjects/{{ s.subject_id }}/">{{ s.short }}</a></h2>
+    <p>{{ s.primary_standards }}</p>
+    {% for m in mods %}
+    <div class="module-row">
+      <div><h3>{{ m.title }}</h3><p class="desc">{% if not grade %}{{ grade_label(m.grade) }} · {% endif %}{{ m.description }}</p></div>
+      <div>{{ shelf(m.tools) }}</div>
+    </div>
+    {% endfor %}
+  </section>
+  {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Play styles · Curio Class{% endblock %}
+{% block main %}
+<div class="wrap">
+  <div class="page-head"><h1>Pick a play style</h1><p>Some tools are games. Many have no score at all. Pick the feel you want for today.</p></div>
+  <section class="group" id="explore">
+    <h2>Just explore</h2><p>No score, no quiz. Click around and wonder.</p>
+    <div class="styles">
+      {% for fid, f in formats.items() if fid in FREE_FORMATS %}
+      <a class="style-card free" href="/styles/{{ fid }}/"><b>{{ f.label }}</b><span>{{ f.what_it_feels_like.split(';')[0] }} · {{ counts[fid] }}</span></a>
+      {% endfor %}
+    </div>
+  </section>
+  <section class="group">
+    <h2>Play and challenge</h2><p>Games, puzzles and missions. Challenges are always optional.</p>
+    <div class="styles">
+      {% for fid, f in formats.items() if fid not in FREE_FORMATS %}
+      <a class="style-card" href="/styles/{{ fid }}/"><b>{{ f.label }}</b><span>{{ f.what_it_feels_like.split(';')[0] }} · {{ counts[fid] }}</span></a>
+      {% endfor %}
+    </div>
+  </section>
+</div>
+{% endblock %}

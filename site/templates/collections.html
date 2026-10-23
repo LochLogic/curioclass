@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Collections · Curio Class{% endblock %}
+{% block main %}
+<div class="wrap">
+  <div class="page-head"><h1>Collections</h1><p>Families of tools that share one engine and grow with students from grade to grade.</p></div>
+  <div class="mini" style="margin-top:24px">
+    {% for fam, items in families %}
+    <a href="/collections/{{ fam }}/"><b>{{ fam.replace('-', ' ') | title }}</b><span>{{ items | length }} tools · {{ grade_label(items[0].module.grade) }} to {{ grade_label(items[-1].module.grade) | replace('Grade ', '') | replace('Grades ', '') }}</span></a>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

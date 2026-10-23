@@ -1,0 +1,38 @@
+{% macro card(t) %}
+{% if t.built %}
+<a class="specimen" href="{{ t.url }}">
+  {% if t.preview %}
+  <div class="art"><img src="{{ t.url }}preview.svg" alt="" loading="lazy"></div>
+  {% else %}
+  <div class="art pattern"><span>{{ t.format_info.label }}</span></div>
+  {% endif %}
+  <div class="label">
+    <h3>{{ t.title }}</h3>
+    <p>{{ t.meta.hook }}</p>
+    <div class="meta">
+      <span class="tag subject" style="background:var(--{{ t.subject_info.color }})">{{ t.subject_info.short }}</span>
+      <span class="tag">{{ t.meta.grades_label }}</span>
+      <span class="tag style">{{ t.format_info.label }}</span>
+    </div>
+  </div>
+</a>
+{% else %}
+<a class="sketch" href="{{ t.url }}">
+  <span class="eyebrow">{{ grade_label(t.module.grade) }} · {{ t.subject_info.short }} · {{ t.format_info.label }}</span>
+  <h3>{{ t.title }}</h3>
+  <p>{{ t.concept | truncate(110) }}</p>
+</a>
+{% endif %}
+{% endmacro %}
+
+{% macro shelf(items) %}
+{% set ready = items | selectattr('built') | list %}
+{% set sketched = items | rejectattr('built') | list %}
+{% if ready %}<div class="shelf">{% for t in ready %}{{ card(t) }}{% endfor %}</div>{% endif %}
+{% if ready and sketched %}<div style="height:14px"></div>{% endif %}
+{% if sketched %}<div class="bench">{% for t in sketched %}{{ card(t) }}{% endfor %}</div>{% endif %}
+{% endmacro %}
+
+{% macro crumbs(items) %}
+<nav class="crumbs" aria-label="Breadcrumb">{% for label, href in items %}{% if href %}<a href="{{ href }}">{{ label }}</a>{% else %}<span>{{ label }}</span>{% endif %}{% if not loop.last %} › {% endif %}{% endfor %}</nav>
+{% endmacro %}

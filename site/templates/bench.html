@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% from "macros.html" import shelf, crumbs %}
+{% set m = t.module %}
+{% block title %}{{ t.title }} (on the bench) · Curio Class{% endblock %}
+{% block robots %}<meta name="robots" content="noindex">{% endblock %}
+{% block main %}
+<div class="wrap">
+  {{ crumbs([(grade_label(m.grade), grade_href(m.grade)), (t.subject_info.short, '/subjects/' ~ m.subject ~ '/'), (m.title, None)]) }}
+  <div class="bench-hero">
+    <p class="eyebrow" style="color:#9a8f78">On the bench · not built yet</p>
+    <h1>{{ t.title }}</h1>
+    <p style="font-size:20px;color:var(--muted);max-width:60ch">{{ t.concept }}</p>
+    <dl class="facts" style="max-width:600px;background:transparent">
+      <dt>Play style</dt><dd><a href="/styles/{{ t.format }}/">{{ t.format_info.label }}</a></dd>
+      <dt>Module</dt><dd>{{ m.title }}: {{ m.description }}</dd>
+      <dt>Grade</dt><dd>{{ grade_label(m.grade) }} · <a href="/subjects/{{ m.subject }}/">{{ t.subject_info.short }}</a></dd>
+      <dt>Standards</dt><dd>{% for c in m.codes %}<a href="/standards/{{ slug(c) }}/"><code>{{ c }}</code></a> {% endfor %}</dd>
+      {% if collection %}<dt>Collection</dt><dd><a href="/collections/{{ t.family }}/">{{ t.family.replace('-', ' ') | title }}</a></dd>{% endif %}
+    </dl>
+  </div>
+  {% if related %}
+  <section class="block" style="padding-top:8px"><div class="block-head"><h2>Nearby on the shelf</h2></div>{{ shelf(related) }}</section>
+  {% endif %}
+</div>
+{% endblock %}
