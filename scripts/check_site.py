@@ -14,7 +14,8 @@ for page in DIST.rglob('*.html'):
             external.add(m.group(0)[:120])
     for url in re.findall(r'(?:href|src)="(/[^"#?]*)', html):
         target = DIST / url.lstrip('/')
-        if not (target.is_file() or (target / 'index.html').is_file()):
+        # Cloudflare serves x.html at x (html_handling: auto-trailing-slash)
+        if not (target.is_file() or (target / 'index.html').is_file() or target.with_name(target.name + '.html').is_file()):
             broken.setdefault(url, page.relative_to(DIST).as_posix())
 print(f'{pages} pages checked, {len(broken)} broken internal links, {len(external)} external loads')
 for url, where in list(broken.items())[:20]:
