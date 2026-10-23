@@ -162,7 +162,7 @@ Core copy (draft):
 
 Repo / folder layout:
 ```
-S:\Education snippets\            (rename to S:\OpenBench once name is picked)
+S:\CurioClass\
   docs\                           plans, voice guide, decisions log
   data\
     subjects.csv                  subject list
