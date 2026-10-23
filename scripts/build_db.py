@@ -6,6 +6,9 @@ Fails loudly on bad rows so the data stays clean.
 import csv, re, sqlite3, sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from standards import validate
+
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / 'data'
 GRADES = ['k'] + [str(i) for i in range(1, 13)]
@@ -51,6 +54,12 @@ for path in sorted((DATA / 'modules').glob('*.txt')):
         except ValueError as e:
             errors.append(f'{where}: {e}')
             continue
+        codes = [c.strip() for c in standards.split(';') if c.strip()]
+        frameworks = [validate(c) for c in codes]
+        if not codes or None in frameworks:
+            errors.append(f'{where}: invalid or missing standards code(s) in {standards!r}')
+            continue
+        standards = ';'.join(codes)
         subject = courses[course]['subject']
         mid = f'{subject}-{grade}-{slug(title)}'
         if mid in seen:
@@ -58,13 +67,13 @@ for path in sorted((DATA / 'modules').glob('*.txt')):
         seen.add(mid)
         modules.append(dict(module_id=mid, subject=subject, grade=grade, course_id=course,
                             strand=strand, title=title, description=desc, standards=standards,
-                            source=path.name))
+                            frameworks=';'.join(dict.fromkeys(frameworks)), source=path.name))
 
 if errors:
     print('\n'.join(errors))
     sys.exit(1)
 
-fields = ['module_id', 'subject', 'grade', 'course_id', 'strand', 'title', 'description', 'standards', 'source']
+fields = ['module_id', 'subject', 'grade', 'course_id', 'strand', 'title', 'description', 'standards', 'frameworks', 'source']
 with open(DATA / 'modules.csv', 'w', newline='', encoding='utf-8') as f:
     w = csv.DictWriter(f, fieldnames=fields)
     w.writeheader()

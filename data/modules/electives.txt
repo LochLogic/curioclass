@@ -1,16 +1,16 @@
 # grade|course|strand|title|description|standards
 # Arts (National Core Arts Standards: Creating, Performing/Presenting, Responding, Connecting)
-k-2|visual-arts|Visual Arts|Lines, Shapes and Colors|Elements of art; primary and secondary colors|VA:Cr1-2
+k-2|visual-arts|Visual Arts|Lines, Shapes and Colors|Elements of art; primary and secondary colors|VA:Cr1;VA:Cr2
 k-2|visual-arts|Visual Arts|Art from Many Places|Look at and talk about art from different cultures|VA:Re7;VA:Cn11
 3-5|visual-arts|Visual Arts|Color Theory and Mixing|Color wheel, warm and cool, tints and shades|VA:Cr2
 3-5|visual-arts|Visual Arts|Perspective and Space|Overlap, size and horizon lines|VA:Cr2
 3-5|visual-arts|Visual Arts|Famous Artists and Movements|Recognize styles from cave art to modern art|VA:Re7;VA:Cn11
-6-8|visual-arts|Visual Arts|Principles of Design|Balance, contrast, emphasis, rhythm and unity|VA:Cr1-2;VA:Re8
+6-8|visual-arts|Visual Arts|Principles of Design|Balance, contrast, emphasis, rhythm and unity|VA:Cr1;VA:Cr2;VA:Re8
 6-8|visual-arts|Visual Arts|Drawing and One-Point Perspective|Vanishing points and value shading|VA:Cr2
 6-8|visual-arts|Visual Arts|Art History Timeline|Major periods and movements in context|VA:Re7;VA:Cn11
 9-12|visual-arts|Visual Arts|Critique and Interpretation|Analyze, interpret and evaluate artworks|VA:Re8;VA:Re9
 9-12|visual-arts|Visual Arts|Two-Point Perspective and Composition|Advanced spatial drawing and composition|VA:Cr2
-9-12|visual-arts|Visual Arts|Portfolio and Curation|Select, present and curate work|VA:Pr4-6
+9-12|visual-arts|Visual Arts|Portfolio and Curation|Select, present and curate work|VA:Pr4;VA:Pr5;VA:Pr6
 k-2|music|Music|Steady Beat and Rhythm|Beat vs rhythm; long and short sounds|MU:Pr4;MU:Cr1
 k-2|music|Music|High and Low, Loud and Soft|Pitch and dynamics|MU:Re7
 k-2|music|Music|Instrument Families|Recognize instruments by sight and sound|MU:Re7
@@ -22,96 +22,112 @@ k-2|music|Music|Instrument Families|Recognize instruments by sight and sound|MU:
 6-8|music|Music|Ensemble Skills|Listening, blending and performing together|MU:Pr5;MU:Pr6
 9-12|music|Music|Music Theory|Keys, modulation and analysis|MU:Re7;MU:Re8
 9-12|music|Music|Music History|Medieval to contemporary styles|MU:Cn11
-9-12|music|Music|Composing and Producing|Arrange and produce original music|MU:Cr1-3
+9-12|music|Music|Composing and Producing|Arrange and produce original music|MU:Cr1;MU:Cr2;MU:Cr3
 k-2|theater|Theater|Pretend and Play|Creative drama and storytelling with movement|TH:Cr1;TH:Pr4
 3-5|theater|Theater|Characters and Scenes|Voice, body and simple scripts|TH:Cr2;TH:Pr4
 6-8|theater|Theater|Scripts and Staging|Blocking, stage directions and design|TH:Cr1;TH:Pr5
 9-12|theater|Theater|Theater History and Directing|Theatrical traditions; directing choices|TH:Re8;TH:Cn11
 k-2|dance|Dance|Moving Bodies|Locomotor and nonlocomotor movement; levels|DA:Cr1;DA:Pr4
 3-5|dance|Dance|Patterns in Dance|Sequences, tempo and dances from cultures|DA:Cr2;DA:Cn11
-6-8|dance|Dance|Choreography|Create and revise movement phrases|DA:Cr1-3
-9-12|dance|Dance|Dance Styles and Criticism|Analyze styles; evaluate performances|DA:Re7-9
-6-8|media-arts|Media Arts|Photography and Framing|Composition, light and framing|MA:Cr1-2
+6-8|dance|Dance|Choreography|Create and revise movement phrases|DA:Cr1;DA:Cr2;DA:Cr3
+9-12|dance|Dance|Dance Styles and Criticism|Analyze styles; evaluate performances|DA:Re7;DA:Re8;DA:Re9
+6-8|media-arts|Media Arts|Photography and Framing|Composition, light and framing|MA:Cr1;MA:Cr2
 6-8|media-arts|Media Arts|Animation Basics|Frames, timing and stop motion|MA:Cr2;MA:Pr5
-9-12|media-arts|Media Arts|Film and Video Production|Storyboarding, shots and editing|MA:Cr1-3
+9-12|media-arts|Media Arts|Film and Video Production|Storyboarding, shots and editing|MA:Cr1;MA:Cr2;MA:Cr3
 9-12|media-arts|Media Arts|Graphic Design|Typography, layout and branding|MA:Cr2
-# Health and PE (National Health Education Standards; SHAPE America)
-k-2|health|Health|Healthy Habits|Handwashing, sleep and taking care of my body|NHES 1;NHES 7
-k-2|health|Health|Food Groups|Healthy food choices and balanced meals|NHES 1
-k-2|health|Health|Feelings and Friends|Naming feelings; kind words; asking for help|NHES 4;NHES 8
-k-2|health|Health|Safety|Fire, traffic, water and stranger safety|NHES 1;NHES 5
-3-5|health|Health|Nutrition Labels and Choices|Reading labels; making healthy choices|NHES 2;NHES 5
-3-5|health|Health|The Human Body Systems|How body systems keep us healthy|NHES 1
-3-5|health|Health|Germs and Disease Prevention|How illness spreads and how to prevent it|NHES 1;NHES 7
-3-5|health|Health|Growing Up|Puberty basics and changes|NHES 1
-6-8|health|Health|Substance Use Prevention|Effects of tobacco, vaping, alcohol and drugs; refusal skills|NHES 1;NHES 4;NHES 5
-6-8|health|Health|Mental and Emotional Health|Stress, coping and getting help|NHES 1;NHES 7;NHES 8
-6-8|health|Health|Healthy Relationships|Communication, boundaries and conflict resolution|NHES 4
-6-8|health|Health|Digital Wellness|Screen time, online safety and media influence|NHES 2;NHES 3
-9-12|health|Health|Nutrition and Fitness Planning|Energy balance and personal plans|NHES 6;NHES 7
-9-12|health|Health|First Aid and CPR|Emergency response basics|NHES 7
-9-12|health|Health|Accessing Valid Health Information|Evaluate sources, products and services|NHES 3
-9-12|health|Health|Mental Health and Wellness|Disorders, stigma and supporting others|NHES 1;NHES 8
-k-2|pe|Physical Education|Locomotor Skills|Running, hopping, skipping and galloping|SHAPE S1
-k-2|pe|Physical Education|Throwing and Catching|Manipulative skill basics|SHAPE S1
-3-5|pe|Physical Education|Game Strategies|Offense, defense and space in games|SHAPE S2
-3-5|pe|Physical Education|Fitness Components|Cardio, strength, flexibility and heart rate|SHAPE S3
-6-8|pe|Physical Education|Sport Skills and Rules|Invasion, net and striking games|SHAPE S1;SHAPE S2
-6-8|pe|Physical Education|Personal Fitness Plans|Set goals and track activity|SHAPE S3
-9-12|pe|Physical Education|Lifetime Fitness|Design and evaluate a personal fitness program|SHAPE S3;SHAPE S5
-9-12|pe|Physical Education|Sportsmanship and Leadership|Responsible behavior and teamwork|SHAPE S4
-# Computer Science (CSTA K-12)
-k-2|cs-k12|Algorithms and Programming|Step-by-Step Instructions|Sequences and simple algorithms|1A-AP-08;1A-AP-10
-k-2|cs-k12|Computing Systems|Parts of a Computer|Hardware, software and troubleshooting basics|1A-CS-01;1A-CS-02
-k-2|cs-k12|Impacts of Computing|Being Safe Online|Passwords and personal information|1A-NI-04;1A-IC-18
-3-5|cs-k12|Algorithms and Programming|Loops and Events|Block-based programs with loops and events|1B-AP-10
-3-5|cs-k12|Algorithms and Programming|Debugging|Find and fix errors in programs|1B-AP-15
-3-5|cs-k12|Data and Analysis|Data and Patterns|Collect, organize and visualize data|1B-DA-06;1B-DA-07
-3-5|cs-k12|Networks and the Internet|How the Internet Works|Packets, routers and connections|1B-NI-04
-6-8|cs-k12|Algorithms and Programming|Variables and Conditionals|Store data and make decisions in code|2-AP-11;2-AP-12
-6-8|cs-k12|Algorithms and Programming|Functions and Decomposition|Break problems into reusable parts|2-AP-13;2-AP-14
-6-8|cs-k12|Data and Analysis|Binary and Data Representation|Bits, binary numbers and encoding|2-DA-07
-6-8|cs-k12|Networks and the Internet|Cybersecurity Basics|Threats, encryption and protecting data|2-NI-05;2-NI-06
-6-8|cs-k12|Impacts of Computing|Computing and Society|Bias, accessibility and ethics in technology|2-IC-20;2-IC-21
-9-12|cs-k12|Algorithms and Programming|Lists, Searching and Sorting|Data structures and classic algorithms|3A-AP-14;3B-AP-10
-9-12|cs-k12|Algorithms and Programming|Object-Oriented Programming|Classes, objects and abstraction|3B-AP-14
-9-12|cs-k12|Data and Analysis|Data Science and Modeling|Analyze large data sets; simulations|3A-DA-11;3A-DA-12
-9-12|cs-k12|Computing Systems|AI and Machine Learning|How AI systems learn and their limits|3B-AP-08;3A-IC-24
-9-12|cs-k12|Networks and the Internet|Cryptography and Network Security|Encryption, protocols and attacks|3A-NI-05;3B-NI-04
-9-12|cs-k12|Impacts of Computing|Ethics, Privacy and Law|Intellectual property, privacy and digital citizenship|3A-IC-24;3A-IC-28
+# Health and PE (2024 National Health Education Standards; 2024 SHAPE America National PE Standards, 4 standards)
+k-2|health|Health|Healthy Habits|Handwashing, sleep and taking care of my body|NHES.S1;NHES.S7
+k-2|health|Health|Food Groups|Healthy food choices and balanced meals|NHES.S1
+k-2|health|Health|Feelings and Friends|Naming feelings; kind words; asking for help|NHES.S4;NHES.S8
+k-2|health|Health|Safety|Fire, traffic, water and stranger safety|NHES.S1;NHES.S5
+3-5|health|Health|Nutrition Labels and Choices|Reading labels; making healthy choices|NHES.S2;NHES.S5
+3-5|health|Health|The Human Body Systems|How body systems keep us healthy|NHES.S1
+3-5|health|Health|Germs and Disease Prevention|How illness spreads and how to prevent it|NHES.S1;NHES.S7
+3-5|health|Health|Growing Up|Puberty basics and changes|NHES.S1
+6-8|health|Health|Substance Use Prevention|Effects of tobacco, vaping, alcohol and drugs; refusal skills|NHES.S1;NHES.S4;NHES.S5
+6-8|health|Health|Mental and Emotional Health|Stress, coping and getting help|NHES.S1;NHES.S7;NHES.S8
+6-8|health|Health|Healthy Relationships|Communication, boundaries and conflict resolution|NHES.S4
+6-8|health|Health|Digital Wellness|Screen time, online safety and media influence|NHES.S2;NHES.S3
+9-12|health|Health|Nutrition and Fitness Planning|Energy balance and personal plans|NHES.S6;NHES.S7
+9-12|health|Health|First Aid and CPR|Emergency response basics|NHES.S7
+9-12|health|Health|Accessing Valid Health Information|Evaluate sources, products and services|NHES.S3
+9-12|health|Health|Mental Health and Wellness|Disorders, stigma and supporting others|NHES.S1;NHES.S8
+k-2|pe|Physical Education|Locomotor Skills|Running, hopping, skipping and galloping|SHAPE.S1
+k-2|pe|Physical Education|Throwing and Catching|Manipulative skill basics|SHAPE.S1
+3-5|pe|Physical Education|Game Strategies|Offense, defense and space in games|SHAPE.S2;SHAPE.S3
+3-5|pe|Physical Education|Fitness Components|Cardio, strength, flexibility and heart rate|SHAPE.S2
+6-8|pe|Physical Education|Sport Skills and Rules|Invasion, net and striking games|SHAPE.S1;SHAPE.S2
+6-8|pe|Physical Education|Personal Fitness Plans|Set goals and track activity|SHAPE.S2;SHAPE.S4
+9-12|pe|Physical Education|Lifetime Fitness|Design and evaluate a personal fitness program|SHAPE.S2;SHAPE.S4
+9-12|pe|Physical Education|Sportsmanship and Leadership|Responsible behavior and teamwork|SHAPE.S3
+# Computer Science (2026 CSTA PK-12 Standards: grade-level K-5, bands 6-8 and 9-12)
+k|cs-k12|Algorithms and Programming|Step-by-Step|Follow and create sequences of commands; spot a step that goes wrong|EK-ALG-PS-01;EK-PRO-PD-04;EK-PRO-TR-07
+k|cs-k12|Data and Analysis|Count and Decide|Collect data in the classroom to answer a question|EK-DAT-DC-08;EK-DAT-DI-09
+k|cs-k12|Systems and Security|Public or Private?|Which information is OK to share|EK-SYS-SE-12;EK-SYS-IM-13
+1|cs-k12|Algorithms and Programming|Code a Path|Turn an algorithm into a sequence program and debug it|E1-ALG-PS-01;E1-PRO-PD-04;E1-PRO-TR-07
+1|cs-k12|Algorithms and Programming|What Is AI?|AI uses patterns in data to make decisions|E1-ALG-ML-02;E1-SOC-HU-15
+1|cs-k12|Systems and Security|Parts of a Computer|Basic hardware and keeping accounts safe|E1-SYS-HW-11;E1-SYS-SE-12
+2|cs-k12|Algorithms and Programming|Loops and Events|Programs with sequence, events and repeat|E2-ALG-PS-01;E2-PRO-PD-04;E2-PRO-TR-07
+2|cs-k12|Algorithms and Programming|Teach the Machine|How data trains a machine learning model|E2-ALG-ML-02
+2|cs-k12|Systems and Security|Input and Output|How hardware works together; online actions have consequences|E2-SYS-HW-11;E2-SYS-SE-12
+3|cs-k12|Algorithms and Programming|If This, Then That|Programs with selection; debugging combined structures|E3-ALG-PS-01;E3-PRO-PD-04;E3-PRO-TR-08
+3|cs-k12|Algorithms and Programming|Variables in Programs|Identify stored and changing values|E3-PRO-VD-06
+3|cs-k12|Systems and Security|How We Use the Internet|Getting information online and protecting personal details|E3-SYS-NT-14;E3-SYS-SE-13
+4|cs-k12|Algorithms and Programming|Trace the Code|Follow how data changes variables; document programs|E4-PRO-VD-06;E4-PRO-RD-07;E4-PRO-TR-08
+4|cs-k12|Data and Analysis|Tables and Visualizations|Organize data into rows and columns and chart it|E4-DAT-DC-09;E4-DAT-DI-10
+4|cs-k12|Algorithms and Programming|Training Data Matters|How training data shapes what an ML model outputs|E4-ALG-ML-02;E4-SOC-HU-18
+4|cs-k12|Systems and Security|Wired, Wireless and Login|Network connections; authentication vs authorization|E4-SYS-NT-14;E4-SYS-SE-13
+5|cs-k12|Algorithms and Programming|Remix a Program|Combine and modify programs; systematic debugging|E5-PRO-PD-04;E5-PRO-TR-08;E5-PRO-VD-06
+5|cs-k12|Algorithms and Programming|Train a Classifier|Train a simple ML model to classify or predict|E5-ALG-ML-02
+5|cs-k12|Systems and Security|The CIA Triad|Confidentiality, integrity and availability|E5-SYS-SE-13;E5-SYS-NT-14
+5|cs-k12|Computing and Society|Human-Centered Design|Design technology for real users|E5-ALG-IM-03;E5-SOC-HU-18
+6-8|cs-k12|Algorithms and Programming|Flowcharts and Pseudocode|Model algorithms with control structures and procedures|MS-ALG-PS-01;MS-ALG-PS-02;MS-ALG-PS-03
+6-8|cs-k12|Algorithms and Programming|Variables, Data Types and Procedures|Store data and structure reusable code|MS-PRO-VD-16;MS-PRO-PD-12;MS-PRO-RD-17
+6-8|cs-k12|Algorithms and Programming|Machine Learning Models|How models classify, and how to improve accuracy and reduce bias|MS-ALG-ML-06;MS-ALG-ML-07;MS-ALG-ML-08
+6-8|cs-k12|Data and Analysis|Data Detectives|Sort, filter and visualize data; spot misleading charts|MS-DAT-DC-23;MS-DAT-DI-25;MS-DAT-DI-26
+6-8|cs-k12|Systems and Security|Packets and the Internet|How data travels and how the internet stays resilient|MS-SYS-NT-34;MS-SYS-NT-35
+6-8|cs-k12|Systems and Security|Cyber Attacks and Defense|Common attacks and the CIA triad|MS-SYS-SE-32;MS-SYS-SE-33
+6-8|cs-k12|Computing and Society|Algorithms and Fairness|Bias and ethics in everyday algorithms; AI and jobs|MS-ALG-IM-10;MS-ALG-IM-11;MS-SOC-CE-45
+9-12|cs-k12|Algorithms and Programming|Data Structures and Algorithms|Design and evaluate algorithms for efficiency and correctness|HS-ALG-PS-01;HS-ALG-PS-03;HS-PRO-VD-16
+9-12|cs-k12|Algorithms and Programming|Modular Programs and APIs|Procedures, objects, libraries and documentation|HS-PRO-PD-12;HS-PRO-PD-13;HS-PRO-RD-17
+9-12|cs-k12|Algorithms and Programming|Building and Evaluating AI|Choose AI approaches; evaluate training data and AI output|HS-ALG-ML-06;HS-ALG-ML-07;HS-ALG-ML-08;HS-ALG-PS-05
+9-12|cs-k12|Data and Analysis|Simulation and Data Science|Simulate, clean and visualize multivariate data|HS-DAT-DC-21;HS-DAT-DC-23;HS-DAT-DI-25;HS-DAT-DI-26
+9-12|cs-k12|Systems and Security|Networks of Networks|Diagram networks; how the internet works|HS-SYS-NT-34;HS-SYS-NT-35;HS-SYS-HW-29
+9-12|cs-k12|Systems and Security|Cybersecurity|Security measures, breaches, social engineering and fixes|HS-SYS-SE-31;HS-SYS-SE-32;HS-SYS-SE-33
+9-12|cs-k12|Computing and Society|Ethics, Law and Data Policy|Algorithmic bias, data policy and computing law|HS-ALG-IM-10;HS-DAT-IM-28;HS-SYS-IM-36
 # World Languages (ACTFL proficiency; grade = typical span, level = proficiency)
-k-12|spanish|Novice|Greetings and Introductions|Hello, names, feelings and courtesy phrases|ACTFL Novice Low
-k-12|spanish|Novice|Numbers, Colors and Calendar|Counting, colors, days, months and weather|ACTFL Novice Low
-k-12|spanish|Novice|Family and Home|Family members, rooms and descriptions|ACTFL Novice Mid
-k-12|spanish|Novice|School and Daily Routine|Classes, time and daily activities|ACTFL Novice Mid
-k-12|spanish|Novice|Food and Ordering|Foods, likes and dislikes, restaurants|ACTFL Novice High
-6-12|spanish|Intermediate|Present Tense Verbs|Regular and irregular present tense|ACTFL Intermediate Low
-6-12|spanish|Intermediate|Travel and Directions|Places in town, transportation and directions|ACTFL Intermediate Low
-6-12|spanish|Intermediate|Past Tenses|Preterite and imperfect storytelling|ACTFL Intermediate Mid
-6-12|spanish|Intermediate|Cultures of the Spanish-Speaking World|Countries, traditions and perspectives|ACTFL Cultures
-9-12|spanish|Advanced|Subjunctive and Opinions|Express wishes, doubts and recommendations|ACTFL Intermediate High
-9-12|spanish|Advanced|Current Events and Debate|Discuss and defend positions on issues|ACTFL Advanced Low
-# CTE and Personal Finance
-6-8|cte-explore|Career Exploration|Career Clusters|The 16 career clusters and the jobs inside them|Advance CTE
-6-8|cte-explore|Career Exploration|Interests and Skills|Match interests and strengths to careers|Advance CTE
-6-8|cte-explore|Career Exploration|Workplace Skills|Communication, teamwork and professionalism|Advance CTE
-9-12|cte-pathways|Career Pathways|Education and Training Paths|College, apprenticeships, certificates and military|Advance CTE
-9-12|cte-pathways|Career Pathways|Resumes and Interviews|Build a resume and practice interviewing|Advance CTE
-9-12|cte-pathways|Career Pathways|Entrepreneurship|Business plans, startup costs and pitching|Advance CTE
-9-12|cte-pathways|Career Pathways|Engineering and Design Process|Prototype, test and iterate|Advance CTE
-9-12|cte-pathways|Career Pathways|Health Science Careers|Medical terminology and health careers|Advance CTE
-9-12|personal-finance|Personal Finance|Earning Income and Paychecks|Gross vs net pay, taxes and benefits|Jump$tart National Standards
-9-12|personal-finance|Personal Finance|Budgeting and Spending|Build a budget; needs vs wants|Jump$tart National Standards
-9-12|personal-finance|Personal Finance|Saving and Compound Interest|Emergency funds and the power of compounding|Jump$tart National Standards
-9-12|personal-finance|Personal Finance|Credit and Debt|Credit scores, loans, interest and student debt|Jump$tart National Standards
-9-12|personal-finance|Personal Finance|Investing Basics|Stocks, bonds, index funds and risk|Jump$tart National Standards
-9-12|personal-finance|Personal Finance|Insurance and Protecting Yourself|Insurance types; identity theft and scams|Jump$tart National Standards
+k-12|spanish|Novice|Greetings and Introductions|Hello, names, feelings and courtesy phrases|ACTFL.Novice Low;WRS.Communication
+k-12|spanish|Novice|Numbers, Colors and Calendar|Counting, colors, days, months and weather|ACTFL.Novice Low
+k-12|spanish|Novice|Family and Home|Family members, rooms and descriptions|ACTFL.Novice Mid
+k-12|spanish|Novice|School and Daily Routine|Classes, time and daily activities|ACTFL.Novice Mid
+k-12|spanish|Novice|Food and Ordering|Foods, likes and dislikes, restaurants|ACTFL.Novice High
+6-12|spanish|Intermediate|Present Tense Verbs|Regular and irregular present tense|ACTFL.Intermediate Low
+6-12|spanish|Intermediate|Travel and Directions|Places in town, transportation and directions|ACTFL.Intermediate Low
+6-12|spanish|Intermediate|Past Tenses|Preterite and imperfect storytelling|ACTFL.Intermediate Mid
+6-12|spanish|Intermediate|Cultures of the Spanish-Speaking World|Countries, traditions and perspectives|WRS.Cultures;ACTFL.Intermediate Mid
+9-12|spanish|Advanced|Subjunctive and Opinions|Express wishes, doubts and recommendations|ACTFL.Intermediate High
+9-12|spanish|Advanced|Current Events and Debate|Discuss and defend positions on issues|ACTFL.Advanced Low;WRS.Communities
+# CTE (Advance CTE Career Clusters 2024) and Personal Finance (National Standards for Personal Financial Education 2021)
+6-8|cte-explore|Career Exploration|Career Clusters|The 14 career clusters (2024 framework) and the jobs inside them|CTE.Career Clusters
+6-8|cte-explore|Career Exploration|Interests and Skills|Match interests and strengths to careers|CTE.Career Clusters
+6-8|cte-explore|Career Exploration|Workplace Skills|Communication, teamwork and professionalism|CTE.Career Ready Practices
+9-12|cte-pathways|Career Pathways|Education and Training Paths|College, apprenticeships, certificates and military|CTE.Career Clusters
+9-12|cte-pathways|Career Pathways|Resumes and Interviews|Build a resume and practice interviewing|CTE.Career Ready Practices
+9-12|cte-pathways|Career Pathways|Entrepreneurship|Business plans, startup costs and pitching|CTE.Career Clusters
+9-12|cte-pathways|Career Pathways|Engineering and Design Process|Prototype, test and iterate|CTE.Career Clusters
+9-12|cte-pathways|Career Pathways|Healthcare and Human Services Careers|Medical terminology and careers in care|CTE.Career Clusters
+9-12|personal-finance|Personal Finance|Earning Income and Paychecks|Gross vs net pay, taxes and benefits|NSPFE.Earning Income
+9-12|personal-finance|Personal Finance|Budgeting and Spending|Build a budget; needs vs wants|NSPFE.Spending
+9-12|personal-finance|Personal Finance|Saving and Compound Interest|Emergency funds and the power of compounding|NSPFE.Saving
+9-12|personal-finance|Personal Finance|Credit and Debt|Credit scores, loans, interest and student debt|NSPFE.Managing Credit
+9-12|personal-finance|Personal Finance|Investing Basics|Stocks, bonds, index funds and risk|NSPFE.Investing
+9-12|personal-finance|Personal Finance|Insurance and Protecting Yourself|Insurance types; identity theft and scams|NSPFE.Managing Risk
 # SEL (CASEL five competencies)
-k-2|sel-k12|SEL|Naming Feelings|Recognize and name emotions|CASEL Self-Awareness
-k-2|sel-k12|SEL|Calm Down Strategies|Breathing and self-regulation tools|CASEL Self-Management
-3-5|sel-k12|SEL|Perspective Taking|Understand others' feelings and points of view|CASEL Social Awareness
-3-5|sel-k12|SEL|Growth Mindset and Goals|Set goals and learn from mistakes|CASEL Self-Management
-6-8|sel-k12|SEL|Conflict Resolution|Communicate and solve problems together|CASEL Relationship Skills
-6-8|sel-k12|SEL|Responsible Decisions|Weigh consequences and make choices|CASEL Responsible Decision-Making
-9-12|sel-k12|SEL|Stress and Resilience|Manage stress and build resilience|CASEL Self-Management
-9-12|sel-k12|SEL|Leadership and Community|Lead, collaborate and contribute|CASEL Relationship Skills
+k-2|sel-k12|SEL|Naming Feelings|Recognize and name emotions|CASEL.Self-Awareness
+k-2|sel-k12|SEL|Calm Down Strategies|Breathing and self-regulation tools|CASEL.Self-Management
+3-5|sel-k12|SEL|Perspective Taking|Understand others' feelings and points of view|CASEL.Social Awareness
+3-5|sel-k12|SEL|Growth Mindset and Goals|Set goals and learn from mistakes|CASEL.Self-Management
+6-8|sel-k12|SEL|Conflict Resolution|Communicate and solve problems together|CASEL.Relationship Skills
+6-8|sel-k12|SEL|Responsible Decisions|Weigh consequences and make choices|CASEL.Responsible Decision-Making
+9-12|sel-k12|SEL|Stress and Resilience|Manage stress and build resilience|CASEL.Self-Management
+9-12|sel-k12|SEL|Leadership and Community|Lead, collaborate and contribute|CASEL.Relationship Skills

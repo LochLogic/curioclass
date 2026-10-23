@@ -45,8 +45,8 @@ k|math-k8|Geometry|Build a Shape|Analyze, compare, create and compose shapes|K.G
 4|math-k8|Number and Operations - Fractions|Equivalent Fractions and Comparing|Generate equivalent fractions; compare unlike fractions|4.NF.A
 4|math-k8|Number and Operations - Fractions|Adding and Multiplying Fractions|Build fractions from unit fractions; whole number times fraction|4.NF.B
 4|math-k8|Number and Operations - Fractions|Decimals|Decimal notation for tenths and hundredths|4.NF.C
-4|math-k8|Measurement and Data|Measurement Conversions|Convert units within one system; area and perimeter formulas|4.MD.A;4.MD.B
-4|math-k8|Measurement and Data|Angles|Angle concepts; measure and draw with a protractor|4.MD.C
+4|math-k8|Measurement and Data|Measurement Conversions|Convert units within one system; area and perimeter formulas|4.MD.A
+4|math-k8|Measurement and Data|Angles and Line Plots|Angle concepts and protractors; line plots of fractional measurements|4.MD.B;4.MD.C
 4|math-k8|Geometry|Lines, Angles and Symmetry|Classify figures by lines and angles; lines of symmetry|4.G.A
 5|math-k8|Operations and Algebraic Thinking|Expressions and Order of Operations|Write and interpret numerical expressions with grouping symbols|5.OA.A
 5|math-k8|Operations and Algebraic Thinking|Patterns and Relationships|Generate two patterns and graph ordered pairs|5.OA.B
@@ -114,22 +114,22 @@ k|math-k8|Geometry|Build a Shape|Analyze, compare, create and compose shapes|K.G
 11|algebra-2|Functions|Building and Inverting Functions|Combine functions; find inverses; transformations|F-BF.A;F-BF.B
 11|algebra-2|Algebra|Sequences and Series|Arithmetic and geometric sequences; finite geometric series|F-IF.A.3;A-SSE.B.4
 11|algebra-2|Statistics and Probability|Statistical Inference|Normal distributions, sampling, surveys, experiments and margin of error|S-ID.A.4;S-IC.A;S-IC.B
-12|precalculus|Functions|Functions and Their Graphs|Families of functions, composition, inverses and asymptotes|F-IF;F-BF
-12|precalculus|Functions|Trigonometric Identities and Equations|Identities, inverse trig and solving equations|F-TF.B;F-TF.C
-12|precalculus|Number and Quantity|Vectors|Vector quantities, operations and applications|N-VM.A;N-VM.B
-12|precalculus|Number and Quantity|Matrices|Matrix operations and solving systems|N-VM.C;A-REI.C.9
-12|precalculus|Number and Quantity|Polar Coordinates and Complex Plane|Polar form and graphs; complex numbers in the plane|N-CN.B
-12|precalculus|Geometry|Conic Sections|Parabolas, ellipses and hyperbolas|G-GPE.A.3
-12|precalculus|Functions|Limits and Rates of Change|Intuitive limits and average to instantaneous rate|
-12|statistics|Statistics|Exploring Data|Describe distributions and relationships|S-ID
-12|statistics|Statistics|Sampling and Experiments|Design studies; bias; random assignment|S-IC.B
-12|statistics|Statistics|Probability and Random Variables|Probability models, expected value, binomial and geometric|S-CP;S-MD
-12|statistics|Statistics|Sampling Distributions|Variation in statistics from sample to sample|S-IC.A
-12|statistics|Statistics|Confidence Intervals and Significance Tests|Inference for proportions and means|S-IC.B
-12|statistics|Statistics|Chi-Square and Regression Inference|Inference for categorical data and slopes|
-12|calculus|Calculus|Limits and Continuity|Limits, continuity and asymptotic behavior|
-12|calculus|Calculus|The Derivative|Derivative as rate of change; rules of differentiation|
-12|calculus|Calculus|Applications of Derivatives|Related rates, optimization and curve sketching|
-12|calculus|Calculus|The Integral|Riemann sums, accumulation and the Fundamental Theorem|
-12|calculus|Calculus|Applications of Integrals|Area, volume and motion|
-12|calculus|Calculus|Differential Equations|Slope fields and exponential models|
+12|precalculus|Functions|Functions and Their Graphs|Families of functions, composition, inverses and asymptotes|F-IF;F-BF;AP-PRECALC.U1;AP-PRECALC.U2
+12|precalculus|Functions|Trigonometric Identities and Equations|Identities, inverse trig and solving equations|F-TF.B;F-TF.C;AP-PRECALC.U3
+12|precalculus|Number and Quantity|Vectors|Vector quantities, operations and applications|N-VM.A;N-VM.B;AP-PRECALC.U4
+12|precalculus|Number and Quantity|Matrices|Matrix operations and solving systems|N-VM.C;A-REI.C.9;AP-PRECALC.U4
+12|precalculus|Number and Quantity|Polar Coordinates and Complex Plane|Polar form and graphs; complex numbers in the plane|N-CN.B;AP-PRECALC.U3
+12|precalculus|Geometry|Conic Sections|Parabolas, ellipses and hyperbolas|G-GPE.A.3;AP-PRECALC.U4
+12|precalculus|Functions|Limits and Rates of Change|Intuitive limits and average to instantaneous rate|AP-PRECALC.U1
+12|statistics|Statistics|Exploring Data|Describe distributions and relationships|S-ID;AP-STAT.U1;AP-STAT.U2
+12|statistics|Statistics|Sampling and Experiments|Design studies; bias; random assignment|S-IC.B;AP-STAT.U3
+12|statistics|Statistics|Probability and Random Variables|Probability models, expected value, binomial and geometric|S-CP;S-MD;AP-STAT.U4
+12|statistics|Statistics|Sampling Distributions|Variation in statistics from sample to sample|S-IC.A;AP-STAT.U5
+12|statistics|Statistics|Confidence Intervals and Significance Tests|Inference for proportions and means|S-IC.B;AP-STAT.U6;AP-STAT.U7
+12|statistics|Statistics|Chi-Square and Regression Inference|Inference for categorical data and slopes|AP-STAT.U8;AP-STAT.U9
+12|calculus|Calculus|Limits and Continuity|Limits, continuity and asymptotic behavior|AP-CALC.U1
+12|calculus|Calculus|The Derivative|Derivative as rate of change; rules of differentiation|AP-CALC.U2;AP-CALC.U3
+12|calculus|Calculus|Applications of Derivatives|Related rates, optimization and curve sketching|AP-CALC.U4;AP-CALC.U5
+12|calculus|Calculus|The Integral|Riemann sums, accumulation and the Fundamental Theorem|AP-CALC.U6
+12|calculus|Calculus|Applications of Integrals|Area, volume and motion|AP-CALC.U8
+12|calculus|Calculus|Differential Equations|Slope fields and exponential models|AP-CALC.U7
