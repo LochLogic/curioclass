@@ -1,0 +1,16 @@
+{
+  "id": "smoothie-lab",
+  "status": "beta",
+  "driver": "students or teacher",
+  "modes": ["Explore", "Orders"],
+  "grades_label": "Grades 6-7",
+  "third_party": [],
+  "updated": "2026-10-23",
+  "hook": "Scoop fruit, blend, and let the owner taste it. Batches taste exactly the same when their ratios are equivalent. Then fill seven orders that scale, split and percent a recipe.",
+  "outcome": "Use ratio language, tables of equivalent ratios, graphs and unit rates to scale a recipe",
+  "minutes": "20-30",
+  "sources": [
+    "Illustrations generated with Google Gemini, edited for Curio Class",
+    "Sounds generated in the browser"
+  ]
+}

@@ -1,0 +1,93 @@
+{
+  "style": "Gentle picture-book garden look, spring colors, soft and calm.",
+  "assets": [
+    {
+      "name": "lawn",
+      "prompt": "Seen straight from above: a soft green lawn with clover, a few tiny daisies and small stepping stones near the edges. Even, calm texture over the whole picture, nothing big in it. No people, no animals, no writing. 16:9.",
+      "aspect": "16:9",
+      "width": 1400,
+      "quality": 76
+    },
+    {
+      "name": "soil",
+      "prompt": "Seen straight from above: rich dark brown garden soil, lightly raked, a few tiny pebbles, filling the whole frame edge to edge with even texture. No plants, no borders, no frame.",
+      "aspect": "1:1",
+      "width": 256,
+      "quality": 80,
+      "trim": 0.16
+    },
+    {
+      "name": "bunny",
+      "prompt": "A cheerful little rabbit gardener in green overalls and a straw sun hat, holding a small watering can, standing upright, facing the viewer, full body.",
+      "cutout": true,
+      "key": "magenta",
+      "aspect": "3:4",
+      "height": 300
+    },
+    {
+      "name": "bunny-side",
+      "ref": "bunny",
+      "prompt": "The same rabbit gardener seen from the side, walking to the right, full body, watering can in the front paw.",
+      "cutout": true,
+      "key": "magenta",
+      "aspect": "3:4",
+      "height": 300
+    },
+    {
+      "name": "bunny-back",
+      "ref": "bunny",
+      "prompt": "The same rabbit gardener seen from behind, walking away from the viewer, full body: back of the hat, cotton tail, overall straps.",
+      "cutout": true,
+      "key": "magenta",
+      "aspect": "3:4",
+      "height": 300
+    },
+    {
+      "name": "bunny-yay",
+      "ref": "bunny",
+      "prompt": "The same rabbit gardener jumping for joy with both arms up, facing the viewer, full body, watering can swinging.",
+      "cutout": true,
+      "key": "magenta",
+      "aspect": "3:4",
+      "height": 300
+    },
+    {
+      "name": "tulip",
+      "prompt": "One red tulip in full bloom with two green leaves, standing straight up, side view.",
+      "cutout": true,
+      "key": "magenta",
+      "aspect": "3:4",
+      "height": 220
+    },
+    {
+      "name": "daisy",
+      "prompt": "One bright yellow daisy in bloom with an orange center, a green stem and two leaves, standing straight up, side view.",
+      "cutout": true,
+      "key": "magenta",
+      "aspect": "3:4",
+      "height": 220
+    },
+    {
+      "name": "bell",
+      "prompt": "One purple bellflower stem with three hanging bell blooms and two green leaves, standing straight up, side view.",
+      "cutout": true,
+      "key": "magenta",
+      "aspect": "3:4",
+      "height": 220
+    },
+    {
+      "name": "sprout",
+      "prompt": "A tiny green seedling sprout with two round leaves poking out of a little mound of dark soil.",
+      "cutout": true,
+      "key": "magenta",
+      "width": 160
+    },
+    {
+      "name": "rock",
+      "prompt": "One round gray garden boulder with a bit of moss, seen from slightly above.",
+      "cutout": true,
+      "key": "magenta",
+      "width": 200
+    }
+  ]
+}

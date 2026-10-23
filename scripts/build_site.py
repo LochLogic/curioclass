@@ -87,6 +87,8 @@ for c in read('tools-concepts.csv'):
         notes = folder / 'notes.md'
         t['notes_html'] = markdown.markdown(notes.read_text(encoding='utf-8')) if notes.exists() else ''
         t['preview'] = (folder / 'preview.svg').exists()
+        span = re.search(r'(K|\d+)(?:-(\d+))?$', t['meta'].get('grades_label', ''))
+        t['fit'] = expand(f'{span[1].lower()}-{span[2] or span[1]}') if span else m['grades']
     tools.append(t)
 by_module = defaultdict(list)
 for t in tools:
@@ -141,8 +143,9 @@ shutil.copytree(SITE / 'assets', DIST / 'assets')
 render('home.html', '/', built=built, bench_sample=[t for t in bench if t['title'] in
        ('Bug Hunt', 'Balance the Beam', 'Fed Chair', 'Fair Use Court')], bands=bands)
 
-def browse_page(path, title, lede, trail, sections, nav_label, **extra):
-    """Grade, band and subject pages: sticky section nav, modules in two columns, ready tools first."""
+def browse_page(path, title, lede, trail, sections, nav_label, fit=(), **extra):
+    """Grade, band and subject pages: sticky section nav, modules in two columns, ready tools first.
+    fit: grades of the page; built tools labelled for any of them join Ready now even when filed under another grade."""
     seen, ready = set(), []
     for s in sections:
         s['ready'] = any(t['built'] for m in s['mods'] for t in m['tools'])
@@ -151,6 +154,7 @@ def browse_page(path, title, lede, trail, sections, nav_label, **extra):
                 if t['built'] and t['tool_id'] not in seen:
                     seen.add(t['tool_id'])
                     ready.append(t)
+    ready += [t for t in built if t['tool_id'] not in seen and set(t['fit']) & set(fit)]
     count = sum(len(m['tools']) for s in sections for m in s['mods'])
     render('browse.html', path, title=title, lede=lede.format(count=count, n=len(sections)), trail=trail,
            sections=sections, nav_label=nav_label, ready=ready, count=count, **extra)
@@ -167,12 +171,12 @@ for g in GRADES:
     lede = ('Teacher-led on the big screen. ' if grades[g]['band'] == 'k2' else '') + '{count} tools across {n} subjects.'
     browse_page(f'/grades/{g}/', grade_label(g), lede, [('Grades', '/grades/'), (grade_label(g), None)],
                 subject_sections([m for m in modules.values() if g in m['grades']]), 'Subjects',
-                subtitle='for every subject')
+                fit=[g], subtitle='for every subject')
 for bid, b in bands.items():
     browse_page(f'/grades/{BAND_SLUG[bid]}/', b['label'], b['notes'].split(';')[0] + '. {count} tools across {n} subjects.',
                 [('Grades', '/grades/'), (b['label'], None)],
                 subject_sections([m for m in modules.values() if set(m['grades']) & set(b['grade_list'])]), 'Subjects',
-                subtitle='for every subject', show_grade=True)
+                fit=b['grade_list'], subtitle='for every subject', show_grade=True)
 
 # subjects
 render('subjects.html', '/subjects/', counts={s: sum(1 for t in tools if t['module']['subject'] == s) for s in subjects})

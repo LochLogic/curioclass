@@ -82,7 +82,7 @@
   const box = document.getElementById('ready-only');
   const apply = () => {
     document.body.classList.toggle('ready-only', box.checked);
-    document.getElementById('none-ready').hidden = !box.checked || groups.some(g => g.hasAttribute('data-ready'));
+    document.getElementById('none-ready').hidden = !box.checked || groups.some(g => g.hasAttribute('data-ready')) || !!document.getElementById('ready-h');
     try { localStorage.setItem('curio-ready-only', box.checked ? '1' : ''); } catch (e) {}
   };
   try { box.checked = localStorage.getItem('curio-ready-only') === '1'; } catch (e) {}

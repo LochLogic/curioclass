@@ -1,0 +1,154 @@
+{
+  "style": "Bright, clear picture-book science look: each object easy to recognize from across a classroom.",
+  "assets": [
+    {
+      "name": "kitchen",
+      "prompt": "Empty background: a bright, cozy classroom science corner made like a kitchen, seen straight on at counter height. A long clean wooden counter runs along the bottom of the picture, behind it a pale tiled wall with a window, a few plants, a wall clock and a shelf of jars at the sides. The middle of the counter is empty. No food, no people, no animals, no writing. 16:9.",
+      "aspect": "16:9",
+      "width": 1400,
+      "quality": 78,
+      "trim": 0.04
+    },
+    {
+      "name": "ice-1",
+      "prompt": "One clear blue-white ice cube with soft shine.",
+      "cutout": true,
+      "width": 300
+    },
+    {
+      "name": "ice-2",
+      "ref": "ice-1",
+      "ref_mode": "style",
+      "prompt": "A small puddle of clear water on the counter where an ice cube melted. Same size and drawing style as the reference.",
+      "cutout": true,
+      "width": 300
+    },
+    {
+      "name": "chocolate-1",
+      "prompt": "A bar of milk chocolate in squares, half unwrapped from gold foil.",
+      "cutout": true,
+      "width": 300
+    },
+    {
+      "name": "chocolate-2",
+      "ref": "chocolate-1",
+      "ref_mode": "style",
+      "prompt": "A glossy puddle of melted milk chocolate in a small white bowl, with a spoon. Same size and drawing style as the reference.",
+      "cutout": true,
+      "width": 300
+    },
+    {
+      "name": "butter-1",
+      "prompt": "A solid pale yellow stick of butter on a small plate.",
+      "cutout": true,
+      "width": 300
+    },
+    {
+      "name": "butter-2",
+      "ref": "butter-1",
+      "ref_mode": "style",
+      "prompt": "Melted golden butter, runny and shiny, in a small saucepan. Same size and drawing style as the reference.",
+      "cutout": true,
+      "width": 300
+    },
+    {
+      "name": "juice-1",
+      "prompt": "A clear plastic cup of orange juice.",
+      "cutout": true,
+      "width": 300
+    },
+    {
+      "name": "juice-2",
+      "ref": "juice-1",
+      "ref_mode": "style",
+      "prompt": "An orange ice pop on a wooden stick, frozen solid. Same size and drawing style as the reference.",
+      "cutout": true,
+      "width": 300
+    },
+    {
+      "name": "clay-1",
+      "prompt": "A round ball of bright blue play clay.",
+      "cutout": true,
+      "width": 300
+    },
+    {
+      "name": "clay-2",
+      "ref": "clay-1",
+      "ref_mode": "style",
+      "prompt": "The same blue play clay rolled out into a long wiggly snake. Same size and drawing style as the reference.",
+      "cutout": true,
+      "width": 300
+    },
+    {
+      "name": "bread-1",
+      "prompt": "One slice of soft white sandwich bread.",
+      "cutout": true,
+      "width": 300
+    },
+    {
+      "name": "bread-2",
+      "ref": "bread-1",
+      "ref_mode": "style",
+      "prompt": "One slice of golden brown toast with darker toasted edges. Same size and drawing style as the reference.",
+      "cutout": true,
+      "width": 300
+    },
+    {
+      "name": "egg-1",
+      "prompt": "A small clear glass bowl seen from slightly above with one raw cracked egg in it: see-through, runny, glossy egg white and a round yellow yolk, clearly uncooked. Half of an empty brown eggshell lies beside the bowl.",
+      "cutout": true,
+      "width": 300
+    },
+    {
+      "name": "egg-2",
+      "ref": "egg-1",
+      "ref_mode": "style",
+      "prompt": "The same small black frying pan seen from slightly above, now with one fried egg in it: firm white egg white and a round yellow yolk, cooked. Same size and drawing style as the reference.",
+      "cutout": true,
+      "width": 300
+    },
+    {
+      "name": "batter-1",
+      "prompt": "A mixing bowl of runny vanilla cake batter with a wooden spoon.",
+      "cutout": true,
+      "width": 300
+    },
+    {
+      "name": "batter-2",
+      "ref": "batter-1",
+      "ref_mode": "style",
+      "prompt": "A baked vanilla cupcake in a paper liner, golden and fluffy. Same size and drawing style as the reference.",
+      "cutout": true,
+      "width": 300
+    },
+    {
+      "name": "paper-1",
+      "prompt": "A clean sheet of white paper lying flat.",
+      "cutout": true,
+      "width": 300
+    },
+    {
+      "name": "paper-2",
+      "ref": "paper-1",
+      "ref_mode": "style",
+      "prompt": "A sheet of paper that has been burned: curled black and gray ash and charred edges, no flames. Same size and drawing style as the reference.",
+      "cutout": true,
+      "width": 300,
+      "key": "magenta"
+    },
+    {
+      "name": "popcorn-1",
+      "prompt": "A small pile of hard yellow popcorn kernels.",
+      "cutout": true,
+      "width": 300
+    },
+    {
+      "name": "popcorn-2",
+      "ref": "popcorn-1",
+      "ref_mode": "style",
+      "prompt": "A small pile of fluffy white popped popcorn. Same size and drawing style as the reference.",
+      "cutout": true,
+      "width": 300
+    }
+  ]
+}

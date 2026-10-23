@@ -1,0 +1,16 @@
+{
+  "id": "loop-garden",
+  "status": "beta",
+  "driver": "teacher",
+  "modes": [],
+  "grades_label": "Grade 2",
+  "third_party": [],
+  "updated": "2026-10-23",
+  "hook": "Program a rabbit gardener with Step, Turn and Plant blocks. Every garden can be planted the long way, but a Repeat block does it with fewer blocks.",
+  "outcome": "Build and debug a sequence of instructions and use a loop to repeat steps",
+  "minutes": "15-25",
+  "sources": [
+    "Illustrations generated with Google Gemini, edited for Curio Class",
+    "Sounds generated in the browser"
+  ]
+}

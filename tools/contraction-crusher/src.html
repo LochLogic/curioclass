@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contraction Crusher · Squish two words into one · Curio Class</title>
+<meta name="description" content="A friendly press squishes two words into a contraction: the class guesses which letters fall out, then watches the apostrophe fly in where they were. Grade 2 language, teacher-led. Works offline.">
+<!--
+CONTRACTION CRUSHER (Curio Class)
+Grade 2 language, CCSS L.2.2c (use an apostrophe to form contractions).
+Teacher-led on a projector. Two word blocks ride in under a stamping press. The class taps the letters
+they think will fall out, then presses Crush: the press squishes the words, those letters pop out, and a
+robot throws the apostrophe into the gap they left. A sentence strip shows the contraction in use.
+Uncrush runs it backwards. Families (n't, 's, 're, 'll, 've, 'm) let the teacher focus on one pattern.
+"Will not" becomes "won't", which breaks the pattern; it is left out on purpose (see the teacher notes).
+One file, no network requests. Illustrations generated with Google Gemini, edited for Curio Class.
+Content CC BY 4.0, code MIT. curioclass.org
+-->
+<style>
+:root{
+  --paper:#fbf4e6;--ink:#2b2420;--muted:#6f6158;--line:#e8d6b8;--accent:#c8402e;--go:#2f7d4f;--focus:#2f5bd3;
+  font-family:'Segoe UI',system-ui,-apple-system,Roboto,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{background:var(--paper);color:var(--ink);display:grid;grid-template-rows:auto 1fr;min-height:100vh}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:4px solid var(--focus);outline-offset:3px}
+header{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:12px 20px;background:#2f4f57;color:#f6efe0}
+h1{margin:0 auto 0 0;font:800 clamp(22px,3vw,32px)/1.1 'Trebuchet MS','Segoe UI',sans-serif}
+h1 small{display:block;font:500 15px/1.3 'Segoe UI',sans-serif;color:#cfe3e0}
+.icon-btn{border:2px solid #4c7079;background:#3b6069;color:#f6efe0;border-radius:999px;min-height:52px;padding:0 16px;font-weight:700;font-size:16px}
+.icon-btn[aria-pressed="false"]{opacity:.8}
+
+main{display:grid;grid-template-columns:1fr;min-height:0}
+@media (min-width:760px){main{grid-template-columns:minmax(0,1fr) 330px}}
+.stage{position:relative;overflow:hidden;min-height:360px;background:#7a4a35 url(art:factory) center 30%/cover no-repeat}
+.scene{position:absolute;left:50%;top:50%;width:1000px;height:620px;transform:translate(-50%,-50%) scale(var(--s,1));transform-origin:50% 50%}
+.scene img{position:absolute;display:block;pointer-events:none;user-select:none}
+#press{position:absolute;width:280px;height:180px}
+#press img{position:static;width:280px;height:180px}
+.rodbox{position:absolute;left:493px;top:150px;width:24px;height:300px;overflow:hidden}
+.rod{position:absolute;left:0;width:24px;height:240px;border-radius:4px;background:linear-gradient(90deg,#7d848c,#e9eef2 40%,#a3abb3 70%,#6b727a)}
+
+/* conveyor belt */
+.belt{position:absolute;left:40px;right:40px;top:500px;height:46px;border-radius:24px;background:#3b3531;box-shadow:0 8px 0 #2228,inset 0 4px 0 #5b524b}
+.belt i{position:absolute;inset:6px 18px;border-radius:14px;background:repeating-linear-gradient(90deg,#4a423c 0 26px,#2f2a26 26px 30px);background-size:30px 100%}
+.belt.run i{animation:belt .5s linear infinite}
+@keyframes belt{to{background-position:-30px 0}}
+.legs{position:absolute;top:540px;width:24px;height:80px;background:linear-gradient(90deg,#57504a,#3b3531);border-radius:4px}
+
+/* letter tiles */
+.tile{position:absolute;top:430px;width:62px;height:70px;border-radius:12px;display:grid;place-items:center;
+  font:800 50px/1 'Trebuchet MS','Segoe UI',sans-serif;color:#33261c;border:0;padding:0;
+  background:linear-gradient(#fff3d6,#efd29c);box-shadow:inset 0 -6px 0 #d4b071,0 5px 0 #0003;transform-origin:50% 100%}
+.tile.w2{background:linear-gradient(#e3f4f6,#b9dfe4);box-shadow:inset 0 -6px 0 #8cc2ca,0 5px 0 #0003}
+.tile.mark{background:linear-gradient(#ffe0d6,#f4a58f);box-shadow:inset 0 -6px 0 #d97b62,0 0 0 5px var(--accent),0 5px 0 #0003}
+.tile.mark::after{content:'';position:absolute;right:-10px;top:-12px;width:30px;height:30px;border-radius:50%;background:var(--accent) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath d='M15 7v11' stroke='%23fff' stroke-width='4' stroke-linecap='round'/%3E%3Cpath d='M9 15l6 7 6-7' stroke='%23fff' stroke-width='4' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/100% no-repeat;box-shadow:0 2px 0 #0003}
+.tile.apos{background:radial-gradient(circle at 50% 40%,#fff8cf,#ffd34d 70%);box-shadow:inset 0 -6px 0 #d9a520,0 0 26px 6px #ffd34d99;align-items:start;padding-top:4px}
+.tile.made{box-shadow:inset 0 -6px 0 #d4b071,0 0 0 4px #2f7d4f,0 5px 0 #0003}
+.tile.w2.made{box-shadow:inset 0 -6px 0 #8cc2ca,0 0 0 4px #2f7d4f,0 5px 0 #0003}
+.tile.wiggle{animation:wiggle .45s ease-in-out 3}
+@keyframes wiggle{25%{transform:rotate(-9deg)}75%{transform:rotate(9deg)}}
+.plus{position:absolute;top:444px;width:40px;text-align:center;font:800 40px/1 'Trebuchet MS',sans-serif;color:#fff6e0;text-shadow:0 3px 0 #0006}
+
+/* sentence strip */
+.strip{position:absolute;left:70px;right:70px;top:558px;background:#fffdf6;border:4px solid #33261c;border-radius:16px;padding:5px 16px;text-align:center;
+  font:700 28px/1.25 'Trebuchet MS','Segoe UI',sans-serif;box-shadow:0 6px 0 #0004}
+.strip b{color:var(--accent)}
+.strip mark{background:#ffe28a;border-radius:8px;padding:0 6px;color:inherit}
+.spark{position:absolute;width:16px;height:16px;border-radius:50%;background:#ffd34d;box-shadow:0 0 12px #ffd34d}
+
+.panel{background:#fffaf0;border-left:3px solid var(--line);padding:14px 16px;display:flex;flex-direction:column;gap:10px;overflow:auto}
+@media (max-width:759px){.panel{border-left:0;border-top:3px solid var(--line)}}
+.panel h2{margin:4px 0 0;font:800 13px/1 'Segoe UI',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.hint{margin:0;font:600 17px/1.35 'Segoe UI',sans-serif;color:var(--muted)}
+.hint b{color:var(--ink)}
+.big{border:0;border-radius:16px;min-height:64px;font:800 22px/1 'Trebuchet MS','Segoe UI',sans-serif;color:#fff;box-shadow:0 5px 0 #0004}
+.big:active:not(:disabled){transform:translateY(3px);box-shadow:0 2px 0 #0004}
+.big:disabled{opacity:.45;cursor:default}
+.red{background:var(--accent)}.blue{background:#3a6ea5}
+.row{display:flex;gap:8px}
+.small-btn{flex:1;border:2px solid var(--line);background:#fff;border-radius:12px;min-height:48px;font-weight:700}
+.small-btn:disabled{opacity:.45;cursor:default}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips button{border:2px solid var(--line);background:#fff;border-radius:999px;min-height:44px;padding:0 14px;font:800 18px/1 'Trebuchet MS',sans-serif}
+.chips button[aria-pressed="true"]{background:#2f4f57;border-color:#2f4f57;color:#fff}
+.shelf{display:flex;flex-wrap:wrap;gap:6px}
+.shelf button{border:2px solid #d4b071;background:linear-gradient(#fff3d6,#efd29c);border-radius:10px;min-height:44px;padding:2px 10px;font:800 20px/1 'Trebuchet MS',sans-serif;color:#33261c}
+.shelf:empty::before{content:'Nothing yet. Crush some words!';color:var(--muted);font-style:italic}
+
+.calm .belt.run i,.calm .tile.wiggle{animation:none}
+
+@media (max-width:759px),(max-height:620px){
+  header{padding:6px 12px}
+  h1{font-size:19px} h1 small{display:none}
+  .icon-btn{min-height:38px;font-size:13px;padding:0 10px}
+  main{grid-template-columns:minmax(0,1fr) 260px}
+  .panel{padding:8px 10px;gap:6px}
+  .panel h2{display:none}
+  .hint{font-size:13px}
+  .big{min-height:44px;font-size:17px}
+  .small-btn{min-height:36px}
+  .chips button{min-height:34px;font-size:14px;padding:0 9px}
+  .shelf button{min-height:32px;font-size:15px}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Contraction Crusher <small>Squish two words into one. Where do the letters go?</small></h1>
+  <button class="icon-btn" id="motion" aria-pressed="true" title="Turn animation on or off">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+  <button class="icon-btn" id="read">🔊 Read</button>
+</header>
+<main>
+  <div class="stage" id="stage">
+    <div class="scene" id="scene" role="img" aria-label="A word factory. Two word blocks sit on a conveyor belt under a big stamping press. A little robot waits beside it.">
+      <div class="rodbox"><i class="rod" id="rod" style="top:-143px"></i></div>
+      <div id="press" style="left:365px;top:127px"><img src="art:press-head" alt=""></div>
+      <img id="frame" src="art:press-frame" alt="" style="left:195px;top:4px;width:620px;height:603px">
+      <div class="legs" style="left:120px"></div><div class="legs" style="left:856px"></div>
+      <div class="belt" id="belt"><i></i></div>
+      <div id="tiles"></div>
+      <img id="robot" src="art:robot" alt="" style="left:836px;top:318px;height:190px">
+      <div class="strip" id="strip" aria-live="polite"></div>
+    </div>
+  </div>
+  <aside class="panel">
+    <p class="hint" id="hint"></p>
+    <button class="big red" id="crush">Crush!</button>
+    <div class="row">
+      <button class="small-btn" id="undo">↩ Uncrush</button>
+      <button class="small-btn" id="next">Next words →</button>
+    </div>
+    <h2>Word families</h2>
+    <div class="chips" id="fams"></div>
+    <h2>Made today</h2>
+    <div class="shelf" id="shelf"></div>
+  </aside>
+</main>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  // Motion follows the device's "reduce motion" setting until the teacher picks, then the choice is remembered
+  let reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  try { const m = localStorage.getItem('curio-motion'); if (m) reduce = m === 'calm'; } catch {}
+  function showMotion() {
+    document.body.classList.toggle('calm', reduce);
+    $('motion').setAttribute('aria-pressed', !reduce);
+    $('motion').textContent = reduce ? '⏸ Motion' : '✨ Motion';
+  }
+  showMotion();
+  $('motion').onclick = () => {
+    reduce = !reduce;
+    try { localStorage.setItem('curio-motion', reduce ? 'calm' : 'on'); } catch {}
+    showMotion();
+  };
+  const wait = ms => new Promise(r => setTimeout(r, ms));  // same pacing with motion off, so sounds stay in step
+  // Move with the Web Animations API; with motion off, jump to the end after the same time
+  async function anim(node, frames, ms, easing = 'ease-in-out') {
+    if (reduce) { await wait(ms); Object.assign(node.style, frames[frames.length - 1]); return; }
+    const a = node.animate(frames, {duration: ms, easing, fill: 'forwards'});
+    await Promise.race([a.finished, wait(ms + 150)]);  // never hang on a throttled or paused timeline
+    Object.assign(node.style, frames[frames.length - 1]);
+    a.cancel();
+  }
+
+  // Scale the 1000x620 scene to fit the stage
+  const fit = () => {
+    const r = $('stage').getBoundingClientRect();
+    $('scene').style.setProperty('--s', Math.min(r.width / 1000, r.height / 620));
+  };
+  new ResizeObserver(fit).observe($('stage'));
+
+  // ---------- words ----------
+  // [first word, second word, where the dropped letters start in the second word, how many drop, family, sentence]
+  const WORDS = [
+    ['do', 'not', 1, 1, "n't", 'I {} like getting wet.'],
+    ['is', 'not', 1, 1, "n't", 'The soup {} hot yet.'],
+    ['did', 'not', 1, 1, "n't", 'We {} see the owl.'],
+    ['can', 'not', 0, 2, "n't", 'I {} reach the top shelf.'],
+    ['was', 'not', 1, 1, "n't", 'The dog {} in the yard.'],
+    ['are', 'not', 1, 1, "n't", 'They {} late for lunch.'],
+    ['does', 'not', 1, 1, "n't", 'My cat {} like baths.'],
+    ['it', 'is', 0, 1, "'s", '{} time for recess!'],
+    ['she', 'is', 0, 1, "'s", '{} my best friend.'],
+    ['that', 'is', 0, 1, "'s", '{} a big pumpkin.'],
+    ['let', 'us', 0, 1, "'s", '{} go to the park.'],
+    ['you', 'are', 0, 1, "'re", '{} a great helper.'],
+    ['we', 'are', 0, 1, "'re", '{} going on a trip.'],
+    ['they', 'are', 0, 1, "'re", '{} building a fort.'],
+    ['I', 'will', 0, 2, "'ll", '{} read you a story.'],
+    ['we', 'will', 0, 2, "'ll", '{} plant the seeds.'],
+    ['you', 'will', 0, 2, "'ll", '{} love this book.'],
+    ['I', 'have', 0, 2, "'ve", '{} lost my mitten.'],
+    ['we', 'have', 0, 2, "'ve", '{} got a new puppy.'],
+    ['they', 'have', 0, 2, "'ve", '{} finished the puzzle.'],
+    ['I', 'am', 0, 1, "'m", '{} ready to go!'],
+  ].map(([a, b, at, n, fam, s]) => ({a, b, at, n, fam, s, made: a + b.slice(0, at) + "'" + b.slice(at + n)}));
+  const FAMS = ['All', "n't", "'s", "'re", "'ll", "'ve", "'m"];
+
+  const state = {fam: 'All', deck: [], cur: null, phase: 'ready', busy: false, sound: true, made: []};
+  function deal() {
+    const pool = WORDS.filter(w => state.fam === 'All' || w.fam === state.fam);
+    state.deck = pool.slice().sort(() => Math.random() - .5);
+    if (state.fam === 'All' && !state.made.length) {  // start with the friendliest one
+      state.deck = [WORDS[0], ...state.deck.filter(w => w !== WORDS[0])];
+    }
+  }
+
+  // ---------- sound ----------
+  let ctx;
+  const audio = () => (ctx ||= new (window.AudioContext || window.webkitAudioContext)());
+  function tone(type, f0, f1, dur, gain, when = 0) {
+    if (!state.sound) return;
+    const a = audio(), o = a.createOscillator(), g = a.createGain(), t = a.currentTime + when;
+    o.type = type; o.frequency.setValueAtTime(f0, t); o.frequency.exponentialRampToValueAtTime(f1, t + dur);
+    g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(gain, t + 0.01); g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    o.connect(g).connect(a.destination); o.start(t); o.stop(t + dur + 0.05);
+  }
+  function noise(dur, freq, gain, type = 'lowpass', when = 0) {
+    if (!state.sound) return;
+    const a = audio(), len = a.sampleRate * dur, buf = a.createBuffer(1, len, a.sampleRate), d = buf.getChannelData(0);
+    for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * (1 - i / len) ** 3;
+    const src = a.createBufferSource(), f = a.createBiquadFilter(), g = a.createGain();
+    src.buffer = buf; f.type = type; f.frequency.value = freq; g.gain.value = gain;
+    src.connect(f).connect(g).connect(a.destination); src.start(a.currentTime + when);
+  }
+  const SFX = {
+    tap: () => tone('triangle', 660, 660, .1, .1),
+    untap: () => tone('triangle', 440, 440, .1, .08),
+    hiss: () => noise(.5, 2500, .18, 'highpass'),
+    thud: () => { noise(.35, 160, 1.1); tone('sine', 120, 45, .4, .5); },
+    boing: () => { tone('sine', 300, 900, .25, .16); tone('sine', 900, 500, .2, .08, .22); },
+    whoosh: () => noise(.6, 1400, .3, 'bandpass'),
+    ding: () => { tone('sine', 1319, 1319, .5, .14); tone('sine', 1760, 1760, .6, .1, .12); },
+    hmm: () => tone('sine', 300, 230, .45, .15),
+    roll: () => { for (let i = 0; i < 8; i++) tone('square', 90, 80, .05, .03, i * .1); },
+  };
+
+  // ---------- layout ----------
+  const TW = 62, GAP = 5, WGAP = 52, Y = 430, PC = 505;  // PC: middle of the press
+  const rowX = (n, extra = 0) => PC - (n * TW + (n - 1) * GAP + extra) / 2;
+  const tiles = [];  // {el, ch, word, i}
+  function tile(ch, cls) {
+    const t = document.createElement('button');
+    t.className = 'tile ' + cls; t.textContent = ch; t.style.left = '0px';
+    $('tiles').append(t);
+    return t;
+  }
+  function placeWords(w) {
+    $('tiles').replaceChildren(); tiles.length = 0;
+    // the second word sits under the press, the first waits beside it
+    const x1 = rowX(w.b.length), x0 = x1 - WGAP - w.a.length * (TW + GAP) + GAP;
+    [...w.a].forEach((ch, i) => tiles.push({el: tile(ch, 'w1'), ch, word: 1, i, x: x0 + i * (TW + GAP)}));
+    [...w.b].forEach((ch, i) => tiles.push({el: tile(ch, 'w2'), ch, word: 2, i, x: x1 + i * (TW + GAP)}));
+    const plus = document.createElement('div');
+    plus.className = 'plus'; plus.id = 'plus'; plus.textContent = '+';
+    plus.style.left = (x1 - WGAP / 2 - 20) + 'px';
+    $('tiles').append(plus);
+    for (const t of tiles) {
+      t.el.style.transform = `translate(${t.x}px,0)`;
+      t.el.setAttribute('aria-label', `Letter ${t.ch} in ${t.word === 1 ? w.a : w.b}. Tap if you think it falls out.`);
+      t.el.setAttribute('aria-pressed', 'false');
+      t.el.onclick = () => {
+        if (state.phase !== 'ready' || state.busy) return;
+        const on = t.el.classList.toggle('mark');
+        t.el.setAttribute('aria-pressed', on);
+        on ? SFX.tap() : SFX.untap();
+        hint();
+      };
+    }
+  }
+  const dropped = t => t.word === 2 && t.i >= state.cur.at && t.i < state.cur.at + state.cur.n;
+  // Where each kept tile and the apostrophe end up once the words are joined
+  function joinedX() {
+    const w = state.cur, n = w.made.length, x0 = rowX(n);
+    const pos = {};
+    let k = 0;
+    for (const t of tiles) {
+      if (dropped(t)) { if (t.i === w.at) pos.apos = x0 + (k++) * (TW + GAP); continue; }
+      pos[tiles.indexOf(t)] = x0 + (k++) * (TW + GAP);
+    }
+    return pos;
+  }
+
+  // ---------- words on screen ----------
+  const sentence = (w, joined) => w.s.replace('{}', joined ? `<mark>${cap(w.made, w.s)}</mark>` : `<b>${cap(w.a + ' ' + w.b, w.s)}</b>`);
+  const cap = (txt, s) => s.startsWith('{}') ? txt[0].toUpperCase() + txt.slice(1) : txt;
+  function strip(html, text) { $('strip').innerHTML = html; $('strip').dataset.text = text; }
+  function robot(face) { $('robot').src = {hmm: ROBOT.hmm, yay: ROBOT.yay}[face] || ROBOT.idle; }
+  const ROBOT = {idle: 'art:robot', hmm: 'art:robot-hmm', yay: 'art:robot-yay'};
+
+  function hint() {
+    const marks = tiles.filter(t => t.el.classList.contains('mark')).length;
+    const w = state.cur;
+    if (!w) return;
+    $('hint').innerHTML = state.phase === 'ready'
+      ? (marks ? `<b>${marks} letter${marks > 1 ? 's' : ''}</b> marked to fall out. Press <b>Crush!</b> to see if you're right.`
+               : `When <b>${w.a}</b> and <b>${w.b}</b> squish together, some letters fall out. <b>Tap the letters</b> you think will drop, then press <b>Crush!</b>`)
+      : `<b>${w.a} ${w.b}</b> → <b>${w.made}</b>. The apostrophe sits right where the letters fell out.`;
+    $('crush').disabled = state.phase !== 'ready' || state.busy;
+    $('undo').disabled = state.phase !== 'made' || state.busy;
+    $('next').disabled = state.busy;
+  }
+
+  async function next() {
+    if (state.busy) return;
+    state.busy = true; hint();
+    if (!state.deck.length) deal();
+    state.cur = state.deck.shift();
+    const old = [...$('tiles').children];
+    robot('idle');
+    $('belt').classList.add('run'); SFX.roll();
+    // old words ride off to the left, new ones ride in from the right
+    await Promise.all(old.map(n => anim(n, [{transform: n.style.transform || 'none', opacity: 1}, {transform: (n.style.transform || '') + ' translateX(-900px)', opacity: reduce ? 0 : 1}], 800, 'ease-in')));
+    placeWords(state.cur);
+    state.phase = 'ready';
+    strip(sentence(state.cur, false), state.cur.s.replace('{}', state.cur.a + ' ' + state.cur.b));
+    const fresh = [...$('tiles').children];
+    await Promise.all(fresh.map(n => anim(n, [{transform: (n.style.transform || '') + ' translateX(900px)', opacity: reduce ? 0 : 1}, {transform: n.style.transform || 'none', opacity: 1}], 1000, 'cubic-bezier(.2,.8,.3,1)')));
+    $('belt').classList.remove('run');
+    state.busy = false; hint();
+  }
+
+  // The rod lives in its own clipped box so it never pokes out above the housing
+  const pressTo = (frames, ms, easing) => Promise.all([anim($('press'), frames, ms, easing),
+    anim($('rod'), frames.map(f => ({top: parseFloat(f.top) - 270 + 'px'})), ms, easing)]);
+  const HEAD_UP = 127, HEAD_DOWN = 261;  // press top at rest (rod hidden in the housing) and when the block meets the tiles
+  async function crush() {
+    if (state.phase !== 'ready' || state.busy) return;
+    state.busy = true; hint();
+    const w = state.cur;
+    const marked = tiles.filter(t => t.el.classList.contains('mark'));
+    const guessed = marked.length > 0;
+    const right = guessed && marked.length === w.n && marked.every(dropped);
+    speechSynthesis?.cancel?.();
+    SFX.hiss();
+    await pressTo([{top: HEAD_UP + 'px'}, {top: HEAD_UP - 20 + 'px'}], 450, 'ease-out');
+    await pressTo([{top: HEAD_UP - 20 + 'px'}, {top: HEAD_DOWN + 'px'}], 380, 'cubic-bezier(.6,0,1,1)');
+    SFX.thud();
+    if (!reduce) $('scene').animate([{translate: '0 0'}, {translate: '0 6px'}, {translate: '0 -3px'}, {translate: '0 0'}], {duration: 260});
+    await Promise.all(tiles.filter(t => t.word === 2).map(t => anim(t.el, [{transform: `translate(${t.x}px,0) scaleY(1)`}, {transform: `translate(${t.x}px,0) scale(1.08,.8)`}, {transform: `translate(${t.x}px,0) scaleY(1)`}], 320)));
+    for (const t of tiles) t.el.classList.remove('mark');
+    // the dropped letters pop out and tumble off the belt
+    SFX.boing();
+    const out = tiles.filter(dropped);
+    out.forEach((t, k) => {
+      const dx = (k - (out.length - 1) / 2) * 90 + 40;  // tumble right, away from the words
+      anim(t.el, [{transform: `translate(${t.x}px,0) rotate(0)`, opacity: 1},
+                  {transform: `translate(${t.x + dx * .6}px,-170px) rotate(${dx > 0 ? 160 : -160}deg)`, opacity: 1, offset: .45},
+                  {transform: `translate(${t.x + dx * 1.5}px,330px) rotate(${dx > 0 ? 380 : -380}deg)`, opacity: 0}], 1300, 'ease-out');
+    });
+    await wait(500);
+    await pressTo([{top: HEAD_DOWN + 'px'}, {top: HEAD_DOWN - 60 + 'px'}], 300, 'ease-out');
+    // the rest slide together, leaving a gap where the letters were
+    const pos = joinedX();
+    $('plus').style.opacity = 0;
+    await Promise.all(tiles.filter(t => !dropped(t)).map(t => anim(t.el, [{transform: `translate(${t.x}px,0)`}, {transform: `translate(${pos[tiles.indexOf(t)]}px,0)`}], 700)));
+    await wait(600);
+    // the robot throws the apostrophe into the gap
+    robot(right ? 'yay' : guessed ? 'hmm' : 'idle');
+    const ap = tile('', 'apos');
+    ap.innerHTML = '<svg viewBox="0 0 40 60" width="36" height="54" aria-hidden="true"><path d="M20 3c8 0 14 6 14 14 0 13-9 24-21 30l-4-6c7-4 11-9 12-15-7 0-12-5-12-11S12 3 20 3z" fill="#6b3300"/></svg>';
+    ap.setAttribute('aria-label', 'apostrophe');
+    ap.style.transform = 'translate(860px,-90px) scale(.6)';
+    SFX.whoosh();
+    await anim(ap, [{transform: 'translate(860px,-90px) scale(.6) rotate(0)'}, {transform: `translate(${(860 + pos.apos) / 2}px,-230px) scale(1.15) rotate(-200deg)`},
+                    {transform: `translate(${pos.apos}px,0) scale(1) rotate(-360deg)`}], 1100, 'ease-in-out');
+    SFX.ding();
+    sparks(pos.apos + TW / 2, Y + 30);
+    for (const t of tiles) if (!dropped(t)) t.el.classList.add('made');
+    await pressTo([{top: HEAD_DOWN - 60 + 'px'}, {top: HEAD_UP + 'px'}], 600, 'ease-in-out');
+    state.phase = 'made';
+    strip(sentence(w, true), w.s.replace('{}', w.made));
+    if (!state.made.includes(w)) { state.made.push(w); shelf(); }
+    state.busy = false;
+    hint();
+    $('hint').innerHTML = (right ? '<b>You got it!</b> ' : guessed ? '<b>Not quite.</b> Look where the gap is. ' : '') + $('hint').innerHTML;
+    say(`${w.a} ${w.b}. ${w.made}. ${w.s.replace('{}', w.made)}`, right ? 'You got it! ' : '');
+  }
+
+  // Back apart: the apostrophe pops out and the letters come home
+  async function uncrush() {
+    if (state.phase !== 'made' || state.busy) return;
+    state.busy = true; hint();
+    const w = state.cur, ap = $('tiles').querySelector('.apos');
+    robot('idle'); SFX.boing();
+    await anim(ap, [{transform: ap.style.transform, opacity: 1}, {transform: `translate(860px,-90px) scale(.6) rotate(360deg)`, opacity: 0}], 900, 'ease-in');
+    ap.remove();
+    for (const t of tiles) t.el.classList.remove('made');
+    await Promise.all(tiles.filter(t => !dropped(t)).map(t => anim(t.el, [{transform: t.el.style.transform}, {transform: `translate(${t.x}px,0)`}], 700)));
+    SFX.whoosh();
+    await Promise.all(tiles.filter(dropped).map(t => anim(t.el, [{transform: `translate(${t.x}px,-260px) rotate(-200deg)`, opacity: 0}, {transform: `translate(${t.x}px,0) rotate(0)`, opacity: 1}], 900, 'cubic-bezier(.3,1.4,.5,1)')));
+    $('plus').style.opacity = 1;
+    state.phase = 'ready';
+    strip(sentence(w, false), w.s.replace('{}', w.a + ' ' + w.b));
+    state.busy = false; hint();
+  }
+
+  function sparks(x, y) {
+    if (reduce) return;
+    for (let i = 0; i < 12; i++) {
+      const s = document.createElement('i');
+      s.className = 'spark'; s.style.left = x + 'px'; s.style.top = y + 'px';
+      $('scene').append(s);
+      const a = i / 12 * Math.PI * 2, r = 70 + Math.random() * 50;
+      s.animate([{transform: 'translate(-50%,-50%) scale(1)', opacity: 1}, {transform: `translate(calc(-50% + ${Math.cos(a) * r}px),calc(-50% + ${Math.sin(a) * r}px)) scale(.2)`, opacity: 0}],
+                {duration: 800, easing: 'ease-out'}).finished.then(() => s.remove());
+    }
+  }
+
+  function shelf() {
+    $('shelf').replaceChildren(...state.made.map(w => {
+      const b = document.createElement('button');
+      b.textContent = w.made; b.title = `${w.a} ${w.b}`;
+      b.onclick = () => say(`${w.a} ${w.b}. ${w.made}.`);
+      return b;
+    }));
+  }
+  function families() {
+    $('fams').replaceChildren(...FAMS.map(f => {
+      const b = document.createElement('button');
+      b.textContent = f; b.setAttribute('aria-pressed', f === state.fam);
+      b.title = f === 'All' ? 'Every contraction' : `Only contractions ending in ${f}`;
+      b.onclick = () => {
+        if (state.busy) return;
+        state.fam = f; deal(); families(); next();
+      };
+      return b;
+    }));
+  }
+
+  // ---------- panel ----------
+  $('crush').onclick = crush;
+  $('undo').onclick = uncrush;
+  $('next').onclick = next;
+  $('sound').onclick = e => {
+    state.sound = !state.sound;
+    e.currentTarget.setAttribute('aria-pressed', state.sound);
+    e.currentTarget.textContent = state.sound ? '🔔 Sound' : '🔇 Sound';
+  };
+  // Read aloud with the most natural voice this browser offers
+  function bestVoice() {
+    const voices = speechSynthesis.getVoices().filter(v => /^en(-|_|$)/i.test(v.lang));
+    const score = v => (/natural|neural/i.test(v.name) ? 50 : 0) + (/premium|enhanced/i.test(v.name) ? 40 : 0) +
+      (/google/i.test(v.name) ? 30 : 0) + (/aria|jenny|ava|samantha|libby|sonia/i.test(v.name) ? 10 : 0) +
+      (/en-US/i.test(v.lang) ? 5 : 0) + (v.default ? 1 : 0);
+    return voices.sort((a, b) => score(b) - score(a))[0] || null;
+  }
+  if ('speechSynthesis' in window) speechSynthesis.getVoices();
+  function say(text, lead = '') {
+    if (!state.sound || !('speechSynthesis' in window)) return;
+    speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(lead + text);
+    const v = bestVoice();
+    if (v) { u.voice = v; u.lang = v.lang; }
+    u.rate = .88; u.pitch = 1.05; speechSynthesis.speak(u);
+  }
+  $('read').onclick = () => {
+    const w = state.cur;
+    if (!('speechSynthesis' in window) || !w) return;
+    const was = state.sound; state.sound = true;
+    say(state.phase === 'made' ? `${w.a} ${w.b} becomes ${w.made}. ${w.s.replace('{}', w.made)}`
+                               : `${w.s.replace('{}', w.a + ' ' + w.b)} Which letters fall out when ${w.a} and ${w.b} squish together?`);
+    state.sound = was;
+  };
+
+  deal(); families(); hint();
+  window.__cc = state;  // for checking frames
+  next();
+})();
+</script>
+</body>
+</html>

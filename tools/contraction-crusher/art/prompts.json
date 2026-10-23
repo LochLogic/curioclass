@@ -1,0 +1,50 @@
+{
+  "style": "Whimsical picture-book workshop look, like a cozy illustrated story about a word factory. Warm brass, red paint, wood and brick. Rounded, friendly machines.",
+  "assets": [
+    {
+      "name": "factory",
+      "prompt": "Empty background: the inside of a cozy whimsical word factory seen straight on at a child's eye level. Warm red-brick back wall with big round windows letting in sunlight, brass pipes and a few friendly gears high on the walls, wooden shelves with jars along the sides, a wooden floor. The whole middle of the picture is open wall, clear of machines and objects. No machines in the center, no conveyor, no people, no robots, no writing, no letters. 16:9.",
+      "aspect": "16:9",
+      "width": 1400,
+      "quality": 78,
+      "trim": 0.04
+    },
+    {
+      "name": "press-frame",
+      "prompt": "The frame of a big friendly cartoon stamping press machine, front view: two thick red-painted iron pillars on the left and right joined at the top by a rounded brass housing with rivets, a round pressure gauge and a little chimney. The space between the pillars is completely empty and open, from the floor to the housing: no press plate, no piston, nothing in the middle. The pillars stand on a heavy dark base.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 620
+    },
+    {
+      "name": "press-head",
+      "prompt": "A heavy flat steel stamping block for a cartoon press machine, front view: a wide rectangular block of dark steel with a brass trim band and rivets, a thick shiny piston rod rising straight up from the middle of its top. Wide and short, about four times wider than tall, plus the rod.",
+      "cutout": true,
+      "aspect": "4:3",
+      "width": 520
+    },
+    {
+      "name": "robot",
+      "prompt": "A small friendly round robot helper with a dome head, big round glowing eyes, a little antenna with a red ball, brass and teal paint, short arms raised happily, standing on two little wheels. Full body, front view, cheerful.",
+      "cutout": true,
+      "aspect": "3:4",
+      "height": 360
+    },
+    {
+      "name": "robot-hmm",
+      "ref": "robot",
+      "prompt": "The same robot, puzzled: head tilted, one hand scratching its dome, eyes looking up. Full body, front view.",
+      "cutout": true,
+      "aspect": "3:4",
+      "height": 360
+    },
+    {
+      "name": "robot-yay",
+      "ref": "robot",
+      "prompt": "The same robot, celebrating: both arms up high, eyes happy crescents, a few little sparks of joy from the antenna. Full body, front view.",
+      "cutout": true,
+      "aspect": "3:4",
+      "height": 360
+    }
+  ]
+}

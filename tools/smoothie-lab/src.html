@@ -1,0 +1,472 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Smoothie Lab · Ratios you can taste · Curio Class</title>
+<meta name="description" content="Mix fruit by the scoop, blend, and find out which recipes taste the same. Then fill orders: scale a recipe up or down, make a set number of scoops, or work from a percent. Ratio tables and a graph show why. Grade 6 math. Works offline.">
+<!--
+SMOOTHIE LAB (Curio Class)
+Grade 6 math, CCSS 6.RP.A.1 (ratio language), 6.RP.A.2 (unit rate), 6.RP.A.3a (tables of equivalent
+ratios, plotting pairs on the coordinate plane), 6.RP.A.3c (percent of a quantity).
+Students or teacher. Explore: scoop fruit into a blender, see the scoops stacked as layers (a tape
+diagram you can count), blend, and the shop owner tastes it. Two batches taste the same exactly when
+their ratios are equivalent, and the batch log says so. Orders: the owner hands over a recipe and a
+condition (a bigger batch, a set number of scoops, a percent, the simplest form). Every attempt is
+plotted; once the order is right, the ratio table and the line of equal-tasting recipes appear.
+Color is mixed from the fruit amounts, so equivalent recipes really are the same color.
+One file, no network requests. Illustrations generated with Google Gemini, edited for Curio Class.
+Content CC BY 4.0, code MIT. curioclass.org
+-->
+<style>
+:root{
+  --paper:#f6faf6;--ink:#1f2b27;--muted:#5a6a64;--line:#d6e4dc;--focus:#2f5bd3;--accent:#e2445c;--go:#23845a;
+  font-family:'Segoe UI',system-ui,-apple-system,Roboto,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{background:var(--paper);color:var(--ink);display:grid;grid-template-rows:auto 1fr;min-height:100vh}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:4px solid var(--focus);outline-offset:3px}
+header{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 18px;background:#1f5c4b;color:#effaf4}
+h1{margin:0 auto 0 0;font:800 clamp(21px,2.8vw,30px)/1.1 'Trebuchet MS','Segoe UI',sans-serif}
+h1 small{display:block;font:500 14px/1.3 'Segoe UI',sans-serif;color:#c3e6d6}
+.tabs{display:flex;background:#174a3c;border-radius:999px;padding:4px}
+.tabs button{border:0;background:none;color:#cfeee0;border-radius:999px;min-height:44px;padding:0 18px;font-weight:800}
+.tabs button[aria-pressed="true"]{background:#effaf4;color:#1f5c4b}
+.icon-btn{border:2px solid #2f7562;background:#256a57;color:#effaf4;border-radius:999px;min-height:48px;padding:0 14px;font-weight:700;font-size:15px}
+
+main{display:grid;grid-template-columns:1fr;min-height:0}
+@media (min-width:860px){main{grid-template-columns:minmax(0,1fr) 400px}}
+.stage{position:relative;overflow:hidden;min-height:360px;background:#cfe9de url(art:bar) center 60%/cover}
+.scene{position:absolute;left:50%;top:50%;width:1000px;height:620px;transform:translate(-50%,-50%) scale(var(--s,1))}
+.scene img{position:absolute;display:block;user-select:none}
+.counter{position:absolute;left:-600px;right:-600px;top:540px;height:400px;background:linear-gradient(#e9cfa4,#d7b583 30px,#c9a46f);box-shadow:0 -4px 0 #f4e2c2,0 -10px 20px #0002}
+#owner{left:690px;top:170px;height:380px;transition:opacity .3s}
+#blender{left:300px;top:76px;width:253px;height:470px;pointer-events:none}
+.jug{position:absolute;left:300px;top:76px;width:253px;height:470px;pointer-events:none}
+.jug .fill{position:absolute;inset:0;clip-path:polygon(9.5% 11%,74.5% 11%,70% 51.5%,13.5% 51.5%)}
+.layers{position:absolute;left:0;right:0;bottom:49%;display:flex;flex-direction:column-reverse;transition:height .5s}
+.layers i{display:block;border-top:2px solid #ffffffa0}
+.liquid{position:absolute;left:0;right:0;bottom:49%;border-radius:0 0 8px 8px;transition:height .8s,background .8s}
+.liquid::after{content:'';position:absolute;left:0;right:0;top:0;height:14px;background:#ffffff55;border-radius:50%}
+.bowls{position:absolute;left:20px;top:410px;display:grid;grid-template-columns:repeat(4,64px);gap:8px}
+.bowl{position:relative;width:64px;height:120px;border:0;background:none;padding:0}
+.bowl img{position:absolute;left:-14px;bottom:28px;width:92px;height:70px;object-fit:contain;transition:transform .15s}
+.bowl:hover img{transform:translateY(-4px)}
+.bowl span{position:absolute;left:-4px;right:-4px;bottom:0;height:34px;border-radius:0 0 36px 36px;background:linear-gradient(#ffffff,#dfe9e5);box-shadow:0 4px 0 #0002}
+.bowl:disabled{opacity:.35;cursor:default}
+.flyer{position:absolute;width:60px;height:46px;object-fit:contain;pointer-events:none;z-index:5}
+.bubble{position:absolute;left:600px;top:16px;width:380px;background:#fff;border:3px solid #1f2b27;border-radius:18px;padding:10px 14px;font:700 19px/1.3 'Trebuchet MS','Segoe UI',sans-serif;box-shadow:0 5px 0 #0003;z-index:3}
+.bubble::after{content:'';position:absolute;left:190px;bottom:-22px;border:12px solid transparent;border-top:12px solid #1f2b27}
+.bubble:empty{display:none}
+.order{position:absolute;left:24px;top:18px;width:250px;background:#fffef5;border:2px solid #d9c79a;border-radius:6px;padding:12px 14px;box-shadow:0 6px 14px #0003;transform:rotate(-2deg);font:600 15px/1.35 'Segoe UI',sans-serif}
+.order b{display:block;font:800 21px/1.15 'Trebuchet MS',sans-serif;color:#b0283f;margin-bottom:4px}
+.order em{display:block;font-style:normal;font-weight:800;margin-top:6px;color:#1f5c4b}
+.order:empty{display:none}
+.shake{animation:shake .12s linear 12}
+@keyframes shake{25%{transform:translate(-3px,1px) rotate(-1deg)}75%{transform:translate(3px,-1px) rotate(1deg)}}
+.calm .shake{animation:none}
+.calm .layers,.calm .liquid{transition:none}
+
+.panel{background:#fbfefc;border-left:3px solid var(--line);padding:12px 14px;display:flex;flex-direction:column;gap:10px;overflow:auto}
+@media (max-width:859px){.panel{border-left:0;border-top:3px solid var(--line)}}
+.panel h2{margin:2px 0 0;font:800 12px/1 'Segoe UI',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.fruit{display:grid;grid-template-columns:44px 1fr 44px 44px 44px;align-items:center;gap:6px}
+.fruit img{width:44px;height:34px;object-fit:contain}
+.fruit .name{font-weight:700}
+.fruit .name small{display:block;color:var(--muted);font-weight:600}
+.fruit button{border:2px solid var(--line);background:#fff;border-radius:10px;height:44px;font:800 22px/1 sans-serif}
+.fruit output{text-align:center;font:800 24px/1 'Trebuchet MS',sans-serif}
+.fruit[hidden]{display:none}
+.readout{background:#fff;border:2px solid var(--line);border-radius:12px;padding:8px 10px;font:600 15px/1.4 'Segoe UI',sans-serif}
+.readout b{font:800 20px/1.2 'Trebuchet MS',sans-serif}
+.bar{display:flex;height:16px;border-radius:8px;overflow:hidden;margin-top:6px;background:var(--line)}
+.row{display:flex;gap:8px}
+.big{flex:1;border:0;border-radius:14px;min-height:54px;font:800 19px/1 'Trebuchet MS','Segoe UI',sans-serif;color:#fff;box-shadow:0 4px 0 #0004}
+.big:active:not(:disabled){transform:translateY(3px);box-shadow:0 1px 0 #0004}
+.big:disabled{opacity:.4;cursor:default}
+.blend{background:var(--accent)}.gray{background:#6b7a74}.next{background:#1f5c4b}
+.log{display:flex;flex-direction:column;gap:4px;font:600 14px/1.3 'Segoe UI',sans-serif}
+.log div{display:flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:8px;padding:4px 8px}
+.log i{width:22px;height:22px;border-radius:50%;flex:none;box-shadow:inset 0 -3px 0 #0002}
+.log .same{margin-left:auto;background:#e6f6ee;color:var(--go);border-radius:999px;padding:1px 8px;font-weight:800;white-space:nowrap}
+.log:empty::before{content:'Blend something to start the log.';color:var(--muted);font-style:italic}
+.graph{background:#fff;border:2px solid var(--line);border-radius:12px}
+table{border-collapse:collapse;width:100%;font:700 15px/1 'Segoe UI',sans-serif;background:#fff}
+td,th{border:1px solid var(--line);padding:6px 4px;text-align:center}
+th{text-align:left;font-weight:700;color:var(--muted);white-space:nowrap}
+td.hit{background:#fff1b8}
+.tip{margin:0;font:600 14px/1.4 'Segoe UI',sans-serif;color:var(--muted)}
+
+@media (max-height:640px){
+  header{padding:5px 12px} h1{font-size:19px} h1 small{display:none}
+  .icon-btn,.tabs button{min-height:36px;font-size:13px}
+  .panel{gap:6px;padding:8px 10px}
+  .fruit{grid-template-columns:36px 1fr 36px 36px 36px}
+  .fruit button{height:36px}
+  .big{min-height:42px;font-size:16px}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Smoothie Lab <small>Ratios you can taste.</small></h1>
+  <div class="tabs" role="group" aria-label="Mode">
+    <button id="tab-explore" aria-pressed="true">Explore</button>
+    <button id="tab-orders" aria-pressed="false">Orders</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true" title="Turn animation on or off">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+</header>
+<main>
+  <div class="stage" id="stage">
+    <div class="scene" id="scene">
+      <img id="owner" src="art:owner" alt="The smoothie bar owner">
+      <div class="counter"></div>
+      <div class="jug" id="jug"><div class="fill"><div class="layers" id="layers"></div><div class="liquid" id="liquid"></div></div></div>
+      <img id="blender" src="art:blender" alt="">
+      <div class="bowls" id="bowls"></div>
+      <div class="order" id="order"></div>
+      <div class="bubble" id="bubble" role="status" aria-live="polite"></div>
+    </div>
+  </div>
+  <aside class="panel" id="panel">
+    <h2>Scoops</h2>
+    <div id="fruits"></div>
+    <div class="readout" id="readout"></div>
+    <div class="row">
+      <button class="big blend" id="blend">Blend and taste</button>
+      <button class="big gray" id="empty" style="flex:0 0 96px">Empty</button>
+    </div>
+    <div id="explore-extra">
+      <h2>Batch log</h2>
+      <div class="log" id="log"></div>
+      <p class="tip">Can you make two batches with different scoops that taste exactly the same?</p>
+    </div>
+    <div id="orders-extra" hidden>
+      <h2 id="graph-h">Your tries</h2>
+      <svg class="graph" id="graph" viewBox="0 0 360 250" role="img" aria-labelledby="graph-h"></svg>
+      <div id="table"></div>
+      <button class="big next" id="next-order" hidden>Next order →</button>
+    </div>
+  </aside>
+</main>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  let reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  try { const m = localStorage.getItem('curio-motion'); if (m) reduce = m === 'calm'; } catch {}
+  function showMotion() {
+    document.body.classList.toggle('calm', reduce);
+    $('motion').setAttribute('aria-pressed', !reduce);
+    $('motion').textContent = reduce ? '⏸ Motion' : '✨ Motion';
+  }
+  showMotion();
+  $('motion').onclick = () => {
+    reduce = !reduce;
+    try { localStorage.setItem('curio-motion', reduce ? 'calm' : 'on'); } catch {}
+    showMotion();
+  };
+  const wait = ms => new Promise(r => setTimeout(r, ms));
+  const fit = () => {
+    const r = $('stage').getBoundingClientRect();
+    $('scene').style.setProperty('--s', Math.min(r.width / 1000, r.height / 620));
+  };
+  new ResizeObserver(fit).observe($('stage'));
+
+  // ---------- fruit ----------
+  const FRUIT = [
+    {id: 'straw', name: 'strawberry', plural: 'strawberries', color: [228, 52, 96], art: 'art:strawberry'},
+    {id: 'banana', name: 'banana', plural: 'banana', color: [240, 226, 166], art: 'art:banana'},
+    {id: 'blue', name: 'blueberry', plural: 'blueberries', color: [67, 48, 122], art: 'art:blueberry'},
+    {id: 'mango', name: 'mango', plural: 'mango', color: [247, 162, 27], art: 'art:mango'},
+  ];
+  const F = Object.fromEntries(FRUIT.map(f => [f.id, f]));
+  const MAX = 24;  // scoops the jug holds
+  const gcd = (a, b) => b ? gcd(b, a % b) : a;
+
+  // Orders: recipe [fruit, amount] pairs, a condition to meet, and the answer that meets it
+  const ORDERS = [
+    {name: 'Sunrise', a: 'straw', b: 'banana', ra: 2, rb: 3, ask: 'Make a bigger batch that uses 6 scoops of strawberry.',
+     ok: (x, y) => x === 6, miss: 'I asked for 6 scoops of strawberry.', hint: 'Strawberry went from 2 to 6. What happened to it? Do the same to the banana.'},
+    {name: 'Purple Cow', a: 'blue', b: 'banana', ra: 3, rb: 1, ask: 'Fill the blender to the top: 12 scoops in all.',
+     ok: (x, y) => x + y === 12, miss: 'I need exactly 12 scoops in all.', hint: 'One recipe is 3 + 1 = 4 scoops. How many recipes fit in 12?'},
+    {name: 'Mango Tango', a: 'mango', b: 'straw', ra: 5, rb: 2, ask: 'I only have 4 scoops of strawberry left. Use all of them.',
+     ok: (x, y) => y === 4, miss: 'Use all 4 scoops of strawberry.', hint: 'For every 2 strawberry there are 5 mango.'},
+    {name: 'Berry Twin', a: 'straw', b: 'blue', ra: 4, rb: 6, ask: 'Make the smallest batch that still tastes the same.',
+     ok: (x, y) => x + y === 5, miss: 'It tastes right, but you can make it with fewer scoops.', hint: 'What number divides both 4 and 6?'},
+    {name: 'Tropical', a: 'mango', b: 'banana', ra: 3, rb: 2, ask: 'Make 20 scoops for a party.',
+     ok: (x, y) => x + y === 20, miss: 'I need 20 scoops in all.', hint: 'One recipe is 5 scoops. How many recipes make 20?'},
+    {name: 'Banana Split', a: 'banana', b: 'straw', ra: 2, rb: 3, ask: 'Make 15 scoops. 40% of it should be banana.', hideRecipe: true,
+     ok: (x, y) => x + y === 15, miss: 'I need 15 scoops in all.', hint: '40% means 40 out of every 100. What is 40% of 15?'},
+    {name: 'Blue Moon', a: 'blue', b: 'banana', ra: 18, rb: 6, ask: 'Blue Moon is 18 blueberry for every 6 banana. Make a tiny cup with just 1 banana.',
+     ok: (x, y) => y === 1, miss: 'The tiny cup gets just 1 scoop of banana.', hint: 'How many blueberry scoops for each banana scoop? That is the unit rate.'},
+  ];
+
+  const state = {mode: 'explore', n: {straw: 0, banana: 0, blue: 0, mango: 0}, blended: false, log: [], sound: true, busy: false,
+                 o: 0, tries: [], solved: false};
+
+  // ---------- sound ----------
+  let ctx;
+  const audio = () => (ctx ||= new (window.AudioContext || window.webkitAudioContext)());
+  function tone(type, f0, f1, dur, gain, when = 0) {
+    if (!state.sound) return;
+    const a = audio(), o = a.createOscillator(), g = a.createGain(), t = a.currentTime + when;
+    o.type = type; o.frequency.setValueAtTime(f0, t); o.frequency.exponentialRampToValueAtTime(f1, t + dur);
+    g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(gain, t + 0.01); g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    o.connect(g).connect(a.destination); o.start(t); o.stop(t + dur + 0.05);
+  }
+  function whirr(dur) {
+    if (!state.sound) return;
+    const a = audio(), o = a.createOscillator(), g = a.createGain(), t = a.currentTime;
+    o.type = 'sawtooth'; o.frequency.setValueAtTime(60, t); o.frequency.linearRampToValueAtTime(140, t + .4); o.frequency.setValueAtTime(140, t + dur - .3); o.frequency.linearRampToValueAtTime(50, t + dur);
+    g.gain.setValueAtTime(.0001, t); g.gain.exponentialRampToValueAtTime(.05, t + .2); g.gain.setValueAtTime(.05, t + dur - .2); g.gain.exponentialRampToValueAtTime(.0001, t + dur);
+    const f = a.createBiquadFilter(); f.type = 'lowpass'; f.frequency.value = 900;
+    o.connect(f).connect(g).connect(a.destination); o.start(t); o.stop(t + dur + .05);
+  }
+  const SFX = {
+    plop: () => tone('sine', 520, 260, .12, .15),
+    out: () => tone('sine', 260, 380, .1, .08),
+    yum: () => [659, 784, 1047].forEach((f, i) => tone('triangle', f, f, .28, .1, i * .12)),
+    hmm: () => tone('sine', 330, 250, .45, .12),
+  };
+
+  // ---------- the mix ----------
+  const active = () => state.mode === 'orders' ? [ORDERS[state.o].a, ORDERS[state.o].b] : FRUIT.map(f => f.id);
+  const total = () => active().reduce((s, k) => s + state.n[k], 0);
+  function mixColor(n) {
+    const t = Object.values(n).reduce((a, b) => a + b, 0);
+    if (!t) return 'transparent';
+    const out = [0, 0, 0];
+    for (const f of FRUIT) for (let i = 0; i < 3; i++) out[i] += f.color[i] * n[f.id] / t;
+    // blended with a splash of yogurt, so it looks creamy
+    const rgb = out.map(v => Math.round(v * .9 + 245 * .1));
+    return `rgb(${rgb.join(',')})`;
+  }
+  const ratioText = (ids, n) => {
+    const g = ids.reduce((g, k) => gcd(g, n[k]), 0) || 1;
+    return {raw: ids.map(k => n[k]).join(' : '), simple: ids.map(k => n[k] / g).join(' : '), key: ids.map(k => n[k] / g).join(':')};
+  };
+
+  function drawJug() {
+    const ids = active(), t = total();
+    const h = 40 * t / MAX;  // % of the jug image height filled when full
+    if (state.blended) {
+      $('layers').style.height = '0%';
+      $('liquid').style.height = h + '%';
+      $('liquid').style.background = mixColor(state.n);
+    } else {
+      $('liquid').style.height = '0%';
+      $('layers').style.height = h + '%';
+      // each scoop is its own band, so the layers are a tape diagram you can count
+      $('layers').replaceChildren(...ids.flatMap(k => Array.from({length: state.n[k]}, () => {
+        const i = document.createElement('i');
+        i.style.height = (100 / Math.max(t, 1)) + '%';
+        i.style.background = `rgb(${F[k].color.join(',')})`;
+        return i;
+      })));
+    }
+  }
+  function drawControls() {
+    const ids = active();
+    $('fruits').innerHTML = FRUIT.map(f => `<div class="fruit" data-id="${f.id}" ${ids.includes(f.id) ? '' : 'hidden'}>
+      <img src="${f.art}" alt=""><span class="name">${f.name[0].toUpperCase() + f.name.slice(1)}<small>scoops</small></span>
+      <button aria-label="One less ${f.name}">−</button><output>${state.n[f.id]}</output><button aria-label="One more ${f.name}">+</button></div>`).join('');
+    for (const row of $('fruits').children) {
+      const [minus, plus] = row.querySelectorAll('button');
+      minus.onclick = () => change(row.dataset.id, -1);
+      plus.onclick = () => change(row.dataset.id, 1);
+    }
+    $('bowls').innerHTML = ids.map(k => `<button class="bowl" data-id="${k}" title="Add a scoop of ${F[k].name}" aria-label="Add a scoop of ${F[k].name}"><img src="${F[k].art}" alt=""><span></span></button>`).join('');
+    for (const b of $('bowls').children) b.onclick = () => change(b.dataset.id, 1, b);
+    readout();
+  }
+  function readout() {
+    const ids = active().filter(k => state.n[k] || state.mode === 'orders'), t = total();
+    for (const row of $('fruits').children) row.querySelector('output').textContent = state.n[row.dataset.id];
+    if (!t) { $('readout').innerHTML = 'Tap the fruit bowls or the + buttons to add scoops.'; }
+    else {
+      const r = ratioText(ids, state.n);
+      $('readout').innerHTML = `<b>${r.raw}</b> ${ids.map(k => F[k].name).join(' : ')}` +
+        (r.simple !== r.raw ? `<br>Simplest form: <b>${r.simple}</b>` : '') +
+        `<div class="bar">${ids.map(k => `<i style="width:${100 * state.n[k] / t}%;background:rgb(${F[k].color.join(',')})" title="${F[k].name} ${Math.round(100 * state.n[k] / t)}%"></i>`).join('')}</div>` +
+        `<span style="color:var(--muted)">${ids.map(k => `${Math.round(100 * state.n[k] / t)}% ${F[k].name}`).join(', ')} · ${t} of ${MAX} scoops</span>`;
+    }
+    $('blend').disabled = !t || state.busy || state.blended;
+    for (const b of $('bowls').children) b.disabled = t >= MAX || state.busy;
+  }
+  function change(k, d, from) {
+    if (state.busy) return;
+    if (state.blended) { state.blended = false; for (const f of FRUIT) state.n[f.id] = 0; owner('idle'); }
+    if (d > 0 && total() >= MAX) return;
+    state.n[k] = Math.max(0, Math.min(20, state.n[k] + d));
+    (d > 0 ? SFX.plop : SFX.out)();
+    if (from && d > 0 && !reduce) fly(from);
+    bubble('');
+    drawJug(); readout();
+  }
+  function fly(bowl) {
+    const img = document.createElement('img');
+    img.className = 'flyer'; img.src = bowl.querySelector('img').src; img.alt = '';
+    const x0 = 20 + [...$('bowls').children].indexOf(bowl) * 72, y0 = 420;
+    img.style.left = x0 + 'px'; img.style.top = y0 + 'px';
+    $('scene').append(img);
+    img.animate([{transform: 'translate(0,0) scale(1)'}, {transform: `translate(${(400 - x0) / 2}px,-280px) scale(.9)`}, {transform: `translate(${400 - x0}px,-170px) scale(.5)`, opacity: .2}],
+                {duration: 500, easing: 'ease-in'}).finished.then(() => img.remove());
+  }
+
+  // ---------- blending and tasting ----------
+  async function blend() {
+    if (state.busy || !total() || state.blended) return;
+    state.busy = true; readout();
+    bubble('');
+    whirr(1.8);
+    $('blender').classList.add('shake'); $('jug').classList.add('shake');
+    await wait(1500);
+    state.blended = true; drawJug();
+    await wait(500);
+    $('blender').classList.remove('shake'); $('jug').classList.remove('shake');
+    owner('yum-try');
+    await wait(900);
+    state.mode === 'explore' ? tasteExplore() : tasteOrder();
+    state.busy = false; readout();
+  }
+  function tasteExplore() {
+    const ids = FRUIT.map(f => f.id).filter(k => state.n[k]);
+    const r = ratioText(ids, state.n), fam = ids.join('+') + '=' + r.key;
+    const twin = state.log.find(b => b.fam === fam && b.raw !== r.raw);
+    const same = state.log.find(b => b.fam === fam && b.raw === r.raw);
+    const batch = {no: state.log.length + 1, fam, raw: r.raw, simple: r.simple, ids, color: mixColor(state.n), twin: twin?.no};
+    state.log.push(batch);
+    const t = total(), main = ids.slice().sort((a, b) => state.n[b] - state.n[a])[0];
+    const names = ids.map(k => F[k].name).join(' : ');
+    if (twin) { owner('yum'); SFX.yum(); bubble(`Batch ${batch.no} tastes <b>exactly</b> like batch ${twin.no}! ${r.raw} and ${twin.raw} (${names}) are equivalent ratios: both simplify to ${r.simple}.`); }
+    else if (same) { owner('yum'); bubble(`Same scoops as batch ${same.no}, so of course it tastes the same. Try different scoops that still taste like it.`); }
+    else if (ids.length === 1) { owner('idle'); bubble(`Pure ${F[main].name}. ${t} scoops or 1 scoop, it tastes the same: the ratio is always 1 : 0.`); }
+    else {
+      const pct = Math.round(100 * state.n[main] / t);
+      owner(pct > 75 ? 'hmm' : 'yum'); (pct > 75 ? SFX.hmm : SFX.yum)();
+      bubble(pct > 75 ? `Whoa, that's ${pct}% ${F[main].name}. Strong!` : `Mmm. ${ids.map(k => `${Math.round(100 * state.n[k] / t)}% ${F[k].name}`).join(', ')}. I'll call it batch ${batch.no}.`);
+    }
+    drawLog();
+  }
+  function drawLog() {
+    $('log').innerHTML = state.log.slice().reverse().map(b => `<div><i style="background:${b.color}"></i><span>#${b.no} <b>${b.raw}</b> ${b.ids.map(k => F[k].name).join(' : ')}</span>${b.twin ? `<span class="same">= #${b.twin}</span>` : ''}</div>`).join('');
+  }
+
+  // ---------- orders ----------
+  function startOrder(i) {
+    state.o = i; state.tries = []; state.solved = false; state.blended = false;
+    for (const f of FRUIT) state.n[f.id] = 0;
+    const o = ORDERS[i];
+    $('order').innerHTML = `<b>Order ${i + 1} of ${ORDERS.length}: ${o.name}</b>` +
+      (o.hideRecipe ? '' : `Recipe: <strong>${o.ra} ${F[o.a].name}</strong> for every <strong>${o.rb} ${F[o.b].name}</strong>.`) +
+      `<em>${o.ask}</em>`;
+    $('next-order').hidden = true; $('table').innerHTML = '';
+    owner('idle');
+    bubble(`${o.name} coming up? ${o.ask}`);
+    drawControls(); drawJug(); graph();
+  }
+  function tasteOrder() {
+    const o = ORDERS[state.o], x = state.n[o.a], y = state.n[o.b];
+    const same = x * o.rb === y * o.ra && x + y > 0;
+    const met = same && o.ok(x, y);
+    state.tries.push({x, y, same, met});
+    if (met) {
+      state.solved = true; owner('yum'); SFX.yum();
+      bubble(`Perfect ${o.name}! ${x} : ${y} tastes exactly like ${o.ra} : ${o.rb}. ${o.hideRecipe ? '40% of 15 is 6 scoops.' : ''}`);
+      table(); $('next-order').hidden = state.o >= ORDERS.length - 1;
+      if (state.o >= ORDERS.length - 1) bubble($('bubble').innerHTML + ' That was the last order. You run this place now!');
+    } else if (same) {
+      owner('yum'); SFX.hmm();
+      bubble(`Tastes just right! But... ${o.miss}`);
+    } else {
+      owner('hmm'); SFX.hmm();
+      const want = o.ra / (o.ra + o.rb), got = x / Math.max(x + y, 1);
+      const strong = got > want ? o.a : o.b;
+      const many = state.tries.length >= 2 ? ` Hint: ${o.hint}` : '';
+      bubble(x + y === 0 ? 'That cup is empty!' : `Too much ${F[strong].name}. This is ${Math.round(100 * x / (x + y))}% ${F[o.a].name}; mine is ${Math.round(100 * want)}%.${many}`);
+    }
+    graph();
+  }
+  // every try on a graph; the line of equal-tasting recipes appears once the order is right
+  function graph() {
+    const o = ORDERS[state.o], W = 360, H = 250, L = 40, B = 30, T = 12, R = 14;
+    const maxX = 20, maxY = 20;
+    const px = v => L + v / maxX * (W - L - R), py = v => H - B - v / maxY * (H - B - T);
+    let s = '';
+    for (let v = 0; v <= 20; v += 2) {
+      s += `<line x1="${px(v)}" y1="${py(0)}" x2="${px(v)}" y2="${py(maxY)}" stroke="#eef3f0"/><line x1="${px(0)}" y1="${py(v)}" x2="${px(maxX)}" y2="${py(v)}" stroke="#eef3f0"/>`;
+      s += `<text x="${px(v)}" y="${H - B + 16}" font-size="11" text-anchor="middle" fill="#5a6a64">${v}</text><text x="${L - 6}" y="${py(v) + 4}" font-size="11" text-anchor="end" fill="#5a6a64">${v}</text>`;
+    }
+    s += `<line x1="${px(0)}" y1="${py(0)}" x2="${px(maxX)}" y2="${py(0)}" stroke="#5a6a64" stroke-width="1.5"/><line x1="${px(0)}" y1="${py(0)}" x2="${px(0)}" y2="${py(maxY)}" stroke="#5a6a64" stroke-width="1.5"/>`;
+    s += `<text x="${(L + W) / 2}" y="${H - 2}" font-size="12" font-weight="700" text-anchor="middle" fill="#1f2b27">${F[o.a].name} scoops</text>`;
+    s += `<text transform="translate(12 ${(H - B) / 2}) rotate(-90)" font-size="12" font-weight="700" text-anchor="middle" fill="#1f2b27">${F[o.b].name} scoops</text>`;
+    if (state.solved) {
+      const k = Math.min(maxX / o.ra, maxY / o.rb);
+      s += `<line x1="${px(0)}" y1="${py(0)}" x2="${px(o.ra * k)}" y2="${py(o.rb * k)}" stroke="#23845a" stroke-width="3" stroke-dasharray="6 5"/>`;
+      const g = gcd(o.ra, o.rb);
+      for (let m = 1; o.ra / g * m <= maxX && o.rb / g * m <= maxY; m++)
+        s += `<circle cx="${px(o.ra / g * m)}" cy="${py(o.rb / g * m)}" r="4" fill="#23845a"/>`;
+      s += `<text x="${px(o.ra * k) - 4}" y="${py(o.rb * k) + 16}" font-size="12" font-weight="700" text-anchor="end" fill="#23845a">tastes like ${o.name}</text>`;
+    }
+    for (const t of state.tries) {
+      s += `<circle cx="${px(t.x)}" cy="${py(t.y)}" r="7" fill="${t.met ? '#23845a' : t.same ? '#f2b31b' : '#e2445c'}" stroke="#fff" stroke-width="2"/>`;
+    }
+    if (!state.tries.length) s += `<text x="${(L + W) / 2}" y="${H / 2 - 10}" font-size="14" text-anchor="middle" fill="#5a6a64">Each batch you blend lands here.</text>`;
+    $('graph').innerHTML = s;
+    $('graph').setAttribute('aria-label', `Graph of ${F[o.b].name} scoops against ${F[o.a].name} scoops with ${state.tries.length} tries plotted.`);
+  }
+  function table() {
+    const o = ORDERS[state.o], g = gcd(o.ra, o.rb), a = o.ra / g, b = o.rb / g;
+    const x = state.n[o.a];
+    const cols = [];
+    for (let m = 1; a * m <= 20 && b * m <= 20 && cols.length < 7; m++) cols.push(m);
+    $('table').innerHTML = `<table aria-label="Equivalent ratios"><tr><th>${F[o.a].name}</th>${cols.map(m => `<td class="${a * m === x ? 'hit' : ''}">${a * m}</td>`).join('')}</tr>` +
+      `<tr><th>${F[o.b].name}</th>${cols.map(m => `<td class="${a * m === x ? 'hit' : ''}">${b * m}</td>`).join('')}</tr></table>` +
+      `<p class="tip">Every pair in the table tastes the same. On the graph they sit on one straight line through 0.</p>`;
+  }
+
+  // ---------- the owner ----------
+  const FACES = {idle: 'art:owner', yum: 'art:owner-yum', hmm: 'art:owner-hmm'};
+  function owner(face) { $('owner').src = FACES[face === 'yum-try' ? 'idle' : face] || FACES.idle; }
+  function bubble(html) { $('bubble').innerHTML = html.replace(/(\d) : (\d)/g, '$1&nbsp;:&nbsp;$2'); }
+
+  // ---------- modes ----------
+  function setMode(m) {
+    state.mode = m; state.blended = false;
+    for (const f of FRUIT) state.n[f.id] = 0;
+    $('tab-explore').setAttribute('aria-pressed', m === 'explore');
+    $('tab-orders').setAttribute('aria-pressed', m === 'orders');
+    $('explore-extra').hidden = m !== 'explore';
+    $('orders-extra').hidden = m !== 'orders';
+    if (m === 'orders') startOrder(state.o);
+    else {
+      $('order').innerHTML = ''; owner('idle');
+      bubble('Welcome to the lab! Scoop in any fruit, then blend. I\'ll taste every batch.');
+      drawControls(); drawJug();
+    }
+  }
+  $('tab-explore').onclick = () => !state.busy && setMode('explore');
+  $('tab-orders').onclick = () => !state.busy && setMode('orders');
+  $('blend').onclick = blend;
+  $('empty').onclick = () => {
+    if (state.busy) return;
+    state.blended = false; for (const f of FRUIT) state.n[f.id] = 0;
+    owner('idle'); bubble(''); drawJug(); readout();
+  };
+  $('next-order').onclick = () => startOrder(state.o + 1);
+  $('sound').onclick = e => {
+    state.sound = !state.sound;
+    e.currentTarget.setAttribute('aria-pressed', state.sound);
+    e.currentTarget.textContent = state.sound ? '🔔 Sound' : '🔇 Sound';
+  };
+
+  window.__sl = {state, setMode, change, blend, startOrder};  // for checking frames
+  setMode('explore');
+})();
+</script>
+</body>
+</html>

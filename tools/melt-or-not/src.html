@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Melt or Not · Changes that can go back, and changes that can't · Curio Class</title>
+<meta name="description" content="Warm it, cool it, squish it: the class predicts whether each change can go back, then tries to undo it. Ice, chocolate, toast, eggs, popcorn and more. Grade 2 science, teacher-led. Works offline.">
+<!--
+MELT OR NOT (Curio Class)
+Grade 2 science, NGSS 2-PS1-4 (construct an argument with evidence that some changes caused by heating or
+cooling can be reversed and some cannot). The NGSS examples (water and butter at different temperatures,
+cooking an egg, heating paper) are all here.
+Teacher-led on a projector. Each object goes on the plate and gets warmed, cooled or squished. The class
+predicts whether the change can go back, then tries to change it back, and the object lands in the
+"Can go back" or "Can't go back" bin. Prediction before test, evidence before the bin.
+One file, no network requests. Illustrations generated with Google Gemini, edited for Curio Class.
+Content CC BY 4.0, code MIT. curioclass.org
+-->
+<style>
+:root{
+  --paper:#fbf7ee;--ink:#2a2a2e;--muted:#64606a;--line:#e6dccb;--focus:#2f5bd3;
+  --back:#1f8a87;--nope:#d0532b;--hot:#e8562a;--cold:#3a86d6;
+  font-family:'Segoe UI',system-ui,-apple-system,Roboto,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{background:var(--paper);color:var(--ink);display:grid;grid-template-rows:auto 1fr;min-height:100vh}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:4px solid var(--focus);outline-offset:3px}
+header{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:12px 20px;background:#3c4a78;color:#f3f1fb}
+h1{margin:0 auto 0 0;font:800 clamp(22px,3vw,32px)/1.1 'Trebuchet MS','Segoe UI',sans-serif}
+h1 small{display:block;font:500 15px/1.3 'Segoe UI',sans-serif;color:#d2d6f0}
+.icon-btn{border:2px solid #56649a;background:#475688;color:#f3f1fb;border-radius:999px;min-height:52px;padding:0 16px;font-weight:700;font-size:16px}
+
+main{display:grid;grid-template-columns:1fr;min-height:0}
+@media (min-width:760px){main{grid-template-columns:minmax(0,1fr) 340px}}
+.stage{position:relative;overflow:hidden;min-height:340px;background:#d8c7a6 url(art:kitchen) center 70%/cover}
+.scene{position:absolute;left:50%;top:50%;width:1000px;height:620px;transform:translate(-50%,-50%) scale(var(--s,1))}
+
+.label{position:absolute;left:250px;right:250px;top:16px;background:#fffdf7;border:4px solid #2a2a2e;border-radius:18px;padding:8px 14px;text-align:center;box-shadow:0 5px 0 #0004}
+.label b{display:block;font:800 34px/1.1 'Trebuchet MS','Segoe UI',sans-serif}
+.label span{display:block;font:700 21px/1.3 'Trebuchet MS','Segoe UI',sans-serif;color:#4a4652;margin-top:2px}
+.label:empty{display:none}
+
+/* the plate that warms, cools or just holds */
+.plate{position:absolute;left:340px;top:470px;width:320px;height:64px;border-radius:50%;background:radial-gradient(ellipse at 50% 40%,#e9ecef,#a9b0b8 70%,#7d858e);box-shadow:0 10px 0 #5b6169,0 18px 24px #0005;transition:box-shadow .8s,background .8s}
+.plate.hot{background:radial-gradient(ellipse at 50% 40%,#ffd08a,#ff7a2e 55%,#c9361a);box-shadow:0 10px 0 #8a2a12,0 0 60px 16px #ff7a2e99}
+.plate.cold{background:radial-gradient(ellipse at 50% 40%,#f3fbff,#9fd3f7 55%,#4b8fd0);box-shadow:0 10px 0 #2f5f93,0 0 60px 16px #8fd0ff99}
+.item{position:absolute;left:350px;top:200px;width:300px;height:300px;transform-origin:50% 100%}
+.item img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:50% 100%;transition:opacity .9s}
+.item img.b{opacity:0}
+.item.after img.a{opacity:0}.item.after img.b{opacity:1}
+.fx{position:absolute;left:340px;top:150px;width:320px;height:360px;pointer-events:none;overflow:visible}
+
+/* bins */
+.bin{position:absolute;top:300px;width:220px;height:250px;border:0;padding:0;background:none}
+.bin .box{position:absolute;left:0;right:0;bottom:0;height:170px;border-radius:14px 14px 22px 22px;box-shadow:inset 0 -10px 0 #0002,0 8px 0 #0003;display:flex;flex-wrap:wrap;align-content:flex-start;gap:4px;padding:52px 10px 8px}
+.bin .tag{position:absolute;left:10px;right:10px;top:84px;z-index:1;border-radius:12px;padding:6px 6px;color:#fff;font:800 21px/1.05 'Trebuchet MS',sans-serif;text-align:center;box-shadow:0 3px 0 #0003}
+.bin.back{left:24px}.bin.back .box{background:#bfe4e1}.bin.back .tag{background:var(--back)}
+.bin.nope{right:24px}.bin.nope .box{background:#f4cbbd}.bin.nope .tag{background:var(--nope)}
+.bin .box img{width:60px;height:60px;object-fit:contain;filter:drop-shadow(0 2px 1px #0003)}
+.bin.pick{cursor:pointer}
+.bin.pick .box{outline:5px dashed #2a2a2e55;outline-offset:4px}
+.bin.chosen .box{outline:6px solid #ffd23f;outline-offset:4px}
+.thumb{position:absolute;width:300px;height:300px;object-fit:contain;object-position:50% 100%;z-index:4;pointer-events:none}
+
+.panel{background:#fffcf4;border-left:3px solid var(--line);padding:14px 16px;display:flex;flex-direction:column;gap:12px;overflow:auto}
+@media (max-width:759px){.panel{border-left:0;border-top:3px solid var(--line)}}
+.panel h2{margin:4px 0 0;font:800 13px/1 'Segoe UI',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.steps{display:flex;gap:6px}
+.steps i{flex:1;height:8px;border-radius:4px;background:var(--line)}
+.steps i.on{background:#3c4a78}
+.hint{margin:0;font:600 18px/1.35 'Segoe UI',sans-serif;color:var(--muted)}
+.hint b{color:var(--ink)}
+.big{border:0;border-radius:16px;min-height:64px;font:800 21px/1.1 'Trebuchet MS','Segoe UI',sans-serif;color:#fff;box-shadow:0 5px 0 #0004;padding:6px 10px}
+.big:active:not(:disabled){transform:translateY(3px);box-shadow:0 2px 0 #0004}
+.big:disabled{opacity:.4;cursor:default}
+.big[hidden]{display:none}
+.hot-btn{background:var(--hot)}.cold-btn{background:var(--cold)}.shape-btn{background:#7a5bc0}
+.back-btn{background:var(--back)}.nope-btn{background:var(--nope)}.next-btn{background:#3c4a78}
+.row{display:flex;gap:8px}.row .big{flex:1}.row[hidden]{display:none}
+.tally{font:700 16px/1.4 'Segoe UI',sans-serif;color:var(--muted);margin:auto 0 0}
+.calm .item,.calm .fx *{animation:none!important}
+
+@media (max-width:759px),(max-height:640px){
+  header{padding:6px 12px}
+  h1{font-size:19px} h1 small{display:none}
+  .icon-btn{min-height:38px;font-size:13px;padding:0 10px}
+  main{grid-template-columns:minmax(0,1fr) 260px}
+  .panel{padding:8px 10px;gap:8px}
+  .panel h2{display:none}
+  .hint{font-size:14px}
+  .big{min-height:44px;font-size:16px}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Melt or Not <small>Warm it, cool it, squish it. Can it go back?</small></h1>
+  <button class="icon-btn" id="motion" aria-pressed="true" title="Turn animation on or off">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+  <button class="icon-btn" id="read">🔊 Read</button>
+</header>
+<main>
+  <div class="stage" id="stage">
+    <div class="scene" id="scene">
+      <button class="bin back" id="bin-back" aria-label="Can go back bin"><span class="tag">↺ Can go back</span><span class="box" id="box-back"></span></button>
+      <button class="bin nope" id="bin-nope" aria-label="Can't go back bin"><span class="tag">✗ Can't go back</span><span class="box" id="box-nope"></span></button>
+      <div class="plate" id="plate"></div>
+      <svg class="fx" id="fx" viewBox="0 0 320 360" aria-hidden="true"></svg>
+      <div class="item" id="item" role="img"><img class="a" id="img-a" alt=""><img class="b" id="img-b" alt=""></div>
+      <div class="label" id="label" aria-live="polite"></div>
+    </div>
+  </div>
+  <aside class="panel">
+    <div class="steps" id="steps" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+    <p class="hint" id="hint"></p>
+    <button class="big" id="change"></button>
+    <div class="row" id="predict" hidden>
+      <button class="big back-btn" id="say-back">↺ Can go back</button>
+      <button class="big nope-btn" id="say-nope">✗ Can't go back</button>
+    </div>
+    <button class="big" id="test" hidden></button>
+    <button class="big next-btn" id="next" hidden>Next thing →</button>
+    <p class="tally" id="tally"></p>
+  </aside>
+</main>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  let reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  try { const m = localStorage.getItem('curio-motion'); if (m) reduce = m === 'calm'; } catch {}
+  function showMotion() {
+    document.body.classList.toggle('calm', reduce);
+    $('motion').setAttribute('aria-pressed', !reduce);
+    $('motion').textContent = reduce ? '⏸ Motion' : '✨ Motion';
+  }
+  showMotion();
+  $('motion').onclick = () => {
+    reduce = !reduce;
+    try { localStorage.setItem('curio-motion', reduce ? 'calm' : 'on'); } catch {}
+    showMotion();
+  };
+  const wait = ms => new Promise(r => setTimeout(r, ms));  // same pacing with motion off
+  const fit = () => {
+    const r = $('stage').getBoundingClientRect();
+    $('scene').style.setProperty('--s', Math.min(r.width / 1000, r.height / 620));
+  };
+  new ResizeObserver(fit).observe($('stage'));
+
+  // ---------- things to change ----------
+  // how: heat, cool or shape. back: can the change be undone? h: how tall to draw it (of 300)
+  const ACT = {
+    heat: {btn: '🔥 Warm it up', cls: 'hot-btn', verb: 'warm it up'},
+    cool: {btn: '❄️ Cool it down', cls: 'cold-btn', verb: 'cool it down'},
+    shape: {btn: '✋ Roll it', cls: 'shape-btn', verb: 'roll it'},
+  };
+  const UNDO = {heat: 'cool', cool: 'heat', shape: 'shape'};
+  const THINGS = [
+    {id: 'ice', name: 'An ice cube', how: 'heat', after: 'a puddle of water', back: true, h: 190, h2: 110,
+     undo: '❄️ Put it in the freezer', yes: 'The water froze into ice again!', why: 'Melting and freezing can go back and forth.', A: 'art:ice-1', B: 'art:ice-2'},
+    {id: 'bread', name: 'A slice of bread', how: 'heat', after: 'toast', back: false, h: 230, h2: 230,
+     undo: '❄️ Put it in the fridge', no: 'Still toast! Cooling it down does not make it bread again.', why: 'Toasting changes bread for good.', A: 'art:bread-1', B: 'art:bread-2'},
+    {id: 'chocolate', name: 'A chocolate bar', how: 'heat', after: 'melted chocolate', back: true, h: 150, h2: 170,
+     undo: '❄️ Put it in the fridge', yes: 'The chocolate turned solid again!', why: 'It is a new shape, but it is still chocolate, and it can melt again.', A: 'art:chocolate-1', B: 'art:chocolate-2'},
+    {id: 'egg', name: 'A raw egg', how: 'heat', after: 'a fried egg', back: false, h: 190, h2: 160,
+     undo: '❄️ Put it in the fridge', no: 'Still a fried egg! It will never be runny again.', why: 'Cooking changes an egg for good.', A: 'art:egg-1', B: 'art:egg-2'},
+    {id: 'juice', name: 'A cup of orange juice', how: 'cool', after: 'an ice pop', back: true, h: 230, h2: 260,
+     undo: '🔥 Leave it in the sun', yes: 'The ice pop melted back into juice!', why: 'Freezing and melting can go back and forth.', A: 'art:juice-1', B: 'art:juice-2'},
+    {id: 'popcorn', name: 'Popcorn kernels', how: 'heat', after: 'popped popcorn', back: false, h: 130, h2: 140,
+     undo: '❄️ Put it in the freezer', no: 'Still popcorn! Popped corn cannot pop back into kernels.', why: 'Popping changes corn for good.', A: 'art:popcorn-1', B: 'art:popcorn-2'},
+    {id: 'butter', name: 'A stick of butter', how: 'heat', after: 'melted butter', back: true, h: 130, h2: 170,
+     undo: '❄️ Put it in the fridge', yes: 'The butter turned solid again!', why: 'Butter melts when warm and turns solid when cool.', A: 'art:butter-1', B: 'art:butter-2'},
+    {id: 'batter', name: 'Cake batter', how: 'heat', after: 'a cupcake', back: false, h: 200, h2: 240,
+     undo: '❄️ Put it in the fridge', no: 'Still a cupcake! Baking cannot be undone.', why: 'Baking changes batter for good.', A: 'art:batter-1', B: 'art:batter-2'},
+    {id: 'clay', name: 'A ball of clay', how: 'shape', after: 'a clay snake', back: true, h: 200, h2: 110,
+     undo: '✋ Roll it back into a ball', yes: 'It is a ball again!', why: 'Changing the shape of clay can go back.', A: 'art:clay-1', B: 'art:clay-2'},
+    {id: 'paper', name: 'A sheet of paper', how: 'heat', after: 'burned paper', back: false, h: 150, h2: 170,
+     undo: '❄️ Put it in the fridge', no: 'Still ash! Burned paper cannot turn back into paper.', why: 'Burning changes paper for good. (Only grown-ups do this, and only safely!)', A: 'art:paper-1', B: 'art:paper-2'},
+  ];
+
+  const state = {i: -1, phase: 'change', guess: null, right: 0, sound: true, busy: false};
+
+  // ---------- sound ----------
+  let ctx;
+  const audio = () => (ctx ||= new (window.AudioContext || window.webkitAudioContext)());
+  function tone(type, f0, f1, dur, gain, when = 0) {
+    if (!state.sound) return;
+    const a = audio(), o = a.createOscillator(), g = a.createGain(), t = a.currentTime + when;
+    o.type = type; o.frequency.setValueAtTime(f0, t); o.frequency.exponentialRampToValueAtTime(f1, t + dur);
+    g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(gain, t + 0.01); g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    o.connect(g).connect(a.destination); o.start(t); o.stop(t + dur + 0.05);
+  }
+  function noise(dur, freq, gain, type = 'lowpass', when = 0) {
+    if (!state.sound) return;
+    const a = audio(), len = a.sampleRate * dur, buf = a.createBuffer(1, len, a.sampleRate), d = buf.getChannelData(0);
+    for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * Math.min(1, i / (len * .2), (len - i) / (len * .3));
+    const src = a.createBufferSource(), f = a.createBiquadFilter(), g = a.createGain();
+    src.buffer = buf; f.type = type; f.frequency.value = freq; g.gain.value = gain;
+    src.connect(f).connect(g).connect(a.destination); src.start(a.currentTime + when);
+  }
+  const SFX = {
+    heat: () => noise(2.2, 3000, .12, 'highpass'),
+    cool: () => { for (let i = 0; i < 9; i++) tone('sine', 1800 + i * 140, 2400 + i * 140, .12, .04, i * .2); },
+    shape: () => { tone('sine', 160, 240, .3, .15); tone('sine', 240, 160, .3, .15, .45); tone('sine', 160, 260, .3, .15, .9); },
+    pick: () => tone('triangle', 660, 660, .12, .12),
+    yes: () => [523, 659, 784].forEach((f, i) => tone('triangle', f, f, .3, .12, i * .12)),
+    no: () => { tone('square', 220, 200, .2, .06); tone('square', 180, 160, .35, .06, .22); },
+    drop: () => tone('sine', 500, 160, .25, .14),
+  };
+
+  // ---------- effects ----------
+  const SVGNS = 'http://www.w3.org/2000/svg';
+  function fx(kind, ms) {
+    const svg = $('fx');
+    svg.replaceChildren();
+    if (reduce) return;
+    if (kind === 'heat') for (let k = 0; k < 5; k++) {
+      const p = document.createElementNS(SVGNS, 'path');
+      const x = 60 + k * 50;
+      p.setAttribute('d', `M${x} 330c-14-20 14-36 0-56s14-36 0-56s14-36 0-56`);
+      p.setAttribute('fill', 'none'); p.setAttribute('stroke', '#ff8a3d'); p.setAttribute('stroke-width', '6');
+      p.setAttribute('stroke-linecap', 'round'); p.setAttribute('opacity', '0');
+      svg.append(p);
+      p.animate([{transform: 'translateY(30px)', opacity: 0}, {opacity: .8, offset: .3}, {transform: 'translateY(-90px)', opacity: 0}],
+                {duration: 1300, delay: k * 220, iterations: Math.max(1, Math.floor(ms / 1300))});
+    }
+    if (kind === 'cool') for (let k = 0; k < 14; k++) {
+      const t = document.createElementNS(SVGNS, 'text');
+      t.textContent = '❄'; t.setAttribute('x', 20 + Math.random() * 280); t.setAttribute('y', 0);
+      t.setAttribute('font-size', 18 + Math.random() * 18); t.setAttribute('fill', '#e6f6ff'); t.setAttribute('stroke', '#5aa6e6');
+      svg.append(t);
+      t.animate([{transform: 'translateY(-20px) rotate(0)', opacity: 0}, {opacity: 1, offset: .2}, {transform: 'translateY(330px) rotate(90deg)', opacity: 0}],
+                {duration: 1800, delay: -Math.random() * 1800, iterations: Math.max(1, Math.round(ms / 1800))});
+    }
+  }
+  function jiggle(kind) {
+    if (reduce) return;
+    const frames = kind === 'shape'
+      ? [{transform: 'scale(1,1)'}, {transform: 'scale(1.25,.7)'}, {transform: 'scale(.8,1.2)'}, {transform: 'scale(1.2,.8)'}, {transform: 'scale(1,1)'}]
+      : [{transform: 'rotate(0)'}, {transform: 'rotate(-1.5deg)'}, {transform: 'rotate(1.5deg)'}, {transform: 'rotate(0)'}];
+    $('item').animate(frames, {duration: kind === 'shape' ? 1400 : 500, iterations: kind === 'shape' ? 1 : 3});
+  }
+  function shake() {
+    if (!reduce) $('item').animate([{transform: 'translateX(0)'}, {transform: 'translateX(-10px)'}, {transform: 'translateX(10px)'}, {transform: 'translateX(-6px)'}, {transform: 'translateX(0)'}], {duration: 500});
+  }
+
+  // ---------- one thing at a time ----------
+  const cur = () => THINGS[state.i];
+  function size(t, after) {
+    const h = after ? t.h2 : t.h;
+    return {top: 470 + 26 - h + 'px', height: h + 'px'};
+  }
+  function label(name, q) {
+    $('label').innerHTML = name ? `<b>${name}</b><span>${q}</span>` : '';
+    $('label').dataset.text = name ? `${name}. ${q}` : '';
+  }
+  function steps(n) { [...$('steps').children].forEach((s, k) => s.classList.toggle('on', k < n)); }
+  function show(...ids) {
+    for (const id of ['change', 'predict', 'test', 'next']) $(id).hidden = !ids.includes(id);
+    for (const b of ['bin-back', 'bin-nope']) $(b).classList.toggle('pick', ids.includes('predict'));
+  }
+
+  async function next() {
+    if (state.busy) return;
+    state.i++;
+    if (state.i >= THINGS.length) return done();
+    const t = cur();
+    state.phase = 'change'; state.guess = null;
+    $('img-a').src = t.A; $('img-b').src = t.B;
+    $('img-a').alt = t.name; $('img-b').alt = t.after;
+    $('item').classList.remove('after');
+    $('item').style.visibility = '';
+    Object.assign($('item').style, size(t, false));
+    $('item').setAttribute('aria-label', t.name);
+    $('plate').className = 'plate';
+    fx(null);
+    for (const b of ['bin-back', 'bin-nope']) $(b).classList.remove('chosen');
+    if (!reduce) $('item').animate([{transform: 'translateY(-260px)', opacity: 0}, {transform: 'translateY(0)', opacity: 1}], {duration: 700, easing: 'cubic-bezier(.3,1.4,.5,1)'});
+    label(t.name, `What happens if we ${ACT[t.how].verb}?`);
+    $('change').textContent = ACT[t.how].btn; $('change').className = 'big ' + ACT[t.how].cls;
+    $('hint').innerHTML = `<b>Step 1: Change it.</b> Before you press the button, talk about it: what do you think will happen?`;
+    steps(1); show('change'); tally();
+  }
+
+  async function change() {
+    if (state.busy) return;
+    state.busy = true; $('change').disabled = true;
+    const t = cur();
+    $('plate').className = 'plate ' + ({heat: 'hot', cool: 'cold'}[t.how] || '');
+    SFX[t.how](); fx(t.how, 2400); jiggle(t.how);
+    await wait(900);
+    $('item').classList.add('after');
+    Object.assign($('item').style, size(t, true));
+    $('item').setAttribute('aria-label', t.after);
+    await wait(1500);
+    $('plate').className = 'plate'; fx(null);
+    label(`Now it's ${t.after}.`, 'Can it go back to how it was?');
+    $('hint').innerHTML = `<b>Step 2: Predict.</b> Can ${t.after} change back into ${t.name.toLowerCase()}? Take a class vote, then tap a bin.`;
+    steps(2); show('predict');
+    state.busy = false; $('change').disabled = false;
+    state.phase = 'predict';
+  }
+
+  function predict(back) {
+    if (state.phase !== 'predict' || state.busy) return;
+    const t = cur();
+    state.guess = back; SFX.pick();
+    $('bin-back').classList.toggle('chosen', back);
+    $('bin-nope').classList.toggle('chosen', !back);
+    state.phase = 'test';
+    $('test').textContent = t.undo; $('test').className = 'big ' + ACT[UNDO[t.how]].cls;
+    $('hint').innerHTML = `You think it <b>${back ? 'can' : "can't"}</b> go back. <b>Step 3: Test it.</b> Try to change it back.`;
+    label(`Now it's ${t.after}.`, `You predicted: it ${back ? 'can' : "can't"} go back. Let's test it!`);
+    steps(3); show('test');
+  }
+
+  async function test() {
+    if (state.phase !== 'test' || state.busy) return;
+    state.busy = true; $('test').disabled = true;
+    const t = cur(), how = UNDO[t.how];
+    $('plate').className = 'plate ' + ({heat: 'hot', cool: 'cold'}[how] || '');
+    SFX[how](); fx(how, 2400); jiggle(how);
+    await wait(1100);
+    if (t.back) {
+      $('item').classList.remove('after');
+      Object.assign($('item').style, size(t, false));
+      $('item').setAttribute('aria-label', t.name);
+    } else shake();
+    await wait(1300);
+    $('plate').className = 'plate'; fx(null);
+    const right = state.guess === t.back;
+    if (right) state.right++;
+    (t.back ? SFX.yes : SFX.no)();
+    label(t.back ? t.yes : t.no, t.why);
+    await wait(1600);
+    // into its bin
+    const bin = $(t.back ? 'box-back' : 'box-nope');
+    const from = $('item').getBoundingClientRect(), to = bin.getBoundingClientRect();
+    const fly = $('item').cloneNode(true);
+    fly.removeAttribute('id');
+    const scene = $('scene').getBoundingClientRect(), s = scene.width / 1000;
+    Object.assign(fly.style, {left: (from.left - scene.left) / s + 'px', top: (from.top - scene.top) / s + 'px'});
+    $('scene').append(fly);
+    $('item').style.visibility = 'hidden';
+    SFX.drop();
+    const dx = (to.left + to.width / 2 - from.left - from.width / 2) / s, dy = (to.top + to.height / 2 - from.top - from.height / 2) / s;
+    if (!reduce) await Promise.race([fly.animate([{transform: 'none'}, {transform: `translate(${dx}px,${dy - 120}px) scale(.45)`, offset: .5}, {transform: `translate(${dx}px,${dy}px) scale(.15)`, opacity: .4}],
+                                   {duration: 1000, easing: 'ease-in-out', fill: 'forwards'}).finished, wait(1150)]);
+    else await wait(1000);
+    fly.remove();
+    $('item').style.visibility = '';
+    const img = document.createElement('img');
+    img.src = t.back ? t.A : t.B; img.alt = t.back ? t.name : t.after; img.title = img.alt;
+    bin.append(img);
+    $('item').style.visibility = 'hidden';
+    $('hint').innerHTML = (right ? '<b>Your prediction matched the test!</b> ' : '<b>Surprise!</b> The test showed something different. That is how science works. ') + t.why;
+    $('item').style.visibility = 'hidden';
+    steps(4); show('next'); tally();
+    state.busy = false; $('test').disabled = false;
+    state.phase = 'sorted';
+    say(`${t.back ? t.yes : t.no} ${t.why}`);
+  }
+
+  function tally() {
+    const n = $('box-back').children.length + $('box-nope').children.length;
+    $('tally').textContent = n ? `${n} of ${THINGS.length} sorted. Predictions that matched the test: ${state.right}.` : `${THINGS.length} things to test.`;
+    $('next').textContent = state.i >= THINGS.length - 1 ? 'See what we found →' : 'Next thing →';
+  }
+
+  function done() {
+    $('item').style.visibility = 'hidden';
+    label('What did we find out?', 'Melting and freezing can go back. Cooking, baking and burning cannot.');
+    $('hint').innerHTML = `<b>All ${THINGS.length} sorted!</b> Look at each bin. What is the same about the things in <b>Can go back</b>? What did heating do to the things in <b>Can't go back</b>?`;
+    steps(4);
+    $('next').textContent = '↺ Start over'; show('next');
+    say('What did we find out? Melting and freezing can go back. Cooking, baking and burning cannot.');
+  }
+
+  $('change').onclick = change;
+  $('say-back').onclick = () => predict(true);
+  $('say-nope').onclick = () => predict(false);
+  $('bin-back').onclick = () => predict(true);
+  $('bin-nope').onclick = () => predict(false);
+  $('test').onclick = test;
+  $('next').onclick = () => {
+    if (state.i >= THINGS.length) {  // start over with empty bins
+      state.i = -1; state.right = 0;
+      $('box-back').replaceChildren(); $('box-nope').replaceChildren();
+    }
+    next();
+  };
+
+  $('sound').onclick = e => {
+    state.sound = !state.sound;
+    e.currentTarget.setAttribute('aria-pressed', state.sound);
+    e.currentTarget.textContent = state.sound ? '🔔 Sound' : '🔇 Sound';
+  };
+  function bestVoice() {
+    const voices = speechSynthesis.getVoices().filter(v => /^en(-|_|$)/i.test(v.lang));
+    const score = v => (/natural|neural/i.test(v.name) ? 50 : 0) + (/premium|enhanced/i.test(v.name) ? 40 : 0) +
+      (/google/i.test(v.name) ? 30 : 0) + (/aria|jenny|ava|samantha|libby|sonia/i.test(v.name) ? 10 : 0) +
+      (/en-US/i.test(v.lang) ? 5 : 0) + (v.default ? 1 : 0);
+    return voices.sort((a, b) => score(b) - score(a))[0] || null;
+  }
+  if ('speechSynthesis' in window) speechSynthesis.getVoices();
+  function say(text, force) {
+    if ((!state.sound && !force) || !('speechSynthesis' in window)) return;
+    speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text.replace(/[↺✗❄️🔥✋]/g, ''));
+    const v = bestVoice();
+    if (v) { u.voice = v; u.lang = v.lang; }
+    u.rate = .92; u.pitch = 1.08; speechSynthesis.speak(u);
+  }
+  $('read').onclick = () => say($('label').dataset.text || $('hint').textContent, true);
+
+  window.__mn = {state, next, change, predict, test};  // for checking frames
+  next();
+})();
+</script>
+</body>
+</html>

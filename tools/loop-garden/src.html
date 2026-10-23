@@ -1,0 +1,481 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Loop Garden · Plant flowers with repeat blocks · Curio Class</title>
+<meta name="description" content="Program a rabbit gardener with Step, Turn and Plant blocks, then use Repeat to do it with fewer blocks. Eight gardens plus a free garden. Grade 2 computer science, teacher-led. Works offline.">
+<!--
+LOOP GARDEN (Curio Class)
+Grade 2 computer science, CSTA 1A-AP-08 (model daily processes by creating and following algorithms),
+1A-AP-10 (develop programs with sequences and simple loops) and 1A-AP-11 (decompose steps).
+Teacher-led on a projector. The class builds a program from big blocks (Step, Turn left, Turn right,
+Plant, Repeat) and runs it; a rabbit gardener follows it one block at a time, lighting up each block as
+it goes. Every garden can be planted the long way, but a Repeat block does it with fewer blocks, and
+fewer blocks earn more stars. The last garden is free: no seed spots, just draw with flowers.
+One file, no network requests. Illustrations generated with Google Gemini, edited for Curio Class.
+Content CC BY 4.0, code MIT. curioclass.org
+-->
+<style>
+:root{
+  --paper:#f6f8ef;--ink:#23301f;--muted:#5d6b57;--line:#d9e3cc;--focus:#2f5bd3;
+  --step:#3a78c9;--turn:#8a55c7;--plant:#2f8f4e;--loop:#e08a1e;
+  font-family:'Segoe UI',system-ui,-apple-system,Roboto,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{background:var(--paper);color:var(--ink);display:grid;grid-template-rows:auto 1fr;min-height:100vh}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:4px solid var(--focus);outline-offset:3px}
+header{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:12px 20px;background:#35603a;color:#f4f8ea}
+h1{margin:0 auto 0 0;font:800 clamp(22px,3vw,32px)/1.1 'Trebuchet MS','Segoe UI',sans-serif}
+h1 small{display:block;font:500 15px/1.3 'Segoe UI',sans-serif;color:#d3e6c6}
+.icon-btn{border:2px solid #4f7d53;background:#41704a;color:#f4f8ea;border-radius:999px;min-height:52px;padding:0 16px;font-weight:700;font-size:16px}
+
+main{display:grid;grid-template-columns:1fr;min-height:0}
+@media (min-width:760px){main{grid-template-columns:minmax(0,1fr) 400px}}
+.stage{position:relative;overflow:hidden;min-height:340px;background:#8fbf62 url(art:lawn) center/cover}
+.scene{position:absolute;left:50%;top:50%;width:900px;height:640px;transform:translate(-50%,-50%) scale(var(--s,1))}
+.bed{position:absolute;border-radius:22px;background:#7a5131;box-shadow:0 0 0 12px #9c6a40,0 0 0 16px #6e4527,0 18px 30px #0005}
+.cell{position:absolute;border-radius:10px;background:url(art:soil) center/cover;box-shadow:inset 0 0 0 2px #0002,inset 0 -6px 10px #0003}
+.spot{position:absolute;inset:18%;border-radius:50%;border:5px dashed #fff8;display:grid;place-items:center}
+.spot::before{content:'';width:22%;height:22%;border-radius:50%;background:#f0d48a;box-shadow:-14px 8px 0 -2px #f0d48a,14px 8px 0 -2px #f0d48a}
+.cell.done .spot{display:none}
+.rock,.flower,.sprout{position:absolute;left:50%;bottom:12%;transform:translateX(-50%);pointer-events:none}
+.rock{width:86%;bottom:6%}
+.flower{height:118%;transform-origin:50% 100%}
+.sprout{width:62%}
+.grow{animation:grow .7s cubic-bezier(.3,1.5,.5,1) both}
+@keyframes grow{from{transform:translateX(-50%) scale(.2,.05)}}
+.pop{animation:pop .4s cubic-bezier(.3,1.6,.5,1) both}
+@keyframes pop{from{transform:translateX(-50%) scale(.2)}}
+#bunny{position:absolute;transform:translate(-50%,-100%);transition:left .5s ease-in-out,top .5s ease-in-out;pointer-events:none;z-index:5}
+#bunny img{display:block;height:100%;margin:0 auto}
+#bunny .face{position:absolute;left:50%;top:100%;width:46px;height:46px;margin:-30px 0 0 -23px;border-radius:50%;background:#fffd;box-shadow:0 2px 0 #0003;display:grid;place-items:center;z-index:-1}
+#bunny.walk img{animation:hop .5s ease-in-out}
+@keyframes hop{50%{transform:translateY(-12%)}}
+#bunny.bump img{animation:bump .5s ease-in-out}
+@keyframes bump{30%{transform:translateX(var(--bx,0))}60%{transform:translateX(calc(var(--bx,0) * -.3))}}
+#bunny.yay img{animation:hop .6s ease-in-out 3}
+.say{position:absolute;left:50%;top:8px;transform:translateX(-50%);width:max-content;max-width:860px;background:#fffef8;border:4px solid #23301f;border-radius:18px;padding:6px 18px;font:700 22px/1.3 'Trebuchet MS','Segoe UI',sans-serif;box-shadow:0 5px 0 #0004;text-align:center;z-index:6}
+.say:empty{display:none}
+.stars{color:#f2b31b;letter-spacing:.1em;text-shadow:0 2px 0 #a8740a}
+.calm #bunny{transition:none}
+.calm *{animation:none!important}
+
+.panel{background:#fbfdf6;border-left:3px solid var(--line);padding:12px 14px;display:flex;flex-direction:column;gap:10px;min-height:0;overflow:auto}
+@media (max-width:759px){.panel{border-left:0;border-top:3px solid var(--line)}}
+.panel h2{margin:2px 0 0;font:800 13px/1 'Segoe UI',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:flex;justify-content:space-between}
+.levels{display:flex;flex-wrap:wrap;gap:6px}
+.levels button{min-width:46px;min-height:46px;border:2px solid var(--line);background:#fff;border-radius:12px;font:800 18px/1 'Trebuchet MS',sans-serif;display:grid;place-items:center;gap:1px;padding:4px 6px}
+.levels button small{font-size:10px;color:#e0a00d;letter-spacing:.05em}
+.levels button[aria-current="true"]{background:#35603a;border-color:#35603a;color:#fff}
+.goal{margin:0;font:600 17px/1.35 'Segoe UI',sans-serif;color:var(--muted)}
+.goal b{color:var(--ink)}
+.palette{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.blk{border:0;border-radius:12px;color:#fff;font:800 15px/1.1 'Trebuchet MS','Segoe UI',sans-serif;min-height:66px;display:grid;place-items:center;gap:2px;padding:6px 4px;box-shadow:inset 0 -5px 0 #0003,0 3px 0 #0002}
+.blk:disabled{opacity:.4;cursor:default}
+.blk svg{width:28px;height:28px}
+.step{background:var(--step)}.left,.right{background:var(--turn)}.plant{background:var(--plant)}.repeat{background:var(--loop)}
+.program{flex:1;min-height:160px;background:#fff;border:3px solid var(--line);border-radius:14px;padding:10px;overflow:auto;display:flex;flex-direction:column;gap:6px}
+.program.target{border-color:#35603a}
+.program>.empty{color:var(--muted);font-style:italic;margin:auto;text-align:center}
+.pb{display:flex;align-items:center;gap:10px;border-radius:12px;color:#fff;font:800 19px/1 'Trebuchet MS',sans-serif;min-height:48px;padding:4px 6px 4px 12px;box-shadow:inset 0 -5px 0 #0003}
+.pb svg{width:26px;height:26px;flex:none}
+.pb .x{margin-left:auto;border:0;background:#0002;color:#fff;border-radius:9px;width:40px;height:40px;font-size:20px;line-height:1}
+.pb.now{outline:5px solid #ffd23f;outline-offset:2px}
+.loop{border-radius:14px;background:var(--loop);padding:0 0 10px 0;box-shadow:inset 0 -5px 0 #0003}
+.loop>.pb{box-shadow:none}
+.loop .count{display:flex;align-items:center;gap:4px}
+.loop .count button{border:0;background:#0002;color:#fff;border-radius:9px;width:38px;height:38px;font:800 22px/1 sans-serif}
+.loop .count b{min-width:26px;text-align:center;font-size:24px}
+.loop .body{margin:2px 10px 0 26px;background:#fff6e8;border-radius:10px;padding:6px;display:flex;flex-direction:column;gap:6px;min-height:52px;border:3px dashed transparent;cursor:pointer}
+.loop .body.target{border-color:#35603a}
+.loop .body .hint{color:#a26a1d;font:700 14px/1.2 'Segoe UI',sans-serif;margin:auto 0;text-align:center}
+.loop .lip{color:#fff;font:800 14px/1 'Segoe UI',sans-serif;margin:6px 0 0 12px;display:flex;gap:8px;align-items:center}
+.loop .lip button{border:0;background:#0002;color:#fff;border-radius:9px;min-height:34px;padding:0 10px;font-weight:800}
+.row{display:flex;gap:8px}
+.big{flex:1;border:0;border-radius:16px;min-height:60px;font:800 21px/1 'Trebuchet MS','Segoe UI',sans-serif;color:#fff;box-shadow:0 5px 0 #0004}
+.big:active:not(:disabled){transform:translateY(3px);box-shadow:0 2px 0 #0004}
+.big:disabled{opacity:.45;cursor:default}
+.go{background:#2f8f4e}.gray{background:#6b7466}
+.count-line{font:700 15px/1 'Segoe UI',sans-serif;color:var(--muted)}
+
+@media (max-width:759px),(max-height:640px){
+  header{padding:6px 12px}
+  h1{font-size:19px} h1 small{display:none}
+  .icon-btn{min-height:38px;font-size:13px;padding:0 10px}
+  main{grid-template-columns:minmax(0,1fr) 300px}
+  .panel{padding:8px 10px;gap:6px}
+  .levels button{min-width:36px;min-height:36px;font-size:15px}
+  .goal{font-size:13px}
+  .blk{min-height:48px;font-size:11px}
+  .blk svg{width:20px;height:20px}
+  .pb{min-height:38px;font-size:15px}
+  .pb .x,.loop .count button{width:32px;height:32px}
+  .big{min-height:44px;font-size:17px}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Loop Garden <small>Program the gardener. Can a Repeat block do it with fewer blocks?</small></h1>
+  <button class="icon-btn" id="motion" aria-pressed="true" title="Turn animation on or off">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+  <button class="icon-btn" id="read">🔊 Read</button>
+</header>
+<main>
+  <div class="stage" id="stage">
+    <div class="scene" id="scene" role="img" aria-labelledby="garden-desc">
+      <p class="sr-only" id="garden-desc" hidden></p>
+      <div class="bed" id="bed"></div>
+      <div id="cells"></div>
+      <div id="bunny"><img id="bunny-img" src="art:bunny" alt=""><span class="face" id="face"></span></div>
+      <div class="say" id="say" role="status"></div>
+    </div>
+  </div>
+  <aside class="panel">
+    <h2><span>Gardens</span></h2>
+    <div class="levels" id="levels"></div>
+    <p class="goal" id="goal"></p>
+    <div class="palette" id="palette"></div>
+    <h2><span>Program</span><span class="count-line" id="count"></span></h2>
+    <div class="program" id="program"></div>
+    <div class="row">
+      <button class="big go" id="run">▶ Run</button>
+      <button class="big gray" id="reset" title="Put the gardener back and clear the flowers">↺ Reset</button>
+    </div>
+    <div class="row">
+      <button class="big gray" id="undo" style="min-height:46px;font-size:17px">⌫ Undo</button>
+      <button class="big gray" id="clear" style="min-height:46px;font-size:17px">🗑 Clear</button>
+    </div>
+  </aside>
+</main>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  let reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  try { const m = localStorage.getItem('curio-motion'); if (m) reduce = m === 'calm'; } catch {}
+  function showMotion() {
+    document.body.classList.toggle('calm', reduce);
+    $('motion').setAttribute('aria-pressed', !reduce);
+    $('motion').textContent = reduce ? '⏸ Motion' : '✨ Motion';
+  }
+  showMotion();
+  $('motion').onclick = () => {
+    reduce = !reduce;
+    try { localStorage.setItem('curio-motion', reduce ? 'calm' : 'on'); } catch {}
+    showMotion();
+  };
+  const wait = ms => new Promise(r => setTimeout(r, ms));  // same pacing with motion off
+  const fit = () => {
+    const r = $('stage').getBoundingClientRect();
+    $('scene').style.setProperty('--s', Math.min(r.width / 900, r.height / 640));
+  };
+  new ResizeObserver(fit).observe($('stage'));
+
+  // ---------- gardens ----------
+  // d: 0 up, 1 right, 2 down, 3 left. seeds: spots to plant. par: fewest blocks we know of.
+  const LEVELS = [
+    {name: 'Hello, garden', w: 5, h: 3, start: [0, 1, 1], seeds: [[2, 1]], par: 3,
+     goal: 'Get the gardener to the seed spot and plant it. Tap blocks to build the program, then press <b>Run</b>.'},
+    {name: 'A row of flowers', w: 7, h: 3, start: [0, 1, 1], seeds: [[1, 1], [2, 1], [3, 1], [4, 1], [5, 1], [6, 1]], par: 3,
+     goal: 'Six seeds in a row. You could use twelve blocks... or try a <b>Repeat</b> block.'},
+    {name: 'Every other', w: 7, h: 3, start: [0, 1, 1], seeds: [[2, 1], [4, 1], [6, 1]], par: 4,
+     goal: 'Plant every other spot. What part keeps happening again and again?'},
+    {name: 'Up the path', w: 5, h: 5, start: [2, 4, 1], seeds: [[2, 3], [2, 2], [2, 1], [2, 0]], par: 4,
+     goal: 'The gardener is facing the wrong way. Turn first, then repeat.'},
+    {name: 'Four corners', w: 5, h: 5, start: [0, 0, 1], seeds: [[4, 0], [4, 4], [0, 4], [0, 0]], par: 7,
+     goal: 'Plant all four corners. Walk, plant, turn... and again.'},
+    {name: 'Staircase', w: 5, h: 5, start: [0, 4, 1], seeds: [[1, 3], [2, 2], [3, 1], [4, 0]], par: 6,
+     goal: 'Climb the stairs and plant on every step.'},
+    {name: 'Hop the rocks', w: 7, h: 3, start: [0, 2, 1], seeds: [[2, 2], [4, 2], [6, 2]], rocks: [[1, 2], [3, 2], [5, 2]], par: 10,
+     goal: 'Rocks are in the way! Find the way around one rock, then repeat it.'},
+    {name: 'Free garden', w: 7, h: 5, start: [3, 4, 0], seeds: [], free: true, par: 0,
+     goal: 'No seed spots here. Plant flowers anywhere and make a picture: a line, a square, a letter?'},
+  ];
+  const FLOWERS = ['art:tulip', 'art:daisy', 'art:bell'];
+  const FACE = {0: 'art:bunny-back', 1: 'art:bunny-side', 2: 'art:bunny', 3: 'art:bunny-side'};
+  const DX = [0, 1, 0, -1], DY = [-1, 0, 1, 0];
+  const ICON = {
+    step: '<svg viewBox="0 0 28 28"><path d="M14 4L5 14h6v10h6V14h6z" fill="#fff"/></svg>',
+    left: '<svg viewBox="0 0 28 28"><path d="M22 24V14a6 6 0 0 0-6-6H9" fill="none" stroke="#fff" stroke-width="4.5" stroke-linecap="round"/><path d="M11 2L3 8l8 6z" fill="#fff"/></svg>',
+    right: '<svg viewBox="0 0 28 28"><path d="M6 24V14a6 6 0 0 1 6-6h7" fill="none" stroke="#fff" stroke-width="4.5" stroke-linecap="round"/><path d="M17 2l8 6-8 6z" fill="#fff"/></svg>',
+    plant: '<svg viewBox="0 0 28 28"><path d="M14 26V13" stroke="#fff" stroke-width="3.5" stroke-linecap="round"/><path d="M14 15C8 15 5 11 5 6c5 0 9 3 9 9zM14 13c0-5 4-8 9-8 0 5-3 8-9 8z" fill="#fff"/></svg>',
+    repeat: '<svg viewBox="0 0 28 28"><path d="M6 13a8 8 0 0 1 14-5" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"/><path d="M23 2v9h-9z" fill="#fff"/><path d="M22 15a8 8 0 0 1-14 5" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"/><path d="M5 26v-9h9z" fill="#fff"/></svg>',
+  };
+  const LABEL = {step: 'Step', left: 'Turn left', right: 'Turn right', plant: 'Plant', repeat: 'Repeat'};
+
+  const state = {lv: 0, prog: [], target: null, running: false, sound: true, stars: {}, g: null};
+  try { Object.assign(state.stars, JSON.parse(localStorage.getItem('loop-garden-stars') || '{}')); } catch {}
+
+  // ---------- sound ----------
+  let ctx;
+  const audio = () => (ctx ||= new (window.AudioContext || window.webkitAudioContext)());
+  function tone(type, f0, f1, dur, gain, when = 0) {
+    if (!state.sound) return;
+    const a = audio(), o = a.createOscillator(), g = a.createGain(), t = a.currentTime + when;
+    o.type = type; o.frequency.setValueAtTime(f0, t); o.frequency.exponentialRampToValueAtTime(f1, t + dur);
+    g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(gain, t + 0.01); g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    o.connect(g).connect(a.destination); o.start(t); o.stop(t + dur + 0.05);
+  }
+  const SFX = {
+    click: () => tone('triangle', 700, 700, .07, .1),
+    step: () => tone('sine', 380, 520, .14, .12),
+    turn: () => tone('triangle', 500, 700, .16, .08),
+    plant: () => { tone('sine', 200, 120, .15, .2); tone('sine', 880, 880, .25, .1, .35); tone('sine', 1175, 1175, .35, .1, .45); },
+    bonk: () => { tone('square', 160, 90, .25, .12); },
+    win: () => [523, 659, 784, 1047].forEach((f, i) => tone('triangle', f, f, .3, .12, i * .14)),
+    meh: () => tone('sine', 330, 250, .5, .12),
+  };
+
+  // ---------- garden ----------
+  let CELL = 100, OX = 0, OY = 0;
+  function drawGarden() {
+    const L = LEVELS[state.lv];
+    CELL = Math.min(110, 820 / L.w, 500 / L.h);  // the top 120 stays clear for the message
+    OX = (900 - CELL * L.w) / 2; OY = 124 + (500 - CELL * L.h) / 2;
+    Object.assign($('bed').style, {left: OX - 10 + 'px', top: OY - 10 + 'px', width: CELL * L.w + 20 + 'px', height: CELL * L.h + 20 + 'px'});
+    const cells = [];
+    for (let y = 0; y < L.h; y++) for (let x = 0; x < L.w; x++) {
+      const c = document.createElement('div');
+      c.className = 'cell'; c.id = `c${x}-${y}`;
+      Object.assign(c.style, {left: OX + x * CELL + 3 + 'px', top: OY + y * CELL + 3 + 'px', width: CELL - 6 + 'px', height: CELL - 6 + 'px'});
+      if (L.seeds.some(([a, b]) => a === x && b === y)) c.innerHTML = '<span class="spot"></span>';
+      if ((L.rocks || []).some(([a, b]) => a === x && b === y)) c.innerHTML = '<img class="rock" src="art:rock" alt="">';
+      cells.push(c);
+    }
+    $('cells').replaceChildren(...cells);
+    $('garden-desc').textContent = `A garden bed ${L.w} squares wide and ${L.h} tall with ${L.seeds.length} seed spots${L.rocks ? ' and some rocks' : ''}.`;
+    $('scene').setAttribute('aria-label', $('garden-desc').textContent);
+    const [x, y, d] = L.start;
+    state.g = {x, y, d, planted: new Set()};
+    placeBunny(false);
+    say('');
+  }
+  function placeBunny(walk = true) {
+    const {x, y, d} = state.g, b = $('bunny');
+    b.style.left = OX + (x + .5) * CELL + 'px';
+    b.style.top = OY + (y + .86) * CELL + 'px';
+    b.style.height = CELL * 1.3 + 'px';
+    $('bunny-img').src = FACE[d];
+    $('bunny-img').style.transform = d === 3 ? 'scaleX(-1)' : '';
+    $('face').innerHTML = `<svg viewBox="0 0 28 28" width="30" height="30" style="transform:rotate(${d * 90}deg)"><path d="M14 3L4 15h6v10h8V15h6z" fill="#35603a"/></svg>`;
+    b.classList.remove('walk', 'bump', 'yay');
+    if (walk && !reduce) { void b.offsetWidth; b.classList.add('walk'); }
+  }
+  function say(html) { $('say').innerHTML = html; }
+
+  // ---------- program editor ----------
+  const blocks = list => list.reduce((n, b) => n + 1 + (b.body ? blocks(b.body) : 0), 0);
+  function add(t) {
+    if (state.running) return;
+    SFX.click();
+    const into = state.target ? state.target.body : state.prog;
+    if (t === 'repeat') {
+      const b = {t, n: 3, body: []};
+      state.prog.push(b);
+      state.target = b;  // new blocks go inside the loop until Done
+    } else into.push({t});
+    drawProgram();
+  }
+  function drawProgram() {
+    const host = $('program');
+    host.classList.toggle('target', !state.target);
+    host.replaceChildren();
+    if (!state.prog.length) host.innerHTML = '<p class="empty">Tap the blocks above to build a program.</p>';
+    const row = (b, list) => {
+      const d = document.createElement('div');
+      d.className = 'pb ' + b.t;
+      d.innerHTML = `${ICON[b.t]}<span>${LABEL[b.t]}</span>`;
+      const x = document.createElement('button');
+      x.className = 'x'; x.textContent = '✕'; x.title = 'Remove this block'; x.setAttribute('aria-label', 'Remove ' + LABEL[b.t]);
+      x.onclick = e => {
+        e.stopPropagation();
+        if (state.running) return;
+        list.splice(list.indexOf(b), 1);
+        if (state.target === b) state.target = null;
+        drawProgram();
+      };
+      b.el = d;
+      return [d, x];
+    };
+    for (const b of state.prog) {
+      if (b.t !== 'repeat') {
+        const [d, x] = row(b, state.prog); d.append(x); host.append(d); continue;
+      }
+      const loop = document.createElement('div');
+      loop.className = 'loop';
+      const [head, x] = row(b, state.prog);
+      head.querySelector('span').textContent = 'Repeat';
+      const count = document.createElement('span');
+      count.className = 'count';
+      count.innerHTML = `<button aria-label="Fewer times">−</button><b>${b.n}</b><button aria-label="More times">+</button> times`;
+      const [minus, plus] = count.querySelectorAll('button');
+      minus.onclick = () => { if (!state.running && b.n > 2) { b.n--; SFX.click(); drawProgram(); } };
+      plus.onclick = () => { if (!state.running && b.n < 9) { b.n++; SFX.click(); drawProgram(); } };
+      head.append(count, x);
+      const body = document.createElement('div');
+      body.className = 'body' + (state.target === b ? ' target' : '');
+      body.title = 'Tap to add blocks inside this loop';
+      body.onclick = () => { if (!state.running) { state.target = b; drawProgram(); } };
+      for (const c of b.body) { const [d, cx] = row(c, b.body); d.append(cx); body.append(d); }
+      if (!b.body.length) body.innerHTML = '<p class="hint">Blocks you tap now go in here</p>';
+      const lip = document.createElement('div');
+      lip.className = 'lip';
+      if (state.target === b) {
+        const done = document.createElement('button');
+        done.textContent = 'Done with loop ⤵';
+        done.onclick = e => { e.stopPropagation(); state.target = null; drawProgram(); };
+        lip.append(done);
+      } else lip.innerHTML = '&nbsp;';
+      loop.append(head, body, lip);
+      host.append(loop);
+    }
+    const n = blocks(state.prog), L = LEVELS[state.lv];
+    $('count').textContent = n ? `${n} block${n > 1 ? 's' : ''}` : '';
+    for (const btn of $('palette').children) btn.disabled = state.running || (btn.dataset.t === 'repeat' && !!state.target);
+    $('run').disabled = state.running || !n;
+    $('undo').disabled = $('clear').disabled = state.running || !n;
+    host.lastElementChild?.scrollIntoView?.({block: 'nearest'});
+  }
+  $('palette').innerHTML = Object.keys(LABEL).map(t => `<button class="blk ${t}" data-t="${t}">${ICON[t]}${LABEL[t]}</button>`).join('');
+  for (const b of $('palette').children) b.onclick = () => add(b.dataset.t);
+  $('undo').onclick = () => {
+    if (state.running) return;
+    const loop = state.target;
+    if (loop && loop.body.length) loop.body.pop();
+    else if (loop) { state.prog.pop(); state.target = null; }
+    else state.prog.pop();
+    drawProgram();
+  };
+  $('clear').onclick = () => { if (!state.running) { state.prog = []; state.target = null; drawProgram(); } };
+
+  // ---------- running ----------
+  const STEP_MS = 650;
+  async function run() {
+    if (state.running || !state.prog.length) return;
+    state.running = true; state.target = null;
+    drawGarden(); drawProgram();
+    const L = LEVELS[state.lv];
+    say('');
+    let ok = true;
+    const doOne = async b => {
+      b.el.classList.add('now');
+      const g = state.g;
+      if (b.t === 'step') {
+        const nx = g.x + DX[g.d], ny = g.y + DY[g.d];
+        const rock = (L.rocks || []).some(([a, c]) => a === nx && c === ny);
+        if (nx < 0 || ny < 0 || nx >= L.w || ny >= L.h || rock) {
+          SFX.bonk();
+          const bn = $('bunny'); bn.style.setProperty('--bx', DX[g.d] * 18 + 'px');
+          bn.classList.remove('bump'); void bn.offsetWidth; if (!reduce) bn.classList.add('bump');
+          say(rock ? 'Bonk! A rock is in the way.' : 'Bonk! That\'s the edge of the garden.');
+          ok = false;
+        } else { g.x = nx; g.y = ny; SFX.step(); placeBunny(); }
+      } else if (b.t === 'left' || b.t === 'right') {
+        g.d = (g.d + (b.t === 'left' ? 3 : 1)) % 4; SFX.turn(); placeBunny(false);
+      } else if (b.t === 'plant') {
+        plant(g.x, g.y);
+      }
+      await wait(STEP_MS);
+      b.el.classList.remove('now');
+    };
+    outer: for (const b of state.prog) {
+      if (b.t !== 'repeat') { await doOne(b); if (!ok) break; continue; }
+      for (let i = 0; i < b.n; i++) {
+        b.el.classList.add('now');
+        b.el.querySelector('.count b').textContent = `${i + 1}/${b.n}`;
+        if (!b.body.length) await wait(STEP_MS);
+        for (const c of b.body) { await doOne(c); if (!ok) break outer; }
+      }
+      b.el.classList.remove('now');
+    }
+    state.running = false;
+    finish(ok);
+  }
+  function plant(x, y) {
+    const c = $(`c${x}-${y}`), g = state.g, key = x + ',' + y;
+    if (g.planted.has(key)) return;
+    g.planted.add(key);
+    c.classList.add('done');
+    const s = document.createElement('img');
+    s.className = 'sprout pop'; s.src = 'art:sprout'; s.alt = '';
+    c.append(s);
+    SFX.plant();
+    setTimeout(() => {
+      const f = document.createElement('img');
+      f.className = 'flower grow'; f.alt = 'flower';
+      f.src = FLOWERS[(x * 7 + y * 3) % 3];
+      s.replaceWith(f);
+    }, 350);
+  }
+  function finish(ok) {
+    const L = LEVELS[state.lv], g = state.g, n = blocks(state.prog);
+    drawProgram();
+    if (L.free) {
+      say(g.planted.size ? `${g.planted.size} flower${g.planted.size > 1 ? 's' : ''} planted with ${n} blocks!` : 'Add a <b>Plant</b> block to grow flowers.');
+      return;
+    }
+    if (!ok) return;
+    const left = L.seeds.filter(([x, y]) => !g.planted.has(x + ',' + y)).length;
+    if (left) {
+      SFX.meh();
+      say(`${left} seed spot${left > 1 ? 's' : ''} still need${left > 1 ? '' : 's'} planting. Change the program and run it again.`);
+      return;
+    }
+    const stars = n <= L.par ? 3 : n <= L.par + 3 ? 2 : 1;
+    state.stars[state.lv] = Math.max(stars, state.stars[state.lv] || 0);
+    try { localStorage.setItem('loop-garden-stars', JSON.stringify(state.stars)); } catch {}
+    drawLevels();
+    SFX.win();
+    $('bunny-img').src = 'art:bunny-yay'; $('bunny-img').style.transform = '';
+    if (!reduce) $('bunny').classList.add('yay');
+    const tip = stars === 3 ? 'That\'s as short as we know how to make it!' :
+      `Can you do it with ${L.par} blocks? ${state.prog.some(b => b.t === 'repeat') ? 'Look for more blocks that repeat.' : 'Try a Repeat block.'}`;
+    say(`<span class="stars">${'★'.repeat(stars)}${'☆'.repeat(3 - stars)}</span> All planted with ${n} blocks! ${tip}`);
+  }
+
+  function drawLevels() {
+    $('levels').innerHTML = LEVELS.map((L, i) => `<button aria-current="${i === state.lv}" title="${L.name}">${L.free ? '🎨' : i + 1}${L.free ? '' : `<small>${'★'.repeat(state.stars[i] || 0) || '&nbsp;'}</small>`}</button>`).join('');
+    [...$('levels').children].forEach((b, i) => b.onclick = () => { if (!state.running) go(i); });
+  }
+  function go(i) {
+    state.lv = i; state.prog = []; state.target = null;
+    const L = LEVELS[i];
+    $('goal').innerHTML = `<b>${L.free ? 'Free garden' : `Garden ${i + 1}: ${L.name}.`}</b> ${L.goal}`;
+    drawLevels(); drawGarden(); drawProgram();
+  }
+
+  $('run').onclick = run;
+  $('reset').onclick = () => { if (!state.running) drawGarden(); };
+  $('sound').onclick = e => {
+    state.sound = !state.sound;
+    e.currentTarget.setAttribute('aria-pressed', state.sound);
+    e.currentTarget.textContent = state.sound ? '🔔 Sound' : '🔇 Sound';
+  };
+  function bestVoice() {
+    const voices = speechSynthesis.getVoices().filter(v => /^en(-|_|$)/i.test(v.lang));
+    const score = v => (/natural|neural/i.test(v.name) ? 50 : 0) + (/premium|enhanced/i.test(v.name) ? 40 : 0) +
+      (/google/i.test(v.name) ? 30 : 0) + (/aria|jenny|ava|samantha|libby|sonia/i.test(v.name) ? 10 : 0) +
+      (/en-US/i.test(v.lang) ? 5 : 0) + (v.default ? 1 : 0);
+    return voices.sort((a, b) => score(b) - score(a))[0] || null;
+  }
+  if ('speechSynthesis' in window) speechSynthesis.getVoices();
+  $('read').onclick = () => {
+    if (!('speechSynthesis' in window)) return;
+    speechSynthesis.cancel();
+    const text = ($('say').textContent.replace(/[★☆]/g, '').trim() || $('goal').textContent).replace(/⤵/g, '');
+    const u = new SpeechSynthesisUtterance(text);
+    const v = bestVoice();
+    if (v) { u.voice = v; u.lang = v.lang; }
+    u.rate = .92; u.pitch = 1.08; speechSynthesis.speak(u);
+  };
+
+  window.__lg = {state, go, add, run};  // for checking frames
+  go(0);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+{
+  "house_style": "Bright, fresh modern illustration like a well-designed cookbook for middle schoolers: clean confident shapes, soft painted texture, appetizing natural colors, gentle shading. No text, no letters, no watermark, no border, no frame.",
+  "assets": [
+    {
+      "name": "bar",
+      "prompt": "Empty background: a sunny smoothie bar seen straight on at counter height. A light wooden counter along the bottom, behind it a mint-green tiled wall, open shelves with plants and glass jars, a big window with morning light on one side. The middle of the counter is empty. No blender, no fruit on the counter, no people, no writing, no menu board. 16:9.",
+      "aspect": "16:9",
+      "width": 1400,
+      "quality": 78,
+      "trim": 0.04
+    },
+    {
+      "name": "blender",
+      "prompt": "An empty countertop blender: a tall clear glass jug with a handle, no numbers or markings, a black lid, sitting on a white and chrome base with one round dial. Front view. The jug is completely empty and see-through.",
+      "cutout": true,
+      "key": "magenta",
+      "aspect": "3:4",
+      "height": 560
+    },
+    {
+      "name": "strawberry",
+      "prompt": "Three ripe red strawberries with green tops, grouped together.",
+      "cutout": true,
+      "key": "magenta",
+      "width": 200
+    },
+    {
+      "name": "banana",
+      "prompt": "Two thick round slices of banana leaning on a small peeled banana piece.",
+      "cutout": true,
+      "width": 200
+    },
+    {
+      "name": "blueberry",
+      "prompt": "A small heap of plump dark blueberries.",
+      "cutout": true,
+      "width": 200
+    },
+    {
+      "name": "mango",
+      "prompt": "A few juicy orange mango cubes, grouped together.",
+      "cutout": true,
+      "width": 200
+    },
+    {
+      "name": "owner",
+      "prompt": "A friendly smoothie bar owner, a woman in her thirties with curly hair tied up under a bandana, a green apron over a white t-shirt, warm smile. Upper body, from the top of the head down to the waist, as if behind a counter, facing the viewer.",
+      "cutout": true,
+      "key": "magenta",
+      "aspect": "3:4",
+      "height": 420
+    },
+    {
+      "name": "owner-yum",
+      "ref": "owner",
+      "prompt": "The same smoothie bar owner tasting from a cup with a straw, eyes closed in delight, one hand giving a thumbs up. Upper body, from the top of the head down to the waist.",
+      "cutout": true,
+      "key": "magenta",
+      "aspect": "3:4",
+      "height": 420
+    },
+    {
+      "name": "owner-hmm",
+      "ref": "owner",
+      "prompt": "The same smoothie bar owner holding a cup and frowning thoughtfully, one eyebrow raised, as if the taste is not quite right. Upper body, from the top of the head down to the waist.",
+      "cutout": true,
+      "key": "magenta",
+      "aspect": "3:4",
+      "height": 420
+    }
+  ]
+}

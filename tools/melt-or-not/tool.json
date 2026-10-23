@@ -1,0 +1,17 @@
+{
+  "id": "melt-or-not",
+  "status": "beta",
+  "driver": "teacher",
+  "modes": [],
+  "grades_label": "Grade 2",
+  "third_party": [],
+  "updated": "2026-10-23",
+  "hook": "Warm it, cool it, squish it. The class predicts whether each change can go back, then tries to undo it: ice, chocolate, toast, eggs, popcorn and more.",
+  "outcome": "Use evidence to argue that some changes from heating or cooling can be reversed and some cannot",
+  "minutes": "15-20",
+  "sources": [
+    "Illustrations generated with Google Gemini, edited for Curio Class",
+    "Examples follow the NGSS 2-PS1-4 clarification statement",
+    "Sounds generated in the browser"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "id": "contraction-crusher",
+  "status": "beta",
+  "driver": "teacher",
+  "modes": [],
+  "grades_label": "Grade 2",
+  "third_party": [],
+  "updated": "2026-10-23",
+  "hook": "A friendly press squishes two words into one. Guess which letters fall out, then watch the apostrophe fly into the gap they leave.",
+  "outcome": "Form contractions and explain that the apostrophe stands for the missing letters",
+  "minutes": "10-15",
+  "sources": [
+    "Illustrations generated with Google Gemini, edited for Curio Class",
+    "Sounds generated in the browser"
+  ]
+}
