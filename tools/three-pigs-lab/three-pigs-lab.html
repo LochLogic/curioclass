@@ -516,6 +516,7 @@ td.mat-name{font-weight:700}
     }, 60);
     const drips = Array.from({length: [9, 5, 2, 0][lvl]}, (_, i) =>
       `<path class="drip" style="animation-delay:${i * .23}s" d="M${-60 + i * 15} -100q4 8 0 12q-4-4 0-12z" fill="#4a90d9"/>`).join('');
+    $('pig-home').innerHTML = pigMarkup({mood: lvl < 2 ? 'shock' : 'happy', wet: lvl < 2});
     inside(`${drips}
       <g transform="translate(-10 0)">${pigMarkup({mood: lvl < 2 ? 'shock' : 'happy', wet: lvl < 2})}</g>
       ${lvl < 3 ? `<g transform="translate(60 52)"><path d="M-22 -20h44l-6 34h-32z" fill="#a9b2bc" stroke="#2b2420" stroke-width="3"/><rect x="-18" y="${-14 + (3 - lvl) * 0}" width="36" height="${[22, 14, 6, 0][lvl]}" fill="#4a90d9" opacity=".8"/></g>` : ''}
@@ -602,6 +603,8 @@ td.mat-name{font-weight:700}
       snowGround());
     $('snow-roof').innerHTML = snowRoof() +
       (lvl < 2 ? '<g class="icicles" fill="#d7ecf7">' + Array.from({length: 9}, (_, i) => `<path d="M${336 + i * 40} 256l7 ${16 + (i % 3) * 10}l7 -${16 + (i % 3) * 10}z"/>`).join('') + '</g>' : '');
+    // A pig seen through the walls (glass, or faintly through paper) matches the one in the Inside window
+    $('pig-home').innerHTML = pigMarkup({mood: lvl < 2 ? 'cold' : 'cozy', cold: lvl < 2});
     const temp = [6, 12, 19, 25][lvl], color = lvl < 2 ? '#4a90d9' : '#d2553a';
     inside(`<g transform="translate(-14 4)">${pigMarkup({mood: lvl < 2 ? 'cold' : 'cozy', cold: lvl < 2})}</g>
       ${lvl >= 2 ? '' : '<path d="M-104 -60q20 10 0 30M104 -50q-20 10 0 30" stroke="#d7ecf7" stroke-width="10" fill="none"/>'}
