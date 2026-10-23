@@ -1,0 +1,113 @@
+{
+  "house_style": "Clean contemporary illustration for a high-school language class: simple flat shapes with soft texture, calm colors, uncluttered, everything easy to read at a glance. No text, no letters, no watermark, no border, no frame.",
+  "assets": [
+    {
+      "name": "s-cup",
+      "prompt": "A plain wooden table seen from the front at eye level, with one coffee mug standing on top of it in the middle. Plain light wall behind. Nothing else.",
+      "aspect": "1:1",
+      "width": 460,
+      "quality": 80
+    },
+    {
+      "name": "s-cat-under",
+      "prompt": "A plain wooden table seen from the front at eye level, with an orange cat sitting on the floor underneath it, in the middle. Plain light wall behind. Nothing else.",
+      "aspect": "1:1",
+      "width": 460,
+      "quality": 80
+    },
+    {
+      "name": "s-cars",
+      "prompt": "Two small cars parked side by side in a parking lot, seen from behind at eye level, both pointing away from the viewer: a red car on the left and a blue car on the right, close together. Plain simple background. Nothing else.",
+      "aspect": "1:1",
+      "width": 460,
+      "quality": 80
+    },
+    {
+      "name": "s-pass",
+      "prompt": "A person standing still on a sidewalk on the right side of the picture while a small green car drives past on the road from left to right, with soft motion lines behind the car. Side view, simple street, plain background.",
+      "aspect": "1:1",
+      "width": 460,
+      "quality": 80
+    },
+    {
+      "name": "s-meet",
+      "prompt": "Two people walking toward each other on a long straight path, one on the left facing right and one on the right facing left, about to meet in the middle. Side view, simple park, plain sky.",
+      "aspect": "1:1",
+      "width": 460,
+      "quality": 80
+    },
+    {
+      "name": "s-hill",
+      "prompt": "A small yellow car driving up a long straight smooth slope that rises from the lower left to the upper right, side view, simple grassy hill, plain sky.",
+      "aspect": "1:1",
+      "width": 460,
+      "quality": 80
+    },
+    {
+      "name": "s-jump",
+      "prompt": "A gray cat leaping from the floor up onto the top of a plain wooden table, mid-jump, the cat starting on the left and landing on the table on the right. Side view, plain light wall behind.",
+      "aspect": "1:1",
+      "width": 460,
+      "quality": 80
+    },
+    {
+      "name": "signer",
+      "prompt": "A teenage signer seen from directly behind, head and shoulders only (cut off at the upper back), short dark hair, wearing a plain dark green hoodie. Calm, simple shapes.",
+      "cutout": true,
+      "key": "magenta",
+      "aspect": "4:3",
+      "width": 520
+    },
+    {
+      "name": "hs-b",
+      "prompt": "One human right hand, medium brown skin, making a flat 'B' hand: all four fingers straight and pressed together, thumb tucked against the side of the palm, palm facing straight down, fingers pointing away from the viewer, hand level like a tabletop. Seen from slightly above and in front. Clean simple illustration, only the hand and wrist.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 260
+    },
+    {
+      "name": "hs-c",
+      "prompt": "One human right hand, medium brown skin, making a 'C' shape as if holding a cup: all four fingers together and curved, thumb curved opposite them, forming the letter C with an open gap, palm facing left, fingers up. Seen from the side. Clean simple illustration, only the hand and wrist.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 260
+    },
+    {
+      "name": "hs-1",
+      "prompt": "One human right hand, medium brown skin, with only the index finger pointing straight up, the other three fingers curled into the palm and the thumb holding them down, palm facing the viewer. Clean simple illustration, only the hand and wrist.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 260
+    },
+    {
+      "name": "hs-3",
+      "prompt": "One human right hand, medium brown skin, held sideways with the palm facing left: thumb pointing up, index finger and middle finger extended straight forward and spread a little apart, ring finger and pinky curled down into the palm. Like a little car. Seen from the side. Clean simple illustration, only the hand and wrist.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 260
+    },
+    {
+      "name": "hs-bentv",
+      "prompt": "One human right hand, medium brown skin, seen from the side. The palm faces down. The index finger and middle finger stick out forward and are bent sharply down at the middle joints into two hooks, like the bent legs of a crouching cat, with a small gap between them. The ring finger and pinky are curled tightly into the palm and the thumb rests over them. Clean simple illustration, only the hand and wrist.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 260
+    },
+    {
+      "name": "hs-v",
+      "prompt": "One human right hand, medium brown skin, turned upside down so the index and middle fingers point straight down like two legs, spread apart in an upside-down V, ring finger and pinky curled into the palm with the thumb holding them, back of the hand facing the viewer. Like a little person standing. Clean simple illustration, only the hand and wrist.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 260
+    },
+    {
+      "name": "signer-front",
+      "ref": "signer",
+      "prompt": "The same teenage signer, now seen from the front, head and shoulders only (cut off at the upper chest), short dark hair, the same plain dark green hoodie, a friendly calm face looking straight at the viewer, arms down out of frame. Calm, simple shapes.",
+      "cutout": true,
+      "key": "magenta",
+      "aspect": "4:3",
+      "width": 520
+    }
+  ]
+}

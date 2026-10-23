@@ -1,0 +1,457 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vanishing Point Studio · One-point perspective · Curio Class</title>
+<meta name="description" content="Find the vanishing point in a hallway, a street, a railroad and a library, then draw your own one-point perspective scene with boxes, roads, rooms and rows of posts that snap to it. Drag the vanishing point and watch everything follow. Grades 6-8 visual art. Works offline.">
+<!--
+VANISHING POINT STUDIO (Curio Class)
+Grades 6-8 visual arts, NCAS VA:Cr2 (investigate, plan and make art; organize and develop ideas).
+Find it: trace receding edges in four paintings; the lines meet at the vanishing point on the horizon line,
+which is the viewer's eye level. Draw: boxes, roads, rooms and rows that all recede to one vanishing point,
+with construction guides, hidden sides and value shading. The drawing is kept on this device only.
+Every front face sits on the picture plane, so all side faces are drawn first and all fronts on top.
+One file, no network requests. Illustrations generated with Google Gemini, edited for Curio Class.
+Content CC BY 4.0, code MIT. curioclass.org
+-->
+<style>
+:root{
+  --paper:#f7f1e4;--ink:#2b2a2e;--muted:#66615a;--line:#e3d8c4;--focus:#2f5bd3;--guide:#3c8ad6;--vp:#e2463a;
+  font-family:'Segoe UI',system-ui,-apple-system,Roboto,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0;height:100%}
+body{background:var(--paper);color:var(--ink);display:grid;grid-template-rows:auto 1fr;min-height:100vh}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+header{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 18px;background:#33302c;color:#f6efe2}
+h1{margin:0 auto 0 0;font:700 clamp(21px,2.6vw,29px)/1.1 Georgia,'Times New Roman',serif}
+h1 small{display:block;font:400 14px/1.3 'Segoe UI',sans-serif;color:#cfc6b6}
+.seg{display:inline-flex;border:1px solid #5a554e;border-radius:999px;overflow:hidden}
+.seg button{border:0;background:#45413b;color:#f6efe2;min-height:44px;padding:0 16px;font-weight:600;font-size:15px}
+.seg button[aria-pressed="true"]{background:#f0c75e;color:#2b2200}
+.icon-btn{border:1px solid #5a554e;background:#45413b;color:#f6efe2;border-radius:999px;min-height:44px;padding:0 14px;font-weight:600;font-size:15px}
+
+main{display:grid;grid-template-columns:minmax(0,1fr) 320px;min-height:0}
+@media (max-width:860px){main{grid-template-columns:1fr}}
+.stage{position:relative;overflow:hidden;min-height:340px;background:#b98a58 url(art:desk) center/cover}
+.scene{position:absolute;left:50%;top:50%;width:1000px;height:620px;transform:translate(-50%,-50%) scale(var(--s,1))}
+.page{position:absolute;left:40px;top:30px;width:920px;height:560px;background:#fffdf6;box-shadow:0 2px 0 #d9cfbd,0 6px 0 #c9bea9,0 18px 30px #0006;border-radius:3px;overflow:hidden}
+.page svg{position:absolute;inset:0;width:100%;height:100%;touch-action:none}
+.page .photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+
+.panel{background:#fffaf0;border-left:1px solid var(--line);padding:12px 16px;display:flex;flex-direction:column;gap:12px;overflow:auto}
+@media (max-width:860px){.panel{border-left:0;border-top:1px solid var(--line)}}
+.panel h2{margin:0;font:700 12px/1 'Segoe UI',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.hint{margin:0;font-size:16px;line-height:1.45}
+.hint b{color:#9a3a22}
+.tools{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.tools button,.chips button{border:1px solid var(--line);background:#fff;border-radius:12px;min-height:54px;font-weight:600;font-size:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
+.tools button svg{width:30px;height:22px}
+.tools button[aria-pressed="true"],.chips button[aria-pressed="true"]{background:#33302c;color:#f6d77e;border-color:#33302c}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chips button{min-height:44px;padding:0 12px;flex-direction:row}
+.field label{display:flex;justify-content:space-between;font-size:14px;color:var(--muted)}
+input[type=range]{width:100%;accent-color:#c0902a;height:28px;margin:0}
+.steps{margin:0;padding-left:20px;font-size:15px;line-height:1.45}
+.steps li{margin-bottom:4px}
+.steps li.done{color:var(--muted);text-decoration:line-through}
+.readout{background:#f2ece0;border-radius:10px;padding:8px 10px;font-size:15px;line-height:1.4}
+.readout:empty{display:none}
+</style>
+</head>
+<body>
+<header>
+  <h1>Vanishing Point Studio <small>One-point perspective: everything that runs away from you meets at one point.</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-find" aria-pressed="false">Find it</button>
+    <button id="m-draw" aria-pressed="true">Draw</button>
+  </div>
+  <button class="icon-btn" id="save" title="Save the drawing as a picture">⬇ Save picture</button>
+</header>
+<main>
+  <div class="stage" id="stage">
+    <div class="scene" id="scene">
+      <div class="page" id="page">
+        <img class="photo" id="photo" alt="" hidden>
+        <svg id="svg" viewBox="0 0 920 560" aria-label="Drawing page"></svg>
+      </div>
+    </div>
+  </div>
+  <aside class="panel">
+    <div id="find-panel" hidden>
+      <p class="hint" id="find-hint"></p>
+      <div class="readout" id="find-out"></div>
+      <div class="chips" id="pics"></div>
+      <div class="chips"><button id="find-clear">Clear my lines</button><button id="find-show">Show the horizon</button></div>
+    </div>
+    <div id="draw-panel">
+      <h2>Draw with</h2>
+      <div class="tools" id="tools"></div>
+      <div class="field" id="depth-f">
+        <label for="depth">Depth of new boxes <b id="depth-v"></b></label>
+        <input type="range" id="depth" min="5" max="85" value="35">
+      </div>
+      <div class="chips" id="toggles"></div>
+      <div class="chips"><button id="undo">↶ Undo</button><button id="clear">Clear page</button><button id="example">Example street</button></div>
+      <h2>Try this</h2>
+      <ol class="steps" id="steps"></ol>
+      <p class="hint" id="draw-hint"></p>
+    </div>
+  </aside>
+</main>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const fit = () => {
+    const r = $('stage').getBoundingClientRect();
+    $('scene').style.setProperty('--s', Math.min(r.width / 1000, r.height / 620));
+  };
+  new ResizeObserver(fit).observe($('stage'));
+  const W = 920, H = 560;
+  const NS = 'http://www.w3.org/2000/svg';
+  const el = (tag, a, parent) => { const e = document.createElementNS(NS, tag); for (const k in a) e.setAttribute(k, a[k]); parent && parent.append(e); return e; };
+  const svg = $('svg');
+  function pt(e) {
+    const m = svg.getScreenCTM().inverse(), p = svg.createSVGPoint();
+    p.x = e.clientX; p.y = e.clientY;
+    const q = p.matrixTransform(m);
+    return {x: Math.max(0, Math.min(W, q.x)), y: Math.max(0, Math.min(H, q.y))};
+  }
+
+  // ---------- the drawing ----------
+  const D = {vp: {x: 460, y: 230}, shapes: [], guides: true, shade: true, tool: 'box', depth: .35};
+  const history = [];
+  const save = () => { try { localStorage.setItem('vps-drawing', JSON.stringify({vp: D.vp, shapes: D.shapes})); } catch {} };
+  try { const s = JSON.parse(localStorage.getItem('vps-drawing')); if (s && s.vp && Array.isArray(s.shapes)) { D.vp = s.vp; D.shapes = s.shapes; } } catch {}
+  const snap = () => { history.push(JSON.stringify({vp: D.vp, shapes: D.shapes})); if (history.length > 60) history.shift(); };
+  const toward = (p, k) => ({x: p.x + (D.vp.x - p.x) * k, y: p.y + (D.vp.y - p.y) * k});
+  const P = (...pts) => pts.map(p => `${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' ');
+  // where the ray from the vanishing point through p leaves the page
+  function edge(p) {
+    const dx = p.x - D.vp.x, dy = p.y - D.vp.y;
+    let t = Infinity;
+    if (dx > 0) t = Math.min(t, (W - D.vp.x) / dx); if (dx < 0) t = Math.min(t, -D.vp.x / dx);
+    if (dy > 0) t = Math.min(t, (H - D.vp.y) / dy); if (dy < 0) t = Math.min(t, -D.vp.y / dy);
+    return isFinite(t) ? {x: D.vp.x + dx * t, y: D.vp.y + dy * t} : p;
+  }
+
+  const TOOLS = [
+    {k: 'box', n: 'Box', i: '<path d="M4 8h14v12H4zM4 8l6-5h14l-6 5M18 20l6-5V3" fill="none" stroke="currentColor" stroke-width="2"/>',
+     tip: 'Drag a rectangle to draw the front of a box. Its sides run back to the vanishing point.'},
+    {k: 'road', n: 'Road', i: '<path d="M2 21L13 3l11 18M13 8v2M13 13v3" fill="none" stroke="currentColor" stroke-width="2"/>',
+     tip: 'Drag across the bottom of the page to set the road\'s width. Its edges run to the vanishing point.'},
+    {k: 'room', n: 'Room', i: '<path d="M9 7h12v9H9zM9 7L2 1M21 7l7-6M9 16l-7 6M21 16l7 6" fill="none" stroke="currentColor" stroke-width="2"/>',
+     tip: 'Drag a rectangle for the far wall of a room or hallway. The floor, ceiling and walls come toward you.'},
+    {k: 'row', n: 'Row', i: '<path d="M3 3v18M10 6v12M15 8v8M19 9v6M22 10v4" fill="none" stroke="currentColor" stroke-width="2.4"/>',
+     tip: 'Drag up from the ground to draw a post. Copies get smaller and closer together as they go back, like telephone poles.'},
+    {k: 'line', n: 'Line', i: '<path d="M2 20L26 4" fill="none" stroke="currentColor" stroke-width="2"/>',
+     tip: 'Drag a line. It snaps to the vanishing point, or to flat or straight up and down.'},
+    {k: 'erase', n: 'Erase', i: '<path d="M4 16l9-9 8 8-6 6H8zM13 21h12" fill="none" stroke="currentColor" stroke-width="2"/>',
+     tip: 'Tap a shape to erase it.'},
+  ];
+
+  function render(preview) {
+    svg.replaceChildren();
+    const defs = el('defs', {}, svg);
+    defs.innerHTML = `<filter id="pencil" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="3"/><feDisplacementMap in="SourceGraphic" scale="1.6"/></filter>
+      <pattern id="hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(40)"><line x1="0" y1="0" x2="0" y2="7" stroke="#3b3a40" stroke-width="1.1" opacity=".35"/></pattern>
+      <pattern id="hatch2" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(-35)"><line x1="0" y1="0" x2="0" y2="5" stroke="#3b3a40" stroke-width="1.1" opacity=".35"/></pattern>`;
+    const shapes = preview ? [...D.shapes, preview] : D.shapes;
+    const gG = el('g', {}, svg), sides = [], fronts = [], lines = el('g', {filter: 'url(#pencil)'});
+    const ink = {fill: 'none', stroke: '#2f2e33', 'stroke-width': 2.2, 'stroke-linejoin': 'round', 'stroke-linecap': 'round'};
+    const guide = (a, b) => D.guides && el('line', {x1: a.x, y1: a.y, x2: b.x, y2: b.y, stroke: 'var(--guide)', 'stroke-width': 1, 'stroke-dasharray': '5 5', opacity: .7}, gG);
+    // horizon and vanishing point
+    shapes.forEach((s, idx) => {
+      const tag = {idx};
+      if (s.t === 'box') {
+        const x1 = Math.min(s.a.x, s.b.x), x2 = Math.max(s.a.x, s.b.x), y1 = Math.min(s.a.y, s.b.y), y2 = Math.max(s.a.y, s.b.y);
+        const F = [{x: x1, y: y1}, {x: x2, y: y1}, {x: x2, y: y2}, {x: x1, y: y2}], Bk = F.map(p => toward(p, s.d));
+        F.forEach(p => guide(p, D.vp));
+        const face = (pts, v, pat, k) => sides.push({pts, v, pat, d: Math.hypot((pts[0].x + pts[2].x) / 2 - D.vp.x, (pts[0].y + pts[2].y) / 2 - D.vp.y), tag, k});
+        if (y1 > D.vp.y) face([F[0], F[1], Bk[1], Bk[0]], .96, null, 'top');
+        if (y2 < D.vp.y) face([F[3], F[2], Bk[2], Bk[3]], .55, 'hatch2', 'bottom');
+        if (x1 > D.vp.x) face([F[0], F[3], Bk[3], Bk[0]], .72, 'hatch', 'left');
+        if (x2 < D.vp.x) face([F[1], F[2], Bk[2], Bk[1]], .62, 'hatch2', 'right');
+        fronts.push({pts: F, v: .86, tag});
+      }
+      if (s.t === 'room') {
+        const x1 = Math.min(s.a.x, s.b.x), x2 = Math.max(s.a.x, s.b.x), y1 = Math.min(s.a.y, s.b.y), y2 = Math.max(s.a.y, s.b.y);
+        const F = [{x: x1, y: y1}, {x: x2, y: y1}, {x: x2, y: y2}, {x: x1, y: y2}], O = F.map(edge);
+        F.forEach(p => guide(p, D.vp));
+        const room = (pts, v, pat) => sides.push({pts, v, pat, d: 9999, tag, room: 1});
+        room([O[0], O[1], F[1], F[0]], .9, null);            // ceiling
+        room([F[3], F[2], O[2], O[3]], .78, 'hatch2');        // floor
+        room([O[0], F[0], F[3], O[3]], .7, 'hatch');          // left wall
+        room([F[1], O[1], O[2], F[2]], .66, 'hatch2');        // right wall
+        sides.push({pts: F, v: .94, d: 99999, tag, room: 1});   // far wall
+      }
+      if (s.t === 'road') {
+        const L = {x: Math.min(s.a.x, s.b.x), y: H}, R = {x: Math.max(s.a.x, s.b.x), y: H};
+        sides.push({pts: [L, R, D.vp, D.vp], v: .8, pat: 'hatch2', d: 9998, tag, road: 1});
+        guide(L, D.vp); guide(R, D.vp);
+        tag.dashes = true; tag.L = L; tag.R = R;
+      }
+      if (s.t === 'row') {
+        const base = s.a, top = s.b;
+        for (let k = 0; k < 9; k++) {
+          const f = 1 - 1 / (1 + k * .45);             // equal steps on the ground look closer together farther back
+          const p = toward(base, f), q = toward(top, f);
+          if (Math.abs(p.y - q.y) < 3) break;
+          fronts.push({post: [p, q], w: Math.max(1.5, 9 * (1 - f)), tag});
+        }
+        guide(base, D.vp); guide(top, D.vp);
+      }
+      if (s.t === 'line') fronts.push({line: [s.a, s.b], tag});
+    });
+    // far things first: rooms and roads, then box sides (nearest the vanishing point first), then every front
+    sides.sort((a, b) => b.d - a.d);
+    const draw = (f, pts) => {
+      const g = el('g', {'data-idx': f.tag.idx}, svg);
+      const c = Math.round(255 * (D.shade ? f.v : 1));
+      el('polygon', {points: P(...pts), fill: `rgb(${c},${c - 2},${c - 8})`, stroke: 'none'}, g);
+      if (D.shade && f.pat) el('polygon', {points: P(...pts), fill: `url(#${f.pat})`, opacity: (1 - f.v) * 2.2}, g);
+      el('polygon', {points: P(...pts), ...ink}, lines);
+      return g;
+    };
+    for (const f of sides) {
+      const g = draw(f, f.pts);
+      if (f.tag.dashes) for (let k = 0; k < 10; k++) {   // center line dashes, shrinking toward the vanishing point
+        const mid = {x: (f.tag.L.x + f.tag.R.x) / 2, y: H}, f1 = 1 - 1 / (1 + k * .5), f2 = 1 - 1 / (1 + (k + .45) * .5);
+        const a = toward(mid, f1), b = toward(mid, f2);
+        el('line', {x1: a.x, y1: a.y, x2: b.x, y2: b.y, stroke: '#f2c94c', 'stroke-width': Math.max(1, 10 * (1 - f1)), 'stroke-linecap': 'butt'}, g);
+      }
+    }
+    for (const f of fronts) {
+      if (f.post) { const g = el('g', {'data-idx': f.tag.idx}, svg); el('line', {x1: f.post[0].x, y1: f.post[0].y, x2: f.post[1].x, y2: f.post[1].y, stroke: '#4a3b2c', 'stroke-width': f.w, 'stroke-linecap': 'round'}, g); continue; }
+      if (f.line) { const g = el('g', {'data-idx': f.tag.idx}, svg); el('line', {x1: f.line[0].x, y1: f.line[0].y, x2: f.line[1].x, y2: f.line[1].y, ...ink, 'stroke-width': 2.4}, g);
+        el('line', {x1: f.line[0].x, y1: f.line[0].y, x2: f.line[1].x, y2: f.line[1].y, stroke: '#0000', 'stroke-width': 14}, g); continue; }
+      draw(f, f.pts);
+    }
+    svg.append(lines);
+    // the horizon line rides on top so it never hides behind a building
+    if (D.guides) {
+      el('line', {x1: 0, x2: W, y1: D.vp.y, y2: D.vp.y, stroke: 'var(--guide)', 'stroke-width': 1.6, opacity: .8}, svg);
+      const lx = D.vp.x > W - 260 ? 10 : W - 10;
+      el('text', {x: lx, y: D.vp.y - 8, 'text-anchor': lx > 10 ? 'end' : 'start', fill: 'var(--guide)', stroke: '#fffdf6', 'stroke-width': 4, 'paint-order': 'stroke', 'font-size': 14, 'font-weight': 700}, svg).textContent = 'Horizon line (eye level)';
+    }
+    // the vanishing point handle on top
+    if (D.guides) {
+      const v = el('g', {id: 'vp', style: 'cursor:grab', tabindex: 0, role: 'slider', 'aria-label': 'Vanishing point. Arrow keys move it.'}, svg);
+      el('circle', {cx: D.vp.x, cy: D.vp.y, r: 22, fill: '#e2463a22'}, v);
+      el('circle', {cx: D.vp.x, cy: D.vp.y, r: 9, fill: 'var(--vp)', stroke: '#fff', 'stroke-width': 3}, v);
+      el('text', {x: D.vp.x + 14, y: D.vp.y + 24, fill: 'var(--vp)', stroke: '#fffdf6', 'stroke-width': 4, 'paint-order': 'stroke', 'font-size': 14, 'font-weight': 700}, v).textContent = 'Vanishing point';
+    }
+  }
+
+  // ---------- drawing with the pointer ----------
+  let drag = null;
+  svg.addEventListener('pointerdown', e => {
+    if (mode !== 'draw') return findDown(e);
+    const p = pt(e);
+    if (e.target.closest('#vp')) { snap(); drag = {vp: true}; svg.setPointerCapture(e.pointerId); return; }
+    if (D.tool === 'erase') {
+      const g = e.target.closest('[data-idx]');
+      if (g) { snap(); D.shapes.splice(+g.dataset.idx, 1); save(); render(); progress(); }
+      return;
+    }
+    drag = {a: p}; svg.setPointerCapture(e.pointerId);
+  });
+  svg.addEventListener('pointermove', e => {
+    if (mode !== 'draw') return findMove(e);
+    if (!drag) return;
+    const p = pt(e);
+    if (drag.vp) { D.vp = {x: Math.max(20, Math.min(W - 20, p.x)), y: Math.max(20, Math.min(H - 20, p.y))}; render(); moved = true; return; }
+    drag.b = p;
+    render(shapeFrom(drag.a, p));
+  });
+  let moved = false;
+  svg.addEventListener('pointerup', e => {
+    if (mode !== 'draw') return findUp(e);
+    if (!drag) return;
+    if (drag.vp) { drag = null; save(); progress(); return; }
+    const s = drag.b && shapeFrom(drag.a, drag.b);
+    drag = null;
+    if (s && big(s)) { snap(); D.shapes.push(s); save(); progress(); }
+    render();
+  });
+  function shapeFrom(a, b) {
+    const t = D.tool;
+    if (t === 'box' || t === 'room') return {t, a, b, d: D.depth};
+    if (t === 'road') return {t, a, b};
+    if (t === 'row') return {t, a, b: {x: a.x, y: Math.min(b.y, a.y - 10)}};
+    if (t === 'line') {
+      // snap: toward the vanishing point, flat, or upright
+      const ang = Math.atan2(b.y - a.y, b.x - a.x), toVp = Math.atan2(D.vp.y - a.y, D.vp.x - a.x), len = Math.hypot(b.x - a.x, b.y - a.y);
+      const diff = x => Math.abs(Math.atan2(Math.sin(x), Math.cos(x)));
+      if (diff(ang - toVp) < .12 || diff(ang - toVp - Math.PI) < .12) { const s = diff(ang - toVp) < .12 ? 1 : -1; return {t, a, b: {x: a.x + Math.cos(toVp) * len * s, y: a.y + Math.sin(toVp) * len * s}}; }
+      if (Math.abs(b.y - a.y) < 14) return {t, a, b: {x: b.x, y: a.y}};
+      if (Math.abs(b.x - a.x) < 14) return {t, a, b: {x: a.x, y: b.y}};
+      return {t, a, b};
+    }
+  }
+  const big = s => s.t === 'row' ? s.a.y - s.b.y > 12 : Math.abs(s.a.x - s.b.x) > 12 && (s.t === 'road' || s.t === 'line' || Math.abs(s.a.y - s.b.y) > 12);
+  svg.addEventListener('keydown', e => {
+    if (!e.target.closest || !e.target.closest('#vp')) return;
+    const d = {ArrowLeft: [-10, 0], ArrowRight: [10, 0], ArrowUp: [0, -10], ArrowDown: [0, 10]}[e.key];
+    if (!d) return;
+    e.preventDefault(); snap();
+    D.vp = {x: Math.max(20, Math.min(W - 20, D.vp.x + d[0])), y: Math.max(20, Math.min(H - 20, D.vp.y + d[1]))};
+    moved = true; save(); render(); progress(); $('vp')?.focus();
+  });
+
+  // ---------- panel ----------
+  $('tools').replaceChildren(...TOOLS.map(t => {
+    const b = document.createElement('button');
+    b.innerHTML = `<svg viewBox="0 0 28 24" aria-hidden="true">${t.i}</svg>${t.n}`;
+    b.dataset.k = t.k;
+    b.onclick = () => { D.tool = t.k; tools(); };
+    return b;
+  }));
+  function tools() {
+    [...$('tools').children].forEach(b => b.setAttribute('aria-pressed', b.dataset.k === D.tool));
+    $('draw-hint').textContent = TOOLS.find(t => t.k === D.tool).tip;
+    $('depth-f').hidden = D.tool !== 'box';
+  }
+  const TOG = [['guides', 'Guides'], ['shade', 'Shading']];
+  $('toggles').replaceChildren(...TOG.map(([k, n]) => {
+    const b = document.createElement('button');
+    b.textContent = n; b.onclick = () => { D[k] = !D[k]; b.setAttribute('aria-pressed', D[k]); render(); progress(); };
+    b.setAttribute('aria-pressed', D[k]);
+    return b;
+  }));
+  $('depth').oninput = e => { D.depth = e.target.value / 100; $('depth-v').textContent = e.target.value + '%'; };
+  $('depth-v').textContent = '35%';
+  $('undo').onclick = () => { const h = history.pop(); if (!h) return; const s = JSON.parse(h); D.vp = s.vp; D.shapes = s.shapes; save(); render(); };
+  $('clear').onclick = () => { if (!D.shapes.length) return; snap(); D.shapes = []; save(); render(); };
+  $('example').onclick = () => {
+    snap();
+    D.vp = {x: 470, y: 220};
+    D.shapes = [
+      {t: 'road', a: {x: 250, y: 560}, b: {x: 690, y: 560}},
+      {t: 'box', a: {x: 20, y: 60}, b: {x: 200, y: 500}, d: .45}, {t: 'box', a: {x: 730, y: 110}, b: {x: 900, y: 520}, d: .5},
+      {t: 'box', a: {x: 200, y: 260}, b: {x: 250, y: 330}, d: .2},
+      {t: 'row', a: {x: 225, y: 545}, b: {x: 225, y: 300}},
+      {t: 'box', a: {x: 440, y: 30}, b: {x: 500, y: 90}, d: .3},
+    ];
+    save(); render(); progress();
+  };
+
+  const STEPS = [
+    {t: 'Draw a box <b>below</b> the horizon line. You can see its top.', ok: () => D.shapes.some(s => s.t === 'box' && Math.min(s.a.y, s.b.y) > D.vp.y)},
+    {t: 'Draw a box <b>above</b> the horizon line. Now you see its bottom.', ok: () => D.shapes.some(s => s.t === 'box' && Math.max(s.a.y, s.b.y) < D.vp.y)},
+    {t: 'Draw a box right across the horizon line. Which sides show now?', ok: () => D.shapes.some(s => s.t === 'box' && Math.min(s.a.y, s.b.y) < D.vp.y && Math.max(s.a.y, s.b.y) > D.vp.y)},
+    {t: 'Drag the red <b>vanishing point</b>. Watch every box turn.', ok: () => moved},
+    {t: 'Make a street: a <b>Road</b>, buildings on both sides and a <b>Row</b> of posts.', ok: () => D.shapes.some(s => s.t === 'road') && D.shapes.some(s => s.t === 'row')},
+    {t: 'Turn the <b>Guides</b> off to see the finished drawing.', ok: () => !D.guides},
+  ];
+  function progress() {
+    $('steps').innerHTML = STEPS.map(s => `<li class="${s.ok() ? 'done' : ''}">${s.t}</li>`).join('');
+  }
+
+  // ---------- Find it ----------
+  const PICS = [
+    {k: 'hallway', n: 'Hallway', img: 'art:hallway', tip: 'the tops of the lockers, the floor edges or the ceiling lights'},
+    {k: 'street', n: 'Street', img: 'art:street', tip: 'the rooftops, the rows of windows or the curbs'},
+    {k: 'tracks', n: 'Railroad', img: 'art:tracks', tip: 'the two rails, or the tops of the poles'},
+    {k: 'library', n: 'Library', img: 'art:library', tip: 'the shelf edges or the ceiling beams'},
+  ];
+  const F = {pic: 0, lines: [], show: false};
+  let fdrag = null;
+  $('pics').replaceChildren(...PICS.map((p, i) => {
+    const b = document.createElement('button');
+    b.textContent = p.n; b.onclick = () => { F.pic = i; F.lines = []; F.show = false; findRender(); };
+    return b;
+  }));
+  function meet() {
+    // every pair of traced lines that are not parallel; their average crossing is our vanishing point
+    const xs = [];
+    for (let i = 0; i < F.lines.length; i++) for (let j = i + 1; j < F.lines.length; j++) {
+      const [a, b] = F.lines[i], [c, d] = F.lines[j];
+      const r = {x: b.x - a.x, y: b.y - a.y}, s = {x: d.x - c.x, y: d.y - c.y}, den = r.x * s.y - r.y * s.x;
+      if (Math.abs(den) < 1e-6 * Math.hypot(r.x, r.y) * Math.hypot(s.x, s.y) * 50) continue;
+      const t = ((c.x - a.x) * s.y - (c.y - a.y) * s.x) / den;
+      xs.push({x: a.x + r.x * t, y: a.y + r.y * t});
+    }
+    if (!xs.length) return null;
+    const m = {x: xs.reduce((s, p) => s + p.x, 0) / xs.length, y: xs.reduce((s, p) => s + p.y, 0) / xs.length};
+    return {m, xs, spread: Math.max(...xs.map(p => Math.hypot(p.x - m.x, p.y - m.y)))};
+  }
+  function findRender(preview) {
+    const p = PICS[F.pic];
+    $('photo').src = p.img; $('photo').hidden = false;
+    [...$('pics').children].forEach((b, i) => b.setAttribute('aria-pressed', i === F.pic));
+    svg.replaceChildren();
+    const all = preview ? [...F.lines, preview] : F.lines;
+    const ext = ([a, b]) => { const dx = b.x - a.x, dy = b.y - a.y, k = 2000 / (Math.hypot(dx, dy) || 1); return [{x: a.x - dx * k, y: a.y - dy * k}, {x: b.x + dx * k, y: b.y + dy * k}]; };
+    for (const l of all) {
+      const [u, v] = ext(l);
+      el('line', {x1: u.x, y1: u.y, x2: v.x, y2: v.y, stroke: '#fff', 'stroke-width': 5, opacity: .55}, svg);
+      el('line', {x1: u.x, y1: u.y, x2: v.x, y2: v.y, stroke: '#e2463a', 'stroke-width': 2.2, 'stroke-dasharray': '10 6'}, svg);
+      el('line', {x1: l[0].x, y1: l[0].y, x2: l[1].x, y2: l[1].y, stroke: '#e2463a', 'stroke-width': 5, 'stroke-linecap': 'round'}, svg);
+    }
+    const r = F.lines.length > 1 ? meet() : null;
+    if (r) {
+      for (const q of r.xs) el('circle', {cx: q.x, cy: q.y, r: 4, fill: '#ffd34d', stroke: '#2b2a2e'}, svg);
+      if (F.show) {
+        el('line', {x1: 0, x2: W, y1: r.m.y, y2: r.m.y, stroke: '#fff', 'stroke-width': 6, opacity: .7}, svg);
+        el('line', {x1: 0, x2: W, y1: r.m.y, y2: r.m.y, stroke: 'var(--guide)', 'stroke-width': 3}, svg);
+        const t = el('text', {x: 12, y: r.m.y - 10, fill: '#fff', stroke: '#1d3f66', 'stroke-width': 4, 'paint-order': 'stroke', 'font-size': 18, 'font-weight': 800}, svg);
+        t.textContent = 'Horizon line: the eye level of the artist';
+      }
+      el('circle', {cx: r.m.x, cy: r.m.y, r: 16, fill: '#e2463a33', stroke: '#fff', 'stroke-width': 3}, svg);
+      el('circle', {cx: r.m.x, cy: r.m.y, r: 7, fill: 'var(--vp)', stroke: '#fff', 'stroke-width': 2}, svg);
+    }
+    const n = F.lines.length;
+    $('find-hint').innerHTML = `<b>Find the vanishing point.</b> Drag along edges that run away from you: ${p.tip}. Trace at least two.`;
+    $('find-out').innerHTML = !n ? '' : n === 1 ? 'One line. Trace another edge that runs away from you.'
+      : !r ? 'These lines are parallel on the page, so they never meet. Try an edge that runs away from you.'
+      : r.spread < 30 ? `<b>Your ${n} lines meet at one point.</b> That is the vanishing point. ${F.show ? 'It sits on the horizon line, at the artist\'s eye level.' : 'Press <b>Show the horizon</b>.'}`
+      : `Your lines cross in a few places (the yellow dots). Edges that run straight away from you all meet at <b>one</b> point. Trace carefully, or clear and try again.`;
+    $('find-show').disabled = !r;
+  }
+  function findDown(e) { fdrag = {a: pt(e)}; svg.setPointerCapture(e.pointerId); }
+  function findMove(e) { if (fdrag) { fdrag.b = pt(e); findRender([fdrag.a, fdrag.b]); } }
+  function findUp() {
+    if (fdrag && fdrag.b && Math.hypot(fdrag.b.x - fdrag.a.x, fdrag.b.y - fdrag.a.y) > 25) F.lines.push([fdrag.a, fdrag.b]);
+    fdrag = null; findRender();
+  }
+  $('find-clear').onclick = () => { F.lines = []; F.show = false; findRender(); };
+  $('find-show').onclick = () => { F.show = true; findRender(); };
+
+  // ---------- modes ----------
+  let mode = 'draw';
+  function setMode(m) {
+    mode = m;
+    $('m-find').setAttribute('aria-pressed', m === 'find'); $('m-draw').setAttribute('aria-pressed', m === 'draw');
+    $('find-panel').hidden = m !== 'find'; $('draw-panel').hidden = m !== 'draw';
+    $('save').hidden = m !== 'draw';
+    if (m === 'find') findRender();
+    else { $('photo').hidden = true; render(); progress(); tools(); }
+  }
+  $('m-find').onclick = () => setMode('find');
+  $('m-draw').onclick = () => setMode('draw');
+
+  // save the drawing as a PNG on this device
+  $('save').onclick = () => {
+    const was = D.guides; D.guides = false; render();
+    const data = new XMLSerializer().serializeToString(svg).replace('<svg', `<svg width="${W * 2}" height="${H * 2}"`);
+    D.guides = was; render();
+    const img = new Image();
+    img.onload = () => {
+      const c = document.createElement('canvas'); c.width = W * 2; c.height = H * 2;
+      const g = c.getContext('2d'); g.fillStyle = '#fffdf6'; g.fillRect(0, 0, c.width, c.height); g.drawImage(img, 0, 0);
+      const a = document.createElement('a'); a.download = 'my-perspective-drawing.png'; a.href = c.toDataURL('image/png'); a.click();
+    };
+    img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(data);
+  };
+
+  window.__vps = {D, F, setMode, render, findRender, PICS, meet};  // for checking frames
+  setMode('draw');
+})();
+</script>
+</body>
+</html>

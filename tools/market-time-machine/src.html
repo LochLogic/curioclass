@@ -1,0 +1,604 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Market Time Machine · Investing basics with real history · Curio Class</title>
+<meta name="description" content="Travel to any year from 1928 to 2025, split $10,000 among stocks, bonds, cash and gold, and ride real historical returns forward. See risk, time, inflation, fees and diversification. Grades 9-12 personal finance. Educational only, not advice. Works offline.">
+<!--
+MARKET TIME MACHINE (Curio Class)
+Grades 9-12 personal finance, National Standards for Personal Financial Education: Investing
+(risk and return, diversification, time horizon, inflation, fees).
+Students pick a start year and a mix of four asset types and ride real annual returns forward. A second view
+runs the same mix from every possible start year, which shows how a longer stay narrows the range of outcomes.
+Missions pose a prediction first, then run the history to check it.
+Data: annual total returns 1928-2025 for the S&P 500 (with dividends), 10-year US Treasury bonds, 3-month
+Treasury bills and gold, from Aswath Damodaran, "Historical Returns on Stocks, Bonds, Bills and Real Estate"
+(NYU Stern, January 2026 update). Inflation: December-to-December change in the US CPI-U (BLS series
+CUUR0000SA0, via FRED CPIAUCNS). Gold was held at a fixed official price until 1971.
+Educational only: history, not a forecast, and not investment advice. No taxes; mixes rebalance every year.
+One file, no network requests. Illustrations generated with Google Gemini, edited for Curio Class.
+Content CC BY 4.0, code MIT. curioclass.org
+-->
+<style>
+:root{
+  --paper:#f5efe3;--card:#fffaf0;--ink:#16213b;--muted:#5e6274;--line:#ddd2bd;--focus:#2a6fdb;
+  --brass:#b8862b;--teal:#14706c;--deep:#0f2a3a;
+  --stocks:#1d7f78;--bonds:#3f5fa8;--cash:#7c8a46;--gold:#c18f12;--infl:#b0413e;--loss:#c4513f;--gain:#1d7f78;
+  font-family:'Segoe UI',system-ui,-apple-system,Roboto,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0;height:100%}
+body{background:var(--paper);color:var(--ink);display:grid;grid-template-rows:auto 1fr;min-height:100vh}
+button,select{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+header{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 18px;background:var(--deep);color:#f4ead6}
+h1{margin:0 auto 0 0;font:700 clamp(21px,2.6vw,29px)/1.1 Georgia,'Times New Roman',serif}
+h1 small{display:block;font:400 14px/1.3 'Segoe UI',sans-serif;color:#c9c1ad}
+.seg{display:inline-flex;border:1px solid #33506a;border-radius:999px;overflow:hidden}
+.seg button{border:0;background:#17384c;color:#f4ead6;min-height:44px;padding:0 15px;font-weight:600;font-size:15px}
+.seg button[aria-pressed="true"]{background:var(--brass);color:#1d1404}
+.icon-btn{border:1px solid #33506a;background:#17384c;color:#f4ead6;border-radius:999px;min-height:44px;padding:0 14px;font-weight:600;font-size:15px}
+
+main{display:grid;grid-template-columns:minmax(0,1fr) 360px;min-height:0}
+@media (max-width:900px){main{grid-template-columns:1fr}}
+.left{display:grid;grid-template-rows:auto minmax(260px,1fr) auto;min-height:0}
+.dash{display:flex;align-items:center;gap:14px;padding:8px 16px 0}
+.dash img{width:92px;height:92px;object-fit:contain;filter:drop-shadow(0 4px 4px #0003)}
+.travel .dash img{animation:hum .5s ease-in-out infinite}
+@keyframes hum{25%{transform:translate(-1px,1px) rotate(-1deg)}75%{transform:translate(1px,-1px) rotate(1deg)}}
+.odo{display:flex;gap:18px;align-items:flex-end;flex-wrap:wrap}
+.odo div span{display:block;margin-bottom:6px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.odo b{font:700 40px/1 Georgia,serif;font-variant-numeric:tabular-nums}
+.odo .yr b{background:var(--deep);color:#ffd27a;border-radius:8px;padding:2px 10px;letter-spacing:.06em}
+.odo .val b{color:var(--teal)}
+.odo .val.down b{color:var(--loss)}
+.chart{position:relative;min-height:0}
+.chart svg{position:absolute;inset:0;width:100%;height:100%}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(118px,1fr));gap:6px;padding:4px 16px 12px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:6px 9px}
+.stat span{display:block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.stat b{font-size:18px;font-variant-numeric:tabular-nums}
+
+.panel{background:var(--card);border-left:1px solid var(--line);padding:12px 16px;display:flex;flex-direction:column;gap:12px;overflow:auto}
+@media (max-width:900px){.panel{border-left:0;border-top:1px solid var(--line)}}
+.panel h2{margin:0;font:700 12px/1 'Segoe UI',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.field label{display:flex;justify-content:space-between;align-items:baseline;font-size:14px;color:var(--muted)}
+.field label b{color:var(--ink);font-size:20px;font-family:Georgia,serif}
+input[type=range]{width:100%;accent-color:var(--brass);height:28px;margin:0}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.chips button{border:1px solid var(--line);background:#fff;border-radius:999px;min-height:38px;padding:0 12px;font-size:14px;font-weight:600}
+.chips button[aria-pressed="true"]{background:var(--deep);color:#ffd27a;border-color:var(--deep)}
+.mix{display:grid;gap:4px}
+.asset{display:grid;grid-template-columns:44px 1fr 46px;align-items:center;gap:8px}
+.asset img{width:44px;height:44px;object-fit:contain}
+.asset div{font-size:14px;font-weight:600}
+.asset div small{display:block;font-weight:400;color:var(--muted);font-size:12px}
+.asset output{font:700 18px Georgia,serif;text-align:right;font-variant-numeric:tabular-nums}
+.asset input{grid-column:2/4}
+.go{border:0;border-radius:14px;min-height:56px;background:var(--brass);color:#1d1404;font:700 20px Georgia,serif;box-shadow:0 4px 0 #7a5810}
+.go:active{transform:translateY(2px);box-shadow:0 2px 0 #7a5810}
+.go:disabled{opacity:.5;cursor:default}
+.note{font-size:12.5px;line-height:1.45;color:var(--muted);margin:0}
+.story{font-size:15px;line-height:1.45;margin:0}
+.story b{color:var(--teal)}
+.mission{border:1px solid var(--line);border-radius:12px;background:#fff;padding:10px 12px}
+.mission h3{margin:0 0 4px;font:700 18px Georgia,serif}
+.mission p{margin:0 0 8px;font-size:15px;line-height:1.4}
+.choices{display:grid;gap:6px}
+.choices button{border:2px solid var(--line);background:#fff;border-radius:10px;min-height:44px;text-align:left;padding:6px 10px;font-size:15px}
+.choices button[aria-pressed="true"]{border-color:var(--brass);background:#fbf0d9}
+.choices button.right{border-color:var(--teal);background:#e0f2ef}
+.mlist{display:grid;gap:6px}
+.mlist button{border:1px solid var(--line);background:#fff;border-radius:10px;min-height:44px;text-align:left;padding:6px 10px;font-size:15px;display:flex;gap:8px;align-items:center}
+.mlist button i{font-style:normal;font:700 15px Georgia,serif;color:var(--brass);width:22px}
+.mlist button.done::after{content:'✓';margin-left:auto;color:var(--teal);font-weight:800}
+.reveal{background:#eef6f4;border-left:4px solid var(--teal);border-radius:8px;padding:8px 10px;font-size:15px;line-height:1.45}
+.link{border:0;background:none;color:var(--focus);text-decoration:underline;padding:0;font-size:14px;min-height:32px}
+.calm *{animation:none!important}
+
+@media (max-height:660px),(max-width:760px){
+  header{padding:6px 10px} h1{font-size:18px} h1 small{display:none}
+  .seg button,.icon-btn{min-height:36px;font-size:13px;padding:0 10px}
+  .dash img{width:60px;height:60px} .odo b{font-size:28px}
+  .stat b{font-size:15px}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Market Time Machine <small>Real returns from 1928 to 2025. History, not a forecast.</small></h1>
+  <div class="seg" role="group" aria-label="View">
+    <button id="tab-ride" aria-pressed="true">Time machine</button>
+    <button id="tab-span" aria-pressed="false">Every start year</button>
+    <button id="tab-miss" aria-pressed="false">Missions</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true" title="Turn animation on or off">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+</header>
+<main>
+  <section class="left" id="left">
+    <div class="dash">
+      <img src="art:machine" alt="">
+      <div class="odo" aria-live="polite">
+        <div class="yr"><span id="yr-l">Year</span><b id="odo-year">1990</b></div>
+        <div class="val" id="val"><span id="val-l">Worth</span><b id="odo-val">$10,000</b></div>
+      </div>
+    </div>
+    <div class="chart" id="chart"><svg id="svg" role="img" aria-label="Chart"></svg></div>
+    <div class="stats" id="stats"></div>
+  </section>
+  <aside class="panel" id="panel">
+    <div id="missions" hidden>
+      <h2>Missions</h2>
+      <p class="note" style="margin:6px 0 8px">Predict first, then launch and see what history says.</p>
+      <div class="mlist" id="mlist"></div>
+      <div class="mission" id="mcard" hidden></div>
+    </div>
+    <div id="setup">
+      <div class="field" id="f-start">
+        <label for="start">Travel to the start of <b id="start-v">1990</b></label>
+        <input type="range" id="start" min="1928" max="2025" value="1990">
+      </div>
+      <div class="field" id="f-years">
+        <label for="years">Stay invested for <b id="years-v">30 years</b></label>
+        <input type="range" id="years" min="1" max="36" value="30">
+      </div>
+      <div class="field" id="f-span" hidden>
+        <label>Stay invested for</label>
+        <div class="chips" id="span-h"></div>
+      </div>
+      <div class="field" id="f-money">
+        <label>Start with</label>
+        <div class="chips" id="init"></div>
+        <label style="margin-top:6px">Add at the start of each year</label>
+        <div class="chips" id="add"></div>
+      </div>
+      <div class="field">
+        <label>Your mix <span id="mix-sum"></span></label>
+        <div class="mix" id="mix"></div>
+        <div class="chips" id="presets"></div>
+      </div>
+      <div class="field">
+        <label>Fund fee each year</label>
+        <div class="chips" id="fee"></div>
+      </div>
+      <div class="field">
+        <label>Show</label>
+        <div class="chips" id="show"></div>
+      </div>
+      <button class="go" id="go">Launch ▶</button>
+      <p class="story" id="story"></p>
+      <p class="note">Educational only: real history, not a forecast and not advice. Returns include dividends and interest. No taxes. Your mix is rebalanced back to its percentages every year.</p>
+    </div>
+  </aside>
+</main>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  let reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  try { const m = localStorage.getItem('curio-motion'); if (m) reduce = m === 'calm'; } catch {}
+  function showMotion() {
+    document.body.classList.toggle('calm', reduce);
+    $('motion').setAttribute('aria-pressed', !reduce);
+    $('motion').textContent = reduce ? '⏸ Motion' : '✨ Motion';
+  }
+  showMotion();
+  $('motion').onclick = () => {
+    reduce = !reduce;
+    try { localStorage.setItem('curio-motion', reduce ? 'calm' : 'on'); } catch {}
+    showMotion();
+  };
+  const wait = ms => new Promise(r => setTimeout(r, ms));
+
+  // ---------- data: [stocks, bonds, cash, gold, inflation] in percent, one row per year ----------
+  const D = {"y0":1928,"r":[[43.81,0.84,3.08,0.1,-1.16],[-8.3,4.2,3.16,-0.15,0.58],[-25.12,4.54,4.55,0.1,-6.4],[-43.84,-2.56,2.31,-17.38,-9.32],[-8.64,8.79,1.07,21.28,-10.27],[49.98,1.86,0.96,27.26,0.76],[-1.19,7.96,0.28,31.75,1.52],[46.74,4.47,0.17,0.43,2.99],[31.94,5.02,0.17,0.09,1.45],[-35.34,1.38,0.28,-0.23,2.86],[29.28,4.21,0.07,0.17,-2.78],[-1.1,4.41,0.05,-1.23,0.0],[-10.67,5.4,0.04,-1.66,0.71],[-12.77,-2.02,0.13,0.0,9.93],[19.17,2.29,0.34,0.0,9.03],[25.06,2.49,0.38,0.0,2.96],[19.03,2.58,0.38,0.0,2.3],[35.82,3.8,0.38,2.54,2.25],[-8.43,3.13,0.38,0.0,18.13],[5.2,0.92,0.6,0.0,8.84],[5.7,1.95,1.05,0.0,2.99],[18.3,4.66,1.12,-8.7,-2.07],[30.81,0.43,1.2,9.56,5.93],[23.68,-0.3,1.52,0.0,6.0],[18.15,2.27,1.72,-0.35,0.75],[-1.21,4.14,1.89,0.69,0.75],[52.56,3.29,0.94,0.57,-0.74],[32.6,-1.34,1.72,-0.03,0.37],[7.44,-2.26,2.62,-0.11,2.99],[-10.46,6.8,3.22,-0.11,2.9],[43.72,-2.1,1.77,0.43,1.76],[12.06,-2.65,3.39,0.0,1.73],[0.34,11.64,2.87,0.48,1.36],[26.64,2.06,2.35,-0.06,0.67],[-8.81,5.69,2.77,-0.06,1.33],[22.61,1.68,3.16,-0.4,1.64],[16.42,3.73,3.55,0.03,0.97],[12.4,0.72,3.95,0.06,1.92],[-9.97,2.91,4.86,0.03,3.46],[23.8,-1.58,4.29,-0.51,3.04],[10.81,3.27,5.34,12.47,4.72],[-8.24,-5.01,6.67,5.01,6.2],[3.56,16.75,6.39,-9.45,5.57],[14.22,9.79,4.33,16.69,3.27],[18.76,2.82,4.06,48.78,3.41],[-14.31,3.66,7.04,72.96,8.71],[-25.9,1.99,7.85,66.15,12.34],[37.0,3.61,5.79,-24.8,6.94],[23.83,15.98,4.98,-4.1,4.86],[-6.98,1.29,5.26,22.64,6.7],[6.51,-0.78,7.18,37.01,9.02],[18.52,0.67,10.05,126.55,13.29],[31.74,-2.99,11.39,15.19,12.52],[-4.7,8.2,14.04,-32.6,8.92],[20.42,32.81,11.09,15.62,3.83],[22.34,3.2,8.95,-16.8,3.79],[6.15,13.73,9.92,-19.38,3.95],[31.24,25.71,7.72,6.0,3.8],[18.49,24.28,6.15,18.96,1.1],[5.81,-4.96,5.96,24.53,4.43],[16.54,8.22,6.89,-15.26,4.42],[31.48,17.69,8.39,-2.84,4.65],[-3.06,6.24,7.75,-3.11,6.11],[30.23,15.0,5.54,-8.56,3.06],[7.49,9.36,3.51,-5.73,2.9],[9.97,14.21,3.07,17.68,2.75],[1.33,-8.04,4.37,-2.17,2.67],[37.2,23.48,5.66,0.98,2.54],[22.68,1.43,5.15,-4.59,3.32],[33.1,9.94,5.2,-21.41,1.7],[28.34,14.92,4.91,-0.83,1.61],[20.89,-8.25,4.78,0.85,2.68],[-9.03,16.66,6.0,-5.44,3.39],[-11.85,5.57,3.48,0.75,1.55],[-21.97,15.12,1.64,25.57,2.38],[28.36,0.38,1.03,19.89,1.88],[10.74,4.49,1.4,4.65,3.26],[4.83,2.87,3.22,17.77,3.42],[15.61,1.96,4.85,23.2,2.54],[5.48,10.21,4.48,31.92,4.08],[-36.55,20.1,1.4,4.32,0.09],[25.94,-11.12,0.15,25.04,2.72],[14.82,8.46,0.14,29.24,1.5],[2.1,16.04,0.05,12.02,2.96],[15.89,2.97,0.09,5.68,1.74],[32.15,-9.1,0.06,-27.61,1.5],[13.52,10.75,0.03,0.12,0.76],[1.38,1.28,0.05,-12.11,0.73],[11.77,0.69,0.32,8.1,2.07],[21.61,2.8,0.95,12.66,2.11],[-4.23,-0.02,1.97,-0.93,1.91],[31.21,9.64,2.11,19.08,2.29],[18.02,11.33,0.36,24.17,1.36],[28.47,-4.42,0.04,-3.75,7.04],[-18.04,-17.83,2.09,0.55,6.45],[26.06,3.88,5.28,13.26,3.35],[24.88,-1.64,5.18,25.96,2.89],[17.78,7.8,4.21,66.22,2.68]]};
+  const Y0 = D.y0, Y1 = Y0 + D.r.length - 1;
+  const row = y => D.r[y - Y0];
+  const ASSETS = [
+    {key: 'stocks', name: 'Stocks', sub: 'S&P 500 index fund: 500 big US companies', img: 'art:stocks', color: 'var(--stocks)'},
+    {key: 'bonds', name: 'Bonds', sub: '10-year US Treasury bonds: loans to the government', img: 'art:bonds', color: 'var(--bonds)'},
+    {key: 'cash', name: 'Cash', sub: '3-month Treasury bills: like a savings account', img: 'art:cash', color: 'var(--cash)'},
+    {key: 'gold', name: 'Gold', sub: 'Gold bullion (price fixed by law until 1971)', img: 'art:gold', color: 'var(--gold)'},
+  ];
+  // what was going on (first year it shows up)
+  const EVENTS = [
+    [1929, 'Crash of 1929'], [1931, 'Great Depression'], [1937, 'Recession of 1937'], [1941, 'US enters World War II'], [1946, 'Postwar inflation'],
+    [1971, 'Gold price set free'], [1973, 'Oil shock'], [1979, 'Inflation tops 13%'], [1987, 'Black Monday crash'],
+    [2000, 'Dot-com bust'], [2008, 'Financial crisis'], [2020, 'Pandemic'], [2022, 'Inflation returns'],
+  ];
+
+  const st = {view: 'ride', start: 1990, years: 30, init: 10000, add: 0, mix: [60, 40, 0, 0], fee: .0005, real: false, span: 20, busy: false, sound: true, shown: null, mission: null, done: new Set()};
+
+  // ---------- sound ----------
+  let ctx;
+  const audio = () => (ctx ||= new (window.AudioContext || window.webkitAudioContext)());
+  function tone(type, f0, f1, dur, gain, when = 0) {
+    if (!st.sound) return;
+    const a = audio(), o = a.createOscillator(), g = a.createGain(), t = a.currentTime + when;
+    o.type = type; o.frequency.setValueAtTime(f0, t); o.frequency.exponentialRampToValueAtTime(f1, t + dur);
+    g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(gain, t + 0.01); g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    o.connect(g).connect(a.destination); o.start(t); o.stop(t + dur + 0.05);
+  }
+  const SFX = {
+    up: r => tone('triangle', 520 + Math.min(r, .5) * 600, 540 + Math.min(r, .5) * 600, .07, .05),
+    down: r => tone('triangle', 300 + Math.max(r, -.5) * 300, 260 + Math.max(r, -.5) * 300, .09, .06),
+    launch: () => { tone('sine', 180, 900, .6, .08); tone('sine', 240, 1200, .6, .05, .05); },
+    land: () => [523, 659, 784, 1047].forEach((f, i) => tone('triangle', f, f, .25, .07, i * .09)),
+    pick: () => tone('triangle', 660, 660, .08, .06),
+  };
+  $('sound').onclick = e => {
+    st.sound = !st.sound;
+    e.currentTarget.setAttribute('aria-pressed', st.sound);
+    e.currentTarget.textContent = st.sound ? '🔔 Sound' : '🔇 Sound';
+  };
+
+  // ---------- the money math ----------
+  // returns one point per year boundary: value (dollars), buying power (start-year dollars), money put in
+  function simulate(p) {
+    const mix = p.mix.map(m => m / 100);
+    let v = p.init, put = p.init, putReal = p.init, price = 1, idx = 1, peak = 1, drop = 0, dropAt = p.start;
+    const pts = [{y: p.start, v, real: v, put, putReal}], yr = [];
+    for (let k = 0; k < p.years; k++) {
+      const y = p.start + k, R = row(y);
+      v += p.add; put += p.add; putReal += p.add / price;
+      const gross = mix.reduce((s, m, i) => s + m * R[i] / 100, 0);
+      const net = (1 + gross) * (1 - p.fee) - 1;
+      v *= 1 + net; idx *= 1 + net; price *= 1 + R[4] / 100;
+      if (idx > peak) peak = idx;
+      if (idx / peak - 1 < drop) { drop = idx / peak - 1; dropAt = y; }
+      yr.push({y, net, real: (1 + net) / (1 + R[4] / 100) - 1});
+      pts.push({y: y + 1, v, real: v / price, put, putReal});
+    }
+    const n = p.years, cagr = Math.pow(idx, 1 / n) - 1, rcagr = Math.pow(idx / price, 1 / n) - 1;
+    const best = yr.reduce((a, b) => b.net > a.net ? b : a), worst = yr.reduce((a, b) => b.net < a.net ? b : a);
+    return {pts, yr, cagr, rcagr, price, best, worst, drop, dropAt, losing: yr.filter(o => o.net < 0).length, end: pts[pts.length - 1]};
+  }
+  const one = i => [0, 1, 2, 3].map(j => j === i ? 100 : 0);
+  const params = (o = {}) => ({start: st.start, years: st.years, init: st.init, add: st.add, mix: st.mix, fee: st.fee, ...o});
+
+  // ---------- format ----------
+  const money = v => {
+    const a = Math.abs(v), s = v < 0 ? '-' : '';
+    if (a >= 1e9) return s + '$' + (a / 1e9).toFixed(2) + 'B';
+    if (a >= 1e6) return s + '$' + (a / 1e6).toFixed(a >= 1e8 ? 0 : 2) + 'M';
+    return s + '$' + Math.round(a).toLocaleString('en-US');
+  };
+  const pct = (x, d = 1) => (x >= 0 ? '+' : '') + (x * 100).toFixed(d) + '%';
+  const yrs = n => n === 1 ? '1 year' : n + ' years';
+
+  // ---------- controls ----------
+  function chips(id, opts, get, set) {
+    const box = $(id);
+    box.replaceChildren(...opts.map(([val, label]) => {
+      const b = document.createElement('button');
+      b.textContent = label; b.dataset.v = val;
+      b.onclick = () => { if (st.busy) return; set(val); SFX.pick(); sync(); idle(); };
+      return b;
+    }));
+    box._sync = () => [...box.children].forEach(b => b.setAttribute('aria-pressed', String(b.dataset.v) === String(get())));
+  }
+  chips('init', [[0, '$0'], [1000, '$1,000'], [10000, '$10,000']], () => st.init, v => st.init = +v);
+  chips('add', [[0, '$0'], [600, '$600'], [1200, '$1,200'], [3000, '$3,000']], () => st.add, v => st.add = +v);
+  chips('fee', [[.0005, '0.05%'], [.005, '0.5%'], [.01, '1%'], [.02, '2%']], () => st.fee, v => st.fee = +v);
+  chips('show', [['n', 'Dollars'], ['r', 'Buying power']], () => st.real ? 'r' : 'n', v => st.real = v === 'r');
+  chips('span-h', [[1, '1 year'], [5, '5'], [10, '10'], [20, '20'], [30, '30 years']], () => st.span, v => st.span = +v);
+  chips('presets', [['100,0,0,0', 'All stocks'], ['60,40,0,0', '60/40'], ['40,30,20,10', 'Spread out'], ['0,0,100,0', 'All cash']],
+        () => st.mix.join(','), v => st.mix = v.split(',').map(Number));
+
+  $('mix').replaceChildren(...ASSETS.map((a, i) => {
+    const d = document.createElement('div');
+    d.className = 'asset';
+    d.innerHTML = `<img src="${a.img}" alt=""><div style="color:${a.color}">${a.name}<small>${a.sub}</small></div><output id="mix-o${i}"></output>
+      <input type="range" min="0" max="100" step="5" id="mix-${i}" aria-label="${a.name} percent">`;
+    d.querySelector('input').oninput = e => { setMix(i, +e.target.value); sync(); idle(); };
+    return d;
+  }));
+  // keep the mix at 100%: the others share what is left in proportion
+  function setMix(i, v) {
+    const rest = 100 - v, others = [0, 1, 2, 3].filter(j => j !== i), had = others.reduce((s, j) => s + st.mix[j], 0);
+    const m = st.mix.slice(); m[i] = v;
+    others.forEach(j => m[j] = had ? Math.round(st.mix[j] / had * rest / 5) * 5 : Math.round(rest / 3 / 5) * 5);
+    let diff = 100 - m.reduce((s, x) => s + x, 0);
+    for (const j of others.sort((a, b) => m[b] - m[a])) { if (!diff) break; const t = Math.max(0, m[j] + diff); diff -= t - m[j]; m[j] = t; }
+    st.mix = m;
+  }
+  $('start').oninput = e => { st.start = +e.target.value; sync(); idle(); };
+  $('years').oninput = e => { st.years = +e.target.value; sync(); idle(); };
+
+  function sync() {
+    const max = Math.min(60, Y1 - st.start + 1);
+    $('years').max = max;
+    if (st.years > max) st.years = max;
+    $('start').value = st.start; $('years').value = st.years;
+    $('start-v').textContent = st.start;
+    $('years-v').textContent = `${yrs(st.years)}, to the end of ${st.start + st.years - 1}`;
+    st.mix.forEach((m, i) => { $('mix-' + i).value = m; $('mix-o' + i).textContent = m + '%'; });
+    for (const id of ['init', 'add', 'fee', 'show', 'span-h', 'presets']) $(id)._sync();
+    $('val-l').textContent = st.real ? `Buying power (${st.start} dollars)` : 'Worth';
+    $('go').disabled = st.busy || (!st.init && !st.add);
+  }
+
+  // ---------- chart ----------
+  const NS = 'http://www.w3.org/2000/svg';
+  const el = (tag, attrs, text) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (text != null) e.textContent = text; return e; };
+  function box() {
+    const r = $('chart').getBoundingClientRect();
+    return {W: Math.max(320, r.width), H: Math.max(220, r.height), L: 74, R: 98, T: 30, B: 34};
+  }
+  function niceTicks(lo, hi, n = 5) {
+    const step0 = (hi - lo) / n, mag = Math.pow(10, Math.floor(Math.log10(step0))), f = step0 / mag;
+    const step = (f < 1.5 ? 1 : f < 3 ? 2 : f < 7 ? 5 : 10) * mag, out = [];
+    for (let t = Math.ceil(lo / step) * step; t <= hi + 1e-9; t += step) out.push(t);
+    return out;
+  }
+
+  // the ride: lines for the mix, each asset alone, and keeping up with prices
+  function drawRide(upto) {
+    const svg = $('svg'), {W, H, L, R, T, B} = box(), p = params(), run = st.shown;
+    svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+    svg.replaceChildren();
+    const key = st.real ? 'real' : 'v', keep = st.real ? 'putReal' : 'put';
+    const lines = ASSETS.map((a, i) => ({a, s: simulate(params({mix: one(i)}))}));
+    const vals = [...run.pts.map(q => q[key]), ...lines.flatMap(l => l.s.pts.map(q => q[key])), ...run.pts.map(q => q[keep])];
+    const hi = Math.max(...vals) * 1.06 || 1;
+    const x = y => L + (y - p.start) / p.years * (W - L - R);
+    const yv = v => T + (1 - v / hi) * (H - T - B);
+    // grid
+    for (const t of niceTicks(0, hi)) {
+      svg.append(el('line', {x1: L, x2: W - R, y1: yv(t), y2: yv(t), stroke: '#e3d9c6'}));
+      svg.append(el('text', {x: L - 8, y: yv(t) + 4, 'text-anchor': 'end', 'font-size': 12, fill: '#5e6274'}, money(t)));
+    }
+    const step = p.years <= 12 ? 1 : p.years <= 30 ? 5 : 10;
+    for (let y = p.start; y <= p.start + p.years; y++) if ((y % step === 0) || y === p.start)
+      svg.append(el('text', {x: x(y), y: H - B + 18, 'text-anchor': 'middle', 'font-size': 12, fill: '#5e6274'}, y));
+    svg.append(el('line', {x1: L, x2: W - R, y1: yv(0), y2: yv(0), stroke: '#8d8574'}));
+    // events
+    let lane = 0;
+    for (const [y, name] of EVENTS) {
+      if (y < p.start || y >= p.start + p.years) continue;
+      const on = y < p.start + upto;
+      const xe = x(y + .5);
+      svg.append(el('line', {x1: xe, x2: xe, y1: T - 6 + lane * 14, y2: H - B, stroke: on ? '#b0413e66' : '#0000', 'stroke-dasharray': '3 4'}));
+      if (on) svg.append(el('text', {x: xe + 4, y: T + 4 + lane * 14, 'font-size': 12, fill: '#8a3431', 'font-weight': 600}, name));
+      lane = (lane + 1) % 3;
+    }
+    const path = (pts, k) => pts.slice(0, upto + 1).map((q, i) => `${i ? 'L' : 'M'}${x(q.y).toFixed(1)},${yv(q[k]).toFixed(1)}`).join('');
+    const ends = [];
+    // money put in (or kept up with prices)
+    svg.append(el('path', {d: path(run.pts, keep), fill: 'none', stroke: 'var(--infl)', 'stroke-width': 2, 'stroke-dasharray': '6 5'}));
+    ends.push({y: run.pts[upto][keep], t: st.real ? 'Money put in' : (st.add ? 'Money put in' : 'Starting money'), c: 'var(--infl)'});
+    for (const l of lines) {
+      svg.append(el('path', {d: path(l.s.pts, key), fill: 'none', stroke: l.a.color, 'stroke-width': 1.6, opacity: .45}));
+      ends.push({y: l.s.pts[upto][key], t: 'All ' + l.a.name.toLowerCase(), c: l.a.color, o: .75});
+    }
+    svg.append(el('path', {d: path(run.pts, key), fill: 'none', stroke: '#16213b', 'stroke-width': 4, 'stroke-linejoin': 'round'}));
+    ends.push({y: run.pts[upto][key], t: 'Your mix', c: '#16213b', b: 1});
+    // end labels without overlaps
+    ends.forEach(e => e.py = yv(e.y));
+    ends.sort((a, b) => a.py - b.py);
+    for (let i = 1; i < ends.length; i++) if (ends[i].py - ends[i - 1].py < 14) ends[i].py = ends[i - 1].py + 14;
+    const xl = x(p.start + upto) + 6;
+    for (const e of ends) svg.append(el('text', {x: xl, y: e.py + 4, 'font-size': 12, fill: e.c, 'font-weight': e.b ? 800 : 600, opacity: e.o || 1}, e.t));
+    svg.append(el('circle', {cx: x(p.start + upto), cy: yv(run.pts[upto][key]), r: 6, fill: '#ffd27a', stroke: '#16213b', 'stroke-width': 2}));
+    svg.setAttribute('aria-label', `Growth of the mix from ${p.start} to the end of ${p.start + upto - 1}, compared with each asset alone`);
+  }
+
+  // every start year: one bar per start year, the yearly return after inflation over the stay
+  function spanData(H) {
+    const out = [];
+    for (let s = Y0; s + H - 1 <= Y1; s++) {
+      const r = simulate({start: s, years: H, init: 10000, add: 0, mix: st.mix, fee: st.fee});
+      out.push({s, r: st.real ? r.rcagr : r.cagr, real: r.rcagr, nom: r.cagr});
+    }
+    return out;
+  }
+  function drawSpan() {
+    const svg = $('svg'), {W, H, L, R, T, B} = box(), data = spanData(st.span);
+    svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+    svg.replaceChildren();
+    const lo = Math.min(-.05, ...data.map(d => d.r)), hi = Math.max(.05, ...data.map(d => d.r));
+    const x = s => L + (s - Y0) / (Y1 - Y0 + 1) * (W - L - R), bw = (W - L - R) / (Y1 - Y0 + 1);
+    const yv = v => T + (hi - v) / (hi - lo) * (H - T - B);
+    for (const t of niceTicks(lo, hi, 6)) {
+      svg.append(el('line', {x1: L, x2: W - R, y1: yv(t), y2: yv(t), stroke: '#e3d9c6'}));
+      svg.append(el('text', {x: L - 8, y: yv(t) + 4, 'text-anchor': 'end', 'font-size': 12, fill: '#5e6274'}, pct(t, 0)));
+    }
+    for (let y = 1930; y <= Y1; y += 10) svg.append(el('text', {x: x(y) + bw / 2, y: H - B + 18, 'text-anchor': 'middle', 'font-size': 12, fill: '#5e6274'}, y));
+    for (const d of data) {
+      const b = el('rect', {x: x(d.s) + .5, width: Math.max(1, bw - 1), y: Math.min(yv(0), yv(d.r)), height: Math.max(1, Math.abs(yv(d.r) - yv(0))),
+                            fill: d.r < 0 ? 'var(--loss)' : 'var(--gain)', rx: 1, tabindex: -1});
+      b.append(el('title', {}, `Start ${d.s}, stay ${yrs(st.span)}: ${pct(d.r)} a year${st.real ? ' after inflation' : ''}`));
+      b.style.cursor = 'pointer';
+      b.onclick = () => { st.start = d.s; st.years = st.span; setView('ride'); launch(); };
+      svg.append(b);
+    }
+    svg.append(el('line', {x1: L, x2: W - R, y1: yv(0), y2: yv(0), stroke: '#16213b'}));
+    svg.append(el('text', {x: W - R + 6, y: yv(0) + 4, 'font-size': 12, fill: '#16213b', 'font-weight': 700}, 'break even'));
+    svg.append(el('text', {x: L, y: T - 10, 'font-size': 13, fill: '#16213b', 'font-weight': 700},
+      `Average yearly return${st.real ? ' after inflation' : ''} for every ${yrs(st.span)} stay, by start year`));
+    svg.setAttribute('aria-label', `Bar chart of ${data.length} start years`);
+    // story
+    const loss = data.filter(d => d.r < 0).length, w = data.reduce((a, b) => b.r < a.r ? b : a), bst = data.reduce((a, b) => b.r > a.r ? b : a);
+    const lossR = data.filter(d => d.real < 0).length, lossN = data.filter(d => d.nom < 0).length;
+    $('odo-year').textContent = yrs(st.span); $('yr-l').textContent = 'Each stay';
+    $('val-l').textContent = 'Stays that lost'; $('odo-val').textContent = `${loss} of ${data.length}`;
+    $('val').classList.toggle('down', loss > 0);
+    $('stats').innerHTML = stat('Stays', data.length) + stat('Lost dollars', `${lossN} of ${data.length}`) + stat('Lost buying power', `${lossR} of ${data.length}`) +
+      stat('Worst start', `${w.s}: ${pct(w.r)}/yr`) + stat('Best start', `${bst.s}: ${pct(bst.r)}/yr`) + stat('Range', `${pct(bst.r - w.r, 0).replace('+', '')} wide`);
+    $('story').innerHTML = `This mix, held for <b>${yrs(st.span)}</b> from every start year since ${Y0}: <b>${loss} of ${data.length}</b> stays ended with less ${st.real ? 'buying power' : 'money'} than they started with. Try a longer stay and watch the bars bunch together. Tap a bar to ride that one.`;
+  }
+
+  const stat = (k, v) => `<div class="stat"><span>${k}</span><b>${v}</b></div>`;
+  function showStats(run, upto) {
+    const p = params(), key = st.real ? 'real' : 'v', q = run.pts[upto];
+    $('odo-year').textContent = upto === p.years ? `End of ${p.start + upto - 1}` : p.start + upto;
+    $('yr-l').textContent = upto === p.years ? 'Landed' : 'Year';
+    $('odo-val').textContent = money(q[key]);
+    $('val').classList.toggle('down', q[key] < q[st.real ? 'putReal' : 'put']);
+    if (upto < p.years) return;
+    const s = run;
+    $('stats').innerHTML =
+      stat(st.real ? 'Buying power' : 'Ended with', money(q[key])) +
+      stat('Put in', money(st.real ? q.putReal : q.put)) +
+      stat(st.real ? 'Avg/yr after inflation' : 'Average per year', pct(st.real ? s.rcagr : s.cagr)) +
+      stat('Best year', `${s.best.y}: ${pct(s.best.net, 0)}`) +
+      stat('Worst year', `${s.worst.y}: ${pct(s.worst.net, 0)}`) +
+      stat('Biggest drop', s.drop < 0 ? pct(s.drop, 0) : 'none') +
+      stat('Losing years', `${s.losing} of ${p.years}`) +
+      stat('Prices rose', pct(s.price - 1, 0).replace('+', '') );
+  }
+  function idle() {
+    if (st.view === 'span') return drawSpan();
+    st.shown = simulate(params());
+    $('stats').innerHTML = '';
+    $('odo-year').textContent = st.start; $('yr-l').textContent = 'Year';
+    $('odo-val').textContent = money(st.real ? st.init : st.init); $('val').classList.remove('down');
+    drawRide(0);
+    if (st.view === 'ride') $('story').innerHTML = `Press <b>Launch</b> to travel to ${st.start} and ride ${yrs(st.years)} of real history. The faint lines show each asset on its own.`;
+  }
+
+  async function launch() {
+    if (st.busy || (!st.init && !st.add)) return;
+    if (st.view === 'span') return drawSpan();
+    st.busy = true; sync();
+    const p = params(), run = st.shown = simulate(p);
+    document.body.classList.add('travel');
+    SFX.launch();
+    $('story').textContent = `Traveling to ${p.start}...`;
+    await wait(500);
+    const per = Math.max(70, Math.min(600, 5200 / p.years));
+    for (let k = 1; k <= p.years; k++) {
+      drawRide(k); showStats(run, k);
+      const r = run.yr[k - 1].net;
+      (r >= 0 ? SFX.up : SFX.down)(r);
+      const ev = EVENTS.find(e => e[0] === p.start + k - 1);
+      if (ev) $('story').innerHTML = `<b>${ev[0]}: ${ev[1]}.</b> Your mix ${r >= 0 ? 'gained' : 'lost'} ${pct(Math.abs(r)).replace('+', '')} that year.`;
+      await wait(per);
+    }
+    document.body.classList.remove('travel');
+    SFX.land();
+    const q = run.end, key = st.real ? 'real' : 'v', put = st.real ? q.putReal : q.put;
+    $('story').innerHTML = `Landed at the end of ${p.start + p.years - 1}. ${money(put)} put in became <b>${money(q[key])}</b>${st.real ? ` of ${p.start} buying power` : ''}. ` +
+      `${run.losing ? `It lost money in ${run.losing} of ${p.years} years, and the biggest drop from a high point was ${pct(run.drop, 0).replace('-', '')}.` : 'It never had a losing year.'}`;
+    st.busy = false; sync();
+    if (st.mission) reveal();
+    return run;
+  }
+  $('go').onclick = () => launch();
+
+  // ---------- views ----------
+  function setView(v) {
+    st.view = v;
+    for (const [id, name] of [['tab-ride', 'ride'], ['tab-span', 'span'], ['tab-miss', 'miss']]) $(id).setAttribute('aria-pressed', v === name);
+    $('missions').hidden = v !== 'miss';
+    $('f-start').hidden = $('f-years').hidden = $('f-money').hidden = v === 'span';
+    $('f-span').hidden = v !== 'span';
+    $('go').hidden = v === 'span';
+    if (v !== 'miss') { st.mission = null; $('setup').hidden = false; }
+    else openList();
+    sync(); idle();
+  }
+  $('tab-ride').onclick = () => !st.busy && setView('ride');
+  $('tab-span').onclick = () => !st.busy && setView('span');
+  $('tab-miss').onclick = () => !st.busy && setView('miss');
+
+  // ---------- missions: predict, then let history answer ----------
+  const MISSIONS = [
+    {t: 'Bad timing', set: {start: 1929, years: 3, init: 10000, add: 0, mix: [100, 0, 0, 0], fee: .0005, real: false},
+     q: 'You put $10,000 into stocks at the start of 1929, just before the crash. How much is left at the end of 1931?',
+     c: ['About $9,000', 'About $6,500', 'About $4,000'], a: 2,
+     why: r => `Only <b>${money(r.end.v)}</b> was left: stocks fell three years in a row. Now change <b>Stay invested</b> to 20 years and launch again. Held to the end of 1948, the same $10,000 grew to <b>${money(simulate({start: 1929, years: 20, init: 10000, add: 0, mix: [100, 0, 0, 0], fee: .0005}).end.v)}</b>. Patience mattered, but it took a long time.`},
+    {t: 'Safe and sorry?', set: {start: 1941, years: 10, init: 10000, add: 0, mix: [0, 0, 100, 0], fee: 0, real: true},
+     q: 'All cash from 1941 to 1950. Cash never loses dollars. Did it keep its buying power?',
+     c: ['Yes, it grew a little', 'It stayed about the same', 'No, it lost a lot of buying power'], a: 2,
+     why: r => `The dollars never dropped, but prices rose ${pct(r.price - 1, 0).replace('+', '')} over those ten years, so the cash could buy only about <b>${money(r.end.real)}</b> worth of 1941 stuff. "Safe" from drops is not safe from inflation.`},
+    {t: 'The small fee', set: {start: 1985, years: 40, init: 10000, add: 0, mix: [100, 0, 0, 0], fee: .01, real: false},
+     q: 'Two stock funds from 1985 to 2024. One charges 0.05% a year, the other 1%. How much less does the 1% fund end with?',
+     c: ['About 1% less', 'About 10% less', 'About one third less'], a: 2,
+     why: r => { const low = simulate({start: 1985, years: 40, init: 10000, add: 0, mix: [100, 0, 0, 0], fee: .0005}).end.v;
+       return `The 1% fund ended with <b>${money(r.end.v)}</b>; the 0.05% fund with <b>${money(low)}</b>. That is <b>${Math.round((1 - r.end.v / low) * 100)}% less</b>, because the fee is taken every year from a bigger and bigger pile. Switch the fee chip to compare.`; }},
+    {t: 'Saving through storms', set: {start: 2000, years: 25, init: 0, add: 1200, mix: [100, 0, 0, 0], fee: .0005, real: false},
+     q: 'Start with $0 and add $1,200 a year to a stock index fund from 2000 to 2024, through two big crashes. Put in: $30,000. What do you end with?',
+     c: ['Less than $30,000', 'About $40,000', 'More than $80,000'], a: 2,
+     why: r => `<b>${money(r.end.v)}</b>. The early years were rough (the dot-com bust, then 2008), but the steady saver kept buying while prices were low, and those shares grew later.`},
+    {t: 'Nowhere to hide', set: {start: 2022, years: 1, init: 10000, add: 0, mix: [60, 40, 0, 0], fee: .0005, real: false},
+     q: 'A 60/40 mix (60% stocks, 40% bonds) in 2022. Which part fell?',
+     c: ['Only the stocks', 'Only the bonds', 'Both'], a: 2,
+     why: r => `Both: stocks ${pct(row(2022)[0] / 100, 0)} and bonds ${pct(row(2022)[1] / 100, 0)}, as interest rates jumped. The mix ended at <b>${money(r.end.v)}</b>. Spreading money out usually softens a bad year, but not every time.`},
+    {t: 'Gold rush', set: {start: 1971, years: 10, init: 10000, add: 0, mix: [100, 0, 0, 0], fee: 0, real: true},
+     q: 'From 1971 to 1980, prices were rising fast. Which did best after inflation: stocks, bonds or gold?',
+     c: ['Stocks', 'Bonds', 'Gold'], a: 2,
+     why: r => { const g = simulate({start: 1971, years: 10, init: 10000, add: 0, mix: [0, 0, 0, 100], fee: 0}), g2 = simulate({start: 1981, years: 20, init: 10000, add: 0, mix: [0, 0, 0, 100], fee: 0});
+       return `Gold: <b>${money(g.end.real)}</b> of 1971 buying power, while stocks ended near <b>${money(r.end.real)}</b>. But from 1981 to 2000, gold lost ${Math.round((1 - g2.end.real / 10000) * 100)}% of its buying power. No asset wins every decade.`; }},
+    {t: 'Time in the market', view: 'span', set: {mix: [100, 0, 0, 0], fee: .0005, real: true, span: 20},
+     q: 'All stocks, held for 20 years. Of every 20-year stay since 1928, how many lost buying power?',
+     c: ['About half', 'About one in ten', 'None so far'], a: 2,
+     why: () => { const d = spanData(20), one1 = spanData(1); return `<b>${d.filter(x => x.real < 0).length} of ${d.length}</b>. Now try 1 year: <b>${one1.filter(x => x.real < 0).length} of ${one1.length}</b> one-year stays lost buying power. Over long stays the bad years have been outweighed so far. History is not a promise about the future.`; }},
+  ];
+  function openList() {
+    st.mission = null;
+    $('setup').hidden = true; $('mcard').hidden = true; $('mlist').hidden = false;
+    $('mlist').replaceChildren(...MISSIONS.map((m, i) => {
+      const b = document.createElement('button');
+      b.innerHTML = `<i>${i + 1}</i>${m.t}`;
+      b.classList.toggle('done', st.done.has(i));
+      b.onclick = () => openMission(i);
+      return b;
+    }));
+  }
+  function openMission(i) {
+    const m = MISSIONS[i];
+    st.mission = {i, pick: null, ran: false};
+    Object.assign(st, m.set);
+    $('mlist').hidden = true; $('mcard').hidden = false; $('setup').hidden = true;
+    $('mcard').innerHTML = `<h3>${i + 1}. ${m.t}</h3><p>${m.q}</p><div class="choices" id="mchoices"></div>
+      <p class="note" id="mnote" style="margin-top:8px">Pick your prediction.</p>
+      <div id="mreveal"></div>
+      <div class="row" style="display:flex;gap:10px;margin-top:8px;align-items:center"><button class="go" id="mgo" disabled style="flex:1">Launch ▶</button></div>
+      <div style="display:flex;justify-content:space-between"><button class="link" id="mback">← All missions</button><button class="link" id="mtune">Change the settings</button></div>`;
+    $('mchoices').replaceChildren(...m.c.map((c, k) => {
+      const b = document.createElement('button');
+      b.textContent = c; b.setAttribute('aria-pressed', 'false');
+      b.onclick = () => { if (st.mission.ran) return; st.mission.pick = k; SFX.pick(); [...$('mchoices').children].forEach((x, j) => x.setAttribute('aria-pressed', j === k)); $('mgo').disabled = false; $('mnote').textContent = 'Now launch and see what happened.'; };
+      return b;
+    }));
+    $('mgo').onclick = async () => {
+      if (st.busy) return;
+      if (m.view === 'span') { $('f-span').hidden = false; drawSpan(); reveal(); }
+      else await launch();
+    };
+    $('mback').onclick = () => !st.busy && openList();
+    $('mtune').onclick = () => { if (st.busy) return; $('setup').hidden = false; $('mcard').scrollIntoView({block: 'nearest'}); };
+    const span = m.view === 'span';
+    st.view = span ? 'span' : 'miss';
+    $('f-start').hidden = $('f-years').hidden = $('f-money').hidden = span;
+    $('f-span').hidden = !span; $('go').hidden = span;
+    sync(); idle();
+  }
+  function reveal() {
+    const mm = st.mission; if (!mm) return;
+    const m = MISSIONS[mm.i];
+    mm.ran = true; st.done.add(mm.i);
+    const r = m.view === 'span' ? null : st.shown;
+    [...$('mchoices').children].forEach((x, j) => x.classList.toggle('right', j === m.a));
+    const hit = mm.pick === m.a;
+    $('mnote').textContent = '';
+    $('mreveal').innerHTML = `<div class="reveal">${hit ? '<b>Your prediction matched.</b> ' : `<b>History says: ${m.c[m.a]}.</b> `}${m.why(r)}</div>`;
+    $('mgo').hidden = true;
+  }
+
+  new ResizeObserver(() => {
+    if (st.busy) return;
+    if (st.view === 'span') drawSpan(); else if (st.shown) drawRide(lastUpto()); else idle();
+  }).observe($('chart'));
+  const lastUpto = () => $('stats').innerHTML ? params().years : 0;
+
+  window.__mtm = {st, simulate, launch, setView, openMission, spanData, MISSIONS};  // for checking frames
+  sync(); setView('ride');
+})();
+</script>
+</body>
+</html>

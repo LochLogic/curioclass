@@ -1,0 +1,10 @@
+{
+  "house_style": "Contemporary editorial illustration for a high-school personal finance tool, like a feature in a modern magazine: flat but textured shapes, retro-futurist brass and teal palette, subtle grain. No text, no letters, no numbers, no logos, no watermark, no border, no frame.",
+  "assets": [
+    {"name": "machine", "prompt": "A whimsical retro-futurist time machine: a round brass-and-teal capsule chair with big dials, glowing tubes, a large lever on the side and a swirl of glowing light around its base. Front three-quarter view.", "cutout": true, "aspect": "1:1", "width": 360},
+    {"name": "stocks", "prompt": "A small cluster of company buildings standing together: a factory with a chimney, a shop with an awning, an office tower and a farm silo, all on one little round base. Represents owning a slice of many companies.", "cutout": true, "aspect": "1:1", "width": 180},
+    {"name": "bonds", "prompt": "An ornate paper bond certificate with a scalloped border, a wax seal ribbon and a strip of small tear-off coupons along the bottom edge, slightly curled. The paper has only decorative swirls, no writing.", "cutout": true, "aspect": "1:1", "width": 180},
+    {"name": "cash", "prompt": "A sturdy little teal steel savings safe with its round door open, a neat stack of paper bills and a few coins inside.", "cutout": true, "aspect": "1:1", "width": 180},
+    {"name": "gold", "prompt": "A small neat pyramid stack of shiny gold bars.", "cutout": true, "aspect": "1:1", "width": 180}
+  ]
+}

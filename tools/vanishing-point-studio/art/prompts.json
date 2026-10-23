@@ -1,0 +1,45 @@
+{
+  "house_style": "Painterly illustration for a middle-school art class, like a page from an artist's illustrated sketchbook: confident realistic drawing, gouache and colored pencil texture, clear strong edges. No text, no letters, no signs with writing, no watermark, no border, no frame.",
+  "assets": [
+    {
+      "name": "desk",
+      "prompt": "Looking straight down from above at a wooden art-room table. Around the edges of the picture: a few pencils, a kneaded eraser, a pencil sharpener with shavings, a metal ruler along the bottom edge, a small jar of brushes in one corner, a smudge of graphite. The whole middle of the table (about 70 percent of the picture) is empty bare wood, with nothing on it. Even soft daylight. 16:9.",
+      "aspect": "16:9",
+      "width": 1400,
+      "quality": 76,
+      "trim": 0.03
+    },
+    {
+      "name": "hallway",
+      "prompt": "A long, empty school hallway in one-point perspective, seen from the middle of the hallway at standing eye level, looking straight down it: rows of lockers on both walls, ceiling lights in a line, a shiny tiled floor, a door at the far end. Every receding line (floor edges, ceiling edges, locker tops) runs to one point in the center. No people, no writing.",
+      "aspect": "16:9",
+      "width": 1200,
+      "quality": 80,
+      "trim": 0.03
+    },
+    {
+      "name": "street",
+      "prompt": "A quiet city street in one-point perspective, seen from the middle of the road at eye level, looking straight down it: brick and stone buildings on both sides with rows of windows, sidewalks, street lamps, the road narrowing to one point on the horizon in the center. Late afternoon light. No people, no cars, no signs, no writing.",
+      "aspect": "16:9",
+      "width": 1200,
+      "quality": 80,
+      "trim": 0.03
+    },
+    {
+      "name": "tracks",
+      "prompt": "Straight railroad tracks running away across a flat open prairie in one-point perspective, seen from between the rails at eye level: the two rails and the wooden ties narrow to one point on a low flat horizon in the center, telephone poles along one side getting smaller, a wide sky. No train, no people, no writing.",
+      "aspect": "16:9",
+      "width": 1200,
+      "quality": 80,
+      "trim": 0.03
+    },
+    {
+      "name": "library",
+      "prompt": "A tall library aisle in one-point perspective, seen from the middle of the aisle at standing eye level, looking straight down it: long bookshelves full of colorful books on both sides, a wooden floor, ceiling lamps, a tall window at the far end. Every shelf line runs to one point in the center. No people, no readable writing.",
+      "aspect": "16:9",
+      "width": 1200,
+      "quality": 80,
+      "trim": 0.03
+    }
+  ]
+}

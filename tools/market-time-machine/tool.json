@@ -1,0 +1,21 @@
+{
+  "id": "market-time-machine",
+  "status": "beta",
+  "driver": "students or teacher",
+  "modes": [
+    "Time machine",
+    "Every start year",
+    "Missions"
+  ],
+  "grades_label": "Grades 9-12",
+  "third_party": [],
+  "updated": "2026-10-23",
+  "hook": "Travel to any year from 1928 and ride real returns forward with your mix of stocks, bonds, cash and gold. See what time, inflation, fees and a bad start year really do. Educational only, not advice.",
+  "outcome": "Explain risk and return, diversification, time horizon, inflation and fees using historical returns",
+  "minutes": "25-45",
+  "sources": [
+    "Annual returns 1928-2025 for the S&P 500, 10-year Treasury bonds, 3-month Treasury bills and gold: Aswath Damodaran, NYU Stern (January 2026 update)",
+    "Inflation: US CPI-U, December to December (BLS, via FRED series CPIAUCNS)",
+    "Illustrations generated with Google Gemini, edited for Curio Class"
+  ]
+}

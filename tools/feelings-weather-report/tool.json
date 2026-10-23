@@ -1,0 +1,20 @@
+{
+  "id": "feelings-weather-report",
+  "status": "beta",
+  "driver": "teacher",
+  "modes": [
+    "Meet the feelings",
+    "Stories",
+    "Class forecast"
+  ],
+  "grades_label": "Grades K-2",
+  "third_party": [],
+  "updated": "2026-10-23",
+  "hook": "Bear the weather reporter shows nine feelings as weather. Meet each feeling, talk through twelve short stories, then make an anonymous class forecast.",
+  "outcome": "Name nine feelings, notice how they feel in the body, and suggest kind words or a helpful next step",
+  "minutes": "10-20",
+  "sources": [
+    "Illustrations generated with Google Gemini, edited for Curio Class",
+    "Sounds generated in the browser"
+  ]
+}

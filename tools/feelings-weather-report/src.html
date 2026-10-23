@@ -1,0 +1,505 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Feelings Weather Report · Naming feelings · Curio Class</title>
+<meta name="description" content="Bear the weather reporter shows nine feelings as weather: sunny happy, rainy sad, stormy scared and more. Meet the feelings, talk through short stories, and make an anonymous class forecast. Grades K-2 SEL, teacher-led. Works offline.">
+<!--
+FEELINGS WEATHER REPORT (Curio Class)
+Grades K-2 social and emotional learning, CASEL Self-Awareness (identifying emotions) and Social Awareness
+(empathy), with NHES 2024 standards 4 and 8 for asking for help and kind words.
+Teacher-led on a projector. Nine feelings, each shown as weather on Bear's TV screen, with body clues and an
+idea that helps. Stories ask "how might they feel?" and accept more than one answer. The class forecast is an
+anonymous tally that is never saved. Every feeling is okay; weather always changes.
+One file, no network requests. Illustrations generated with Google Gemini, edited for Curio Class.
+Content CC BY 4.0, code MIT. curioclass.org
+-->
+<style>
+:root{
+  --paper:#fbf6ea;--ink:#2a2730;--muted:#625d6c;--line:#e8dcc6;--focus:#2f5bd3;--brand:#26627a;
+  font-family:'Segoe UI',system-ui,-apple-system,Roboto,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0;height:100%}
+body{background:var(--paper);color:var(--ink);display:grid;grid-template-rows:auto 1fr;min-height:100vh}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:4px solid var(--focus);outline-offset:3px}
+header{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:12px 20px;background:var(--brand);color:#f4fbff}
+h1{margin:0 auto 0 0;font:800 clamp(22px,3vw,32px)/1.1 'Trebuchet MS','Segoe UI',sans-serif}
+h1 small{display:block;font:500 15px/1.3 'Segoe UI',sans-serif;color:#cfe8f1}
+.seg{display:inline-flex;border:2px solid #4f8aa0;border-radius:999px;overflow:hidden}
+.seg button{border:0;background:#2f7690;color:#f4fbff;min-height:52px;padding:0 16px;font-weight:700;font-size:16px}
+.seg button[aria-pressed="true"]{background:#ffd34d;color:#3a2c00}
+.icon-btn{border:2px solid #4f8aa0;background:#2f7690;color:#f4fbff;border-radius:999px;min-height:52px;padding:0 16px;font-weight:700;font-size:16px}
+
+main{display:grid;grid-template-columns:1fr;min-height:0}
+@media (min-width:760px){main{grid-template-columns:minmax(0,1fr) 340px}}
+.stage{position:relative;overflow:hidden;min-height:340px;background:#7cc0b8 url(art:studio) center bottom/cover}
+.scene{position:absolute;left:50%;top:50%;width:1000px;height:620px;transform:translate(-50%,-50%) scale(var(--s,1))}
+
+/* the TV */
+.tv{position:absolute;left:28px;top:36px;width:640px;height:396px;border-radius:30px;background:#2d3142;padding:14px;box-shadow:0 10px 0 #1b1d29,0 22px 30px #0005}
+.tv::after{content:'';position:absolute;left:50%;bottom:-36px;width:120px;height:30px;margin-left:-60px;background:#3b3f52;border-radius:0 0 12px 12px;z-index:-1}
+.screen{position:relative;width:100%;height:100%;border-radius:18px;overflow:hidden;background:var(--sky,#7cc4f0);transition:background 1.2s}
+.screen .land{position:absolute;left:0;bottom:0;width:100%;z-index:2}
+.screen svg{position:absolute;inset:0;width:100%;height:100%}
+#sky{z-index:1} #front{z-index:3;pointer-events:none}
+.flash{position:absolute;inset:0;background:#fff;opacity:0;z-index:4;pointer-events:none}
+.live{position:absolute;left:14px;top:12px;z-index:5;background:#e0393e;color:#fff;font:800 15px/1 'Trebuchet MS',sans-serif;letter-spacing:.08em;padding:6px 10px;border-radius:8px}
+.board{position:absolute;inset:0;z-index:6;display:flex;align-items:flex-end;justify-content:space-around;padding:50px 10px 10px;background:#fffdf6ee}
+.col{display:flex;flex-direction:column-reverse;align-items:center;gap:0;width:62px;font-size:22px;line-height:24px}
+.col b{font:800 15px/1.1 'Trebuchet MS',sans-serif;text-align:center;margin-top:6px;color:var(--ink)}
+.col .ico{font-size:38px;line-height:44px}
+.col i{font-style:normal;animation:drop .5s cubic-bezier(.3,1.5,.5,1)}
+@keyframes drop{from{transform:translateY(-120px);opacity:0}}
+.col .n{font:800 18px 'Trebuchet MS',sans-serif;color:var(--brand)}
+
+/* the word under the screen */
+.banner{position:absolute;left:28px;top:466px;width:640px;min-height:112px;background:#fffdf7;border:4px solid #2a2730;border-radius:20px;padding:10px 18px;display:flex;align-items:center;gap:16px;box-shadow:0 5px 0 #0004}
+.banner .big{font-size:64px;line-height:1}
+.banner b{display:block;font:800 44px/1.05 'Trebuchet MS','Segoe UI',sans-serif;letter-spacing:.02em}
+.banner span{display:block;font:700 21px/1.3 'Trebuchet MS','Segoe UI',sans-serif;color:#4a4652}
+.banner.story b{font-size:30px;line-height:1.2}
+
+.bear{position:absolute;left:700px;top:150px;width:280px;height:430px}
+.bear img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:50% 100%;transition:opacity .35s}
+.bear.hop{animation:hop .5s ease-out}
+@keyframes hop{40%{transform:translateY(-16px)}}
+
+.panel{background:#fffcf4;border-left:3px solid var(--line);padding:14px 16px;display:flex;flex-direction:column;gap:12px;overflow:auto}
+@media (max-width:759px){.panel{border-left:0;border-top:3px solid var(--line)}}
+.hint{margin:0;font:600 18px/1.35 'Segoe UI',sans-serif;color:var(--muted)}
+.hint b{color:var(--ink)}
+.wx{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.wx button{border:3px solid transparent;border-radius:16px;min-height:86px;background:var(--c);color:#24212b;font:800 16px/1.1 'Trebuchet MS',sans-serif;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;box-shadow:0 4px 0 #0003}
+.wx button span{font-size:34px;line-height:1}
+.wx button small{font:600 13px/1 'Segoe UI',sans-serif;color:#3f3b47}
+.wx button[aria-pressed="true"]{border-color:#2a2730;transform:translateY(2px);box-shadow:0 2px 0 #0003}
+.big-btn{border:0;border-radius:16px;min-height:60px;font:800 20px/1.1 'Trebuchet MS','Segoe UI',sans-serif;color:#fff;background:var(--brand);box-shadow:0 5px 0 #0004;padding:6px 10px}
+.big-btn:active{transform:translateY(3px);box-shadow:0 2px 0 #0004}
+.big-btn.soft{background:#e9e1d1;color:var(--ink)}
+.row{display:flex;gap:8px}.row .big-btn{flex:1}
+.tip{margin:0;background:#eef7f4;border-left:6px solid #3a9a86;border-radius:10px;padding:10px 12px;font:600 17px/1.4 'Segoe UI',sans-serif}
+.tip:empty{display:none}
+.calm .bear,.calm .col i{animation:none!important}
+
+@media (max-width:759px),(max-height:640px){
+  header{padding:6px 12px} h1{font-size:19px} h1 small{display:none}
+  .seg button,.icon-btn{min-height:38px;font-size:13px;padding:0 10px}
+  main{grid-template-columns:minmax(0,1fr) 280px}
+  .panel{padding:8px 10px;gap:8px}
+  .hint,.tip{font-size:14px}
+  .wx button{min-height:58px;font-size:13px} .wx button span{font-size:24px} .wx button small{display:none}
+  .big-btn{min-height:44px;font-size:16px}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Feelings Weather Report <small>Every feeling is okay. Weather always changes.</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-meet" aria-pressed="true">Meet the feelings</button>
+    <button id="m-story" aria-pressed="false">Stories</button>
+    <button id="m-class" aria-pressed="false">Class forecast</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true" title="Turn animation on or off">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+  <button class="icon-btn" id="read">🔊 Read</button>
+</header>
+<main>
+  <div class="stage" id="stage">
+    <div class="scene" id="scene">
+      <div class="tv">
+        <div class="screen" id="screen">
+          <svg id="sky" viewBox="0 0 612 368" preserveAspectRatio="none" aria-hidden="true"></svg>
+          <img class="land" src="art:land" alt="">
+          <svg id="front" viewBox="0 0 612 368" preserveAspectRatio="none" aria-hidden="true"></svg>
+          <div class="flash" id="flash"></div>
+          <div class="live">● FEELINGS FORECAST</div>
+          <div class="board" id="board" hidden></div>
+        </div>
+      </div>
+      <div class="banner" id="banner" aria-live="polite"></div>
+      <div class="bear" id="bear" role="img" aria-label="Bear the weather reporter"><img id="bear-a" alt=""><img id="bear-b" alt="" style="opacity:0"></div>
+    </div>
+  </div>
+  <aside class="panel">
+    <p class="hint" id="hint"></p>
+    <div class="wx" id="wx"></div>
+    <p class="tip" id="tip"></p>
+    <div class="row" id="story-btns" hidden><button class="big-btn" id="next-story">Next story →</button></div>
+    <div class="row" id="class-btns" hidden><button class="big-btn" id="forecast">📺 Make the forecast</button><button class="big-btn soft" id="clear">Start over</button></div>
+  </aside>
+</main>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  let reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  try { const m = localStorage.getItem('curio-motion'); if (m) reduce = m === 'calm'; } catch {}
+  function showMotion() {
+    document.body.classList.toggle('calm', reduce);
+    $('motion').setAttribute('aria-pressed', !reduce);
+    $('motion').textContent = reduce ? '⏸ Motion' : '✨ Motion';
+    if (cur) weather(cur, true);
+  }
+  let cur = null;
+  $('motion').onclick = () => {
+    reduce = !reduce;
+    try { localStorage.setItem('curio-motion', reduce ? 'calm' : 'on'); } catch {}
+    showMotion();
+  };
+  const wait = ms => new Promise(r => setTimeout(r, ms));
+  const fit = () => {
+    const r = $('stage').getBoundingClientRect();
+    $('scene').style.setProperty('--s', Math.min(r.width / 1000, r.height / 620));
+  };
+  new ResizeObserver(fit).observe($('stage'));
+
+  // ---------- nine feelings as weather ----------
+  const F = {
+    happy:    {w: 'Sunny', e: '☀️', c: '#ffe27a', sky: 'linear-gradient(#5db7f2,#a9dcfa)', img: 'art:bear-happy',
+               body: 'When I feel happy, I smile and my body feels light and warm.', help: 'Share it! Tell someone what made you happy.'},
+    sad:      {w: 'Rainy', e: '🌧️', c: '#a9c4e6', sky: 'linear-gradient(#6d7f99,#a7b5c8)', img: 'art:bear-sad',
+               body: 'When I feel sad, my eyes get teary and my body feels heavy and slow.', help: 'Talk to someone you trust, or ask for a hug. It is okay to cry.'},
+    angry:    {w: 'Heat wave', e: '🌡️', c: '#ff9f80', sky: 'linear-gradient(#e2572f,#ffb267)', img: 'art:bear-angry',
+               body: 'When I feel angry, my face gets hot and my hands squeeze tight.', help: 'Stop. Take three big, slow breaths. Count to ten.'},
+    scared:   {w: 'Thunder and lightning', e: '⛈️', c: '#c3b4e8', sky: 'linear-gradient(#2e2f52,#5b5a83)', img: 'art:bear-scared',
+               body: 'When I feel scared, my heart beats fast and I want to hide.', help: 'Find a grown-up you trust. Hold something cozy.'},
+    worried:  {w: 'Cloudy', e: '☁️', c: '#d6dbe3', sky: 'linear-gradient(#93a3b5,#cfd8e2)', img: 'art:bear-worried',
+               body: 'When I feel worried, my tummy feels fluttery and my thoughts go round and round.', help: 'Tell someone your worry. Make a plan together.'},
+    confused: {w: 'Foggy', e: '🌫️', c: '#e4e0d6', sky: 'linear-gradient(#bfc3c4,#e6e6e0)', img: 'art:bear-confused',
+               body: 'When I feel confused, my head feels fuzzy and I am not sure what to do.', help: 'Ask a question. Try again, slowly.'},
+    excited:  {w: 'Windy', e: '🌬️', c: '#9fe3d4', sky: 'linear-gradient(#45b2e8,#9fdcf3)', img: 'art:bear-excited',
+               body: 'When I feel excited, my body wants to bounce and wiggle.', help: 'Jump five times, then take a slow breath.'},
+    calm:     {w: 'Gentle snow', e: '❄️', c: '#cfe6f7', sky: 'linear-gradient(#8fa6cf,#d9e2f1)', img: 'art:bear-calm',
+               body: 'When I feel calm, my body is still and my breathing is slow.', help: 'Notice it! Remember this feeling for later.'},
+    proud:    {w: 'Rainbow', e: '🌈', c: '#f6c6e0', sky: 'linear-gradient(#4fa8ec,#b5e0fb)', img: 'art:bear-proud',
+               body: 'When I feel proud, I stand tall and I want to show someone.', help: 'Say: I did it! Tell a friend what you worked on.'},
+  };
+  const NAMES = Object.keys(F);
+  const cap = s => s[0].toUpperCase() + s.slice(1);
+
+  const STORIES = [
+    {who: 'Maya', t: 'Maya built a tall block tower. Then it fell down!', f: ['sad', 'angry'], kind: 'We could say: "Want help building it again?"'},
+    {who: 'Leo', t: 'Tomorrow is Leo\'s birthday party!', f: ['excited', 'happy'], kind: 'We could say: "Happy birthday, Leo! What will you do?"'},
+    {who: 'Sam', t: 'Sam hears a loud BOOM of thunder in the middle of the night.', f: ['scared', 'worried'], kind: 'Sam could go find a grown-up and hold a cozy blanket.'},
+    {who: 'Ava', t: 'Ava rode her bike all by herself for the very first time.', f: ['proud', 'happy', 'excited'], kind: 'We could say: "You did it, Ava! You kept trying."'},
+    {who: 'Noah', t: 'Noah\'s friend grabbed his ball without asking.', f: ['angry', 'sad'], kind: 'Noah could take a breath and say: "Please ask first. Want to play together?"'},
+    {who: 'Zoe', t: 'It is Zoe\'s first day at a new school, and she does not know anyone yet.', f: ['worried', 'scared', 'excited'], kind: 'We could say: "Hi Zoe! Want to sit with us?"'},
+    {who: 'Eli', t: 'The teacher gave the directions, but Eli does not know what to do.', f: ['confused', 'worried'], kind: 'Eli could raise his hand and ask: "Can you say that again, please?"'},
+    {who: 'Mia', t: 'Mia\'s grandma is moving far away.', f: ['sad', 'worried'], kind: 'We could say: "I\'m sorry. Maybe you can draw her a picture."'},
+    {who: 'Jack', t: 'After recess, Jack lies on the rug and listens to soft music.', f: ['calm', 'happy'], kind: 'Jack can remember this feeling for next time he feels wiggly.'},
+    {who: 'Priya', t: 'Priya gets a surprise letter in the mail from her cousin.', f: ['happy', 'excited'], kind: 'We could say: "What did it say? Will you write back?"'},
+    {who: 'Ben', t: 'Ben\'s little brother keeps poking him in the car.', f: ['angry', 'confused'], kind: 'Ben could say: "Please stop. I need some space."'},
+    {who: 'Lily', t: 'Lily finished the hardest puzzle in the classroom.', f: ['proud', 'happy'], kind: 'We could say: "Wow, Lily! How did you figure it out?"'},
+  ];
+
+  const state = {mode: 'meet', story: -1, picked: null, sound: true, tally: Object.fromEntries(NAMES.map(n => [n, 0]))};
+
+  // ---------- sound ----------
+  let ctx;
+  const audio = () => (ctx ||= new (window.AudioContext || window.webkitAudioContext)());
+  function tone(type, f0, f1, dur, gain, when = 0) {
+    if (!state.sound) return;
+    const a = audio(), o = a.createOscillator(), g = a.createGain(), t = a.currentTime + when;
+    o.type = type; o.frequency.setValueAtTime(f0, t); o.frequency.exponentialRampToValueAtTime(f1, t + dur);
+    g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(gain, t + 0.02); g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    o.connect(g).connect(a.destination); o.start(t); o.stop(t + dur + 0.05);
+  }
+  function noise(dur, freq, gain, type = 'lowpass', when = 0) {
+    if (!state.sound) return;
+    const a = audio(), len = a.sampleRate * dur, buf = a.createBuffer(1, len, a.sampleRate), d = buf.getChannelData(0);
+    for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * Math.min(1, i / (len * .2), (len - i) / (len * .3));
+    const src = a.createBufferSource(), f = a.createBiquadFilter(), g = a.createGain();
+    src.buffer = buf; f.type = type; f.frequency.value = freq; g.gain.value = gain;
+    src.connect(f).connect(g).connect(a.destination); src.start(a.currentTime + when);
+  }
+  const SFX = {
+    happy: () => [523, 659, 784].forEach((f, i) => tone('triangle', f, f, .35, .08, i * .12)),
+    sad: () => noise(2.4, 2500, .07, 'lowpass'),
+    angry: () => { noise(1.6, 900, .06, 'bandpass'); tone('sawtooth', 110, 90, .6, .03); },
+    scared: () => { noise(.25, 4000, .12, 'highpass'); noise(2.2, 160, .35, 'lowpass', .25); },
+    worried: () => { tone('sine', 330, 311, .5, .06); tone('sine', 311, 330, .5, .06, .55); },
+    confused: () => { tone('sine', 400, 300, .4, .06); tone('sine', 300, 450, .5, .06, .45); },
+    excited: () => noise(2, 700, .12, 'bandpass'),
+    calm: () => [784, 1047, 880, 1175].forEach((f, i) => tone('sine', f, f, .9, .03, i * .5)),
+    proud: () => [392, 523, 659, 784, 1047].forEach((f, i) => tone('triangle', f, f, .3, .07, i * .1)),
+    drop: () => tone('sine', 700, 350, .18, .1),
+    tv: () => tone('square', 880, 880, .12, .04),
+  };
+
+  // ---------- weather on the screen ----------
+  const NS = 'http://www.w3.org/2000/svg';
+  const el = (tag, a, parent) => { const e = document.createElementNS(NS, tag); for (const k in a) e.setAttribute(k, a[k]); parent && parent.append(e); return e; };
+  const cloudPath = (x, y, s) => `M${x},${y}c${-40 * s},0 ${-40 * s},${-36 * s} ${-6 * s},${-38 * s}c${4 * s},${-26 * s} ${46 * s},${-30 * s} ${56 * s},${-8 * s}c${14 * s},${-18 * s} ${52 * s},${-6 * s} ${44 * s},${16 * s}c${30 * s},${4 * s} ${26 * s},${30 * s} ${-2 * s},${30 * s}z`;
+  function cloud(parent, x, y, s, fill, drift) {
+    const g = el('g', {}, parent);
+    el('path', {d: cloudPath(x, y, s), fill, stroke: '#0001', 'stroke-width': 2}, g);
+    el('path', {d: cloudPath(x + 4 * s, y - 6 * s, s * .7), fill: '#ffffff55'}, g);
+    if (drift && !reduce) g.animate([{transform: 'translateX(-20px)'}, {transform: 'translateX(20px)'}], {duration: drift, direction: 'alternate', iterations: Infinity, easing: 'ease-in-out'});
+    return g;
+  }
+  // each particle sits in a wrapper at its start spot and falls inside it, starting mid-flight
+  function particles(parent, n, make, pos, dur, dx, dy) {
+    for (let k = 0; k < n; k++) {
+      const [x, y] = pos(), w = el('g', {transform: `translate(${x},${y})`}, parent), p = make(k);
+      w.append(p);
+      if (reduce) { p.setAttribute('transform', `translate(${Math.random() * dx},${Math.random() * dy})`); continue; }
+      p.animate([{transform: 'translate(0,0)'}, {transform: `translate(${dx}px,${dy}px)`}], {duration: dur * (0.8 + Math.random() * .4), delay: -Math.random() * dur, iterations: Infinity});
+    }
+  }
+  const rnd = (a, b) => a + Math.random() * (b - a);
+  function weather(name, quiet) {
+    cur = name;
+    const sky = $('sky'), front = $('front');
+    sky.replaceChildren(); front.replaceChildren();
+    $('screen').style.setProperty('--sky', name ? F[name].sky : 'linear-gradient(#5db7f2,#a9dcfa)');
+    $('screen').style.background = 'var(--sky)';
+    if (!name) return;
+    const spin = (g, ms) => !reduce && g.animate([{transform: 'rotate(0)'}, {transform: 'rotate(360deg)'}], {duration: ms, iterations: Infinity});
+    if (name === 'happy' || name === 'proud' || name === 'excited') {
+      const g = el('g', {style: 'transform-origin:500px 70px;transform-box:view-box'}, sky);
+      for (let k = 0; k < 12; k++) el('rect', {x: 497, y: 4, width: 6, height: 26, rx: 3, fill: '#ffd34d', transform: `rotate(${k * 30} 500 70)`}, g);
+      el('circle', {cx: 500, cy: 70, r: 40, fill: '#ffd34d', stroke: '#f2a72c', 'stroke-width': 4}, sky);
+      spin(g, 24000);
+      if (name !== 'excited') { cloud(sky, 120, 80, 1, '#fff', 9000); cloud(sky, 300, 50, .7, '#fff', 12000); }
+    }
+    if (name === 'proud') {
+      const colors = ['#e8453c', '#f39a2b', '#f6d23a', '#4cb85a', '#3b8de0', '#7a56c6'];
+      colors.forEach((c, i) => el('path', {d: `M${60 + i * 12},300 A${250 - i * 12},${230 - i * 12} 0 0 1 ${560 - i * 12},300`, fill: 'none', stroke: c, 'stroke-width': 13, opacity: .85}, sky));
+    }
+    if (name === 'excited') {
+      cloud(sky, 160, 90, .9, '#fff');
+      for (let k = 0; k < 9; k++) {
+        const p = el('path', {d: `M${rnd(-80, 300)},${rnd(30, 230)}c40,-14 80,14 120,0s60,-20 80,-4`, fill: 'none', stroke: '#ffffffcc', 'stroke-width': 4, 'stroke-linecap': 'round'}, front);
+        if (!reduce) p.animate([{transform: 'translateX(-200px)', opacity: 0}, {opacity: 1, offset: .3}, {transform: 'translateX(520px)', opacity: 0}], {duration: 1700, delay: -rnd(0, 1700), iterations: Infinity});
+      }
+      particles(front, 12, () => { const t = el('text', {'font-size': rnd(18, 28)}); t.textContent = ['🍃', '🍂'][Math.random() * 2 | 0]; return t; }, () => [rnd(-80, 60), rnd(60, 320)], 2200, 620, -60);
+      if (!reduce) $('front').animate([{transform: 'skewX(0)'}, {transform: 'skewX(-2deg)'}, {transform: 'skewX(0)'}], {duration: 900, iterations: Infinity});
+    }
+    if (name === 'sad' || name === 'scared') {
+      const dark = name === 'scared' ? '#4b4c6e' : '#8a97aa';
+      cloud(sky, 110, 90, 1.3, dark); cloud(sky, 330, 70, 1.5, dark); cloud(sky, 540, 95, 1.2, dark);
+      particles(front, name === 'scared' ? 120 : 100, () => el('line', {x1: 0, y1: 0, x2: -4, y2: 16, stroke: '#e4eefb', 'stroke-width': 3, 'stroke-linecap': 'round'}),
+        () => [rnd(0, 660), rnd(40, 110)], 800, -30, 340);
+    }
+    if (name === 'scared') {
+      const bolt = el('path', {d: 'M330,110 L300,190 L326,190 L296,268 L362,170 L334,170 L356,110z', fill: '#ffe14d', stroke: '#fff7b0', 'stroke-width': 3, opacity: 0}, sky);
+      if (!reduce) {
+        bolt.animate([{opacity: 0}, {opacity: 0, offset: .7}, {opacity: 1, offset: .72}, {opacity: 0, offset: .76}, {opacity: 1, offset: .8}, {opacity: 0, offset: .86}], {duration: 3200, iterations: Infinity});
+        $('flash').animate([{opacity: 0}, {opacity: 0, offset: .7}, {opacity: .5, offset: .72}, {opacity: 0, offset: .78}], {duration: 3200, iterations: Infinity});
+      } else bolt.setAttribute('opacity', 1);
+    }
+    if (name === 'angry') {
+      el('circle', {cx: 500, cy: 76, r: 52, fill: '#ff4d2e', stroke: '#ffb03b', 'stroke-width': 6}, sky);
+      for (let k = 0; k < 6; k++) {
+        const p = el('path', {d: `M${40 + k * 100},300 q12,-18 0,-36 t0,-36 t0,-36`, fill: 'none', stroke: '#fff8', 'stroke-width': 7, 'stroke-linecap': 'round'}, front);
+        if (!reduce) p.animate([{transform: 'translateY(20px)', opacity: 0}, {opacity: 1, offset: .4}, {transform: 'translateY(-80px)', opacity: 0}], {duration: 1800, delay: -k * 300, iterations: Infinity});
+      }
+      el('rect', {x: 0, y: 0, width: 612, height: 368, fill: '#ff5a1f', opacity: .18}, front);
+    }
+    if (name === 'worried') {
+      [[90, 110, 1.2], [260, 80, 1.5], [450, 110, 1.3], [580, 70, 1]].forEach(([x, y, s], i) => cloud(sky, x, y, s, '#e9edf2', 7000 + i * 1500));
+      cloud(front, 200, 170, .8, '#dfe4ea', 8000);
+    }
+    if (name === 'confused') {
+      for (let k = 0; k < 6; k++) {
+        const r = el('rect', {x: -200, y: 140 + k * 38, width: 1000, height: 60, rx: 30, fill: '#f4f2ec', opacity: .6, style: 'filter:blur(9px)'}, front);
+        if (!reduce) r.animate([{transform: 'translateX(-60px)'}, {transform: 'translateX(60px)'}], {duration: 6000 + k * 700, direction: 'alternate', iterations: Infinity, easing: 'ease-in-out'});
+      }
+      el('rect', {x: 0, y: 0, width: 612, height: 368, fill: '#f2f2ee', opacity: .15}, front);
+    }
+    if (name === 'calm') {
+      cloud(sky, 160, 80, 1.1, '#eef2fa'); cloud(sky, 440, 70, 1.3, '#eef2fa');
+      particles(front, 70, () => el('circle', {r: rnd(2.5, 5.5), fill: '#fff', opacity: .92}), () => [rnd(0, 612), rnd(-10, 40)], 9000, 30, 360);
+    }
+    if (!quiet) SFX[name]();
+  }
+
+  // ---------- Bear ----------
+  let face = 'happy', which = 'a';
+  function bear(name) {
+    if (name === face) return;
+    face = name;
+    const next = which === 'a' ? 'b' : 'a';
+    $('bear-' + next).src = F[name].img;
+    $('bear-' + next).style.opacity = 1; $('bear-' + which).style.opacity = 0;
+    which = next;
+    $('bear').setAttribute('aria-label', `Bear looks ${name}`);
+    if (!reduce) { $('bear').classList.remove('hop'); void $('bear').offsetWidth; $('bear').classList.add('hop'); }
+  }
+
+  function banner(icon, big, small, cls = '') {
+    $('banner').className = 'banner ' + cls;
+    $('banner').innerHTML = `${icon ? `<div class="big" aria-hidden="true">${icon}</div>` : ''}<div><b>${big}</b><span>${small}</span></div>`;
+    $('banner').dataset.text = `${big}. ${small}`;
+  }
+
+  // ---------- the weather buttons ----------
+  $('wx').replaceChildren(...NAMES.map(n => {
+    const b = document.createElement('button');
+    b.style.setProperty('--c', F[n].c);
+    b.innerHTML = `<span aria-hidden="true">${F[n].e}</span>${cap(n)}<small>${F[n].w}</small>`;
+    b.setAttribute('aria-pressed', 'false'); b.dataset.n = n;
+    b.setAttribute('aria-label', `${cap(n)}: ${F[n].w}`);
+    b.onclick = () => tap(n);
+    return b;
+  }));
+  const press = n => [...$('wx').children].forEach(b => b.setAttribute('aria-pressed', b.dataset.n === n));
+
+  function tap(n) {
+    if (state.mode === 'meet') return meet(n);
+    if (state.mode === 'story') return answer(n);
+    return vote(n);
+  }
+
+  // Meet the feelings
+  function meet(n) {
+    press(n); weather(n); bear(n);
+    banner(F[n].e, cap(n), `${F[n].w}. ${F[n].body}`);
+    $('tip').innerHTML = `<b>What helps:</b> ${F[n].help}`;
+    say(`${cap(n)}. ${F[n].w}. ${F[n].body} What helps? ${F[n].help}`);
+  }
+
+  // Stories
+  function nextStory() {
+    state.story = (state.story + 1) % STORIES.length; state.picked = null;
+    const s = STORIES[state.story];
+    press(null); weather(null); bear('happy');
+    banner('📺', s.t, `How might ${s.who} feel? Tap the weather.`, 'story');
+    $('tip').innerHTML = '';
+    $('hint').innerHTML = `<b>Story ${state.story + 1} of ${STORIES.length}.</b> Read it together. Ask: how might ${s.who} feel? Let a few kids answer, then tap a weather.`;
+    say(`${s.t} How might ${s.who} feel?`);
+  }
+  function answer(n) {
+    const s = STORIES[state.story];
+    press(n); weather(n); bear(n);
+    const fits = s.f.includes(n), list = s.f.map(x => `${x} (${F[x].w.toLowerCase()})`);
+    const others = s.f.filter(x => x !== n);
+    const line = fits
+      ? `That makes sense! ${others.length ? `${s.who} might also feel ${others.join(' or ')}.` : ''}`
+      : `Some people might feel ${n}. Feelings can be different! Lots of kids would feel ${s.f.slice(0, 2).join(' or ')}.`;
+    banner(F[n].e, `${s.who} might feel ${n}.`, line, 'story');
+    $('tip').innerHTML = `<b>Kind words or a good idea:</b> ${s.kind}`;
+    $('hint').innerHTML = `Weather for this story: ${list.join(', ')}. Ask: what could we say or do to help ${s.who}?`;
+    say(`${s.who} might feel ${n}. ${line} ${s.kind}`);
+  }
+
+  // Class forecast: anonymous counts, never saved
+  function board() {
+    $('board').replaceChildren(...NAMES.map(n => {
+      const c = document.createElement('div');
+      c.className = 'col';
+      c.innerHTML = `<b>${cap(n)}</b><div class="ico" aria-hidden="true">${F[n].e}</div>` + '<i>●</i>'.repeat(0);
+      for (let k = 0; k < state.tally[n]; k++) { const i = document.createElement('i'); i.textContent = F[n].e; i.style.animation = 'none'; c.append(i); }
+      if (state.tally[n]) { const t = document.createElement('div'); t.className = 'n'; t.textContent = state.tally[n]; c.append(t); }
+      c.id = 'col-' + n;
+      return c;
+    }));
+  }
+  function vote(n) {
+    state.tally[n]++;
+    press(null); bear(n);
+    const c = $('col-' + n), i = document.createElement('i');
+    i.textContent = F[n].e;
+    c.querySelector('.n')?.remove();
+    c.append(i);
+    const t = document.createElement('div'); t.className = 'n'; t.textContent = state.tally[n]; c.append(t);
+    SFX.drop();
+    const total = NAMES.reduce((s, k) => s + state.tally[k], 0);
+    banner('🙌', 'Thanks for sharing!', `${total} ${total === 1 ? 'friend has' : 'friends have'} checked in. Who's next?`);
+    say('Thanks for sharing!');
+  }
+  function forecast() {
+    const total = NAMES.reduce((s, k) => s + state.tally[k], 0);
+    if (!total) { banner('📺', 'No weather yet!', 'Tap the weather that matches how you feel right now.'); return say('No weather yet! Tap the weather that matches how you feel right now.'); }
+    const order = NAMES.filter(n => state.tally[n]).sort((a, b) => state.tally[b] - state.tally[a]);
+    const top = order[0], rest = order.slice(1, 3).map(n => F[n].w.toLowerCase());
+    $('board').hidden = true;
+    weather(top); bear(top); SFX.tv();
+    const most = state.tally[top] / total > .5 ? 'Mostly' : 'Partly';
+    const text = `${most} ${F[top].w.toLowerCase()}${rest.length ? `, with some ${rest.join(' and some ')}` : ''}.`;
+    banner(F[top].e, "Today's class forecast", text);
+    $('tip').innerHTML = 'All weather is okay, and weather always changes. If you have stormy or rainy feelings today, you can talk to a grown-up you trust.';
+    say(`Here is today's class forecast. ${text} All weather is okay, and weather always changes.`);
+  }
+  function clearClass() {
+    NAMES.forEach(n => state.tally[n] = 0);
+    $('board').hidden = false; board(); weather(null); bear('happy');
+    banner('📺', 'How is your weather today?', 'Come up one at a time and tap your weather. Nobody\'s name is saved.');
+    $('tip').innerHTML = '';
+  }
+
+  function setMode(m) {
+    state.mode = m;
+    for (const [id, k] of [['m-meet', 'meet'], ['m-story', 'story'], ['m-class', 'class']]) $(id).setAttribute('aria-pressed', m === k);
+    $('story-btns').hidden = m !== 'story';
+    $('class-btns').hidden = m !== 'class';
+    $('board').hidden = m !== 'class';
+    $('tip').innerHTML = ''; press(null);
+    speechSynthesis?.cancel?.();
+    if (m === 'meet') {
+      weather(null, true); bear('happy');
+      banner('👋', 'Hi! I\'m Bear.', 'Today\'s report is about feelings. Tap a weather to meet a feeling.');
+      $('hint').innerHTML = '<b>Meet the feelings.</b> Tap a weather. Ask the class: when have you felt this way? What does it feel like in your body?';
+    }
+    if (m === 'story') { state.story = -1; nextStory(); }
+    if (m === 'class') {
+      clearClass();
+      $('hint').innerHTML = '<b>Class forecast.</b> Each child taps the weather that matches how they feel right now. The tally has no names and is never saved. Then make the forecast together.';
+    }
+  }
+  $('m-meet').onclick = () => setMode('meet');
+  $('m-story').onclick = () => setMode('story');
+  $('m-class').onclick = () => setMode('class');
+  $('next-story').onclick = nextStory;
+  $('forecast').onclick = forecast;
+  $('clear').onclick = clearClass;
+
+  // ---------- sound and voice ----------
+  $('sound').onclick = e => {
+    state.sound = !state.sound;
+    e.currentTarget.setAttribute('aria-pressed', state.sound);
+    e.currentTarget.textContent = state.sound ? '🔔 Sound' : '🔇 Sound';
+    if (!state.sound) speechSynthesis?.cancel?.();
+  };
+  function bestVoice() {
+    const voices = speechSynthesis.getVoices().filter(v => /^en(-|_|$)/i.test(v.lang));
+    const score = v => (/natural|neural/i.test(v.name) ? 50 : 0) + (/premium|enhanced/i.test(v.name) ? 40 : 0) +
+      (/google/i.test(v.name) ? 30 : 0) + (/aria|jenny|ava|samantha|libby|sonia/i.test(v.name) ? 10 : 0) +
+      (/en-US/i.test(v.lang) ? 5 : 0) + (v.default ? 1 : 0) - (/david|mark|zira|desktop/i.test(v.name) ? 20 : 0);
+    return voices.sort((a, b) => score(b) - score(a))[0] || null;
+  }
+  if ('speechSynthesis' in window) {
+    // Chrome fills its voice list late; hold an early utterance until the good voices load, or it falls back to a robotic default
+    const speak = speechSynthesis.speak.bind(speechSynthesis);
+    speechSynthesis.speak = u => {
+      if (speechSynthesis.getVoices().length) return speak(u);
+      let done = false;
+      const go = () => { if (done) return; done = true; const v = bestVoice(); if (v) { u.voice = v; u.lang = v.lang; } speak(u); };
+      speechSynthesis.addEventListener('voiceschanged', go, {once: true});
+      setTimeout(go, 1500);
+    };
+    speechSynthesis.getVoices();
+  }
+  function say(text, force) {
+    if ((!state.sound && !force) || !('speechSynthesis' in window)) return;
+    speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text.replace(/[\u{1F300}-\u{1FAFF}☀-➿]/gu, ''));
+    const v = bestVoice();
+    if (v) { u.voice = v; u.lang = v.lang; }
+    u.rate = .92; u.pitch = 1; speechSynthesis.speak(u);
+  }
+  $('read').onclick = () => say($('banner').dataset.text || $('hint').textContent, true);
+
+  $('bear-a').src = F.happy.img;
+  board();
+  window.__fw = {state, setMode, tap, forecast, weather};  // for checking frames
+  setMode('meet');
+})();
+</script>
+</body>
+</html>

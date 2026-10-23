@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Classifier Scenes · ASL classifiers and space · Curio Class</title>
+<meta name="description" content="Describe a picture the way ASL does: choose which object stays still, pick a classifier handshape for each object, and place and move them in signing space. Then flip to the viewer's view. ASL, grades 6-12. Works offline.">
+<!--
+CLASSIFIER SCENES (Curio Class)
+American Sign Language, grades 6-12, ACTFL Intermediate Mid (presentational and interpretive communication),
+module "Classifiers and Space".
+Seven pictures. For each one students decide the ground (the larger object that stays still, usually set up
+first and held on the non-dominant hand), choose a classifier handshape for each object, place the objects in
+signing space from the signer's own point of view, and add movement. Then they play it back with an English
+gloss and flip to the viewer's view, which is mirrored.
+This is practice for the spatial grammar only. It does not replace watching and learning from Deaf signers;
+classifier choices can vary between signers and regions, and the teacher notes say so.
+One file, no network requests. Illustrations generated with Google Gemini, edited for Curio Class.
+Content CC BY 4.0, code MIT. curioclass.org
+-->
+<style>
+:root{
+  --paper:#f3f1ea;--card:#fffdf8;--ink:#20242c;--muted:#5d6370;--line:#dcd8cc;--focus:#2a6fdb;
+  --ground:#1f7a73;--figure:#d4621f;--brand:#2b3a55;
+  font-family:'Segoe UI',system-ui,-apple-system,Roboto,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0;height:100%}
+body{background:var(--paper);color:var(--ink);display:grid;grid-template-rows:auto 1fr;min-height:100vh}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+header{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 18px;background:var(--brand);color:#f1f4fa}
+h1{margin:0 auto 0 0;font:700 clamp(21px,2.6vw,29px)/1.1 'Segoe UI',system-ui,sans-serif;letter-spacing:-.01em}
+h1 small{display:block;font:400 14px/1.3 'Segoe UI',sans-serif;color:#c3cbe0}
+.icon-btn{border:1px solid #4b5c80;background:#36486b;color:#f1f4fa;border-radius:999px;min-height:44px;padding:0 14px;font-weight:600;font-size:15px}
+.icon-btn[aria-pressed="true"]{background:#f2c14e;color:#2a2000;border-color:#f2c14e}
+
+main{display:grid;grid-template-columns:minmax(0,1fr) 340px;min-height:0}
+@media (max-width:900px){main{grid-template-columns:1fr}}
+.stage{position:relative;overflow:hidden;min-height:340px;background:var(--paper)}
+.scene{position:absolute;left:50%;top:50%;width:1000px;height:620px;transform:translate(-50%,-50%) scale(var(--s,1))}
+.pic{position:absolute;left:20px;top:20px;width:360px;background:var(--card);border-radius:16px;box-shadow:0 2px 0 #0001,0 10px 24px #0002;padding:10px}
+.pic img{display:block;width:340px;height:340px;border-radius:10px}
+.pic p{margin:10px 4px 2px;font:600 21px/1.3 'Segoe UI',sans-serif}
+.pic .n{font:700 13px/1 'Segoe UI',sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:2px 4px 0}
+.gloss{position:absolute;left:20px;top:470px;width:360px;min-height:128px;background:#20242c;color:#f2f2ee;border-radius:16px;padding:12px 14px;font:700 18px/1.5 'Segoe UI',sans-serif}
+.gloss:empty{display:none}
+.gloss span{transition:color .3s,background .3s;border-radius:4px;padding:0 2px}
+.gloss span.on{color:#20242c;background:#f2c14e}
+.gloss small{display:block;font:400 13px/1.4 'Segoe UI',sans-serif;color:#b9bdc6;margin-top:6px}
+
+.space{position:absolute;left:400px;top:20px;width:580px;height:580px;border-radius:18px;background:radial-gradient(ellipse at 50% 70%,#fff 0,#eef0f4 60%,#e3e6ec);box-shadow:inset 0 0 0 2px #d4d8e0;overflow:hidden;touch-action:none}
+.space .zone{position:absolute;left:30px;right:30px;top:40px;height:310px;border:3px dashed #b9c0cf;border-radius:50% 50% 24px 24px / 30% 30% 24px 24px}
+.space .tag{position:absolute;left:0;right:0;top:12px;text-align:center;font:700 13px/1 'Segoe UI',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#7c8496}
+.space .signer{position:absolute;left:190px;bottom:-6px;width:200px;pointer-events:none}
+.space .side{position:absolute;bottom:14px;font:700 14px/1 'Segoe UI',sans-serif;color:#7c8496}
+.space .side.l{left:16px}.space .side.r{right:16px}
+.space svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.tok{position:absolute;width:96px;height:96px;margin:-48px 0 0 -48px;border-radius:50%;background:#fff;border:5px solid var(--figure);box-shadow:0 4px 10px #0003;display:grid;place-items:center;pointer-events:none}
+.tok.g{border-color:var(--ground)}
+.tok img{max-width:74px;max-height:74px;object-fit:contain}
+.tok b{position:absolute;top:100%;margin-top:4px;left:50%;transform:translateX(-50%);white-space:nowrap;font:700 13px/1.2 'Segoe UI',sans-serif;background:#fffc;border-radius:6px;padding:2px 6px;text-align:center}
+.tok.ghost{opacity:.4;border-style:dashed}
+.tok.mirror img{transform:scaleX(-1)}
+
+.panel{background:var(--card);border-left:1px solid var(--line);padding:12px 16px;display:flex;flex-direction:column;gap:12px;overflow:auto}
+@media (max-width:900px){.panel{border-left:0;border-top:1px solid var(--line)}}
+.panel h2{margin:0;font:700 12px/1 'Segoe UI',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.steps{display:flex;gap:5px}
+.steps i{flex:1;height:7px;border-radius:4px;background:var(--line)}
+.steps i.on{background:var(--brand)}
+.q{margin:0;font:600 18px/1.4 'Segoe UI',sans-serif}
+.q b{color:var(--figure)}
+.q b.g{color:var(--ground)}
+.opts{display:grid;gap:6px}
+.opts button{border:2px solid var(--line);background:#fff;border-radius:12px;min-height:48px;padding:6px 12px;text-align:left;font-size:16px;font-weight:600}
+.hs{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.hs button{border:2px solid var(--line);background:#fff;border-radius:12px;padding:6px;display:grid;grid-template-columns:52px 1fr;gap:6px;align-items:center;text-align:left;min-height:64px}
+.hs button img{width:52px;height:52px;object-fit:contain}
+.hs button b{display:block;font-size:14px}
+.hs button small{display:block;font-size:11.5px;line-height:1.25;color:var(--muted)}
+.hs button.no{border-color:#d9534f;animation:shake .4s}
+@keyframes shake{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.say{margin:0;border-radius:10px;padding:9px 11px;font-size:15px;line-height:1.45;background:#eef5f4;border-left:5px solid var(--ground)}
+.say.warn{background:#fbefe7;border-color:var(--figure)}
+.say:empty{display:none}
+.btn{border:0;border-radius:12px;min-height:50px;background:var(--brand);color:#fff;font:700 17px 'Segoe UI',sans-serif;padding:0 14px}
+.btn.soft{background:#e7e4da;color:var(--ink)}
+.row{display:flex;gap:8px;flex-wrap:wrap}.row .btn{flex:1}
+.list{display:flex;gap:6px;flex-wrap:wrap}
+.list button{border:1px solid var(--line);background:#fff;border-radius:999px;min-width:40px;min-height:40px;font-weight:700}
+.list button[aria-current="true"]{background:var(--brand);color:#fff}
+.list button.done{border-color:var(--ground);color:var(--ground)}
+.list button.done[aria-current="true"]{color:#fff}
+.calm .hs button.no{animation:none}
+
+@media (max-height:660px),(max-width:760px){
+  header{padding:6px 10px} h1{font-size:18px} h1 small{display:none}
+  .icon-btn{min-height:36px;font-size:13px}
+  .q{font-size:15px}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Classifier Scenes <small>Set up the picture in signing space, the way ASL does.</small></h1>
+  <button class="icon-btn" id="lefty" aria-pressed="false" title="Switch which hand is dominant">✋ Left-handed</button>
+  <button class="icon-btn" id="motion" aria-pressed="true" title="Turn animation on or off">✨ Motion</button>
+</header>
+<main>
+  <div class="stage" id="stage">
+    <div class="scene" id="scene">
+      <div class="pic"><div class="n" id="pic-n"></div><img id="pic" alt=""><p id="pic-t"></p></div>
+      <div class="gloss" id="gloss" aria-live="polite"></div>
+      <div class="space" id="space" aria-label="Signing space. Tap to place the hand.">
+        <div class="tag" id="space-tag">Signing space · your view</div>
+        <div class="zone"></div>
+        <img class="signer" id="signer" src="art:signer" alt="">
+        <span class="side l" id="side-l">← signer's left</span><span class="side r" id="side-r">signer's right →</span>
+        <svg id="paths" aria-hidden="true"><defs><marker id="arrow" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0L10,5L0,10z" fill="#d4621f"/></marker></defs><g id="path-g"></g></svg>
+        <div id="toks"></div>
+      </div>
+    </div>
+  </div>
+  <aside class="panel">
+    <div class="list" id="list" aria-label="Pictures"></div>
+    <div class="steps" id="steps" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+    <p class="q" id="q"></p>
+    <div class="opts" id="opts"></div>
+    <div class="hs" id="hs" hidden></div>
+    <p class="say" id="say"></p>
+    <div class="row" id="acts"></div>
+  </aside>
+</main>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  let reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  try { const m = localStorage.getItem('curio-motion'); if (m) reduce = m === 'calm'; } catch {}
+  function showMotion() {
+    document.body.classList.toggle('calm', reduce);
+    $('motion').setAttribute('aria-pressed', !reduce);
+    $('motion').textContent = reduce ? '⏸ Motion' : '✨ Motion';
+  }
+  showMotion();
+  $('motion').onclick = () => { reduce = !reduce; try { localStorage.setItem('curio-motion', reduce ? 'calm' : 'on'); } catch {} showMotion(); };
+  const wait = ms => new Promise(r => setTimeout(r, ms));
+  const anim = (node, frames, ms) => reduce ? wait(ms) : Promise.race([node.animate(frames, {duration: ms, easing: 'ease-in-out', fill: 'forwards'}).finished, wait(ms + 150)]);
+  const fit = () => {
+    const r = $('stage').getBoundingClientRect();
+    $('scene').style.setProperty('--s', Math.min(r.width / 1000, r.height / 620));
+  };
+  new ResizeObserver(fit).observe($('stage'));
+
+  // ---------- classifier handshapes ----------
+  const HS = {
+    b: {n: 'B (flat hand)', img: 'art:hs-b', use: 'flat surfaces: a table, floor, wall, bed or hill'},
+    c: {n: 'C', img: 'art:hs-c', use: 'round things you hold: a cup, glass or can'},
+    one: {n: '1 (index up)', img: 'art:hs-1', use: 'one whole person standing or walking; thin upright things'},
+    three: {n: '3', img: 'art:hs-3', use: 'vehicles: cars, bikes, boats'},
+    bentv: {n: 'Bent V', img: 'art:hs-bentv', use: 'an animal, or a person sitting or crouching'},
+    v: {n: 'Upside-down V', img: 'art:hs-v', use: 'a person\'s two legs: standing, jumping, falling'},
+  };
+
+  // ---------- pictures ----------
+  // objects: name, handshape, moves. ground: index of the still object, 'either' or 'both' (both move).
+  // check(p) gets placed points {x,y} (y grows downward) and returns '' when the layout matches the picture.
+  const near = (a, b, dx) => Math.abs(a.x - b.x) < dx;
+  const SCENES = [
+    {img: 'art:s-cup', t: 'A cup is on the table.', o: [{n: 'table', hs: 'b'}, {n: 'cup', hs: 'c'}], ground: 0,
+     gloss: ['TABLE', 'CL:B (flat table here)', 'CUP', 'CL:C (cup sitting on the table)'],
+     check: p => p[1].y > p[0].y - 25 ? 'The cup is <b>on top of</b> the table. Place it higher than the table.' : !near(p[0], p[1], 80) ? 'Put the cup right above the table, not off to one side.' : ''},
+    {img: 'art:s-cat-under', t: 'A cat sits under the table.', o: [{n: 'table', hs: 'b'}, {n: 'cat', hs: 'bentv'}], ground: 0,
+     gloss: ['TABLE', 'CL:B (flat table here)', 'CAT', 'CL:bent-V (cat sitting under it)'],
+     check: p => p[1].y < p[0].y + 30 ? 'The cat is <b>under</b> the table. Place it lower than the table.' : !near(p[0], p[1], 80) ? 'Put the cat right under the table.' : ''},
+    {img: 'art:s-cars', t: 'Two cars are parked side by side.', o: [{n: 'red car', hs: 'three'}, {n: 'blue car', hs: 'three'}], ground: 'either',
+     gloss: ['CAR', 'CL:3 (red car parked here)', 'CL:3 (blue car parked next to it)'],
+     check: p => Math.abs(p[0].y - p[1].y) > 60 ? 'The cars are parked <b>side by side</b>, at the same height.' : p[1].x < p[0].x ? 'In the picture the blue car is on the <b>right</b>. Signers show the scene the way they see it.' : p[1].x - p[0].x > 260 ? 'They are parked close together. Move them nearer.' : ''},
+    {img: 'art:s-pass', t: 'A car drives past a person standing on the sidewalk.', o: [{n: 'person', hs: 'one'}, {n: 'car', hs: 'three', move: true}], ground: 0,
+     gloss: ['PERSON', 'CL:1 (person standing here)', 'CAR', 'CL:3 (car drives past)'],
+     check: p => !(p[1].x < p[0].x - 40 && p[2].x > p[0].x + 40) ? 'The car starts on one side of the person and ends on the <b>other</b> side, going left to right like the picture.' : Math.abs((p[1].y + p[2].y) / 2 - p[0].y) > 110 ? 'Keep the car near the person as it passes.' : ''},
+    {img: 'art:s-meet', t: 'Two people walk toward each other and meet.', o: [{n: 'person on the left', hs: 'one', move: true}, {n: 'person on the right', hs: 'one', move: true}], ground: 'both',
+     gloss: ['TWO PEOPLE', 'CL:1 + CL:1 (one on each side)', 'walk toward each other and meet'],
+     check: p => p[0].x > p[2].x ? 'Keep each person on their own side, like the picture: left on the left, right on the right.' : p[2].x - p[0].x < 150 ? 'They start far apart. Spread the starting points out.' : Math.hypot(p[1].x - p[3].x, p[1].y - p[3].y) > 110 ? 'They <b>meet</b> in the middle. Bring the end points close together.' : ''},
+    {img: 'art:s-hill', t: 'A car drives up a hill.', o: [{n: 'hill', hs: 'b'}, {n: 'car', hs: 'three', move: true}], ground: 0,
+     gloss: ['HILL', 'CL:B (slope going up to the right)', 'CAR', 'CL:3 (car drives up the slope)'],
+     check: p => !(p[2].x > p[1].x + 60 && p[2].y < p[1].y - 40) ? 'The car goes <b>up</b> the hill toward the right. End higher and farther right than you start.' : ''},
+    {img: 'art:s-jump', t: 'A cat jumps up onto the table.', o: [{n: 'table', hs: 'b'}, {n: 'cat', hs: 'bentv', move: true}], ground: 0,
+     gloss: ['TABLE', 'CL:B (flat table here)', 'CAT', 'CL:bent-V (cat jumps up onto it)'],
+     check: p => !(p[1].y > p[0].y + 15 && p[1].x < p[0].x) ? 'The cat starts on the <b>floor</b>, lower than the table and to its left.' : !(p[2].y < p[0].y - 15 && near(p[0], p[2], 90)) ? 'The cat ends <b>on top of</b> the table.' : ''},
+  ];
+
+  const st = {i: 0, step: 0, ground: null, hs: [], pts: [], need: [], view: 'signer', lefty: false, done: new Set(), busy: false};
+
+  // ---------- step 1: which stays still ----------
+  function load(i) {
+    if (st.busy) return;
+    const s = SCENES[i];
+    Object.assign(st, {i, step: 0, ground: null, hs: [], pts: [], need: [], view: 'signer'});
+    $('pic').src = s.img; $('pic').alt = s.t; $('pic-t').textContent = s.t; $('pic-n').textContent = `Picture ${i + 1} of ${SCENES.length}`;
+    $('gloss').innerHTML = '';
+    viewer(false); draw();
+    steps(1);
+    $('q').innerHTML = 'Which one <b class="g">stays still</b>? That is the <b class="g">ground</b>. Signers usually set it up first and hold it on the non-dominant hand.';
+    $('hs').hidden = true; $('say').textContent = ''; $('say').className = 'say'; acts();
+    const opts = [...s.o.map((o, k) => [k, `The ${o.n}`]), ['both', 'They both move']];
+    $('opts').replaceChildren(...opts.map(([k, label]) => {
+      const b = document.createElement('button');
+      b.textContent = label;
+      b.onclick = () => pickGround(k);
+      return b;
+    }));
+    list();
+  }
+  function pickGround(k) {
+    const s = SCENES[st.i];
+    const ok = s.ground === k || (s.ground === 'either' && k !== 'both');
+    if (!ok) {
+      $('say').className = 'say warn';
+      $('say').innerHTML = s.ground === 'both' ? 'Look again: in this picture <b>both</b> people are moving. Neither one stays still.'
+        : k === 'both' ? `Look again: one of them stays still. Which one doesn't move?`
+        : `The ${s.o[k].n} ${s.o[k].move ? 'moves' : 'is the smaller thing, placed on or near the ground'}. The ground is usually bigger and stays still.`;
+      return;
+    }
+    st.ground = k;
+    $('say').className = 'say';
+    $('say').innerHTML = s.ground === 'both' ? 'Right: both people move, so each hand is one person, and both hands move at once.'
+      : s.ground === 'either' ? `Right: both cars are still. Either can be the ground. You chose the ${s.o[k].n}, so set it up first.`
+      : `Right: the ${s.o[k].n} stays still. Set it up first.`;
+    st.order = s.ground === 'both' ? [0, 1] : [k, ...s.o.map((_, j) => j).filter(j => j !== k)];
+    st.h = 0;
+    pickHand();
+  }
+
+  // ---------- step 2: a handshape for each object ----------
+  function pickHand() {
+    const s = SCENES[st.i], j = st.order[st.h];
+    steps(2);
+    $('opts').replaceChildren();
+    $('q').innerHTML = `Which classifier handshape shows the <b>${s.o[j].n}</b>?`;
+    $('hs').hidden = false;
+    $('hs').replaceChildren(...Object.entries(HS).map(([k, h]) => {
+      const b = document.createElement('button');
+      b.innerHTML = `<img src="${h.img}" alt=""><span><b>${h.n}</b><small>${h.use}</small></span>`;
+      b.onclick = () => {
+        if (k !== s.o[j].hs) { b.classList.remove('no'); void b.offsetWidth; b.classList.add('no'); $('say').className = 'say warn';
+          $('say').innerHTML = `${h.n} is for ${h.use}. Is the ${s.o[j].n} one of those?`; return; }
+        st.hs[j] = k;
+        $('say').className = 'say'; $('say').innerHTML = `Yes: <b>${h.n}</b> for the ${s.o[j].n} (${h.use.split(':')[0]}).`;
+        st.h++;
+        if (st.h < st.order.length) pickHand(); else startPlace();
+      };
+      return b;
+    }));
+  }
+
+  // ---------- step 3: place in signing space ----------
+  function startPlace() {
+    const s = SCENES[st.i];
+    // what to place, in order: each object's spot, and an end spot for movers
+    st.need = [];
+    for (const j of st.order) { st.need.push({j, end: false}); }
+    if (s.ground === 'both') st.need = [{j: 0, end: false}, {j: 1, end: false}, {j: 0, end: true}, {j: 1, end: true}];
+    else for (const j of st.order) if (s.o[j].move) st.need.push({j, end: true});
+    st.pts = []; st.step = 3;
+    $('hs').hidden = true; steps(3);
+    prompt(); draw(); acts();
+  }
+  const pointFor = (j, end) => st.need.findIndex(n => n.j === j && n.end === end);
+  function prompt() {
+    const s = SCENES[st.i], n = st.need[st.pts.length];
+    if (!n) return;
+    const o = s.o[n.j], isGround = n.j === st.ground;
+    $('q').innerHTML = n.end ? `Now tap where the <b>${o.n}</b> ends up.`
+      : `Tap in the signing space to place the <b class="${isGround ? 'g' : ''}">${o.n}</b>${s.o[n.j].move ? ' where it starts' : ''}.`;
+    $('say').className = 'say';
+    $('say').innerHTML = st.pts.length ? $('say').innerHTML : 'You are looking over the signer\'s shoulder, so left and right match the picture.';
+  }
+  const local = e => {
+    const r = $('space').getBoundingClientRect(), k = r.width / 580;
+    return {x: Math.max(40, Math.min(540, (e.clientX - r.left) / k)), y: Math.max(60, Math.min(410, (e.clientY - r.top) / k))};
+  };
+  $('space').addEventListener('pointerdown', e => {
+    if (st.step !== 3 || st.busy || st.pts.length >= st.need.length) return;
+    st.pts.push(local(e)); st.drag = true; $('space').setPointerCapture(e.pointerId);
+    draw();
+  });
+  $('space').addEventListener('pointermove', e => { if (st.drag) { st.pts[st.pts.length - 1] = local(e); draw(); } });
+  $('space').addEventListener('pointerup', () => {
+    if (!st.drag) return;
+    st.drag = false;
+    if (st.pts.length < st.need.length) { prompt(); return; }
+    check();
+  });
+  function check() {
+    const s = SCENES[st.i];
+    // points in the scene's own object order: object 0, object 1, then end points
+    const p = s.ground === 'both' ? st.pts : (() => {
+      const out = s.o.map((_, j) => st.pts[pointFor(j, false)]);
+      s.o.forEach((o, j) => { if (o.move) out.push(st.pts[pointFor(j, true)]); });
+      return out;
+    })();
+    const why = s.check(p);
+    if (why) {
+      $('say').className = 'say warn'; $('say').innerHTML = why;
+      $('q').innerHTML = 'Not quite. Try placing them again.';
+      acts([['Try again', () => { st.pts = []; draw(); prompt(); acts(); }, 'soft']]);
+      return;
+    }
+    st.step = 4; steps(4); st.done.add(st.i); list();
+    $('q').innerHTML = 'That matches the picture. <b>Play it</b> to see the order, then flip to the viewer\'s view.';
+    $('say').className = 'say';
+    $('say').innerHTML = s.ground === 'both' ? 'Both hands move at once, each on its own side.' : `The ${s.o[st.ground].n} is set up first and held still while the ${s.o.filter((_, j) => j !== st.ground).map(o => o.n).join(' and ')} ${s.o.some(o => o.move) ? 'moves' : 'is placed'}.`;
+    acts([['▶ Play it', play], ['Viewer\'s view', () => viewer(st.view === 'signer'), 'soft'], ['Next picture →', () => load((st.i + 1) % SCENES.length), 'soft']]);
+    play();
+  }
+
+  // ---------- step 4: play, gloss, and the viewer's view ----------
+  async function play() {
+    if (st.busy) return;
+    st.busy = true;
+    try { await playing(); } finally { st.busy = false; draw(); }
+  }
+  async function playing() {
+    draw();
+    const s = SCENES[st.i];
+    $('gloss').innerHTML = s.gloss.map(g => `<span>${g}</span>`).join(' ') + `<small>English gloss. A gloss writes signs in capital letters; it is not how the signs look.</small>`;
+    const spans = [...$('gloss').querySelectorAll('span')];
+    const toks = [...$('toks').children], paths = $('path-g');
+    toks.forEach(t => t.style.opacity = 0); paths.style.opacity = 0;
+    await wait(300);
+    const light = k => spans.forEach((x, j) => x.classList.toggle('on', j === k));
+    if (s.ground === 'both') {
+      light(0); await wait(900); light(1);
+      for (const t of toks.filter(t => !t.dataset.end)) t.style.opacity = 1;
+      await wait(900); light(2);
+      await moveAll(toks); paths.style.opacity = 1;
+    } else {
+      let k = 0;
+      for (const j of st.order) {
+        light(k++); await wait(800); light(k++);
+        const t = toks.find(t => +t.dataset.j === j && !t.dataset.end);
+        t.style.opacity = 1; if (!reduce) await anim(t, [{transform: 'scale(.4)'}, {transform: 'scale(1)'}], 450); else await wait(450);
+        if (s.o[j].move) await moveAll([t]);
+        await wait(700);
+      }
+      paths.style.opacity = 1;
+    }
+    await wait(400); light(-1);
+  }
+  async function moveAll(toks) {
+    const moves = toks.map(t => { const j = +t.dataset.j, a = st.pts[pointFor(j, false)], b = st.pts[pointFor(j, true)]; return b && {t, dx: X(b.x) - X(a.x), dy: b.y - a.y}; }).filter(Boolean);
+    await Promise.all(moves.map(m => anim(m.t, [{transform: 'translate(0,0)'}, {transform: `translate(${m.dx}px,${m.dy}px)`}], 1400)));
+    moves.forEach(m => { m.t.getAnimations?.().forEach(a => a.cancel()); });
+  }
+  function viewer(on) {
+    st.view = on ? 'viewer' : 'signer';
+    $('signer').src = on ? 'art:signer-front' : 'art:signer';
+    $('space-tag').textContent = on ? 'Signing space · the viewer\'s view' : 'Signing space · your view';
+    $('side-l').textContent = on ? '← signer\'s right' : '← signer\'s left';
+    $('side-r').textContent = on ? 'signer\'s left →' : 'signer\'s right →';
+    if (on) { $('say').className = 'say'; $('say').innerHTML = 'Facing the signer, everything is <b>mirrored</b>: what the signer puts on their right, you see on your left. The viewer flips it back in their head.'; }
+    draw();
+  }
+  const X = x => st.view === 'viewer' ? 580 - x : x;
+
+  // ---------- drawing the tokens ----------
+  function hand(j, x) {
+    const s = SCENES[st.i];
+    const dom = st.lefty ? 'left' : 'right', non = st.lefty ? 'right' : 'left';
+    if (s.ground === 'both') return x < 290 ? 'left hand' : 'right hand';
+    return j === st.ground ? `${non} hand, holds still` : `${dom} hand`;
+  }
+  function draw() {
+    const s = SCENES[st.i], box = $('toks'), g = $('path-g');
+    box.replaceChildren(); g.replaceChildren();
+    st.pts.forEach((p, k) => {
+      const n = st.need[k], t = document.createElement('div');
+      t.className = 'tok' + (n.j === st.ground ? ' g' : '') + (n.end ? ' ghost' : '') + (st.view === 'viewer' ? ' mirror' : '');
+      t.style.left = X(p.x) + 'px'; t.style.top = p.y + 'px';
+      t.dataset.j = n.j; if (n.end) t.dataset.end = 1;
+      const h = HS[st.hs[n.j]];
+      t.innerHTML = `<img src="${h.img}" alt=""><b>${s.o[n.j].n}${n.end ? ' (end)' : `<br>${hand(n.j, p.x)}`}</b>`;
+      box.append(t);
+      if (n.end) {
+        const a = st.pts[pointFor(n.j, false)];
+        const ln = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        const mx = (X(a.x) + X(p.x)) / 2, my = Math.min(a.y, p.y) - 40;
+        ln.setAttribute('d', `M${X(a.x)},${a.y} Q${mx},${my} ${X(p.x)},${p.y}`);
+        ln.setAttribute('fill', 'none'); ln.setAttribute('stroke', '#d4621f'); ln.setAttribute('stroke-width', 4);
+        ln.setAttribute('stroke-dasharray', '9 7'); ln.setAttribute('marker-end', 'url(#arrow)');
+        g.append(ln);
+      }
+    });
+    $('space').style.cursor = st.step === 3 && st.pts.length < st.need.length ? 'crosshair' : 'default';
+  }
+
+  // ---------- panel bits ----------
+  function steps(n) { [...$('steps').children].forEach((s, k) => s.classList.toggle('on', k < n)); }
+  function acts(list = []) {
+    $('acts').replaceChildren(...list.map(([label, fn, cls]) => { const b = document.createElement('button'); b.className = 'btn ' + (cls || ''); b.textContent = label; b.onclick = fn; return b; }));
+  }
+  function list() {
+    $('list').replaceChildren(...SCENES.map((s, k) => {
+      const b = document.createElement('button');
+      b.textContent = k + 1; b.title = s.t;
+      b.setAttribute('aria-label', `Picture ${k + 1}: ${s.t}`);
+      b.setAttribute('aria-current', k === st.i); b.classList.toggle('done', st.done.has(k));
+      b.onclick = () => load(k);
+      return b;
+    }));
+  }
+  $('lefty').onclick = () => { st.lefty = !st.lefty; $('lefty').setAttribute('aria-pressed', st.lefty); draw(); };
+
+  window.__cs = {st, load, pickGround, startPlace, check, play, viewer, draw, SCENES};  // for checking frames
+  load(0);
+})();
+</script>
+</body>
+</html>
