@@ -1,6 +1,8 @@
 """Generate tool artwork with Gemini, cut it out, and save small WebP files for bundling.
 
-    python scripts/art.py <tool-id> [asset names...] [--force]
+    python scripts/art.py <tool-id> [asset names...] [--force] [--rekey]
+
+--force draws again; --rekey only redoes the cutout and sizing from the saved original in art/raw/ (free).
 
 Reads tools/<tool-id>/art/prompts.json:
     {"style": "optional extra style notes",
@@ -58,22 +60,41 @@ def generate(prompt, refs=(), aspect=None):
 
 
 def cut_out(img):
-    """Key out the green background, soften the edge, and remove green spill."""
+    """Key out the green background, soften the edge, and remove green spill.
+
+    Keys by distance from the actual background color (sampled at the border) rather than by "how green",
+    so a green jacket stays solid. Only background touching the border is keyed, plus enclosed pockets that
+    are very close to the key color (a gap between an arm and the body)."""
+    from scipy import ndimage
     a = np.asarray(img).astype(np.float32)
     r, g, b = a[..., 0], a[..., 1], a[..., 2]
-    green = g - np.maximum(r, b)
-    alpha = np.clip(1 - (green - 25) / 70, 0, 1)
+    border = np.concatenate([a[0, :, :3], a[-1, :, :3], a[:, 0, :3], a[:, -1, :3]])
+    key = np.median(border, axis=0)
+    dist = np.sqrt(((a[..., :3] - key) ** 2).sum(-1))
+    alpha = np.clip((dist - 25) / 45, 0, 1)
+    labels, _ = ndimage.label(alpha < .5)
+    edge = np.unique(np.concatenate([labels[0], labels[-1], labels[:, 0], labels[:, -1]]))
+    background = np.isin(labels, edge[edge > 0]) | (dist < 25)
+    near = ndimage.binary_dilation(background, iterations=3)  # keep the soft keyed edge next to real background
+    alpha = np.where(near, alpha, 1)
+    # drop specks and faint ground shadows that are not part of the figure
+    blobs, count = ndimage.label(alpha > .5)
+    if count > 1:
+        sizes = ndimage.sum(np.ones_like(alpha), blobs, range(1, count + 1))
+        keep = np.isin(blobs, 1 + np.flatnonzero(sizes >= sizes.max() * .02))
+        alpha = np.where(ndimage.binary_dilation(keep, iterations=2), alpha, 0)
     spill = alpha < 1
     a[..., 1] = np.where(spill, np.minimum(g, np.maximum(r, b) + 10), g)
     a[..., 3] = alpha * 255
     out = Image.fromarray(a.clip(0, 255).astype(np.uint8), 'RGBA')
-    box = out.getchannel('A').point(lambda v: 255 if v > 8 else 0).getbbox()
+    box = out.getchannel('A').point(lambda v: 255 if v > 128 else 0).getbbox()  # faint haze doesn't stretch the frame
     return out.crop(box) if box else out
 
 
 def main():
     args = [a for a in sys.argv[1:] if not a.startswith('--')]
-    force = '--force' in sys.argv
+    rekey = '--rekey' in sys.argv
+    force = '--force' in sys.argv or rekey
     tool, wanted = args[0], set(args[1:])
     art = ROOT / 'tools' / tool / 'art'
     spec = json.loads((art / 'prompts.json').read_text(encoding='utf-8'))
@@ -95,8 +116,11 @@ def main():
                        ' Draw a different child with a different face, skin tone and hair.')
         elif refs:
             prompt += ' Match the character design, colors and drawing style of the reference image exactly.'
-        img = generate(prompt, refs, asset.get('aspect'))
-        img.save(raw)
+        if rekey:  # redo the cutout and sizing from the saved original, without drawing again
+            img = Image.open(raw).convert('RGBA')
+        else:
+            img = generate(prompt, refs, asset.get('aspect'))
+            img.save(raw)
         if asset.get('cutout'):
             img = cut_out(img)
         if asset.get('crop'):

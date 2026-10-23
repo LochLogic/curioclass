@@ -180,19 +180,20 @@ footer.sentence{padding:16px 20px;background:var(--ink);color:#fff;display:flex;
   // Full-length illustrated musicians. Each painting is split at the crotch so its own legs can step:
   // size = image [width, height]; cx = where the legs part (fraction of width); crotch = top of the gap between the legs.
   const INSTRUMENTS = [
-    {k: 'drum', art: 'art:drum', size: [135, 400], cx: .507, crotch: .69},
-    {k: 'trumpet', art: 'art:trumpet', size: [124, 400], cx: .492, crotch: .685},
-    {k: 'tuba', art: 'art:tuba', size: [196, 400], cx: .37, crotch: .69},
-    {k: 'flute', art: 'art:flute', size: [167, 400], cx: .623, crotch: .685},
-    {k: 'cymbals', art: 'art:cymbals', size: [219, 400], cx: .505, crotch: .688},
+    {k: 'drum', art: 'art:drum', size: [136, 400], cx: 0.511, crotch: 0.693},
+    {k: 'trumpet', art: 'art:trumpet', size: [124, 400], cx: 0.492, crotch: 0.688},
+    {k: 'tuba', art: 'art:tuba', size: [196, 400], cx: 0.367, crotch: 0.693},
+    {k: 'flute', art: 'art:flute', size: [167, 400], cx: 0.623, crotch: 0.688},
+    {k: 'cymbals', art: 'art:cymbals', size: [219, 400], cx: 0.502, crotch: 0.690},
   ];
   const FH = 200; // drawn height of a musician, plume to shoes, before scaling
-  // Clip paths: the upper body, and each leg (starting a little above the crotch so the body can bob without a gap)
+  // Clip paths: the upper body, and each leg. The leg windows stay put while the legs move inside them, so a lifted
+  // leg slides up under the jacket; they start just above the crotch so the body can bob without a gap.
   $('clips').innerHTML = INSTRUMENTS.map(m => {
     const fw = FH * m.size[0] / m.size[1], split = -FH * (1 - m.crotch), x = -fw;
     return `<clipPath id="body-${m.k}" clipPathUnits="userSpaceOnUse"><rect x="${x}" y="${-FH - 20}" width="${fw * 2}" height="${FH + 20 + split}"/></clipPath>` +
-      `<clipPath id="legl-${m.k}" clipPathUnits="userSpaceOnUse"><rect x="${x}" y="${split - 14}" width="${fw}" height="${-split + 34}"/></clipPath>` +
-      `<clipPath id="legr-${m.k}" clipPathUnits="userSpaceOnUse"><rect x="0" y="${split - 14}" width="${fw}" height="${-split + 34}"/></clipPath>`;
+      `<clipPath id="legl-${m.k}" clipPathUnits="userSpaceOnUse"><rect x="${x}" y="${split - 5}" width="${fw}" height="${-split + 25}"/></clipPath>` +
+      `<clipPath id="legr-${m.k}" clipPathUnits="userSpaceOnUse"><rect x="0" y="${split - 5}" width="${fw}" height="${-split + 25}"/></clipPath>`;
   }).join('');
   const widest = Math.max(...INSTRUMENTS.map(m => FH * m.size[0] / m.size[1]));
   const WORDS = ['zero','one','two','three','four','five','six','seven','eight','nine','ten','eleven','twelve','thirteen','fourteen','fifteen','sixteen','seventeen','eighteen','nineteen','twenty','twenty-one','twenty-two','twenty-three','twenty-four','twenty-five'];
@@ -268,7 +269,7 @@ footer.sentence{padding:16px 20px;background:var(--ink);color:#fff;display:flex;
       const img = `<image href="${inst.art}" x="${-fw * inst.cx}" y="${-FH}" width="${fw}" height="${FH}"/>`;
       g.innerHTML = (p.alone ? `<ellipse class="glow" cx="0" cy="${-FH * .45}" rx="${FH * .36}" ry="${FH * .55}" fill="#f2c94c" opacity=".55"/>` : '') +
         `<ellipse cx="0" cy="-2" rx="${fw * .42}" ry="7" fill="#0003"/>` +
-        `<g class="hopper"><g class="leg leg-l" clip-path="url(#legl-${inst.k})">${img}</g><g class="leg leg-r" clip-path="url(#legr-${inst.k})">${img}</g>` +
+        `<g class="hopper"><g clip-path="url(#legl-${inst.k})"><g class="leg leg-l">${img}</g></g><g clip-path="url(#legr-${inst.k})"><g class="leg leg-r">${img}</g></g>` +
         `<g class="bob" clip-path="url(#body-${inst.k})">${img}</g></g>`;
       const hop = () => { g.classList.remove('hop'); void g.getBBox(); g.classList.add('hop'); play(inst.k); };
       g.addEventListener('click', hop);
