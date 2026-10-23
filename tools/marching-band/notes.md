@@ -12,6 +12,6 @@
 
 ## Good to know
 
-- Sound is off until you turn it on. Click any musician to hear them play, or press **March!**
+- Sound starts on (the Sound button turns it off). Click any musician to hear them play, or press **March!**
 - Keyboard: **+** and **−** change the band, **M** marches.
 - There's no score. The point is noticing patterns and saying them out loud.

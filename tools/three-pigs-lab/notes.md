@@ -17,5 +17,5 @@ No material is best at everything. Bricks beat the wolf but you can't see throug
 ## Good to know
 
 - Walls are tested by Wolf, Peek and Cold night. The roof is tested by Rain.
-- Sound is off until you turn it on. There's no score.
+- Sound starts on (the Sound button turns it off). There's no score.
 - Properties are simplified for 2nd grade (each material gets a 0-3 rating).

@@ -587,7 +587,7 @@ td.mat-name{font-weight:700}
     const pts = [[-3000, 446]];
     for (let x = -60; x <= 1060; x += 70) pts.push([x, 440 + 9 * Math.sin(x / 83) + 4 * Math.sin(x / 31)]);
     pts.push([4000, 446]);
-    const d = smooth(pts) + 'L4000 520L-3000 520Z';
+    const d = smooth(pts) + 'L4000 3000L-3000 3000Z';
     return `<g class="snow-ground"><path d="${d}" fill="#c3d7e8"/><path d="${d}" fill="#f4f8fb" transform="translate(0 5)"/></g>`;
   }
 

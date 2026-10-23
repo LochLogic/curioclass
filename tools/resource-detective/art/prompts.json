@@ -1,0 +1,153 @@
+{
+  "style": "Cozy picture-book mystery look with warm lamplight and friendly characters. Simple, clear shapes a 7-year-old can read from across a classroom.",
+  "assets": [
+    {
+      "name": "detective",
+      "prompt": "A friendly beagle detective standing upright on two legs, wearing a tan trench coat and a deerstalker cap, holding a big magnifying glass up near its face, curious smile. Full body from ears to feet.",
+      "cutout": true,
+      "aspect": "3:4",
+      "height": 420
+    },
+    {
+      "name": "detective-aha",
+      "ref": "detective",
+      "prompt": "The same beagle detective, full body from ears to feet, one paw pointing up in an excited 'aha!' moment, eyes wide and happy, magnifying glass in the other paw.",
+      "cutout": true,
+      "aspect": "3:4",
+      "height": 420
+    },
+    {
+      "name": "office",
+      "prompt": "Empty background: a cozy detective's office wall. A big empty cork bulletin board fills the middle of the wall (no papers on it), wooden wainscoting below, a warm desk lamp glow at one side, a rainy window at the far edge. No people, no animals, no writing. 16:9.",
+      "skip_style": true,
+      "width": 1400,
+      "quality": 78
+    },
+    {
+      "name": "pencil",
+      "prompt": "A yellow wooden pencil with a pink eraser lying on a school desk next to a notebook. A square picture-book illustration that fills the whole frame, like a photo pinned to a detective's board. No text, no labels.",
+      "aspect": "1:1",
+      "width": 300,
+      "quality": 78
+    },
+    {
+      "name": "shirt",
+      "prompt": "A plain blue cotton T-shirt folded neatly on a bed. A square picture-book illustration that fills the whole frame, like a photo pinned to a detective's board. No text, no labels.",
+      "aspect": "1:1",
+      "width": 300,
+      "quality": 78
+    },
+    {
+      "name": "juice",
+      "prompt": "A tall glass of fresh orange juice on a sunny breakfast table. A square picture-book illustration that fills the whole frame, like a photo pinned to a detective's board. No text, no labels.",
+      "aspect": "1:1",
+      "width": 300,
+      "quality": 78
+    },
+    {
+      "name": "jar",
+      "prompt": "An empty clear glass jar with a lid on a kitchen shelf, sunlight shining through it. A square picture-book illustration that fills the whole frame, like a photo pinned to a detective's board. No text, no labels.",
+      "aspect": "1:1",
+      "width": 300,
+      "quality": 78
+    },
+    {
+      "name": "mittens",
+      "prompt": "A pair of cozy knitted wool mittens on a wooden bench in winter. A square picture-book illustration that fills the whole frame, like a photo pinned to a detective's board. No text, no labels.",
+      "aspect": "1:1",
+      "width": 300,
+      "quality": 78
+    },
+    {
+      "name": "pot",
+      "prompt": "An empty orange clay flower pot on a sunny windowsill. A square picture-book illustration that fills the whole frame, like a photo pinned to a detective's board. No text, no labels.",
+      "aspect": "1:1",
+      "width": 300,
+      "quality": 78
+    },
+    {
+      "name": "make-pencil",
+      "prompt": "Inside a small pencil factory: a worker places a thin dark graphite stick into a groove between two strips of wood. Friendly, simple. A square picture-book illustration that fills the whole frame, like a photo pinned to a detective's board. No text, no labels.",
+      "aspect": "1:1",
+      "width": 300,
+      "quality": 78
+    },
+    {
+      "name": "make-shirt",
+      "prompt": "White fluffy cotton being spun into thread on a spinning machine, and a person sewing blue cloth into a T-shirt at a sewing machine. A square picture-book illustration that fills the whole frame, like a photo pinned to a detective's board. No text, no labels.",
+      "aspect": "1:1",
+      "width": 300,
+      "quality": 78
+    },
+    {
+      "name": "make-juice",
+      "prompt": "A farmer picking oranges from an orange tree into a basket, and oranges being squeezed in a juice press. A square picture-book illustration that fills the whole frame, like a photo pinned to a detective's board. No text, no labels.",
+      "aspect": "1:1",
+      "width": 300,
+      "quality": 78
+    },
+    {
+      "name": "make-jar",
+      "prompt": "A glassblower at a glowing furnace shaping a jar from hot melted glass, a pile of pale sand beside the furnace. A square picture-book illustration that fills the whole frame, like a photo pinned to a detective's board. No text, no labels.",
+      "aspect": "1:1",
+      "width": 300,
+      "quality": 78
+    },
+    {
+      "name": "make-mittens",
+      "prompt": "A farmer gently shearing wool from a sheep, and a grandmother knitting the wool into mittens. A square picture-book illustration that fills the whole frame, like a photo pinned to a detective's board. No text, no labels.",
+      "aspect": "1:1",
+      "width": 300,
+      "quality": 78
+    },
+    {
+      "name": "make-pot",
+      "prompt": "A potter shaping wet brown clay into a flower pot on a spinning potter's wheel. A square picture-book illustration that fills the whole frame, like a photo pinned to a detective's board. No text, no labels.",
+      "aspect": "1:1",
+      "width": 300,
+      "quality": 78
+    },
+    {
+      "name": "res-trees",
+      "prompt": "A green forest of tall trees with a fallen log, sunlight between the trunks. A square picture-book illustration that fills the whole frame, like a photo pinned to a detective's board. No text, no labels.",
+      "aspect": "1:1",
+      "width": 300,
+      "quality": 78
+    },
+    {
+      "name": "res-plants",
+      "prompt": "A sunny farm field of growing plants: fluffy white cotton plants in front and rows of crops behind. A square picture-book illustration that fills the whole frame, like a photo pinned to a detective's board. No text, no labels.",
+      "aspect": "1:1",
+      "width": 300,
+      "quality": 78
+    },
+    {
+      "name": "res-water",
+      "prompt": "A clear fresh stream flowing over smooth stones into a lake, blue sky. A square picture-book illustration that fills the whole frame, like a photo pinned to a detective's board. No text, no labels.",
+      "aspect": "1:1",
+      "width": 300,
+      "quality": 78
+    },
+    {
+      "name": "res-soil",
+      "prompt": "A close view of rich brown soil and a bank of red-brown clay with a shovel stuck in it. A square picture-book illustration that fills the whole frame, like a photo pinned to a detective's board. No text, no labels.",
+      "aspect": "1:1",
+      "width": 300,
+      "quality": 78
+    },
+    {
+      "name": "res-rocks",
+      "prompt": "A sunny quarry with grey rocks, shiny minerals, dark graphite rock and a pile of pale sand. A square picture-book illustration that fills the whole frame, like a photo pinned to a detective's board. No text, no labels.",
+      "aspect": "1:1",
+      "width": 300,
+      "quality": 78
+    },
+    {
+      "name": "res-animals",
+      "prompt": "A friendly farm with woolly sheep, a cow and a bee hive. A square picture-book illustration that fills the whole frame, like a photo pinned to a detective's board. No text, no labels.",
+      "aspect": "1:1",
+      "width": 300,
+      "quality": 78
+    }
+  ]
+}

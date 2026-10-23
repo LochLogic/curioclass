@@ -1,0 +1,87 @@
+{
+  "style": "Cheerful, juicy, slightly cartoony diner food illustration, like a picture book about a burger shop. Characters are friendly and round, never scary.",
+  "assets": [
+    {
+      "name": "bun-top",
+      "prompt": "ONLY the top half of a golden sesame seed hamburger bun, by itself: a soft rounded dome with sesame seeds and a flat cut edge underneath. No bottom bun, no burger, no fillings. Seen exactly from the side at eye level, as it looks stacked inside a burger: a wide, flat, horizontal layer, much wider than it is tall.",
+      "cutout": true,
+      "width": 520
+    },
+    {
+      "name": "bun-bottom",
+      "prompt": "The bottom half of a golden hamburger bun: flat top and flat bottom, lightly toasted, about as thick as a slice of bread. Seen exactly from the side at eye level, as it looks stacked inside a burger: a wide, flat, horizontal layer, much wider than it is tall.",
+      "cutout": true,
+      "width": 520
+    },
+    {
+      "name": "lettuce",
+      "prompt": "A crisp ruffled leaf of bright green lettuce, the frilly edges hanging down a little on both sides. Seen exactly from the side at eye level, as it looks stacked inside a burger: a wide, flat, horizontal layer, much wider than it is tall.",
+      "cutout": true,
+      "key": "magenta",
+      "width": 520
+    },
+    {
+      "name": "tomato",
+      "prompt": "Three round red tomato slices in a row, overlapping slightly, juicy. Seen exactly from the side at eye level, as it looks stacked inside a burger: a wide, flat, horizontal layer, much wider than it is tall.",
+      "cutout": true,
+      "width": 520
+    },
+    {
+      "name": "cheese",
+      "prompt": "A slice of melty orange cheddar cheese with soft drips hanging over both edges. Seen exactly from the side at eye level, as it looks stacked inside a burger: a wide, flat, horizontal layer, much wider than it is tall.",
+      "cutout": true,
+      "width": 520
+    },
+    {
+      "name": "patty",
+      "prompt": "ONLY a thick juicy grilled beef patty, by itself, with grill marks. No bun, no cheese, no lettuce, no burger. Seen exactly from the side at eye level, as it looks stacked inside a burger: a wide, flat, horizontal layer, much wider than it is tall.",
+      "cutout": true,
+      "width": 520
+    },
+    {
+      "name": "boot",
+      "prompt": "A funny muddy old brown boot lying flat on its side, with a loose lace and a hole in the toe. Silly, not gross.",
+      "cutout": true,
+      "width": 420
+    },
+    {
+      "name": "bear",
+      "prompt": "A friendly round brown bear customer in a red striped shirt with a white napkin tucked in like a bib, sitting at a counter seen from the waist up, holding a fork in one paw and a knife in the other, smiling hungrily. Front view.",
+      "cutout": true,
+      "aspect": "3:4",
+      "width": 340
+    },
+    {
+      "name": "bear-yum",
+      "ref": "bear",
+      "prompt": "The same bear, from the waist up, eyes closed in delight, licking its lips, paws clasped happily, little hearts of joy.",
+      "cutout": true,
+      "aspect": "3:4",
+      "width": 340
+    },
+    {
+      "name": "bear-yuck",
+      "ref": "bear",
+      "prompt": "The same bear, from the waist up, grossed out: tongue out, eyes squeezed, holding its nose with one paw and pushing away with the other. Funny, not mean.",
+      "cutout": true,
+      "aspect": "3:4",
+      "width": 340
+    },
+    {
+      "name": "bear-huh",
+      "ref": "bear",
+      "prompt": "The same bear, from the waist up, confused: one eyebrow up, scratching its head with one paw, a puzzled little frown.",
+      "cutout": true,
+      "aspect": "3:4",
+      "width": 340
+    },
+    {
+      "name": "diner",
+      "prompt": "Empty background: the inside of a cheerful retro diner. A long counter runs across the bottom of the picture, red stools, a checkered floor, warm lamps, a chrome kitchen pass-through window behind. A menu board with no words. No people, no animals, no food. 16:9.",
+      "skip_style": true,
+      "width": 1400,
+      "quality": 78,
+      "trim": 0.035
+    }
+  ]
+}

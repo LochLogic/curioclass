@@ -14,6 +14,8 @@ Asset options: "ref": "<other asset>" sends that asset's raw image along so a ch
 "crop": [top, bottom] keeps that vertical slice (0-1) of the cut-out figure, e.g. a musician from hat to waist;
 "height" sizes by height instead of width, so a set of characters lines up;
 "aspect": "9:16" (or "3:4", "16:9"...) sets the frame shape, e.g. portrait for a full-length figure.
+"key": "magenta" draws on magenta instead of green, for green subjects (lettuce, frogs, leaves).
+"trim": 0.03 shaves that fraction off every side, for backgrounds that come back with a painted frame.
 Raw images go to art/raw/ (not committed); finished art/<name>.webp is committed and bundled
 into the tool by scripts/bundle_tool.py. See docs/ART.md for the house style.
 """
@@ -28,8 +30,9 @@ MODEL = os.environ.get('CURIO_IMAGE_MODEL', 'gemini-3.1-flash-image')
 HOUSE_STYLE = ("Warm storybook illustration for a children's classroom tool. Soft gouache and colored-pencil texture, "
                "clean confident shapes, gentle shading, friendly proportions, rich but not neon colors. "
                "No text, no letters, no watermark, no border, no frame.")
-CUTOUT = ("Draw the subject alone, centered, fully in frame, on a perfectly flat solid pure green (#00FF00) background. "
-          "No ground, no cast shadow, no other objects. Keep green out of the subject itself.")
+KEYS = {'green': 'pure green (#00FF00)', 'magenta': 'pure magenta (#FF00FF)'}
+CUTOUT = ("Draw the subject alone, centered, fully in frame, on a perfectly flat solid {key} background. "
+          "No ground, no cast shadow, no other objects. Keep that background color out of the subject itself.")
 
 
 def api_key():
@@ -60,14 +63,13 @@ def generate(prompt, refs=(), aspect=None):
 
 
 def cut_out(img):
-    """Key out the green background, soften the edge, and remove green spill.
+    """Key out the background (green or magenta), soften the edge, and remove color spill.
 
     Keys by distance from the actual background color (sampled at the border) rather than by "how green",
     so a green jacket stays solid. Only background touching the border is keyed, plus enclosed pockets that
     are very close to the key color (a gap between an arm and the body)."""
     from scipy import ndimage
     a = np.asarray(img).astype(np.float32)
-    r, g, b = a[..., 0], a[..., 1], a[..., 2]
     border = np.concatenate([a[0, :, :3], a[-1, :, :3], a[:, 0, :3], a[:, -1, :3]])
     key = np.median(border, axis=0)
     dist = np.sqrt(((a[..., :3] - key) ** 2).sum(-1))
@@ -83,8 +85,10 @@ def cut_out(img):
         sizes = ndimage.sum(np.ones_like(alpha), blobs, range(1, count + 1))
         keep = np.isin(blobs, 1 + np.flatnonzero(sizes >= sizes.max() * .02))
         alpha = np.where(ndimage.binary_dilation(keep, iterations=2), alpha, 0)
-    spill = alpha < 1
-    a[..., 1] = np.where(spill, np.minimum(g, np.maximum(r, b) + 10), g)
+    # remove key-color spill from soft edges: each edge pixel is a mix of figure and key, so un-mix it
+    edge_px = (alpha > .05) & (alpha < 1)
+    fg = (a[..., :3] - (1 - alpha[..., None]) * key) / np.maximum(alpha[..., None], .05)
+    a[..., :3] = np.where(edge_px[..., None], fg, a[..., :3])
     a[..., 3] = alpha * 255
     out = Image.fromarray(a.clip(0, 255).astype(np.uint8), 'RGBA')
     box = out.getchannel('A').point(lambda v: 255 if v > 128 else 0).getbbox()  # faint haze doesn't stretch the frame
@@ -108,7 +112,7 @@ def main():
             print(f'skip {name} (exists; --force to redo)')
             continue
         tool_style = '' if asset.get('skip_style') else spec.get('style', '')  # backgrounds skip character notes
-        prompt = ' '.join([HOUSE_STYLE, tool_style, asset['prompt'], CUTOUT if asset.get('cutout') else ''])
+        prompt = ' '.join([HOUSE_STYLE, tool_style, asset['prompt'], CUTOUT.format(key=KEYS[asset.get('key', 'green')]) if asset.get('cutout') else ''])
         raw = art / 'raw' / f'{name}.png'
         refs = [Image.open(art / 'raw' / f'{asset["ref"]}.png')] if asset.get('ref') else []
         if refs and asset.get('ref_mode') == 'style':
@@ -121,6 +125,8 @@ def main():
         else:
             img = generate(prompt, refs, asset.get('aspect'))
             img.save(raw)
+        if asset.get('trim'):  # shave a painted frame off every side
+            t = asset['trim']; img = img.crop((round(img.width * t), round(img.height * t), round(img.width * (1 - t)), round(img.height * (1 - t))))
         if asset.get('cutout'):
             img = cut_out(img)
         if asset.get('crop'):

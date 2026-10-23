@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Resource Detective · Where things come from · Curio Class</title>
+<meta name="description" content="Crack the case: follow clues to trace a pencil, a T-shirt, orange juice and more back to the natural resources they came from. Grade 2 social studies, teacher-led. Works offline.">
+<!--
+RESOURCE DETECTIVE (Curio Class)
+Grade 2 social studies, C3 D2.Geo.4.K-2 and D2.Geo.5.K-2 (how people use land and natural resources;
+how everyday goods are made from them), with links to NGSS 2-PS1.
+Teacher-led on a projector: pick a case (an everyday object), reveal clues one at a time, let the class
+choose which natural resources it came from, then follow the red string on the case board from the object,
+through how it was made, back to nature. Many things come from more than one resource.
+One file, no network requests. Illustrations generated with Google Gemini, edited for Curio Class.
+Content CC BY 4.0, code MIT. curioclass.org
+-->
+<style>
+:root{
+  --paper:#f8f2e6;--card:#fff;--ink:#2b2420;--muted:#6b5f55;--line:#e3d6bd;--accent:#b8432f;--string:#c62f2f;
+  --cork:#c49a6c;--focus:#2f5bd3;
+  font-family:'Segoe UI',system-ui,-apple-system,Roboto,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{background:var(--paper);color:var(--ink);display:grid;grid-template-rows:auto 1fr;min-height:100vh}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:4px solid var(--focus);outline-offset:3px}
+header{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:12px 20px;background:#2f2a26;color:#f8f2e6}
+h1{margin:0 auto 0 0;font:700 clamp(22px,3vw,32px)/1.1 Georgia,'Times New Roman',serif;letter-spacing:.01em}
+h1 small{display:block;font:italic 500 15px/1.3 Georgia,serif;color:#d8cbb4}
+.icon-btn{border:2px solid #5a4f47;background:#3b3530;color:#f8f2e6;border-radius:999px;min-height:52px;padding:0 16px;font-weight:700;font-size:16px}
+.icon-btn[aria-pressed="true"]{border-color:#e8b44f;background:#4a3f33}
+
+main{display:grid;grid-template-columns:1fr;min-height:0}
+@media (min-width:760px){main{grid-template-columns:minmax(0,1fr) 360px}}
+.stage{position:relative;overflow:hidden;background:#6b4b33;min-height:340px}
+.stage svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+
+.panel{background:#fffaf0;border-left:3px solid var(--line);padding:16px 18px;display:flex;flex-direction:column;gap:12px;overflow:auto}
+@media (max-width:759px){.panel{border-left:0;border-top:3px solid var(--line)}}
+.panel h2{margin:4px 0 0;font:700 13px/1 'Segoe UI',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.cases,.resources{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.case,.res{position:relative;border:2px solid var(--line);background:#fff;border-radius:12px;padding:5px 4px 7px;display:grid;justify-items:center;gap:3px;font-weight:700;font-size:14px;min-height:92px}
+.case img,.res img{width:58px;height:58px;border-radius:8px;object-fit:cover;border:1.5px solid #0002}
+.case[aria-pressed="true"]{border-color:var(--ink);box-shadow:inset 0 0 0 2px var(--ink);background:#fff6e2}
+.res[aria-pressed="true"]{border-color:#2f7d4f;box-shadow:inset 0 0 0 2px #2f7d4f;background:#eaf6ee}
+.res[aria-pressed="true"]::after{content:'✓';position:absolute;top:2px;right:6px;color:#2f7d4f;font-weight:900}
+.case .solved{position:absolute;top:2px;right:2px;background:var(--accent);color:#fff;border-radius:999px;font-size:11px;padding:1px 6px}
+.clue-btn,.solve{border:0;border-radius:16px;min-height:58px;font:800 19px/1 'Segoe UI',sans-serif;color:#fff;box-shadow:0 5px 0 #0004}
+.clue-btn{background:#5b6b8a}.solve{background:var(--accent)}
+.clue-btn:active:not(:disabled),.solve:active:not(:disabled){transform:translateY(3px);box-shadow:0 2px 0 #0004}
+.clue-btn:disabled,.solve:disabled{opacity:.45;cursor:default}
+.hint{margin:0;font:italic 15px/1.35 Georgia,serif;color:var(--muted)}
+
+/* the case board */
+.pin-in{animation:pinin .55s cubic-bezier(.3,1.5,.5,1) both;transform-box:fill-box;transform-origin:50% 0}
+@keyframes pinin{from{opacity:0;transform:translateY(-40px) scale(1.25) rotate(8deg)}}
+.string{stroke-dasharray:1400;animation:string 1.4s ease-in-out both}
+@keyframes string{from{stroke-dashoffset:1400}}
+.stamp{animation:stamp .45s cubic-bezier(.2,1.8,.4,1) both;transform-box:fill-box;transform-origin:center}
+@keyframes stamp{from{opacity:0;transform:scale(2.4) rotate(-30deg)}}
+.bubble{animation:pop .35s cubic-bezier(.3,1.6,.5,1) both;transform-box:fill-box;transform-origin:70% 100%}
+@keyframes pop{from{opacity:0;scale:.6}}
+.sniff{animation:sniff 1.6s ease-in-out infinite;transform-box:fill-box;transform-origin:50% 100%}
+@keyframes sniff{50%{transform:rotate(-2deg) translateY(-3px)}}
+.calm *{animation:none!important;transition:none!important}
+
+@media (max-width:759px),(max-height:620px){
+  header{padding:6px 12px}
+  h1{font-size:19px} h1 small{display:none}
+  .icon-btn{min-height:38px;font-size:13px;padding:0 10px}
+  main{grid-template-columns:minmax(0,1fr) 300px}
+  .panel{padding:8px 10px;gap:6px}
+  .panel h2,.hint{display:none}
+  .case,.res{min-height:0;font-size:11px;padding:3px}
+  .case img,.res img{width:34px;height:34px}
+  .clue-btn,.solve{min-height:40px;font-size:15px}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Resource Detective <small>Where did it come from? Follow the clues back to nature.</small></h1>
+  <button class="icon-btn" id="motion" aria-pressed="true" title="Turn animation on or off">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+  <button class="icon-btn" id="read">🔊 Read</button>
+</header>
+<main>
+  <div class="stage">
+    <svg id="board" viewBox="0 0 1000 560" role="img" aria-labelledby="board-desc">
+      <desc id="board-desc">A detective's case board with photos, clue cards and red string, and a beagle detective with a magnifying glass.</desc>
+      <defs>
+        <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="5" stdDeviation="5" flood-color="#000" flood-opacity=".35"/></filter>
+        <radialGradient id="pin" cx=".35" cy=".35" r=".7"><stop offset="0" stop-color="#ff8a7a"/><stop offset=".5" stop-color="#d9362b"/><stop offset="1" stop-color="#8e1d17"/></radialGradient>
+        <linearGradient id="wall-fade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#95a67f"/><stop offset="1" stop-color="#95a67f" stop-opacity="0"/></linearGradient>
+        <clipPath id="photo-clip"><rect x="-90" y="-90" width="180" height="180" rx="2"/></clipPath>
+      </defs>
+      <!-- the painted office, oversized and mirrored at the sides so wide screens never show its edge -->
+      <rect x="-3000" y="-3000" width="7000" height="3010" fill="#95a67f"/>  <!-- the wall continues above the painting on tall screens -->
+      <!-- sized so the painted corkboard fills the case-board area (about 25..725 by 25..488) -->
+      <image id="office" href="art:office" x="-221" y="-27" width="1324" height="739"/>
+      <use href="#office" transform="translate(-442 0) scale(-1 1)"/>
+      <use href="#office" transform="translate(2206 0) scale(-1 1)"/>
+      <rect x="-3000" y="-28" width="7000" height="44" fill="url(#wall-fade)"/>
+      <g id="photos"></g>
+      <g id="clues"></g>
+      <g id="strings"></g>
+      <g id="stamp-g"></g>
+      <g id="det" transform="translate(895 556)"></g>
+      <g id="say"></g>
+    </svg>
+  </div>
+
+  <aside class="panel" aria-label="Detective tools">
+    <h2 id="c-h">Pick a case</h2>
+    <div class="cases" id="cases" role="group" aria-labelledby="c-h"></div>
+    <button class="clue-btn" id="clue">🔎 Next clue</button>
+    <h2 id="r-h">Which natural resources?</h2>
+    <p class="hint">Pick every one you think it came from. Some things come from more than one!</p>
+    <div class="resources" id="resources" role="group" aria-labelledby="r-h"></div>
+    <button class="solve" id="solve">Follow the trail! 🧵</button>
+  </aside>
+</main>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const SVGNS = 'http://www.w3.org/2000/svg';
+  // Motion follows the device's "reduce motion" setting until the teacher picks, then the choice is remembered
+  let reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  try { const m = localStorage.getItem('curio-motion'); if (m) reduce = m === 'calm'; } catch {}
+  function showMotion() {
+    document.body.classList.toggle('calm', reduce);
+    $('motion').setAttribute('aria-pressed', !reduce);
+    $('motion').textContent = reduce ? '⏸ Motion' : '✨ Motion';
+  }
+  showMotion();
+  $('motion').onclick = () => {
+    reduce = !reduce;
+    try { localStorage.setItem('curio-motion', reduce ? 'calm' : 'on'); } catch {}
+    showMotion();
+  };
+  const wait = ms => new Promise(r => setTimeout(r, ms));  // same pacing with motion off, so sounds stay in step
+  const readMs = text => 1400 + text.length * 75;
+
+  // ---------- the cases ----------
+  const RES = {
+    trees: {name: 'Trees', art: 'art:res-trees'},
+    plants: {name: 'Plants', art: 'art:res-plants'},
+    water: {name: 'Water', art: 'art:res-water'},
+    soil: {name: 'Soil', art: 'art:res-soil'},
+    rocks: {name: 'Rocks', art: 'art:res-rocks'},
+    animals: {name: 'Animals', art: 'art:res-animals'},
+  };
+  // answers: the resources it came from. ok: also fair answers, with a note why.
+  const CASES = {
+    pencil: {name: 'Pencil', art: 'art:pencil', making: 'art:make-pencil',
+      clues: ['I started out tall and leafy, standing in a forest.', 'My dark middle came from deep inside the ground.', 'At a factory, my dark middle was glued between two strips of wood.'],
+      made: 'At a pencil factory, a dark stick of graphite is glued between strips of wood.',
+      answers: {trees: 'The wood comes from trees.', rocks: 'The dark graphite is a mineral dug out of rocks.'}},
+    shirt: {name: 'T-shirt', art: 'art:shirt', making: 'art:make-shirt',
+      clues: ['I grew in a sunny field.', 'I was white and fluffy, like a little cloud on a stem.', 'I was spun into thread, then woven and sewn.'],
+      made: 'Fluffy cotton is spun into thread, woven into cloth and sewn into a shirt.',
+      answers: {plants: 'Cotton is a plant. Its fluffy seed pods become thread.'}},
+    juice: {name: 'Orange juice', art: 'art:juice', making: 'art:make-juice',
+      clues: ['I grew on a tree in a warm, sunny place.', 'I was round and orange, and full of juice.', 'Then I was squeezed!'],
+      made: 'Oranges are picked from orange trees and squeezed into juice.',
+      answers: {plants: 'Oranges are the fruit of a plant.'},
+      ok: {trees: 'Yes! Orange trees are plants too.', water: 'Good thinking! The orange tree drank lots of water to grow its juicy fruit.'}},
+    jar: {name: 'Glass jar', art: 'art:jar', making: 'art:make-jar',
+      clues: ['I started as tiny grains on a beach.', 'I was melted in a fire much hotter than an oven.', 'Now you can see right through me.'],
+      made: 'Sand is melted in a very hot furnace and shaped into glass.',
+      answers: {rocks: 'Sand is made of tiny bits of rock. Melted sand becomes glass.'}},
+    mittens: {name: 'Wool mittens', art: 'art:mittens', making: 'art:make-mittens',
+      clues: ['I started out on the back of an animal.', 'Baa!', 'I was clipped off like a haircut, then spun and knitted.'],
+      made: 'Wool is clipped from sheep like a haircut, then spun into yarn and knitted.',
+      answers: {animals: 'Wool comes from sheep. It grows back, like hair.'}},
+    pot: {name: 'Flower pot', art: 'art:pot', making: 'art:make-pot',
+      clues: ['I was dug out of the ground.', 'When I was wet, I was soft and squishy.', 'I was baked hard in a hot oven called a kiln.'],
+      made: 'Clay is dug from the ground, shaped on a potter’s wheel and baked hard.',
+      answers: {soil: 'Clay is a kind of soil.'},
+      ok: {water: 'Yes! Potters mix water into the clay to make it soft enough to shape.', rocks: 'Close! Clay forms from rocks that wore down over a very long time.'}},
+  };
+  const POSE = {detective: 'art:detective', 'detective-aha': 'art:detective-aha'};  // written out so the bundler can inline them
+  const SIZE = {'detective': [230, 420], 'detective-aha': [233, 420]}; // [width, height] of the detective images
+
+  const state = {c: 'pencil', clue: 0, picked: new Set(), solved: new Set(), sound: true, busy: false};
+
+  // ---------- sound ----------
+  let ctx;
+  const audio = () => (ctx ||= new (window.AudioContext || window.webkitAudioContext)());
+  function tone(type, f0, f1, dur, gain, when = 0) {
+    if (!state.sound) return;
+    const a = audio(), o = a.createOscillator(), g = a.createGain(), t = a.currentTime + when;
+    o.type = type; o.frequency.setValueAtTime(f0, t); o.frequency.exponentialRampToValueAtTime(f1, t + dur);
+    g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(gain, t + 0.02); g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    o.connect(g).connect(a.destination); o.start(t); o.stop(t + dur + 0.05);
+  }
+  function noise(dur, freq, gain, type = 'lowpass') {
+    if (!state.sound) return;
+    const a = audio(), len = a.sampleRate * dur, buf = a.createBuffer(1, len, a.sampleRate), d = buf.getChannelData(0);
+    for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * (1 - i / len) ** 3;
+    const src = a.createBufferSource(), f = a.createBiquadFilter(), g = a.createGain();
+    src.buffer = buf; f.type = type; f.frequency.value = freq; g.gain.value = gain;
+    src.connect(f).connect(g).connect(a.destination); src.start();
+  }
+  const SFX = {
+    pin: () => { noise(.06, 3000, .3, 'highpass'); tone('sine', 900, 600, .08, .12); },
+    card: () => noise(.18, 2500, .25, 'bandpass'),
+    string: () => tone('triangle', 330, 660, .9, .07),
+    stamp: () => { noise(.25, 500, .8); tone('sine', 110, 60, .25, .4); },
+    aha: () => { tone('sine', 523, 523, .15, .2); tone('sine', 784, 784, .3, .2, .14); },
+    hmm: () => tone('sine', 300, 240, .4, .15),
+  };
+
+  // ---------- board ----------
+  const el = (tag, attrs, parent) => {
+    const n = document.createElementNS(SVGNS, tag);
+    for (const k in attrs) n.setAttribute(k, attrs[k]);
+    if (parent) parent.append(n);
+    return n;
+  };
+  // A pinned photo with a handwritten caption under it
+  function photo(x, y, href, caption, {size = 180, tilt = 0, id} = {}) {
+    const s = size / 180;
+    const g = el('g', {transform: `translate(${x} ${y}) rotate(${tilt}) scale(${s})`}, $('photos'));
+    const inner = el('g', {class: 'pin-in', filter: 'url(#shadow)'}, g);
+    el('rect', {x: -102, y: -102, width: 204, height: 250, rx: 3, fill: '#fffdf7'}, inner);
+    el('image', {href, x: -106, y: -106, width: 212, height: 212,  // a little zoom trims any painted frame
+      'clip-path': 'url(#photo-clip)', preserveAspectRatio: 'xMidYMid slice'}, inner);
+    const fo = el('foreignObject', {x: -96, y: 94, width: 192, height: 52}, inner);
+    fo.innerHTML = `<div xmlns="http://www.w3.org/1999/xhtml" style="font:italic 700 19px/1.15 Georgia,serif;color:#2b2420;text-align:center">${caption}</div>`;
+    el('circle', {cx: 0, cy: -96, r: 10, fill: 'url(#pin)'}, inner);
+    if (id) g.id = id;
+    SFX.pin();
+    return {x, y: y - 96 * s};  // where the string ties on
+  }
+  function clueCard(i, text) {
+    const y = 324 + i * 60, tilt = [-2, 1.5, -1][i];
+    const g = el('g', {class: 'pin-in', transform: `translate(60 ${y}) rotate(${tilt})`, filter: 'url(#shadow)'}, $('clues'));
+    el('rect', {width: 330, height: 56, rx: 3, fill: '#fffef8'}, g);
+    el('path', {d: 'M0 20H330', stroke: '#e58c8c', 'stroke-width': 2}, g);
+    el('path', {d: 'M0 38H330', stroke: '#bcd2e8', 'stroke-width': 1.2}, g);
+    const fo = el('foreignObject', {x: 34, y: 2, width: 290, height: 54}, g);
+    fo.innerHTML = `<div xmlns="http://www.w3.org/1999/xhtml" style="font:600 16px/1.2 Georgia,serif;color:#2b2420;padding-top:3px">${text}</div>`;
+    el('text', {x: 10, y: 17, 'font-family': 'Georgia,serif', 'font-size': 15, 'font-weight': 700, fill: '#b8432f'}, g).textContent = i + 1;
+    el('circle', {cx: 165, cy: 0, r: 8, fill: 'url(#pin)'}, g);
+    SFX.card();
+  }
+  // Red string between two pins, with a little sag
+  function string(a, b) {
+    const mx = (a.x + b.x) / 2, my = Math.max(a.y, b.y) + 40;
+    el('path', {class: 'string', d: `M${a.x} ${a.y}Q${mx} ${my} ${b.x} ${b.y}`, fill: 'none', stroke: '#7a1a1a', 'stroke-width': 6, opacity: .35, transform: 'translate(0 4)'}, $('strings'));
+    el('path', {class: 'string', d: `M${a.x} ${a.y}Q${mx} ${my} ${b.x} ${b.y}`, fill: 'none', stroke: 'var(--string)', 'stroke-width': 4, 'stroke-linecap': 'round'}, $('strings'));
+    SFX.string();
+  }
+
+  function detective(pose = 'detective', say = '') {
+    const [w, h] = SIZE[pose] || [3, 4], dh = 360, dw = dh * w / h;
+    $('det').innerHTML = `<g class="sniff"><image href="${POSE[pose]}" x="${-dw / 2}" y="${-dh}" width="${dw}" height="${dh}"/></g>`;
+    $('say').replaceChildren();
+    if (say) {
+      const fo = el('foreignObject', {x: 738, y: 8, width: 256, height: 200}, $('say'));  // top right, clear of the board
+      fo.innerHTML = `<div xmlns="http://www.w3.org/1999/xhtml" class="bubble" role="status" style="background:#fff;border:3px solid #2b2420;border-radius:20px;padding:9px 12px;font:700 16px/1.28 Georgia,serif;color:#2b2420;box-shadow:0 5px 0 #0003">${say}</div>`;
+    }
+  }
+
+  // ---------- panel ----------
+  function drawCases() {
+    $('cases').innerHTML = Object.entries(CASES).map(([k, c]) =>
+      `<button class="case" data-k="${k}" aria-pressed="${k === state.c}"><img src="${c.art}" alt="">${c.name}${state.solved.has(k) ? '<span class="solved">solved</span>' : ''}</button>`).join('');
+    $('cases').querySelectorAll('.case').forEach(b => b.onclick = () => { if (!state.busy) { state.c = b.dataset.k; openCase(); } });
+  }
+  function drawResources() {
+    $('resources').innerHTML = Object.entries(RES).map(([k, r]) =>
+      `<button class="res" data-k="${k}" aria-pressed="${state.picked.has(k)}"><img src="${r.art}" alt="">${r.name}</button>`).join('');
+    $('resources').querySelectorAll('.res').forEach(b => b.onclick = () => {
+      if (state.busy) return;
+      const k = b.dataset.k;
+      state.picked.has(k) ? state.picked.delete(k) : state.picked.add(k);
+      drawResources();
+    });
+  }
+  function clueLabel() {
+    const n = CASES[state.c].clues.length;
+    $('clue').textContent = state.clue < n ? `🔎 Next clue (${state.clue + 1} of ${n})` : '🔎 All clues found';
+    $('clue').disabled = state.clue >= n || state.busy;
+  }
+
+  function openCase() {
+    const c = CASES[state.c];
+    state.clue = 0; state.picked.clear();
+    ['strings', 'photos', 'clues', 'stamp-g'].forEach(id => $(id).replaceChildren());
+    photo(230, 160, c.art, `The ${c.name.toLowerCase()}`, {size: 190, tilt: -3, id: 'evidence'});
+    detective('detective', `A new case! Where did this ${c.name.toLowerCase()} come from? Let’s look for clues.`);
+    drawCases(); drawResources(); clueLabel();
+  }
+
+  $('clue').onclick = () => {
+    const c = CASES[state.c];
+    if (state.clue >= c.clues.length) return;
+    clueCard(state.clue, c.clues[state.clue]);
+    state.clue++;
+    detective('detective', state.clue < c.clues.length ? 'Hmm, interesting… What does that clue tell us?' : 'That’s every clue. Which natural resources did it come from?');
+    clueLabel();
+  };
+
+  async function solve() {
+    if (state.busy) return;
+    const c = CASES[state.c];
+    state.busy = true; setBusy(true);
+    $('strings').replaceChildren(); $('stamp-g').replaceChildren();
+    [...$('photos').children].forEach(g => { if (g.id !== 'evidence') g.remove(); });
+    detective('detective-aha', 'Aha! Let’s follow the trail back to nature!');
+    SFX.aha();
+    await wait(2400);
+    // the object, then how it was made, then the resources
+    const from = {x: 230, y: 160 - 96 * 190 / 180};
+    const mid = {x: 445, y: 120};
+    string(from, mid);
+    await wait(1100);
+    const made = photo(mid.x, mid.y + 96 * .9, c.making, 'How it was made', {size: 162, tilt: 2});
+    detective('detective', c.made);
+    await wait(readMs(c.made));
+    const keys = Object.keys(c.answers);
+    const spots = keys.length === 1 ? [{x: 640, y: 220}] : [{x: 630, y: 120}, {x: 650, y: 335}];
+    for (let i = 0; i < keys.length; i++) {
+      const k = keys[i], at = spots[i];
+      string(made, {x: at.x, y: at.y - 96 * .82});
+      await wait(1100);
+      photo(at.x, at.y, RES[k].art, RES[k].name, {size: 148, tilt: i ? 3 : -2});
+      detective('detective-aha', c.answers[k]);
+      await wait(readMs(c.answers[k]));
+    }
+    // how did the class do?
+    const right = keys.filter(k => state.picked.has(k));
+    const fair = [...state.picked].filter(k => c.ok?.[k]);
+    const off = [...state.picked].filter(k => !c.answers[k] && !c.ok?.[k]);
+    let msg;
+    if (right.length === keys.length && !off.length) {
+      SFX.stamp();
+      $('stamp-g').innerHTML = `<g class="stamp" transform="translate(232 175) rotate(-12)"><rect x="-122" y="-30" width="244" height="60" rx="8" fill="none" stroke="#c0392b" stroke-width="6"/>
+        <text y="12" text-anchor="middle" font-family="Georgia,serif" font-size="34" font-weight="900" fill="#c0392b" letter-spacing="3">CASE SOLVED</text></g>`;
+      state.solved.add(state.c);
+      msg = `Case solved! The ${c.name.toLowerCase()} came from ${list(keys.map(k => RES[k].name.toLowerCase()))}.` + (fair.length ? ' ' + fair.map(k => c.ok[k]).join(' ') : '');
+    } else if (!state.picked.size) {
+      SFX.hmm();
+      msg = `There’s the trail! The ${c.name.toLowerCase()} came from ${list(keys.map(k => RES[k].name.toLowerCase()))}. Try another case, and pick your guesses first.`;
+    } else {
+      SFX.hmm();
+      const missed = keys.filter(k => !state.picked.has(k));
+      const names = ks => list(ks.map(k => RES[k].name.toLowerCase()));
+      msg = (right.length || fair.length ? 'Good detective work! ' : 'Not quite! ') +
+        (right.length ? `You found ${names(right)}. ` : '') +
+        (fair.length ? fair.map(k => c.ok[k]).join(' ') + ' ' : '') +
+        (missed.length ? `It ${right.length ? 'also ' : ''}came from ${names(missed)}. ` : '') +
+        (off.length ? `${list(off.map(k => RES[k].name))} ${off.length > 1 ? 'weren’t' : 'wasn’t'} part of this one.` : '');
+    }
+    detective(right.length === keys.length ? 'detective-aha' : 'detective', msg.trim());
+    drawCases();
+    state.busy = false; setBusy(false);
+  }
+  const list = a => a.length < 2 ? a.join('') : a.slice(0, -1).join(', ') + ' and ' + a.at(-1);
+  function setBusy(on) {
+    document.querySelectorAll('.case, .res, #solve').forEach(b => b.disabled = on);
+    clueLabel();
+  }
+  $('solve').onclick = solve;
+
+  $('sound').onclick = e => {
+    state.sound = !state.sound;
+    e.currentTarget.setAttribute('aria-pressed', state.sound);
+    e.currentTarget.textContent = state.sound ? '🔔 Sound' : '🔇 Sound';
+  };
+  // Read aloud with the most natural voice this browser offers
+  function bestVoice() {
+    const voices = speechSynthesis.getVoices().filter(v => /^en(-|_|$)/i.test(v.lang));
+    const score = v => (/natural|neural/i.test(v.name) ? 50 : 0) + (/premium|enhanced/i.test(v.name) ? 40 : 0) +
+      (/google/i.test(v.name) ? 30 : 0) + (/aria|jenny|ava|samantha|libby|sonia/i.test(v.name) ? 10 : 0) +
+      (/en-US/i.test(v.lang) ? 5 : 0) + (v.default ? 1 : 0);
+    return voices.sort((a, b) => score(b) - score(a))[0] || null;
+  }
+  if ('speechSynthesis' in window) speechSynthesis.getVoices();
+  $('read').onclick = () => {
+    if (!('speechSynthesis' in window)) return;
+    speechSynthesis.cancel();
+    // Read what the detective just said; if a clue was just found, read that clue too
+    const c = CASES[state.c], said = $('say').textContent.trim();
+    const text = state.clue && !state.busy && /clue/i.test(said) ? `Clue ${state.clue}: ${c.clues[state.clue - 1]}` : said;
+    const u = new SpeechSynthesisUtterance(text);
+    const v = bestVoice();
+    if (v) { u.voice = v; u.lang = v.lang; }
+    u.rate = .92; u.pitch = 1.05; speechSynthesis.speak(u);
+  };
+
+  openCase();
+})();
+</script>
+</body>
+</html>

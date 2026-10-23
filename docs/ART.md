@@ -22,6 +22,8 @@ python scripts/bundle_tool.py inlines them -> tools/<id>/<id>.html (one offline 
 
 Full-length characters: set `"aspect": "9:16"` so Gemini draws a portrait frame (its default landscape frame cuts figures off), and ask for a clear gap between the legs. A tool can then split the painting at the crotch with clip paths and step each painted leg on its own (see Marching Band).
 
+Other options (see the top of `scripts/art.py`): `"key": "magenta"` for green subjects like lettuce, `"trim": 0.03` for backgrounds that come back with a painted frame. Small square scenes (like the evidence photos in Resource Detective) need no cutout at all.
+
 Budget: about 30-80 KB per character and 100-150 KB per background as WebP, which keeps a tool well under the 2 MB limit.
 
 ## Gemini key

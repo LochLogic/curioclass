@@ -1,0 +1,526 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hamburger Paragraph · Build a paragraph · Curio Class</title>
+<meta name="description" content="Stack sentences into a burger: topic sentence on top, details in the middle, closing sentence on the bottom. Serve it to a hungry bear. Grade 2 writing, teacher-led. Works offline.">
+<!--
+HAMBURGER PARAGRAPH (Curio Class)
+Grade 2 writing, CCSS W.2.1, W.2.2 (introduce a topic, supply facts or reasons, provide a concluding statement).
+Teacher-led on a projector: the class decides where each sentence goes. The top bun is the topic sentence,
+the fillings are details, the bottom bun is the closing sentence. Sentences that are not about the topic
+turn into an old boot. Serve it to the bear customer to find out if it holds together.
+"Write your own" lets the class type a burger of their own.
+One file, no network requests. Illustrations generated with Google Gemini, edited for Curio Class.
+Content CC BY 4.0, code MIT. curioclass.org
+-->
+<style>
+:root{
+  --paper:#fff8ee;--card:#fff;--ink:#2a211c;--muted:#6e6158;--line:#ecdcc4;--accent:#d2553a;--accent-ink:#9c3a24;
+  --mustard:#f2b632;--ketchup:#c8402c;--focus:#2f5bd3;
+  font-family:'Segoe UI',system-ui,-apple-system,Roboto,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{background:var(--paper);color:var(--ink);display:grid;grid-template-rows:auto 1fr;min-height:100vh}
+button,input{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:4px solid var(--focus);outline-offset:3px}
+header{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:12px 20px;border-bottom:3px solid var(--ketchup);background:#fff}
+h1{margin:0 auto 0 0;font:700 clamp(22px,3vw,32px)/1.1 Georgia,'Times New Roman',serif}
+h1 small{display:block;font:italic 500 15px/1.3 Georgia,serif;color:var(--muted)}
+.icon-btn{border:2px solid var(--line);background:#fff;border-radius:999px;min-height:52px;padding:0 16px;font-weight:700;font-size:16px}
+.icon-btn[aria-pressed="true"]{border-color:var(--accent);background:#fff0ea}
+
+main{display:grid;grid-template-columns:1fr;min-height:0}
+@media (min-width:760px){main{grid-template-columns:minmax(0,1fr) 360px}}
+.stage{position:relative;overflow:hidden;background:#f3d9b4;min-height:340px}
+.stage svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+
+.panel{background:#fff;border-left:3px solid var(--line);padding:16px 18px;display:flex;flex-direction:column;gap:12px;overflow:auto}
+@media (max-width:759px){.panel{border-left:0;border-top:3px solid var(--line)}}
+.panel h2{margin:4px 0 0;font:700 13px/1 'Segoe UI',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.topics{display:flex;flex-wrap:wrap;gap:6px}
+.topic{border:2px solid var(--line);background:var(--paper);border-radius:999px;padding:8px 14px;font-weight:700;font-size:15px;min-height:44px}
+.topic[aria-pressed="true"]{border-color:var(--ink);background:var(--ink);color:#fff}
+.tray{display:grid;gap:8px}
+.card{border:2px solid var(--line);background:#fffdf8;border-radius:12px;padding:10px 12px;text-align:left;font:600 16px/1.35 Georgia,serif;min-height:48px;box-shadow:0 3px 0 #0001}
+.card[aria-pressed="true"]{border-color:var(--accent);background:#fff0ea;box-shadow:0 0 0 3px #d2553a33}
+.tray .empty{color:var(--muted);font-style:italic;margin:0}
+.places{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.place{border:0;border-radius:14px;min-height:58px;font-weight:800;font-size:15px;line-height:1.15;color:#fff;box-shadow:0 4px 0 #0003;padding:6px 8px}
+.place small{display:block;font-weight:600;font-size:12px;opacity:.9}
+.place:disabled{opacity:.4;cursor:default}
+.place:active:not(:disabled){transform:translateY(2px);box-shadow:0 2px 0 #0003}
+.p-top{background:#c98a2c}.p-fill{background:#4f9a43}.p-bottom{background:#a8692a}.p-trash{background:#6b6f7a}
+.serve{border:0;border-radius:16px;min-height:62px;font:800 21px/1 'Segoe UI',sans-serif;color:#fff;background:var(--ketchup);box-shadow:0 5px 0 #8e2a1c}
+.serve:active{transform:translateY(3px);box-shadow:0 2px 0 #8e2a1c}
+.serve:disabled{opacity:.5}
+.small-btn{border:2px solid var(--line);background:#fff;border-radius:999px;padding:8px 14px;font-weight:700;min-height:44px;align-self:flex-start}
+.write{display:grid;gap:8px}
+.write label{display:grid;gap:4px;font-weight:700;font-size:13px;color:var(--muted)}
+.write input{border:2px solid var(--line);border-radius:10px;padding:10px;font:600 16px Georgia,serif;color:var(--ink)}
+.hidden{display:none!important}
+
+/* the burger */
+.layer.drop{animation:drop .7s cubic-bezier(.3,1.5,.5,1) both}
+@keyframes drop{from{transform:translateY(-340px)}}
+.tag{transition:opacity .4s}
+.tag.drop{animation:fadein .5s .25s both}
+@keyframes fadein{from{opacity:0}}
+#burger{transition:transform 1.2s cubic-bezier(.5,0,.3,1)}
+.wobble{animation:wobble .5s ease-in-out 3;transform-box:fill-box;transform-origin:50% 100%}
+@keyframes wobble{25%{transform:rotate(-4deg)}75%{transform:rotate(4deg)}}
+.slide-l{transition:transform 1.1s cubic-bezier(.5,0,.8,.4),opacity 1.1s;transform:translate(-260px,140px) rotate(-40deg);opacity:0}
+.slide-r{transition:transform 1.1s cubic-bezier(.5,0,.8,.4),opacity 1.1s;transform:translate(260px,140px) rotate(40deg);opacity:0}
+.fall{transition:transform 1s cubic-bezier(.6,0,1,.6),opacity 1s .4s;transform:translateY(260px);opacity:0}
+.boot-glow{animation:bootglow .6s ease-in-out infinite alternate}
+@keyframes bootglow{to{opacity:.25}}
+.bear{transition:opacity .25s}
+.bubble{animation:pop .35s cubic-bezier(.3,1.6,.5,1) both;transform-box:fill-box;transform-origin:80% 100%}
+@keyframes pop{from{opacity:0;scale:.6}}
+.flag{animation:flag .5s cubic-bezier(.3,1.6,.5,1) both;transform-box:fill-box;transform-origin:50% 100%}
+@keyframes flag{from{transform:scaleY(0)}}
+.steam{animation:steam 2s ease-in-out infinite}
+@keyframes steam{50%{transform:translateY(-8px);opacity:.35}}
+.calm *{animation:none!important;transition:none!important}
+
+/* the finished paragraph, written out like an order ticket */
+.ticket{position:absolute;left:3%;top:6%;width:min(44%,440px);background:#fffef7;border-radius:6px;padding:18px 20px 22px;box-shadow:0 8px 24px #0003;
+  font:500 clamp(15px,1.7vw,21px)/1.55 Georgia,serif;transform:rotate(-1.5deg);border-top:10px solid var(--ketchup);animation:pop .4s both}
+.ticket h3{margin:0 0 8px;font:800 13px/1 'Segoe UI',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--ketchup)}
+.ticket p{margin:0;text-indent:1.6em}
+.ticket .t-top{background:#f6dfae}.ticket .t-fill{background:#d9efcf}.ticket .t-bottom{background:#ecd3b1}
+.ticket span{border-radius:4px;padding:0 2px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+
+@media (max-width:759px),(max-height:620px){
+  header{padding:6px 12px}
+  h1{font-size:19px} h1 small{display:none}
+  .icon-btn{min-height:38px;font-size:13px;padding:0 10px}
+  main{grid-template-columns:minmax(0,1fr) 300px}
+  .panel{padding:8px 10px;gap:6px}
+  .panel h2{display:none}
+  .topic{padding:4px 9px;min-height:32px;font-size:12px}
+  .card{padding:6px 8px;font-size:13px;min-height:0}
+  .place{min-height:40px;font-size:12px}.place small{display:none}
+  .serve{min-height:44px;font-size:16px}
+  .ticket{font-size:13px;padding:10px 12px}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Hamburger Paragraph <small>Topic on top, details in the middle, a closing sentence to hold it all together.</small></h1>
+  <button class="icon-btn" id="motion" aria-pressed="true" title="Turn animation on or off">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+  <button class="icon-btn" id="read">🔊 Read</button>
+</header>
+<main>
+  <div class="stage" id="stage">
+    <svg id="scene" viewBox="0 0 1000 720" role="img" aria-labelledby="scene-desc">
+      <desc id="scene-desc">A diner counter with a plate, a burger being built on it, and a bear customer waiting to eat.</desc>
+      <defs>
+        <linearGradient id="chrome" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4f6f8"/><stop offset=".5" stop-color="#b9c0c8"/><stop offset="1" stop-color="#eef1f4"/></linearGradient>
+        <linearGradient id="counter" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d14c36"/><stop offset="1" stop-color="#a8362a"/></linearGradient>
+        <radialGradient id="plate" cx=".5" cy=".4" r=".6"><stop offset="0" stop-color="#fff"/><stop offset=".8" stop-color="#eef1f5"/><stop offset="1" stop-color="#cdd5de"/></radialGradient>
+      </defs>
+      <!-- the painted diner, oversized and mirrored at the sides so wide screens never show its edge -->
+      <rect x="-3000" y="-3000" width="7000" height="3100" fill="#f1dcc0"/>
+      <image id="diner" href="art:diner" x="-450" y="-40" width="1900" height="1060" preserveAspectRatio="xMidYMid slice"/>
+      <use href="#diner" transform="translate(-900 0) scale(-1 1)"/>
+      <use href="#diner" transform="translate(2900 0) scale(-1 1)"/>
+      <g id="bear-g" transform="translate(830 640)"></g>
+      <!-- the counter in front, so the bear sits behind it -->
+      <rect x="-3000" y="606" width="7000" height="3000" fill="url(#counter)"/>
+      <rect x="-3000" y="598" width="7000" height="16" fill="url(#chrome)"/>
+      <rect x="-3000" y="652" width="7000" height="6" fill="#0002"/>
+      <g id="tags"></g>
+      <g id="burger">
+        <ellipse cx="470" cy="608" rx="205" ry="20" fill="#0003"/>
+        <ellipse cx="470" cy="602" rx="200" ry="25" fill="url(#plate)" stroke="#b9c3cf" stroke-width="2"/>
+        <ellipse cx="470" cy="598" rx="152" ry="14" fill="none" stroke="#dfe5ec" stroke-width="3"/>
+        <g id="stack"></g>
+        <g id="topper"></g>
+      </g>
+      <g id="fx"></g>
+    </svg>
+    <div class="ticket hidden" id="ticket" role="status" aria-live="polite"></div>
+  </div>
+
+  <aside class="panel" aria-label="Build the burger">
+    <h2 id="t-h">Pick a burger</h2>
+    <div class="topics" id="topics" role="group" aria-labelledby="t-h"></div>
+
+    <div id="build">
+      <h2 id="s-h">Sentences</h2>
+      <div class="tray" id="tray" role="group" aria-labelledby="s-h"></div>
+    </div>
+    <div id="where">
+      <h2 id="w-h">Where does it go?</h2>
+      <div class="places" role="group" aria-labelledby="w-h">
+        <button class="place p-top" data-to="top" disabled>Top bun<small>topic sentence</small></button>
+        <button class="place p-fill" data-to="fill" disabled>Filling<small>a detail</small></button>
+        <button class="place p-bottom" data-to="bottom" disabled>Bottom bun<small>closing sentence</small></button>
+        <button class="place p-trash" data-to="trash" disabled>Not in this burger<small>off topic</small></button>
+      </div>
+    </div>
+
+    <div class="write hidden" id="write">
+      <h2>Write your own burger</h2>
+      <label>Top bun: what is it about?<input data-slot="top" maxlength="120" placeholder="Our class garden is a busy place."></label>
+      <label>Filling 1: a detail<input data-slot="f0" maxlength="120"></label>
+      <label>Filling 2: a detail<input data-slot="f1" maxlength="120"></label>
+      <label>Filling 3: a detail<input data-slot="f2" maxlength="120"></label>
+      <label>Bottom bun: wrap it up<input data-slot="bottom" maxlength="120"></label>
+    </div>
+
+    <button class="serve" id="serve">Serve it! 🛎️</button>
+    <button class="small-btn" id="restart">↺ Start over</button>
+  </aside>
+</main>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const SVGNS = 'http://www.w3.org/2000/svg';
+  // Motion follows the device's "reduce motion" setting until the teacher picks, then the choice is remembered
+  let reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  try { const m = localStorage.getItem('curio-motion'); if (m) reduce = m === 'calm'; } catch {}
+  function showMotion() {
+    document.body.classList.toggle('calm', reduce);
+    $('motion').setAttribute('aria-pressed', !reduce);
+    $('motion').textContent = reduce ? '⏸ Motion' : '✨ Motion';
+  }
+  showMotion();
+  $('motion').onclick = () => {
+    reduce = !reduce;
+    try { localStorage.setItem('curio-motion', reduce ? 'calm' : 'on'); } catch {}
+    showMotion();
+  };
+  const wait = ms => new Promise(r => setTimeout(r, ms));  // same pacing with motion off, so sounds stay in step
+  const readMs = text => 1400 + text.length * 75;
+
+  // ---------- burgers ----------
+  // role: top (topic sentence), fill (detail), bottom (closing), off (not about the topic)
+  const TOPICS = {
+    dogs: {name: 'Dogs', about: 'dogs', sentences: [
+      ['top', 'Dogs make great pets.'],
+      ['fill', 'A dog will play fetch with you all afternoon.'],
+      ['fill', 'Dogs keep your family safe by barking when someone comes to the door.'],
+      ['fill', 'A dog is always happy to see you when you get home.'],
+      ['bottom', 'That is why a dog is the best pet you can have.'],
+      ['off', 'My aunt has a shiny red car.'],
+      ['off', 'Pizza is my favorite lunch.']]},
+    fall: {name: 'Fall', about: 'fall', sentences: [
+      ['top', 'Fall is the best season of the year.'],
+      ['fill', 'The leaves turn red, orange and yellow.'],
+      ['fill', 'You can jump into big, crunchy piles of leaves.'],
+      ['fill', 'Picking apples on a cool day is so much fun.'],
+      ['bottom', 'Fall is full of colors, games and treats.'],
+      ['off', 'Sharks have rows of sharp teeth.'],
+      ['off', 'My little brother loves video games.']]},
+    seed: {name: 'Plant a seed', about: 'planting a seed', ordered: true, sentences: [
+      ['top', 'Planting a seed is easy if you follow three steps.'],
+      ['fill', 'First, fill a cup with soil.'],
+      ['fill', 'Next, push the seed into the soil with your finger.'],
+      ['fill', 'Last, water it and set it in a sunny window.'],
+      ['bottom', 'Soon you will see a tiny green sprout!'],
+      ['off', 'Penguins cannot fly.'],
+      ['off', 'We went to the beach in July.']]},
+    recess: {name: 'Recess', about: 'recess', sentences: [
+      ['top', 'Recess is my favorite part of the school day.'],
+      ['fill', 'I get to run and play tag with my friends.'],
+      ['fill', 'The swings make me feel like I am flying.'],
+      ['fill', 'Fresh air helps me think when I go back to class.'],
+      ['bottom', 'Recess makes the whole day better.'],
+      ['off', 'The moon goes around the Earth.'],
+      ['off', 'Grandma makes soup on Sundays.']]},
+    own: {name: 'Write your own ✏️', about: '', sentences: []},
+  };
+  // Fillings get a different topping as they stack up, bottom to top
+  const FILLS = ['patty', 'cheese', 'tomato', 'lettuce'];
+  const ART = {'bun-top': 'art:bun-top', 'bun-bottom': 'art:bun-bottom', patty: 'art:patty', cheese: 'art:cheese', tomato: 'art:tomato',
+    lettuce: 'art:lettuce', boot: 'art:boot', bear: 'art:bear', 'bear-yum': 'art:bear-yum', 'bear-yuck': 'art:bear-yuck', 'bear-huh': 'art:bear-huh'};
+  const SIZE = {'bun-top': [520, 214], 'bun-bottom': [520, 173], 'patty': [520, 157], 'cheese': [520, 198], 'tomato': [520, 169], 'lettuce': [520, 179], 'boot': [420, 298], 'bear': [340, 336], 'bear-yum': [340, 345], 'bear-yuck': [340, 340], 'bear-huh': [340, 353]}; // [width, height] of each image
+  const W = 330;   // drawn width of a burger layer
+
+  const state = {topic: 'dogs', top: null, fills: [], bottom: null, trash: [], picked: null, sound: true, busy: false, last: null, own: {}};
+
+  // ---------- sound ----------
+  let ctx;
+  const audio = () => (ctx ||= new (window.AudioContext || window.webkitAudioContext)());
+  function tone(type, f0, f1, dur, gain, when = 0) {
+    if (!state.sound) return;
+    const a = audio(), o = a.createOscillator(), g = a.createGain(), t = a.currentTime + when;
+    o.type = type; o.frequency.setValueAtTime(f0, t); o.frequency.exponentialRampToValueAtTime(f1, t + dur);
+    g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(gain, t + 0.02); g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    o.connect(g).connect(a.destination); o.start(t); o.stop(t + dur + 0.05);
+  }
+  function noise(dur, freq, gain) {
+    if (!state.sound) return;
+    const a = audio(), len = a.sampleRate * dur, buf = a.createBuffer(1, len, a.sampleRate), d = buf.getChannelData(0);
+    for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * (1 - i / len) ** 2;
+    const src = a.createBufferSource(), f = a.createBiquadFilter(), g = a.createGain();
+    src.buffer = buf; f.type = 'lowpass'; f.frequency.value = freq; g.gain.value = gain;
+    src.connect(f).connect(g).connect(a.destination); src.start();
+  }
+  const SFX = {
+    plop: () => { tone('sine', 420, 160, .18, .35); noise(.12, 900, .25); },
+    bell: () => { tone('sine', 1568, 1568, 1.2, .25); tone('sine', 2093, 2093, 1, .15, .02); },
+    boing: () => tone('sine', 220, 520, .35, .3),
+    crash: () => { noise(.8, 1400, .6); tone('triangle', 300, 70, .7, .25); },
+    yum: () => { tone('sine', 523, 659, .2, .2); tone('sine', 659, 784, .25, .2, .2); tone('sine', 784, 1046, .3, .2, .42); },
+  };
+
+  // ---------- drawing ----------
+  const el = (tag, attrs, parent) => {
+    const n = document.createElementNS(SVGNS, tag);
+    for (const k in attrs) n.setAttribute(k, attrs[k]);
+    if (parent) parent.append(n);
+    return n;
+  };
+  const sizeOf = name => SIZE[name] || [520, 160];
+  const roleOf = s => TOPICS[state.topic].sentences.find(x => x[1] === s)?.[0] || 'fill';
+
+  // The burger from the plate up: bottom bun, fillings, top bun. Off-topic sentences become a boot.
+  function layers() {
+    const out = [];
+    const art = (s, normal) => (state.topic !== 'own' && roleOf(s) === 'off') ? 'boot' : normal;
+    if (state.bottom) out.push({slot: 'bottom', text: state.bottom, art: art(state.bottom, 'bun-bottom')});
+    state.fills.forEach((t, i) => out.push({slot: 'fill', i, text: t, art: art(t, FILLS[i % FILLS.length])}));
+    if (state.top) out.push({slot: 'top', text: state.top, art: art(state.top, 'bun-top')});
+    return out;
+  }
+
+  function drawBurger() {
+    const stack = $('stack'), tags = $('tags');
+    stack.replaceChildren(); tags.replaceChildren(); $('topper').replaceChildren();
+    let y = 600;
+    const list = layers();
+    const tagTop = 96, tagGap = Math.min(92, (590 - tagTop) / Math.max(list.length, 1));
+    list.forEach((L, i) => {
+      const [w, h] = sizeOf(L.art), lw = L.art === 'boot' ? W * .8 : W, lh = lw * h / w;
+      const g = el('g', {class: 'layer' + (L.text === state.last ? ' drop' : ''), 'data-key': L.text}, stack);
+      el('image', {href: ART[L.art], x: 470 - lw / 2, y: y - lh, width: lw, height: lh}, g);
+      if (L.art === 'boot') el('rect', {class: 'boot-glow hidden', x: 470 - lw / 2 - 6, y: y - lh - 6, width: lw + 12, height: lh + 12, rx: 14, fill: 'none', stroke: '#f2b632', 'stroke-width': 5}, g);
+      L.mid = y - lh * .5; L.topY = y - lh;
+      y -= lh * (L.slot === 'bottom' ? .62 : L.slot === 'top' ? 1 : .55);
+    });
+    // Sentence tags in a column on the left, top bun at the top, with a line to their layer
+    [...list].reverse().forEach((L, i) => {
+      const ty = tagTop + i * tagGap;
+      const g = el('g', {class: 'tag' + (L.text === state.last ? ' drop' : '')}, tags);
+      el('path', {d: `M300 ${ty + 26}C330 ${ty + 26} 320 ${L.mid} 340 ${L.mid}`, fill: 'none', stroke: '#fff', 'stroke-width': 3, 'stroke-dasharray': '2 6', 'stroke-linecap': 'round', opacity: .9}, g);
+      const fo = el('foreignObject', {x: 14, y: ty, width: 290, height: Math.max(52, tagGap - 6)}, g);
+      const color = {top: '#f6dfae', fill: '#d9efcf', bottom: '#ecd3b1'}[L.slot];
+      const b = document.createElement('button');
+      b.className = 'tagbtn';
+      b.style.cssText = `all:unset;box-sizing:border-box;display:block;width:100%;cursor:pointer;background:${L.art === 'boot' ? '#eee6dc' : color};border:2px solid #2a211c;border-radius:10px;padding:5px 9px;font:600 15px/1.25 Georgia,serif;color:#2a211c;box-shadow:0 3px 0 #0003`;
+      b.textContent = L.text;
+      b.title = 'Take this sentence off the burger';
+      b.setAttribute('aria-label', `${L.text} (on the ${L.slot === 'fill' ? 'filling' : L.slot + ' bun'}). Click to take it off.`);
+      b.onclick = () => unplace(L.text);
+      fo.append(b);
+    });
+    state.last = null;
+  }
+
+  // ---------- the bear ----------
+  function bear(mood = 'bear', say = '') {
+    const g = $('bear-g');
+    const name = mood, [w, h] = sizeOf(name), bh = 360, bw = bh * w / h;
+    g.innerHTML = `<image class="bear" href="${ART[name]}" x="${-bw / 2}" y="${-bh + 20}" width="${bw}" height="${bh}"/>`;
+    if (say) {
+      const fo = el('foreignObject', {x: -205, y: -626, width: 350, height: 200}, g);  // above the bear, clear of the burger's flag
+      fo.innerHTML = `<div xmlns="http://www.w3.org/1999/xhtml" class="bubble" style="position:relative;margin-bottom:20px;background:#fff;border:3px solid #2a211c;border-radius:20px;padding:10px 14px;font:700 19px/1.3 Georgia,serif;color:#2a211c;box-shadow:0 5px 0 #0002">${say}<div style="position:absolute;right:70px;bottom:-15px;width:24px;height:24px;background:#fff;border-right:3px solid #2a211c;border-bottom:3px solid #2a211c;transform:rotate(45deg)"></div></div>`;
+      fo.firstChild.setAttribute('role', 'status');
+    }
+  }
+
+  // ---------- panel ----------
+  function drawTopics() {
+    $('topics').innerHTML = Object.entries(TOPICS).map(([k, t]) =>
+      `<button class="topic" data-k="${k}" aria-pressed="${k === state.topic}">${t.name}</button>`).join('');
+    $('topics').querySelectorAll('.topic').forEach(b => b.onclick = () => { if (!state.busy) { state.topic = b.dataset.k; restart(); } });
+  }
+  function shuffled(list, seed) {
+    // A fixed shuffle per topic, so the class sees the same order after Start over
+    const a = [...list]; let s = seed;
+    for (let i = a.length - 1; i > 0; i--) { s = (s * 9301 + 49297) % 233280; const j = Math.floor(s / 233280 * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; }
+    return a;
+  }
+  function placed() { return [state.top, state.bottom, ...state.fills, ...state.trash].filter(Boolean); }
+  function drawTray() {
+    const own = state.topic === 'own';
+    $('build').classList.toggle('hidden', own);
+    $('where').classList.toggle('hidden', own);
+    $('write').classList.toggle('hidden', !own);
+    if (own) return;
+    const t = TOPICS[state.topic], used = placed();
+    const left = shuffled(t.sentences.map(s => s[1]), t.name.length * 7 + 3).filter(s => !used.includes(s));
+    $('tray').innerHTML = left.length
+      ? left.map(s => `<button class="card" aria-pressed="${s === state.picked}">${s}</button>`).join('')
+      : '<p class="empty">Every sentence has a place. Serve it!</p>';
+    $('tray').querySelectorAll('.card').forEach(b => b.onclick = () => {
+      state.picked = state.picked === b.textContent ? null : b.textContent;
+      drawTray();
+    });
+    if (state.trash.length) $('tray').insertAdjacentHTML('beforeend', `<p class="empty">Not in this burger: ${state.trash.map(s => `“${s}”`).join(' ')}</p>`);
+    document.querySelectorAll('.place').forEach(b => b.disabled = !state.picked);
+  }
+
+  function place(to) {
+    const s = state.picked;
+    if (!s) return;
+    if (to === 'top') { if (state.top) state.fills.push(state.top); state.top = s; }
+    else if (to === 'bottom') { if (state.bottom) state.fills.push(state.bottom); state.bottom = s; }
+    else if (to === 'fill') state.fills.push(s);
+    else state.trash.push(s);
+    state.picked = null;
+    hideTicket();
+    if (to !== 'trash') { state.last = s; SFX.plop(); } else SFX.boing();
+    bear();
+    drawBurger(); drawTray();
+  }
+  function unplace(s) {
+    if (state.busy) return;
+    if (state.top === s) state.top = null;
+    if (state.bottom === s) state.bottom = null;
+    state.fills = state.fills.filter(x => x !== s);
+    state.trash = state.trash.filter(x => x !== s);
+    hideTicket(); bear(); drawBurger(); drawTray();
+  }
+  document.querySelectorAll('.place').forEach(b => b.onclick = () => place(b.dataset.to));
+
+  // Write your own: typing fills the layers directly
+  document.querySelectorAll('#write input').forEach(inp => inp.addEventListener('input', () => {
+    const v = k => document.querySelector(`#write input[data-slot="${k}"]`).value.trim() || null;
+    state.top = v('top'); state.bottom = v('bottom'); state.fills = ['f0', 'f1', 'f2'].map(v).filter(Boolean);
+    hideTicket(); drawBurger();
+  }));
+
+  // ---------- serving ----------
+  function verdict() {
+    const t = TOPICS[state.topic], own = state.topic === 'own';
+    const all = [state.top, ...state.fills, state.bottom].filter(Boolean);
+    if (!all.length) return {kind: 'empty', mood: 'bear-huh', say: 'An empty plate? Pick a sentence and put it on the burger first.'};
+    const boots = own ? [] : all.filter(s => roleOf(s) === 'off');
+    if (boots.length) return {kind: 'boot', mood: 'bear-yuck', say: `A boot?! That sentence isn’t about ${t.about}. Take it off the burger!`};
+    if (!state.top) return {kind: 'notop', mood: 'bear-huh', say: 'Where’s the top bun? A paragraph starts with a topic sentence that tells what it’s about.'};
+    if (!state.bottom) return {kind: 'nobottom', mood: 'bear-huh', say: 'No bottom bun! A closing sentence holds the whole paragraph together.'};
+    if (state.fills.length < 2) return {kind: 'thin', mood: 'bear-huh', say: 'Just bread? Add more details to the middle. Two or three is just right.'};
+    if (!own) {
+      if (roleOf(state.top) !== 'top') return {kind: 'wrongtop', mood: 'bear-huh', say: 'Hmm. That top bun doesn’t tell me what the whole paragraph is about.'};
+      if (roleOf(state.bottom) !== 'bottom') return {kind: 'wrongbottom', mood: 'bear-huh', say: 'Hmm. That bottom bun doesn’t wrap things up. Which sentence sounds like an ending?'};
+      const bad = state.fills.find(s => roleOf(s) !== 'fill');
+      if (bad) return {kind: 'wrongfill', mood: 'bear-huh', say: `“${bad}” sounds like a bun, not a filling. Try moving it.`};
+      if (t.ordered) {
+        const order = t.sentences.filter(s => s[0] === 'fill').map(s => s[1]);
+        const mine = state.fills.filter(s => order.includes(s));
+        if (mine.join('|') !== order.filter(s => mine.includes(s)).join('|')) return {kind: 'order', mood: 'bear-huh', say: 'The steps are mixed up! Stack them in order: first, next, last.'};
+      }
+    }
+    return {kind: 'yum', mood: 'bear-yum', say: 'Mmm! Topic, details and a closing. A perfect paragraph burger!'};
+  }
+
+  async function serve() {
+    if (state.busy) return;
+    state.busy = true; setBusy(true); hideTicket();
+    const v = verdict(), burger = $('burger');
+    if (v.kind !== 'empty') {
+      // slide the plate along the counter to the bear
+      burger.style.transform = 'translateX(90px)';
+      await wait(1400);
+    }
+    const layersEls = [...$('stack').children];
+    if (v.kind === 'notop') {
+      burger.querySelector('#stack').classList.add('wobble');
+      await wait(1500);
+      SFX.crash();
+      layersEls.forEach((g, i) => { if (i > 0 || !state.bottom) g.classList.add(i % 2 ? 'slide-r' : 'slide-l'); });
+      await wait(1100);
+    } else if (v.kind === 'nobottom') {
+      SFX.crash();
+      layersEls.forEach(g => g.classList.add('fall'));
+      await wait(1200);
+    } else if (v.kind === 'boot') {
+      burger.querySelectorAll('.boot-glow').forEach(r => r.classList.remove('hidden'));
+      SFX.boing();
+    } else if (v.kind === 'yum') {
+      SFX.bell();
+      const top = layers().at(-1);
+      $('topper').innerHTML = `<g class="flag"><path d="M470 ${top.topY + 10}V${top.topY - 70}" stroke="#c9a46a" stroke-width="5" stroke-linecap="round"/>
+        <path d="M470 ${top.topY - 70}l52 14-52 14z" fill="#d2553a" stroke="#2a211c" stroke-width="2.5" stroke-linejoin="round"/></g>
+        <g class="steam" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity=".8"><path d="M420 ${top.topY - 20}q-12-18 0-34t0-34"/><path d="M525 ${top.topY - 24}q-12-18 0-34t0-34"/></g>`;
+      await wait(900);
+    } else {
+      SFX.boing();
+    }
+    bear(v.mood, v.say);
+    if (v.kind === 'yum') { SFX.yum(); await wait(1600); showTicket(); }
+    await wait(readMs(v.say));
+    // the plate comes back unless the burger fell apart; then the class rebuilds
+    if (v.kind === 'notop' || v.kind === 'nobottom') {
+      burger.style.transform = '';
+      // what fell off goes back to the sentence tray
+      state.fills = [];
+      if (v.kind === 'nobottom') state.top = null;
+      drawBurger(); drawTray();
+    } else if (v.kind !== 'yum') {
+      burger.style.transform = '';
+    }
+    state.busy = false; setBusy(false);
+  }
+  function setBusy(on) { document.querySelectorAll('.serve, #restart, .topic').forEach(b => b.disabled = on); }
+
+  function showTicket() {
+    const span = (cls, s) => `<span class="${cls}">${s}</span>`;
+    const text = [span('t-top', state.top), ...state.fills.map(s => span('t-fill', s)), span('t-bottom', state.bottom)].join(' ');
+    $('ticket').innerHTML = `<h3>Order up! Your paragraph</h3><p>${text}</p>`;
+    $('ticket').classList.remove('hidden');
+    $('tags').style.opacity = 0;  // the ticket says it all now
+  }
+  function hideTicket() { $('ticket').classList.add('hidden'); $('tags').style.opacity = ''; $('burger').style.transform = ''; $('topper').replaceChildren(); }
+
+  function restart() {
+    if (state.busy) return;
+    Object.assign(state, {top: null, fills: [], bottom: null, trash: [], picked: null, last: null});
+    document.querySelectorAll('#write input').forEach(i => i.value = '');
+    hideTicket(); bear(); drawTopics(); drawTray(); drawBurger();
+  }
+  $('serve').onclick = serve;
+  $('restart').onclick = restart;
+
+  $('sound').onclick = e => {
+    state.sound = !state.sound;
+    e.currentTarget.setAttribute('aria-pressed', state.sound);
+    e.currentTarget.textContent = state.sound ? '🔔 Sound' : '🔇 Sound';
+  };
+  // Read aloud with the most natural voice this browser offers
+  function bestVoice() {
+    const voices = speechSynthesis.getVoices().filter(v => /^en(-|_|$)/i.test(v.lang));
+    const score = v => (/natural|neural/i.test(v.name) ? 50 : 0) + (/premium|enhanced/i.test(v.name) ? 40 : 0) +
+      (/google/i.test(v.name) ? 30 : 0) + (/aria|jenny|ava|samantha|libby|sonia/i.test(v.name) ? 10 : 0) +
+      (/en-US/i.test(v.lang) ? 5 : 0) + (v.default ? 1 : 0);
+    return voices.sort((a, b) => score(b) - score(a))[0] || null;
+  }
+  if ('speechSynthesis' in window) speechSynthesis.getVoices();
+  $('read').onclick = () => {
+    if (!('speechSynthesis' in window)) return;
+    speechSynthesis.cancel();
+    // Read the finished paragraph, else what the bear said, else the picked sentence, else the whole burger top to bottom
+    const ticket = !$('ticket').classList.contains('hidden') && $('ticket').querySelector('p').textContent;
+    const said = $('bear-g').querySelector('.bubble')?.textContent;
+    const text = ticket || said || state.picked || layers().reverse().map(l => l.text).join(' ') || 'Pick a sentence. Does it go on the top bun, in the middle, or on the bottom bun?';
+    const u = new SpeechSynthesisUtterance(text);
+    const v = bestVoice();
+    if (v) { u.voice = v; u.lang = v.lang; }
+    u.rate = .92; u.pitch = 1.05; speechSynthesis.speak(u);
+  };
+
+  restart();
+})();
+</script>
+</body>
+</html>
