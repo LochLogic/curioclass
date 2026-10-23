@@ -71,6 +71,7 @@ main{display:grid;grid-template-columns:minmax(0,1fr) 320px;min-height:0}
 .row{display:flex;gap:8px;flex-wrap:wrap}
 .soft{border:2px solid var(--line);background:#fff;border-radius:12px;min-height:46px;padding:0 12px;font-weight:700;font-size:15px}
 .soft[aria-pressed="true"]{background:#2a2730;color:#fff;border-color:#2a2730}
+.soft:disabled{opacity:.45;cursor:default}
 details{font-size:15px}
 details label{display:block;margin:8px 0 4px;font-weight:700}
 details select,details input{width:100%;min-height:42px;border:2px solid var(--line);border-radius:10px;padding:0 8px;background:#fff}
@@ -129,7 +130,7 @@ details select,details input{width:100%;min-height:42px;border:2px solid var(--l
   };
   new ResizeObserver(fit).observe($('stage'));
 
-  const STATES = "json:states", NA = "json:na";
+  const STATES = "json:states", NA = "json:na", WATER = "json:water";
   const VW = 900, VH = 506;
   const store = {state: 'Montana', town: '', star: null};
   try { Object.assign(store, JSON.parse(localStorage.getItem('me-on-the-map') || '{}')); } catch {}
@@ -141,11 +142,11 @@ details select,details input{width:100%;min-height:42px;border:2px solid var(--l
     {k: 'room', n: 'My room', img: 'art:room', say: 'This is my room. Here I am!'},
     {k: 'home', n: 'My home', img: 'art:home', box: [390, 190, 120, 100], say: 'My room is inside my home.'},
     {k: 'street', n: 'My street', img: 'art:street', box: [492, 88, 84, 92], say: 'My home is on my street.'},
-    {k: 'town', n: 'My town', img: 'art:town', box: [405, 215, 80, 60], say: 'My street is in my town.', show: () => `My street is in ${townName()}.`},
+    {k: 'town', n: 'My town', img: 'art:town', water: 'town', box: [405, 215, 80, 60], say: 'My street is in my town.', show: () => `My street is in ${townName()}.`},
     {k: 'state', n: 'My state', vec: 'state', say: 'My town is in my state.', show: () => `${cap(townName())} is in my state, ${store.state}.`},
     {k: 'country', n: 'My country', vec: 'country', say: 'My state is in my country, the United States.', show: () => `${store.state} is in my country, the United States.`},
     {k: 'continent', n: 'My continent', vec: 'continent', say: 'The United States is on my continent, North America.'},
-    {k: 'earth', n: 'Planet Earth', img: 'art:earth', earth: true, box: [395, 140, 150, 140], say: 'North America is on our planet, Earth. Everyone we know lives here!'},
+    {k: 'earth', n: 'Planet Earth', img: 'art:earth', earth: true, water: 'earth', box: [395, 140, 150, 140], say: 'North America is on our planet, Earth. Everyone we know lives here!'},
   ];
   const cap = s => s[0].toUpperCase() + s.slice(1);
   const said = l => l.say, shown = l => l.show ? l.show() : l.say;
@@ -183,8 +184,8 @@ details select,details input{width:100%;min-height:42px;border:2px solid var(--l
     if (L.vec === 'state') {
       const s = stateOf(), f = fitBox(bbox(s.d), 50);
       svg.setAttribute('viewBox', f.vb);
-      el('rect', {x: -5000, y: -5000, width: 20000, height: 20000, fill: '#bfe0c9', 'data-water': ''}, svg);
-      el('path', {d: s.d, fill: '#f6e7a6', stroke: '#2a2730', 'stroke-width': 2 / f.s * 1.2, 'data-land': ''}, svg);
+      el('rect', {x: -5000, y: -5000, width: 20000, height: 20000, fill: '#bfe0c9'}, svg);
+      el('path', {d: s.d, fill: '#f6e7a6', stroke: '#2a2730', 'stroke-width': 2 / f.s * 1.2}, svg);
       const b = bbox(s.d), star = store.star && store.star.state === s.n ? store.star.p : [b[0] + b[2] / 2, b[1] + b[3] / 2];
       const [px, py] = f.map(star);
       addPin(layer, [px, py], cap(townName()), true);
@@ -208,8 +209,8 @@ details select,details input{width:100%;min-height:42px;border:2px solid var(--l
     if (L.vec === 'country') {
       const f = fitBox([0, 0, 900, 565], 16);
       svg.setAttribute('viewBox', f.vb);
-      el('rect', {x: -500, y: -500, width: 2000, height: 2000, fill: '#9fd0ea', 'data-water': ''}, svg);
-      for (const s of STATES) el('path', {d: s.d, fill: s.n === store.state ? '#f2b33d' : '#f6efd9', stroke: '#8b8270', 'stroke-width': 1, 'data-land': ''}, svg);
+      el('rect', {x: -500, y: -500, width: 2000, height: 2000, fill: '#9fd0ea'}, svg);
+      for (const s of STATES) el('path', {d: s.d, fill: s.n === store.state ? '#f2b33d' : '#f6efd9', stroke: '#8b8270', 'stroke-width': 1}, svg);
       const sb = bbox(stateOf().d), [x0, y0] = f.map([sb[0], sb[1]]);
       layer._box = [x0 - 6, y0 - 6, sb[2] * f.s + 12, sb[3] * f.s + 12];
     }
@@ -294,8 +295,9 @@ details select,details input{width:100%;min-height:42px;border:2px solid var(--l
     $('in').disabled = st.busy || st.i === 0;
     $('out').disabled = st.busy || st.i === LEVELS.length - 1;
     [...$('ladder').children].forEach((li, k) => li.firstChild.setAttribute('aria-current', k === st.i));
-    $('lw').disabled = !LEVELS[st.i].vec;
-    if (!LEVELS[st.i].vec && st.lw) { st.lw = false; $('lw').setAttribute('aria-pressed', 'false'); }
+    const wet = LEVELS[st.i].water || LEVELS[st.i].k === 'continent';
+    $('lw').disabled = !wet;
+    $('lw').title = wet ? 'Tap the map to find land and water' : 'Land or water works on My town, My continent and Planet Earth.';
   }
   $('ladder').replaceChildren(...LEVELS.map((L, k) => {
     const li = document.createElement('li'), b = document.createElement('button');
@@ -310,8 +312,22 @@ details select,details input{width:100%;min-height:42px;border:2px solid var(--l
   // ---------- land or water ----------
   $('lw').onclick = () => { st.lw = !st.lw; $('lw').setAttribute('aria-pressed', st.lw); if (st.lw) talk('Tap the map. Is it land, or water?'); };
   $('view').addEventListener('click', e => {
-    if (!st.lw || st.busy) return;
-    const land = e.target.closest('[data-land]'), water = e.target.closest('[data-water]');
+    if (!st.lw || st.busy || $('lw').disabled) return;
+    let land = e.target.closest('[data-land]'), water = e.target.closest('[data-water]');
+    const L = LEVELS[st.i];
+    if (L.water) {  // a painting: look the tap up in its water mask (scripts/water_mask.py)
+      const r = $('view').getBoundingClientRect(), k = r.width / VW;
+      const x = (e.clientX - r.left) / k, y = (e.clientY - r.top) / k;
+      let u, v;
+      if (L.earth) {  // the globe is a 466 px circle at (217, 20)
+        u = (x - 217) / 466; v = (y - 20) / 466;
+        if ((u - .5) ** 2 + (v - .5) ** 2 > .25) return;  // that's space
+      } else {  // object-fit: cover of a 1200 x 670 picture
+        const s = Math.max(VW / 1200, VH / 670);
+        u = (x - (VW - 1200 * s) / 2) / (1200 * s); v = (y - (VH - 670 * s) / 2) / (670 * s);
+      }
+      water = isWater(WATER[L.water], u, v); land = !water;
+    }
     if (!land && !water) return;
     const s = $('say');
     s.textContent = land ? '🌳 Land!' : '💧 Water!';
@@ -320,6 +336,12 @@ details select,details input{width:100%;min-height:42px;border:2px solid var(--l
     (land ? SFX.land : SFX.water)();
     talk(land ? 'Land!' : 'Water!');
   });
+
+  function isWater(m, u, v) {
+    if (!m._bits) m._bits = Uint8Array.from(atob(m.bits), c => c.charCodeAt(0));
+    const i = Math.min(m.h - 1, Math.max(0, Math.floor(v * m.h))) * m.w + Math.min(m.w - 1, Math.max(0, Math.floor(u * m.w)));
+    return (m._bits[i >> 3] >> (7 - (i & 7))) & 1;
+  }
 
   // ---------- setup ----------
   $('state').innerHTML = STATES.map(s => s.n).sort().map(n => `<option${n === store.state ? ' selected' : ''}>${n}</option>`).join('');

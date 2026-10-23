@@ -4,6 +4,9 @@
 
 Reads tools/<tool-id>/voice/lines.json:
     {"voice": "Puck", "style": "Say warmly, like ...", "lines": ["Sad. Rainy. When I feel sad ...", ...]}
+Optional "groups": [["1", "2", ..., "10"], ...] records each group as one counted list and splits it at the pauses,
+so a run of short lines (numbers) costs one request instead of ten; a group that doesn't split cleanly is recorded
+line by line. Group lines are spoken lines too and don't need repeating in "lines".
 Each line becomes voice/<hash>.mp3 (committed); the raw speech stays in voice/raw/ (not committed), so
 --reencode can redo the MP3s for free. scripts/bundle_tool.py turns the token "voice:*" in src.html
 into a {line text: data URI} object, and the tool plays a recording when the exact text has one, falling back to
@@ -56,6 +59,28 @@ def encode(pcm):
     return enc.encode(a.tobytes()) + enc.flush()
 
 
+def split(pcm, n):
+    """Cut a counted list into n clips at its n - 1 longest pauses, or None if the pauses aren't clear."""
+    import numpy as np
+    a = np.frombuffer(pcm, dtype=np.int16)
+    loud = np.abs(a) > 500
+    win = 240  # 10 ms
+    frames = loud[:len(loud) // win * win].reshape(-1, win).any(axis=1)
+    runs, start = [], None  # silent stretches between sounds, in frames
+    first, last = np.flatnonzero(frames)[[0, -1]]
+    for i in range(first, last + 1):
+        if not frames[i] and start is None:
+            start = i
+        elif frames[i] and start is not None:
+            runs.append((i - start, start, i)); start = None
+    runs.sort(reverse=True)
+    if len(runs) < n - 1 or runs[n - 2][0] < 18 or (len(runs) >= n and runs[n - 1][0] > runs[n - 2][0] * .6):
+        return None  # fewer than n - 1 real pauses (180 ms or more), or no clear gap between pauses and the rest
+    cuts = sorted((s + e) // 2 * win for _, s, e in runs[:n - 1])
+    edges = [0, *cuts, len(a)]
+    return [a[edges[k]:edges[k + 1]].tobytes() for k in range(n)]
+
+
 def main():
     tool, force = sys.argv[1], '--force' in sys.argv
     folder = ROOT / 'tools' / tool / 'voice'
@@ -63,7 +88,19 @@ def main():
     raw = folder / 'raw'
     raw.mkdir(exist_ok=True)
     keep = set()
-    for text in spec['lines']:
+    for group in spec.get('groups', []):
+        names = [raw / (Path(clip_name(t)).stem + '.pcm') for t in group]
+        if all(r.exists() for r in names) and not force:
+            continue
+        pcm = record('. '.join(group) + '.', spec.get('voice', 'Puck'), spec.get('group_style', 'Count slowly and clearly, with a full pause after each number'))
+        parts = split(pcm, len(group))
+        if parts:
+            for r, part in zip(names, parts):
+                r.write_bytes(part)
+            print(f'recorded group {group[0]}..{group[-1]} in one request')
+        else:
+            print(f'group {group[0]}..{group[-1]} did not split cleanly; recording its lines one at a time')
+    for text in [*spec['lines'], *(t for g in spec.get('groups', []) for t in g)]:
         f = folder / clip_name(text)
         r = raw / (f.stem + '.pcm')
         keep.add(f.name)

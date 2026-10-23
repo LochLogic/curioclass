@@ -1,0 +1,13 @@
+{
+  "house_style": "Painterly illustration for a middle-school music class, like a cozy cinematic concept painting: warm lamplight, rich wood and deep blue shadows, soft brush texture. No text, no letters, no sheet music notes, no watermark, no border.",
+  "assets": [
+    {
+      "name": "studio",
+      "prompt": "Empty background: a cozy small music practice room at dusk, seen straight on. Dark wooden wall panels, a warm lamp, an acoustic guitar on a stand at the far left, a window on the right with a deep blue evening sky and distant city lights, a rug on the floor. The middle of the picture is calm open dark wall. No people, no piano, no keyboard.",
+      "aspect": "16:9",
+      "width": 1600,
+      "quality": 72,
+      "trim": 0.03
+    }
+  ]
+}

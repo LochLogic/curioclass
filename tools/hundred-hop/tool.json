@@ -1,0 +1,20 @@
+{
+  "id": "hundred-hop",
+  "status": "beta",
+  "driver": "teacher",
+  "modes": [
+    "Count along",
+    "Where will it land?"
+  ],
+  "grades_label": "Kindergarten",
+  "third_party": [],
+  "updated": "2026-10-23",
+  "hook": "A frog hops along 100 lily pads. Count along by ones or tens from any number, then hide the numbers and call out where the frog will land before the reveal.",
+  "outcome": "Count to 100 by ones and by tens, and count forward from a given number",
+  "minutes": "10-20",
+  "sources": [
+    "Illustrations generated with Google Gemini, edited for Curio Class",
+    "Narration recorded with Gemini text-to-speech",
+    "Sounds generated in the browser"
+  ]
+}

@@ -4,15 +4,16 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Nations of North America · Native nations and the land · Curio Class</title>
-<meta name="description" content="A map of ten regions of North America and the Native nations whose homelands are there: the land, food, homes and ways of life that fit each environment, and where each nation is today. Then match clues to regions. Grade 5 social studies. Works offline.">
+<meta name="description" content="A map of eleven regions of North America, from the Arctic to northern Mexico, and the Native nations whose homelands are there: the land, food, homes and ways of life that fit each environment, and where each nation is today. Then match clues to regions. Grade 5 social studies. Works offline.">
 <!--
 NATIONS OF NORTH AMERICA (Curio Class)
 Grade 5 social studies, C3 D2.His.2.3-5 (change and continuity) and D2.Geo.6.3-5 (how environment shapes
 the way people live). Ten culture areas of the United States and Canada, the regions scholars often use to
-compare ways of life before European contact. Each region links the environment to food, homes and ways of life,
+compare ways of life before European contact, plus northern Mexico (part of what scholars call the Greater
+Southwest and Aridoamerica). Each region links the environment to food, homes and ways of life,
 and names some of the nations whose homelands are there, in the present tense: these nations are here today.
-Region borders are approximate on purpose; homelands overlapped and changed. Mexico and Central America, home
-to many more nations, are outside this tool.
+Region borders are approximate on purpose; homelands overlapped and changed. Southern Mexico and Central America,
+home to many more nations, are outside this tool.
 Map: Natural Earth via world-atlas 2.0.2 (public domain), Albers equal-area projection, built by scripts/na_map.py.
 Landscape paintings generated with Google Gemini, edited for Curio Class; they show land and animals only.
 One file, no network requests. Content CC BY 4.0, code MIT. curioclass.org
@@ -65,6 +66,11 @@ main{display:grid;grid-template-columns:minmax(0,1fr) 400px;min-height:0}
 .nations{margin:0;padding:0;list-style:none;display:grid;gap:6px}
 .nations li{background:#f4ede0;border-radius:10px;padding:7px 10px;font-size:14.5px;line-height:1.4}
 .nations li b{font-size:15.5px}
+.nations summary{cursor:pointer;list-style:none;padding-right:26px;position:relative}
+.nations summary::-webkit-details-marker{display:none}
+.nations summary::after{content:'+';position:absolute;right:0;top:0;width:22px;height:22px;border-radius:50%;background:#fffcf5;border:1px solid #c9b99c;text-align:center;font:700 16px/20px 'Segoe UI',sans-serif;color:var(--brand)}
+.nations details[open] summary::after{content:'\2212'}
+.nations details p{margin:8px 0 2px;padding-top:8px;border-top:1px solid #e2d7c3;font-size:14.5px;line-height:1.5}
 .today{background:#e9f3ec;border-left:5px solid #1f7a4d;border-radius:8px;padding:8px 10px;font-size:14.5px;line-height:1.45}
 .intro{padding:18px 16px;display:flex;flex-direction:column;gap:12px}
 .intro h2{margin:0;font:700 24px/1.2 Georgia,serif}
@@ -93,8 +99,8 @@ main{display:grid;grid-template-columns:minmax(0,1fr) 400px;min-height:0}
 </header>
 <main>
   <div class="mapbox" id="mapbox">
-    <svg id="map" role="group" aria-label="Map of North America divided into ten regions"></svg>
-    <p class="note-map">Region borders are approximate. Homelands overlapped and changed over time. Mexico and Central America are home to many more nations not shown here.</p>
+    <svg id="map" role="group" aria-label="Map of North America divided into eleven regions"></svg>
+    <p class="note-map">Region borders are approximate. Homelands overlapped and changed over time. Southern Mexico and Central America are home to many more nations not shown here.</p>
   </div>
   <aside class="panel" id="panel" aria-live="polite"></aside>
 </main>
@@ -107,76 +113,84 @@ main{display:grid;grid-template-columns:minmax(0,1fr) 400px;min-height:0}
   document.body.classList.toggle('calm', reduce);
   const MAP = "json:na";
 
-  // ---------- ten regions ----------
+  // ---------- eleven regions ----------
   const R = {
     arctic: {n: 'Arctic', c: '#b7afd8', img: 'art:arctic',
       land: 'Treeless tundra and frozen seas. Winters are long and dark, and summers are short and bright.',
       food: 'Seals, whales, walrus, caribou and fish. It is too cold to farm.',
       home: 'Sod houses for winter, snow houses (igluit) built while traveling in winter, and skin tents in summer.',
       life: 'Kayaks and larger umiak boats for hunting at sea, dog sleds, and warm clothing of caribou skin and sealskin. Every part of an animal was used.',
-      nations: [['Inuit', 'Northern Canada, Alaska and Greenland. Nunavut, a territory of Canada with an Inuit majority, was created in 1999.'],
-        ['Iñupiat', 'Northern Alaska'], ['Yup\'ik and Yupik', 'Western Alaska'], ['Unangan (Aleut)', 'The Aleutian Islands of Alaska']]},
+      nations: [['Inuit', 'Northern Canada, Alaska and Greenland. Nunavut, a territory of Canada with an Inuit majority, was created in 1999.', 'Inuit speak Inuktut (also called Inuktitut), written in Canada with its own syllabic letters. The kayak and the snow house come from Inuit and their ancestors. Today Inuit artists are known around the world for stone carving and printmaking.'],
+        ['Iñupiat', 'Northern Alaska', 'They speak Iñupiaq. Each spring, whaling crews hunt bowhead whales from the sea ice, and the whole community shares the catch. Utqiaġvik, the northernmost town in the United States, is an Iñupiat community.'], ['Yup\'ik and Yupik', 'Western Alaska', 'Central Yup\'ik is spoken by more people than any other Alaska Native language, and many children still learn it at home. Yup\'ik dancers use carved masks and hand-held dance fans. St. Lawrence Island Yupik (no apostrophe) live on an island close to Russia.'], ['Unangan (Aleut)', 'The Aleutian Islands of Alaska', 'Their islands stretch more than 1,000 miles into the stormy sea, so life centered on the ocean. Unangan hunters were expert kayakers, and their waterproof parkas were sewn from the gut of seals and sea lions.']]},
     subarctic: {n: 'Subarctic', c: '#8fb48a', img: 'art:subarctic',
       land: 'Huge forests of spruce and birch called the boreal forest, thousands of lakes and rivers, and very cold winters.',
       food: 'Caribou, moose, fish, hares and berries. Summers are too short for farming.',
       home: 'Cone-shaped lodges covered with hides or birchbark, moved with the seasons.',
       life: 'Snowshoes and toboggans in winter, birchbark canoes in summer. Small family groups traveled to follow the animals.',
-      nations: [['Cree', 'Across Canada, from Alberta to Quebec, one of the largest First Nations'], ['Dene peoples', 'Northwestern Canada'],
-        ['Innu', 'Quebec and Labrador'], ['Gwich\'in', 'Alaska, Yukon and the Northwest Territories']]},
+      nations: [['Cree', 'Across Canada, from Alberta to Quebec, one of the largest First Nations', 'Cree is one of the most widely spoken Indigenous languages in Canada, often written with syllabic letters. Many Cree families still spend time on the land each spring and fall, hunting geese, trapping and fishing.'], ['Dene peoples', 'Northwestern Canada', 'Dene means "the people." The Dene include several nations, such as the Dënesųłı̨né, Tłı̨chǫ and Sahtú Got\'ı̨nę, who speak related Dene (Athabascan) languages. The Diné (Navajo) and Apache, far to the south, speak languages of the same family.'],
+        ['Innu', 'Quebec and Labrador', 'The Innu call their homeland Nitassinan. For thousands of years they followed the caribou across Quebec and Labrador. Many still speak Innu-aimun, a language related to Cree.'], ['Gwich\'in', 'Alaska, Yukon and the Northwest Territories', 'The Gwich\'in are often called the caribou people: the Porcupine caribou herd has fed and clothed them for thousands of years, and they work to protect its calving grounds. They are also known for beautiful beadwork.']]},
     northwest: {n: 'Northwest Coast', c: '#4f9a7a', img: 'art:northwest',
       land: 'A rainy coast with giant cedar forests, rivers full of salmon, and a rich ocean.',
       food: 'Salmon (dried and smoked for winter), halibut, shellfish and berries. The Makah also hunted whales.',
       home: 'Large houses of cedar planks where several related families lived together.',
       life: 'Carved cedar canoes, clothing and baskets woven from cedar bark, tall carved poles that tell family histories, and potlatch feasts where the hosts give gifts.',
-      nations: [['Tlingit', 'Southeast Alaska'], ['Haida', 'Haida Gwaii in British Columbia, and Alaska'], ['Kwakwaka\'wakw', 'British Columbia'],
-        ['Coast Salish peoples', 'Washington and British Columbia'], ['Makah', 'The tip of Washington\'s Olympic Peninsula']]},
+      nations: [['Tlingit', 'Southeast Alaska', 'Every Tlingit person belongs to one of two halves, Raven or Eagle (also called Wolf), and to a clan. Clans own their crests, songs and stories. Chilkat robes, woven from mountain goat wool and cedar bark, are among their most famous art.'], ['Haida', 'Haida Gwaii in British Columbia, and Alaska', 'Haida carvers made huge seagoing canoes from a single red cedar log, and tall carved poles. In 2010 Canada began using the name Haida Gwaii for their islands, in place of the old English name.'], ['Kwakwaka\'wakw', 'British Columbia', 'Their name means "the people who speak Kwak\'wala." They are famous for carved masks used in winter ceremonies. When Canada banned the potlatch from 1885 to 1951, many families kept holding it in secret.'],
+        ['Coast Salish peoples', 'Washington and British Columbia', 'Many nations share this name, such as the Squamish, Musqueam, Lummi, Suquamish and Puyallup. The city of Seattle is named for Chief Si\'ahl. Each summer, canoe families from many nations paddle together to one host nation on the Tribal Canoe Journey.'], ['Makah', 'The tip of Washington\'s Olympic Peninsula', 'The Makah have hunted whales for many centuries. Long ago, a mudslide buried part of their village of Ozette, keeping thousands of objects safe; many are now shown at the Makah museum in Neah Bay.']]},
     plateau: {n: 'Plateau', c: '#c2a66c', img: 'art:plateau',
       land: 'High land between mountain ranges, crossed by big rivers like the Columbia and the Fraser.',
       food: 'Salmon caught at river falls, camas and other roots dug in meadows, berries and deer.',
       home: 'Pit houses dug partly into the ground for winter, and lodges covered with woven mats in summer.',
       life: 'Big gatherings at fishing places to fish and trade. After horses arrived in the 1700s, the Nez Perce became famous horse breeders.',
-      nations: [['Nez Perce (Nimiipuu)', 'Idaho'], ['Yakama', 'Washington'], ['Umatilla, Cayuse and Walla Walla', 'Oregon'],
-        ['Secwépemc', 'British Columbia'], ['Coeur d\'Alene (Schitsu\'umsh)', 'Idaho']]},
+      nations: [['Nez Perce (Nimiipuu)', 'Idaho', 'Nimiipuu means "the people." In 1805 they helped the starving Lewis and Clark expedition with food and directions. They are known for breeding fine horses, including the spotted Appaloosa.'], ['Yakama', 'Washington', 'The Yakama Nation brings together 14 tribes and bands under a treaty signed in 1855. Yakama fishers still catch salmon on the Columbia River, some with long-handled dip nets from wooden platforms.'], ['Umatilla, Cayuse and Walla Walla', 'Oregon', 'These three nations together form the Confederated Tribes of the Umatilla Indian Reservation in Oregon. Their museum, Tamástslikt Cultural Institute, tells their history in their own words.'],
+        ['Secwépemc', 'British Columbia', 'Their name is often written in English as Shuswap. Their homeland, Secwepemcúlecw, covers a big part of the interior of British Columbia, along the Fraser and Thompson Rivers.'], ['Coeur d\'Alene (Schitsu\'umsh)', 'Idaho', 'Coeur d\'Alene is a French nickname. In their own language they are the Schitsu\'umsh, "those who are found here." Their reservation in Idaho includes the southern part of Coeur d\'Alene Lake.']]},
     basin: {n: 'Great Basin', c: '#d7c18e', img: 'art:basin',
       land: 'A dry land of valleys and mountains, where rivers never reach the ocean and little rain falls.',
       food: 'Pine nuts from pinyon trees, seeds, roots, rabbits, fish from lakes, and even insects.',
       home: 'Brush shelters and cone-shaped houses called wickiups, quick to build.',
       life: 'Small family groups moved through the seasons to where food was ripe. Their tightly woven baskets could even hold water.',
-      nations: [['Shoshone', 'Nevada, Idaho, Utah and Wyoming'], ['Paiute', 'Nevada, California, Oregon, Utah and Arizona'], ['Ute', 'Utah and Colorado'], ['Washoe', 'Around Lake Tahoe in Nevada and California']]},
+      nations: [['Shoshone', 'Nevada, Idaho, Utah and Wyoming', 'Shoshone people live on reservations such as Wind River in Wyoming, Fort Hall in Idaho and Duck Valley on the Nevada and Idaho border. Sacagawea, who traveled with Lewis and Clark, was Lemhi Shoshone.'], ['Paiute', 'Nevada, California, Oregon, Utah and Arizona', 'There are Northern Paiute, Owens Valley Paiute and Southern Paiute peoples, who speak related languages. Pyramid Lake in Nevada, home of the rare cui-ui fish, is at the heart of one Northern Paiute reservation.'], ['Ute', 'Utah and Colorado', 'The state of Utah is named after the Ute. Today there are three Ute tribes: the Ute Indian Tribe in Utah, and the Southern Ute and Ute Mountain Ute tribes in Colorado. Each spring, the Bear Dance welcomes the new season.'], ['Washoe', 'Around Lake Tahoe in Nevada and California', 'The name Tahoe comes from the Washoe word for lake. Around 1900, the Washoe basket maker Dat So La Lee became famous for her finely woven baskets.']]},
     california: {n: 'California', c: '#e6b95a', img: 'art:california',
       land: 'Mild weather, oak-covered hills, rich valleys and a long coast.',
       food: 'Acorns, ground into flour and washed to take away the bitter taste, plus fish, shellfish, deer and seeds.',
       home: 'Many styles: houses of tule reeds, bark or brush, and some built partly underground.',
       life: 'Some of the finest baskets in the world, like Pomo baskets. The Chumash built plank canoes called tomol. Many small nations spoke many different languages.',
-      nations: [['Pomo', 'Northern California'], ['Chumash', 'The southern California coast'], ['Ohlone', 'The San Francisco Bay area'], ['Miwok', 'Central California'], ['Yurok', 'Along the Klamath River']]},
+      nations: [['Pomo', 'Northern California', 'Pomo weavers made baskets so tight they could hold water. Some were covered in bright feathers and shell beads, and some were smaller than a fingertip. Today there are many small Pomo tribes, called rancherias, north of San Francisco.'], ['Chumash', 'The southern California coast', 'Chumash builders made plank canoes called tomol and paddled them to the Channel Islands. In 1976 Chumash people built a new tomol, and today paddlers cross to Santa Cruz Island again, bringing the old journey back.'], ['Ohlone', 'The San Francisco Bay area', 'Ohlone is a name for many related groups around San Francisco Bay and Monterey Bay, such as the Muwekma, Rumsen and Chochenyo. They are working to bring back their languages and to be recognized by the United States government.'], ['Miwok', 'Central California', 'Miwok peoples lived on the coast, in the Sierra Nevada foothills and in Yosemite Valley. They stored acorns in tall outdoor granaries, woven from branches and roofed to keep the rain out.'], ['Yurok', 'Along the Klamath River', 'The Yurok Tribe is one of the largest tribes in California. They have fished for salmon on the Klamath River for thousands of years, and they helped win the removal of four dams on the river, finished in 2024, so salmon can swim upstream again.'], ['Kumeyaay', 'San Diego County, California, and Baja California, Mexico', 'The border between the United States and Mexico runs through the middle of Kumeyaay land, so Kumeyaay communities are on both sides. Kumeyaay bird songs, sung with gourd rattles, tell long stories of the people\'s history.']]},
     southwest: {n: 'Southwest', c: '#d47f55', img: 'art:southwest',
       land: 'Deserts, mesas and canyons, with little rain and hot summers.',
       food: 'Corn, beans and squash grown with careful use of water, plus wild plants and game.',
       home: 'Pueblos of stone and adobe, several stories high. The Diné build hogans of logs and earth.',
       life: 'Farming, pottery and weaving. Some pueblos, like Acoma and Taos, have been lived in for about a thousand years.',
-      nations: [['Hopi', 'Arizona'], ['Zuni (A:shiwi)', 'New Mexico'], ['Pueblos such as Acoma and Taos', 'New Mexico'],
-        ['Diné (Navajo)', 'Arizona, New Mexico and Utah, the largest reservation in the United States'], ['Apache', 'Arizona, New Mexico and Oklahoma'], ['Tohono O\'odham', 'Southern Arizona']]},
+      nations: [['Hopi', 'Arizona', 'Hopi villages sit on top of three mesas. Old Oraibi has been lived in since about the year 1100, one of the oldest towns in the United States. Hopi farmers grow blue corn without irrigation, catching every bit of rain.'], ['Zuni (A:shiwi)', 'New Mexico', 'The Zuni language is not related to any other language in the world. Zuni artists are famous for silver jewelry set with turquoise and for small stone animal carvings.'], ['Pueblos such as Acoma and Taos', 'New Mexico', 'There are 19 Pueblos in New Mexico. In 1680 the Pueblos joined together in the Pueblo Revolt and drove Spanish colonists out of New Mexico for 12 years. Taos Pueblo is a World Heritage Site.'],
+        ['Diné (Navajo)', 'Arizona, New Mexico and Utah, the largest reservation in the United States', 'The Navajo Nation is larger than ten of the fifty states. In World War II, Navajo Code Talkers used their language to send secret messages that the enemy never broke.'], ['Apache', 'Arizona, New Mexico and Oklahoma', 'Apache nations include the White Mountain, San Carlos, Mescalero, Jicarilla and Fort Sill Apache. Like the Diné, they speak a Dene (Athabascan) language. Leaders such as Cochise and Geronimo defended Apache homelands in the 1800s.'], ['Tohono O\'odham', 'Southern Arizona', 'Their name means "desert people." Their land reaches across the border into Sonora, Mexico. Each summer they harvest the red fruit of the saguaro cactus, which marks the start of their new year.']]},
     plains: {n: 'Plains', c: '#dcc867', img: 'art:plains',
       land: 'Wide grasslands with few trees, hot summers and cold, windy winters.',
       food: 'Bison (buffalo) for meat, plus wild plants. Some nations farmed corn along the rivers.',
       home: 'Tipis of bison hide that could be packed up and moved. Farming nations like the Mandan and Pawnee built earth lodges.',
       life: 'The bison gave food, clothing, tools and shelter. People hunted on foot and used dogs to carry loads. Horses, brought by the Spanish, later changed life on the Plains.',
-      nations: [['Lakota and Dakota', 'The Dakotas, Minnesota, Nebraska and Montana; part of the Oceti Sakowin'], ['Nakoda (Assiniboine)', 'Fort Belknap and Fort Peck in Montana, and Saskatchewan and Alberta'],
-        ['Cheyenne', 'Montana and Oklahoma'], ['Apsáalooke (Crow)', 'Montana'], ['Niitsitapi (Blackfeet)', 'Montana and Alberta'], ['Comanche', 'Oklahoma'], ['Mandan, Hidatsa and Arikara', 'North Dakota']]},
+      nations: [['Lakota and Dakota', 'The Dakotas, Minnesota, Nebraska and Montana; part of the Oceti Sakowin', 'Oceti Sakowin means "Seven Council Fires." Lakota, Dakota and Nakoda peoples speak closely related languages. The Black Hills, called He Sápa, are sacred to the Lakota.'], ['Nakoda (Assiniboine)', 'Fort Belknap and Fort Peck in Montana, and Saskatchewan and Alberta', 'The Nakoda speak a language closely related to Lakota and Dakota. At Fort Belknap in Montana they share the reservation with the Aaniiih (Gros Ventre), and at Fort Peck with Dakota bands.'],
+        ['Cheyenne', 'Montana and Oklahoma', 'Today there are two Cheyenne tribes: the Northern Cheyenne in Montana and the Cheyenne and Arapaho Tribes in Oklahoma. Chief Dull Knife College on the Northern Cheyenne Reservation teaches the Cheyenne language.'], ['Apsáalooke (Crow)', 'Montana', 'Apsáalooke means "children of the large-beaked bird." Every August, Crow Fair in Montana fills with more than a thousand tipis, earning it the name "Tipi Capital of the World."'], ['Niitsitapi (Blackfeet)', 'Montana and Alberta', 'The Blackfoot Confederacy joins four nations: the Siksika, Kainai and Piikani in Alberta, and the Blackfeet in Montana. Their homeland runs along the Rocky Mountains, including what is now Glacier National Park.'], ['Comanche', 'Oklahoma', 'The Comanche were some of the most skilled horse riders in history and controlled a huge area of the southern Plains called Comanchería. In World War II, Comanche code talkers served in Europe.'], ['Mandan, Hidatsa and Arikara', 'North Dakota', 'Together they form the MHA Nation, also called the Three Affiliated Tribes. Their earth lodge villages on the Missouri River were busy trading centers, and Lewis and Clark spent the winter of 1804 near them.']]},
+    mexico: {n: 'Northern Mexico', c: '#c98fa8', img: 'art:mexico',
+      land: 'Two big deserts, the Sonoran and the Chihuahuan, the steep Sierra Madre mountains with deep canyons like Copper Canyon, and the coast of the Gulf of California.',
+      food: 'Corn, beans and squash grown in mountain valleys and along rivers, plus mesquite pods, roasted agave hearts, cactus fruit and deer. The Comcaac fished and caught sea turtles.',
+      home: 'Rarámuri families built houses of stone and wood, and some lived in rock shelters part of the year. Yoeme towns had houses of cane and mud. The Comcaac built houses framed with ocotillo branches.',
+      life: 'Farming in the mountains and river valleys, trading, and ceremonies that are still held today. Rarámuri runners are famous for running very long distances in the canyons.',
+      nations: [['Rarámuri (Tarahumara)', 'The Sierra Madre of Chihuahua, around Copper Canyon', 'Their name is often translated as "those who run fast." In a rarajípari race, runners kick a wooden ball for many miles, sometimes through the night. Many Rarámuri families farm corn and beans in the mountains and speak their own language.'], ['Yoeme (Yaqui)', 'Eight towns along the Río Yaqui in Sonora, and Arizona', 'The Yoeme have eight traditional towns along the Río Yaqui, and defended their land for centuries. In the deer dance, a dancer wearing a deer\'s head honors the deer and the natural world. The Pascua Yaqui Tribe in Arizona was recognized by the United States in 1978.'],
+        ['Yoreme (Mayo)', 'Southern Sonora and northern Sinaloa', 'Their homeland follows the Mayo and Fuerte Rivers. Their language is closely related to Yoeme, and like the Yoeme they keep the deer dance and the pascola dance alive.'], ['Comcaac (Seri)', 'The coast of Sonora on the Gulf of California', 'Comcaac villages sit on the desert coast of the Gulf of California, and Tiburón Island, the largest island in Mexico, is their land. They carve figures from ironwood and weave baskets from the torote plant. Their language is not known to be related to any other.'],
+        ['Wixárika (Huichol)', 'The mountains of Jalisco, Nayarit and Durango', 'Wixárika artists press bright yarn into beeswax to make yarn paintings, and cover carvings with tiny beads. Each year many travel hundreds of miles on a pilgrimage to Wirikuta, a sacred desert.'], ['Ódami (Tepehuán)', 'Southern Chihuahua and Durango', 'Ódami communities live in the high mountains near the Rarámuri. They farm corn in mountain fields, and many still speak their own language.']]},
     northeast: {n: 'Northeast Woodlands', c: '#7fae63', img: 'art:northeast',
       land: 'Thick forests, lakes and rivers, with cold snowy winters and warm summers.',
       food: 'The Three Sisters (corn, beans and squash), deer, fish, wild rice around the Great Lakes, and maple sap boiled into syrup and sugar.',
       home: 'Haudenosaunee longhouses of bark, shared by several families of one clan. Algonquian-speaking nations built dome-shaped wigwams.',
       life: 'Birchbark canoes on the lakes and rivers. The Haudenosaunee Confederacy joined nations together under the Great Law of Peace.',
-      nations: [['Haudenosaunee', 'Mohawk, Oneida, Onondaga, Cayuga, Seneca and Tuscarora, in New York, Ontario and Quebec'],
-        ['Anishinaabe', 'Ojibwe, Odawa and Potawatomi, around the Great Lakes'], ['Wampanoag', 'Massachusetts'], ['Lenape (Delaware)', 'Oklahoma, Wisconsin and Ontario today; homelands in New Jersey and nearby'], ['Mi\'kmaq', 'Atlantic Canada and Maine']]},
+      nations: [['Haudenosaunee', 'Mohawk, Oneida, Onondaga, Cayuga, Seneca and Tuscarora, in New York, Ontario and Quebec', 'Haudenosaunee means "people of the longhouse." Their confederacy, joined under the Great Law of Peace centuries ago, is one of the oldest living democracies. Lacrosse comes from the Haudenosaunee and their neighbors, and the Haudenosaunee Nationals team plays it around the world.'],
+        ['Anishinaabe', 'Ojibwe, Odawa and Potawatomi, around the Great Lakes', 'Anishinaabe means "original people." Each fall, families harvest manoomin (wild rice) from canoes, knocking the grains loose with two sticks. Schools in many communities now teach children in the Ojibwe language.'], ['Wampanoag', 'Massachusetts', 'Wampanoag means "people of the first light." In 1621 the Wampanoag and the Pilgrims shared the harvest feast many people call the first Thanksgiving. Today they are bringing their language, Wôpanâak, back to life.'], ['Lenape (Delaware)', 'Oklahoma, Wisconsin and Ontario today; homelands in New Jersey and nearby', 'Lenapehoking, the Lenape homeland, included where New York City, New Jersey and Philadelphia are today. Pushed west over many years, Lenape people now live in Oklahoma, Wisconsin and Ontario.'], ['Mi\'kmaq', 'Atlantic Canada and Maine', 'Mi\'kmaw artists are known for quillwork: patterns of dyed porcupine quills on birchbark boxes. Treaties made with Britain in the 1700s still protect their right to fish and hunt.']]},
     southeast: {n: 'Southeast', c: '#9cc06e', img: 'art:southeast',
       land: 'Warm and wet, with rich soil, long rivers, forests and swamps.',
       food: 'Corn, beans, squash and sunflowers grown in big fields, plus deer, turkey, fish and nuts.',
       home: 'Towns of houses with wooden frames, clay-plastered walls and thatched roofs, built around a plaza and a council house. In Florida, Seminole chickees have open sides for the heat.',
       life: 'Long ago, Mississippian peoples built huge earthen mounds and cities. In the 1830s the United States forced many Southeast nations to move west to Indian Territory, now Oklahoma.',
-      nations: [['Cherokee', 'Cherokee Nation and United Keetoowah Band in Oklahoma; Eastern Band in North Carolina'], ['Muscogee (Creek)', 'Oklahoma, Alabama'],
-        ['Choctaw', 'Oklahoma and Mississippi'], ['Chickasaw', 'Oklahoma'], ['Seminole', 'Florida and Oklahoma']]},
+      nations: [['Cherokee', 'Cherokee Nation and United Keetoowah Band in Oklahoma; Eastern Band in North Carolina', 'In the 1820s Sequoyah created a writing system for the Cherokee language, and soon most Cherokee people could read and write it. In 1838 thousands died on the forced march west called the Trail of Tears. Today the Cherokee Nation is one of the largest tribes in the United States.'], ['Muscogee (Creek)', 'Oklahoma, Alabama', 'Muscogee towns gather at a square ground, still used today for ceremonies such as the Green Corn Ceremony. The Muscogee Nation\'s capital is Okmulgee, Oklahoma, and the Poarch Band of Creek Indians is in Alabama.'],
+        ['Choctaw', 'Oklahoma and Mississippi', 'In 1847, during a terrible famine in Ireland, the Choctaw sent money to help Irish families, only years after their own forced removal. In 2017 Ireland honored that gift with a sculpture called Kindred Spirits.'], ['Chickasaw', 'Oklahoma', 'The Chickasaw were known as fierce defenders of their homeland in what is now Mississippi and Tennessee. Today the Chickasaw Nation runs a large cultural center in Sulphur, Oklahoma.'], ['Seminole', 'Florida and Oklahoma', 'Some Seminole people never left Florida, even through three wars with the United States, and they call themselves the Unconquered Seminoles. Seminole patchwork, bright strips of cloth sewn into patterns, is famous.']]},
   };
   const KEYS = Object.keys(R);
   const CLUES = [
@@ -190,13 +204,14 @@ main{display:grid;grid-template-columns:minmax(0,1fr) 400px;min-height:0}
     ['Snowshoes, birchbark canoes and caribou in a huge spruce forest', 'subarctic'],
     ['Salmon caught at river falls and camas roots dug in meadows', 'plateau'],
     ['Farming towns around a plaza and council house, in warm river valleys', 'southeast'],
+    ['Deep mountain canyons, roasted agave, and runners who can go for many miles', 'mexico'],
   ];
 
   // ---------- map ----------
   const NS = 'http://www.w3.org/2000/svg';
   const el = (tag, a, parent) => { const e = document.createElementNS(NS, tag); for (const k in a) e.setAttribute(k, a[k]); parent && parent.append(e); return e; };
   const svg = $('map');
-  svg.setAttribute('viewBox', '120 40 860 840');
+  svg.setAttribute('viewBox', '110 40 880 920');
   svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
   for (const c of MAP.countries) el('path', {d: c.d, class: 'country'}, svg);
   const LABEL = {northwest: [-40, 20], california: [-30, 10], plateau: [0, -6]};
@@ -216,9 +231,9 @@ main{display:grid;grid-template-columns:minmax(0,1fr) 400px;min-height:0}
   const st = {mode: 'explore', cur: null, clue: 0, tries: 0, right: 0, order: []};
   function intro() {
     mark(p => p.classList.remove('on', 'dim', 'right'));
-    $('panel').innerHTML = `<div class="intro"><h2>Ten regions, many nations</h2>
+    $('panel').innerHTML = `<div class="intro"><h2>Eleven regions, many nations</h2>
       <p>Long before Europeans arrived, hundreds of Native nations lived across North America. Each nation's way of life fit its land: what grew there, which animals lived there, and how cold or dry it was.</p>
-      <p><b>Tap a region</b> on the map to see its land, food, homes and ways of life, and some of the nations whose homelands are there.</p>
+      <p><b>Tap a region</b> on the map to see its land, food, homes and ways of life, and some of the nations whose homelands are there. Tap a nation's name to read more about it.</p>
       <div class="chips">${KEYS.map(k => `<button data-k="${k}"><i style="background:${R[k].c}"></i>${R[k].n}</button>`).join('')}</div>
       <p class="today">Today there are more than 570 federally recognized tribal nations in the United States and more than 600 First Nations in Canada, plus Inuit and Métis communities. They have their own governments, languages and cultures.</p></div>`;
     $('panel').querySelectorAll('.chips button').forEach(b => b.onclick = () => pick(b.dataset.k));
@@ -236,7 +251,7 @@ main{display:grid;grid-template-columns:minmax(0,1fr) 400px;min-height:0}
           <div class="fact"><i aria-hidden="true">🛶</i><div><b>Ways of life</b>${r.life}</div></div>
         </div>
         <h3>Some nations of this region, and where they are today</h3>
-        <ul class="nations">${r.nations.map(([n, w]) => `<li><b>${n}</b><br>${w}</li>`).join('')}</ul>
+        <ul class="nations">${r.nations.map(([n, w, more]) => `<li><details><summary><b>${n}</b><br>${w}</summary><p>${more}</p></details></li>`).join('')}</ul>
         <p class="today">These nations are still here, with their own governments, languages and traditions. Many still fish, hunt, farm and gather in the ways described here, alongside modern life.</p>
         <button class="btn soft" id="back">← All regions</button>
       </div>`;
@@ -253,7 +268,7 @@ main{display:grid;grid-template-columns:minmax(0,1fr) 400px;min-height:0}
   function nextClue() {
     mark(p => p.classList.remove('on', 'dim', 'right'));
     if (st.clue >= st.order.length) {
-      $('panel').innerHTML = `<div class="intro"><h2>All ten regions!</h2><p>You matched ${st.right} of ${CLUES.length} on the first try.</p>
+      $('panel').innerHTML = `<div class="intro"><h2>All eleven regions!</h2><p>You matched ${st.right} of ${CLUES.length} on the first try.</p>
         <p>Talk about it: which clue was hardest? How did the land help you decide?</p><button class="btn" id="again">Play again</button></div>`;
       $('again').onclick = quiz;
       return;

@@ -1,0 +1,42 @@
+{
+  "style": "Bright picture-book pond look for a kindergarten math lesson: soft round shapes, cheerful clear colors, easy to read from the back of a classroom.",
+  "assets": [
+    {
+      "name": "pond",
+      "prompt": "Empty background: a big calm pond seen from above at a gentle angle, clear blue-green water filling almost the whole picture, a thin grassy bank with reeds, cattails and a few round stones only along the very top edge and the corners, soft sunlight sparkles on the water. No lily pads, no animals, no people.",
+      "aspect": "16:9",
+      "width": 1600,
+      "quality": 74,
+      "trim": 0.03
+    },
+    {
+      "name": "pad",
+      "prompt": "One round green lily pad seen from directly above, perfectly flat and almost circular, with one small wedge-shaped notch and gentle leaf veins.",
+      "cutout": true,
+      "key": "magenta",
+      "width": 180
+    },
+    {
+      "name": "padflower",
+      "prompt": "One round green lily pad seen from directly above, almost circular with a small notch, with one white water lily flower with a yellow center sitting at its edge.",
+      "cutout": true,
+      "key": "magenta",
+      "width": 200
+    },
+    {
+      "name": "frog",
+      "prompt": "A cute cartoon green frog sitting, front view, big friendly eyes, wide smile, light green belly.",
+      "cutout": true,
+      "key": "magenta",
+      "height": 200
+    },
+    {
+      "name": "frogjump",
+      "prompt": "The same cute cartoon green frog in the middle of a big happy leap, legs stretched out behind, front arms forward, seen from the side.",
+      "cutout": true,
+      "key": "magenta",
+      "ref": "frog",
+      "width": 240
+    }
+  ]
+}

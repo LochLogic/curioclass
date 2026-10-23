@@ -10,7 +10,7 @@ Long before Europeans arrived, hundreds of Native nations lived across North Ame
 
 ## About the regions
 
-The ten regions are the "culture areas" scholars often use to compare ways of life in the United States and Canada. They are a tool for comparing, not boxes nations fit into: borders are approximate, homelands overlapped, and nations moved and traded across them. Mexico and Central America, home to many more nations, are outside this tool.
+Ten of the regions are the "culture areas" scholars often use to compare ways of life in the United States and Canada. The eleventh, Northern Mexico, covers the deserts and the Sierra Madre south to about where Mesoamerica begins (scholars group it with the Greater Southwest and Aridoamerica). They are a tool for comparing, not boxes nations fit into: borders are approximate, homelands overlapped, and nations moved and traded across them. Southern Mexico and Central America, home to many more nations, are outside this tool.
 
 ## Talk about it
 
@@ -21,6 +21,7 @@ The ten regions are the "culture areas" scholars often use to compare ways of li
 
 ## Good to know
 
+- Tap any nation's name to open a few more sentences about it: its language, something it is known for, and its life today.
 - Nations are named the way they name themselves where that is common, with the more familiar English name too, for example Diné (Navajo) and Nimiipuu (Nez Perce).
 - The tool describes ways of life before European contact in the past tense and the nations in the present tense. Avoid "the Native Americans used to..." as if they are gone.
 - The 1830s removals of Southeast nations are mentioned briefly. They are hard history: teach them with care and with sources from the nations themselves.

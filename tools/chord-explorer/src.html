@@ -1,0 +1,568 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chord Explorer · Triads and progressions · Curio Class</title>
+<meta name="description" content="Build major, minor and diminished triads on a keyboard by stacking thirds, line up chord progressions like I-V-vi-IV and hear them play, then train your ear: did the phrase end at home? Grades 6-8 music. Works offline.">
+<!--
+CHORD EXPLORER (Curio Class)
+Grades 6-8 music, NCAS MU:Cr2 (organize and develop musical ideas) and MU:Re7 (analyze how musical
+structure affects a listener). Build: any root plus a quality; a triad is two stacked thirds (major 4+3,
+minor 3+4, diminished 3+3, augmented 4+4 half steps). Progressions: the seven triads of a major key,
+grouped by job: home (tonic: I, vi, iii), away (predominant: IV, ii) and tension (dominant: V, vii°).
+Home or not?: hear a four-chord phrase and decide whether it came to rest; the answer names the cadence
+(authentic V-I, plagal IV-I, half ending on V, deceptive V-vi).
+Sound is synthesized in the browser. Backdrop painting generated with Google Gemini, edited for Curio Class.
+One file, no network requests. Content CC BY 4.0, code MIT. curioclass.org
+-->
+<style>
+:root{
+  --night:#141a2b;--panel:#1d2438;--panel2:#262f48;--ink:#f4efe4;--muted:#b9b3a8;--line:#3a4462;--focus:#7fb2ff;
+  --home:#47b37a;--away:#4f8fe0;--tense:#e8734a;--root:#f2bf4a;--third:#4cc9c0;--fifth:#b98cf0;
+  font-family:'Segoe UI',system-ui,-apple-system,Roboto,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0;height:100%}
+body{background:var(--night);color:var(--ink);display:grid;grid-template-rows:auto 1fr;min-height:100vh;overflow:hidden}
+button,select{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+header{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:8px 18px;background:#0e1322;border-bottom:1px solid #2b3450}
+h1{margin:0 auto 0 0;font:700 clamp(20px,2.4vw,28px)/1.1 Georgia,'Times New Roman',serif;letter-spacing:.01em}
+h1 small{display:block;font:400 13.5px/1.3 'Segoe UI',sans-serif;color:var(--muted)}
+.icon-btn{border:1px solid #3a4462;background:#1d2438;color:var(--ink);border-radius:999px;min-height:42px;padding:0 14px;font-weight:600;font-size:14px}
+
+.stagewrap{position:relative;overflow:hidden;min-height:0}
+.scene{position:absolute;left:50%;top:50%;width:1280px;height:800px;transform:translate(-50%,-50%) scale(var(--s,1));transform-origin:50% 50%}
+
+/* the room */
+.room{position:absolute;left:0;top:0;width:1280px;height:470px;overflow:hidden;background:#2a1c14}
+.room img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 40%}
+.room::after{content:'';position:absolute;inset:0;background:linear-gradient(#0000 55%,#0b0f1acc 100%),radial-gradient(ellipse at 50% 30%,#0000 30%,#0006 100%);pointer-events:none}
+.sign{position:absolute;left:340px;width:600px;top:26px;text-align:center;z-index:2}
+.sign .rn{font:700 30px/1 Georgia,serif;color:#ffe6b0;text-shadow:0 0 18px #ffb44a99;min-height:30px}
+.sign .name{font:700 66px/1.05 Georgia,serif;color:#fff6e4;text-shadow:0 2px 0 #0008,0 0 30px #ffb44a55;margin-top:4px}
+.sign .notes{margin-top:10px;display:flex;justify-content:center;gap:10px;min-height:44px}
+.sign .notes span{min-width:58px;padding:6px 12px;border-radius:12px;font:700 22px/1.3 'Segoe UI',sans-serif;color:#141a2b;box-shadow:0 4px 12px #0006}
+.meter .job{margin:-2px 0 8px;font:700 15px 'Segoe UI',sans-serif;color:#fff6e4}
+.pop{animation:pop .45s ease-out}
+@keyframes pop{0%{transform:scale(.9);opacity:.3}60%{transform:scale(1.03)}100%{transform:none;opacity:1}}
+.calm .pop{animation:none}
+
+.meter{position:absolute;left:40px;top:30px;width:250px;z-index:2;background:#0b0f1ab8;border:1px solid #ffffff24;border-radius:16px;padding:12px 14px}
+.meter h2{margin:0 0 8px;font:700 12px 'Segoe UI',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.track{position:relative;height:46px}
+.track .road{position:absolute;left:46px;right:6px;top:21px;height:6px;border-radius:3px;background:linear-gradient(90deg,var(--home),var(--away),var(--tense))}
+.track .house{position:absolute;left:0;top:6px;font-size:30px;line-height:1}
+.track .dot{position:absolute;top:10px;width:28px;height:28px;margin-left:-14px;border-radius:50%;background:#fff6e4;border:4px solid #141a2b;box-shadow:0 0 14px #fff8;transition:left .6s cubic-bezier(.3,1.4,.5,1)}
+.calm .track .dot{transition:none}
+.meter .lab{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-top:2px;padding-left:30px}
+.meter p{margin:8px 0 0;font-size:13.5px;line-height:1.4;color:#e9e3d6;min-height:38px}
+
+.legend{position:absolute;right:40px;top:30px;width:210px;z-index:2;background:#0b0f1ab8;border:1px solid #ffffff24;border-radius:16px;padding:12px 14px;font-size:13.5px;line-height:1.5}
+.legend b{display:inline-block;width:14px;height:14px;border-radius:4px;vertical-align:-2px;margin-right:6px}
+
+/* keyboard */
+.kb{position:absolute;left:160px;top:282px;width:960px;height:180px;z-index:2;filter:drop-shadow(0 10px 14px #000a)}
+.kb .case{position:absolute;left:-14px;right:-14px;top:-16px;bottom:-8px;border-radius:12px;background:linear-gradient(#2b2b33,#15151b);border:1px solid #444}
+.key{position:absolute;top:0;border:0;padding:0;display:flex;align-items:flex-end;justify-content:center}
+.key.w{width:63px;height:180px;background:linear-gradient(#fbfaf6,#e9e5dc);border-radius:0 0 7px 7px;box-shadow:inset 0 -6px 0 #cfc8b9,0 0 0 1px #5a5650;z-index:1}
+.key.b{width:38px;height:112px;background:linear-gradient(#333,#0b0b0d);border-radius:0 0 5px 5px;box-shadow:inset 0 -5px 0 #000,0 0 0 1px #000;z-index:2}
+.key i{font-style:normal;font:700 15px 'Segoe UI',sans-serif;margin-bottom:12px;padding:2px 6px;border-radius:7px;color:#141a2b;opacity:0;transition:opacity .15s}
+.key.on i{opacity:1}
+.key.on.w{background:linear-gradient(#fff,var(--c));box-shadow:inset 0 -3px 0 #0003,0 0 0 1px #5a5650,0 0 22px var(--c)}
+.key.on.b{background:linear-gradient(#444,var(--c));box-shadow:0 0 0 1px #000,0 0 18px var(--c)}
+.key.b i{margin-bottom:8px;font-size:13px}
+.key:active{filter:brightness(.92)}
+.bracket{position:absolute;top:-56px;height:30px;border:3px solid #fff8;border-bottom:0;border-radius:10px 10px 0 0;text-align:center;font:700 13px 'Segoe UI',sans-serif;color:#fff;z-index:3;pointer-events:none}
+.bracket span{position:relative;top:-24px;background:#0b0f1ae0;padding:2px 8px;border-radius:8px;white-space:nowrap}
+
+/* the lower panel */
+.panel{position:absolute;left:0;top:470px;width:1280px;height:330px;background:linear-gradient(#1b2134,#151a2a);padding:14px 26px;display:flex;flex-direction:column;gap:12px;border-top:1px solid #39425f}
+.row{display:flex;align-items:center;gap:12px}
+.tabs{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden}
+.tabs button{border:0;background:transparent;min-height:44px;padding:0 18px;font-weight:700;font-size:15px;color:var(--muted)}
+.tabs button[aria-pressed="true"]{background:#f2bf4a;color:#1b1400}
+.keysel{margin-left:auto;display:flex;align-items:center;gap:8px;font-weight:600;color:var(--muted)}
+select{background:var(--panel2);border:1px solid var(--line);border-radius:10px;min-height:42px;padding:0 10px;color:var(--ink);font-weight:700}
+.cards{display:grid;grid-template-columns:repeat(7,1fr);gap:10px}
+.card{position:relative;border:1px solid var(--line);background:var(--panel2);border-radius:14px;min-height:92px;padding:8px 6px 6px;text-align:center;overflow:hidden}
+.card::before{content:'';position:absolute;left:0;right:0;top:0;height:6px;background:var(--fc)}
+.card .r{display:block;font:700 26px/1.1 Georgia,serif;margin-top:4px}
+.card .n{display:block;font-weight:700;font-size:15px;margin-top:2px}
+.card .q{display:block;font-size:12px;color:var(--muted)}
+.card[aria-pressed="true"],.card.lit{border-color:#fff;background:#34405f;box-shadow:0 0 0 2px var(--fc)}
+.card:hover{background:#2f3955}
+.slots{display:grid;grid-template-columns:repeat(8,1fr);gap:8px;flex:1}
+.slot{position:relative;border:2px dashed #46506e;background:#0f1424;border-radius:12px;min-height:62px;display:flex;flex-direction:column;align-items:center;justify-content:center;font:700 22px Georgia,serif}
+.slot small{font:600 12px 'Segoe UI',sans-serif;color:var(--muted)}
+.slot.full{border-style:solid;border-color:var(--fc);background:#232c45}
+.slot.sel{box-shadow:0 0 0 3px #f2bf4a}
+.slot.now{background:#3a466a;transform:translateY(-3px);box-shadow:0 0 18px var(--fc)}
+.slot .x{position:absolute;right:3px;top:1px;border:0;background:none;color:var(--muted);font-size:14px;min-height:0;padding:2px 5px}
+.btn{border:0;border-radius:12px;min-height:46px;padding:0 16px;font-weight:700;font-size:15px;background:#f2bf4a;color:#1b1400}
+.btn.soft{background:var(--panel2);color:var(--ink);border:1px solid var(--line)}
+.btn:disabled{opacity:.4;cursor:default}
+.tip{margin:0;font-size:14.5px;line-height:1.45;color:#ddd6c8}
+.tip b{color:#fff}
+.quals{display:flex;gap:8px}
+.quals button{border:1px solid var(--line);background:var(--panel2);border-radius:12px;min-height:50px;padding:0 18px;font-weight:700;font-size:16px}
+.quals button[aria-pressed="true"]{background:#f2bf4a;color:#1b1400;border-color:#f2bf4a}
+.formula{display:flex;align-items:center;gap:8px;font-size:16px;flex-wrap:wrap}
+.formula .chip{padding:6px 12px;border-radius:10px;font-weight:800;color:#141a2b}
+.formula .gap{display:flex;gap:3px;align-items:center;color:var(--muted);font-size:13px}
+.formula .gap i{display:inline-block;width:14px;height:14px;border-radius:3px;background:#55607f}
+.game{display:grid;grid-template-columns:1fr 330px;gap:20px;flex:1}
+.game .ask{font:700 24px/1.3 Georgia,serif;margin:0}
+.answers{display:flex;gap:10px;margin-top:10px}
+.answers .btn{min-height:58px;font-size:17px}
+.say{margin:10px 0 0;border-radius:12px;padding:10px 12px;font-size:15px;line-height:1.45;background:#1f3a2c;border-left:5px solid var(--home)}
+.say.warn{background:#3d2a20;border-color:var(--tense)}
+.say:empty{display:none}
+.score{background:var(--panel2);border:1px solid var(--line);border-radius:14px;padding:12px 14px;font-size:14px;line-height:1.5;color:#ddd6c8}
+.score b{font:700 30px Georgia,serif;color:#fff;display:block}
+.phrase{display:flex;gap:8px;margin-top:10px}
+.phrase span{min-width:70px;text-align:center;padding:8px 10px;border-radius:10px;background:#0f1424;border:2px solid #46506e;font:700 20px Georgia,serif}
+.phrase span.now{border-color:#fff;box-shadow:0 0 14px #fff6}
+</style>
+</head>
+<body>
+<header>
+  <h1>Chord Explorer <small>Stack thirds into chords. Line chords up. Hear which ones feel like home.</small></h1>
+  <button class="icon-btn" id="motion" aria-pressed="true" title="Turn animation on or off">✨ Motion</button>
+</header>
+<div class="stagewrap" id="stagewrap">
+  <div class="scene" id="scene">
+    <div class="room">
+      <img src="art:studio" alt="A cozy music practice room at dusk with a guitar, a lamp and a window">
+      <div class="meter" aria-live="polite">
+        <h2>How far from home?</h2>
+        <div class="job" id="cjob" hidden></div>
+        <div class="track"><span class="house" aria-hidden="true">🏠</span><span class="road"></span><span class="dot" id="dot" style="left:46px"></span></div>
+        <div class="lab"><span>home</span><span>away</span><span>tension</span></div>
+        <p id="meterText">Play a chord to see how far it feels from home.</p>
+      </div>
+      <div class="sign" aria-live="polite">
+        <div class="rn" id="rn"></div>
+        <div class="name" id="cname">Tap a chord</div>
+        <div class="notes" id="cnotes"></div>
+      </div>
+      <div class="legend" id="legend">
+        <div><b style="background:var(--root)"></b>Root, the chord's name</div>
+        <div><b style="background:var(--third)"></b>Third, major or minor</div>
+        <div><b style="background:var(--fifth)"></b>Fifth</div>
+      </div>
+      <div class="kb" id="kb" aria-label="Piano keyboard"><div class="case"></div></div>
+    </div>
+    <div class="panel">
+      <div class="row">
+        <div class="tabs" role="group" aria-label="Mode">
+          <button id="t-build" aria-pressed="false">Build a chord</button>
+          <button id="t-prog" aria-pressed="true">Progressions</button>
+          <button id="t-game" aria-pressed="false">Home or not?</button>
+        </div>
+        <label class="keysel" id="keysel">Key of <select id="key"></select> major</label>
+      </div>
+      <!-- Build a chord -->
+      <div id="p-build" hidden>
+        <p class="tip"><b>Tap any key</b> on the keyboard to choose the root. Then pick a quality. Every triad is two thirds stacked on top of each other.</p>
+        <div class="row" style="margin-top:12px">
+          <div class="quals" role="group" aria-label="Chord quality">
+            <button data-q="maj" aria-pressed="true">Major</button>
+            <button data-q="min" aria-pressed="false">Minor</button>
+            <button data-q="dim" aria-pressed="false">Diminished</button>
+            <button data-q="aug" aria-pressed="false">Augmented</button>
+          </div>
+          <button class="btn soft" id="replay" style="margin-left:auto">▶ Play it again</button>
+        </div>
+        <div class="formula" id="formula" style="margin-top:14px"></div>
+        <p class="tip" id="buildNote" style="margin-top:10px"></p>
+      </div>
+      <!-- Progressions -->
+      <div id="p-prog">
+        <div class="cards" id="cards"></div>
+        <div class="row" style="margin-top:12px">
+          <div class="slots" id="slots"></div>
+        </div>
+        <div class="row" style="margin-top:12px">
+          <button class="btn" id="play">▶ Play</button>
+          <select id="style" aria-label="Playing style"><option value="block">Block chords</option><option value="broken">Broken chords</option><option value="strum">Strummed</option></select>
+          <label class="keysel" style="margin:0">Tempo <select id="tempo"><option value="72">Slow</option><option value="96" selected>Medium</option><option value="126">Fast</option></select></label>
+          <select id="preset" aria-label="Famous progressions" style="margin-left:auto"><option value="">Famous progressions…</option></select>
+          <button class="btn soft" id="clear">Clear</button>
+        </div>
+      </div>
+      <!-- Home or not? -->
+      <div id="p-game" hidden>
+        <div class="game">
+          <div>
+            <p class="ask" id="ask">Listen to the phrase. Did it come home, or is it still waiting?</p>
+            <div class="answers">
+              <button class="btn soft" id="listen">🔊 Play the phrase</button>
+              <button class="btn" id="a-home" style="background:var(--home);color:#06180e">🏠 It came home</button>
+              <button class="btn" id="a-away" style="background:var(--tense);color:#200a00">↗ Not home yet</button>
+            </div>
+            <div class="phrase" id="phrase"></div>
+            <p class="say" id="gsay"></p>
+          </div>
+          <div class="score" id="score"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  let reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  try { const m = localStorage.getItem('curio-motion'); if (m) reduce = m === 'calm'; } catch {}
+  function showMotion() {
+    document.body.classList.toggle('calm', reduce);
+    $('motion').setAttribute('aria-pressed', !reduce);
+    $('motion').textContent = reduce ? '⏸ Motion' : '✨ Motion';
+  }
+  showMotion();
+  $('motion').onclick = () => { reduce = !reduce; try { localStorage.setItem('curio-motion', reduce ? 'calm' : 'on'); } catch {} showMotion(); };
+  const fit = () => { const r = $('stagewrap').getBoundingClientRect(); $('scene').style.setProperty('--s', Math.min(r.width / 1280, r.height / 800)); };
+  new ResizeObserver(fit).observe($('stagewrap'));
+
+  // ---------- music theory ----------
+  const LETTERS = 'CDEFGAB', LETTER_PC = [0, 2, 4, 5, 7, 9, 11];
+  const ACC = {'-2': '𝄫', '-1': '♭', 0: '', 1: '♯', 2: '𝄪'};
+  // spell a pitch class given the letter it must use
+  function spell(pc, letter) {
+    let d = ((pc - LETTER_PC[letter]) % 12 + 12) % 12;
+    if (d > 6) d -= 12;
+    return LETTERS[letter] + ACC[d];
+  }
+  const KEYS = [['C', 0, 0], ['G', 7, 4], ['D', 2, 1], ['A', 9, 5], ['F', 5, 3], ['B♭', 10, 6], ['E♭', 3, 2]];  // name, pitch class, letter
+  const MAJOR = [0, 2, 4, 5, 7, 9, 11];
+  const QUAL = {maj: [4, 3], min: [3, 4], dim: [3, 3], aug: [4, 4]};
+  const QNAME = {maj: 'major', min: 'minor', dim: 'diminished', aug: 'augmented'};
+  const DEG = [  // the seven triads of a major key
+    {rn: 'I', q: 'maj', job: 'home', far: 0}, {rn: 'ii', q: 'min', job: 'away', far: 2}, {rn: 'iii', q: 'min', job: 'home', far: 1},
+    {rn: 'IV', q: 'maj', job: 'away', far: 2}, {rn: 'V', q: 'maj', job: 'tense', far: 3}, {rn: 'vi', q: 'min', job: 'home', far: 1},
+    {rn: 'vii°', q: 'dim', job: 'tense', far: 3}];
+  const JOB = {home: ['Home', 'var(--home)'], away: ['Away', 'var(--away)'], tense: ['Tension', 'var(--tense)']};
+  const FAR_TEXT = [
+    'Home. This chord feels settled, like the end of a song.',
+    'Close to home. It shares two notes with the home chord, so it feels calm but a little different.',
+    'Away from home. It moves the music somewhere new.',
+    'Tension! It leans hard toward home and wants to move there next.'];
+  const st = {key: 0, mode: 'prog', prog: Array(8).fill(null), sel: 0, playing: false, root: 60, q: 'maj', game: null, right: 0, played: 0, streak: 0};
+
+  // the triad on scale degree d of the current key: notes as {midi, name}
+  function triad(d) {
+    const [, kpc, kl] = KEYS[st.key];
+    const notes = [0, 2, 4].map(s => {
+      const deg = d + s, pc = (kpc + MAJOR[deg % 7]) % 12, letter = (kl + deg) % 7;
+      return {pc, name: spell(pc, letter)};
+    });
+    // root position, low enough that the fifth stays on the keyboard
+    let m = 48 + notes[0].pc; if (m + 12 + 8 <= 72) m += 12;
+    let prev = m;
+    return notes.map((n, i) => { let x = i ? prev + ((n.pc - prev % 12 + 12) % 12) : m; prev = x; return {...n, midi: x}; });
+  }
+  const NAME_SHARP = ['C', 'D♭', 'D', 'E♭', 'E', 'F', 'F♯', 'G', 'A♭', 'A', 'B♭', 'B'];
+  const NAME_LETTER = [0, 1, 1, 2, 2, 3, 3, 4, 5, 5, 6, 6];
+  function built(root, q) {  // any root and quality, spelled by stacking letters
+    const pc = root % 12, l = NAME_LETTER[pc], [a, b] = QUAL[q];
+    return [{midi: root, pc, name: NAME_SHARP[pc]}, {midi: root + a, pc: (pc + a) % 12, name: spell((pc + a) % 12, (l + 2) % 7)},
+      {midi: root + a + b, pc: (pc + a + b) % 12, name: spell((pc + a + b) % 12, (l + 4) % 7)}];
+  }
+  const chordName = (notes, q) => notes[0].name + (q === 'maj' ? ' major' : q === 'min' ? ' minor' : q === 'dim' ? ' diminished' : ' augmented');
+  const shortName = (notes, q) => notes[0].name + (q === 'min' ? 'm' : q === 'dim' ? '°' : q === 'aug' ? '+' : '');
+
+  // ---------- keyboard ----------
+  const LO = 48, HI = 72, WHITE = [0, 2, 4, 5, 7, 9, 11];
+  const keyEls = {};
+  (function drawKeys() {
+    let wx = 0;
+    for (let m = LO; m <= HI; m++) {
+      const pc = m % 12, white = WHITE.includes(pc), b = document.createElement('button');
+      b.className = 'key ' + (white ? 'w' : 'b');
+      b.setAttribute('aria-label', NAME_SHARP[pc] + (Math.floor(m / 12) - 1));
+      b.innerHTML = '<i></i>';
+      if (white) { b.style.left = wx * 64 + 'px'; wx++; } else b.style.left = wx * 64 - 19 + 'px';
+      b.onpointerdown = e => { e.preventDefault(); keyTap(m); };
+      b.onkeydown = e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); keyTap(m); } };
+      $('kb').append(b); keyEls[m] = b;
+    }
+  })();
+  const keyCenter = m => { const k = keyEls[m]; return parseFloat(k.style.left) + (k.classList.contains('w') ? 31.5 : 19); };
+  const ROLE = ['var(--root)', 'var(--third)', 'var(--fifth)'];
+  function light(notes) {
+    for (const m in keyEls) { keyEls[m].classList.remove('on'); keyEls[m].style.removeProperty('--c'); }
+    $('kb').querySelectorAll('.bracket').forEach(b => b.remove());
+    if (!notes.length) return;
+    notes.forEach((n, i) => {
+      const k = keyEls[n.midi]; if (!k) return;
+      k.classList.add('on'); k.style.setProperty('--c', ROLE[i]);
+      k.querySelector('i').textContent = n.name; k.querySelector('i').style.background = ROLE[i];
+    });
+    for (let i = 0; i < 2; i++) {
+      const a = keyCenter(notes[i].midi), b = keyCenter(notes[i + 1].midi), br = document.createElement('div');
+      br.className = 'bracket';
+      Object.assign(br.style, {left: a + 'px', width: b - a + 'px', top: (i ? -78 : -42) + 'px'});
+      const n = notes[i + 1].midi - notes[i].midi;
+      br.innerHTML = `<span>${n} half steps</span>`;
+      $('kb').append(br);
+    }
+  }
+
+  // ---------- the sign and the meter ----------
+  function showChord(notes, q, deg) {
+    $('rn').textContent = deg ? deg.rn : '';
+    $('cname').textContent = chordName(notes, q);
+    $('cnotes').innerHTML = notes.map((n, i) => `<span style="background:${ROLE[i]}">${n.name}</span>`).join('');
+    const sign = document.querySelector('.sign');
+    sign.classList.remove('pop'); void sign.offsetWidth; sign.classList.add('pop');
+    if (deg) {
+      const [label, color] = JOB[deg.job];
+      $('cjob').hidden = false;
+      $('cjob').innerHTML = `<span style="color:${color}">●</span> ${deg.rn} is ${deg.job === 'away' ? 'an' : 'a'} ${label.toLowerCase()} chord in ${KEYS[st.key][0]} major`;
+      $('dot').style.left = 46 + deg.far * 58 + 'px';
+      $('meterText').textContent = FAR_TEXT[deg.far];
+    } else {
+      $('cjob').hidden = true;
+    }
+    light(notes);
+  }
+  function resetSign(text) {
+    $('rn').textContent = ''; $('cname').textContent = text; $('cnotes').innerHTML = ''; $('cjob').hidden = true;
+    light([]); $('dot').style.left = '46px'; $('meterText').textContent = 'Play a chord to see how far it feels from home.';
+  }
+
+  // ---------- sound ----------
+  let ctx, bus;
+  function audio() {
+    if (!ctx) {
+      ctx = new (window.AudioContext || window.webkitAudioContext)();
+      const comp = ctx.createDynamicsCompressor(); comp.connect(ctx.destination);
+      bus = ctx.createGain(); bus.gain.value = .55; bus.connect(comp);
+      // a small room: noise that fades out, used as a reverb
+      const len = ctx.sampleRate * 1.6, ir = ctx.createBuffer(2, len, ctx.sampleRate);
+      for (let c = 0; c < 2; c++) { const d = ir.getChannelData(c); for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * (1 - i / len) ** 2.6; }
+      const rev = ctx.createConvolver(), wet = ctx.createGain(); rev.buffer = ir; wet.gain.value = .25;
+      bus.connect(rev).connect(wet).connect(comp);
+    }
+    if (ctx.state === 'suspended') ctx.resume();
+    return ctx;
+  }
+  const hz = m => 440 * 2 ** ((m - 69) / 12);
+  function tone(m, t, dur, vel = .2) {  // a soft electric-piano voice
+    const a = audio(), f = a.createBiquadFilter(), g = a.createGain();
+    f.type = 'lowpass'; f.Q.value = .3;
+    f.frequency.setValueAtTime(Math.min(9000, hz(m) * 9), t); f.frequency.exponentialRampToValueAtTime(Math.max(400, hz(m) * 2.2), t + Math.min(dur, 1.2));
+    g.gain.setValueAtTime(.0001, t); g.gain.exponentialRampToValueAtTime(vel, t + .01);
+    g.gain.exponentialRampToValueAtTime(vel * .4, t + .4); g.gain.exponentialRampToValueAtTime(.0001, t + dur);
+    for (const [k, amp, type] of [[1, 1, 'triangle'], [1, .5, 'sine'], [2, .28, 'sine'], [3, .08, 'sine'], [4, .05, 'sine']]) {
+      const o = a.createOscillator(), og = a.createGain();
+      o.type = type; o.frequency.value = hz(m) * k; o.detune.value = k === 1 && amp < 1 ? 5 : 0;
+      og.gain.value = amp; o.connect(og).connect(f); o.start(t); o.stop(t + dur + .05);
+    }
+    f.connect(g).connect(bus);
+  }
+  function strike(notes, t, dur, style = 'block', beat = .6) {
+    tone(notes[0].midi - 12, t, dur, .2);  // bass: the root an octave down
+    if (style === 'strum') notes.forEach((n, i) => tone(n.midi, t + i * .045, dur, .14));
+    else if (style === 'broken') [0, 1, 2, 1].forEach((k, i) => tone(notes[k].midi, t + i * beat, Math.max(.6, dur - i * beat), .15));
+    else notes.forEach(n => tone(n.midi, t, dur, .13));
+  }
+  let quietUntil = 0;  // after Stop the sound fades for a moment; new notes wait for it
+  const now = () => Math.max(audio().currentTime + .03, quietUntil);
+  const at = (t, fn) => setTimeout(fn, Math.max(0, (t - ctx.currentTime) * 1000));
+
+  // ---------- tapping ----------
+  function keyTap(m) {
+    if (st.mode === 'build') { st.root = m > 64 ? m - 12 : m; buildShow(true); return; }  // keep the top note on the keyboard
+    tone(m, now(), 1.2, .2);
+  }
+
+  // ---------- build mode ----------
+  function buildShow(sound) {
+    const notes = built(st.root, st.q), [a, b] = QUAL[st.q];
+    showChord(notes, st.q, null);
+    document.querySelectorAll('.quals button').forEach(x => x.setAttribute('aria-pressed', x.dataset.q === st.q));
+    const gap = n => `<span class="gap">${'<i></i>'.repeat(n)} ${n}</span>`;
+    $('formula').innerHTML = `<span class="chip" style="background:var(--root)">${notes[0].name}</span>${gap(a)}<span class="chip" style="background:var(--third)">${notes[1].name}</span>${gap(b)}<span class="chip" style="background:var(--fifth)">${notes[2].name}</span>
+      <span style="margin-left:10px;color:var(--muted)">${QNAME[st.q]} = ${a} + ${b} half steps</span>`;
+    const third = a === 4 ? 'a <b>major third</b> (4 half steps)' : 'a <b>minor third</b> (3 half steps)';
+    const NOTE = {
+      maj: `Start with ${third}, then add a minor third. Major chords tend to sound bright and open.`,
+      min: `Start with ${third}, then add a major third. The only change from major is the middle note, one half step lower, and the mood turns darker.`,
+      dim: `Two minor thirds: the outer notes are squeezed close. Diminished chords sound tense and unstable.`,
+      aug: `Two major thirds: the outer notes are stretched wide. Augmented chords sound dreamy and unsettled.`};
+    $('buildNote').innerHTML = NOTE[st.q];
+    if (sound) strike(notes, now(), 1.8, 'strum');
+  }
+  document.querySelectorAll('.quals button').forEach(b => b.onclick = () => { st.q = b.dataset.q; buildShow(true); });
+  $('replay').onclick = () => buildShow(true);
+
+  // ---------- progressions ----------
+  const PRESETS = [
+    ['Pop anthem: I V vi IV', [0, 4, 5, 3]],
+    ['Fifties: I vi IV V', [0, 5, 3, 4]],
+    ['Strong ending: I IV V I', [0, 3, 4, 0]],
+    ['Amen ending: I IV I', [0, 3, 0]],
+    ['Jazz turn: ii V I', [1, 4, 0]],
+    ['Surprise! I IV V vi', [0, 3, 4, 5]],
+    ['Canon in D: I V vi iii IV I IV V', [0, 4, 5, 2, 3, 0, 3, 4]],
+    ['Left hanging: I vi ii V', [0, 5, 1, 4]],
+  ];
+  $('preset').innerHTML += PRESETS.map(([n], i) => `<option value="${i}">${n}</option>`).join('');
+  $('preset').onchange = e => {
+    if (e.target.value === '') return;
+    const [, p] = PRESETS[e.target.value];
+    st.prog = Array(8).fill(null); p.forEach((d, i) => st.prog[i] = d); st.sel = Math.min(p.length, 7);
+    drawSlots(); e.target.value = ''; play();
+  };
+  function drawCards() {
+    $('cards').innerHTML = DEG.map((g, d) => {
+      const n = triad(d);
+      return `<button class="card" data-d="${d}" style="--fc:${JOB[g.job][1]}"><span class="r">${g.rn}</span><span class="n">${shortName(n, g.q)}</span><span class="q">${QNAME[g.q]} · ${JOB[g.job][0].toLowerCase()}</span></button>`;
+    }).join('');
+    $('cards').querySelectorAll('.card').forEach(c => c.onclick = () => {
+      const d = +c.dataset.d;
+      stop();
+      sound(d);
+      st.prog[st.sel] = d; st.sel = Math.min(7, st.sel + 1); drawSlots();
+    });
+  }
+  function sound(d) { const n = triad(d); strike(n, now(), 1.8, 'strum'); showChord(n, DEG[d].q, DEG[d]); }
+  function drawSlots() {
+    $('slots').innerHTML = st.prog.map((d, i) => d === null
+      ? `<button class="slot${i === st.sel ? ' sel' : ''}" data-i="${i}" aria-label="Empty slot ${i + 1}"><small>${i === st.sel ? 'next' : i + 1}</small></button>`
+      : `<button class="slot full${i === st.sel ? ' sel' : ''}" data-i="${i}" style="--fc:${JOB[DEG[d].job][1]}">${DEG[d].rn}<small>${shortName(triad(d), DEG[d].q)}</small><span class="x" data-x="${i}" aria-label="Remove">✕</span></button>`).join('');
+    $('slots').querySelectorAll('.slot').forEach(s => s.onclick = e => {
+      const i = +s.dataset.i;
+      if (e.target.dataset.x !== undefined) { st.prog.splice(i, 1); st.prog.push(null); st.sel = Math.min(st.sel, firstEmpty()); drawSlots(); return; }
+      st.sel = i; drawSlots();
+      if (st.prog[i] !== null) sound(st.prog[i]);
+    });
+    $('play').disabled = !st.prog.some(d => d !== null);
+  }
+  const firstEmpty = () => { const i = st.prog.indexOf(null); return i < 0 ? 7 : i; };
+  let timers = [];
+  function stop() { timers.forEach(clearTimeout); timers = []; document.querySelectorAll('.slot.now,.card.lit,.phrase .now').forEach(x => x.classList.remove('now', 'lit'));
+    if (st.playing && bus) {  // cut the notes already scheduled
+      const t = ctx.currentTime; bus.gain.cancelScheduledValues(t); bus.gain.setValueAtTime(bus.gain.value, t);
+      bus.gain.linearRampToValueAtTime(.0001, t + .08); bus.gain.setValueAtTime(.0001, t + .5); bus.gain.linearRampToValueAtTime(.55, t + .52); quietUntil = t + .53;
+    }
+    st.playing = false; $('play').textContent = '▶ Play';
+  }
+  function play() {
+    if (st.playing) { stop(); return; }
+    const list = st.prog.map((d, i) => [d, i]).filter(([d]) => d !== null);
+    if (!list.length) return;
+    st.playing = true; $('play').textContent = '■ Stop';
+    const beat = 60 / +$('tempo').value, bar = beat * 4, style = $('style').value;
+    let t = now() + .05;
+    list.forEach(([d, i], k) => {
+      const n = triad(d), last = k === list.length - 1;
+      strike(n, t, last ? bar * 1.6 : bar * .98, style, beat);
+      if (style === 'block' && !last) strike(n, t + beat * 2, bar * .48, 'block');
+      const tt = t;
+      timers.push(setTimeout(() => {
+        document.querySelectorAll('.slot.now,.card.lit').forEach(x => x.classList.remove('now', 'lit'));
+        $('slots').children[i].classList.add('now');
+        $('cards').children[d].classList.add('lit');
+        showChord(n, DEG[d].q, DEG[d]);
+      }, Math.max(0, (tt - ctx.currentTime) * 1000)));
+      t += bar;
+    });
+    timers.push(setTimeout(() => { document.querySelectorAll('.slot.now,.card.lit').forEach(x => x.classList.remove('now', 'lit')); st.playing = false; $('play').textContent = '▶ Play'; },
+      (t - ctx.currentTime + bar * .5) * 1000));
+  }
+  $('play').onclick = play;
+  $('clear').onclick = () => { stop(); st.prog = Array(8).fill(null); st.sel = 0; drawSlots(); };
+
+  // ---------- home or not? ----------
+  const PHRASES = [
+    [[0, 3, 4, 0], true, 'V → I is the strongest way home, called an <b>authentic cadence</b>. The tension chord pulled straight back to home.'],
+    [[0, 1, 4, 0], true, 'ii → V → I: away, tension, home. That ending is an <b>authentic cadence</b>, V → I.'],
+    [[0, 5, 3, 0], true, 'IV → I is the gentle way home, the <b>plagal cadence</b>. Some people call it the "Amen" ending.'],
+    [[0, 4, 3, 0], true, 'It ended on I, home, after IV. That gentle IV → I ending is a <b>plagal cadence</b>.'],
+    [[0, 5, 1, 4], false, 'It stopped on V, the tension chord, so it still wants to go home. Ending on V is a <b>half cadence</b>, like a question.'],
+    [[0, 3, 4, 5], false, 'V went to vi instead of I: a <b>deceptive cadence</b>. vi is close to home, but it is a surprise, not an ending.'],
+    [[0, 4, 5, 3], false, 'It stopped on IV, an away chord. The music sounds like it is still traveling.'],
+    [[0, 3, 0, 4], false, 'It stopped on V. That tension chord leans toward home, so the phrase sounds unfinished: a <b>half cadence</b>.'],
+    [[0, 1, 4, 5], false, 'V → vi is a <b>deceptive cadence</b>: you expect home, but the music side-steps to vi.'],
+    [[0, 2, 3, 4], false, 'It ended on V, the tension chord. You can almost hear the I that should come next.'],
+  ];
+  function newRound() {
+    let i; do { i = Math.floor(Math.random() * PHRASES.length); } while (st.game && i === st.game.i && PHRASES.length > 1);
+    st.game = {i, answered: false};
+    $('next')?.remove();
+    $('phrase').innerHTML = PHRASES[i][0].map(() => '<span>?</span>').join('');
+    $('gsay').textContent = ''; $('gsay').className = 'say';
+    $('ask').textContent = 'Listen to the phrase. Did it come home, or is it still waiting?';
+    $('a-home').disabled = $('a-away').disabled = false;
+    $('listen').textContent = '🔊 Play the phrase';
+    resetSign('Listen…');
+    drawScore();
+  }
+  function playPhrase() {
+    stop(); st.playing = true;
+    const [p] = PHRASES[st.game.i], beat = 60 / 92, bar = beat * 4;
+    let t = now() + .05;
+    p.forEach((d, k) => {
+      const n = triad(d), last = k === p.length - 1;
+      strike(n, t, last ? bar * 1.7 : bar * .98, 'block');
+      if (!last) strike(n, t + beat * 2, bar * .48, 'block');
+      const tt = t;
+      timers.push(setTimeout(() => {
+        [...$('phrase').children].forEach((s, j) => s.classList.toggle('now', j === k));
+        if (st.game.answered) showChord(n, DEG[d].q, DEG[d]);  // before the answer, nothing on screen names the chords
+      }, Math.max(0, (tt - ctx.currentTime) * 1000)));
+      t += bar;
+    });
+    timers.push(setTimeout(() => { [...$('phrase').children].forEach(s => s.classList.remove('now')); st.playing = false; }, (t - ctx.currentTime) * 1000));
+    $('listen').textContent = '🔊 Play it again';
+  }
+  function guess(home) {
+    if (st.game.answered) return;
+    const [p, isHome, why] = PHRASES[st.game.i];
+    st.game.answered = true; st.played++;
+    const ok = home === isHome;
+    if (ok) { st.right++; st.streak++; } else st.streak = 0;
+    $('phrase').innerHTML = p.map(d => `<span style="border-color:${JOB[DEG[d].job][1]}">${DEG[d].rn}</span>`).join('');
+    $('gsay').className = ok ? 'say' : 'say warn';
+    $('gsay').innerHTML = `${ok ? 'Yes!' : 'Listen again.'} ${isHome ? 'It came home.' : 'It is not home yet.'} ${why}`;
+    $('ask').textContent = ok ? 'You heard it.' : 'Not this time. Play it again and listen to the last chord.';
+    $('a-away').insertAdjacentHTML('afterend', '<button class="btn" id="next">Next phrase →</button>');
+    $('next').onclick = newRound;
+    $('a-home').disabled = $('a-away').disabled = true;
+    const last = p[p.length - 1]; showChord(triad(last), DEG[last].q, DEG[last]);
+    drawScore();
+  }
+  function drawScore() {
+    $('score').innerHTML = `<b>${st.right} of ${st.played}</b>right so far${st.streak > 1 ? `, ${st.streak} in a row` : ''}.<br><br>Listen for the last chord. <span style="color:var(--home)">Home</span> feels finished. <span style="color:var(--tense)">Tension</span> leans forward, and <span style="color:var(--away)">away</span> chords feel like the trip is not over.`;
+  }
+  $('listen').onclick = playPhrase;
+  $('a-home').onclick = () => guess(true);
+  $('a-away').onclick = () => guess(false);
+
+  // ---------- modes and keys ----------
+  $('key').innerHTML = KEYS.map(([n], i) => `<option value="${i}">${n}</option>`).join('');
+  $('key').onchange = e => { stop(); st.key = +e.target.value; drawCards(); drawSlots(); if (st.mode === 'game') newRound(); else resetSign(`Key of ${KEYS[st.key][0]} major`); };
+  function setMode(m) {
+    stop(); st.mode = m;
+    ['build', 'prog', 'game'].forEach(k => { $('t-' + k).setAttribute('aria-pressed', k === m); $('p-' + k).hidden = k !== m; });
+    $('keysel').style.visibility = m === 'build' ? 'hidden' : 'visible';
+    if (m === 'build') buildShow(false);
+    else if (m === 'game') newRound();
+    else resetSign('Tap a chord');
+  }
+  $('t-build').onclick = () => setMode('build');
+  $('t-prog').onclick = () => setMode('prog');
+  $('t-game').onclick = () => setMode('game');
+
+  drawCards(); drawSlots(); setMode('prog');
+  window.__ce = {st, setMode, triad, built, sound, play, guess, newRound, PHRASES};  // for checking frames
+})();
+</script>
+</body>
+</html>

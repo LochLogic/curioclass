@@ -1,0 +1,20 @@
+{
+  "id": "factor-forge",
+  "status": "beta",
+  "driver": "students or teacher",
+  "modes": [
+    "Smash",
+    "GCF & LCM",
+    "Forge Rush"
+  ],
+  "grades_label": "Grade 6",
+  "third_party": [],
+  "updated": "2026-10-23",
+  "hook": "Strike red-hot numbers with prime hammers until only prime coins are left, then pair the primes two numbers share to forge their GCF and LCM. Or race the clock in Forge Rush.",
+  "outcome": "Write a whole number as a product of primes, and use prime factorizations to find the greatest common factor and least common multiple of two numbers",
+  "minutes": "15-30",
+  "sources": [
+    "Illustrations generated with Google Gemini, edited for Curio Class",
+    "Sounds generated in the browser"
+  ]
+}

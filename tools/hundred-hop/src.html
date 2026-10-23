@@ -1,0 +1,465 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hundred Hop · Count to 100 by ones and tens · Curio Class</title>
+<meta name="description" content="A frog hops along a path of 100 lily pads on the projector. The class counts aloud by ones or by tens, from 1 or from any number, then calls out where the frog will land before the teacher reveals it. Kindergarten math, teacher-led. Works offline.">
+<!--
+HUNDRED HOP (Curio Class)
+Kindergarten math, CCSS K.CC.A.1 (count to 100 by ones and by tens) and K.CC.A.2 (count forward from a
+given number). Count along: the frog hops one pad or ten pads at a time and the numbers are read aloud.
+Where will it land?: the numbers are hidden, the frog hops a set number of times from a pad the class can see,
+the class counts along and calls out the landing number, and the teacher reveals it.
+The path snakes back and forth across the pond, ten pads to a row, so every hop goes to the very next pad.
+Teacher-led on a projector or smartboard. Illustrations generated with Google Gemini, edited for Curio Class.
+Narration recorded with Gemini text-to-speech. One file, no network requests. Content CC BY 4.0, code MIT.
+curioclass.org
+-->
+<style>
+:root{
+  --paper:#f3f8ee;--ink:#1f3324;--muted:#56695a;--line:#d6e5cf;--focus:#2f5bd3;--brand:#2f7a4a;--gold:#ffd23f;
+  font-family:'Segoe UI',system-ui,-apple-system,Roboto,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0;height:100%}
+body{background:var(--paper);color:var(--ink);display:grid;grid-template-rows:auto 1fr;min-height:100vh}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:4px solid var(--focus);outline-offset:3px}
+header{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:10px 20px;background:var(--brand);color:#f1fbf3}
+h1{margin:0 auto 0 0;font:800 clamp(22px,3vw,32px)/1.1 'Trebuchet MS','Segoe UI',sans-serif}
+h1 small{display:block;font:500 15px/1.3 'Segoe UI',sans-serif;color:#cdebd6}
+.icon-btn{border:2px solid #4f9a68;background:#3b8a57;color:#f1fbf3;border-radius:999px;min-height:52px;padding:0 16px;font-weight:700;font-size:16px}
+
+main{display:grid;grid-template-columns:minmax(0,1fr) 310px;min-height:0}
+@media (max-width:760px){main{grid-template-columns:1fr}}
+.stage{position:relative;overflow:hidden;min-height:340px;background:#8fc9c9}
+.scene{position:absolute;left:50%;top:50%;width:1500px;height:1000px;transform:translate(-50%,-50%) scale(var(--s,1))}
+.scene>img.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+
+.sign{position:absolute;left:450px;width:600px;top:28px;min-height:118px;padding:12px 20px;border-radius:24px;background:#fffdf4;border:5px solid #3b5a33;box-shadow:0 8px 0 #0003;text-align:center}
+.sign b{display:block;font:800 40px/1.15 'Trebuchet MS',sans-serif}
+.sign .dots{display:flex;justify-content:center;gap:12px;margin-top:10px}
+.sign .dots i{width:34px;height:34px;border-radius:50%;border:4px solid #3b5a33;background:#fff}
+.sign .dots i.on{background:var(--gold)}
+.sign .sub{display:block;font:700 22px/1.3 'Trebuchet MS',sans-serif;color:var(--muted);margin-top:4px}
+
+.pad{position:absolute;width:96px;height:78px;margin:-39px 0 0 -48px;border:0;padding:0;background:none;display:grid;place-items:center}
+.pad img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 4px 3px #0004);transition:filter .3s}
+.pad b{position:relative;font:800 32px/1 'Trebuchet MS','Segoe UI',sans-serif;color:#17321b;text-shadow:0 0 4px #fff,0 0 8px #fff,0 0 12px #fffc;transition:transform .25s}
+.pad.ten b{color:#7a2a00}
+.pad.seen img{filter:drop-shadow(0 0 0 #fff) drop-shadow(0 0 10px var(--gold)) drop-shadow(0 0 4px var(--gold))}
+.pad.here b{visibility:hidden}
+.badge{position:absolute;z-index:6;transform:translate(-50%,0);margin-top:14px;min-width:58px;text-align:center;padding:2px 10px;border-radius:14px;background:#fff;border:4px solid #2f7a4a;font:800 34px/1.05 'Trebuchet MS',sans-serif;color:#17321b;box-shadow:0 4px 0 #0003;pointer-events:none}
+.badge.pop{animation:pop2 .7s ease-out}
+@keyframes pop2{40%{transform:translate(-50%,0) scale(1.6)}}
+.calm .badge.pop{animation:none}
+.pad.blank b{visibility:hidden}
+.pad.pop b{animation:pop .7s ease-out}
+@keyframes pop{0%{transform:scale(1)}40%{transform:scale(2.1)}100%{transform:scale(1.35)}}
+.rock{position:absolute;left:30px;top:187px;width:130px;height:94px;border-radius:50% 50% 46% 46%;background:radial-gradient(circle at 40% 35%,#c8bfae,#8c8172 70%);box-shadow:0 6px 0 #0003;display:grid;place-items:center;font:800 24px 'Trebuchet MS',sans-serif;color:#fff;text-shadow:0 2px 0 #0006;border:0}
+
+.frog{position:absolute;left:0;top:0;width:0;height:0;pointer-events:none;z-index:5}
+.frog img{position:absolute;left:-33px;top:-56px;width:66px;filter:drop-shadow(0 8px 6px #0005)}
+.frog img.jump{left:-55px;top:-46px;width:110px}
+.ring{position:absolute;width:120px;height:80px;margin:-40px 0 0 -60px;border:5px solid #fffd;border-radius:50%;pointer-events:none;animation:ring .7s ease-out forwards;z-index:4}
+@keyframes ring{from{transform:scale(.5);opacity:1}to{transform:scale(1.7);opacity:0}}
+.bubble{position:absolute;z-index:6;transform:translate(-50%,-100%);background:#fff;border:5px solid #b0122b;border-radius:22px;padding:4px 20px;font:800 64px/1.1 'Trebuchet MS',sans-serif;color:#b0122b;box-shadow:0 8px 0 #0003;pointer-events:none}
+.bubble.got{border-color:#2f7a4a;color:#2f7a4a}
+.cheer{position:absolute;inset:0;pointer-events:none;z-index:7}
+.cheer i{position:absolute;width:16px;height:16px;border-radius:3px;animation:fall 2.4s ease-in forwards}
+@keyframes fall{to{transform:translateY(900px) rotate(540deg);opacity:.2}}
+.calm .ring,.calm .cheer{display:none}
+.calm .pad.pop b{animation:none}
+
+.panel{background:#fbfdf8;border-left:3px solid var(--line);padding:14px 16px;display:flex;flex-direction:column;gap:12px;overflow:auto}
+@media (max-width:760px){.panel{border-left:0;border-top:3px solid var(--line)}}
+.tabs{display:grid;grid-template-columns:1fr 1fr;border:2px solid var(--line);border-radius:14px;overflow:hidden}
+.tabs button{border:0;background:#fff;min-height:54px;font:800 16px/1.15 'Trebuchet MS',sans-serif;padding:4px 6px}
+.tabs button[aria-pressed="true"]{background:#2f7a4a;color:#fff}
+.hint{margin:0;font:600 17px/1.4 'Segoe UI',sans-serif;color:var(--muted)}
+.hint b{color:var(--ink)}
+.lab{font:800 13px 'Segoe UI',sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:-6px}
+.seg{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.seg button,.soft{border:3px solid var(--line);background:#fff;border-radius:14px;min-height:56px;font:800 19px 'Trebuchet MS',sans-serif;padding:0 10px}
+.seg button[aria-pressed="true"]{border-color:#2f7a4a;background:#e3f3e7}
+.big{border:0;border-radius:18px;min-height:80px;font:800 26px/1.1 'Trebuchet MS','Segoe UI',sans-serif;color:#fff;background:#2f7a4a;box-shadow:0 6px 0 #0004;padding:6px 10px}
+.big:active:not(:disabled){transform:translateY(3px);box-shadow:0 3px 0 #0004}
+.big:disabled{opacity:.4;cursor:default}
+.big.warm{background:#d2572e}
+.row{display:flex;gap:8px;align-items:center}
+.row .soft{flex:1}
+.stepper{display:grid;grid-template-columns:56px 1fr 56px;gap:8px;align-items:center}
+.stepper output{text-align:center;font:800 34px 'Trebuchet MS',sans-serif}
+.check{display:flex;gap:10px;align-items:center;font:700 16px 'Segoe UI',sans-serif;min-height:44px;cursor:pointer}
+.check input{width:26px;height:26px}
+@media (max-width:760px),(max-height:640px){
+  header{padding:6px 12px} h1{font-size:19px} h1 small{display:none}
+  .icon-btn{min-height:38px;font-size:13px;padding:0 10px}
+  .big{min-height:54px;font-size:19px} .hint{font-size:14px} .seg button,.soft{min-height:44px;font-size:16px}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Hundred Hop <small>Hop the frog all the way to 100.</small></h1>
+  <button class="icon-btn" id="motion" aria-pressed="true" title="Turn animation on or off">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+  <button class="icon-btn" id="read">🔊 Read</button>
+</header>
+<main>
+  <div class="stage" id="stage">
+    <div class="scene" id="scene">
+      <img class="bg" src="art:pond" alt="">
+      <div class="sign" id="sign" aria-live="polite"></div>
+      <button class="rock" id="rock" aria-label="The start rock">Start</button>
+      <div id="pads"></div>
+      <div class="frog" id="frog"><img id="frogimg" src="art:frog" alt="The frog"></div>
+      <div class="badge" id="here" hidden></div>
+    </div>
+  </div>
+  <aside class="panel">
+    <div class="tabs" role="group" aria-label="Mode">
+      <button id="m-count" aria-pressed="true">Count along</button>
+      <button id="m-guess" aria-pressed="false">Where will it land?</button>
+    </div>
+    <div class="lab">Count by</div>
+    <div class="seg" role="group" aria-label="Count by">
+      <button id="by1" aria-pressed="true">1s</button>
+      <button id="by10" aria-pressed="false">10s</button>
+    </div>
+
+    <div id="p-count">
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <button class="big" id="hop">🐸 Hop!</button>
+        <button class="big warm" id="auto">▶ Keep hopping</button>
+        <div class="row"><button class="soft" id="restart">↺ Back to start</button></div>
+        <label class="check"><input type="checkbox" id="speak" checked> Say the numbers</label>
+        <p class="hint">Count out loud together as the frog hops. <b>Tap any lily pad</b> to start counting from that number.</p>
+      </div>
+    </div>
+
+    <div id="p-guess" hidden>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div class="lab">Hops</div>
+        <div class="stepper"><button class="soft" id="minus" aria-label="Fewer hops">−</button><output id="hops">3</output><button class="soft" id="plus" aria-label="More hops">+</button></div>
+        <button class="big" id="go">🐸 Go!</button>
+        <button class="big warm" id="reveal" disabled>👀 Reveal</button>
+        <div class="row"><button class="soft" id="puzzle">🎲 New puzzle</button></div>
+        <label class="check"><input type="checkbox" id="tens"> Show the tens</label>
+        <p class="hint" id="ghint"></p>
+      </div>
+    </div>
+  </aside>
+</main>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  let reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  try { const m = localStorage.getItem('curio-motion'); if (m) reduce = m === 'calm'; } catch {}
+  function showMotion() {
+    document.body.classList.toggle('calm', reduce);
+    $('motion').setAttribute('aria-pressed', !reduce);
+    $('motion').textContent = reduce ? '⏸ Motion' : '✨ Motion';
+  }
+  showMotion();
+  $('motion').onclick = () => { reduce = !reduce; try { localStorage.setItem('curio-motion', reduce ? 'calm' : 'on'); } catch {} showMotion(); };
+  const wait = ms => new Promise(r => setTimeout(r, ms));
+  const fit = () => { const r = $('stage').getBoundingClientRect(); $('scene').style.setProperty('--s', Math.min(r.width / 1500, r.height / 1000)); };
+  new ResizeObserver(fit).observe($('stage'));
+
+  // ---------- the path: ten rows that snake back and forth; 0 is the start rock ----------
+  const X0 = 250, DX = 134, Y0 = 234, DY = 78;
+  function spot(n) {
+    if (n === 0) return [95, 234];
+    const r = Math.floor((n - 1) / 10), k = (n - 1) % 10, c = r % 2 ? 9 - k : k;
+    return [X0 + c * DX, Y0 + r * DY];
+  }
+  const pads = [null];
+  for (let n = 1; n <= 100; n++) {
+    const b = document.createElement('button'), [x, y] = spot(n);
+    b.className = 'pad' + (n % 10 ? '' : ' ten');
+    b.style.left = x + 'px'; b.style.top = y + 'px';
+    b.innerHTML = `<img src="${n % 10 ? 'art:pad' : 'art:padflower'}" alt=""><b>${n}</b>`;
+    b.setAttribute('aria-label', 'Lily pad ' + n);
+    b.onclick = () => tapPad(n);
+    $('pads').append(b); pads.push(b);
+  }
+  $('rock').onclick = () => tapPad(0);
+
+  const st = {mode: 'count', by: 1, at: 0, busy: false, auto: false, sound: true, hops: 3, puzzle: null};
+
+  // ---------- the frog ----------
+  function place(n) { const [x, y] = spot(n); $('frog').style.transform = `translate(${x}px,${y}px)`; }
+  // the number the frog is on sits in a badge in front of the frog, so the frog never hides it
+  function mark(show = st.mode === 'count' || st.puzzle?.state === 'set' || st.puzzle?.state === 'shown') {
+    pads.forEach((p, n) => p && p.classList.toggle('here', n === st.at && show));
+    const h = $('here'), [x, y] = spot(st.at);
+    h.hidden = !show || !st.at; h.textContent = st.at; h.style.left = x + 'px'; h.style.top = y + 'px';
+  }
+  function popHere() { const h = $('here'); h.classList.remove('pop'); void h.offsetWidth; h.classList.add('pop'); }
+  async function hop(to) {
+    const [x0, y0] = spot(st.at), [x1, y1] = spot(to), far = Math.abs(to - st.at) > 1, ms = far ? 1000 : 560;
+    const img = $('frogimg');
+    $('here').hidden = true; pads[st.at]?.classList.remove('here');
+    SFX.hop(far);
+    if (!reduce) {
+      img.src = 'art:frogjump'; img.className = 'jump';
+      img.style.transform = x1 < x0 ? 'scaleX(-1)' : '';
+      const h = far ? 230 : 90, f = $('frog');
+      const frames = [0, .25, .5, .75, 1].map(t => {
+        const x = x0 + (x1 - x0) * t, y = y0 + (y1 - y0) * t - h * 4 * t * (1 - t);
+        return {transform: `translate(${x}px,${y}px)`};
+      });
+      await Promise.race([f.animate(frames, {duration: ms, easing: 'ease-in-out'}).finished, wait(ms + 150)]);
+      f.getAnimations().forEach(a => a.cancel());
+      img.src = 'art:frog'; img.className = ''; img.style.transform = '';
+    } else await wait(ms);
+    st.at = to; place(to); mark();
+    SFX.splash();
+    if (!reduce) { const r = document.createElement('div'), [x, y] = spot(to); r.className = 'ring'; r.style.left = x + 'px'; r.style.top = y + 'px'; $('scene').append(r); setTimeout(() => r.remove(), 800); }
+  }
+
+  // ---------- count along ----------
+  function signCount() {
+    $('sign').innerHTML = `<b>Count by ${st.by === 1 ? 'ones' : 'tens'}!</b><span class="sub">${st.at ? `We are on ${st.at}.` : 'The frog is on the start rock.'}</span>`;
+  }
+  async function hopOnce() {
+    const to = st.at + st.by;
+    if (st.busy || to > 100) return false;
+    st.busy = true; sync();
+    await hop(to);
+    pads[to].classList.add('seen');
+    if (st.by === 10) for (let n = to - 9; n < to; n++) if (n > 0) pads[n].classList.add('seen');
+    popHere();
+    signCount();
+    if (to === 100) { cheer(); say(['One hundred! The frog made it to the end!']); }
+    else if ($('speak').checked) say([String(to)]);
+    st.busy = false; sync();
+    return true;
+  }
+  async function autoHop() {
+    if (st.auto) { st.auto = false; sync(); return; }
+    st.auto = true; sync();
+    say([st.by === 1 ? "Let's count by ones!" : "Let's count by tens!"]);
+    await wait(1400);
+    while (st.auto && st.mode === 'count' && st.at + st.by <= 100) {
+      if (!(await hopOnce())) break;
+      await wait(st.by === 1 ? 650 : 900);
+    }
+    st.auto = false; sync();
+  }
+  function restart() {
+    st.auto = false; st.at = 0; place(0); mark();
+    pads.forEach(p => p && p.classList.remove('seen', 'pop', 'ask', 'blank'));
+    clearBubble(); signCount(); sync();
+  }
+  function tapPad(n) {
+    if (st.busy || st.auto) return;
+    if (st.mode === 'guess') { if (st.puzzle && st.puzzle.state !== 'set') return; setStart(n); return; }
+    st.at = n; place(n); mark();
+    pads.forEach(p => p && p.classList.remove('seen'));
+    if (n) pads[n].classList.add('seen');
+    SFX.splash(); signCount();
+    if (n && $('speak').checked) say([String(n)]);
+  }
+
+  // ---------- where will it land? ----------
+  function maxHops() { return Math.max(0, Math.min(10, Math.floor((100 - st.at) / st.by))); }
+  function setStart(n) {
+    st.at = n; place(n);
+    st.hops = Math.max(1, Math.min(st.hops, maxHops()));
+    st.puzzle = {state: 'set', start: n};
+    mark();
+    hideNumbers(); signGuess(); sync();
+  }
+  function hideNumbers() {
+    clearBubble();
+    pads.forEach((p, n) => { if (!p) return; p.classList.remove('seen', 'pop', 'ask'); p.classList.toggle('blank', n !== st.puzzle?.start && !($('tens').checked && n % 10 === 0)); });
+  }
+  function signGuess(done = 0) {
+    const n = st.hops;
+    $('sign').innerHTML = `<b>Where will the frog land?</b><span class="sub">${n} hop${n > 1 ? 's' : ''} by ${st.by === 1 ? 'ones' : 'tens'}</span>
+      <div class="dots">${Array.from({length: n}, (_, k) => `<i class="${k < done ? 'on' : ''}"></i>`).join('')}</div>`;
+    $('hops').textContent = n;
+    $('ghint').innerHTML = st.puzzle?.state === 'landed' ? '<b>Ask:</b> where did the frog land? Let the class call out a number, then press <b>Reveal</b>.'
+      : st.puzzle?.state === 'shown' ? 'Count the hops again to check, then try a <b>New puzzle</b>.'
+      : `<b>Ask:</b> what number is the frog on? Then press <b>Go!</b> and count along together. Tap a lily pad to start somewhere else.`;
+  }
+  function newPuzzle() {
+    const by = st.by;
+    st.hops = by === 1 ? 2 + Math.floor(Math.random() * 6) : 2 + Math.floor(Math.random() * 4);
+    let start;
+    if (by === 1) start = 1 + Math.floor(Math.random() * (100 - st.hops));
+    else start = 10 * Math.floor(Math.random() * (10 - st.hops + 1));  // decade numbers, or the start rock
+    setStart(start);
+    say(['Where will the frog land? Count along!']);
+  }
+  async function go() {
+    if (!st.puzzle || st.puzzle.state !== 'set' || st.busy) return;
+    st.busy = true; st.puzzle.state = 'hopping'; sync();
+    for (let k = 0; k < st.hops; k++) {
+      await hop(st.at + st.by);
+      signGuess(k + 1);
+      await wait(st.by === 1 ? 500 : 700);
+    }
+    st.puzzle.state = 'landed';
+    pads[st.at].classList.add('ask');
+    bubble('?', false);
+    signGuess(st.hops);
+    st.busy = false; sync();
+  }
+  async function reveal() {
+    if (!st.puzzle || st.puzzle.state !== 'landed') return;
+    st.puzzle.state = 'shown'; sync();
+    const end = st.at;
+    pads[end].classList.remove('ask', 'blank');
+    pads[end].classList.add('seen');
+    bubble(String(end), true);
+    SFX.ta();
+    say(['It landed on', String(end)]);
+    signGuess(st.hops);
+    await wait(1800);
+    // then show every pad it passed, so the class can check their counting
+    for (let n = st.puzzle.start + 1; n < end; n++) {
+      if (st.puzzle.state !== 'shown') return;
+      pads[n].classList.remove('blank'); pads[n].classList.add('seen');
+      SFX.tick(); await wait(st.by === 1 ? 260 : 60);
+    }
+  }
+  function bubble(text, got) {
+    clearBubble();
+    const b = document.createElement('div'), [x, y] = spot(st.at);
+    b.className = 'bubble' + (got ? ' got' : ''); b.id = 'bubble'; b.textContent = text;
+    b.style.left = x + 'px'; b.style.top = Math.max(150, y - 92) + 'px';
+    $('scene').append(b);
+  }
+  function clearBubble() { $('bubble')?.remove(); }
+
+  // ---------- modes and buttons ----------
+  function sync() {
+    const counting = st.mode === 'count';
+    $('hop').disabled = st.busy || st.auto || st.at + st.by > 100;
+    $('auto').textContent = st.auto ? '■ Stop' : '▶ Keep hopping';
+    $('auto').disabled = !st.auto && (st.busy || st.at + st.by > 100);
+    $('restart').disabled = st.busy;
+    const p = st.puzzle;
+    $('go').disabled = st.busy || !p || p.state !== 'set';
+    $('reveal').disabled = !p || p.state !== 'landed';
+    $('minus').disabled = !p || p.state !== 'set' || st.hops <= 1;
+    $('plus').disabled = !p || p.state !== 'set' || st.hops >= maxHops();
+    $('puzzle').disabled = st.busy;
+    ['by1', 'by10'].forEach(id => $(id).disabled = st.busy || st.auto || (!counting && p && p.state === 'hopping'));
+  }
+  function setMode(m) {
+    st.auto = false; st.mode = m;
+    $('m-count').setAttribute('aria-pressed', m === 'count'); $('m-guess').setAttribute('aria-pressed', m === 'guess');
+    $('p-count').hidden = m !== 'count'; $('p-guess').hidden = m !== 'guess';
+    if (m === 'count') restart(); else newPuzzle();
+    sync();
+  }
+  function setBy(by) {
+    st.by = by; $('by1').setAttribute('aria-pressed', by === 1); $('by10').setAttribute('aria-pressed', by === 10);
+    // counting by tens starts from the rock (10, 20, 30) unless the frog is already on a ten
+    if (st.mode === 'count') { if (by === 10 && st.at % 10) restart(); signCount(); sync(); say([by === 1 ? "Let's count by ones!" : "Let's count by tens!"]); }
+    else newPuzzle();
+  }
+  $('m-count').onclick = () => setMode('count');
+  $('m-guess').onclick = () => setMode('guess');
+  $('by1').onclick = () => setBy(1);
+  $('by10').onclick = () => setBy(10);
+  $('hop').onclick = hopOnce;
+  $('auto').onclick = autoHop;
+  $('restart').onclick = restart;
+  $('go').onclick = go;
+  $('reveal').onclick = reveal;
+  $('puzzle').onclick = newPuzzle;
+  $('minus').onclick = () => { st.hops = Math.max(1, st.hops - 1); signGuess(); sync(); };
+  $('plus').onclick = () => { st.hops = Math.min(maxHops(), st.hops + 1); signGuess(); sync(); };
+  $('tens').onchange = () => { if (st.puzzle && st.puzzle.state !== 'shown') { pads.forEach((p, n) => { if (p && n % 10 === 0 && n !== st.at) p.classList.toggle('blank', !$('tens').checked); }); } };
+
+  function cheer() {
+    if (reduce) { SFX.ta(); return; }
+    const c = document.createElement('div'); c.className = 'cheer';
+    const colors = ['#ffd23f', '#e8473f', '#3fa7e8', '#58c26b', '#b56be8'];
+    for (let k = 0; k < 70; k++) {
+      const i = document.createElement('i');
+      i.style.left = Math.random() * 1500 + 'px'; i.style.top = -20 - Math.random() * 200 + 'px';
+      i.style.background = colors[k % colors.length]; i.style.animationDelay = Math.random() * .6 + 's';
+      c.append(i);
+    }
+    $('scene').append(c); setTimeout(() => c.remove(), 3400);
+    SFX.ta();
+  }
+
+  // ---------- sound ----------
+  let ctx;
+  const audio = () => (ctx ||= new (window.AudioContext || window.webkitAudioContext)());
+  function tone(type, f0, f1, dur, gain, when = 0) {
+    if (!st.sound) return;
+    const a = audio(), o = a.createOscillator(), g = a.createGain(), t = a.currentTime + when;
+    o.type = type; o.frequency.setValueAtTime(f0, t); o.frequency.exponentialRampToValueAtTime(f1, t + dur);
+    g.gain.setValueAtTime(.0001, t); g.gain.exponentialRampToValueAtTime(gain, t + .02); g.gain.exponentialRampToValueAtTime(.0001, t + dur);
+    o.connect(g).connect(a.destination); o.start(t); o.stop(t + dur + .05);
+  }
+  function noise(dur, gain, freq) {
+    if (!st.sound) return;
+    const a = audio(), len = a.sampleRate * dur, buf = a.createBuffer(1, len, a.sampleRate), d = buf.getChannelData(0);
+    for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * (1 - i / len) ** 2;
+    const s = a.createBufferSource(), f = a.createBiquadFilter(), g = a.createGain();
+    f.type = 'bandpass'; f.frequency.value = freq; f.Q.value = .8; g.gain.value = gain;
+    s.buffer = buf; s.connect(f).connect(g).connect(a.destination); s.start();
+  }
+  const SFX = {
+    hop: far => tone('sine', far ? 220 : 330, far ? 880 : 760, far ? .35 : .18, .12),
+    splash: () => { noise(.25, .5, 1400); tone('sine', 520, 260, .12, .05); },
+    tick: () => tone('triangle', 880, 880, .06, .06),
+    ta: () => [523, 659, 784, 1047].forEach((f, i) => tone('triangle', f, f, .3, .1, i * .1)),
+  };
+  $('sound').onclick = e => {
+    st.sound = !st.sound;
+    e.currentTarget.setAttribute('aria-pressed', st.sound);
+    e.currentTarget.textContent = st.sound ? '🔔 Sound' : '🔇 Sound';
+    if (!st.sound) stopTalk();
+  };
+
+  // ---------- speech: recorded lines (scripts/voice.py) when the exact text has one, else the browser voice ----------
+  const CLIPS = "voice:*";
+  const allLines = () => [...Array.from({length: 100}, (_, k) => String(k + 1)), "Let's count by ones!", "Let's count by tens!",
+    'Where will the frog land? Count along!', 'It landed on', 'One hundred! The frog made it to the end!'];
+  let talkN = 0, clip = null, last = [];
+  function stopTalk() { talkN++; if (clip) { clip.pause(); clip = null; } if ('speechSynthesis' in window) speechSynthesis.cancel(); }
+  function bestVoice() {
+    const voices = speechSynthesis.getVoices().filter(v => /^en(-|_|$)/i.test(v.lang));
+    const score = v => (/natural|neural|online/i.test(v.name) ? 40 : 0) + (/google/i.test(v.name) ? 20 : 0) + (/en-us/i.test(v.lang) ? 5 : 0) - (/david|mark|zira/i.test(v.name) ? 30 : 0);
+    return voices.sort((a, b) => score(b) - score(a))[0];
+  }
+  function speakOne(text, n) {
+    return new Promise(done => {
+      if (n !== talkN) return done();
+      if (CLIPS[text]) { clip = new Audio(CLIPS[text]); clip.onended = clip.onerror = () => done(); clip.play().catch(() => done()); return; }
+      if (!('speechSynthesis' in window)) return done();
+      const u = new SpeechSynthesisUtterance(text), v = bestVoice();
+      if (v) u.voice = v;
+      u.rate = .95; u.onend = u.onerror = () => done();
+      speechSynthesis.speak(u);
+    });
+  }
+  async function say(parts, force) {
+    last = parts;
+    if (!st.sound && !force) return;
+    stopTalk();
+    const n = talkN;
+    for (const p of parts) { if (n !== talkN) return; await speakOne(p, n); }
+  }
+  if ('speechSynthesis' in window) speechSynthesis.getVoices();
+  $('read').onclick = () => { if (last.length) say(last, true); };
+
+  window.__hh = {st, setMode, setBy, hopOnce, tapPad, newPuzzle, go, reveal, setStart, allLines};  // for checking frames
+  place(0); setMode('count');
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+{
+  "house_style": "Contemporary game illustration for a middle-school math arcade, like a polished indie video game: bold readable shapes, glowing molten metal, warm orange forge light against cool dark stone, subtle painted texture. No text, no letters, no numbers, no watermark, no border.",
+  "assets": [
+    {
+      "name": "forge",
+      "prompt": "Empty background: inside a stone blacksmith forge at night, a big glowing furnace with orange fire at the back, chains and hanging tools on the dark stone walls, sparks drifting, a smooth stone floor. Leave the middle and bottom open and uncluttered. No anvil, no people.",
+      "aspect": "16:9",
+      "width": 1600,
+      "quality": 74,
+      "trim": 0.03
+    },
+    {
+      "name": "anvil",
+      "prompt": "A heavy black iron blacksmith anvil on a thick wooden stump, three-quarter view, with a warm orange rim light.",
+      "cutout": true,
+      "width": 560
+    },
+    {
+      "name": "hammer",
+      "prompt": "A blacksmith's hammer with a dark steel head and a worn wooden handle, lying sideways, handle to the right.",
+      "cutout": true,
+      "width": 300
+    },
+    {
+      "name": "ingot",
+      "prompt": "A rectangular bar of red-hot glowing orange metal, seen from the front so its big flat face points at the viewer, slightly rounded edges, glowing hot.",
+      "cutout": true,
+      "width": 320
+    },
+    {
+      "name": "coin",
+      "prompt": "A round shiny gold coin seen straight on, with a plain smooth face and a raised rim, no markings.",
+      "cutout": true,
+      "width": 160
+    },
+    {
+      "name": "crucible",
+      "prompt": "A stone crucible bowl full of glowing molten gold, three-quarter view from slightly above.",
+      "cutout": true,
+      "width": 360
+    }
+  ]
+}

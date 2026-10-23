@@ -15,7 +15,7 @@ Every place is inside a bigger place. My room is in my home, my home is on my st
 ## Good to know
 
 - **Show where** makes the glowing box blink and says which smaller place it shows.
-- **Land or water?** works on the state, country and continent maps: tap anywhere and hear "Land!" or "Water!"
+- **Land or water?** works on the town, North America and Earth pictures (the state and country maps leave out the neighbors, so they would get it wrong): tap anywhere and hear "Land!" or "Water!"
 - The ladder in the panel jumps to any level; the zoom passes through every level on the way, so children see the nesting.
 - The room, home, street and town are storybook pictures, not your real neighborhood. Ask: how is our street the same? How is it different?
 - The narration is recorded with a natural voice. It says "my town" and "my state"; the names you set appear on screen.

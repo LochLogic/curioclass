@@ -1,0 +1,20 @@
+{
+  "id": "chord-explorer",
+  "status": "beta",
+  "driver": "students or teacher",
+  "modes": [
+    "Build a chord",
+    "Progressions",
+    "Home or not?"
+  ],
+  "grades_label": "Grades 6-8",
+  "third_party": [],
+  "updated": "2026-10-23",
+  "hook": "Stack thirds into major, minor, diminished and augmented chords on a keyboard, line up progressions like I-V-vi-IV, then train your ear: did that phrase come home?",
+  "outcome": "Build triads from stacked thirds, name the chords of a major key with Roman numerals, and hear how tonic, predominant and dominant chords create rest and tension",
+  "minutes": "20-40",
+  "sources": [
+    "Backdrop painting generated with Google Gemini, edited for Curio Class",
+    "Sound synthesized in the browser"
+  ]
+}

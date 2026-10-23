@@ -1,0 +1,521 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Factor Forge · Prime factors, GCF and LCM · Curio Class</title>
+<meta name="description" content="Smash red-hot numbers into prime factors with prime hammers and watch the factor tree grow. Then match the shared primes of two numbers to forge their greatest common factor and least common multiple, or race the clock in Forge Rush. Grade 6 math. Works offline.">
+<!--
+FACTOR FORGE (Curio Class)
+Grade 6 math, CCSS 6.NS.B.4 (greatest common factor of two whole numbers up to 100 and least common multiple
+of two whole numbers up to 12, extended here with prime factorization) and 4.OA.B.4 review (prime and composite).
+Smash: strike a number with a prime hammer; if the prime divides it, a prime coin breaks off and the factor
+tree grows. GCF & LCM: smash two numbers, then pair the matching prime coins. One coin from each pair, multiplied,
+is the GCF; the GCF times every unmatched coin is the LCM. Forge Rush: 60 seconds, as many coins as you can.
+Illustrations generated with Google Gemini, edited for Curio Class. Sounds generated in the browser.
+One file, no network requests. Content CC BY 4.0, code MIT. curioclass.org
+-->
+<style>
+:root{
+  --ink:#f6eee2;--muted:#c4b6a3;--panel:#1b1512e6;--line:#5a4536;--focus:#7fb2ff;--gold:#f4c54a;--hot:#ff8a2a;--bad:#ff6b5a;--good:#7fd88f;
+  font-family:'Segoe UI',system-ui,-apple-system,Roboto,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0;height:100%}
+body{background:#120d0b;color:var(--ink);display:grid;grid-template-rows:auto 1fr;min-height:100vh;overflow:hidden}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+header{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:8px 18px;background:#0b0807;border-bottom:1px solid #3a2a20}
+h1{margin:0 auto 0 0;font:800 clamp(20px,2.4vw,28px)/1.1 'Trebuchet MS','Segoe UI',sans-serif;letter-spacing:.02em;color:#ffd79a}
+h1 small{display:block;font:400 13.5px/1.3 'Segoe UI',sans-serif;color:var(--muted);letter-spacing:0}
+.icon-btn{border:1px solid #4a372b;background:#1e1612;color:var(--ink);border-radius:999px;min-height:42px;padding:0 14px;font-weight:600;font-size:14px}
+
+.stagewrap{position:relative;overflow:hidden;min-height:0}
+.scene{position:absolute;left:50%;top:50%;width:1440px;height:810px;transform:translate(-50%,-50%) scale(var(--s,1));overflow:hidden}
+.scene>img.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.scene::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 45%,#0000 35%,#000a 100%);pointer-events:none}
+
+.top{position:absolute;left:24px;right:24px;top:18px;display:flex;align-items:center;gap:14px;z-index:5}
+.tabs{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:#0009}
+.tabs button{border:0;background:transparent;min-height:46px;padding:0 20px;font-weight:800;font-size:16px;color:var(--muted)}
+.tabs button[aria-pressed="true"]{background:var(--gold);color:#2a1700}
+.stat{margin-left:auto;display:flex;gap:10px}
+.stat span{background:#000a;border:1px solid var(--line);border-radius:14px;padding:6px 14px;font:800 20px 'Trebuchet MS',sans-serif}
+.stat small{display:block;font:600 11px 'Segoe UI',sans-serif;color:var(--muted);letter-spacing:.1em;text-transform:uppercase}
+
+/* the anvil and the hot number */
+.anvil{position:absolute;left:500px;top:330px;width:440px;z-index:2;filter:drop-shadow(0 20px 18px #000c)}
+.crucible{position:absolute;left:570px;top:380px;width:300px;z-index:2;filter:drop-shadow(0 20px 18px #000c)}
+.ingot{position:absolute;left:530px;top:262px;width:260px;height:115px;z-index:3;display:grid;place-items:center;background:center/contain no-repeat;transition:filter .3s}
+.ingot b{font:900 70px/1 'Trebuchet MS','Segoe UI',sans-serif;color:#fff8e6;text-shadow:0 0 6px #ff7a00,0 0 18px #ff7a00,0 3px 0 #7a2400}
+.ingot.prime{filter:drop-shadow(0 0 22px #ffd34a)}
+.ingot.shake{animation:shake .4s}
+@keyframes shake{20%{transform:translateX(-10px) rotate(-2deg)}40%{transform:translateX(9px) rotate(2deg)}60%{transform:translateX(-6px)}80%{transform:translateX(4px)}}
+.ingot.hit{animation:hit .3s}
+@keyframes hit{30%{transform:scale(1.08,.9)}}
+.hammer{position:absolute;left:700px;top:120px;width:240px;z-index:4;transform-origin:92% 50%;transform:rotate(30deg);opacity:0;pointer-events:none;filter:drop-shadow(0 10px 8px #000a)}
+.coin{display:inline-grid;place-items:center;width:62px;height:62px;border-radius:50%;background:center/contain no-repeat;font:900 26px/1 'Trebuchet MS',sans-serif;color:#5a3500;text-shadow:0 1px 0 #ffe9a8;flex:none}
+.fly{position:absolute;z-index:6;pointer-events:none}
+.spark{position:absolute;width:6px;height:6px;border-radius:50%;background:#ffd36a;box-shadow:0 0 8px #ff9a2a;z-index:6;pointer-events:none}
+.calm .ingot.shake,.calm .ingot.hit{animation:none}
+
+/* hammers */
+.hammers{position:absolute;left:330px;right:330px;bottom:22px;display:flex;justify-content:center;gap:14px;z-index:5}
+.hm{position:relative;width:104px;height:104px;border-radius:20px;border:2px solid var(--line);background:linear-gradient(#2c211b,#18110e);box-shadow:0 6px 0 #000a;display:grid;place-items:center;padding:0}
+.hm:hover:not(:disabled){border-color:var(--gold);transform:translateY(-2px)}
+.hm:active:not(:disabled){transform:translateY(3px);box-shadow:0 2px 0 #000a}
+.hm img{position:absolute;width:76px;left:14px;top:10px;opacity:.85}
+.hm b{position:relative;top:18px;font:900 36px/1 'Trebuchet MS',sans-serif;color:var(--gold);text-shadow:0 2px 0 #000}
+.hm:disabled{opacity:.35;cursor:default}
+.hmlab{position:absolute;left:0;right:0;bottom:134px;text-align:center;font:700 15px 'Segoe UI',sans-serif;color:var(--muted);z-index:5;letter-spacing:.08em;text-transform:uppercase}
+
+/* side panels */
+.side{position:absolute;top:84px;bottom:22px;width:300px;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:14px 16px;z-index:5;display:flex;flex-direction:column;gap:10px;overflow:hidden}
+.side.l{left:24px}.side.r{right:24px}
+.side h2{margin:0;font:800 13px 'Segoe UI',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.side p{margin:0;font-size:16px;line-height:1.45}
+.side p b{color:#ffd79a}
+.tree{position:relative;flex:1;min-height:0}
+.tree svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.node{position:absolute;transform:translate(-50%,-50%);font:900 26px 'Trebuchet MS',sans-serif}
+.node.n{background:#5a1e08;border:2px solid #ff8a2a;color:#fff1dc;border-radius:12px;padding:3px 10px;box-shadow:0 0 12px #ff6a0066}
+.node.coin{width:50px;height:50px;font-size:22px}
+.eq{font:800 22px/1.35 'Trebuchet MS',sans-serif;color:#fff1dc;min-height:30px}
+.eq sup{font-size:.6em}
+.say{border-radius:12px;padding:10px 12px;font-size:15.5px;line-height:1.45;background:#1d2e20;border-left:5px solid var(--good)}
+.say.warn{background:#3a1d17;border-color:var(--bad)}
+.say:empty{display:none}
+.btn{border:0;border-radius:12px;min-height:48px;padding:0 16px;font-weight:800;font-size:16px;background:var(--gold);color:#2a1700}
+.btn.soft{background:#2c211b;color:var(--ink);border:1px solid var(--line)}
+.btn:disabled{opacity:.4;cursor:default}
+.pile{display:flex;flex-wrap:wrap;gap:8px;min-height:62px;align-content:flex-start}
+.pile .coin{border:0;padding:0;cursor:pointer;transition:transform .15s}
+.pile .coin.pick{transform:translateY(-6px) scale(1.12);filter:drop-shadow(0 0 10px #fff)}
+.pile .coin.gone{visibility:hidden}
+.pile .coin.dim{opacity:.35}
+.mid{position:absolute;left:400px;width:640px;top:84px;z-index:5;text-align:center}
+.mid .say{display:inline-block;max-width:640px;text-align:left}
+.pairs{position:absolute;left:560px;width:320px;top:300px;z-index:4;display:flex;flex-wrap:wrap;justify-content:center;gap:6px}
+.pairs .pair{display:flex;gap:2px;padding:4px;border-radius:40px;background:#0007;border:1px solid #ffd34a66}
+.pairs .coin{width:44px;height:44px;font-size:19px}
+.result{position:absolute;left:380px;width:680px;top:520px;z-index:6;background:#140e0bf0;border:2px solid var(--gold);border-radius:18px;padding:14px 18px;text-align:center}
+.result .eq{font-size:24px}
+.result p{margin:8px 0 0;font-size:15.5px;line-height:1.45;color:#eadfcf}
+.big{font:900 64px/1 'Trebuchet MS',sans-serif;color:var(--gold)}
+.over{position:absolute;inset:0;z-index:8;display:grid;place-items:center;background:#000a}
+.over div{background:#1b1512;border:2px solid var(--gold);border-radius:22px;padding:26px 34px;text-align:center;max-width:560px}
+.over h2{margin:0 0 6px;font:900 34px 'Trebuchet MS',sans-serif;color:#ffd79a}
+.over p{font-size:17px;line-height:1.5;margin:8px 0 16px}
+</style>
+</head>
+<body>
+<header>
+  <h1>Factor Forge <small>Smash numbers into primes. Match primes to forge the GCF and LCM.</small></h1>
+  <button class="icon-btn" id="motion" aria-pressed="true" title="Turn animation on or off">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+</header>
+<div class="stagewrap" id="stagewrap">
+  <div class="scene" id="scene">
+    <img class="bg" src="art:forge" alt="">
+    <div class="top">
+      <div class="tabs" role="group" aria-label="Mode">
+        <button id="t-smash" aria-pressed="true">Smash</button>
+        <button id="t-pair" aria-pressed="false">GCF &amp; LCM</button>
+        <button id="t-rush" aria-pressed="false">Forge Rush</button>
+      </div>
+      <div class="stat" id="stat"></div>
+    </div>
+
+    <aside class="side l" id="left"></aside>
+    <aside class="side r" id="right"></aside>
+    <div class="mid" id="mid"></div>
+
+    <img class="anvil" id="anvil" src="art:anvil" alt="An anvil">
+    <img class="crucible" id="crucible" src="art:crucible" alt="A crucible of molten gold" hidden>
+    <div class="pairs" id="pairs" hidden></div>
+    <div class="ingot" id="ingot" style="background-image:url(art:ingot)" aria-live="polite"><b id="num"></b></div>
+    <img class="hammer" id="hammer" src="art:hammer" alt="">
+    <div class="hmlab" id="hmlab">Pick a prime hammer</div>
+    <div class="hammers" id="hammers"></div>
+    <div class="result" id="result" hidden></div>
+    <div class="over" id="over" hidden></div>
+  </div>
+</div>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  let reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  try { const m = localStorage.getItem('curio-motion'); if (m) reduce = m === 'calm'; } catch {}
+  function showMotion() {
+    document.body.classList.toggle('calm', reduce);
+    $('motion').setAttribute('aria-pressed', !reduce);
+    $('motion').textContent = reduce ? '⏸ Motion' : '✨ Motion';
+  }
+  showMotion();
+  $('motion').onclick = () => { reduce = !reduce; try { localStorage.setItem('curio-motion', reduce ? 'calm' : 'on'); } catch {} showMotion(); };
+  const wait = ms => new Promise(r => setTimeout(r, ms));
+  const fit = () => { const r = $('stagewrap').getBoundingClientRect(); $('scene').style.setProperty('--s', Math.min(r.width / 1440, r.height / 810)); };
+  new ResizeObserver(fit).observe($('stagewrap'));
+  const COIN = 'art:coin';
+  const coinHTML = (p, cls = '', tag = 'span', attrs = '') => `<${tag} class="coin ${cls}" style="background-image:url(${COIN})" ${attrs}>${p}</${tag}>`;
+
+  // ---------- numbers ----------
+  const PRIMES = [2, 3, 5, 7, 11, 13];
+  const isPrime = n => n > 1 && PRIMES.concat([17, 19, 23, 29, 31, 37, 41, 43, 47]).every(p => p === n || n % p) && n < 2209;
+  const pick = a => a[Math.floor(Math.random() * a.length)];
+  const BAG = [2, 2, 2, 2, 3, 3, 3, 5, 5, 7, 7, 11, 13];
+  function makeNumber(lo, hi, minF = 3) {
+    for (;;) {
+      let n = 1, k = 0;
+      while (n < lo || k < minF) { const p = pick(BAG); if (n * p > hi) break; n *= p; k++; }
+      if (n >= lo && n <= hi && k >= minF) return n;
+    }
+  }
+  function factors(n) { const out = []; for (const p of PRIMES) while (n % p === 0) { out.push(p); n /= p; } return out; }
+  function power(fs) {  // 2 × 2 × 3 → 2² × 3
+    const sup = '⁰¹²³⁴⁵⁶⁷⁸⁹', c = {};
+    fs.forEach(p => c[p] = (c[p] || 0) + 1);
+    return Object.keys(c).map(Number).sort((a, b) => a - b).map(p => p + (c[p] > 1 ? String(c[p]).split('').map(d => sup[d]).join('') : '')).join(' × ');
+  }
+  function hint(n) {
+    if (n % 2 === 0) return `${n} is even, so 2 goes in.`;
+    const ds = String(n).split('').reduce((a, d) => a + +d, 0);
+    if (n % 3 === 0) return `The digits of ${n} add to ${ds}, and 3 goes into ${ds}, so 3 goes into ${n}.`;
+    if (n % 5 === 0) return `${n} ends in 5, so 5 goes in.`;
+    if (isPrime(n)) return `${n} is prime: nothing but 1 and ${n} goes into it. Strike it with its own hammer.`;
+    return `It isn't even, and it doesn't pass the tests for 3 or 5. Try 7, 11 or 13.`;
+  }
+
+  // ---------- state ----------
+  const st = {mode: 'smash', n: 0, start: 0, steps: [], busy: false, sound: true,
+    smashed: 0, pairJob: null, rush: null, best: 0, misses: 0};
+  try { st.best = +localStorage.getItem('factor-forge-best') || 0; } catch {}
+
+  // ---------- hammers ----------
+  $('hammers').innerHTML = PRIMES.map(p => `<button class="hm" data-p="${p}" aria-label="Hammer ${p}"><img src="art:hammer" alt=""><b>${p}</b></button>`).join('');
+  $('hammers').querySelectorAll('.hm').forEach(b => b.onclick = () => strike(+b.dataset.p));
+  window.addEventListener('keydown', e => {
+    const k = {'2': 2, '3': 3, '5': 5, '7': 7};
+    if (k[e.key] && !e.target.closest('input,select')) strike(k[e.key]);
+  });
+  const lockHammers = on => $('hammers').querySelectorAll('.hm').forEach(b => b.disabled = on);
+
+  function setIngot(n) {
+    st.n = n;
+    $('num').textContent = n;
+    $('ingot').classList.toggle('prime', isPrime(n));
+  }
+  const anim = (node, frames, ms, opts = {}) => reduce ? wait(ms) : Promise.race([node.animate(frames, {duration: ms, easing: 'ease-in-out', ...opts}).finished, wait(ms + 150)]);
+  async function swing() {
+    const h = $('hammer');
+    if (reduce) { SFX.whoosh(); await wait(180); return; }
+    SFX.whoosh();
+    await anim(h, [{transform: 'rotate(40deg)', opacity: 0}, {transform: 'rotate(55deg)', opacity: 1, offset: .35}, {transform: 'rotate(-28deg)', opacity: 1}], 260);
+    h.animate([{transform: 'rotate(-28deg)', opacity: 1}, {transform: 'rotate(30deg)', opacity: 0}], {duration: 260, delay: 120, fill: 'forwards'});
+  }
+  function sparks() {
+    if (reduce) return;
+    for (let k = 0; k < 18; k++) {
+      const s = document.createElement('div'); s.className = 'spark';
+      s.style.left = 660 + 'px'; s.style.top = 300 + 'px';
+      $('scene').append(s);
+      const a = Math.random() * Math.PI * 2, d = 60 + Math.random() * 140;
+      s.animate([{transform: 'translate(0,0)', opacity: 1}, {transform: `translate(${Math.cos(a) * d}px,${Math.sin(a) * d - 40}px)`, opacity: 0}], {duration: 500 + Math.random() * 300, easing: 'ease-out'}).finished.then(() => s.remove(), () => s.remove());
+    }
+  }
+  // a coin flies from the anvil to a spot on screen
+  async function flyCoin(p, toEl) {
+    const r0 = $('scene').getBoundingClientRect(), k = r0.width / 1440;
+    const tr = toEl.getBoundingClientRect(), x1 = (tr.left - r0.left) / k + tr.width / k / 2, y1 = (tr.top - r0.top) / k + tr.height / k / 2;
+    const c = document.createElement('div');
+    c.className = 'fly'; c.innerHTML = coinHTML(p);
+    c.style.left = '629px'; c.style.top = '289px';
+    $('scene').append(c);
+    await anim(c, [{transform: 'translate(0,0) scale(1.3)'}, {transform: `translate(${(x1 - 660) / 2}px,${(y1 - 320) / 2 - 120}px) scale(1.1)`}, {transform: `translate(${x1 - 660}px,${y1 - 320}px) scale(.8)`}], 520);
+    c.remove();
+  }
+
+  async function strike(p) {
+    if (st.busy || !st.n || st.n === 1) return;
+    if (st.mode === 'pair' && st.pairJob.stage === 'match') return;
+    st.busy = true; lockHammers(true);
+    await swing();
+    if (st.n % p) {  // not a factor
+      SFX.thud();
+      $('ingot').classList.remove('shake'); void $('ingot').offsetWidth; $('ingot').classList.add('shake');
+      st.misses++;
+      const q = st.n / p;
+      tell(`${st.n} ÷ ${p} = ${Number.isInteger(q) ? q : q.toFixed(2).replace(/0+$/, '')}, not a whole number. ${p} is not a factor of ${st.n}.`, true);
+      if (st.mode === 'rush') { st.rush.end -= 2000; floatText('−2 s', '#ff6b5a'); }
+      await wait(350);
+    } else {
+      SFX.clang(); sparks();
+      $('ingot').classList.remove('hit'); void $('ingot').offsetWidth; $('ingot').classList.add('hit');
+      const before = st.n, after = before / p;
+      st.steps.push([before, p]);
+      if (after === 1) $('ingot').style.visibility = 'hidden';
+      else setIngot(after);
+      drawTree();
+      const target = st.mode === 'pair' ? $(st.pairJob.side === 'a' ? 'pileA' : 'pileB') : $('tree') || $('left');
+      await flyCoin(p, target);
+      SFX.coin();
+      if (st.mode === 'rush') { st.rush.coins++; drawStat(); }
+      if (after === 1) await finished();
+      else tell(isPrime(after) ? `${before} ÷ ${p} = ${after}. ${after} is prime: only 1 and ${after} go into it.` : `${before} ÷ ${p} = ${after}. Keep smashing.`);
+      if (st.mode === 'pair') drawPair();
+    }
+    st.busy = false; lockHammers(false);
+  }
+  async function finished() {
+    const fs = st.steps.map(s => s[1]);
+    if (st.mode === 'smash') {
+      st.smashed++;
+      tell(`Done! Every piece is prime. ${st.start} = ${fs.join(' × ')}.`);
+      drawTree(true); drawStat();
+      $('mid').innerHTML = `<button class="btn" id="next">Next number →</button>`;
+      $('next').onclick = newSmash;
+    } else if (st.mode === 'rush') {
+      floatText('+' + fs.length, '#7fd88f');
+      st.rush.numbers++;
+      await wait(250);
+      newIngot(makeNumber(12, 150, 2));
+      tell(`${st.start} = ${fs.join(' × ')}`);
+      drawTree();
+    } else {
+      const j = st.pairJob;
+      j[j.side] = fs;
+      if (j.side === 'a') { j.side = 'b'; await wait(400); newIngot(j.B); tell(`Now smash ${j.B}.`); }
+      else { j.stage = 'match'; startMatch(); }
+    }
+  }
+  function newIngot(n) {
+    st.start = n; st.steps = [];
+    setIngot(n); $('ingot').style.visibility = '';
+    if (!reduce) $('ingot').animate([{transform: 'translateY(-140px)', opacity: 0}, {transform: 'none', opacity: 1}], {duration: 380, easing: 'ease-out'});
+  }
+  function floatText(t, color) {
+    if (reduce) return;
+    const f = document.createElement('div'); f.className = 'fly';
+    f.style.cssText = `left:640px;top:230px;font:900 40px 'Trebuchet MS',sans-serif;color:${color};text-shadow:0 2px 0 #000`;
+    f.textContent = t; $('scene').append(f);
+    f.animate([{transform: 'translateY(0)', opacity: 1}, {transform: 'translateY(-70px)', opacity: 0}], {duration: 900}).finished.then(() => f.remove(), () => f.remove());
+  }
+  function tell(html, warn) { const s = $('say'); if (!s) return; s.className = 'say' + (warn ? ' warn' : ''); s.innerHTML = html; }
+
+  // ---------- the factor tree ----------
+  function drawTree(done) {
+    const t = $('tree'); if (!t) return;
+    const steps = st.steps, W = 268, rows = Math.max(steps.length + 1, 4), dy = Math.min(70, (t.clientHeight || 420) / (rows + .2));
+    let html = '', lines = '';
+    let x = 70, y = 28;
+    const nodes = [[st.start, x, y, 'n']];
+    steps.forEach(([n, p], k) => {
+      const nx = x + Math.min(40, (W - 110) / Math.max(steps.length, 1)), ny = y + dy, cx = x - 34, last = n / p === 1;
+      if (last) { nodes[nodes.length - 1][3] = 'coin'; return; }  // a prime struck by its own hammer becomes a coin where it is
+      lines += `<line x1="${x}" y1="${y}" x2="${cx}" y2="${ny}"/><line x1="${x}" y1="${y}" x2="${nx}" y2="${ny}"/>`;
+      nodes.push([p, cx, ny, 'coin']);
+      nodes.push([n / p, nx, ny, 'n']);
+      x = nx; y = ny;
+    });
+    for (const [v, nx, ny, kind] of nodes)
+      html += kind === 'coin' ? `<span class="node coin" style="left:${nx}px;top:${ny}px;background-image:url(${COIN})">${v}</span>` : `<span class="node n" style="left:${nx}px;top:${ny}px">${v}</span>`;
+    t.innerHTML = `<svg><g stroke="#ffb36a" stroke-width="3" stroke-linecap="round">${lines}</g></svg>${html}`;
+    const fs = steps.map(s => s[1]);
+    const rest = st.n > 1 && st.steps.length && st.steps[st.steps.length - 1][0] / st.steps[st.steps.length - 1][1] > 1 ? ` × ${st.n}` : '';
+    $('treq').innerHTML = !fs.length ? '' : `${st.start} = ${fs.join(' × ')}${done ? '' : rest}` + (done && power(fs) !== fs.join(' × ') ? `<br>= ${power(fs)}` : '');
+  }
+
+  // ---------- Smash ----------
+  function smashPanels() {
+    $('left').innerHTML = `<h2>Factor tree</h2><div class="tree" id="tree"></div><div class="eq" id="treq"></div>`;
+    $('right').innerHTML = `<h2>How to forge</h2><p>Strike the hot number with a <b>prime hammer</b>. If the prime goes in evenly, a prime coin breaks off.</p>
+      <p>Keep going until <b>every piece is prime</b>. That's the number's <b>prime factorization</b>.</p>
+      <p class="say" id="say"></p><button class="btn soft" id="hintb">💡 Hint</button>`;
+    $('hintb').onclick = () => tell(hint(st.n));
+  }
+  function newSmash() {
+    $('mid').innerHTML = '';
+    smashPanels();
+    newIngot(makeNumber(24, 600, 3));
+    tell(`Which prime goes into ${st.n}?`);
+    drawTree();
+  }
+
+  // ---------- GCF & LCM ----------
+  function newPair() {
+    let A, B, g;
+    for (;;) {  // two numbers up to 180 that share at least one prime but aren't multiples of each other
+      A = makeNumber(12, 180, 2); B = makeNumber(12, 180, 2);
+      g = gcd(A, B);
+      if (A !== B && g > 1 && A % B && B % A) break;
+    }
+    st.pairJob = {A, B, side: 'a', stage: 'smash', a: [], b: [], used: {a: [], b: []}, pairs: [], pick: null};
+    $('pairs').innerHTML = ''; $('pairs').hidden = true;
+    $('crucible').hidden = true; $('anvil').hidden = false; $('result').hidden = true;
+    $('left').innerHTML = `<h2>${A}</h2><div class="pile" id="pileA"></div><div class="eq" id="eqA"></div><div style="flex:1"></div><p class="say" id="say"></p>`;
+    $('right').innerHTML = `<h2>${B}</h2><div class="pile" id="pileB"></div><div class="eq" id="eqB"></div><div style="flex:1"></div>
+      <p>Smash both numbers into primes. Then <b>pair the coins they share</b> and melt them down.</p>`;
+    $('mid').innerHTML = '';
+    newIngot(A); tell(`First, smash ${A} into primes.`);
+    drawPair();
+  }
+  const gcd = (a, b) => b ? gcd(b, a % b) : a;
+  function drawPair() {
+    const j = st.pairJob, match = j.stage === 'match';
+    for (const s of ['a', 'b']) {
+      const fs = j.stage === 'smash' && j.side === s ? st.steps.map(x => x[1]) : j[s];
+      $(s === 'a' ? 'pileA' : 'pileB').innerHTML = fs.map((p, i) => coinHTML(p, (j.used[s].includes(i) ? 'gone ' : '') + (j.pick && j.pick[0] === s && j.pick[1] === i ? 'pick ' : '') + (match && j.pick && j.pick[0] !== s && j[j.pick[0]][j.pick[1]] !== p ? 'dim' : ''),
+        'button', `data-s="${s}" data-i="${i}" aria-label="Prime coin ${p}"${match ? '' : ' tabindex="-1" disabled'}`)).join('');
+      const whole = s === 'a' ? j.A : j.B;
+      $(s === 'a' ? 'eqA' : 'eqB').textContent = fs.length && (j[s].length || j.side !== s) ? `${whole} = ${fs.join(' × ')}` : '';
+    }
+    document.querySelectorAll('.pile .coin').forEach(c => c.onclick = () => pickCoin(c.dataset.s, +c.dataset.i));
+    $('pairs').innerHTML = j.pairs.map(p => `<span class="pair">${coinHTML(p)}${coinHTML(p)}</span>`).join('');
+  }
+  async function startMatch() {
+    const j = st.pairJob;
+    $('ingot').style.visibility = 'hidden';
+    if (!reduce) await anim($('anvil'), [{opacity: 1}, {opacity: 0}], 300);
+    $('anvil').hidden = true; $('crucible').hidden = false; $('pairs').hidden = false;
+    if (!reduce) $('crucible').animate([{opacity: 0, transform: 'translateY(30px)'}, {opacity: 1, transform: 'none'}], {duration: 400});
+    tell(`Tap a coin from ${j.A}, then the <b>same prime</b> from ${j.B}. Each pair drops into the crucible.`);
+    $('mid').innerHTML = `<button class="btn" id="melt">🔥 No more matches: melt it!</button>`;
+    $('melt').onclick = melt;
+    lockHammers(true);
+    drawPair();
+  }
+  function pickCoin(s, i) {
+    const j = st.pairJob;
+    if (j.stage !== 'match' || j.used[s].includes(i)) return;
+    if (!j.pick || j.pick[0] === s) { j.pick = [s, i]; SFX.tick(); drawPair(); return; }
+    const [s0, i0] = j.pick, p = j[s0][i0];
+    if (j[s][i] !== p) { SFX.thud(); tell(`${j[s][i]} and ${p} don't match. A pair needs the same prime from both numbers.`, true); j.pick = null; drawPair(); return; }
+    j.used[s0].push(i0); j.used[s].push(i); j.pairs.push(p); j.pick = null;
+    SFX.coin(); tell(`A pair of ${p}s! Both numbers have ${p} as a factor.`);
+    drawPair();
+  }
+  async function melt() {
+    const j = st.pairJob;
+    const leftA = j.a.filter((_, i) => !j.used.a.includes(i)), leftB = j.b.filter((_, i) => !j.used.b.includes(i));
+    const missed = leftA.filter(p => { const k = leftB.indexOf(p); if (k >= 0) { leftB.splice(k, 1); return true; } return false; });
+    if (missed.length) {  // put leftB back for the message
+      tell(`Look again: ${j.A} and ${j.B} still share a <b>${missed[0]}</b>. Pair it before you melt.`, true); SFX.thud(); return;
+    }
+    j.stage = 'done';
+    const la = j.a.filter((_, i) => !j.used.a.includes(i)), lb = j.b.filter((_, i) => !j.used.b.includes(i));
+    const G = j.pairs.reduce((a, b) => a * b, 1), L = G * la.concat(lb).reduce((a, b) => a * b, 1);
+    SFX.fizz(); $('mid').innerHTML = '';
+    if (!reduce) await anim($('crucible'), [{filter: 'brightness(1)'}, {filter: 'brightness(1.8) drop-shadow(0 0 30px #ffb400)'}, {filter: 'brightness(1)'}], 800);
+    const r = $('result'); r.hidden = false;
+    r.innerHTML = `<div class="eq">GCF(${j.A}, ${j.B}) = ${j.pairs.length > 1 ? j.pairs.join(' × ') + ' = ' : ''}<b style="color:var(--gold)">${G}</b></div>
+      <div class="eq">LCM(${j.A}, ${j.B}) = ${[...j.pairs, ...la, ...lb].join(' × ')} = <b style="color:var(--gold)">${L}</b></div>
+      <p><b>GCF:</b> multiply one coin from each pair, the primes both numbers share. <b>LCM:</b> the shared primes once, times every coin left over from either number.
+      Check it: ${G} × ${L} = ${G * L} = ${j.A} × ${j.B}.</p>
+      <p><button class="btn" id="again">Forge another pair →</button></p>`;
+    $('again').onclick = newPair;
+    tell(`${j.A} and ${j.B} share ${j.pairs.join(', ')}. The leftovers were ${[...la, ...lb].join(', ') || 'none'}.`);
+  }
+
+  // ---------- Forge Rush ----------
+  function rushIntro() {
+    $('left').innerHTML = `<h2>Last number</h2><div class="tree" id="tree"></div><div class="eq" id="treq"></div>`;
+    $('right').innerHTML = `<h2>Forge Rush</h2><p>60 seconds. Every prime coin you break off scores a point.</p><p>A wrong hammer costs <b>2 seconds</b>. Use divisibility rules to be fast.</p><p class="say" id="say"></p>`;
+    $('ingot').style.visibility = 'hidden';
+    lockHammers(true);
+    $('over').hidden = false;
+    $('over').innerHTML = `<div><h2>Forge Rush</h2><p>Smash as many numbers into primes as you can in 60 seconds.<br>Best so far: <b>${st.best}</b> coins.</p><button class="btn" id="startRush">Start the clock</button></div>`;
+    $('startRush').onclick = startRush;
+    drawStat();
+  }
+  function startRush() {
+    $('over').hidden = true;
+    st.rush = {end: Date.now() + 60000, coins: 0, numbers: 0};
+    lockHammers(false);
+    newIngot(makeNumber(12, 150, 2)); st.steps = []; drawTree();
+    tell('Go!');
+    const tick = () => {
+      if (st.mode !== 'rush' || !st.rush) return;
+      const left = st.rush.end - Date.now();
+      drawStat();
+      if (left <= 0) return endRush();
+      st.rush.timer = setTimeout(tick, 200);
+    };
+    tick();
+  }
+  function endRush() {
+    const r = st.rush; st.rush = null;
+    lockHammers(true); $('ingot').style.visibility = 'hidden';
+    const best = r.coins > st.best;
+    if (best) { st.best = r.coins; try { localStorage.setItem('factor-forge-best', r.coins); } catch {} }
+    SFX.fizz();
+    $('over').hidden = false;
+    $('over').innerHTML = `<div><h2>Time!</h2><div class="big">${r.coins}</div><p>prime coins from ${r.numbers} number${r.numbers === 1 ? '' : 's'}.${best ? ' <b>A new best!</b>' : ` Best: <b>${st.best}</b>.`}</p><button class="btn" id="startRush">Go again</button></div>`;
+    $('startRush').onclick = startRush;
+    drawStat();
+  }
+  function drawStat() {
+    if (st.mode === 'rush') {
+      const left = st.rush ? Math.max(0, Math.ceil((st.rush.end - Date.now()) / 1000)) : 60;
+      $('stat').innerHTML = `<span><small>Time</small>${left}s</span><span><small>Coins</small>${st.rush ? st.rush.coins : 0}</span><span><small>Best</small>${st.best}</span>`;
+    } else if (st.mode === 'smash') $('stat').innerHTML = `<span><small>Numbers forged</small>${st.smashed}</span>`;
+    else $('stat').innerHTML = '';
+  }
+
+  // ---------- modes ----------
+  function setMode(m) {
+    if (st.rush) { clearTimeout(st.rush.timer); st.rush = null; }
+    st.mode = m; st.busy = false;
+    ['smash', 'pair', 'rush'].forEach(k => $('t-' + k).setAttribute('aria-pressed', k === m));
+    $('over').hidden = true; $('result').hidden = true; $('mid').innerHTML = '';
+    $('crucible').hidden = true; $('pairs').hidden = true; $('anvil').hidden = false; $('anvil').style.opacity = '';
+    lockHammers(false);
+    $('hmlab').hidden = false;
+    if (m === 'smash') newSmash();
+    else if (m === 'pair') newPair();
+    else rushIntro();
+    drawStat();
+  }
+  $('t-smash').onclick = () => setMode('smash');
+  $('t-pair').onclick = () => setMode('pair');
+  $('t-rush').onclick = () => setMode('rush');
+
+  // ---------- sound ----------
+  let ctx;
+  const audio = () => (ctx ||= new (window.AudioContext || window.webkitAudioContext)());
+  function tone(type, f0, f1, dur, gain, when = 0) {
+    if (!st.sound) return;
+    const a = audio(), o = a.createOscillator(), g = a.createGain(), t = a.currentTime + when;
+    o.type = type; o.frequency.setValueAtTime(f0, t); o.frequency.exponentialRampToValueAtTime(f1, t + dur);
+    g.gain.setValueAtTime(.0001, t); g.gain.exponentialRampToValueAtTime(gain, t + .005); g.gain.exponentialRampToValueAtTime(.0001, t + dur);
+    o.connect(g).connect(a.destination); o.start(t); o.stop(t + dur + .05);
+  }
+  function noise(dur, gain, freq, type = 'bandpass') {
+    if (!st.sound) return;
+    const a = audio(), len = Math.floor(a.sampleRate * dur), buf = a.createBuffer(1, len, a.sampleRate), d = buf.getChannelData(0);
+    for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * (1 - i / len) ** 2;
+    const s = a.createBufferSource(), f = a.createBiquadFilter(), g = a.createGain();
+    f.type = type; f.frequency.value = freq; g.gain.value = gain;
+    s.buffer = buf; s.connect(f).connect(g).connect(a.destination); s.start();
+  }
+  const SFX = {
+    clang: () => { [523, 1311, 2153, 3302].forEach((f, i) => tone('sine', f, f * .99, .9 - i * .15, .09 / (i + 1))); noise(.06, .4, 3000); },
+    thud: () => { tone('sine', 140, 60, .25, .25); noise(.12, .3, 400, 'lowpass'); },
+    coin: () => { tone('triangle', 1319, 1319, .12, .08); tone('triangle', 1976, 1976, .3, .08, .08); },
+    whoosh: () => noise(.18, .25, 900),
+    tick: () => tone('triangle', 880, 880, .06, .06),
+    fizz: () => { noise(.9, .25, 2500, 'highpass'); [392, 523, 659, 784].forEach((f, i) => tone('triangle', f, f, .3, .07, .2 + i * .09)); },
+  };
+  $('sound').onclick = e => {
+    st.sound = !st.sound;
+    e.currentTarget.setAttribute('aria-pressed', st.sound);
+    e.currentTarget.textContent = st.sound ? '🔔 Sound' : '🔇 Sound';
+  };
+
+  window.__ff = {st, setMode, strike, newSmash, newPair, pickCoin, melt, startRush, factors, makeNumber};  // for checking frames
+  setMode('smash');
+})();
+</script>
+</body>
+</html>

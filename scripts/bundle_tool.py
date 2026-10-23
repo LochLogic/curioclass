@@ -29,7 +29,8 @@ def bundle(folder):
         import json
         sys.path.insert(0, str(ROOT / 'scripts'))
         from voice import clip_name
-        lines = json.loads((folder / 'voice' / 'lines.json').read_text(encoding='utf-8'))['lines']
+        spec = json.loads((folder / 'voice' / 'lines.json').read_text(encoding='utf-8'))
+        lines = [*spec['lines'], *(t for g in spec.get('groups', []) for t in g)]
         clips = {}
         for text in lines:
             f = folder / 'voice' / clip_name(text)
