@@ -37,7 +37,7 @@ Lessons from refining Marching Band and Three Pigs Lab (October 2026). Run throu
 ## Sound and voice
 
 - **Sound on by default** for teacher-led tools, with a Sound toggle.
-- **Read uses the best voice the browser has** (`bestVoice()` ranking: natural/neural, then Google, then the rest).
+- **Read uses the best voice the browser has** (`bestVoice()` ranking: natural/neural, then Google, then the rest; the Windows desktop voices David, Mark and Zira rank last). Chrome loads its voice list late, so tools hold the first utterance until `voiceschanged`, or it plays in the robotic default. Speak at pitch 1: a raised pitch makes Google's voice sound synthetic.
 - **Sounds fit the length of their beat,** so they never run past what is on screen.
 
 ## Checking it
