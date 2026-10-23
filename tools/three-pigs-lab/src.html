@@ -54,10 +54,11 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
 .t-wolf{background:#6b6f7a}.t-rain{background:#3a7bb8}.t-peek{background:#c98a2c}.t-cold{background:#4a5aa8}
 .predict{font:italic 16px/1.4 Georgia,serif;color:var(--muted);margin:0}
 
-.notebook{background:#fffdf6;border-top:3px double var(--line);padding:12px 18px 16px;background-image:linear-gradient(#e9dcc0 1px,transparent 1px);background-size:100% 30px}
+.notebook{background:#fffdf6;border-top:3px double var(--line);padding:12px 18px 16px}
 .notebook h2{margin:0 0 6px;font:700 20px Georgia,serif}
 table{border-collapse:collapse;width:100%;font-size:15px}
-th,td{text-align:left;padding:6px 10px;border-bottom:1px solid var(--line)}
+th,td{text-align:left;padding:7px 10px;border-bottom:1px solid #d9e4ef}
+thead th{border-bottom:2px solid #e3a59a}
 th{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
 td.mat-name{font-weight:700}
 .empty{color:var(--muted);font-style:italic}
@@ -159,7 +160,10 @@ td.mat-name{font-weight:700}
         <defs id="defs"></defs>
         <rect x="-3000" y="-3000" width="7000" height="3440" fill="#cfe2ee"/>
         <rect x="-3000" y="380" width="7000" height="3000" fill="#a9c46c"/>
-        <image href="art:meadow" x="-140" y="-46" width="1280" height="680" preserveAspectRatio="xMidYMid slice"/>
+        <!-- mirrored copies on each side so wide screens never show the edge of the painting -->
+        <image id="meadow" href="art:meadow" x="-300" y="-169" width="1600" height="850" preserveAspectRatio="xMidYMid slice"/>
+        <use href="#meadow" transform="translate(-600 0) scale(-1 1)"/>
+        <use href="#meadow" transform="translate(2600 0) scale(-1 1)"/>
         <rect id="mood" x="-3000" y="-3000" width="7000" height="7000" fill="#0d1630" opacity="0"/>
         <g id="weather"></g>
         <g id="house"></g>
