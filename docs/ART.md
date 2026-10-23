@@ -19,6 +19,8 @@ python scripts/bundle_tool.py inlines them -> tools/<id>/<id>.html (one offline 
 
 `build_site.py` and `check_tools.py` bundle automatically.
 
+Full-length characters: set `"aspect": "9:16"` so Gemini draws a portrait frame (its default landscape frame cuts figures off), and ask for a clear gap between the legs. A tool can then split the painting at the crotch with clip paths and step each painted leg on its own (see Marching Band).
+
 Budget: about 30-80 KB per character and 100-150 KB per background as WebP, which keeps a tool well under the 2 MB limit.
 
 ## Gemini key

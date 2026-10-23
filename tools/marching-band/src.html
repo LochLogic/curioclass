@@ -42,17 +42,15 @@ main{display:grid;grid-template-columns:1fr;gap:0;min-height:0}
 .stage{position:relative;background:var(--field);min-height:360px;overflow:hidden}
 .stage svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
 .musician{cursor:pointer}
-.musician .bob{transform-box:fill-box;transform-origin:50% 100%}
-.musician.hop .bob{animation:hop .45s cubic-bezier(.3,1.6,.5,1)}
-@keyframes hop{40%{transform:translateY(-18%)}}
-.musician .leg{transform-box:fill-box;transform-origin:50% 0}
+.musician.hop .hopper{animation:hop .45s cubic-bezier(.3,1.6,.5,1)}
+@keyframes hop{40%{transform:translateY(-30px)}}
 .marching .musician .leg-l{animation:legup var(--step,1s) ease-in-out infinite}
 .marching .musician .leg-r{animation:legup var(--step,1s) ease-in-out infinite;animation-delay:calc(var(--step,1s) / -2)}
 @keyframes legup{0%,50%,100%{transform:none}25%{transform:translateY(-16px)}}
 .marching .musician .bob{animation:bob calc(var(--step,1s) / 2) ease-in-out infinite}
-@keyframes bob{50%{transform:translateY(-4%)}}
+@keyframes bob{50%{transform:translateY(-4px)}}
 .march[aria-pressed="true"]{background:var(--ink);box-shadow:0 6px 0 #000}
-.alone circle.glow{animation:pulse 1.2s ease-in-out infinite alternate}
+.alone .glow{animation:pulse 1.2s ease-in-out infinite alternate}
 @keyframes pulse{to{opacity:.25}}
 
 .panel{background:var(--card);border-left:2px solid #ece4d2;padding:20px;display:flex;flex-direction:column;gap:18px}
@@ -120,25 +118,11 @@ footer.sentence{padding:16px 20px;background:var(--ink);color:#fff;display:flex;
         <pattern id="stripes" width="100" height="400" patternUnits="userSpaceOnUse">
           <rect width="50" height="400" style="fill:var(--field)"/><rect x="50" width="50" height="400" style="fill:var(--field-2)"/>
         </pattern>
-        <g id="person">
-          <!-- legs are drawn per musician so they can step; this is the upper body -->
-          <rect x="-17" y="4" width="34" height="40" rx="10" style="fill:var(--coat)"/>
-          <path d="M-17 14h34M-17 24h34" style="stroke:var(--gold)" stroke-width="3"/>
-          <!-- head and tall hat -->
-          <circle cx="0" cy="-8" r="12" style="fill:var(--skin)"/>
-          <rect x="-11" y="-42" width="22" height="30" rx="4" fill="#1f2430"/>
-          <rect x="-12" y="-16" width="24" height="5" rx="2" style="fill:var(--gold)"/>
-          <path d="M0 -42c-3-14 8-20 10-24 1 8-3 16-10 24z" style="fill:var(--plume)"/>
-        </g>
-        <g id="drum"><ellipse cx="0" cy="30" rx="20" ry="7" fill="#fff" stroke="#1f2430" stroke-width="2"/><path d="M-20 30v18a20 7 0 0 0 40 0V30" style="fill:var(--accent)" stroke="#1f2430" stroke-width="2"/><path d="M-20 34l10 14 10-14 10 14 10-14" fill="none" stroke="#fff" stroke-width="2"/></g>
-        <g id="trumpet"><path d="M14 18h22" style="stroke:var(--gold)" stroke-width="5" stroke-linecap="round"/><path d="M34 12l12-6v24l-12-6z" style="fill:var(--gold)"/></g>
-        <g id="tuba"><circle cx="20" cy="18" r="16" fill="none" style="stroke:var(--gold)" stroke-width="6"/><path d="M28 2l14-12h10l-6 18" style="fill:var(--gold)"/></g>
-        <g id="flute"><path d="M10 22l40-12" stroke="#c9ced8" stroke-width="5" stroke-linecap="round"/></g>
-        <g id="cymbals"><ellipse cx="-24" cy="22" rx="6" ry="16" style="fill:var(--gold)"/><ellipse cx="24" cy="22" rx="6" ry="16" style="fill:var(--gold)"/></g>
       </defs>
       <rect x="-3000" y="-3000" width="7000" height="3250" fill="#bfe1f3"/>
       <rect x="-3000" y="240" width="7000" height="3000" fill="#4f9e3a"/>
       <image href="art:stadium" x="-100" y="-60" width="1200" height="670" preserveAspectRatio="xMidYMid slice"/>
+      <defs id="clips"></defs>
       <g id="band"></g>
     </svg>
   </div>
@@ -193,15 +177,24 @@ footer.sentence{padding:16px 20px;background:var(--ink);color:#fff;display:flex;
     try { localStorage.setItem('curio-motion', reduce ? 'calm' : 'on'); } catch {}
     showMotion();
   };
-  // Illustrated musicians (hat to waist; legs are drawn so they can march). [width, height] of each image.
+  // Full-length illustrated musicians. Each painting is split at the crotch so its own legs can step:
+  // size = image [width, height]; cx = where the legs part (fraction of width); crotch = top of the gap between the legs.
   const INSTRUMENTS = [
-    {k: 'drum', art: 'art:drum', size: [184, 300]},
-    {k: 'trumpet', art: 'art:trumpet', size: [157, 300]},
-    {k: 'tuba', art: 'art:tuba', size: [259, 300]},
-    {k: 'flute', art: 'art:flute', size: [217, 300]},
-    {k: 'cymbals', art: 'art:cymbals', size: [156, 300]},
+    {k: 'drum', art: 'art:drum', size: [135, 400], cx: .507, crotch: .69},
+    {k: 'trumpet', art: 'art:trumpet', size: [124, 400], cx: .492, crotch: .685},
+    {k: 'tuba', art: 'art:tuba', size: [196, 400], cx: .37, crotch: .69},
+    {k: 'flute', art: 'art:flute', size: [167, 400], cx: .623, crotch: .685},
+    {k: 'cymbals', art: 'art:cymbals', size: [219, 400], cx: .505, crotch: .688},
   ];
-  const H = 138; // drawn height of a musician from plume to waist
+  const FH = 200; // drawn height of a musician, plume to shoes, before scaling
+  // Clip paths: the upper body, and each leg (starting a little above the crotch so the body can bob without a gap)
+  $('clips').innerHTML = INSTRUMENTS.map(m => {
+    const fw = FH * m.size[0] / m.size[1], split = -FH * (1 - m.crotch), x = -fw;
+    return `<clipPath id="body-${m.k}" clipPathUnits="userSpaceOnUse"><rect x="${x}" y="${-FH - 20}" width="${fw * 2}" height="${FH + 20 + split}"/></clipPath>` +
+      `<clipPath id="legl-${m.k}" clipPathUnits="userSpaceOnUse"><rect x="${x}" y="${split - 14}" width="${fw}" height="${-split + 34}"/></clipPath>` +
+      `<clipPath id="legr-${m.k}" clipPathUnits="userSpaceOnUse"><rect x="0" y="${split - 14}" width="${fw}" height="${-split + 34}"/></clipPath>`;
+  }).join('');
+  const widest = Math.max(...INSTRUMENTS.map(m => FH * m.size[0] / m.size[1]));
   const WORDS = ['zero','one','two','three','four','five','six','seven','eight','nine','ten','eleven','twelve','thirteen','fourteen','fifteen','sixteen','seventeen','eighteen','nineteen','twenty','twenty-one','twenty-two','twenty-three','twenty-four','twenty-five'];
 
   const state = {mode: 'pairs', n: 7, r: 3, c: 4, sound: true, found: {}};
@@ -247,25 +240,36 @@ footer.sentence{padding:16px 20px;background:var(--ink);color:#fff;display:flex;
 
   function draw() {
     const {list, rows, cols} = positions();
-    const top = 285, bottom = 535, left = 60, right = 940;
-    const gapX = Math.min(120, (right - left) / Math.max(cols, 1));
-    const gapY = Math.min(110, (bottom - top) / Math.max(rows, 1));
-    const scale = Math.min(1.35, gapX / 88, gapY / 100);
-    const x0 = 500 - (gapX * (cols - 1)) / 2, y0 = (top + bottom) / 2 - (gapY * (rows - 1)) / 2;
+    // Rows stand on the field in perspective: the front line's feet at 535, each row behind a little smaller,
+    // stacked so a row's feet sit just under the plumes in front (no figure covers another), the back row no higher than the field.
+    const front = 535, field = 235, left = 40, right = 960, k = .84, tuck = .96;
+    const gapX = Math.min(170, (right - left) / Math.max(cols, 1));
+    let depth = 0;
+    for (let d = 0; d < rows - 1; d++) depth += k ** d;
+    const scale = Math.min(1.05, (gapX - 6) / widest, depth ? (front - field) / (FH * tuck * depth) : 9);
+    const rowAt = [];
+    for (let d = 0, y = front; d < rows; d++) { rowAt.push({y, s: scale * k ** d}); y -= FH * scale * k ** d * tuck; }
+    const at = (col, row) => {
+      const {y, s} = rowAt[rows - 1 - row];
+      return {x: 500 + (col - (cols - 1) / 2) * gapX * s / scale, y, s};
+    };
     band.replaceChildren();
-    list.forEach((p, i) => {
+    list.sort((a, b) => a.row - b.row);  // back rows first, so nearer rows draw in front
+    list.forEach(p => {
       const inst = INSTRUMENTS[(p.col + p.row * 2) % INSTRUMENTS.length];
       const g = document.createElementNS(SVGNS, 'g');
       g.setAttribute('class', 'musician' + (p.alone ? ' alone' : ''));
-      g.setAttribute('transform', `translate(${x0 + p.col * gapX} ${y0 + p.row * gapY - 30 * scale}) scale(${scale})`);
+      const {x, y, s} = at(p.col, p.row);
+      g.setAttribute('transform', `translate(${x} ${y}) scale(${s})`);
       g.setAttribute('tabindex', '0');
       g.setAttribute('role', 'button');
       g.setAttribute('aria-label', `${inst.k} player${p.alone ? ', no partner' : ''}`);
-      g.innerHTML = (p.alone ? '<circle class="glow" cx="0" cy="20" r="56" fill="#f2c94c" opacity=".55"/>' : '') +
-        '<ellipse cx="0" cy="74" rx="24" ry="5" fill="#0003"/>' +
-        `<g class="leg leg-l"><rect x="-14" y="34" width="12" height="38" rx="5" fill="#26324a"/><rect x="-9" y="34" width="2.5" height="34" fill="#f2c94c"/><rect x="-17" y="67" width="16" height="8" rx="4" fill="#111"/></g>` +
-        `<g class="leg leg-r"><rect x="2" y="34" width="12" height="38" rx="5" fill="#26324a"/><rect x="7" y="34" width="2.5" height="34" fill="#f2c94c"/><rect x="1" y="67" width="16" height="8" rx="4" fill="#111"/></g>` +
-        `<g class="bob"><image href="${inst.art}" x="${-H * inst.size[0] / inst.size[1] / 2}" y="${42 - H}" width="${H * inst.size[0] / inst.size[1]}" height="${H}"/></g>`;
+      const fw = FH * inst.size[0] / inst.size[1];
+      const img = `<image href="${inst.art}" x="${-fw * inst.cx}" y="${-FH}" width="${fw}" height="${FH}"/>`;
+      g.innerHTML = (p.alone ? `<ellipse class="glow" cx="0" cy="${-FH * .45}" rx="${FH * .36}" ry="${FH * .55}" fill="#f2c94c" opacity=".55"/>` : '') +
+        `<ellipse cx="0" cy="-2" rx="${fw * .42}" ry="7" fill="#0003"/>` +
+        `<g class="hopper"><g class="leg leg-l" clip-path="url(#legl-${inst.k})">${img}</g><g class="leg leg-r" clip-path="url(#legr-${inst.k})">${img}</g>` +
+        `<g class="bob" clip-path="url(#body-${inst.k})">${img}</g></g>`;
       const hop = () => { g.classList.remove('hop'); void g.getBBox(); g.classList.add('hop'); play(inst.k); };
       g.addEventListener('click', hop);
       g.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); hop(); } });
@@ -274,9 +278,9 @@ footer.sentence{padding:16px 20px;background:var(--ink);color:#fff;display:flex;
     if (state.mode === 'pairs') {
       // brackets that pair partners up
       for (let c = 0; c < Math.floor(state.n / 2); c++) {
-        const r = document.createElementNS(SVGNS, 'rect');
-        const x = x0 + c * gapX;
-        Object.entries({x: x - 34 * scale, y: y0 - 80 * scale, width: 68 * scale, height: gapY + 150 * scale, rx: 20 * scale,
+        const r = document.createElementNS(SVGNS, 'path');
+        const b = at(c, 0), f = at(c, 1), hb = gapX * .46 * b.s / scale, hf = gapX * .46;
+        Object.entries({d: `M${b.x - hb} ${b.y - FH * b.s - 8}H${b.x + hb}L${f.x + hf} ${f.y + 12}H${f.x - hf}Z`, 'stroke-linejoin': 'round',
           fill: 'none', stroke: '#fff', 'stroke-width': 3, 'stroke-dasharray': '8 8', opacity: .8}).forEach(([k, v]) => r.setAttribute(k, v));
         band.prepend(r);
       }

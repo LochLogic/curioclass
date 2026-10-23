@@ -10,7 +10,8 @@ Needs GEMINI_API_KEY (environment, or the Windows user setting). CURIO_IMAGE_MOD
 Asset options: "ref": "<other asset>" sends that asset's raw image along so a character stays consistent;
 "ref_mode": "style" matches only the drawing style and outfit, not the character;
 "crop": [top, bottom] keeps that vertical slice (0-1) of the cut-out figure, e.g. a musician from hat to waist;
-"height" sizes by height instead of width, so a set of characters lines up.
+"height" sizes by height instead of width, so a set of characters lines up;
+"aspect": "9:16" (or "3:4", "16:9"...) sets the frame shape, e.g. portrait for a full-length figure.
 Raw images go to art/raw/ (not committed); finished art/<name>.webp is committed and bundled
 into the tool by scripts/bundle_tool.py. See docs/ART.md for the house style.
 """
@@ -43,12 +44,13 @@ def api_key():
     return key
 
 
-def generate(prompt, refs=()):
+def generate(prompt, refs=(), aspect=None):
     from google import genai
     from google.genai import types
     client = genai.Client(api_key=api_key())
+    image = types.ImageConfig(aspect_ratio=aspect) if aspect else None
     resp = client.models.generate_content(model=MODEL, contents=[prompt, *refs],
-                                          config=types.GenerateContentConfig(response_modalities=['IMAGE']))
+                                          config=types.GenerateContentConfig(response_modalities=['IMAGE'], image_config=image))
     for part in resp.candidates[0].content.parts:
         if part.inline_data and part.inline_data.data:
             return Image.open(io.BytesIO(part.inline_data.data)).convert('RGBA')
@@ -93,7 +95,7 @@ def main():
                        ' Draw a different child with a different face, skin tone and hair.')
         elif refs:
             prompt += ' Match the character design, colors and drawing style of the reference image exactly.'
-        img = generate(prompt, refs)
+        img = generate(prompt, refs, asset.get('aspect'))
         img.save(raw)
         if asset.get('cutout'):
             img = cut_out(img)
