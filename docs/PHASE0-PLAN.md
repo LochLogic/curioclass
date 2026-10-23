@@ -194,7 +194,7 @@ S:\CurioClass\
 - [x] Seeded data\: grades, bands, subjects, tool-types, tools; modules.csv header only (Phase 1)
 - [x] Private repo LochLogic/curioclass
 - [ ] Teacher notes + meta for the two tools; cite Elements data sources
-- [ ] Homepage + tool page mockup to judge the look
+- [ ] Homepage + tool page mockup to judge the look (after Phase 1 scope; template PARKED 2026-10-22, Cory wants more design freedom)
 - [ ] Eleventy skeleton (after mockup is approved)
 
 ## Later phases (for reference)

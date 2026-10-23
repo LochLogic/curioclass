@@ -1,0 +1,39 @@
+course_id,subject,title,grades,typical_grade,core,notes
+math-k8,math,Grade-level Math,k-8,,y,One course per grade K-8
+algebra-1,math,Algebra I,8-9,9,y,
+geometry,math,Geometry,9-10,10,y,
+algebra-2,math,Algebra II,10-11,11,y,
+precalculus,math,Precalculus,11-12,12,n,
+statistics,math,Statistics,11-12,12,n,AP Statistics level
+calculus,math,Calculus,12,12,n,AP Calculus AB/BC level
+ela-k12,ela,English Language Arts,k-12,,y,9-12 often split by grade (English 9-12)
+science-k5,science,Elementary Science,k-5,,y,NGSS grade-level performance expectations
+science-ms,science,Middle School Science,6-8,,y,NGSS middle school band; grade split varies by state
+earth-space,science,Earth and Space Science,9-12,9,n,
+biology,science,Biology,9-10,9,y,
+chemistry,science,Chemistry,10-11,10,y,
+physics,science,Physics,11-12,11,n,
+environmental,science,Environmental Science,11-12,12,n,
+ss-k5,social-studies,Elementary Social Studies,k-5,,y,Expanding horizons sequence
+world-geo-6,social-studies,World Geography and Ancient Civilizations,6,6,y,
+world-hist-7,social-studies,World History (Medieval to Early Modern),7,7,y,
+us-hist-8,social-studies,US History to 1877,8,8,y,
+world-hist-hs,social-studies,World History,9-10,10,y,
+us-hist-hs,social-studies,US History since 1877,11,11,y,
+government,social-studies,US Government and Civics,12,12,y,
+economics,social-studies,Economics,12,12,y,Often one semester with Government
+psychology,social-studies,Psychology,11-12,12,n,
+visual-arts,arts,Visual Arts,k-12,,y,
+music,arts,Music,k-12,,y,
+theater,arts,Theater,k-12,,n,
+dance,arts,Dance,k-12,,n,
+media-arts,arts,Media Arts,6-12,,n,
+health,health-pe,Health,k-12,,y,
+pe,health-pe,Physical Education,k-12,,y,
+cs-k12,computer-science,Computer Science,k-12,,n,CSTA bands K-2 3-5 6-8 9-10 11-12
+spanish,world-languages,Spanish (proficiency levels),k-12,,n,Modules keyed by level not grade
+french,world-languages,French (proficiency levels),6-12,,n,Same level modules as Spanish; language-specific content added in Phase 2
+cte-explore,cte,Career Exploration,6-8,,n,
+cte-pathways,cte,Career Pathways,9-12,,n,
+personal-finance,cte,Personal Finance,9-12,11,y,Required for graduation in a growing number of states
+sel-k12,sel,Social and Emotional Learning,k-12,,n,Decide in-scope after Phase 1 review
