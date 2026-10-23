@@ -58,8 +58,7 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
 .blue{background:#3a6ea5}.red{background:var(--accent)}.green{background:var(--go)}
 
 .speech{position:relative;margin:0 0 30px 0;background:#fff;border:3px solid #2a2622;border-radius:22px;padding:10px 14px;font:700 21px/1.3 'Trebuchet MS','Segoe UI',sans-serif;color:#2a2622;box-shadow:0 5px 0 #0003}
-.speech::before,.speech::after{content:'';position:absolute;left:18px;bottom:-26px;border:13px solid transparent;border-top:20px solid #2a2622;border-right:0;transform:skewX(30deg)}
-.speech::after{left:21px;bottom:-19px;border-width:10px 0 15px 10px;border-color:#fff transparent transparent transparent}
+.speech .tail{position:absolute;left:22px;top:calc(100% - 3px);width:44px;height:34px;overflow:visible}
 /* motion */
 .arrive{animation:arrive 1.1s cubic-bezier(.2,.8,.3,1) both}
 @keyframes arrive{from{transform:translateX(720px)}}
@@ -132,8 +131,8 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
         <text id="digital" x="109" y="8" text-anchor="middle" font-family="Consolas,monospace" font-size="26" font-weight="700" fill="#ffd166">3:00</text>
       </g>
       <g id="menu" transform="translate(22 216)" filter="url(#shadow)"></g>
-      <g id="customer" transform="translate(440 432)"></g>
-      <g id="item" transform="translate(660 404)"></g>
+      <g id="customer" transform="translate(372 432)"></g>
+      <g id="item" transform="translate(612 406)"></g>
       <!-- the counter -->
       <rect x="-3000" y="402" width="7000" height="2600" fill="url(#wood)"/>
       <rect x="-3000" y="402" width="7000" height="2600" fill="url(#grain)"/>
@@ -186,12 +185,11 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
   const MM = 2.5;
   const COINS = {
     100: {name: 'dollar', label: '$1', bill: true},
-    25: {name: 'quarter', label: '25¢', mm: 24.26, metal: 'silver', reeded: true, faces: 'left'},
-    10: {name: 'dime', label: '10¢', mm: 17.91, metal: 'silver', reeded: true, faces: 'left'},
-    5: {name: 'nickel', label: '5¢', mm: 21.21, metal: 'silver', faces: 'left'},
-    1: {name: 'penny', label: '1¢', mm: 19.05, metal: 'copper', faces: 'right'},
+    25: {name: 'quarter', label: '25¢', mm: 24.26},
+    10: {name: 'dime', label: '10¢', mm: 17.91},
+    5: {name: 'nickel', label: '5¢', mm: 21.21},
+    1: {name: 'penny', label: '1¢', mm: 19.05},
   };
-  const METAL = {silver: ['#eef1f4', '#b9c0c7', '#7f8890'], copper: ['#f2b58a', '#c9773f', '#8a4a22']};
   const radius = v => COINS[v].bill ? 0 : COINS[v].mm * MM / 2;
   const cents = n => n >= 100 ? '$' + (n / 100).toFixed(2) : n + '¢';
   const dollars = n => '$' + (n / 100).toFixed(2);
@@ -205,18 +203,15 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
         <path d="M-6 12C-8 0-7-10 1-12C9-10 9 0 7 12Z" fill="#7da173"/>
         <text x="-56" y="-6" font-family="Georgia,serif" font-size="18" font-weight="700" fill="#3f6a38">1</text>
         <text x="48" y="20" font-family="Georgia,serif" font-size="18" font-weight="700" fill="#3f6a38">1</text>
+        <text x="40" y="-9" text-anchor="middle" font-family="Georgia,serif" font-size="13" font-weight="700" fill="#3f6a38">ONE</text>
         ${showLabel ? `<text y="50" text-anchor="middle" font-family="Segoe UI,sans-serif" font-size="20" font-weight="800" fill="#2a2622" stroke="#fffaf0" stroke-width="5" paint-order="stroke">${c.label}</text>` : ''}</g>`;
     }
-    const r = radius(v), [hi, mid, lo] = METAL[c.metal], f = c.faces === 'right' ? -1 : 1;
-    // a simple profile, facing the way the real portrait faces
-    const head = `M${.18 * r * f} ${-.56 * r}C${-.14 * r * f} ${-.62 * r} ${-.36 * r * f} ${-.36 * r} ${-.3 * r * f} ${-.1 * r}L${-.44 * r * f} ${.06 * r}L${-.3 * r * f} ${.12 * r}C${-.32 * r * f} ${.26 * r} ${-.2 * r * f} ${.32 * r} ${-.1 * r * f} ${.3 * r}L${-.12 * r * f} ${.52 * r}L${.36 * r * f} ${.52 * r}C${.3 * r * f} ${.22 * r} ${.52 * r * f} ${-.1 * r} ${.42 * r * f} ${-.32 * r}C${.36 * r * f} ${-.5 * r} ${.28 * r * f} ${-.56 * r} ${.18 * r * f} ${-.56 * r}Z`;
-    return `<g><circle r="${r}" fill="${mid}" stroke="${lo}" stroke-width="2"/>
-      ${c.reeded ? `<circle r="${r - 1.5}" fill="none" stroke="${lo}" stroke-width="3" stroke-dasharray="1.2 1.6" opacity=".7"/>` : ''}
-      <circle r="${r * .84}" fill="${hi}" stroke="${lo}" stroke-width="1" opacity=".9"/>
-      <path d="${head}" fill="${lo}" opacity=".45"/>
-      <ellipse cx="${-r * .35}" cy="${-r * .45}" rx="${r * .28}" ry="${r * .14}" fill="#fff" opacity=".55" transform="rotate(-30 ${-r * .35} ${-r * .45})"/>
+    // real coin pictures, sized by diameter so a dime stays smaller than a penny
+    const r = radius(v);
+    return `<g><circle r="${r}" cy="2" fill="#000" opacity=".28"/><image href="${COIN_ART[v]}" x="${-r}" y="${-r}" width="${2 * r}" height="${2 * r}"/>
       ${showLabel ? `<text y="50" text-anchor="middle" font-family="Segoe UI,sans-serif" font-size="19" font-weight="800" fill="#2a2622" stroke="#fffaf0" stroke-width="5" paint-order="stroke">${c.label}</text>` : ''}</g>`;
   }
+  const COIN_ART = {25: 'art:quarter', 10: 'art:dime', 5: 'art:nickel', 1: 'art:penny'};  // written out so the bundler can inline them
   // Break an amount into coins. "few" uses the biggest coins; otherwise trade a quarter for dimes and nickels sometimes.
   function makeCoins(amount, few = true) {
     const out = [];
@@ -396,16 +391,18 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
     $('customer').innerHTML = `<g class="${cls}"><g class="bob"><image href="${f.art}" x="${-w / 2}" y="${-h}" width="${w}" height="${h}"/></g></g>`;
   }
   function item(show = true) {
-    const it = ITEMS[state.day[state.n].item], w = it.h * it.size[0] / it.size[1];
-    $('item').innerHTML = show ? `<g class="drop"><image href="${it.art}" x="${-w / 2}" y="${-it.h}" width="${w}" height="${it.h}"/>
-      <g transform="translate(${w / 2 + 6} ${-it.h * .55}) rotate(8)"><path d="M0 0L14-14H70V14H14Z" fill="#fff6c9" stroke="#8a5a12" stroke-width="2"/><circle cx="12" r="3" fill="#8a5a12"/>
-      <text x="44" y="7" text-anchor="middle" font-family="Segoe UI,sans-serif" font-size="19" font-weight="800" fill="#2a2622">${it.price}¢</text></g></g>` : '';
+    // the snack sits up front on a little stand, with a big price tag
+    const it = ITEMS[state.day[state.n].item], h = Math.min(170, it.h * 1.5), w = h * it.size[0] / it.size[1];
+    $('item').innerHTML = show ? `<g class="drop"><ellipse cy="-4" rx="${Math.max(70, w * .6)}" ry="12" fill="#5e3618" opacity=".35"/>
+      <image href="${it.art}" x="${-w / 2}" y="${-h - 4}" width="${w}" height="${h}" filter="url(#shadow)"/>
+      <g transform="translate(${w / 2 + 2} ${-h * .5}) rotate(7)" filter="url(#shadow)"><path d="M0 0L20-22H112V22H20Z" fill="#fff6c9" stroke="#8a5a12" stroke-width="3" stroke-linejoin="round"/><circle cx="17" r="4.5" fill="#8a5a12"/>
+      <text x="67" y="11" text-anchor="middle" font-family="'Trebuchet MS','Segoe UI',sans-serif" font-size="32" font-weight="800" fill="#2a2622">${it.price}¢</text></g></g>` : '';
   }
   function say(text) {
     $('say').replaceChildren();
     if (!text) return;
-    const fo = el('foreignObject', {x: 600, y: 84, width: 370, height: 230}, $('say'));
-    fo.innerHTML = `<div xmlns="http://www.w3.org/1999/xhtml" class="speech pop" role="status">${text}</div>`;
+    const fo = el('foreignObject', {x: 586, y: 70, width: 384, height: 230}, $('say'));
+    fo.innerHTML = `<div xmlns="http://www.w3.org/1999/xhtml" class="speech pop" role="status">${text}<svg class="tail" viewBox="0 0 44 34" aria-hidden="true"><path d="M8 0L0 32L34 0Z" fill="#fff"/><path d="M8 1.5L0 32L34 1.5" fill="none" stroke="#2a2622" stroke-width="3" stroke-linejoin="round"/></svg></div>`;
   }
   function clock(min, animate = true) {
     const m = min % 60, hr = Math.floor(min / 60) % 12 || 12;

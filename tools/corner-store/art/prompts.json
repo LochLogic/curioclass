@@ -85,6 +85,42 @@
       "prompt": "A small purple grape juice box with a bendy straw poking out of the top, plain with no writing.",
       "cutout": true,
       "width": 220
+    },
+    {
+      "name": "quarter",
+      "house_style": "Realistic, accurate coin illustration for teaching children to recognize real US money: true metal color and shine, crisp relief, viewed perfectly straight on. No watermark, no border, no frame.",
+      "skip_style": true,
+      "prompt": "A United States quarter dollar, heads side: George Washington's portrait in profile facing left, the word LIBERTY above, IN GOD WE TRUST to the left of the neck, the date below. Silver-colored cupronickel with a reeded (ridged) edge. The whole round coin, filling most of the frame.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 200
+    },
+    {
+      "name": "dime",
+      "house_style": "Realistic, accurate coin illustration for teaching children to recognize real US money: true metal color and shine, crisp relief, viewed perfectly straight on. No watermark, no border, no frame.",
+      "skip_style": true,
+      "prompt": "A United States dime, heads side: Franklin D. Roosevelt's portrait in profile facing left, the word LIBERTY along the left edge, IN GOD WE TRUST below the chin, the date at the lower right. Silver-colored cupronickel with a reeded (ridged) edge. The whole round coin, filling most of the frame.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 200
+    },
+    {
+      "name": "nickel",
+      "house_style": "Realistic, accurate coin illustration for teaching children to recognize real US money: true metal color and shine, crisp relief, viewed perfectly straight on. No watermark, no border, no frame.",
+      "skip_style": true,
+      "prompt": "A United States nickel, heads side: Thomas Jefferson's portrait facing three-quarters toward the viewer's left, the word LIBERTY in script on the right, IN GOD WE TRUST along the left edge, the date below. Silver-colored nickel with a smooth edge. The whole round coin, filling most of the frame.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 200
+    },
+    {
+      "name": "penny",
+      "house_style": "Realistic, accurate coin illustration for teaching children to recognize real US money: true metal color and shine, crisp relief, viewed perfectly straight on. No watermark, no border, no frame.",
+      "skip_style": true,
+      "prompt": "A United States one cent coin (penny), heads side: Abraham Lincoln's portrait in profile facing right, IN GOD WE TRUST above, LIBERTY at the left, the date at the right. Warm shiny copper color with a smooth edge. The whole round coin, filling most of the frame.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 200
     }
   ]
 }

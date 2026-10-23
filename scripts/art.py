@@ -5,7 +5,7 @@
 --force draws again; --rekey only redoes the cutout and sizing from the saved original in art/raw/ (free).
 
 Reads tools/<tool-id>/art/prompts.json:
-    {"house_style": "optional, replaces the storybook house style (older grades)",
+    {"house_style": "optional, replaces the storybook house style (older grades; an asset can set its own too)",
      "style": "optional extra style notes",
      "assets": [{"name": "pig", "prompt": "a cheerful pink pig ...", "width": 360, "cutout": true}]}
 
@@ -120,7 +120,7 @@ def main():
             print(f'skip {name} (exists; --force to redo)')
             continue
         tool_style = '' if asset.get('skip_style') else spec.get('style', '')  # backgrounds skip character notes
-        prompt = ' '.join([spec.get('house_style', HOUSE_STYLE), tool_style, asset['prompt'], CUTOUT.format(key=KEYS[asset.get('key', 'green')]) if asset.get('cutout') is True else ''])
+        prompt = ' '.join([asset.get('house_style', spec.get('house_style', HOUSE_STYLE)), tool_style, asset['prompt'], CUTOUT.format(key=KEYS[asset.get('key', 'green')]) if asset.get('cutout') is True else ''])
         raw = art / 'raw' / f'{name}.png'
         refs = [Image.open(art / 'raw' / f'{asset["ref"]}.png')] if asset.get('ref') else []
         if refs and asset.get('ref_mode') == 'style':
