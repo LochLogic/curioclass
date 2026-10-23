@@ -1,6 +1,6 @@
 # Phase 1: Module Map (K-12, all subjects)
 
-Status: DRAFT v2, 2026-10-22. 549 modules across 10 subjects and 13 grades. Every module has at least one standards code, and every code is checked against its framework's official list at build time.
+Status: DECIDED, 2026-10-22. 586 modules across 12 subjects and 13 grades. Every module has at least one standards code, and every code is checked against its framework's official list at build time.
 The tool starter template is parked (templates/parked-tool-starter.html) so design stays open.
 
 ## What a module is
@@ -32,6 +32,8 @@ Where a subject has no national framework (Precalculus, Statistics, Calculus), t
 | Personal Finance | National Standards for Personal Financial Education (2021) | standard area | `NSPFE.Managing Credit` | 6 areas |
 | Psychology | APA National Standards for HS Psychology | pillar | `APA.Cognition` | Pillar names |
 | SEL | CASEL framework | competency | `CASEL.Self-Management` | 5 competencies |
+| English learners | WIDA ELD Standards Framework (2020) | standard + key language use | `WIDA.ELD-4`, `WIDA.Argue` | 5 standards, 4 key language uses |
+| Library / research | AASL National School Library Standards (2018) | shared foundation | `AASL.Curate` | 6 foundations |
 | Precalc / Stats / Calc | College Board AP course frameworks | unit | `AP-STAT.U5` | Unit numbers |
 
 What changed in this check:
@@ -70,25 +72,31 @@ social-studies       5   5   5   5   5   5   7   8   8   4   5   8  16
 arts                 7   7   7   8   8   8  10  10  10  10  10  10  10
 health-pe            6   6   6   6   6   6   6   6   6   6   6   6   6
 computer-science     3   3   3   3   4   4   7   7   7   7   7   7   7
-world-languages      5   5   5   5   5   5   9   9   9  11  11  11  11
+world-languages     10  10  10  10  10  10  17  17  17  20  20  20  20
 cte                  .   .   .   .   .   .   3   3   3  11  11  11  11
 sel                  2   2   2   2   2   2   2   2   2   2   2   2   2
+eld                  5   5   5   5   5   5   5   5   5   5   5   5   5
+library              2   2   2   2   2   2   2   2   2   2   2   2   2
 ```
 Grade 12 looks heavy because it holds the electives (Precalc, Stats, Calc, Gov, Econ, Psych). Grade 9 science looks heavy because Biology and Earth Science are both placed there.
 
-## Judgment calls (please review)
+## Decisions (Cory, 2026-10-22)
 
-1. **Middle school science split.** NGSS is written for grades 6-8 as a band. I used a common split: 6 = Earth/space plus cells, 7 = chemistry plus ecology, 8 = physics plus heredity and evolution. States vary, so the site should also let teachers browse by band.
-2. **Social studies sequence.** Follows the most common US pattern: expanding horizons K-3, state history 4, early US 5, ancient world 6, medieval world 7, US to 1877 in 8, modern world 9-10, US since 1877 in 11, government and economics in 12. Texas, California and others differ, and state mapping can come later.
-3. **High school math** follows the traditional Algebra I / Geometry / Algebra II path, not the integrated Math 1-2-3 path. The modules work for both.
-4. **SEL** is included but thin (8 modules) pending your decision on whether it's in scope.
-5. **World Languages** has Spanish only. French and others reuse the same levels.
-6. **Not included yet:** AP-only courses beyond Stats and Calc, ESL/ELD, Library/Research, state-specific history beyond placeholders, and Special Education adaptations (handled as a tool design rule, not as modules).
+| # | Question | Decision | What it means for the site |
+|---|---|---|---|
+| 1 | Middle school science | Keep the 6/7/8 split **and** a "Grades 6-8 Science" band view | Browse by grade or by band |
+| 2 | Social studies order | Keep the common US sequence **and** browse by topic | Every module findable by topic, whatever grade a state teaches it in |
+| 3 | High school math | Traditional Algebra I / Geometry / Algebra II, findable by topic and standard | Integrated Math 1-2-3 teachers search by topic or standard code |
+| 4 | SEL | In, as a light shelf | 8 modules; not a build priority |
+| 5 | World languages | Spanish **and American Sign Language** | ASL: 9 modules on the same proficiency levels, plus fingerspelling, sign parameters, classifiers and Deaf culture. ASL tools get reviewed by Deaf educators before release. |
+| 6 | Gaps | Add **English learners** and **library/research skills** | English learners: 20 modules on WIDA. Library: 8 modules on AASL. AP-only courses and state crosswalks stay out for now. |
+
+Site requirements from these decisions: browse by grade, by band, by topic and by standard code.
 
 ## To do before Phase 2
 
-- [ ] Cory reviews the judgment calls above
+- [x] Cory decided the judgment calls (2026-10-22)
 - [x] Check every standards code against official framework lists (2026-10-22)
 - [ ] Optional: a second reader (a teacher) checks best-fit alignment for one subject
-- [ ] Decide SEL in or out; decide which languages after Spanish
+- [x] SEL in (light); languages: Spanish + ASL
 - [ ] Later (not Phase 1): state crosswalks (TX TEKS, CA, FL B.E.S.T., NY, VA SOL), since they cover a large share of US students

@@ -32,6 +32,14 @@ def read_csv(name):
 
 
 courses = {c['course_id']: c for c in read_csv('courses.csv')}
+
+# grade_subjects.csv is derived from courses.csv
+with open(DATA / 'grade_subjects.csv', 'w', newline='', encoding='utf-8') as f:
+    w = csv.writer(f)
+    w.writerow(['grade', 'subject', 'course_id', 'core'])
+    for c in courses.values():
+        for g in expand(c['grades']):
+            w.writerow([g, c['subject'], c['course_id'], c['core']])
 errors, modules, seen = [], [], set()
 
 for path in sorted((DATA / 'modules').glob('*.txt')):

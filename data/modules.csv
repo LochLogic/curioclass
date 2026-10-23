@@ -1,4 +1,41 @@
 module_id,subject,grade,course_id,strand,title,description,standards,frameworks,source
+world-languages-k-12-fingerspelling-and-the-manual-alphabet,world-languages,k-12,asl,Novice,Fingerspelling and the Manual Alphabet,Handshapes for letters; spell names,ACTFL.Novice Low;WRS.Communication,ACTFL;World-Readiness,added.txt
+world-languages-k-12-greetings-and-introductions-in-asl,world-languages,k-12,asl,Novice,Greetings and Introductions in ASL,"Hello, names, feelings and getting attention appropriately",ACTFL.Novice Low;WRS.Communication,ACTFL;World-Readiness,added.txt
+world-languages-k-12-numbers-colors-and-time,world-languages,k-12,asl,Novice,"Numbers, Colors and Time","Number handshapes, colors, days and time signs",ACTFL.Novice Mid,ACTFL,added.txt
+world-languages-k-12-the-five-parameters-of-a-sign,world-languages,k-12,asl,Novice,The Five Parameters of a Sign,"Handshape, location, movement, palm orientation and non-manual markers",ACTFL.Novice Mid;WRS.Comparisons,ACTFL;World-Readiness,added.txt
+world-languages-k-12-family-home-and-school,world-languages,k-12,asl,Novice,"Family, Home and School",Everyday vocabulary and simple descriptions,ACTFL.Novice High,ACTFL,added.txt
+world-languages-6-12-asl-grammar-and-facial-expression,world-languages,6-12,asl,Intermediate,ASL Grammar and Facial Expression,"Topic-comment order, questions and non-manual grammar",ACTFL.Intermediate Low;WRS.Comparisons,ACTFL;World-Readiness,added.txt
+world-languages-6-12-classifiers-and-space,world-languages,6-12,asl,Intermediate,Classifiers and Space,Using space and classifiers to show location and movement,ACTFL.Intermediate Mid,ACTFL,added.txt
+world-languages-6-12-deaf-culture-and-community,world-languages,6-12,asl,Intermediate,Deaf Culture and Community,"Deaf history, culture, community norms and perspectives",WRS.Cultures;WRS.Communities,World-Readiness,added.txt
+world-languages-9-12-asl-storytelling-and-narrative,world-languages,9-12,asl,Advanced,ASL Storytelling and Narrative,"Role shift, pacing and visual storytelling",ACTFL.Intermediate High;WRS.Communication,ACTFL;World-Readiness,added.txt
+eld-k-2-classroom-language,eld,k-2,eld-k12,Social and Instructional Language,Classroom Language,"Follow directions, ask for help, take turns in conversation",WIDA.ELD-1,WIDA-ELD-2020,added.txt
+eld-k-2-retelling-stories,eld,k-2,eld-k12,Language for Language Arts,Retelling Stories,"Narrate a story's beginning, middle and end",WIDA.ELD-2;WIDA.Narrate,WIDA-ELD-2020,added.txt
+eld-k-2-math-talk-numbers-and-shapes,eld,k-2,eld-k12,Language for Mathematics,Math Talk: Numbers and Shapes,"Describe numbers, shapes and comparisons",WIDA.ELD-3;WIDA.Explain,WIDA-ELD-2020,added.txt
+eld-k-2-describing-what-i-see,eld,k-2,eld-k12,Language for Science,Describing What I See,Name and describe observations,WIDA.ELD-4;WIDA.Inform,WIDA-ELD-2020,added.txt
+eld-k-2-my-community-words,eld,k-2,eld-k12,Language for Social Studies,My Community Words,"Places, people and jobs in the community",WIDA.ELD-5;WIDA.Inform,WIDA-ELD-2020,added.txt
+eld-3-5-academic-conversations,eld,3-5,eld-k12,Social and Instructional Language,Academic Conversations,"Agree, disagree and build on others' ideas",WIDA.ELD-1,WIDA-ELD-2020,added.txt
+eld-3-5-opinions-with-reasons,eld,3-5,eld-k12,Language for Language Arts,Opinions with Reasons,Give an opinion and support it with reasons,WIDA.ELD-2;WIDA.Argue,WIDA-ELD-2020,added.txt
+eld-3-5-explaining-my-solution,eld,3-5,eld-k12,Language for Mathematics,Explaining My Solution,Explain steps and strategies in word problems,WIDA.ELD-3;WIDA.Explain,WIDA-ELD-2020,added.txt
+eld-3-5-cause-and-effect-language,eld,3-5,eld-k12,Language for Science,Cause and Effect Language,"Because, so, as a result: explain how things happen",WIDA.ELD-4;WIDA.Explain,WIDA-ELD-2020,added.txt
+eld-3-5-then-and-now-language,eld,3-5,eld-k12,Language for Social Studies,Then and Now Language,Past tense and sequence words for history,WIDA.ELD-5;WIDA.Narrate,WIDA-ELD-2020,added.txt
+eld-6-8-summarizing-and-citing,eld,6-8,eld-k12,Language for Language Arts,Summarizing and Citing,Summarize texts and cite evidence,WIDA.ELD-2;WIDA.Inform,WIDA-ELD-2020,added.txt
+eld-6-8-word-problems-decoded,eld,6-8,eld-k12,Language for Mathematics,Word Problems Decoded,Unpack math vocabulary and problem language,WIDA.ELD-3;WIDA.Explain,WIDA-ELD-2020,added.txt
+eld-6-8-lab-reports-and-claims,eld,6-8,eld-k12,Language for Science,Lab Reports and Claims,"Claim, evidence and reasoning language",WIDA.ELD-4;WIDA.Argue,WIDA-ELD-2020,added.txt
+eld-6-8-comparing-perspectives,eld,6-8,eld-k12,Language for Social Studies,Comparing Perspectives,Language to compare sources and viewpoints,WIDA.ELD-5;WIDA.Argue,WIDA-ELD-2020,added.txt
+eld-6-8-idioms-and-everyday-expressions,eld,6-8,eld-k12,Social and Instructional Language,Idioms and Everyday Expressions,Figurative and informal English,WIDA.ELD-1,WIDA-ELD-2020,added.txt
+eld-9-12-academic-argument,eld,9-12,eld-k12,Language for Language Arts,Academic Argument,Build and counter an argument in writing and speech,WIDA.ELD-2;WIDA.Argue,WIDA-ELD-2020,added.txt
+eld-9-12-precise-mathematical-language,eld,9-12,eld-k12,Language for Mathematics,Precise Mathematical Language,"Definitions, conditions and justification",WIDA.ELD-3;WIDA.Explain,WIDA-ELD-2020,added.txt
+eld-9-12-explaining-models-and-data,eld,9-12,eld-k12,Language for Science,Explaining Models and Data,"Describe models, graphs and trends",WIDA.ELD-4;WIDA.Explain,WIDA-ELD-2020,added.txt
+eld-9-12-analyzing-historical-arguments,eld,9-12,eld-k12,Language for Social Studies,Analyzing Historical Arguments,"Language of causation, evidence and evaluation",WIDA.ELD-5;WIDA.Argue,WIDA-ELD-2020,added.txt
+eld-9-12-college-and-career-language,eld,9-12,eld-k12,Social and Instructional Language,College and Career Language,"Emails, interviews and formal registers",WIDA.ELD-1,WIDA-ELD-2020,added.txt
+library-k-2-finding-a-book,library,k-2,library,Research,Finding a Book,How the library is organized; fiction and nonfiction,AASL.Explore;AASL.Curate,AASL-2018,added.txt
+library-k-2-asking-good-questions,library,k-2,library,Research,Asking Good Questions,"Wonder, ask and look for answers",AASL.Inquire,AASL-2018,added.txt
+library-3-5-search-like-a-pro,library,3-5,library,Research,Search Like a Pro,"Keywords, catalogs and kid-safe search",AASL.Curate;AASL.Inquire,AASL-2018,added.txt
+library-3-5-giving-credit,library,3-5,library,Research,Giving Credit,Why and how to credit sources,AASL.Engage,AASL-2018,added.txt
+library-6-8-is-it-reliable,library,6-8,library,Research,Is It Reliable?,"Evaluate websites, authors and evidence; spot misinformation",AASL.Curate;AASL.Engage,AASL-2018,added.txt
+library-6-8-the-research-process,library,6-8,library,Research,The Research Process,"Plan, gather, organize and present research",AASL.Inquire;AASL.Collaborate,AASL-2018,added.txt
+library-9-12-databases-and-advanced-search,library,9-12,library,Research,Databases and Advanced Search,"Academic databases, Boolean search and primary sources",AASL.Curate,AASL-2018,added.txt
+library-9-12-citation-copyright-and-fair-use,library,9-12,library,Research,"Citation, Copyright and Fair Use","Citation styles, plagiarism, copyright and Creative Commons",AASL.Engage;AASL.Include,AASL-2018,added.txt
 ela-k-print-concepts-and-the-alphabet,ela,k,ela-k12,Foundational Skills,Print Concepts and the Alphabet,"Letters, words, spaces and reading left to right",RF.K.1,CCSS-ELA,ela.txt
 ela-k-rhymes-and-sounds,ela,k,ela-k12,Foundational Skills,Rhymes and Sounds,"Rhyme, syllables, and beginning, middle and ending sounds",RF.K.2,CCSS-ELA,ela.txt
 ela-k-letter-sounds-and-sight-words,ela,k,ela-k12,Foundational Skills,Letter Sounds and Sight Words,Letter-sound correspondence and high-frequency words,RF.K.3,CCSS-ELA,ela.txt

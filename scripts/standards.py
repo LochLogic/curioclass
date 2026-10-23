@@ -106,7 +106,9 @@ CLOSED = {
     'CASEL': re.compile(r'CASEL\.(Self-Awareness|Self-Management|Social Awareness|Relationship Skills|Responsible Decision-Making)'),
     'Career Clusters 2024': re.compile(r'CTE\.(Career Clusters|Career Ready Practices)'),
     'APA-HS-Psych': re.compile(r'APA\.(Scientific Inquiry|Biological|Development and Learning|Sociocultural|Cognition|Individual Variations|Mental and Physical Health)'),
-    'AP Precalculus': re.compile(r'AP-PRECALC\.U[1-4]'),
+    'WIDA-ELD-2020': re.compile(r'WIDA\.(ELD-[1-5]|Narrate|Inform|Explain|Argue)'),
+    'AASL-2018': re.compile(r'AASL\.(Inquire|Include|Collaborate|Curate|Explore|Engage)'),
+    'AP Precalculus':re.compile(r'AP-PRECALC\.U[1-4]'),
     'AP Statistics': re.compile(r'AP-STAT\.U[1-9]'),
     'AP Calculus': re.compile(r'AP-CALC\.U([1-9]|10)'),
 }
