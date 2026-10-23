@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>State Quest: find all 50 states · Free interactive map, grades 3-8 · Curio Class</title>
+<meta name="description" content="A free interactive US map game. Find all 50 states in Practice or Challenge mode. Works offline, no sign-up.">
+<link rel="stylesheet" href="curio.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-head">
+  <div class="wrap">
+    <a class="logo" href="index.html" aria-label="Curio Class home">
+      <svg viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="11" fill="#1f2430"/><path d="M13 17a7 7 0 1 1 9.5 6.5c-1.7.7-2.5 1.8-2.5 3.5" fill="none" stroke="#e4572e" stroke-width="4" stroke-linecap="round"/><circle cx="20" cy="32" r="2.4" fill="#e4572e"/></svg>
+      Curio Class
+    </a>
+    <nav class="nav" aria-label="Main"><a href="index.html#grades">Grades</a><a href="index.html#subjects">Subjects</a><a href="index.html#styles">Play styles</a><a href="index.html#bench">On the bench</a><a href="#">About</a></nav>
+    <button class="menu-btn" aria-label="Open menu">Menu</button>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="#">Grade 4</a> › <a href="#">Social Studies</a> › <a href="#">US Regions and States</a></nav>
+
+  <div class="tool-hero">
+    <div class="stage" id="stage">
+      <iframe id="frame" title="State Quest" src="../../tools/state-quest/state-quest.html" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;border:0;background:#fff"></iframe>
+    </div>
+
+    <div class="tool-info">
+      <p class="eyebrow">Map · Grades 3-8</p>
+      <h1>State Quest</h1>
+      <p class="hook">Click a state, name it, fill the map. Practice at your own pace, or take the three-strike Challenge.</p>
+      <div class="actions">
+        <a class="btn primary" href="../../tools/state-quest/state-quest.html" target="_blank" rel="noopener">▶ Play full screen</a>
+        <a class="btn" href="../../tools/state-quest/state-quest.html" download>Download</a>
+        <button class="btn" onclick="document.getElementById('t-embed').click()">Embed</button>
+      </div>
+      <dl class="facts">
+        <dt>Students will</dt><dd>Locate and name all 50 US states</dd>
+        <dt>Who drives</dt><dd>Students on devices, or teacher on the big screen</dd>
+        <dt>Time</dt><dd>10-20 minutes a round</dd>
+        <dt>Modes</dt><dd>Practice (unlimited tries) · Challenge (three strikes)</dd>
+        <dt>Works offline</dt><dd>Yes, one 124 KB file</dd>
+        <dt>Collection</dt><dd><a href="#">State Quest</a> (capitals and regions coming)</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="tabs" role="tablist" aria-label="About this tool">
+    <button role="tab" aria-selected="true" aria-controls="p-notes" id="t-notes">Teacher notes</button>
+    <button role="tab" aria-selected="false" aria-controls="p-std" id="t-std">Standards</button>
+    <button role="tab" aria-selected="false" aria-controls="p-embed" id="t-embed">Embed and download</button>
+    <button role="tab" aria-selected="false" aria-controls="p-src" id="t-src">Sources and license</button>
+  </div>
+
+  <div class="panel" role="tabpanel" id="p-notes" aria-labelledby="t-notes">
+    <h3>A 5-minute start</h3>
+    <ol>
+      <li>Project Practice mode. Ask the class to name any state they're sure of and find it together.</li>
+      <li>Turn on labels for the region you're studying, then turn them off and try again.</li>
+      <li>Students play Challenge on their own devices. Green means first try; red means it took a while.</li>
+    </ol>
+    <h3>Talk about it</h3>
+    <ul>
+      <li>Which states were hardest? Why might some states be harder to remember?</li>
+      <li>What patterns help you: shapes, neighbors, coastlines?</li>
+      <li>How would you split the map into regions, and why?</li>
+    </ul>
+  </div>
+  <div class="panel" role="tabpanel" id="p-std" aria-labelledby="t-std" hidden>
+    <div class="std"><code>D2.Geo.2.3-5</code><span>Use maps, satellite images, photographs and other representations to explain relationships between the locations of places and regions.</span></div>
+    <div class="std"><code>D2.Geo.3.3-5</code><span>Use maps of different scales to describe the locations of cultural and environmental characteristics.</span></div>
+    <p style="color:var(--muted);font-size:14px">C3 Framework for Social Studies State Standards. Your state's standards are usually built on these.</p>
+  </div>
+  <div class="panel" role="tabpanel" id="p-embed" aria-labelledby="t-embed" hidden>
+    <p>Paste this into Google Classroom, Canvas, Schoology or a class website:</p>
+    <div class="embed-box">&lt;iframe src="https://curioclass.org/tools/state-quest/play/" width="100%" height="640" title="State Quest" loading="lazy"&gt;&lt;/iframe&gt;</div>
+    <p>Or <a href="../../tools/state-quest/state-quest.html" download>download the single HTML file</a>. It runs offline in any browser, from a USB stick or a shared drive.</p>
+  </div>
+  <div class="panel" role="tabpanel" id="p-src" aria-labelledby="t-src" hidden>
+    <p>Map: us-atlas v3, derived from US Census Bureau boundaries (public domain).</p>
+    <p>Curio Class content is CC BY 4.0 and code is MIT. Use it, share it, adapt it. Just credit Curio Class.</p>
+  </div>
+
+  <section class="block" aria-labelledby="rel-h" style="padding-top:24px">
+    <div class="block-head"><h2 id="rel-h">Nearby on the shelf</h2></div>
+    <div class="bench">
+      <a class="sketch" href="bench.html"><span class="eyebrow">Grade 4 · Map</span><h3>State Economy Map</h3><p>Why certain jobs cluster in certain places.</p></a>
+      <a class="sketch" href="bench.html"><span class="eyebrow">Grade 4 · Card Game</span><h3>Bill to Law Board Game</h3><p>Move a bill through the state legislature.</p></a>
+      <a class="sketch" href="bench.html"><span class="eyebrow">Grade 3 · Studio</span><h3>Map Maker</h3><p>Draw an imaginary town with a key, scale and grid.</p></a>
+    </div>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div><a class="logo" href="index.html">Curio Class</a><p>Hands-on lessons for every grade. Free forever.</p></div>
+    <div><h4>Browse</h4><a href="#">Grades</a><a href="#">Subjects</a></div>
+    <div><h4>Teachers</h4><a href="#">Using tools offline</a></div>
+    <div><h4>About</h4><a href="#">Privacy</a><a href="#">License</a></div>
+  </div>
+</footer>
+
+<nav class="mock-switch" aria-label="Mockup pages"><a href="index.html">Home</a><a class="on" href="tool.html">Tool page</a><a href="bench.html">Bench page</a></nav>
+
+<script>
+document.querySelectorAll('[role=tab]').forEach(tab => tab.addEventListener('click', () => {
+  document.querySelectorAll('[role=tab]').forEach(t => {
+    const on = t === tab;
+    t.setAttribute('aria-selected', on);
+    document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+  });
+}));
+</script>
+</body>
+</html>

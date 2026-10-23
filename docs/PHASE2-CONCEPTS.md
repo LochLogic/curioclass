@@ -70,6 +70,20 @@ Browsing paths (from the Phase 1 decisions plus this phase):
 - **Finance tools are educational only.** They use historical index data, never picks or advice.
 - **Existing tools mapped:** The Elements Inspector → Chemistry, atomic structure. State Quest → grade 4, US regions and states.
 
+## Not a quiz bank (Cory, 2026-10-23)
+
+Curio Class is a cabinet of things to explore, not a test bank. Like the Elements Inspector, many tools have no score, quiz or right answer at all. They're just good to look at, poke and talk about. 209 of 586 concepts are already pure exploration formats (Explorer, Sandbox, Studio, Simulator, Map, Timeline). When a tool does have a challenge, it stays optional (Practice/Challenge), never the point. When building any tool, ask "would a kid click around this with no instructions?" before "how do we score it?"
+
+## Decisions for the skeleton (Cory, 2026-10-23)
+
+| Topic | Decision |
+|---|---|
+| Tool contract | Write it alongside the first real tools: State Quest, the Elements Inspector and 1-2 pilots |
+| Downloads | Nice to have. Every tool is one offline HTML file, so "Download" is just a link to that file. |
+| Design | Design pass first: homepage and tool page mockups (docs/../site/mockups) |
+| Unbuilt concepts | Shown as plain "On the bench" placeholder pages. No counters or voting. Hidden from search engines. |
+| Feedback | None yet. Cory is the only user for the near term. |
+
 ## Next (Phase 3 planning, not started)
 
 - [ ] Cory reviews the concepts (skim by subject; flag any to rethink)
