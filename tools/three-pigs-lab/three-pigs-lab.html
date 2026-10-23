@@ -78,6 +78,48 @@ td.mat-name{font-weight:700}
 .wolf-in{animation:wolfin .6s ease-out forwards}
 @keyframes wolfin{from{transform:translateX(-260px)}to{transform:translateX(0)}}
 .shiver{animation:shake .1s linear 20}
+
+/* scene moods */
+#sky{transition:fill 1.6s ease}
+#sun{transition:opacity 1.2s}
+.storm #sky{fill:#7d8f9e}.night #sky{fill:#1d2a4a}
+.storm #sun,.night #sun{opacity:0}
+.clouds{animation:clouds 1.4s ease-out both}
+@keyframes clouds{from{transform:translateX(-700px)}}
+.puddles ellipse{transform-box:fill-box;transform-origin:center;animation:grow 4s ease-out both}
+@keyframes grow{from{transform:scale(0)}}
+.drip{animation:drip 1.1s linear infinite}
+@keyframes drip{from{transform:translateY(0)}to{transform:translateY(150px)}}
+.snow-cap,.snow-ground{transform-box:fill-box;transform-origin:50% 100%;animation:pile 3.5s ease-out both}
+@keyframes pile{from{transform:scaleY(0)}}
+.icicles{animation:fadein 2s 1.5s both}
+@keyframes fadein{from{opacity:0}}
+.steam{animation:steam 1.6s ease-in-out infinite}
+@keyframes steam{50%{transform:translateY(-6px);opacity:.4}}
+.breath{animation:breath 1.8s ease-out infinite}
+@keyframes breath{from{opacity:0;transform:translate(-10px,6px)}40%{opacity:1}}
+.wave{transform-box:fill-box;transform-origin:0 100%;animation:wave .5s ease-in-out infinite alternate}
+@keyframes wave{to{transform:rotate(-25deg)}}
+/* the wolf */
+#wolf-head{transform-box:fill-box;transform-origin:30% 70%;transition:transform .9s ease}
+#wolf-head.inhale{transform:scale(1.18) rotate(-8deg)}
+#wolf-head.inhale #wolf-cheek{transform:scale(1.7);transform-box:fill-box;transform-origin:center;transition:transform .9s}
+#wolf-head.blow{animation:blow .18s ease-in-out infinite alternate}
+@keyframes blow{to{transform:translateX(6px) scale(1.05)}}
+#wolf-body{transform-box:fill-box;transform-origin:50% 100%;transition:transform 1s ease-in}
+#wolf-body.tired{transform:translateY(6px)}
+#wolf-body.topple{transform:rotate(-82deg) translateY(10px)}
+.stars{animation:spin 1s linear infinite;transform-box:fill-box;transform-origin:center}
+@keyframes spin{to{transform:rotate(360deg)}}
+.shake-hard{animation:shake .1s linear 16}
+.shake-tiny{animation:shakeTiny .12s linear 8}
+@keyframes shakeTiny{50%{transform:translateX(2px)}}
+#pig-home{transition:transform 1.6s ease-in}
+.bubble{animation:pop .3s cubic-bezier(.3,1.6,.5,1) both;transform-box:fill-box;transform-origin:center bottom}
+@keyframes pop{from{opacity:0;scale:.6}}
+.rebuild{position:absolute;right:16px;bottom:16px;border:3px solid var(--ink);background:#fff;border-radius:999px;padding:10px 18px;font:700 17px Georgia,serif;box-shadow:0 4px 0 #0002}
+.rebuild[hidden]{display:none}
+.dot{display:inline-block;width:11px;height:11px;border-radius:50%;margin-right:7px;vertical-align:-1px;border:1.5px solid #0003}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 
 @media (max-width:760px),(max-height:560px){
@@ -101,7 +143,7 @@ td.mat-name{font-weight:700}
 <body>
 <header>
   <h1>Three Pigs Lab<small>Which material is best for the job?</small></h1>
-  <button class="icon-btn" id="sound" aria-pressed="false">🔇 Sound</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
   <button class="icon-btn" id="read">🔊 Read</button>
 </header>
 
@@ -117,10 +159,12 @@ td.mat-name{font-weight:700}
         <path d="M-3000 440h7000" stroke="#7ab25a" stroke-width="6"/>
         <g id="weather"></g>
         <g id="house"></g>
-        <g id="wolf" style="display:none"></g>
+        <g id="wolf"></g>
         <g id="fx"></g>
+        <g id="inset"></g>
       </svg>
       <div class="result" id="result" role="status" aria-live="polite"></div>
+      <button class="rebuild" id="rebuild" hidden>↺ Rebuild the house</button>
     </div>
     <section class="notebook" aria-labelledby="nb-h">
       <h2 id="nb-h">Lab notebook</h2>
@@ -153,200 +197,389 @@ td.mat-name{font-weight:700}
   const $ = id => document.getElementById(id);
   const NS = 'http://www.w3.org/2000/svg';
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const GROUND = 440;
 
   // Simplified properties on a 0-3 scale: strong, waterproof, see-through, warm
   const MATS = {
-    straw:  {name: 'Straw',  strong: 0, water: 1, see: 0, warm: 2, pat: '<rect width="24" height="24" fill="#f2cf66"/><path d="M0 4h24M0 10h24M0 16h24M0 22h24" stroke="#c99a2e" stroke-width="2"/><path d="M3 0v24M11 0v24M19 0v24" stroke="#e4b84a" stroke-width="1"/>'},
-    sticks: {name: 'Sticks', adj: 'Stick', strong: 1, water: 1, see: 0, warm: 1, pat: '<rect width="24" height="24" fill="#b88552"/><path d="M4 0v24M12 0v24M20 0v24" stroke="#7a522c" stroke-width="5"/><circle cx="4" cy="8" r="1.5" fill="#5c3c1e"/><circle cx="20" cy="17" r="1.5" fill="#5c3c1e"/>'},
-    bricks: {name: 'Bricks', adj: 'Brick', strong: 3, water: 3, see: 0, warm: 2, pat: '<rect width="24" height="24" fill="#e8dcc8"/><rect x="1" y="1" width="22" height="10" fill="#c4553b"/><rect x="-11" y="13" width="22" height="10" fill="#b84a32"/><rect x="13" y="13" width="22" height="10" fill="#c4553b"/>'},
-    glass:  {name: 'Glass',  strong: 2, water: 3, see: 3, warm: 1, pat: '<rect width="24" height="24" fill="#d9f0fb" fill-opacity=".45"/><path d="M4 18L18 4M10 22L22 10" stroke="#fff" stroke-width="2.5" stroke-opacity=".9"/>'},
-    wool:   {name: 'Wool',   strong: 0, water: 0, see: 0, warm: 3, pat: '<rect width="24" height="24" fill="#f4eee2"/><g fill="none" stroke="#d8cbb2" stroke-width="2"><circle cx="6" cy="6" r="4"/><circle cx="18" cy="8" r="4"/><circle cx="10" cy="18" r="4"/><circle cx="22" cy="20" r="4"/></g>'},
-    paper:  {name: 'Paper',  strong: 0, water: 0, see: 1, warm: 1, pat: '<rect width="24" height="24" fill="#ffffff"/><path d="M0 6h24M0 14h24M0 22h24" stroke="#bcd6ea" stroke-width="1.5"/><path d="M5 0v24" stroke="#f0b4b4" stroke-width="1.5"/>'},
-    metal:  {name: 'Metal',  strong: 3, water: 3, see: 0, warm: 0, pat: '<rect width="24" height="24" fill="#a9b2bc"/><path d="M0 12h24" stroke="#8a939d" stroke-width="2"/><circle cx="4" cy="4" r="1.6" fill="#6f7882"/><circle cx="20" cy="4" r="1.6" fill="#6f7882"/><circle cx="4" cy="20" r="1.6" fill="#6f7882"/><circle cx="20" cy="20" r="1.6" fill="#6f7882"/>'},
+    straw:  {name: 'Straw',  strong: 0, water: 1, see: 0, warm: 2, piece: '#e8c25a', pat: '<rect width="24" height="24" fill="#f2cf66"/><path d="M0 4h24M0 10h24M0 16h24M0 22h24" stroke="#c99a2e" stroke-width="2"/><path d="M3 0v24M11 0v24M19 0v24" stroke="#e4b84a" stroke-width="1"/>'},
+    sticks: {name: 'Sticks', adj: 'Stick', strong: 1, water: 1, see: 0, warm: 1, piece: '#8a5c32', pat: '<rect width="24" height="24" fill="#b88552"/><path d="M4 0v24M12 0v24M20 0v24" stroke="#7a522c" stroke-width="5"/><circle cx="4" cy="8" r="1.5" fill="#5c3c1e"/><circle cx="20" cy="17" r="1.5" fill="#5c3c1e"/>'},
+    bricks: {name: 'Bricks', adj: 'Brick', strong: 3, water: 3, see: 0, warm: 2, piece: '#c4553b', pat: '<rect width="24" height="24" fill="#e8dcc8"/><rect x="1" y="1" width="22" height="10" fill="#c4553b"/><rect x="-11" y="13" width="22" height="10" fill="#b84a32"/><rect x="13" y="13" width="22" height="10" fill="#c4553b"/>'},
+    glass:  {name: 'Glass',  strong: 2, water: 3, see: 3, warm: 1, piece: '#cfeaf7', pat: '<rect width="24" height="24" fill="#d9f0fb" fill-opacity=".45"/><path d="M4 18L18 4M10 22L22 10" stroke="#fff" stroke-width="2.5" stroke-opacity=".9"/>'},
+    wool:   {name: 'Wool',   strong: 0, water: 0, see: 0, warm: 3, piece: '#efe6d4', pat: '<rect width="24" height="24" fill="#f4eee2"/><g fill="none" stroke="#d8cbb2" stroke-width="2"><circle cx="6" cy="6" r="4"/><circle cx="18" cy="8" r="4"/><circle cx="10" cy="18" r="4"/><circle cx="22" cy="20" r="4"/></g>'},
+    paper:  {name: 'Paper',  strong: 0, water: 0, see: 1, warm: 1, piece: '#ffffff', pat: '<rect width="24" height="24" fill="#ffffff"/><path d="M0 6h24M0 14h24M0 22h24" stroke="#bcd6ea" stroke-width="1.5"/><path d="M5 0v24" stroke="#f0b4b4" stroke-width="1.5"/>'},
+    metal:  {name: 'Metal',  strong: 3, water: 3, see: 0, warm: 0, piece: '#a9b2bc', pat: '<rect width="24" height="24" fill="#a9b2bc"/><path d="M0 12h24" stroke="#8a939d" stroke-width="2"/><circle cx="4" cy="4" r="1.6" fill="#6f7882"/><circle cx="20" cy="4" r="1.6" fill="#6f7882"/><circle cx="4" cy="20" r="1.6" fill="#6f7882"/><circle cx="20" cy="20" r="1.6" fill="#6f7882"/>'},
   };
   const adj = k => MATS[k].adj || MATS[k].name;
-  const state = {walls: 'straw', roof: 'straw', sound: false, busy: false, notes: {}};
-
-  // ---------- patterns and swatches ----------
-  $('defs').innerHTML = Object.entries(MATS).map(([k, m]) =>
-    `<pattern id="p-${k}" width="24" height="24" patternUnits="userSpaceOnUse">${m.pat}</pattern>`).join('');
-  function swatches(el, part) {
-    el.innerHTML = Object.entries(MATS).map(([k, m]) =>
-      `<button class="mat" data-mat="${k}" aria-pressed="${state[part] === k}">` +
-      `<svg viewBox="0 0 48 34" aria-hidden="true"><rect width="48" height="34" fill="url(#sw-${k})"/><defs><pattern id="sw-${k}" width="24" height="24" patternUnits="userSpaceOnUse">${m.pat}</pattern></defs></svg>${m.name}</button>`).join('');
-    el.addEventListener('click', e => {
-      const b = e.target.closest('.mat'); if (!b || state.busy) return;
-      state[part] = b.dataset.mat;
-      el.querySelectorAll('.mat').forEach(x => x.setAttribute('aria-pressed', x === b));
-      setResult(''); drawHouse();
-      $('predict').textContent = `${adj(state.walls)} walls and a ${MATS[state.roof].name.toLowerCase()} roof. Predict first, then test!`;
-    });
-  }
-  swatches($('walls'), 'walls');
-  swatches($('roofs'), 'roof');
-
-  // ---------- the house and the pig ----------
-  function pig(x, y, s = 1, wet = false, cold = false) {
-    return `<g transform="translate(${x} ${y}) scale(${s})" class="${cold ? 'shiver' : ''}">
-      <ellipse cx="0" cy="34" rx="34" ry="26" fill="var(--pig)" stroke="var(--pig-ink)" stroke-width="3"/>
-      <circle cx="0" cy="0" r="26" fill="var(--pig)" stroke="var(--pig-ink)" stroke-width="3"/>
-      <path d="M-22 -16l-6-18 16 8zM22 -16l6-18-16 8z" fill="var(--pig)" stroke="var(--pig-ink)" stroke-width="3" stroke-linejoin="round"/>
-      <ellipse cx="0" cy="6" rx="12" ry="9" fill="#f7c1cc" stroke="var(--pig-ink)" stroke-width="2.5"/>
-      <circle cx="-4" cy="6" r="2.2" fill="var(--pig-ink)"/><circle cx="4" cy="6" r="2.2" fill="var(--pig-ink)"/>
-      <circle cx="-10" cy="-8" r="3" fill="var(--ink)"/><circle cx="10" cy="-8" r="3" fill="var(--ink)"/>
-      ${wet ? '<path d="M-30 -30q4 8 0 12q-4-4 0-12zM28 -20q4 8 0 12q-4-4 0-12zM0 -40q4 8 0 12q-4-4 0-12z" fill="#4a90d9"/>' : ''}
-      ${cold ? '<path d="M-8 22q8 -6 16 0" stroke="var(--ink)" stroke-width="2.5" fill="none"/>' : '<path d="M-8 18q8 8 16 0" stroke="var(--ink)" stroke-width="2.5" fill="none"/>'}
-    </g>`;
-  }
-  function drawHouse(opts = {}) {
-    const w = MATS[state.walls], see = w.see;
-    // The pig stands inside; see-through walls let you see it
-    $('house').innerHTML = `
-      <g id="house-body">
-        <ellipse cx="500" cy="446" rx="190" ry="14" fill="#0002"/>
-        <g id="walls-g">
-          <rect x="350" y="250" width="300" height="190" fill="#f6e9cf" stroke="var(--ink)" stroke-width="5"/>
-          ${pig(560, 360, 1, opts.wet, opts.cold)}
-          <rect x="350" y="250" width="300" height="190" fill="url(#p-${state.walls})" fill-opacity="${[1, .82, .45, .3][see]}" stroke="var(--ink)" stroke-width="5"/>
-          <rect x="415" y="330" width="60" height="110" rx="30" fill="#7a522c" stroke="var(--ink)" stroke-width="4"/>
-          <circle cx="462" cy="388" r="4" fill="#f2cf66"/>
-        </g>
-        <g id="roof-g">
-          <path d="M320 256L500 130L680 256Z" fill="url(#p-${state.roof})" stroke="var(--ink)" stroke-width="5" stroke-linejoin="round"/>
-        </g>
-      </g>`;
-  }
-
-  // ---------- results and notebook ----------
-  function setResult(text) { $('result').textContent = text; }
+  const state = {walls: 'straw', roof: 'straw', sound: true, busy: false, notes: {}};
   const WORDS = {
     wolf: ['Blew away!', 'Fell down', 'Wobbled, but stood', "Didn't budge"],
     rain: ['Soaked through', 'Drip, drip, drip', 'A few drips', 'Stayed dry'],
     peek: ["Can't see in", 'Just a shadow', 'A little bit', 'See right through!'],
     cold: ['Freezing!', 'Chilly', 'Warm enough', 'Cozy'],
   };
+  const DOT = ['#d2553a', '#e9963a', '#e8c54a', '#4caf6a'];
+
+  // ---------- helpers ----------
+  const wait = ms => new Promise(r => setTimeout(r, reduce ? Math.min(ms, 250) : ms));
+  function el(tag, attrs = {}, parent) {
+    const e = document.createElementNS(NS, tag);
+    for (const [k, v] of Object.entries(attrs)) e.setAttribute(k, v);
+    if (parent) parent.append(e);
+    return e;
+  }
+  const rnd = (a, b) => a + Math.random() * (b - a);
+
+  // ---------- patterns and swatches ----------
+  $('defs').innerHTML = Object.entries(MATS).map(([k, m]) =>
+    `<pattern id="p-${k}" width="24" height="24" patternUnits="userSpaceOnUse">${m.pat}</pattern>`).join('') +
+    '<clipPath id="inset-clip"><circle cx="0" cy="0" r="104"/></clipPath>' +
+    '<radialGradient id="glow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#fff6c8" stop-opacity=".9"/><stop offset="1" stop-color="#fff6c8" stop-opacity="0"/></radialGradient>';
+  function swatches(box, part) {
+    box.innerHTML = Object.entries(MATS).map(([k, m]) =>
+      `<button class="mat" data-mat="${k}" aria-pressed="${state[part] === k}">` +
+      `<svg viewBox="0 0 48 34" aria-hidden="true"><defs><pattern id="sw-${part}-${k}" width="24" height="24" patternUnits="userSpaceOnUse">${m.pat}</pattern></defs><rect width="48" height="34" fill="url(#sw-${part}-${k})"/></svg>${m.name}</button>`).join('');
+    box.addEventListener('click', e => {
+      const b = e.target.closest('.mat'); if (!b || state.busy) return;
+      state[part] = b.dataset.mat;
+      box.querySelectorAll('.mat').forEach(x => x.setAttribute('aria-pressed', x === b));
+      reset();
+      $('predict').textContent = `${adj(state.walls)} walls and a ${adj(state.roof).toLowerCase()} roof. Predict first, then test!`;
+    });
+  }
+  swatches($('walls'), 'walls');
+  swatches($('roofs'), 'roof');
+
+  // ---------- characters ----------
+  function pigMarkup({mood = 'happy', wet = false, cold = false, wave = false} = {}) {
+    const mouth = {happy: 'M-8 18q8 8 16 0', shock: 'M-5 16a5 6 0 1 0 10 0a5 6 0 1 0 -10 0', cold: 'M-9 20l3-3 3 3 3-3 3 3 3-3'}[mood];
+    return `<g class="${cold ? 'shiver' : ''}">
+      <ellipse cx="0" cy="36" rx="34" ry="26" fill="${cold ? '#d9b8d6' : '#f5a9b8'}" stroke="#d97c90" stroke-width="3"/>
+      ${wave ? '<g class="wave"><path d="M26 30q22 -18 26 -36" stroke="#d97c90" stroke-width="10" stroke-linecap="round" fill="none"/><path d="M26 30q22 -18 26 -36" stroke="#f5a9b8" stroke-width="6" stroke-linecap="round" fill="none"/></g>' : ''}
+      <circle cx="0" cy="0" r="26" fill="${cold ? '#d9b8d6' : '#f5a9b8'}" stroke="#d97c90" stroke-width="3"/>
+      <path d="M-22 -16l-6-18 16 8zM22 -16l6-18-16 8z" fill="#f5a9b8" stroke="#d97c90" stroke-width="3" stroke-linejoin="round"/>
+      <ellipse cx="0" cy="6" rx="12" ry="9" fill="#f7c1cc" stroke="#d97c90" stroke-width="2.5"/>
+      <circle cx="-4" cy="6" r="2.2" fill="#d97c90"/><circle cx="4" cy="6" r="2.2" fill="#d97c90"/>
+      <circle cx="-10" cy="-8" r="${mood === 'shock' ? 4.5 : 3}" fill="#2b2420"/><circle cx="10" cy="-8" r="${mood === 'shock' ? 4.5 : 3}" fill="#2b2420"/>
+      <path d="${mouth}" stroke="#2b2420" stroke-width="2.5" fill="${mood === 'shock' ? '#2b2420' : 'none'}"/>
+      ${wet ? '<g fill="#4a90d9"><path d="M-30 -30q4 8 0 12q-4-4 0-12z"/><path d="M28 -22q4 8 0 12q-4-4 0-12z"/><path d="M2 -42q4 8 0 12q-4-4 0-12z"/><path d="M-20 44q4 8 0 12q-4-4 0-12z"/></g>' : ''}
+    </g>`;
+  }
+  function wolfMarkup() {
+    return `<g id="wolf-body">
+      <path d="M-70 78q-40 -30 -20 -70q10 30 30 40z" fill="#7c8088" stroke="#2b2420" stroke-width="4" stroke-linejoin="round"/>
+      <rect x="-40" y="96" width="16" height="50" rx="7" fill="#6f737b" stroke="#2b2420" stroke-width="4"/>
+      <rect x="6" y="96" width="16" height="50" rx="7" fill="#6f737b" stroke="#2b2420" stroke-width="4"/>
+      <ellipse cx="-10" cy="80" rx="52" ry="40" fill="#8a8e96" stroke="#2b2420" stroke-width="4"/>
+      <ellipse cx="-6" cy="88" rx="26" ry="20" fill="#c0c3c9"/>
+      <g id="wolf-head">
+        <path d="M-26 -20l-8-40 30 24zM26 -20l8-40 -30 24z" fill="#8a8e96" stroke="#2b2420" stroke-width="4" stroke-linejoin="round"/>
+        <circle cx="0" cy="10" r="42" fill="#8a8e96" stroke="#2b2420" stroke-width="4"/>
+        <path d="M18 8q50 -6 62 10q-34 20 -62 8z" fill="#a3a7ae" stroke="#2b2420" stroke-width="4" stroke-linejoin="round"/>
+        <circle cx="78" cy="14" r="7" fill="#2b2420"/>
+        <path d="M-12 -10l12 6M18 -12l-10 8" stroke="#2b2420" stroke-width="4" stroke-linecap="round"/>
+        <circle cx="-6" cy="0" r="5" fill="#2b2420"/><circle cx="14" cy="-2" r="5" fill="#2b2420"/>
+        <circle id="wolf-cheek" cx="36" cy="30" r="12" fill="#c0c3c9" stroke="#2b2420" stroke-width="3"/>
+      </g>
+    </g>`;
+  }
+
+  // ---------- the scene ----------
+  function drawHouse() {
+    const see = MATS[state.walls].see;
+    $('house').innerHTML = `
+      <ellipse cx="500" cy="446" rx="190" ry="14" fill="#0002"/>
+      <g id="pig-home" transform="translate(560 360)">${pigMarkup({wave: see >= 2})}</g>
+      <g id="walls-g">
+        <rect x="350" y="250" width="300" height="190" fill="#f6e9cf" fill-opacity="${see >= 2 ? 0 : 1}" stroke="#2b2420" stroke-width="5"/>
+        <rect x="350" y="250" width="300" height="190" fill="url(#p-${state.walls})" fill-opacity="${[1, .8, .45, .35][see]}" stroke="#2b2420" stroke-width="5"/>
+        <rect x="415" y="330" width="60" height="110" rx="30" fill="#7a522c" stroke="#2b2420" stroke-width="4"/>
+        <circle cx="462" cy="388" r="4" fill="#f2cf66"/>
+        <g id="cracks"></g>
+      </g>
+      <g id="roof-g"><path d="M320 256L500 130L680 256Z" fill="url(#p-${state.roof})" stroke="#2b2420" stroke-width="5" stroke-linejoin="round"/></g>
+      <g id="snow-roof"></g>`;
+    // Behind non-see-through walls the pig is hidden; with glass it waves hello
+    $('pig-home').style.display = see === 0 ? 'none' : '';
+  }
+  function reset() {
+    stopParticles();
+    $('fx').innerHTML = ''; $('weather').innerHTML = ''; $('wolf').innerHTML = ''; $('inset').innerHTML = '';
+    $('scene').classList.remove('night', 'storm');
+    $('rebuild').hidden = true;
+    setResult('');
+    drawHouse();
+  }
+
+  function setResult(text) { $('result').textContent = text; }
+  function bubble(x, y, text, who) {
+    const g = el('g', {class: 'bubble', transform: `translate(${x} ${y})`}, $('fx'));
+    const w = text.length * 11 + 40;
+    el('rect', {x: -w / 2, y: -34, width: w, height: 48, rx: 22, fill: '#fff', stroke: '#2b2420', 'stroke-width': 3}, g);
+    el('path', {d: who === 'left' ? 'M-10 14l-14 22 30-22' : 'M10 14l14 22-30-22', fill: '#fff', stroke: '#2b2420', 'stroke-width': 3, 'stroke-linejoin': 'round'}, g);
+    el('rect', {x: -w / 2 + 2, y: 8, width: w - 4, height: 8, fill: '#fff'}, g);
+    const t = el('text', {x: 0, y: -2, 'text-anchor': 'middle', 'font-family': 'Georgia,serif', 'font-size': 20, 'font-weight': 700, fill: '#2b2420'}, g);
+    t.textContent = text;
+    return g;
+  }
+
+  // ---------- notebook ----------
   function note(mat, test, level) {
     (state.notes[mat] ||= {})[test] = level;
-    const rows = Object.entries(state.notes).map(([k, n]) =>
-      `<tr><td class="mat-name">${MATS[k].name}</td>${['wolf', 'rain', 'peek', 'cold'].map(t =>
-        `<td>${n[t] === undefined ? '<span class="empty">?</span>' : WORDS[t][n[t]]}</td>`).join('')}</tr>`).join('');
-    $('nb').innerHTML = rows;
-    const tested = Object.keys(state.notes).length;
-    $('ask').textContent = tested < 3
+    $('nb').innerHTML = Object.entries(state.notes).map(([k, n]) =>
+      `<tr><td class="mat-name">${MATS[k].name}</td>${['wolf', 'rain', 'peek', 'cold'].map(t => n[t] === undefined
+        ? '<td><span class="empty">?</span></td>'
+        : `<td><span class="dot" style="background:${DOT[n[t]]}"></span>${WORDS[t][n[t]]}</td>`).join('')}</tr>`).join('');
+    $('ask').textContent = Object.keys(state.notes).length < 3
       ? 'Try a few more materials. Which would you choose for walls? For a window? For a blanket?'
       : 'Look at your notebook. Is any one material best at everything? Why might builders mix materials?';
   }
 
-  // ---------- sound (off until turned on) ----------
+  // ---------- sound ----------
   let ctx;
-  function noise(dur, type, freq, gain) {
+  function noise(dur, type, freq, gain, when = 0) {
     if (!state.sound) return;
     ctx ||= new (window.AudioContext || window.webkitAudioContext)();
     const len = ctx.sampleRate * dur, buf = ctx.createBuffer(1, len, ctx.sampleRate), d = buf.getChannelData(0);
     for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * Math.sin(Math.PI * i / len);
     const s = ctx.createBufferSource(), f = ctx.createBiquadFilter(), g = ctx.createGain();
     s.buffer = buf; f.type = type; f.frequency.value = freq; g.gain.value = gain;
-    s.connect(f).connect(g).connect(ctx.destination); s.start();
+    s.connect(f).connect(g).connect(ctx.destination); s.start(ctx.currentTime + when);
   }
 
-  // ---------- tests ----------
-  const wait = ms => new Promise(r => setTimeout(r, reduce ? Math.min(ms, 300) : ms));
-  function busy(on) { state.busy = on; document.querySelectorAll('.test, .mat').forEach(b => b.disabled = on); }
+  // ---------- a tiny particle engine for flying straw, falling sticks, splashes and wind ----------
+  let parts = [], raf = 0, wind = 0;
+  function spawn(markup, x, y, vx, vy, {vr = 0, gravity = 600, life = 4, floor = GROUND, bounce = .25, drag = 0, fade = false} = {}) {
+    const g = el('g', {}, $('fx'));
+    g.innerHTML = markup;
+    parts.push({g, x, y, vx, vy, r: rnd(0, 360), vr, gravity, life, t: 0, floor, bounce, drag, fade});
+    if (!raf && !reduce) raf = requestAnimationFrame(tick);
+    if (reduce) settle(parts[parts.length - 1]);
+  }
+  function step(p, dt) {
+    p.t += dt;
+    p.vy += p.gravity * dt; p.vx += wind * dt * (p.drag ? 1 : 0.15); p.vx *= 1 - p.drag * dt;
+    p.x += p.vx * dt; p.y += p.vy * dt; p.r += p.vr * dt;
+    if (p.floor !== null && p.y > p.floor) { p.y = p.floor; p.vy *= -p.bounce; p.vx *= .55; p.vr *= .4; }
+  }
+  function render(p) {
+    p.g.setAttribute('transform', `translate(${p.x.toFixed(1)} ${p.y.toFixed(1)}) rotate(${p.r.toFixed(1)})`);
+    if (p.fade) p.g.setAttribute('opacity', Math.max(0, 1 - p.t / p.life).toFixed(2));
+  }
+  function settle(p) { for (let i = 0; i < 240; i++) step(p, 1 / 60); render(p); if (p.fade) p.g.remove(); }
+  let last = 0;
+  function tick(ts) {
+    const dt = Math.min(.033, last ? (ts - last) / 1000 : 1 / 60); last = ts;
+    parts = parts.filter(p => {
+      step(p, dt); render(p);
+      if (p.t > p.life && (p.fade || p.x > 1400)) { p.g.remove(); return false; }
+      return p.t < p.life + 30;
+    });
+    raf = parts.length ? requestAnimationFrame(tick) : 0;
+    if (!raf) last = 0;
+  }
+  function stopParticles() { cancelAnimationFrame(raf); raf = 0; last = 0; parts = []; wind = 0; }
 
+  // ---------- tests ----------
   async function wolfTest() {
-    const lvl = MATS[state.walls].strong;
-    const wolf = $('wolf');
-    wolf.innerHTML = `<g transform="translate(150 330)">
-      <path d="M-40 110l10-60h50l10 60z" fill="#7c8088" stroke="var(--ink)" stroke-width="4"/>
-      <circle cx="0" cy="20" r="44" fill="#8a8e96" stroke="var(--ink)" stroke-width="4"/>
-      <path d="M-30 -14l-6-34 22 18zM30 -14l6-34-22 18z" fill="#8a8e96" stroke="var(--ink)" stroke-width="4" stroke-linejoin="round"/>
-      <path d="M20 22q40 -8 52 6q-30 14 -52 4z" fill="#a3a7ae" stroke="var(--ink)" stroke-width="4"/>
-      <circle cx="68" cy="24" r="6" fill="var(--ink)"/>
-      <circle cx="-8" cy="6" r="5" fill="var(--ink)"/><circle cx="18" cy="4" r="5" fill="var(--ink)"/>
-      <circle cx="40" cy="36" r="14" fill="#c0c3c9" stroke="var(--ink)" stroke-width="3"/>
+    const lvl = MATS[state.walls].strong, wolf = $('wolf');
+    wolf.innerHTML = `<g id="wolf-pos" transform="translate(-200 300)">${wolfMarkup()}</g>`;
+    const pos = $('wolf-pos');
+    // walks in
+    pos.style.transition = reduce ? 'none' : 'transform 1.4s cubic-bezier(.3,.7,.4,1)';
+    requestAnimationFrame(() => pos.setAttribute('transform', 'translate(150 300)'));
+    await wait(1500);
+    const b1 = bubble(260, 230, 'Little pig, little pig, let me come in!', 'left');
+    await wait(2200); b1.remove();
+    const b2 = bubble(640, 200, 'Not by the hair of my chinny chin chin!', 'right');
+    await wait(2200); b2.remove();
+    // huff: the wolf breathes in
+    const b3 = bubble(260, 230, 'Then I\'ll HUFF...', 'left');
+    $('wolf-head').classList.add('inhale');
+    await wait(1300); b3.remove();
+    // ...and PUFF
+    const b4 = bubble(260, 230, '...and I\'ll PUFF!', 'left');
+    $('wolf-head').classList.remove('inhale'); $('wolf-head').classList.add('blow');
+    noise(2.2, 'bandpass', 500, 1.3);
+    wind = 900;
+    const gust = setInterval(() => {
+      for (let i = 0; i < 3; i++) spawn(`<path d="M0 0q40 -14 80 0t80 0" stroke="#fff" stroke-width="${rnd(3, 7)}" fill="none" stroke-linecap="round" opacity=".85"/>`,
+        rnd(220, 300), rnd(150, 430), rnd(700, 1000), 0, {gravity: 0, floor: null, life: 1.1, fade: true});
+      spawn(`<ellipse rx="7" ry="4" fill="${['#7ab25a', '#c9a34a', '#a5c96a'][Math.floor(rnd(0, 3))]}"/>`, rnd(200, 320), rnd(380, 440), rnd(300, 600), rnd(-300, -100),
+        {vr: rnd(-400, 400), gravity: 250, life: 2.5, drag: .5, fade: true});
+    }, 90);
+    await wait(900); b4.remove();
+    const walls = $('walls-g'), roof = $('roof-g'), house = $('house'), m = MATS[state.walls];
+    if (lvl === 0) {
+      // the whole house blows apart, piece by piece
+      noise(1, 'lowpass', 900, .9);
+      walls.style.display = 'none'; roof.style.display = 'none';
+      for (let i = 0; i < 70; i++) spawn(`<rect x="-14" y="-2.5" width="28" height="5" rx="2" fill="${m.piece}" stroke="#0003"/>`,
+        rnd(350, 650), rnd(250, 440), rnd(300, 900), rnd(-500, -50), {vr: rnd(-700, 700), gravity: 380, life: 3, drag: .3});
+      spawn(`<path d="M-180 63L0 -63L180 63Z" fill="url(#p-${state.roof})" stroke="#2b2420" stroke-width="5"/>`, 500, 193, 650, -420, {vr: 260, gravity: 420, life: 3});
+      showPig({mood: 'shock'});
+      await wait(1200);
+      runAway();
+    } else if (lvl === 1) {
+      // the walls fall into a pile of sticks
+      noise(.7, 'lowpass', 300, 1.1);
+      walls.style.display = 'none'; roof.style.display = 'none';
+      for (let i = 0; i < 26; i++) spawn(`<rect x="-36" y="-5" width="72" height="10" rx="4" fill="${m.piece}" stroke="#2b2420" stroke-width="2"/>`,
+        rnd(360, 640), rnd(250, 420), rnd(-40, 220), rnd(-150, 0), {vr: rnd(-250, 250), gravity: 1100, life: 30, floor: GROUND - rnd(4, 40), bounce: .2});
+      spawn(`<path d="M-180 63L0 -63L180 63Z" fill="url(#p-${state.roof})" stroke="#2b2420" stroke-width="5"/>`, 500, 193, 120, -80, {vr: 40, gravity: 900, life: 30, floor: GROUND - 30, bounce: .1});
+      showPig({mood: 'shock'});
+      await wait(1400);
+      runAway();
+    } else {
+      house.classList.add(lvl === 2 ? 'shake-hard' : 'shake-tiny');
+      if (lvl === 2) $('cracks').innerHTML = '<path d="M520 260l-20 40 26 20-14 40M600 300l30 30-10 30" stroke="#2b2420" stroke-width="2.5" fill="none"/>';
+      await wait(1800);
+      house.classList.remove('shake-hard', 'shake-tiny');
+      if (lvl === 3) {
+        // the wolf runs out of breath and topples over
+        clearInterval(gust); wind = 0;
+        $('wolf-head').classList.remove('blow');
+        $('wolf-body').classList.add('tired');
+        const b5 = bubble(260, 230, 'Huff... puff... phew!', 'left');
+        await wait(1500); b5.remove();
+        $('wolf-body').classList.add('topple');
+        $('fx').insertAdjacentHTML('beforeend', '<g class="stars" transform="translate(190 330)"><path d="M0-30l4 10 10 1-8 7 3 10-9-6-9 6 3-10-8-7 10-1z" fill="#ffd25e"/><path d="M40-10l3 7 7 1-5 5 2 7-7-4-7 4 2-7-5-5 7-1z" fill="#ffd25e"/></g>');
+        await wait(1200);
+      }
+    }
+    clearInterval(gust); wind = 0;
+    $('wolf-head')?.classList.remove('blow');
+    await wait(600);
+    finish(state.walls, 'wolf', lvl, `${adj(state.walls)} walls: ${WORDS.wolf[lvl]}`);
+  }
+  function showPig(opts) {
+    const p = $('pig-home');
+    p.style.display = '';
+    p.innerHTML = pigMarkup(opts);
+  }
+  function runAway() {
+    const p = $('pig-home');
+    p.style.transition = reduce ? 'none' : 'transform 1.6s ease-in';
+    p.setAttribute('transform', 'translate(1250 360)');
+  }
+
+  function inside(content) {
+    // A round "inside the house" window, like a cutaway in a picture book
+    $('inset').innerHTML = `<g transform="translate(840 190)">
+      <circle r="112" fill="#fff" stroke="#2b2420" stroke-width="5"/>
+      <g clip-path="url(#inset-clip)"><rect x="-120" y="-120" width="240" height="160" fill="#f4e3c3"/><rect x="-120" y="40" width="240" height="90" fill="#c99a6a"/>
+      <path d="M-120 40h240" stroke="#2b2420" stroke-width="3"/>${content}</g>
+      <circle r="104" fill="none" stroke="#2b2420" stroke-width="4"/>
+      <rect x="-42" y="-138" width="84" height="30" rx="15" fill="#2b2420"/><text y="-117" text-anchor="middle" font-family="Georgia,serif" font-size="17" font-weight="700" fill="#fff">Inside</text>
     </g>`;
-    wolf.style.display = '';
-    wolf.setAttribute('class', 'wolf-in');
-    setResult('He huffs... and he puffs...');
-    await wait(700);
-    noise(1.6, 'bandpass', 500, 1.2);
-    $('fx').innerHTML = [0, 1, 2, 3, 4].map(i =>
-      `<path class="puff" style="animation-delay:${i * .15}s" d="M240 ${330 + i * 22}q60 -14 120 0" stroke="#ffffff" stroke-width="8" fill="none" stroke-linecap="round"/>`).join('');
-    await wait(500);
-    const body = $('house-body'), walls = $('walls-g');
-    if (lvl === 0) { body.setAttribute('class', 'fly'); noise(.8, 'lowpass', 900, .8); }
-    else if (lvl === 1) { walls.setAttribute('class', 'fall'); $('roof-g').setAttribute('class', 'fall'); noise(.6, 'lowpass', 300, 1); }
-    else body.setAttribute('class', lvl === 2 ? 'shake' : '');
-    await wait(1400);
-    setResult(`${adj(state.walls)} walls: ${WORDS.wolf[lvl]}`);
-    note(state.walls, 'wolf', lvl);
-    await wait(1800);
-    wolf.style.display = 'none'; $('fx').innerHTML = ''; drawHouse();
   }
 
   async function rainTest() {
     const lvl = MATS[state.roof].water;
-    $('sky').setAttribute('fill', '#8fa3b3'); $('sun').style.display = 'none';
-    $('weather').innerHTML = `<g fill="#9fb4c4"><ellipse cx="320" cy="70" rx="150" ry="50"/><ellipse cx="560" cy="60" rx="180" ry="60"/><ellipse cx="780" cy="80" rx="140" ry="48"/></g>` +
-      Array.from({length: 60}, (_, i) => `<path class="drop" style="animation-delay:${(i % 12) * .06}s" d="M${(i * 53) % 1000} 0v24" stroke="#4a90d9" stroke-width="4" stroke-linecap="round"/>`).join('');
-    noise(2.6, 'highpass', 2500, .5);
-    setResult('A rainstorm rolls in...');
-    await wait(1500);
-    drawHouse({wet: lvl < 2});
-    if (lvl < 3) $('fx').innerHTML = Array.from({length: 4 - lvl}, (_, i) =>
-      `<path class="drop" style="animation-duration:1.4s;animation-delay:${i * .3}s" d="M${500 + i * 30 - 45} 150v18" stroke="#4a90d9" stroke-width="5" stroke-linecap="round"/>`).join('');
-    setResult(`${adj(state.roof)} roof: ${WORDS.rain[lvl]}`);
-    note(state.roof, 'rain', lvl);
-    await wait(2600);
-    $('weather').innerHTML = ''; $('fx').innerHTML = ''; $('sky').setAttribute('fill', '#bfe3f2'); $('sun').style.display = ''; drawHouse();
+    $('scene').classList.add('storm');
+    $('weather').innerHTML = `<g class="clouds"><g fill="#8e9daa"><ellipse cx="300" cy="80" rx="170" ry="56"/><ellipse cx="560" cy="64" rx="200" ry="66"/><ellipse cx="800" cy="88" rx="160" ry="54"/></g>
+      <g fill="#a3b0bb"><ellipse cx="420" cy="100" rx="150" ry="44"/><ellipse cx="680" cy="104" rx="140" ry="40"/></g></g>`;
+    await wait(1400);
+    noise(5.5, 'highpass', 2500, .55);
+    $('weather').insertAdjacentHTML('beforeend', Array.from({length: 90}, (_, i) =>
+      `<path class="drop" style="animation-delay:${((i * 37) % 70) / 100}s" d="M${(i * 53) % 1100 - 50} 0l-6 26" stroke="#4a8fd0" stroke-width="3.5" stroke-linecap="round"/>`).join('') +
+      '<g class="puddles"><ellipse cx="250" cy="470" rx="80" ry="10" fill="#7fb0d8"/><ellipse cx="760" cy="486" rx="100" ry="12" fill="#7fb0d8"/><ellipse cx="520" cy="510" rx="70" ry="8" fill="#7fb0d8"/></g>');
+    await wait(1200);
+    // splashes where rain hits the roof
+    const splash = setInterval(() => {
+      const x = rnd(330, 670), y = 256 - (1 - Math.abs(x - 500) / 180) * 126;
+      for (let i = 0; i < 2; i++) spawn('<circle r="3.5" fill="#6aa6dc"/>', x, y - 4, rnd(-120, 120), rnd(-220, -120), {gravity: 900, floor: null, life: .5, fade: true});
+    }, 60);
+    const drips = Array.from({length: [9, 5, 2, 0][lvl]}, (_, i) =>
+      `<path class="drip" style="animation-delay:${i * .23}s" d="M${-60 + i * 15} -100q4 8 0 12q-4-4 0-12z" fill="#4a90d9"/>`).join('');
+    inside(`${drips}
+      <g transform="translate(-10 0)">${pigMarkup({mood: lvl < 2 ? 'shock' : 'happy', wet: lvl < 2})}</g>
+      ${lvl < 3 ? `<g transform="translate(60 52)"><path d="M-22 -20h44l-6 34h-32z" fill="#a9b2bc" stroke="#2b2420" stroke-width="3"/><rect x="-18" y="${-14 + (3 - lvl) * 0}" width="36" height="${[22, 14, 6, 0][lvl]}" fill="#4a90d9" opacity=".8"/></g>` : ''}
+      ${lvl === 3 ? '<g transform="translate(70 -50)"><circle r="18" fill="#ffd25e"/><text y="7" text-anchor="middle" font-size="22">☺</text></g>' : ''}`);
+    await wait(3600);
+    clearInterval(splash);
+    finish(state.roof, 'rain', lvl, `${adj(state.roof)} roof: ${WORDS.rain[lvl]}`);
   }
 
   async function peekTest() {
     const lvl = MATS[state.walls].see;
-    setResult('Is anybody home? Take a peek...');
-    $('fx').innerHTML = `<g transform="translate(760 300)"><circle r="46" fill="#ffffff66" stroke="var(--ink)" stroke-width="7"/><path d="M30 34l40 40" stroke="var(--ink)" stroke-width="12" stroke-linecap="round"/></g>`;
-    await wait(1400);
-    setResult(`${adj(state.walls)} walls: ${WORDS.peek[lvl]}`);
-    note(state.walls, 'peek', lvl);
-    await wait(2000);
-    $('fx').innerHTML = '';
+    const lens = el('g', {transform: 'translate(330 340)'}, $('fx'));
+    lens.innerHTML = '<circle r="56" fill="url(#glow)"/><circle r="56" fill="none" stroke="#2b2420" stroke-width="9"/><circle r="56" fill="none" stroke="#c9a34a" stroke-width="4"/><path d="M40 40l46 46" stroke="#2b2420" stroke-width="16" stroke-linecap="round"/><path d="M40 40l46 46" stroke="#7a522c" stroke-width="9" stroke-linecap="round"/>';
+    lens.style.transition = reduce ? 'none' : 'transform 2.6s ease-in-out';
+    await wait(200);
+    lens.setAttribute('transform', 'translate(570 345)');
+    await wait(2700);
+    if (lvl >= 2) {
+      showPig({wave: true});
+      bubble(640, 250, 'Hi there!', 'right');
+    } else if (lvl === 1) {
+      $('fx').insertAdjacentHTML('beforeend', '<g transform="translate(560 360)" opacity=".35"><ellipse cx="0" cy="36" rx="34" ry="26" fill="#2b2420"/><circle r="26" fill="#2b2420"/><path d="M-22 -16l-6-18 16 8zM22 -16l6-18-16 8z" fill="#2b2420"/></g>');
+      bubble(640, 250, 'Is that... a shadow?', 'right');
+    } else {
+      $('fx').insertAdjacentHTML('beforeend', '<text x="570" y="370" text-anchor="middle" font-family="Georgia,serif" font-size="80" font-weight="700" fill="#2b2420">?</text>');
+    }
+    await wait(1600);
+    finish(state.walls, 'peek', lvl, `${adj(state.walls)} walls: ${WORDS.peek[lvl]}`);
   }
 
   async function coldTest() {
     const lvl = MATS[state.walls].warm;
-    $('sky').setAttribute('fill', '#1d2a4a'); $('sun').style.display = 'none';
-    $('weather').innerHTML = `<circle cx="160" cy="90" r="34" fill="#f4f1de"/>` +
-      Array.from({length: 40}, (_, i) => `<circle class="flake" style="animation-delay:${(i % 10) * .3}s" cx="${(i * 71) % 1000}" cy="0" r="5" fill="#fff"/>`).join('');
-    setResult('A cold, snowy night...');
-    await wait(1200);
-    drawHouse({cold: lvl < 2});
-    const temp = [5, 12, 19, 24][lvl];
-    $('fx').innerHTML = `<g transform="translate(700 270)"><rect x="-14" y="0" width="28" height="140" rx="14" fill="#fff" stroke="var(--ink)" stroke-width="4"/>
-      <rect x="-6" y="${130 - temp * 4.5}" width="12" height="${temp * 4.5}" rx="6" fill="${lvl < 2 ? '#4a90d9' : '#d2553a'}"/>
-      <circle cx="0" cy="146" r="20" fill="${lvl < 2 ? '#4a90d9' : '#d2553a'}" stroke="var(--ink)" stroke-width="4"/></g>`;
-    setResult(`${adj(state.walls)} walls: ${WORDS.cold[lvl]}`);
-    note(state.walls, 'cold', lvl);
-    await wait(2800);
-    $('weather').innerHTML = ''; $('fx').innerHTML = ''; $('sky').setAttribute('fill', '#bfe3f2'); $('sun').style.display = ''; drawHouse();
+    $('scene').classList.add('night');
+    $('weather').innerHTML = '<g class="moon"><circle cx="170" cy="90" r="36" fill="#f4f1de"/><circle cx="186" cy="80" r="32" fill="#1d2a4a"/></g>' +
+      Array.from({length: 20}, (_, i) => `<circle cx="${(i * 97) % 1000}" cy="${30 + (i * 53) % 160}" r="2" fill="#fff" opacity=".8"/>`).join('');
+    await wait(1600);
+    noise(5, 'lowpass', 600, .35);
+    $('weather').insertAdjacentHTML('beforeend', Array.from({length: 70}, (_, i) =>
+      `<circle class="flake" style="animation-delay:${((i * 41) % 300) / 100}s;animation-duration:${3 + (i % 5) * .4}s" cx="${(i * 71) % 1050 - 20}" cy="0" r="${3 + (i % 3)}" fill="#fff"/>`).join('') +
+      '<rect class="snow-ground" x="-3000" y="436" width="7000" height="30" fill="#f4f8fb"/>');
+    $('snow-roof').innerHTML = '<path class="snow-cap" d="M318 258L500 128L682 258Q500 236 318 258Z" fill="#f4f8fb"/>' +
+      (lvl < 2 ? '<g class="icicles" fill="#d7ecf7">' + Array.from({length: 9}, (_, i) => `<path d="M${336 + i * 40} 256l7 ${16 + (i % 3) * 10}l7 -${16 + (i % 3) * 10}z"/>`).join('') + '</g>' : '');
+    const temp = [6, 12, 19, 25][lvl], color = lvl < 2 ? '#4a90d9' : '#d2553a';
+    inside(`<g transform="translate(-20 0)">${pigMarkup({mood: lvl < 2 ? 'cold' : 'happy', cold: lvl < 2})}</g>
+      ${lvl >= 2 ? '<path d="M-60 40q40 -26 80 0v30h-80z" fill="#c8424f" stroke="#2b2420" stroke-width="3"/><g transform="translate(48 18)"><rect x="-12" y="-14" width="24" height="26" rx="4" fill="#fff" stroke="#2b2420" stroke-width="3"/><path class="steam" d="M-4 -20q-6 -8 0 -16M6 -20q-6 -8 0 -16" stroke="#fff" stroke-width="3" fill="none"/></g>'
+        : '<g class="breath"><circle cx="18" cy="2" r="8" fill="#fff" opacity=".8"/><circle cx="34" cy="-6" r="11" fill="#fff" opacity=".6"/><circle cx="52" cy="-16" r="13" fill="#fff" opacity=".4"/></g><path d="M-104 -60q20 10 0 30M104 -50q-20 10 0 30" stroke="#d7ecf7" stroke-width="10" fill="none"/>'}
+      <g transform="translate(78 -30)"><rect x="-9" y="-46" width="18" height="80" rx="9" fill="#fff" stroke="#2b2420" stroke-width="3"/>
+      <rect class="mercury" x="-4" y="${28 - temp * 2.6}" width="8" height="${temp * 2.6}" rx="4" fill="${color}"/>
+      <circle cy="40" r="13" fill="${color}" stroke="#2b2420" stroke-width="3"/></g>`);
+    await wait(3600);
+    finish(state.walls, 'cold', lvl, `${adj(state.walls)} walls: ${WORDS.cold[lvl]}`);
+  }
+
+  function finish(mat, test, level, text) {
+    setResult(text);
+    note(mat, test, level);
+    $('rebuild').hidden = false;
   }
 
   const TESTS = {wolf: wolfTest, rain: rainTest, peek: peekTest, cold: coldTest};
+  function busy(on) { state.busy = on; document.querySelectorAll('.test, .mat, #rebuild').forEach(b => b.disabled = on); }
   document.querySelectorAll('.test').forEach(b => b.addEventListener('click', async () => {
     if (state.busy) return;
-    busy(true);
+    reset(); busy(true);
     try { await TESTS[b.dataset.test](); } finally { busy(false); }
   }));
+  $('rebuild').onclick = reset;
 
   $('sound').onclick = e => {
     state.sound = !state.sound;
     e.currentTarget.setAttribute('aria-pressed', state.sound);
     e.currentTarget.textContent = state.sound ? '🔔 Sound' : '🔇 Sound';
   };
+  // Read aloud with the most natural voice this browser offers (see Marching Band for the ranking notes)
+  function bestVoice() {
+    const voices = speechSynthesis.getVoices().filter(v => /^en(-|_|$)/i.test(v.lang));
+    const score = v => (/natural|neural/i.test(v.name) ? 50 : 0) + (/premium|enhanced/i.test(v.name) ? 40 : 0) +
+      (/google/i.test(v.name) ? 30 : 0) + (/aria|jenny|ava|samantha|libby|sonia/i.test(v.name) ? 10 : 0) +
+      (/en-US/i.test(v.lang) ? 5 : 0) + (v.default ? 1 : 0);
+    return voices.sort((a, b) => score(b) - score(a))[0] || null;
+  }
+  if ('speechSynthesis' in window) speechSynthesis.getVoices();
   $('read').onclick = () => {
     if (!('speechSynthesis' in window)) return;
     speechSynthesis.cancel();
     const u = new SpeechSynthesisUtterance($('result').textContent || $('predict').textContent);
-    u.rate = .9; speechSynthesis.speak(u);
+    const v = bestVoice();
+    if (v) { u.voice = v; u.lang = v.lang; }
+    u.rate = .92; u.pitch = 1.05; speechSynthesis.speak(u);
   };
 
   drawHouse();

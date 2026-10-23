@@ -1,0 +1,11 @@
+{
+  "style": "Bright, cheerful marching band characters. Children of many different skin tones and hair styles. Front view, standing straight at attention, same size and pose for every musician so they line up neatly.",
+  "assets": [
+    {"name": "drum", "prompt": "A child marching band drummer in a red band uniform with gold braid, tall black shako hat with a white plume, a snare drum on a strap at the waist, holding sticks. Full body, front view.", "width": 160, "cutout": true, "crop": [0, 0.72]},
+    {"name": "trumpet", "ref": "drum", "prompt": "Another child in the same band: blue uniform with gold braid, same hat style with a gold plume, playing a shiny trumpet. Same pose, full body, front view.", "width": 160, "cutout": true, "crop": [0, 0.72]},
+    {"name": "tuba", "ref": "drum", "prompt": "Another child in the same band: green uniform with gold braid, same hat style with a white plume, holding a big gold sousaphone. Same pose, full body, front view.", "width": 160, "cutout": true, "crop": [0, 0.72]},
+    {"name": "flute", "ref": "drum", "prompt": "Another child in the same band: purple uniform with gold braid, same hat style with a gold plume, playing a silver flute held to the side. Same pose, full body, front view.", "width": 160, "cutout": true, "crop": [0, 0.72]},
+    {"name": "cymbals", "ref": "drum", "prompt": "Another child in the same band: orange uniform with gold braid, same hat style with a white plume, holding two gold cymbals. Same pose, full body, front view.", "width": 160, "cutout": true, "crop": [0, 0.72]},
+    {"name": "stadium", "prompt": "Wide background: a sunny school football field with bright green striped grass and white yard lines in the foreground, small cheering stands and pennant flags in the distance, blue sky. Seen from slightly above. The grass area is empty. 16:9.", "width": 1400, "quality": 78}
+  ]
+}

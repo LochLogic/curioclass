@@ -2,6 +2,9 @@
 import json, re, sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).parent))
+from bundle_tool import bundle_all  # noqa: E402
+
 ROOT = Path(__file__).resolve().parent.parent
 MAX_BYTES = 2 * 1024 * 1024
 REQUIRED_JSON = ['id', 'status', 'hook', 'outcome', 'driver', 'minutes', 'modes', 'grades_label', 'sources', 'third_party', 'updated']
@@ -45,6 +48,7 @@ def check(folder):
     return problems
 
 
+bundle_all()
 bad = 0
 for folder in sorted(p for p in (ROOT / 'tools').iterdir() if p.is_dir()):
     problems = check(folder)

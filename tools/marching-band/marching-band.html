@@ -45,8 +45,13 @@ main{display:grid;grid-template-columns:1fr;gap:0;min-height:0}
 .musician .bob{transform-box:fill-box;transform-origin:50% 100%}
 .musician.hop .bob{animation:hop .45s cubic-bezier(.3,1.6,.5,1)}
 @keyframes hop{40%{transform:translateY(-18%)}}
-.marching .musician .bob{animation:step .5s ease-in-out infinite alternate}
-@keyframes step{to{transform:translateY(-5%) rotate(2deg)}}
+.musician .leg{transform-box:fill-box;transform-origin:50% 0}
+.marching .musician .leg-l{animation:legup var(--step,1s) ease-in-out infinite}
+.marching .musician .leg-r{animation:legup var(--step,1s) ease-in-out infinite;animation-delay:calc(var(--step,1s) / -2)}
+@keyframes legup{0%,50%,100%{transform:none}25%{transform:translateY(-16px)}}
+.marching .musician .bob{animation:bob calc(var(--step,1s) / 2) ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-4%)}}
+.march[aria-pressed="true"]{background:var(--ink);box-shadow:0 6px 0 #000}
 .alone circle.glow{animation:pulse 1.2s ease-in-out infinite alternate}
 @keyframes pulse{to{opacity:.25}}
 
@@ -102,7 +107,7 @@ footer.sentence{padding:16px 20px;background:var(--ink);color:#fff;display:flex;
     <button id="m-pairs" aria-pressed="true">Partners</button>
     <button id="m-rows" aria-pressed="false">Rows</button>
   </div>
-  <button class="icon-btn" id="sound" aria-pressed="false" aria-label="Sound">🔇 Sound</button>
+  <button class="icon-btn" id="sound" aria-pressed="true" aria-label="Sound">🔔 Sound</button>
   <button class="icon-btn" id="read" aria-label="Read the sentence aloud">🔊 Read</button>
 </header>
 
@@ -115,10 +120,7 @@ footer.sentence{padding:16px 20px;background:var(--ink);color:#fff;display:flex;
           <rect width="50" height="400" style="fill:var(--field)"/><rect x="50" width="50" height="400" style="fill:var(--field-2)"/>
         </pattern>
         <g id="person">
-          <!-- legs -->
-          <rect x="-11" y="40" width="9" height="30" rx="4" fill="#fff"/><rect x="2" y="40" width="9" height="30" rx="4" fill="#fff"/>
-          <rect x="-13" y="66" width="12" height="7" rx="3" fill="#1f2430"/><rect x="1" y="66" width="12" height="7" rx="3" fill="#1f2430"/>
-          <!-- body -->
+          <!-- legs are drawn per musician so they can step; this is the upper body -->
           <rect x="-17" y="4" width="34" height="40" rx="10" style="fill:var(--coat)"/>
           <path d="M-17 14h34M-17 24h34" style="stroke:var(--gold)" stroke-width="3"/>
           <!-- head and tall hat -->
@@ -187,7 +189,7 @@ footer.sentence{padding:16px 20px;background:var(--ink);color:#fff;display:flex;
   const SKINS = ['#f1c7a3', '#d9a27a', '#a8714a', '#7a4a2c', '#f6d9be'];
   const WORDS = ['zero','one','two','three','four','five','six','seven','eight','nine','ten','eleven','twelve','thirteen','fourteen','fifteen','sixteen','seventeen','eighteen','nineteen','twenty','twenty-one','twenty-two','twenty-three','twenty-four','twenty-five'];
 
-  const state = {mode: 'pairs', n: 7, r: 3, c: 4, sound: false, found: {}};
+  const state = {mode: 'pairs', n: 7, r: 3, c: 4, sound: true, found: {}};
   const band = $('band');
 
   // ---------- sound (off until the teacher turns it on) ----------
@@ -248,6 +250,8 @@ footer.sentence{padding:16px 20px;background:var(--ink);color:#fff;display:flex;
       g.setAttribute('role', 'button');
       g.setAttribute('aria-label', `${inst.k} player${p.alone ? ', no partner' : ''}`);
       g.innerHTML = (p.alone ? '<circle class="glow" cx="0" cy="20" r="56" fill="#f2c94c" opacity=".55"/>' : '') +
+        `<g class="leg leg-l"><rect x="-11" y="40" width="9" height="30" rx="4" fill="#fff"/><rect x="-13" y="66" width="12" height="7" rx="3" fill="#1f2430"/></g>` +
+        `<g class="leg leg-r"><rect x="2" y="40" width="9" height="30" rx="4" fill="#fff"/><rect x="1" y="66" width="12" height="7" rx="3" fill="#1f2430"/></g>` +
         `<g class="bob"><use href="#person"/><use href="#${inst.k}"/></g>`;
       const hop = () => { g.classList.remove('hop'); void g.getBBox(); g.classList.add('hop'); play(inst.k); };
       g.addEventListener('click', hop);
@@ -321,29 +325,111 @@ footer.sentence{padding:16px 20px;background:var(--ink);color:#fff;display:flex;
     e.currentTarget.textContent = state.sound ? '🔔 Sound' : '🔇 Sound';
     if (state.sound) play('drum');
   };
+  // ---------- Read aloud: pick the most natural voice this browser offers ----------
+  // Ranked by name: "Natural"/"Neural" (Edge), "Premium"/"Enhanced" (Apple), Google voices (Chrome).
+  // Some of these voices are online voices: the browser sends the sentence (never anything a student typed) to its maker.
+  function bestVoice() {
+    const voices = speechSynthesis.getVoices().filter(v => /^en(-|_|$)/i.test(v.lang));
+    const score = v => (/natural|neural/i.test(v.name) ? 50 : 0) + (/premium|enhanced/i.test(v.name) ? 40 : 0) +
+      (/google/i.test(v.name) ? 30 : 0) + (/aria|jenny|ava|samantha|libby|sonia/i.test(v.name) ? 10 : 0) +
+      (/en-US/i.test(v.lang) ? 5 : 0) + (v.default ? 1 : 0);
+    return voices.sort((a, b) => score(b) - score(a))[0] || null;
+  }
+  if ('speechSynthesis' in window) speechSynthesis.getVoices();
   $('read').onclick = () => {
     if (!('speechSynthesis' in window)) return;
     speechSynthesis.cancel();
-    const u = new SpeechSynthesisUtterance($('say').textContent); u.rate = 0.9;
+    const u = new SpeechSynthesisUtterance($('say').textContent);
+    const v = bestVoice();
+    if (v) { u.voice = v; u.lang = v.lang; }
+    u.rate = 0.92; u.pitch = 1.05;
     speechSynthesis.speak(u);
   };
 
-  let marching = 0;
+  // ---------- March! The band marches in place to "When the Saints Go Marching In" (traditional) ----------
+  const BEAT = 0.42; // seconds per beat
+  const C = 72, D = 74, E = 76, F = 77, G = 79, R = null;
+  // [note, beats]
+  const SAINTS = [
+    [R, 1], [C, 1], [E, 1], [F, 1], [G, 4],
+    [R, 1], [C, 1], [E, 1], [F, 1], [G, 4],
+    [R, 1], [C, 1], [E, 1], [F, 1], [G, 2], [E, 2], [C, 2], [E, 2], [D, 4],
+    [R, 2], [E, 1], [E, 1], [D, 1], [C, 3], [C, 1], [E, 2], [G, 2], [G, 1], [F, 3],
+    [R, 1], [E, 1], [F, 1], [G, 2], [E, 2], [C, 2], [D, 2], [C, 4],
+  ];
+  const hz = m => 440 * Math.pow(2, (m - 69) / 12);
+  function brass(when, midi, dur) {
+    const a = audio();
+    [[1, 0.09, 'sawtooth'], [0.5, 0.05, 'square']].forEach(([mult, gain, type]) => {
+      const o = a.createOscillator(), f = a.createBiquadFilter(), g = a.createGain();
+      o.type = type; o.frequency.value = hz(midi) * mult;
+      f.type = 'lowpass'; f.frequency.setValueAtTime(900, when); f.frequency.linearRampToValueAtTime(2200, when + 0.06);
+      g.gain.setValueAtTime(0.0001, when); g.gain.exponentialRampToValueAtTime(gain, when + 0.03);
+      g.gain.setValueAtTime(gain, when + Math.max(0.05, dur - 0.08)); g.gain.exponentialRampToValueAtTime(0.0001, when + dur);
+      o.connect(f).connect(g).connect(bus || a.destination); o.start(when); o.stop(when + dur + 0.05);
+    });
+  }
+  function drumHit(when, kind) {
+    const a = audio(), len = a.sampleRate * 0.18, buf = a.createBuffer(1, len, a.sampleRate), d = buf.getChannelData(0);
+    for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, 3);
+    const s = a.createBufferSource(), f = a.createBiquadFilter(), g = a.createGain();
+    s.buffer = buf; f.type = kind === 'bass' ? 'lowpass' : 'bandpass'; f.frequency.value = kind === 'bass' ? 160 : 1800;
+    g.gain.value = kind === 'bass' ? 1.4 : 0.35;
+    s.connect(f).connect(g).connect(bus || a.destination); s.start(when);
+    if (kind === 'bass') {
+      const o = a.createOscillator(), og = a.createGain();
+      o.frequency.setValueAtTime(110, when); o.frequency.exponentialRampToValueAtTime(50, when + 0.15);
+      og.gain.setValueAtTime(0.6, when); og.gain.exponentialRampToValueAtTime(0.0001, when + 0.2);
+      o.connect(og).connect(bus || a.destination); o.start(when); o.stop(when + 0.25);
+    }
+  }
+  function tuba(when, midi) {
+    const a = audio(), o = a.createOscillator(), f = a.createBiquadFilter(), g = a.createGain();
+    o.type = 'sawtooth'; o.frequency.value = hz(midi); f.type = 'lowpass'; f.frequency.value = 500;
+    g.gain.setValueAtTime(0.0001, when); g.gain.exponentialRampToValueAtTime(0.12, when + 0.03); g.gain.exponentialRampToValueAtTime(0.0001, when + BEAT * 0.9);
+    o.connect(f).connect(g).connect(bus || a.destination); o.start(when); o.stop(when + BEAT);
+  }
+  let bus = null;
+  function playSaints() {
+    const a = audio(), start = a.currentTime + 0.1;
+    bus = a.createGain(); bus.connect(a.destination);
+    let t = 0;
+    SAINTS.forEach(([n, beats]) => { if (n) brass(start + t * BEAT, n, beats * BEAT * 0.95); t += beats; });
+    const total = t;
+    // oom-pah tuba (C and G) and drums on every beat, bass drum on 1 and 3
+    for (let b = 0; b < total; b++) {
+      const when = start + b * BEAT;
+      drumHit(when, b % 2 === 0 ? 'bass' : 'snare');
+      if (b % 2 === 0) tuba(when, b % 4 === 0 ? 36 : 43);
+    }
+    noiseAt(start + total * BEAT, 0.9);
+    return total * BEAT + 0.4;
+  }
+  function noiseAt(when, dur) {
+    const a = audio(), len = a.sampleRate * dur, buf = a.createBuffer(1, len, a.sampleRate), d = buf.getChannelData(0);
+    for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * (1 - i / len);
+    const s = a.createBufferSource(), f = a.createBiquadFilter(), g = a.createGain();
+    s.buffer = buf; f.type = 'highpass'; f.frequency.value = 5000; g.gain.value = 0.45;
+    s.connect(f).connect(g).connect(bus || a.destination); s.start(when);
+  }
+
+  let marchTimer = 0;
+  function stopMarch() {
+    clearTimeout(marchTimer); marchTimer = 0;
+    $('field').classList.remove('marching');
+    $('march').setAttribute('aria-pressed', 'false');
+    $('march').textContent = 'March! 🥁';
+    if (bus) { bus.disconnect(); bus = null; }
+  }
   $('march').onclick = () => {
-    if (marching) return;
-    const stage = $('field');
-    stage.classList.add('marching');
-    let beat = 0;
-    const kinds = [...new Set(positions().list.map((p) => INSTRUMENTS[(p.col + p.row * 2) % INSTRUMENTS.length].k))];
-    marching = setInterval(() => {
-      play(beat % 4 === 0 ? 'drum' : beat % 4 === 2 ? kinds[(beat / 2) % kinds.length | 0] : 'drum');
-      if (!reduce) band.setAttribute('transform', `translate(${Math.sin(beat / 2.5) * 40} 0)`);
-      if (++beat > 15) {
-        clearInterval(marching); marching = 0;
-        stage.classList.remove('marching'); band.removeAttribute('transform');
-        if (state.sound) { play('cymbals'); }
-      }
-    }, 280);
+    if (marchTimer) return stopMarch();
+    const field = $('field');
+    field.style.setProperty('--step', `${BEAT * 2}s`);
+    field.classList.add('marching');
+    $('march').setAttribute('aria-pressed', 'true');
+    $('march').textContent = 'Stop ■';
+    const seconds = state.sound ? playSaints() : 8;
+    marchTimer = setTimeout(stopMarch, seconds * 1000);
   };
 
   // keyboard shortcuts for the teacher at the board

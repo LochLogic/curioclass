@@ -16,6 +16,9 @@ DATA, SITE, TOOLS, DIST = ROOT / 'data', ROOT / 'site', ROOT / 'tools', ROOT / '
 BASE_URL = 'https://curioclass.org'
 sys.path.insert(0, str(Path(__file__).parent))
 from standards import validate  # noqa: E402
+from bundle_tool import bundle_all  # noqa: E402
+
+bundle_all()  # tools with src.html get their art inlined first
 
 GRADES = ['k'] + [str(i) for i in range(1, 13)]
 SUBJECT_COLOR = {'math': 'math', 'ela': 'ela', 'science': 'science', 'social-studies': 'social', 'arts': 'arts',
