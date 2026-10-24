@@ -5,7 +5,7 @@
   <div class="page-head"><h1>Subjects</h1><p>Twelve subjects, each aligned to its national standards framework.</p></div>
   <div class="mini" style="margin-top:24px">
     {% for sid, s in subjects.items() %}
-    <a href="/subjects/{{ sid }}/" style="border-left:6px solid var(--{{ s.color }})"><b>{{ s.label }}</b><span>{{ counts[sid] }} tools · {{ s.primary_standards }}</span></a>
+    <a href="/subjects/{{ sid }}/" style="border-left:6px solid var(--{{ s.color }})"><b>{{ s.label }}</b><span>{{ s.covers }}</span><span>{{ counts[sid] }} tools · {{ s.primary_standards }}</span></a>
     {% endfor %}
   </div>
 </div>

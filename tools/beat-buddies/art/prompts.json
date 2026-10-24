@@ -1,0 +1,45 @@
+{
+  "style": "Bright picture-book look for a kindergarten music lesson on a projector: soft round shapes, cheerful clear colors, easy to read from the back of a classroom.",
+  "assets": [
+    {
+      "name": "meadow",
+      "prompt": "Empty background: a sunny spring meadow, a wide flat light-brown dirt path running straight from the left edge to the right edge across the lower third, short green grass in front of and behind the path, small wildflowers, two soft rolling hills and a few round trees far away, big open pale-blue sky with two small fluffy clouds filling the top half. No animals, no people, no signs.",
+      "aspect": "16:9",
+      "width": 1600,
+      "quality": 74,
+      "trim": 0.03
+    },
+    {
+      "name": "bear",
+      "prompt": "A cute cartoon brown bear cub marching proudly, full body, seen from the side facing right, one foot lifted mid-step, arms swinging, big friendly smile, small round ears, wearing a little red marching-band hat. Clear gap between the legs.",
+      "cutout": true,
+      "aspect": "3:4",
+      "height": 300
+    },
+    {
+      "name": "bunny",
+      "prompt": "The same storybook style: a cute cartoon light-grey bunny with long ears, full body, seen from the side facing right, in the middle of a happy little hop with both feet off the ground, big friendly smile, wearing a little blue marching-band hat.",
+      "cutout": true,
+      "aspect": "3:4",
+      "ref": "bear",
+      "ref_mode": "style",
+      "height": 260
+    },
+    {
+      "name": "snail",
+      "prompt": "The same storybook style: a cute cartoon snail with a big round swirly orange shell and a friendly smiling face, seen from the side facing right, body stretched out long as it glides, wearing a tiny yellow marching-band hat.",
+      "cutout": true,
+      "ref": "bear",
+      "ref_mode": "style",
+      "width": 300
+    },
+    {
+      "name": "owl",
+      "prompt": "The same storybook style: a cute round cartoon owl fast asleep standing up, eyes peacefully closed, little smile, soft brown and cream feathers, wings folded, front view, wearing a tiny purple nightcap.",
+      "cutout": true,
+      "ref": "bear",
+      "ref_mode": "style",
+      "height": 240
+    }
+  ]
+}

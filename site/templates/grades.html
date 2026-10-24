@@ -7,7 +7,8 @@
     {% for bid, b in bands.items() %}
     <div class="band">
       <h3><a href="/grades/{{ BAND_SLUG[bid] }}/" style="text-decoration:none">{{ b.label }}</a></h3>
-      <p>{{ b.notes.split(';')[0] }}</p>
+      <span class="who">{{ b.who }}</span>
+      <p>{{ b.blurb }}</p>
       <div class="chips">{% for g in b.grade_list %}<a href="/grades/{{ g }}/" aria-label="{{ grade_label(g) }}">{{ grade_short(g) }}</a>{% endfor %}</div>
     </div>
     {% endfor %}

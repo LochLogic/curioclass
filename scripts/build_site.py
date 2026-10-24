@@ -173,7 +173,7 @@ for g in GRADES:
                 subject_sections([m for m in modules.values() if g in m['grades']]), 'Subjects',
                 fit=[g], subtitle='for every subject')
 for bid, b in bands.items():
-    browse_page(f'/grades/{BAND_SLUG[bid]}/', b['label'], b['notes'].split(';')[0] + '. {count} tools across {n} subjects.',
+    browse_page(f'/grades/{BAND_SLUG[bid]}/', b['label'], b['blurb'] + ' {count} tools across {n} subjects.',
                 [('Grades', '/grades/'), (b['label'], None)],
                 subject_sections([m for m in modules.values() if set(m['grades']) & set(b['grade_list'])]), 'Subjects',
                 fit=b['grade_list'], subtitle='for every subject', show_grade=True)
@@ -188,7 +188,7 @@ for sid, s in subjects.items():
     order = sorted(by_grade, key=lambda g: (GRADES.index(g.split('-')[0]), -len(expand(g))))
     sections = [dict(id=f'grade-{g}', label=grade_label(g), color=s['color'], href=grade_href(g), note='', mods=by_grade[g])
                 for g in order]
-    browse_page(f'/subjects/{sid}/', s['label'], 'Aligned to ' + s['primary_standards'] + '. {count} tools.',
+    browse_page(f'/subjects/{sid}/', s['label'], s['covers'] + '. Aligned to ' + s['primary_standards'] + '. {count} tools.',
                 [('Subjects', '/subjects/'), (s['label'], None)], sections, 'Grades', subtitle='K-12', color=s['color'])
 
 # play styles and collections

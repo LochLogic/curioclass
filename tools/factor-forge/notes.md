@@ -7,7 +7,7 @@
 
 ## GCF & LCM
 
-Students smash two numbers, one after the other. Then the anvil becomes a crucible.
+Students smash two numbers, one after the other. Then the anvil becomes a crucible. A four-step trail across the top always shows where the class is, and the panel in use glows.
 
 1. Tap a coin from the first number, then the **same prime** from the second. The pair drops into the crucible.
 2. When there are no more matches, press **Melt it!**
@@ -15,7 +15,7 @@ Students smash two numbers, one after the other. Then the anvil becomes a crucib
 4. The **LCM** is the shared primes once, times every coin left over from either number.
 5. A check appears every time: GCF × LCM = the two numbers multiplied.
 
-If a shared prime is left unpaired, the tool says so before it melts.
+If a shared prime is left unpaired, the tool says so before it melts. **Undo last pair** takes back a pair, and **New pair of numbers** starts over at any point.
 
 ## Forge Rush
 

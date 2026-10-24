@@ -1,0 +1,29 @@
+{
+  "style": "Bright, playful game look for grades 3-5: bold clean shapes, warm saturated colors, gentle glow, fun but tidy.",
+  "assets": [
+    {
+      "name": "dojo",
+      "prompt": "Empty background: a calm moonlit bamboo grove at dusk, a big soft golden full moon in the upper right, tall green bamboo stalks only along the far left and far right edges, a few glowing paper lanterns hanging near the top corners, soft purple and teal sky, a smooth wooden deck floor along the bottom edge. The middle of the picture is open, calm sky with nothing in it. No people, no animals, no writing.",
+      "aspect": "16:9",
+      "width": 1600,
+      "quality": 74,
+      "trim": 0.03
+    },
+    {
+      "name": "ninja",
+      "prompt": "A friendly cartoon red panda dressed as a ninja in a simple dark-blue outfit with a red headband, full body, standing in a confident ready pose holding a wooden practice sword, big kind eyes, small smile, bushy striped tail.",
+      "cutout": true,
+      "aspect": "3:4",
+      "height": 320
+    },
+    {
+      "name": "ninjacheer",
+      "prompt": "The same friendly cartoon red panda ninja jumping up happily with one fist in the air and the wooden practice sword in the other paw, big joyful smile, tail swishing. No glow, no outline, no motion lines.",
+      "cutout": true,
+      "aspect": "3:4",
+      "ref": "ninja",
+      "height": 320,
+      "key": "magenta"
+    }
+  ]
+}

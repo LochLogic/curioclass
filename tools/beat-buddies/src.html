@@ -1,0 +1,536 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Beat Buddies · Steady beat and rhythm · Curio Class</title>
+<meta name="description" content="Animal friends march to a steady beat on the projector while the class claps along and freezes when the music stops. Then build rhythms from animal cards: a bear is one sound, a bunny is two quick ones, a snail is long and a sleeping owl is a rest.">
+<!--
+BEAT BUDDIES (Curio Class)
+Music, grades K-2, National Core Arts Standards MU:Pr4 (read and perform simple rhythm patterns) and MU:Cr1
+(improvise and create rhythm patterns), module "Steady Beat and Rhythm".
+March: the buddies march to a steady beat at three speeds while hearts light up on every beat. The freeze game
+stops the music at a surprise moment and everyone freezes.
+Rhythm: four beat boxes. Bear = ta (one sound on a beat), Bunny = ti-ti (two quick sounds on one beat),
+Snail = ta-a (one long sound across two beats), sleeping Owl = rest (a silent beat). The hearts keep the beat
+underneath, so the class can see and hear the difference between the beat and the rhythm.
+Echo: the buddies play a hidden pattern, the class claps it back, then it is revealed.
+Teacher-led on a projector or smartboard. Illustrations generated with Google Gemini, edited for Curio Class.
+Sound synthesized in the browser. One file, no network requests. Content CC BY 4.0, code MIT. curioclass.org
+-->
+<style>
+:root{
+  --paper:#f4f8ef;--ink:#21301f;--muted:#5b6a58;--line:#d7e3cf;--focus:#2f5bd3;--brand:#c2482f;--gold:#ffd23f;
+  --bear:#a0612f;--bunny:#5b7fd0;--snail:#e08a1e;--owl:#8a5cc2;--heart:#e84a5f;
+  font-family:'Segoe UI',system-ui,-apple-system,Roboto,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0;height:100%}
+body{background:var(--paper);color:var(--ink);display:grid;grid-template-rows:auto 1fr;min-height:100vh}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:4px solid var(--focus);outline-offset:3px}
+header{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:10px 20px;background:var(--brand);color:#fff7f2}
+h1{margin:0 auto 0 0;font:800 clamp(22px,2.8vw,32px)/1.1 'Trebuchet MS','Segoe UI',sans-serif}
+h1 small{display:block;font:400 14px/1.3 'Segoe UI',sans-serif;color:#ffd9cd}
+.icon-btn{border:1px solid #e07c66;background:#d35d44;color:#fff;border-radius:999px;min-height:46px;padding:0 16px;font-weight:700;font-size:15px}
+.icon-btn[aria-pressed="false"]{background:#a63b26}
+
+.stagewrap{position:relative;overflow:hidden;min-height:0;background:#bfe3f5}
+.scene{position:absolute;left:50%;top:50%;width:1440px;height:810px;transform:translate(-50%,-50%) scale(var(--s,1));overflow:hidden}
+.scene>img.bg{position:absolute;left:-10px;top:-10px;width:1460px;height:830px;object-fit:cover}
+
+.top{position:absolute;left:24px;right:24px;top:18px;display:flex;align-items:center;gap:12px;z-index:6}
+.tabs{display:inline-flex;border-radius:999px;overflow:hidden;background:#fffc;box-shadow:0 3px 0 #0002}
+.tabs button{border:0;background:transparent;min-height:58px;padding:0 26px;font:800 21px 'Trebuchet MS',sans-serif;color:var(--muted)}
+.tabs button[aria-pressed="true"]{background:var(--brand);color:#fff}
+.ctl{margin-left:auto;display:flex;gap:10px;align-items:center}
+.big{border:0;border-radius:18px;min-height:62px;padding:0 24px;font:800 22px 'Trebuchet MS',sans-serif;background:#2f8a4a;color:#fff;box-shadow:0 5px 0 #1d5e30}
+.big:active{transform:translateY(3px);box-shadow:0 2px 0 #1d5e30}
+.big.stop{background:var(--brand);box-shadow:0 5px 0 #8a2e1c}
+.big.soft{background:#fff;color:var(--ink);box-shadow:0 5px 0 #0002}
+.big.freeze{background:#3a8fd8;box-shadow:0 5px 0 #24619a}
+.big[aria-pressed="true"]{outline:4px solid var(--gold)}
+.speed{display:inline-flex;background:#fffc;border-radius:18px;overflow:hidden;box-shadow:0 3px 0 #0002}
+.speed button{border:0;background:transparent;min-height:58px;padding:0 14px;font:800 17px 'Trebuchet MS',sans-serif;color:var(--muted)}
+.speed button[aria-pressed="true"]{background:var(--gold);color:#3a2a00}
+
+/* the beat: four hearts */
+.hearts{position:absolute;left:50%;transform:translateX(-50%);display:flex;gap:26px;z-index:4;padding:10px 22px;background:#fff9;border-radius:999px}
+.hearts svg{width:64px;height:58px;transition:transform .08s}
+.hearts svg path{fill:#f3c3ca;transition:fill .08s}
+.hearts svg.on path{fill:var(--heart)}
+.hearts svg.on{transform:scale(1.22)}
+.calm .hearts svg.on{transform:none}
+.hearts.march{top:104px}
+.hearts.rhy{top:540px;gap:0;padding:8px 0;width:1160px;justify-content:space-around;left:140px;transform:none}
+
+/* March */
+.buddy{position:absolute;bottom:96px;z-index:3;will-change:transform}
+.buddy img{display:block;filter:drop-shadow(0 8px 4px #0003)}
+.shadow{position:absolute;left:15%;right:15%;bottom:-8px;height:16px;border-radius:50%;background:#0002;z-index:-1}
+.bubble{position:absolute;left:50%;top:240px;transform:translateX(-50%);z-index:7;background:#fff;border-radius:30px;padding:18px 34px 18px 18px;display:flex;align-items:center;gap:16px;box-shadow:0 10px 30px #0003;font:900 64px 'Trebuchet MS',sans-serif;color:#3a8fd8}
+.bubble img{height:150px}
+.bubble small{display:block;font:700 24px 'Segoe UI',sans-serif;color:var(--muted)}
+.marchtip{position:absolute;left:50%;transform:translateX(-50%);top:190px;z-index:4;font:700 24px 'Segoe UI',sans-serif;color:#24402a;background:#fffb;border-radius:16px;padding:8px 18px;text-align:center}
+
+/* Rhythm boxes */
+.boxes{position:absolute;left:140px;width:1160px;top:150px;height:372px;display:grid;grid-template-columns:repeat(4,1fr);gap:20px;z-index:3}
+.box{position:relative;border:5px dashed #ffffffcc;border-radius:28px;background:#ffffff70;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:10px 6px 14px;transition:background .12s,transform .12s}
+.box.filled{border-style:solid;background:#fffffff0;box-shadow:0 6px 0 #0002}
+.box.span2{grid-column:span 2}
+.box.now{background:#fff6c8;border-color:var(--gold);transform:translateY(-6px)}
+.calm .box.now{transform:none}
+.box .pic{flex:1;display:flex;align-items:flex-end;justify-content:center;width:100%;min-height:0}
+.box .pic img{max-height:200px;max-width:90%;transform-origin:50% 100%}
+.box .word{font:900 50px/1.1 'Trebuchet MS',sans-serif;margin-top:4px}
+.box .note{height:58px;margin-top:2px}
+.box .note svg{height:58px}
+.box .empty{font:700 26px 'Segoe UI',sans-serif;color:#2f4d2f99;margin:auto}
+.box .num{position:absolute;left:14px;top:8px;font:900 22px 'Trebuchet MS',sans-serif;color:#0005}
+.box.hid .pic,.box.hid .word,.box.hid .note{visibility:hidden}
+.box.hid::after{content:'?';position:absolute;inset:0;display:grid;place-items:center;font:900 140px 'Trebuchet MS',sans-serif;color:#ffffffee;text-shadow:0 4px 0 #0002}
+.box.hid{background:#7cb86f;border-style:solid;border-color:#5d9b52}
+.palette{position:absolute;left:140px;width:1160px;bottom:16px;display:flex;gap:16px;z-index:4;align-items:stretch}
+.card{flex:1;min-width:0;border:0;border-radius:22px;background:#fff;box-shadow:0 6px 0 #0002;display:flex;align-items:center;gap:10px;padding:8px 12px;min-height:118px;text-align:left}
+.card img{height:84px;max-width:96px;object-fit:contain;flex:none}
+.card b{display:block;font:900 34px/1 'Trebuchet MS',sans-serif;white-space:nowrap}
+.card span{font:600 16px/1.3 'Segoe UI',sans-serif;color:var(--muted)}
+.card[aria-pressed="true"]{outline:6px solid var(--gold);transform:translateY(-4px)}
+.tools{display:flex;flex-direction:column;gap:6px;flex:none;width:200px}
+.tools .big{min-height:40px;font-size:17px;padding:0 12px;box-shadow:0 3px 0 #0002}
+.toggle{display:flex;align-items:center;gap:8px;font:700 16px 'Segoe UI',sans-serif;background:#fffd;border-radius:12px;padding:4px 12px;min-height:38px;border:0}
+.toggle i{width:34px;height:20px;border-radius:10px;background:#ccc;position:relative;flex:none}
+.toggle i::after{content:'';position:absolute;left:2px;top:2px;width:16px;height:16px;border-radius:50%;background:#fff;transition:left .15s}
+.toggle[aria-pressed="true"] i{background:#2f8a4a}
+.toggle[aria-pressed="true"] i::after{left:16px}
+.banner{position:absolute;left:50%;top:92px;transform:translateX(-50%);z-index:6;background:#fff;border-radius:22px;padding:8px 26px;font:800 26px 'Trebuchet MS',sans-serif;box-shadow:0 6px 0 #0002;white-space:nowrap}
+.banner:empty{display:none}
+.count{position:absolute;left:50%;top:300px;transform:translate(-50%,-50%);z-index:8;font:900 200px 'Trebuchet MS',sans-serif;color:#fff;text-shadow:0 8px 0 #0003;pointer-events:none}
+.count:empty{display:none}
+.zz{position:absolute;right:16%;top:22%;font:900 34px 'Trebuchet MS',sans-serif;color:var(--owl);opacity:0}
+</style>
+</head>
+<body>
+<header>
+  <h1>Beat Buddies <small>March to the steady beat. Build rhythms with animal friends.</small></h1>
+  <button class="icon-btn" id="motion" aria-pressed="true" title="Turn animation on or off">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+</header>
+<div class="stagewrap" id="stagewrap">
+  <div class="scene" id="scene">
+    <img class="bg" src="art:meadow" alt="">
+    <div class="top">
+      <div class="tabs" role="group" aria-label="Mode">
+        <button id="t-march" aria-pressed="true">🥁 March</button>
+        <button id="t-rhy" aria-pressed="false">🃏 Rhythm</button>
+        <button id="t-echo" aria-pressed="false">👂 Echo</button>
+      </div>
+      <div class="ctl" id="ctl"></div>
+    </div>
+    <div class="hearts march" id="hearts" aria-hidden="true"></div>
+
+    <div id="march">
+      <div class="marchtip" id="marchtip">Pat your knees on every heart!</div>
+      <div class="buddy" id="b-snail"><div class="shadow"></div><img src="art:snail" alt="Snail" style="width:230px"></div>
+      <div class="buddy" id="b-bunny"><div class="shadow"></div><img src="art:bunny" alt="Bunny" style="height:200px"></div>
+      <div class="buddy" id="b-bear"><div class="shadow"></div><img src="art:bear" alt="Bear" style="height:236px"></div>
+      <div class="bubble" id="freeze" hidden><img src="art:owl" alt=""><div>Freeze!<small>Shh... the music stopped.</small></div></div>
+    </div>
+
+    <div id="rhy" hidden>
+      <div class="boxes" id="boxes"></div>
+      <div class="palette" id="palette"></div>
+    </div>
+    <div class="banner" id="banner" aria-live="polite"></div>
+    <div class="count" id="count" aria-live="polite"></div>
+  </div>
+</div>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  let reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  try { const m = localStorage.getItem('curio-motion'); if (m) reduce = m === 'calm'; } catch {}
+  function showMotion() {
+    document.body.classList.toggle('calm', reduce);
+    $('motion').setAttribute('aria-pressed', !reduce);
+    $('motion').textContent = reduce ? '⏸ Motion' : '✨ Motion';
+  }
+  showMotion();
+  $('motion').onclick = () => { reduce = !reduce; try { localStorage.setItem('curio-motion', reduce ? 'calm' : 'on'); } catch {} showMotion(); };
+  const fit = () => { const r = $('stagewrap').getBoundingClientRect(); $('scene').style.setProperty('--s', Math.min(r.width / 1440, r.height / 810)); };
+  new ResizeObserver(fit).observe($('stagewrap'));
+  const wait = ms => new Promise(r => setTimeout(r, ms));
+  const anim = (el, kf, opt) => { if (reduce || !el.animate) return; el.animate(kf, opt); };
+
+  const IMG = {bear: 'art:bear', bunny: 'art:bunny', snail: 'art:snail', owl: 'art:owl'};
+  // the four rhythm cards
+  const CARDS = {
+    bear: {word: 'ta', name: 'Bear', tip: 'one sound', color: 'var(--bear)'},
+    bunny: {word: 'ti-ti', name: 'Bunny', tip: 'two quick sounds', color: 'var(--bunny)'},
+    snail: {word: 'ta-a', name: 'Snail', tip: 'one long sound', color: 'var(--snail)'},
+    owl: {word: 'shh', name: 'Owl', tip: 'a quiet beat', color: 'var(--owl)'},
+  };
+  // simple music notes for each card, drawn as SVG
+  const NOTE = {
+    bear: '<svg viewBox="0 0 40 60"><ellipse cx="15" cy="49" rx="10" ry="7.5" transform="rotate(-22 15 49)" fill="#21301f"/><rect x="23" y="4" width="3.5" height="45" fill="#21301f"/></svg>',
+    bunny: '<svg viewBox="0 0 70 60"><ellipse cx="15" cy="49" rx="10" ry="7.5" transform="rotate(-22 15 49)" fill="#21301f"/><ellipse cx="50" cy="49" rx="10" ry="7.5" transform="rotate(-22 50 49)" fill="#21301f"/><rect x="23" y="6" width="3.5" height="43" fill="#21301f"/><rect x="58" y="6" width="3.5" height="43" fill="#21301f"/><rect x="23" y="4" width="38.5" height="8" fill="#21301f"/></svg>',
+    snail: '<svg viewBox="0 0 40 60"><ellipse cx="15" cy="49" rx="10" ry="7.5" transform="rotate(-22 15 49)" fill="none" stroke="#21301f" stroke-width="4"/><rect x="23" y="4" width="3.5" height="44" fill="#21301f"/></svg>',
+    owl: '<svg viewBox="0 0 40 60"><path d="M14 4 L26 18 L16 30 L27 42 C18 38 12 44 20 56 C6 48 10 36 20 38 L10 26 L20 16 Z" fill="#21301f"/></svg>',
+  };
+  const HEART = '<svg viewBox="0 0 64 58"><path d="M32 56 C10 40 2 30 2 18 C2 8 10 2 18 2 C25 2 30 6 32 11 C34 6 39 2 46 2 C54 2 62 8 62 18 C62 30 54 40 32 56Z"/></svg>';
+  function drawHearts(n = 4) { $('hearts').innerHTML = HEART.repeat(n); }
+  function lightHeart(i) { [...$('hearts').children].forEach((h, k) => h.classList.toggle('on', k === i)); }
+
+  // ---------- audio and a lookahead clock ----------
+  let ctx, master, soundOn = true;
+  function audio() {
+    if (!ctx) {
+      ctx = new (window.AudioContext || window.webkitAudioContext)();
+      master = ctx.createGain(); master.gain.value = soundOn ? .9 : 0;
+      const comp = ctx.createDynamicsCompressor(); comp.threshold.value = -14; comp.ratio.value = 4;
+      master.connect(comp).connect(ctx.destination);
+    }
+    if (ctx.state === 'suspended') ctx.resume();
+    return ctx;
+  }
+  function tone(f, t, dur, {type = 'triangle', gain = .2, attack = .005, release = .08, vib = 0} = {}) {
+    const o = ctx.createOscillator(), g = ctx.createGain();
+    o.type = type; o.frequency.setValueAtTime(f, t);
+    if (vib) { const l = ctx.createOscillator(), lg = ctx.createGain(); l.frequency.value = 5.5; lg.gain.value = vib; l.connect(lg).connect(o.frequency); l.start(t); l.stop(t + dur + release); }
+    g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(gain, t + attack);
+    g.gain.setValueAtTime(gain, t + Math.max(attack, dur - release)); g.gain.exponentialRampToValueAtTime(.0001, t + dur + .02);
+    o.connect(g).connect(master); o.start(t); o.stop(t + dur + .05);
+  }
+  let noiseBuf;
+  function noise(t, dur, gain, freq, type = 'bandpass', q = 1) {
+    if (!noiseBuf) { noiseBuf = ctx.createBuffer(1, ctx.sampleRate, ctx.sampleRate); const d = noiseBuf.getChannelData(0); for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1; }
+    const s = ctx.createBufferSource(), f = ctx.createBiquadFilter(), g = ctx.createGain();
+    s.buffer = noiseBuf; f.type = type; f.frequency.value = freq; f.Q.value = q;
+    g.gain.setValueAtTime(gain, t); g.gain.exponentialRampToValueAtTime(.0001, t + dur);
+    s.connect(f).connect(g).connect(master); s.start(t); s.stop(t + dur + .02);
+  }
+  const SND = {
+    kick: (t, v = .9) => { const o = ctx.createOscillator(), g = ctx.createGain(); o.frequency.setValueAtTime(130, t); o.frequency.exponentialRampToValueAtTime(42, t + .18); g.gain.setValueAtTime(v, t); g.gain.exponentialRampToValueAtTime(.001, t + .3); o.connect(g).connect(master); o.start(t); o.stop(t + .32); },
+    heart: t => { SND.kick(t, .35); },
+    snare: t => { noise(t, .16, .25, 1800, 'bandpass', .7); tone(190, t, .08, {gain: .08}); },
+    clap: t => { [0, .012, .024].forEach(d => noise(t + d, .09, .45, 1300, 'bandpass', 1.4)); },
+    block: (t, f = 1000) => { tone(f, t, .05, {type: 'sine', gain: .35, release: .04}); noise(t, .03, .2, f * 2.5, 'bandpass', 4); },
+    bell: (t, f = 1568) => { tone(f, t, .3, {type: 'sine', gain: .18, release: .25}); tone(f * 2.76, t, .15, {type: 'sine', gain: .04}); },
+    drum: t => { SND.kick(t, .8); noise(t, .05, .15, 700, 'lowpass'); },  // bear: one strong sound
+    long: (t, dur) => { tone(392, t, dur, {type: 'triangle', gain: .2, attack: .03, release: .15, vib: 4}); tone(784, t, dur, {type: 'sine', gain: .04, attack: .03, release: .15}); },  // snail: one long sound
+  };
+
+  // Events are scheduled on the audio clock; this list carries the matching picture changes.
+  let events = [];
+  const at = (t, fn) => events.push({t, fn});
+  (function frame() {
+    if (ctx) {
+      const now = ctx.currentTime;
+      const due = events.filter(e => e.t <= now);
+      events = events.filter(e => e.t > now);
+      due.forEach(e => e.fn());
+    }
+    requestAnimationFrame(frame);
+  })();
+  let clock = null;  // {next, beat, bpm, step(beat, t)}
+  function startClock(bpm, step, lead = .12) {
+    audio(); stopClock();
+    clock = {next: ctx.currentTime + lead, beat: 0, bpm, step};
+    const tick = () => {
+      if (!clock) return;
+      while (clock.next < ctx.currentTime + .15) {
+        const t = clock.next, b = clock.beat;
+        clock.next += 60 / clock.bpm; clock.beat++;
+        if (clock.step(b, t) === false) { clock = null; return; }
+      }
+      clock.timer = setTimeout(tick, 25);
+    };
+    tick();
+  }
+  function stopClock() { if (clock) clearTimeout(clock.timer); clock = null; events = []; }
+
+  const SPEEDS = [['🐢 Slow', 76], ['🚶 Walk', 100], ['🐇 Quick', 126]];
+  let speed = 1;
+  const bpm = () => SPEEDS[speed][1];
+  function speedButtons() {
+    return `<div class="speed" id="speeds" role="group" aria-label="Speed">${SPEEDS.map(([n], i) => `<button aria-pressed="${i === speed}" data-i="${i}">${n}</button>`).join('')}</div>`;
+  }
+  function wireSpeeds(after) {
+    $('speeds').querySelectorAll('button').forEach(b => b.onclick = () => {
+      speed = +b.dataset.i;
+      $('speeds').querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x === b));
+      if (clock) clock.bpm = bpm();
+      after && after();
+    });
+  }
+
+  // ---------- March ----------
+  // An original little march in C. Each beat holds one note or two quick notes (null is a rest).
+  const TUNE = [
+    ['G4'], ['C5'], ['C5', 'E5'], ['G5'],   ['E5'], ['C5'], ['D5', 'E5'], ['D5'],
+    ['G4'], ['C5'], ['C5', 'E5'], ['G5'],   ['A5'], ['G5'], ['E5'], ['C5'],
+    ['F5'], ['A5'], ['A5', 'F5'], ['E5'],   ['D5'], ['F5'], ['E5', 'D5'], ['C5'],
+    ['G4'], ['C5'], ['E5', 'D5'], ['C5'],   ['G4'], ['B4'], ['C5'], [null],
+  ];
+  const BASS = ['C3', 'G2', 'C3', 'G2', 'C3', 'E3', 'G2', 'B2', 'C3', 'G2', 'C3', 'G2', 'F2', 'A2', 'C3', 'G2',
+                'F2', 'C3', 'F2', 'A2', 'G2', 'D3', 'G2', 'B2', 'C3', 'G2', 'G2', 'B2', 'C3', 'G2', 'C3', 'C3'];
+  const hz = n => { const m = /^([A-G])(#?)(\d)$/.exec(n), s = {C: 0, D: 2, E: 4, F: 5, G: 7, A: 9, B: 11}[m[1]] + (m[2] ? 1 : 0); return 440 * 2 ** ((s + 12 * (+m[3] + 1) - 69) / 12); };
+  const BUDDIES = [['bear', 820, 'stomp'], ['bunny', 560, 'hop'], ['snail', 250, 'glide']];
+  const pos = {};
+  const mr = {on: false, freezeGame: false, frozen: false, until: 0, nextFreeze: 0};
+  function placeBuddies(reset) {
+    for (const [k, x] of BUDDIES) {
+      if (reset || pos[k] === undefined) pos[k] = x;
+      $('b-' + k).style.transform = `translateX(${pos[k]}px)`;
+    }
+  }
+  function stepBuddies(spb) {
+    if (reduce) return;
+    const STEP = 70;
+    for (const [k, , how] of BUDDIES) {
+      const el = $('b-' + k), img = el.querySelector('img'), from = pos[k];
+      let to = from + STEP;
+      if (to > 1480) { pos[k] = -260; el.style.transform = `translateX(-260px)`; continue; }
+      pos[k] = to;
+      const d = spb * 1000 * .55;
+      el.style.transform = `translateX(${to}px)`;
+      el.animate([{transform: `translateX(${from}px)`}, {transform: `translateX(${to}px)`}], {duration: d, easing: how === 'glide' ? 'linear' : 'ease-out'});
+      if (how === 'hop') img.animate([{transform: 'none'}, {transform: 'translateY(-54px) rotate(-6deg)'}, {transform: 'none'}], {duration: d, easing: 'ease-out'});
+      if (how === 'stomp') img.animate([{transform: 'none'}, {transform: 'translateY(-20px)'}, {transform: 'translateY(0) scale(1.05,.95)'}, {transform: 'none'}], {duration: d + 80, easing: 'ease-in-out'});
+      if (how === 'glide') img.animate([{transform: 'none'}, {transform: 'scaleX(1.06)'}, {transform: 'none'}], {duration: d});
+    }
+  }
+  function marchCtl() {
+    $('ctl').innerHTML = `${speedButtons()}
+      <button class="big freeze" id="fz" aria-pressed="${mr.freezeGame}" title="The music stops at a surprise moment">🧊 Freeze game</button>
+      <button class="big${mr.on ? ' stop' : ''}" id="go">${mr.on ? '■ Stop' : '▶ March!'}</button>`;
+    wireSpeeds();
+    $('go').onclick = () => mr.on ? stopMarch() : startMarch();
+    $('fz').onclick = () => { mr.freezeGame = !mr.freezeGame; $('fz').setAttribute('aria-pressed', mr.freezeGame); planFreeze(clock ? clock.beat : 0); };
+  }
+  const planFreeze = b => { mr.nextFreeze = b + 8 + Math.floor(Math.random() * 12); };
+  function startMarch() {
+    mr.on = true; mr.frozen = false; $('freeze').hidden = true;
+    marchCtl();
+    planFreeze(0);
+    let song = 0;  // where we are in the tune
+    startClock(bpm(), (b, t) => {
+      const spb = 60 / clock.bpm;
+      if (mr.frozen) {
+        if (b >= mr.until) { mr.frozen = false; at(t, () => { $('freeze').hidden = true; $('marchtip').textContent = 'Go! Pat your knees on every heart!'; }); planFreeze(b); }
+        else return;
+      }
+      if (mr.freezeGame && b >= mr.nextFreeze && b % 4 === 0) {  // stop on a downbeat, for four beats or so
+        mr.frozen = true; mr.until = b + 4 + Math.floor(Math.random() * 3);
+        at(t, () => { $('freeze').hidden = false; lightHeart(-1); $('marchtip').textContent = 'Everybody freeze!'; anim($('freeze'), [{transform: 'translateX(-50%) scale(.6)', opacity: 0}, {transform: 'translateX(-50%) scale(1)', opacity: 1}], {duration: 260, easing: 'ease-out'}); });
+        return;
+      }
+      const i = song % 32; song++;
+      SND.kick(t, .55);
+      if (i % 2 === 1) SND.snare(t);
+      const notes = TUNE[i];
+      notes.forEach((n, k) => { if (n) tone(hz(n), t + k * spb / notes.length, spb / notes.length * .85, {type: 'square', gain: .07, release: .05}); });
+      notes.forEach((n, k) => { if (n) tone(hz(n), t + k * spb / notes.length, spb / notes.length * .85, {type: 'triangle', gain: .12}); });
+      tone(hz(BASS[i]), t, spb * .8, {type: 'triangle', gain: .25});
+      at(t, () => { lightHeart(i % 4); stepBuddies(spb); });
+    });
+  }
+  function stopMarch() {
+    mr.on = false; stopClock(); lightHeart(-1); $('freeze').hidden = true;
+    $('marchtip').textContent = 'Pat your knees on every heart!';
+    marchCtl();
+  }
+
+  // ---------- Rhythm and Echo ----------
+  const PRESETS = [
+    ['bear', 'bear', 'bear', 'bear'], ['bear', 'bunny', 'bear', 'bunny'], ['bunny', 'bunny', 'bear', 'owl'],
+    ['bear', 'bear', 'snail', 'tail'], ['bunny', 'bear', 'bunny', 'bear'], ['snail', 'tail', 'bunny', 'bear'],
+    ['bear', 'owl', 'bear', 'owl'], ['bunny', 'bunny', 'snail', 'tail'],
+  ];
+  const ry = {pat: ['bear', 'bunny', 'bear', 'owl'], tool: 'bear', beat: true, notes: false, playing: false, loop: true,
+              echo: {pat: null, level: 1, stage: 'ready'}};
+  function setSlot(pat, i, card) {
+    const p = pat.slice();
+    if (p[i] === 'tail') i--;                              // tapping the back half of a snail
+    if (p[i] === 'snail') p[i + 1] = 'bear';                // replacing a snail frees its second beat
+    if (card === 'snail') {
+      if (i === 3) i = 2;
+      if (p[i + 1] === 'snail') p[i + 2] = 'bear';
+      if (p[i] === 'tail') p[i - 1] = 'bear';
+      p[i] = 'snail'; p[i + 1] = 'tail';
+    } else p[i] = card;
+    for (let k = 0; k < 4; k++) if (p[k] === 'tail' && p[k - 1] !== 'snail') p[k] = 'bear';
+    return p;
+  }
+  function drawBoxes(pat, hidden) {
+    let html = '';
+    if (hidden) {
+      $('boxes').innerHTML = [0, 1, 2, 3].map(i => `<div class="box filled hid" data-i="${i}" aria-label="Beat ${i + 1}: hidden"><span class="num">${i + 1}</span></div>`).join('');
+      return;
+    }
+    for (let i = 0; i < 4; i++) {
+      const c = pat[i];
+      if (c === 'tail') continue;
+      const span = c === 'snail' ? ' span2' : '';
+      html += c ? `<button class="box filled${span}${hidden ? ' hid' : ''}" data-i="${i}" style="border-color:${hidden ? '' : CARDS[c].color}" aria-label="Beat ${i + 1}: ${hidden ? 'hidden' : CARDS[c].name + ', ' + CARDS[c].word}">
+          <span class="num">${c === 'snail' ? `${i + 1} ${i + 2}` : i + 1}</span>
+          <div class="pic"><img src="${IMG[c]}" alt=""></div>
+          <div class="word" style="color:${CARDS[c].color}">${CARDS[c].word}</div>
+          <div class="note"${ry.notes ? '' : ' hidden'}>${NOTE[c]}</div>
+          ${c === 'owl' ? '<span class="zz">z z</span>' : ''}</button>`
+        : `<button class="box" data-i="${i}"><span class="num">${i + 1}</span><span class="empty">Tap to add</span></button>`;
+    }
+    $('boxes').innerHTML = html;
+    if (mode === 'rhy') $('boxes').querySelectorAll('.box').forEach(b => b.onclick = () => {
+      ry.pat = setSlot(ry.pat, +b.dataset.i, ry.tool); SFX(ry.tool); drawBoxes(ry.pat);
+    });
+  }
+  function drawPalette() {
+    $('palette').innerHTML = Object.entries(CARDS).map(([k, c]) => `<button class="card" data-k="${k}" aria-pressed="${k === ry.tool}" style="border-left:10px solid ${c.color}"><img src="${IMG[k]}" alt=""><div><b style="color:${c.color}">${c.word}</b><span>${c.name}: ${c.tip}</span></div></button>`).join('')
+      + `<div class="tools"><button class="toggle" id="tb" aria-pressed="${ry.beat}"><i></i>❤️ Hear the beat</button><button class="toggle" id="tn" aria-pressed="${ry.notes}"><i></i>♩ Show notes</button><button class="big soft" id="mix">🎲 Surprise me</button></div>`;
+    $('palette').querySelectorAll('.card').forEach(b => b.onclick = () => { ry.tool = b.dataset.k; drawPalette(); SFX(ry.tool); });
+    $('tb').onclick = () => { ry.beat = !ry.beat; drawPalette(); };
+    $('tn').onclick = () => { ry.notes = !ry.notes; drawPalette(); drawBoxes(ry.pat); };
+    $('mix').onclick = () => { ry.pat = randomPattern(3); drawBoxes(ry.pat); if (!ry.playing) playPattern(ry.pat, {times: 1}); };
+  }
+  function SFX(card) {  // a preview of one card's sound
+    audio(); const t = ctx.currentTime + .02, spb = 60 / bpm();
+    if (card === 'bear') SND.drum(t);
+    if (card === 'bunny') { SND.block(t, 1050); SND.block(t + spb / 2, 1050); }
+    if (card === 'snail') SND.long(t, spb * 2 * .9);
+  }
+  function randomPattern(level) {
+    const pool = level === 1 ? ['bear', 'bear', 'bunny'] : level === 2 ? ['bear', 'bunny', 'owl'] : ['bear', 'bunny', 'owl', 'snail'];
+    for (;;) {
+      let p = [];
+      for (let i = 0; i < 4; i++) {
+        let c = pool[Math.floor(Math.random() * pool.length)];
+        if (c === 'snail' && i === 3) c = 'bear';
+        p.push(c); if (c === 'snail') { p.push('tail'); i++; }
+      }
+      if (p.filter(c => c === 'owl').length < 2 && new Set(p).size > 1) return p;
+    }
+  }
+  // Count in "1 2 3 4" on the woodblock, then play the pattern with the hearts keeping the beat underneath.
+  function playPattern(pat, {times = 2, countIn = true, hidden = false, after} = {}) {
+    ry.playing = true; rhyCtl();
+    const total = (countIn ? 4 : 0) + 4 * times;
+   
+    startClock(bpm(), (b, t) => {
+      const spb = 60 / clock.bpm;
+      if (b >= total) { at(t, () => { endPlay(); after && after(); }); return false; }
+      if (countIn && b < 4) {
+        SND.block(t, b === 0 ? 1300 : 1000);
+        at(t, () => { $('count').textContent = b + 1; lightHeart(b); anim($('count'), [{transform: 'translate(-50%,-50%) scale(1.3)', opacity: .4}, {transform: 'translate(-50%,-50%) scale(1)', opacity: 1}], {duration: 200}); });
+        return;
+      }
+      const i = (b - (countIn ? 4 : 0)) % 4, c = pat[i];
+      if (ry.beat) SND.heart(t);
+      if (c === 'bear') SND.drum(t);
+      if (c === 'bunny') { SND.block(t, 1050); SND.block(t + spb / 2, 1050); }
+      if (c === 'snail') SND.long(t, spb * 2 * .92);
+      at(t, () => { $('count').textContent = ''; lightHeart(i); showBeat(pat, i, spb, hidden); });
+    });
+  }
+  function showBeat(pat, i, spb, hidden) {
+    const boxes = [...$('boxes').children];
+    let slot = i; if (pat[i] === 'tail' && !hidden) slot = i - 1;
+    const el = boxes.find(b => +b.dataset.i === slot);
+    boxes.forEach(b => b.classList.toggle('now', b === el));
+    if (!el || hidden) return;
+    const img = el.querySelector('img'), c = pat[slot];
+    if (c === 'bear' && pat[i] !== 'tail') anim(img, [{transform: 'none'}, {transform: 'translateY(-26px)'}, {transform: 'scale(1.08,.92)'}, {transform: 'none'}], {duration: spb * 600});
+    if (c === 'bunny') anim(img, [{transform: 'none'}, {transform: 'translateY(-40px)'}, {transform: 'none'}, {transform: 'translateY(-40px)'}, {transform: 'none'}], {duration: spb * 950});
+    if (c === 'snail' && pat[i] !== 'tail') anim(img, [{transform: 'none'}, {transform: 'scaleX(1.12)'}, {transform: 'none'}], {duration: spb * 1900});
+    if (c === 'owl') anim(el.querySelector('.zz'), [{opacity: 0, transform: 'translateY(10px)'}, {opacity: 1, transform: 'translateY(-14px)'}, {opacity: 0, transform: 'translateY(-30px)'}], {duration: spb * 1000});
+  }
+  function endPlay() {
+    stopClock(); ry.playing = false; lightHeart(-1); $('count').textContent = '';
+    [...$('boxes').children].forEach(b => b.classList.remove('now'));
+    rhyCtl();
+  }
+  function rhyCtl() {
+    if (mode === 'rhy') {
+      $('ctl').innerHTML = `${speedButtons()}
+        <button class="big soft" id="clear">Start over</button>
+        <button class="big${ry.playing ? ' stop' : ''}" id="go">${ry.playing ? '■ Stop' : '▶ Play'}</button>`;
+      wireSpeeds();
+      $('clear').onclick = () => { endPlay(); ry.pat = [null, null, null, null]; drawBoxes(ry.pat); say('Tap a card below, then tap a box.'); };
+      $('go').onclick = () => {
+        if (ry.playing) return endPlay();
+        if (ry.pat.some(c => !c)) { say('Fill all four boxes first.'); return; }
+        say('Clap with the buddies!'); playPattern(ry.pat, {times: 4, after: () => say('Again? Or change a card.')});
+      };
+    } else if (mode === 'echo') {
+      const e = ry.echo;
+      $('ctl').innerHTML = `<div class="speed" id="lv" role="group" aria-label="Cards in the game">${[['bear', 'bunny'], ['bear', 'bunny', 'owl'], ['bear', 'bunny', 'owl', 'snail']].map((ks, i) => `<button aria-pressed="${e.level === i + 1}" data-l="${i + 1}" aria-label="Cards: ${ks.join(', ')}">${ks.map(k => `<img src="${IMG[k]}" alt="" style="height:34px;vertical-align:middle">`).join('')}</button>`).join('')}</div>
+        ${speedButtons()}
+        ${e.stage === 'ready' ? '<button class="big" id="go">▶ Listen</button>' : ''}
+        ${e.stage === 'turn' ? '<button class="big" id="go">👀 Show me</button>' : ''}
+        ${e.stage === 'shown' ? '<button class="big soft" id="again">↻ Hear it again</button><button class="big" id="go">Next one →</button>' : ''}`;
+      wireSpeeds();
+      $('lv').querySelectorAll('button').forEach(b => b.onclick = () => { e.level = +b.dataset.l; newEcho(); });
+      if (e.stage === 'ready' || e.stage === 'turn' || e.stage === 'shown') $('go').onclick = e.stage === 'ready' ? listenEcho : e.stage === 'turn' ? showEcho : newEcho;
+      if ($('again')) $('again').onclick = () => playPattern(e.pat, {times: 1});
+    }
+  }
+  function say(t) { $('banner').textContent = t; }
+  function newEcho() {
+    endPlay();
+    const e = ry.echo; e.pat = randomPattern(e.level); e.stage = 'ready';
+    drawBoxes(e.pat, true); rhyCtl();
+    say('Listen to the buddies, then clap it back.');
+  }
+  function listenEcho() {
+    const e = ry.echo; e.stage = 'playing'; rhyCtl(); say('Listen...');
+    playPattern(e.pat, {times: 1, hidden: true, after: () => {
+      say('Your turn! Clap it back.'); e.stage = 'clap';
+      // keep the hearts going for one bar while the class claps
+      startClock(bpm(), (b, t) => {
+        if (b >= 4) { at(t, () => { lightHeart(-1); e.stage = 'turn'; rhyCtl(); say('Was that it? Let\'s look.'); }); return false; }
+        SND.heart(t); at(t, () => lightHeart(b));
+      });
+    }});
+  }
+  function showEcho() {
+    const e = ry.echo; e.stage = 'shown';
+    drawBoxes(e.pat, false); rhyCtl();
+    say(e.pat.filter(c => c !== 'tail').map(c => CARDS[c].word).join('   ·   '));
+    playPattern(e.pat, {times: 1, countIn: false});
+  }
+
+  // ---------- modes ----------
+  let mode = 'march';
+  function setMode(m) {
+    stopClock(); mr.on = false; ry.playing = false; mode = m;
+    ['march', 'rhy', 'echo'].forEach(k => $('t-' + k).setAttribute('aria-pressed', k === m));
+    $('march').hidden = m !== 'march'; $('rhy').hidden = m === 'march';
+    $('hearts').className = 'hearts ' + (m === 'march' ? 'march' : 'rhy');
+    drawHearts(); lightHeart(-1); say(''); $('count').textContent = ''; $('freeze').hidden = true;
+    if (m === 'march') { placeBuddies(true); marchCtl(); }
+    else if (m === 'rhy') { drawBoxes(ry.pat); drawPalette(); $('palette').hidden = false; rhyCtl(); say('Tap a card below, then tap a box.'); }
+    else { $('palette').hidden = true; newEcho(); }
+  }
+  $('t-march').onclick = () => setMode('march');
+  $('t-rhy').onclick = () => setMode('rhy');
+  $('t-echo').onclick = () => setMode('echo');
+  $('sound').onclick = e => {
+    soundOn = !soundOn;
+    if (master) master.gain.value = soundOn ? .9 : 0;
+    e.currentTarget.setAttribute('aria-pressed', soundOn);
+    e.currentTarget.textContent = soundOn ? '🔔 Sound' : '🔇 Sound';
+  };
+  document.addEventListener('keydown', e => {
+    if (e.code !== 'Space' || e.target.tagName === 'INPUT') return;
+    e.preventDefault();
+    const go = $('go'); go && go.click();
+  });
+
+  window.__bb = {setMode, ry, mr, startMarch, stopMarch, playPattern, setSlot, newEcho, listenEcho, showEcho, drawBoxes};  // for checking frames
+  setMode('march');
+})();
+</script>
+</body>
+</html>

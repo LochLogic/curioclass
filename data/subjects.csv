@@ -1,13 +1,13 @@
-subject_id,label,grades,primary_standards,notes
-math,Math,k-12,CCSS-M,Includes algebra geometry statistics calculus in 9-12
-ela,English Language Arts,k-12,CCSS-ELA,Reading writing speaking listening language
-science,Science,k-12,NGSS,Physical life earth and space engineering; 9-12 splits into biology chemistry physics earth science
-social-studies,Social Studies,k-12,C3 Framework,History geography civics economics
-arts,Arts,k-12,National Core Arts Standards,Visual arts music theater dance media arts
-health-pe,Health and PE,k-12,SHAPE America; National Health Education Standards,
-computer-science,Computer Science,k-12,CSTA K-12,
-world-languages,World Languages,k-12,ACTFL World-Readiness Standards,Spanish and ASL; others later (decided 2026-10-22)
-cte,Career and Technical Education,6-12,Advance CTE Career Clusters,Middle school exploration and high school pathways
-sel,Social and Emotional Learning,k-12,CASEL framework,Light shelf: in scope but not a build priority (decided 2026-10-22)
-eld,English Language Development,k-12,WIDA ELD Standards Framework (2020),For English learners; added 2026-10-22
-library,Library and Research Skills,k-12,AASL National School Library Standards (2018),Added 2026-10-22
+subject_id,label,grades,primary_standards,notes,covers
+math,Math,k-12,CCSS-M,Includes algebra geometry statistics calculus in 9-12,"Counting through calculus, statistics and precalculus"
+ela,English Language Arts,k-12,CCSS-ELA,Reading writing speaking listening language,"Reading, writing, speaking, listening and language"
+science,Science,k-12,NGSS,Physical life earth and space engineering; 9-12 splits into biology chemistry physics earth science,"Life, physical, earth and space science and engineering"
+social-studies,Social Studies,k-12,C3 Framework,History geography civics economics,"History, geography, civics and economics"
+arts,Arts and Music,k-12,National Core Arts Standards,Visual arts music theater dance media arts,"Music, visual arts, theater, dance and media arts"
+health-pe,Health and PE,k-12,SHAPE America; National Health Education Standards,,"Health, nutrition, movement and safety"
+computer-science,Computer Science,k-12,CSTA K-12,,"Coding, algorithms, data, networks and computing in society"
+world-languages,World Languages,k-12,ACTFL World-Readiness Standards,Spanish and ASL; others later (decided 2026-10-22),Spanish and American Sign Language
+cte,Career and Technical Education,6-12,Advance CTE Career Clusters,Middle school exploration and high school pathways,"Career exploration, personal finance and career pathways"
+sel,Social and Emotional Learning,k-12,CASEL framework,Light shelf: in scope but not a build priority (decided 2026-10-22),"Feelings, relationships and decision making"
+eld,English Language Development,k-12,WIDA ELD Standards Framework (2020),For English learners; added 2026-10-22,Language support for English learners
+library,Library and Research Skills,k-12,AASL National School Library Standards (2018),Added 2026-10-22,"Finding, judging and citing information"

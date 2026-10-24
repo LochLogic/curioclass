@@ -1,0 +1,20 @@
+{
+  "id": "fingerspell-flash",
+  "status": "beta",
+  "driver": "students or teacher",
+  "modes": [
+    "Alphabet",
+    "Spell it",
+    "Read it"
+  ],
+  "grades_label": "Grades K-12",
+  "third_party": [],
+  "updated": "2026-10-23",
+  "hook": "All 26 handshapes of the ASL manual alphabet, any word or name fingerspelled at the speed you pick, and a reading game that speeds up every time you get one right.",
+  "outcome": "Form and recognize the 26 handshapes of the ASL manual alphabet, fingerspell names with a smooth rhythm, and read short fingerspelled words",
+  "minutes": "10-25",
+  "sources": [
+    "Hand drawings: public domain ASL alphabet line art from wpclipart.com, via Wikimedia Commons",
+    "Practice for the manual alphabet only; learn from Deaf signers and your ASL teacher"
+  ]
+}

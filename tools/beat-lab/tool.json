@@ -1,0 +1,22 @@
+{
+  "id": "beat-lab",
+  "status": "beta",
+  "driver": "students",
+  "modes": [
+    "Channel rack",
+    "Piano roll",
+    "Song",
+    "Mixer",
+    "Sounds"
+  ],
+  "grades_label": "Grades 9-12",
+  "third_party": [],
+  "updated": "2026-10-23",
+  "hook": "A full step-sequencer studio in one file: 214 sounds and 10 drum kits, 30 instruments, your own samples, a piano roll, a song playlist and a mixer with sidechain pump and a DJ filter. Export your track as a WAV.",
+  "outcome": "Compose, arrange and produce an original track: build rhythms and harmony in a key, develop ideas through variation and song form, and refine a mix before presenting the finished work",
+  "minutes": "30-90",
+  "sources": [
+    "All sound synthesized in the browser with the Web Audio API",
+    "Demo tracks written for Curio Class"
+  ]
+}

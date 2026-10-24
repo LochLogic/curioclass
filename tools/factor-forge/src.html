@@ -103,6 +103,20 @@ h1 small{display:block;font:400 13.5px/1.3 'Segoe UI',sans-serif;color:var(--mut
 .result .eq{font-size:24px}
 .result p{margin:8px 0 0;font-size:15.5px;line-height:1.45;color:#eadfcf}
 .big{font:900 64px/1 'Trebuchet MS',sans-serif;color:var(--gold)}
+.steps{position:absolute;left:350px;width:740px;top:84px;z-index:5;display:flex;gap:6px}
+.steps[hidden]{display:none}
+.steps span{flex:1;background:#000b;border:1px solid var(--line);border-radius:12px;padding:6px 8px;font:700 13.5px/1.25 'Segoe UI',sans-serif;color:var(--muted);text-align:center}
+.steps span b{display:block;font:900 12px 'Segoe UI',sans-serif;letter-spacing:.12em;text-transform:uppercase;opacity:.8}
+.steps span.now{background:var(--gold);color:#2a1700;border-color:var(--gold);box-shadow:0 0 18px #ffb40066}
+.steps span.done{color:#7fd88f;border-color:#7fd88f77}
+.steps span.done b::before{content:'✓ '}
+.pairmode .mid{top:156px}
+.side.on{border-color:var(--gold);box-shadow:0 0 0 2px var(--gold),0 0 28px #ffb40055}
+.side .tag{align-self:flex-start;background:var(--gold);color:#2a1700;border-radius:999px;padding:2px 10px;font:800 12px 'Segoe UI',sans-serif;letter-spacing:.08em;text-transform:uppercase}
+.side .tag.wait{background:#2c211b;color:var(--muted);border:1px solid var(--line)}
+.side .tag.ok{background:#1d2e20;color:#7fd88f;border:1px solid #7fd88f77}
+.side .row{display:flex;gap:8px;flex-wrap:wrap}
+.side .row .btn{min-height:40px;font-size:14.5px;padding:0 12px}
 .over{position:absolute;inset:0;z-index:8;display:grid;place-items:center;background:#000a}
 .over div{background:#1b1512;border:2px solid var(--gold);border-radius:22px;padding:26px 34px;text-align:center;max-width:560px}
 .over h2{margin:0 0 6px;font:900 34px 'Trebuchet MS',sans-serif;color:#ffd79a}
@@ -129,6 +143,7 @@ h1 small{display:block;font:400 13.5px/1.3 'Segoe UI',sans-serif;color:var(--mut
 
     <aside class="side l" id="left"></aside>
     <aside class="side r" id="right"></aside>
+    <div class="steps" id="steps" hidden></div>
     <div class="mid" id="mid"></div>
 
     <img class="anvil" id="anvil" src="art:anvil" alt="An anvil">
@@ -354,9 +369,11 @@ h1 small{display:block;font:400 13.5px/1.3 'Segoe UI',sans-serif;color:var(--mut
     st.pairJob = {A, B, side: 'a', stage: 'smash', a: [], b: [], used: {a: [], b: []}, pairs: [], pick: null};
     $('pairs').innerHTML = ''; $('pairs').hidden = true;
     $('crucible').hidden = true; $('anvil').hidden = false; $('result').hidden = true;
-    $('left').innerHTML = `<h2>${A}</h2><div class="pile" id="pileA"></div><div class="eq" id="eqA"></div><div style="flex:1"></div><p class="say" id="say"></p>`;
-    $('right').innerHTML = `<h2>${B}</h2><div class="pile" id="pileB"></div><div class="eq" id="eqB"></div><div style="flex:1"></div>
-      <p>Smash both numbers into primes. Then <b>pair the coins they share</b> and melt them down.</p>`;
+    $('left').innerHTML = `<h2>First number: ${A}</h2><span class="tag" id="tagA"></span><div class="pile" id="pileA"></div><div class="eq" id="eqA"></div><div style="flex:1"></div><p class="say" id="say"></p>`;
+    $('right').innerHTML = `<h2>Second number: ${B}</h2><span class="tag" id="tagB"></span><div class="pile" id="pileB"></div><div class="eq" id="eqB"></div><div style="flex:1"></div>
+      <p id="howto"></p><div class="row"><button class="btn soft" id="undo" hidden>↶ Undo last pair</button><button class="btn soft" id="fresh">↺ New pair of numbers</button></div>`;
+    $('fresh').onclick = newPair;
+    $('undo').onclick = undoPair;
     $('mid').innerHTML = '';
     newIngot(A); tell(`First, smash ${A} into primes.`);
     drawPair();
@@ -373,6 +390,35 @@ h1 small{display:block;font:400 13.5px/1.3 'Segoe UI',sans-serif;color:var(--mut
     }
     document.querySelectorAll('.pile .coin').forEach(c => c.onclick = () => pickCoin(c.dataset.s, +c.dataset.i));
     $('pairs').innerHTML = j.pairs.map(p => `<span class="pair">${coinHTML(p)}${coinHTML(p)}</span>`).join('');
+    drawSteps();
+  }
+  // where are we? a four-step trail across the top, a glow on the panel in use, and a line on what to do next
+  function drawSteps() {
+    const j = st.pairJob, now = {smash: j.side === 'a' ? 0 : 1, match: 2, done: 4}[j.stage];
+    const names = [['Step 1', `Smash ${j.A}`], ['Step 2', `Smash ${j.B}`], ['Step 3', 'Pair the shared primes'], ['Step 4', 'Melt: GCF and LCM']];
+    $('steps').hidden = false;
+    $('steps').innerHTML = names.map(([k, t], i) => `<span class="${i < now ? 'done' : i === now ? 'now' : ''}"${i === now ? ' aria-current="step"' : ''}><b>${k}</b>${t}</span>`).join('');
+    const tag = (id, cls, text) => { $(id).className = 'tag ' + cls; $(id).textContent = text; };
+    if (j.stage === 'smash') {
+      tag('tagA', j.side === 'a' ? '' : 'ok', j.side === 'a' ? 'Smashing now' : 'Done');
+      tag('tagB', j.side === 'b' ? '' : 'wait', j.side === 'b' ? 'Smashing now' : 'Up next');
+      $('howto').innerHTML = j.side === 'a' ? `Break <b>${j.A}</b> into prime coins with the hammers. Then you'll do the same to ${j.B}.` : `Now break <b>${j.B}</b> into prime coins. Then you'll pair them up.`;
+    } else {
+      tag('tagA', j.stage === 'match' ? '' : 'ok', j.stage === 'match' ? 'Pick from here' : 'Done');
+      tag('tagB', j.stage === 'match' ? '' : 'ok', j.stage === 'match' ? 'And from here' : 'Done');
+      $('howto').innerHTML = j.stage === 'match' ? `Tap a coin on the left, then the <b>same prime</b> on the right. When no more coins match, press <b>Melt it!</b>` : 'Read the results in the middle, or start a new pair.';
+    }
+    $('left').classList.toggle('on', j.stage === 'match' || (j.stage === 'smash' && j.side === 'a'));
+    $('right').classList.toggle('on', j.stage === 'match' || (j.stage === 'smash' && j.side === 'b'));
+    $('undo').hidden = !(j.stage === 'match' && j.pairs.length);
+    $('hmlab').hidden = j.stage !== 'smash';
+    $('hammers').style.visibility = j.stage === 'smash' ? '' : 'hidden';
+  }
+  function undoPair() {
+    const j = st.pairJob;
+    if (j.stage !== 'match' || !j.pairs.length) return;
+    j.pairs.pop(); j.used.a.pop(); j.used.b.pop(); j.pick = null;
+    SFX.tick(); tell('Pair undone. The coins are back in their piles.'); drawPair();
   }
   async function startMatch() {
     const j = st.pairJob;
@@ -392,7 +438,7 @@ h1 small{display:block;font:400 13.5px/1.3 'Segoe UI',sans-serif;color:var(--mut
     if (!j.pick || j.pick[0] === s) { j.pick = [s, i]; SFX.tick(); drawPair(); return; }
     const [s0, i0] = j.pick, p = j[s0][i0];
     if (j[s][i] !== p) { SFX.thud(); tell(`${j[s][i]} and ${p} don't match. A pair needs the same prime from both numbers.`, true); j.pick = null; drawPair(); return; }
-    j.used[s0].push(i0); j.used[s].push(i); j.pairs.push(p); j.pick = null;
+    j.used.a.push(s0 === 'a' ? i0 : i); j.used.b.push(s0 === 'b' ? i0 : i); j.pairs.push(p); j.pick = null;
     SFX.coin(); tell(`A pair of ${p}s! Both numbers have ${p} as a factor.`);
     drawPair();
   }
@@ -415,6 +461,7 @@ h1 small{display:block;font:400 13.5px/1.3 'Segoe UI',sans-serif;color:var(--mut
       Check it: ${G} × ${L} = ${G * L} = ${j.A} × ${j.B}.</p>
       <p><button class="btn" id="again">Forge another pair →</button></p>`;
     $('again').onclick = newPair;
+    drawSteps();
     tell(`${j.A} and ${j.B} share ${j.pairs.join(', ')}. The leftovers were ${[...la, ...lb].join(', ') || 'none'}.`);
   }
 
@@ -467,6 +514,9 @@ h1 small{display:block;font:400 13.5px/1.3 'Segoe UI',sans-serif;color:var(--mut
   function setMode(m) {
     if (st.rush) { clearTimeout(st.rush.timer); st.rush = null; }
     st.mode = m; st.busy = false;
+    $('scene').classList.toggle('pairmode', m === 'pair');
+    $('hammers').style.visibility = '';
+    $('steps').hidden = true; $('left').classList.remove('on'); $('right').classList.remove('on');
     ['smash', 'pair', 'rush'].forEach(k => $('t-' + k).setAttribute('aria-pressed', k === m));
     $('over').hidden = true; $('result').hidden = true; $('mid').innerHTML = '';
     $('crucible').hidden = true; $('pairs').hidden = true; $('anvil').hidden = false; $('anvil').style.opacity = '';

@@ -1,0 +1,20 @@
+{
+  "id": "beat-buddies",
+  "status": "beta",
+  "driver": "teacher",
+  "modes": [
+    "March",
+    "Rhythm",
+    "Echo"
+  ],
+  "grades_label": "Grades K-2",
+  "third_party": [],
+  "updated": "2026-10-23",
+  "hook": "A bear, a bunny and a snail march to the steady beat while the class pats along and freezes when the music stops. Then build rhythms from animal cards and clap them back.",
+  "outcome": "Keep a steady beat at different speeds, tell the beat from the rhythm, and read, clap and create four-beat patterns with long sounds, short sounds and rests",
+  "minutes": "10-20",
+  "sources": [
+    "Illustrations generated with Google Gemini, edited for Curio Class",
+    "Original march tune; all sound synthesized in the browser"
+  ]
+}

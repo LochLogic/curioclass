@@ -1,0 +1,21 @@
+{
+  "id": "note-ninja",
+  "status": "beta",
+  "driver": "students or teacher",
+  "modes": [
+    "Explore",
+    "Note Ninja",
+    "Count the beats"
+  ],
+  "grades_label": "Grades 3-5",
+  "third_party": [],
+  "updated": "2026-10-23",
+  "hook": "Tap the staff to hear and name notes in treble and bass clef, slice flying notes by naming them before they reach the ninja, and fill measures with notes and rests that fit the time signature.",
+  "outcome": "Name notes on the treble and bass staff, including middle C, and read and count note and rest values in 2/4, 3/4 and 4/4 time",
+  "minutes": "15-30",
+  "sources": [
+    "Illustrations generated with Google Gemini, edited for Curio Class",
+    "Treble and bass clef drawings: public domain, Wikimedia Commons",
+    "Sound synthesized in the browser"
+  ]
+}
