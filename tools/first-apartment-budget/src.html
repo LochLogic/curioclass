@@ -1,0 +1,1105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>First Apartment Budget · A year on your own · Curio Class</title>
+<meta name="description" content="Pick a real city, a real starting job and a place to live, then survive your first year on your own: paychecks with real 2026 tax rules, rent from HUD Fair Market Rents, local pay from BLS, surprise bills, credit cards, roommates and a year-end report card. Grades 9-12 personal finance. Works offline.">
+<!--
+FIRST APARTMENT BUDGET (Curio Class)
+Grades 9-12 personal finance, National Standards for Personal Financial Education: Spending and Saving
+(budgeting, needs and wants, paychecks and taxes), Managing Credit, Managing Risk (insurance, emergency funds).
+A year-long simulation. Plan: choose a city, a starting job, a home, transportation and benefits; the paycheck and
+monthly budget update live against the 30 percent housing guideline and the 50/30/20 rule. Live the year: twelve
+months play out day by day with paydays every other Friday, bills on their due dates and surprise events that ask
+for decisions (pay from checking, savings or a credit card). Report: a graded year-end review and a flow diagram
+of where every dollar went. Class codes let a whole class play the same year of surprises.
+Data:
+- Rents: HUD Fair Market Rents, FY2026 (40th-percentile gross rent, which includes utilities; we split out an
+  estimated utility bill).
+- Starting pay: BLS Occupational Employment and Wage Statistics, May 2025, the 25th-percentile annual wage for each
+  job in each metro area (our stand-in for starting pay). Denver's electrician-helper figure was suppressed by BLS
+  and is estimated from the national figure.
+- Federal income tax: 2026 brackets and $16,100 standard deduction (IRS Rev. Proc. 2025-32). FICA 7.65 percent.
+  State and local income taxes are simplified approximations, described in the teacher notes.
+- Food: USDA Food Plans (2025), average of the female and male 19-50 costs, plus 20 percent for a one-person home.
+- Health premium: KFF 2025 Employer Health Benefits Survey, average worker contribution for single coverage
+  ($1,440 a year).
+- Credit card APR about 24 percent, near the Federal Reserve G.19 average of about 22 percent for accounts that
+  carry a balance (2026), a little higher for a first card.
+- Student loans at 6.39 percent (federal undergraduate rate for 2025-26), 10-year standard plan, 6-month grace.
+Other prices (transit passes, car insurance for a young driver, phone plans) are rounded typical figures.
+Educational simulation only, not financial advice.
+One file, no network requests. Illustrations generated with Google Gemini, edited for Curio Class.
+Content CC BY 4.0, code MIT. curioclass.org
+-->
+<style>
+:root{
+  --paper:#f4efe6;--card:#fffdf8;--ink:#1f2433;--muted:#646b7d;--line:#e2d9ca;--focus:#2563eb;
+  --navy:#1f2a44;--terra:#c8643b;--sage:#6f9a7a;--cream:#fbf3e3;--gold:#d9a33a;
+  --good:#2f8a5a;--bad:#c2412f;--warn:#c48a14;
+  --c-housing:#c8643b;--c-utilities:#e09a5b;--c-food:#7aa35f;--c-transport:#4f7fb0;--c-health:#2f9a8f;--c-phone:#8a6fc0;
+  --c-fun:#d65d8b;--c-loans:#7a5a44;--c-save:#2f8a5a;--c-tax:#8f96a8;--c-other:#b9a98f;--c-interest:#b02f2f;
+  font-family:'Segoe UI',system-ui,-apple-system,Roboto,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0;height:100%}
+body{background:var(--paper);color:var(--ink);display:grid;grid-template-rows:auto 1fr;min-height:100vh}
+button,select,input{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+header{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 18px;background:var(--navy);color:#f6efe2}
+h1{margin:0 auto 0 0;font:800 clamp(20px,2.4vw,27px)/1.1 'Segoe UI',sans-serif;letter-spacing:-.01em}
+h1 i{font-style:normal;color:#f0b58a}
+h1 small{display:block;font:400 13.5px/1.3 'Segoe UI';color:#b9c0d4}
+.seg{display:inline-flex;background:#2c3a5c;border-radius:12px;padding:3px}
+.seg button{border:0;background:none;color:#dfe4f0;min-height:42px;padding:0 15px;border-radius:9px;font-weight:700;font-size:15px}
+.seg button[aria-pressed="true"]{background:#f6efe2;color:var(--navy)}
+.seg button:disabled{opacity:.4;cursor:default}
+.icon-btn{border:1px solid #3a4a70;background:#2c3a5c;color:#fff;border-radius:10px;min-height:44px;padding:0 13px;font-weight:600;font-size:15px}
+main{min-height:0;overflow:auto}
+.view{max-width:1320px;margin:0 auto;padding:16px 18px 30px}
+h2.sec{font:800 12.5px/1 'Segoe UI';letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin:0 0 8px}
+.box{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 16px}
+.note{font-size:13px;color:var(--muted);line-height:1.45;margin:0}
+.money{font-variant-numeric:tabular-nums}
+.pos{color:var(--good)}.neg{color:var(--bad)}
+
+/* ---------- plan ---------- */
+.plan{display:grid;grid-template-columns:minmax(0,1fr) 420px;gap:18px;align-items:start}
+@media (max-width:1050px){.plan{grid-template-columns:1fr}}
+.step{margin-bottom:16px}
+.step h3{display:flex;align-items:baseline;gap:10px;margin:0 0 8px;font:800 19px 'Segoe UI'}
+.step h3 b{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--navy);color:#fff;font-size:14px}
+.step h3 small{font:500 13.5px 'Segoe UI';color:var(--muted)}
+.opts{display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(178px,1fr))}
+.opt{position:relative;text-align:left;border:2px solid var(--line);background:#fff;border-radius:14px;padding:10px 12px;min-height:64px;display:flex;flex-direction:column;gap:2px}
+.opt:hover{border-color:#cdbfa8}
+.opt[aria-pressed="true"]{border-color:var(--terra);background:#fff6ef;box-shadow:inset 0 0 0 1px var(--terra)}
+.opt:disabled{opacity:.45;cursor:not-allowed}
+.opt b{font-size:15.5px}
+.opt span{font-size:13px;color:var(--muted);line-height:1.35}
+.opt .big{font:800 18px 'Segoe UI';color:var(--ink)}
+.opt img{width:100%;height:118px;object-fit:contain;margin:-2px 0 2px}
+.opt.ride img{height:74px}
+.opt .tag{position:absolute;top:8px;right:8px;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;background:var(--navy);color:#fff;border-radius:6px;padding:2px 6px}
+.challenges .opt{min-height:96px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-width:700px){.row2{grid-template-columns:1fr}}
+.ctl{background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px 12px}
+.ctl label{display:flex;justify-content:space-between;align-items:baseline;font-weight:700;font-size:14.5px;gap:8px}
+.ctl label output{font:800 17px 'Segoe UI';font-variant-numeric:tabular-nums;white-space:nowrap}
+.ctl .help{font-size:12.5px;color:var(--muted);margin-top:2px;line-height:1.35}
+input[type=range]{width:100%;accent-color:var(--terra);height:28px;margin:2px 0 0}
+.pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.pills button{border:1px solid var(--line);background:#fffaf2;border-radius:10px;min-height:38px;padding:0 11px;font-weight:700;font-size:13.5px}
+.pills button[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:#fff}
+.side{position:sticky;top:12px;display:grid;gap:12px;max-height:calc(100vh - 86px);overflow:auto;padding-right:2px}
+@media (max-width:1050px){.side{position:static;max-height:none}}
+.stub{display:grid;gap:3px;font-size:14px}
+.stub div{display:flex;justify-content:space-between;gap:10px}
+.stub div.t{border-top:2px solid var(--ink);padding-top:4px;margin-top:3px;font-weight:800;font-size:16px}
+.stub div span:last-child{font-variant-numeric:tabular-nums}
+.stub div.ded span:first-child{padding-left:12px;color:var(--muted)}
+.wf{display:flex;height:22px;border-radius:7px;overflow:hidden;margin:8px 0 2px}
+.wf i{display:block;height:100%}
+.legend{display:flex;flex-wrap:wrap;gap:4px 10px;font-size:12px;color:var(--muted)}
+.legend span::before{content:'';display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:4px;background:var(--c)}
+.gauge{margin-top:8px}
+.gauge .lbl{display:flex;justify-content:space-between;font-size:13.5px;font-weight:700}
+.gauge .trk{position:relative;height:12px;background:#efe7da;border-radius:99px;margin-top:4px;overflow:hidden}
+.gauge .trk b{position:absolute;inset:0 auto 0 0;border-radius:99px}
+.gauge .trk em{position:absolute;top:0;bottom:0;width:2px;background:var(--ink)}
+.verdict{border-radius:12px;padding:9px 12px;font-size:14px;line-height:1.4;margin-top:8px}
+.verdict.ok{background:#e6f4ea;border-left:5px solid var(--good)}
+.verdict.warn{background:#fff3d9;border-left:5px solid var(--warn)}
+.verdict.bad{background:#fde8e4;border-left:5px solid var(--bad)}
+.go{border:0;border-radius:14px;min-height:56px;padding:0 24px;background:var(--terra);color:#fff;font:800 19px 'Segoe UI';box-shadow:0 4px 0 #8f3f1f;width:100%}
+.go:active{transform:translateY(2px);box-shadow:0 2px 0 #8f3f1f}
+.go:disabled{opacity:.45;cursor:default;transform:none}
+.ghost{border:2px solid var(--navy);border-radius:12px;min-height:46px;padding:0 16px;background:#fff;color:var(--navy);font-weight:800;font-size:15px}
+.seed{display:flex;gap:8px;align-items:center;font-size:13.5px;flex-wrap:wrap}
+.seed input{width:110px;min-height:38px;border:1px solid var(--line);border-radius:10px;padding:0 10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+
+/* ---------- live ---------- */
+.live{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:16px;align-items:start}
+@media (max-width:1050px){.live{grid-template-columns:1fr}}
+.hud{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;margin-bottom:12px}
+@media (max-width:800px){.hud{grid-template-columns:repeat(3,1fr)}}
+.hud>div{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:8px 11px;position:relative}
+.hud span{display:block;font-size:11px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+.hud b{font:800 21px 'Segoe UI';font-variant-numeric:tabular-nums;white-space:nowrap}
+.hud small{display:block;font-size:12px;color:var(--muted)}
+.hud .wb{height:6px;border-radius:99px;background:#efe7da;margin-top:5px;overflow:hidden}
+.hud .wb i{display:block;height:100%;border-radius:99px}
+.stage{position:relative;background:linear-gradient(180deg,#e9e1d2,#f4eee3 60%);border:1px solid var(--line);border-radius:18px;overflow:hidden;height:390px}
+.stage .home{position:absolute;left:calc((100% - 220px) / 2);top:54%;width:min(320px,calc(100% - 250px));transform:translate(-50%,-50%);filter:drop-shadow(0 14px 14px #0002)}
+.stage .ride{position:absolute;right:46px;bottom:20px;width:128px;filter:drop-shadow(0 6px 6px #0002)}
+.cal{position:absolute;right:16px;top:14px;background:#fff;border-radius:14px;box-shadow:0 4px 14px #0001;overflow:hidden;width:200px;border:1px solid var(--line)}
+.cal .mh{background:var(--terra);color:#fff;font:800 14px 'Segoe UI';padding:5px 10px;display:flex;justify-content:space-between}
+.cal .days{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;padding:6px;font-size:11px;text-align:center;font-weight:700;color:#9a9284}
+.cal .days i{font-style:normal;border-radius:5px;padding:2px 0;position:relative}
+.cal .days i.past{background:#f1ebe0;color:#bbb2a3}
+.cal .days i.now{background:var(--navy);color:#fff}
+.cal .days i.pay::after{content:'';position:absolute;bottom:1px;left:50%;width:4px;height:4px;margin-left:-2px;border-radius:50%;background:var(--good)}
+.month-label{position:absolute;left:16px;top:14px;font:800 26px 'Segoe UI';color:var(--navy)}
+.month-label small{display:block;font:600 13px 'Segoe UI';color:var(--muted)}
+.floats{position:absolute;inset:0;pointer-events:none}
+.fl{position:absolute;left:50%;font:800 17px 'Segoe UI';padding:3px 10px;border-radius:99px;background:#fff;box-shadow:0 3px 8px #0002;white-space:nowrap;transform:translateX(-50%)}
+.fl.in{color:var(--good)}.fl.out{color:var(--bad)}
+.chart{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:8px 10px;margin-top:12px}
+.chart svg{display:block;width:100%;height:150px}
+.ledger{max-height:250px;overflow:auto;font-size:13.5px}
+.ledger table{width:100%;border-collapse:collapse}
+.ledger td{padding:4px 4px;border-bottom:1px solid #f0e9dd}
+.ledger td:first-child{color:var(--muted);width:44px}
+.ledger td:last-child{text-align:right;font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+.panel{display:grid;gap:10px}
+.panel .row2{grid-template-columns:1fr}
+.speed{display:flex;gap:6px}
+.speed button{flex:1;border:1px solid var(--line);background:#fff;border-radius:10px;min-height:40px;font-weight:700;font-size:14px}
+.speed button[aria-pressed="true"]{background:var(--navy);color:#fff;border-color:var(--navy)}
+
+/* ---------- modal ---------- */
+.sheet{position:fixed;inset:0;background:#1f243366;display:flex;align-items:center;justify-content:center;z-index:30;padding:16px}
+.modal{background:var(--card);border-radius:22px;max-width:640px;width:100%;max-height:calc(100vh - 32px);overflow:auto;box-shadow:0 30px 80px #0005;padding:20px 22px}
+.modal .kicker{font:800 12px 'Segoe UI';letter-spacing:.13em;text-transform:uppercase;color:var(--terra)}
+.modal h2{margin:4px 0 6px;font:800 26px/1.15 'Segoe UI'}
+.modal p{font-size:16px;line-height:1.5;margin:0 0 12px}
+.modal h2.sec{font:800 12.5px/1 'Segoe UI';margin:0 0 8px}
+.modal .em{font-size:52px;line-height:1;float:right;margin-left:12px}
+.choices{display:grid;gap:8px;clear:both}
+.choice{width:100%}
+.choice{border:2px solid var(--line);background:#fff;border-radius:14px;padding:10px 14px;text-align:left;min-height:54px;display:grid;gap:2px}
+.choice:hover{border-color:#cdbfa8}
+.choice b{font-size:16px}
+.choice span{font-size:13.5px;color:var(--muted)}
+.choice[aria-pressed="true"]{border-color:var(--terra);background:#fff6ef}
+.payrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+.payrow button{border:0;border-radius:10px;min-height:44px;padding:0 14px;font-weight:800;font-size:14px;background:var(--navy);color:#fff}
+.payrow button.card{background:#7a2f4f}
+.payrow button.sav{background:var(--good)}
+.payrow button:disabled{opacity:.35;cursor:not-allowed}
+.sumgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:8px 0 12px}
+.sumgrid div{background:#f7f1e6;border-radius:12px;padding:8px 10px}
+.sumgrid span{display:block;font-size:11.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.sumgrid b{font:800 20px 'Segoe UI';font-variant-numeric:tabular-nums}
+.insight{background:#eef3fb;border-left:5px solid var(--navy);border-radius:10px;padding:9px 12px;font-size:15px;line-height:1.45;margin-bottom:12px}
+
+/* ---------- report ---------- */
+.rep{display:grid;grid-template-columns:360px minmax(0,1fr);gap:16px;align-items:start}
+@media (max-width:1000px){.rep{grid-template-columns:1fr}}
+.grade{font:900 92px/1 Georgia,serif;color:var(--terra)}
+.rub{display:grid;gap:9px;margin-top:10px}
+.rub div{display:grid;grid-template-columns:1fr auto;gap:2px 8px;font-size:14px}
+.rub div i{grid-column:1/3;display:block;height:9px;border-radius:99px;background:#efe7da;overflow:hidden}
+.rub div i b{display:block;height:100%;background:var(--sage);border-radius:99px}
+.rub div small{grid-column:1/3;color:var(--muted);font-size:12.5px}
+.goals{display:grid;gap:6px;margin-top:6px}
+.goals div{display:flex;gap:8px;align-items:flex-start;font-size:14.5px}
+.goals div b{flex:none;width:22px;text-align:center}
+.sankey svg{width:100%;display:block}
+.sankey text{font:700 12.5px 'Segoe UI'}
+.best{font-size:14px;display:grid;gap:4px}
+.calm *{animation:none!important;transition:none!important}
+@media (max-height:720px){.stage{height:330px}}
+</style>
+</head>
+<body>
+<header>
+  <h1>First <i>Apartment</i> Budget <small>Your first year on your own, with real rents, real pay and real taxes.</small></h1>
+  <div class="seg" role="group" aria-label="View">
+    <button id="tab-plan" aria-pressed="true">1 · Plan</button>
+    <button id="tab-live" aria-pressed="false">2 · Live the year</button>
+    <button id="tab-rep" aria-pressed="false">3 · Report</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true" title="Turn animation on or off">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+</header>
+<main id="main">
+  <section class="view" id="v-plan"></section>
+  <section class="view" id="v-live" hidden></section>
+  <section class="view" id="v-rep" hidden></section>
+</main>
+<div class="sheet" id="sheet" hidden><div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="m-title"></div></div>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const PL = "json:places";
+  const ART = {house: 'art:home-house', share: 'art:home-share', studio: 'art:home-studio', onebed: 'art:home-onebed', luxe: 'art:home-luxe',
+               bike: 'art:ride-bike', transit: 'art:ride-bus', oldcar: 'art:ride-oldcar', newcar: 'art:ride-newcar'};
+  const money = (n, cents) => (n < 0 ? '-' : '') + '$' + Math.abs(n).toLocaleString('en-US', {minimumFractionDigits: cents ? 2 : 0, maximumFractionDigits: cents ? 2 : 0});
+  const r2 = n => Math.round(n * 100) / 100;
+  const clamp = (x, a, b) => Math.max(a, Math.min(b, x));
+
+  // ---------- the world ----------
+  // State and local income tax, simplified. base: 'fed' = federal taxable income, 'w2' = wages after 401(k) and health,
+  // 'nok' = wages after health only (Massachusetts taxes 401(k) money). sick: a state paid-sick-leave law.
+  const CITY = {
+    fortwayne: {tax: [{rate: .0454, base: 'w2', minus: 1000, n: 'Indiana + Allen County'}], transit: 40, transitMin: 55, ins: .85, climate: 'cold', sick: false, blurb: 'Low rents, lower pay, and you will want a car.'},
+    columbus: {tax: [{rate: .0275, base: 'w2', minus: 26050, n: 'Ohio'}, {rate: .025, base: 'nok', minus: 0, n: 'Columbus city tax'}], transit: 62, transitMin: 45, ins: .85, climate: 'cold', sick: false, blurb: 'Affordable, growing, and it has a city income tax.'},
+    houston: {tax: [], transit: 55, transitMin: 55, ins: 1.2, climate: 'hot', sick: false, blurb: 'No state income tax, huge and spread out.'},
+    phoenix: {tax: [{rate: .025, base: 'w2', minus: 16100, n: 'Arizona'}], transit: 64, transitMin: 50, ins: 1.05, climate: 'hot', sick: true, blurb: 'Sunny, sprawling, and summer power bills bite.'},
+    denver: {tax: [{rate: .044, base: 'fed', minus: 0, n: 'Colorado'}, {flat: 69, n: 'Denver head tax'}], transit: 88, transitMin: 40, ins: 1.15, climate: 'cold', sick: true, blurb: 'Mountains, good pay, high rents.'},
+    boston: {tax: [{rate: .05, base: 'nok', minus: 4400, n: 'Massachusetts'}], transit: 90, transitMin: 30, ins: 1.0, climate: 'cold', sick: true, blurb: 'Great transit, very high rents.'},
+    seattle: {tax: [], transit: 108, transitMin: 35, ins: 1.0, climate: 'mild', sick: true, blurb: 'No state income tax, top pay, steep rents.'},
+  };
+  // Starting-job details. loan: student loan balance; school: what it took; match: 401(k) match up to this percent.
+  const JOB = {
+    retail: {n: 'Retail sales associate', em: '🛍️', school: 'High school diploma', start: 18, hourly: true, cut: true, sickPay: false, match: 0, health: 'yes', cash: 1500},
+    cook: {n: 'Restaurant line cook', em: '🍳', school: 'High school diploma', start: 18, hourly: true, cut: true, sickPay: false, match: 0, health: 'no', cash: 1200},
+    warehouse: {n: 'Warehouse associate', em: '📦', school: 'High school diploma', start: 18, hourly: true, cut: false, sickPay: false, match: 3, health: 'yes', cash: 1500},
+    service: {n: 'Customer service rep', em: '🎧', school: 'High school diploma', start: 18, hourly: true, cut: true, sickPay: false, match: 3, health: 'yes', cash: 1500},
+    pharmtech: {n: 'Pharmacy technician', em: '💊', school: 'Certificate, about 6 months', start: 19, hourly: true, cut: false, sickPay: false, match: 4, health: 'yes', loan: 3000, cash: 1200},
+    medassist: {n: 'Medical assistant', em: '🩺', school: 'Certificate, about 1 year', start: 19, hourly: true, cut: false, sickPay: false, match: 3, health: 'yes', loan: 5000, cash: 1200},
+    electrician: {n: 'Electrician apprentice', em: '💡', school: 'Paid apprenticeship (you earn while you learn)', start: 18, hourly: true, cut: false, sickPay: false, match: 0, health: 'yes', cash: 1500, raise: 8},
+    hvac: {n: 'HVAC technician', em: '❄️', school: 'Certificate, about 1 year', start: 19, hourly: true, cut: false, sickPay: false, match: 3, health: 'yes', loan: 8000, cash: 1200},
+    nurse: {n: 'Registered nurse', em: '🏥', school: '4-year nursing degree', start: 22, hourly: true, cut: false, sickPay: true, match: 4, health: 'yes', loan: 27000, cash: 2000},
+    accountant: {n: 'Staff accountant', em: '🧾', school: '4-year degree in accounting', start: 22, hourly: false, cut: false, sickPay: true, match: 5, health: 'yes', loan: 29000, cash: 2000},
+    webdev: {n: 'Junior web developer', em: '💻', school: '4-year degree or bootcamp', start: 22, hourly: false, cut: false, sickPay: true, match: 4, health: 'yes', loan: 29000, cash: 2000},
+  };
+  const LOAN_RATE = .0639, CARD_APR = .24, CARD_LIMIT = 1500, HYSA = .038, OVERDRAFT = 35, LATE_FEE = 32;
+  const loanPay = bal => { const r = LOAN_RATE / 12; return bal ? r2(bal * r / (1 - (1 + r) ** -120)) : 0; };
+  // Homes. FMR (HUD) includes utilities, so rent = FMR share minus the utility estimate for that unit size.
+  const UTIL = [130, 150, 190, 230], NET = 65;
+  const HOME = {
+    house: {n: 'Room in a shared house', sub: '2 roommates', size: 3, share: 3, comfort: 50, furn: 300, roommates: true},
+    share: {n: 'Share a 2-bedroom', sub: '1 roommate', size: 2, share: 2, comfort: 59, furn: 650, roommates: true},
+    studio: {n: 'Studio apartment', sub: 'just you, one room', size: 0, share: 1, comfort: 64, furn: 900},
+    onebed: {n: 'One-bedroom', sub: 'just you', size: 1, share: 1, comfort: 70, furn: 1200},
+    luxe: {n: 'New one-bedroom downtown', sub: 'gym and laundry included', size: 1, share: 1, comfort: 80, furn: 1500, mult: 1.35, gym: true, laundry: true, close: true},
+  };
+  function homeCost(cityId, h) {
+    const c = PL.cities.find(c => c.id === cityId), H = HOME[h];
+    const util = UTIL[H.size] / H.share, gross = c.fmr[H.size] * (H.mult || 1) / H.share;
+    return {rent: Math.round(gross - util), util: Math.round(util), net: Math.round(NET / H.share), gross: Math.round(gross)};
+  }
+  const RIDE = {
+    bike: {n: 'Bike and walk', sub: 'cheap, weather permitting', em: '🚲'},
+    transit: {n: 'Transit pass', sub: 'monthly bus and train pass', em: '🚌'},
+    oldcar: {n: 'Old paid-off car', sub: '$3,500 cash, 160,000 miles', em: '🚗', price: 3500},
+    newcar: {n: 'Financed newer car', sub: '$19,000 used SUV, 60-month loan', em: '🚙', price: 19000},
+  };
+  function rideCost(s) {
+    const C = CITY[s.city];
+    if (s.ride === 'bike') return {pay: 0, ins: 0, gas: 0, fix: 15, pass: 0, mins: s.home === 'luxe' ? 15 : 38};
+    if (s.ride === 'transit') return {pay: 0, ins: 0, gas: 0, fix: 0, pass: C.transit, mins: s.home === 'luxe' ? Math.round(C.transitMin * .6) : C.transitMin};
+    const old = s.ride === 'oldcar';
+    return {pay: old ? 0 : carLoanPay(), ins: Math.round((old ? 135 : 265) * C.ins), gas: 115, fix: old ? 60 : 20, pass: 0, mins: s.home === 'luxe' ? 18 : 25, parking: s.home === 'luxe' ? 125 : 0};
+  }
+  const carLoanPay = () => { const r = .11 / 12, P = 19000 - 2000; return r2(P * r / (1 - (1 + r) ** -60)); };  // $2,000 down at 11%: a typical rate for a thin credit file
+  const HEALTH = {
+    employer: {n: 'Employer plan', sub: '$120 a month, $1,500 deductible', prem: 120, ded: 1500},
+    parent: {n: "Stay on a parent's plan", sub: '$0 until age 26, if your family has one', prem: 0, ded: 1000},
+    market: {n: 'Marketplace plan', sub: 'about $150 a month after help', prem: 150, ded: 2500},
+    none: {n: 'No insurance', sub: '$0 a month, all the risk', prem: 0, ded: Infinity},
+  };
+  const STUFF = 160;  // clothes, toiletries, cleaning supplies, haircuts: a rounded typical figure for a young adult living alone
+  const FURN = {thrift: ['Thrift store and hand-me-downs', .35, -2], basic: ['Basic new furniture', 1, 0], new: ['Nice new furniture', 2, 3]};
+  const FOOD = {thrifty: ['Cook on a tight budget', 335], moderate: ['Cook normally', 425], liberal: ['Nice groceries', 525]};
+  const PHONE = {basic: ['Prepaid plan', 15], mid: ['Unlimited plan', 45], premium: ['Premium + new phone', 95]};
+
+  // ---------- federal and payroll taxes (2026) ----------
+  const BR = [[12400, .10], [50400, .12], [105700, .22], [201775, .24], [256225, .32], [640600, .35], [Infinity, .37]];
+  function fedTax(ti) { let t = 0, lo = 0; for (const [hi, r] of BR) { if (ti > lo) t += (Math.min(ti, hi) - lo) * r; lo = hi; } return t; }
+  function taxes(gross, k401, health) {
+    const fedTI = Math.max(0, gross - k401 - health - 16100);
+    const fed = fedTax(fedTI), fica = .0765 * (gross - health);
+    let state = 0; const parts = [];
+    for (const t of CITY[S.city].tax) {
+      let x = t.flat || 0;
+      if (t.rate) { const base = t.base === 'fed' ? fedTI : t.base === 'nok' ? gross - health : gross - k401 - health; x = t.rate * Math.max(0, base - t.minus); }
+      state += x; parts.push([t.n, x]);
+    }
+    return {fed, fica, state, parts, fedTI};
+  }
+
+  // ---------- state ----------
+  const DEF = {challenge: 'free', city: 'columbus', job: 'service', home: 'share', ride: 'transit', health: 'employer', k401: 3, renters: true,
+               food: 'moderate', meals: 2, fun: 150, phone: 'mid', subs: 2, gym: false, save: 100, cardUse: false, cardPay: 'full', seed: '', link: true, furn: 'basic'};
+  const S = Object.assign({}, DEF);
+  try { Object.assign(S, JSON.parse(localStorage.getItem('first-apartment-plan') || '{}')); } catch {}
+  const savePlan = () => { try { localStorage.setItem('first-apartment-plan', JSON.stringify(S)); } catch {} };
+  const CH = {
+    free: {n: 'Free play', em: '🗝️', sub: 'Any city, any job. Build a year you would be proud of.', goals: [['fund1', 'Save at least one month of expenses'], ['nocard', 'End with no credit card debt'], ['well50', 'Keep wellbeing at 50 or above on average']]},
+    tight: {n: 'Paycheck to paycheck', em: '🍳', sub: 'Line cook in Denver with $600 to your name.', lock: {city: 'denver', job: 'cook'}, cash: 600, goals: [['nood', 'No overdraft fees all year'], ['nolate', 'Never miss a card payment'], ['sav500', 'End with $500 or more in savings']]},
+    boston: {n: 'Big city, small budget', em: '🏙️', sub: 'Medical assistant in Boston. Can you make it work?', lock: {city: 'boston', job: 'medassist'}, goals: [['nocard', 'End with no credit card debt'], ['nwup', 'End the year worth more than you started'], ['well50', 'Keep wellbeing at 50 or above on average']]},
+    car: {n: 'The car question', em: '🚙', sub: 'Warehouse job across Houston. Car, bus or bike?', lock: {city: 'houston', job: 'warehouse'}, goals: [['nw2k', 'Grow your net worth by $2,000'], ['well55', 'Average wellbeing of 55 or more'], ['nood', 'No overdraft fees all year']]},
+    grad: {n: 'New grad with loans', em: '🎓', sub: 'Staff accountant in Columbus with $29,000 in student loans.', lock: {city: 'columbus', job: 'accountant'}, goals: [['match', 'Get the full 401(k) match every paycheck'], ['fund3', 'Save three months of expenses'], ['nolate', 'Never miss a payment']]},
+    tech: {n: 'Seattle sprint', em: '💻', sub: 'Junior web developer in Seattle. Save $15,000 and still have a life.', lock: {city: 'seattle', job: 'webdev'}, goals: [['sav15k', 'Have $15,000 in savings by the end'], ['well60', 'Average wellbeing of 60 or more'], ['match', 'Get the full 401(k) match']]},
+  };
+  function applyLock() { const L = CH[S.challenge].lock; if (L) Object.assign(S, L); }
+  applyLock();
+  const startCash = () => CH[S.challenge].cash ?? JOB[S.job].cash;
+  const payOf = (job = S.job) => PL.cities.find(c => c.id === S.city).pay[job];
+
+  // ---------- monthly picture (used by Plan and by each month) ----------
+  function budget(o = {}) {
+    const s = Object.assign({}, S, o), H = HOME[s.home], h = homeCost(s.city, s.home), r = rideCost(s), J = JOB[s.job];
+    const gross = o.gross ?? payOf(s.job);
+    const prem = HEALTH[s.health].prem, k = gross * s.k401 / 100;
+    const tx = taxes(gross, k, prem * 12);
+    const net = (gross - k - prem * 12 - tx.fed - tx.fica - tx.state) / 12;
+    const eat = Math.round(s.meals * 4.33 * 16);
+    const loan = J.loan ? loanPay(J.loan) : 0;
+    const lines = {
+      housing: h.rent, utilities: h.util + h.net + (H.laundry ? 0 : 25), food: FOOD[s.food][1] + eat,
+      transport: r.pay + r.ins + r.gas + r.fix + r.pass + (r.parking || 0), phone: PHONE[s.phone][1] + s.subs * 12,
+      stuff: STUFF, insurance: s.renters ? 15 : 0, loans: loan, fun: s.fun + (s.gym && !H.gym ? 40 : 0), save: s.save * 26 / 12,
+    };
+    const needs = lines.housing + lines.utilities + FOOD[s.food][1] + lines.transport + 15 + lines.insurance + lines.loans + STUFF * .6;
+    const wants = STUFF * .4 + eat + (PHONE[s.phone][1] - 15) + s.subs * 12 + lines.fun;
+    const spend = Object.entries(lines).reduce((a, [k, v]) => a + (k === 'save' ? 0 : v), 0);
+    lines.spend0 = (lines.transport + lines.phone + lines.utilities + lines.food + lines.fun + lines.stuff) / 2;  // roughly what falls before the first payday
+    return {gross, k, prem, tx, net, lines, needs, wants, spend, left: net - spend - lines.save, h, r, loan};
+  }
+
+  // ---------- seeded random ----------
+  function rng(seed) { let a = 0; for (const ch of String(seed)) a = Math.imul(a ^ ch.charCodeAt(0), 2654435761) >>> 0; a = a || 1; return () => { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+  const newSeed = () => { const w = 'ABCDEFGHJKMNPQRSTUVWXYZ23456789'; let s = ''; for (let i = 0; i < 5; i++) s += w[Math.floor(Math.random() * w.length)]; return s; };
+
+  // ---------- motion, sound ----------
+  let reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  try { const m = localStorage.getItem('curio-motion'); if (m) reduce = m === 'calm'; } catch {}
+  function motionUI() { $('motion').setAttribute('aria-pressed', !reduce); $('motion').textContent = reduce ? '⏸ Motion' : '✨ Motion'; document.body.classList.toggle('calm', reduce); }
+  motionUI();
+  $('motion').onclick = () => { reduce = !reduce; try { localStorage.setItem('curio-motion', reduce ? 'calm' : 'on'); } catch {} motionUI(); };
+  let actx, soundOn = true;
+  function tone(f, dur = .1, type = 'sine', gain = .1, at = 0, slide = 1) {
+    if (!soundOn) return;
+    try {
+      actx = actx || new (window.AudioContext || window.webkitAudioContext)();
+      if (actx.state === 'suspended') actx.resume();
+      const t = actx.currentTime + at, o = actx.createOscillator(), g = actx.createGain();
+      o.type = type; o.frequency.setValueAtTime(f, t); o.frequency.exponentialRampToValueAtTime(f * slide, t + dur);
+      g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(gain, t + .008); g.gain.exponentialRampToValueAtTime(.0001, t + dur);
+      o.connect(g).connect(actx.destination); o.start(t); o.stop(t + dur + .02);
+    } catch {}
+  }
+  const SFX = {
+    pay: () => { tone(1318, .09, 'sine', .08); tone(1760, .16, 'sine', .07, .07); },
+    bill: () => tone(330, .08, 'triangle', .05),
+    alert: () => { tone(660, .1, 'triangle', .08); tone(880, .14, 'triangle', .08, .1); },
+    bad: () => tone(220, .22, 'sawtooth', .04, 0, .7),
+    done: () => [523, 659, 784, 1047].forEach((f, i) => tone(f, .18, 'sine', .07, i * .09)),
+  };
+  $('sound').onclick = e => { soundOn = !soundOn; e.currentTarget.setAttribute('aria-pressed', soundOn); e.currentTarget.textContent = soundOn ? '🔔 Sound' : '🔇 Sound'; };
+  const anim = (el, kf, opt) => { if (reduce || !el || !el.animate) return Promise.resolve(); const a = el.animate(kf, opt); return Promise.race([a.finished, new Promise(r => setTimeout(r, (opt.duration || 300) + 150))]); };
+
+  // ---------- views ----------
+  let view = 'plan', G = null;  // G is the game in progress
+  function setView(v) {
+    view = v;
+    for (const k of ['plan', 'live', 'rep']) { $('tab-' + k).setAttribute('aria-pressed', k === v); $('v-' + k).hidden = k !== v; }
+    $('tab-live').disabled = !G; $('tab-rep').disabled = !G || G.month < 12;
+    ({plan: drawPlan, live: drawLive, rep: drawRep})[v]();
+    $('main').scrollTop = 0;
+  }
+  $('tab-plan').onclick = () => setView('plan');
+  $('tab-live').onclick = () => G && setView('live');
+  $('tab-rep').onclick = () => G && G.month >= 12 && setView('rep');
+
+  // ================= PLAN =================
+  function opt(key, val, inner, cls = '', disabled = false) { return `<button class="opt ${cls}" data-k="${key}" data-v="${val}" aria-pressed="${S[key] === val}"${disabled ? ' disabled' : ''}>${inner}</button>`; }
+  function lifestyleHTML(compact) {
+    const b = budget(), H = HOME[S.home];
+    return `<div class="row2">
+      <div class="ctl"><label>Groceries <output>${money(FOOD[S.food][1])}/mo</output></label><div class="pills">${Object.entries(FOOD).map(([k, [n]]) => `<button data-k="food" data-v="${k}" aria-pressed="${S.food === k}">${n}</button>`).join('')}</div>${compact ? '' : '<div class="help">USDA food plan costs for one adult.</div>'}</div>
+      <div class="ctl"><label for="r-meals">Meals out a week <output>${S.meals} · ${money(Math.round(S.meals * 4.33 * 16))}/mo</output></label><input type="range" id="r-meals" data-k="meals" min="0" max="10" step="1" value="${S.meals}">${compact ? '' : '<div class="help">Takeout and restaurants, about $16 each.</div>'}</div>
+      <div class="ctl"><label for="r-fun">Fun money <output>${money(S.fun)}/mo</output></label><input type="range" id="r-fun" data-k="fun" min="0" max="600" step="10" value="${S.fun}">${compact ? '' : '<div class="help">Going out, hobbies, clothes, games, gifts.</div>'}</div>
+      <div class="ctl"><label for="r-save">Auto-save each payday <output>${money(S.save)}</output></label><input type="range" id="r-save" data-k="save" min="0" max="1500" step="25" value="${S.save}">${compact ? '' : `<div class="help">Moves to a high-yield savings account (${(HYSA * 100).toFixed(1)}% a year). That is about ${money(S.save * 26 / 12)} a month.</div>`}</div>
+      <div class="ctl"><label>Phone <output>${money(PHONE[S.phone][1])}/mo</output></label><div class="pills">${Object.entries(PHONE).map(([k, [n]]) => `<button data-k="phone" data-v="${k}" aria-pressed="${S.phone === k}">${n}</button>`).join('')}</div></div>
+      <div class="ctl"><label for="r-subs">Streaming and apps <output>${S.subs} · ${money(S.subs * 12)}/mo</output></label><input type="range" id="r-subs" data-k="subs" min="0" max="6" step="1" value="${S.subs}"></div>
+      <div class="ctl"><label>Gym <output>${H.gym ? 'included' : S.gym ? '$40/mo' : 'none'}</output></label><div class="pills"><button data-k="gym" data-v="false" aria-pressed="${!S.gym}">No gym</button><button data-k="gym" data-v="true" aria-pressed="${S.gym}">Join a gym</button></div></div>
+      <div class="ctl"><label>Credit card <output>${S.cardUse ? 'for spending' : 'emergencies'}</output></label><div class="pills"><button data-k="cardUse" data-v="false" aria-pressed="${!S.cardUse}">Debit for everything</button><button data-k="cardUse" data-v="true" aria-pressed="${S.cardUse}">Card for food and fun</button></div>
+        <div class="pills"><button data-k="cardPay" data-v="full" aria-pressed="${S.cardPay === 'full'}">Pay in full</button><button data-k="cardPay" data-v="min" aria-pressed="${S.cardPay === 'min'}">Pay the minimum</button></div>${compact ? '' : `<div class="help">$${CARD_LIMIT.toLocaleString()} limit, ${CARD_APR * 100}% APR. Paying in full each month means no interest.</div>`}</div>
+    </div>`;
+  }
+  function wireControls(root, after) {
+    root.querySelectorAll('[data-k]').forEach(el => {
+      const k = el.dataset.k;
+      if (el.type === 'range') el.oninput = () => { S[k] = +el.value; savePlan(); after(); };
+      else el.onclick = () => {
+        let v = el.dataset.v; if (v === 'true' || v === 'false') v = v === 'true'; else if (/^\d+$/.test(v) && k === 'k401') v = +v;
+        if (k === 'challenge') { S.challenge = v; applyLock(); } else S[k] = v;
+        savePlan(); after(true);
+      };
+    });
+  }
+  function drawPlan() {
+    const v = $('v-plan'), P = PL.cities.find(c => c.id === S.city), J = JOB[S.job], L = CH[S.challenge].lock || {};
+    const homes = Object.entries(HOME).map(([k, H]) => { const h = homeCost(S.city, k); return opt('home', k, `<img src="${ART[k]}" alt=""><b>${H.n}</b><span>${H.sub}</span><span class="big">${money(h.rent)}<span style="font-size:13px;font-weight:600"> rent</span></span><span>+ about ${money(h.util + h.net)} utilities and internet</span>`); }).join('');
+    const rides = Object.entries(RIDE).map(([k, R]) => { const c = rideCost(Object.assign({}, S, {ride: k})), m = c.pay + c.ins + c.gas + c.fix + c.pass + (c.parking || 0); return opt('ride', k, `<img src="${ART[k]}" alt=""><b>${R.n}</b><span>${R.sub}</span><span class="big">${money(m)}/mo</span><span>${c.mins} min to work each way${k === 'newcar' ? ` · ${money(carLoanPay())} payment` : ''}</span>`, 'ride'); }).join('');
+    v.innerHTML = `<div class="plan"><div>
+      <div class="step challenges"><h3><b>★</b> Choose a challenge <small>or play free</small></h3><div class="opts">${Object.entries(CH).map(([k, c]) => opt('challenge', k, `<b>${c.em} ${c.n}</b><span>${c.sub}</span>`)).join('')}</div></div>
+      <div class="step"><h3><b>1</b> City <small>rent and pay are real for each place</small></h3><div class="opts">${PL.cities.map(c => opt('city', c.id, `<b>${c.name}</b><span>1-bedroom about ${money(c.fmr[1])} with utilities</span><span>${CITY[c.id].blurb}</span>`, '', L.city && L.city !== c.id)).join('')}</div></div>
+      <div class="step"><h3><b>2</b> Starting job <small>starting pay in ${P.name}</small></h3><div class="opts">${Object.entries(JOB).map(([k, j]) => opt('job', k, `<b>${j.em} ${j.n}</b><span class="big">${money(P.pay[k])}<span style="font-size:13px;font-weight:600"> a year</span></span><span>${j.hourly ? `about ${money(P.pay[k] / 2080, true)}/hr · ` : ''}${j.school}</span>${j.loan ? `<span>${money(j.loan)} in student loans</span>` : ''}`, '', L.job && L.job !== k)).join('')}</div></div>
+      <div class="step"><h3><b>3</b> Where you live <small>HUD Fair Market Rents for ${P.name}</small></h3><div class="opts">${homes}</div></div>
+      <div class="step"><h3><b>4</b> Furnishing it</h3><div class="pills">${Object.entries(FURN).map(([k, [n, f]]) => `<button data-k="furn" data-v="${k}" aria-pressed="${S.furn === k}">${n} · ${money(Math.round(HOME[S.home].furn * f))}</button>`).join('')}</div></div>
+      <div class="step"><h3><b>5</b> Getting to work</h3><div class="opts">${rides}</div></div>
+      <div class="step"><h3><b>6</b> Benefits and insurance</h3>
+        <div class="opts">${Object.entries(HEALTH).map(([k, h]) => opt('health', k, `<b>${h.n}</b><span>${h.sub}</span>`, '', (k === 'employer' && J.health === 'no') || (k === 'market' && J.health === 'yes'))).join('')}</div>
+        <div class="row2" style="margin-top:8px">
+          <div class="ctl"><label>401(k) retirement <output>${S.k401}% of pay</output></label><div class="pills">${[0, 2, 3, 4, 5, 6, 8, 10, 15].map(p => `<button data-k="k401" data-v="${p}" aria-pressed="${S.k401 === p}">${p}%</button>`).join('')}</div>
+            <div class="help">${J.match ? `Your employer adds 1:1 up to ${J.match}% of pay. Below that you leave free money on the table.` : 'This job has no match in year one.'} Money goes in before income tax.</div></div>
+          <div class="ctl"><label>Overdraft protection <output>${S.link ? 'linked to savings' : 'off'}</output></label><div class="pills"><button data-k="link" data-v="true" aria-pressed="${S.link}">Link my savings</button><button data-k="link" data-v="false" aria-pressed="${!S.link}">No link</button></div><div class="help">If checking runs short, the bank moves money from savings for free. Without it, a bill that overdraws costs a $${OVERDRAFT} fee.</div></div>
+          <div class="ctl"><label>Renters insurance <output>${S.renters ? '$15/mo' : 'none'}</output></label><div class="pills"><button data-k="renters" data-v="true" aria-pressed="${S.renters}">Get it</button><button data-k="renters" data-v="false" aria-pressed="${!S.renters}">Skip it</button></div><div class="help">Covers your stuff after theft, fire or a leak ($500 deductible). The landlord's insurance covers the building, not your things.</div></div>
+        </div></div>
+      <div class="step"><h3><b>7</b> Everyday life <small>you can change these every month</small></h3>${lifestyleHTML(false)}</div>
+    </div><aside class="side" id="side"></aside></div>`;
+    wireControls(v, full => { if (full) { fixHealth(); drawPlan(); } else { drawSide(); refreshOutputs(v); } });
+    drawSide();
+  }
+  function fixHealth() { const J = JOB[S.job]; if (S.health === 'employer' && J.health === 'no') S.health = 'market'; if (S.health === 'market' && J.health === 'yes') S.health = 'employer'; }
+  function refreshOutputs(root) {
+    // range sliders update their own labels without rebuilding the page (so dragging keeps working)
+    const set = (k, txt) => { const el = root.querySelector(`[data-k="${k}"]`); if (el) el.closest('.ctl').querySelector('output').textContent = txt; };
+    set('meals', `${S.meals} · ${money(Math.round(S.meals * 4.33 * 16))}/mo`); set('fun', `${money(S.fun)}/mo`); set('save', money(S.save)); set('subs', `${S.subs} · ${money(S.subs * 12)}/mo`);
+    const help = root.querySelector('[data-k="save"]')?.closest('.ctl').querySelector('.help'); if (help) help.textContent = `Moves to a high-yield savings account (${(HYSA * 100).toFixed(1)}% a year). That is about ${money(S.save * 26 / 12)} a month.`;
+  }
+  function drawSide() {
+    const b = budget(), m = b.gross / 12, J = JOB[S.job];
+    const housing = (b.h.gross + (HOME[S.home].laundry ? 0 : 0)) / m;
+    const tx = b.tx, mo = x => money(Math.round(x / 12));
+    const segs = [['tax', (tx.fed + tx.fica + tx.state) / 12], ['save', b.k / 12 + b.lines.save], ['health', b.prem], ...['housing', 'utilities', 'food', 'transport', 'phone', 'insurance', 'stuff', 'loans', 'fun'].map(k => [k === 'insurance' || k === 'stuff' ? 'other' : k, b.lines[k]])];
+    const total = Math.max(m, segs.reduce((a, [, x]) => a + x, 0));
+    const N = b.net, needs = b.needs / N, wants = b.wants / N, saving = (b.lines.save + Math.max(0, b.left)) / N;
+    const startNeed = homeCost(S.city, S.home).rent * 2 + Math.round(HOME[S.home].furn * FURN[S.furn][1]) + 50 + (S.ride === 'oldcar' ? 3500 : S.ride === 'newcar' ? 2000 : S.ride === 'bike' ? 250 : 0);
+    let verdict;
+    if (b.left < -1) verdict = ['bad', `You are short <b>${money(-b.left)}</b> every month. Something has to give: a cheaper home, roommates, less fun money or a smaller auto-save.`];
+    else if (housing > .4) verdict = ['warn', `Housing takes <b>${Math.round(housing * 100)}%</b> of your gross pay. HUD calls anything over 30% "cost burdened." It can work, but one surprise bill will hurt.`];
+    else if (b.left < 75) verdict = ['warn', `Only <b>${money(b.left)}</b> a month left over after your plan. Surprises will go on the credit card unless your savings can cover them.`];
+    else verdict = ['ok', `This plan leaves <b>${money(b.left)}</b> a month unplanned. That cushion (plus savings) is what keeps surprises off the credit card.`];
+    $('side').innerHTML = `<div class="box">
+        <h2 class="sec">Your paycheck, monthly</h2>
+        <div class="stub">
+          <div><span>Gross pay (${money(b.gross)}/yr)</span><span>${money(m)}</span></div>
+          <div class="ded"><span>Federal income tax</span><span>-${mo(tx.fed)}</span></div>
+          <div class="ded"><span>Social Security and Medicare</span><span>-${mo(tx.fica)}</span></div>
+          ${tx.parts.map(([n, x]) => `<div class="ded"><span>${n}</span><span>-${mo(x)}</span></div>`).join('') || '<div class="ded"><span>No state income tax</span><span>$0</span></div>'}
+          <div class="ded"><span>401(k) at ${S.k401}%${J.match ? ` (+${money(Math.min(S.k401, J.match) / 100 * b.gross / 12)} match)` : ''}</span><span>-${mo(b.k)}</span></div>
+          <div class="ded"><span>Health insurance</span><span>-${money(b.prem)}</span></div>
+          <div class="t"><span>Take-home pay</span><span>${money(Math.round(N))}</span></div>
+        </div>
+        <div class="wf">${segs.filter(([, x]) => x > 0).map(([k, x]) => `<i style="width:${x / total * 100}%;background:var(--c-${k})" title="${k}"></i>`).join('')}</div>
+        <div class="legend">${[['tax', 'Taxes'], ['save', 'Saving'], ['health', 'Health'], ['housing', 'Rent'], ['utilities', 'Utilities'], ['food', 'Food'], ['transport', 'Transport'], ['phone', 'Phone'], ['loans', 'Loans'], ['fun', 'Fun'], ['other', 'Other']].map(([k, n]) => `<span style="--c:var(--c-${k})">${n}</span>`).join('')}</div>
+      </div>
+      <div class="box">
+        <h2 class="sec">Your monthly plan</h2>
+        <div class="stub">
+          ${[['housing', 'Rent'], ['utilities', 'Utilities, internet, laundry'], ['food', 'Food'], ['transport', 'Getting around'], ['phone', 'Phone and streaming'], ['stuff', 'Clothes, toiletries, household'], ['insurance', 'Renters insurance'], ['loans', 'Student loan' + (b.loan ? ' (starts month 7)' : '')], ['fun', 'Fun and gym'], ['save', 'Auto-save']].filter(([k]) => b.lines[k] > 0).map(([k, n]) => `<div><span>${n}</span><span>${money(Math.round(b.lines[k]))}</span></div>`).join('')}
+          <div class="t"><span>Left over</span><span class="${b.left < 0 ? 'neg' : 'pos'}">${money(Math.round(b.left))}</span></div>
+        </div>
+        ${gauge('Housing vs gross pay', housing, .3, '30% guideline', housing > .3)}
+        ${gauge('Needs vs take-home', needs, .5, '50%', needs > .5)}
+        ${gauge('Wants vs take-home', wants, .3, '30%', wants > .3)}
+        ${gauge('Saving vs take-home', saving, .2, '20%', saving < .2, true)}
+        <div class="verdict ${verdict[0]}">${verdict[1]}</div>
+      </div>
+      <div class="box">
+        <h2 class="sec">Move-in day</h2>
+        <p class="note" style="color:var(--ink);font-size:14.5px">You start with <b>${money(startCash())}</b>. Moving in costs about <b>${money(startNeed)}</b>: a security deposit (one month's rent), the first month's rent, an application fee, furniture${S.ride === 'oldcar' ? ', the car' : S.ride === 'newcar' ? ', a $2,000 down payment' : S.ride === 'bike' ? ', a bike and lock' : ''}. ${startNeed > startCash() ? `<b class="neg">That is ${money(startNeed - startCash())} more than you have; the rest goes on the credit card.</b>` : ''}</p>
+        <p class="note" style="margin-top:6px">Your first paycheck comes on July 16. Bills due before then (transit or car insurance, phone, internet, groceries) come to about <b>${money(Math.round((b.lines.spend0 || 0)))}</b>, so keep some cash for the first two weeks.</p>
+        <div class="seed" style="margin:10px 0"><label for="seed">Class code</label><input id="seed" maxlength="8" value="${S.seed}" placeholder="random"><span class="note">Same code = same surprises for everyone.</span></div>
+        <button class="go" id="movein">${G && G.month < 12 ? '↺ Start a new year' : 'Move in ▶'}</button>
+        ${G && G.month < 12 ? '<button class="ghost" id="resume" style="width:100%;margin-top:8px">Back to month ' + (G.month + 1) + '</button>' : ''}
+      </div>`;
+    $('seed').oninput = e => { S.seed = e.target.value.toUpperCase().replace(/[^A-Z0-9]/g, ''); savePlan(); };
+    if (startNeed > startCash() + CARD_LIMIT) { $('movein').disabled = true; $('movein').insertAdjacentHTML('afterend', `<p class="verdict bad">The landlord wants the deposit and first month's rent up front, and even with your $${CARD_LIMIT.toLocaleString()} card you cannot cover move-in day. Pick a cheaper home or ride, or play a challenge with more savings.</p>`); }
+    $('movein').onclick = () => { if (G && G.month < 12 && !confirm('Start over with a new year? Your current year will be lost.')) return; startYear(); };
+    $('resume') && ($('resume').onclick = () => setView('live'));
+  }
+  function gauge(name, x, mark, markTxt, bad, isMin) {
+    const w = clamp(x, 0, 1) * 100;
+    return `<div class="gauge"><div class="lbl"><span>${name}</span><span class="${bad ? (isMin ? 'neg' : 'neg') : 'pos'}">${Math.round(x * 100)}%</span></div>
+      <div class="trk" title="${markTxt}"><b style="width:${w}%;background:${bad ? 'var(--bad)' : 'var(--sage)'}"></b><em style="left:${mark * 100}%"></em></div></div>`;
+  }
+
+  // ================= THE YEAR =================
+  const MONTHS = ['July', 'August', 'September', 'October', 'November', 'December', 'January', 'February', 'March', 'April', 'May', 'June'];
+  // the year runs July to June; every other Friday is payday, the first one two weeks after you start
+  const DAYS = [31, 31, 30, 31, 30, 31, 31, 29, 31, 30, 31, 30];
+  const FIRSTDOW = (() => { const out = []; let d = new Date(2027, 6, 1); for (let i = 0; i < 12; i++) { out.push(new Date(2027, 6 + i, 1).getDay()); } return out; })();
+  const PAYDAYS = (() => { const out = Array.from({length: 12}, () => []); let d = new Date(2027, 6, 16); const end = new Date(2028, 6, 1); while (d < end) { const m = (d.getFullYear() - 2027) * 12 + d.getMonth() - 6; out[m].push(d.getDate()); d = new Date(d.getTime() + 14 * 864e5); } return out; })();
+  const SEASON = {hot: [1.6, 1.7, 1.4, 1.0, .9, 1.0, 1.0, .95, .95, 1.0, 1.2, 1.5], cold: [1.0, 1.0, .9, 1.0, 1.3, 1.6, 1.7, 1.5, 1.2, 1.0, .9, .95], mild: [.9, .9, .9, 1.0, 1.2, 1.35, 1.4, 1.25, 1.1, 1.0, .9, .9]};
+
+  function startYear() {
+    fixHealth();
+    const seed = S.seed || newSeed();
+    const J = JOB[S.job], b = budget(), H = HOME[S.home];
+    G = {
+      seed, rand: rng(seed + S.city + S.job), plan: JSON.parse(JSON.stringify(S)), month: 0, day: 0,
+      chk: 0, sav: 0, card: 0, k401: 0, match: 0, loanBal: J.loan || 0, carLoan: 0, carValue: 0, deposit: 0, startNW: 0,
+      gross: b.gross, score: 660, well: 60, wellHist: [], hist: [], ledger: [], fees: 0, interest: 0, overdrafts: 0, lates: 0, missedMatch: 0,
+      flags: {}, recurring: [], cats: {}, mcats: {}, mwell: 0, crises: 0, petOwned: false, sideGig: 0, bonusWell: 0, cardFull: true, lastStmt: 0, used: new Set(), monthLog: [],
+    };
+    G.chk = startCash();
+    // move-in costs: deposit and first month's rent are paid on day 1 of month 1 with the first bills
+    G.movein = [['Security deposit', b.h.rent, 'housing'], ['Application fee', 50, 'other'], [FURN[S.furn][0], Math.round(H.furn * FURN[S.furn][1]), 'other']];
+    if (S.ride === 'oldcar') G.movein.push(['Bought an old car', 3500, 'transport']);
+    if (S.ride === 'newcar') G.movein.push(['Car down payment', 2000, 'transport']);
+    if (S.ride === 'bike') G.movein.push(['Bike and lock', 250, 'transport']);
+    G.startNW = startCash() - (J.loan || 0);
+    S.seed = ''; savePlan();
+    setView('live');
+  }
+  function netWorth() { const fam = G.recurring.filter(x => x.n === 'Paying back family').reduce((a, x) => a + x.amt * x.left, 0); return G.chk + G.sav + G.k401 + G.deposit + G.carValue - G.card - G.loanBal - G.carLoan - fam; }
+  const essentials = () => { const b = budget(); return b.lines.housing + b.lines.utilities + FOOD[S.food][1] + b.lines.transport + 15 + b.lines.insurance + b.lines.loans + STUFF * .6; };
+
+  // ----- money movement (all go through here so overdrafts, card limits and category totals stay right) -----
+  function post(label, amt, cat, acct = 'chk', silent) {
+    // amt < 0 is money out
+    const tx = {d: G.day, label, amt: r2(amt), cat, acct};
+    if (acct === 'card') {
+      if (amt < 0 && G.card - amt > CARD_LIMIT) {  // over the limit: the rest comes from checking
+        const room = Math.max(0, CARD_LIMIT - G.card);
+        if (room > 0) post(label, -room, cat, 'card', silent);
+        return post(label + ' (card full)', amt + room, cat, 'chk', silent);
+      }
+      G.card = r2(G.card - amt);
+    } else if (acct === 'sav') G.sav = r2(G.sav + amt);
+    else {
+      if (amt < 0 && G.chk + amt < 0 && cat !== 'fee') {
+        // not enough in checking. Linked savings covers it first (free); a debit-card purchase is declined and
+        // goes on the credit card if there is room; a bill goes through and costs an overdraft fee.
+        if (S.link && G.sav > 0) transfer('sav', 'chk', Math.min(G.sav, -(G.chk + amt)), 'Overdraft protection from savings');
+        if (G.chk + amt < 0 && DEBIT.has(cat) && G.card - amt <= CARD_LIMIT) {
+          if (!G.declined) { G.declined = true; if (!silent) floater('Debit declined: used the card', false); }
+          return post(label, amt, cat, 'card', silent);
+        }
+      }
+      const before = G.chk;
+      G.chk = r2(G.chk + amt);
+      if (amt < 0 && before >= 0 && G.chk < 0 && !G.odToday && cat !== 'fee') {
+        G.odToday = true; G.overdrafts++; G.fees += OVERDRAFT;
+        G.ledger.push(tx); addCat(cat, amt);
+        post('Overdraft fee', -OVERDRAFT, 'fee', 'chk');
+        floater('Overdraft fee -$35', false);
+        SFX.bad();
+        return;
+      }
+    }
+    G.ledger.push(tx); addCat(cat, amt);
+    if (!silent && Math.abs(amt) >= 40) floater(`${amt > 0 ? '+' : '-'}${money(Math.abs(Math.round(amt)))} ${label}`, amt > 0);
+  }
+  const DEBIT = new Set(['food', 'fun', 'other', 'phone']);  // everyday purchases made with a debit card
+  function addCat(cat, amt) { if (amt < 0 && cat !== 'transfer') { G.cats[cat] = (G.cats[cat] || 0) - amt; G.mcats[cat] = (G.mcats[cat] || 0) - amt; } }
+  function transfer(from, to, amt, label) {
+    amt = r2(amt); if (amt <= 0) return;
+    if (from === 'chk') G.chk = r2(G.chk - amt); else G.sav = r2(G.sav - amt);
+    if (to === 'chk') G.chk = r2(G.chk + amt); else G.sav = r2(G.sav + amt);
+    G.ledger.push({d: G.day, label, amt: from === 'chk' ? -amt : amt, cat: 'transfer', acct: 'chk'});
+  }
+
+  // ----- build a month's schedule -----
+  function schedule(m) {
+    const s = S, b = budget({gross: G.gross}), H = HOME[s.home], r = b.r, C = CITY[s.city], J = JOB[s.job];
+    const ev = [];
+    const add = (d, fn) => ev.push({d, fn});
+    const spend = s.cardUse ? 'card' : 'chk';
+    if (m === 0) add(1, () => {
+      G.movein.forEach(([n, x, c]) => payFrom(n, x, c));
+      // what move-in money bought still counts toward net worth: the deposit comes back, the car has value
+      G.deposit = b.h.rent;
+      if (s.ride === 'oldcar') G.carValue = 3500;
+      if (s.ride === 'newcar') { G.carValue = 19000; G.carLoan = 17000; }
+    });
+    add(1, () => m === 0 ? payFrom('Rent', b.lines.housing, 'housing') : post('Rent', -b.lines.housing, 'housing'));
+    if (r.pass) add(1, () => post('Transit pass', -r.pass, 'transport'));
+    if (r.parking) add(1, () => post('Parking spot', -r.parking, 'transport'));
+    add(4, () => post('Phone', -PHONE[s.phone][1], 'phone'));
+    if (s.subs) add(6, () => post('Streaming and apps', -s.subs * 12, 'phone', spend));
+    add(8, () => post('Internet', -b.h.net, 'utilities'));
+    add(12, () => post('Electric and gas', -Math.round(b.h.util * SEASON[C.climate][m]), 'utilities'));
+    if (!H.laundry) add(14, () => post('Laundry', -25, 'utilities', spend));
+    if (r.pay) add(10, () => { post('Car payment', -r.pay, 'loans'); const int = G.carLoan * .11 / 12; G.carLoan = Math.max(0, r2(G.carLoan - (r.pay - int))); });
+    if (r.ins) add(15, () => post('Car insurance', -r.ins, 'transport'));
+    if (s.renters) add(15, () => post('Renters insurance', -15, 'insurance'));
+    if (s.gym && !H.gym) add(3, () => post('Gym', -40, 'fun', spend));
+    if (J.loan && m >= 6) add(20, () => { const p = loanPay(J.loan), int = G.loanBal * LOAN_RATE / 12; post('Student loan', -p, 'loans'); G.loanBal = Math.max(0, r2(G.loanBal - (p - int))); });
+    for (const w of [2, 9, 16, 23]) add(w, () => post('Groceries', -FOOD[s.food][1] / 4, 'food', spend, true));
+    const eat = s.meals * 4.33 * 16;
+    if (eat) for (const w of [5, 12, 19, 26]) add(w, () => post('Eating out', -eat / 4, 'food', spend, true));
+    if (s.fun) for (const w of [7, 21]) add(w, () => post('Fun', -s.fun / 2, 'fun', spend, true));
+    for (const w of [10, 24]) add(w, () => post('Clothes, toiletries, household', -STUFF / 2, 'other', spend, true));
+    if (r.gas) for (const w of [6, 20]) add(w, () => post('Gas', -r.gas / 2, 'transport', 'chk', true));
+    if (r.fix) add(17, () => post(s.ride === 'bike' ? 'Bike upkeep' : 'Car upkeep', -r.fix, 'transport', 'chk', true));
+    for (const p of PAYDAYS[m]) add(p, () => payday());
+    add(25, () => statement());
+    // recurring items picked up from events (payment plans, pet costs, buy now pay later)
+    add(16, () => { G.recurring.forEach(x => { if (x.left > 0) { post(x.n, -x.amt, x.cat); x.left--; } }); G.recurring = G.recurring.filter(x => x.left > 0); });
+    if (G.sideGig) add(28, () => post('Side gig pay', G.sideGig, 'income'));
+    // surprises: fixed ones by month, then one or two random draws
+    fixedEvents(m).forEach(e => add(e.day, () => queueEvent(e.ev)));
+    const pool = EVENTS.filter(e => !G.used.has(e.id) && (!e.when || e.when()) && !e.fixed);
+    const draws = 1 + (G.rand() < .6 ? 1 : 0);
+    for (let i = 0; i < draws && pool.length; i++) {
+      let tot = pool.reduce((a, e) => a + (e.w || 1), 0), x = G.rand() * tot, pick = pool[0];
+      for (const e of pool) { x -= e.w || 1; if (x <= 0) { pick = e; break; } }
+      pool.splice(pool.indexOf(pick), 1); if (!pick.repeat) G.used.add(pick.id);
+      const d = 3 + Math.floor(G.rand() * 24);
+      add(d, () => queueEvent(pick));
+    }
+    return ev.sort((a, b) => a.d - b.d);
+  }
+  function payFrom(n, x, c) {
+    // pay a move-in cost from checking, and anything checking can't cover goes on the card
+    // keep about $300 in checking for the first two weeks if the card has room for the rest
+    const room = CARD_LIMIT - G.card, keep = room >= x ? 300 : 0;
+    const fromChk = Math.min(x, Math.max(0, G.chk - keep));
+    if (fromChk > 0) post(n, -fromChk, c, 'chk');
+    if (x - fromChk > 0) post(n, -(x - fromChk), c, 'card');
+  }
+  function payday() {
+    const J = JOB[S.job], b = budget({gross: G.gross});
+    let gross = G.gross / 26;
+    if (G.flags.cut > 0) { gross *= .8; G.flags.cut--; }
+    if (G.flags.ot) { gross += G.flags.ot; G.flags.ot = 0; }
+    if (G.flags.unpaid) { gross -= G.flags.unpaid; G.flags.unpaid = 0; }
+    const k = gross * S.k401 / 100, prem = b.prem * 12 / 26;
+    const t = taxes(gross * 26, k * 26, prem * 26);  // withholding uses the annualized paycheck
+    const net = gross - k - prem - (t.fed + t.fica + t.state) / 26;
+    post('Paycheck', r2(net), 'income');
+    G.k401 = r2(G.k401 + k + gross * Math.min(S.k401, J.match) / 100); G.match += gross * Math.min(S.k401, J.match) / 100;
+    if (S.k401 < J.match) G.missedMatch += gross * (J.match - S.k401) / 100;
+    G.mpay = (G.mpay || 0) + 1; G.mgross = (G.mgross || 0) + gross; G.mtax = (G.mtax || 0) + (t.fed + t.fica + t.state) / 26; G.mk = (G.mk || 0) + k; G.mprem = (G.mprem || 0) + prem;
+    if (S.save > 0) transfer('chk', 'sav', Math.min(S.save, Math.max(0, G.chk)), 'Auto-save');
+    SFX.pay();
+  }
+  function statement() {
+    // the card statement: interest on a carried balance, then this month's payment
+    if (G.card > 0 && !G.cardFull) { const i = r2(G.card * CARD_APR / 12); G.card = r2(G.card + i); G.interest += i; G.ledger.push({d: G.day, label: 'Card interest', amt: -i, cat: 'interest', acct: 'card'}); addCat('interest', -i); }
+    if (G.card <= 0) { G.cardFull = true; return; }
+    const min = Math.min(G.card, Math.max(35, r2(G.card * .01 + G.card * CARD_APR / 12)));
+    let pay = S.cardPay === 'full' ? G.card : min;
+    pay = Math.min(pay, Math.max(0, G.chk));
+    if (pay < min - .01) {
+      // not enough in checking: try savings, then it's a late payment
+      const need = min - pay;
+      if (G.sav >= need) { transfer('sav', 'chk', need, 'From savings for card payment'); pay = min; }
+      else { G.lates++; G.fees += LATE_FEE; G.card = r2(G.card + LATE_FEE); addCat('fee', -LATE_FEE); G.ledger.push({d: G.day, label: 'Late fee (missed card payment)', amt: -LATE_FEE, cat: 'fee', acct: 'card'}); G.score -= 60; floater('Missed card payment! -60 credit', false); SFX.bad(); }
+    }
+    if (pay > 0) { G.chk = r2(G.chk - pay); G.card = r2(G.card - pay); G.ledger.push({d: G.day, label: 'Credit card payment', amt: -pay, cat: 'transfer', acct: 'chk'}); }
+    G.cardFull = G.card < .01;
+  }
+
+  // ----- surprises -----
+  const hasCar = () => S.ride === 'oldcar' || S.ride === 'newcar';
+  const insured = () => S.health !== 'none';
+  const dayPay = () => G.gross / 260;
+  const paidSick = () => JOB[S.job].sickPay || CITY[S.city].sick;
+  const EVENTS = [
+    {id: 'brakes', em: '🛞', when: hasCar, w: 1.3, t: 'Grinding brakes', x: () => 'Your brakes squeal every time you stop. The shop quotes $480 for pads and rotors.',
+      c: [{t: 'Fix them now', cost: 480, cat: 'transport'}, {t: 'Wait and hope', sub: 'Worn brakes get more expensive, and less safe.', fx: () => { G.flags.brakes = true; }}]},
+    {id: 'battery', em: '🔋', when: () => S.ride === 'oldcar', t: 'Dead battery', x: () => 'Your old car will not start. A new battery and a jump-start visit cost $210.',
+      c: [{t: 'Replace it', cost: 210, cat: 'transport'}, {t: 'Ride with a coworker for a week, then fix it', cost: 210, cat: 'transport', well: -2}]},
+    {id: 'ticket', em: '🅿️', when: hasCar, t: 'Parking ticket', x: () => 'You parked a little too long. The ticket is $65, or $130 if it is paid late.',
+      c: [{t: 'Pay it now', cost: 65, cat: 'other'}, {t: 'Deal with it later', fx: () => { G.recurring.push({n: 'Late parking ticket', amt: 130, left: 1, cat: 'fee'}); }}]},
+    {id: 'flat', em: '🛞', when: hasCar, t: 'Flat tire', x: () => 'A nail in the tire. A patch might hold; a new tire definitely will.',
+      c: [{t: 'New tire', cost: 175, cat: 'transport'}, {t: 'Patch it', cost: 30, cat: 'transport', fx: () => { if (G.rand() < .4) G.flags.flat2 = true; }}]},
+    {id: 'screen', em: '📱', t: 'Cracked phone screen', x: () => `You dropped your phone face down on concrete.${S.phone === 'premium' ? ' Your premium plan includes insurance with a $99 deductible.' : ' A repair costs $280.'}`,
+      c: [{t: S.phone === 'premium' ? 'Use the insurance' : 'Repair it', cost: S.phone === 'premium' ? 99 : 280, cat: 'phone'}, {t: 'Live with the crack', well: -3}]},
+    {id: 'laptop', em: '💻', t: 'Laptop died', x: () => 'Your laptop will not turn on. You use it for everything outside work.',
+      c: [{t: 'Refurbished laptop', cost: 380, cat: 'other'}, {t: 'Brand-new laptop', cost: 950, cat: 'other', well: 2}, {t: 'Go without for now', well: -4}]},
+    {id: 'wedding', em: '💍', t: "Friend's wedding", x: () => 'Your close friend is getting married out of state. Flights, hotel and a gift add up.',
+      c: [{t: 'Go to the wedding', cost: 560, cat: 'fun', well: 7}, {t: 'Send a gift and a video message', cost: 75, cat: 'fun', well: 1}, {t: 'Skip it', well: -4}]},
+    {id: 'concert', em: '🎤', repeat: true, w: .7, t: 'Concert tickets', x: () => 'Your friends are going to see a band you love. Tickets and the night out cost $150.',
+      c: [{t: "I'm in", cost: 150, cat: 'fun', well: 4}, {t: 'Not this time', well: -1}]},
+    {id: 'sick', em: '🤒', w: 1.2, t: 'You caught the flu', x: () => `Fever, chills, the works. ${paidSick() ? 'Your job (or your state\'s law) gives you paid sick days.' : 'Your job has no paid sick days, so 3 days off means 3 days without pay.'} ${insured() ? 'An urgent-care visit is a $40 copay.' : 'Without insurance, urgent care costs about $190.'}`,
+      c: [{t: 'Stay home and see a doctor', cost: insured() ? 40 : 190, cat: 'health', fx: () => { if (!paidSick()) G.flags.unpaid = (G.flags.unpaid || 0) + 3 * dayPay(); }},
+          {t: 'Stay home, skip the doctor', well: -2, fx: () => { if (!paidSick()) G.flags.unpaid = (G.flags.unpaid || 0) + 3 * dayPay(); }},
+          {t: 'Go to work sick', sub: 'Your coworkers will not thank you.', well: -6}]},
+    {id: 'er', em: '🚑', w: .8, t: 'Emergency room visit', x: () => `You sprained your wrist badly enough for an X-ray and a splint. The hospital bill is $2,400. ${insured() ? `Your plan pays after your deductible, so you owe about ${money(Math.min(2400, HEALTH[S.health].ded * .6))}.` : 'With no insurance, the whole bill is yours.'}`,
+      c: () => {
+        const owe = insured() ? Math.min(2400, HEALTH[S.health].ded * .6) : 2400;
+        return [{t: 'Pay the bill', cost: owe, cat: 'health'},
+                {t: 'Ask for a payment plan', sub: `${money(Math.ceil(owe / 12))} a month for a year, no interest`, fx: () => G.recurring.push({n: 'Hospital payment plan', amt: Math.ceil(owe / 12), left: 12, cat: 'health'})},
+                {t: 'Ignore the bill', sub: 'It goes to collections.', fx: () => { G.score -= 70; G.flags.collections = true; }}];
+      }},
+    {id: 'roommate', em: '🧳', when: () => HOME[S.home].roommates, t: 'Roommate moving out', x: () => `Your roommate got a job in another city and leaves this month. Until you find someone, you cover their share: ${money(homeCost(S.city, S.home).rent + homeCost(S.city, S.home).util)}.`,
+      c: [{t: 'Cover it while you find someone', cost: homeCost(S.city, S.home).rent + homeCost(S.city, S.home).util, cat: 'housing', well: -2}, {t: 'Post the room right away and screen people carefully', cost: Math.round((homeCost(S.city, S.home).rent + homeCost(S.city, S.home).util) / 2), cat: 'housing', well: -4, sub: 'Half a month empty, plus a few awkward interviews.'}]},
+    {id: 'party', em: '🎉', when: () => HOME[S.home].roommates, t: 'Roommate party', x: () => 'Your roommate is throwing a party on a work night. Everyone chips in for food.',
+      c: [{t: 'Join in', cost: 30, cat: 'fun', well: 3}, {t: 'Go to bed early', well: -2}]},
+    {id: 'overtime', em: '⏱️', when: () => JOB[S.job].hourly, w: 1.2, repeat: true, t: 'Overtime offered', x: () => `Your manager offers 12 extra hours this pay period at time and a half: about ${money(12 * dayPay() / 8 * 1.5)} before taxes.`,
+      c: [{t: 'Take the hours', well: -5, fx: () => { G.flags.ot = (G.flags.ot || 0) + 12 * dayPay() / 8 * 1.5; }}, {t: 'Keep your free time', well: 1}]},
+    {id: 'cut', em: '📉', when: () => JOB[S.job].cut, t: 'Hours cut', x: () => 'Business is slow. Your hours are cut by a fifth for the next two paychecks.',
+      c: [{t: 'Pick up weekend delivery shifts', well: -4, fx: () => { G.flags.cut = 2; G.recurring.push({n: 'Delivery shifts (pay)', amt: -220, left: 1, cat: 'income'}); }}, {t: 'Tighten your belt', well: -2, fx: () => { G.flags.cut = 2; }}]},
+    {id: 'store', em: '🏷️', t: 'Store card offer', x: () => 'At checkout: "Open our store card and save 20% today!" Your $250 cart would be $200. The card charges 29.99% APR.',
+      c: [{t: 'Open the card, buy it', cost: 200, cat: 'fun', well: 2, fx: () => { G.score -= 8; G.recurring.push({n: 'Store card payment', amt: 40, left: 6, cat: 'loans'}); }, sub: 'A new account and a hard credit check.'}, {t: 'Buy it on your debit card', cost: 250, cat: 'fun', well: 2}, {t: 'Put it back', well: 0}]},
+    {id: 'bnpl', em: '🎧', t: 'Buy now, pay later', x: () => 'The headphones you want are $240, or "4 easy payments of $60."',
+      c: [{t: 'Split into 4 payments', well: 3, fx: () => G.recurring.push({n: 'Pay-later headphones', amt: 60, left: 4, cat: 'fun'})}, {t: 'Pay $240 now', cost: 240, cat: 'fun', well: 3}, {t: 'Skip them', well: -1}]},
+    {id: 'pet', em: '🐱', when: () => !G.petOwned, t: 'A cat needs a home', x: () => 'A coworker\'s cat had kittens. Adopting costs $150 for shots, plus about $70 a month for food and litter, and your landlord wants a $300 pet deposit.',
+      c: [{t: 'Adopt the kitten', cost: 450, cat: 'other', well: 6, fx: () => { G.petOwned = true; G.deposit += 300; G.recurring.push({n: 'Cat food and litter', amt: 70, left: 99, cat: 'other'}); G.bonusWell += 5; }}, {t: 'Not right now', well: -1}]},
+    {id: 'vet', em: '🩺', when: () => G.petOwned, t: 'Vet visit', x: () => 'Your cat ate a hair tie. The vet bill is $420.',
+      c: [{t: 'Pay the vet', cost: 420, cat: 'other'}]},
+    {id: 'loan', em: '🤝', t: 'A friend needs money', x: () => 'A friend is short on rent and asks to borrow $300. They promise to pay you back next month.',
+      c: [{t: 'Lend it', cost: 300, cat: 'other', well: 2, fx: () => { if (G.rand() < .6) G.recurring.push({n: 'Friend paid you back', amt: -300, left: 1, cat: 'income'}); }}, {t: 'Say no kindly', well: -2}]},
+    {id: 'gig', em: '📚', when: () => !G.sideGig, t: 'Side gig offer', x: () => 'A neighbor asks if you would tutor their kid two evenings a week for $240 a month.',
+      c: [{t: 'Take the gig', well: -3, fx: () => { G.sideGig = 240; G.bonusWell -= 2; }}, {t: 'Protect your evenings', well: 1}]},
+    {id: 'theft', em: '🚲', when: () => S.ride === 'bike', t: 'Bike stolen', x: () => `Someone cut your lock. A replacement bike and a better lock cost $320.${S.renters ? ' Renters insurance has a $500 deductible, so it does not help with this one.' : ''}`,
+      c: [{t: 'Buy a replacement', cost: 320, cat: 'transport'}, {t: 'Take the bus for a while', cost: CITY[S.city].transit, cat: 'transport', well: -3}]},
+    {id: 'leak', em: '💧', w: .7, t: 'Water leak', x: () => `A pipe burst in the unit above you. Your bed, rug and laptop bag are ruined: about $1,800 of your things. The landlord fixes the ceiling, but your stuff is on you.${S.renters ? ' Renters insurance covers it after your $500 deductible.' : ' You do not have renters insurance.'}`,
+      c: () => S.renters ? [{t: 'File a claim (pay the deductible)', cost: 500, cat: 'insurance', well: -2}] : [{t: 'Replace the basics', cost: 1100, cat: 'other', well: -3}, {t: 'Sleep on an air mattress for a while', cost: 80, cat: 'other', well: -8}]},
+    {id: 'fraud', em: '🕵️', w: .6, t: 'Strange charge', x: () => 'Your banking app shows a $389 charge from a store you have never heard of.',
+      c: [{t: 'Report it to the bank today', well: -1, sub: 'Fraud reported quickly is not your loss.'}, {t: 'Ignore it, it is probably fine', cost: 389, cat: 'other', well: -3}]},
+    {id: 'ac', em: '🌡️', w: .6, t: 'The heat stopped working', x: () => 'Your heat or air conditioning quits during a temperature swing.',
+      c: [{t: 'Call the landlord', well: 1, sub: 'Repairs to the building are the landlord\'s job, not the renter\'s.'}, {t: 'Buy a space heater or fan', cost: 60, cat: 'other'}]},
+    {id: 'jury', em: '⚖️', w: .5, t: 'Jury duty', x: () => `You are called for jury duty for two days. ${JOB[S.job].hourly && !paidSick() ? 'Your employer does not pay for jury days; the court pays $15 a day.' : 'Your employer keeps paying you.'}`,
+      c: [{t: 'Serve', well: 1, fx: () => { if (JOB[S.job].hourly && !paidSick()) G.flags.unpaid = (G.flags.unpaid || 0) + 2 * dayPay() - 30; }}]},
+  ];
+  const FIXED = {
+    raise: {id: 'raise', em: '📈', t: 'Six-month review', x: () => { const avg = G.wellHist.reduce((a, b) => a + b, 0) / Math.max(1, G.wellHist.length), pct = JOB[S.job].raise || (avg >= 55 ? 4 : 2.5); G.flags.raisePct = pct; return `Your manager is happy with your work${avg >= 55 ? ', and it shows that you have been rested and focused' : ''}. You get a ${pct}% raise: ${money(G.gross * pct / 100)} a year more before taxes.`; },
+      c: [{t: 'Great, thanks!', fx: () => { G.gross = Math.round(G.gross * (1 + G.flags.raisePct / 100)); }}, {t: 'Bump my auto-save by the same amount', sub: 'Saving a raise before you get used to spending it.', fx: () => { const before = budget({gross: G.gross}).net; G.gross = Math.round(G.gross * (1 + G.flags.raisePct / 100)); S.save = Math.round((S.save + (budget({gross: G.gross}).net - before) * 12 / 26) / 25) * 25; }}]},
+    holiday: {id: 'holiday', em: '🎁', t: 'The holidays', x: () => 'December: gifts, a trip home, parties. How much will you spend?',
+      c: [{t: 'Homemade gifts, stay local', cost: 60, cat: 'fun', well: -1}, {t: 'Small gifts for family and close friends', cost: 220, cat: 'fun', well: 3}, {t: 'Fly home and bring gifts', cost: 650, cat: 'fun', well: 7}]},
+    reg: {id: 'reg', em: '📄', t: 'Car registration', x: () => 'Your yearly car registration and inspection are due: $120.', c: [{t: 'Pay it', cost: 120, cat: 'transport'}]},
+    brakes2: {id: 'brakes2', em: '⚠️', t: 'Brakes gave out', x: () => 'The brakes you put off are now metal on metal. Pads, rotors and calipers: $1,150.', c: [{t: 'Pay for the repair', cost: 1150, cat: 'transport', well: -3}]},
+    flat2: {id: 'flat2', em: '🛞', t: 'The patch failed', x: () => 'The patched tire went flat again on the highway. New tire and a tow: $260.', c: [{t: 'Pay for it', cost: 260, cat: 'transport', well: -2}]},
+    grace: {id: 'grace', em: '🎓', t: 'Student loan payments start', x: () => `Your six-month grace period is over. Starting this month, ${money(loanPay(JOB[S.job].loan))} goes to your student loans every month for ten years.`, c: [{t: 'Got it'}]},
+    taxes: {id: 'taxes', em: '🧾', t: 'Tax time', x: () => 'You filed your return with free software in an evening. Because your withholding matched what you owed, there is no refund and no bill. (A big refund just means you lent the government money all year, interest free.)', c: [{t: 'Done'}]},
+    lease: {id: 'lease', em: '🔑', t: 'Lease renewal', x: () => `Your landlord offers a new lease at ${money(Math.round(homeCost(S.city, S.home).rent * 1.045))} a month, up 4.5%. Rents usually rise every year, so it pays to plan for it.`, c: [{t: 'Sign for another year'}, {t: 'Plan to look for a cheaper place', well: -1}]},
+  };
+  // when checking is deep in the red at the end of a month, something has to change
+  const CRISIS = {id: 'crisis', em: '🚨', t: 'Money crisis', x: () => `Your checking account is ${money(Math.round(-G.chk))} in the red, and the bank is warning that it will close the account. This plan does not work as it is. What will you change?`,
+    c: () => [
+      ...(S.home !== 'house' ? [{t: 'Move to a room in a shared house', sub: `Rent drops to ${money(homeCost(S.city, 'house').rent)}. Moving costs $350; you get most of your old deposit back.`, well: -4, fx: () => {
+        const old = G.deposit, nh = homeCost(S.city, 'house');
+        post('Moving costs', -350, 'housing', 'chk', true); post('Old deposit back (minus cleaning)', old - 150, 'income', 'chk', true); post('New deposit', -nh.rent, 'housing', 'chk', true);
+        G.deposit = nh.rent; S.home = 'house'; G.bonusWell -= 2; }}] : []),
+      ...(!G.secondJob ? [{t: 'Take a second job on weekends', sub: 'About $650 a month after taxes, starting now.', well: -6, fx: () => { G.sideGig += 650; G.secondJob = true; G.bonusWell -= 6; }}] : []),
+      {t: 'Borrow $1,500 from family', sub: 'You will pay them back $125 a month.', well: -3, fx: () => { post('Loan from family', 1500, 'income', 'chk', true); G.recurring.push({n: 'Paying back family', amt: 125, left: 12, cat: 'loans'}); G.familyDebt = (G.familyDebt || 0) + 1500; }},
+    ]};
+  function fixedEvents(m) {
+    const out = [], J = JOB[S.job];
+    if (G.flags.brakes) { G.flags.brakes = false; out.push({day: 9, ev: FIXED.brakes2}); }
+    if (G.flags.flat2) { G.flags.flat2 = false; out.push({day: 18, ev: FIXED.flat2}); }
+    if (m === 5) out.push({day: 18, ev: FIXED.holiday});
+    if (m === 6 && J.loan) out.push({day: 2, ev: FIXED.grace});
+    if (m === 6) out.push({day: 11, ev: FIXED.raise});
+    if (m === 3 && hasCar()) out.push({day: 13, ev: FIXED.reg});
+    if (m === 9) out.push({day: 10, ev: FIXED.taxes});
+    if (m === 11) out.push({day: 22, ev: FIXED.lease});
+    return out;
+  }
+
+  // ----- run a month day by day -----
+  let running = false, speed = 1, pending = [], waitChoice = null;
+  function queueEvent(e) { pending.push(e); }
+  async function playMonth() {
+    if (running || G.month >= 12) return;
+    running = true; drawLive();
+    const m = G.month, evs = schedule(m);
+    G.declined = false; G.mcats = {}; G.mpay = 0; G.mgross = 0; G.mtax = 0; G.mk = 0; G.mprem = 0;
+    const start = {chk: G.chk, sav: G.sav, card: G.card, nw: netWorth(), score: G.score, ledger: G.ledger.length, lates: G.lates};
+    for (let d = 1; d <= DAYS[m]; d++) {
+      G.day = d; G.odToday = false;
+      for (const e of evs.filter(e => e.d === d)) e.fn();
+      while (pending.length) { const e = pending.shift(); updateHUD(); await showEvent(e); }
+      // savings earns interest daily, posted at month end
+      G.savInt = (G.savInt || 0) + G.sav * HYSA / 365;
+      updateHUD(); drawCal();
+      if (speed < 9) await sleep(speed === 1 ? 170 : 55);
+    }
+    // month end: interest, car value, wellbeing, credit score
+    if (G.savInt > .005) { G.sav = r2(G.sav + G.savInt); G.ledger.push({d: DAYS[m], label: 'Savings interest', amt: r2(G.savInt), cat: 'income', acct: 'sav'}); }
+    G.savInt = 0; G.k401 = r2(G.k401 * 1.004);
+    G.carValue = Math.round(G.carValue * (S.ride === 'newcar' ? .988 : .985));
+    const target = wellTarget();
+    G.well = clamp(Math.round(G.well + (target - G.well) * .5 + G.mwell), 0, 100); G.mwell = 0;
+    G.wellHist.push(G.well);
+    const util = G.card / CARD_LIMIT;
+    G.score = clamp(G.score + (G.lates > start.lates ? 0 : 5) - (util > .7 ? 25 : util > .3 ? 10 : 0) + (util < .1 ? 3 : 0), 300, 760);
+    G.hist.push({m, chk: G.chk, sav: G.sav, card: G.card, nw: netWorth(), well: G.well, score: G.score, k401: G.k401});
+    G.monthLog.push({m, cats: G.mcats, pay: G.mgross, tax: G.mtax, k: G.mk, prem: G.mprem, chk: G.chk - start.chk});
+    if (G.chk < -300) { G.crises++; G.day = DAYS[m]; await showEvent(CRISIS); G.hist[G.hist.length - 1].chk = G.chk; G.hist[G.hist.length - 1].nw = netWorth(); }
+    G.month++; running = false;
+    SFX.done();
+    await monthSummary(start);
+    if (G.month >= 12) { saveBest(); setView('rep'); } else drawLive();
+  }
+  const sleep = ms => new Promise(r => setTimeout(r, ms));
+  function wellTarget() {
+    const H = HOME[S.home], r = rideCost(S);
+    let w = H.comfort;
+    w += S.fun < 50 ? -12 : S.fun < 120 ? -4 : S.fun < 250 ? 3 : S.fun < 400 ? 7 : 9;
+    w += [-4, 0, 3, 4, 5, 6, 6, 7, 7, 7, 7][S.meals];
+    w += S.food === 'thrifty' ? -2 : S.food === 'liberal' ? 2 : 0;
+    w -= Math.max(0, r.mins - 25) * .3;
+    if (S.gym || H.gym) w += 4;
+    w += FURN[S.furn][2];
+    if (S.phone === 'premium') w += 1;
+    w += S.subs >= 2 ? 2 : 0;
+    // money stress: thin savings and card debt weigh on you
+    const cushion = (G.chk + G.sav) / essentials();
+    w += cushion < .5 ? -8 : cushion < 1 ? -3 : cushion > 2 ? 3 : 0;
+    w -= G.card > 1000 ? 6 : G.card > 300 ? 2 : 0;
+    return clamp(w + G.bonusWell, 0, 100);
+  }
+
+  // ----- event modal -----
+  function showEvent(e) {
+    return new Promise(res => {
+      SFX.alert();
+      const choices = typeof e.c === 'function' ? e.c() : e.c;
+      $('modal').innerHTML = `<div class="kicker">${MONTHS[G.month]} ${G.day} · Surprise</div><span class="em">${e.em}</span><h2 id="m-title">${e.t}</h2><p>${e.x()}</p>
+        <div class="choices">${choices.map((c, i) => `<div><button class="choice" data-i="${i}"><b>${c.t}${c.cost ? ` · ${money(c.cost)}` : ''}</b>${c.sub ? `<span>${c.sub}</span>` : ''}${c.well ? `<span>${c.well > 0 ? '🙂 +' : '😟 '}${c.well} wellbeing</span>` : ''}</button><div class="payrow" id="pay${i}" hidden></div></div>`).join('')}</div>
+        <p class="note" style="margin-top:10px">Checking ${money(Math.round(G.chk))} · Savings ${money(Math.round(G.sav))} · Card ${money(Math.round(G.card))} of ${money(CARD_LIMIT)}</p>`;
+      $('sheet').hidden = false;
+      let settled = false;
+      const finish = (c, acct) => {
+        if (settled) return; settled = true;  // a double tap must not apply a choice twice
+        if (c.cost) post(e.t, -c.cost, c.cat || 'other', acct);
+        if (c.well) G.mwell = (G.mwell || 0) + c.well;
+        if (c.fx) c.fx();
+        $('sheet').hidden = true; $('modal').innerHTML = ''; updateHUD(); res();
+      };
+      $('modal').querySelectorAll('.choice').forEach(b => b.onclick = () => {
+        const c = choices[+b.dataset.i];
+        if (!c.cost) return finish(c);
+        $('modal').querySelectorAll('.choice').forEach(x => x.setAttribute('aria-pressed', x === b));
+        $('modal').querySelectorAll('.payrow').forEach(x => x.hidden = true);
+        const row = $('pay' + b.dataset.i); row.hidden = false;
+        const cardRoom = CARD_LIMIT - G.card;
+        row.innerHTML = `<button data-a="chk">Pay from checking${G.chk < c.cost ? ' (overdraft!)' : ''}</button>
+          <button class="sav" data-a="sav"${G.sav < c.cost ? ' disabled' : ''}>Use savings</button>
+          <button class="card" data-a="card"${cardRoom < c.cost ? ' disabled' : ''}>Put it on the card</button>`;
+        row.querySelectorAll('button').forEach(p => p.onclick = () => finish(c, p.dataset.a));
+        row.querySelector('button:not(:disabled)').focus();
+      });
+      $('modal').querySelector('.choice').focus();
+    });
+  }
+  function monthSummary(start) {
+    return new Promise(res => {
+      const lg = G.monthLog[G.monthLog.length - 1], b = budget({gross: G.gross});
+      const spent = Object.entries(lg.cats).filter(([k]) => k !== 'income').reduce((a, [, v]) => a + v, 0);
+      const inc = G.ledger.slice(start.ledger).filter(t => t.amt > 0 && t.cat === 'income' && t.acct === 'chk').reduce((a, t) => a + t.amt, 0);
+      const dnw = netWorth() - start.nw;
+      const tips = [];
+      if (G.overdrafts && G.ledger.slice(start.ledger).some(t => t.label === 'Overdraft fee')) tips.push('You paid an overdraft fee. Keeping a small buffer in checking (or linking savings) avoids that.');
+      if (G.card > start.card + 50 && !G.cardFull) tips.push(`Your card balance grew to ${money(Math.round(G.card))}. At ${CARD_APR * 100}% APR, carrying it costs about ${money(Math.round(G.card * CARD_APR / 12))} a month in interest.`);
+      if (lg.cats.interest) tips.push(`You paid ${money(Math.round(lg.cats.interest))} in card interest this month. Paying in full makes that zero.`);
+      if (lg.pay && PAYDAYS[G.month - 1].length === 3) tips.push('Three paychecks this month! Most budgets plan on two, so the third is a great chance to save.');
+      if (G.well < 40) tips.push('Your wellbeing is low. Rest, friends and a little fun money are part of a budget that lasts.');
+      if (!tips.length) tips.push(dnw >= 0 ? `Steady month. Your net worth grew by ${money(Math.round(dnw))}.` : `Your net worth fell by ${money(Math.round(-dnw))}. Look at the biggest categories below.`);
+      const top = Object.entries(lg.cats).filter(([k]) => !['income', 'transfer'].includes(k)).sort((a, b) => b[1] - a[1]).slice(0, 7);
+      const max = Math.max(...top.map(([, v]) => v), 1);
+      $('modal').innerHTML = `<div class="kicker">End of month ${G.month} of 12</div><h2 id="m-title">${MONTHS[G.month - 1]} wrapped up</h2>
+        <div class="sumgrid">
+          <div><span>Take-home pay</span><b class="pos">${money(Math.round(inc))}</b><small class="note" style="display:block">${PAYDAYS[G.month - 1].length} paychecks</small></div>
+          <div><span>Spent</span><b>${money(Math.round(spent))}</b></div>
+          <div><span>Net worth change</span><b class="${dnw >= 0 ? 'pos' : 'neg'}">${dnw >= 0 ? '+' : ''}${money(Math.round(dnw))}</b></div>
+          <div><span>Wellbeing · Credit</span><b>${G.well} · ${G.score}</b></div>
+        </div>
+        <div class="insight">${tips.slice(0, 2).join(' ')}</div>
+        <h2 class="sec">Where the money went</h2>
+        <div style="display:grid;gap:5px;margin-bottom:14px">${top.map(([k, v]) => `<div style="display:grid;grid-template-columns:110px 1fr 70px;gap:8px;align-items:center;font-size:14px"><span>${CATN[k] || k}</span><i style="display:block;height:12px;border-radius:99px;background:var(--c-${CATC[k] || 'other'});width:${v / max * 100}%"></i><b class="money" style="text-align:right">${money(Math.round(v))}</b></div>`).join('')}</div>
+        <button class="go" id="mnext">${G.month >= 12 ? 'See my year-end report ▶' : `On to ${MONTHS[G.month]} ▶`}</button>`;
+      $('sheet').hidden = false; $('mnext').focus();
+      $('mnext').onclick = () => { $('sheet').hidden = true; $('modal').innerHTML = ''; res(); };
+    });
+  }
+  const CATN = {housing: 'Rent', utilities: 'Utilities', food: 'Food', transport: 'Transport', phone: 'Phone, apps', insurance: 'Insurance', loans: 'Loans', fun: 'Fun', health: 'Health', other: 'Household, other', fee: 'Fees', interest: 'Interest'};
+  const CATC = {housing: 'housing', utilities: 'utilities', food: 'food', transport: 'transport', phone: 'phone', insurance: 'other', loans: 'loans', fun: 'fun', health: 'health', other: 'other', fee: 'interest', interest: 'interest'};
+
+  // ----- live view -----
+  let floatsY = 0;
+  function floater(txt, good) {
+    const f = $('floats'); if (!f) return;
+    const el = document.createElement('div'); el.className = 'fl ' + (good ? 'in' : 'out'); el.textContent = txt;
+    el.style.top = (40 + (floatsY++ % 4) * 9) + '%'; el.style.left = (good ? 62 : 38) + '%';
+    f.appendChild(el);
+    if (good) SFX.pay(); else SFX.bill();
+    anim(el, [{opacity: 0, transform: 'translate(-50%,10px)'}, {opacity: 1, transform: 'translate(-50%,0)', offset: .15}, {opacity: 1, transform: 'translate(-50%,-30px)', offset: .8}, {opacity: 0, transform: 'translate(-50%,-44px)'}], {duration: 1500 / Math.max(1, speed / 2), easing: 'ease-out'}).then(() => el.remove());
+    if (reduce) setTimeout(() => el.remove(), 900);
+  }
+  function drawLive() {
+    const v = $('v-live');
+    if (!G) { v.innerHTML = ''; return; }
+    const m = Math.min(G.month, 11);
+    v.innerHTML = `<div class="hud" id="hud"></div>
+      <div class="live"><div>
+        <div class="stage">
+          <div class="month-label">${G.month >= 12 ? 'Year complete' : `Month ${G.month + 1}: ${MONTHS[m]}`}<small>${PL.cities.find(c => c.id === S.city).name} · ${JOB[S.job].n} · ${HOME[S.home].n}</small></div>
+          <div class="cal" id="cal"></div>
+          <img class="home" src="${ART[S.home]}" alt="${HOME[S.home].n}">
+          <img class="ride" src="${ART[S.ride]}" alt="${RIDE[S.ride].n}">
+          <div class="floats" id="floats" aria-hidden="true"></div>
+        </div>
+        <div class="chart"><h2 class="sec" style="margin:4px 4px 0">Your year so far</h2><svg id="yr" viewBox="0 0 600 150" preserveAspectRatio="none" role="img" aria-label="Checking, savings and card balances by month"></svg>
+          <div class="legend" style="padding:0 4px"><span style="--c:var(--navy)">Checking</span><span style="--c:var(--good)">Savings</span><span style="--c:var(--bad)">Card balance</span><span style="--c:var(--gold)">Net worth</span></div></div>
+      </div>
+      <div class="panel">
+        <div class="box">
+          ${G.month < 12 ? `<button class="go" id="play"${running ? ' disabled' : ''}>${running ? `Living ${MONTHS[m]}...` : `Live ${MONTHS[m]} ▶`}</button>
+          <div class="speed" role="group" aria-label="Speed" style="margin-top:8px">${[[1, 'Normal'], [3, 'Fast'], [9, 'Instant']].map(([x, n]) => `<button data-s="${x}" aria-pressed="${speed === x}">${n}</button>`).join('')}</div>` : `<button class="go" id="torep">See the report ▶</button>`}
+        </div>
+        <div class="box"><h2 class="sec">This month's choices</h2>${lifestyleHTML(true)}</div>
+        <div class="box"><h2 class="sec">Ledger</h2><div class="ledger" id="ledger"></div></div>
+      </div></div>`;
+    $('play') && ($('play').onclick = playMonth);
+    $('torep') && ($('torep').onclick = () => setView('rep'));
+    v.querySelectorAll('.speed button').forEach(b => b.onclick = () => { speed = +b.dataset.s; v.querySelectorAll('.speed button').forEach(x => x.setAttribute('aria-pressed', x === b)); });
+    wireControls(v.querySelector('.panel'), full => { if (full) drawLive(); else refreshOutputs(v); });
+    if (running) v.querySelectorAll('.panel [data-k]').forEach(el => el.disabled = true);
+    updateHUD(); drawCal(); drawYear();
+  }
+  function updateHUD() {
+    const h = $('hud'); if (!h || !G) return;
+    const nw = netWorth(), wc = G.well >= 60 ? 'var(--good)' : G.well >= 40 ? 'var(--warn)' : 'var(--bad)';
+    h.innerHTML = `<div><span>Checking</span><b class="${G.chk < 0 ? 'neg' : ''}">${money(Math.round(G.chk))}</b><small>day-to-day money</small></div>
+      <div><span>Savings</span><b class="pos">${money(Math.round(G.sav))}</b><small>${(G.sav / essentials()).toFixed(1)} months of needs</small></div>
+      <div><span>Credit card</span><b class="${G.card > 0 ? 'neg' : ''}">${money(Math.round(G.card))}</b><small>${Math.round(G.card / CARD_LIMIT * 100)}% of limit</small></div>
+      <div><span>Credit score</span><b>${G.score}</b><small>${G.score >= 700 ? 'good' : G.score >= 640 ? 'fair' : 'poor'}</small></div>
+      <div><span>Wellbeing</span><b>${G.well}</b><div class="wb"><i style="width:${G.well}%;background:${wc}"></i></div></div>
+      <div><span>Net worth</span><b class="${nw >= 0 ? 'pos' : 'neg'}">${money(Math.round(nw))}</b><small>401(k) ${money(Math.round(G.k401))}</small></div>`;
+    const lg = $('ledger');
+    if (lg) lg.innerHTML = `<table>${G.ledger.slice(-60).reverse().map(t => `<tr><td>${t.d ? (MONTHS[Math.min(G.month, 11)].slice(0, 3) + ' ' + t.d) : ''}</td><td>${t.label}${t.acct === 'card' ? ' 💳' : t.acct === 'sav' ? ' 🏦' : ''}</td><td class="${t.amt > 0 ? 'pos' : ''}">${t.amt > 0 ? '+' : ''}${money(t.amt, true)}</td></tr>`).join('')}</table>`;
+  }
+  function drawCal() {
+    const c = $('cal'); if (!c || !G || G.month >= 12) { if (c) c.hidden = true; return; }
+    const m = G.month, off = FIRSTDOW[m];
+    let h = '';
+    for (let i = 0; i < off; i++) h += '<i></i>';
+    for (let d = 1; d <= DAYS[m]; d++) h += `<i class="${d < G.day ? 'past' : d === G.day && running ? 'now' : ''}${PAYDAYS[m].includes(d) ? ' pay' : ''}">${d}</i>`;
+    c.innerHTML = `<div class="mh"><span>${MONTHS[m]}</span><span>${PAYDAYS[m].length} paydays</span></div><div class="days">${'SMTWTFS'.split('').map(x => `<i style="color:#bbb">${x}</i>`).join('')}${h}</div>`;
+  }
+  function drawYear() {
+    const svg = $('yr'); if (!svg || !G) return;
+    const pts = [{chk: G.chk, sav: G.sav, card: G.card, nw: netWorth()}];
+    const H = G.hist.length ? [{chk: startCash(), sav: 0, card: 0, nw: G.startNW}, ...G.hist] : [{chk: startCash(), sav: 0, card: 0, nw: G.startNW}];
+    const all = H.flatMap(h => [h.chk, h.sav, h.card, h.nw]);
+    const lo = Math.min(0, ...all), hi = Math.max(1000, ...all);
+    const x = i => 20 + i / 12 * 570, y = v => 135 - (v - lo) / (hi - lo) * 120;
+    const line = (k, col) => `<polyline fill="none" stroke="${col}" stroke-width="3" stroke-linejoin="round" points="${H.map((h, i) => `${x(i)},${y(h[k])}`).join(' ')}"/>`;
+    let g = `<line x1="20" x2="590" y1="${y(0)}" y2="${y(0)}" stroke="#d8cdb9"/>`;
+    for (let i = 0; i <= 12; i++) g += `<text x="${x(i)}" y="148" text-anchor="middle" style="font:600 9px 'Segoe UI';fill:#9a9284">${i ? MONTHS[i - 1].slice(0, 1) : ''}</text>`;
+    g += `<text x="22" y="${y(0) - 3}" style="font:600 9px 'Segoe UI';fill:#9a9284">$0</text><text x="22" y="20" style="font:600 9px 'Segoe UI';fill:#9a9284">${money(Math.round(hi))}</text>`;
+    g += line('nw', 'var(--gold)') + line('card', 'var(--bad)') + line('sav', 'var(--good)') + line('chk', 'var(--navy)');
+    svg.innerHTML = g;
+  }
+
+  // ================= REPORT =================
+  function grades() {
+    const ess = essentials(), months = Math.max(0, G.chk + G.sav) / ess, J = JOB[S.job];
+    const take = G.monthLog.reduce((a, l) => a + l.pay - l.tax - l.k - l.prem, 0);
+    const dnw = netWorth() - G.startNW;
+    const avgW = G.wellHist.reduce((a, b) => a + b, 0) / G.wellHist.length;
+    const matchShare = J.match ? clamp(G.match / Math.max(1, G.match + G.missedMatch), 0, 1) : 1;
+    const R = [
+      ['Safety net', 25, clamp(months / 3, 0, 1) * 25, `${months.toFixed(1)} months of needs in checking and savings (goal: 3)`],
+      ['Debt and fees', 20, clamp(20 - G.card / 75 - Math.min(8, G.overdrafts * 2) - G.lates * 5 - (G.flags.collections ? 8 : 0) - G.crises * 3, 0, 20), `Card ${money(Math.round(G.card))} · ${G.overdrafts} overdrafts · ${G.lates} late payments${G.crises ? ` · ${G.crises} money crises` : ''}`],
+      ['Future you', 15, matchShare * 10 + (G.score >= 700 ? 5 : G.score >= 660 ? 3 : 0), `${J.match ? Math.round(matchShare * 100) + '% of the 401(k) match' : 'No match offered'} · credit ${G.score}`],
+      ['Growth', 15, clamp(dnw / Math.max(1, take) / .3, 0, 1) * 15, `Net worth ${dnw >= 0 ? 'up' : 'down'} ${money(Math.round(Math.abs(dnw)))} (${Math.round(dnw / Math.max(1, take) * 100)}% of take-home)`],
+      ['Life', 25, clamp((avgW - 30) / 40, 0, 1) * 25, `Average wellbeing ${Math.round(avgW)}`],
+    ];
+    const total = Math.round(R.reduce((a, r) => a + r[2], 0));
+    const letter = total >= 93 ? 'A' : total >= 90 ? 'A-' : total >= 87 ? 'B+' : total >= 83 ? 'B' : total >= 80 ? 'B-' : total >= 77 ? 'C+' : total >= 73 ? 'C' : total >= 70 ? 'C-' : total >= 60 ? 'D' : 'F';
+    const goalOK = {
+      fund1: months >= 1, fund3: months >= 3, nocard: G.card < 1, well50: avgW >= 50, well55: avgW >= 55, well60: avgW >= 60, nood: G.overdrafts === 0, nolate: G.lates === 0,
+      sav500: G.sav >= 500, sav15k: G.sav >= 15000, nwup: dnw > 0, nw2k: dnw >= 2000, match: matchShare >= .999,
+    };
+    return {R, total, letter, take, dnw, avgW, goalOK};
+  }
+  function saveBest() {
+    try {
+      const g = grades(), key = 'first-apartment-best', all = JSON.parse(localStorage.getItem(key) || '{}'), k = S.challenge;
+      if (!all[k] || g.total > all[k].total) all[k] = {total: g.total, letter: g.letter, city: S.city, job: S.job, home: S.home, seed: G.seed};
+      localStorage.setItem(key, JSON.stringify(all));
+    } catch {}
+  }
+  function drawRep() {
+    const v = $('v-rep');
+    if (!G || G.month < 12) { v.innerHTML = '<div class="box">Finish all twelve months to see your report.</div>'; return; }
+    const g = grades(), ch = CH[G.plan.challenge];
+    let best = {}; try { best = JSON.parse(localStorage.getItem('first-apartment-best') || '{}'); } catch {}
+    v.innerHTML = `<div class="rep"><div class="box">
+        <h2 class="sec">Year-end report · ${ch.em} ${ch.n}</h2>
+        <div style="display:flex;align-items:center;gap:16px"><div class="grade">${g.letter}</div><div><b style="font-size:28px">${g.total}</b><span class="note"> / 100</span><p class="note">${PL.cities.find(c => c.id === S.city).name} · ${JOB[S.job].n}<br>${HOME[S.home].n} · ${RIDE[S.ride].n}<br>Class code <b>${G.seed}</b></p></div></div>
+        <div class="rub">${g.R.map(([n, mx, x, sub]) => `<div><b>${n}</b><span class="money">${Math.round(x)} / ${mx}</span><i><b style="width:${x / mx * 100}%"></b></i><small>${sub}</small></div>`).join('')}</div>
+        <h2 class="sec" style="margin-top:14px">Challenge goals</h2>
+        <div class="goals">${ch.goals.map(([k, n]) => `<div><b>${g.goalOK[k] ? '✅' : '❌'}</b>${n}</div>`).join('')}</div>
+        <div style="display:grid;gap:8px;margin-top:14px"><button class="go" id="again">↺ Replay the same year</button><button class="ghost" id="newplan">Change my plan</button></div>
+        ${Object.keys(best).length ? `<h2 class="sec" style="margin-top:14px">Best on this device</h2><div class="best">${Object.entries(best).map(([k, b]) => `<div>${CH[k].em} ${CH[k].n}: <b>${b.letter} (${b.total})</b> <span class="note">${PL.cities.find(c => c.id === b.city).name}, ${JOB[b.job].n}</span></div>`).join('')}</div>` : ''}
+      </div>
+      <div style="display:grid;gap:14px">
+        <div class="box sankey"><h2 class="sec">Where every dollar went this year</h2>${sankey()}</div>
+        <div class="box"><h2 class="sec">The year in numbers</h2><div class="sumgrid" style="grid-template-columns:repeat(4,1fr)">
+          <div><span>Earned (gross)</span><b>${money(Math.round(G.monthLog.reduce((a, l) => a + l.pay, 0)))}</b></div>
+          <div><span>Taxes</span><b>${money(Math.round(G.monthLog.reduce((a, l) => a + l.tax, 0)))}</b></div>
+          <div><span>Interest and fees</span><b class="${G.interest + G.fees > 0 ? 'neg' : ''}">${money(Math.round(G.interest + G.fees))}</b></div>
+          <div><span>Net worth change</span><b class="${g.dnw >= 0 ? 'pos' : 'neg'}">${g.dnw >= 0 ? '+' : ''}${money(Math.round(g.dnw))}</b></div>
+          <div><span>Savings</span><b>${money(Math.round(G.sav))}</b></div>
+          <div><span>401(k)</span><b>${money(Math.round(G.k401))}</b></div>
+          <div><span>Card balance</span><b>${money(Math.round(G.card))}</b></div>
+          <div><span>Credit score</span><b>${G.score}</b></div></div>
+          <p class="note">Net worth counts checking, savings, your 401(k), the security deposit you should get back and your car's value, minus the card, student loans and car loan. Missed 401(k) match this year: <b>${money(Math.round(G.missedMatch))}</b>.</p></div>
+        <div class="box"><h2 class="sec">Think about it</h2><ul style="margin:4px 0 0;padding-left:20px;line-height:1.5;font-size:15px">${reflect(g).map(x => `<li>${x}</li>`).join('')}</ul></div>
+      </div></div>`;
+    $('again').onclick = () => { S.seed = G.seed; savePlan(); startYear(); };
+    $('newplan').onclick = () => setView('plan');
+  }
+  function reflect(g) {
+    const out = [], b = budget({gross: G.gross});
+    const housing = b.h.gross / (G.gross / 12);
+    out.push(`Housing took ${Math.round(housing * 100)}% of your gross pay. ${housing > .3 ? 'What would a roommate or a smaller place have changed?' : 'You stayed under the 30% guideline. What did that make possible?'}`);
+    if (G.interest + G.fees > 0) out.push(`You paid ${money(Math.round(G.interest + G.fees))} in interest and fees, money that bought nothing. Which decision caused most of it?`);
+    if (G.missedMatch > 1) out.push(`You left ${money(Math.round(G.missedMatch))} of free 401(k) match unclaimed. At 7% a year, that grows to about ${money(Math.round(G.missedMatch * 1.07 ** 45))} by age 65.`);
+    if (g.avgW < 50) out.push('Your wellbeing averaged under 50. Was the money you saved worth how the year felt?');
+    if (g.avgW >= 65 && g.total < 75) out.push('You had a good year emotionally but finished thin on savings. What is one want you could trim without missing it?');
+    out.push('Replay with the same class code and change one thing. Which single change raised your score the most?');
+    return out;
+  }
+  function sankey() {
+    // two stages: gross pay splits into taxes, benefits and take-home; take-home splits into spending and saving
+    const L = G.monthLog, sum = f => L.reduce((a, l) => a + f(l), 0);
+    const gross = sum(l => l.pay), tax = sum(l => l.tax), k = sum(l => l.k), prem = sum(l => l.prem);
+    const cats = {}; L.forEach(l => Object.entries(l.cats).forEach(([c, v]) => { if (!['income', 'transfer'].includes(c)) cats[c] = (cats[c] || 0) + v; }));
+    const extra = G.ledger.filter(t => t.cat === 'income' && t.label !== 'Paycheck' && t.amt > 0 && t.acct === 'chk').reduce((a, t) => a + t.amt, 0);
+    const take = gross - tax - k - prem + extra;
+    const spent = Object.values(cats).reduce((a, b) => a + b, 0);
+    const kept = take - spent;
+    const left = [['Taxes', tax, 'tax'], ['401(k)', k, 'save'], ['Health plan', prem, 'health'], ['Take-home', take, 'navy']];
+    const right = Object.entries(cats).sort((a, b) => b[1] - a[1]).map(([c, v]) => [CATN[c] || c, v, CATC[c] || 'other']);
+    if (kept > 0) right.push(['Saved or kept', kept, 'save']);
+    const W = 760, Hh = 400, total = Math.max(gross + extra, spent), sc = (Hh - 20 - right.length * 4) / Math.max(total, 1);
+    const colr = c => c === 'navy' ? 'var(--navy)' : `var(--c-${c})`;
+    let g = '', y0 = 10;
+    // source bar
+    g += `<rect x="10" y="10" width="16" height="${(gross + extra) * sc}" fill="var(--navy)" rx="3"/><text x="32" y="22">${extra ? 'Pay and other income' : 'Pay'} ${money(Math.round(gross + extra))}</text>`;
+    // stage 1 bars
+    let ys = 10, yl = 10; const x1 = 250;
+    const mid = {};
+    for (const [n, v, c] of left) {
+      const h = v * sc; if (h <= 0) continue;
+      g += `<path d="M26 ${ys} C140 ${ys} 140 ${yl} ${x1} ${yl} L${x1} ${yl + h} C140 ${yl + h} 140 ${ys + h} 26 ${ys + h}Z" fill="${colr(c)}" opacity=".28"/>`;
+      g += `<rect x="${x1}" y="${yl}" width="16" height="${h}" fill="${colr(c)}" rx="3"/>`;
+      if (n !== 'Take-home') g += `<text x="${x1 - 6}" y="${yl + Math.min(h / 2 + 4, h + 12)}" text-anchor="end">${n} ${money(Math.round(v))}</text>`;
+      else { g += `<text x="${x1 + 22}" y="${yl + 14}">Take-home ${money(Math.round(v))}</text>`; mid.y = yl; mid.h = h; }
+      ys += h; yl += h + 6;
+    }
+    // stage 2 from take-home
+    let yt = mid.y, yr = 10; const x2 = 560;
+    for (const [n, v, c] of right) {
+      const h = Math.max(1, v * sc);
+      g += `<path d="M${x1 + 16} ${yt} C${x1 + 160} ${yt} ${x1 + 160} ${yr} ${x2} ${yr} L${x2} ${yr + h} C${x1 + 160} ${yr + h} ${x1 + 160} ${yt + h} ${x1 + 16} ${yt + h}Z" fill="${colr(c)}" opacity=".3"/>`;
+      g += `<rect x="${x2}" y="${yr}" width="14" height="${h}" fill="${colr(c)}" rx="3"/><text x="${x2 + 20}" y="${yr + Math.min(h / 2 + 4, 12)}">${n} ${money(Math.round(v))}</text>`;
+      yt += h; yr += Math.max(h, 12) + 4;  // small slices get room for their labels
+    }
+    return `<svg viewBox="0 0 ${W} ${Math.max(Hh, yr + 10, yl + 10)}" role="img" aria-label="Flow of the year's pay into taxes, benefits and spending">${g}</svg>
+      <p class="note">${kept < 0 ? `You spent ${money(Math.round(-kept))} more than you took home; the gap came from savings you started with or the credit card.` : ''} Spending on the card counts when you spent it, not when you paid the card.</p>`;
+  }
+
+  // keyboard: Space plays the next month
+  document.addEventListener('keydown', e => {
+    if (view === 'live' && e.key === ' ' && $('sheet').hidden && !running && G && G.month < 12 && !/INPUT|BUTTON|SELECT/.test(document.activeElement.tagName)) { e.preventDefault(); playMonth(); }
+  });
+
+  window.__fab = {S, get G() { return G; }, startYear, playMonth, setView, budget, taxes, grades, setSpeed: x => speed = x, autoAnswer: () => { const b = document.querySelector('#modal .choice'); b && b.click(); const p = document.querySelector('#modal .payrow:not([hidden]) button:not(:disabled)'); p && p.click(); const n = $('mnext'); n && n.click(); }};
+  setView('plan');
+})();
+</script>
+</body>
+</html>

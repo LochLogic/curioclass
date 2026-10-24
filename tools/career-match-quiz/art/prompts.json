@@ -1,0 +1,11 @@
+{
+  "house_style": "Bright contemporary editorial illustration for a middle-school career guide: confident clean shapes, soft grain texture, warm friendly lighting, fresh palette of coral, teal, sunflower and deep blue. Diverse, real-looking young teens about 13 years old, friendly faces, natural poses, everyday clothes. No text, no letters, no numbers, no logos, no watermark, no border, no frame.",
+  "assets": [
+    {"name": "t-r", "prompt": "A teen wearing safety glasses and work gloves building a wooden birdhouse with a small hand drill, a toolbox beside them. Half-length, three-quarter view, plain background.", "cutout": true, "aspect": "3:4", "height": 340},
+    {"name": "t-i", "prompt": "A curious teen looking through a microscope with a notebook full of sketches beside them, one hand adjusting the focus. Half-length, three-quarter view, plain background.", "cutout": true, "aspect": "3:4", "height": 340},
+    {"name": "t-a", "prompt": "A creative teen with paint on their hands painting a colorful mural on a large canvas, holding a brush, headphones around the neck. Half-length, three-quarter view, plain background.", "cutout": true, "aspect": "3:4", "height": 340},
+    {"name": "t-s", "prompt": "A kind teen kneeling to help a younger child tie a shoe, both smiling. Half-length, three-quarter view, plain background.", "cutout": true, "aspect": "3:4", "height": 340},
+    {"name": "t-e", "prompt": "A confident teen pitching an idea, holding a tablet and gesturing with an open hand as if presenting to a group, energetic expression. Half-length, three-quarter view, plain background.", "cutout": true, "aspect": "3:4", "height": 340},
+    {"name": "t-c", "prompt": "An organized teen at a tidy desk sorting colorful folders and sticky notes into neat rows, a planner open in front of them. Half-length, three-quarter view, plain background.", "cutout": true, "aspect": "3:4", "height": 340}
+  ]
+}

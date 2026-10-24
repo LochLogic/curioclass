@@ -1,7 +1,7 @@
 ## A 5-minute start
 
 1. Open **March** and press **▶ March!** The buddies march and a heart lights on every beat. Everyone pats their knees on each heart.
-2. Try **🐢 Slow** and **🐇 Quick**. The beat gets slower or faster, but it stays steady.
+2. Try **🐢 Slow** and **🐇 Quick**. The beat gets slower or faster, but it stays steady. The tune can play on **🪵 Marimba**, **🎁 Music box** or **🎷 Soft band**.
 3. Turn on **🧊 Freeze game**. At a surprise moment the music stops and the owl says freeze. Everyone freezes until the music starts again.
 4. Switch to **Rhythm** and press **▶ Play** to clap the buddies' pattern together.
 
@@ -18,7 +18,7 @@ Tap a card along the bottom, then tap one of the four boxes. A snail takes two b
 
 ## Echo
 
-The four cards turn face down and the buddies play a pattern. The class listens, then claps it back while the hearts keep the beat. **👀 Show me** turns the cards over and plays it again. Pick which cards can appear with the picture buttons: bears and bunnies, then add owl rests, then snail long sounds.
+The four cards turn face down and the buddies play a pattern. The class listens, gets a short pause to get ready, hears "Ready... Go!" on the beat, then claps it back while the hearts keep the beat. **👀 Show me** turns the cards over and plays it again. Pick which cards can appear with the picture buttons: bears and bunnies, then add owl rests, then snail long sounds.
 
 ## The big idea
 

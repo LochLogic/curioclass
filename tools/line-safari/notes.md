@@ -3,7 +3,7 @@
 1. Open **Lines**. A line draws itself across the savanna. Ask: "What kind of line is this?"
 2. Press **Name it!** The line takes its color and the card gives its name and a way to move it with your body.
 3. Press **Draw along** and trace the line on the board (or let a child do it).
-4. Press **Next stop**. After ten stops the whole picture is made of lines.
+4. Press **Next stop**. Lines from earlier stops stay in the picture but fade back, and the new line glows yellow so everyone knows which one to look at. After ten stops the whole picture is made of lines.
 
 ## The ten lines
 

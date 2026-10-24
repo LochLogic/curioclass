@@ -64,6 +64,8 @@ svg.layer{position:absolute;inset:0;width:1440px;height:810px;overflow:visible}
 .card .btns{display:flex;gap:10px;justify-content:center;margin-top:10px;flex-wrap:wrap}
 .card .btns .big{min-height:52px;font-size:19px;padding:0 16px}
 .ink{fill:none;stroke-linecap:round;stroke-linejoin:round}
+#lines .old{opacity:.3;transition:opacity .6s}
+#lines .glow{opacity:0;pointer-events:none}
 canvas.trace{position:absolute;inset:0;width:1440px;height:810px;z-index:6;touch-action:none}
 
 /* shapes */
@@ -222,11 +224,13 @@ canvas.paper{position:absolute;left:262px;top:88px;width:1164px;height:708px;bor
   async function goStop(i, instant) {
     const run = ++lineRun; stop = Math.max(0, Math.min(STOPS.length, i)); revealed = false; clearTrace();
     const svg = $('lines'); svg.innerHTML = '';
-    for (let k = 0; k < Math.min(stop, STOPS.length); k++) svg.appendChild(lineEls(k, true));
+    // lines from earlier stops stay in the picture but fade back, so the new one is the one to look at
+    for (let k = 0; k < Math.min(stop, STOPS.length); k++) { const old = lineEls(k, true); if (stop < STOPS.length) old.classList.add('old'); svg.appendChild(old); }
     if (stop >= STOPS.length) return finale();
     drawCard();
+    const glow = document.createElementNS(SVGNS, 'g'); glow.classList.add('glow'); svg.appendChild(glow);
     const g = lineEls(stop, false); svg.appendChild(g);
-    if (reduce) return;
+    if (reduce) return highlight(glow, g, run, true);
     // draw the new line stroke by stroke
     const paths = [...g.querySelectorAll('path')]; paths.forEach(p => p.style.opacity = 0);
     await wait(instant ? 300 : 150); if (run !== lineRun) return;
@@ -253,12 +257,23 @@ canvas.paper{position:absolute;left:262px;top:88px;width:1164px;height:708px;bor
         p.style.strokeDashoffset = 0;
       }
     }
+    highlight(glow, g, run);
+  }
+  // A soft yellow glow behind the new line that pulses a few times (or just stays, with motion off).
+  async function highlight(glow, g, run, still) {
+    if (run !== lineRun) return;
+    glow.innerHTML = [...g.querySelectorAll('path')].map(p => `<path d="${p.getAttribute('d')}" stroke="#fff26a" stroke-width="${+p.getAttribute('stroke-width') + 26}" stroke-linecap="round" stroke-linejoin="round" fill="none"/>`).join('');
+    if (still) { glow.style.opacity = .75; return; }
+    const a = glow.animate([{opacity: 0}, {opacity: .9}, {opacity: .25}, {opacity: .9}, {opacity: .25}, {opacity: .9}, {opacity: .6}], {duration: 2200, easing: 'ease-in-out', fill: 'forwards'});
+    await Promise.race([a.finished, wait(2400)]);
+    if (run === lineRun) glow.style.opacity = .6;
   }
   function drawCard() {
     const s = STOPS[stop];
     const dots = STOPS.map((_, k) => `<i class="${k === stop ? 'on' : k < stop ? 'done' : ''}"></i>`).join('');
     $('card').innerHTML = `<div class="stop">Stop ${stop + 1} of ${STOPS.length} ${dots}</div>` + (revealed
       ? `<h2 style="color:${s.colors ? s.colors[0] : s.color}">${s.name}</h2><p>${s.say}</p><p class="move">🤸 ${s.move}</p>`
+      : s.paths.length > 1 ? `<h2>What lines are these?</h2><p>Watch them draw. Can you name them?</p>`
       : `<h2>What kind of line is this?</h2><p>Watch it draw. Can you name it?</p>`) +
       `<div class="btns">${stop ? '<button class="big" id="prev">◀</button>' : ''}${revealed ? '' : '<button class="big or" id="reveal">✨ Name it!</button>'}<button class="big" id="drawalong" aria-pressed="${!$('trace').hidden}">✏ Draw along</button><button class="big go" id="next">${stop === STOPS.length - 1 ? 'Finish 🎉' : 'Next stop ▶'}</button></div>`;
     $('prev') && ($('prev').onclick = () => goStop(stop - 1));

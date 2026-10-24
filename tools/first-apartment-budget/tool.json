@@ -1,0 +1,21 @@
+{
+  "id": "first-apartment-budget",
+  "status": "beta",
+  "driver": "students",
+  "modes": ["Plan", "Live the year", "Report"],
+  "grades_label": "Grades 9-12",
+  "third_party": [],
+  "updated": "2026-10-23",
+  "hook": "Pick a real city, a real starting job and a place to live, then survive twelve months on your own: paychecks under 2026 tax rules, surprise bills, roommates, a credit card and a year-end report card. Class codes give everyone the same year.",
+  "outcome": "Build and live on a monthly budget; read a paycheck; weigh needs and wants, housing costs and transportation; use savings, insurance and credit wisely when surprises hit",
+  "minutes": "40-60",
+  "sources": [
+    "Rents: HUD Fair Market Rents, FY2026",
+    "Starting pay: U.S. Bureau of Labor Statistics, Occupational Employment and Wage Statistics, May 2025 (25th percentile by metro area)",
+    "Federal income tax: IRS Rev. Proc. 2025-32 (2026 brackets and standard deduction)",
+    "Food: USDA Food Plans: Cost of Food at Home (2025)",
+    "Health premiums: KFF 2025 Employer Health Benefits Survey",
+    "Credit card rates: Federal Reserve G.19 Consumer Credit (2026)",
+    "Illustrations generated with Google Gemini, edited for Curio Class"
+  ]
+}

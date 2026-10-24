@@ -1,0 +1,18 @@
+{
+  "id": "career-match-quiz",
+  "status": "beta",
+  "driver": "students",
+  "modes": ["Quiz", "My matches", "Explore"],
+  "grades_label": "Grades 6-8",
+  "third_party": [],
+  "updated": "2026-10-23",
+  "hook": "Swipe through 36 activity cards, pick your strengths and how you like to work, and see 83 real careers ranked by fit, with real pay, training and job counts. Then roam the interest hexagon.",
+  "outcome": "Describe your own interests and strengths with the six Holland interest types and connect them to careers across the 14 career clusters, including the training and pay each involves",
+  "minutes": "20-30",
+  "sources": [
+    "Interest profiles, Job Zones and work context: O*NET 30.2 Database, U.S. Department of Labor, Employment and Training Administration (USDOL/ETA), CC BY 4.0. Modified by Curio Class; USDOL/ETA has not approved, endorsed or tested these modifications. O*NET is a trademark of USDOL/ETA.",
+    "Pay and employment: U.S. Bureau of Labor Statistics, Occupational Employment and Wage Statistics, May 2025 (national)",
+    "Career groups: Advance CTE Career Clusters framework (2024)",
+    "Illustrations generated with Google Gemini, edited for Curio Class"
+  ]
+}
