@@ -36,11 +36,19 @@ def record(text, voice, style):
                 model=MODELS[0], contents=f'{style}: {text}',
                 config=types.GenerateContentConfig(response_modalities=['AUDIO'], speech_config=types.SpeechConfig(
                     voice_config=types.VoiceConfig(prebuilt_voice_config=types.PrebuiltVoiceConfig(voice_name=voice)))))
-            return resp.candidates[0].content.parts[0].inline_data.data
+            content = resp.candidates[0].content
+            if content is None or not content.parts:  # the TTS preview sometimes returns no audio; ask again
+                if attempt == 7:
+                    raise RuntimeError(f'no audio returned for: {text[:60]}')
+                print(f'no audio returned (finish reason {resp.candidates[0].finish_reason}), retrying')
+                continue
+            return content.parts[0].inline_data.data
         except Exception as e:
             if '429' in str(e) and 'per_day' in str(e) and len(MODELS) > 1:
                 MODELS.pop(0)
                 print(f'daily limit reached, switching to {MODELS[0]}')
+                continue
+            if 'tried to generate text' in str(e) and attempt < 7:  # another intermittent TTS preview refusal
                 continue
             if '429' not in str(e) or attempt == 7:
                 raise
@@ -92,8 +100,11 @@ def main():
         names = [raw / (Path(clip_name(t)).stem + '.pcm') for t in group]
         if all(r.exists() for r in names) and not force:
             continue
-        pcm = record('. '.join(group) + '.', spec.get('voice', 'Puck'), spec.get('group_style', 'Count slowly and clearly, with a full pause after each number'))
-        parts = split(pcm, len(group))
+        try:
+            pcm = record('. '.join(group) + '.', spec.get('voice', 'Puck'), spec.get('group_style', 'Count slowly and clearly, with a full pause after each number'))
+        except RuntimeError:
+            pcm = None  # no audio for the whole group; fall back to its lines one at a time
+        parts = pcm and split(pcm, len(group))
         if parts:
             for r, part in zip(names, parts):
                 r.write_bytes(part)
