@@ -1,0 +1,275 @@
+{
+  "style": "Bright storybook look for a kindergarten music lesson on a projector, friendly and clear, easy to see from the back of the room.",
+  "assets": [
+    {
+      "name": "violin",
+      "prompt": "A violin with its bow lying beside it at an angle, standing upright, front view, warm orange-brown varnished wood, black fingerboard, four strings, f-holes, scroll at the top. Realistic and accurate: correct shape, proportions and parts of the real instrument, drawn on its own with no hands, no player, no stand unless stated.",
+      "cutout": true,
+      "height": 300,
+      "aspect": "3:4"
+    },
+    {
+      "name": "cello",
+      "prompt": "A cello standing upright on its endpin, front view, warm brown varnished wood, four strings, f-holes, scroll at the top, with its bow leaning beside it. Realistic and accurate: correct shape, proportions and parts of the real instrument, drawn on its own with no hands, no player, no stand unless stated.",
+      "cutout": true,
+      "height": 340,
+      "aspect": "9:16",
+      "ref": "violin",
+      "ref_mode": "style"
+    },
+    {
+      "name": "bass",
+      "prompt": "A double bass (the biggest string instrument) standing upright on its endpin, front view, dark brown varnished wood, sloping shoulders, four strings, f-holes, scroll at the top, bow leaning beside it. Realistic and accurate: correct shape, proportions and parts of the real instrument, drawn on its own with no hands, no player, no stand unless stated.",
+      "cutout": true,
+      "height": 380,
+      "aspect": "9:16",
+      "ref": "violin",
+      "ref_mode": "style"
+    },
+    {
+      "name": "harp",
+      "prompt": "A golden concert pedal harp, tall triangular frame with a curved neck and a straight column, many strings (some red), seen from the side, standing on its base. Realistic and accurate: correct shape, proportions and parts of the real instrument, drawn on its own with no hands, no player, no stand unless stated.",
+      "cutout": true,
+      "height": 360,
+      "aspect": "9:16",
+      "ref": "violin",
+      "ref_mode": "style"
+    },
+    {
+      "name": "flute",
+      "prompt": "A silver concert flute lying diagonally from lower left to upper right, long thin straight tube with many keys and the mouthpiece hole near the top end. Realistic and accurate: correct shape, proportions and parts of the real instrument, drawn on its own with no hands, no player, no stand unless stated.",
+      "cutout": true,
+      "height": 130,
+      "aspect": "16:9",
+      "ref": "violin",
+      "ref_mode": "style"
+    },
+    {
+      "name": "clarinet",
+      "prompt": "A black wooden clarinet standing upright, straight thin body with silver keys and rings, a flared bell at the bottom, mouthpiece at the top. Realistic and accurate: correct shape, proportions and parts of the real instrument, drawn on its own with no hands, no player, no stand unless stated.",
+      "cutout": true,
+      "height": 300,
+      "aspect": "9:16",
+      "ref": "violin",
+      "ref_mode": "style"
+    },
+    {
+      "name": "oboe",
+      "prompt": "A dark wooden oboe standing upright, thin straight body with many silver keys, a small flared bell at the bottom, a tiny double reed at the top. Realistic and accurate: correct shape, proportions and parts of the real instrument, drawn on its own with no hands, no player, no stand unless stated.",
+      "cutout": true,
+      "height": 290,
+      "aspect": "9:16",
+      "ref": "violin",
+      "ref_mode": "style"
+    },
+    {
+      "name": "bassoon",
+      "prompt": "A reddish-brown wooden bassoon standing upright, a tall wooden tube with silver keys and a curved thin metal crook with a reed sticking out near the top. Realistic and accurate: correct shape, proportions and parts of the real instrument, drawn on its own with no hands, no player, no stand unless stated.",
+      "cutout": true,
+      "height": 360,
+      "aspect": "9:16",
+      "ref": "violin",
+      "ref_mode": "style"
+    },
+    {
+      "name": "sax",
+      "prompt": "A shiny gold alto saxophone standing upright, curved J-shaped body with an upturned bell at the bottom, many keys and pearl buttons, a black mouthpiece at the top of the curved neck. Realistic and accurate: correct shape, proportions and parts of the real instrument, drawn on its own with no hands, no player, no stand unless stated.",
+      "cutout": true,
+      "height": 300,
+      "aspect": "3:4",
+      "ref": "violin",
+      "ref_mode": "style"
+    },
+    {
+      "name": "trumpet",
+      "prompt": "A shiny brass trumpet seen from the side, bell pointing right, three valves on top, mouthpiece on the left. Realistic and accurate: correct shape, proportions and parts of the real instrument, drawn on its own with no hands, no player, no stand unless stated.",
+      "cutout": true,
+      "height": 170,
+      "aspect": "16:9",
+      "ref": "violin",
+      "ref_mode": "style"
+    },
+    {
+      "name": "horn",
+      "prompt": "A shiny brass French horn seen from the side, round coiled tubing, wide bell, three rotary valves, a small mouthpiece. Realistic and accurate: correct shape, proportions and parts of the real instrument, drawn on its own with no hands, no player, no stand unless stated.",
+      "cutout": true,
+      "height": 260,
+      "aspect": "4:3",
+      "ref": "violin",
+      "ref_mode": "style"
+    },
+    {
+      "name": "trombone",
+      "prompt": "A shiny brass tenor trombone seen from the side, long slide pointing left, bell pointing right, mouthpiece. Realistic and accurate: correct shape, proportions and parts of the real instrument, drawn on its own with no hands, no player, no stand unless stated.",
+      "cutout": true,
+      "height": 170,
+      "aspect": "16:9",
+      "ref": "violin",
+      "ref_mode": "style"
+    },
+    {
+      "name": "tuba",
+      "prompt": "A big shiny brass tuba standing upright, wide bell pointing up, coiled thick tubing, four valves, mouthpiece. Realistic and accurate: correct shape, proportions and parts of the real instrument, drawn on its own with no hands, no player, no stand unless stated.",
+      "cutout": true,
+      "height": 340,
+      "aspect": "3:4",
+      "ref": "violin",
+      "ref_mode": "style"
+    },
+    {
+      "name": "timpani",
+      "prompt": "One orchestral timpani kettle drum: a big round copper bowl on short legs with a white drumhead on top, tuning handles around the rim, a pair of felt mallets resting on top, seen from slightly above the side. Realistic and accurate: correct shape, proportions and parts of the real instrument, drawn on its own with no hands, no player, no stand unless stated.",
+      "cutout": true,
+      "height": 260,
+      "aspect": "4:3",
+      "ref": "violin",
+      "ref_mode": "style"
+    },
+    {
+      "name": "snare",
+      "prompt": "A snare drum seen from slightly above the side: a shallow shiny drum with a white head, metal lugs around the side, two wooden drumsticks crossed on top. Realistic and accurate: correct shape, proportions and parts of the real instrument, drawn on its own with no hands, no player, no stand unless stated.",
+      "cutout": true,
+      "height": 230,
+      "aspect": "4:3",
+      "ref": "violin",
+      "ref_mode": "style"
+    },
+    {
+      "name": "bassdrum",
+      "prompt": "A big marching-band bass drum standing on its edge, seen from the front at a slight angle, round white drumhead, red painted shell with brass tension rods, one big fluffy mallet leaning on it. Realistic and accurate: correct shape, proportions and parts of the real instrument, drawn on its own with no hands, no player, no stand unless stated.",
+      "cutout": true,
+      "height": 280,
+      "aspect": "4:3",
+      "ref": "violin",
+      "ref_mode": "style"
+    },
+    {
+      "name": "xylophone",
+      "prompt": "A xylophone seen from above at an angle: rows of warm reddish wooden bars getting shorter from left to right on a frame, two mallets with round heads lying on top. Realistic and accurate: correct shape, proportions and parts of the real instrument, drawn on its own with no hands, no player, no stand unless stated.",
+      "cutout": true,
+      "height": 200,
+      "aspect": "16:9",
+      "ref": "violin",
+      "ref_mode": "style"
+    },
+    {
+      "name": "cymbals",
+      "prompt": "A pair of shiny gold crash cymbals with leather straps, one overlapping the other at an angle, front view. Realistic and accurate: correct shape, proportions and parts of the real instrument, drawn on its own with no hands, no player, no stand unless stated.",
+      "cutout": true,
+      "height": 230,
+      "aspect": "4:3",
+      "ref": "violin",
+      "ref_mode": "style"
+    },
+    {
+      "name": "triangle",
+      "prompt": "A silver musical triangle hanging from a small loop of string, with a thin metal beater beside it. Realistic and accurate: correct shape, proportions and parts of the real instrument, drawn on its own with no hands, no player, no stand unless stated.",
+      "cutout": true,
+      "height": 220,
+      "aspect": "3:4",
+      "ref": "violin",
+      "ref_mode": "style"
+    },
+    {
+      "name": "tambourine",
+      "prompt": "A tambourine seen at a slight angle: a round wooden frame with pairs of shiny metal jingles around it and a pale drumhead. Realistic and accurate: correct shape, proportions and parts of the real instrument, drawn on its own with no hands, no player, no stand unless stated.",
+      "cutout": true,
+      "height": 220,
+      "aspect": "4:3",
+      "ref": "violin",
+      "ref_mode": "style"
+    },
+    {
+      "name": "gong",
+      "prompt": "A big bronze gong hanging in a dark wooden frame, with a soft round mallet leaning against the frame. Realistic and accurate: correct shape, proportions and parts of the real instrument, drawn on its own with no hands, no player, no stand unless stated.",
+      "cutout": true,
+      "height": 320,
+      "aspect": "3:4",
+      "ref": "violin",
+      "ref_mode": "style"
+    },
+    {
+      "name": "piano",
+      "prompt": "A black grand piano seen from the front-side at an angle, lid propped open, white and black keys visible, three legs. Realistic and accurate: correct shape, proportions and parts of the real instrument, drawn on its own with no hands, no player, no stand unless stated.",
+      "cutout": true,
+      "height": 280,
+      "aspect": "4:3",
+      "ref": "violin",
+      "ref_mode": "style"
+    },
+    {
+      "name": "giraffe",
+      "prompt": "A friendly cartoon giraffe zookeeper with a little green zookeeper cap and a black bow tie, full body, standing, smiling, front three-quarter view, long neck.",
+      "cutout": true,
+      "height": 380,
+      "aspect": "9:16"
+    },
+    {
+      "name": "owl",
+      "prompt": "The same storybook style: a friendly round cartoon owl zookeeper with a little green zookeeper cap, perched standing on a short branch, big smile, wings slightly open as if waving.",
+      "cutout": true,
+      "height": 260,
+      "aspect": "3:4",
+      "ref": "giraffe",
+      "ref_mode": "style"
+    },
+    {
+      "name": "elephant",
+      "prompt": "The same storybook style: a friendly cartoon baby elephant zookeeper with a little green zookeeper cap, full body standing, trunk raised happily, big ears, smiling.",
+      "cutout": true,
+      "height": 300,
+      "aspect": "3:4",
+      "ref": "giraffe",
+      "ref_mode": "style"
+    },
+    {
+      "name": "gorilla",
+      "prompt": "The same storybook style: a friendly gentle cartoon gorilla zookeeper with a little green zookeeper cap, full body standing, smiling, one hand lifted in a wave.",
+      "cutout": true,
+      "height": 320,
+      "aspect": "3:4",
+      "ref": "giraffe",
+      "ref_mode": "style"
+    },
+    {
+      "name": "savanna",
+      "prompt": "Empty background for a zoo home: a sunny savanna zoo enclosure, golden grass, two flat-topped acacia trees at the far left and far right edges, a low wooden fence along the bottom, warm sky. The whole middle is open and calm. No animals, no people, no signs.",
+      "aspect": "16:9",
+      "width": 1440,
+      "quality": 60,
+      "trim": 0.03
+    },
+    {
+      "name": "treetops",
+      "prompt": "Empty background for a zoo home: a leafy forest aviary high in the treetops, soft green light, thick branches along the top and sides, a big open calm middle with soft blurred leaves behind. No animals, no birds, no people, no signs.",
+      "aspect": "16:9",
+      "width": 1440,
+      "quality": 60,
+      "trim": 0.03
+    },
+    {
+      "name": "waterhole",
+      "prompt": "Empty background for a zoo home: a sunny zoo enclosure with sandy ground, a small blue watering hole at the far right, a few round boulders at the left edge, palm trees at the far edges, warm bright sky. The middle is open sand. No animals, no people, no signs.",
+      "aspect": "16:9",
+      "width": 1440,
+      "quality": 60,
+      "trim": 0.03
+    },
+    {
+      "name": "jungle",
+      "prompt": "Empty background for a zoo home: a jungle clearing in a zoo with big tropical leaves and vines around the edges, a mossy flat ground, dappled sunlight, the whole middle open. No animals, no people, no signs.",
+      "aspect": "16:9",
+      "width": 1440,
+      "quality": 60,
+      "trim": 0.03
+    },
+    {
+      "name": "gate",
+      "prompt": "Empty background: the entrance plaza of a cheerful storybook zoo on a sunny day, a path of paving stones, flower beds, green hedges, a big decorative arch of green iron vines across the top edge, blue sky. The middle is open plaza. No animals, no people, no signs, no writing.",
+      "aspect": "16:9",
+      "width": 1440,
+      "quality": 60,
+      "trim": 0.03
+    }
+  ]
+}

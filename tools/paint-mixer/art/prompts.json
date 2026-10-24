@@ -1,0 +1,20 @@
+{
+  "house_style": "Painterly illustration for an elementary art class, like a sunny art studio in a picture book: confident realistic drawing, gouache texture, clean shapes. No text, no letters, no watermark, no border, no frame.",
+  "assets": [
+    {
+      "name": "table",
+      "prompt": "Looking straight down from above at a big paint-splattered wooden art table: warm wood, a few old dried paint drips near the edges, a rag in one corner, two brushes along the bottom edge, a jar of water at the top right. The whole middle (about 70 percent of the picture) is empty clean wood with nothing on it. Even soft daylight.",
+      "aspect": "16:9",
+      "width": 1500,
+      "quality": 72,
+      "trim": 0.03
+    },
+    {
+      "name": "raccoon",
+      "prompt": "A cheerful cartoon raccoon painter wearing a red beret and a paint-splattered apron, full body standing, holding a paintbrush up, friendly smile, three-quarter view facing right.",
+      "cutout": true,
+      "height": 320,
+      "aspect": "3:4"
+    }
+  ]
+}

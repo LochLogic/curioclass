@@ -1,0 +1,21 @@
+{
+  "id": "line-safari",
+  "status": "beta",
+  "driver": "teacher",
+  "modes": [
+    "Lines",
+    "Shapes",
+    "Colors",
+    "Draw"
+  ],
+  "grades_label": "Grades K-2",
+  "third_party": [],
+  "updated": "2026-10-23",
+  "hook": "Lines draw themselves across the savanna (zigzag mountains, a wavy river, a spiral snail) and the class names each one. Then hunt for shapes, mix primary colors for a chameleon, and draw with zigzag and wavy brushes.",
+  "outcome": "Name and draw kinds of lines, find basic shapes in a picture, and mix two primary colors to make a secondary color",
+  "minutes": "10-25",
+  "sources": [
+    "Illustrations generated with Google Gemini, edited for Curio Class",
+    "Sound synthesized in the browser"
+  ]
+}

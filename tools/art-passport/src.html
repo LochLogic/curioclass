@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Art Passport · Art from many places · Curio Class</title>
+<meta name="description" content="Travel the world through 14 real works of art from museum collections: a giant wave from Japan, a blue hippo from Egypt, a smiling figure from Mexico and more. Look closer, say what you see, share how it makes you feel, and collect a stamp for every visit.">
+<!--
+ART PASSPORT (Curio Class)
+Visual arts, grades K-2, National Core Arts Standards VA:Re7 (perceive and analyze artwork) and VA:Cn11
+(relate artworks to their societal and cultural context), module "Art from Many Places".
+Travel: a world map with the 14 artworks pinned where they were made. Look: a big view of one artwork with
+"look closer" spotlights, who made it, when, from what and why, a See / Think / Wonder question, a feelings
+check-in and a movement or talk activity; the first visit earns a passport stamp. Compare: two artworks side by
+side, what is the same and what is different. Passport: the stamps collected so far (kept on this device).
+Teacher-led on a projector or smartboard.
+Artworks: The Metropolitan Museum of Art, New York, Open Access images (public domain, CC0), metmuseum.org.
+World map: Natural Earth 1:110m land (public domain), Equal Earth projection.
+Illustrations generated with Google Gemini, edited for Curio Class.
+One file, no network requests. Content CC BY 4.0, code MIT. curioclass.org
+-->
+<style>
+:root{
+  --paper:#f7f1e6;--ink:#2d241b;--muted:#6d5f50;--focus:#2f5bd3;--brand:#1f5f8b;--gold:#ffcf3a;--card:#fffaf2;
+  font-family:'Segoe UI',system-ui,-apple-system,Roboto,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0;height:100%}
+body{background:var(--paper);color:var(--ink);display:grid;grid-template-rows:auto 1fr;min-height:100vh}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:4px solid var(--focus);outline-offset:3px}
+header{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:10px 20px;background:var(--brand);color:#eef7ff}
+h1{margin:0 auto 0 0;font:800 clamp(22px,2.8vw,32px)/1.1 Georgia,'Times New Roman',serif}
+h1 small{display:block;font:400 14px/1.3 'Segoe UI',sans-serif;color:#cfe4f3}
+.icon-btn{border:1px solid #4f8bb5;background:#2c74a6;color:#fff;border-radius:999px;min-height:46px;padding:0 16px;font-weight:700;font-size:15px}
+.icon-btn[aria-pressed="false"]{background:#123f60}
+
+.stagewrap{position:relative;overflow:hidden;min-height:0;background:#efe2cc}
+.scene{position:absolute;left:50%;top:50%;width:1440px;height:810px;transform:translate(-50%,-50%) scale(var(--s,1));overflow:hidden}
+.scene>img.bg{position:absolute;left:-12px;top:-12px;width:1464px;height:834px;object-fit:cover}
+.top{position:absolute;left:24px;right:24px;top:16px;display:flex;align-items:center;gap:12px;z-index:8}
+.tabs{display:inline-flex;border-radius:999px;overflow:hidden;background:#fffe;box-shadow:0 3px 0 #0003}
+.tabs button{border:0;background:transparent;min-height:58px;padding:0 24px;font:800 21px 'Segoe UI',sans-serif;color:var(--muted)}
+.tabs button[aria-pressed="true"]{background:var(--brand);color:#fff}
+.b{border:0;border-radius:16px;min-height:56px;padding:0 18px;font:800 19px 'Segoe UI',sans-serif;background:#fffaf2;color:var(--ink);box-shadow:0 4px 0 #0003}
+.b:active{transform:translateY(3px);box-shadow:0 1px 0 #0003}
+.b.go{background:var(--brand);color:#fff;box-shadow:0 4px 0 #0e3554}
+.b[aria-pressed="true"]{background:var(--gold);color:#3a2a00}
+.ctl{margin-left:auto;display:flex;gap:10px}
+
+/* travel */
+.mapbox{position:absolute;left:40px;top:96px;width:1360px;height:600px;border-radius:30px;background:#cfe8f2;box-shadow:inset 0 0 0 8px #fff8,0 8px 0 #0002;overflow:hidden}
+.mapbox svg{position:absolute;inset:0;width:100%;height:100%}
+.land{fill:#efe0bd;stroke:#c9b48a;stroke-width:1.2}
+.pin{position:absolute;transform:translate(-50%,-100%);border:0;background:none;padding:0;z-index:2;display:flex;flex-direction:column;align-items:center}
+.pin .th{width:66px;height:66px;border-radius:50%;border:5px solid #fff;box-shadow:0 5px 10px #0005;background:#ddd center/cover}
+.pin .stick{width:5px;height:16px;background:#fff;box-shadow:0 2px 3px #0004}
+.pin .lab{position:absolute;top:-30px;white-space:nowrap;background:#fffe;border-radius:10px;padding:1px 9px;font:800 15px 'Segoe UI',sans-serif;box-shadow:0 2px 0 #0002}
+.pin.seen .th{border-color:#ffcf3a}
+.pin.seen::after{content:'✓';position:absolute;right:-6px;top:-6px;width:28px;height:28px;border-radius:50%;background:#2f8a4a;color:#fff;font:900 18px/28px 'Segoe UI';text-align:center}
+.pin:hover .th{transform:scale(1.08)}
+.guide{position:absolute;z-index:6;filter:drop-shadow(0 8px 6px #0005);transform-origin:50% 100%}
+.say{position:absolute;z-index:7;background:#fff;border-radius:26px;padding:14px 22px;font:700 23px/1.32 'Segoe UI',sans-serif;box-shadow:0 8px 22px #0004}
+.say b{color:var(--brand)}
+
+/* look */
+.wall{position:absolute;left:30px;top:92px;width:740px;height:620px;display:grid;place-items:center;z-index:2}
+.frame{position:relative;max-width:700px;max-height:560px;overflow:hidden;box-shadow:0 18px 30px #0005}
+.frame.flat{border:22px solid #8a5a2b;border-image:linear-gradient(135deg,#c9973f,#8a5a2b 30%,#d9ad55 55%,#7a4a20) 22;padding:14px;background:#f8f2e4}
+.frame.object{border-radius:20px;border:10px solid #fff;background:#d9d9d9}
+.frame .zoom{position:relative;overflow:hidden}
+.frame img.art{display:block;transform-origin:0 0;transition:transform .9s cubic-bezier(.3,.7,.2,1)}
+.calm .frame img.art{transition:none}
+.frame .dim{position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .5s;background:radial-gradient(circle at 50% 50%,#0000 0,#0000 26%,#000a 46%)}
+.frame.zoomed .dim{opacity:1}
+.plate{position:absolute;left:50%;transform:translateX(-50%);bottom:4px;z-index:3;background:#2d241b;color:#f7efe0;border-radius:6px;padding:6px 18px;font:600 17px 'Segoe UI',sans-serif;white-space:nowrap;box-shadow:0 4px 0 #0003}
+.findmsg{position:absolute;left:50%;transform:translateX(-50%);top:104px;z-index:5;background:#fff;border-radius:20px;padding:10px 22px;font:800 24px/1.25 'Segoe UI',sans-serif;box-shadow:0 8px 18px #0004;max-width:680px;text-align:center}
+.info{position:absolute;left:790px;right:24px;top:92px;bottom:18px;z-index:3;background:#fffaf2f4;border-radius:26px;box-shadow:0 6px 0 #0002;padding:16px 22px;display:flex;flex-direction:column;gap:10px;overflow:hidden}
+.info h2{margin:0;font:800 30px/1.1 Georgia,serif}
+.info .where{font:700 18px 'Segoe UI',sans-serif;color:var(--brand);display:flex;align-items:center;gap:8px}
+.facts{display:grid;grid-template-columns:auto 1fr;gap:6px 12px;font:600 19px/1.3 'Segoe UI',sans-serif}
+.facts dt{font-weight:800;color:var(--muted)}
+.facts dd{margin:0}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.row .b{min-height:48px;font-size:17px;padding:0 14px}
+.lbl{font:800 15px 'Segoe UI',sans-serif;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+.ask{font:700 21px/1.3 'Segoe UI',sans-serif;background:#eef5fb;border-radius:16px;padding:10px 14px}
+.ask b{color:var(--brand)}
+.feel{border:0;background:#f3ece0;border-radius:16px;width:74px;height:68px;display:flex;flex-direction:column;align-items:center;justify-content:center;font:700 12px 'Segoe UI',sans-serif;gap:2px}
+.feel span{font-size:30px;line-height:1}
+.feel[aria-pressed="true"]{background:var(--gold)}
+.feel i{font-style:normal;font-weight:900;color:var(--brand)}
+.try{font:600 18px/1.35 'Segoe UI',sans-serif;background:#f3f8ee;border-radius:16px;padding:10px 14px}
+.navs{position:absolute;left:30px;width:740px;bottom:20px;display:flex;justify-content:space-between;z-index:4}
+.stamp{position:absolute;left:600px;top:96px;z-index:9;width:150px;height:150px;border-radius:50%;border:6px double #b3261e;color:#b3261e;display:grid;place-items:center;text-align:center;font:900 17px/1.1 'Segoe UI',sans-serif;transform:rotate(-14deg);background:#fff8;pointer-events:none;padding:16px;text-transform:uppercase}
+
+/* compare */
+.pair{position:absolute;left:30px;right:30px;top:96px;height:520px;display:grid;grid-template-columns:1fr 1fr;gap:30px;z-index:2}
+.side{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px}
+.side .frame{max-width:640px;max-height:430px}
+.side .cap{background:#2d241b;color:#f7efe0;border-radius:8px;padding:6px 16px;font:700 18px 'Segoe UI',sans-serif}
+.cbar{position:absolute;left:30px;right:30px;bottom:18px;z-index:4;background:#fffaf2f4;border-radius:24px;padding:12px 18px;box-shadow:0 6px 0 #0002;display:flex;gap:14px;align-items:center}
+.cbar .q{font:800 24px/1.3 'Segoe UI',sans-serif;flex:1}
+.cbar .q small{display:block;font:600 18px 'Segoe UI',sans-serif;color:var(--muted)}
+
+/* passport */
+.book{position:absolute;left:110px;right:110px;top:100px;height:660px;display:grid;grid-template-columns:1fr 1.6fr;z-index:2;filter:drop-shadow(0 18px 22px #0005)}
+.pg{background:#f9f3e3;padding:26px 30px;position:relative}
+.pg.l{border-radius:24px 0 0 24px;background:linear-gradient(90deg,#f9f3e3 85%,#e9dfc6);display:flex;flex-direction:column;gap:14px}
+.pg.r{border-radius:0 24px 24px 0;background:linear-gradient(90deg,#e6dbc0,#f9f3e3 12%)}
+.pg h2{margin:0;font:800 34px Georgia,serif;color:var(--brand)}
+.pg p{margin:0;font:600 20px/1.4 'Segoe UI',sans-serif}
+.stamps{display:grid;grid-template-columns:repeat(5,1fr);gap:14px 10px}
+.st{border:0;background:none;padding:0;display:flex;flex-direction:column;align-items:center;gap:4px}
+.st .c{width:110px;height:110px;border-radius:50%;border:5px dashed #cdbf9f;display:grid;place-items:center;font:900 40px Georgia,serif;color:#cdbf9f;background:#0000 center/cover}
+.st.got .c{border:5px double var(--sc,#b3261e);filter:sepia(.35);box-shadow:inset 0 0 0 4px #fff8}
+.st small{font:800 13px/1.15 'Segoe UI',sans-serif;color:var(--muted);text-align:center;max-width:120px}
+.st.got small{color:var(--ink)}
+</style>
+</head>
+<body>
+<header>
+  <h1>Art Passport <small>Travel the world through real works of art. Look closely, talk, and collect stamps.</small></h1>
+  <button class="icon-btn" id="motion" aria-pressed="true" title="Turn animation on or off">✨ Motion</button>
+</header>
+<div class="stagewrap" id="stagewrap">
+  <div class="scene" id="scene">
+    <img class="bg" id="bg" src="art:gallery" alt="">
+    <div class="top">
+      <div class="tabs" role="group" aria-label="Mode">
+        <button data-mode="travel" aria-pressed="true">🗺 Travel</button>
+        <button data-mode="look" aria-pressed="false">🖼 Look</button>
+        <button data-mode="compare" aria-pressed="false">⚖ Compare</button>
+        <button data-mode="passport" aria-pressed="false">🛂 Passport</button>
+      </div>
+      <div class="ctl" id="ctl"></div>
+    </div>
+    <div id="view"></div>
+  </div>
+</div>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  let reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  try { const m = localStorage.getItem('curio-motion'); if (m) reduce = m === 'calm'; } catch {}
+  function showMotion() {
+    document.body.classList.toggle('calm', reduce);
+    $('motion').setAttribute('aria-pressed', !reduce);
+    $('motion').textContent = reduce ? '⏸ Motion' : '✨ Motion';
+  }
+  showMotion();
+  $('motion').onclick = () => { reduce = !reduce; try { localStorage.setItem('curio-motion', reduce ? 'calm' : 'on'); } catch {} showMotion(); };
+  const fit = () => { const r = $('stagewrap').getBoundingClientRect(); $('scene').style.setProperty('--s', Math.min(r.width / 1440, r.height / 810)); };
+  new ResizeObserver(fit).observe($('stagewrap'));
+  const anim = (el, kf, opt) => { if (reduce || !el || !el.animate) return; el.animate(kf, opt); };
+  const WORLD = "json:world";
+  const TORTOISE = 'art:tortoise';
+
+  // ---------- the artworks (The Met, Open Access, public domain) ----------
+  // spots: [x, y] as fractions of the picture, and what to look for there
+  const ART = [
+    {id: 'wave', img: 'art:w39799', kind: 'flat', title: 'The Great Wave', real: 'Under the Wave off Kanagawa', place: 'Japan', lon: 139.7, lat: 35.7,
+      who: 'Katsushika Hokusai, an artist in Japan', when: 'About 190 years ago (around 1831)', what: 'A woodblock print: ink on paper', why: 'To sell to people who loved pictures of famous places. Many copies were printed from carved wood blocks.',
+      spots: [[.62, .7, 'Find the snowy mountain far away. It is Mount Fuji, and it looks tiny!'], [.31, .66, 'Find a boat. The people are holding on tight!'], [.47, .16, 'Look at the foam on top of the wave. Does it look like fingers or claws?']],
+      ask: 'Is the wave about to crash? What do you think happens next?', feel: 'Make your arms into a big curling wave. Now freeze, like the picture!', color: '#1f4e8a'},
+    {id: 'hippo', img: 'art:w544227', kind: 'object', title: 'William the Hippo', real: 'Hippopotamus ("William")', place: 'Egypt', lon: 31.2, lat: 26.5,
+      who: 'An artist in ancient Egypt', when: 'About 4,000 years ago', what: 'Faience: crushed stone shaped and baked with a shiny blue-green glaze', why: 'Hippos lived in the Nile River. This little hippo was placed in a tomb. Museum visitors later named it William.',
+      spots: [[.42, .42, 'Find the plants and flowers painted on the hippo. Hippos lived among river plants.'], [.84, .56, 'Look at the face. Is William happy, sleepy or grumpy?']],
+      ask: 'Why do you think the artist made the hippo blue?', feel: 'Walk slowly like a heavy hippo. Now pretend to swim in the river.', color: '#1a8a9a'},
+    {id: 'smile', img: 'art:w313386', kind: 'object', title: 'Smiling Figure', real: 'Smiling figure (Sonriente)', place: 'Mexico', lon: -96.4, lat: 19.2,
+      who: 'Artists of the Gulf Coast of Mexico (Classic Veracruz)', when: 'About 1,200 years ago', what: 'Clay, shaped by hand and fired', why: 'Experts think figures like this may show people dancing or celebrating. No one knows for sure!',
+      spots: [[.47, .24, 'Look at the big smile! Can you smile just like this?'], [.47, .09, 'Look at the hat. The pattern goes all the way around.'], [.2, .3, 'Both arms are up. Is this person waving, dancing or cheering?']],
+      ask: 'What do you think this person is so happy about?', feel: 'Stand like the figure: arms up, big smile. Hold it!', color: '#b5653a'},
+    {id: 'ciwara', img: 'art:w711020', kind: 'object', title: 'Antelope Headdress', real: 'Ci wara headdress', place: 'Mali', lon: -7.5, lat: 12.6,
+      who: 'A Bamana carver in Mali, West Africa', when: 'About 150 years ago', what: 'Carved wood with metal', why: 'Dancers wear a ci wara on top of their heads at farming celebrations. It honors a story about the antelope who taught people to farm.',
+      spots: [[.56, .2, 'Find the long horns reaching up to the sky.'], [.48, .78, 'Look for lines carved into the wood. Are they zigzag or straight?']],
+      ask: 'Why do you think the horns are so long and tall?', feel: 'Leap and bend like an antelope dancing in a field.', color: '#7a4a2a'},
+    {id: 'horse', img: 'art:w39901', kind: 'flat', title: 'Night-Shining White', real: 'Night-Shining White', place: 'China', lon: 108.9, lat: 34.3,
+      who: 'Han Gan, a painter in China', when: 'About 1,270 years ago', what: 'Ink on paper', why: 'It shows the favorite horse of an emperor. The red stamps were added by people who owned the painting later.',
+      spots: [[.66, .27, 'Look at the horse\'s eye and mane. Is it calm or excited?'], [.53, .2, 'The horse is tied to a post. It wants to run free!'], [.08, .78, 'Find the red stamps. Each one is the name of someone who owned this painting.']],
+      ask: 'How do you think the horse feels? How can you tell?', feel: 'Gallop in place like a strong horse. Now toss your head!', color: '#9b2d20'},
+    {id: 'dragon', img: 'art:w76114', kind: 'object', title: 'Dragon Jar', real: 'Dragon jar', place: 'Korea', lon: 127, lat: 37.5,
+      who: 'A potter and a painter in Korea', when: 'About 250 years ago', what: 'Porcelain (fine white clay) painted with blue', why: 'Dragons in Korea stood for rain clouds, good luck and the king. A jar like this could hold food or flowers.',
+      spots: [[.45, .38, 'Find the dragon\'s face. Can you see its whiskers?'], [.7, .3, 'Little clouds float around the dragon. Dragons were said to bring the rain.'], [.5, .72, 'Look at the scales. Do they look like fish scales?']],
+      ask: 'If this dragon could move, where would it fly?', feel: 'Wiggle your whole body like a dragon in the clouds.', color: '#2a4f8f'},
+    {id: 'dish', img: 'art:w451490', kind: 'object', title: 'Dish with Two Birds', real: 'Dish Depicting Two Birds among Flowering Plants', place: 'Turkey', lon: 29.7, lat: 40.4,
+      who: 'Potters of the town of Iznik, in Turkey', when: 'About 440 years ago', what: 'Painted pottery with a shiny glaze', why: 'Iznik was famous for dishes and tiles in blue, green and bright red.',
+      spots: [[.42, .34, 'Find the two birds. What are they doing?'], [.43, .2, 'Find the big red flower.'], [.89, .56, 'The edge has a pattern that repeats all the way around.']],
+      ask: 'Which colors did the artist use again and again?', feel: 'Flap your wings like the birds, then perch on a flower.', color: '#2a6fb0'},
+    {id: 'wheat', img: 'art:w436535', kind: 'flat', title: 'Wheat Field with Cypresses', real: 'Wheat Field with Cypresses', place: 'France', lon: 4.8, lat: 43.8,
+      who: 'Vincent van Gogh, a painter from the Netherlands', when: 'About 135 years ago (1889)', what: 'Thick oil paint on canvas', why: 'He painted the fields he loved near the town where he lived in France.',
+      spots: [[.8, .35, 'Find the tall dark tree. It looks like a green flame!'], [.3, .16, 'Look at the swirly clouds. The paint is thick and bumpy.'], [.35, .82, 'The golden wheat bends in the wind.']],
+      ask: 'Is it windy in this picture? How do you know?', feel: 'Sway like wheat in the wind, then swirl like the clouds.', color: '#3d6f3a'},
+    {id: 'harvest', img: 'art:w435809', kind: 'flat', title: 'The Harvesters', real: 'The Harvesters', place: 'Belgium', lon: 4.4, lat: 50.8, labUp: true,
+      who: 'Pieter Bruegel the Elder', when: 'About 460 years ago (1565)', what: 'Oil paint on wood', why: 'It shows farm workers cutting wheat at the end of summer. It was one of a set of paintings about the seasons.',
+      spots: [[.79, .82, 'Find the people eating lunch under the tree.'], [.6, .84, 'Someone is taking a nap! Can you find him?'], [.3, .34, 'Far away: a village, a church and boats on the water.']],
+      ask: 'What would you eat for lunch in this field?', feel: 'Pretend to cut wheat, stack it, then take a nap in the sun.', color: '#a97b1f'},
+    {id: 'blanket', img: 'art:w313232', kind: 'flat', title: 'Wearing Blanket', real: 'Wearing Blanket', place: 'Diné (Navajo) Nation', lon: -109.5, lat: 36.2,
+      who: 'A Diné (Navajo) weaver', when: 'About 160 years ago', what: 'Wool, woven on an upright loom', why: 'People wore blankets like this around their shoulders. Diné weavers still make beautiful weavings today.',
+      spots: [[.5, .27, 'Find the zigzag lines.'], [.16, .27, 'Find a diamond shape. Can you find another one?'], [.92, .5, 'Look at the stripes on the sides.']],
+      ask: 'What do the zigzags remind you of?', feel: 'Draw a zigzag in the air with your finger. Now a diamond!', color: '#b4402a'},
+    {id: 'quilt', img: 'art:w13877', kind: 'flat', title: 'Album Quilt', real: 'Quilt, Album pattern', place: 'United States', lon: -76.6, lat: 39.5,
+      who: 'Women of the Brown and Turner families', when: 'About 180 years ago (begun 1846)', what: 'Cotton cloth, cut out and sewn', why: 'In an album quilt, many people each make a square. Then the squares are sewn together and given as a gift.',
+      spots: [[.43, .47, 'Find the blue bird.'], [.13, .5, 'Find a harp, a music instrument!'], [.84, .5, 'Find a basket of flowers. How many can you find?']],
+      ask: 'If our class made a quilt, what would you put on your square?', feel: 'Hold hands with a friend, like the squares are sewn together.', color: '#a51c3a'},
+    {id: 'amo', img: 'art:w313697', kind: 'object', title: 'Carved House Post', real: 'Amo (house post figure)', place: 'New Zealand', lon: 176.2, lat: -38.1,
+      who: 'A Māori carver of the Te Arawa people', when: 'About 225 years ago', what: 'Carved wood', why: 'An amo stands at the front of a Māori meeting house. It honors an ancestor, a family member from long ago. Māori people treasure carvings like this.',
+      spots: [[.5, .17, 'Look at the face at the top. What shape are the eyes?'], [.42, .47, 'Find the spirals carved into the wood.']],
+      ask: 'What do you think this figure is saying to visitors?', feel: 'Stand tall and proud like the post, guarding the door.', color: '#6b3b1f'},
+    {id: 'runner', img: 'art:w309427', kind: 'object', title: 'Winged Runner Ear Ornament', real: 'Ear ornament with winged runner', place: 'Peru', lon: -79, lat: -8.1,
+      who: 'Moche goldsmiths and stoneworkers in Peru', when: 'About 1,500 years ago', what: 'Gold, with tiny pieces of blue-green stone and shell fitted together like a puzzle', why: 'It was worn in the ear by an important person. The runner may be carrying a message.',
+      spots: [[.5, .45, 'Find the runner. He has wings and a bird face!'], [.12, .42, 'Count the gold balls around the edge.']],
+      ask: 'Where do you think the runner is going so fast?', feel: 'Run in place as fast as you can, then flap your wings!', color: '#c08a1a'},
+    {id: 'elephant', img: 'art:w825606', kind: 'flat', title: 'Young Elephant Eating', real: 'Young Elephant Eating', place: 'India', lon: 78, lat: 27.2,
+      who: 'A painter at the court of the Mughal emperors', when: 'About 375 years ago', what: 'Paint and gold on paper', why: 'The emperors loved their elephants, so court painters made pictures of their favorites.',
+      spots: [[.17, .7, 'The elephant holds grass in its trunk. Snack time!'], [.55, .88, 'Find the chains around its ankles.'], [.53, .24, 'Find the red blanket on its back.']],
+      ask: 'Is this elephant big or little? How can you tell?', feel: 'Swing your arm like a trunk and scoop up some grass.', color: '#4a3d5e'},
+  ];
+  const BYID = Object.fromEntries(ART.map(a => [a.id, a]));
+  const FEELS = [['😊', 'happy'], ['🤩', 'excited'], ['😌', 'calm'], ['😮', 'surprised'], ['🤔', 'curious'], ['😟', 'worried']];
+  const ASKS = [['See', 'What do you <b>see</b>?'], ['Think', 'What does it make you <b>think</b>?'], ['Wonder', 'What do you <b>wonder</b> about it?']];
+  let seen = {}, feelings = {};
+  try { seen = JSON.parse(localStorage.getItem('art-passport-stamps') || '{}'); } catch {}
+  const saveSeen = () => { try { localStorage.setItem('art-passport-stamps', JSON.stringify(seen)); } catch {} };
+
+  // Equal Earth projection, matching the land outline in world.json
+  function proj(lon, lat) {
+    const A1 = 1.340264, A2 = -.081106, A3 = .000893, A4 = .003796, M = Math.sqrt(3) / 2;
+    const l = lon * Math.PI / 180, t = Math.asin(M * Math.sin(lat * Math.PI / 180));
+    const x = 2 * Math.sqrt(3) * l * Math.cos(t) / (3 * (9 * A4 * t ** 8 + 7 * A3 * t ** 6 + 3 * A2 * t * t + A1)), y = A4 * t ** 9 + A3 * t ** 7 + A2 * t ** 3 + A1 * t;
+    return [(x + WORLD.xmax) * WORLD.s, (WORLD.ymax - y) * WORLD.s];
+  }
+
+  // ---------- modes ----------
+  let mode = 'travel', cur = 0;
+  document.querySelectorAll('[data-mode]').forEach(b => b.onclick = () => setMode(b.dataset.mode));
+  function setMode(m, arg) {
+    mode = m; $('ctl').innerHTML = '';
+    document.querySelectorAll('[data-mode]').forEach(b => b.setAttribute('aria-pressed', b.dataset.mode === m));
+    ({travel: renderTravel, look: () => renderLook(arg ?? cur), compare: renderCompare, passport: renderPassport})[m]();
+  }
+
+  // ===== Travel =====
+  // where a thumbnail sits relative to its place (px), so close places don't cover each other
+  const OFF = {harvest: [-130, 4], wheat: [-80, 96], dish: [30, -44], hippo: [10, 74], blanket: [-50, -34], quilt: [34, -30], smile: [-10, 64],
+    horse: [40, 96], dragon: [10, -46], wave: [64, 20], ciwara: [-10, 70], elephant: [-30, -6], runner: [0, -6], amo: [0, -6]};
+  function renderTravel() {
+    // the map fills a 1360 x 600 box: fit the 1000-wide outline inside it
+    const k = Math.min(1360 / WORLD.w, 600 / WORLD.h) * .98, ox = (1360 - WORLD.w * k) / 2, oy = (600 - WORLD.h * k) / 2 + 6;
+    $('view').innerHTML = `<div class="mapbox" id="mapbox"><svg viewBox="0 0 1360 600" aria-hidden="true"><g transform="translate(${ox} ${oy}) scale(${k})"><path class="land" d="${WORLD.d}"/></g></svg>
+      <svg viewBox="0 0 1360 600" aria-hidden="true" style="z-index:1">${ART.map(a => { const [x, y] = proj(a.lon, a.lat), [dx, dy] = OFF[a.id] || [0, 0], px = ox + x * k, py = oy + y * k; return `<line x1="${px}" y1="${py}" x2="${px + dx}" y2="${py + dy}" stroke="#fff" stroke-width="4"/><circle cx="${px}" cy="${py}" r="7" fill="${a.color}" stroke="#fff" stroke-width="3"/>`; }).join('')}</svg>
+      ${ART.map((a, i) => { const [x, y] = proj(a.lon, a.lat), [dx, dy] = OFF[a.id] || [0, 0]; return `<button class="pin${seen[a.id] ? ' seen' : ''}" data-a="${i}" style="left:${ox + x * k + dx}px;top:${oy + y * k + dy - 6}px" aria-label="${a.title}, ${a.place}"><span class="lab">${a.place}</span><span class="th" style="background-image:url(${a.img})"></span></button>`; }).join('')}</div>
+      <img class="guide" id="guide" src="${TORTOISE}" alt="Tortoise explorer" style="left:40px;bottom:6px;height:250px">
+      <div class="say" id="say" style="left:250px;bottom:22px;max-width:640px"></div>`;
+    $('ctl').innerHTML = `<button class="b go" id="surprise">🎲 Surprise trip</button>`;
+    $('surprise').onclick = () => { const left = ART.map((a, i) => i).filter(i => !seen[ART[i].id]); const pool = left.length ? left : ART.map((a, i) => i); setMode('look', pool[Math.floor(Math.random() * pool.length)]); };
+    $('view').querySelectorAll('[data-a]').forEach(b => b.onclick = () => setMode('look', +b.dataset.a));
+    const n = Object.keys(seen).length;
+    $('say').innerHTML = n ? `We have visited <b>${n} of ${ART.length}</b> places! Tap a picture on the map to visit art from another part of the world.` : 'Hello, art explorers! Artists all over the world make art. Tap a picture on the map and let\'s go see it!';
+    anim($('guide'), [{transform: 'translateX(-60px)', opacity: 0}, {transform: 'none', opacity: 1}], {duration: 600, easing: 'ease-out'});
+  }
+
+  // ===== Look =====
+  let askI = 0;
+  function frameHTML(a, maxW, maxH, id) {
+    return `<div class="frame ${a.kind}" ${id ? `id="${id}"` : ''}><div class="zoom"><img class="art" src="${a.img}" alt="${a.title}" style="max-width:${maxW}px;max-height:${maxH}px"><div class="dim"></div></div></div>`;
+  }
+  function renderLook(i) {
+    cur = (i + ART.length) % ART.length; const a = ART[cur]; askI = 0;
+    const first = !seen[a.id];
+    $('view').innerHTML = `<div class="wall">${frameHTML(a, a.kind === 'flat' ? 620 : 660, 500, 'fr')}</div>
+      <div class="plate" style="left:400px;bottom:84px">${a.real} · ${a.place}</div>
+      <div class="findmsg" id="find" style="left:400px" hidden></div>
+      <div class="navs"><button class="b" id="prev">◀ Back</button><button class="b" id="whole" hidden>🔍 See the whole thing</button><button class="b" id="next">Next ▶</button></div>
+      <div class="info">
+        <div><h2>${a.title}</h2><div class="where">📍 ${a.place}</div></div>
+        <dl class="facts"><dt>Who made it</dt><dd>${a.who}</dd><dt>When</dt><dd>${a.when}</dd><dt>Made of</dt><dd>${a.what}</dd><dt>Why</dt><dd>${a.why}</dd></dl>
+        <div><div class="lbl">🔍 Look closer</div><div class="row" id="spots">${a.spots.map((s, k) => `<button class="b" data-s="${k}">${['👀', '🔎', '✨'][k]} Find ${k + 1}</button>`).join('')}</div></div>
+        <div class="ask" id="ask"></div>
+        <div><div class="lbl">How does it make you feel?</div><div class="row" id="feels">${FEELS.map(([e, w]) => `<button class="feel" data-f="${w}" aria-pressed="false"><span>${e}</span>${w}<i></i></button>`).join('')}</div></div>
+        <div class="try">🤸 <b>Try it:</b> ${a.feel}</div>
+      </div>`;
+    $('prev').onclick = () => renderLook(cur - 1); $('next').onclick = () => renderLook(cur + 1);
+    $('whole').onclick = unzoom;
+    $('view').querySelectorAll('[data-s]').forEach(b => b.onclick = () => zoomTo(+b.dataset.s));
+    $('ask').onclick = () => { askI = (askI + 1) % (ASKS.length + 1); drawAsk(); };
+    $('feels').querySelectorAll('[data-f]').forEach(b => b.onclick = () => { const f = feelings[a.id] = feelings[a.id] || {}; f[b.dataset.f] = (f[b.dataset.f] || 0) + 1; drawFeels(); anim(b, [{transform: 'scale(1)'}, {transform: 'scale(1.18)'}, {transform: 'scale(1)'}], {duration: 300}); });
+    drawAsk(); drawFeels();
+    if (first) {
+      seen[a.id] = 1; saveSeen();
+      const s = document.createElement('div'); s.className = 'stamp'; s.innerHTML = `${a.place}<br>✓ visited`; s.style.borderColor = s.style.color = a.color; $('view').appendChild(s);
+      anim(s, [{transform: 'rotate(-14deg) scale(2.4)', opacity: 0}, {transform: 'rotate(-14deg) scale(.92)', opacity: 1, offset: .6}, {transform: 'rotate(-14deg) scale(1)', opacity: 1}], {duration: 600, easing: 'ease-in'});
+      setTimeout(() => { anim(s, [{opacity: 1}, {opacity: 0}], {duration: 500}); setTimeout(() => s.remove(), reduce ? 0 : 480); }, 2600);
+    }
+    $('ctl').innerHTML = `<button class="b" id="tomap">🗺 Map</button>`; $('tomap').onclick = () => setMode('travel');
+  }
+  function drawAsk() {
+    const a = ART[cur];
+    $('ask').innerHTML = askI < ASKS.length ? `💬 ${ASKS[askI][1]} <small style="color:var(--muted);font-size:15px">(tap for the next question)</small>` : `💬 ${a.ask}`;
+  }
+  function drawFeels() {
+    const f = feelings[ART[cur].id] || {};
+    $('feels').querySelectorAll('[data-f]').forEach(b => { const n = f[b.dataset.f] || 0; b.setAttribute('aria-pressed', n > 0); b.querySelector('i').textContent = n ? n : ''; });
+  }
+  function zoomTo(k) {
+    const a = ART[cur], [fx, fy, msg] = a.spots[k], fr = $('fr'), img = fr.querySelector('img.art'), w = img.offsetWidth, h = img.offsetHeight, z = 2.4;
+    // move the spot to the middle of the frame, clamped so the picture still fills it
+    const tx = Math.min(0, Math.max(w - w * z, w / 2 - fx * w * z)), ty = Math.min(0, Math.max(h - h * z, h / 2 - fy * h * z));
+    img.style.transform = `translate(${tx}px,${ty}px) scale(${z})`;
+    const dim = fr.querySelector('.dim'); dim.style.background = `radial-gradient(circle at ${(fx * w * z + tx) / w * 100}% ${(fy * h * z + ty) / h * 100}%,#0000 0,#0000 ${Math.round(Math.min(w, h) * .2)}px,#0009 ${Math.round(Math.min(w, h) * .36)}px)`;
+    fr.classList.add('zoomed'); $('find').hidden = false; $('find').textContent = msg; $('whole').hidden = false;
+    $('spots').querySelectorAll('[data-s]').forEach(b => b.setAttribute('aria-pressed', +b.dataset.s === k));
+  }
+  function unzoom() {
+    const fr = $('fr'); fr.querySelector('img.art').style.transform = ''; fr.classList.remove('zoomed'); $('find').hidden = true; $('whole').hidden = true;
+    $('spots').querySelectorAll('[data-s]').forEach(b => b.setAttribute('aria-pressed', false));
+  }
+
+  // ===== Compare =====
+  const PAIRS = [
+    ['wave', 'wheat', 'Both have curvy, swirly lines. One is a print, one is a painting.'],
+    ['hippo', 'elephant', 'Both are big animals. One is a sculpture you can walk around, one is a flat painting.'],
+    ['blanket', 'quilt', 'Both are made of cloth and full of patterns. One is woven, one is sewn from squares.'],
+    ['dragon', 'dish', 'Both are blue and white pottery, from far apart in Asia.'],
+    ['smile', 'amo', 'Both show people. One is smiling and dancing; one stands tall and proud.'],
+    ['horse', 'ciwara', 'Both are animals that love to run and leap.'],
+    ['harvest', 'wheat', 'Both are wheat fields in summer, painted 300 years apart!'],
+    ['runner', 'ciwara', 'Both show movement: a runner and a dancing antelope.'],
+    ['dish', 'quilt', 'Both have birds and flowers. Can you find them?'],
+  ];
+  let pairI = 0, showHint = false;
+  function renderCompare() {
+    const [l, r, hint] = PAIRS[pairI], A = BYID[l], B = BYID[r];
+    $('view').innerHTML = `<div class="pair">${[A, B].map(a => `<div class="side">${frameHTML(a, a.kind === 'flat' ? 560 : 600, 380)}<div class="cap">${a.title} · ${a.place}</div></div>`).join('')}</div>
+      <div class="cbar"><div class="q">What is the <b>same</b>? What is <b>different</b>?<small>${showHint ? '💡 ' + hint : 'Think about colors, lines, shapes, animals, people, and what it is made of.'}</small></div>
+      <button class="b" id="hint">💡 A clue</button><button class="b go" id="newpair">🔀 New pair</button></div>`;
+    $('hint').onclick = () => { showHint = !showHint; renderCompare(); };
+    $('newpair').onclick = () => { pairI = (pairI + 1) % PAIRS.length; showHint = false; renderCompare(); };
+    $('view').querySelectorAll('.side .frame').forEach((f, k) => { f.style.cursor = 'pointer'; f.onclick = () => setMode('look', ART.indexOf(k ? B : A)); });
+  }
+
+  // ===== Passport =====
+  function renderPassport() {
+    const n = Object.keys(seen).length;
+    $('view').innerHTML = `<div class="book"><div class="pg l"><h2>🛂 Passport</h2><p>This passport belongs to <b>our class</b>.</p>
+      <p>Stamps collected: <b style="font-size:30px;color:var(--brand)">${n}</b> of ${ART.length}</p>
+      <p style="color:var(--muted);font-size:18px">Every time we visit a work of art, we get a stamp. Tap a stamp to visit again.</p>
+      <img src="${TORTOISE}" alt="" style="height:220px;align-self:center;margin-top:auto;filter:drop-shadow(0 6px 4px #0004)">
+      <button class="b" id="reset" style="font-size:15px;min-height:44px">↺ Start a new passport</button></div>
+      <div class="pg r"><div class="stamps">${ART.map((a, i) => `<button class="st${seen[a.id] ? ' got' : ''}" data-a="${i}" style="--sc:${a.color}"><span class="c" style="${seen[a.id] ? `background-image:url(${a.img})` : ''}">${seen[a.id] ? '' : '?'}</span><small>${seen[a.id] ? a.place : '???'}</small></button>`).join('')}</div></div></div>`;
+    $('view').querySelectorAll('[data-a]').forEach(b => b.onclick = () => setMode('look', +b.dataset.a));
+    $('reset').onclick = () => { if (!confirm('Start a new passport with no stamps?')) return; seen = {}; saveSeen(); renderPassport(); };
+  }
+
+  addEventListener('keydown', e => {
+    if (mode !== 'look' || e.target.closest('input')) return;
+    if (e.key === 'ArrowRight') renderLook(cur + 1);
+    if (e.key === 'ArrowLeft') renderLook(cur - 1);
+    if (e.key === 'Escape') unzoom();
+  });
+  setMode('travel');
+  window.__ap = {setMode, ART, zoomTo, renderLook, get seen() { return seen; }, set seen(v) { seen = v; }};
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+{
+  "style": "Warm storybook look for a kindergarten art lesson on a projector.",
+  "assets": [
+    {
+      "name": "gallery",
+      "prompt": "Empty background: a bright welcoming museum gallery wall seen straight on, a soft warm cream wall filling most of the picture, a polished wooden floor along the bottom fifth, a soft spotlight glow on the middle of the wall, a low velvet rope on brass posts at the far left and far right. Nothing hanging on the wall. No people, no art, no signs, no writing.",
+      "aspect": "16:9",
+      "width": 1500,
+      "quality": 72,
+      "trim": 0.03
+    },
+    {
+      "name": "tortoise",
+      "prompt": "A friendly cartoon tortoise museum explorer wearing a little straw sun hat and round glasses, a small travel bag across the shell, full body standing on its back legs like a person, smiling, three-quarter view facing right, holding a small blue booklet.",
+      "cutout": true,
+      "height": 300,
+      "aspect": "3:4"
+    }
+  ]
+}

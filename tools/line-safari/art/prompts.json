@@ -1,0 +1,30 @@
+{
+  "style": "Bright storybook look for a kindergarten art lesson on a projector, simple and calm so drawn lines stand out on top.",
+  "assets": [
+    {
+      "name": "savanna",
+      "prompt": "Very simple, soft, pale empty background: a wide flat savanna under a big pale sky, light golden grass across the bottom third, a pale lavender range of distant hills low on the horizon, a soft sun glow. Almost no detail, gentle washes of color, lots of open space everywhere. No animals, no trees, no people, no lines drawn on it.",
+      "aspect": "16:9",
+      "width": 1500,
+      "quality": 72,
+      "trim": 0.03
+    },
+    {
+      "name": "zebra",
+      "prompt": "A friendly cartoon zebra explorer wearing a little khaki safari hat and a small backpack, full body standing, smiling, side three-quarter view facing right, bold clear black and white stripes.",
+      "cutout": true,
+      "height": 400,
+      "aspect": "3:4"
+    },
+    {
+      "name": "chameleon",
+      "prompt": "The same storybook style: a cute friendly cartoon chameleon sitting on a short brown branch, facing right, curly tail, big round eye, smiling. Its whole skin is plain very light grey with soft white highlights and soft grey shading, no other colors on the body.",
+      "cutout": true,
+      "height": 440,
+      "aspect": "4:3",
+      "ref": "zebra",
+      "ref_mode": "style",
+      "key": "magenta"
+    }
+  ]
+}

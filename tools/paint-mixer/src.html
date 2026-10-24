@@ -1,0 +1,668 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Paint Mixer · Color theory and mixing · Curio Class</title>
+<meta name="description" content="Mix virtual paint that behaves like the real thing: red, yellow and blue make the secondary and tertiary colors, white makes tints, black makes shades. Build the color wheel, paint a picture in one color, and mix to match target colors.">
+<!--
+PAINT MIXER (Curio Class)
+Visual arts, grades 3-5, National Core Arts Standards VA:Cr2 (experiment with materials and approaches),
+module "Color Theory and Mixing": the color wheel, warm and cool, tints and shades.
+Mix: dab red, yellow, blue, white and black into the dish and stir. A checklist of discoveries ticks itself off
+(orange, green, violet, a tertiary, a tint, a shade, brown). Save swatches with their recipes.
+Color wheel: the 12-color wheel mixed from three primaries, with primary/secondary/tertiary labels, warm and
+cool halves, complementary pairs and rings of tints and shades. Tap a color to mix it.
+Tints and shades: a value ladder for any wheel color and a landscape painted only with that color.
+Match: mix to match a target color in four levels, with stars and hints.
+The paint is modeled, not faked: each paint has a reflectance curve across the visible spectrum and they mix
+by Kubelka-Munk theory (absorption over scattering adds up), then convert through the CIE 1931 observer to screen
+color. That is why blue and yellow make green here, red is stronger than yellow, and real-paint purples are dull.
+Illustrations generated with Google Gemini, edited for Curio Class. Sound synthesized in the browser.
+One file, no network requests. Content CC BY 4.0, code MIT. curioclass.org
+-->
+<style>
+:root{
+  --paper:#f6f0e6;--ink:#2b2219;--muted:#6b5d4f;--line:#e3d6c4;--focus:#2f5bd3;--brand:#7a3fa0;--gold:#ffcf3a;--card:#fffaf2;
+  font-family:'Segoe UI',system-ui,-apple-system,Roboto,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0;height:100%}
+body{background:var(--paper);color:var(--ink);display:grid;grid-template-rows:auto 1fr;min-height:100vh}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:4px solid var(--focus);outline-offset:3px}
+header{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:10px 20px;background:var(--brand);color:#fbf4ff}
+h1{margin:0 auto 0 0;font:800 clamp(22px,2.8vw,32px)/1.1 Georgia,'Times New Roman',serif}
+h1 small{display:block;font:400 14px/1.3 'Segoe UI',sans-serif;color:#e7d3f3}
+.icon-btn{border:1px solid #a873c8;background:#8c4fb3;color:#fff;border-radius:999px;min-height:46px;padding:0 16px;font-weight:700;font-size:15px}
+.icon-btn[aria-pressed="false"]{background:#5d2c7c}
+
+.stagewrap{position:relative;overflow:hidden;min-height:0;background:#8a5a32}
+.scene{position:absolute;left:50%;top:50%;width:1440px;height:810px;transform:translate(-50%,-50%) scale(var(--s,1));overflow:hidden}
+.scene>img.bg{position:absolute;left:-130px;top:-90px;width:1700px;height:990px;object-fit:cover}
+
+.top{position:absolute;left:24px;right:24px;top:16px;display:flex;align-items:center;gap:12px;z-index:6}
+.tabs{display:inline-flex;border-radius:999px;overflow:hidden;background:#fffaf2ee;box-shadow:0 3px 0 #0003}
+.tabs button{border:0;background:transparent;min-height:54px;padding:0 22px;font:800 19px 'Segoe UI',sans-serif;color:var(--muted)}
+.tabs button[aria-pressed="true"]{background:var(--brand);color:#fff}
+
+/* paints */
+.paints{position:absolute;left:26px;top:96px;width:196px;display:flex;flex-direction:column;gap:8px;z-index:3}
+.pot{position:relative;border:0;background:#fffaf2f0;border-radius:22px;display:flex;align-items:center;gap:8px;padding:6px 12px 6px 6px;min-height:104px;box-shadow:0 5px 0 #0003;text-align:left}
+.pot svg{width:96px;height:86px;flex:none;overflow:visible}
+.pot b{font:800 21px 'Segoe UI',sans-serif;display:block}
+.pot small{font:600 13px 'Segoe UI',sans-serif;color:var(--muted)}
+.pot kbd{position:absolute;right:10px;top:8px;font:700 12px 'Segoe UI',sans-serif;color:#0005}
+.pot:active{transform:translateY(3px);box-shadow:0 2px 0 #0003}
+
+/* the dish */
+.dish{position:absolute;left:250px;top:110px;width:440px;height:440px;border-radius:50%;z-index:2;
+  background:radial-gradient(circle at 40% 35%,#ffffff 0,#f2efe9 55%,#d7d1c6 74%,#b9b2a6 100%);box-shadow:0 18px 30px #0006,inset 0 -6px 12px #0002}
+.dish canvas{position:absolute;left:40px;top:40px;width:360px;height:360px;border-radius:50%}
+.dish .gloss{position:absolute;left:40px;top:40px;width:360px;height:360px;border-radius:50%;pointer-events:none;
+  background:radial-gradient(ellipse 60% 40% at 38% 28%,#ffffff70,#ffffff00 70%),radial-gradient(circle at 50% 50%,#0000 62%,#0000002a 100%)}
+.dish .empty{position:absolute;inset:0;display:grid;place-items:center;text-align:center;font:700 22px/1.3 'Segoe UI',sans-serif;color:#8c8273;pointer-events:none;padding:110px}
+.recipe{position:absolute;left:236px;width:468px;top:566px;z-index:3;background:#fffaf2f2;border-radius:22px;padding:10px 16px;box-shadow:0 5px 0 #0003;text-align:center;min-height:118px}
+.recipe .nm{font:800 30px/1.15 Georgia,serif}
+.recipe .how{font:600 17px/1.3 'Segoe UI',sans-serif;color:var(--muted);margin-top:2px}
+.dots{display:flex;justify-content:center;gap:12px;margin-top:8px;flex-wrap:wrap;min-height:30px}
+.dots span{display:inline-flex;align-items:center;gap:5px;font:800 18px 'Segoe UI',sans-serif}
+.dots i{width:24px;height:24px;border-radius:50%;border:2px solid #0002;display:inline-block}
+.wellbtns{position:absolute;left:236px;width:468px;top:700px;display:flex;gap:10px;z-index:3}
+.b{border:0;border-radius:16px;min-height:56px;padding:0 18px;font:800 19px 'Segoe UI',sans-serif;background:#fffaf2;color:var(--ink);box-shadow:0 4px 0 #0003}
+.b:active{transform:translateY(3px);box-shadow:0 1px 0 #0003}
+.b.go{background:#2f8a4a;color:#fff;box-shadow:0 4px 0 #1d5e30}
+.b.pur{background:var(--brand);color:#fff;box-shadow:0 4px 0 #4a2363}
+.b[aria-pressed="true"]{background:var(--gold);color:#3a2a00}
+.b:disabled{opacity:.45;cursor:default}
+.wellbtns .b{flex:1}
+
+/* right panel */
+.panel{position:absolute;left:730px;top:92px;width:684px;height:530px;z-index:3}
+.card{background:#fffaf2f2;border-radius:24px;box-shadow:0 6px 0 #0003;padding:16px 20px}
+.raccoon{position:absolute;right:4px;bottom:-6px;height:262px;z-index:4;filter:drop-shadow(0 8px 6px #0005);transform-origin:50% 100%}
+.say{position:absolute;left:732px;right:238px;top:636px;min-height:110px;z-index:5;background:#fff;border-radius:26px;padding:14px 22px;font:600 21px/1.35 'Segoe UI',sans-serif;box-shadow:0 8px 20px #0004;display:flex;align-items:center}
+.say::after{content:'';position:absolute;right:-18px;top:50%;border:14px solid transparent;border-left:22px solid #fff;transform:translateY(-50%)}
+.say b{color:var(--brand)}
+
+/* Mix panel */
+.check{display:grid;grid-template-columns:1fr 1fr;gap:8px 14px;margin:6px 0 4px}
+.check div{display:flex;align-items:center;gap:10px;font:700 18px 'Segoe UI',sans-serif;min-height:40px;padding:2px 10px;border-radius:12px;background:#f3eadb}
+.check div i{width:30px;height:30px;border-radius:50%;flex:none;border:3px dashed #c9b9a2;display:grid;place-items:center;font-style:normal;color:#fff;font-weight:900}
+.check div.done{background:#e3f2df}
+.check div.done i{border:3px solid #0002}
+h2{margin:0 0 4px;font:800 22px Georgia,serif}
+.swatches{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:8px}
+.sw{border:0;border-radius:14px;background:#fff;box-shadow:0 3px 0 #0002;padding:6px;text-align:center;min-height:118px}
+.sw i{display:block;height:64px;border-radius:10px;border:1px solid #0001}
+.sw small{display:block;font:700 13px/1.2 'Segoe UI',sans-serif;margin-top:5px}
+.sw.blank{background:#ffffff66;box-shadow:none;border:3px dashed #d9cbb6;color:#a8977f;font:700 14px 'Segoe UI',sans-serif;display:grid;place-items:center}
+
+/* wheel */
+.wtools{display:flex;gap:8px;flex-wrap:wrap}
+.wtools{flex-wrap:nowrap}
+.wtools .b{min-height:46px;font-size:16px;padding:0 12px;flex:auto}
+.wheelbox{position:relative;margin:4px auto 0;width:420px;height:420px}
+.wheelbox svg{width:420px;height:420px;overflow:visible}
+.wedge{cursor:pointer;stroke:#fffaf2;stroke-width:3;transition:transform .15s}
+.wedge:hover{filter:brightness(1.06)}
+.wlab{font:800 15px 'Segoe UI',sans-serif;pointer-events:none;text-anchor:middle;dominant-baseline:middle}
+.wcode{font:900 22px 'Segoe UI',sans-serif;pointer-events:none;text-anchor:middle;dominant-baseline:middle}
+.half{font:800 20px 'Segoe UI',sans-serif;text-anchor:middle}
+
+/* tints and shades */
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{width:46px;height:46px;border-radius:50%;border:3px solid #fff;box-shadow:0 2px 0 #0003}
+.chip[aria-pressed="true"]{outline:4px solid var(--ink);outline-offset:2px}
+.ladder{display:flex;gap:4px;margin-top:10px}
+.step{flex:1;border:0;height:92px;border-radius:10px;display:flex;align-items:flex-end;justify-content:center;padding-bottom:4px;font:800 12px 'Segoe UI',sans-serif;box-shadow:0 3px 0 #0002}
+.step.base{outline:4px solid var(--ink);outline-offset:2px}
+.ladlab{display:flex;justify-content:space-between;font:800 15px 'Segoe UI',sans-serif;color:var(--muted);margin-top:6px}
+.mono{margin-top:10px;border-radius:16px;overflow:hidden;height:236px;box-shadow:inset 0 0 0 1px #0001}
+.mono svg{width:100%;height:100%;display:block}
+
+/* match */
+.levels{display:flex;gap:8px;flex-wrap:wrap}
+.levels .b{min-height:46px;font-size:16px;padding:0 14px}
+.target{display:flex;align-items:center;gap:22px;margin-top:12px}
+.tdisc{width:230px;height:230px;border-radius:50%;flex:none;position:relative;overflow:hidden;box-shadow:0 8px 18px #0004,inset 0 0 0 6px #fff}
+.tdisc .half2{position:absolute;right:0;top:0;bottom:0;width:50%;transition:width .3s}
+.tdisc .lbl{position:absolute;bottom:22px;font:800 14px 'Segoe UI',sans-serif;background:#fffd;border-radius:8px;padding:1px 8px}
+.tinfo .tn{font:800 34px/1.1 Georgia,serif}
+.tinfo p{margin:6px 0;font:600 18px/1.35 'Segoe UI',sans-serif;color:var(--muted)}
+.stars{font-size:46px;letter-spacing:4px;min-height:58px}
+.stars .off{filter:grayscale(1);opacity:.3}
+.mbtns{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+.tally{font:800 18px 'Segoe UI',sans-serif;color:var(--muted);margin-left:auto;align-self:center}
+</style>
+</head>
+<body>
+<header>
+  <h1>Paint Mixer <small>Mix real-acting paint: primaries, secondaries, tints and shades.</small></h1>
+  <button class="icon-btn" id="motion" aria-pressed="true" title="Turn animation on or off">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+</header>
+<div class="stagewrap" id="stagewrap">
+  <div class="scene" id="scene">
+    <img class="bg" src="art:table" alt="">
+    <div class="top">
+      <div class="tabs" role="group" aria-label="Mode">
+        <button data-mode="mix" aria-pressed="true">🎨 Mix</button>
+        <button data-mode="wheel" aria-pressed="false">🌈 Color wheel</button>
+        <button data-mode="value" aria-pressed="false">◐ Tints and shades</button>
+        <button data-mode="match" aria-pressed="false">🎯 Match</button>
+      </div>
+    </div>
+    <div class="paints" id="paints" role="group" aria-label="Paints"></div>
+    <div class="dish" id="dish"><canvas id="well" width="360" height="360" aria-label="Mixing dish"></canvas><div class="gloss"></div><div class="empty" id="empty">Tap a paint to add a dab</div></div>
+    <div class="recipe" id="recipe" aria-live="polite"></div>
+    <div class="wellbtns">
+      <button class="b" id="undo">↶ Undo dab</button>
+      <button class="b" id="clean">🧽 Clean dish</button>
+    </div>
+    <div class="panel" id="panel"></div>
+    <div class="say" id="say" aria-live="polite"></div>
+    <img class="raccoon" id="raccoon" src="art:raccoon" alt="Raccoon painter">
+  </div>
+</div>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  let reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  try { const m = localStorage.getItem('curio-motion'); if (m) reduce = m === 'calm'; } catch {}
+  function showMotion() {
+    document.body.classList.toggle('calm', reduce);
+    $('motion').setAttribute('aria-pressed', !reduce);
+    $('motion').textContent = reduce ? '⏸ Motion' : '✨ Motion';
+  }
+  showMotion();
+  $('motion').onclick = () => { reduce = !reduce; try { localStorage.setItem('curio-motion', reduce ? 'calm' : 'on'); } catch {} showMotion(); };
+  const fit = () => { const r = $('stagewrap').getBoundingClientRect(); $('scene').style.setProperty('--s', Math.min(r.width / 1440, r.height / 810)); };
+  new ResizeObserver(fit).observe($('stagewrap'));
+  const anim = (el, kf, opt) => { if (reduce || !el.animate) return; el.animate(kf, opt); };
+
+  // ---------- paint engine: Kubelka-Munk mixing of reflectance curves ----------
+  // Each paint is a reflectance curve over the visible spectrum. Paints mix by adding their absorption-to-
+  // scattering ratios (K/S), the way real pigments do, so blue and yellow really make green.
+  const WL = []; for (let w = 380; w <= 730; w += 5) WL.push(w);
+  const g = (x, mu, s1, s2) => { const t = (x - mu) / (x < mu ? s1 : s2); return Math.exp(-.5 * t * t); };
+  // CIE 1931 color matching functions (multi-lobe fit by Wyman, Sloan and Shirley)
+  const XB = WL.map(l => 1.056 * g(l, 599.8, 37.9, 31) + .362 * g(l, 442, 16, 26.7) - .065 * g(l, 501.1, 20.4, 26.2));
+  const YB = WL.map(l => .821 * g(l, 568.8, 46.9, 40.5) + .286 * g(l, 530.9, 16.3, 31.1));
+  const ZB = WL.map(l => 1.217 * g(l, 437, 11.8, 36) + .681 * g(l, 459, 26, 13.8));
+  const sum = a => a.reduce((s, v) => s + v, 0), XW = sum(XB), YW = sum(YB), ZW = sum(ZB);
+  const sig = x => 1 / (1 + Math.exp(-x));
+  const curve = f => WL.map(f);
+  const PAINTS = {
+    red:    {name: 'Red', tip: 'primary', strength: .55, R: curve(l => .04 + .86 * sig((l - 600) / 10) + .14 * sig((440 - l) / 12))},
+    yellow: {name: 'Yellow', tip: 'primary', strength: 1.15, R: curve(l => .05 + .87 * sig((l - 505) / 12))},
+    blue:   {name: 'Blue', tip: 'primary', strength: .8, R: curve(l => .035 + .55 * g(l, 460, 40, 52) + .2 * sig((l - 655) / 14))},
+    white:  {name: 'White', tip: 'makes tints', strength: 3, R: curve(() => .93)},
+    black:  {name: 'Black', tip: 'makes shades', strength: .3, R: curve(() => .035)},
+  };
+  const IDS = Object.keys(PAINTS), HUES = ['red', 'yellow', 'blue'];
+  const ks = r => (1 - r) * (1 - r) / (2 * r), unks = k => 1 + k - Math.sqrt(k * k + 2 * k);
+  for (const p of Object.values(PAINTS)) p.KS = p.R.map(ks);
+  function mixCurve(rec) {
+    let tot = 0; const k = WL.map(() => 0);
+    for (const [id, n] of Object.entries(rec)) {
+      if (!n) continue; const p = PAINTS[id], w = n * p.strength; tot += w;
+      for (let i = 0; i < k.length; i++) k[i] += w * p.KS[i];
+    }
+    if (!tot) return null;
+    return k.map(v => unks(v / tot));
+  }
+  function curveXYZ(R) {
+    let X = 0, Y = 0, Z = 0;
+    for (let i = 0; i < R.length; i++) { X += R[i] * XB[i]; Y += R[i] * YB[i]; Z += R[i] * ZB[i]; }
+    return [X / XW * .9505, Y / YW, Z / ZW * 1.089];
+  }
+  const gam = v => { v = Math.max(0, v); return v <= .0031308 ? 12.92 * v : 1.055 * Math.pow(v, 1 / 2.4) - .055; };
+  function xyzRGB([X, Y, Z]) {
+    const r = 3.2406 * X - 1.5372 * Y - .4986 * Z, gg = -.9689 * X + 1.8758 * Y + .0415 * Z, b = .0557 * X - .204 * Y + 1.057 * Z;
+    return [r, gg, b].map(v => Math.round(Math.min(1, gam(v)) * 255));
+  }
+  function xyzLab([X, Y, Z]) {
+    const f = t => t > .008856 ? Math.cbrt(t) : 7.787 * t + 16 / 116;
+    const fx = f(X / .9505), fy = f(Y), fz = f(Z / 1.089);
+    return [116 * fy - 16, 500 * (fx - fy), 200 * (fy - fz)];
+  }
+  const cache = {};
+  function mix(rec) {
+    const key = IDS.map(i => rec[i] || 0).join(','); if (cache[key]) return cache[key];
+    const R = mixCurve(rec); if (!R) return null;
+    const xyz = curveXYZ(R), rgb = xyzRGB(xyz);
+    return cache[key] = {rgb, lab: xyzLab(xyz), css: `rgb(${rgb.join(',')})`};
+  }
+  const dE = (a, b) => Math.hypot(a[0] - b[0], a[1] - b[1], a[2] - b[2]);
+
+  // ---------- naming what is in the dish ----------
+  const PAIR = {
+    'red,yellow': ['orange', 'red-orange', 'yellow-orange'],
+    'blue,yellow': ['green', 'blue-green', 'yellow-green'],
+    'blue,red': ['violet', 'blue-violet', 'red-violet'],
+  };
+  function hueOf(rec) {
+    const hs = HUES.filter(h => rec[h]);
+    if (!hs.length) return null;
+    if (hs.length === 1) return {name: hs[0], kind: 'primary'};
+    if (hs.length === 3) {
+      const tot = sum(hs.map(h => rec[h])), top = hs.reduce((a, b) => rec[a] >= rec[b] ? a : b);
+      return {name: rec[top] / tot >= .6 ? `${top === 'red' ? 'reddish' : top === 'yellow' ? 'yellowish' : 'bluish'} brown` : 'brown', kind: 'brown'};
+    }
+    const key = [...hs].sort().join(','), [a, b] = key.split(','), ra = rec[a], rb = rec[b], hi = ra >= rb ? a : b, ratio = Math.max(ra, rb) / Math.min(ra, rb);
+    const [sec, t1, t2] = PAIR[key];
+    if (ratio < 1.5) return {name: sec, kind: 'secondary'};
+    if (ratio <= 3) return {name: hi === a ? t1 : t2, kind: 'tertiary'};
+    return {name: `${hi} with a little ${hi === a ? b : a}`, kind: 'lean'};
+  }
+  function describe(rec) {
+    const h = hueOf(rec), w = rec.white || 0, k = rec.black || 0;
+    if (!h) {
+      if (w && k) return {name: w / (w + k) > .6 ? 'light gray' : w / (w + k) < .4 ? 'dark gray' : 'gray', how: 'white + black make gray', kind: 'gray'};
+      if (w) return {name: 'white', how: 'white makes tints', kind: 'white'};
+      if (k) return {name: 'black', how: 'black makes shades', kind: 'black'};
+      return null;
+    }
+    const how = {primary: 'a primary color: you can\'t mix it from other paints', secondary: 'a secondary color: two primaries mixed evenly',
+      tertiary: 'a tertiary color: a primary next to a secondary', brown: 'all three primaries together make brown', lean: 'mostly one primary'}[h.kind];
+    let name = h.name, kind = h.kind, extra = how;
+    if (w && k) { name = `grayish ${h.name}`; kind = 'tone'; extra = `a tone: ${h.name} + gray`; }
+    else if (w) { name = h.name === 'red' ? 'pink (light red)' : `light ${h.name}`; kind = 'tint'; extra = `a tint: ${h.name} + white`; }
+    else if (k) { name = `dark ${h.name}`; kind = 'shade'; extra = `a shade: ${h.name} + black`; }
+    return {name, how: extra, kind, hue: h};
+  }
+  const cap = s => s[0].toUpperCase() + s.slice(1);
+
+  // ---------- sound ----------
+  let ac = null, soundOn = true;
+  $('sound').onclick = () => { soundOn = !soundOn; $('sound').setAttribute('aria-pressed', soundOn); $('sound').textContent = soundOn ? '🔔 Sound' : '🔕 Sound'; };
+  function ctx() { if (!ac) { try { ac = new (window.AudioContext || window.webkitAudioContext)(); } catch { return null; } } if (ac.state === 'suspended') ac.resume(); return ac; }
+  function plop(pitch = 1) {
+    const c = soundOn && ctx(); if (!c) return;
+    const t = c.currentTime, o = c.createOscillator(), gn = c.createGain();
+    o.type = 'sine'; o.frequency.setValueAtTime(420 * pitch, t); o.frequency.exponentialRampToValueAtTime(120 * pitch, t + .12);
+    gn.gain.setValueAtTime(.0001, t); gn.gain.exponentialRampToValueAtTime(.35, t + .01); gn.gain.exponentialRampToValueAtTime(.0001, t + .18);
+    o.connect(gn).connect(c.destination); o.start(t); o.stop(t + .2);
+  }
+  function swish(dur = .9) {
+    const c = soundOn && ctx(); if (!c) return;
+    const t = c.currentTime, n = c.createBufferSource(), b = c.createBuffer(1, c.sampleRate * dur, c.sampleRate), d = b.getChannelData(0);
+    for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
+    n.buffer = b; const f = c.createBiquadFilter(); f.type = 'bandpass'; f.Q.value = 1.4;
+    f.frequency.setValueAtTime(500, t); for (let i = 1; i <= 4; i++) f.frequency.linearRampToValueAtTime(i % 2 ? 1400 : 600, t + dur * i / 4);
+    const gn = c.createGain(); gn.gain.setValueAtTime(.0001, t); gn.gain.linearRampToValueAtTime(.09, t + .1); gn.gain.linearRampToValueAtTime(.0001, t + dur);
+    n.connect(f).connect(gn).connect(c.destination); n.start(t);
+  }
+  function chime(good) {
+    const c = soundOn && ctx(); if (!c) return;
+    (good ? [523, 659, 784, 1047] : [440, 392]).forEach((f, i) => {
+      const t = c.currentTime + i * .1, o = c.createOscillator(), gn = c.createGain();
+      o.type = 'triangle'; o.frequency.value = f; gn.gain.setValueAtTime(.0001, t); gn.gain.exponentialRampToValueAtTime(.2, t + .01); gn.gain.exponentialRampToValueAtTime(.0001, t + .5);
+      o.connect(gn).connect(c.destination); o.start(t); o.stop(t + .55);
+    });
+  }
+
+  // ---------- the paints ----------
+  const blobPath = 'M8 58C2 44 10 30 24 28C26 14 44 6 56 14C68 4 88 12 88 28C98 34 98 52 88 60C84 74 64 80 48 76C30 82 12 74 8 58Z';
+  $('paints').innerHTML = IDS.map((id, i) => {
+    const c = mix({[id]: 1}).css;
+    return `<button class="pot" data-paint="${id}" aria-label="Add a dab of ${PAINTS[id].name}"><svg viewBox="0 0 96 86"><path d="${blobPath}" fill="${c}" stroke="#0003" stroke-width="2"/><ellipse cx="38" cy="30" rx="16" ry="8" fill="#fff" opacity=".45"/><ellipse cx="62" cy="58" rx="22" ry="8" fill="#000" opacity=".08"/></svg><div><b>${PAINTS[id].name}</b><small>${PAINTS[id].tip}</small></div><kbd>${i + 1}</kbd></button>`;
+  }).join('');
+  document.querySelectorAll('[data-paint]').forEach(b => b.onclick = () => addDab(b.dataset.paint));
+
+  // ---------- the dish ----------
+  const well = $('well'), wc = well.getContext('2d'), N = 360, RAD = 180;
+  let dabs = [], rec = {}, mixed = null, stirring = 0;
+  const src = document.createElement('canvas'); src.width = src.height = N; const sc = src.getContext('2d');
+  const MAXDABS = 16;
+  function recipeOf(list) { const r = {}; list.forEach(d => r[d] = (r[d] || 0) + 1); return r; }
+  function paintBlob(c, x, y, r, color, seed) {
+    c.fillStyle = color; c.beginPath();
+    for (let i = 0; i <= 24; i++) {
+      const a = i / 24 * Math.PI * 2, rr = r * (1 + .16 * Math.sin(a * 3 + seed) + .08 * Math.sin(a * 5 + seed * 2));
+      const px = x + Math.cos(a) * rr, py = y + Math.sin(a) * rr; i ? c.lineTo(px, py) : c.moveTo(px, py);
+    }
+    c.fill();
+    c.fillStyle = '#ffffff55'; c.beginPath(); c.ellipse(x - r * .3, y - r * .35, r * .35, r * .18, -.4, 0, Math.PI * 2); c.fill();
+  }
+  function drawSettled() {
+    wc.clearRect(0, 0, N, N);
+    if (!mixed) return;
+    wc.fillStyle = mixed.css; wc.beginPath(); wc.arc(N / 2, N / 2, RAD * .86, 0, Math.PI * 2); wc.fill();
+    // a soft swirl left in the paint
+    wc.save(); wc.globalAlpha = .1; wc.strokeStyle = '#fff'; wc.lineWidth = 6;
+    for (let i = 0; i < 3; i++) { wc.beginPath(); for (let a = 0; a < 9; a += .1) { const r = 18 + a * 15; const x = N / 2 + Math.cos(a + i * 2.1) * r, y = N / 2 + Math.sin(a + i * 2.1) * r; a ? wc.lineTo(x, y) : wc.moveTo(x, y); } wc.stroke(); }
+    wc.restore();
+  }
+  // stir: twist the unmixed dabs around the middle while they blend into the final color
+  function stir(fromMix) {
+    const to = mixed; if (!to) return drawSettled();
+    sc.clearRect(0, 0, N, N);
+    if (fromMix) { sc.fillStyle = fromMix.css; sc.beginPath(); sc.arc(N / 2, N / 2, RAD * .86, 0, Math.PI * 2); sc.fill(); }
+    const fresh = fromMix ? dabs.slice(-1) : dabs;
+    fresh.forEach((d, i) => {
+      const a = (dabs.length - fresh.length + i) * 2.4, r = fromMix ? 40 + Math.random() * 60 : 30 + (i % 5) * 22;
+      paintBlob(sc, N / 2 + Math.cos(a) * r, N / 2 + Math.sin(a) * r, fromMix ? 58 : 52, mix({[d]: 1}).css, i * 1.7);
+    });
+    if (reduce) return drawSettled();
+    const id = ++stirring, data = sc.getImageData(0, 0, N, N).data, t0 = performance.now(), dur = 950;
+    const out = wc.createImageData(N, N), o = out.data, [tr, tg, tb] = to.rgb;
+    swish(dur / 1000);
+    const frame = now => {
+      if (id !== stirring) return;
+      const p = Math.min(1, (now - t0) / dur), e = p * p * (3 - 2 * p), twist = e * 7, blend = Math.pow(p, 1.6);
+      for (let y = 0; y < N; y++) for (let x = 0; x < N; x++) {
+        const dx = x - N / 2, dy = y - N / 2, r = Math.hypot(dx, dy), j = (y * N + x) * 4;
+        if (r > RAD * .86) { o[j + 3] = 0; continue; }
+        const a = Math.atan2(dy, dx) - twist * (1 - r / RAD) ** 1.4;
+        const sx = Math.round(N / 2 + Math.cos(a) * r), sy = Math.round(N / 2 + Math.sin(a) * r), k = (sy * N + sx) * 4;
+        let r0 = data[k], g0 = data[k + 1], b0 = data[k + 2];
+        if (!data[k + 3]) { r0 = tr; g0 = tg; b0 = tb; }
+        o[j] = r0 + (tr - r0) * blend; o[j + 1] = g0 + (tg - g0) * blend; o[j + 2] = b0 + (tb - b0) * blend; o[j + 3] = 255;
+      }
+      wc.putImageData(out, 0, 0);
+      if (p < 1) requestAnimationFrame(frame); else drawSettled();
+    };
+    requestAnimationFrame(frame);
+    setTimeout(() => { if (id === stirring) { stirring++; drawSettled(); } }, dur + 400);  // a hidden tab stops animation frames
+  }
+  function setDabs(list, animate = true) {
+    const before = mixed;
+    dabs = list.slice(0, MAXDABS); rec = recipeOf(dabs); mixed = mix(rec);
+    $('empty').hidden = dabs.length > 0;
+    if (!mixed) { stirring++; wc.clearRect(0, 0, N, N); }
+    else if (animate) stir(dabs.length > 1 ? before : null); else drawSettled();
+    showRecipe(); afterMix();
+  }
+  function addDab(id) {
+    if (dabs.length >= MAXDABS) return say(`The dish is full (${MAXDABS} dabs). <b>Clean the dish</b> or undo a dab.`);
+    plop(id === 'white' ? 1.3 : id === 'black' ? .7 : 1);
+    const pot = document.querySelector(`[data-paint="${id}"] svg`); anim(pot, [{transform: 'scale(1)'}, {transform: 'scale(.86,1.08)'}, {transform: 'scale(1)'}], {duration: 220});
+    const before = mixed; dabs.push(id); rec = recipeOf(dabs); mixed = mix(rec); $('empty').hidden = true;
+    stir(dabs.length > 1 ? before : null); showRecipe(); afterMix(id);
+  }
+  $('undo').onclick = () => { if (!dabs.length) return; setDabs(dabs.slice(0, -1), false); };
+  $('clean').onclick = () => { setDabs([], false); say('Clean dish! Pick a paint to start a new mix.'); };
+  function recipeDots(r) {
+    return IDS.filter(i => r[i]).map(i => `<span><i style="background:${mix({[i]: 1}).css}"></i>${r[i]} ${PAINTS[i].name.toLowerCase()}</span>`).join('');
+  }
+  function showRecipe() {
+    const d = describe(rec);
+    $('recipe').innerHTML = d ? `<div class="nm">${cap(d.name)}</div><div class="how">${d.how}</div><div class="dots">${recipeDots(rec)}</div>`
+      : `<div class="nm" style="color:var(--muted)">An empty dish</div><div class="how">Red, yellow and blue are the primary colors. Every other color on the wheel comes from them.</div>`;
+    $('undo').disabled = !dabs.length;
+  }
+
+  // ---------- talking ----------
+  function say(html) {
+    $('say').innerHTML = `<div>${html}</div>`;
+    anim($('raccoon'), [{transform: 'rotate(0)'}, {transform: 'rotate(-3deg) translateY(-6px)'}, {transform: 'rotate(2deg)'}, {transform: 'rotate(0)'}], {duration: 500});
+  }
+
+  // ---------- modes ----------
+  let mode = 'mix';
+  document.querySelectorAll('[data-mode]').forEach(b => b.onclick = () => setMode(b.dataset.mode));
+  function setMode(m) {
+    mode = m;
+    document.querySelectorAll('[data-mode]').forEach(b => b.setAttribute('aria-pressed', b.dataset.mode === m));
+    ({mix: renderMix, wheel: renderWheel, value: renderValue, match: renderMatch})[m]();
+  }
+  function afterMix(added) {
+    if (mode === 'mix') mixAfter(added);
+    if (mode === 'match') matchAfter();
+  }
+
+  // ===== Mix =====
+  const GOALS = [
+    {id: 'orange', label: 'Orange', test: d => d.kind === 'secondary' && d.hue.name === 'orange'},
+    {id: 'green', label: 'Green', test: d => d.kind === 'secondary' && d.hue.name === 'green'},
+    {id: 'violet', label: 'Violet', test: d => d.kind === 'secondary' && d.hue.name === 'violet'},
+    {id: 'tertiary', label: 'A tertiary', test: d => d.kind === 'tertiary'},
+    {id: 'tint', label: 'A tint', test: d => d.kind === 'tint'},
+    {id: 'shade', label: 'A shade', test: d => d.kind === 'shade'},
+    {id: 'brown', label: 'Brown', test: d => d.kind === 'brown' || d.hue?.kind === 'brown'},
+    {id: 'gray', label: 'Gray', test: d => d.kind === 'gray' || d.kind === 'tone'},
+  ];
+  const found = {}; let saved = [];
+  function renderMix() {
+    $('panel').innerHTML = `<div class="card"><h2>Discoveries</h2><div class="check" id="check"></div></div>
+      <div class="card" style="margin-top:12px"><div style="display:flex;align-items:center;gap:12px"><h2 style="margin:0">Swatch book</h2>
+      <button class="b go" id="save" style="margin-left:auto;min-height:46px">💾 Save this swatch</button></div><div class="swatches" id="swatches"></div></div>`;
+    $('save').onclick = saveSwatch;
+    drawChecks(); drawSwatches();
+    say(dabs.length ? 'Keep mixing! What happens if you add a little more of one paint?' : 'Hi, painter! Mix <b>two primary colors</b> and see what you get. Try to find every color on the list.');
+  }
+  function drawChecks() {
+    const el = $('check'); if (!el) return;
+    el.innerHTML = GOALS.map(gl => `<div class="${found[gl.id] ? 'done' : ''}"><i style="${found[gl.id] ? `background:${found[gl.id]}` : ''}">${found[gl.id] ? '✓' : ''}</i>${gl.label}</div>`).join('');
+  }
+  function drawSwatches() {
+    const el = $('swatches'); if (!el) return;
+    el.innerHTML = Array.from({length: 8}, (_, i) => {
+      const s = saved[i];
+      return s ? `<button class="sw" data-sw="${i}" title="Load this mix"><i style="background:${s.css}"></i><small>${cap(s.name)}</small><small style="color:var(--muted);font-weight:600">${IDS.filter(k => s.rec[k]).map(k => s.rec[k] + ' ' + k).join(', ')}</small></button>` : `<div class="sw blank">empty</div>`;
+    }).join('');
+    el.querySelectorAll('[data-sw]').forEach(b => b.onclick = () => { const s = saved[+b.dataset.sw]; setDabs(Object.entries(s.rec).flatMap(([k, n]) => Array(n).fill(k))); });
+  }
+  function saveSwatch() {
+    if (!mixed) return say('Mix something first, then save it.');
+    saved.unshift({rec: {...rec}, css: mixed.css, name: describe(rec).name}); saved = saved.slice(0, 8); drawSwatches();
+    anim(document.querySelector('.sw'), [{transform: 'scale(.6)'}, {transform: 'scale(1.08)'}, {transform: 'scale(1)'}], {duration: 380});
+    say('Saved! Your swatch book keeps the recipe, so you can make it again.');
+  }
+  function mixAfter(added) {
+    const d = describe(rec); if (!d) return;
+    const hit = GOALS.find(gl => !found[gl.id] && gl.test(d));
+    if (hit) { found[hit.id] = mixed.css; drawChecks(); chime(true); }
+    const n = dabs.length, list = recipeDots(rec);
+    let msg;
+    if (hit) msg = `You found <b>${hit.label.toLowerCase()}</b>! ${d.how[0].toUpperCase() + d.how.slice(1)}.`;
+    else if (n === 1) msg = `${cap(PAINTS[added]?.name || d.name)} on its own. Now add a different paint and watch them mix.`;
+    else if (d.kind === 'brown') msg = 'All three primaries make <b>brown</b>. Artists call this a neutral color.';
+    else if (d.kind === 'lean') msg = `One paint is winning. Add more of the other one to move toward ${PAIR[HUES.filter(h => rec[h]).sort().join(',')]?.[0] || 'the middle'}.`;
+    else if (added === 'red' && rec.yellow) msg = 'A little red goes a long way! Red is a stronger paint than yellow.';
+    else if (added === 'white') msg = `White makes it lighter: that is a <b>tint</b>.`;
+    else if (added === 'black') msg = `Black makes it darker: that is a <b>shade</b>. Just a little black is plenty.`;
+    else msg = `${cap(d.name)}. ${cap(d.how)}.`;
+    say(msg);
+  }
+
+  // ===== Color wheel =====
+  // the 12-color wheel, clockwise from yellow at the top, each with the recipe this paint set needs
+  const WHEEL = [
+    {id: 'Y', name: 'yellow', rec: {yellow: 1}, t: 'P', warm: 1},
+    {id: 'YO', name: 'yellow-orange', rec: {yellow: 3, red: 1}, t: 'T', warm: 1},
+    {id: 'O', name: 'orange', rec: {yellow: 1, red: 1}, t: 'S', warm: 1},
+    {id: 'RO', name: 'red-orange', rec: {red: 2, yellow: 1}, t: 'T', warm: 1},
+    {id: 'R', name: 'red', rec: {red: 1}, t: 'P', warm: 1},
+    {id: 'RV', name: 'red-violet', rec: {red: 2, blue: 1}, t: 'T', warm: 1},
+    {id: 'V', name: 'violet', rec: {red: 1, blue: 1}, t: 'S', warm: 0},
+    {id: 'BV', name: 'blue-violet', rec: {blue: 2, red: 1}, t: 'T', warm: 0},
+    {id: 'B', name: 'blue', rec: {blue: 1}, t: 'P', warm: 0},
+    {id: 'BG', name: 'blue-green', rec: {blue: 2, yellow: 1}, t: 'T', warm: 0},
+    {id: 'G', name: 'green', rec: {blue: 1, yellow: 1}, t: 'S', warm: 0},
+    {id: 'YG', name: 'yellow-green', rec: {yellow: 2, blue: 1}, t: 'T', warm: 0},
+  ];
+  const TNAME = {P: 'primary', S: 'secondary', T: 'tertiary'};
+  const scaleRec = (r, k) => Object.fromEntries(Object.entries(r).map(([a, n]) => [a, n * k]));
+  const addRec = (a, b) => { const r = {...a}; for (const [k, n] of Object.entries(b)) r[k] = (r[k] || 0) + n; return r; };
+  const tintOf = (r, n) => addRec(scaleRec(r, 2), {white: n}), shadeOf = (r, n) => addRec(scaleRec(r, 2), {black: n});
+  let wview = {labels: true, temp: false, comp: false, rings: false}, wsel = null;
+  function renderWheel() {
+    $('panel').innerHTML = `<div class="card" style="padding:12px 16px"><div class="wtools">
+      <button class="b" data-w="labels">🏷 P, S, T</button><button class="b" data-w="temp">🔥 Warm and cool ❄</button>
+      <button class="b" data-w="comp">↔ Complements</button><button class="b" data-w="rings">◎ Tints and shades</button></div></div>
+      <div class="wheelbox" id="wheelbox"></div>`;
+    $('panel').querySelectorAll('[data-w]').forEach(b => b.onclick = () => { wview[b.dataset.w] = !wview[b.dataset.w]; drawWheel(); wheelTalk(b.dataset.w); });
+    drawWheel();
+    say('Every color on this wheel is mixed from just <b>red, yellow and blue</b>. Tap a color to mix it in the dish.');
+  }
+  function arc(cx, cy, r0, r1, a0, a1) {
+    const p = (r, a) => `${(cx + Math.sin(a) * r).toFixed(1)} ${(cy - Math.cos(a) * r).toFixed(1)}`;
+    return `M${p(r1, a0)}A${r1} ${r1} 0 0 1 ${p(r1, a1)}L${p(r0, a1)}A${r0} ${r0} 0 0 0 ${p(r0, a0)}Z`;
+  }
+  function drawWheel() {
+    $('panel').querySelectorAll('[data-w]').forEach(b => b.setAttribute('aria-pressed', wview[b.dataset.w]));
+    const C = 230, step = Math.PI * 2 / 12; let s = '';
+    const rIn = wview.rings ? 92 : 70, rOut = wview.rings ? 168 : 200;
+    if (wview.temp) {
+      s += `<path d="${arc(C, C, 206, 226, -step / 2, step * 5.5)}" fill="#f08a3c"/><path d="${arc(C, C, 206, 226, step * 5.5, step * 11.5)}" fill="#3c8ad8"/>`;
+      s += `<text class="half" x="${C + 196}" y="${C - 196}" fill="#b4500f">🔥 warm</text><text class="half" x="${C - 196}" y="${C + 210}" fill="#1f5f9f">❄ cool</text>`;
+    }
+    WHEEL.forEach((w, i) => {
+      const a0 = i * step - step / 2, a1 = a0 + step, c = mix(w.rec).css, mid = i * step;
+      const sel = wsel === i || (wview.comp && wsel != null && (wsel + 6) % 12 === i), push = sel ? 10 : 0;
+      s += `<path class="wedge" data-i="${i}" d="${arc(C, C, rIn, rOut, a0, a1)}" fill="${c}" style="${sel ? 'stroke:#2b2219;stroke-width:5;' : ''}transform:translate(${(Math.sin(mid) * push).toFixed(1)}px,${(-Math.cos(mid) * push).toFixed(1)}px)"><title>${w.name}</title></path>`;
+      if (wview.rings) {
+        s += `<path class="wedge" data-i="${i}" data-v="tint" d="${arc(C, C, rOut, 204, a0, a1)}" fill="${mix(tintOf(w.rec, 3)).css}"/>`;
+        s += `<path class="wedge" data-i="${i}" data-v="shade" d="${arc(C, C, 48, rIn, a0, a1)}" fill="${mix(shadeOf(w.rec, 2)).css}"/>`;
+      }
+      const lr = (rIn + rOut) / 2, x = C + Math.sin(mid) * lr, y = C - Math.cos(mid) * lr, dark = mix(w.rec).lab[0] < 55;
+      if (wview.labels) s += `<text class="wcode" x="${x}" y="${y}" fill="${dark ? '#fff' : '#2b2219'}">${w.t}</text>`;
+    });
+    const centerFill = wsel != null && wview.comp ? mix(addRec(WHEEL[wsel].rec, WHEEL[(wsel + 6) % 12].rec)).css : '#fffaf2';
+    s += `<circle cx="${C}" cy="${C}" r="${wview.rings ? 44 : 64}" fill="${centerFill}" stroke="#fff" stroke-width="4"/>`;
+    if (wview.labels && !wview.comp) s += `<text class="wlab" x="${C}" y="${C - 12}" fill="#6b5d4f">P S T</text><text class="wlab" x="${C}" y="${C + 12}" fill="#6b5d4f" style="font-size:11px">${wview.rings ? '' : 'tap a color'}</text>`;
+    $('wheelbox').innerHTML = `<svg viewBox="0 0 460 460" role="img" aria-label="Color wheel">${s}</svg>`;
+    $('wheelbox').querySelectorAll('.wedge').forEach(p => p.onclick = () => pickWedge(+p.dataset.i, p.dataset.v));
+  }
+  function pickWedge(i, v) {
+    wsel = i; const w = WHEEL[i], r = v === 'tint' ? tintOf(w.rec, 3) : v === 'shade' ? shadeOf(w.rec, 2) : w.rec;
+    setDabs(Object.entries(r).flatMap(([k, n]) => Array(n).fill(k)));
+    drawWheel();
+    const o = WHEEL[(i + 6) % 12];
+    if (v) return say(v === 'tint' ? `A <b>tint</b> of ${w.name}: ${w.name} plus white. Tints are lighter.` : `A <b>shade</b> of ${w.name}: ${w.name} plus black. Shades are darker.`);
+    if (wview.comp) return say(`${cap(w.name)} and <b>${o.name}</b> are complements: opposite on the wheel. Side by side they pop. Mixed together (the middle) they make a dull brown or gray.`);
+    if (wview.temp) return say(`${cap(w.name)} is a <b>${w.warm ? 'warm' : 'cool'}</b> color, like ${w.warm ? 'sunshine and fire' : 'water, ice and shade'}.`);
+    say(w.t === 'P' ? `${cap(w.name)} is a <b>primary</b> color. You can't mix it from other paints.` : w.t === 'S' ? `${cap(w.name)} is a <b>secondary</b> color: equal parts of two primaries.` : `${cap(w.name)} is a <b>tertiary</b> color, between a primary and a secondary. It takes more of one primary than the other.`);
+  }
+  function wheelTalk(k) {
+    if (!wview[k]) return;
+    say({labels: '<b>P</b> = primary, <b>S</b> = secondary (two primaries), <b>T</b> = tertiary (a primary plus a secondary).',
+      temp: 'Warm colors (reds, oranges, yellows) feel sunny and come forward. Cool colors (greens, blues, violets) feel calm and fall back.',
+      comp: 'Tap any color to find its <b>complement</b>, straight across the wheel. The middle shows what they make mixed together.',
+      rings: 'The outer ring shows <b>tints</b> (add white). The inner ring shows <b>shades</b> (add black).'}[k]);
+  }
+
+  // ===== Tints and shades =====
+  let vbase = 4;
+  function ladderOf(r) {
+    return [
+      {rec: shadeOf(r, 3), lab: 'shade'}, {rec: shadeOf(r, 2), lab: ''}, {rec: shadeOf(r, 1), lab: ''},
+      {rec: scaleRec(r, 2), lab: 'pure', base: true},
+      {rec: tintOf(r, 1), lab: ''}, {rec: tintOf(r, 2), lab: ''}, {rec: tintOf(r, 4), lab: ''}, {rec: tintOf(r, 8), lab: 'tint'},
+    ];
+  }
+  function renderValue() {
+    $('panel').innerHTML = `<div class="card"><h2>Pick a color</h2><div class="chips" id="chips"></div>
+      <div class="ladder" id="ladder"></div><div class="ladlab"><span>◀ add black: shades</span><span>add white: tints ▶</span></div>
+      <div class="mono" id="mono"></div></div>`;
+    $('chips').innerHTML = WHEEL.map((w, i) => `<button class="chip" data-c="${i}" aria-label="${w.name}" style="background:${mix(w.rec).css}"></button>`).join('');
+    $('chips').querySelectorAll('[data-c]').forEach(b => b.onclick = () => { vbase = +b.dataset.c; drawValue(); setDabs(recDabs(scaleRec(WHEEL[vbase].rec, 2))); say(`A whole picture painted with only <b>${WHEEL[vbase].name}</b>, white and black. Artists call it <b>monochromatic</b>: one color, many values.`); });
+    drawValue();
+    say('Light and dark versions of one color are called <b>values</b>. Tap a step on the ladder to mix it.');
+  }
+  const recDabs = r => Object.entries(r).flatMap(([k, n]) => Array(Math.round(n)).fill(k));
+  function drawValue() {
+    $('chips').querySelectorAll('[data-c]').forEach(b => b.setAttribute('aria-pressed', +b.dataset.c === vbase));
+    const L = ladderOf(WHEEL[vbase].rec), cs = L.map(s => mix(s.rec).css);
+    $('ladder').innerHTML = L.map((s, i) => `<button class="step${s.base ? ' base' : ''}" data-l="${i}" style="background:${cs[i]};color:${mix(s.rec).lab[0] < 55 ? '#fff' : '#2b2219'}" title="${IDS.filter(k => s.rec[k]).map(k => s.rec[k] + ' ' + k).join(', ')}">${s.lab}</button>`).join('');
+    $('ladder').querySelectorAll('[data-l]').forEach(b => b.onclick = () => {
+      const s = L[+b.dataset.l]; setDabs(recDabs(s.rec));
+      const w = s.rec.white || 0, k = s.rec.black || 0;
+      say(s.base ? `Pure ${WHEEL[vbase].name}, no white or black.` : w ? `A <b>tint</b>: ${w} white ${w > 1 ? 'dabs' : 'dab'} in the ${WHEEL[vbase].name}. More white, lighter tint.` : `A <b>shade</b>: ${k} black ${k > 1 ? 'dabs' : 'dab'}. A little black goes a long way.`);
+    });
+    // a landscape painted in one color: sky lightest, ground darkest
+    const [s3, s2, s1, base, t1, t2, t3, t4] = cs;
+    $('mono').innerHTML = `<svg viewBox="0 0 640 236" preserveAspectRatio="xMidYMid slice" aria-label="A landscape painted in tints and shades of ${WHEEL[vbase].name}">
+      <rect width="640" height="236" fill="${t4}"/><circle cx="500" cy="62" r="34" fill="${t2}"/><circle cx="500" cy="62" r="24" fill="${t1}"/>
+      <path d="M0 140 Q90 80 180 120 T380 100 T640 118 V236 H0Z" fill="${t3}"/>
+      <path d="M0 168 Q120 118 250 150 T520 140 T640 150 V236 H0Z" fill="${t1}"/>
+      <path d="M0 196 Q160 160 330 186 T640 180 V236 H0Z" fill="${base}"/>
+      <rect x="120" y="120" width="14" height="72" fill="${s2}"/><circle cx="127" cy="110" r="34" fill="${s1}"/><circle cx="112" cy="122" r="20" fill="${s1}"/><circle cx="144" cy="120" r="22" fill="${s2}"/>
+      <path d="M380 196 l40 -46 l40 46z" fill="${s1}"/><rect x="392" y="196" width="56" height="2" fill="${s3}"/>
+      <path d="M0 220 Q200 200 640 216 V236 H0Z" fill="${s3}"/></svg>`;
+  }
+
+  // ===== Match =====
+  const LEVELS = [
+    {name: 'Secondary', targets: [['Orange', {red: 1, yellow: 1}], ['Green', {yellow: 1, blue: 1}], ['Violet', {red: 1, blue: 1}]]},
+    {name: 'Tertiary', targets: [['Red-orange', {red: 2, yellow: 1}], ['Yellow-orange', {yellow: 3, red: 1}], ['Yellow-green', {yellow: 2, blue: 1}],
+      ['Blue-green', {blue: 2, yellow: 1}], ['Blue-violet', {blue: 2, red: 1}], ['Red-violet', {red: 2, blue: 1}]]},
+    {name: 'Tints and shades', targets: [['Bubblegum pink', {red: 1, white: 2}], ['Sky blue', {blue: 1, white: 3}], ['Navy', {blue: 3, black: 1}],
+      ['Lemonade', {yellow: 2, white: 2}], ['Forest green', {yellow: 1, blue: 1, black: 1}], ['Lavender', {red: 1, blue: 1, white: 3}], ['Maroon', {red: 3, black: 1}]]},
+    {name: 'Tricky', targets: [['Chocolate', {red: 2, yellow: 1, blue: 1}], ['Peach', {red: 1, yellow: 2, white: 3}], ['Olive', {yellow: 3, blue: 1, black: 1}],
+      ['Mint', {yellow: 1, blue: 1, white: 4}], ['Storm gray', {white: 2, black: 1, blue: 1}], ['Pumpkin', {red: 2, yellow: 3}], ['Teal', {blue: 3, yellow: 2}]]},
+  ];
+  let lvl = 0, tgt = null, matched = 0, checked = false, order = [];
+  function renderMatch() {
+    $('panel').innerHTML = `<div class="card"><div class="levels" id="levels">${LEVELS.map((l, i) => `<button class="b" data-lv="${i}">${i + 1}. ${l.name}</button>`).join('')}</div>
+      <div class="target"><div class="tdisc" id="tdisc"><div class="half2" id="mine" style="width:0"></div><span class="lbl" id="lt" style="left:30px">target</span><span class="lbl" id="ly" style="right:30px" hidden>yours</span></div>
+      <div class="tinfo"><div style="font:700 16px 'Segoe UI';color:var(--muted)">Mix this color:</div><div class="tn" id="tn"></div><div class="stars" id="stars"></div><p id="tp"></p></div></div>
+      <div class="mbtns"><button class="b go" id="chk">✔ Check my mix</button><button class="b" id="hint">💡 Hint</button><button class="b pur" id="next">Next color ▶</button><span class="tally" id="tally"></span></div></div>`;
+    $('levels').querySelectorAll('[data-lv]').forEach(b => b.onclick = () => { lvl = +b.dataset.lv; order = []; newTarget(); });
+    $('chk').onclick = check; $('hint').onclick = hint; $('next').onclick = newTarget;
+    if (!tgt) newTarget(); else drawTarget();
+  }
+  function newTarget() {
+    if (!order.length) { order = LEVELS[lvl].targets.map((_, i) => i).sort(() => Math.random() - .5); if (tgt && order[0] === tgt.i && order.length > 1) order.push(order.shift()); }
+    const i = order.shift(), [name, r] = LEVELS[lvl].targets[i];
+    tgt = {i, name, rec: r, c: mix(r)}; checked = false; setDabs([], false); drawTarget();
+    say(`Can you mix <b>${name.toLowerCase()}</b>? Add dabs to the dish, then press <b>Check my mix</b>. ${lvl === 0 ? 'Which two primaries make it?' : lvl === 2 ? 'Do you need white, or black?' : ''}`);
+  }
+  function drawTarget() {
+    $('levels').querySelectorAll('[data-lv]').forEach(b => b.setAttribute('aria-pressed', +b.dataset.lv === lvl));
+    $('tdisc').style.background = tgt.c.css; $('tn').textContent = tgt.name;
+    $('mine').style.width = checked ? '50%' : '0'; $('ly').hidden = !checked;
+    if (!checked) { $('stars').innerHTML = ''; $('tp').textContent = ''; }
+    $('tally').textContent = matched ? `⭐ ${matched} matched` : '';
+  }
+  function matchAfter() { if (checked) { checked = false; drawTarget(); } }
+  function starsFor(d) { return d < 6 ? 3 : d < 11 ? 2 : d < 17 ? 1 : 0; }
+  function check() {
+    if (!mixed) return say('The dish is empty. Add some paint first!');
+    const d = dE(mixed.lab, tgt.c.lab), st = starsFor(d);
+    checked = true; drawTarget(); $('mine').style.background = mixed.css;
+    $('stars').innerHTML = [0, 1, 2].map(i => `<span class="${i < st ? '' : 'off'}">⭐</span>`).join('');
+    anim($('mine'), [{opacity: 0}, {opacity: 1}], {duration: 300});
+    if (st === 3) { matched++; chime(true); $('tally').textContent = `⭐ ${matched} matched`; $('tp').textContent = `Recipe: ${IDS.filter(k => tgt.rec[k]).map(k => tgt.rec[k] + ' ' + k).join(' + ')}`; say(`A perfect match! ${cap(tgt.name)} is ${IDS.filter(k => tgt.rec[k]).map(k => tgt.rec[k] + ' ' + k).join(' + ')}. Press <b>Next color</b>.`); }
+    else { chime(false); $('tp').textContent = st ? 'Close! Look at both halves.' : 'Not yet. Compare the two halves.'; say(compare(mixed.lab, tgt.c.lab) + ' Press <b>Hint</b> if you are stuck.'); }
+  }
+  function compare(m, t) {
+    const dl = m[0] - t[0], parts = [];
+    if (Math.abs(dl) > 6) parts.push(dl > 0 ? 'Yours is <b>lighter</b> than the target.' : 'Yours is <b>darker</b> than the target.');
+    const cm = Math.hypot(m[1], m[2]), ct = Math.hypot(t[1], t[2]);
+    if (ct - cm > 10) parts.push('Yours is <b>duller</b>. Did a third primary sneak in?');
+    const hm = Math.atan2(m[2], m[1]), ht = Math.atan2(t[2], t[1]); let dh = (hm - ht) * 180 / Math.PI; dh = ((dh + 540) % 360) - 180;
+    if (Math.abs(dh) > 12 && cm > 12 && ct > 12) parts.push('The color itself is a bit off.');
+    return parts.join(' ') || 'Very close!';
+  }
+  // hint: the single dab change (add one, or take one away) that gets closest to the target
+  function hint() {
+    let best = null;
+    const tryRec = (r, txt) => { const c = mix(r); if (!c) return; const d = dE(c.lab, tgt.c.lab); if (!best || d < best.d) best = {d, txt}; };
+    if (dabs.length < MAXDABS) IDS.forEach(k => tryRec(addRec(rec, {[k]: 1}), `adding a dab of <b>${k}</b>`));
+    IDS.forEach(k => { if (rec[k]) { const r = {...rec, [k]: rec[k] - 1}; tryRec(r, `taking out one <b>${k}</b> dab (press Undo if it was the last one, or clean and remix)`); } });
+    if (!mixed) { const first = IDS.filter(k => tgt.rec[k]); return say(`Start with <b>${first.slice(0, 2).join(' and ')}</b>.`); }
+    const now = dE(mixed.lab, tgt.c.lab);
+    if (!best || best.d >= now - .5) return say(`You're as close as one dab can get you. Try <b>cleaning the dish</b> and mixing ${IDS.filter(k => tgt.rec[k]).join(', ')} again in different amounts.`);
+    say(`Try ${best.txt}.`);
+  }
+
+  // keyboard: 1-5 add paints, backspace undoes, c cleans
+  addEventListener('keydown', e => {
+    if (e.target.closest('input,textarea') || e.ctrlKey || e.metaKey || e.altKey) return;
+    const n = +e.key; if (n >= 1 && n <= 5) { addDab(IDS[n - 1]); e.preventDefault(); }
+    else if (e.key === 'Backspace') { $('undo').click(); e.preventDefault(); }
+    else if (e.key === 'c' || e.key === 'C') $('clean').click();
+  });
+
+  setDabs([], false); setMode('mix');
+  window.__pm = {mix, describe, addDab, setDabs, setMode, WHEEL, LEVELS, get rec() { return rec; }, get tgt() { return tgt; }, check, hint, pickWedge, wview, newTarget, set lvl(v) { lvl = v; order = []; }};
+})();
+</script>
+</body>
+</html>

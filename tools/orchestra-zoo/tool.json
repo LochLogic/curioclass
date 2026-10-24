@@ -1,0 +1,22 @@
+{
+  "id": "orchestra-zoo",
+  "status": "beta",
+  "driver": "teacher",
+  "modes": [
+    "Zoo",
+    "Who's playing?",
+    "Zoo band"
+  ],
+  "grades_label": "Grades K-2",
+  "third_party": [],
+  "updated": "2026-10-23",
+  "hook": "Visit the four instrument families at the zoo and tap 22 instruments to hear real recordings. Then guess who is playing from the sound alone, and build a zoo band.",
+  "outcome": "Name the four instrument families and how each makes sound, recognize common instruments by sight and sound, and hear that bigger instruments play lower notes",
+  "minutes": "10-25",
+  "sources": [
+    "Instrument recordings: University of Iowa Electronic Music Studios, Musical Instrument Samples (free to use without restriction)",
+    "Harp, timpani, drums and triangle synthesized in the browser",
+    "Traditional tunes (public domain)",
+    "Illustrations generated with Google Gemini, edited for Curio Class"
+  ]
+}

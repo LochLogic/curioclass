@@ -1,0 +1,537 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Orchestra Zoo · Instrument families · Curio Class</title>
+<meta name="description" content="Visit the four instrument families at the zoo: strings, woodwinds, brass and percussion. Tap 22 real instruments to hear real recordings, guess who is playing from the sound alone, and put together a zoo band.">
+<!--
+ORCHESTRA ZOO (Curio Class)
+Music, grades K-2, National Core Arts Standards MU:Re7 (perceive and describe music: recognize instruments by
+sight and sound), module "Instrument Families".
+Zoo: four homes, one per family, each with a keeper (giraffe for strings, owl for woodwinds, elephant for brass,
+gorilla for percussion). Tap an instrument to hear it and learn one thing about it; play a family from high to low
+to hear that the bigger instruments sound lower.
+Who's playing?: hear a tune with the picture hidden and guess the family, the instrument, or (hardest) which
+member of one family.
+Zoo band: pick a melody, a bass and a beat instrument and they play Twinkle, Twinkle together.
+Recordings: University of Iowa Electronic Music Studios, Musical Instrument Samples (theremin.music.uiowa.edu),
+"freely available ... may be downloaded and used for any projects, without restrictions". Single notes, trimmed and
+re-pitched in the browser to play the tunes. Harp, timpani, snare drum, bass drum and triangle are synthesized.
+Tunes are traditional (public domain). Illustrations generated with Google Gemini, edited for Curio Class.
+One file, no network requests. Content CC BY 4.0, code MIT. curioclass.org
+-->
+<style>
+:root{
+  --paper:#f3f7ee;--ink:#22301f;--muted:#5c6a58;--focus:#2f5bd3;--brand:#2f7a4a;--gold:#ffd23f;
+  --strings:#b4602a;--woodwinds:#3f8f4a;--brass:#c99212;--percussion:#c2482f;
+  font-family:'Segoe UI',system-ui,-apple-system,Roboto,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0;height:100%}
+body{background:var(--paper);color:var(--ink);display:grid;grid-template-rows:auto 1fr;min-height:100vh}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:4px solid var(--focus);outline-offset:3px}
+header{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:10px 20px;background:var(--brand);color:#f2fff4}
+h1{margin:0 auto 0 0;font:800 clamp(22px,2.8vw,32px)/1.1 'Trebuchet MS','Segoe UI',sans-serif}
+h1 small{display:block;font:400 14px/1.3 'Segoe UI',sans-serif;color:#cdebd5}
+.icon-btn{border:1px solid #5aa673;background:#3c8c58;color:#fff;border-radius:999px;min-height:46px;padding:0 16px;font-weight:700;font-size:15px}
+.icon-btn[aria-pressed="false"]{background:#1f5733}
+
+.stagewrap{position:relative;overflow:hidden;min-height:0;background:#bfe3c8}
+.scene{position:absolute;left:50%;top:50%;width:1440px;height:810px;transform:translate(-50%,-50%) scale(var(--s,1));overflow:hidden}
+.scene>img.bg{position:absolute;left:-12px;top:-12px;width:1464px;height:834px;object-fit:cover}
+.top{position:absolute;left:24px;right:24px;top:16px;display:flex;align-items:center;gap:12px;z-index:8}
+.tabs{display:inline-flex;border-radius:999px;overflow:hidden;background:#fffe;box-shadow:0 3px 0 #0003}
+.tabs button{border:0;background:transparent;min-height:58px;padding:0 24px;font:800 21px 'Trebuchet MS',sans-serif;color:var(--muted)}
+.tabs button[aria-pressed="true"]{background:var(--brand);color:#fff}
+.big{border:0;border-radius:18px;min-height:60px;padding:0 24px;font:800 21px 'Trebuchet MS',sans-serif;background:#fff;color:var(--ink);box-shadow:0 5px 0 #0003}
+.big:active{transform:translateY(3px);box-shadow:0 2px 0 #0003}
+.big.go{background:#2f8a4a;color:#fff;box-shadow:0 5px 0 #1d5e30}
+.big.stop{background:#c2482f;color:#fff;box-shadow:0 5px 0 #8a2e1c}
+.big[aria-pressed="true"]{background:var(--gold);color:#3a2a00}
+.ctl{margin-left:auto;display:flex;gap:10px}
+
+/* zoo map */
+.homes{position:absolute;left:44px;right:44px;top:110px;display:grid;grid-template-columns:repeat(4,1fr);gap:26px;z-index:3}
+.home{position:relative;border:0;padding:0;height:600px;border-radius:30px;overflow:hidden;background:#fff;box-shadow:0 10px 0 #0003;transition:transform .15s}
+.home:hover{transform:translateY(-6px)}
+.home>img.hb{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.home>img.keeper{position:absolute;left:50%;bottom:92px;transform:translateX(-50%);filter:drop-shadow(0 8px 5px #0005)}
+.home .sign{position:absolute;left:0;right:0;bottom:0;padding:12px 10px 16px;color:#fff;text-align:center;font:900 32px/1.05 'Trebuchet MS',sans-serif}
+.home .sign small{display:block;font:700 16px 'Segoe UI',sans-serif;opacity:.95;margin-top:4px}
+.home .peek{position:absolute;top:18px;left:0;right:0;display:flex;justify-content:center;gap:6px;align-items:flex-end;height:110px}
+.home .peek img{max-height:100px;max-width:76px;filter:drop-shadow(0 4px 3px #0004)}
+
+/* a home */
+.keeperBig{position:absolute;left:26px;bottom:24px;z-index:4;filter:drop-shadow(0 10px 6px #0005);transform-origin:50% 100%}
+.bubble{position:absolute;left:270px;top:92px;width:640px;z-index:7;background:#fff;border-radius:28px;padding:16px 24px;font:700 24px/1.32 'Segoe UI',sans-serif;box-shadow:0 10px 26px #0003}
+.bubble::before{content:'';position:absolute;left:-22px;bottom:26px;border:14px solid transparent;border-right:24px solid #fff}
+.bubble b{font-weight:900}
+.inst{position:absolute;border:0;background:none;padding:0;z-index:3;display:flex;flex-direction:column;align-items:center;transform:translateX(-50%)}
+.inst img{display:block;filter:drop-shadow(0 8px 5px #0005);transform-origin:50% 90%}
+.inst .plate{margin-top:6px;background:#7a4a24;color:#fff6e6;border-radius:10px;padding:3px 12px;font:800 19px 'Trebuchet MS',sans-serif;box-shadow:0 3px 0 #0004;white-space:nowrap}
+.inst.on .plate{background:var(--gold);color:#3a2a00}
+.inst.on img{filter:drop-shadow(0 0 14px #fff) drop-shadow(0 8px 5px #0005)}
+.note{position:absolute;font:900 44px serif;color:#fff;text-shadow:0 3px 0 #0004;pointer-events:none;z-index:9}
+.hometools{position:absolute;right:24px;bottom:auto;top:16px;z-index:9;display:flex;gap:10px}
+
+/* who's playing */
+.curtain{position:absolute;left:50%;top:150px;transform:translateX(-50%);width:520px;height:330px;border-radius:40px;z-index:3;
+  background:linear-gradient(90deg,#9c2a2a,#c23d3d 20%,#9c2a2a 40%,#c23d3d 60%,#9c2a2a 80%,#c23d3d);box-shadow:0 12px 0 #0003,inset 0 -18px 0 #0003;display:grid;place-items:center;overflow:hidden}
+.curtain .q{font:900 190px 'Trebuchet MS',sans-serif;color:#ffe6a8;text-shadow:0 8px 0 #0004}
+.curtain img{max-height:280px;max-width:440px;filter:drop-shadow(0 10px 6px #0006)}
+.curtain.open{background:#fff8e6}
+.levels{position:absolute;left:24px;top:96px;display:flex;flex-direction:column;gap:10px;z-index:4;width:230px}
+.levels .big{font-size:18px;min-height:54px;padding:0 14px;text-align:left}
+.score{position:absolute;right:30px;top:100px;z-index:4;background:#fffe;border-radius:18px;padding:8px 18px;font:900 26px 'Trebuchet MS',sans-serif;box-shadow:0 4px 0 #0002}
+.listen{position:absolute;left:50%;transform:translateX(-50%);top:500px;display:flex;gap:12px;z-index:4}
+.choices{position:absolute;left:60px;right:60px;bottom:22px;display:grid;grid-template-columns:repeat(4,1fr);gap:20px;z-index:4}
+.choice{border:0;border-radius:24px;background:#fffe;box-shadow:0 6px 0 #0003;height:176px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:8px;gap:4px}
+.choice img{max-height:118px;max-width:90%;object-fit:contain;flex:1;min-height:0}
+.choice b{font:900 24px 'Trebuchet MS',sans-serif}
+.choice.right{background:#d8f5d0;outline:6px solid #2f8a4a}
+.choice.wrong{background:#f6d6d0;opacity:.6}
+.tell{position:absolute;left:50%;transform:translateX(-50%);top:94px;z-index:5;background:#fff;border-radius:22px;padding:8px 26px;font:800 25px 'Trebuchet MS',sans-serif;box-shadow:0 6px 0 #0002;white-space:nowrap}
+.tell:empty{display:none}
+
+/* zoo band */
+.stage{position:absolute;left:120px;right:120px;top:96px;height:404px;z-index:3;display:grid;grid-template-columns:repeat(3,1fr);align-items:end;
+  background:linear-gradient(#0000 70%,#b77a45 70%,#8a5a32);border-radius:0 0 30px 30px}
+.slot{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;padding-bottom:28px;position:relative}
+.slot img{max-height:300px;max-width:300px;filter:drop-shadow(0 10px 6px #0005);transform-origin:50% 100%}
+.slot .tag{position:absolute;top:8px;background:#fffe;border-radius:14px;padding:4px 16px;font:900 22px 'Trebuchet MS',sans-serif;box-shadow:0 3px 0 #0002}
+.slot.off img{opacity:.25;filter:grayscale(1)}
+.parts{position:absolute;left:24px;right:24px;bottom:16px;display:flex;flex-direction:column;gap:8px;z-index:4}
+.part{display:flex;align-items:center;gap:8px;background:#fffe;border-radius:20px;padding:6px 10px;box-shadow:0 4px 0 #0002}
+.part>b{width:120px;font:900 22px 'Trebuchet MS',sans-serif;flex:none;text-align:center}
+.pick{border:0;background:#f1f4ee;border-radius:14px;width:86px;height:72px;display:grid;place-items:center;padding:4px;flex:none}
+.pick img{max-width:76px;max-height:62px}
+.pick[aria-pressed="true"]{background:var(--gold);outline:3px solid #b38a00}
+.mute{margin-left:auto;border:0;border-radius:14px;min-height:56px;padding:0 14px;font:800 17px 'Segoe UI',sans-serif;background:#e9efe5}
+.mute[aria-pressed="false"]{background:#f6d6d0}
+.bandplay{position:absolute;right:24px;top:16px;z-index:9;display:flex;gap:10px}
+</style>
+</head>
+<body>
+<header>
+  <h1>Orchestra Zoo <small>Meet the instrument families. Hear real instruments. Guess who is playing.</small></h1>
+  <button class="icon-btn" id="motion" aria-pressed="true" title="Turn animation on or off">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+</header>
+<div class="stagewrap" id="stagewrap">
+  <div class="scene" id="scene">
+    <img class="bg" id="bg" src="art:gate" alt="">
+    <div class="top">
+      <div class="tabs" role="group" aria-label="Mode">
+        <button data-mode="zoo" aria-pressed="true">🗺 Zoo</button>
+        <button data-mode="guess" aria-pressed="false">👂 Who's playing?</button>
+        <button data-mode="band" aria-pressed="false">🎪 Zoo band</button>
+      </div>
+    </div>
+    <div id="view"></div>
+  </div>
+</div>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  let reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  try { const m = localStorage.getItem('curio-motion'); if (m) reduce = m === 'calm'; } catch {}
+  function showMotion() {
+    document.body.classList.toggle('calm', reduce);
+    $('motion').setAttribute('aria-pressed', !reduce);
+    $('motion').textContent = reduce ? '⏸ Motion' : '✨ Motion';
+  }
+  showMotion();
+  $('motion').onclick = () => { reduce = !reduce; try { localStorage.setItem('curio-motion', reduce ? 'calm' : 'on'); } catch {} showMotion(); };
+  const fit = () => { const r = $('stagewrap').getBoundingClientRect(); $('scene').style.setProperty('--s', Math.min(r.width / 1440, r.height / 810)); };
+  new ResizeObserver(fit).observe($('stagewrap'));
+  const anim = (el, kf, opt) => { if (reduce || !el || !el.animate) return; el.animate(kf, opt); };
+  const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+
+  const ART = {violin: 'art:violin', cello: 'art:cello', bass: 'art:bass', harp: 'art:harp', flute: 'art:flute', clarinet: 'art:clarinet',
+    oboe: 'art:oboe', bassoon: 'art:bassoon', sax: 'art:sax', trumpet: 'art:trumpet', horn: 'art:horn', trombone: 'art:trombone', tuba: 'art:tuba',
+    timpani: 'art:timpani', snare: 'art:snare', bassdrum: 'art:bassdrum', xylophone: 'art:xylophone', cymbals: 'art:cymbals', triangle: 'art:triangle',
+    tambourine: 'art:tambourine', gong: 'art:gong', piano: 'art:piano',
+    giraffe: 'art:giraffe', owl: 'art:owl', elephant: 'art:elephant', gorilla: 'art:gorilla',
+    savanna: 'art:savanna', treetops: 'art:treetops', waterhole: 'art:waterhole', jungle: 'art:jungle', gate: 'art:gate'};
+  const SAMPLES = "json:samples";
+
+  // ---------- the families ----------
+  const FAM = {
+    strings: {name: 'Strings', keeper: 'giraffe', kh: 400, home: 'savanna', how: 'shake strings',
+      hi: 'Welcome to the <b>string family</b>! We make music with strings that shake. Pull a bow across them, or pluck them with your fingers.'},
+    woodwinds: {name: 'Woodwinds', keeper: 'owl', kh: 260, home: 'treetops', how: 'blow air',
+      hi: 'Hoo! Welcome to the <b>woodwind family</b>. Blow air into a tube. Some woodwinds have a thin <b>reed</b> that buzzes.'},
+    brass: {name: 'Brass', keeper: 'elephant', kh: 300, home: 'waterhole', how: 'buzz lips',
+      hi: 'Welcome to the <b>brass family</b>! Buzz your lips into a metal mouthpiece: bzzzz! The tubes make it loud and bright.'},
+    percussion: {name: 'Percussion', keeper: 'gorilla', kh: 280, home: 'jungle', how: 'hit, shake, scrape',
+      hi: 'Welcome to the <b>percussion family</b>! Hit it, shake it or scrape it. Some play notes, some just keep the beat.'},
+  };
+  // base = the MIDI note of the lowest recording (recordings sit at C, E, G and the next C up)
+  // kind: sus = held notes, ring = notes that ring on after they are struck, hit = unpitched
+  // x/b/h: where the instrument stands in its home (center x, bottom y, height)
+  const INST = [
+    {id: 'violin', name: 'Violin', fam: 'strings', base: 72, kind: 'sus', x: 520, b: 690, h: 270, fact: 'The violin is the smallest string instrument, so it plays the <b>highest</b> notes. Its bow is strung with horse hair!'},
+    {id: 'cello', name: 'Cello', fam: 'strings', base: 48, kind: 'sus', x: 760, b: 712, h: 390, fact: 'You sit down to play the cello. It stands on the floor between your knees and sings low and warm.'},
+    {id: 'bass', name: 'Double bass', fam: 'strings', base: 36, kind: 'sus', x: 1010, b: 728, h: 470, fact: 'The double bass is taller than a grown-up! It is the biggest, so it plays the <b>lowest</b> string notes.'},
+    {id: 'harp', name: 'Harp', fam: 'strings', base: 60, kind: 'ring', synth: 'harp', x: 1255, b: 728, h: 440, fact: 'A concert harp has 47 strings. You pluck them with your fingers. Long strings are low, short strings are high.'},
+    {id: 'flute', name: 'Flute', fam: 'woodwinds', base: 72, kind: 'sus', x: 470, b: 640, h: 120, fact: 'The flute has no reed. You blow <b>across</b> a hole, like blowing over the top of a bottle.'},
+    {id: 'oboe', name: 'Oboe', fam: 'woodwinds', base: 60, kind: 'sus', x: 690, b: 716, h: 330, fact: 'The oboe has <b>two reeds</b> tied together that buzz. The whole orchestra tunes to the oboe\'s note.'},
+    {id: 'clarinet', name: 'Clarinet', fam: 'woodwinds', base: 60, kind: 'sus', x: 840, b: 716, h: 350, fact: 'The clarinet has <b>one reed</b> that buzzes against the mouthpiece. It can play very low and very high.'},
+    {id: 'sax', name: 'Saxophone', fam: 'woodwinds', base: 60, kind: 'sus', x: 1010, b: 716, h: 330, fact: 'The saxophone is made of metal, but it is a woodwind because it uses a <b>reed</b>. Surprise!'},
+    {id: 'bassoon', name: 'Bassoon', fam: 'woodwinds', base: 48, kind: 'sus', x: 1210, b: 728, h: 470, fact: 'The bassoon\'s tube is almost 9 feet long, folded in half. It plays the <b>lowest</b> woodwind notes.'},
+    {id: 'trumpet', name: 'Trumpet', fam: 'brass', base: 60, kind: 'sus', x: 560, b: 440, h: 120, fact: 'The trumpet is the smallest brass instrument and plays the <b>highest</b>. Press its 3 valves to change the notes.'},
+    {id: 'trombone', name: 'Trombone', fam: 'brass', base: 48, kind: 'sus', x: 520, b: 690, h: 140, fact: 'The trombone has a <b>slide</b> instead of valves. Slide it out for lower notes, in for higher notes.'},
+    {id: 'horn', name: 'French horn', fam: 'brass', base: 48, kind: 'sus', x: 945, b: 700, h: 250, fact: 'The French horn\'s tube is curled in circles. Stretched out straight, it would be about 12 feet long!'},
+    {id: 'tuba', name: 'Tuba', fam: 'brass', base: 36, kind: 'sus', x: 1265, b: 740, h: 380, fact: 'The tuba is the biggest brass instrument, so it plays the <b>lowest</b> brass notes. Oom-pah!'},
+    {id: 'triangle', name: 'Triangle', fam: 'percussion', kind: 'hit', synth: 'triangle', x: 480, b: 492, h: 170, fact: 'A metal bar bent into a triangle. Ting! Hold it by the string so it can ring.'},
+    {id: 'gong', name: 'Gong', fam: 'percussion', kind: 'hit', sample: 'gong', x: 690, b: 492, h: 240, fact: 'A giant metal plate. One soft hit makes a sound that swirls and shimmers for a long time.'},
+    {id: 'cymbals', name: 'Cymbals', fam: 'percussion', kind: 'hit', sample: 'cymbal', x: 935, b: 492, h: 160, fact: 'Crash two metal plates together. CRASH! Then they shimmer.'},
+    {id: 'timpani', name: 'Timpani', fam: 'percussion', base: 43, kind: 'ring', synth: 'timpani', x: 1200, b: 492, h: 200, fact: 'Timpani are big kettle drums that play real <b>notes</b>. A pedal makes the drumhead tighter for higher notes.'},
+    {id: 'snare', name: 'Snare drum', fam: 'percussion', kind: 'hit', synth: 'snare', x: 380, b: 752, h: 170, fact: 'Wires under the snare drum rattle when you hit it. Rat-a-tat-tat!'},
+    {id: 'bassdrum', name: 'Bass drum', fam: 'percussion', kind: 'hit', synth: 'kick', x: 600, b: 752, h: 210, fact: 'The bass drum is so big you can feel its BOOM in your tummy.'},
+    {id: 'xylophone', name: 'Xylophone', fam: 'percussion', base: 72, kind: 'ring', x: 852, b: 752, h: 150, fact: 'Hit the wooden bars with mallets. Short bars play high notes, long bars play low notes.'},
+    {id: 'tambourine', name: 'Tambourine', fam: 'percussion', kind: 'hit', sample: 'tambourine', x: 1088, b: 752, h: 130, fact: 'Shake it or tap it. The little metal jingles go jingle-jingle!'},
+    {id: 'piano', name: 'Piano', fam: 'percussion', base: 60, kind: 'ring', x: 1305, b: 752, h: 230, fact: 'Press a key and a little hammer <b>hits</b> a string inside. So the piano is a bit percussion and a bit strings!'},
+  ];
+  const BY = Object.fromEntries(INST.map(i => [i.id, i]));
+  const famList = f => INST.filter(i => i.fam === f);
+
+  // tunes as [semitones above C, beats]
+  const TWINKLE = [[0, 1], [0, 1], [7, 1], [7, 1], [9, 1], [9, 1], [7, 2]];
+  const TUNES = {
+    strings: TWINKLE,
+    woodwinds: [[0, 1], [2, 1], [4, 1], [0, 1], [0, 1], [2, 1], [4, 1], [0, 1]],
+    brass: [[0, .5], [4, .5], [7, .5], [12, 1.5], [7, .5], [12, 2]],
+    percussion: [[4, 1], [2, 1], [0, 2], [4, 1], [2, 1], [0, 2]],
+    hit: [[0, 1], [0, 1], [0, .5], [0, .5], [0, 1]],
+  };
+
+  // ---------- sound ----------
+  let ac = null, soundOn = true, master = null;
+  const BUF = {}; let loading = null;
+  $('sound').onclick = () => { soundOn = !soundOn; $('sound').setAttribute('aria-pressed', soundOn); $('sound').textContent = soundOn ? '🔔 Sound' : '🔕 Sound'; if (!soundOn) stopAll(); };
+  function b64buf(uri) { const s = atob(uri.slice(uri.indexOf(',') + 1)), u = new Uint8Array(s.length); for (let i = 0; i < s.length; i++) u[i] = s.charCodeAt(i); return u.buffer; }
+  function audio() {
+    if (!ac) {
+      try { ac = new (window.AudioContext || window.webkitAudioContext)(); } catch { return null; }
+      newMaster();
+      loading = Promise.all(Object.entries(SAMPLES).map(([k, uri]) => new Promise(res => ac.decodeAudioData(b64buf(uri), b => { BUF[k] = b; res(); }, () => res()))))
+        .then(makeSynthBuffers);
+    }
+    if (ac.state === 'suspended') ac.resume();
+    return ac;
+  }
+  function newMaster() {
+    const comp = ac.createDynamicsCompressor(); comp.threshold.value = -12; comp.ratio.value = 4;
+    master = ac.createGain(); master.gain.value = .9; master.connect(comp).connect(ac.destination);
+  }
+  function stopAll() {
+    timers.forEach(clearTimeout); timers = [];
+    if (!ac || !master) return;
+    const m = master; m.gain.setTargetAtTime(0, ac.currentTime, .03); setTimeout(() => m.disconnect(), 300); newMaster();
+  }
+  // harp: Karplus-Strong plucked strings, rendered once into buffers at C4, E4, G4, C5
+  let NOISE = null;
+  function makeSynthBuffers() {
+    const sr = ac.sampleRate;
+    [0, 4, 7, 12].forEach(s => {
+      const f = 261.63 * 2 ** (s / 12), n = Math.round(sr * 2.2), b = ac.createBuffer(1, n, sr), d = b.getChannelData(0), p = Math.round(sr / f);
+      const ring = new Float32Array(p); for (let i = 0; i < p; i++) ring[i] = (Math.random() * 2 - 1) * (.5 + .5 * Math.sin(i / p * Math.PI));
+      let last = 0;
+      for (let i = 0; i < n; i++) { const j = i % p, v = ring[j]; const nv = .4985 * (v + ring[(j + 1) % p]); ring[j] = nv * .5 + last * .5; last = nv; d[i] = v * .55; }
+      BUF[`harp.${['C4', 'E4', 'G4', 'C5'][[0, 4, 7, 12].indexOf(s)]}`] = b;
+    });
+    NOISE = ac.createBuffer(1, sr * 2, sr); const nd = NOISE.getChannelData(0); for (let i = 0; i < nd.length; i++) nd[i] = Math.random() * 2 - 1;
+  }
+  const NOTE_NAMES = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B'];
+  const nameOf = m => NOTE_NAMES[m % 12] + (Math.floor(m / 12) - 1);
+  // play one note of an instrument: semitones above its base, at time t, lasting dur seconds
+  function note(inst, semi, t, dur, out = master, vel = 1) {
+    const c = ac; if (!c || !soundOn) return;
+    const g = c.createGain(); g.connect(out);
+    if (inst.synth === 'snare') return snare(t, g, vel);
+    if (inst.synth === 'kick') return kick(t, g, vel);
+    if (inst.synth === 'triangle') return triangle(t, g, vel);
+    if (inst.synth === 'timpani') return timpani(inst.base + semi, t, g, vel);
+    let buf, rate = 1;
+    if (inst.sample) buf = BUF[inst.sample];
+    else {
+      const pts = [0, 4, 7, 12], oct = Math.floor(semi / 12) * 12, s0 = semi - oct;
+      let best = 0; pts.forEach(p => { if (Math.abs(p - s0) < Math.abs(best - s0)) best = p; });
+      buf = BUF[`${inst.id}.${nameOf(inst.base + best)}`]; rate = 2 ** ((s0 - best + oct) / 12);
+    }
+    if (!buf) return;
+    const s = c.createBufferSource(); s.buffer = buf; s.playbackRate.value = rate; s.connect(g);
+    const v = .9 * vel;
+    if (inst.kind === 'sus') {
+      g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(v, t + .02);
+      g.gain.setValueAtTime(v, t + Math.max(.05, dur - .06)); g.gain.setTargetAtTime(0, t + Math.max(.05, dur - .06), .06);
+      s.start(t); s.stop(t + dur + .5);
+    } else {
+      const ring = inst.kind === 'ring' ? Math.min(buf.duration / rate, dur + .9) : buf.duration;
+      g.gain.setValueAtTime(v, t); g.gain.setValueAtTime(v, t + ring - .15); g.gain.linearRampToValueAtTime(0, t + ring);
+      s.start(t); s.stop(t + ring + .05);
+    }
+  }
+  function snare(t, out, vel) {
+    const c = ac, n = c.createBufferSource(); n.buffer = NOISE;
+    const f = c.createBiquadFilter(); f.type = 'highpass'; f.frequency.value = 1500;
+    const g = c.createGain(); g.gain.setValueAtTime(.9 * vel, t); g.gain.exponentialRampToValueAtTime(.001, t + .22);
+    n.connect(f).connect(g).connect(out); n.start(t, Math.random()); n.stop(t + .25);
+    const o = c.createOscillator(), og = c.createGain(); o.frequency.setValueAtTime(220, t); o.frequency.exponentialRampToValueAtTime(160, t + .08);
+    og.gain.setValueAtTime(.7 * vel, t); og.gain.exponentialRampToValueAtTime(.001, t + .12); o.connect(og).connect(out); o.start(t); o.stop(t + .14);
+  }
+  function kick(t, out, vel) {
+    const c = ac, o = c.createOscillator(), g = c.createGain();
+    o.frequency.setValueAtTime(110, t); o.frequency.exponentialRampToValueAtTime(42, t + .25);
+    g.gain.setValueAtTime(1.3 * vel, t); g.gain.exponentialRampToValueAtTime(.001, t + .9); o.connect(g).connect(out); o.start(t); o.stop(t + .95);
+    const n = c.createBufferSource(); n.buffer = NOISE; const f = c.createBiquadFilter(); f.type = 'lowpass'; f.frequency.value = 600;
+    const ng = c.createGain(); ng.gain.setValueAtTime(.4 * vel, t); ng.gain.exponentialRampToValueAtTime(.001, t + .08); n.connect(f).connect(ng).connect(out); n.start(t); n.stop(t + .1);
+  }
+  function triangle(t, out, vel) {
+    const c = ac;
+    [[1180, .5], [3240, .3], [5310, .18], [7700, .08]].forEach(([f, a]) => {
+      const o = c.createOscillator(), g = c.createGain(); o.frequency.value = f;
+      g.gain.setValueAtTime(a * .5 * vel, t); g.gain.exponentialRampToValueAtTime(.001, t + 2.2); o.connect(g).connect(out); o.start(t); o.stop(t + 2.3);
+    });
+  }
+  function timpani(midi, t, out, vel) {
+    const c = ac, f0 = 440 * 2 ** ((midi - 69) / 12);
+    [[1, .9, 1.8], [1.5, .35, 1.1], [1.98, .2, .8], [2.44, .1, .5]].forEach(([r, a, d]) => {
+      const o = c.createOscillator(), g = c.createGain(); o.frequency.setValueAtTime(f0 * r * 1.03, t); o.frequency.exponentialRampToValueAtTime(f0 * r, t + .08);
+      g.gain.setValueAtTime(a * vel, t); g.gain.exponentialRampToValueAtTime(.001, t + d); o.connect(g).connect(out); o.start(t); o.stop(t + d + .05);
+    });
+    const n = c.createBufferSource(); n.buffer = NOISE; const f = c.createBiquadFilter(); f.type = 'bandpass'; f.frequency.value = 300; f.Q.value = .8;
+    const ng = c.createGain(); ng.gain.setValueAtTime(.5 * vel, t); ng.gain.exponentialRampToValueAtTime(.001, t + .12); n.connect(f).connect(ng).connect(out); n.start(t); n.stop(t + .14);
+  }
+  let timers = [];
+  const later = (ms, fn) => timers.push(setTimeout(fn, ms));
+  // play a tune on an instrument; onNote(i) fires as each note sounds (for the bounce)
+  async function playTune(inst, tune, beat = .42, onNote) {
+    if (!audio()) return 0; await loading;
+    const t0 = ac.currentTime + .08, tn = inst.kind === 'hit' ? TUNES.hit : tune;
+    let t = 0;
+    tn.forEach(([s, b], i) => {
+      note(inst, inst.kind === 'hit' ? 0 : s, t0 + t, b * beat * .96, master, inst.kind === 'hit' && i === tn.length - 1 ? 1.2 : 1);
+      if (onNote) later((t + .08) * 1000, () => onNote(i, b * beat));
+      t += b * beat;
+    });
+    return t;
+  }
+
+  // ---------- animation helpers ----------
+  function bounce(img, len = .3) {
+    anim(img, [{transform: 'scale(1) rotate(0)'}, {transform: 'scale(1.07,.95) rotate(-2deg)'}, {transform: 'scale(.98,1.04) rotate(1.5deg)'}, {transform: 'scale(1) rotate(0)'}], {duration: Math.max(220, len * 900), easing: 'ease-out'});
+  }
+  function floatNote(x, y) {
+    if (reduce) return;
+    const n = document.createElement('div'); n.className = 'note'; n.textContent = ['♪', '♫', '♩'][Math.floor(Math.random() * 3)];
+    n.style.left = x + (Math.random() * 60 - 30) + 'px'; n.style.top = y + 'px'; $('scene').appendChild(n);
+    const a = n.animate([{transform: 'translateY(0) rotate(0)', opacity: 1}, {transform: `translate(${Math.random() * 60 - 30}px,-130px) rotate(${Math.random() * 40 - 20}deg)`, opacity: 0}], {duration: 1300, easing: 'ease-out'});
+    Promise.race([a.finished, new Promise(r => setTimeout(r, 1500))]).then(() => n.remove());
+  }
+
+  // ---------- modes ----------
+  let mode = 'zoo';
+  document.querySelectorAll('[data-mode]').forEach(b => b.onclick = () => setMode(b.dataset.mode));
+  function setMode(m, arg) {
+    stopAll(); mode = m;
+    document.querySelectorAll('[data-mode]').forEach(b => b.setAttribute('aria-pressed', b.dataset.mode === m));
+    ({zoo: arg ? () => renderHome(arg) : renderZoo, guess: renderGuess, band: renderBand})[m]();
+  }
+
+  // ===== Zoo map =====
+  function renderZoo() {
+    $('bg').src = ART.gate;
+    $('view').innerHTML = `<div class="homes">${Object.entries(FAM).map(([k, f]) => `
+      <button class="home" data-home="${k}" aria-label="Visit the ${f.name.toLowerCase()} family">
+        <img class="hb" src="${ART[f.home]}" alt="">
+        <div class="peek">${famList(k).slice(0, 4).map(i => `<img src="${ART[i.id]}" alt="">`).join('')}</div>
+        <img class="keeper" src="${ART[f.keeper]}" alt="" style="height:${Math.min(330, f.kh * .95)}px">
+        <div class="sign" style="background:var(--${k})">${f.name}<small>${famList(k).length} instruments · ${f.how}</small></div>
+      </button>`).join('')}</div>`;
+    $('view').querySelectorAll('[data-home]').forEach(b => b.onclick = () => { audio(); renderHome(b.dataset.home); });
+  }
+
+  // ===== a family's home =====
+  let curFam = null;
+  function renderHome(k) {
+    stopAll(); curFam = k; const f = FAM[k];
+    $('bg').src = ART[f.home];
+    const list = famList(k);
+    $('view').innerHTML = `<img class="keeperBig" id="keeper" src="${ART[f.keeper]}" alt="${f.keeper}" style="height:${f.kh}px">
+      <div class="bubble" id="bubble" aria-live="polite">${f.hi}</div>
+      ${list.map(i => `<button class="inst" data-i="${i.id}" style="left:${i.x}px;bottom:${810 - i.b}px" aria-label="${i.name}"><img src="${ART[i.id]}" alt="" style="height:${i.h}px"><span class="plate">${i.name}</span></button>`).join('')}`;
+    $('scene').querySelector('.top').insertAdjacentHTML('beforeend', `<div class="hometools" id="hometools"><button class="big go" id="hilo">▶ ${k === 'percussion' ? 'Play them all' : 'High to low'}</button><button class="big" id="back">◀ Back to the zoo</button></div>`);
+    $('back').onclick = () => { $('hometools').remove(); stopAll(); renderZoo(); };
+    $('hilo').onclick = () => playAll(list);
+    $('view').querySelectorAll('[data-i]').forEach(b => b.onclick = () => tapInst(BY[b.dataset.i], b));
+    anim($('keeper'), [{transform: 'translateY(30px)', opacity: 0}, {transform: 'none', opacity: 1}], {duration: 500, easing: 'ease-out'});
+  }
+  function say(html) { const b = $('bubble'); if (b) b.innerHTML = html; anim($('keeper'), [{transform: 'rotate(0)'}, {transform: 'rotate(-3deg) translateY(-8px)'}, {transform: 'rotate(0)'}], {duration: 450}); }
+  async function tapInst(inst, btn) {
+    stopAll();
+    document.querySelectorAll('.inst').forEach(b => b.classList.toggle('on', b === btn));
+    say(`<b>${inst.name}.</b> ${inst.fact}`);
+    const img = btn.querySelector('img'), r = img.getBoundingClientRect(), sr = $('scene').getBoundingClientRect(), s = sr.width / 1440;
+    const nx = (r.left + r.width / 2 - sr.left) / s, ny = (r.top - sr.top) / s;
+    const len = await playTune(inst, TUNES[inst.fam], .42, (i, d) => { bounce(img, d); floatNote(nx, ny); });
+    later(len * 1000 + 300, () => btn.classList.remove('on'));
+  }
+  async function playAll(list) {
+    stopAll();
+    const order = curFam === 'percussion' ? list : list.filter(i => i.id !== 'harp').sort((a, b) => b.base - a.base);
+    say(curFam === 'percussion' ? 'Listen to every member of the percussion family, one after another.' : 'Listen from smallest to biggest. Do the notes get <b>higher</b> or <b>lower</b>? The bigger the instrument, the lower it sounds.');
+    if (!audio()) return; await loading;
+    const arp = [[0, .6], [4, .6], [7, 1.2]];
+    let t = 0;
+    order.forEach(inst => {
+      const btn = document.querySelector(`[data-i="${inst.id}"]`), img = btn.querySelector('img');
+      const dur = arp.reduce((s, [, b]) => s + b, 0) * .42;
+      later(t * 1000, () => {
+        document.querySelectorAll('.inst').forEach(b => b.classList.toggle('on', b === btn));
+        const t0 = ac.currentTime + .05; let u = 0;
+        (inst.kind === 'hit' ? [[0, .6], [0, .6], [0, 1.2]] : arp).forEach(([s, b]) => { note(inst, s, t0 + u, b * .42 * .95); later((u + .05) * 1000, () => bounce(img, .3)); u += b * .42; });
+      });
+      t += dur + .35;
+    });
+    later(t * 1000, () => document.querySelectorAll('.inst').forEach(b => b.classList.remove('on')));
+  }
+
+  // ===== Who's playing? =====
+  const GLEVELS = [
+    {id: 'fam', name: '👪 Which family?'},
+    {id: 'inst', name: '🎻 Which instrument?'},
+    {id: 'same', name: '🧩 Same family'},
+  ];
+  let glvl = 'fam', q = null, score = {right: 0, tries: 0};
+  function renderGuess() {
+    $('bg').src = ART.gate; $('hometools')?.remove();
+    $('view').innerHTML = `<div class="levels" id="levels">${GLEVELS.map(l => `<button class="big" data-gl="${l.id}">${l.name}</button>`).join('')}</div>
+      <div class="score" id="score"></div><div class="tell" id="tell" aria-live="polite"></div>
+      <div class="curtain" id="curtain"><div class="q">?</div></div>
+      <div class="listen"><button class="big go" id="listen">▶ Listen</button><button class="big" id="newq">🔀 New sound</button></div>
+      <div class="choices" id="choices"></div>`;
+    $('levels').querySelectorAll('[data-gl]').forEach(b => b.onclick = () => { glvl = b.dataset.gl; newQ(); });
+    $('listen').onclick = () => listen(); $('newq').onclick = () => newQ(true);
+    newQ();
+  }
+  function newQ(play) {
+    stopAll();
+    $('levels').querySelectorAll('[data-gl]').forEach(b => b.setAttribute('aria-pressed', b.dataset.gl === glvl));
+    let pool = INST;
+    if (glvl === 'same') pool = INST.filter(i => i.fam !== 'percussion' || i.kind !== 'hit');
+    let ans; do { ans = pool[Math.floor(Math.random() * pool.length)]; } while (q && ans.id === q.ans.id);
+    let opts;
+    if (glvl === 'fam') opts = Object.keys(FAM).map(k => ({id: k, name: FAM[k].name, img: ART[FAM[k].keeper], right: k === ans.fam}));
+    else {
+      const others = glvl === 'same' ? famList(ans.fam).filter(i => i.id !== ans.id) : shuffle(Object.keys(FAM).filter(k => k !== ans.fam)).map(k => shuffle(famList(k))[0]);
+      opts = shuffle([ans, ...shuffle(others).slice(0, 3)]).map(i => ({id: i.id, name: i.name, img: ART[i.id], right: i === ans}));
+    }
+    q = {ans, opts, done: false};
+    $('curtain').className = 'curtain'; $('curtain').innerHTML = '<div class="q">?</div>';
+    $('tell').textContent = glvl === 'fam' ? 'Listen. Which family is playing?' : glvl === 'same' ? `Listen. Which ${FAM[ans.fam].name.toLowerCase()} instrument is it?` : 'Listen. Which instrument is playing?';
+    $('choices').innerHTML = opts.map((o, i) => `<button class="choice" data-o="${i}"><img src="${o.img}" alt=""><b>${o.name}</b></button>`).join('');
+    $('choices').querySelectorAll('[data-o]').forEach(b => b.onclick = () => answer(+b.dataset.o, b));
+    drawScore();
+    if (play) listen();
+  }
+  function drawScore() { $('score').textContent = score.tries ? `⭐ ${score.right} of ${score.tries}` : '⭐ 0'; }
+  async function listen() {
+    stopAll(); audio();
+    const c = $('curtain'); anim(c.querySelector('.q') || c, [{transform: 'scale(1)'}, {transform: 'scale(1.1)'}, {transform: 'scale(1)'}], {duration: 600, iterations: 3});
+    await playTune(q.ans, TWINKLE, .44, () => floatNote(720 + Math.random() * 120 - 60, 300));
+  }
+  function answer(i, btn) {
+    if (q.done) return;
+    const o = q.opts[i];
+    if (!o.right) {
+      btn.classList.add('wrong'); anim(btn, [{transform: 'translateX(0)'}, {transform: 'translateX(-10px)'}, {transform: 'translateX(10px)'}, {transform: 'translateX(0)'}], {duration: 300});
+      if (!q.missed) { q.missed = true; score.tries++; drawScore(); }
+      $('tell').textContent = 'Not that one. Listen again!';
+      return;
+    }
+    q.done = true; if (!q.missed) { score.right++; score.tries++; } drawScore();
+    btn.classList.add('right');
+    const a = q.ans;
+    $('curtain').className = 'curtain open'; $('curtain').innerHTML = `<img src="${ART[a.id]}" alt="${a.name}">`;
+    anim($('curtain').firstChild, [{transform: 'scale(.6)', opacity: 0}, {transform: 'scale(1.05)', opacity: 1}, {transform: 'scale(1)'}], {duration: 450});
+    $('tell').innerHTML = `Yes! It's the <b>${a.name.toLowerCase()}</b>, from the ${FAM[a.fam].name.toLowerCase()} family.`;
+    stopAll(); playTune(a, TWINKLE, .44, () => bounce($('curtain').firstChild));
+  }
+
+  // ===== Zoo band =====
+  const PARTS = [
+    {id: 'mel', name: 'Melody', opts: ['violin', 'flute', 'clarinet', 'oboe', 'sax', 'trumpet', 'horn', 'xylophone', 'piano', 'harp']},
+    {id: 'bass', name: 'Bass', opts: ['cello', 'bass', 'bassoon', 'trombone', 'tuba', 'timpani']},
+    {id: 'beat', name: 'Beat', opts: ['snare', 'bassdrum', 'tambourine', 'triangle', 'cymbals']},
+  ];
+  const band = {mel: 'violin', bass: 'tuba', beat: 'snare', on: {mel: true, bass: true, beat: true}};
+  // Twinkle, Twinkle in three parts (melody A B A, bass in half notes, beat on every quarter)
+  const A = [[0, 1], [0, 1], [7, 1], [7, 1], [9, 1], [9, 1], [7, 2], [5, 1], [5, 1], [4, 1], [4, 1], [2, 1], [2, 1], [0, 2]];
+  const B = [[7, 1], [7, 1], [5, 1], [5, 1], [4, 1], [4, 1], [2, 2], [7, 1], [7, 1], [5, 1], [5, 1], [4, 1], [4, 1], [2, 2]];
+  const MEL = [...A, ...B, ...A];
+  const BA = [0, 0, 5, 0, 5, 0, 7, 0], BB = [0, 5, 0, 7, 0, 5, 0, 7];
+  const BASS = [...BA, ...BB, ...BA].map(s => [s, 2]);
+  let playing = false, bus = null;
+  function renderBand() {
+    $('bg').src = ART.gate; $('hometools')?.remove();
+    $('view').innerHTML = `<div class="bandplay"><button class="big go" id="bplay">▶ Play the band</button></div>
+      <div class="stage" id="stage">${PARTS.map(p => `<div class="slot" id="slot-${p.id}"><span class="tag">${p.name}</span><img alt=""></div>`).join('')}</div>
+      <div class="parts">${PARTS.map(p => `<div class="part"><b>${p.name}</b>${p.opts.map(id => `<button class="pick" data-p="${p.id}" data-id="${id}" title="${BY[id].name}" aria-label="${p.name}: ${BY[id].name}"><img src="${ART[id]}" alt=""></button>`).join('')}<button class="mute" data-m="${p.id}">🔊 On</button></div>`).join('')}</div>`;
+    $('view').querySelectorAll('[data-p]').forEach(b => b.onclick = () => { band[b.dataset.p] = b.dataset.id; drawBand(); if (!playing) { audio(); const inst = BY[b.dataset.id]; playTune(inst, inst.kind === 'hit' ? TUNES.hit : [[0, 1], [4, 1], [7, 2]], .38); } });
+    $('view').querySelectorAll('[data-m]').forEach(b => b.onclick = () => { band.on[b.dataset.m] = !band.on[b.dataset.m]; if (bus && playing) bus[b.dataset.m].gain.setTargetAtTime(band.on[b.dataset.m] ? 1 : 0, ac.currentTime, .03); drawBand(); });
+    $('bplay').onclick = () => playing ? stopBand() : playBand();
+    drawBand();
+  }
+  function drawBand() {
+    PARTS.forEach(p => {
+      const slot = $('slot-' + p.id), img = slot.querySelector('img'), inst = BY[band[p.id]];
+      img.src = ART[inst.id]; img.alt = inst.name; img.style.maxHeight = Math.min(300, inst.h * .9) + 'px';
+      slot.querySelector('.tag').textContent = `${p.name}: ${inst.name}`;
+      slot.classList.toggle('off', !band.on[p.id]);
+    });
+    $('view').querySelectorAll('[data-p]').forEach(b => b.setAttribute('aria-pressed', band[b.dataset.p] === b.dataset.id));
+    $('view').querySelectorAll('[data-m]').forEach(b => { b.setAttribute('aria-pressed', band.on[b.dataset.m]); b.textContent = band.on[b.dataset.m] ? '🔊 On' : '🔇 Off'; });
+  }
+  function stopBand() { playing = false; stopAll(); $('bplay').textContent = '▶ Play the band'; $('bplay').className = 'big go'; }
+  async function playBand() {
+    if (!audio()) return; await loading; stopAll();
+    playing = true; $('bplay').textContent = '■ Stop'; $('bplay').className = 'big stop';
+    const beat = .5, t0 = ac.currentTime + .1, img = id => $('slot-' + id).querySelector('img');
+    // each part gets its own volume, so muting works while it plays
+    bus = {}; PARTS.forEach(p => { bus[p.id] = ac.createGain(); bus[p.id].gain.value = band.on[p.id] ? 1 : 0; bus[p.id].connect(master); });
+    const sched = (part, seq, shift = 0) => {
+      let t = 0; const inst = BY[band[part]];
+      seq.forEach(([s, b], i) => {
+        const vel = part === 'beat' ? (i % 4 === 0 ? 1 : .6) : part === 'bass' ? .85 : 1;
+        note(inst, s + shift, t0 + t, b * beat * .95, bus[part], vel);
+        later((t + .1) * 1000, () => { if (band.on[part]) bounce(img(part), b * beat); });
+        t += b * beat;
+      });
+      return t;
+    };
+    const mInst = BY[band.mel], bInst = BY[band.bass];
+    // keep the melody in a comfortable place for each instrument, the bass low
+    const len = sched('mel', MEL, mInst.base >= 72 ? 0 : mInst.base <= 48 ? 12 : 0);
+    sched('bass', BASS, bInst.id === 'timpani' ? 5 : 0);
+    const beats = Array.from({length: 48}, () => [0, 1]);
+    sched('beat', band.beat === 'cymbals' ? beats.map((b, i) => i % 8 === 0 ? [0, 8] : null).filter(Boolean) : band.beat === 'triangle' ? beats.map((b, i) => i % 2 === 0 ? [0, 2] : null).filter(Boolean) : beats);
+    later(len * 1000 + 1200, stopBand);
+  }
+
+  addEventListener('keydown', e => {
+    if (e.key === 'Escape') { stopAll(); if (playing) stopBand(); }
+    if (e.key === ' ' && mode === 'band' && !e.target.closest('button')) { e.preventDefault(); $('bplay').click(); }
+  });
+
+  setMode('zoo');
+  window.__oz = {setMode, renderHome, INST, BY, playTune, note, audio, get BUF() { return BUF; }, get q() { return q; }, newQ, set glvl(v) { glvl = v; }, band, drawBand, playBand, tapInst};
+})();
+</script>
+</body>
+</html>

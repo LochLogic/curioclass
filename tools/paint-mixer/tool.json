@@ -1,0 +1,22 @@
+{
+  "id": "paint-mixer",
+  "status": "beta",
+  "driver": "students or teacher",
+  "modes": [
+    "Mix",
+    "Color wheel",
+    "Tints and shades",
+    "Match"
+  ],
+  "grades_label": "Grades 3-5",
+  "third_party": [],
+  "updated": "2026-10-23",
+  "hook": "Mix paint that behaves like the real thing: red, yellow and blue make every color on the wheel, white makes tints and black makes shades. Then mix to match target colors for stars.",
+  "outcome": "Mix primary colors into secondary and tertiary colors, build and read the color wheel (warm and cool, complements), and make tints, shades and tones of a color",
+  "minutes": "15-30",
+  "sources": [
+    "Paint modeled with Kubelka-Munk mixing of reflectance curves and the CIE 1931 color matching functions (Wyman, Sloan and Shirley fit)",
+    "Illustrations generated with Google Gemini, edited for Curio Class",
+    "Sound synthesized in the browser"
+  ]
+}
