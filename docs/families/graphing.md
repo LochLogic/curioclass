@@ -10,7 +10,7 @@ A coordinate plane in SVG that plots functions and points and lets people drag t
 
 ```js
 const g = Plane(svgGroup, {x: [-10, 10], y: [-10, 10], width: 600, height: 600, grid: 1, labels: 5,
-                           xLabel: 'time (s)', yLabel: 'height (m)', left: 0, top: 0, ticks: 'axis'});
+                           xLabel: 'time (s)', yLabel: 'height (m)', left: 0, top: 0, ticks: 'axis', tickFormat});
 g.px(x, y) / g.coord(px, py) / g.eventCoord(pointerEvent)   // data <-> plane pixels (handles a scaled stage)
 g.fn(f, {color, width, domain: [a, b], id, dashed, arrows, label, class, layer, opacity})
                                                           // plot y = f(x), adaptive sampling, breaks at asymptotes
@@ -21,7 +21,7 @@ g.segment(a, b, {color, width, dashed, arrow: 'end', id, layer}); g.label(x, y, 
 g.intersect(f1, f2, [a, b]) -> [x...]                     // numeric roots and crossings
 g.roots(f, [a, b]) -> [x...]                              // sign changes and touching (even multiplicity) roots
 g.extrema(f, [a, b]) -> [{x, y, kind: 'max' | 'min'}]     // interior turning points; a flat crossing is not one
-g.trace(f, {x, onMove, draggable, readout, domain})       // a moving dot that reads out (x, f(x)); t.set(x)
+g.trace(f, {x, onMove, draggable, readout, domain, valueText, hit})  // a moving dot that reads out (x, f(x)); t.set(x)
 g.view([x0, x1], [y0, y1], {ms})                          // animated zoom and pan (instant with Motion off)
 g.slider(container, {label, min, max, step, value, onInput, scale: 'log', box, format, parse})
                                                           // labeled, keyboard-friendly parameter slider
@@ -35,6 +35,15 @@ Details (added by rollercoaster-polynomials, 2026-10-25):
 - **Options.** `grid` and `labels` take one step or `[xStep, yStep]`. `ticks: 'axis'` puts tick labels beside the
   axes; `'edge'` puts them outside the bottom and left edges, 16 px clear of the plane so a handle on the edge does not cover them (leave about 60 px of margin) with the axis labels
   centered under and beside the plane. `left`/`top` place the plane inside its SVG group.
+- **Changing ranges** (added by outbreak-model, 2026-10-25). A `grid` or `labels` step may also be a function
+  `(lo, hi) => step`, worked out again on every view change, so a plane whose range grows from 10 to 10 billion
+  keeps about the same number of lines. `tickFormat: (v, axis) => text` (axis `'x'` or `'y'`) writes the tick
+  labels; return null or `''` to leave a tick unlabeled (for example to place your own with `g.label`). Default:
+  `Plane.fmt`. `g.trace` also takes `valueText(x, y)` (its screen-reader value, for a plane whose y is not the
+  value itself, such as log10 N) and `hit`, and returns `setHit(r)` and `point`; its `domain` array is read live,
+  so a tool may change it in place when the window widens.
+  Tick and axis text live in their own group inside the `labels` layer, so a tool's own `g.label(..., {layer:
+  'labels'})` items survive a `g.view` (before this they were wiped on the first view change).
 - **Colors.** `color: 1` to `4` means `var(--gr-1)` to `var(--gr-4)` and also applies that series' dash pattern
   (1 solid, 2 `10 6`, 3 `2 5`, 4 `12 4 2 4`), so color is never the only signal; any CSS color also works.
   `dashed: true` or a dash string overrides. The grid, axes and tick text read `--gr-grid`, `--gr-grid-major`,

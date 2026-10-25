@@ -1,0 +1,19 @@
+{
+  "house_style": "Muted, realistic digital painting for a high school math tool with a dark interface. Low contrast, deep night colors, calm and quiet. No text, no letters, no watermark, no border, no frame.",
+  "style": "A night nautical chart: an island interior seen straight down, dim and soft so grid lines, icons and labels drawn on top stay readable.",
+  "assets": [
+    {
+      "name": "island-terrain",
+      "prompt": "Top-down painted map texture of an island interior, gentle green hills, small groves of trees, winding dirt paths, muted night-time colors, no text, no labels, no buildings, no people",
+      "aspect": "1:1",
+      "width": 1024,
+      "quality": 70,
+      "cutout": false,
+      "people": false,
+      "local_note": "optional: the tool clips it to the coastline at 62 percent opacity over its own green fill, and looks finished without it. Seen straight down, evenly lit, no horizon, no sea, nothing that reads as a landmark (the tool draws its own). No people.",
+      "sd": "Aerial photograph looking straight down at grassy meadow land, the grass and ground fill the entire frame edge to edge with no water and no edges. Soft rolling green hills, small dark clumps of trees, a few thin winding dirt paths. Muted dark green and olive tones, evenly lit at dusk, low contrast. No sea, no shoreline, no buildings, no text, no people.",
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    }
+  ]
+}

@@ -116,6 +116,7 @@ const Plane = (() => {
     layers.front = mk('g', {'clip-path': clip}, root);
     layers.points = mk('g', {}, root);
     layers.labels = mk('g', {}, root);
+    const tickG = mk('g', {}, layers.labels);   // tick and axis text, redrawn on every view (a tool's own labels are kept)
     const hit = mk('rect', {x: 0, y: 0, width: W, height: H, fill: 'transparent'}, layers.back);
     layers.back.insertBefore(hit, layers.back.firstChild);
 
@@ -129,8 +130,13 @@ const Plane = (() => {
 
     // ---------- grid, axes, ticks ----------
     function drawGrid() {
-      layers.grid.textContent = ''; layers.labels.textContent = '';
-      const [gx, gy] = pair(o.grid), [lx, ly] = pair(o.labels);
+      layers.grid.textContent = ''; tickG.textContent = '';
+      // a step may be a number or fn(lo, hi) -> step, worked out again for every view (for ranges that change size)
+      const stepOf = (s, lo, hi) => typeof s === 'function' ? s(lo, hi) : s;
+      const [gx0, gy0] = pair(o.grid), [lx0, ly0] = pair(o.labels);
+      const gx = stepOf(gx0, ...X), gy = stepOf(gy0, ...Y), lx = stepOf(lx0, ...X), ly = stepOf(ly0, ...Y);
+      // tickFormat(v, 'x' | 'y') -> label text; null or '' leaves that tick unlabeled
+      const tick = (v, axis) => o.tickFormat ? o.tickFormat(v, axis) : fmt(v);
       const steps = (lo, hi, s) => { const out = []; for (let v = Math.ceil(lo / s - 1e-9) * s; v <= hi + 1e-9; v += s) out.push(+v.toFixed(10)); return out; };
       const isMul = (v, s) => Math.abs(v / s - Math.round(v / s)) < 1e-6;
       for (const x of steps(X[0], X[1], gx)) { const [u] = px(x, 0); mk('line', {x1: u, x2: u, y1: 0, y2: H, class: isMul(x, lx) ? 'major' : null}, layers.grid); }
@@ -145,16 +151,18 @@ const Plane = (() => {
       const txY = edge ? -16 : Math.min(Math.max(ox - 6, 30), W - 4);       // where y tick labels sit
       for (const x of steps(X[0], X[1], lx)) {
         if (!edge && Math.abs(x) < 1e-9) continue;
-        const [u] = px(x, 0); mk('text', {x: u, y: tyX, 'text-anchor': 'middle', class: 'gr-tick'}, layers.labels).textContent = fmt(x);
+        const t = tick(x, 'x'); if (t == null || t === '') continue;
+        const [u] = px(x, 0); mk('text', {x: u, y: tyX, 'text-anchor': 'middle', class: 'gr-tick'}, tickG).textContent = t;
       }
       for (const y of steps(Y[0], Y[1], ly)) {
         if (!edge && Math.abs(y) < 1e-9) continue;
-        const [, v] = px(0, y); mk('text', {x: txY, y: v + 4.5, 'text-anchor': 'end', class: 'gr-tick'}, layers.labels).textContent = fmt(y);
+        const t = tick(y, 'y'); if (t == null || t === '') continue;
+        const [, v] = px(0, y); mk('text', {x: txY, y: v + 4.5, 'text-anchor': 'end', class: 'gr-tick'}, tickG).textContent = t;
       }
       if (o.xLabel) mk('text', edge ? {x: W / 2, y: H + 40, 'text-anchor': 'middle', class: 'gr-axlabel'} :
-        {x: W - 4, y: Math.max(oy - 8, 16), 'text-anchor': 'end', class: 'gr-axlabel'}, layers.labels).textContent = o.xLabel;
+        {x: W - 4, y: Math.max(oy - 8, 16), 'text-anchor': 'end', class: 'gr-axlabel'}, tickG).textContent = o.xLabel;
       if (o.yLabel) mk('text', edge ? {transform: `translate(${-48},${H / 2}) rotate(-90)`, 'text-anchor': 'middle', class: 'gr-axlabel'} :
-        {x: Math.min(ox + 8, W - 4), y: 16, class: 'gr-axlabel'}, layers.labels).textContent = o.yLabel;
+        {x: Math.min(ox + 8, W - 4), y: 16, class: 'gr-axlabel'}, tickG).textContent = o.yLabel;
     }
 
     // ---------- items: everything plotted re-renders itself when the view changes ----------
@@ -337,18 +345,19 @@ const Plane = (() => {
       return add(h);
     }
 
-    // a dot that rides y = f(x) and reads out (x, f(x)): {x, color, r, onMove(x, y), draggable, readout, domain, id}
+    // a dot that rides y = f(x) and reads out (x, f(x)): {x, color, r, onMove(x, y), draggable, readout, domain, id,
+    // valueText fn(x, y) (its screen-reader value), hit}. domain is read live, so a tool may change its array in place.
     function trace(f, opt = {}) {
       const dom = opt.domain || X;
       const p = point(opt.x != null ? opt.x : dom[0], 0, {color: opt.color, r: opt.r || 6, draggable: opt.draggable, id: opt.id,
-        ariaLabel: opt.ariaLabel || 'trace point', range: {x: dom}, lock: {}, step: opt.step,
-        valueText: (x, y) => `(${fmt(x)}, ${fmt(y)})`,
+        ariaLabel: opt.ariaLabel || 'trace point', range: {x: dom}, lock: {}, step: opt.step, hit: opt.hit,
+        valueText: opt.valueText || ((x, y) => `(${fmt(x)}, ${fmt(y)})`),
         snap: (nx) => [Math.min(dom[1], Math.max(dom[0], nx)), f(Math.min(dom[1], Math.max(dom[0], nx)))],
         onMove: (x, y) => { show(); opt.onMove && opt.onMove(x, y); }});
       const text = opt.readout ? mk('text', {class: 'gr-ptlabel', x: 12, y: -12}, p.el) : null;
       const show = () => { if (text) text.textContent = `(${fmt(p.x)}, ${fmt(p.y)})`; };
       const t = {id: opt.id, el: p.el, get x() { return p.x; }, get y() { return p.y; },
-        set(x) { p.set(x, f(x)); show(); opt.onMove && opt.onMove(p.x, p.y); }, remove() { p.remove(); }};
+        set(x) { p.set(x, f(x)); show(); opt.onMove && opt.onMove(p.x, p.y); }, remove() { p.remove(); }, setHit: r => p.setHit(r), point: p};
       t.set(p.x);
       return t;
     }

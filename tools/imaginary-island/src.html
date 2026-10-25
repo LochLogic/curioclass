@@ -1,0 +1,1308 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Imaginary Island · Complex numbers as places · Curio Class</title>
+<meta name="description" content="Every spot on an island map is a complex number: adding walks you a fixed step, multiplying by i swings you a quarter turn around the harbor. Follow clue trails and watch quadratic solutions leave the Real Road. Grade 11 Algebra 2. Works offline.">
+<!--
+Imaginary Island (Curio Class)
+Grade 11, Algebra 2 (Complex Numbers): N-CN.A.1, N-CN.A.2, N-CN.C.7; touches N-CN.A.3, N-CN.B.4 and N-CN.B.5.
+Students drive, on their own laptops (it also projects well). Explore: drag the lantern (the traveler z) and apply
+× i, × (-1), × (-i), Reflect, Square it, + w and × w; the travel is the arithmetic. Clue Trail: guess where a clue
+ends, then walk it. Springs: the two solutions of x² + bx + c = 0 on the map, leaving the Real Road as a conjugate pair.
+Facts: OpenStax College Algebra 2e 2.4 and 2.5, Precalculus 2e 8.5 (CC BY 4.0); Common Core State Standards.
+Landmarks, clues and presets are arithmetic computed in the spec. Island, sea, icons and markers drawn in code;
+optional art: island-terrain (no people). One file, no network requests. Content CC BY 4.0, code MIT. curioclass.org
+-->
+<link rel="stylesheet" href="kit:curio">
+<link rel="stylesheet" href="kit:theme-912">
+<style>
+:root{--brand:#3ec9b6;--brand-ink:#04201c;--lantern:#ffd27a;--wcol:#c9a0ff;--spring:#6ab8ff;--pin:#ff8f8f;--halo:#07101c}
+main{grid-template-columns:1fr}
+.mapcol{grid-row:1;grid-column:1}
+.panel{grid-row:1;grid-column:2}
+@media (max-width:899px){.panel{grid-row:2;grid-column:1}}
+@media (min-width:900px){main{grid-template-columns:minmax(0,1fr) 400px}}
+@media (max-width:899px){body{height:auto;grid-template-columns:minmax(0,1fr)}main{grid-template-columns:minmax(0,1fr)}.panel{border-left:0;border-top:1px solid var(--line)}.mapcol .stage{flex:none!important;height:min(96vw,78vh)}}
+@media (max-width:520px){header{gap:8px}.seg button,.icon-btn{padding:0 11px;font-size:15px;min-height:46px}}
+.mapcol{display:flex;flex-direction:column;min-height:0;min-width:0}
+/* compact: a landscape box under 900 px wide, or one under 600 px tall (a 16:10 embed): map and panel side by side,
+   a one-row header, a tighter panel with the operations near the top, and the layer and zoom buttons at the panel's end */
+body.compact{height:100%;grid-template-columns:minmax(0,1fr)}
+body.compact header{padding:4px 10px;gap:6px;flex-wrap:nowrap}
+body.compact h1{font-size:17px;white-space:nowrap}
+body.compact h1 small{display:none}
+body.compact .seg button,body.compact .icon-btn{min-height:44px;padding:0 9px;font-size:14px;white-space:nowrap}
+body.compact main{grid-template-columns:minmax(0,1fr) 300px}
+body.compact .panel{grid-row:1;grid-column:2;border-top:0;border-left:1px solid var(--line);padding:8px 10px;gap:6px}
+body.compact .mapcol .stage{flex:1 1 0!important;height:auto;min-height:0}
+body.compact .sec{padding:6px 9px}
+body.compact .sec>h2{margin-bottom:4px}
+body.compact .lines p{font-size:13.5px}
+body.compact .lines .big{font-size:16px}
+body.compact .ops .btn{font-size:14px}
+body.compact .keys{font-size:12px}
+body.compact .hint{font-size:14px}
+body.compact #pExplore,body.compact #pClue,body.compact #pSprings{display:flex;flex-direction:column}
+body.compact #pExplore>*,body.compact #pSprings>*{margin-top:6px!important}
+body.compact #pExplore>:nth-child(1){order:-2}
+body.compact #pExplore>:nth-child(3),body.compact #pExplore>:nth-child(4){order:-1}
+body.compact .maptools{background:none;border:0;padding:6px 0 0}
+body.compact .maptools .zl,body.compact .maptools .sep{display:none}
+body.compact .maptools .btn{font-size:14px;padding:0 9px}
+body.compact .ctext{font-size:16px}
+.mapcol .stage{flex:1;background:#08121f}
+.scene{width:700px;height:700px}
+#map{display:block;width:700px;height:700px;touch-action:none;user-select:none;-webkit-user-select:none}
+#map:focus-visible{outline:none}
+#map:focus-visible #frame{stroke:var(--focus);stroke-width:4}
+.maptools{display:flex;flex-wrap:wrap;gap:6px;padding:8px 10px;background:var(--head-bg);border-top:1px solid var(--line);align-items:center}
+.maptools .sep{width:1px;align-self:stretch;background:var(--line);margin:0 4px}
+.maptools .btn[aria-pressed="true"]::before{content:'✓ '}
+.maptools .zl{font:13px var(--readout-font);color:var(--muted);margin-left:auto}
+.lbl{font:600 calc(12px * var(--ts,1)) 'Segoe UI',system-ui,sans-serif;fill:#e8edf3;paint-order:stroke;stroke:var(--halo);stroke-width:4px;stroke-linejoin:round}
+.tick{font:calc(13px * var(--ts,1)) var(--readout-font);fill:#b9c7d8;paint-order:stroke;stroke:var(--halo);stroke-width:4px}
+.axt{font:700 calc(13px * var(--ts,1)) 'Segoe UI',system-ui,sans-serif;fill:#dfe9f4;paint-order:stroke;stroke:var(--halo);stroke-width:5px;letter-spacing:.02em}
+.small-t{font:600 calc(11px * var(--ts,1)) var(--readout-font);fill:#9fd8ee;paint-order:stroke;stroke:var(--halo);stroke-width:3px}
+.trail-t{font:700 calc(12px * var(--ts,1)) var(--readout-font);fill:var(--lantern);paint-order:stroke;stroke:var(--halo);stroke-width:4px}
+.mk-t{font:700 calc(14px * var(--ts,1)) var(--readout-font);paint-order:stroke;stroke:var(--halo);stroke-width:4px}
+.land{cursor:help}
+.mark{cursor:grab;outline:none}
+.mark.drag{cursor:grabbing}
+.mark .ring{fill:none;stroke:transparent;stroke-width:4}
+.mark:focus-visible .ring{stroke:var(--focus)}
+.lf{outline:none}
+.lf circle{fill:transparent;stroke:transparent;stroke-width:3}
+.lf:focus-visible circle{stroke:var(--focus)}
+.tipbox rect{fill:#0b1626;stroke:#62789a}
+.tipbox text{font:calc(13px * var(--ts,1)) 'Segoe UI',system-ui,sans-serif;fill:#e8edf3}
+.tipbox text.h{font-weight:700}
+.panel{gap:10px}
+.lines p{margin:0 0 2px;font-size:15px;line-height:1.45}
+.lines .big{font:700 19px var(--readout-font)}
+.lines .muted{color:var(--muted)}
+.at{color:var(--brand);font-weight:700;min-height:1.45em}
+.ops{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.ops .btn{padding:0 6px;font-size:16px}
+.ops .btn.wide{grid-column:span 2}
+.worked{font:14px/1.5 var(--readout-font);margin:0}
+.worked .nw{white-space:nowrap}
+.worked:empty::before{content:'Press an operation to see it written out.';color:var(--muted);font-family:'Segoe UI',sans-serif}
+.note{margin:6px 0 0;font-size:14px;color:var(--warn)}
+.note:empty{display:none}
+.dial{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.dial div{border:1px solid var(--line);border-radius:8px;padding:8px 4px;text-align:center;font:15px var(--readout-font);color:var(--muted);background:#10161f}
+.dial div.on{background:var(--brand);color:var(--brand-ink);border:2px solid #e8edf3;font-weight:700}
+.dialmsg{margin:6px 0 0;font:14px var(--readout-font)}
+.rowbtns{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.keys{font-size:13px;color:var(--muted);margin:6px 0 0;line-height:1.4}
+.keys kbd{font:12px var(--readout-font);border:1px solid var(--btn-line);border-radius:4px;padding:0 4px;color:var(--ink)}
+.cnum{font:700 12px 'Segoe UI',sans-serif;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin:0}
+.ctext{font-size:18px;line-height:1.4;margin:4px 0 6px}
+.cstart{font:14px var(--readout-font);color:var(--muted);margin:0 0 4px}
+#cSteps{margin:4px 0 0;padding-left:24px;font-size:15px;line-height:1.5}
+#cSteps .worked{font-size:13px;color:#cfe0ef}
+.result{margin:8px 0 0;font-size:16px;line-height:1.4}
+.result:empty{display:none}
+.result b{color:var(--ok)}
+.after{margin:6px 0 0;font-size:15px;color:var(--brand)}
+.after:empty{display:none}
+.tally{font:13px var(--readout-font);color:var(--muted);margin:6px 0 0}
+.eqbig{font:700 22px var(--readout-font);margin:0 0 2px}
+.eqtpl{font:14px var(--readout-font);color:var(--muted);margin:0}
+.presets{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.presets .btn{font:600 14px var(--readout-font)}
+.gr-slider{margin:2px 0}
+.status{font-size:15px;line-height:1.4;margin:6px 0 0}
+.hint{color:var(--ink)}
+.lc{text-transform:none;font-size:14px}
+</style>
+</head>
+<body>
+<header>
+  <h1>Imaginary Island <small>Complex numbers as places</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-explore" aria-pressed="true">Explore</button>
+    <button id="m-clue" aria-pressed="false">Clue Trail</button>
+    <button id="m-springs" aria-pressed="false">Springs</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true" title="Turn animation on or off">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+  <button class="icon-btn" id="read">🔊 Read</button>
+</header>
+<main>
+  <aside class="panel" id="panel">
+    <!-- ======================= Explore ======================= -->
+    <div id="pExplore">
+      <section class="sec lines" aria-live="polite">
+        <h2>Traveler</h2>
+        <p class="big" id="rZ"></p>
+        <p id="rAbs"></p>
+        <p id="rHead"></p>
+        <p class="at" id="rAt"></p>
+      </section>
+      <section class="sec lines" style="margin-top:8px">
+        <h2>Step <span class="lc">w</span></h2>
+        <p id="rW"></p>
+      </section>
+      <section class="sec" style="margin-top:8px">
+        <h2>Operations</h2>
+        <div class="ops" id="ops">
+          <button class="btn" data-op="i" aria-label="Multiply by i">× i</button>
+          <button class="btn" data-op="neg" aria-label="Multiply by negative 1">× (−1)</button>
+          <button class="btn" data-op="negi" aria-label="Multiply by negative i">× (−i)</button>
+          <button class="btn" data-op="conj" aria-label="Reflect: take the conjugate">Reflect</button>
+          <button class="btn wide" data-op="sq" aria-label="Square it">Square it</button>
+          <button class="btn" data-op="add" aria-label="Add w">+ w</button>
+          <button class="btn" data-op="mul" aria-label="Multiply by w">× w</button>
+        </div>
+        <p class="keys">Keys with the map focused: <kbd>I</kbd> × i, <kbd>R</kbd> Reflect, <kbd>S</kbd> Square it, <kbd>A</kbd> + w, <kbd>M</kbd> × w, <kbd>U</kbd> Undo. Arrow keys move the lantern or w; Shift moves 1.</p>
+      </section>
+      <section class="sec" style="margin-top:8px" aria-live="polite">
+        <h2>Worked line</h2>
+        <div class="worked" id="worked"></div>
+        <p class="note" id="exNote"></p>
+      </section>
+      <section class="sec" style="margin-top:8px">
+        <h2>Powers of <span class="lc">i</span></h2>
+        <div class="dial" id="dial">
+          <div data-k="1">i¹ = i</div><div data-k="2">i² = −1</div><div data-k="3">i³ = −i</div><div data-k="4">i⁴ = 1</div>
+        </div>
+        <p class="dialmsg" id="dialMsg" aria-live="polite"></p>
+      </section>
+      <div class="rowbtns" style="margin-top:8px">
+        <button class="btn" id="undo">Undo</button>
+        <button class="btn" id="reset">Reset</button>
+        <button class="btn snapBtn">Snap: half</button>
+      </div>
+    </div>
+    <!-- ======================= Clue Trail ======================= -->
+    <div id="pClue" hidden>
+      <section class="sec">
+        <p class="cnum" id="cNum"></p>
+        <p class="ctext" id="cText"></p>
+        <p class="cstart" id="cStart"></p>
+        <ol id="cSteps"></ol>
+        <p class="result" id="cResult" aria-live="polite"></p>
+        <p class="after" id="cAfter"></p>
+        <p class="tally" id="cTally"></p>
+      </section>
+      <div class="rowbtns" style="margin-top:8px">
+        <button class="big-btn" id="walk" style="flex:1" disabled>Walk it</button>
+      </div>
+      <div class="rowbtns" style="margin-top:6px">
+        <button class="btn" id="prevClue">Previous clue</button>
+        <button class="btn" id="nextClue">Next clue</button>
+        <button class="btn" id="showArith" aria-expanded="false">Show the arithmetic</button>
+        <button class="btn snapBtn">Snap: half</button>
+      </div>
+      <p class="keys">Keys: with the map focused, <kbd>Enter</kbd> drops a guess pin at the start; arrow keys move the pin (Shift moves 1).</p>
+    </div>
+    <!-- ======================= Springs ======================= -->
+    <div id="pSprings" hidden>
+      <section class="sec">
+        <h2>Equation</h2>
+        <p class="eqbig" id="sEq"></p>
+        <p class="eqtpl">x² + bx + c = 0</p>
+      </section>
+      <section class="sec" style="margin-top:8px">
+        <div id="bSlot"></div>
+        <div id="cSlot"></div>
+        <p class="keys" style="margin-top:2px">Leading coefficient fixed at 1.</p>
+      </section>
+      <section class="sec" style="margin-top:8px" aria-live="polite">
+        <h2>Solutions</h2>
+        <p class="worked" id="sDisc" style="font-size:16px"></p>
+        <p class="status" id="sStatus"></p>
+        <p class="worked" id="sRoots" style="margin-top:6px"></p>
+        <p class="worked" id="sFormula" style="margin-top:6px"></p>
+      </section>
+      <section class="sec" style="margin-top:8px">
+        <h2>Presets</h2>
+        <div class="presets" id="presets"></div>
+      </section>
+      <div class="rowbtns" style="margin-top:8px"><button class="btn" id="sReset">Reset</button></div>
+    </div>
+    <p class="hint" id="hint"></p>
+  </aside>
+  <div class="mapcol">
+    <div class="stage" id="stage">
+      <div class="scene" id="scene">
+        <svg id="map" viewBox="0 0 700 700" tabindex="0" aria-label="Island map">
+          <defs>
+            <pattern id="waves" patternUnits="userSpaceOnUse" width="34" height="18">
+              <path d="M2,12 q4,-4 8,0 q4,4 8,0" fill="none" stroke="#8fc3e6" stroke-opacity=".11" stroke-width="1.2"/>
+              <path d="M19,4 q3,-3 6,0" fill="none" stroke="#8fc3e6" stroke-opacity=".08" stroke-width="1"/>
+            </pattern>
+            <radialGradient id="glow"><stop offset="0" stop-color="#ffd27a" stop-opacity=".55"/><stop offset="1" stop-color="#ffd27a" stop-opacity="0"/></radialGradient>
+            <radialGradient id="seaG" cx=".5" cy=".5" r=".75"><stop offset="0" stop-color="#0d2238"/><stop offset="1" stop-color="#071322"/></radialGradient>
+          </defs>
+          <rect width="700" height="700" fill="url(#seaG)"/>
+          <rect id="waveRect" width="700" height="700" fill="url(#waves)"/>
+          <g id="gData"></g>
+          <g id="gGrid"></g>
+          <g id="gRings"></g>
+          <g id="gTicks"></g>
+          <g id="gSpring"></g>
+          <g id="gLand"></g>
+          <g id="gTrail"></g>
+          <g id="gSpringM"></g>
+          <g id="gDyn"></g>
+          <g id="gInset" style="pointer-events:none"></g>
+          <g id="gMarks"></g>
+          <g id="gLandFocus"></g>
+          <g id="gTip" style="pointer-events:none"></g>
+          <rect id="frame" x="1" y="1" width="698" height="698" fill="none" stroke="#2b3646" stroke-width="2" style="pointer-events:none"/>
+        </svg>
+      </div>
+    </div>
+    <div class="maptools" role="group" aria-label="Map layers and zoom">
+      <button class="btn" data-layer="grid" aria-pressed="true">Grid</button>
+      <button class="btn" data-layer="land" aria-pressed="true">Landmarks</button>
+      <button class="btn" data-layer="rings" aria-pressed="false">Distance rings</button>
+      <button class="btn" data-layer="spokes" aria-pressed="false">Heading spokes</button>
+      <button class="btn" data-layer="trail" aria-pressed="true">Trail</button>
+      <span class="sep" aria-hidden="true"></span>
+      <button class="btn" id="zin" aria-label="Zoom in">Zoom in</button>
+      <button class="btn" id="zout" aria-label="Zoom out">Zoom out</button>
+      <button class="btn" id="zfit">Fit</button>
+      <span class="zl" id="zl" aria-live="polite"></span>
+    </div>
+  </div>
+</main>
+<script src="kit:curio"></script>
+<script src="kit:graphing"></script>
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const {say} = Curio;
+  const NS = 'http://www.w3.org/2000/svg';
+  const mk = (tag, attrs = {}, parent) => { const e = document.createElementNS(NS, tag); for (const k in attrs) if (attrs[k] != null) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; };
+  // animation frames on a 16 ms timer (headless frame checks run timers, not always animation frames)
+  const frame = f => setTimeout(() => f(performance.now()), 16);
+  const ease = t => t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+  function animate(ms, fn) {
+    return new Promise(done => {
+      const t0 = performance.now();
+      const step = now => { const t = Math.min(1, (now - t0) / ms); fn(ease(t)); t < 1 ? frame(step) : done(); };
+      fn(0); frame(step);
+    });
+  }
+
+  // ---------- spoken lines (voice/lines.json lists every one) ----------
+  const L = {
+    welcome: 'Welcome to Imaginary Island. Every spot on this map is a complex number. Drag the lantern anywhere to read its address.',
+    roads: 'East and west is the Real Road. North and south is the Imaginary Road. The harbor is zero.',
+    timesI: 'Times i swings you a quarter turn counterclockwise around the harbor. Your distance stays the same.',
+    iSquared: 'Two quarter turns make a half turn, to the opposite side. That is why i squared is negative one.',
+    iFourth: 'Four quarter turns bring you all the way around. So i to the fourth power is one.',
+    plusW: 'Adding is walking. The step w moves you the same distance and direction from anywhere on the island.',
+    timesW: 'Multiplying by w turns you by its heading and stretches you by its distance from the harbor.',
+    reflect: 'The conjugate flips the sign of the imaginary part. On the map, it is a mirror across the Real Road.',
+    clue: 'Clue Trail. Read the clue, tap where you think it leads, then press Walk it to check.',
+    conjugate: 'A number times its conjugate is always real. It equals its distance from the harbor, squared.',
+    springs: 'Springs. Slide b and c, and watch where the two solutions of the quadratic come up.',
+    leave: 'The parabola no longer touches the x-axis, so the solutions leave the Real Road. They come up as a mirror pair, one north and one south.',
+  };
+  const ENTRY = {explore: 'welcome', clue: 'clue', springs: 'springs'};
+  // each line plays once per session, never before the first tap, queued behind a line already playing, cut on mode change
+  let heard = false, gen = 0, chain = Promise.resolve();
+  const played = new Set(), queued = new Set();
+  function voice(k) {
+    if (!heard || played.has(k) || queued.has(k)) return;
+    const entry = ENTRY[state.mode];
+    if (k !== entry && !played.has(entry) && !queued.has(entry)) voice(entry);   // a mode's welcome always comes first
+    queued.add(k); const g = gen;
+    chain = chain.then(async () => { if (g !== gen) return; queued.delete(k); played.add(k); await say(L[k]); });
+  }
+  function stopVoice() { gen++; queued.clear(); Curio.stop(); chain = Promise.resolve(); }
+  const firstTouch = () => {
+    if (heard) return; heard = true;
+    setTimeout(() => voice(ENTRY[state.mode]), 250);   // after a mode button's click, so that mode's line wins
+  };
+  addEventListener('pointerdown', firstTouch, true); addEventListener('keydown', firstTouch, true);
+
+  // ======================================================================================
+  // COMPLEX PLANE MAP: complex arithmetic, number display, the map view, travel animations.
+  // Self-contained so it can be lifted into a kit file later (no family engine exists for maps yet).
+  // ======================================================================================
+  const C = {
+    add: (a, b) => [a[0] + b[0], a[1] + b[1]],
+    mul: (a, b) => [a[0] * b[0] - a[1] * b[1], a[0] * b[1] + a[1] * b[0]],
+    abs: a => Math.hypot(a[0], a[1]),
+    arg: a => Math.atan2(a[1], a[0]),
+    conj: a => [a[0], -a[1]],
+    round: a => a.map(v => { const r = Math.round(v * 1e6) / 1e6; return Object.is(r, -0) ? 0 : r; }),
+    eq: (a, b, t = 1e-9) => Math.abs(a[0] - b[0]) <= t && Math.abs(a[1] - b[1]) <= t,
+    polar: (r, t) => [r * Math.cos(t), r * Math.sin(t)],
+  };
+  const MINUS = '−';
+  const r2 = v => { const s = Math.sign(v) * Math.round(Math.abs(v) * 100 + 1e-7) / 100; return Object.is(s, -0) ? 0 : s; };   // halves round away from 0 on both sides
+  const num = v => { const s = r2(v); return (s < 0 ? MINUS : '') + String(Math.abs(s)); };
+  const imagTerm = b => { const s = r2(b); return s === 1 ? 'i' : s === -1 ? MINUS + 'i' : num(s) + 'i'; };
+  function cfmt(z) {
+    const a = r2(z[0]), b = r2(z[1]);
+    if (b === 0) return num(a);
+    if (a === 0) return imagTerm(b);
+    return num(a) + (b < 0 ? ' ' + MINUS + ' ' : ' + ') + imagTerm(Math.abs(b));
+  }
+  // wrap a factor in parentheses when it has two parts or starts with a minus sign
+  const paren = z => { const s = cfmt(z); return (r2(z[0]) !== 0 && r2(z[1]) !== 0) || s[0] === MINUS ? `(${s})` : s; };
+  const SUPD = {0: '⁰', 1: '¹', 2: '²', 3: '³', 4: '⁴', 5: '⁵', 6: '⁶', 7: '⁷', 8: '⁸', 9: '⁹'};
+  const sup = n => String(n).split('').map(d => SUPD[d]).join('');
+  // a sum of terms {v, p}: p = 0 real, 1 times i, 2 times i squared
+  function terms(list) {
+    let s = '';
+    for (const {v, p} of list) {
+      const x = r2(v); if (x === 0) continue;
+      const m = Math.abs(x), body = p === 0 ? String(m) : (m === 1 ? '' : String(m)) + (p === 1 ? 'i' : 'i²');
+      s += s ? (x < 0 ? ' ' + MINUS + ' ' : ' + ') + body : (x < 0 ? MINUS : '') + body;
+    }
+    return s || '0';
+  }
+  function chainLine(lhs, t1, t2, z1) {
+    const parts = [lhs], s1 = terms(t1), s2 = terms(t2), f = cfmt(z1);
+    parts.push(s1); if (s2 !== s1) parts.push(s2); if (f !== parts[parts.length - 1]) parts.push(f);
+    return parts.join(' = ');
+  }
+  const mulLine = (z, w, lhs) => {
+    const [a, b] = z, [c, d] = w;
+    return chainLine(lhs, [{v: a * c, p: 0}, {v: a * d, p: 1}, {v: b * c, p: 1}, {v: b * d, p: 2}],
+      [{v: a * c, p: 0}, {v: a * d + b * c, p: 1}, {v: -b * d, p: 0}], C.round(C.mul(z, w)));
+  };
+  const sqLine = z => {
+    const [a, b] = z;
+    return chainLine(paren(z) === cfmt(z) && r2(a) !== 0 ? cfmt(z) + '²' : `(${cfmt(z)})²`,
+      [{v: a * a, p: 0}, {v: 2 * a * b, p: 1}, {v: b * b, p: 2}], [{v: a * a, p: 0}, {v: 2 * a * b, p: 1}, {v: -b * b, p: 0}], C.round(C.mul(z, z)));
+  };
+  const deg = rad => { let d = rad * 180 / Math.PI; d = ((d % 360) + 360) % 360; const s = Math.round(d * 10) / 10; return s >= 360 ? 0 : s; };
+  const degSigned = rad => { const s = Math.round(rad * 1800 / Math.PI) / 10; return Object.is(s, -0) ? 0 : s; };
+  const degTxt = v => (v < 0 ? MINUS : '') + String(Math.abs(v));
+  const headingTxt = z => C.abs(z) < 1e-9 ? 'none (you are at the harbor)' : degTxt(deg(C.arg(z))) + '°';
+  function walkTxt(w) {
+    const p = [], a = r2(w[0]), b = r2(w[1]);
+    if (a) p.push(`${Math.abs(a)} ${a > 0 ? 'east' : 'west'}`);
+    if (b) p.push(`${Math.abs(b)} ${b > 0 ? 'north' : 'south'}`);
+    return p.length ? 'walk ' + p.join(', ') : 'no walk';
+  }
+
+  // ---------- content (spec) ----------
+  const LANDMARKS = [
+    {name: 'Harbor', z: [0, 0], note: 'Every turn is centered here.', icon: 'anchor', dir: 'harbor'},
+    {name: 'Lighthouse', z: [1, 0], note: 'One step east.', icon: 'light', dir: 'e'},
+    {name: 'Bell Tower', z: [0, 1], note: 'One step north.', icon: 'bell', dir: 'w'},
+    {name: 'Old Pier', z: [-1, 0], note: 'One step west.', icon: 'pier', dir: 'w'},
+    {name: 'Fern Well', z: [0, -1], note: 'One step south.', icon: 'well', dir: 'w'},
+    {name: 'Summit', z: [1, 1], note: 'Highest point.', icon: 'peak', dir: 'e'},
+    {name: 'Twin Rocks', z: [0, 2], note: '', icon: 'rocks', dir: 'w', bare: true},
+    {name: 'Sea Arch', z: [-4, 0], note: 'On the west shore.', icon: 'arch', dir: 'n'},
+    {name: 'Orchard', z: [3, 2], note: '', icon: 'tree', dir: 'e'},
+    {name: 'Fox Den', z: [-2, 3], note: '', icon: 'den', dir: 'n'},
+    {name: 'Salt Flats', z: [-3, -2], note: '', icon: 'flats', dir: 's'},
+    {name: 'Waterfall', z: [2, -3], note: '', icon: 'falls', dir: 'e'},
+    {name: 'Hidden Cove', z: [-3, 2], note: '', icon: 'cove', dir: 'w'},
+    {name: 'Cave', z: [4, 1], note: '', icon: 'cave', dir: 'e'},
+    {name: 'Hermit Hut', z: [-1, 4], note: '', icon: 'hut', dir: 'n'},
+    {name: 'Shipwreck', z: [-4, -1], note: '', icon: 'wreck', dir: 'w'},
+    {name: 'Tide Pools', z: [1, -4], note: '', icon: 'pools', dir: 'e'},
+    {name: 'Black Sand Beach', z: [5, -3], note: 'On the southeast shore.', icon: 'beach', dir: 's'},
+    {name: 'Far Buoy', z: [13, 0], note: 'Out at sea.', icon: 'buoy', dir: 'n'},
+  ];
+  const the = lm => lm.bare ? lm.name : 'the ' + lm.name;
+  const landAt = (z, t = .05) => LANDMARKS.find(l => C.abs(C.add(z, [-l.z[0], -l.z[1]])) <= t + 1e-9);
+  const ICON = {
+    anchor: 'M0,-4.5v10M-5,1q5,7 10,0M-3,-2.5h6M0,-7a1.6,1.6 0 1,0 0.01,0',
+    light: 'M-3,6L-2,-3L2,-3L3,6ZM-3.5,-3h7M-1.5,-3v-3h3v3M-6.5,-6l2,1M6.5,-6l-2,1',
+    bell: 'M-6,4h12M-4.5,4q0,-9 4.5,-9q4.5,0 4.5,9M0,4v2.5M0,-5v-2',
+    pier: 'M-7,-1h14M-7,2h14M-4.5,-1v6.5M0,-1v6.5M4.5,-1v6.5',
+    well: 'M-5,0a5,2 0 1,0 10,0a5,2 0 1,0 -10,0M-5,0v4.5a5,2 0 0,0 10,0v-4.5M-6,-6.5h12M-4,-6.5v6M4,-6.5v6',
+    peak: 'M-7,5L-1.5,-5.5L1.5,-1.5L3,-3.5L7,5ZM-3.5,-2l2,1l1.5,-1',
+    rocks: 'M-7,5q0,-10 3.5,-9q3,1 2,9M0.5,5q0,-7 3,-7q3.5,0 2.5,7M-8,5h16',
+    arch: 'M-7,6v-6q0,-6 7,-6q7,0 7,6v6M-3.5,6v-5q0,-2.5 3.5,-2.5q3.5,0 3.5,2.5v5',
+    tree: 'M0,-1.5m-5,0a5,4.5 0 1,0 10,0a5,4.5 0 1,0 -10,0M0,3v4M-1.5,-2.5h.1M2,-1h.1M-1,1h.1',
+    den: 'M-7,5q7,-14 14,0ZM-2.5,5q2.5,-6 5,0',
+    flats: 'M-7,-4h5M1,-4h6M-5,0h9M-7,4h4M0,4h7',
+    falls: 'M-5,-6h10M-2.5,-6v9M0.5,-6v10M3.5,-6v8M-6,6q2,-2 4,0q2,2 4,0q2,-2 4,0',
+    cove: 'M-7,-5q0,11 7,11q7,0 7,-11M-3.5,-5q0,6 3.5,6q3.5,0 3.5,-6',
+    cave: 'M-7,6q0,-12 7,-12q7,0 7,12ZM-3,6q0,-6 3,-6q3,0 3,6',
+    hut: 'M-7,0L0,-6.5L7,0M-5,-1v7h10v-7M-1.5,6v-4h3v4',
+    wreck: 'M-7.5,2L5.5,4L6.5,1M-7.5,2L-5,5.5L4.5,6.5M-1,3L1,-6.5L5.5,-2',
+    pools: 'M-3,-2m-3,0a3,3 0 1,0 6,0a3,3 0 1,0 -6,0M3.5,2.5m-2.4,0a2.4,2.4 0 1,0 4.8,0a2.4,2.4 0 1,0 -4.8,0M-3.5,5m-1.3,0a1.3,1.3 0 1,0 2.6,0a1.3,1.3 0 1,0 -2.6,0',
+    beach: 'M-7,-2q1.75,-2.5 3.5,0q1.75,2.5 3.5,0q1.75,-2.5 3.5,0q1.75,2.5 3.5,0M-4.5,3h.1M0,4h.1M4.5,3h.1M-2,6h.1M2.5,6h.1',
+    buoy: 'M-5,5h10M-3.5,5L-1.8,-2h3.6L3.5,5M0,-2v-3.5M-2.5,-5.5h5M-2.8,1.5h5.6',
+  };
+
+  // island coastline in polar form about the harbor (constants tuned per the spec: Sea Arch 0.13 and Black Sand Beach
+  // 0.05 from the shore, every other landmark at least 0.51 inland, Far Buoy at sea)
+  const COAST = t => 5.3 + 1.05 * Math.sin(3 * t + 2.25) + .45 * Math.cos(5 * t + .8);
+  function smoothClosed(pts) {   // Catmull-Rom through the samples, as cubic Beziers
+    const n = pts.length, f = v => v.toFixed(3);
+    let d = `M${f(pts[0][0])},${f(pts[0][1])}`;
+    for (let i = 0; i < n; i++) {
+      const p0 = pts[(i - 1 + n) % n], p1 = pts[i], p2 = pts[(i + 1) % n], p3 = pts[(i + 2) % n];
+      d += `C${f(p1[0] + (p2[0] - p0[0]) / 6)},${f(p1[1] + (p2[1] - p0[1]) / 6)} ${f(p2[0] - (p3[0] - p1[0]) / 6)},${f(p2[1] - (p3[1] - p1[1]) / 6)} ${f(p2[0])},${f(p2[1])}`;
+    }
+    return d + 'Z';
+  }
+  const coastPath = (inset = 0, scale = 1) => {
+    const pts = [];
+    for (let a = 0; a < 360; a += 2) { const t = a * Math.PI / 180, r = (COAST(t) - inset) * scale; pts.push([r * Math.cos(t), r * Math.sin(t)]); }
+    return smoothClosed(pts);
+  };
+  const TERRAIN = 'art:island-terrain';   // optional art: used only when the painted file is in (a draft stand-in is an svg)
+
+  // ---------- state ----------
+  const SNAPS = [{label: 'whole', grid: 1, key: 1}, {label: 'half', grid: .5, key: .5}, {label: 'off', grid: .01, key: .1}];
+  const LEVELS = [3, 5, 7, 10, 15, 25, 50];
+  const fitView = () => ({x: 0, y: 0, h: 7});
+  const state = {
+    mode: 'explore', snap: 1,
+    layers: {grid: true, land: true, rings: false, spokes: false, trail: true},
+    views: {explore: fitView(), clue: fitView(), springs: fitView()},
+    ex: {z: [1, 0], w: [1, 1], trail: [], undo: [], run: 0, worked: [], note: ''},
+    cl: {i: 0, z: null, guess: null, trail: [], result: null, after: '', arith: false, walking: false, tally: new Map(), lines: [], walkGen: 0},
+    sp: {b: 0, c: -4, sb: 0, sc: -4, glide: 0},
+    busy: false,
+  };
+  const V = () => state.views[state.mode];
+
+  // ---------- the map view ----------
+  const S = 700, HALF = 350;
+  const kOf = v => HALF / v.h;
+  const px = (x, y, v = V()) => { const k = kOf(v); return [HALF + (x - v.x) * k, HALF - (y - v.y) * k]; };
+  const unpx = (u, w, v = V()) => { const k = kOf(v); return [v.x + (u - HALF) / k, v.y - (w - HALF) / k]; };
+  const svg = $('map');
+  function evData(e) {
+    const p = svg.createSVGPoint(); p.x = e.clientX; p.y = e.clientY;
+    const q = p.matrixTransform(svg.getScreenCTM().inverse());
+    return unpx(q.x, q.y);
+  }
+  const G = id => $(id);
+  let scale = 1;   // the stage's fit scale, so hit areas stay 44 px on screen
+
+  // the island (drawn once in data units, moved with one transform)
+  (function drawIsland() {
+    const g = G('gData');
+    mk('path', {d: coastPath(-.12), fill: 'none', stroke: '#9fd2e8', 'stroke-opacity': .16, 'stroke-width': 7, 'vector-effect': 'non-scaling-stroke'}, g);
+    mk('path', {d: coastPath(0), fill: '#7d6f4f', stroke: '#c2ab7a', 'stroke-width': 1.5, 'vector-effect': 'non-scaling-stroke'}, g);
+    mk('path', {d: coastPath(.3), fill: '#284636'}, g);
+    if (TERRAIN.startsWith('data:image/webp')) {
+      const cp = mk('clipPath', {id: 'landClip', clipPathUnits: 'userSpaceOnUse'}, svg.querySelector('defs'));
+      mk('path', {d: coastPath(.3)}, cp);
+      mk('image', {href: TERRAIN, x: -7.5, y: -7.5, width: 15, height: 15, preserveAspectRatio: 'xMidYMid slice', opacity: .62, 'clip-path': 'url(#landClip)'}, g);
+    }
+    for (const [s, o] of [[.78, .5], [.56, .42], [.34, .34]]) mk('path', {d: coastPath(.3, s), fill: 'none', stroke: '#4f7a5f', 'stroke-opacity': o, 'stroke-width': 1.2, 'stroke-dasharray': '5 4', 'vector-effect': 'non-scaling-stroke'}, g);
+  })();
+
+  // boxes of text already on the map, so trail labels can find a free spot: [x, y, w, h] in map pixels
+  let boxes = [], staticBoxes = 0, lblBox = {};
+  const INSET = [8, 8, 222, 204];   // the Springs inset graph, in map pixels (with a small margin)
+  const overlap = (a, b) => a[0] < b[0] + b[2] && b[0] < a[0] + a[2] && a[1] < b[1] + b[3] && b[1] < a[1] + a[3];
+  const TS = () => parseFloat(svg.style.getPropertyValue('--ts')) || 1;
+  const tw = (t, px = 7.2) => t.length * px * TS();
+  const box = (x, y, t, anchor, size = 7.2, h = 15) => { const w = tw(t, size); h *= TS(); boxes.push([anchor === 'middle' ? x - w / 2 : anchor === 'end' ? x - w : x, y - h + 3, w, h]); };
+  function stepsFor(h) { return {grid: h <= 15 ? 1 : 5, label: h <= 7 ? 1 : h <= 25 ? 5 : 10}; }
+  const range = (lo, hi, s) => { const out = []; for (let v = Math.ceil(lo / s - 1e-9) * s; v <= hi + 1e-9; v += s) out.push(+v.toFixed(9)); return out; };
+  function renderStatic() {
+    const v = V(), k = kOf(v), [ox, oy] = px(0, 0);
+    G('gData').setAttribute('transform', `translate(${HALF - v.x * k},${HALF + v.y * k}) scale(${k},${-k})`);
+    G('waveRect').setAttribute('fill', 'url(#waves)');
+    $('waves').setAttribute('patternTransform', `translate(${(-v.x * k) % 34},${(v.y * k) % 18})`);
+    const {grid: gs, label: ls} = stepsFor(v.h);
+    // grid
+    const gg = G('gGrid'); gg.textContent = ''; boxes = [];
+    const xs = range(v.x - v.h, v.x + v.h, gs), ys = range(v.y - v.h, v.y + v.h, gs);
+    if (state.layers.grid) {
+      for (const x of xs) { const [u] = px(x, 0); const maj = Math.abs(x / ls - Math.round(x / ls)) < 1e-6; mk('line', {x1: u, x2: u, y1: 0, y2: S, stroke: '#c8dcf0', 'stroke-opacity': maj ? .16 : .07}, gg); }
+      for (const y of ys) { const [, w] = px(0, y); const maj = Math.abs(y / ls - Math.round(y / ls)) < 1e-6; mk('line', {x1: 0, x2: S, y1: w, y2: w, stroke: '#c8dcf0', 'stroke-opacity': maj ? .16 : .07}, gg); }
+    }
+    // the two roads
+    if (oy >= 0 && oy <= S) mk('line', {x1: 0, x2: S, y1: oy, y2: oy, stroke: '#d6e2ee', 'stroke-width': 2}, gg);
+    if (ox >= 0 && ox <= S) mk('line', {x1: ox, x2: ox, y1: 0, y2: S, stroke: '#d6e2ee', 'stroke-width': 2}, gg);
+    renderLandmarks();
+    const hits = bx => boxes.some(o => bx[0] < o[0] + o[2] && o[0] < bx[0] + bx[2] && bx[1] < o[1] + o[3] && o[1] < bx[1] + bx[3]);
+    const boxOf = (x, y, t, anchor, size = 7.2, h = 15) => { const w = tw(t, size); h *= TS(); return [anchor === 'middle' ? x - w / 2 : anchor === 'end' ? x - w : x, y - h + 3, w, h]; };
+    // ticks and road names (a tick label that would touch a landmark moves to the other side of its road)
+    const gt = G('gTicks'); gt.textContent = '';
+    const ty = Math.min(Math.max(oy, 4), S - 30), tx = Math.min(Math.max(ox, 4), S - 40);
+    for (const x of range(v.x - v.h, v.x + v.h, ls)) {
+      if (Math.abs(x) < 1e-9) continue; const [u] = px(x, 0);
+      if (u < 10 || u > S - 10) continue;
+      mk('line', {x1: u, x2: u, y1: ty - 4, y2: ty + 4, stroke: '#d6e2ee', 'stroke-width': 2}, gt);
+      let y = ty + 27 * TS(); if (hits(boxOf(u, y, num(x), 'middle', 8))) y = ty - 12;
+      if (hits(boxOf(u, y, num(x), 'middle', 8))) y = ty + 27 * TS() + 6;
+      mk('text', {x: u, y, 'text-anchor': 'middle', class: 'tick'}, gt).textContent = num(x); box(u, y, num(x), 'middle', 8);
+    }
+    for (const y of range(v.y - v.h, v.y + v.h, ls)) {
+      if (Math.abs(y) < 1e-9) continue; const [, w] = px(0, y);
+      if (w < 10 || w > S - 10) continue;
+      mk('line', {x1: tx - 4, x2: tx + 4, y1: w, y2: w, stroke: '#d6e2ee', 'stroke-width': 2}, gt);
+      const t = imagTerm(y); let x = tx + 17, anc = 'start';
+      if (hits(boxOf(x, w + 4.5, t, anc, 8))) { x = tx - 17; anc = 'end'; }
+      mk('text', {x, y: w + 4.5, 'text-anchor': anc, class: 'tick'}, gt).textContent = t; box(x, w + 4.5, t, anc, 8);
+    }
+    const ry = Math.min(Math.max(oy + 46 * TS(), 40), S - 12);
+    mk('text', {x: S - 12, y: ry, 'text-anchor': 'end', class: 'axt'}, gt).textContent = 'Real Road (real part)'; box(S - 12, ry, 'Real Road (real part)', 'end', 7.6);
+    const ix = Math.min(Math.max(ox, 12), S - 12), right = ix < S - 260;
+    mk('text', {x: right ? ix + 12 : ix - 12, y: 24, 'text-anchor': right ? 'start' : 'end', class: 'axt'}, gt).textContent = 'Imaginary Road (imaginary part)';
+    box(right ? ix + 12 : ix - 12, 24, 'Imaginary Road (imaginary part)', right ? 'start' : 'end', 7.6);
+    // rings and spokes: a label is left out where it would sit on other text
+    const gr = G('gRings'); gr.textContent = '';
+    if (state.layers.spokes) {
+      for (let a = 0; a < 360; a += 30) {
+        const t = a * Math.PI / 180, far = C.polar(v.h * 3, t), [u2, w2] = px(far[0], far[1]);
+        mk('line', {x1: ox, y1: oy, x2: u2, y2: w2, stroke: '#9fd8ee', 'stroke-opacity': .32, 'stroke-width': 1.2, 'stroke-dasharray': '6 5'}, gr);
+        for (const [rr, da] of [[.84, .09], [.84, -.09], [.72, .1], [.72, -.1], [.6, .12]]) {
+          const lp = C.polar(v.h * rr, t + da), [lu, lw] = px(lp[0], lp[1]), bx = boxOf(lu, lw + 4, a + '°', 'middle', 7);
+          if (lu < 20 || lu > S - 20 || lw < 14 || lw > S - 10 || hits(bx)) continue;
+          mk('text', {x: lu, y: lw + 4, 'text-anchor': 'middle', class: 'small-t'}, gr).textContent = a + '°'; boxes.push(bx); break;
+        }
+      }
+    }
+    if (state.layers.rings) {
+      for (let r = 1; r <= 10; r++) {
+        mk('circle', {cx: ox, cy: oy, r: r * k, fill: 'none', stroke: '#9fd8ee', 'stroke-opacity': .3, 'stroke-width': 1.2}, gr);
+        if (r * k <= 22 || (k < 18 && r % 5)) continue;
+        for (const ang of [-Math.PI / 4, -Math.PI / 3.2, -Math.PI / 5, -Math.PI / 2.6]) {
+          const lp = C.polar(r, ang), [lu, lw] = px(lp[0], lp[1]), bx = boxOf(lu + 3, lw + 12, String(r), 'start', 7);
+          if (lu < 8 || lu > S - 20 || lw < 8 || lw > S - 16 || hits(bx)) continue;
+          mk('text', {x: lu + 3, y: lw + 12, class: 'small-t'}, gr).textContent = r; boxes.push(bx); break;
+        }
+      }
+    }
+    staticBoxes = boxes.length;
+    $('zl').textContent = `View: ${num(v.x - v.h)} to ${num(v.x + v.h)} east-west`;
+    $('zin').disabled = v.h <= LEVELS[0]; $('zout').disabled = v.h >= LEVELS[LEVELS.length - 1];
+  }
+
+  // ---------- landmarks: icon, name, and a note on hover or focus ----------
+  const DIR = {n: [0, -19, 'middle'], s: [0, 27, 'middle'], e: [15, 4.5, 'start'], w: [-15, 4.5, 'end'], harbor: [-13, -14, 'end']};
+  function renderLandmarks() {
+    const gl = G('gLand'), gf = G('gLandFocus'); gl.textContent = ''; gf.textContent = ''; lblBox = {}; hideTip();
+    if (!state.layers.land) return;
+    const k = kOf(V());
+    let first = true;
+    for (const lm of LANDMARKS) {
+      const [u, w] = px(lm.z[0], lm.z[1]);
+      if (u < -20 || u > S + 20 || w < -20 || w > S + 20) continue;
+      const g = mk('g', {class: 'land', transform: `translate(${u.toFixed(1)},${w.toFixed(1)})`}, gl);
+      // full icons and names when there is room; zoomed out, smaller icons and only the lone landmarks keep names
+      const keep = lm.name === 'Far Buoy';
+      if (k >= 40 || keep) {
+        mk('circle', {r: 11, fill: '#0b1626', stroke: '#cfe3f5', 'stroke-width': 1.4}, g);
+        mk('path', {d: ICON[lm.icon], fill: 'none', stroke: '#eaf3fb', 'stroke-width': 1.5, 'stroke-linecap': 'round', 'stroke-linejoin': 'round', transform: 'scale(.82)'}, g);
+        const wn = tw(lm.name, 6.8), hn = 15 * TS();
+        const place = dir => {
+          let [dx, dy, anc] = DIR[dir];
+          dy *= dir === 'n' || dir === 's' || dir === 'harbor' ? TS() : 1;
+          // keep the name inside the chart
+          const left = anc === 'middle' ? u + dx - wn / 2 : anc === 'end' ? u + dx - wn : u + dx;
+          if (left < 4) dx += 4 - left; else if (left + wn > S - 4) dx -= left + wn - (S - 4);
+          const l2 = anc === 'middle' ? u + dx - wn / 2 : anc === 'end' ? u + dx - wn : u + dx;
+          return [dx, dy, anc, [l2, w + dy - hn + 3, wn, hn]];
+        };
+        let [dx, dy, anc, nb] = place(lm.dir);
+        // in Springs the inset graph covers the top-left corner: a name under it moves to another side
+        if (state.mode === 'springs' && overlap(nb, INSET)) for (const d2 of ['e', 's', 'w', 'n']) { const c2 = place(d2); if (!overlap(c2[3], INSET)) { [dx, dy, anc, nb] = c2; break; } }
+        mk('text', {x: dx, y: dy, 'text-anchor': anc, class: 'lbl', 'data-name': lm.name}, g).textContent = lm.name;
+        box(u + dx, w + dy, lm.name, anc, 6.8); lblBox[lm.name] = boxes[boxes.length - 1]; boxes.push([u - 12, w - 12, 24, 24]);
+      } else if (k >= 18) {
+        mk('circle', {r: 7.5, fill: '#0b1626', stroke: '#cfe3f5', 'stroke-width': 1.2}, g);
+        mk('path', {d: ICON[lm.icon], fill: 'none', stroke: '#eaf3fb', 'stroke-width': 1.6, 'stroke-linecap': 'round', 'stroke-linejoin': 'round', transform: 'scale(.55)'}, g);
+      } else mk('circle', {r: 3.5, fill: '#0b1626', stroke: '#cfe3f5', 'stroke-width': 1.2}, g);
+      g.addEventListener('pointerenter', () => showTip(lm)); g.addEventListener('pointerleave', hideTip);
+      // focus target (after the markers in tab order)
+      // one tab stop for all landmarks; arrow keys step through them
+      const f = mk('g', {class: 'lf', tabindex: first ? 0 : -1, role: 'img', transform: `translate(${u.toFixed(1)},${w.toFixed(1)})`, 'aria-label': `${lm.name}, ${cfmt(lm.z)}. ${lm.note} Arrow keys move to the next landmark.`}, gf);
+      mk('circle', {r: 15}, f);
+      f.style.pointerEvents = 'none';
+      f.addEventListener('focus', () => showTip(lm)); f.addEventListener('blur', hideTip);
+      f.addEventListener('keydown', e => {
+        const d = {ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1}[e.key];
+        if (!d) return;
+        e.preventDefault(); e.stopPropagation();
+        const all = [...gf.querySelectorAll('.lf')], i = all.indexOf(f), nx = all[(i + d + all.length) % all.length];
+        all.forEach(x => x.setAttribute('tabindex', -1)); nx.setAttribute('tabindex', 0); nx.focus();
+      });
+      first = false;
+    }
+  }
+  function showTip(lm) {
+    const g = G('gTip'); g.textContent = '';
+    const [u, w] = px(lm.z[0], lm.z[1]);
+    const lines = [`${lm.name}: ${cfmt(lm.z)}`]; if (lm.note) lines.push(lm.note);
+    const ts = parseFloat(svg.style.getPropertyValue('--ts')) || 1, wd = Math.max(...lines.map(t => t.length)) * 7.4 * ts + 20, ht = lines.length * 18 * ts + 12;
+    let x = Math.min(Math.max(u - wd / 2, 6), S - wd - 6), y = w - ht - 18; if (y < 6) y = w + 22;
+    const b = mk('g', {class: 'tipbox', transform: `translate(${x},${y})`}, g);
+    mk('rect', {width: wd, height: ht, rx: 6}, b);
+    lines.forEach((t, i) => mk('text', {x: 10, y: (15 + i * 18) * ts + 6, class: i ? '' : 'h'}, b).textContent = t);
+  }
+  const hideTip = () => { G('gTip').textContent = ''; };
+
+  // ---------- markers: the traveler (lantern), the step w (diamond), the guess pin (X) ----------
+  function makeMarker(kind, aria) {
+    const el = mk('g', {class: 'mark', tabindex: 0, role: 'slider'}, G('gMarks'));
+    const hit = mk('circle', {r: 22, fill: 'transparent'}, el);
+    mk('circle', {class: 'ring', r: 20}, el);
+    if (kind === 'lantern') {
+      mk('circle', {r: 20, fill: 'url(#glow)'}, el);
+      mk('path', {d: 'M-4,-10a4,4 0 0,1 8,0', fill: 'none', stroke: '#3a2400', 'stroke-width': 2}, el);
+      mk('rect', {x: -7, y: -9, width: 14, height: 4, rx: 1.5, fill: '#5a3b10', stroke: '#1d1205', 'stroke-width': 1}, el);
+      mk('rect', {x: -6, y: -5, width: 12, height: 11, rx: 3, fill: 'var(--lantern)', stroke: '#3a2400', 'stroke-width': 1.5}, el);
+      mk('line', {x1: 0, x2: 0, y1: -5, y2: 6, stroke: '#3a2400', 'stroke-width': 1}, el);
+      mk('rect', {x: -7, y: 6, width: 14, height: 3.5, rx: 1.5, fill: '#5a3b10', stroke: '#1d1205', 'stroke-width': 1}, el);
+      mk('text', {x: 14, y: -12, class: 'mk-t', fill: 'var(--lantern)'}, el).textContent = 'z';
+    } else if (kind === 'diamond') {
+      mk('path', {d: 'M0,-10L10,0L0,10L-10,0Z', fill: 'var(--wcol)', stroke: '#160d26', 'stroke-width': 2}, el);
+      mk('text', {x: 13, y: -10, class: 'mk-t', fill: 'var(--wcol)'}, el).textContent = 'w';
+    } else {
+      mk('path', {d: 'M-8,-8L8,8M8,-8L-8,8', stroke: '#160d10', 'stroke-width': 7, 'stroke-linecap': 'round'}, el);
+      mk('path', {d: 'M-8,-8L8,8M8,-8L-8,8', stroke: 'var(--pin)', 'stroke-width': 3.5, 'stroke-linecap': 'round'}, el);
+      mk('text', {x: 13, y: -10, class: 'mk-t pinlbl', fill: 'var(--pin)'}, el).textContent = 'guess';
+    }
+    el.setAttribute('aria-label', aria);
+    return {el, hit};
+  }
+  const mTrav = makeMarker('lantern', 'Traveler z, the lantern. Drag it, or use arrow keys.');
+  const mW = makeMarker('diamond', 'Step w, the diamond. Drag it, or use arrow keys.');
+  const mPin = makeMarker('x', 'Guess pin. Drag it, or use arrow keys.');
+  // a traveler beyond the widest view is pinned to the map edge with an arrow and its value
+  const edgeG = mk('g', {style: 'pointer-events:none'}, G('gMarks'));
+
+  const snapStep = () => SNAPS[state.snap].grid;
+  const snapZ = (z) => z.map(v => Math.round(v / snapStep()) * snapStep()).map(v => +v.toFixed(6) || 0);
+  const clampView = z => { const v = V(), m = v.h * .97; return [Math.min(v.x + m, Math.max(v.x - m, z[0])), Math.min(v.y + m, Math.max(v.y - m, z[1]))]; };
+  function dragify(m, get, set, done, live = () => true) {
+    let from = null;
+    m.el.addEventListener('pointerdown', e => {
+      if (!live()) return;   // let the map have it (a click there drops the guess pin in Clue Trail)
+      if (e.button || state.busy) return;
+      e.stopPropagation(); e.preventDefault(); m.el.focus(); try { m.el.setPointerCapture(e.pointerId); } catch {} m.el.classList.add('drag'); from = get();
+    });
+    m.el.addEventListener('pointermove', e => {
+      if (!from) return;
+      const z = snapZ(clampView(evData(e)));
+      if (!C.eq(z, get())) set(z);
+    });
+    const end = () => { if (!from) return; const f = from; from = null; m.el.classList.remove('drag'); if (!C.eq(f, get())) done(f); };
+    m.el.addEventListener('pointerup', end); m.el.addEventListener('pointercancel', end);
+    m.el.addEventListener('keydown', e => {
+      const d = {ArrowLeft: [-1, 0], ArrowRight: [1, 0], ArrowUp: [0, 1], ArrowDown: [0, -1]}[e.key];
+      if (!d || state.busy || !live()) return;
+      e.preventDefault(); e.stopPropagation();
+      const s = e.shiftKey ? 1 : SNAPS[state.snap].key, f = get();
+      const z = C.round(clampView([f[0] + d[0] * s, f[1] + d[1] * s]));
+      if (C.eq(z, f)) return;
+      set(z); done(f);
+    });
+  }
+
+  // ---------- trail ----------
+  // segments in data units: {pts, label, dashed, color, t (drawn fraction)}; the last 12 kept, older ones fade
+  const trailOf = () => state.mode === 'explore' ? state.ex.trail : state.cl.trail;
+  function addSeg(trail, seg) { trail.push(seg); while (trail.length > 12) trail.shift(); return seg; }
+  function arrowHead(p, q, size = 9) {
+    const a = Math.atan2(q[1] - p[1], q[0] - p[0]);
+    const pt = t => [q[0] + size * Math.cos(a + t), q[1] + size * Math.sin(a + t)];
+    const l = pt(Math.PI - .45), r = pt(Math.PI + .45);
+    return `M${q[0].toFixed(1)},${q[1].toFixed(1)}L${l[0].toFixed(1)},${l[1].toFixed(1)}L${r[0].toFixed(1)},${r[1].toFixed(1)}Z`;
+  }
+  function renderTrail() {
+    const g = G('gTrail'); g.textContent = '';
+    if (!state.layers.trail || state.mode === 'springs') return;
+    const tr = trailOf(), n = tr.length; boxes = boxes.slice(0, staticBoxes);
+    tr.forEach((s, i) => {
+      const op = .3 + .7 * (i + 1) / n, cnt = Math.max(2, Math.round(s.pts.length * (s.t == null ? 1 : s.t)));
+      const pp = s.pts.slice(0, cnt).map(p => px(p[0], p[1]));
+      if (pp.length < 2) return;
+      const sg = mk('g', {opacity: op.toFixed(2)}, g);
+      const col = s.color || 'var(--lantern)';
+      if (s.ghost && s.t != null && s.t < 1) {   // + w: a ghost copy of the w arrow from the start point while the walk runs
+        const a = px(...s.pts[0]), b = px(...s.pts[s.pts.length - 1]);
+        mk('line', {x1: a[0], y1: a[1], x2: b[0], y2: b[1], stroke: col, 'stroke-width': 2, 'stroke-dasharray': '3 5', opacity: .6}, sg);
+        mk('path', {d: arrowHead(a, b, 11), fill: col, opacity: .6}, sg);
+      }
+      mk('path', {d: 'M' + pp.map(p => p[0].toFixed(1) + ',' + p[1].toFixed(1)).join('L'), fill: 'none', stroke: col, 'stroke-width': 2.6,
+        'stroke-dasharray': s.dashed ? '7 6' : null, 'stroke-linecap': 'round', 'stroke-linejoin': 'round'}, sg);
+      // arrowhead from a point a little back along the path
+      let j = pp.length - 2; const q = pp[pp.length - 1];
+      while (j > 0 && Math.hypot(pp[j][0] - q[0], pp[j][1] - q[1]) < 10) j--;
+      if (Math.hypot(pp[j][0] - q[0], pp[j][1] - q[1]) > 3) mk('path', {d: arrowHead(pp[j], q), fill: col}, sg);
+      if (s.label && (s.t == null || s.t >= 1)) {
+        // try spots along the path, on the side away from the harbor first, until one is clear of other text
+        const [hx, hy] = px(0, 0), w0 = tw(s.label, 7.6);
+        let best = null;
+        search: for (const f of [.5, .4, .6, .3, .7, .22, .78]) {
+          const i0 = Math.min(pp.length - 2, Math.floor((pp.length - 1) * f)), m = pp[i0], m2 = pp[i0 + 1];
+          let nx = -(m2[1] - m[1]), ny = m2[0] - m[0]; const L0 = Math.hypot(nx, ny) || 1; nx /= L0; ny /= L0;
+          if ((m[0] - hx) * nx + (m[1] - hy) * ny < 0) { nx = -nx; ny = -ny; }
+          for (const sd of [1, -1]) {
+            const x = m[0] + nx * sd * 15, y = m[1] + ny * sd * 15 + 4, bx = [x - w0 / 2, y - 12, w0, 15];
+            const hits = boxes.filter(o => bx[0] < o[0] + o[2] && o[0] < bx[0] + bx[2] && bx[1] < o[1] + o[3] && o[1] < bx[1] + bx[3]).length;
+            if (!best || hits < best.hits) best = {x, y, b: bx, hits};
+            if (!hits) break search;
+          }
+        }
+        boxes.push(best.b);
+        const m = [best.x, best.y - 4], nx = 0, ny = 0;
+        mk('text', {x: m[0].toFixed(1), y: (m[1] + 4).toFixed(1), 'text-anchor': 'middle', class: 'trail-t', fill: col, style: s.color ? `fill:${s.color}` : null}, sg).textContent = s.label;
+      }
+    });
+  }
+
+  // ---------- dynamic layer: rope, w arrow, traveler ring, markers ----------
+  function travelerZ() { return state.mode === 'explore' ? state.ex.z : state.cl.z; }
+  function placeMarker(m, z, show) {
+    if (!show) { m.el.style.display = 'none'; return; }
+    m.el.style.display = '';
+    const [u, w] = px(z[0], z[1]);
+    m.el.setAttribute('transform', `translate(${u.toFixed(1)},${w.toFixed(1)})`);
+    m.hit.setAttribute('r', (22 / scale).toFixed(1));
+  }
+  function renderDyn() {
+    const g = G('gDyn'); g.textContent = ''; edgeG.textContent = '';
+    const mode = state.mode, [hx, hy] = px(0, 0);
+    if (mode === 'springs') { placeMarker(mTrav, [0, 0], false); placeMarker(mW, [0, 0], false); placeMarker(mPin, [0, 0], false); return; }
+    const z = travelerZ(), [u, w] = px(z[0], z[1]);
+    const inView = u >= 8 && u <= S - 8 && w >= 8 && w <= S - 8;
+    if (state.layers.rings && C.abs(z) > 1e-9) mk('circle', {cx: hx, cy: hy, r: C.abs(z) * kOf(V()), fill: 'none', stroke: 'var(--lantern)', 'stroke-opacity': .5, 'stroke-width': 1.5, 'stroke-dasharray': '3 6'}, g);
+    if (mode === 'explore') {
+      const wz = state.ex.w, [wu, ww] = px(wz[0], wz[1]);
+      if (C.abs(wz) > 1e-9) {
+        mk('line', {x1: hx, y1: hy, x2: wu, y2: ww, stroke: 'var(--wcol)', 'stroke-width': 2.5}, g);
+        mk('path', {d: arrowHead([hx, hy], [wu, ww], 11), fill: 'var(--wcol)'}, g);
+      }
+    }
+    if (mode === 'clue' && state.cl.result && state.cl.guess) {
+      const [gu, gw] = px(...state.cl.guess), [eu, ew] = px(...state.cl.result.end);
+      mk('line', {x1: gu, y1: gw, x2: eu, y2: ew, stroke: 'var(--pin)', 'stroke-width': 2, 'stroke-dasharray': '4 4'}, g);
+    }
+    // the rope, from the harbor to the traveler
+    mk('line', {x1: hx, y1: hy, x2: u, y2: w, stroke: 'var(--lantern)', 'stroke-width': 2, 'stroke-dasharray': '2 6', 'stroke-linecap': 'round', 'stroke-opacity': .85}, g);
+    placeMarker(mW, state.ex.w, mode === 'explore');
+    placeMarker(mPin, state.cl.guess || [0, 0], mode === 'clue' && !!state.cl.guess);
+    if (state.cl.guess) { const pu = px(...state.cl.guess)[0], t = mPin.el.querySelector('.pinlbl'), l = pu > S - 70; t.setAttribute('x', l ? -13 : 13); t.setAttribute('text-anchor', l ? 'end' : 'start'); }
+    if (inView) placeMarker(mTrav, z, true);
+    else {
+      placeMarker(mTrav, z, false);
+      // pin to the edge along the ray from the view center
+      const cu = HALF, cw = HALF, du = u - cu, dw = w - cw, m = 26, t = Math.min((HALF - m) / Math.abs(du || 1e-9), (HALF - m) / Math.abs(dw || 1e-9));
+      const eu = cu + du * t, ew = cw + dw * t, a = Math.atan2(dw, du);
+      const tip = [eu + Math.cos(a) * 20, ew + Math.sin(a) * 20];
+      mk('circle', {cx: eu, cy: ew, r: 9, fill: 'var(--lantern)', stroke: '#3a2400', 'stroke-width': 2}, edgeG);
+      mk('line', {x1: eu, y1: ew, x2: tip[0], y2: tip[1], stroke: 'var(--lantern)', 'stroke-width': 3}, edgeG);
+      mk('path', {d: arrowHead([eu, ew], tip, 10), fill: 'var(--lantern)'}, edgeG);
+      const side = eu < 60 ? 'l' : eu > S - 60 ? 'r' : ew < 60 ? 't' : 'b';
+      const pos = {l: [eu + 4, ew - 18, 'start'], r: [eu - 4, ew - 18, 'end'], t: [Math.min(Math.max(eu, 110), S - 110), ew + 34, 'middle'], b: [Math.min(Math.max(eu, 110), S - 110), ew - 22, 'middle']}[side];
+      mk('text', {x: pos[0], y: pos[1], 'text-anchor': pos[2], class: 'mk-t', fill: 'var(--lantern)'}, edgeG).textContent = `z = ${cfmt(z)}, off the chart`;
+    }
+    const at = landAt(z);
+    mTrav.el.setAttribute('aria-valuetext', `z = ${cfmt(z)}${at ? ', at ' + the(at) : ''}`);
+    mW.el.setAttribute('aria-valuetext', `w = ${cfmt(state.ex.w)}`);
+    if (state.cl.guess) mPin.el.setAttribute('aria-valuetext', `guess = ${cfmt(state.cl.guess)}`);
+    mTrav.el.setAttribute('tabindex', mode === 'explore' ? 0 : -1);
+    mTrav.el.style.cursor = mode === 'explore' ? '' : 'crosshair';
+    mTrav.el.style.pointerEvents = mode === 'explore' ? '' : 'none';
+  }
+  function render() { renderStatic(); renderTrail(); renderDyn(); if (state.mode === 'springs') renderSprings(); }
+
+  // ---------- zoom and pan ----------
+  function viewFits(v, pts) {
+    const m = v.h * .92;
+    return pts.every(p => Math.abs(p[0] - v.x) <= m && Math.abs(p[1] - v.y) <= m);
+  }
+  function viewFor(pts) {
+    const v = V();
+    if (viewFits(v, pts)) return null;
+    const i0 = LEVELS.findIndex(h => h >= v.h - 1e-9);
+    for (let i = Math.max(0, i0); i < LEVELS.length; i++) if (viewFits({x: v.x, y: v.y, h: LEVELS[i]}, pts)) return {x: v.x, y: v.y, h: LEVELS[i]};
+    for (let i = Math.max(0, i0); i < LEVELS.length; i++) if (viewFits({x: 0, y: 0, h: LEVELS[i]}, pts)) return {x: 0, y: 0, h: LEVELS[i]};
+    return {x: 0, y: 0, h: 50};
+  }
+  async function goView(t, ms = 380) {
+    const v = V(), a = {...v};
+    if (Curio.reduce || !ms) { Object.assign(v, t); render(); return; }
+    await animate(ms, e => { v.x = a.x + (t.x - a.x) * e; v.y = a.y + (t.y - a.y) * e; v.h = a.h * Math.pow(t.h / a.h, e); render(); });
+    Object.assign(v, t); render();
+  }
+  function zoomStep(dir, at) {
+    const v = V();
+    let i = LEVELS.findIndex(h => Math.abs(h - v.h) < 1e-6);
+    if (i < 0) i = LEVELS.findIndex(h => h > v.h);
+    const j = Math.min(LEVELS.length - 1, Math.max(0, i + dir));
+    if (j === i) return;
+    const h = LEVELS[j], t = {x: v.x, y: v.y, h};
+    if (at) { t.x = at[0] - (at[0] - v.x) * h / v.h; t.y = at[1] - (at[1] - v.y) * h / v.h; }
+    if (h >= 50 && !at) { t.x = 0; t.y = 0; }
+    goView(t, 220);
+  }
+  $('zin').onclick = () => zoomStep(-1); $('zout').onclick = () => zoomStep(1);
+  $('zfit').onclick = () => { if (state.mode === 'springs') return goView(springView(), 300); goView(fitView(), 300); };
+  let wheelT = 0;
+  svg.addEventListener('wheel', e => {
+    e.preventDefault();
+    const now = performance.now(); if (now - wheelT < 180) return; wheelT = now;
+    zoomStep(e.deltaY > 0 ? 1 : -1, evData(e));
+  }, {passive: false});
+  // pan by dragging empty map; pinch to zoom; a plain click drops the guess pin in Clue Trail
+  const ptrs = new Map(); let pan = null, pinch = null;
+  svg.addEventListener('pointerdown', e => {
+    if (e.button) return;
+    try { svg.setPointerCapture(e.pointerId); } catch {}
+    ptrs.set(e.pointerId, [e.clientX, e.clientY]);
+    if (ptrs.size === 2) { const [a, b] = [...ptrs.values()]; pinch = {d: Math.hypot(a[0] - b[0], a[1] - b[1])}; pan = null; return; }
+    const v = V(); pan = {cx: e.clientX, cy: e.clientY, v: {...v}, moved: false, at: evData(e)};
+  });
+  svg.addEventListener('pointermove', e => {
+    if (!ptrs.has(e.pointerId)) return;
+    ptrs.set(e.pointerId, [e.clientX, e.clientY]);
+    if (pinch && ptrs.size === 2) {
+      const [a, b] = [...ptrs.values()], d = Math.hypot(a[0] - b[0], a[1] - b[1]);
+      if (d / pinch.d > 1.3) { zoomStep(-1); pinch.d = d; } else if (d / pinch.d < .77) { zoomStep(1); pinch.d = d; }
+      return;
+    }
+    if (!pan) return;
+    const du = e.clientX - pan.cx, dv = e.clientY - pan.cy;
+    if (!pan.moved && Math.hypot(du, dv) < 5) return;
+    pan.moved = true;
+    const k = kOf(pan.v) * scale, v = V();
+    v.x = Math.max(-60, Math.min(60, pan.v.x - du / k)); v.y = Math.max(-60, Math.min(60, pan.v.y + dv / k));
+    render();
+  });
+  const ptrEnd = e => {
+    ptrs.delete(e.pointerId);
+    if (ptrs.size < 2) pinch = null;
+    if (pan && !pan.moved && e.type === 'pointerup' && state.mode === 'clue' && !state.cl.walking) dropGuess(snapZ(clampView(pan.at)), true);
+    pan = null;
+  };
+  svg.addEventListener('pointerup', ptrEnd); svg.addEventListener('pointercancel', ptrEnd);
+
+  // ---------- one operation: where it lands, the path it travels, its worked lines ----------
+  const OPLABEL = {i: '× i', neg: '× (−1)', negi: '× (−i)', conj: 'Reflect', sq: 'Square it', add: '+ w', mul: '× w'};
+  const HARBOR_NOTE = '0 times anything is 0. The harbor turns in place.';
+  const FAR_NOTE = 'Too far out to chart. Try Undo, Reflect or Reset.';
+  function compute(kind, z, w) {
+    const r0 = C.abs(z), th0 = C.arg(z), out = {kind, label: OPLABEL[kind], lines: [], note: ''};
+    const arc = turn => t => C.polar(r0, th0 + turn * t);
+    const line = (a, b) => t => [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t];
+    const spiral = (turn, r1) => t => C.polar(r0 * Math.pow(r1 / r0, t), th0 + turn * t);
+    const atHarbor = r0 < 1e-9 && ['i', 'neg', 'negi', 'sq', 'mul'].includes(kind);
+    if (kind === 'i') { out.z1 = C.mul(z, [0, 1]); out.path = arc(Math.PI / 2); out.lines.push(atHarbor ? '0 × i = 0' : mulLine(z, [0, 1], `${paren(z)} × i`)); }
+    if (kind === 'negi') { out.z1 = C.mul(z, [0, -1]); out.path = arc(-Math.PI / 2); out.lines.push(atHarbor ? '0 × (−i) = 0' : mulLine(z, [0, -1], `${paren(z)} × (−i)`)); }
+    if (kind === 'neg') { out.z1 = [-z[0], -z[1]]; out.path = arc(Math.PI); out.lines.push(`${paren(z)} × (−1) = ${cfmt(out.z1)}`); }
+    if (kind === 'conj') { out.z1 = C.conj(z); out.path = line(z, out.z1); out.lines.push(`conjugate of ${paren(z)} = ${cfmt(out.z1)} (mirror across the Real Road)`); }
+    if (kind === 'sq') {
+      out.z1 = C.mul(z, z);
+      if (C.abs(out.z1) < .005) out.z1 = [0, 0];
+      const turn = ((th0 % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
+      out.path = C.abs(out.z1) < 1e-9 ? line(z, [0, 0]) : spiral(turn, C.abs(out.z1));
+      out.lines.push(atHarbor ? '0² = 0' : sqLine(z));
+    }
+    if (kind === 'add') { out.z1 = C.add(z, w); out.path = line(z, out.z1); out.lines.push(`${paren(z)} + ${paren(w)} = ${cfmt(C.round(out.z1))} (${walkTxt(w)})`); out.color = 'var(--wcol)'; }
+    if (kind === 'mul') {
+      out.z1 = C.mul(z, w);
+      const rw = C.abs(w);
+      out.path = rw < 1e-9 ? line(z, [0, 0]) : spiral(C.arg(w), r0 * rw);
+      if (atHarbor) out.lines.push(`0 × ${paren(w)} = 0`);
+      else {
+        out.lines.push(mulLine(z, w, `(${cfmt(z)})(${cfmt(w)})`));
+        out.lines.push(rw < 1e-9 ? 'w is 0, so the product is 0.' : `Turned by ${degTxt(degSigned(C.arg(w)))}° and stretched by ${num(rw)}`);
+      }
+      if (rw < 1e-9) out.note = HARBOR_NOTE;
+    }
+    out.z1 = C.round(out.z1);
+    if (atHarbor) { out.z1 = [0, 0]; out.path = null; out.note = HARBOR_NOTE; }
+    if (C.abs(out.z1) > 10000) { out.refuse = true; out.note = FAR_NOTE; }
+    return out;
+  }
+  // travel: animate along the path (900 ms), or jump and leave the same path dashed when Motion is off
+  async function travel(res, trail, setZ) {
+    const z0 = travelerZ();
+    const t = viewFor([z0, res.z1]);
+    if (t) await goView(t);
+    if (!res.path) { setZ(res.z1); render(); return; }
+    const pts = []; for (let i = 0; i <= 80; i++) pts.push(i === 80 ? res.z1 : res.path(i / 80));
+    const seg = addSeg(trail, {pts, label: res.label, color: res.color, dashed: Curio.reduce, ghost: res.kind === 'add'});
+    if (Curio.reduce) { setZ(res.z1); render(); return; }
+    seg.t = 0;
+    await animate(900, e => { seg.t = e; setZ(e >= 1 ? res.z1 : res.path(e)); renderTrail(); renderDyn(); if (state.mode === 'explore') renderExplore(); });
+    seg.t = null; setZ(res.z1); render();
+  }
+  function setBusy(b) {
+    state.busy = b;
+    document.querySelectorAll('#ops .btn, #undo, #reset').forEach(x => { x.disabled = b; });
+  }
+
+  // ======================================================================================
+  // Explore
+  // ======================================================================================
+  const ex = state.ex;
+  let exAnim = false;   // an Explore move still running (it finishes even if the mode changes)
+  function pushUndo() { ex.undo.push({z: [...ex.z], w: [...ex.w], trail: ex.trail.map(s => ({...s}))}); if (ex.undo.length > 50) ex.undo.shift(); }
+  async function op(kind) {
+    if (state.busy || exAnim || state.mode !== 'explore') return;
+    const res = compute(kind, ex.z, ex.w);
+    ex.note = res.note;
+    if (res.refuse) { renderExplore(); return; }
+    pushUndo();
+    ex.worked = res.lines;
+    ex.run = kind === 'i' ? ex.run + 1 : 0;
+    renderExplore();
+    if (kind === 'i') { voice('timesI'); if (ex.run === 2) voice('iSquared'); if (ex.run === 4) voice('iFourth'); }
+    if (kind === 'add') voice('plusW'); if (kind === 'mul') voice('timesW'); if (kind === 'conj') voice('reflect');
+    setBusy(true); exAnim = true;
+    if (document.body.classList.contains('compact')) $('worked').closest('section').scrollIntoView({block: 'nearest'});
+    try { await travel(res, ex.trail, z => { ex.z = z; }); } finally { exAnim = false; if (state.mode === 'explore') setBusy(false); }
+    renderExplore();
+  }
+  document.querySelectorAll('#ops .btn').forEach(b => b.onclick = () => op(b.dataset.op));
+  $('undo').onclick = () => {
+    if (state.busy || !ex.undo.length) return;
+    const u = ex.undo.pop(); ex.z = u.z; ex.w = u.w; ex.trail.length = 0; ex.trail.push(...u.trail);
+    ex.run = 0; ex.note = ''; ex.worked = [];
+    render(); renderExplore();
+  };
+  $('reset').onclick = () => {
+    if (state.busy) return;
+    ex.z = [1, 0]; ex.w = [1, 1]; ex.trail.length = 0; ex.run = 0; ex.worked = []; ex.note = ''; ex.undo = [];
+    state.views.explore = fitView(); render(); renderExplore();
+  };
+  dragify(mTrav, () => ex.z, z => { ex.z = z; ex.run = 0; renderDyn(); renderExplore(); },
+    from => { const z = ex.z; ex.z = from; pushUndo(); ex.z = z; ex.run = 0; ex.note = ''; renderExplore(); voice('roads'); }, () => state.mode === 'explore');
+  dragify(mW, () => ex.w, z => { ex.w = z; ex.run = 0; renderDyn(); renderExplore(); },
+    from => { const w = ex.w; ex.w = from; pushUndo(); ex.w = w; ex.run = 0; renderExplore(); }, () => state.mode === 'explore');
+  // a worked line wraps only between its steps, never inside a number
+  const workedHTML = t => '<div>' + t.replace(/&/g, '&amp;').replace(/</g, '&lt;')
+    .replace(/([0-9i²)]) ([+−±]) (?=[0-9i(√])/g, '$1\u00a0$2\u00a0') + '</div>';
+  function renderExplore() {
+    const z = ex.z, w = ex.w, at = landAt(z);
+    $('rZ').textContent = `Traveler z = ${cfmt(z)}`;
+    $('rAbs').textContent = `Distance from harbor |z| = ${num(C.abs(z))}`;
+    $('rHead').textContent = C.abs(z) < 1e-9 ? 'Heading: none (you are at the harbor)' : `Heading ${headingTxt(z)}`;
+    $('rAt').textContent = at ? `You are at ${the(at)}` : '';
+    $('rW').textContent = `w = ${cfmt(w)}, |w| = ${num(C.abs(w))}, heading ${C.abs(w) < 1e-9 ? 'none' : headingTxt(w)}`;
+    $('worked').innerHTML = ex.worked.map(workedHTML).join('');
+    $('exNote').textContent = ex.note;
+    const n = ex.run, m = n ? ((n - 1) % 4) + 1 : 0, VAL = {1: 'i', 2: '−1', 3: '−i', 4: '1'};
+    document.querySelectorAll('#dial div').forEach(d => d.classList.toggle('on', +d.dataset.k === m));
+    $('dialMsg').textContent = !n ? 'Press × i a few times in a row.' :
+      n === 1 ? '× i pressed once: i¹ = i' : `× i pressed ${n} times in a row: i${sup(n)}${n > 4 ? ' = i' + sup(m) : ''} = ${VAL[m]}`;
+    $('undo').disabled = state.busy || !ex.undo.length;
+  }
+
+  // ======================================================================================
+  // Clue Trail
+  // ======================================================================================
+  const CLUES = [
+    {start: [1, 0], steps: [{k: 'i'}]},
+    {start: [1, 0], steps: [{k: 'i'}, {k: 'i', again: true}]},
+    {start: [3, 2], steps: [{k: 'i'}]},
+    {start: [3, 2], steps: [{k: 'neg'}]},
+    {start: [4, 1], steps: [{k: 'negi'}]},
+    {start: [-2, 3], steps: [{k: 'add', w: [6, -2]}]},
+    {start: [1, 1], steps: [{k: 'sq'}]},
+    {start: [0, 2], steps: [{k: 'sq'}]},
+    {start: [4, 1], steps: [{k: 'mul', w: [1, -1]}]},
+    {start: [-3, -2], steps: [{k: 'conj'}]},
+    {start: [3, 2], steps: [{k: 'mul', w: [3, -2], conj: true}], after: 'A number times its conjugate is always real: its distance squared.'},
+    {start: [-1, 4], steps: [{k: 'i'}, {k: 'i'}, {k: 'i'}, {k: 'i'}], four: true, after: 'Four quarter turns is a full circle.'},
+  ];
+  const stepText = s => ({i: 'Multiply by i', neg: 'Multiply by −1', negi: 'Multiply by −i', conj: 'Reflect across the Real Road', sq: 'Square it',
+    add: `Add ${s.w && cfmt(s.w)}`, mul: s.conj ? `Multiply by its conjugate, ${s.w && cfmt(s.w)}` : `Multiply by ${s.w && cfmt(s.w)}`})[s.k];
+  function clueText(c) {
+    const lm = landAt(c.start);
+    let body;
+    if (c.four) body = 'Multiply by i four times.';
+    else if (c.steps.length === 2) body = 'Multiply by i, then multiply by i again.';
+    else body = stepText(c.steps[0]) + '.';
+    return `Start at ${the(lm)}. ${body} Where do you end up?`;
+  }
+  const clueEnd = c => c.steps.reduce((z, s) => compute(s.k, z, s.w).z1, c.start);
+  const cl = state.cl;
+  function setClue(i) {
+    cl.walkGen++; cl.walking = false; setBusy(false);
+    cl.i = (i + CLUES.length) % CLUES.length;
+    Object.assign(state.views.clue, fitView());
+    const c = CLUES[cl.i];
+    cl.z = [...c.start]; cl.guess = null; cl.trail = []; cl.result = null; cl.after = ''; cl.arith = false; cl.lines = [];
+    render(); renderClue();
+  }
+  function dropGuess(z, focus) {
+    if (cl.walking) return;
+    cl.guess = z; cl.result = null; cl.after = '';
+    renderDyn(); renderClue();
+    if (focus) setTimeout(() => mPin.el.focus());
+  }
+  dragify(mPin, () => cl.guess, z => { cl.guess = z; cl.result = null; renderDyn(); renderClue(); }, () => {});
+  async function walk() {
+    if (!cl.guess || cl.walking) return;
+    const c = CLUES[cl.i], g0 = ++cl.walkGen;
+    cl.walking = true; cl.result = null; cl.after = ''; cl.trail = []; cl.z = [...c.start]; cl.lines = [];
+    setBusy(true); render(); renderClue();
+    for (const s of c.steps) {
+      if (g0 !== cl.walkGen) return;
+      const res = compute(s.k, cl.z, s.w);
+      cl.lines.push(res.lines);
+      renderClue();
+      await travel(res, cl.trail, z => { if (g0 === cl.walkGen) cl.z = z; });
+      if (g0 !== cl.walkGen) return;
+      if (!Curio.reduce) await new Promise(r => setTimeout(r, 250));
+    }
+    const end = clueEnd(c), d = C.abs(C.add(cl.guess, [-end[0], -end[1]])), landed = d <= .25 + 1e-9;
+    cl.result = {end, d, landed};
+    if (!cl.tally.has(cl.i)) cl.tally.set(cl.i, landed);
+    cl.after = c.after || '';
+    cl.walking = false; setBusy(false);
+    render(); renderClue();
+    if (landed) Curio.yes();
+    if (cl.i === 10) voice('conjugate');
+  }
+  $('walk').onclick = walk;
+  $('prevClue').onclick = () => setClue(cl.i - 1);
+  $('nextClue').onclick = () => setClue(cl.i + 1);
+  $('showArith').onclick = () => {
+    cl.arith = !cl.arith;
+    if (cl.arith && !cl.walking) {
+      const c = CLUES[cl.i]; let z = c.start; cl.lines = [];
+      for (const s of c.steps) { const r = compute(s.k, z, s.w); cl.lines.push(r.lines); z = r.z1; }
+    }
+    renderClue();
+  };
+  function renderClue() {
+    const c = CLUES[cl.i];
+    $('cNum').textContent = `Clue ${cl.i + 1} of ${CLUES.length}`;
+    $('cText').textContent = clueText(c);
+    $('cStart').textContent = `Start: ${cfmt(c.start)}`;
+    const ol = $('cSteps'); ol.textContent = '';
+    const showLines = cl.arith || cl.walking || cl.result;
+    c.steps.forEach((s, i) => {
+      const li = document.createElement('li'); li.textContent = stepText(s);
+      if (showLines && cl.lines[i]) cl.lines[i].forEach(t => { const d = document.createElement('div'); d.className = 'worked'; d.innerHTML = workedHTML(t); li.appendChild(d); });
+      ol.appendChild(li);
+    });
+    const r = cl.result;
+    if (r) {
+      const lm = landAt(r.end), where = `The trail ends at ${cfmt(r.end)}${lm ? ', ' + the(lm) : ''}.`;
+      $('cResult').innerHTML = r.landed ? `Your guess was ${num(r.d)} away. <b>Landed it.</b> ${where}` : `Your guess was ${num(r.d)} away. ${where}`;
+    } else $('cResult').textContent = cl.walking ? 'Walking the trail...' : '';
+    $('cAfter').textContent = r ? cl.after : '';
+    const tried = cl.tally.size, landed = [...cl.tally.values()].filter(Boolean).length;
+    $('cTally').textContent = tried ? `Landed ${landed} of ${tried} tried` : 'No clues tried yet.';
+    $('walk').disabled = !cl.guess || cl.walking;
+    $('walk').textContent = r ? 'Walk it again' : 'Walk it';
+    $('showArith').setAttribute('aria-expanded', cl.arith);
+    $('showArith').textContent = cl.arith ? 'Hide the arithmetic' : 'Show the arithmetic';
+  }
+
+  // ======================================================================================
+  // Springs: the solutions of x² + bx + c = 0 on the map; the inset parabola uses kit/graphing.js
+  // ======================================================================================
+  const sp = state.sp;
+  const PRESETS = [[0, -4], [-2, 1], [0, 1], [0, 4], [-2, 2], [6, 13]];
+  function polyTxt(b, c) {
+    let s = 'x²';
+    if (r2(b)) s += (b < 0 ? ' − ' : ' + ') + (Math.abs(b) === 1 ? '' : num(Math.abs(b))) + 'x';
+    if (r2(c)) s += (c < 0 ? ' − ' : ' + ') + num(Math.abs(c));
+    return s + ' = 0';
+  }
+  const discOf = (b, c) => { const d = b * b - 4 * c; return Math.abs(d) < 1e-9 ? 0 : d; };
+  function rootsOf(b, c) {
+    const d = discOf(b, c), m = -b / 2;
+    if (d >= 0) { const s = Math.sqrt(d) / 2; return [[m + s, 0], [m - s, 0]]; }
+    const s = Math.sqrt(-d) / 2; return [[m, s], [m, -s]];
+  }
+  const springView = () => {
+    const pts = rootsOf(sp.b, sp.c);
+    for (const h of LEVELS) if (h >= 7 && viewFits({x: 0, y: 0, h}, pts)) return {x: 0, y: 0, h};
+    return {x: 0, y: 0, h: 50};
+  };
+  // inset: y = x² + bx + c, x from -8 to 8, y from -10 to 20
+  const insetG = mk('g', {transform: 'translate(12,12)'}, G('gInset'));
+  mk('rect', {width: 214, height: 196, rx: 8, fill: '#09111c', 'fill-opacity': .94, stroke: '#62789a', 'stroke-width': 1.2}, insetG);
+  const insetT = mk('text', {x: 12, y: 22, class: 'mk-t', fill: '#e8edf3', style: 'font-size:13px'}, insetG);
+  const gp = Plane(insetG, {x: [-8, 8], y: [-10, 20], width: 190, height: 150, grid: [2, 5], labels: [4, 10], left: 12, top: 34, ticks: 'axis'});
+  function renderSprings() {
+    const b = sp.sb, c = sp.sc, rs = rootsOf(b, c), d = discOf(b, c);
+    // road highlight and spring line
+    const g = G('gSpring'); g.textContent = '';
+    const [, oy] = px(0, 0), [lx] = px(-b / 2, 0);
+    if (oy > -10 && oy < S + 10) mk('rect', {x: 0, y: oy - 5, width: S, height: 10, fill: 'var(--brand)', 'fill-opacity': .28}, g);
+    mk('line', {x1: lx, x2: lx, y1: 0, y2: S, stroke: '#9fd8ee', 'stroke-opacity': .45, 'stroke-width': 1.5, 'stroke-dasharray': '2 6'}, g);
+    mk('text', {x: lx + 6, y: S - 14, class: 'small-t'}, g).textContent = `spring line, real part ${num(-b / 2)}`;
+    const dbl = d === 0, gm = G('gSpringM'); gm.textContent = '';
+    boxes = boxes.slice(0, staticBoxes); const covered = [];
+    boxes.push(INSET);
+    rs.forEach((r, i) => {
+      if (dbl && i === 1) return;
+      const [u, w] = px(r[0], r[1]);
+      const k = mk('g', {transform: `translate(${u.toFixed(1)},${w.toFixed(1)})`}, gm);
+      mk('path', {d: 'M0,-17C6,-9 11,-4 11,2A11,11 0 0,1 -11,2C-11,-4 -6,-9 0,-17Z', transform: 'translate(0,4)', fill: 'var(--spring)', stroke: '#06121f', 'stroke-width': 2.5}, k);
+      mk('path', {d: 'M-4,2a4,4 0 0,0 3,4', fill: 'none', stroke: '#e6f3ff', 'stroke-width': 1.5, 'stroke-linecap': 'round'}, k);
+      const lm = landAt(r), name = (dbl ? 'r1 = r2 = ' : `r${i + 1} = `) + cfmt(r) + (lm ? `, ${the(lm)}` : '');
+      const ts = TS(), wd = name.length * 8.4 * ts + 10, hh = 20 * ts;
+      // r1 prefers above (or right), r2 below (or left); take the first spot clear of other text, else the least covered
+      const up = i === 0 || d >= 0, prefs = [];
+      for (const dy of up ? [-14, -36, 30, 52, -58, 74, -80, 96] : [30, 52, -14, -36, 74, -58, 96, -80]) for (const sd of (d > 0 && i === 1) ? [-1, 1] : [1, -1]) for (const ex of [0, 30, 70]) prefs.push([sd, dy * ts, ex]);
+      let best = null;
+      const area = (a, o) => Math.max(0, Math.min(a[0] + a[2], o[0] + o[2]) - Math.max(a[0], o[0])) * Math.max(0, Math.min(a[1] + a[3], o[1] + o[3]) - Math.max(a[1], o[1]));
+      for (const [sd, dy, ex] of prefs) {
+        const bx = [u + (sd > 0 ? 11 + ex : -11 - wd - ex), w + dy - 14 * ts, wd, hh];
+        if (bx[0] < 2 || bx[0] + wd > S - 2 || bx[1] < 2 || bx[1] + hh > S - 2) continue;
+        // never under the inset; otherwise the fewest other labels touched
+        const n = (overlap(bx, INSET) ? 1e9 : 0) + boxes.reduce((t, o) => t + (o === INSET ? 0 : area(bx, o)), 0) + Math.abs(dy) * .5 + ex;   // covered pixels, then closeness
+        if (!best || n < best.n) best = {sd, dy, bx, n};
+      }
+      if (!best) best = {sd: 1, dy: -14 * ts, bx: [u + 11, w - 28 * ts, wd, hh]};
+      boxes.push(best.bx, [u - 12, w - 16, 24, 30]);
+      covered.push(best.bx, [u - 12, w - 16, 24, 30]);
+      // a label set away from its drop gets a thin leader line back to it
+      const nx = Math.max(best.bx[0], Math.min(u, best.bx[0] + wd)) - u, ny = Math.max(best.bx[1], Math.min(w, best.bx[1] + hh)) - w, dist = Math.hypot(nx, ny);
+      if (dist > 18) mk('line', {x1: nx * 13 / dist, y1: ny * 13 / dist, x2: nx, y2: ny, stroke: 'var(--spring)', 'stroke-width': 1.5, 'stroke-opacity': .8}, k);
+      mk('rect', {x: best.bx[0] - u, y: best.bx[1] - w, width: wd, height: hh, rx: 5, fill: '#07101c', 'fill-opacity': .9, stroke: 'var(--spring)', 'stroke-opacity': .5}, k);
+      const t = mk('text', {x: best.bx[0] - u + 5, y: best.bx[1] - w + hh - 6 * ts, class: 'mk-t', fill: 'var(--spring)'}, k);
+      t.textContent = name;
+    });
+    // a landmark name under a spring or its label is dimmed, so the two never read as one
+    for (const el of G('gLand').querySelectorAll('text[data-name]')) {
+      const b0 = lblBox[el.dataset.name];
+      el.style.opacity = b0 && covered.some(o => b0[0] < o[0] + o[2] && o[0] < b0[0] + b0[2] && b0[1] < o[1] + o[3] && o[1] < b0[1] + b0[3]) ? .28 : '';
+    }
+    // inset
+    insetT.textContent = 'y = ' + polyTxt(b, c).replace(' = 0', '');
+    gp.clear();
+    const f = x => x * x + b * x + c;
+    gp.fn(f, {color: 1, width: 2.5, label: 'y = ' + polyTxt(b, c).replace(' = 0', '')});
+    for (const x of gp.roots(f, [-8, 8])) gp.point(x, 0, {r: 4.5, color: 'var(--brand)', ariaLabel: `crosses the x-axis at ${num(x)}`});
+  }
+  function renderSpringsPanel() {
+    const b = sp.b, c = sp.c, d = discOf(b, c), rs = rootsOf(b, c);
+    $('sEq').textContent = polyTxt(b, c);
+    $('sDisc').textContent = `b² − 4c = ${num(b * b)} ${4 * c < 0 ? '+' : '−'} ${num(Math.abs(4 * c))} = ${num(d)}`;
+    $('sStatus').textContent = d > 0 ? 'Two real solutions: both springs sit on the Real Road.' :
+      d === 0 ? 'One repeated solution: the springs meet at -b/2.' :
+      'No real solutions. The parabola misses the x-axis, so the springs leave the road as a conjugate pair.';
+    $('sStatus').className = 'status';
+    $('sRoots').textContent = d === 0 ? `r1 = r2 = ${cfmt(rs[0])}` : `r1 = ${cfmt(rs[0])}, r2 = ${cfmt(rs[1])}`;
+    // the quadratic formula, worked
+    const nb = num(-b), under = `${num(b * b)} ${4 * c < 0 ? '+' : '−'} ${num(Math.abs(4 * c))}`, m = -b / 2, s = Math.sqrt(Math.abs(d));
+    const parts = [`x = (${nb} ± √(${under})) / 2`];
+    if (d === 0) parts.push(`(${nb} ± 0) / 2`, `${num(m)} (twice)`);
+    else if (d > 0) parts.push(`(${nb} ± √${num(d)}) / 2`, `(${nb} ± ${num(s)}) / 2`, `${num(m)} ± ${num(s / 2)}, so x = ${num(rs[0][0])} or x = ${num(rs[1][0])}`);
+    else parts.push(`(${nb} ± √(${num(d)})) / 2`, `(${nb} ± ${imagTerm(s)}) / 2`, (r2(m) === 0 ? '±' : num(m) + ' ± ') + imagTerm(s / 2));
+    const dedup = parts.filter((p, i) => i === 0 || p !== parts[i - 1]);
+    $('sFormula').textContent = dedup.join(' = ');
+  }
+  const snapHalf = v => Math.round(v * 2) / 2;
+  const bS = Plane.slider($('bSlot'), {label: 'b', min: -6, max: 6, step: .5, value: sp.b, id: 'bRange', format: v => num(v),
+    parse: t => { const n = parseFloat(String(t).replace('−', '-')); return isFinite(n) ? Math.max(-6, Math.min(6, snapHalf(n))) : null; },
+    onInput: v => setSprings(v, sp.c)});
+  const cS = Plane.slider($('cSlot'), {label: 'c', min: -4, max: 13, step: .5, value: sp.c, id: 'cRange', format: v => num(v),
+    parse: t => { const n = parseFloat(String(t).replace('−', '-')); return isFinite(n) ? Math.max(-4, Math.min(13, snapHalf(n))) : null; },
+    onInput: v => setSprings(sp.b, v)});
+  function setSprings(b, c, ms = 260) {
+    sp.b = snapHalf(b); sp.c = snapHalf(c);
+    bS.set(sp.b, true); cS.set(sp.c, true);
+    renderSpringsPanel();
+    if (discOf(sp.b, sp.c) < 0) voice('leave');
+    const t = springView(), v = state.views.springs;
+    if (t.h !== v.h || v.x || v.y) Object.assign(v, t);
+    const g0 = ++sp.glide, b0 = sp.sb, c0 = sp.sc;
+    if (Curio.reduce || state.mode !== 'springs') { sp.sb = sp.b; sp.sc = sp.c; if (state.mode === 'springs') render(); return; }
+    renderStatic();
+    // glide by easing b and c themselves, so the springs meet on the road before they split
+    animate(ms, e => { if (g0 !== sp.glide) return; sp.sb = b0 + (sp.b - b0) * e; sp.sc = c0 + (sp.c - c0) * e; renderSprings(); })
+      .then(() => { if (g0 === sp.glide) { sp.sb = sp.b; sp.sc = sp.c; renderSprings(); } });
+  }
+  PRESETS.forEach(([b, c]) => {
+    const btn = document.createElement('button'); btn.className = 'btn'; btn.textContent = polyTxt(b, c);
+    btn.onclick = () => setSprings(b, c, 700);
+    $('presets').appendChild(btn);
+  });
+  $('sReset').onclick = () => setSprings(0, -4, 500);
+
+  // ======================================================================================
+  // Layers, snap, keys, modes
+  // ======================================================================================
+  document.querySelectorAll('[data-layer]').forEach(b => b.onclick = () => {
+    const k = b.dataset.layer; state.layers[k] = !state.layers[k]; b.setAttribute('aria-pressed', state.layers[k]); hideTip(); render();
+  });
+  const showSnap = () => document.querySelectorAll('.snapBtn').forEach(b => { b.textContent = 'Snap: ' + SNAPS[state.snap].label; });
+  document.querySelectorAll('.snapBtn').forEach(b => b.onclick = () => { state.snap = (state.snap + 1) % SNAPS.length; showSnap(); });
+  svg.addEventListener('keydown', e => {
+    if (e.ctrlKey || e.metaKey || e.altKey) return;
+    const k = e.key.toLowerCase();
+    if (state.mode === 'explore') {
+      const map = {i: 'i', r: 'conj', s: 'sq', a: 'add', m: 'mul'};
+      if (map[k]) { e.preventDefault(); op(map[k]); return; }
+      if (k === 'u') { e.preventDefault(); $('undo').click(); return; }
+    }
+    if (state.mode === 'clue' && e.key === 'Enter' && e.target === svg) { e.preventDefault(); dropGuess(snapZ(CLUES[cl.i].start), true); return; }
+    if (e.target === svg) {
+      if (e.key === '+' || e.key === '=') { e.preventDefault(); zoomStep(-1); }
+      else if (e.key === '-' || e.key === '_') { e.preventDefault(); zoomStep(1); }
+    }
+  });
+  const HINTS = {
+    explore: 'Drag the lantern, then try × i a few times. Turn on Distance rings to see what stays the same.',
+    clue: 'Tap the map where you think the clue ends, then press Walk it.',
+    springs: 'Raise c slowly and watch the springs meet, then leave the road.',
+  };
+  const MAPLABEL = {
+    explore: 'Island map. The lantern is the traveler z; the diamond is the step w. Letter keys run the operations.',
+    clue: 'Island map. Click where you think the clue ends to drop a guess pin, or press Enter.',
+    springs: 'Island map showing the two springs, the solutions of the quadratic.',
+  };
+  function setMode(m) {
+    if (state.mode === 'clue' && m !== 'clue' && cl.walking) {   // a walk cut short starts over from the clue's start
+      cl.walkGen++; cl.walking = false; cl.z = [...CLUES[cl.i].start]; cl.trail = []; cl.result = null; cl.lines = []; cl.arith = false;
+    }
+    setBusy(m === 'explore' && exAnim);
+    state.mode = m; stopVoice(); hideTip();
+    for (const k of ['explore', 'clue', 'springs']) $('m-' + k).setAttribute('aria-pressed', k === m);
+    $('pExplore').hidden = m !== 'explore'; $('pClue').hidden = m !== 'clue'; $('pSprings').hidden = m !== 'springs';
+    $('hint').textContent = HINTS[m];
+    svg.setAttribute('aria-label', MAPLABEL[m]);
+    G('gInset').style.display = m === 'springs' ? '' : 'none';
+    G('gSpring').textContent = ''; G('gSpringM').textContent = '';
+    if (m === 'clue') { if (!cl.z) setClue(cl.i); else if (cl.walking === false && cl.lines.length && !cl.result && !cl.arith) cl.lines = []; }
+    if (m === 'springs') { sp.sb = sp.b; sp.sc = sp.c; Object.assign(state.views.springs, springView()); renderSpringsPanel(); }
+    render();
+    if (m === 'explore') renderExplore();
+    if (m === 'clue') renderClue();
+    voice(ENTRY[m]);
+  }
+  for (const k of ['explore', 'clue', 'springs']) $('m-' + k).onclick = () => setMode(k);
+
+  // every line the tool can say, so the voice scripts can record them (window.__tool.allLines())
+  const allLines = () => [...new Set(Object.values(L))];
+
+  Curio.init({clips: "voice:*", rate: .95, readFallback: () => $('hint').textContent});
+  // Read speaks the current mode's hint (with the symbols said as words)
+  $('read').onclick = () => say(HINTS[state.mode].replace(/× i/g, 'times i'), true);
+  Curio.fit('stage', 'scene', 700, 700);
+  const COMPACT = matchMedia('(min-width: 600px) and (max-width: 899px) and (min-aspect-ratio: 5/4), (min-width: 900px) and (max-height: 600px) and (min-aspect-ratio: 5/4)');
+  const tools = document.querySelector('.maptools');
+  function layout() {
+    document.body.classList.toggle('compact', COMPACT.matches);
+    if (COMPACT.matches) $('panel').insertBefore(tools, $('hint')); else document.querySelector('.mapcol').appendChild(tools);
+  }
+  COMPACT.addEventListener('change', layout); layout();
+  new ResizeObserver(() => {
+    scale = parseFloat($('scene').style.getPropertyValue('--s')) || 1;
+    // map text grows a little when the stage is scaled down, so labels stay readable in a small iframe
+    svg.style.setProperty('--ts', Math.min(1.5, Math.max(1, .85 / scale)).toFixed(3));
+    render();
+  }).observe($('stage'));
+  showSnap();
+  // for checking frames
+  window.__tool = {state, setMode, allLines, op, compute, cfmt, CLUES, clueEnd, setClue, walk, dropGuess, setSprings, render, goView, zoomStep,
+    setZ(x, y) { ex.z = [x, y]; ex.run = 0; render(); renderExplore(); },
+    setW(x, y) { ex.w = [x, y]; render(); renderExplore(); },
+    layer(k, on) { state.layers[k] = on; document.querySelector(`[data-layer="${k}"]`).setAttribute('aria-pressed', on); render(); },
+    showTip: name => showTip(LANDMARKS.find(l => l.name === name)), landAt, heardNow() { heard = true; }};
+  setMode('explore');
+})();
+</script>
+</body>
+</html>
