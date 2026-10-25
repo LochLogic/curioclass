@@ -1,0 +1,24 @@
+{
+  "id": "ferris-wheel",
+  "status": "beta",
+  "stage": "built",
+  "hook": "Ride a Ferris wheel and your height draws a sine wave. Drag the car or the graph and the other follows, so radius, hub height, speed and boarding point become amplitude, midline, period and phase.",
+  "outcome": "Model periodic motion with a sinusoid, reading amplitude, midline, period and phase from a wheel; see radians as arc length on the unit circle and check that sin squared plus cos squared equals 1",
+  "driver": "students",
+  "minutes": "15-30",
+  "modes": ["Ride", "Unit Circle", "Real Wheels", "Match"],
+  "grades_label": "Grade 11",
+  "sources": [
+    "Wikipedia, Ferris Wheel (1893): height 80.4 m (264 ft), 36 cars, up to 60 people each, nine-minute nonstop rotation, opened June 21, 1893: https://en.wikipedia.org/wiki/Ferris_Wheel_(1893)",
+    "Guinness World Records, First Ferris wheel: 80 m (264 ft) tall, 76 m (250 ft) diameter: https://www.guinnessworldrecords.com/world-records/first-ferris-wheel/",
+    "JSTOR Daily, The Big Wheel: 250 feet in diameter (second source for the 1893 diameter, checked 2026-10-25): https://daily.jstor.org/the-big-wheel/",
+    "Wikipedia, London Eye: 135 m tall, 120 m diameter, 32 capsules, about 30 minutes per turn, public opening March 2000: https://en.wikipedia.org/wiki/London_Eye",
+    "Wikipedia, Singapore Flyer: 165 m tall, 150 m diameter, 28 capsules, public rides from February 14, 2008, officially opened April 15, 2008, ride about 32 minutes: https://en.wikipedia.org/wiki/Singapore_Flyer",
+    "Wikipedia, High Roller (Ferris wheel): 167.6 m (550 ft) tall, 158.5 m (520 ft) diameter, 28 cabins, about 30 minutes per turn, opened March 31, 2014: https://en.wikipedia.org/wiki/High_Roller_(Ferris_wheel)",
+    "Common Core State Standards for Mathematics, High School Functions, Trigonometric Functions (F-TF.A, F-TF.B, F-TF.C): http://www.corestandards.org/Math/Content/HSF/TF/",
+    "Rim speeds computed from v = 2 pi r / P, not quoted; match targets are original",
+    "Wheel, cars, graphs, unit circle and scale bar drawn in code; sounds generated in the browser"
+  ],
+  "third_party": [],
+  "updated": "2026-10-25"
+}

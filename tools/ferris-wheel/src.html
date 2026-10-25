@@ -1,0 +1,1088 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ferris Wheel · Ride the wheel, read the sine wave · Curio Class</title>
+<meta name="description" content="Ride a Ferris wheel and watch your height draw a sine wave. Drag the car or the graph and the other follows; radius, hub height, speed and boarding point become amplitude, midline, period and phase. Unit circle, real wheels to scale, and graph matching. Grade 11 Algebra 2 and precalculus. Works offline.">
+<!--
+Ferris Wheel (Curio Class)
+Grade 11, Algebra 2 / precalculus, Trigonometric Functions: F-TF.A (radian measure as arc length, the unit circle),
+F-TF.B (model periodic phenomena with amplitude, frequency and midline), F-TF.C (sin squared plus cos squared equals 1).
+Students drive, on their own laptops. Ride: the wheel and its height graph are linked both ways, the graph grows as you
+ride. Unit Circle: radius 1, so height is the sine; radians as arc length, unrolled onto the axis. Real Wheels: four
+real wheels to scale on shared axes. Match: change the wheel until your curve lands on a target.
+Facts: Wikipedia, "Ferris Wheel (1893)", "London Eye", "Singapore Flyer", "High Roller (Ferris wheel)"; Chicago 1893
+height and diameter also Guinness World Records "First Ferris wheel" (80 m, 264 ft; 76 m, 250 ft) and JSTOR Daily
+"The Big Wheel" (250 feet in diameter). Common Core F-TF. Rim speeds are computed (v = 2 pi r / P), never quoted.
+Wheel, cars, ground, graphs, unit circle and scale bar drawn in code. Background art: river-night-sky (no people).
+One file, no network requests. Content CC BY 4.0, code MIT. curioclass.org
+-->
+<link rel="stylesheet" href="kit:curio">
+<link rel="stylesheet" href="kit:theme-912">
+<style>
+:root{--brand:#f2a93b;--brand-ink:#1c1203;--halo:#0b1017}
+/* page layouts, picked in script (relayout()):
+   wide    (1000 px or wider and 700 px or taller): stage and equation bar on the left, 360 px panel on the right;
+   compact (a short landscape box such as the 16:10 embed, 680x425 to 1000x625): the same with a 300 px panel and a one-row header;
+   stack   (narrow or portrait): panel under the stage, page scrolls.
+   Inside the stage the wheel sits beside the graph ("wide" scene, 1100x640, the dashed height line is truly horizontal
+   because both panes share one meters-to-pixels scale) or above it ("tall" scene, 640 wide, below about 900 px). */
+main{grid-template-columns:minmax(0,1fr) 360px;min-height:0}
+.graphcol{display:flex;flex-direction:column;min-width:0;min-height:0}
+.stage{flex:1;min-height:0;background:radial-gradient(ellipse at 30% 25%,#121c2a,#0a0f17 72%)}
+#sv{display:block;overflow:visible;touch-action:none}
+.eqbar{padding:6px 14px 8px;background:var(--head-bg);border-top:1px solid var(--line);font:16px/1.45 var(--readout-font);min-height:0}
+.eqbar p{margin:0}
+.eqbar .e1{color:var(--ink);font-weight:700}
+.eqbar .e2{color:var(--muted)}
+.eqbar .e3{color:var(--muted);font:14px/1.4 'Segoe UI',system-ui,sans-serif}
+.eqbar .e4{color:var(--gr-3)}
+.eqbar p:empty{display:none}
+body.compact main{grid-template-columns:minmax(0,1fr) 300px}
+body.compact header{padding:4px 10px;gap:6px;flex-wrap:nowrap}
+body.compact header h1{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+body.compact header .seg{margin-right:auto}
+body.compact .seg button,body.compact .icon-btn{min-height:44px;padding:0 9px;font-size:14px;white-space:nowrap}
+body.compact .panel{padding:8px 10px;gap:8px}
+body.compact .sec{padding:6px 9px}
+body.compact .sec>h2{margin-bottom:4px}
+body.compact .hint{font-size:14px}
+body.compact .btn{font-size:14px;padding:0 8px}
+body.compact .eqbar{padding:3px 10px 4px;font-size:13px;line-height:1.35}
+body.compact .eqbar .e3{font-size:12px}
+body.compact dl.readouts{font-size:13px}
+/* compact panel: the clock and the wheel controls first, so they are visible without scrolling */
+body.compact .p-match,body.compact .p-real{order:1} body.compact .p-clock{order:2} body.compact .p-unit,body.compact .p-wheel{order:3}
+body.compact .p-hint{order:4} body.compact .p-ro{order:5} body.compact .p-show{order:6} body.compact .p-fact{order:7} body.compact .p-keep{order:8}
+body.compact .sec>h2{font-size:11px}
+body.compact .eqbar p{display:inline-block;margin-right:1.2em}
+/* compact wheel controls: one row per slider, Board at as a 2 by 2 grid, so the wheel fits above the fold */
+body.compact .p-wheel>h2{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+body.compact .slot .gr-slider{grid-template-columns:5.2em minmax(0,1fr) 4.2em;gap:0 6px}
+body.compact .slot .gr-slider label{grid-column:auto;font-size:12px;line-height:1.15}
+body.compact .slot input.num{width:4.2em}
+body.compact .grp.b4{display:grid;grid-template-columns:repeat(4,1fr);gap:3px}
+body.compact .grp.b4 .btn{padding:0 2px}
+body.compact .lw{display:none}
+body.compact .tline{font-size:14px;flex:1;text-align:center}
+body.compact .glab{margin:4px 0 2px}
+body.compact .small{margin-top:2px}
+/* compact Match: the target row and Check, then the wheel (what you change), with Play and Restart held at the
+   bottom of the panel; Show my curve and Reveal come after */
+body.compact[data-mode="match"] .p-match{order:0} body.compact[data-mode="match"] .p-wheel{order:1}
+body.compact[data-mode="match"] .p-match2{order:2} body.compact[data-mode="match"] .p-hint{order:3}
+body.compact[data-mode="match"] .p-clock{order:99;position:sticky;bottom:-8px;z-index:5;background:var(--head-bg)}
+body.compact[data-mode="match"] .p-clock>h2{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+body.compact .p-match2{order:2}
+body.compact[data-mode="match"] .p-wheel .glab{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+body.compact[data-mode="match"] .p-wheel .grp+.glab+.grp{margin-top:4px}
+body.compact[data-mode="match"] .p-match .msg{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+#mres2{display:none}
+body.compact[data-mode="match"] #mres2:not(:empty){display:block;margin:0 0 6px}
+/* stack: the clock rides along under the graph, so Play and the graph are on screen together */
+body.stack .graphcol .p-clock{position:sticky;bottom:0;z-index:5;border:0;border-top:1px solid var(--line);border-radius:0;background:var(--head-bg);padding:6px 12px}
+body.stack .graphcol .p-clock>h2{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+body.stack{height:auto}
+body.stack main{grid-template-columns:minmax(0,1fr)}
+body.stack .stage{flex:none}
+body.stack .panel{border-left:0;border-top:1px solid var(--line)}
+@media (max-width:560px){
+  .seg{display:grid;grid-template-columns:1fr 1fr;border-radius:14px;width:100%}
+  .seg button{min-height:44px;font-size:15px}
+  .icon-btn{min-height:44px;padding:0 12px;font-size:15px}
+  .eqbar{font-size:14px}
+}
+/* panel */
+.grp{display:flex;flex-wrap:wrap;gap:4px}
+.glab{display:block;font-size:13px;font-weight:600;color:var(--muted);margin:6px 0 3px}
+.glab:first-child{margin-top:0}
+.btnrow{display:flex;gap:6px;flex-wrap:wrap}
+.slot .gr-slider{grid-template-columns:1fr 4.6em;gap:0 8px}
+.slot .gr-slider label{font-size:13px;color:var(--muted)}
+.slot input.num{width:4.6em;padding:0 6px}
+.small{font-size:13px;color:var(--muted);margin:6px 0 0;line-height:1.35}
+.small:empty{display:none}
+.msg{margin:6px 0 0;font-size:15px;line-height:1.4}
+.msg:empty{display:none}
+.msg.ok::before{content:'✓ '}
+.ident{margin:6px 0 0;font:700 15px var(--readout-font);color:var(--ink)}
+.fact .fname{font:700 16px 'Segoe UI',system-ui,sans-serif;margin:0 0 4px}
+.fact dl.readouts dd{font-family:'Segoe UI',system-ui,sans-serif}
+.fact .model{font-size:13px;color:var(--muted);margin:8px 0 0;line-height:1.35;font-style:italic}
+.trow{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.tline{font:700 15px 'Segoe UI',system-ui,sans-serif;margin:0 4px}
+.reveal{font:14px/1.5 var(--readout-font);margin:6px 0 0}
+.reveal:empty{display:none}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+/* scene text (grows when the stage is scaled down: --ts is set from the stage scale) */
+#sv .gr-tick{font-size:calc(13px * var(--ts,1))}
+#sv .gr-axlabel{font-size:calc(14px * var(--ts,1))}
+.halo{paint-order:stroke;stroke:var(--halo);stroke-width:4px;stroke-linejoin:round}
+.wt{fill:var(--gr-text);font:calc(12px * min(var(--ts,1), 1.35)) 'Segoe UI',system-ui,sans-serif}
+.wtitle{fill:var(--gr-text);font:600 calc(13px * min(var(--ts,1), 1.35)) 'Segoe UI',system-ui,sans-serif}
+.you{fill:var(--brand);font:800 calc(14px * var(--ts,1)) 'Segoe UI',system-ui,sans-serif}
+.rimlab{fill:var(--ink);font:600 calc(13px * var(--ts,1)) var(--readout-font)}
+.radlab{fill:var(--gr-2);font:700 calc(14px * var(--ts,1)) 'Segoe UI',system-ui,sans-serif}
+.barlab{font:700 calc(13px * var(--ts,1)) var(--readout-font)}
+.gr-label.klabel{fill:var(--gr-4);font:600 calc(12.5px * var(--ts,1)) var(--readout-font)}
+.gr-label.tlabel{fill:var(--gr-2);font:700 calc(14px * var(--ts,1)) 'Segoe UI',system-ui,sans-serif}
+.gr-label.alabel{fill:var(--brand);font:700 calc(13px * var(--ts,1)) var(--readout-font)}
+.gr-label.glabel{fill:var(--warn);font:700 calc(13px * var(--ts,1)) 'Segoe UI',system-ui,sans-serif}
+.car{cursor:grab;outline:none}
+.car.drag{cursor:grabbing}
+.car .ring{fill:none;stroke:transparent;stroke-width:4}
+.car:focus-visible .ring{stroke:var(--focus)}
+.deco{pointer-events:none}
+</style>
+</head>
+<body>
+<header>
+  <h1>Ferris Wheel <small>Ride the wheel, read the sine wave</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-ride" aria-pressed="true">Ride</button>
+    <button id="m-unit" aria-pressed="false">Unit Circle</button>
+    <button id="m-real" aria-pressed="false">Real Wheels</button>
+    <button id="m-match" aria-pressed="false">Match</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true" title="Turn animation on or off">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+  <button class="icon-btn" id="read">🔊 Read</button>
+</header>
+<main>
+  <div class="graphcol">
+    <div class="stage" id="stage">
+      <div class="scene" id="scene">
+        <svg id="sv" role="group" aria-label="The wheel and its height graph"></svg>
+      </div>
+    </div>
+    <div class="eqbar" id="eqbar" aria-label="Equation">
+      <p class="e1" id="eq1"></p>
+      <p class="e2" id="eq2"></p>
+      <p class="e3" id="eq3"></p>
+      <p class="e4" id="eq4"></p>
+    </div>
+  </div>
+  <aside class="panel" id="panel">
+    <p class="hint p-hint" id="hint"></p>
+    <section class="sec p-match" data-modes="match" aria-label="Target">
+      <div class="trow">
+        <button class="btn" id="prevT" aria-label="Previous target">◀<span class="lw"> Previous</span></button>
+        <span class="tline" id="tLine">Target 1 of 8</span>
+        <button class="btn" id="nextT" aria-label="Next target"><span class="lw">Next </span>▶</button>
+        <button class="btn" id="checkBtn">✓ Check</button>
+      </div>
+      <p class="msg" id="mres" aria-live="polite"></p>
+    </section>
+    <section class="sec p-match2" data-modes="match" aria-label="Help with the target">
+      <p class="msg" id="mres2" aria-hidden="true"></p>
+      <div class="btnrow">
+        <button class="btn" id="fullBtn" aria-pressed="false">Show my curve</button>
+        <button class="btn" id="revealBtn" aria-pressed="false">Reveal equation</button>
+      </div>
+      <p class="reveal" id="mrev"></p>
+    </section>
+    <section class="sec p-real" data-modes="real">
+      <h2 id="rwL">Wheel</h2>
+      <div class="grp" role="group" aria-labelledby="rwL" id="realBtns"></div>
+    </section>
+    <section class="sec p-clock" data-modes="ride unit real match">
+      <h2 id="clkL">Clock</h2>
+      <div class="btnrow" role="group" aria-labelledby="clkL">
+        <button class="btn" id="play">▶ Play</button>
+        <button class="btn" id="restart">↺ Restart</button>
+        <button class="btn" id="speed" aria-pressed="false" data-modes="ride real match">Speed 1x</button>
+      </div>
+    </section>
+    <section class="sec p-ro" data-modes="ride unit real match">
+      <h2>Readouts</h2>
+      <dl class="readouts" id="ro"></dl>
+      <p class="ident" id="ident" data-modes="unit"></p>
+    </section>
+    <section class="sec p-unit" data-modes="unit">
+      <h2 id="stL">Turn and measure</h2>
+      <div class="btnrow" role="group" aria-labelledby="stL">
+        <button class="btn" id="step6">Step π/6</button>
+        <button class="btn" id="step4">Step π/4</button>
+        <button class="btn" id="oneRad">One radian</button>
+        <button class="btn" id="unrollBtn">Unroll the arc</button>
+        <button class="btn" id="cosBtn" aria-pressed="false">Show cosine</button>
+      </div>
+      <p class="small" id="radNote"></p>
+    </section>
+    <section class="sec p-wheel" data-modes="ride match">
+      <h2>Wheel</h2>
+      <div class="slot" id="rSlot"></div>
+      <div class="slot" id="dSlot"></div>
+      <div class="slot" id="pSlot"></div>
+      <p class="small" id="wheelNote"></p>
+      <span class="glab" id="boardL">Board at</span>
+      <div class="grp b4" role="group" aria-labelledby="boardL">
+        <button class="btn" data-board="bottom">Bottom</button><button class="btn" data-board="right" aria-label="Right side">Right<span class="lw"> side</span></button><button class="btn" data-board="top">Top</button><button class="btn" data-board="left" aria-label="Left side">Left<span class="lw"> side</span></button>
+      </div>
+      <span class="glab" id="turnL">Turn</span>
+      <div class="grp" role="group" aria-labelledby="turnL">
+        <button class="btn" data-dir="1">Counterclockwise</button><button class="btn" data-dir="-1">Clockwise</button>
+      </div>
+    </section>
+    <section class="sec p-show" data-modes="ride">
+      <h2 id="showL">Show</h2>
+      <div class="btnrow" role="group" aria-labelledby="showL">
+        <button class="btn" id="xBtn" aria-pressed="false">Show sideways distance</button>
+        <button class="btn" id="arcBtn" aria-pressed="false">Show arc traveled</button>
+      </div>
+    </section>
+    <section class="sec fact p-fact" data-modes="real">
+      <p class="fname" id="fName"></p>
+      <dl class="readouts" id="fact"></dl>
+      <p class="model">Model: the car rides a circle with the published diameter, and the top of the circle is at the published height. Real cars hang below or outside the rim, so true heights differ by a few meters.</p>
+      <div class="btnrow" style="margin-top:8px"><button class="btn" id="tryBtn">Try it in Ride</button></div>
+    </section>
+    <section class="sec p-keep" data-modes="ride real">
+      <h2>Keep</h2>
+      <div class="btnrow">
+        <button class="btn" id="keepBtn">Keep this graph</button>
+        <button class="btn" id="clearBtn">Clear kept</button>
+      </div>
+      <p class="small" id="keepNote"></p>
+    </section>
+  </aside>
+</main>
+<div class="sr" id="live" aria-live="polite"></div>
+<script src="kit:curio"></script>
+<script src="kit:graphing"></script>
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const {say, wait} = Curio;
+  const fmt = Plane.fmt;
+  const NS = 'http://www.w3.org/2000/svg';
+  const mk = (tag, attrs = {}, parent) => { const e = document.createElementNS(NS, tag); for (const k in attrs) if (attrs[k] != null) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; };
+  const PI = Math.PI, TAU = 2 * PI;
+  const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+  const ease = u => u < .5 ? 2 * u * u : 1 - Math.pow(-2 * u + 2, 2) / 2;
+  const sv = $('sv');
+
+  // ---------- spoken lines (voice/lines.json lists every one) ----------
+  const L = {
+    rideWelcome: 'Welcome aboard. Press Play and watch your height turn into a graph as the wheel goes around.',
+    rideDrag: 'You can also drag the car around the wheel, or drag the dot along the graph. They always move together.',
+    rideChange: 'Now change the radius, the hub height, or the time for one turn, and ride again. Watch which part of the graph changes.',
+    rideBoard: 'Try boarding from the side instead of the bottom. Does the graph start the same way?',
+    unitWelcome: 'This is the unit circle. The radius is one, so the height of the car is exactly the sine of the angle.',
+    unitRadian: 'One radian is the angle you get when the arc along the rim is as long as the radius.',
+    unitUnroll: 'Unrolling the arc lays it flat on the axis. The distance along the axis is the angle in radians.',
+    unitCosine: 'The sideways distance is the cosine. Cosine squared plus sine squared is always one.',
+    realWelcome: 'These are real wheels, drawn to scale. All four share the same axes, so you can compare them.',
+    realPeriod: 'The big wheels take about half an hour to turn once. The first Ferris wheel, in 1893, took about nine minutes.',
+    matchWelcome: 'Here is a target graph. Change the wheel until your curve lands on top of it.',
+    matchYes: 'Matched. Your wheel draws that graph.',
+    full: 'The graph is full. Press Restart to ride again.',
+  };
+  // the panel hints (Read speaks them, so they are recorded too)
+  const HINT = {
+    ride: 'Press Play to ride. Drag the car around the wheel, or drag the dot along the graph. Then change the wheel and ride again.',
+    unit: 'Radius 1. The height of the car is the sine of the angle. Press One radian to see how big a radian is.',
+    real: 'Pick a wheel. All four use the same axes, so keep each graph to compare them.',
+    match: 'Change the wheel until your curve lands on the dashed one. Press Show my curve to see it all at once.',
+    clear: 'Hub raised so the cars clear the ground.',
+  };
+  const WELCOME = {ride: 'rideWelcome', unit: 'unitWelcome', real: 'realWelcome', match: 'matchWelcome'};
+
+  // ======================================================================================
+  // CONTENT (from spec.md; sources in the header comment and notes.md)
+  // ======================================================================================
+  // Model: radius r = published diameter / 2, hub D = published height - r, period P in minutes
+  const REAL = [
+    {name: 'Chicago 1893', full: "Ferris Wheel, World's Columbian Exposition", city: 'Chicago', opened: 'June 21, 1893', height: '80.4 m (264 ft)',
+      across: '76.2 m (250 ft)', cars: '36 cars, up to 60 riders each', turn: 'about 9 minutes (one nonstop turn)', H: 80.4, r: 38.1, P: 9, n: 36},
+    {name: 'London Eye', full: 'London Eye', city: 'London', opened: 'March 2000 (to the public)', height: '135 m',
+      across: '120 m', cars: '32 capsules', turn: 'about 30 minutes', H: 135, r: 60, P: 30, n: 32},
+    {name: 'Singapore Flyer', full: 'Singapore Flyer', city: 'Singapore', opened: 'public rides from February 14, 2008; officially opened April 15, 2008', height: '165 m',
+      across: '150 m', cars: '28 capsules', turn: 'one ride about 32 minutes (treated as one turn)', H: 165, r: 75, P: 32, n: 28},
+    {name: 'High Roller', full: 'High Roller', city: 'Las Vegas', opened: 'March 31, 2014', height: '167.6 m (550 ft)',
+      across: '158.5 m (520 ft)', cars: '28 cabins', turn: 'about 30 minutes', H: 167.6, r: 79.25, P: 30, n: 28},
+  ];
+  const TARGETS = [
+    {D: 20, r: 15, P: 60, board: 'bottom', dir: 1, either: true, note: 'Midline 20, amplitude 15, period 60.'},
+    {D: 30, r: 25, P: 40, board: 'bottom', dir: 1, either: true, note: 'A faster, bigger wheel: three full turns fit.'},
+    {D: 20, r: 10, P: 30, board: 'top', dir: 1, either: true, note: 'Starting at the top flips the graph: it opens with a maximum.'},
+    {D: 45, r: 40, P: 120, board: 'bottom', dir: 1, either: true, note: 'One slow turn fills the whole window.'},
+    {D: 25, r: 20, P: 60, board: 'right', dir: 1, either: false, note: 'From the side, the height starts at the midline and rises.'},
+    {D: 25, r: 20, P: 60, board: 'right', dir: -1, either: false, note: 'Same wheel, other direction: now it starts down.'},
+    {D: 15, r: 12, P: 20, board: 'bottom', dir: 1, either: true, note: 'Period 20 means six turns in two minutes.'},
+    {D: 50, r: 8, P: 90, board: 'left', dir: 1, either: false, note: 'A small wheel on a tall tower: tiny amplitude, high midline.'},
+  ];
+  // start angle theta0, standard position (from the hub's 3 o'clock, counterclockwise positive)
+  const BOARD = {bottom: -PI / 2, right: 0, top: PI / 2, left: PI};
+  const BOARD_NAME = {bottom: 'Bottom', right: 'Right side', top: 'Top', left: 'Left side'};
+  const END = {ride: 120, match: 120, real: 70, unit: 4 * PI};          // window ends (s, s, min, radians)
+  const YR = {ride: [0, 100], match: [0, 100], real: [0, 180], unit: [-1.2, 1.2]};
+  const RANGE = {r: [2, 40], D: [3, 60], P: [10, 120]};
+  const DEF = {r: 15, D: 18, P: 40, board: 'bottom', dir: 1};
+  const KEEP_MAX = {ride: 3, real: 4};
+  const KEEP_DASH = ['12 4 2 4', '6 5', '16 6', '3 5'];
+
+  // ======================================================================================
+  // State and the model: h(t) = D + r sin(theta0 + w t), w = 2 pi / P (negative for clockwise)
+  // ======================================================================================
+  const state = {mode: 'ride', t: {ride: 0, unit: 0, real: 0, match: 0}, playing: null, fast: {ride: false, real: false, match: false},
+    wheel: {ride: {...DEF}, match: {...DEF}}, real: 0, showX: false, showArc: false, kept: {ride: [], real: []},
+    cos: false, oneRad: null, unroll: null, target: 0, matched: new Set(), showFull: false, reveal: false, gap: null,
+    result: '', resultOk: false, hintMsg: ''};
+  function W(m = state.mode) {
+    if (m === 'unit') return {r: 1, D: 0, P: TAU, th0: 0, dir: 1, n: 8, board: 'right'};
+    if (m === 'real') { const w = REAL[state.real]; return {r: w.r, D: +(w.H - w.r).toFixed(2), P: w.P, th0: -PI / 2, dir: 1, n: w.n, board: 'bottom'}; }
+    const w = state.wheel[m];
+    return {r: w.r, D: w.D, P: w.P, th0: BOARD[w.board], dir: w.dir, n: 8, board: w.board};
+  }
+  const targetW = i => { const T = TARGETS[i]; return {r: T.r, D: T.D, P: T.P, th0: BOARD[T.board], dir: T.dir, board: T.board}; };
+  const ang = (t, w = W()) => w.th0 + w.dir * TAU * t / w.P;
+  const hOf = (t, w = W()) => w.D + w.r * Math.sin(ang(t, w));
+  const xOf = (t, w = W()) => w.r * Math.cos(ang(t, w));
+  const curT = () => state.t[state.mode];
+  const stepOf = (w = W()) => w.P / 24;                 // pi/12 of a turn
+  const tUnit = () => state.mode === 'real' ? 'min' : 's';
+
+  // ---------- text ----------
+  const gcd = (a, b) => b ? gcd(b, a % b) : Math.abs(a);
+  function piFrac(num, den) {   // num pi / den, reduced: "0", "π/6", "3π/4", "2π", "−π/2"
+    if (num === 0) return '0';
+    const g = gcd(Math.abs(num), den), n = num / g, d = den / g, sign = n < 0 ? '−' : '', a = Math.abs(n);
+    return sign + (a === 1 ? '' : a) + 'π' + (d === 1 ? '' : '/' + d);
+  }
+  function radText(a) {          // a multiple of pi when it is a multiple of pi/12, else a decimal
+    const k = a / (PI / 12);
+    if (Math.abs(k - Math.round(k)) < 1e-6) return piFrac(Math.round(k), 12);
+    return fmt(a, 2);
+  }
+  const radSay = a => radText(a).replace('−', 'minus ').replace('π', ' pi').replace('/', ' over ');
+  const deg = a => fmt(a * 180 / PI, 1);
+  const f3 = v => { const s = (Math.abs(v) < 5e-4 ? 0 : v).toFixed(3); return s.replace('-', '−'); };
+  const f1 = v => (Math.abs(v) < .05 ? 0 : v).toFixed(1).replace('-', '−');
+  const n2 = v => fmt(v, 2);
+  const TH0 = {bottom: ' − π/2', right: '', top: ' + π/2', left: ' + π'};
+  // the Ride equation lines for a wheel: [main, same-as line or '', labels]
+  function eqLines(w, unit = 's') {
+    const main = `h(t) = ${n2(w.D)} + ${n2(w.r)} sin(${w.dir < 0 ? '−' : ''}2πt / ${n2(w.P)}${TH0[w.board]})`;
+    const same = w.board === 'bottom' ? `same as h(t) = ${n2(w.D)} − ${n2(w.r)} cos(2πt / ${n2(w.P)})` :
+      w.board === 'top' ? `same as h(t) = ${n2(w.D)} + ${n2(w.r)} cos(2πt / ${n2(w.P)})` : '';
+    return [main, same, `midline ${n2(w.D)} m, amplitude ${n2(w.r)} m, period ${n2(w.P)} ${unit}`];
+  }
+  const shortEq = (w, unit) => eqLines(w, unit)[0];
+
+  // ======================================================================================
+  // Scene geometry (rebuilt by build() for each mode, layout and the sideways toggle)
+  // ======================================================================================
+  let inner = 'wide', page = null, G = null, scale = 1, ts = 1;
+  function geom() {
+    const m = state.mode, sx = m === 'ride' && state.showX;
+    if (inner === 'wide') {
+      const PH = {ride: sx ? 400 : 520, match: 520, real: 470, unit: 430}[m];
+      const top = {ride: 24, match: 24, real: 74, unit: 69}[m];
+      return {W: 1100, H: 640, plane: {left: 560, top, w: 510, h: PH}, small: sx ? {left: 560, top: top + PH + 62, w: 510, h: 90} : null,
+        pane: {x0: 0, x1: 500, hubX: 268, top, bottom: top + PH}};
+    }
+    if (inner === 'short') {
+      // short boxes (the 16:10 preview): a compact 600x470 scene; the wheel has its own scale here, so the
+      // height line is drawn in two pieces (car to the height scale, axis to the graph dot), as in the tall scene
+      const PH = sx ? 250 : 388, top = 22, unit = m === 'unit';
+      const pane = {x0: 0, x1: 300, top, bottom: top + 388};
+      const maxR = {ride: 40, match: 40, real: 79.25, unit: 1}[m], pad = unit ? 44 : 6, left = unit ? 10 : 46, avail = 300 - left - 8;
+      pane.k = Math.min((avail - 2 * pad) / (2 * maxR), (pane.bottom - pane.top - (unit ? 2 * pad : 0)) / (YR[m][1] - YR[m][0]));
+      pane.hubX = left + avail / 2;
+      if (unit) pane.base = (pane.top + pane.bottom) / 2 + 1.2 * pane.k;
+      return {W: 600, H: 470, plane: {left: 352, top, w: 226, h: PH}, small: sx ? {left: 352, top: top + PH + 74, w: 226, h: 64} : null, pane};
+    }
+    const PH = 320, ptop = 540, small = sx ? {left: 86, top: ptop + PH + 62, w: 520, h: 90} : null;
+    return {W: 640, H: small ? small.top + small.h + 50 : ptop + PH + 60, plane: {left: 86, top: ptop, w: 520, h: PH}, small,
+      pane: {x0: 0, x1: 640, hubX: 345, top: 24, bottom: 484}};
+  }
+  const tallH = () => state.mode === 'ride' && state.showX ? 1062 : 920;
+  // wheel pane: meters (or unit-circle units) to scene pixels; in the wide scene this equals the graph's own scale
+  const kPx = () => G.pane.k || (G.pane.bottom - G.pane.top) / (YR[state.mode][1] - YR[state.mode][0]);
+  const yM = h => (G.pane.base != null ? G.pane.base : G.pane.bottom) - (h - YR[state.mode][0]) * kPx();
+  const xM = dx => G.pane.hubX + dx * kPx();
+
+  // ---------- SVG layers and items (made by build) ----------
+  let g = null, gs = null, dom = [0, 0], mainItem = null, cosItem = null, xItem = null, trace = null, smallDot = null, hlSeg = null;
+  let bgG, wheelG, fxG, carG, carBody, carHit, carLbl, overG, syncing = false;
+  function build() {
+    G = geom();
+    const m = state.mode, w = W(), end = END[m];
+    sv.textContent = '';
+    sv.setAttribute('viewBox', `0 0 ${G.W} ${G.H}`); sv.setAttribute('width', G.W); sv.setAttribute('height', G.H);
+    const sc = $('scene'); sc.style.width = G.W + 'px'; sc.style.height = G.H + 'px';
+    const defs = mk('defs', {}, sv);
+    mk('rect', {x: G.pane.x0, y: 0, width: G.pane.x1 - G.pane.x0, height: G.pane.bottom + (inner === 'wide' ? 0 : 6)}, mk('clipPath', {id: 'paneClip'}, defs));
+    bgG = mk('g', {class: 'deco'}, sv);
+    if (m === 'ride' || m === 'match') {   // the river skyline, faint, behind the wheel pane only
+      const gy = yM(0);
+      mk('image', {href: 'art:river-night-sky', x: G.pane.x0, y: 0, width: G.pane.x1 - G.pane.x0, height: gy, preserveAspectRatio: 'xMaxYMid slice',
+        opacity: .75, 'clip-path': 'url(#paneClip)'}, bgG);
+      mk('rect', {x: G.pane.x0, y: 0, width: G.pane.x1 - G.pane.x0, height: gy, fill: 'url(#fade)'}, bgG);
+      const lg = mk('linearGradient', {id: 'fade', x1: 0, y1: 0, x2: 0, y2: 1}, defs);
+      mk('stop', {offset: 0, 'stop-color': '#0a0f17', 'stop-opacity': .3}, lg); mk('stop', {offset: 1, 'stop-color': '#0a0f17', 'stop-opacity': 0}, lg);
+    }
+    wheelG = mk('g', {class: 'deco'}, sv);
+    fxG = mk('g', {class: 'deco'}, sv);
+    // the main plane
+    const pl = G.plane;
+    const opts = {ride: {grid: [10, 10], labels: [20, 20], xLabel: 'time (s)', yLabel: 'height (m)'},
+      match: {grid: [10, 10], labels: [20, 20], xLabel: 'time (s)', yLabel: 'height (m)'},
+      real: {grid: [5, 10], labels: [10, 20], xLabel: 'time (min)', yLabel: 'height (m)'},
+      unit: {grid: [PI / 4, .25], labels: [PI / 2, .5], xLabel: 'angle (radians)', yLabel: 'height',
+        tickFormat: (v, axis) => axis === 'x' ? piFrac(Math.round(v / (PI / 2)), 2) : fmt(v, 2)}}[m];
+    if (inner === 'short') Object.assign(opts, m === 'unit' ? {grid: [PI / 2, .25], labels: [PI, .5], yLabel: ''} : m === 'real' ? {grid: [10, 20], labels: [20, 40]} : {grid: [10, 10], labels: [40, 20]});
+    g = Plane(mk('g', {}, sv), Object.assign({x: [0, end], y: YR[m], width: pl.w, height: pl.h, left: pl.left, top: pl.top, ticks: 'edge'}, opts));
+    // kept curves (their own mode only), the target, then your curve on top
+    if (state.kept[m]) state.kept[m].forEach((k, i) => g.fn(t => hOf(t, k.w), {id: 'kept', color: 4, width: 2.2, dashed: KEEP_DASH[i % 4], label: k.label}));
+    if (m === 'match') {
+      const T = targetW(state.target), ok = state.matched.has(state.target);
+      g.fn(t => hOf(t, T), {id: 'target', color: 2, width: ok ? 9 : 3, dashed: ok ? false : '10 6', opacity: ok ? .6 : null, label: ok ? 'target curve, matched' : 'target curve'});
+      g.label(3, 95, '', {id: 'tlabel', class: 'tlabel halo', layer: 'labels'});
+    }
+    if (m === 'unit' && state.cos) cosItem = g.fn(Math.cos, {domain: dom, color: 3, width: 2.6, label: 'cos theta, grown so far'}); else cosItem = null;
+    mainItem = g.fn(t => hOf(t), {domain: dom, color: 1, width: 3.5, label: m === 'unit' ? 'sin theta, grown so far' : 'your height curve, grown so far'});
+    hlSeg = inner !== 'wide' ? g.segment([0, 0], [0, 0], {color: 'var(--brand)', width: 1.5, dashed: '5 5', layer: 'front'}) : null;
+    if (m === 'match' && state.gap) {
+      const {t: gt, a, b} = state.gap;
+      g.segment([gt, a], [gt, b], {id: 'gap', color: 'var(--warn)', width: 3, layer: 'front'});
+      g.point(gt, b, {id: 'gap', color: 'var(--warn)', r: 5, ariaLabel: 'biggest gap'});
+      g.label(gt, Math.max(a, b), `biggest gap ${fmt(Math.abs(a - b), 1)} m`, {id: 'gap', class: 'glabel halo', anchor: 'middle', dy: -12, layer: 'labels'});
+    }
+    syncing = true;   // no clock moves while the dot is first placed
+    trace = g.trace(t => hOf(t), {domain: [0, end], draggable: true, r: 7, color: 'var(--brand)', id: 'trace',
+      ariaLabel: () => m === 'unit' ? 'Graph dot. Left and Right arrows turn the angle.' : 'Graph dot. Left and Right arrows move the clock.',
+      valueText: x => m === 'unit' ? `theta ${radSay(x)}, sine ${f3(Math.sin(x))}` : `t ${fmt(x, 1)} ${tUnit() === 's' ? 'seconds' : 'minutes'}, height ${fmt(hOf(x), 1)} meters`,
+      onMove: x => { if (syncing) return; setT(shiftDown ? snapT(x) : x, 'drag'); }});
+    syncing = false;
+    trace.point.el.addEventListener('keydown', e => { if (keyStep(e)) { e.preventDefault(); e.stopImmediatePropagation(); } }, true);
+    // the small sideways plane (Ride, Show sideways distance)
+    gs = null; xItem = null; smallDot = null;
+    if (G.small) {
+      const s = G.small;
+      gs = Plane(mk('g', {}, sv), {x: [0, 120], y: [-40, 40], width: s.w, height: s.h, left: s.left, top: s.top, ticks: 'edge', grid: [10, 20], labels: [inner === 'short' ? 40 : 20, 40]});
+      mk('text', {x: s.left, y: s.top - 8, class: 'wtitle'}, sv).textContent = 'sideways from hub (m)';
+      xItem = gs.fn(t => xOf(t), {domain: dom, color: 3, width: 2.6, label: 'sideways distance x, grown so far'});
+      smallDot = gs.point(0, 0, {color: 'var(--gr-3)', r: 5, ariaLabel: 'sideways distance now'});
+    }
+    overG = mk('g', {class: 'deco'}, sv);   // height line and unroll, under the car
+    // the rider car: focusable, draggable around the rim
+    carG = mk('g', {class: 'car', tabindex: 0, role: 'slider', 'aria-label': m === 'unit' ? 'The point on the unit circle. Arrow keys turn it.' : 'Your car on the wheel. Arrow keys move it along the turn.'}, sv);
+    carHit = mk('circle', {r: 24, fill: 'transparent'}, carG);
+    mk('circle', {class: 'ring', r: 17}, carG);
+    carBody = mk('rect', {x: -8, y: -8, width: 16, height: 16, rx: 4, fill: '#3a2a0e', stroke: 'var(--brand)', 'stroke-width': 3}, carG);
+    carLbl = mk('text', {class: 'you halo', 'text-anchor': 'middle'}, sv); carLbl.textContent = 'you';
+    carDrag();
+    renderKeptLabels();
+    hitSizes();
+    render();
+  }
+
+  // ======================================================================================
+  // Drawing the wheel (every render)
+  // ======================================================================================
+  function drawWheel(w, t) {
+    wheelG.textContent = ''; fxG.textContent = '';
+    const m = state.mode, k = kPx(), hx = G.pane.hubX, hy = yM(w.D), rp = w.r * k, a = ang(t, w);
+    const P = th => [hx + rp * Math.cos(th), hy - rp * Math.sin(th)];
+    if (m === 'unit') return drawUnit(w, t, hx, hy, rp);
+    // height scale on the left edge, ground, legs
+    const step = (m === 'real' ? 20 : 10) * (inner === 'short' ? 2 : 1), gy = yM(0), right = G.pane.x1 - 12, ytop = yM(YR[m][1]);
+    mk('text', {x: 8, y: ytop - 8, class: 'wtitle'}, wheelG).textContent = 'height (m)';
+    for (let h = 0; h <= YR[m][1] + 1e-9; h += step) {
+      const y = yM(h);
+      mk('line', {x1: 34, x2: 42, y1: y, y2: y, stroke: 'var(--gr-axis)', 'stroke-width': 1.5}, wheelG);
+      mk('text', {x: 30, y: y + 4, 'text-anchor': 'end', class: 'wt'}, wheelG).textContent = fmt(h);
+    }
+    mk('line', {x1: 42, x2: 42, y1: yM(YR[m][1]), y2: gy, stroke: 'var(--gr-axis)', 'stroke-width': 1}, wheelG);
+    mk('rect', {x: 42, y: gy, width: right - 42, height: 12, fill: '#141a22'}, wheelG);
+    mk('line', {x1: 42, x2: right, y1: gy, y2: gy, stroke: '#7d8ca0', 'stroke-width': 2}, wheelG);
+    mk('text', {x: right, y: gy + 26, 'text-anchor': 'end', class: 'wt'}, wheelG).textContent = 'ground, height 0';
+    const spread = Math.max(10, (gy - hy) * .42);
+    for (const s of [-1, 1]) mk('line', {x1: hx, y1: hy, x2: hx + s * spread, y2: gy, stroke: '#46566c', 'stroke-width': Math.max(2.5, Math.min(6, rp / 18)), 'stroke-linecap': 'round'}, wheelG);
+    const bh = hy + (gy - hy) * .62;
+    mk('line', {x1: hx - spread * .62, x2: hx + spread * .62, y1: bh, y2: bh, stroke: '#3a4859', 'stroke-width': 2}, wheelG);
+    // rim, 12 spokes (they turn with the wheel), cars
+    for (let i = 0; i < 12; i++) { const [x, y] = P(a + i * TAU / 12); mk('line', {x1: hx, y1: hy, x2: x, y2: y, stroke: '#5b6c84', 'stroke-width': 1.4}, wheelG); }
+    if (rp > 30) mk('circle', {cx: hx, cy: hy, r: rp * .9, fill: 'none', stroke: '#4a5a70', 'stroke-width': 1.2}, wheelG);
+    mk('circle', {cx: hx, cy: hy, r: rp, fill: 'none', stroke: '#9fb1c8', 'stroke-width': 3}, wheelG);
+    const n = w.n, s = clamp(TAU * rp / n * .5, 3, 15);
+    for (let i = 1; i < n; i++) {
+      const [x, y] = P(a + i * TAU / n);
+      mk('rect', {x: x - s / 2, y: y - s / 2, width: s, height: s, rx: Math.min(3, s / 4), fill: '#2a3747', stroke: '#9fb1c8', 'stroke-width': 1}, wheelG);
+    }
+    mk('circle', {cx: hx, cy: hy, r: Math.max(3, Math.min(7, rp / 10)), fill: '#c9d3df'}, wheelG);
+    if (m === 'real') {   // 10 m scale bar beside the wheel
+      const len = 10 * k;
+      if (hx + rp + 34 < G.pane.x1 - 20) {   // upright beside the wheel
+        const bx = hx + rp + 24, by = gy - 14;
+        mk('line', {x1: bx, x2: bx, y1: by, y2: by - len, stroke: 'var(--ink)', 'stroke-width': 3}, wheelG);
+        for (const yy of [by, by - len]) mk('line', {x1: bx - 6, x2: bx + 6, y1: yy, y2: yy, stroke: 'var(--ink)', 'stroke-width': 2}, wheelG);
+        mk('text', {x: bx + 10, y: by - len / 2 + 4, class: 'wt'}, wheelG).textContent = '10 m';
+      } else {                                // no room: flat, under the ground line
+        const bx = 50, by = gy + 24;
+        mk('line', {x1: bx, x2: bx + len, y1: by, y2: by, stroke: 'var(--ink)', 'stroke-width': 3}, wheelG);
+        for (const xx of [bx, bx + len]) mk('line', {x1: xx, x2: xx, y1: by - 5, y2: by + 5, stroke: 'var(--ink)', 'stroke-width': 2}, wheelG);
+        mk('text', {x: bx + len + 6, y: by + 4, class: 'wt'}, wheelG).textContent = '10 m';
+      }
+      mk('text', {x: inner === 'short' ? G.pane.x1 - 8 : hx, y: ytop - 8, 'text-anchor': inner === 'short' ? 'end' : 'middle', class: 'wtitle'}, wheelG).textContent = REAL[state.real].name + ', to scale';
+    }
+    // arc traveled (Ride)
+    if (m === 'ride' && state.showArc && t > 0) {
+      const trav = TAU * t / w.P, d = arcD(hx, hy, rp, w.th0, a);
+      mk('path', {d, fill: 'none', stroke: 'var(--brand)', 'stroke-width': 7, 'stroke-linecap': 'round', opacity: .9}, fxG);
+      const [bx, by] = P(w.th0);
+      mk('circle', {cx: bx, cy: by, r: 4, fill: 'var(--ink)'}, fxG);
+      mk('text', {x: 50, y: yM(YR[m][1]) + 16 * ts, class: 'barlab halo', fill: 'var(--brand)'}, fxG).textContent = `turns: ${(trav / TAU).toFixed(2)}`;
+    }
+    // sideways distance (Ride): hub to the car's x, then up or down to the car
+    if (m === 'ride' && state.showX) {
+      const [cx, cy] = P(a), x = xOf(t, w);
+      mk('line', {x1: hx, y1: hy, x2: cx, y2: hy, stroke: 'var(--gr-3)', 'stroke-width': 4, 'stroke-linecap': 'round'}, fxG);
+      mk('line', {x1: cx, y1: hy, x2: cx, y2: cy, stroke: 'var(--muted)', 'stroke-width': 1.5, 'stroke-dasharray': '4 4'}, fxG);
+      if (inner !== 'short' && ts < 1.3) mk('text', {x: (hx + cx) / 2, y: hy + (cy > hy ? -10 : 20), 'text-anchor': 'middle', class: 'barlab halo', fill: 'var(--gr-3)'}, fxG).textContent = `x = ${f1(x)} m`;
+    }
+  }
+  // a path along the rim from angle a0 to a1 (either direction; a full circle once it passes a whole turn)
+  function arcD(hx, hy, rp, a0, a1) {
+    if (Math.abs(a1 - a0) >= TAU - 1e-9) return `M${hx + rp},${hy}A${rp},${rp} 0 1 0 ${hx - rp},${hy}A${rp},${rp} 0 1 0 ${hx + rp},${hy}`;
+    const n = Math.max(8, Math.ceil(Math.abs(a1 - a0) * 24)); let d = '';
+    for (let i = 0; i <= n; i++) { const th = a0 + (a1 - a0) * i / n; d += (i ? 'L' : 'M') + (hx + rp * Math.cos(th)).toFixed(1) + ',' + (hy - rp * Math.sin(th)).toFixed(1); }
+    return d;
+  }
+  function drawUnit(w, th, hx, hy, rp) {
+    const P = (a, r = rp) => [hx + r * Math.cos(a), hy - r * Math.sin(a)];
+    const ax = rp * 1.32;
+    mk('line', {x1: hx - ax, x2: hx + ax, y1: hy, y2: hy, stroke: 'var(--gr-axis)', 'stroke-width': 1.5}, wheelG);
+    mk('line', {x1: hx, x2: hx, y1: hy - ax, y2: hy + ax, stroke: 'var(--gr-axis)', 'stroke-width': 1.5}, wheelG);
+    mk('circle', {cx: hx, cy: hy, r: rp, fill: 'none', stroke: '#9fb1c8', 'stroke-width': 2.5}, wheelG);
+    const small = inner === 'short';
+    if (!small) for (const [x, y, t] of [[hx + ax + 4, hy + 4, '1'], [hx - ax - 4, hy + 4, '−1'], [hx + 6, hy - ax - 4, '1'], [hx + 6, hy + ax + 14, '−1']])
+      mk('text', {x, y, class: 'wt', 'text-anchor': t === '−1' && y === hy + 4 ? 'end' : 'start'}, wheelG).textContent = t;
+    // rim marks at every pi/6 and pi/4, labeled in radians
+    const marks = new Set();
+    for (let i = 0; i < 12; i++) marks.add(i * 2); for (let i = 0; i < 8; i++) marks.add(i * 3);   // in 24ths of a turn
+    for (const q of [...marks].sort((p, q) => p - q)) {
+      const a = q * PI / 12, [x1, y1] = P(a, rp - 6), [x2, y2] = P(a, rp + 6), [lx, ly] = P(a, rp + 24);
+      mk('line', {x1, y1, x2, y2, stroke: 'var(--ink)', 'stroke-width': 1.6}, wheelG);
+      if (small && q % 6 && q > 6) continue;   // short scene: the quarter turns and the first quadrant only
+      const t = mk('text', {x: lx, y: ly + 4.5, 'text-anchor': Math.abs(Math.cos(a)) < .3 ? 'middle' : Math.cos(a) > 0 ? 'start' : 'end', class: 'rimlab'}, wheelG);
+      if (q === 0) { t.textContent = '0'; mk('text', {x: lx - 8, y: ly + 4.5 + 15 * ts, class: 'rimlab'}, wheelG).textContent = '2π'; }
+      else t.textContent = piFrac(q, 12);
+      if (Math.abs(Math.cos(a)) >= .3) t.setAttribute('x', lx + (Math.cos(a) > 0 ? -8 : 8));
+    }
+    // the painted arc from 0 to theta, the radius, the sine bar, the cosine bar
+    if (th > 0) mk('path', {d: arcD(hx, hy, rp, 0, th), fill: 'none', stroke: 'var(--brand)', 'stroke-width': 6, 'stroke-linecap': 'round', opacity: state.unroll ? .45 : .9}, fxG);
+    const [cx, cy] = P(th), c = Math.cos(th), sx = hx + c * rp;
+    mk('line', {x1: hx, y1: hy, x2: cx, y2: cy, stroke: 'var(--muted)', 'stroke-width': 1.5}, fxG);
+    mk('line', {x1: sx, y1: hy, x2: cx, y2: cy, stroke: 'var(--gr-1)', 'stroke-width': 4, 'stroke-linecap': 'round'}, fxG);
+    if (Math.abs(Math.sin(th)) > .08) mk('text', {x: sx + (c >= 0 ? -8 : 8), y: (hy + cy) / 2 + 4, 'text-anchor': c >= 0 ? 'end' : 'start', class: 'barlab halo', fill: 'var(--gr-1)'}, fxG).textContent = 'sin θ';
+    if (state.cos) {
+      mk('line', {x1: hx, y1: hy, x2: sx, y2: hy, stroke: 'var(--gr-3)', 'stroke-width': 4, 'stroke-dasharray': '2 5', 'stroke-linecap': 'round'}, fxG);
+      if (Math.abs(c) > .08) mk('text', {x: (hx + sx) / 2, y: hy + (Math.sin(th) >= 0 ? 20 : -10), 'text-anchor': 'middle', class: 'barlab halo', fill: 'var(--gr-3)'}, fxG).textContent = 'cos θ';
+    }
+    if (state.oneRad) drawOneRad(hx, hy, rp);
+  }
+  // One radian: a rod as long as the radius, laid along the radius, then bent onto the rim
+  function drawOneRad(hx, hy, rp) {
+    const {th, p} = state.oneRad, n = 30, pts = [];
+    const grow = clamp(p / .3, 0, 1), e = ease(clamp((p - .3) / .7, 0, 1));
+    for (let i = 0; i <= n; i++) {
+      const s = i / n * (e > 0 ? 1 : grow);
+      const S = [hx + s * rp * Math.cos(th), hy - s * rp * Math.sin(th)], A = [hx + rp * Math.cos(th + s), hy - rp * Math.sin(th + s)];
+      const lift = Math.sin(PI * e) * 26;
+      pts.push([S[0] + (A[0] - S[0]) * e + Math.cos(th + .5) * lift, S[1] + (A[1] - S[1]) * e - Math.sin(th + .5) * lift]);
+    }
+    mk('path', {d: 'M' + pts.map(q => q[0].toFixed(1) + ',' + q[1].toFixed(1)).join('L'), fill: 'none', stroke: 'var(--gr-2)', 'stroke-width': 7, 'stroke-linecap': 'round'}, fxG);
+    if (p < 1) return;
+    // the radius again, for comparison, and every radian around the rim
+    mk('line', {x1: hx, y1: hy, x2: hx + rp * Math.cos(th), y2: hy - rp * Math.sin(th), stroke: 'var(--gr-2)', 'stroke-width': 2.5, 'stroke-dasharray': '10 6'}, fxG);
+    for (let k = 1; k <= 6; k++) {
+      const a = th + k, [x1, y1] = [hx + (rp - 10) * Math.cos(a), hy - (rp - 10) * Math.sin(a)], [x2, y2] = [hx + (rp + 10) * Math.cos(a), hy - (rp + 10) * Math.sin(a)];
+      mk('line', {x1, y1, x2, y2, stroke: 'var(--gr-2)', 'stroke-width': 3}, fxG);
+      const near = Math.abs(((a - state.t.unit) % TAU + TAU + PI) % TAU - PI) < .45;   // too close to the car and its sine bar: the tick only
+      const rr = rp - 22;
+      if (!near && inner !== 'short' && ts < 1.3) mk('text', {x: hx + rr * Math.cos(a), y: hy - rr * Math.sin(a) + 4.5, 'text-anchor': 'middle', class: 'barlab halo', fill: 'var(--gr-2)'}, fxG).textContent = k;
+    }
+    // the labels sit inside the circle, clear of the rim labels: the arc's name on its side, the count opposite
+    const mid = th + .5, lh = 17 * ts;
+    const lines = (cx, cy, rows) => rows.forEach((r, i) => { mk('text', {x: cx, y: cy + (i - (rows.length - 1) / 2) * lh + 5, 'text-anchor': 'middle', class: 'radlab halo'}, fxG).textContent = r; });
+    if (inner === 'short' || ts >= 1.3) { lines(hx - rp * .45 * Math.cos(mid), hy + rp * .45 * Math.sin(mid), ['1 radian,', 'about 57.3°']); return; }   // the panel note says the rest
+    lines(hx + rp * .5 * Math.cos(mid), hy - rp * .5 * Math.sin(mid), ['1 radian,', 'about 57.3 degrees']);
+    lines(hx - rp * .5 * Math.cos(mid), hy + rp * .5 * Math.sin(mid), ['about 6.28 of these', 'fit around: that is 2π']);
+  }
+
+  // ======================================================================================
+  // Rendering (every change and every frame of a ride)
+  // ======================================================================================
+  function placeCar(w, t) {
+    const k = kPx(), a = ang(t, w), cx = xM(w.r * Math.cos(a)), cy = yM(w.D + w.r * Math.sin(a));
+    const rp = w.r * k, n = w.n, s = state.mode === 'unit' ? 15 : clamp(TAU * rp / n * .6, 13, 18);
+    carBody.setAttribute('x', -s / 2); carBody.setAttribute('y', -s / 2); carBody.setAttribute('width', s); carBody.setAttribute('height', s);
+    carG.setAttribute('transform', `translate(${cx.toFixed(1)},${cy.toFixed(1)})`);
+    // "you" sits outside the rim, away from the hub
+    // near the bottom that would sit on the ground line, so it goes to the left of the car instead
+    // (on the unit circle it goes inside, clear of the rim labels)
+    const unit = state.mode === 'unit', out = (s / 2 + 16 * ts) * (unit ? -1.25 : 1), low = Math.sin(a) < -.45 && !unit;
+    carLbl.style.display = unit && (inner === 'short' || ts >= 1.3) ? 'none' : '';   // the small unit circle has no room for it
+    carLbl.setAttribute('text-anchor', low ? 'end' : 'middle');
+    carLbl.setAttribute('x', (low ? cx - s / 2 - 6 : cx + Math.cos(a) * out).toFixed(1));
+    carLbl.setAttribute('y', (low ? cy + 5 : cy - Math.sin(a) * out + 5).toFixed(1));
+    const end = END[state.mode];
+    carG.setAttribute('aria-valuemin', 0); carG.setAttribute('aria-valuemax', +end.toFixed(4)); carG.setAttribute('aria-valuenow', +t.toFixed(4));
+    carG.setAttribute('aria-valuetext', state.mode === 'unit' ? `theta ${radSay(t)}, height ${f3(Math.sin(t))}` :
+      `t ${fmt(t, 1)} ${tUnit() === 's' ? 'seconds' : 'minutes'}, height ${fmt(hOf(t, w), 1)} meters`);
+    return [cx, cy];
+  }
+  function render() {
+    const m = state.mode, w = W(), t = curT(), end = END[m];
+    dom[1] = m === 'match' && state.showFull ? end : t;
+    mainItem.render(); if (cosItem) cosItem.render(); if (xItem) xItem.render();
+    syncing = true; trace.set(t); syncing = false;
+    if (smallDot) smallDot.set(t, xOf(t, w));
+    drawWheel(w, t);
+    const [cx, cy] = placeCar(w, t), h = hOf(t, w);
+    // the height line: car to graph dot (wide); car to the scale, and axis to dot (tall)
+    overG.textContent = '';
+    const [u, v] = g.px(t, h), dx = G.plane.left + u, dy = G.plane.top + v;
+    if (inner === 'wide') {   // with a gap over the graph's tick labels and axis title
+      const gl = G.plane.left - 64;
+      if (cx < gl) mk('line', {x1: cx, y1: cy, x2: gl, y2: dy, stroke: 'var(--brand)', 'stroke-width': 1.6, 'stroke-dasharray': '5 5', opacity: .9}, overG);
+      mk('line', {x1: G.plane.left, y1: dy, x2: dx, y2: dy, stroke: 'var(--brand)', 'stroke-width': 1.6, 'stroke-dasharray': '5 5', opacity: .9}, overG);
+    }
+    else { mk('line', {x1: 42, y1: cy, x2: cx, y2: cy, stroke: 'var(--brand)', 'stroke-width': 1.6, 'stroke-dasharray': '5 5'}, overG); hlSeg.set([0, h], [t, h]); }
+    if (m === 'unit' && state.unroll) drawUnroll(t);
+    if (m === 'match') renderTargetLabel();
+    renderReadouts(w, t); renderEq(w, t); renderButtons(); live();
+  }
+  // Unroll the arc: the painted arc from 0 to theta lifts off the rim and lays flat on the x axis
+  function drawUnroll(th) {
+    const p = state.unroll.p, e = ease(p), k = kPx(), hx = G.pane.hubX, hy = yM(0), rp = k;
+    const n = Math.max(24, Math.ceil(th * 16)), pts = [];
+    for (let i = 0; i <= n; i++) {
+      const s = th * i / n, R = [hx + rp * Math.cos(s), hy - rp * Math.sin(s)], [u, v] = g.px(s, 0), A = [G.plane.left + u, G.plane.top + v];
+      const lift = Math.sin(PI * e) * 40;
+      pts.push([R[0] + (A[0] - R[0]) * e, R[1] + (A[1] - R[1]) * e - lift]);
+    }
+    if (th > 0) mk('path', {d: 'M' + pts.map(q => q[0].toFixed(1) + ',' + q[1].toFixed(1)).join('L'), fill: 'none', stroke: 'var(--brand)', 'stroke-width': 7, 'stroke-linecap': 'round'}, overG);
+    if (p < 1) return;
+    const [u0, v0] = g.px(0, 0), [u1] = g.px(th, 0), x0 = G.plane.left + u0, x1 = G.plane.left + u1, y = G.plane.top + v0;
+    for (const x of [x0, x1]) mk('line', {x1: x, x2: x, y1: y - 9, y2: y + 9, stroke: 'var(--brand)', 'stroke-width': 3}, overG);
+    mk('text', {x: (x0 + x1) / 2, y: y + 26, 'text-anchor': 'middle', class: 'barlab halo', fill: 'var(--brand)'}, overG).textContent = `arc = θ = ${fmt(th, 2)}`;
+  }
+  function renderTargetLabel() {
+    const it = document.querySelector('.tlabel'); if (!it) return;
+    const ok = state.matched.has(state.target);
+    it.textContent = inner === 'short' ? `Target ${state.target + 1}` + (ok ? ': matched' : '') : `Target ${state.target + 1} of 8` + (ok ? ', matched' : '');
+  }
+  // kept-curve labels at their right ends, pushed apart so they never sit on each other
+  let klabBoxes = [];
+  function renderKeptLabels() {
+    const m = state.mode, list = state.kept[m]; if (!g || !list) return;
+    g.clear('klab'); klabBoxes.forEach(b => b.remove()); klabBoxes = [];
+    if (!list.length) return;
+    const end = END[m], items = list.map((k, i) => ({k, i, y: g.px(end, hOf(end, k.w))[1]}));
+    items.sort((a, b) => a.y - b.y);
+    const gap = 25 * ts, H = G.plane.h;
+    let prev = -Infinity;
+    for (const it of items) { it.y = Math.max(it.y - 12, prev + gap, 18 * ts); prev = it.y; }
+    const over = prev - (H - 6); if (over > 0) items.forEach(it => it.y -= over);
+    for (const it of items) {
+      const txt = inner === 'short' ? (m === 'real' ? it.k.label.split(':')[0] : `kept ${it.i + 1}`) : it.k.label;
+      const lab = g.label(end, g.coord(0, it.y)[1], txt, {id: 'klab', anchor: 'end', dx: -6, dy: 4, class: 'klabel', layer: 'labels'});
+      // a dark box with a dash swatch, so each label reads clearly and ties to its curve's dash pattern
+      const b = lab.el.getBBox(), box = mk('g', {class: 'deco'});
+      lab.el.parentNode.insertBefore(box, lab.el);
+      mk('rect', {x: b.x - 38, y: b.y - 3, width: b.width + 44, height: b.height + 6, rx: 5, fill: '#0b1017', opacity: .88, stroke: 'var(--line)'}, box);
+      mk('line', {x1: b.x - 32, x2: b.x - 6, y1: b.y + b.height / 2, y2: b.y + b.height / 2, stroke: 'var(--gr-4)', 'stroke-width': 2.2, 'stroke-dasharray': KEEP_DASH[it.i % 4]}, box);
+      klabBoxes.push(box);
+    }
+  }
+  function renderReadouts(w, t) {
+    const m = state.mode, rows = [];
+    const add = (dt, dd) => rows.push(`<dt>${dt}</dt><dd>${dd}</dd>`);
+    if (m === 'unit') {
+      add('θ', `${radText(t)} rad (${deg(t)}°)`);
+      add('sin θ', f3(Math.sin(t)));
+      add('cos θ', f3(Math.cos(t)));
+      add('arc', `arc = θ × radius = θ = ${fmt(t, 3)}`);
+      const id = Math.cos(t) ** 2 + Math.sin(t) ** 2;
+      $('ident').textContent = `cos²θ + sin²θ = ${id.toFixed(3)}`;
+    } else {
+      const trav = TAU * t / w.P, speed = TAU * w.r / (w.P * (m === 'real' ? 60 : 1));
+      add('t', m === 'real' ? `${fmt(t, 1)} min (${fmt(t * 60, 0)} s)` : `${fmt(t, 1)} s`);
+      add('angle from start', `${radText(trav)} rad (${deg(trav)}°)`);
+      add('arc traveled', `${fmt(w.r * trav, 1)} m`);
+      add('height h', `${fmt(hOf(t, w), 1)} m`);
+      if (m === 'ride' && state.showX) add('sideways x', `${f1(xOf(t, w))} m`);
+      add('rim speed', `${n2(speed)} m/s` + (m === 'real' ? ` = ${n2(speed * 3.6)} km/h` : ''));
+      if (m === 'real') { add('top', `${n2(w.D + w.r)} m`); add('lowest', `${n2(w.D - w.r)} m`); add('one turn', `${n2(w.P)} min`); }
+    }
+    $('ro').innerHTML = rows.join('');
+  }
+  function renderEq(w, t) {
+    const m = state.mode;
+    if (m === 'unit') {
+      $('eq1').textContent = 'height = sin θ' + (state.cos ? ',  sideways = cos θ' : '');
+      $('eq2').textContent = 'radius 1, hub at the origin, θ in radians';
+      $('eq3').textContent = 'midline 0, amplitude 1, period 2π';
+      $('eq4').textContent = '';
+      return;
+    }
+    const [a, b, c] = eqLines(w, tUnit());
+    $('eq1').textContent = a; $('eq2').textContent = b; $('eq3').textContent = c;
+    if (m === 'ride' && state.showX) {
+      const x = xOf(t, w), y = hOf(t, w) - w.D, sq = v => (Math.abs(v) < .05 ? '0.0' : v < 0 ? `(−${Math.abs(v).toFixed(1)})` : v.toFixed(1)) + '²';
+      $('eq4').textContent = `x² + (h − D)² = r²:  ${sq(x)} + ${sq(y)} = ${w.r.toFixed(1)}²`;
+    } else $('eq4').textContent = '';
+  }
+  // screen readers: the equation and readouts, at most once a second
+  let liveT = 0, liveTimer = null;
+  function live() {
+    const now = performance.now();
+    const go = () => {
+      liveT = performance.now(); liveTimer = null;
+      const parts = [$('eq1').textContent, ...[...$('ro').querySelectorAll('dt')].map(dt => dt.textContent + ' ' + dt.nextElementSibling.textContent)];
+      if (state.mode === 'unit') parts.push($('ident').textContent);
+      $('live').textContent = parts.join('. ').replace(/−/g, 'minus ');
+    };
+    if (now - liveT >= 1000) go(); else if (!liveTimer) liveTimer = setTimeout(go, 1000 - (now - liveT));
+  }
+  function renderButtons() {
+    const m = state.mode;
+    $('play').textContent = state.playing ? '❚❚ Pause' : '▶ Play';
+    $('play').setAttribute('aria-label', state.playing ? 'Pause' : 'Play');
+    const fast = state.fast[m];
+    $('speed').textContent = m === 'real' ? (fast ? 'Speed 300x' : 'Speed 60x') : (fast ? 'Speed 4x' : 'Speed 1x');
+    $('speed').setAttribute('aria-pressed', !!fast);
+    if (m === 'ride' || m === 'match') {
+      const w = state.wheel[m];
+      for (const b of document.querySelectorAll('[data-board]')) b.setAttribute('aria-pressed', b.dataset.board === w.board);
+      for (const b of document.querySelectorAll('[data-dir]')) b.setAttribute('aria-pressed', +b.dataset.dir === w.dir);
+    }
+    $('xBtn').setAttribute('aria-pressed', state.showX); $('arcBtn').setAttribute('aria-pressed', state.showArc);
+    $('cosBtn').setAttribute('aria-pressed', state.cos);
+    $('fullBtn').setAttribute('aria-pressed', state.showFull); $('revealBtn').setAttribute('aria-pressed', state.reveal);
+    $('prevT').disabled = state.target === 0; $('nextT').disabled = state.target === TARGETS.length - 1;
+    document.body.dataset.mode = m;
+    $('tLine').textContent = `Target ${state.target + 1} of 8` + (state.matched.has(state.target) ? ' (matched)' : '');
+    for (const b of $('realBtns').children) b.setAttribute('aria-pressed', +b.dataset.i === state.real);
+    const kept = state.kept[m];
+    if (kept) $('keepNote').innerHTML = kept.length ? `Kept ${kept.length} of ${KEEP_MAX[m]}. A new one replaces the oldest when full.` +
+      (inner === 'short' && m === 'ride' ? kept.map((k, i) => `<br>kept ${i + 1}: ${k.label}`).join('') : '') : '';
+    $('clearBtn').disabled = !(kept && kept.length);
+    $('hint').textContent = state.hintMsg || HINT[m];
+  }
+
+  // ======================================================================================
+  // Clock, dragging and keys
+  // ======================================================================================
+  const snapT = t => { const s = stepOf(); return Math.round(t / s) * s; };
+  function setT(t, src) {
+    if (src === 'drag' && state.playing) stopPlay();
+    const m = state.mode;
+    state.t[m] = clamp(t, 0, END[m]);
+    if (src === 'drag' || src === 'key') { if (state.hintMsg === L.full) state.hintMsg = ''; }
+    render();
+  }
+  // arrows on the car or the graph dot: Left/Down back, Right/Up forward along the turn, by pi/12 of a turn
+  function keyStep(e) {
+    const dir = {ArrowLeft: -1, ArrowDown: -1, ArrowRight: 1, ArrowUp: 1}[e.key]; if (!dir) return false;
+    if (state.playing) stopPlay();
+    const s = stepOf(), t = curT(), k = t / s, near = Math.abs(k - Math.round(k)) < 1e-6;
+    const nk = near ? Math.round(k) + dir : (dir > 0 ? Math.ceil(k) : Math.floor(k));
+    setT(nk * s, 'key');
+    return true;
+  }
+  let shiftDown = false;
+  for (const ev of ['keydown', 'keyup']) addEventListener(ev, e => { shiftDown = e.shiftKey; }, true);
+  addEventListener('pointermove', e => { shiftDown = e.shiftKey; }, true);
+  function svgPt(e) { const p = sv.createSVGPoint(); p.x = e.clientX; p.y = e.clientY; return p.matrixTransform(sv.getScreenCTM().inverse()); }
+  function carDrag() {
+    let on = false;
+    carG.addEventListener('pointerdown', e => { if (e.button) return; e.preventDefault(); carG.focus(); carG.setPointerCapture(e.pointerId); carG.classList.add('drag'); on = true; if (state.playing) stopPlay(); });
+    carG.addEventListener('pointermove', e => {
+      if (!on) return;
+      const q = svgPt(e), w = W(), hy = yM(w.D), phi = Math.atan2(hy - q.y, q.x - G.pane.hubX), t0 = curT();
+      let d = phi - ang(t0, w); d = ((d + PI) % TAU + TAU) % TAU - PI;
+      let t = t0 + d * w.dir * w.P / TAU;
+      if (e.shiftKey) t = snapT(t);
+      setT(t, 'drag');
+    });
+    const end = () => { if (!on) return; on = false; carG.classList.remove('drag'); };
+    carG.addEventListener('pointerup', end); carG.addEventListener('pointercancel', end);
+    carG.addEventListener('keydown', e => { if (keyStep(e)) e.preventDefault(); });
+  }
+  const SPEED = () => ({ride: state.fast.ride ? 4 : 1, match: state.fast.match ? 4 : 1, real: state.fast.real ? 5 : 1, unit: TAU / 12})[state.mode];
+  let saidChange = false;
+  function play() {
+    if (state.playing) { stopPlay(); narrate('rideDrag', 'ride'); return; }
+    const m = state.mode;
+    if (curT() >= END[m] - 1e-9) { state.t[m] = 0; state.unroll = state.unroll && null; }
+    if (state.hintMsg === L.full) state.hintMsg = '';
+    const p = state.playing = {};
+    let last = performance.now();
+    const tick = () => {
+      if (state.playing !== p) return;
+      const now = performance.now(), calm = Curio.reduce;
+      const dt = calm ? .25 : Math.min(.1, (now - last) / 1000); last = now;
+      advance(dt * SPEED());
+      if (state.playing === p) p.id = setTimeout(tick, calm ? 250 : 16);
+    };
+    p.id = setTimeout(tick, Curio.reduce ? 250 : 16);
+    renderButtons();
+  }
+  function stopPlay() { if (state.playing) { clearTimeout(state.playing.id); state.playing = null; renderButtons(); } }
+  function advance(d) {
+    const m = state.mode, w = W(), t0 = curT(), end = END[m], t1 = Math.min(end, t0 + d);
+    // a soft tick each time the rider passes the top or the bottom
+    const a0 = ang(t0, w), a1 = ang(t1, w), cross = c => Math.floor((a0 - c) / TAU) !== Math.floor((a1 - c) / TAU);
+    if (!tapped) {} else if (cross(PI / 2)) Curio.tone(880, .07, .03, 'triangle'); else if (cross(-PI / 2)) Curio.tone(440, .07, .03, 'triangle');
+    state.t[m] = t1;
+    if (t1 >= end - 1e-9) {
+      stopPlay(); state.hintMsg = L.full;
+      narrate('full');
+      if (m === 'ride' && !saidChange) { saidChange = true; narrate('rideChange', 'ride'); }
+    }
+    render();
+  }
+  function restart() {
+    stopPlay(); hush();
+    const m = state.mode; state.t[m] = 0; state.hintMsg = '';
+    if (m === 'unit') { state.oneRad = null; state.unroll = null; $('radNote').textContent = ''; }
+    render();
+  }
+  $('play').onclick = play;
+  $('restart').onclick = restart;
+  $('speed').onclick = () => { const m = state.mode; state.fast[m] = !state.fast[m]; renderButtons(); };
+
+  // ======================================================================================
+  // Ride and Match controls: sliders (with ground clearance), Board at, Turn, toggles, Keep
+  // ======================================================================================
+  const wh = () => state.wheel[state.mode] || state.wheel.ride;
+  function wheelChanged(src) {
+    const hadGap = !!state.gap;
+    state.gap = null; state.result = ''; $('mres').textContent = $('mres2').textContent = ''; $('wheelNote').textContent = '';
+    if (hadGap) build(); else render();
+    if (wh().board === 'bottom') narrate('rideBoard', 'ride');
+  }
+  const rSl = Plane.slider($('rSlot'), {label: 'Radius (m)', min: RANGE.r[0], max: RANGE.r[1], step: 1, value: DEF.r, id: 'rRange', format: v => fmt(v, 0),
+    parse: s => { const v = parseFloat(String(s).replace('−', '-')); return isFinite(v) ? Math.round(v) : null; },
+    onInput: v => {
+      const w = wh(); w.r = Math.round(v);
+      if (w.D < w.r + 1) { w.D = w.r + 1; dSl.set(w.D, true); state.hintMsg = HINT.clear; }
+      else if (state.hintMsg === HINT.clear) state.hintMsg = '';
+      wheelChanged();
+    }});
+  const dSl = Plane.slider($('dSlot'), {label: 'Hub height (m)', min: RANGE.D[0], max: RANGE.D[1], step: 1, value: DEF.D, id: 'dRange', format: v => fmt(v, 0),
+    parse: s => { const v = parseFloat(String(s).replace('−', '-')); return isFinite(v) ? Math.round(v) : null; },
+    onInput: v => {
+      const w = wh(); w.D = Math.max(Math.round(v), w.r + 1);
+      if (w.D !== Math.round(v)) dSl.set(w.D, true);
+      if (state.hintMsg === HINT.clear) state.hintMsg = '';
+      wheelChanged();
+    }});
+  const pSl = Plane.slider($('pSlot'), {label: 'Time for one turn (s)', min: RANGE.P[0], max: RANGE.P[1], step: 5, value: DEF.P, id: 'pRange', format: v => fmt(v, 0),
+    parse: s => { const v = parseFloat(s); return isFinite(v) ? Math.round(v / 5) * 5 : null; },
+    onInput: v => { wh().P = Math.round(v / 5) * 5; if (state.hintMsg === HINT.clear) state.hintMsg = ''; wheelChanged(); }});
+  rSl.range.setAttribute('aria-label', 'Radius in meters, 2 to 40');
+  dSl.range.setAttribute('aria-label', 'Hub height in meters, 3 to 60, at least radius plus 1');
+  pSl.range.setAttribute('aria-label', 'Time for one turn in seconds, 10 to 120');
+  const syncSliders = () => { const w = wh(); rSl.set(w.r, true); dSl.set(w.D, true); pSl.set(w.P, true); };
+  for (const b of document.querySelectorAll('[data-board]')) b.onclick = () => { wh().board = b.dataset.board; wheelChanged(); };
+  for (const b of document.querySelectorAll('[data-dir]')) b.onclick = () => { wh().dir = +b.dataset.dir; wheelChanged(); };
+  $('xBtn').onclick = () => { state.showX = !state.showX; relayout(true); };
+  $('arcBtn').onclick = () => { state.showArc = !state.showArc; render(); };
+  $('keepBtn').onclick = () => {
+    const m = state.mode, list = state.kept[m]; if (!list) return;
+    const w = W(), label = m === 'real' ? `${REAL[state.real].name}: ${shortEq(w, 'min')}` : shortEq(w);
+    if (list.some(k => k.label === label)) { $('keepNote').textContent = 'That graph is already kept.'; return; }
+    if (list.length >= KEEP_MAX[m]) list.shift();
+    list.push({w: {...w}, label});
+    build();
+  };
+  $('clearBtn').onclick = () => { const l = state.kept[state.mode]; if (l) { l.length = 0; build(); } };
+
+  // ---------- Unit Circle buttons ----------
+  function stepUnit(d) { stopPlay(); setT(Math.min(END.unit, Math.round((curT() + d) / (PI / 12)) * (PI / 12)), 'key'); }
+  $('step6').onclick = () => stepUnit(PI / 6);
+  $('step4').onclick = () => stepUnit(PI / 4);
+  function animate(key, ms, done) {
+    const o = state[key], s = performance.now();
+    if (Curio.reduce) { o.p = 1; render(); done && done(); return; }
+    const f = () => { if (state[key] !== o) return; o.p = Math.min(1, (performance.now() - s) / ms); render(); if (o.p < 1) setTimeout(f, 16); else done && done(); };
+    setTimeout(f, 16);
+  }
+  $('oneRad').onclick = () => {
+    stopPlay();
+    state.oneRad = {th: curT(), p: 0};
+    $('radNote').textContent = 'The purple rod is as long as the radius. Bent onto the rim, it marks 1 radian, about 57.3 degrees. About 6.28 of these fit around: that is 2π.';
+    animate('oneRad', 1500);
+    narrate('unitRadian', 'unit');
+  };
+  $('unrollBtn').onclick = () => { stopPlay(); state.unroll = {p: 0}; animate('unroll', 1500); narrate('unitUnroll', 'unit'); };
+  $('cosBtn').onclick = () => { state.cos = !state.cos; build(); if (state.cos) narrate('unitCosine', 'unit'); };
+
+  // ---------- Real Wheels ----------
+  REAL.forEach((w, i) => { const b = document.createElement('button'); b.className = 'btn'; b.dataset.i = i; b.textContent = w.name; b.onclick = () => chooseReal(i); $('realBtns').appendChild(b); });
+  function chooseReal(i) {
+    stopPlay(); state.real = i; state.t.real = 0; state.hintMsg = '';
+    renderFact(); build(); narrate('realPeriod', 'real');
+  }
+  function renderFact() {
+    const w = REAL[state.real];
+    $('fName').textContent = w.full;
+    $('fact').innerHTML = [['City', w.city], ['Opened', w.opened], ['Height', w.height], ['Diameter', w.across], ['Cars', w.cars], ['One turn', w.turn]]
+      .map(([a, b]) => `<dt>${a}</dt><dd>${b}</dd>`).join('');
+  }
+  $('tryBtn').onclick = () => {
+    const w = REAL[state.real], D0 = +(w.H - w.r).toFixed(2), P0 = w.P * 60;
+    const r = clamp(Math.round(w.r), ...RANGE.r), P = clamp(Math.round(P0 / 5) * 5, ...RANGE.P);
+    const D = Math.max(clamp(Math.round(D0), ...RANGE.D), r + 1);
+    const rounded = [], clamped = [];
+    const note = (name, from, to, unit, lo, hi) => { if (to === from) return; (from < lo || from > hi ? clamped : rounded).push(`${name} ${n2(from)} to ${to} ${unit}`); };
+    note('radius', w.r, r, 'm', ...RANGE.r); note('hub', D0, D, 'm', ...RANGE.D); note('turn', P0, P, 's', ...RANGE.P);
+    Object.assign(state.wheel.ride, {r, D, P, board: 'bottom', dir: 1});
+    state.t.ride = 0;
+    setMode('ride');
+    $('wheelNote').textContent = `Copied ${w.name}.` + (clamped.length ? ` Clamped to the Ride ranges: ${clamped.join(', ')}.` : '') +
+      (rounded.length ? ` Rounded to the slider steps: ${rounded.join(', ')}.` : '');
+  };
+
+  // ---------- Match ----------
+  function check() {
+    const fw = W('match'), ft = targetW(state.target);
+    let worst = 0, wt = 0;
+    for (let i = 0; i <= 240; i++) { const t = i * .5, d = Math.abs(hOf(t, fw) - hOf(t, ft)); if (d > worst + 1e-12) { worst = d; wt = t; } }
+    if (worst <= .5 + 1e-9) {
+      state.matched.add(state.target); state.gap = null; state.showFull = true; state.resultOk = true;
+      state.result = `Matched. Your wheel draws this graph. ${TARGETS[state.target].note}`;
+      Curio.yes(); narrate('matchYes', 'match');
+    } else {
+      state.resultOk = false;
+      state.gap = {t: wt, a: hOf(wt, fw), b: hOf(wt, ft)};
+      state.result = `Not yet. Biggest gap: ${fmt(worst, 1)} m near t = ${fmt(wt, 1)} s.`;
+    }
+    $('mres').textContent = $('mres2').textContent = state.result; $('mres').className = $('mres2').className = 'msg' + (state.resultOk ? ' ok' : '');
+    build();
+    return {matched: state.resultOk, worst, at: wt};
+  }
+  $('checkBtn').onclick = check;
+  $('fullBtn').onclick = () => { state.showFull = !state.showFull; render(); };
+  function showReveal() {
+    const T = TARGETS[state.target], [a, b, c] = eqLines(targetW(state.target));
+    $('mrev').innerHTML = state.reveal ? [a, b, c].filter(Boolean).join('<br>') + `<br><span style="font-family:'Segoe UI',sans-serif;color:var(--muted)">Board at ${BOARD_NAME[T.board]}, ${T.either ? 'either direction' : T.dir > 0 ? 'counterclockwise' : 'clockwise'}.</span>` : '';
+  }
+  $('revealBtn').onclick = () => { state.reveal = !state.reveal; showReveal(); renderButtons(); };
+  function goTarget(i) {
+    state.target = clamp(i, 0, TARGETS.length - 1); state.gap = null; state.result = ''; state.reveal = false; state.showFull = false;
+    $('mres').textContent = $('mres2').textContent = ''; showReveal(); build();
+  }
+  $('prevT').onclick = () => goTarget(state.target - 1);
+  $('nextT').onclick = () => goTarget(state.target + 1);
+
+  // ======================================================================================
+  // Narration (each line once per session, after the first tap) and modes
+  // ======================================================================================
+  const said = new Set();
+  let tapped = false, vq = Promise.resolve(), vgen = 0;
+  // the first tap only unlocks sound; the welcome waits until that tap's own click has run (a mode button
+  // switches mode first, so the welcome heard is the new mode's)
+  // A welcome is queued on entering a mode, and once after the first unlocking tap (after that tap's own click,
+  // so a mode button gives the new mode's welcome). The Sound button does not use up that one-off; a first tap on
+  // Read counts as hearing it. A line is marked said when it is queued, so Read, Restart or any other action that
+  // stops it never brings it back.
+  let welcomed = false;
+  for (const ev of ['pointerdown', 'keydown']) addEventListener(ev, () => { tapped = true; }, true);
+  for (const ev of ['click', 'keyup']) addEventListener(ev, e => {
+    if (welcomed || !tapped) return;
+    const b = e.target && e.target.closest ? e.target.closest('button') : null;
+    if (b && b.id === 'sound') return;
+    welcomed = true;
+    if (b && b.id === 'read') { said.add(WELCOME[state.mode]); return; }
+    narrate(WELCOME[state.mode]);
+  });
+  function narrate(key, onlyMode) {
+    if (!tapped || !Curio.sound || said.has(key) || (onlyMode && state.mode !== onlyMode)) return;
+    said.add(key);
+    const gen = vgen, line = L[key];
+    vq = vq.then(() => gen === vgen ? Promise.race([say(line), wait(2500 + 80 * line.length)]) : null);
+  }
+  function hush() { vgen++; vq = Promise.resolve(); Curio.stop(); }
+
+  function setMode(m) {
+    hush(); stopPlay();
+    state.mode = m; state.hintMsg = '';
+    for (const k of ['ride', 'unit', 'real', 'match']) $('m-' + k).setAttribute('aria-pressed', k === m);
+    for (const el of document.querySelectorAll('[data-modes]')) el.hidden = !el.dataset.modes.split(' ').includes(m);
+    if (m === 'ride' || m === 'match') syncSliders();
+    $('wheelNote').textContent = '';
+    if (m === 'real') renderFact();
+    if (m === 'match') { $('mres').textContent = $('mres2').textContent = state.result; showReveal(); }
+    relayout(true);
+    narrate(WELCOME[m]);
+  }
+  for (const k of ['ride', 'unit', 'real', 'match']) $('m-' + k).onclick = () => setMode(k);
+
+  // every line the tool can say (voice/lines.json records them all)
+  const allLines = () => [...new Set([...Object.values(L), HINT.ride, HINT.unit, HINT.real, HINT.match, HINT.clear])];
+
+  // ======================================================================================
+  // Layout and fitting (see the CSS note)
+  // ======================================================================================
+  function pageLayout() { const w = innerWidth, h = innerHeight; return w >= 1000 && h >= 700 ? 'wide' : w >= 600 && w / h >= 1.25 ? 'compact' : 'stack'; }
+  function relayout(force) {
+    const p = pageLayout();
+    if (p !== page) { page = p; for (const c of ['wide', 'compact', 'stack']) document.body.classList.toggle(c, c === p); }
+    const st = $('stage');
+    if (page !== 'stack') st.style.height = '';
+    // the clock: in the panel, or (stack) right under the graph and sticky
+    const clk = document.querySelector('.p-clock');
+    if (page === 'stack' && clk.parentNode !== document.querySelector('.graphcol')) document.querySelector('.graphcol').appendChild(clk);
+    if (page !== 'stack' && clk.parentNode !== $('panel')) $('panel').insertBefore(clk, document.querySelector('.p-ro'));
+    const r = st.getBoundingClientRect();
+    let want;
+    if (page === 'stack') want = r.width < 900 ? 'tall' : 'wide';
+    else {
+      const sw = Math.min(r.width / 1100, r.height / 640), ssh = Math.min(r.width / 600, r.height / 470), stl = Math.min(r.width / 640, r.height / tallH());
+      want = sw >= .6 ? 'wide' : ssh >= stl ? 'short' : 'tall';
+    }
+    if (want !== inner || force || !G) { inner = want; build(); }
+    fit();
+  }
+  function fit() {
+    const st = $('stage'), r = st.getBoundingClientRect();
+    let s;
+    if (page === 'stack') { s = Math.min(r.width / G.W, 1.15); const hpx = Math.ceil(G.H * s) + 'px'; if (st.style.height !== hpx) st.style.height = hpx; }
+    else s = Math.min(r.width / G.W, r.height / G.H);
+    s = s || 1;
+    $('scene').style.setProperty('--s', s);
+    if (s !== scale) { scale = s; hitSizes(); }
+    const nts = +clamp(.95 / s, 1, 1.5).toFixed(2);
+    if (nts !== ts) { ts = nts; sv.style.setProperty('--ts', ts); renderKeptLabels(); render(); }
+  }
+  // keep the car and the graph dot at least 44 screen pixels across
+  function hitSizes() { const h = Math.max(22, 23 / scale); if (carHit) carHit.setAttribute('r', h); if (trace) trace.setHit(h); }
+  new ResizeObserver(() => relayout()).observe($('stage'));
+  addEventListener('resize', () => relayout());
+
+  Curio.init({clips: "voice:*", rate: .95, readFallback: () => $('hint').textContent});
+  $('read').onclick = () => { hush(); say($('hint').textContent, true); };
+
+  // for checking frames
+  window.__tool = {state, setMode, allLines, W, hOf, xOf, ang, eqLines, play, stopPlay, restart, setT, check, goTarget, chooseReal, TARGETS, REAL,
+    get g() { return g; }, get trace() { return trace; }, get layout() { return {page, inner, scale, ts}; },
+    setWheel(o) { Object.assign(wh(), o); syncSliders(); wheelChanged(); },
+    slide(which, v) { const sl = {r: rSl, D: dSl, P: pSl}[which]; sl.range.value = v; sl.range.dispatchEvent(new Event('input')); },
+    board(b) { document.querySelector(`[data-board="${b}"]`).click(); }, turn(d) { document.querySelector(`[data-dir="${d}"]`).click(); },
+    key(target, k, shift) { const el = target === 'car' ? carG : trace.point.el; el.focus(); el.dispatchEvent(new KeyboardEvent('keydown', {key: k, shiftKey: !!shift, bubbles: true, cancelable: true})); },
+    click(id) { $(id).click(); }, readouts: () => [...$('ro').querySelectorAll('dt')].map(dt => dt.textContent + ': ' + dt.nextElementSibling.textContent),
+    said, curio: () => ({last: Curio.last, sound: Curio.sound, reduce: Curio.reduce}),
+    eq: () => [1, 2, 3, 4].map(i => $('eq' + i).textContent).filter(Boolean), hint: () => $('hint').textContent, carEl: () => carG};
+  setMode('ride');
+})();
+</script>
+</body>
+</html>

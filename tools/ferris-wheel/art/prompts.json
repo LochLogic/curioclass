@@ -1,0 +1,19 @@
+{
+  "house_style": "Muted, realistic digital painting for the background of a high school math tool with a dark interface. Low contrast, deep blues, calm and quiet. No text, no letters, no watermark, no border, no frame.",
+  "style": "A city riverbank at night seen from far away, dim and soft so lines and labels drawn on top stay readable.",
+  "assets": [
+    {
+      "name": "river-night-sky",
+      "prompt": "Empty background: a calm city riverbank skyline at night, seen from far away across wide dark water. A deep navy sky with a few faint stars fills the top two thirds. A low, distant line of dark buildings along the far bank with a few small warm window lights, reflected as soft streaks in the still water below. No wheel, no fairground, no rides, no bridges in the middle. Completely empty of people and animals: no people, no figures, no faces. No signs, no text anywhere. Muted, low contrast and dark, made to sit behind a dark user interface.",
+      "aspect": "16:9",
+      "width": 1600,
+      "quality": 70,
+      "cutout": false,
+      "people": false,
+      "local_note": "shown at about 30 percent opacity behind the wheel pane in Ride and Match; keep the middle and top empty and dark, no people, no wheel",
+      "source": "flux1-schnell (local)",
+      "review": "pending",
+      "sd": "A wide calm river at night seen from far away. Deep navy sky with a few faint stars fills the top two thirds. Along the far bank, a low flat line of dark warehouses and rooftops with a few small warm window lights, reflected as soft streaks in the still dark water. Nothing tall, nothing round, minimal and empty. Muted, low contrast, very dark."
+    }
+  ]
+}
