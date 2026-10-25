@@ -13,7 +13,9 @@
       "prompt": "A cute cartoon golden puppy called Biscuit standing on four legs, side view facing right, floppy ears, a little red collar, wagging tail, happy face.",
       "cutout": true,
       "aspect": "1:1",
-      "height": 220
+      "height": 220,
+      "source": "flux1-schnell (local)",
+      "review": "ok"
     },
     {
       "name": "crosswalk",
@@ -29,7 +31,9 @@
       "cutout": true,
       "aspect": "1:1",
       "width": 170,
-      "quality": 76
+      "quality": 76,
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "carseat",

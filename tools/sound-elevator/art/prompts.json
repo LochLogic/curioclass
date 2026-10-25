@@ -6,7 +6,9 @@
       "prompt": "A cute cartoon gray mouse called Mo standing upright, front view, big round ears, holding a tiny music note, happy face, full body.",
       "cutout": true,
       "aspect": "1:1",
-      "height": 140
+      "height": 140,
+      "source": "flux1-schnell (local)",
+      "review": "ok"
     }
   ]
 }

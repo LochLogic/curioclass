@@ -3,11 +3,13 @@
   "assets": [
     {
       "name": "corner",
-      "prompt": "Empty background: a cozy, calm reading corner in a classroom, seen straight on. A soft round rug, big floor cushions, a low bookshelf with a plant at the far left, a window with soft daylight and gauzy curtains at the far right. The whole middle of the picture is a plain, softly lit pale wall with lots of empty space. No people, no animals, no text, no posters with words.",
+      "prompt": "Empty background: a cozy, calm reading corner in a classroom, seen straight on. A soft round rug, big floor cushions, a low bookshelf with a plant at the far left, a window with soft daylight and gauzy curtains at the far right. The whole middle of the picture is a plain, softly lit pale wall with lots of empty space. The walls are completely plain: no posters, no pictures, no writing anywhere. No people, no animals.",
       "aspect": "16:9",
       "width": 1600,
       "quality": 72,
-      "local_note": "keep the middle empty: the tool draws its activities there"
+      "local_note": "keep the middle empty: the tool draws its activities there",
+      "source": "flux1-schnell (local)",
+      "review": "redo: fake text on the wall posters"
     },
     {
       "name": "turtle",
@@ -15,7 +17,9 @@
       "cutout": true,
       "key": "magenta",
       "aspect": "1:1",
-      "height": 230
+      "height": 230,
+      "source": "flux1-schnell (local)",
+      "review": "ok"
     }
   ]
 }

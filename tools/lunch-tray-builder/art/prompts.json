@@ -7,7 +7,10 @@
       "cutout": true,
       "aspect": "1:1",
       "width": 200,
-      "quality": 76
+      "quality": 76,
+      "source": "flux1-schnell (local)",
+      "review": "redo: cast shadow kept as a green blob; draw on magenta",
+      "key": "magenta"
     },
     {
       "name": "banana",
@@ -40,7 +43,8 @@
       "cutout": true,
       "aspect": "1:1",
       "width": 200,
-      "quality": 76
+      "quality": 76,
+      "key": "magenta"
     },
     {
       "name": "pear",
@@ -66,7 +70,9 @@
       "aspect": "1:1",
       "width": 200,
       "quality": 76,
-      "key": "magenta"
+      "key": "magenta",
+      "source": "flux1-schnell (local)",
+      "review": "ok"
     },
     {
       "name": "corn",
@@ -192,11 +198,14 @@
     },
     {
       "name": "milk",
-      "prompt": "One small school milk carton, plain white and blue with no words, a bright appetizing food illustration seen from slightly above.",
+      "prompt": "One small school milk carton, white with a blue top and a wide blue stripe, no words or letters, a bright appetizing food illustration seen from slightly above.",
       "cutout": true,
       "aspect": "1:1",
       "width": 200,
-      "quality": 76
+      "quality": 76,
+      "source": "flux1-schnell (local)",
+      "review": "redo: white side of the carton vanished in the cutout",
+      "key": "magenta"
     },
     {
       "name": "yogurt",

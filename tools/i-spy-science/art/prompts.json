@@ -6,28 +6,36 @@
       "prompt": "Empty background: a calm sunny pond scene seen from the bank at child height. Still blue-green water across the middle and bottom, a grassy muddy bank in the lower left corner, soft reeds far at the back, trees and blue sky at the top. Lots of open water and grass. No animals, no lily pads, no flowers in front, no people.",
       "aspect": "16:9",
       "width": 1600,
-      "quality": 72
+      "quality": 72,
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "garden",
       "prompt": "Empty background: a sunny vegetable and flower garden seen at child height. Brown soil and green grass across the bottom third, a wooden fence and green leafy plants in the background, blue sky at the top. Lots of open ground. No insects, no animals, no big flowers, no people.",
       "aspect": "16:9",
       "width": 1600,
-      "quality": 72
+      "quality": 72,
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "forest",
       "prompt": "Empty background: a shady forest floor seen at child height. Brown leaf litter and soft moss across the bottom half, big tree trunks in the background with dappled sunlight, one low tree branch across the upper middle. Lots of open ground. No animals, no mushrooms, no people.",
       "aspect": "16:9",
       "width": 1600,
-      "quality": 72
+      "quality": 72,
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "beach",
       "prompt": "Empty background: a sunny sandy beach seen at child height. Smooth golden sand across the bottom half, gentle blue waves and the ocean in the middle, a clear blue sky with a few clouds at the top. Lots of open sand and sky. No animals, no shells, no people, no buildings.",
       "aspect": "16:9",
       "width": 1600,
-      "quality": 72
+      "quality": 72,
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "frog",
@@ -36,7 +44,9 @@
       "aspect": "1:1",
       "width": 220,
       "quality": 76,
-      "key": "magenta"
+      "key": "magenta",
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "duck",
@@ -44,7 +54,10 @@
       "cutout": true,
       "aspect": "1:1",
       "width": 220,
-      "quality": 76
+      "quality": 76,
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "redo: green key cut away the green head; draw on magenta",
+      "key": "magenta"
     },
     {
       "name": "lilypad",
@@ -53,7 +66,9 @@
       "aspect": "1:1",
       "width": 220,
       "quality": 76,
-      "key": "magenta"
+      "key": "magenta",
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "dragonfly",
@@ -61,7 +76,9 @@
       "cutout": true,
       "aspect": "1:1",
       "width": 220,
-      "quality": 76
+      "quality": 76,
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "cattail",
@@ -70,7 +87,9 @@
       "aspect": "1:1",
       "width": 220,
       "quality": 76,
-      "key": "magenta"
+      "key": "magenta",
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "rock",
@@ -78,7 +97,9 @@
       "cutout": true,
       "aspect": "1:1",
       "width": 220,
-      "quality": 76
+      "quality": 76,
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "ladybug",
@@ -86,7 +107,9 @@
       "cutout": true,
       "aspect": "1:1",
       "width": 220,
-      "quality": 76
+      "quality": 76,
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "sunflower",
@@ -95,7 +118,9 @@
       "aspect": "1:1",
       "width": 220,
       "quality": 76,
-      "key": "magenta"
+      "key": "magenta",
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "snail",
@@ -103,15 +128,18 @@
       "cutout": true,
       "aspect": "1:1",
       "width": 220,
-      "quality": 76
+      "quality": 76,
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "worm",
-      "prompt": "A pink earthworm, wiggly S shape.",
+      "prompt": "A pink earthworm lying stretched out in a gentle wavy curve, side view, soft ringed body.",
       "cutout": true,
       "aspect": "1:1",
       "width": 220,
-      "quality": 76
+      "quality": 76,
+      "review": "redo: drawn as a letter S"
     },
     {
       "name": "butterfly",
@@ -119,7 +147,9 @@
       "cutout": true,
       "aspect": "1:1",
       "width": 220,
-      "quality": 76
+      "quality": 76,
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "bee",
@@ -127,7 +157,9 @@
       "cutout": true,
       "aspect": "1:1",
       "width": 220,
-      "quality": 76
+      "quality": 76,
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "mushroom",
@@ -135,7 +167,9 @@
       "cutout": true,
       "aspect": "1:1",
       "width": 220,
-      "quality": 76
+      "quality": 76,
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "pinecone",
@@ -143,7 +177,9 @@
       "cutout": true,
       "aspect": "1:1",
       "width": 220,
-      "quality": 76
+      "quality": 76,
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "squirrel",
@@ -151,7 +187,9 @@
       "cutout": true,
       "aspect": "1:1",
       "width": 220,
-      "quality": 76
+      "quality": 76,
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "fern",
@@ -160,7 +198,9 @@
       "aspect": "1:1",
       "width": 220,
       "quality": 76,
-      "key": "magenta"
+      "key": "magenta",
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "acorn",
@@ -168,7 +208,9 @@
       "cutout": true,
       "aspect": "1:1",
       "width": 220,
-      "quality": 76
+      "quality": 76,
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "nest",
@@ -176,7 +218,9 @@
       "cutout": true,
       "aspect": "1:1",
       "width": 220,
-      "quality": 76
+      "quality": 76,
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "crab",
@@ -184,7 +228,9 @@
       "cutout": true,
       "aspect": "1:1",
       "width": 220,
-      "quality": 76
+      "quality": 76,
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "seastar",
@@ -192,7 +238,9 @@
       "cutout": true,
       "aspect": "1:1",
       "width": 220,
-      "quality": 76
+      "quality": 76,
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "shell",
@@ -200,7 +248,9 @@
       "cutout": true,
       "aspect": "1:1",
       "width": 220,
-      "quality": 76
+      "quality": 76,
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "seagull",
@@ -208,7 +258,9 @@
       "cutout": true,
       "aspect": "1:1",
       "width": 220,
-      "quality": 76
+      "quality": 76,
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "seaweed",
@@ -217,7 +269,9 @@
       "aspect": "1:1",
       "width": 220,
       "quality": 76,
-      "key": "magenta"
+      "key": "magenta",
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "jellyfish",
@@ -225,7 +279,9 @@
       "cutout": true,
       "aspect": "1:1",
       "width": 220,
-      "quality": 76
+      "quality": 76,
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     }
   ]
 }

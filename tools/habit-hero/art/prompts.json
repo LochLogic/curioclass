@@ -6,14 +6,18 @@
       "prompt": "Empty background: a friendly small town street on a sunny day, seen from the side. A cozy house with a red door on the far left, a sidewalk, a few trees, a small school building far on the right, a big open blue sky. The middle and right of the picture are open sky and lawn with lots of empty space. No people, no animals, no text, no signs with words.",
       "aspect": "16:9",
       "width": 1600,
-      "quality": 72
+      "quality": 72,
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "pip",
       "prompt": "A cheerful cartoon young red fox superhero called Pip, standing proudly with hands on hips, a short blue cape and a small yellow star on the chest, big friendly eyes, full body, front view.",
       "cutout": true,
       "aspect": "3:4",
-      "height": 330
+      "height": 330,
+      "source": "flux1-schnell (local)",
+      "review": "ok"
     },
     {
       "name": "pip-tired",
@@ -21,7 +25,9 @@
       "cutout": true,
       "aspect": "3:4",
       "height": 330,
-      "ref": "pip"
+      "ref": "pip",
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "pip-cheer",
@@ -29,7 +35,9 @@
       "cutout": true,
       "aspect": "3:4",
       "height": 330,
-      "ref": "pip"
+      "ref": "pip",
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     }
   ]
 }

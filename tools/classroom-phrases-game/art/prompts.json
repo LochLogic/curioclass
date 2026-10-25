@@ -7,7 +7,9 @@
       "cutout": true,
       "aspect": "1:1",
       "width": 360,
-      "quality": 76
+      "quality": 76,
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "water",
@@ -15,7 +17,9 @@
       "cutout": true,
       "aspect": "1:1",
       "width": 360,
-      "quality": 76
+      "quality": 76,
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "sick",
@@ -23,7 +27,9 @@
       "cutout": true,
       "aspect": "1:1",
       "width": 360,
-      "quality": 76
+      "quality": 76,
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "tissue",
@@ -31,15 +37,19 @@
       "cutout": true,
       "aspect": "1:1",
       "width": 360,
-      "quality": 76
+      "quality": 76,
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "help",
-      "prompt": "A simple clear picture card illustration: a cartoon white glove hand raised high, waving.",
+      "prompt": "A simple clear picture card illustration: a cartoon white glove raised high, waving hello, with exactly four fingers and one thumb, five digits in all.",
       "cutout": true,
       "aspect": "1:1",
       "width": 360,
-      "quality": 76
+      "quality": 76,
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "redo: glove has too many fingers (Cory)"
     },
     {
       "name": "again",
@@ -47,7 +57,9 @@
       "cutout": true,
       "aspect": "1:1",
       "width": 360,
-      "quality": 76
+      "quality": 76,
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "understand",
@@ -55,7 +67,9 @@
       "cutout": true,
       "aspect": "1:1",
       "width": 360,
-      "quality": 76
+      "quality": 76,
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "howsay",
@@ -63,15 +77,18 @@
       "cutout": true,
       "aspect": "1:1",
       "width": 360,
-      "quality": 76
+      "quality": 76,
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "pencil",
-      "prompt": "A simple clear picture card illustration: a yellow pencil broken in two pieces.",
+      "prompt": "A simple clear picture card illustration: one yellow pencil snapped in half, the two short halves lying side by side with a jagged wooden break between them.",
       "cutout": true,
       "aspect": "1:1",
       "width": 360,
-      "quality": 76
+      "quality": 76,
+      "review": "redo: drew two whole pencils, not one broken pencil"
     },
     {
       "name": "where",
@@ -79,7 +96,9 @@
       "cutout": true,
       "aspect": "1:1",
       "width": 360,
-      "quality": 76
+      "quality": 76,
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "finished",
@@ -87,7 +106,9 @@
       "cutout": true,
       "aspect": "1:1",
       "width": 360,
-      "quality": 76
+      "quality": 76,
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "lost",
@@ -95,7 +116,9 @@
       "cutout": true,
       "aspect": "1:1",
       "width": 360,
-      "quality": 76
+      "quality": 76,
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "play",
@@ -103,7 +126,9 @@
       "cutout": true,
       "aspect": "1:1",
       "width": 360,
-      "quality": 76
+      "quality": 76,
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "thanks",
@@ -111,7 +136,9 @@
       "cutout": true,
       "aspect": "1:1",
       "width": 360,
-      "quality": 76
+      "quality": 76,
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "excuse",
@@ -119,7 +146,9 @@
       "cutout": true,
       "aspect": "1:1",
       "width": 360,
-      "quality": 76
+      "quality": 76,
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "morning",
@@ -127,7 +156,9 @@
       "cutout": true,
       "aspect": "1:1",
       "width": 360,
-      "quality": 76
+      "quality": 76,
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     }
   ]
 }
