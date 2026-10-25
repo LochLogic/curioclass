@@ -1,0 +1,54 @@
+/* Curio Class 9-12 theme: a dark, pro-instrument look for grades 9 to 12 (students drive, often on laptops).
+   Link it after the kit frame:  <link rel="stylesheet" href="kit:curio">  <link rel="stylesheet" href="kit:theme-912">
+   then the tool's own <style>, which may set its own --brand accent (keep it AA on --panel, 4.5:1 or more).
+   Contrast (WCAG 2.1, checked 2026-10-25): --ink on --panel 14.7:1 (on --sec-bg 13.9:1), --muted on --sec-bg 7.7:1,
+   --brand on --sec-bg 8.2:1, --brand-ink on --brand 9.2:1, --head-ink on --btn 13.1:1, --ok on --sec-bg 9.7:1,
+   --warn on --sec-bg 9.9:1, --focus ring on --panel 12.0:1, --btn-line border on --sec-bg 3.6:1 (on --btn 3.4:1),
+   --gr-1 to --gr-4 on --gr-bg 7.4:1 or more (gr-1 7.46:1).
+   Classes for instrument panels (all optional):
+     .sec (a panel section card) with an h2 label; .btn small 44 px buttons (aria-pressed shows the on state);
+     .readout numbers in the readout font; dl.readouts (dt label, dd value); input.num (a number box);
+     input[type=range] (a slider); table.inst (a data table); .ok and .warn status text (always add words or a glyph). */
+:root{
+  --paper:#0d1219;--ink:#e8edf3;--muted:#a6b3c4;--line:#2b3646;--focus:#8fe3ff;
+  --brand:#f2a93b;--btn:#1c2532;--btn-line:#62789a;--head-ink:#e8edf3;--panel:#141b25;
+  --brand-ink:#1c1203;--head-bg:#10161f;--tip-bg:#1b2430;--sec-bg:#18202b;--ok:#6fdca6;--warn:#ffb8a8;
+  --readout-font:'Cascadia Mono',Consolas,ui-monospace,'SFMono-Regular',Menlo,monospace;
+  /* graphing engine colors (kit/graphing.js): each series also has its own dash pattern */
+  --gr-bg:#0e1520;--gr-grid:rgba(255,255,255,.07);--gr-grid-major:rgba(255,255,255,.16);--gr-axis:#c9d3df;--gr-text:#a6b3c4;
+  --gr-1:#5aa9ff;--gr-2:#c9a0ff;--gr-3:#5fd39a;--gr-4:#ff8a8a;
+  color-scheme:dark;
+}
+body{background:var(--paper);color:var(--ink)}
+header{background:var(--head-bg);border-bottom:2px solid var(--brand)}
+h1{font-family:'Segoe UI',system-ui,-apple-system,Roboto,sans-serif;font-weight:700;letter-spacing:.2px}
+h1 small{color:var(--muted);opacity:1}
+.seg button[aria-pressed="true"]{background:var(--brand);color:var(--brand-ink)}
+.panel{border-left:1px solid var(--line);gap:10px}
+.hint{font-size:16px;margin:0}
+.tip{background:var(--tip-bg);color:var(--ink);border-left:3px solid var(--brand);border-radius:8px;margin:0}
+.big-btn,.big-btn.gold{background:var(--brand);color:var(--brand-ink);border-radius:10px;box-shadow:none;min-height:48px;
+  font:700 17px 'Segoe UI',system-ui,sans-serif}
+.big-btn.plain{background:transparent;color:var(--ink);border:2px solid var(--btn-line)}
+.btn{min-height:44px;min-width:44px;padding:0 12px;border-radius:8px;border:1px solid var(--btn-line);background:var(--btn);
+  color:var(--ink);font-weight:600;font-size:15px}
+.btn[aria-pressed="true"]{background:var(--brand);border-color:var(--brand);color:var(--brand-ink)}
+.btn:hover:not(:disabled){border-color:var(--muted)}
+.btn:disabled,.big-btn:disabled{opacity:.4;cursor:not-allowed}
+.sec{background:var(--sec-bg);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.sec>h2{margin:0 0 8px;font:700 12px/1.2 'Segoe UI',system-ui,sans-serif;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+.readout,.readouts dd,input.num,table.inst{font-family:var(--readout-font);font-variant-numeric:tabular-nums}
+dl.readouts{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;margin:0;font-size:14px}
+dl.readouts dt{color:var(--muted)}
+dl.readouts dd{margin:0;color:var(--ink)}
+input.num{min-height:44px;width:7.5em;padding:0 10px;border-radius:8px;border:1px solid var(--btn-line);background:#0b1017;color:var(--ink);font-size:16px}
+input[type=range]{-webkit-appearance:none;appearance:none;background:transparent;height:44px;width:100%;margin:0}
+input[type=range]::-webkit-slider-runnable-track{height:6px;border-radius:3px;background:var(--line)}
+input[type=range]::-moz-range-track{height:6px;border-radius:3px;background:var(--line)}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;margin-top:-9px;border-radius:50%;
+  background:var(--brand);border:3px solid var(--paper);box-shadow:0 0 0 1px var(--brand)}
+input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:var(--brand);border:3px solid var(--paper)}
+table.inst{border-collapse:collapse;font-size:14px}
+table.inst th,table.inst td{border:1px solid var(--line);padding:4px 8px;text-align:right}
+table.inst th{color:var(--muted);font-weight:600}
+.ok{color:var(--ok)} .warn{color:var(--warn)}

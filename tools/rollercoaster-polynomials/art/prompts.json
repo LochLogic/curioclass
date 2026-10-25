@@ -1,0 +1,18 @@
+{
+  "house_style": "Muted, realistic digital painting for the background of a high school math tool with a dark interface. Low contrast, deep blues, calm and quiet. No text, no letters, no watermark, no border, no frame.",
+  "style": "Dusk at an empty fairground, seen from far away, dim and soft so lines and labels drawn on top stay readable.",
+  "assets": [
+    {
+      "name": "night-fairground",
+      "prompt": "Empty background: an empty fairground field at dusk under a dark blue sky. Far in the distance, a few strings of small warm lights and the dark silhouette of a wooden roller coaster frame along the horizon. Flat open grass in the foreground, lots of empty dark sky. Completely empty of people and animals: no people, no figures, no faces. No signs, no text anywhere. Muted and dark, made to sit behind a dark user interface.",
+      "aspect": "16:9",
+      "width": 1600,
+      "quality": 70,
+      "cutout": false,
+      "people": false,
+      "local_note": "shown at low opacity behind the plane; keep it dark and empty, no people",
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    }
+  ]
+}

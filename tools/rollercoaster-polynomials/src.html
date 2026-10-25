@@ -1,0 +1,1126 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rollercoaster Polynomials · Plant the zeros. Ride the track. · Curio Class</title>
+<meta name="description" content="Build a coaster track by planting the zeros of a polynomial in the ground, survey hidden tracks with the remainder theorem, and fill park orders. Grade 11 Algebra 2. Works offline.">
+<!--
+Rollercoaster Polynomials (Curio Class)
+Grade 11, Algebra 2: A-APR.B.2 (remainder theorem), A-APR.B.3 (zeros from factors, rough graphs), A-APR.C.4 (identities,
+light touch), with F-IF.C.7c (graph polynomials showing zeros and end behavior) as support.
+Students drive, on their own laptops. Build: plant zeros (footings) and choose how each meets the ground; the track is
+the polynomial, drawn to scale. Survey: find hidden footings with synthetic division. Commissions: optional orders and
+blueprints to match.
+Facts: OpenStax College Algebra 2e, sections 5.3 to 5.5 (CC BY 4.0); Common Core State Standards for Mathematics.
+All plan, order and blueprint values are original. Background art: night-fairground (no people).
+One file, no network requests. Content CC BY 4.0, code MIT. curioclass.org
+-->
+<link rel="stylesheet" href="kit:curio">
+<link rel="stylesheet" href="kit:theme-912">
+<style>
+:root{--brand:#f2a93b;--rail-gap:#0e1520;--soil:#23180f;--soil-2:#1a120b;--earth:#9b7650}
+/* two columns only when the plane can stay near full size; below that the panel stacks under the stage */
+@media (min-width:1000px){main{grid-template-columns:minmax(0,1fr) 400px}}
+@media (max-width:999px){main{grid-template-columns:minmax(0,1fr)} .panel{min-width:0} .stage{min-height:min(94vw,86vh)} .panel{border-left:0;border-top:1px solid var(--line)}}
+@media (max-width:480px){#zlist .zrow{grid-template-columns:repeat(3,44px) auto auto;justify-content:start} #zlist .zrow>div:first-child{grid-column:1/-1}}
+.stage{background:linear-gradient(rgba(7,11,18,.78),rgba(7,11,18,.9)),url(art:night-fairground) center/cover no-repeat,#0b111a}
+.scene{width:760px;height:712px}
+#sv{display:block;width:760px;height:712px;overflow:visible}
+.deco{pointer-events:none}
+.note{fill:var(--muted);font:14px 'Segoe UI',system-ui,sans-serif}
+.st-label{fill:var(--ink);font:700 13px 'Segoe UI',system-ui,sans-serif;paint-order:stroke;stroke:#0b1017;stroke-width:4px}
+.mult-num{fill:var(--ink);font:700 14px var(--readout-font);text-anchor:middle}
+.glyph{fill:none;stroke:var(--ink);stroke-width:2;stroke-linecap:round}
+.glyph-ground{stroke:var(--muted);stroke-width:1.5}
+.post-val{fill:var(--ink);font:600 12px var(--readout-font);paint-order:stroke;stroke:#0b1017;stroke-width:4px}
+.stake-label{fill:var(--ink);font:700 13px var(--readout-font);text-anchor:middle;paint-order:stroke;stroke:#0b1017;stroke-width:4px}
+.off-note{fill:var(--warn);font:600 13px 'Segoe UI',system-ui,sans-serif;paint-order:stroke;stroke:#0b1017;stroke-width:4px}
+.panel h2{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.say{min-height:44px;min-width:44px;border-radius:8px;border:1px solid var(--btn-line);background:var(--btn);color:var(--ink);font-size:16px;text-transform:none;letter-spacing:0}
+.sayline{margin:0 0 8px;font-size:14px;line-height:1.4;color:var(--ink);border-left:3px solid var(--focus);padding-left:8px}
+.eq{font-size:17px;line-height:1.35}
+.eq span{white-space:nowrap}
+.eq.std{color:var(--muted);font-size:15px;margin:4px 0 8px}
+.eq b{color:var(--brand);font-weight:700}
+#multSteps{margin:8px 0 0;padding-left:22px;font:14px/1.5 var(--readout-font)}
+#multSteps li span{color:var(--muted)}
+.zrow{display:grid;grid-template-columns:minmax(74px,1fr) repeat(3,44px) auto auto;gap:4px;align-items:center;padding:4px 0;border-bottom:1px solid var(--line)}
+.zrow:last-child{border-bottom:0}
+.zrow .zx{font:700 15px var(--readout-font)}
+.zrow .zk{display:block;font:12px 'Segoe UI',sans-serif;color:var(--muted)}
+.zrow .btn{padding:0 7px;font-size:14px}
+.rowbtns{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.rowbtns .big-btn{flex:1}
+.small{font-size:13px;color:var(--muted);margin:6px 0 0;line-height:1.35}
+.small:empty{display:none}
+.panel .tip{position:sticky;top:0;z-index:3}
+#rideLive{font-size:14px;line-height:1.5}
+#contacts{margin:6px 0 0;padding-left:20px;font:14px/1.5 var(--readout-font)}
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.bigeq{font:700 22px var(--readout-font);margin:2px 0 4px;word-break:break-word}
+#divTable td.box{outline:2px solid var(--brand);outline-offset:-3px;font-weight:700}
+#divTable td.lbl,#divTable th.lbl{color:var(--muted);text-align:left;font-family:'Segoe UI',sans-serif;font-size:12px}
+#divTable td.cc{border-right:2px solid var(--muted)}
+.msg{margin:8px 0 0;font-size:15px;line-height:1.4}
+.msg:empty{display:none}
+#log{margin:0;padding-left:32px;font:14px/1.6 var(--readout-font);max-height:180px;overflow:auto}
+#log li.cur{color:var(--brand)}
+#checkTable{margin-top:8px}
+.clist{display:flex;flex-direction:column;gap:6px}
+.clist .btn{text-align:left;display:flex;justify-content:space-between;gap:8px;align-items:center;min-height:48px}
+.clist .btn .done{color:var(--ok);font-weight:700;white-space:nowrap}
+.card{position:relative}
+.card .cname{font:700 19px 'Segoe UI',sans-serif;margin:0}
+.card .cline{margin:4px 0 8px;color:var(--muted);font-style:italic}
+.checks{list-style:none;margin:0 0 8px;padding:0;display:flex;flex-direction:column;gap:4px;font-size:15px}
+.checks li{display:grid;grid-template-columns:22px 1fr auto;gap:6px;align-items:baseline}
+.checks .gl{font-weight:700}
+.checks .st{font:12px var(--readout-font);color:var(--muted)}
+.checks li.met .gl,.checks li.met .st{color:var(--ok)}
+.stamp{display:inline-block;margin:2px 0 10px 4px;transform:rotate(-4deg);border:3px solid var(--ok);color:var(--ok);border-radius:6px;
+  padding:2px 10px;font:800 18px 'Segoe UI',sans-serif;letter-spacing:.12em}
+.reveal{font:15px var(--readout-font);margin:0 0 8px}
+</style>
+</head>
+<body>
+<header>
+  <h1>Rollercoaster Polynomials <small>Plant the zeros. Ride the track.</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-build" aria-pressed="true">Build</button>
+    <button id="m-survey" aria-pressed="false">Survey</button>
+    <button id="m-commissions" aria-pressed="false">Commissions</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true" title="Turn animation on or off">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+  <button class="icon-btn" id="read">🔊 Read</button>
+</header>
+<main>
+  <div class="stage" id="stage">
+    <div class="scene" id="scene">
+      <svg id="sv" viewBox="0 0 760 712" role="group" aria-label="Coaster plane">
+        <defs>
+          <linearGradient id="skyG" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#0a1426" stop-opacity=".82"/><stop offset="1" stop-color="#1b2740" stop-opacity=".62"/>
+          </linearGradient>
+          <linearGradient id="soilG" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#2c1f14"/><stop offset="1" stop-color="#140d08"/>
+          </linearGradient>
+        </defs>
+        <g id="gBuild"></g>
+        <g id="gSurvey" style="display:none"></g>
+        <text class="note deco" id="note" x="400" y="704" text-anchor="middle">Drawn to scale: one square is 10 meters each way.</text>
+      </svg>
+    </div>
+  </div>
+  <aside class="panel" id="panel">
+    <p class="hint" id="hint"></p>
+    <p class="tip" id="tip" aria-live="polite"></p>
+
+    <div id="comList" hidden>
+      <section class="sec"><h2>Orders</h2><div class="clist" id="orders"></div></section>
+      <section class="sec"><h2>Blueprints</h2><div class="clist" id="bps"></div></section>
+    </div>
+
+    <section class="sec card" id="card" hidden aria-live="polite">
+      <p class="cname" id="cName"></p>
+      <p class="cline" id="cLine"></p>
+      <p class="sayline" id="bpSay" hidden></p>
+      <ul class="checks" id="checks"></ul>
+      <div class="stamp" id="stamp" hidden>✓ APPROVED</div>
+      <p class="reveal" id="cReveal" hidden></p>
+      <div class="rowbtns">
+        <button class="btn" id="bpHear" hidden aria-label="Hear the blueprint hint">🔊 Hint</button>
+        <button class="btn" id="cRide">▶ Ride</button>
+        <button class="btn" id="cBack">Back to list</button>
+      </div>
+    </section>
+
+    <div id="buildPanel">
+      <section class="sec">
+        <h2>Equation</h2>
+        <div class="eq readout" id="fact"></div>
+        <div class="eq std readout" id="std"></div>
+        <button class="btn" id="showMult" aria-expanded="false">Show the multiplication</button>
+        <ol id="multSteps" hidden></ol>
+      </section>
+      <section class="sec">
+        <h2>Zeros (footings) <button class="say" data-say="zeros" aria-label="Hear the hint about zeros">🔊</button></h2>
+        <p class="sayline" id="say-zeros" hidden></p>
+        <div id="zlist"></div>
+        <button class="btn" id="addZero">Add zero</button>
+        <p class="small" id="capNote"></p>
+      </section>
+      <section class="sec">
+        <h2>Leading coefficient a <button class="say" data-say="a" aria-label="Hear the hint about a">🔊</button></h2>
+        <p class="sayline" id="say-a" hidden></p>
+        <div id="aSlot"></div>
+        <div class="rowbtns" style="margin-top:6px">
+          <button class="btn" id="flip">Flip track</button>
+          <button class="btn" id="snap" aria-pressed="true">Snap to half</button>
+        </div>
+      </section>
+      <section class="sec">
+        <h2>Readouts <button class="say" data-say="ends" aria-label="Hear the hint about end behavior">🔊</button></h2>
+        <p class="sayline" id="say-ends" hidden></p>
+        <dl class="readouts">
+          <dt>Degree</dt><dd id="rDeg"></dd>
+          <dt>Ends</dt><dd id="rEnd" style="font-family:inherit"></dd>
+          <dt>Highest point</dt><dd id="rHigh"></dd>
+          <dt>Deepest tunnel</dt><dd id="rDeep"></dd>
+          <dt>Ride length</dt><dd id="rLen"></dd>
+        </dl>
+      </section>
+      <div class="rowbtns">
+        <button class="big-btn" id="ride">▶ Ride</button>
+        <button class="big-btn plain" id="newTrack">New track</button>
+      </div>
+      <section class="sec" id="rideSec" hidden>
+        <h2>Ride</h2>
+        <div id="rideLive" class="readout"></div>
+        <ul id="contacts" aria-live="polite"></ul>
+      </section>
+    </div>
+
+    <div id="surveyPanel" hidden>
+      <section class="sec">
+        <h2>Plans</h2>
+        <div class="plans" id="plans"></div>
+      </section>
+      <section class="sec">
+        <h2>The plan</h2>
+        <div class="bigeq" id="planStd"></div>
+        <div class="small" id="planFac"></div>
+      </section>
+      <div class="rowbtns">
+        <button class="big-btn" id="surveyHere">Survey here</button>
+        <button class="btn" id="double">Check for a double footing</button>
+      </div>
+      <section class="sec">
+        <h2>Synthetic division <button class="say" data-say="rem" aria-label="Hear the hint about the remainder">🔊</button></h2>
+        <p class="sayline" id="say-rem" hidden></p>
+        <div class="small" id="divCap">Move the stake and press Survey here.</div>
+        <table class="inst" id="divTable"></table>
+        <p class="msg" id="divMsg" aria-live="polite"></p>
+      </section>
+      <section class="sec">
+        <h2>Factor tracker</h2>
+        <div class="readout" id="tracker"></div>
+        <p class="msg" id="doneMsg" aria-live="polite"></p>
+        <table class="inst" id="checkTable" hidden></table>
+      </section>
+      <section class="sec">
+        <h2>Survey log</h2>
+        <ol id="log" reversed></ol>
+        <p class="small" id="logEmpty">Nothing surveyed yet.</p>
+      </section>
+      <button class="btn" id="startOver">Start over</button>
+    </div>
+  </aside>
+</main>
+<script src="kit:curio"></script>
+<script src="kit:graphing"></script>
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const {say} = Curio;
+  const fmt = Plane.fmt, fmtSig = Plane.fmtSig;
+  const NS = 'http://www.w3.org/2000/svg';
+  // animation frames on a 16 ms timer (headless frame checks run timers, not always animation frames)
+  const raf = f => setTimeout(() => f(performance.now()), 16), caf = clearTimeout;
+  const mk = (tag, attrs = {}, parent) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; };
+
+  // ---------- spoken lines (voice/lines.json lists every one) ----------
+  const L = {
+    welcome: 'Welcome to Rollercoaster Polynomials. Drag the footings along the ground, and the track bends to fit them.',
+    stations: 'Each footing is a zero of the polynomial. The leftmost and rightmost zeros are your stations.',
+    mult: 'Multiplicity one crosses the ground. Two touches and turns back. Three crosses flat.',
+    ends: 'Odd degree ends point opposite ways. Even degree ends point the same way.',
+    a: 'The leading coefficient sets how tall the track is. Flip it, and hills become tunnels.',
+    survey: 'Survey mode. The office sent a plan in standard form. Plant a stake to find out how high the track is there.',
+    rem: 'The remainder of dividing by x minus c is the height of the track at c.',
+    found: 'Remainder zero. So x minus c is a factor, and a footing goes here.',
+    notDouble: 'Not a double footing. The remaining part is not zero here.',
+    complex: 'The remaining part never reaches zero for a real number, so the track never touches the ground again.',
+    allFound: 'Every footing found. Factored form and standard form describe the same track.',
+    commissions: 'Commissions. Each order lists what the park wants. Build a track that meets every line.',
+    ghost: 'Match the ghost track. Read its zeros and how it meets the ground, then set the height.',
+    approved: 'Approved.',
+  };
+  const SAYS = {zeros: [L.stations, L.mult], a: [L.a], ends: [L.ends], rem: [L.rem]};
+
+  // ======================================================================================
+  // Polynomial algebra (this tool's own; coefficient arrays run from the highest power down)
+  // ======================================================================================
+  const mul = (p, q) => { const r = new Array(p.length + q.length - 1).fill(0); p.forEach((a, i) => q.forEach((b, j) => { r[i + j] += a * b; })); return r; };
+  const horner = (c, x) => c.reduce((s, k) => s * x + k, 0);
+  const expand = zs => zs.reduce((p, z) => { for (let i = 0; i < z.m; i++) p = mul(p, [1, -z.x]); return p; }, [1]);
+  const SUP = {1: '', 2: '²', 3: '³', 4: '⁴', 5: '⁵', 6: '⁶'};
+  const clean = v => Math.abs(v) < 1e-10 ? 0 : v;
+  function polyStr(c, sig = 4) {
+    const n = c.length - 1; let s = '';
+    c.forEach((k, i) => {
+      const pow = n - i; k = clean(k);
+      const mag = fmtSig(Math.abs(k), sig);
+      if (mag === '0') return;
+      const v = pow === 0 ? '' : pow === 1 ? 'x' : 'x' + SUP[pow];
+      const coef = pow > 0 && mag === '1' ? '' : mag;
+      s += s ? (k < 0 ? ' − ' : ' + ') : (k < 0 ? '−' : '');
+      s += coef + v;
+    });
+    return s || '0';
+  }
+  const factorStr = (x, m = 1) => (Math.abs(x) < 1e-12 ? 'x' : `(x ${x > 0 ? '−' : '+'} ${fmt(Math.abs(x), 2)})`) + SUP[m];
+  const coefStr = a => a === 1 ? '' : a === -1 ? '−' : fmtSig(a, 3);
+  function synth(c, r) { // synthetic division of c by (x - r)
+    const mid = [null], bot = [c[0]];
+    for (let i = 1; i < c.length; i++) { const m = bot[i - 1] * r; mid.push(m); bot.push(c[i] + m); }
+    const rem = clean(bot[bot.length - 1]);
+    return {top: c, mid, bot, q: bot.slice(0, -1).map(clean), rem};
+  }
+
+  // ======================================================================================
+  // Content (spec)
+  // ======================================================================================
+  const DEFAULT = {a: -0.2, zeros: [-4, 4]};
+  const END = {
+    'even+': 'Even degree, a positive: both ends rise.',
+    'even-': 'Even degree, a negative: both ends fall.',
+    'odd+': 'Odd degree, a positive: falls on the left, rises on the right.',
+    'odd-': 'Odd degree, a negative: rises on the left, falls on the right.',
+  };
+  const CONTACT = {1: 'crosses', 2: 'touches and turns back', 3: 'crosses flat'};
+  const CONTACT_PAST = {1: 'crossed', 2: 'touched and turned back', 3: 'crossed flat'};
+  const near = (u, v, t = .05) => Math.abs(u - v) <= t + 1e-9;
+  const PAT = {H: 'hill', T: 'tunnel'};
+  const patText = p => 'Pattern: ' + p.split('').map(k => PAT[k]).join(', ');
+  const stations = (s, e) => [
+    {text: `Start at x = ${fmt(s)}`, test: A => A.s != null && near(A.s, s)},
+    {text: `End at x = ${fmt(e)}`, test: A => A.e != null && near(A.e, e)}];
+  const pattern = p => ({text: patText(p), test: A => A.pattern === p});
+  const ORDERS = [
+    {id: 'C1', name: 'Kiddie Hop', line: 'Small riders, one gentle hill.', reqs: [...stations(-2, 2), pattern('H'),
+      {text: 'Highest point 10 to 20 m', test: A => A.high >= 10 - 1e-6 && A.high <= 20 + 1e-6}]},
+    {id: 'C2', name: 'Double Dipper', line: 'Two hills that kiss the ground between them.', reqs: [...stations(-4, 4), pattern('HH'),
+      {text: 'The zero between touches and turns back', test: A => A.inner.length === 1 && A.inner[0].m === 2},
+      {text: 'Highest point at most 50 m', test: A => A.high > 0 && A.high <= 50 + 1e-6}]},
+    {id: 'C3', name: 'Into the Dark', line: 'A hill, then a tunnel.', reqs: [...stations(-5, 4), pattern('HT'),
+      {text: 'Highest point at least 30 m', test: A => A.high >= 30 - 1e-6},
+      {text: 'Tunnel at most 30 m deep', test: A => A.deep > 0 && A.deep <= 30 + 1e-6}]},
+    {id: 'C4', name: 'Flat Spot', line: 'Cross the ground flat, like a hover.', reqs: [...stations(-3, 4),
+      {text: 'One crosses-flat zero between', test: A => A.inner.length === 1 && A.inner[0].m === 3}, pattern('HT'),
+      {text: 'Degree at most 5', test: A => A.deg <= 5},
+      {text: 'Highest point at most 80 m', test: A => A.high > 0 && A.high <= 80 + 1e-6},
+      {text: 'Tunnel at most 30 m deep', test: A => A.deep > 0 && A.deep <= 30 + 1e-6}]},
+    {id: 'C5', name: 'Big Three', line: 'Two big hills with a short tunnel between.', reqs: [...stations(-5, 5), pattern('HTH'),
+      {text: 'Tallest hill 40 to 80 m', test: A => A.high >= 40 - 1e-6 && A.high <= 80 + 1e-6},
+      {text: 'Tunnel at most 20 m deep', test: A => A.deep > 0 && A.deep <= 20 + 1e-6}]},
+    {id: 'C6', name: 'Triple Camel', line: 'Three hills, touching down twice.', reqs: [...stations(-3, 3), pattern('HHH'),
+      {text: 'Two touch zeros between', test: A => A.inner.length === 2 && A.inner.every(z => z.m === 2)},
+      {text: 'Every hill at least 10 m', test: A => A.hills.length > 0 && A.hills.every(h => h.kind === 'H' ? h.size >= 10 - 1e-6 : true)},
+      {text: 'Tallest hill at most 40 m', test: A => A.high > 0 && A.high <= 40 + 1e-6}]},
+  ];
+  const BLUEPRINTS = [
+    {id: 'B1', a: -0.5, zeros: [{x: -3, m: 1}, {x: 1, m: 1}]},
+    {id: 'B2', a: 0.1, zeros: [{x: -4, m: 1}, {x: 0, m: 1}, {x: 3, m: 1}]},
+    {id: 'B3', a: -0.05, zeros: [{x: -4, m: 1}, {x: 1, m: 2}, {x: 4, m: 1}]},
+    {id: 'B4', a: 0.03, zeros: [{x: -4, m: 1}, {x: 0, m: 3}, {x: 3, m: 1}]},
+  ];
+  const PLANS = [
+    {std: [1, -1, -6], fac: '(x − 3)(x + 2)'},
+    {std: [1, -2, -5, 6], fac: '(x − 1)(x + 2)(x − 3)'},
+    {std: [1, 0, -3, -2], fac: '(x + 1)²(x − 2)'},
+    {std: [-1, 1, 8, -12], fac: '−(x − 2)²(x + 3)'},
+    {std: [1, 0, -5, 0, 4], fac: '(x − 1)(x + 1)(x − 2)(x + 2)'},
+    {std: [1, -2, -3, 4, 4], fac: '(x + 1)²(x − 2)²'},
+    {std: [1, -3, 3, -1], fac: '(x − 1)³'},
+    {std: [2, -3, -3, 2], fac: '2(x + 1)(x − 2)(x − 0.5), zeros −1, 2 and one half'},
+    {std: [1, -1, 1, -1], fac: '(x − 1)(x² + 1), one real zero'},
+  ];
+
+  // ======================================================================================
+  // State
+  // ======================================================================================
+  let zid = 0;
+  const state = {mode: 'build', a: DEFAULT.a, zeros: DEFAULT.zeros.map(x => ({id: ++zid, x, m: 1})), snap: true,
+    multOpen: false, ride: null, card: null, plan: 0, plans: PLANS.map(() => null), stakeX: 0};
+  let done = new Set();
+  try { done = new Set(JSON.parse(localStorage.getItem('curio-rcp-done') || '[]')); } catch {}
+  const saveDone = () => { try { localStorage.setItem('curio-rcp-done', JSON.stringify([...done])); } catch {} };
+
+  const degree = () => state.zeros.reduce((s, z) => s + z.m, 0);
+  const sorted = () => [...state.zeros].sort((p, q) => p.x - q.x);
+  function distinct(zs = state.zeros) { // merge coincident zeros (only during a drag can two share an x)
+    const out = [];
+    for (const z of [...zs].sort((p, q) => p.x - q.x)) {
+      const last = out[out.length - 1];
+      if (last && Math.abs(last.x - z.x) < 1e-9) last.m += z.m; else out.push({x: z.x, m: z.m});
+    }
+    return out;
+  }
+  const makeP = (a, zs) => x => { let p = a; for (const z of zs) p *= Math.pow(x - z.x, z.m); return p; };
+  const P = x => makeP(state.a, state.zeros)(x);
+  const dP = x => (P(x + 1e-5) - P(x - 1e-5)) / 2e-5;
+
+  // the numbers every readout and check uses (heights in meters: one plane unit is 10 m)
+  function analyze() {
+    const ds = distinct(), deg = degree();
+    const A = {deg, ds, s: null, e: null, inner: [], pattern: '', hills: [], high: 0, highX: null, deep: 0, deepX: null};
+    if (ds.length < 2) return A;
+    A.s = ds[0].x; A.e = ds[ds.length - 1].x; A.inner = ds.slice(1, -1);
+    const ext = gb.extrema(P, [A.s, A.e]);
+    for (let i = 0; i < ds.length - 1; i++) {
+      const l = ds[i].x, r = ds[i + 1].x, mid = P((l + r) / 2), kind = mid > 0 ? 'H' : 'T';
+      const inside = ext.filter(t => t.x > l && t.x < r && t.kind === (kind === 'H' ? 'max' : 'min'));
+      const best = inside.sort((p, q) => Math.abs(q.y) - Math.abs(p.y))[0] || {x: (l + r) / 2, y: mid};
+      A.pattern += kind;
+      A.hills.push({kind, size: Math.abs(best.y) * 10, x: best.x});
+    }
+    for (const h of A.hills) {
+      if (h.kind === 'H' && h.size > A.high) { A.high = h.size; A.highX = h.x; }
+      if (h.kind === 'T' && h.size > A.deep) { A.deep = h.size; A.deepX = h.x; }
+    }
+    return A;
+  }
+
+  // ======================================================================================
+  // Build plane
+  // ======================================================================================
+  const gBuild = $('gBuild'), gSurvey = $('gSurvey');
+  const gb = Plane(gBuild, {x: [-6, 6], y: [-4, 8], width: 600, height: 600, grid: 1, labels: 2, ticks: 'edge',
+    xLabel: 'distance (tens of meters)', yLabel: 'height (tens of meters)', left: 100, top: 24});
+  const [, GY] = gb.px(0, 0);   // ground line, in plane pixels
+  (function decorBuild() {
+    const back = gb.layer('back');
+    mk('rect', {x: 0, y: 0, width: 600, height: GY, fill: 'url(#skyG)', class: 'deco'}, back);
+    const stars = mk('g', {class: 'deco', fill: '#dfe8ff'}, back);
+    for (let i = 0; i < 46; i++) {
+      const sx = (i * 137.5) % 600, sy = ((i * 89.3) % (GY - 40)) + 6;
+      mk('circle', {cx: sx.toFixed(1), cy: sy.toFixed(1), r: i % 5 === 0 ? 1.4 : .8, opacity: .18 + (i % 4) * .08}, stars);
+    }
+    mk('rect', {x: 0, y: GY, width: 600, height: 600 - GY, fill: 'url(#soilG)', class: 'deco'}, back);
+    const grain = mk('g', {class: 'deco', stroke: '#3a2a1c', 'stroke-width': 1.2, opacity: .55}, back);
+    for (let i = 0; i < 60; i++) {
+      const x = (i * 97.3) % 600, y = GY + 14 + ((i * 53.7) % (600 - GY - 20));
+      mk('line', {x1: x.toFixed(1), y1: y.toFixed(1), x2: (x + 10 + (i % 3) * 5).toFixed(1), y2: y.toFixed(1)}, grain);
+    }
+    const defs = $('sv').querySelector('defs');
+    const cp = mk('clipPath', {id: 'underB'}, defs);
+    mk('rect', {x: 0, y: GY, width: 600, height: 600 - GY}, cp);
+  })();
+  const plotB = gb.layer('plot');
+  const ties = mk('path', {class: 'deco', fill: 'none', stroke: '#76644d', 'stroke-width': 2.5, 'stroke-linecap': 'round'}, plotB);
+  const frontB = gb.layer('front');
+  mk('rect', {x: 0, y: GY - 2.5, width: 600, height: 5, fill: 'var(--earth)', class: 'deco'}, frontB);
+  mk('line', {x1: 0, x2: 600, y1: GY - 2.5, y2: GY - 2.5, stroke: '#c9a27a', 'stroke-width': 1, class: 'deco'}, frontB);
+  const stationsG = mk('g', {class: 'deco'}, frontB);
+  const offG = mk('g', {class: 'deco'}, gb.layer('labels'));
+  const car = mk('g', {class: 'deco', visibility: 'hidden'}, frontB);
+  (function drawCar() {
+    const g = mk('g', {transform: 'translate(0,-5)'}, car);
+    mk('path', {d: 'M-17,-4 L-17,-15 Q-17,-19 -13,-19 L10,-19 Q17,-19 18,-11 L18,-4 Z', fill: '#cfd8e3', stroke: '#0b1017', 'stroke-width': 1.5}, g);
+    mk('rect', {x: -17, y: -10, width: 35, height: 3.5, fill: 'var(--brand)'}, g);
+    mk('rect', {x: -11, y: -18, width: 18, height: 5, rx: 1.5, fill: '#2a3443'}, g);
+    for (const cx of [-10, 10]) mk('circle', {cx, cy: -2, r: 3.6, fill: '#2a3443', stroke: '#cfd8e3', 'stroke-width': 1.4}, g);
+  })();
+
+  // ---------- the track ----------
+  function drawTrack() {
+    gb.clear('track');
+    const ds = distinct();
+    const ride = ds.length >= 2, s = ride ? ds[0].x : null, e = ride ? ds[ds.length - 1].x : null;
+    if (ride) {
+      const t1 = gb.fn(P, {domain: [s, e], id: 'track', layer: 'back', color: '#4a3726', width: 30});
+      const t2 = gb.fn(P, {domain: [s, e], id: 'track', layer: 'back', color: '#04060a', width: 23});
+      t1.el.setAttribute('clip-path', 'url(#underB)'); t2.el.setAttribute('clip-path', 'url(#underB)');
+      for (let x = Math.floor(s) + 1; x < e; x++) {
+        const y = P(x);
+        if (y > .05) gb.segment([x, 0], [x, Math.min(y, 9)], {id: 'track', color: '#8b9bb0', width: 2.5});
+      }
+      let d = '';
+      for (let x = s; x <= e + 1e-9; x += .2) {
+        const [u, v] = gb.px(x, P(x));
+        if (v < -20 || v > 620) continue;
+        const k = dP(x), len = Math.hypot(1, k), nx = k / len * 8, ny = 1 / len * 8;   // normal, 8 px each side
+        d += `M${(u - nx).toFixed(1)},${(v - ny).toFixed(1)}L${(u + nx).toFixed(1)},${(v + ny).toFixed(1)}`;
+      }
+      ties.setAttribute('d', d);
+      gb.fn(P, {domain: [-6, s], id: 'track', color: 'var(--brand)', width: 3, dashed: '4 7', opacity: .55, arrows: 'start', label: 'unbuilt track, left'});
+      gb.fn(P, {domain: [e, 6], id: 'track', color: 'var(--brand)', width: 3, dashed: '4 7', opacity: .55, arrows: 'end', label: 'unbuilt track, right'});
+      gb.fn(P, {domain: [s, e], id: 'track', color: 'var(--brand)', width: 8, label: 'coaster track'});
+      gb.fn(P, {domain: [s, e], id: 'track', color: 'var(--rail-gap)', width: 2.6});
+    } else {
+      ties.setAttribute('d', '');
+      gb.fn(P, {id: 'track', color: 'var(--brand)', width: 3, dashed: '4 7', opacity: .6, arrows: 'both', label: 'unbuilt track'});
+    }
+    // stations
+    stationsG.textContent = '';
+    if (ds.length) {
+      const st = ride ? [[s, 'Start', -1], [e, 'End', 1]] : [[ds[0].x, 'Start', -1]];
+      for (const [x, name, side] of st) {
+        const x0 = platformX(x, side);
+        const g = mk('g', {}, stationsG);
+        mk('rect', {x: x0, y: GY - 12, width: 36, height: 10, rx: 2, fill: '#3b4a5e', stroke: '#9fb1c8', 'stroke-width': 1.5}, g);
+        mk('line', {x1: x0 + 4, x2: x0 + 4, y1: GY - 2, y2: GY - 12, stroke: '#9fb1c8', 'stroke-width': 1.5}, g);
+        mk('line', {x1: x0 + 32, x2: x0 + 32, y1: GY - 2, y2: GY - 12, stroke: '#9fb1c8', 'stroke-width': 1.5}, g);
+        const lx = x0 + 18;
+        mk('text', {x: lx, y: GY - 18, 'text-anchor': 'middle', class: 'st-label'}, g).textContent = name;
+      }
+    }
+    // a peak or tunnel beyond the plane still has its true height in the readouts
+    offG.textContent = '';
+  }
+
+  // ---------- footings (zero handles) ----------
+  let feet = [];
+  function glyph(parent, m, cx, cy) {
+    const g = mk('g', {transform: `translate(${cx},${cy}) scale(.85)`}, parent);
+    mk('line', {x1: -9, x2: 9, y1: 0, y2: 0, class: 'glyph glyph-ground'}, g);
+    const d = m === 1 ? 'M-7,7 L7,-7' : m === 2 ? 'M-7,-8 Q0,8 7,-8' : 'M-8,9 Q-6,0 0,0 Q6,0 8,-9';
+    mk('path', {d, class: 'glyph'}, g);
+    return g;
+  }
+  const footLabel = z => `Footing at x = ${fmt(z.x)}, multiplicity ${z.m}, ${CONTACT[z.m]}. Arrow keys move it, keys 1, 2 and 3 set multiplicity, Delete removes it.`;
+  function buildFeet(focusId) {
+    gb.clear('foot'); feet = [];
+    for (const z of state.zeros) {
+      const h = gb.point(z.x, 0, {id: 'foot', shape: 'diamond', color: 'var(--brand)', r: 9, hit: 30, draggable: true, lock: {y: 0}, range: {x: [-6, 6]},
+        snap: state.snap ? .5 : .1, ariaLabel: () => footLabel(z), valueText: x => `x = ${fmt(x)}`,
+        onMove: x => { z.x = x; update('drag'); },
+        onDrop: (x, y, hh, from) => drop(z, from[0]),
+        onKey: e => footKey(e, z)});
+      h.zero = z; h.setHit(hitR());
+      mk('rect', {x: -11, y: 20, width: 22, height: 42, rx: 6, fill: 'rgba(11,16,23,.82)'}, h.body);
+      mk('text', {x: 0, y: 34, class: 'mult-num'}, h.body).textContent = z.m;
+      glyph(h.body, z.m, 0, 50);
+      feet.push(h);
+      if (z.id === focusId) setTimeout(() => h.focus());
+    }
+  }
+  function footKey(e, z) {
+    if (['1', '2', '3'].includes(e.key)) { setMult(z, +e.key); return true; }
+    if (e.key === 'Delete' || e.key === 'Backspace') { removeZero(z); return true; }
+    return false;
+  }
+  function drop(z, fromX) {
+    const other = state.zeros.find(o => o !== z && Math.abs(o.x - z.x) < .05 + 1e-9);
+    if (other) {
+      if (other.m + z.m > 3) { z.x = fromX; update('struct', z.id); tip('That would make a multiplicity over 3.'); return; }
+      other.m += z.m; other.x = z.x; state.zeros = state.zeros.filter(o => o !== z);
+      update('struct', other.id);
+      tip(`Merged: x = ${fmt(other.x)} now has multiplicity ${other.m} (${CONTACT[other.m]}).` +
+        (distinct().length === 1 ? ' A ride needs two ground points to start and end.' : ''));
+      return;
+    }
+    update('struct', z.id);
+  }
+  function setMult(z, m) {
+    if (z.m === m) return;
+    if (degree() - z.m + m > 6) { tip('Degree 6 is the most this park builds, so that multiplicity would be too high.'); return; }
+    z.m = m; update('struct', z.id);
+  }
+  const occupied = (x, except) => state.zeros.some(o => o !== except && Math.abs(o.x - x) < .25);
+  function removeZero(z) {
+    state.zeros = state.zeros.filter(o => o !== z);
+    update('struct');
+    setTimeout(() => (feet[0] ? feet[0].focus() : $('addZero').focus()));
+  }
+  function addZero() {
+    if (degree() >= 6) return;
+    for (let k = 0; k <= 24; k++) {
+      for (const x of k === 0 ? [0] : [k / 2, -k / 2]) {
+        if (x >= -6 && x <= 6 && !occupied(x)) { const z = {id: ++zid, x, m: 1}; state.zeros.push(z); update('struct', z.id); return; }
+      }
+    }
+    tip('There is no free spot left on the ground.');
+  }
+  function split(z) {
+    if (z.m < 2) return;
+    const want = z.m - 1, made = [];
+    z.m = 1;
+    for (let k = 1; made.length < want && k <= 24; k++) {
+      for (const dx of [k / 2, -k / 2]) {
+        const x = z.x + dx;
+        if (made.length < want && x >= -6 - 1e-9 && x <= 6 + 1e-9 && !occupied(x) && !made.some(v => Math.abs(v - x) < .25)) made.push(x);
+      }
+    }
+    for (const x of made) state.zeros.push({id: ++zid, x: +x.toFixed(6), m: 1});
+    tip(`Split into ${made.length + 1} simple zeros, half a unit apart.`);
+    update('struct', z.id);
+  }
+
+  // ---------- panel: equations, zero list, readouts ----------
+  function renderEquations() {
+    const zs = sorted();
+    const fac = zs.map(z => `<span>${factorStr(z.x, z.m)}</span>`).join('');
+    const coeffs = expand(zs).map(c => c * state.a);
+    $('fact').innerHTML = zs.length ? `P(x) = <b>${coefStr(state.a)}</b>${fac}` : `P(x) = <b>${fmtSig(state.a, 3)}</b>`;
+    $('std').innerHTML = 'P(x) = ' + polyStr(coeffs).replace(/ ([+−]) /g, ' <span>$1 ').replace(/(<span>[+−] [^ <]+)/g, '$1</span>');
+    const ol = $('multSteps');
+    ol.hidden = !state.multOpen; $('showMult').setAttribute('aria-expanded', state.multOpen);
+    $('showMult').textContent = state.multOpen ? 'Hide the multiplication' : 'Show the multiplication';
+    if (state.multOpen) {
+      ol.textContent = '';
+      const list = []; zs.forEach(z => { for (let i = 0; i < z.m; i++) list.push(z.x); });
+      let p = [1];
+      list.forEach((x, i) => {
+        p = mul(p, [1, -x]);
+        const li = document.createElement('li');
+        li.innerHTML = `<span>${i === 0 ? '' : '× '}${factorStr(x)}:</span> ${polyStr(p)}`;
+        ol.appendChild(li);
+      });
+      const li = document.createElement('li');
+      li.innerHTML = `<span>× ${fmtSig(state.a, 3)}:</span> ${polyStr(p.map(c => c * state.a))}`;
+      ol.appendChild(li);
+    }
+  }
+  function renderList() {
+    const box = $('zlist'); box.textContent = '';
+    const deg = degree();
+    for (const z of sorted()) {
+      const row = document.createElement('div'); row.className = 'zrow';
+      row.innerHTML = `<div><span class="zx">x = ${fmt(z.x)}</span><span class="zk">${CONTACT[z.m]}</span></div>`;
+      for (const m of [1, 2, 3]) {
+        const b = document.createElement('button'); b.className = 'btn'; b.textContent = m;
+        b.setAttribute('aria-pressed', z.m === m);
+        b.setAttribute('aria-label', `x = ${fmt(z.x)}: multiplicity ${m}, ${CONTACT[m]}`);
+        if (z.m !== m && deg - z.m + m > 6) { b.disabled = true; b.title = 'Degree would pass 6'; }
+        b.onclick = () => setMult(z, m);
+        row.appendChild(b);
+      }
+      const sp = document.createElement('button'); sp.className = 'btn'; sp.textContent = 'Split';
+      sp.setAttribute('aria-label', `Split x = ${fmt(z.x)} into simple zeros`);
+      if (z.m < 2) sp.style.visibility = 'hidden';
+      sp.onclick = () => split(z); row.appendChild(sp);
+      const rm = document.createElement('button'); rm.className = 'btn'; rm.textContent = 'Remove';
+      rm.setAttribute('aria-label', `Remove the zero at x = ${fmt(z.x)}`);
+      rm.onclick = () => removeZero(z); row.appendChild(rm);
+      box.appendChild(row);
+    }
+    if (!state.zeros.length) box.innerHTML = '<p class="small">No zeros yet.</p>';
+    $('addZero').disabled = deg >= 6;
+    const capped = deg >= 6 || box.querySelector('.zrow .btn:disabled');
+    $('capNote').textContent = deg >= 6 ? 'Degree 6 is the most this park builds, so Add zero is off. Remove or split a zero to free some room.' :
+      capped ? 'A grayed multiplicity would make the degree more than 6, the most this park builds.' : '';
+  }
+  function renderReadouts(A) {
+    const deg = A.deg, ds = A.ds;
+    $('rDeg').textContent = deg + (deg === 0 ? ' (a flat line)' : '');
+    $('rEnd').textContent = deg === 0 ? 'Degree 0: a flat line, no rise or fall.' : END[(deg % 2 ? 'odd' : 'even') + (state.a > 0 ? '+' : '-')];
+    const off = (v, lim) => v > lim + 1e-9 ? ' (off the blueprint)' : '';
+    if (ds.length < 2) {
+      $('rHigh').textContent = $('rDeep').textContent = $('rLen').textContent = 'no ride yet';
+    } else {
+      $('rHigh').textContent = A.high > 0 ? `${fmt(A.high, 1)} m at x = ${fmt(A.highX, 2)}${off(A.high, 80)}` : 'none (no hill)';
+      $('rDeep').textContent = A.deep > 0 ? `${fmt(A.deep, 1)} m deep at x = ${fmt(A.deepX, 2)}${off(A.deep, 40)}` : 'none (no tunnel)';
+      $('rLen').textContent = `${fmt((A.e - A.s) * 10, 1)} m, from x = ${fmt(A.s)} to x = ${fmt(A.e)}`;
+    }
+    offG.textContent = '';
+    if (A.high > 80 + 1e-9) mk('text', {x: gb.px(A.highX, 0)[0], y: 16, 'text-anchor': 'middle', class: 'off-note'}, offG).textContent = `↑ peak ${fmt(A.high, 1)} m, off the blueprint`;
+    if (A.deep > 40 + 1e-9) mk('text', {x: gb.px(A.deepX, 0)[0], y: 592, 'text-anchor': 'middle', class: 'off-note'}, offG).textContent = `↓ tunnel ${fmt(A.deep, 1)} m deep, off the blueprint`;
+    $('ride').disabled = $('cRide').disabled = ds.length < 2;
+  }
+
+  // ---------- one update for every change ----------
+  let lastA = null;
+  function update(kind = 'struct', focusId) {
+    stopRide();
+    if (kind !== 'mult') state.multOpen = kind === 'keepMult' ? state.multOpen : false;
+    drawTrack();
+    if (kind !== 'drag') buildFeet(focusId);
+    else feet.forEach(h => h.render());
+    renderEquations(); renderList();
+    const A = lastA = analyze();
+    renderReadouts(A);
+    const n = distinct().length;
+    if (kind !== 'drag' && kind !== 'init') {
+      if (n === 0) tip('No footings: the track never reaches the ground.');
+      else if (n === 1) tip('A ride needs two ground points to start and end.');
+    }
+    if (state.card) checkCard(A);
+  }
+
+  // ---------- leading coefficient ----------
+  const aSlider = Plane.slider($('aSlot'), {label: 'Size of a (slider is on a log scale)', min: .001, max: 2, scale: 'log', value: Math.abs(state.a), id: 'aRange',
+    format: () => fmtSig(state.a, 3),
+    parse: text => {
+      const n = parseFloat(String(text).replace('−', '-'));
+      if (!isFinite(n)) { tip('Type a number for a, like −0.2.'); return null; }
+      if (n === 0) { tip('a cannot be 0: the whole track would lie flat on the ground. The last value is back.'); return null; }
+      let mag = Math.abs(n);
+      if (mag < .001) { mag = .001; tip('The size of a stops at 0.001.'); }
+      if (mag > 2) { mag = 2; tip('The size of a stops at 2.'); }
+      state.a = Math.sign(n) * mag;
+      return mag;
+    },
+    onInput: (v, src) => { if (src !== 'box') state.a = Math.sign(state.a) * v; update('drag'); }});
+  aSlider.box.setAttribute('aria-label', 'a, type a number (it can be negative)');
+  $('flip').onclick = () => { state.a = -state.a; aSlider.refresh(); update('struct'); };
+  $('snap').onclick = () => {
+    state.snap = !state.snap; $('snap').setAttribute('aria-pressed', state.snap);
+    feet.forEach(h => { h.snap = state.snap ? .5 : .1; });
+    tip(state.snap ? 'Footings snap to halves.' : 'Footings move in tenths.');
+  };
+  $('addZero').onclick = addZero;
+  $('showMult').onclick = () => { state.multOpen = !state.multOpen; renderEquations(); };
+  $('newTrack').onclick = () => resetTrack();
+  function resetTrack() {
+    state.a = DEFAULT.a; state.zeros = DEFAULT.zeros.map(x => ({id: ++zid, x, m: 1}));
+    aSlider.set(Math.abs(state.a), true); aSlider.refresh();
+    $('rideSec').hidden = true;
+    update('init');
+  }
+
+  // ---------- ride ----------
+  const trace = gb.trace(P, {id: 'ride', r: 1, x: -6, onMove: (x, y) => rideReadout(x, y)});
+  trace.el.style.visibility = 'hidden'; trace.el.setAttribute('aria-hidden', 'true');
+  function rideReadout(x, y) {
+    if (!state.ride) return;
+    const where = Math.abs(y) < 1e-6 ? 'at ground level' : y > 0 ? 'above ground' : 'in the tunnel';
+    const offv = y > 8 || y < -4 ? ', off the blueprint' : '';
+    $('rideLive').textContent = `x = ${fmt(x, 2)}   P(x) = ${fmt(y, 2)}   height ${fmt(10 * y, 1)} m, ${where}${offv}`;
+  }
+  // a station platform beside its zero, on the outer side unless that runs off the plane
+  function platformX(x, side) {
+    const [u] = gb.px(x, 0);
+    const out = side < 0 ? u - 52 : u + 16;
+    if (out >= 2 && out + 36 <= 598) return out;
+    return side < 0 ? u + 16 : u - 52;
+  }
+  let parkT = 0;
+  function hitR() {
+    const r = $('stage').getBoundingClientRect(), sc = Math.min(r.width / 760, r.height / 712) || 1;
+    return Math.min(56, Math.max(30, 23 / sc));
+  }
+  function parkCar(e) {   // level on the End platform, so it is easy to see after a ride
+    const x0 = platformX(e, 1);
+    car.setAttribute('transform', `translate(${(x0 + 18).toFixed(1)},${(GY - 9).toFixed(1)})`);
+    car.setAttribute('visibility', 'visible');
+  }
+  function placeCar(x) {
+    const [u, v] = gb.px(x, P(x));
+    const ang = Math.atan(-dP(x)) * 180 / Math.PI;
+    car.setAttribute('transform', `translate(${u.toFixed(1)},${v.toFixed(1)}) rotate(${ang.toFixed(1)})`);
+    car.setAttribute('visibility', 'visible');
+  }
+  function contactTone(m) {
+    if (m === 1) Curio.tone(660, .25, .06);
+    else if (m === 2) { Curio.tone(330, .14, .06); setTimeout(() => Curio.tone(330, .14, .06), 170); }
+    else [392, 440, 494, 554, 622, 698].forEach((f, i) => setTimeout(() => Curio.tone(f, .08, .045, 'triangle'), i * 40));
+  }
+  function contactLine(z) {
+    const li = document.createElement('li');
+    li.textContent = `${CONTACT_PAST[z.m]} at x = ${fmt(z.x)}`;
+    $('contacts').appendChild(li);
+  }
+  function ride() {
+    const ds = distinct();
+    if (ds.length < 2) return;
+    stopRide();
+    const s = ds[0].x, e = ds[ds.length - 1].x, inner = ds.slice(1, -1);
+    $('rideSec').hidden = false; $('contacts').textContent = '';
+    $('rideSec').scrollIntoView({block: 'nearest'});
+    const r = state.ride = {x: s, raf: 0, timers: []};
+    if (Curio.reduce) {
+      trace.set(e); parkCar(e);
+      $('rideLive').textContent = `Arrived at End, x = ${fmt(e)}. Ground contacts in order:`;
+      if (!inner.length) $('contacts').innerHTML = '<li>none between the stations</li>';
+      inner.forEach((z, i) => { contactLine(z); r.timers.push(setTimeout(() => contactTone(z.m), 500 * i)); });
+      return;
+    }
+    const speed = 3;   // plane units per second: the full 12-unit width in about 4 seconds
+    let t0 = null, next = 0;
+    const step = now => {
+      if (state.ride !== r) return;
+      if (t0 == null) t0 = now;
+      const x = Math.min(e, s + speed * Math.max(0, now - t0) / 1000);
+      while (next < inner.length && x >= inner[next].x) { contactTone(inner[next].m); contactLine(inner[next]); next++; }
+      trace.set(x); placeCar(x);
+      if (x < e) r.raf = raf(step);
+      else {
+        if (!inner.length) $('contacts').innerHTML = '<li>no ground contacts between the stations</li>';
+        state.ride = null;
+        parkT = setTimeout(() => parkCar(e), 350);
+        $('rideLive').textContent += '   Arrived at End.';
+      }
+    };
+    r.raf = raf(step);
+  }
+  function stopRide() {
+    clearTimeout(parkT);
+    if (state.ride) { caf(state.ride.raf); state.ride.timers.forEach(clearTimeout); state.ride = null; }
+    car.setAttribute('visibility', 'hidden');
+  }
+  $('ride').onclick = ride; $('cRide').onclick = ride;
+
+  // ======================================================================================
+  // Survey (the remainder theorem)
+  // ======================================================================================
+  const gs = Plane(gSurvey, {x: [-5, 5], y: [-10, 10], width: 600, height: 600, grid: 1, labels: [1, 2], ticks: 'edge',
+    xLabel: 'x', yLabel: 'height (plan units)', left: 100, top: 24});
+  const [, SY] = gs.px(0, 0);
+  // fog: soft value noise painted once on a small canvas, then stretched (cheap to show every frame)
+  function fogTexture() {
+    const n = 120, c = document.createElement('canvas'); c.width = c.height = n;
+    const ctx = c.getContext('2d'), img = ctx.createImageData(n, n);
+    let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+    const layers = [[6, .5], [12, .3], [24, .2]].map(([g, w]) => ({g, w, v: Array.from({length: (g + 1) * (g + 2)}, rnd)}));
+    const sm = t => t * t * (3 - 2 * t);
+    for (let y = 0; y < n; y++) for (let x = 0; x < n; x++) {
+      let v = 0;
+      for (const L of layers) {
+        const gx = x / n * L.g, gy = y / n * L.g * 1.6 % (L.g + 1), i = Math.floor(gx), j = Math.floor(gy), fx = sm(gx - i), fy = sm(gy - j);
+        const at = (a, b) => L.v[(b % (L.g + 1)) * (L.g + 1) + (a % (L.g + 1))];
+        v += L.w * ((at(i, j) * (1 - fx) + at(i + 1, j) * fx) * (1 - fy) + (at(i, j + 1) * (1 - fx) + at(i + 1, j + 1) * fx) * fy);
+      }
+      const k = (y * n + x) * 4;
+      img.data[k] = 168; img.data[k + 1] = 180; img.data[k + 2] = 200; img.data[k + 3] = Math.max(0, Math.min(255, (v - .25) * 300));
+    }
+    ctx.putImageData(img, 0, 0);
+    return c.toDataURL();
+  }
+  mk('rect', {x: 0, y: 0, width: 600, height: 600, fill: 'rgba(10,18,32,.72)', class: 'deco'}, gs.layer('back'));
+  const revealCp = mk('clipPath', {id: 'revealS'}, $('sv').querySelector('defs'));
+  const revealRect = mk('rect', {x: 0, y: -20, width: 0, height: 640}, revealCp);
+  const fog = mk('g', {class: 'deco'}, gs.layer('front'));
+  mk('rect', {x: 0, y: 0, width: 600, height: 600, fill: 'rgba(72,84,106,.62)'}, fog);
+  mk('image', {x: 0, y: 0, width: 600, height: 600, preserveAspectRatio: 'none', href: fogTexture()}, fog);
+  mk('rect', {x: 0, y: SY - 3, width: 600, height: 6, fill: 'var(--earth)', class: 'deco'}, gs.layer('front'));
+  mk('line', {x1: 0, x2: 600, y1: SY - 3, y2: SY - 3, stroke: '#c9a27a', 'stroke-width': 1, class: 'deco'}, gs.layer('front'));
+  const postVals = mk('g', {class: 'deco'}, gs.layer('labels'));
+
+  const stake = gs.point(0, 0, {shape: 'none', hit: 30, draggable: true, lock: {y: 0}, range: {x: [-5, 5]}, snap: .5, id: 'stake',
+    ariaLabel: x => `Survey stake at x = ${fmt(x)}. Arrow keys move it by halves, Enter surveys here.`,
+    valueText: x => `c = ${fmt(x)}`,
+    onMove: x => { state.stakeX = x; stakeText(); renderSurveyButtons(); },
+    onKey: e => { if (e.key === 'Enter') { surveyHere(); return true; } return false; }});
+  (function drawStake() {
+    const b = stake.body;
+    mk('rect', {x: -2.5, y: -46, width: 5, height: 50, fill: '#d8c3a0', stroke: '#0b1017', 'stroke-width': 1}, b);
+    mk('path', {d: 'M2.5,-46 L22,-40 L2.5,-34 Z', fill: 'var(--brand)', stroke: '#0b1017', 'stroke-width': 1}, b);
+    mk('path', {d: 'M-2.5,4 L0,12 L2.5,4 Z', fill: '#d8c3a0'}, b);
+  })();
+  const stakeLbl = mk('text', {x: 0, y: -54, class: 'stake-label'}, stake.body);
+  const stakeText = () => { stakeLbl.textContent = `c = ${fmt(state.stakeX)}`; };
+  gs.onClick(x => { const c = Math.max(-5, Math.min(5, Math.round(x * 2) / 2)); stake.set(c, 0); state.stakeX = c; stakeText(); renderSurveyButtons(); stake.focus(); });
+
+  const plan = () => {
+    const i = state.plan;
+    if (!state.plans[i]) state.plans[i] = {posts: new Map(), log: [], found: [], rem: [...PLANS[i].std], done: false, complex: false, last: null, msg: '', doneShown: false};
+    return state.plans[i];
+  };
+  const Pplan = x => horner(PLANS[state.plan].std, x);
+  const fogShown = () => !plan().done;
+
+  function drawSurveyScene(animate) {
+    const ps = plan();
+    gs.clear('post'); gs.clear('sfoot'); gs.clear('strack'); postVals.textContent = '';
+    const placed = [];   // label boxes already placed, so no two value labels overlap
+    const hits = b => placed.some(q => b.x0 < q.x1 + 3 && b.x1 > q.x0 - 3 && b.y0 < q.y1 + 2 && b.y1 > q.y0 - 2);
+    for (const [c, v] of [...ps.posts].sort((p, q) => p[0] - q[0])) {
+      const top = Math.max(-10, Math.min(10, v)), cut = Math.abs(v) > 10;
+      if (Math.abs(v) < 1e-9) continue;   // a footing marks it
+      gs.segment([c, 0], [c, top], {id: 'post', layer: 'points', color: '#0b1017', width: 7, arrow: cut ? 'end' : null});
+      gs.segment([c, 0], [c, top], {id: 'post', layer: 'points', color: v > 0 ? '#ffe2b3' : '#b9dcff', width: 3, arrow: cut ? 'end' : null});
+      const [u, py] = gs.px(c, top);
+      const text = fmt(v, 2), w = text.length * 7.4 + 4, cx = Math.min(600 - w / 2, Math.max(w / 2, u));
+      // first choice: just past the post's top (a cut post: at the plane edge); then step away from the ground,
+      // then toward it, until the label overlaps nothing already placed
+      const y0 = cut ? (v > 0 ? 28 : 586) : v > 0 ? Math.max(14, py - 10) : Math.min(596, py + 22);
+      const away = v > 0 ? -1 : 1, tries = [];
+      for (let k = 0; k <= 24; k++) tries.push(y0 + away * 15 * k, y0 - away * 15 * k);
+      let box = null;
+      for (const y of tries) {
+        if (y < 13 || y > 597 || (Math.abs(y - SY) < 26)) continue;
+        const b = {x0: cx - w / 2, x1: cx + w / 2, y0: y - 11, y1: y + 3, y};
+        if (!hits(b)) { box = b; break; }
+      }
+      box = box || {x0: cx - w / 2, x1: cx + w / 2, y0: y0 - 11, y1: y0 + 3, y: y0};
+      placed.push(box);
+      mk('text', {x: cx, y: box.y, 'text-anchor': 'middle', class: 'post-val'}, postVals).textContent = text;
+    }
+    for (const f of ps.found) {
+      const h = gs.point(f.c, 0, {id: 'sfoot', shape: 'diamond', color: 'var(--brand)', r: 8, ariaLabel: `Footing at x = ${fmt(f.c)}, multiplicity ${f.m}`});
+      h.el.style.pointerEvents = 'none';
+      mk('rect', {x: -11, y: 18, width: 22, height: 42, rx: 6, fill: 'rgba(11,16,23,.82)'}, h.body);
+      mk('text', {x: 0, y: 32, class: 'mult-num'}, h.body).textContent = f.m;
+      glyph(h.body, f.m, 0, 48);
+    }
+    const lift = animate && !Curio.reduce;
+    if (!lift) fog.style.opacity = fogShown() ? 1 : 0;
+    if (ps.done) {
+      const t1 = gs.fn(Pplan, {id: 'strack', color: 'var(--brand)', width: 7, label: 'plan track'});
+      const t2 = gs.fn(Pplan, {id: 'strack', color: 'var(--rail-gap)', width: 2.4});
+      if (animate && !Curio.reduce) {
+        t1.el.setAttribute('clip-path', 'url(#revealS)'); t2.el.setAttribute('clip-path', 'url(#revealS)');
+        let t0 = null;
+        const step = now => {
+          if (t0 == null) t0 = now;
+          const t = Math.max(0, Math.min(1, (now - t0) / 2200));
+          revealRect.setAttribute('width', 600 * t); fog.style.opacity = Math.max(0, 1 - t * 1.5);
+          if (t < 1) raf(step);
+        };
+        revealRect.setAttribute('width', 0); raf(step);
+      }
+    }
+  }
+  function remainingStr(ps) {
+    const f = ps.found.map(x => factorStr(x.c, x.m)).join('');
+    const rem = ps.rem;
+    if (!f) return 'P(x) = (' + polyStr(rem) + ')';
+    if (rem.length === 1) { const k = rem[0]; return 'P(x) = ' + (k === 1 ? '' : k === -1 ? '−' : fmt(k, 2)) + f; }
+    return `P(x) = ${f} × (${polyStr(rem)})`;
+  }
+  function renderDivision(d, c, caption) {
+    const t = $('divTable'); t.textContent = '';
+    if (!d) { t.hidden = true; return; }
+    t.hidden = false;
+    const n = d.top.length;
+    const row = (lbl, vals, cls, cfirst) => {
+      const tr = document.createElement('tr');
+      const td0 = document.createElement('td'); td0.className = 'lbl'; td0.textContent = lbl; tr.appendChild(td0);
+      const tc = document.createElement('td'); tc.className = 'cc'; tc.textContent = cfirst || ''; tr.appendChild(tc);
+      vals.forEach((v, i) => { const td = document.createElement('td'); td.textContent = v == null ? '' : fmt(v, 2); if (cls && i === n - 1) td.className = cls; tr.appendChild(td); });
+      t.appendChild(tr);
+    };
+    row('coefficients', d.top, null, fmt(c, 2));
+    row('multiply by ' + fmt(c, 2), d.mid);
+    row('add', d.bot, 'box');
+    $('divCap').textContent = caption;
+  }
+  function surveyHere() {
+    const ps = plan(), c = state.stakeX;
+    const d = synth(PLANS[state.plan].std, c), r = d.rem;
+    const again = ps.posts.has(c);
+    if (!again) { ps.posts.set(c, r); ps.log.unshift(c); }
+    ps.last = {kind: 'plan', c};
+    const isFoot = ps.found.find(f => Math.abs(f.c - c) < 1e-9);
+    let msg; const lines = [];
+    if (Math.abs(r) < 1e-9) {
+      msg = `Remainder 0, so ${factorStr(c)} is a factor. A footing goes at x = ${fmt(c)}.`;
+      if (!isFoot && !ps.done) {
+        ps.found.push({c, m: 1});
+        ps.rem = synth(ps.rem, c).q;
+        lines.push(L.found);
+        Curio.tone(523, .2, .05);
+      } else if (again) msg += ' (Surveyed before.)';
+    } else msg = `Remainder ${fmt(r, 2)}, so P(${fmt(c)}) = ${fmt(r, 2)}.` + (again ? ' (Surveyed before.)' : '');
+    ps.msg = msg;
+    lines.push(...afterChange(true));
+    if (lines.length) say(lines);
+  }
+  function checkDouble() {
+    const ps = plan(), c = state.stakeX;
+    const f = ps.found.find(x => Math.abs(x.c - c) < 1e-9);
+    if (!f || ps.rem.length < 2 || ps.done) return;
+    const d = synth(ps.rem, c);
+    ps.last = {kind: 'rem', c, d, rem: [...ps.rem]};
+    const word = f.m === 1 ? 'double' : 'triple';
+    if (Math.abs(d.rem) < 1e-9) {
+      f.m++; ps.rem = d.q;
+      ps.msg = `Remainder 0, so ${factorStr(c)} divides the remaining part again: a ${word} footing at x = ${fmt(c)}.`;
+      Curio.tone(587, .2, .05);
+    } else {
+      ps.msg = `Remainder ${fmt(d.rem, 2)}. Not a ${word} footing.`;
+      if (word === 'double') say(L.notDouble);
+    }
+    const lines = afterChange(true);
+    if (lines.length) say(lines);
+  }
+  function afterChange(animate) {
+    const ps = plan();
+    const wasDone = ps.done;
+    if (!ps.done) {
+      if (ps.rem.length === 1) ps.done = true;
+      else if (ps.rem.length === 3 && ps.rem[1] * ps.rem[1] - 4 * ps.rem[0] * ps.rem[2] < 0) { ps.done = true; ps.complex = true; }
+    }
+    renderSurvey(animate && ps.done && !wasDone);
+    return ps.done && !wasDone ? (ps.complex ? [L.complex, L.allFound] : [L.allFound]) : [];
+  }
+  function renderSurveyButtons() {
+    const ps = plan(), c = state.stakeX;
+    const f = ps.found.find(x => Math.abs(x.c - c) < 1e-9);
+    const b = $('double');
+    b.textContent = f && f.m >= 2 ? 'Check for a triple footing' : 'Check for a double footing';
+    b.disabled = !f || ps.done || ps.rem.length < 2 || f.m >= 3;
+    b.title = b.disabled ? 'Stand the stake on a footing you found, while part of the track is still unknown' : '';
+    document.querySelectorAll('#log li').forEach(li => li.classList.toggle('cur', +li.dataset.c === c));
+  }
+  function renderSurvey(animate) {
+    const ps = plan(), pl = PLANS[state.plan];
+    document.querySelectorAll('#plans .btn').forEach((b, i) => b.setAttribute('aria-pressed', i === state.plan));
+    $('planStd').textContent = 'P(x) = ' + polyStr(pl.std);
+    $('planFac').textContent = ps.done ? 'Factored: P(x) = ' + pl.fac : 'Factored form: hidden until every footing is found.';
+    const last = ps.last;
+    if (!last) { renderDivision(null); $('divCap').textContent = 'Move the stake and press Survey here.'; }
+    else if (last.kind === 'plan') renderDivision(synth(pl.std, last.c), last.c, `The plan P(x) divided by ${factorStr(last.c)}:`);
+    else renderDivision(last.d, last.c, `The remaining part ${polyStr(last.rem)} divided by ${factorStr(last.c)}:`);
+    $('divMsg').textContent = ps.msg;
+    $('tracker').textContent = remainingStr(ps);
+    $('note').textContent = ps.done ? 'Plan units: no meters in this mode. The fog has lifted: every footing is found.' : 'Plan units: no meters in this mode. The fog hides the track; the ground line shows.';
+    const dm = $('doneMsg'), ct = $('checkTable');
+    if (ps.done) {
+      dm.textContent = (ps.complex ? 'The remaining part is never zero for a real x, so the track never touches the ground again. Its zeros are complex numbers. ' : '') +
+        'Every footing found: factored form and standard form describe the same track.';
+      ct.hidden = false; ct.innerHTML = '<tr><th>x</th><th>factored</th><th>standard</th><th>same?</th></tr>';
+      const facVal = x => ps.found.reduce((p, f) => p * Math.pow(x - f.c, f.m), 1) * horner(ps.rem, x);
+      for (const x of [-2, 0, 2]) {
+        const fv = facVal(x), sv = horner(pl.std, x);
+        ct.innerHTML += `<tr><td>${fmt(x)}</td><td>${fmt(fv, 2)}</td><td>${fmt(sv, 2)}</td><td>${Math.abs(fv - sv) < 1e-9 ? '✓ equal' : 'no'}</td></tr>`;
+      }
+    } else { dm.textContent = ''; ct.hidden = true; }
+    const log = $('log'); log.textContent = '';
+    for (const c of ps.log) {
+      const li = document.createElement('li'); li.dataset.c = c;
+      const v = ps.posts.get(c);
+      li.textContent = `x = ${fmt(c)}:  P(${fmt(c)}) = ${fmt(v, 2)}${Math.abs(v) < 1e-9 ? '  footing' : ''}`;
+      log.appendChild(li);
+    }
+    $('logEmpty').hidden = ps.log.length > 0;
+    renderSurveyButtons();
+    drawSurveyScene(animate);
+  }
+  PLANS.forEach((p, i) => {
+    const b = document.createElement('button'); b.className = 'btn'; b.textContent = 'Plan ' + (i + 1);
+    b.onclick = () => { Curio.stop(); state.plan = i; renderSurvey(false); };
+    $('plans').appendChild(b);
+  });
+  $('surveyHere').onclick = surveyHere;
+  $('double').onclick = checkDouble;
+  $('startOver').onclick = () => { state.plans[state.plan] = null; Curio.stop(); renderSurvey(false); tip('Plan cleared: the fog is back.'); };
+
+  // ======================================================================================
+  // Commissions
+  // ======================================================================================
+  function renderComList() {
+    const fill = (box, list, label) => {
+      box.textContent = '';
+      for (const c of list) {
+        const b = document.createElement('button'); b.className = 'btn';
+        b.innerHTML = `<span>${c.id} ${label(c)}</span>${done.has(c.id) ? '<span class="done">✓ approved</span>' : ''}`;
+        b.onclick = () => openCard(c.id);
+        box.appendChild(b);
+      }
+    };
+    fill($('orders'), ORDERS, c => c.name);
+    fill($('bps'), BLUEPRINTS, c => 'Blueprint ' + c.id.slice(1));
+  }
+  function openCard(id) {
+    stopRide(); Curio.stop();
+    const order = ORDERS.find(c => c.id === id), bp = BLUEPRINTS.find(c => c.id === id);
+    state.card = {id, order, bp, approvedNow: false, met: false};
+    $('comList').hidden = true; $('card').hidden = false; $('buildPanel').hidden = false;
+    $('cName').textContent = order ? `${id} ${order.name}` : `${id} Blueprint ${id.slice(1)}`;
+    $('cLine').textContent = order ? `"${order.line}"` : 'Match the ghost track.';
+    $('bpHear').hidden = !bp; $('bpSay').hidden = true;
+    $('cReveal').hidden = true; $('cReveal').textContent = '';
+    gb.clear('ghost');
+    $('note').textContent = 'Drawn to scale: one square is 10 meters each way.';
+    if (bp) {
+      const f = makeP(bp.a, bp.zeros);
+      gb.fn(f, {id: 'ghost', color: 2, width: 3, label: 'ghost track'});
+      $('note').textContent = 'Drawn to scale: one square is 10 meters each way. Ghost track: long dashes.';
+      say(L.ghost);
+    }
+    resetTrack();
+    $('card').scrollIntoView({block: 'nearest'});
+  }
+  function closeCard() {
+    state.card = null; gb.clear('ghost');
+    $('note').textContent = 'Drawn to scale: one square is 10 meters each way.';
+    $('card').hidden = true; $('comList').hidden = false; $('buildPanel').hidden = true;
+    stopRide(); renderComList();
+  }
+  function checkCard(A) {
+    const c = state.card; let items;
+    if (c.order) items = c.order.reqs.map(r => ({text: r.text, met: !!r.test(A)}));
+    else {
+      const bz = c.bp.zeros, ds = A.ds;
+      const zm = ds.length === bz.length && ds.every((z, i) => Math.abs(z.x - bz[i].x) <= .1 + 1e-9);
+      const mm = ds.length === bz.length && ds.every((z, i) => z.m === bz[i].m);
+      const am = Math.sign(state.a) === Math.sign(c.bp.a) && Math.abs(state.a - c.bp.a) <= .05 * Math.abs(c.bp.a) + 1e-12;
+      items = [{text: 'Zeros match', met: zm, yn: true}, {text: 'Multiplicities match', met: mm, yn: true}, {text: 'a within 5 percent', met: am, yn: true}];
+    }
+    const ul = $('checks'); ul.textContent = '';
+    for (const it of items) {
+      const li = document.createElement('li'); li.className = it.met ? 'met' : '';
+      li.innerHTML = `<span class="gl" aria-hidden="true">${it.met ? '✓' : '○'}</span><span>${it.text}${it.yn ? ': ' + (it.met ? 'yes' : 'no') : ''}</span><span class="st">${it.met ? 'met' : 'not yet'}</span>`;
+      ul.appendChild(li);
+    }
+    const all = items.every(i => i.met);
+    $('stamp').hidden = !all;
+    const rev = $('cReveal');
+    if (c.bp && all) { rev.hidden = false; rev.innerHTML = 'The blueprint was<br>P(x) = ' + coefStr(c.bp.a) + c.bp.zeros.map(z => `<span style="white-space:nowrap">${factorStr(z.x, z.m)}</span>`).join(''); }
+    else rev.hidden = true;
+    if (all && !c.approvedNow) {
+      c.approvedNow = true;
+      Curio.yes(); say(L.approved);
+      done.add(c.id); saveDone();
+    }
+  }
+  $('cBack').onclick = closeCard;
+  $('bpHear').onclick = () => { $('bpSay').hidden = false; $('bpSay').textContent = L.ghost; say(L.ghost, true); };
+
+  // ======================================================================================
+  // Modes, tips, read-aloud hints
+  // ======================================================================================
+  let tipT = 0;
+  function tip(text) {
+    $('tip').textContent = text; clearTimeout(tipT);
+    tipT = setTimeout(() => { $('tip').textContent = ''; }, Math.max(4500, 1400 + 75 * text.length));
+  }
+  document.querySelectorAll('.say').forEach(b => b.onclick = () => {
+    const k = b.dataset.say, p = $('say-' + k);
+    p.hidden = false; p.textContent = SAYS[k].join(' ');
+    say(SAYS[k], true);
+  });
+  const MODES = {
+    build: {hint: '<b>Build.</b> Drag the diamond footings along the ground. Each one is a zero of P(x), and the track bends to fit them.', line: L.welcome},
+    survey: {hint: '<b>Survey.</b> The office sent a plan in standard form. Move the stake, then press Survey here: the remainder is the height of the track there.', line: L.survey},
+    commissions: {hint: '<b>Commissions.</b> Pick an order or a blueprint, then build a track that meets every line.', line: L.commissions},
+  };
+  function setMode(m) {
+    state.mode = m; Curio.stop(); stopRide();
+    for (const k in MODES) $('m-' + k).setAttribute('aria-pressed', k === m);
+    $('hint').innerHTML = MODES[m].hint;
+    $('tip').textContent = '';
+    const survey = m === 'survey';
+    gBuild.style.display = survey ? 'none' : ''; gSurvey.style.display = survey ? '' : 'none';
+    $('note').textContent = survey ? 'Plan units: no meters in this mode. The fog hides the track; the ground line shows.' : 'Drawn to scale: one square is 10 meters each way.';
+    $('surveyPanel').hidden = !survey;
+    const hadCard = !!state.card;
+    if (state.card) { state.card = null; gb.clear('ghost'); }
+    $('card').hidden = true;
+    $('comList').hidden = m !== 'commissions';
+    $('buildPanel').hidden = m !== 'build';
+    if (m === 'commissions') renderComList();
+    if (m === 'survey') renderSurvey(false);
+    if (m !== 'survey') { if (hadCard) resetTrack(); else update('init'); }
+    say(MODES[m].line);
+  }
+  for (const k in MODES) $('m-' + k).onclick = () => setMode(k);
+  addEventListener('keydown', e => {
+    if (e.key === 'Enter' && state.mode === 'survey' && (document.activeElement === document.body || !document.activeElement)) { e.preventDefault(); surveyHere(); }
+  });
+
+  // every line the tool can say, so the voice scripts can record them (window.__tool.allLines())
+  const allLines = () => [...new Set(Object.values(L))];
+
+  Curio.init({clips: "voice:*", rate: .95, readFallback: () => $('hint').textContent});
+  Curio.fit('stage', 'scene', 760, 712);
+  // keep footing and stake targets at least 44 screen px when the stage is scaled down
+  new ResizeObserver(() => { feet.forEach(h => h.setHit(hitR())); stake.setHit(hitR()); }).observe($('stage'));
+  stakeText();
+  // for checking frames
+  window.__tool = {state, setMode, allLines, P, analyze, ride, stopRide, openCard, closeCard, surveyHere, checkDouble, split, addZero,
+    setMult: (i, m) => setMult(sorted()[i], m), feet: () => feet, gb, gs, stake,
+    setTrack(a, zs) { state.a = a; state.zeros = zs.map(([x, m]) => ({id: ++zid, x, m: m || 1})); aSlider.refresh(); update('struct'); },
+    setStake(c) { state.stakeX = c; stake.set(c, 0); stakeText(); renderSurveyButtons(); },
+    setPlan(i) { state.plan = i; renderSurvey(false); },
+    dragZero(i, x) { const z = sorted()[i], from = z.x; z.x = x; update('drag'); drop(z, from); },
+    typeA(text) { aSlider.box.value = text; aSlider.box.dispatchEvent(new Event('change')); }};
+  setMode('build');
+})();
+</script>
+</body>
+</html>

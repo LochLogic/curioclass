@@ -6,29 +6,181 @@
     "Wow, look at that! You did it. Now let's try one more, a little bit harder this time."
   ],
   "voices": [
-    {"id": "warm-teacher", "voice": "Sulafat", "style": "Say warmly and clearly, like a kind kindergarten teacher talking to the whole class", "for": "K-2 default", "status": "candidate"},
-    {"id": "bright-teacher", "voice": "Autonoe", "style": "Say brightly and cheerfully, like an upbeat first grade teacher", "for": "K-2", "status": "candidate"},
-    {"id": "calm-guide", "voice": "Achernar", "style": "Say softly, slowly and gently, like a calm guide leading young children through a quiet moment", "for": "SEL, calm tools", "status": "candidate"},
-    {"id": "gentle-storyteller", "voice": "Vindemiatrix", "style": "Say gently and expressively, like a grandmother reading a picture book aloud", "for": "stories, read-alouds", "status": "candidate"},
-    {"id": "hero-coach", "voice": "Puck", "style": "Say with bright, encouraging energy, like a friendly superhero coach", "for": "K-2 health, PE", "status": "candidate"},
-    {"id": "playful-friend", "voice": "Laomedeia", "style": "Say playfully and cheerfully, like a fun music teacher", "for": "K-2 music, games", "status": "candidate"},
-    {"id": "curious-librarian", "voice": "Aoede", "style": "Say curiously and warmly, like a friendly school librarian", "for": "library, reading", "status": "candidate"},
-    {"id": "adventure-guide", "voice": "Fenrir", "style": "Say with excited wonder, like an adventurous museum guide", "for": "explorers, maps", "status": "candidate"},
-    {"id": "friendly-dad", "voice": "Achird", "style": "Say in a relaxed, friendly way, like a kind dad helping with homework", "for": "3-5", "status": "candidate"},
-    {"id": "clear-teacher", "voice": "Iapetus", "style": "Say clearly and kindly, like a patient elementary school teacher", "for": "3-5 default", "status": "candidate"},
-    {"id": "big-sister", "voice": "Leda", "style": "Say in a friendly, youthful way, like a helpful older student", "for": "3-8 peer voice", "status": "candidate"},
-    {"id": "lively-host", "voice": "Sadachbia", "style": "Say with lively energy, like a friendly game show host", "for": "class showdowns, races", "status": "candidate"},
-    {"id": "science-narrator", "voice": "Charon", "style": "Say in a clear, informative way, like a nature documentary narrator", "for": "science 6-12", "status": "candidate"},
-    {"id": "wise-mentor", "voice": "Gacrux", "style": "Say thoughtfully and warmly, like a wise high school mentor", "for": "9-12", "status": "candidate"},
-    {"id": "calm-professor", "voice": "Schedar", "style": "Say evenly and clearly, like a calm, friendly college professor", "for": "9-12 math, science", "status": "candidate"},
-    {"id": "news-reader", "voice": "Rasalgethi", "style": "Say clearly and steadily, like a trusted radio news reader", "for": "social studies, data", "status": "candidate"},
-    {"id": "smooth-narrator", "voice": "Algieba", "style": "Say smoothly and warmly, like an audiobook narrator", "for": "ELA, literature", "status": "candidate"},
-    {"id": "easy-coach", "voice": "Umbriel", "style": "Say in an easy-going, encouraging way, like a relaxed sports coach", "for": "6-12 PE, health", "status": "candidate"},
-    {"id": "upbeat-guide", "voice": "Zephyr", "style": "Say brightly and clearly, like an upbeat tour guide", "for": "6-8", "status": "candidate"},
-    {"id": "firm-captain", "voice": "Alnilam", "style": "Say firmly but kindly, like a ship captain giving clear directions", "for": "simulators, missions", "status": "candidate"},
-    {"id": "casual-peer", "voice": "Zubenelgenubi", "style": "Say casually and naturally, like a friendly teenager explaining something", "for": "9-12 peer voice", "status": "candidate"},
-    {"id": "knowing-guide", "voice": "Sadaltager", "style": "Say in a knowledgeable, friendly way, like a museum curator", "for": "history, arts", "status": "candidate"},
-    {"id": "soft-breath", "voice": "Enceladus", "style": "Say softly and calmly, like a mindfulness teacher", "for": "SEL 6-12", "status": "candidate"},
-    {"id": "gravel-ranger", "voice": "Algenib", "style": "Say warmly with a gravelly voice, like an old park ranger telling stories", "for": "nature, history", "status": "candidate"}
+    {
+      "id": "warm-teacher",
+      "voice": "Sulafat",
+      "style": "Say warmly and clearly, like a kind kindergarten teacher talking to the whole class",
+      "for": "K-2 default",
+      "status": "candidate"
+    },
+    {
+      "id": "bright-teacher",
+      "voice": "Autonoe",
+      "style": "Say brightly and cheerfully, like an upbeat first grade teacher",
+      "for": "K-2",
+      "status": "candidate"
+    },
+    {
+      "id": "calm-guide",
+      "voice": "Achernar",
+      "style": "Say softly, slowly and gently, like a calm guide leading young children through a quiet moment",
+      "for": "SEL, calm tools",
+      "status": "candidate"
+    },
+    {
+      "id": "gentle-storyteller",
+      "voice": "Vindemiatrix",
+      "style": "Say gently and expressively, like a grandmother reading a picture book aloud",
+      "for": "stories, read-alouds",
+      "status": "candidate"
+    },
+    {
+      "id": "hero-coach",
+      "voice": "Puck",
+      "style": "Say with bright, encouraging energy, like a friendly superhero coach",
+      "for": "K-2 health, PE",
+      "status": "candidate"
+    },
+    {
+      "id": "playful-friend",
+      "voice": "Laomedeia",
+      "style": "Say playfully and cheerfully, like a fun music teacher",
+      "for": "K-2 music, games",
+      "status": "candidate"
+    },
+    {
+      "id": "curious-librarian",
+      "voice": "Aoede",
+      "style": "Say curiously and warmly, like a friendly school librarian",
+      "for": "library, reading",
+      "status": "candidate"
+    },
+    {
+      "id": "adventure-guide",
+      "voice": "Fenrir",
+      "style": "Say with excited wonder, like an adventurous museum guide",
+      "for": "explorers, maps",
+      "status": "candidate"
+    },
+    {
+      "id": "friendly-dad",
+      "voice": "Achird",
+      "style": "Say in a relaxed, friendly way, like a kind dad helping with homework",
+      "for": "3-5",
+      "status": "candidate"
+    },
+    {
+      "id": "clear-teacher",
+      "voice": "Iapetus",
+      "style": "Say clearly and kindly, like a patient elementary school teacher",
+      "for": "3-5 default",
+      "status": "candidate"
+    },
+    {
+      "id": "big-sister",
+      "voice": "Leda",
+      "style": "Say in a friendly, youthful way, like a helpful older student",
+      "for": "3-8 peer voice",
+      "status": "candidate"
+    },
+    {
+      "id": "lively-host",
+      "voice": "Sadachbia",
+      "style": "Say with lively energy, like a friendly game show host",
+      "for": "class showdowns, races",
+      "status": "candidate"
+    },
+    {
+      "id": "science-narrator",
+      "voice": "Charon",
+      "style": "Say in a clear, informative way, like a nature documentary narrator",
+      "for": "science 6-12",
+      "status": "candidate"
+    },
+    {
+      "id": "wise-mentor",
+      "voice": "Gacrux",
+      "style": "Say thoughtfully and warmly, like a wise high school mentor",
+      "for": "9-12",
+      "status": "candidate"
+    },
+    {
+      "id": "calm-professor",
+      "voice": "Schedar",
+      "style": "Say evenly and clearly, like a calm, friendly college professor",
+      "for": "9-12 math, science",
+      "status": "candidate"
+    },
+    {
+      "id": "news-reader",
+      "voice": "Rasalgethi",
+      "style": "Say clearly and steadily, like a trusted radio news reader",
+      "for": "social studies, data",
+      "status": "candidate"
+    },
+    {
+      "id": "smooth-narrator",
+      "voice": "Algieba",
+      "style": "Say smoothly and warmly, like an audiobook narrator",
+      "for": "ELA, literature",
+      "status": "candidate"
+    },
+    {
+      "id": "easy-coach",
+      "voice": "Umbriel",
+      "style": "Say in an easy-going, encouraging way, like a relaxed sports coach",
+      "for": "6-12 PE, health",
+      "status": "candidate"
+    },
+    {
+      "id": "upbeat-guide",
+      "voice": "Zephyr",
+      "style": "Say brightly and clearly, like an upbeat tour guide",
+      "for": "6-8",
+      "status": "candidate"
+    },
+    {
+      "id": "firm-captain",
+      "voice": "Alnilam",
+      "style": "Say firmly but kindly, like a ship captain giving clear directions",
+      "for": "simulators, missions",
+      "status": "candidate"
+    },
+    {
+      "id": "casual-peer",
+      "voice": "Zubenelgenubi",
+      "style": "Say casually and naturally, like a friendly teenager explaining something",
+      "for": "9-12 peer voice",
+      "status": "candidate"
+    },
+    {
+      "id": "knowing-guide",
+      "voice": "Sadaltager",
+      "style": "Say in a knowledgeable, friendly way, like a museum curator",
+      "for": "history, arts",
+      "status": "candidate"
+    },
+    {
+      "id": "soft-breath",
+      "voice": "Enceladus",
+      "style": "Say softly and calmly, like a mindfulness teacher",
+      "for": "SEL 6-12",
+      "status": "candidate"
+    },
+    {
+      "id": "gravel-ranger",
+      "voice": "Algenib",
+      "style": "Say warmly with a gravelly voice, like an old park ranger telling stories",
+      "for": "nature, history",
+      "status": "candidate"
+    },
+    {
+      "id": "hs-narrator",
+      "voice": "Kore",
+      "style": "Read clearly and naturally, at a moderate pace (from Idiom Island's existing Gemini takes)",
+      "for": "9-12 test batch",
+      "status": "candidate",
+      "from": "tools/idiom-island/voice/raw"
+    }
   ]
 }

@@ -1,0 +1,21 @@
+{
+ "bank": "hs-narrator",
+ "voice": "Kore",
+ "style": "Read clearly and naturally, at a moderate pace",
+ "lines": [
+  "Welcome to Rollercoaster Polynomials. Drag the footings along the ground, and the track bends to fit them.",
+  "Each footing is a zero of the polynomial. The leftmost and rightmost zeros are your stations.",
+  "Multiplicity one crosses the ground. Two touches and turns back. Three crosses flat.",
+  "Odd degree ends point opposite ways. Even degree ends point the same way.",
+  "The leading coefficient sets how tall the track is. Flip it, and hills become tunnels.",
+  "Survey mode. The office sent a plan in standard form. Plant a stake to find out how high the track is there.",
+  "The remainder of dividing by x minus c is the height of the track at c.",
+  "Remainder zero. So x minus c is a factor, and a footing goes here.",
+  "Not a double footing. The remaining part is not zero here.",
+  "The remaining part never reaches zero for a real number, so the track never touches the ground again.",
+  "Every footing found. Factored form and standard form describe the same track.",
+  "Commissions. Each order lists what the park wants. Build a track that meets every line.",
+  "Match the ghost track. Read its zeros and how it meets the ground, then set the height.",
+  "Approved."
+ ]
+}

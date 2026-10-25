@@ -54,6 +54,9 @@ for folder in sorted(p for p in (ROOT / 'tools').iterdir() if p.is_dir()):
     if (folder / 'tool.draft.json').exists():  # waiting for art: not on the site yet
         print(f'draft {folder.name}')
         continue
+    if not (folder / 'tool.json').exists() and (folder / 'spec.md').exists():  # specced, not built yet
+        print(f'spec  {folder.name}')
+        continue
     problems = check(folder)
     print(f'{"FAIL" if problems else "ok  "} {folder.name}')
     for p in problems:
