@@ -101,8 +101,7 @@ def main():
             # record where the art came from and that it needs a look (scripts/artstatus.py tracks this)
             asset['source'] = 'flux2-klein-4b (Cloudflare)' if int(k) >= 9 else 'flux1-schnell (local)'
             asset['review'] = 'pending'
-        (art / 'prompts.json').write_text(json.dumps(spec, indent=2, ensure_ascii=False) + '
-', encoding='utf-8')
+        (art / 'prompts.json').write_text(json.dumps(spec, indent=2, ensure_ascii=False) + '\n', encoding='utf-8')
         subprocess.run([sys.executable, str(ROOT / 'scripts' / 'art.py'), tool, *names, '--rekey'], check=True)
         return
     n = int(args[args.index('--n') + 1]) if '--n' in args else 3
