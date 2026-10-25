@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TOOL TITLE · Short subtitle · Curio Class</title>
+<meta name="description" content="One or two plain sentences: what the class does with it. Grades X-Y subject. Works offline.">
+<!--
+TOOL TITLE (Curio Class)
+Grades, subject and the standards it serves (codes from the spec).
+Who drives (teacher on a projector, or students on devices), the modes, and the one idea that makes it worth opening.
+Facts and their sources are listed in notes.md. One file, no network requests. Content CC BY 4.0, code MIT. curioclass.org
+-->
+<link rel="stylesheet" href="kit:curio">
+<style>
+:root{
+  /* this tool's palette: the kit's frame reads these */
+  --paper:#f6f8f2;--ink:#22302a;--muted:#55665d;--line:#d6e2d9;--focus:#e0662a;
+  --brand:#2f6f5a;--btn:#3f8169;--btn-line:#5f9c84;--head-ink:#f2fbf6;--panel:#fbfdfb;
+}
+.stage{background:linear-gradient(#e7f2ec,#d6e9de)}
+/* the tool's own styles go here */
+</style>
+</head>
+<body>
+<header>
+  <h1>TOOL TITLE <small>One short line under the title.</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-one" aria-pressed="true">First mode</button>
+    <button id="m-two" aria-pressed="false">Second mode</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true" title="Turn animation on or off">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+  <button class="icon-btn" id="read">🔊 Read</button>
+</header>
+<main>
+  <div class="stage" id="stage">
+    <div class="scene" id="scene">
+      <!-- a 1000 x 620 design, scaled to fit any screen -->
+    </div>
+  </div>
+  <aside class="panel">
+    <p class="hint" id="hint"></p>
+    <button class="big-btn gold" id="go">▶ Start</button>
+    <p class="tip" id="tip"></p>
+  </aside>
+</main>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const {say, wait} = Curio;
+  const state = {mode: 'one'};
+
+  const MODES = {
+    one: {hint: '<b>First mode.</b> What to do, in one or two sentences a teacher can read aloud.'},
+    two: {hint: '<b>Second mode.</b> What to do here.'},
+  };
+  function setMode(m) {
+    state.mode = m; Curio.stop();
+    for (const k in MODES) $('m-' + k).setAttribute('aria-pressed', k === m);
+    $('hint').innerHTML = MODES[m].hint;
+  }
+  for (const k in MODES) $('m-' + k).onclick = () => setMode(k);
+  $('go').onclick = () => { Curio.yes(); say('Here we go!'); };
+
+  // every line the tool can say, so scripts/voice.py can record them (window.<hook>.allLines())
+  const allLines = () => [...new Set(['Here we go!'])];
+
+  Curio.init({clips: "voice:*", rate: .9});
+  Curio.fit('stage', 'scene');
+  window.__tool = {state, setMode, allLines};  // for checking frames
+  setMode('one');
+})();
+</script>
+</body>
+</html>
