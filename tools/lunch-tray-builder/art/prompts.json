@@ -8,8 +8,8 @@
       "aspect": "1:1",
       "width": 200,
       "quality": 76,
-      "source": "flux1-schnell (local)",
-      "review": "redo: cast shadow kept as a green blob; draw on magenta",
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "redo: scribbled red shadow on the right",
       "key": "magenta"
     },
     {
@@ -18,7 +18,9 @@
       "cutout": true,
       "aspect": "1:1",
       "width": 200,
-      "quality": 76
+      "quality": 76,
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "orange",
@@ -26,7 +28,9 @@
       "cutout": true,
       "aspect": "1:1",
       "width": 200,
-      "quality": 76
+      "quality": 76,
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "grapes",
@@ -44,7 +48,9 @@
       "aspect": "1:1",
       "width": 200,
       "quality": 76,
-      "key": "magenta"
+      "key": "magenta",
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "pear",
@@ -61,7 +67,9 @@
       "cutout": true,
       "aspect": "1:1",
       "width": 200,
-      "quality": 76
+      "quality": 76,
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "broccoli",
@@ -203,8 +211,8 @@
       "aspect": "1:1",
       "width": 200,
       "quality": 76,
-      "source": "flux1-schnell (local)",
-      "review": "redo: white side of the carton vanished in the cutout",
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok",
       "key": "magenta"
     },
     {

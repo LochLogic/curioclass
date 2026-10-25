@@ -48,8 +48,8 @@
       "aspect": "1:1",
       "width": 360,
       "quality": 76,
-      "source": "flux2-klein-4b (Cloudflare)",
-      "review": "redo: glove has too many fingers (Cory)"
+      "source": "gemini",
+      "review": "ok"
     },
     {
       "name": "again",
@@ -88,7 +88,8 @@
       "aspect": "1:1",
       "width": 360,
       "quality": 76,
-      "review": "redo: drew two whole pencils, not one broken pencil"
+      "review": "ok",
+      "source": "flux2-klein-4b (Cloudflare)"
     },
     {
       "name": "where",

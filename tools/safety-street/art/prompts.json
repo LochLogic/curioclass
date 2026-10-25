@@ -6,7 +6,9 @@
       "prompt": "Empty background: a friendly neighborhood street on a sunny day seen from the side. Houses with small yards and trees along the back, a sidewalk across the lower middle, a quiet road across the bottom, open blue sky. Lots of open space in the middle and right. No people, no animals, no cars, no text, no signs with words.",
       "aspect": "16:9",
       "width": 1600,
-      "quality": 72
+      "quality": 72,
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "biscuit",
@@ -23,7 +25,9 @@
       "cutout": true,
       "aspect": "1:1",
       "width": 170,
-      "quality": 76
+      "quality": 76,
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "redo: stripes float with no road under them"
     },
     {
       "name": "helmet",
@@ -41,7 +45,9 @@
       "cutout": true,
       "aspect": "1:1",
       "width": 170,
-      "quality": 76
+      "quality": 76,
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "alarm",
@@ -49,7 +55,9 @@
       "cutout": true,
       "aspect": "1:1",
       "width": 170,
-      "quality": 76
+      "quality": 76,
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "stove",
@@ -57,7 +65,9 @@
       "cutout": true,
       "aspect": "1:1",
       "width": 170,
-      "quality": 76
+      "quality": 76,
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "pool",
@@ -65,7 +75,9 @@
       "cutout": true,
       "aspect": "1:1",
       "width": 170,
-      "quality": 76
+      "quality": 76,
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "medicine",
@@ -73,7 +85,9 @@
       "cutout": true,
       "aspect": "1:1",
       "width": 170,
-      "quality": 76
+      "quality": 76,
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     }
   ]
 }

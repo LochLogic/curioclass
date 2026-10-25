@@ -60,6 +60,8 @@ def draw(tok, acct, prompt, w, h, refs=()):
             return Image.open(io.BytesIO(base64.b64decode(resp.json()['result']['image'])))
         if resp.status_code in (429, 500, 502, 503) and attempt < 3:
             time.sleep(10); continue
+        if '"code":3030' in resp.text:  # Cloudflare's output filter flagged it: skip this one, keep going
+            print('  flagged by the output filter; reword the prompt'); return None
         sys.exit(f'{resp.status_code}: {resp.text[:300]}')
 
 
@@ -90,10 +92,13 @@ def main():
         for k in range(k0, k0 + n):
             t = time.time()
             img = draw(tok, acct, prompt, w, h, [raw / f'{ref}.png'] if ref else [])
+            if img is None:
+                continue
             p = raw / f'{name}.c{k}.png'
             img.save(p); paths.append(p)
             print(f'{name} c{k}: {time.time() - t:.0f}s')
-        sheet(paths, raw / f'_sheet-{name}-cf.jpg')
+        if paths:
+            sheet(paths, raw / f'_sheet-{name}-cf.jpg')
 
 
 if __name__ == '__main__':

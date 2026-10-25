@@ -6,7 +6,9 @@
       "prompt": "Empty background: a sunny school field and playground area seen from the side at child height. Bright green grass across the bottom third, a few distant trees and a low fence, soft rolling hills, a big open blue sky with a few puffy clouds. Lots of open space. No people, no animals, no equipment in the middle.",
       "aspect": "16:9",
       "width": 1600,
-      "quality": 72
+      "quality": 72,
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "frog",
@@ -25,7 +27,9 @@
       "cutout": true,
       "aspect": "1:1",
       "height": 340,
-      "quality": 76
+      "quality": 76,
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "horse",
@@ -33,7 +37,9 @@
       "cutout": true,
       "aspect": "1:1",
       "height": 340,
-      "quality": 76
+      "quality": 76,
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "crab",
@@ -41,7 +47,9 @@
       "cutout": true,
       "aspect": "1:1",
       "height": 340,
-      "quality": 76
+      "quality": 76,
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "penguin",
@@ -49,7 +57,9 @@
       "cutout": true,
       "aspect": "1:1",
       "height": 340,
-      "quality": 76
+      "quality": 76,
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "bear",
@@ -57,7 +67,9 @@
       "cutout": true,
       "aspect": "1:1",
       "height": 340,
-      "quality": 76
+      "quality": 76,
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "flamingo",
@@ -65,7 +77,9 @@
       "cutout": true,
       "aspect": "1:1",
       "height": 340,
-      "quality": 76
+      "quality": 76,
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "elephant",
@@ -73,7 +87,9 @@
       "cutout": true,
       "aspect": "1:1",
       "height": 340,
-      "quality": 76
+      "quality": 76,
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "eagle",
@@ -81,7 +97,9 @@
       "cutout": true,
       "aspect": "1:1",
       "height": 340,
-      "quality": 76
+      "quality": 76,
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "snake",
@@ -90,7 +108,9 @@
       "aspect": "1:1",
       "height": 340,
       "quality": 76,
-      "key": "magenta"
+      "key": "magenta",
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "cheetah",
@@ -98,7 +118,9 @@
       "cutout": true,
       "aspect": "1:1",
       "height": 340,
-      "quality": 76
+      "quality": 76,
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "cat",
@@ -106,7 +128,9 @@
       "cutout": true,
       "aspect": "1:1",
       "height": 340,
-      "quality": 76
+      "quality": 76,
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     }
   ]
 }

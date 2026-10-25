@@ -56,7 +56,7 @@
       "width": 220,
       "quality": 76,
       "source": "flux2-klein-4b (Cloudflare)",
-      "review": "redo: green key cut away the green head; draw on magenta",
+      "review": "ok",
       "key": "magenta"
     },
     {
@@ -134,12 +134,13 @@
     },
     {
       "name": "worm",
-      "prompt": "A pink earthworm lying stretched out in a gentle wavy curve, side view, soft ringed body.",
+      "prompt": "A plain pink earthworm lying in a gentle wavy curve on its side, a simple ringed body with no eyes, no face, no legs and no antennae.",
       "cutout": true,
       "aspect": "1:1",
       "width": 220,
       "quality": 76,
-      "review": "redo: drawn as a letter S"
+      "review": "ok",
+      "source": "flux2-klein-4b (Cloudflare)"
     },
     {
       "name": "butterfly",

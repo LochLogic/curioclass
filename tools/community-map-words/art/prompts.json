@@ -7,7 +7,9 @@
       "cutout": true,
       "aspect": "1:1",
       "width": 260,
-      "quality": 76
+      "quality": 76,
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "library",
@@ -15,15 +17,19 @@
       "cutout": true,
       "aspect": "1:1",
       "width": 260,
-      "quality": 76
+      "quality": 76,
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "fire",
-      "prompt": "A cute cartoon a red fire station with a big garage door and a fire truck peeking out, seen from the front at a slight angle from above, like a building on a children's town map.",
+      "prompt": "A cute cartoon red brick fire station building with a big open garage door and a red fire truck parked inside, a little tower on top, no words, seen from the front at a slight angle from above, like a building on a children's town map.",
       "cutout": true,
       "aspect": "1:1",
       "width": 260,
-      "quality": 76
+      "quality": 76,
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "hospital",
@@ -31,15 +37,19 @@
       "cutout": true,
       "aspect": "1:1",
       "width": 260,
-      "quality": 76
+      "quality": 76,
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "police",
-      "prompt": "A cute cartoon a blue police station building with a light on top, no words, seen from the front at a slight angle from above, like a building on a children's town map.",
+      "prompt": "A cute cartoon small blue and white neighborhood police station building with a gold star badge sign over the door and flower boxes, no words, seen from the front at a slight angle from above, like a building on a children's town map.",
       "cutout": true,
       "aspect": "1:1",
       "width": 260,
-      "quality": 76
+      "quality": 76,
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "post",
@@ -47,7 +57,9 @@
       "cutout": true,
       "aspect": "1:1",
       "width": 260,
-      "quality": 76
+      "quality": 76,
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "grocery",
@@ -55,7 +67,9 @@
       "cutout": true,
       "aspect": "1:1",
       "width": 260,
-      "quality": 76
+      "quality": 76,
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "bakery",
@@ -63,7 +77,9 @@
       "cutout": true,
       "aspect": "1:1",
       "width": 260,
-      "quality": 76
+      "quality": 76,
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "park",
@@ -72,7 +88,9 @@
       "aspect": "1:1",
       "width": 260,
       "quality": 76,
-      "key": "magenta"
+      "key": "magenta",
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "vet",
@@ -80,7 +98,9 @@
       "cutout": true,
       "aspect": "1:1",
       "width": 260,
-      "quality": 76
+      "quality": 76,
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "bus",
@@ -88,7 +108,9 @@
       "cutout": true,
       "aspect": "1:1",
       "width": 260,
-      "quality": 76
+      "quality": 76,
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "farm",
@@ -96,7 +118,9 @@
       "cutout": true,
       "aspect": "1:1",
       "width": 260,
-      "quality": 76
+      "quality": 76,
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "h-teacher",
@@ -104,7 +128,9 @@
       "cutout": true,
       "aspect": "3:4",
       "height": 230,
-      "people": true
+      "people": true,
+      "source": "gemini",
+      "review": "ok"
     },
     {
       "name": "h-librarian",
@@ -114,7 +140,9 @@
       "height": 230,
       "people": true,
       "ref_mode": "style",
-      "ref": "h-teacher"
+      "ref": "h-teacher",
+      "source": "gemini",
+      "review": "ok"
     },
     {
       "name": "h-firefighter",
@@ -124,7 +152,9 @@
       "height": 230,
       "people": true,
       "ref_mode": "style",
-      "ref": "h-teacher"
+      "ref": "h-teacher",
+      "source": "gemini",
+      "review": "ok"
     },
     {
       "name": "h-doctor",
@@ -134,7 +164,9 @@
       "height": 230,
       "people": true,
       "ref_mode": "style",
-      "ref": "h-teacher"
+      "ref": "h-teacher",
+      "source": "gemini",
+      "review": "ok"
     },
     {
       "name": "h-police",
@@ -144,7 +176,9 @@
       "height": 230,
       "people": true,
       "ref_mode": "style",
-      "ref": "h-teacher"
+      "ref": "h-teacher",
+      "source": "gemini",
+      "review": "ok"
     },
     {
       "name": "h-mail",
@@ -154,7 +188,9 @@
       "height": 230,
       "people": true,
       "ref_mode": "style",
-      "ref": "h-teacher"
+      "ref": "h-teacher",
+      "source": "gemini",
+      "review": "ok"
     },
     {
       "name": "h-cashier",
@@ -164,7 +200,9 @@
       "height": 230,
       "people": true,
       "ref_mode": "style",
-      "ref": "h-teacher"
+      "ref": "h-teacher",
+      "source": "gemini",
+      "review": "ok"
     },
     {
       "name": "h-baker",
@@ -174,7 +212,9 @@
       "height": 230,
       "people": true,
       "ref_mode": "style",
-      "ref": "h-teacher"
+      "ref": "h-teacher",
+      "source": "gemini",
+      "review": "ok"
     },
     {
       "name": "h-ranger",
@@ -184,7 +224,9 @@
       "height": 230,
       "people": true,
       "ref_mode": "style",
-      "ref": "h-teacher"
+      "ref": "h-teacher",
+      "source": "gemini",
+      "review": "ok"
     },
     {
       "name": "h-vet",
@@ -194,17 +236,21 @@
       "height": 230,
       "people": true,
       "ref_mode": "style",
-      "ref": "h-teacher"
+      "ref": "h-teacher",
+      "source": "gemini",
+      "review": "ok"
     },
     {
       "name": "h-driver",
-      "prompt": "A cheerful cartoon community helper: a friendly bus driver in a cap, full body, standing, front view, warm smile. Make the twelve helpers a mix of ages, genders and skin tones.",
+      "prompt": "A cheerful cartoon community helper: a friendly city bus driver in a light blue uniform shirt and a cap, holding a small bus steering wheel, full body, standing, front view, warm smile. Make the twelve helpers a mix of ages, genders and skin tones.",
       "cutout": true,
       "aspect": "3:4",
       "height": 230,
       "people": true,
       "ref_mode": "style",
-      "ref": "h-teacher"
+      "ref": "h-teacher",
+      "source": "gemini",
+      "review": "ok"
     },
     {
       "name": "h-farmer",
@@ -214,7 +260,9 @@
       "height": 230,
       "people": true,
       "ref_mode": "style",
-      "ref": "h-teacher"
+      "ref": "h-teacher",
+      "source": "gemini",
+      "review": "ok"
     }
   ]
 }
