@@ -1,5 +1,7 @@
 # Review queue
 
+**Moved:** the live queue is the Review Desk, https://claude.ai/artifact/SVXBzgyS941dyqmEzQHgNC (Cory's comments are saved there; Claude reads them with ArtifactData). This file keeps the 2026-10-26 round of notes for the record.
+
 Tools and pages waiting for Cory's review, oldest first. When one is approved, move it to **Approved** with the date. Feedback that needs work goes under the tool as a checklist.
 
 ## Waiting
