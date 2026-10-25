@@ -47,7 +47,11 @@ def account():
     return m.group(1)
 
 
+TOK = [None]
+
+
 def draw(tok, acct, prompt, w, h, refs=()):
+    tok = TOK[0] or tok
     files = {'prompt': (None, prompt), 'width': (None, str(w)), 'height': (None, str(h))}
     for i, r in enumerate(refs):
         buf = io.BytesIO(); Image.open(r).convert('RGB').resize((768, 768)).save(buf, 'PNG')
@@ -58,8 +62,12 @@ def draw(tok, acct, prompt, w, h, refs=()):
         if resp.status_code == 200:
             import base64
             return Image.open(io.BytesIO(base64.b64decode(resp.json()['result']['image'])))
+        if resp.status_code == 401 and attempt < 3:  # the wrangler login expired mid-run: refresh it and retry
+            tok = TOK[0] = token(); continue
         if resp.status_code in (429, 500, 502, 503) and attempt < 3:
             time.sleep(10); continue
+        if '"code":4006' in resp.text:
+            sys.exit('daily free allowance used up (resets 00:00 UTC); finish with Gemini or wait')
         if '"code":3030' in resp.text:  # Cloudflare's output filter flagged it: skip this one, keep going
             print('  flagged by the output filter; reword the prompt'); return None
         sys.exit(f'{resp.status_code}: {resp.text[:300]}')

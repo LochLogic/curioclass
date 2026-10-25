@@ -21,13 +21,13 @@
     },
     {
       "name": "crosswalk",
-      "prompt": "A clear friendly illustration of a street corner crosswalk with white stripes and a walk signal on a pole.",
+      "prompt": "A clear friendly illustration of a short piece of gray road seen from slightly above, with bold white crosswalk stripes across it, a sidewalk curb on each side and a walk signal on a pole at one corner.",
       "cutout": true,
       "aspect": "1:1",
       "width": 170,
       "quality": 76,
       "source": "flux2-klein-4b (Cloudflare)",
-      "review": "redo: stripes float with no road under them"
+      "review": "ok"
     },
     {
       "name": "helmet",

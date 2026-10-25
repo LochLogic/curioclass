@@ -3,14 +3,16 @@
   "assets": [
     {
       "name": "apple",
-      "prompt": "One shiny red apple with a small green leaf on the stem, a bright appetizing food illustration seen from slightly above.",
+      "prompt": "One shiny red apple with a small green leaf on the stem, a bright appetizing food illustration seen from slightly above. No shadow.",
       "cutout": true,
       "aspect": "1:1",
       "width": 200,
       "quality": 76,
-      "source": "flux2-klein-4b (Cloudflare)",
-      "review": "redo: scribbled red shadow on the right",
-      "key": "magenta"
+      "source": "gemini",
+      "review": "ok",
+      "key": "magenta",
+      "ref": "banana",
+      "ref_mode": "style"
     },
     {
       "name": "banana",
@@ -39,7 +41,9 @@
       "aspect": "1:1",
       "width": 200,
       "quality": 76,
-      "key": "magenta"
+      "key": "magenta",
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "strawberries",
@@ -59,7 +63,9 @@
       "aspect": "1:1",
       "width": 200,
       "quality": 76,
-      "key": "magenta"
+      "key": "magenta",
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "carrots",
@@ -88,7 +94,9 @@
       "cutout": true,
       "aspect": "1:1",
       "width": 200,
-      "quality": 76
+      "quality": 76,
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "peas",
@@ -97,7 +105,9 @@
       "aspect": "1:1",
       "width": 200,
       "quality": 76,
-      "key": "magenta"
+      "key": "magenta",
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "tomatoes",
@@ -105,7 +115,9 @@
       "cutout": true,
       "aspect": "1:1",
       "width": 200,
-      "quality": 76
+      "quality": 76,
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "salad",
@@ -114,7 +126,9 @@
       "aspect": "1:1",
       "width": 200,
       "quality": 76,
-      "key": "magenta"
+      "key": "magenta",
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "bread",
@@ -122,7 +136,9 @@
       "cutout": true,
       "aspect": "1:1",
       "width": 200,
-      "quality": 76
+      "quality": 76,
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "rice",
@@ -130,7 +146,9 @@
       "cutout": true,
       "aspect": "1:1",
       "width": 200,
-      "quality": 76
+      "quality": 76,
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "pasta",
@@ -138,7 +156,9 @@
       "cutout": true,
       "aspect": "1:1",
       "width": 200,
-      "quality": 76
+      "quality": 76,
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "tortilla",
@@ -146,7 +166,9 @@
       "cutout": true,
       "aspect": "1:1",
       "width": 200,
-      "quality": 76
+      "quality": 76,
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "crackers",
@@ -154,7 +176,9 @@
       "cutout": true,
       "aspect": "1:1",
       "width": 200,
-      "quality": 76
+      "quality": 76,
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "oatmeal",
@@ -162,15 +186,21 @@
       "cutout": true,
       "aspect": "1:1",
       "width": 200,
-      "quality": 76
+      "quality": 76,
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "chicken",
-      "prompt": "One baked chicken drumstick, golden brown, a bright appetizing food illustration seen from slightly above.",
+      "prompt": "One golden-brown baked chicken drumstick with a short white bone end at one side, a bright appetizing food illustration seen from slightly above.",
       "cutout": true,
       "aspect": "1:1",
       "width": 200,
-      "quality": 76
+      "quality": 76,
+      "source": "gemini",
+      "review": "ok",
+      "ref": "banana",
+      "ref_mode": "style"
     },
     {
       "name": "egg",
@@ -178,7 +208,9 @@
       "cutout": true,
       "aspect": "1:1",
       "width": 200,
-      "quality": 76
+      "quality": 76,
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "beans",
@@ -186,7 +218,9 @@
       "cutout": true,
       "aspect": "1:1",
       "width": 200,
-      "quality": 76
+      "quality": 76,
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "ok"
     },
     {
       "name": "fish",
@@ -194,7 +228,11 @@
       "cutout": true,
       "aspect": "1:1",
       "width": 200,
-      "quality": 76
+      "quality": 76,
+      "ref": "banana",
+      "ref_mode": "style",
+      "source": "gemini",
+      "review": "ok"
     },
     {
       "name": "nuts",
@@ -202,7 +240,11 @@
       "cutout": true,
       "aspect": "1:1",
       "width": 200,
-      "quality": 76
+      "quality": 76,
+      "ref": "banana",
+      "ref_mode": "style",
+      "source": "gemini",
+      "review": "ok"
     },
     {
       "name": "milk",
@@ -221,7 +263,11 @@
       "cutout": true,
       "aspect": "1:1",
       "width": 200,
-      "quality": 76
+      "quality": 76,
+      "ref": "banana",
+      "ref_mode": "style",
+      "source": "gemini",
+      "review": "ok"
     },
     {
       "name": "cheese",
@@ -229,7 +275,11 @@
       "cutout": true,
       "aspect": "1:1",
       "width": 200,
-      "quality": 76
+      "quality": 76,
+      "ref": "banana",
+      "ref_mode": "style",
+      "source": "gemini",
+      "review": "ok"
     },
     {
       "name": "cookie",
@@ -237,7 +287,11 @@
       "cutout": true,
       "aspect": "1:1",
       "width": 200,
-      "quality": 76
+      "quality": 76,
+      "ref": "banana",
+      "ref_mode": "style",
+      "source": "gemini",
+      "review": "ok"
     },
     {
       "name": "chips",
@@ -245,7 +299,11 @@
       "cutout": true,
       "aspect": "1:1",
       "width": 200,
-      "quality": 76
+      "quality": 76,
+      "ref": "banana",
+      "ref_mode": "style",
+      "source": "gemini",
+      "review": "ok"
     }
   ]
 }

@@ -23,8 +23,10 @@ Tools and pages waiting for Cory's review, oldest first. When one is approved, m
 | 15 | I Spy Science (K-2 ELD) | [i-spy-science](https://curioclass.org/tools/i-spy-science/) | 2026-10-26 | Four scenes, I spy clues, describe-it word cards |
 | 16 | Community Map Words (K-2 ELD) | [community-map-words](https://curioclass.org/tools/community-map-words/) | 2026-10-26 | Twelve places and helpers (helpers by Gemini) |
 | 17 | Classroom Phrases Game (K-2 ELD) | [classroom-phrases-game](https://curioclass.org/tools/classroom-phrases-game/) | 2026-10-26 | Word-by-word echo, picture cards |
+| 18 | Lunch Tray Builder (K-2 health) | [lunch-tray-builder](https://curioclass.org/tools/lunch-tray-builder/) | 2026-10-26 | 28 foods (Cloudflare, local and Gemini art in one matched style), sort, fix the tray |
+| 19 | Safety Street (K-2 health) | [safety-street](https://curioclass.org/tools/safety-street/) | 2026-10-26 | Seven stops, safe or not, crossing practice with the walk signal |
 
-Not yet recorded: the spoken lines for 10-17 and Shape Talk, Feelings Faces and Wonder Wall use the browser voice until `scripts/voice.py` records them.
+Not yet recorded: the spoken lines for 10-19 and Shape Talk, Feelings Faces and Wonder Wall use the browser voice until `scripts/voice.py` records them.
 
 ## Approved
 
