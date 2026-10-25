@@ -14,8 +14,9 @@
   "outcome": "Choose daily healthy habits (brushing, handwashing, water, moving, sleep) and explain how they help the body",
   "minutes": "10-20",
   "sources": [
-    "Facts from CDC handwashing guidance, the American Dental Association and AASM/AAP sleep guidance",
+    "Illustrations drawn with FLUX.2 [klein] 4B (Apache 2.0) on Cloudflare Workers AI, edited for Curio Class",
     "Illustrations drawn with FLUX.1-schnell (Apache 2.0) on a local computer, edited for Curio Class",
+    "Facts from CDC handwashing guidance, the American Dental Association and AASM/AAP sleep guidance",
     "Music and sounds generated in the browser"
   ]
 }

@@ -14,8 +14,9 @@
   "outcome": "Choose safe actions for crossing streets, riding, cars, fire drills, hot things, water and medicine",
   "minutes": "10-20",
   "sources": [
-    "Safety guidance from NHTSA, NFPA, the American Red Cross and Safe Kids Worldwide",
+    "Illustrations drawn with FLUX.2 [klein] 4B (Apache 2.0) on Cloudflare Workers AI, edited for Curio Class",
     "Illustrations drawn with FLUX.1-schnell (Apache 2.0) on a local computer, edited for Curio Class",
+    "Safety guidance from NHTSA, NFPA, the American Red Cross and Safe Kids Worldwide",
     "Sounds generated in the browser"
   ]
 }

@@ -1,0 +1,475 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Library Adventure · Finding a book · Curio Class</title>
+<meta name="description" content="Walk a cartoon library with Hoot the owl: picture books, fiction and nonfiction, the checkout desk and the reading rug. Read spine labels, send books to the right section and shelve picture books in ABC order. Grades K-2 library, teacher-led. Works offline.">
+<!-- GENERATED from src.html by scripts/bundle_tool.py; edit src.html, not this file.
+
+LIBRARY ADVENTURE (Curio Class)
+Grades K-2 school library, AASL National School Library Standards, Explore and Curate (find and choose books;
+know how a library is organized).
+Teacher-led on a projector. Explore (tap each part of the library), Spine detective (read a spine label and
+send the book to its section) and ABC shelf (put picture books in order by the author's last name).
+Spine labels follow common school practice: E (Easy or Everybody) plus the first three letters of the author's
+last name for picture books, FIC plus three letters for fiction, and a Dewey number plus three letters for
+nonfiction. Libraries vary; the notes say how to match yours. All titles and authors are made up.
+One file, no network requests. Illustrations: FLUX.2 [klein] 4B (Apache 2.0) on Cloudflare Workers AI. All edited for Curio Class. Content CC BY 4.0, code MIT. curioclass.org
+-->
+<style>
+:root{
+  --paper:#fbf7ef;--ink:#2a241e;--muted:#675b4f;--line:#eadfcd;--focus:#2f5bd3;--brand:#7b3f8c;
+  --pic:#e85d75;--fic:#3c78d8;--non:#2e9b62;
+  font-family:'Segoe UI',system-ui,-apple-system,Roboto,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0;height:100%}
+body{background:var(--paper);color:var(--ink);display:grid;grid-template-rows:auto 1fr;min-height:100vh}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:4px solid var(--focus);outline-offset:3px}
+header{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:12px 20px;background:var(--brand);color:#fbf3ff}
+h1{margin:0 auto 0 0;font:800 clamp(22px,3vw,32px)/1.1 'Trebuchet MS','Segoe UI',sans-serif}
+h1 small{display:block;font:500 15px/1.3 'Segoe UI',sans-serif;color:#ead0f3}
+.seg{display:inline-flex;border:2px solid #a874b8;border-radius:999px;overflow:hidden}
+.seg button{border:0;background:#8e52a0;color:#fbf3ff;min-height:52px;padding:0 16px;font-weight:700;font-size:16px}
+.seg button[aria-pressed="true"]{background:#ffd34d;color:#3a2c00}
+.icon-btn{border:2px solid #a874b8;background:#8e52a0;color:#fbf3ff;border-radius:999px;min-height:52px;padding:0 16px;font-weight:700;font-size:16px}
+
+main{display:grid;grid-template-columns:1fr;min-height:0}
+@media (min-width:760px){main{grid-template-columns:minmax(0,1fr) 340px}}
+.stage{position:relative;overflow:hidden;min-height:340px;background:
+  repeating-linear-gradient(90deg,#0000 0 118px,#0000000d 118px 120px),
+  linear-gradient(#e8c99a,#dcb784)}
+.scene{position:absolute;left:50%;top:50%;width:1000px;height:620px;transform:translate(-50%,-50%) scale(var(--s,1))}
+.wall{position:absolute;left:0;right:0;top:0;height:230px;background:linear-gradient(#f6ecd9,#efe0c4);border-bottom:10px solid #b88a55}
+.win{position:absolute;top:26px;width:120px;height:120px;border-radius:60px 60px 8px 8px;background:linear-gradient(#bfe3ff,#e8f5ff);border:7px solid #b88a55}
+
+/* areas you can tap */
+.area{position:absolute;border:4px solid transparent;border-radius:20px;background:none;padding:0;transition:border-color .2s,box-shadow .2s}
+.area:hover{border-color:#ffd34d}
+.area.hl{border-color:#ffd34d;box-shadow:0 0 0 8px #ffd34d66}
+.area.drop{border-color:#2a9d4a;box-shadow:0 0 0 8px #2a9d4a55}
+.sign{position:absolute;left:50%;top:-22px;transform:translateX(-50%);white-space:nowrap;background:var(--c);color:#fff;border-radius:12px;padding:5px 14px;font:900 20px 'Trebuchet MS',sans-serif;box-shadow:0 4px 0 #0003;pointer-events:none;z-index:2}
+.shelf{position:absolute;left:0;right:0;bottom:0;background:#a8743f;border:5px solid #6b4423;border-radius:10px;padding:8px 8px 0;display:flex;flex-direction:column;gap:6px}
+.row-b{display:flex;align-items:flex-end;gap:2px;height:var(--h,74px);border-bottom:8px solid #6b4423}
+.sp{width:var(--w,18px);height:var(--sh,90%);background:var(--bc);border-radius:3px 3px 0 0;box-shadow:inset -3px 0 0 #0002}
+.bin{position:absolute;bottom:0;height:110px;border-radius:14px;background:#4aa3c7;border:5px solid #24607a;display:flex;align-items:flex-end;justify-content:center;gap:3px;padding:0 8px 8px;overflow:visible}
+.bin .face{width:58px;height:74px;border-radius:4px;background:var(--bc);box-shadow:inset 0 -8px 0 #0002;transform:rotate(var(--r))}
+
+/* furniture */
+.desk{position:absolute;left:410px;top:470px;width:250px;height:110px;background:#c48a4e;border:6px solid #6b4423;border-radius:18px}
+.desk .pc{position:absolute;left:40px;top:-46px;width:70px;height:50px;background:#3a3f4b;border-radius:6px;border:4px solid #23262e}
+.desk .stack{position:absolute;right:30px;top:-30px;width:60px;height:30px;background:repeating-linear-gradient(#e85d75 0 8px,#3c78d8 8px 16px,#f2b705 16px 24px)}
+.rug{position:absolute;left:700px;top:430px;width:270px;height:170px;border-radius:50%;background:radial-gradient(circle,#ffd34d 0 22%,#f28c8c 22% 42%,#7ec4cf 42% 62%,#b39ddb 62% 82%,#81c784 82%)}
+.beanbag{position:absolute;width:76px;height:58px;border-radius:50% 50% 40% 40%;background:var(--c);box-shadow:inset -8px -8px 0 #0002}
+
+.owl{position:absolute;left:24px;top:400px;width:190px;height:200px}
+.owl img{width:100%;height:100%;object-fit:contain;object-position:50% 100%;filter:drop-shadow(0 6px 4px #0003)}
+.bubble{position:absolute;left:20px;top:244px;width:236px;background:#fff;border:4px solid #2a241e;border-radius:22px;padding:10px 16px;font:800 21px/1.3 'Trebuchet MS',sans-serif;box-shadow:0 5px 0 #0002;z-index:3}
+.bubble::after{content:'';position:absolute;left:60px;bottom:-24px;border:12px solid transparent;border-top:16px solid #2a241e}
+.bubble:empty{display:none}
+
+/* the big book in hand */
+.book{position:absolute;left:272px;top:236px;width:116px;height:270px;border-radius:8px 8px 4px 4px;background:var(--bc);border:5px solid #2a241e;box-shadow:0 10px 18px #0004;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding-bottom:14px;z-index:4;touch-action:none;cursor:grab}
+.book .title{position:absolute;top:14px;bottom:110px;left:0;right:0;writing-mode:vertical-rl;transform:rotate(180deg);font:800 20px/1.1 'Trebuchet MS',sans-serif;color:#fff;display:flex;align-items:center;justify-content:center;text-shadow:0 2px 0 #0004;padding:0 8px;text-align:center}
+.label{width:88px;color:#2a241e;background:#fffdf5;border:3px solid #2a241e;border-radius:6px;font:900 26px/1.15 'Courier New',monospace;text-align:center;padding:4px 0}
+.label span{display:block}
+.label .top{color:var(--lc)}
+.book.fly{animation:bookin .5s cubic-bezier(.3,1.4,.5,1)}
+@keyframes bookin{from{transform:translateY(-200px) rotate(-10deg);opacity:0}}
+
+/* ABC shelf */
+.abc{position:absolute;left:230px;top:250px;width:740px;height:330px;background:#a8743f;border:7px solid #6b4423;border-radius:14px;padding:16px 16px 0;display:flex;flex-direction:column;justify-content:flex-end}
+.slots{display:flex;gap:12px;align-items:flex-end;height:240px;border-bottom:14px solid #6b4423}
+.abook{width:120px;height:220px;border-radius:6px 6px 2px 2px;background:var(--bc);border:4px solid #2a241e;display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:12px 4px 10px;font:800 15px/1.1 'Trebuchet MS',sans-serif;color:#fff;text-align:center}
+.abook .label{width:92px;font-size:22px}
+.abook[aria-pressed="true"]{outline:6px solid #ffd34d;transform:translateY(-12px)}
+.abook.ok{box-shadow:0 0 0 5px #2a9d4a}
+.abook:disabled{cursor:default}
+.slot{width:120px;height:220px;border:4px dashed #ffffff88;border-radius:6px;display:grid;place-items:center;font:900 30px 'Trebuchet MS',sans-serif;color:#ffffffaa}
+.cart{position:absolute;left:230px;top:16px;width:740px;display:flex;gap:12px}
+
+.panel{background:#fffcf6;border-left:3px solid var(--line);padding:14px 16px;display:flex;flex-direction:column;gap:12px;overflow:auto}
+@media (max-width:759px){.panel{border-left:0;border-top:3px solid var(--line)}}
+.hint{margin:0;font:600 18px/1.35 'Segoe UI',sans-serif;color:var(--muted)}
+.hint b{color:var(--ink)}
+.big-btn{border:0;border-radius:16px;min-height:60px;font:800 20px/1.1 'Trebuchet MS','Segoe UI',sans-serif;color:#fff;background:var(--brand);box-shadow:0 5px 0 #0004;padding:6px 10px}
+.big-btn:active{transform:translateY(3px);box-shadow:0 2px 0 #0004}
+.big-btn.soft{background:#efe4f3;color:var(--ink)}
+.big-btn.gold{background:#ffd34d;color:#3a2c00}
+.col{display:flex;flex-direction:column;gap:8px}
+.row{display:flex;gap:8px}.row .big-btn{flex:1}
+.tip{margin:0;background:#f6edf9;border-left:6px solid #a874b8;border-radius:10px;padding:10px 12px;font:600 17px/1.4 'Segoe UI',sans-serif}
+.tip:empty{display:none}
+.dewey{display:grid;gap:4px;font:700 15px/1.25 'Segoe UI',sans-serif}
+.dewey div{display:flex;gap:8px}
+.dewey b{flex:none;width:44px;color:var(--non)}
+.score{font:800 20px 'Trebuchet MS',sans-serif;color:var(--brand)}
+.calm .book.fly{animation:none}
+.abc-mode .bubble{left:16px;top:16px;width:200px;font-size:18px}
+.abc-mode .bubble::after{left:60px}
+
+@media (max-width:759px),(max-height:640px){
+  header{padding:6px 12px} h1{font-size:19px} h1 small{display:none}
+  .seg button,.icon-btn{min-height:38px;font-size:13px;padding:0 10px}
+  main{grid-template-columns:minmax(0,1fr) 260px}
+  .panel{padding:8px 10px;gap:8px}
+  .hint,.tip{font-size:14px}
+  .big-btn{min-height:44px;font-size:16px}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Library Adventure <small>Every book has a home.</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-explore" aria-pressed="true">Explore</button>
+    <button id="m-spine" aria-pressed="false">Spine detective</button>
+    <button id="m-abc" aria-pressed="false">ABC shelf</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true" title="Turn animation on or off">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+  <button class="icon-btn" id="read">🔊 Read</button>
+</header>
+<main>
+  <div class="stage" id="stage">
+    <div class="scene" id="scene">
+      <div class="wall"><div class="win" style="left:300px"></div><div class="win" style="left:600px"></div></div>
+      <div id="areas"></div>
+      <div class="desk" aria-hidden="true"><div class="pc"></div><div class="stack"></div></div>
+      <div class="rug" aria-hidden="true"></div>
+      <div class="beanbag" style="left:730px;top:470px;--c:#e85d75" aria-hidden="true"></div>
+      <div class="beanbag" style="left:880px;top:500px;--c:#3c78d8" aria-hidden="true"></div>
+      <div class="owl"><img src="data:image/webp;base64,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" alt="Hoot the owl librarian"></div>
+      <div class="bubble" id="bubble" aria-live="polite"></div>
+      <div id="book-slot"></div>
+      <div id="abc-slot"></div>
+    </div>
+  </div>
+  <aside class="panel">
+    <p class="hint" id="hint"></p>
+    <div class="col" id="ctrl"></div>
+    <p class="tip" id="tip"></p>
+  </aside>
+</main>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  let reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  try { const m = localStorage.getItem('curio-motion'); if (m) reduce = m === 'calm'; } catch {}
+  function showMotion() {
+    document.body.classList.toggle('calm', reduce);
+    $('motion').setAttribute('aria-pressed', !reduce);
+    $('motion').textContent = reduce ? '⏸ Motion' : '✨ Motion';
+  }
+  $('motion').onclick = () => { reduce = !reduce; try { localStorage.setItem('curio-motion', reduce ? 'calm' : 'on'); } catch {} showMotion(); };
+  const wait = ms => new Promise(r => setTimeout(r, ms));
+  const fit = () => { const r = $('stage').getBoundingClientRect(); $('scene').style.setProperty('--s', Math.min(r.width / 1000, r.height / 620)); };
+  new ResizeObserver(fit).observe($('stage'));
+
+  // ---------- the library ----------
+  const AREAS = [
+    {id: 'pic', name: 'Picture books', c: 'var(--pic)', x: 20, y: 60, w: 300, h: 170, kind: 'bins',
+      say: 'Picture books have lots of pictures and fewer words. Their spine labels start with E, for Everybody. They are in ABC order by the author\'s last name.'},
+    {id: 'fic', name: 'Fiction', c: 'var(--fic)', x: 345, y: 60, w: 300, h: 170, kind: 'shelf',
+      say: 'Fiction means made-up stories, like chapter books. Spine labels start with FIC, then the author\'s last name, in ABC order.'},
+    {id: 'non', name: 'Nonfiction', c: 'var(--non)', x: 670, y: 60, w: 310, h: 170, kind: 'shelf',
+      say: 'Nonfiction books are true. They teach facts about animals, space, people and places. They are in number order, and each number is a topic.'},
+    {id: 'desk', name: 'Checkout desk', c: '#b06b2a', x: 400, y: 440, w: 270, h: 150, kind: 'none',
+      say: 'At the checkout desk, the librarian scans your book so you can take it home. Bring it back by the due date so others can read it too!'},
+    {id: 'rug', name: 'Reading rug', c: '#d1495b', x: 690, y: 420, w: 290, h: 190, kind: 'none',
+      say: 'The reading rug is a cozy spot for story time and quiet reading. Use a soft voice so everyone can enjoy their book.'},
+  ];
+  const DEWEY = [['398', 'fairy tales and folk tales'], ['500', 'science: space, weather, rocks'], ['590', 'animals'], ['600', 'bodies, cooking, how things work'], ['700', 'art, music, sports, games'], ['800', 'poems and jokes'], ['900', 'places, history, true stories of people']];
+  const SPINE = ['#e85d75', '#f2b705', '#3c78d8', '#2e9b62', '#8e52a0', '#f28c28', '#2bb3c0', '#c0392b'];
+
+  function drawLibrary() {
+    $('areas').replaceChildren(...AREAS.map(a => {
+      const b = document.createElement('button');
+      b.className = 'area'; b.id = 'a-' + a.id; b.dataset.id = a.id;
+      Object.assign(b.style, {left: a.x + 'px', top: a.y + 'px', width: a.w + 'px', height: a.h + 'px'});
+      b.style.setProperty('--c', a.c);
+      b.setAttribute('aria-label', a.name);
+      let inner = `<span class="sign">${a.name}</span>`;
+      if (a.kind === 'shelf') {
+        inner += `<div class="shelf">${[0, 1].map(r => `<div class="row-b">${Array.from({length: 15}, (_, i) => `<i class="sp" style="--bc:${SPINE[(i * 3 + r * 5 + a.x) % SPINE.length]};--w:${14 + (i * 7 + r) % 8}px;--sh:${72 + (i * 13 + r * 7) % 26}%"></i>`).join('')}</div>`).join('')}</div>`;
+      }
+      if (a.kind === 'bins') {
+        inner += [0, 1].map(k => `<div class="bin" style="left:${10 + k * 148}px;width:136px">${[0, 1].map(i => `<i class="face" style="--bc:${SPINE[(k * 2 + i + 1) % SPINE.length]};--r:${i ? 6 : -5}deg"></i>`).join('')}</div>`).join('');
+      }
+      b.innerHTML = inner;
+      b.onclick = () => tapArea(a.id);
+      return b;
+    }));
+  }
+  const area = id => AREAS.find(a => a.id === id);
+  function hl(id) { document.querySelectorAll('.area').forEach(a => a.classList.toggle('hl', a.dataset.id === id)); }
+  function bubble(t) { $('bubble').textContent = t; }
+
+  // ---------- books (all made up) ----------
+  const BOOKS = [
+    {t: 'The Dragon Who Lost a Sock', a: 'Ellis', s: 'E', what: 'a make-believe picture book'},
+    {t: 'Goodnight, Little Moose', a: 'Park', s: 'E', what: 'a picture book about bedtime'},
+    {t: 'Pancakes for Penguin', a: 'Moreno', s: 'E', what: 'a funny picture book'},
+    {t: 'Bubbles the Brave Fish', a: 'Tanaka', s: 'E', what: 'a picture book story'},
+    {t: 'The Mystery of the Missing Hamster', a: 'Greene', s: 'FIC', what: 'a chapter book mystery'},
+    {t: 'Space Camp Kids', a: 'Okafor', s: 'FIC', what: 'a made-up adventure chapter book'},
+    {t: 'The Secret Treehouse Club', a: 'Lindqvist', s: 'FIC', what: 'a chapter book about friends'},
+    {t: 'All About Sharks', a: 'Rivera', s: '597', what: 'a true book about sharks'},
+    {t: 'Our Solar System', a: 'Chen', s: '523', what: 'a true book about the planets'},
+    {t: 'How Do Volcanoes Work?', a: 'Haddad', s: '551', what: 'a true book about volcanoes'},
+    {t: 'Let\'s Play Soccer!', a: 'Silva', s: '796', what: 'a true book about a sport'},
+    {t: 'Baby Animals on the Farm', a: 'Novak', s: '636', what: 'a true book about farm animals'},
+    {t: 'Cinderella Stories Around the World', a: 'Bello', s: '398', what: 'a book of fairy tales'},
+    {t: 'Bridges Big and Small', a: 'Kowalski', s: '624', what: 'a true book about how bridges are built'},
+  ];
+  const sectionOf = b => b.s === 'E' ? 'pic' : b.s === 'FIC' ? 'fic' : 'non';
+  const three = a => a.slice(0, 3).toUpperCase();
+  const labelHTML = (b, c) => `<div class="label" style="--lc:${c}"><span class="top">${b.s}</span><span>${three(b.a)}</span></div>`;
+  const colorOf = b => ({pic: '#e85d75', fic: '#3c78d8', non: '#2e9b62'})[sectionOf(b)];
+
+  const state = {mode: 'explore', order: [], at: -1, right: 0, tries: 0, abc: [], placed: [], sel: null, sound: true};
+
+  // ---------- sound ----------
+  let ctx;
+  const audio = () => (ctx ||= new (window.AudioContext || window.webkitAudioContext)());
+  function tone(f, dur = .2, gain = .07, when = 0, type = 'triangle') {
+    if (!state.sound) return;
+    const a = audio(), o = a.createOscillator(), g = a.createGain(), t = a.currentTime + when;
+    o.type = type; o.frequency.value = f;
+    g.gain.setValueAtTime(.0001, t); g.gain.exponentialRampToValueAtTime(gain, t + .02); g.gain.exponentialRampToValueAtTime(.0001, t + dur);
+    o.connect(g).connect(a.destination); o.start(t); o.stop(t + dur + .05);
+  }
+  const SFX = {
+    yes: () => [523, 659, 784].forEach((f, i) => tone(f, .25, .08, i * .1)),
+    hmm: () => { tone(392, .2, .06, 0, 'sine'); tone(349, .25, .06, .2, 'sine'); },
+    beep: () => { tone(1500, .08, .05, 0, 'square'); },
+    slide: () => tone(300, .12, .05, 0, 'sine'),
+    done: () => [523, 659, 784, 1047, 1319].forEach((f, i) => tone(f, .3, .07, i * .09)),
+  };
+
+  // ---------- Explore ----------
+  function tapArea(id) {
+    if (state.mode === 'spine') return send(id);
+    if (state.mode !== 'explore') return;
+    const a = area(id);
+    hl(id); bubble(a.say);
+    if (id === 'desk') SFX.beep(); else SFX.slide();
+    $('tip').innerHTML = id === 'non' ? `<b>Nonfiction neighborhoods</b><div class="dewey">${DEWEY.map(([n, t]) => `<div><b>${n}</b>${t}</div>`).join('')}</div>` : '';
+    say([a.name + '.', a.say]);
+  }
+
+  // ---------- Spine detective ----------
+  function nextBook() {
+    if (state.at >= state.order.length - 1 || !state.order.length) { state.order = BOOKS.map((_, i) => i).sort(() => Math.random() - .5).slice(0, 8); state.at = -1; state.right = state.tries = 0; }
+    state.at++;
+    const b = BOOKS[state.order[state.at]];
+    $('book-slot').innerHTML = `<div class="book${reduce ? '' : ' fly'}" id="book" style="--bc:${SPINE[state.order[state.at] % SPINE.length]}" role="img" aria-label="${b.t} by ${b.a}, spine label ${b.s} ${three(b.a)}"><div class="title">${b.t}</div>${labelHTML(b, '#2a241e')}</div>`;
+    hl(null);
+    bubble(`Look at the spine label: ${b.s}, ${three(b.a)}. Where does this book live?`);
+    $('tip').innerHTML = '';
+    $('score').textContent = `Book ${state.at + 1} of ${state.order.length}`;
+    say(['Look at the spine label.', `${b.s === 'E' ? 'E' : b.s === 'FIC' ? 'F I C' : b.s.split('').join(' ')}.`, 'Where does this book live?']);
+    dragBook();
+  }
+  function dragBook() {
+    const book = $('book'); if (!book) return;
+    book.onpointerdown = e => {
+      e.preventDefault();
+      const s = parseFloat(getComputedStyle($('scene')).getPropertyValue('--s')) || 1, x0 = e.clientX, y0 = e.clientY;
+      book.setPointerCapture(e.pointerId);
+      book.onpointermove = ev => {
+        book.style.translate = `${(ev.clientX - x0) / s}px ${(ev.clientY - y0) / s}px`;
+        const over = document.elementsFromPoint(ev.clientX, ev.clientY).find(n => n.classList && n.classList.contains('area'));
+        document.querySelectorAll('.area').forEach(a => a.classList.toggle('drop', a === over));
+      };
+      book.onpointerup = ev => {
+        book.onpointermove = book.onpointerup = null;
+        const over = document.elementsFromPoint(ev.clientX, ev.clientY).find(n => n.classList && n.classList.contains('area'));
+        document.querySelectorAll('.area').forEach(a => a.classList.remove('drop'));
+        book.style.translate = '';
+        if (over) send(over.dataset.id);
+      };
+    };
+  }
+  function send(id) {
+    const b = BOOKS[state.order[state.at]];
+    if (!b || !$('book')) return;
+    const right = sectionOf(b);
+    if (id === 'desk' || id === 'rug') { bubble('That\'s a good place to read it! But where does it live on the shelves?'); return say('That\'s a good place to read it! But where does it live on the shelves?'); }
+    state.tries++;
+    if (id === right) {
+      state.right++;
+      hl(id); SFX.yes();
+      $('book-slot').innerHTML = '';
+      const why = right === 'pic' ? `E means a picture book. It goes with the authors whose names start with ${three(b.a)}.` :
+        right === 'fic' ? `FIC means fiction, a made-up story. It goes in ABC order with the ${b.a[0]}'s.` :
+        `A number means nonfiction. ${b.s} is the neighborhood for ${(DEWEY.slice().reverse().find(([n]) => +b.s >= +n) || DEWEY[0])[1].split(':')[0]}.`;
+      bubble(`Yes! "${b.t}" is ${b.what}.`);
+      $('tip').innerHTML = `<b>${area(right).name}!</b> ${why}`;
+      say([`Yes! ${area(right).name}.`, why]);
+    } else {
+      SFX.hmm();
+      const c = b.s === 'E' ? 'E is for Everybody: picture books.' : b.s === 'FIC' ? 'FIC is short for fiction.' : 'A number on the spine means a true book.';
+      bubble(`Hmm, not ${area(id).name.toLowerCase()}. Clue: ${c}`);
+      say([`Not ${area(id).name.toLowerCase()}.`, c]);
+    }
+  }
+
+  // ---------- ABC shelf ----------
+  function newShelf() {
+    const pool = BOOKS.filter(b => b.s === 'E').concat([
+      {t: 'Zoom, Zoom, Little Car', a: 'Adams', s: 'E'}, {t: 'Ruby\'s Rainy Day', a: 'Wu', s: 'E'}, {t: 'Ten Sleepy Sheep', a: 'Brooks', s: 'E'},
+      {t: 'The Big Red Kite', a: 'Delgado', s: 'E'}, {t: 'Mittens for Mouse', a: 'Kim', s: 'E'}, {t: 'Hop, Frog, Hop!', a: 'Singh', s: 'E'}]);
+    let pick;
+    do { pick = pool.slice().sort(() => Math.random() - .5).slice(0, 5); } while (new Set(pick.map(b => b.a[0])).size < 5);
+    state.abc = pick; state.placed = []; state.sel = null;
+    drawABC();
+    bubble('Put the picture books in ABC order by the author\'s last name. Look at the letters on the spine!');
+    say('Put the picture books in ABC order. Look at the letters on the spine!');
+  }
+  function drawABC() {
+    const left = state.abc.filter(b => !state.placed.includes(b));
+    $('abc-slot').innerHTML = `<div class="abc"><div class="slots" id="slots"></div></div><div class="cart" id="cart"></div>`;
+    $('slots').innerHTML = state.abc.map((_, i) => {
+      const b = state.placed[i];
+      return b ? `<div class="abook ok" style="--bc:${colorOf(b)}"><span>${b.t}</span>${labelHTML(b, '#2a241e')}</div>` : `<div class="slot">${i + 1}</div>`;
+    }).join('');
+    $('cart').replaceChildren(...left.map(b => {
+      const x = document.createElement('button');
+      x.className = 'abook'; x.style.setProperty('--bc', SPINE[(b.a.charCodeAt(0) + 2) % SPINE.length]);
+      x.setAttribute('aria-pressed', state.sel === b);
+      x.innerHTML = `<span>${b.t}</span>${labelHTML(b, '#2a241e')}`;
+      x.setAttribute('aria-label', `${b.t}, spine ${b.s} ${three(b.a)}`);
+      x.onclick = () => shelve(b);
+      return x;
+    }));
+  }
+  function shelve(b) {
+    const left = state.abc.filter(x => !state.placed.includes(x));
+    const next = left.slice().sort((p, q) => p.a.localeCompare(q.a))[0];
+    if (b === next) {
+      state.placed.push(b); SFX.slide();
+      drawABC();
+      if (state.placed.length === state.abc.length) {
+        SFX.done();
+        const ord = state.placed.map(x => three(x.a)).join(', ');
+        bubble(`The shelf is in ABC order: ${ord}. Now anyone can find these books!`);
+        say('The shelf is in ABC order. Now anyone can find these books!');
+      } else { bubble(`Yes! ${three(b.a)} comes next.`); say(`Yes! ${b.a[0]} comes next.`); }
+    } else {
+      SFX.hmm();
+      bubble(`Not yet! Is there a letter that comes before ${b.a[0]}? Sing the ABCs!`);
+      say(`Not yet! Is there a letter that comes before ${b.a[0]}?`);
+    }
+  }
+
+  function setMode(m) {
+    state.mode = m; stopTalk();
+    for (const [id, k] of [['m-explore', 'explore'], ['m-spine', 'spine'], ['m-abc', 'abc']]) $(id).setAttribute('aria-pressed', m === k);
+    $('book-slot').innerHTML = ''; $('abc-slot').innerHTML = ''; $('tip').innerHTML = ''; hl(null);
+    document.querySelectorAll('.desk,.rug,.beanbag').forEach(e => e.hidden = m === 'abc');
+    $('areas').hidden = m === 'abc';
+    $('scene').classList.toggle('abc-mode', m === 'abc');
+    if (m === 'explore') {
+      $('ctrl').innerHTML = '<button class="big-btn gold" id="tour">🦉 Take the tour</button>';
+      $('tour').onclick = tour;
+      $('hint').innerHTML = '<b>Explore.</b> Tap each part of the library and Hoot tells you what\'s there. Or take the tour.';
+      bubble('Hoo-hoo! Welcome to the library. Tap a part of the library to visit it.');
+      say('Hoo-hoo! Welcome to the library. Tap a part of the library to visit it.');
+    }
+    if (m === 'spine') {
+      $('ctrl').innerHTML = '<button class="big-btn" id="next">Next book →</button><div class="score" id="score"></div>';
+      $('next').onclick = nextBook;
+      $('hint').innerHTML = '<b>Spine detective.</b> Read the label on the book\'s spine. Drag the book to its section, or tap the section. E = picture books, FIC = fiction, a number = nonfiction.';
+      state.order = []; nextBook();
+    }
+    if (m === 'abc') {
+      $('ctrl').innerHTML = '<button class="big-btn" id="new">New cart of books →</button>';
+      $('new').onclick = newShelf;
+      $('hint').innerHTML = '<b>ABC shelf.</b> Picture books go in ABC order by the author\'s last name. Tap the book that comes first, then the next one, until the shelf is full.';
+      newShelf();
+    }
+  }
+  let touring = 0;
+  async function tour() {
+    const me = ++touring;
+    for (const a of AREAS) {
+      if (me !== touring || state.mode !== 'explore') return;
+      hl(a.id); bubble(a.say); SFX.slide();
+      await say([a.name + '.', a.say]);
+      await wait(state.sound ? 500 : 1400 + 50 * a.say.length);
+    }
+  }
+  $('m-explore').onclick = () => setMode('explore');
+  $('m-spine').onclick = () => setMode('spine');
+  $('m-abc').onclick = () => setMode('abc');
+  addEventListener('keydown', e => { if (e.target.closest('button') || !/^[1-3]$/.test(e.key)) return; setMode(['explore', 'spine', 'abc'][e.key - 1]); });
+
+  // ---------- sound and voice ----------
+  $('sound').onclick = e => {
+    state.sound = !state.sound;
+    e.currentTarget.setAttribute('aria-pressed', state.sound);
+    e.currentTarget.textContent = state.sound ? '🔔 Sound' : '🔇 Sound';
+    if (!state.sound) stopTalk();
+  };
+  function bestVoice() {
+    const voices = speechSynthesis.getVoices().filter(v => /^en(-|_|$)/i.test(v.lang));
+    const score = v => (/natural|neural/i.test(v.name) ? 50 : 0) + (/premium|enhanced/i.test(v.name) ? 40 : 0) +
+      (/google/i.test(v.name) ? 30 : 0) + (/aria|jenny|ava|samantha|libby|sonia/i.test(v.name) ? 10 : 0) +
+      (/en-US/i.test(v.lang) ? 5 : 0) + (v.default ? 1 : 0) - (/david|mark|zira|desktop/i.test(v.name) ? 20 : 0);
+    return voices.sort((a, b) => score(b) - score(a))[0] || null;
+  }
+  if ('speechSynthesis' in window) {
+    const speak = speechSynthesis.speak.bind(speechSynthesis);
+    speechSynthesis.speak = u => {
+      if (speechSynthesis.getVoices().length) return speak(u);
+      let done = false;
+      const go = () => { if (done) return; done = true; const v = bestVoice(); if (v) { u.voice = v; u.lang = v.lang; } speak(u); };
+      speechSynthesis.addEventListener('voiceschanged', go, {once: true});
+      setTimeout(go, 1500);
+    };
+    speechSynthesis.getVoices();
+  }
+  const CLIPS = {};
+  const LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+  const allLines = () => [...new Set([
+    ...AREAS.flatMap(a => [a.name + '.', a.say]), 'Hoo-hoo! Welcome to the library. Tap a part of the library to visit it.',
+    'Look at the spine label.', 'E.', 'F I C.', ...BOOKS.filter(b => /\d/.test(b.s)).map(b => `${b.s.split('').join(' ')}.`), 'Where does this book live?',
+    'That\'s a good place to read it! But where does it live on the shelves?',
+    ...['pic', 'fic', 'non'].map(id => `Yes! ${area(id).name}.`), ...['pic', 'fic', 'non'].map(id => `Not ${area(id).name.toLowerCase()}.`),
+    'E is for Everybody: picture books.', 'FIC is short for fiction.', 'A number on the spine means a true book.',
+    'Put the picture books in ABC order. Look at the letters on the spine!', 'The shelf is in ABC order. Now anyone can find these books!',
+    ...LETTERS.map(l => `Yes! ${l} comes next.`), ...LETTERS.map(l => `Not yet! Is there a letter that comes before ${l}?`)])];
+  let talk = 0, clip = null, last = [];
+  function stopTalk() { talk++; if (clip) { clip.pause(); clip = null; } if ('speechSynthesis' in window) speechSynthesis.cancel(); }
+  function speakOne(text) {
+    return new Promise(done => {
+      if (CLIPS[text]) { clip = new Audio(CLIPS[text]); clip.onended = clip.onerror = () => done(); clip.play().catch(() => done()); return; }
+      if (!('speechSynthesis' in window)) return done();
+      const u = new SpeechSynthesisUtterance(text);
+      const v = bestVoice(); if (v) { u.voice = v; u.lang = v.lang; }
+      u.rate = .93; u.pitch = 1; u.onend = u.onerror = () => done();
+      speechSynthesis.speak(u);
+    });
+  }
+  async function say(parts, force) {
+    if (!state.sound && !force) return;
+    stopTalk();
+    const me = talk;
+    last = [].concat(parts);
+    for (const p of last) { if (me !== talk) return; await speakOne(p); await wait(150); }
+  }
+  $('read').onclick = () => say(last.length ? last : [$('bubble').textContent], true);
+
+  drawLibrary();
+  showMotion();
+  window.__lib = {state, setMode, tapArea, send, shelve, allLines};  // for checking frames
+  setMode('explore');
+})();
+</script>
+</body>
+</html>

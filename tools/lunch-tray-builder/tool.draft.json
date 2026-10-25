@@ -14,8 +14,9 @@
   "outcome": "Name the five food groups, sort foods into them and build a lunch with all five",
   "minutes": "10-20",
   "sources": [
-    "Food groups from USDA MyPlate (myplate.gov)",
+    "Illustrations drawn with FLUX.2 [klein] 4B (Apache 2.0) on Cloudflare Workers AI, edited for Curio Class",
     "Illustrations drawn with FLUX.1-schnell (Apache 2.0) on a local computer, edited for Curio Class",
+    "Food groups from USDA MyPlate (myplate.gov)",
     "Sounds generated in the browser"
   ]
 }
