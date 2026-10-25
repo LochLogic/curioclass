@@ -99,7 +99,7 @@ def main():
             img.save(raw / f'{name}.png')
             names.append(name)
             # record where the art came from and that it needs a look (scripts/artstatus.py tracks this)
-            asset['source'] = 'flux2-klein-4b (Cloudflare)' if int(k) >= 9 else 'flux1-schnell (local)'
+            asset['source'] = 'gpt-image-2 (Codex)' if int(k) >= 20 else 'flux2-klein-4b (Cloudflare)' if int(k) >= 9 else 'flux1-schnell (local)'
             asset['review'] = 'pending'
         (art / 'prompts.json').write_text(json.dumps(spec, indent=2, ensure_ascii=False) + '\n', encoding='utf-8')
         subprocess.run([sys.executable, str(ROOT / 'scripts' / 'art.py'), tool, *names, '--rekey'], check=True)

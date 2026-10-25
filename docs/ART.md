@@ -61,3 +61,21 @@ When Gemini is unavailable (no credits) or for large batches, `scripts/localart.
 - Credit it in the tool's comment and tool.json sources: "Illustrations drawn with FLUX.1-schnell (Apache 2.0) on a local computer, edited for Curio Class".
 - Classroom and home scenes can bring in people even when the prompt says "No people" (a calm-corner candidate drew two children). Look at every candidate; delete any with people. Wall posters come back with fake text.
 - A cast shadow on a yellow-green key survives as a green blob (apple). Use the magenta key for red, orange and yellow subjects too, or `"shadow": "dark"`.
+
+## ChatGPT art (gpt-image-2 through Codex)
+
+`scripts/gptart.py` draws with gpt-image-2 through the Codex CLI on the ChatGPT subscription, with no API key (`npm i -g @openai/codex`, then `codex login` with the ChatGPT account). It is the best of the models at hands and tricky objects, and draws clean flat keys.
+
+- `python scripts/gptart.py <tool-id> [names] [--n 1] [--ref name]` writes `art/raw/<name>.c20.png` (k from 20) and `_sheet-<name>-gpt.jpg`; pick with `localart.py --pick name:20` as usual. The pick records source "gpt-image-2 (Codex)".
+- Same prompt as art.py, hex codes included (gpt-image keeps them out of the picture). People are allowed here, with a review of every image.
+- Image turns use the plan's Codex allowance 3-5x faster than plain turns, so keep it for the hard cases; the script stops cleanly at the usage limit.
+- Credit: "Illustrations generated with OpenAI gpt-image, edited for Curio Class".
+
+## Daily art rhythm
+
+1. **Cloudflare FLUX.2 klein** (`cfart.py`) for the bulk: objects, animals, places, about 95 free images a day (resets 00:00 UTC). Never people.
+2. **Local FLUX** (`localart.py`) for higher-grade realistic subjects (diagrams, lab gear, landscapes) when Cloudflare is spent. Never people.
+3. **Codex gpt-image-2** (`gptart.py`) for hands, objects the FLUX models keep getting wrong, and redraws flagged in review.
+4. **Gemini** (`art.py`) to finish: people, character sets that need a reference, and anything still not right.
+
+Every candidate is looked at before it is picked, and `artstatus.py` tracks needed / drawn / placed / ok.
