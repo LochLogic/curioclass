@@ -16,7 +16,7 @@ Guidance follows common pediatric and safety-organization advice for young child
 Red Cross, Safe Kids Worldwide): cross with a grown-up, wear a helmet, use a car seat or booster, get out and
 stay out in a fire, swim only with a grown-up watching, and only take medicine from a trusted grown-up.
 Nothing is scary on purpose: every stop ends with what to do.
-One file, no network requests. Illustrations: FLUX.2 [klein] 4B (Apache 2.0) on Cloudflare Workers AI. Illustrations: FLUX.1-schnell (Apache 2.0) on a local computer. All edited for Curio Class. Content CC BY 4.0, code MIT. curioclass.org
+One file, no network requests. Illustrations: FLUX.2 [klein] 4B (Apache 2.0) on Cloudflare Workers AI. Illustrations: FLUX.1-schnell (Apache 2.0) on a local computer. Illustrations: Google Gemini. All edited for Curio Class. Content CC BY 4.0, code MIT. curioclass.org
 -->
 <style>
 :root{
@@ -314,11 +314,16 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
     const an = g.animate([{transform: `translateX(${from}px)`}, {transform: `translateX(${to}px)`}], {duration: ms, easing: 'linear'});
     return Promise.race([an.finished.catch(() => {}), wait(ms + 100)]).then(() => g.remove());
   }
+  // at the curb Biscuit faces us and only his head turns to look (painted poses)
+  const POSE = {side: 'art:biscuit', front: 'art:biscuit-front', left: 'art:biscuit-left', right: 'art:biscuit-right'};
+  let lookT = 0;
+  const head = dir => { $('pup').firstElementChild.src = dir < 0 ? POSE.left : dir > 0 ? POSE.right : POSE.front; };
   async function crossing() {
     const me = ++state.run;
     state.looked = [];
     road(); carsG.replaceChildren();
     $('pup').style.left = '425px'; $('pup').style.bottom = '352px'; $('pup').style.width = $('pup').style.height = '150px';
+    head(0);
     $('look').innerHTML = '<button class="big-btn" id="l1">👈 Look left</button><button class="big-btn" id="r1">Look right 👉</button><button class="big-btn" id="l2">👈 Left again</button><button class="big-btn gold" id="go" disabled>🚶 Cross!</button>';
     $('status').textContent = 'Stop at the curb. Wait for the walking person.';
     say('Stop at the curb. Wait for the walking person.');
@@ -328,7 +333,7 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
     const lookBtn = (id, dir, label) => $(id).onclick = () => {
       if (state.looked.length !== ['l1', 'r1', 'l2'].indexOf(id)) { $('status').textContent = 'Look left first, then right, then left again.'; return say('Look left first, then right, then left again.'); }
       state.looked.push(id); $(id).classList.add('done'); tone(700 + state.looked.length * 120, .12, .05);
-      $('pup').animate && !reduce && $('pup').animate([{transform: 'scaleX(1)'}, {transform: `scaleX(${dir})`}, {transform: 'scaleX(1)'}], {duration: 700});
+      head(dir); clearTimeout(lookT); lookT = setTimeout(() => me === state.run && head(0), 1200);
       say(label);
       ready();
     };
@@ -339,6 +344,7 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
       $('go').disabled = true; SFX.step(); hop();
       $('status').textContent = 'Keep looking while you cross!';
       say('Keep looking while you cross!');
+      clearTimeout(lookT); [[-1, 0], [1, 750], [0, 1500]].forEach(([d, t]) => setTimeout(() => me === state.run && head(d), t));  // glances both ways as he walks
       if (!reduce) await Promise.race([$('pup').animate([{bottom: '352px'}, {bottom: '96px'}], {duration: 2200, easing: 'linear', fill: 'forwards'}).finished.catch(() => {}), wait(2300)]);
       else await wait(2200);
       if (me !== state.run) return;
@@ -371,6 +377,7 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
     $('fb').textContent = ''; $('tip').innerHTML = '';
     $('pup').getAnimations().forEach(a => a.cancel());
     Object.assign($('pup').style, {left: '30px', bottom: '20px', width: '220px', height: '220px'});
+    $('pup').firstElementChild.src = POSE.side;
     if (walkM) {
       $('hint').innerHTML = '<b>Walk the street.</b> Seven stops. Read each one, let the class vote (one finger or two), then tap the choice. An unsafe pick explains why, and you try again.';
       $('tip').innerHTML = 'Ask: what could happen? What\'s the safe thing to do?';

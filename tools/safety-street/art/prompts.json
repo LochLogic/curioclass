@@ -115,6 +115,39 @@
       "width": 300,
       "source": "gemini",
       "review": "ok"
+    },
+    {
+      "name": "biscuit-front",
+      "prompt": "Biscuit, the same cute cartoon golden puppy as in the reference image (floppy ears, little red collar, same colors), standing on four legs facing the viewer, body straight toward us, whole body in frame, head facing straight at the viewer, happy and alert.",
+      "ref": "biscuit",
+      "cutout": true,
+      "aspect": "1:1",
+      "height": 300,
+      "despill": true,
+      "source": "gemini",
+      "review": "ok"
+    },
+    {
+      "name": "biscuit-left",
+      "prompt": "Biscuit, the same cute cartoon golden puppy as in the reference image (floppy ears, little red collar, same colors), standing on four legs facing the viewer, body straight toward us, whole body in frame, body still facing us but his head turned to the left side of the picture, looking carefully off to the left edge, alert.",
+      "ref": "biscuit",
+      "cutout": true,
+      "aspect": "1:1",
+      "height": 300,
+      "despill": true,
+      "source": "gemini",
+      "review": "ok"
+    },
+    {
+      "name": "biscuit-right",
+      "prompt": "Biscuit, the same cute cartoon golden puppy as in the reference image (floppy ears, little red collar, same colors), standing on four legs facing the viewer, body straight toward us, whole body in frame, body still facing us but his head turned to the right side of the picture, looking carefully off to the right edge, alert.",
+      "ref": "biscuit",
+      "cutout": true,
+      "aspect": "1:1",
+      "height": 300,
+      "despill": true,
+      "source": "gemini",
+      "review": "ok"
     }
   ]
 }
