@@ -361,7 +361,7 @@ h1 small{display:block;font:400 14px/1.3 'Segoe UI',sans-serif;color:#cfe8c8}
   }
   function setAnimal(k) {
     A = k; full = false; $('full').setAttribute('aria-pressed', false);
-    whoButtons($('who'), ORDER.map(n => [n, ANIMALS[n].name]), A, setAnimal);
+    whoButtons($('who'), ORDER.map(n => [n, n === 'snake' ? 'Snake' : ANIMALS[n].name]), A, setAnimal);
     const a = ANIMALS[A];
     $('info').innerHTML = `<div class="kicker">${a.name}</div>` + a.facts.map(([h, p]) => `<h3>${h}</h3><p>${p}</p>`).join('');
     $('vnote').textContent = a.note;
@@ -495,7 +495,7 @@ h1 small{display:block;font:400 14px/1.3 'Segoe UI',sans-serif;color:#cfe8c8}
     $('einfo').querySelectorAll('[data-pp]').forEach(b => b.onclick = () => { partOn = b.dataset.pp; SFX.tap(); diagram(); einfo(); });
     if ($('lights')) $('lights').onclick = () => { lightsOn = !lightsOn; SFX.tap(); diagram(); einfo(); };
   }
-  function setEye(k) { E = k; partOn = null; whoButtons($('who2'), Object.keys(EYES).map(n => [n, EYES[n].name]), E, setEye, n => n === 'you' ? EYE_ICON : SRC[n]); diagram(); einfo(); }
+  function setEye(k) { E = k; partOn = null; whoButtons($('who2'), Object.keys(EYES).map(n => [n, n === 'snake' ? 'Snake' : EYES[n].name]), E, setEye, n => n === 'you' ? EYE_ICON : SRC[n]); diagram(); einfo(); }
 
   // ---------- field of view ----------
   // degrees: total field around the head, and the part both eyes share (depth). Typical published values; they vary.
