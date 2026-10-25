@@ -14,6 +14,22 @@
       "cutout": true,
       "aspect": "3:4",
       "height": 330
+    },
+    {
+      "name": "pip-tired",
+      "prompt": "The same cartoon young red fox superhero Pip, blue cape and yellow star, now yawning and sleepy with droopy eyes, rubbing one eye, full body, front view.",
+      "cutout": true,
+      "aspect": "3:4",
+      "height": 330,
+      "ref": "pip"
+    },
+    {
+      "name": "pip-cheer",
+      "prompt": "The same cartoon young red fox superhero Pip, blue cape and yellow star, now jumping for joy with both arms up and a big smile, full body, front view.",
+      "cutout": true,
+      "aspect": "3:4",
+      "height": 330,
+      "ref": "pip"
     }
   ]
 }
