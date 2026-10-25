@@ -277,3 +277,12 @@ section.block { padding: 56px 0 8px; }
 .tool-chip .tag.built { font-size: 11px; padding: 3px 7px; }
 .ready-only .module-card:not([data-ready]), .ready-only .browse-group:not([data-ready]), .ready-only .browse-nav a[data-empty] { display: none; }
 .none-ready { color: var(--muted); font-style: italic; }
+
+/* About: the maker's museum label */
+.about .maker { display: grid; gap: 24px; align-items: start; margin: 8px 0 28px; }
+@media (min-width: 720px) { .about .maker { grid-template-columns: 240px 1fr; } }
+.about .maker h2 { margin-top: 0; }
+.portrait { margin: 0; background: #fffdf7; border: 1px solid #d9cdb5; box-shadow: 0 8px 22px #1f24301f; padding: 12px 12px 10px; transform: rotate(-1.5deg); max-width: 260px; }
+.photo-slot { aspect-ratio: 4 / 5; display: grid; place-items: center; text-align: center; background: repeating-linear-gradient(45deg, var(--paper-2) 0 12px, var(--paper) 12px 24px); border: 2px dashed #cbbd9f; color: var(--muted); font: 600 14px/1.4 var(--sans); letter-spacing: .08em; text-transform: uppercase; }
+.portrait img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; }
+.portrait figcaption { display: flex; justify-content: space-between; margin-top: 10px; font: 600 11px var(--sans); letter-spacing: .14em; text-transform: uppercase; color: var(--accent-ink); }

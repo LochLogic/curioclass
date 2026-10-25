@@ -1,13 +1,34 @@
 {% extends "base.html" %}
-{% block title %}Why Curio Class is free · Curio Class{% endblock %}
+{% block title %}About Curio Class · Who makes it and why it's free{% endblock %}
+{% block description %}Who makes Curio Class, why every tool is free, and how the tools are built: one offline file each, aligned to national standards, no accounts, ads or tracking.{% endblock %}
 {% block main %}
-<div class="wrap prose">
-  <div class="page-head"><h1>Why free</h1></div>
+<div class="wrap prose about">
+  <div class="page-head"><h1>About</h1></div>
+
+  <section class="maker" aria-labelledby="who-h">
+    <figure class="portrait">
+      <!-- PHOTO: swap this placeholder for an img of site/assets/cory.webp (4:5 portrait) -->
+      <div class="photo-slot" role="img" aria-label="Photo coming soon"><span>Photo<br>coming soon</span></div>
+      <figcaption><span>No. 000</span><span>The maker</span></figcaption>
+    </figure>
+    <div>
+      <h2 id="who-h">Hi, I'm Cory.</h2>
+      <p>I make Curio Class in my spare time, for the teachers who hold the key to everything that comes next. It's dedicated to my mom, my brother and my sister.</p>
+      <p>I like building things: websites for friends and local groups, laser-engraved signs, small tools that do one job well. Curio Class is the biggest thing I've built, and the one I'm proudest of. Every tool here starts the same way: what would make a class lean forward and say "do it again"?</p>
+      <p>I'd love to hear how a tool went in your room, what's missing, or what should come off the bench next. <!-- CONTACT: add an email address or form link here --></p>
+    </div>
+  </section>
+
+  <h2 id="why-free">Why free</h2>
   <p>Curio Class is a cabinet of interactive tools for K-12 classrooms. Every tool is free to use, share, download and adapt. There's no premium tier, no sign-up wall and no "unlock the full version."</p>
   <p>Teachers already spend their own money and their own evenings on their classes. Good interactive material shouldn't be one more thing to pay for or one more account to manage.</p>
+  <p>Free also means nothing is being sold on the side. There are no accounts, ads, cookies or tracking, so there is no student data to collect, keep or lose. The content is CC BY 4.0 and the code is MIT, so you can copy a tool, change it and share it, as long as you say where it came from.</p>
+
   <h2>What we make</h2>
-  <p>Tools you can put on a projector, hand to students on Chromebooks, or carry on a USB stick. Some are games. Many are simply good to explore, like a periodic table you can spin and light up. None of them are a quiz bank.</p>
+  <p>Tools you can put on a projector, hand to students on Chromebooks, or carry on a USB stick. Some are games. Many are simply good to explore, like a periodic table you can spin and light up. None of them are a quiz bank. Tools for kindergarten through grade 2 are teacher-led, built for a projector or smartboard with big buttons and read-aloud voices.</p>
+
   <h2>How it's built</h2>
   <p>Every tool is a single HTML file that works offline. Each one is aligned to the national standards framework for its subject, so it fits whichever state you teach in. Tools we've planned but not built yet sit <a href="/bench/">on the bench</a> until they're ready.</p>
+  <p>I design every tool and review it before it goes up. I build them with help from AI coding and image tools, and each tool's page lists exactly where its pictures, sounds and data came from.</p>
 </div>
 {% endblock %}

@@ -20,13 +20,13 @@
       <img src="/assets/logo.webp" alt="" width="34" height="34">
       Curio Class
     </a>
-    {% set links = [('/grades/', 'Grades'), ('/subjects/', 'Subjects'), ('/styles/', 'Play styles'), ('/bench/', 'On the bench'), ('/search/', 'Search')] %}
+    {% set links = [('/grades/', 'Grades'), ('/subjects/', 'Subjects'), ('/styles/', 'Play styles'), ('/bench/', 'On the bench'), ('/search/', 'Search'), ('/about/', 'About')] %}
     <nav class="nav" aria-label="Main">
       {% for href, label in links %}<a href="{{ href }}"{% if path.startswith(href) %} aria-current="page"{% endif %}>{{ label }}</a>{% endfor %}
     </nav>
     <details class="mobile-nav">
       <summary>Menu</summary>
-      <nav aria-label="Main">{% for href, label in links %}<a href="{{ href }}">{{ label }}</a>{% endfor %}<a href="/about/">About</a></nav>
+      <nav aria-label="Main">{% for href, label in links %}<a href="{{ href }}">{{ label }}</a>{% endfor %}</nav>
     </details>
   </div>
 </header>
@@ -43,7 +43,7 @@
     </div>
     <div><h4>Browse</h4><a href="/grades/">Grades</a><a href="/subjects/">Subjects</a><a href="/standards/">Standards</a><a href="/collections/">Collections</a><a href="/styles/">Play styles</a></div>
     <div><h4>Teachers</h4><a href="/teachers/">Using Curio Class</a><a href="/tools/">Ready to use</a><a href="/bench/">On the bench</a></div>
-    <div><h4>About</h4><a href="/about/">Why free</a><a href="/privacy/">Privacy</a><a href="/accessibility/">Accessibility</a><a href="/license/">License</a></div>
+    <div><h4>About</h4><a href="/about/">About</a><a href="/about/#why-free">Why free</a><a href="/privacy/">Privacy</a><a href="/accessibility/">Accessibility</a><a href="/license/">License</a></div>
   </div>
 </footer>
 {% block scripts %}{% endblock %}

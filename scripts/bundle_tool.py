@@ -3,6 +3,8 @@
     python scripts/bundle_tool.py [tool-id ...]     (no ids = every tool with a src.html)
 
 CURIO_DRAFT=1 stands in a labeled circle for art that isn't painted yet (never deploy a draft build).
+A tool still waiting for art keeps tool.draft.json instead of tool.json (rename it when the art is in): the site
+leaves it on the bench, check_tools skips it, and it is bundled only with CURIO_DRAFT set.
 
 Write and edit tools/<id>/src.html; tools/<id>/<id>.html is generated and stays one offline file.
 """
@@ -15,6 +17,8 @@ ROOT = Path(__file__).resolve().parent.parent
 def bundle(folder):
     src = folder / 'src.html'
     if not src.exists():
+        return None
+    if (folder / 'tool.draft.json').exists() and not os.environ.get('CURIO_DRAFT'):
         return None
     html = src.read_text(encoding='utf-8')
 
