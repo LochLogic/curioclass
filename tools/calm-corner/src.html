@@ -14,7 +14,7 @@ way down), slow counting up and back, five gentle stretches and a five senses ch
 breathe). A check-in before and after asks "how does your body feel?" and is never saved.
 Pacing follows common classroom guidance for young children: about 3-4 seconds in and 4-5 seconds out, a few
 breaths at a time. Calm mode (Motion off) keeps the same timing, only the movement stops.
-One file, no network requests. Illustrations: FLUX.2 [klein] 4B (Apache 2.0) on Cloudflare Workers AI. Illustrations: FLUX.1-schnell (Apache 2.0) on a local computer. All edited for Curio Class. Content CC BY 4.0, code MIT. curioclass.org
+One file, no network requests. Illustrations: FLUX.2 [klein] 4B (Apache 2.0) on Cloudflare Workers AI. Illustrations: FLUX.1-schnell (Apache 2.0) on a local computer. Illustrations: Google Gemini. All edited for Curio Class. Content CC BY 4.0, code MIT. curioclass.org
 -->
 <style>
 :root{
@@ -276,12 +276,16 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
     $('hint').innerHTML = '<b>Balloon breathing.</b> Hands on bellies. Breathe in through the nose and the belly fills like a balloon. Breathe out slowly through the mouth.';
     $('tip').innerHTML = 'Watch the balloon grow and shrink. Your belly moves the same way.';
     const g = el('g', {transform: 'translate(360 200)'}, svg);
-    el('path', {d: 'M0,140 C-10,170 16,200 0,236', fill: 'none', stroke: '#8a6d5b', 'stroke-width': 4}, g);
+    const str = el('path', {fill: 'none', stroke: '#8a6d5b', 'stroke-width': 4}, g);
     const b = el('g', {}, g);
     el('ellipse', {cx: 0, cy: 0, rx: 110, ry: 128, fill: '#ff7f7f', stroke: '#c94f4f', 'stroke-width': 5}, b);
     el('ellipse', {cx: -40, cy: -54, rx: 22, ry: 34, fill: '#ffffff88', transform: 'rotate(-20 -40 -54)'}, b);
     el('path', {d: 'M-12,126 L12,126 L0,142 Z', fill: '#c94f4f'}, b);
-    const set = k => b.setAttribute('transform', `translate(0 ${60 - 60 * k}) scale(${.45 + .55 * k})`);
+    const set = k => {
+      const sc = .45 + .55 * k, ty = 60 - 60 * k, knot = ty + 140 * sc;  // the string hangs from the knot as the balloon grows and shrinks
+      b.setAttribute('transform', `translate(0 ${ty}) scale(${sc})`);
+      str.setAttribute('d', `M0,${knot} C-10,${knot + (236 - knot) * .3} 16,${knot + (236 - knot) * .65} 0,236`);
+    };
     set(0);
     bubble('Let\'s fill our balloons. Ready?');
     await say('Hands on your belly. Let\'s fill our balloons.');
@@ -375,39 +379,19 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
   }
 
   // ---------- Stretch with Shelly ----------
-  // a plain figure drawn in code, so every child can see themselves in it
+  // Shelly paints each stretch, so the children copy her
   const POSES = [
-    {name: 'Reach for the sky', say: 'Reach up high, like you are picking a star.', sec: 8,
-      arms: [[-30, -150], [30, -150]], legs: [[-20, 0], [20, 0]], tilt: 0},
-    {name: 'Lean like a tree', say: 'Arms up, and lean slowly to one side. Now the other side.', sec: 10,
-      arms: [[-30, -150], [30, -150]], legs: [[-20, 0], [20, 0]], tilt: 14, sway: true},
-    {name: 'Turtle tuck', say: 'Curl up small like a turtle in its shell. Breathe slowly.', sec: 8,
-      tuck: true},
-    {name: 'Shoulder rolls', say: 'Roll your shoulders up, back and down. Slowly.', sec: 8,
-      arms: [[-45, -10], [45, -10]], legs: [[-20, 0], [20, 0]], tilt: 0, shrug: true},
-    {name: 'Squeeze and let go', say: 'Squeeze your hands into fists. Squeeze, squeeze. Now let go, and wiggle your fingers.', sec: 8,
-      arms: [[-60, -60], [60, -60]], legs: [[-20, 0], [20, 0]], tilt: 0, fists: true},
+    {name: 'Reach for the sky', say: 'Reach up high, like you are picking a star.', sec: 8, img: 'art:s-reach'},
+    {name: 'Lean like a tree', say: 'Arms up, and lean slowly to one side. Now the other side.', sec: 10, img: 'art:s-lean', tilt: 10, sway: true},
+    {name: 'Turtle tuck', say: 'Curl up small like a turtle in its shell. Breathe slowly.', sec: 8, img: 'art:s-tuck', tuck: true},
+    {name: 'Shoulder rolls', say: 'Roll your shoulders up, back and down. Slowly.', sec: 8, img: 'art:s-shoulders', shrug: true},
+    {name: 'Squeeze and let go', say: 'Squeeze your hands into fists. Squeeze, squeeze. Now let go, and wiggle your fingers.', sec: 8, img: 'art:s-squeeze'},
   ];
   function figure(svg, p) {
-    const g = el('g', {transform: 'translate(360 400) scale(.9)'}, svg);
-    const body = el('g', {}, g);
-    const ink = '#2f6f5a', skin = '#7cc3a8';
-    if (p.tuck) {
-      el('ellipse', {cx: 0, cy: -60, rx: 110, ry: 62, fill: skin, stroke: ink, 'stroke-width': 8}, body);
-      el('circle', {cx: 92, cy: -72, r: 34, fill: skin, stroke: ink, 'stroke-width': 8}, body);
-      return {g, body};
-    }
-    for (const [x] of p.legs) el('line', {x1: x / 2, y1: -110, x2: x * 1.6, y2: 0, stroke: ink, 'stroke-width': 26, 'stroke-linecap': 'round'}, body);
-    el('rect', {x: -44, y: -230, width: 88, height: 130, rx: 40, fill: skin, stroke: ink, 'stroke-width': 8}, body);
-    const sh = el('g', {}, body);
-    for (const [x, y] of p.arms) {
-      el('line', {x1: Math.sign(x) * 34, y1: -210, x2: Math.sign(x) * 34 + x * 1.3, y2: -210 + y * 1.05, stroke: ink, 'stroke-width': 22, 'stroke-linecap': 'round'}, sh);
-      el('circle', {cx: Math.sign(x) * 34 + x * 1.3, cy: -210 + y * 1.05, r: p.fists ? 18 : 13, fill: skin, stroke: ink, 'stroke-width': 6}, sh);
-    }
-    el('circle', {cx: 0, cy: -276, r: 46, fill: skin, stroke: ink, 'stroke-width': 8}, body);
-    el('path', {d: 'M-16,-266 q16,14 32,0', fill: 'none', stroke: ink, 'stroke-width': 6, 'stroke-linecap': 'round'}, body);
-    el('circle', {cx: -15, cy: -284, r: 5, fill: ink}, body); el('circle', {cx: 15, cy: -284, r: 5, fill: ink}, body);
-    return {g, body, sh};
+    const g = el('g', {transform: 'translate(360 392)'}, svg);  // above the big word
+    el('ellipse', {cx: 0, cy: -4, rx: 100, ry: 12, fill: '#2f6f5a22'}, g);
+    const body = el('image', {href: p.img, x: -140, y: -380, width: 280, height: 380, preserveAspectRatio: 'xMidYMax meet'}, g);
+    return {g, body};
   }
   async function stretch() {
     show('act'); const me = state.run, svg = $('draw');
@@ -425,7 +409,7 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
       for (const part of [f.body, f.sh]) if (part) { part.style.transformBox = 'fill-box'; part.style.transformOrigin = part === f.body ? '50% 100%' : '50% 50%'; }
       if (!reduce) {
         if (p.sway) f.body.animate([{transform: 'rotate(0)'}, {transform: `rotate(-${p.tilt}deg)`}, {transform: 'rotate(0)'}, {transform: `rotate(${p.tilt}deg)`}, {transform: 'rotate(0)'}], {duration: p.sec * 1000, easing: 'ease-in-out'});
-        else if (p.shrug) f.sh.animate([{transform: 'translateY(0)'}, {transform: 'translateY(-22px)'}, {transform: 'translateY(0)'}], {duration: 2600, iterations: 3, easing: 'ease-in-out'});
+        else if (p.shrug) f.body.animate([{transform: 'translateY(0)'}, {transform: 'translateY(-12px)'}, {transform: 'translateY(0)'}], {duration: 2600, iterations: 3, easing: 'ease-in-out'});
         else if (p.tuck) f.body.animate([{transform: 'scale(1)'}, {transform: 'scale(1.05)'}, {transform: 'scale(1)'}], {duration: 4000, iterations: 2, easing: 'ease-in-out'});
         else f.body.animate([{transform: 'translateY(0)'}, {transform: 'translateY(-14px)'}, {transform: 'translateY(0)'}], {duration: p.sec * 1000, easing: 'ease-in-out'});
       }

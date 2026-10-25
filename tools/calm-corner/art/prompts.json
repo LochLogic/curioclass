@@ -20,6 +20,71 @@
       "height": 230,
       "source": "flux1-schnell (local)",
       "review": "ok"
+    },
+    {
+      "name": "s-reach",
+      "prompt": "Shelly, the same gentle cartoon sea turtle as in the reference image (soft green skin, rounded teal and cream patterned shell, big kind eyes, small peaceful smile), standing upright on her back legs like a child, seen from the front, whole body in frame, reaching both front flippers straight up high above her head, stretching tall, eyes softly closed, happy.",
+      "ref": "turtle",
+      "cutout": true,
+      "key": "magenta",
+      "aspect": "1:1",
+      "height": 420,
+      "quality": 78,
+      "despill": true,
+      "source": "gemini",
+      "review": "ok"
+    },
+    {
+      "name": "s-lean",
+      "prompt": "Shelly, the same gentle cartoon sea turtle as in the reference image (soft green skin, rounded teal and cream patterned shell, big kind eyes, small peaceful smile), standing upright on her back legs like a child, seen from the front, whole body in frame, both front flippers raised over her head with flipper tips touching, leaning her whole body gently to one side like a tree in the wind.",
+      "ref": "turtle",
+      "cutout": true,
+      "key": "magenta",
+      "aspect": "1:1",
+      "height": 420,
+      "quality": 78,
+      "despill": true,
+      "source": "gemini",
+      "review": "ok"
+    },
+    {
+      "name": "s-tuck",
+      "prompt": "Shelly, the same gentle cartoon sea turtle as in the reference image (soft green skin, rounded teal and cream patterned shell, big kind eyes, small peaceful smile), standing upright on her back legs like a child, seen from the front, whole body in frame, curled up small inside her shell like a ball, only the top of her head and her calm eyes peeking out of the front of the shell, resting peacefully on the floor.",
+      "ref": "turtle",
+      "cutout": true,
+      "key": "magenta",
+      "aspect": "1:1",
+      "height": 420,
+      "quality": 78,
+      "despill": true,
+      "source": "gemini",
+      "review": "ok"
+    },
+    {
+      "name": "s-shoulders",
+      "prompt": "Shelly, the same gentle cartoon sea turtle as in the reference image (soft green skin, rounded teal and cream patterned shell, big kind eyes, small peaceful smile), standing upright on her back legs like a child, seen from the front, whole body in frame, shrugging her shoulders up toward her ears, front flippers relaxed down at her sides, a calm small smile.",
+      "ref": "turtle",
+      "cutout": true,
+      "key": "magenta",
+      "aspect": "1:1",
+      "height": 420,
+      "quality": 78,
+      "despill": true,
+      "source": "gemini",
+      "review": "ok"
+    },
+    {
+      "name": "s-squeeze",
+      "prompt": "Shelly, the same gentle cartoon sea turtle as in the reference image (soft green skin, rounded teal and cream patterned shell, big kind eyes, small peaceful smile), standing upright on her back legs like a child, seen from the front, whole body in frame, holding both front flippers out in front of her, squeezed tight into little fists, a determined but calm face.",
+      "ref": "turtle",
+      "cutout": true,
+      "key": "magenta",
+      "aspect": "1:1",
+      "height": 420,
+      "quality": 78,
+      "despill": true,
+      "source": "gemini",
+      "review": "ok"
     }
   ]
 }

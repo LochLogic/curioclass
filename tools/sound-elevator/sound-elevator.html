@@ -266,9 +266,11 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
     do { b = 1 + Math.random() * 8 | 0; } while (b === a || Math.abs(b - a) < (state.score < 3 ? 3 : 1));
     state.q = {a, b, answered: false};
     showQ('Listen to two notes. Is the second note <b>higher</b> or <b>lower</b>?', [['higher', '⬆️ Higher', '#3a86ff'], ['lower', '⬇️ Lower', '#e76f51']]);
-    say('Listen to two notes. Is the second note higher or lower?');
     car.classList.remove('open'); car.style.visibility = 'hidden';
-    await wait(2600); if (me !== state.run) return;
+    const t0 = performance.now();
+    await say('Listen to two notes. Is the second note higher or lower?');  // the notes wait for the narrator, then a short pause
+    if (me !== state.run) return;
+    await wait(Math.max(700, 2000 - (performance.now() - t0))); if (me !== state.run) return;
     note(FL[a - 1].f, .6); await wait(1100); if (me !== state.run) return;
     note(FL[b - 1].f, .6);
   }
@@ -304,9 +306,11 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
     const loud = Math.random() < .5, n = 1 + Math.random() * 8 | 0, vol = loud ? .85 + Math.random() * .15 : .08 + Math.random() * .12;
     state.q = {loud, n, vol, answered: false};
     showQ('Listen. Is this note <b>loud</b> or <b>soft</b>?', [['loud', '📣 Loud', '#e63946'], ['soft', '🤫 Soft', '#43aa8b']]);
-    say('Listen. Is this note loud or soft?');
     car.style.setProperty('--glow', 0); $('waves').replaceChildren();
-    await wait(2300); if (me !== state.run) return;
+    const t0 = performance.now();
+    await say('Listen. Is this note loud or soft?');
+    if (me !== state.run) return;
+    await wait(Math.max(700, 2000 - (performance.now() - t0))); if (me !== state.run) return;
     note(FL[n - 1].f, vol, 1.4);
   }
   function lsAnswer(k) {
@@ -333,8 +337,10 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
       state.q = {tune: t, shown: false};
       showQ('Listen to the tune. Then sing it back! Did it go up, down or both?', []);
       $('qcard').insertAdjacentHTML('beforeend', '<svg class="contour" id="contour" viewBox="0 0 320 120" aria-hidden="true"></svg>');
-      say('Listen to the tune. Then sing it back!');
-      await wait(2400);
+      const t0 = performance.now();
+      await say('Listen to the tune. Then sing it back!');
+      if (me !== state.run) return;
+      await wait(Math.max(700, 2000 - (performance.now() - t0)));
       if (me !== state.run) return;
     }
     car.style.visibility = 'hidden';

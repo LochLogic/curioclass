@@ -205,6 +205,7 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
     if (src !== shownSrc) {
       const next = which === 'a' ? 'b' : 'a';
       $('p' + next).src = src; $('p' + next).style.opacity = 1; $('p' + which).style.opacity = 0;
+      $('p' + next).style.zIndex = 1; $('p' + which).style.zIndex = 0;
       which = next; shownSrc = src;
     }
     $('facebox').setAttribute('aria-label', `${k.name} looks ${n === 'neutral' ? 'calm and still' : label(n)}`);
@@ -366,8 +367,23 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
   ];
   function makeMode() {
     $('sliders').innerHTML = SL.map(([k, t, lo, hi, a, b]) => `<label>${t}<input type="range" data-k="${k}" min="${lo}" max="${hi}" step="0.05" value="${state.make[k]}"></label><div class="ends"><span>${a}</span><span>${b}</span></div>`).join('');
-    $('sliders').querySelectorAll('input').forEach(i => i.oninput = () => { state.make[i.dataset.k] = +i.value; state.make.tear = state.make.wavy = state.make.nose = 0; morph(KIDS[state.kid], {...state.make}); nameIt(); });
-    morph(KIDS[state.kid], {...state.make}); nameIt();
+    $('sliders').querySelectorAll('input').forEach(i => i.oninput = () => { state.make[i.dataset.k] = +i.value; state.make.tear = state.make.wavy = state.make.nose = 0; blend(KIDS[state.kid], state.make); nameIt(); });
+    blend(KIDS[state.kid], state.make); nameIt();
+  }
+  // sliders: the two closest painted faces, the nearer one underneath and the other faded over it by how close it is,
+  // so every slider move shows (a half-way face is half of each)
+  function blend(k, p) {
+    const d = n => SL.reduce((s, [key]) => s + (((n === 'neutral' ? NEUTRAL : {...NEUTRAL, ...FEEL[n].p})[key]) - p[key]) ** 2, 0);
+    const [a, b] = ['neutral', ...NAMES].map(n => [n, Math.sqrt(d(n))]).sort((x, y) => x[1] - y[1]);
+    const kid = PHOTO[KID_ID[KIDS.indexOf(k)]], w = a[1] + b[1] ? a[1] / (a[1] + b[1]) : 0;
+    const lo = $('pa'), hi = $('pb');
+    if (lo.getAttribute('src') !== kid[a[0]]) lo.src = kid[a[0]];
+    if (hi.getAttribute('src') !== kid[b[0]]) hi.src = kid[b[0]];
+    lo.style.zIndex = 0; hi.style.zIndex = 1; lo.style.opacity = 1; hi.style.opacity = w.toFixed(2);  // 0 at a painted face, .5 half way (so nothing jumps when the two swap)
+    which = 'b'; shownSrc = '';  // the next named face cross-fades in from here
+    curP = {...p};
+    $('facebox').setAttribute('aria-label', `${k.name} looks ${a[0] === 'neutral' ? 'calm and still' : label(a[0])}`);
+    $('face').replaceChildren();
   }
   function closest(p) {
     const d = n => SL.reduce((s, [k]) => s + ((FEEL[n].p[k] ?? NEUTRAL[k]) - (p[k] ?? NEUTRAL[k])) ** 2, 0);

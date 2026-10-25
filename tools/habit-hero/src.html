@@ -344,7 +344,7 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
     if (q) {
       const b = document.createElement('div');
       b.className = 'brush'; b.textContent = '🪥';
-      b.style.left = q[1] + 25 + '%'; b.style.top = q[2] + 25 + '%';
+      b.style.left = (q[1] ? 68 : 32) + '%'; b.style.top = (q[2] ? 64 : 36) + '%';  // on the tooth rows (35% and 65% of the painting), not the gums
       box.append(b);
       if (!reduce) b.animate([{marginLeft: '-14px'}, {marginLeft: '14px'}], {duration: 300, iterations: Infinity, direction: 'alternate'});
     }

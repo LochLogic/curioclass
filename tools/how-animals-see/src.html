@@ -18,7 +18,7 @@ Inside the eye: labeled diagrams and the path light takes from the Sun to an obj
 Field of view: drag a fox around five animals; eyes in front see depth, eyes on the sides watch almost all around.
 Who's looking?: guess which animal's view you are seeing.
 These views are simplified pictures of what scientists have measured; no one knows exactly what an animal experiences.
-Illustrations drawn with FLUX.1-schnell (Apache 2.0) on a local computer, edited for Curio Class. Sound synthesized in the browser.
+Illustrations drawn with FLUX.1-schnell (Apache 2.0) on a local computer and generated with Google Gemini, edited for Curio Class. Sound synthesized in the browser.
 One file, no network requests. Content CC BY 4.0, code MIT. curioclass.org
 -->
 <style>
@@ -436,7 +436,7 @@ h1 small{display:block;font:400 14px/1.3 'Segoe UI',sans-serif;color:#cfe8c8}
         <path d="M318 245 L318 290 M318 350 L318 395" stroke="#4a7fb0" stroke-width="14" ${P('iris')}/>
         <ellipse cx="342" cy="320" rx="22" ry="62" fill="#d8ecf7" stroke="#7ab0d0" stroke-width="5" ${P('lens')}/>
         ${NERVE_DEFS}${NERVE('M668 320 C730 326 770 340 800 322 S846 296 856 290', 'nerve', P)}
-        <ellipse cx="868" cy="250" rx="70" ry="54" fill="#f2c4c8" stroke="#c98a91" stroke-width="5" ${P('brain')}/>
+        <image href="art:brain" x="778" y="176" width="180" height="151" ${P('brain')}/>
         ${rays(342, 292, 348, 650, 250, 390)}
         ${L(282, 225, 'Cornea', 'cornea', 'end')}${L(300, 470, 'Iris and pupil', 'iris')}${L(330, 175, 'Lens', 'lens')}${L(612, 160, 'Retina', 'retina')}${L(720, 400, 'Optic nerve', 'nerve')}${L(868, 330, 'Brain', 'brain', 'middle')}
         ${E === 'dog' ? L(690, 540, 'Shiny layer (tapetum)', 'tapetum') : ''}`;

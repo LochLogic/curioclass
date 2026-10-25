@@ -167,6 +167,18 @@
       "aspect": "1:1",
       "width": 360,
       "quality": 72
+    },
+    {
+      "name": "brain",
+      "prompt": "A human brain seen from the left side, like a clear science-book diagram for children: soft pink with gentle folds, the large wrinkled top part and the small ridged cerebellum at the back bottom, a short brain stem. Friendly and clean, not gory, no blood, no labels.",
+      "cutout": true,
+      "key": "green",
+      "aspect": "4:3",
+      "height": 260,
+      "quality": 80,
+      "despill": true,
+      "source": "gemini",
+      "review": "ok"
     }
   ],
   "sd_style": "painterly realistic nature painting, wildlife art, highly detailed, natural light"

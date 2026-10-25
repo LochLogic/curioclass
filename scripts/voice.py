@@ -4,6 +4,7 @@
 
 Reads tools/<tool-id>/voice/lines.json:
     {"voice": "Puck", "style": "Say warmly, like ...", "lines": ["Sad. Rainy. When I feel sad ...", ...]}
+Optional "tempo": 1.2 speeds every clip up (pitch kept) at encode time, so --reencode changes the pace for free.
 Optional "groups": [["1", "2", ..., "10"], ...] records each group as one counted list and splits it at the pauses,
 so a run of short lines (numbers) costs one request instead of ten; a group that doesn't split cleanly is recorded
 line by line. Group lines are spoken lines too and don't need repeating in "lines".
@@ -55,13 +56,38 @@ def record(text, voice, style):
             time.sleep(15)
 
 
-def encode(pcm):
-    """Trim the silence at both ends and encode a small MP3 (24 kbps is plenty for one voice)."""
+def stretch(a, rate):
+    """Speed speech up by `rate` without changing its pitch (WSOLA: overlap-add 40 ms windows, each nudged up to
+    10 ms to line up with the last one, so there's no phasey echo)."""
+    import numpy as np
+    x = a.astype(np.float32)
+    n, hop, tol = 960, 480, 240
+    win = np.hanning(n).astype(np.float32)
+    steps = int((len(x) - n - tol) / (hop * rate))
+    if steps < 2:
+        return a
+    out = np.zeros(steps * hop + n, np.float32); norm = np.zeros_like(out)
+    want = None  # what would naturally follow the last window placed
+    for k in range(steps):
+        c = int(k * hop * rate)
+        lo, hi = max(0, c - tol), min(len(x) - n, c + tol)
+        best = c if want is None else lo + int(np.argmax(np.correlate(x[lo:hi + n], want, 'valid')))
+        out[k * hop:k * hop + n] += x[best:best + n] * win; norm[k * hop:k * hop + n] += win
+        want = x[best + hop:best + hop + n] if best + hop + n <= len(x) else None
+    out /= np.maximum(norm, 1e-3)
+    return np.clip(out, -32768, 32767).astype(np.int16)
+
+
+def encode(pcm, tempo=1.0):
+    """Trim the silence at both ends and encode a small MP3 (24 kbps is plenty for one voice).
+    tempo above 1 speeds the speech up without raising the pitch (lines.json "tempo")."""
     import numpy as np, lameenc
     a = np.frombuffer(pcm, dtype=np.int16)
     loud = np.flatnonzero(np.abs(a) > 400)
     if len(loud):
         a = a[max(0, loud[0] - 2400):loud[-1] + 3600]  # keep 0.1 s before and 0.15 s after
+    if tempo != 1.0:
+        a = stretch(a, tempo)
     enc = lameenc.Encoder()
     enc.set_bit_rate(24); enc.set_in_sample_rate(24000); enc.set_channels(1); enc.set_quality(2)
     return enc.encode(a.tobytes()) + enc.flush()
@@ -119,7 +145,7 @@ def main():
             r.write_bytes(record(text, spec.get('voice', 'Puck'), spec.get('style', 'Read this aloud clearly and warmly')))
         elif f.exists() and '--reencode' not in sys.argv:
             continue
-        f.write_bytes(encode(r.read_bytes()))
+        f.write_bytes(encode(r.read_bytes(), spec.get('tempo', 1.0)))
         print(f'recorded {f.name}: {f.stat().st_size // 1024} KB  {text[:60]}')
     for old in folder.glob('*.mp3'):
         if old.name not in keep:
