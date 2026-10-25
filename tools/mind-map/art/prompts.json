@@ -1,0 +1,20 @@
+{
+  "house_style": "Calm editorial illustration for a high school health lesson: soft watercolor and ink, muted natural colors with deep teal, sage and warm sand, gentle light, plenty of quiet space. No text, no letters, no numbers, no labels, no watermark, no border.",
+  "assets": [
+    {
+      "name": "map",
+      "prompt": "A hand-drawn watercolor map of an imaginary island seen from above, like an old explorer's map: soft hills, a winding river, small forests, a lake, gentle coastline, faint dotted paths connecting places. The middle of the island is open pale land with plenty of empty space.",
+      "aspect": "16:9",
+      "width": 1500,
+      "quality": 70
+    },
+    {
+      "name": "bucket",
+      "prompt": "A single empty old enamel metal bucket seen straight from the front at eye level, cream colored with a dark blue rim and a wire handle up.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 420,
+      "quality": 74
+    }
+  ]
+}

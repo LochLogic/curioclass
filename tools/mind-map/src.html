@@ -1,0 +1,569 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mind Map · Mental health and wellness · Curio Class</title>
+<meta name="description" content="A map of mental health for high school: what common conditions are and are not, how common they are, and what helps; twelve myths and facts; practice conversations for supporting a friend; a stress bucket; and where to get help, including 988.">
+<!--
+MIND MAP (Curio Class)
+Health, grades 9-12, National Health Education Standards 1 (core concepts) and 8 (advocate for self and others),
+module "Mental Health and Wellness": disorders, stigma and supporting others.
+The map: everyday stress and eight common conditions (anxiety, depression, ADHD, eating disorders, PTSD, bipolar
+disorder, OCD, substance use disorder): what it is, what it can look like, what it is not, how common, what helps;
+plus the mental health continuum (everyone has mental health, and it moves).
+Myth or fact: twelve statements with the evidence. Help a friend: two practice text conversations built on
+notice, ask, listen, connect; the second involves suicide, follows safe messaging guidance (no methods, help is
+available, recovery is common) and is labeled so a teacher can choose. Stress bucket: stressors fill it, healthy
+coping drains it, some habits drain it now and refill it later.
+Facts: NIMH (National Comorbidity Survey Adolescent Supplement), SAMHSA National Survey on Drug Use and Health 2024,
+CDC (ADHD, 2022 data), American Academy of Sleep Medicine. Crisis lines checked October 2026.
+This tool teaches; it does not diagnose. Illustrations drawn with FLUX.1-schnell (Apache 2.0) on a local computer,
+edited for Curio Class. Sound synthesized in the browser.
+One file, no automatic network requests (help links open only when clicked). Content CC BY 4.0, code MIT. curioclass.org
+-->
+<style>
+:root{
+  --paper:#f4f1ea;--ink:#1d2a2e;--muted:#5b6869;--focus:#2f5bd3;--brand:#1f5c63;--gold:#e9b949;--card:#fffdf8;--accent:#b3563a;--sage:#8fae96;
+  font-family:'Segoe UI',system-ui,-apple-system,Roboto,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0;height:100%}
+body{background:var(--paper);color:var(--ink);display:grid;grid-template-rows:auto 1fr;min-height:100vh}
+button{font:inherit;color:inherit;cursor:pointer}
+a{color:var(--brand)}
+:focus-visible{outline:4px solid var(--focus);outline-offset:3px}
+header{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:10px 20px;background:var(--brand);color:#eaf6f5}
+h1{margin:0 auto 0 0;font:800 clamp(22px,2.8vw,32px)/1.1 Georgia,'Times New Roman',serif}
+h1 small{display:block;font:400 14px/1.3 'Segoe UI',sans-serif;color:#bfdedb}
+.icon-btn{border:1px solid #5f9a9f;background:#2d7279;color:#fff;border-radius:999px;min-height:46px;padding:0 16px;font-weight:700;font-size:15px}
+.icon-btn[aria-pressed="false"]{background:#123c41}
+.icon-btn.help{background:#fff;color:var(--brand);border-color:#fff}
+
+.stagewrap{position:relative;overflow:hidden;min-height:0;background:#e3dfd4}
+.scene{position:absolute;left:50%;top:50%;width:1440px;height:810px;transform:translate(-50%,-50%) scale(var(--s,1));overflow:hidden;background:var(--paper)}
+.top{position:absolute;left:14px;right:14px;top:12px;display:flex;align-items:center;gap:12px;z-index:20}
+.tabs{display:inline-flex;border-radius:999px;overflow:hidden;background:#fffdf8f2;box-shadow:0 2px 0 #0002}
+.tabs button{border:0;background:transparent;min-height:52px;padding:0 20px;font:700 18px 'Segoe UI',sans-serif;color:var(--muted)}
+.tabs button[aria-pressed="true"]{background:var(--brand);color:#fff}
+.b{border:0;border-radius:12px;min-height:48px;padding:0 16px;font:700 16px 'Segoe UI',sans-serif;background:#fffdf8;color:var(--ink);box-shadow:0 3px 0 #0002;white-space:nowrap}
+.b:active{transform:translateY(2px);box-shadow:0 1px 0 #0002}
+.b.go{background:var(--brand);color:#fff;box-shadow:0 3px 0 #0e3438}
+.b[aria-pressed="true"]{background:var(--gold);color:#3a2a00}
+.b:disabled{opacity:.45;cursor:default}
+.card{background:#fffdf8;border-radius:18px;box-shadow:0 1px 0 #0001,0 8px 22px #0000001a;padding:18px 22px}
+.card h2{margin:0 0 4px;font:700 28px/1.15 Georgia,serif}
+.card h3{margin:14px 0 4px;font:800 13px 'Segoe UI',sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--brand)}
+.card p{margin:4px 0;font:500 16.5px/1.45 'Segoe UI',sans-serif}
+.card ul{margin:4px 0;padding-left:20px;font:500 16px/1.45 'Segoe UI',sans-serif}
+.kicker{font:800 13px 'Segoe UI',sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.src{font:500 13px/1.35 'Segoe UI',sans-serif;color:var(--muted);margin-top:4px}
+
+/* map */
+.mapbox{position:absolute;left:20px;top:78px;width:900px;height:600px;border-radius:20px;overflow:hidden;box-shadow:0 8px 22px #0000002a;background:#e9e2cf}
+.mapbox>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.9}
+.mapbox svg{position:absolute;inset:0;width:100%;height:100%}
+.node{cursor:pointer}
+.node circle.dot{transition:r .2s}
+.node text{font:700 17px 'Segoe UI',sans-serif;fill:#1d2a2e;paint-order:stroke;stroke:#fffdf8;stroke-width:5px;stroke-linejoin:round}
+.node.on circle.dot{stroke:#e9b949;stroke-width:6}
+.node:focus-visible{outline:none}
+.node:focus-visible circle.dot{stroke:#2f5bd3;stroke-width:6}
+.mside{position:absolute;right:20px;top:78px;width:480px;height:712px;overflow:auto}
+.cont{position:absolute;left:20px;top:694px;width:900px}
+.cbar{display:grid;grid-template-columns:repeat(4,1fr);border-radius:12px;overflow:hidden;box-shadow:0 2px 0 #0002}
+.cbar button{border:0;min-height:58px;font:800 16px 'Segoe UI',sans-serif;color:#1d2a2e;line-height:1.1}
+.cbar button small{display:block;font:600 12px 'Segoe UI',sans-serif;opacity:.8}
+.cbar button[aria-pressed="true"]{outline:4px solid #1d2a2e;outline-offset:-4px}
+.chint{font:600 14px 'Segoe UI',sans-serif;color:var(--muted);margin-bottom:6px}
+
+/* myth or fact */
+.myth{position:absolute;left:50%;top:90px;transform:translateX(-50%);width:900px;text-align:center}
+.mcard{position:relative;margin:10px auto 0;width:760px;min-height:220px;display:grid;place-items:center;padding:30px 50px;background:#fffdf8;border-radius:24px;box-shadow:0 10px 26px #0000002a;font:600 30px/1.3 Georgia,serif}
+.mbtns{display:flex;gap:16px;justify-content:center;margin-top:24px}
+.mbtns .b{min-width:200px;min-height:64px;font-size:22px}
+.verdict{margin:22px auto 0;width:760px;text-align:left}
+.stamp{display:inline-block;padding:4px 14px;border-radius:8px;font:900 20px 'Segoe UI',sans-serif;letter-spacing:.1em;border:3px solid currentColor;transform:rotate(-3deg);margin-bottom:6px}
+.stamp.fact{color:#2b7a4b}.stamp.myth{color:#b3563a}
+.prog{display:flex;gap:6px;justify-content:center;margin-top:16px}
+.prog i{width:14px;height:14px;border-radius:50%;background:#d7d2c4}
+.prog i.ok{background:#2b7a4b}.prog i.no{background:#d39a83}.prog i.now{outline:3px solid var(--brand)}
+
+/* help a friend */
+.phone{position:absolute;left:120px;top:84px;width:420px;height:700px;border-radius:44px;background:#1d2a2e;padding:16px;box-shadow:0 14px 30px #0004}
+.screen{width:100%;height:100%;border-radius:32px;background:#f6f4ef;display:flex;flex-direction:column;overflow:hidden}
+.chathead{padding:14px 18px;background:#fff;border-bottom:1px solid #e3ded2;display:flex;align-items:center;gap:10px;font:800 17px 'Segoe UI',sans-serif}
+.chathead i{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;color:#fff;font-style:normal;font-weight:800}
+.msgs{flex:1;overflow:auto;padding:14px;display:flex;flex-direction:column;gap:8px}
+.bub{max-width:80%;padding:10px 14px;border-radius:18px;font:500 16.5px/1.35 'Segoe UI',sans-serif}
+.bub.them{align-self:flex-start;background:#fff;border:1px solid #e3ded2;border-bottom-left-radius:6px}
+.bub.me{align-self:flex-end;background:#2d7279;color:#fff;border-bottom-right-radius:6px}
+.typing{align-self:flex-start;background:#fff;border:1px solid #e3ded2;border-radius:18px;padding:12px 16px}
+.typing span{display:inline-block;width:8px;height:8px;margin:0 2px;border-radius:50%;background:#9aa;animation:dot 1s infinite}
+.typing span:nth-child(2){animation-delay:.15s}.typing span:nth-child(3){animation-delay:.3s}
+@keyframes dot{50%{transform:translateY(-5px)}}
+.calm .typing span{animation:none}
+.fside{position:absolute;left:600px;top:84px;width:800px;display:flex;flex-direction:column;gap:12px}
+.replies{display:flex;flex-direction:column;gap:10px}
+.replies button{text-align:left;border:2px solid #d9d3c4;background:#fffdf8;border-radius:16px;padding:14px 18px;font:500 17px/1.35 'Segoe UI',sans-serif;min-height:56px}
+.replies button:hover{border-color:var(--brand)}
+.replies button.best{border-color:#2b7a4b;background:#e6f3ea}.replies button.meh{border-color:#d4a72c;background:#fbf3dc}.replies button.bad{border-color:#b3563a;background:#f8e4dc}
+.steps{display:flex;gap:8px}
+.steps span{flex:1;text-align:center;padding:8px 4px;border-radius:10px;background:#e8e3d6;font:800 14px 'Segoe UI',sans-serif;color:var(--muted)}
+.steps span.on{background:var(--brand);color:#fff}
+.scen{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.scen button{text-align:left;border:0;border-radius:16px;background:#fffdf8;box-shadow:0 3px 0 #0002;padding:16px 18px;font:500 15px/1.4 'Segoe UI',sans-serif}
+.scen button b{display:block;font:700 20px Georgia,serif;margin-bottom:4px}
+.warn{display:inline-block;margin-top:6px;padding:2px 8px;border-radius:6px;background:#f8e4dc;color:#8a3a22;font:800 12px 'Segoe UI',sans-serif}
+
+/* stress bucket */
+.bucket{position:absolute;left:470px;top:150px;width:500px;height:560px}
+.bucket svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible;z-index:2}
+.bucket img{position:absolute;left:50px;top:110px;width:400px;height:400px;object-fit:contain;pointer-events:none}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips button{border:0;border-radius:999px;min-height:44px;padding:0 14px;font:700 15px 'Segoe UI',sans-serif;background:#fffdf8;box-shadow:0 2px 0 #0002}
+.chips button[aria-pressed="true"]{background:#d9e8e6;box-shadow:inset 0 0 0 2px var(--brand)}
+.chips.bad button[aria-pressed="true"]{background:#f8e4dc;box-shadow:inset 0 0 0 2px var(--accent)}
+.sleft{position:absolute;left:20px;top:84px;width:430px;display:flex;flex-direction:column;gap:12px}
+.sright{position:absolute;right:20px;top:84px;width:440px;display:flex;flex-direction:column;gap:12px}
+.level{position:absolute;left:470px;top:84px;width:500px;text-align:center;font:700 22px/1.3 Georgia,serif}
+.breathe{display:grid;place-items:center;height:150px}
+.bsq{width:110px;height:110px;border:6px solid var(--brand);border-radius:16px;position:relative}
+.bsq i{position:absolute;width:20px;height:20px;border-radius:50%;background:var(--gold);left:-13px;top:-13px}
+
+/* help overlay */
+.overlay{position:absolute;inset:0;background:#1d2a2ecc;z-index:50;display:grid;place-items:center}
+.helpcard{width:880px;max-height:740px;overflow:auto;background:#fffdf8;border-radius:24px;padding:26px 32px;box-shadow:0 20px 40px #0006}
+.helpcard h2{margin:0 0 6px;font:700 30px Georgia,serif}
+.lines{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.lines div{border-radius:14px;background:#f1ede2;padding:12px 16px;font:500 15.5px/1.4 'Segoe UI',sans-serif}
+.lines div b{display:block;font:800 19px 'Segoe UI',sans-serif;color:var(--brand)}
+.lines div.now{background:#1f5c63;color:#fff}.lines div.now b{color:#fff}.lines div.now a{color:#fff}
+</style>
+</head>
+<body>
+<header>
+  <h1>Mind Map <small>Mental health: what it is, what helps, and how to be there for someone.</small></h1>
+  <button class="icon-btn help" id="helpbtn">💬 Get help now</button>
+  <button class="icon-btn" id="motion" aria-pressed="true" title="Turn animation on or off">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+</header>
+<div class="stagewrap" id="stagewrap">
+  <div class="scene" id="scene">
+    <div class="top">
+      <div class="tabs" role="group" aria-label="Mode">
+        <button data-mode="map" aria-pressed="true">🗺️ The map</button>
+        <button data-mode="myth" aria-pressed="false">❓ Myth or fact</button>
+        <button data-mode="friend" aria-pressed="false">💬 Help a friend</button>
+        <button data-mode="bucket" aria-pressed="false">🪣 Stress bucket</button>
+      </div>
+    </div>
+
+    <div id="mapview">
+      <div class="mapbox"><img src="art:map" alt=""><svg id="msvg" viewBox="0 0 900 600" role="group" aria-label="Mental health map. Choose a place to learn about it."></svg></div>
+      <div class="cont">
+        <div class="chint">Everyone has mental health, and it moves along this line. Tap a zone.</div>
+        <div class="cbar" id="cbar" role="group" aria-label="Mental health continuum"></div>
+      </div>
+      <div class="mside"><div class="card" id="minfo" aria-live="polite"></div></div>
+    </div>
+
+    <div id="mythview" hidden>
+      <div class="myth">
+        <div class="kicker" id="mcount"></div>
+        <div class="mcard" id="mstate"></div>
+        <div class="mbtns" id="mbtns"><button class="b" data-a="myth">Myth</button><button class="b" data-a="fact">Fact</button></div>
+        <div class="verdict card" id="mverdict" hidden></div>
+        <div class="prog" id="mprog"></div>
+      </div>
+    </div>
+
+    <div id="friendview" hidden>
+      <div class="phone"><div class="screen"><div class="chathead" id="chead"></div><div class="msgs" id="msgs" aria-live="polite"></div></div></div>
+      <div class="fside" id="fside"></div>
+    </div>
+
+    <div id="bucketview" hidden>
+      <div class="sleft">
+        <div class="card"><h3 style="margin-top:0">What's filling the bucket?</h3><p style="font-size:15px;color:var(--muted)">Everyone carries some stress. Tap what's going on.</p><div class="chips" id="stress"></div></div>
+        <div class="card"><h3 style="margin-top:0">Try it: box breathing</h3><div class="breathe"><div class="bsq" id="bsq"><i id="bdot"></i></div></div><p id="bcue" style="text-align:center;font-weight:700">Breathe in for 4, hold 4, out 4, hold 4.</p><div style="text-align:center"><button class="b" id="bgo">▶ Start</button></div></div>
+      </div>
+      <div class="level" id="level" aria-live="polite"></div>
+      <div class="bucket"><svg id="bsvg" viewBox="0 0 500 560"></svg><img src="art:bucket" alt="A bucket"></div>
+      <div class="sright">
+        <div class="card"><h3 style="margin-top:0">Open a tap</h3><p style="font-size:15px;color:var(--muted)">Healthy ways to cope let stress drain out.</p><div class="chips" id="taps"></div></div>
+        <div class="card"><h3 style="margin-top:0">Taps that clog</h3><p style="font-size:15px;color:var(--muted)">Some habits feel like relief now but add more stress later.</p><div class="chips bad" id="clogs"></div></div>
+        <div class="card" id="bnote"><p></p></div>
+      </div>
+    </div>
+
+    <div class="overlay" id="help" hidden role="dialog" aria-modal="true" aria-labelledby="helph">
+      <div class="helpcard">
+        <h2 id="helph">Get help now</h2>
+        <p style="font:500 17px/1.45 'Segoe UI',sans-serif">If you or a friend are struggling, you don't have to handle it alone. Talk to an adult you trust: a parent, school counselor, nurse, coach or teacher. These free, confidential services are open to teens:</p>
+        <div class="lines">
+          <div class="now"><b>988 Suicide &amp; Crisis Lifeline</b>Call or text <b style="display:inline;font-size:inherit">988</b>, or chat at <a href="https://988lifeline.org" target="_blank" rel="noopener">988lifeline.org</a>. Any time, day or night, for any kind of emotional crisis.</div>
+          <div class="now"><b>Emergency</b>If someone is in immediate danger, call <b style="display:inline;font-size:inherit">911</b>.</div>
+          <div><b>Crisis Text Line</b>Text HOME to 741741. Any time.</div>
+          <div><b>The Trevor Project</b>For LGBTQ+ young people: call 1-866-488-7386 or text START to 678-678. Any time. <a href="https://www.thetrevorproject.org" target="_blank" rel="noopener">thetrevorproject.org</a></div>
+          <div><b>Teen Line</b>Talk to a trained teen: text TEEN to 839863 or call 800-852-8336, evenings (Pacific time). <a href="https://teenline.org" target="_blank" rel="noopener">teenline.org</a></div>
+          <div><b>SAMHSA National Helpline</b>Treatment and support for mental health and substance use: 1-800-662-4357. Any time.</div>
+        </div>
+        <p style="font:500 15px/1.4 'Segoe UI',sans-serif;color:var(--muted);margin-top:12px">Outside the United States, <a href="https://findahelpline.com" target="_blank" rel="noopener">findahelpline.com</a> lists free helplines by country. This tool is for learning and can't diagnose anyone.</p>
+        <div style="text-align:right"><button class="b go" id="helpclose">Close</button></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  let reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  try { const m = localStorage.getItem('curio-motion'); if (m) reduce = m === 'calm'; } catch {}
+  function showMotion() {
+    document.body.classList.toggle('calm', reduce);
+    $('motion').setAttribute('aria-pressed', !reduce);
+    $('motion').textContent = reduce ? '⏸ Motion' : '✨ Motion';
+  }
+  showMotion();
+  $('motion').onclick = () => { reduce = !reduce; try { localStorage.setItem('curio-motion', reduce ? 'calm' : 'on'); } catch {} showMotion(); };
+  const fit = () => { const r = $('stagewrap').getBoundingClientRect(); $('scene').style.setProperty('--s', Math.min(r.width / 1440, r.height / 810)); };
+  new ResizeObserver(fit).observe($('stagewrap'));
+
+  // ---------- sound: soft and sparing, this is a serious topic ----------
+  let ac = null, soundOn = true;
+  $('sound').onclick = () => { soundOn = !soundOn; $('sound').setAttribute('aria-pressed', soundOn); $('sound').textContent = soundOn ? '🔔 Sound' : '🔕 Sound'; };
+  function ctx() { if (!ac) { try { ac = new (window.AudioContext || window.webkitAudioContext)(); } catch { return null; } } if (ac.state === 'suspended') ac.resume(); return ac; }
+  function tone(f, at, dur, {type = 'sine', gain = .06} = {}) {
+    const c = soundOn && ctx(); if (!c) return;
+    const t = c.currentTime + at, o = c.createOscillator(), g = c.createGain();
+    o.type = type; o.frequency.setValueAtTime(f, t);
+    g.gain.setValueAtTime(.0001, t); g.gain.exponentialRampToValueAtTime(gain, t + .02); g.gain.exponentialRampToValueAtTime(.0001, t + dur);
+    o.connect(g).connect(c.destination); o.start(t); o.stop(t + dur + .05);
+  }
+  const SFX = {
+    tap: () => tone(620, 0, .1),
+    pop: () => tone(880, 0, .12, {gain: .05}),
+    msg: () => { tone(988, 0, .1, {gain: .05}); tone(1319, .08, .14, {gain: .04}); },
+    right: () => [523, 659, 784].forEach((f, i) => tone(f, i * .08, .35, {gain: .05})),
+    soft: () => tone(392, 0, .3, {gain: .05}),
+    drip: () => tone(1200 + Math.random() * 300, 0, .08, {gain: .03}),
+    breath: up => tone(up ? 330 : 262, 0, 3.8, {gain: .025})
+  };
+
+  // ---------- help ----------
+  let lastFocus = null;
+  const openHelp = () => { lastFocus = document.activeElement; $('help').hidden = false; $('helpclose').focus(); };
+  $('helpbtn').onclick = openHelp;
+  $('helpclose').onclick = () => { $('help').hidden = true; lastFocus && lastFocus.focus(); };
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && !$('help').hidden) $('helpclose').click(); });
+
+  // ---------- the map ----------
+  const C = [
+    {id: 'stress', name: 'Everyday stress', x: 450, y: 300, col: '#8fae96', what: 'Stress is the body\'s alarm system. A little helps you rise to a challenge, like a game or a test. Stress that keeps going for weeks wears you down.',
+      signs: ['Trouble sleeping', 'Headaches or stomachaches', 'Feeling on edge or irritable', 'Worrying about one thing'],
+      not: 'Stress is not a mental illness, and it is not a weakness. It\'s a normal part of life, and you can learn to manage it.',
+      stat: null, helps: 'Sleep, moving your body, breaking big tasks into small steps, time with people you like, and saying no to a few things. Try the Stress bucket.'},
+    {id: 'anx', name: 'Anxiety disorders', x: 250, y: 140, col: '#6c9bc4', what: 'Worry or fear that is much stronger than the situation, lasts for months and gets in the way of school, friends or sleep. Types include generalized anxiety, social anxiety, panic disorder and phobias.',
+      signs: ['Worry that is hard to switch off', 'Racing heart, fast breathing, sweating', 'Avoiding places or people', 'Stomachaches, trouble concentrating'],
+      not: 'Feeling nervous before a big test or a first date is normal anxiety. A disorder is when the fear is out of proportion and won\'t let go.',
+      stat: ['About 1 in 3 teens (31.9%) has an anxiety disorder at some point by age 18.', 'NIMH, National Comorbidity Survey Adolescent Supplement'], helps: 'Therapy, especially cognitive behavioral therapy (CBT), works well. It teaches new ways to handle anxious thoughts and to face fears step by step. Sometimes medication helps too.'},
+    {id: 'dep', name: 'Depression', x: 450, y: 105, col: '#5c6fae', what: 'More than a bad day. Depression is a low, empty or irritable mood, or losing interest in almost everything, most of the day, nearly every day, for at least two weeks.',
+      signs: ['Sad, empty or irritable most days', 'Losing interest in things you used to enjoy', 'Sleeping or eating a lot more or less', 'Tired, hard to concentrate, feeling worthless', 'Thoughts of death or suicide'],
+      not: 'Depression is not laziness or a choice, and you can\'t just snap out of it. It is a health condition, and it is treatable.',
+      stat: ['In 2024, 15.4% of 12- to 17-year-olds (about 1 in 7) had a major depressive episode, down from 20.8% in 2021.', 'SAMHSA, National Survey on Drug Use and Health 2024'], helps: 'Therapy, medication or both. Sleep, exercise, sunlight and time with people help recovery. Most people with depression get better with treatment.'},
+    {id: 'adhd', name: 'ADHD', x: 660, y: 140, col: '#d08a43', what: 'Attention-deficit/hyperactivity disorder is a difference in how the brain manages attention, activity and impulses. It starts in childhood and often continues.',
+      signs: ['Hard to focus on things that aren\'t interesting', 'Forgetting, losing things, missing deadlines', 'Restless, fidgety, talking a lot', 'Acting before thinking'],
+      not: 'ADHD is not a lack of intelligence or effort, and it isn\'t only hyper kids. Many people, often girls, have the inattentive type and get missed.',
+      stat: ['About 1 in 9 children and teens in the US (11.4%) have been diagnosed with ADHD.', 'CDC, 2022 National Survey of Children\'s Health'], helps: 'Strategies and routines, school supports, coaching, and for many people, medication.'},
+    {id: 'eat', name: 'Eating disorders', x: 760, y: 300, col: '#c46a7a', what: 'Serious illnesses in which thoughts and behaviors around food, weight and body shape take over. They include anorexia, bulimia, binge eating disorder and ARFID.',
+      signs: ['Skipping meals or strict food rules', 'Eating in secret', 'Exercising to "make up" for food', 'Big weight changes; constant focus on body shape'],
+      not: 'You can\'t tell by looking. Eating disorders affect people of every size, gender and background.',
+      stat: ['About 2.7% of teens have had an eating disorder.', 'NIMH, National Comorbidity Survey Adolescent Supplement'], helps: 'Getting help early matters. Treatment usually involves a team: a doctor, a therapist and a dietitian, and often the family.'},
+    {id: 'ptsd', name: 'PTSD and trauma', x: 660, y: 470, col: '#7f8c6a', what: 'After something frightening or dangerous, such as an accident, violence or a disaster, some people keep reliving it. When the symptoms last more than a month, it may be post-traumatic stress disorder.',
+      signs: ['Flashbacks or nightmares', 'Avoiding reminders', 'Being jumpy or always on guard', 'Feeling numb or cut off'],
+      not: 'Most people who go through something scary don\'t develop PTSD, and it\'s never a sign of weakness.',
+      stat: ['About 5% of teens have had PTSD (8.0% of girls, 2.3% of boys).', 'NIMH, National Comorbidity Survey Adolescent Supplement'], helps: 'Trauma-focused therapy works, along with safety and steady support from people who care.'},
+    {id: 'bip', name: 'Bipolar disorder', x: 450, y: 500, col: '#9a6bb0', what: 'Big shifts between periods of depression and periods of mania: very high energy, little need for sleep, racing thoughts and risky choices. Each period lasts days or weeks.',
+      signs: ['Days of unusual energy with little sleep', 'Talking fast, jumping between ideas', 'Risky or reckless behavior', 'Then low periods like depression'],
+      not: 'It is not the same as ordinary mood swings, which come and go within a day.',
+      stat: ['About 2.9% of teens have had bipolar disorder.', 'NIMH, National Comorbidity Survey Adolescent Supplement'], helps: 'Medication and therapy together, with steady routines and regular sleep. Many people manage it well over the long term.'},
+    {id: 'ocd', name: 'OCD', x: 240, y: 470, col: '#4f9c9a', what: 'Obsessive-compulsive disorder: unwanted, upsetting thoughts (obsessions) and actions repeated to ease the anxiety (compulsions), taking up more than an hour a day.',
+      signs: ['Thoughts that feel stuck and scary', 'Checking, washing, counting or repeating', 'Feeling something terrible will happen if you don\'t'],
+      not: 'Liking things neat or organized isn\'t OCD. OCD is distressing, not a personality quirk.',
+      stat: ['About 2 in 100 people (2.3%) have OCD at some point in life.', 'NIMH'], helps: 'A type of therapy called exposure and response prevention (ERP), and sometimes medication.'},
+    {id: 'sud', name: 'Substance use disorder', x: 150, y: 300, col: '#a1785a', what: 'When using alcohol, nicotine, cannabis or other drugs keeps going even though it causes harm, and stopping is hard.',
+      signs: ['Needing more to feel the same', 'Cravings; trying to stop and not being able to', 'Problems at school, at home or with friends', 'Giving up things you used to enjoy'],
+      not: 'It is not a moral failing. Substances change how the brain works, and the teenage brain, still developing into the mid-20s, is especially sensitive.',
+      stat: null, helps: 'Counseling and treatment programs work, and recovery is common. The SAMHSA National Helpline (1-800-662-4357) helps find treatment, free and any time.'}
+  ];
+  const ZONES = [
+    ['Thriving', 'doing well', '#b9dcb8', 'Usual mood, sleeping well, enjoying friends and activities, handling ups and downs.', 'Keep doing what works: sleep, movement, connection. This is a good time to help others.'],
+    ['Coping', 'some stress', '#f1df9c', 'Nervous, irritable or sad sometimes, trouble sleeping now and then, procrastinating.', 'Notice it. Use your coping tools, take breaks, talk to someone.'],
+    ['Struggling', 'it\'s hard', '#f2b98c', 'Worry or sadness most days, pulling away from people, grades slipping, tired all the time.', 'Reach out to an adult you trust or a school counselor. Things can get better.'],
+    ['Unwell', 'needs care now', '#e69a8a', 'Can\'t get through the day, can\'t sleep or eat, thoughts of self-harm or suicide.', 'Get help today: a trusted adult, a counselor or doctor, or call or text 988.']
+  ];
+  let cur = 'stress', zone = null;
+  function drawMap() {
+    const center = C[0];
+    let s = '';
+    for (const c of C.slice(1)) s += `<path d="M${center.x} ${center.y} Q${(center.x + c.x) / 2 + (c.y - center.y) * .15} ${(center.y + c.y) / 2 - (c.x - center.x) * .15} ${c.x} ${c.y}" stroke="#1d2a2e55" stroke-width="3" stroke-dasharray="2 9" stroke-linecap="round" fill="none"/>`;
+    for (const c of C) {
+      const big = c.id === 'stress', r = big ? 64 : 46;
+      s += `<g class="node ${c.id === cur ? 'on' : ''}" data-c="${c.id}" tabindex="0" role="button" aria-pressed="${c.id === cur}" aria-label="${c.name}">
+        <circle cx="${c.x}" cy="${c.y}" r="${r + 10}" fill="#fffdf8aa"/><circle class="dot" cx="${c.x}" cy="${c.y}" r="${r}" fill="${c.col}" stroke="#fffdf8" stroke-width="4"/>
+        <text x="${c.x}" y="${c.y + r + 28}" text-anchor="middle">${c.name}</text></g>`;
+    }
+    $('msvg').innerHTML = s;
+    $('msvg').querySelectorAll('[data-c]').forEach(g => { g.onclick = () => pickC(g.dataset.c); g.onkeydown = e => { if (e.key === 'Enter' || e.key === ' ') { pickC(g.dataset.c); e.preventDefault(); } }; });
+    $('cbar').innerHTML = ZONES.map(([n, sub, col], i) => `<button style="background:${col}" data-z="${i}" aria-pressed="${zone === i}">${n}<small>${sub}</small></button>`).join('');
+    $('cbar').querySelectorAll('[data-z]').forEach(b => b.onclick = () => { zone = +b.dataset.z; SFX.tap(); drawMap(); showZone(); });
+  }
+  function pickC(id) { cur = id; zone = null; SFX.tap(); drawMap(); showC(); $('msvg').querySelector(`[data-c="${id}"]`).focus(); }
+  function showC() {
+    const c = C.find(x => x.id === cur);
+    $('minfo').innerHTML = `<div class="kicker">${c.id === 'stress' ? 'Not a disorder' : 'A health condition'}</div><h2>${c.name}</h2><p>${c.what}</p>
+      <h3>What it can look like</h3><ul>${c.signs.map(x => `<li>${x}</li>`).join('')}</ul>
+      <h3>What it is not</h3><p>${c.not}</p>
+      ${c.stat ? `<h3>How common</h3><p>${c.stat[0]}</p><div class="src">${c.stat[1]}</div>` : ''}
+      <h3>What helps</h3><p>${c.helps}</p>
+      <p class="src" style="margin-top:12px">Only a doctor or mental health professional can diagnose a condition. Having a few of these signs doesn't mean someone has it.</p>`;
+  }
+  function showZone() {
+    const [n, , col, look, todo] = ZONES[zone];
+    $('minfo').innerHTML = `<div class="kicker">The mental health continuum</div><h2><span style="display:inline-block;width:18px;height:18px;border-radius:50%;background:${col};margin-right:8px"></span>${n}</h2>
+      <h3>What it can look like</h3><p>${look}</p><h3>What to do</h3><p>${todo}</p>
+      <p style="margin-top:12px">Everyone moves along this line, often in a single week. A mental health condition can push someone toward the right side, and treatment and support help them move back. Someone with a diagnosis can be thriving, and someone without one can be struggling.</p>
+      ${zone === 3 ? '<button class="b go" id="zhelp" style="margin-top:10px">💬 Get help now</button>' : ''}`;
+    if ($('zhelp')) $('zhelp').onclick = openHelp;
+  }
+
+  // ---------- myth or fact ----------
+  const MYTHS = [
+    ['Mental health problems are rare in teenagers.', 'myth', 'About half of all mental health conditions that people ever have begin by age 14, and three quarters by age 24. That\'s why noticing early matters.', 'NIMH'],
+    ['Asking a friend if they are thinking about suicide could put the idea in their head.', 'myth', 'Studies find that asking directly does not raise the risk, and it often brings relief. It shows you care and opens the door to getting help.', 'Dazzi and others, review in Psychological Medicine, 2014'],
+    ['Most people with a mental illness are violent.', 'myth', 'People with mental illness are far more likely to be victims of violence than to commit it. This myth is a big part of stigma.', 'U.S. Department of Health and Human Services'],
+    ['Depression is just sadness. People can snap out of it if they try.', 'myth', 'Depression is a health condition that changes sleep, energy, thinking and mood for weeks or longer. Willpower alone doesn\'t fix it; treatment does.', 'NIMH'],
+    ['Most people who get treatment for a mental health condition get better.', 'fact', 'Therapy, medication and support work for most people. Many recover fully, and others learn to manage symptoms and live full lives.', 'NIMH'],
+    ['Sleep has a big effect on mood.', 'fact', 'Teens need 8 to 10 hours a night. Too little sleep makes stress, sadness and anxiety harder to handle.', 'American Academy of Sleep Medicine'],
+    ['You can tell if someone has an eating disorder by looking at them.', 'myth', 'Eating disorders affect people of every body size, gender and background. Many people who are struggling look "fine."', 'NIMH'],
+    ['Regular exercise can help with depression and anxiety.', 'fact', 'Physical activity lowers symptoms of depression and anxiety. It doesn\'t replace treatment, but it helps.', 'World Health Organization'],
+    ['If a friend tells you they are hurting themselves and asks you to keep it secret, a good friend keeps the secret.', 'myth', 'Some secrets are too big to keep. When someone\'s safety is at risk, a good friend tells a trusted adult, even if the friend is upset at first.', 'Safe messaging guidance'],
+    ['ADHD only affects kids who are hyper.', 'myth', 'Some people with ADHD are not hyperactive at all. The inattentive type, often missed in girls, shows up as daydreaming, forgetting and losing track.', 'CDC'],
+    ['Talking about how you feel with someone you trust can help.', 'fact', 'Putting feelings into words and feeling heard can calm the body\'s stress response, and it\'s often the first step toward help.', 'Lieberman and others, Psychological Science, 2007'],
+    ['Teens with mental health conditions are just looking for attention.', 'myth', 'Signs of distress are real and deserve to be taken seriously. If someone is reaching out, it means they need connection and help.', 'NIMH']
+  ];
+  let MQ = null;
+  function newMyth() { MQ = {list: MYTHS.map((_, i) => i).sort(() => Math.random() - .5), i: 0, res: []}; showMyth(); }
+  function showMyth() {
+    const [st] = MYTHS[MQ.list[MQ.i]];
+    $('mcount').textContent = `Statement ${MQ.i + 1} of ${MQ.list.length}`;
+    $('mstate').textContent = `"${st}"`;
+    $('mverdict').hidden = true; $('mbtns').hidden = false;
+    $('mprog').innerHTML = MQ.list.map((_, i) => `<i class="${MQ.res[i] === 1 ? 'ok' : MQ.res[i] === 0 ? 'no' : ''} ${i === MQ.i ? 'now' : ''}"></i>`).join('');
+  }
+  $('mbtns').querySelectorAll('[data-a]').forEach(b => b.onclick = () => {
+    const [, ans, why, src] = MYTHS[MQ.list[MQ.i]], ok = b.dataset.a === ans;
+    MQ.res[MQ.i] = ok ? 1 : 0; (ok ? SFX.right : SFX.soft)();
+    $('mbtns').hidden = true; $('mverdict').hidden = false;
+    const last = MQ.i === MQ.list.length - 1;
+    $('mverdict').innerHTML = `<span class="stamp ${ans}">${ans.toUpperCase()}</span> <b style="font:700 18px 'Segoe UI'">${ok ? 'You got it.' : 'Not quite.'}</b><p>${why}</p><div class="src">Source: ${src}</div>
+      <div style="text-align:right;margin-top:8px"><button class="b go" id="mnext">${last ? 'See how you did' : 'Next ▶'}</button></div>`;
+    $('mprog').innerHTML = MQ.list.map((_, i) => `<i class="${MQ.res[i] === 1 ? 'ok' : MQ.res[i] === 0 ? 'no' : ''} ${i === MQ.i ? 'now' : ''}"></i>`).join('');
+    $('mnext').focus();
+    $('mnext').onclick = () => {
+      SFX.tap();
+      if (!last) { MQ.i++; showMyth(); return; }
+      const n = MQ.res.reduce((a, b) => a + b, 0);
+      $('mcount').textContent = 'Done';
+      $('mstate').innerHTML = `${n} of ${MQ.list.length} right`;
+      $('mverdict').innerHTML = `<p>Myths like these are part of <b>stigma</b>: the shame that stops people from asking for help. Knowing the facts, and saying them out loud, makes it easier for everyone to reach out.</p><div style="text-align:right"><button class="b go" id="magain">Play again</button></div>`;
+      $('magain').onclick = newMyth;
+    };
+  });
+
+  // ---------- help a friend ----------
+  // each step: friend's message(s), then three replies: [text, quality, feedback]; best moves the conversation on
+  const SCEN = {
+    jordan: {name: 'Jordan', col: '#c46a7a', title: 'Jordan has been quiet', blurb: 'A friend has been skipping things and seems down.', steps: [
+      {them: ['can\'t come tonight. not really feeling it'], step: 0, r: [
+        ['ok np', 'meh', 'Not wrong, but this is the third time Jordan has bailed. Noticing a change is the first step.'],
+        ['You\'ve missed the last few things. Everything ok? No pressure, I\'m just checking on you.', 'best', 'You noticed a change and checked in without pressure. That\'s exactly the first step: notice.'],
+        ['lol you\'re always bailing', 'bad', 'Teasing can make someone pull away further. Try checking in instead.']]},
+      {them: ['idk. everything feels pointless lately', 'i\'m tired all the time'], step: 1, r: [
+        ['Same, school is the worst', 'meh', 'Relating can feel friendly, but it turns the talk toward you. Ask more about how Jordan feels.'],
+        ['That sounds really heavy. How long has it felt like this?', 'best', 'You took it seriously and asked an open question. Asking shows you care.'],
+        ['You just need more sleep. Try not to think about it.', 'bad', 'Quick fixes can sound like "your feelings don\'t matter." Listen first.']]},
+      {them: ['like a month? i haven\'t told anyone', 'don\'t make it a big deal ok'], step: 2, r: [
+        ['You\'ll be fine! Cheer up 🙂', 'bad', 'Brushing it off can make someone feel unheard. Listen, and take it seriously.'],
+        ['Thanks for telling me. I\'m not going anywhere. Feeling like this for a month is worth talking to someone about, like the counselor. Want me to go with you?', 'best', 'You listened, thanked Jordan for trusting you, and offered to connect them with help, side by side.'],
+        ['I won\'t tell anyone, promise', 'meh', 'Respecting privacy matters, but feeling this way for a month is a sign Jordan needs more support than a friend can give. Encourage talking to an adult.']]},
+      {them: ['maybe. the counselor seems ok i guess'], step: 3, r: [
+        ['Cool, let me know', 'meh', 'A plan works better than "let me know." Offer something specific.'],
+        ['Want to go Monday before first period? I\'ll walk there with you.', 'best', 'A concrete plan and company make it much easier to follow through. That\'s connecting.'],
+        ['Or you could just push through it', 'bad', 'Pushing through alone is what Jordan has been doing for a month. Help them connect.']]}
+    ], end: 'Jordan agreed to see the counselor on Monday, with you along. You noticed, asked, listened and connected. Keep checking in over the next few weeks.'},
+    sam: {name: 'Sam', col: '#5c6fae', title: 'Sam sends a goodbye', blurb: 'A friend\'s messages sound like a goodbye.', warn: true, steps: [
+      {them: ['hey. just wanted to say you\'ve been a really good friend', 'thanks for everything'], step: 0, r: [
+        ['aw thanks!! you too', 'meh', 'Kind, but a message that sounds like a goodbye can be a warning sign. Trust your gut and check in.'],
+        ['That kind of sounds like a goodbye. Are you okay? I\'m here.', 'best', 'You noticed something was off and asked. Warning signs include talking about being a burden, giving things away and saying goodbye.'],
+        ['(leave it on read)', 'bad', 'When something feels off, reach out. You might be the person who notices.']]},
+      {them: ['honestly everyone would be better off without me'], step: 1, r: [
+        ['Don\'t say that, it\'s not true', 'meh', 'You mean well, but arguing can shut the conversation down. Take it seriously and ask directly.'],
+        ['I\'m really glad you told me. Are you thinking about killing yourself?', 'best', 'Asking directly, in plain words, does not put the idea in someone\'s head. It shows you can handle the answer and opens the door to help.'],
+        ['You\'re being dramatic', 'bad', 'Talk of being a burden is a serious warning sign. Always take it seriously.']]},
+      {them: ['sometimes', 'please don\'t tell anyone'], step: 3, r: [
+        ['Ok, I promise I won\'t tell', 'bad', 'This is the one secret you can\'t keep. Sam\'s safety comes first, even if Sam is upset with you at first.'],
+        ['I care about you too much to keep this secret. We\'re getting help right now. Can I call 988 with you, or get your mom?', 'best', 'You stayed calm, stayed with Sam and connected them to help right away. That\'s what a good friend does.'],
+        ['Get some sleep, you\'ll feel better tomorrow', 'bad', 'This can\'t wait until tomorrow. Get a trusted adult involved now, or call or text 988.']]}
+    ], end: 'You stayed with Sam and got help: you called 988 together, and you told a trusted adult. If someone is in immediate danger, call 911. You don\'t have to be the counselor; your job is to connect your friend to help. Afterward, talk to someone about how you feel too.'}
+  };
+  const STEPS = ['Notice', 'Ask', 'Listen', 'Connect'];
+  let FR = null;
+  function friendMenu() {
+    FR = null;
+    $('chead').innerHTML = '<i style="background:#8fae96">?</i>Choose a conversation';
+    $('msgs').innerHTML = '';
+    $('fside').innerHTML = `<div class="card"><div class="kicker">Practice</div><h2>Help a friend</h2><p>You don't have to have the right words or fix anything. Four steps help: <b>notice</b> a change, <b>ask</b> how they're doing, <b>listen</b> without judging, and <b>connect</b> them with a trusted adult or other help.</p></div>
+      <div class="scen">${Object.entries(SCEN).map(([k, s]) => `<button data-s="${k}"><b>${s.title}</b>${s.blurb}${s.warn ? '<br><span class="warn">Talks about suicide</span>' : ''}</button>`).join('')}</div>
+      <p style="font:500 14px/1.4 'Segoe UI',sans-serif;color:var(--muted)">These conversations are made up for practice.</p>`;
+    $('fside').querySelectorAll('[data-s]').forEach(b => b.onclick = () => { SFX.tap(); startFriend(b.dataset.s); });
+  }
+  function startFriend(k) {
+    const s = SCEN[k]; FR = {k, i: 0, tries: 0, best: 0};
+    $('chead').innerHTML = `<i style="background:${s.col}">${s.name[0]}</i>${s.name}`;
+    $('msgs').innerHTML = '';
+    nextFriend();
+  }
+  function bubble(text, who) { const d = document.createElement('div'); d.className = 'bub ' + who; d.textContent = text; $('msgs').appendChild(d); $('msgs').scrollTop = 1e6; }
+  function nextFriend() {
+    const s = SCEN[FR.k], st = s.steps[FR.i];
+    side(null);
+    const typing = document.createElement('div'); typing.className = 'typing'; typing.innerHTML = '<span></span><span></span><span></span>';
+    let t = 500;
+    st.them.forEach((m, j) => {
+      setTimeout(() => { $('msgs').appendChild(typing); $('msgs').scrollTop = 1e6; }, t);
+      t += 900 + m.length * 18;
+      setTimeout(() => { typing.remove(); bubble(m, 'them'); SFX.msg(); if (j === st.them.length - 1) side(st); }, t);
+      t += 400;
+    });
+  }
+  function side(st) {
+    const s = SCEN[FR.k];
+    const steps = `<div class="steps">${STEPS.map((n, i) => `<span class="${st && st.step === i ? 'on' : ''}">${n}</span>`).join('')}</div>`;
+    if (!st) { $('fside').innerHTML = `<div class="card">${steps}<p style="margin-top:10px;color:var(--muted)">${s.name} is typing…</p></div>`; return; }
+    const order = st.r.map((_, i) => i).sort(() => Math.random() - .5);
+    $('fside').innerHTML = `<div class="card">${steps}<h3>What do you say?</h3><div class="replies">${order.map(i => `<button data-r="${i}">${st.r[i][0]}</button>`).join('')}</div><div id="fb" aria-live="polite"></div></div>
+      <div style="display:flex;gap:10px"><button class="b" id="fback">◀ Choose another conversation</button>${s.warn ? '<button class="b go" id="fhelp">💬 Get help now</button>' : ''}</div>`;
+    $('fback').onclick = friendMenu; if ($('fhelp')) $('fhelp').onclick = openHelp;
+    $('fside').querySelectorAll('[data-r]').forEach(b => b.onclick = () => {
+      const [text, q, fb] = st.r[+b.dataset.r];
+      b.className = q; FR.tries++;
+      $('fb').innerHTML = `<p style="margin-top:10px"><b>${q === 'best' ? '✓ ' : q === 'meh' ? '◐ ' : '✗ '}</b>${fb}</p>`;
+      if (q !== 'best') { SFX.soft(); return; }
+      SFX.right();
+      $('fside').querySelectorAll('[data-r]').forEach(x => x.disabled = true);
+      bubble(text, 'me');
+      $('fb').innerHTML += `<div style="text-align:right"><button class="b go" id="fnext">${FR.i < s.steps.length - 1 ? 'Continue ▶' : 'Finish'}</button></div>`;
+      $('fnext').focus();
+      $('fnext').onclick = () => { FR.i++; if (FR.i < s.steps.length) nextFriend(); else endFriend(); };
+    });
+  }
+  function endFriend() {
+    const s = SCEN[FR.k];
+    $('fside').innerHTML = `<div class="card"><div class="steps">${STEPS.map(n => `<span class="on">${n}</span>`).join('')}</div><h3>What happened next</h3><p>${s.end}</p>
+      ${s.warn ? '<p>Warning signs to know: talking about wanting to die or being a burden, saying goodbye, giving things away, pulling away from people, big mood changes. Call or text <b>988</b> any time, for yourself or a friend.</p>' : ''}</div>
+      <div style="display:flex;gap:10px"><button class="b go" id="fback">◀ Choose another conversation</button><button class="b" id="fhelp2">💬 Get help now</button></div>`;
+    $('fback').onclick = friendMenu; $('fhelp2').onclick = openHelp;
+  }
+
+  // ---------- stress bucket ----------
+  const STRESS = [['Big test coming up', 18], ['Not enough sleep', 16], ['Argument with a friend', 14], ['Family money worries', 18], ['Too many activities', 14], ['A breakup', 18], ['Sports tryouts', 10], ['A loss or a death', 24], ['Moving to a new school', 16], ['Group chat drama', 10], ['Job and homework', 14], ['Someone is sick at home', 18]];
+  const TAPS = [['Talk to someone you trust', 16], ['Sleep 8 to 10 hours', 14], ['Move your body', 12], ['Time outside', 9], ['Make something: music, art, writing', 9], ['Slow breathing', 7], ['Break a big task into small steps', 9], ['See a counselor or therapist', 20]];
+  const CLOGS = [['Vaping or drinking', 'It numbs stress for a while, then adds more: worse sleep, more anxiety, cravings.'], ['Shutting everyone out', 'Being alone can feel easier, but cutting off support makes the bucket fill faster.'], ['Scrolling late at night', 'It feels like a break but steals sleep, and sleep is one of the biggest taps.']];
+  const B = {s: new Set([0, 1]), t: new Set(), c: new Set(), level: 0, shown: 0};
+  function bucketTarget() {
+    let fill = 0; B.s.forEach(i => fill += STRESS[i][1]);
+    let drain = 0; B.t.forEach(i => drain += TAPS[i][1]);
+    const clog = B.c.size;
+    // clogging habits cut the healthy taps and add stress of their own
+    return Math.max(0, fill + clog * 10 - drain * Math.pow(.75, clog));
+  }
+  function drawBucket() {
+    $('stress').innerHTML = STRESS.map(([n], i) => `<button data-st="${i}" aria-pressed="${B.s.has(i)}">${n}</button>`).join('');
+    $('taps').innerHTML = TAPS.map(([n], i) => `<button data-tp="${i}" aria-pressed="${B.t.has(i)}">${n}</button>`).join('');
+    $('clogs').innerHTML = CLOGS.map(([n], i) => `<button data-cl="${i}" aria-pressed="${B.c.has(i)}">${n}</button>`).join('');
+    const tog = (set, i) => set.has(i) ? set.delete(i) : set.add(i);
+    $('stress').querySelectorAll('button').forEach(b => b.onclick = () => { tog(B.s, +b.dataset.st); SFX.drip(); drawBucket(); });
+    $('taps').querySelectorAll('button').forEach(b => b.onclick = () => { tog(B.t, +b.dataset.tp); SFX.pop(); drawBucket(); });
+    $('clogs').querySelectorAll('button').forEach(b => b.onclick = () => { tog(B.c, +b.dataset.cl); const i = +b.dataset.cl; SFX.soft(); drawBucket(); if (B.c.has(i)) $('bnote').innerHTML = `<p><b>${CLOGS[i][0]}:</b> ${CLOGS[i][1]}</p>`; });
+    animateLevel();
+  }
+  let lvRaf = null;
+  function animateLevel() {
+    const target = bucketTarget();
+    if (lvRaf) cancelAnimationFrame(lvRaf);
+    const from = B.shown, t0 = performance.now(), dur = reduce ? 0 : 900;
+    const step = now => { const u = dur ? Math.min(1, (now - t0) / dur) : 1; B.shown = from + (target - from) * (1 - Math.pow(1 - u, 3)); paintBucket(); if (u < 1) lvRaf = requestAnimationFrame(step); };
+    lvRaf = requestAnimationFrame(step);
+    const pct = Math.round(target);
+    $('level').innerHTML = pct > 100 ? 'Overflowing. Time to reach out for more help.' : pct > 70 ? 'Nearly full. Open some taps.' : pct > 35 ? 'Filling up, but managing.' : 'Plenty of room.';
+    if (!B.c.size) $('bnote').innerHTML = `<p>${pct > 100 ? 'When the bucket overflows, coping on your own isn\'t enough, and that\'s okay. Talk to a trusted adult or a counselor. <button class="b go" id="bhelp" style="margin-top:8px">💬 Get help now</button>' : 'Everyone\'s bucket is a different size, and it can change. The goal isn\'t an empty bucket; it\'s keeping it from overflowing.'}</p>`;
+    if ($('bhelp')) $('bhelp').onclick = openHelp;
+  }
+  function paintBucket() {
+    // inside of the bucket: a trapezoid, narrow at the bottom
+    const top = 168, bot = 468, lvl = Math.min(1.08, B.shown / 100), y = bot - (bot - top) * Math.min(1, lvl);
+    const xAt = yy => { const u = (yy - top) / (bot - top); return [80 + u * 48, 420 - u * 48]; }; // the painted bucket's inside walls
+    const [l, r] = xAt(y);
+    let s = `<defs><linearGradient id="wg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6fb0c4"/><stop offset="1" stop-color="#2d6f86"/></linearGradient></defs>`;
+    if (B.shown > .5) s += `<path d="M${l} ${y} L${r} ${y} L${xAt(bot)[1]} ${bot} L${xAt(bot)[0]} ${bot} Z" fill="url(#wg)" opacity=".72"/>`;
+    if (lvl > 1) s += `<path d="M78 165 q-30 40 -40 150 q-6 90 -10 220" stroke="#6fb0c4" stroke-width="10" fill="none" stroke-linecap="round" opacity=".8"/><path d="M422 165 q30 40 40 150 q6 90 10 220" stroke="#6fb0c4" stroke-width="10" fill="none" stroke-linecap="round" opacity=".8"/>`;
+    // taps along the bottom: open ones pour
+    const open = [...B.t];
+    open.forEach((i, k) => { const x = 160 + k * (180 / Math.max(1, open.length - 1 || 1)); s += `<rect x="${x - 8}" y="452" width="16" height="16" rx="3" fill="#7a8b8f"/><path d="M${x} 468 L${x} 540" stroke="#6fb0c4" stroke-width="6" stroke-linecap="round" opacity="${B.shown > 1 ? .9 : .3}"/>`; });
+    B.c.forEach(i => s += `<text x="250" y="${530 + i * 0}" text-anchor="middle" font-size="16" font-weight="700" fill="#b3563a"></text>`);
+    $('bsvg').innerHTML = s;
+  }
+  // box breathing: 4 in, 4 hold, 4 out, 4 hold, the dot travels around the square
+  let bTimer = null;
+  $('bgo').onclick = () => {
+    if (bTimer) { clearInterval(bTimer); bTimer = null; $('bgo').textContent = '▶ Start'; $('bcue').textContent = 'Breathe in for 4, hold 4, out 4, hold 4.'; $('bdot').style.cssText = ''; return; }
+    $('bgo').textContent = '⏸ Stop';
+    const cues = ['Breathe in', 'Hold', 'Breathe out', 'Hold'];
+    let t = 0;
+    const tick = () => {
+      const side = Math.floor(t / 4) % 4, n = t % 4 + 1, u = (t % 4) / 4;
+      $('bcue').textContent = `${cues[side]}… ${n}`;
+      if (n === 1 && side % 2 === 0) SFX.breath(side === 0);
+      const pos = [[u, 0], [1, u], [1 - u, 1], [0, 1 - u]][side];
+      const dot = $('bdot');
+      dot.style.transition = reduce ? 'none' : 'left 1s linear, top 1s linear';
+      const nxt = [[(t % 4 + 1) / 4, 0], [1, (t % 4 + 1) / 4], [1 - (t % 4 + 1) / 4, 1], [0, 1 - (t % 4 + 1) / 4]][side];
+      const p = reduce ? pos : nxt;
+      dot.style.left = (-13 + p[0] * 110) + 'px'; dot.style.top = (-13 + p[1] * 110) + 'px';
+      t++;
+    };
+    tick(); bTimer = setInterval(tick, 1000);
+  };
+
+  // ---------- modes ----------
+  let mode = 'map';
+  function setMode(m) {
+    mode = m;
+    document.querySelectorAll('[data-mode]').forEach(b => b.setAttribute('aria-pressed', b.dataset.mode === m));
+    $('mapview').hidden = m !== 'map'; $('mythview').hidden = m !== 'myth'; $('friendview').hidden = m !== 'friend'; $('bucketview').hidden = m !== 'bucket';
+    if (m === 'myth' && !MQ) newMyth();
+    if (m === 'friend' && !FR && !$('fside').innerHTML) friendMenu();
+    if (m === 'bucket') drawBucket();
+    if (m !== 'bucket' && bTimer) $('bgo').click();
+  }
+  document.querySelectorAll('[data-mode]').forEach(b => b.onclick = () => { SFX.tap(); setMode(b.dataset.mode); });
+  drawMap(); showC();
+  window.__mind = {setMode, startFriend, C, MYTHS, SCEN, B, drawBucket};
+})();
+</script>
+</body>
+</html>

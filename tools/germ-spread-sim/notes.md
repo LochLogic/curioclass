@@ -1,6 +1,6 @@
 ## A 5-minute start
 
-1. Open **Classroom outbreak**. One student (circled when Germ vision is on) has come to school with cold germs and feels fine.
+1. Open **Classroom outbreak**. One student (the dashed circle; Germ vision starts on) has come to school with cold germs and feels fine.
 2. Ask the class to predict: how many of the 24 will catch the cold in two weeks?
 3. Press **Start 2 weeks** (**Fast** if time is short). Watch the day: desks, story time on the rug, snack, recess. Coughs show as green puffs, and sick students get a 🤒.
 4. When it ends, turn on one habit (try **Cover coughs: Into elbow**) and press **Run again**. The same student brings the same germs, so the comparison is fair. The run list keeps score.
@@ -8,7 +8,7 @@
 ## The two modes
 
 - **Classroom outbreak**: ten school days with 24 students. Germs spread through uncovered coughs, hands (sharing supplies, then touching your face or eating snack), and shared things: the door handle, the pencil sharpener, the crayon bin and the water fountain. Five habits can be switched on: wash hands with soap (rarely, sometimes, always), cover coughs (don't, with hand, into elbow), stay home when sick, wipe shared things every day, and flu shots for half or most of the class.
-- **Wash up**: the five steps of handwashing (wet, soap, scrub, rinse, dry) on a hand covered in germs you can see under a black light, like the glow lotion many classrooms use. Scrubbing counts real seconds toward 20. **Turn hand over** shows the back. At the end the black light shows what was missed. Try it with **water only** to see how much soap matters.
+- **Wash up**: the five steps of handwashing (wet, soap, scrub, rinse, dry) on a hand covered in germs you can see under a black light, like the glow lotion many classrooms use. Scrubbing counts real seconds toward 20. **Turn hand over** shows the back. At the end the black light shows what was missed. **Start over** puts the germs back. Try it with **water only** to see how much soap matters.
 
 ## What the model shows
 

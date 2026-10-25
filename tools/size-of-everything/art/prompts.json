@@ -1,0 +1,295 @@
+{
+  "house_style": "Clean scientific illustration like a plate in a natural history museum or a fine science textbook: realistic forms and colors, crisp detail, soft even studio light, a slight painterly finish. No text, no letters, no labels, no scale bars, no watermark, no border.",
+  "assets": [
+    {
+      "name": "hydrogen",
+      "prompt": "A hydrogen atom as a soft glowing blue electron cloud, a fuzzy sphere densest near the middle, with a tiny bright nucleus point at the very center, like a physics museum model.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 420,
+      "quality": 70
+    },
+    {
+      "name": "dna",
+      "prompt": "A short upright segment of a DNA double helix, two twisting blue and purple backbones with colorful base-pair rungs, glossy molecular model, about three turns tall.",
+      "cutout": true,
+      "aspect": "1:1",
+      "quality": 70,
+      "height": 440
+    },
+    {
+      "name": "virus",
+      "prompt": "A single influenza virus particle, a round sphere covered with short spikes of two kinds, colorized like an electron microscope image in soft teal and orange, seen up close.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 420,
+      "quality": 70
+    },
+    {
+      "name": "bacterium",
+      "prompt": "A single E. coli bacterium, a rounded rod shape lying horizontally with a few long thin wavy flagella trailing behind, colorized like an electron microscope image in soft green and yellow.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 420,
+      "quality": 70,
+      "key": "magenta"
+    },
+    {
+      "name": "bloodcell",
+      "prompt": "A single red blood cell, a round flattened disc with a dimpled middle, seen at a three-quarter angle, deep red and glossy.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 420,
+      "quality": 70
+    },
+    {
+      "name": "pollen",
+      "prompt": "A single sunflower pollen grain, a round ball covered in sharp spikes, colorized like an electron microscope image in warm golden yellow.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 420,
+      "quality": 70
+    },
+    {
+      "name": "hair",
+      "prompt": "A short upright piece of a single human hair seen under a microscope: a brown cylinder with overlapping shingle-like cuticle scales on its surface, cut flat at the top and bottom.",
+      "cutout": true,
+      "aspect": "1:1",
+      "quality": 70,
+      "height": 440
+    },
+    {
+      "name": "mite",
+      "prompt": "A single house dust mite, a plump pale cream eight-legged creature seen from above at an angle, colorized like an electron microscope image.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 420,
+      "quality": 70
+    },
+    {
+      "name": "sand",
+      "prompt": "A single grain of sand, a rounded translucent quartz pebble with tiny facets and pits, warm tan and clear, seen up close.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 420,
+      "quality": 70
+    },
+    {
+      "name": "ant",
+      "prompt": "A single black worker ant seen from the side, walking, all six legs and antennae visible, lying horizontally.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 420,
+      "quality": 70
+    },
+    {
+      "name": "bee",
+      "prompt": "A single honeybee seen from the side with wings slightly open, fuzzy golden and black striped body, lying horizontally.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 420,
+      "quality": 70
+    },
+    {
+      "name": "golfball",
+      "prompt": "A single white golf ball with dimples.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 420,
+      "quality": 70
+    },
+    {
+      "name": "apple",
+      "prompt": "A single shiny red apple with a short stem and one small leaf.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 420,
+      "quality": 70
+    },
+    {
+      "name": "basketball",
+      "prompt": "A single orange basketball.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 420,
+      "quality": 70
+    },
+    {
+      "name": "giraffe",
+      "prompt": "A single adult giraffe standing in full side view, whole body from hooves to horns, head up.",
+      "cutout": true,
+      "aspect": "3:4",
+      "quality": 70,
+      "height": 460
+    },
+    {
+      "name": "bus",
+      "prompt": "A yellow school bus in plain side view, the whole bus visible, no writing on it.",
+      "cutout": true,
+      "aspect": "16:9",
+      "width": 520,
+      "quality": 70
+    },
+    {
+      "name": "whale",
+      "prompt": "A single blue whale in full side view swimming horizontally, the whole body from head to tail flukes visible.",
+      "cutout": true,
+      "aspect": "16:9",
+      "width": 520,
+      "quality": 70
+    },
+    {
+      "name": "liberty",
+      "prompt": "The Statue of Liberty in full on its stone pedestal, from the ground to the torch, front three-quarter view, green copper patina.",
+      "cutout": true,
+      "aspect": "9:16",
+      "quality": 70,
+      "key": "magenta",
+      "height": 460
+    },
+    {
+      "name": "eiffel",
+      "prompt": "The Eiffel Tower in full from the ground to the tip, front view, iron lattice.",
+      "cutout": true,
+      "aspect": "9:16",
+      "quality": 70,
+      "height": 460,
+      "key": "magenta"
+    },
+    {
+      "name": "burj",
+      "prompt": "The Burj Khalifa skyscraper in full from the ground to its tall spire, front view, silver glass.",
+      "cutout": true,
+      "aspect": "9:16",
+      "quality": 70,
+      "height": 460
+    },
+    {
+      "name": "everest",
+      "prompt": "Mount Everest as a single tall snowy pyramid-shaped mountain peak with rocky ridges, the whole mountain from base to summit, seen from the side, nothing around it.",
+      "cutout": true,
+      "aspect": "16:9",
+      "width": 520,
+      "quality": 70
+    },
+    {
+      "name": "hurricane",
+      "prompt": "A hurricane seen from space directly above: a huge white spiral of clouds with a clear round eye in the middle.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 420,
+      "quality": 70,
+      "key": "magenta"
+    },
+    {
+      "name": "moon",
+      "prompt": "The full Moon, gray with craters and dark maria, as a perfect sphere.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 420,
+      "quality": 70,
+      "crop": [
+        0,
+        0.955
+      ]
+    },
+    {
+      "name": "earth",
+      "prompt": "Planet Earth seen from space, a perfect sphere with blue oceans, green and brown continents and white swirling clouds.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 420,
+      "quality": 70,
+      "key": "magenta"
+    },
+    {
+      "name": "jupiter",
+      "prompt": "The planet Jupiter, a perfect sphere with tan, cream and brown cloud bands and the Great Red Spot.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 420,
+      "quality": 70
+    },
+    {
+      "name": "sun",
+      "prompt": "On a pure black background: the Sun as a perfect glowing sphere, bright orange and yellow with a granular surface, a few dark sunspots and small flame-like prominences at the edge, a soft glow around it.",
+      "aspect": "1:1",
+      "width": 460,
+      "quality": 70
+    },
+    {
+      "name": "earthorbit",
+      "prompt": "On a pure black background: a thin softly glowing circular orbit ring seen from slightly above as a wide ellipse, with a tiny bright yellow sun at the center and a tiny blue dot sitting on the ring. Nothing else, no stars.",
+      "aspect": "1:1",
+      "width": 460,
+      "quality": 68
+    },
+    {
+      "name": "solarsystem",
+      "prompt": "On a pure black background: the solar system seen from slightly above, eight thin softly glowing nested orbit rings as wide ellipses around a tiny bright yellow sun, a tiny colored dot on each ring, the outermost ring filling the picture. No stars.",
+      "aspect": "1:1",
+      "width": 460,
+      "quality": 68
+    },
+    {
+      "name": "oort",
+      "prompt": "On a pure black background: a huge faint spherical shell made of countless tiny icy blue-white specks, densest near its edge, with a tiny bright yellow point at its exact center. Nothing else.",
+      "aspect": "1:1",
+      "width": 460,
+      "quality": 68
+    },
+    {
+      "name": "orion",
+      "prompt": "On a pure black background: the Orion Nebula, a glowing cloud of pink, red, teal and gold gas with bright young stars at its heart.",
+      "aspect": "1:1",
+      "width": 460,
+      "quality": 68
+    },
+    {
+      "name": "omegacen",
+      "prompt": "On a pure black background: the globular star cluster Omega Centauri, a round dense ball of countless golden and white stars, packed most tightly at the center.",
+      "aspect": "1:1",
+      "width": 460,
+      "quality": 68
+    },
+    {
+      "name": "lmc",
+      "prompt": "On a pure black background: the Large Magellanic Cloud, an irregular small galaxy with a bright bar of stars, pink star-forming regions and scattered blue-white star clouds.",
+      "aspect": "1:1",
+      "width": 460,
+      "quality": 80,
+      "sd": "On a pure black background: a lumpy, shapeless, irregular patch of thousands of tiny white and blue stars, like a torn cloud, with one short bright straight streak of stars across it and a few glowing pink gas clouds at its edge. No spiral arms, no disk, no round core.",
+      "note": "made by code in the session (local models draw it as a spiral); do not redraw",
+      "skip_local": true
+    },
+    {
+      "name": "milkyway",
+      "prompt": "On a pure black background: a large spiral galaxy like the Milky Way seen face on, a glowing golden central bar and bulge with sweeping blue-white spiral arms dotted with pink nebulae.",
+      "aspect": "1:1",
+      "width": 460,
+      "quality": 68
+    },
+    {
+      "name": "localgroup",
+      "prompt": "On a pure black background: a group of galaxies: two large spiral galaxies far apart, one a bit bigger, with a few dozen tiny fuzzy dwarf galaxies scattered around them.",
+      "aspect": "1:1",
+      "width": 460,
+      "quality": 68
+    },
+    {
+      "name": "laniakea",
+      "prompt": "On a pure black background: a vast cosmic web of thin glowing filaments made of thousands of tiny galaxies, streams flowing together toward one bright dense region.",
+      "aspect": "1:1",
+      "width": 460,
+      "quality": 68
+    },
+    {
+      "name": "universe",
+      "prompt": "On a pure black background: the whole observable universe as a sphere seen from outside: a delicate glowing cosmic web of filaments inside, surrounded by a thin speckled orange and red shell at the edge.",
+      "aspect": "1:1",
+      "width": 460,
+      "quality": 68
+    }
+  ],
+  "sd_style": "realistic, scientific illustration, highly detailed, studio lighting"
+}

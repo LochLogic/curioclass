@@ -1,0 +1,22 @@
+{
+  "id": "size-of-everything",
+  "status": "beta",
+  "driver": "students or teacher",
+  "modes": [
+    "Zoom",
+    "Compare",
+    "Place it",
+    "Write it"
+  ],
+  "grades_label": "Grades 7-9",
+  "third_party": [],
+  "updated": "2026-10-25",
+  "hook": "Zoom through 43 powers of ten, from a proton to the observable universe, past 38 real things drawn to scale. Then compare any two, place things on a power-of-ten line and slide the decimal point.",
+  "outcome": "Read and write very large and very small numbers in scientific notation, compare quantities by how many times larger one is than another, and estimate sizes as a single digit times a power of ten",
+  "minutes": "15-40",
+  "sources": [
+    "Sizes: typical published values (NASA, NIST, encyclopedias), rounded; living things vary and the Oort cloud is an estimate",
+    "Illustrations drawn with FLUX.1-schnell (Apache 2.0) on a local computer, edited for Curio Class",
+    "Sound synthesized in the browser"
+  ]
+}

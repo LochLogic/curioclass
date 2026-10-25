@@ -112,8 +112,8 @@ h1 small{display:block;font:400 14px/1.3 'Segoe UI',sans-serif;color:#cfe9e6}
 .m-sugar .say{left:912px}
 .serv{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:8px}
 .serv .b{min-height:46px;padding:0 13px;font-size:16px}
-.rule{display:flex;align-items:center;gap:0;margin:10px 0 4px;height:34px;border-radius:10px;overflow:hidden;font:800 14px 'Segoe UI',sans-serif}
-.rule div{height:100%;display:grid;place-items:center}
+.rule{display:flex;align-items:stretch;gap:0;margin:10px 0 4px;min-height:44px;border-radius:10px;overflow:hidden;font:800 13px/1.15 'Segoe UI',sans-serif}
+.rule div{display:grid;place-items:center;text-align:center;padding:4px 6px;min-width:0}
 
 /* compare */
 .slots{display:flex;gap:10px}
@@ -410,12 +410,12 @@ h1 small{display:block;font:400 14px/1.3 'Segoe UI',sans-serif;color:#cfe9e6}
     $('info').innerHTML = `<div class="kicker">${f.name}</div>
       <h2>${L ? L.t + ' ' + kind : 'Tap a line on the label'}</h2>
       <p>${L ? L.d(f) : 'Every packaged food in the United States has this same label, so once you can read one, you can read them all. Start at the top: <b>serving size</b> first.'}</p>
+      <button class="b ${RD.tags ? '' : 'teal'}" id="rule" aria-pressed="${RD.tags}" style="margin-top:4px">${RD.tags ? '5/20 rule is on' : 'Show the 5/20 rule'}</button>
+      ${RD.tags ? `<div class="rule" aria-hidden="true"><div style="flex:1 1 0;background:#d8f1df;color:#1d5e33">LOW<br>5% or less</div><div style="flex:1 1 0;background:#f1ecdf;color:#6b5d4f">in<br>between</div><div style="flex:1 1 0;background:#fbd9d2;color:#8e2716">HIGH<br>20% or more</div></div>` : ''}
       <div style="border-top:2px dashed #d8cfbd;margin:12px 0 4px"></div>
       <div class="big">How much will you eat?</div>
       <div class="serv" role="group" aria-label="Servings eaten">${opts.map(v => `<button class="b" data-n="${v}" aria-pressed="${v === n}">${v === .5 ? '½' : v} serving${v === 1 || v === .5 ? '' : 's'}${v === f.spc && f.spc > 1 ? ' (whole bag)' : ''}</button>`).join('')}</div>
-      <p style="font-size:16px;color:var(--muted)">${n === 1 ? 'Pick more than 1 to see the label add a column for what you really eat.' : `The yellow column shows ${n === .5 ? 'half a serving' : n + ' servings'}. Everything ${n > 1 ? 'grows' : 'shrinks'}, even the parts you might forget, like sodium.`}</p>
-      <button class="b ${RD.tags ? '' : 'teal'}" id="rule" aria-pressed="${RD.tags}" style="margin-top:4px">${RD.tags ? '5/20 rule is on' : 'Show the 5/20 rule'}</button>
-      ${RD.tags ? `<div class="rule" aria-hidden="true"><div style="width:20%;background:#d8f1df;color:#1d5e33">LOW 5% or less</div><div style="width:45%;background:#f1ecdf;color:#6b5d4f">in between</div><div style="width:35%;background:#fbd9d2;color:#8e2716">HIGH 20% or more</div></div>` : ''}`;
+      <p style="font-size:16px;color:var(--muted)">${n === 1 ? 'Pick more than 1 to see the label add a column for what you really eat.' : `The yellow column shows ${n === .5 ? 'half a serving' : n + ' servings'}. Everything ${n > 1 ? 'grows' : 'shrinks'}, even the parts you might forget, like sodium.`}</p>`;
     document.querySelectorAll('[data-n]').forEach(b => b.onclick = () => { RD.n = +b.dataset.n; SFX.tap(); renderRead();
       const s = amt(f, 'sod', RD.n), c = amt(f, 'cal', RD.n);
       say(RD.n === 1 ? 'Back to one serving.' : `${RD.n === .5 ? 'Half a serving' : RD.n + ' servings'}: <b>${c} calories</b> and <b>${s}mg sodium</b>. ${RD.n > 1 ? 'That is why serving size is the first clue!' : ''}`); });
@@ -499,7 +499,7 @@ h1 small{display:block;font:400 14px/1.3 'Segoe UI',sans-serif;color:#cfe9e6}
       <rect x="${cx - 128}" y="272" width="256" height="26" rx="10" fill="#c9a36b" stroke="#8a6a3d" stroke-width="3"/>
       ${SG.shown ? `<line x1="${cx - 166}" x2="${cx + 166}" y1="${kidLine}" y2="${kidLine}" stroke="#c2402c" stroke-width="4" stroke-dasharray="12 8"/>
       <g transform="translate(${cx - 190} 200)"><rect width="380" height="58" rx="14" fill="#fffdf7" opacity=".95"/><line x1="16" x2="70" y1="29" y2="29" stroke="#c2402c" stroke-width="4" stroke-dasharray="12 8"/>
-      <text x="82" y="24" font-family="Segoe UI,sans-serif" font-weight="800" font-size="16" fill="#1f2328">A kid's limit for a WHOLE day:</text><text x="82" y="44" font-family="Segoe UI,sans-serif" font-weight="600" font-size="15" fill="#5f6670">less than 25g of added sugar (AHA)</text></g>` : ''}
+      <text x="82" y="24" font-family="Segoe UI,sans-serif" font-weight="800" font-size="16" fill="#1f2328">A kid's limit for a WHOLE day:</text><text x="82" y="44" font-family="Segoe UI,sans-serif" font-weight="600" font-size="15" fill="#5f6670">less than 25 g of added sugar</text></g>` : ''}
       </svg>`;
     if (animate && SG.shown) {
       document.querySelectorAll('#cubes .cg').forEach((g, i) => {

@@ -1,0 +1,25 @@
+{
+  "id": "mind-map",
+  "status": "beta",
+  "driver": "students or teacher",
+  "modes": [
+    "The map",
+    "Myth or fact",
+    "Help a friend",
+    "Stress bucket"
+  ],
+  "grades_label": "Grades 9-12",
+  "third_party": [],
+  "updated": "2026-10-25",
+  "hook": "A map of mental health: what eight common conditions are and are not, how common they are and what helps. Then twelve myths and facts, two practice conversations for helping a friend, and a stress bucket.",
+  "outcome": "Describe common mental health conditions and the mental health continuum, correct myths that feed stigma, practice noticing, asking, listening and connecting a friend to help, and identify healthy and unhealthy ways to manage stress",
+  "minutes": "20-45",
+  "sources": [
+    "NIMH, National Comorbidity Survey Adolescent Supplement",
+    "SAMHSA, National Survey on Drug Use and Health 2024",
+    "CDC, ADHD data from the 2022 National Survey of Children's Health",
+    "Crisis lines (988, Crisis Text Line, The Trevor Project, Teen Line, SAMHSA Helpline) checked October 2026",
+    "Illustrations drawn with FLUX.1-schnell (Apache 2.0) on a local computer, edited for Curio Class",
+    "Sound synthesized in the browser"
+  ]
+}

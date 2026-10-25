@@ -48,3 +48,14 @@ Generated art is credited in each tool's `tool.json` sources as "Illustrations g
 
 - `"json:<name>"` in src.html is replaced by `tools/<id>/<name>.json` at bundle time (map paths, state shapes). `scripts/na_map.py` builds the North America map used by Nations of North America and Me on the Map.
 - `"voice:*"` is replaced by the tool's recorded lines from `scripts/voice.py` (see POLISH.md, Sound and voice). Raw speech is kept in `voice/raw/` (not committed), so `--reencode` is free.
+
+## Local art (no API)
+
+When Gemini is unavailable (no credits) or for large batches, `scripts/localart.py` draws on this PC with FLUX.1-schnell (Apache 2.0) in KoboldCpp. Start `S:\AI\Start-FluxModel.bat` first (port 5002, about 10 s an image on the RTX 5080; `--sdoffloadcpu` is what makes the 16 GB card fast enough).
+
+- `python scripts/localart.py <tool-id> [names] [--n 3]` draws candidates to `art/raw/<name>.c<k>.png` plus a contact sheet `_sheet-<name>.jpg`. Look at every candidate.
+- `python scripts/localart.py <tool-id> --pick name:2 ...` keys the backdrop flat (FLUX paints shaded backdrops and cast shadows), then runs `art.py --rekey` for the cutout and sizing.
+- Same prompts.json. `"sd"` replaces an asset's prompt for this model only. Leave hex codes out: FLUX paints "#00FF00" as text. Green or yellow-green subjects need `"key": "magenta"`.
+- Space and glowing objects work best painted "on a pure black background" without a cutout and shown with `mix-blend-mode: screen`; the pick step crushes near-black to true black.
+- **Never draw people with a local model.** An earlier Pony SDXL model drew a 13-year-old in underwear despite every safety setting; it is not used for Curio Class at all. People come from Gemini with review, or are plain silhouettes.
+- Credit it in the tool's comment and tool.json sources: "Illustrations drawn with FLUX.1-schnell (Apache 2.0) on a local computer, edited for Curio Class".

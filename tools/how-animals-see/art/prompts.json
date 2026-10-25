@@ -1,0 +1,173 @@
+{
+  "house_style": "Painterly realistic nature illustration, like a painting in a nature documentary or a natural history museum: believable light, rich natural detail and color, soft edges. No text, no letters, no watermark, no border.",
+  "assets": [
+    {
+      "name": "meadow",
+      "prompt": "A sunny summer meadow seen from low down at the eye level of a small animal. The lower half is open short green grass and clover with a few small clumps, leaving lots of open space. In the middle distance a wooden rail fence, tall grass and a few shrubs, then a line of leafy trees, rolling hills and a blue sky with soft white clouds. No flowers in the foreground, no animals, no people.",
+      "aspect": "16:9",
+      "size": "2K",
+      "width": 1600,
+      "quality": 72
+    },
+    {
+      "name": "susan",
+      "prompt": "A single black-eyed Susan flower head facing the viewer, bright golden yellow petals around a dark brown center, with a short green stem.",
+      "cutout": true,
+      "aspect": "1:1",
+      "quality": 72,
+      "key": "magenta",
+      "width": 300
+    },
+    {
+      "name": "marigold",
+      "prompt": "A single marsh marigold flower facing the viewer, five glossy buttery yellow petals with a yellow center, a short green stem.",
+      "cutout": true,
+      "aspect": "1:1",
+      "quality": 72,
+      "key": "magenta",
+      "width": 300
+    },
+    {
+      "name": "primrose",
+      "prompt": "A single evening primrose flower facing the viewer, four broad pale lemon yellow petals, a short green stem.",
+      "cutout": true,
+      "aspect": "1:1",
+      "quality": 72,
+      "key": "magenta",
+      "width": 300
+    },
+    {
+      "name": "sunflower",
+      "prompt": "A single tall sunflower plant with a big flower head facing the viewer, golden petals around a brown center, a green stalk and a few big leaves.",
+      "cutout": true,
+      "aspect": "9:16",
+      "quality": 72,
+      "key": "magenta",
+      "height": 520
+    },
+    {
+      "name": "cornflower",
+      "prompt": "A single blue cornflower bloom facing the viewer, ragged bright blue petals, a short green stem.",
+      "cutout": true,
+      "aspect": "1:1",
+      "quality": 72,
+      "key": "magenta",
+      "width": 300
+    },
+    {
+      "name": "redball",
+      "prompt": "A single bright red rubber dog ball.",
+      "cutout": true,
+      "aspect": "1:1",
+      "quality": 72,
+      "width": 300
+    },
+    {
+      "name": "blueball",
+      "prompt": "A single bright blue rubber dog ball.",
+      "cutout": true,
+      "aspect": "1:1",
+      "quality": 72,
+      "width": 300,
+      "shadow": "dark"
+    },
+    {
+      "name": "yellowball",
+      "prompt": "A single bright yellow tennis ball.",
+      "cutout": true,
+      "aspect": "1:1",
+      "quality": 72,
+      "width": 300,
+      "shadow": "dark"
+    },
+    {
+      "name": "rabbit",
+      "prompt": "A wild cottontail rabbit sitting still in side view, ears up.",
+      "cutout": true,
+      "aspect": "1:1",
+      "quality": 72,
+      "width": 300
+    },
+    {
+      "name": "mouse",
+      "prompt": "A small brown field mouse sitting up in side view, long tail curled behind.",
+      "cutout": true,
+      "aspect": "1:1",
+      "quality": 72,
+      "width": 300
+    },
+    {
+      "name": "toad",
+      "prompt": "A brown warty American toad sitting in side view.",
+      "cutout": true,
+      "aspect": "1:1",
+      "quality": 72,
+      "width": 300
+    },
+    {
+      "name": "bee",
+      "prompt": "A honeybee head and front body seen close up from the front at a slight angle, big dark compound eyes, fuzzy golden hair, antennae.",
+      "cutout": true,
+      "aspect": "1:1",
+      "quality": 72,
+      "width": 360
+    },
+    {
+      "name": "dog",
+      "prompt": "A friendly golden retriever dog head and shoulders portrait, facing forward at a slight angle.",
+      "cutout": true,
+      "aspect": "1:1",
+      "quality": 72,
+      "width": 360
+    },
+    {
+      "name": "owl",
+      "prompt": "A great horned owl head and shoulders portrait facing forward, big round yellow eyes, ear tufts.",
+      "cutout": true,
+      "aspect": "1:1",
+      "quality": 72,
+      "width": 360
+    },
+    {
+      "name": "snake",
+      "prompt": "A timber rattlesnake head close up facing forward at a slight angle, showing the small heat-sensing pit between the nostril and the eye.",
+      "cutout": true,
+      "aspect": "1:1",
+      "quality": 72,
+      "width": 360
+    },
+    {
+      "name": "eagle",
+      "prompt": "A bald eagle head and shoulders portrait facing forward at a slight angle, sharp yellow eyes and beak.",
+      "cutout": true,
+      "aspect": "1:1",
+      "quality": 72,
+      "width": 360
+    },
+    {
+      "name": "horse",
+      "prompt": "A brown horse head and neck portrait seen from the front at a slight angle, large eyes on the sides of its head.",
+      "cutout": true,
+      "aspect": "1:1",
+      "quality": 72,
+      "width": 360
+    },
+    {
+      "name": "fox",
+      "prompt": "A red fox sneaking low in side view, walking carefully, bushy tail out behind.",
+      "cutout": true,
+      "aspect": "16:9",
+      "width": 320,
+      "quality": 72
+    },
+    {
+      "name": "rabbithead",
+      "prompt": "A wild cottontail rabbit head portrait seen from the front at a slight angle, big eyes on the sides of its head, ears up.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 360,
+      "quality": 72
+    }
+  ],
+  "sd_style": "painterly realistic nature painting, wildlife art, highly detailed, natural light"
+}

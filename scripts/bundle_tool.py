@@ -2,9 +2,11 @@
 
     python scripts/bundle_tool.py [tool-id ...]     (no ids = every tool with a src.html)
 
+CURIO_DRAFT=1 stands in a labeled circle for art that isn't painted yet (never deploy a draft build).
+
 Write and edit tools/<id>/src.html; tools/<id>/<id>.html is generated and stays one offline file.
 """
-import base64, re, sys
+import base64, os, re, sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -18,11 +20,16 @@ def bundle(folder):
 
     def data_uri(m):
         f = folder / 'art' / f'{m.group(1)}.webp'
+        if not f.exists() and os.environ.get('CURIO_DRAFT'):  # draft build: a labeled stand-in until the art is painted
+            svg = (f'<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400"><circle cx="200" cy="200" r="190" fill="#9aa7b4" '
+                   f'stroke="#fff" stroke-width="6" stroke-dasharray="18 12"/><text x="200" y="215" font-size="46" text-anchor="middle" '
+                   f'font-family="sans-serif" fill="#fff">{m.group(1)}</text></svg>')
+            return 'data:image/svg+xml;base64,' + base64.b64encode(svg.encode()).decode()
         if not f.exists():
             raise FileNotFoundError(f'{folder.name}: missing art/{f.name} (run scripts/art.py {folder.name})')
         return 'data:image/webp;base64,' + base64.b64encode(f.read_bytes()).decode()
 
-    out = re.sub(r'art:([a-z0-9-]+)', data_uri, html)
+    out = re.sub(r'(?<![\w-])art:([a-z0-9-]+)', data_uri, html)  # a whole token, so a CSS .part:hover is left alone
     # data files: the token "json:<name>" becomes the contents of tools/<id>/<name>.json
     out = re.sub(r'"json:([a-z0-9-]+)"', lambda m: (folder / f'{m.group(1)}.json').read_text(encoding='utf-8').strip(), out)
     if '"voice:*"' in out:  # recorded speech from scripts/voice.py, keyed by the exact line text

@@ -1,0 +1,712 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Size of Everything · Exponents and scientific notation · Curio Class</title>
+<meta name="description" content="Zoom from a proton to the observable universe through 42 powers of ten, comparing 39 real things in scientific notation. Compare any two sizes, place things on a power-of-ten line, and slide the decimal point to write numbers in scientific notation.">
+<!--
+SIZE OF EVERYTHING (Curio Class)
+Math, grade 8, Common Core 8.EE.A (integer exponents, scientific notation, estimating how many times larger,
+operations with numbers in scientific notation). Module "Exponents, Roots and Scientific Notation".
+Zoom: one slider through 43 powers of ten, from a proton (about 10^-15 m) to the observable universe (about 10^27 m),
+with 39 real things drawn to scale side by side, each with its size in scientific notation, standard form and units.
+Compare: any two things; how many times bigger, worked as (a / b) x 10^(m - n), plus a single-digit estimate.
+Place it: put a thing on a power-of-ten line; stars for landing within one or two powers.
+Write it: slide the decimal point between standard form and scientific notation and watch the exponent count the hops.
+Sizes are typical published values (NASA, NIST, encyclopedias), rounded; living things vary. Oort cloud size is an estimate.
+Illustrations generated with Google Gemini, edited for Curio Class. Sound synthesized in the browser.
+One file, no network requests. Content CC BY 4.0, code MIT. curioclass.org
+-->
+<style>
+:root{
+  --paper:#f3efe6;--ink:#1b1f27;--muted:#5d6472;--focus:#2f5bd3;--brand:#26365c;--gold:#f2b632;--card:#fffdf8;--accent:#c4472c;
+  font-family:'Segoe UI',system-ui,-apple-system,Roboto,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0;height:100%}
+body{background:var(--paper);color:var(--ink);display:grid;grid-template-rows:auto 1fr;min-height:100vh}
+button,select{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:4px solid var(--focus);outline-offset:3px}
+header{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:10px 20px;background:var(--brand);color:#eef2ff}
+h1{margin:0 auto 0 0;font:800 clamp(22px,2.8vw,32px)/1.1 Georgia,'Times New Roman',serif}
+h1 small{display:block;font:400 14px/1.3 'Segoe UI',sans-serif;color:#c3cbe3}
+.icon-btn{border:1px solid #5b6c97;background:#34477a;color:#fff;border-radius:999px;min-height:46px;padding:0 16px;font-weight:700;font-size:15px}
+.icon-btn[aria-pressed="false"]{background:#18233f}
+sup{font-size:.62em;line-height:0}
+
+.stagewrap{position:relative;overflow:hidden;min-height:0;background:#11151d}
+.scene{position:absolute;left:50%;top:50%;width:1440px;height:810px;transform:translate(-50%,-50%) scale(var(--s,1));overflow:hidden;background:#0d1118}
+.top{position:absolute;left:14px;right:14px;top:12px;display:flex;align-items:center;gap:12px;z-index:20}
+.tabs{display:inline-flex;border-radius:999px;overflow:hidden;background:#fffdf8f2;box-shadow:0 3px 0 #0003}
+.tabs button{border:0;background:transparent;min-height:52px;padding:0 20px;font:800 18px 'Segoe UI',sans-serif;color:var(--muted)}
+.tabs button[aria-pressed="true"]{background:var(--brand);color:#fff}
+.b{border:0;border-radius:14px;min-height:50px;padding:0 16px;font:800 17px 'Segoe UI',sans-serif;background:#fffdf8;color:var(--ink);box-shadow:0 4px 0 #0003;white-space:nowrap}
+.b:active{transform:translateY(3px);box-shadow:0 1px 0 #0003}
+.b.go{background:var(--accent);color:#fff;box-shadow:0 4px 0 #85281a}
+.b.navy{background:var(--brand);color:#fff;box-shadow:0 4px 0 #111a30}
+.b[aria-pressed="true"]{background:var(--gold);color:#3a2a00}
+.b:disabled{opacity:.45;cursor:default}
+.card{background:#fffdf8f4;border-radius:18px;box-shadow:0 6px 18px #0003;padding:14px 18px}
+.kicker{font:800 13px 'Segoe UI',sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.card h2{margin:2px 0 6px;font:800 26px/1.15 Georgia,serif}
+.card p{margin:6px 0;font:500 16px/1.4 'Segoe UI',sans-serif}
+.sci{font:700 30px/1.2 Georgia,serif;color:var(--brand)}
+.std{font:600 15px/1.3 Consolas,'Courier New',monospace;color:#3d4452;word-break:break-all}
+
+/* zoom world */
+.world{position:absolute;left:0;top:0;width:1440px;height:640px;overflow:hidden}
+.sky{position:absolute;inset:0}
+#stars{position:absolute;inset:0;pointer-events:none}
+.ground{position:absolute;left:0;right:0;top:600px;height:40px}
+.obj{position:absolute;left:0;top:0;transform-origin:0 0}
+.obj img{display:block;width:100%;height:100%;pointer-events:none;user-select:none}
+.obj.glow{mix-blend-mode:screen}
+.lab{position:absolute;transform:translateX(-50%);text-align:center;font:700 15px/1.2 'Segoe UI',sans-serif;white-space:nowrap;pointer-events:none;text-shadow:0 1px 2px #0008,0 0 6px #0006;color:#fff}
+.lab b{display:block;font:700 14px Georgia,serif;color:#ffe08a}
+.readout{position:absolute;left:18px;top:128px;width:400px;z-index:5}
+.gapnote{position:absolute;left:50%;top:260px;transform:translateX(-50%);width:560px;text-align:center;color:#e4ebff;font:600 19px/1.4 'Segoe UI',sans-serif;opacity:0;transition:opacity .4s;pointer-events:none}
+.gapnote.show{opacity:1}
+.bar{position:absolute;left:30px;top:92px;color:#fff;font:700 15px 'Segoe UI',sans-serif;text-shadow:0 1px 3px #000a;pointer-events:none}
+.bar i{display:block;height:8px;border:3px solid #fff;border-top:0;margin-bottom:4px;box-shadow:0 2px 2px #0006}
+.dock{position:absolute;left:0;right:0;top:640px;bottom:0;background:#fffdf8;display:grid;grid-template-columns:auto 1fr auto;gap:16px;align-items:center;padding:0 22px;box-shadow:0 -4px 14px #0003}
+.slider{position:relative;height:110px}
+.slider input{position:absolute;left:0;right:0;top:20px;width:100%;height:40px;margin:0;opacity:0;cursor:pointer;z-index:2}
+.track{position:absolute;left:0;right:0;top:36px;height:10px;border-radius:5px;background:linear-gradient(90deg,#1d3b46,#4c7d8f 30%,#9bc4e0 45%,#c7dceb 58%,#3f5f9a 70%,#0b1120)}
+.thumb{position:absolute;top:22px;width:38px;height:38px;margin-left:-19px;border-radius:50%;background:var(--gold);border:4px solid #fff;box-shadow:0 3px 6px #0005;pointer-events:none}
+.ticks{position:absolute;left:0;right:0;top:56px;height:50px;font:600 13px Georgia,serif;color:var(--muted)}
+.ticks span{position:absolute;transform:translateX(-50%);top:8px}
+.ticks i{position:absolute;top:0;width:2px;height:7px;background:#b9b2a2;margin-left:-1px}
+.ticks i.big{height:12px;background:#7a7364}
+.ticks em{position:absolute;transform:translateX(-50%);top:28px;font:700 12px 'Segoe UI',sans-serif;font-style:normal;color:#8b8474;white-space:nowrap}
+.zbtns{display:flex;flex-direction:column;gap:8px}
+
+/* compare */
+.cmp{position:absolute;inset:0;background:linear-gradient(#e9e2d1,#f3efe6)}
+.cstage{position:absolute;left:20px;top:80px;width:880px;height:560px;border-radius:20px;overflow:hidden}
+.cside{position:absolute;right:20px;top:80px;width:500px;display:flex;flex-direction:column;gap:12px}
+.pick{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pick button{display:flex;align-items:center;gap:10px;text-align:left;border:3px solid transparent;border-radius:14px;background:#fffdf8;min-height:64px;padding:6px 10px;box-shadow:0 3px 0 #0002;font:700 16px 'Segoe UI',sans-serif}
+.pick button img{width:46px;height:46px;object-fit:contain}
+.pick button small{display:block;font:600 13px Georgia,serif;color:var(--muted)}
+.chooser{position:absolute;left:20px;top:80px;width:880px;height:560px;background:#fffdf8;border-radius:20px;box-shadow:0 10px 30px #0006;padding:14px;z-index:15;display:grid;grid-template-columns:repeat(7,1fr);gap:8px;align-content:start;overflow:auto}
+.chooser button{border:0;border-radius:12px;background:#f1ece0;padding:6px 4px;font:700 13px/1.15 'Segoe UI',sans-serif;min-height:96px;display:flex;flex-direction:column;align-items:center;gap:4px}
+.chooser button img{width:52px;height:52px;object-fit:contain}
+.chooser button.on{background:var(--gold)}
+.chooser h3{grid-column:1/-1;margin:2px 4px 6px;font:800 20px Georgia,serif}
+.math{font:600 19px/1.6 Georgia,serif}
+.math .eq{font:700 24px Georgia,serif;color:var(--brand)}
+.inset{position:absolute;border:4px solid #ffe08a;border-radius:50%;background:radial-gradient(#fffdf8,#dcd5c3);overflow:hidden;box-shadow:0 0 0 4px #0006}
+.inset img{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);max-width:70%;max-height:70%}
+.leader{position:absolute;height:3px;background:#ffe08a;transform-origin:0 50%}
+.cl{position:absolute;color:#fff;font:700 16px 'Segoe UI',sans-serif;text-shadow:0 1px 3px #000c;text-align:center;transform:translateX(-50%);white-space:nowrap}
+
+/* place it */
+.place{position:absolute;inset:0;background:linear-gradient(#e9e2d1,#f3efe6)}
+.pcard{position:absolute;left:50%;top:80px;transform:translateX(-50%);width:760px;display:grid;grid-template-columns:220px 1fr;gap:20px;align-items:center}
+.pcard .pic{width:220px;height:220px;display:grid;place-items:center;border-radius:18px;background:radial-gradient(#3a4660,#141a26)}
+.pcard .pic img{max-width:88%;max-height:88%}
+.line{position:absolute;left:70px;right:70px;top:470px;height:150px}
+.line .axis{position:absolute;left:0;right:0;top:60px;height:6px;border-radius:3px;background:linear-gradient(90deg,#1d3b46,#4c7d8f 30%,#9bc4e0 45%,#c7dceb 58%,#3f5f9a 70%,#0b1120)}
+.line .tk{position:absolute;top:52px;width:2px;height:22px;background:#6f6857;margin-left:-1px}
+.line .tl{position:absolute;top:80px;transform:translateX(-50%);font:600 14px Georgia,serif;color:#4a4436}
+.line .lm{position:absolute;top:0;transform:translateX(-50%);text-align:center;font:700 12px 'Segoe UI',sans-serif;color:#4a4436}
+.line .lm img{width:34px;height:34px;object-fit:contain;display:block;margin:0 auto 2px}
+.pin{position:absolute;top:20px;width:44px;height:64px;margin-left:-22px;cursor:grab;touch-action:none;z-index:3}
+.pin svg{width:44px;height:64px}
+.truth{position:absolute;top:96px;transform:translateX(-50%);text-align:center;font:800 15px 'Segoe UI',sans-serif;color:#1e6b3a;white-space:nowrap}
+.truth i{display:block;width:4px;height:26px;margin:0 auto 2px;background:#2e8b4f}
+.hitzone{position:absolute;top:56px;height:14px;background:#2e8b4f44;border-radius:7px}
+.pmsg{position:absolute;left:50%;top:345px;transform:translateX(-50%);width:900px;text-align:center;font:600 19px/1.4 'Segoe UI',sans-serif}
+.stars{font-size:30px;letter-spacing:4px}
+
+/* write it */
+.write{position:absolute;inset:0;background:linear-gradient(#e3e8ef,#f3efe6)}
+.wtop{position:absolute;left:50%;top:84px;transform:translateX(-50%);width:900px;display:grid;grid-template-columns:150px 1fr;gap:20px;align-items:center}
+.wtop .pic{width:150px;height:150px;display:grid;place-items:center;border-radius:18px;background:radial-gradient(#3a4660,#141a26)}
+.wtop .pic img{max-width:86%;max-height:86%}
+.digits{position:absolute;left:50%;top:330px;transform:translateX(-50%);display:flex;align-items:flex-end;gap:4px;font:700 60px/1 Georgia,serif}
+.digits .d{width:50px;height:84px;display:grid;place-items:center;background:#fffdf8;border-radius:10px;box-shadow:0 3px 0 #0002}
+.digits .d.z{color:#9a927f}
+.digits .pt{width:20px;height:84px;display:grid;place-items:end center;padding-bottom:4px;color:var(--accent);font-size:64px}
+.digits .x{margin-left:18px;align-self:center;font-size:44px;color:var(--brand);white-space:nowrap}
+.wctl{position:absolute;left:50%;top:470px;transform:translateX(-50%);display:flex;gap:12px}
+.wmsg{position:absolute;left:50%;top:560px;transform:translateX(-50%);width:900px;text-align:center;font:600 19px/1.45 'Segoe UI',sans-serif}
+.hops{position:absolute;left:50%;top:268px;transform:translateX(-50%);font:700 17px 'Segoe UI',sans-serif;color:var(--muted)}
+.prog{display:flex;gap:6px}
+.prog i{width:16px;height:16px;border-radius:50%;background:#d6cfbf}
+.prog i.ok{background:#2e8b4f}.prog i.meh{background:var(--gold)}.prog i.now{outline:3px solid var(--brand)}
+</style>
+</head>
+<body>
+<header>
+  <h1>Size of Everything <small>From a proton to the whole visible universe, in powers of ten.</small></h1>
+  <button class="icon-btn" id="motion" aria-pressed="true" title="Turn animation on or off">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+</header>
+<div class="stagewrap" id="stagewrap">
+  <div class="scene" id="scene">
+    <div class="top">
+      <div class="tabs" role="group" aria-label="Mode">
+        <button data-mode="zoom" aria-pressed="true">🔭 Zoom</button>
+        <button data-mode="cmp" aria-pressed="false">⚖️ Compare</button>
+        <button data-mode="place" aria-pressed="false">📍 Place it</button>
+        <button data-mode="write" aria-pressed="false">✏️ Write it</button>
+      </div>
+    </div>
+
+    <div id="zoomview">
+      <div class="world" id="world" aria-label="Things drawn to scale. Use the slider, the arrow keys or the mouse wheel to zoom.">
+        <div class="sky" id="sky"></div>
+        <canvas id="stars" width="1440" height="640"></canvas>
+        <div class="ground" id="ground"></div>
+        <div id="objs"></div>
+        <div id="labs"></div>
+        <div class="gapnote" id="gapnote"></div>
+        <div class="bar" id="bar"><i></i><span></span></div>
+      </div>
+      <div class="readout card" id="readout" aria-live="polite"></div>
+      <div class="dock">
+        <div class="zbtns">
+          <button class="b navy" id="zin" title="Zoom in one power of ten (minus key)">÷10 Smaller</button>
+          <button class="b navy" id="zout" title="Zoom out one power of ten (plus key)">×10 Bigger</button>
+        </div>
+        <div class="slider">
+          <input type="range" id="zr" min="-15.6" max="27.6" step="0.01" aria-label="Screen width, power of ten in meters">
+          <div class="track"></div><div class="ticks" id="ticks"></div><div class="thumb" id="thumb"></div>
+        </div>
+        <div class="zbtns">
+          <button class="b go" id="tour">▶ Tour</button>
+          <div style="font:700 14px 'Segoe UI',sans-serif;color:var(--muted);text-align:center" id="wide">Screen width</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="cmpview" class="cmp" hidden>
+      <div class="cstage" id="cstage"></div>
+      <div class="chooser" id="chooser" hidden></div>
+      <div class="cside">
+        <div class="pick"><button id="pa"></button><button id="pb"></button></div>
+        <div class="card"><div class="math" id="math"></div></div>
+        <div style="display:flex;gap:10px"><button class="b" id="swap">⇄ Swap</button><button class="b" id="rand">🎲 Surprise pair</button></div>
+      </div>
+    </div>
+
+    <div id="placeview" class="place" hidden>
+      <div class="pcard"><div class="pic" id="ppic"></div><div class="card" id="ptext"></div></div>
+      <div class="pmsg" id="pmsg"></div>
+      <div class="line" id="pline"></div>
+      <div style="position:absolute;left:70px;right:70px;top:650px;display:flex;justify-content:space-between;align-items:center">
+        <div class="prog" id="pprog"></div>
+        <div style="display:flex;gap:10px"><button class="b" id="phint">💡 Hint</button><button class="b go" id="pgo">Place it here</button></div>
+      </div>
+    </div>
+
+    <div id="writeview" class="write" hidden>
+      <div class="wtop"><div class="pic" id="wpic"></div><div class="card" id="wtext"></div></div>
+      <div class="hops" id="hops"></div>
+      <div class="digits" id="digits" aria-live="polite"></div>
+      <div class="wctl">
+        <button class="b navy" id="wl">◀ Move point left</button>
+        <button class="b navy" id="wr">Move point right ▶</button>
+        <button class="b go" id="wcheck">Check</button>
+      </div>
+      <div class="wmsg" id="wmsg"></div>
+      <div style="position:absolute;left:70px;right:70px;top:700px;display:flex;justify-content:space-between;align-items:center">
+        <div class="prog" id="wprog"></div>
+        <button class="b" id="wnext" hidden>Next ▶</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  let reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  try { const m = localStorage.getItem('curio-motion'); if (m) reduce = m === 'calm'; } catch {}
+  function showMotion() {
+    document.body.classList.toggle('calm', reduce);
+    $('motion').setAttribute('aria-pressed', !reduce);
+    $('motion').textContent = reduce ? '⏸ Motion' : '✨ Motion';
+  }
+  showMotion();
+  $('motion').onclick = () => { reduce = !reduce; try { localStorage.setItem('curio-motion', reduce ? 'calm' : 'on'); } catch {} showMotion(); };
+  const fit = () => { const r = $('stagewrap').getBoundingClientRect(); $('scene').style.setProperty('--s', Math.min(r.width / 1440, r.height / 810)); };
+  new ResizeObserver(fit).observe($('stagewrap'));
+
+  // ---------- sound ----------
+  let ac = null, soundOn = true;
+  $('sound').onclick = () => { soundOn = !soundOn; $('sound').setAttribute('aria-pressed', soundOn); $('sound').textContent = soundOn ? '🔔 Sound' : '🔕 Sound'; };
+  function ctx() { if (!ac) { try { ac = new (window.AudioContext || window.webkitAudioContext)(); } catch { return null; } } if (ac.state === 'suspended') ac.resume(); return ac; }
+  function tone(f, at, dur, {type = 'triangle', gain = .12, slide = 0} = {}) {
+    const c = soundOn && ctx(); if (!c) return;
+    const t = c.currentTime + at, o = c.createOscillator(), g = c.createGain();
+    o.type = type; o.frequency.setValueAtTime(f, t); if (slide) o.frequency.exponentialRampToValueAtTime(f * slide, t + dur);
+    g.gain.setValueAtTime(.0001, t); g.gain.exponentialRampToValueAtTime(gain, t + .01); g.gain.exponentialRampToValueAtTime(.0001, t + dur);
+    o.connect(g).connect(c.destination); o.start(t); o.stop(t + dur + .05);
+  }
+  let lastTick = 0;
+  const SFX = {
+    tap: () => tone(660, 0, .08, {type: 'sine', gain: .08}),
+    // one soft tick each time the view passes a power of ten, higher when small, lower when big
+    tick: z => { const now = performance.now(); if (now - lastTick < 60) return; lastTick = now; tone(880 * Math.pow(2, -(z + 15) / 18), 0, .09, {type: 'sine', gain: .05}); },
+    whoosh: up => tone(up ? 300 : 900, 0, .35, {type: 'sine', gain: .06, slide: up ? 3 : 1 / 3}),
+    good: () => [523, 659, 784, 1047].forEach((f, i) => tone(f, i * .09, .4)),
+    ok: () => [523, 659].forEach((f, i) => tone(f, i * .1, .35)),
+    miss: () => tone(330, 0, .35, {gain: .08, slide: .75}),
+    click: () => tone(1200, 0, .04, {type: 'square', gain: .03})
+  };
+
+  // ---------- the things ----------
+  // [id, name, coefficient, exponent (meters), what is measured, upright?, fact, glow (painted on black)]
+  const RAW = [
+    ['proton', 'Proton', 1.7, -15, 'across', 0, 'Protons sit in the center of every atom. About 60,000 of them in a row would reach across one hydrogen atom.'],
+    ['hydrogen', 'Hydrogen atom', 1.06, -10, 'across', 0, 'The smallest atom: one proton and one electron. Almost all of it is empty space.'],
+    ['water', 'Water molecule', 2.8, -10, 'across', 0, 'One drop of water holds more than 10<sup>21</sup> of these molecules.'],
+    ['dna', 'DNA strand', 2, -9, 'wide', 0, 'Only 2 nanometers wide, but the DNA in one of your cells would stretch about 2 meters if it were unwound.'],
+    ['virus', 'Flu virus', 1, -7, 'across', 0, 'Too small for a classroom microscope. Scientists see viruses with electron microscopes.'],
+    ['bacterium', 'E. coli bacterium', 2, -6, 'long', 0, 'Most kinds of E. coli live harmlessly in your gut. About 500 would fit end to end across the period at the end of this sentence.'],
+    ['bloodcell', 'Red blood cell', 7.5, -6, 'across', 0, 'You have roughly 25 trillion (2.5 × 10<sup>13</sup>) of them, carrying oxygen all over your body.'],
+    ['pollen', 'Sunflower pollen grain', 3, -5, 'across', 0, 'The spikes help pollen cling to bees as they fly from flower to flower.'],
+    ['hair', 'Human hair', 7, -5, 'wide', 0, 'Hair width varies from about 20 to 180 micrometers. You can see a hair because it is long, not because it is wide.'],
+    ['mite', 'Dust mite', 2.5, -4, 'long', 0, 'Just too small to see. Dust mites live in carpets and bedding and eat flakes of skin.'],
+    ['sand', 'Grain of sand', 1, -3, 'across', 0, 'Sand grains range from 0.06 to 2 millimeters. This coarse grain is about 1 millimeter.'],
+    ['ant', 'Ant', 5, -3, 'long', 0, 'Many common ants are about 5 millimeters long and can carry several times their own weight.'],
+    ['bee', 'Honeybee', 1.5, -2, 'long', 0, 'A honeybee beats its wings about 230 times every second.'],
+    ['golfball', 'Golf ball', 4.27, -2, 'across', 0, 'The rules of golf say a ball must be at least 42.67 millimeters across.'],
+    ['apple', 'Apple', 8, -2, 'across', 0, 'A medium apple is about 8 centimeters across.'],
+    ['basketball', 'Basketball', 2.4, -1, 'across', 0, 'A full-size basketball is about 24 centimeters across.'],
+    ['teen', 'You (age 13)', 1.6, 0, 'tall', 1, 'About 1.6 meters, a typical height at 13. One meter, 10<sup>0</sup>, is the middle of this whole journey.'],
+    ['giraffe', 'Giraffe', 5.5, 0, 'tall', 1, 'The tallest land animal. Adult males stand about 5.5 meters to the tips of their horns.'],
+    ['bus', 'School bus', 1.2, 1, 'long', 0, 'A full-size school bus is about 12 meters (40 feet) long.'],
+    ['whale', 'Blue whale', 2.5, 1, 'long', 0, 'The largest animal known to have ever lived. Big ones reach about 25 to 30 meters.'],
+    ['liberty', 'Statue of Liberty', 9.3, 1, 'tall', 1, 'From the ground to the tip of the torch, pedestal included: about 93 meters.'],
+    ['eiffel', 'Eiffel Tower', 3.3, 2, 'tall', 1, 'About 330 meters to the tip of its antenna.'],
+    ['burj', 'Burj Khalifa', 8.28, 2, 'tall', 1, 'The tallest finished building in the world as of 2026, at 828 meters.'],
+    ['everest', 'Mount Everest', 8.849, 3, 'tall', 1, 'Its summit is 8,849 meters above sea level, the highest point on Earth.'],
+    ['hurricane', 'Hurricane', 5, 5, 'across', 0, 'A typical hurricane\'s clouds stretch about 500 kilometers across. The biggest pass 1,000.'],
+    ['moon', 'The Moon', 3.475, 6, 'across', 0, 'About 3,475 kilometers across, a little more than a quarter of Earth\'s width.'],
+    ['earth', 'Earth', 1.2742, 7, 'across', 0, 'Our planet is 12,742 kilometers across.'],
+    ['jupiter', 'Jupiter', 1.43, 8, 'across', 0, 'The biggest planet. About 11 Earths would fit side by side across it.'],
+    ['sun', 'The Sun', 1.39, 9, 'across', 0, 'A medium-sized star. About 109 Earths would fit side by side across it.', 1],
+    ['earthorbit', 'Earth\'s orbit', 3, 11, 'across', 0, 'Earth\'s yearly path around the Sun. Sunlight takes about 8 minutes to cross from the Sun to us.', 1],
+    ['solarsystem', 'Orbit of Neptune', 9, 12, 'across', 0, 'The edge of the planets. Light takes about 4 hours to travel from the Sun to Neptune.', 1],
+    ['oort', 'Oort cloud', 3, 16, 'across, estimated', 0, 'A cloud of icy bodies thought to surround the solar system, a few light-years across. Nobody has seen its edge, so this size is an estimate.', 1],
+    ['orion', 'Orion Nebula', 2.3, 17, 'across', 0, 'A nursery where new stars are forming, 24 light-years across. You can spot it as a fuzzy patch in Orion\'s sword.', 1],
+    ['omegacen', 'Omega Centauri', 1.6, 18, 'across', 0, 'A ball of about 10 million stars, roughly 170 light-years across.', 1],
+    ['lmc', 'Large Magellanic Cloud', 1.3, 20, 'across', 0, 'A small galaxy that orbits our own, about 14,000 light-years across.', 1],
+    ['milkyway', 'Milky Way galaxy', 9.5, 20, 'across', 0, 'Our home galaxy: hundreds of billions of stars, roughly 100,000 light-years across.', 1],
+    ['localgroup', 'Local Group', 9.5, 22, 'across', 0, 'The Milky Way, the Andromeda galaxy and dozens of smaller galaxies, about 10 million light-years across.', 1],
+    ['laniakea', 'Laniakea Supercluster', 4.9, 24, 'across', 0, 'Our home supercluster: about 100,000 galaxies spread over roughly 520 million light-years.', 1],
+    ['universe', 'Observable universe', 8.8, 26, 'across', 0, 'All we can see: about 93 billion light-years across. That is more than 13.8 billion because space has been stretching the whole time.', 1]
+  ];
+  // ball models are drawn exactly: a proton has three quarks, a water molecule one oxygen and two hydrogens at 104.5 degrees
+  const SVG_PROTON = 'data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400"><defs><radialGradient id="p" cx=".42" cy=".38"><stop offset="0" stop-color="#fff6d8" stop-opacity=".95"/><stop offset=".55" stop-color="#ffcf6b" stop-opacity=".55"/><stop offset=".9" stop-color="#ff9a3c" stop-opacity=".35"/><stop offset="1" stop-color="#ff9a3c" stop-opacity="0"/></radialGradient><radialGradient id="r" cx=".35" cy=".3"><stop offset="0" stop-color="#ffb3a8"/><stop offset="1" stop-color="#c81e12"/></radialGradient><radialGradient id="g" cx=".35" cy=".3"><stop offset="0" stop-color="#b8f5b0"/><stop offset="1" stop-color="#1f8f2e"/></radialGradient><radialGradient id="b" cx=".35" cy=".3"><stop offset="0" stop-color="#b0d4ff"/><stop offset="1" stop-color="#1c4fc4"/></radialGradient></defs><circle cx="200" cy="200" r="196" fill="url(#p)"/><path d="M200 140 L150 232 L252 230 Z" stroke="#fff3" stroke-width="10" fill="none"/><circle cx="200" cy="140" r="40" fill="url(#r)"/><circle cx="150" cy="232" r="40" fill="url(#g)"/><circle cx="252" cy="230" r="40" fill="url(#b)"/></svg>');
+  const SVG_WATER = 'data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="40 60 320 230" width="320" height="230"><defs><radialGradient id="o" cx=".35" cy=".3"><stop offset="0" stop-color="#ff8a7a"/><stop offset=".45" stop-color="#d42a1c"/><stop offset="1" stop-color="#7a0e08"/></radialGradient><radialGradient id="h" cx=".35" cy=".3"><stop offset="0" stop-color="#fff"/><stop offset=".6" stop-color="#e6e9ee"/><stop offset="1" stop-color="#9aa2ad"/></radialGradient></defs><circle cx="127.3" cy="226.3" r="58" fill="url(#h)"/><circle cx="272.7" cy="226.3" r="58" fill="url(#h)"/><circle cx="200" cy="170" r="88" fill="url(#o)"/></svg>');
+  // "you" is a plain scale figure, the way architects show size
+  const SIL = 'data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 160" width="60" height="160"><g fill="#2c3550"><circle cx="30" cy="13" r="11"/><path d="M17 28h26c5 0 8 3 8 8v40c0 3-2 5-5 5s-4-2-4-5V44h-2v108c0 4-3 7-7 7s-6-3-6-7V95h-2v57c0 4-3 7-6 7s-7-3-7-7V44h-2v32c0 3-2 5-4 5s-5-2-5-5V36c0-5 3-8 8-8z"/></g></svg>');
+  const IMG = {
+    proton: SVG_PROTON, hydrogen: 'art:hydrogen', water: SVG_WATER, dna: 'art:dna', virus: 'art:virus', bacterium: 'art:bacterium', bloodcell: 'art:bloodcell',
+    pollen: 'art:pollen', hair: 'art:hair', mite: 'art:mite', sand: 'art:sand', ant: 'art:ant', bee: 'art:bee', golfball: 'art:golfball', apple: 'art:apple',
+    basketball: 'art:basketball', teen: SIL, giraffe: 'art:giraffe', bus: 'art:bus', whale: 'art:whale', liberty: 'art:liberty', eiffel: 'art:eiffel',
+    burj: 'art:burj', everest: 'art:everest', hurricane: 'art:hurricane', moon: 'art:moon', earth: 'art:earth', jupiter: 'art:jupiter', sun: 'art:sun',
+    earthorbit: 'art:earthorbit', solarsystem: 'art:solarsystem', oort: 'art:oort', orion: 'art:orion', omegacen: 'art:omegacen', lmc: 'art:lmc',
+    milkyway: 'art:milkyway', localgroup: 'art:localgroup', laniakea: 'art:laniakea', universe: 'art:universe'
+  };
+  const OBJ = RAW.map(([id, name, c, e, what, up, fact, glow]) => ({id, name, c, e, what, up: !!up, fact, glow: !!glow, m: c * Math.pow(10, e), src: IMG[id]}));
+  const BY = Object.fromEntries(OBJ.map(o => [o.id, o]));
+
+  // ---------- numbers ----------
+  const MINUS = '−';
+  const expo = n => `10<sup>${n < 0 ? MINUS + (-n) : n}</sup>`;
+  const trimC = c => String(+c.toPrecision(4));
+  const sciHTML = (c, e) => `${trimC(c)} × ${expo(e)}`;
+  function standard(c, e) { // exact standard form from the coefficient's digits, never through floating point
+    const s = trimC(c), d = s.replace('.', ''), pos = 1 + e;
+    let out;
+    if (pos <= 0) out = '0.' + '0'.repeat(-pos) + d;
+    else if (pos >= d.length) out = d + '0'.repeat(pos - d.length);
+    else out = d.slice(0, pos) + '.' + d.slice(pos);
+    const [i, f] = out.split('.');
+    return i.replace(/\B(?=(\d{3})+(?!\d))/g, ',') + (f ? '.' + f : '');
+  }
+  const LY = 9.461e15;
+  function words(v) { // a friendly unit
+    const f = (x, u) => {
+      let n = +x.toPrecision(3), w = '';
+      if (n >= 1e9) { n = +(n / 1e9).toPrecision(3); w = ' billion'; } else if (n >= 1e6) { n = +(n / 1e6).toPrecision(3); w = ' million'; }
+      return `${n.toLocaleString('en-US')}${w} ${u}`;
+    };
+    if (v < 1e-12) return f(v * 1e15, 'femtometers (fm)');
+    if (v < 1e-10) return f(v * 1e12, 'picometers (pm)');
+    if (v < 1e-6) return f(v * 1e9, 'nanometers (nm)');
+    if (v < 1e-3) return f(v * 1e6, 'micrometers (µm)');
+    if (v < 1e-2) return f(v * 1e3, 'millimeters (mm)');
+    if (v < 1) return f(v * 100, 'centimeters (cm)');
+    if (v < 1e4) return f(v, 'meters');
+    if (v < 1e15) return f(v / 1e3, 'kilometers (km)');
+    return f(v / LY, 'light-years');
+  }
+
+  // ---------- zoom layout ----------
+  // Each thing gets a slot along a line, sized to its drawn footprint; slots grow left to right, so at any zoom the
+  // thing that fills the screen sits on the right and everything smaller has shrunk toward the left edge.
+  const VIEW_W = 1340, MAX_H = 470, BASE = 600, LEFT = 50;
+  let ready = false;
+  function layout() {
+    let X = 0, prev = null;
+    for (const o of OBJ) {
+      const ar = o.ar; // width / height of the picture
+      if (o.up) { o.h = o.m; o.w = o.m * ar; } else { o.w = o.m / (o.fx || 1); o.h = o.w / ar; }
+      o.foot = Math.max(o.w, o.h * VIEW_W / MAX_H);
+      X = prev ? X + prev.foot * 1.04 + o.foot * .1 : 0;
+      o.X = X; prev = o;
+    }
+  }
+  let z = 0, zTarget = null;
+  const objEls = {}, labEls = {};
+  function buildWorld() {
+    $('objs').innerHTML = OBJ.map(o => `<div class="obj ${o.glow ? 'glow' : ''}" id="o-${o.id}"><img src="${o.src}" alt=""></div>`).join('');
+    $('labs').innerHTML = OBJ.map(o => `<div class="lab" id="l-${o.id}">${o.name}<b>${sciHTML(o.c, o.e)} m</b></div>`).join('');
+    for (const o of OBJ) { objEls[o.id] = $('o-' + o.id); labEls[o.id] = $('l-' + o.id); }
+    // stars for the dark scales
+    const g = $('stars').getContext('2d');
+    for (let i = 0; i < 260; i++) { const x = Math.random() * 1440, y = Math.random() * 640, r = Math.random() * 1.4 + .2; g.fillStyle = `rgba(255,255,255,${.3 + Math.random() * .7})`; g.beginPath(); g.arc(x, y, r, 0, 7); g.fill(); }
+    // slider ticks
+    let t = '';
+    for (let n = -15; n <= 27; n++) { const p = (n - (-15.6)) / 43.2 * 100; t += `<i style="left:${p}%" class="${n % 3 === 0 ? 'big' : ''}"></i>`; if (n % 3 === 0) t += `<span style="left:${p}%">${expo(n)}</span>`; }
+    [['-12', 'atoms'], ['-6', 'cells'], ['0', 'you'], ['7', 'planets'], ['21', 'galaxies']].forEach(([n, w]) => t += `<em style="left:${(+n + 15.6) / 43.2 * 100}%">${w}</em>`);
+    $('ticks').innerHTML = t;
+  }
+  // background: lab dark, then daylight, then night sky
+  const STOPS = [[-16, '#0b1e26', '#123540'], [-9, '#14303b', '#1f4a57'], [-5.5, '#1d4552', '#2f6474'], [-3, '#bcd9ec', '#e8f2f7'], [0, '#a9d1ef', '#e3f0f8'], [3, '#86b9e3', '#d6e8f3'], [4.6, '#3b5f9c', '#7fa5cf'], [6, '#070b16', '#0d1424'], [28, '#04060c', '#070a12']];
+  const hex = h => [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16));
+  function mix(a, b, t) { const A = hex(a), B = hex(b); return `rgb(${A.map((v, i) => Math.round(v + (B[i] - v) * t)).join(',')})`; }
+  function skyAt(zz) {
+    let i = 0; while (i < STOPS.length - 2 && zz > STOPS[i + 1][0]) i++;
+    const [z0, a0, b0] = STOPS[i], [z1, a1, b1] = STOPS[i + 1], t = Math.max(0, Math.min(1, (zz - z0) / (z1 - z0)));
+    return [mix(a0, a1, t), mix(b0, b1, t)];
+  }
+  const GAPS = [
+    [-14.6, -10.4, 'Nothing we know fits here. An atom is about 60,000 times wider than its nucleus: atoms are almost entirely empty space.'],
+    [13.4, 15.9, 'The space between stars. Light from the Sun takes more than 4 years to reach the nearest other star.']
+  ];
+  let lastFocus = null, lastPow = null;
+  function render() {
+    if (!ready) return;
+    const V = Math.pow(10, z), P = VIEW_W / V;
+    const [top, bot] = skyAt(z);
+    $('sky').style.background = `linear-gradient(${top}, ${bot})`;
+    $('stars').style.opacity = Math.max(0, Math.min(1, (z - 5) / 1.5)) + Math.max(0, Math.min(.5, (-6 - z) / 4));
+    $('ground').style.background = 'linear-gradient(#8b7d5e,#6e6247)';
+    $('ground').style.opacity = Math.max(0, Math.min(1, (4.4 - z) / .8)) * Math.max(0, Math.min(1, (z + 2.2) / .8));
+    let focus = null, best = 1e9;
+    for (const o of OBJ) {
+      const el = objEls[o.id], lab = labEls[o.id], w = o.w * P, h = o.h * P;
+      const x = LEFT + o.X * P;
+      if (w < .6 || x > 1500 || w > 40000) { el.style.display = 'none'; lab.style.display = 'none'; continue; }
+      el.style.display = '';
+      const y = o.glow ? 320 - h / 2 : BASE - h; // things stand on one line, so heights compare fairly; things in space float
+      el.style.width = w + 'px'; el.style.height = h + 'px';
+      el.style.transform = `translate(${x}px, ${y}px)`;
+      const show = w > 34 || h > 34;
+      lab.style.display = show && x + w / 2 < 1420 && x + w / 2 > 20 ? '' : 'none';
+      lab.style.left = Math.max(70, Math.min(1370, x + w / 2)) + 'px';
+      lab.style.top = (o.glow ? Math.min(BASE - 30, 320 + h * o.fx / 2 + 4) : BASE + 4) + 'px';
+      lab.style.opacity = Math.max(0, Math.min(1, (Math.max(w, h) - 34) / 30));
+      const fill = o.glow ? Math.max(w, h) * o.fx / VIEW_W : o.foot * P / VIEW_W, d = Math.abs(Math.log10(fill / .55));
+      if (fill < 1.4 && d < best) { best = d; focus = o; }
+    }
+    // labels of neighbors overlap near the left edge; keep only labels with room
+    const shown = OBJ.filter(o => labEls[o.id].style.display !== 'none').map(o => [o, parseFloat(labEls[o.id].style.left)]).sort((a, b) => b[1] - a[1]);
+    let edge = 1e9; for (const [o, x] of shown) { if (x > edge - 150) labEls[o.id].style.display = 'none'; else edge = x; }
+    // scale bar: a power of ten between 100 and 1000 pixels long
+    const pBar = Math.floor(Math.log10(400 / P)); // the biggest power of ten that fits in 400 pixels
+    const barPx = Math.pow(10, pBar) * P;
+    $('bar').querySelector('i').style.width = barPx + 'px';
+    $('bar').querySelector('span').innerHTML = `1 × ${expo(pBar)} m`;
+    // thumb + readouts
+    const pc = (z + 15.6) / 43.2;
+    $('thumb').style.left = pc * 100 + '%'; $('zr').value = z;
+    $('wide').innerHTML = `Screen width<br><span style="font:700 18px Georgia,serif;color:var(--brand)">${expo(Math.round(z))} m</span>`;
+    const g = GAPS.find(([a, b]) => z > a && z < b);
+    $('gapnote').textContent = g ? g[2] : ''; $('gapnote').classList.toggle('show', !!g);
+    if (focus !== lastFocus) { lastFocus = focus; showReadout(focus); }
+    const pw = Math.round(z); if (pw !== lastPow) { if (lastPow !== null) SFX.tick(z); lastPow = pw; }
+  }
+  function showReadout(o) {
+    if (!o) { $('readout').hidden = true; return; }
+    $('readout').hidden = false;
+    $('readout').innerHTML = `<div class="kicker">${o.name}, ${o.what}</div>
+      <div class="sci">${sciHTML(o.c, o.e)} m</div>
+      <div class="std">${standard(o.c, o.e)} m</div>
+      <p style="color:var(--muted);font-weight:700">${o.what.startsWith('across, est') ? 'roughly ' : 'about '}${words(o.m)}</p>
+      <p>${o.fact}</p>`;
+  }
+  function setZ(v) { z = Math.max(-15.6, Math.min(27.6, v)); render(); }
+  let raf = null;
+  function glide(to, ms = 650) {
+    if (raf) cancelAnimationFrame(raf);
+    if (reduce) { setZ(to); return; }
+    const from = z, t0 = performance.now();
+    const step = now => { const t = Math.min(1, (now - t0) / ms), e = t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2; setZ(from + (to - from) * e); if (t < 1) raf = requestAnimationFrame(step); else raf = null; };
+    raf = requestAnimationFrame(step);
+  }
+  let touring = false;
+  function tour() {
+    if (touring) { stopTour(); return; }
+    touring = true; $('tour').textContent = '⏸ Stop';
+    if (z > 27) setZ(-15.6);
+    let last = performance.now();
+    const step = now => {
+      if (!touring) return;
+      const dt = Math.min(.05, (now - last) / 1000); last = now;
+      // slow down while something fills the screen, speed through the empty stretches
+      const speed = lastFocus && Math.abs(Math.log10(lastFocus.foot * Math.pow(10, -z) * 1.0 / .55)) < .3 ? .32 : .9;
+      setZ(z + dt * speed);
+      if (z >= 27.6) { stopTour(); return; }
+      requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }
+  function stopTour() { touring = false; $('tour').textContent = '▶ Tour'; }
+  $('zr').oninput = e => { stopTour(); setZ(+e.target.value); };
+  $('zin').onclick = () => { stopTour(); SFX.whoosh(false); glide(Math.round(z) - 1); };
+  $('zout').onclick = () => { stopTour(); SFX.whoosh(true); glide(Math.round(z) + 1); };
+  $('tour').onclick = () => { SFX.tap(); tour(); };
+  $('world').addEventListener('wheel', e => { e.preventDefault(); stopTour(); setZ(z + Math.sign(e.deltaY) * .15); }, {passive: false});
+  // drag across the world: left to zoom in, right to zoom out
+  let drag = null;
+  $('world').onpointerdown = e => { drag = [e.clientX, z]; $('world').setPointerCapture(e.pointerId); stopTour(); };
+  $('world').onpointermove = e => { if (drag) setZ(drag[1] - (e.clientX - drag[0]) / 240); };
+  $('world').onpointerup = () => drag = null;
+  document.addEventListener('keydown', e => {
+    if (mode !== 'zoom' || e.target.tagName === 'INPUT' && e.target.type !== 'range') return;
+    if (e.key === '+' || e.key === '=') { glide(Math.round(z) + 1); }
+    else if (e.key === '-' || e.key === '_') { glide(Math.round(z) - 1); }
+  });
+
+  // ---------- compare ----------
+  let cA = BY.burj, cB = BY.ant, choosing = null;
+  function pickBtn(o, which) { return `<img src="${o.src}" alt=""><span><small>${which}</small>${o.name}<small>${sciHTML(o.c, o.e)} m</small></span>`; }
+  function sig1(c) { // round a coefficient to one digit, carrying into the exponent (9.5 becomes 10 = 1 × 10)
+    const r = Math.round(c); return r >= 10 ? [1, 1] : [Math.max(1, r), 0];
+  }
+  function renderCmp() {
+    $('pa').innerHTML = pickBtn(cA, 'Thing A'); $('pb').innerHTML = pickBtn(cB, 'Thing B');
+    const [big, small] = cA.m >= cB.m ? [cA, cB] : [cB, cA];
+    const q = big.c / small.c, de = big.e - small.e;
+    let qc = q, qe = de; while (qc >= 10) { qc /= 10; qe++; } while (qc < 1) { qc *= 10; qe--; }
+    const ratio = big.m / small.m;
+    const [ba, bx] = sig1(big.c), [sa, sx] = sig1(small.c);
+    const est = (ba / sa) * Math.pow(10, (big.e + bx) - (small.e + sx));
+    const count = ratio < 1e7 ? Math.round(ratio).toLocaleString('en-US') : null;
+    const same = Math.abs(Math.log10(ratio)) < .05;
+    $('math').innerHTML = same ? `<p>These two are about the same size.</p>` : `
+      <div>${big.name}: <b>${sciHTML(big.c, big.e)} m</b></div>
+      <div>${small.name}: <b>${sciHTML(small.c, small.e)} m</b></div>
+      <div style="border-top:2px dashed #d8cfbd;margin:8px 0"></div>
+      <div>Divide: <span style="white-space:nowrap">(${trimC(big.c)} ÷ ${trimC(small.c)}) × ${expo(big.e)} ÷ ${expo(small.e)}</span></div>
+      <div>= ${trimC(+q.toPrecision(3))} × ${expo(de)} <span style="color:var(--muted);font-size:16px">(subtract the exponents: ${big.e} − (${small.e}) = ${de})</span></div>
+      <div class="eq">≈ ${trimC(+qc.toPrecision(3))} × ${expo(qe)} times as big</div>
+      <div style="font-size:17px;color:var(--muted)">Quick estimate: ${ba} × ${expo(big.e + bx)} ÷ ${sa} × ${expo(small.e + sx)} ≈ ${+(ba / sa).toPrecision(2)} × ${expo((big.e + bx) - (small.e + sx))}</div>
+      <p style="font-family:'Segoe UI',sans-serif;font-size:17px;margin-top:8px">${count ? `It would take about <b>${count}</b> ${plural(small)} lined up to match ${the(big)}.` : `That number is too big to count out: ${expo(qe)} is a 1 with ${qe} zeros.`}</p>`;
+    drawCmp(big, small, ratio);
+  }
+  const the = o => /^(The |Earth|Jupiter|Mount|Burj|Eiffel|Statue|Orbit|Oort|Orion|Omega|Large|Milky|Local|Laniakea|Observable|You)/.test(o.name) ? o.name.replace(/^The /, 'the ').replace(/^You \(age 13\)/, 'you') : 'a ' + o.name.toLowerCase();
+  const plural = o => ({'You (age 13)': '13-year-olds', 'The Moon': 'Moons', 'The Sun': 'Suns', 'Earth': 'Earths', 'Jupiter': 'Jupiters', 'E. coli bacterium': 'E. coli bacteria', 'Grain of sand': 'grains of sand', 'Human hair': 'hairs, side by side,', 'DNA strand': 'DNA strands, side by side,', 'Sunflower pollen grain': 'pollen grains'})[o.name] || o.name.replace(/^The /, '').toLowerCase() + (o.name.endsWith('s') ? 'es' : 's');
+  function drawCmp(big, small, ratio) {
+    const W = 880, H = 560, [top, bot] = skyAt(Math.log10(big.foot) + .2);
+    let html = `<div style="position:absolute;inset:0;background:linear-gradient(${top},${bot})"></div>`;
+    // the big one fills most of the stage
+    const P = Math.min(560 / big.w, 400 / big.h);
+    const bw = big.w * P, bh = big.h * P, bx = 60, by = 470 - bh;
+    html += `<img src="${big.src}" alt="${big.name}" style="position:absolute;left:${bx}px;top:${by}px;width:${bw}px;height:${bh}px;${big.glow ? 'mix-blend-mode:screen' : ''}">`;
+    html += `<div class="cl" style="left:${bx + bw / 2}px;top:482px">${big.name}<br>${sciHTML(big.c, big.e)} m</div>`;
+    const sw = small.w * P, sh = small.h * P, sx = Math.min(bx + bw + 30, 700), sy = 470 - sh;
+    if (Math.max(sw, sh) >= 8) {
+      html += `<img src="${small.src}" alt="${small.name}" style="position:absolute;left:${sx}px;top:${sy}px;width:${sw}px;height:${sh}px;${small.glow ? 'mix-blend-mode:screen' : ''}">`;
+      html += `<div class="cl" style="left:${sx + sw / 2}px;top:482px">${small.name}<br>${sciHTML(small.c, small.e)} m</div>`;
+    } else {
+      // too small to see: a dot at true size (at least 2 px) and a magnifier
+      const dx = sx + 4, dy = 466;
+      html += `<div style="position:absolute;left:${dx - 2}px;top:${dy - 2}px;width:${Math.max(3, sw)}px;height:${Math.max(3, sh)}px;background:#ffe08a;border-radius:50%;box-shadow:0 0 0 3px #ffe08a55"></div>`;
+      const cx = 760, cy = 150, r = 95;
+      const ang = Math.atan2(cy - dy, cx - dx), len = Math.hypot(cx - dx, cy - dy) - r;
+      html += `<div class="leader" style="left:${dx}px;top:${dy}px;width:${len}px;transform:rotate(${ang}rad)"></div>`;
+      html += `<div class="inset" style="left:${cx - r}px;top:${cy - r}px;width:${2 * r}px;height:${2 * r}px"><img src="${small.src}" alt="${small.name}"></div>`;
+      const mag = Math.round(Math.log10(150 / Math.max(sw, sh, 1e-300)));
+      html += `<div class="cl" style="left:${cx}px;top:${cy + r + 8}px">${small.name}<br>${sciHTML(small.c, small.e)} m<br><span style="color:#ffe08a">shown about ${expo(mag)} times bigger</span></div>`;
+    }
+    $('cstage').innerHTML = html;
+  }
+  function openChooser(which) {
+    choosing = which; const cur = which === 'a' ? cA : cB;
+    $('chooser').innerHTML = `<h3>Choose thing ${which.toUpperCase()}</h3>` + OBJ.map(o => `<button data-o="${o.id}" class="${o === cur ? 'on' : ''}"><img src="${o.src}" alt="">${o.name}</button>`).join('');
+    $('chooser').hidden = false;
+    $('chooser').querySelectorAll('[data-o]').forEach(b => b.onclick = () => { SFX.tap(); if (choosing === 'a') cA = BY[b.dataset.o]; else cB = BY[b.dataset.o]; $('chooser').hidden = true; renderCmp(); });
+    $('chooser').querySelector('.on').focus();
+  }
+  $('pa').onclick = () => openChooser('a'); $('pb').onclick = () => openChooser('b');
+  $('swap').onclick = () => { [cA, cB] = [cB, cA]; SFX.tap(); renderCmp(); };
+  $('rand').onclick = () => { const i = Math.floor(Math.random() * OBJ.length); let j; do { j = Math.floor(Math.random() * OBJ.length); } while (Math.abs(i - j) < 2); cA = OBJ[i]; cB = OBJ[j]; SFX.tap(); renderCmp(); };
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && !$('chooser').hidden) $('chooser').hidden = true; });
+
+  // ---------- place it ----------
+  const LO = -16, HI = 27, LINEW = 1300;
+  const xOf = n => (n - LO) / (HI - LO) * LINEW;
+  let PL = null;
+  function newPlace() {
+    const pool = OBJ.filter(o => o.id !== 'teen').sort(() => Math.random() - .5).slice(0, 10);
+    PL = {list: pool, i: 0, guess: 0, done: false, res: [], hint: false};
+    renderPlace();
+  }
+  function renderPlace() {
+    const o = PL.list[PL.i];
+    $('ppic').innerHTML = `<img src="${o.src}" alt="${o.name}">`;
+    $('ptext').innerHTML = `<div class="kicker">Thing ${PL.i + 1} of ${PL.list.length}</div><h2>${o.name}</h2><p>How big is it ${o.what.replace(', estimated', '')}? Drag the pin to the power of ten you think is closest, then press <b>Place it here</b>.</p>`;
+    let h = '<div class="axis"></div>';
+    for (let n = LO; n <= HI; n++) { h += `<div class="tk" style="left:${xOf(n)}px;${n % 3 ? 'height:14px;top:56px' : ''}"></div>`; if (n % 3 === 0) h += `<div class="tl" style="left:${xOf(n)}px">${expo(n)}</div>`; }
+    for (const id of ['hydrogen', 'teen', 'earth', 'milkyway']) { const L = BY[id]; h += `<div class="lm" style="left:${xOf(L.e + Math.log10(L.c))}px;top:110px"><img src="${L.src}" alt="">${L.name === 'You (age 13)' ? 'You' : L.name}</div>`; }
+    h += `<div class="pin" id="pin" style="left:${xOf(PL.guess)}px" tabindex="0" role="slider" aria-label="Your guess, power of ten" aria-valuemin="${LO}" aria-valuemax="${HI}" aria-valuenow="${PL.guess}"><svg viewBox="0 0 44 64"><path d="M22 62 C22 62 4 34 4 22 a18 18 0 0 1 36 0 C40 34 22 62 22 62Z" fill="#c4472c" stroke="#fff" stroke-width="3"/><circle cx="22" cy="22" r="7" fill="#fff"/></svg></div>`;
+    h += `<div id="ptruth"></div>`;
+    $('pline').innerHTML = h;
+    $('pprog').innerHTML = PL.list.map((_, i) => `<i class="${PL.res[i] === 3 ? 'ok' : PL.res[i] ? 'meh' : ''} ${i === PL.i ? 'now' : ''}"></i>`).join('');
+    $('pmsg').innerHTML = `Your guess: <b>about ${expo(PL.guess)} m</b>`;
+    $('pgo').textContent = 'Place it here'; $('pgo').disabled = false; $('phint').disabled = false;
+    const pin = $('pin'); let dragging = false;
+    const setG = n => { PL.guess = Math.max(LO, Math.min(HI, n)); pin.style.left = xOf(PL.guess) + 'px'; pin.setAttribute('aria-valuenow', PL.guess); $('pmsg').innerHTML = `Your guess: <b>about ${expo(PL.guess)} m</b>`; };
+    const toN = e => { const r = $('pline').getBoundingClientRect(), s = r.width / LINEW; return Math.round((e.clientX - r.left) / s / LINEW * (HI - LO) + LO); };
+    $('pline').onpointerdown = e => { if (PL.done) return; dragging = true; $('pline').setPointerCapture(e.pointerId); const n = toN(e); if (n !== PL.guess) SFX.click(); setG(n); };
+    $('pline').onpointermove = e => { if (!dragging) return; const n = toN(e); if (n !== PL.guess) { SFX.click(); setG(n); } };
+    $('pline').onpointerup = () => dragging = false;
+    pin.onkeydown = e => { if (PL.done) return; if (e.key === 'ArrowLeft') { setG(PL.guess - 1); SFX.click(); e.preventDefault(); } if (e.key === 'ArrowRight') { setG(PL.guess + 1); SFX.click(); e.preventDefault(); } };
+  }
+  $('phint').onclick = () => {
+    const o = PL.list[PL.i], you = BY.teen;
+    const k = Math.round(Math.log10(o.m / you.m));
+    $('pmsg').innerHTML = k === 0 ? 'Hint: it is about the same size as you.' : `Hint: it is ${k > 0 ? 'bigger' : 'smaller'} than you. ${Math.abs(k) <= 3 ? 'Not by many powers of ten.' : Math.abs(k) <= 9 ? 'By quite a few powers of ten.' : 'By a huge number of powers of ten.'}`;
+    SFX.tap();
+  };
+  $('pgo').onclick = () => {
+    if (PL.done) { // next
+      PL.i++; PL.done = false;
+      if (PL.i >= PL.list.length) { finishPlace(); return; }
+      PL.guess = 0; renderPlace(); return;
+    }
+    const o = PL.list[PL.i], t = o.e + Math.log10(o.c), off = Math.abs(PL.guess - t);
+    const stars = off <= 1 ? 3 : off <= 2 ? 2 : off <= 4 ? 1 : 0;
+    PL.res[PL.i] = stars || .5; PL.done = true;
+    $('ptruth').innerHTML = `<div class="hitzone" style="left:${xOf(t - 1)}px;width:${xOf(t + 1) - xOf(t - 1)}px"></div><div class="truth" style="left:${xOf(t)}px;top:96px"><i></i>${sciHTML(o.c, o.e)} m</div>`;
+    const pw = Math.round(t);
+    $('pmsg').innerHTML = `<div class="stars">${'★'.repeat(stars)}${'☆'.repeat(3 - stars)}</div>${o.name}: <b>${sciHTML(o.c, o.e)} m</b>, about ${words(o.m)}. ${off <= 1 ? 'Right in the neighborhood!' : `You were ${Math.round(off)} powers of ten ${PL.guess > t ? 'too big' : 'too small'}: that is about ${Math.round(off) <= 6 ? Math.pow(10, Math.round(off)).toLocaleString('en-US') : expo(Math.round(off))} times off.`}`;
+    (stars === 3 ? SFX.good : stars ? SFX.ok : SFX.miss)();
+    $('pgo').textContent = PL.i < PL.list.length - 1 ? 'Next ▶' : 'See my score'; $('phint').disabled = true;
+    $('pprog').innerHTML = PL.list.map((_, i) => `<i class="${PL.res[i] === 3 ? 'ok' : PL.res[i] ? 'meh' : ''} ${i === PL.i ? 'now' : ''}"></i>`).join('');
+  };
+  function finishPlace() {
+    const total = PL.res.reduce((a, b) => a + Math.floor(b), 0);
+    $('ppic').innerHTML = '<div style="font-size:96px">🏆</div>';
+    $('ptext').innerHTML = `<div class="kicker">All ${PL.list.length} placed</div><h2>${total} of ${PL.list.length * 3} stars</h2><p>${total >= 24 ? 'You have a great feel for powers of ten.' : total >= 15 ? 'Good estimating. The far ends, atoms and galaxies, are the hardest.' : 'Try the Zoom tour, then play again. Use yourself, 10<sup>0</sup> m, as a landmark.'}</p>`;
+    $('pline').innerHTML = ''; $('pmsg').innerHTML = '';
+    $('pgo').textContent = 'Play again'; $('phint').disabled = true;
+    $('pgo').onclickSaved = true; PL.again = true;
+    SFX.good();
+  }
+  const placeGo = $('pgo').onclick;
+  $('pgo').onclick = () => { if (PL && PL.again) { newPlace(); return; } placeGo(); };
+
+  // ---------- write it ----------
+  let WR = null;
+  function newWrite() {
+    const pool = OBJ.filter(o => o.e >= -9 && o.e <= 9 && o.e !== 0).sort(() => Math.random() - .5).slice(0, 8);
+    WR = {list: pool.map((o, i) => ({o, dir: i % 2 ? 'std' : 'sci'})), i: 0, res: []};
+    startWrite();
+  }
+  function startWrite() {
+    const r = WR.list[WR.i], o = r.o;
+    r.D = trimC(o.c).replace('.', '');
+    r.p = r.dir === 'sci' ? o.e + 1 : 1; // digits before the point
+    r.tries = 0; r.done = false;
+    $('wpic').innerHTML = `<img src="${o.src}" alt="${o.name}">`;
+    $('wtext').innerHTML = r.dir === 'sci'
+      ? `<div class="kicker">${WR.i + 1} of ${WR.list.length} · to scientific notation</div><h2>${o.name}</h2><p>It is ${standard(o.c, o.e)} meters ${o.what.replace(', estimated', '')}. Move the decimal point until there is <b>one digit, not zero, in front of it</b>. Each hop changes the power of ten by one.</p>`
+      : `<div class="kicker">${WR.i + 1} of ${WR.list.length} · to standard form</div><h2>${o.name}</h2><p>It is ${sciHTML(o.c, o.e)} meters ${o.what.replace(', estimated', '')}. Move the decimal point until the power of ten is <b>10<sup>0</sup></b>, which is just 1. Then you have the number written out.</p>`;
+    $('wnext').hidden = true; $('wmsg').innerHTML = '';
+    drawDigits();
+    $('wprog').innerHTML = WR.list.map((_, i) => `<i class="${WR.res[i] === 2 ? 'ok' : WR.res[i] ? 'meh' : ''} ${i === WR.i ? 'now' : ''}"></i>`).join('');
+  }
+  function drawDigits() {
+    const r = WR.list[WR.i], o = r.o, D = r.D, p = r.p, k = o.e - (p - 1);
+    let chars = [];
+    if (p <= 0) chars = ['0', '.', ...'0'.repeat(-p), ...D].map((c, i) => [c, c === '0' && i !== 0 ? 1 : c === '0' ? 1 : 0]);
+    else if (p >= D.length) chars = [...D, ...'0'.repeat(p - D.length)].map((c, i) => [c, i >= D.length ? 1 : 0]);
+    else chars = [...D.slice(0, p), '.', ...D.slice(p)].map(c => [c, 0]);
+    // padding zeros the hops created are shown lighter
+    $('digits').innerHTML = chars.map(([c, z]) => c === '.' ? '<div class="pt">.</div>' : `<div class="d ${z ? 'z' : ''}">${c}</div>`).join('') + `<div class="x">× ${expo(k)}</div>`;
+    const start = r.dir === 'sci' ? o.e + 1 : 1, hops = p - start;
+    $('hops').innerHTML = hops ? `${Math.abs(hops)} hop${Math.abs(hops) > 1 ? 's' : ''} ${hops < 0 ? 'left' : 'right'}: the exponent went ${hops < 0 ? 'up' : 'down'} by ${Math.abs(hops)}` : 'Same number, written two ways: the hops trade places with the exponent.';
+    $('wl').disabled = r.done || p <= -10; $('wr').disabled = r.done || p >= 14;
+  }
+  $('wl').onclick = () => { const r = WR.list[WR.i]; r.p--; SFX.click(); drawDigits(); };
+  $('wr').onclick = () => { const r = WR.list[WR.i]; r.p++; SFX.click(); drawDigits(); };
+  $('wcheck').onclick = () => {
+    const r = WR.list[WR.i], o = r.o; if (r.done) return;
+    const k = o.e - (r.p - 1); r.tries++;
+    const ok = r.dir === 'sci' ? r.p === 1 : k === 0;
+    if (ok) {
+      r.done = true; WR.res[WR.i] = r.tries === 1 ? 2 : 1; SFX.good();
+      $('wmsg').innerHTML = r.dir === 'sci' ? `Yes! <b>${standard(o.c, o.e)} = ${sciHTML(o.c, o.e)}</b>. ${o.e < 0 ? `A small number has a <b>negative</b> exponent: the point hopped ${-o.e} places right.` : `A big number has a <b>positive</b> exponent: the point hopped ${o.e} places left.`}`
+        : `Yes! <b>${sciHTML(o.c, o.e)} = ${standard(o.c, o.e)}</b>. ${o.e < 0 ? `A negative exponent means hop ${-o.e} places left, filling in zeros.` : `A positive exponent means hop ${o.e} places right, filling in zeros.`}`;
+      $('wnext').hidden = false; $('wnext').textContent = WR.i < WR.list.length - 1 ? 'Next ▶' : 'See my score'; $('wnext').focus();
+      drawDigits();
+      $('wprog').innerHTML = WR.list.map((_, i) => `<i class="${WR.res[i] === 2 ? 'ok' : WR.res[i] ? 'meh' : ''} ${i === WR.i ? 'now' : ''}"></i>`).join('');
+    } else {
+      SFX.miss();
+      if (r.dir === 'sci') $('wmsg').innerHTML = r.p < 1 ? 'Not yet: there is no digit in front of the point. Hop it to the <b>right</b>.' : `Not yet: there ${r.p > 1 ? `are ${r.p} digits` : 'is one digit'} in front of the point. Scientific notation keeps exactly one. Hop it to the <b>left</b>.`;
+      else $('wmsg').innerHTML = `Not yet: the power is still ${expo(k)}. Hop the point to the <b>${k > 0 ? 'right' : 'left'}</b> until it is 10<sup>0</sup>.`;
+    }
+  };
+  $('wnext').onclick = () => {
+    SFX.tap(); WR.i++;
+    if (WR.i < WR.list.length) { startWrite(); return; }
+    const total = WR.res.reduce((a, b) => a + b, 0);
+    $('wpic').innerHTML = '<div style="font-size:80px">🏆</div>';
+    $('wtext').innerHTML = `<div class="kicker">All ${WR.list.length} written</div><h2>${WR.res.filter(x => x === 2).length} of ${WR.list.length} on the first try</h2><p>The rule: count the hops. Hop left, the exponent goes up. Hop right, it goes down.</p>`;
+    $('digits').innerHTML = ''; $('hops').innerHTML = ''; $('wmsg').innerHTML = '';
+    $('wnext').textContent = 'Play again'; $('wnext').onclick = () => { $('wnext').onclick = nextW; newWrite(); };
+    $('wl').disabled = $('wr').disabled = true;
+  };
+  const nextW = $('wnext').onclick;
+
+  // ---------- modes ----------
+  let mode = 'zoom';
+  function setMode(m) {
+    mode = m; stopTour();
+    document.querySelectorAll('[data-mode]').forEach(b => b.setAttribute('aria-pressed', b.dataset.mode === m));
+    $('zoomview').hidden = m !== 'zoom'; $('cmpview').hidden = m !== 'cmp'; $('placeview').hidden = m !== 'place'; $('writeview').hidden = m !== 'write';
+    if (m === 'cmp') renderCmp();
+    if (m === 'place' && !PL) newPlace();
+    if (m === 'write' && !WR) newWrite();
+  }
+  document.querySelectorAll('[data-mode]').forEach(b => b.onclick = () => { SFX.tap(); setMode(b.dataset.mode); });
+  document.addEventListener('keydown', e => { if (/^[1-4]$/.test(e.key) && !e.ctrlKey && !e.altKey && document.activeElement.tagName !== 'INPUT') setMode(['zoom', 'cmp', 'place', 'write'][+e.key - 1]); });
+
+  // things painted on black: the size belongs to the bright part, not the whole square
+  function brightWidth(im) {
+    const c = document.createElement('canvas'); c.width = 200; c.height = Math.round(200 / (im.naturalWidth / im.naturalHeight)); const g = c.getContext('2d');
+    g.drawImage(im, 0, 0, c.width, c.height); const d = g.getImageData(0, 0, c.width, c.height).data;
+    let lo = c.width, hi = -1;
+    for (let y = 0; y < c.height; y++) for (let x = 0; x < c.width; x++) { const k = (y * c.width + x) * 4; if (d[k] + d[k + 1] + d[k + 2] > 120) { if (x < lo) lo = x; if (x > hi) hi = x; } }
+    return hi > lo ? (hi - lo + 1) / c.width : 1;
+  }
+  // pictures first: the layout needs each one's shape
+  Promise.all(OBJ.map(o => new Promise(res => { const im = new Image(); im.onload = () => { o.ar = im.naturalWidth / im.naturalHeight || 1; if (o.glow) o.fx = brightWidth(im); res(); }; im.onerror = () => { o.ar = 1; res(); }; im.src = o.src; })))
+    .then(() => { layout(); buildWorld(); ready = true; setZ(0.75); });
+  window.__soe = {OBJ, BY, setZ, standard, words, setMode, get z() { return z; }};
+})();
+</script>
+</body>
+</html>

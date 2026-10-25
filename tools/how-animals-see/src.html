@@ -1,0 +1,607 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How Animals See · Structures and senses · Curio Class</title>
+<meta name="description" content="Drag an animal's eye across a meadow to see it the way a bee, dog, eagle, owl or rattlesnake does: ultraviolet flowers, red-green color blindness, eagle-sharp detail, owl night vision and heat-sensing pits. Then explore how each eye works and how far around each animal can see.">
+<!--
+HOW ANIMALS SEE (Curio Class)
+Science, grade 4, NGSS 4-LS1-1 (structures that support survival), 4-LS1-2 (animals take in information through their
+senses), 4-PS4-2 (light reflecting from objects and entering the eye allows objects to be seen).
+Look through: a meadow by day and by night; drag a lens to see through a bee's, dog's, eagle's, owl's or rattlesnake's eyes.
+  Bee: false-color ultraviolet (UV shown as purple, red looks dark) and a compound-eye mosaic; flowers show UV bullseyes.
+  Dog: two kinds of color cones, simulated with the Machado et al. (2009) deuteranopia matrix, slightly less sharp.
+  Eagle: the same scene about four times sharper, shown as a closer look. Owl: rod-rich night vision, bright but grayish.
+  Rattlesnake: the pit organs sense heat; warm-blooded animals glow, a toad (cold-blooded) barely shows.
+Inside the eye: labeled diagrams and the path light takes from the Sun to an object to the eye to the brain.
+Field of view: drag a fox around five animals; eyes in front see depth, eyes on the sides watch almost all around.
+Who's looking?: guess which animal's view you are seeing.
+These views are simplified pictures of what scientists have measured; no one knows exactly what an animal experiences.
+Illustrations drawn with FLUX.1-schnell (Apache 2.0) on a local computer, edited for Curio Class. Sound synthesized in the browser.
+One file, no network requests. Content CC BY 4.0, code MIT. curioclass.org
+-->
+<style>
+:root{
+  --paper:#eef3e6;--ink:#1f2a1c;--muted:#5d6a58;--focus:#2f5bd3;--brand:#2f6b3a;--gold:#f4c430;--card:#fdfdf6;--accent:#b5562c;
+  font-family:'Segoe UI',system-ui,-apple-system,Roboto,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0;height:100%}
+body{background:var(--paper);color:var(--ink);display:grid;grid-template-rows:auto 1fr;min-height:100vh}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:4px solid var(--focus);outline-offset:3px}
+header{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:10px 20px;background:var(--brand);color:#effbe9}
+h1{margin:0 auto 0 0;font:800 clamp(22px,2.8vw,32px)/1.1 Georgia,'Times New Roman',serif}
+h1 small{display:block;font:400 14px/1.3 'Segoe UI',sans-serif;color:#cfe8c8}
+.icon-btn{border:1px solid #6aa476;background:#3d8049;color:#fff;border-radius:999px;min-height:46px;padding:0 16px;font-weight:700;font-size:15px}
+.icon-btn[aria-pressed="false"]{background:#1d4524}
+
+.stagewrap{position:relative;overflow:hidden;min-height:0;background:#d7e2cc}
+.scene{position:absolute;left:50%;top:50%;width:1440px;height:810px;transform:translate(-50%,-50%) scale(var(--s,1));overflow:hidden;background:linear-gradient(#e4ecd9,#d2dfc5)}
+.top{position:absolute;left:14px;right:14px;top:12px;display:flex;align-items:center;gap:12px;z-index:20}
+.tabs{display:inline-flex;border-radius:999px;overflow:hidden;background:#fdfdf6f2;box-shadow:0 3px 0 #0002}
+.tabs button{border:0;background:transparent;min-height:54px;padding:0 20px;font:800 19px 'Segoe UI',sans-serif;color:var(--muted)}
+.tabs button[aria-pressed="true"]{background:var(--brand);color:#fff}
+.b{border:0;border-radius:14px;min-height:52px;padding:0 16px;font:800 17px 'Segoe UI',sans-serif;background:#fdfdf6;color:var(--ink);box-shadow:0 4px 0 #0002;white-space:nowrap}
+.b:active{transform:translateY(3px);box-shadow:0 1px 0 #0002}
+.b.go{background:var(--brand);color:#fff;box-shadow:0 4px 0 #1b4022}
+.b[aria-pressed="true"]{background:var(--gold);color:#3a2a00}
+.b:disabled{opacity:.45;cursor:default}
+.card{background:#fdfdf6f6;border-radius:20px;box-shadow:0 5px 0 #0001,0 6px 16px #0002;padding:16px 20px}
+.card h2{margin:0 0 6px;font:800 26px/1.15 Georgia,serif}
+.card h3{margin:12px 0 4px;font:800 17px 'Segoe UI',sans-serif;color:var(--brand)}
+.card p{margin:6px 0;font:500 17px/1.45 'Segoe UI',sans-serif}
+.kicker{font:800 13px 'Segoe UI',sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
+/* animal picker */
+.who{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.who button{min-width:0;border:3px solid transparent;border-radius:16px;background:#fdfdf6;box-shadow:0 3px 0 #0002;padding:6px 2px 8px;display:flex;flex-direction:column;align-items:center;gap:2px;font:800 13px "Segoe UI",sans-serif;min-height:104px;overflow:hidden}
+.who button img{width:64px;height:64px;object-fit:contain}
+.who button[aria-pressed="true"]{border-color:var(--gold);background:#fff7d6}
+
+/* look */
+.view{position:absolute;left:20px;top:80px;width:1000px;height:563px;border-radius:20px;overflow:hidden;box-shadow:0 8px 22px #0003;touch-action:none;cursor:none;background:#123}
+.view canvas{position:absolute;inset:0;width:100%;height:100%}
+.lensring{position:absolute;border:5px solid #fff;border-radius:50%;box-shadow:0 0 0 3px #0005,inset 0 0 0 2px #0003;pointer-events:none}
+.lenstag{position:absolute;transform:translateX(-50%);background:#1f2a1cdd;color:#fff;font:800 14px 'Segoe UI',sans-serif;padding:4px 10px;border-radius:999px;pointer-events:none;white-space:nowrap}
+.side{position:absolute;right:20px;top:80px;width:390px;display:flex;flex-direction:column;gap:12px}
+.vtools{position:absolute;left:20px;top:656px;width:1000px;display:flex;gap:10px;align-items:center}
+.vtools .note{margin-left:auto;font:600 15px/1.3 'Segoe UI',sans-serif;color:var(--muted);max-width:420px;text-align:right}
+
+/* eye diagrams */
+.eye{position:absolute;left:20px;top:80px;width:960px;height:640px;border-radius:20px;background:#fdfdf6;box-shadow:0 6px 18px #0002;overflow:hidden}
+.eye svg{width:100%;height:100%}
+.part{cursor:pointer}
+.part:hover,.part.on{filter:drop-shadow(0 0 6px #f4c430) drop-shadow(0 0 2px #f4c430)}
+.lbl{font:700 17px 'Segoe UI',sans-serif;fill:#1f2a1c}
+.ray{stroke:#f4b400;stroke-width:4;fill:none;stroke-dasharray:14 10;stroke-linecap:round}
+.ray.move{animation:flow 1.2s linear infinite}
+@keyframes flow{to{stroke-dashoffset:-24}}
+.calm .ray.move{animation:none}
+.heat{stroke:#e0521f;stroke-width:4;fill:none;stroke-dasharray:3 9;stroke-linecap:round}
+.heat.move{animation:flow 1.6s linear infinite}
+.calm .heat.move{animation:none}
+.eside{position:absolute;right:20px;top:80px;width:430px;display:flex;flex-direction:column;gap:12px}
+.parts{display:flex;flex-wrap:wrap;gap:8px}
+.parts button{border:0;border-radius:999px;background:#e8efdc;min-height:44px;padding:0 14px;font:700 15px 'Segoe UI',sans-serif}
+.parts button[aria-pressed="true"]{background:var(--gold)}
+
+/* field of view */
+.fov{position:absolute;left:20px;top:80px;width:960px;height:640px;border-radius:20px;background:radial-gradient(circle at 50% 50%,#9cc77a,#6f9f4f 70%,#5a8a3e);box-shadow:0 6px 18px #0002;overflow:hidden;touch-action:none}
+.fov svg{width:100%;height:100%}
+.fovmsg{font:800 22px/1.3 Georgia,serif}
+
+/* who's looking */
+.quiz{position:absolute;left:50%;top:80px;transform:translateX(-50%);width:1000px}
+.qview{position:relative;width:1000px;height:470px;border-radius:20px;overflow:hidden;box-shadow:0 8px 22px #0003;background:#123}
+.qview canvas{width:100%;height:100%}
+.qopts{display:flex;gap:12px;justify-content:center;margin-top:14px}
+.qopts button{min-width:180px;display:flex;align-items:center;gap:10px;justify-content:center}
+.qopts button img{width:44px;height:44px;object-fit:contain}
+.qopts button.right{background:#bfe6b9}
+.qopts button.wrong{background:#f4cfc4}
+.qmsg{margin-top:12px;text-align:center;font:600 19px/1.45 'Segoe UI',sans-serif;min-height:56px}
+.prog{display:flex;gap:6px;justify-content:center;margin-top:8px}
+.prog i{width:16px;height:16px;border-radius:50%;background:#cfd8c2}
+.prog i.ok{background:#2f8a4a}.prog i.no{background:#d0846a}.prog i.now{outline:3px solid var(--brand)}
+</style>
+</head>
+<body>
+<header>
+  <h1>How Animals See <small>Look at one meadow through five different kinds of eyes.</small></h1>
+  <button class="icon-btn" id="motion" aria-pressed="true" title="Turn animation on or off">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+</header>
+<div class="stagewrap" id="stagewrap">
+  <div class="scene" id="scene">
+    <div class="top">
+      <div class="tabs" role="group" aria-label="Mode">
+        <button data-mode="look" aria-pressed="true">👁️ Look through</button>
+        <button data-mode="eye" aria-pressed="false">🔬 Inside the eye</button>
+        <button data-mode="fov" aria-pressed="false">🧭 Field of view</button>
+        <button data-mode="quiz" aria-pressed="false">❓ Who's looking?</button>
+      </div>
+    </div>
+
+    <div id="lookview">
+      <div class="view" id="view" aria-label="The meadow. Drag or move the circle to look through the animal's eyes."><canvas id="vc" width="1500" height="844"></canvas>
+        <div class="lensring" id="ring"></div><div class="lenstag" id="tag"></div></div>
+      <div class="vtools">
+        <button class="b" id="full" aria-pressed="false">🔁 Whole picture</button>
+        <button class="b" id="bigger">⊕ Bigger circle</button>
+        <div class="note" id="vnote"></div>
+      </div>
+      <div class="side">
+        <div class="who" id="who" role="group" aria-label="Animal"></div>
+        <div class="card" id="info" aria-live="polite"></div>
+      </div>
+    </div>
+
+    <div id="eyeview" hidden>
+      <div class="eye" id="eyesvg"></div>
+      <div class="eside">
+        <div class="who" id="who2" role="group" aria-label="Eye"></div>
+        <div class="card" id="einfo" aria-live="polite"></div>
+      </div>
+    </div>
+
+    <div id="fovview" hidden>
+      <div class="fov" id="fov"></div>
+      <div class="eside">
+        <div class="who" id="who3" role="group" aria-label="Animal"></div>
+        <div class="card" id="finfo" aria-live="polite"></div>
+      </div>
+    </div>
+
+    <div id="quizview" hidden>
+      <div class="quiz">
+        <div class="qview"><canvas id="qc" width="1500" height="705"></canvas></div>
+        <div class="qopts" id="qopts"></div>
+        <div class="qmsg" id="qmsg" aria-live="polite"></div>
+        <div class="prog" id="qprog"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  let reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  try { const m = localStorage.getItem('curio-motion'); if (m) reduce = m === 'calm'; } catch {}
+  function showMotion() {
+    document.body.classList.toggle('calm', reduce);
+    $('motion').setAttribute('aria-pressed', !reduce);
+    $('motion').textContent = reduce ? '⏸ Motion' : '✨ Motion';
+  }
+  showMotion();
+  $('motion').onclick = () => { reduce = !reduce; try { localStorage.setItem('curio-motion', reduce ? 'calm' : 'on'); } catch {} showMotion(); };
+  const fit = () => { const r = $('stagewrap').getBoundingClientRect(); $('scene').style.setProperty('--s', Math.min(r.width / 1440, r.height / 810)); };
+  new ResizeObserver(fit).observe($('stagewrap'));
+
+  // ---------- sound ----------
+  let ac = null, soundOn = true;
+  $('sound').onclick = () => { soundOn = !soundOn; $('sound').setAttribute('aria-pressed', soundOn); $('sound').textContent = soundOn ? '🔔 Sound' : '🔕 Sound'; };
+  function ctx() { if (!ac) { try { ac = new (window.AudioContext || window.webkitAudioContext)(); } catch { return null; } } if (ac.state === 'suspended') ac.resume(); return ac; }
+  function tone(f, at, dur, {type = 'triangle', gain = .12, slide = 0} = {}) {
+    const c = soundOn && ctx(); if (!c) return;
+    const t = c.currentTime + at, o = c.createOscillator(), g = c.createGain();
+    o.type = type; o.frequency.setValueAtTime(f, t); if (slide) o.frequency.exponentialRampToValueAtTime(f * slide, t + dur);
+    g.gain.setValueAtTime(.0001, t); g.gain.exponentialRampToValueAtTime(gain, t + .01); g.gain.exponentialRampToValueAtTime(.0001, t + dur);
+    o.connect(g).connect(c.destination); o.start(t); o.stop(t + dur + .05);
+  }
+  const SFX = {
+    tap: () => tone(700, 0, .08, {type: 'sine', gain: .08}),
+    pick: () => [660, 880].forEach((f, i) => tone(f, i * .07, .18, {type: 'sine', gain: .08})),
+    good: () => [523, 659, 784, 1047].forEach((f, i) => tone(f, i * .09, .4)),
+    miss: () => tone(330, 0, .35, {gain: .08, slide: .75}),
+    buzz: () => tone(220, 0, .3, {type: 'sawtooth', gain: .03, slide: 1.05})
+  };
+
+  // ---------- art ----------
+  const SRC = {meadow: 'art:meadow', susan: 'art:susan', marigold: 'art:marigold', primrose: 'art:primrose', sunflower: 'art:sunflower', cornflower: 'art:cornflower',
+    redball: 'art:redball', blueball: 'art:blueball', yellowball: 'art:yellowball', rabbit: 'art:rabbit', mouse: 'art:mouse', toad: 'art:toad',
+    bee: 'art:bee', dog: 'art:dog', owl: 'art:owl', snake: 'art:snake', eagle: 'art:eagle', horse: 'art:horse', fox: 'art:fox', rabbithead: 'art:rabbithead'};
+  const IM = {};
+  const W = 1500, H = 844;
+  // things placed in the meadow: [art, center x, bottom y, height] in a 1500 x 844 picture; listed back to front
+  // flowers carry their ultraviolet pattern: [head center x, y, radius] as fractions of the picture, and the size of the dark middle
+  // (a flower head facing us is as wide as its cutout and sits at the top, above the stem; the sunflower plant is set by hand)
+  const FLOWER = {susan: {mid: .5}, marigold: {mid: .42}, primrose: {mid: .55}, sunflower: {head: [.5, .18, .177], mid: .5}, cornflower: {mid: 0}};
+  const DAY = [['rabbit', 1130, 470, 40], ['susan', 230, 600, 150], ['cornflower', 520, 590, 140], ['marigold', 790, 615, 140], ['primrose', 1000, 600, 150],
+    ['sunflower', 1360, 740, 440], ['yellowball', 620, 705, 82], ['redball', 960, 735, 86], ['blueball', 370, 785, 84],
+    ['primrose', 110, 820, 200], ['susan', 1110, 835, 215], ['cornflower', 1270, 844, 175], ['marigold', 640, 860, 205], ['susan', 830, 870, 180]];
+  const NIGHT = [['rabbit', 1080, 590, 130], ['toad', 330, 730, 90], ['mouse', 760, 770, 100], ['susan', 150, 860, 190], ['cornflower', 1290, 860, 170]];
+
+  // ---------- view builders ----------
+  const mk = () => { const c = document.createElement('canvas'); c.width = W; c.height = H; return c; };
+  function compose(list, g = mk().getContext('2d'), zoom = 1, cx = 0, cy = 0) {
+    g.save(); if (zoom !== 1) { g.translate(cx, cy); g.scale(zoom, zoom); g.translate(-cx, -cy); }
+    g.drawImage(IM.meadow, 0, 0, W, H);
+    for (const [n, x, y, h] of list) { const im = IM[n], w = h * im.naturalWidth / im.naturalHeight; g.drawImage(im, x - w / 2, y - h, w, h); }
+    g.restore(); return g.canvas;
+  }
+  function uvMap(list) { // brightness of ultraviolet light: sky some, leaves little, petals a lot except the flower's middle
+    const g = mk().getContext('2d'), base = compose(list).getContext('2d').getImageData(0, 0, W, H), d = base.data;
+    const out = g.createImageData(W, H), o = out.data;
+    for (let i = 0; i < d.length; i += 4) { const r = d[i], gg = d[i + 1], b = d[i + 2], sky = b > r + 20 && b > gg ? 1 : 0; const v = sky ? b * .75 : Math.min(r, gg, b) * .35; o[i] = o[i + 1] = o[i + 2] = v; o[i + 3] = 255; }
+    g.putImageData(out, 0, 0);
+    for (const [n, x, y, h] of list) {
+      const F = FLOWER[n]; if (!F) continue;
+      const im = IM[n], w = h * im.naturalWidth / im.naturalHeight, L = x - w / 2, T = y - h;
+      const t = mk().getContext('2d'); t.canvas.width = Math.ceil(w); t.canvas.height = Math.ceil(h);
+      const [hx, hy, hr] = F.head ? [F.head[0] * w, F.head[1] * h, F.head[2] * h] : [w / 2, w / 2, w / 2];
+      const gr = t.createRadialGradient(hx, hy, 0, hx, hy, hr);
+      if (F.mid) { gr.addColorStop(0, '#000'); gr.addColorStop(F.mid * .92, '#000'); gr.addColorStop(F.mid, '#fff'); gr.addColorStop(1, '#fff'); }
+      else { gr.addColorStop(0, '#bbb'); gr.addColorStop(1, '#bbb'); }
+      t.fillStyle = gr; t.beginPath(); t.arc(hx, hy, hr, 0, 7); t.fill(); // only the flower head reflects ultraviolet
+      t.globalCompositeOperation = 'destination-in'; t.drawImage(im, 0, 0, w, h);
+      // only the petals reflect: stems and leaves stay dark in ultraviolet
+      const p = t.getImageData(0, 0, t.canvas.width, t.canvas.height), pd = p.data, src = mk().getContext('2d');
+      src.canvas.width = t.canvas.width; src.canvas.height = t.canvas.height; src.drawImage(im, 0, 0, w, h); const sd = src.getImageData(0, 0, src.canvas.width, src.canvas.height).data;
+      for (let i = 0; i < pd.length; i += 4) { const leaf = sd[i + 1] > sd[i] + 10 && sd[i + 1] > sd[i + 2]; if (leaf) pd[i] = pd[i + 1] = pd[i + 2] = 20; }
+      t.putImageData(p, 0, 0);
+      g.drawImage(t.canvas, L, T);
+    }
+    return g.canvas;
+  }
+  const px = c => c.getContext('2d').getImageData(0, 0, W, H);
+  function beeView() {
+    const base = px(compose(DAY)), uv = px(uvMap(DAY)), d = base.data, u = uv.data;
+    // bees have ultraviolet, blue and green receptors and none for red: red goes dark, ultraviolet shows as purple
+    for (let i = 0; i < d.length; i += 4) { const g = d[i + 1], b = d[i + 2], v = u[i]; d[i] = Math.min(255, g * .22 + v * .95); d[i + 1] = g * .82; d[i + 2] = Math.min(255, b * .7 + v * .85); }
+    // compound eye: thousands of little lenses, each one sees one patch (staggered like a honeycomb)
+    const S = 11, out = new ImageData(W, H), o = out.data;
+    for (let row = 0, y0 = 0; y0 < H; row++, y0 += S) {
+      for (let x0 = row % 2 ? -S / 2 : 0; x0 < W; x0 += S) {
+        let R = 0, G = 0, B = 0, n = 0;
+        for (let y = y0; y < y0 + S && y < H; y += 2) for (let x = Math.max(0, x0 | 0); x < x0 + S && x < W; x += 2) { const k = (y * W + x) * 4; R += d[k]; G += d[k + 1]; B += d[k + 2]; n++; }
+        if (!n) continue; R /= n; G /= n; B /= n;
+        for (let y = y0; y < y0 + S && y < H; y++) for (let x = Math.max(0, Math.round(x0)); x < x0 + S && x < W; x++) {
+          const dx = (x - x0 - S / 2) / (S / 2), dy = (y - y0 - S / 2) / (S / 2), edge = 1 - Math.max(0, Math.hypot(dx, dy) - .75) * .9;
+          const k = (y * W + x) * 4; o[k] = R * edge; o[k + 1] = G * edge; o[k + 2] = B * edge; o[k + 3] = 255;
+        }
+      }
+    }
+    const c = mk(); c.getContext('2d').putImageData(out, 0, 0); return c;
+  }
+  const lin = v => { v /= 255; return v <= .04045 ? v / 12.92 : Math.pow((v + .055) / 1.055, 2.4); };
+  const srgb = v => 255 * (v <= .0031308 ? 12.92 * v : 1.055 * Math.pow(v, 1 / 2.4) - .055);
+  function dogView() {
+    const c = mk(), g = c.getContext('2d'); g.filter = 'blur(2.5px)'; g.drawImage(compose(DAY), 0, 0); g.filter = 'none';
+    const im = g.getImageData(0, 0, W, H), d = im.data;
+    // Machado, Oliveira and Fernandes (2009), deuteranopia, severity 1: dogs have blue and yellow cones only
+    for (let i = 0; i < d.length; i += 4) {
+      const r = lin(d[i]), gg = lin(d[i + 1]), b = lin(d[i + 2]);
+      d[i] = srgb(Math.max(0, Math.min(1, .367322 * r + .860646 * gg - .227968 * b)));
+      d[i + 1] = srgb(Math.max(0, Math.min(1, .280085 * r + .672501 * gg + .047413 * b)));
+      d[i + 2] = srgb(Math.max(0, Math.min(1, -.01182 * r + .04294 * gg + .968881 * b)));
+    }
+    g.putImageData(im, 0, 0); return c;
+  }
+  let skyMask = null;
+  function nightify(c, bright) { // moonlight: little color, blue cast; bright = how much the eye gathers
+    const g = c.getContext('2d'), im = g.getImageData(0, 0, W, H), d = im.data;
+    for (let i = 0; i < d.length; i += 4) {
+      const L = .3 * d[i] + .59 * d[i + 1] + .11 * d[i + 2], col = bright > .6 ? .12 : .22;
+      d[i] = (L + (d[i] - L) * col) * bright * .78; d[i + 1] = (L + (d[i + 1] - L) * col) * bright * .9; d[i + 2] = Math.min(255, (L + (d[i + 2] - L) * col) * bright * 1.15 + 6);
+    }
+    g.putImageData(im, 0, 0);
+    // stars and the Moon in the sky
+    const r = rng(7);
+    for (let i = 0; i < 160; i++) { const x = r() * W, y = r() * H * .42; if (!skyMask[(y | 0) * W + (x | 0)]) continue; g.fillStyle = `rgba(255,255,240,${(.25 + r() * .6) * Math.min(1, bright * 1.6)})`; g.beginPath(); g.arc(x, y, r() * 1.6 + .5, 0, 7); g.fill(); }
+    const mg = g.createRadialGradient(1240, 110, 10, 1240, 110, 90); mg.addColorStop(0, `rgba(255,252,230,${Math.min(1, .55 + bright)})`); mg.addColorStop(.38, `rgba(255,250,225,${Math.min(1, .5 + bright)})`); mg.addColorStop(.42, `rgba(220,230,255,${.25 * bright + .1})`); mg.addColorStop(1, 'rgba(200,215,255,0)');
+    g.fillStyle = mg; g.beginPath(); g.arc(1240, 110, 90, 0, 7); g.fill();
+    return c;
+  }
+  function owlView() { // rods gather the faint light: bright, nearly colorless, a little grainy
+    const c = nightify(compose(NIGHT), 1.05), g = c.getContext('2d'), im = g.getImageData(0, 0, W, H), d = im.data, r = rng(3);
+    for (let i = 0; i < d.length; i += 4) { const n = (r() - .5) * 22; d[i] += n; d[i + 1] += n; d[i + 2] += n; }
+    g.putImageData(im, 0, 0); return c;
+  }
+  const PAL = [[0, [8, 6, 30]], [.22, [40, 20, 110]], [.42, [120, 30, 140]], [.6, [210, 50, 70]], [.75, [245, 130, 30]], [.88, [255, 220, 60]], [1, [255, 255, 235]]];
+  function heat(t) { let i = 0; while (i < PAL.length - 2 && t > PAL[i + 1][0]) i++; const [a, A] = PAL[i], [b, B] = PAL[i + 1], u = Math.max(0, Math.min(1, (t - a) / (b - a))); return A.map((v, k) => v + (B[k] - v) * u); }
+  function snakeView() {
+    // the ground cools at night; warm-blooded mice and rabbits stay about 38 °C, the toad matches the air
+    const t = mk(), g = t.getContext('2d');
+    const base = compose(NIGHT.filter(([n]) => !['rabbit', 'mouse', 'toad'].includes(n))), bd = base.getContext('2d').getImageData(0, 0, W, H).data;
+    const tm = g.createImageData(W, H), o = tm.data;
+    for (let i = 0; i < bd.length; i += 4) { const y = (i / 4 / W) | 0, sky = skyMask[i / 4]; const v = sky ? 6 : 40 + (bd[i] + bd[i + 1]) * .1 + (y / H) * 25; o[i] = o[i + 1] = o[i + 2] = v; o[i + 3] = 255; }
+    g.putImageData(tm, 0, 0);
+    const warm = (n, temp) => { const it = NIGHT.find(x => x[0] === n); if (!it) return; const [, x, y, h] = it, im = IM[n], w = h * im.naturalWidth / im.naturalHeight;
+      const s = mk().getContext('2d'); s.drawImage(im, x - w / 2, y - h, w, h); s.globalCompositeOperation = 'source-in'; s.fillStyle = `rgb(${temp},${temp},${temp})`; s.fillRect(0, 0, W, H); g.drawImage(s.canvas, 0, 0); };
+    warm('toad', 70); warm('rabbit', 235); warm('mouse', 245);
+    const c = mk(), cg = c.getContext('2d'); cg.filter = 'blur(7px)'; cg.drawImage(t, 0, 0); cg.filter = 'none';
+    const im = cg.getImageData(0, 0, W, H), d = im.data;
+    for (let i = 0; i < d.length; i += 4) { const [r, gg, b] = heat(d[i] / 255); d[i] = r; d[i + 1] = gg; d[i + 2] = b; }
+    cg.putImageData(im, 0, 0); return c;
+  }
+  function rng(s) { return () => { s = (s * 16807) % 2147483647; return (s - 1) / 2147483646; }; }
+
+  // ---------- animals ----------
+  const ANIMALS = {
+    bee: {name: 'Honeybee', scene: 'day', tag: 'Bee eyes · ultraviolet shown as purple', facts: [
+      ['What is different', 'Bees see <b>ultraviolet</b> light, which people can\'t see at all. Many yellow flowers have a dark <b>bullseye</b> in ultraviolet that points the way to the nectar. Red looks dark to a bee.'],
+      ['The structure', 'Each of a bee\'s two big eyes is a <b>compound eye</b> made of thousands of tiny lenses. Each lens sees one small patch, so the picture is a blurry mosaic, but it is great for spotting flowers and movement.']],
+      note: 'We can\'t see ultraviolet, so this picture shows it as purple and shifts the other colors too.'},
+    dog: {name: 'Dog', scene: 'day', tag: 'Dog eyes · two kinds of color cells', facts: [
+      ['What is different', 'Dogs see blues and yellows, but <b>red and green look alike</b>. A red ball in green grass is hard for a dog to spot. The blue ball stands out.'],
+      ['The structure', 'People have three kinds of color cells (cones). Dogs have <b>two</b>. Dogs have more <b>rods</b> for dim light and a shiny layer behind the eye that makes their eyes glow in a flashlight beam.']],
+      note: 'Try the three balls. Which one is hardest for a dog to find?'},
+    eagle: {name: 'Eagle', scene: 'day', tag: 'Eagle eyes · about 4 times sharper', facts: [
+      ['What is different', 'Eagles see fine details from about <b>four times as far away</b> as a person can. Can you find the rabbit by the fence? The eagle can.'],
+      ['The structure', 'An eagle\'s eye packs far more light-sensing cells into the center, and each eye has <b>two extra-sharp spots</b>, one for looking ahead and one for looking to the side.']],
+      note: 'The circle shows what the eagle can make out: as sharp as a person would see it four times closer.'},
+    owl: {name: 'Owl', scene: 'night', tag: 'Owl eyes · night vision', facts: [
+      ['What is different', 'On a moonlit night an owl sees the meadow almost as well as we see it at dusk: bright, but with very little color.'],
+      ['The structure', 'Owl eyes are huge and <b>shaped like tubes</b>, with big lenses that gather lots of light. The back of the eye is packed with <b>rods</b>, the cells that work in dim light. The eyes can\'t move, so an owl turns its whole head, as far as 270 degrees.']],
+      note: 'Outside the circle is what you would see on the same night.'},
+    snake: {name: 'Rattlesnake', scene: 'night', tag: 'Rattlesnake pits · heat', facts: [
+      ['What is different', 'A rattlesnake can "see" <b>heat</b>. Warm animals glow, even in total darkness. The toad barely shows: it is cold-blooded, about as cool as the night air.'],
+      ['The structure', 'Rattlesnakes have a small <b>pit</b> on each side of the head, between the eye and the nostril. A thin skin inside each pit senses heat (infrared), and the snake\'s brain puts it together with what its eyes see.']],
+      note: 'Bright yellow and white are warmest; dark purple is coldest.'}
+  };
+  const ORDER = ['bee', 'dog', 'eagle', 'owl', 'snake'];
+  let A = 'bee', views = {}, lensR = 210, full = false, lens = [760, 520];
+  function whoButtons(el, list, cur, cb, portrait = n => SRC[n]) {
+    el.innerHTML = list.map(([k, label]) => `<button data-k="${k}" aria-pressed="${k === cur}"><img src="${portrait(k)}" alt="">${label}</button>`).join('');
+    el.querySelectorAll('[data-k]').forEach(b => b.onclick = () => { SFX.pick(); cb(b.dataset.k); });
+  }
+  function getView(k) {
+    if (views[k]) return views[k];
+    if (k === 'day') views[k] = compose(DAY);
+    if (k === 'night') views[k] = nightify(compose(NIGHT), .2);
+    if (k === 'bee') views[k] = beeView();
+    if (k === 'dog') views[k] = dogView();
+    if (k === 'owl') views[k] = owlView();
+    if (k === 'snake') views[k] = snakeView();
+    return views[k];
+  }
+  function setAnimal(k) {
+    A = k; full = false; $('full').setAttribute('aria-pressed', false);
+    whoButtons($('who'), ORDER.map(n => [n, ANIMALS[n].name]), A, setAnimal);
+    const a = ANIMALS[A];
+    $('info').innerHTML = `<div class="kicker">${a.name}</div>` + a.facts.map(([h, p]) => `<h3>${h}</h3><p>${p}</p>`).join('');
+    $('vnote').textContent = a.note;
+    if (A === 'eagle') lens = [1130, 430]; else if (A === 'snake' || A === 'owl') lens = [800, 640]; else if (A === 'dog') lens = [900, 640]; else lens = [430, 560];
+    drawLook();
+  }
+  function drawLook() {
+    const g = $('vc').getContext('2d'), a = ANIMALS[A];
+    const human = getView(a.scene);
+    g.drawImage(human, 0, 0);
+    const [x, y] = lens, r = full ? 2000 : lensR;
+    g.save(); g.beginPath(); g.arc(x, y, r, 0, 7); g.clip();
+    if (A === 'eagle') { g.fillStyle = '#000'; g.fillRect(0, 0, W, H); compose(DAY, g, 4, x, y); }
+    else g.drawImage(getView(A), 0, 0);
+    g.restore();
+    const s = 1000 / W, ring = $('ring');
+    ring.hidden = full; $('tag').hidden = full;
+    ring.style.left = (x - r) * s + 'px'; ring.style.top = (y - r) * s + 'px'; ring.style.width = ring.style.height = 2 * r * s + 'px';
+    $('tag').textContent = a.tag; $('tag').style.left = x * s + 'px'; $('tag').style.top = Math.min(530, (y + r) * s + 8) + 'px';
+    if ((y + r) * s + 8 > 530) $('tag').style.top = Math.max(6, (y - r) * s - 34) + 'px';
+    $('view').style.cursor = full ? 'default' : 'none';
+  }
+  const toPic = e => { const b = $('view').getBoundingClientRect(); return [(e.clientX - b.left) / b.width * W, (e.clientY - b.top) / b.height * H]; };
+  let held = false;
+  $('view').onpointerdown = e => { held = true; $('view').setPointerCapture(e.pointerId); if (full) { full = false; $('full').setAttribute('aria-pressed', false); } lens = toPic(e); drawLook(); };
+  $('view').onpointermove = e => { if (full) return; if (e.pointerType === 'mouse' || held) { lens = toPic(e); requestDraw(); } };
+  $('view').onpointerup = () => held = false;
+  let pend = false; const requestDraw = () => { if (pend) return; pend = true; requestAnimationFrame(() => { pend = false; drawLook(); }); };
+  $('view').tabIndex = 0;
+  $('view').onkeydown = e => { const d = {ArrowLeft: [-30, 0], ArrowRight: [30, 0], ArrowUp: [0, -30], ArrowDown: [0, 30]}[e.key]; if (d) { lens = [Math.max(0, Math.min(W, lens[0] + d[0])), Math.max(0, Math.min(H, lens[1] + d[1]))]; drawLook(); e.preventDefault(); } };
+  $('full').onclick = () => { full = !full; $('full').setAttribute('aria-pressed', full); SFX.tap(); drawLook(); };
+  $('bigger').onclick = () => { lensR = lensR >= 330 ? 150 : lensR + 60; $('bigger').textContent = lensR >= 330 ? '⊖ Smaller circle' : '⊕ Bigger circle'; SFX.tap(); drawLook(); };
+
+  // ---------- inside the eye ----------
+  const EYES = {
+    you: {name: 'You', icon: null},
+    owl: {name: 'Owl'}, bee: {name: 'Honeybee'}, snake: {name: 'Rattlesnake'}, dog: {name: 'Dog'}
+  };
+  let E = 'you', lightsOn = true, partOn = null;
+  const EYE_ICON = 'data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M6 50 Q50 8 94 50 Q50 92 6 50Z" fill="#fff" stroke="#3b2f2a" stroke-width="5"/><circle cx="50" cy="50" r="22" fill="#5a8fb8"/><circle cx="50" cy="50" r="10" fill="#111"/><circle cx="56" cy="44" r="4" fill="#fff"/></svg>');
+  // the path of light (4-PS4-2): Sun, to an object, bouncing into the eye, through the lens, onto the retina, along the nerve to the brain
+  function lightPath() { // the Sun and the apple, drawn behind the eye
+    const on = lightsOn, mv = reduce ? '' : ' move';
+    return `<g opacity="${on ? 1 : .15}">
+      <circle cx="90" cy="80" r="34" fill="#ffd34d"/><g stroke="#ffd34d" stroke-width="5" stroke-linecap="round">${[0, 1, 2, 3, 4, 5, 6, 7].map(i => { const a = i * Math.PI / 4; return `<line x1="${90 + Math.cos(a) * 44}" y1="${80 + Math.sin(a) * 44}" x2="${90 + Math.cos(a) * 58}" y2="${80 + Math.sin(a) * 58}"/>`; }).join('')}</g>
+      <path class="ray${mv}" d="M108 110 L132 262"/></g>
+    <g><path d="M110 290 q22 -30 40 0 q10 40 -20 70 q-30 -30 -20 -70z" fill="#d23a2a"/><path d="M128 288 q4 -18 16 -24" stroke="#5a3a1a" stroke-width="5" fill="none"/></g>
+    ${on ? '' : `<text x="40" y="470" class="lbl" style="font-size:22px">No light, nothing to see.</text>`}`;
+  }
+  // light bouncing off the apple, bent by the lens, landing upside down on the retina (drawn over the eye)
+  function rays(lensX, lensTop, lensBot, retinaX, rTop, rBot) {
+    if (!lightsOn) return '';
+    const mv = reduce ? '' : ' move';
+    return `<path class="ray${mv}" d="M150 300 L${lensX} ${lensTop} L${retinaX} ${rBot}"/><path class="ray${mv}" d="M140 345 L${lensX} ${lensBot} L${retinaX} ${rTop}"/>
+      <g transform="translate(${retinaX - 26} ${(rTop + rBot) / 2}) scale(.55 -.55)" opacity=".9"><path d="M-20 -40 q22 -30 40 0 q10 40 -20 70 q-30 -30 -20 -70z" fill="#d23a2a"/></g>`;
+  }
+  function diagram() {
+    const L = (x, y, t, id, anchor = 'start') => `<text x="${x}" y="${y}" class="lbl part ${partOn === id ? 'on' : ''}" data-p="${id}" text-anchor="${anchor}">${t}</text>`;
+    const P = id => `class="part ${partOn === id ? 'on' : ''}" data-p="${id}"`;
+    let s = '';
+    if (E === 'you' || E === 'dog') {
+      s = `${lightPath()}
+        <circle cx="480" cy="320" r="190" fill="#fbf4ee" stroke="#c9a99a" stroke-width="6" ${P('white')}/>
+        <path d="M640 210 A190 190 0 0 1 640 430" stroke="#c0392b" stroke-width="16" fill="none" ${P('retina')}/>
+        ${E === 'dog' ? `<path d="M655 220 A190 190 0 0 1 655 420" stroke="#4fc0b0" stroke-width="8" fill="none" ${P('tapetum')}/>` : ''}
+        <path d="M300 230 Q262 320 300 410" stroke="#9fd0e8" stroke-width="12" fill="#e8f6fc" ${P('cornea')}/>
+        <path d="M318 245 L318 290 M318 350 L318 395" stroke="#4a7fb0" stroke-width="14" ${P('iris')}/>
+        <ellipse cx="342" cy="320" rx="22" ry="62" fill="#d8ecf7" stroke="#7ab0d0" stroke-width="5" ${P('lens')}/>
+        <path d="M668 320 L790 340 L860 300" stroke="#e0b44c" stroke-width="22" fill="none" stroke-linecap="round" ${P('nerve')}/>
+        <ellipse cx="868" cy="250" rx="70" ry="54" fill="#f2c4c8" stroke="#c98a91" stroke-width="5" ${P('brain')}/>
+        ${rays(342, 292, 348, 650, 250, 390)}
+        ${L(282, 225, 'Cornea', 'cornea', 'end')}${L(300, 470, 'Iris and pupil', 'iris')}${L(330, 175, 'Lens', 'lens')}${L(612, 160, 'Retina', 'retina')}${L(720, 400, 'Optic nerve', 'nerve')}${L(868, 330, 'Brain', 'brain', 'middle')}
+        ${E === 'dog' ? L(690, 540, 'Shiny layer (tapetum)', 'tapetum') : ''}`;
+    } else if (E === 'owl') {
+      s = `${lightPath()}
+        <path d="M300 180 Q260 320 300 460 L420 470 Q500 520 620 470 Q700 320 620 170 Q500 120 420 170 Z" fill="#fbf4ee" stroke="#c9a99a" stroke-width="6" ${P('white')}/>
+        <path d="M420 172 L420 468" stroke="#b8a48a" stroke-width="10" ${P('ring')}/><path d="M420 172 L330 186 M420 468 L330 456" stroke="#b8a48a" stroke-width="8"/>
+        <path d="M296 190 Q248 320 296 450" stroke="#9fd0e8" stroke-width="12" fill="#e8f6fc" ${P('cornea')}/>
+        <ellipse cx="350" cy="320" rx="40" ry="108" fill="#d8ecf7" stroke="#7ab0d0" stroke-width="5" ${P('lens')}/>
+        <path d="M640 200 Q700 320 640 440" stroke="#c0392b" stroke-width="18" fill="none" ${P('retina')}/>
+        <path d="M672 320 L800 330" stroke="#e0b44c" stroke-width="22" stroke-linecap="round" ${P('nerve')}/>
+        ${rays(350, 270, 370, 655, 240, 400)}
+        ${L(270, 175, 'Huge cornea', 'cornea', 'end')}${L(350, 490, 'Big lens', 'lens', 'middle')}${L(430, 150, 'Bony ring holds the tube shape', 'ring')}${L(700, 190, 'Retina full of rods', 'retina')}${L(760, 370, 'Optic nerve', 'nerve')}`;
+    } else if (E === 'bee') {
+      let hex = '';
+      for (let r = 0; r < 9; r++) for (let c = 0; c < 7; c++) { const x = 300 + c * 34 + (r % 2) * 17, y = 160 + r * 30, dx = (x - 400) / 170, dy = (y - 280) / 150; if (dx * dx + dy * dy > 1) continue; hex += `<polygon points="${[0, 1, 2, 3, 4, 5].map(i => { const a = Math.PI / 6 + i * Math.PI / 3; return `${x + 17 * Math.cos(a)},${y + 17 * Math.sin(a)}`; }).join(' ')}" fill="#3b3326" stroke="#c9b26a" stroke-width="2"/>`; }
+      s = `<ellipse cx="400" cy="280" rx="180" ry="160" fill="#2a241b" ${P('compound')}/>${hex}
+        <g ${P('one')}><rect x="640" y="140" width="130" height="380" rx="20" fill="#f6efe0" stroke="#c9b26a" stroke-width="4"/>
+        <path d="M660 170 Q705 140 750 170 L740 190 L670 190 Z" fill="#d8ecf7" stroke="#7ab0d0" stroke-width="4"/>
+        <path d="M672 192 L738 192 L705 270 Z" fill="#e9d9a8"/><rect x="690" y="270" width="30" height="190" rx="10" fill="#c0392b"/>
+        <path d="M705 460 L705 510" stroke="#e0b44c" stroke-width="12"/></g>
+        <path d="M540 230 L640 180" stroke="#8a7f6a" stroke-width="3" stroke-dasharray="6 6"/><path d="M540 260 L640 500" stroke="#8a7f6a" stroke-width="3" stroke-dasharray="6 6"/>
+        <circle cx="530" cy="245" r="22" fill="none" stroke="#f4c430" stroke-width="5"/>
+        <g ${P('ocelli')}><circle cx="250" cy="80" r="16" fill="#2a241b"/><circle cx="290" cy="64" r="16" fill="#2a241b"/><circle cx="330" cy="80" r="16" fill="#2a241b"/></g>
+        ${L(400, 470, 'Compound eye: thousands of lenses', 'compound', 'middle')}${L(780, 160, 'Lens', 'one')}${L(780, 230, 'Crystal cone', 'one')}${L(780, 370, 'Light-sensing cells', 'one')}${L(785, 500, 'Nerve', 'one')}${L(360, 70, 'Three simple eyes on top', 'ocelli')}`;
+    } else if (E === 'snake') {
+      const mv = reduce ? '' : ' move';
+      s = `<path d="M120 300 Q140 200 330 190 Q520 185 600 250 Q630 300 600 350 Q520 415 330 410 Q140 400 120 300Z" fill="#9c8a62" stroke="#5e5238" stroke-width="5"/>
+        <circle cx="430" cy="250" r="26" fill="#2a2418" ${P('eye')}/><circle cx="438" cy="244" r="7" fill="#e8d9a0"/>
+        <ellipse cx="560" cy="282" rx="12" ry="7" fill="#2a2418" ${P('nostril')}/>
+        <ellipse cx="505" cy="290" rx="20" ry="14" fill="#1a160f" ${P('pit')}/>
+        <circle cx="505" cy="290" r="34" fill="none" stroke="#f4c430" stroke-width="5"/>
+        <g ${P('pit')}><path d="M640 420 Q700 360 760 420 L760 560 L640 560 Z" fill="#7a6a48"/><path d="M655 440 Q700 400 745 440" stroke="#e0521f" stroke-width="8" fill="none"/>
+        <path d="M700 420 L700 380" stroke="none"/><text x="700" y="590" class="lbl" text-anchor="middle">inside a pit</text></g>
+        <path d="M535 300 L640 430" stroke="#8a7f6a" stroke-width="3" stroke-dasharray="6 6"/>
+        <g><ellipse cx="840" cy="250" rx="40" ry="24" fill="#b08868"/><circle cx="868" cy="236" r="8" fill="#b08868"/><path d="M800 254 q-30 10 -40 -8" stroke="#b08868" stroke-width="4" fill="none"/>
+        <path class="heat${mv}" d="M800 260 Q760 300 700 410"/><path class="heat${mv}" d="M810 270 Q740 330 715 420"/><path class="heat${mv}" d="M790 250 Q700 320 690 410"/></g>
+        ${L(430, 200, 'Eye', 'eye', 'middle')}${L(590, 240, 'Nostril', 'nostril')}${L(470, 345, 'Pit', 'pit', 'middle')}${L(840, 210, 'Warm mouse', 'none', 'middle')}${L(780, 500, 'Heat-sensing skin', 'pit')}`;
+    }
+    $('eyesvg').innerHTML = `<svg viewBox="0 0 960 640" role="img" aria-label="${EYES[E].name} eye diagram">${s}</svg>`;
+    $('eyesvg').querySelectorAll('[data-p]').forEach(el => el.onclick = () => { partOn = el.dataset.p; SFX.tap(); diagram(); einfo(); });
+  }
+  const PARTS = {
+    you: [['cornea', 'Cornea', 'The clear front window of the eye. It starts bending light.'], ['iris', 'Iris and pupil', 'The colored iris makes the pupil, the dark hole, bigger in dim light and smaller in bright light.'],
+      ['lens', 'Lens', 'Bends the light so it lands in focus on the retina. The picture lands upside down, and your brain flips it.'], ['retina', 'Retina', 'A layer of light-sensing cells: rods for dim light and three kinds of cones for color.'],
+      ['nerve', 'Optic nerve', 'Carries the signals from the retina to the brain.'], ['brain', 'Brain', 'The brain turns the signals into the picture you see.']],
+    dog: [['cornea', 'Cornea', 'The clear front window. Dogs have a slightly larger cornea than people, which lets in more light.'], ['lens', 'Lens', 'Focuses light on the retina. Dogs can\'t focus on things very close up as well as we can.'],
+      ['retina', 'Retina', 'Lots of rods for dim light, and only two kinds of cones, so red and green look alike.'], ['tapetum', 'Shiny layer (tapetum)', 'A mirror-like layer behind the retina bounces light back for a second chance to be seen. It makes dogs\' eyes glow in the dark.'],
+      ['nerve', 'Optic nerve', 'Carries the signals to the brain.'], ['brain', 'Brain', 'Turns the signals into a picture.']],
+    owl: [['cornea', 'Huge cornea', 'A big front window lets in as much light as possible.'], ['lens', 'Big lens', 'A large lens gathers the faint light of the night.'], ['ring', 'Bony ring', 'Little bones hold the eye in a tube shape. The eye can\'t turn, so the owl turns its head.'],
+      ['retina', 'Retina full of rods', 'Rods work in dim light. Owls have far more of them than cones, so they see well at night but not many colors.'], ['nerve', 'Optic nerve', 'Carries the signals to the brain.']],
+    bee: [['compound', 'Compound eye', 'Each big eye is made of thousands of tiny units. Each one sees one small dot of the world, like one tile in a mosaic.'], ['one', 'One tiny eye unit', 'Each unit has its own lens, a crystal cone, light-sensing cells (some sense ultraviolet) and a nerve.'],
+      ['ocelli', 'Three simple eyes', 'On top of the head. They sense how bright it is, which helps the bee fly level and keep its direction.']],
+    snake: [['pit', 'Pit', 'A deep hollow on each side of the face with a thin, heat-sensing skin stretched inside. It feels the warmth coming off animals nearby.'], ['eye', 'Eye', 'Rattlesnakes also see with their eyes. The brain puts the eye picture and the heat picture together.'], ['nostril', 'Nostril', 'For breathing. The pit is the hole between the nostril and the eye.']]
+  };
+  function einfo() {
+    const list = PARTS[E], cur = list.find(p => p[0] === partOn);
+    $('einfo').innerHTML = `<div class="kicker">${EYES[E].name}</div><h2>${cur ? cur[1] : 'Tap a part'}</h2><p>${cur ? cur[2] : E === 'you' ? 'Light from the Sun bounces off the apple and into your eye. Without light bouncing into your eye, you can\'t see anything.' : 'Tap a label or a part of the drawing.'}</p>
+      <div class="parts">${list.map(p => `<button data-pp="${p[0]}" aria-pressed="${p[0] === partOn}">${p[1]}</button>`).join('')}</div>
+      ${E === 'you' || E === 'dog' || E === 'owl' ? `<button class="b" id="lights" style="margin-top:12px">${lightsOn ? '🌑 Turn the Sun off' : '☀️ Turn the Sun on'}</button>` : ''}`;
+    $('einfo').querySelectorAll('[data-pp]').forEach(b => b.onclick = () => { partOn = b.dataset.pp; SFX.tap(); diagram(); einfo(); });
+    if ($('lights')) $('lights').onclick = () => { lightsOn = !lightsOn; SFX.tap(); diagram(); einfo(); };
+  }
+  function setEye(k) { E = k; partOn = null; whoButtons($('who2'), Object.keys(EYES).map(n => [n, EYES[n].name]), E, setEye, n => n === 'you' ? EYE_ICON : SRC[n]); diagram(); einfo(); }
+
+  // ---------- field of view ----------
+  // degrees: total field around the head, and the part both eyes share (depth). Typical published values; they vary.
+  const FOV = {you: ['You', 180, 120, 'Your eyes face forward. Both eyes see most of what is in front of you, which lets you judge distance, but you can\'t see behind you.'],
+    owl: ['Owl', 110, 70, 'Owls hunt, so their eyes face forward: lots of depth for judging the pounce, but a narrow view. Their flexible neck makes up for it.'],
+    dog: ['Dog', 250, 60, 'Dogs, once hunters, have eyes a little to the sides: a wider view than ours, with less overlap. It changes by breed.'],
+    horse: ['Horse', 350, 65, 'Horses are prey. Eyes on the sides of the head watch almost all the way around. There are blind spots right behind and just in front of the nose.'],
+    rabbit: ['Rabbit', 350, 30, 'Rabbits can see nearly all the way around without turning, so a fox can hardly sneak up, but they don\'t judge distance well straight ahead.']};
+  let F = 'you', fox = [480, 140], seenState = null;
+  function drawFov() {
+    const [name, tot, bin] = FOV[F], cx = 480, cy = 340, R = 290;
+    const arc = (a0, a1, col) => { // angles in degrees, 0 = straight ahead (up), clockwise
+      const p = a => [cx + R * Math.sin(a * Math.PI / 180), cy - R * Math.cos(a * Math.PI / 180)];
+      const [x0, y0] = p(a0), [x1, y1] = p(a1);
+      return `<path d="M${cx} ${cy} L${x0} ${y0} A${R} ${R} 0 ${a1 - a0 > 180 ? 1 : 0} 1 ${x1} ${y1} Z" fill="${col}"/>`;
+    };
+    const head = F === 'you' ? EYE_ICON : SRC[F === 'rabbit' ? 'rabbithead' : F];
+    const ang = Math.atan2(fox[0] - cx, -(fox[1] - cy)) * 180 / Math.PI, d = Math.abs(ang);
+    const st = d <= bin / 2 ? 'both' : d <= tot / 2 ? 'one' : 'none';
+    if (st !== seenState && seenState !== null) (st === 'none' ? SFX.buzz : SFX.tap)();
+    seenState = st;
+    $('fov').innerHTML = `<svg viewBox="0 0 960 640" aria-label="Seen from above: the colored areas are what the ${name.toLowerCase()} can see">
+      <circle cx="${cx}" cy="${cy}" r="${R}" fill="#00000030"/>
+      ${arc(-tot / 2, tot / 2, '#ffffff66')}${arc(-bin / 2, bin / 2, '#f4c430aa')}
+      <line x1="${cx}" y1="${cy}" x2="${cx}" y2="${cy - R - 20}" stroke="#ffffff99" stroke-width="3" stroke-dasharray="8 8"/>
+      <text x="${cx}" y="${cy - R - 28}" text-anchor="middle" class="lbl" style="fill:#fff">facing this way</text>
+      <clipPath id="hc"><circle cx="${cx}" cy="${cy}" r="58"/></clipPath><circle cx="${cx}" cy="${cy}" r="62" fill="#fdfdf6"/>
+      <image href="${head}" x="${cx - 58}" y="${cy - 58}" width="116" height="116" clip-path="url(#hc)" preserveAspectRatio="xMidYMid slice"/>
+      <g id="foxg" style="cursor:grab"><image href="${SRC.fox}" x="${fox[0] - 70}" y="${fox[1] - 40}" width="140" height="80" preserveAspectRatio="xMidYMid meet"/>
+      <circle cx="${fox[0]}" cy="${fox[1]}" r="62" fill="none" stroke="${st === 'none' ? '#d0846a' : st === 'one' ? '#fff' : '#f4c430'}" stroke-width="5" stroke-dasharray="${st === 'none' ? '8 8' : ''}"/></g>
+      <g transform="translate(24 560)"><rect width="22" height="22" fill="#f4c430aa" rx="4"/><text x="32" y="18" class="lbl" style="fill:#fff">Both eyes: sees depth (${bin}°)</text>
+      <rect y="34" width="22" height="22" fill="#ffffff88" rx="4"/><text x="32" y="52" class="lbl" style="fill:#fff">One eye (${tot}° in all)</text></g>
+    </svg>`;
+    $('finfo').innerHTML = `<div class="kicker">${name}</div><div class="fovmsg">${st === 'both' ? '👀 Seen with both eyes' : st === 'one' ? '👁️ Seen with one eye' : '🙈 The fox is in the blind spot!'}</div>
+      <p>${FOV[F][3]}</p><p style="color:var(--muted)">Drag the fox around. Predators like owls have eyes in front; prey like rabbits and horses have eyes on the sides.</p>`;
+  }
+  let fdrag = false;
+  $('fov').onpointerdown = e => { fdrag = true; $('fov').setPointerCapture(e.pointerId); moveFox(e); };
+  $('fov').onpointermove = e => { if (fdrag) moveFox(e); };
+  $('fov').onpointerup = () => fdrag = false;
+  function moveFox(e) { const b = $('fov').getBoundingClientRect(); fox = [Math.max(70, Math.min(890, (e.clientX - b.left) / b.width * 960)), Math.max(50, Math.min(600, (e.clientY - b.top) / b.height * 640))]; drawFov(); }
+  $('fov').tabIndex = 0;
+  $('fov').onkeydown = e => { const d = {ArrowLeft: [-30, 0], ArrowRight: [30, 0], ArrowUp: [0, -30], ArrowDown: [0, 30]}[e.key]; if (d) { fox = [Math.max(70, Math.min(890, fox[0] + d[0])), Math.max(50, Math.min(600, fox[1] + d[1]))]; drawFov(); e.preventDefault(); } };
+  function setFov(k) { F = k; seenState = null; whoButtons($('who3'), Object.keys(FOV).map(n => [n, FOV[n][0]]), F, setFov, n => n === 'you' ? EYE_ICON : SRC[n === 'rabbit' ? 'rabbithead' : n]); drawFov(); }
+
+  // ---------- who's looking ----------
+  let Q = null;
+  function newQuiz() {
+    const r = [...ORDER, ...ORDER].sort(() => Math.random() - .5).slice(0, 8);
+    Q = {list: r, i: 0, res: []}; showQ();
+  }
+  function showQ() {
+    const k = Q.list[Q.i], g = $('qc').getContext('2d');
+    // a random window of the animal's view, so rounds don't repeat
+    const zoom = 1.6, cw = W / zoom, ch = 705 / zoom;
+    let x0 = Math.random() * (W - cw), y0 = H - ch - Math.random() * (H * .35);
+    g.fillStyle = '#000'; g.fillRect(0, 0, W, 705);
+    if (k === 'eagle') { const big = mk(); compose(DAY, big.getContext('2d'), 4, 1130, 430); x0 = Math.min(W - cw, 1130 - cw / 2); y0 = Math.min(H - ch, 430 - ch / 2); g.drawImage(big, x0, y0, cw, ch, 0, 0, W, 705); }
+    else g.drawImage(getView(k), x0, y0, cw, ch, 0, 0, W, 705);
+    const opts = [k, ...ORDER.filter(n => n !== k).sort(() => Math.random() - .5).slice(0, 2)].sort(() => Math.random() - .5);
+    $('qopts').innerHTML = opts.map(n => `<button class="b" data-q="${n}"><img src="${SRC[n]}" alt="">${ANIMALS[n].name}</button>`).join('');
+    $('qmsg').innerHTML = `Round ${Q.i + 1} of ${Q.list.length}: whose eyes are these?`;
+    $('qprog').innerHTML = Q.list.map((_, i) => `<i class="${Q.res[i] === 1 ? 'ok' : Q.res[i] === 0 ? 'no' : ''} ${i === Q.i ? 'now' : ''}"></i>`).join('');
+    $('qopts').querySelectorAll('[data-q]').forEach(b => b.onclick = () => answer(b.dataset.q));
+  }
+  const CLUE = {bee: 'The mosaic of little dots and purple ultraviolet bullseyes give the bee away.', dog: 'Blues and yellows but no reds or greens: dog eyes.', eagle: 'A tiny rabbit far off by the fence, seen up close and sharp: eagle eyes.', owl: 'A night scene that looks bright but nearly colorless: owl eyes.', snake: 'Glowing warm animals in the dark: a rattlesnake\'s heat-sensing pits.'};
+  function answer(n) {
+    const k = Q.list[Q.i]; if (Q.res[Q.i] !== undefined) return;
+    const ok = n === k; Q.res[Q.i] = ok ? 1 : 0; (ok ? SFX.good : SFX.miss)();
+    $('qopts').querySelectorAll('[data-q]').forEach(b => { b.disabled = true; if (b.dataset.q === k) b.classList.add('right'); else if (b.dataset.q === n) b.classList.add('wrong'); });
+    const last = Q.i === Q.list.length - 1;
+    $('qmsg').innerHTML = `${ok ? 'Yes! ' : `It was the ${ANIMALS[k].name.toLowerCase()}. `}${CLUE[k]} <button class="b go" id="qn" style="margin-left:8px">${last ? 'See my score' : 'Next ▶'}</button>`;
+    $('qprog').innerHTML = Q.list.map((_, i) => `<i class="${Q.res[i] === 1 ? 'ok' : Q.res[i] === 0 ? 'no' : ''} ${i === Q.i ? 'now' : ''}"></i>`).join('');
+    $('qn').focus();
+    $('qn').onclick = () => {
+      SFX.tap();
+      if (!last) { Q.i++; showQ(); return; }
+      const sc = Q.res.reduce((a, b) => a + b, 0);
+      $('qopts').innerHTML = `<button class="b go" id="qagain">Play again</button>`;
+      $('qmsg').innerHTML = `<b>${sc} of ${Q.list.length}.</b> ${sc >= 7 ? 'You know your animal eyes!' : 'Try Look through again and drag the circle around, then play again.'}`;
+      $('qagain').onclick = newQuiz;
+    };
+  }
+
+  // ---------- modes ----------
+  let mode = 'look';
+  function setMode(m) {
+    mode = m;
+    document.querySelectorAll('[data-mode]').forEach(b => b.setAttribute('aria-pressed', b.dataset.mode === m));
+    $('lookview').hidden = m !== 'look'; $('eyeview').hidden = m !== 'eye'; $('fovview').hidden = m !== 'fov'; $('quizview').hidden = m !== 'quiz';
+    if (m === 'eye') setEye(E);
+    if (m === 'fov') setFov(F);
+    if (m === 'quiz' && !Q) newQuiz();
+  }
+  document.querySelectorAll('[data-mode]').forEach(b => b.onclick = () => { SFX.tap(); setMode(b.dataset.mode); });
+  document.addEventListener('keydown', e => { if (/^[1-4]$/.test(e.key) && !e.ctrlKey && !e.altKey) setMode(['look', 'eye', 'fov', 'quiz'][+e.key - 1]); });
+
+  Promise.all(Object.entries(SRC).map(([k, s]) => new Promise(res => { const im = new Image(); im.onload = im.onerror = () => { IM[k] = im; res(); }; im.src = s; })))
+    .then(() => {
+      // the sky, for stars at night and cold air in heat vision
+      const d = px(compose([])).data; skyMask = new Uint8Array(W * H);
+      for (let i = 0, j = 0; i < d.length; i += 4, j++) { const y = j / W | 0; skyMask[j] = y < H * .5 && d[i + 2] > d[i] + 15 && d[i + 2] >= d[i + 1] - 5 ? 1 : 0; }
+      setAnimal('bee');
+    });
+  window.__has = {setMode, setAnimal, getView, views, DAY, NIGHT, FLOWER, get lens() { return lens; }, set lens(v) { lens = v; drawLook(); }};
+})();
+</script>
+</body>
+</html>

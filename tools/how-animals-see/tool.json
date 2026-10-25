@@ -1,0 +1,24 @@
+{
+  "id": "how-animals-see",
+  "status": "beta",
+  "driver": "students or teacher",
+  "modes": [
+    "Look through",
+    "Inside the eye",
+    "Field of view",
+    "Who's looking?"
+  ],
+  "grades_label": "Grades 3-5",
+  "third_party": [],
+  "updated": "2026-10-25",
+  "hook": "Drag an animal's eye across a meadow: ultraviolet bullseyes for a bee, red-green blindness for a dog, eagle-sharp detail, owl night vision and a rattlesnake's heat sense. Then look inside each eye.",
+  "outcome": "Explain how animals' eye and sense structures (compound eyes, cones and rods, tube-shaped eyes, heat-sensing pits, eye placement) help them survive, and model how light reflected from objects enters the eye so we can see them",
+  "minutes": "15-30",
+  "sources": [
+    "Dog color vision simulated with the Machado, Oliveira and Fernandes (2009) deuteranopia matrix",
+    "Bee view uses the standard false-color convention (ultraviolet shown as purple)",
+    "Fields of view: typical published values; they vary",
+    "Illustrations drawn with FLUX.1-schnell (Apache 2.0) on a local computer, edited for Curio Class",
+    "Sound synthesized in the browser"
+  ]
+}
