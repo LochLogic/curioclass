@@ -1,0 +1,635 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Frame It · Photography and framing · Curio Class</title>
+<meta name="description" content="A virtual camera in three painted places: aim, zoom, tilt and turn the camera to practice the rule of thirds, horizons, leading lines, framing and filling the frame, with a critique of every photo. Then light a still life in a 3D studio.">
+<!--
+FRAME IT (Curio Class)
+Media arts, grades 6-8, National Core Arts Standards MA:Cr1 (generate and conceptualize) and MA:Cr2 (organize and
+develop), module "Photography and Framing": composition, light and framing.
+Shoot: a camera with a viewfinder over three large painted scenes (harbor, city street, mountain lake). Drag to
+aim, zoom from 24 to 85 mm, tilt, switch between landscape and portrait, and show the thirds grid. Every photo gets
+a review with overlays: where the subject sits against the thirds grid, the horizon, the leading lines, and tips.
+Assignments: twelve photo briefs (a subject on a thirds point, a low horizon, lines that lead, a frame within a
+frame, a vertical photo, breaking the rule on purpose with a mirror reflection...), each checked from the photo.
+Light studio: a 3D still life. Move the light around the subject, raise it, make it hard or soft, add a fill card,
+warm or cool it, and try five lighting looks (side light, silhouette, flat, dramatic, golden hour).
+Scenes painted with Google Gemini, edited for Curio Class (stray sign lettering removed). Three.js r128 (MIT).
+Photos can be saved as PNG files on this device. Sound synthesized in the browser.
+One file, no network requests. Content CC BY 4.0, code MIT. curioclass.org
+-->
+<style>
+:root{
+  --bg:#1c1d21;--panel:#26282e;--line:#3a3d45;--ink:#eef0f4;--muted:#a3a9b5;--focus:#7aa7ff;--brand:#ffb347;--good:#57c785;--warn:#ffcc4d;--bad:#ff7a6b;
+  font-family:'Segoe UI',system-ui,-apple-system,Roboto,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0;height:100%}
+body{background:var(--bg);color:var(--ink);display:grid;grid-template-rows:auto 1fr;min-height:100vh}
+button,select,input{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:3px solid var(--focus);outline-offset:3px}
+header{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:10px 20px;background:#121316;border-bottom:1px solid var(--line)}
+h1{margin:0 auto 0 0;font:800 clamp(22px,2.8vw,32px)/1.1 Georgia,'Times New Roman',serif;color:#fff}
+h1 small{display:block;font:400 14px/1.3 'Segoe UI',sans-serif;color:var(--muted)}
+.icon-btn{border:1px solid #4a4e58;background:#2c2f36;color:#fff;border-radius:999px;min-height:46px;padding:0 16px;font-weight:700;font-size:15px}
+.icon-btn[aria-pressed="false"]{background:#17181b;color:var(--muted)}
+
+.stagewrap{position:relative;overflow:hidden;min-height:0}
+.scene{position:absolute;left:50%;top:50%;width:1440px;height:810px;transform:translate(-50%,-50%) scale(var(--s,1));overflow:hidden}
+.top{position:absolute;left:24px;top:14px;display:flex;gap:12px;z-index:6}
+.tabs{display:inline-flex;border-radius:999px;overflow:hidden;background:var(--panel);border:1px solid var(--line)}
+.tabs button{border:0;background:transparent;min-height:50px;padding:0 20px;font:700 18px 'Segoe UI',sans-serif;color:var(--muted)}
+.tabs button[aria-pressed="true"]{background:var(--brand);color:#241500}
+.b{border:1px solid var(--line);border-radius:12px;min-height:46px;padding:0 14px;font:700 16px 'Segoe UI',sans-serif;background:#30333a;color:var(--ink);white-space:nowrap}
+.b:hover{background:#383c44}
+.b[aria-pressed="true"]{background:var(--brand);color:#241500;border-color:var(--brand)}
+.b.pri{background:var(--brand);color:#241500;border-color:var(--brand)}
+.b:disabled{opacity:.4;cursor:default}
+
+/* camera body */
+.body{position:absolute;left:18px;top:76px;width:940px;height:640px;border-radius:26px;background:linear-gradient(#2e3036,#1f2125);box-shadow:inset 0 1px 0 #ffffff14,0 14px 30px #0008}
+.vf{position:absolute;left:20px;top:20px;width:900px;height:600px;background:#0b0b0d;border-radius:8px;overflow:hidden;display:grid;place-items:center}
+.vf canvas{display:block;touch-action:none;cursor:grab}
+.vf canvas:active{cursor:grabbing}
+.vf .ov{position:absolute;pointer-events:none}
+.vf .ov svg{width:100%;height:100%;overflow:visible}
+.hud{position:absolute;left:30px;right:30px;bottom:28px;display:flex;justify-content:space-between;font:700 15px 'Consolas','Courier New',monospace;color:#fff;text-shadow:0 1px 3px #000;pointer-events:none}
+.flash{position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none}
+.roll{position:absolute;left:18px;top:728px;width:940px;height:72px;display:flex;gap:8px;align-items:center;overflow:hidden}
+.roll .lab{font:700 13px 'Segoe UI',sans-serif;color:var(--muted);width:60px;line-height:1.2}
+.roll button{border:2px solid #3a3d45;border-radius:6px;padding:0;background:#000;height:62px;flex:none;overflow:hidden;position:relative}
+.roll button img{height:100%;display:block}
+.roll button span{position:absolute;right:2px;bottom:0;font-size:12px;text-shadow:0 1px 2px #000}
+
+/* side */
+.side{position:absolute;left:976px;right:18px;top:76px;bottom:10px;display:flex;flex-direction:column;gap:10px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:12px 14px}
+.card h2{margin:0 0 6px;font:800 18px Georgia,serif;color:#fff}
+.card p{margin:4px 0;font:500 15px/1.4 'Segoe UI',sans-serif;color:#d6dae2}
+.kick{font:800 12px 'Segoe UI',sans-serif;letter-spacing:1px;text-transform:uppercase;color:var(--brand)}
+.thumbs{display:flex;gap:8px}
+.thumbs button{flex:1;border:2px solid transparent;border-radius:10px;padding:0;overflow:hidden;background:#000;position:relative;height:66px}
+.thumbs button img{width:100%;height:100%;object-fit:cover;display:block}
+.thumbs button span{position:absolute;left:0;right:0;bottom:0;font:700 12px 'Segoe UI',sans-serif;background:#000a;padding:2px}
+.thumbs button[aria-pressed="true"]{border-color:var(--brand)}
+.mini{position:relative;border-radius:10px;overflow:hidden;cursor:crosshair;touch-action:none}
+.mini img{width:100%;display:block}
+.mini svg{position:absolute;inset:0;width:100%;height:100%}
+.ctl{display:grid;grid-template-columns:96px 1fr 58px;align-items:center;gap:6px;font:700 14px 'Segoe UI',sans-serif;color:#d6dae2}
+.ctl input[type=range]{width:100%;accent-color:var(--brand);height:30px}
+.ctl output{text-align:right;font-family:Consolas,monospace}
+.row{display:flex;gap:8px;flex-wrap:wrap}
+.row .b{flex:1}
+.shutter{display:flex;align-items:center;justify-content:center;gap:12px;border:0;border-radius:999px;min-height:66px;background:radial-gradient(circle at 50% 35%,#ff6b5e,#d8392b);color:#fff;font:900 20px 'Segoe UI',sans-serif;box-shadow:0 5px 0 #8e2016;margin-top:auto}
+.shutter:active{transform:translateY(3px);box-shadow:0 2px 0 #8e2016}
+.briefs{display:grid;grid-template-columns:repeat(6,1fr);gap:6px}
+.briefs button{min-height:40px;border-radius:10px;border:1px solid var(--line);background:#30333a;font:800 14px 'Segoe UI',sans-serif;padding:0}
+.briefs button[aria-current="true"]{background:var(--brand);color:#241500}
+.briefs button.ok::after{content:' ★';color:var(--warn)}
+.briefs button[aria-current="true"].ok::after{color:#7a4b00}
+
+/* review */
+.review{position:absolute;inset:0;z-index:20;background:#0009;display:grid;place-items:center}
+.rv{width:1320px;height:720px;background:var(--panel);border:1px solid var(--line);border-radius:24px;box-shadow:0 30px 60px #000a;display:grid;grid-template-columns:840px 1fr;gap:20px;padding:20px}
+.rv .shot{position:relative;display:grid;place-items:center;background:#0b0b0d;border-radius:12px;overflow:hidden}
+.rv .shot canvas{display:block;max-width:840px;max-height:680px}
+.rv .shot svg{position:absolute;pointer-events:none}
+.rv h2{margin:0 0 4px;font:800 28px Georgia,serif}
+.notes{list-style:none;margin:10px 0;padding:0;display:flex;flex-direction:column;gap:9px}
+.notes li{display:grid;grid-template-columns:30px 1fr;gap:6px;font:500 17px/1.4 'Segoe UI',sans-serif;color:#e6e9ef}
+.notes li b{color:#fff}
+.notes li i{font-style:normal;font-size:20px}
+.stars{font-size:34px;letter-spacing:3px}
+.legend{display:flex;gap:12px;flex-wrap:wrap;font:700 13px 'Segoe UI',sans-serif;color:var(--muted)}
+.legend span::before{content:'';display:inline-block;width:18px;height:4px;border-radius:2px;margin-right:5px;vertical-align:3px;background:var(--c)}
+
+/* light studio */
+.dial{display:block;margin:0 auto;touch-action:none;cursor:pointer}
+.seg{display:flex;border-radius:10px;overflow:hidden;border:1px solid var(--line)}
+.seg button{flex:1;border:0;background:#30333a;min-height:40px;font:700 14px 'Segoe UI',sans-serif}
+.seg button[aria-pressed="true"]{background:var(--brand);color:#241500}
+.lookbtns{display:flex;flex-direction:column;gap:6px}
+.lookbtns button{text-align:left;border:1px solid var(--line);border-radius:12px;background:#30333a;min-height:42px;padding:4px 12px;font:700 15px 'Segoe UI',sans-serif}
+.lookbtns button[aria-current="true"]{border-color:var(--brand);box-shadow:inset 4px 0 0 var(--brand)}
+.lookbtns button.ok::after{content:' ★';color:var(--warn)}
+</style>
+</head>
+<body>
+<header>
+  <h1>Frame It <small>Aim, zoom and compose. Every photo gets a review.</small></h1>
+  <button class="icon-btn" id="motion" aria-pressed="true" title="Turn animation on or off">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+</header>
+<div class="stagewrap" id="stagewrap">
+  <div class="scene" id="scene">
+    <div class="top">
+      <div class="tabs" role="group" aria-label="Mode">
+        <button data-mode="shoot" aria-pressed="true">📷 Shoot</button>
+        <button data-mode="brief" aria-pressed="false">🎯 Assignments</button>
+        <button data-mode="light" aria-pressed="false">💡 Light studio</button>
+      </div>
+    </div>
+    <div class="body">
+      <div class="vf" id="vf">
+        <canvas id="cv" width="900" height="600" aria-label="Camera viewfinder. Drag to aim, scroll or use the zoom slider."></canvas>
+        <div class="ov" id="ov"></div>
+        <div class="hud" id="hud"></div>
+        <div class="flash" id="flash"></div>
+      </div>
+    </div>
+    <div class="roll" id="roll"><div class="lab">Your photos</div></div>
+    <div class="side" id="side"></div>
+    <div id="review"></div>
+  </div>
+</div>
+<script src="lib:three"></script>
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  let reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  try { const m = localStorage.getItem('curio-motion'); if (m) reduce = m === 'calm'; } catch {}
+  function showMotion() {
+    document.body.classList.toggle('calm', reduce);
+    $('motion').setAttribute('aria-pressed', !reduce);
+    $('motion').textContent = reduce ? '⏸ Motion' : '✨ Motion';
+  }
+  showMotion();
+  $('motion').onclick = () => { reduce = !reduce; try { localStorage.setItem('curio-motion', reduce ? 'calm' : 'on'); } catch {} showMotion(); };
+  const fit = () => { const r = $('stagewrap').getBoundingClientRect(); $('scene').style.setProperty('--s', Math.min(r.width / 1440, r.height / 810)); };
+  new ResizeObserver(fit).observe($('stagewrap'));
+  const anim = (el, kf, opt) => { if (reduce || !el || !el.animate) return null; return el.animate(kf, opt); };
+
+  // ---------- sound ----------
+  let ac = null, soundOn = true;
+  $('sound').onclick = () => { soundOn = !soundOn; $('sound').setAttribute('aria-pressed', soundOn); $('sound').textContent = soundOn ? '🔔 Sound' : '🔕 Sound'; };
+  function ctx() { if (!ac) { try { ac = new (window.AudioContext || window.webkitAudioContext)(); } catch { return null; } } if (ac.state === 'suspended') ac.resume(); return ac; }
+  function click() { // a mechanical shutter: two noise clicks
+    const c = soundOn && ctx(); if (!c) return;
+    [0, .07].forEach((d, i) => {
+      const t = c.currentTime + d, b = c.createBuffer(1, c.sampleRate * .04, c.sampleRate), x = b.getChannelData(0);
+      for (let j = 0; j < x.length; j++) x[j] = (Math.random() * 2 - 1) * Math.exp(-j / (c.sampleRate * .006));
+      const s = c.createBufferSource(), f = c.createBiquadFilter(), g = c.createGain();
+      s.buffer = b; f.type = 'bandpass'; f.frequency.value = i ? 2600 : 1800; g.gain.value = .5;
+      s.connect(f).connect(g).connect(c.destination); s.start(t);
+    });
+  }
+  function chime(good) {
+    const c = soundOn && ctx(); if (!c) return;
+    (good ? [659, 784, 1047] : [440, 392]).forEach((f, i) => { const t = c.currentTime + .25 + i * .1, o = c.createOscillator(), g = c.createGain(); o.type = 'sine'; o.frequency.value = f; g.gain.setValueAtTime(.0001, t); g.gain.exponentialRampToValueAtTime(.15, t + .01); g.gain.exponentialRampToValueAtTime(.0001, t + .5); o.connect(g).connect(c.destination); o.start(t); o.stop(t + .55); });
+  }
+
+  // ---------- scenes ----------
+  // Everything is in fractions of the painting (0-1 across, 0-1 down), measured by eye from each painting.
+  const SCENES = {
+    harbor: {name: 'Harbor', src: 'art:harbor', horizon: {y: .3375, x0: .42, x1: 1},
+      subjects: [
+        {id: 'lighthouse', name: 'the lighthouse', box: [.650, .213, .686, .407], tall: true, w: 3},
+        {id: 'boat', name: 'the orange fishing boat', box: [.31, .555, .445, .86], w: 2},
+        {id: 'boat2', name: 'the white boat', box: [.16, .573, .262, .716], w: 1.5},
+        {id: 'cottages', name: 'the cottages', box: [.025, .25, .145, .465], w: 1}],
+      lines: [{name: 'pier', pts: [[.255, 1], [.6375, .43]]}, {name: 'pier', pts: [[.575, 1], [.67, .448]]}]},
+    street: {name: 'City street', src: 'art:street', horizon: null,
+      subjects: [
+        {id: 'cyclist', name: 'the cyclist in the red coat', box: [.70, .68, .7625, .89], tall: true, w: 3},
+        {id: 'tram', name: 'the red tram', box: [.5975, .56, .62, .64], w: 2},
+        {id: 'fountain', name: 'the fountain', box: [.135, .55, .1925, .69], w: 2},
+        {id: 'arch', name: 'the archway', box: [.055, .215, .28, .716], w: .5, frame: true}],
+      lines: [{name: 'tram track', pts: [[.35, 1], [.585, .635]]}, {name: 'tram track', pts: [[.55, 1], [.592, .635]]}, {name: 'sidewalk edge', pts: [[.74, .93], [.6, .635]]}, {name: 'rooftops', pts: [[.46, .02], [.585, .52]]}]},
+    lake: {name: 'Mountain lake', src: 'art:lake', horizon: {y: .501, x0: 0, x1: .9, name: 'shoreline'},
+      subjects: [
+        {id: 'tree', name: 'the golden tree', box: [.6725, .036, .845, .56], tall: true, w: 3},
+        {id: 'hiker', name: 'the hiker', box: [.8125, .586, .85, .748], tall: true, w: 2.5},
+        {id: 'peak', name: 'the snowy peak', box: [.52, .18, .67, .38], w: 1.5}],
+      lines: [{name: 'path', pts: [[.40, 1], [.38, .905], [.43, .833], [.55, .797], [.71, .77], [.81, .743], [.85, .68], [.87, .609], [.88, .573]]}]},
+  };
+  const IMG = {};
+  const loadImg = src => new Promise(r => { const i = new Image(); i.onload = () => r(i); i.src = src; });
+
+  // ---------- the camera ----------
+  const cam = {scene: 'harbor', cx: .5, cy: .55, f: 24, rot: 0, port: false, grid: true};
+  const MINF = 24, MAXF = 85;
+  const iw = () => IMG[cam.scene].naturalWidth, ih = () => IMG[cam.scene].naturalHeight;
+  function frameSize(c = cam) {
+    const W = IMG[c.scene].naturalWidth, H = IMG[c.scene].naturalHeight, L24 = Math.min(W, H * 1.5) * .98;
+    let L = L24 / (c.f / 24);
+    if (c.port) L = Math.min(L, H * .98);
+    return c.port ? {w: L / 1.5, h: L} : {w: L, h: L / 1.5};
+  }
+  function clampCam(c = cam) {
+    const W = IMG[c.scene].naturalWidth, H = IMG[c.scene].naturalHeight;
+    for (let k = 0; k < 20; k++) {
+      const {w, h} = frameSize(c), a = c.rot * Math.PI / 180, ex = (Math.abs(Math.cos(a)) * w + Math.abs(Math.sin(a)) * h) / 2, ey = (Math.abs(Math.sin(a)) * w + Math.abs(Math.cos(a)) * h) / 2;
+      if (ex * 2 > W || ey * 2 > H) { c.f = Math.min(MAXF, c.f + 1); continue; }
+      c.cx = Math.min(1 - ex / W, Math.max(ex / W, c.cx)); c.cy = Math.min(1 - ey / H, Math.max(ey / H, c.cy)); break;
+    }
+  }
+  const effF = () => { const W = iw(), H = ih(), L24 = Math.min(W, H * 1.5) * .98, {w, h} = frameSize(); return Math.round(24 * L24 / Math.max(w, h)); };
+  function drawTo(cv, c = cam) {
+    const g = cv.getContext('2d'), img = IMG[c.scene], {w} = frameSize(c);
+    g.setTransform(1, 0, 0, 1, 0, 0); g.fillStyle = '#000'; g.fillRect(0, 0, cv.width, cv.height);
+    g.translate(cv.width / 2, cv.height / 2); g.rotate(c.rot * Math.PI / 180); g.scale(cv.width / w, cv.width / w);
+    g.translate(-c.cx * img.naturalWidth, -c.cy * img.naturalHeight);
+    g.imageSmoothingQuality = 'high'; g.drawImage(img, 0, 0);
+    g.setTransform(1, 0, 0, 1, 0, 0);
+  }
+  // painting point (fractions) -> photo point (fractions of the frame)
+  function toFrame(p, c = cam) {
+    const W = IMG[c.scene].naturalWidth, H = IMG[c.scene].naturalHeight, {w, h} = frameSize(c), a = c.rot * Math.PI / 180;
+    const dx = (p[0] - c.cx) * W, dy = (p[1] - c.cy) * H;
+    const x = dx * Math.cos(a) - dy * Math.sin(a), y = dx * Math.sin(a) + dy * Math.cos(a);
+    return [.5 + x / w, .5 + y / h];
+  }
+  function clip(a, b) { // Liang-Barsky clip of a segment to the unit square
+    let t0 = 0, t1 = 1; const dx = b[0] - a[0], dy = b[1] - a[1];
+    for (const [p, q] of [[-dx, a[0]], [dx, 1 - a[0]], [-dy, a[1]], [dy, 1 - a[1]]]) {
+      if (p === 0) { if (q < 0) return null; continue; }
+      const r = q / p; if (p < 0) { if (r > t1) return null; if (r > t0) t0 = r; } else { if (r < t0) return null; if (r < t1) t1 = r; }
+    }
+    return [[a[0] + t0 * dx, a[1] + t0 * dy], [a[0] + t1 * dx, a[1] + t1 * dy]];
+  }
+
+  // ---------- reading a photo ----------
+  const POWER = [[1 / 3, 1 / 3], [2 / 3, 1 / 3], [1 / 3, 2 / 3], [2 / 3, 2 / 3]];
+  function analyze(c = cam) {
+    const sc = SCENES[c.scene], {w, h} = frameSize(c), W = IMG[c.scene].naturalWidth, H = IMG[c.scene].naturalHeight, asp = w / h;
+    const subs = sc.subjects.map(s => {
+      const [x0, y0, x1, y1] = s.box; let inside = 0, n = 0;
+      for (let i = 0; i <= 6; i++) for (let j = 0; j <= 6; j++) { const [u, v] = toFrame([x0 + (x1 - x0) * i / 6, y0 + (y1 - y0) * j / 6], c); n++; if (u >= 0 && u <= 1 && v >= 0 && v <= 1) inside++; }
+      const [u, v] = toFrame([(x0 + x1) / 2, (y0 + y1) / 2], c), area = (x1 - x0) * W * (y1 - y0) * H / (w * h);
+      const dP = Math.min(...POWER.map(([a, b]) => Math.hypot((u - a) * asp, v - b) / Math.hypot(asp, 1)));
+      return {...s, u, v, vis: inside / n, area, dP, center: Math.hypot((u - .5) * asp, v - .5) / Math.hypot(asp, 1) < .06, inFrame: u > 0 && u < 1 && v > 0 && v < 1};
+    });
+    const seen = subs.filter(s => s.vis >= .5 && !s.frame);
+    // the subject is what the photographer seems to aim at: big, whole, important, and placed on purpose
+    const pick = s => s.w * Math.sqrt(s.area) * (s.vis >= .85 ? 1 : .6) * (s.dP < .1 || s.center ? 1.6 : 1);
+    const main = seen.sort((a, b) => pick(b) - pick(a))[0] || null;
+    let horizon = null;
+    if (sc.horizon) {
+      const a = toFrame([sc.horizon.x0, sc.horizon.y], c), b = toFrame([sc.horizon.x1, sc.horizon.y], c), seg = clip(a, b);
+      if (seg && Math.hypot(seg[1][0] - seg[0][0], seg[1][1] - seg[0][1]) > .4) {
+        const t = (.5 - a[0]) / (b[0] - a[0]), v = a[1] + t * (b[1] - a[1]);
+        horizon = {v, seg, tilt: c.rot, name: sc.horizon.name || 'horizon'};
+      }
+    }
+    const lines = sc.lines.map(L => {
+      const pts = L.pts.map(p => toFrame(p, c)); let len = 0, segs = [];
+      for (let i = 1; i < pts.length; i++) { const s = clip(pts[i - 1], pts[i]); if (s) { segs.push(s); len += Math.hypot((s[1][0] - s[0][0]) * asp, s[1][1] - s[0][1]); } }
+      const end = segs.length ? segs[segs.length - 1][1] : null;
+      return {name: L.name, segs, len: len / Math.hypot(asp, 1), end};
+    });
+    const leadsTo = s => s && lines.some(l => l.len > .3 && l.end && Math.hypot((l.end[0] - s.u) * asp, l.end[1] - s.v) / Math.hypot(asp, 1) < .14);
+    const arch = subs.find(s => s.frame);
+    return {subs, main, horizon, lines, leadsTo, arch, asp, port: c.port, rot: c.rot};
+  }
+  function critique(A) {
+    const notes = [], m = A.main; let good = 0;
+    const add = (ok, html) => { notes.push([ok, html]); if (ok === true) good++; };
+    if (!m) add(false, '<b>No clear subject.</b> What is this photo about? Aim at one thing and make it the star.');
+    else {
+      add(null, `<b>Subject:</b> ${m.name}.`);
+      if (m.vis < .85) add(false, `<b>${cap(m.name)} is cut off</b> at the edge. Show all of it, or crop in on purpose.`);
+      if (m.area < .006) add(false, `<b>${cap(m.name)} is tiny.</b> Zoom in or aim closer so the viewer knows where to look.`);
+      else if (m.dP < .07) add(true, `<b>Rule of thirds:</b> ${m.name} sits on a thirds point, a strong spot.`);
+      else if (m.center) add(false, `<b>Dead center.</b> It works for calm, balanced photos, but try a thirds point for more energy.`);
+      else add(false, `<b>Placement:</b> try moving ${m.name} onto a thirds point, where the grid lines cross.`);
+      if (m.area > .25 && m.vis >= .85) add(true, `<b>Fills the frame:</b> no wasted space around ${m.name}.`);
+      if (m.tall && A.port && m.vis >= .85) add(true, '<b>Vertical photo</b> for a tall subject.');
+      if (A.leadsTo(m)) add(true, `<b>Leading lines:</b> the ${A.lines.find(l => l.len > .3).name} leads the eye to ${m.name}.`);
+    }
+    if (A.horizon) {
+      const v = A.horizon.v, hn = A.horizon.name;
+      if (Math.abs(A.rot) > 1) add(false, `<b>Crooked ${hn}</b> (tilted ${Math.abs(A.rot).toFixed(1)}°). Level it unless the tilt is on purpose.`);
+      if (Math.abs(v - 1 / 3) < .06 || Math.abs(v - 2 / 3) < .06) add(true, `<b>${cap(hn)} on a third:</b> ${v > .5 ? 'big sky, small ground' : 'lots of ground, a thin sky'}.`);
+      else if (Math.abs(v - .5) < .06) add(false, `<b>${cap(hn)} cuts the photo in half.</b> Move it to a third line, unless you want a mirror look.`);
+    }
+    if (A.arch && A.arch.vis > .8 && A.subs.find(s => s.id === 'fountain').inFrame) add(true, '<b>Frame within a frame:</b> the archway frames the courtyard.');
+    const stars = !m ? 0 : Math.min(3, Math.max(1, good));
+    return {notes, stars};
+  }
+  const cap = s => s[0].toUpperCase() + s.slice(1);
+
+  // ---------- viewfinder ----------
+  const cv = $('cv');
+  function vfSize() { const port = mode !== 'light' && cam.port; cv.width = port ? 400 : 900; cv.height = 600; cv.style.width = cv.width + 'px'; cv.style.height = '600px'; $('ov').style.cssText = `width:${cv.width}px;height:600px`; }
+  function render() {
+    if (mode === 'light') return;
+    clampCam(); drawTo(cv);
+    const W = cv.width, H = 600;
+    $('ov').innerHTML = cam.grid ? `<svg viewBox="0 0 ${W} ${H}">${[1, 2].map(i => `<line x1="${W * i / 3}" x2="${W * i / 3}" y1="0" y2="${H}" stroke="#fff" stroke-opacity=".55" stroke-width="1.5"/><line y1="${H * i / 3}" y2="${H * i / 3}" x1="0" x2="${W}" stroke="#fff" stroke-opacity=".55" stroke-width="1.5"/>`).join('')}
+      ${POWER.map(([a, b]) => `<circle cx="${W * a}" cy="${H * b}" r="6" fill="none" stroke="#fff" stroke-opacity=".8" stroke-width="2"/>`).join('')}</svg>` : '';
+    $('hud').innerHTML = `<span>${effF()} mm · ${cam.port ? 'portrait' : 'landscape'}${Math.abs(cam.rot) > .05 ? ` · tilt ${cam.rot.toFixed(1)}°` : ''}</span><span>${SCENES[cam.scene].name}</span>`;
+    drawMini(); syncCtl();
+  }
+  let drag = null;
+  cv.onpointerdown = e => { if (mode === 'light') return; drag = {x: e.clientX, y: e.clientY, cx: cam.cx, cy: cam.cy}; cv.setPointerCapture(e.pointerId); };
+  cv.onpointermove = e => {
+    if (!drag) return;
+    const k = $('scene').getBoundingClientRect().width / 1440, {w} = frameSize(), s = w / cv.width / k, a = -cam.rot * Math.PI / 180;
+    const dx = (e.clientX - drag.x) * s, dy = (e.clientY - drag.y) * s;
+    cam.cx = drag.cx - (dx * Math.cos(a) - dy * Math.sin(a)) / iw(); cam.cy = drag.cy - (dx * Math.sin(a) + dy * Math.cos(a)) / ih(); render();
+  };
+  cv.onpointerup = cv.onpointercancel = () => drag = null;
+  cv.addEventListener('wheel', e => { if (mode === 'light') return; e.preventDefault(); cam.f = Math.max(MINF, Math.min(MAXF, cam.f * (e.deltaY < 0 ? 1.06 : 1 / 1.06))); render(); }, {passive: false});
+
+  // ---------- side panels ----------
+  let mode = 'shoot';
+  function cameraControls() {
+    return `<div class="card"><div class="kick">Place</div><div class="thumbs" role="group" aria-label="Scene">${Object.entries(SCENES).map(([k, s]) => `<button data-scene="${k}" aria-pressed="${k === cam.scene}"><img src="${s.src}" alt=""><span>${s.name}</span></button>`).join('')}</div></div>
+      <div class="card" style="padding:8px"><div class="mini" id="mini"><img src="${SCENES[cam.scene].src}" alt="The whole scene, with your frame"><svg id="minisvg" viewBox="0 0 1000 1000" preserveAspectRatio="none"></svg></div></div>
+      <div class="card">
+        <div class="ctl"><span>🔍 Zoom</span><input type="range" id="zoom" min="${MINF}" max="${MAXF}" step="1" aria-label="Zoom in millimeters"><output id="zo"></output></div>
+        <div class="ctl"><span>↻ Tilt</span><input type="range" id="tilt" min="-12" max="12" step=".5" aria-label="Tilt in degrees"><output id="to"></output></div>
+        <div class="row" style="margin-top:6px"><button class="b" id="orient" aria-pressed="${cam.port}">▯ Portrait</button><button class="b" id="grid" aria-pressed="${cam.grid}"># Thirds grid</button></div>
+      </div>`;
+  }
+  function wireCamera() {
+    document.querySelectorAll('[data-scene]').forEach(b => b.onclick = () => { cam.scene = b.dataset.scene; cam.cx = .5; cam.cy = .55; cam.f = 24; cam.rot = 0; renderSide(); vfSize(); render(); });
+    $('zoom').oninput = e => { cam.f = +e.target.value; render(); };
+    $('tilt').oninput = e => { cam.rot = +e.target.value; render(); };
+    $('orient').onclick = () => { cam.port = !cam.port; $('orient').setAttribute('aria-pressed', cam.port); vfSize(); render(); };
+    $('grid').onclick = () => { cam.grid = !cam.grid; $('grid').setAttribute('aria-pressed', cam.grid); render(); };
+    const mini = $('mini'); let md = false;
+    const move = e => { const r = mini.getBoundingClientRect(); cam.cx = (e.clientX - r.left) / r.width; cam.cy = (e.clientY - r.top) / r.height; render(); };
+    mini.onpointerdown = e => { md = true; mini.setPointerCapture(e.pointerId); move(e); };
+    mini.onpointermove = e => { if (md) move(e); };
+    mini.onpointerup = () => md = false;
+  }
+  function syncCtl() {
+    if (!$('zoom')) return;
+    $('zoom').value = cam.f; $('zo').textContent = effF() + 'mm'; $('tilt').value = cam.rot; $('to').textContent = cam.rot.toFixed(1) + '°';
+  }
+  function drawMini() {
+    const s = $('minisvg'); if (!s) return;
+    const {w, h} = frameSize(), W = iw(), H = ih(), a = cam.rot * Math.PI / 180;
+    const pts = [[-1, -1], [1, -1], [1, 1], [-1, 1]].map(([x, y]) => { const X = x * w / 2, Y = y * h / 2, rx = X * Math.cos(-a) - Y * Math.sin(-a), ry = X * Math.sin(-a) + Y * Math.cos(-a); return [(cam.cx + rx / W) * 1000, (cam.cy + ry / H) * 1000]; });
+    s.innerHTML = `<path d="M0 0H1000V1000H0Z M${pts.map(p => p.join(' ')).join(' L')}Z" fill="#000" fill-opacity=".45" fill-rule="evenodd"/><polygon points="${pts.map(p => p.join(',')).join(' ')}" fill="none" stroke="#ffb347" stroke-width="6" vector-effect="non-scaling-stroke"/>`;
+  }
+  function renderSide() {
+    if (mode === 'shoot') {
+      $('side').innerHTML = cameraControls() + `<div class="card"><p style="margin:0">Drag the picture to aim. Scroll or slide to zoom. Line things up with the grid, then take the shot.</p></div><button class="shutter" id="shoot">📸 Take photo <span style="font:600 13px 'Segoe UI'">Space</span></button>`;
+      wireCamera(); $('shoot').onclick = shoot;
+    } else if (mode === 'brief') {
+      const B = BRIEFS[bi];
+      $('side').innerHTML = `<div class="card"><div class="kick">Assignment ${bi + 1} of ${BRIEFS.length} · ${SCENES[B.scene].name}</div><h2 style="margin-top:4px">${B.title}</h2><p>${B.text}</p>
+        <div class="briefs" role="group" aria-label="Assignments" style="margin-top:8px">${BRIEFS.map((x, i) => `<button data-b="${i}" aria-current="${i === bi}" class="${bdone[x.id] ? 'ok' : ''}">${i + 1}</button>`).join('')}</div></div>`
+        + cameraControls().replace(/<div class="card"><div class="kick">Place<\/div>[\s\S]*?<\/div><\/div>/, '')
+        + `<button class="shutter" id="shoot">📸 Take photo <span style="font:600 13px 'Segoe UI'">Space</span></button>`;
+      wireCamera(); $('shoot').onclick = shoot;
+      document.querySelectorAll('[data-b]').forEach(b => b.onclick = () => openBrief(+b.dataset.b));
+    } else renderLightSide();
+  }
+
+  // ---------- shooting ----------
+  const photos = [];
+  function shoot() {
+    if (mode === 'light') return shootLight();
+    click(); const fl = $('flash'); fl.style.opacity = .9; setTimeout(() => fl.style.opacity = 0, reduce ? 60 : 120); anim(fl, [{opacity: .9}, {opacity: 0}], {duration: 260});
+    const pc = document.createElement('canvas'); pc.width = cam.port ? 800 : 1200; pc.height = cam.port ? 1200 : 800; drawTo(pc);
+    const A = analyze(), C = critique(A);
+    let verdict = null;
+    if (mode === 'brief') { const B = BRIEFS[bi]; verdict = B.check(A); if (verdict.ok) { bdone[B.id] = true; try { localStorage.setItem('frame-it-briefs', JSON.stringify(bdone)); } catch {} } }
+    const ph = {canvas: pc, A, C, cam: {...cam}, verdict, brief: mode === 'brief' ? BRIEFS[bi] : null};
+    photos.push(ph); addThumb(ph);
+    setTimeout(() => showReview(ph), reduce ? 150 : 300);
+  }
+  function addThumb(ph) {
+    const b = document.createElement('button'); const t = document.createElement('canvas'); t.width = ph.canvas.width / 10; t.height = ph.canvas.height / 10;
+    t.getContext('2d').drawImage(ph.canvas, 0, 0, t.width, t.height);
+    b.innerHTML = `<img src="${t.toDataURL('image/jpeg', .8)}" alt="Photo ${photos.length}"><span>${ph.verdict ? (ph.verdict.ok ? '✅' : '↺') : '★'.repeat(ph.C.stars)}</span>`;
+    b.onclick = () => showReview(ph);
+    const roll = $('roll'); roll.insertBefore(b, roll.children[1]);
+    while (roll.children.length > 13) roll.lastChild.remove();
+  }
+  function overlaySVG(A, W, H) {
+    const p = ([u, v]) => `${u * W},${v * H}`;
+    let s = `<svg viewBox="0 0 ${W} ${H}" style="width:${W}px;height:${H}px">`;
+    s += [1, 2].map(i => `<line x1="${W * i / 3}" x2="${W * i / 3}" y1="0" y2="${H}" stroke="#fff" stroke-opacity=".5" stroke-width="1.5"/><line y1="${H * i / 3}" y2="${H * i / 3}" x1="0" x2="${W}" stroke="#fff" stroke-opacity=".5" stroke-width="1.5"/>`).join('');
+    for (const l of A.lines) if (l.len > .3) s += l.segs.map(sg => `<line x1="${sg[0][0] * W}" y1="${sg[0][1] * H}" x2="${sg[1][0] * W}" y2="${sg[1][1] * H}" stroke="#4fd1ff" stroke-width="5" stroke-linecap="round" stroke-dasharray="14 10"/>`).join('');
+    if (A.horizon) s += `<line x1="${A.horizon.seg[0][0] * W}" y1="${A.horizon.seg[0][1] * H}" x2="${A.horizon.seg[1][0] * W}" y2="${A.horizon.seg[1][1] * H}" stroke="#ffcc4d" stroke-width="4" stroke-dasharray="4 8" stroke-linecap="round"/>`;
+    if (A.main) { const m = A.main; s += `<circle cx="${m.u * W}" cy="${m.v * H}" r="18" fill="none" stroke="#ff7a6b" stroke-width="5"/><circle cx="${m.u * W}" cy="${m.v * H}" r="4" fill="#ff7a6b"/>`; }
+    s += POWER.map(q => `<circle cx="${q[0] * W}" cy="${q[1] * H}" r="9" fill="none" stroke="#fff" stroke-width="2.5"/>`).join('');
+    return s + '</svg>';
+  }
+  function showReview(ph) {
+    const {A, C, verdict} = ph, W = ph.canvas.width > ph.canvas.height ? 840 : 453, H = W * ph.canvas.height / ph.canvas.width;
+    const r = $('review');
+    r.innerHTML = `<div class="review" role="dialog" aria-modal="true" aria-label="Photo review"><div class="rv">
+      <div class="shot" id="shotbox"><svg style="width:${W}px;height:${H}px"></svg></div>
+      <div style="display:flex;flex-direction:column;min-height:0">
+        ${verdict ? `<div class="kick">Assignment: ${ph.brief.title}</div><h2>${verdict.ok ? '✅ Nailed it!' : '↺ Not quite yet'}</h2><p style="font:500 17px/1.45 'Segoe UI';color:#e6e9ef;margin:4px 0 8px">${verdict.msg}</p>`
+          : `<div class="kick">Photo review</div><div class="stars" aria-label="${C.stars} stars">${'★'.repeat(C.stars)}<span style="opacity:.25">${'★'.repeat(3 - C.stars)}</span></div>`}
+        <ul class="notes">${C.notes.map(([ok, t]) => `<li><i>${ok === true ? '✅' : ok === false ? '💡' : '🎯'}</i><span>${t}</span></li>`).join('')}</ul>
+        <div class="legend"><span style="--c:#fff">thirds grid</span><span style="--c:#ff7a6b">subject</span>${A.horizon ? `<span style="--c:#ffcc4d">${A.horizon.name}</span>` : ''}${A.lines.some(l => l.len > .3) ? '<span style="--c:#4fd1ff">leading lines</span>' : ''}</div>
+        <div class="row" style="margin-top:auto"><button class="b" id="ovt" aria-pressed="true">Show guides</button><button class="b" id="save">💾 Save photo</button><button class="b pri" id="close">${verdict && verdict.ok ? 'Next assignment ▶' : 'Keep shooting'}</button></div>
+      </div></div></div>`;
+    const box = $('shotbox'), pc = document.createElement('canvas'); pc.width = ph.canvas.width; pc.height = ph.canvas.height; pc.getContext('2d').drawImage(ph.canvas, 0, 0);
+    pc.style.width = W + 'px'; pc.style.height = H + 'px'; box.insertBefore(pc, box.firstChild);
+    box.querySelector('svg').outerHTML = overlaySVG(A, W, H);
+    $('ovt').onclick = () => { const s = box.querySelector('svg'), on = $('ovt').getAttribute('aria-pressed') !== 'true'; $('ovt').setAttribute('aria-pressed', on); s.style.display = on ? '' : 'none'; };
+    $('save').onclick = () => { const a = document.createElement('a'); a.download = `frame-it-${ph.cam.scene}-${photos.indexOf(ph) + 1}.png`; a.href = ph.canvas.toDataURL('image/png'); a.click(); };
+    const close = () => { r.innerHTML = ''; if (verdict && verdict.ok && photos[photos.length - 1] === ph) openBrief((bi + 1) % BRIEFS.length); else cv.focus(); };
+    $('close').onclick = close;
+    r.querySelector('.review').onkeydown = e => { if (e.key === 'Escape') close(); };
+    $('close').focus();
+    if (verdict) chime(verdict.ok);
+    anim(r.querySelector('.rv'), [{transform: 'scale(.92)', opacity: 0}, {transform: 'none', opacity: 1}], {duration: 260, easing: 'ease-out'});
+  }
+
+  // ---------- assignments ----------
+  const sub = (A, id) => A.subs.find(s => s.id === id);
+  const BRIEFS = [
+    {id: 'thirds', scene: 'harbor', title: 'Lighthouse on a third', text: 'Put the lighthouse on one of the four thirds points, where the grid lines cross. Zoom in a little so it matters.',
+      check: A => { const s = sub(A, 'lighthouse'); if (s.vis < .85) return {ok: false, msg: 'The lighthouse is cut off or out of the photo.'}; if (s.area < .015) return {ok: false, msg: 'The lighthouse is too small to be the subject. Zoom in.'}; return s.dP < .07 ? {ok: true, msg: 'The lighthouse sits right on a thirds point. Your eye goes straight to it.'} : {ok: false, msg: 'Close! Line the lighthouse up with a circle where the grid lines cross.'}; }},
+    {id: 'sky', scene: 'harbor', title: 'Big sky', text: 'Put the horizon (where the sea meets the sky) on the lower third line, so the sky fills two thirds of the photo. Keep it level.',
+      check: A => !A.horizon ? {ok: false, msg: 'I can\'t see the sea horizon in this photo.'} : Math.abs(A.rot) > 1 ? {ok: false, msg: 'The horizon is tilted. Level it first.'} : Math.abs(A.horizon.v - 2 / 3) < .06 ? {ok: true, msg: 'The horizon sits on the lower third: a big, open sky.'} : {ok: false, msg: `The horizon is ${A.horizon.v < 2 / 3 ? 'too high' : 'too low'}. Move it to the lower grid line.`}},
+    {id: 'pier', start: {cx: .3, cy: .3, f: 50}, scene: 'harbor', title: 'Follow the pier', text: 'Use the pier as a leading line: frame it so it runs from the bottom of the photo toward the lighthouse.',
+      check: A => { const s = sub(A, 'lighthouse'); if (s.vis < .85) return {ok: false, msg: 'Keep the whole lighthouse in the photo.'}; return A.leadsTo(s) ? {ok: true, msg: 'The pier pulls the eye from the front of the photo right to the lighthouse.'} : {ok: false, msg: 'Show more of the pier, running into the photo toward the lighthouse.'}; }},
+    {id: 'fill', scene: 'harbor', title: 'Fill the frame', text: 'Make the orange fishing boat fill the photo. Get in close, but don\'t chop it badly.',
+      check: A => { const s = sub(A, 'boat'); return s.area > .3 && s.vis > .7 ? {ok: true, msg: 'The boat fills the frame. Every part of the photo is about the boat.'} : s.area <= .3 ? {ok: false, msg: 'Get closer: zoom in until the boat fills most of the photo.'} : {ok: false, msg: 'Too much of the boat is cut off. Back out a little.'}; }},
+    {id: 'level', scene: 'harbor', rot: 7, title: 'Level it', text: 'Someone bumped the camera! The sea looks like it\'s spilling out. Use Tilt to make the horizon perfectly level.',
+      check: A => !A.horizon ? {ok: false, msg: 'Keep the sea horizon in the photo.'} : Math.abs(A.rot) <= .5 ? {ok: true, msg: 'Level horizon. The sea stays flat, the way it should.'} : {ok: false, msg: `Still tilted ${Math.abs(A.rot).toFixed(1)}°. Watch the horizon against the grid lines.`}},
+    {id: 'tracks', start: {cx: .3, cy: .4, f: 45}, scene: 'street', title: 'Tracks to the tram', text: 'Let the tram tracks lead the eye down the street to the red tram far away.',
+      check: A => { const s = sub(A, 'tram'); if (!s.inFrame) return {ok: false, msg: 'The tram isn\'t in the photo.'}; return A.leadsTo(s) ? {ok: true, msg: 'The tracks all point to the tram: the eye travels right down the street.'} : {ok: false, msg: 'Show the tracks running from the bottom of the photo to the tram.'}; }},
+    {id: 'arch', start: {cx: .7, cy: .5, f: 50}, scene: 'street', title: 'Frame within a frame', text: 'Shoot the fountain through the stone archway, so the arch frames the courtyard.',
+      check: A => { const a = sub(A, 'arch'), f = sub(A, 'fountain'); return a.vis > .8 && f.inFrame ? {ok: true, msg: 'The arch makes a frame inside your frame, and the fountain sits inside it.'} : !f.inFrame ? {ok: false, msg: 'Keep the fountain in the photo.'} : {ok: false, msg: 'Show the whole archway around the courtyard.'}; }},
+    {id: 'cyclist', scene: 'street', title: 'Rider on a third', text: 'Make the cyclist in the red coat the subject, on a thirds point. Zoom in so the rider stands out.',
+      check: A => { const s = sub(A, 'cyclist'); if (s.vis < .85) return {ok: false, msg: 'Keep the whole rider in the photo.'}; if (s.area < .02) return {ok: false, msg: 'Zoom in: the rider should stand out.'}; return s.dP < .07 ? {ok: true, msg: 'The red coat on a thirds point pops against the street.'} : {ok: false, msg: 'Line the rider up with a thirds point.'}; }},
+    {id: 'tree', scene: 'lake', title: 'Tall and proud', text: 'Turn the camera to portrait and fit the whole golden tree in a vertical photo, big.',
+      check: A => { const s = sub(A, 'tree'); return !A.port ? {ok: false, msg: 'Switch to Portrait: a tall subject suits a tall photo.'} : s.vis < .9 ? {ok: false, msg: 'Part of the tree is cut off.'} : s.area < .2 ? {ok: false, msg: 'Zoom in so the tree fills more of the photo.'} : {ok: true, msg: 'A vertical photo for a vertical subject. The tree stands tall.'}; }},
+    {id: 'mirror', start: {cx: .5, cy: .35, f: 40}, scene: 'lake', title: 'Break the rule', text: 'Rules can be broken on purpose. Put the shoreline right across the middle so the mountains and their reflection mirror each other.',
+      check: A => !A.horizon ? {ok: false, msg: 'Show the shoreline where the lake meets the land.'} : Math.abs(A.rot) > 1 ? {ok: false, msg: 'Level it: a mirror needs a straight line.'} : Math.abs(A.horizon.v - .5) < .05 ? {ok: true, msg: 'Perfect symmetry: the center line makes a calm mirror photo.'} : {ok: false, msg: 'Move the shoreline to the exact middle.'}},
+    {id: 'scale', start: {cx: .83, cy: .67, f: 60}, scene: 'lake', title: 'Show the size', text: 'Show how huge the mountains are by including the hiker, small, with the peaks.',
+      check: A => { const h = sub(A, 'hiker'), p = sub(A, 'peak'); return h.vis > .85 && p.vis > .7 ? (h.area < .02 ? {ok: true, msg: 'The tiny hiker shows the scale. Now the mountains feel enormous.'} : {ok: false, msg: 'The hiker is too big to show scale. Zoom out.'}) : {ok: false, msg: 'Get both the hiker and the snowy peak in the photo.'}; }},
+    {id: 'path', start: {cx: .25, cy: .3, f: 50}, scene: 'lake', title: 'S-curve', text: 'Follow the winding path: frame it so the curve leads from the bottom of the photo to the golden tree.',
+      check: A => { const t = sub(A, 'tree'), l = A.lines[0]; if (t.vis < .5) return {ok: false, msg: 'Keep the tree in the photo.'}; return l.len > .45 && l.segs.length >= 3 ? {ok: true, msg: 'The S-curve carries the eye on a slow walk through the photo.'} : {ok: false, msg: 'Show more of the winding path, from the bottom of the photo toward the tree.'}; }},
+  ];
+  let bi = 0, bdone = {};
+  try { bdone = JSON.parse(localStorage.getItem('frame-it-briefs') || '{}'); } catch {}
+  function openBrief(i) {
+    bi = i; const B = BRIEFS[i];
+    Object.assign(cam, {scene: B.scene, cx: .5, cy: .55, f: 24, rot: B.rot || 0, port: false}, B.start || {});
+    renderSide(); vfSize(); render();
+  }
+
+  // ---------- light studio (Three.js) ----------
+  const L = {az: 70, el: 35, soft: false, fill: false, temp: 'neutral', bg: 'dark', look: 0};
+  const LOOKS = [
+    {id: 'side', title: 'Side light for texture', text: 'Light from the side shows shape and texture: the wood grain, the round apple. Put the light to one side, low, and hard.',
+      check: () => Math.abs(Math.abs(L.az) - 90) <= 30 && L.el <= 45 && !L.soft ? [true, 'Side light rakes across the surfaces, so every bump casts a tiny shadow.'] : [false, 'Swing the light to the side (about 90°), keep it low and hard.']},
+    {id: 'sil', title: 'Silhouette', text: 'Make the objects dark shapes against a bright background. Light from behind, bright background, no fill.',
+      check: () => Math.abs(L.az) >= 150 && L.bg === 'light' && !L.fill ? [true, 'Dark shapes against light: a silhouette shows only outlines.'] : [false, 'Put the light behind the objects, the background on Bright, and the fill card off.']},
+    {id: 'flat', title: 'Soft and even', text: 'Like a cloudy day: soft light from near the camera, with the fill card on. Few shadows.',
+      check: () => Math.abs(L.az) <= 35 && L.soft && L.fill ? [true, 'Soft front light with fill: gentle, even and calm, with hardly any shadows.'] : [false, 'Bring the light near the camera, make it soft and turn on the fill card.']},
+    {id: 'drama', title: 'Dramatic', text: 'One hard light from the side, a dark background and no fill. Deep shadows, lots of mood.',
+      check: () => Math.abs(Math.abs(L.az) - 90) <= 35 && !L.soft && !L.fill && L.bg === 'dark' ? [true, 'Strong contrast: half bright, half shadow. That is drama.'] : [false, 'Hard light from the side, fill off, dark background.']},
+    {id: 'golden', title: 'Golden hour', text: 'Late-day sun: warm, low light from the side or behind, with long shadows.',
+      check: () => L.temp === 'warm' && L.el <= 18 && Math.abs(L.az) >= 45 ? [true, 'Warm, low sun stretches long shadows. Photographers love this light.'] : [false, 'Make the light warm and very low (under 18°), from the side or behind.']},
+  ];
+  let ldone = {};
+  try { ldone = JSON.parse(localStorage.getItem('frame-it-light') || '{}'); } catch {}
+  let three = null;
+  function initThree() {
+    if (three) return three;
+    const T = window.THREE, canvas = document.createElement('canvas'); canvas.width = 900; canvas.height = 600; canvas.id = 'gl';
+    const r = new T.WebGLRenderer({canvas, antialias: true, preserveDrawingBuffer: true});
+    r.setSize(900, 600, false); r.shadowMap.enabled = true; r.shadowMap.type = T.PCFShadowMap; r.outputEncoding = T.sRGBEncoding; r.toneMapping = T.ACESFilmicToneMapping; r.toneMappingExposure = .92;
+    const sc = new T.Scene(), camera = new T.PerspectiveCamera(32, 1.5, .1, 50);
+    camera.position.set(0, 1.35, 4.4); camera.lookAt(0, .42, 0);
+    const tex = (draw, rep = 1) => { const c = document.createElement('canvas'); c.width = c.height = 256; draw(c.getContext('2d')); const t = new T.CanvasTexture(c); t.wrapS = t.wrapT = T.RepeatWrapping; t.repeat.set(rep, rep); return t; };
+    const rnd = (s => () => (s = s * 16807 % 2147483647) / 2147483647)(42);
+    const weave = tex(g => { g.fillStyle = '#808080'; g.fillRect(0, 0, 256, 256); for (let i = 0; i < 256; i += 4) { g.fillStyle = i % 8 ? '#909090' : '#6c6c6c'; g.fillRect(i, 0, 2, 256); g.fillRect(0, i, 256, 2); } }, 10);
+    const grain = tex(g => { g.fillStyle = '#808080'; g.fillRect(0, 0, 256, 256); for (let i = 0; i < 90; i++) { g.strokeStyle = `rgba(${rnd() < .5 ? '0,0,0' : '255,255,255'},${.15 + rnd() * .3})`; g.lineWidth = 1 + rnd() * 3; g.beginPath(); const y = rnd() * 256; g.moveTo(0, y); for (let x = 0; x <= 256; x += 16) g.lineTo(x, y + Math.sin(x / 30 + i) * 6); g.stroke(); } });
+    const speck = tex(g => { g.fillStyle = '#808080'; g.fillRect(0, 0, 256, 256); for (let i = 0; i < 900; i++) { g.fillStyle = `rgba(${rnd() < .5 ? '0,0,0' : '255,255,255'},.35)`; g.fillRect(rnd() * 256, rnd() * 256, 2, 2); } }, 2);
+    const table = new T.Mesh(new T.PlaneGeometry(12, 12), new T.MeshStandardMaterial({color: 0xb39a76, roughness: .95, bumpMap: weave, bumpScale: .012}));
+    table.rotation.x = -Math.PI / 2; table.receiveShadow = true; sc.add(table);
+    const back = new T.Mesh(new T.PlaneGeometry(14, 8), new T.MeshStandardMaterial({color: 0x2a2b31, roughness: 1}));
+    back.position.set(0, 4, -2.6); back.receiveShadow = true; sc.add(back);
+    // vase (lathe), apple, egg, wooden block
+    const prof = new T.SplineCurve([[.001, 0], [.22, .005], [.3, .12], [.34, .35], [.3, .62], [.18, .82], [.15, .98], [.19, 1.06], [.17, 1.08]].map(([x, y]) => new T.Vector2(x, y))).getPoints(60);
+    const vase = new T.Mesh(new T.LatheGeometry(prof, 96), new T.MeshStandardMaterial({color: 0x3b6fb0, roughness: .28, metalness: .05}));
+    vase.position.set(-.62, 0, -.35);
+    const apple = new T.Mesh(new T.SphereGeometry(.27, 48, 32), new T.MeshStandardMaterial({color: 0xb8302a, roughness: .45, bumpMap: speck, bumpScale: .004}));
+    apple.scale.set(1, .9, 1); apple.position.set(.22, .243, .32);
+    const stem = new T.Mesh(new T.CylinderGeometry(.012, .016, .12, 8), new T.MeshStandardMaterial({color: 0x4a3420, roughness: .9})); stem.position.set(.23, .53, .32); stem.rotation.z = -.25;
+    const egg = new T.Mesh(new T.SphereGeometry(.16, 40, 28), new T.MeshStandardMaterial({color: 0xf1e9dc, roughness: .75})); egg.scale.set(.82, 1.08, .82); egg.position.set(.72, .172, .05);
+    const block = new T.Mesh(new T.BoxGeometry(.62, .34, .42), new T.MeshStandardMaterial({color: 0xb27a45, roughness: .8, bumpMap: grain, bumpScale: .02}));
+    block.position.set(-.05, .17, -.42); block.rotation.y = .35;
+    [vase, apple, stem, egg, block].forEach(m => { m.castShadow = true; m.receiveShadow = true; sc.add(m); });
+    const hemi = new T.HemisphereLight(0xdde6ff, 0x30281f, .22); sc.add(hemi);
+    const key = new T.SpotLight(0xffffff, 2.6, 0, .95, .5, 1.2); key.castShadow = true; key.shadow.mapSize.set(2048, 2048); key.shadow.bias = -.0004; key.shadow.normalBias = .02; key.shadow.camera.near = 1; key.shadow.camera.far = 14;
+    key.target.position.set(0, .3, 0); sc.add(key, key.target);
+    const fill = new T.DirectionalLight(0xffffff, .6); sc.add(fill);
+    const bulb = new T.Mesh(new T.SphereGeometry(.07, 16, 12), new T.MeshBasicMaterial({color: 0xfff3c0})); sc.add(bulb);
+    three = {T, r, sc, camera, key, fill, back, bulb, canvas};
+    return three;
+  }
+  function lightRender() {
+    const t = initThree(), a = L.az * Math.PI / 180, e = L.el * Math.PI / 180, d = 5;
+    t.key.position.set(Math.sin(a) * Math.cos(e) * d, Math.max(.15, Math.sin(e) * d), Math.cos(a) * Math.cos(e) * d);
+    t.bulb.position.copy(t.key.position); t.bulb.visible = false;
+    t.key.color.set(L.temp === 'warm' ? 0xffb066 : L.temp === 'cool' ? 0xc8dcff : 0xffffff);
+    t.key.penumbra = L.soft ? 1 : .5; t.key.shadow.radius = L.soft ? 14 : 1.5; t.key.intensity = L.soft ? 2.2 : 2.6;
+    t.fill.visible = L.fill; t.fill.position.set(-Math.sin(a) * 4, 1.2, Math.max(1.5, Math.cos(a) * 2 + 3)); t.fill.intensity = L.soft ? .55 : .6;
+    t.back.material.color.set(L.bg === 'light' ? 0xffffff : 0x111215);
+    t.back.material.emissive.set(L.bg === 'light' ? 0xf4f1ea : 0x000000);
+    t.r.render(t.sc, t.camera);
+    const where = Math.abs(L.az) <= 30 ? 'Front light' : Math.abs(L.az) >= 150 ? 'Back light' : `Side light from the ${L.az > 0 ? 'right' : 'left'}`;
+    const tip = L.el >= 65 ? 'Light from high above makes short, dark shadows underneath, like noon sun.' : Math.abs(L.az) <= 30 ? 'Front light is flat: few shadows, so shapes look less round.' : Math.abs(L.az) >= 150 ? 'Back light outlines edges with a glow and leaves the front dark.' : 'Side light shows shape and texture with strong shadows.';
+    $('hud').innerHTML = `<span>${where}, ${L.el}° high · ${L.soft ? 'soft' : 'hard'}${L.fill ? ' + fill' : ''}</span><span>Still life</span>`;
+    if ($('ltip')) $('ltip').textContent = tip;
+    drawDial();
+  }
+  function renderLightSide() {
+    const lk = LOOKS[L.look];
+    $('side').innerHTML = `<div class="card"><div class="kick">Light look ${L.look + 1} of ${LOOKS.length}</div><h2 style="margin-top:2px">${lk.title}</h2><div class="briefs" role="group" aria-label="Light looks" style="grid-template-columns:repeat(5,1fr)">${LOOKS.map((x, i) => `<button data-look="${i}" aria-current="${i === L.look}" class="${ldone[x.id] ? 'ok' : ''}" title="${x.title}">${i + 1}</button>`).join('')}</div><p style="margin-top:8px">${lk.text}</p></div>
+      <div class="card" style="display:grid;grid-template-columns:170px 1fr;gap:10px;align-items:center;padding:8px 12px">
+        <svg class="dial" id="dial" width="170" height="170" viewBox="-100 -100 200 200" role="slider" aria-label="Light direction" aria-valuemin="-180" aria-valuemax="180" tabindex="0"></svg>
+        <div><p style="margin:0 0 6px;font-size:13px;color:var(--muted)">Seen from above. Drag the sun around the table. Arrow keys work too.</p><p id="ltip" style="margin:0"></p></div>
+      </div>
+      <div class="card" style="display:flex;flex-direction:column;gap:8px">
+        <div class="ctl"><span>⤒ Height</span><input type="range" id="lel" min="5" max="80" step="1" value="${L.el}" aria-label="Light height in degrees"><output>${L.el}°</output></div>
+        <div class="seg" role="group" aria-label="Light quality"><button data-soft="0" aria-pressed="${!L.soft}">◆ Hard</button><button data-soft="1" aria-pressed="${L.soft}">☁ Soft</button></div>
+        <div class="seg" role="group" aria-label="Color"><button data-temp="warm" aria-pressed="${L.temp === 'warm'}">🌅 Warm</button><button data-temp="neutral" aria-pressed="${L.temp === 'neutral'}">⚪ Neutral</button><button data-temp="cool" aria-pressed="${L.temp === 'cool'}">🧊 Cool</button></div>
+        <div class="row"><button class="b" id="lfill" aria-pressed="${L.fill}">⬜ Fill card</button><button class="b" id="lbg" aria-pressed="${L.bg === 'light'}">${L.bg === 'light' ? '☀ Bright background' : '🌑 Dark background'}</button></div>
+      </div>
+      <button class="shutter" id="shoot">📸 Take photo <span style="font:600 13px 'Segoe UI'">Space</span></button>`;
+    document.querySelectorAll('[data-look]').forEach(b => b.onclick = () => { L.look = +b.dataset.look; renderLightSide(); lightRender(); });
+    $('lel').oninput = e => { L.el = +e.target.value; e.target.nextElementSibling.textContent = L.el + '°'; lightRender(); };
+    document.querySelectorAll('[data-soft]').forEach(b => b.onclick = () => { L.soft = b.dataset.soft === '1'; renderLightSide(); lightRender(); });
+    document.querySelectorAll('[data-temp]').forEach(b => b.onclick = () => { L.temp = b.dataset.temp; renderLightSide(); lightRender(); });
+    $('lfill').onclick = () => { L.fill = !L.fill; renderLightSide(); lightRender(); };
+    $('lbg').onclick = () => { L.bg = L.bg === 'light' ? 'dark' : 'light'; renderLightSide(); lightRender(); };
+    $('shoot').onclick = shoot;
+    const dial = $('dial'); let dd = false;
+    const setAz = e => { const r = dial.getBoundingClientRect(), x = (e.clientX - r.left) / r.width * 200 - 100, y = (e.clientY - r.top) / r.height * 200 - 100; L.az = Math.round(Math.atan2(x, y) * 180 / Math.PI); lightRender(); };
+    dial.onpointerdown = e => { dd = true; dial.setPointerCapture(e.pointerId); setAz(e); };
+    dial.onpointermove = e => { if (dd) setAz(e); };
+    dial.onpointerup = () => dd = false;
+    dial.onkeydown = e => { if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') { e.preventDefault(); L.az = ((L.az + (e.key === 'ArrowRight' ? 5 : -5) + 540) % 360) - 180; lightRender(); } };
+  }
+  function drawDial() {
+    const s = $('dial'); if (!s) return;
+    const a = L.az * Math.PI / 180, r = 78, x = Math.sin(a) * r, y = Math.cos(a) * r;
+    s.setAttribute('aria-valuenow', L.az);
+    s.innerHTML = `<circle r="${r}" fill="#1b1c20" stroke="#4a4e58" stroke-width="2" stroke-dasharray="4 6"/>
+      <text y="-${r + 6}" text-anchor="middle" font-size="11" fill="#a3a9b5" font-weight="700">BEHIND</text>
+      <ellipse rx="34" ry="22" fill="#cdb99a" opacity=".9"/><circle cx="-12" cy="-6" r="8" fill="#3b6fb0"/><circle cx="8" cy="8" r="7" fill="#b8302a"/><circle cx="20" cy="0" r="4" fill="#f1e9dc"/>
+      <g transform="translate(0 ${r + 4})"><rect x="-16" y="-10" width="32" height="20" rx="4" fill="#d6dae2"/><circle r="6" fill="#26282e"/></g>
+      <line x1="0" y1="0" x2="${x}" y2="${y}" stroke="#ffcc4d" stroke-width="2" stroke-dasharray="3 4"/>
+      <circle cx="${x}" cy="${y}" r="16" fill="${L.temp === 'warm' ? '#ffb066' : L.temp === 'cool' ? '#c8dcff' : '#fff6c8'}" stroke="#fff" stroke-width="3"/><text x="${x}" y="${y + 6}" text-anchor="middle" font-size="16">☀</text>`;
+  }
+  function shootLight() {
+    click(); anim($('flash'), [{opacity: .9}, {opacity: 0}], {duration: 260});
+    lightRender();
+    const pc = document.createElement('canvas'); pc.width = 1200; pc.height = 800; pc.getContext('2d').drawImage(three.canvas, 0, 0, 1200, 800);
+    const lk = LOOKS[L.look], [ok, msg] = lk.check();
+    if (ok) { ldone[lk.id] = true; try { localStorage.setItem('frame-it-light', JSON.stringify(ldone)); } catch {} }
+    const ph = {canvas: pc, A: {subs: [], main: null, horizon: null, lines: [], leadsTo: () => false}, C: {notes: [[null, $('hud').textContent.split('Still life')[0]], [ok, msg]], stars: ok ? 3 : 1}, cam: {scene: 'studio'}, verdict: {ok, msg: ok ? `${lk.title}: done!` : `Not ${lk.title.toLowerCase()} yet.`}, brief: {title: lk.title}};
+    photos.push(ph); addThumb(ph);
+    setTimeout(() => showLightReview(ph, ok), reduce ? 150 : 300);
+  }
+  function showLightReview(ph, ok) {
+    showReview(ph);
+    $('review').querySelector('.legend').remove();
+    $('review').querySelector('#ovt').remove();
+    $('close').textContent = ok ? 'Next look ▶' : 'Keep lighting';
+    $('close').onclick = () => { $('review').innerHTML = ''; if (ok) { L.look = (L.look + 1) % LOOKS.length; renderLightSide(); lightRender(); } };
+  }
+
+  // ---------- modes ----------
+  document.querySelectorAll('[data-mode]').forEach(b => b.onclick = () => setMode(b.dataset.mode));
+  function setMode(m) {
+    mode = m; document.querySelectorAll('[data-mode]').forEach(b => b.setAttribute('aria-pressed', b.dataset.mode === m));
+    const vf = $('vf');
+    if (m === 'light') {
+      if (!window.THREE) { $('side').innerHTML = '<div class="card"><p>The light studio needs WebGL, which this browser has turned off.</p></div>'; return; }
+      const t = initThree(); cv.hidden = true; $('ov').innerHTML = ''; if (!t.canvas.parentNode) vf.insertBefore(t.canvas, $('ov')); t.canvas.hidden = false;
+      renderSide(); lightRender();
+    } else {
+      cv.hidden = false; if (three) three.canvas.hidden = true;
+      if (m === 'brief') openBrief(bi); else { renderSide(); vfSize(); render(); }
+    }
+  }
+  document.addEventListener('keydown', e => {
+    if ($('review').innerHTML) return;
+    if (e.target.closest('input,select')) return;
+    if (e.key === ' ' && !e.target.closest('button')) { e.preventDefault(); shoot(); return; }
+    if (mode === 'light') return;
+    const {w} = frameSize(), step = w / iw() * .04;
+    if (e.key === 'ArrowLeft') cam.cx -= step; else if (e.key === 'ArrowRight') cam.cx += step; else if (e.key === 'ArrowUp') cam.cy -= step; else if (e.key === 'ArrowDown') cam.cy += step;
+    else if (e.key === '+' || e.key === '=') cam.f = Math.min(MAXF, cam.f + 2); else if (e.key === '-') cam.f = Math.max(MINF, cam.f - 2);
+    else if (e.key === '[') cam.rot = Math.max(-12, cam.rot - .5); else if (e.key === ']') cam.rot = Math.min(12, cam.rot + .5);
+    else return;
+    e.preventDefault(); render();
+  });
+
+  Promise.all(Object.entries(SCENES).map(([k, s]) => loadImg(s.src).then(i => IMG[k] = i))).then(() => { setMode('shoot'); });
+  window.__fi = {cam, SCENES, analyze, critique, render, shoot, setMode, BRIEFS, openBrief, L, LOOKS, lightRender, frameSize, toFrame};
+})();
+</script>
+</body>
+</html>

@@ -15,6 +15,7 @@ Asset options: "ref": "<other asset>" sends that asset's raw image along so a ch
 "crop": [top, bottom] keeps that vertical slice (0-1) of the cut-out figure, e.g. a musician from hat to waist;
 "height" sizes by height instead of width, so a set of characters lines up;
 "aspect": "9:16" (or "3:4", "16:9"...) sets the frame shape, e.g. portrait for a full-length figure.
+"size": "2K" asks for a larger drawing, for a scene the tool zooms into (Frame It).
 "key": "magenta" draws on magenta instead of green, for green subjects (lettuce, frogs, leaves).
 "cutout": "keyed" removes the key color without the subject-alone wording, e.g. a scene whose sky is drawn flat green.
 "trim": 0.03 shaves that fraction off every side, for backgrounds that come back with a painted frame.
@@ -51,11 +52,12 @@ def api_key():
     return key
 
 
-def generate(prompt, refs=(), aspect=None):
+def generate(prompt, refs=(), aspect=None, size=None):
     from google import genai
     from google.genai import types
     client = genai.Client(api_key=api_key())
-    image = types.ImageConfig(aspect_ratio=aspect) if aspect else None
+    opts = {k: v for k, v in (('aspect_ratio', aspect), ('image_size', size)) if v}
+    image = types.ImageConfig(**opts) if opts else None
     resp = client.models.generate_content(model=MODEL, contents=[prompt, *refs],
                                           config=types.GenerateContentConfig(response_modalities=['IMAGE'], image_config=image))
     for part in resp.candidates[0].content.parts:
@@ -131,7 +133,7 @@ def main():
         if rekey:  # redo the cutout and sizing from the saved original, without drawing again
             img = Image.open(raw).convert('RGBA')
         else:
-            img = generate(prompt, refs, asset.get('aspect'))
+            img = generate(prompt, refs, asset.get('aspect'), asset.get('size'))
             img.save(raw)
         if asset.get('trim'):  # shave a painted frame off every side
             t = asset['trim']; img = img.crop((round(img.width * t), round(img.height * t), round(img.width * (1 - t)), round(img.height * (1 - t))))

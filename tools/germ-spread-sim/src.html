@@ -1,0 +1,578 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Germ Spread Sim · Germs and disease prevention · Curio Class</title>
+<meta name="description" content="Watch a cold spread through a classroom of 24 over two school weeks, then switch on handwashing, covering coughs, staying home when sick and wiping shared things to see the outbreak shrink. Then scrub glowing germs off a hand for 20 seconds.">
+<!--
+GERM SPREAD SIM (Curio Class)
+Health, grades 3-5, National Health Education Standards 1 (health concepts) and 7 (practice healthy behaviors),
+module "Germs and Disease Prevention": how illness spreads and how to prevent it.
+Classroom outbreak: one student comes to school with cold germs and feels fine. Over ten school days the class
+works at desks, gathers on the rug, eats snack and goes out to recess. Germs travel by uncovered coughs, by hands
+(touching your face, sharing, the door handle and pencil sharpener) and can spread a day before anyone feels sick.
+Switch on habits (wash hands, cover coughs, stay home when sick, wipe shared things, flu shots) and run again with
+the same first student to compare. Germ vision shows what eyes can't see.
+Wash up: wet, soap, scrub for 20 seconds, rinse and dry, then check under a "black light" for missed spots, the
+way classrooms test with glow-in-the-dark lotion. Water alone loosens far fewer germs than soap and scrubbing.
+This is a teaching model, not a medical prediction: numbers are simplified so differences show in one class.
+Steps follow CDC handwashing guidance (wet, lather, scrub 20 seconds, rinse, dry).
+Illustrations generated with Google Gemini, edited for Curio Class. Sound synthesized in the browser.
+One file, no network requests. Content CC BY 4.0, code MIT. curioclass.org
+-->
+<style>
+:root{
+  --paper:#eef4f1;--ink:#1d2a2a;--muted:#5a6a68;--focus:#2f5bd3;--brand:#1f7a6a;--gold:#ffcf3a;--card:#fbfffd;
+  --sick:#e8743b;--home:#7b8fb0;--rec:#2f8fb3;--germ:#7ed321;
+  font-family:'Segoe UI',system-ui,-apple-system,Roboto,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0;height:100%}
+body{background:var(--paper);color:var(--ink);display:grid;grid-template-rows:auto 1fr;min-height:100vh}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:4px solid var(--focus);outline-offset:3px}
+header{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:10px 20px;background:var(--brand);color:#eafffa}
+h1{margin:0 auto 0 0;font:800 clamp(22px,2.8vw,32px)/1.1 Georgia,'Times New Roman',serif}
+h1 small{display:block;font:400 14px/1.3 'Segoe UI',sans-serif;color:#c4ece4}
+.icon-btn{border:1px solid #5fae9f;background:#2b927f;color:#fff;border-radius:999px;min-height:46px;padding:0 16px;font-weight:700;font-size:15px}
+.icon-btn[aria-pressed="false"]{background:#114c41}
+
+.stagewrap{position:relative;overflow:hidden;min-height:0;background:#cfe0da}
+.scene{position:absolute;left:50%;top:50%;width:1440px;height:810px;transform:translate(-50%,-50%) scale(var(--s,1));overflow:hidden;background:linear-gradient(#d9e8e2,#c7dbd3)}
+.top{position:absolute;left:14px;right:24px;top:12px;display:flex;align-items:center;gap:12px;z-index:6}
+.tabs{display:inline-flex;border-radius:999px;overflow:hidden;background:#fbfffdf0;box-shadow:0 3px 0 #0002}
+.tabs button{border:0;background:transparent;min-height:54px;padding:0 22px;font:800 19px 'Segoe UI',sans-serif;color:var(--muted)}
+.tabs button[aria-pressed="true"]{background:var(--brand);color:#fff}
+.b{border:0;border-radius:14px;min-height:50px;padding:0 16px;font:800 17px 'Segoe UI',sans-serif;background:#fbfffd;color:var(--ink);box-shadow:0 4px 0 #0002;white-space:nowrap}
+.b:active{transform:translateY(3px);box-shadow:0 1px 0 #0002}
+.b.go{background:#2f8a4a;color:#fff;box-shadow:0 4px 0 #1d5e30}
+.b.teal{background:var(--brand);color:#fff;box-shadow:0 4px 0 #0f4a40}
+.b[aria-pressed="true"]{background:var(--gold);color:#3a2a00}
+.b:disabled{opacity:.45;cursor:default}
+
+/* classroom */
+.room{position:absolute;left:10px;top:80px;width:1100px;height:615px;border-radius:18px;overflow:hidden;box-shadow:0 8px 20px #0003}
+.room>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.desk{position:absolute;width:74px;height:44px;margin:-6px 0 0 -37px;border-radius:8px;background:linear-gradient(#e2bf8c,#c99d62);box-shadow:0 4px 0 #8a6436,0 6px 8px #0003}
+.desk.home::after{content:'🏠';position:absolute;right:-8px;top:-10px;font-size:20px}
+.spot{position:absolute;width:44px;height:44px;margin:-22px;border-radius:50%;display:grid;place-items:center;font-size:24px;pointer-events:none}
+.spot i{position:absolute;inset:-10px;border-radius:50%;background:radial-gradient(circle,#7ed321cc,#7ed32100 70%);opacity:0;transition:opacity .4s}
+.germs .spot i{opacity:var(--load,0)}
+.kid{position:absolute;width:52px;height:52px;margin:-26px;border-radius:50%;background:#fff;box-shadow:0 3px 0 #0003;transition:left var(--tick,.1s) linear,top var(--tick,.1s) linear,opacity .4s;z-index:2}
+.kid img{width:100%;height:100%;border-radius:50%;object-fit:cover;object-position:50% 12%;background:#f4efe6}
+.kid .ring{position:absolute;inset:-5px;border-radius:50%;border:5px solid transparent}
+.kid.sick .ring{border-color:var(--sick)}
+.kid.sick img{filter:saturate(.6) brightness(1.05) sepia(.25)}
+.kid.rec .ring{border-color:var(--rec)}
+.kid .badge{position:absolute;right:-10px;top:-12px;font-size:20px;filter:drop-shadow(0 1px 1px #0006)}
+.kid .hands{position:absolute;left:50%;bottom:-8px;width:38px;height:14px;margin-left:-19px;border-radius:50%;background:radial-gradient(#7ed321ee,#7ed32100 70%);opacity:0;transition:opacity .2s}
+.germs .kid .hands{opacity:var(--h,0)}
+.kid .aura{position:absolute;inset:-14px;border-radius:50%;background:radial-gradient(circle,#7ed32100 45%,#7ed32199 60%,#7ed32100 75%);opacity:0}
+.germs .kid.carry .aura{opacity:1}
+.kid.p0::before{content:'';position:absolute;inset:-12px;border-radius:50%;border:3px dashed #fff}
+.kid.out{opacity:0}
+.kid img,.kid .ring{transition:transform .4s}
+.kid.onrug img,.kid.onrug .ring{transform:scale(.8)}
+.puff{position:absolute;pointer-events:none;z-index:3;border-radius:50%;background:radial-gradient(circle,#9be15dcc 0,#9be15d55 40%,#9be15d00 70%)}
+.board{position:absolute;left:290px;top:84px;width:470px;height:64px;display:grid;place-items:center;text-align:center;font:700 21px/1.2 'Comic Sans MS','Segoe Print','Segoe UI',sans-serif;color:#2c4a8a;z-index:4;pointer-events:none}
+.board small{display:block;font-size:15px;color:#5a6a68}
+
+/* panel */
+.panel{position:absolute;left:1122px;right:12px;top:80px;bottom:12px;background:#fbfffdf6;border-radius:18px;box-shadow:0 6px 0 #0002;padding:10px 12px;display:flex;flex-direction:column;gap:7px;overflow:hidden}
+.panel h2{margin:0;font:800 19px Georgia,serif}
+.hab{display:grid;grid-template-columns:1fr;gap:3px}
+.hab .name{font:800 14px 'Segoe UI',sans-serif;display:flex;justify-content:space-between}
+.seg{display:flex;border-radius:12px;overflow:hidden;box-shadow:inset 0 0 0 2px #cfe0da}
+.seg button{flex:1;border:0;background:transparent;min-height:36px;font:700 13.5px 'Segoe UI',sans-serif;padding:0 4px}
+.seg button[aria-pressed="true"]{background:var(--brand);color:#fff}
+.row{display:flex;gap:6px}
+.row .b{flex:1;min-height:46px;font-size:15px;padding:0 8px}
+.runs{font:700 13.5px/1.35 'Segoe UI',sans-serif}
+.runs div{display:flex;justify-content:space-between;gap:6px;border-radius:8px;padding:2px 6px}
+.runs div.cur{background:#fff3c4}
+.chart{position:absolute;left:10px;top:704px;width:1100px;height:94px;background:#fbfffdf2;border-radius:16px;box-shadow:0 4px 0 #0002;padding:6px 10px}
+.chart svg{width:100%;height:100%}
+.key{display:flex;gap:10px;font:700 12px 'Segoe UI',sans-serif;color:var(--muted)}
+.key i{display:inline-block;width:12px;height:12px;border-radius:3px;vertical-align:-2px;margin-right:3px}
+.result{position:absolute;left:250px;top:230px;width:620px;z-index:8;background:#fbfffd;border-radius:24px;box-shadow:0 20px 40px #0005;padding:22px 28px;text-align:center}
+.result h2{margin:0 0 6px;font:800 30px Georgia,serif}
+.result .n{font:900 64px/1 'Segoe UI',sans-serif;color:var(--sick)}
+.result p{font:500 18px/1.45 'Segoe UI',sans-serif;margin:8px 0}
+
+/* wash */
+.wash{position:absolute;inset:80px 12px 12px 12px;border-radius:18px;background:linear-gradient(#dff0f6,#c5e2ec);overflow:hidden}
+.sinkbg{position:absolute;left:0;right:0;bottom:0;height:150px;background:linear-gradient(#f4f7f8,#cfd9dd);border-top:6px solid #b9c7cc}
+.handwrap{position:absolute;left:330px;top:20px;width:510px;height:640px}
+.handwrap canvas{position:absolute;left:0;top:0;width:510px;height:640px;touch-action:none}
+.uv .handwrap{filter:none}
+.wash.uv{background:linear-gradient(#1b1036,#2a1650)}
+.wash.uv .sinkbg{background:linear-gradient(#2a1d4d,#1b1036);border-color:#3b2a66}
+.steps{position:absolute;left:24px;top:24px;width:280px;display:flex;flex-direction:column;gap:10px}
+.step{display:flex;align-items:center;gap:12px;border:0;border-radius:18px;min-height:66px;padding:0 16px;background:#fbfffd;box-shadow:0 4px 0 #0002;font:800 19px 'Segoe UI',sans-serif;text-align:left}
+.step span{font-size:30px}
+.step small{display:block;font:600 13px 'Segoe UI',sans-serif;color:var(--muted)}
+.step.done{background:#d6f2df}
+.step.now{box-shadow:0 0 0 4px var(--gold),0 4px 0 #0002}
+.step:disabled{opacity:.5}
+.wside{position:absolute;right:24px;top:24px;width:420px;display:flex;flex-direction:column;gap:12px}
+.wcard{background:#fbfffdf4;border-radius:20px;box-shadow:0 5px 0 #0002;padding:14px 18px}
+.wcard h2{margin:0 0 6px;font:800 22px Georgia,serif}
+.wcard p{margin:6px 0;font:500 17px/1.4 'Segoe UI',sans-serif}
+.timer{height:30px;border-radius:15px;background:#e3ece9;overflow:hidden;position:relative}
+.timer i{position:absolute;left:0;top:0;bottom:0;background:linear-gradient(90deg,#46b3e6,#2f8a4a);border-radius:15px}
+.timer b{position:absolute;inset:0;display:grid;place-items:center;font:900 16px 'Segoe UI',sans-serif}
+.meter{font:900 44px 'Segoe UI',sans-serif;color:var(--brand)}
+.flip{position:absolute;left:520px;top:600px}
+.wash.uv .steps label{color:#e9e4ff}
+</style>
+</head>
+<body>
+<header>
+  <h1>Germ Spread Sim <small>How colds spread in a classroom, and how to stop them.</small></h1>
+  <button class="icon-btn" id="motion" aria-pressed="true" title="Turn animation on or off">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+</header>
+<div class="stagewrap" id="stagewrap">
+  <div class="scene" id="scene">
+    <div class="top">
+      <div class="tabs" role="group" aria-label="Mode">
+        <button data-mode="sim" aria-pressed="true">🏫 Classroom outbreak</button>
+        <button data-mode="wash" aria-pressed="false">🧼 Wash up</button>
+      </div>
+    </div>
+    <div id="simview">
+      <div class="room" id="room"><img src="art:room" alt="A classroom seen from above"></div>
+      <div class="board" id="board" aria-live="polite"></div>
+      <div class="chart" id="chart"></div>
+      <div class="panel" id="panel"></div>
+    </div>
+    <div id="washview" hidden></div>
+  </div>
+</div>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  let reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  try { const m = localStorage.getItem('curio-motion'); if (m) reduce = m === 'calm'; } catch {}
+  function showMotion() {
+    document.body.classList.toggle('calm', reduce);
+    $('motion').setAttribute('aria-pressed', !reduce);
+    $('motion').textContent = reduce ? '⏸ Motion' : '✨ Motion';
+  }
+  showMotion();
+  $('motion').onclick = () => { reduce = !reduce; try { localStorage.setItem('curio-motion', reduce ? 'calm' : 'on'); } catch {} showMotion(); };
+  const fit = () => { const r = $('stagewrap').getBoundingClientRect(); $('scene').style.setProperty('--s', Math.min(r.width / 1440, r.height / 810)); };
+  new ResizeObserver(fit).observe($('stagewrap'));
+  const anim = (el, kf, opt) => { if (reduce || !el || !el.animate) return null; return el.animate(kf, opt); };
+
+  // ---------- sound ----------
+  let ac = null, soundOn = true;
+  $('sound').onclick = () => { soundOn = !soundOn; $('sound').setAttribute('aria-pressed', soundOn); $('sound').textContent = soundOn ? '🔔 Sound' : '🔕 Sound'; };
+  function ctx() { if (!ac) { try { ac = new (window.AudioContext || window.webkitAudioContext)(); } catch { return null; } } if (ac.state === 'suspended') ac.resume(); return ac; }
+  function tone(f, at, dur, {type = 'triangle', gain = .15, slide = 0} = {}) {
+    const c = soundOn && ctx(); if (!c) return;
+    const t = c.currentTime + at, o = c.createOscillator(), g = c.createGain();
+    o.type = type; o.frequency.setValueAtTime(f, t); if (slide) o.frequency.exponentialRampToValueAtTime(f * slide, t + dur);
+    g.gain.setValueAtTime(.0001, t); g.gain.exponentialRampToValueAtTime(gain, t + .01); g.gain.exponentialRampToValueAtTime(.0001, t + dur);
+    o.connect(g).connect(c.destination); o.start(t); o.stop(t + dur + .05);
+  }
+  function noise(dur, gain, freq, q = 1, type = 'bandpass') {
+    const c = soundOn && ctx(); if (!c) return;
+    const t = c.currentTime, b = c.createBuffer(1, Math.ceil(c.sampleRate * dur), c.sampleRate), d = b.getChannelData(0);
+    for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
+    const s = c.createBufferSource(), f = c.createBiquadFilter(), g = c.createGain();
+    s.buffer = b; f.type = type; f.frequency.value = freq; f.Q.value = q;
+    g.gain.setValueAtTime(.0001, t); g.gain.exponentialRampToValueAtTime(gain, t + .02); g.gain.exponentialRampToValueAtTime(.0001, t + dur);
+    s.connect(f).connect(g).connect(c.destination); s.start(t);
+  }
+  const SFX = {
+    cough: () => { noise(.14, .18, 900, .8); setTimeout(() => noise(.12, .14, 800, .8), 170); },
+    bell: () => [784, 988, 1175].forEach((f, i) => tone(f, i * .12, .5, {type: 'sine', gain: .12})),
+    sick: () => tone(392, 0, .35, {gain: .1, slide: .7}),
+    good: () => [523, 659, 784, 1047].forEach((f, i) => tone(f, i * .1, .45)),
+    water: dur => noise(dur, .1, 2400, .4, 'highpass'),
+    squish: () => noise(.18, .08, 700, 2),
+    tick: () => tone(1200, 0, .04, {type: 'sine', gain: .05}),
+  };
+
+  // ---------- the class ----------
+  const FACES = ['k1', 'k2', 'k3', 'k4', 'k5', 'k6', 'k7', 'k8'];
+  const FACE_IMG = {k1: 'art:k1', k2: 'art:k2', k3: 'art:k3', k4: 'art:k4', k5: 'art:k5', k6: 'art:k6', k7: 'art:k7', k8: 'art:k8'};
+  const GIRL = ['Maya', 'Rosa', 'Lena', 'Fatima', 'Ava', 'Hana', 'Priya', 'Noor', 'Jada', 'Zoe', 'Tess', 'Amira'];
+  const BOY = ['Ben', 'Eli', 'Dev', 'Kai', 'Omar', 'Mateo', 'Gus', 'Kofi', 'Sam', 'Leo', 'Wes', 'Theo'];
+  const N = 24;
+  const KIDS = Array.from({length: N}, (_, i) => {
+    const face = FACES[(i * 3 + Math.floor(i / 8)) % 8], girl = ['k1', 'k3', 'k5', 'k7'].includes(face);
+    const name = face === 'k7' ? ['Fatima', 'Noor', 'Amira'][Math.floor(i / 8)] : (girl ? GIRL.filter(n => !['Fatima', 'Noor', 'Amira'].includes(n)) : BOY)[Math.floor(i / 2) % 9 + (i % 2) * 0];
+    return {i, face, name};
+  });
+  // give everyone a different name
+  const used = new Set();
+  KIDS.forEach(k => { const pool = k.face === 'k7' ? ['Fatima', 'Noor', 'Amira'] : ['k1', 'k3', 'k5'].includes(k.face) ? GIRL : BOY; k.name = pool.find(n => !used.has(n)); used.add(k.name); });
+
+  // places in the room (room coordinates, 1100 x 615)
+  const P = {sink: [192, 112], door: [190, 578], doorOut: [150, 640], rug: [868, 448], sharp: [124, 282], bin: [385, 552], fountain: [192, 160]};
+  const desk = i => [232 + (i % 6) * 96, 196 + Math.floor(i / 6) * 92];
+  const rugSpot = i => { const ring = i < 2 ? 0 : i < 10 ? 1 : 2, k = ring === 0 ? i : ring === 1 ? i - 2 : i - 10, n = [2, 8, 14][ring], r = [14, 46, 84][ring], a = k / n * Math.PI * 2 + ring * .3; return [P.rug[0] - 8 + Math.cos(a) * r, P.rug[1] + Math.sin(a) * r * .86]; };
+  const sinkSpot = i => [P.sink[0] + 46 + (i % 6) * 34, P.sink[1] + 48 + Math.floor(i / 6) * 34];
+  const neighbors = i => [i - 1, i + 1, i - 6, i + 6].filter(j => j >= 0 && j < N && (Math.abs(j - i) !== 1 || Math.floor(j / 6) === Math.floor(i / 6)));
+
+  // ---------- habits ----------
+  const H = {wash: 0, cover: 0, home: 0, wipe: 0, shot: 0};
+  const HABITS = [
+    ['wash', '🧼 Wash hands with soap', ['Rarely', 'Sometimes', 'Always']],
+    ['cover', '💪 Cover coughs', ['Don\'t', 'With hand', 'Into elbow']],
+    ['home', '🏠 Stay home when sick', ['No', 'Yes']],
+    ['wipe', '🧽 Wipe shared things', ['No', 'Every day']],
+    ['shot', '💉 Flu shots in the class', ['None', 'Half', 'Most']],
+  ];
+  // ---------- the model ----------
+  // Every random choice comes from a hash of (seed, day, tick, kid, channel), so a rerun with different habits
+  // keeps the same luck: only the habits change the outcome.
+  function rnd(...a) { let h = 2166136261 ^ SEED; for (const v of a) { h = Math.imul(h ^ (v + 0x9e3779b9), 16777619); h ^= h >>> 13; } h = Math.imul(h, 0x5bd1e995); h ^= h >>> 15; return (h >>> 0) / 4294967296; }
+  let SEED = 7;
+  const TICKS = 120, DAYS = 10;
+  // model rates, tuned so one class shows each habit's effect (see notes.md)
+  const K = {handSick: .08, handPre: .04, coughSick: .02, coughPre: .006, air: .025, inHand: .006, elbow: .002, share: .025, face: .025, faceP: .08, snackP: .16, surfIn: .5, surfOut: .5, decay: .97};
+  // phases of a school day, by tick
+  const PH = [[0, 10, 'arrive', 'Good morning! Everyone comes in the door.'], [10, 40, 'desk', 'Work time at desks. Sharing supplies with neighbors.'], [40, 46, 'torug', 'Off to the rug for story time.'],
+    [46, 66, 'rug', 'Story time: everyone close together on the rug.'], [66, 72, 'todesk', 'Back to desks.'], [72, 80, 'wash', 'Before snack: wash your hands?'], [80, 88, 'snack', 'Snack time! Hands near mouths.'],
+    [88, 92, 'out', 'Recess! Out the door.'], [92, 100, 'recess', 'Recess outside.'], [100, 104, 'in', 'Back inside.'], [104, 114, 'desk2', 'Afternoon work at desks.'], [114, 120, 'leave', 'Home time.']];
+  const phaseAt = t => PH.find(p => t >= p[0] && t < p[1]);
+  let S;
+  function reset() {
+    S = {day: 0, t: 0, kids: KIDS.map(k => ({...k, st: 'S', d0: -1, hand: 0, home: false, vax: false, sickDays: 0, missed: 0, by: null})),
+      surf: {door: 0, sharp: 0, bin: 0, fountain: 0}, hist: [], events: [], done: false, p0: Math.floor(rnd(99) * N)};
+    S.kids.forEach((k, i) => k.vax = rnd(i, 77) < [0, .5, .9][H.shot]);
+    const z = S.kids[S.p0]; z.st = 'I'; z.d0 = -1; z.vax = false; // starts contagious, no symptoms yet
+  }
+  // disease timeline (school days since infection): day 1 contagious with no symptoms, days 2-4 sick, day 5 better
+  function stage(k) { if (k.st === 'S' || k.st === 'R') return k.st; const d = S.day - k.d0; return d < 1 ? 'E' : d < 2 ? 'I' : d < 5 ? 'X' : 'R'; }
+  const contagious = st => st === 'I' || st === 'X';
+  function infect(k, by, how) {
+    if (k.st !== 'S') return;
+    if (k.vax && rnd(S.day, S.t, k.i, 31) < .6) return; // flu shots: about 60% less likely to catch it (teaching value)
+    k.st = 'E'; k.d0 = S.day; k.by = by; k.how = how;
+    S.events.push({day: S.day, kid: k.i, by, how});
+  }
+  function startDay() {
+    for (const k of S.kids) {
+      const st = stage(k); if (st === 'R' && k.st !== 'R') k.st = 'R';
+      k.home = st === 'X' && H.home === 1 && rnd(S.day, k.i, 5) < .95;
+      k.hand = 0;
+    }
+    for (const s in S.surf) S.surf[s] *= H.wipe ? 0 : .5; // germs fade overnight; wiping clears them
+  }
+  const at = k => !k.home;
+  function pos(k) {
+    const t = Math.min(S.t, TICKS - 1), ph = phaseAt(t)[2], i = k.i, f = (a, b, u) => [a[0] + (b[0] - a[0]) * u, a[1] + (b[1] - a[1]) * u];
+    if (k.home) return P.doorOut;
+    const d = desk(i), u = p => Math.min(1, (t - p[0] + 1) / (p[1] - p[0]));
+    switch (ph) {
+      case 'arrive': return f(P.door, d, u(PH[0]));
+      case 'desk': case 'desk2': case 'snack': return d;
+      case 'torug': return f(d, rugSpot(i), u(PH[2]));
+      case 'rug': return rugSpot(i);
+      case 'todesk': return f(rugSpot(i), d, u(PH[4]));
+      case 'wash': return washes(k) ? sinkSpot(i) : d;
+      case 'out': return f(d, P.doorOut, u(PH[7]));
+      case 'recess': return P.doorOut;
+      case 'in': return f(P.doorOut, d, u(PH[9]));
+      case 'leave': return f(d, P.doorOut, u(PH[11]));
+    }
+  }
+  const washes = k => rnd(S.day, k.i, 11) < [.15, .55, .95][H.wash];
+  const dist = (a, b) => Math.hypot(a[0] - b[0], a[1] - b[1]);
+  function touch(k, s) { // hand meets a shared surface: germs move both ways
+    const a = k.hand, b = S.surf[s];
+    S.surf[s] = Math.min(1, b + a * K.surfIn); k.hand = Math.min(1, a + b * K.surfOut);
+  }
+  function tick() {
+    const t = S.t, ph = phaseAt(t)[2], here = S.kids.filter(at);
+    const pts = new Map(here.map(k => [k, pos(k)]));
+    for (const k of here) {
+      const st = stage(k), r = (c) => rnd(S.day, t, k.i, c);
+      // contagious people get germs on their hands (nose, mouth)
+      if (contagious(st) && r(1) < (st === 'X' ? K.handSick : K.handPre)) k.hand = 1;
+      // coughs
+      if (contagious(st) && r(2) < (st === 'X' ? K.coughSick : K.coughPre) && ph !== 'recess') cough(k, pts);
+      // touching shared things
+      if (ph === 'arrive' && t === 4 || ph === 'in' && t === 101 || ph === 'out' && t === 89) touch(k, 'door');
+      if ((ph === 'desk' || ph === 'desk2') && r(3) < .02) touch(k, r(4) < .5 ? 'sharp' : 'bin');
+      if ((ph === 'desk' || ph === 'desk2') && r(6) < K.share) { // sharing with a neighbor
+        const nb = neighbors(k.i).map(j => S.kids[j]).filter(at); const o = nb[Math.floor(r(7) * nb.length)];
+        if (o) { const m = Math.max(k.hand, o.hand) * .6; k.hand = Math.max(k.hand, m); o.hand = Math.max(o.hand, m); }
+      }
+      if (ph === 'recess' && r(8) < .06) touch(k, 'fountain');
+      if (ph === 'wash' && t === 76 && washes(k)) k.hand = 0;
+      if (ph === 'in' && t === 102 && washes(k) && H.wash === 2) k.hand = 0;
+      if (ph === 'desk' && t === 12 && H.wash && washes(k)) k.hand = 0; // washing when you come in
+      // hands to face: everyone touches their face a lot, and snack means hands at the mouth
+      const face = ph === 'snack' && t === 84 ? 1 : r(9) < K.face ? 1 : 0;
+      if (face && k.hand > .05 && r(10) < k.hand * (ph === 'snack' ? K.snackP : K.faceP)) infect(k, null, 'hands');
+      if (H.wipe && t === 80) { for (const s in S.surf) S.surf[s] = 0; }
+    }
+    for (const s in S.surf) S.surf[s] *= .985;
+    for (const k of S.kids) k.hand *= K.decay;
+    S.t++;
+  }
+  let lastCough = null;
+  function cough(k, pts) {
+    const how = H.cover === 2 ? 'elbow' : H.cover === 1 ? 'hand' : 'air';
+    if (how === 'hand') k.hand = 1;
+    const reach = how === 'air' ? 120 : how === 'hand' ? 55 : 30, p = how === 'air' ? K.air : how === 'hand' ? K.inHand : K.elbow;
+    const me = pts.get(k);
+    for (const [o, op] of pts) if (o !== k && dist(me, op) < reach && rnd(S.day, S.t, k.i, o.i, 21) < p) infect(o, k.i, 'cough');
+    lastCough = {k: k.i, how, at: me, reach};
+  }
+  function endDay() {
+    const c = {S: 0, carry: 0, school: 0, home: 0, R: 0};
+    for (const k of S.kids) {
+      const st = stage(k);
+      if (st === 'X') { k.sickDays++; if (k.home) { c.home++; k.missed++; } else c.school++; }
+      else if (st === 'R' || k.st === 'R') c.R++;
+      else if (st === 'E' || st === 'I') c.carry++;
+      else c.S++;
+    }
+    S.hist.push(c);
+    S.day++; S.t = 0;
+    if (S.day >= DAYS) S.done = true;
+  }
+  const everSick = () => S.kids.filter(k => k.st !== 'S').length;
+
+  // ---------- drawing ----------
+  let germView = false, speed = 'normal', running = false, timer = null;
+  const SPEEDS = {normal: 110, fast: 28};
+  function buildRoom() {
+    const room = $('room');
+    room.querySelectorAll('.desk,.kid,.spot').forEach(e => e.remove());
+    for (let i = 0; i < N; i++) { const [x, y] = desk(i); const d = document.createElement('div'); d.className = 'desk'; d.id = 'desk' + i; d.style.left = x + 'px'; d.style.top = y + 'px'; room.appendChild(d); }
+    [['door', '🚪', [P.door[0] + 50, P.door[1] - 14]], ['sharp', '✏️', P.sharp], ['bin', '🖍️', P.bin], ['fountain', '💧', [P.fountain[0] + 60, P.fountain[1] - 50]]].forEach(([id, e, [x, y]]) => {
+      const s = document.createElement('div'); s.className = 'spot'; s.id = 'spot-' + id; s.innerHTML = `<i></i>${e}`; s.style.left = x + 'px'; s.style.top = y + 'px'; s.title = {door: 'Door handle', sharp: 'Pencil sharpener', bin: 'Shared crayons', fountain: 'Water fountain'}[id]; room.appendChild(s);
+    });
+    for (const k of S.kids) {
+      const el = document.createElement('div'); el.className = 'kid'; el.id = 'kid' + k.i;
+      el.innerHTML = `<div class="aura"></div><div class="ring"></div><img src="${FACE_IMG[k.face]}" alt="${k.name}"><div class="hands"></div><span class="badge"></span>`;
+      el.title = k.name; room.appendChild(el);
+    }
+    room.classList.toggle('germs', germView);
+  }
+  function draw(instant) {
+    $('scene').style.setProperty('--tick', instant ? '0s' : (SPEEDS[speed] / 1000) + 's');
+    for (const k of S.kids) {
+      const el = $('kid' + k.i), [x, y] = pos(k), st = stage(k), ph = phaseAt(Math.min(S.t, TICKS - 1))[2];
+      el.style.left = x + 'px'; el.style.top = y + 'px';
+      el.classList.toggle('out', k.home || ph === 'recess' || (S.t === 0 && S.day > 0));
+      el.classList.toggle('onrug', ph === 'rug' || ph === 'torug' && S.t > 43);
+      el.classList.toggle('sick', st === 'X'); el.classList.toggle('rec', k.st === 'R' || st === 'R');
+      el.classList.toggle('carry', st === 'I' || st === 'E' || st === 'X');
+      el.classList.toggle('p0', k.i === S.p0 && germView);
+      el.querySelector('.badge').textContent = st === 'X' ? '🤒' : (k.st === 'R' || st === 'R') ? '🛡️' : k.vax && H.shot ? '' : '';
+      el.style.setProperty('--h', Math.min(1, k.hand * 1.4).toFixed(2));
+      $('desk' + k.i).classList.toggle('home', k.home);
+    }
+    for (const s in S.surf) $('spot-' + s).style.setProperty('--load', Math.min(1, S.surf[s] * 1.5).toFixed(2));
+    const ph = phaseAt(Math.min(S.t, TICKS - 1));
+    $('board').innerHTML = S.done ? 'Two weeks are over!<small>See how many got sick.</small>' : `Day ${S.day + 1} of ${DAYS}: ${ph[3]}<small>${S.kids.filter(k => k.home).length ? `${S.kids.filter(k => k.home).length} at home sick today` : 'Everyone is at school'}</small>`;
+    if (lastCough && !instant) { showCough(lastCough); lastCough = null; }
+  }
+  function showCough(c) {
+    SFX.cough();
+    const room = $('room'), p = document.createElement('div'); p.className = 'puff';
+    const r = c.reach * (c.how === 'air' ? 1 : .8);
+    Object.assign(p.style, {left: c.at[0] - r + 'px', top: c.at[1] - r + 'px', width: 2 * r + 'px', height: 2 * r + 'px', opacity: c.how === 'air' ? 1 : .6});
+    if (c.how === 'elbow') { p.style.background = 'none'; p.textContent = '💪'; p.style.fontSize = '26px'; p.style.display = 'grid'; p.style.placeItems = 'center'; }
+    room.appendChild(p);
+    const a = anim(p, [{transform: 'scale(.3)', opacity: 0}, {transform: 'scale(1)', opacity: 1, offset: .3}, {transform: 'scale(1.1)', opacity: 0}], {duration: 1100, easing: 'ease-out'});
+    setTimeout(() => p.remove(), a ? 1100 : 700);
+  }
+  function drawChart() {
+    const W = 1080, Hh = 82, bw = W / DAYS - 8, max = N;
+    const cols = [['school', '#e8743b', 'Sick at school'], ['home', '#7b8fb0', 'Sick at home'], ['carry', '#7ed321', 'Has germs, feels fine'], ['R', '#2f8fb3', 'Got better'], ['S', '#e3ece9', 'Never sick']];
+    let h = `<svg viewBox="0 0 ${W} ${Hh}" preserveAspectRatio="none" role="img" aria-label="Chart of the class each day">`;
+    for (let d = 0; d < DAYS; d++) {
+      const c = S.hist[d], x = d * (W / DAYS) + 4;
+      if (!c) { h += `<rect x="${x}" y="2" width="${bw}" height="${Hh - 20}" rx="5" fill="#eef4f1" stroke="#d3e1dc"/><text x="${x + bw / 2}" y="${Hh - 4}" text-anchor="middle" font-size="12" font-weight="700" fill="#8a9b98">Day ${d + 1}</text>`; continue; }
+      let y = Hh - 18;
+      for (const [k, col] of cols) {
+        if (k === 'carry' && !germView) continue;
+        const v = k === 'S' && !germView ? c.S + c.carry : c[k]; const hh = v / max * (Hh - 20);
+        y -= hh; if (hh > 0) h += `<rect x="${x}" y="${y}" width="${bw}" height="${hh}" fill="${col}"/>`;
+      }
+      h += `<text x="${x + bw / 2}" y="${Hh - 4}" text-anchor="middle" font-size="12" font-weight="800" fill="#1d2a2a">Day ${d + 1}: ${c.school + c.home} sick</text>`;
+    }
+    $('chart').innerHTML = h + '</svg>';
+  }
+  const runs = [];
+  function habitIcons(h) { return `${['', '🧼', '🧼🧼'][h.wash]}${['', '✋', '💪'][h.cover]}${h.home ? '🏠' : ''}${h.wipe ? '🧽' : ''}${['', '💉', '💉💉'][h.shot]}` || 'no habits'; }
+  function drawPanel() {
+    $('panel').innerHTML = `<h2>Healthy habits</h2>
+      ${HABITS.map(([k, t, opts]) => `<div class="hab"><div class="name">${t}</div><div class="seg" role="group" aria-label="${t}">${opts.map((o, i) => `<button data-h="${k}" data-v="${i}" aria-pressed="${H[k] === i}" ${S.day > 0 && !S.done ? 'disabled' : ''}>${o}</button>`).join('')}</div></div>`).join('')}
+      <div class="row" style="margin-top:4px"><button class="b go" id="run">${running ? '⏸ Pause' : S.done ? '🔁 Run again' : S.day || S.t ? '▶ Keep going' : '▶ Start 2 weeks'}</button></div>
+      <div class="row"><button class="b" data-sp="normal" aria-pressed="${speed === 'normal'}">Normal</button><button class="b" data-sp="fast" aria-pressed="${speed === 'fast'}">Fast</button><button class="b" id="instant">⏭ Skip</button></div>
+      <div class="row"><button class="b" id="germs" aria-pressed="${germView}">👀 Germ vision</button><button class="b" id="newzero" title="Pick a different first student">🎲 New start</button></div>
+      <div class="runs" aria-live="polite"><div style="color:var(--muted)"><span>Run · habits</span><span>got sick</span></div>${runs.slice(-6).map((r, i, a) => `<div class="${i === a.length - 1 && S.done ? 'cur' : ''}"><span>${runs.length - a.length + i + 1}. ${r.icons}</span><b>${r.sick} of ${N}</b></div>`).join('') || '<div style="color:var(--muted)">Runs you finish show up here.</div>'}</div>`;
+    document.querySelectorAll('[data-h]').forEach(b => b.onclick = () => { H[b.dataset.h] = +b.dataset.v; if (S.done || (!S.day && !S.t)) { reset(); buildRoom(); draw(true); drawChart(); } drawPanel(); });
+    $('run').onclick = () => { if (running) pause(); else { if (S.done) { reset(); buildRoom(); draw(true); drawChart(); } play(); } };
+    document.querySelectorAll('[data-sp]').forEach(b => b.onclick = () => { speed = b.dataset.sp; drawPanel(); if (running) { pause(); play(); } });
+    $('instant').onclick = () => { pause(); if (S.done) return; while (!S.done) { if (S.t === 0) startDay(); while (S.t < TICKS) tick(); endDay(); } draw(true); drawChart(); finish(); };
+    $('germs').onclick = () => { germView = !germView; $('room').classList.toggle('germs', germView); draw(true); drawChart(); drawPanel();
+      if (germView) $('board').innerHTML = `Germ vision is on.<small>${S.kids[S.p0].name} (dashed circle) brought the germs and feels fine.</small>`; };
+    $('newzero').onclick = () => { pause(); SEED = Math.floor(Math.random() * 1e6); reset(); buildRoom(); draw(true); drawChart(); drawPanel(); };
+  }
+  function play() {
+    running = true; drawPanel(); $('result')?.remove();
+    if (S.day === 0 && S.t === 0) { $('board').innerHTML = `Day 1: ${S.kids[S.p0].name} came to school with cold germs.<small>${S.kids[S.p0].name} feels fine, so nobody knows yet.</small>`; }
+    const step = () => {
+      if (!running) return;
+      if (S.t === 0) { startDay(); if (S.day > 0 || true) SFX.bell(); }
+      tick(); draw();
+      if (S.t >= TICKS) { endDay(); drawChart(); const sickNow = S.hist[S.hist.length - 1]; if (sickNow.school + sickNow.home) SFX.sick(); }
+      if (S.done) { running = false; draw(); finish(); return; }
+      timer = setTimeout(step, S.t === 0 ? 900 : SPEEDS[speed]);
+    };
+    step();
+  }
+  function pause() { running = false; clearTimeout(timer); drawPanel(); }
+  function finish() {
+    const sick = everSick() - 1, missed = S.kids.reduce((a, k) => a + k.missed, 0), icons = habitIcons(H);
+    runs.push({sick: everSick(), icons}); drawPanel(); SFX.good();
+    const prev = runs.length > 1 ? runs[runs.length - 2] : null;
+    const div = document.createElement('div'); div.className = 'result'; div.id = 'result';
+    div.innerHTML = `<h2>Two weeks later</h2><div class="n">${everSick()} of ${N}</div><p>students caught the cold, counting ${S.kids[S.p0].name}, who brought it.${missed ? ` They missed <b>${missed} school days</b> at home.` : ''}</p>
+      ${prev ? `<p>Last run: <b>${prev.sick} of ${N}</b> with ${prev.icons}. ${everSick() < prev.sick ? 'Fewer sick this time!' : everSick() > prev.sick ? 'More sick this time.' : 'The same.'}</p>` : '<p>Now turn on some <b>healthy habits</b> and run again. The same student brings the same germs, so you can compare.</p>'}
+      ${habitTip()}
+      <button class="b teal" id="closeres">OK</button>`;
+    $('simview').appendChild(div);
+    $('closeres').onclick = () => div.remove();
+    anim(div, [{transform: 'scale(.85)', opacity: 0}, {transform: 'none', opacity: 1}], {duration: 300, easing: 'ease-out'});
+  }
+  function habitTip() {
+    const how = S.events.reduce((a, e) => (a[e.how] = (a[e.how] || 0) + 1, a), {});
+    const top = Object.entries(how).sort((a, b) => b[1] - a[1])[0];
+    if (!top) return '<p>Nobody else got sick. The germs stopped with one person!</p>';
+    return `<p style="font-size:16px;color:var(--muted)">Most germs spread by <b>${top[0] === 'cough' ? 'coughs' : 'hands touching faces'}</b> (${top[1]} of ${S.events.length} catches).</p>`;
+  }
+
+  // ---------- Wash up ----------
+  const W = {step: 0, side: 'palm', soap: false, scrub: 0, water: false, loosened: {palm: null, back: null}, uv: false, done: false, soapless: false};
+  const STEPS = [['💧', 'Wet', 'Wet your hands with clean water'], ['🧴', 'Soap', 'Add soap and make bubbles'], ['🫧', 'Scrub', 'Scrub for 20 seconds: palms, backs, between fingers, thumbs, nails'], ['🚿', 'Rinse', 'Rinse the germs and soap away'], ['🧻', 'Dry', 'Dry with a clean towel']];
+  let handImg = {}, germCv = {}, total = {};
+  function renderWash() {
+    $('washview').innerHTML = `<div class="wash" id="wash">
+      <div class="sinkbg"></div>
+      <div class="steps">${STEPS.map(([e, t, d], i) => `<button class="step ${i < W.step ? 'done' : ''} ${i === W.step ? 'now' : ''}" data-step="${i}" ${i !== W.step ? 'disabled' : ''}><span>${e}</span><div>${i + 1}. ${t}<small>${d}</small></div></button>`).join('')}
+        <button class="b" id="uv" aria-pressed="${W.uv}">🔦 Black light</button>
+        <label style="font:700 15px 'Segoe UI',sans-serif;display:flex;gap:8px;align-items:center"><input type="checkbox" id="nosoap" ${W.soapless ? 'checked' : ''} style="width:22px;height:22px"> Try it with water only</label>
+      </div>
+      <div class="handwrap" id="hw"><canvas id="hcv" width="510" height="640" aria-label="A hand. Drag to scrub."></canvas></div>
+      <button class="b flip" id="flip">🔄 Turn hand over (${W.side === 'palm' ? 'see the back' : 'see the palm'})</button>
+      <div class="wside">
+        <div class="wcard"><h2 id="wt">Germs you can't see</h2><p id="wp">These hands touched the door handle, the pencil sharpener and a sneezy friend's crayons. Press <b>Black light</b> to see the germs, like the glow lotion science classes use.</p></div>
+        <div class="wcard"><div style="font:800 15px 'Segoe UI',sans-serif;color:var(--muted)">SCRUB TIMER</div><div class="timer"><i id="ti" style="width:${Math.min(100, W.scrub / 20 * 100)}%"></i><b id="tb">${W.scrub.toFixed(0)} of 20 seconds</b></div>
+          <p style="font-size:15px;color:var(--muted)">Twenty seconds is about how long it takes to hum "Happy Birthday" twice.</p></div>
+        <div class="wcard" style="text-align:center"><div style="font:800 15px 'Segoe UI',sans-serif;color:var(--muted)">GERMS LEFT</div><div class="meter" id="left">100%</div></div>
+      </div></div>`;
+    document.querySelectorAll('[data-step]').forEach(b => b.onclick = () => doStep(+b.dataset.step));
+    $('uv').onclick = () => { W.uv = !W.uv; $('uv').setAttribute('aria-pressed', W.uv); $('wash').classList.toggle('uv', W.uv); paint(); };
+    $('flip').onclick = () => { W.side = W.side === 'palm' ? 'back' : 'palm'; $('flip').textContent = `🔄 Turn hand over (${W.side === 'palm' ? 'see the back' : 'see the palm'})`; paint(); };
+    $('nosoap').onchange = e => { W.soapless = e.target.checked; newHands(); renderWash(); };
+    $('wash').classList.toggle('uv', W.uv);
+    if (!germCv.palm) newHands(); else paint();
+    const cv = $('hcv'); let down = false, last = null;
+    cv.onpointerdown = e => { down = true; cv.setPointerCapture(e.pointerId); last = null; scrubAt(e); };
+    cv.onpointermove = e => { if (down) scrubAt(e); };
+    cv.onpointerup = cv.onpointercancel = () => { down = false; last = null; };
+    function scrubAt(e) {
+      if (W.step !== 2) { if (W.step < 2) say(W.step === 0 ? 'First, <b>wet</b> your hands.' : 'Add <b>soap</b> first, then scrub.'); return; }
+      const r = cv.getBoundingClientRect(), x = (e.clientX - r.left) / r.width * 510, y = (e.clientY - r.top) / r.height * 640;
+      // the timer counts real seconds of scrubbing: time between moves, ignoring pauses
+      const now = performance.now();
+      if (last && Math.hypot(x - last[0], y - last[1]) > 1) { const gap = now - last[2]; if (gap < 250) W.scrub = Math.min(30, W.scrub + gap / 1000); if (Math.random() < .2) SFX.squish(); }
+      last = [x, y, now];
+      const g = germCv[W.side].getContext('2d');
+      g.globalCompositeOperation = 'destination-out';
+      const rad = g.createRadialGradient(x, y, 4, x, y, 46); rad.addColorStop(0, `rgba(0,0,0,${W.soapless ? .05 : .3})`); rad.addColorStop(1, 'rgba(0,0,0,0)');
+      g.fillStyle = rad; g.beginPath(); g.arc(x, y, 46, 0, Math.PI * 2); g.fill();
+      g.globalCompositeOperation = 'source-over';
+      bubbles(g, x, y);
+      paint(); timerUI();
+    }
+  }
+  const bubbleList = {palm: [], back: []};
+  function bubbles(g, x, y) { const list = bubbleList[W.side]; for (let i = 0; i < 2; i++) list.push([x + (Math.random() - .5) * 60, y + (Math.random() - .5) * 60, 4 + Math.random() * 9]); if (list.length > 220) list.splice(0, list.length - 220); }
+  function say(html) { $('wp').innerHTML = html; }
+  function newHands() {
+    W.step = 0; W.scrub = 0; W.soap = false; W.done = false; bubbleList.palm = []; bubbleList.back = [];
+    for (const side of ['palm', 'back']) {
+      const img = handImg[side]; const c = document.createElement('canvas'); c.width = 510; c.height = 640; const g = c.getContext('2d');
+      // glitter germs: thick on fingertips, thumbs and between fingers, where washing usually misses
+      let seed = side === 'palm' ? 3 : 9; const r = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+      for (let i = 0; i < 1500; i++) {
+        const x = 20 + r() * 470, y = 10 + r() * 600, w = y < 260 ? 1 : x > 380 && y < 380 ? 1 : .35;
+        if (r() > w) continue;
+        g.fillStyle = `hsla(${95 + r() * 30},90%,${50 + r() * 15}%,${.55 + r() * .4})`;
+        g.beginPath(); g.arc(x, y, 2 + r() * 6, 0, Math.PI * 2); g.fill();
+      }
+      g.globalCompositeOperation = 'destination-in'; g.drawImage(img, 21, 10); g.globalCompositeOperation = 'source-over';
+      germCv[side] = c; total[side] = count(c);
+    }
+    paint();
+  }
+  function count(c) { const d = c.getContext('2d').getImageData(0, 0, 510, 640).data; let s = 0; for (let i = 3; i < d.length; i += 16) s += d[i]; return s; }
+  function paint() {
+    const cv = $('hcv'); if (!cv) return; const g = cv.getContext('2d'), img = handImg[W.side];
+    g.clearRect(0, 0, 510, 640);
+    g.save(); if (W.uv) g.filter = 'brightness(.35) saturate(.4) hue-rotate(200deg)'; g.drawImage(img, 21, 10); g.restore();
+    if (W.uv) { g.save(); g.shadowColor = '#b6ff3b'; g.shadowBlur = 8; g.drawImage(germCv[W.side], 0, 0); g.restore(); }
+    else { g.save(); g.globalAlpha = .1; g.drawImage(germCv[W.side], 0, 0); g.restore(); }
+    if (W.step === 2 || W.step === 3 && !W.rinsed) for (const [x, y, rr] of bubbleList[W.side]) { g.beginPath(); g.arc(x, y, rr, 0, Math.PI * 2); g.fillStyle = '#ffffffaa'; g.fill(); g.strokeStyle = '#9fd4ee'; g.stroke(); }
+    if (W.water) { g.fillStyle = '#7cc7ee33'; g.globalCompositeOperation = 'source-atop'; g.fillRect(0, 0, 510, 640); g.globalCompositeOperation = 'source-over'; }
+    const left = Math.round((count(germCv.palm) + count(germCv.back)) / (total.palm + total.back) * 100);
+    if ($('left')) $('left').textContent = left + '%';
+    return left;
+  }
+  function timerUI() { $('ti').style.width = Math.min(100, W.scrub / 20 * 100) + '%'; $('tb').textContent = `${Math.min(20, W.scrub).toFixed(0)} of 20 seconds`; if (W.scrub >= 20 && !W.timerDone) { W.timerDone = true; SFX.good(); say('<b>20 seconds!</b> Did you get the backs, thumbs, between your fingers and under your nails? Turn the hand over to check, then <b>rinse</b>.'); } }
+  function doStep(i) {
+    if (i !== W.step) return;
+    if (i === 0) { W.water = true; SFX.water(1.2); say('Wet hands with clean water, warm or cold. Now add <b>soap</b>.'); setTimeout(() => { W.water = false; paint(); }, 1200); }
+    if (i === 1) { W.soap = !W.soapless; SFX.squish(); say(W.soapless ? 'No soap this time. Scrub anyway and see what happens.' : 'Soap grabs onto germs and oils so water can wash them away. Now <b>scrub</b>: drag all over the hand. Turn it over too!'); }
+    if (i === 2) { if (W.scrub < 1) { say('Drag on the hand to scrub. The timer counts while you scrub.'); return; } }
+    if (i === 3) { // rinsing carries away loosened germs; without soap, much less comes off
+      W.water = true; SFX.water(1.6); bubbleList.palm = []; bubbleList.back = []; W.rinsed = true;
+      for (const side of ['palm', 'back']) { const g = germCv[side].getContext('2d'); g.globalCompositeOperation = 'destination-out'; g.fillStyle = `rgba(0,0,0,${W.soapless ? .1 : .25})`; g.fillRect(0, 0, 510, 640); g.globalCompositeOperation = 'source-over'; }
+      setTimeout(() => { W.water = false; paint(); }, 1600);
+      say('Rinse under running water. The germs slide off with the soap. Last step: <b>dry</b>.');
+    }
+    if (i === 4) {
+      W.done = true; const left = paint(); W.uv = true; $('uv').setAttribute('aria-pressed', true); $('wash').classList.add('uv'); paint();
+      $('wt').textContent = left <= 15 ? 'Squeaky clean!' : left <= 40 ? 'Pretty good!' : 'Lots of germs left';
+      say(`Under the black light, <b>${left}%</b> of the germs are still there${W.scrub < 20 ? ` after only ${Math.round(W.scrub)} seconds of scrubbing` : ''}. ${W.soapless ? 'Water alone leaves far more germs behind. <b>Soap</b> makes the difference.' : left > 15 ? 'Look for glowing spots: thumbs, fingertips and the backs of hands get missed most.' : 'Great scrubbing!'} <button class="b teal" id="again" style="margin-top:8px">Wash again</button>`);
+      $('again').onclick = () => { W.uv = false; W.rinsed = false; W.timerDone = false; newHands(); renderWash(); };
+      SFX.good();
+    }
+    W.step++; renderSteps();
+  }
+  function renderSteps() { document.querySelectorAll('[data-step]').forEach(b => { const i = +b.dataset.step; b.className = `step ${i < W.step ? 'done' : ''} ${i === W.step ? 'now' : ''}`; b.disabled = i !== W.step; }); }
+
+  // ---------- modes ----------
+  let mode = 'sim';
+  document.querySelectorAll('[data-mode]').forEach(b => b.onclick = () => {
+    mode = b.dataset.mode; document.querySelectorAll('[data-mode]').forEach(x => x.setAttribute('aria-pressed', x === b));
+    $('simview').hidden = mode !== 'sim'; $('washview').hidden = mode !== 'wash';
+    if (mode === 'wash') { pause(); renderWash(); }
+  });
+  const loadImg = src => new Promise(r => { const i = new Image(); i.onload = () => r(i); i.src = src; });
+  Promise.all([loadImg('art:hand'), loadImg('art:handback')]).then(([a, b]) => { handImg.palm = a; handImg.back = b; });
+
+  reset(); buildRoom(); draw(true); drawChart(); drawPanel();
+  $('board').innerHTML = 'One student has cold germs and feels fine.<small>Press Start to watch two school weeks.</small>';
+  window.__gs = {K, S: () => S, H, reset, tick, startDay, endDay, everSick, runs, setSeed: s => SEED = s,
+    runAll: () => { reset(); while (!S.done) { startDay(); while (S.t < TICKS) tick(); endDay(); } return everSick(); }};
+})();
+</script>
+</body>
+</html>

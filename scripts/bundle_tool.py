@@ -1,4 +1,4 @@
-"""Bundle tools that have a src.html: inline every `art:<name>` reference as a data URI.
+"""Bundle tools that have a src.html: inline every `art:<name>` reference as a data URI (and json:, voice:, lib: tokens).
 
     python scripts/bundle_tool.py [tool-id ...]     (no ids = every tool with a src.html)
 
@@ -39,6 +39,8 @@ def bundle(folder):
                 continue
             clips[text] = 'data:audio/mpeg;base64,' + base64.b64encode(f.read_bytes()).decode()
         out = out.replace('"voice:*"', json.dumps(clips, ensure_ascii=False))
+    # libraries last, so their code is never scanned for the tokens above: <script src="lib:three"></script> inlines lib/three.min.js
+    out = re.sub(r'<script src="lib:([a-z0-9.-]+)"></script>', lambda m: '<script>' + (folder / 'lib' / f'{m.group(1)}.min.js').read_text(encoding='utf-8').strip() + '</script>', out)
     out = out.replace('<!--', '<!-- GENERATED from src.html by scripts/bundle_tool.py; edit src.html, not this file.\n', 1)
     (folder / f'{folder.name}.html').write_text(out, encoding='utf-8')
     return len(out)

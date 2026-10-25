@@ -1,0 +1,21 @@
+{
+  "id": "germ-spread-sim",
+  "status": "beta",
+  "driver": "students or teacher",
+  "modes": [
+    "Classroom outbreak",
+    "Wash up"
+  ],
+  "grades_label": "Grades 3-5",
+  "third_party": [],
+  "updated": "2026-10-24",
+  "hook": "Watch a cold spread through a class of 24 over two school weeks, then switch on handwashing, covering coughs, staying home and wiping shared things and run it again. Then scrub glowing germs off a hand for 20 seconds.",
+  "outcome": "Explain how germs spread (coughs, hands, shared surfaces, and before anyone feels sick) and how handwashing, covering coughs, staying home when sick and cleaning shared things prevent illness, and practice the five steps of handwashing",
+  "minutes": "15-30",
+  "sources": [
+    "Handwashing steps: CDC, When and How to Wash Your Hands",
+    "A simplified teaching model of how a cold spreads in one classroom, not a medical prediction",
+    "Illustrations generated with Google Gemini, edited for Curio Class",
+    "Sound synthesized in the browser"
+  ]
+}

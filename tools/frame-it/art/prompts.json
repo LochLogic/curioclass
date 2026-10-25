@@ -1,0 +1,29 @@
+{
+  "house_style": "Painterly realistic illustration, like a cinematic matte painting or concept art for an animated film: believable light, depth and atmosphere, rich detail everywhere so any part can be cropped into a nice photo. No text, no letters, no signs with words, no watermark, no border.",
+  "assets": [
+    {
+      "name": "harbor",
+      "prompt": "A wide view of a small fishing harbor on a calm sunny morning. A long straight wooden pier starts at the bottom-center foreground and runs into the distance toward a white and red lighthouse standing on a rocky point at the right-middle. The flat sea horizon runs straight across. A few small colorful boats moored, gulls, soft clouds, cottages on a green hill at the left.",
+      "aspect": "16:9",
+      "size": "2K",
+      "width": 2400,
+      "quality": 74
+    },
+    {
+      "name": "street",
+      "prompt": "A wide eye-level view down a straight old European city street with tram tracks running from the bottom foreground to a vanishing point near the middle. Shops with awnings, potted plants, balconies, warm stone buildings. On the left side a big stone archway frames a sunny little courtyard with a fountain. A person in a red coat rides a bicycle toward the right in the middle distance. Late afternoon sun.",
+      "aspect": "16:9",
+      "size": "2K",
+      "width": 2400,
+      "quality": 74
+    },
+    {
+      "name": "lake",
+      "prompt": "A wide mountain lake valley in early autumn: snowy peaks behind, a still lake with mirror reflections across the middle, a single golden tree on a small grassy rise near the right, a winding dirt path making an S-curve from the bottom left foreground to the tree. A hiker in a yellow jacket walks on the path. Wildflowers in the foreground.",
+      "aspect": "16:9",
+      "size": "2K",
+      "width": 2400,
+      "quality": 74
+    }
+  ]
+}

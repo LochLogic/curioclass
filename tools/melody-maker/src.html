@@ -1,0 +1,645 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Melody Maker · Melody and scales · Curio Class</title>
+<meta name="description" content="Compose melodies on a solfege grid where every note sounds good, climb the major scale ladder to find its whole and half steps, echo patterns back to a singing robin, and pick the ending that makes a tune sound finished.">
+<!--
+MELODY MAKER (Curio Class)
+Music, grades 3-5, National Core Arts Standards MU:Cr1 (imagine and generate musical ideas) and MU:Pr4 (analyze
+and interpret), module "Melody and Scales": solfege and major scales.
+Compose: a 16-beat grid with one row per solfege syllable (do re mi fa sol la ti do). Every note is in the scale,
+so every tune sounds good. Play it back on four instruments, change key (the shape stays the same) or switch to
+pentatonic or la-based minor. The melody is also written on a treble staff, and a shape helper names each move
+(step, skip, leap, repeat) and checks whether the tune ends on home.
+Scale ladder: the major scale as a ladder spaced by half steps, with a piano that shows the whole-whole-half,
+whole-whole-whole-half pattern in four keys (and why G major needs F sharp).
+Echo it: the robin sings a short pattern; play it back on the solfege bells. Six levels from sol-mi to the
+whole scale.
+Finish the tune: hear phrases from public domain folk songs and pick the last note. Answer phrases end on do;
+question phrases end away from home.
+Robin illustrations generated with Google Gemini, edited for Curio Class. Treble clef drawing public domain
+(Wikimedia Commons). Sound synthesized in the browser.
+One file, no network requests. Content CC BY 4.0, code MIT. curioclass.org
+-->
+<style>
+:root{
+  --paper:#f6eedf;--ink:#2a2118;--muted:#6b5d4f;--focus:#2f5bd3;--brand:#b4532a;--gold:#ffcf3a;--card:#fffaf1;
+  font-family:'Segoe UI',system-ui,-apple-system,Roboto,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0;height:100%}
+body{background:var(--paper);color:var(--ink);display:grid;grid-template-rows:auto 1fr;min-height:100vh}
+button,select{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:4px solid var(--focus);outline-offset:3px}
+header{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:10px 20px;background:var(--brand);color:#fff5ec}
+h1{margin:0 auto 0 0;font:800 clamp(22px,2.8vw,32px)/1.1 Georgia,'Times New Roman',serif}
+h1 small{display:block;font:400 14px/1.3 'Segoe UI',sans-serif;color:#ffdcc8}
+.icon-btn{border:1px solid #d9845f;background:#c9673c;color:#fff;border-radius:999px;min-height:46px;padding:0 16px;font-weight:700;font-size:15px}
+.icon-btn[aria-pressed="false"]{background:#7e3518}
+
+.stagewrap{position:relative;overflow:hidden;min-height:0;background:#6d4a2c}
+.scene{position:absolute;left:50%;top:50%;width:1440px;height:810px;transform:translate(-50%,-50%) scale(var(--s,1));overflow:hidden}
+.scene>img.bg{position:absolute;left:-130px;top:-90px;width:1700px;height:990px;object-fit:cover}
+.top{position:absolute;left:24px;right:24px;top:14px;display:flex;align-items:center;gap:12px;z-index:6}
+.tabs{display:inline-flex;border-radius:999px;overflow:hidden;background:#fffaf1f0;box-shadow:0 3px 0 #0003}
+.tabs button{border:0;background:transparent;min-height:54px;padding:0 22px;font:800 19px 'Segoe UI',sans-serif;color:var(--muted)}
+.tabs button[aria-pressed="true"]{background:var(--brand);color:#fff}
+.b{border:0;border-radius:16px;min-height:52px;padding:0 18px;font:800 18px 'Segoe UI',sans-serif;background:#fffaf1;color:var(--ink);box-shadow:0 4px 0 #0003;white-space:nowrap}
+.b:active{transform:translateY(3px);box-shadow:0 1px 0 #0003}
+.b.go{background:#2f8a4a;color:#fff;box-shadow:0 4px 0 #1d5e30}
+.b.red{background:var(--brand);color:#fff;box-shadow:0 4px 0 #7e3518}
+.b[aria-pressed="true"]{background:var(--gold);color:#3a2a00}
+.b:disabled{opacity:.45;cursor:default}
+.sel{border:0;border-radius:14px;min-height:48px;padding:0 10px;font:700 16px 'Segoe UI',sans-serif;background:#fffaf1;box-shadow:0 3px 0 #0003}
+.lab{font:800 12px 'Segoe UI',sans-serif;letter-spacing:.6px;text-transform:uppercase;color:#fff;text-shadow:0 1px 2px #0008;display:block;margin-bottom:2px}
+
+.board{position:absolute;z-index:3;background:#fffaf1f4;border-radius:24px;box-shadow:0 6px 0 #0003;padding:12px 14px}
+.grid{display:grid;gap:3px;user-select:none;touch-action:none}
+.rowlab{display:flex;align-items:center;justify-content:flex-end;padding-right:8px;font:900 19px 'Segoe UI',sans-serif;border-radius:10px}
+.cell{border:0;border-radius:9px;background:#efe5d4;padding:0;position:relative;min-width:0}
+.cell:nth-child(4n+2){box-shadow:inset 3px 0 0 #d8c8ad}
+.cell.on{color:#fff;font:900 16px 'Segoe UI',sans-serif;box-shadow:0 3px 0 #0003,inset 0 -4px 0 #0002}
+.cell.ph{outline:3px solid #ffb300;outline-offset:-1px}
+.cell.cur{outline:3px dashed var(--focus);outline-offset:-2px}
+.colph{background:#ffe9a8}
+.beats{display:grid;gap:3px;margin-top:2px;font:700 12px 'Segoe UI',sans-serif;color:var(--muted);text-align:center}
+.staff svg{display:block;width:100%;overflow:visible}
+.controls{position:absolute;z-index:4;display:flex;gap:10px;align-items:flex-end;flex-wrap:nowrap}
+.side{position:absolute;z-index:3;background:#fffaf1f2;border-radius:22px;box-shadow:0 6px 0 #0003;padding:14px 16px}
+.side h2{margin:0 0 6px;font:800 21px Georgia,serif}
+.side p{margin:6px 0;font:500 16px/1.4 'Segoe UI',sans-serif}
+.moves{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0}
+.moves span{border-radius:10px;padding:4px 9px;font:800 14px 'Segoe UI',sans-serif;background:#efe5d4}
+.check{font:700 15px/1.4 'Segoe UI',sans-serif;margin:3px 0}
+.bird{position:absolute;z-index:5;height:200px;filter:drop-shadow(0 8px 6px #0005);transform-origin:50% 100%;pointer-events:none}
+.say{position:absolute;z-index:5;background:#fff;border-radius:24px;padding:12px 20px;font:600 19px/1.35 'Segoe UI',sans-serif;box-shadow:0 8px 20px #0004;display:flex;align-items:center;min-height:70px}
+.say::after{content:'';position:absolute;right:-18px;top:50%;border:13px solid transparent;border-left:20px solid #fff;transform:translateY(-50%)}
+.say b{color:var(--brand)}
+.pop{position:absolute;z-index:6;font:900 34px 'Segoe UI',sans-serif;color:#fff;padding:4px 16px;border-radius:999px;pointer-events:none;box-shadow:0 6px 12px #0004;transform:translate(-50%,-50%)}
+
+/* ladder */
+.ladder{position:absolute;z-index:3}
+.ladder svg{overflow:visible}
+.rung{cursor:pointer}
+.rung:hover rect{filter:brightness(1.08)}
+.piano{position:absolute;z-index:3}
+
+/* bells */
+.bells{position:absolute;z-index:4;display:flex;gap:10px;align-items:flex-end}
+.bell{border:0;border-radius:20px 20px 26px 26px;width:118px;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding-bottom:10px;box-shadow:0 6px 0 #0004,inset 0 -8px 0 #0002;position:relative}
+.bell b{font:900 28px 'Segoe UI',sans-serif;text-shadow:0 2px 0 #0003}
+.bell kbd{font:700 13px 'Segoe UI',sans-serif;opacity:.85}
+.bell:active,.bell.hit{transform:translateY(5px);box-shadow:0 1px 0 #0004}
+.bell:disabled{opacity:.35;filter:grayscale(.6)}
+.dots{display:flex;gap:14px;justify-content:center}
+.dot{width:74px;height:74px;border-radius:50%;border:4px dashed #c9b79a;display:grid;place-items:center;font:900 20px 'Segoe UI',sans-serif;color:#fff;background:#fff8}
+.dot.full{border:4px solid #0002}
+.dot.bad{box-shadow:0 0 0 5px #c2402c}
+.dot.good{box-shadow:0 0 0 5px #2f8a4a}
+.levels{display:flex;gap:6px;flex-wrap:wrap}
+.levels .b{min-height:44px;font-size:15px;padding:0 12px}
+.big{font:800 24px/1.3 'Segoe UI',sans-serif;text-align:center;margin:4px 0 12px}
+.rounds{display:flex;gap:6px}
+.rounds span{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;font:800 15px 'Segoe UI',sans-serif;background:#efe5d4}
+.rounds span.cur{outline:3px solid var(--brand)}
+.rounds span.ok{background:#2f8a4a;color:#fff}
+.rounds span.no{background:#d9a089;color:#fff}
+</style>
+</head>
+<body>
+<header>
+  <h1>Melody Maker <small>Compose with do re mi, climb the scale, echo the robin.</small></h1>
+  <button class="icon-btn" id="motion" aria-pressed="true" title="Turn animation on or off">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+</header>
+<div class="stagewrap" id="stagewrap">
+  <div class="scene" id="scene">
+    <img class="bg" src="art:room" alt="">
+    <div class="top">
+      <div class="tabs" role="group" aria-label="Mode">
+        <button data-mode="compose" aria-pressed="true">🎼 Compose</button>
+        <button data-mode="ladder" aria-pressed="false">🪜 Scale ladder</button>
+        <button data-mode="echo" aria-pressed="false">👂 Echo it</button>
+        <button data-mode="finish" aria-pressed="false">🏁 Finish the tune</button>
+      </div>
+    </div>
+    <div id="view"></div>
+    <div class="say" id="say" aria-live="polite"></div>
+    <img class="bird" id="bird" src="art:bird" alt="Robin">
+  </div>
+</div>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  let reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  try { const m = localStorage.getItem('curio-motion'); if (m) reduce = m === 'calm'; } catch {}
+  function showMotion() {
+    document.body.classList.toggle('calm', reduce);
+    $('motion').setAttribute('aria-pressed', !reduce);
+    $('motion').textContent = reduce ? '⏸ Motion' : '✨ Motion';
+  }
+  showMotion();
+  $('motion').onclick = () => { reduce = !reduce; try { localStorage.setItem('curio-motion', reduce ? 'calm' : 'on'); } catch {} showMotion(); };
+  const fit = () => { const r = $('stagewrap').getBoundingClientRect(); $('scene').style.setProperty('--s', Math.min(r.width / 1440, r.height / 810)); };
+  new ResizeObserver(fit).observe($('stagewrap'));
+  const anim = (el, kf, opt) => { if (reduce || !el || !el.animate) return null; return el.animate(kf, opt); };
+  const wait = ms => new Promise(r => setTimeout(r, ms));
+  const BIRD = {sing: 'art:bird', listen: 'art:birdlisten'};
+
+  // ---------- music ----------
+  // Syllables carry their colors everywhere (the common classroom bell colors), always with the name on them.
+  const COL = {do: '#d8392b', re: '#ef7d1a', mi: '#e9b500', fa: '#3c9a3c', sol: '#1f9bb5', la: '#3d5fc4', ti: '#8a4fbf'};
+  const SCALES = {
+    major: {name: 'Major', home: 'do', rows: [[0, 'do', 0], [2, 're', 1], [4, 'mi', 2], [5, 'fa', 3], [7, 'sol', 4], [9, 'la', 5], [11, 'ti', 6], [12, 'do', 7]]},
+    penta: {name: 'Pentatonic', home: 'do', rows: [[0, 'do', 0], [2, 're', 1], [4, 'mi', 2], [7, 'sol', 4], [9, 'la', 5], [12, 'do', 7]]},
+    minor: {name: 'Minor (la is home)', home: 'la', rows: [[-3, 'la', -2], [-1, 'ti', -1], [0, 'do', 0], [2, 're', 1], [4, 'mi', 2], [5, 'fa', 3], [7, 'sol', 4], [9, 'la', 5]]},
+  };
+  // key: do's pitch (semitones above middle C), letter of do, and the key signature
+  const KEYS = {
+    C: {semi: 0, letter: 0, sig: [], name: 'C'},
+    D: {semi: 2, letter: 1, sig: ['F♯', 'C♯'], name: 'D'},
+    F: {semi: 5, letter: 3, sig: ['B♭'], name: 'F'},
+    G: {semi: 7, letter: 4, sig: ['F♯'], name: 'G'},
+  };
+  const MINOR_NAME = {C: 'A minor', D: 'B minor', F: 'D minor', G: 'E minor'};
+  const freq = (key, semi) => 261.63 * Math.pow(2, (KEYS[key].semi + semi) / 12);
+
+  let ac = null, soundOn = true, master, room;
+  $('sound').onclick = () => { soundOn = !soundOn; $('sound').setAttribute('aria-pressed', soundOn); $('sound').textContent = soundOn ? '🔔 Sound' : '🔕 Sound'; };
+  function ctx() {
+    if (!ac) {
+      try { ac = new (window.AudioContext || window.webkitAudioContext)(); } catch { return null; }
+      master = ac.createGain(); master.gain.value = .8; master.connect(ac.destination);
+      const d = ac.createDelay(), fb = ac.createGain(), wet = ac.createGain(), lp = ac.createBiquadFilter();
+      d.delayTime.value = .13; fb.gain.value = .28; wet.gain.value = .22; lp.type = 'lowpass'; lp.frequency.value = 2400;
+      room = ac.createGain(); room.connect(d); d.connect(lp).connect(fb).connect(d); lp.connect(wet).connect(ac.destination);
+    }
+    if (ac.state === 'suspended') ac.resume();
+    return ac;
+  }
+  const INSTR = {
+    marimba: {name: '🪵 Marimba', play: (f, t, d) => pluck(f, t, Math.min(1.1, .5 + d), {gain: .32, partials: [[1, 1], [4, .18], [10, .04]]})},
+    flute: {name: '🪈 Flute', play: (f, t, d) => blow(f, t, d)},
+    piano: {name: '🎹 Piano', play: (f, t, d) => pluck(f, t, 1.4, {gain: .22, partials: [[1, 1], [2, .45], [3, .2], [4, .1], [5, .05]], type: 'triangle', cutoff: f * 9})},
+    box: {name: '🎁 Music box', play: (f, t, d) => pluck(f * 2, t, 1.6, {gain: .16, partials: [[1, 1], [2.76, .25], [5.4, .08]]})},
+  };
+  function pluck(f, t, decay, {gain = .2, partials = [[1, 1]], type = 'sine', cutoff = 0} = {}) {
+    const g = ac.createGain();
+    g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(gain, t + .006); g.gain.exponentialRampToValueAtTime(.0001, t + decay);
+    let out = g;
+    if (cutoff) { const lp = ac.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.setValueAtTime(cutoff, t); lp.frequency.exponentialRampToValueAtTime(cutoff * .3, t + decay); g.connect(lp); out = lp; }
+    out.connect(master); out.connect(room);
+    for (const [r, l] of partials) {
+      const o = ac.createOscillator(), pg = ac.createGain();
+      o.type = type; o.frequency.setValueAtTime(f * r, t); pg.gain.value = l;
+      o.connect(pg).connect(g); o.start(t); o.stop(t + decay + .05);
+    }
+  }
+  function blow(f, t, d) {
+    const o = ac.createOscillator(), o2 = ac.createOscillator(), g = ac.createGain(), v = ac.createOscillator(), vg = ac.createGain();
+    o.type = 'sine'; o.frequency.value = f; o2.type = 'triangle'; o2.frequency.value = f * 2;
+    v.frequency.value = 5; vg.gain.value = f * .006; v.connect(vg).connect(o.frequency);
+    const g2 = ac.createGain(); g2.gain.value = .12; o2.connect(g2).connect(g); o.connect(g);
+    const len = Math.max(.25, d * .92);
+    g.gain.setValueAtTime(.0001, t); g.gain.exponentialRampToValueAtTime(.24, t + .06); g.gain.setValueAtTime(.22, t + len - .06); g.gain.exponentialRampToValueAtTime(.0001, t + len + .12);
+    g.connect(master); g.connect(room);
+    [o, o2, v].forEach(x => { x.start(t); x.stop(t + len + .15); });
+  }
+  let instr = 'marimba';
+  function note(key, semi, at = 0, dur = .4) { const c = soundOn && ctx(); if (!c) return; INSTR[instr].play(freq(key, semi), c.currentTime + at + .02, dur); }
+  function chime(good) {
+    const c = soundOn && ctx(); if (!c) return;
+    (good ? [0, 4, 7, 12] : [5, 4]).forEach((s, i) => pluck(523.25 * Math.pow(2, s / 12), c.currentTime + i * .09, .6, {gain: .12, partials: [[1, 1], [2.76, .2]]}));
+  }
+
+  // ---------- bird and speech ----------
+  function say(html, {left = 520, top = 712, width = 680} = {}) {
+    const s = $('say'); s.innerHTML = `<div>${html}</div>`;
+    Object.assign(s.style, {left: left + 'px', top: top + 'px', width: width + 'px'});
+  }
+  function birdAt(x, y, h = 200) { Object.assign($('bird').style, {left: x + 'px', top: y + 'px', height: h + 'px'}); }
+  function bob(pose = 'sing') {
+    $('bird').src = BIRD[pose];
+    anim($('bird'), [{transform: 'translateY(0) scaleY(1)'}, {transform: 'translateY(-12px) scaleY(1.04)'}, {transform: 'translateY(0) scaleY(.97)'}, {transform: 'none'}], {duration: 300});
+  }
+  function pop(text, syl, x, y) {
+    const p = document.createElement('div'); p.className = 'pop'; p.textContent = text; p.style.background = COL[syl];
+    p.style.left = x + 'px'; p.style.top = y + 'px'; $('scene').appendChild(p);
+    const a = anim(p, [{transform: 'translate(-50%,-30%) scale(.6)', opacity: 0}, {transform: 'translate(-50%,-80%) scale(1)', opacity: 1, offset: .25}, {transform: 'translate(-50%,-140%) scale(1)', opacity: 0}], {duration: 900, easing: 'ease-out'});
+    setTimeout(() => p.remove(), a ? 900 : 500);
+  }
+
+  // ---------- modes ----------
+  const view = $('view');
+  let mode = 'compose', playToken = 0;
+  document.querySelectorAll('[data-mode]').forEach(b => b.onclick = () => setMode(b.dataset.mode));
+  function setMode(m) {
+    stopPlay(); mode = m;
+    document.querySelectorAll('[data-mode]').forEach(b => b.setAttribute('aria-pressed', b.dataset.mode === m));
+    $('bird').src = BIRD.sing; $('say').hidden = false;
+    ({compose: renderCompose, ladder: renderLadder, echo: renderEcho, finish: renderFinish})[m]();
+  }
+  function stopPlay() { playToken++; document.querySelectorAll('.ph,.colph').forEach(e => e.classList.remove('ph', 'colph')); }
+
+  // ---------- Compose ----------
+  const COLS = 16;
+  const C = {key: 'C', scale: 'major', tempo: 100, cells: Array(COLS).fill(null), cur: 0, shape: true};
+  try { const s = JSON.parse(localStorage.getItem('melody-maker') || 'null'); if (s && s.cells && s.cells.length === COLS) Object.assign(C, s); } catch {}
+  const save = () => { try { localStorage.setItem('melody-maker', JSON.stringify({key: C.key, scale: C.scale, tempo: C.tempo, cells: C.cells})); } catch {} };
+  const rowsOf = sc => SCALES[sc].rows;
+  // cells store the scale degree index (row index in the major-style list); switching scale snaps to the nearest row
+  function renderCompose() {
+    const rows = rowsOf(C.scale), n = rows.length, rh = Math.floor(352 / n) - 3;
+    view.innerHTML = `
+      <div class="board" style="left:24px;top:86px;width:1150px;height:530px">
+        <div style="display:flex;gap:6px">
+          <div style="width:76px;display:grid;gap:3px;grid-template-rows:repeat(${n},${rh}px)">${rows.slice().reverse().map(([s, syl]) => `<div class="rowlab" style="color:${COL[syl]}">${syl}${syl === SCALES[C.scale].home ? ' 🏠' : ''}</div>`).join('')}</div>
+          <div style="flex:1"><div class="grid" id="grid" role="grid" aria-label="Melody grid: ${n} notes high, ${COLS} beats long" style="grid-template-columns:repeat(${COLS},1fr);grid-template-rows:repeat(${n},${rh}px)"></div>
+          <div class="beats" style="grid-template-columns:repeat(${COLS},1fr)">${Array.from({length: COLS}, (_, i) => `<span>${i % 4 === 0 ? 'bar ' + (i / 4 + 1) : '·'}</span>`).join('')}</div></div>
+        </div>
+        <div class="staff" id="staff" style="margin-top:6px"></div>
+      </div>
+      <div class="controls" style="left:24px;top:630px">
+        <button class="b go" id="play">▶ Play</button>
+        <button class="b" id="surprise">🎲 Surprise me</button>
+        <button class="b" id="clear">🧽 Clear</button>
+        <label><span class="lab">Instrument</span><select class="sel" id="instr">${Object.entries(INSTR).map(([k, v]) => `<option value="${k}" ${k === instr ? 'selected' : ''}>${v.name}</option>`).join('')}</select></label>
+      </div>
+      <div class="side" id="side" style="left:1192px;right:22px;top:86px;height:330px"></div>
+      <div class="side" style="left:1192px;right:22px;top:428px;padding:10px 14px">
+        <label><span class="lab" style="color:var(--muted);text-shadow:none">Key</span><select class="sel" id="key" style="width:100%">${Object.keys(KEYS).map(k => `<option value="${k}" ${k === C.key ? 'selected' : ''}>${C.scale === 'minor' ? MINOR_NAME[k] : k + ' major'}</option>`).join('')}</select></label>
+        <label><span class="lab" style="color:var(--muted);text-shadow:none;margin-top:6px">Scale</span><select class="sel" id="scale" style="width:100%">${Object.entries(SCALES).map(([k, v]) => `<option value="${k}" ${k === C.scale ? 'selected' : ''}>${v.name}</option>`).join('')}</select></label>
+        <label><span class="lab" style="color:var(--muted);text-shadow:none;margin-top:6px">Speed: <span id="tv">${C.tempo}</span> beats a minute</span><input type="range" id="tempo" min="60" max="160" step="5" value="${C.tempo}" style="width:100%;accent-color:var(--brand)"></label>
+      </div>`;
+    birdAt(1236, 600, 200);
+    say('Tap the grid to place notes, one per beat. Every row is in the scale, so <b>every note sounds good</b>. Then press <b>Play</b>.', {left: 24, top: 712, width: 1170});
+    drawGrid(); drawStaff(); drawSide();
+    $('play').onclick = () => { if (playing) { stopPlay(); playing = false; $('play').textContent = '▶ Play'; } else playMelody(); };
+    $('clear').onclick = () => { C.cells.fill(null); save(); drawGrid(); drawStaff(); drawSide(); say('A blank page. Try starting on <b>do</b>.', {left: 24, top: 712, width: 1170}); };
+    $('surprise').onclick = () => { surprise(); save(); drawGrid(); drawStaff(); drawSide(); playMelody(); };
+    $('instr').onchange = e => { instr = e.target.value; note(C.key, rowsOf(C.scale)[0][0], 0, .5); };
+    $('key').onchange = e => { C.key = e.target.value; save(); drawStaff(); drawSide(); playMelody(); say(`Same tune, new key. Every note moved, but the <b>shape</b> and the syllables stayed the same. That's why do re mi works in any key.`, {left: 24, top: 712, width: 1170}); };
+    $('scale').onchange = e => { C.scale = e.target.value; C.cells = C.cells.map(v => v == null ? null : Math.min(v, rowsOf(C.scale).length - 1)); save(); renderCompose();
+      say(C.scale === 'penta' ? '<b>Pentatonic</b> uses just five notes, no fa or ti. Folk songs all over the world use it.' : C.scale === 'minor' ? 'In <b>minor</b>, home is <b>la</b>. Listen: the same notes can sound darker when la is home.' : 'Back to <b>major</b>: home is <b>do</b>.', {left: 24, top: 712, width: 1170}); };
+    $('tempo').oninput = e => { C.tempo = +e.target.value; $('tv').textContent = C.tempo; save(); };
+  }
+  let playing = false;
+  function drawGrid() {
+    const rows = rowsOf(C.scale), n = rows.length, g = $('grid');
+    let h = '';
+    for (let r = n - 1; r >= 0; r--) for (let c = 0; c < COLS; c++) {
+      const on = C.cells[c] === r, syl = rows[r][1];
+      h += `<button class="cell ${on ? 'on' : ''} ${c === C.cur && document.activeElement && document.activeElement.classList.contains('cell') ? 'cur' : ''}" data-r="${r}" data-c="${c}" style="${on ? `background:${COL[syl]}` : ''}" aria-label="Beat ${c + 1}, ${syl}${on ? ', on' : ''}" tabindex="${r === (C.cells[C.cur] ?? 0) && c === C.cur ? 0 : -1}">${on ? syl : ''}</button>`;
+    }
+    g.innerHTML = h;
+    let drag = null;
+    g.onpointerdown = e => { const b = e.target.closest('.cell'); if (!b) return; const r = +b.dataset.r, c = +b.dataset.c; drag = C.cells[c] === r ? 'erase' : 'draw'; setCell(c, drag === 'erase' ? null : r); };
+    g.onpointermove = e => { if (!drag) return; const b = document.elementFromPoint(e.clientX, e.clientY)?.closest('.cell'); if (!b) return; const r = +b.dataset.r, c = +b.dataset.c; if (drag === 'draw' && C.cells[c] !== r) setCell(c, r); if (drag === 'erase' && C.cells[c] === r) setCell(c, null); };
+    onpointerup = () => drag = null;
+    g.onkeydown = e => {
+      const b = e.target.closest('.cell'); if (!b) return; let r = +b.dataset.r, c = +b.dataset.c;
+      if (e.key === 'ArrowRight') c = Math.min(COLS - 1, c + 1); else if (e.key === 'ArrowLeft') c = Math.max(0, c - 1);
+      else if (e.key === 'ArrowUp') r = Math.min(n - 1, r + 1); else if (e.key === 'ArrowDown') r = Math.max(0, r - 1);
+      else if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setCell(c, C.cells[c] === r ? null : r); focusCell(r, c); return; }
+      else if (e.key === 'Delete' || e.key === 'Backspace') { setCell(c, null); focusCell(r, c); return; }
+      else return;
+      e.preventDefault(); C.cur = c; focusCell(r, c);
+    };
+  }
+  function focusCell(r, c) { const b = document.querySelector(`.cell[data-r="${r}"][data-c="${c}"]`); if (b) { document.querySelectorAll('.cell').forEach(x => x.tabIndex = -1); b.tabIndex = 0; b.focus(); } }
+  function setCell(c, r) {
+    C.cells[c] = r; C.cur = c; save();
+    const rows = rowsOf(C.scale);
+    if (r != null) { note(C.key, rows[r][0], 0, 60 / C.tempo); bob(); }
+    drawGrid(); drawStaff(); drawSide();
+  }
+  // a pleasant random tune: mostly steps, a few skips, phrases end on sol (a question) then home (an answer)
+  function surprise() {
+    const rows = rowsOf(C.scale), n = rows.length, home = rows.findIndex(r => r[1] === SCALES[C.scale].home), five = rows.findIndex(r => r[1] === (C.scale === 'minor' ? 'mi' : 'sol'));
+    let p = home; const out = [];
+    for (let i = 0; i < COLS; i++) {
+      if (i === 7) { out.push(five); p = five; continue; }
+      if (i === 15) { out.push(home); continue; }
+      if ((i === 3 || i === 11) && Math.random() < .6) { out.push(null); continue; }
+      const m = Math.random(), mv = m < .55 ? (Math.random() < .5 ? -1 : 1) : m < .8 ? 0 : (Math.random() < .5 ? -2 : 2);
+      p = Math.max(0, Math.min(n - 1, p + mv)); if (i >= 12) p += Math.sign(home - p) * (Math.abs(home - p) > 1 ? 1 : 0); out.push(p);
+    }
+    C.cells = out;
+  }
+  async function playMelody() {
+    stopPlay(); const tok = ++playToken; playing = true; $('play').textContent = '■ Stop';
+    const rows = rowsOf(C.scale), beat = 60 / C.tempo;
+    for (let c = 0; c < COLS && tok === playToken; c++) {
+      document.querySelectorAll('.colph').forEach(e => e.classList.remove('colph'));
+      document.querySelectorAll(`.cell[data-c="${c}"]`).forEach(e => e.classList.add('colph'));
+      const r = C.cells[c];
+      if (r != null) {
+        let len = 1; while (c + len < COLS && C.cells[c + len] === undefined) len++;
+        note(C.key, rows[r][0], 0, beat); bob('sing');
+        const b = document.querySelector(`.cell[data-r="${r}"][data-c="${c}"]`); const box = b.getBoundingClientRect(), sc = $('scene').getBoundingClientRect(), k = sc.width / 1440;
+        pop(rows[r][1], rows[r][1], (box.left + box.width / 2 - sc.left) / k, (box.top - sc.top) / k);
+        markStaff(c);
+      }
+      await wait(beat * 1000);
+    }
+    if (tok === playToken) { stopPlay(); }
+    playing = false; if ($('play')) $('play').textContent = '▶ Play';
+  }
+  // ---------- the staff ----------
+  const CLEF = "json:clefs";
+  const SP = 11;
+  function staffStep(key, deg) { // degree above do -> staff step from the bottom line (E4)
+    const dia = 28 + KEYS[key].letter + deg; return dia - 30;
+  }
+  function drawStaff() {
+    const W = 1120, top = 38, x0 = 6, rows = rowsOf(C.scale), Y = s => top + 4 * SP - s * SP / 2;
+    const cw = (1040 + 3) / COLS, gx = 82; // the grid is 1040 wide, 82 in from the board's left edge
+    let h = `<svg viewBox="0 0 ${W} 132" height="132" aria-label="The melody written on a treble staff">`;
+    for (let i = 0; i < 5; i++) h += `<line x1="${x0}" x2="${W}" y1="${Y(i * 2)}" y2="${Y(i * 2)}" stroke="#4a3b2c" stroke-width="1.6"/>`;
+    const kk = 7.1 * SP / 40.768;
+    h += `<path d="${CLEF.g}" transform="translate(${x0 + 4} ${Y(2) - 25.2 * kk}) scale(${kk})" fill="#2a2118"/>`;
+    // key signature: sharps on F5 (step 8) and C5 (step 5), flat on B4 (step 4)
+    const SIGY = {'F♯': 8, 'C♯': 5, 'B♭': 4};
+    KEYS[C.key].sig.forEach((s, i) => h += `<text x="${x0 + 34 + i * 12}" y="${Y(SIGY[s]) + 6}" font-size="20" font-weight="700" fill="#2a2118">${s.slice(1)}</text>`);
+    for (let i = 1; i < 4; i++) h += `<line x1="${gx + cw * i * 4 - 2}" x2="${gx + cw * i * 4 - 2}" y1="${Y(8)}" y2="${Y(0)}" stroke="#4a3b2c" stroke-width="1.6"/>`;
+    h += `<line x1="${W - 4}" x2="${W - 4}" y1="${Y(8)}" y2="${Y(0)}" stroke="#2a2118" stroke-width="4"/>`;
+    for (let c = 0; c < COLS; c++) {
+      const x = gx + cw * c + cw / 2, r = C.cells[c];
+      if (r == null) { h += `<path data-sn="${c}" d="M${x - 3} ${Y(7)} l7 8 l-6 6 l7 8 c-6 -3 -10 1 -5 7 c-9 -4 -7 -12 0 -10 l-7 -8 l6 -6 z" fill="#2a2118"/>`; continue; }
+      const s = staffStep(C.key, rows[r][2]), y = Y(s), up = s < 4, syl = rows[r][1];
+      let ledg = ''; for (let l = -2; l >= s; l -= 2) ledg += `<line x1="${x - 13}" x2="${x + 13}" y1="${Y(l)}" y2="${Y(l)}" stroke="#2a2118" stroke-width="1.6"/>`;
+      for (let l = 10; l <= s; l += 2) ledg += `<line x1="${x - 13}" x2="${x + 13}" y1="${Y(l)}" y2="${Y(l)}" stroke="#2a2118" stroke-width="1.6"/>`;
+      h += `<g data-sn="${c}">${ledg}<ellipse cx="${x}" cy="${y}" rx="7.6" ry="5.6" transform="rotate(-20 ${x} ${y})" fill="${COL[syl]}" stroke="#2a2118" stroke-width="1.5"/>
+        <line x1="${up ? x + 7 : x - 7}" x2="${up ? x + 7 : x - 7}" y1="${y}" y2="${up ? y - 34 : y + 34}" stroke="#2a2118" stroke-width="1.8"/>
+        <text x="${x}" y="126" text-anchor="middle" font-size="12" font-weight="800" fill="${COL[syl]}">${syl}</text></g>`;
+    }
+    $('staff').innerHTML = h + '</svg>';
+  }
+  function markStaff(c) { const g = document.querySelector(`[data-sn="${c}"]`); anim(g, [{transform: 'translateY(0)'}, {transform: 'translateY(-6px)'}, {transform: 'none'}], {duration: 260}); }
+  function drawSide() {
+    const rows = rowsOf(C.scale), list = C.cells.map((r, c) => ({r, c})).filter(x => x.r != null);
+    const moves = {repeat: 0, step: 0, skip: 0, leap: 0};
+    for (let i = 1; i < list.length; i++) {
+      const d = Math.abs(rows[list[i].r][2] - rows[list[i - 1].r][2]);
+      moves[d === 0 ? 'repeat' : d === 1 ? 'step' : d === 2 ? 'skip' : 'leap']++;
+    }
+    const home = SCALES[C.scale].home, last = list.length ? rows[list[list.length - 1].r][1] : null, first = list.length ? rows[list[0].r][1] : null;
+    const total = Math.max(1, list.length - 1);
+    $('side').innerHTML = `<h2>Melody shape</h2>
+      <div class="moves"><span title="same note again">➡ repeat ${moves.repeat}</span><span title="next door note">↗ step ${moves.step}</span><span title="skip one note">⤴ skip ${moves.skip}</span><span title="jump of 3 or more">🦘 leap ${moves.leap}</span></div>
+      <p style="font-size:14px;color:var(--muted)">Steps go to the next-door note. Skips jump over one. Leaps jump farther.</p>
+      <div class="check">${list.length >= 8 ? '✅' : '⬜'} ${list.length} notes ${list.length >= 8 ? '' : '(try 8 or more)'}</div>
+      <div class="check">${moves.step / total >= .4 ? '✅ Mostly steps: easy to sing' : list.length > 2 ? '⬜ Lots of jumps: try more steps' : '⬜ Mostly steps is easy to sing'}</div>
+      <div class="check">${first === home ? `✅ Starts on ${home}` : `⬜ Try starting on ${home}`}</div>
+      <div class="check">${last === home ? `✅ Ends on ${home}: sounds finished` : last ? `⬜ Ends on ${last}: sounds unfinished. End on ${home}!` : `⬜ End on ${home} to sound finished`}</div>`;
+  }
+
+  // ---------- Scale ladder ----------
+  const LD = {key: 'C'};
+  const U = 40; // pixels per half step
+  function renderLadder() {
+    const rows = SCALES.major.rows, base = 610, x = 150, RW = 212;
+    let svg = `<svg width="560" height="640" viewBox="0 0 560 640">`;
+    svg += `<rect x="${x - 6}" y="${base - 12 * U - 70}" width="14" height="${12 * U + 140}" rx="7" fill="#8a5a32"/><rect x="${x + RW - 8}" y="${base - 12 * U - 70}" width="14" height="${12 * U + 140}" rx="7" fill="#8a5a32"/>`;
+    rows.forEach(([s, syl], i) => {
+      const y = base - s * U;
+      svg += `<g class="rung" data-i="${i}" tabindex="0" role="button" aria-label="${syl}"><rect x="${x}" y="${y - 16}" width="${RW}" height="32" rx="10" fill="${COL[syl]}" stroke="#0002" stroke-width="2"/><text x="${x + RW / 2}" y="${y + 9}" text-anchor="middle" font-size="22" font-weight="900" fill="#fff" pointer-events="none">${syl}${i === 7 ? ' (high)' : ''}</text></g>`;
+      if (i < 7) {
+        const s2 = rows[i + 1][0], half = s2 - s === 1, y2 = base - s2 * U, my = (y + y2) / 2;
+        svg += `<g><path d="M${x + RW + 12} ${y - 4} C ${x + RW + 46} ${y - 4} ${x + RW + 46} ${y2 + 4} ${x + RW + 12} ${y2 + 4}" fill="none" stroke="${half ? '#c2402c' : '#4a3b2c'}" stroke-width="${half ? 4 : 2.5}"/>
+          <rect x="${x + RW + 46}" y="${my - 15}" width="${half ? 104 : 116}" height="30" rx="15" fill="${half ? '#c2402c' : '#fffaf1'}"/>
+          <text x="${x + RW + 56}" y="${my + 6}" font-size="17" font-weight="800" fill="${half ? '#fff' : '#2a2118'}">${half ? 'half step' : 'whole step'}</text></g>`;
+      }
+    });
+    svg += '</svg>';
+    view.innerHTML = `<div class="ladder" id="ladder" style="left:24px;top:76px;width:560px;height:640px">${svg}</div>
+      <div class="side" style="left:620px;right:22px;top:86px;height:410px">
+        <h2>The major scale pattern</h2>
+        <p>The scale's notes are not evenly spaced. Most are a <b>whole step</b> apart, but <b>mi to fa</b> and <b>ti to do</b> are only a <b>half step</b>: next-door keys on the piano.</p>
+        <div id="piano"></div>
+        <p style="font:800 22px 'Segoe UI',sans-serif;text-align:center;margin:8px 0 0;letter-spacing:2px" id="pattern">W W H W W W H</p>
+      </div>
+      <div class="controls" style="left:620px;top:512px">
+        <button class="b go" id="up">⬆ Climb up</button><button class="b" id="down">⬇ Climb down</button>
+        <label><span class="lab">Start on (do =)</span><select class="sel" id="lkey">${Object.keys(KEYS).map(k => `<option value="${k}" ${k === LD.key ? 'selected' : ''}>${k}</option>`).join('')}</select></label>
+        <label><span class="lab">Instrument</span><select class="sel" id="instr">${Object.entries(INSTR).map(([k, v]) => `<option value="${k}" ${k === instr ? 'selected' : ''}>${v.name}</option>`).join('')}</select></label>
+      </div>`;
+    birdAt(40, 76 + 610 - 112, 120); $('bird').src = BIRD.sing;
+    say('Tap a rung to hear it, or press <b>Climb up</b>. Watch for the two places where the rungs are close together.', {left: 620, top: 600, width: 560});
+    drawPiano();
+    document.querySelectorAll('.rung').forEach(g => {
+      g.onclick = () => rung(+g.dataset.i);
+      g.onkeydown = e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); rung(+g.dataset.i); } };
+    });
+    $('up').onclick = () => climb([0, 1, 2, 3, 4, 5, 6, 7]);
+    $('down').onclick = () => climb([7, 6, 5, 4, 3, 2, 1, 0]);
+    $('lkey').onchange = e => { LD.key = e.target.value; drawPiano(); climb([0, 1, 2, 3, 4, 5, 6, 7]);
+      say(LD.key === 'G' ? 'Starting on <b>G</b>, the pattern needs a black key: <b>F♯</b> for ti. That\'s why G major has one sharp.' : LD.key === 'D' ? 'Starting on <b>D</b>, the pattern needs <b>F♯</b> and <b>C♯</b>. Same pattern, different keys.' : LD.key === 'F' ? 'Starting on <b>F</b>, fa has to be <b>B♭</b> to make the half step between mi and fa.' : 'Starting on <b>C</b>, the pattern uses only white keys.', {left: 620, top: 600, width: 560}); };
+    $('instr').onchange = e => { instr = e.target.value; rung(0); };
+  }
+  function drawPiano() {
+    // two octaves of keys from C4 (G starts at G3)
+    const startMidi = 60, whites = [], blacks = [], WS = [0, 2, 4, 5, 7, 9, 11], NAMES = ['C', 'C♯', 'D', 'E♭', 'E', 'F', 'F♯', 'G', 'G♯', 'A', 'B♭', 'B'];
+    const doMidi = 60 + KEYS[LD.key].semi, inScale = new Map(SCALES.major.rows.map(([s, syl]) => [doMidi + s, syl]));
+    for (let m = startMidi; m < startMidi + 20; m++) (WS.includes(m % 12) ? whites : blacks).push(m);
+    const ww = 46, kx = {}; whites.forEach((m, i) => kx[m] = i * ww);
+    let h = `<svg viewBox="-4 -40 ${whites.length * ww + 8} 230" style="width:100%;height:230px" role="img" aria-label="Piano keys for the ${LD.key} major scale">`;
+    whites.forEach(m => { const syl = inScale.get(m); h += `<g data-midi="${m}"><rect x="${kx[m]}" y="0" width="${ww - 2}" height="170" rx="6" fill="${syl ? '#fff' : '#f0ebe2'}" stroke="#2a2118" stroke-width="2"/>${syl ? `<circle cx="${kx[m] + ww / 2 - 1}" cy="140" r="17" fill="${COL[syl]}"/><text x="${kx[m] + ww / 2 - 1}" y="146" text-anchor="middle" font-size="13" font-weight="900" fill="#fff">${syl}</text>` : ''}<text x="${kx[m] + ww / 2 - 1}" y="108" text-anchor="middle" font-size="13" font-weight="700" fill="#8a7b6a">${NAMES[m % 12]}</text></g>`; });
+    blacks.forEach(m => { const x = kx[m - 1] + ww - 15, syl = inScale.get(m); h += `<g data-midi="${m}"><rect x="${x}" y="0" width="28" height="104" rx="4" fill="#2a2118"/>${syl ? `<circle cx="${x + 14}" cy="80" r="13" fill="${COL[syl]}" stroke="#fff" stroke-width="2"/><text x="${x + 14}" y="85" text-anchor="middle" font-size="10" font-weight="900" fill="#fff">${syl}</text><text x="${x + 14}" y="20" text-anchor="middle" font-size="11" font-weight="800" fill="#fff">${NAMES[m % 12]}</text>` : ''}</g>`; });
+    // W and H arcs above the keys
+    const cx = m => WS.includes(m % 12) ? kx[m] + ww / 2 - 1 : kx[m - 1] + ww - 1;
+    SCALES.major.rows.forEach(([s], i) => { if (i === 7) return; const a = doMidi + s, b = doMidi + SCALES.major.rows[i + 1][0], half = b - a === 1;
+      h += `<path d="M${cx(a)} -4 Q${(cx(a) + cx(b)) / 2} -30 ${cx(b)} -4" fill="none" stroke="${half ? '#c2402c' : '#4a3b2c'}" stroke-width="${half ? 3.5 : 2}"/><text x="${(cx(a) + cx(b)) / 2}" y="-24" text-anchor="middle" font-size="14" font-weight="900" fill="${half ? '#c2402c' : '#4a3b2c'}">${half ? 'H' : 'W'}</text>`; });
+    $('piano').innerHTML = h + '</svg>';
+  }
+  function rung(i) {
+    const [s, syl] = SCALES.major.rows[i]; note(LD.key, s, 0, .6);
+    const g = document.querySelector(`.rung[data-i="${i}"]`);
+    anim(g, [{transform: 'translateX(0)'}, {transform: 'translateX(-8px)'}, {transform: 'none'}], {duration: 240});
+    const y = 76 + (610 - s * U) - 112;
+    $('bird').style.top = y + 'px'; bob();
+    const k = document.querySelector(`#piano [data-midi="${60 + KEYS[LD.key].semi + s}"] rect`);
+    if (k) { k.style.fill = '#ffe27a'; setTimeout(() => k.style.fill = '', 380); }
+  }
+  async function climb(order) {
+    stopPlay(); const tok = ++playToken;
+    for (const i of order) { if (tok !== playToken) return; rung(i); await wait(520); }
+  }
+
+  // ---------- Echo it ----------
+  const LEVELS = [
+    {name: 'sol mi', notes: ['sol', 'mi'], len: 3},
+    {name: 'sol mi la', notes: ['sol', 'mi', 'la'], len: 4},
+    {name: 'mi re do', notes: ['mi', 're', 'do'], len: 4},
+    {name: 'do mi sol', notes: ['do', 'mi', 'sol', 'do2'], len: 4},
+    {name: 'Pentatonic', notes: ['do', 're', 'mi', 'sol', 'la'], len: 5},
+    {name: 'Whole scale', notes: ['do', 're', 'mi', 'fa', 'sol', 'la', 'ti', 'do2'], len: 5},
+  ];
+  const BELLS = [['do', 0], ['re', 2], ['mi', 4], ['fa', 5], ['sol', 7], ['la', 9], ['ti', 11], ['do2', 12]];
+  const E = {lv: 0, pat: [], got: [], state: 'idle', streak: 0, best: 0, done: [0, 0, 0, 0, 0, 0]};
+  const sylName = s => s === 'do2' ? 'do' : s;
+  function renderEcho() {
+    const lv = LEVELS[E.lv];
+    view.innerHTML = `<div class="side" style="left:24px;top:86px;width:1100px;height:410px;text-align:center">
+        <div class="levels" style="justify-content:center">${LEVELS.map((l, i) => `<button class="b" data-lv="${i}" aria-pressed="${i === E.lv}">${i + 1}. ${l.name}${E.done[i] >= 3 ? ' ⭐' : ''}</button>`).join('')}</div>
+        <div class="big" id="ebig" style="margin-top:24px">Press <b>Listen</b>, then echo the robin.</div>
+        <div class="dots" id="edots"></div>
+        <div style="display:flex;gap:12px;justify-content:center;margin-top:24px">
+          <button class="b go" id="listen">👂 Listen</button><button class="b" id="again" disabled>🔁 Hear it again</button>
+        </div>
+        <p style="font:700 16px 'Segoe UI',sans-serif;color:var(--muted);margin-top:14px" id="escore"></p>
+      </div>
+      <div class="bells" id="bells" style="left:40px;top:520px"></div>`;
+    $('bells').innerHTML = BELLS.map(([syl, s], i) => `<button class="bell" data-bell="${syl}" style="background:${COL[sylName(syl)]};height:${200 - i * 9}px" ${lv.notes.includes(syl) ? '' : 'disabled'} aria-label="${sylName(syl)}${syl === 'do2' ? ' high' : ''}"><b>${sylName(syl)}${syl === 'do2' ? '′' : ''}</b><kbd>${i + 1}</kbd></button>`).join('');
+    birdAt(1170, 250, 230); $('bird').src = BIRD.sing; $('say').hidden = true;
+    dots();
+    document.querySelectorAll('[data-lv]').forEach(b => b.onclick = () => { E.lv = +b.dataset.lv; E.state = 'idle'; E.pat = []; renderEcho(); });
+    document.querySelectorAll('[data-bell]').forEach(b => b.onclick = () => bell(b.dataset.bell));
+    $('listen').onclick = () => newPattern();
+    $('again').onclick = () => playPattern();
+    score();
+  }
+  function score() { $('escore').textContent = `Streak: ${E.streak} · Best: ${E.best} · Level ${E.lv + 1} echoes: ${E.done[E.lv]}`; }
+  function dots(reveal) {
+    const lv = LEVELS[E.lv];
+    $('edots').innerHTML = Array.from({length: E.pat.length || lv.len}, (_, i) => {
+      const g = E.got[i], p = E.pat[i], show = g || (reveal && p);
+      const cls = g ? (reveal ? (g === p ? 'good' : 'bad') : '') : '';
+      return `<div class="dot ${show ? 'full' : ''} ${cls}" style="${show ? `background:${COL[sylName(show)]}` : ''}">${show ? sylName(show) : i + 1}</div>`;
+    }).join('');
+  }
+  function newPattern() {
+    const lv = LEVELS[E.lv], pat = [];
+    // patterns start on sol or do and mostly move by small steps within the level's notes
+    const idx = s => BELLS.findIndex(b => b[0] === s);
+    const pool = lv.notes.slice().sort((a, b) => idx(a) - idx(b));
+    let p = pool.includes('sol') && E.lv < 3 ? pool.indexOf('sol') : pool.includes('mi') && E.lv === 2 ? pool.indexOf('mi') : Math.floor(Math.random() * pool.length);
+    for (let i = 0; i < lv.len; i++) {
+      pat.push(pool[p]);
+      // mostly steps to a neighbor, sometimes a skip, and never the same note three times running
+      const rep = i > 0 && pat[i - 1] === pat[i];
+      const opts = [-1, 1, -1, 1, -2, 2, 0].filter(m => p + m >= 0 && p + m < pool.length && !(m === 0 && rep));
+      p += opts[Math.floor(Math.random() * opts.length)];
+    }
+    if (pat.every(x => x === pat[0])) pat[pat.length - 1] = pool[(pool.indexOf(pat[0]) + 1) % pool.length];
+    E.pat = pat; E.got = []; playPattern();
+  }
+  async function playPattern() {
+    stopPlay(); const tok = ++playToken; E.state = 'listen'; E.got = []; dots();
+    $('ebig').innerHTML = '🎵 Listen...'; $('listen').disabled = $('again').disabled = true;
+    $('bird').src = BIRD.sing;
+    await wait(400);
+    for (const s of E.pat) {
+      if (tok !== playToken) return;
+      note('C', BELLS.find(b => b[0] === s)[1], 0, .5); bob('sing'); await wait(650);
+    }
+    if (tok !== playToken) return;
+    await wait(500);
+    E.state = 'echo'; $('bird').src = BIRD.listen; bob('listen');
+    $('ebig').innerHTML = '🔔 Your turn: echo it!'; $('listen').disabled = false; $('again').disabled = false;
+  }
+  function bell(syl) {
+    note('C', BELLS.find(b => b[0] === syl)[1], 0, .5);
+    const b = document.querySelector(`[data-bell="${syl}"]`); b.classList.add('hit'); setTimeout(() => b.classList.remove('hit'), 160);
+    if (E.state !== 'echo') return;
+    E.got.push(syl); dots();
+    if (E.got.length === E.pat.length) {
+      E.state = 'idle';
+      const ok = E.got.every((g, i) => g === E.pat[i]);
+      setTimeout(() => {
+        dots(true); chime(ok);
+        if (ok) { E.streak++; E.best = Math.max(E.best, E.streak); E.done[E.lv]++; $('ebig').innerHTML = `✅ Perfect echo! ${E.done[E.lv] === 3 && E.lv < LEVELS.length - 1 ? 'Level star earned. Try the next level!' : 'Press Listen for another.'}`; $('bird').src = BIRD.sing; bob(); }
+        else { E.streak = 0; $('ebig').innerHTML = `Close! The robin sang <b>${E.pat.map(sylName).join(' ')}</b>. Hear it again and try once more.`; }
+        score();
+        if (ok && E.done[E.lv] === 3) document.querySelector(`[data-lv="${E.lv}"]`).textContent = `${E.lv + 1}. ${LEVELS[E.lv].name} ⭐`;
+      }, 350);
+    }
+  }
+
+  // ---------- Finish the tune ----------
+  // Phrases from public domain folk songs, in do-based numbers (0 = do ... 7 = high do), null = rest.
+  const SONGS = [
+    {name: 'Hot Cross Buns', notes: [2, 1, 0, null, 2, 1, 0, null, 0, 0, 1, 1, 2, 1], end: 0, opts: [0, 1, 4], ask: 'answer'},
+    {name: 'Mary Had a Little Lamb', notes: [2, 1, 0, 1, 2, 2, 2, null, 1, 1, 2, 1], end: 0, opts: [0, 2, 4], ask: 'answer'},
+    {name: 'Twinkle, Twinkle (first line)', notes: [0, 0, 4, 4, 5, 5], end: 4, opts: [0, 4, 6], ask: 'question'},
+    {name: 'Twinkle, Twinkle (second line)', notes: [3, 3, 2, 2, 1, 1], end: 0, opts: [0, 1, 4], ask: 'answer'},
+    {name: 'Row, Row, Row Your Boat', notes: [7, 7, 7, 4, 4, 4, 2, 2, 2, 0, 0, 0, 4, 3, 2, 1], end: 0, opts: [0, 1, 6], ask: 'answer'},
+    {name: 'Ode to Joy', notes: [2, 2, 3, 4, 4, 3, 2, 1, 0, 0, 1, 2], end: 1, opts: [0, 1, 3], ask: 'question'},
+    {name: 'Ode to Joy (answer)', notes: [2, 2, 3, 4, 4, 3, 2, 1, 0, 0, 1, 2, 1, 0], end: 0, opts: [0, 1, 2], ask: 'answer'},
+    {name: 'Frère Jacques', notes: [0, 1, 2, 0, 0, 1, 2, 0, 2, 3, 4, null, 2, 3], end: 4, opts: [0, 4, 6], ask: 'question'},
+  ];
+  const F = {i: 0, pick: null, res: []};
+  const MAJ = SCALES.major.rows;
+  function renderFinish() {
+    const sg = SONGS[F.i], all = [...sg.notes, '?'], n = all.length, res = F.res[F.i];
+    const okSet = sg.ask === 'answer' ? [0, 7] : [1, 2, 3, 4, 5, 6];
+    view.innerHTML = `<div class="side" style="left:24px;top:86px;width:1120px;height:600px">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <h2 style="margin:0">${sg.name}</h2>
+          <div class="rounds">${SONGS.map((s, i) => `<span class="${i === F.i ? 'cur' : ''} ${F.res[i] === true ? 'ok' : F.res[i] === false ? 'no' : ''}">${i + 1}</span>`).join('')}</div>
+        </div>
+        <p style="font:700 20px/1.4 'Segoe UI',sans-serif;margin:10px 0">${sg.ask === 'answer' ? '🏠 This phrase should sound <b>finished</b>, like the end of a song. Which last note takes it home?' : '❓ This phrase should sound like a <b>question</b>: not finished yet, waiting for an answer. Which last note keeps it hanging?'}</p>
+        <div class="grid" id="fgrid" style="grid-template-columns:54px repeat(${n},1fr);grid-template-rows:repeat(8,38px);margin:10px 0"></div>
+        <div style="display:flex;gap:14px;justify-content:center;align-items:center;margin-top:16px">
+          <button class="b" id="fplay">▶ Hear the phrase</button>
+          <span style="font:800 18px 'Segoe UI',sans-serif">Try an ending:</span>
+          ${sg.opts.map(o => `<button class="b" data-end="${o}" aria-pressed="${F.pick === o}" style="background:${F.pick === o ? '' : COL[MAJ[o][1]]};color:${F.pick === o ? '' : '#fff'}">${MAJ[o][1]}${o === 7 ? '′' : ''}</button>`).join('')}
+          <button class="b go" id="lock" ${F.pick == null || res != null ? 'disabled' : ''}>✔ That's my ending</button>
+        </div>
+        <p class="big" id="fmsg" style="margin-top:16px">${res == null ? 'Tap each ending to hear the whole phrase with it.' : res ? '✅ Yes!' : '🤔 Listen again.'}</p>
+        ${res != null ? `<div style="text-align:center"><button class="b red" id="fnext">${F.i < SONGS.length - 1 ? 'Next tune ▶' : 'Start over'}</button></div>` : ''}
+      </div>`;
+    birdAt(1170, 440, 230); $('bird').src = BIRD.sing; $('say').hidden = true;
+    drawFGrid();
+    $('fplay').onclick = () => playPhrase(F.pick);
+    document.querySelectorAll('[data-end]').forEach(b => b.onclick = () => { F.pick = +b.dataset.end; renderFinish(); playPhrase(F.pick); });
+    $('lock').onclick = () => {
+      const ok = okSet.includes(F.pick); F.res[F.i] = ok; chime(ok);
+      renderFinish();
+      $('fmsg').innerHTML = ok ? (sg.ask === 'answer' ? `✅ Yes! Ending on <b>do</b> takes the tune home.` : `✅ Yes! Ending on <b>${MAJ[F.pick][1]}</b> leaves it hanging, like a question.`)
+        : (sg.ask === 'answer' ? `🤔 Ending on <b>${MAJ[F.pick][1]}</b> sounds unfinished. The song really ends on <b>do</b>.` : `🤔 Ending on <b>do</b> sounds finished, but this phrase is a question. The song uses <b>${MAJ[sg.end][1]}</b>.`);
+    };
+    if ($('fnext')) $('fnext').onclick = () => { F.i = (F.i + 1) % SONGS.length; if (F.i === 0) F.res = []; F.pick = null; renderFinish(); playPhrase(null); };
+  }
+  function drawFGrid(ph = -1) {
+    const sg = SONGS[F.i], all = [...sg.notes, F.pick == null ? '?' : F.pick], n = all.length;
+    let h = '';
+    for (let r = 7; r >= 0; r--) for (let c = -1; c < n; c++) {
+      if (c < 0) { h += `<div class="rowlab" style="color:${COL[MAJ[r][1]]};font-size:17px">${MAJ[r][1]}</div>`; continue; }
+      const v = all[c], on = v === r, last = c === n - 1, syl = MAJ[r][1];
+      h += `<div class="cell ${on ? 'on' : ''} ${c === ph ? 'colph' : ''}" style="${on ? `background:${COL[syl]}` : last && v === '?' ? 'background:#ffe9a8' : ''};font-size:13px;display:grid;place-items:center">${on ? syl : last && v === '?' && r === 4 ? '<b style="font-size:22px;color:#b4532a">?</b>' : ''}</div>`;
+    }
+    $('fgrid').innerHTML = h;
+  }
+  async function playPhrase(end) {
+    stopPlay(); const tok = ++playToken; const sg = SONGS[F.i], all = [...sg.notes, end];
+    for (let c = 0; c < all.length; c++) {
+      if (tok !== playToken) return;
+      drawFGrid(c);
+      const v = all[c];
+      if (v != null) { note('C', MAJ[v][0], 0, c === all.length - 1 ? 1.2 : .4); bob(); }
+      await wait(c === all.length - 2 ? 560 : 420);
+    }
+    if (tok === playToken) drawFGrid();
+  }
+
+  // ---------- keys ----------
+  document.addEventListener('keydown', e => {
+    if (e.target.closest('input,select') || e.target.closest('.cell')) return;
+    const n = +e.key;
+    if (mode === 'echo' && n >= 1 && n <= 8) { const b = document.querySelector(`[data-bell="${BELLS[n - 1][0]}"]`); if (b && !b.disabled) bell(BELLS[n - 1][0]); }
+    else if (mode === 'ladder' && n >= 1 && n <= 8) rung(n - 1);
+    else if (mode === 'compose' && e.key === ' ') { e.preventDefault(); $('play').click(); }
+  });
+
+  if (!C.cells.some(v => v != null)) C.cells = [0, 1, 2, 0, 0, 1, 2, 0, 2, 3, 4, null, 2, 3, 4, null];
+  setMode('compose');
+  window.__mm = {C, E, F, SONGS, setMode, playMelody, newPattern, bell, surprise, renderFinish};
+})();
+</script>
+</body>
+</html>

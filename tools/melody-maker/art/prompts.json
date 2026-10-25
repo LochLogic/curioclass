@@ -1,0 +1,27 @@
+{
+  "assets": [
+    {
+      "name": "room",
+      "prompt": "Inside a cozy treehouse music room in late afternoon: warm wooden plank walls, a big round window on the far right showing leafy branches, a small ukulele and a drum hanging on the left wall, string lights along the top. The middle of the picture is a big empty plain wooden wall with nothing on it. No people, no animals.",
+      "aspect": "16:9",
+      "width": 1600,
+      "quality": 72,
+      "trim": 0.02
+    },
+    {
+      "name": "bird",
+      "prompt": "A cheerful little round robin songbird with an orange-red chest, singing with its beak open and eyes happily closed, standing on two thin legs, side view facing left.",
+      "cutout": true,
+      "aspect": "1:1",
+      "height": 240
+    },
+    {
+      "name": "birdlisten",
+      "prompt": "A cheerful little round robin songbird with an orange-red chest, beak closed, head tilted listening with one wing cupped by its head, eyes open and bright, standing on two thin legs, side view facing left.",
+      "cutout": true,
+      "aspect": "1:1",
+      "height": 240,
+      "ref": "bird"
+    }
+  ]
+}

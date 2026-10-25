@@ -1,0 +1,674 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Label Detective · Nutrition labels and choices · Curio Class</title>
+<meta name="description" content="Read real Nutrition Facts labels for 24 everyday snacks and drinks. Learn serving size and the 5/20 rule, compare two snacks, count the hidden teaspoons of sugar, and crack ten case files by finding the label line that proves the answer.">
+<!--
+LABEL DETECTIVE (Curio Class)
+Health, grades 3-5, National Health Education Standards 2 (analyze influences) and 5 (decision making),
+module "Nutrition Labels and Choices": reading labels, making healthy choices.
+Read a label: tap any line of a real-format Nutrition Facts label to learn what it means; change how many
+servings you eat and the label grows a second column, the way packages with more than one serving do.
+Compare: two labels side by side, with a goal (less added sugar, less sodium, more fiber...) and bars.
+Sugar spotter: predict the teaspoons of sugar in a snack, then watch the cubes drop (4 grams each).
+Cases: ten case files. Pick the answer, then prove it by tapping the label line that cracks the case.
+The label follows the FDA Nutrition Facts format (21 CFR 101.9, 2016 rule) with FDA Daily Values and rounding.
+Nutrient values are typical amounts for generic foods, based on USDA FoodData Central; real brands vary.
+Added sugar guidance for kids: American Heart Association (less than 25 g a day for ages 2-18).
+Illustrations generated with Google Gemini, edited for Curio Class. Sound synthesized in the browser.
+One file, no network requests. Content CC BY 4.0, code MIT. curioclass.org
+-->
+<style>
+:root{
+  --paper:#f3ead8;--ink:#1f2328;--muted:#5f6670;--focus:#2f5bd3;--brand:#1d5c63;--gold:#ffcf3a;--card:#fffdf7;
+  --low:#2e8a4f;--high:#c2402c;--mid:#8a6d1d;
+  font-family:'Segoe UI',system-ui,-apple-system,Roboto,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0;height:100%}
+body{background:var(--paper);color:var(--ink);display:grid;grid-template-rows:auto 1fr;min-height:100vh}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:4px solid var(--focus);outline-offset:3px}
+header{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:10px 20px;background:var(--brand);color:#effaf8}
+h1{margin:0 auto 0 0;font:800 clamp(22px,2.8vw,32px)/1.1 Georgia,'Times New Roman',serif}
+h1 small{display:block;font:400 14px/1.3 'Segoe UI',sans-serif;color:#cfe9e6}
+.icon-btn{border:1px solid #5d9aa0;background:#2b7880;color:#fff;border-radius:999px;min-height:46px;padding:0 16px;font-weight:700;font-size:15px}
+.icon-btn[aria-pressed="false"]{background:#123f44}
+
+.stagewrap{position:relative;overflow:hidden;min-height:0;background:#7a5536}
+.scene{position:absolute;left:50%;top:50%;width:1440px;height:810px;transform:translate(-50%,-50%) scale(var(--s,1));overflow:hidden}
+.scene>img.bg{position:absolute;left:-130px;top:-90px;width:1700px;height:990px;object-fit:cover}
+
+.top{position:absolute;left:24px;right:24px;top:14px;display:flex;align-items:center;gap:12px;z-index:6}
+.tabs{display:inline-flex;border-radius:999px;overflow:hidden;background:#fffdf7f0;box-shadow:0 3px 0 #0003}
+.tabs button{border:0;background:transparent;min-height:54px;padding:0 22px;font:800 19px 'Segoe UI',sans-serif;color:var(--muted)}
+.tabs button[aria-pressed="true"]{background:var(--brand);color:#fff}
+.b{border:0;border-radius:16px;min-height:52px;padding:0 18px;font:800 18px 'Segoe UI',sans-serif;background:#fffdf7;color:var(--ink);box-shadow:0 4px 0 #0003}
+.b:active{transform:translateY(3px);box-shadow:0 1px 0 #0003}
+.b.go{background:#2e8a4f;color:#fff;box-shadow:0 4px 0 #1b5a31}
+.b.teal{background:var(--brand);color:#fff;box-shadow:0 4px 0 #0d3236}
+.b[aria-pressed="true"]{background:var(--gold);color:#3a2a00}
+.b:disabled{opacity:.45;cursor:default}
+
+/* shelf */
+.shelf{position:absolute;left:22px;top:86px;width:330px;bottom:18px;z-index:3;background:#fffdf7ee;border-radius:22px;box-shadow:0 6px 0 #0003;padding:10px 10px 8px;display:flex;flex-direction:column}
+.shelf h2{margin:0 4px 6px;font:800 19px Georgia,serif;display:flex;justify-content:space-between;align-items:baseline}
+.shelf h2 small{font:600 13px 'Segoe UI',sans-serif;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;overflow:auto;padding:2px}
+.snk{border:0;border-radius:14px;background:#fff;box-shadow:0 2px 0 #0002;padding:4px 2px 3px;display:flex;flex-direction:column;align-items:center;min-height:104px;position:relative}
+.snk img{width:62px;height:62px;object-fit:contain;filter:drop-shadow(0 3px 2px #0003)}
+.snk span{font:700 11.5px/1.15 'Segoe UI',sans-serif;text-align:center;margin-top:2px}
+.snk[aria-pressed="true"]{background:#fff3c4;box-shadow:0 0 0 4px var(--gold)}
+.snk .slot{position:absolute;left:4px;top:3px;width:24px;height:24px;border-radius:50%;background:var(--brand);color:#fff;font:900 14px/24px 'Segoe UI',sans-serif}
+
+/* the Nutrition Facts label */
+.labelbox{position:absolute;z-index:3}
+.nf{background:#fff;color:#000;border:2px solid #000;padding:5px 8px 6px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;width:330px;transform-origin:0 0;box-shadow:0 10px 24px #0005}
+.nf.dual{width:500px}
+.nf .t{font:900 40px/1 'Helvetica Neue',Helvetica,'Arial Black',Arial,sans-serif;letter-spacing:-1px;border-bottom:1px solid #000;padding-bottom:3px;white-space:nowrap}
+.nf .r{display:flex;align-items:baseline;gap:6px;border-top:1px solid #000;font-size:15px;line-height:1.2;padding:2px 0;position:relative}
+.nf .r.np{border-top:0}
+.nf .r .n{flex:1}
+.nf .r b{font-weight:900}
+.nf .r .v{min-width:42px;text-align:right;font-weight:900}
+.nf .ind{padding-left:16px}
+.nf .ind2{padding-left:32px}
+.nf .thick{border-top:10px solid #000}
+.nf .med{border-top:5px solid #000}
+.nf .cal{font:900 36px/1 'Helvetica Neue',Helvetica,Arial,sans-serif;align-items:flex-end}
+.nf .cal .n{font-size:30px}
+.nf .ss{font-size:20px;font-weight:900}
+.nf .small{font-size:11.5px;line-height:1.25;border-top:5px solid #000;padding-top:4px}
+.nf .hdr{font-size:13px;font-weight:900;justify-content:flex-end}
+.nf .col{display:grid;grid-template-columns:1fr 110px 110px;gap:0 8px;align-items:baseline}
+.nf .col .c{border-left:1px solid #000;padding-left:6px;display:flex;justify-content:space-between;gap:4px;align-self:stretch;align-items:baseline}
+.nf .col .c.you{background:#fff3b0}
+.nf [data-line]{cursor:pointer}
+.nf [data-line]:hover{background:#eaf6ff}
+.nf [data-line].on{background:#ffe680;box-shadow:inset 4px 0 0 #e0a100}
+.nf [data-line].found{background:#c9f2d3;box-shadow:inset 4px 0 0 #2e8a4f}
+.nf [data-line].miss{background:#ffd9d2}
+.tag{display:inline-block;font:900 10px/1 'Segoe UI',sans-serif;border-radius:6px;padding:3px 4px;margin-left:4px;vertical-align:2px;letter-spacing:.3px}
+.tag.low{background:#d8f1df;color:#1d5e33}
+.tag.high{background:#fbd9d2;color:#8e2716}
+.tag.dim{background:#ece8df;color:#6b6457}
+.tag.good{background:#d8f1df;color:#1d5e33}
+.nf:not(.show520) .tag{display:none}
+
+/* cards and the detective */
+.card{position:absolute;z-index:3;background:#fffdf7f4;border-radius:24px;box-shadow:0 6px 0 #0003;padding:16px 20px}
+.card h2{margin:0 0 6px;font:800 24px/1.15 Georgia,serif}
+.card p{margin:6px 0;font:500 18px/1.4 'Segoe UI',sans-serif}
+.card .big{font:800 22px/1.3 'Segoe UI',sans-serif}
+.kicker{font:800 13px 'Segoe UI',sans-serif;letter-spacing:1px;text-transform:uppercase;color:var(--brand)}
+.detective{position:absolute;right:6px;bottom:-4px;height:300px;z-index:5;filter:drop-shadow(0 8px 6px #0005);transform-origin:50% 100%;pointer-events:none}
+.say{position:absolute;right:236px;bottom:22px;left:780px;min-height:96px;z-index:5;background:#fff;border-radius:26px;padding:12px 20px;font:600 19px/1.35 'Segoe UI',sans-serif;box-shadow:0 8px 20px #0004;display:flex;align-items:center}
+.say::after{content:'';position:absolute;right:-18px;top:50%;border:13px solid transparent;border-left:20px solid #fff;transform:translateY(-50%)}
+.say b{color:var(--brand)}
+.m-compare .say,.m-cases .say{left:1000px}
+.m-sugar .say{left:912px}
+.serv{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:8px}
+.serv .b{min-height:46px;padding:0 13px;font-size:16px}
+.rule{display:flex;align-items:center;gap:0;margin:10px 0 4px;height:34px;border-radius:10px;overflow:hidden;font:800 14px 'Segoe UI',sans-serif}
+.rule div{height:100%;display:grid;place-items:center}
+
+/* compare */
+.slots{display:flex;gap:10px}
+.slotb{flex:1;min-height:50px;border-radius:14px;border:3px dashed #9aa;background:#fff;font:800 16px 'Segoe UI',sans-serif;padding:0 10px}
+.slotb[aria-pressed="true"]{border:3px solid var(--brand);background:#e5f4f2}
+.goals{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.goals .b{min-height:42px;font-size:15px;padding:0 12px}
+.bars{display:grid;grid-template-columns:150px 1fr;gap:6px 10px;align-items:center;margin-top:6px;font:700 15px 'Segoe UI',sans-serif}
+.bars .pair{display:flex;flex-direction:column;gap:3px}
+.bars .bar{height:18px;border-radius:6px;display:flex;align-items:center;font:800 12px 'Segoe UI',sans-serif;color:#fff;padding-left:6px;white-space:nowrap;min-width:26px}
+.bars .goalrow{background:#fff3c4;border-radius:8px;margin:-3px -6px;padding:3px 6px}
+.verdict{margin-top:10px;padding:10px 14px;border-radius:14px;background:#e5f4f2;font:700 17px/1.35 'Segoe UI',sans-serif}
+.verdict.warn{background:#fff1d6}
+
+/* sugar */
+.jarwrap{position:absolute;left:372px;top:96px;width:520px;height:700px;z-index:3}
+.jarwrap svg{width:100%;height:100%;overflow:visible}
+.cube{transition:transform .5s cubic-bezier(.3,1.5,.6,1)}
+.pred{display:flex;align-items:center;gap:12px;margin:8px 0}
+.pred input{flex:1;height:40px;accent-color:var(--brand)}
+.pred output{font:900 30px 'Segoe UI',sans-serif;min-width:70px;text-align:center}
+.lineup{display:grid;grid-template-columns:44px 1fr 64px;gap:4px 8px;align-items:center;font:700 14px 'Segoe UI',sans-serif;max-height:430px;overflow:auto}
+.lineup img{width:40px;height:40px;object-fit:contain}
+.lineup .lb{height:16px;border-radius:5px;background:#e8a33a}
+.lineup .lb.nat{background:#b9d7e8}
+
+/* cases */
+.folder{position:absolute;left:24px;top:86px;width:560px;bottom:150px;z-index:3;background:#f2d58c;border-radius:6px 24px 24px 24px;box-shadow:0 8px 0 #0003,inset 0 0 0 2px #d7b665;padding:18px 24px}
+.folder::before{content:'';position:absolute;left:0;top:-26px;width:200px;height:30px;background:#f2d58c;border-radius:14px 14px 0 0;box-shadow:inset 0 2px 0 #d7b665}
+.folder .no{font:900 15px 'Courier New',monospace;letter-spacing:1px;color:#6b4e12}
+.folder h2{margin:2px 0 8px;font:900 30px/1.1 Georgia,serif}
+.folder p{font:500 19px/1.42 'Segoe UI',sans-serif;margin:8px 0}
+.folder .ask{font:800 21px/1.35 'Segoe UI',sans-serif;background:#fff8e2;border-radius:14px;padding:10px 14px}
+.stamp{position:absolute;right:26px;top:22px;transform:rotate(-12deg);border:5px solid #2e8a4f;color:#2e8a4f;font:900 30px 'Courier New',monospace;padding:2px 10px;border-radius:8px;opacity:.9}
+.opts{display:flex;gap:10px;margin-top:10px;flex-wrap:wrap}
+.opt{flex:1;min-width:150px;border:0;border-radius:18px;background:#fff;box-shadow:0 4px 0 #0003;padding:8px;display:flex;flex-direction:column;align-items:center;gap:4px;font:800 16px/1.2 'Segoe UI',sans-serif;min-height:60px;justify-content:center}
+.opt img{width:96px;height:86px;object-fit:contain;filter:drop-shadow(0 3px 2px #0003)}
+.opt.no{background:#f6d6cf;opacity:.75}
+.opt.yes{background:#c9f2d3;box-shadow:0 0 0 4px #2e8a4f}
+.casebar{position:absolute;left:24px;bottom:18px;width:560px;z-index:3;display:flex;gap:6px}
+.casebar button{flex:1;border:0;border-radius:12px;min-height:58px;background:#fffdf7;box-shadow:0 3px 0 #0003;font:800 15px/1.1 'Segoe UI',sans-serif;padding:2px}
+.casebar button small{display:block;font-size:11px;letter-spacing:-1px}
+.casebar button[aria-current="true"]{background:var(--brand);color:#fff}
+.peek{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.peek .b{min-height:42px;font-size:15px;padding:0 12px}
+.calm .cube{transition:none}
+</style>
+</head>
+<body>
+<header>
+  <h1>Label Detective <small>Read Nutrition Facts labels and crack the case.</small></h1>
+  <button class="icon-btn" id="motion" aria-pressed="true" title="Turn animation on or off">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+</header>
+<div class="stagewrap" id="stagewrap">
+  <div class="scene" id="scene">
+    <img class="bg" src="art:board" alt="">
+    <div class="top">
+      <div class="tabs" role="group" aria-label="Mode">
+        <button data-mode="read" aria-pressed="true">🔍 Read a label</button>
+        <button data-mode="compare" aria-pressed="false">⚖️ Compare</button>
+        <button data-mode="sugar" aria-pressed="false">🧊 Sugar spotter</button>
+        <button data-mode="cases" aria-pressed="false">📁 Cases</button>
+      </div>
+    </div>
+    <div id="view"></div>
+    <div class="say" id="say" aria-live="polite"></div>
+    <img class="detective" id="det" src="art:detective" alt="Beagle detective">
+  </div>
+</div>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  let reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  try { const m = localStorage.getItem('curio-motion'); if (m) reduce = m === 'calm'; } catch {}
+  function showMotion() {
+    document.body.classList.toggle('calm', reduce);
+    $('motion').setAttribute('aria-pressed', !reduce);
+    $('motion').textContent = reduce ? '⏸ Motion' : '✨ Motion';
+  }
+  showMotion();
+  $('motion').onclick = () => { reduce = !reduce; try { localStorage.setItem('curio-motion', reduce ? 'calm' : 'on'); } catch {} showMotion(); };
+  const fit = () => { const r = $('stagewrap').getBoundingClientRect(); $('scene').style.setProperty('--s', Math.min(r.width / 1440, r.height / 810)); };
+  new ResizeObserver(fit).observe($('stagewrap'));
+  const anim = (el, kf, opt) => { if (reduce || !el || !el.animate) return null; return el.animate(kf, opt); };
+
+  // ---------- sound ----------
+  let ac = null, soundOn = true;
+  $('sound').onclick = () => { soundOn = !soundOn; $('sound').setAttribute('aria-pressed', soundOn); $('sound').textContent = soundOn ? '🔔 Sound' : '🔕 Sound'; };
+  function ctx() { if (!ac) { try { ac = new (window.AudioContext || window.webkitAudioContext)(); } catch { return null; } } if (ac.state === 'suspended') ac.resume(); return ac; }
+  function tone(f, at, dur, {type = 'triangle', gain = .18, slide = 0} = {}) {
+    const c = soundOn && ctx(); if (!c) return;
+    const t = c.currentTime + at, o = c.createOscillator(), g = c.createGain();
+    o.type = type; o.frequency.setValueAtTime(f, t); if (slide) o.frequency.exponentialRampToValueAtTime(f * slide, t + dur);
+    g.gain.setValueAtTime(.0001, t); g.gain.exponentialRampToValueAtTime(gain, t + .01); g.gain.exponentialRampToValueAtTime(.0001, t + dur);
+    o.connect(g).connect(c.destination); o.start(t); o.stop(t + dur + .05);
+  }
+  const SFX = {
+    tap: () => tone(880, 0, .08, {type: 'sine', gain: .12}),
+    pick: () => { tone(520, 0, .09, {type: 'sine', gain: .14}); tone(780, .06, .1, {type: 'sine', gain: .1}); },
+    clink: i => tone(1500 + (i % 5) * 90, 0, .12, {type: 'sine', gain: .1, slide: .8}),
+    good: () => [523, 659, 784, 1047].forEach((f, i) => tone(f, i * .1, .45)),
+    bad: () => { tone(330, 0, .25, {gain: .14, slide: .8}); tone(262, .18, .35, {gain: .12, slide: .8}); },
+    stamp: () => { tone(110, 0, .18, {type: 'sine', gain: .5, slide: .5}); tone(1800, 0, .03, {type: 'square', gain: .05}); },
+  };
+
+  // ---------- the foods ----------
+  // Typical values for generic foods (USDA FoodData Central), already rounded the way a label would be.
+  // name, art, serving size, servings per container ("about" when not whole), kind,
+  // calories, fat, sat fat, trans fat, cholesterol mg, sodium mg, carbs, fiber, total sugars, added sugars, protein,
+  // vitamin D mcg, calcium mg, iron mg, potassium mg
+  const RAW = [
+    ['Apple', 'apple', '1 medium (182g)', 1, 'fruit', 100, 0, 0, 0, 0, 0, 25, 4, 19, 0, 0, 0, 10, .2, 200],
+    ['Banana', 'banana', '1 medium (118g)', 1, 'fruit', 110, 0, 0, 0, 0, 0, 27, 3, 14, 0, 1, 0, 10, .3, 420],
+    ['Granola bar', 'granola', '1 bar (24g)', 1, 'snack', 100, 3.5, 1.5, 0, 0, 70, 17, 1, 7, 7, 1, 0, 10, .4, 50],
+    ['Cheese crackers', 'cheesecrackers', '1 bag (42g)', 1, 'snack', 210, 11, 2, 0, 0, 330, 24, 1, 0, 0, 5, 0, 40, 1.8, 60],
+    ['Strawberry yogurt', 'yogurt', '1 cup (170g)', 1, 'dairy', 150, 2, 1.5, 0, 10, 85, 26, 0, 24, 13, 6, 2, 200, 0, 280],
+    ['Plain Greek yogurt', 'greekyogurt', '1 cup (150g)', 1, 'dairy', 80, 0, 0, 0, 5, 55, 6, 0, 4, 0, 15, 0, 150, 0, 210],
+    ['Pretzels', 'pretzels', '1 bag (28g)', 1, 'snack', 110, 1, 0, 0, 0, 400, 23, 1, 1, 1, 3, 0, 10, 1.3, 40],
+    ['Chocolate milk', 'chocmilk', '1 carton (240mL)', 1, 'drink', 150, 2.5, 1.5, 0, 10, 200, 24, 1, 23, 11, 8, 3, 300, .6, 420],
+    ['White milk', 'milk', '1 carton (240mL)', 1, 'drink', 100, 2.5, 1.5, 0, 15, 130, 12, 0, 12, 0, 8, 3, 300, 0, 390],
+    ['Apple juice box', 'juice', '1 box (200mL)', 1, 'drink', 90, 0, 0, 0, 0, 15, 23, 0, 21, 0, 0, 0, 20, .2, 250],
+    ['Fruit drink pouch', 'fruitdrink', '1 pouch (177mL)', 1, 'drink', 90, 0, 0, 0, 0, 15, 24, 0, 23, 21, 0, 0, 0, 0, 30],
+    ['Potato chips', 'chips', '1 oz (28g)', 3, 'snack', 160, 10, 1.5, 0, 0, 170, 15, 1, 0, 0, 2, 0, 10, .5, 350],
+    ['String cheese', 'stringcheese', '1 stick (28g)', 1, 'dairy', 80, 6, 3.5, 0, 15, 200, 1, 0, 0, 0, 7, 0, 200, 0, 30],
+    ['Trail mix', 'trailmix', '1 bag (35g)', 1, 'snack', 170, 11, 3, 0, 0, 50, 15, 2, 10, 7, 5, 0, 30, 1, 200],
+    ['Fruit snacks', 'fruitsnacks', '1 pouch (25g)', 1, 'snack', 80, 0, 0, 0, 0, 15, 19, 0, 11, 11, 0, 0, 0, 0, 0],
+    ['Carrots and hummus', 'carrots', '1 pack (113g)', 1, 'snack', 110, 6, 1, 0, 0, 210, 12, 4, 3, 0, 3, 0, 40, .7, 340],
+    ['Popcorn', 'popcorn', '3 cups (28g)', 1, 'snack', 130, 7, 1, 0, 0, 160, 15, 3, 0, 0, 2, 0, 0, .6, 80],
+    ['Sports drink', 'sportsdrink', '1 bottle (591mL)', 1, 'drink', 140, 0, 0, 0, 0, 270, 36, 0, 34, 34, 0, 0, 0, 0, 75],
+    ['Lemon-lime soda', 'soda', '1 can (355mL)', 1, 'drink', 140, 0, 0, 0, 0, 65, 38, 0, 38, 38, 0, 0, 0, 0, 0],
+    ['Fruit cereal bar', 'cerealbar', '1 bar (37g)', 1, 'breakfast', 130, 3, .5, 0, 0, 115, 24, 1, 12, 12, 2, 0, 100, 1.8, 50],
+    ['Peanut butter crackers', 'pbcrackers', '6 crackers (39g)', 1, 'snack', 200, 10, 2, 0, 0, 340, 23, 1, 4, 3, 5, 0, 20, 1.1, 80],
+    ['Maple oatmeal', 'oatmeal', '1 packet (43g)', 1, 'breakfast', 160, 2.5, .5, 0, 0, 260, 32, 3, 12, 11, 4, 0, 20, 3.6, 110],
+    ['Plain oatmeal', 'plainoats', '1 packet (28g)', 1, 'breakfast', 100, 2, .5, 0, 0, 75, 19, 3, 0, 0, 4, 0, 100, 4.4, 100],
+    ['Water', 'water', '1 bottle (500mL)', 1, 'drink', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  ];
+  const KEYS = ['cal', 'fat', 'sat', 'trans', 'chol', 'sod', 'carb', 'fib', 'sug', 'add', 'prot', 'vd', 'ca', 'fe', 'k'];
+  const FOODS = RAW.map(([name, art, size, spc, kind, ...v]) => { const f = {name, art, size, spc, kind}; KEYS.forEach((k, i) => f[k] = v[i]); return f; });
+  const byArt = Object.fromEntries(FOODS.map(f => [f.art, f]));
+  const IMG = {}; // filled in below from the art tokens
+  // FDA Daily Values (2016 rule, adults and children 4 and older)
+  const DV = {fat: 78, sat: 20, chol: 300, sod: 2300, carb: 275, fib: 28, add: 50, vd: 20, ca: 1300, fe: 18, k: 4700};
+  // label rounding rules (21 CFR 101.9)
+  const R = {
+    cal: v => v < 5 ? 0 : v <= 50 ? Math.round(v / 5) * 5 : Math.round(v / 10) * 10,
+    fat: v => v < .5 ? 0 : v < 5 ? Math.round(v * 2) / 2 : Math.round(v),
+    sod: v => v < 5 ? 0 : v <= 140 ? Math.round(v / 5) * 5 : Math.round(v / 10) * 10,
+    chol: v => v < 2 ? 0 : v < 5 ? '<5' : Math.round(v / 5) * 5,
+    g: v => v < .5 ? 0 : v < 1 ? '<1' : Math.round(v),
+    vd: v => Math.round(v * 10) / 10, ca: v => Math.round(v / 10) * 10, fe: v => Math.round(v * 10) / 10, k: v => Math.round(v / 10) * 10,
+  };
+  const ROUND = {cal: R.cal, fat: R.fat, sat: R.fat, trans: R.fat, chol: R.chol, sod: R.sod, carb: R.g, fib: R.g, sug: R.g, add: R.g, prot: R.g, vd: R.vd, ca: R.ca, fe: R.fe, k: R.k};
+  const VITS = ['vd', 'ca', 'fe', 'k'];
+  function pct(k, v) {
+    if (!(k in DV)) return null;
+    const p = v / DV[k] * 100;
+    if (!VITS.includes(k)) return Math.round(p);
+    return p < 2 ? 0 : p <= 10 ? Math.round(p / 2) * 2 : p <= 50 ? Math.round(p / 5) * 5 : Math.round(p / 10) * 10;
+  }
+  const amt = (f, k, n) => ROUND[k](f[k] * n);
+  const num = v => typeof v === 'string' ? v.replace('<', 'less than ') : v;
+  const UNIT = {chol: 'mg', sod: 'mg', vd: 'mcg', ca: 'mg', fe: 'mg', k: 'mg'};
+  const tsp = g => Math.round(g / 4 * 2) / 2;
+  const LESS = ['sat', 'sod', 'add'], MORE = ['fib', 'vd', 'ca', 'fe', 'k'];
+
+  // ---------- what each line means ----------
+  const LINES = {
+    spc: {t: 'Servings per container', d: f => f.spc === 1 ? 'This package holds <b>1 serving</b>, so the numbers are for the whole package.' : `This package holds <b>about ${f.spc} servings</b>. Every number on the label is for <b>one</b> serving. Eat the whole bag and you get ${f.spc} times as much.`},
+    size: {t: 'Serving size', d: f => `All the numbers are for <b>${f.size}</b>. Compare it with how much you really eat. Serving sizes are set from how much people usually eat, not how much they should eat.`},
+    cal: {t: 'Calories', d: f => `Calories measure the energy in food. This has <b>${f.cal} calories</b> per serving. Most kids 9 to 13 need about 1,600 to 2,200 calories a day, more if they are very active. Calories are not good or bad by themselves: what comes with them matters.`},
+    dv: {t: '% Daily Value', d: () => 'The %DV tells how much of a day\'s amount one serving gives. Use the <b>5/20 rule</b>: <b>5% or less is LOW</b>, <b>20% or more is HIGH</b>. Look for low in the things to limit and high in the good stuff.'},
+    fat: {t: 'Total fat', d: f => `Fat gives energy and helps your body use some vitamins. Nuts, cheese and oils have fat. Here: <b>${f.fat}g</b>, ${pct('fat', f.fat)}% DV.`},
+    sat: {t: 'Saturated fat', less: true, d: f => `A kind of fat to <b>limit</b>. Too much over time is hard on your heart. Here: <b>${pct('sat', f.sat)}% DV</b>.`},
+    trans: {t: 'Trans fat', less: true, d: () => 'A kind of fat to avoid. It was banned from most foods in the United States in 2018, so labels almost always say 0g.'},
+    chol: {t: 'Cholesterol', d: f => `A waxy substance found only in foods from animals, like milk, eggs and meat. Your body makes all it needs. Here: <b>${num(f.chol)}mg</b>.`},
+    sod: {t: 'Sodium', less: true, d: f => `Sodium is mostly from salt. A little is needed, but most people eat far too much, and that is hard on the heart. Kids 9 to 13 should aim for less than about 1,800 mg a day. Here: <b>${f.sod}mg, ${pct('sod', f.sod)}% DV</b>.`},
+    carb: {t: 'Total carbohydrate', d: f => `Carbohydrates are your body\'s main fuel: starch, fiber and sugars all count. Here: <b>${f.carb}g</b>.`},
+    fib: {t: 'Dietary fiber', more: true, d: f => `Fiber is the part of plants your body can\'t digest. It keeps you full and your gut healthy. Fruits, vegetables, beans and whole grains have it. Here: <b>${f.fib}g, ${pct('fib', f.fib)}% DV</b>.`},
+    sug: {t: 'Total sugars', d: f => `All the sugar in the food, including sugar that is naturally in fruit and milk. Here: <b>${f.sug}g</b>, about ${tsp(f.sug)} teaspoons.`},
+    add: {t: 'Added sugars', less: true, d: f => `Sugars put in while the food is made: table sugar, syrups, honey. The American Heart Association says kids should have <b>less than 25g a day</b> (about 6 teaspoons). Here: <b>${f.add}g, ${pct('add', f.add)}% DV</b>.`},
+    prot: {t: 'Protein', d: f => `Protein builds and repairs muscles and helps you feel full. Most labels don\'t show a %DV for protein. Here: <b>${f.prot}g</b>.`},
+    vd: {t: 'Vitamin D', more: true, d: f => `Helps your body use calcium for strong bones. Milk is often fortified with it. Here: ${pct('vd', f.vd)}% DV.`},
+    ca: {t: 'Calcium', more: true, d: f => `Builds strong bones and teeth. Kids 9 to 13 need the most of their lives: about 1,300 mg a day. Here: <b>${pct('ca', f.ca)}% DV</b>.`},
+    fe: {t: 'Iron', more: true, d: f => `Iron helps your blood carry oxygen. Beans, meat and fortified cereals have it. Here: ${pct('fe', f.fe)}% DV.`},
+    k: {t: 'Potassium', more: true, d: f => `Potassium helps muscles and the heart work and balances sodium. Bananas, potatoes and milk have it. Here: ${pct('k', f.k)}% DV.`},
+    foot: {t: 'The footnote', d: () => 'The %DV is based on 2,000 calories a day, a common number used for general advice. Your own needs may be higher or lower.'},
+  };
+
+  // ---------- label rendering ----------
+  function tag(k, p) {
+    if (p == null || !(LESS.includes(k) || MORE.includes(k) || k === 'fat')) return '';
+    if (p >= 20) return MORE.includes(k) ? '<span class="tag good">HIGH ✓</span>' : '<span class="tag high">HIGH</span>';
+    if (p <= 5) return LESS.includes(k) ? '<span class="tag low">LOW ✓</span>' : '<span class="tag dim">LOW</span>';
+    return '';
+  }
+  function labelHTML(f, n = 1, opt = {}) {
+    const dual = n !== 1;
+    const cols = (k, show) => {
+      const one = c => { const a = amt(f, k, c); const p = pct(k, typeof a === 'string' ? 0 : a); return {a, p}; };
+      const a1 = one(1), aN = one(n);
+      if (!dual) return `<span class="v">${a1.p == null ? '' : a1.p + '%'}${tag(k, a1.p)}</span>`;
+      return `<span class="c"><span>${show(a1.a)}</span><b>${a1.p == null ? '' : a1.p + '%'}</b></span><span class="c you"><span>${show(aN.a)}</span><b>${aN.p == null ? '' : aN.p + '%'}</b></span>`;
+    };
+    const row = (k, label, cls = '', u = 'g') => {
+      const show = a => `${a === '<1' ? 'less than 1' : a === '<5' ? 'less than 5' : a}${u}`;
+      if (dual) return `<div class="r col ${cls}" data-line="${k}" tabindex="0" role="button"><span class="n">${label}</span>${cols(k, show)}</div>`;
+      const a = amt(f, k, 1);
+      return `<div class="r ${cls}" data-line="${k}" tabindex="0" role="button"><span class="n">${label.replace('{a}', show(a))}</span>${cols(k, show)}</div>`;
+    };
+    const L = (bold, rest) => dual ? `<b>${bold}</b>${rest || ''}` : `<b>${bold}</b> {a}${rest || ''}`;
+    const nN = Number.isInteger(n) ? n : n.toFixed(1).replace('.0', '');
+    let h = `<div class="nf ${dual ? 'dual' : ''} ${opt.tags ? 'show520' : ''}" id="${opt.id || ''}">
+      <div class="t">Nutrition Facts</div>
+      <div class="r np" data-line="spc" tabindex="0" role="button"><span class="n">${f.spc === 1 ? '1 serving' : `About ${f.spc} servings`} per container</span></div>
+      <div class="r np ss" data-line="size" tabindex="0" role="button"><span class="n">Serving size</span><span>${f.size}</span></div>`;
+    if (dual) {
+      h += `<div class="r col thick hdr" style="font-size:13px"><span></span><span class="c">Per serving</span><span class="c you">You eat ${nN} serving${n === 1 ? '' : 's'}</span></div>
+        <div class="r col cal" data-line="cal" tabindex="0" role="button"><span class="n" style="font-size:26px">Calories</span><span class="c" style="font-size:30px">${amt(f, 'cal', 1)}</span><span class="c you" style="font-size:30px">${amt(f, 'cal', n)}</span></div>
+        <div class="r col med hdr" data-line="dv" tabindex="0" role="button"><span></span><span class="c">% DV*</span><span class="c you">% DV*</span></div>`;
+    } else {
+      h += `<div class="r thick" style="font-size:13px;font-weight:900">Amount per serving</div>
+        <div class="r np cal" data-line="cal" tabindex="0" role="button"><span class="n">Calories</span><span>${f.cal}</span></div>
+        <div class="r med hdr" data-line="dv" tabindex="0" role="button"><span>% Daily Value*</span></div>`;
+    }
+    h += row('fat', L('Total Fat')) + row('sat', dual ? 'Saturated Fat' : 'Saturated Fat {a}', 'ind') + `<div class="r ind ${dual ? 'col' : ''}" data-line="trans" tabindex="0" role="button"><span class="n"><i>Trans</i> Fat ${dual ? '' : amt(f, 'trans', 1) + 'g'}</span>${dual ? `<span class="c">${amt(f, 'trans', 1)}g<b></b></span><span class="c you">${amt(f, 'trans', n)}g<b></b></span>` : ''}</div>`
+      + row('chol', L('Cholesterol'), '', 'mg') + row('sod', L('Sodium'), '', 'mg') + row('carb', L('Total Carbohydrate'))
+      + row('fib', dual ? 'Dietary Fiber' : 'Dietary Fiber {a}', 'ind') + row('sug', dual ? 'Total Sugars' : 'Total Sugars {a}', 'ind');
+    const addRow = dual ? `<div class="r col ind2" data-line="add" tabindex="0" role="button"><span class="n">Incl. Added Sugars</span>${cols('add', a => `${a === '<1' ? 'less than 1' : a}g`)}</div>`
+      : `<div class="r ind2" data-line="add" tabindex="0" role="button"><span class="n">Includes ${amt(f, 'add', 1)}g Added Sugars</span>${cols('add')}</div>`;
+    h += addRow + `<div class="r ${dual ? 'col' : ''}" data-line="prot" tabindex="0" role="button"><span class="n"><b>Protein</b> ${dual ? '' : amt(f, 'prot', 1) + 'g'}</span>${dual ? `<span class="c">${amt(f, 'prot', 1)}g<b></b></span><span class="c you">${amt(f, 'prot', n)}g<b></b></span>` : ''}</div>`;
+    h += `<div class="thick" style="margin-top:2px"></div>` + row('vd', dual ? 'Vitamin D' : 'Vitamin D {a}', 'np', 'mcg') + row('ca', dual ? 'Calcium' : 'Calcium {a}', '', 'mg') + row('fe', dual ? 'Iron' : 'Iron {a}', '', 'mg') + row('k', dual ? 'Potassium' : 'Potassium {a}', '', 'mg');
+    h += `<div class="r small" data-line="foot" tabindex="0" role="button"><span class="n">* The % Daily Value (DV) tells you how much a nutrient in a serving of food contributes to a daily diet. 2,000 calories a day is used for general nutrition advice.</span></div></div>`;
+    return h;
+  }
+  // fit a label into a box by scaling it
+  function placeLabel(box, f, n, opt) {
+    box.innerHTML = labelHTML(f, n, opt);
+    const nf = box.firstElementChild, w = parseFloat(box.style.width), hgt = parseFloat(box.style.height);
+    const s = Math.min(w / nf.offsetWidth, hgt / nf.offsetHeight, opt.max || 1.5);
+    nf.style.transform = `scale(${s})`;
+    const t = nf.querySelector('.t'); for (let fs = 40; t.scrollWidth > t.clientWidth && fs > 28; fs--) t.style.fontSize = fs + 'px';
+    box.querySelectorAll('[data-line]').forEach(el => {
+      el.onclick = () => opt.onLine && opt.onLine(el.dataset.line, el);
+      el.onkeydown = e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); el.click(); } };
+    });
+    return nf;
+  }
+
+  // ---------- speech ----------
+  function say(html) {
+    $('say').innerHTML = `<div>${html}</div>`;
+    anim($('det'), [{transform: 'rotate(0)'}, {transform: 'rotate(-3deg) translateY(-8px)'}, {transform: 'rotate(2deg)'}, {transform: 'rotate(0)'}], {duration: 520});
+  }
+
+  // ---------- the shelf ----------
+  function shelf(title, sub, sel, onPick, filter) {
+    const list = FOODS.filter(filter || (() => true));
+    return {html: `<div class="shelf"><h2>${title}<small>${sub}</small></h2><div class="grid" role="group" aria-label="Snacks and drinks">${list.map(f =>
+      `<button class="snk" data-food="${f.art}" aria-pressed="${sel(f)}">${typeof sel(f) === 'string' ? `<span class="slot">${sel(f)}</span>` : ''}<img src="${IMG[f.art]}" alt=""><span>${f.name}</span></button>`).join('')}</div></div>`,
+      wire: () => document.querySelectorAll('[data-food]').forEach(b => b.onclick = () => { SFX.pick(); onPick(byArt[b.dataset.food]); })};
+  }
+  const view = $('view');
+  let mode = 'read';
+  document.querySelectorAll('[data-mode]').forEach(b => b.onclick = () => setMode(b.dataset.mode));
+  function setMode(m) {
+    mode = m; $('scene').className = 'scene m-' + m;
+    document.querySelectorAll('[data-mode]').forEach(b => b.setAttribute('aria-pressed', b.dataset.mode === m));
+    $('say').hidden = $('det').hidden = m === 'compare';
+    ({read: renderRead, compare: renderCompare, sugar: renderSugar, cases: renderCases})[m]();
+    if (m === 'read') say('Tap any line on the label to learn what it means. Then change <b>how much you eat</b>.');
+    if (m === 'sugar') say(`How many teaspoons of sugar are in <b>${SG.food.name}</b>? Slide to guess, then press <b>Show me</b>.`);
+    if (m === 'cases') say(`<b>Case ${cs.i + 1}: ${CASES[cs.i].title}.</b> Read the case file, then check the labels for clues.`);
+  }
+
+  // ---------- Read a label ----------
+  const RD = {food: byArt.chips, n: 1, line: null, tags: false};
+  function renderRead() {
+    const sh = shelf('Pick a snack', 'tap to read its label', f => f === RD.food, f => { RD.food = f; RD.n = 1; renderRead(); say(`Here is the label for <b>${f.name}</b>. Tap any line to find out what it means.`); });
+    const f = RD.food, n = RD.n;
+    view.innerHTML = sh.html + `<div class="labelbox" id="lb" style="left:372px;top:86px;width:${n === 1 ? 380 : 520}px;height:${n === 1 ? 704 : 600}px"></div>
+      <div class="card" id="info" style="left:${n === 1 ? 776 : 912}px;right:22px;top:86px;min-height:260px"></div>`;
+    sh.wire();
+    placeLabel($('lb'), f, n, {tags: RD.tags, max: n === 1 ? 1.15 : 1, onLine: k => { RD.line = k; SFX.tap(); info(); }});
+    info();
+  }
+  function info() {
+    const f = RD.food, n = RD.n;
+    document.querySelectorAll('#lb [data-line]').forEach(el => el.classList.toggle('on', el.dataset.line === RD.line));
+    const L = RD.line && LINES[RD.line];
+    const kind = L ? (L.less ? '<span class="tag high" style="font-size:12px">GET LESS OF</span>' : L.more ? '<span class="tag good" style="font-size:12px">GET MORE OF</span>' : '') : '';
+    const opts = [.5, 1, 2, 3].concat(f.spc > 3 ? [f.spc] : []).filter((v, i, a) => a.indexOf(v) === i);
+    $('info').innerHTML = `<div class="kicker">${f.name}</div>
+      <h2>${L ? L.t + ' ' + kind : 'Tap a line on the label'}</h2>
+      <p>${L ? L.d(f) : 'Every packaged food in the United States has this same label, so once you can read one, you can read them all. Start at the top: <b>serving size</b> first.'}</p>
+      <div style="border-top:2px dashed #d8cfbd;margin:12px 0 4px"></div>
+      <div class="big">How much will you eat?</div>
+      <div class="serv" role="group" aria-label="Servings eaten">${opts.map(v => `<button class="b" data-n="${v}" aria-pressed="${v === n}">${v === .5 ? '½' : v} serving${v === 1 || v === .5 ? '' : 's'}${v === f.spc && f.spc > 1 ? ' (whole bag)' : ''}</button>`).join('')}</div>
+      <p style="font-size:16px;color:var(--muted)">${n === 1 ? 'Pick more than 1 to see the label add a column for what you really eat.' : `The yellow column shows ${n === .5 ? 'half a serving' : n + ' servings'}. Everything ${n > 1 ? 'grows' : 'shrinks'}, even the parts you might forget, like sodium.`}</p>
+      <button class="b ${RD.tags ? '' : 'teal'}" id="rule" aria-pressed="${RD.tags}" style="margin-top:4px">${RD.tags ? '5/20 rule is on' : 'Show the 5/20 rule'}</button>
+      ${RD.tags ? `<div class="rule" aria-hidden="true"><div style="width:20%;background:#d8f1df;color:#1d5e33">LOW 5% or less</div><div style="width:45%;background:#f1ecdf;color:#6b5d4f">in between</div><div style="width:35%;background:#fbd9d2;color:#8e2716">HIGH 20% or more</div></div>` : ''}`;
+    document.querySelectorAll('[data-n]').forEach(b => b.onclick = () => { RD.n = +b.dataset.n; SFX.tap(); renderRead();
+      const s = amt(f, 'sod', RD.n), c = amt(f, 'cal', RD.n);
+      say(RD.n === 1 ? 'Back to one serving.' : `${RD.n === .5 ? 'Half a serving' : RD.n + ' servings'}: <b>${c} calories</b> and <b>${s}mg sodium</b>. ${RD.n > 1 ? 'That is why serving size is the first clue!' : ''}`); });
+    $('rule').onclick = () => { RD.tags = !RD.tags; SFX.tap(); renderRead(); if (RD.tags) say('The <b>5/20 rule</b>: 5% DV or less is <b>low</b>, 20% or more is <b>high</b>. Look for low sodium, saturated fat and added sugars, and high fiber, calcium, iron and potassium.'); };
+  }
+
+  // ---------- Compare ----------
+  const CP = {a: byArt.yogurt, b: byArt.greekyogurt, slot: 'a', goal: 'add', whole: false};
+  const GOALS = [['add', 'Less added sugar', -1], ['sod', 'Less sodium', -1], ['sat', 'Less saturated fat', -1], ['fib', 'More fiber', 1], ['prot', 'More protein', 1], ['ca', 'More calcium', 1], ['cal', 'Fewer calories', -1]];
+  const BAR = [['cal', 'Calories', ''], ['add', 'Added sugars', 'g'], ['sod', 'Sodium', 'mg'], ['sat', 'Saturated fat', 'g'], ['fib', 'Fiber', 'g'], ['prot', 'Protein', 'g'], ['ca', 'Calcium', 'mg']];
+  function renderCompare() {
+    const sh = shelf('Pick two snacks', 'fills A, then B', f => f === CP.a && f === CP.b ? 'A' : f === CP.a ? 'A' : f === CP.b ? 'B' : false, f => {
+      CP[CP.slot] = f; CP.slot = CP.slot === 'a' ? 'b' : 'a'; renderCompare(); verdictSay(); });
+    view.innerHTML = sh.html + `
+      <div class="labelbox" id="la" style="left:368px;top:150px;width:300px;height:640px"></div>
+      <div class="labelbox" id="lbx" style="left:682px;top:150px;width:300px;height:640px"></div>
+      <div class="slots" style="position:absolute;left:368px;top:86px;width:614px;z-index:3">
+        <button class="slotb" data-slot="a" aria-pressed="${CP.slot === 'a'}">A: ${CP.a.name}</button>
+        <button class="slotb" data-slot="b" aria-pressed="${CP.slot === 'b'}">B: ${CP.b.name}</button></div>
+      <div class="card" id="cmp" style="left:1000px;right:22px;top:86px;bottom:18px;padding:14px 16px"></div>`;
+    sh.wire();
+    const n = f => CP.whole ? f.spc : 1;
+    placeLabel($('la'), CP.a, 1, {tags: true, max: .9});
+    placeLabel($('lbx'), CP.b, 1, {tags: true, max: .9});
+    document.querySelectorAll('[data-slot]').forEach(b => b.onclick = () => { CP.slot = b.dataset.slot; SFX.tap(); renderCompare(); say(`Now tap a snack on the shelf to put it in <b>${CP.slot.toUpperCase()}</b>.`); });
+    const goal = GOALS.find(g => g[0] === CP.goal);
+    const va = amt(CP.a, CP.goal, n(CP.a)), vb = amt(CP.b, CP.goal, n(CP.b));
+    const nv = v => typeof v === 'string' ? .5 : v;
+    const sizeDiff = CP.a.size !== CP.b.size;
+    $('cmp').innerHTML = `<div class="kicker">My goal</div><div class="goals" role="group" aria-label="Goal">${GOALS.map(g => `<button class="b" data-goal="${g[0]}" aria-pressed="${g[0] === CP.goal}">${g[1]}</button>`).join('')}</div>
+      <div class="bars">${BAR.map(([k, t, u]) => {
+        const A = nv(amt(CP.a, k, n(CP.a))), B = nv(amt(CP.b, k, n(CP.b))), mx = Math.max(A, B, k === 'sod' || k === 'ca' || k === 'cal' ? 1 : .1);
+        const col = (LESS.includes(k) || k === 'cal') ? '#c2402c' : '#2e8a4f';
+        return `<div class="${k === CP.goal ? 'goalrow' : ''}">${t}</div><div class="pair ${k === CP.goal ? 'goalrow' : ''}"><div class="bar" style="width:${Math.max(8, A / mx * 100)}%;background:${col}">A ${amt(CP.a, k, n(CP.a))}${u}</div><div class="bar" style="width:${Math.max(8, B / mx * 100)}%;background:${col};opacity:.7">B ${amt(CP.b, k, n(CP.b))}${u}</div></div>`;
+      }).join('')}</div>
+      <div class="verdict ${sizeDiff && !CP.whole ? 'warn' : ''}">${verdict(goal, va, vb)}${sizeDiff ? `<br><span style="font-weight:600">Careful: the serving sizes are different (${CP.a.size} and ${CP.b.size}).</span>` : ''}</div>
+      <label style="display:flex;gap:8px;align-items:center;margin-top:8px;font:700 16px 'Segoe UI',sans-serif"><input type="checkbox" id="whole" ${CP.whole ? 'checked' : ''} style="width:24px;height:24px"> Compare whole packages</label>`;
+    document.querySelectorAll('[data-goal]').forEach(b => b.onclick = () => { CP.goal = b.dataset.goal; SFX.tap(); renderCompare(); verdictSay(); });
+    $('whole').onchange = e => { CP.whole = e.target.checked; renderCompare(); verdictSay(); };
+  }
+  function verdict(goal, va, vb) {
+    const [k, t, dir] = goal, A = typeof va === 'string' ? .5 : va, B = typeof vb === 'string' ? .5 : vb;
+    if (CP.a === CP.b) return 'A and B are the same snack. Pick a different one for B.';
+    if (A === B) return `A tie for "${t.toLowerCase()}": both have ${va}. Look at another line to decide.`;
+    const win = (B - A) * dir > 0 ? 'B' : 'A';
+    return `For "${t.toLowerCase()}", <b>${win}: ${win === 'A' ? CP.a.name : CP.b.name}</b> wins.`;
+  }
+  function verdictSay() {
+    const goal = GOALS.find(g => g[0] === CP.goal);
+    say(verdict(goal, amt(CP.a, CP.goal, CP.whole ? CP.a.spc : 1), amt(CP.b, CP.goal, CP.whole ? CP.b.spc : 1)) + ' No single snack wins every line, so pick the goal that matters to you.');
+  }
+
+  // ---------- Sugar spotter ----------
+  const SG = {food: byArt.sportsdrink, guess: 3, shown: false, tries: 0, close: 0};
+  function renderSugar() {
+    const sh = shelf('Pick a snack', 'how much sugar?', f => f === SG.food, f => { SG.food = f; SG.shown = false; renderSugar(); say(`How many teaspoons of sugar are in <b>${f.name}</b>? Slide to guess, then press <b>Show me</b>.`); });
+    view.innerHTML = sh.html + `<div class="jarwrap" id="jar"></div>
+      <div class="card" id="sg" style="left:910px;right:22px;top:86px;bottom:150px"></div>`;
+    sh.wire();
+    drawJar();
+    sugarCard();
+  }
+  function drawJar(animate) {
+    const f = SG.food, tot = SG.shown ? f.sug : 0, add = SG.shown ? f.add : 0;
+    const cubes = Math.round(tot / 4 * 2) / 2, addCubes = Math.round(add / 4 * 2) / 2;
+    // cubes stack in a glass jar, rows of 4 from the bottom; added sugar cubes are white, natural are pale blue
+    const W = 520, cx = 225, cw = 66, base = 636, list = [];
+    for (let i = 0; i < Math.ceil(cubes); i++) {
+      const row = Math.floor(i / 4), col = i % 4, half = cubes - i < 1;
+      list.push({x: cx - 2 * cw + col * cw + (row % 2 ? 8 : 0) - 4, y: base - (row + 1) * (cw - 6), half, added: i < Math.ceil(addCubes) && !(half && addCubes < cubes)});
+    }
+    const kidLine = base - 25 / 4 / 4 * (cw - 6);
+    const jar = `M${cx - 150} 330 Q${cx - 150} 300 ${cx - 120} 290 L${cx + 120} 290 Q${cx + 150} 300 ${cx + 150} 330 L${cx + 150} 610 Q${cx + 150} 646 ${cx + 110} 646 L${cx - 110} 646 Q${cx - 150} 646 ${cx - 150} 610 Z`;
+    $('jar').innerHTML = `<svg viewBox="0 0 ${W} 700" role="img" aria-label="${SG.shown ? `${cubes} teaspoons of sugar` : 'An empty jar'}">
+      <defs><linearGradient id="gl" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset=".25" stop-color="#fff" stop-opacity=".12"/><stop offset=".8" stop-color="#fff" stop-opacity=".05"/><stop offset="1" stop-color="#fff" stop-opacity=".4"/></linearGradient></defs>
+      <ellipse cx="${cx + 60}" cy="652" rx="250" ry="20" fill="#0004"/>
+      <image href="${IMG[f.art]}" x="${cx + 165}" y="440" width="130" height="200" preserveAspectRatio="xMidYMax meet"/>
+      <path d="${jar}" fill="#dff1f7" fill-opacity=".35" stroke="#ffffffcc" stroke-width="5"/>
+      <g id="cubes">${list.map((c, i) => cube(c, i)).join('')}</g>
+      <path d="${jar}" fill="url(#gl)" pointer-events="none"/>
+      <rect x="${cx - 128}" y="272" width="256" height="26" rx="10" fill="#c9a36b" stroke="#8a6a3d" stroke-width="3"/>
+      ${SG.shown ? `<line x1="${cx - 166}" x2="${cx + 166}" y1="${kidLine}" y2="${kidLine}" stroke="#c2402c" stroke-width="4" stroke-dasharray="12 8"/>
+      <g transform="translate(${cx - 190} 200)"><rect width="380" height="58" rx="14" fill="#fffdf7" opacity=".95"/><line x1="16" x2="70" y1="29" y2="29" stroke="#c2402c" stroke-width="4" stroke-dasharray="12 8"/>
+      <text x="82" y="24" font-family="Segoe UI,sans-serif" font-weight="800" font-size="16" fill="#1f2328">A kid's limit for a WHOLE day:</text><text x="82" y="44" font-family="Segoe UI,sans-serif" font-weight="600" font-size="15" fill="#5f6670">less than 25g of added sugar (AHA)</text></g>` : ''}
+      </svg>`;
+    if (animate && SG.shown) {
+      document.querySelectorAll('#cubes .cg').forEach((g, i) => {
+        const a = anim(g, [{transform: 'translateY(-560px)', opacity: 0}, {transform: 'translateY(0)', opacity: 1}], {duration: 520, delay: i * 140, easing: 'cubic-bezier(.3,1.3,.6,1)', fill: 'backwards'});
+        setTimeout(() => SFX.clink(i), (reduce ? 0 : 420) + i * 140);
+      });
+    }
+  }
+  function cube(c, i) {
+    const s = 60, w = c.half ? s / 2 : s, top = c.added ? '#ffffff' : '#eaf6ff', side = c.added ? '#e4e0d8' : '#c4dff0', front = c.added ? '#f4f1ea' : '#d8ecf8';
+    return `<g class="cg"><g transform="translate(${c.x},${c.y})">
+      <path d="M0 10 L10 0 L${w + 10} 0 L${w} 10 Z" fill="${top}" stroke="#0002"/>
+      <path d="M${w} 10 L${w + 10} 0 L${w + 10} ${s - 10} L${w} ${s} Z" fill="${side}" stroke="#0002"/>
+      <rect x="0" y="10" width="${w}" height="${s - 10}" fill="${front}" stroke="#0002"/>
+      <circle cx="${w * .3}" cy="24" r="2" fill="#0001"/><circle cx="${w * .6}" cy="36" r="2" fill="#0001"/><circle cx="${w * .45}" cy="46" r="1.6" fill="#0001"/></g></g>`;
+  }
+  function sugarCard() {
+    const f = SG.food, t = tsp(f.sug), a = tsp(f.add);
+    $('sg').innerHTML = `<div class="kicker">${f.name} · ${f.size}</div>
+      <h2>${SG.shown ? `${f.sug}g of sugar = about ${t} teaspoon${t === 1 ? '' : 's'}` : 'How many teaspoons of sugar?'}</h2>
+      ${SG.shown ? `<p><b>${f.add}g is added sugar</b> (white cubes)${f.sug - f.add > 0 ? ` and <b>${f.sug - f.add}g is natural</b> sugar from fruit or milk (blue cubes)` : ''}.</p>
+        <p>${f.add >= 25 ? `That is <b>more added sugar than a kid should have in a whole day</b>, in one ${f.kind === 'drink' ? 'drink' : 'snack'}.` : f.add >= 10 ? `That is ${Math.round(f.add / 25 * 100)}% of the most added sugar a kid should have in a day.` : f.add > 0 ? 'Only a little added sugar.' : 'No added sugar at all!'}</p>
+        <p style="color:var(--muted);font-size:16px">One teaspoon of sugar weighs about 4 grams, so divide the grams by 4.</p>
+        <div style="display:flex;gap:10px;flex-wrap:wrap"><button class="b teal" id="again">Try another</button><button class="b" id="lineup">📊 Sugar lineup</button></div>`
+      : `<p>Look at the snack. Is it sweet? Does it come from fruit or milk? Then make your guess.</p>
+        <div class="pred"><input type="range" id="guess" min="0" max="12" step=".5" value="${SG.guess}" aria-label="Your guess in teaspoons"><output id="go">${SG.guess}</output></div>
+        <p style="margin-top:-4px;color:var(--muted);font-size:16px">teaspoons</p>
+        <button class="b go" id="show">Show me</button>`}
+      <p style="margin-top:14px;font:700 15px 'Segoe UI',sans-serif;color:var(--muted)">Guesses within 1 teaspoon: ${SG.close} of ${SG.tries}</p>`;
+    if (SG.shown) {
+      $('again').onclick = () => { const pool = FOODS.filter(x => x !== SG.food && x.sug > 0); SG.food = pool[Math.floor(Math.random() * pool.length)]; SG.shown = false; renderSugar(); say(`Next up: <b>${SG.food.name}</b>. Make your guess!`); };
+      $('lineup').onclick = lineup;
+    } else {
+      $('guess').oninput = e => { SG.guess = +e.target.value; $('go').textContent = SG.guess; };
+      $('show').onclick = () => {
+        SG.shown = true; SG.tries++; const off = Math.abs(SG.guess - t); if (off <= 1) SG.close++;
+        drawJar(true); sugarCard();
+        setTimeout(() => { (off <= 1 ? SFX.good : SFX.tap)(); say(off <= 1 ? `Sharp eyes! You guessed ${SG.guess}, and it's about <b>${t}</b>.` : `You guessed ${SG.guess}. It's about <b>${t}</b> teaspoons. ${SG.guess < t ? 'Sugar hides in places you don\'t expect!' : 'Less than you thought!'}`); }, reduce ? 50 : Math.ceil(t) * 140 + 600);
+      };
+    }
+  }
+  function lineup() {
+    const list = FOODS.filter(f => f.kind !== 'zz').sort((a, b) => b.sug - a.sug), mx = list[0].sug;
+    $('sg').innerHTML = `<h2>Sugar lineup</h2><p style="font-size:15px;margin-top:0">Orange = added sugar, blue = natural sugar. Teaspoons per serving.</p>
+      <div class="lineup">${list.map(f => `<img src="${IMG[f.art]}" alt=""><div><div style="font-size:13px">${f.name}</div><div style="display:flex;width:${Math.max(2, f.sug / mx * 100)}%"><div class="lb" style="flex:${f.add || .0001}"></div><div class="lb nat" style="flex:${f.sug - f.add || .0001}"></div></div></div><b>${tsp(f.sug)}</b>`).join('')}</div>
+      <button class="b teal" id="back" style="margin-top:8px">Back</button>`;
+    $('back').onclick = sugarCard;
+    say('Drinks are at the top. Sugar you drink adds up fast, and it doesn\'t fill you up the way food does.');
+  }
+
+  // ---------- Cases ----------
+  const CASES = [
+    {title: 'The Sneaky Sugar', story: 'Ava wants a drink with her lunch that has <b>no added sugar</b>. She found three on the shelf. They all taste sweet!',
+      ask: 'Which drink has no added sugar?', opts: ['fruitdrink', 'juice', 'chocmilk'], ok: 'juice', clue: ['add'],
+      wrong: 'Check the line that says <b>Includes ... Added Sugars</b>. Total sugars can fool you.',
+      solve: 'The apple juice has 21g of sugar, but <b>0g is added</b>: it all comes from the apples. The fruit drink is only a little juice, with 21g of added sugar. (Whole fruit is still better than juice, because it has fiber.)'},
+    {title: 'The Salty Bus Ride', story: 'Coach wants the team to pack a snack for the long bus ride with <b>the least sodium</b>, so nobody gets super thirsty.',
+      ask: 'Which snack has the least sodium?', opts: ['pretzels', 'cheesecrackers', 'trailmix'], ok: 'trailmix', clue: ['sod'],
+      wrong: 'Find the <b>Sodium</b> line and compare the milligrams.',
+      solve: 'The trail mix has just <b>50mg (2% DV)</b>. The pretzels have 400mg, which is 17% of a whole day, in one small bag!'},
+    {title: 'Bone Builders', story: 'Marcus broke his arm. The doctor said to eat foods with lots of <b>calcium</b> to help the bone heal.',
+      ask: 'Which snack has the most calcium?', opts: ['stringcheese', 'milk', 'cheesecrackers'], ok: 'milk', clue: ['ca'],
+      wrong: 'Calcium is near the bottom of the label, under the thick black line.',
+      solve: 'The white milk has <b>300mg, 25% DV</b>. That is HIGH, and high is good for calcium. The cheese crackers taste cheesy but have only 4%.'},
+    {title: 'The Serving Size Trick', story: 'Leo ate the whole sharing-size bag of potato chips during a movie. The label says 160 calories. Leo says that\'s all he ate.',
+      item: 'chips', ask: 'How many calories did Leo really eat?', opts: ['160 calories', '320 calories', '480 calories'], ok: '480 calories', clue: ['spc'],
+      wrong: 'Look at the very top of the label. How many servings are in the bag?',
+      solve: 'The bag holds <b>about 3 servings</b>. 3 × 160 = <b>480 calories</b>, and 3 × 170mg = 510mg of sodium. Always check servings per container first.'},
+    {title: 'Full Until Dinner', story: 'Sam gets hungry an hour after school snack. Snacks with <b>fiber</b> help you stay full longer.',
+      ask: 'Which snack has the most fiber?', opts: ['fruitsnacks', 'carrots', 'cerealbar'], ok: 'carrots', clue: ['fib'],
+      wrong: 'Fiber is listed under Total Carbohydrate. Which one has the most grams?',
+      solve: 'Carrots and hummus have <b>4g of fiber</b>, plus some protein. Fruit snacks have 0g fiber, even though they are named after fruit.'},
+    {title: 'The Yogurt Mystery', story: 'Both yogurts have a healthy-looking cup. Priya wants the one with <b>no added sugar</b>.',
+      ask: 'Which yogurt has added sugar?', opts: ['yogurt', 'greekyogurt'], ok: 'yogurt', clue: ['add'],
+      wrong: 'Both have some sugar, because milk has natural sugar. Look for the word <b>Added</b>.',
+      solve: 'The strawberry yogurt has <b>13g of added sugar</b>, about 3 teaspoons. The plain Greek yogurt has 0g added, and 15g of protein. Stir in your own fruit!'},
+    {title: 'Game Day Drink', story: 'Jordan just finished a 45-minute soccer practice and is thirsty. Jordan wants a drink with <b>no added sugar and no sodium</b>.',
+      ask: 'Which drink fits?', opts: ['sportsdrink', 'soda', 'water'], ok: 'water', clue: ['add', 'sod'],
+      wrong: 'Check Added Sugars and Sodium. The answer has zeros in both.',
+      solve: 'Water: <b>0g added sugar and 0mg sodium</b>. The sports drink has 34g of added sugar, more than a kid should have all day. Sports drinks are made for long, hard exercise; for most practices, water is best.'},
+    {title: 'Breakfast Fuel', story: 'Mia wants a breakfast with <b>fiber and no added sugar</b> before a big test.',
+      ask: 'Which breakfast fits best?', opts: ['cerealbar', 'oatmeal', 'plainoats'], ok: 'plainoats', clue: ['add'],
+      wrong: 'Two oatmeals have the same fiber. Which one has 0g of added sugar?',
+      solve: 'The plain oatmeal has 3g of fiber and <b>0g added sugar</b>. The maple oatmeal has the same fiber but 11g of added sugar. Top plain oatmeal with banana for sweetness.'},
+    {title: 'The Field Trip Rules', story: 'The field trip snack rules: <b>200 calories or less</b>, <b>sodium 10% DV or less</b>, and <b>at least 2g of fiber</b>.',
+      ask: 'Which snack follows all three rules?', opts: ['pbcrackers', 'cheesecrackers', 'trailmix'], ok: 'trailmix', clue: ['fib', 'sod', 'cal'],
+      wrong: 'Check each rule one at a time: calories, then sodium %DV, then fiber.',
+      solve: 'Trail mix: 170 calories, 2% DV sodium and 2g of fiber. The peanut butter crackers have 15% DV sodium, and the cheese crackers have 210 calories.'},
+    {title: 'Five or Twenty?', story: 'Diego says pretzels are a low-sodium snack because they are not greasy. Use the <b>5/20 rule</b> to check.',
+      item: 'pretzels', ask: 'Is the sodium in one bag of pretzels low, in between or high?', opts: ['Low (5% DV or less)', 'In between', 'High (20% DV or more)'], ok: 'In between', clue: ['sod'],
+      wrong: 'Find the %DV next to Sodium. Is it 5 or less, 20 or more, or in between?',
+      solve: 'One bag is <b>17% DV</b>: in between, close to high. Two bags would be 35%, which is high. Not greasy does not mean not salty!'},
+  ];
+  let cs = {i: 0, step: 'ask', tries: 0, etries: 0, view: null, got: {}};
+  try { cs.got = JSON.parse(localStorage.getItem('label-detective-cases') || '{}'); } catch {}
+  function renderCases() {
+    const c = CASES[cs.i], foods = c.item ? [byArt[c.item]] : c.opts.map(a => byArt[a]);
+    if (!cs.view) cs.view = c.item || null;
+    const isFood = !c.item;
+    const optHTML = c.opts.map(o => {
+      const f = isFood ? byArt[o] : null, done = cs.step !== 'ask', right = o === c.ok;
+      return `<button class="opt ${done && right ? 'yes' : ''} ${(cs.tried || []).includes(o) ? 'no' : ''}" data-opt="${o}" ${done ? 'disabled' : ''}>${f ? `<img src="${IMG[f.art]}" alt="">${f.name}` : o}</button>`;
+    }).join('');
+    const stars = cs.got[cs.i];
+    view.innerHTML = `<div class="folder"><div class="no">CASE FILE No. ${String(cs.i + 1).padStart(2, '0')}</div>
+      <h2>${c.title}</h2>${stars ? `<div class="stamp">SOLVED</div>` : ''}
+      <p>${c.story}</p><div class="ask">${cs.step === 'ask' ? c.ask : cs.step === 'prove' ? `🔍 Now prove it: tap the line on the ${(isFood ? byArt[c.ok] : byArt[c.item]).name} label that cracks the case.` : '✅ Case closed!'}</div>
+      <div class="opts" role="group" aria-label="Answers">${optHTML}</div>
+      ${cs.step === 'ask' && isFood ? `<div class="peek"><span style="font:700 15px 'Segoe UI',sans-serif;align-self:center">Read a label:</span>${foods.map(f => `<button class="b" data-peek="${f.art}" aria-pressed="${cs.view === f.art}">${f.name}</button>`).join('')}</div>` : ''}
+      ${cs.step === 'done' ? `<p style="margin-top:12px">${c.solve}</p><button class="b teal" id="next">${cs.i < CASES.length - 1 ? 'Next case ▶' : 'Back to case 1'}</button>` : ''}
+      </div>
+      <div class="labelbox" id="clab" style="left:604px;top:86px;width:380px;height:610px"></div>
+      <div class="casebar" role="group" aria-label="Case files">${CASES.map((x, i) => `<button data-case="${i}" aria-current="${i === cs.i}" aria-label="Case ${i + 1}${cs.got[i] ? ', solved' : ''}">${i + 1}<small>${cs.got[i] ? '★'.repeat(cs.got[i]) : '·'}</small></button>`).join('')}</div>
+      <div class="card" style="left:1000px;right:22px;top:86px;padding:12px 16px"><div class="kicker">Detective's notebook</div>
+      <p style="font-size:16px">${Object.keys(cs.got).length} of ${CASES.length} cases solved · ${Object.values(cs.got).reduce((a, b) => a + b, 0)} of ${CASES.length * 3} stars</p>
+      <p style="font-size:15px;color:var(--muted)">★★★ = right answer and right clue on the first try.</p></div>`;
+    const show = cs.step === 'ask' ? cs.view : (isFood ? c.ok : c.item);
+    if (show) {
+      placeLabel($('clab'), byArt[show], 1, {max: 1.05, onLine: k => proveLine(k)});
+      if (cs.step === 'done') document.querySelectorAll('#clab [data-line]').forEach(el => el.classList.toggle('found', c.clue.includes(el.dataset.line)));
+    } else $('clab').innerHTML = `<div style="position:absolute;inset:40px 30px;border:4px dashed #fff8;border-radius:24px;display:grid;place-items:center;text-align:center;color:#fff;font:800 22px/1.4 'Segoe UI',sans-serif;text-shadow:0 2px 4px #0008;padding:30px">Tap a snack's name under the case to read its label here.</div>`;
+    document.querySelectorAll('[data-peek]').forEach(b => b.onclick = () => { cs.view = b.dataset.peek; SFX.pick(); renderCases(); });
+    document.querySelectorAll('[data-opt]').forEach(b => b.onclick = () => choose(b.dataset.opt));
+    document.querySelectorAll('[data-case]').forEach(b => b.onclick = () => openCase(+b.dataset.case));
+    if ($('next')) $('next').onclick = () => openCase((cs.i + 1) % CASES.length);
+  }
+  function openCase(i) {
+    cs = {...cs, i, step: 'ask', tries: 0, etries: 0, view: null, tried: []};
+    SFX.pick(); renderCases();
+    say(`<b>Case ${i + 1}: ${CASES[i].title}.</b> Read the case file, then check the labels for clues.`);
+    anim(document.querySelector('.folder'), [{transform: 'translateX(-40px) rotate(-2deg)', opacity: 0}, {transform: 'none', opacity: 1}], {duration: 420, easing: 'ease-out'});
+  }
+  function choose(o) {
+    const c = CASES[cs.i];
+    if (o !== c.ok) { cs.tries++; cs.tried = [...(cs.tried || []), o]; SFX.bad(); renderCases(); say(`Hmm, not quite. ${c.wrong}`); return; }
+    cs.step = 'prove'; SFX.good(); renderCases();
+    say('That\'s the one! A good detective always shows the evidence. <b>Tap the line on the label that proves it.</b>');
+  }
+  function proveLine(k) {
+    const c = CASES[cs.i];
+    if (cs.step === 'ask') { RD.line = k; const L = LINES[k]; if (L) say(`<b>${L.t}.</b> ${L.d(byArt[cs.view])}`); SFX.tap(); return; }
+    if (cs.step !== 'prove') return;
+    const el = document.querySelector(`#clab [data-line="${k}"]`);
+    if (!c.clue.includes(k)) { cs.etries++; SFX.bad(); el && el.classList.add('miss'); say(`That line is a real clue for other cases, but not this one. ${c.wrong}`); return; }
+    cs.step = 'done';
+    const stars = Math.max(1, 3 - cs.tries - (cs.etries ? 1 : 0));
+    cs.got[cs.i] = Math.max(cs.got[cs.i] || 0, stars);
+    try { localStorage.setItem('label-detective-cases', JSON.stringify(cs.got)); } catch {}
+    SFX.stamp(); setTimeout(SFX.good, 200);
+    renderCases();
+    anim(document.querySelector('.stamp'), [{transform: 'rotate(-12deg) scale(2.4)', opacity: 0}, {transform: 'rotate(-12deg) scale(1)', opacity: .9}], {duration: 380, easing: 'cubic-bezier(.3,1.4,.6,1)'});
+    say(`<b>Case closed!</b> ${'⭐'.repeat(stars)}<br>Read why in the case file.`);
+  }
+
+  // ---------- start ----------
+  Object.assign(IMG, {
+    apple: 'art:apple', banana: 'art:banana', granola: 'art:granola', cheesecrackers: 'art:cheesecrackers', yogurt: 'art:yogurt', greekyogurt: 'art:greekyogurt',
+    pretzels: 'art:pretzels', chocmilk: 'art:chocmilk', milk: 'art:milk', juice: 'art:juice', fruitdrink: 'art:fruitdrink', chips: 'art:chips',
+    stringcheese: 'art:stringcheese', trailmix: 'art:trailmix', fruitsnacks: 'art:fruitsnacks', carrots: 'art:carrots', popcorn: 'art:popcorn',
+    sportsdrink: 'art:sportsdrink', soda: 'art:soda', cerealbar: 'art:cerealbar', pbcrackers: 'art:pbcrackers', oatmeal: 'art:oatmeal', plainoats: 'art:plainoats', water: 'art:water'});
+  document.addEventListener('keydown', e => {
+    if (e.target.closest('input')) return;
+    const i = ['1', '2', '3', '4'].indexOf(e.key); if (i >= 0) setMode(['read', 'compare', 'sugar', 'cases'][i]);
+  });
+  setMode('read');
+  RD.line = 'size'; info();
+  say('Welcome, detective! Every packaged food has a <b>Nutrition Facts</b> label. Pick a snack, then tap a line on its label. Start with <b>serving size</b>.');
+  window.__ld = {FOODS, CASES, setMode, labelHTML, pct, amt, cs: () => cs, openCase, choose, proveLine, SG, CP, RD};
+})();
+</script>
+</body>
+</html>

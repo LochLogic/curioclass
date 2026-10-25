@@ -1,0 +1,189 @@
+{
+  "style": "Food is drawn appetizing and true to life, like a picture-book still life.",
+  "assets": [
+    {
+      "name": "board",
+      "prompt": "A big cork bulletin board filling the whole picture, warm natural cork texture, a few red push pins and a little loose red string near the edges, a wooden frame only at the very edges. The middle is empty cork. Soft lamp light from the upper left.",
+      "aspect": "16:9",
+      "width": 1600,
+      "quality": 70,
+      "skip_style": true,
+      "trim": 0.02
+    },
+    {
+      "name": "detective",
+      "prompt": "A friendly cartoon beagle dog detective standing on two legs, wearing a tan trench coat and a brown deerstalker cap, holding a big magnifying glass up near one eye, cheerful curious smile, full body, three-quarter view facing left.",
+      "cutout": true,
+      "aspect": "3:4",
+      "height": 360
+    },
+    {
+      "name": "apple",
+      "prompt": "One shiny whole red apple with a short stem and one green leaf, standing by itself, nothing under it, no box, no plate.",
+      "cutout": true,
+      "width": 240,
+      "skip_style": true
+    },
+    {
+      "name": "banana",
+      "prompt": "one ripe yellow banana. Plain unbranded packaging: no words, no letters, no numbers, no logos anywhere.",
+      "cutout": true,
+      "width": 240,
+      "skip_style": true
+    },
+    {
+      "name": "granola",
+      "prompt": "one chewy chocolate chip granola bar in an open shiny wrapper, the bar partly showing. Plain unbranded packaging: no words, no letters, no numbers, no logos anywhere.",
+      "cutout": true,
+      "width": 240,
+      "skip_style": true
+    },
+    {
+      "name": "cheesecrackers",
+      "prompt": "a small open snack bag of little orange square cheese crackers, a few crackers spilling out. Plain unbranded packaging: no words, no letters, no numbers, no logos anywhere.",
+      "cutout": true,
+      "width": 240,
+      "skip_style": true
+    },
+    {
+      "name": "yogurt",
+      "prompt": "a single-serve cup of pink strawberry yogurt with a peeled-back foil lid and a spoon. Plain unbranded packaging: no words, no letters, no numbers, no logos anywhere.",
+      "cutout": true,
+      "width": 240,
+      "skip_style": true
+    },
+    {
+      "name": "greekyogurt",
+      "prompt": "a single-serve cup of thick plain white Greek yogurt with a peeled-back lid and a few blueberries beside it. Plain unbranded packaging: no words, no letters, no numbers, no logos anywhere.",
+      "cutout": true,
+      "width": 240,
+      "skip_style": true
+    },
+    {
+      "name": "pretzels",
+      "prompt": "a small open snack bag of twisted salty pretzels with a few pretzels in front. Plain unbranded packaging: no words, no letters, no numbers, no logos anywhere.",
+      "cutout": true,
+      "width": 240,
+      "skip_style": true
+    },
+    {
+      "name": "chocmilk",
+      "prompt": "a small school-lunch carton of chocolate milk with a bendy straw, brown carton. Plain unbranded packaging: no words, no letters, no numbers, no logos anywhere.",
+      "cutout": true,
+      "width": 240,
+      "skip_style": true
+    },
+    {
+      "name": "milk",
+      "prompt": "a small school-lunch carton of white milk with a straw, blue and white carton. Plain unbranded packaging: no words, no letters, no numbers, no logos anywhere.",
+      "cutout": true,
+      "width": 240,
+      "skip_style": true
+    },
+    {
+      "name": "juice",
+      "prompt": "a small apple juice box with a straw, an apple drawn on the box as the only picture. Plain unbranded packaging: no words, no letters, no numbers, no logos anywhere.",
+      "cutout": true,
+      "width": 240,
+      "skip_style": true
+    },
+    {
+      "name": "fruitdrink",
+      "prompt": "a bright purple fruit drink pouch with a straw, a cartoon grape cluster on it as the only picture. Plain unbranded packaging: no words, no letters, no numbers, no logos anywhere.",
+      "cutout": true,
+      "width": 240,
+      "skip_style": true
+    },
+    {
+      "name": "chips",
+      "prompt": "a sharing-size open bag of wavy potato chips, chips spilling out in front. Plain unbranded packaging: no words, no letters, no numbers, no logos anywhere.",
+      "cutout": true,
+      "width": 240,
+      "skip_style": true
+    },
+    {
+      "name": "stringcheese",
+      "prompt": "One stick of white mozzarella string cheese, a thick creamy white cylinder lying on its side, with a few thin strands peeled back from one end, and its clear plastic wrapper opened beside it. Plain unbranded: no words, no letters, no logos.",
+      "cutout": true,
+      "width": 240,
+      "skip_style": true
+    },
+    {
+      "name": "trailmix",
+      "prompt": "a small open bag of trail mix: peanuts, raisins, almonds and a few chocolate candies spilling out. Plain unbranded packaging: no words, no letters, no numbers, no logos anywhere.",
+      "cutout": true,
+      "width": 240,
+      "skip_style": true
+    },
+    {
+      "name": "fruitsnacks",
+      "prompt": "a small open pouch of gummy fruit snacks shaped like little stars and hearts, a few spilling out. Plain unbranded packaging: no words, no letters, no numbers, no logos anywhere.",
+      "cutout": true,
+      "width": 240,
+      "skip_style": true
+    },
+    {
+      "name": "carrots",
+      "prompt": "a snack pack: a small tub of hummus with baby carrots dipped in it and more baby carrots beside it. Plain unbranded packaging: no words, no letters, no numbers, no logos anywhere.",
+      "cutout": true,
+      "width": 240,
+      "skip_style": true
+    },
+    {
+      "name": "popcorn",
+      "prompt": "a paper bag of light fluffy popcorn overflowing. Plain unbranded packaging: no words, no letters, no numbers, no logos anywhere.",
+      "cutout": true,
+      "width": 240,
+      "skip_style": true
+    },
+    {
+      "name": "sportsdrink",
+      "prompt": "a tall plastic bottle of bright blue sports drink. Plain unbranded packaging: no words, no letters, no numbers, no logos anywhere.",
+      "cutout": true,
+      "width": 240,
+      "skip_style": true
+    },
+    {
+      "name": "soda",
+      "prompt": "a can of fizzy lemon-lime soda with a few bubbles, green and white can. Plain unbranded packaging: no words, no letters, no numbers, no logos anywhere.",
+      "cutout": true,
+      "width": 240,
+      "skip_style": true
+    },
+    {
+      "name": "cerealbar",
+      "prompt": "a fruit-filled cereal bar with strawberry filling showing at the cut end, on its open wrapper. Plain unbranded packaging: no words, no letters, no numbers, no logos anywhere.",
+      "cutout": true,
+      "width": 240,
+      "skip_style": true
+    },
+    {
+      "name": "pbcrackers",
+      "prompt": "a small stack of six orange peanut butter sandwich crackers in an open clear wrapper. Plain unbranded packaging: no words, no letters, no numbers, no logos anywhere.",
+      "cutout": true,
+      "width": 240,
+      "skip_style": true
+    },
+    {
+      "name": "oatmeal",
+      "prompt": "A bowl of light brown maple and brown sugar oatmeal with a spoon in it, a torn empty paper packet beside the bowl. No steam. Plain unbranded packaging: no words, no letters, no numbers, no logos anywhere.",
+      "cutout": true,
+      "width": 240,
+      "skip_style": true
+    },
+    {
+      "name": "plainoats",
+      "prompt": "a bowl of plain oatmeal topped with banana slices, with a spoon. Plain unbranded packaging: no words, no letters, no numbers, no logos anywhere.",
+      "cutout": true,
+      "width": 240,
+      "skip_style": true
+    },
+    {
+      "name": "water",
+      "prompt": "a clear reusable water bottle full of cool water with a few droplets on it. Plain unbranded packaging: no words, no letters, no numbers, no logos anywhere.",
+      "cutout": true,
+      "width": 240,
+      "skip_style": true
+    }
+  ]
+}

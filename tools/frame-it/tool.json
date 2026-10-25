@@ -1,0 +1,23 @@
+{
+  "id": "frame-it",
+  "status": "beta",
+  "driver": "students",
+  "modes": [
+    "Shoot",
+    "Assignments",
+    "Light studio"
+  ],
+  "grades_label": "Grades 6-8",
+  "third_party": [
+    "Three.js r128 (MIT)"
+  ],
+  "updated": "2026-10-24",
+  "hook": "A virtual camera over three big painted scenes: aim, zoom, tilt and turn it, and every photo comes back with a review of its composition. Then light a 3D still life five different ways.",
+  "outcome": "Compose photographs using the rule of thirds, horizon placement, leading lines, framing, filling the frame and orientation, explain when to break a rule on purpose, and describe how the direction, quality and color of light change a subject",
+  "minutes": "20-45",
+  "sources": [
+    "Scenes painted with Google Gemini, edited for Curio Class",
+    "3D still life built with Three.js r128 (MIT)",
+    "Sound synthesized in the browser"
+  ]
+}

@@ -1,0 +1,101 @@
+{
+  "style": "Characters are friendly kids around 9 years old, simple and appealing.",
+  "assets": [
+    {
+      "name": "room",
+      "prompt": "A cozy elementary classroom seen straight from above like a floor plan map, in soft storybook style: warm wooden floor, a round blue reading rug in the lower right corner, a sink with soap at the top left wall, a door at the bottom left, cubbies along the left wall, a whiteboard along the top wall, a teacher desk at the top right, plants by windows along the right wall. The whole center of the floor is empty open wood floor with no desks and no furniture. No people.",
+      "aspect": "16:9",
+      "width": 1600,
+      "quality": 72,
+      "skip_style": true,
+      "trim": 0.02
+    },
+    {
+      "name": "hand",
+      "prompt": "A child's left hand seen from the palm side, open flat with fingers spread a little apart, thumb out to the side, exactly five fingers, simple friendly drawing, warm medium skin tone, the wrist at the bottom.",
+      "cutout": true,
+      "aspect": "3:4",
+      "height": 620,
+      "skip_style": true
+    },
+    {
+      "name": "handback",
+      "prompt": "A child's right hand seen from the back side with fingernails visible, open flat with fingers spread a little apart, thumb out to the side, exactly five fingers, simple friendly drawing, warm medium skin tone, the wrist at the bottom.",
+      "cutout": true,
+      "aspect": "3:4",
+      "height": 620,
+      "skip_style": true,
+      "ref": "hand"
+    },
+    {
+      "name": "k1",
+      "prompt": "Head and shoulders portrait of a girl with dark brown skin and two puffy hair buns, facing forward, friendly smile, plain colorful t-shirt.",
+      "cutout": true,
+      "aspect": "1:1",
+      "height": 150
+    },
+    {
+      "name": "k2",
+      "prompt": "Head and shoulders portrait of a boy with light skin, freckles and red hair, facing forward, friendly smile, plain colorful t-shirt.",
+      "cutout": true,
+      "aspect": "1:1",
+      "height": 150,
+      "ref": "k1",
+      "ref_mode": "style"
+    },
+    {
+      "name": "k3",
+      "prompt": "Head and shoulders portrait of a girl with tan skin and a long black braid, facing forward, friendly smile, plain colorful t-shirt.",
+      "cutout": true,
+      "aspect": "1:1",
+      "height": 150,
+      "ref": "k1",
+      "ref_mode": "style"
+    },
+    {
+      "name": "k4",
+      "prompt": "Head and shoulders portrait of a boy with medium brown skin and short black curls, wearing glasses, facing forward, friendly smile, plain colorful t-shirt.",
+      "cutout": true,
+      "aspect": "1:1",
+      "height": 150,
+      "ref": "k1",
+      "ref_mode": "style"
+    },
+    {
+      "name": "k5",
+      "prompt": "Head and shoulders portrait of a girl with light skin and blond hair in a ponytail, facing forward, friendly smile, plain colorful t-shirt.",
+      "cutout": true,
+      "aspect": "1:1",
+      "height": 150,
+      "ref": "k1",
+      "ref_mode": "style"
+    },
+    {
+      "name": "k6",
+      "prompt": "Head and shoulders portrait of a boy with East Asian features and straight black hair, facing forward, friendly smile, plain colorful t-shirt.",
+      "cutout": true,
+      "aspect": "1:1",
+      "height": 150,
+      "ref": "k1",
+      "ref_mode": "style"
+    },
+    {
+      "name": "k7",
+      "prompt": "Head and shoulders portrait of a girl wearing a navy hijab with a warm smile, facing forward, friendly smile, plain colorful t-shirt.",
+      "cutout": true,
+      "aspect": "1:1",
+      "height": 150,
+      "ref": "k1",
+      "ref_mode": "style"
+    },
+    {
+      "name": "k8",
+      "prompt": "Head and shoulders portrait of a boy with brown skin and a buzz cut, gap-tooth grin, facing forward, friendly smile, plain colorful t-shirt.",
+      "cutout": true,
+      "aspect": "1:1",
+      "height": 150,
+      "ref": "k1",
+      "ref_mode": "style"
+    }
+  ]
+}

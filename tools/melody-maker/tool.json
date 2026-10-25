@@ -1,0 +1,23 @@
+{
+  "id": "melody-maker",
+  "status": "beta",
+  "driver": "students or teacher",
+  "modes": [
+    "Compose",
+    "Scale ladder",
+    "Echo it",
+    "Finish the tune"
+  ],
+  "grades_label": "Grades 3-5",
+  "third_party": [],
+  "updated": "2026-10-24",
+  "hook": "Compose on a do-re-mi grid where every note sounds good, climb the major scale ladder to find its two half steps, echo a singing robin, and pick the note that makes a tune sound finished.",
+  "outcome": "Use solfege to read, play and compose short melodies in a major scale, describe melodic motion (step, skip, leap, repeat), explain the whole and half step pattern of the major scale, and hear why melodies end on the home note",
+  "minutes": "15-40",
+  "sources": [
+    "Tunes: public domain folk songs (Hot Cross Buns, Mary Had a Little Lamb, Twinkle Twinkle, Row Row Row Your Boat, Ode to Joy, Frère Jacques)",
+    "Treble clef drawing: public domain, Wikimedia Commons",
+    "Robin illustrations generated with Google Gemini, edited for Curio Class",
+    "Sound synthesized in the browser"
+  ]
+}

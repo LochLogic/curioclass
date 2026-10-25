@@ -1,0 +1,24 @@
+{
+  "id": "label-detective",
+  "status": "beta",
+  "driver": "students or teacher",
+  "modes": [
+    "Read a label",
+    "Compare",
+    "Sugar spotter",
+    "Cases"
+  ],
+  "grades_label": "Grades 3-5",
+  "third_party": [],
+  "updated": "2026-10-24",
+  "hook": "Read real-format Nutrition Facts labels for 24 everyday snacks and drinks, count the hidden teaspoons of sugar, and crack ten case files by tapping the label line that proves the answer.",
+  "outcome": "Read a Nutrition Facts label (serving size, servings per container, calories, %DV and the 5/20 rule, added sugars and sodium) and use it to compare foods and choose one that fits a health goal",
+  "minutes": "20-40",
+  "sources": [
+    "Label format, Daily Values and rounding: FDA Nutrition Facts label (21 CFR 101.9, 2016 rule)",
+    "Nutrient values: typical amounts for generic foods, based on USDA FoodData Central; real brands vary",
+    "Added sugar guidance for children: American Heart Association (less than 25 g a day, ages 2-18)",
+    "Illustrations generated with Google Gemini, edited for Curio Class",
+    "Sound synthesized in the browser"
+  ]
+}
