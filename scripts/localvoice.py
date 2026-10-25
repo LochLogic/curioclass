@@ -2,6 +2,9 @@ r"""Record a tool's spoken lines on this PC with Qwen3-TTS (Apache 2.0), cloning
 
     S:\AI\tts\.venv\Scripts\python.exe scripts/localvoice.py <tool-id> [--n 40]
 
+With "bank": "<voice-id>" in voice/lines.json the tool clones a frozen voice from voices/ (scripts/voicebank.py) and
+Gemini is never called. Without it, the tool's own Gemini voice is copied as below.
+
 Each tool's voice comes from voice/lines.json (Gemini voice + style). Qwen copies it from one reference clip, so local
 lines sound like the Gemini ones and the two can mix in one tool:
   1. The reference is a Gemini recording already in voice/raw/ (3 to 9 seconds, the longest), or "ref" in lines.json
@@ -52,7 +55,15 @@ def main():
         gem = [t for t in lines if rawf(t).exists() and t not in local and 3 <= len(pcm_of(rawf(t))) / SR <= 9]
         return max(gem, key=lambda t: len(pcm_of(rawf(t))), default=None)
 
-    ref = ref_pick()
+    bank = spec.get('bank')  # a voice from the frozen bank (voices/bank.json): no Gemini at all
+    if bank:
+        bdir = ROOT / 'voices' / bank
+        if not (bdir / 'ref.wav').exists():
+            sys.exit(f'voice bank has no {bank} yet (python scripts/voicebank.py {bank})')
+        import soundfile as sf
+        ref_audio, ref = (sf.read(bdir / 'ref.wav', dtype='float32')[0], SR), (bdir / 'ref.txt').read_text(encoding='utf-8')
+    else:
+        ref = ref_pick(); ref_audio = None
     if not ref:  # no Gemini take yet: record one so there is a voice to copy
         first = max((t for t in lines if 40 <= len(t) <= 120), key=len, default=lines[0])
         print(f'no reference yet: recording one line with Gemini: {first[:60]}')
@@ -66,7 +77,7 @@ def main():
         return
     from qwen_tts import Qwen3TTSModel
     m = Qwen3TTSModel.from_pretrained('Qwen/Qwen3-TTS-12Hz-1.7B-Base', device_map='cuda:0', dtype=torch.bfloat16)
-    prompt = m.create_voice_clone_prompt(ref_audio=(pcm_of(rawf(ref)).astype(np.float32) / 32768, SR), ref_text=ref)
+    prompt = m.create_voice_clone_prompt(ref_audio=ref_audio or (pcm_of(rawf(ref)).astype(np.float32) / 32768, SR), ref_text=ref)
     flagged = []
     for i in range(0, len(todo), 8):
         batch = todo[i:i + 8]
