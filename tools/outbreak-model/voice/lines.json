@@ -1,0 +1,16 @@
+{
+ "bank": "hs-narrator",
+ "voice": "Kore",
+ "style": "Read clearly and naturally, at a moderate pace",
+ "lines": [
+  "Welcome to Outbreak Model. Pick a story, press Play, and watch the count grow.",
+  "Notice the milestones. Each time the count gets ten times bigger, it takes the same amount of time.",
+  "Try the log scale. An exponential curve turns into a straight line.",
+  "Ask when. Drag the target line to any number, and logarithms will tell you exactly when the count gets there.",
+  "Want to test your instinct first? Turn on Guess first, drop a pin on the time axis, then show the answer.",
+  "Three bases, one answer. Base two, base ten and base e all give the same time, because they describe the same curve.",
+  "Press Check it to run the clock to that exact moment.",
+  "Hit the ceiling. A real outbreak runs out of people, so the pure exponential stops telling the truth.",
+  "This is a made-up example to explore the math. It is not a forecast of any real illness."
+ ]
+}

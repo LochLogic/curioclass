@@ -44,6 +44,12 @@ Details (added by rollercoaster-polynomials, 2026-10-25):
   so a tool may change it in place when the window widens.
   Tick and axis text live in their own group inside the `labels` layer, so a tool's own `g.label(..., {layer:
   'labels'})` items survive a `g.view` (before this they were wiped on the first view change).
+  Guards (added after outbreak-model's verify): a grid or label step that would draw more than 400 lines on an axis
+  (or is not a positive number) is coarsened by factors of 10, so a bad step cannot hang the page; and a newer
+  `g.view` call stops one that is still animating (the older promise resolves at once), so the latest view wins.
+  Pixel positions written to the SVG (curves, segments, labels, points) are clamped to plus or minus 100,000 px, so a
+  value far off the plane never prints in exponent form (which SVG rejects); a point that far off is also hidden with
+  the `visibility` attribute until it comes back (a tool's own `style.visibility` still wins).
 - **Colors.** `color: 1` to `4` means `var(--gr-1)` to `var(--gr-4)` and also applies that series' dash pattern
   (1 solid, 2 `10 6`, 3 `2 5`, 4 `12 4 2 4`), so color is never the only signal; any CSS color also works.
   `dashed: true` or a dash string overrides. The grid, axes and tick text read `--gr-grid`, `--gr-grid-major`,

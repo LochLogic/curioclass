@@ -15,6 +15,10 @@ const Plane = (() => {
   const dashOf = (o, fallback) => o.dashed === true ? '8 6' : (typeof o.dashed === 'string' ? o.dashed :
     (o.dashed === false ? null : (typeof o.color === 'number' ? DASH[o.color] : fallback)));
   let uid = 0, styled = false;
+  const MAX_LINES = 400;   // per axis, grid lines or tick labels
+  // pixel positions are clamped to +/- FAR, so a value far off the plane never prints as 1e+27 (invalid in SVG)
+  const FAR = 1e5, clampPx = z => isFinite(z) ? Math.max(-FAR, Math.min(FAR, z)) : (z > 0 ? FAR : -FAR);
+  const px1 = z => clampPx(z).toFixed(1);
   function style() {
     if (styled) return; styled = true;
     const s = document.createElement('style');
@@ -134,7 +138,10 @@ const Plane = (() => {
       // a step may be a number or fn(lo, hi) -> step, worked out again for every view (for ranges that change size)
       const stepOf = (s, lo, hi) => typeof s === 'function' ? s(lo, hi) : s;
       const [gx0, gy0] = pair(o.grid), [lx0, ly0] = pair(o.labels);
-      const gx = stepOf(gx0, ...X), gy = stepOf(gy0, ...Y), lx = stepOf(lx0, ...X), ly = stepOf(ly0, ...Y);
+      // guard: a step too small for the range (or not a positive number) is coarsened by 10s, so an axis never draws
+      // more than MAX_LINES lines (a bad step would otherwise hang the page)
+      const safe = (st, lo, hi) => { let v = +st; if (!(v > 0) || !isFinite(v)) v = Math.abs(hi - lo) / 10 || 1; if (!isFinite(hi - lo)) return v; while (Math.abs(hi - lo) / v > MAX_LINES) v *= 10; return v; };
+      const gx = safe(stepOf(gx0, ...X), ...X), gy = safe(stepOf(gy0, ...Y), ...Y), lx = safe(stepOf(lx0, ...X), ...X), ly = safe(stepOf(ly0, ...Y), ...Y);
       // tickFormat(v, 'x' | 'y') -> label text; null or '' leaves that tick unlabeled
       const tick = (v, axis) => o.tickFormat ? o.tickFormat(v, axis) : fmt(v);
       const steps = (lo, hi, s) => { const out = []; for (let v = Math.ceil(lo / s - 1e-9) * s; v <= hi + 1e-9; v += s) out.push(+v.toFixed(10)); return out; };
@@ -212,7 +219,7 @@ const Plane = (() => {
       }
       return runs.filter(r => r.length > 1);
     }
-    const dOf = runs => runs.map(r => 'M' + r.map(p => p[0].toFixed(1) + ',' + p[1].toFixed(1)).join('L')).join('');
+    const dOf = runs => runs.map(r => 'M' + r.map(p => px1(p[0]) + ',' + px1(p[1])).join('L')).join('');
     function arrowD(tip, from, size) {
       const ang = Math.atan2(tip[1] - from[1], tip[0] - from[0]), s = size;
       const pt = (r, t) => [tip[0] + r * Math.cos(ang + t), tip[1] + r * Math.sin(ang + t)];
@@ -262,7 +269,7 @@ const Plane = (() => {
       const head = opt.arrow ? mk('path', {fill: colorOf(opt.color)}, el) : null;
       const item = {id: opt.id, el, a, b, set(na, nb) { item.a = na; item.b = nb; item.render(); }, render() {
         const p = px(...item.a), q = px(...item.b);
-        line.setAttribute('x1', p[0]); line.setAttribute('y1', p[1]); line.setAttribute('x2', q[0]); line.setAttribute('y2', q[1]);
+        line.setAttribute('x1', px1(p[0])); line.setAttribute('y1', px1(p[1])); line.setAttribute('x2', px1(q[0])); line.setAttribute('y2', px1(q[1]));
         if (head) head.setAttribute('d', arrowD(q, p, 9 + (opt.width || 2)));
       }};
       return add(item);
@@ -272,7 +279,7 @@ const Plane = (() => {
       const el = mk('text', {class: 'gr-label' + (opt.class ? ' ' + opt.class : ''), 'text-anchor': opt.anchor || 'start'}, layers[opt.layer || 'front']);
       el.textContent = text;
       const item = {id: opt.id, el, x, y, set(t) { el.textContent = t; }, move(nx, ny) { item.x = nx; item.y = ny; item.render(); }, render() {
-        const [u, v] = px(item.x, item.y); el.setAttribute('x', u + (opt.dx || 0)); el.setAttribute('y', v + (opt.dy || 0));
+        const [u, v] = px(item.x, item.y); el.setAttribute('x', px1(u + (opt.dx || 0))); el.setAttribute('y', px1(v + (opt.dy || 0)));
       }};
       return add(item);
     }
@@ -306,7 +313,10 @@ const Plane = (() => {
         return [+nx.toFixed(9), +ny.toFixed(9)];
       };
       const h = {id: opt.id, el, body, x, y, snap: opt.snap, step: opt.step, render() {
-        const [u, v] = px(h.x, h.y); el.setAttribute('transform', `translate(${u.toFixed(1)},${v.toFixed(1)})`);
+        const [u, v] = px(h.x, h.y);
+        el.setAttribute('transform', `translate(${px1(u)},${px1(v)})`);
+        // a point pushed far off the plane is hidden (the attribute, so a tool's own style.visibility still wins)
+        if (Math.abs(u) > FAR || Math.abs(v) > FAR || !isFinite(u) || !isFinite(v)) el.setAttribute('visibility', 'hidden'); else el.removeAttribute('visibility');
         const al = typeof opt.ariaLabel === 'function' ? opt.ariaLabel(h.x, h.y) : opt.ariaLabel || opt.label || 'point';
         el.setAttribute('aria-label', al);
         const vt = opt.valueText ? opt.valueText(h.x, h.y) : lock.y != null ? `x = ${fmt(h.x)}` : lock.x != null ? `y = ${fmt(h.y)}` : `(${fmt(h.x)}, ${fmt(h.y)})`;
@@ -363,12 +373,14 @@ const Plane = (() => {
     }
 
     // animated zoom and pan; resolves when done (instant when Curio's Motion is off or ms is 0)
+    // a newer view() call stops one still animating (its promise resolves at once)
+    let viewGen = 0;
     function view(xr, yr, {ms = 600} = {}) {
-      const x0 = [...X], y0 = [...Y];
+      const x0 = [...X], y0 = [...Y], my = ++viewGen;
       const apply = t => { const e = t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
         X = [x0[0] + (xr[0] - x0[0]) * e, x0[1] + (xr[1] - x0[1]) * e]; Y = [y0[0] + (yr[0] - y0[0]) * e, y0[1] + (yr[1] - y0[1]) * e]; redraw(); };
       if (!ms || (window.Curio && Curio.reduce)) { apply(1); return Promise.resolve(); }
-      return new Promise(done => { const s = performance.now(); const step = now => { const t = Math.min(1, (now - s) / ms); apply(t); t < 1 ? requestAnimationFrame(step) : done(); }; requestAnimationFrame(step); });
+      return new Promise(done => { const s = performance.now(); const step = now => { if (my !== viewGen) return done(); const t = Math.min(1, (now - s) / ms); apply(t); t < 1 ? requestAnimationFrame(step) : done(); }; requestAnimationFrame(step); });
     }
     function redraw() { drawGrid(); items.forEach(i => i.render()); viewFns.forEach(f => f()); }
 

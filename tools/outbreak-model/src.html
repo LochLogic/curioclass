@@ -1,0 +1,1239 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Outbreak Model · When will it reach a million? · Curio Class</title>
+<meta name="description" content="Run an exponential model of a spreading rumor or outbreak, then drag a target line and solve for the time with logarithms in base 2, 10 and e. Compare it with a logistic curve that runs out of people. Grade 11 Algebra 2. Works offline.">
+<!--
+Outbreak Model (Curio Class)
+Grade 11, Algebra 2, Exponential and Logarithmic Functions: F-LE.A.4 (solve a times b to the ct equals d with base 2, 10
+or e), F-IF.C.8b (read percent growth from an exponential), F-IF.C.9 (the same function as equation, graph and table).
+Students drive, on their own laptops. Grow: run the model and watch each power of ten arrive on a steady beat. Ask when:
+drag a target line and logarithms give the exact time, three ways that agree. Hit the ceiling: the pure exponential
+passes the number of people there are; a logistic curve with the same start and rate levels off.
+Facts: OpenStax, Algebra and Trigonometry 2e, sections 6.5 to 6.7 (CC BY 4.0); Common Core State Standards for
+Mathematics. Populations: US Census Bureau 2020 Census (Denver 715,522, Colorado 5,773,714, United States 331,449,281,
+April 1, 2020); United Nations, Day of Eight Billion (World 8 billion, November 15, 2022). Every story is a made-up
+example with invented round numbers. Graph, lines, shading, counter and cards drawn in code; no images.
+One file, no network requests. Content CC BY 4.0, code MIT. curioclass.org
+-->
+<link rel="stylesheet" href="kit:curio">
+<link rel="stylesheet" href="kit:theme-912">
+<style>
+:root{--brand:#ff9442;--brand-ink:#1c1203;--ceil:#ff7a59;--ceil-fill:rgba(255,122,89,.2);--halo:#0b1017}
+/* three layouts, picked in script (layout()):
+   wide    (1200 px or wider and 700 px or taller): graph, readout column and controls bar, panel on the right;
+   compact (a short landscape box, such as the 16:10 embed at 680x425 or 1000x625): graph on the left, and a compact panel
+           on the right holding the clock buttons, the main controls first, then readouts;
+   stack   (narrow or portrait): graph on top, the same panel order under it (the panel stacks under the stage below
+           1000 px, as in the other 9-12 tools). */
+main{grid-template-columns:minmax(0,1fr) 380px}
+.graphcol{display:flex;flex-direction:column;min-width:0;min-height:0}
+.toprow{display:grid;grid-template-columns:minmax(0,1fr) 300px;flex:1;min-height:0}
+.stage{background:radial-gradient(ellipse at 30% 20%,#121c2a,#0a0f17 70%)}
+.readcol{overflow:auto;border-left:1px solid var(--line)}
+body:not(.wide) .toprow{grid-template-columns:minmax(0,1fr)}
+body:not(.wide) .readcol,body:not(.wide) .controls{display:none}
+.pctl{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:flex-end;position:relative}
+.pctl .slot{width:100%}
+.pctl .grp{flex-wrap:wrap}
+body.compact main{grid-template-columns:minmax(0,1fr) 300px}
+body.compact header{padding:4px 8px;gap:4px;flex-wrap:nowrap;min-width:0}
+body.compact h1{font-size:16px;white-space:nowrap;min-width:0;overflow:hidden;text-overflow:ellipsis}
+body.compact h1 small{display:none}
+body.compact .seg button,body.compact .icon-btn{min-height:44px;padding:0 8px;font-size:13.5px;white-space:nowrap}
+body.compact .seg{flex:none}
+body.compact .icon-btn{flex:none}
+body.compact .panel{padding:8px 10px;gap:8px}
+body.compact .sec{padding:6px 9px}
+body.compact .sec>h2{margin-bottom:4px}
+body.compact .hint{font-size:14px}
+body.compact .btn{font-size:14px;padding:0 9px}
+body.compact .counter{font-size:24px}
+body.compact .clock{font-size:17px}
+body.compact .pctl .glab{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+body.compact .ansbig{font-size:16px}
+/* compact: the model controls fit the first screen of the panel (short labels; the full words are the accessible names) */
+body.compact .pctl{gap:6px}
+body.compact .pctl .ctl>label{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+body.compact #cStory{width:100%}
+body.compact #cStory .sel{width:100%;min-height:44px}
+body.compact .pctl .btn{padding:0 6px;font-size:13px}
+body.compact #askTarget .small{display:none}
+body.compact #askTarget>h2{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+body.compact #askTarget{position:relative}
+body.compact .pctl .slot .gr-slider{grid-template-columns:4.2em minmax(0,1fr) 4.6em;gap:0 6px}
+body.compact .pctl .slot .gr-slider label{grid-column:auto;font-size:13px;color:var(--ink)}
+body.compact .pctl .slot input.num{width:4.6em;font-size:15px}
+/* text on the graph grows when the stage is scaled down (--ts is set from the stage scale) */
+#sv .gr-tick{font-size:calc(13px * var(--ts,1))}
+#sv .gtitle{font-size:calc(14px * var(--ts,1) * var(--ts2,1))}
+#sv .legend{font-size:calc(14px * var(--ts,1) * var(--ts2,1))}
+#sv .gnote{font-size:calc(14px * var(--ts,1))}
+#sv .offc{font-size:calc(13px * var(--ts,1))}
+#sv .gr-label.tl,#sv .gr-label.kl,#sv .gr-label.trl,#sv .gr-label.pinl,#sv .gr-label.lt{font-size:calc(13.5px * var(--ts,1))}
+#sv .gr-label.ans,#sv .gr-label.over{font-size:calc(15px * var(--ts,1))}
+body.stack{height:auto}
+body.stack main{grid-template-columns:minmax(0,1fr);align-content:start}
+body.stack .panel{border-left:0;border-top:1px solid var(--line)}
+body.stack .stage{height:min(calc(100vw * 580 / 640),78vh);flex:none}
+@media (max-width:520px){header{gap:8px}.seg button,.icon-btn{padding:0 11px;font-size:15px;min-height:46px}}
+.scene{width:640px;height:580px}
+#sv{display:block;width:640px;height:580px;overflow:visible;touch-action:none}
+.readcol{background:var(--panel);padding:8px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.readcol .sec{padding:8px 10px}
+.controls{display:flex;flex-wrap:wrap;gap:8px 14px;padding:8px 12px 10px;background:var(--head-bg);border-top:1px solid var(--line);align-items:flex-end}
+.ctl{display:flex;flex-direction:column;gap:3px;min-width:0}
+.ctl>.glab,.ctl>label{font-size:13px;font-weight:600;color:var(--muted)}
+.grp{display:inline-flex;gap:0}
+.grp .btn{border-radius:0;margin-left:-1px}
+.grp .btn:first-child{border-radius:8px 0 0 8px;margin-left:0}
+.grp .btn:last-child{border-radius:0 8px 8px 0}
+.sel{min-height:44px;border-radius:8px;border:1px solid var(--btn-line);background:var(--btn);color:var(--ink);font:600 15px 'Segoe UI',system-ui,sans-serif;padding:0 10px;max-width:100%}
+.slot{width:250px;max-width:100%}
+.slot .gr-slider{grid-template-columns:1fr 5.2em;gap:0 8px}
+.slot .gr-slider label{font-size:13px;color:var(--muted)}
+.slot input.num{width:5.2em;padding:0 6px}
+.btnrow{display:flex;gap:6px;flex-wrap:wrap}
+.btn.wide{padding:0 14px}
+/* graph text */
+.gtitle{fill:var(--ink);font:600 14px 'Segoe UI',system-ui,sans-serif}
+.gnote{fill:var(--brand);font:600 14px 'Segoe UI',system-ui,sans-serif}
+.legend{fill:var(--muted);font:13px 'Segoe UI',system-ui,sans-serif}
+.gr-label.lt{fill:var(--gr-text);font:13px 'Segoe UI',system-ui,sans-serif}
+.gr-label.halo,.halo{paint-order:stroke;stroke:var(--halo);stroke-width:4px;stroke-linejoin:round}
+.gr-label.tl{fill:var(--gr-1);font:700 14px var(--readout-font)}
+.gr-label.ans{fill:var(--ink);font:700 15px var(--readout-font)}
+.gr-label.kl{fill:var(--ceil);font:700 13px 'Segoe UI',system-ui,sans-serif}
+.gr-label.over{fill:#ffd2c6;font:700 15px 'Segoe UI',system-ui,sans-serif}
+.gr-label.trl{fill:var(--ink);font:600 13px var(--readout-font)}
+.gr-label.pinl{fill:var(--gr-2);font:700 13px 'Segoe UI',system-ui,sans-serif}
+.offc{fill:var(--warn);font:700 13px 'Segoe UI',system-ui,sans-serif}
+/* readout column */
+.clock{font:700 22px var(--readout-font);color:var(--muted)}
+.counter{font:700 32px/1.1 var(--readout-font);color:var(--brand);word-break:break-word;margin-top:2px}
+.cnoun{font-size:15px;color:var(--ink)}
+.csub{font:13px var(--readout-font);color:var(--muted);margin-top:2px}
+.csub:empty{display:none}
+.way{margin:0 0 2px;font:15px/1.4 var(--readout-font);display:grid;grid-template-columns:16px 1fr;gap:2px}
+.way .mk{color:var(--brand);font-weight:700}
+.way.main .eqn{color:var(--brand);font-weight:700}
+.way .wl{grid-column:2;font:13px 'Segoe UI',system-ui,sans-serif;color:var(--muted)}
+.way sup,.solve sup,.logi sup{font-size:.72em}
+.per{margin:6px 0 0;font-size:14px;border-top:1px solid var(--line);padding-top:6px}
+.small{font-size:13px;color:var(--muted);margin:6px 0 0;line-height:1.35}
+.small:empty{display:none}
+table.ms{width:100%;font-size:13px}
+table.ms th,table.ms td{padding:2px 5px}
+table.ms td:first-child,table.ms th:first-child{text-align:left;font-family:'Segoe UI',system-ui,sans-serif}
+table.ms tr.lit td{color:var(--ink)}
+table.ms tr.lit td:first-child::before{content:'✓ ';color:var(--ok)}
+table.ms tr:not(.lit) td{color:var(--muted)}
+table.ms td.st{color:var(--gr-3)!important}
+.ansbig{font:700 20px/1.3 var(--readout-font);color:var(--ink);margin:0}
+.ansline{margin:4px 0 0;font-size:15px;line-height:1.4}
+.ansline:empty{display:none}
+/* panel */
+.story .sname{font:700 17px 'Segoe UI',system-ui,sans-serif;margin:0}
+.story dl{margin:6px 0 0}
+.made{margin:8px 0 0;font-size:14px;font-style:italic;color:var(--muted)}
+.msg{margin:6px 0 0;font-size:14px;line-height:1.4;color:var(--warn)}
+.msg:empty{display:none}
+.trow{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.trow label{font-weight:600}
+.trow input.num{width:13.5em;max-width:100%}
+.solve{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:8px}
+.card3{border:1px solid var(--line);border-radius:8px;padding:8px 10px;background:#121923}
+.card3.main{border-color:var(--brand)}
+.card3 h3{margin:0 0 4px;font:700 13px 'Segoe UI',system-ui,sans-serif;color:var(--muted);letter-spacing:.04em}
+.card3.main h3{color:var(--brand)}
+.card3 ol{margin:0;padding-left:20px;font:14px/1.55 'Segoe UI',system-ui,sans-serif}
+.card3 li span.calc{display:block;color:var(--muted);font-family:var(--readout-font);font-size:13px}
+.card3 .tans{margin:6px 0 0;font:700 16px var(--readout-font);color:var(--brand)}
+.card3 .tans.neg{color:var(--warn);font-size:14px}
+.cover{border:1px dashed var(--btn-line);border-radius:8px;padding:14px;text-align:center;color:var(--muted);font-size:15px;background:repeating-linear-gradient(45deg,#121923 0 10px,#151d28 10px 20px)}
+.logi{font:15px/1.5 var(--readout-font)}
+.logi .frac{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center}
+.logi .frac span:first-child{border-bottom:1px solid var(--ink)}
+.logi .small{font-family:'Segoe UI',system-ui,sans-serif}
+.panel .tip{margin-top:auto}
+</style>
+</head>
+<body>
+<header>
+  <h1>Outbreak Model <small>When will it reach a million?</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-grow" aria-pressed="true">Grow</button>
+    <button id="m-ask" aria-pressed="false">Ask when</button>
+    <button id="m-ceil" aria-pressed="false">Hit the ceiling</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true" title="Turn animation on or off">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+  <button class="icon-btn" id="read">🔊 Read</button>
+</header>
+<main>
+  <div class="graphcol">
+    <div class="toprow">
+      <div class="stage" id="stage">
+        <div class="scene" id="scene">
+          <svg id="sv" viewBox="0 0 640 580" role="group" aria-label="Graph of the model">
+            <text class="gtitle" id="yTitle" x="112" y="22"></text>
+            <g id="gPlane"></g>
+            <text class="gtitle" id="xTitle" x="368" y="520" text-anchor="middle"></text>
+            <g id="legend" class="legend"></g>
+            <text class="gnote halo" id="gNote" x="368" y="570" text-anchor="middle"></text>
+          </svg>
+        </div>
+      </div>
+      <div class="readcol" id="readcol">
+        <section class="sec" id="countSec" aria-label="Clock and count">
+          <div class="clock" id="clock">Day 0.0</div>
+          <div class="counter" id="counter">10</div>
+          <div class="cnoun" id="cnoun">cases</div>
+          <div class="csub" id="csub"></div>
+          <div class="csub" id="clogi"></div>
+        </section>
+        <section class="sec" id="ways">
+          <h2>Same curve, three ways</h2>
+          <p class="way" id="w-D"></p>
+          <p class="way" id="w-W"></p>
+          <p class="way" id="w-k"></p>
+          <p class="per" id="per"></p>
+          <p class="small" id="rangeNote"></p>
+        </section>
+        <section class="sec" id="msSec" data-mode="grow">
+          <h2>Milestones</h2>
+          <table class="inst ms" id="msTable"></table>
+          <p class="small" id="msNote"></p>
+        </section>
+        <section class="sec" id="ansSec" data-mode="ask" hidden>
+          <h2>When?</h2>
+          <p class="ansbig" id="ansBig" aria-live="polite"></p>
+          <p class="ansline" id="ansGuess"></p>
+        </section>
+        <section class="sec" id="ceilSec" data-mode="ceil" hidden>
+          <h2>The ceiling</h2>
+          <p class="ansline" id="ceilExp"></p>
+          <p class="ansline" id="ceilLog"></p>
+        </section>
+      </div>
+    </div>
+    <div class="controls" id="controls">
+      <div class="ctl" id="cStory"><label for="story">Story</label><select class="sel" id="story"></select></div>
+      <div class="ctl" id="cBy"><span class="glab" id="byL">Describe growth by</span>
+        <div class="grp" role="group" aria-labelledby="byL">
+          <button class="btn" data-by="D" data-short="Double">Doubling time</button><button class="btn" data-by="W" data-short="Tenfold">Tenfold time</button><button class="btn" data-by="k" data-short="Rate">Continuous rate</button>
+        </div></div>
+      <div class="ctl" id="cClock"><span class="glab" id="clkL">Clock</span>
+        <div class="btnrow" role="group" aria-labelledby="clkL">
+          <button class="btn" id="play">▶ Play</button><button class="btn" id="pause" data-short="❚❚">❚❚ Pause</button><button class="btn" id="reset" data-short="↺ Reset">↺ Reset clock</button>
+        </div></div>
+      <div class="ctl" id="cScale"><span class="glab" id="scL">Scale</span>
+        <div class="grp" role="group" aria-labelledby="scL"><button class="btn" data-scale="linear" data-short="Lin">Linear</button><button class="btn" data-scale="log">Log</button></div></div>
+      <div class="ctl slot" id="aSlot"></div>
+      <div class="ctl slot" id="dSlot"></div>
+      <div class="ctl slot" id="wSlot"></div>
+      <div class="ctl slot" id="kSlot"></div>
+      <div class="ctl" id="dirCtl"><span class="glab" id="dirL">Direction</span>
+        <div class="grp" role="group" aria-labelledby="dirL"><button class="btn" data-dir="1" data-short="Grow">Growing</button><button class="btn" data-dir="-1" data-short="Shrink">Shrinking</button></div></div>
+    </div>
+  </div>
+  <aside class="panel" id="panel">
+    <div class="pctl" id="pctlA" hidden></div>
+    <div class="pctl" id="pctlB" hidden></div>
+    <p class="hint" id="hint"></p>
+    <section class="sec story" id="storyCard">
+      <p class="sname" id="sName"></p>
+      <dl class="readouts">
+        <dt>Counts</dt><dd id="sCounts" style="font-family:inherit"></dd>
+        <dt>Time unit</dt><dd id="sUnit" style="font-family:inherit"></dd>
+        <dt>Starts at</dt><dd id="sStart"></dd>
+        <dt>Given as</dt><dd id="sGiven" style="font-family:inherit"></dd>
+      </dl>
+      <p class="made">A made-up example to explore the math, not a real forecast.</p>
+    </section>
+
+      <section class="sec" id="growSteady" data-mode="grow">
+        <h2>Compare</h2>
+        <button class="btn wide" id="steadyBtn" aria-pressed="false">Compare steady growth</button>
+        <p class="small" id="steadyNote"></p>
+      </section>
+      <section class="sec" id="askTarget" data-mode="ask" hidden>
+        <h2>Target</h2>
+        <div class="trow"><label for="tBox">Target</label><input class="num" id="tBox" inputmode="decimal" autocomplete="off" aria-describedby="tMsg"></div>
+        <div class="btnrow" style="margin-top:6px"><button class="btn" data-q="1000">1 thousand</button><button class="btn" data-q="1000000">1 million</button><button class="btn" data-q="1000000000">1 billion</button></div>
+        <p class="msg" id="tMsg" aria-live="polite"></p>
+        <p class="small">Or drag the target line on the graph (arrow keys, PageUp and PageDown for 10 times).</p>
+      </section>
+      <section class="sec" id="askGuess" data-mode="ask" hidden>
+        <h2>Guess first</h2>
+        <div class="btnrow"><button class="btn" id="guessBtn" aria-pressed="false">Guess first</button><button class="btn" id="showBtn" hidden disabled>Show the answer</button></div>
+        <p class="small" id="guessNote"></p>
+      </section>
+      <section class="sec" id="askSolve" data-mode="ask" hidden>
+        <h2>Solve it</h2>
+        <div id="solveMsg" class="ansline" aria-live="polite"></div>
+        <div class="solve" id="solve"></div>
+        <div class="cover" id="cover" hidden>Covered. Drag the guess pin on the time axis, then press Show the answer.</div>
+        <div class="btnrow" style="margin-top:8px"><button class="big-btn" id="checkBtn">▶ Check it</button></div>
+        <table class="inst" id="unitTable" style="margin-top:8px"></table>
+        <p class="small" id="gcheck"></p>
+      </section>
+      <section class="sec" id="ceilPlace" data-mode="ceil" hidden>
+        <h2>Place</h2>
+        <div class="trow"><label for="place">Place</label><select class="sel" id="place"></select></div>
+        <p class="small" id="placeNote"></p>
+      </section>
+      <section class="sec" id="ceilLogi" data-mode="ceil" hidden>
+        <h2>Logistic model</h2>
+        <button class="btn wide" id="logiBtn" aria-pressed="false" aria-expanded="false">Show the logistic equation</button>
+        <div class="logi" id="logiEq" hidden></div>
+      </section>
+    <p class="tip" id="tip"></p>
+  </aside>
+</main>
+<script src="kit:curio"></script>
+<script src="kit:graphing"></script>
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const {say, wait} = Curio;
+  const fmt = Plane.fmt;
+  const NS = 'http://www.w3.org/2000/svg';
+  // animation frames on a 16 ms timer (headless frame checks run timers, not always animation frames)
+  const raf = f => setTimeout(() => f(performance.now()), 16), caf = clearTimeout;
+  const mk = (tag, attrs = {}, parent) => { const e = document.createElementNS(NS, tag); for (const k in attrs) if (attrs[k] != null) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; };
+
+  // ---------- spoken lines (voice/lines.json lists every one) ----------
+  const L = {
+    welcome: 'Welcome to Outbreak Model. Pick a story, press Play, and watch the count grow.',
+    milestones: 'Notice the milestones. Each time the count gets ten times bigger, it takes the same amount of time.',
+    log: 'Try the log scale. An exponential curve turns into a straight line.',
+    ask: 'Ask when. Drag the target line to any number, and logarithms will tell you exactly when the count gets there.',
+    guess: 'Want to test your instinct first? Turn on Guess first, drop a pin on the time axis, then show the answer.',
+    bases: 'Three bases, one answer. Base two, base ten and base e all give the same time, because they describe the same curve.',
+    check: 'Press Check it to run the clock to that exact moment.',
+    ceiling: 'Hit the ceiling. A real outbreak runs out of people, so the pure exponential stops telling the truth.',
+    madeup: 'This is a made-up example to explore the math. It is not a forecast of any real illness.',
+  };
+
+  // ======================================================================================
+  // OUTBREAK MODEL (tool-only block: the model and its conversions, number words, milestones, the Solve panel).
+  // Single source of truth: N(t) = a e^(k t). D = ln 2 / k, W = ln 10 / k, factor per unit e^k, percent (e^k - 1) 100.
+  // ======================================================================================
+  const LN2 = Math.LN2, LN10 = Math.LN10;
+  const STORIES = [
+    {id: 'rumor', name: 'Rumor at school', counts: 'students who heard it', unit: 'hour', a: 3, k: LN2 / 2, by: 'D', given: 'doubles every 2 hours', target: 1000, win: 24},
+    {id: 'virus', name: 'Virus X in a city', counts: 'cases', unit: 'day', a: 10, k: LN2 / 3, by: 'D', given: 'doubles every 3 days', target: 1e6, win: 60},
+    {id: 'post', name: 'Viral post', counts: 'shares', unit: 'hour', a: 50, k: LN10 / 12, by: 'W', given: '10 times every 12 hours', target: 1e6, win: 72},
+    {id: 'fading', name: 'Fading rumor', counts: 'people still repeating it', unit: 'day', a: 2000, k: -LN2 / 5, by: 'D', given: 'halves every 5 days', target: 10, win: 48},
+    {id: 'steady', name: 'Steady spread', counts: 'cases', unit: 'day', a: 1, k: 0.25, by: 'k', given: 'continuous rate 0.25 per day', target: 1e6, win: 70},
+  ];
+  // US Census Bureau 2020 Census (April 1, 2020); United Nations Day of Eight Billion (November 15, 2022)
+  const PLACES = [
+    {id: 'denver', name: 'Denver', the: 'Denver', K: 715522, src: 'Denver, Colorado: 715,522 people (2020 Census, April 1, 2020).'},
+    {id: 'colorado', name: 'Colorado', the: 'Colorado', K: 5773714, src: 'Colorado: 5,773,714 people (2020 Census, April 1, 2020).'},
+    {id: 'us', name: 'United States', the: 'the United States', K: 331449281, src: 'United States: 331,449,281 people (2020 Census, April 1, 2020).'},
+    {id: 'world', name: 'World', the: 'the world', K: 8e9, src: 'World: 8 billion people (United Nations, November 15, 2022).'},
+  ];
+  const A_STEPS = [1, 2, 3, 5, 10, 20, 30, 50, 100, 200, 300, 500, 1000, 2000, 3000, 5000, 10000];
+  const MILESTONES = [10, 100, 1e3, 1e4, 1e5, 1e6, 1e7, 1e8, 1e9];
+  const D_RANGE = [0.5, 30], W_RANGE = [1, 100], K_RANGE = [-0.5, 1.5];
+
+  const N = t => state.a * Math.exp(state.k * t);
+  const Dof = k => LN2 / Math.abs(k), Wof = k => LN10 / Math.abs(k);
+  // when does N reach d? {kind: 'ok' | 'zero' | 'past' | 'never' | 'none', t, raw}
+  function solveT(d) {
+    const {a, k} = state;
+    if (Math.abs(d - a) < 1e-9 * a) return {kind: 'zero', t: 0, raw: 0};
+    if (k === 0) return {kind: 'none', t: Infinity};
+    const raw = Math.log(d / a) / k;
+    if (raw > 0) return {kind: 'ok', t: raw, raw};
+    return {kind: k > 0 ? 'past' : 'never', t: Infinity, raw};
+  }
+  const ceilT = K => state.k > 0 ? Math.log(K / state.a) / state.k : Infinity;          // the exponential reaches K
+  const halfT = K => state.k > 0 ? Math.log((K - state.a) / state.a) / state.k : Infinity;  // the logistic reaches K / 2
+  const logistic = (t, K) => K / (1 + (K - state.a) / state.a * Math.exp(-state.k * t));
+  const steadyGain = () => state.a * (Math.exp(state.k) - 1);   // the first unit's gain, added every unit forever
+  const steady = t => state.a + steadyGain() * t;
+
+  // ---------- number words ----------
+  const commas = n => { const neg = n < 0, s = Math.round(Math.abs(n)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','); return (neg ? '−' : '') + s; };
+  const BIG = [[1e12, 'trillion'], [1e9, 'billion'], [1e6, 'million']];
+  function bigParts(n, sig) { // [mantissa text, word] for 1e6 <= n < 1e15
+    for (let i = BIG.length - 1; i >= 0; i--) {
+      const [d, w] = BIG[i], v = +(n / d).toPrecision(sig);
+      if (v < 1000 || i === 0) return [(n / d).toPrecision(sig), w];
+    }
+  }
+  function sci(n) { const e = Math.floor(Math.log10(n)); let m = +(n / Math.pow(10, e)).toFixed(1); return m >= 10 ? [1, e + 1] : [m, e]; }
+  // the counter's words (spec): commas to 999,999, then "1.04 million"; above 10 to the 15, "2.1 times 10 to the 18"
+  function words(n, mode = 'text') {
+    if (!isFinite(n) || n >= 1e15) {
+      const [m, e] = isFinite(n) ? sci(n) : [1, 15];
+      return mode === 'html' ? `${m.toFixed(1)} × 10<sup>${e}</sup>` : mode === 'say' ? `${m.toFixed(1)} times 10 to the ${e}` : `${m.toFixed(1)} × 10${supNum(e)}`;
+    }
+    if (n < 0.01) return 'less than 0.01';
+    if (n < 1) return n.toFixed(2);
+    if (Math.round(n) < 1e6) return commas(n);
+    const [m, w] = bigParts(Math.max(n, 1e6), 3);
+    return m + ' ' + w;
+  }
+  // short words for answers and labels: trailing zeros dropped ("1 million", "1.3 million", "331 million")
+  function wordsShort(n, mode = 'text') {
+    if (!isFinite(n) || n >= 1e15) return words(n, mode);
+    if (n < 1) return plainSmall(n);
+    if (n < 100 && Math.abs(n - Math.round(n)) > 0.005) return String(+n.toFixed(2));
+    if (Math.round(n) < 1e6) return commas(n);
+    const [m, w] = bigParts(Math.max(n, 1e6), 3);
+    return +m + ' ' + w;
+  }
+  // a small number as itself: 0.47, 0.001, 0.0000025 (no exponent notation)
+  function plainSmall(n) {
+    if (n === 0) return '0';
+    const dp = Math.min(20, Math.max(2, 1 - Math.floor(Math.log10(n)) + 1));
+    return n.toFixed(dp).replace(/0+$/, '').replace(/\.$/, '');
+  }
+  const SUPS = '⁰¹²³⁴⁵⁶⁷⁸⁹';
+  const supNum = e => String(e).split('').map(c => c === '-' ? '⁻' : SUPS[+c]).join('');
+  // tick labels on the linear y axis
+  function tickWords(v) {
+    if (Math.abs(v) < 1e-12) return '0';
+    if (v < 1000) return fmt(v, 2);
+    if (v < 1e6) return fmt(v / 1e3, 2) + ' thousand';
+    if (v < 1e9) return fmt(v / 1e6, 2) + ' million';
+    if (v < 1e12) return fmt(v / 1e9, 2) + ' billion';
+    return fmt(v / 1e12, 2) + ' trillion';
+  }
+  function decadeWords(e) {
+    if (e < 0) return e >= -6 ? String(+Math.pow(10, e).toFixed(-e)) : '10' + supNum(e);
+    const w = ['1', '10', '100', '1 thousand', '10 thousand', '100 thousand', '1 million', '10 million', '100 million', '1 billion',
+      '10 billion', '100 billion', '1 trillion', '10 trillion', '100 trillion'];
+    return w[e] || '10' + supNum(e);
+  }
+  // a number as typed or computed, shown plainly: 100,000, 333.33, 0.005
+  function plain(n) {
+    if (Math.abs(n - Math.round(n)) < 1e-9 * Math.max(1, Math.abs(n))) return commas(n);
+    if (Math.abs(n) >= 1) { const [i, f] = n.toFixed(2).split('.'); return commas(+i) + '.' + f; }
+    return (n < 0 ? '−' : '') + plainSmall(+Math.abs(n).toPrecision(4));
+  }
+  const sig = (n, s = 5) => String(+(+n).toPrecision(s)).replace('-', '−');   // calculator values
+  const paren = s => s.startsWith('−') ? `(${s})` : s;
+  const comma = n => { const [i, f] = Math.abs(n).toFixed(2).split('.'); return (n < 0 ? '−' : '') + commas(+i) + '.' + f; };
+  const fmtT = t => comma(t);   // answers: 2 decimals ("49.83")
+  const story = () => STORIES[state.story];
+  const unit = (n = 2) => story().unit + (n === 1 ? '' : 's');
+  const Unit = () => story().unit[0].toUpperCase() + story().unit.slice(1);
+  function yearsNote(t) {
+    const days = story().unit === 'day' ? t : t / 24;
+    return days > 365 ? ` (about ${fmt(days / 365, 1)} years)` : '';
+  }
+
+  // ======================================================================================
+  // State
+  // ======================================================================================
+  const state = {mode: 'grow', story: 1, a: 10, k: LN2 / 3, by: 'D', target: 1e6, scale: 'linear', clock: 0, playing: null,
+    steady: false, guessFirst: false, guessShown: false, guessMoved: false, place: 2, showLogi: false};
+  const growing = () => state.k > 0, shrinking = () => state.k < 0;
+  const place = () => PLACES[state.place];
+
+  // ======================================================================================
+  // The plane
+  // ======================================================================================
+  const niceNear = x => { if (!(x > 0)) return 1; const e = Math.floor(Math.log10(x)), m = x / Math.pow(10, e); return (m < 1.5 ? 1 : m < 3.5 ? 2 : m < 7.5 ? 5 : 10) * Math.pow(10, e); };
+  const mant = s => Math.round(s / Math.pow(10, Math.floor(Math.log10(s) + 1e-9)));
+  const labX = (lo, hi) => niceNear((hi - lo) / 6);
+  const gridX = (lo, hi) => { const l = labX(lo, hi); return l / (mant(l) === 5 ? 5 : 2); };
+  // steps come from the range they are given; decade steps only when the range really is a log range (a few dozen units)
+  const logRange = (lo, hi) => state.scale === 'log' && hi - lo <= 40;
+  const labY = (lo, hi) => logRange(lo, hi) ? (hi - lo > 12 ? 2 : 1) : niceNear((hi - lo) / 5);
+  const gridY = (lo, hi) => { if (logRange(lo, hi)) return 1; const l = labY(lo, hi); return l / (mant(l) === 5 ? 5 : 2); };
+  const PW = 512, PH = 440;
+  const g = Plane($('gPlane'), {x: [0, 60], y: [0, 1.2e7], width: PW, height: PH, left: 112, top: 34, grid: [gridX, gridY], labels: [labX, labY], ticks: 'edge',
+    tickFormat: (v, axis) => axis === 'x' ? (v >= 1000 ? commas(v) : fmt(v, 2)) : state.scale === 'log' ? null : tickWords(v)});
+  const Y = n => state.scale === 'log' ? (n > 0 ? Math.log10(n) : -Infinity) : n;   // N to plane units
+  const fromY = y => state.scale === 'log' ? Math.pow(10, y) : y;
+  const fExp = t => Y(N(t));
+  const minorG = mk('g', {class: 'deco'}, g.layer('back'));
+  const shadeG = mk('g', {class: 'deco'}, g.layer('plot'));
+  const offG = mk('g', {class: 'deco'}, g.layer('labels'));
+  const shadePath = mk('path', {fill: 'var(--ceil-fill)', stroke: 'none'}, shadeG);
+  const hatch = mk('path', {fill: 'none', stroke: 'rgba(255,122,89,.35)', 'stroke-width': 1}, shadeG);
+
+  // persistent handles: the clock's trace dot, the target line handle, the guess pin
+  const traceDom = [0, 60];
+  let syncing = true;   // no clock moves while the trace dot is first placed
+  const trace = g.trace(fExp, {domain: traceDom, draggable: true, r: 7, color: 'var(--ink)', id: 'trace', step: .6,
+    ariaLabel: () => 'Trace point on the curve. Left and Right arrows move the clock.',
+    valueText: x => `${unit(1)} ${fmt(x, 1)}, ${wordsShort(N(x), 'say')} ${story().counts}`,
+    onMove: x => { if (syncing) return; stopPlay(); setClock(x); }});
+  syncing = false;
+  const traceLbl = g.label(0, 0, '', {id: 'traceLbl', layer: 'labels', class: 'trl halo', dx: 12, dy: -12});
+  const hLock = {x: 58};
+  const handle = g.point(58, 6, {id: 'handle', draggable: true, lock: hLock, shape: 'none', hit: 26,
+    ariaLabel: () => `Target line at ${wordsShort(state.target, 'say')}. Up and Down arrows change it, PageUp and PageDown jump by 10 times.`,
+    valueText: () => wordsShort(state.target, 'say'),
+    onMove: (x, y) => { setTarget(snapTarget(fromY(y)), 'drag'); },
+    onDrop: () => { update({anim: true}); },
+    onKey: e => targetKey(e)});
+  mk('rect', {x: -9, y: -14, width: 18, height: 28, rx: 5, fill: 'var(--gr-1)', stroke: 'var(--paper)', 'stroke-width': 2}, handle.body);
+  for (const dy of [-5, 0, 5]) mk('line', {x1: -4, x2: 4, y1: dy, y2: dy, stroke: '#0b1017', 'stroke-width': 1.6}, handle.body);
+  const pinLock = {y: 0}, pinRange = {x: [0, 60]};
+  const pin = g.point(0, 0, {id: 'pin', draggable: true, lock: pinLock, range: pinRange, shape: 'none', hit: 26,
+    ariaLabel: x => `Guess pin on the time axis at ${unit(1)} ${fmt(x, 1)}. Left and Right arrows move it.`,
+    valueText: x => `${unit(1)} ${fmt(x, 1)}`,
+    onMove: () => { state.guessMoved = true; syncGuess(); }, onDrop: () => { state.guessMoved = true; syncGuess(); }});
+  mk('path', {d: 'M0,0 L-9,-14 A10,10 0 1 1 9,-14 Z', fill: 'var(--gr-2)', stroke: 'var(--paper)', 'stroke-width': 2}, pin.body);
+  mk('circle', {cx: 0, cy: -21, r: 3.5, fill: '#0b1017'}, pin.body);
+  pin.body.setAttribute('transform', 'translate(0,-2)');
+  const pinLbl = g.label(0, 0, '', {id: 'pinLbl', layer: 'labels', class: 'pinl halo', anchor: 'middle', dy: -40});
+
+  // ---------- windows ----------
+  function windowX() {
+    let t1 = story().win;
+    if (state.mode === 'ask') {
+      const s = solveT(state.target);
+      if (s.kind === 'ok' && s.t > t1) {
+        // while the answer is covered the window only doubles, so its edge does not give t away
+        if (answerVisible()) t1 = Math.ceil(s.t * 1.2 * 100) / 100; else while (t1 < s.t * 1.1) t1 *= 2;
+      }
+    }
+    if (state.mode === 'ceil' && growing()) t1 = Math.max(t1, Math.ceil(ceilT(place().K) * 1.35));
+    return [0, t1];
+  }
+  function windowY(t1) {
+    const vals = [state.a, N(t1)];
+    if (state.mode === 'ask') vals.push(state.target);
+    if (state.mode === 'ceil') vals.push(place().K);
+    if (state.scale === 'log') {
+      const lo = Math.floor(Math.log10(Math.min(...vals)) - .1), hi = Math.min(16, Math.ceil(Math.log10(Math.max(...vals)) + .1));
+      return [lo, Math.max(hi, lo + 1)];
+    }
+    let top = state.mode === 'ask' ? Math.max(state.a, N(t1), state.target * 1.2) :
+      state.mode === 'ceil' ? Math.max(state.a, place().K * 1.8) : Math.max(state.a, N(t1));
+    top = Math.min(top * 1.04, 1e12);
+    const l = niceNear(top / 5);
+    return [0, Math.min(Math.ceil(top / l - 1e-9) * l, 1e12)];
+  }
+  // the engine lets the newest view win, so an instant view (a scale switch, a slider) stops a zoom still running
+  function setView(xr, yr, anim) {
+    const cur = g.range, same = cur.x[0] === xr[0] && cur.x[1] === xr[1] && cur.y[0] === yr[0] && cur.y[1] === yr[1];
+    g.view(xr, yr, {ms: anim && !same && !Curio.reduce ? 650 : 0});
+  }
+
+  // ---------- what is plotted (rebuilt on every change; handles stay) ----------
+  const drawnDom = [0, 0];
+  let drawn = null, crossLbl = null, tLbl = null, kLbl = null, overLbl = null, kMarkLbl = null;
+  function rebuild() {
+    g.clear('m'); drawn = crossLbl = tLbl = kLbl = overLbl = kMarkLbl = null;
+    const m = state.mode, s = story();
+    const label = `exponential model, N = ${wordsShort(state.a, 'say')} times e to the ${sig(state.k, 4)} t`;
+    if (m === 'grow') {
+      g.fn(fExp, {id: 'm', color: 'var(--brand)', width: 2, opacity: .3, dashed: '3 6'});
+      drawnDom[1] = state.clock;
+      drawn = g.fn(fExp, {id: 'm', domain: drawnDom, color: 'var(--brand)', width: 3.5, label});
+      if (state.steady && state.k !== 0) {
+        const gain = steadyGain(), end = gain < 0 ? -state.a / gain : Infinity;   // a shrinking steady line hits 0
+        g.fn(t => Y(steady(t)), {id: 'm', domain: [0, end], color: 'var(--gr-3)', width: 2.5, dashed: '9 6', label: 'steady growth, a straight line'});
+      }
+    } else if (m === 'ask' && !answerVisible()) {
+      // guessing: the curve shows only as far as the clock, so the crossing is not on screen
+      drawnDom[1] = state.clock;
+      drawn = g.fn(fExp, {id: 'm', domain: drawnDom, color: 'var(--brand)', width: 3.5, label});
+    } else {
+      g.fn(fExp, {id: 'm', color: 'var(--brand)', width: 3.5, label});
+    }
+    if (m === 'ask') {
+      const yd = Y(state.target);
+      g.segment([-1e7, yd], [1e7, yd], {id: 'm', color: 'var(--gr-1)', width: 2.5});
+      tLbl = g.label(0, yd, '', {id: 'm', class: 'tl halo', dx: 8, dy: -8, layer: 'labels'});
+      const sv = solveT(state.target);
+      if (answerVisible() && (sv.kind === 'ok' || sv.kind === 'zero')) {
+        g.segment([sv.t, yd], [sv.t, -1e13], {id: 'm', color: 'var(--ink)', width: 1.6, dashed: '5 5'});
+        g.point(sv.t, yd, {id: 'm', color: 'var(--gr-1)', r: 6, ariaLabel: `crossing at ${unit(1)} ${fmtT(sv.t)}`});
+        crossLbl = g.label(sv.t, yd, `t = ${fmtT(sv.t)} ${unit(sv.t)}`, {id: 'm', class: 'ans halo', layer: 'labels'});
+      }
+    }
+    if (m === 'ceil') {
+      const K = place().K, yk = Y(K);
+      g.segment([-1e7, yk], [1e7, yk], {id: 'm', color: 'var(--ceil)', width: 2.5});
+      kLbl = g.label(0, yk, `${place().name}: ${commas(K)} people`, {id: 'm', class: 'kl halo', dx: 8, dy: -8, layer: 'labels'});
+      if (growing()) {
+        g.fn(t => Y(logistic(t, K)), {id: 'm', color: 2, width: 3, label: 'logistic model, levels off at the ceiling'});
+        const tk = ceilT(K);
+        g.point(tk, yk, {id: 'm', color: 'var(--ceil)', r: 6, ariaLabel: `exponential passes the ceiling on ${unit(1)} ${fmtT(tk)}`});
+        kMarkLbl = g.label(tk, yk, `${unit(1)} ${fmtT(tk)}`, {id: 'm', class: 'kl halo', dx: 10, dy: 18, layer: 'labels'});
+        overLbl = g.label(0, 0, 'more people than exist', {id: 'm', class: 'over halo', anchor: 'middle', layer: 'labels'});
+      }
+    }
+    handle.el.style.display = m === 'ask' ? '' : 'none';
+    const guessing = m === 'ask' && !answerVisible();
+    trace.el.style.display = guessing ? 'none' : '';
+    trace.el.setAttribute('tabindex', guessing ? -1 : 0);
+    const pinOn = m === 'ask' && state.guessFirst;
+    pin.el.style.display = pinLbl.el.style.display = pinOn ? '' : 'none';
+    legend();
+  }
+  // positions that depend on the current view (run after every view change, every animation frame)
+  function syncView() {
+    const {x: X, y: YR} = g.range;
+    traceDom[0] = X[0]; traceDom[1] = X[1];
+    trace.point.step = (X[1] - X[0]) / 100;
+    pinRange.x = [X[0], X[1]]; pinLock.y = YR[0]; pin.step = (X[1] - X[0]) / 100;
+    pin.set(Math.min(X[1], Math.max(X[0], pin.x)), YR[0]);
+    hLock.x = X[1] - (X[1] - X[0]) * .035;
+    handle.set(hLock.x, Y(state.target));
+    const yd = Y(state.target);
+    if (tLbl) {
+      tLbl.set(`target: ${wordsShort(state.target)}`);
+      tLbl.el.setAttribute('dy', (YR[1] - yd) / (YR[1] - YR[0]) < .07 ? 20 : -8);   // near the top: under the line
+      tLbl.move(X[0], yd);
+    }
+    if (crossLbl) {
+      const t = crossLbl.x, right = (t - X[0]) / (X[1] - X[0]) > .5;
+      const [u, v] = g.px(t, yd), tw = tLbl ? tLbl.el.getComputedTextLength() + 20 : 0;
+      const below = (!right && u < tw + 20 || v < 30) && v < PH - 44;   // never down onto the x tick labels
+      crossLbl.el.setAttribute('text-anchor', right ? 'end' : 'start');
+      crossLbl.el.setAttribute('dx', right ? -12 : 12); crossLbl.el.setAttribute('dy', below ? 22 : -12);
+      crossLbl.move(t, yd);
+    }
+    if (kLbl) kLbl.move(X[0], Y(place().K));
+    if (kMarkLbl) { const right = (kMarkLbl.x - X[0]) / (X[1] - X[0]) > .7; kMarkLbl.el.setAttribute('text-anchor', right ? 'end' : 'start'); kMarkLbl.el.setAttribute('dx', right ? -10 : 10); }
+    logTicks(X, YR); shade(X, YR); offChart(X, YR);
+    moveTrace();
+    traceLabel();
+    syncGuess();
+  }
+  g.onView(syncView);
+  function logTicks(X, YR) {
+    g.clear('logtick'); minorG.textContent = '';
+    if (state.scale !== 'log') return;
+    for (let e = Math.ceil(YR[0] - 1e-9); e <= YR[1] + 1e-9; e++) {
+      if ((YR[1] - YR[0]) > 12 && e % 2) continue;
+      g.label(X[0], e, decadeWords(e), {id: 'logtick', anchor: 'end', dx: -16, dy: 4.5, layer: 'labels', class: 'lt'});
+    }
+    for (let e = Math.floor(YR[0]); e < YR[1]; e++) for (let m = 2; m <= 9; m++) {
+      const y = e + Math.log10(m); if (y <= YR[0] || y >= YR[1]) continue;
+      const [, v] = g.px(0, y);
+      mk('line', {x1: 0, x2: PW, y1: v.toFixed(1), y2: v.toFixed(1), stroke: 'rgba(255,255,255,.035)', 'stroke-width': 1}, minorG);
+    }
+  }
+  function shade(X, YR) {
+    shadePath.setAttribute('d', ''); hatch.setAttribute('d', '');
+    if (state.mode !== 'ceil' || !growing() || !overLbl) return;
+    const K = place().K, tk = ceilT(K);
+    if (tk >= X[1]) { overLbl.el.style.display = 'none'; return; }
+    const yk = Y(K), [, vk] = g.px(0, yk);
+    let d = '';
+    const n = 120, t0 = Math.max(tk, X[0]);
+    for (let i = 0; i <= n; i++) {
+      const t = t0 + (X[1] - t0) * i / n, [u, v] = g.px(t, fExp(t));
+      d += (i ? 'L' : 'M') + u.toFixed(1) + ',' + Math.max(-40, v).toFixed(1);
+    }
+    const [uEnd] = g.px(X[1], 0), [u0] = g.px(t0, 0);
+    d += `L${uEnd.toFixed(1)},${vk.toFixed(1)}L${u0.toFixed(1)},${vk.toFixed(1)}Z`;
+    shadePath.setAttribute('d', d);
+    // diagonal hatching in the same region, so the shading is not color alone
+    let hd = '';
+    for (let x = -PH; x < PW; x += 14) hd += `M${x},${vk}L${x + vk},0`;
+    hatch.setAttribute('d', hd); hatch.setAttribute('clip-path', 'url(#shadeClip)');
+    shadeClip.setAttribute('d', d);
+    // the label sits in the middle of the shaded part, below the top edge
+    const tm = tk + (X[1] - tk) * .55, top = Math.min(fExp(tm), YR[1]);
+    overLbl.el.style.display = '';
+    overLbl.move(tm, yk + (top - yk) * .55);
+    const w = overLbl.el.getComputedTextLength(), [u] = g.px(tm, 0), cu = Math.min(PW - w / 2 - 8, Math.max(w / 2 + 8, u));
+    overLbl.el.setAttribute('dx', (cu - u).toFixed(1));
+  }
+  const shadeClip = mk('path', {}, mk('clipPath', {id: 'shadeClip'}, $('sv')));
+  function offChart(X, YR) {
+    offG.textContent = '';
+    if (state.k <= 0 || (state.mode === 'ask' && !answerVisible())) return;   // guessing: no clue from where the curve leaves
+    const top = fromY(YR[1]), te = Math.log(top / state.a) / state.k;
+    if (!(te > X[0] && te < X[1] * .995)) return;
+    const [u] = g.px(te, YR[1]);
+    mk('path', {d: `M${u},-14 l-7,10 h4 v10 h6 v-10 h4 z`, fill: 'var(--warn)'}, offG);
+    const right = u > PW - 120;
+    mk('text', {x: right ? u - 12 : u + 12, y: -2, 'text-anchor': right ? 'end' : 'start', class: 'offc halo'}, offG).textContent = 'off the chart';
+  }
+  // try label placements [anchor, dx, dy] until one clears the other labels
+  function avoid(el, others, tries) {
+    const boxes = others.filter(o => o && o.el.isConnected && o.el.style.display !== 'none').map(o => o.el.getBBox());
+    const hit = () => { const a = el.getBBox(); return boxes.some(b => a.x < b.x + b.width + 4 && b.x < a.x + a.width + 4 && a.y < b.y + b.height + 2 && b.y < a.y + a.height + 2); };
+    const first = [el.getAttribute('text-anchor'), el.getAttribute('dx'), el.getAttribute('dy')];
+    for (const [an, dx, dy] of tries) {
+      if (an) el.setAttribute('text-anchor', an); else el.setAttribute('text-anchor', first[0]);
+      el.setAttribute('dx', dx != null ? dx : first[1]); el.setAttribute('dy', dy);
+      if (!hit()) return true;
+    }
+    return false;
+  }
+  // the trace dot follows the clock, but is not moved to absurd heights while the curve is off the chart (it is hidden)
+  function moveTrace() {
+    const {x: X, y: YR} = g.range, t = Math.min(X[1], state.clock), y = fExp(t), span = YR[1] - YR[0];
+    if (!(isFinite(y) && y >= YR[0] - span && y <= YR[1] + span)) return;
+    syncing = true; trace.set(t); syncing = false;
+  }
+  function traceLabel() {
+    const {x: X, y: YR} = g.range, t = Math.min(X[1], state.clock), y = fExp(t);
+    const vis = isFinite(y) && y >= YR[0] - 1e-9 && y <= YR[1] + 1e-9;
+    trace.el.style.visibility = vis ? '' : 'hidden';
+    traceLbl.el.style.display = vis && state.clock > 0 && trace.el.style.display !== 'none' ? '' : 'none';
+    if (!vis) return;
+    const right = (t - X[0]) / (X[1] - X[0]) > .6, high = (y - YR[0]) / (YR[1] - YR[0]) > .85;
+    traceLbl.el.setAttribute('text-anchor', right ? 'end' : 'start');
+    traceLbl.el.setAttribute('dx', right ? -12 : 12); traceLbl.el.setAttribute('dy', high ? 22 : -12);
+    traceLbl.set(`${unit(1)} ${fmt(t, 1)}: ${wordsShort(N(t))}`);
+    traceLbl.move(t, y);
+    // keep clear of the target, answer and guess labels; hide it when no spot is free (the counter shows the same)
+    if (crossLbl && Math.abs(t - crossLbl.x) < 1e-6) { traceLbl.el.style.display = 'none'; return; }   // the answer label already says it
+    const others = [crossLbl, tLbl, pin.el.style.display === 'none' ? null : pinLbl];
+    const dx = right ? -12 : 12;
+    if (!avoid(traceLbl.el, others, [[null, dx, high ? 22 : -12], [null, dx, -36], [null, dx, 24], [null, dx, -58]])) traceLbl.el.style.display = 'none';
+  }
+  function legend() {
+    const el = $('legend'); el.textContent = '';
+    const ts = +getComputedStyle($('sv')).getPropertyValue('--ts') || 1;
+    const items = [['solid', 'var(--brand)', 'exponential model']];
+    if (state.mode === 'grow' && state.steady) items.push(['9 6', 'var(--gr-3)', 'steady growth']);
+    if (state.mode === 'ask') items.push(['solid', 'var(--gr-1)', 'target']);
+    if (state.mode === 'ceil') { items.push(['solid', 'var(--ceil)', 'ceiling K']); if (growing()) items.push(['10 6', 'var(--gr-2)', 'logistic model']); }
+    let x = 0;
+    const gEl = mk('g', {}, el);
+    for (const [dash, color, text] of items) {
+      mk('line', {x1: x, x2: x + 26, y1: -4, y2: -4, stroke: color, 'stroke-width': 3, 'stroke-dasharray': dash === 'solid' ? null : dash}, gEl);
+      const t = mk('text', {x: x + 32, y: 0}, gEl); t.textContent = text;
+      x += 32 + text.length * 7.1 * ts * (ts > 1.2 ? 1.12 : 1) + 18;
+    }
+    gEl.setAttribute('transform', `translate(${(368 - (x - 18) / 2).toFixed(1)},546)`);
+  }
+
+  // ---------- one update for every change ----------
+  function update(o = {}) {
+    rebuild();
+    const dragging = handle.dragging || pin.dragging;
+    if (dragging) { const r = g.range; setView(r.x, r.y, false); }
+    else { const xr = windowX(); setView(xr, windowY(xr[1]), o.anim); }
+    renderReadouts(); renderPanel();
+  }
+
+  // ======================================================================================
+  // Clock and play
+  // ======================================================================================
+  let lastTone = 0;
+  function setClock(t, quiet) {
+    const prev = state.clock;
+    state.clock = Math.max(0, t);
+    drawnDom[1] = state.clock;
+    if (drawn) drawn.render();
+    moveTrace();
+    traceLabel();
+    if (!quiet && state.clock > prev) crossings(prev, state.clock);
+    renderReadouts();
+  }
+  // sounds and first-time lines as the clock passes milestones (Grow) or the ceiling (Hit the ceiling)
+  function crossings(t0, t1) {
+    if (state.mode === 'grow') {
+      const passed = milestoneRows().filter(r => r.t > t0 && r.t <= t1);
+      if (passed.length) {
+        const now = performance.now();
+        if (now - lastTone > 90) { Curio.tone(1320, .06, .035, 'triangle'); lastTone = now; }
+        narrate('milestones');
+      }
+    }
+    if (state.mode === 'ceil' && growing()) {
+      const tk = ceilT(place().K);
+      if (tk > t0 && tk <= t1) Curio.tone(110, .7, .08, 'sine');
+    }
+  }
+  function play() {
+    stopPlay();
+    const end = g.range.x[1];
+    if (state.clock >= end - 1e-9) setClock(0, true);
+    runTo(end);
+  }
+  function runTo(end, onDone) {
+    stopPlay();
+    if (Curio.reduce) { setClock(end); onDone && onDone(); return; }
+    const p = state.playing = {id: 0}, speed = g.range.x[1] / 8;   // the whole window in about 8 seconds
+    let last = null;
+    const step = now => {
+      if (state.playing !== p) return;
+      if (last == null) last = now;
+      const t = Math.min(end, state.clock + speed * (now - last) / 1000); last = now;
+      setClock(t);
+      if (t < end) p.id = raf(step); else { state.playing = null; renderButtons(); onDone && onDone(); }
+    };
+    p.id = raf(step);
+    renderButtons();
+  }
+  function stopPlay() { if (state.playing) { caf(state.playing.id); state.playing = null; renderButtons(); } }
+  function renderButtons() {
+    const covered = state.mode === 'ask' && !answerVisible();   // playing would run the clock through the hidden answer
+    $('pause').disabled = !state.playing; $('play').disabled = !!state.playing || covered;
+    $('play').title = covered ? 'Show the answer first: the clock would give it away' : '';
+  }
+  $('play').onclick = play;
+  $('pause').onclick = () => { stopPlay(); };
+  $('reset').onclick = () => { stopPlay(); setClock(0, true); renderReadouts(); };
+
+  // ======================================================================================
+  // Readouts (the column beside the graph)
+  // ======================================================================================
+  function milestoneRows() {
+    if (state.k === 0) return [];
+    const list = growing() ? MILESTONES.filter(M => M > state.a + 1e-9) : MILESTONES.filter(M => M < state.a - 1e-9).reverse();
+    const gain = steadyGain();
+    return list.map(M => ({M, t: Math.log(M / state.a) / state.k, ts: (M - state.a) / gain}));
+  }
+  const waySup = (base, expHtml) => `${base}<sup>${expHtml}</sup>`;
+  function renderReadouts() {
+    const s = story(), t = state.clock, n = N(t), {k, a} = state;
+    $('clock').textContent = `${Unit()} ${t.toFixed(1)}`;
+    const exact = state.mode === 'ask' && state.lastCheck != null && Math.abs(t - state.lastCheck) < 1e-9 ? state.target : n;
+    $('counter').innerHTML = words(exact, 'html');
+    $('counter').setAttribute('aria-label', words(exact, 'say'));
+    $('cnoun').textContent = s.counts;
+    $('csub').textContent = exact >= 1e6 && exact < 1e15 ? `= ${commas(exact)}` : '';
+    if (state.mode === 'ceil' && growing()) {
+      const K = place().K, lg = logistic(t, K);
+      $('clogi').textContent = `logistic model: ${words(lg)}` + (n > K ? `. The exponential is past the population of ${place().the}.` : '');
+    } else $('clogi').textContent = '';
+    // the same curve, three ways
+    const A = plain(a), dir = k < 0 ? '−' : '';
+    const D = Dof(k), W = Wof(k), main = state.by;
+    const rows = k === 0 ? {
+      D: [`N = ${A}`, 'No growth: N stays at ' + A + '.'], W: [`N = ${A}`, ''], k: [`N = ${A} · e<sup>0 t</sup>`, 'k = 0'],
+    } : {
+      D: [`N = ${A} · ${waySup(2, `${dir}t / ${fmt(D, 2)}`)}`, `${k > 0 ? 'doubles' : 'halves'} every ${fmt(D, 2)} ${unit(D)}`],
+      W: [`N = ${A} · ${waySup(10, `${dir}t / ${fmt(W, 2)}`)}`, `${k > 0 ? '10 times bigger' : 'a tenth as big'} every ${fmt(W, 2)} ${unit(W)}`],
+      k: [`N = ${A} · ${waySup('e', `${k.toFixed(4).replace('-', '−')} t`)}`, `k = ${k.toFixed(4).replace('-', '−')} per ${unit(1)}`],
+    };
+    const spoken = k === 0 ? {D: `N equals ${A}`, W: `N equals ${A}`, k: `N equals ${A}`} : {
+      D: `N equals ${A} times 2 to the power ${dir ? 'minus ' : ''}t over ${fmt(D, 2)}`,
+      W: `N equals ${A} times 10 to the power ${dir ? 'minus ' : ''}t over ${fmt(W, 2)}`,
+      k: `N equals ${A} times e to the power ${k.toFixed(4).replace('-', 'minus ')} t`};
+    for (const key of ['D', 'W', 'k']) {
+      const el = $('w-' + key), isMain = key === main;
+      el.className = 'way' + (isMain ? ' main' : '');
+      el.innerHTML = `<span class="mk" aria-hidden="true">${isMain ? '▸' : ''}</span><span class="eqn">${rows[key][0]}</span><span class="wl">${rows[key][1]}${isMain ? ' (main)' : ''}</span>`;
+      el.setAttribute('aria-label', spoken[key] + (rows[key][1] ? ', ' + rows[key][1] : '') + (isMain ? ', the main description' : ''));
+    }
+    const f = Math.exp(k), pct = (f - 1) * 100;
+    $('per').textContent = k === 0 ? `Growth per ${unit(1)}: times 1.000 each ${unit(1)}, no change` :
+      `Growth per ${unit(1)}: times ${f.toFixed(3)} each ${unit(1)}, ${pct >= 0 ? 'up' : 'down'} ${Math.abs(pct).toFixed(1)} percent`;
+    const out = [];
+    if (k !== 0 && (D < D_RANGE[0] - 1e-9 || D > D_RANGE[1] + 1e-9)) out.push(`D = ${fmt(D, 2)} is outside slider range (0.5 to 30); the exact value is kept.`);
+    if (k !== 0 && (W < W_RANGE[0] - 1e-9 || W > W_RANGE[1] + 1e-9)) out.push(`W = ${fmt(W, 2)} is outside slider range (1 to 100); the exact value is kept.`);
+    if (k < K_RANGE[0] - 1e-9 || k > K_RANGE[1] + 1e-9) out.push(`k = ${sig(k, 4)} is outside slider range; the exact value is kept.`);
+    $('rangeNote').textContent = out.join(' ');
+    // milestones (Grow)
+    if (state.mode === 'grow') renderMilestones();
+    if (state.mode === 'ceil') renderCeiling();
+  }
+  function renderMilestones() {
+    const rows = milestoneRows(), t = state.clock, end = g.range.x[1], u = unit(1);
+    const tb = $('msTable');
+    if (!rows.length) { tb.innerHTML = ''; $('msNote').textContent = state.k === 0 ? 'No growth: N stays at ' + plain(state.a) + ', so no milestones.' : 'The start is already past every milestone.'; return; }
+    let h = `<tr><th>${growing() ? 'reaches' : 'falls to'}</th><th>${u}</th><th>${state.steady ? 'steady' : 'gap'}</th></tr>`;
+    rows.forEach((r, i) => {
+      const lit = r.t <= t + 1e-9, past = r.t > end;
+      const when = lit ? fmtT(r.t) : past ? 'later' : '…';
+      const gap = i ? '+' + fmtT(r.t - rows[i - 1].t) : '';
+      let third = lit ? gap : '';
+      if (state.steady) { const sl = r.ts > 0 && r.ts <= t + 1e-9; third = r.ts > 0 && isFinite(r.ts) ? (sl ? (r.ts >= 1e5 ? wordsShort(r.ts) : fmtT(r.ts)) : '…') : 'never'; }
+      h += `<tr class="${lit ? 'lit' : ''}"><td>${decadeWords(Math.round(Math.log10(r.M)))}</td><td>${when}</td><td${state.steady ? ' class="st"' : ''}>${third}</td></tr>`;
+    });
+    tb.innerHTML = h;
+    const notes = [];
+    if (rows.some(r => r.t > end)) notes.push(`"later" means after ${u} ${fmt(end, 1)}, past the right edge.`);
+    if (state.steady) notes.push(`Steady adds the first ${u}'s ${growing() ? 'gain' : 'loss'} (${wordsShort(Math.abs(steadyGain()))}) every ${u}.`);
+    else if (rows.filter(r => r.t <= t + 1e-9).length >= 2) notes.push(`Each power of ten takes the same ${fmt(Wof(state.k), 2)} ${unit()}.`);
+    $('msNote').textContent = notes.join(' ');
+  }
+  function renderCeiling() {
+    const K = place().K, u = unit(1);
+    if (!growing()) {
+      $('ceilExp').textContent = 'This story does not grow, so it never comes near a ceiling. Pick a growing story to see one.';
+      $('ceilLog').textContent = '';
+      return;
+    }
+    $('ceilExp').textContent = `Exponential says everyone by ${u} ${fmtT(ceilT(K))}.`;
+    $('ceilLog').textContent = `Logistic: half of everyone by ${u} ${fmtT(halfT(K))}, and it never quite reaches all.`;
+  }
+
+  // ======================================================================================
+  // Panel: story card, target, guess, Solve it
+  // ======================================================================================
+  function renderPanel() {
+    const s = story();
+    $('sName').textContent = s.name;
+    $('sCounts').textContent = s.counts;
+    $('sUnit').textContent = unit();
+    $('sStart').textContent = plain(state.a) + (state.a !== s.a ? ` (story: ${plain(s.a)})` : '');
+    $('sGiven').textContent = s.given + (Math.abs(state.k - s.k) > 1e-12 ? ' (changed with the sliders)' : '');
+    $('steadyNote').textContent = state.steady ? 'The dashed straight line adds the same amount every ' + unit(1) + '. Its milestone times are in the steady column.' : '';
+    if (state.mode === 'ask') renderSolve();
+    if (state.mode === 'ceil') renderLogi();
+    $('gNote').textContent = state.mode === 'grow' && state.scale === 'log' && state.k !== 0 ?
+      `Every 10 times ${growing() ? 'bigger' : 'smaller'} takes the same ${fmt(Wof(state.k), 2)} ${unit()}.` : '';
+    $('yTitle').textContent = s.counts + (state.scale === 'log' ? ' (log scale)' : '');
+    $('xTitle').textContent = `time (${unit()})`;
+    for (const b of document.querySelectorAll('[data-by]')) b.setAttribute('aria-pressed', b.dataset.by === state.by);
+    for (const b of document.querySelectorAll('[data-scale]')) b.setAttribute('aria-pressed', b.dataset.scale === state.scale);
+    for (const b of document.querySelectorAll('[data-dir]')) b.setAttribute('aria-pressed', state.k === 0 ? false : (+b.dataset.dir > 0) === growing());
+    $('dSlot').hidden = state.by !== 'D'; $('wSlot').hidden = state.by !== 'W'; $('kSlot').hidden = state.by !== 'k';
+    $('dirCtl').hidden = state.by === 'k';
+    const short = curLayout === 'compact';
+    const names = {a: 'Start (a)', D: `${shrinking() ? 'Halving' : 'Doubling'} time D (${unit()})`, W: `${shrinking() ? 'Tenth' : 'Tenfold'} time W (${unit()})`, k: `Continuous rate k (per ${unit(1)})`};
+    [[aSl, 'a', 'Start a'], [dSl, 'D', `D, ${unit()}`], [wSl, 'W', `W, ${unit()}`], [kSl, 'k', `k, per ${unit(1)}`]].forEach(([sl, key, sh]) => {
+      sl.el.querySelector('label').textContent = short ? sh : names[key];
+      sl.range.setAttribute('aria-label', key === 'a' ? 'Start a, from 1 to 10,000, snapping to 1, 2, 3 and 5 times powers of ten' : names[key]);
+    });
+    for (const sl of [aSl, dSl, wSl, kSl]) sl.refresh();
+    renderButtons();
+  }
+  const answerVisible = () => !(state.guessFirst && !state.guessShown);
+  function answerSentence() {
+    const s = story(), d = state.target, sv = solveT(d), u = unit(1), A = plain(state.a);
+    if (sv.kind === 'ok') return `${shrinking() ? 'Falls to' : 'Reaches'} ${wordsShort(d)} ${s.counts} ${u === 'hour' ? 'at' : 'on'} ${u} ${fmtT(sv.t)}${yearsNote(sv.t)}.`;
+    if (sv.kind === 'zero') return `The target equals the start (${A}), so t = 0.`;
+    if (sv.kind === 'past') return `Already past: it started at ${A}, above the target.`;
+    if (sv.kind === 'never') return 'Never: a shrinking count does not climb back.';
+    return `Never. No growth: N stays at ${A}.`;
+  }
+  function renderSolve() {
+    const sv = solveT(state.target), vis = answerVisible(), s = story();
+    $('tBox').value = document.activeElement === $('tBox') ? $('tBox').value : plain(state.target);
+    $('cover').hidden = vis;
+    $('solve').hidden = !vis;
+    $('showBtn').hidden = !state.guessFirst || state.guessShown;
+    $('showBtn').disabled = !state.guessMoved;
+    $('guessBtn').setAttribute('aria-pressed', state.guessFirst);
+    $('ansBig').textContent = vis ? answerSentence() : 'Covered until you show the answer.';
+    $('ansGuess').textContent = state.guessFirst && state.guessShown ? `Your guess: ${unit(1)} ${fmt(pin.x, 1)}. The answer: ${sv.kind === 'ok' || sv.kind === 'zero' ? unit(1) + ' ' + fmtT(sv.t) : answerSentence().replace(/\.$/, '').toLowerCase()}.` : '';
+    $('guessNote').textContent = state.guessFirst ? (state.guessShown ? 'Drag the target or change the story to guess again.' : state.guessMoved ? 'Pin placed. Press Show the answer.' : 'Drag the purple pin along the time axis (or Tab to it and use the arrow keys). Play waits until the answer is shown.') : '';
+    $('checkBtn').disabled = !vis || !(sv.kind === 'ok' || sv.kind === 'zero');
+    if (!vis) { $('solveMsg').textContent = ''; $('unitTable').innerHTML = ''; $('gcheck').textContent = ''; $('solve').innerHTML = ''; return; }
+    const {a, k} = state, d = state.target, r = d / a;
+    if (k === 0) {   // no growth: the steps would divide by zero, so say it plainly
+      $('solveMsg').textContent = sv.kind === 'zero' ? `The target equals the start, so t = 0. With no growth (k = 0), N stays at ${plain(a)} the whole time.` :
+        `Never. No growth: N stays at ${plain(a)}, because e to the 0 t is always 1.`;
+      $('solve').innerHTML = ''; $('unitTable').innerHTML = ''; $('gcheck').textContent = '';
+      return;
+    }
+    let msg = sv.kind === 'past' ? `Already past: it started at ${plain(a)}, above the target.` : sv.kind === 'never' ? 'Never: a shrinking count does not climb back.' :
+      sv.kind === 'zero' ? `The target equals the start, so t = 0.` : '';
+    if (sv.kind === 'past' || sv.kind === 'never') msg += ` The formula gives t = ${fmtT(sv.raw)}, a time before the clock started.`;
+    $('solveMsg').textContent = msg;
+    const D = LN2 / k, W = LN10 / k, neg = k < 0;   // signed: negative for a shrinking count
+    const Dm = Math.abs(D), Wm = Math.abs(W), m = neg ? '−' : '';
+    const A = plain(a), Dd = plain(d), R = plain(r), lr = Math.log10(r), ln = Math.log(r), tt = sv.kind === 'ok' || sv.kind === 'zero' ? sv.t : sv.raw;
+    const tline = tt < 0 ? `<p class="tans neg">t = ${fmtT(tt)}: before the start, so not a real answer</p>` : `<p class="tans">t = ${fmtT(tt)} ${unit(tt)}${yearsNote(tt)}</p>`;
+    const card = (key, title, steps, words) => `<div class="card3${state.by === key ? ' main' : ''}"><h3>${title}${state.by === key ? ' (main)' : ''}</h3><ol>` +
+      steps.map((st, i) => `<li aria-label="${words[i]}">${st}</li>`).join('') + `</ol>${tline}</div>`;
+    const negS = neg ? 'minus ' : '', k4 = k.toFixed(4).replace('-', '−');
+    const c2 = card('D', `BASE 2, ${neg ? 'HALVING' : 'DOUBLING'} TIME`, [
+      `${A} · 2<sup>${m}t/${sig(Dm, 4)}</sup> = ${Dd}`,
+      `2<sup>${m}t/${sig(Dm, 4)}</sup> = ${Dd} / ${A} = ${R}`,
+      `${m}t/${sig(Dm, 4)} = log<sub>2</sub>(${R})`,
+      `t = ${m}${sig(Dm, 5)} · log(${R}) / log 2<span class="calc">= ${m}${sig(Dm, 5)} · ${paren(sig(lr))} / 0.30103 = ${fmtT(tt)}</span>`,
+    ], [
+      `${A} times 2 to the power ${negS}t over ${sig(Dm, 4)} equals ${Dd}`,
+      `2 to the power ${negS}t over ${sig(Dm, 4)} equals ${Dd} over ${A}, which is ${R}`,
+      `${negS}t over ${sig(Dm, 4)} equals log base 2 of ${R}`,
+      `t equals ${negS}${sig(Dm, 5)} times log of ${R} over log 2, which is ${fmtT(tt)}`,
+    ]);
+    const c10 = card('W', `BASE 10, ${neg ? 'TENTH' : 'TENFOLD'} TIME`, [
+      `${A} · 10<sup>${m}t/${sig(Wm, 4)}</sup> = ${Dd}`,
+      `10<sup>${m}t/${sig(Wm, 4)}</sup> = ${Dd} / ${A} = ${R}`,
+      `${m}t/${sig(Wm, 4)} = log<sub>10</sub>(${R})`,
+      `t = ${m}${sig(Wm, 5)} · log(${R})<span class="calc">= ${m}${sig(Wm, 5)} · ${paren(sig(lr))} = ${fmtT(tt)}</span>`,
+    ], [
+      `${A} times 10 to the power ${negS}t over ${sig(Wm, 4)} equals ${Dd}`,
+      `10 to the power ${negS}t over ${sig(Wm, 4)} equals ${Dd} over ${A}, which is ${R}`,
+      `${negS}t over ${sig(Wm, 4)} equals log base 10 of ${R}`,
+      `t equals ${negS}${sig(Wm, 5)} times log of ${R}, which is ${fmtT(tt)}`,
+    ]);
+    const ce = card('k', 'BASE e, CONTINUOUS RATE', [
+      `${A} · e<sup>${k4} t</sup> = ${Dd}`,
+      `e<sup>${k4} t</sup> = ${Dd} / ${A} = ${R}`,
+      `${k4} t = ln(${R})`,
+      `t = ln(${R}) / ${paren(sig(k, 5))}<span class="calc">= ${paren(sig(ln))} / ${paren(sig(k, 5))} = ${fmtT(tt)}</span>`,
+    ], [
+      `${A} times e to the power ${k4.replace('−', 'minus ')} t equals ${Dd}`,
+      `e to the power ${k4.replace('−', 'minus ')} t equals ${Dd} over ${A}, which is ${R}`,
+      `${k4.replace('−', 'minus ')} t equals the natural log of ${R}`,
+      `t equals the natural log of ${R} over ${sig(k, 5).replace('−', 'minus ')}, which is ${fmtT(tt)}`,
+    ]);
+    $('solve').innerHTML = c2 + c10 + ce;
+    // whole units either side of the answer
+    const tb = $('unitTable');
+    if (sv.kind === 'ok') {
+      const u0 = Math.ceil(sv.t) - 1, u1 = Math.ceil(sv.t), cell = n => n < 100 ? n.toFixed(2) : commas(n);
+      const word = shrinking() ? ['not yet down to it', 'passed (below it)'] : ['not yet', 'passed'];
+      tb.innerHTML = `<tr><th>${Unit()}</th><th>N</th><th></th></tr>` +
+        (u0 >= 0 ? `<tr><td>${u0}</td><td>${cell(N(u0))}</td><td>${word[0]}</td></tr>` : '') +
+        (Math.abs(sv.t - u1) < 1e-9 ? `<tr><td>${u1}</td><td>${cell(d)}</td><td>exactly the target</td></tr>` : `<tr><td>${u1}</td><td>${cell(N(u1))}</td><td>${word[1]}</td></tr>`);
+      tb.setAttribute('aria-label', `Whole ${unit()} either side of the answer`);
+    } else tb.innerHTML = '';
+    // the graph's own crossing, as a check on the closed form (g.intersect)
+    const X = g.range.x, hits = sv.kind === 'ok' ? g.intersect(fExp, () => Y(d), [X[0], X[1]], {n: 4000}) : [];
+    state.graphCross = hits.length ? hits[0] : null;
+    $('gcheck').textContent = hits.length ? `Graph check: the curve crosses the target line at ${fmtT(hits[0])}, the same t.` : '';
+  }
+  function renderLogi() {
+    const K = place().K, a = state.a, k = state.k;
+    $('placeNote').textContent = place().src;
+    $('logiBtn').setAttribute('aria-pressed', state.showLogi); $('logiBtn').setAttribute('aria-expanded', state.showLogi);
+    $('logiBtn').textContent = state.showLogi ? 'Hide the logistic equation' : 'Show the logistic equation';
+    const el = $('logiEq'); el.hidden = !state.showLogi;
+    if (!state.showLogi) return;
+    if (!growing()) { el.textContent = 'The logistic model here needs a growing story.'; return; }
+    el.innerHTML = `<p style="margin:6px 0">N = <span class="frac"><span>K</span><span>1 + ((K − a) / a) · e<sup>−k t</sup></span></span></p>` +
+      `<p style="margin:6px 0">N = <span class="frac"><span>${commas(K)}</span><span>1 + ${plain((K - a) / a)} · e<sup>−${k.toFixed(4)} t</sup></span></span></p>` +
+      `<p class="small">Same start a = ${plain(a)} and same k = ${k.toFixed(4)} as the exponential. When N is small, the bottom is about (K / a) e<sup>−k t</sup>, so N is about a e<sup>k t</sup>: the two curves agree at first.</p>`;
+    el.setAttribute('aria-label', `N equals K over 1 plus K minus a over a times e to the minus k t. Here K is ${commas(K)}, a is ${plain(a)} and k is ${sig(k, 4)}.`);
+  }
+
+  // ======================================================================================
+  // Controls
+  // ======================================================================================
+  const sel = $('story');
+  STORIES.forEach((s, i) => { const o = document.createElement('option'); o.value = i; o.textContent = s.name; sel.appendChild(o); });
+  sel.onchange = () => { loadStory(+sel.value); narrate('madeup'); };
+  PLACES.forEach((p, i) => { const o = document.createElement('option'); o.value = i; o.textContent = p.name; $('place').appendChild(o); });
+  $('place').value = state.place;
+  $('place').onchange = () => { state.place = +$('place').value; stopPlay(); setClock(0, true); update({anim: true}); };
+
+  const nearestA = v => A_STEPS.reduce((b, s, i) => Math.abs(Math.log(s / v)) < Math.abs(Math.log(A_STEPS[b] / v)) ? i : b, 0);
+  const aSl = Plane.slider($('aSlot'), {label: 'Start (a)', min: 0, max: A_STEPS.length - 1, step: 1, value: nearestA(state.a), id: 'aRange',
+    format: () => plain(state.a),
+    parse: text => { const v = parseNum(text); if (v == null || v <= 0) return null; return nearestA(v); },
+    onInput: i => { state.a = A_STEPS[Math.round(i)]; afterModel(); }});
+  aSl.range.setAttribute('aria-label', 'Start a, from 1 to 10,000, snapping to 1, 2, 3 and 5 times powers of ten');
+  const setK = k => { state.k = k; afterModel(); };
+  const dSl = Plane.slider($('dSlot'), {label: 'Doubling time D', min: D_RANGE[0], max: D_RANGE[1], step: .5, value: 3, id: 'dRange',
+    format: () => state.k === 0 ? 'none' : fmt(Dof(state.k), 2),
+    parse: text => { const v = parseNum(text); return v != null && v > 0 ? v : null; },
+    onInput: v => setK((shrinking() ? -1 : 1) * LN2 / v)});
+  const wSl = Plane.slider($('wSlot'), {label: 'Tenfold time W', min: W_RANGE[0], max: W_RANGE[1], step: 1, value: 10, id: 'wRange',
+    format: () => state.k === 0 ? 'none' : fmt(Wof(state.k), 2),
+    parse: text => { const v = parseNum(text); return v != null && v > 0 ? v : null; },
+    onInput: v => setK((shrinking() ? -1 : 1) * LN10 / v)});
+  const kSl = Plane.slider($('kSlot'), {label: 'Continuous rate k', min: K_RANGE[0], max: K_RANGE[1], step: .01, value: .23, id: 'kRange',
+    format: () => state.k.toFixed(4).replace('-', '−'),
+    parse: text => parseNum(text, true),
+    onInput: v => setK(Math.abs(v) < 1e-9 ? 0 : +v.toFixed(6))});
+  // keep slider thumbs where the exact value is (clamped), without firing them
+  const placeSliders = () => {
+    aSl.set(nearestA(state.a), true);
+    if (state.k !== 0) { dSl.set(Dof(state.k), true); wSl.set(Wof(state.k), true); } else { dSl.set(D_RANGE[1], true); wSl.set(W_RANGE[1], true); }
+    kSl.set(state.k, true);
+  };
+  function afterModel() {
+    placeSliders();
+    state.guessShown = false; state.guessMoved = false;
+    update();
+  }
+  for (const b of document.querySelectorAll('[data-by]')) b.onclick = () => { state.by = b.dataset.by; placeSliders(); update(); };
+  for (const b of document.querySelectorAll('[data-scale]')) b.onclick = () => {
+    if (state.scale === b.dataset.scale) return;
+    state.scale = b.dataset.scale; update();
+    if (state.scale === 'log') narrate('log');
+  };
+  for (const b of document.querySelectorAll('[data-dir]')) b.onclick = () => {
+    const dir = +b.dataset.dir;
+    if (state.k === 0 || (dir > 0) === growing()) return;
+    state.k = -state.k; afterModel();
+  };
+  $('steadyBtn').onclick = () => { state.steady = !state.steady; $('steadyBtn').setAttribute('aria-pressed', state.steady); update(); };
+  $('logiBtn').onclick = () => { state.showLogi = !state.showLogi; renderLogi(); };
+
+  // ---------- the target ----------
+  function parseNum(text, signed) {
+    const s = String(text).trim().replace(/[,\s]/g, '').replace(/^[−–]/, '-');
+    if (!/^-?(\d+\.?\d*|\.\d+)(e[+-]?\d+)?$/i.test(s)) return null;
+    const v = Number(s);
+    return isFinite(v) ? v : null;
+  }
+  const snapTarget = v => { if (!(v > 0)) v = fromY(g.range.y[1]) / 1000; return +v.toPrecision(2); };
+  function setTarget(v, src) {
+    if (v === state.target) { if (src !== 'drag') update({anim: true}); return; }
+    state.target = v; $('tMsg').textContent = '';
+    if (state.guessFirst) { state.guessShown = false; state.guessMoved = false; }
+    state.lastCheck = null;
+    if (src !== 'init') narrate(['bases', 'check']);
+    update({anim: src !== 'drag'});
+  }
+  function targetKey(e) {
+    const f = {ArrowUp: .1, ArrowDown: -.1, PageUp: 1, PageDown: -1}[e.key];
+    if (f == null) return e.key === 'ArrowLeft' || e.key === 'ArrowRight';
+    const v = Math.min(1e15, Math.max(.01, +(state.target * Math.pow(10, f)).toPrecision(2)));
+    setTarget(v, 'key');
+    return true;
+  }
+  function commitBox() {
+    const text = $('tBox').value, v = parseNum(text);
+    const say = m => { $('tMsg').textContent = m; $('tBox').value = plain(state.target); };
+    if (v == null) return say('Type a number such as 1000000, 1,000,000 or 1e6. The target stays at ' + plain(state.target) + '.');
+    if (v <= 0) return say(shrinking() ? 'Pick a number above 0; the model gets close to 0 but never reaches it.' : 'Pick a number above 0.');
+    if (v > 1e15) return say('Pick a number up to 10 to the 15 (1e15).');
+    setTarget(v, 'box');
+  }
+  $('tBox').addEventListener('change', commitBox);
+  $('tBox').addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); commitBox(); } });
+  for (const b of document.querySelectorAll('[data-q]')) b.onclick = () => setTarget(+b.dataset.q, 'quick');
+
+  // ---------- guess first ----------
+  function syncGuess() {
+    const X = g.range.x, f = (pin.x - X[0]) / (X[1] - X[0]);
+    pinLbl.el.setAttribute('text-anchor', f < .08 ? 'start' : f > .92 ? 'end' : 'middle');
+    pinLbl.el.setAttribute('dx', f < .08 ? -8 : f > .92 ? 8 : 0);
+    pinLbl.move(pin.x, g.range.y[0]);
+    avoid(pinLbl.el, [crossLbl, tLbl], [[null, null, -40], ['end', -14, -16], ['start', 14, -16], [null, null, -64]]);
+    pinLbl.set(state.guessMoved ? `guess: ${fmt(pin.x, 1)}` : 'drag me');
+    if (state.mode === 'ask' && state.guessFirst) { $('showBtn').disabled = !state.guessMoved; $('guessNote').textContent = state.guessShown ? 'Drag the target or change the story to guess again.' : state.guessMoved ? 'Pin placed. Press Show the answer.' : 'Drag the purple pin along the time axis (or Tab to it and use the arrow keys). Play waits until the answer is shown.'; }
+  }
+  $('guessBtn').onclick = () => {
+    state.guessFirst = !state.guessFirst; state.guessShown = false; state.guessMoved = false;
+    pin.set(g.range.x[0] + (g.range.x[1] - g.range.x[0]) * .1, g.range.y[0]);
+    if (state.guessFirst) narrate('guess');
+    update();
+  };
+  $('showBtn').onclick = () => { if (!state.guessMoved) return; state.guessShown = true; update(); };
+
+  // ---------- Check it ----------
+  $('checkBtn').onclick = () => {
+    const sv = solveT(state.target);
+    if (!(sv.kind === 'ok' || sv.kind === 'zero')) return;
+    setClock(0, true);
+    runTo(sv.t, () => { state.lastCheck = sv.t; setClock(sv.t, true); });
+  };
+
+  // ======================================================================================
+  // Stories and modes
+  // ======================================================================================
+  function loadStory(i) {
+    stopPlay();
+    const s = STORIES[i];
+    state.story = i; state.a = s.a; state.k = s.k; state.by = s.by; state.target = s.target;
+    state.guessShown = false; state.guessMoved = false; state.lastCheck = null;
+    sel.value = i; $('tMsg').textContent = '';
+    placeSliders();
+    setClock(0, true);
+    pin.set(0, g.range.y[0]);
+    update({anim: true});
+  }
+  // narration: first-time lines, one after another (a cap keeps the queue moving if a clip is stopped)
+  const said = new Set();
+  let tapped = false, vq = Promise.resolve(), vgen = 0;
+  for (const ev of ['pointerdown', 'keydown']) addEventListener(ev, () => {
+    if (tapped) return; tapped = true;
+    setTimeout(() => narrate(state.mode === 'grow' ? 'welcome' : state.mode === 'ask' ? 'ask' : 'ceiling'));
+  }, true);
+  function narrate(keys) {
+    if (!tapped) return;
+    for (const key of [].concat(keys)) {
+      if (said.has(key)) continue;
+      said.add(key);
+      const gen = vgen, line = L[key];
+      vq = vq.then(() => gen === vgen ? Promise.race([say(line), wait(2500 + 80 * line.length)]) : null);
+    }
+  }
+  function hush() { vgen++; vq = Promise.resolve(); Curio.stop(); }
+
+  const TIPS = ['Switching between doubling time, tenfold time and continuous rate never moves the curve.',
+    'On a log scale an exponential is a straight line. Its slope is log of the growth factor.',
+    'Halving time works the same way as doubling time, just downhill.',
+    'A forecast is only as good as its assumptions. The ceiling mode shows one that breaks.'];
+  let tipI = -1;
+  const MODES = {
+    grow: {hint: '<b>Grow.</b> Pick a story and press Play. Watch the milestones: each new power of ten arrives on a steady beat. Turn on Log to see why.', line: 'welcome'},
+    ask: {hint: '<b>Ask when.</b> Drag the target line to any number. Logarithms undo the exponent and give the exact time, three ways that agree.', line: 'ask'},
+    ceil: {hint: '<b>Hit the ceiling.</b> No outbreak can pass the number of people there are. Compare the pure exponential with a curve that slows as it runs out of people.', line: 'ceiling'},
+  };
+  function setMode(m) {
+    hush(); stopPlay();
+    state.mode = m; state.lastCheck = null;
+    for (const k in MODES) $('m-' + k).setAttribute('aria-pressed', k === m);
+    $('hint').innerHTML = MODES[m].hint;
+    tipI = (tipI + 1) % TIPS.length; $('tip').textContent = TIPS[tipI];
+    for (const el of document.querySelectorAll('[data-mode]')) el.hidden = el.dataset.mode !== m;
+    state.clock = 0; drawnDom[1] = 0;
+    update();
+    setClock(0, true);
+    narrate(MODES[m].line);
+  }
+  for (const k in MODES) $('m-' + k).onclick = () => setMode(k);
+
+  // Read: the hint, then the current answer sentence
+  function readNow() {
+    const hint = $('hint').textContent, t = state.clock, s = story();
+    const now = state.mode === 'ask' ? (answerVisible() ? answerSentence() : 'The answer is covered until you show it.') :
+      state.mode === 'ceil' ? [$('ceilExp').textContent, $('ceilLog').textContent].join(' ') :
+      `${Unit()} ${fmt(t, 1)}: ${wordsShort(N(t), 'say')} ${s.counts}.`;
+    hush(); say([hint, now.replace(/−/g, 'minus ')], true);
+  }
+
+  // every line the tool can say, so the voice scripts can record them (window.__tool.allLines())
+  const allLines = () => [...new Set(Object.values(L))];
+
+  // ---------- layout: wide, compact (short landscape boxes) or stack (narrow); see the CSS note ----------
+  const WIDE = {controls: ['cStory', 'cBy', 'cClock', 'cScale', 'aSlot', 'dSlot', 'wSlot', 'kSlot', 'dirCtl'],
+    readcol: ['countSec', 'ways', 'msSec', 'ansSec', 'ceilSec'],
+    panel: ['pctlA', 'pctlB', 'hint', 'storyCard', 'growSteady', 'askTarget', 'askGuess', 'askSolve', 'ceilPlace', 'ceilLogi', 'tip']};
+  // the panel when it holds everything: clock buttons and the main controls first (and first in Tab order), long lists last
+  const SMALL = {pctlA: ['cClock', 'cScale'], pctlB: ['cStory', 'cBy', 'dirCtl', 'aSlot', 'dSlot', 'wSlot', 'kSlot'],
+    panel: ['pctlA', 'pctlB', 'askTarget', 'ceilPlace', 'countSec', 'ansSec', 'ceilSec', 'askGuess', 'growSteady', 'hint', 'askSolve', 'ceilLogi', 'ways', 'msSec', 'storyCard', 'tip']};
+  let curLayout = null;
+  function layout() {
+    const w = innerWidth, h = innerHeight;
+    const L = w >= 1200 && h >= 700 ? 'wide' : w >= 600 && w / h >= 1.25 ? 'compact' : 'stack';
+    if (L === curLayout) return;
+    curLayout = L;
+    for (const c of ['wide', 'compact', 'stack']) document.body.classList.toggle(c, c === L);
+    const put = (parent, ids) => ids.forEach(id => parent.appendChild($(id)));
+    if (L === 'wide') { put($('controls'), WIDE.controls); put($('readcol'), WIDE.readcol); put($('panel'), WIDE.panel); }
+    else { put($('pctlA'), SMALL.pctlA); put($('pctlB'), SMALL.pctlB); put($('panel'), SMALL.panel); }
+    $('pctlA').hidden = $('pctlB').hidden = L === 'wide';
+    for (const b of document.querySelectorAll('[data-short]')) {
+      if (!b.dataset.full) b.dataset.full = b.textContent;
+      b.textContent = L === 'compact' ? b.dataset.short : b.dataset.full;
+      if (L === 'compact') b.setAttribute('aria-label', b.dataset.full); else b.removeAttribute('aria-label');
+    }
+    if (typeof renderPanel === 'function' && state.story != null) try { renderPanel(); } catch {}
+  }
+  layout();
+  addEventListener('resize', layout);
+
+  Curio.init({clips: "voice:*", rate: .95, readFallback: () => $('hint').textContent});
+  $('read').onclick = readNow;
+  Curio.fit('stage', 'scene', 640, 580);
+  // keep the handles at least 44 screen px when the stage is scaled down
+  function hitR() { const r = $('stage').getBoundingClientRect(), sc = Math.min(r.width / 640, r.height / 580) || 1; return Math.min(48, Math.max(22, 23 / sc)); }
+  new ResizeObserver(() => {
+    const h = hitR(); handle.setHit(h + 4); pin.setHit(h + 4); trace.setHit(h);
+    const r = $('stage').getBoundingClientRect(), sc = Math.min(r.width / 640, r.height / 580) || 1;
+    const ts = Math.min(1.6, Math.max(1, .82 / sc)).toFixed(2);
+    if ($('sv').style.getPropertyValue('--ts') !== ts) { $('sv').style.setProperty('--ts', ts); $('sv').style.setProperty('--ts2', ts > 1.2 ? 1.12 : 1); legend(); syncView(); }
+  }).observe($('stage'));
+
+  // for checking frames
+  window.__tool = {state, setMode, allLines, g, N, solveT, ceilT, halfT, logistic, words, wordsShort, play, stopPlay, setClock, runTo,
+    loadStory, setTarget, story,
+    typeTarget(text) { $('tBox').value = text; commitBox(); },
+    setBy(b) { document.querySelector(`[data-by="${b}"]`).click(); },
+    setScale(s) { document.querySelector(`[data-scale="${s}"]`).click(); },
+    setK(k) { state.k = k; afterModel(); },
+    setA(a) { state.a = a; afterModel(); },
+    setPlace(i) { $('place').value = i; $('place').onchange(); },
+    guessAt(t) { pin.set(t, g.range.y[0]); state.guessMoved = true; syncGuess(); renderSolve(); },
+    check() { $('checkBtn').click(); }, handle, pin, trace, cards: () => [...document.querySelectorAll('.tans')].map(e => e.textContent)};
+  loadStory(1);
+  setMode('grow');
+})();
+</script>
+</body>
+</html>

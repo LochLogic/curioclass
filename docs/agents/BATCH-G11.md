@@ -37,3 +37,6 @@ satire-decoder, usage-panel, stock-market-1929.
   with a compact panel in short landscape boxes), 760 px wide (the stack breakpoint is 1000 px), and 375 px wide inside
   an iframe host page (headless Chrome will not go below about 520 px). `scripts/shoot.py` does not print console
   errors: collect them yourself. Tab order: the panel's controls before long lists of map items.
+- **About the 16:10 preview:** the tool page (site/templates/tool.html) shows the tool in a 16:10 preview box next to a
+  "Play full screen" button. The preview must look inviting, readable (scene text about 10 px or more) and usable, but
+  full screen (a laptop window, 1280x720 and up) is the main way students use it. Don't sacrifice the full-size layout.
