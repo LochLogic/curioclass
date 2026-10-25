@@ -85,8 +85,11 @@ h1 small{display:block;font:400 14px/1.3 'Segoe UI',sans-serif;color:#bfdedb}
 .mbtns{display:flex;gap:16px;justify-content:center;margin-top:24px}
 .mbtns .b{min-width:200px;min-height:64px;font-size:22px}
 .verdict{margin:22px auto 0;width:760px;text-align:left}
-.stamp{display:inline-block;padding:4px 14px;border-radius:8px;font:900 20px 'Segoe UI',sans-serif;letter-spacing:.1em;border:3px solid currentColor;transform:rotate(-3deg);margin-bottom:6px}
-.stamp.fact{color:#2b7a4b}.stamp.myth{color:#b3563a}
+.stamp{display:inline-block;vertical-align:middle;width:190px;height:86px;margin:0 10px 6px 0}
+.stamp svg{width:100%;height:100%;overflow:visible}
+.stamp.thunk svg{animation:thunk .38s cubic-bezier(.2,1.4,.4,1)}
+@keyframes thunk{from{transform:scale(1.7) rotate(4deg);opacity:0}60%{opacity:1}}
+.calm .stamp.thunk svg{animation:none}
 .prog{display:flex;gap:6px;justify-content:center;margin-top:16px}
 .prog i{width:14px;height:14px;border-radius:50%;background:#d7d2c4}
 .prog i.ok{background:#2b7a4b}.prog i.no{background:#d39a83}.prog i.now{outline:3px solid var(--brand)}
@@ -370,7 +373,7 @@ h1 small{display:block;font:400 14px/1.3 'Segoe UI',sans-serif;color:#bfdedb}
     MQ.res[MQ.i] = ok ? 1 : 0; (ok ? SFX.right : SFX.soft)();
     $('mbtns').hidden = true; $('mverdict').hidden = false;
     const last = MQ.i === MQ.list.length - 1;
-    $('mverdict').innerHTML = `<span class="stamp ${ans}">${ans.toUpperCase()}</span> <b style="font:700 18px 'Segoe UI'">${ok ? 'You got it.' : 'Not quite.'}</b><p>${why}</p><div class="src">Source: ${src}</div>
+    $('mverdict').innerHTML = `${stampHTML(ans)} <b style="font:700 18px 'Segoe UI'">${ok ? 'You got it.' : 'Not quite.'}</b><p>${why}</p><div class="src">Source: ${src}</div>
       <div style="text-align:right;margin-top:8px"><button class="b go" id="mnext">${last ? 'See how you did' : 'Next ▶'}</button></div>`;
     $('mprog').innerHTML = MQ.list.map((_, i) => `<i class="${MQ.res[i] === 1 ? 'ok' : MQ.res[i] === 0 ? 'no' : ''} ${i === MQ.i ? 'now' : ''}"></i>`).join('');
     $('mnext').focus();
@@ -480,6 +483,17 @@ h1 small{display:block;font:400 14px/1.3 'Segoe UI',sans-serif;color:#bfdedb}
     $('fback').onclick = friendMenu; $('fhelp2').onclick = openHelp;
   }
 
+  // a rubber stamp: worn ink (turbulence mask), double border, slightly crooked
+  function stampHTML(kind) {
+    const c = kind === 'fact' ? '#2b7a4b' : '#b3263a', id = 'st' + Math.random().toString(36).slice(2, 7), rot = kind === 'fact' ? -4 : -7;
+    return `<span class="stamp thunk" role="img" aria-label="${kind}"><svg viewBox="0 0 190 86"><defs>
+      <filter id="${id}f"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="${kind === 'fact' ? 3 : 7}"/><feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -2.6 1.9"/><feComposite in="SourceGraphic" operator="in"/></filter></defs>
+      <g transform="rotate(${rot} 95 43)" filter="url(#${id}f)" fill="none" stroke="${c}">
+        <rect x="6" y="8" width="178" height="70" rx="12" stroke-width="6"/><rect x="15" y="17" width="160" height="52" rx="7" stroke-width="2.5"/>
+        <text x="95" y="56" text-anchor="middle" fill="${c}" stroke="none" font-family="Impact,'Arial Black','Segoe UI',sans-serif" font-size="38" letter-spacing="6">${kind.toUpperCase()}</text>
+      </g></svg></span>`;
+  }
+
   // ---------- stress bucket ----------
   const STRESS = [['Big test coming up', 18], ['Not enough sleep', 16], ['Argument with a friend', 14], ['Family money worries', 18], ['Too many activities', 14], ['A breakup', 18], ['Sports tryouts', 10], ['A loss or a death', 24], ['Moving to a new school', 16], ['Group chat drama', 10], ['Job and homework', 14], ['Someone is sick at home', 18]];
   const TAPS = [['Talk to someone you trust', 16], ['Sleep 8 to 10 hours', 14], ['Move your body', 12], ['Time outside', 9], ['Make something: music, art, writing', 9], ['Slow breathing', 7], ['Break a big task into small steps', 9], ['See a counselor or therapist', 20]];
@@ -518,14 +532,45 @@ h1 small{display:block;font:400 14px/1.3 'Segoe UI',sans-serif;color:#bfdedb}
     // inside of the bucket: a trapezoid, narrow at the bottom
     const top = 168, bot = 468, lvl = Math.min(1.08, B.shown / 100), y = bot - (bot - top) * Math.min(1, lvl);
     const xAt = yy => { const u = (yy - top) / (bot - top); return [80 + u * 48, 420 - u * 48]; }; // the painted bucket's inside walls
-    const [l, r] = xAt(y);
-    let s = `<defs><linearGradient id="wg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6fb0c4"/><stop offset="1" stop-color="#2d6f86"/></linearGradient></defs>`;
-    if (B.shown > .5) s += `<path d="M${l} ${y} L${r} ${y} L${xAt(bot)[1]} ${bot} L${xAt(bot)[0]} ${bot} Z" fill="url(#wg)" opacity=".72"/>`;
-    if (lvl > 1) s += `<path d="M78 165 q-30 40 -40 150 q-6 90 -10 220" stroke="#6fb0c4" stroke-width="10" fill="none" stroke-linecap="round" opacity=".8"/><path d="M422 165 q30 40 40 150 q6 90 10 220" stroke="#6fb0c4" stroke-width="10" fill="none" stroke-linecap="round" opacity=".8"/>`;
-    // taps along the bottom: open ones pour
-    const open = [...B.t];
-    open.forEach((i, k) => { const x = 160 + k * (180 / Math.max(1, open.length - 1 || 1)); s += `<rect x="${x - 8}" y="452" width="16" height="16" rx="3" fill="#7a8b8f"/><path d="M${x} 468 L${x} 540" stroke="#6fb0c4" stroke-width="6" stroke-linecap="round" opacity="${B.shown > 1 ? .9 : .3}"/>`; });
-    B.c.forEach(i => s += `<text x="250" y="${530 + i * 0}" text-anchor="middle" font-size="16" font-weight="700" fill="#b3563a"></text>`);
+    const [l, r] = xAt(y), [bl, br] = xAt(bot), full = Math.min(1, lvl), anim = !reduce;
+    // the fuller it gets, the darker and stormier the water
+    const mix = (a, b, t) => '#' + [0, 2, 4].map(i => Math.round(parseInt(a.slice(1 + i, 3 + i), 16) * (1 - t) + parseInt(b.slice(1 + i, 3 + i), 16) * t).toString(16).padStart(2, '0')).join('');
+    const c1 = mix('#8fd3e6', '#7b6fb0', full), c2 = mix('#2d7f99', '#3a2f6b', full);
+    let s = `<defs><linearGradient id="wg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${c1}"/><stop offset="1" stop-color="${c2}"/></linearGradient>
+      <clipPath id="inside"><path d="M80 ${top - 30} L420 ${top - 30} L${br} ${bot} L${bl} ${bot} Z"/></clipPath>
+      <linearGradient id="brass" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4d27a"/><stop offset=".5" stop-color="#c8962e"/><stop offset="1" stop-color="#8a6418"/></linearGradient></defs>`;
+    if (B.shown > .5) {
+      // a moving surface: two offset waves slide back and forth
+      const wave = (amp, ph) => { let d = `M${l - 40} ${y}`; for (let x = l - 40; x <= r + 40; x += 20) d += ` L${x} ${y + Math.sin(x / 26 + ph) * amp}`; return d + ` L${r + 40} ${bot + 10} L${l - 40} ${bot + 10} Z`; };
+      s += `<g clip-path="url(#inside)" opacity=".82"><path d="${wave(4, 0)}" fill="url(#wg)">${anim ? '<animateTransform attributeName="transform" type="translate" values="0 0;18 1;0 0" dur="3.2s" repeatCount="indefinite"/>' : ''}</path>
+        <path d="${wave(3, 2)}" fill="${c1}" opacity=".35">${anim ? '<animateTransform attributeName="transform" type="translate" values="0 0;-16 -1;0 0" dur="2.6s" repeatCount="indefinite"/>' : ''}</path>`;
+      // bubbles rise from the bottom
+      if (anim) for (let k = 0; k < 7; k++) { const bx = l + 30 + ((k * 53) % Math.max(40, r - l - 60)), d = (2.4 + k * .37).toFixed(2); s += `<circle cx="${bx}" cy="${bot - 10}" r="${3 + k % 3}" fill="#ffffff88"><animate attributeName="cy" values="${bot - 10};${y + 8}" dur="${d}s" begin="-${k * .5}s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;.9;0" dur="${d}s" begin="-${k * .5}s" repeatCount="indefinite"/></circle>`; }
+      s += '</g>';
+    }
+    // each stressor floats as a tag, stacked from the bottom
+    [...B.s].map(i => STRESS[i][0]).forEach((t, k) => {
+      const ty = bot - 26 - k * 30;
+      if (ty < top + 6) return;
+      const inWater = ty > y + 6 && B.shown > .5, [tl, tr] = xAt(ty), w = Math.min(tr - tl - 20, 14 + t.length * 8.2), tx = (tl + tr) / 2 - w / 2 + ((k % 3) - 1) * 12;
+      s += `<g opacity="${inWater ? 1 : .55}">${anim && inWater ? `<animateTransform attributeName="transform" type="translate" values="0 0;0 -4;0 0" dur="${2 + (k % 3) * .4}s" repeatCount="indefinite"/>` : ''}
+        <rect x="${tx}" y="${ty - 12}" width="${w}" height="24" rx="12" fill="#fffdf8" stroke="#3a2f6b" stroke-width="2"/><text x="${tx + w / 2}" y="${ty + 5}" text-anchor="middle" font-size="13" font-weight="700" fill="#3a2f6b" font-family="Segoe UI,sans-serif">${t}</text></g>`;
+    });
+    // overflow: water spills over both rims and splashes at the base
+    if (lvl > 1) for (const [x0, dir] of [[78, -1], [422, 1]]) {
+      const d = `M${x0} 165 q${dir * 30} 40 ${dir * 40} 150 q${dir * 6} 90 ${dir * 10} 220`;
+      s += `<path d="${d}" stroke="${c1}" stroke-width="12" fill="none" stroke-linecap="round" opacity=".85" ${anim ? 'stroke-dasharray="26 12"' : ''}>${anim ? '<animate attributeName="stroke-dashoffset" values="0;-76" dur=".9s" repeatCount="indefinite"/>' : ''}</path>
+        <ellipse cx="${x0 + dir * 50}" cy="540" rx="46" ry="10" fill="${c1}" opacity=".6"/>`;
+    }
+    // brass taps on the sides near the bottom: open ones pour, and a clogging habit corks them
+    const taps = TAPS.map((_, i) => i).filter(i => B.t.has(i)), clogged = B.c.size > 0;
+    taps.forEach((i, k) => {
+      const ty = bot - 18 - (k % 4) * 30, side = k < 4 ? 1 : -1, [tl, tr] = xAt(ty), x = side > 0 ? tr + 4 : tl - 4;
+      const pour = clogged ? '<rect x="25" y="16" width="10" height="10" rx="3" fill="#a07a4a"/>'
+        : B.shown > 1 ? `<path d="M30 18 Q34 60 40 110" stroke="${c1}" stroke-width="7" fill="none" stroke-linecap="round" ${anim ? 'stroke-dasharray="14 8"' : ''}>${anim ? '<animate attributeName="stroke-dashoffset" values="0;-44" dur=".7s" repeatCount="indefinite"/>' : ''}</path>` : '';
+      s += `<g transform="translate(${x} ${ty}) scale(${side} 1)"><rect x="0" y="-8" width="30" height="16" rx="5" fill="url(#brass)" stroke="#6b4a10" stroke-width="2"/>
+        <rect x="24" y="-8" width="12" height="26" rx="4" fill="url(#brass)" stroke="#6b4a10" stroke-width="2"/><rect x="8" y="-20" width="6" height="12" fill="#6b4a10"/><rect x="2" y="-24" width="18" height="6" rx="3" fill="#c0392b"/>${pour}</g>`;
+    });
     $('bsvg').innerHTML = s;
   }
   // box breathing: 4 in, 4 hold, 4 out, 4 hold, the dot travels around the square

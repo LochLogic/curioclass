@@ -84,6 +84,12 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
 .steps i.on{border-color:#222a3a;background:#ffd34d}
 .steps i.done{background:#eafbef;border-color:#2a9d4a}
 .tbox svg{width:250px;height:190px}
+/* the painted mouth: the part being brushed is lit, the others rest in shade */
+.mouth{position:relative;width:330px;height:190px}
+.mouth img{width:100%;height:100%;object-fit:contain}
+.mouth .q{position:absolute;width:50%;height:50%;border-radius:40px;background:#fffdf8a8;transition:background .4s}
+.mouth .q.on{background:transparent;box-shadow:inset 0 0 0 5px #ffd34d,0 0 18px #ffd34d}
+.mouth .brush{position:absolute;font-size:56px;transform:translate(-50%,-50%) rotate(-25deg)}
 
 .panel{background:#fbfcff;border-left:3px solid var(--line);padding:14px 16px;display:flex;flex-direction:column;gap:12px;overflow:auto}
 @media (max-width:759px){.panel{border-left:0;border-top:3px solid var(--line)}}
@@ -330,13 +336,18 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
     const b = el('g', {}, svg);
     for (let i = 0; i < 9; i++) { const c = el('circle', {cx: 70 + (i * 37) % 120, cy: 60 + (i * 23) % 80, r: 8 + i % 3 * 4, fill: '#fff', stroke: '#9bd3f2', 'stroke-width': 2}, b); if (!reduce) c.animate([{transform: 'translateY(0)', opacity: 1}, {transform: 'translateY(-30px)', opacity: 0}], {duration: 1400, delay: -i * 160, iterations: Infinity}); }
   }
-  function mouth(svg, part) {
-    el('path', {d: 'M20,95 Q125,-5 230,95 Q125,195 20,95 Z', fill: '#e8828f', stroke: '#8a3a45', 'stroke-width': 5}, svg);
-    for (let row = 0; row < 2; row++) for (let i = 0; i < 8; i++) {
-      const x = 46 + i * 23, y = row ? 112 : 60, side = i < 4 ? 'left' : 'right', on = part === `${row ? 'Bottom' : 'Top'} ${side}`;
-      el('rect', {x, y, width: 20, height: 26, rx: 7, fill: on ? '#fff7b0' : '#fff', stroke: on ? '#e0a400' : '#c9c9c9', 'stroke-width': on ? 4 : 2}, svg);
+  function mouth(box, part) {
+    const qs = [['Top left', 0, 0], ['Top right', 50, 0], ['Bottom left', 0, 50], ['Bottom right', 50, 50]];
+    box.innerHTML = `<img src="art:mouth" alt="An open smile showing top and bottom teeth">` +
+      qs.map(([n, x, y]) => `<div class="q${n === part ? ' on' : ''}" style="left:${x}%;top:${y}%"></div>`).join('');
+    const q = qs.find(([n]) => n === part);
+    if (q) {
+      const b = document.createElement('div');
+      b.className = 'brush'; b.textContent = '🪥';
+      b.style.left = q[1] + 25 + '%'; b.style.top = q[2] + 25 + '%';
+      box.append(b);
+      if (!reduce) b.animate([{marginLeft: '-14px'}, {marginLeft: '14px'}], {duration: 300, iterations: Infinity, direction: 'alternate'});
     }
-    if (part && !reduce) { const br = el('text', {x: part.includes('left') ? 70 : 170, y: part.includes('Top') ? 52 : 170, 'font-size': 44, 'text-anchor': 'middle'}, svg); br.textContent = '🪥'; br.animate([{transform: 'translateX(-12px)'}, {transform: 'translateX(12px)'}], {duration: 300, iterations: Infinity, direction: 'alternate'}); }
   }
   function timerMenu() {
     $('tbox').innerHTML = `<div class="step" style="margin-top:40px">Which timer?</div><div class="row" style="width:100%;margin-top:30px"><button class="big-btn gold" id="tw" style="min-height:160px;font-size:30px">🧼<br>Wash hands<br><small>20 seconds</small></button><button class="big-btn gold" id="tt" style="min-height:160px;font-size:30px">🪥<br>Brush teeth<br><small>2 minutes</small></button></div>`;
@@ -348,7 +359,7 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
     const steps = kind === 'wash' ? WASH : TEETH;
     $('ctrl').innerHTML = '<button class="big-btn soft" id="tstop">■ Stop</button>'; $('tstop').onclick = () => { state.run++; music(false); timerMenu(); };
     const render = (k, secs, part) => {
-      $('tbox').innerHTML = `<div class="big">${secs}</div><svg id="tsvg" viewBox="0 0 250 190" aria-hidden="true"></svg><div class="step">${steps[k][1]}</div><div class="steps">${steps.map((s, i) => `<i class="${i < k ? 'done' : i === k ? 'on' : ''}">${s[0]}</i>`).join('')}</div>`;
+      $('tbox').innerHTML = `<div class="big">${secs}</div>${kind === 'wash' ? '<svg id="tsvg" viewBox="0 0 250 190" aria-hidden="true"></svg>' : '<div class="mouth" id="tsvg"></div>'}<div class="step">${steps[k][1]}</div><div class="steps">${steps.map((s, i) => `<i class="${i < k ? 'done' : i === k ? 'on' : ''}">${s[0]}</i>`).join('')}</div>`;
       kind === 'wash' ? hands($('tsvg')) : mouth($('tsvg'), part);
     };
     // handwashing: 3 seconds to wet and soap, 20 seconds of scrubbing, then rinse and dry; teeth: 30 seconds a part

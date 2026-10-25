@@ -408,7 +408,7 @@ h1 small{display:block;font:400 14px/1.3 'Segoe UI',sans-serif;color:#cfe8c8}
     return `<g opacity="${on ? 1 : .15}">
       <circle cx="90" cy="80" r="34" fill="#ffd34d"/><g stroke="#ffd34d" stroke-width="5" stroke-linecap="round">${[0, 1, 2, 3, 4, 5, 6, 7].map(i => { const a = i * Math.PI / 4; return `<line x1="${90 + Math.cos(a) * 44}" y1="${80 + Math.sin(a) * 44}" x2="${90 + Math.cos(a) * 58}" y2="${80 + Math.sin(a) * 58}"/>`; }).join('')}</g>
       <path class="ray${mv}" d="M108 110 L132 262"/></g>
-    <g><path d="M110 290 q22 -30 40 0 q10 40 -20 70 q-30 -30 -20 -70z" fill="#d23a2a"/><path d="M128 288 q4 -18 16 -24" stroke="#5a3a1a" stroke-width="5" fill="none"/></g>
+    <image href="art:apple" x="86" y="262" width="96" height="112"/>
     ${on ? '' : `<text x="40" y="470" class="lbl" style="font-size:22px">No light, nothing to see.</text>`}`;
   }
   // light bouncing off the apple, bent by the lens, landing upside down on the retina (drawn over the eye)
@@ -416,8 +416,13 @@ h1 small{display:block;font:400 14px/1.3 'Segoe UI',sans-serif;color:#cfe8c8}
     if (!lightsOn) return '';
     const mv = reduce ? '' : ' move';
     return `<path class="ray${mv}" d="M150 300 L${lensX} ${lensTop} L${retinaX} ${rBot}"/><path class="ray${mv}" d="M140 345 L${lensX} ${lensBot} L${retinaX} ${rTop}"/>
-      <g transform="translate(${retinaX - 26} ${(rTop + rBot) / 2}) scale(.55 -.55)" opacity=".9"><path d="M-20 -40 q22 -30 40 0 q10 40 -20 70 q-30 -30 -20 -70z" fill="#d23a2a"/></g>`;
+      <g transform="translate(${retinaX - 30} ${(rTop + rBot) / 2}) scale(1 -1)" opacity=".9"><image href="art:apple" x="-24" y="-28" width="48" height="56"/></g>`;
   }
+  // the optic nerve: a sheathed bundle of fibers, shaded so it reads as a round cable
+  const NERVE = (d, id, P) => `<g ${P(id)}><path d="${d}" stroke="#a8792c" stroke-width="30" fill="none" stroke-linecap="round"/>
+    <path d="${d}" stroke="url(#nerveG)" stroke-width="24" fill="none" stroke-linecap="round"/>
+    ${[-7, -2, 3, 8].map((o, i) => `<path d="${d}" transform="translate(0 ${o})" stroke="${i % 2 ? '#f6dc94' : '#e6bd5c'}" stroke-width="2.5" fill="none" stroke-dasharray="${18 + i * 5} ${6 + i}" stroke-linecap="round" opacity=".9"/>`).join('')}</g>`;
+  const NERVE_DEFS = '<defs><linearGradient id="nerveG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe9a8"/><stop offset=".5" stop-color="#e8b64e"/><stop offset="1" stop-color="#b88534"/></linearGradient></defs>';
   function diagram() {
     const L = (x, y, t, id, anchor = 'start') => `<text x="${x}" y="${y}" class="lbl part ${partOn === id ? 'on' : ''}" data-p="${id}" text-anchor="${anchor}">${t}</text>`;
     const P = id => `class="part ${partOn === id ? 'on' : ''}" data-p="${id}"`;
@@ -430,7 +435,7 @@ h1 small{display:block;font:400 14px/1.3 'Segoe UI',sans-serif;color:#cfe8c8}
         <path d="M300 230 Q262 320 300 410" stroke="#9fd0e8" stroke-width="12" fill="#e8f6fc" ${P('cornea')}/>
         <path d="M318 245 L318 290 M318 350 L318 395" stroke="#4a7fb0" stroke-width="14" ${P('iris')}/>
         <ellipse cx="342" cy="320" rx="22" ry="62" fill="#d8ecf7" stroke="#7ab0d0" stroke-width="5" ${P('lens')}/>
-        <path d="M668 320 L790 340 L860 300" stroke="#e0b44c" stroke-width="22" fill="none" stroke-linecap="round" ${P('nerve')}/>
+        ${NERVE_DEFS}${NERVE('M668 320 C730 326 770 340 800 322 S846 296 856 290', 'nerve', P)}
         <ellipse cx="868" cy="250" rx="70" ry="54" fill="#f2c4c8" stroke="#c98a91" stroke-width="5" ${P('brain')}/>
         ${rays(342, 292, 348, 650, 250, 390)}
         ${L(282, 225, 'Cornea', 'cornea', 'end')}${L(300, 470, 'Iris and pupil', 'iris')}${L(330, 175, 'Lens', 'lens')}${L(612, 160, 'Retina', 'retina')}${L(720, 400, 'Optic nerve', 'nerve')}${L(868, 330, 'Brain', 'brain', 'middle')}
@@ -442,7 +447,7 @@ h1 small{display:block;font:400 14px/1.3 'Segoe UI',sans-serif;color:#cfe8c8}
         <path d="M296 190 Q248 320 296 450" stroke="#9fd0e8" stroke-width="12" fill="#e8f6fc" ${P('cornea')}/>
         <ellipse cx="350" cy="320" rx="40" ry="108" fill="#d8ecf7" stroke="#7ab0d0" stroke-width="5" ${P('lens')}/>
         <path d="M640 200 Q700 320 640 440" stroke="#c0392b" stroke-width="18" fill="none" ${P('retina')}/>
-        <path d="M672 320 L800 330" stroke="#e0b44c" stroke-width="22" stroke-linecap="round" ${P('nerve')}/>
+        ${NERVE_DEFS}${NERVE('M672 320 C720 322 760 330 800 330', 'nerve', P)}
         ${rays(350, 270, 370, 655, 240, 400)}
         ${L(270, 175, 'Huge cornea', 'cornea', 'end')}${L(350, 490, 'Big lens', 'lens', 'middle')}${L(430, 150, 'Bony ring holds the tube shape', 'ring')}${L(700, 190, 'Retina full of rods', 'retina')}${L(760, 370, 'Optic nerve', 'nerve')}`;
     } else if (E === 'bee') {

@@ -38,9 +38,8 @@ h1 small{display:block;font:500 15px/1.3 'Segoe UI',sans-serif;color:#ead0f3}
 
 main{display:grid;grid-template-columns:1fr;min-height:0}
 @media (min-width:760px){main{grid-template-columns:minmax(0,1fr) 340px}}
-.stage{position:relative;overflow:hidden;min-height:340px;background:
-  repeating-linear-gradient(90deg,#0000 0 118px,#0000000d 118px 120px),
-  linear-gradient(#e8c99a,#dcb784)}
+.stage{position:relative;overflow:hidden;min-height:340px;background:#e9d3ad url(art:libroom) center 62%/cover}
+.area img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:50% 100%;pointer-events:none;filter:drop-shadow(0 8px 6px #0003)}
 .scene{position:absolute;left:50%;top:50%;width:1000px;height:620px;transform:translate(-50%,-50%) scale(var(--s,1))}
 .wall{position:absolute;left:0;right:0;top:0;height:230px;background:linear-gradient(#f6ecd9,#efe0c4);border-bottom:10px solid #b88a55}
 .win{position:absolute;top:26px;width:120px;height:120px;border-radius:60px 60px 8px 8px;background:linear-gradient(#bfe3ff,#e8f5ff);border:7px solid #b88a55}
@@ -64,14 +63,14 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
 .rug{position:absolute;left:700px;top:430px;width:270px;height:170px;border-radius:50%;background:radial-gradient(circle,#ffd34d 0 22%,#f28c8c 22% 42%,#7ec4cf 42% 62%,#b39ddb 62% 82%,#81c784 82%)}
 .beanbag{position:absolute;width:76px;height:58px;border-radius:50% 50% 40% 40%;background:var(--c);box-shadow:inset -8px -8px 0 #0002}
 
-.owl{position:absolute;left:24px;top:400px;width:190px;height:200px}
+.owl{position:absolute;left:14px;top:416px;width:180px;height:196px;z-index:2}
 .owl img{width:100%;height:100%;object-fit:contain;object-position:50% 100%;filter:drop-shadow(0 6px 4px #0003)}
-.bubble{position:absolute;left:20px;top:244px;width:236px;background:#fff;border:4px solid #2a241e;border-radius:22px;padding:10px 16px;font:800 21px/1.3 'Trebuchet MS',sans-serif;box-shadow:0 5px 0 #0002;z-index:3}
-.bubble::after{content:'';position:absolute;left:60px;bottom:-24px;border:12px solid transparent;border-top:16px solid #2a241e}
+.bubble{position:absolute;left:200px;top:470px;width:236px;background:#fff;border:4px solid #2a241e;border-radius:22px;padding:10px 16px;font:800 21px/1.3 'Trebuchet MS',sans-serif;box-shadow:0 5px 0 #0002;z-index:3}
+.bubble::after{content:'';position:absolute;left:-26px;top:24px;border:12px solid transparent;border-right:16px solid #2a241e}
 .bubble:empty{display:none}
 
 /* the big book in hand */
-.book{position:absolute;left:272px;top:236px;width:116px;height:270px;border-radius:8px 8px 4px 4px;background:var(--bc);border:5px solid #2a241e;box-shadow:0 10px 18px #0004;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding-bottom:14px;z-index:4;touch-action:none;cursor:grab}
+.book{position:absolute;left:230px;top:28px;width:116px;height:250px;border-radius:8px 8px 4px 4px;background:var(--bc);border:5px solid #2a241e;box-shadow:0 10px 18px #0004;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding-bottom:14px;z-index:4;touch-action:none;cursor:grab}
 .book .title{position:absolute;top:14px;bottom:110px;left:0;right:0;writing-mode:vertical-rl;transform:rotate(180deg);font:800 20px/1.1 'Trebuchet MS',sans-serif;color:#fff;display:flex;align-items:center;justify-content:center;text-shadow:0 2px 0 #0004;padding:0 8px;text-align:center}
 .label{width:88px;color:#2a241e;background:#fffdf5;border:3px solid #2a241e;border-radius:6px;font:900 26px/1.15 'Courier New',monospace;text-align:center;padding:4px 0}
 .label span{display:block}
@@ -135,12 +134,7 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
 <main>
   <div class="stage" id="stage">
     <div class="scene" id="scene">
-      <div class="wall"><div class="win" style="left:300px"></div><div class="win" style="left:600px"></div></div>
       <div id="areas"></div>
-      <div class="desk" aria-hidden="true"><div class="pc"></div><div class="stack"></div></div>
-      <div class="rug" aria-hidden="true"></div>
-      <div class="beanbag" style="left:730px;top:470px;--c:#e85d75" aria-hidden="true"></div>
-      <div class="beanbag" style="left:880px;top:500px;--c:#3c78d8" aria-hidden="true"></div>
       <div class="owl"><img src="art:owl" alt="Hoot the owl librarian"></div>
       <div class="bubble" id="bubble" aria-live="polite"></div>
       <div id="book-slot"></div>
@@ -171,15 +165,15 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
 
   // ---------- the library ----------
   const AREAS = [
-    {id: 'pic', name: 'Picture books', c: 'var(--pic)', x: 20, y: 60, w: 300, h: 170, kind: 'bins',
+    {id: 'pic', name: 'Picture books', c: 'var(--pic)', x: 30, y: 300, w: 300, h: 150, img: 'art:picbins',
       say: 'Picture books have lots of pictures and fewer words. Their spine labels start with E, for Everybody. They are in ABC order by the author\'s last name.'},
-    {id: 'fic', name: 'Fiction', c: 'var(--fic)', x: 345, y: 60, w: 300, h: 170, kind: 'shelf',
+    {id: 'fic', name: 'Fiction', c: 'var(--fic)', x: 350, y: 250, w: 300, h: 200, img: 'art:ficshelf',
       say: 'Fiction means made-up stories, like chapter books. Spine labels start with FIC, then the author\'s last name, in ABC order.'},
-    {id: 'non', name: 'Nonfiction', c: 'var(--non)', x: 670, y: 60, w: 310, h: 170, kind: 'shelf',
+    {id: 'non', name: 'Nonfiction', c: 'var(--non)', x: 670, y: 250, w: 310, h: 200, img: 'art:nonshelf',
       say: 'Nonfiction books are true. They teach facts about animals, space, people and places. They are in number order, and each number is a topic.'},
-    {id: 'desk', name: 'Checkout desk', c: '#b06b2a', x: 400, y: 440, w: 270, h: 150, kind: 'none',
+    {id: 'desk', name: 'Checkout desk', c: '#b06b2a', x: 440, y: 450, w: 260, h: 150, img: 'art:desk',
       say: 'At the checkout desk, the librarian scans your book so you can take it home. Bring it back by the due date so others can read it too!'},
-    {id: 'rug', name: 'Reading rug', c: '#d1495b', x: 690, y: 420, w: 290, h: 190, kind: 'none',
+    {id: 'rug', name: 'Reading rug', c: '#d1495b', x: 715, y: 455, w: 270, h: 150, img: 'art:rug',
       say: 'The reading rug is a cozy spot for story time and quiet reading. Use a soft voice so everyone can enjoy their book.'},
   ];
   const DEWEY = [['398', 'fairy tales and folk tales'], ['500', 'science: space, weather, rocks'], ['590', 'animals'], ['600', 'bodies, cooking, how things work'], ['700', 'art, music, sports, games'], ['800', 'poems and jokes'], ['900', 'places, history, true stories of people']];
@@ -193,12 +187,7 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
       b.style.setProperty('--c', a.c);
       b.setAttribute('aria-label', a.name);
       let inner = `<span class="sign">${a.name}</span>`;
-      if (a.kind === 'shelf') {
-        inner += `<div class="shelf">${[0, 1].map(r => `<div class="row-b">${Array.from({length: 15}, (_, i) => `<i class="sp" style="--bc:${SPINE[(i * 3 + r * 5 + a.x) % SPINE.length]};--w:${14 + (i * 7 + r) % 8}px;--sh:${72 + (i * 13 + r * 7) % 26}%"></i>`).join('')}</div>`).join('')}</div>`;
-      }
-      if (a.kind === 'bins') {
-        inner += [0, 1].map(k => `<div class="bin" style="left:${10 + k * 148}px;width:136px">${[0, 1].map(i => `<i class="face" style="--bc:${SPINE[(k * 2 + i + 1) % SPINE.length]};--r:${i ? 6 : -5}deg"></i>`).join('')}</div>`).join('');
-      }
+      inner += `<img src="${a.img}" alt="">`;
       b.innerHTML = inner;
       b.onclick = () => tapArea(a.id);
       return b;
@@ -370,7 +359,6 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
     state.mode = m; stopTalk();
     for (const [id, k] of [['m-explore', 'explore'], ['m-spine', 'spine'], ['m-abc', 'abc']]) $(id).setAttribute('aria-pressed', m === k);
     $('book-slot').innerHTML = ''; $('abc-slot').innerHTML = ''; $('tip').innerHTML = ''; hl(null);
-    document.querySelectorAll('.desk,.rug,.beanbag').forEach(e => e.hidden = m === 'abc');
     $('areas').hidden = m === 'abc';
     $('scene').classList.toggle('abc-mode', m === 'abc');
     if (m === 'explore') {
