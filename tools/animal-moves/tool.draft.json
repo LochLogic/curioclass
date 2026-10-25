@@ -1,0 +1,20 @@
+{
+  "id": "animal-moves",
+  "status": "beta",
+  "driver": "teacher",
+  "modes": [
+    "Move along",
+    "Freeze game",
+    "Mix it up"
+  ],
+  "grades_label": "Grades K-2",
+  "third_party": [],
+  "updated": "2026-10-25",
+  "hook": "Hop like a frog, gallop like a horse, balance like a flamingo. Each animal brings a skill, simple form cues and its own beat, then the music stops and everyone freezes.",
+  "outcome": "Practice locomotor and balance skills with simple form cues, at different speeds, sizes and levels",
+  "minutes": "5-15",
+  "sources": [
+    "Illustrations drawn with FLUX.1-schnell (Apache 2.0) on a local computer, edited for Curio Class",
+    "Music and sounds generated in the browser"
+  ]
+}

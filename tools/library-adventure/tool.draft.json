@@ -1,0 +1,21 @@
+{
+  "id": "library-adventure",
+  "status": "beta",
+  "driver": "teacher",
+  "modes": [
+    "Explore",
+    "Spine detective",
+    "ABC shelf"
+  ],
+  "grades_label": "Grades K-2",
+  "third_party": [],
+  "updated": "2026-10-25",
+  "hook": "Hoot the owl shows the class around a cartoon library. Read a book's spine label, send it home to picture books, fiction or nonfiction, then shelve picture books in ABC order.",
+  "outcome": "Find picture books, fiction and nonfiction in the library and use spine labels and ABC order to locate a book",
+  "minutes": "10-20",
+  "sources": [
+    "Book titles and authors are made up",
+    "Illustrations drawn with FLUX.1-schnell (Apache 2.0) on a local computer, edited for Curio Class",
+    "Sounds generated in the browser"
+  ]
+}

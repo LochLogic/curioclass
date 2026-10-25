@@ -1,0 +1,234 @@
+{
+  "style": "Bright, appetizing picture-book food illustrations for a kindergarten lunch lesson: rounded shapes, clean outlines, cheerful natural colors, easy to recognize from the back of a classroom.",
+  "assets": [
+    {
+      "name": "apple",
+      "prompt": "One shiny red apple with a small green leaf on the stem, a bright appetizing food illustration seen from slightly above.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 200,
+      "quality": 76
+    },
+    {
+      "name": "banana",
+      "prompt": "One ripe yellow banana, a bright appetizing food illustration seen from slightly above.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 200,
+      "quality": 76
+    },
+    {
+      "name": "orange",
+      "prompt": "Three juicy orange slices, wedge shaped, fanned out, a bright appetizing food illustration seen from slightly above.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 200,
+      "quality": 76
+    },
+    {
+      "name": "grapes",
+      "prompt": "A small bunch of green grapes on a stem, a bright appetizing food illustration seen from slightly above.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 200,
+      "quality": 76,
+      "key": "magenta"
+    },
+    {
+      "name": "strawberries",
+      "prompt": "Three ripe red strawberries with green tops, a bright appetizing food illustration seen from slightly above.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 200,
+      "quality": 76
+    },
+    {
+      "name": "pear",
+      "prompt": "One ripe green-yellow pear, a bright appetizing food illustration seen from slightly above.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 200,
+      "quality": 76,
+      "key": "magenta"
+    },
+    {
+      "name": "carrots",
+      "prompt": "A small pile of orange carrot sticks, a bright appetizing food illustration seen from slightly above.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 200,
+      "quality": 76
+    },
+    {
+      "name": "broccoli",
+      "prompt": "Two fresh green broccoli florets, a bright appetizing food illustration seen from slightly above.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 200,
+      "quality": 76,
+      "key": "magenta"
+    },
+    {
+      "name": "corn",
+      "prompt": "One short cob of yellow sweet corn, a bright appetizing food illustration seen from slightly above.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 200,
+      "quality": 76
+    },
+    {
+      "name": "peas",
+      "prompt": "A small round pile of green peas in a little white bowl, a bright appetizing food illustration seen from slightly above.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 200,
+      "quality": 76,
+      "key": "magenta"
+    },
+    {
+      "name": "tomatoes",
+      "prompt": "Four red cherry tomatoes, a bright appetizing food illustration seen from slightly above.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 200,
+      "quality": 76
+    },
+    {
+      "name": "salad",
+      "prompt": "A small white bowl of green leafy salad with a few cucumber slices, a bright appetizing food illustration seen from slightly above.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 200,
+      "quality": 76,
+      "key": "magenta"
+    },
+    {
+      "name": "bread",
+      "prompt": "One round whole wheat bread roll, a bright appetizing food illustration seen from slightly above.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 200,
+      "quality": 76
+    },
+    {
+      "name": "rice",
+      "prompt": "A small white bowl of white rice, a bright appetizing food illustration seen from slightly above.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 200,
+      "quality": 76
+    },
+    {
+      "name": "pasta",
+      "prompt": "A small white bowl of plain spiral pasta, a bright appetizing food illustration seen from slightly above.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 200,
+      "quality": 76
+    },
+    {
+      "name": "tortilla",
+      "prompt": "One soft flour tortilla, folded in half, a bright appetizing food illustration seen from slightly above.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 200,
+      "quality": 76
+    },
+    {
+      "name": "crackers",
+      "prompt": "A small stack of square whole grain crackers, a bright appetizing food illustration seen from slightly above.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 200,
+      "quality": 76
+    },
+    {
+      "name": "oatmeal",
+      "prompt": "A small white bowl of oatmeal with a few blueberries on top, a bright appetizing food illustration seen from slightly above.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 200,
+      "quality": 76
+    },
+    {
+      "name": "chicken",
+      "prompt": "One baked chicken drumstick, golden brown, a bright appetizing food illustration seen from slightly above.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 200,
+      "quality": 76
+    },
+    {
+      "name": "egg",
+      "prompt": "One hard boiled egg cut in half showing the yellow yolk, next to a whole white egg, a bright appetizing food illustration seen from slightly above.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 200,
+      "quality": 76
+    },
+    {
+      "name": "beans",
+      "prompt": "A small white bowl of black beans, a bright appetizing food illustration seen from slightly above.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 200,
+      "quality": 76
+    },
+    {
+      "name": "fish",
+      "prompt": "One piece of baked salmon fillet, a bright appetizing food illustration seen from slightly above.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 200,
+      "quality": 76
+    },
+    {
+      "name": "nuts",
+      "prompt": "A small pile of almonds, a bright appetizing food illustration seen from slightly above.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 200,
+      "quality": 76
+    },
+    {
+      "name": "milk",
+      "prompt": "One small school milk carton, plain white and blue with no words, a bright appetizing food illustration seen from slightly above.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 200,
+      "quality": 76
+    },
+    {
+      "name": "yogurt",
+      "prompt": "One small cup of white yogurt with a spoon, no label, a bright appetizing food illustration seen from slightly above.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 200,
+      "quality": 76
+    },
+    {
+      "name": "cheese",
+      "prompt": "A few yellow cheese cubes, a bright appetizing food illustration seen from slightly above.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 200,
+      "quality": 76
+    },
+    {
+      "name": "cookie",
+      "prompt": "One chocolate chip cookie, a bright appetizing food illustration seen from slightly above.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 200,
+      "quality": 76
+    },
+    {
+      "name": "chips",
+      "prompt": "A small open bag of potato chips with chips spilling out, plain bag with no words, a bright appetizing food illustration seen from slightly above.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 200,
+      "quality": 76
+    }
+  ]
+}

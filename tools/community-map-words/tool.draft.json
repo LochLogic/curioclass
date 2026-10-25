@@ -1,0 +1,21 @@
+{
+  "id": "community-map-words",
+  "status": "beta",
+  "driver": "teacher",
+  "modes": [
+    "Explore",
+    "Where do I go?",
+    "Who helps?"
+  ],
+  "grades_label": "Grades K-2",
+  "third_party": [],
+  "updated": "2026-10-25",
+  "hook": "A friendly town map with twelve places, from the bakery to the fire station. Tap to hear the words, answer \"I need a book. Where do I go?\" and match each helper to where they work.",
+  "outcome": "Name places and helpers in a community and use sentence frames to say where to go and who works there",
+  "minutes": "10-20",
+  "sources": [
+    "Buildings drawn with FLUX.1-schnell (Apache 2.0) on a local computer, edited for Curio Class",
+    "Helpers illustrated with Google Gemini, edited for Curio Class",
+    "Sounds generated in the browser"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "id": "shape-talk",
+  "status": "beta",
+  "driver": "teacher",
+  "modes": [
+    "Meet the shapes",
+    "Guess my shape",
+    "Partner talk"
+  ],
+  "grades_label": "Grades K-2",
+  "third_party": [],
+  "updated": "2026-10-25",
+  "hook": "A secret shape hides behind a door. Clues arrive as sentence frames (\"It has 4 sides\"), the class crosses out shapes that don't fit, then a child becomes the describer.",
+  "outcome": "Describe flat and solid shapes using sides, corners, faces and comparison words in full sentences",
+  "minutes": "10-20",
+  "sources": [
+    "Shapes drawn in code",
+    "Sounds generated in the browser"
+  ]
+}

@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Community Map Words · My community words · Curio Class</title>
+<meta name="description" content="A friendly town map with twelve places and the helpers who work there. Tap to hear the words, answer Where do I go? with I go to the..., and match each helper to their workplace. Grades K-2 English language development, teacher-led. Works offline.">
+<!--
+COMMUNITY MAP WORDS (Curio Class)
+Grades K-2 English language development, WIDA ELD Standard 5 (the language of social studies), Inform. Connects
+to C3 D2.Civ.2.K-2 and D2.Geo.2.K-2 (community helpers, places on a map).
+Teacher-led on a projector. Explore (tap a place: its name, the helper who works there and what they do), Where do
+I go? (a need card; answer "I go to the ...") and Who helps? (a helper; find where they work, "A ... works at the
+..."). Emergency lines say to call 911 and tell a grown-up.
+One file, no network requests. Buildings drawn with FLUX.1-schnell (Apache 2.0) on a local computer; helpers
+illustrated with Google Gemini; both edited for Curio Class. Content CC BY 4.0, code MIT. curioclass.org
+-->
+<style>
+:root{
+  --paper:#f4f9f1;--ink:#24301f;--muted:#5a6852;--line:#d9e8d0;--focus:#e0662a;--brand:#c2702a;
+  font-family:'Segoe UI',system-ui,-apple-system,Roboto,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0;height:100%}
+body{background:var(--paper);color:var(--ink);display:grid;grid-template-rows:auto 1fr;min-height:100vh}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:4px solid var(--focus);outline-offset:3px}
+header{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:12px 20px;background:var(--brand);color:#fff8f0}
+h1{margin:0 auto 0 0;font:800 clamp(22px,3vw,32px)/1.1 'Trebuchet MS','Segoe UI',sans-serif}
+h1 small{display:block;font:500 15px/1.3 'Segoe UI',sans-serif;color:#ffe2c6}
+.seg{display:inline-flex;border:2px solid #e09a5a;border-radius:999px;overflow:hidden}
+.seg button{border:0;background:#d1823e;color:#fff8f0;min-height:52px;padding:0 16px;font-weight:700;font-size:16px}
+.seg button[aria-pressed="true"]{background:#ffd34d;color:#3a2c00}
+.icon-btn{border:2px solid #e09a5a;background:#d1823e;color:#fff8f0;border-radius:999px;min-height:52px;padding:0 16px;font-weight:700;font-size:16px}
+
+main{display:grid;grid-template-columns:1fr;min-height:0}
+@media (min-width:760px){main{grid-template-columns:minmax(0,1fr) 340px}}
+.stage{position:relative;overflow:hidden;min-height:340px;background:#9fd47e}
+.scene{position:absolute;left:50%;top:50%;width:1000px;height:620px;transform:translate(-50%,-50%) scale(var(--s,1))}
+.map{position:absolute;inset:0}
+
+.place{position:absolute;width:128px;height:128px;border:0;background:none;padding:0;transform:translate(-50%,-50%);transition:transform .3s cubic-bezier(.3,1.4,.5,1),filter .3s}
+.place img{width:100%;height:100%;object-fit:contain;object-position:50% 100%;filter:drop-shadow(0 6px 4px #0004);pointer-events:none}
+.place .name{position:absolute;left:50%;bottom:-16px;transform:translateX(-50%);white-space:nowrap;background:#fffdf7;border:3px solid #24301f;border-radius:12px;padding:2px 10px;font:800 17px 'Trebuchet MS',sans-serif;pointer-events:none}
+.place:hover{transform:translate(-50%,-50%) scale(1.06)}
+.place.on{transform:translate(-50%,-50%) scale(1.22);z-index:4}
+.place.on .name{background:#ffd34d}
+.place.hidename .name{visibility:hidden}
+.place.right{filter:drop-shadow(0 0 0 #2a9d4a) drop-shadow(0 0 12px #2a9d4a)}
+.place.dim{filter:grayscale(.7) brightness(.9)}
+
+.helper{position:absolute;right:12px;top:200px;width:170px;height:270px;background:#fffdf7ee;border-radius:24px;box-shadow:0 6px 0 #0002;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:10px}
+.helper img{width:150px;height:205px;object-fit:contain;object-position:50% 100%}
+.helper b{font:800 20px 'Trebuchet MS',sans-serif;text-align:center}
+.helper:empty{display:none}
+.card{position:absolute;left:16px;top:16px;width:520px;background:#fffdf7f2;border:4px solid #24301f;border-radius:22px;padding:12px 18px;box-shadow:0 6px 0 #0002}
+.card .big{font:900 34px/1.15 'Trebuchet MS',sans-serif}
+.card .sm{font:700 20px/1.35 'Segoe UI',sans-serif;color:var(--muted);margin-top:6px}
+.card .frame{display:inline-block;min-width:120px;border-bottom:4px solid #ffd34d;text-align:center;color:#c2702a}
+.card:empty{display:none}
+
+.panel{background:#fbfdf9;border-left:3px solid var(--line);padding:14px 16px;display:flex;flex-direction:column;gap:12px;overflow:auto}
+@media (max-width:759px){.panel{border-left:0;border-top:3px solid var(--line)}}
+.hint{margin:0;font:600 18px/1.35 'Segoe UI',sans-serif;color:var(--muted)}
+.hint b{color:var(--ink)}
+.big-btn{border:0;border-radius:16px;min-height:60px;font:800 20px/1.1 'Trebuchet MS','Segoe UI',sans-serif;color:#fff;background:var(--brand);box-shadow:0 5px 0 #0004;padding:6px 10px}
+.big-btn:active{transform:translateY(3px);box-shadow:0 2px 0 #0004}
+.big-btn.soft{background:#efe6d9;color:var(--ink)}
+.big-btn.gold{background:#ffd34d;color:#3a2c00}
+.col{display:flex;flex-direction:column;gap:8px}
+.row{display:flex;gap:8px}.row .big-btn{flex:1}
+.lbl{font:700 15px 'Segoe UI',sans-serif;color:var(--muted);margin:2px 0 -4px}
+.tog{display:flex;align-items:center;gap:10px;font:700 17px 'Segoe UI',sans-serif}
+.tog input{width:26px;height:26px;accent-color:#c2702a}
+.tip{margin:0;background:#fff3e5;border-left:6px solid #e09a5a;border-radius:10px;padding:10px 12px;font:600 17px/1.4 'Segoe UI',sans-serif}
+.tip:empty{display:none}
+.score{font:800 20px 'Trebuchet MS',sans-serif;color:var(--brand)}
+.calm .place{transition:none}
+
+@media (max-width:759px),(max-height:640px){
+  header{padding:6px 12px} h1{font-size:19px} h1 small{display:none}
+  .seg button,.icon-btn{min-height:38px;font-size:13px;padding:0 10px}
+  main{grid-template-columns:minmax(0,1fr) 260px}
+  .panel{padding:8px 10px;gap:8px}
+  .hint,.tip{font-size:14px}
+  .big-btn{min-height:44px;font-size:16px}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Community Map Words <small>Places in my town and the people who help.</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-explore" aria-pressed="true">Explore</button>
+    <button id="m-where" aria-pressed="false">Where do I go?</button>
+    <button id="m-who" aria-pressed="false">Who helps?</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true" title="Turn animation on or off">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+  <button class="icon-btn" id="read">🔊 Read</button>
+</header>
+<main>
+  <div class="stage" id="stage">
+    <div class="scene" id="scene">
+      <svg class="map" id="map" viewBox="0 0 1000 620" aria-hidden="true"></svg>
+      <div id="places"></div>
+      <div class="card" id="card" aria-live="polite"></div>
+      <div class="helper" id="helper"></div>
+    </div>
+  </div>
+  <aside class="panel">
+    <p class="hint" id="hint"></p>
+    <div class="col" id="ctrl"></div>
+    <label class="tog"><input type="checkbox" id="names" checked> Show place names</label>
+    <p class="tip" id="tip"></p>
+  </aside>
+</main>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  let reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  try { const m = localStorage.getItem('curio-motion'); if (m) reduce = m === 'calm'; } catch {}
+  function showMotion() {
+    document.body.classList.toggle('calm', reduce);
+    $('motion').setAttribute('aria-pressed', !reduce);
+    $('motion').textContent = reduce ? '⏸ Motion' : '✨ Motion';
+  }
+  $('motion').onclick = () => { reduce = !reduce; try { localStorage.setItem('curio-motion', reduce ? 'calm' : 'on'); } catch {} showMotion(); };
+  const wait = ms => new Promise(r => setTimeout(r, ms));
+  const fit = () => { const r = $('stage').getBoundingClientRect(); $('scene').style.setProperty('--s', Math.min(r.width / 1000, r.height / 620)); };
+  new ResizeObserver(fit).observe($('stage'));
+
+  // ---------- the town ----------
+  const P = [
+    {id: 'school', n: 'school', x: 130, y: 250, h: 'teacher', hs: 'teachers', does: 'help children learn', need: 'I want to learn to read.'},
+    {id: 'library', n: 'library', x: 330, y: 250, h: 'librarian', hs: 'librarians', does: 'help you find books', need: 'I need a book about dinosaurs.'},
+    {id: 'fire', n: 'fire station', x: 540, y: 250, h: 'firefighter', hs: 'firefighters', does: 'put out fires and keep people safe', need: 'I want to learn about fire safety.'},
+    {id: 'hospital', n: 'hospital', x: 720, y: 250, h: 'doctor', hs: 'doctors and nurses', does: 'help sick and hurt people get better', need: 'I hurt my arm and need a doctor.'},
+    {id: 'police', n: 'police station', x: 130, y: 430, h: 'police officer', hs: 'police officers', does: 'keep the community safe', need: 'I am lost and need help.'},
+    {id: 'post', n: 'post office', x: 330, y: 430, h: 'mail carrier', hs: 'mail carriers', does: 'bring letters and packages', need: 'I want to mail a letter to Grandma.'},
+    {id: 'grocery', n: 'grocery store', x: 540, y: 430, h: 'cashier', hs: 'cashiers', does: 'help you pay for food', need: 'We need milk and apples.'},
+    {id: 'bakery', n: 'bakery', x: 740, y: 430, h: 'baker', hs: 'bakers', does: 'bake bread and cakes', need: 'I want to buy a birthday cake.'},
+    {id: 'park', n: 'park', x: 920, y: 560, h: 'park ranger', hs: 'park rangers', does: 'take care of parks and nature', need: 'I want to play on the swings.'},
+    {id: 'vet', n: 'vet', x: 130, y: 580, h: 'veterinarian', hs: 'veterinarians', does: 'help sick animals', need: 'My dog is sick.'},
+    {id: 'bus', n: 'bus stop', x: 330, y: 590, h: 'bus driver', hs: 'bus drivers', does: 'drive people where they need to go', need: 'I need a ride across town.'},
+    {id: 'farm', n: 'farm', x: 560, y: 590, h: 'farmer', hs: 'farmers', does: 'grow food and raise animals', need: 'I want to see where eggs come from.'},
+  ];
+  const IMG = {school: 'art:school', library: 'art:library', fire: 'art:fire', hospital: 'art:hospital', police: 'art:police', post: 'art:post', grocery: 'art:grocery', bakery: 'art:bakery', park: 'art:park', vet: 'art:vet', bus: 'art:bus', farm: 'art:farm'};
+  const HELP = {school: 'art:h-teacher', library: 'art:h-librarian', fire: 'art:h-firefighter', hospital: 'art:h-doctor', police: 'art:h-police', post: 'art:h-mail', grocery: 'art:h-cashier', bakery: 'art:h-baker', park: 'art:h-ranger', vet: 'art:h-vet', bus: 'art:h-driver', farm: 'art:h-farmer'};
+  const byId = Object.fromEntries(P.map(p => [p.id, p]));
+  const an = w => /^[aeiou]/.test(w) ? 'an' : 'a';
+  const cap = s => s[0].toUpperCase() + s.slice(1);
+  const goLine = p => `I go to the ${p.n}.`;
+
+  // roads, sidewalks, a pond and trees in SVG
+  (function map() {
+    const s = $('map');
+    s.innerHTML = `
+      <rect x="0" y="0" width="1000" height="620" fill="#9fd47e"/>
+      <g fill="#7cc061">${Array.from({length: 40}, (_, i) => `<circle cx="${(i * 97) % 1000}" cy="${(i * 53) % 620}" r="${4 + i % 5}"/>`).join('')}</g>
+      <path d="M0,160 H1000 M0,340 H1000 M0,515 H860 M235,160 V620 M440,160 V620 M640,160 V515 M860,160 V620" stroke="#c9c2b4" stroke-width="58" fill="none"/>
+      <path d="M0,160 H1000 M0,340 H1000 M0,515 H860 M235,160 V620 M440,160 V620 M640,160 V515 M860,160 V620" stroke="#6d6a66" stroke-width="44" fill="none"/>
+      <path d="M0,160 H1000 M0,340 H1000 M0,515 H860 M235,160 V620 M440,160 V620 M640,160 V515 M860,160 V620" stroke="#f2d64b" stroke-width="3" stroke-dasharray="18 16" fill="none"/>
+      <ellipse cx="930" cy="80" rx="60" ry="36" fill="#6cc3e8" stroke="#4a9ec4" stroke-width="4"/>
+      ${[[40, 60], [120, 90], [300, 70], [700, 90], [800, 60], [980, 260], [980, 420], [700, 600], [760, 560]].map(([x, y]) => `<g><circle cx="${x}" cy="${y}" r="26" fill="#3f8f3a"/><circle cx="${x - 8}" cy="${y - 8}" r="12" fill="#5aab4f"/></g>`).join('')}`;
+  })();
+
+  const state = {mode: 'explore', order: [], at: -1, right: 0, sound: true, names: true};
+
+  // ---------- sound ----------
+  let ctx;
+  const audio = () => (ctx ||= new (window.AudioContext || window.webkitAudioContext)());
+  function tone(f, dur = .2, gain = .07, when = 0, type = 'triangle') {
+    if (!state.sound) return;
+    const a = audio(), o = a.createOscillator(), g = a.createGain(), t = a.currentTime + when;
+    o.type = type; o.frequency.value = f;
+    g.gain.setValueAtTime(.0001, t); g.gain.exponentialRampToValueAtTime(gain, t + .02); g.gain.exponentialRampToValueAtTime(.0001, t + dur);
+    o.connect(g).connect(a.destination); o.start(t); o.stop(t + dur + .05);
+  }
+  const SFX = {
+    tap: () => tone(660, .1, .05, 0, 'sine'),
+    yes: () => [523, 659, 784, 1047].forEach((f, i) => tone(f, .22, .08, i * .09)),
+    hmm: () => { tone(392, .2, .06, 0, 'sine'); tone(349, .25, .06, .2, 'sine'); },
+  };
+
+  // ---------- places ----------
+  function drawPlaces() {
+    $('places').replaceChildren(...P.map(p => {
+      const b = document.createElement('button');
+      b.className = 'place' + (state.names ? '' : ' hidename'); b.dataset.id = p.id;
+      Object.assign(b.style, {left: p.x + 'px', top: p.y - 8 + 'px'});
+      b.innerHTML = `<img src="${IMG[p.id]}" alt=""><span class="name">${p.n}</span>`;
+      b.setAttribute('aria-label', p.n);
+      b.onclick = () => tap(p.id);
+      return b;
+    }));
+  }
+  const pl = id => $('places').querySelector(`[data-id="${id}"]`);
+  function mark(id, cls) { $('places').querySelectorAll('.place').forEach(b => b.classList.toggle(cls, b.dataset.id === id)); }
+  function clearMarks() { $('places').querySelectorAll('.place').forEach(b => b.classList.remove('on', 'right', 'dim')); }
+  function helper(p) {
+    $('helper').innerHTML = p ? `<img src="${HELP[p.id]}" alt="${an(p.h)} ${p.h}"><b>${p.h}</b>` : '';
+  }
+  $('names').onchange = () => { state.names = $('names').checked; $('places').querySelectorAll('.place').forEach(b => b.classList.toggle('hidename', !state.names)); };
+
+  function tap(id) {
+    if (state.mode === 'explore') return explore(id);
+    if (state.mode === 'where') return whereTap(id);
+    return whoTap(id);
+  }
+
+  // ---------- Explore ----------
+  function explore(id) {
+    const p = byId[id];
+    clearMarks(); mark(id, 'on'); SFX.tap(); helper(p);
+    $('card').innerHTML = `<div class="big">This is the ${p.n}.</div><div class="sm">${cap(p.hs)} work here. They ${p.does}.</div>`;
+    $('tip').innerHTML = id === 'fire' || id === 'police' || id === 'hospital' ? '<b>In an emergency,</b> call 911 or tell a grown-up right away.' : `<b>Say it:</b> "This is the ${p.n}. ${an(p.h) === 'an' ? 'An' : 'A'} ${p.h} works here."`;
+    say([`This is the ${p.n}.`, `${cap(p.hs)} work here. They ${p.does}.`]);
+  }
+
+  // ---------- Where do I go? ----------
+  function nextWhere() {
+    if (state.at >= state.order.length - 1 || !state.order.length) { state.order = P.map(p => p.id).sort(() => Math.random() - .5); state.at = -1; state.right = 0; }
+    state.at++;
+    const p = byId[state.order[state.at]];
+    clearMarks(); helper(null);
+    $('card').innerHTML = `<div class="big">"${p.need}"</div><div class="sm">Where do I go? I go to the <span class="frame">&nbsp;</span>.</div>`;
+    $('tip').innerHTML = '';
+    $('score').textContent = `${state.at + 1} of ${state.order.length}`;
+    say([p.need, 'Where do I go?']);
+  }
+  function whereTap(id) {
+    const p = byId[state.order[state.at]], t = byId[id];
+    if (id === p.id) {
+      clearMarks(); mark(id, 'on'); mark(id, 'right'); SFX.yes(); helper(p);
+      $('card').innerHTML = `<div class="big">"${p.need}"</div><div class="sm">I go to the <span class="frame">${p.n}</span>. ${an(p.h) === 'an' ? 'An' : 'A'} ${p.h} can help.</div>`;
+      say([goLine(p), `${an(p.h) === 'an' ? 'An' : 'A'} ${p.h} can help.`]);
+    } else {
+      SFX.hmm(); pl(id).classList.add('dim');
+      $('tip').innerHTML = `That's the ${t.n}. ${cap(t.hs)} ${t.does}. Try again!`;
+      say([`That's the ${t.n}.`, 'Try again!']);
+    }
+  }
+
+  // ---------- Who helps? ----------
+  function nextWho() {
+    if (state.at >= state.order.length - 1 || !state.order.length) { state.order = P.map(p => p.id).sort(() => Math.random() - .5); state.at = -1; }
+    state.at++;
+    const p = byId[state.order[state.at]];
+    clearMarks(); helper(p);
+    $('card').innerHTML = `<div class="big">This is ${an(p.h)} ${p.h}.</div><div class="sm">Where do they work? ${an(p.h) === 'an' ? 'An' : 'A'} ${p.h} works at the <span class="frame">&nbsp;</span>.</div>`;
+    $('tip').innerHTML = '';
+    $('score').textContent = `${state.at + 1} of ${state.order.length}`;
+    say([`This is ${an(p.h)} ${p.h}.`, 'Where do they work?']);
+  }
+  function whoTap(id) {
+    const p = byId[state.order[state.at]], t = byId[id];
+    if (id === p.id) {
+      clearMarks(); mark(id, 'on'); mark(id, 'right'); SFX.yes();
+      const A = an(p.h) === 'an' ? 'An' : 'A';
+      $('card').innerHTML = `<div class="big">${A} ${p.h} works at the <span class="frame">${p.n}</span>.</div><div class="sm">${cap(p.hs)} ${p.does}.</div>`;
+      say([`${A} ${p.h} works at the ${p.n}.`, `${cap(p.hs)} ${p.does}.`]);
+    } else {
+      SFX.hmm(); pl(id).classList.add('dim');
+      $('tip').innerHTML = `That's the ${t.n}. ${cap(t.hs)} work there. Try again!`;
+      say([`That's the ${t.n}.`, 'Try again!']);
+    }
+  }
+
+  function setMode(m) {
+    state.mode = m; stopTalk(); state.order = []; clearMarks(); helper(null);
+    for (const [id, k] of [['m-explore', 'explore'], ['m-where', 'where'], ['m-who', 'who']]) $(id).setAttribute('aria-pressed', m === k);
+    $('card').innerHTML = ''; $('tip').innerHTML = '';
+    if (m === 'explore') {
+      $('ctrl').innerHTML = '';
+      $('hint').innerHTML = '<b>Explore.</b> Tap a place. Hear its name, meet the helper who works there and say it together: "This is the library."';
+      $('card').innerHTML = '<div class="big">Welcome to our town!</div><div class="sm">Tap a place to visit.</div>';
+      say('Welcome to our town! Tap a place to visit.');
+    }
+    if (m === 'where') {
+      $('ctrl').innerHTML = '<button class="big-btn" id="next">Next →</button><div class="score" id="score"></div>';
+      $('next').onclick = nextWhere;
+      $('hint').innerHTML = '<b>Where do I go?</b> Read the need together. Children answer with the frame "I go to the ___," then tap the place. Turn off place names for a challenge.';
+      nextWhere();
+    }
+    if (m === 'who') {
+      $('ctrl').innerHTML = '<button class="big-btn" id="next">Next helper →</button><div class="score" id="score"></div>';
+      $('next').onclick = nextWho;
+      $('hint').innerHTML = '<b>Who helps?</b> Meet a helper. Where do they work? Answer with "A ___ works at the ___," then tap the place.';
+      nextWho();
+    }
+  }
+  $('m-explore').onclick = () => setMode('explore');
+  $('m-where').onclick = () => setMode('where');
+  $('m-who').onclick = () => setMode('who');
+  addEventListener('keydown', e => { if (e.target.closest('button,input') || !/^[1-3]$/.test(e.key)) return; setMode(['explore', 'where', 'who'][e.key - 1]); });
+
+  // ---------- sound and voice ----------
+  $('sound').onclick = e => {
+    state.sound = !state.sound;
+    e.currentTarget.setAttribute('aria-pressed', state.sound);
+    e.currentTarget.textContent = state.sound ? '🔔 Sound' : '🔇 Sound';
+    if (!state.sound) stopTalk();
+  };
+  function bestVoice() {
+    const voices = speechSynthesis.getVoices().filter(v => /^en(-|_|$)/i.test(v.lang));
+    const score = v => (/natural|neural/i.test(v.name) ? 50 : 0) + (/premium|enhanced/i.test(v.name) ? 40 : 0) +
+      (/google/i.test(v.name) ? 30 : 0) + (/aria|jenny|ava|samantha|libby|sonia/i.test(v.name) ? 10 : 0) +
+      (/en-US/i.test(v.lang) ? 5 : 0) + (v.default ? 1 : 0) - (/david|mark|zira|desktop/i.test(v.name) ? 20 : 0);
+    return voices.sort((a, b) => score(b) - score(a))[0] || null;
+  }
+  if ('speechSynthesis' in window) {
+    const speak = speechSynthesis.speak.bind(speechSynthesis);
+    speechSynthesis.speak = u => {
+      if (speechSynthesis.getVoices().length) return speak(u);
+      let done = false;
+      const go = () => { if (done) return; done = true; const v = bestVoice(); if (v) { u.voice = v; u.lang = v.lang; } speak(u); };
+      speechSynthesis.addEventListener('voiceschanged', go, {once: true});
+      setTimeout(go, 1500);
+    };
+    speechSynthesis.getVoices();
+  }
+  const CLIPS = "voice:*";
+  const allLines = () => [...new Set([
+    'Welcome to our town! Tap a place to visit.', 'Where do I go?', 'Where do they work?', 'Try again!',
+    ...P.flatMap(p => { const A = an(p.h) === 'an' ? 'An' : 'A'; return [`This is the ${p.n}.`, `${cap(p.hs)} work here. They ${p.does}.`, p.need, goLine(p), `${A} ${p.h} can help.`, `That's the ${p.n}.`, `This is ${an(p.h)} ${p.h}.`, `${A} ${p.h} works at the ${p.n}.`, `${cap(p.hs)} ${p.does}.`]; })])];
+  let talk = 0, clip = null, last = [];
+  function stopTalk() { talk++; if (clip) { clip.pause(); clip = null; } if ('speechSynthesis' in window) speechSynthesis.cancel(); }
+  function speakOne(text) {
+    return new Promise(done => {
+      if (CLIPS[text]) { clip = new Audio(CLIPS[text]); clip.onended = clip.onerror = () => done(); clip.play().catch(() => done()); return; }
+      if (!('speechSynthesis' in window)) return done();
+      const u = new SpeechSynthesisUtterance(text);
+      const v = bestVoice(); if (v) { u.voice = v; u.lang = v.lang; }
+      u.rate = .88; u.pitch = 1; u.onend = u.onerror = () => done();
+      speechSynthesis.speak(u);
+    });
+  }
+  async function say(parts, force) {
+    if (!state.sound && !force) return;
+    stopTalk();
+    const me = talk;
+    last = [].concat(parts);
+    for (const p of last) { if (me !== talk) return; await speakOne(p); await wait(200); }
+  }
+  $('read').onclick = () => say(last.length ? last : [$('hint').textContent], true);
+
+  drawPlaces();
+  showMotion();
+  window.__town = {state, setMode, tap, allLines};  // for checking frames
+  setMode('explore');
+})();
+</script>
+</body>
+</html>

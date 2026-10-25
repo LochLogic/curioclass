@@ -1,0 +1,453 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Habit Hero · Healthy habits · Curio Class</title>
+<meta name="description" content="Help Pip the hero fox through a whole day: the class votes on brushing, handwashing, water, play and bedtime, and Pip's energy, clean and smile meters show what each habit does. Plus when-do-we sorting and handwashing and toothbrushing timers. Grades K-2 health, teacher-led. Works offline.">
+<!--
+HABIT HERO (Curio Class)
+Grades K-2 health, NHES 2024 Standard 1 (healthy behaviors: hygiene, sleep, activity, water) and Standard 7
+(practicing healthy behaviors).
+Teacher-led on a projector. Hero's day (seven moments in Pip's day; the class votes between two choices and three
+meters respond), When do we...? (match a habit to when we do it) and Timers (20-second handwashing in five steps,
+2-minute toothbrushing in four parts of the mouth).
+Facts: CDC handwashing guidance (wet, soap, scrub at least 20 seconds, rinse, dry); ADA brushing twice a day for
+two minutes; AASM/AAP sleep guidance of 10-13 hours for ages 3-5 and 9-12 hours for ages 6-12; CDC 60 minutes of
+activity a day for children 6 and older. No choice is shamed: the meters go down a little and Pip tries again.
+One file, no network requests. Illustrations drawn with FLUX.1-schnell (Apache 2.0) on a local computer, edited
+for Curio Class. Content CC BY 4.0, code MIT. curioclass.org
+-->
+<style>
+:root{
+  --paper:#f6f9ff;--ink:#222a3a;--muted:#5a6478;--line:#d8e0f0;--focus:#e0662a;--brand:#d6492f;
+  font-family:'Segoe UI',system-ui,-apple-system,Roboto,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0;height:100%}
+body{background:var(--paper);color:var(--ink);display:grid;grid-template-rows:auto 1fr;min-height:100vh}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:4px solid var(--focus);outline-offset:3px}
+header{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:12px 20px;background:var(--brand);color:#fff6f2}
+h1{margin:0 auto 0 0;font:800 clamp(22px,3vw,32px)/1.1 'Trebuchet MS','Segoe UI',sans-serif}
+h1 small{display:block;font:500 15px/1.3 'Segoe UI',sans-serif;color:#ffd9cc}
+.seg{display:inline-flex;border:2px solid #ec7c62;border-radius:999px;overflow:hidden}
+.seg button{border:0;background:#e05c3f;color:#fff6f2;min-height:52px;padding:0 16px;font-weight:700;font-size:16px}
+.seg button[aria-pressed="true"]{background:#ffd34d;color:#3a2c00}
+.icon-btn{border:2px solid #ec7c62;background:#e05c3f;color:#fff6f2;border-radius:999px;min-height:52px;padding:0 16px;font-weight:700;font-size:16px}
+
+main{display:grid;grid-template-columns:1fr;min-height:0}
+@media (min-width:760px){main{grid-template-columns:minmax(0,1fr) 330px}}
+.stage{position:relative;overflow:hidden;min-height:340px;background:#9fd0f0 url(art:town) center bottom/cover}
+.tint{position:absolute;inset:0;background:var(--tint,transparent);mix-blend-mode:multiply;transition:background 1.4s;pointer-events:none}
+.scene{position:absolute;left:50%;top:50%;width:1000px;height:620px;transform:translate(-50%,-50%) scale(var(--s,1))}
+
+.hero{position:absolute;left:40px;bottom:30px;width:300px;height:330px;transform-origin:50% 100%;transition:filter .8s}
+.hero img{width:100%;height:100%;object-fit:contain;object-position:50% 100%;filter:drop-shadow(0 10px 6px #0003)}
+.hero.tired{filter:saturate(.55) brightness(.92)}
+.fx{position:absolute;left:40px;bottom:30px;width:300px;height:330px;pointer-events:none;overflow:visible}
+.fx svg{width:100%;height:100%;overflow:visible}
+
+.meters{position:absolute;left:30px;top:20px;width:340px;background:#fffdf8ee;border-radius:22px;padding:12px 16px;box-shadow:0 6px 0 #0002;display:grid;gap:8px}
+.meter{display:grid;grid-template-columns:34px 92px 1fr;align-items:center;gap:8px;font:800 19px 'Trebuchet MS',sans-serif}
+.meter span{font-size:28px}
+.bar{height:26px;border-radius:13px;background:#e3e7ef;overflow:hidden;border:3px solid #222a3a}
+.bar i{display:block;height:100%;width:var(--v);background:var(--c);transition:width .9s cubic-bezier(.3,1.3,.5,1)}
+
+.clock{position:absolute;right:30px;top:20px;background:#fffdf8ee;border-radius:22px;padding:8px 18px;font:800 26px 'Trebuchet MS',sans-serif;box-shadow:0 6px 0 #0002;display:flex;gap:10px;align-items:center}
+.clock span{font-size:36px}
+
+.card{position:absolute;left:390px;top:96px;width:580px;background:#fff;border:4px solid #222a3a;border-radius:26px;padding:16px 22px;box-shadow:0 6px 0 #0002}
+.card .q{font:800 30px/1.25 'Trebuchet MS',sans-serif}
+.card .sub{font:700 20px/1.35 'Segoe UI',sans-serif;color:var(--muted);margin-top:6px}
+.choices{position:absolute;left:390px;top:330px;width:580px;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.choice{border:4px solid transparent;border-radius:24px;background:#fffdf8;min-height:190px;box-shadow:0 7px 0 #0002;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:12px;font:800 25px/1.2 'Trebuchet MS',sans-serif;text-align:center}
+.choice span{font-size:64px;line-height:1}
+.choice .votes{font:800 20px 'Trebuchet MS',sans-serif;color:var(--brand);min-height:24px}
+.choice[aria-pressed="true"]{border-color:#222a3a;background:#fff6c9}
+.choice:disabled{cursor:default}
+
+/* when do we */
+.match{position:absolute;left:390px;top:96px;width:580px;display:grid;gap:12px}
+.whens{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.when{border:4px solid transparent;border-radius:20px;background:#fffdf8;min-height:96px;box-shadow:0 5px 0 #0002;font:800 21px/1.2 'Trebuchet MS',sans-serif;display:flex;align-items:center;gap:10px;padding:8px 14px;text-align:left}
+.when span{font-size:38px}
+.when.yes{border-color:#2a9d4a;background:#eafbef}
+.when.no{border-color:#d8423a;background:#fdeceb;opacity:.7}
+
+/* timers */
+.tbox{position:absolute;left:390px;top:96px;width:580px;height:500px;background:#fffdf8;border-radius:30px;box-shadow:0 8px 0 #0002;padding:18px 24px;display:flex;flex-direction:column;align-items:center}
+.tbox .big{font:900 96px/1 'Trebuchet MS',sans-serif;color:var(--brand)}
+.tbox .step{font:800 34px/1.2 'Trebuchet MS',sans-serif;text-align:center;margin-top:6px;min-height:84px}
+.steps{display:flex;gap:8px;margin-top:auto;flex-wrap:wrap;justify-content:center}
+.steps i{font-style:normal;border:3px solid #d8e0f0;border-radius:14px;padding:6px 10px;font:800 17px 'Trebuchet MS',sans-serif;background:#fff}
+.steps i.on{border-color:#222a3a;background:#ffd34d}
+.steps i.done{background:#eafbef;border-color:#2a9d4a}
+.tbox svg{width:250px;height:190px}
+
+.panel{background:#fbfcff;border-left:3px solid var(--line);padding:14px 16px;display:flex;flex-direction:column;gap:12px;overflow:auto}
+@media (max-width:759px){.panel{border-left:0;border-top:3px solid var(--line)}}
+.hint{margin:0;font:600 18px/1.35 'Segoe UI',sans-serif;color:var(--muted)}
+.hint b{color:var(--ink)}
+.big-btn{border:0;border-radius:16px;min-height:60px;font:800 20px/1.1 'Trebuchet MS','Segoe UI',sans-serif;color:#fff;background:var(--brand);box-shadow:0 5px 0 #0004;padding:6px 10px}
+.big-btn:active{transform:translateY(3px);box-shadow:0 2px 0 #0004}
+.big-btn.soft{background:#e6ebf5;color:var(--ink)}
+.big-btn.gold{background:#ffd34d;color:#3a2c00}
+.big-btn:disabled{opacity:.45}
+.col{display:flex;flex-direction:column;gap:8px}
+.row{display:flex;gap:8px}.row .big-btn{flex:1}
+.tip{margin:0;background:#fff0ea;border-left:6px solid #ec7c62;border-radius:10px;padding:10px 12px;font:600 17px/1.4 'Segoe UI',sans-serif}
+.tip:empty{display:none}
+
+@media (max-width:759px),(max-height:640px){
+  header{padding:6px 12px} h1{font-size:19px} h1 small{display:none}
+  .seg button,.icon-btn{min-height:38px;font-size:13px;padding:0 10px}
+  main{grid-template-columns:minmax(0,1fr) 250px}
+  .panel{padding:8px 10px;gap:8px}
+  .hint,.tip{font-size:14px}
+  .big-btn{min-height:44px;font-size:16px}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Habit Hero <small>Small habits, every day, make a hero.</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-day" aria-pressed="true">Hero's day</button>
+    <button id="m-when" aria-pressed="false">When do we...?</button>
+    <button id="m-timer" aria-pressed="false">Timers</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true" title="Turn animation on or off">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+  <button class="icon-btn" id="read">🔊 Read</button>
+</header>
+<main>
+  <div class="stage" id="stage">
+    <div class="tint" id="tint"></div>
+    <div class="scene" id="scene">
+      <div class="meters" id="meters"></div>
+      <div class="clock" id="clock"></div>
+      <div class="hero" id="hero"><img src="art:pip" alt="Pip the hero fox"></div>
+      <div class="fx"><svg id="fx" viewBox="0 0 300 330" aria-hidden="true"></svg></div>
+      <div class="card" id="card" aria-live="polite"></div>
+      <div class="choices" id="choices"></div>
+      <div class="match" id="match" hidden></div>
+      <div class="tbox" id="tbox" hidden></div>
+    </div>
+  </div>
+  <aside class="panel">
+    <p class="hint" id="hint"></p>
+    <div class="col" id="ctrl"></div>
+    <p class="tip" id="tip"></p>
+  </aside>
+</main>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  let reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  try { const m = localStorage.getItem('curio-motion'); if (m) reduce = m === 'calm'; } catch {}
+  function showMotion() {
+    document.body.classList.toggle('calm', reduce);
+    $('motion').setAttribute('aria-pressed', !reduce);
+    $('motion').textContent = reduce ? '⏸ Motion' : '✨ Motion';
+  }
+  $('motion').onclick = () => { reduce = !reduce; try { localStorage.setItem('curio-motion', reduce ? 'calm' : 'on'); } catch {} showMotion(); };
+  const wait = ms => new Promise(r => setTimeout(r, ms));
+  const fit = () => { const r = $('stage').getBoundingClientRect(); $('scene').style.setProperty('--s', Math.min(r.width / 1000, r.height / 620)); };
+  new ResizeObserver(fit).observe($('stage'));
+  const NS = 'http://www.w3.org/2000/svg';
+  const el = (tag, a, parent) => { const e = document.createElementNS(NS, tag); for (const k in a) e.setAttribute(k, a[k]); parent && parent.append(e); return e; };
+
+  // ---------- the day ----------
+  // each moment: two choices; d = change to [energy, clean, smile]
+  const DAY = [
+    {time: '7:00', icon: '🌅', tint: '#ffd9a8', q: 'Good morning! Pip just ate breakfast. What next?',
+      a: {t: 'Brush teeth for two minutes', e: '🪥', d: [0, 5, 30], say: 'Sparkly clean teeth! Brushing in the morning and at night keeps teeth strong.'},
+      b: {t: 'Skip brushing and go play', e: '🧸', d: [0, 0, -25], say: 'Uh oh. Breakfast is still on Pip\'s teeth. Germs love that!'}},
+    {time: '10:00', icon: '🏫', tint: 'transparent', q: 'At school, Pip sneezes into a hand. Then it\'s snack time!',
+      a: {t: 'Wash hands with soap', e: '🧼', d: [0, 30, 0], say: 'Washing with soap for twenty seconds washes the germs away.'},
+      b: {t: 'Wipe hands on pants and eat', e: '🍪', d: [-5, -30, 0], say: 'Those sneeze germs go right into the snack. Yuck!'}},
+    {time: '11:30', icon: '⚽', tint: 'transparent', q: 'Recess! What should Pip do?',
+      a: {t: 'Run and play outside', e: '🏃', d: [20, -5, 0], say: 'Moving every day makes muscles, hearts and lungs strong.'},
+      b: {t: 'Sit inside the whole time', e: '🪑', d: [-15, 0, 0], say: 'Pip\'s body wanted to move! Kids need about an hour of moving every day.'}},
+    {time: '12:00', icon: '🥤', tint: 'transparent', q: 'Pip is thirsty after recess. What to drink?',
+      a: {t: 'Water', e: '💧', d: [15, 0, 5], say: 'Water is the best drink when you\'re thirsty.'},
+      b: {t: 'A big sugary soda', e: '🥤', d: [-5, 0, -15], say: 'Sugary drinks can hurt teeth and don\'t help thirsty bodies much.'}},
+    {time: '4:00', icon: '🌳', tint: '#ffe7c2', q: 'After school, Pip has free time.',
+      a: {t: 'Ride a bike with a friend', e: '🚲', d: [15, -5, 5], say: 'Playing outside with friends is great for body and mind.'},
+      b: {t: 'Play games on a tablet all afternoon', e: '📱', d: [-15, 0, 0], say: 'Some screen time is okay, but a whole afternoon leaves Pip feeling sluggish.'}},
+    {time: '7:30', icon: '🛁', tint: '#d9c2ff', q: 'Pip is muddy from playing. It\'s almost bedtime.',
+      a: {t: 'Take a bath and brush teeth', e: '🛁', d: [0, 30, 25], say: 'Clean body, clean teeth, ready for bed!'},
+      b: {t: 'Climb into bed muddy', e: '🛏️', d: [0, -30, -20], say: 'Muddy sheets and dirty teeth. Pip doesn\'t feel fresh.'}},
+    {time: '8:00', icon: '🌙', tint: '#6b7ab8', q: 'It\'s bedtime! What should Pip do?',
+      a: {t: 'Lights out and sleep', e: '😴', d: [35, 0, 0], say: 'Kids need about ten to twelve hours of sleep to grow and learn.'},
+      b: {t: 'Watch videos until late', e: '📺', d: [-35, 0, 0], say: 'Pip stayed up too late. Tomorrow Pip will be tired and grumpy.'}},
+  ];
+  const METERS = [['energy', '⚡', 'Energy', '#ffb703'], ['clean', '🫧', 'Clean', '#4cc9f0'], ['smile', '😁', 'Smile', '#ff6fa5']];
+
+  // when-do-we cards: each habit has the right times among four choices
+  const WHEN = [
+    {h: 'Wash your hands', e: '🧼', opts: [['Before you eat', '🍎', 1], ['After the bathroom', '🚽', 1], ['After you sneeze or cough', '🤧', 1], ['Only on your birthday', '🎂', 0]], fact: 'Wash with soap for 20 seconds: before eating, after the bathroom, after sneezing or coughing, and after playing outside.'},
+    {h: 'Brush your teeth', e: '🪥', opts: [['In the morning', '🌅', 1], ['Before bed', '🌙', 1], ['Once a week', '📅', 0], ['For two minutes', '⏱️', 1]], fact: 'Brush two times a day, morning and night, for two minutes each time.'},
+    {h: 'Go to sleep', e: '😴', opts: [['At the same time each night', '🕗', 1], ['After lots of screens', '📺', 0], ['When your body is calm', '😌', 1], ['10 to 12 hours of sleep', '🛏️', 1]], fact: 'Kids your age need about 10 to 12 hours of sleep. Screens off before bed helps.'},
+    {h: 'Drink water', e: '💧', opts: [['When you\'re thirsty', '😮‍💨', 1], ['After playing hard', '⚽', 1], ['Never at school', '🚫', 0], ['With meals', '🍽️', 1]], fact: 'Water is the best drink for thirsty bodies, at home and at school.'},
+    {h: 'Move your body', e: '🏃', opts: [['Every day', '📆', 1], ['About an hour a day', '⏰', 1], ['Only in gym class', '🏀', 0], ['Playing outside', '🌳', 1]], fact: 'Kids need about an hour of moving every day: running, jumping, dancing, biking, playing.'},
+    {h: 'Cover a cough or sneeze', e: '🤧', opts: [['Into your elbow', '💪', 1], ['Into a tissue', '🧻', 1], ['On a friend', '🙅', 0], ['Then wash your hands', '🧼', 1]], fact: 'Cough or sneeze into your elbow or a tissue, then wash your hands.'},
+  ];
+
+  const state = {mode: 'day', at: -1, m: {energy: 60, clean: 60, smile: 60}, votes: [0, 0], whenAt: -1, sound: true, run: 0};
+
+  // ---------- sound ----------
+  let ctx;
+  const audio = () => (ctx ||= new (window.AudioContext || window.webkitAudioContext)());
+  function tone(f, dur = .2, gain = .07, when = 0, type = 'triangle') {
+    if (!state.sound) return;
+    const a = audio(), o = a.createOscillator(), g = a.createGain(), t = a.currentTime + when;
+    o.type = type; o.frequency.value = f;
+    g.gain.setValueAtTime(.0001, t); g.gain.exponentialRampToValueAtTime(gain, t + .02); g.gain.exponentialRampToValueAtTime(.0001, t + dur);
+    o.connect(g).connect(a.destination); o.start(t); o.stop(t + dur + .05);
+  }
+  const SFX = {
+    up: () => [523, 659, 784, 1047].forEach((f, i) => tone(f, .22, .08, i * .09)),
+    down: () => [392, 330, 262].forEach((f, i) => tone(f, .25, .06, i * .14, 'sine')),
+    vote: () => tone(700, .08, .05, 0, 'sine'),
+    tick: () => tone(1200, .04, .03, 0, 'square'),
+    ding: () => [784, 1047, 1319].forEach((f, i) => tone(f, .5, .07, i * .12, 'sine')),
+  };
+  // a cheerful loop for the timers
+  let loop = null;
+  function music(on) {
+    clearInterval(loop); loop = null;
+    if (!on || !state.sound) return;
+    const tune = [523, 659, 784, 659, 587, 698, 880, 698, 523, 659, 784, 1047, 988, 784, 659, 587];
+    let i = 0;
+    loop = setInterval(() => { tone(tune[i % tune.length], .2, .04, 0, 'triangle'); if (i % 4 === 0) tone(131, .3, .05, 0, 'sine'); i++; }, 300);
+  }
+
+  // ---------- meters and Pip ----------
+  function drawMeters() {
+    $('meters').innerHTML = METERS.map(([k, e, t, c]) => `<div class="meter" role="meter" aria-label="${t}" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${state.m[k]}"><span aria-hidden="true">${e}</span>${t}<div class="bar"><i style="--v:${state.m[k]}%;--c:${c}"></i></div></div>`).join('');
+    const avg = (state.m.energy + state.m.clean + state.m.smile) / 3;
+    $('hero').classList.toggle('tired', avg < 40);
+    fx();
+  }
+  // sparkles when Pip is doing well, germs when clean is low, zzz when energy is low
+  function fx() {
+    const s = $('fx'); s.replaceChildren();
+    const add = (t, x, y, size, delay) => {
+      const e = el('text', {x, y, 'font-size': size, 'text-anchor': 'middle'}, s); e.textContent = t;
+      if (!reduce) e.animate([{transform: 'translateY(0)', opacity: .2}, {transform: 'translateY(-14px)', opacity: 1}, {transform: 'translateY(0)', opacity: .2}], {duration: 2200, delay: -delay, iterations: Infinity});
+    };
+    if (state.m.clean < 40) [[40, 200], [250, 160], [70, 90], [230, 260]].forEach(([x, y], i) => add('🦠', x, y, 34, i * 500));
+    if (state.m.energy < 35) [[230, 60], [260, 30], [285, 5]].forEach(([x, y], i) => add('z', x, y, 30 + i * 8, i * 400));
+    if (state.m.smile >= 80 && state.m.clean >= 70 && state.m.energy >= 70) [[30, 40], [270, 80], [150, 10], [20, 250]].forEach(([x, y], i) => add('✨', x, y, 36, i * 550));
+  }
+  function hop(good) {
+    if (reduce) return;
+    $('hero').animate(good ? [{transform: 'translateY(0)'}, {transform: 'translateY(-40px)'}, {transform: 'translateY(0)'}] : [{transform: 'rotate(0)'}, {transform: 'rotate(-5deg)'}, {transform: 'rotate(5deg)'}, {transform: 'rotate(0)'}], {duration: 600, easing: 'ease-out'});
+  }
+
+  // ---------- Hero's day ----------
+  function startDay() {
+    state.at = -1; state.m = {energy: 60, clean: 60, smile: 60};
+    drawMeters(); nextMoment();
+  }
+  function nextMoment() {
+    state.at++;
+    if (state.at >= DAY.length) return endDay();
+    const d = DAY[state.at];
+    state.votes = [0, 0];
+    $('tint').style.setProperty('--tint', d.tint);
+    $('clock').innerHTML = `<span aria-hidden="true">${d.icon}</span>${d.time}`;
+    $('card').innerHTML = `<div class="q">${d.q}</div><div class="sub">Vote! Hold up one finger or two. Tap a card to count each vote, then press <b>Decide</b>.</div>`;
+    $('choices').replaceChildren(...[d.a, d.b].map((c, i) => {
+      const b = document.createElement('button');
+      b.className = 'choice'; b.setAttribute('aria-pressed', 'false');
+      b.innerHTML = `<span aria-hidden="true">${c.e}</span>${i + 1}. ${c.t}<div class="votes" id="v${i}"></div>`;
+      b.onclick = () => { state.votes[i]++; $('v' + i).textContent = `${state.votes[i]} ${state.votes[i] === 1 ? 'vote' : 'votes'}`; SFX.vote(); };
+      return b;
+    }));
+    $('ctrl').innerHTML = '<button class="big-btn gold" id="decide">✔ Decide</button><div class="row"><button class="big-btn soft" id="pa">Choose 1</button><button class="big-btn soft" id="pb">Choose 2</button></div><button class="big-btn soft" id="restart">↺ Start the day over</button>';
+    $('decide').onclick = () => choose(state.votes[1] > state.votes[0] ? 1 : 0);
+    $('pa').onclick = () => choose(0); $('pb').onclick = () => choose(1);
+    $('restart').onclick = startDay;
+    $('tip').innerHTML = '';
+    say([d.q, `One: ${d.a.t}. Two: ${d.b.t}.`]);
+  }
+  async function choose(i) {
+    const d = DAY[state.at], c = i ? d.b : d.a, good = !i;
+    [...$('choices').children].forEach((b, k) => { b.setAttribute('aria-pressed', k === i); b.disabled = true; });
+    ['energy', 'clean', 'smile'].forEach((k, j) => state.m[k] = Math.max(5, Math.min(100, state.m[k] + c.d[j])));
+    drawMeters(); hop(good); good ? SFX.up() : SFX.down();
+    $('tip').innerHTML = `${good ? '<b>Hero habit!</b>' : '<b>Hmm.</b>'} ${c.say}`;
+    $('ctrl').innerHTML = `<button class="big-btn" id="next">${state.at === DAY.length - 1 ? 'End the day →' : 'Next →'}</button>${good ? '' : '<button class="big-btn soft" id="redo">↺ Try the other choice</button>'}`;
+    $('next').onclick = nextMoment;
+    if (!good) $('redo').onclick = () => { ['energy', 'clean', 'smile'].forEach((k, j) => state.m[k] = Math.max(5, Math.min(100, state.m[k] - c.d[j]))); state.at--; nextMoment(); };
+    await say(c.say);
+  }
+  function endDay() {
+    const avg = Math.round((state.m.energy + state.m.clean + state.m.smile) / 3);
+    $('tint').style.setProperty('--tint', '#ffd9a8');
+    $('clock').innerHTML = '<span aria-hidden="true">🌅</span>Next morning';
+    $('choices').replaceChildren();
+    const great = avg >= 75;
+    $('card').innerHTML = `<div class="q">${great ? 'Pip wakes up full of energy. Hero habits!' : avg >= 50 ? 'Pip feels okay this morning.' : 'Pip wakes up tired and grumpy.'}</div><div class="sub">${great ? 'Brushing, washing, moving, water and sleep: that\'s what heroes do every day.' : 'Which habit could Pip change tomorrow to feel better?'}</div>`;
+    $('ctrl').innerHTML = '<button class="big-btn gold" id="again">↺ Play another day</button>';
+    $('again').onclick = startDay;
+    hop(great); great ? SFX.ding() : SFX.down();
+    say(great ? 'Pip wakes up full of energy. Hero habits!' : avg >= 50 ? 'Pip feels okay this morning. Which habit could Pip change tomorrow?' : 'Pip wakes up tired and grumpy. Which habit could Pip change tomorrow?');
+  }
+
+  // ---------- When do we...? ----------
+  function nextWhen() {
+    state.whenAt = (state.whenAt + 1) % WHEN.length;
+    const w = WHEN[state.whenAt];
+    $('match').innerHTML = `<div class="card" style="position:static;width:auto"><div class="q">${w.e} When do we <b>${w.h.toLowerCase()}</b>?</div><div class="sub">Tap every answer that's right. One answer is silly!</div></div><div class="whens" id="whens"></div>`;
+    $('whens').replaceChildren(...w.opts.map(([t, e, ok]) => {
+      const b = document.createElement('button');
+      b.className = 'when'; b.innerHTML = `<span aria-hidden="true">${e}</span>${t}`;
+      b.onclick = () => {
+        b.classList.add(ok ? 'yes' : 'no'); ok ? SFX.up() : SFX.down();
+        const left = w.opts.filter(o => o[2]).length - $('whens').querySelectorAll('.yes').length;
+        if (!ok) { $('tip').innerHTML = `<b>Silly!</b> Not "${t.toLowerCase()}". ${w.fact}`; return say(['That one is silly!', w.fact]); }
+        if (!left) { $('tip').innerHTML = `<b>You found them all!</b> ${w.fact}`; hop(true); return say(['You found them all!', w.fact]); }
+        $('tip').innerHTML = `<b>Yes!</b> ${left} more to find.`;
+        say(`Yes! ${t}.`);
+      };
+      return b;
+    }));
+    $('tip').innerHTML = '';
+    say(`When do we ${w.h.toLowerCase()}?`);
+  }
+
+  // ---------- Timers ----------
+  const WASH = [['Wet', 'Wet your hands with clean water.'], ['Soap', 'Add soap.'], ['Scrub', 'Scrub palms, backs, between fingers, thumbs and nails.'], ['Rinse', 'Rinse with water.'], ['Dry', 'Dry with a clean towel.']];
+  const TEETH = [['Top left', 'Brush the top teeth on this side.'], ['Top right', 'Now the top teeth on the other side.'], ['Bottom left', 'Bottom teeth on this side.'], ['Bottom right', 'Bottom teeth on the other side.']];
+  function hands(svg) {
+    el('ellipse', {cx: 125, cy: 120, rx: 100, ry: 56, fill: '#cfeffd'}, svg);
+    for (const [x, r] of [[95, -18], [155, 18]]) { const g = el('g', {transform: `translate(${x} 95) rotate(${r})`}, svg); el('rect', {x: -30, y: -50, width: 60, height: 100, rx: 28, fill: '#f2c39b', stroke: '#8a5a3c', 'stroke-width': 4}, g); }
+    const b = el('g', {}, svg);
+    for (let i = 0; i < 9; i++) { const c = el('circle', {cx: 70 + (i * 37) % 120, cy: 60 + (i * 23) % 80, r: 8 + i % 3 * 4, fill: '#fff', stroke: '#9bd3f2', 'stroke-width': 2}, b); if (!reduce) c.animate([{transform: 'translateY(0)', opacity: 1}, {transform: 'translateY(-30px)', opacity: 0}], {duration: 1400, delay: -i * 160, iterations: Infinity}); }
+  }
+  function mouth(svg, part) {
+    el('path', {d: 'M20,95 Q125,-5 230,95 Q125,195 20,95 Z', fill: '#e8828f', stroke: '#8a3a45', 'stroke-width': 5}, svg);
+    for (let row = 0; row < 2; row++) for (let i = 0; i < 8; i++) {
+      const x = 46 + i * 23, y = row ? 112 : 60, side = i < 4 ? 'left' : 'right', on = part === `${row ? 'Bottom' : 'Top'} ${side}`;
+      el('rect', {x, y, width: 20, height: 26, rx: 7, fill: on ? '#fff7b0' : '#fff', stroke: on ? '#e0a400' : '#c9c9c9', 'stroke-width': on ? 4 : 2}, svg);
+    }
+    if (part && !reduce) { const br = el('text', {x: part.includes('left') ? 70 : 170, y: part.includes('Top') ? 52 : 170, 'font-size': 44, 'text-anchor': 'middle'}, svg); br.textContent = '🪥'; br.animate([{transform: 'translateX(-12px)'}, {transform: 'translateX(12px)'}], {duration: 300, iterations: Infinity, direction: 'alternate'}); }
+  }
+  function timerMenu() {
+    $('tbox').innerHTML = `<div class="step" style="margin-top:40px">Which timer?</div><div class="row" style="width:100%;margin-top:30px"><button class="big-btn gold" id="tw" style="min-height:160px;font-size:30px">🧼<br>Wash hands<br><small>20 seconds</small></button><button class="big-btn gold" id="tt" style="min-height:160px;font-size:30px">🪥<br>Brush teeth<br><small>2 minutes</small></button></div>`;
+    $('tw').onclick = () => runTimer('wash'); $('tt').onclick = () => runTimer('teeth');
+    $('ctrl').innerHTML = '';
+  }
+  async function runTimer(kind) {
+    const me = ++state.run;
+    const steps = kind === 'wash' ? WASH : TEETH;
+    $('ctrl').innerHTML = '<button class="big-btn soft" id="tstop">■ Stop</button>'; $('tstop').onclick = () => { state.run++; music(false); timerMenu(); };
+    const render = (k, secs, part) => {
+      $('tbox').innerHTML = `<div class="big">${secs}</div><svg id="tsvg" viewBox="0 0 250 190" aria-hidden="true"></svg><div class="step">${steps[k][1]}</div><div class="steps">${steps.map((s, i) => `<i class="${i < k ? 'done' : i === k ? 'on' : ''}">${s[0]}</i>`).join('')}</div>`;
+      kind === 'wash' ? hands($('tsvg')) : mouth($('tsvg'), part);
+    };
+    // handwashing: 3 seconds to wet and soap, 20 seconds of scrubbing, then rinse and dry; teeth: 30 seconds a part
+    const plan = kind === 'wash' ? [[0, 3], [1, 3], [2, 20], [3, 4], [4, 4]] : [[0, 30], [1, 30], [2, 30], [3, 30]];
+    music(true);
+    for (const [k, secs] of plan) {
+      say(steps[k][1]);
+      for (let s = secs; s > 0; s--) {
+        if (me !== state.run) return;
+        render(k, kind === 'teeth' ? `${Math.floor((120 - plan.slice(0, k).reduce((a, p) => a + p[1], 0) - (secs - s)) / 60)}:${String((120 - plan.slice(0, k).reduce((a, p) => a + p[1], 0) - (secs - s)) % 60).padStart(2, '0')}` : s, steps[k][0]);
+        await wait(1000);
+      }
+      SFX.tick();
+    }
+    if (me !== state.run) return;
+    music(false); SFX.ding(); hop(true);
+    state.m.clean = Math.min(100, state.m.clean + 20); if (kind === 'teeth') state.m.smile = Math.min(100, state.m.smile + 25);
+    drawMeters();
+    $('tbox').innerHTML = `<div class="big">✔</div><div class="step">${kind === 'wash' ? 'Clean hands! Germs washed away.' : 'Two minutes! Sparkly clean teeth.'}</div>`;
+    $('ctrl').innerHTML = '<button class="big-btn gold" id="tagain">↺ Choose a timer</button>'; $('tagain').onclick = timerMenu;
+    say(kind === 'wash' ? 'Clean hands! Germs washed away.' : 'Two minutes! Sparkly clean teeth.');
+  }
+
+  function setMode(m) {
+    state.mode = m; state.run++; music(false); stopTalk();
+    for (const [id, k] of [['m-day', 'day'], ['m-when', 'when'], ['m-timer', 'timer']]) $(id).setAttribute('aria-pressed', m === k);
+    $('card').hidden = $('choices').hidden = m !== 'day'; $('match').hidden = m !== 'when'; $('tbox').hidden = m !== 'timer';
+    $('clock').hidden = m !== 'day'; $('tip').innerHTML = '';
+    $('tint').style.setProperty('--tint', 'transparent');
+    if (m === 'day') { $('hint').innerHTML = '<b>Hero\'s day.</b> Seven moments from morning to bedtime. Read each one, let the class vote, then decide. Watch Pip\'s meters.'; startDay(); }
+    if (m === 'when') {
+      $('ctrl').innerHTML = '<button class="big-btn" id="nextw">Next habit →</button>'; $('nextw').onclick = nextWhen;
+      $('hint').innerHTML = '<b>When do we...?</b> Read the habit. Tap every right answer. One answer is always silly!';
+      state.whenAt = -1; nextWhen();
+    }
+    if (m === 'timer') { $('hint').innerHTML = '<b>Timers.</b> Wash hands for 20 seconds or brush for 2 minutes along with Pip. Pretend with your hands, or use it at the sink.'; timerMenu(); }
+  }
+  $('m-day').onclick = () => setMode('day');
+  $('m-when').onclick = () => setMode('when');
+  $('m-timer').onclick = () => setMode('timer');
+  addEventListener('keydown', e => { if (e.target.closest('button') || !/^[1-3]$/.test(e.key)) return; setMode(['day', 'when', 'timer'][e.key - 1]); });
+
+  // ---------- sound and voice ----------
+  $('sound').onclick = e => {
+    state.sound = !state.sound;
+    e.currentTarget.setAttribute('aria-pressed', state.sound);
+    e.currentTarget.textContent = state.sound ? '🔔 Sound' : '🔇 Sound';
+    if (!state.sound) { stopTalk(); music(false); }
+  };
+  function bestVoice() {
+    const voices = speechSynthesis.getVoices().filter(v => /^en(-|_|$)/i.test(v.lang));
+    const score = v => (/natural|neural/i.test(v.name) ? 50 : 0) + (/premium|enhanced/i.test(v.name) ? 40 : 0) +
+      (/google/i.test(v.name) ? 30 : 0) + (/aria|jenny|ava|samantha|libby|sonia/i.test(v.name) ? 10 : 0) +
+      (/en-US/i.test(v.lang) ? 5 : 0) + (v.default ? 1 : 0) - (/david|mark|zira|desktop/i.test(v.name) ? 20 : 0);
+    return voices.sort((a, b) => score(b) - score(a))[0] || null;
+  }
+  if ('speechSynthesis' in window) {
+    const speak = speechSynthesis.speak.bind(speechSynthesis);
+    speechSynthesis.speak = u => {
+      if (speechSynthesis.getVoices().length) return speak(u);
+      let done = false;
+      const go = () => { if (done) return; done = true; const v = bestVoice(); if (v) { u.voice = v; u.lang = v.lang; } speak(u); };
+      speechSynthesis.addEventListener('voiceschanged', go, {once: true});
+      setTimeout(go, 1500);
+    };
+    speechSynthesis.getVoices();
+  }
+  const CLIPS = "voice:*";
+  const allLines = () => [...new Set([
+    ...DAY.flatMap(d => [d.q, `One: ${d.a.t}. Two: ${d.b.t}.`, d.a.say, d.b.say]),
+    'Pip wakes up full of energy. Hero habits!', 'Pip feels okay this morning. Which habit could Pip change tomorrow?', 'Pip wakes up tired and grumpy. Which habit could Pip change tomorrow?',
+    ...WHEN.flatMap(w => [`When do we ${w.h.toLowerCase()}?`, w.fact, ...w.opts.filter(o => o[2]).map(o => `Yes! ${o[0]}.`)]), 'That one is silly!', 'You found them all!',
+    ...WASH.map(s => s[1]), ...TEETH.map(s => s[1]), 'Clean hands! Germs washed away.', 'Two minutes! Sparkly clean teeth.'])];
+  let talk = 0, clip = null, last = [];
+  function stopTalk() { talk++; if (clip) { clip.pause(); clip = null; } if ('speechSynthesis' in window) speechSynthesis.cancel(); }
+  function speakOne(text) {
+    return new Promise(done => {
+      if (CLIPS[text]) { clip = new Audio(CLIPS[text]); clip.onended = clip.onerror = () => done(); clip.play().catch(() => done()); return; }
+      if (!('speechSynthesis' in window)) return done();
+      const u = new SpeechSynthesisUtterance(text);
+      const v = bestVoice(); if (v) { u.voice = v; u.lang = v.lang; }
+      u.rate = .93; u.pitch = 1; u.onend = u.onerror = () => done();
+      speechSynthesis.speak(u);
+    });
+  }
+  async function say(parts, force) {
+    if (!state.sound && !force) return;
+    stopTalk();
+    const me = talk;
+    last = [].concat(parts);
+    for (const p of last) { if (me !== talk) return; await speakOne(p); await wait(150); }
+  }
+  $('read').onclick = () => say(last.length ? last : [$('hint').textContent], true);
+
+  showMotion();
+  window.__hero = {state, setMode, choose, nextMoment, runTimer, allLines};  // for checking frames
+  setMode('day');
+})();
+</script>
+</body>
+</html>

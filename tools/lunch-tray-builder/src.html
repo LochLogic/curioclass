@@ -1,0 +1,461 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lunch Tray Builder · Food groups · Curio Class</title>
+<meta name="description" content="Build a lunch tray from the five food groups: fruits, vegetables, grains, protein and dairy. The tray shows what is missing, the class sorts foods into groups, and fixes trays that need one more group. Grades K-2 health, teacher-led. Works offline.">
+<!--
+LUNCH TRAY BUILDER (Curio Class)
+Grades K-2 health, NHES 2024 Standard 1 (healthy eating: foods from each food group). Food groups follow USDA
+MyPlate (myplate.gov): fruits, vegetables, grains, protein foods and dairy. Corn and peas count as vegetables;
+beans count as protein here (MyPlate lets them count as either). Cookies and chips are "sometimes foods" that
+don't fill a group. No calorie counts, no "good" or "bad" foods: every tray is a starting point to talk about.
+Teacher-led on a projector. Build a lunch (foods land in their group's spot, and the tray says what's missing),
+Sort it (the class decides each food's group) and Fix the tray (find the missing group on a ready-made lunch).
+One file, no network requests. Illustrations drawn with FLUX.1-schnell (Apache 2.0) on a local computer, edited
+for Curio Class. Content CC BY 4.0, code MIT. curioclass.org
+-->
+<style>
+:root{
+  --paper:#fff8ef;--ink:#2b2622;--muted:#6a5f55;--line:#f0dfc8;--focus:#2f5bd3;--brand:#c4572f;
+  --fruit:#e8414b;--veg:#3f9b3a;--grain:#d9922e;--protein:#7a4fb5;--dairy:#2f84d0;
+  font-family:'Segoe UI',system-ui,-apple-system,Roboto,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0;height:100%}
+body{background:var(--paper);color:var(--ink);display:grid;grid-template-rows:auto 1fr;min-height:100vh}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:4px solid var(--focus);outline-offset:3px}
+header{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:12px 20px;background:var(--brand);color:#fff7f0}
+h1{margin:0 auto 0 0;font:800 clamp(22px,3vw,32px)/1.1 'Trebuchet MS','Segoe UI',sans-serif}
+h1 small{display:block;font:500 15px/1.3 'Segoe UI',sans-serif;color:#ffe0cf}
+.seg{display:inline-flex;border:2px solid #e08560;border-radius:999px;overflow:hidden}
+.seg button{border:0;background:#d36a43;color:#fff7f0;min-height:52px;padding:0 16px;font-weight:700;font-size:16px}
+.seg button[aria-pressed="true"]{background:#ffd34d;color:#3a2c00}
+.icon-btn{border:2px solid #e08560;background:#d36a43;color:#fff7f0;border-radius:999px;min-height:52px;padding:0 16px;font-weight:700;font-size:16px}
+
+main{display:grid;grid-template-columns:1fr;min-height:0}
+@media (min-width:760px){main{grid-template-columns:minmax(0,1fr) 320px}}
+.stage{position:relative;overflow:hidden;min-height:340px;background:
+  linear-gradient(90deg,#ffffff22 50%,transparent 50%) 0 0/60px 60px,
+  linear-gradient(#ffffff22 50%,transparent 50%) 0 0/60px 60px,#e6b98a}
+.scene{position:absolute;left:50%;top:50%;width:1000px;height:620px;transform:translate(-50%,-50%) scale(var(--s,1))}
+
+/* the tray */
+.tray{position:absolute;left:24px;top:30px;width:600px;height:430px;border-radius:40px;background:linear-gradient(#f4f6f8,#dfe4ea);box-shadow:0 12px 0 #b9c1cb,0 24px 30px #0003}
+.slot{position:absolute;border-radius:28px;background:linear-gradient(#e7ebf0,#f6f8fa);box-shadow:inset 0 5px 10px #8a95a366;display:flex;flex-wrap:wrap;align-content:center;justify-content:center;gap:2px;padding:10px;transition:box-shadow .3s}
+.slot .lab{position:absolute;left:12px;top:8px;font:800 17px 'Trebuchet MS',sans-serif;color:var(--c);display:flex;gap:6px;align-items:center;background:#fffc;border-radius:999px;padding:2px 10px}
+.slot .lab .ok{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--c);color:#fff;font-size:14px}
+.slot.empty .lab .ok{background:#fff;border:2px dashed var(--c);color:transparent}
+.slot.need{box-shadow:inset 0 5px 10px #8a95a366,0 0 0 6px var(--c)}
+.slot.drop{box-shadow:inset 0 5px 10px #8a95a366,0 0 0 6px #ffd34d}
+.slot img{width:96px;height:96px;object-fit:contain;filter:drop-shadow(0 4px 3px #0003)}
+.slot img.in{animation:land .45s cubic-bezier(.3,1.5,.5,1)}
+@keyframes land{from{transform:translateY(-60px) scale(.6);opacity:0}}
+#s-fruit{left:24px;top:26px;width:270px;height:180px;--c:var(--fruit)}
+#s-veg{left:24px;top:222px;width:270px;height:182px;--c:var(--veg)}
+#s-grain{left:310px;top:26px;width:266px;height:180px;--c:var(--grain)}
+#s-protein{left:310px;top:222px;width:266px;height:182px;--c:var(--protein)}
+.cup{position:absolute;left:470px;top:400px;width:140px;height:140px;border-radius:50%;background:linear-gradient(#e7ebf0,#f6f8fa);box-shadow:0 8px 0 #b9c1cb,inset 0 5px 10px #8a95a366;--c:var(--dairy)}
+.cup .lab{left:50%;top:-14px;transform:translateX(-50%);white-space:nowrap}
+.cup img{width:84px;height:84px}
+.napkin{position:absolute;left:40px;top:478px;width:410px;height:118px;border-radius:14px;background:repeating-linear-gradient(45deg,#fff 0 10px,#fbeee4 10px 20px);box-shadow:0 5px 0 #0002;display:flex;align-items:center;gap:6px;padding:6px 10px 6px 128px}
+.napkin .lab{position:absolute;left:12px;top:12px;width:110px;font:800 15px/1.2 'Trebuchet MS',sans-serif;color:#8a6a55}
+.napkin img{width:84px;height:84px;object-fit:contain}
+
+/* the food shelf */
+.shelf{position:absolute;left:648px;top:16px;width:336px;height:588px;background:#fffdf8;border-radius:24px;box-shadow:0 8px 0 #0002;padding:10px;display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:78px;gap:4px;overflow:auto}
+.food{border:3px solid transparent;border-radius:14px;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0;font:700 11px/1 'Trebuchet MS',sans-serif;color:#4d433b;touch-action:none}
+.food img{width:56px;height:56px;object-fit:contain;pointer-events:none}
+.food:hover{background:#fff4dc}
+.food.used{opacity:.35}
+
+/* sort mode: one big food in the middle */
+.sorter{position:absolute;left:648px;top:16px;width:336px;height:588px;background:#fffdf8;border-radius:24px;box-shadow:0 8px 0 #0002;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:16px;text-align:center}
+.sorter img{width:220px;height:220px;object-fit:contain;filter:drop-shadow(0 8px 6px #0003);touch-action:none;cursor:grab}
+.sorter b{font:800 32px 'Trebuchet MS',sans-serif}
+.sorter span{font:600 18px/1.35 'Segoe UI',sans-serif;color:var(--muted)}
+.sorter .n{font:800 18px 'Trebuchet MS',sans-serif;color:var(--brand)}
+.ghost{position:fixed;width:110px;height:110px;pointer-events:none;z-index:50;object-fit:contain;filter:drop-shadow(0 10px 8px #0004)}
+
+.say{position:absolute;left:24px;top:472px;width:430px;min-height:60px;background:#fff;border:4px solid #2b2622;border-radius:20px;padding:8px 14px;font:800 22px/1.25 'Trebuchet MS',sans-serif;display:none}
+
+.panel{background:#fffcf6;border-left:3px solid var(--line);padding:14px 16px;display:flex;flex-direction:column;gap:12px;overflow:auto}
+@media (max-width:759px){.panel{border-left:0;border-top:3px solid var(--line)}}
+.hint{margin:0;font:600 18px/1.35 'Segoe UI',sans-serif;color:var(--muted)}
+.hint b{color:var(--ink)}
+.big-btn{border:0;border-radius:16px;min-height:60px;font:800 20px/1.1 'Trebuchet MS','Segoe UI',sans-serif;color:#fff;background:var(--brand);box-shadow:0 5px 0 #0004;padding:6px 10px}
+.big-btn:active{transform:translateY(3px);box-shadow:0 2px 0 #0004}
+.big-btn.soft{background:#f3e5d3;color:var(--ink)}
+.big-btn.gold{background:#ffd34d;color:#3a2c00}
+.col{display:flex;flex-direction:column;gap:8px}
+.tip{margin:0;background:#fff1e3;border-left:6px solid #e08560;border-radius:10px;padding:10px 12px;font:600 17px/1.4 'Segoe UI',sans-serif}
+.tip:empty{display:none}
+.legend{display:grid;grid-template-columns:1fr 1fr;gap:6px;font:700 15px 'Segoe UI',sans-serif}
+.legend span{display:flex;align-items:center;gap:6px}
+.legend i{width:16px;height:16px;border-radius:50%;background:var(--c)}
+.calm .slot img.in{animation:none}
+
+@media (max-width:759px),(max-height:640px){
+  header{padding:6px 12px} h1{font-size:19px} h1 small{display:none}
+  .seg button,.icon-btn{min-height:38px;font-size:13px;padding:0 10px}
+  main{grid-template-columns:minmax(0,1fr) 250px}
+  .panel{padding:8px 10px;gap:8px}
+  .hint,.tip{font-size:14px}
+  .big-btn{min-height:44px;font-size:16px}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Lunch Tray Builder <small>Five food groups, one tray.</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-build" aria-pressed="true">Build a lunch</button>
+    <button id="m-sort" aria-pressed="false">Sort it</button>
+    <button id="m-fix" aria-pressed="false">Fix the tray</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true" title="Turn animation on or off">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+  <button class="icon-btn" id="read">🔊 Read</button>
+</header>
+<main>
+  <div class="stage" id="stage">
+    <div class="scene" id="scene">
+      <div class="tray" id="tray">
+        <div class="slot" id="s-fruit" data-g="fruit"></div>
+        <div class="slot" id="s-veg" data-g="veg"></div>
+        <div class="slot" id="s-grain" data-g="grain"></div>
+        <div class="slot" id="s-protein" data-g="protein"></div>
+      </div>
+      <div class="slot cup" id="s-dairy" data-g="dairy"></div>
+      <div class="napkin" id="napkin"><div class="lab">Sometimes foods</div></div>
+      <div class="shelf" id="shelf" role="group" aria-label="Foods"></div>
+      <div class="sorter" id="sorter" hidden></div>
+    </div>
+  </div>
+  <aside class="panel">
+    <p class="hint" id="hint"></p>
+    <div class="legend" id="legend"></div>
+    <div class="col" id="build-btns">
+      <button class="big-btn gold" id="check">🍽️ Is my tray ready?</button>
+      <button class="big-btn soft" id="clear">Clear the tray</button>
+    </div>
+    <div class="col" id="fix-btns" hidden>
+      <button class="big-btn" id="next-fix">Next tray →</button>
+    </div>
+    <div class="col" id="sort-btns" hidden>
+      <button class="big-btn" id="next-sort">Next food →</button>
+    </div>
+    <p class="tip" id="tip"></p>
+  </aside>
+</main>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  let reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  try { const m = localStorage.getItem('curio-motion'); if (m) reduce = m === 'calm'; } catch {}
+  function showMotion() {
+    document.body.classList.toggle('calm', reduce);
+    $('motion').setAttribute('aria-pressed', !reduce);
+    $('motion').textContent = reduce ? '⏸ Motion' : '✨ Motion';
+  }
+  $('motion').onclick = () => { reduce = !reduce; try { localStorage.setItem('curio-motion', reduce ? 'calm' : 'on'); } catch {} showMotion(); };
+  const wait = ms => new Promise(r => setTimeout(r, ms));
+  const fit = () => { const r = $('stage').getBoundingClientRect(); $('scene').style.setProperty('--s', Math.min(r.width / 1000, r.height / 620)); };
+  new ResizeObserver(fit).observe($('stage'));
+
+  // ---------- food groups and foods ----------
+  const G = {
+    fruit: {name: 'Fruits', one: 'a fruit', why: 'Fruits give you vitamins and help you stay healthy.'},
+    veg: {name: 'Vegetables', one: 'a vegetable', why: 'Vegetables help your body grow and fight off sickness.'},
+    grain: {name: 'Grains', one: 'a grain', why: 'Grains give you energy to learn and play.'},
+    protein: {name: 'Protein', one: 'a protein food', why: 'Protein foods help build strong muscles.'},
+    dairy: {name: 'Dairy', one: 'a dairy food', why: 'Dairy helps build strong bones and teeth.'},
+    some: {name: 'Sometimes foods', one: 'a sometimes food', why: 'Sometimes foods are fun treats, but they don\'t fill a food group.'},
+  };
+  const GROUPS = ['fruit', 'veg', 'grain', 'protein', 'dairy'];
+  const F = [
+    ['apple', 'apple', 'fruit'], ['banana', 'banana', 'fruit'], ['orange', 'orange slices', 'fruit'], ['grapes', 'grapes', 'fruit'], ['strawberries', 'strawberries', 'fruit'], ['pear', 'pear', 'fruit'],
+    ['carrots', 'carrots', 'veg'], ['broccoli', 'broccoli', 'veg'], ['corn', 'corn', 'veg'], ['peas', 'peas', 'veg'], ['tomatoes', 'tomatoes', 'veg'], ['salad', 'salad', 'veg'],
+    ['bread', 'bread', 'grain'], ['rice', 'rice', 'grain'], ['pasta', 'pasta', 'grain'], ['tortilla', 'tortilla', 'grain'], ['crackers', 'crackers', 'grain'], ['oatmeal', 'oatmeal', 'grain'],
+    ['chicken', 'chicken', 'protein'], ['egg', 'egg', 'protein'], ['beans', 'beans', 'protein'], ['fish', 'fish', 'protein'], ['nuts', 'nuts', 'protein'],
+    ['milk', 'milk', 'dairy'], ['yogurt', 'yogurt', 'dairy'], ['cheese', 'cheese', 'dairy'],
+    ['cookie', 'cookie', 'some'], ['chips', 'chips', 'some'],
+  ].map(([id, name, g]) => ({id, name, g}));
+  const byId = Object.fromEntries(F.map(f => [f.id, f]));
+  const IMG = {
+    apple: 'art:apple', banana: 'art:banana', orange: 'art:orange', grapes: 'art:grapes', strawberries: 'art:strawberries', pear: 'art:pear',
+    carrots: 'art:carrots', broccoli: 'art:broccoli', corn: 'art:corn', peas: 'art:peas', tomatoes: 'art:tomatoes', salad: 'art:salad',
+    bread: 'art:bread', rice: 'art:rice', pasta: 'art:pasta', tortilla: 'art:tortilla', crackers: 'art:crackers', oatmeal: 'art:oatmeal',
+    chicken: 'art:chicken', egg: 'art:egg', beans: 'art:beans', fish: 'art:fish', nuts: 'art:nuts',
+    milk: 'art:milk', yogurt: 'art:yogurt', cheese: 'art:cheese', cookie: 'art:cookie', chips: 'art:chips',
+  };
+
+  // ready-made trays for Fix the tray, each missing one or two groups
+  const FIX = [
+    {name: 'Pizza day', foods: ['bread', 'cheese', 'tomatoes', 'chicken', 'milk'], miss: ['fruit']},
+    {name: 'Taco lunch', foods: ['tortilla', 'beans', 'cheese', 'salad', 'tomatoes'], miss: ['fruit']},
+    {name: 'Picnic', foods: ['bread', 'egg', 'apple', 'grapes', 'chips'], miss: ['veg', 'dairy']},
+    {name: 'Breakfast for lunch', foods: ['oatmeal', 'strawberries', 'banana', 'milk'], miss: ['veg', 'protein']},
+    {name: 'Noodle bowl', foods: ['pasta', 'broccoli', 'carrots', 'fish'], miss: ['fruit', 'dairy']},
+    {name: 'Snack plate', foods: ['crackers', 'cheese', 'grapes', 'cookie'], miss: ['veg', 'protein']},
+    {name: 'Rice and beans', foods: ['rice', 'beans', 'corn', 'peas', 'orange'], miss: ['dairy']},
+  ];
+
+  const state = {mode: 'build', tray: [], sortAt: -1, sortOrder: [], sortRight: 0, fixAt: -1, sound: true};
+
+  // ---------- sound ----------
+  let ctx;
+  const audio = () => (ctx ||= new (window.AudioContext || window.webkitAudioContext)());
+  function tone(f, dur = .18, gain = .08, when = 0, type = 'triangle') {
+    if (!state.sound) return;
+    const a = audio(), o = a.createOscillator(), g = a.createGain(), t = a.currentTime + when;
+    o.type = type; o.frequency.value = f;
+    g.gain.setValueAtTime(.0001, t); g.gain.exponentialRampToValueAtTime(gain, t + .02); g.gain.exponentialRampToValueAtTime(.0001, t + dur);
+    o.connect(g).connect(a.destination); o.start(t); o.stop(t + dur + .05);
+  }
+  const SFX = {
+    plop: () => { tone(500, .1, .08, 0, 'sine'); tone(300, .12, .06, .06, 'sine'); },
+    yes: () => [523, 659, 784, 1047].forEach((f, i) => tone(f, .25, .08, i * .1)),
+    no: () => { tone(260, .2, .06, 0, 'sine'); tone(220, .3, .06, .18, 'sine'); },
+    full: () => [392, 494, 587, 784, 988].forEach((f, i) => tone(f, .3, .07, i * .09)),
+  };
+
+  // ---------- legend ----------
+  $('legend').innerHTML = GROUPS.map(g => `<span><i style="--c:var(--${g})"></i>${G[g].name}</span>`).join('');
+  for (const g of GROUPS) $('s-' + g).insertAdjacentHTML('afterbegin', `<div class="lab"><span class="ok" aria-hidden="true">✔</span>${G[g].name}</div>`);
+
+  // ---------- tray ----------
+  function drawTray(newId) {
+    for (const g of GROUPS) {
+      const s = $('s-' + g);
+      s.querySelectorAll('img').forEach(i => i.remove());
+      const items = state.tray.filter(id => byId[id].g === g);
+      s.classList.toggle('empty', !items.length);
+      s.classList.remove('need');
+      const max = g === 'dairy' ? 1 : 4;
+      items.slice(-max).forEach(id => s.append(img(id, id === newId)));
+      s.setAttribute('aria-label', `${G[g].name}: ${items.length ? items.map(i => byId[i].name).join(', ') : 'empty'}`);
+    }
+    const nap = $('napkin');
+    nap.querySelectorAll('img').forEach(i => i.remove());
+    state.tray.filter(id => byId[id].g === 'some').slice(-3).forEach(id => nap.append(img(id, id === newId)));
+    [...$('shelf').children].forEach(b => b.classList.toggle('used', state.tray.includes(b.dataset.id)));
+  }
+  function img(id, fresh) {
+    const i = document.createElement('img');
+    i.src = IMG[id]; i.alt = byId[id].name;
+    if (fresh) i.className = 'in';
+    return i;
+  }
+  const missing = () => GROUPS.filter(g => !state.tray.some(id => byId[id].g === g));
+  const list = a => a.length < 2 ? a.join('') : a.slice(0, -1).join(', ') + ' and ' + a.at(-1);
+
+  // ---------- Build a lunch ----------
+  function shelf() {
+    $('shelf').replaceChildren(...F.map(f => {
+      const b = document.createElement('button');
+      b.className = 'food'; b.dataset.id = f.id;
+      b.innerHTML = `<img src="${IMG[f.id]}" alt="">${f.name}`;
+      b.setAttribute('aria-label', f.name);
+      b.onclick = () => add(f.id);
+      return b;
+    }));
+  }
+  function add(id) {
+    if (state.mode === 'sort') return;
+    const f = byId[id];
+    if (state.tray.includes(id)) {   // tapping again takes it off
+      state.tray = state.tray.filter(x => x !== id);
+      drawTray(); SFX.no();
+      return say(`Took off the ${f.name}.`);
+    }
+    if (f.g === 'dairy' && state.tray.some(x => byId[x].g === 'dairy')) state.tray = state.tray.filter(x => byId[x].g !== 'dairy');
+    state.tray.push(id);
+    drawTray(id); SFX.plop();
+    const miss = missing();
+    if (state.mode === 'fix') return fixCheck(id);
+    if (f.g === 'some') {
+      $('tip').innerHTML = `<b>${cap(f.name)}</b> is a sometimes food. ${G.some.why}`;
+      return say([`${cap(f.name)} is a sometimes food.`]);
+    }
+    $('tip').innerHTML = `<b>${cap(f.name)}</b> goes with <b>${G[f.g].name.toLowerCase()}</b>. ${G[f.g].why}`;
+    if (!miss.length) return full();
+    say([`${cap(f.name)}. ${G[f.g].name}.`]);
+  }
+  const cap = s => s[0].toUpperCase() + s.slice(1);
+  function full() {
+    SFX.full();
+    $('tip').innerHTML = '<b>All five food groups!</b> This lunch has fruits, vegetables, grains, protein and dairy.';
+    say('All five food groups! What a balanced lunch.');
+  }
+  function checkTray() {
+    const miss = missing();
+    if (!state.tray.length) { $('tip').innerHTML = 'The tray is empty! Tap foods on the shelf to add them.'; return say('The tray is empty! Tap foods to add them.'); }
+    if (!miss.length) return full();
+    for (const g of miss) $('s-' + g).classList.add('need');
+    const words = miss.map(g => G[g].one);
+    $('tip').innerHTML = `<b>Almost!</b> This tray still needs ${list(words)}. The glowing spots are empty.`;
+    say(miss.length === 1 ? `Almost! This tray still needs ${words[0]}.` : `This tray still needs ${miss.length} food groups.`);
+  }
+
+  // ---------- Sort it ----------
+  function nextSort() {
+    if (state.sortAt < 0 || state.sortAt >= state.sortOrder.length - 1) {
+      state.sortOrder = F.filter(f => f.g !== 'some').map(f => f.id).sort(() => Math.random() - .5).slice(0, 10);
+      state.sortAt = -1; state.sortRight = 0;
+    }
+    state.sortAt++;
+    state.tray = []; drawTray();
+    const f = byId[state.sortOrder[state.sortAt]];
+    $('sorter').innerHTML = `<span class="n">Food ${state.sortAt + 1} of ${state.sortOrder.length}</span><img id="sort-img" src="${IMG[f.id]}" alt="${f.name}"><b>${cap(f.name)}</b><span>Which food group? Drag it to the tray, or tap a spot.</span>`;
+    $('sort-img').onpointerdown = e => drag(e, f.id);
+    $('tip').innerHTML = '';
+    say(`${cap(f.name)}. Which food group?`);
+  }
+  function sortDrop(g) {
+    const f = byId[state.sortOrder[state.sortAt]];
+    if (!f || state.tray.includes(f.id)) return;
+    if (g === f.g) {
+      state.tray = [f.id]; drawTray(f.id); SFX.yes(); state.sortRight++;
+      const last = state.sortAt === state.sortOrder.length - 1;
+      $('tip').innerHTML = `<b>Yes!</b> ${cap(f.name)} ${f.name.endsWith('s') ? 'are' : 'is'} ${G[g].one === 'a grain' ? 'a grain food' : G[g].one}. ${G[g].why}` + (last ? `<br><b>Done!</b> You sorted all ${state.sortOrder.length} foods.` : '');
+      say([`Yes! ${G[g].name}.`]);
+    } else {
+      $('s-' + g).classList.add('need'); setTimeout(() => $('s-' + g).classList.remove('need'), 900);
+      SFX.no();
+      $('tip').innerHTML = `Not ${G[g].name.toLowerCase()}. Try again! ${hintFor(f)}`;
+      say([`Not ${G[g].name.toLowerCase()}. Try again!`]);
+    }
+  }
+  const hintFor = f => ({fruit: 'Hint: it grows from a flower and has seeds.', veg: 'Hint: it is a plant part, like a root, stem, leaf or seed.', grain: 'Hint: it is made from a grain like wheat, rice, oats or corn flour.', protein: 'Hint: it helps build muscles.', dairy: 'Hint: it is made from milk.'})[f.g];
+
+  // drag a food onto a spot
+  function drag(e, id) {
+    e.preventDefault();
+    const gh = document.createElement('img');
+    gh.className = 'ghost'; gh.src = IMG[id]; document.body.append(gh);
+    const move = ev => {
+      gh.style.left = ev.clientX - 55 + 'px'; gh.style.top = ev.clientY - 55 + 'px';
+      const over = document.elementsFromPoint(ev.clientX, ev.clientY).find(n => n.dataset && n.dataset.g);
+      document.querySelectorAll('.slot').forEach(s => s.classList.toggle('drop', s === over));
+    };
+    move(e);
+    const up = ev => {
+      removeEventListener('pointermove', move); removeEventListener('pointerup', up);
+      gh.remove();
+      const over = document.elementsFromPoint(ev.clientX, ev.clientY).find(n => n.dataset && n.dataset.g);
+      document.querySelectorAll('.slot').forEach(s => s.classList.remove('drop'));
+      if (over) sortDrop(over.dataset.g);
+    };
+    addEventListener('pointermove', move); addEventListener('pointerup', up);
+  }
+  document.querySelectorAll('.slot').forEach(s => s.onclick = () => { if (state.mode === 'sort') sortDrop(s.dataset.g); });
+
+  // ---------- Fix the tray ----------
+  function nextFix() {
+    state.fixAt = (state.fixAt + 1) % FIX.length;
+    const t = FIX[state.fixAt];
+    state.tray = [...t.foods]; drawTray();
+    $('tip').innerHTML = '';
+    $('hint').innerHTML = `<b>Fix the tray: ${t.name}.</b> Look at each spot. Which food group is missing? Ask the class, then tap a food on the shelf to fill it.`;
+    say(`${t.name}. Which food group is missing?`);
+  }
+  function fixCheck(id) {
+    const miss = missing();
+    const f = byId[id];
+    if (!miss.length) return full();
+    if (f.g === 'some') { $('tip').innerHTML = `${cap(f.name)} is a sometimes food. It doesn't fill a group.`; return say([`${cap(f.name)} is a sometimes food.`]); }
+    $('tip').innerHTML = `<b>${cap(f.name)}</b> fills <b>${G[f.g].name.toLowerCase()}</b>. Still missing: ${list(miss.map(g => G[g].name.toLowerCase()))}.`;
+    say([`${cap(f.name)}. ${G[f.g].name}.`, miss.length === 1 ? `Still missing ${G[miss[0]].one}.` : 'Still missing more.']);
+  }
+
+  function setMode(m) {
+    state.mode = m;
+    for (const [id, k] of [['m-build', 'build'], ['m-sort', 'sort'], ['m-fix', 'fix']]) $(id).setAttribute('aria-pressed', m === k);
+    $('build-btns').hidden = m !== 'build'; $('sort-btns').hidden = m !== 'sort'; $('fix-btns').hidden = m !== 'fix';
+    $('shelf').hidden = m === 'sort'; $('sorter').hidden = m !== 'sort';
+    $('build-btns').hidden = m === 'sort';
+    $('clear').hidden = m === 'fix';
+    stopTalk(); $('tip').innerHTML = '';
+    state.tray = []; drawTray();
+    if (m === 'build') {
+      $('hint').innerHTML = '<b>Build a lunch.</b> Children take turns choosing a food. It lands in its food group\'s spot. Can you fill all five spots? Tap a food again to take it off.';
+      say('Let\'s build a lunch! Can we fill all five food groups?');
+    }
+    if (m === 'sort') { $('hint').innerHTML = '<b>Sort it.</b> Show the food. Ask: which food group? Let the class point, then drag the food to that spot, or tap the spot.'; state.sortAt = -1; nextSort(); }
+    if (m === 'fix') { state.fixAt = -1; nextFix(); }
+  }
+  $('m-build').onclick = () => setMode('build');
+  $('m-sort').onclick = () => setMode('sort');
+  $('m-fix').onclick = () => setMode('fix');
+  $('check').onclick = checkTray;
+  $('clear').onclick = () => { state.tray = []; drawTray(); $('tip').innerHTML = ''; };
+  $('next-sort').onclick = nextSort;
+  $('next-fix').onclick = nextFix;
+  addEventListener('keydown', e => { if (e.target.closest('button') || !/^[1-3]$/.test(e.key)) return; setMode(['build', 'sort', 'fix'][e.key - 1]); });
+
+  // ---------- sound and voice ----------
+  $('sound').onclick = e => {
+    state.sound = !state.sound;
+    e.currentTarget.setAttribute('aria-pressed', state.sound);
+    e.currentTarget.textContent = state.sound ? '🔔 Sound' : '🔇 Sound';
+    if (!state.sound) stopTalk();
+  };
+  function bestVoice() {
+    const voices = speechSynthesis.getVoices().filter(v => /^en(-|_|$)/i.test(v.lang));
+    const score = v => (/natural|neural/i.test(v.name) ? 50 : 0) + (/premium|enhanced/i.test(v.name) ? 40 : 0) +
+      (/google/i.test(v.name) ? 30 : 0) + (/aria|jenny|ava|samantha|libby|sonia/i.test(v.name) ? 10 : 0) +
+      (/en-US/i.test(v.lang) ? 5 : 0) + (v.default ? 1 : 0) - (/david|mark|zira|desktop/i.test(v.name) ? 20 : 0);
+    return voices.sort((a, b) => score(b) - score(a))[0] || null;
+  }
+  if ('speechSynthesis' in window) {
+    const speak = speechSynthesis.speak.bind(speechSynthesis);
+    speechSynthesis.speak = u => {
+      if (speechSynthesis.getVoices().length) return speak(u);
+      let done = false;
+      const go = () => { if (done) return; done = true; const v = bestVoice(); if (v) { u.voice = v; u.lang = v.lang; } speak(u); };
+      speechSynthesis.addEventListener('voiceschanged', go, {once: true});
+      setTimeout(go, 1500);
+    };
+    speechSynthesis.getVoices();
+  }
+  const CLIPS = "voice:*";
+  const allLines = () => [...new Set([
+    ...F.flatMap(f => f.g === 'some' ? [`${cap(f.name)} is a sometimes food.`, `Took off the ${f.name}.`] : [`${cap(f.name)}. ${G[f.g].name}.`, `Took off the ${f.name}.`, `${cap(f.name)}. Which food group?`]),
+    'All five food groups! What a balanced lunch.', 'The tray is empty! Tap foods to add them.',
+    ...GROUPS.flatMap(g => [`Almost! This tray still needs ${G[g].one}.`, `Yes! ${G[g].name}.`, `Not ${G[g].name.toLowerCase()}. Try again!`, `Still missing ${G[g].one}.`]),
+    ...[2, 3, 4, 5].map(n => `This tray still needs ${n} food groups.`), 'Still missing more.',
+    ...FIX.map(t => `${t.name}. Which food group is missing?`), 'Let\'s build a lunch! Can we fill all five food groups?'])];
+  let talk = 0, clip = null, last = [];
+  function stopTalk() { talk++; if (clip) { clip.pause(); clip = null; } if ('speechSynthesis' in window) speechSynthesis.cancel(); }
+  function speakOne(text) {
+    return new Promise(done => {
+      if (CLIPS[text]) { clip = new Audio(CLIPS[text]); clip.onended = clip.onerror = () => done(); clip.play().catch(() => done()); return; }
+      if (!('speechSynthesis' in window)) return done();
+      const u = new SpeechSynthesisUtterance(text);
+      const v = bestVoice(); if (v) { u.voice = v; u.lang = v.lang; }
+      u.rate = .92; u.pitch = 1; u.onend = u.onerror = () => done();
+      speechSynthesis.speak(u);
+    });
+  }
+  async function say(parts, force) {
+    if (!state.sound && !force) return;
+    stopTalk();
+    const me = talk;
+    last = [].concat(parts);
+    for (const p of last) { if (me !== talk) return; await speakOne(p); await wait(150); }
+  }
+  $('read').onclick = () => say(last.length ? last : [$('hint').textContent], true);
+
+  shelf();
+  showMotion();
+  window.__lunch = {state, setMode, add, sortDrop, checkTray, allLines};  // for checking frames
+  setMode('build');
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Classroom Phrases Game · Classroom language · Curio Class</title>
+<meta name="description" content="Sixteen everyday classroom phrases with picture cards: May I go to the bathroom? I need help, please. Can I play too? Learn them with echo practice, guess the phrase from the picture, and choose what to say in short situations. Grades K-2 English language development, teacher-led. Works offline.">
+<!--
+CLASSROOM PHRASES GAME (Curio Class)
+Grades K-2 English language development, WIDA ELD Standard 1 (language for social and instructional purposes).
+Teacher-led on a projector. Learn (tap a picture card; the phrase is read word by word, then the class echoes it
+on a 3-2-1 count), What do I say? (the picture alone; the class says the phrase, then picks it from three) and
+Situations (a short story; what would you say?). Sixteen phrases in four groups: needs, help, things, friends.
+One file, no network requests. Illustrations drawn with FLUX.1-schnell (Apache 2.0) on a local computer, edited
+for Curio Class. Content CC BY 4.0, code MIT. curioclass.org
+-->
+<style>
+:root{
+  --paper:#fff9f0;--ink:#2a2620;--muted:#6a6052;--line:#f0e1c8;--focus:#2f5bd3;--brand:#1d7a8c;
+  --needs:#e76f51;--help:#2a9d8f;--things:#e9a23b;--friends:#8e5bd4;
+  font-family:'Segoe UI',system-ui,-apple-system,Roboto,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0;height:100%}
+body{background:var(--paper);color:var(--ink);display:grid;grid-template-rows:auto 1fr;min-height:100vh}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:4px solid var(--focus);outline-offset:3px}
+header{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:12px 20px;background:var(--brand);color:#f0fbfd}
+h1{margin:0 auto 0 0;font:800 clamp(22px,3vw,32px)/1.1 'Trebuchet MS','Segoe UI',sans-serif}
+h1 small{display:block;font:500 15px/1.3 'Segoe UI',sans-serif;color:#c9eef5}
+.seg{display:inline-flex;border:2px solid #57a9b8;border-radius:999px;overflow:hidden}
+.seg button{border:0;background:#2b8c9e;color:#f0fbfd;min-height:52px;padding:0 16px;font-weight:700;font-size:16px}
+.seg button[aria-pressed="true"]{background:#ffd34d;color:#3a2c00}
+.icon-btn{border:2px solid #57a9b8;background:#2b8c9e;color:#f0fbfd;border-radius:999px;min-height:52px;padding:0 16px;font-weight:700;font-size:16px}
+
+main{display:grid;grid-template-columns:1fr;min-height:0}
+@media (min-width:760px){main{grid-template-columns:minmax(0,1fr) 330px}}
+.stage{position:relative;overflow:hidden;min-height:340px;background:
+  linear-gradient(#0000 0 96%,#d9c9a8 96%) 0 0/100% 40px,#fdf3df}
+.scene{position:absolute;left:50%;top:50%;width:1000px;height:620px;transform:translate(-50%,-50%) scale(var(--s,1))}
+
+/* card grid */
+.grid{position:absolute;inset:16px;display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:auto repeat(4,1fr);gap:10px 12px}
+.ghead{font:900 20px 'Trebuchet MS',sans-serif;color:#fff;background:var(--c);border-radius:12px;text-align:center;padding:6px}
+.pc{border:4px solid var(--c);border-radius:18px;background:#fff;display:flex;align-items:center;gap:8px;padding:6px 10px;text-align:left;font:800 16px/1.2 'Trebuchet MS',sans-serif;box-shadow:0 4px 0 #0002}
+.pc img{width:72px;height:72px;object-fit:contain;flex:none}
+.pc:hover{background:#fff8e1}
+
+/* the big card */
+.big{position:absolute;left:30px;top:30px;width:940px;height:560px;background:#fff;border:6px solid var(--c);border-radius:34px;box-shadow:0 10px 0 #0002;display:grid;grid-template-columns:380px 1fr;align-items:center;gap:20px;padding:20px 30px}
+.big img{width:360px;height:360px;object-fit:contain;filter:drop-shadow(0 8px 6px #0002)}
+.big .cat{font:800 18px 'Segoe UI',sans-serif;color:var(--c);text-transform:uppercase;letter-spacing:.08em}
+.phrase{font:900 50px/1.2 'Trebuchet MS',sans-serif;margin-top:8px}
+.phrase .w{display:inline-block;padding:0 4px;border-radius:10px;transition:background .2s,transform .2s}
+.phrase .w.on{background:#ffd34d;transform:translateY(-4px)}
+.phrase.hide .w{color:transparent;background:repeating-linear-gradient(90deg,#e8e0d0 0 70%,transparent 70%) 0 82%/100% 8px no-repeat}
+.echo{margin-top:20px;font:900 34px 'Trebuchet MS',sans-serif;color:var(--brand);min-height:44px}
+.echo.pulse{animation:pulse 1s ease-in-out infinite}
+@keyframes pulse{50%{transform:scale(1.08)}}
+.story{font:800 30px/1.3 'Trebuchet MS',sans-serif;color:#3d362c}
+.choices{display:flex;flex-direction:column;gap:10px;margin-top:16px}
+.ch{border:4px solid #e6dcc8;border-radius:18px;background:#fffdf7;min-height:62px;padding:6px 16px;font:800 25px/1.2 'Trebuchet MS',sans-serif;text-align:left}
+.ch.right{border-color:#2a9d4a;background:#eafbef}
+.ch.wrong{border-color:#d8423a;background:#fdeceb;opacity:.6}
+
+.panel{background:#fffcf6;border-left:3px solid var(--line);padding:14px 16px;display:flex;flex-direction:column;gap:12px;overflow:auto}
+@media (max-width:759px){.panel{border-left:0;border-top:3px solid var(--line)}}
+.hint{margin:0;font:600 18px/1.35 'Segoe UI',sans-serif;color:var(--muted)}
+.hint b{color:var(--ink)}
+.big-btn{border:0;border-radius:16px;min-height:60px;font:800 20px/1.1 'Trebuchet MS','Segoe UI',sans-serif;color:#fff;background:var(--brand);box-shadow:0 5px 0 #0004;padding:6px 10px}
+.big-btn:active{transform:translateY(3px);box-shadow:0 2px 0 #0004}
+.big-btn.soft{background:#efe6d6;color:var(--ink)}
+.big-btn.gold{background:#ffd34d;color:#3a2c00}
+.col{display:flex;flex-direction:column;gap:8px}
+.row{display:flex;gap:8px}.row .big-btn{flex:1}
+.tip{margin:0;background:#e9f6f8;border-left:6px solid #57a9b8;border-radius:10px;padding:10px 12px;font:600 17px/1.4 'Segoe UI',sans-serif}
+.tip:empty{display:none}
+.score{font:800 20px 'Trebuchet MS',sans-serif;color:var(--brand)}
+.calm .echo.pulse{animation:none}
+
+@media (max-width:759px),(max-height:640px){
+  header{padding:6px 12px} h1{font-size:19px} h1 small{display:none}
+  .seg button,.icon-btn{min-height:38px;font-size:13px;padding:0 10px}
+  main{grid-template-columns:minmax(0,1fr) 250px}
+  .panel{padding:8px 10px;gap:8px}
+  .hint,.tip{font-size:14px}
+  .big-btn{min-height:44px;font-size:16px}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Classroom Phrases <small>Words we use every day at school.</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-learn" aria-pressed="true">Learn</button>
+    <button id="m-guess" aria-pressed="false">What do I say?</button>
+    <button id="m-sit" aria-pressed="false">Situations</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true" title="Turn animation on or off">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+  <button class="icon-btn" id="read">🔊 Read</button>
+</header>
+<main>
+  <div class="stage" id="stage">
+    <div class="scene" id="scene">
+      <div class="grid" id="grid"></div>
+      <div class="big" id="big" hidden></div>
+    </div>
+  </div>
+  <aside class="panel">
+    <p class="hint" id="hint"></p>
+    <div class="col" id="ctrl"></div>
+    <p class="tip" id="tip"></p>
+  </aside>
+</main>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  let reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  try { const m = localStorage.getItem('curio-motion'); if (m) reduce = m === 'calm'; } catch {}
+  function showMotion() {
+    document.body.classList.toggle('calm', reduce);
+    $('motion').setAttribute('aria-pressed', !reduce);
+    $('motion').textContent = reduce ? '⏸ Motion' : '✨ Motion';
+  }
+  $('motion').onclick = () => { reduce = !reduce; try { localStorage.setItem('curio-motion', reduce ? 'calm' : 'on'); } catch {} showMotion(); };
+  const wait = ms => new Promise(r => setTimeout(r, ms));
+  const fit = () => { const r = $('stage').getBoundingClientRect(); $('scene').style.setProperty('--s', Math.min(r.width / 1000, r.height / 620)); };
+  new ResizeObserver(fit).observe($('stage'));
+
+  // ---------- the phrases ----------
+  const CATS = {needs: {t: 'Needs', c: 'var(--needs)'}, help: {t: 'Help', c: 'var(--help)'}, things: {t: 'Things', c: 'var(--things)'}, friends: {t: 'Friends', c: 'var(--friends)'}};
+  const PH = [
+    {id: 'bathroom', cat: 'needs', p: 'May I go to the bathroom?', sit: 'You really need to use the bathroom during class.'},
+    {id: 'water', cat: 'needs', p: 'May I get a drink of water?', sit: 'After recess you are very thirsty.'},
+    {id: 'sick', cat: 'needs', p: 'I don\'t feel well.', sit: 'Your tummy hurts and you feel hot.'},
+    {id: 'tissue', cat: 'needs', p: 'May I have a tissue, please?', sit: 'Achoo! Your nose is runny.'},
+    {id: 'help', cat: 'help', p: 'I need help, please.', sit: 'You are stuck on your work and can\'t do the next part.'},
+    {id: 'again', cat: 'help', p: 'Can you say that again, please?', sit: 'The teacher talked fast and you didn\'t hear the directions.'},
+    {id: 'understand', cat: 'help', p: 'I don\'t understand.', sit: 'You heard the directions, but they don\'t make sense to you.'},
+    {id: 'howsay', cat: 'help', p: 'How do you say this in English?', sit: 'You know a word in your language, but not in English.'},
+    {id: 'pencil', cat: 'things', p: 'May I have a pencil, please?', sit: 'Snap! Your pencil broke.'},
+    {id: 'where', cat: 'things', p: 'Where do I put this?', sit: 'You finished your art project and don\'t know where it goes.'},
+    {id: 'finished', cat: 'things', p: 'I\'m finished!', sit: 'You wrote your last word and colored the picture.'},
+    {id: 'lost', cat: 'things', p: 'I lost my mitten.', sit: 'It\'s time to go home, but one mitten is missing.'},
+    {id: 'play', cat: 'friends', p: 'Can I play too?', sit: 'Some kids are playing ball, and you want to join.'},
+    {id: 'thanks', cat: 'friends', p: 'Thank you!', sit: 'A friend shares crayons with you.'},
+    {id: 'excuse', cat: 'friends', p: 'Excuse me.', sit: 'You need to walk past someone in a narrow space.'},
+    {id: 'morning', cat: 'friends', p: 'Good morning!', sit: 'You walk into the classroom and see your teacher.'},
+  ];
+  const IMG = Object.fromEntries(PH.map(p => [p.id, {bathroom: 'art:bathroom', water: 'art:water', sick: 'art:sick', tissue: 'art:tissue', help: 'art:help', again: 'art:again', understand: 'art:understand', howsay: 'art:howsay', pencil: 'art:pencil', where: 'art:where', finished: 'art:finished', lost: 'art:lost', play: 'art:play', thanks: 'art:thanks', excuse: 'art:excuse', morning: 'art:morning'}[p.id]]));
+  const byId = Object.fromEntries(PH.map(p => [p.id, p]));
+
+  const state = {mode: 'learn', order: [], at: -1, right: 0, cur: null, sound: true, run: 0};
+
+  // ---------- sound ----------
+  let ctx;
+  const audio = () => (ctx ||= new (window.AudioContext || window.webkitAudioContext)());
+  function tone(f, dur = .2, gain = .07, when = 0, type = 'triangle') {
+    if (!state.sound) return;
+    const a = audio(), o = a.createOscillator(), g = a.createGain(), t = a.currentTime + when;
+    o.type = type; o.frequency.value = f;
+    g.gain.setValueAtTime(.0001, t); g.gain.exponentialRampToValueAtTime(gain, t + .02); g.gain.exponentialRampToValueAtTime(.0001, t + dur);
+    o.connect(g).connect(a.destination); o.start(t); o.stop(t + dur + .05);
+  }
+  const SFX = {
+    flip: () => tone(500, .1, .05, 0, 'sine'),
+    count: k => tone(k ? 660 : 990, k ? .12 : .3, .07, 0, 'sine'),
+    yes: () => [523, 659, 784, 1047].forEach((f, i) => tone(f, .22, .08, i * .09)),
+    hmm: () => { tone(392, .2, .06, 0, 'sine'); tone(349, .25, .06, .2, 'sine'); },
+  };
+
+  // ---------- grid ----------
+  function grid() {
+    const cols = Object.keys(CATS);
+    $('grid').innerHTML = cols.map(k => `<div class="ghead" style="--c:${CATS[k].c}">${CATS[k].t}</div>`).join('');
+    for (let r = 0; r < 4; r++) for (const k of cols) {
+      const p = PH.filter(x => x.cat === k)[r];
+      const b = document.createElement('button');
+      b.className = 'pc'; b.style.setProperty('--c', CATS[k].c);
+      b.innerHTML = `<img src="${IMG[p.id]}" alt="">${p.p}`;
+      b.onclick = () => learn(p.id);
+      $('grid').append(b);
+    }
+  }
+  const words = p => p.p.split(' ');
+
+  // ---------- Learn: word-by-word, then echo ----------
+  async function learn(id) {
+    const me = ++state.run, p = byId[id];
+    state.cur = id;
+    $('grid').hidden = true; $('big').hidden = false;
+    $('big').style.setProperty('--c', CATS[p.cat].c);
+    $('big').innerHTML = `<img src="${IMG[id]}" alt=""><div><div class="cat">${CATS[p.cat].t}</div><div class="phrase" id="phrase">${words(p).map(w => `<span class="w">${w}</span>`).join(' ')}</div><div class="echo" id="echo"></div></div>`;
+    SFX.flip();
+    $('ctrl').innerHTML = '<button class="big-btn gold" id="again">🔁 Again</button><button class="big-btn soft" id="back">← All phrases</button><div class="row"><button class="big-btn soft" id="prev">← Back</button><button class="big-btn" id="next">Next →</button></div>';
+    $('again').onclick = () => learn(id); $('back').onclick = () => setMode('learn');
+    const i = PH.indexOf(p);
+    $('prev').onclick = () => learn(PH[(i + PH.length - 1) % PH.length].id); $('next').onclick = () => learn(PH[(i + 1) % PH.length].id);
+    $('tip').innerHTML = `<b>When do we say it?</b> ${p.sit}`;
+    // highlight each word at a steady pace while the line plays
+    const spans = [...$('phrase').querySelectorAll('.w')], per = 420;
+    const play = say(p.p);
+    for (const s of spans) { if (me !== state.run) return; spans.forEach(x => x.classList.remove('on')); s.classList.add('on'); await wait(per); }
+    await play; if (me !== state.run) return;
+    spans.forEach(x => x.classList.remove('on'));
+    await wait(400);
+    for (const k of [3, 2, 1]) { if (me !== state.run) return; $('echo').textContent = `Your turn in ${k}...`; SFX.count(k); await wait(800); }
+    if (me !== state.run) return;
+    SFX.count(0);
+    $('echo').textContent = '🗣️ Say it together!'; $('echo').classList.toggle('pulse', !reduce);
+    for (const s of spans) { if (me !== state.run) return; spans.forEach(x => x.classList.remove('on')); s.classList.add('on'); await wait(per + 80); }
+    spans.forEach(x => x.classList.remove('on'));
+    $('echo').classList.remove('pulse'); $('echo').textContent = '⭐ Great!';
+  }
+
+  // ---------- What do I say? (picture only) ----------
+  function nextGuess(sit) {
+    if (state.at >= state.order.length - 1 || !state.order.length) { state.order = PH.map(p => p.id).sort(() => Math.random() - .5).slice(0, 8); state.at = -1; state.right = 0; }
+    state.at++;
+    const p = byId[state.order[state.at]];
+    state.cur = p.id;
+    const wrong = PH.filter(x => x.id !== p.id).sort(() => Math.random() - .5).slice(0, 2);
+    const opts = [p, ...wrong].sort(() => Math.random() - .5);
+    $('big').hidden = false; $('grid').hidden = true;
+    $('big').style.setProperty('--c', CATS[p.cat].c);
+    $('big').innerHTML = `<img src="${IMG[p.id]}" alt=""><div>${sit ? `<div class="story">${p.sit}</div>` : '<div class="story">What do you say?</div>'}<div class="phrase hide" id="phrase" style="font-size:38px">${words(p).map(w => `<span class="w">${w}</span>`).join(' ')}</div><div class="choices" id="choices">${opts.map(o => `<button class="ch" data-id="${o.id}">${o.p}</button>`).join('')}</div></div>`;
+    $('choices').querySelectorAll('.ch').forEach(b => b.onclick = () => pick(b));
+    $('tip').innerHTML = '';
+    $('score').textContent = `${state.at + 1} of ${state.order.length}`;
+    say(sit ? [p.sit, 'What do you say?'] : 'What do you say?');
+  }
+  function pick(b) {
+    const p = byId[state.cur], ok = b.dataset.id === p.id;
+    if (ok) {
+      state.right++;
+      b.classList.add('right'); $('phrase').classList.remove('hide'); SFX.yes();
+      $('choices').querySelectorAll('.ch').forEach(x => x.disabled = true);
+      $('tip').innerHTML = `<b>Yes!</b> Now everyone say it: "${p.p}"`;
+      say(['Yes!', p.p]);
+    } else {
+      b.classList.add('wrong'); SFX.hmm();
+      $('tip').innerHTML = `We say "${byId[b.dataset.id].p}" when: ${byId[b.dataset.id].sit.toLowerCase()} Try again!`;
+      say('Try again!');
+    }
+  }
+
+  function setMode(m) {
+    state.mode = m; state.run++; stopTalk(); state.order = [];
+    for (const [id, k] of [['m-learn', 'learn'], ['m-guess', 'guess'], ['m-sit', 'sit']]) $(id).setAttribute('aria-pressed', m === k);
+    $('tip').innerHTML = '';
+    if (m === 'learn') {
+      $('grid').hidden = false; $('big').hidden = true;
+      $('ctrl').innerHTML = '';
+      $('hint').innerHTML = '<b>Learn.</b> Tap a phrase. Listen as each word lights up, then everyone says it together on the count.';
+      say('Tap a phrase to learn it.');
+    }
+    if (m === 'guess') {
+      $('ctrl').innerHTML = '<button class="big-btn" id="next">Next picture →</button><div class="score" id="score"></div>';
+      $('next').onclick = () => nextGuess(false);
+      $('hint').innerHTML = '<b>What do I say?</b> Look at the picture. Ask the class to say the phrase first, then tap it to check.';
+      nextGuess(false);
+    }
+    if (m === 'sit') {
+      $('ctrl').innerHTML = '<button class="big-btn" id="next">Next situation →</button><div class="score" id="score"></div>';
+      $('next').onclick = () => nextGuess(true);
+      $('hint').innerHTML = '<b>Situations.</b> Read the story together. What would you say? Children act it out with a partner, then tap the phrase.';
+      nextGuess(true);
+    }
+  }
+  $('m-learn').onclick = () => setMode('learn');
+  $('m-guess').onclick = () => setMode('guess');
+  $('m-sit').onclick = () => setMode('sit');
+  addEventListener('keydown', e => { if (e.target.closest('button') || !/^[1-3]$/.test(e.key)) return; setMode(['learn', 'guess', 'sit'][e.key - 1]); });
+
+  // ---------- sound and voice ----------
+  $('sound').onclick = e => {
+    state.sound = !state.sound;
+    e.currentTarget.setAttribute('aria-pressed', state.sound);
+    e.currentTarget.textContent = state.sound ? '🔔 Sound' : '🔇 Sound';
+    if (!state.sound) stopTalk();
+  };
+  function bestVoice() {
+    const voices = speechSynthesis.getVoices().filter(v => /^en(-|_|$)/i.test(v.lang));
+    const score = v => (/natural|neural/i.test(v.name) ? 50 : 0) + (/premium|enhanced/i.test(v.name) ? 40 : 0) +
+      (/google/i.test(v.name) ? 30 : 0) + (/aria|jenny|ava|samantha|libby|sonia/i.test(v.name) ? 10 : 0) +
+      (/en-US/i.test(v.lang) ? 5 : 0) + (v.default ? 1 : 0) - (/david|mark|zira|desktop/i.test(v.name) ? 20 : 0);
+    return voices.sort((a, b) => score(b) - score(a))[0] || null;
+  }
+  if ('speechSynthesis' in window) {
+    const speak = speechSynthesis.speak.bind(speechSynthesis);
+    speechSynthesis.speak = u => {
+      if (speechSynthesis.getVoices().length) return speak(u);
+      let done = false;
+      const go = () => { if (done) return; done = true; const v = bestVoice(); if (v) { u.voice = v; u.lang = v.lang; } speak(u); };
+      speechSynthesis.addEventListener('voiceschanged', go, {once: true});
+      setTimeout(go, 1500);
+    };
+    speechSynthesis.getVoices();
+  }
+  const CLIPS = "voice:*";
+  const allLines = () => [...new Set([...PH.flatMap(p => [p.p, p.sit]), 'What do you say?', 'Yes!', 'Try again!', 'Tap a phrase to learn it.'])];
+  let talk = 0, clip = null, last = [];
+  function stopTalk() { talk++; if (clip) { clip.pause(); clip = null; } if ('speechSynthesis' in window) speechSynthesis.cancel(); }
+  function speakOne(text) {
+    return new Promise(done => {
+      if (CLIPS[text]) { clip = new Audio(CLIPS[text]); clip.onended = clip.onerror = () => done(); clip.play().catch(() => done()); return; }
+      if (!('speechSynthesis' in window)) return done();
+      const u = new SpeechSynthesisUtterance(text);
+      const v = bestVoice(); if (v) { u.voice = v; u.lang = v.lang; }
+      u.rate = .82; u.pitch = 1; u.onend = u.onerror = () => done();
+      speechSynthesis.speak(u);
+    });
+  }
+  async function say(parts, force) {
+    if (!state.sound && !force) return;
+    stopTalk();
+    const me = talk;
+    last = [].concat(parts);
+    for (const p of last) { if (me !== talk) return; await speakOne(p); await wait(200); }
+  }
+  $('read').onclick = () => say(last.length ? last : [$('hint').textContent], true);
+
+  grid();
+  showMotion();
+  window.__phrases = {state, setMode, learn, nextGuess, allLines};  // for checking frames
+  setMode('learn');
+})();
+</script>
+</body>
+</html>

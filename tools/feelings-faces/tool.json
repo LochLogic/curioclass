@@ -1,0 +1,20 @@
+{
+  "id": "feelings-faces",
+  "status": "beta",
+  "driver": "teacher",
+  "modes": [
+    "Face clues",
+    "What happened?",
+    "Make a face"
+  ],
+  "grades_label": "Grades K-2",
+  "third_party": [],
+  "updated": "2026-10-25",
+  "hook": "Six friends' faces change on the board. Spot the clues in the eyebrows, eyes and mouth, name the feeling, then choose a kind thing to say when a friend has a hard day.",
+  "outcome": "Recognize feelings from facial clues and situations, and choose kind words and actions to help a friend",
+  "minutes": "10-20",
+  "sources": [
+    "Faces drawn in code",
+    "Sounds generated in the browser"
+  ]
+}

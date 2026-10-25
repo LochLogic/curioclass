@@ -1,0 +1,20 @@
+{
+  "id": "wonder-wall",
+  "status": "beta",
+  "driver": "teacher",
+  "modes": [
+    "Sort",
+    "Our wonders",
+    "Better questions"
+  ],
+  "grades_label": "Grades K-2",
+  "third_party": [],
+  "updated": "2026-10-25",
+  "hook": "Sticky-note wonders land on a cork board. Should we look it up, ask an expert or try it ourselves? Then pin your class's own wonders and pick the question that helps you learn more.",
+  "outcome": "Ask questions and choose a way to find the answer: look it up, ask an expert or try it",
+  "minutes": "10-20",
+  "sources": [
+    "Drawn with CSS and SVG",
+    "Sounds generated in the browser"
+  ]
+}

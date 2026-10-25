@@ -1,0 +1,231 @@
+{
+  "style": "Bright, clear nature illustrations for a kindergarten science and language lesson: realistic shapes and true colors, gentle picture-book painting, easy to name at a glance.",
+  "assets": [
+    {
+      "name": "pond",
+      "prompt": "Empty background: a calm sunny pond scene seen from the bank at child height. Still blue-green water across the middle and bottom, a grassy muddy bank in the lower left corner, soft reeds far at the back, trees and blue sky at the top. Lots of open water and grass. No animals, no lily pads, no flowers in front, no people.",
+      "aspect": "16:9",
+      "width": 1600,
+      "quality": 72
+    },
+    {
+      "name": "garden",
+      "prompt": "Empty background: a sunny vegetable and flower garden seen at child height. Brown soil and green grass across the bottom third, a wooden fence and green leafy plants in the background, blue sky at the top. Lots of open ground. No insects, no animals, no big flowers, no people.",
+      "aspect": "16:9",
+      "width": 1600,
+      "quality": 72
+    },
+    {
+      "name": "forest",
+      "prompt": "Empty background: a shady forest floor seen at child height. Brown leaf litter and soft moss across the bottom half, big tree trunks in the background with dappled sunlight, one low tree branch across the upper middle. Lots of open ground. No animals, no mushrooms, no people.",
+      "aspect": "16:9",
+      "width": 1600,
+      "quality": 72
+    },
+    {
+      "name": "beach",
+      "prompt": "Empty background: a sunny sandy beach seen at child height. Smooth golden sand across the bottom half, gentle blue waves and the ocean in the middle, a clear blue sky with a few clouds at the top. Lots of open sand and sky. No animals, no shells, no people, no buildings.",
+      "aspect": "16:9",
+      "width": 1600,
+      "quality": 72
+    },
+    {
+      "name": "frog",
+      "prompt": "A green frog sitting, side view, shiny smooth skin, big eyes.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 220,
+      "quality": 76,
+      "key": "magenta"
+    },
+    {
+      "name": "duck",
+      "prompt": "A mallard duck swimming, side view, green head and brown body.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 220,
+      "quality": 76
+    },
+    {
+      "name": "lilypad",
+      "prompt": "One round green lily pad seen from above with one white water lily flower on it.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 220,
+      "quality": 76,
+      "key": "magenta"
+    },
+    {
+      "name": "dragonfly",
+      "prompt": "A blue dragonfly with four clear wings spread, seen from above.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 220,
+      "quality": 76
+    },
+    {
+      "name": "cattail",
+      "prompt": "A cattail plant: a tall green stem with a brown fuzzy cattail on top and long thin leaves.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 220,
+      "quality": 76,
+      "key": "magenta"
+    },
+    {
+      "name": "rock",
+      "prompt": "One rounded gray rock with bumpy texture.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 220,
+      "quality": 76
+    },
+    {
+      "name": "ladybug",
+      "prompt": "A red ladybug with black spots, seen from above.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 220,
+      "quality": 76
+    },
+    {
+      "name": "sunflower",
+      "prompt": "A tall sunflower with a big yellow flower head, green stem and two leaves.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 220,
+      "quality": 76,
+      "key": "magenta"
+    },
+    {
+      "name": "snail",
+      "prompt": "A garden snail with a brown spiral shell, crawling, side view.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 220,
+      "quality": 76
+    },
+    {
+      "name": "worm",
+      "prompt": "A pink earthworm, wiggly S shape.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 220,
+      "quality": 76
+    },
+    {
+      "name": "butterfly",
+      "prompt": "An orange and black monarch butterfly with wings open, seen from above.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 220,
+      "quality": 76
+    },
+    {
+      "name": "bee",
+      "prompt": "A fuzzy yellow and black honeybee with clear wings, side view.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 220,
+      "quality": 76
+    },
+    {
+      "name": "mushroom",
+      "prompt": "A red mushroom with white spots and a white stem.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 220,
+      "quality": 76
+    },
+    {
+      "name": "pinecone",
+      "prompt": "One brown pinecone.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 220,
+      "quality": 76
+    },
+    {
+      "name": "squirrel",
+      "prompt": "A gray squirrel sitting up holding an acorn, bushy tail, side view.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 220,
+      "quality": 76
+    },
+    {
+      "name": "fern",
+      "prompt": "A green fern plant with feathery fronds.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 220,
+      "quality": 76,
+      "key": "magenta"
+    },
+    {
+      "name": "acorn",
+      "prompt": "One brown acorn with its little cap.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 220,
+      "quality": 76
+    },
+    {
+      "name": "nest",
+      "prompt": "A bird nest made of twigs with three small blue eggs inside.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 220,
+      "quality": 76
+    },
+    {
+      "name": "crab",
+      "prompt": "A red crab with two big claws, front view.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 220,
+      "quality": 76
+    },
+    {
+      "name": "seastar",
+      "prompt": "An orange sea star with five arms, seen from above.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 220,
+      "quality": 76
+    },
+    {
+      "name": "shell",
+      "prompt": "One white and pink spiral seashell.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 220,
+      "quality": 76
+    },
+    {
+      "name": "seagull",
+      "prompt": "A white and gray seagull flying with wings spread, yellow beak.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 220,
+      "quality": 76
+    },
+    {
+      "name": "seaweed",
+      "prompt": "A clump of green seaweed with long wavy leaves.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 220,
+      "quality": 76,
+      "key": "magenta"
+    },
+    {
+      "name": "jellyfish",
+      "prompt": "A clear pink jellyfish with long trailing tentacles.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 220,
+      "quality": 76
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "id": "lunch-tray-builder",
+  "status": "beta",
+  "driver": "teacher",
+  "modes": [
+    "Build a lunch",
+    "Sort it",
+    "Fix the tray"
+  ],
+  "grades_label": "Grades K-2",
+  "third_party": [],
+  "updated": "2026-10-25",
+  "hook": "Tap foods onto a school lunch tray and watch each one land in its food group's spot. Can the class fill all five? Then sort foods and fix trays that are missing a group.",
+  "outcome": "Name the five food groups, sort foods into them and build a lunch with all five",
+  "minutes": "10-20",
+  "sources": [
+    "Food groups from USDA MyPlate (myplate.gov)",
+    "Illustrations drawn with FLUX.1-schnell (Apache 2.0) on a local computer, edited for Curio Class",
+    "Sounds generated in the browser"
+  ]
+}

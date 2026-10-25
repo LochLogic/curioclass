@@ -1,0 +1,21 @@
+{
+  "id": "safety-street",
+  "status": "beta",
+  "driver": "teacher",
+  "modes": [
+    "Walk the street",
+    "Safe or not?",
+    "Crossing practice"
+  ],
+  "grades_label": "Grades K-2",
+  "third_party": [],
+  "updated": "2026-10-25",
+  "hook": "Walk Safety Street with Biscuit the puppy: seven stops from the crosswalk to the pool, each with a safe choice and a not-so-safe one. Then thumbs up or down, and a crossing practice with a real walk signal.",
+  "outcome": "Choose safe actions for crossing streets, riding, cars, fire drills, hot things, water and medicine",
+  "minutes": "10-20",
+  "sources": [
+    "Safety guidance from NHTSA, NFPA, the American Red Cross and Safe Kids Worldwide",
+    "Illustrations drawn with FLUX.1-schnell (Apache 2.0) on a local computer, edited for Curio Class",
+    "Sounds generated in the browser"
+  ]
+}

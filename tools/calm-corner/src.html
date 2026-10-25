@@ -1,0 +1,582 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Calm Corner · Calm-down strategies · Curio Class</title>
+<meta name="description" content="Shelly the turtle leads five calm-down tools on the classroom screen: balloon breathing, star breathing, slow counting, stretches and a five senses check. Check in before and after. Grades K-2 SEL, teacher-led. Works offline.">
+<!--
+CALM CORNER (Curio Class)
+Grades K-2 social and emotional learning, CASEL Self-Management (managing emotions, using calming strategies).
+Teacher-led on a projector. Five strategies that young children can learn as a whole class and later use on
+their own: balloon breathing (slow belly breaths), star breathing (trace a star, in on the way up and out on the
+way down), slow counting up and back, five gentle stretches and a five senses check (see, feel, hear, smell,
+breathe). A check-in before and after asks "how does your body feel?" and is never saved.
+Pacing follows common classroom guidance for young children: about 3-4 seconds in and 4-5 seconds out, a few
+breaths at a time. Calm mode (Motion off) keeps the same timing, only the movement stops.
+One file, no network requests. Illustrations drawn with FLUX.1-schnell (Apache 2.0) on a local computer, edited
+for Curio Class. Content CC BY 4.0, code MIT. curioclass.org
+-->
+<style>
+:root{
+  --paper:#f3f8f4;--ink:#22322b;--muted:#566a60;--line:#d3e5da;--focus:#d9534f;--brand:#2f7a62;
+  font-family:'Segoe UI',system-ui,-apple-system,Roboto,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0;height:100%}
+body{background:var(--paper);color:var(--ink);display:grid;grid-template-rows:auto 1fr;min-height:100vh}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:4px solid var(--focus);outline-offset:3px}
+header{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:12px 20px;background:var(--brand);color:#f1fbf6}
+h1{margin:0 auto 0 0;font:800 clamp(22px,3vw,32px)/1.1 'Trebuchet MS','Segoe UI',sans-serif}
+h1 small{display:block;font:500 15px/1.3 'Segoe UI',sans-serif;color:#cfeee0}
+.icon-btn{border:2px solid #5fa58b;background:#3b8c72;color:#f1fbf6;border-radius:999px;min-height:52px;padding:0 16px;font-weight:700;font-size:16px}
+.icon-btn[aria-pressed="true"].tog{background:#ffd98a;color:#3a2c00}
+
+main{display:grid;grid-template-columns:1fr;min-height:0}
+@media (min-width:760px){main{grid-template-columns:minmax(0,1fr) 330px}}
+.stage{position:relative;overflow:hidden;min-height:340px;background:#cfe3d6 url(art:corner) center/cover}
+.stage::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 45%,#ffffffcc 0 34%,#ffffff55 60%,transparent 80%);transition:background 2s}
+.scene{position:absolute;left:50%;top:50%;width:1000px;height:620px;transform:translate(-50%,-50%) scale(var(--s,1))}
+
+.shelly{position:absolute;left:24px;bottom:18px;width:230px;height:190px;transform-origin:50% 100%}
+.shelly img{width:100%;height:100%;object-fit:contain;object-position:50% 100%}
+.bubble{position:absolute;left:210px;bottom:150px;max-width:330px;background:#fff;border:4px solid #2c4a3e;border-radius:24px;padding:12px 18px;font:700 24px/1.3 'Trebuchet MS',sans-serif;box-shadow:0 5px 0 #0002}
+.bubble::after{content:'';position:absolute;left:24px;bottom:-22px;border:12px solid transparent;border-top:14px solid #2c4a3e}
+.bubble:empty{display:none}
+
+/* the activity area */
+.act{position:absolute;left:250px;top:20px;width:720px;height:520px;display:grid;place-items:center}
+.act svg{width:100%;height:100%;overflow:visible}
+.big-word{position:absolute;left:0;right:0;bottom:-6px;text-align:center;font:800 54px/1 'Trebuchet MS',sans-serif;color:#2c4a3e;text-shadow:0 3px 0 #fff}
+.big-word small{display:block;font:700 26px/1.3 'Trebuchet MS',sans-serif;color:#4c6b5e;margin-top:6px}
+
+/* tiles to pick a tool */
+.tiles{position:absolute;left:270px;top:60px;width:690px;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.tile{border:0;border-radius:26px;min-height:200px;background:var(--c);box-shadow:0 7px 0 #0002;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;font:800 26px/1.1 'Trebuchet MS',sans-serif;color:#22322b;padding:12px}
+.tile span{font-size:72px;line-height:1}
+.tile small{font:600 16px/1.25 'Segoe UI',sans-serif;color:#3d5249;text-align:center}
+.tile:hover{transform:translateY(-3px)}
+
+/* check-in faces */
+.faces{position:absolute;left:270px;top:110px;width:690px;display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.face{border:4px solid transparent;border-radius:24px;background:#fffdf6;min-height:220px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;font:800 22px/1.1 'Trebuchet MS',sans-serif;box-shadow:0 6px 0 #0002}
+.face svg{width:120px;height:120px}
+.face b{display:block;min-height:30px;font:800 28px 'Trebuchet MS',sans-serif;color:var(--brand)}
+.face.pick{border-color:#2c4a3e;background:#fff6d6}
+
+/* five senses */
+.senses{position:absolute;left:260px;top:24px;width:710px;height:500px}
+.sense-card{position:absolute;inset:0;background:#fffdf6;border-radius:30px;box-shadow:0 8px 0 #0002;display:flex;flex-direction:column;align-items:center;padding:26px}
+.sense-card .n{font:800 120px/1 'Trebuchet MS',sans-serif;color:var(--c)}
+.sense-card .what{font:800 40px/1.15 'Trebuchet MS',sans-serif;text-align:center}
+.sense-card .ex{font:600 22px/1.35 'Segoe UI',sans-serif;color:var(--muted);text-align:center;margin-top:8px;max-width:560px}
+.dots{display:flex;gap:16px;margin-top:auto}
+.dot{width:74px;height:74px;border-radius:50%;border:5px dashed var(--c);background:#fff;font-size:34px;display:grid;place-items:center}
+.dot.on{border-style:solid;background:var(--c)}
+
+.panel{background:#fbfefc;border-left:3px solid var(--line);padding:14px 16px;display:flex;flex-direction:column;gap:12px;overflow:auto}
+@media (max-width:759px){.panel{border-left:0;border-top:3px solid var(--line)}}
+.hint{margin:0;font:600 18px/1.35 'Segoe UI',sans-serif;color:var(--muted)}
+.hint b{color:var(--ink)}
+.big-btn{border:0;border-radius:16px;min-height:60px;font:800 20px/1.1 'Trebuchet MS','Segoe UI',sans-serif;color:#fff;background:var(--brand);box-shadow:0 5px 0 #0004;padding:6px 10px}
+.big-btn:active{transform:translateY(3px);box-shadow:0 2px 0 #0004}
+.big-btn.soft{background:#e2efe7;color:var(--ink)}
+.big-btn.gold{background:#ffd98a;color:#3a2c00}
+.col{display:flex;flex-direction:column;gap:8px}
+.row{display:flex;gap:8px}.row .big-btn{flex:1}
+.seg2{display:flex;border:2px solid var(--line);border-radius:14px;overflow:hidden}
+.seg2 button{flex:1;border:0;background:#fff;min-height:48px;font-weight:700}
+.seg2 button[aria-pressed="true"]{background:var(--brand);color:#fff}
+.tip{margin:0;background:#eaf5ef;border-left:6px solid #5fa58b;border-radius:10px;padding:10px 12px;font:600 17px/1.4 'Segoe UI',sans-serif}
+.tip:empty{display:none}
+.lbl{font:700 15px 'Segoe UI',sans-serif;color:var(--muted);margin:2px 0 -4px}
+
+@media (max-width:759px),(max-height:640px){
+  header{padding:6px 12px} h1{font-size:19px} h1 small{display:none}
+  .icon-btn{min-height:38px;font-size:13px;padding:0 10px}
+  main{grid-template-columns:minmax(0,1fr) 260px}
+  .panel{padding:8px 10px;gap:8px}
+  .hint,.tip{font-size:14px}
+  .big-btn{min-height:44px;font-size:16px}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Calm Corner <small>Big feelings are okay. Let's help our bodies feel calm.</small></h1>
+  <button class="icon-btn" id="home">🏠 All tools</button>
+  <button class="icon-btn tog" id="music" aria-pressed="false">🎵 Calm music</button>
+  <button class="icon-btn" id="motion" aria-pressed="true" title="Turn animation on or off">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+  <button class="icon-btn" id="read">🔊 Read</button>
+</header>
+<main>
+  <div class="stage" id="stage">
+    <div class="scene" id="scene">
+      <div class="act" id="act" hidden><svg id="draw" viewBox="0 0 720 520" aria-hidden="true"></svg><div class="big-word" id="word" aria-live="polite"></div></div>
+      <div class="tiles" id="tiles"></div>
+      <div class="faces" id="faces" hidden></div>
+      <div class="senses" id="senses" hidden></div>
+      <div class="shelly" id="shelly"><img src="art:turtle" alt="Shelly the turtle"></div>
+      <div class="bubble" id="bubble" aria-live="polite"></div>
+    </div>
+  </div>
+  <aside class="panel">
+    <p class="hint" id="hint"></p>
+    <div class="col" id="ctrl"></div>
+    <p class="tip" id="tip"></p>
+  </aside>
+</main>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  let reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  try { const m = localStorage.getItem('curio-motion'); if (m) reduce = m === 'calm'; } catch {}
+  function showMotion() {
+    document.body.classList.toggle('calm', reduce);
+    $('motion').setAttribute('aria-pressed', !reduce);
+    $('motion').textContent = reduce ? '⏸ Motion' : '✨ Motion';
+  }
+  $('motion').onclick = () => { reduce = !reduce; try { localStorage.setItem('curio-motion', reduce ? 'calm' : 'on'); } catch {} showMotion(); };
+  const wait = ms => new Promise(r => setTimeout(r, ms));
+  const fit = () => { const r = $('stage').getBoundingClientRect(); $('scene').style.setProperty('--s', Math.min(r.width / 1000, r.height / 620)); };
+  new ResizeObserver(fit).observe($('stage'));
+  const NS = 'http://www.w3.org/2000/svg';
+  const el = (tag, a, parent) => { const e = document.createElementNS(NS, tag); for (const k in a) e.setAttribute(k, a[k]); parent && parent.append(e); return e; };
+
+  const state = {tool: null, sound: true, before: null, after: null, pace: 'slow', run: 0};
+  // seconds in and out; "slower" is for a class that is already settled
+  const PACE = {slow: [3, 4], slower: [4, 5]};
+
+  // ---------- sound: soft chimes and an optional calm pad ----------
+  let ctx;
+  const audio = () => (ctx ||= new (window.AudioContext || window.webkitAudioContext)());
+  function chime(f, dur = 1.6, gain = .05, when = 0) {
+    if (!state.sound) return;
+    const a = audio(), t = a.currentTime + when;
+    [1, 2.01, 3.02].forEach((m, i) => {
+      const o = a.createOscillator(), g = a.createGain();
+      o.type = 'sine'; o.frequency.value = f * m;
+      g.gain.setValueAtTime(.0001, t); g.gain.exponentialRampToValueAtTime(gain / (i + 1), t + .01); g.gain.exponentialRampToValueAtTime(.0001, t + dur / (i + 1));
+      o.connect(g).connect(a.destination); o.start(t); o.stop(t + dur);
+    });
+  }
+  // a breath you can hear: filtered noise that rises on the way in and falls on the way out
+  function breathSound(sec, inhale) {
+    if (!state.sound) return;
+    const a = audio(), len = a.sampleRate * sec, buf = a.createBuffer(1, len, a.sampleRate), d = buf.getChannelData(0);
+    for (let i = 0; i < len; i++) d[i] = Math.random() * 2 - 1;
+    const src = a.createBufferSource(), f = a.createBiquadFilter(), g = a.createGain(), t = a.currentTime;
+    src.buffer = buf; f.type = 'bandpass'; f.Q.value = .7;
+    f.frequency.setValueAtTime(inhale ? 500 : 1100, t); f.frequency.linearRampToValueAtTime(inhale ? 1100 : 400, t + sec);
+    g.gain.setValueAtTime(.0001, t); g.gain.exponentialRampToValueAtTime(.035, t + sec * .4); g.gain.exponentialRampToValueAtTime(.0001, t + sec);
+    src.connect(f).connect(g).connect(a.destination); src.start(t);
+  }
+  let pad = null;
+  function music(on) {
+    $('music').setAttribute('aria-pressed', on);
+    if (pad) { pad.forEach(n => { try { n.stop(); } catch {} }); pad = null; }
+    if (!on) return;
+    const a = audio(), master = a.createGain();
+    master.gain.value = .0001; master.gain.exponentialRampToValueAtTime(.05, a.currentTime + 3);
+    master.connect(a.destination);
+    pad = [];
+    // a slow two-chord drift: C major add 9 and A minor 7, swelling every 8 seconds
+    [[130.8, 196, 293.7, 329.6], [110, 164.8, 261.6, 329.6]].forEach((ch, k) => ch.forEach(f => {
+      const o = a.createOscillator(), g = a.createGain(), lfo = a.createOscillator(), lg = a.createGain();
+      o.type = 'sine'; o.frequency.value = f;
+      lfo.frequency.value = 1 / 16; lg.gain.value = .5;
+      g.gain.value = .5;
+      lfo.connect(lg).connect(g.gain);
+      o.connect(g).connect(master);
+      lfo.start(a.currentTime + k * 8); o.start(); pad.push(o, lfo);
+    }));
+  }
+  $('music').onclick = () => music(!pad);
+
+  // ---------- Shelly ----------
+  function bubble(t) { $('bubble').textContent = t; }
+  function shelly(kind) {
+    const s = $('shelly');
+    s.getAnimations().forEach(a => a.cancel());
+    if (reduce) return;
+    if (kind === 'nod') s.animate([{transform: 'rotate(0)'}, {transform: 'rotate(-4deg)'}, {transform: 'rotate(3deg)'}, {transform: 'rotate(0)'}], {duration: 1200});
+  }
+
+  // ---------- the tools ----------
+  const TOOLS = [
+    {id: 'balloon', name: 'Balloon breathing', e: '🎈', c: '#ffc9c9', what: 'Fill your belly like a balloon.'},
+    {id: 'star', name: 'Star breathing', e: '⭐', c: '#ffe8a3', what: 'Trace a star with your finger.'},
+    {id: 'count', name: 'Slow counting', e: '🔢', c: '#c5e4ff', what: 'Count up to 10 and back.'},
+    {id: 'stretch', name: 'Stretch with Shelly', e: '🙆', c: '#d4f0d0', what: 'Five slow stretches.'},
+    {id: 'senses', name: 'Five senses', e: '👀', c: '#e6d8ff', what: 'Notice what is around you.'},
+    {id: 'check', name: 'How do I feel?', e: '💭', c: '#ffe1c4', what: 'Check in before and after.'},
+  ];
+  $('tiles').replaceChildren(...TOOLS.map(t => {
+    const b = document.createElement('button');
+    b.className = 'tile'; b.style.setProperty('--c', t.c);
+    b.innerHTML = `<span aria-hidden="true">${t.e}</span>${t.name}<small>${t.what}</small>`;
+    b.onclick = () => open(t.id);
+    return b;
+  }));
+
+  function controls(html) { $('ctrl').innerHTML = html; }
+  function show(which) {
+    for (const id of ['tiles', 'act', 'faces', 'senses']) $(id).hidden = id !== which;
+  }
+  function home() {
+    stop(); state.tool = null; show('tiles'); controls('');
+    bubble('Hi, I\'m Shelly. Which calm tool shall we try?');
+    $('hint').innerHTML = '<b>Calm Corner.</b> Pick a tool together. Try <b>How do I feel?</b> first, then a calm tool, then check in again.';
+    $('tip').innerHTML = 'Practice these when everyone is calm, so they are ready when a big feeling comes.';
+    say('Hi, I\'m Shelly. Which calm tool shall we try?');
+  }
+  $('home').onclick = home;
+  function stop() { state.run++; stopTalk(); $('draw').replaceChildren(); $('word').innerHTML = ''; }
+  function open(id) {
+    stop(); state.tool = id;
+    ({balloon, star, count, stretch, senses, check})[id]();
+  }
+  const paceCtl = () => `<p class="lbl">Speed</p><div class="seg2" role="group" aria-label="Speed"><button data-p="slow" aria-pressed="${state.pace === 'slow'}">Slow</button><button data-p="slower" aria-pressed="${state.pace === 'slower'}">Slower</button></div>`;
+  function wirePace(restart) {
+    $('ctrl').querySelectorAll('[data-p]').forEach(b => b.onclick = () => { state.pace = b.dataset.p; restart(); });
+  }
+  const word = (big, small = '') => { $('word').innerHTML = `${big}${small ? `<small>${small}</small>` : ''}`; };
+  // a tween that keeps its timing in calm mode: it jumps to the end state at the start of each beat instead of moving
+  function tween(ms, step, me) {
+    return new Promise(done => {
+      if (reduce) { step(1); return setTimeout(done, ms); }
+      const t0 = performance.now();
+      const f = now => {
+        if (me !== state.run) return done();
+        const k = Math.min(1, (now - t0) / ms);
+        step(k < .5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2);
+        k < 1 ? requestAnimationFrame(f) : done();
+      };
+      requestAnimationFrame(f);
+    });
+  }
+  async function countIn(sec, me, label) {
+    for (let i = 1; i <= sec; i++) { if (me !== state.run) return; word(label, String(i)); await wait(1000); }
+  }
+
+  // ---------- Balloon breathing ----------
+  async function balloon() {
+    show('act'); const me = state.run, svg = $('draw');
+    controls(`<button class="big-btn gold" id="go">▶ Start 5 breaths</button>${paceCtl()}`);
+    $('go').onclick = () => open('balloon'); wirePace(() => open('balloon'));
+    $('hint').innerHTML = '<b>Balloon breathing.</b> Hands on bellies. Breathe in through the nose and the belly fills like a balloon. Breathe out slowly through the mouth.';
+    $('tip').innerHTML = 'Watch the balloon grow and shrink. Your belly moves the same way.';
+    const g = el('g', {transform: 'translate(360 200)'}, svg);
+    el('path', {d: 'M0,140 C-10,170 16,200 0,236', fill: 'none', stroke: '#8a6d5b', 'stroke-width': 4}, g);
+    const b = el('g', {}, g);
+    el('ellipse', {cx: 0, cy: 0, rx: 110, ry: 128, fill: '#ff7f7f', stroke: '#c94f4f', 'stroke-width': 5}, b);
+    el('ellipse', {cx: -40, cy: -54, rx: 22, ry: 34, fill: '#ffffff88', transform: 'rotate(-20 -40 -54)'}, b);
+    el('path', {d: 'M-12,126 L12,126 L0,142 Z', fill: '#c94f4f'}, b);
+    const set = k => b.setAttribute('transform', `translate(0 ${60 - 60 * k}) scale(${.45 + .55 * k})`);
+    set(0);
+    bubble('Let\'s fill our balloons. Ready?');
+    await say('Hands on your belly. Let\'s fill our balloons.');
+    const [inS, outS] = PACE[state.pace];
+    for (let n = 1; n <= 5; n++) {
+      if (me !== state.run) return;
+      bubble(`Breath ${n} of 5`); chime(523, 1.2, .03);
+      breathSound(inS, true);
+      say('Breathe in.');
+      countIn(inS, me, 'Breathe in…');
+      await tween(inS * 1000, set, me);
+      if (me !== state.run) return;
+      breathSound(outS, false);
+      say('Breathe out.');
+      countIn(outS, me, 'Breathe out…');
+      await tween(outS * 1000, k => set(1 - k), me);
+    }
+    if (me !== state.run) return;
+    word('Well done.', 'Notice how your body feels now.');
+    bubble('Well done. How does your body feel now?'); chime(784, 2.4, .05);
+    say('Well done. How does your body feel now?');
+  }
+
+  // ---------- Star breathing ----------
+  async function star() {
+    show('act'); const me = state.run, svg = $('draw');
+    controls(`<button class="big-btn gold" id="go">▶ Trace the star</button>${paceCtl()}`);
+    $('go').onclick = () => open('star'); wirePace(() => open('star'));
+    $('hint').innerHTML = '<b>Star breathing.</b> Hold up one finger and trace the star in the air. Breathe in as the light goes up a point, and out as it comes down.';
+    $('tip').innerHTML = 'Later, children can trace a star on their hand or on a card at their desk.';
+    const R = 190, r = 80, cx = 360, cy = 230;
+    const pts = Array.from({length: 10}, (_, i) => { const a = (-90 + i * 36) * Math.PI / 180, rr = i % 2 ? r : R; return [cx + rr * Math.cos(a), cy + rr * Math.sin(a)]; });
+    // start at the lower left inner corner so the first move goes up to a point
+    const order = [...pts.slice(9), ...pts.slice(0, 9), pts[9]];
+    el('polygon', {points: pts.map(p => p.join(',')).join(' '), fill: '#fff3c2', stroke: '#e0b23c', 'stroke-width': 8, 'stroke-linejoin': 'round'}, svg);
+    const trail = el('polyline', {points: '', fill: 'none', stroke: '#f08c00', 'stroke-width': 12, 'stroke-linecap': 'round', 'stroke-linejoin': 'round'}, svg);
+    const dot = el('circle', {r: 20, cx: order[0][0], cy: order[0][1], fill: '#ff6b6b', stroke: '#fff', 'stroke-width': 5}, svg);
+    bubble('Point your finger at the red dot.');
+    await say('Point your finger at the red dot. Follow it around the star.');
+    const [inS, outS] = PACE[state.pace], done = [order[0]];
+    for (let i = 0; i < 10; i++) {
+      if (me !== state.run) return;
+      const up = i % 2 === 0, sec = up ? inS : outS, [a, b] = [order[i], order[i + 1]];
+      breathSound(sec, up); say(up ? 'Breathe in.' : 'Breathe out.');
+      countIn(sec, me, up ? 'Breathe in…' : 'Breathe out…');
+      bubble(`Point ${Math.floor(i / 2) + 1} of 5`);
+      await tween(sec * 1000, k => {
+        const x = a[0] + (b[0] - a[0]) * k, y = a[1] + (b[1] - a[1]) * k;
+        dot.setAttribute('cx', x); dot.setAttribute('cy', y);
+        trail.setAttribute('points', [...done, [x, y]].map(p => p.join(',')).join(' '));
+      }, me);
+      done.push(b);
+      if (up) chime(659 + i * 30, 1, .025);
+    }
+    if (me !== state.run) return;
+    word('You traced the whole star!', 'Five slow breaths.');
+    bubble('You traced the whole star!'); chime(784, 2.4, .05);
+    say('You traced the whole star! Five slow breaths.');
+  }
+
+  // ---------- Slow counting ----------
+  async function count() {
+    show('act'); const me = state.run, svg = $('draw');
+    controls(`<button class="big-btn gold" id="go">▶ Count with Shelly</button>`);
+    $('go').onclick = () => open('count');
+    $('hint').innerHTML = '<b>Slow counting.</b> Count in a whisper, one number for each step. A rainbow fills as we go up to 10, then we count back down to 1.';
+    $('tip').innerHTML = 'Counting slowly gives your thinking brain time to catch up with a big feeling.';
+    const colors = ['#ff595e', '#ff924c', '#ffca3a', '#c5ca30', '#8ac926', '#52a675', '#1982c4', '#4267ac', '#6a4c93', '#b5179e'];
+    const arcs = colors.map((c, i) => el('path', {d: `M${80 + i * 22},420 A${280 - i * 22},${280 - i * 22} 0 0 1 ${640 - i * 22},420`, fill: 'none', stroke: c, 'stroke-width': 20, 'stroke-linecap': 'round', opacity: .12}, svg));
+    bubble('Let\'s count in a whisper.');
+    await say('Let\'s count slowly, in a whisper.');
+    for (let i = 1; i <= 10; i++) {
+      if (me !== state.run) return;
+      arcs[i - 1].setAttribute('opacity', 1);
+      if (!reduce) arcs[i - 1].animate([{opacity: .12}, {opacity: 1}], {duration: 600});
+      word(String(i)); chime(392 * Math.pow(2, (i - 1) / 12 * 1.2), 1, .03); say(String(i));
+      await wait(1600);
+    }
+    if (me !== state.run) return;
+    bubble('Now back down, even slower.'); await say('Now back down, even slower.');
+    for (let i = 10; i >= 1; i--) {
+      if (me !== state.run) return;
+      arcs[i - 1].setAttribute('opacity', .12);
+      word(String(i)); say(String(i));
+      await wait(2000);
+    }
+    if (me !== state.run) return;
+    word('All done.', 'Take one more slow breath.');
+    bubble('All done. One more slow breath.'); chime(784, 2.4, .05);
+    say('All done. Take one more slow breath.');
+  }
+
+  // ---------- Stretch with Shelly ----------
+  // a plain figure drawn in code, so every child can see themselves in it
+  const POSES = [
+    {name: 'Reach for the sky', say: 'Reach up high, like you are picking a star.', sec: 8,
+      arms: [[-30, -150], [30, -150]], legs: [[-20, 0], [20, 0]], tilt: 0},
+    {name: 'Lean like a tree', say: 'Arms up, and lean slowly to one side. Now the other side.', sec: 10,
+      arms: [[-30, -150], [30, -150]], legs: [[-20, 0], [20, 0]], tilt: 14, sway: true},
+    {name: 'Turtle tuck', say: 'Curl up small like a turtle in its shell. Breathe slowly.', sec: 8,
+      tuck: true},
+    {name: 'Shoulder rolls', say: 'Roll your shoulders up, back and down. Slowly.', sec: 8,
+      arms: [[-45, -10], [45, -10]], legs: [[-20, 0], [20, 0]], tilt: 0, shrug: true},
+    {name: 'Squeeze and let go', say: 'Squeeze your hands into fists. Squeeze, squeeze. Now let go, and wiggle your fingers.', sec: 8,
+      arms: [[-60, -60], [60, -60]], legs: [[-20, 0], [20, 0]], tilt: 0, fists: true},
+  ];
+  function figure(svg, p) {
+    const g = el('g', {transform: 'translate(360 400) scale(.9)'}, svg);
+    const body = el('g', {}, g);
+    const ink = '#2f6f5a', skin = '#7cc3a8';
+    if (p.tuck) {
+      el('ellipse', {cx: 0, cy: -60, rx: 110, ry: 62, fill: skin, stroke: ink, 'stroke-width': 8}, body);
+      el('circle', {cx: 92, cy: -72, r: 34, fill: skin, stroke: ink, 'stroke-width': 8}, body);
+      return {g, body};
+    }
+    for (const [x] of p.legs) el('line', {x1: x / 2, y1: -110, x2: x * 1.6, y2: 0, stroke: ink, 'stroke-width': 26, 'stroke-linecap': 'round'}, body);
+    el('rect', {x: -44, y: -230, width: 88, height: 130, rx: 40, fill: skin, stroke: ink, 'stroke-width': 8}, body);
+    const sh = el('g', {}, body);
+    for (const [x, y] of p.arms) {
+      el('line', {x1: Math.sign(x) * 34, y1: -210, x2: Math.sign(x) * 34 + x * 1.3, y2: -210 + y * 1.05, stroke: ink, 'stroke-width': 22, 'stroke-linecap': 'round'}, sh);
+      el('circle', {cx: Math.sign(x) * 34 + x * 1.3, cy: -210 + y * 1.05, r: p.fists ? 18 : 13, fill: skin, stroke: ink, 'stroke-width': 6}, sh);
+    }
+    el('circle', {cx: 0, cy: -276, r: 46, fill: skin, stroke: ink, 'stroke-width': 8}, body);
+    el('path', {d: 'M-16,-266 q16,14 32,0', fill: 'none', stroke: ink, 'stroke-width': 6, 'stroke-linecap': 'round'}, body);
+    el('circle', {cx: -15, cy: -284, r: 5, fill: ink}, body); el('circle', {cx: 15, cy: -284, r: 5, fill: ink}, body);
+    return {g, body, sh};
+  }
+  async function stretch() {
+    show('act'); const me = state.run, svg = $('draw');
+    controls(`<button class="big-btn gold" id="go">▶ Start stretches</button>`);
+    $('go').onclick = () => open('stretch');
+    $('hint').innerHTML = '<b>Stretch with Shelly.</b> Stand up beside your chair with room around you. Copy each stretch slowly while Shelly counts.';
+    $('tip').innerHTML = 'Slow stretches with slow breaths. No bouncing.';
+    bubble('Stand up tall, with space around you.');
+    await say('Stand up tall, with space around you.');
+    for (const p of POSES) {
+      if (me !== state.run) return;
+      svg.replaceChildren();
+      const f = figure(svg, p);
+      word(p.name); bubble(p.name); chime(587, 1.2, .03);
+      for (const part of [f.body, f.sh]) if (part) { part.style.transformBox = 'fill-box'; part.style.transformOrigin = part === f.body ? '50% 100%' : '50% 50%'; }
+      if (!reduce) {
+        if (p.sway) f.body.animate([{transform: 'rotate(0)'}, {transform: `rotate(-${p.tilt}deg)`}, {transform: 'rotate(0)'}, {transform: `rotate(${p.tilt}deg)`}, {transform: 'rotate(0)'}], {duration: p.sec * 1000, easing: 'ease-in-out'});
+        else if (p.shrug) f.sh.animate([{transform: 'translateY(0)'}, {transform: 'translateY(-22px)'}, {transform: 'translateY(0)'}], {duration: 2600, iterations: 3, easing: 'ease-in-out'});
+        else if (p.tuck) f.body.animate([{transform: 'scale(1)'}, {transform: 'scale(1.05)'}, {transform: 'scale(1)'}], {duration: 4000, iterations: 2, easing: 'ease-in-out'});
+        else f.body.animate([{transform: 'translateY(0)'}, {transform: 'translateY(-14px)'}, {transform: 'translateY(0)'}], {duration: p.sec * 1000, easing: 'ease-in-out'});
+      }
+      await say(p.say);
+      for (let i = p.sec - 4; i >= 1; i--) { if (me !== state.run) return; word(p.name, `hold… ${i}`); await wait(1000); }
+    }
+    if (me !== state.run) return;
+    svg.replaceChildren();
+    word('Nice stretching!', 'Sit down slowly and take a breath.');
+    bubble('Nice stretching!'); chime(784, 2.4, .05);
+    say('Nice stretching! Sit down slowly and take a breath.');
+  }
+
+  // ---------- Five senses ----------
+  const SENSES = [
+    {n: 5, c: '#4cc9f0', e: '👀', what: 'things you can see', ex: 'Look around slowly. A window? A blue crayon? Your shoes?'},
+    {n: 4, c: '#80b918', e: '✋', what: 'things you can feel', ex: 'Your feet on the floor. Your shirt. The chair. Your hands on your knees.'},
+    {n: 3, c: '#f4a261', e: '👂', what: 'things you can hear', ex: 'Close your eyes and listen. The clock? Birds? Someone breathing?'},
+    {n: 2, c: '#e56b6f', e: '👃', what: 'things you can smell', ex: 'Sniff gently. Your sleeve? A pencil? If you can\'t smell anything, that\'s okay.'},
+    {n: 1, c: '#9d4edd', e: '🌬️', what: 'big slow breath', ex: 'Breathe in slowly... and let it all out.'},
+  ];
+  let senseAt = 0, senseCount = 0;
+  function senses() {
+    show('senses'); senseAt = 0; senseCount = 0;
+    controls(`<button class="big-btn gold" id="tick">✔ Found one!</button><div class="row"><button class="big-btn soft" id="back">← Back</button><button class="big-btn" id="next">Next →</button></div>`);
+    $('tick').onclick = () => { const s = SENSES[senseAt]; if (senseCount < s.n) { senseCount++; chime(523 + senseCount * 80, .9, .03); senseCard(); } };
+    $('next').onclick = () => { if (senseAt < SENSES.length - 1) { senseAt++; senseCount = 0; senseCard(true); } else finishSenses(); };
+    $('back').onclick = () => { if (senseAt > 0) { senseAt--; senseCount = 0; senseCard(true); } };
+    $('hint').innerHTML = '<b>Five senses.</b> Children say what they notice, quietly or in their heads. Tap <b>Found one!</b> each time someone shares.';
+    $('tip').innerHTML = 'Noticing what is around you helps a worried or wound-up body come back to right now.';
+    bubble('Let\'s notice what is around us.');
+    senseCard(true);
+  }
+  function senseCard(speak) {
+    const s = SENSES[senseAt];
+    $('senses').innerHTML = `<div class="sense-card" style="--c:${s.c}"><div class="n">${s.n}</div><div class="what">${s.e} ${s.what}</div><div class="ex">${s.ex}</div><div class="dots">${Array.from({length: s.n}, (_, i) => `<div class="dot${i < senseCount ? ' on' : ''}">${i < senseCount ? '✔' : ''}</div>`).join('')}</div></div>`;
+    if (speak) say(`${s.n === 1 ? 'One' : ['', '', 'Two', 'Three', 'Four', 'Five'][s.n]} ${s.what}. ${s.ex}`);
+    if (senseCount === s.n && s.n > 1) say('Great noticing!');
+  }
+  function finishSenses() {
+    show('act'); word('Great noticing!', 'You used all five steps.');
+    bubble('You are here, right now. Well done.'); chime(784, 2.4, .05);
+    controls(`<button class="big-btn gold" id="go">↺ Do it again</button>`); $('go').onclick = () => open('senses');
+    say('You are here, right now. Well done.');
+  }
+
+  // ---------- How do I feel? (before and after, never saved) ----------
+  const FEEL = [
+    {id: 'storm', name: 'Very upset', mouth: 'M-26,30 q26,-22 52,0', brow: [[-30, -24, -10, -14], [30, -24, 10, -14]], c: '#ff8f8f'},
+    {id: 'wiggly', name: 'Wiggly', mouth: 'M-26,24 q13,-10 26,0 t26,0', brow: [[-30, -22, -10, -24], [30, -22, 10, -24]], c: '#ffc46b'},
+    {id: 'okay', name: 'Okay', mouth: 'M-24,22 L24,22', brow: [[-30, -22, -10, -22], [30, -22, 10, -22]], c: '#ffe58f'},
+    {id: 'calm', name: 'Calm', mouth: 'M-26,16 q26,22 52,0', brow: [[-30, -24, -10, -26], [30, -24, 10, -26]], c: '#a8e6c1', closed: true},
+  ];
+  function faceSvg(f) {
+    const s = el('svg', {viewBox: '-60 -60 120 120', 'aria-hidden': 'true'});
+    el('circle', {r: 54, fill: f.c, stroke: '#2c4a3e', 'stroke-width': 5}, s);
+    for (const [x1, y1, x2, y2] of f.brow) el('line', {x1, y1, x2, y2, stroke: '#2c4a3e', 'stroke-width': 5, 'stroke-linecap': 'round'}, s);
+    for (const x of [-18, 18]) f.closed ? el('path', {d: `M${x - 8},-6 q8,7 16,0`, fill: 'none', stroke: '#2c4a3e', 'stroke-width': 5, 'stroke-linecap': 'round'}, s) : el('circle', {cx: x, cy: -6, r: 6, fill: '#2c4a3e'}, s);
+    el('path', {d: f.mouth, fill: 'none', stroke: '#2c4a3e', 'stroke-width': 5, 'stroke-linecap': 'round'}, s);
+    return s;
+  }
+  let checkWhen = 'before';
+  function check() {
+    show('faces');
+    controls(`<div class="seg2" role="group" aria-label="When"><button data-w="before" aria-pressed="${checkWhen === 'before'}">Before</button><button data-w="after" aria-pressed="${checkWhen === 'after'}">After</button></div><button class="big-btn soft" id="clr">Clear both</button>`);
+    $('ctrl').querySelectorAll('[data-w]').forEach(b => b.onclick = () => { checkWhen = b.dataset.w; check(); });
+    $('clr').onclick = () => { state.before = state.after = null; check(); };
+    $('hint').innerHTML = `<b>How do I feel? (${checkWhen})</b> Children show a thumb or point to the face that matches their body right now. Tap the face most of the class picks. Nothing is saved.`;
+    drawFaces();
+    const q = checkWhen === 'before' ? 'How does your body feel right now?' : 'How does your body feel now, after our calm tool?';
+    bubble(q); say(q);
+    $('tip').innerHTML = compare();
+  }
+  function drawFaces() {
+    $('faces').replaceChildren(...FEEL.map(f => {
+      const b = document.createElement('button');
+      b.className = 'face' + (state[checkWhen] === f.id ? ' pick' : '');
+      b.setAttribute('aria-pressed', state[checkWhen] === f.id);
+      b.append(faceSvg(f), f.name);
+      const tag = document.createElement('b');
+      tag.textContent = [state.before === f.id ? 'Before' : '', state.after === f.id ? 'After' : ''].filter(Boolean).join(' + ');
+      b.append(tag);
+      b.onclick = () => { state[checkWhen] = f.id; drawFaces(); chime(659, 1, .03); $('tip').innerHTML = compare(); if (checkWhen === 'after' && state.before) say(compareSay()); };
+      return b;
+    }));
+  }
+  const rank = id => FEEL.findIndex(f => f.id === id);
+  function compareSay() {
+    const d = rank(state.after) - rank(state.before);
+    return d > 0 ? 'Our bodies feel calmer than before. That tool helped!' : d === 0 ? 'Our bodies feel about the same. That\'s okay. We can try another tool.' : 'Sometimes we need a little more time. Let\'s try another tool.';
+  }
+  function compare() {
+    if (!state.before || !state.after) return checkWhen === 'before' ? 'Next, pick a calm tool from <b>All tools</b>, then come back and tap <b>After</b>.' : '';
+    return `<b>Before:</b> ${FEEL[rank(state.before)].name}. <b>After:</b> ${FEEL[rank(state.after)].name}. ${compareSay()}`;
+  }
+
+  // ---------- sound and voice ----------
+  $('sound').onclick = e => {
+    state.sound = !state.sound;
+    e.currentTarget.setAttribute('aria-pressed', state.sound);
+    e.currentTarget.textContent = state.sound ? '🔔 Sound' : '🔇 Sound';
+    if (!state.sound) { stopTalk(); music(false); }
+  };
+  function bestVoice() {
+    const voices = speechSynthesis.getVoices().filter(v => /^en(-|_|$)/i.test(v.lang));
+    const score = v => (/natural|neural/i.test(v.name) ? 50 : 0) + (/premium|enhanced/i.test(v.name) ? 40 : 0) +
+      (/google/i.test(v.name) ? 30 : 0) + (/aria|jenny|ava|samantha|libby|sonia/i.test(v.name) ? 10 : 0) +
+      (/en-US/i.test(v.lang) ? 5 : 0) + (v.default ? 1 : 0) - (/david|mark|zira|desktop/i.test(v.name) ? 20 : 0);
+    return voices.sort((a, b) => score(b) - score(a))[0] || null;
+  }
+  if ('speechSynthesis' in window) {
+    const speak = speechSynthesis.speak.bind(speechSynthesis);
+    speechSynthesis.speak = u => {
+      if (speechSynthesis.getVoices().length) return speak(u);
+      let done = false;
+      const go = () => { if (done) return; done = true; const v = bestVoice(); if (v) { u.voice = v; u.lang = v.lang; } speak(u); };
+      speechSynthesis.addEventListener('voiceschanged', go, {once: true});
+      setTimeout(go, 1500);
+    };
+    speechSynthesis.getVoices();
+  }
+  const CLIPS = "voice:*";
+  const allLines = () => [...new Set([
+    'Hi, I\'m Shelly. Which calm tool shall we try?', 'Hands on your belly. Let\'s fill our balloons.', 'Breathe in.', 'Breathe out.',
+    'Well done. How does your body feel now?', 'Point your finger at the red dot. Follow it around the star.', 'You traced the whole star! Five slow breaths.',
+    'Let\'s count slowly, in a whisper.', ...Array.from({length: 10}, (_, i) => String(i + 1)), 'Now back down, even slower.', 'All done. Take one more slow breath.',
+    'Stand up tall, with space around you.', ...POSES.map(p => p.say), 'Nice stretching! Sit down slowly and take a breath.',
+    ...SENSES.map(s => `${s.n === 1 ? 'One' : ['', '', 'Two', 'Three', 'Four', 'Five'][s.n]} ${s.what}. ${s.ex}`), 'Great noticing!', 'You are here, right now. Well done.',
+    'How does your body feel right now?', 'How does your body feel now, after our calm tool?',
+    'Our bodies feel calmer than before. That tool helped!', 'Our bodies feel about the same. That\'s okay. We can try another tool.', 'Sometimes we need a little more time. Let\'s try another tool.'])];
+  let talk = 0, clip = null, last = [];
+  function stopTalk() { talk++; if (clip) { clip.pause(); clip = null; } if ('speechSynthesis' in window) speechSynthesis.cancel(); }
+  function speakOne(text) {
+    return new Promise(done => {
+      if (CLIPS[text]) { clip = new Audio(CLIPS[text]); clip.onended = clip.onerror = () => done(); clip.play().catch(() => done()); return; }
+      if (!('speechSynthesis' in window)) return done();
+      const u = new SpeechSynthesisUtterance(text);
+      const v = bestVoice(); if (v) { u.voice = v; u.lang = v.lang; }
+      u.rate = .82; u.pitch = 1; u.onend = u.onerror = () => done();
+      speechSynthesis.speak(u);
+    });
+  }
+  // say() resolves when the line has been spoken (or skipped), so a beat can wait for it
+  async function say(parts, force) {
+    if (!state.sound && !force) return wait(Math.min(4000, 1400 + 75 * [].concat(parts).join(' ').length));
+    stopTalk();
+    const me = talk;
+    last = [].concat(parts);
+    for (const p of last) { if (me !== talk) return; await speakOne(p); await wait(150); }
+  }
+  $('read').onclick = () => say(last.length ? last : [$('bubble').textContent], true);
+
+  showMotion();
+  window.__calm = {state, open, home, allLines};  // for checking frames
+  home();
+})();
+</script>
+</body>
+</html>

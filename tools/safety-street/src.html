@@ -1,0 +1,460 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Safety Street · Staying safe · Curio Class</title>
+<meta name="description" content="Walk Safety Street with Biscuit the puppy: cross at the crosswalk, wear a helmet, buckle up, leave a fire drill fast, stay away from hot stoves, swim with a grown-up and leave medicine to grown-ups. Plus safe-or-not sorting and crossing practice. Grades K-2 health, teacher-led. Works offline.">
+<!--
+SAFETY STREET (Curio Class)
+Grades K-2 health, NHES 2024 Standard 1 (injury prevention: pedestrian, bike, car, fire, burn, water and
+medicine safety) and Standard 5 (making a safe choice).
+Teacher-led on a projector. Walk the street (seven stops, each with a choice between a safe and an unsafe idea;
+an unsafe pick is explained and the class tries again), Safe or not? (thumbs up or down on sixteen cards) and
+Crossing practice (stop at the curb, look left, right and left again, wait for the walk signal, keep looking).
+Guidance follows common pediatric and safety-organization advice for young children (NHTSA, NFPA, the American
+Red Cross, Safe Kids Worldwide): cross with a grown-up, wear a helmet, use a car seat or booster, get out and
+stay out in a fire, swim only with a grown-up watching, and only take medicine from a trusted grown-up.
+Nothing is scary on purpose: every stop ends with what to do.
+One file, no network requests. Illustrations drawn with FLUX.1-schnell (Apache 2.0) on a local computer, edited
+for Curio Class. Content CC BY 4.0, code MIT. curioclass.org
+-->
+<style>
+:root{
+  --paper:#f4f8fb;--ink:#202a33;--muted:#57646f;--line:#d6e2ea;--focus:#e0662a;--brand:#d98a1c;
+  font-family:'Segoe UI',system-ui,-apple-system,Roboto,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0;height:100%}
+body{background:var(--paper);color:var(--ink);display:grid;grid-template-rows:auto 1fr;min-height:100vh}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:4px solid var(--focus);outline-offset:3px}
+header{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:12px 20px;background:var(--brand);color:#fffaf0}
+h1{margin:0 auto 0 0;font:800 clamp(22px,3vw,32px)/1.1 'Trebuchet MS','Segoe UI',sans-serif}
+h1 small{display:block;font:500 15px/1.3 'Segoe UI',sans-serif;color:#ffeccc}
+.seg{display:inline-flex;border:2px solid #edb35c;border-radius:999px;overflow:hidden}
+.seg button{border:0;background:#e29b33;color:#fffaf0;min-height:52px;padding:0 16px;font-weight:700;font-size:16px}
+.seg button[aria-pressed="true"]{background:#2a3a8c;color:#fff}
+.icon-btn{border:2px solid #edb35c;background:#e29b33;color:#fffaf0;border-radius:999px;min-height:52px;padding:0 16px;font-weight:700;font-size:16px}
+
+main{display:grid;grid-template-columns:1fr;min-height:0}
+@media (min-width:760px){main{grid-template-columns:minmax(0,1fr) 340px}}
+.stage{position:relative;overflow:hidden;min-height:340px;background:#a9d8f5 url(art:street) center bottom/cover}
+.scene{position:absolute;left:50%;top:50%;width:1000px;height:620px;transform:translate(-50%,-50%) scale(var(--s,1))}
+
+.pup{position:absolute;left:30px;bottom:20px;width:220px;height:220px;transform-origin:50% 100%}
+.pup img{width:100%;height:100%;object-fit:contain;object-position:50% 100%;filter:drop-shadow(0 8px 5px #0003)}
+.path{position:absolute;left:20px;right:20px;top:14px;display:flex;gap:6px}
+.path i{flex:1;height:44px;border-radius:12px;background:#ffffffaa;display:grid;place-items:center;font:normal 24px/1 sans-serif;border:3px solid transparent}
+.path i.on{background:#ffd34d;border-color:#202a33}
+.path i.done{background:#c8f0d2}
+
+.card{position:absolute;left:270px;top:76px;width:710px;background:#fffdf8;border:5px solid #202a33;border-radius:28px;padding:16px 22px;box-shadow:0 8px 0 #0002;display:grid;grid-template-columns:150px 1fr;gap:16px;align-items:center}
+.card img{width:150px;height:150px;object-fit:contain}
+.card .q{font:800 29px/1.25 'Trebuchet MS',sans-serif}
+.card .where{font:800 17px 'Segoe UI',sans-serif;color:var(--brand);text-transform:uppercase;letter-spacing:.08em}
+.choices{position:absolute;left:270px;top:300px;width:710px;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.choice{border:5px solid transparent;border-radius:24px;background:#fffdf8;min-height:150px;box-shadow:0 7px 0 #0002;font:800 25px/1.25 'Trebuchet MS',sans-serif;padding:14px;display:flex;align-items:center;justify-content:center;text-align:center}
+.choice.safe{border-color:#2a9d4a;background:#eafbef}
+.choice.unsafe{border-color:#d8423a;background:#fdeceb}
+.fb{position:absolute;left:270px;top:472px;width:710px;background:#fff;border-radius:20px;padding:12px 18px;font:700 22px/1.35 'Segoe UI',sans-serif;box-shadow:0 5px 0 #0002}
+.fb:empty{display:none}
+
+/* safe or not */
+.sort{position:absolute;left:270px;top:76px;width:710px;display:flex;flex-direction:column;align-items:center;gap:16px}
+.scard{width:560px;min-height:200px;background:#fffdf8;border-radius:28px;box-shadow:0 8px 0 #0002;border:5px solid #202a33;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px 30px;font:800 36px/1.25 'Trebuchet MS',sans-serif}
+.scard.safe{border-color:#2a9d4a;background:#eafbef}
+.scard.unsafe{border-color:#d8423a;background:#fdeceb}
+.thumbs{display:flex;gap:20px}
+.thumb{border:0;border-radius:24px;width:250px;min-height:120px;font:900 30px 'Trebuchet MS',sans-serif;color:#fff;box-shadow:0 6px 0 #0003;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.thumb span{font-size:54px;line-height:1}
+.thumb.up{background:#2a9d4a}.thumb.down{background:#d8423a}
+
+/* crossing practice */
+.cross{position:absolute;inset:0}
+.cross svg{width:100%;height:100%}
+.look{position:absolute;left:270px;top:20px;width:710px;display:flex;gap:10px;justify-content:center}
+.look .big-btn{min-width:150px}
+.status{position:absolute;left:270px;top:96px;width:440px;text-align:center;font:900 28px/1.2 'Trebuchet MS',sans-serif;color:#202a33;text-shadow:0 2px 0 #fff}
+
+.panel{background:#fbfdfe;border-left:3px solid var(--line);padding:14px 16px;display:flex;flex-direction:column;gap:12px;overflow:auto}
+@media (max-width:759px){.panel{border-left:0;border-top:3px solid var(--line)}}
+.hint{margin:0;font:600 18px/1.35 'Segoe UI',sans-serif;color:var(--muted)}
+.hint b{color:var(--ink)}
+.big-btn{border:0;border-radius:16px;min-height:60px;font:800 20px/1.1 'Trebuchet MS','Segoe UI',sans-serif;color:#fff;background:#2a3a8c;box-shadow:0 5px 0 #0004;padding:6px 12px}
+.big-btn:active{transform:translateY(3px);box-shadow:0 2px 0 #0004}
+.big-btn.soft{background:#e4ebf1;color:var(--ink)}
+.big-btn.gold{background:#ffd34d;color:#3a2c00}
+.big-btn.done{background:#2a9d4a}
+.big-btn:disabled{opacity:.45}
+.col{display:flex;flex-direction:column;gap:8px}
+.row{display:flex;gap:8px}.row .big-btn{flex:1}
+.tip{margin:0;background:#fff4e2;border-left:6px solid #edb35c;border-radius:10px;padding:10px 12px;font:600 17px/1.4 'Segoe UI',sans-serif}
+.tip:empty{display:none}
+.score{font:800 20px 'Trebuchet MS',sans-serif;color:#2a3a8c}
+
+@media (max-width:759px),(max-height:640px){
+  header{padding:6px 12px} h1{font-size:19px} h1 small{display:none}
+  .seg button,.icon-btn{min-height:38px;font-size:13px;padding:0 10px}
+  main{grid-template-columns:minmax(0,1fr) 260px}
+  .panel{padding:8px 10px;gap:8px}
+  .hint,.tip{font-size:14px}
+  .big-btn{min-height:44px;font-size:16px}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Safety Street <small>Stop. Think. Make the safe choice.</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-walk" aria-pressed="true">Walk the street</button>
+    <button id="m-sort" aria-pressed="false">Safe or not?</button>
+    <button id="m-cross" aria-pressed="false">Crossing practice</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true" title="Turn animation on or off">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+  <button class="icon-btn" id="read">🔊 Read</button>
+</header>
+<main>
+  <div class="stage" id="stage">
+    <div class="scene" id="scene">
+      <div class="cross" id="cross" hidden><svg id="road" viewBox="0 0 1000 620" aria-hidden="true"></svg></div>
+      <div class="path" id="path"></div>
+      <div class="pup" id="pup"><img src="art:biscuit" alt="Biscuit the puppy"></div>
+      <div class="card" id="card"></div>
+      <div class="choices" id="choices"></div>
+      <div class="fb" id="fb" aria-live="polite"></div>
+      <div class="sort" id="sort" hidden></div>
+      <div class="look" id="look" hidden></div>
+      <div class="status" id="status" aria-live="polite"></div>
+    </div>
+  </div>
+  <aside class="panel">
+    <p class="hint" id="hint"></p>
+    <div class="col" id="ctrl"></div>
+    <p class="tip" id="tip"></p>
+  </aside>
+</main>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  let reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  try { const m = localStorage.getItem('curio-motion'); if (m) reduce = m === 'calm'; } catch {}
+  function showMotion() {
+    document.body.classList.toggle('calm', reduce);
+    $('motion').setAttribute('aria-pressed', !reduce);
+    $('motion').textContent = reduce ? '⏸ Motion' : '✨ Motion';
+  }
+  $('motion').onclick = () => { reduce = !reduce; try { localStorage.setItem('curio-motion', reduce ? 'calm' : 'on'); } catch {} showMotion(); };
+  const wait = ms => new Promise(r => setTimeout(r, ms));
+  const fit = () => { const r = $('stage').getBoundingClientRect(); $('scene').style.setProperty('--s', Math.min(r.width / 1000, r.height / 620)); };
+  new ResizeObserver(fit).observe($('stage'));
+
+  // ---------- the stops ----------
+  const STOPS = [
+    {id: 'crosswalk', e: '🚸', where: 'The corner', img: 'art:crosswalk', q: 'Biscuit wants to cross the street to the park. What should Biscuit do?',
+      safe: 'Hold a grown-up\'s hand, stop at the curb and look left, right, left', unsafe: 'Run across fast before a car comes',
+      yes: 'Stop at the curb. Look left, right and left again. Cross with a grown-up at the crosswalk.', no: 'Running into the street is dangerous. Drivers might not see you. Always stop at the curb first.'},
+    {id: 'helmet', e: '🚲', where: 'The driveway', img: 'art:helmet', q: 'Biscuit is going for a bike ride. What comes first?',
+      safe: 'Put on a helmet and buckle the strap', unsafe: 'Ride without a helmet just this once',
+      yes: 'A helmet protects your brain. Wear it every time you ride a bike, scooter or skateboard.', no: 'Even a short ride can have a fall. Helmets go on every time.'},
+    {id: 'car', e: '🚗', where: 'The car', img: 'art:carseat', q: 'Biscuit gets in the car to go to Grandma\'s house.',
+      safe: 'Sit in the car seat or booster and buckle up', unsafe: 'Stand up and look out the window',
+      yes: 'Buckle up every ride, in the back seat, in your car seat or booster.', no: 'If the car stops fast, an unbuckled rider can get hurt. Click it every time!'},
+    {id: 'fire', e: '🔔', where: 'School', img: 'art:alarm', q: 'BEEP BEEP BEEP! The fire alarm is ringing at school!',
+      safe: 'Leave your things, line up and walk outside with your teacher', unsafe: 'Hide under the table until it stops',
+      yes: 'Get out fast and stay out. Go to your meeting place and listen to your teacher.', no: 'Never hide in a fire. Firefighters need to find you outside. Get out and stay out.'},
+    {id: 'stove', e: '🍳', where: 'The kitchen', img: 'art:stove', q: 'A pot is cooking on the stove. Biscuit wants to see what\'s inside.',
+      safe: 'Stay back and ask a grown-up', unsafe: 'Reach up and grab the pot handle',
+      yes: 'Stoves and pots can be very hot. Stay three big steps back and ask a grown-up.', no: 'A hot pot can burn you or spill. Kids stay back from the stove.'},
+    {id: 'pool', e: '🏊', where: 'The pool', img: 'art:pool', q: 'It\'s a hot day at the pool! Biscuit wants to jump in.',
+      safe: 'Wait until a grown-up is watching, and wear a life jacket', unsafe: 'Jump in the deep end alone',
+      yes: 'Swim only when a grown-up is watching. A life jacket helps you float.', no: 'Never swim alone. A grown-up must always be watching the water.'},
+    {id: 'medicine', e: '💊', where: 'The bathroom', img: 'art:medicine', q: 'Biscuit finds a bottle of colorful pills. They look like candy!',
+      safe: 'Don\'t touch it, and tell a grown-up', unsafe: 'Try one to see if it tastes good',
+      yes: 'Medicine is not candy. Only take medicine from a grown-up you trust.', no: 'Medicine can make you very sick if it isn\'t meant for you. Tell a grown-up instead.'},
+  ];
+  const SORT = [
+    ['Wear a helmet on your scooter', 1], ['Play with matches or a lighter', 0], ['Buckle your seat belt', 1], ['Swim when no grown-up is watching', 0],
+    ['Hold a grown-up\'s hand in a parking lot', 1], ['Take medicine because it looks like candy', 0], ['Stop at the curb and look both ways', 1], ['Chase a ball into the street', 0],
+    ['Get out and stay out when the fire alarm rings', 1], ['Touch a hot stove', 0], ['Wear a life jacket on a boat', 1], ['Ride your bike without a helmet', 0],
+    ['Tell a grown-up if you find something sharp', 1], ['Hide during a fire drill', 0], ['Know your grown-up\'s phone number', 1], ['Stand up in a moving car', 0],
+  ];
+
+  const state = {mode: 'walk', at: 0, safe: 0, sortOrder: [], sortAt: -1, sortRight: 0, sound: true, run: 0, looked: []};
+
+  // ---------- sound ----------
+  let ctx;
+  const audio = () => (ctx ||= new (window.AudioContext || window.webkitAudioContext)());
+  function tone(f, dur = .2, gain = .07, when = 0, type = 'triangle') {
+    if (!state.sound) return;
+    const a = audio(), o = a.createOscillator(), g = a.createGain(), t = a.currentTime + when;
+    o.type = type; o.frequency.value = f;
+    g.gain.setValueAtTime(.0001, t); g.gain.exponentialRampToValueAtTime(gain, t + .02); g.gain.exponentialRampToValueAtTime(.0001, t + dur);
+    o.connect(g).connect(a.destination); o.start(t); o.stop(t + dur + .05);
+  }
+  const SFX = {
+    yes: () => [523, 659, 784, 1047].forEach((f, i) => tone(f, .22, .08, i * .09)),
+    no: () => { tone(330, .2, .06, 0, 'sine'); tone(262, .3, .06, .18, 'sine'); },
+    step: () => [0, .2, .4].forEach(t => tone(200, .06, .05, t, 'sine')),
+    alarm: () => [0, .3, .6].forEach(t => tone(1400, .18, .04, t, 'square')),
+    walk: () => [0, .5, 1, 1.5].forEach(t => tone(1100, .08, .05, t, 'square')),
+    car: () => { if (!state.sound) return; const a = audio(), t = a.currentTime, o = a.createOscillator(), g = a.createGain(); o.type = 'sawtooth'; o.frequency.setValueAtTime(70, t); o.frequency.linearRampToValueAtTime(110, t + 1.2); o.frequency.linearRampToValueAtTime(60, t + 2.4); g.gain.setValueAtTime(.0001, t); g.gain.exponentialRampToValueAtTime(.05, t + 1.1); g.gain.exponentialRampToValueAtTime(.0001, t + 2.4); const f = a.createBiquadFilter(); f.type = 'lowpass'; f.frequency.value = 500; o.connect(f).connect(g).connect(a.destination); o.start(t); o.stop(t + 2.5); },
+  };
+  function hop() { if (!reduce) $('pup').animate([{transform: 'translateY(0)'}, {transform: 'translateY(-30px)'}, {transform: 'translateY(0)'}], {duration: 500}); }
+  function shake() { if (!reduce) $('pup').animate([{transform: 'rotate(0)'}, {transform: 'rotate(-6deg)'}, {transform: 'rotate(6deg)'}, {transform: 'rotate(0)'}], {duration: 500}); }
+
+  // ---------- Walk the street ----------
+  function drawPath() {
+    $('path').innerHTML = STOPS.map((s, i) => `<i class="${i < state.at ? 'done' : i === state.at ? 'on' : ''}" title="${s.where}">${i < state.at ? '✅' : s.e}</i>`).join('');
+  }
+  function stop() {
+    const s = STOPS[state.at];
+    drawPath();
+    $('card').innerHTML = `<img src="${s.img}" alt=""><div><div class="where">Stop ${state.at + 1}: ${s.where}</div><div class="q">${s.q}</div></div>`;
+    // the safe choice is on a random side
+    const opts = Math.random() < .5 ? [['safe', s.safe], ['unsafe', s.unsafe]] : [['unsafe', s.unsafe], ['safe', s.safe]];
+    $('choices').replaceChildren(...opts.map(([k, t], i) => {
+      const b = document.createElement('button');
+      b.className = 'choice'; b.dataset.k = k; b.textContent = `${i + 1}. ${t}`;
+      b.onclick = () => choose(b);
+      return b;
+    }));
+    $('fb').textContent = '';
+    $('ctrl').innerHTML = '<button class="big-btn soft" id="restart">↺ Start the walk over</button>';
+    $('restart').onclick = () => { state.at = 0; state.safe = 0; stop(); };
+    if (s.id === 'fire') SFX.alarm(); else SFX.step();
+    say([s.q, `One: ${opts[0][1]}.`, `Two: ${opts[1][1]}.`]);
+  }
+  function choose(b) {
+    const s = STOPS[state.at], safe = b.dataset.k === 'safe';
+    b.classList.add(safe ? 'safe' : 'unsafe');
+    if (safe) {
+      $('choices').querySelectorAll('.choice').forEach(x => x.disabled = true);
+      SFX.yes(); hop();
+      $('fb').innerHTML = `<b>Safe choice!</b> ${s.yes}`;
+      $('ctrl').innerHTML = `<button class="big-btn" id="next">${state.at === STOPS.length - 1 ? 'Finish the walk →' : 'Next stop →'}</button>`;
+      $('next').onclick = () => { state.at++; state.at >= STOPS.length ? finish() : stop(); };
+      say(['Safe choice!', s.yes]);
+    } else {
+      SFX.no(); shake();
+      $('fb').innerHTML = `<b>Not safe.</b> ${s.no} Try the other choice.`;
+      say(['Not safe.', s.no]);
+    }
+  }
+  function finish() {
+    drawPath();
+    $('card').innerHTML = `<img src="art:biscuit" alt=""><div><div class="where">Home safe!</div><div class="q">Biscuit made it all the way down Safety Street. You helped make safe choices at every stop!</div></div>`;
+    $('choices').replaceChildren(); $('fb').innerHTML = 'Which stop was the hardest? What would you tell a little brother or sister?';
+    $('ctrl').innerHTML = '<button class="big-btn gold" id="again">↺ Walk again</button>';
+    $('again').onclick = () => { state.at = 0; stop(); };
+    SFX.yes(); hop();
+    say('Biscuit made it all the way down Safety Street. You helped make safe choices at every stop!');
+  }
+
+  // ---------- Safe or not? ----------
+  function nextSort() {
+    if (state.sortAt >= state.sortOrder.length - 1 || !state.sortOrder.length) { state.sortOrder = SORT.map((_, i) => i).sort(() => Math.random() - .5).slice(0, 10); state.sortAt = -1; state.sortRight = 0; }
+    state.sortAt++;
+    const [t] = SORT[state.sortOrder[state.sortAt]];
+    $('sort').innerHTML = `<div class="scard" id="scard">${t}</div><div class="thumbs"><button class="thumb up" data-v="1"><span aria-hidden="true">👍</span>Safe</button><button class="thumb down" data-v="0"><span aria-hidden="true">👎</span>Not safe</button></div>`;
+    $('sort').querySelectorAll('.thumb').forEach(b => b.onclick = () => judge(+b.dataset.v));
+    $('fb').textContent = '';
+    $('score').textContent = `${state.sortAt + 1} of ${state.sortOrder.length}`;
+    say([t + '.', 'Safe, or not safe?']);
+  }
+  function judge(v) {
+    const [t, safe] = SORT[state.sortOrder[state.sortAt]], right = v === safe;
+    $('scard').classList.add(safe ? 'safe' : 'unsafe');
+    $('sort').querySelectorAll('.thumb').forEach(b => b.disabled = true);
+    if (right) state.sortRight++;
+    right ? (SFX.yes(), hop()) : (SFX.no(), shake());
+    $('fb').innerHTML = `${right ? '<b>Yes!</b> ' : '<b>Think again.</b> '}That is ${safe ? '<b>safe</b>' : '<b>not safe</b>'}.`;
+    say([right ? 'Yes!' : 'Think again.', safe ? 'That is safe.' : 'That is not safe.']);
+  }
+
+  // ---------- Crossing practice ----------
+  const NS = 'http://www.w3.org/2000/svg';
+  const el = (tag, a, parent) => { const e = document.createElementNS(NS, tag); for (const k in a) e.setAttribute(k, a[k]); parent && parent.append(e); return e; };
+  let signal, carsG;
+  function road() {
+    const s = $('road'); s.replaceChildren();
+    el('rect', {x: 0, y: 330, width: 1000, height: 200, fill: '#55595e'}, s);
+    el('rect', {x: 0, y: 300, width: 1000, height: 34, fill: '#cfd2d5'}, s);
+    el('rect', {x: 0, y: 526, width: 1000, height: 94, fill: '#cfd2d5'}, s);
+    for (let i = 0; i < 7; i++) el('rect', {x: 520, y: 340 + i * 27, width: 200, height: 16, fill: '#f4f4f0'}, s);
+    for (let x = 0; x < 1000; x += 80) if (x < 500 || x > 740) el('rect', {x, y: 426, width: 46, height: 6, fill: '#f2d64b'}, s);
+    // walk signal
+    el('rect', {x: 760, y: 140, width: 14, height: 170, fill: '#3a3f46'}, s);
+    const box = el('rect', {x: 730, y: 110, width: 74, height: 90, rx: 10, fill: '#202428', stroke: '#111', 'stroke-width': 4}, s);
+    signal = el('g', {}, s);
+    carsG = el('g', {}, s);
+    setSignal('stop');
+  }
+  function setSignal(k) {
+    signal.replaceChildren();
+    if (k === 'stop') {
+      // an orange raised hand
+      el('path', {d: 'M752,178 v-30 a5,5 0 0 1 10,0 v18 v-28 a5,5 0 0 1 10,0 v28 v-24 a5,5 0 0 1 10,0 v26 v-16 a5,5 0 0 1 10,0 v30 q0,18 -20,22 h-6 q-14,0 -24,-26z', fill: '#ff8a2a'}, signal);
+    } else {
+      // a white walking figure
+      el('circle', {cx: 767, cy: 128, r: 7, fill: '#f4f4f4'}, signal);
+      el('path', {d: 'M767,137 l-4,26 l-10,20 M765,150 l8,14 l6,18 M765,145 l-12,10 M767,145 l12,6', stroke: '#f4f4f4', 'stroke-width': 7, 'stroke-linecap': 'round', fill: 'none'}, signal);
+    }
+  }
+  function car(dir, color, ms) {
+    const g = el('g', {}, carsG), y = dir > 0 ? 440 : 345;
+    el('rect', {x: 0, y, width: 150, height: 60, rx: 18, fill: color, stroke: '#222', 'stroke-width': 4}, g);
+    el('rect', {x: 30, y: y - 26, width: 86, height: 34, rx: 12, fill: color, stroke: '#222', 'stroke-width': 4}, g);
+    el('rect', {x: 40, y: y - 20, width: 30, height: 22, rx: 4, fill: '#bfe3ff'}, g); el('rect', {x: 76, y: y - 20, width: 30, height: 22, rx: 4, fill: '#bfe3ff'}, g);
+    for (const x of [30, 120]) el('circle', {cx: x, cy: y + 60, r: 16, fill: '#222'}, g);
+    const from = dir > 0 ? -200 : 1100, to = dir > 0 ? 1100 : -200;
+    SFX.car();
+    if (reduce) { g.setAttribute('transform', `translate(${dir > 0 ? 200 : 650} 0)`); return wait(ms).then(() => g.remove()); }
+    // race the timer: some browsers (and headless ones) never settle .finished for a background tab
+    const an = g.animate([{transform: `translateX(${from}px)`}, {transform: `translateX(${to}px)`}], {duration: ms, easing: 'linear'});
+    return Promise.race([an.finished.catch(() => {}), wait(ms + 100)]).then(() => g.remove());
+  }
+  async function crossing() {
+    const me = ++state.run;
+    state.looked = [];
+    road(); carsG.replaceChildren();
+    $('pup').style.left = '545px'; $('pup').style.bottom = '290px'; $('pup').style.width = $('pup').style.height = '150px';
+    $('look').innerHTML = '<button class="big-btn" id="l1">👈 Look left</button><button class="big-btn" id="r1">Look right 👉</button><button class="big-btn" id="l2">👈 Left again</button><button class="big-btn gold" id="go" disabled>🚶 Cross!</button>';
+    $('status').textContent = 'Stop at the curb. Wait for the walking person.';
+    say('Stop at the curb. Wait for the walking person.');
+    // cars pass while the hand is showing; then the signal changes
+    const passes = 1 + Math.random() * 2 | 0;
+    let looking = Promise.resolve();
+    const lookBtn = (id, dir, label) => $(id).onclick = () => {
+      if (state.looked.length !== ['l1', 'r1', 'l2'].indexOf(id)) { $('status').textContent = 'Look left first, then right, then left again.'; return say('Look left first, then right, then left again.'); }
+      state.looked.push(id); $(id).classList.add('done'); tone(700 + state.looked.length * 120, .12, .05);
+      $('pup').animate && !reduce && $('pup').animate([{transform: 'scaleX(1)'}, {transform: `scaleX(${dir})`}, {transform: 'scaleX(1)'}], {duration: 700});
+      say(label);
+      ready();
+    };
+    lookBtn('l1', -1, 'Left.'); lookBtn('r1', 1, 'Right.'); lookBtn('l2', -1, 'Left again.');
+    let walk = false;
+    const ready = () => { $('go').disabled = !(walk && state.looked.length === 3); if (walk && state.looked.length === 3) { $('status').textContent = 'The walking person is on. No cars coming. Cross with a grown-up!'; } };
+    $('go').onclick = async () => {
+      $('go').disabled = true; SFX.step(); hop();
+      $('status').textContent = 'Keep looking while you cross!';
+      say('Keep looking while you cross!');
+      if (!reduce) await Promise.race([$('pup').animate([{bottom: '290px'}, {bottom: '40px'}], {duration: 2200, easing: 'linear', fill: 'forwards'}).finished.catch(() => {}), wait(2300)]);
+      else await wait(2200);
+      if (me !== state.run) return;
+      $('pup').style.bottom = '40px';
+      SFX.yes();
+      $('status').textContent = 'Safe on the other side!';
+      say('Safe on the other side!');
+    };
+    for (let i = 0; i < passes; i++) {
+      if (me !== state.run) return;
+      await wait(1200 + Math.random() * 1500);
+      if (me !== state.run) return;
+      await car(Math.random() < .5 ? 1 : -1, ['#e63946', '#3a86ff', '#ffbe0b', '#8338ec'][Math.random() * 4 | 0], 2600);
+    }
+    if (me !== state.run) return;
+    await wait(1000);
+    if (me !== state.run) return;
+    walk = true; setSignal('walk'); SFX.walk();
+    $('status').textContent = state.looked.length === 3 ? 'The walking person is on!' : 'The walking person is on! Did you look left, right and left?';
+    say('The walking person is on!');
+    ready();
+  }
+
+  function setMode(m) {
+    state.mode = m; state.run++; stopTalk();
+    for (const [id, k] of [['m-walk', 'walk'], ['m-sort', 'sort'], ['m-cross', 'cross']]) $(id).setAttribute('aria-pressed', m === k);
+    const walkM = m === 'walk', cross = m === 'cross';
+    $('path').hidden = $('card').hidden = $('choices').hidden = !walkM;
+    $('sort').hidden = m !== 'sort'; $('cross').hidden = $('look').hidden = !cross; $('status').hidden = !cross;
+    $('fb').textContent = ''; $('tip').innerHTML = '';
+    $('pup').getAnimations().forEach(a => a.cancel());
+    Object.assign($('pup').style, {left: '30px', bottom: '20px', width: '220px', height: '220px'});
+    if (walkM) {
+      $('hint').innerHTML = '<b>Walk the street.</b> Seven stops. Read each one, let the class vote (one finger or two), then tap the choice. An unsafe pick explains why, and you try again.';
+      $('tip').innerHTML = 'Ask: what could happen? What\'s the safe thing to do?';
+      state.at = 0; stop();
+    }
+    if (m === 'sort') {
+      $('ctrl').innerHTML = '<button class="big-btn" id="next">Next card →</button><div class="score" id="score"></div>';
+      $('next').onclick = nextSort;
+      $('hint').innerHTML = '<b>Safe or not?</b> Read the card. Everyone shows thumbs up for safe or thumbs down for not safe, then tap the answer.';
+      state.sortOrder = []; nextSort();
+    }
+    if (cross) {
+      $('ctrl').innerHTML = '<button class="big-btn gold" id="again">↺ Practice again</button>';
+      $('again').onclick = crossing;
+      $('hint').innerHTML = '<b>Crossing practice.</b> Biscuit stops at the curb. Look left, right and left again (children turn their heads too). Wait for the walking person, then cross, and keep looking.';
+      $('tip').innerHTML = 'Young children should always cross with a grown-up. This practices the habit.';
+      crossing();
+    }
+  }
+  $('m-walk').onclick = () => setMode('walk');
+  $('m-sort').onclick = () => setMode('sort');
+  $('m-cross').onclick = () => setMode('cross');
+  addEventListener('keydown', e => { if (e.target.closest('button') || !/^[1-3]$/.test(e.key)) return; setMode(['walk', 'sort', 'cross'][e.key - 1]); });
+
+  // ---------- sound and voice ----------
+  $('sound').onclick = e => {
+    state.sound = !state.sound;
+    e.currentTarget.setAttribute('aria-pressed', state.sound);
+    e.currentTarget.textContent = state.sound ? '🔔 Sound' : '🔇 Sound';
+    if (!state.sound) stopTalk();
+  };
+  function bestVoice() {
+    const voices = speechSynthesis.getVoices().filter(v => /^en(-|_|$)/i.test(v.lang));
+    const score = v => (/natural|neural/i.test(v.name) ? 50 : 0) + (/premium|enhanced/i.test(v.name) ? 40 : 0) +
+      (/google/i.test(v.name) ? 30 : 0) + (/aria|jenny|ava|samantha|libby|sonia/i.test(v.name) ? 10 : 0) +
+      (/en-US/i.test(v.lang) ? 5 : 0) + (v.default ? 1 : 0) - (/david|mark|zira|desktop/i.test(v.name) ? 20 : 0);
+    return voices.sort((a, b) => score(b) - score(a))[0] || null;
+  }
+  if ('speechSynthesis' in window) {
+    const speak = speechSynthesis.speak.bind(speechSynthesis);
+    speechSynthesis.speak = u => {
+      if (speechSynthesis.getVoices().length) return speak(u);
+      let done = false;
+      const go = () => { if (done) return; done = true; const v = bestVoice(); if (v) { u.voice = v; u.lang = v.lang; } speak(u); };
+      speechSynthesis.addEventListener('voiceschanged', go, {once: true});
+      setTimeout(go, 1500);
+    };
+    speechSynthesis.getVoices();
+  }
+  const CLIPS = "voice:*";
+  const allLines = () => [...new Set([
+    ...STOPS.flatMap(s => [s.q, `One: ${s.safe}.`, `Two: ${s.safe}.`, `One: ${s.unsafe}.`, `Two: ${s.unsafe}.`, s.yes, s.no]), 'Safe choice!', 'Not safe.',
+    'Biscuit made it all the way down Safety Street. You helped make safe choices at every stop!',
+    ...SORT.map(([t]) => t + '.'), 'Safe, or not safe?', 'Yes!', 'Think again.', 'That is safe.', 'That is not safe.',
+    'Stop at the curb. Wait for the walking person.', 'Look left first, then right, then left again.', 'Left.', 'Right.', 'Left again.',
+    'Keep looking while you cross!', 'Safe on the other side!', 'The walking person is on!'])];
+  let talk = 0, clip = null, last = [];
+  function stopTalk() { talk++; if (clip) { clip.pause(); clip = null; } if ('speechSynthesis' in window) speechSynthesis.cancel(); }
+  function speakOne(text) {
+    return new Promise(done => {
+      if (CLIPS[text]) { clip = new Audio(CLIPS[text]); clip.onended = clip.onerror = () => done(); clip.play().catch(() => done()); return; }
+      if (!('speechSynthesis' in window)) return done();
+      const u = new SpeechSynthesisUtterance(text);
+      const v = bestVoice(); if (v) { u.voice = v; u.lang = v.lang; }
+      u.rate = .92; u.pitch = 1; u.onend = u.onerror = () => done();
+      speechSynthesis.speak(u);
+    });
+  }
+  async function say(parts, force) {
+    if (!state.sound && !force) return;
+    stopTalk();
+    const me = talk;
+    last = [].concat(parts);
+    for (const p of last) { if (me !== talk) return; await speakOne(p); await wait(150); }
+  }
+  $('read').onclick = () => say(last.length ? last : [$('hint').textContent], true);
+
+  showMotion();
+  window.__safety = {state, setMode, choose, judge, crossing, allLines};  // for checking frames
+  setMode('walk');
+})();
+</script>
+</body>
+</html>

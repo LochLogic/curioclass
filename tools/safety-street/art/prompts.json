@@ -1,0 +1,75 @@
+{
+  "style": "Bright, reassuring picture-book look for a kindergarten safety lesson: soft round shapes, clean outlines, cheerful colors, nothing scary.",
+  "assets": [
+    {
+      "name": "street",
+      "prompt": "Empty background: a friendly neighborhood street on a sunny day seen from the side. Houses with small yards and trees along the back, a sidewalk across the lower middle, a quiet road across the bottom, open blue sky. Lots of open space in the middle and right. No people, no animals, no cars, no text, no signs with words.",
+      "aspect": "16:9",
+      "width": 1600,
+      "quality": 72
+    },
+    {
+      "name": "biscuit",
+      "prompt": "A cute cartoon golden puppy called Biscuit standing on four legs, side view facing right, floppy ears, a little red collar, wagging tail, happy face.",
+      "cutout": true,
+      "aspect": "1:1",
+      "height": 220
+    },
+    {
+      "name": "crosswalk",
+      "prompt": "A clear friendly illustration of a street corner crosswalk with white stripes and a walk signal on a pole.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 170,
+      "quality": 76
+    },
+    {
+      "name": "helmet",
+      "prompt": "A clear friendly illustration of a bright blue bike helmet with its strap.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 170,
+      "quality": 76
+    },
+    {
+      "name": "carseat",
+      "prompt": "A clear friendly illustration of a child booster car seat in a car back seat with the seat belt.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 170,
+      "quality": 76
+    },
+    {
+      "name": "alarm",
+      "prompt": "A clear friendly illustration of a red school fire alarm bell on a wall.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 170,
+      "quality": 76
+    },
+    {
+      "name": "stove",
+      "prompt": "A clear friendly illustration of a kitchen stove with a pot on a burner and a little steam.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 170,
+      "quality": 76
+    },
+    {
+      "name": "pool",
+      "prompt": "A clear friendly illustration of a backyard swimming pool with a red life ring and an orange life jacket beside it.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 170,
+      "quality": 76
+    },
+    {
+      "name": "medicine",
+      "prompt": "A clear friendly illustration of a closed medicine bottle with a child-safe cap next to a few colorful pills.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 170,
+      "quality": 76
+    }
+  ]
+}

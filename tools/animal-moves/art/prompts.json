@@ -1,0 +1,110 @@
+{
+  "style": "Bright, bouncy picture-book animals for a kindergarten PE lesson: bold simple shapes, strong outlines, clear poses that show the movement, cheerful colors.",
+  "assets": [
+    {
+      "name": "field",
+      "prompt": "Empty background: a sunny school field and playground area seen from the side at child height. Bright green grass across the bottom third, a few distant trees and a low fence, soft rolling hills, a big open blue sky with a few puffy clouds. Lots of open space. No people, no animals, no equipment in the middle.",
+      "aspect": "16:9",
+      "width": 1600,
+      "quality": 72
+    },
+    {
+      "name": "frog",
+      "prompt": "A cute cartoon green frog crouched and ready to hop, side view, big friendly eyes.",
+      "cutout": true,
+      "aspect": "1:1",
+      "height": 340,
+      "quality": 76,
+      "key": "magenta"
+    },
+    {
+      "name": "kangaroo",
+      "prompt": "A cute cartoon kangaroo standing upright on strong back legs, ready to jump, friendly smile.",
+      "cutout": true,
+      "aspect": "1:1",
+      "height": 340,
+      "quality": 76
+    },
+    {
+      "name": "horse",
+      "prompt": "A cute cartoon brown horse galloping, side view, mane flowing, all four legs visible.",
+      "cutout": true,
+      "aspect": "1:1",
+      "height": 340,
+      "quality": 76
+    },
+    {
+      "name": "crab",
+      "prompt": "A cute cartoon red crab with big claws up, front view, friendly eyes on stalks.",
+      "cutout": true,
+      "aspect": "1:1",
+      "height": 340,
+      "quality": 76
+    },
+    {
+      "name": "penguin",
+      "prompt": "A cute cartoon penguin standing upright, front view, flippers at its sides, orange feet.",
+      "cutout": true,
+      "aspect": "1:1",
+      "height": 340,
+      "quality": 76
+    },
+    {
+      "name": "bear",
+      "prompt": "A cute cartoon brown bear walking on all four paws, side view, friendly face.",
+      "cutout": true,
+      "aspect": "1:1",
+      "height": 340,
+      "quality": 76
+    },
+    {
+      "name": "flamingo",
+      "prompt": "A cute cartoon pink flamingo standing on one leg, the other leg tucked up, wings slightly open.",
+      "cutout": true,
+      "aspect": "1:1",
+      "height": 340,
+      "quality": 76
+    },
+    {
+      "name": "elephant",
+      "prompt": "A cute cartoon gray elephant marching, one front leg lifted high, trunk raised happily.",
+      "cutout": true,
+      "aspect": "1:1",
+      "height": 340,
+      "quality": 76
+    },
+    {
+      "name": "eagle",
+      "prompt": "A cute cartoon bald eagle soaring with wings spread wide, front view.",
+      "cutout": true,
+      "aspect": "1:1",
+      "height": 340,
+      "quality": 76
+    },
+    {
+      "name": "snake",
+      "prompt": "A cute cartoon green snake with a wavy S-shaped body, friendly face, tongue out a little.",
+      "cutout": true,
+      "aspect": "1:1",
+      "height": 340,
+      "quality": 76,
+      "key": "magenta"
+    },
+    {
+      "name": "cheetah",
+      "prompt": "A cute cartoon cheetah running fast, side view, spotted coat, legs stretched.",
+      "cutout": true,
+      "aspect": "1:1",
+      "height": 340,
+      "quality": 76
+    },
+    {
+      "name": "cat",
+      "prompt": "A cute cartoon gray tabby cat tiptoeing, side view, tail up, sneaky smile.",
+      "cutout": true,
+      "aspect": "1:1",
+      "height": 340,
+      "quality": 76
+    }
+  ]
+}

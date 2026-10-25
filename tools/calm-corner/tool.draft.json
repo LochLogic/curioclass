@@ -1,0 +1,16 @@
+{
+  "id": "calm-corner",
+  "status": "beta",
+  "driver": "teacher",
+  "modes": [],
+  "grades_label": "Grades K-2",
+  "third_party": [],
+  "updated": "2026-10-25",
+  "hook": "Shelly the turtle leads five calm-down tools on the big screen: fill a balloon with your breath, trace a star, count a rainbow up and down, stretch, and notice five senses.",
+  "outcome": "Practice calming strategies (slow breathing, counting, stretching, noticing) and check how your body feels before and after",
+  "minutes": "5-15",
+  "sources": [
+    "Illustrations drawn with FLUX.1-schnell (Apache 2.0) on a local computer, edited for Curio Class",
+    "Sounds and calm music generated in the browser"
+  ]
+}

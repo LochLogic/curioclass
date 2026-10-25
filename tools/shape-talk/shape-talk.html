@@ -1,0 +1,533 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shape Talk · Math talk for English learners · Curio Class</title>
+<meta name="description" content="Describe a hidden shape with sentence frames: it has 4 sides, it has 4 corners, it can roll. Meet 12 flat and solid shapes, play Guess my shape with clues, then take turns as the describer. Grades K-2 English language development, teacher-led. Works offline.">
+<!-- GENERATED from src.html by scripts/bundle_tool.py; edit src.html, not this file.
+
+SHAPE TALK (Curio Class)
+Grades K-2 English language development, WIDA ELD Standard 3 (the language of mathematics), Explain.
+Math content from CCSS K.G.2-4, 1.G.1 and 2.G.1: name shapes and describe them by sides, corners (vertices),
+faces, flat or solid, and whether they roll or stack.
+Teacher-led on a projector. Three modes: Meet the shapes (count sides and corners out loud), Guess my shape
+(clues appear as sentence frames and the class crosses out shapes that don't fit) and Partner talk (one child
+peeks at a secret shape and describes it with the frames while the class guesses).
+All shapes are drawn in code. One file, no network requests. Content CC BY 4.0, code MIT. curioclass.org
+-->
+<style>
+:root{
+  --paper:#f7f4ff;--ink:#25223a;--muted:#5d587a;--line:#ddd6f3;--focus:#e0662a;--brand:#4b3f9e;
+  font-family:'Segoe UI',system-ui,-apple-system,Roboto,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0;height:100%}
+body{background:var(--paper);color:var(--ink);display:grid;grid-template-rows:auto 1fr;min-height:100vh}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:4px solid var(--focus);outline-offset:3px}
+header{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:12px 20px;background:var(--brand);color:#f6f3ff}
+h1{margin:0 auto 0 0;font:800 clamp(22px,3vw,32px)/1.1 'Trebuchet MS','Segoe UI',sans-serif}
+h1 small{display:block;font:500 15px/1.3 'Segoe UI',sans-serif;color:#d9d2ff}
+.seg{display:inline-flex;border:2px solid #7b6fd0;border-radius:999px;overflow:hidden}
+.seg button{border:0;background:#5d50b8;color:#f6f3ff;min-height:52px;padding:0 16px;font-weight:700;font-size:16px}
+.seg button[aria-pressed="true"]{background:#ffd34d;color:#3a2c00}
+.icon-btn{border:2px solid #7b6fd0;background:#5d50b8;color:#f6f3ff;border-radius:999px;min-height:52px;padding:0 16px;font-weight:700;font-size:16px}
+
+main{display:grid;grid-template-columns:1fr;min-height:0}
+@media (min-width:760px){main{grid-template-columns:minmax(0,1fr) 360px}}
+.stage{position:relative;overflow:hidden;min-height:340px;background:
+  radial-gradient(circle at 20% 15%,#ffffff 0 2px,transparent 3px) 0 0/46px 46px,
+  linear-gradient(#e8e3fb,#d9d1f6)}
+.scene{position:absolute;left:50%;top:50%;width:1000px;height:620px;transform:translate(-50%,-50%) scale(var(--s,1))}
+
+/* the big board with one shape */
+.board{position:absolute;left:30px;top:24px;width:560px;height:440px;background:#fffef9;border-radius:28px;border:5px solid #2f2a4a;box-shadow:0 10px 0 #2f2a4a33}
+.board svg{position:absolute;inset:20px 20px 60px;width:calc(100% - 40px);height:calc(100% - 80px)}
+.board .name{position:absolute;left:0;right:0;bottom:12px;text-align:center;font:800 40px/1 'Trebuchet MS',sans-serif}
+.cover{position:absolute;inset:0;border-radius:23px;background:repeating-linear-gradient(45deg,#5d50b8 0 26px,#5246a8 26px 52px);display:grid;place-items:center;color:#fff;font:800 120px/1 'Trebuchet MS',sans-serif;text-shadow:0 6px 0 #0003}
+.cover small{display:block;font:700 26px/1.2 'Trebuchet MS',sans-serif;text-align:center;margin-top:-10px}
+
+/* sentence frames */
+.frames{position:absolute;left:610px;top:24px;width:362px;display:flex;flex-direction:column;gap:10px}
+.frame{background:#fff;border:3px solid #c9c0ef;border-radius:18px;padding:10px 14px;font:700 25px/1.25 'Trebuchet MS',sans-serif;color:#9a94b8;min-height:62px;display:flex;align-items:center;gap:10px}
+.frame .blank{display:inline-block;min-width:54px;padding:0 4px;border-bottom:4px solid #bdb4e6;text-align:center;color:transparent}
+.frame.on{color:var(--ink);border-color:#2f2a4a;box-shadow:0 4px 0 #2f2a4a22}
+.frame.on .blank{color:#4b3f9e;border-color:#ffd34d}
+.frame.pop{animation:pop .45s cubic-bezier(.3,1.6,.5,1)}
+@keyframes pop{from{transform:scale(.85);opacity:.3}}
+.frame .ic{font-size:28px;flex:none}
+
+/* the shape strip */
+.strip{position:absolute;left:30px;top:486px;width:942px;height:118px;display:grid;grid-template-columns:repeat(12,1fr);gap:6px}
+.chip{position:relative;border:3px solid transparent;border-radius:16px;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:4px 0;box-shadow:0 4px 0 #2f2a4a22;font:700 13px/1.1 'Trebuchet MS',sans-serif}
+.chip svg{width:64px;height:64px}
+.chip[aria-pressed="true"]{border-color:#2f2a4a;background:#fff6c9}
+.chip.out{opacity:.25;filter:grayscale(1)}
+.chip.out::after{content:'';position:absolute;left:10%;top:48%;width:80%;height:6px;border-radius:3px;background:#d8423a;transform:rotate(-30deg)}
+.chip.wrong{animation:shake .4s}
+@keyframes shake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+
+.count{position:absolute;font:800 26px/1 'Trebuchet MS',sans-serif;fill:#d8423a;paint-order:stroke;stroke:#fff;stroke-width:6px}
+.mark{fill:#d8423a;stroke:#fff;stroke-width:4}
+
+.panel{background:#fdfcff;border-left:3px solid var(--line);padding:14px 16px;display:flex;flex-direction:column;gap:12px;overflow:auto}
+@media (max-width:759px){.panel{border-left:0;border-top:3px solid var(--line)}}
+.hint{margin:0;font:600 18px/1.35 'Segoe UI',sans-serif;color:var(--muted)}
+.hint b{color:var(--ink)}
+.big-btn{border:0;border-radius:16px;min-height:60px;font:800 20px/1.1 'Trebuchet MS','Segoe UI',sans-serif;color:#fff;background:var(--brand);box-shadow:0 5px 0 #0004;padding:6px 10px}
+.big-btn:active{transform:translateY(3px);box-shadow:0 2px 0 #0004}
+.big-btn.soft{background:#e6e1f7;color:var(--ink)}
+.big-btn.gold{background:#ffd34d;color:#3a2c00}
+.big-btn:disabled{opacity:.45;cursor:default}
+.col{display:flex;flex-direction:column;gap:8px}
+.row{display:flex;gap:8px}.row .big-btn{flex:1}
+.tip{margin:0;background:#f1eefe;border-left:6px solid #7b6fd0;border-radius:10px;padding:10px 12px;font:600 17px/1.4 'Segoe UI',sans-serif}
+.tip:empty{display:none}
+.score{font:800 20px 'Trebuchet MS',sans-serif;color:var(--brand)}
+.calm .frame.pop,.calm .chip.wrong{animation:none!important}
+
+@media (max-width:759px),(max-height:640px){
+  header{padding:6px 12px} h1{font-size:19px} h1 small{display:none}
+  .seg button,.icon-btn{min-height:38px;font-size:13px;padding:0 10px}
+  main{grid-template-columns:minmax(0,1fr) 280px}
+  .panel{padding:8px 10px;gap:8px}
+  .hint,.tip{font-size:14px}
+  .big-btn{min-height:44px;font-size:16px}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Shape Talk <small>Say what you see: sides, corners, flat or solid.</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-meet" aria-pressed="true">Meet the shapes</button>
+    <button id="m-guess" aria-pressed="false">Guess my shape</button>
+    <button id="m-partner" aria-pressed="false">Partner talk</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true" title="Turn animation on or off">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+  <button class="icon-btn" id="read">🔊 Read</button>
+</header>
+<main>
+  <div class="stage" id="stage">
+    <div class="scene" id="scene">
+      <div class="board">
+        <svg id="big" viewBox="-130 -130 260 260" role="img" aria-label="Shape"></svg>
+        <div class="name" id="name"></div>
+        <div class="cover" id="cover" hidden><div>?<small id="cover-txt">Secret shape</small></div></div>
+      </div>
+      <div class="frames" id="frames" aria-live="polite"></div>
+      <div class="strip" id="strip" role="group" aria-label="Shapes"></div>
+    </div>
+  </div>
+  <aside class="panel">
+    <p class="hint" id="hint"></p>
+    <div class="col" id="meet-btns">
+      <button class="big-btn gold" id="count">🔢 Count with me</button>
+    </div>
+    <div class="col" id="guess-btns" hidden>
+      <button class="big-btn gold" id="clue">💡 Next clue</button>
+      <div class="row"><button class="big-btn soft" id="cross">✖ Cross out</button><button class="big-btn soft" id="reveal">👀 Show it</button></div>
+      <button class="big-btn" id="new-guess">New secret shape →</button>
+      <div class="score" id="score"></div>
+    </div>
+    <div class="col" id="partner-btns" hidden>
+      <button class="big-btn gold" id="peek">👀 Describer: hold to peek</button>
+      <div class="row"><button class="big-btn soft" id="p-reveal">Show everyone</button><button class="big-btn" id="p-new">New shape →</button></div>
+    </div>
+    <p class="tip" id="tip"></p>
+  </aside>
+</main>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  let reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  try { const m = localStorage.getItem('curio-motion'); if (m) reduce = m === 'calm'; } catch {}
+  function showMotion() {
+    document.body.classList.toggle('calm', reduce);
+    $('motion').setAttribute('aria-pressed', !reduce);
+    $('motion').textContent = reduce ? '⏸ Motion' : '✨ Motion';
+  }
+  $('motion').onclick = () => { reduce = !reduce; try { localStorage.setItem('curio-motion', reduce ? 'calm' : 'on'); } catch {} showMotion(); };
+  const wait = ms => new Promise(r => setTimeout(r, ms));
+  const fit = () => { const r = $('stage').getBoundingClientRect(); $('scene').style.setProperty('--s', Math.min(r.width / 1000, r.height / 620)); };
+  new ResizeObserver(fit).observe($('stage'));
+
+  // ---------- the shapes ----------
+  // flat shapes are point lists in a 200-unit box centered on 0,0; solids are drawn by hand below
+  const reg = (n, r, rot = -90) => Array.from({length: n}, (_, i) => { const a = (rot + i * 360 / n) * Math.PI / 180; return [Math.round(r * Math.cos(a)), Math.round(r * Math.sin(a))]; });
+  const S = [
+    {id: 'circle', name: 'circle', c: '#ff8a65', flat: true, sides: 0, corners: 0, curved: true, like: 'a cookie', pts: null},
+    {id: 'triangle', name: 'triangle', c: '#ffca3a', flat: true, sides: 3, corners: 3, like: 'a slice of pizza', pts: [[0, -105], [115, 90], [-115, 90]]},
+    {id: 'square', name: 'square', c: '#8ac926', flat: true, sides: 4, corners: 4, same: true, like: 'a cracker', pts: [[-95, -95], [95, -95], [95, 95], [-95, 95]]},
+    {id: 'rectangle', name: 'rectangle', c: '#1982c4', flat: true, sides: 4, corners: 4, like: 'a door', pts: [[-120, -70], [120, -70], [120, 70], [-120, 70]]},
+    {id: 'rhombus', name: 'rhombus', c: '#ff595e', flat: true, sides: 4, corners: 4, same: true, like: 'a kite', pts: [[0, -115], [80, 0], [0, 115], [-80, 0]]},
+    {id: 'trapezoid', name: 'trapezoid', c: '#6a4c93', flat: true, sides: 4, corners: 4, like: 'a lampshade', pts: [[-60, -70], [60, -70], [120, 70], [-120, 70]]},
+    {id: 'pentagon', name: 'pentagon', c: '#f28482', flat: true, sides: 5, corners: 5, same: true, like: 'a house from the side', pts: reg(5, 112)},
+    {id: 'hexagon', name: 'hexagon', c: '#f6bd60', flat: true, sides: 6, corners: 6, same: true, like: 'a honeycomb cell', pts: reg(6, 112, 0)},
+    {id: 'cube', name: 'cube', c: '#52b788', flat: false, faces: 6, corners: 8, rolls: false, stacks: true, like: 'a block'},
+    {id: 'sphere', name: 'sphere', c: '#e76f51', flat: false, faces: 0, corners: 0, rolls: true, stacks: false, curved: true, like: 'a ball'},
+    {id: 'cylinder', name: 'cylinder', c: '#4ea8de', flat: false, faces: 2, corners: 0, rolls: true, stacks: true, curved: true, like: 'a can of soup'},
+    {id: 'cone', name: 'cone', c: '#c77dff', flat: false, faces: 1, corners: 1, rolls: true, stacks: false, curved: true, like: 'an ice cream cone'},
+  ];
+  const byId = Object.fromEntries(S.map(s => [s.id, s]));
+  const NS = 'http://www.w3.org/2000/svg';
+  const el = (tag, a, parent) => { const e = document.createElementNS(NS, tag); for (const k in a) e.setAttribute(k, a[k]); parent && parent.append(e); return e; };
+  const shade = (hex, f) => { const n = parseInt(hex.slice(1), 16), c = [n >> 16, n >> 8 & 255, n & 255].map(v => Math.round(f < 0 ? v * (1 + f) : v + (255 - v) * f)); return '#' + c.map(v => v.toString(16).padStart(2, '0')).join(''); };
+
+  function draw(svg, s, big) {
+    svg.replaceChildren();
+    const sw = big ? 7 : 9, ink = '#2f2a4a';
+    if (s.flat) {
+      if (s.pts) el('polygon', {points: s.pts.join(' '), fill: s.c, stroke: ink, 'stroke-width': sw, 'stroke-linejoin': 'round'}, svg);
+      else el('circle', {r: 110, fill: s.c, stroke: ink, 'stroke-width': sw}, svg);
+      return;
+    }
+    const lo = shade(s.c, -.25), hi = shade(s.c, .35), id = 'g' + s.id + (big ? 'b' : 's');
+    const defs = el('defs', {}, svg);
+    const lg = el('linearGradient', {id, x1: 0, x2: 1}, defs);
+    el('stop', {offset: 0, 'stop-color': lo}, lg); el('stop', {offset: .45, 'stop-color': hi}, lg); el('stop', {offset: 1, 'stop-color': lo}, lg);
+    const a = {stroke: ink, 'stroke-width': sw, 'stroke-linejoin': 'round'};
+    if (s.id === 'cube') {
+      el('polygon', {points: '-100,-50 40,-50 40,100 -100,100', fill: s.c, ...a}, svg);
+      el('polygon', {points: '-100,-50 -40,-110 100,-110 40,-50', fill: hi, ...a}, svg);
+      el('polygon', {points: '40,-50 100,-110 100,40 40,100', fill: lo, ...a}, svg);
+    }
+    if (s.id === 'sphere') {
+      const rg = el('radialGradient', {id: id + 'r', cx: .35, cy: .3, r: .8}, defs);
+      el('stop', {offset: 0, 'stop-color': hi}, rg); el('stop', {offset: .55, 'stop-color': s.c}, rg); el('stop', {offset: 1, 'stop-color': lo}, rg);
+      el('circle', {r: 110, fill: `url(#${id}r)`, ...a}, svg);
+    }
+    if (s.id === 'cylinder') {
+      el('path', {d: 'M-80,-80 L-80,90 A80,26 0 0 0 80,90 L80,-80', fill: `url(#${id})`, ...a}, svg);
+      el('ellipse', {cx: 0, cy: -80, rx: 80, ry: 26, fill: hi, ...a}, svg);
+    }
+    if (s.id === 'cone') {
+      el('path', {d: 'M0,-115 L-90,80 A90,28 0 0 0 90,80 Z', fill: `url(#${id})`, ...a}, svg);
+      el('path', {d: 'M-90,80 A90,28 0 0 1 90,80', fill: 'none', stroke: ink, 'stroke-width': sw * .5, 'stroke-dasharray': '10 10'}, svg);
+    }
+  }
+
+  // the sentence frames for one shape, in clue order
+  const word = (n, one, many) => n === 1 ? one : many;
+  function frames(s) {
+    const f = [];
+    if (s.flat) {
+      f.push({ic: '📄', t: ['It is', 'flat', '.']});
+      f.push(s.sides ? {ic: '📏', t: ['It has', String(s.sides), word(s.sides, 'side.', 'sides.')]} : {ic: '〰️', t: ['It has', 'no', 'straight sides. It is curved.']});
+      f.push({ic: '📍', t: ['It has', s.corners ? String(s.corners) : 'no', word(s.corners, 'corner.', 'corners.')]});
+      if (s.sides >= 3) f.push({ic: '⚖️', t: ['Its sides are', s.same ? 'all the same' : 'not all the same', 'length.']});
+    } else {
+      f.push({ic: '🧊', t: ['It is', 'solid', '. It is not flat.']});
+      f.push({ic: '⬜', t: ['It has', s.faces ? String(s.faces) : 'no', word(s.faces, 'flat face.', 'flat faces.')]});
+      f.push({ic: '📍', t: ['It has', s.corners ? String(s.corners) : 'no', word(s.corners, 'corner (a point).', 'corners.')]});
+      f.push({ic: '🎳', t: ['It', s.rolls ? 'can' : 'cannot', 'roll.']});
+    }
+    f.push({ic: '👀', t: ['It looks like', s.like, '.']});
+    return f;
+  }
+  const say1 = fr => fr.t.join(' ').replace(/ \./g, '.').replace(/ ,/g, ',');
+  const fits = (s, fr) => frames(s).some(x => say1(x) === say1(fr));
+
+  function showFrames(list, shown, animateLast) {
+    $('frames').replaceChildren(...list.map((fr, i) => {
+      const d = document.createElement('div');
+      d.className = 'frame' + (i < shown ? ' on' : '') + (animateLast && i === shown - 1 && !reduce ? ' pop' : '');
+      d.innerHTML = `<span class="ic" aria-hidden="true">${i < shown ? fr.ic : '❔'}</span><span>${fr.t[0]} <span class="blank">${i < shown ? fr.t[1] : ''}</span>${fr.t[2].startsWith('.') ? '' : ' '}${fr.t[2]}</span>`;
+      if (i >= shown) d.setAttribute('aria-hidden', 'true');
+      return d;
+    }));
+  }
+
+  // ---------- strip ----------
+  function strip() {
+    $('strip').replaceChildren(...S.map(s => {
+      const b = document.createElement('button');
+      b.className = 'chip'; b.dataset.id = s.id; b.setAttribute('aria-pressed', 'false');
+      b.setAttribute('aria-label', s.name);
+      const svg = el('svg', {viewBox: '-130 -130 260 260', 'aria-hidden': 'true'});
+      draw(svg, s, false);
+      b.append(svg, s.name);
+      b.onclick = () => tapShape(s.id);
+      return b;
+    }));
+  }
+  const chip = id => $('strip').querySelector(`[data-id="${id}"]`);
+  const pressChip = id => [...$('strip').children].forEach(b => b.setAttribute('aria-pressed', b.dataset.id === id));
+
+  // ---------- sound ----------
+  const state = {mode: 'meet', cur: 'triangle', secret: null, clues: 0, out: new Set(), tries: 0, solved: 0, sound: true};
+  let ctx;
+  const audio = () => (ctx ||= new (window.AudioContext || window.webkitAudioContext)());
+  function tone(f, dur = .18, gain = .08, when = 0, type = 'triangle') {
+    if (!state.sound) return;
+    const a = audio(), o = a.createOscillator(), g = a.createGain(), t = a.currentTime + when;
+    o.type = type; o.frequency.value = f;
+    g.gain.setValueAtTime(.0001, t); g.gain.exponentialRampToValueAtTime(gain, t + .02); g.gain.exponentialRampToValueAtTime(.0001, t + dur);
+    o.connect(g).connect(a.destination); o.start(t); o.stop(t + dur + .05);
+  }
+  const SFX = {
+    tick: k => tone(440 * Math.pow(2, k / 6), .16),
+    yes: () => [523, 659, 784, 1047].forEach((f, i) => tone(f, .25, .08, i * .1)),
+    no: () => { tone(220, .22, .07, 0, 'sine'); tone(196, .3, .07, .2, 'sine'); },
+    clue: () => tone(880, .12, .05, 0, 'sine'),
+    cross: () => tone(300, .1, .05, 0, 'square'),
+  };
+
+  // ---------- Meet ----------
+  let counting = 0;
+  function meet(id) {
+    counting++;
+    state.cur = id; const s = byId[id];
+    pressChip(id); draw($('big'), s, true);
+    $('big').setAttribute('aria-label', s.name);
+    $('name').textContent = s.name;
+    const fr = frames(s);
+    showFrames(fr, fr.length);
+    $('tip').innerHTML = s.flat
+      ? `<b>Talk about it:</b> Where do you see a ${s.name} in our classroom?`
+      : `<b>Talk about it:</b> Would a ${s.name} roll or slide? Would it stack?`;
+    say([`This is a ${s.name}.`, ...fr.map(say1)]);
+  }
+  // count sides and corners out loud, marking each on the shape
+  async function countAlong() {
+    const s = byId[state.cur], me = ++counting;
+    draw($('big'), s, true);
+    const svg = $('big');
+    if (!s.flat || !s.pts) {
+      say(s.flat ? 'A circle has no straight sides and no corners. It is curved all the way around.' : frames(s).slice(1, 3).map(say1));
+      return;
+    }
+    const p = s.pts, n = p.length;
+    stopTalk();
+    say(`Let's count the sides.`);
+    await wait(1500);
+    for (let i = 0; i < n; i++) {
+      if (me !== counting) return;
+      const [a, b] = [p[i], p[(i + 1) % n]];
+      el('line', {x1: a[0], y1: a[1], x2: b[0], y2: b[1], stroke: '#ffd34d', 'stroke-width': 16, 'stroke-linecap': 'round', opacity: .95}, svg);
+      const mx = (a[0] + b[0]) / 2, my = (a[1] + b[1]) / 2, k = 1.28;
+      const t = el('text', {x: mx * k, y: my * k + 9, 'text-anchor': 'middle', class: 'count'}, svg); t.textContent = i + 1;
+      SFX.tick(i); say(String(i + 1));
+      await wait(900);
+    }
+    await wait(500);
+    if (me !== counting) return;
+    say(`${n} sides. Now the corners.`);
+    await wait(2200);
+    for (let i = 0; i < n; i++) {
+      if (me !== counting) return;
+      el('circle', {cx: p[i][0], cy: p[i][1], r: 13, class: 'mark'}, svg);
+      SFX.tick(i + 3); say(String(i + 1));
+      await wait(900);
+    }
+    if (me !== counting) return;
+    say(`A ${s.name} has ${n} sides and ${n} corners.`);
+  }
+
+  // ---------- Guess my shape ----------
+  function newGuess() {
+    const pool = S.filter(s => s.id !== state.secret);
+    state.secret = pool[Math.random() * pool.length | 0].id;
+    state.clues = 1; state.out.clear(); state.tries = 0;
+    [...$('strip').children].forEach(b => b.classList.remove('out'));
+    pressChip(null);
+    $('cover').hidden = false; $('cover-txt').textContent = 'Secret shape';
+    $('name').textContent = '';
+    draw($('big'), byId[state.secret], true);
+    showFrames(frames(byId[state.secret]), 1, true);
+    $('clue').disabled = false;
+    $('tip').innerHTML = '';
+    $('hint').innerHTML = '<b>Guess my shape.</b> Read the clue together. Which shapes could it be? Press <b>Cross out</b> to hide the ones that don\'t fit, then let someone guess.';
+    say(['I am thinking of a shape.', say1(frames(byId[state.secret])[0])]);
+  }
+  function nextClue() {
+    const fr = frames(byId[state.secret]);
+    if (state.clues >= fr.length) return;
+    state.clues++;
+    showFrames(fr, state.clues, true); SFX.clue();
+    if (state.clues >= fr.length) $('clue').disabled = true;
+    say(say1(fr[state.clues - 1]));
+  }
+  // cross out every shape that doesn't match the clues so far
+  function crossOut() {
+    const shown = frames(byId[state.secret]).slice(0, state.clues);
+    let n = 0;
+    for (const s of S) if (!shown.every(fr => fits(s, fr)) && !state.out.has(s.id)) { state.out.add(s.id); chip(s.id).classList.add('out'); n++; }
+    SFX.cross();
+    const left = S.length - state.out.size;
+    $('tip').innerHTML = `<b>${left} ${left === 1 ? 'shape fits' : 'shapes fit'}</b> the clues so far.`;
+    say(n ? `${left} ${left === 1 ? 'shape fits' : 'shapes fit'}.` : 'Every shape left still fits.');
+  }
+  function guess(id) {
+    const s = byId[id], sec = byId[state.secret];
+    state.tries++;
+    if (id === state.secret) return win();
+    chip(id).classList.add('out'); state.out.add(id);
+    if (!reduce) { chip(id).classList.remove('wrong'); void chip(id).offsetWidth; chip(id).classList.add('wrong'); }
+    SFX.no();
+    // explain using the first clue the guess breaks
+    const broken = frames(sec).slice(0, state.clues).find(fr => !fits(s, fr));
+    const why = broken ? `The clue says: ${say1(broken)}` : 'It fits the clues so far. Ask for another clue!';
+    $('tip').innerHTML = `<b>Not a ${s.name}.</b> ${why}`;
+    say([`Not a ${s.name}.`, broken ? say1(broken) : 'It fits the clues so far. Ask for another clue!']);
+  }
+  function win() {
+    const s = byId[state.secret];
+    state.solved++;
+    $('cover').hidden = true; $('name').textContent = s.name;
+    showFrames(frames(s), frames(s).length);
+    pressChip(s.id); SFX.yes();
+    $('clue').disabled = true;
+    $('score').textContent = `Shapes found: ${state.solved}`;
+    $('tip').innerHTML = `<b>Yes! It's a ${s.name}.</b> You used ${state.clues} ${state.clues === 1 ? 'clue' : 'clues'}.`;
+    say([`Yes! It is a ${s.name}.`]);
+  }
+  function reveal() {
+    const s = byId[state.secret];
+    $('cover').hidden = true; $('name').textContent = s.name;
+    showFrames(frames(s), frames(s).length); pressChip(s.id);
+    $('clue').disabled = true;
+    say(`It was a ${s.name}.`);
+  }
+
+  // ---------- Partner talk ----------
+  function newPartner() {
+    const pool = S.filter(s => s.id !== state.secret);
+    state.secret = pool[Math.random() * pool.length | 0].id;
+    state.out.clear();
+    [...$('strip').children].forEach(b => b.classList.remove('out'));
+    pressChip(null);
+    $('cover').hidden = false; $('cover-txt').textContent = 'Describer, hold to peek';
+    $('name').textContent = '';
+    draw($('big'), byId[state.secret], true);
+    // frames with the blanks empty: the describer fills them by talking
+    const blanks = byId[state.secret].flat
+      ? [{ic: '📄', t: ['It is', '…', '.']}, {ic: '📏', t: ['It has', '…', 'sides.']}, {ic: '📍', t: ['It has', '…', 'corners.']}, {ic: '👀', t: ['It looks like', '…', '.']}]
+      : [{ic: '🧊', t: ['It is', '…', '.']}, {ic: '⬜', t: ['It has', '…', 'flat faces.']}, {ic: '🎳', t: ['It', '…', 'roll.']}, {ic: '👀', t: ['It looks like', '…', '.']}];
+    $('frames').replaceChildren(...blanks.map(fr => { const d = document.createElement('div'); d.className = 'frame on'; d.innerHTML = `<span class="ic" aria-hidden="true">${fr.ic}</span><span>${fr.t[0]} <span class="blank" style="color:#bdb4e6">___</span> ${fr.t[2]}</span>`; return d; }));
+    $('tip').innerHTML = '';
+    $('hint').innerHTML = '<b>Partner talk.</b> Choose a describer. Everyone else closes their eyes while the describer holds <b>peek</b>. The describer uses the sentence frames, and the class taps a shape to guess.';
+    say('Describer, hold the peek button. Everyone else, close your eyes!');
+  }
+  function peek(on) {
+    if (state.mode !== 'partner') return;
+    $('cover').hidden = on;
+  }
+  function partnerGuess(id) {
+    if (id === state.secret) {
+      const s = byId[id];
+      $('cover').hidden = true; $('name').textContent = s.name; pressChip(id); SFX.yes();
+      $('tip').innerHTML = `<b>Yes! It's a ${s.name}.</b> Describer, which clue helped the most?`;
+      return say(`Yes! It is a ${s.name}.`);
+    }
+    chip(id).classList.add('out'); SFX.no();
+    $('tip').innerHTML = `<b>Not a ${byId[id].name}.</b> Describer, give another clue.`;
+    say(`Not a ${byId[id].name}. Describer, give another clue.`);
+  }
+
+  function tapShape(id) {
+    if (state.mode === 'meet') return meet(id);
+    if (state.out.has(id) && state.mode === 'guess') return;
+    if (state.mode === 'guess') return $('cover').hidden ? meet0(id) : guess(id);
+    return partnerGuess(id);
+  }
+  // after a round is solved, tapping a shape just shows it until the next round
+  const meet0 = id => { if (id !== state.secret) return; };
+
+  function setMode(m) {
+    state.mode = m; counting++;
+    for (const [id, k] of [['m-meet', 'meet'], ['m-guess', 'guess'], ['m-partner', 'partner']]) $(id).setAttribute('aria-pressed', m === k);
+    $('meet-btns').hidden = m !== 'meet'; $('guess-btns').hidden = m !== 'guess'; $('partner-btns').hidden = m !== 'partner';
+    $('cover').hidden = true; state.out.clear();
+    [...$('strip').children].forEach(b => b.classList.remove('out'));
+    stopTalk();
+    if (m === 'meet') {
+      $('hint').innerHTML = '<b>Meet the shapes.</b> Tap a shape. Read each sentence together, then press <b>Count with me</b> to count the sides and corners out loud.';
+      meet(state.cur);
+    }
+    if (m === 'guess') { state.secret = null; $('score').textContent = state.solved ? `Shapes found: ${state.solved}` : ''; newGuess(); }
+    if (m === 'partner') { state.secret = null; newPartner(); }
+  }
+  $('m-meet').onclick = () => setMode('meet');
+  $('m-guess').onclick = () => setMode('guess');
+  $('m-partner').onclick = () => setMode('partner');
+  $('count').onclick = countAlong;
+  $('clue').onclick = nextClue;
+  $('cross').onclick = crossOut;
+  $('reveal').onclick = reveal;
+  $('new-guess').onclick = newGuess;
+  $('p-new').onclick = newPartner;
+  $('p-reveal').onclick = () => { const s = byId[state.secret]; $('cover').hidden = true; $('name').textContent = s.name; pressChip(s.id); say(`It was a ${s.name}.`); };
+  const pk = $('peek');
+  pk.onpointerdown = e => { e.preventDefault(); peek(true); };
+  pk.onpointerup = pk.onpointerleave = pk.onpointercancel = () => { if (state.mode === 'partner' && $('name').textContent === '') peek(false); };
+  pk.onkeydown = e => { if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); peek(true); } };
+  pk.onkeyup = () => { if ($('name').textContent === '') peek(false); };
+  addEventListener('keydown', e => { if (e.target.closest('button') || !/^[1-3]$/.test(e.key)) return; setMode(['meet', 'guess', 'partner'][e.key - 1]); });
+
+  // ---------- sound and voice ----------
+  $('sound').onclick = e => {
+    state.sound = !state.sound;
+    e.currentTarget.setAttribute('aria-pressed', state.sound);
+    e.currentTarget.textContent = state.sound ? '🔔 Sound' : '🔇 Sound';
+    if (!state.sound) stopTalk();
+  };
+  function bestVoice() {
+    const voices = speechSynthesis.getVoices().filter(v => /^en(-|_|$)/i.test(v.lang));
+    const score = v => (/natural|neural/i.test(v.name) ? 50 : 0) + (/premium|enhanced/i.test(v.name) ? 40 : 0) +
+      (/google/i.test(v.name) ? 30 : 0) + (/aria|jenny|ava|samantha|libby|sonia/i.test(v.name) ? 10 : 0) +
+      (/en-US/i.test(v.lang) ? 5 : 0) + (v.default ? 1 : 0) - (/david|mark|zira|desktop/i.test(v.name) ? 20 : 0);
+    return voices.sort((a, b) => score(b) - score(a))[0] || null;
+  }
+  if ('speechSynthesis' in window) {
+    const speak = speechSynthesis.speak.bind(speechSynthesis);
+    speechSynthesis.speak = u => {
+      if (speechSynthesis.getVoices().length) return speak(u);
+      let done = false;
+      const go = () => { if (done) return; done = true; const v = bestVoice(); if (v) { u.voice = v; u.lang = v.lang; } speak(u); };
+      speechSynthesis.addEventListener('voiceschanged', go, {once: true});
+      setTimeout(go, 1500);
+    };
+    speechSynthesis.getVoices();
+  }
+  const CLIPS = {};
+  const allLines = () => [...new Set([
+    ...S.flatMap(s => [`This is a ${s.name}.`, ...frames(s).map(say1), `Not a ${s.name}.`, `Yes! It is a ${s.name}.`, `It was a ${s.name}.`, `Not a ${s.name}. Describer, give another clue.`]),
+    ...S.filter(s => s.pts).flatMap(s => [`${s.pts.length} sides. Now the corners.`, `A ${s.name} has ${s.pts.length} sides and ${s.pts.length} corners.`]),
+    ...['1', '2', '3', '4', '5', '6'], "Let's count the sides.", 'A circle has no straight sides and no corners. It is curved all the way around.',
+    'I am thinking of a shape.', 'It fits the clues so far. Ask for another clue!', 'Every shape left still fits.',
+    ...Array.from({length: 11}, (_, l) => `${l + 1} ${l ? 'shapes fit' : 'shape fits'}.`),
+    'Describer, hold the peek button. Everyone else, close your eyes!'])];
+  let talk = 0, clip = null, last = [];
+  function stopTalk() { talk++; if (clip) { clip.pause(); clip = null; } if ('speechSynthesis' in window) speechSynthesis.cancel(); }
+  function speakOne(text) {
+    return new Promise(done => {
+      if (CLIPS[text]) { clip = new Audio(CLIPS[text]); clip.onended = clip.onerror = () => done(); clip.play().catch(() => done()); return; }
+      if (!('speechSynthesis' in window)) return done();
+      const u = new SpeechSynthesisUtterance(text);
+      const v = bestVoice(); if (v) { u.voice = v; u.lang = v.lang; }
+      u.rate = .9; u.pitch = 1; u.onend = u.onerror = () => done();
+      speechSynthesis.speak(u);
+    });
+  }
+  async function say(parts, force) {
+    if (!state.sound && !force) return;
+    stopTalk();
+    const me = talk;
+    last = [].concat(parts);
+    for (const p of last) { if (me !== talk) return; await speakOne(p); await wait(150); }
+  }
+  $('read').onclick = () => say(last.length ? last : [$('hint').textContent], true);
+
+  strip();
+  showMotion();
+  window.__shape = {state, setMode, tapShape, nextClue, crossOut, countAlong, allLines, frames};  // for checking frames
+  setMode('meet');
+})();
+</script>
+</body>
+</html>

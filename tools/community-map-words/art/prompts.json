@@ -1,0 +1,220 @@
+{
+  "style": "Bright, friendly picture-book town for a kindergarten English lesson: simple clean shapes, bold outlines, cheerful colors, easy to name at a glance.",
+  "assets": [
+    {
+      "name": "school",
+      "prompt": "A cute cartoon a small red brick school building with a bell tower and a flag, seen from the front at a slight angle from above, like a building on a children's town map.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 260,
+      "quality": 76
+    },
+    {
+      "name": "library",
+      "prompt": "A cute cartoon a small library building with columns and big steps, seen from the front at a slight angle from above, like a building on a children's town map.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 260,
+      "quality": 76
+    },
+    {
+      "name": "fire",
+      "prompt": "A cute cartoon a red fire station with a big garage door and a fire truck peeking out, seen from the front at a slight angle from above, like a building on a children's town map.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 260,
+      "quality": 76
+    },
+    {
+      "name": "hospital",
+      "prompt": "A cute cartoon a white hospital building with a red cross sign and no words, seen from the front at a slight angle from above, like a building on a children's town map.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 260,
+      "quality": 76
+    },
+    {
+      "name": "police",
+      "prompt": "A cute cartoon a blue police station building with a light on top, no words, seen from the front at a slight angle from above, like a building on a children's town map.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 260,
+      "quality": 76
+    },
+    {
+      "name": "post",
+      "prompt": "A cute cartoon a small post office building with a blue mailbox in front, no words, seen from the front at a slight angle from above, like a building on a children's town map.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 260,
+      "quality": 76
+    },
+    {
+      "name": "grocery",
+      "prompt": "A cute cartoon a grocery store with an awning and fruit crates in front, no words, seen from the front at a slight angle from above, like a building on a children's town map.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 260,
+      "quality": 76
+    },
+    {
+      "name": "bakery",
+      "prompt": "A cute cartoon a cozy bakery shop with a striped awning and bread in the window, no words, seen from the front at a slight angle from above, like a building on a children's town map.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 260,
+      "quality": 76
+    },
+    {
+      "name": "park",
+      "prompt": "A cute cartoon a small park with a slide, swings and a tree, seen from the front at a slight angle from above, like a building on a children's town map.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 260,
+      "quality": 76,
+      "key": "magenta"
+    },
+    {
+      "name": "vet",
+      "prompt": "A cute cartoon a small animal clinic building with a paw print sign, no words, seen from the front at a slight angle from above, like a building on a children's town map.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 260,
+      "quality": 76
+    },
+    {
+      "name": "bus",
+      "prompt": "A cute cartoon a bus stop shelter with a bench and a yellow city bus beside it, seen from the front at a slight angle from above, like a building on a children's town map.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 260,
+      "quality": 76
+    },
+    {
+      "name": "farm",
+      "prompt": "A cute cartoon a red barn with a silo and a little fence, seen from the front at a slight angle from above, like a building on a children's town map.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 260,
+      "quality": 76
+    },
+    {
+      "name": "h-teacher",
+      "prompt": "A cheerful cartoon community helper: a friendly teacher holding a book, full body, standing, front view, warm smile. Make the twelve helpers a mix of ages, genders and skin tones.",
+      "cutout": true,
+      "aspect": "3:4",
+      "height": 230,
+      "people": true
+    },
+    {
+      "name": "h-librarian",
+      "prompt": "A cheerful cartoon community helper: a friendly librarian holding a stack of picture books, full body, standing, front view, warm smile. Make the twelve helpers a mix of ages, genders and skin tones.",
+      "cutout": true,
+      "aspect": "3:4",
+      "height": 230,
+      "people": true,
+      "ref_mode": "style",
+      "ref": "h-teacher"
+    },
+    {
+      "name": "h-firefighter",
+      "prompt": "A cheerful cartoon community helper: a friendly firefighter in a helmet and gear, full body, standing, front view, warm smile. Make the twelve helpers a mix of ages, genders and skin tones.",
+      "cutout": true,
+      "aspect": "3:4",
+      "height": 230,
+      "people": true,
+      "ref_mode": "style",
+      "ref": "h-teacher"
+    },
+    {
+      "name": "h-doctor",
+      "prompt": "A cheerful cartoon community helper: a friendly doctor in a white coat with a stethoscope, full body, standing, front view, warm smile. Make the twelve helpers a mix of ages, genders and skin tones.",
+      "cutout": true,
+      "aspect": "3:4",
+      "height": 230,
+      "people": true,
+      "ref_mode": "style",
+      "ref": "h-teacher"
+    },
+    {
+      "name": "h-police",
+      "prompt": "A cheerful cartoon community helper: a friendly police officer in uniform, full body, standing, front view, warm smile. Make the twelve helpers a mix of ages, genders and skin tones.",
+      "cutout": true,
+      "aspect": "3:4",
+      "height": 230,
+      "people": true,
+      "ref_mode": "style",
+      "ref": "h-teacher"
+    },
+    {
+      "name": "h-mail",
+      "prompt": "A cheerful cartoon community helper: a friendly mail carrier with a mailbag, full body, standing, front view, warm smile. Make the twelve helpers a mix of ages, genders and skin tones.",
+      "cutout": true,
+      "aspect": "3:4",
+      "height": 230,
+      "people": true,
+      "ref_mode": "style",
+      "ref": "h-teacher"
+    },
+    {
+      "name": "h-cashier",
+      "prompt": "A cheerful cartoon community helper: a friendly grocery cashier in an apron, full body, standing, front view, warm smile. Make the twelve helpers a mix of ages, genders and skin tones.",
+      "cutout": true,
+      "aspect": "3:4",
+      "height": 230,
+      "people": true,
+      "ref_mode": "style",
+      "ref": "h-teacher"
+    },
+    {
+      "name": "h-baker",
+      "prompt": "A cheerful cartoon community helper: a friendly baker in a white hat holding a loaf of bread, full body, standing, front view, warm smile. Make the twelve helpers a mix of ages, genders and skin tones.",
+      "cutout": true,
+      "aspect": "3:4",
+      "height": 230,
+      "people": true,
+      "ref_mode": "style",
+      "ref": "h-teacher"
+    },
+    {
+      "name": "h-ranger",
+      "prompt": "A cheerful cartoon community helper: a friendly park ranger in a hat, full body, standing, front view, warm smile. Make the twelve helpers a mix of ages, genders and skin tones.",
+      "cutout": true,
+      "aspect": "3:4",
+      "height": 230,
+      "people": true,
+      "ref_mode": "style",
+      "ref": "h-teacher"
+    },
+    {
+      "name": "h-vet",
+      "prompt": "A cheerful cartoon community helper: a friendly veterinarian holding a puppy, full body, standing, front view, warm smile. Make the twelve helpers a mix of ages, genders and skin tones.",
+      "cutout": true,
+      "aspect": "3:4",
+      "height": 230,
+      "people": true,
+      "ref_mode": "style",
+      "ref": "h-teacher"
+    },
+    {
+      "name": "h-driver",
+      "prompt": "A cheerful cartoon community helper: a friendly bus driver in a cap, full body, standing, front view, warm smile. Make the twelve helpers a mix of ages, genders and skin tones.",
+      "cutout": true,
+      "aspect": "3:4",
+      "height": 230,
+      "people": true,
+      "ref_mode": "style",
+      "ref": "h-teacher"
+    },
+    {
+      "name": "h-farmer",
+      "prompt": "A cheerful cartoon community helper: a friendly farmer in overalls holding a basket of eggs, full body, standing, front view, warm smile. Make the twelve helpers a mix of ages, genders and skin tones.",
+      "cutout": true,
+      "aspect": "3:4",
+      "height": 230,
+      "people": true,
+      "ref_mode": "style",
+      "ref": "h-teacher"
+    }
+  ]
+}

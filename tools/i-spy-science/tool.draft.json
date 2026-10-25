@@ -1,0 +1,20 @@
+{
+  "id": "i-spy-science",
+  "status": "beta",
+  "driver": "teacher",
+  "modes": [
+    "Explore",
+    "I spy",
+    "Describe it"
+  ],
+  "grades_label": "Grades K-2",
+  "third_party": [],
+  "updated": "2026-10-25",
+  "hook": "A pond, a garden, a forest floor and a beach, each with six things to find. Zoom in and hear the word, play I spy from clues, then build a describing sentence and say it together.",
+  "outcome": "Name living and nonliving things in nature and describe them by color, size, parts, texture and what they can do",
+  "minutes": "10-20",
+  "sources": [
+    "Illustrations drawn with FLUX.1-schnell (Apache 2.0) on a local computer, edited for Curio Class",
+    "Sounds generated in the browser"
+  ]
+}

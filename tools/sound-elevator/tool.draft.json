@@ -1,0 +1,21 @@
+{
+  "id": "sound-elevator",
+  "status": "beta",
+  "driver": "teacher",
+  "modes": [
+    "Ride",
+    "High or low?",
+    "Loud or soft?",
+    "Echo"
+  ],
+  "grades_label": "Grades K-2",
+  "third_party": [],
+  "updated": "2026-10-25",
+  "hook": "Mo the mouse rides an elevator through eight floors of a musical scale. Up sounds higher, down sounds lower, and the volume dial makes it glow loud or soft. Then guess with the doors shut.",
+  "outcome": "Hear and describe high and low pitch, loud and soft dynamics, and whether a tune moves up or down",
+  "minutes": "10-15",
+  "sources": [
+    "Illustrations drawn with FLUX.1-schnell (Apache 2.0) on a local computer, edited for Curio Class",
+    "Notes and sounds generated in the browser"
+  ]
+}

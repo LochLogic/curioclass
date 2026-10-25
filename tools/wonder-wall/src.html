@@ -1,0 +1,431 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wonder Wall · Asking good questions · Curio Class</title>
+<meta name="description" content="A class wonder wall for the projector: sort questions into look it up, ask an expert and try it, add your class's own wonders, and pick the question that helps you learn more. Grades K-2 library, teacher-led. Works offline.">
+<!--
+WONDER WALL (Curio Class)
+Grades K-2 school library, AASL National School Library Standards, Inquire (I.A: display curiosity, ask
+questions; I.B: find information in different ways).
+Teacher-led on a projector. Sort (sticky-note questions go to Look it up, Ask an expert or Try it; some fit two
+places and the tool says so), Our wonders (type the class's own questions and sort them together; they stay on
+this device only) and Better questions (choose the question that helps you learn more: a "what" or "why" over a
+yes-or-no).
+Drawn with CSS and SVG. One file, no network requests. Content CC BY 4.0, code MIT. curioclass.org
+-->
+<style>
+:root{
+  --paper:#fbf6ee;--ink:#2b2520;--muted:#6a5e52;--line:#eadcc8;--focus:#2f5bd3;--brand:#2e7d6b;
+  --look:#3d7bd9;--ask:#d9643d;--try:#3c9b4f;
+  font-family:'Segoe UI',system-ui,-apple-system,Roboto,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0;height:100%}
+body{background:var(--paper);color:var(--ink);display:grid;grid-template-rows:auto 1fr;min-height:100vh}
+button,input{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:4px solid var(--focus);outline-offset:3px}
+header{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:12px 20px;background:var(--brand);color:#f2fbf7}
+h1{margin:0 auto 0 0;font:800 clamp(22px,3vw,32px)/1.1 'Trebuchet MS','Segoe UI',sans-serif}
+h1 small{display:block;font:500 15px/1.3 'Segoe UI',sans-serif;color:#cdeee4}
+.seg{display:inline-flex;border:2px solid #5fa898;border-radius:999px;overflow:hidden}
+.seg button{border:0;background:#3a8f7b;color:#f2fbf7;min-height:52px;padding:0 16px;font-weight:700;font-size:16px}
+.seg button[aria-pressed="true"]{background:#ffd34d;color:#3a2c00}
+.icon-btn{border:2px solid #5fa898;background:#3a8f7b;color:#f2fbf7;border-radius:999px;min-height:52px;padding:0 16px;font-weight:700;font-size:16px}
+
+main{display:grid;grid-template-columns:1fr;min-height:0}
+@media (min-width:760px){main{grid-template-columns:minmax(0,1fr) 330px}}
+/* cork */
+.stage{position:relative;overflow:hidden;min-height:340px;background:
+  radial-gradient(circle at 20% 30%,#0000000d 0 2px,transparent 3px) 0 0/17px 19px,
+  radial-gradient(circle at 70% 60%,#ffffff22 0 1.5px,transparent 2.5px) 0 0/23px 13px,
+  radial-gradient(circle at 40% 80%,#5a32100f 0 2px,transparent 3px) 0 0/11px 29px,
+  linear-gradient(135deg,#c9955f,#b98348);border:14px solid #8a5a32;border-width:14px 0 0 14px}
+.scene{position:absolute;left:50%;top:50%;width:1000px;height:620px;transform:translate(-50%,-50%) scale(var(--s,1))}
+
+.title{position:absolute;left:50%;top:14px;transform:translateX(-50%) rotate(-1deg);background:#fffdf5;padding:6px 30px;font:900 40px 'Trebuchet MS',sans-serif;letter-spacing:.04em;box-shadow:0 4px 8px #0003;white-space:nowrap}
+.title b{color:#e6a700}
+
+.bins{position:absolute;left:20px;right:20px;bottom:16px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.bin{position:relative;border:5px dashed #fff9;border-radius:24px;background:#ffffff26;min-height:215px;padding:72px 10px 10px;display:flex;flex-wrap:wrap;gap:6px;align-content:flex-start;justify-content:center;transition:background .2s,border-color .2s}
+.bin .head{position:absolute;left:10px;right:10px;top:10px;height:54px;border-radius:16px;background:var(--c);color:#fff;display:flex;align-items:center;justify-content:center;gap:10px;font:900 25px 'Trebuchet MS',sans-serif;box-shadow:0 4px 0 #0003}
+.bin .head span{font-size:30px}
+.bin.over{background:#fff6;border-color:#ffd34d}
+.bin .mini{width:84px;min-height:62px;background:var(--n,#fff59d);font:700 11px/1.2 'Trebuchet MS',sans-serif;padding:6px;box-shadow:0 2px 4px #0003;transform:rotate(var(--r,0deg))}
+button.bin{cursor:pointer;font:inherit;color:inherit;text-align:center}
+
+.note{position:absolute;left:50%;top:84px;width:400px;min-height:200px;transform:translateX(-50%) rotate(var(--r,-2deg));background:var(--n,#fff59d);box-shadow:0 10px 18px #0004;padding:34px 26px 22px;font:800 32px/1.25 'Trebuchet MS',sans-serif;text-align:center;touch-action:none;cursor:grab;user-select:none}
+.note::before{content:'';position:absolute;left:50%;top:-12px;width:26px;height:26px;margin-left:-13px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#ff8a80,#c62828);box-shadow:0 3px 4px #0005}
+.note.fly{animation:fly .5s cubic-bezier(.3,1.4,.5,1)}
+@keyframes fly{from{transform:translateX(-50%) translateY(-260px) rotate(12deg);opacity:0}}
+.note small{display:block;font:700 17px/1.3 'Segoe UI',sans-serif;color:#5d5340;margin-top:10px}
+
+.fb{position:absolute;left:50%;top:316px;transform:translateX(-50%);width:640px;background:#fffdf5;border-radius:18px;padding:10px 18px;font:700 20px/1.35 'Segoe UI',sans-serif;box-shadow:0 5px 10px #0003;text-align:center}
+.fb:empty{display:none}
+
+/* better questions */
+.pair{position:absolute;left:30px;right:30px;top:100px;display:grid;grid-template-columns:1fr 1fr;gap:30px}
+.pq{border:5px solid transparent;background:var(--n,#fff59d);min-height:220px;font:800 34px/1.25 'Trebuchet MS',sans-serif;padding:30px 24px;box-shadow:0 10px 18px #0004;transform:rotate(var(--r,0deg))}
+.pq.good{border-color:#2a9d4a}
+.pq.meh{opacity:.55}
+.why{position:absolute;left:60px;right:60px;top:380px;background:#fffdf5;border-radius:20px;padding:16px 22px;font:700 23px/1.4 'Segoe UI',sans-serif;box-shadow:0 6px 12px #0003}
+.why:empty{display:none}
+
+/* starters */
+.starters{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.starters button{border:0;border-radius:12px;min-height:46px;background:#fff59d;font:800 18px 'Trebuchet MS',sans-serif;box-shadow:0 3px 0 #0002}
+
+.panel{background:#fffcf6;border-left:3px solid var(--line);padding:14px 16px;display:flex;flex-direction:column;gap:12px;overflow:auto}
+@media (max-width:759px){.panel{border-left:0;border-top:3px solid var(--line)}}
+.hint{margin:0;font:600 18px/1.35 'Segoe UI',sans-serif;color:var(--muted)}
+.hint b{color:var(--ink)}
+.big-btn{border:0;border-radius:16px;min-height:60px;font:800 20px/1.1 'Trebuchet MS','Segoe UI',sans-serif;color:#fff;background:var(--brand);box-shadow:0 5px 0 #0004;padding:6px 10px}
+.big-btn:active{transform:translateY(3px);box-shadow:0 2px 0 #0004}
+.big-btn.soft{background:#efe5d6;color:var(--ink)}
+.big-btn.gold{background:#ffd34d;color:#3a2c00}
+.col{display:flex;flex-direction:column;gap:8px}
+.row{display:flex;gap:8px}.row .big-btn{flex:1}
+.lbl{font:700 15px 'Segoe UI',sans-serif;color:var(--muted);margin:2px 0 -4px}
+.field{border:3px solid var(--line);border-radius:14px;min-height:56px;padding:8px 12px;font:700 19px 'Segoe UI',sans-serif;width:100%;background:#fff}
+.tip{margin:0;background:#eaf6f1;border-left:6px solid #5fa898;border-radius:10px;padding:10px 12px;font:600 17px/1.4 'Segoe UI',sans-serif}
+.tip:empty{display:none}
+.score{font:800 20px 'Trebuchet MS',sans-serif;color:var(--brand)}
+.calm .note.fly{animation:none}
+
+@media (max-width:759px),(max-height:640px){
+  header{padding:6px 12px} h1{font-size:19px} h1 small{display:none}
+  .seg button,.icon-btn{min-height:38px;font-size:13px;padding:0 10px}
+  main{grid-template-columns:minmax(0,1fr) 260px}
+  .panel{padding:8px 10px;gap:8px}
+  .hint,.tip{font-size:14px}
+  .big-btn{min-height:44px;font-size:16px}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Wonder Wall <small>I wonder... How could we find out?</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-sort" aria-pressed="true">Sort</button>
+    <button id="m-ours" aria-pressed="false">Our wonders</button>
+    <button id="m-better" aria-pressed="false">Better questions</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true" title="Turn animation on or off">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+  <button class="icon-btn" id="read">🔊 Read</button>
+</header>
+<main>
+  <div class="stage" id="stage">
+    <div class="scene" id="scene">
+      <div class="title">I <b>WONDER</b>...</div>
+      <div id="note-slot"></div>
+      <div class="fb" id="fb" aria-live="polite"></div>
+      <div class="bins" id="bins"></div>
+      <div class="pair" id="pair" hidden></div>
+      <div class="why" id="why" hidden></div>
+    </div>
+  </div>
+  <aside class="panel">
+    <p class="hint" id="hint"></p>
+    <div class="col" id="ctrl"></div>
+    <p class="tip" id="tip"></p>
+  </aside>
+</main>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  let reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  try { const m = localStorage.getItem('curio-motion'); if (m) reduce = m === 'calm'; } catch {}
+  function showMotion() {
+    document.body.classList.toggle('calm', reduce);
+    $('motion').setAttribute('aria-pressed', !reduce);
+    $('motion').textContent = reduce ? '⏸ Motion' : '✨ Motion';
+  }
+  $('motion').onclick = () => { reduce = !reduce; try { localStorage.setItem('curio-motion', reduce ? 'calm' : 'on'); } catch {} showMotion(); };
+  const wait = ms => new Promise(r => setTimeout(r, ms));
+  const fit = () => { const r = $('stage').getBoundingClientRect(); $('scene').style.setProperty('--s', Math.min(r.width / 1000, r.height / 620)); };
+  new ResizeObserver(fit).observe($('stage'));
+
+  // ---------- the three ways to find out ----------
+  const BINS = {
+    look: {t: 'Look it up', e: '📚', c: 'var(--look)', why: 'Someone already knows this, and it\'s written down in a book or on a trusted website.'},
+    ask: {t: 'Ask an expert', e: '🧑‍🔬', c: 'var(--ask)', why: 'A person who does this job or studies it can tell us.'},
+    try: {t: 'Try it', e: '🧪', c: 'var(--try)', why: 'We can test it ourselves and watch what happens.'},
+  };
+  const KEYS = Object.keys(BINS);
+  // q, best ways, who (for ask), reason
+  const Q = [
+    {q: 'How many legs does a spider have?', b: ['look'], r: 'A book about spiders will tell us: eight!'},
+    {q: 'Will a plant grow faster by the window or in the closet?', b: ['try'], r: 'Grow two plants and watch them for two weeks.'},
+    {q: 'What does a firefighter do all day?', b: ['ask'], r: 'Invite a firefighter to visit, or write them a letter.'},
+    {q: 'Does a heavy ball roll down a ramp faster than a light ball?', b: ['try'], r: 'Build a ramp and race them!'},
+    {q: 'Where do penguins live?', b: ['look'], r: 'A nonfiction book or a map can show us.'},
+    {q: 'How do you take care of a sick dog?', b: ['ask', 'look'], r: 'A veterinarian knows best. A pet care book helps too.'},
+    {q: 'Which paper towel soaks up the most water?', b: ['try'], r: 'Test three kinds with the same amount of water.'},
+    {q: 'What was our school like 50 years ago?', b: ['ask', 'look'], r: 'Ask someone who went here long ago, or look at old yearbooks.'},
+    {q: 'What do sharks eat?', b: ['look'], r: 'An ocean animal book will tell us.'},
+    {q: 'Does ice melt faster in the sun or in the shade?', b: ['try'], r: 'Put two ice cubes out and time them.'},
+    {q: 'How does a dentist fix a cavity?', b: ['ask'], r: 'A dentist can explain it at your next visit.'},
+    {q: 'How tall is the tallest tree in the world?', b: ['look'], r: 'Scientists measured it, and books share it. It\'s taller than a 30-story building!'},
+    {q: 'What makes a good bread recipe?', b: ['ask', 'try'], r: 'Ask a baker, then try baking it yourself.'},
+    {q: 'Will a magnet pick up a paper clip? A penny? A spoon?', b: ['try'], r: 'Grab a magnet and test each one.'},
+    {q: 'Why do leaves change color in fall?', b: ['look', 'ask'], r: 'A science book explains it, or ask a park ranger.'},
+    {q: 'How do you build a bridge that won\'t fall down?', b: ['ask', 'try'], r: 'An engineer can tell us, and we can build one with blocks.'},
+    {q: 'What do astronauts eat in space?', b: ['look', 'ask'], r: 'Space books and NASA have pictures. Some classes even talk with astronauts!'},
+    {q: 'Which way does a shadow point in the morning?', b: ['try'], r: 'Go outside in the morning and look.'},
+  ];
+  const BETTER = [
+    {a: 'Do frogs eat?', b: 'What do frogs eat, and how do they catch it?', good: 'b', why: 'A yes-or-no question stops at "yes." The second one makes us learn something new.'},
+    {a: 'Why is the sky blue?', b: 'Is the sky blue?', good: 'a', why: '"Why" questions dig deeper. We can already see that the sky is blue!'},
+    {a: 'Are volcanoes hot?', b: 'What happens inside a volcano before it erupts?', good: 'b', why: 'The second question has a lot to discover. The first one is answered in one word.'},
+    {a: 'How do bees make honey?', b: 'Do bees like flowers?', good: 'a', why: '"How" questions lead to steps and details.'},
+    {a: 'Is the ocean big?', b: 'What lives at the very bottom of the ocean?', good: 'b', why: 'The second question takes us somewhere new.'},
+    {a: 'How did people talk to each other before phones?', b: 'Did people have phones long ago?', good: 'a', why: '"How did people..." opens up stories about letters, messengers and more.'},
+    {a: 'Is my dog smart?', b: 'How do dogs learn new tricks?', good: 'b', why: 'The second question can be answered by looking it up or asking a dog trainer.'},
+  ];
+  const NOTES = ['#fff59d', '#ffcc80', '#a5d6a7', '#90caf9', '#f48fb1', '#ce93d8'];
+
+  const state = {mode: 'sort', order: [], at: -1, placed: [], right: 0, ours: [], oursAt: -1, bAt: -1, sound: true};
+  try { state.ours = JSON.parse(localStorage.getItem('curio-wonders') || '[]'); } catch {}
+  const saveOurs = () => { try { localStorage.setItem('curio-wonders', JSON.stringify(state.ours)); } catch {} };
+
+  // ---------- sound ----------
+  let ctx;
+  const audio = () => (ctx ||= new (window.AudioContext || window.webkitAudioContext)());
+  function tone(f, dur = .2, gain = .07, when = 0, type = 'triangle') {
+    if (!state.sound) return;
+    const a = audio(), o = a.createOscillator(), g = a.createGain(), t = a.currentTime + when;
+    o.type = type; o.frequency.value = f;
+    g.gain.setValueAtTime(.0001, t); g.gain.exponentialRampToValueAtTime(gain, t + .02); g.gain.exponentialRampToValueAtTime(.0001, t + dur);
+    o.connect(g).connect(a.destination); o.start(t); o.stop(t + dur + .05);
+  }
+  const SFX = {
+    yes: () => [523, 659, 784].forEach((f, i) => tone(f, .25, .08, i * .1)),
+    also: () => [523, 784].forEach((f, i) => tone(f, .25, .07, i * .12)),
+    hmm: () => { tone(392, .2, .06, 0, 'sine'); tone(349, .25, .06, .2, 'sine'); },
+    pin: () => tone(1400, .06, .05, 0, 'square'),
+  };
+
+  // ---------- the bins ----------
+  function bins() {
+    $('bins').replaceChildren(...KEYS.map(k => {
+      const b = document.createElement('button');
+      b.className = 'bin'; b.dataset.k = k; b.style.setProperty('--c', BINS[k].c);
+      b.innerHTML = `<div class="head"><span aria-hidden="true">${BINS[k].e}</span>${BINS[k].t}</div>`;
+      b.setAttribute('aria-label', BINS[k].t);
+      b.onclick = () => drop(k);
+      return b;
+    }));
+    for (const p of state.placed) addMini(p.k, p.q, p.n);
+  }
+  function addMini(k, q, n) {
+    const bin = $('bins').querySelector(`[data-k="${k}"]`); if (!bin) return;
+    const m = document.createElement('div');
+    m.className = 'mini'; m.textContent = q; m.style.setProperty('--n', n); m.style.setProperty('--r', (Math.random() * 6 - 3) + 'deg');
+    bin.append(m);
+    const minis = bin.querySelectorAll('.mini'); if (minis.length > 6) minis[0].remove();
+  }
+
+  // ---------- a sticky note you can drag ----------
+  let cur = null;
+  function showNote(q, sub = '') {
+    const n = NOTES[Math.random() * NOTES.length | 0];
+    cur = {q, n};
+    $('note-slot').innerHTML = `<div class="note${reduce ? '' : ' fly'}" id="note" style="--n:${n};--r:${(Math.random() * 6 - 3).toFixed(1)}deg" tabindex="0" role="note">${q}${sub ? `<small>${sub}</small>` : ''}</div>`;
+    $('fb').textContent = '';
+    SFX.pin();
+    const note = $('note');
+    note.onpointerdown = e => {
+      e.preventDefault();
+      const s = parseFloat(getComputedStyle($('scene')).getPropertyValue('--s')) || 1, x0 = e.clientX, y0 = e.clientY;
+      note.setPointerCapture(e.pointerId);
+      note.onpointermove = ev => {
+        note.style.translate = `${(ev.clientX - x0) / s}px ${(ev.clientY - y0) / s}px`;
+        const over = document.elementsFromPoint(ev.clientX, ev.clientY).find(n => n.classList && n.classList.contains('bin'));
+        document.querySelectorAll('.bin').forEach(b => b.classList.toggle('over', b === over));
+      };
+      note.onpointerup = ev => {
+        note.onpointermove = note.onpointerup = null;
+        const over = document.elementsFromPoint(ev.clientX, ev.clientY).find(n => n.classList && n.classList.contains('bin'));
+        document.querySelectorAll('.bin').forEach(b => b.classList.remove('over'));
+        note.style.translate = '';
+        if (over) drop(over.dataset.k);
+      };
+    };
+  }
+
+  // ---------- Sort ----------
+  function nextSort() {
+    if (state.at >= state.order.length - 1 || !state.order.length) { state.order = Q.map((_, i) => i).sort(() => Math.random() - .5).slice(0, 10); state.at = -1; state.right = 0; state.placed = []; bins(); }
+    state.at++;
+    const q = Q[state.order[state.at]];
+    showNote(q.q);
+    $('tip').innerHTML = '';
+    $('score').textContent = `Question ${state.at + 1} of ${state.order.length}`;
+    say([q.q, 'How could we find out?']);
+  }
+  function drop(k) {
+    if (!cur || !$('note')) return;
+    if (state.mode === 'ours') return oursDrop(k);
+    if (state.mode !== 'sort') return;
+    const q = Q[state.order[state.at]], best = q.b.includes(k);
+    if (best) {
+      state.placed.push({k, q: q.q, n: cur.n}); addMini(k, q.q, cur.n);
+      $('note-slot').innerHTML = '';
+      const also = q.b.filter(x => x !== k).map(x => BINS[x].t.toLowerCase());
+      $('fb').innerHTML = `<b>${BINS[k].e} ${BINS[k].t}!</b> ${q.r}${also.length ? ` <i>You could also ${also.join(' or ')}.</i>` : ''}`;
+      also.length ? SFX.also() : SFX.yes();
+      state.right++;
+      cur = null;
+      say([`${BINS[k].t}!`, q.r]);
+      if (state.at === state.order.length - 1) $('tip').innerHTML = `<b>The wall is full!</b> Which question would you most like to find out about?`;
+    } else {
+      SFX.hmm();
+      $('fb').innerHTML = `Hmm, could we <b>${BINS[k].t.toLowerCase()}</b>? ${hmm(k, q)}`;
+      say(`Hmm. ${hmm(k, q)}`);
+    }
+  }
+  const hmm = (k, q) => k === 'try' ? 'Can we really test this in our classroom? Think about where the answer is.' : k === 'ask' ? 'Who would we ask? Maybe there\'s an easier way.' : 'Is it written down somewhere? Or do we need to find out ourselves?';
+
+  // ---------- Our wonders ----------
+  function oursShow() {
+    const n = state.ours.length;
+    $('ctrl').innerHTML = `<p class="lbl">Type a class wonder</p><input class="field" id="qin" maxlength="90" placeholder="I wonder why..." aria-label="A class wonder"><button class="big-btn gold" id="add">📌 Pin it</button>
+      <p class="lbl">Question starters</p><div class="starters">${['Who', 'What', 'Where', 'When', 'Why', 'How'].map(w => `<button data-w="${w}">${w}...</button>`).join('')}</div>
+      <div class="row"><button class="big-btn" id="nexto" ${n ? '' : 'disabled'}>Next wonder →</button><button class="big-btn soft" id="clr">Clear all</button></div>`;
+    $('add').onclick = () => { const v = $('qin').value.trim(); if (!v) return $('qin').focus(); state.ours.push({q: v.endsWith('?') ? v : v + '?', k: null}); saveOurs(); state.oursAt = state.ours.length - 1; showNote(state.ours[state.oursAt].q, 'Where would we find out?'); oursShow(); };
+    $('qin').onkeydown = e => { if (e.key === 'Enter') $('add').click(); };
+    $('ctrl').querySelectorAll('[data-w]').forEach(b => b.onclick = () => { $('qin').value = b.dataset.w + ' '; $('qin').focus(); say(`${b.dataset.w}...`); });
+    $('nexto').onclick = () => { const todo = state.ours.findIndex(o => !o.k); state.oursAt = todo >= 0 ? todo : (state.oursAt + 1) % state.ours.length; showNote(state.ours[state.oursAt].q, 'Where would we find out?'); };
+    $('clr').onclick = () => { if (!confirm('Take every class wonder off the wall?')) return; state.ours = []; saveOurs(); $('note-slot').innerHTML = ''; oursBins(); oursShow(); };
+  }
+  function oursBins() {
+    state.placed = state.ours.filter(o => o.k).map(o => ({k: o.k, q: o.q, n: NOTES[o.q.length % NOTES.length]}));
+    bins();
+  }
+  function oursDrop(k) {
+    const o = state.ours[state.oursAt]; if (!o) return;
+    o.k = k; saveOurs();
+    addMini(k, o.q, cur.n); $('note-slot').innerHTML = ''; cur = null;
+    SFX.yes();
+    $('fb').innerHTML = `<b>${BINS[k].e} ${BINS[k].t}.</b> ${BINS[k].why} ${k === 'ask' ? 'Who could we ask?' : k === 'look' ? 'What kind of book would have it?' : 'What would we need to test it?'}`;
+    say([`${BINS[k].t}.`, k === 'ask' ? 'Who could we ask?' : k === 'look' ? 'What kind of book would have it?' : 'What would we need to test it?']);
+  }
+
+  // ---------- Better questions ----------
+  function nextBetter() {
+    state.bAt = (state.bAt + 1) % BETTER.length;
+    const p = BETTER[state.bAt];
+    $('pair').replaceChildren(...['a', 'b'].map((k, i) => {
+      const b = document.createElement('button');
+      b.className = 'pq'; b.style.setProperty('--n', NOTES[(state.bAt * 2 + i) % NOTES.length]); b.style.setProperty('--r', (i ? 2 : -2) + 'deg');
+      b.textContent = p[k];
+      b.onclick = () => {
+        const good = k === p.good;
+        $('pair').querySelectorAll('.pq').forEach((x, j) => { x.classList.toggle('good', ['a', 'b'][j] === p.good); x.classList.toggle('meh', ['a', 'b'][j] !== p.good); });
+        $('why').hidden = false;
+        $('why').innerHTML = `${good ? '<b>Yes!</b> ' : '<b>Good thinking, but look at the other one.</b> '}${p.why}`;
+        good ? SFX.yes() : SFX.hmm();
+        say([good ? 'Yes!' : 'Look at the other one.', p.why]);
+      };
+      return b;
+    }));
+    $('why').hidden = true; $('why').innerHTML = '';
+    say(['Which question helps us learn more?', p.a, 'or', p.b]);
+  }
+
+  function setMode(m) {
+    state.mode = m; stopTalk(); cur = null;
+    for (const [id, k] of [['m-sort', 'sort'], ['m-ours', 'ours'], ['m-better', 'better']]) $(id).setAttribute('aria-pressed', m === k);
+    const better = m === 'better';
+    $('bins').hidden = better; $('note-slot').hidden = better; $('fb').hidden = better; $('pair').hidden = !better; $('why').hidden = true;
+    $('note-slot').innerHTML = ''; $('fb').innerHTML = ''; $('tip').innerHTML = '';
+    if (m === 'sort') {
+      $('ctrl').innerHTML = '<button class="big-btn" id="next">Next question →</button><div class="score" id="score"></div>';
+      $('next').onclick = nextSort;
+      $('hint').innerHTML = '<b>Sort.</b> Read the wonder together. How could we find out? Drag the note to a bin, or tap a bin. Some wonders fit two ways.';
+      state.order = []; state.placed = []; bins(); nextSort();
+    }
+    if (m === 'ours') {
+      $('hint').innerHTML = '<b>Our wonders.</b> Ask the class what they wonder about. Type it and pin it, then decide together how to find out. The wall stays on this computer for next time.';
+      $('tip').innerHTML = 'Wonders are saved on this computer only. Avoid names or anything private.';
+      oursBins(); oursShow();
+      const todo = state.ours.findIndex(o => !o.k);
+      if (todo >= 0) { state.oursAt = todo; showNote(state.ours[todo].q, 'Where would we find out?'); }
+      say('What do you wonder about?');
+    }
+    if (better) {
+      $('ctrl').innerHTML = '<button class="big-btn" id="nextb">Next pair →</button>';
+      $('nextb').onclick = nextBetter;
+      $('hint').innerHTML = '<b>Better questions.</b> Two wonders about the same thing. Which one helps us learn more? Vote, then tap it.';
+      state.bAt = -1; nextBetter();
+    }
+  }
+  $('m-sort').onclick = () => setMode('sort');
+  $('m-ours').onclick = () => setMode('ours');
+  $('m-better').onclick = () => setMode('better');
+  addEventListener('keydown', e => { if (e.target.closest('button,input') || !/^[1-3]$/.test(e.key)) return; setMode(['sort', 'ours', 'better'][e.key - 1]); });
+
+  // ---------- sound and voice ----------
+  $('sound').onclick = e => {
+    state.sound = !state.sound;
+    e.currentTarget.setAttribute('aria-pressed', state.sound);
+    e.currentTarget.textContent = state.sound ? '🔔 Sound' : '🔇 Sound';
+    if (!state.sound) stopTalk();
+  };
+  function bestVoice() {
+    const voices = speechSynthesis.getVoices().filter(v => /^en(-|_|$)/i.test(v.lang));
+    const score = v => (/natural|neural/i.test(v.name) ? 50 : 0) + (/premium|enhanced/i.test(v.name) ? 40 : 0) +
+      (/google/i.test(v.name) ? 30 : 0) + (/aria|jenny|ava|samantha|libby|sonia/i.test(v.name) ? 10 : 0) +
+      (/en-US/i.test(v.lang) ? 5 : 0) + (v.default ? 1 : 0) - (/david|mark|zira|desktop/i.test(v.name) ? 20 : 0);
+    return voices.sort((a, b) => score(b) - score(a))[0] || null;
+  }
+  if ('speechSynthesis' in window) {
+    const speak = speechSynthesis.speak.bind(speechSynthesis);
+    speechSynthesis.speak = u => {
+      if (speechSynthesis.getVoices().length) return speak(u);
+      let done = false;
+      const go = () => { if (done) return; done = true; const v = bestVoice(); if (v) { u.voice = v; u.lang = v.lang; } speak(u); };
+      speechSynthesis.addEventListener('voiceschanged', go, {once: true});
+      setTimeout(go, 1500);
+    };
+    speechSynthesis.getVoices();
+  }
+  const CLIPS = "voice:*";
+  const allLines = () => [...new Set([
+    ...Q.flatMap(q => [q.q, q.r]), 'How could we find out?', ...KEYS.map(k => `${BINS[k].t}!`), ...KEYS.map(k => `${BINS[k].t}.`),
+    ...KEYS.map(k => `Hmm. ${hmm(k)}`), 'Who could we ask?', 'What kind of book would have it?', 'What would we need to test it?', 'What do you wonder about?',
+    ...['Who', 'What', 'Where', 'When', 'Why', 'How'].map(w => `${w}...`),
+    'Which question helps us learn more?', 'or', ...BETTER.flatMap(p => [p.a, p.b, p.why]), 'Yes!', 'Look at the other one.'])];
+  let talk = 0, clip = null, last = [];
+  function stopTalk() { talk++; if (clip) { clip.pause(); clip = null; } if ('speechSynthesis' in window) speechSynthesis.cancel(); }
+  function speakOne(text) {
+    return new Promise(done => {
+      if (CLIPS[text]) { clip = new Audio(CLIPS[text]); clip.onended = clip.onerror = () => done(); clip.play().catch(() => done()); return; }
+      if (!('speechSynthesis' in window)) return done();
+      const u = new SpeechSynthesisUtterance(text);
+      const v = bestVoice(); if (v) { u.voice = v; u.lang = v.lang; }
+      u.rate = .93; u.pitch = 1; u.onend = u.onerror = () => done();
+      speechSynthesis.speak(u);
+    });
+  }
+  async function say(parts, force) {
+    if (!state.sound && !force) return;
+    stopTalk();
+    const me = talk;
+    last = [].concat(parts);
+    for (const p of last) { if (me !== talk) return; await speakOne(p); await wait(150); }
+  }
+  $('read').onclick = () => say(last.length ? last : [$('hint').textContent], true);
+
+  showMotion();
+  window.__wonder = {state, setMode, drop, allLines};  // for checking frames
+  setMode('sort');
+})();
+</script>
+</body>
+</html>

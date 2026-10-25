@@ -1,0 +1,133 @@
+{
+  "style": "Clear, friendly picture-card illustrations for young English learners: one simple object, bold outlines, bright colors, no words, instantly recognizable.",
+  "assets": [
+    {
+      "name": "bathroom",
+      "prompt": "A simple clear picture card illustration: a clean white toilet with a roll of toilet paper beside it.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 360,
+      "quality": 76
+    },
+    {
+      "name": "water",
+      "prompt": "A simple clear picture card illustration: a school drinking fountain with a little arc of water.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 360,
+      "quality": 76
+    },
+    {
+      "name": "sick",
+      "prompt": "A simple clear picture card illustration: a red hot water bottle and a thermometer next to a small pillow.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 360,
+      "quality": 76
+    },
+    {
+      "name": "tissue",
+      "prompt": "A simple clear picture card illustration: a box of tissues with one tissue popping out.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 360,
+      "quality": 76
+    },
+    {
+      "name": "help",
+      "prompt": "A simple clear picture card illustration: a cartoon white glove hand raised high, waving.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 360,
+      "quality": 76
+    },
+    {
+      "name": "again",
+      "prompt": "A simple clear picture card illustration: a big cartoon ear with three curved sound wave lines beside it.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 360,
+      "quality": 76
+    },
+    {
+      "name": "understand",
+      "prompt": "A simple clear picture card illustration: a big shiny purple puzzle piece with a question mark shape on it.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 360,
+      "quality": 76
+    },
+    {
+      "name": "howsay",
+      "prompt": "A simple clear picture card illustration: two round colorful speech bubbles overlapping, one blue and one orange, empty with no words.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 360,
+      "quality": 76
+    },
+    {
+      "name": "pencil",
+      "prompt": "A simple clear picture card illustration: a yellow pencil broken in two pieces.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 360,
+      "quality": 76
+    },
+    {
+      "name": "where",
+      "prompt": "A simple clear picture card illustration: a colorful classroom bin basket with art papers sticking out.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 360,
+      "quality": 76
+    },
+    {
+      "name": "finished",
+      "prompt": "A simple clear picture card illustration: a sheet of paper with colorful drawing and a big gold star sticker.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 360,
+      "quality": 76
+    },
+    {
+      "name": "lost",
+      "prompt": "A simple clear picture card illustration: one red knitted mitten lying alone.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 360,
+      "quality": 76
+    },
+    {
+      "name": "play",
+      "prompt": "A simple clear picture card illustration: a red rubber playground ball bouncing.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 360,
+      "quality": 76
+    },
+    {
+      "name": "thanks",
+      "prompt": "A simple clear picture card illustration: a small box of crayons with one crayon held out, and a little red heart above.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 360,
+      "quality": 76
+    },
+    {
+      "name": "excuse",
+      "prompt": "A simple clear picture card illustration: a narrow classroom doorway with a small backpack on the floor.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 360,
+      "quality": 76
+    },
+    {
+      "name": "morning",
+      "prompt": "A simple clear picture card illustration: a smiling cartoon sun rising over a little school building.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 360,
+      "quality": 76
+    }
+  ]
+}

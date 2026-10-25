@@ -1,0 +1,21 @@
+{
+  "id": "habit-hero",
+  "status": "beta",
+  "driver": "teacher",
+  "modes": [
+    "Hero's day",
+    "When do we...?",
+    "Timers"
+  ],
+  "grades_label": "Grades K-2",
+  "third_party": [],
+  "updated": "2026-10-25",
+  "hook": "Pip the hero fox has a whole day ahead. The class votes at each moment, brush or skip, water or soda, sleep or screens, and Pip's energy, clean and smile meters show what each habit does.",
+  "outcome": "Choose daily healthy habits (brushing, handwashing, water, moving, sleep) and explain how they help the body",
+  "minutes": "10-20",
+  "sources": [
+    "Facts from CDC handwashing guidance, the American Dental Association and AASM/AAP sleep guidance",
+    "Illustrations drawn with FLUX.1-schnell (Apache 2.0) on a local computer, edited for Curio Class",
+    "Music and sounds generated in the browser"
+  ]
+}

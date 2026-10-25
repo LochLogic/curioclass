@@ -1,0 +1,20 @@
+{
+  "id": "classroom-phrases-game",
+  "status": "beta",
+  "driver": "teacher",
+  "modes": [
+    "Learn",
+    "What do I say?",
+    "Situations"
+  ],
+  "grades_label": "Grades K-2",
+  "third_party": [],
+  "updated": "2026-10-25",
+  "hook": "Sixteen everyday classroom phrases on picture cards. Each phrase lights up word by word, then the class says it together on a 3-2-1 count. Then guess the phrase from the picture and decide what to say in short situations.",
+  "outcome": "Use everyday classroom phrases to ask for help, state needs and talk with friends",
+  "minutes": "10-15",
+  "sources": [
+    "Illustrations drawn with FLUX.1-schnell (Apache 2.0) on a local computer, edited for Curio Class",
+    "Sounds generated in the browser"
+  ]
+}

@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Animal Moves · Locomotor skills · Curio Class</title>
+<meta name="description" content="An animal appears on the board and the class moves like it: hop like a frog, gallop like a horse, slide like a crab, balance like a flamingo. Move-along cards with form cues, a freeze game and mix-it-up challenges. Grades K-2 PE, teacher-led. Works offline.">
+<!--
+ANIMAL MOVES (Curio Class)
+Grades K-2 physical education, SHAPE America National Standard 1 (locomotor skills: hop, jump, gallop, slide,
+skip, run; nonlocomotor: balance, twist, stretch) and moving at different levels, speeds and sizes.
+Teacher-led on a projector, for a classroom or gym. Twelve animals, each with one skill, two or three simple
+form cues and a beat to move to. Move along (one animal at a time with a countdown and a freeze), Freeze game
+(the animal changes, the music stops, everybody freezes) and Mix it up (the same skill fast or slow, big or
+small, high or low).
+One file, no network requests. Music and sounds generated in the browser. Illustrations drawn with
+FLUX.1-schnell (Apache 2.0) on a local computer, edited for Curio Class. Content CC BY 4.0, code MIT.
+curioclass.org
+-->
+<style>
+:root{
+  --paper:#f2f8ff;--ink:#1f2a3a;--muted:#55627a;--line:#d5e2f3;--focus:#e0662a;--brand:#1f6fb2;
+  font-family:'Segoe UI',system-ui,-apple-system,Roboto,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0;height:100%}
+body{background:var(--paper);color:var(--ink);display:grid;grid-template-rows:auto 1fr;min-height:100vh}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:4px solid var(--focus);outline-offset:3px}
+header{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:12px 20px;background:var(--brand);color:#f2f8ff}
+h1{margin:0 auto 0 0;font:800 clamp(22px,3vw,32px)/1.1 'Trebuchet MS','Segoe UI',sans-serif}
+h1 small{display:block;font:500 15px/1.3 'Segoe UI',sans-serif;color:#cfe4f7}
+.seg{display:inline-flex;border:2px solid #5a9bd1;border-radius:999px;overflow:hidden}
+.seg button{border:0;background:#2b80c4;color:#f2f8ff;min-height:52px;padding:0 16px;font-weight:700;font-size:16px}
+.seg button[aria-pressed="true"]{background:#ffd34d;color:#3a2c00}
+.icon-btn{border:2px solid #5a9bd1;background:#2b80c4;color:#f2f8ff;border-radius:999px;min-height:52px;padding:0 16px;font-weight:700;font-size:16px}
+
+main{display:grid;grid-template-columns:1fr;min-height:0}
+@media (min-width:760px){main{grid-template-columns:minmax(0,1fr) 330px}}
+.stage{position:relative;overflow:hidden;min-height:340px;background:#9fd3f0 url(art:field) center bottom/cover}
+.scene{position:absolute;left:50%;top:50%;width:1000px;height:620px;transform:translate(-50%,-50%) scale(var(--s,1))}
+
+.card{position:absolute;left:40px;top:28px;width:520px;background:#fffdf7;border-radius:30px;padding:18px 26px;box-shadow:0 8px 0 #0002}
+.card .verb{font:900 78px/1 'Trebuchet MS',sans-serif;letter-spacing:.01em;color:var(--c,#1f6fb2)}
+.card .like{font:800 34px/1.15 'Trebuchet MS',sans-serif;margin-top:4px}
+.card ul{margin:12px 0 0;padding:0;list-style:none;display:grid;gap:6px}
+.card li{font:700 23px/1.3 'Segoe UI',sans-serif;display:flex;gap:10px;align-items:baseline}
+.card li::before{content:'✔';color:var(--c,#1f6fb2);font-weight:900}
+.mods{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.mod{font:800 22px 'Trebuchet MS',sans-serif;background:var(--mc);color:#fff;border-radius:999px;padding:6px 16px}
+
+.animal{position:absolute;left:600px;bottom:60px;width:340px;height:340px;transform-origin:50% 100%}
+.animal img{width:100%;height:100%;object-fit:contain;object-position:50% 100%;filter:drop-shadow(0 10px 6px #0003)}
+.shadow{position:absolute;left:660px;bottom:40px;width:220px;height:34px;border-radius:50%;background:#0003}
+
+.timer{position:absolute;right:30px;top:24px;width:150px;height:150px}
+.timer svg{width:100%;height:100%}
+.timer b{position:absolute;inset:0;display:grid;place-items:center;font:900 58px 'Trebuchet MS',sans-serif;color:#1f2a3a}
+
+.freeze{position:absolute;inset:0;display:grid;place-items:center;background:#bfe3ffcc;font:900 150px/1 'Trebuchet MS',sans-serif;color:#1f6fb2;text-shadow:0 8px 0 #fff;letter-spacing:.04em}
+.freeze small{display:block;font:800 34px 'Trebuchet MS',sans-serif;text-align:center;color:#1f2a3a;text-shadow:none;letter-spacing:0}
+
+/* animal picker */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.pick{border:3px solid transparent;border-radius:14px;background:#fff;min-height:80px;display:flex;flex-direction:column;align-items:center;justify-content:center;font:700 14px/1.1 'Trebuchet MS',sans-serif;box-shadow:0 3px 0 #0002;padding:2px}
+.pick img{width:52px;height:52px;object-fit:contain}
+.pick[aria-pressed="true"]{border-color:#1f2a3a;background:#fff6c9}
+
+.panel{background:#fbfdff;border-left:3px solid var(--line);padding:14px 16px;display:flex;flex-direction:column;gap:12px;overflow:auto}
+@media (max-width:759px){.panel{border-left:0;border-top:3px solid var(--line)}}
+.hint{margin:0;font:600 18px/1.35 'Segoe UI',sans-serif;color:var(--muted)}
+.hint b{color:var(--ink)}
+.big-btn{border:0;border-radius:16px;min-height:60px;font:800 20px/1.1 'Trebuchet MS','Segoe UI',sans-serif;color:#fff;background:var(--brand);box-shadow:0 5px 0 #0004;padding:6px 10px}
+.big-btn:active{transform:translateY(3px);box-shadow:0 2px 0 #0004}
+.big-btn.soft{background:#e1ecf8;color:var(--ink)}
+.big-btn.gold{background:#ffd34d;color:#3a2c00}
+.big-btn.stop{background:#d8423a}
+.col{display:flex;flex-direction:column;gap:8px}
+.row{display:flex;gap:8px}.row .big-btn{flex:1}
+.lbl{font:700 15px 'Segoe UI',sans-serif;color:var(--muted);margin:2px 0 -4px}
+.seg2{display:flex;border:2px solid var(--line);border-radius:14px;overflow:hidden}
+.seg2 button{flex:1;border:0;background:#fff;min-height:48px;font-weight:700}
+.seg2 button[aria-pressed="true"]{background:var(--brand);color:#fff}
+.tip{margin:0;background:#eaf3fc;border-left:6px solid #5a9bd1;border-radius:10px;padding:10px 12px;font:600 17px/1.4 'Segoe UI',sans-serif}
+.tip:empty{display:none}
+
+@media (max-width:759px),(max-height:640px){
+  header{padding:6px 12px} h1{font-size:19px} h1 small{display:none}
+  .seg button,.icon-btn{min-height:38px;font-size:13px;padding:0 10px}
+  main{grid-template-columns:minmax(0,1fr) 260px}
+  .panel{padding:8px 10px;gap:8px}
+  .hint,.tip{font-size:14px}
+  .big-btn{min-height:44px;font-size:16px}
+  .pick{min-height:60px;font-size:11px} .pick img{width:36px;height:36px}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Animal Moves <small>Find your own space. Arms out, no touching.</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-move" aria-pressed="true">Move along</button>
+    <button id="m-freeze" aria-pressed="false">Freeze game</button>
+    <button id="m-mix" aria-pressed="false">Mix it up</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true" title="Turn animation on or off">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+  <button class="icon-btn" id="read">🔊 Read</button>
+</header>
+<main>
+  <div class="stage" id="stage">
+    <div class="scene" id="scene">
+      <div class="shadow" id="shadow"></div>
+      <div class="animal" id="animal"><img id="animal-img" alt=""></div>
+      <div class="card" id="card" aria-live="polite"></div>
+      <div class="timer" id="timer" hidden><svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="44" fill="#fffdf7" stroke="#d5e2f3" stroke-width="10"/><circle id="ring" cx="50" cy="50" r="44" fill="none" stroke="#ffb703" stroke-width="10" stroke-linecap="round" transform="rotate(-90 50 50)" stroke-dasharray="276.5" stroke-dashoffset="0"/></svg><b id="secs"></b></div>
+      <div class="freeze" id="freeze" hidden><div>FREEZE!<small id="freeze-sub">Statues! Hold still.</small></div></div>
+    </div>
+  </div>
+  <aside class="panel">
+    <p class="hint" id="hint"></p>
+    <div class="col" id="ctrl"></div>
+    <p class="tip" id="tip"></p>
+  </aside>
+</main>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  let reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  try { const m = localStorage.getItem('curio-motion'); if (m) reduce = m === 'calm'; } catch {}
+  function showMotion() {
+    document.body.classList.toggle('calm', reduce);
+    $('motion').setAttribute('aria-pressed', !reduce);
+    $('motion').textContent = reduce ? '⏸ Motion' : '✨ Motion';
+    animate();
+  }
+  $('motion').onclick = () => { reduce = !reduce; try { localStorage.setItem('curio-motion', reduce ? 'calm' : 'on'); } catch {} showMotion(); };
+  const wait = ms => new Promise(r => setTimeout(r, ms));
+  const fit = () => { const r = $('stage').getBoundingClientRect(); $('scene').style.setProperty('--s', Math.min(r.width / 1000, r.height / 620)); };
+  new ResizeObserver(fit).observe($('stage'));
+
+  // ---------- the animals ----------
+  // move: how the picture moves; bpm: the beat to move to; level: low, middle or high
+  const A = [
+    {id: 'frog', name: 'frog', verb: 'HOP', skill: 'hop', c: '#3a9d3a', move: 'hop', bpm: 92, level: 'low to high',
+      cues: ['Squat down low', 'Spring up with both feet', 'Land softly on bent knees'], img: 'art:frog'},
+    {id: 'kangaroo', name: 'kangaroo', verb: 'JUMP', skill: 'jump', c: '#c46a28', move: 'jump', bpm: 100, level: 'high',
+      cues: ['Swing your arms back', 'Jump up with both feet together', 'Land quietly, knees bent'], img: 'art:kangaroo'},
+    {id: 'horse', name: 'horse', verb: 'GALLOP', skill: 'gallop', c: '#8a5a3c', move: 'gallop', bpm: 132, level: 'middle',
+      cues: ['One foot stays in front', 'Back foot chases the front foot', 'Bounce, bounce, bounce'], img: 'art:horse'},
+    {id: 'crab', name: 'crab', verb: 'SLIDE', skill: 'slide', c: '#d8423a', move: 'slide', bpm: 112, level: 'low',
+      cues: ['Face forward', 'Step sideways and slide your feet together', 'Look where you are going'], img: 'art:crab'},
+    {id: 'penguin', name: 'penguin', verb: 'WADDLE', skill: 'walk', c: '#2b3a55', move: 'waddle', bpm: 104, level: 'middle',
+      cues: ['Arms straight down at your sides', 'Tiny steps, heels together', 'Rock side to side'], img: 'art:penguin'},
+    {id: 'bear', name: 'bear', verb: 'BEAR WALK', skill: 'bear walk', c: '#6b4a2f', move: 'crawl', bpm: 76, level: 'low',
+      cues: ['Hands and feet on the floor', 'Hips up high', 'Move slowly, one paw at a time'], img: 'art:bear'},
+    {id: 'flamingo', name: 'flamingo', verb: 'BALANCE', skill: 'balance', c: '#e4588f', move: 'balance', bpm: 60, level: 'high',
+      cues: ['Stand on one foot', 'Arms out like wings', 'Eyes on one spot. Now switch feet!'], img: 'art:flamingo'},
+    {id: 'elephant', name: 'elephant', verb: 'STOMP', skill: 'march', c: '#6c7a89', move: 'stomp', bpm: 84, level: 'middle',
+      cues: ['Knees up high', 'Big, heavy steps in place', 'Swing one arm like a trunk'], img: 'art:elephant'},
+    {id: 'eagle', name: 'eagle', verb: 'SOAR', skill: 'stretch', c: '#7a5c2e', move: 'soar', bpm: 70, level: 'high',
+      cues: ['Arms out wide like wings', 'Flap slowly, up and down', 'Tip to one side, then the other'], img: 'art:eagle'},
+    {id: 'snake', name: 'snake', verb: 'WIGGLE', skill: 'twist', c: '#4f8a2b', move: 'wiggle', bpm: 96, level: 'middle',
+      cues: ['Feet stay still', 'Twist your body side to side', 'Make your arms wavy'], img: 'art:snake'},
+    {id: 'cheetah', name: 'cheetah', verb: 'RUN', skill: 'run in place', c: '#d99a1e', move: 'run', bpm: 160, level: 'middle',
+      cues: ['Run in place on your toes', 'Pump your arms', 'Fast feet, quiet feet'], img: 'art:cheetah'},
+    {id: 'cat', name: 'cat', verb: 'TIPTOE', skill: 'tiptoe', c: '#7b5ea7', move: 'tiptoe', bpm: 80, level: 'high',
+      cues: ['Up on your toes', 'Tiny, quiet steps', 'Sneak, sneak, sneak!'], img: 'art:cat'},
+  ];
+  const byId = Object.fromEntries(A.map(a => [a.id, a]));
+  const MODS = [
+    {k: 'fast', t: 'FAST', c: '#d8423a', bpm: 1.35, say: 'Now fast!'},
+    {k: 'slow', t: 'SLOW', c: '#2a9d8f', bpm: .65, say: 'Now slow motion.'},
+    {k: 'big', t: 'BIG', c: '#7b2cbf', bpm: 1, say: 'Make it big!'},
+    {k: 'small', t: 'small', c: '#f4a261', bpm: 1, say: 'Make it tiny.'},
+    {k: 'high', t: 'HIGH', c: '#1f6fb2', bpm: 1, say: 'Up high!'},
+    {k: 'low', t: 'LOW', c: '#6b4a2f', bpm: 1, say: 'Down low!'},
+  ];
+
+  const state = {mode: 'move', cur: 'frog', secs: 20, mods: [], sound: true, run: 0, playing: false};
+
+  // ---------- music: a drum loop at the animal's beat ----------
+  let ctx, beatTimer = null, nextT = 0, step = 0;
+  const audio = () => (ctx ||= new (window.AudioContext || window.webkitAudioContext)());
+  function hit(kind, t) {
+    const a = audio();
+    if (kind === 'kick') {
+      const o = a.createOscillator(), g = a.createGain();
+      o.frequency.setValueAtTime(150, t); o.frequency.exponentialRampToValueAtTime(45, t + .15);
+      g.gain.setValueAtTime(.35, t); g.gain.exponentialRampToValueAtTime(.001, t + .2);
+      o.connect(g).connect(a.destination); o.start(t); o.stop(t + .22);
+    } else if (kind === 'hat' || kind === 'snare') {
+      const len = a.sampleRate * (kind === 'hat' ? .05 : .14), buf = a.createBuffer(1, len, a.sampleRate), d = buf.getChannelData(0);
+      for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * (1 - i / len);
+      const s = a.createBufferSource(), f = a.createBiquadFilter(), g = a.createGain();
+      s.buffer = buf; f.type = 'highpass'; f.frequency.value = kind === 'hat' ? 7000 : 1500; g.gain.value = kind === 'hat' ? .06 : .14;
+      s.connect(f).connect(g).connect(a.destination); s.start(t);
+    } else {
+      const o = a.createOscillator(), g = a.createGain();
+      o.type = 'triangle'; o.frequency.value = kind;
+      g.gain.setValueAtTime(.0001, t); g.gain.exponentialRampToValueAtTime(.07, t + .01); g.gain.exponentialRampToValueAtTime(.0001, t + .25);
+      o.connect(g).connect(a.destination); o.start(t); o.stop(t + .3);
+    }
+  }
+  const BASS = [110, 110, 147, 131, 110, 110, 165, 147];
+  function bpm() { return byId[state.cur].bpm * state.mods.reduce((m, k) => m * (MODS.find(x => x.k === k).bpm), 1); }
+  function music(on) {
+    clearInterval(beatTimer); beatTimer = null;
+    if (!on || !state.sound) return;
+    const a = audio(); nextT = a.currentTime + .05; step = 0;
+    beatTimer = setInterval(() => {
+      const spb = 60 / bpm();
+      while (nextT < a.currentTime + .2) {
+        const s = step % 8;
+        if (s % 2 === 0) hit('kick', nextT); else hit('snare', nextT);
+        hit('hat', nextT); hit('hat', nextT + spb / 2);
+        hit(BASS[s] * 2, nextT);
+        nextT += spb; step++;
+      }
+    }, 50);
+  }
+  function chime(fs) {
+    if (!state.sound) return;
+    const a = audio();
+    fs.forEach((f, i) => { const t = a.currentTime + i * .1, o = a.createOscillator(), g = a.createGain(); o.type = 'triangle'; o.frequency.value = f; g.gain.setValueAtTime(.0001, t); g.gain.exponentialRampToValueAtTime(.09, t + .02); g.gain.exponentialRampToValueAtTime(.0001, t + .35); o.connect(g).connect(a.destination); o.start(t); o.stop(t + .4); });
+  }
+  const whistle = () => { if (!state.sound) return; const a = audio(), t = a.currentTime, o = a.createOscillator(), l = a.createOscillator(), lg = a.createGain(), g = a.createGain(); o.frequency.value = 2400; l.frequency.value = 28; lg.gain.value = 120; l.connect(lg).connect(o.frequency); g.gain.setValueAtTime(.0001, t); g.gain.exponentialRampToValueAtTime(.08, t + .02); g.gain.setValueAtTime(.08, t + .45); g.gain.exponentialRampToValueAtTime(.0001, t + .55); o.connect(g).connect(a.destination); o.start(t); l.start(t); o.stop(t + .6); l.stop(t + .6); };
+
+  // ---------- the animal on screen ----------
+  const MOVES = {
+    hop: [{transform: 'translate(0,0) scale(1.05,.92)'}, {transform: 'translate(0,-120px) scale(.95,1.06)', offset: .45}, {transform: 'translate(0,0) scale(1.05,.92)'}],
+    jump: [{transform: 'translateY(0) scale(1.04,.94)'}, {transform: 'translateY(-150px)', offset: .5}, {transform: 'translateY(0) scale(1.04,.94)'}],
+    gallop: [{transform: 'translate(-30px,0) rotate(-3deg)'}, {transform: 'translate(0,-50px) rotate(4deg)', offset: .4}, {transform: 'translate(30px,0) rotate(-3deg)', offset: .7}, {transform: 'translate(-30px,0) rotate(-3deg)'}],
+    slide: [{transform: 'translateX(-90px)'}, {transform: 'translateX(90px)'}],
+    waddle: [{transform: 'rotate(-9deg)'}, {transform: 'rotate(9deg)'}],
+    crawl: [{transform: 'translateX(-40px) translateY(0)'}, {transform: 'translateX(40px) translateY(-8px)'}],
+    balance: [{transform: 'rotate(-3deg)'}, {transform: 'rotate(3deg)'}],
+    stomp: [{transform: 'translateY(0) scale(1.03,.95)'}, {transform: 'translateY(-36px)', offset: .5}, {transform: 'translateY(0) scale(1.03,.95)'}],
+    soar: [{transform: 'translateY(0) rotate(-8deg)'}, {transform: 'translateY(-60px) rotate(8deg)'}],
+    wiggle: [{transform: 'skewX(-10deg)'}, {transform: 'skewX(10deg)'}],
+    run: [{transform: 'translateY(0)'}, {transform: 'translateY(-26px)'}],
+    tiptoe: [{transform: 'translate(-40px,0)'}, {transform: 'translate(0,-16px)', offset: .5}, {transform: 'translate(40px,0)'}],
+  };
+  const ALT = ['slide', 'waddle', 'crawl', 'balance', 'soar', 'wiggle', 'run', 'tiptoe'];
+  function animate() {
+    const el = $('animal');
+    el.getAnimations().forEach(a => a.cancel());
+    $('shadow').getAnimations().forEach(a => a.cancel());
+    if (reduce || !state.playing) return;
+    const a = byId[state.cur], beats = ['run'].includes(a.move) ? 1 : 2, ms = 60000 / bpm() * beats;
+    const big = state.mods.includes('big') ? 1.25 : state.mods.includes('small') ? .7 : 1;
+    const frames = MOVES[a.move].map(f => ({...f, transform: f.transform + ` scale(${big})`}));
+    el.animate(frames, {duration: ms, iterations: Infinity, direction: ALT.includes(a.move) ? 'alternate' : 'normal', easing: 'ease-in-out'});
+  }
+  function showAnimal(id) {
+    const a = byId[id];
+    $('animal-img').src = a.img; $('animal-img').alt = `A ${a.name}`;
+    const lift = state.mods.includes('high') ? -70 : state.mods.includes('low') ? 40 : 0;
+    $('animal').style.bottom = 60 - lift + 'px';
+    $('card').style.setProperty('--c', a.c);
+    $('card').innerHTML = `<div class="verb">${a.verb}</div><div class="like">like a ${a.name}</div><ul>${a.cues.map(c => `<li>${c}</li>`).join('')}</ul>` +
+      (state.mods.length ? `<div class="mods">${state.mods.map(k => MODS.find(m => m.k === k)).map(m => `<span class="mod" style="--mc:${m.c}">${m.t}</span>`).join('')}</div>` : '');
+  }
+
+  // ---------- timer ----------
+  async function countdown(secs, me) {
+    $('timer').hidden = false;
+    for (let s = secs; s > 0; s--) {
+      if (me !== state.run) return false;
+      $('secs').textContent = s;
+      $('ring').setAttribute('stroke-dashoffset', 276.5 * (1 - s / secs));
+      await wait(1000);
+    }
+    return me === state.run;
+  }
+  async function freeze(me, text = 'Statues! Hold still.') {
+    state.playing = false; music(false); animate(); whistle();
+    $('freeze-sub').textContent = text; $('freeze').hidden = false;
+    say('Freeze!');
+    await wait(3000);
+    if (me === state.run) $('freeze').hidden = true;
+  }
+  function stopAll() { state.run++; state.playing = false; music(false); animate(); $('timer').hidden = true; $('freeze').hidden = true; stopTalk(); }
+
+  // ---------- Move along ----------
+  async function go() {
+    stopAll(); const me = state.run, a = byId[state.cur];
+    showAnimal(a.id);
+    await say([`${cap(a.verb.toLowerCase())} like a ${a.name}!`, ...a.cues.map(c => c + '.')]);
+    if (me !== state.run) return;
+    say('Ready? Go!');
+    await wait(1200);
+    if (me !== state.run) return;
+    state.playing = true; music(true); animate();
+    if (await countdown(state.secs, me)) await freeze(me);
+    $('timer').hidden = true;
+  }
+  const cap = s => s[0].toUpperCase() + s.slice(1);
+
+  // ---------- Freeze game: the animal changes, the music stops at random ----------
+  async function freezeGame() {
+    stopAll(); const me = state.run;
+    $('hint').innerHTML = '<b>Freeze game.</b> Move like the animal on the board. When the music stops, FREEZE! Then a new animal appears.';
+    let last = null;
+    for (let round = 0; round < 8; round++) {
+      if (me !== state.run) return;
+      const pool = A.filter(a => a.id !== last);
+      const a = pool[Math.random() * pool.length | 0]; last = a.id; state.cur = a.id;
+      showAnimal(a.id); pressPick();
+      await say(`${cap(a.verb.toLowerCase())} like a ${a.name}!`);
+      if (me !== state.run) return;
+      state.playing = true; music(true); animate();
+      const t = 6000 + Math.random() * 7000;
+      await wait(t);
+      if (me !== state.run) return;
+      await freeze(me, 'Can you hold your statue?');
+      await wait(800);
+    }
+    if (me !== state.run) return;
+    $('card').innerHTML = '<div class="verb" style="font-size:60px">GREAT MOVING!</div><div class="like">Now take three slow breaths.</div>';
+    chime([523, 659, 784, 1047]); say('Great moving! Now take three slow breaths.');
+  }
+
+  // ---------- picker and controls ----------
+  function picker() {
+    return `<p class="lbl">Pick an animal</p><div class="grid" id="grid">${A.map(a => `<button class="pick" data-id="${a.id}" aria-pressed="${a.id === state.cur}"><img src="${a.img}" alt="">${a.name}</button>`).join('')}</div>`;
+  }
+  function wirePicker(after) {
+    $('grid').querySelectorAll('.pick').forEach(b => b.onclick = () => { state.cur = b.dataset.id; pressPick(); stopAll(); showAnimal(state.cur); after && after(); });
+  }
+  const pressPick = () => $('grid') && $('grid').querySelectorAll('.pick').forEach(b => b.setAttribute('aria-pressed', b.dataset.id === state.cur));
+
+  function setMode(m) {
+    state.mode = m; stopAll();
+    for (const [id, k] of [['m-move', 'move'], ['m-freeze', 'freeze'], ['m-mix', 'mix']]) $(id).setAttribute('aria-pressed', m === k);
+    $('tip').innerHTML = 'Safe space: stretch your arms out. If you can touch someone, find more room.';
+    if (m === 'move') {
+      state.mods = [];
+      $('ctrl').innerHTML = `<button class="big-btn gold" id="go">▶ Go!</button><div class="row"><button class="big-btn soft" id="rnd">🎲 Surprise animal</button><button class="big-btn stop" id="stop">■ Stop</button></div>
+        <p class="lbl">Move for</p><div class="seg2" role="group" aria-label="Seconds">${[10, 20, 30].map(s => `<button data-s="${s}" aria-pressed="${s === state.secs}">${s} sec</button>`).join('')}</div>${picker()}`;
+      $('go').onclick = go; $('stop').onclick = () => { stopAll(); showAnimal(state.cur); };
+      $('rnd').onclick = () => { state.cur = A.filter(a => a.id !== state.cur)[Math.random() * 11 | 0].id; pressPick(); go(); };
+      $('ctrl').querySelectorAll('[data-s]').forEach(b => b.onclick = () => { state.secs = +b.dataset.s; $('ctrl').querySelectorAll('[data-s]').forEach(x => x.setAttribute('aria-pressed', x === b)); });
+      wirePicker(() => say(`${cap(byId[state.cur].verb.toLowerCase())} like a ${byId[state.cur].name}!`));
+      $('hint').innerHTML = '<b>Move along.</b> Pick an animal and read the moves together. Press <b>Go!</b> and move to the beat until the timer says FREEZE.';
+      showAnimal(state.cur);
+    }
+    if (m === 'freeze') {
+      state.mods = [];
+      $('ctrl').innerHTML = `<button class="big-btn gold" id="play">▶ Start the freeze game</button><button class="big-btn stop" id="stop">■ Stop</button>`;
+      $('play').onclick = freezeGame; $('stop').onclick = () => { stopAll(); };
+      $('hint').innerHTML = '<b>Freeze game.</b> Eight animals in a row. Move like each one. When the music stops, FREEZE like a statue!';
+      showAnimal(state.cur);
+    }
+    if (m === 'mix') {
+      $('ctrl').innerHTML = `<button class="big-btn gold" id="go">▶ Go!</button><div class="row"><button class="big-btn soft" id="rmix">🎲 Random mix</button><button class="big-btn stop" id="stop">■ Stop</button></div>
+        <p class="lbl">Speed</p><div class="seg2" data-grp="speed">${modBtn('fast')}${modBtn('slow')}</div>
+        <p class="lbl">Size</p><div class="seg2" data-grp="size">${modBtn('big')}${modBtn('small')}</div>
+        <p class="lbl">Level</p><div class="seg2" data-grp="level">${modBtn('high')}${modBtn('low')}</div>${picker()}`;
+      $('go').onclick = go; $('stop').onclick = () => { stopAll(); showAnimal(state.cur); };
+      $('rmix').onclick = () => {
+        state.mods = [['fast', 'slow'], ['big', 'small'], ['high', 'low']].map(p => Math.random() < .6 ? p[Math.random() * 2 | 0] : null).filter(Boolean);
+        if (!state.mods.length) state.mods = ['fast'];
+        state.cur = A[Math.random() * A.length | 0].id; pressPick(); syncMods();
+        say(state.mods.map(k => MODS.find(m => m.k === k).say)); showAnimal(state.cur);
+      };
+      $('ctrl').querySelectorAll('[data-m]').forEach(b => b.onclick = () => {
+        const k = b.dataset.m, grp = b.parentElement.querySelectorAll('[data-m]');
+        const on = !state.mods.includes(k);
+        grp.forEach(x => state.mods = state.mods.filter(y => y !== x.dataset.m));
+        if (on) { state.mods.push(k); say(MODS.find(m => m.k === k).say); }
+        syncMods(); showAnimal(state.cur);
+        if (state.playing) { music(true); animate(); }
+      });
+      wirePicker();
+      $('hint').innerHTML = '<b>Mix it up.</b> Same animal, new challenge. Choose fast or slow, big or small, high or low, then press <b>Go!</b>';
+      syncMods(); showAnimal(state.cur);
+    }
+  }
+  const modBtn = k => { const m = MODS.find(x => x.k === k); return `<button data-m="${k}" aria-pressed="false">${m.t}</button>`; };
+  const syncMods = () => $('ctrl').querySelectorAll('[data-m]').forEach(b => b.setAttribute('aria-pressed', state.mods.includes(b.dataset.m)));
+  $('m-move').onclick = () => setMode('move');
+  $('m-freeze').onclick = () => setMode('freeze');
+  $('m-mix').onclick = () => setMode('mix');
+  addEventListener('keydown', e => { if (e.target.closest('button') || !/^[1-3]$/.test(e.key)) return; setMode(['move', 'freeze', 'mix'][e.key - 1]); });
+
+  // ---------- sound and voice ----------
+  $('sound').onclick = e => {
+    state.sound = !state.sound;
+    e.currentTarget.setAttribute('aria-pressed', state.sound);
+    e.currentTarget.textContent = state.sound ? '🔔 Sound' : '🔇 Sound';
+    if (!state.sound) { stopTalk(); music(false); } else if (state.playing) music(true);
+  };
+  function bestVoice() {
+    const voices = speechSynthesis.getVoices().filter(v => /^en(-|_|$)/i.test(v.lang));
+    const score = v => (/natural|neural/i.test(v.name) ? 50 : 0) + (/premium|enhanced/i.test(v.name) ? 40 : 0) +
+      (/google/i.test(v.name) ? 30 : 0) + (/aria|jenny|ava|samantha|libby|sonia/i.test(v.name) ? 10 : 0) +
+      (/en-US/i.test(v.lang) ? 5 : 0) + (v.default ? 1 : 0) - (/david|mark|zira|desktop/i.test(v.name) ? 20 : 0);
+    return voices.sort((a, b) => score(b) - score(a))[0] || null;
+  }
+  if ('speechSynthesis' in window) {
+    const speak = speechSynthesis.speak.bind(speechSynthesis);
+    speechSynthesis.speak = u => {
+      if (speechSynthesis.getVoices().length) return speak(u);
+      let done = false;
+      const go = () => { if (done) return; done = true; const v = bestVoice(); if (v) { u.voice = v; u.lang = v.lang; } speak(u); };
+      speechSynthesis.addEventListener('voiceschanged', go, {once: true});
+      setTimeout(go, 1500);
+    };
+    speechSynthesis.getVoices();
+  }
+  const CLIPS = "voice:*";
+  const allLines = () => [...new Set([
+    ...A.flatMap(a => [`${cap(a.verb.toLowerCase())} like a ${a.name}!`, ...a.cues.map(c => c + '.')]),
+    'Ready? Go!', 'Freeze!', 'Great moving! Now take three slow breaths.', ...MODS.map(m => m.say)])];
+  let talk = 0, clip = null, last = [];
+  function stopTalk() { talk++; if (clip) { clip.pause(); clip = null; } if ('speechSynthesis' in window) speechSynthesis.cancel(); }
+  function speakOne(text) {
+    return new Promise(done => {
+      if (CLIPS[text]) { clip = new Audio(CLIPS[text]); clip.onended = clip.onerror = () => done(); clip.play().catch(() => done()); return; }
+      if (!('speechSynthesis' in window)) return done();
+      const u = new SpeechSynthesisUtterance(text);
+      const v = bestVoice(); if (v) { u.voice = v; u.lang = v.lang; }
+      u.rate = .95; u.pitch = 1; u.onend = u.onerror = () => done();
+      speechSynthesis.speak(u);
+    });
+  }
+  // resolves after the line is spoken, or after a reading pause when sound is off, so the beats stay in step
+  async function say(parts, force) {
+    if (!state.sound && !force) return wait(Math.min(5000, 1400 + 40 * [].concat(parts).join(' ').length));
+    stopTalk();
+    const me = talk;
+    last = [].concat(parts);
+    for (const p of last) { if (me !== talk) return; await speakOne(p); await wait(120); }
+  }
+  $('read').onclick = () => say(last.length ? last : [$('hint').textContent], true);
+
+  showMotion();
+  window.__moves = {state, setMode, go, freezeGame, allLines, showAnimal};  // for checking frames
+  setMode('move');
+})();
+</script>
+</body>
+</html>
