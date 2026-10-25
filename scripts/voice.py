@@ -1,6 +1,6 @@
 """Record a tool's spoken lines with Gemini text-to-speech, so Read and narration sound natural in every browser.
 
-    python scripts/voice.py <tool-id> [--force] [--reencode]
+    python scripts/voice.py <tool-id> [--force] [--reencode] [--limit N] [--only "line"] [--no-record]
 
 Reads tools/<tool-id>/voice/lines.json:
     {"voice": "Puck", "style": "Say warmly, like ...", "lines": ["Sad. Rainy. When I feel sad ...", ...]}
@@ -117,6 +117,9 @@ def split(pcm, n):
 
 def main():
     tool, force = sys.argv[1], '--force' in sys.argv
+    limit = int(sys.argv[sys.argv.index('--limit') + 1]) if '--limit' in sys.argv else None  # record at most this many new lines
+    made = 0
+    only = sys.argv[sys.argv.index('--only') + 1] if '--only' in sys.argv else None  # record just this line
     folder = ROOT / 'tools' / tool / 'voice'
     spec = json.loads((folder / 'lines.json').read_text(encoding='utf-8'))
     raw = folder / 'raw'
@@ -124,7 +127,7 @@ def main():
     keep = set()
     for group in spec.get('groups', []):
         names = [raw / (Path(clip_name(t)).stem + '.pcm') for t in group]
-        if all(r.exists() for r in names) and not force:
+        if (all(r.exists() for r in names) and not force) or limit is not None or only or '--no-record' in sys.argv:  # these record single lines only
             continue
         try:
             pcm = record('. '.join(group) + '.', spec.get('voice', 'Puck'), spec.get('group_style', 'Count slowly and clearly, with a full pause after each number'))
@@ -142,7 +145,9 @@ def main():
         r = raw / (f.stem + '.pcm')
         keep.add(f.name)
         if not r.exists() or force:
-            r.write_bytes(record(text, spec.get('voice', 'Puck'), spec.get('style', 'Read this aloud clearly and warmly')))
+            if (limit is not None and made >= limit) or '--no-record' in sys.argv or (only and text != only):
+                continue
+            r.write_bytes(record(text, spec.get('voice', 'Puck'), spec.get('style', 'Read this aloud clearly and warmly'))); made += 1
         elif f.exists() and '--reencode' not in sys.argv:
             continue
         f.write_bytes(encode(r.read_bytes(), spec.get('tempo', 1.0)))

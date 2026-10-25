@@ -58,8 +58,10 @@ the verify agent does the deep check and Cory spot-checks about one in four, plu
 
 ## Voice
 
-Gemini's daily quota (about 150 lines a day) can't voice 500 tools. Plan: group lines per request, and test a local
-voice (Qwen3-TTS, Kokoro) for grades 3 and up, where narration is lighter. See docs/ART.md for the art rhythm.
+Gemini's daily quota (about 150 lines a day) can't voice 500 tools, so each tool gets ONE Gemini line in its own
+voice and style, and `scripts/localvoice.py` (Qwen3-TTS on this PC, no limit) clones that voice for every other line.
+Cory compared them 2026-10-25: the clone of the Gemini voice is good; Qwen's own designed voices sounded wrong for
+children's tools and are not used. See docs/POLISH.md (Sound and voice) and docs/ART.md for the art rhythm.
 
 ## Running a wave (for the integrating session)
 
