@@ -6,642 +6,696 @@
       "prompt": "A friendly storybook portrait of a girl with brown skin and dark curly hair, about seven years old, head and shoulders, facing the viewer, a calm neutral expression, wearing a plain blue t-shirt. Face centered and large in the frame.",
       "cutout": true,
       "aspect": "1:1",
-      "width": 480,
+      "width": 380,
       "people": true,
       "despill": true,
       "source": "gemini",
-      "review": "pending"
+      "review": "ok",
+      "quality": 66
     },
     {
       "name": "jamal-neutral",
       "prompt": "A friendly storybook portrait of a boy with dark brown skin and short black hair, about seven years old, head and shoulders, facing the viewer, a calm neutral expression, wearing a plain blue t-shirt. Face centered and large in the frame.",
       "cutout": true,
       "aspect": "1:1",
-      "width": 480,
+      "width": 380,
       "people": true,
       "despill": true,
       "source": "gemini",
-      "review": "pending"
+      "review": "ok",
+      "quality": 66
     },
     {
       "name": "mei-neutral",
       "prompt": "A friendly storybook portrait of a girl with light skin and a straight black bob haircut, about seven years old, head and shoulders, facing the viewer, a calm neutral expression, wearing a plain blue t-shirt. Face centered and large in the frame.",
       "cutout": true,
       "aspect": "1:1",
-      "width": 480,
+      "width": 380,
       "people": true,
       "despill": true,
       "source": "gemini",
-      "review": "pending"
+      "review": "ok",
+      "quality": 66
     },
     {
       "name": "leo-neutral",
       "prompt": "A friendly storybook portrait of a boy with fair freckled skin and spiky ginger hair, about seven years old, head and shoulders, facing the viewer, a calm neutral expression, wearing a plain blue t-shirt. Face centered and large in the frame.",
       "cutout": true,
       "aspect": "1:1",
-      "width": 480,
+      "width": 380,
       "people": true,
       "despill": true,
       "source": "gemini",
-      "review": "pending"
+      "review": "ok",
+      "quality": 66
     },
     {
       "name": "priya-neutral",
       "prompt": "A friendly storybook portrait of a girl with medium brown skin and two long dark braids, about seven years old, head and shoulders, facing the viewer, a calm neutral expression, wearing a plain blue t-shirt. Face centered and large in the frame.",
       "cutout": true,
       "aspect": "1:1",
-      "width": 480,
+      "width": 380,
       "people": true,
       "despill": true,
       "source": "gemini",
-      "review": "pending"
+      "review": "ok",
+      "quality": 66
     },
     {
       "name": "sam-neutral",
       "prompt": "A friendly storybook portrait of a boy with light tan skin and short brown hair, about seven years old, head and shoulders, facing the viewer, a calm neutral expression, wearing a plain blue t-shirt. Face centered and large in the frame.",
       "cutout": true,
       "aspect": "1:1",
-      "width": 480,
+      "width": 380,
       "people": true,
       "despill": true,
       "source": "gemini",
-      "review": "pending"
+      "review": "ok",
+      "quality": 66
     },
     {
       "name": "ana-happy",
       "prompt": "The same child as in the reference picture, same hair, skin, face and blue t-shirt, same head-and-shoulders framing facing the viewer, now showing a big happy smile showing teeth, cheeks raised, eyes crinkled with joy. A clear, readable expression for young children.",
       "cutout": true,
       "aspect": "1:1",
-      "width": 480,
+      "width": 380,
       "people": true,
       "despill": true,
       "ref": "ana-neutral",
       "source": "gemini",
-      "review": "pending"
+      "review": "ok",
+      "quality": 66
     },
     {
       "name": "ana-sad",
       "prompt": "The same child as in the reference picture, same hair, skin, face and blue t-shirt, same head-and-shoulders framing facing the viewer, now showing a sad face: eyebrows raised in the middle, droopy eyes with one small tear, mouth turned down. A clear, readable expression for young children.",
       "cutout": true,
       "aspect": "1:1",
-      "width": 480,
+      "width": 380,
       "people": true,
       "despill": true,
       "ref": "ana-neutral",
       "source": "gemini",
-      "review": "pending"
+      "review": "ok",
+      "quality": 66
     },
     {
       "name": "ana-mad",
       "prompt": "The same child as in the reference picture, same hair, skin, face and blue t-shirt, same head-and-shoulders framing facing the viewer, now showing a mad, angry face: eyebrows pushed down and together, a hard stare, lips pressed tight. A clear, readable expression for young children.",
       "cutout": true,
       "aspect": "1:1",
-      "width": 480,
+      "width": 380,
       "people": true,
       "despill": true,
       "ref": "ana-neutral",
       "source": "gemini",
-      "review": "pending"
+      "review": "ok",
+      "quality": 66
     },
     {
       "name": "ana-scared",
       "prompt": "The same child as in the reference picture, same hair, skin, face and blue t-shirt, same head-and-shoulders framing facing the viewer, now showing a scared face: eyebrows raised and pulled together, eyes very wide, mouth stretched open in fear. A clear, readable expression for young children.",
       "cutout": true,
       "aspect": "1:1",
-      "width": 480,
+      "width": 380,
       "people": true,
       "despill": true,
       "ref": "ana-neutral",
       "source": "gemini",
-      "review": "pending"
+      "review": "ok",
+      "quality": 66
     },
     {
       "name": "ana-surprised",
       "prompt": "The same child as in the reference picture, same hair, skin, face and blue t-shirt, same head-and-shoulders framing facing the viewer, now showing a surprised face: eyebrows raised high, eyes wide open, mouth open in a round O. A clear, readable expression for young children.",
       "cutout": true,
       "aspect": "1:1",
-      "width": 480,
+      "width": 380,
       "people": true,
       "despill": true,
       "ref": "ana-neutral",
       "source": "gemini",
-      "review": "pending"
+      "review": "ok",
+      "quality": 66
     },
     {
       "name": "ana-worried",
       "prompt": "The same child as in the reference picture, same hair, skin, face and blue t-shirt, same head-and-shoulders framing facing the viewer, now showing a worried face: eyebrows tilted up in the middle, eyes glancing to the side, a small wobbly frown. A clear, readable expression for young children.",
       "cutout": true,
       "aspect": "1:1",
-      "width": 480,
+      "width": 380,
       "people": true,
       "despill": true,
       "ref": "ana-neutral",
       "source": "gemini",
-      "review": "pending"
+      "review": "ok",
+      "quality": 66
     },
     {
       "name": "ana-disgusted",
       "prompt": "The same child as in the reference picture, same hair, skin, face and blue t-shirt, same head-and-shoulders framing facing the viewer, now showing a grossed-out face: nose wrinkled up, upper lip raised, eyebrows down, tongue a little out, saying yuck. A clear, readable expression for young children.",
       "cutout": true,
       "aspect": "1:1",
-      "width": 480,
+      "width": 380,
       "people": true,
       "despill": true,
       "ref": "ana-neutral",
       "source": "gemini",
-      "review": "pending"
+      "review": "ok",
+      "quality": 66
     },
     {
       "name": "ana-calm",
       "prompt": "The same child as in the reference picture, same hair, skin, face and blue t-shirt, same head-and-shoulders framing facing the viewer, now showing a calm, peaceful face: relaxed eyebrows, eyes gently closed, a small soft smile. A clear, readable expression for young children.",
       "cutout": true,
       "aspect": "1:1",
-      "width": 480,
+      "width": 380,
       "people": true,
       "despill": true,
       "ref": "ana-neutral",
       "source": "gemini",
-      "review": "pending"
+      "review": "ok",
+      "quality": 66
     },
     {
       "name": "jamal-happy",
       "prompt": "The same child as in the reference picture, same hair, skin, face and blue t-shirt, same head-and-shoulders framing facing the viewer, now showing a big happy smile showing teeth, cheeks raised, eyes crinkled with joy. A clear, readable expression for young children.",
       "cutout": true,
       "aspect": "1:1",
-      "width": 480,
+      "width": 380,
       "people": true,
       "despill": true,
       "ref": "jamal-neutral",
       "source": "gemini",
-      "review": "pending"
+      "review": "ok",
+      "quality": 66
     },
     {
       "name": "jamal-sad",
       "prompt": "The same child as in the reference picture, same hair, skin, face and blue t-shirt, same head-and-shoulders framing facing the viewer, now showing a sad face: eyebrows raised in the middle, droopy eyes with one small tear, mouth turned down. A clear, readable expression for young children.",
       "cutout": true,
       "aspect": "1:1",
-      "width": 480,
+      "width": 380,
       "people": true,
       "despill": true,
       "ref": "jamal-neutral",
       "source": "gemini",
-      "review": "pending"
+      "review": "ok",
+      "quality": 66
     },
     {
       "name": "jamal-mad",
       "prompt": "The same child as in the reference picture, same hair, skin, face and blue t-shirt, same head-and-shoulders framing facing the viewer, now showing a mad, angry face: eyebrows pushed down and together, a hard stare, lips pressed tight. A clear, readable expression for young children.",
       "cutout": true,
       "aspect": "1:1",
-      "width": 480,
+      "width": 380,
       "people": true,
       "despill": true,
       "ref": "jamal-neutral",
       "source": "gemini",
-      "review": "pending"
+      "review": "ok",
+      "quality": 66
     },
     {
       "name": "jamal-scared",
       "prompt": "The same child as in the reference picture, same hair, skin, face and blue t-shirt, same head-and-shoulders framing facing the viewer, now showing a scared face: eyebrows raised and pulled together, eyes very wide, mouth stretched open in fear. A clear, readable expression for young children.",
       "cutout": true,
       "aspect": "1:1",
-      "width": 480,
+      "width": 380,
       "people": true,
       "despill": true,
       "ref": "jamal-neutral",
       "source": "gemini",
-      "review": "pending"
+      "review": "ok",
+      "quality": 66
     },
     {
       "name": "jamal-surprised",
       "prompt": "The same child as in the reference picture, same hair, skin, face and blue t-shirt, same head-and-shoulders framing facing the viewer, now showing a surprised face: eyebrows raised high, eyes wide open, mouth open in a round O. A clear, readable expression for young children.",
       "cutout": true,
       "aspect": "1:1",
-      "width": 480,
+      "width": 380,
       "people": true,
       "despill": true,
       "ref": "jamal-neutral",
       "source": "gemini",
-      "review": "pending"
+      "review": "ok",
+      "quality": 66
     },
     {
       "name": "jamal-worried",
       "prompt": "The same child as in the reference picture, same hair, skin, face and blue t-shirt, same head-and-shoulders framing facing the viewer, now showing a worried face: eyebrows tilted up in the middle, eyes glancing to the side, a small wobbly frown. A clear, readable expression for young children.",
       "cutout": true,
       "aspect": "1:1",
-      "width": 480,
+      "width": 380,
       "people": true,
       "despill": true,
       "ref": "jamal-neutral",
       "source": "gemini",
-      "review": "pending"
+      "review": "ok",
+      "quality": 66
     },
     {
       "name": "jamal-disgusted",
       "prompt": "The same child as in the reference picture, same hair, skin, face and blue t-shirt, same head-and-shoulders framing facing the viewer, now showing a grossed-out face: nose wrinkled up, upper lip raised, eyebrows down, tongue a little out, saying yuck. A clear, readable expression for young children.",
       "cutout": true,
       "aspect": "1:1",
-      "width": 480,
+      "width": 380,
       "people": true,
       "despill": true,
       "ref": "jamal-neutral",
       "source": "gemini",
-      "review": "pending"
+      "review": "ok",
+      "quality": 66
     },
     {
       "name": "jamal-calm",
       "prompt": "The same child as in the reference picture, same hair, skin, face and blue t-shirt, same head-and-shoulders framing facing the viewer, now showing a calm, peaceful face: relaxed eyebrows, eyes gently closed, a small soft smile. A clear, readable expression for young children.",
       "cutout": true,
       "aspect": "1:1",
-      "width": 480,
+      "width": 380,
       "people": true,
       "despill": true,
       "ref": "jamal-neutral",
       "source": "gemini",
-      "review": "pending"
+      "review": "ok",
+      "quality": 66
     },
     {
       "name": "mei-happy",
       "prompt": "The same child as in the reference picture, same hair, skin, face and blue t-shirt, same head-and-shoulders framing facing the viewer, now showing a big happy smile showing teeth, cheeks raised, eyes crinkled with joy. A clear, readable expression for young children.",
       "cutout": true,
       "aspect": "1:1",
-      "width": 480,
+      "width": 380,
       "people": true,
       "despill": true,
       "ref": "mei-neutral",
       "source": "gemini",
-      "review": "pending"
+      "review": "ok",
+      "quality": 66
     },
     {
       "name": "mei-sad",
       "prompt": "The same child as in the reference picture, same hair, skin, face and blue t-shirt, same head-and-shoulders framing facing the viewer, now showing a sad face: eyebrows raised in the middle, droopy eyes with one small tear, mouth turned down. A clear, readable expression for young children.",
       "cutout": true,
       "aspect": "1:1",
-      "width": 480,
+      "width": 380,
       "people": true,
       "despill": true,
       "ref": "mei-neutral",
       "source": "gemini",
-      "review": "pending"
+      "review": "ok",
+      "quality": 66
     },
     {
       "name": "mei-mad",
       "prompt": "The same child as in the reference picture, same hair, skin, face and blue t-shirt, same head-and-shoulders framing facing the viewer, now showing a mad, angry face: eyebrows pushed down and together, a hard stare, lips pressed tight. A clear, readable expression for young children.",
       "cutout": true,
       "aspect": "1:1",
-      "width": 480,
+      "width": 380,
       "people": true,
       "despill": true,
       "ref": "mei-neutral",
       "source": "gemini",
-      "review": "pending"
+      "review": "ok",
+      "quality": 66
     },
     {
       "name": "mei-scared",
       "prompt": "The same child as in the reference picture, same hair, skin, face and blue t-shirt, same head-and-shoulders framing facing the viewer, now showing a scared face: eyebrows raised and pulled together, eyes very wide, mouth stretched open in fear. A clear, readable expression for young children.",
       "cutout": true,
       "aspect": "1:1",
-      "width": 480,
+      "width": 380,
       "people": true,
       "despill": true,
       "ref": "mei-neutral",
       "source": "gemini",
-      "review": "pending"
+      "review": "ok",
+      "quality": 66
     },
     {
       "name": "mei-surprised",
       "prompt": "The same child as in the reference picture, same hair, skin, face and blue t-shirt, same head-and-shoulders framing facing the viewer, now showing a surprised face: eyebrows raised high, eyes wide open, mouth open in a round O. A clear, readable expression for young children.",
       "cutout": true,
       "aspect": "1:1",
-      "width": 480,
+      "width": 380,
       "people": true,
       "despill": true,
       "ref": "mei-neutral",
       "source": "gemini",
-      "review": "pending"
+      "review": "ok",
+      "quality": 66
     },
     {
       "name": "mei-worried",
       "prompt": "The same child as in the reference picture, same hair, skin, face and blue t-shirt, same head-and-shoulders framing facing the viewer, now showing a worried face: eyebrows tilted up in the middle, eyes glancing to the side, a small wobbly frown. A clear, readable expression for young children.",
       "cutout": true,
       "aspect": "1:1",
-      "width": 480,
+      "width": 380,
       "people": true,
       "despill": true,
       "ref": "mei-neutral",
       "source": "gemini",
-      "review": "pending"
+      "review": "ok",
+      "quality": 66
     },
     {
       "name": "mei-disgusted",
       "prompt": "The same child as in the reference picture, same hair, skin, face and blue t-shirt, same head-and-shoulders framing facing the viewer, now showing a grossed-out face: nose wrinkled up, upper lip raised, eyebrows down, tongue a little out, saying yuck. A clear, readable expression for young children.",
       "cutout": true,
       "aspect": "1:1",
-      "width": 480,
+      "width": 380,
       "people": true,
       "despill": true,
       "ref": "mei-neutral",
       "source": "gemini",
-      "review": "pending"
+      "review": "ok",
+      "quality": 66
     },
     {
       "name": "mei-calm",
       "prompt": "The same child as in the reference picture, same hair, skin, face and blue t-shirt, same head-and-shoulders framing facing the viewer, now showing a calm, peaceful face: relaxed eyebrows, eyes gently closed, a small soft smile. A clear, readable expression for young children.",
       "cutout": true,
       "aspect": "1:1",
-      "width": 480,
+      "width": 380,
       "people": true,
       "despill": true,
       "ref": "mei-neutral",
       "source": "gemini",
-      "review": "pending"
+      "review": "ok",
+      "quality": 66
     },
     {
       "name": "leo-happy",
       "prompt": "The same child as in the reference picture, same hair, skin, face and blue t-shirt, same head-and-shoulders framing facing the viewer, now showing a big happy smile showing teeth, cheeks raised, eyes crinkled with joy. A clear, readable expression for young children.",
       "cutout": true,
       "aspect": "1:1",
-      "width": 480,
+      "width": 380,
       "people": true,
       "despill": true,
       "ref": "leo-neutral",
       "source": "gemini",
-      "review": "pending"
+      "review": "ok",
+      "quality": 66
     },
     {
       "name": "leo-sad",
       "prompt": "The same child as in the reference picture, same hair, skin, face and blue t-shirt, same head-and-shoulders framing facing the viewer, now showing a sad face: eyebrows raised in the middle, droopy eyes with one small tear, mouth turned down. A clear, readable expression for young children.",
       "cutout": true,
       "aspect": "1:1",
-      "width": 480,
+      "width": 380,
       "people": true,
       "despill": true,
       "ref": "leo-neutral",
       "source": "gemini",
-      "review": "pending"
+      "review": "ok",
+      "quality": 66
     },
     {
       "name": "leo-mad",
       "prompt": "The same child as in the reference picture, same hair, skin, face and blue t-shirt, same head-and-shoulders framing facing the viewer, now showing a mad, angry face: eyebrows pushed down and together, a hard stare, lips pressed tight. A clear, readable expression for young children.",
       "cutout": true,
       "aspect": "1:1",
-      "width": 480,
+      "width": 380,
       "people": true,
       "despill": true,
       "ref": "leo-neutral",
       "source": "gemini",
-      "review": "pending"
+      "review": "ok",
+      "quality": 66
     },
     {
       "name": "leo-scared",
       "prompt": "The same child as in the reference picture, same hair, skin, face and blue t-shirt, same head-and-shoulders framing facing the viewer, now showing a scared face: eyebrows raised and pulled together, eyes very wide, mouth stretched open in fear. A clear, readable expression for young children.",
       "cutout": true,
       "aspect": "1:1",
-      "width": 480,
+      "width": 380,
       "people": true,
       "despill": true,
       "ref": "leo-neutral",
       "source": "gemini",
-      "review": "pending"
+      "review": "ok",
+      "quality": 66
     },
     {
       "name": "leo-surprised",
       "prompt": "The same child as in the reference picture, same hair, skin, face and blue t-shirt, same head-and-shoulders framing facing the viewer, now showing a surprised face: eyebrows raised high, eyes wide open, mouth open in a round O. A clear, readable expression for young children.",
       "cutout": true,
       "aspect": "1:1",
-      "width": 480,
+      "width": 380,
       "people": true,
       "despill": true,
       "ref": "leo-neutral",
       "source": "gemini",
-      "review": "pending"
+      "review": "ok",
+      "quality": 66
     },
     {
       "name": "leo-worried",
       "prompt": "The same child as in the reference picture, same hair, skin, face and blue t-shirt, same head-and-shoulders framing facing the viewer, now showing a worried face: eyebrows tilted up in the middle, eyes glancing to the side, a small wobbly frown. A clear, readable expression for young children.",
       "cutout": true,
       "aspect": "1:1",
-      "width": 480,
+      "width": 380,
       "people": true,
       "despill": true,
       "ref": "leo-neutral",
       "source": "gemini",
-      "review": "pending"
+      "review": "ok",
+      "quality": 66
     },
     {
       "name": "leo-disgusted",
       "prompt": "The same child as in the reference picture, same hair, skin, face and blue t-shirt, same head-and-shoulders framing facing the viewer, now showing a grossed-out face: nose wrinkled up, upper lip raised, eyebrows down, tongue a little out, saying yuck. A clear, readable expression for young children.",
       "cutout": true,
       "aspect": "1:1",
-      "width": 480,
+      "width": 380,
       "people": true,
       "despill": true,
       "ref": "leo-neutral",
       "source": "gemini",
-      "review": "pending"
+      "review": "ok",
+      "quality": 66
     },
     {
       "name": "leo-calm",
       "prompt": "The same child as in the reference picture, same hair, skin, face and blue t-shirt, same head-and-shoulders framing facing the viewer, now showing a calm, peaceful face: relaxed eyebrows, eyes gently closed, a small soft smile. A clear, readable expression for young children.",
       "cutout": true,
       "aspect": "1:1",
-      "width": 480,
+      "width": 380,
       "people": true,
       "despill": true,
       "ref": "leo-neutral",
       "source": "gemini",
-      "review": "pending"
+      "review": "ok",
+      "quality": 66
     },
     {
       "name": "priya-happy",
       "prompt": "The same child as in the reference picture, same hair, skin, face and blue t-shirt, same head-and-shoulders framing facing the viewer, now showing a big happy smile showing teeth, cheeks raised, eyes crinkled with joy. A clear, readable expression for young children.",
       "cutout": true,
       "aspect": "1:1",
-      "width": 480,
+      "width": 380,
       "people": true,
       "despill": true,
       "ref": "priya-neutral",
       "source": "gemini",
-      "review": "pending"
+      "review": "ok",
+      "quality": 66
     },
     {
       "name": "priya-sad",
       "prompt": "The same child as in the reference picture, same hair, skin, face and blue t-shirt, same head-and-shoulders framing facing the viewer, now showing a sad face: eyebrows raised in the middle, droopy eyes with one small tear, mouth turned down. A clear, readable expression for young children.",
       "cutout": true,
       "aspect": "1:1",
-      "width": 480,
+      "width": 380,
       "people": true,
       "despill": true,
       "ref": "priya-neutral",
       "source": "gemini",
-      "review": "pending"
+      "review": "ok",
+      "quality": 66
     },
     {
       "name": "priya-mad",
       "prompt": "The same child as in the reference picture, same hair, skin, face and blue t-shirt, same head-and-shoulders framing facing the viewer, now showing a mad, angry face: eyebrows pushed down and together, a hard stare, lips pressed tight. A clear, readable expression for young children.",
       "cutout": true,
       "aspect": "1:1",
-      "width": 480,
+      "width": 380,
       "people": true,
       "despill": true,
       "ref": "priya-neutral",
       "source": "gemini",
-      "review": "pending"
+      "review": "ok",
+      "quality": 66
     },
     {
       "name": "priya-scared",
       "prompt": "The same child as in the reference picture, same hair, skin, face and blue t-shirt, same head-and-shoulders framing facing the viewer, now showing a scared face: eyebrows raised and pulled together, eyes very wide, mouth stretched open in fear. A clear, readable expression for young children.",
       "cutout": true,
       "aspect": "1:1",
-      "width": 480,
+      "width": 380,
       "people": true,
       "despill": true,
       "ref": "priya-neutral",
       "source": "gemini",
-      "review": "pending"
+      "review": "ok",
+      "quality": 66
     },
     {
       "name": "priya-surprised",
       "prompt": "The same child as in the reference picture, same hair, skin, face and blue t-shirt, same head-and-shoulders framing facing the viewer, now showing a surprised face: eyebrows raised high, eyes wide open, mouth open in a round O. A clear, readable expression for young children.",
       "cutout": true,
       "aspect": "1:1",
-      "width": 480,
+      "width": 380,
       "people": true,
       "despill": true,
       "ref": "priya-neutral",
       "source": "gemini",
-      "review": "pending"
+      "review": "ok",
+      "quality": 66
     },
     {
       "name": "priya-worried",
       "prompt": "The same child as in the reference picture, same hair, skin, face and blue t-shirt, same head-and-shoulders framing facing the viewer, now showing a worried face: eyebrows tilted up in the middle, eyes glancing to the side, a small wobbly frown. A clear, readable expression for young children.",
       "cutout": true,
       "aspect": "1:1",
-      "width": 480,
+      "width": 380,
       "people": true,
       "despill": true,
       "ref": "priya-neutral",
       "source": "gemini",
-      "review": "pending"
+      "review": "ok",
+      "quality": 66
     },
     {
       "name": "priya-disgusted",
       "prompt": "The same child as in the reference picture, same hair, skin, face and blue t-shirt, same head-and-shoulders framing facing the viewer, now showing a grossed-out face: nose wrinkled up, upper lip raised, eyebrows down, tongue a little out, saying yuck. A clear, readable expression for young children.",
       "cutout": true,
       "aspect": "1:1",
-      "width": 480,
+      "width": 380,
       "people": true,
       "despill": true,
       "ref": "priya-neutral",
       "source": "gemini",
-      "review": "pending"
+      "review": "ok",
+      "quality": 66
     },
     {
       "name": "priya-calm",
       "prompt": "The same child as in the reference picture, same hair, skin, face and blue t-shirt, same head-and-shoulders framing facing the viewer, now showing a calm, peaceful face: relaxed eyebrows, eyes gently closed, a small soft smile. A clear, readable expression for young children.",
       "cutout": true,
       "aspect": "1:1",
-      "width": 480,
+      "width": 380,
       "people": true,
       "despill": true,
       "ref": "priya-neutral",
       "source": "gemini",
-      "review": "pending"
+      "review": "ok",
+      "quality": 66
     },
     {
       "name": "sam-happy",
       "prompt": "The same child as in the reference picture, same hair, skin, face and blue t-shirt, same head-and-shoulders framing facing the viewer, now showing a big happy smile showing teeth, cheeks raised, eyes crinkled with joy. A clear, readable expression for young children.",
       "cutout": true,
       "aspect": "1:1",
-      "width": 480,
+      "width": 380,
       "people": true,
       "despill": true,
       "ref": "sam-neutral",
       "source": "gemini",
-      "review": "pending"
+      "review": "ok",
+      "quality": 66
     },
     {
       "name": "sam-sad",
       "prompt": "The same child as in the reference picture, same hair, skin, face and blue t-shirt, same head-and-shoulders framing facing the viewer, now showing a sad face: eyebrows raised in the middle, droopy eyes with one small tear, mouth turned down. A clear, readable expression for young children.",
       "cutout": true,
       "aspect": "1:1",
-      "width": 480,
+      "width": 380,
       "people": true,
       "despill": true,
       "ref": "sam-neutral",
       "source": "gemini",
-      "review": "pending"
+      "review": "ok",
+      "quality": 66
     },
     {
       "name": "sam-mad",
       "prompt": "The same child as in the reference picture, same hair, skin, face and blue t-shirt, same head-and-shoulders framing facing the viewer, now showing a mad, angry face: eyebrows pushed down and together, a hard stare, lips pressed tight. A clear, readable expression for young children.",
       "cutout": true,
       "aspect": "1:1",
-      "width": 480,
+      "width": 380,
       "people": true,
       "despill": true,
       "ref": "sam-neutral",
       "source": "gemini",
-      "review": "pending"
+      "review": "ok",
+      "quality": 66
     },
     {
       "name": "sam-scared",
       "prompt": "The same child as in the reference picture, same hair, skin, face and blue t-shirt, same head-and-shoulders framing facing the viewer, now showing a scared face: eyebrows raised and pulled together, eyes very wide, mouth stretched open in fear. A clear, readable expression for young children.",
       "cutout": true,
       "aspect": "1:1",
-      "width": 480,
+      "width": 380,
       "people": true,
       "despill": true,
       "ref": "sam-neutral",
       "source": "gemini",
-      "review": "pending"
+      "review": "ok",
+      "quality": 66
     },
     {
       "name": "sam-surprised",
       "prompt": "The same child as in the reference picture, same hair, skin, face and blue t-shirt, same head-and-shoulders framing facing the viewer, now showing a surprised face: eyebrows raised high, eyes wide open, mouth open in a round O. A clear, readable expression for young children.",
       "cutout": true,
       "aspect": "1:1",
-      "width": 480,
+      "width": 380,
       "people": true,
       "despill": true,
       "ref": "sam-neutral",
       "source": "gemini",
-      "review": "pending"
+      "review": "ok",
+      "quality": 66
     },
     {
       "name": "sam-worried",
       "prompt": "The same child as in the reference picture, same hair, skin, face and blue t-shirt, same head-and-shoulders framing facing the viewer, now showing a worried face: eyebrows tilted up in the middle, eyes glancing to the side, a small wobbly frown. A clear, readable expression for young children.",
       "cutout": true,
       "aspect": "1:1",
-      "width": 480,
+      "width": 380,
       "people": true,
       "despill": true,
       "ref": "sam-neutral",
       "source": "gemini",
-      "review": "pending"
+      "review": "ok",
+      "quality": 66
     },
     {
       "name": "sam-disgusted",
       "prompt": "The same child as in the reference picture, same hair, skin, face and blue t-shirt, same head-and-shoulders framing facing the viewer, now showing a grossed-out face: nose wrinkled up, upper lip raised, eyebrows down, tongue a little out, saying yuck. A clear, readable expression for young children.",
       "cutout": true,
       "aspect": "1:1",
-      "width": 480,
+      "width": 380,
       "people": true,
       "despill": true,
       "ref": "sam-neutral",
       "source": "gemini",
-      "review": "pending"
+      "review": "ok",
+      "quality": 66
     },
     {
       "name": "sam-calm",
       "prompt": "The same child as in the reference picture, same hair, skin, face and blue t-shirt, same head-and-shoulders framing facing the viewer, now showing a calm, peaceful face: relaxed eyebrows, eyes gently closed, a small soft smile. A clear, readable expression for young children.",
       "cutout": true,
       "aspect": "1:1",
-      "width": 480,
+      "width": 380,
       "people": true,
       "despill": true,
       "ref": "sam-neutral",
       "source": "gemini",
-      "review": "pending"
+      "review": "ok",
+      "quality": 66
     }
   ]
 }

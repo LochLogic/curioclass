@@ -8,7 +8,7 @@
 
 - **Face clues:** eight feelings (happy, sad, mad, scared, surprised, worried, grossed out, calm) on six children's faces. A wrong tap explains what that feeling's face would look like, so children compare.
 - **What happened?:** ten short stories. Children say how the friend might feel; more than one answer fits, and an unexpected answer gets "feelings can be different." Then they choose what to say or do from three choices, each with feedback on whether it would help.
-- **Make a face:** sliders for eyebrows, brow tilt, eyes, mouth and how open it is. The tool names the closest feeling. Tap a feeling to see its face, then try changing it into another one.
+- **Make a face:** sliders for eyebrows, brow tilt, eyes, mouth and how open it is. The face changes to the closest feeling. Tap a feeling to see its face, then try sliding to another one.
 
 ## Teaching notes
 
@@ -25,4 +25,4 @@
 ## Good to know
 
 - Keys 1 to 3 switch modes.
-- The faces are drawn in code with six different children, so they change smoothly and stay sharp on a projector.
+- Six children, each painted with nine expressions from one portrait, so only the feeling changes from picture to picture.
