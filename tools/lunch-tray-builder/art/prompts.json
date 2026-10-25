@@ -111,13 +111,16 @@
     },
     {
       "name": "tomatoes",
-      "prompt": "Four red cherry tomatoes, a bright appetizing food illustration seen from slightly above.",
+      "prompt": "Four red cherry tomatoes, each with a small green leafy stem on top, a bright appetizing food illustration seen from slightly above.",
       "cutout": true,
       "aspect": "1:1",
       "width": 200,
       "quality": 76,
-      "source": "flux2-klein-4b (Cloudflare)",
-      "review": "ok"
+      "source": "gemini",
+      "review": "ok",
+      "key": "magenta",
+      "ref": "banana",
+      "ref_mode": "style"
     },
     {
       "name": "salad",
@@ -300,6 +303,19 @@
       "aspect": "1:1",
       "width": 200,
       "quality": 76,
+      "ref": "banana",
+      "ref_mode": "style",
+      "source": "gemini",
+      "review": "ok"
+    },
+    {
+      "name": "pepperoni",
+      "prompt": "Six round slices of pepperoni, a bright appetizing food illustration seen from slightly above.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 200,
+      "quality": 76,
+      "key": "magenta",
       "ref": "banana",
       "ref_mode": "style",
       "source": "gemini",

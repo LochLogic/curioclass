@@ -9,6 +9,60 @@
       "height": 200,
       "source": "flux2-klein-4b (Cloudflare)",
       "review": "ok"
+    },
+    {
+      "name": "libroom",
+      "prompt": "Empty background: the inside of a bright, cheerful school library room seen straight on. A warm cream wall with two tall arched windows letting in sunlight across the upper part, a warm honey wooden floor across the lower half. The room is completely empty: no shelves, no furniture, no books, no rugs, no people, no animals, no text.",
+      "aspect": "16:9",
+      "width": 1600,
+      "quality": 74,
+      "source": "gemini",
+      "review": "pending"
+    },
+    {
+      "name": "picbins",
+      "prompt": "Two low colorful wooden picture-book bins side by side, full of picture books facing forward with bright covers with no words, for a school library.",
+      "cutout": true,
+      "aspect": "16:9",
+      "width": 330,
+      "source": "gemini",
+      "review": "pending"
+    },
+    {
+      "name": "ficshelf",
+      "prompt": "A wide wooden bookcase with two shelves full of colorful chapter book spines, for a school library, front view.",
+      "cutout": true,
+      "aspect": "16:9",
+      "width": 330,
+      "source": "gemini",
+      "review": "pending"
+    },
+    {
+      "name": "nonshelf",
+      "prompt": "A wide wooden bookcase with two shelves full of colorful nonfiction books, a small globe and a toy dinosaur on top, front view.",
+      "cutout": true,
+      "aspect": "16:9",
+      "width": 330,
+      "source": "gemini",
+      "review": "pending"
+    },
+    {
+      "name": "desk",
+      "prompt": "A wooden library checkout desk with a computer screen, a book scanner and a small stack of books, front view.",
+      "cutout": true,
+      "aspect": "16:9",
+      "width": 300,
+      "source": "gemini",
+      "review": "pending"
+    },
+    {
+      "name": "rug",
+      "prompt": "A round rainbow reading rug seen from a little above, with two big soft beanbag chairs, one red and one blue.",
+      "cutout": true,
+      "aspect": "16:9",
+      "width": 320,
+      "source": "gemini",
+      "review": "pending"
     }
   ]
 }

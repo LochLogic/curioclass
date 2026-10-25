@@ -1,0 +1,71 @@
+{
+  "style": "Warm storybook portraits for a kindergarten feelings lesson: soft gouache and colored pencil, friendly proportions, clear readable facial expressions.",
+  "assets": [
+    {
+      "name": "ana-neutral",
+      "prompt": "A friendly storybook portrait of a girl with brown skin and dark curly hair, about seven years old, head and shoulders, facing the viewer, a calm neutral expression, wearing a plain blue t-shirt. Face centered and large in the frame.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 480,
+      "people": true,
+      "despill": true,
+      "source": "gemini",
+      "review": "pending"
+    },
+    {
+      "name": "jamal-neutral",
+      "prompt": "A friendly storybook portrait of a boy with dark brown skin and short black hair, about seven years old, head and shoulders, facing the viewer, a calm neutral expression, wearing a plain blue t-shirt. Face centered and large in the frame.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 480,
+      "people": true,
+      "despill": true,
+      "source": "gemini",
+      "review": "pending"
+    },
+    {
+      "name": "mei-neutral",
+      "prompt": "A friendly storybook portrait of a girl with light skin and a straight black bob haircut, about seven years old, head and shoulders, facing the viewer, a calm neutral expression, wearing a plain blue t-shirt. Face centered and large in the frame.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 480,
+      "people": true,
+      "despill": true,
+      "source": "gemini",
+      "review": "pending"
+    },
+    {
+      "name": "leo-neutral",
+      "prompt": "A friendly storybook portrait of a boy with fair freckled skin and spiky ginger hair, about seven years old, head and shoulders, facing the viewer, a calm neutral expression, wearing a plain blue t-shirt. Face centered and large in the frame.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 480,
+      "people": true,
+      "despill": true,
+      "source": "gemini",
+      "review": "pending"
+    },
+    {
+      "name": "priya-neutral",
+      "prompt": "A friendly storybook portrait of a girl with medium brown skin and two long dark braids, about seven years old, head and shoulders, facing the viewer, a calm neutral expression, wearing a plain blue t-shirt. Face centered and large in the frame.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 480,
+      "people": true,
+      "despill": true,
+      "source": "gemini",
+      "review": "pending"
+    },
+    {
+      "name": "sam-neutral",
+      "prompt": "A friendly storybook portrait of a boy with light tan skin and short brown hair, about seven years old, head and shoulders, facing the viewer, a calm neutral expression, wearing a plain blue t-shirt. Face centered and large in the frame.",
+      "cutout": true,
+      "aspect": "1:1",
+      "width": 480,
+      "people": true,
+      "despill": true,
+      "source": "gemini",
+      "review": "pending"
+    }
+  ]
+}

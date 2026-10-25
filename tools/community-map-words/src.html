@@ -133,18 +133,18 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
 
   // ---------- the town ----------
   const P = [
-    {id: 'school', n: 'school', x: 130, y: 250, h: 'teacher', hs: 'teachers', does: 'help children learn', need: 'I want to learn to read.'},
-    {id: 'library', n: 'library', x: 330, y: 250, h: 'librarian', hs: 'librarians', does: 'help you find books', need: 'I need a book about dinosaurs.'},
-    {id: 'fire', n: 'fire station', x: 540, y: 250, h: 'firefighter', hs: 'firefighters', does: 'put out fires and keep people safe', need: 'I want to learn about fire safety.'},
-    {id: 'hospital', n: 'hospital', x: 720, y: 250, h: 'doctor', hs: 'doctors and nurses', does: 'help sick and hurt people get better', need: 'I hurt my arm and need a doctor.'},
-    {id: 'police', n: 'police station', x: 130, y: 430, h: 'police officer', hs: 'police officers', does: 'keep the community safe', need: 'I am lost and need help.'},
-    {id: 'post', n: 'post office', x: 330, y: 430, h: 'mail carrier', hs: 'mail carriers', does: 'bring letters and packages', need: 'I want to mail a letter to Grandma.'},
-    {id: 'grocery', n: 'grocery store', x: 540, y: 430, h: 'cashier', hs: 'cashiers', does: 'help you pay for food', need: 'We need milk and apples.'},
-    {id: 'bakery', n: 'bakery', x: 740, y: 430, h: 'baker', hs: 'bakers', does: 'bake bread and cakes', need: 'I want to buy a birthday cake.'},
-    {id: 'park', n: 'park', x: 920, y: 560, h: 'park ranger', hs: 'park rangers', does: 'take care of parks and nature', need: 'I want to play on the swings.'},
-    {id: 'vet', n: 'vet', x: 130, y: 580, h: 'veterinarian', hs: 'veterinarians', does: 'help sick animals', need: 'My dog is sick.'},
-    {id: 'bus', n: 'bus stop', x: 330, y: 590, h: 'bus driver', hs: 'bus drivers', does: 'drive people where they need to go', need: 'I need a ride across town.'},
-    {id: 'farm', n: 'farm', x: 560, y: 590, h: 'farmer', hs: 'farmers', does: 'grow food and raise animals', need: 'I want to see where eggs come from.'},
+    {id: 'school', n: 'school', x: 130, y: 222, h: 'teacher', hs: 'teachers', does: 'help children learn', need: 'I want to learn to read.'},
+    {id: 'library', n: 'library', x: 330, y: 222, h: 'librarian', hs: 'librarians', does: 'help you find books', need: 'I need a book about dinosaurs.'},
+    {id: 'fire', n: 'fire station', x: 540, y: 222, h: 'firefighter', hs: 'firefighters', does: 'put out fires and keep people safe', need: 'I want to learn about fire safety.'},
+    {id: 'hospital', n: 'hospital', x: 720, y: 222, h: 'doctor', hs: 'doctors and nurses', does: 'help sick and hurt people get better', need: 'I hurt my arm and need a doctor.'},
+    {id: 'police', n: 'police station', x: 130, y: 392, h: 'police officer', hs: 'police officers', does: 'keep the community safe', need: 'I am lost and need help.'},
+    {id: 'post', n: 'post office', x: 330, y: 392, h: 'mail carrier', hs: 'mail carriers', does: 'bring letters and packages', need: 'I want to mail a letter to Grandma.'},
+    {id: 'grocery', n: 'grocery store', x: 540, y: 392, h: 'cashier', hs: 'cashiers', does: 'help you pay for food', need: 'We need milk and apples.'},
+    {id: 'bakery', n: 'bakery', x: 740, y: 392, h: 'baker', hs: 'bakers', does: 'bake bread and cakes', need: 'I want to buy a birthday cake.'},
+    {id: 'park', n: 'park', x: 920, y: 548, h: 'park ranger', hs: 'park rangers', does: 'take care of parks and nature', need: 'I want to play on the swings.'},
+    {id: 'vet', n: 'vet', x: 130, y: 548, h: 'veterinarian', hs: 'veterinarians', does: 'help sick animals', need: 'My dog is sick.'},
+    {id: 'bus', n: 'bus stop', x: 330, y: 548, h: 'bus driver', hs: 'bus drivers', does: 'drive people where they need to go', need: 'I need a ride across town.'},
+    {id: 'farm', n: 'farm', x: 560, y: 548, h: 'farmer', hs: 'farmers', does: 'grow food and raise animals', need: 'I want to see where eggs come from.'},
   ];
   const IMG = {school: 'art:school', library: 'art:library', fire: 'art:fire', hospital: 'art:hospital', police: 'art:police', post: 'art:post', grocery: 'art:grocery', bakery: 'art:bakery', park: 'art:park', vet: 'art:vet', bus: 'art:bus', farm: 'art:farm'};
   const HELP = {school: 'art:h-teacher', library: 'art:h-librarian', fire: 'art:h-firefighter', hospital: 'art:h-doctor', police: 'art:h-police', post: 'art:h-mail', grocery: 'art:h-cashier', bakery: 'art:h-baker', park: 'art:h-ranger', vet: 'art:h-vet', bus: 'art:h-driver', farm: 'art:h-farmer'};
@@ -159,11 +159,11 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
     s.innerHTML = `
       <rect x="0" y="0" width="1000" height="620" fill="#9fd47e"/>
       <g fill="#7cc061">${Array.from({length: 40}, (_, i) => `<circle cx="${(i * 97) % 1000}" cy="${(i * 53) % 620}" r="${4 + i % 5}"/>`).join('')}</g>
-      <path d="M0,160 H1000 M0,340 H1000 M0,515 H860 M235,160 V620 M440,160 V620 M640,160 V515 M860,160 V620" stroke="#c9c2b4" stroke-width="58" fill="none"/>
-      <path d="M0,160 H1000 M0,340 H1000 M0,515 H860 M235,160 V620 M440,160 V620 M640,160 V515 M860,160 V620" stroke="#6d6a66" stroke-width="44" fill="none"/>
-      <path d="M0,160 H1000 M0,340 H1000 M0,515 H860 M235,160 V620 M440,160 V620 M640,160 V515 M860,160 V620" stroke="#f2d64b" stroke-width="3" stroke-dasharray="18 16" fill="none"/>
-      <ellipse cx="930" cy="80" rx="60" ry="36" fill="#6cc3e8" stroke="#4a9ec4" stroke-width="4"/>
-      ${[[40, 60], [120, 90], [300, 70], [700, 90], [800, 60], [980, 260], [980, 420], [700, 600], [760, 560]].map(([x, y]) => `<g><circle cx="${x}" cy="${y}" r="26" fill="#3f8f3a"/><circle cx="${x - 8}" cy="${y - 8}" r="12" fill="#5aab4f"/></g>`).join('')}`;
+      <path d="M0,308 H1000 M0,472 H860 M235,150 V620 M440,150 V620 M640,150 V472 M860,150 V620" stroke="#c9c2b4" stroke-width="58" fill="none"/>
+      <path d="M0,308 H1000 M0,472 H860 M235,150 V620 M440,150 V620 M640,150 V472 M860,150 V620" stroke="#6d6a66" stroke-width="44" fill="none"/>
+      <path d="M0,308 H1000 M0,472 H860 M235,150 V620 M440,150 V620 M640,150 V472 M860,150 V620" stroke="#f2d64b" stroke-width="3" stroke-dasharray="18 16" fill="none"/>
+      <ellipse cx="830" cy="70" rx="70" ry="38" fill="#6cc3e8" stroke="#4a9ec4" stroke-width="4"/>
+      ${[[600, 40], [660, 90], [990, 230], [990, 400], [760, 590], [800, 560]].map(([x, y]) => `<g><circle cx="${x}" cy="${y}" r="26" fill="#3f8f3a"/><circle cx="${x - 8}" cy="${y - 8}" r="12" fill="#5aab4f"/></g>`).join('')}`;
   })();
 
   const state = {mode: 'explore', order: [], at: -1, right: 0, sound: true, names: true};
@@ -189,7 +189,7 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
     $('places').replaceChildren(...P.map(p => {
       const b = document.createElement('button');
       b.className = 'place' + (state.names ? '' : ' hidename'); b.dataset.id = p.id;
-      Object.assign(b.style, {left: p.x + 'px', top: p.y - 8 + 'px'});
+      Object.assign(b.style, {left: p.x + 'px', top: p.y + 'px'});
       b.innerHTML = `<img src="${IMG[p.id]}" alt=""><span class="name">${p.n}</span>`;
       b.setAttribute('aria-label', p.n);
       b.onclick = () => tap(p.id);
@@ -311,21 +311,25 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
     return voices.sort((a, b) => score(b) - score(a))[0] || null;
   }
   if ('speechSynthesis' in window) {
-    const speak = speechSynthesis.speak.bind(speechSynthesis);
+    // Chrome fills its voice list late, so an early line waits for it; cancel() also drops a line still waiting,
+    // or it would start after the next one and the tool would talk over itself
+    const speak = speechSynthesis.speak.bind(speechSynthesis), cancel = speechSynthesis.cancel.bind(speechSynthesis), held = new Set();
     speechSynthesis.speak = u => {
       if (speechSynthesis.getVoices().length) return speak(u);
-      let done = false;
-      const go = () => { if (done) return; done = true; const v = bestVoice(); if (v) { u.voice = v; u.lang = v.lang; } speak(u); };
+      held.add(u);
+      const go = () => { if (!held.delete(u)) return; const v = bestVoice(); if (v) { u.voice = v; u.lang = v.lang; } speak(u); };
       speechSynthesis.addEventListener('voiceschanged', go, {once: true});
       setTimeout(go, 1500);
     };
+    speechSynthesis.cancel = () => { held.forEach(u => u.onend && u.onend()); held.clear(); cancel(); };
     speechSynthesis.getVoices();
   }
   const CLIPS = "voice:*";
   const allLines = () => [...new Set([
     'Welcome to our town! Tap a place to visit.', 'Where do I go?', 'Where do they work?', 'Try again!',
     ...P.flatMap(p => { const A = an(p.h) === 'an' ? 'An' : 'A'; return [`This is the ${p.n}.`, `${cap(p.hs)} work here. They ${p.does}.`, p.need, goLine(p), `${A} ${p.h} can help.`, `That's the ${p.n}.`, `This is ${an(p.h)} ${p.h}.`, `${A} ${p.h} works at the ${p.n}.`, `${cap(p.hs)} ${p.does}.`]; })])];
-  let talk = 0, clip = null, last = [];
+  let talk = 0, clip = null, last = [], heard = false;
+  for (const ev of ['pointerdown', 'keydown']) addEventListener(ev, () => { heard = true; }, {once: true, capture: true});
   function stopTalk() { talk++; if (clip) { clip.pause(); clip = null; } if ('speechSynthesis' in window) speechSynthesis.cancel(); }
   function speakOne(text) {
     return new Promise(done => {
@@ -338,6 +342,7 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
     });
   }
   async function say(parts, force) {
+    if (!heard && !force) return;
     if (!state.sound && !force) return;
     stopTalk();
     const me = talk;

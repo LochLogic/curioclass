@@ -11,7 +11,7 @@ Math, grade 8, Common Core 8.EE.A (integer exponents, scientific notation, estim
 operations with numbers in scientific notation). Module "Exponents, Roots and Scientific Notation".
 Zoom: one slider through 43 powers of ten, from a proton (about 10^-15 m) to the observable universe (about 10^27 m),
 with 39 real things drawn to scale side by side, each with its size in scientific notation, standard form and units.
-Compare: any two things; how many times bigger, worked as (a / b) x 10^(m - n), plus a single-digit estimate.
+Compare: two things within 1,000 times of each other; how many times bigger, with copies lined up when it is 12 or less, worked as (a / b) x 10^(m - n), plus a single-digit estimate.
 Place it: put a thing on a power-of-ten line; stars for landing within one or two powers.
 Write it: slide the decimal point between standard form and scientific notation and watch the exponent count the hops.
 Sizes are typical published values (NASA, NIST, encyclopedias), rounded; living things vary. Oort cloud size is an estimate.
@@ -100,7 +100,7 @@ sup{font-size:.62em;line-height:0}
 .inset{position:absolute;border:4px solid #ffe08a;border-radius:50%;background:radial-gradient(#fffdf8,#dcd5c3);overflow:hidden;box-shadow:0 0 0 4px #0006}
 .inset img{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);max-width:70%;max-height:70%}
 .leader{position:absolute;height:3px;background:#ffe08a;transform-origin:0 50%}
-.cl{position:absolute;color:#fff;font:700 16px 'Segoe UI',sans-serif;text-shadow:0 1px 3px #000c;text-align:center;transform:translateX(-50%);white-space:nowrap}
+.cl{position:absolute;color:#fff;font:700 16px 'Segoe UI',sans-serif;text-shadow:0 1px 3px #000c;background:#1d2433cc;border-radius:10px;padding:3px 10px;text-align:center;transform:translateX(-50%);white-space:nowrap}
 
 /* place it */
 .place{position:absolute;inset:0;background:linear-gradient(#e9e2d1,#f3efe6)}
@@ -173,7 +173,7 @@ sup{font-size:.62em;line-height:0}
           <button class="b navy" id="zout" title="Zoom out one power of ten (plus key)">×10 Bigger</button>
         </div>
         <div class="slider">
-          <input type="range" id="zr" min="-15.6" max="27.6" step="0.01" aria-label="Screen width, power of ten in meters">
+          <input type="range" id="zr" min="-14.4" max="27.3" step="0.01" aria-label="Screen width, power of ten in meters">
           <div class="track"></div><div class="ticks" id="ticks"></div><div class="thumb" id="thumb"></div>
         </div>
         <div class="zbtns">
@@ -307,8 +307,25 @@ sup{font-size:.62em;line-height:0}
   const SVG_WATER = 'data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="40 60 320 230" width="320" height="230"><defs><radialGradient id="o" cx=".35" cy=".3"><stop offset="0" stop-color="#ff8a7a"/><stop offset=".45" stop-color="#d42a1c"/><stop offset="1" stop-color="#7a0e08"/></radialGradient><radialGradient id="h" cx=".35" cy=".3"><stop offset="0" stop-color="#fff"/><stop offset=".6" stop-color="#e6e9ee"/><stop offset="1" stop-color="#9aa2ad"/></radialGradient></defs><circle cx="127.3" cy="226.3" r="58" fill="url(#h)"/><circle cx="272.7" cy="226.3" r="58" fill="url(#h)"/><circle cx="200" cy="170" r="88" fill="url(#o)"/></svg>');
   // "you" is a plain scale figure, the way architects show size
   const SIL = 'data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 160" width="60" height="160"><g fill="#2c3550"><circle cx="30" cy="13" r="11"/><path d="M17 28h26c5 0 8 3 8 8v40c0 3-2 5-5 5s-4-2-4-5V44h-2v108c0 4-3 7-7 7s-6-3-6-7V95h-2v57c0 4-3 7-6 7s-7-3-7-7V44h-2v32c0 3-2 5-4 5s-5-2-5-5V36c0-5 3-8 8-8z"/></g></svg>');
+  // DNA drawn in code: two backbones twisting around each other with colored base pairs between them
+  const SVG_DNA = (() => {
+    const W = 160, H = 640, turns = 3, n = 60, col = ['#e8453c', '#f2b705', '#3b8de0', '#3fae5a'];
+    const x = (t, ph) => W / 2 + (W / 2 - 14) * Math.sin(t * turns * 2 * Math.PI + ph);
+    const z = (t, ph) => Math.cos(t * turns * 2 * Math.PI + ph);
+    let rungs = '', back = '', front = '';
+    for (let i = 0; i <= n; i++) {
+      const t = i / n, y = 10 + t * (H - 20), a = x(t, 0), b = x(t, Math.PI), m = (a + b) / 2;
+      if (i % 2 === 0) rungs += `<line x1="${a.toFixed(1)}" y1="${y.toFixed(1)}" x2="${m.toFixed(1)}" y2="${y.toFixed(1)}" stroke="${col[(i / 2) % 4]}" stroke-width="7" stroke-linecap="round"/><line x1="${m.toFixed(1)}" y1="${y.toFixed(1)}" x2="${b.toFixed(1)}" y2="${y.toFixed(1)}" stroke="${col[(i / 2 + 2) % 4]}" stroke-width="7" stroke-linecap="round"/>`;
+    }
+    // each backbone is drawn in short pieces, in front or behind depending on which way it faces
+    for (const ph of [0, Math.PI]) for (let i = 0; i < 240; i++) {
+      const t0 = i / 240, t1 = (i + 1) / 240, seg = `<line x1="${x(t0, ph).toFixed(1)}" y1="${(10 + t0 * (H - 20)).toFixed(1)}" x2="${x(t1, ph).toFixed(1)}" y2="${(10 + t1 * (H - 20)).toFixed(1)}" stroke="${ph ? '#7b5bd6' : '#2a7bd4'}" stroke-width="13" stroke-linecap="round"/>`;
+      z((t0 + t1) / 2, ph) > 0 ? (front += seg) : (back += seg);
+    }
+    return 'data:image/svg+xml,' + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}"><g opacity=".7">${back}</g>${rungs}${front}</svg>`);
+  })();
   const IMG = {
-    proton: SVG_PROTON, hydrogen: 'art:hydrogen', water: SVG_WATER, dna: 'art:dna', virus: 'art:virus', bacterium: 'art:bacterium', bloodcell: 'art:bloodcell',
+    proton: SVG_PROTON, hydrogen: 'art:hydrogen', water: SVG_WATER, dna: SVG_DNA, virus: 'art:virus', bacterium: 'art:bacterium', bloodcell: 'art:bloodcell',
     pollen: 'art:pollen', hair: 'art:hair', mite: 'art:mite', sand: 'art:sand', ant: 'art:ant', bee: 'art:bee', golfball: 'art:golfball', apple: 'art:apple',
     basketball: 'art:basketball', teen: SIL, giraffe: 'art:giraffe', bus: 'art:bus', whale: 'art:whale', liberty: 'art:liberty', eiffel: 'art:eiffel',
     burj: 'art:burj', everest: 'art:everest', hurricane: 'art:hurricane', moon: 'art:moon', earth: 'art:earth', jupiter: 'art:jupiter', sun: 'art:sun',
@@ -354,6 +371,15 @@ sup{font-size:.62em;line-height:0}
   // Each thing gets a slot along a line, sized to its drawn footprint; slots grow left to right, so at any zoom the
   // thing that fills the screen sits on the right and everything smaller has shrunk toward the left edge.
   const VIEW_W = 1340, MAX_H = 470, BASE = 600, LEFT = 50;
+  // the slider starts where the proton fills the open space and ends where the observable universe does
+  const ZMIN = -14.4, ZMAX = 27.3, ZSPAN = ZMAX - ZMIN, CX = 860;  // CX: middle of the space right of the readout card
+  const ease = t => { t = Math.max(0, Math.min(1, t)); return t * t * (3 - 2 * t); };
+  // near either end, slide the view so the first or last thing sits centered instead of at the left edge
+  function camOffset(P) {
+    const first = OBJ[0], last = OBJ[OBJ.length - 1];
+    const toFirst = CX - (LEFT + first.X * P + first.w * P / 2), toLast = CX - (LEFT + last.X * P + last.w * P / 2);
+    return toFirst * ease((ZMIN + 1.4 - z) / 1.4) + toLast * ease((z - (ZMAX - 1.6)) / 1.6);
+  }
   let ready = false;
   function layout() {
     let X = 0, prev = null;
@@ -376,8 +402,8 @@ sup{font-size:.62em;line-height:0}
     for (let i = 0; i < 260; i++) { const x = Math.random() * 1440, y = Math.random() * 640, r = Math.random() * 1.4 + .2; g.fillStyle = `rgba(255,255,255,${.3 + Math.random() * .7})`; g.beginPath(); g.arc(x, y, r, 0, 7); g.fill(); }
     // slider ticks
     let t = '';
-    for (let n = -15; n <= 27; n++) { const p = (n - (-15.6)) / 43.2 * 100; t += `<i style="left:${p}%" class="${n % 3 === 0 ? 'big' : ''}"></i>`; if (n % 3 === 0) t += `<span style="left:${p}%">${expo(n)}</span>`; }
-    [['-12', 'atoms'], ['-6', 'cells'], ['0', 'you'], ['7', 'planets'], ['21', 'galaxies']].forEach(([n, w]) => t += `<em style="left:${(+n + 15.6) / 43.2 * 100}%">${w}</em>`);
+    for (let n = -14; n <= 27; n++) { const p = (n - ZMIN) / ZSPAN * 100; t += `<i style="left:${p}%" class="${n % 3 === 0 ? 'big' : ''}"></i>`; if (n % 3 === 0) t += `<span style="left:${p}%">${expo(n)}</span>`; }
+    [['-12', 'atoms'], ['-6', 'cells'], ['0', 'you'], ['7', 'planets'], ['21', 'galaxies']].forEach(([n, w]) => t += `<em style="left:${(+n - ZMIN) / ZSPAN * 100}%">${w}</em>`);
     $('ticks').innerHTML = t;
   }
   // background: lab dark, then daylight, then night sky
@@ -403,9 +429,10 @@ sup{font-size:.62em;line-height:0}
     $('ground').style.background = 'linear-gradient(#8b7d5e,#6e6247)';
     $('ground').style.opacity = Math.max(0, Math.min(1, (4.4 - z) / .8)) * Math.max(0, Math.min(1, (z + 2.2) / .8));
     let focus = null, best = 1e9;
+    const off = camOffset(P);
     for (const o of OBJ) {
       const el = objEls[o.id], lab = labEls[o.id], w = o.w * P, h = o.h * P;
-      const x = LEFT + o.X * P;
+      const x = LEFT + o.X * P + off;
       if (w < .6 || x > 1500 || w > 40000) { el.style.display = 'none'; lab.style.display = 'none'; continue; }
       el.style.display = '';
       const y = o.glow ? 320 - h / 2 : BASE - h; // things stand on one line, so heights compare fairly; things in space float
@@ -428,7 +455,7 @@ sup{font-size:.62em;line-height:0}
     $('bar').querySelector('i').style.width = barPx + 'px';
     $('bar').querySelector('span').innerHTML = `1 × ${expo(pBar)} m`;
     // thumb + readouts
-    const pc = (z + 15.6) / 43.2;
+    const pc = (z - ZMIN) / ZSPAN;
     $('thumb').style.left = pc * 100 + '%'; $('zr').value = z;
     $('wide').innerHTML = `Screen width<br><span style="font:700 18px Georgia,serif;color:var(--brand)">${expo(Math.round(z))} m</span>`;
     const g = GAPS.find(([a, b]) => z > a && z < b);
@@ -445,7 +472,7 @@ sup{font-size:.62em;line-height:0}
       <p style="color:var(--muted);font-weight:700">${o.what.startsWith('across, est') ? 'roughly ' : 'about '}${words(o.m)}</p>
       <p>${o.fact}</p>`;
   }
-  function setZ(v) { z = Math.max(-15.6, Math.min(27.6, v)); render(); }
+  function setZ(v) { z = Math.max(ZMIN, Math.min(ZMAX, v)); render(); }
   let raf = null;
   function glide(to, ms = 650) {
     if (raf) cancelAnimationFrame(raf);
@@ -458,7 +485,7 @@ sup{font-size:.62em;line-height:0}
   function tour() {
     if (touring) { stopTour(); return; }
     touring = true; $('tour').textContent = '⏸ Stop';
-    if (z > 27) setZ(-15.6);
+    if (z > ZMAX - .3) setZ(ZMIN);
     let last = performance.now();
     const step = now => {
       if (!touring) return;
@@ -466,7 +493,7 @@ sup{font-size:.62em;line-height:0}
       // slow down while something fills the screen, speed through the empty stretches
       const speed = lastFocus && Math.abs(Math.log10(lastFocus.foot * Math.pow(10, -z) * 1.0 / .55)) < .3 ? .32 : .9;
       setZ(z + dt * speed);
-      if (z >= 27.6) { stopTour(); return; }
+      if (z >= ZMAX) { stopTour(); return; }
       requestAnimationFrame(step);
     };
     requestAnimationFrame(step);
@@ -489,7 +516,9 @@ sup{font-size:.62em;line-height:0}
   });
 
   // ---------- compare ----------
-  let cA = BY.burj, cB = BY.ant, choosing = null;
+  let cA = BY.giraffe, cB = BY.teen, choosing = null;
+  const NEAR = 3;  // pairs stay within 3 powers of ten (1,000 times), so both can be seen in one picture
+  const near = (a, b) => Math.abs(Math.log10(a.m / b.m)) <= NEAR;
   function pickBtn(o, which) { return `<img src="${o.src}" alt=""><span><small>${which}</small>${o.name}<small>${sciHTML(o.c, o.e)} m</small></span>`; }
   function sig1(c) { // round a coefficient to one digit, carrying into the exponent (9.5 becomes 10 = 1 × 10)
     const r = Math.round(c); return r >= 10 ? [1, 1] : [Math.max(1, r), 0];
@@ -521,12 +550,25 @@ sup{font-size:.62em;line-height:0}
     const W = 880, H = 560, [top, bot] = skyAt(Math.log10(big.foot) + .2);
     let html = `<div style="position:absolute;inset:0;background:linear-gradient(${top},${bot})"></div>`;
     // the big one fills most of the stage
-    const P = Math.min(560 / big.w, 400 / big.h);
+    // a small enough ratio is shown as copies of the small thing lined up (or stacked, for tall things) to match the big one
+    const lineUp = ratio > 1.05 && ratio <= 12, stack = lineUp && big.up && small.up;
+    const P = lineUp ? (stack ? 400 / big.h : Math.min(380 / big.w, 400 / big.h)) : Math.min(560 / big.w, 400 / big.h);
     const bw = big.w * P, bh = big.h * P, bx = 60, by = 470 - bh;
     html += `<img src="${big.src}" alt="${big.name}" style="position:absolute;left:${bx}px;top:${by}px;width:${bw}px;height:${bh}px;${big.glow ? 'mix-blend-mode:screen' : ''}">`;
     html += `<div class="cl" style="left:${bx + bw / 2}px;top:482px">${big.name}<br>${sciHTML(big.c, big.e)} m</div>`;
     const sw = small.w * P, sh = small.h * P, sx = Math.min(bx + bw + 30, 700), sy = 470 - sh;
-    if (Math.max(sw, sh) >= 8) {
+    if (lineUp) {
+      const n = Math.ceil(ratio - 1e-9), x0 = bx + bw + 40;
+      for (let i = 0; i < n; i++) {
+        const part = Math.min(1, ratio - i);  // the last copy is cut to the part that fits
+        const st = stack ? `left:${x0}px;top:${470 - (i + 1) * sh}px;width:${sw}px;height:${sh}px;clip-path:inset(${(1 - part) * 100}% 0 0 0)` : `left:${x0 + i * sw}px;top:${470 - sh}px;width:${sw}px;height:${sh}px;clip-path:inset(0 ${(1 - part) * 100}% 0 0)`;
+        html += `<img src="${small.src}" alt="" style="position:absolute;${st};${small.glow ? 'mix-blend-mode:screen;' : ''}${i % 2 ? 'filter:brightness(.92)' : ''}">`;
+      }
+      // a bracket shows the copies match the big one
+      html += stack ? `<div style="position:absolute;left:${x0 + sw + 12}px;top:${470 - bh}px;width:10px;height:${bh}px;border:3px solid #fff;border-left:0"></div>`
+                    : `<div style="position:absolute;left:${x0}px;top:${478}px;width:${bw}px;height:10px;border:3px solid #fff;border-top:0"></div>`;
+      html += `<div class="cl" style="left:${x0 + (stack ? sw / 2 : bw / 2)}px;top:${stack ? 482 : 496}px">${+ratio.toPrecision(2)} ${plural(small)}<br>${sciHTML(small.c, small.e)} m each</div>`;
+    } else if (Math.max(sw, sh) >= 8) {
       html += `<img src="${small.src}" alt="${small.name}" style="position:absolute;left:${sx}px;top:${sy}px;width:${sw}px;height:${sh}px;${small.glow ? 'mix-blend-mode:screen' : ''}">`;
       html += `<div class="cl" style="left:${sx + sw / 2}px;top:482px">${small.name}<br>${sciHTML(small.c, small.e)} m</div>`;
     } else {
@@ -544,14 +586,20 @@ sup{font-size:.62em;line-height:0}
   }
   function openChooser(which) {
     choosing = which; const cur = which === 'a' ? cA : cB;
-    $('chooser').innerHTML = `<h3>Choose thing ${which.toUpperCase()}</h3>` + OBJ.map(o => `<button data-o="${o.id}" class="${o === cur ? 'on' : ''}"><img src="${o.src}" alt="">${o.name}</button>`).join('');
+    const other = which === 'a' ? cB : cA;
+    $('chooser').innerHTML = `<h3>Choose thing ${which.toUpperCase()} <small style="font-weight:600;font-size:15px">Things within 1,000 times the size of the ${other.name.toLowerCase()} can be picked, so both fit in the picture.</small></h3>` +
+      OBJ.map(o => `<button data-o="${o.id}" class="${o === cur ? 'on' : ''}" ${o !== other && near(o, other) ? '' : 'disabled style="opacity:.3"'}><img src="${o.src}" alt="">${o.name}</button>`).join('');
     $('chooser').hidden = false;
     $('chooser').querySelectorAll('[data-o]').forEach(b => b.onclick = () => { SFX.tap(); if (choosing === 'a') cA = BY[b.dataset.o]; else cB = BY[b.dataset.o]; $('chooser').hidden = true; renderCmp(); });
-    $('chooser').querySelector('.on').focus();
+    ($('chooser').querySelector('.on') || $('chooser').querySelector('button:not([disabled])')).focus();
   }
   $('pa').onclick = () => openChooser('a'); $('pb').onclick = () => openChooser('b');
   $('swap').onclick = () => { [cA, cB] = [cB, cA]; SFX.tap(); renderCmp(); };
-  $('rand').onclick = () => { const i = Math.floor(Math.random() * OBJ.length); let j; do { j = Math.floor(Math.random() * OBJ.length); } while (Math.abs(i - j) < 2); cA = OBJ[i]; cB = OBJ[j]; SFX.tap(); renderCmp(); };
+  // a surprise pair is always near enough in size to see both
+  $('rand').onclick = () => {
+    const pairs = []; for (const a of OBJ) for (const b of OBJ) if (a !== b && near(a, b) && a.m / b.m > 1.5) pairs.push([a, b]);
+    [cA, cB] = pairs[Math.floor(Math.random() * pairs.length)]; SFX.tap(); renderCmp();
+  };
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && !$('chooser').hidden) $('chooser').hidden = true; });
 
   // ---------- place it ----------

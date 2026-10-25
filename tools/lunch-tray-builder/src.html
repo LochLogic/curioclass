@@ -180,7 +180,7 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
     ['apple', 'apple', 'fruit'], ['banana', 'banana', 'fruit'], ['orange', 'orange slices', 'fruit'], ['grapes', 'grapes', 'fruit'], ['strawberries', 'strawberries', 'fruit'], ['pear', 'pear', 'fruit'],
     ['carrots', 'carrots', 'veg'], ['broccoli', 'broccoli', 'veg'], ['corn', 'corn', 'veg'], ['peas', 'peas', 'veg'], ['tomatoes', 'tomatoes', 'veg'], ['salad', 'salad', 'veg'],
     ['bread', 'bread', 'grain'], ['rice', 'rice', 'grain'], ['pasta', 'pasta', 'grain'], ['tortilla', 'tortilla', 'grain'], ['crackers', 'crackers', 'grain'], ['oatmeal', 'oatmeal', 'grain'],
-    ['chicken', 'chicken', 'protein'], ['egg', 'egg', 'protein'], ['beans', 'beans', 'protein'], ['fish', 'fish', 'protein'], ['nuts', 'nuts', 'protein'],
+    ['chicken', 'chicken', 'protein'], ['pepperoni', 'pepperoni', 'protein'], ['egg', 'egg', 'protein'], ['beans', 'beans', 'protein'], ['fish', 'fish', 'protein'], ['nuts', 'nuts', 'protein'],
     ['milk', 'milk', 'dairy'], ['yogurt', 'yogurt', 'dairy'], ['cheese', 'cheese', 'dairy'],
     ['cookie', 'cookie', 'some'], ['chips', 'chips', 'some'],
   ].map(([id, name, g]) => ({id, name, g}));
@@ -189,13 +189,13 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
     apple: 'art:apple', banana: 'art:banana', orange: 'art:orange', grapes: 'art:grapes', strawberries: 'art:strawberries', pear: 'art:pear',
     carrots: 'art:carrots', broccoli: 'art:broccoli', corn: 'art:corn', peas: 'art:peas', tomatoes: 'art:tomatoes', salad: 'art:salad',
     bread: 'art:bread', rice: 'art:rice', pasta: 'art:pasta', tortilla: 'art:tortilla', crackers: 'art:crackers', oatmeal: 'art:oatmeal',
-    chicken: 'art:chicken', egg: 'art:egg', beans: 'art:beans', fish: 'art:fish', nuts: 'art:nuts',
+    chicken: 'art:chicken', pepperoni: 'art:pepperoni', egg: 'art:egg', beans: 'art:beans', fish: 'art:fish', nuts: 'art:nuts',
     milk: 'art:milk', yogurt: 'art:yogurt', cheese: 'art:cheese', cookie: 'art:cookie', chips: 'art:chips',
   };
 
   // ready-made trays for Fix the tray, each missing one or two groups
   const FIX = [
-    {name: 'Pizza day', foods: ['bread', 'cheese', 'tomatoes', 'chicken', 'milk'], miss: ['fruit']},
+    {name: 'Pizza day', foods: ['bread', 'tomatoes', 'pepperoni', 'cheese'], miss: ['fruit']},
     {name: 'Taco lunch', foods: ['tortilla', 'beans', 'cheese', 'salad', 'tomatoes'], miss: ['fruit']},
     {name: 'Picnic', foods: ['bread', 'egg', 'apple', 'grapes', 'chips'], miss: ['veg', 'dairy']},
     {name: 'Breakfast for lunch', foods: ['oatmeal', 'strawberries', 'banana', 'milk'], miss: ['veg', 'protein']},
@@ -323,6 +323,8 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
       const last = state.sortAt === state.sortOrder.length - 1;
       $('tip').innerHTML = `<b>Yes!</b> ${cap(f.name)} ${f.name.endsWith('s') ? 'are' : 'is'} ${G[g].one === 'a grain' ? 'a grain food' : G[g].one}. ${G[g].why}` + (last ? `<br><b>Done!</b> You sorted all ${state.sortOrder.length} foods.` : '');
       say([`Yes! ${G[g].name}.`]);
+      // move on by itself after a reading pause, unless that was the last food
+      if (!last) { const at = state.sortAt; setTimeout(() => { if (state.mode === 'sort' && state.sortAt === at) nextSort(); }, 3200); }
     } else {
       $('s-' + g).classList.add('need'); setTimeout(() => $('s-' + g).classList.remove('need'), 900);
       SFX.no();
@@ -412,14 +414,17 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
     return voices.sort((a, b) => score(b) - score(a))[0] || null;
   }
   if ('speechSynthesis' in window) {
-    const speak = speechSynthesis.speak.bind(speechSynthesis);
+    // Chrome fills its voice list late, so an early line waits for it; cancel() also drops a line still waiting,
+    // or it would start after the next one and the tool would talk over itself
+    const speak = speechSynthesis.speak.bind(speechSynthesis), cancel = speechSynthesis.cancel.bind(speechSynthesis), held = new Set();
     speechSynthesis.speak = u => {
       if (speechSynthesis.getVoices().length) return speak(u);
-      let done = false;
-      const go = () => { if (done) return; done = true; const v = bestVoice(); if (v) { u.voice = v; u.lang = v.lang; } speak(u); };
+      held.add(u);
+      const go = () => { if (!held.delete(u)) return; const v = bestVoice(); if (v) { u.voice = v; u.lang = v.lang; } speak(u); };
       speechSynthesis.addEventListener('voiceschanged', go, {once: true});
       setTimeout(go, 1500);
     };
+    speechSynthesis.cancel = () => { held.forEach(u => u.onend && u.onend()); held.clear(); cancel(); };
     speechSynthesis.getVoices();
   }
   const CLIPS = "voice:*";
@@ -429,7 +434,8 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
     ...GROUPS.flatMap(g => [`Almost! This tray still needs ${G[g].one}.`, `Yes! ${G[g].name}.`, `Not ${G[g].name.toLowerCase()}. Try again!`, `Still missing ${G[g].one}.`]),
     ...[2, 3, 4, 5].map(n => `This tray still needs ${n} food groups.`), 'Still missing more.',
     ...FIX.map(t => `${t.name}. Which food group is missing?`), 'Let\'s build a lunch! Can we fill all five food groups?'])];
-  let talk = 0, clip = null, last = [];
+  let talk = 0, clip = null, last = [], heard = false;
+  for (const ev of ['pointerdown', 'keydown']) addEventListener(ev, () => { heard = true; }, {once: true, capture: true});
   function stopTalk() { talk++; if (clip) { clip.pause(); clip = null; } if ('speechSynthesis' in window) speechSynthesis.cancel(); }
   function speakOne(text) {
     return new Promise(done => {
@@ -442,6 +448,7 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
     });
   }
   async function say(parts, force) {
+    if (!heard && !force) return;
     if (!state.sound && !force) return;
     stopTalk();
     const me = talk;

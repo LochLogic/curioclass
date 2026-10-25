@@ -66,7 +66,7 @@ def generate(prompt, refs=(), aspect=None, size=None):
     raise RuntimeError('no image in response')
 
 
-def cut_out(img, scene=False):
+def cut_out(img, scene=False, despill=False, holes=False):
     """Key out the background (green or magenta), soften the edge, and remove color spill.
 
     Keys by distance from the actual background color (sampled at the border) rather than by "how green",
@@ -83,22 +83,45 @@ def cut_out(img, scene=False):
     edge = np.unique(np.concatenate([labels[0], labels[-1], labels[:, 0], labels[:, -1]]))
     background = np.isin(labels, edge[edge > 0]) | (dist < 25)
     near = ndimage.binary_dilation(background, iterations=3)  # keep the soft keyed edge next to real background
-    if not scene:  # a scene keys sky showing through leaves too, wherever it is
-        alpha = np.where(near, alpha, 1)
+    if not scene and not holes:  # a scene keys sky showing through leaves too, wherever it is ("holes": true does
+        alpha = np.where(near, alpha, 1)  # the same for a figure with see-through gaps, like the Eiffel Tower's ironwork)
     # drop specks and faint ground shadows that are not part of the figure
     blobs, count = ndimage.label(alpha > .5)
     if count > 1 and not scene:
         sizes = ndimage.sum(np.ones_like(alpha), blobs, range(1, count + 1))
         keep = np.isin(blobs, 1 + np.flatnonzero(sizes >= sizes.max() * .02))
         alpha = np.where(ndimage.binary_dilation(keep, iterations=2), alpha, 0)
+    if holes and not scene:  # tiny see-through gaps blend figure and key in every pixel: judge each pixel by how
+        k = int(np.argmax(key))  # much key tint it carries (green above red and blue, or red and blue above green)
+        tint = (a[..., 1] - np.maximum(a[..., 0], a[..., 2])) if k == 1 else (np.minimum(a[..., 0], a[..., 2]) - a[..., 1])
+        full = (key[1] - max(key[0], key[2])) if k == 1 else (min(key[0], key[2]) - key[1])
+        alpha = np.minimum(alpha, 1 - np.clip((tint - 15) / min(50, max(full * .85 - 15, 1)), 0, 1))  # by hue, not brightness: a shaded key counts too
     # remove key-color spill from soft edges: each edge pixel is a mix of figure and key, so un-mix it
     edge_px = (alpha > .05) & (alpha < 1)
     fg = (a[..., :3] - (1 - alpha[..., None]) * key) / np.maximum(alpha[..., None], .05)
     a[..., :3] = np.where(edge_px[..., None], fg, a[..., :3])
+    if holes and not scene:  # whatever key tint is left in the gaps is pulled toward neutral
+        if int(np.argmax(key)) == 1:
+            t = a[..., 1] - np.maximum(a[..., 0], a[..., 2]) > 4
+            a[..., 1] = np.where(t, np.maximum(a[..., 0], a[..., 2]), a[..., 1])
+        else:
+            t = np.minimum(a[..., 0], a[..., 2]) - a[..., 1] > 4
+            a[..., 2] = np.where(t, np.minimum(a[..., 2], a[..., 1]), a[..., 2])
+            a[..., 0] = np.where(t, a[..., 1] + (a[..., 0] - a[..., 1]) * .45, a[..., 0])
     if scene:  # painted leaves blend toward the flat sky color; pull that cast back out
         k = int(np.argmax(key)) if key.max() - key.min() > 100 else None
         if k == 1:  # green sky: green may not exceed the brighter of red and blue by much
             a[..., 1] = np.minimum(a[..., 1], np.maximum(a[..., 0], a[..., 2]) * 1.08 + 4)
+    if despill and not scene:  # "despill": true pulls the key tint out of a ring just inside the edge (a green glow)
+        ring = ndimage.binary_dilation(alpha < .5, iterations=8) & (alpha >= .5)
+        k = int(np.argmax(key))
+        if k == 1:  # green key: green may not exceed the brighter of red and blue
+            lim = np.maximum(a[..., 0], a[..., 2]) * 1.04 + 2
+            a[..., 1] = np.where(ring & (a[..., 1] > lim + 6), lim, a[..., 1])
+        else:  # magenta key: red and blue may not both exceed green
+            lim = a[..., 1] * 1.04 + 2
+            for c in (0, 2):
+                a[..., c] = np.where(ring & (np.minimum(a[..., 0], a[..., 2]) > lim + 6), np.minimum(a[..., c], lim + (a[..., c] - np.minimum(a[..., 0], a[..., 2]))), a[..., c])
     a[..., 3] = alpha * 255
     out = Image.fromarray(a.clip(0, 255).astype(np.uint8), 'RGBA')
     box = out.getchannel('A').point(lambda v: 255 if v > 128 else 0).getbbox()  # faint haze doesn't stretch the frame
@@ -138,7 +161,7 @@ def main():
         if asset.get('trim'):  # shave a painted frame off every side
             t = asset['trim']; img = img.crop((round(img.width * t), round(img.height * t), round(img.width * (1 - t)), round(img.height * (1 - t))))
         if asset.get('cutout'):
-            img = cut_out(img, scene=asset['cutout'] == 'keyed')
+            img = cut_out(img, scene=asset['cutout'] == 'keyed', despill=asset.get('despill', False), holes=asset.get('holes', False))
         if asset.get('crop'):
             top, bottom = asset['crop']
             img = img.crop((0, round(img.height * top), img.width, round(img.height * bottom)))

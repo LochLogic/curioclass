@@ -88,6 +88,33 @@
       "quality": 76,
       "source": "flux2-klein-4b (Cloudflare)",
       "review": "ok"
+    },
+    {
+      "name": "crossing",
+      "prompt": "Empty background: a quiet neighborhood street seen from a little above, the road running straight left to right across the middle third of the picture, a wide white zebra crosswalk across the road in the exact center, a gray sidewalk with a curb along the top edge of the road and another along the bottom edge, small lawns and hedges beyond each sidewalk. No cars, no people, no animals, no traffic lights, no text.",
+      "aspect": "16:9",
+      "width": 1600,
+      "quality": 74,
+      "source": "gemini",
+      "review": "pending"
+    },
+    {
+      "name": "car1",
+      "prompt": "A cute cartoon red family car seen exactly from the side, facing right, rounded friendly shape.",
+      "cutout": true,
+      "aspect": "16:9",
+      "width": 300,
+      "source": "gemini",
+      "review": "pending"
+    },
+    {
+      "name": "car2",
+      "prompt": "A cute cartoon blue small hatchback car seen exactly from the side, facing left, rounded friendly shape.",
+      "cutout": true,
+      "aspect": "16:9",
+      "width": 300,
+      "source": "gemini",
+      "review": "pending"
     }
   ]
 }

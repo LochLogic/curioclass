@@ -127,142 +127,154 @@
       "prompt": "A cheerful cartoon community helper: a friendly teacher holding a book, full body, standing, front view, warm smile. Make the twelve helpers a mix of ages, genders and skin tones.",
       "cutout": true,
       "aspect": "3:4",
-      "height": 230,
+      "height": 440,
       "people": true,
       "source": "gemini",
-      "review": "ok"
+      "review": "ok",
+      "despill": true
     },
     {
       "name": "h-librarian",
       "prompt": "A cheerful cartoon community helper: a friendly librarian holding a stack of picture books, full body, standing, front view, warm smile. Make the twelve helpers a mix of ages, genders and skin tones.",
       "cutout": true,
       "aspect": "3:4",
-      "height": 230,
+      "height": 440,
       "people": true,
       "ref_mode": "style",
       "ref": "h-teacher",
       "source": "gemini",
-      "review": "ok"
+      "review": "ok",
+      "despill": true
     },
     {
       "name": "h-firefighter",
       "prompt": "A cheerful cartoon community helper: a friendly firefighter in a helmet and gear, full body, standing, front view, warm smile. Make the twelve helpers a mix of ages, genders and skin tones.",
       "cutout": true,
       "aspect": "3:4",
-      "height": 230,
+      "height": 440,
       "people": true,
       "ref_mode": "style",
       "ref": "h-teacher",
       "source": "gemini",
-      "review": "ok"
+      "review": "ok",
+      "despill": true
     },
     {
       "name": "h-doctor",
       "prompt": "A cheerful cartoon community helper: a friendly doctor in a white coat with a stethoscope, full body, standing, front view, warm smile. Make the twelve helpers a mix of ages, genders and skin tones.",
       "cutout": true,
       "aspect": "3:4",
-      "height": 230,
+      "height": 440,
       "people": true,
       "ref_mode": "style",
       "ref": "h-teacher",
       "source": "gemini",
-      "review": "ok"
+      "review": "ok",
+      "despill": true
     },
     {
       "name": "h-police",
       "prompt": "A cheerful cartoon community helper: a friendly police officer in uniform, full body, standing, front view, warm smile. Make the twelve helpers a mix of ages, genders and skin tones.",
       "cutout": true,
       "aspect": "3:4",
-      "height": 230,
+      "height": 440,
       "people": true,
       "ref_mode": "style",
       "ref": "h-teacher",
       "source": "gemini",
-      "review": "ok"
+      "review": "ok",
+      "despill": true
     },
     {
       "name": "h-mail",
       "prompt": "A cheerful cartoon community helper: a friendly mail carrier with a mailbag, full body, standing, front view, warm smile. Make the twelve helpers a mix of ages, genders and skin tones.",
       "cutout": true,
       "aspect": "3:4",
-      "height": 230,
+      "height": 440,
       "people": true,
       "ref_mode": "style",
       "ref": "h-teacher",
       "source": "gemini",
-      "review": "ok"
+      "review": "ok",
+      "despill": true
     },
     {
       "name": "h-cashier",
       "prompt": "A cheerful cartoon community helper: a friendly grocery cashier in an apron, full body, standing, front view, warm smile. Make the twelve helpers a mix of ages, genders and skin tones.",
       "cutout": true,
       "aspect": "3:4",
-      "height": 230,
+      "height": 440,
       "people": true,
       "ref_mode": "style",
       "ref": "h-teacher",
       "source": "gemini",
-      "review": "ok"
+      "review": "ok",
+      "despill": true
     },
     {
       "name": "h-baker",
       "prompt": "A cheerful cartoon community helper: a friendly baker in a white hat holding a loaf of bread, full body, standing, front view, warm smile. Make the twelve helpers a mix of ages, genders and skin tones.",
       "cutout": true,
       "aspect": "3:4",
-      "height": 230,
+      "height": 440,
       "people": true,
       "ref_mode": "style",
       "ref": "h-teacher",
       "source": "gemini",
-      "review": "ok"
+      "review": "ok",
+      "despill": true
     },
     {
       "name": "h-ranger",
       "prompt": "A cheerful cartoon community helper: a friendly park ranger in a hat, full body, standing, front view, warm smile. Make the twelve helpers a mix of ages, genders and skin tones.",
       "cutout": true,
       "aspect": "3:4",
-      "height": 230,
+      "height": 440,
       "people": true,
       "ref_mode": "style",
       "ref": "h-teacher",
       "source": "gemini",
-      "review": "ok"
+      "review": "ok",
+      "despill": true
     },
     {
       "name": "h-vet",
       "prompt": "A cheerful cartoon community helper: a friendly veterinarian holding a puppy, full body, standing, front view, warm smile. Make the twelve helpers a mix of ages, genders and skin tones.",
       "cutout": true,
       "aspect": "3:4",
-      "height": 230,
+      "height": 440,
       "people": true,
       "ref_mode": "style",
       "ref": "h-teacher",
       "source": "gemini",
-      "review": "ok"
+      "review": "ok",
+      "despill": true
     },
     {
       "name": "h-driver",
       "prompt": "A cheerful cartoon community helper: a friendly city bus driver in a light blue uniform shirt and a cap, holding a small bus steering wheel, full body, standing, front view, warm smile. Make the twelve helpers a mix of ages, genders and skin tones.",
       "cutout": true,
       "aspect": "3:4",
-      "height": 230,
+      "height": 440,
       "people": true,
       "ref_mode": "style",
       "ref": "h-teacher",
       "source": "gemini",
-      "review": "ok"
+      "review": "ok",
+      "despill": true
     },
     {
       "name": "h-farmer",
       "prompt": "A cheerful cartoon community helper: a friendly farmer in overalls holding a basket of eggs, full body, standing, front view, warm smile. Make the twelve helpers a mix of ages, genders and skin tones.",
       "cutout": true,
       "aspect": "3:4",
-      "height": 230,
+      "height": 440,
       "people": true,
       "ref_mode": "style",
       "ref": "h-teacher",
       "source": "gemini",
-      "review": "ok"
+      "review": "ok",
+      "despill": true
     }
   ]
 }

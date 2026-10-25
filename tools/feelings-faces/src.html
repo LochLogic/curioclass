@@ -483,14 +483,17 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
     return voices.sort((a, b) => score(b) - score(a))[0] || null;
   }
   if ('speechSynthesis' in window) {
-    const speak = speechSynthesis.speak.bind(speechSynthesis);
+    // Chrome fills its voice list late, so an early line waits for it; cancel() also drops a line still waiting,
+    // or it would start after the next one and the tool would talk over itself
+    const speak = speechSynthesis.speak.bind(speechSynthesis), cancel = speechSynthesis.cancel.bind(speechSynthesis), held = new Set();
     speechSynthesis.speak = u => {
       if (speechSynthesis.getVoices().length) return speak(u);
-      let done = false;
-      const go = () => { if (done) return; done = true; const v = bestVoice(); if (v) { u.voice = v; u.lang = v.lang; } speak(u); };
+      held.add(u);
+      const go = () => { if (!held.delete(u)) return; const v = bestVoice(); if (v) { u.voice = v; u.lang = v.lang; } speak(u); };
       speechSynthesis.addEventListener('voiceschanged', go, {once: true});
       setTimeout(go, 1500);
     };
+    speechSynthesis.cancel = () => { held.forEach(u => u.onend && u.onend()); held.clear(); cancel(); };
     speechSynthesis.getVoices();
   }
   const CLIPS = "voice:*";
@@ -501,7 +504,8 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
     'Hmm, look again. Press Show the clues for help.',
     ...SCENES.flatMap(s => { const k = KIDS[s.kid].name; return [s.t, `How might ${k} feel?`, ...s.f.map(n => `Yes, ${k} might feel ${label(n)}.`), `What could you say or do to help ${k}?`]; }),
     'Feelings can be different!', ...Object.values(ANS_FEED), ...NAMES.map(n => `A ${label(n)} face. Everyone, make a ${label(n)} face!`)])];
-  let talk = 0, clip = null, last = [];
+  let talk = 0, clip = null, last = [], heard = false;
+  for (const ev of ['pointerdown', 'keydown']) addEventListener(ev, () => { heard = true; }, {once: true, capture: true});
   function stopTalk() { talk++; if (clip) { clip.pause(); clip = null; } if ('speechSynthesis' in window) speechSynthesis.cancel(); }
   function speakOne(text) {
     return new Promise(done => {
@@ -514,6 +518,7 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
     });
   }
   async function say(parts, force) {
+    if (!heard && !force) return;
     if (!state.sound && !force) return;
     stopTalk();
     const me = talk;

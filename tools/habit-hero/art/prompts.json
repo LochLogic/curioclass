@@ -38,6 +38,16 @@
       "ref": "pip",
       "source": "flux2-klein-4b (Cloudflare)",
       "review": "ok"
+    },
+    {
+      "name": "mouth",
+      "prompt": "A big friendly cartoon mouth wide open in a smile, front view: pink lips, a row of eight clean white upper teeth and a row of eight clean white lower teeth, pink gums and a small pink tongue. Just the mouth and lips, no face, no nose, no eyes.",
+      "cutout": true,
+      "key": "magenta",
+      "aspect": "4:3",
+      "width": 560,
+      "source": "gemini",
+      "review": "pending"
     }
   ]
 }

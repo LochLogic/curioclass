@@ -76,11 +76,15 @@
     },
     {
       "name": "ant",
-      "prompt": "A single black worker ant seen from the side, walking, all six legs and antennae visible, lying horizontally.",
+      "prompt": "A single black worker ant seen from the side, walking, all six legs and antennae visible, lying horizontally. Show all six legs clearly, with clear gaps between them.",
       "cutout": true,
       "aspect": "1:1",
       "width": 420,
-      "quality": 70
+      "quality": 70,
+      "key": "magenta",
+      "despill": true,
+      "source": "gemini",
+      "review": "pending"
     },
     {
       "name": "bee",
@@ -154,7 +158,9 @@
       "aspect": "9:16",
       "quality": 70,
       "height": 460,
-      "key": "magenta"
+      "key": "magenta",
+      "holes": true,
+      "despill": true
     },
     {
       "name": "burj",
