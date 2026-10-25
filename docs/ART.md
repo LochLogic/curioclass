@@ -59,3 +59,5 @@ When Gemini is unavailable (no credits) or for large batches, `scripts/localart.
 - Space and glowing objects work best painted "on a pure black background" without a cutout and shown with `mix-blend-mode: screen`; the pick step crushes near-black to true black.
 - **Never draw people with a local model.** An earlier Pony SDXL model drew a 13-year-old in underwear despite every safety setting; it is not used for Curio Class at all. People come from Gemini with review, or are plain silhouettes.
 - Credit it in the tool's comment and tool.json sources: "Illustrations drawn with FLUX.1-schnell (Apache 2.0) on a local computer, edited for Curio Class".
+- Classroom and home scenes can bring in people even when the prompt says "No people" (a calm-corner candidate drew two children). Look at every candidate; delete any with people. Wall posters come back with fake text.
+- A cast shadow on a yellow-green key survives as a green blob (apple). Use the magenta key for red, orange and yellow subjects too, or `"shadow": "dark"`.
