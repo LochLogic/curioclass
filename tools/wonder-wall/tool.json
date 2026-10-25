@@ -15,6 +15,7 @@
   "minutes": "10-20",
   "sources": [
     "Drawn with CSS and SVG",
-    "Sounds generated in the browser"
+    "Sounds generated in the browser",
+    "Narration generated with Google Gemini text-to-speech and Qwen3-TTS (Apache 2.0)"
   ]
 }
