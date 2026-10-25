@@ -37,7 +37,7 @@ h1 small{display:block;font:500 15px/1.3 'Segoe UI',sans-serif;color:#cdeed8}
 
 main{display:grid;grid-template-columns:1fr;min-height:0}
 @media (min-width:760px){main{grid-template-columns:minmax(0,1fr) 340px}}
-.stage{position:relative;overflow:hidden;min-height:340px;background:#a8d8b9 var(--bg) center/cover}
+.stage{position:relative;overflow:hidden;min-height:340px;background:#a8d8b9 var(--bg) center/var(--bgsize,cover) no-repeat}
 .scene{position:absolute;left:50%;top:50%;width:1000px;height:620px;transform:translate(-50%,-50%) scale(var(--s,1))}
 
 .thing{position:absolute;border:0;background:none;padding:0;transform:translate(-50%,-50%);transition:transform .35s cubic-bezier(.3,1.4,.5,1),filter .3s}
@@ -138,7 +138,18 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
   }
   $('motion').onclick = () => { reduce = !reduce; try { localStorage.setItem('curio-motion', reduce ? 'calm' : 'on'); } catch {} showMotion(); };
   const wait = ms => new Promise(r => setTimeout(r, ms));
-  const fit = () => { const r = $('stage').getBoundingClientRect(); $('scene').style.setProperty('--s', Math.min(r.width / 1000, r.height / 620)); };
+  // the painting covers the stage, centered on the scene, so a spot in the painting maps to a spot in the scene;
+  // things with "at" (a fraction of the painting) sit on a painted feature, like the nest on its branch
+  const AR = 1600 / 914;
+  let pic = {w: 1085, h: 620};
+  const fit = () => {
+    const r = $('stage').getBoundingClientRect(), s = Math.min(r.width / 1000, r.height / 620);
+    $('scene').style.setProperty('--s', s);
+    const h = Math.max(620, r.height / s, r.width / s / AR);
+    pic = {w: h * AR, h};
+    $('stage').style.setProperty('--bgsize', `${pic.w * s}px ${pic.h * s}px`);
+    if ($('things').children.length) place();
+  };
   new ResizeObserver(fit).observe($('stage'));
 
   // ---------- the scenes ----------
@@ -154,7 +165,7 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
     ]},
     garden: {name: 'Garden', bg: 'art:garden', things: [
       {id: 'ladybug', n: 'ladybug', x: 330, y: 410, w: 70, color: 'red with black spots', size: 'tiny', feel: 'hard and shiny', has: 'six legs', can: 'fly', living: true, img: 'art:ladybug'},
-      {id: 'sunflower', n: 'sunflower', x: 120, y: 230, w: 170, color: 'yellow', size: 'tall', feel: 'rough', has: 'big petals', can: 'turn to the sun', living: true, img: 'art:sunflower'},
+      {id: 'sunflower', n: 'sunflower', x: 120, y: 260, w: 220, color: 'yellow', size: 'tall', feel: 'rough', has: 'big petals', can: 'turn to the sun', living: true, img: 'art:sunflower'},
       {id: 'snail', n: 'snail', x: 560, y: 450, w: 110, color: 'brown', size: 'small', feel: 'slimy', has: 'a shell', can: 'crawl slowly', living: true, img: 'art:snail'},
       {id: 'worm', n: 'worm', x: 760, y: 470, w: 120, color: 'pink', size: 'long and thin', feel: 'wiggly', has: 'no legs', can: 'dig in dirt', living: true, img: 'art:worm'},
       {id: 'butterfly', n: 'butterfly', x: 640, y: 160, w: 150, color: 'orange and black', size: 'small', feel: 'soft', has: 'four wings', can: 'fly', living: true, img: 'art:butterfly'},
@@ -166,7 +177,7 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
       {id: 'squirrel', n: 'squirrel', x: 760, y: 360, w: 170, color: 'gray', size: 'small', feel: 'fluffy', has: 'a bushy tail', can: 'climb trees', living: true, img: 'art:squirrel'},
       {id: 'fern', n: 'fern', x: 90, y: 300, w: 180, color: 'green', size: 'medium', feel: 'feathery', has: 'lots of tiny leaves', can: 'grow in the shade', living: true, img: 'art:fern'},
       {id: 'acorn', n: 'acorn', x: 600, y: 480, w: 70, color: 'brown', size: 'tiny', feel: 'smooth and hard', has: 'a little cap', can: 'grow into an oak tree', living: false, img: 'art:acorn'},
-      {id: 'nest', n: 'nest', x: 520, y: 170, w: 150, color: 'brown', size: 'medium', feel: 'twiggy', has: 'three blue eggs', can: 'hold baby birds', living: false, img: 'art:nest'},
+      {id: 'nest', n: 'nest', x: 520, y: 170, at: [.417, .145], w: 140, color: 'brown', size: 'medium', feel: 'twiggy', has: 'three blue eggs', can: 'hold baby birds', living: false, img: 'art:nest'},
     ]},
     beach: {name: 'Beach', bg: 'art:beach', things: [
       {id: 'crab', n: 'crab', x: 300, y: 450, w: 130, color: 'red', size: 'small', feel: 'hard', has: 'two big claws', can: 'walk sideways', living: true, img: 'art:crab'},
@@ -174,7 +185,7 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
       {id: 'shell', n: 'shell', x: 760, y: 470, w: 100, color: 'white and pink', size: 'small', feel: 'smooth and hard', has: 'a spiral', can: 'wash up on the sand', living: false, img: 'art:shell'},
       {id: 'seagull', n: 'seagull', x: 700, y: 140, w: 170, color: 'white and gray', size: 'medium', feel: 'soft', has: 'a yellow beak', can: 'fly', living: true, img: 'art:seagull'},
       {id: 'seaweed', n: 'seaweed', x: 110, y: 430, w: 130, color: 'green', size: 'long', feel: 'slippery', has: 'long leaves', can: 'float in water', living: true, img: 'art:seaweed'},
-      {id: 'jellyfish', n: 'jellyfish', x: 420, y: 300, w: 120, color: 'clear and pink', size: 'small', feel: 'squishy', has: 'long tentacles', can: 'sting', living: true, img: 'art:jellyfish'},
+      {id: 'jellyfish', n: 'jellyfish', x: 420, y: 345, w: 100, color: 'clear and pink', size: 'small', feel: 'squishy', has: 'long tentacles', can: 'sting', living: true, img: 'art:jellyfish'},
     ]},
   };
   const KEYS = Object.keys(SCENES);
@@ -203,18 +214,23 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
   };
 
   // ---------- draw a scene ----------
+  const spot = t => t.at ? [500 + (t.at[0] - .5) * pic.w, 310 + (t.at[1] - .5) * pic.h] : [t.x, t.y];
+  function place() {
+    for (const b of $('things').querySelectorAll('.thing')) { const [x, y] = spot(thing(b.dataset.id)); b.style.left = x + 'px'; b.style.top = y + 'px'; }
+  }
   function drawScene() {
     const sc = SCENES[state.scene];
     $('stage').style.setProperty('--bg', `url(${sc.bg})`);
     $('things').replaceChildren(...sc.things.map(t => {
       const b = document.createElement('button');
       b.className = 'thing'; b.dataset.id = t.id;
-      Object.assign(b.style, {left: t.x + 'px', top: t.y + 'px', width: t.w + 'px', height: t.w + 'px'});
+      Object.assign(b.style, {width: t.w + 'px', height: t.w + 'px'});
       b.innerHTML = `<img src="${t.img}" alt="">`;
       b.setAttribute('aria-label', t.n);
       b.onclick = () => tap(t.id);
       return b;
     }));
+    place();
     $('scenes').querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', b.dataset.k === state.scene));
   }
   $('scenes').replaceChildren(...KEYS.map(k => {
@@ -228,7 +244,8 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
   function ring(t) {
     const r = document.createElement('div');
     r.className = 'ring' + (reduce ? '' : ' go');
-    Object.assign(r.style, {left: t.x + 'px', top: t.y + 'px', width: t.w * 1.6 + 'px', height: t.w * 1.6 + 'px'});
+    const [rx, ry] = spot(t);
+    Object.assign(r.style, {left: rx + 'px', top: ry + 'px', width: t.w * 1.6 + 'px', height: t.w * 1.6 + 'px'});
     $('things').append(r);
   }
 
