@@ -32,3 +32,8 @@ satire-decoder, usage-panel, stock-market-1929.
 - **Facts:** high school content must be correct. Physics and math values get checked against sources, with units.
 - **History:** stock-market-1929 is a simulator of a real event: no win screen that makes the crash a game to beat;
   ground it in real figures and primary sources.
+- **Sizes to check (learned from the first two tools):** the site's tool page embeds tools in a 16:10 box about
+  680x425, so check 680x425, 800x500 and 1000x625 (controls visible without scrolling: keep stage and panel side by side
+  with a compact panel in short landscape boxes), 760 px wide (the stack breakpoint is 1000 px), and 375 px wide inside
+  an iframe host page (headless Chrome will not go below about 520 px). `scripts/shoot.py` does not print console
+  errors: collect them yourself. Tab order: the panel's controls before long lists of map items.

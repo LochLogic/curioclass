@@ -28,3 +28,14 @@ Read every "Not like" list against the other 14. No two tools share a one idea o
 ## Art and voice
 - rollercoaster-polynomials: night-fairground drawn locally (FLUX schnell, picked c3 of 3, clearest coaster frame). 14 lines cloned locally with hs-narrator; "Approved." is short (0.56 s), listen to check it is not clipped.
 - rollercoaster-polynomials: verify FIX (3 should fix, 4 nits) -> fixed -> re-verify PASS. Left as nits for review: parked car covers the "End" label; one Plan 4 label touches a badge; ride readout parts run together.
+- imaginary-island: built; builder retuned the coastline constants (a landmark was at sea), used true minus signs, hides landmark names when zoomed out, replaced the kit's Read click in the tool to read the mode hint.
+
+## Process findings (for the pipeline itself)
+- scripts/shoot.py does not print console errors, though BUILD.md says it does. Agents wrote their own wrappers. Fix shoot.py.
+- Headless Chrome will not go below about 520 px wide; narrow checks need an iframe host page. Worth a shared helper.
+- The kit's Read button speaks the last spoken line; older-grade tools want it to read the current hint. Imaginary Island overrode it locally; consider a kit option.
+- Kit .calm rule (transition 0.01 ms) never finishes under headless virtual time, so calm frames can look stuck. Real browsers fine.
+- imaginary-island art: the first prompt drew whole islands with sea (and one with stray text); the tool clips the texture to its own coastline, so it was re-prompted ("sd") as a full-frame aerial meadow texture; picked c1. Lesson: the spec and art list should say how an image is used (clipped texture vs scene) and the art prompt should follow.
+- imaginary-island voice: 12 lines cloned, none flagged.
+- imaginary-island: verify FIX (5 should fix, 9 nits). Cross-tool tension found: the 1000 px stack breakpoint that fixed 760 px windows in rollercoaster makes 16:10 embeds (680x425) stack and hide the controls. Builder asked to keep short landscape boxes side by side.
+- rollercoaster-polynomials: second fix round for the 16:10 embed (side by side with a 300 px panel); Tab order does not match the visual panel order in that layout (accepted).

@@ -23,6 +23,22 @@ One file, no network requests. Content CC BY 4.0, code MIT. curioclass.org
 /* two columns only when the plane can stay near full size; below that the panel stacks under the stage */
 @media (min-width:1000px){main{grid-template-columns:minmax(0,1fr) 400px}}
 @media (max-width:999px){main{grid-template-columns:minmax(0,1fr)} .panel{min-width:0} .stage{min-height:min(94vw,86vh)} .panel{border-left:0;border-top:1px solid var(--line)}}
+/* short landscape boxes (the site's 16:10 embed, about 680x425 to 1000x625): keep stage and panel side by side,
+   with a 300 px panel, a one-row header, and Ride plus the zero rows at the top of the panel */
+@media (orientation:landscape) and (min-width:600px) and (max-width:999px), (orientation:landscape) and (min-width:600px) and (max-height:699px){
+  main{grid-template-columns:minmax(0,1fr) 300px} .stage{min-height:0} .panel{border-top:0;border-left:1px solid var(--line);padding:8px 10px;gap:8px}
+  header{flex-wrap:nowrap;padding:5px 10px;gap:6px}
+  header h1{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  header .seg{margin-right:auto} .seg button,.icon-btn{min-height:44px;padding:0 10px;font-size:14px}
+  .hint{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+  .sec{padding:8px} .sec>h2{margin-bottom:4px}
+  #buildPanel{display:flex;flex-direction:column;gap:8px}
+  .bp-ride{order:1} .bp-zeros{order:2} #rideSec{order:3} .bp-eq{order:4} .bp-a{order:5} .bp-read{order:6}
+  .bp-ride .big-btn{min-height:44px}
+  #zlist .zrow{grid-template-columns:repeat(3,44px) auto auto;justify-content:start;padding:2px 0} #zlist .zrow>div:first-child{grid-column:1/-1;display:flex;gap:8px;align-items:baseline}
+  .plans{gap:4px} .plans .btn{padding:0 4px}
+  #cRide{display:none}   /* the panel's own Ride sits right under the card */
+}
 @media (max-width:480px){#zlist .zrow{grid-template-columns:repeat(3,44px) auto auto;justify-content:start} #zlist .zrow>div:first-child{grid-column:1/-1}}
 .stage{background:linear-gradient(rgba(7,11,18,.78),rgba(7,11,18,.9)),url(art:night-fairground) center/cover no-repeat,#0b111a}
 .scene{width:760px;height:712px}
@@ -137,21 +153,21 @@ One file, no network requests. Content CC BY 4.0, code MIT. curioclass.org
     </section>
 
     <div id="buildPanel">
-      <section class="sec">
+      <section class="sec bp-eq">
         <h2>Equation</h2>
         <div class="eq readout" id="fact"></div>
         <div class="eq std readout" id="std"></div>
         <button class="btn" id="showMult" aria-expanded="false">Show the multiplication</button>
         <ol id="multSteps" hidden></ol>
       </section>
-      <section class="sec">
+      <section class="sec bp-zeros">
         <h2>Zeros (footings) <button class="say" data-say="zeros" aria-label="Hear the hint about zeros">🔊</button></h2>
         <p class="sayline" id="say-zeros" hidden></p>
         <div id="zlist"></div>
         <button class="btn" id="addZero">Add zero</button>
         <p class="small" id="capNote"></p>
       </section>
-      <section class="sec">
+      <section class="sec bp-a">
         <h2>Leading coefficient a <button class="say" data-say="a" aria-label="Hear the hint about a">🔊</button></h2>
         <p class="sayline" id="say-a" hidden></p>
         <div id="aSlot"></div>
@@ -160,7 +176,7 @@ One file, no network requests. Content CC BY 4.0, code MIT. curioclass.org
           <button class="btn" id="snap" aria-pressed="true">Snap to half</button>
         </div>
       </section>
-      <section class="sec">
+      <section class="sec bp-read">
         <h2>Readouts <button class="say" data-say="ends" aria-label="Hear the hint about end behavior">🔊</button></h2>
         <p class="sayline" id="say-ends" hidden></p>
         <dl class="readouts">
@@ -171,7 +187,7 @@ One file, no network requests. Content CC BY 4.0, code MIT. curioclass.org
           <dt>Ride length</dt><dd id="rLen"></dd>
         </dl>
       </section>
-      <div class="rowbtns">
+      <div class="rowbtns bp-ride">
         <button class="big-btn" id="ride">▶ Ride</button>
         <button class="big-btn plain" id="newTrack">New track</button>
       </div>
@@ -464,7 +480,7 @@ One file, no network requests. Content CC BY 4.0, code MIT. curioclass.org
         mk('line', {x1: x0 + 4, x2: x0 + 4, y1: GY - 2, y2: GY - 12, stroke: '#9fb1c8', 'stroke-width': 1.5}, g);
         mk('line', {x1: x0 + 32, x2: x0 + 32, y1: GY - 2, y2: GY - 12, stroke: '#9fb1c8', 'stroke-width': 1.5}, g);
         const lx = x0 + 18;
-        mk('text', {x: lx, y: GY - 18, 'text-anchor': 'middle', class: 'st-label'}, g).textContent = name;
+        mk('text', {x: lx, y: GY + 18, 'text-anchor': 'middle', class: 'st-label'}, g).textContent = name;   // below ground, clear of a parked car
       }
     }
     // a peak or tunnel beyond the plane still has its true height in the readouts
@@ -678,7 +694,7 @@ One file, no network requests. Content CC BY 4.0, code MIT. curioclass.org
     if (!state.ride) return;
     const where = Math.abs(y) < 1e-6 ? 'at ground level' : y > 0 ? 'above ground' : 'in the tunnel';
     const offv = y > 8 || y < -4 ? ', off the blueprint' : '';
-    $('rideLive').textContent = `x = ${fmt(x, 2)}   P(x) = ${fmt(y, 2)}   height ${fmt(10 * y, 1)} m, ${where}${offv}`;
+    $('rideLive').textContent = `x = ${fmt(x, 2)}, P(x) = ${fmt(y, 2)}, height ${fmt(10 * y, 1)} m, ${where}${offv}.`;
   }
   // a station platform beside its zero, on the outer side unless that runs off the plane
   function platformX(x, side) {
@@ -690,7 +706,7 @@ One file, no network requests. Content CC BY 4.0, code MIT. curioclass.org
   let parkT = 0;
   function hitR() {
     const r = $('stage').getBoundingClientRect(), sc = Math.min(r.width / 760, r.height / 712) || 1;
-    return Math.min(56, Math.max(30, 23 / sc));
+    return Math.min(64, Math.max(30, 23 / sc));
   }
   function parkCar(e) {   // level on the End platform, so it is easy to see after a ride
     const x0 = platformX(e, 1);
@@ -741,7 +757,7 @@ One file, no network requests. Content CC BY 4.0, code MIT. curioclass.org
         if (!inner.length) $('contacts').innerHTML = '<li>no ground contacts between the stations</li>';
         state.ride = null;
         parkT = setTimeout(() => parkCar(e), 350);
-        $('rideLive').textContent += '   Arrived at End.';
+        $('rideLive').textContent += ' Arrived at End.';
       }
     };
     r.raf = raf(step);
