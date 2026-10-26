@@ -85,3 +85,5 @@ Read every "Not like" list against the other 14. No two tools share a one idea o
 - collision-lab: re-verify FIX (one new: mode switch during Read waits ~10 s on a paused clip's promise; same bug class as motion-graph-match). Final round sent. Kit candidate confirmed: a shared narrate/hush/read helper would have prevented this in every tool.
 - motion-graph-match: final round rebuilt Hand control on a least-squares pointer tracker (steady a std dev 0.03 at full size, peaks up to 0.18 at 680x425); exact-tracking scores now 93-100, 83-86, 88, 100 on targets 1, 2, 3, 9 (traded a few points for a quiet a graph). Narrow final check running.
 - collision-lab: final round fixed the stuck-Read wait, Sound-on welcome, inset agreement and label crowding. Done.
+- field-lines: verify FIX: the symmetric Release swing is invisible (trail overdraws itself), notes' nudge count wrong, the stuck-Read wait again, stale pair line, preview fold, Spread overflow at 680x425.
+- Cory approved Collision Lab and Habit Hero (painted hands).

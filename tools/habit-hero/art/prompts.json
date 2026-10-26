@@ -59,7 +59,9 @@
       "people": true,
       "ref": "mouth",
       "ref_mode": "style",
-      "despill": true
+      "despill": true,
+      "review": "ok",
+      "source": "gemini"
     },
     {
       "name": "wash-soap",
@@ -70,7 +72,9 @@
       "width": 420,
       "people": true,
       "ref": "wash-wet",
-      "despill": true
+      "despill": true,
+      "review": "ok",
+      "source": "gemini"
     },
     {
       "name": "wash-scrub",
@@ -81,7 +85,9 @@
       "width": 420,
       "people": true,
       "ref": "wash-wet",
-      "despill": true
+      "despill": true,
+      "review": "ok",
+      "source": "gemini"
     },
     {
       "name": "wash-rinse",
@@ -92,7 +98,9 @@
       "width": 420,
       "people": true,
       "ref": "wash-wet",
-      "despill": true
+      "despill": true,
+      "review": "ok",
+      "source": "gemini"
     },
     {
       "name": "wash-dry",
@@ -103,7 +111,9 @@
       "width": 420,
       "people": true,
       "ref": "wash-wet",
-      "despill": true
+      "despill": true,
+      "review": "ok",
+      "source": "gemini"
     }
   ]
 }
