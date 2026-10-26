@@ -26,4 +26,4 @@
 - The meter measures how the talk is going in the story, not the student.
 - If a scene stirs something up for a student, or a student is upset, the teacher's school counselor is the right next step.
 - Motion off makes the meter, the faces and the card flip change instantly. Read speaks the current hint and the last coach line; Sound off keeps the tool silent.
-- Sources: CASEL Relationship Skills (communicating effectively, listening actively, resolving conflicts constructively); I-messages from Thomas Gordon; active listening from Carl Rogers and Richard Farson. The backdrops are generated (FLUX.1-schnell); the kids, meter and bench are drawn in code.
+- Sources: CASEL Relationship Skills (communicating effectively, listening actively, resolving conflicts constructively); I-messages from Thomas Gordon; active listening from Carl Rogers and Richard Farson. The backdrops are generated (FLUX.1-schnell); the kids are illustrations generated with OpenAI gpt-image; the bench is generated (FLUX.2 klein); the meter is drawn in code.

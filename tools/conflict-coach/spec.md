@@ -20,7 +20,7 @@ Header: title "Conflict Coach", mode tabs `Scenes`, `Line Builder`, `Partner Car
 **Scene picker (top of the panel in Scenes and Line Builder).** Five cards, each with the other kid's name, a one-line setup and a small drawn face: `The Slides` (Jordan), `The Markers` (Priya), `The Tryout` (Mateo), `The Lab Controls` (Aiyana), `The Weekend Plan` (Sam). A small check appears on a card after a Clean run (see Scenes).
 
 **Scenes (the main mode, explore first).**
-- Stage: a bench-and-wall backdrop for the scene's place (art below), the other kid drawn in code on the right, sitting at the far end of the bench, half facing you. You are never drawn: the view is from your seat. Their speech bubble is above them; your line appears as a bubble rising from the bottom left.
+- Stage: a bench-and-wall backdrop for the scene's place (art below), the other kid painted (art below) on the right, sitting on a short backless bench, half facing you. You are never drawn: the view is from your seat. Their speech bubble is above them; your line appears as a bubble rising from the bottom left.
 - Conversation meter: a horizontal bar across the top of the stage with five labeled stops: `Heated`, `Tense`, `Calm`, `Listening`, `Working it out`. A marker slides between them. Each stop has its own word and icon (flame, zigzag, flat line, ear, two hands), so color is never the only signal.
 - Turn strip under the meter: three steps, `1 Say it`, `2 Hear them`, `3 Fix it`, the current one highlighted.
 - Panel: the turn's prompt, then four move cards (your possible lines, full sentences), shuffled each time the turn is shown. Below them the Coach box, empty until you pick.
@@ -113,7 +113,7 @@ Line Builder replies: no traps "Okay. I didn't know it bugged you that much. Yea
 
 ## Interactions in detail
 - Scenes: the four cards are buttons (44 px tall minimum, full sentence, keyboard focusable). Picking is one tap. Cards dim but stay readable after a pick; the picked one gets a border and the move's name.
-- Faces, drawn in code (SVG), like tools/feelings-faces: a head with hair, brows, eyes, mouth, plus a body with arms and a slight body turn. Five postures matching the meter: Heated (brows down, mouth tight, arms crossed, turned away and leaning back), Tense (half turned, hands gripped together in the lap), Calm (neutral mouth, hands on knees), Listening (facing you, head tilt, brows up), Working it out (small smile, facing you, one hand open). Changes ease over 400 ms, instant when Motion is off.
+- Faces and body language: three paintings per kid (art below). Five postures matching the meter: Heated (upset painting: brows down, frown, arms folded, turned away; leaned back 4 degrees), Tense (guarded painting: half turned away, hands gripped in the lap), Calm (open painting, upright), Listening (open painting leaned 3 degrees toward you), Working it out (open painting leaned 5 degrees toward you). A change crossfades the paintings and eases the lean over 400 ms, instant when Motion is off. The picker face chips are the head of the open painting. If a painting fails to load, that kid falls back to the code-drawn SVG figure (head, hair, brows, eyes, mouth, arms) with the same five postures.
 - Characters: Jordan (skin #7a4a2e, short black hair), Priya (#a8714b, long dark braid), Mateo (#c68a5e, dark curls), Aiyana (#8d5a3b, long straight black hair), Sam (#f1c8a0, brown bob). Simple clothes in scene colors. Names and looks are a mix on purpose; no scene ties a trait to a group.
 - Rewind can be pressed any number of times on the same turn; only the most recent taken-back line shows as the faded "Last time" bubble. Rewind on turn 2 or 3 restores the meter to its value before that turn. A Clean run counts only the final three lines kept, so rewinding is never punished.
 - Replay scene starts the meter at Tense again. Switching scenes or modes calls `Curio.stop()` and resets the scene.
@@ -131,13 +131,15 @@ Line Builder replies: no traps "Okay. I didn't know it bugged you that much. Yea
 - No confetti. A Clean run gets a single soft chime (`Curio.yes()`) and the check mark.
 
 ## Art
-Backdrops only, no people or figures anywhere (local FLUX). Characters are drawn in code. Each is a full-frame 16:9 backdrop behind the bench, softened with a light overlay so the bubbles read.
+Backdrops have no people or figures (local FLUX). Each is a full-frame 16:9 backdrop behind the bench, softened with a light overlay so the bubbles read.
+
+Characters (gpt-image-2 through Codex, `"people": true`, reviewed; prompts in `art/prompts.json`, plan in `art-plan.md`): three seated full-length paintings per kid, cut out, 480 px tall, about 16 KB each. `kid-<name>` (open: facing you, small smile, one hand open on the thigh), `kid-<name>-guarded` (half turned away, hands gripped in the lap), `kid-<name>-upset` (arms folded, turned away). The variants were drawn with the base as a reference so each kid stays consistent. Hips sit 58% of the way down the painting, on the code-drawn seat.
 - bg-classroom: "an empty middle school classroom in warm afternoon light, tables with laptops closed, a blank whiteboard, soft painted illustration"; 16:9; cutout no; people no; The Slides.
 - bg-artroom: "an empty middle school art room with paint-splashed tables, jars of brushes and blank paper on the walls, warm light, soft painted illustration"; 16:9; cutout no; people no; The Markers.
 - bg-hallway: "an empty school hallway with a row of blue lockers and a wooden bench, warm light, blank bulletin board, soft painted illustration"; 16:9; cutout no; people no; The Tryout.
 - bg-lab: "an empty school science lab with beakers and a sink on a long counter, blank wall posters, soft painted illustration"; 16:9; cutout no; people no; The Lab Controls.
 - bg-courtyard: "an empty school courtyard with a brick wall, a wooden bench and a small tree, late afternoon, soft painted illustration"; 16:9; cutout no; people no; The Weekend Plan and the Line Builder and Partner Cards stage.
-The bench in front is drawn in code so the characters sit on it. If an image fails, the stage falls back to a flat paper scene with the bench.
+- bench: a short backless wooden bench seen from the front (Cloudflare FLUX.2 klein, magenta-keyed cutout, 640 x 226). Only its two ends are shown, meeting behind the kid's legs, so it is about as wide as the kid's shoulders plus a bit; the seat top sits at the kid's knees. It stands alone at the kid's spot on the scene picker and is left out in Partner Cards. If it fails to load, a plain vector bench of the same size stands in. If a backdrop fails, the stage falls back to a flat paper scene.
 
 ## Voice
 Bank voice `big-sister` (Leda, "3-8 peer voice"): "Say in a friendly, youthful way, like a helpful older student." The coach is a friendly older student. The dialogue itself is on screen only (one voice for five different kids would sound wrong). Narration is the welcomes, the Coach lines and the hints, so Read can use recordings. Fixed lines:

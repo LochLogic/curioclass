@@ -286,6 +286,16 @@
       "local_note": "The Weekend Plan (courtyard): replaces the code-drawn kid (kidSVG/headSVG) for Heated (posture 0); Line Builder two-or-more-traps reaction. Anchor: hips on the seat; record hip and head-center fractions after the pick.",
       "source": "gpt-image-2 (Codex)",
       "review": "pending"
+    },
+    {
+      "name": "bench",
+      "prompt": "A simple wooden school bench seen straight on from the front at seated eye level, a plain light oak seat plank about knee height with two sturdy legs at the ends and no back, a short bench for one person, soft painted illustration, centered, isolated object.",
+      "cutout": true,
+      "key": "magenta",
+      "aspect": "16:9",
+      "width": 640,
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "pending"
     }
   ]
 }

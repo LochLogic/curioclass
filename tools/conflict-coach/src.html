@@ -18,7 +18,8 @@ Sources: CASEL, "What Is the CASEL Framework?"; Thomas Gordon, Parent Effectiven
 International, "I-Messages"; Carl R. Rogers and Richard E. Farson, "Active Listening" (1957). The coach says "usually"
 and "easier to hear", never "always" or "proven". Every scene is fictional and ordinary; there is no text box, and
 nothing is stored except the list of Clean run scenes and the kit's Motion setting.
-Characters, meter and bench are drawn in code; backdrops are local FLUX.1-schnell paintings with no people.
+The kids are gpt-image paintings (three per kid, code-drawn figure as the fallback); meter and bench are drawn in code;
+backdrops are local FLUX.1-schnell paintings with no people.
 One file, no network requests. Content CC BY 4.0, code MIT. curioclass.org
 -->
 <link rel="stylesheet" href="kit:curio">
@@ -75,6 +76,7 @@ body.compact .btn{font-size:13.5px;padding:0 8px}
   border:2px solid var(--line);border-radius:12px;background:var(--card);padding:6px 10px;position:relative}
 .scard:hover{border-color:var(--brand)}
 .scard svg{grid-row:1 / span 2;width:48px;height:48px}
+.scard svg.face{border-radius:50%;background:#f4e8d6;box-shadow:inset 0 0 0 1px var(--line)}
 .scard b{font-size:16px}
 .scard b small{font-weight:500;color:var(--muted);font-size:14px}
 .scard .su{font-size:13.5px;line-height:1.35;color:var(--muted)}
@@ -306,8 +308,8 @@ body.compact .lastp,body.stack .lastp{order:-1}
     {word: 'Listening', lines: ['Listening'], icon: 'ear', c: '--s3'},
     {word: 'Working it out', lines: ['Working', 'it out'], icon: 'hands', c: '--s4'},
   ];
-  const POSTURE_WORDS = ['brows down, mouth tight, arms crossed, turned away', 'half turned away, hands gripped in the lap', 'calm, hands on knees',
-    'facing you, head tilted, listening', 'facing you with a small smile, one hand open'];
+  const POSTURE_WORDS = ['arms folded, turned away and leaning back, frowning', 'half turned away, hands gripped in the lap, uneasy',
+    'facing you, relaxed, one hand on a knee', 'leaning toward you with a small smile, listening', 'leaning in with a warm smile, one hand open'];
   const ENDS = ['stuck', 'stuck', 'okay', 'worked', 'worked'];
   const ENDNAME = {stuck: 'Still stuck', okay: 'Okay for now', worked: 'Worked it out'};
   const ENDSTOP = {stuck: 0, okay: 2, worked: 4};
@@ -379,7 +381,7 @@ body.compact .lastp,body.stack .lastp{order:-1}
       lb: [['hurt', 'left out', 'sad', 'like you don\'t want me around'], ['I hear about plans after', 'I\'m not asked', 'I see the photos after', 'you leave me out on purpose'],
         ['I like hanging out with you', 'I\'d want to come', 'our friendship matters to me', 'you always do this'], ['all go together next time', 'plan something we can all do', 'start a group chat for plans', 'agree you always ask me first']]},
   ];
-  const COURTYARD = {bg: 'art:bg-courtyard', wall: '#d8a07f', floor: '#c6b399'};
+  const COURTYARD = {bg: SC[4].bg, wall: '#d8a07f', floor: '#c6b399'};  // one art: token per painting, so it is inlined once
   // Line Builder: the trap is the fourth tile in each row (the spec's T)
   const LB_GOOD = ['Feeling word', 'Just the facts', 'About you', 'Doable ask'];
   const LB_TRAP = ['That\'s a thought, not a feeling', 'That\'s a judgment', 'That\'s about them', 'That\'s a demand'];
@@ -524,20 +526,47 @@ body.compact .lastp,body.stack .lastp{order:-1}
     s += arm(0, 1, 2) + hand(2, v.open > .5);
     return s + '</g>';
   }
-  function faceIcon(look) {
-    return `<svg viewBox="-44 -186 88 92" aria-hidden="true">${headSVG(look, poseVals(2))}</svg>`;
+  // ======================================================================================
+  // The painted kids (gpt-image): three paintings each, base = open (Calm, Listening, Working it out),
+  // guarded = Tense, upset = Heated. The in-between stops lean the whole figure about the hips.
+  // If a painting fails to load, that kid falls back to the code-drawn figure above.
+  // ======================================================================================
+  const KIDART = {
+    slides: ['art:kid-jordan', 'art:kid-jordan-guarded', 'art:kid-jordan-upset'],
+    markers: ['art:kid-priya', 'art:kid-priya-guarded', 'art:kid-priya-upset'],
+    tryout: ['art:kid-mateo', 'art:kid-mateo-guarded', 'art:kid-mateo-upset'],
+    lab: ['art:kid-aiyana', 'art:kid-aiyana-guarded', 'art:kid-aiyana-upset'],
+    weekend: ['art:kid-sam', 'art:kid-sam-guarded', 'art:kid-sam-upset'],
+  };
+  // per posture: which painting and the lean in degrees (negative leans toward you, on the left)
+  const PAINT = [{img: 2, lean: 4}, {img: 1, lean: 0}, {img: 0, lean: 0}, {img: 0, lean: -3}, {img: 0, lean: -5}];
+  const KH = 290, KW = KH / 2, HIP = .58;   // painting height in kid units; hips sit 58% of the way down
+  const kidOK = {};                        // scene id -> false once any of its paintings failed
+  for (const [id, srcs] of Object.entries(KIDART)) for (const src of srcs) {
+    const im = new Image();
+    im.onerror = () => { if (kidOK[id] === false) return; kidOK[id] = false; if (G && sc().id === id) drawStage(); };
+    im.src = src;
   }
-  let kidV = poseVals(2), kidAnim = 0;
+  const painted = id => kidOK[id] !== false;
+  function faceIcon(s) {
+    if (!painted(s.id)) return `<svg viewBox="-44 -186 88 92" aria-hidden="true">${headSVG(s.look, poseVals(2))}</svg>`;
+    // the head of the base painting (the image fits a 240 x 480 box by height, centered)
+    return `<svg class="face" viewBox="80 -6 120 120" aria-hidden="true"><image href="${KIDART[s.id][0]}" width="240" height="480" preserveAspectRatio="xMidYMax meet"/></svg>`;
+  }
+  let kidV = poseVals(2), kidAnim = 0, kidP = {a: 2, b: 2, e: 1};
+  function resetKid(i) { kidAnim++; kidV = poseVals(i); kidP = {a: i, b: i, e: 1}; state.posture = i; }
   function setPosture(i, instant) {
+    const prev = kidP.e < .5 ? kidP.a : kidP.b;
     state.posture = i;
     const to = poseVals(i), from = kidV, id = ++kidAnim;
     sv.setAttribute('aria-label', kidLabel());
-    if (instant || Curio.reduce) { kidV = to; drawKid(); return; }
+    if (instant || Curio.reduce) { kidV = to; kidP = {a: i, b: i, e: 1}; drawKid(); return; }
+    kidP = {a: prev, b: i, e: 0};
     const t0 = performance.now();
     const step = now => {
       if (id !== kidAnim) return;
       const t = clamp((now - t0) / 400, 0, 1), e = t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
-      kidV = lerpV(from, to, e); drawKid();
+      kidV = lerpV(from, to, e); kidP.e = e; drawKid();
       if (t < 1) requestAnimationFrame(step);
     };
     requestAnimationFrame(step);
@@ -613,40 +642,60 @@ body.compact .lastp,body.stack .lastp{order:-1}
     G.topY = topY;
     // the kid and the bench
     const kidCol = state.mode === 'partner' ? 0 : clamp(W * .3, 110, 300);
-    let k = Math.min(kidCol / 140, (H - 8 - topY - 6) / 262, 1.45);
+    let k = Math.min(kidCol / 140, (H - 8 - topY - 6) / 314, 1.65);
     if (state.mode === 'builder') k = Math.min(k, 1.35);
-    const seatY = H - 6 - 76 * k, kidX = W - pad - 90 * k;  // room on the right for the Heated lean-back
+    const seatY = H - 6 - 124 * k, kidX = W - pad - 90 * k;  // seat at the painted kids' knee height; room on the right for the Heated lean-back
     Object.assign(G, {k, seatY, kidX, colX: pad, colR: state.mode === 'partner' ? W - pad : kidX - 64 * k - pad});
-    s += benchSVG(W, H, seatY, kidX, k, state.mode === 'partner');
+    s += benchSVG(seatY, kidX, k, state.mode !== 'partner');
     const showKid = state.mode === 'builder' || (state.mode === 'scenes' && state.phase !== 'picker');
-    s += `<g id="kidG" transform="translate(${n1(kidX)} ${n1(seatY)}) scale(${n1(k * 1000) / 1000})">${showKid ? kidSVG(sc().look, kidV) : ''}</g>`;
+    s += `<g id="kidG" transform="translate(${n1(kidX)} ${n1(seatY)}) scale(${n1(k * 1000) / 1000})"${showKid ? ' data-show="1"' : ''}></g>`;
     if (showKid) {
       const nameY = Math.min(H - 6, seatY + 80 * k + 2);
       s += `<text x="${n1(kidX + 4 * k)}" y="${n1(seatY - 190 * k)}" text-anchor="middle" font-size="${Math.max(12, fs - 2)}" font-weight="700" fill="#26211f" stroke="#fff8f1" stroke-width="4" paint-order="stroke">${esc(sc().name)}</text>`;
     }
     sv.innerHTML = s;
+    drawKid();
     sv.setAttribute('aria-label', kidLabel());
     placeOverlays();
   }
   function drawKid() {
     const g = sv.querySelector('#kidG');
-    if (g && g.childElementCount) g.innerHTML = kidSVG(sc().look, kidV);
+    if (!g || !g.dataset.show) return;
+    const id = sc().id;
+    if (!painted(id)) { g.innerHTML = kidSVG(sc().look, kidV); return; }
+    // all three paintings stay in the group; each frame only changes their opacity and the lean
+    let lg = g.firstElementChild;
+    if (!lg || lg.dataset.id !== id) {
+      g.innerHTML = `<g data-id="${id}">${KIDART[id].map((src, j) => `<image data-j="${j}" href="${src}" x="${-KW / 2}" y="${n1(-KH * HIP)}" width="${KW}" height="${KH}" preserveAspectRatio="xMidYMax meet" opacity="0"/>`).join('')}</g>`;
+      lg = g.firstElementChild;
+    }
+    const A = PAINT[kidP.a], B = PAINT[kidP.b], e = kidP.e, op = [0, 0, 0];
+    if (A.img !== B.img && e < 1) { op[A.img] = Math.min(1, 2 - 2 * e); op[B.img] = Math.min(1, 2 * e); } else op[B.img] = 1;
+    lg.setAttribute('transform', `rotate(${n1(A.lean + (B.lean - A.lean) * e)} 0 0)`);
+    // the incoming painting is drawn last, on top of the one fading out
+    for (const im of lg.children) im.setAttribute('opacity', op[+im.dataset.j].toFixed(2));
+    const top = lg.querySelector(`[data-j="${B.img}"]`); if (lg.lastElementChild !== top) lg.appendChild(top);
   }
-  function benchSVG(W, H, seatY, kidX, k, wallOnly) {
-    if (wallOnly) return '';
-    const x1 = kidX + 70 * k, top0 = seatY + 4 * k;
-    const yL = top0 + 26 * k;     // the near end, off to the bottom left, is lower: you are sitting on it
-    let s = '';
-    // backrest planks behind the kid
-    const by1 = seatY - 66 * k, by2 = seatY - 40 * k;
-    for (const [a, b] of [[by1, 13], [by2, 13]]) s += `<path d="M-10 ${n1(a + 20 * k)} L${n1(x1)} ${n1(a)} L${n1(x1)} ${n1(a + b * k)} L-10 ${n1(a + 20 * k + b * k * 1.5)} Z" fill="#8e5f37" stroke="#6b4426" stroke-width="1.5"/>`;
-    s += `<rect x="${n1(x1 - 10 * k)}" y="${n1(by1)}" width="${n1(8 * k)}" height="${n1(top0 - by1)}" fill="#6b4426"/>`;
-    // legs at the far end
-    s += `<rect x="${n1(x1 - 14 * k)}" y="${n1(top0 + 8 * k)}" width="${n1(10 * k)}" height="${n1(Math.max(0, H - top0 - 8 * k))}" fill="#5d3b20"/>`;
-    // seat
-    s += `<path d="M-10 ${n1(yL)} L${n1(x1)} ${n1(top0)} L${n1(x1)} ${n1(top0 + 10 * k)} L-10 ${n1(yL + 24 * k)} Z" fill="#a06d40" stroke="#6b4426" stroke-width="1.5"/>`;
-    s += `<path d="M-10 ${n1(yL + 3 * k)} L${n1(x1)} ${n1(top0 + 2 * k)}" stroke="#c48d5a" stroke-width="${n1(2 * k)}"/>`;
-    return s;
+  // The bench: a painted, backless front-view bench (FLUX) behind the kid's legs, sized to the kid. The painting is
+  // 640 x 226 and wide, so only its two ends are shown (each with a leg), meeting behind the kid's legs.
+  // If it fails to load, a plain vector bench of the same size stands in.
+  const BENCH = 'art:bench';
+  const BTOP = -6, BBOT = KH * (1 - HIP), BS = (BBOT - BTOP) / 226, BHALF = 170 * BS;   // kid units
+  let benchOK = true;
+  { const im = new Image(); im.onerror = () => { benchOK = false; if (G) drawStage(); }; im.src = BENCH; }
+  function benchSVG(seatY, kidX, k, show) {
+    if (!show) return '';
+    const bh = BBOT - BTOP;
+    let s = `<g transform="translate(${n1(kidX)} ${n1(seatY)}) scale(${n1(k * 1000) / 1000})">`;
+    if (benchOK) {
+      for (const [x, vx] of [[-BHALF, 0], [0, 470]]) s += `<svg x="${n1(x)}" y="${BTOP}" width="${n1(BHALF)}" height="${n1(bh)}" viewBox="${vx} 0 170 226" preserveAspectRatio="none"><image href="${BENCH}" width="640" height="226"/></svg>`;
+    } else {
+      const lx = BHALF - 14, slab = 62 * BS;
+      for (const x of [-lx - 10, lx - 12]) s += `<rect x="${n1(x)}" y="${n1(BTOP + slab)}" width="22" height="${n1(bh - slab)}" fill="#b5713f" stroke="#7a4a26" stroke-width="1.5"/>`;
+      s += `<rect x="${n1(-BHALF)}" y="${BTOP}" width="${n1(2 * BHALF)}" height="${n1(slab)}" rx="4" fill="#e0a36c" stroke="#7a4a26" stroke-width="1.5"/>`;
+      s += `<rect x="${n1(-BHALF + 2)}" y="${n1(BTOP + slab * .3)}" width="${n1(2 * BHALF - 4)}" height="2" fill="#f2c08e"/>`;
+    }
+    return s + '</g>';
   }
   function meterSVG(W, pad) {
     const x0 = pad, x1 = W - pad, sw = (x1 - x0) / 5, narrow = sw < 120;
@@ -905,7 +954,7 @@ body.compact .lastp,body.stack .lastp{order:-1}
     hush(); clearTimers(); moment++;
     state.scene = i;
     Object.assign(state, {phase: 'turn', turn: 0, meter: 1, before: [1, 1, 1], picks: [null, null, null], last: null, stage: 0, cleanNow: false});
-    kidV = poseVals(1); state.posture = 1;
+    resetKid(1);
     state.order = shuffle(TURNS[0].moves);
     renderPicker(); renderScenesPanel(); relayout(true);
     narrate(TURNS[0].hint);
@@ -993,8 +1042,8 @@ body.compact .lastp,body.stack .lastp{order:-1}
       const b = document.createElement('button');
       b.className = 'scard';
       const done = clean.includes(s.id);
-      b.innerHTML = `${faceIcon(s.look)}<b>${esc(s.title)} <small>(${esc(s.name)})</small></b><span class="su">${esc(s.setup)}</span>${done ? '<span class="ck" title="Clean run">✓</span>' : ''}`;
-      if (!full) b.innerHTML = `${faceIcon(s.look)}<b>${esc(s.name)}</b>${done ? '<span class="ck">✓</span>' : ''}`;
+      b.innerHTML = `${faceIcon(s)}<b>${esc(s.title)} <small>(${esc(s.name)})</small></b><span class="su">${esc(s.setup)}</span>${done ? '<span class="ck" title="Clean run">✓</span>' : ''}`;
+      if (!full) b.innerHTML = `${faceIcon(s)}<b>${esc(s.name)}</b>${done ? '<span class="ck">✓</span>' : ''}`;
       b.setAttribute('aria-label', `${s.title}, with ${s.name}${done ? ', clean run done' : ''}`);
       if (!full) b.setAttribute('aria-pressed', i === state.scene && !(state.mode === 'scenes' && state.phase === 'picker'));
       b.onclick = () => chooseScene(i);
@@ -1071,7 +1120,7 @@ body.compact .lastp,body.stack .lastp{order:-1}
   function lbReset() {
     lbNeed = 0;
     Object.assign(state.lb, {slots: [null, null, null, null], checked: false, said: false, replied: false, row: 0, order: [0, 1, 2, 3].map(() => shuffle([0, 1, 2, 3]))});
-    clearTimers(); kidV = poseVals(2); state.posture = 2;
+    clearTimers(); resetKid(2);
   }
   const trapCount = () => state.lb.slots.filter(v => v === 3).length;
   function markFor(i) {
