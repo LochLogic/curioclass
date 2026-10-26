@@ -83,3 +83,10 @@ voice. Free fallback for K-2: warm-teacher (used once, on no one here besides co
    classifier-scenes, vanishing-point-studio, smoothie-lab, concert-ticket-market, paint-mixer, melody-maker,
    state-quest, career-match-quiz, frame-it, first-apartment-budget, market-time-machine.
 6. Skip the 6 NO tools.
+
+## Done 2026-10-26
+
+All 12 NEEDS tools are voiced, live and on the Review Desk (orders 36 to 47). Voice changes from the table above:
+marching-band uses firm-captain (Alnilam, as a drum major) so it differs from Orchestra Zoo, and beat-buddies uses
+lively-host (Sadachbia) because Sound Elevator already has Puck. Orchestra Zoo and Art Passport needed 16 kbps clips
+and smaller art to fit 2 MB (Orchestra Zoo also tempo 1.05). OPTIONAL tools wait for Cory.
