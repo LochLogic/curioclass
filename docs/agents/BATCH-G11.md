@@ -4,7 +4,7 @@ Cory asked for a test batch of 15 grade 11 tools, made end to end on this PC: co
 them all together afterward to find areas for improvement, so do it right rather than fast, and say plainly in your
 report what you were unsure of.
 
-The batch (10 after Cory paused five on 2026-10-25; the paused ones are struck below), in build order: rollercoaster-polynomials, imaginary-island, outbreak-model, ferris-wheel, undo-machine,
+The batch (Cory paused the last five on 2026-10-25: circuit-builder through stock-market-1929 are not built in this batch), in build order: rollercoaster-polynomials, imaginary-island, outbreak-model, ferris-wheel, undo-machine,
 savings-plan, poll-workshop, motion-graph-match, collision-lab, field-lines, circuit-builder, sound-studio,
 satire-decoder, usage-panel, stock-market-1929.
 
