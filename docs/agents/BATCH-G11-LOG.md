@@ -74,3 +74,10 @@ Read every "Not like" list against the other 14. No two tools share a one idea o
 - Process: test Chromes played audio aloud on Cory's speakers; every driver copy and scripts/shoot.py now pass --mute-audio, and the batch note requires it.
 - collision-lab: built; all presets and noses matched the spec; spec 4 renamed on screen to 'Heavy and fast' (the spec's name gave it away), and every spec shows 'Energy to absorb' so spec 4 can be proven with numbers. No art. 23 lines (hints recorded for Read).
 - motion-graph-match: re-verify FIX: the feed-forward fix made the Hand a graph noisy under real (pixel-quantized) mouse input; the builder had tested with a smooth scripted pointer. Lesson: test drag physics with real or quantized input. Final round sent.
+
+## Cory's review (2026-10-25 evening)
+- Approved all 7 promoted tools (rollercoaster, island, outbreak, ferris, savings, undo, poll) and Wonder Wall.
+- Habit Hero: hand-washing timer hands were plain squares; replaced with five painted Gemini steps (hands count as people: Gemini plus review), back on the desk as ready.
+- Cory: every tool in this batch has the same voice and palette; fine for now, don't change, but future batches should vary both (saved to memory).
+- collision-lab: verify FIX (no blockers): first-tap Read loses the welcome; noisy kinetic energy over 100 percent clamped silently in the plot.
+- Cory paused the five unstarted tools (circuit-builder, sound-studio, satire-decoder, usage-panel, stock-market-1929): removed from this batch's queue. Their specs stay committed (stage: spec) for a later wave. The batch now ends with 10 tools.
