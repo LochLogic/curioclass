@@ -22,3 +22,8 @@ A contraction is two words squished into one. Some letters fall out, and the apo
 - Every contraction you make goes on the **Made today** shelf. Tap one to hear it again.
 - "Will not" becomes "won't", which breaks the pattern, so it's left out. It makes a good surprise to share once the pattern is solid. "Can not" usually becomes "cannot" first, but the press shows the same result: can't.
 - Sound starts on. There's no score.
+
+## Voice
+
+- A warm teacher voice welcomes the class after the first tap and, after each crush, says whether the marked letters were right, what the two words became and the new sentence. **Sound** turns this off; **Read** still works.
+- **Read** says the sentence and asks which letters fall out, or, once crushed, says what the words became and the new sentence.

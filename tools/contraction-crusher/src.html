@@ -141,23 +141,13 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
   </aside>
 </main>
 
+<script src="kit:curio"></script>
 <script>
 (() => {
   const $ = id => document.getElementById(id);
-  // Motion follows the device's "reduce motion" setting until the teacher picks, then the choice is remembered
-  let reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  try { const m = localStorage.getItem('curio-motion'); if (m) reduce = m === 'calm'; } catch {}
-  function showMotion() {
-    document.body.classList.toggle('calm', reduce);
-    $('motion').setAttribute('aria-pressed', !reduce);
-    $('motion').textContent = reduce ? '⏸ Motion' : '✨ Motion';
-  }
-  showMotion();
-  $('motion').onclick = () => {
-    reduce = !reduce;
-    try { localStorage.setItem('curio-motion', reduce ? 'calm' : 'on'); } catch {}
-    showMotion();
-  };
+  // Motion and Sound come from the kit (kit/curio.js): motion follows the device setting until the teacher picks
+  let reduce = Curio.reduce;
+  Curio.onMotion(r => { reduce = r; });
   const wait = ms => new Promise(r => setTimeout(r, ms));  // same pacing with motion off, so sounds stay in step
   // Move with the Web Animations API; with motion off, jump to the end after the same time
   async function anim(node, frames, ms, easing = 'ease-in-out') {
@@ -202,7 +192,21 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
   ].map(([a, b, at, n, fam, s]) => ({a, b, at, n, fam, s, made: a + b.slice(0, at) + "'" + b.slice(at + n)}));
   const FAMS = ['All', "n't", "'s", "'re", "'ll", "'ve", "'m"];
 
-  const state = {fam: 'All', deck: [], cur: null, phase: 'ready', busy: false, sound: true, made: []};
+  // ---------- spoken lines (each one is in voice/lines.json) ----------
+  // Per pair: the sentence with the two words, the sentence with the contraction, and "Do not becomes don't."
+  const VO = {
+    welcome: 'Welcome to Contraction Crusher! Tap the letters you think will fall out, then press Crush.',
+    question: 'Which letters fall out when the two words squish together?',
+    right: 'You got it!',
+    notQuite: 'Not quite. Look where the gap is.',
+  };
+  const up = t => t[0].toUpperCase() + t.slice(1);
+  const said2 = w => w.s.replace('{}', w.s.startsWith('{}') ? up(w.a) + ' ' + w.b : w.a + ' ' + w.b);
+  const saidMade = w => w.s.replace('{}', w.s.startsWith('{}') ? up(w.made) : w.made);
+  const becomes = w => `${up(w.a)} ${w.b} becomes ${w.made}.`;
+  const allLines = () => [...new Set([...Object.values(VO), ...WORDS.flatMap(w => [said2(w), saidMade(w), becomes(w)])])];
+
+  const state = {fam: 'All', deck: [], cur: null, phase: 'ready', busy: false, made: []};
   function deal() {
     const pool = WORDS.filter(w => state.fam === 'All' || w.fam === state.fam);
     state.deck = pool.slice().sort(() => Math.random() - .5);
@@ -215,14 +219,14 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
   let ctx;
   const audio = () => (ctx ||= new (window.AudioContext || window.webkitAudioContext)());
   function tone(type, f0, f1, dur, gain, when = 0) {
-    if (!state.sound) return;
+    if (!Curio.sound) return;
     const a = audio(), o = a.createOscillator(), g = a.createGain(), t = a.currentTime + when;
     o.type = type; o.frequency.setValueAtTime(f0, t); o.frequency.exponentialRampToValueAtTime(f1, t + dur);
     g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(gain, t + 0.01); g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
     o.connect(g).connect(a.destination); o.start(t); o.stop(t + dur + 0.05);
   }
   function noise(dur, freq, gain, type = 'lowpass', when = 0) {
-    if (!state.sound) return;
+    if (!Curio.sound) return;
     const a = audio(), len = a.sampleRate * dur, buf = a.createBuffer(1, len, a.sampleRate), d = buf.getChannelData(0);
     for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * (1 - i / len) ** 3;
     const src = a.createBufferSource(), f = a.createBiquadFilter(), g = a.createGain();
@@ -338,7 +342,7 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
     const marked = tiles.filter(t => t.el.classList.contains('mark'));
     const guessed = marked.length > 0;
     const right = guessed && marked.length === w.n && marked.every(dropped);
-    speechSynthesis?.cancel?.();
+    hush();
     SFX.hiss();
     await pressTo([{top: HEAD_UP + 'px'}, {top: HEAD_UP - 20 + 'px'}], 450, 'ease-out');
     await pressTo([{top: HEAD_UP - 20 + 'px'}, {top: HEAD_DOWN + 'px'}], 380, 'cubic-bezier(.6,0,1,1)');
@@ -375,7 +379,8 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
     state.busy = false;
     hint();
     $('hint').innerHTML = (right ? '<b>You got it!</b> ' : guessed ? '<b>Not quite.</b> Look where the gap is. ' : '') + $('hint').innerHTML;
-    say(`${w.a} ${w.b}. ${w.made}. ${w.s.replace('{}', w.made)}`, right ? 'You got it! ' : '');
+    narrate('made#' + (++crushes), [...(right ? [VO.right] : guessed ? [VO.notQuite] : []), becomes(w), saidMade(w)],
+            () => state.cur === w && state.phase === 'made');
   }
 
   // Back apart: the apostrophe pops out and the letters come home
@@ -450,7 +455,7 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
     $('shelf').replaceChildren(...state.made.map(w => {
       const b = document.createElement('button');
       b.textContent = w.made; b.title = `${w.a} ${w.b}`;
-      b.onclick = () => say(`${w.a} ${w.b}. ${w.made}.`);
+      b.onclick = () => { if (Curio.sound) readNow([becomes(w)]); };
       return b;
     }));
   }
@@ -471,50 +476,57 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
   $('crush').onclick = crush;
   $('undo').onclick = uncrush;
   $('next').onclick = next;
-  $('sound').onclick = e => {
-    state.sound = !state.sound;
-    e.currentTarget.setAttribute('aria-pressed', state.sound);
-    e.currentTarget.textContent = state.sound ? '🔔 Sound' : '🔇 Sound';
-  };
-  // Read aloud with the most natural voice this browser offers
-  function bestVoice() {
-    const voices = speechSynthesis.getVoices().filter(v => /^en(-|_|$)/i.test(v.lang));
-    const score = v => (/natural|neural/i.test(v.name) ? 50 : 0) + (/premium|enhanced/i.test(v.name) ? 40 : 0) +
-      (/google/i.test(v.name) ? 30 : 0) + (/aria|jenny|ava|samantha|libby|sonia/i.test(v.name) ? 10 : 0) +
-      (/en-US/i.test(v.lang) ? 5 : 0) + (v.default ? 1 : 0) - (/david|mark|zira|desktop/i.test(v.name) ? 20 : 0);
-    return voices.sort((a, b) => score(b) - score(a))[0] || null;
-  }
-  if ('speechSynthesis' in window) {
-    // Chrome fills its voice list late; hold an early utterance until the good voices load, or it falls back to a robotic default
-    const speak = speechSynthesis.speak.bind(speechSynthesis);
-    speechSynthesis.speak = u => {
-      if (speechSynthesis.getVoices().length) return speak(u);
-      let done = false;
-      const go = () => { if (done) return; done = true; const v = bestVoice(); if (v) { u.voice = v; u.lang = v.lang; } speak(u); };
-      speechSynthesis.addEventListener('voiceschanged', go, {once: true});
-      setTimeout(go, 1500);
+  // ---------- voice: recorded clips (voice/lines.json) through the kit, the collision-lab queue ----------
+  // Narration: one welcome after the first tap, and what each crush made. Read always stops other speech and speaks
+  // the sentence and the question (or, once crushed, "Do not becomes don't." and the new sentence).
+  const said = new Set(), queued = new Set();
+  let tapped = false, vq = Promise.resolve(), vgen = 0, readP = Promise.resolve(), crushes = 0;
+  const spoken = [];  // every line handed to the speaker, for checking
+  function speak(parts, force) { spoken.push(...parts); return Curio.say(parts, force); }
+  for (const ev of ['pointerdown', 'keydown']) addEventListener(ev, e => {
+    if (tapped) return; tapped = true;
+    const b = e.target && e.target.closest ? e.target.closest('button') : null;
+    if (b && b.id === 'sound') return;
+    // decide after this tap's own click has run: Crush says its own result, so it skips the welcome;
+    // after Read the welcome waits for Read to finish
+    const n0 = queued.size + said.size;
+    const go = () => {
+      removeEventListener('click', go, true); clearTimeout(fb);
+      setTimeout(() => { if (!(b && b.id === 'crush') && ((b && b.id === 'read') || queued.size + said.size === n0)) narrate('welcome', [VO.welcome]); });
     };
-    speechSynthesis.getVoices();
+    addEventListener('click', go, true); const fb = setTimeout(go, 1500);
+  }, true);
+  // still(): checked when the line's turn comes; false drops it unsaid (new words or Uncrush moved on)
+  function narrate(key, parts, still) {
+    if (!tapped || !Curio.sound || said.has(key) || queued.has(key)) return false;
+    queued.add(key);
+    const gen = vgen, len = parts.join(' ').length;
+    vq = vq.then(async () => {
+      await readP;
+      if (gen !== vgen) return;            // dropped by hush(): not marked said, so its trigger can queue it again
+      queued.delete(key);
+      if (still && !still()) return;
+      said.add(key);
+      await Promise.race([speak(parts), wait(2500 + 80 * len)]);
+    });
+    return true;
   }
-  function say(text, lead = '') {
-    if (!state.sound || !('speechSynthesis' in window)) return;
-    speechSynthesis.cancel();
-    const u = new SpeechSynthesisUtterance(lead + text);
-    const v = bestVoice();
-    if (v) { u.voice = v; u.lang = v.lang; }
-    u.rate = .95; u.pitch = 1; speechSynthesis.speak(u);
-  }
-  $('read').onclick = () => {
+  // a stopped Read clip never ends, so nothing may wait on it (Read and Crush drop lines that never started)
+  function hush() { vgen++; queued.clear(); vq = Promise.resolve(); readP = Promise.resolve(); Curio.stop(); }
+  const readParts = () => {
     const w = state.cur;
-    if (!('speechSynthesis' in window) || !w) return;
-    const was = state.sound; state.sound = true;
-    say(state.phase === 'made' ? `${w.a} ${w.b} becomes ${w.made}. ${w.s.replace('{}', w.made)}`
-                               : `${w.s.replace('{}', w.a + ' ' + w.b)} Which letters fall out when ${w.a} and ${w.b} squish together?`);
-    state.sound = was;
+    if (!w) return [VO.welcome];
+    return state.phase === 'made' ? [becomes(w), saidMade(w)] : [said2(w), VO.question];
   };
+  function readNow(parts = readParts()) { hush(); const len = parts.join(' ').length; readP = Promise.race([speak(parts, true), wait(2500 + 80 * len)]).catch(() => {}); }
+  // Sound turned back on after a silent start: the welcome, if it was never said
+  Curio.onSound(on => { if (on && tapped && !said.has('welcome')) narrate('welcome', [VO.welcome]); });
+  Curio.init({clips: "voice:*", rate: .95, readFallback: () => readParts()[0]});
+  $('read').onclick = () => readNow();
 
   deal(); families(); hint();
   window.__cc = state;  // for checking frames
+  window.__ccv = {said, queued, spoken, allLines, readParts};
   next();
 })();
 </script>

@@ -23,3 +23,8 @@ Heating and cooling change things. Some changes **can go back**: melted ice, cho
 - The examples match the NGSS 2-PS1-4 clarification statement (water and butter at different temperatures, cooking an egg, heating paper).
 - Burning paper is only ever done by grown-ups, safely. The tool says so too.
 - Sound starts on.
+
+## Voice
+
+- A clear teacher voice welcomes the class after the first tap, says what each test showed and why, and sums up at the end. **Sound** turns this off; **Read** still works.
+- **Read** says the big label on the picture: what to try, what it turned into, your prediction, or the result.

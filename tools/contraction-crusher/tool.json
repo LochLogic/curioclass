@@ -11,6 +11,7 @@
   "minutes": "10-15",
   "sources": [
     "Illustrations generated with Google Gemini, edited for Curio Class",
-    "Sounds generated in the browser"
+    "Sounds generated in the browser",
+    "Narration generated with Qwen3-TTS (Apache 2.0), cloning a Google Gemini text-to-speech voice"
   ]
 }

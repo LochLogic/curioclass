@@ -99,6 +99,7 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
 .big:active:not(:disabled){transform:translateY(3px);box-shadow:0 2px 0 #0004}
 .big:disabled{opacity:.45;cursor:default}
 .go{background:#2f8f4e}.gray{background:#6b7466}
+.big.sm{min-height:46px;font-size:17px}
 .count-line{font:700 15px/1 'Segoe UI',sans-serif;color:var(--muted)}
 
 @media (max-width:759px),(max-height:640px){
@@ -114,6 +115,18 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
   .pb{min-height:38px;font-size:15px}
   .pb .x,.loop .count button{width:32px;height:32px}
   .big{min-height:44px;font-size:17px}
+}
+/* short boxes (the 16:10 preview, 800x500, 1000x625): Run and the blocks stay on screen without scrolling.
+   The garden buttons go on one row, the Gardens heading hides, and the program list shrinks and scrolls inside. */
+@media (max-height:640px){
+  .panel{gap:5px}
+  .panel>h2:first-child{display:none}
+  .levels{flex-wrap:nowrap;gap:4px}
+  .levels button{min-width:0;flex:1;min-height:34px;padding:2px;border-radius:9px}
+  .levels button small{font-size:8px}
+  .goal{line-height:1.3}
+  .program{min-height:56px;padding:6px}
+  .big,.big.sm{min-height:40px;font-size:16px;border-radius:12px}
 }
 </style>
 </head>
@@ -146,28 +159,18 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
       <button class="big gray" id="reset" title="Put the gardener back and clear the flowers">↺ Reset</button>
     </div>
     <div class="row">
-      <button class="big gray" id="undo" style="min-height:46px;font-size:17px">⌫ Undo</button>
-      <button class="big gray" id="clear" style="min-height:46px;font-size:17px">🗑 Clear</button>
+      <button class="big gray sm" id="undo">⌫ Undo</button>
+      <button class="big gray sm" id="clear">🗑 Clear</button>
     </div>
   </aside>
 </main>
 
+<script src="kit:curio"></script>
 <script>
 (() => {
   const $ = id => document.getElementById(id);
-  let reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  try { const m = localStorage.getItem('curio-motion'); if (m) reduce = m === 'calm'; } catch {}
-  function showMotion() {
-    document.body.classList.toggle('calm', reduce);
-    $('motion').setAttribute('aria-pressed', !reduce);
-    $('motion').textContent = reduce ? '⏸ Motion' : '✨ Motion';
-  }
-  showMotion();
-  $('motion').onclick = () => {
-    reduce = !reduce;
-    try { localStorage.setItem('curio-motion', reduce ? 'calm' : 'on'); } catch {}
-    showMotion();
-  };
+  let reduce = Curio.reduce;
+  Curio.onMotion(r => { reduce = r; });
   const wait = ms => new Promise(r => setTimeout(r, ms));  // same pacing with motion off
   const fit = () => {
     const r = $('stage').getBoundingClientRect();
@@ -206,15 +209,34 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
     repeat: '<svg viewBox="0 0 28 28"><path d="M6 13a8 8 0 0 1 14-5" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"/><path d="M23 2v9h-9z" fill="#fff"/><path d="M22 15a8 8 0 0 1-14 5" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"/><path d="M5 26v-9h9z" fill="#fff"/></svg>',
   };
   const LABEL = {step: 'Step', left: 'Turn left', right: 'Turn right', plant: 'Plant', repeat: 'Repeat'};
+  // every line the tool speaks, besides the garden goals (each goal is one line: "Garden 1: Hello, garden. Get the ...")
+  const VO = {
+    welcome: 'Welcome to Loop Garden! Help the bunny plant flowers.',
+    rock: 'Bonk! A rock is in the way.',
+    edge: 'Bonk! That\'s the edge of the garden.',
+    picture: 'Flowers planted! What picture did you make?',
+    noPlant: 'Add a Plant block to grow flowers.',
+    leftOne: 'One seed spot still needs planting. Change the program and run it again.',
+    leftSome: 'Some seed spots still need planting. Change the program and run it again.',
+    stars: {3: 'Three stars!', 2: 'Two stars!', 1: 'One star!'},
+    allPlanted: 'All planted!',
+    shortest: 'That\'s as short as we know how to make it!',
+    par: {3: 'Can you do it with 3 blocks?', 4: 'Can you do it with 4 blocks?', 6: 'Can you do it with 6 blocks?',
+          7: 'Can you do it with 7 blocks?', 10: 'Can you do it with 10 blocks?'},
+    moreRepeat: 'Look for more blocks that repeat.',
+    tryRepeat: 'Try a Repeat block.',
+  };
+  const goalText = i => `${LEVELS[i].free ? 'Free garden.' : `Garden ${i + 1}: ${LEVELS[i].name}.`} ${LEVELS[i].goal.replace(/<[^>]+>/g, '')}`;
+  const allLines = () => [...new Set([...Object.values(VO).flatMap(v => typeof v === 'string' ? [v] : Object.values(v)), ...LEVELS.map((L, i) => goalText(i))])];
 
-  const state = {lv: 0, prog: [], target: null, running: false, sound: true, stars: {}, g: null};
+  const state = {lv: 0, prog: [], target: null, running: false, stars: {}, g: null};
   try { Object.assign(state.stars, JSON.parse(localStorage.getItem('loop-garden-stars') || '{}')); } catch {}
 
   // ---------- sound ----------
   let ctx;
   const audio = () => (ctx ||= new (window.AudioContext || window.webkitAudioContext)());
   function tone(type, f0, f1, dur, gain, when = 0) {
-    if (!state.sound) return;
+    if (!Curio.sound) return;
     const a = audio(), o = a.createOscillator(), g = a.createGain(), t = a.currentTime + when;
     o.type = type; o.frequency.setValueAtTime(f0, t); o.frequency.exponentialRampToValueAtTime(f1, t + dur);
     g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(gain, t + 0.01); g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
@@ -265,7 +287,9 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
     b.classList.remove('walk', 'bump', 'yay');
     if (walk && !reduce) { void b.offsetWidth; b.classList.add('walk'); }
   }
-  function say(html) { $('say').innerHTML = html; }
+  // the message box; `parts` is what Read and narration speak (every part is a line in voice/lines.json)
+  let sayParts = [];
+  function say(html, parts) { $('say').innerHTML = html; sayParts = parts || []; }
 
   // ---------- program editor ----------
   const blocks = list => list.reduce((n, b) => n + 1 + (b.body ? blocks(b.body) : 0), 0);
@@ -354,15 +378,18 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
 
   // ---------- running ----------
   const STEP_MS = 650;
+  let runN = 0;
+  const fresh = () => { const r = runN, lv = state.lv; return () => r === runN && lv === state.lv; };
   async function run() {
     if (state.running || !state.prog.length) return;
     state.running = true; state.target = null;
+    runN++;  // feedback from an earlier run that never started is dropped (its moment has passed)
     drawGarden(); drawProgram();
     const L = LEVELS[state.lv];
     say('');
     let ok = true;
     const doOne = async b => {
-      b.el.classList.add('now');
+      b.el.classList.add('now'); b.el.scrollIntoView?.({block: 'nearest'});  // the short program list keeps the running block in view
       const g = state.g;
       if (b.t === 'step') {
         const nx = g.x + DX[g.d], ny = g.y + DY[g.d];
@@ -371,7 +398,8 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
           SFX.bonk();
           const bn = $('bunny'); bn.style.setProperty('--bx', DX[g.d] * 18 + 'px');
           bn.classList.remove('bump'); void bn.offsetWidth; if (!reduce) bn.classList.add('bump');
-          say(rock ? 'Bonk! A rock is in the way.' : 'Bonk! That\'s the edge of the garden.');
+          const line = rock ? VO.rock : VO.edge;
+          say(line, [line]); narrate('bonk#' + runN, [line], fresh());
           ok = false;
         } else { g.x = nx; g.y = ny; SFX.step(); placeBunny(); }
       } else if (b.t === 'left' || b.t === 'right') {
@@ -415,14 +443,16 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
     const L = LEVELS[state.lv], g = state.g, n = blocks(state.prog);
     drawProgram();
     if (L.free) {
-      say(g.planted.size ? `${g.planted.size} flower${g.planted.size > 1 ? 's' : ''} planted with ${n} blocks!` : 'Add a <b>Plant</b> block to grow flowers.');
+      if (g.planted.size) { say(VO.picture, [VO.picture]); narrate('done#' + runN, [VO.picture], fresh()); }
+      else { say(VO.noPlant.replace('Plant', '<b>Plant</b>'), [VO.noPlant]); narrate('done#' + runN, [VO.noPlant], fresh()); }
       return;
     }
     if (!ok) return;
     const left = L.seeds.filter(([x, y]) => !g.planted.has(x + ',' + y)).length;
     if (left) {
       SFX.meh();
-      say(`${left} seed spot${left > 1 ? 's' : ''} still need${left > 1 ? '' : 's'} planting. Change the program and run it again.`);
+      const line = left > 1 ? VO.leftSome : VO.leftOne;
+      say(line, [line]); narrate('done#' + runN, [line], fresh());
       return;
     }
     const stars = n <= L.par ? 3 : n <= L.par + 3 ? 2 : 1;
@@ -432,9 +462,11 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
     SFX.win();
     $('bunny-img').src = 'art:bunny-yay'; $('bunny-img').style.transform = '';
     if (!reduce) $('bunny').classList.add('yay');
-    const tip = stars === 3 ? 'That\'s as short as we know how to make it!' :
-      `Can you do it with ${L.par} blocks? ${state.prog.some(b => b.t === 'repeat') ? 'Look for more blocks that repeat.' : 'Try a Repeat block.'}`;
-    say(`<span class="stars">${'★'.repeat(stars)}${'☆'.repeat(3 - stars)}</span> All planted with ${n} blocks! ${tip}`);
+    // spoken as fixed lines (the block count is on screen beside Program); the stars are said aloud too
+    const tip = stars === 3 ? [VO.shortest] : [VO.par[L.par], state.prog.some(b => b.t === 'repeat') ? VO.moreRepeat : VO.tryRepeat];
+    const parts = [VO.stars[stars], VO.allPlanted, ...tip];
+    say(`<span class="stars" aria-hidden="true">${'★'.repeat(stars)}${'☆'.repeat(3 - stars)}</span> ${parts.join(' ')}`, parts);
+    narrate('done#' + runN, parts, fresh());
   }
 
   function drawLevels() {
@@ -444,47 +476,63 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
   function go(i) {
     state.lv = i; state.prog = []; state.target = null;
     const L = LEVELS[i];
-    $('goal').innerHTML = `<b>${L.free ? 'Free garden' : `Garden ${i + 1}: ${L.name}.`}</b> ${L.goal}`;
+    $('goal').innerHTML = `<b>${L.free ? 'Free garden.' : `Garden ${i + 1}: ${L.name}.`}</b> ${L.goal}`;
+    hush();
     drawLevels(); drawGarden(); drawProgram();
+    narrate('goal#' + i, [goalText(i)]);
   }
 
   $('run').onclick = run;
-  $('reset').onclick = () => { if (!state.running) drawGarden(); };
-  $('sound').onclick = e => {
-    state.sound = !state.sound;
-    e.currentTarget.setAttribute('aria-pressed', state.sound);
-    e.currentTarget.textContent = state.sound ? '🔔 Sound' : '🔇 Sound';
-  };
-  function bestVoice() {
-    const voices = speechSynthesis.getVoices().filter(v => /^en(-|_|$)/i.test(v.lang));
-    const score = v => (/natural|neural/i.test(v.name) ? 50 : 0) + (/premium|enhanced/i.test(v.name) ? 40 : 0) +
-      (/google/i.test(v.name) ? 30 : 0) + (/aria|jenny|ava|samantha|libby|sonia/i.test(v.name) ? 10 : 0) +
-      (/en-US/i.test(v.lang) ? 5 : 0) + (v.default ? 1 : 0) - (/david|mark|zira|desktop/i.test(v.name) ? 20 : 0);
-    return voices.sort((a, b) => score(b) - score(a))[0] || null;
-  }
-  if ('speechSynthesis' in window) {
-    // Chrome fills its voice list late; hold an early utterance until the good voices load, or it falls back to a robotic default
-    const speak = speechSynthesis.speak.bind(speechSynthesis);
-    speechSynthesis.speak = u => {
-      if (speechSynthesis.getVoices().length) return speak(u);
-      let done = false;
-      const go = () => { if (done) return; done = true; const v = bestVoice(); if (v) { u.voice = v; u.lang = v.lang; } speak(u); };
-      speechSynthesis.addEventListener('voiceschanged', go, {once: true});
-      setTimeout(go, 1500);
+  $('reset').onclick = () => { if (!state.running) { hush(); drawGarden(); } };
+  // ---------- voice: recorded clips (voice/lines.json) through the kit, the collision-lab queue ----------
+  // Narration: one welcome (with the garden's goal), each garden's goal when it is opened, and run feedback.
+  // Read always stops other speech and speaks the message, or the goal when there is no message.
+  const said = new Set(), queued = new Set();
+  let tapped = false, vq = Promise.resolve(), vgen = 0, readP = Promise.resolve();
+  const readParts = () => sayParts.length ? sayParts : [goalText(state.lv)];
+  const spoken = [];  // every line handed to the speaker, for checking
+  function speak(parts, force) { spoken.push(...parts); return Curio.say(parts, force); }
+  for (const ev of ['pointerdown', 'keydown']) addEventListener(ev, e => {
+    if (tapped) return; tapped = true;
+    const b = e.target && e.target.closest ? e.target.closest('button') : null;
+    if (b && b.id === 'sound') return;
+    // decide after this tap's own click has run: a tap that queued its own line (a garden button) skips the welcome;
+    // after Read the welcome waits for Read and leaves out the goal Read just spoke
+    const n0 = queued.size + said.size;
+    const go = () => {
+      removeEventListener('click', go, true); clearTimeout(fb);
+      setTimeout(() => {
+        if (b && b.id === 'read') narrate('welcome', [VO.welcome]);
+        else if (queued.size + said.size === n0) narrate('welcome', [VO.welcome, goalText(state.lv)]);
+      });
     };
-    speechSynthesis.getVoices();
+    addEventListener('click', go, true); const fb = setTimeout(go, 1500);
+  }, true);
+  // keys: welcome and goal#i are said once per page; bonk#n and done#n are run n's feedback.
+  // still(): checked when the line's turn comes; false drops it unsaid (another run or garden is showing)
+  function narrate(key, parts, still) {
+    if (!tapped || !Curio.sound || said.has(key) || queued.has(key)) return false;
+    queued.add(key);
+    const gen = vgen, len = parts.join(' ').length;
+    vq = vq.then(async () => {
+      await readP;
+      if (gen !== vgen) return;            // dropped by hush(): not marked said, so its trigger can queue it again
+      queued.delete(key);
+      if (still && !still()) return;
+      said.add(key);
+      await Promise.race([speak(parts), wait(2500 + 80 * len)]);
+    });
+    return true;
   }
-  $('read').onclick = () => {
-    if (!('speechSynthesis' in window)) return;
-    speechSynthesis.cancel();
-    const text = ($('say').textContent.replace(/[★☆]/g, '').trim() || $('goal').textContent).replace(/⤵/g, '');
-    const u = new SpeechSynthesisUtterance(text);
-    const v = bestVoice();
-    if (v) { u.voice = v; u.lang = v.lang; }
-    u.rate = .95; u.pitch = 1; speechSynthesis.speak(u);
-  };
+  // a stopped Read clip never ends, so nothing may wait on it (a garden change, Reset or Read drops lines that never started)
+  function hush() { vgen++; queued.clear(); vq = Promise.resolve(); readP = Promise.resolve(); Curio.stop(); }
+  function readNow() { hush(); const p = readParts(), len = p.join(' ').length; readP = Promise.race([speak(p, true), wait(2500 + 80 * len)]).catch(() => {}); }
+  // Sound turned back on after a silent start: the welcome, if it was never said
+  Curio.onSound(on => { if (on && tapped && !said.has('welcome')) narrate('welcome', [VO.welcome, goalText(state.lv)]); });
+  Curio.init({clips: "voice:*", rate: .95, readFallback: () => readParts()[0]});
+  $('read').onclick = readNow;
 
-  window.__lg = {state, go, add, run};  // for checking frames
+  window.__lg = {state, go, add, run, said, queued, spoken, allLines, readParts};  // for checking frames
   go(0);
 })();
 </script>

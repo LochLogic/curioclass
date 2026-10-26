@@ -126,22 +126,12 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
   </aside>
 </main>
 
+<script src="kit:curio"></script>
 <script>
 (() => {
   const $ = id => document.getElementById(id);
-  let reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  try { const m = localStorage.getItem('curio-motion'); if (m) reduce = m === 'calm'; } catch {}
-  function showMotion() {
-    document.body.classList.toggle('calm', reduce);
-    $('motion').setAttribute('aria-pressed', !reduce);
-    $('motion').textContent = reduce ? '⏸ Motion' : '✨ Motion';
-  }
-  showMotion();
-  $('motion').onclick = () => {
-    reduce = !reduce;
-    try { localStorage.setItem('curio-motion', reduce ? 'calm' : 'on'); } catch {}
-    showMotion();
-  };
+  let reduce = Curio.reduce;
+  Curio.onMotion(r => { reduce = r; });
   const wait = ms => new Promise(r => setTimeout(r, ms));  // same pacing with motion off
   const fit = () => {
     const r = $('stage').getBoundingClientRect();
@@ -157,6 +147,15 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
     shape: {btn: '✋ Roll it', cls: 'shape-btn', verb: 'roll it'},
   };
   const UNDO = {heat: 'cool', cool: 'heat', shape: 'shape'};
+  // fixed lines; each thing adds its intro, "Now it's ...", its yes or no line and its why line
+  const VO = {
+    welcome: 'Welcome to Melt or Not! We will change things, then test if they can go back.',
+    canItGoBack: 'Can it go back to how it was?',
+    predCan: "You predicted: it can go back. Let's test it!",
+    predCant: "You predicted: it can't go back. Let's test it!",
+    found: 'What did we find out?',
+    summary: 'Melting and freezing can go back. Cooking, baking and burning cannot.',
+  };
   const THINGS = [
     {id: 'ice', name: 'An ice cube', how: 'heat', after: 'a puddle of water', back: true, h: 190, h2: 110,
      undo: '❄️ Put it in the freezer', yes: 'The water froze into ice again!', why: 'Melting and freezing can go back and forth.', A: 'art:ice-1', B: 'art:ice-2'},
@@ -180,20 +179,21 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
      undo: '❄️ Put it in the fridge', no: 'Still ash! Burned paper cannot turn back into paper.', why: 'Burning changes paper for good. (Only grown-ups do this, and only safely!)', A: 'art:paper-1', B: 'art:paper-2'},
   ];
 
-  const state = {i: -1, phase: 'change', guess: null, right: 0, sound: true, busy: false};
+  const allLines = () => [...new Set([...Object.values(VO), ...THINGS.flatMap(t => [intro(t), nowIts(t), t.back ? t.yes : t.no, t.why])])];
+  const state = {i: -1, phase: 'change', guess: null, right: 0, busy: false};
 
   // ---------- sound ----------
   let ctx;
   const audio = () => (ctx ||= new (window.AudioContext || window.webkitAudioContext)());
   function tone(type, f0, f1, dur, gain, when = 0) {
-    if (!state.sound) return;
+    if (!Curio.sound) return;
     const a = audio(), o = a.createOscillator(), g = a.createGain(), t = a.currentTime + when;
     o.type = type; o.frequency.setValueAtTime(f0, t); o.frequency.exponentialRampToValueAtTime(f1, t + dur);
     g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(gain, t + 0.01); g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
     o.connect(g).connect(a.destination); o.start(t); o.stop(t + dur + 0.05);
   }
   function noise(dur, freq, gain, type = 'lowpass', when = 0) {
-    if (!state.sound) return;
+    if (!Curio.sound) return;
     const a = audio(), len = a.sampleRate * dur, buf = a.createBuffer(1, len, a.sampleRate), d = buf.getChannelData(0);
     for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * Math.min(1, i / (len * .2), (len - i) / (len * .3));
     const src = a.createBufferSource(), f = a.createBiquadFilter(), g = a.createGain();
@@ -252,10 +252,14 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
     const h = after ? t.h2 : t.h;
     return {top: 470 + 26 - h + 'px', height: h + 'px'};
   }
-  function label(name, q) {
+  // the big label under the thing; `parts` is what Read speaks (each part is a line in voice/lines.json)
+  let labelParts = [];
+  function label(name, q, parts) {
     $('label').innerHTML = name ? `<b>${name}</b><span>${q}</span>` : '';
-    $('label').dataset.text = name ? `${name}. ${q}` : '';
+    labelParts = name ? parts : [];
   }
+  const nowIts = t => `Now it's ${t.after}.`;
+  const intro = t => `${t.name}. What happens if we ${ACT[t.how].verb}?`;
   function steps(n) { [...$('steps').children].forEach((s, k) => s.classList.toggle('on', k < n)); }
   function show(...ids) {
     for (const id of ['change', 'predict', 'test', 'next']) $(id).hidden = !ids.includes(id);
@@ -278,7 +282,7 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
     fx(null);
     for (const b of ['bin-back', 'bin-nope']) $(b).classList.remove('chosen');
     if (!reduce) $('item').animate([{transform: 'translateY(-260px)', opacity: 0}, {transform: 'translateY(0)', opacity: 1}], {duration: 700, easing: 'cubic-bezier(.3,1.4,.5,1)'});
-    label(t.name, `What happens if we ${ACT[t.how].verb}?`);
+    label(t.name, `What happens if we ${ACT[t.how].verb}?`, [intro(t)]);
     $('change').textContent = ACT[t.how].btn; $('change').className = 'big ' + ACT[t.how].cls;
     $('hint').innerHTML = `<b>Step 1: Change it.</b> Before you press the button, talk about it: what do you think will happen?`;
     steps(1); show('change'); tally();
@@ -296,7 +300,7 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
     $('item').setAttribute('aria-label', t.after);
     await wait(1500);
     $('plate').className = 'plate'; fx(null);
-    label(`Now it's ${t.after}.`, 'Can it go back to how it was?');
+    label(nowIts(t), VO.canItGoBack, [nowIts(t), VO.canItGoBack]);
     $('hint').innerHTML = `<b>Step 2: Predict.</b> Can ${t.after} change back into ${t.name.toLowerCase()}? Take a class vote, then tap a bin.`;
     steps(2); show('predict');
     state.busy = false; $('change').disabled = false;
@@ -312,7 +316,7 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
     state.phase = 'test';
     $('test').textContent = t.undo; $('test').className = 'big ' + ACT[UNDO[t.how]].cls;
     $('hint').innerHTML = `You think it <b>${back ? 'can' : "can't"}</b> go back. <b>Step 3: Test it.</b> Try to change it back.`;
-    label(`Now it's ${t.after}.`, `You predicted: it ${back ? 'can' : "can't"} go back. Let's test it!`);
+    label(nowIts(t), back ? VO.predCan : VO.predCant, [nowIts(t), back ? VO.predCan : VO.predCant]);
     steps(3); show('test');
   }
 
@@ -333,7 +337,7 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
     const right = state.guess === t.back;
     if (right) state.right++;
     (t.back ? SFX.yes : SFX.no)();
-    label(t.back ? t.yes : t.no, t.why);
+    label(t.back ? t.yes : t.no, t.why, [t.back ? t.yes : t.no, t.why]);
     await wait(1600);
     // into its bin
     const bin = $(t.back ? 'box-back' : 'box-nope');
@@ -360,7 +364,8 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
     steps(4); show('next'); tally();
     state.busy = false; $('test').disabled = false;
     state.phase = 'sorted';
-    say(`${t.back ? t.yes : t.no} ${t.why}`);
+    const i = state.i;
+    narrate('result#' + i, [t.back ? t.yes : t.no, t.why], () => state.i === i && state.phase === 'sorted');
   }
 
   function tally() {
@@ -371,11 +376,12 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
 
   function done() {
     $('item').style.visibility = 'hidden';
-    label('What did we find out?', 'Melting and freezing can go back. Cooking, baking and burning cannot.');
+    label(VO.found, VO.summary, [VO.found, VO.summary]);
     $('hint').innerHTML = `<b>All ${THINGS.length} sorted!</b> Look at each bin. What is the same about the things in <b>Can go back</b>? What did heating do to the things in <b>Can't go back</b>?`;
     steps(4);
     $('next').textContent = '↺ Start over'; show('next');
-    say('What did we find out? Melting and freezing can go back. Cooking, baking and burning cannot.');
+    const r = ++rounds;
+    narrate('done#' + r, [VO.found, VO.summary], () => r === rounds && state.i >= THINGS.length);
   }
 
   $('change').onclick = change;
@@ -386,47 +392,56 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
   $('test').onclick = test;
   $('next').onclick = () => {
     if (state.i >= THINGS.length) {  // start over with empty bins
-      state.i = -1; state.right = 0;
+      state.i = -1; state.right = 0; hush();
       $('box-back').replaceChildren(); $('box-nope').replaceChildren();
     }
     next();
   };
 
-  $('sound').onclick = e => {
-    state.sound = !state.sound;
-    e.currentTarget.setAttribute('aria-pressed', state.sound);
-    e.currentTarget.textContent = state.sound ? '🔔 Sound' : '🔇 Sound';
-  };
-  function bestVoice() {
-    const voices = speechSynthesis.getVoices().filter(v => /^en(-|_|$)/i.test(v.lang));
-    const score = v => (/natural|neural/i.test(v.name) ? 50 : 0) + (/premium|enhanced/i.test(v.name) ? 40 : 0) +
-      (/google/i.test(v.name) ? 30 : 0) + (/aria|jenny|ava|samantha|libby|sonia/i.test(v.name) ? 10 : 0) +
-      (/en-US/i.test(v.lang) ? 5 : 0) + (v.default ? 1 : 0) - (/david|mark|zira|desktop/i.test(v.name) ? 20 : 0);
-    return voices.sort((a, b) => score(b) - score(a))[0] || null;
-  }
-  if ('speechSynthesis' in window) {
-    // Chrome fills its voice list late; hold an early utterance until the good voices load, or it falls back to a robotic default
-    const speak = speechSynthesis.speak.bind(speechSynthesis);
-    speechSynthesis.speak = u => {
-      if (speechSynthesis.getVoices().length) return speak(u);
-      let done = false;
-      const go = () => { if (done) return; done = true; const v = bestVoice(); if (v) { u.voice = v; u.lang = v.lang; } speak(u); };
-      speechSynthesis.addEventListener('voiceschanged', go, {once: true});
-      setTimeout(go, 1500);
+  // ---------- voice: recorded clips (voice/lines.json) through the kit, the collision-lab queue ----------
+  // Narration: one welcome after the first tap, each test's result, and the summary at the end.
+  // Read always stops other speech and speaks the big label.
+  const said = new Set(), queued = new Set();
+  let tapped = false, vq = Promise.resolve(), vgen = 0, readP = Promise.resolve(), rounds = 0;
+  const spoken = [];  // every line handed to the speaker, for checking
+  function speak(parts, force) { spoken.push(...parts); return Curio.say(parts, force); }
+  for (const ev of ['pointerdown', 'keydown']) addEventListener(ev, e => {
+    if (tapped) return; tapped = true;
+    const b = e.target && e.target.closest ? e.target.closest('button') : null;
+    if (b && b.id === 'sound') return;
+    // decide after this tap's own click has run; after Read, the welcome waits for Read to finish
+    const n0 = queued.size + said.size;
+    const go = () => {
+      removeEventListener('click', go, true); clearTimeout(fb);
+      setTimeout(() => { if ((b && b.id === 'read') || queued.size + said.size === n0) narrate('welcome', [VO.welcome]); });
     };
-    speechSynthesis.getVoices();
+    addEventListener('click', go, true); const fb = setTimeout(go, 1500);
+  }, true);
+  // still(): checked when the line's turn comes; false drops it unsaid (the class has moved on)
+  function narrate(key, parts, still) {
+    if (!tapped || !Curio.sound || said.has(key) || queued.has(key)) return false;
+    queued.add(key);
+    const gen = vgen, len = parts.join(' ').length;
+    vq = vq.then(async () => {
+      await readP;
+      if (gen !== vgen) return;            // dropped by hush(): not marked said, so its trigger can queue it again
+      queued.delete(key);
+      if (still && !still()) return;
+      said.add(key);
+      await Promise.race([speak(parts), wait(2500 + 80 * len)]);
+    });
+    return true;
   }
-  function say(text, force) {
-    if ((!state.sound && !force) || !('speechSynthesis' in window)) return;
-    speechSynthesis.cancel();
-    const u = new SpeechSynthesisUtterance(text.replace(/[↺✗❄️🔥✋]/g, ''));
-    const v = bestVoice();
-    if (v) { u.voice = v; u.lang = v.lang; }
-    u.rate = .95; u.pitch = 1; speechSynthesis.speak(u);
-  }
-  $('read').onclick = () => say($('label').dataset.text || $('hint').textContent, true);
+  // a stopped Read clip never ends, so nothing may wait on it (Read and Start over drop lines that never started)
+  function hush() { vgen++; queued.clear(); vq = Promise.resolve(); readP = Promise.resolve(); Curio.stop(); }
+  const readParts = () => labelParts.length ? labelParts : [VO.welcome];
+  function readNow() { hush(); const p = readParts(), len = p.join(' ').length; readP = Promise.race([speak(p, true), wait(2500 + 80 * len)]).catch(() => {}); }
+  // Sound turned back on after a silent start: the welcome, if it was never said
+  Curio.onSound(on => { if (on && tapped && !said.has('welcome')) narrate('welcome', [VO.welcome]); });
+  Curio.init({clips: "voice:*", rate: .95, readFallback: () => readParts()[0]});
+  $('read').onclick = readNow;
 
-  window.__mn = {state, next, change, predict, test};  // for checking frames
+  window.__mn = {state, next, change, predict, test, said, queued, spoken, allLines, readParts};  // for checking frames
   next();
 })();
 </script>

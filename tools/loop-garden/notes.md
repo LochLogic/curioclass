@@ -22,3 +22,9 @@ A program is a list of steps the computer follows in order. A **loop** (the Repe
 - One loop can't go inside another here. That keeps it right for grade 2.
 - The 🎨 garden has no seed spots: plant anywhere and make a picture.
 - Sound starts on.
+
+## Voice
+
+- A friendly coach voice welcomes the class after the first tap, reads each garden's goal when you open it, and says how a run went (Bonk, seed spots left, stars). **Sound** turns this off; **Read** still works.
+- **Read** says the message above the garden again, or the garden's goal when there is no message.
+- The voice says the stars and the shortest program size, not how many blocks you used: that count is beside **Program**.
