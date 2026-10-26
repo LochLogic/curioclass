@@ -71,7 +71,7 @@ class Tab:
 
 async def main(shots, out):
     out.mkdir(parents=True, exist_ok=True)
-    ensure_chrome(out.parent / 'chrome-prof')
+    ensure_chrome(out.resolve().parent / 'chrome-prof')  # Chrome can't use a relative profile folder: it shows a "Failed To Create Data Directory" box and exits
     errors = {}
     for s in shots:
         req = urllib.request.Request(f'http://127.0.0.1:{PORT}/json/new?about:blank', method='PUT')

@@ -72,9 +72,10 @@ then the item goes back to "ready" with a reply on the comment and the comment m
   capped at a 28000 peak; run `--reencode` on an older tool if a clip sounds faint.
 - **Agent Chrome hygiene:** every agent that drives Chrome gets its own scratch folder, `--user-data-dir`, and private
   ports, and kills only the pids it started. One builder killed Chromes by name pattern and broke two other agents;
-  two verifiers once shared a scratch folder. `scripts/drive.py` starts Chrome with Popen, which sometimes never
-  opens the debug port ("chrome did not start"); then launch Chrome with PowerShell `Start-Process` on the same port
-  and drive.py reuses it. Its `--host` mode writes host.html into the tool folder: delete it after.
+  two verifiers once shared a scratch folder. `scripts/drive.py` used to pass Chrome a relative profile path when
+  given a relative outdir; Chrome then showed a "Failed To Create Data Directory" box on Cory's desktop and exited
+  ("chrome did not start"). Fixed 2026-10-26 (the path is resolved). Any hand-launched Chrome must also get an
+  absolute `--user-data-dir`. Its `--host` mode writes host.html into the tool folder: delete it after.
 - **check_concepts drift:** `python scripts/check_concepts.py --write` regenerates `data/tools-concepts.csv` from the
   concept sources (`data/concepts/*.txt`) and silently reverts any row edited only in the CSV (six were lost and
   restored on 2026-10-26: line-safari, art-passport, paint-mixer, orchestra-zoo, beat-lab, fingerspell-flash). Edit
