@@ -80,7 +80,9 @@ def archive():
             continue
         ident, d = row["where"][len("archive:"):], ROOT / "library" / "_sources" / "other" / row["key"]
         d.mkdir(parents=True, exist_ok=True)
-        print(row["key"], get(f"https://archive.org/download/{ident}/{ident}_djvu.txt", d / "text.txt", 3), flush=True)
+        files = fetch_json(f"https://archive.org/metadata/{ident}")["files"]
+        name = next((f["name"] for f in files if f["name"].endswith("_djvu.txt")), f"{ident}_djvu.txt")
+        print(row["key"], get(f"https://archive.org/download/{ident}/{urllib.parse.quote(name)}", d / "text.txt", 3), flush=True)
         (d / "source.json").write_text(json.dumps({"url": f"https://archive.org/details/{ident}"}, indent=1), encoding="utf-8")
 
 
@@ -95,7 +97,8 @@ def sefaria():
         d.mkdir(parents=True, exist_ok=True)
         index = fetch_json("https://www.sefaria.org/api/index/")
         tanakh = next(c for c in index if c["category"] == "Tanakh")
-        books = [b["title"] for sec in tanakh["contents"] if "contents" in sec for b in sec["contents"] if "title" in b]
+        books = [b["title"] for sec in tanakh["contents"] if sec.get("category") in ("Torah", "Prophets", "Writings")
+                 for b in sec["contents"] if "title" in b]
         parts = []
         for book in books:
             got = fetch_json(f"https://www.sefaria.org/api/v3/texts/{urllib.parse.quote(book)}?"
