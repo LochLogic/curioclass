@@ -48,4 +48,4 @@ Keep the talk on the fictional situations and on ideas. Students never need to s
 - Motion turns off the lighthouse beam and route fades. Sound and Read use a soft narrator voice for the welcomes and
   hints; everything is also on screen. The More help dialog is never read aloud by itself (classroom speakers would
   tell the room); it has its own Read this button.
-- Situations and people in the tool are fictional. All art is drawn in code.
+- Situations and people in the tool are fictional. The island is a painting made with FLUX.2 [klein] (Cloudflare Workers AI) and the body figure was generated with OpenAI gpt-image; both were edited for Curio Class. Pins, labels, routes and the chart are drawn in code.

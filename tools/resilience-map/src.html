@@ -18,7 +18,8 @@ Sources: 988 Suicide & Crisis Lifeline (988lifeline.org); CDC, Managing Stress; 
 MedlinePlus, Stress and your health; Lazarus and Folkman (1984) and Folkman and Moskowitz (2004) on problem-focused and
 emotion-focused coping; CASEL framework (Self-Management); 911.gov. Every situation is about a fictional teen; nothing
 asks a student what is stressing them, and nothing scores feelings.
-Island, pins, icons, figure and chart are drawn in code. One file, no network requests. Content CC BY 4.0, code MIT.
+Island painting drawn with FLUX.2 [klein] on Cloudflare Workers AI; body figure generated with OpenAI gpt-image (both edited
+for Curio Class). Pins, icons, labels, routes and chart are drawn in code. One file, no network requests. Content CC BY 4.0, code MIT.
 curioclass.org
 -->
 <link rel="stylesheet" href="kit:curio">
@@ -170,10 +171,11 @@ dialog .btn{min-width:110px}
 .pin .badge,.pin .num{display:none}
 .pin.onroute .badge,.pin.onroute .num{display:inline}
 .num text{font:800 11px 'Segoe UI',system-ui,sans-serif;fill:#10263a}
-.rt{transition:opacity .3s}
+.rt,#scrim{transition:opacity .3s}
+.calm #scrim{transition:none}
 .beam{animation:beam 4s ease-in-out infinite}
-@keyframes beam{0%,100%{opacity:.16}50%{opacity:.44}}
-.calm .beam{animation:none;opacity:.3}
+@keyframes beam{0%,100%{opacity:.3}50%{opacity:.75}}
+.calm .beam{animation:none;opacity:.5}
 /* body scene */
 .hs{outline:none;cursor:pointer}
 .hs .pill{fill:#1c2532;stroke:#8193ad;stroke-width:1.5}
@@ -325,71 +327,75 @@ body.compact #planView{padding:8px}
     MedlinePlus: 'MedlinePlus, Stress and your health', L988: '988lifeline.org'};
   const AREAS = {body: 'Body Coast', mind: 'Mind Woods', people: 'People Village', action: 'Action Ridge', light: 'The Lighthouse'};
   const KIND = {change: 'Works on the problem', ride: 'Helps handle how it feels', both: 'Fits both halves'};
-  // u, v: where the pin sits in the island box (0 to 1); short: the name on the pin
+  // u, v: where the pin sits in the island box (0 to 1, ISL in the painting), placed on its painted region; short: the name on the pin
   const LM = [
-    {id: 'sleep', name: 'Keep a sleep routine', short: 'Sleep routine', area: 'body', kind: 'ride', u: .07, v: .30, icon: 'moon',
+    {id: 'sleep', name: 'Keep a sleep routine', short: 'Sleep routine', area: 'body', kind: 'ride', u: .07, v: .22, icon: 'moon',
       what: 'Going to bed and getting up at about the same time.', small: 'Pick a bedtime for tonight and set a reminder 30 minutes before it.',
       fits: 'Almost always; stress and poor sleep feed each other.', src: ['NIMH', 'CDC']},
-    {id: 'move', name: 'Move more', short: 'Move more', area: 'body', kind: 'ride', u: .17, v: .44, icon: 'shoe',
+    {id: 'move', name: 'Move more', short: 'Move more', area: 'body', kind: 'ride', u: .058, v: .627, icon: 'shoe',
       what: 'Any movement counts: a walk, a game, dancing in your room.', small: 'A 10 minute walk. CDC suggests starting small and building up to 2 and a half hours a week.',
       fits: "The part you can't change, or a stuck moment.", src: ['CDC']},
-    {id: 'meals', name: 'Eat regular meals', short: 'Regular meals', area: 'body', kind: 'ride', u: .06, v: .58, icon: 'bowl',
+    {id: 'meals', name: 'Eat regular meals', short: 'Regular meals', area: 'body', kind: 'ride', u: .023, v: .424, icon: 'bowl',
       what: 'Regular, healthy meals keep energy steady.', small: 'Plan a real breakfast for tomorrow.',
       fits: 'Busy weeks, when meals are the first thing skipped.', src: ['NIMH', 'CDC']},
-    {id: 'caffeine', name: 'Go easy on caffeine', short: 'Easy on caffeine', area: 'body', kind: 'ride', u: .17, v: .72, icon: 'cup',
+    {id: 'caffeine', name: 'Go easy on caffeine', short: 'Easy on caffeine', area: 'body', kind: 'ride', u: .337, v: .915, icon: 'cup',
       what: 'Lots of soda, coffee or energy drinks can make a stressed body feel more on edge.', small: 'Swap one caffeinated drink for water.',
       fits: 'Late nights before a big day.', src: ['NIMH']},
-    {id: 'breathe', name: 'Deep breaths and a stretch', short: 'Breathe, stretch', area: 'body', kind: 'ride', u: .07, v: .86, icon: 'breath',
+    {id: 'breathe', name: 'Deep breaths and a stretch', short: 'Breathe, stretch', area: 'body', kind: 'ride', u: .174, v: .797, icon: 'breath',
       what: 'Slow breathing and stretching help the body settle.', small: 'Three slow breaths, then roll your shoulders.',
       fits: 'Right before the hard moment.', src: ['CDC']},
-    {id: 'unwind', name: 'Make time to unwind', short: 'Unwind', area: 'mind', kind: 'ride', u: .27, v: .06, icon: 'note',
+    {id: 'unwind', name: 'Make time to unwind', short: 'Unwind', area: 'mind', kind: 'ride', u: .233, v: .136, icon: 'note',
       what: 'Plan time for something relaxing you enjoy.', small: "Put 20 minutes of something you like on today's list.",
       fits: 'A week with no breaks in it.', src: ['CDC']},
-    {id: 'unplug', name: 'Take a break from news and social media', short: 'Unplug', area: 'mind', kind: 'ride', u: .46, v: .03, icon: 'phone',
+    {id: 'unplug', name: 'Take a break from news and social media', short: 'Unplug', area: 'mind', kind: 'ride', u: .43, v: .068, icon: 'phone',
       what: 'Stepping away from the feed for a while.', small: 'Phone in another room for one hour.',
       fits: 'When scrolling keeps the worry going.', src: ['CDC']},
-    {id: 'journal', name: 'Keep a journal', short: 'Journal', area: 'mind', kind: 'ride', u: .65, v: .06, icon: 'book',
+    {id: 'journal', name: 'Keep a journal', short: 'Journal', area: 'mind', kind: 'ride', u: .564, v: .093, icon: 'book',
       what: 'Writing thoughts down to get them out of your head.', small: 'Write three lines on paper tonight (not in this tool).',
       fits: 'Thoughts that keep circling.', src: ['NIMH', 'CDC']},
-    {id: 'rethink', name: 'Question an unhelpful thought', short: 'Rethink a thought', area: 'mind', kind: 'ride', u: .36, v: .23, icon: 'bulb',
+    {id: 'rethink', name: 'Question an unhelpful thought', short: 'Rethink a thought', area: 'mind', kind: 'ride', u: .198, v: .356, icon: 'bulb',
       what: 'Noticing a thought like "I always mess up" and asking if it is really true.', small: 'Write the thought, then a fairer version of it.',
       fits: 'After a setback.', src: ['NIMH']},
-    {id: 'grateful', name: 'Notice something good', short: 'Notice good', area: 'mind', kind: 'ride', u: .55, v: .21, icon: 'star',
+    {id: 'grateful', name: 'Notice something good', short: 'Notice good', area: 'mind', kind: 'ride', u: .349, v: .254, icon: 'star',
       what: 'Practicing gratitude: naming something that went right.', small: 'Name one good thing from today.',
       fits: 'Long stretches of stress.', src: ['CDC']},
-    {id: 'outside', name: 'Get outside', short: 'Get outside', area: 'mind', kind: 'ride', u: .72, v: .25, icon: 'sun',
+    {id: 'outside', name: 'Get outside', short: 'Get outside', area: 'mind', kind: 'ride', u: .233, v: .559, icon: 'sun',
       what: 'Time outdoors, active or just relaxing.', small: 'Eat lunch outside or walk the long way.',
       fits: 'Days spent indoors on screens.', src: ['CDC']},
-    {id: 'trust', name: 'Talk with someone you trust', short: 'Talk to someone', area: 'people', kind: 'both', u: .33, v: .50, icon: 'bubble',
+    {id: 'trust', name: 'Talk with someone you trust', short: 'Talk to someone', area: 'people', kind: 'both', u: .384, v: .475, icon: 'bubble',
       what: 'Telling a person you trust what is going on and how you feel.', small: 'Think of who that could be (the plan has role chips).',
       fits: 'Both halves; a good listener helps you see which part you can change.', src: ['CDC']},
-    {id: 'friends', name: 'Friends who help in a good way', short: 'Good friends', area: 'people', kind: 'both', u: .47, v: .46, icon: 'heart',
+    {id: 'friends', name: 'Friends who help in a good way', short: 'Good friends', area: 'people', kind: 'both', u: .547, v: .492, icon: 'heart',
       what: 'Time with friends or family who help you cope in a positive way.', small: 'Make a plan with one of them this week.',
       fits: "When you'd rather pull away.", src: ['NIMH']},
-    {id: 'group', name: 'A club, team or community group', short: 'Join a group', area: 'people', kind: 'both', u: .61, v: .50, icon: 'dots',
+    {id: 'group', name: 'A club, team or community group', short: 'Join a group', area: 'people', kind: 'both', u: .453, v: .695, icon: 'dots',
       what: 'Being part of something: a club, a team, a community or faith group.', small: 'Look at one club list or team sign-up.',
       fits: 'Moves, changes, or feeling left out.', src: ['CDC']},
-    {id: 'steps', name: 'Break it into small steps', short: 'Small steps', area: 'action', kind: 'change', u: .93, v: .36, icon: 'stairs',
+    {id: 'steps', name: 'Break it into small steps', short: 'Small steps', area: 'action', kind: 'change', u: .709, v: .203, icon: 'stairs',
       what: 'Turning one big task into pieces you can start.', small: 'Write the first step small enough to do in 10 minutes.',
       fits: 'Big tasks that feel too big to start.', src: ['CASEL']},
-    {id: 'schedule', name: 'Make a plan with times', short: 'Plan with times', area: 'action', kind: 'change', u: .83, v: .49, icon: 'cal',
+    {id: 'schedule', name: 'Make a plan with times', short: 'Plan with times', area: 'action', kind: 'change', u: .837, v: .39, icon: 'cal',
       what: 'Putting the steps on a calendar.', small: 'Block two study times this week.',
       fits: 'Deadlines that pile up.', src: ['CASEL']},
-    {id: 'askearly', name: 'Ask early', short: 'Ask early', area: 'action', kind: 'change', u: .94, v: .62, icon: 'ask',
+    {id: 'askearly', name: 'Ask early', short: 'Ask early', area: 'action', kind: 'change', u: .686, v: .508, icon: 'ask',
       what: 'Asking the person in charge (a teacher, coach or manager) before it becomes a crisis.', small: 'Write the one-sentence question you would ask.',
       fits: 'Due dates, schedules, rules: anything someone else sets.', src: ['CASEL']},
-    {id: 'goal', name: 'Set one small goal', short: 'One small goal', area: 'action', kind: 'change', u: .83, v: .75, icon: 'flag',
+    {id: 'goal', name: 'Set one small goal', short: 'One small goal', area: 'action', kind: 'change', u: .826, v: .627, icon: 'flag',
       what: 'Choosing one thing to work on and when.', small: '"By Friday I will..."',
       fits: 'After a disappointment, when you want to get better.', src: ['CASEL']},
-    {id: 'talkdirect', name: 'Talk it through with them', short: 'Talk it through', area: 'action', kind: 'change', u: .93, v: .88, icon: 'swap',
+    {id: 'talkdirect', name: 'Talk it through with them', short: 'Talk it through', area: 'action', kind: 'change', u: .733, v: .797, icon: 'swap',
       what: 'Speaking directly and calmly with the person the problem is about.', small: 'Plan your first sentence: what happened and what you need.',
       fits: 'Problems with another person.', src: ['CASEL']},
-    {id: 'help', name: 'Get help (the Lighthouse)', short: 'Get help', area: 'light', kind: 'both', u: .62, v: .955, icon: 'light',
+    {id: 'help', name: 'Get help (the Lighthouse)', short: 'Get help', area: 'light', kind: 'both', u: .849, v: .915, icon: 'light',
       what: "When stress won't go away or feels like too much, more support helps: a trusted adult at school, a counselor, a doctor. Call or text 988 any time.",
       fits: 'Any time. Asking for help is a strength, not a last step.', src: ['NIMH', 'MedlinePlus', 'L988']},
   ];
   const LMI = Object.fromEntries(LM.map(l => [l.id, l]));
-  const HARBOR = {u: .40, v: .93};
+  const HARBOR = {u: .988, v: .631};   // land end of the painted dock (east shore)
+  const LAMP = {u: .922, v: .868};     // the painted lighthouse lamp, where the beam starts
+  // where the island box (u, v from 0 to 1) sits in the painting (1600 x 914 px): x 390 to 1250, y 150 to 740
+  const ISL = {x0: 390 / 1600, y0: 150 / 914, w: 860 / 1600, h: 590 / 914, ar: 860 / 590, img: 1600 / 914};
+  const MAP_ART = 'art:map-island', FIG_ART = 'art:body-figure';
 
   const SITS = [
     {id: 'dev', label: 'Dev: test on Friday', story: 'Dev has a chemistry test on Friday and keeps putting off studying.',
@@ -522,16 +528,6 @@ body.compact #planView{padding:8px}
   function tw(text, fs, wt = 600) { mctx.font = `${wt} ${fs}px 'Segoe UI', system-ui, sans-serif`; return mctx.measureText(text).width; }
   const hit = (a, b) => a.x < b.x + b.w && b.x < a.x + a.w && a.y < b.y + b.h && b.y < a.y + a.h;
 
-  // smooth closed path through points (Catmull-Rom as cubic Bezier)
-  function blob(pts) {
-    const n = pts.length; let d = `M${n1(pts[0][0])} ${n1(pts[0][1])}`;
-    for (let i = 0; i < n; i++) {
-      const p0 = pts[(i - 1 + n) % n], p1 = pts[i], p2 = pts[(i + 1) % n], p3 = pts[(i + 2) % n];
-      d += `C${n1(p1[0] + (p2[0] - p0[0]) / 6)} ${n1(p1[1] + (p2[1] - p0[1]) / 6)} ${n1(p2[0] - (p3[0] - p1[0]) / 6)} ${n1(p2[1] - (p3[1] - p1[1]) / 6)} ${n1(p2[0])} ${n1(p2[1])}`;
-    }
-    return d + 'Z';
-  }
-
   // ======================================================================================
   // The map
   // ======================================================================================
@@ -542,37 +538,36 @@ body.compact #planView{padding:8px}
     const t1 = 'Solid, wrench: work on the problem.', t2 = 'Dashes, wave: handle how it feels.';
     const legOne = 12 + 50 + tw(t1, fs, 500) + 24 + 50 + tw(t2, fs, 500) + 12 <= W;
     const legH = legOne ? fs + 16 : fs * 2 + 22;
-    // the island outline runs from -0.04 to 1.05 across the box and -0.08 to 1.06 down it: keep all of it on the stage
-    const bw = (W - 16) / 1.09, bh = (H - legH - 14) / 1.14;
-    const box = {x: 8 + .04 * bw, y: 6 + .08 * bh, w: bw, h: bh};
+    // the painted island (map-island.webp) keeps its shape, so the island box is scaled the same in x and y: the box plus
+    // a margin for the shore, the lighthouse rocks and area names (-0.08 to 1.08 across, -0.06 to 1.06 down) fits the
+    // stage above the legend, centered. The painting is placed from ISL, so pins and labels (all from P) sit on their
+    // painted regions at every size; wide stages crop the painting's open sea at the sides.
+    const aw = W - 12, ah = H - legH - 10;
+    const bw = Math.min(aw / 1.16, ah / 1.12 * ISL.ar), bh = bw / ISL.ar;
+    const box = {x: (W - 1.16 * bw) / 2 + .08 * bw, y: 5 + (ah - 1.12 * bh) / 2 + .06 * bh, w: bw, h: bh};
     const P = (u, v) => [box.x + u * box.w, box.y + v * box.h];
     M = {W, H, fs, r, box, P, legH};
-    const outline = [[.02, .24], [.12, .1], [.22, -.04], [.36, -.06], [.5, -.08], [.66, -.05], [.8, .04], [.92, .16], [1.03, .3], [1.05, .5], [1.04, .72],
-      [1.03, .92], [.88, 1.0], [.74, .98], [.67, 1.06], [.58, 1.06], [.52, .98], [.44, .99], [.40, 1.0], [.36, .98], [.24, 1.0], [.1, 1.0], [-.03, .94], [-.04, .72], [-.04, .48]].map(([u, v]) => P(u, v));
-    const ridge = [[.76, .2], [.88, .14], [1.06, .26], [1.08, .6], [1.06, .98], [.86, 1.04], [.76, .86], [.73, .55]].map(([u, v]) => P(u, v));
-    let s = `<defs><clipPath id="isl"><path d="${blob(outline)}"/></clipPath>
-      <pattern id="hatch" width="9" height="9" patternUnits="userSpaceOnUse" patternTransform="rotate(35)"><path d="M0 0v9" stroke="#5b6176" stroke-width="2"/></pattern></defs>`;
-    s += `<rect width="${W}" height="${H}" fill="#10263a"/>`;
-    // a few calm wave marks on the sea
-    for (const [u, v] of [[-.02, .06], [.98, -.02], [.2, 1.12], [1.0, 1.1], [-.05, 1.12], [.85, -.06]]) {
-      const [x, y] = P(u, v); if (x < 6 || x > W - 30 || y < 6 || y > H - legH - 6) continue;
-      s += `<path d="M${n1(x)} ${n1(y)}q6-5 12 0t12 0" fill="none" stroke="#24445f" stroke-width="2" stroke-linecap="round"/>`;
-    }
-    // island: a sand shore around green land, a hatched grey ridge to the east, a lighter village in the middle
-    s += `<path d="${blob(outline)}" fill="#35543f" stroke="#d9c79a" stroke-width="7" stroke-linejoin="round"/>`;
-    s += `<g clip-path="url(#isl)"><path d="${blob(ridge)}" fill="#4a4f62"/><path d="${blob(ridge)}" fill="url(#hatch)" opacity=".5"/>`;
-    const [wx, wy] = P(.5, .13), [vx, vy] = P(.47, .55);
-    s += `<ellipse cx="${n1(wx)}" cy="${n1(wy)}" rx="${n1(box.w * .3)}" ry="${n1(box.h * .19)}" fill="#2c4736"/>`;
-    s += `<ellipse cx="${n1(vx)}" cy="${n1(vy)}" rx="${n1(box.w * .2)}" ry="${n1(box.h * .15)}" fill="#45604c"/></g>`;
-    // harbor: a short dock into the sea
+    const iw = box.w / ISL.w, ih = iw / ISL.img, ix = box.x - ISL.x0 * iw, iy = box.y - ISL.y0 * ih;
+    let s = `<rect width="${W}" height="${H}" fill="#10263a"/>`;
+    s += `<image href="${MAP_ART}" x="${n1(ix)}" y="${n1(iy)}" width="${n1(iw)}" height="${n1(ih)}" preserveAspectRatio="none" aria-hidden="true"/>`;
+    // where an edge of the painting falls inside the stage, fade it into the sea (no seam)
+    const fe = Math.round(iw * .05), fade = (id, x1, y1, x2, y2) => `<linearGradient id="${id}" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}"><stop offset="0" stop-color="#10263a"/><stop offset="1" stop-color="#10263a" stop-opacity="0"/></linearGradient>`;
+    s += `<defs>${fade('fl', 0, 0, 1, 0)}${fade('fr', 1, 0, 0, 0)}${fade('ft', 0, 0, 0, 1)}${fade('fb', 0, 1, 0, 0)}</defs>`;
+    if (ix > -fe) s += `<rect x="${n1(ix)}" y="${n1(iy)}" width="${fe}" height="${n1(ih)}" fill="url(#fl)"/>`;
+    if (ix + iw < W + fe) s += `<rect x="${n1(ix + iw - fe)}" y="${n1(iy)}" width="${fe}" height="${n1(ih)}" fill="url(#fr)"/>`;
+    if (iy > -fe) s += `<rect x="${n1(ix)}" y="${n1(iy)}" width="${n1(iw)}" height="${fe}" fill="url(#ft)"/>`;
+    if (iy + ih < H + fe) s += `<rect x="${n1(ix)}" y="${n1(iy + ih - fe)}" width="${n1(iw)}" height="${fe}" fill="url(#fb)"/>`;
+    // with a situation picked, a sea-dark scrim over the painting so the lit route reads first
+    s += `<rect id="scrim" width="${W}" height="${H}" fill="#0b1a28" style="opacity:${state.sit ? .28 : 0}"/>`;
+    // harbor: the route start, at the land end of the painted dock
     const [hx, hy] = P(HARBOR.u, HARBOR.v);
     M.harbor = [hx, hy];
-    s += `<path d="M${n1(hx)} ${n1(hy)}v${n1(box.h * .07 + 8)}M${n1(hx - 6)} ${n1(hy + box.h * .07 + 8)}h12" stroke="#c9b48a" stroke-width="3" stroke-linecap="round" fill="none"/>`;
     s += `<circle cx="${n1(hx)}" cy="${n1(hy)}" r="4.5" fill="#ffe08a" stroke="#0b1a28" stroke-width="1.5"/>`;
-    // the lighthouse beam (a slow 4 s pulse; static with Motion off)
-    const [lx, ly] = P(LMI.help.u, LMI.help.v);
-    const bl = Math.min(W - lx - 6, r * 5.5);
-    s += `<path class="beam" d="M${n1(lx + r * .4)} ${n1(ly - r * .5)}L${n1(lx + bl)} ${n1(ly - r * 1.7)}L${n1(lx + bl)} ${n1(ly + r * 1.2)}Z" fill="#ffe08a" opacity=".3"/>`;
+    // the lighthouse beam from the painted lamp, out to sea (a slow 4 s pulse; static with Motion off)
+    const [lx, ly] = P(LAMP.u, LAMP.v);
+    const bl = Math.max(20, Math.min(W - lx - 6, r * 5.5));
+    s += `<defs><linearGradient id="bm"><stop offset="0" stop-color="#fff3c4"/><stop offset="1" stop-color="#ffe08a" stop-opacity="0"/></linearGradient></defs>`;
+    s += `<path class="beam" d="M${n1(lx)} ${n1(ly)}L${n1(lx + bl)} ${n1(ly - r * 1.2)}L${n1(lx + bl)} ${n1(ly + r * 1.2)}Z" fill="url(#bm)" opacity=".5"/>`;
     s += `<g id="routeLayer"></g><g id="pinLayer"></g><g id="labelLayer"></g>`;
     // legend: line style plus glyph, never color alone
     const ly0 = H - legH + (legOne ? legH / 2 : fs * .5 + 7);
@@ -607,11 +602,12 @@ body.compact #planView{padding:8px}
     }
     // pins and the harbor are obstacles for every label (each pin label may touch only its own pin)
     const obst = LM.map(l => { const [x, y] = P(l.u, l.v); return {x: x - r - 11, y: y - r - 11, w: 2 * r + 22, h: 2 * r + 14}; });   // the pin plus its number and glyph badges
-    obst.push({x: hx - 8, y: hy - 8, w: 16, h: 16 + box.h * .07 + 8});
+    obst.push({x: hx - 8, y: hy - 8, w: 16, h: 16});
     M.obst = obst;
-    M.AL = [['light', 'light', [[.79, 1.0], [.8, .94], [.48, 1.06], [.86, 1.0], [.3, 1.06]]], ['body', 'leaf', [[.08, .15], [.05, .2], [.1, .1], [.04, .3], [.15, .04], [.02, .42]]],
-      ['mind', 'tree', [[.46, .135], [.47, .15], [.55, .125], [.4, .2], [.62, .2], [.5, .0], [.32, .04], [.68, .04], [.35, .3], [.6, .32]]], ['people', 'houses', [[.47, .63], [.47, .66], [.47, .37], [.4, .7], [.55, .45]]],
-      ['action', 'peak', [[.86, .2], [.88, .23], [.84, .25], [.9, .3], [.9, .07], [.78, .1], [.95, .45], [.82, .42], [.95, .7]]]];
+    // candidate spots for the five area names (u, v), each over or beside its painted region, best first
+    M.AL = [['light', 'light', [[.919, 1.059], [.709, .992], [1.047, .797], [.651, 1.034]]], ['body', 'leaf', [[-.07, .305], [-.105, .695], [.093, .085], [.244, 1.034], [-.06, .46]]],
+      ['mind', 'tree', [[.36, -.034], [.221, -.017], [.302, .203], [.477, .305]]], ['people', 'houses', [[.465, .542], [.57, .627], [.384, .373], [.5, .6]]],
+      ['action', 'peak', [[.779, .068], [.977, .305], [.663, .339], [.95, .45]]]];
     // do all five area names and all 20 pin labels fit with nothing dropped? then show them all
     M.all = !!layoutLabels(true);
     drawMapState(false);
@@ -658,6 +654,7 @@ body.compact #planView{padding:8px}
   function drawMapState(fade = true) {
     if (!M || state.mode !== 'map') return;
     const rt = route(), cant = state.half === 'cant';
+    $('scrim').style.opacity = state.sit ? .28 : 0;
     for (const l of LM) {
       const p = M.pins[l.id], on = rt.includes(l.id);
       p.g.classList.toggle('dim', !!state.sit && !on && l.id !== 'help');   // the Lighthouse is never dimmed
@@ -722,19 +719,17 @@ body.compact #planView{padding:8px}
     const fig = lay === 'side2' ? {x: 0, y: 0, w: clamp(W * .45, 250, 440), h: H} : lay === 'side1' ? {x: 0, y: 0, w: clamp(W * .44, 165, 240), h: H} : {x: 0, y: 0, w: W, h: Math.round(H * .5)};
     const ch = side ? {x: fig.w, y: 0, w: W - fig.w, h: H} : {x: 0, y: fig.h, w: W, h: H - fig.h};
     let s = `<rect width="${W}" height="${H}" fill="#0f1a26"/>`;
-    // the figure: rounded shapes, one gray-blue fill, no face (a 100 x 220 design)
+    // the figure: a painted mannequin-like body (body-figure.webp, 362 x 800 px, no face) with the brain, heart, stomach
+    // and neck and shoulder muscles softly inside; k is CSS px per painting px
     const pillW = Math.max(...HS.map(h => tw(h.name, fs, 800))) + 22;
     const one = lay === 'side1';
-    const k = one ? Math.min((fig.w - pillW - 34) / 100, (fig.h - 30) / 220) : Math.min((fig.w - 2 * pillW - 40) / 100, (fig.h - 30) / 220);
-    const ox = one ? fig.x + pillW + 24 + ((fig.w - pillW - 24) - 100 * k) / 2 : fig.x + fig.w / 2 - 50 * k, oy = fig.y + (fig.h - 220 * k) / 2;
-    const X = u => n1(ox + u * k), Y = v => n1(oy + v * k);
-    const rr = (x, y, w, h, rx) => `<rect x="${X(x)}" y="${Y(y)}" width="${n1(w * k)}" height="${n1(h * k)}" rx="${n1(rx * k)}"/>`;
-    s += `<g fill="#71879e">${rr(12, 50, 14, 66, 7)}${rr(74, 50, 14, 66, 7)}${rr(30, 112, 17, 100, 8.5)}${rr(53, 112, 17, 100, 8.5)}${rr(26, 46, 48, 76, 18)}${rr(44, 38, 12, 12, 3)}` +
-      `<circle cx="${X(50)}" cy="${Y(22)}" r="${n1(18 * k)}"/></g>`;
-    // where each hotspot points on the figure; a small moon beside the head for sleep
-    const PT = one ? {brain: [50, 8], sleep: [16, 6], focus: [38, 16], head: [34, 29], heart: [44, 62], muscles: [19, 60], stomach: [50, 94]}
-      : {brain: [50, 10], focus: [38, 18], head: [65, 24], sleep: [82, 10], heart: [41, 62], muscles: [80, 60], stomach: [52, 94]};
-    s += icon('moon', ox + PT.sleep[0] * k, oy + PT.sleep[1] * k, Math.max(12, 14 * k), '#c4d0dd', 1.5);
+    const k = one ? Math.min((fig.w - pillW - 34) / 362, (fig.h - 30) / 800) : Math.min((fig.w - 2 * pillW - 40) / 362, (fig.h - 30) / 800);
+    const ox = one ? fig.x + pillW + 24 + ((fig.w - pillW - 24) - 362 * k) / 2 : fig.x + fig.w / 2 - 181 * k, oy = fig.y + (fig.h - 800 * k) / 2;
+    s += `<image href="${FIG_ART}" x="${n1(ox)}" y="${n1(oy)}" width="${n1(362 * k)}" height="${n1(800 * k)}" aria-hidden="true"/>`;
+    // where each hotspot points on the painting (px); the moon for sleep sits beside the head, on the pills' side
+    const PT = one ? {brain: [185, 30], focus: [178, 72], head: [150, 56], sleep: [92, 34], heart: [198, 205], muscles: [104, 148], stomach: [188, 288]}
+      : {brain: [185, 30], focus: [178, 72], head: [213, 56], sleep: [272, 34], heart: [198, 205], muscles: [258, 148], stomach: [188, 288]};
+    s += icon('moon', ox + PT.sleep[0] * k, oy + PT.sleep[1] * k, Math.max(12, 44 * k), '#c4d0dd', 1.5);
     const cols = one ? [[-1, ['brain', 'sleep', 'focus', 'head', 'heart', 'muscles', 'stomach']]]
       : [[-1, ['brain', 'focus', 'heart', 'stomach']], [1, ['sleep', 'head', 'muscles']]];
     const gap = one ? 46 : 50;

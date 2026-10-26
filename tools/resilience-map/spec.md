@@ -20,7 +20,7 @@ Every stress has a part you can change and a part you can't: pick an ordinary si
 Header (kit): title "Resilience Map", mode buttons `The map` | `Stress in the body` | `My plan`, then `Motion`, `Sound`, `Read`. Kit theme `kit:theme-912` with this tool's own `--brand`. Below everything, in every mode, the help footer (see "Help footer").
 
 ### The map (default)
-- Stage: an island drawn in code (SVG, re-laid out per size) on a night sea. Five areas, each with a label and an icon, and 20 landmarks (round pins with a small icon and a short name):
+- Stage: a painted island seen from above at twilight (art `map-island`, scaled evenly so it keeps its shape; pins, labels, routes, the harbor dot, the lighthouse beam and the legend are SVG on top, re-laid out per size) on a night sea. Five areas, each with a label and an icon, and 20 landmarks (round pins with a small icon and a short name):
   - Body Coast (west shore, icon: a leaf), 5 landmarks.
   - Mind Woods (north, icon: a tree), 6 landmarks.
   - People Village (center, icon: two houses), 3 landmarks.
@@ -36,7 +36,7 @@ Header (kit): title "Resilience Map", mode buttons `The map` | `Stress in the bo
 - A small note under the switch, always the same: "Researchers who study coping describe two kinds: working on the problem, and handling how it feels. Matching the kind to the part you can change often helps." (Lazarus and Folkman.)
 
 ### Stress in the body
-- Stage left: a plain standing figure drawn in code (rounded shapes, no face, one neutral gray-blue fill, no gender cues) with 7 hotspot buttons: Brain, Head, Heart, Muscles, Stomach, Sleep, Focus. Stage right: a small line chart "Stress over a week" (x: Mon to Sun, y: no numbers, labels "calm" at the bottom and "on alert" at the top).
+- Stage left: a painted standing figure (art `body-figure`: a smooth mannequin-like body in slate gray-blue, no face, no hair, no gender cues, with the brain, heart, stomach and neck and shoulder muscles softly visible inside, in muted tones) with 7 hotspot buttons drawn in code on top: Brain, Head, Heart, Muscles, Stomach, Sleep, Focus. Stage right: a small line chart "Stress over a week" (x: Mon to Sun, y: no numbers, labels "calm" at the bottom and "on alert" at the top).
 - Panel: hint; switch `A short burst` | `Stress that keeps going`; the open hotspot card; the button `Add this sign to my plan`.
 - What responds: a hotspot opens its card (what happens, from the sources). The switch redraws the chart: "A short burst" rises on Thursday and comes back to calm by Friday, with the caption "In short bursts, stress can help you avoid danger or meet a deadline. Then the body settles." "Stress that keeps going" rises Monday and stays high, with the caption "When stress lasts, the body stays alert even though there is no danger. Over months that is linked to health problems, which is why recovery time matters." Under the chart, always: "Resilience is coming back toward calm. The map has routes that help."
 
@@ -119,12 +119,16 @@ Parent or guardian, Another family adult, School counselor, A teacher, A coach, 
 
 ## Look
 - Base: `kit:theme-912` (dark). Accent `--brand: #f2a0b8` (dawn rose, the lighthouse dawn), `--brand-ink: #2a0f19`. Different from batch siblings (mustard #8a5a10, violet #5a2fb8, burnt orange #b3471d), mind-map teal #1f5c63 and the theme default amber #f2a93b.
-- Scene: sea #10263a, land #35543f (Body Coast and Mind Woods), sand shore #d9c79a, ridge #4a4f62, route path in light-on-dark gold #ffe08a, open-pin ring #8fd3ff, footer band #1a1420.
-- Contrast (computed, WCAG 2.1): brand on --panel 8.65:1, on --sec-bg 8.2:1; brand-ink on brand 8.89:1; brand on sea 7.72:1; ink #e8edf3 on sea 13.11:1, on land 7.16:1, on footer 15.31:1; dark ink #1d1a14 on sand 10.4:1; route gold on sea 11.97:1; ring on sea 9.5:1; muted on sea 7.25:1. All pass AA.
+- Scene: sea #10263a (the stage behind the painting), painted island in the same family (meadow and forest greens, pale sand west shore, grey-blue ridge east), route path in light-on-dark gold #ffe08a, open-pin ring #8fd3ff, footer band #1a1420.
+- Contrast (computed, WCAG 2.1): brand on --panel 8.65:1, on --sec-bg 8.2:1; brand-ink on brand 8.89:1; brand on sea 7.72:1; map labels have a 4 px halo #0b1a28 (paint-order stroke), so they read on any part of the painting: pin labels #e8edf3 on the halo 15.0:1, area names #f3eee4 on the halo 15.2:1; ink #e8edf3 on sea 13.11:1, on footer 15.31:1; route gold on sea 11.97:1; ring on sea 9.5:1; muted on sea 7.25:1. All pass AA.
 - Labels at least 13 px at 1366x768 and 10 px or more in the 680x425 preview. Stage drawn at real pixel size per box (STANDARDS.md "Sizes").
 
 ## Art
-none: drawn in code (island map, pins, icons, lighthouse, figure, chart). `preview.svg` is the map with Dev's routes, drawn in code.
+Plan and prompts: `art-plan.md`, `art/prompts.json`.
+- `map-island` (1600 x 914 WebP, about 40 KB): FLUX.2 [klein] 4B on Cloudflare Workers AI, no people. The island box (pin u, v from 0 to 1) is x 390 to 1250, y 150 to 740 in the painting (`ISL` in src.html); every pin, the harbor (dock, east shore) and the lighthouse lamp (`LAMP`, where the beam starts) are placed on their painted regions. A sea-dark scrim (0.28) dims the painting while a situation is picked.
+- `body-figure` (362 x 800 WebP cutout, about 30 KB): OpenAI gpt-image-2 through Codex, reviewed. Hotspot points are measured on the painting (`PT` in src.html).
+- Drawn in code: pins and their icons, labels and area names, routes and glyphs, the harbor dot, the beam, the legend, the hotspot pills, leader lines and dots, the sleep moon, the week chart and the plan card.
+- `preview.svg` is a screenshot of the map (`scripts/preview.py`).
 
 ## Voice
 Bank `soft-breath` (Enceladus), style "Say softly and calmly, like a mindfulness teacher". Not used by any other tool; siblings use gentle-storyteller, upbeat-guide, big-sister. Narration is only welcomes and hints (Read uses the hint recordings). Fixed lines, all recorded:
