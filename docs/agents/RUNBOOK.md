@@ -61,6 +61,7 @@ then the item goes back to "ready" with a reply on the comment and the comment m
 - **Voice sweep:** a shared kit helper (narrate, hush, read, first tap, per STANDARDS.md) in `kit/curio.js`, then
   retrofit the 10 grade 11 tools and the K-2 tools onto it. The first four G11 tools (rollercoaster, island, outbreak,
   ferris) predate the held-click rule and may still have the first-tap race.
+- **Grade 11 batch: complete** (10 tools live 2026-10-26).
 - **Paused (specs done, not built):** circuit-builder, sound-studio, satire-decoder, usage-panel, stock-market-1929.
   Their specs predate STANDARDS.md (one voice, no Look section): update voice and accent before building.
 - **Parked K-2 tools waiting on voice:** see the Review Desk "Parked" filter.

@@ -1,0 +1,19 @@
+{
+  "house_style": "Muted, realistic digital painting for the background of a high school physics tool with a dark interface. Low contrast, deep blue-grey, calm and quiet. No text, no letters, no watermark, no border, no frame.",
+  "style": "A physics lab bench seen from the side, dim and soft so a cart, tick marks and labels drawn on top stay readable.",
+  "assets": [
+    {
+      "name": "track-bench",
+      "prompt": "Empty background: a long dark lab bench surface seen from the front and slightly above, with a brushed aluminum air track rail running straight along its whole length, horizontal, from the left edge to the right edge. Soft overhead light makes a gentle sheen on the metal. Dark charcoal bench top, dark blurred lab wall behind. Nothing on the track: no cart, no objects, no equipment, no labels. Completely empty of people: no people, no hands, no faces. No text, no numbers, no scale markings anywhere. Muted, low contrast and dark, made to sit behind a dark user interface.",
+      "aspect": "5:1",
+      "width": 1600,
+      "quality": 70,
+      "cutout": false,
+      "people": false,
+      "local_note": "shown at 40 percent opacity under a dark wash behind the track strip at the top of the stage; the tool draws its own rail, ticks, cart and sensor on top, so keep it plain, dark and even along its length, no people or hands",
+      "source": "flux1-schnell (local)",
+      "review": "pending",
+      "sd": "A long dark charcoal lab bench seen from the front and slightly above, a single plain brushed aluminum rail running straight and horizontal across the whole width of the picture, soft overhead light making a gentle sheen on the metal, dark blurred wall behind, minimal and empty, muted and dark."
+    }
+  ]
+}

@@ -1,0 +1,1379 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Motion Graph Match · Drive the cart, read x, v and a · Curio Class</title>
+<meta name="description" content="Drive a lab cart down a 10 m track by setting only its position, velocity or acceleration, and watch all three motion graphs draw at once. Read slopes and areas on your own run, then race a ghost of your best run on ten target graphs. Grade 11 physics. Works offline.">
+<!--
+Motion Graph Match (Curio Class)
+Grade 11, physics, Motion and Kinematics. Standard: NGSS HS-PS2-1 (the net force readout F = m a ties the acceleration
+graph to Newton's second law; the core of the tool is the kinematics the standard's data analysis rests on).
+Students drive, alone or in pairs on laptops (also works on a projector with a student at the keyboard).
+Explore: free drive with Hand (you set position), Throttle (you set velocity) or Pedal (you set acceleration); the
+three graphs sweep 0 to 12 s like a scope. Show links reads slopes (x to v, v to a) and the area under v (change in x)
+on a paused or finished run. Race: ten target graphs, matched inside a tolerance band, against a ghost of your best run.
+Facts: OpenStax, University Physics Volume 1, chapter 3 (motion along a straight line) and section 5.3 (Newton's
+second law); OpenStax, Physics (high school), chapter 2. Misconceptions targeted: McDermott, Rosenquist and van Zee,
+Am. J. Phys. 55, 503 (1987); Beichner, Am. J. Phys. 62, 750 (1994). Target values are original, from the piecewise
+definitions in spec.md (each one integrated and checked). Cart, track, sensor, graphs, thumbnails and arrows are drawn
+in code. Background image: track-bench (no people).
+One file, no network requests. Content CC BY 4.0, code MIT. curioclass.org
+-->
+<link rel="stylesheet" href="kit:curio">
+<link rel="stylesheet" href="kit:theme-912">
+<style>
+:root{--brand:#36c9dd;--brand-ink:#03191d;--you:#36c9dd;--tgt:#f2a93b;--tgt-band:rgba(242,169,59,.24);--ghost:#c9a0ff;
+  --force:#ff8a8a;--halo:#0b1017;--neg:#ffb36b}
+/* three page layouts, picked in script (relayout()):
+   wide    (1000 px or wider and 700 px or taller): stage on the left, 360 px panel on the right;
+   compact (a short landscape box such as the 16:10 embed, 680x425 to 1000x625): the same with a 290 px panel, a one-row
+           header and the controls first in the panel, so they are visible without scrolling;
+   stack   (narrow or portrait): the panel under the stage, the page scrolls.
+   The stage SVG is drawn at its real pixel size (no scaling), so scene text keeps its size in every box. */
+main{grid-template-columns:minmax(0,1fr) 360px;min-height:0}
+.stage{min-height:0;background:radial-gradient(ellipse at 30% 20%,#121c2a,#0a0f17 72%)}
+#sv{position:absolute;left:0;top:0;display:block;overflow:visible}
+body.compact main{grid-template-columns:minmax(0,1fr) 290px}
+@media (min-width:900px){body.compact main{grid-template-columns:minmax(0,1fr) 320px}}
+body.compact header{padding:4px 8px;gap:4px;flex-wrap:nowrap;min-width:0}
+body.compact h1{font-size:16px;white-space:nowrap;min-width:0;overflow:hidden;text-overflow:ellipsis}
+body.compact h1 small{display:none}
+body.compact .seg{flex:none}
+body.compact .seg button,body.compact .icon-btn{min-height:44px;padding:0 8px;font-size:13.5px;white-space:nowrap}
+body.compact .icon-btn{flex:none}
+body.compact .panel{padding:6px 8px;gap:6px}
+body.compact .sec{padding:6px 8px}
+body.compact .sec>h2{margin-bottom:4px;font-size:11px}
+body.compact .hint{font-size:13.5px;line-height:1.35}
+body.compact .btn{font-size:13.5px;padding:0 8px}
+body.compact .p-ctl>h2{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+body.compact .vs{height:clamp(110px,calc(100vh - 300px),150px)}
+body.compact .pk{min-height:44px}
+body.compact .pk small{display:none}
+body.compact .ctlgrid{grid-template-columns:118px 1fr}
+body.compact .tname{font-size:14px}
+body.compact .card{min-height:50px;padding:4px 6px}
+/* compact: controls first (Explore: control, then the run buttons; Race: target and run buttons, results, control) */
+body.compact .p-ctl{order:1} body.compact .p-run{order:2} body.compact .p-hint{order:3}
+body.compact[data-mode="race"] .p-race{order:0} body.compact[data-mode="race"] .p-res{order:0}
+body.compact[data-mode="race"] .p-ctl{order:2} body.compact[data-mode="race"] .p-hint{order:3} body.compact .p-list{order:4}
+body.stack{height:auto}
+body.stack main{grid-template-columns:minmax(0,1fr);align-content:start}
+body.stack .stage{flex:none}
+body.stack .panel{border-left:0;border-top:1px solid var(--line)}
+@media (max-width:560px){
+  .seg{display:grid;grid-template-columns:1fr 1fr;border-radius:14px;width:100%}
+  .seg button{min-height:44px;font-size:15px}
+  .icon-btn{min-height:44px;padding:0 12px;font-size:15px}
+}
+/* panel */
+.btnrow{display:flex;gap:6px;flex-wrap:wrap}
+.small{font-size:13px;color:var(--muted);margin:6px 0 0;line-height:1.35}
+.small:empty{display:none}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.ctlgrid{display:grid;grid-template-columns:150px 1fr;gap:8px;align-items:start}
+.pick{display:flex;flex-direction:column;gap:5px}
+.pk{min-height:52px;text-align:left;display:flex;flex-direction:column;justify-content:center;line-height:1.15;padding:2px 12px}
+.pk small{font-weight:400;font-size:12px;color:var(--muted)}
+.pk[aria-pressed="true"] small{color:var(--brand-ink)}
+.pk .ico{font-size:15px;margin-right:2px}
+.surface{display:flex;flex-direction:column;align-items:center;gap:2px;min-width:0}
+.vs-lab{font-size:13px;font-weight:600;color:var(--muted)}
+.vs{position:relative;width:96px;height:200px;cursor:ns-resize;touch-action:none;outline:none;border-radius:8px}
+.vs:focus-visible{outline:4px solid var(--focus);outline-offset:2px}
+.vs-track{position:absolute;left:58px;top:10px;bottom:10px;width:6px;margin-left:-3px;border-radius:3px;background:var(--line)}
+.vs-fill{position:absolute;left:58px;width:6px;margin-left:-3px;background:var(--brand);border-radius:3px}
+.vs-tick{position:absolute;left:46px;width:24px;height:0;border-top:1px solid var(--muted);opacity:.6}
+.vs-tick.zero{left:40px;width:36px;border-top:3px solid var(--ink);opacity:1}
+.vs-tl{position:absolute;right:58px;margin-right:16px;transform:translateY(-50%);font:12px var(--readout-font);color:var(--muted)}
+.vs-tl.zero{color:var(--ink);font-weight:700}
+.vs-thumb{position:absolute;left:58px;width:44px;height:22px;margin:-11px 0 0 -22px;border-radius:6px;background:var(--brand);
+  border:2px solid var(--paper);box-shadow:0 0 0 1px var(--brand)}
+.vs-thumb::after{content:'';position:absolute;left:8px;right:8px;top:8px;height:2px;background:var(--brand-ink);opacity:.6}
+.vs-val{font:700 15px var(--readout-font);color:var(--ink)}
+.spring{display:flex;align-items:center;gap:6px;min-height:44px;font-size:14px;cursor:pointer}
+.spring input{width:20px;height:20px;margin:0;accent-color:var(--brand)}
+.handnote{font-size:13.5px;line-height:1.4;color:var(--ink);margin:0}
+.handnote kbd{font:12px var(--readout-font);border:1px solid var(--btn-line);border-radius:4px;padding:0 4px;background:var(--btn)}
+.startat{display:flex;align-items:center;gap:8px;font-size:14px;margin-top:6px}
+.startat input.num{width:5em}
+.tname{font:700 16px 'Segoe UI',system-ui,sans-serif;margin:0 0 6px;line-height:1.3}
+.tag{display:inline-block;font:700 11px 'Segoe UI',system-ui,sans-serif;letter-spacing:.04em;text-transform:uppercase;padding:1px 6px;
+  border-radius:999px;border:1px solid var(--neg);color:var(--neg);vertical-align:2px;margin-left:4px}
+.res dl.readouts{font-size:15px}
+.res .rline{margin:6px 0 0;font-weight:700}
+.res .rline.ok::before{content:'✓ ';color:var(--ok)}
+.cards{display:flex;flex-direction:column;gap:5px}
+.card{display:grid;grid-template-columns:70px 1fr;gap:8px;align-items:center;text-align:left;min-height:56px;padding:5px 8px;border-radius:8px;
+  border:1px solid var(--btn-line);background:var(--btn);color:var(--ink)}
+.card[aria-pressed="true"]{border-color:var(--brand);box-shadow:inset 0 0 0 2px var(--brand);background:#14303a}
+.card svg{display:block;width:70px;height:34px}
+.card .cn{font-weight:700;font-size:14px;line-height:1.2}
+.card .cm{font-size:12px;color:var(--muted);line-height:1.25}
+.card .cb{font:12px var(--readout-font);color:var(--ink);line-height:1.25}
+.card .cb:empty{display:none}
+.btn[aria-disabled="true"]{opacity:.4;cursor:not-allowed}
+.linkbtn{background:none;border:0;color:var(--brand);text-decoration:underline;min-height:44px;padding:0 4px;font-size:14px;align-self:flex-start}
+/* scene */
+.st{fill:var(--gr-text);font:11px 'Segoe UI',system-ui,sans-serif}
+.stb{fill:var(--ink);font:600 12px 'Segoe UI',system-ui,sans-serif}
+.halo{paint-order:stroke;stroke:var(--halo);stroke-width:4px;stroke-linejoin:round}
+#sv .gr-tick{font-size:11px}
+.gtitle{fill:var(--ink);font:600 12.5px 'Segoe UI',system-ui,sans-serif}
+.gtag{fill:var(--brand-ink);font:700 10.5px 'Segoe UI',system-ui,sans-serif}
+.rq{fill:var(--muted);font:600 11px 'Segoe UI',system-ui,sans-serif}
+.rv{fill:var(--ink);font:700 16px var(--readout-font)}
+.ru{fill:var(--muted);font:11px var(--readout-font)}
+.rs{font:700 11px 'Segoe UI',system-ui,sans-serif;fill:var(--ink)}
+.rs.off{fill:var(--neg)}
+.rs.in{fill:var(--ok)}
+.lk{font:700 11.5px var(--readout-font);fill:var(--ink)}
+.lk.tg{fill:var(--tgt)}
+.count{fill:var(--ink);font:800 46px 'Segoe UI',system-ui,sans-serif;text-anchor:middle;dominant-baseline:central}
+.count.zoom{animation:zoom 1s ease-out both}
+@keyframes zoom{0%{transform:scale(1.8);opacity:0}25%{opacity:1}100%{transform:scale(1);opacity:.85}}
+.cart{outline:none;cursor:grab}
+.cart.drag{cursor:grabbing}
+.cart .ring{fill:none;stroke:transparent;stroke-width:3}
+.cart:focus-visible .ring{stroke:var(--focus)}
+.gfoc{outline:none}
+.gfoc .fring{fill:none;stroke:transparent;stroke-width:3;pointer-events:none}
+.gfoc:focus-visible .fring{stroke:var(--focus)}
+.trk{touch-action:none}
+.links-on .gpane{cursor:crosshair}
+.deco{pointer-events:none}
+</style>
+</head>
+<body>
+<header>
+  <h1>Motion Graph Match <small>Drive the cart, read x, v and a</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-explore" aria-pressed="true">Explore</button>
+    <button id="m-race" aria-pressed="false">Race</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true" title="Turn animation on or off">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+  <button class="icon-btn" id="read" title="Read the hint aloud">🔊 Read</button>
+</header>
+<main>
+  <div class="stage" id="stage">
+    <svg id="sv" role="group" aria-label="The track and three motion graphs: position, velocity and acceleration against time"></svg>
+  </div>
+  <aside class="panel" id="panel">
+    <p class="hint p-hint" id="hint"></p>
+    <section class="sec p-race" data-modes="race" aria-label="Target and run">
+      <p class="tname" id="tName"></p>
+      <div class="btnrow">
+        <button class="btn" id="start">▶ Start</button>
+        <button class="btn" id="stop">■ Stop</button>
+        <button class="btn" id="again">↺ Try again</button>
+        <button class="btn" id="nextT">Next target ▶</button>
+      </div>
+      <p class="small" id="tNote"></p>
+    </section>
+    <section class="sec res p-res" id="res" hidden aria-label="Results">
+      <h2>Results</h2>
+      <dl class="readouts" id="resDl"></dl>
+      <p class="rline" id="resLine"></p>
+      <p class="small" id="kinkNote"></p>
+      <div class="btnrow" style="margin-top:8px">
+        <button class="btn" id="all3" aria-pressed="false">Show all three</button>
+        <button class="btn" id="replay">Replay</button>
+        <button class="btn" id="again2">↺ Try again</button>
+        <button class="btn" id="next2">Next target ▶</button>
+      </div>
+    </section>
+    <section class="sec p-run" data-modes="explore" aria-label="Clock">
+      <div class="btnrow">
+        <button class="btn" id="go">▶ Go</button>
+        <button class="btn" id="clear">Clear</button>
+        <button class="btn" id="links" aria-pressed="false">Show links</button>
+      </div>
+      <label class="startat">Start at <input class="num" id="startAt" type="number" min="0" max="10" step="0.1" value="1" inputmode="decimal"> m</label>
+      <p class="small" id="runNote" aria-live="polite"></p>
+    </section>
+    <section class="sec p-ctl" aria-labelledby="ctlL">
+      <h2 id="ctlL">Control</h2>
+      <div class="ctlgrid">
+        <div class="pick" role="group" aria-label="Control">
+          <button class="btn pk" data-ctl="hand" aria-pressed="true"><span><span class="ico" aria-hidden="true">✋</span> Hand</span><small>you set position</small></button>
+          <button class="btn pk" data-ctl="throttle" aria-pressed="false"><span>Throttle</span><small>you set velocity</small></button>
+          <button class="btn pk" data-ctl="pedal" aria-pressed="false"><span>Pedal</span><small>you set acceleration</small></button>
+        </div>
+        <div class="surface" id="surface">
+          <div id="sliderBox" hidden style="display:flex;flex-direction:column;align-items:center;gap:2px">
+            <span class="vs-lab" id="vsLab">velocity</span>
+            <div class="vs" id="vs" role="slider" tabindex="0" aria-orientation="vertical" aria-labelledby="vsLab">
+              <div class="vs-track"></div><div class="vs-fill" id="vsFill"></div><div id="vsTicks"></div><div class="vs-thumb" id="vsThumb"></div>
+            </div>
+            <span class="vs-val" id="vsVal" aria-hidden="true">0 m/s</span>
+            <label class="spring"><input type="checkbox" id="spring"> Spring back</label>
+          </div>
+          <p class="handnote" id="handNote">Drag the cart along the track. Or Tab to the cart and hold <kbd>←</kbd> or <kbd>→</kbd> (with <kbd>Shift</kbd> for slow).</p>
+        </div>
+      </div>
+    </section>
+    <section class="sec p-list" data-modes="race" aria-labelledby="listL">
+      <h2 id="listL">Targets</h2>
+      <div class="cards" id="cards"></div>
+      <button class="linkbtn" id="forget">Forget my bests</button>
+    </section>
+  </aside>
+</main>
+<div class="sr" id="live" aria-live="polite"></div>
+<script src="kit:curio"></script>
+<script src="kit:graphing"></script>
+<script>
+/* ==== MOTION ENGINE (lift to a forces kit later) ==== */
+// One cart on a 10 m track, stepped at 1/60 s, sampled every 0.05 s. No DOM code in this block.
+// Controls: hand (you set position: the cart follows a target point), throttle (you set velocity), pedal (you set
+// acceleration). Also the ten Race targets (piecewise motion, integrated exactly), scoring, and slope and area helpers.
+const Motion = (() => {
+  const DT = 1 / 60, STEPS = 3, SAMPLE = DT * STEPS, RUN = 12, N = 240, LEN = 10, VMAX = 3, AMAX = 2, MASS = 2.0;
+  const BAND = {x: .4, v: .25, a: .15};
+  const RANGE = {x: [0, 10], v: [-3, 3], a: [-2, 2]};
+  const UNIT = {x: 'm', v: 'm/s', a: 'm/s²'};
+  // Feel (tuned by simulation and by driving; spec numbers were first guesses):
+  // hand: a tracker fits the pointer's own samples (by their timestamps) over the last 0.7 s (longer when the track is
+  //   drawn small, so pixels are coarse), so whole-pixel steps and
+  //   uneven frame timing average out: a straight line, with a curved (quadratic) fit blended in smoothly while the hand
+  //   is clearly speeding up or slowing down; the window restarts when a 0.15 s fit disagrees by more than 0.35 m/s (a
+  //   real start or turn). The cart asks for that pointer velocity (feed-forward, capped at 2 m/s) plus the speed that
+  //   would close the gap braking at 1.2 m/s squared, softened near the point (offset 0.7 m/s) so small wobbles barely
+  //   move it; when the pointer is held still its velocity fades out (0.1 to 0.3 s) and the offset eases to 0.2 m/s
+  //   (0.3 to 0.7 s), so the cart closes the last gap briskly. Capped at 3 m/s; velocity changes are rate-limited to
+  //   2 m/s squared, eased over 0.3 s. Tuned on pixel-quantized, timing-jittered input (28 to 90 px per meter, 60 Hz with
+  //   30 percent jitter) and checked with real mouse drags: a steady drag trails by a few centimeters with a standard
+  //   deviation in a of about 0.03 to 0.06 m/s squared; an eased stop draws a smooth slowing-down half, about 0.15 to
+  //   0.3 s behind the hand; a hand that stops dead is overshot (from 1 m/s by about 0.3 to 0.45 m, against 0.25 m at the
+  //   2 m/s squared limit), then the cart comes back.
+  // throttle: the cart's velocity eases toward the slider over 0.2 s, never faster than 2 m/s squared.
+  // pedal: the slider is the acceleration itself (no smoothing).
+  const TUNE = {handWin: .7, handWinShort: .15, handTurn: .35, handStill: .3, handCurveA0: .1, handCurvePx: 4, handCurveA1: .35, handCurveTau: .25,
+    handFF: 2, handBrake: 1.2, handSoft: .7, handSoftStill: .2,
+    follow: .3, throttleLag: .2};
+  const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+
+  // a cart: x (m), v (m/s), a (the acceleration applied in the last step)
+  function cart(x0 = 1, v0 = 0) { return {x: x0, v: v0, a: 0, steps: 0, acc: 0, parked: 0, push: 0, top: false, stop: 0}; }
+
+  // the hand tracker: add(t, p) for each pointer sample (t in s, p in m); get(now) -> {v, p}: the pointer's velocity and
+  // where it is now, from a least-squares line through the recent samples (a pointer still for 0.3 s is at rest)
+  // q: meters per screen pixel (whole-pixel steps make short fits noisy, so the turn test allows for them)
+  function tracker(q = .01) {
+    let ev = [], seg = -Infinity, w = 0, tw = null, lastV = 0;
+    const fit = (h, now) => {
+      const n = h.length; if (n < 2) return {v: 0, p: h.length ? h[n - 1][1] : null};
+      let mt = 0, mp = 0; for (const e of h) { mt += e[0]; mp += e[1]; } mt /= n; mp /= n;
+      let sxx = 0, sxy = 0; for (const e of h) { sxx += (e[0] - mt) ** 2; sxy += (e[0] - mt) * (e[1] - mp); }
+      const v = sxx > 1e-9 ? sxy / sxx : 0; return {v, p: mp + v * (now - mt)};
+    };
+    // least-squares p = c0 + c1 u + c2 u squared, u = t - now: velocity now is c1, position now is c0
+    const fit2 = (h, now) => {
+      let s0 = 0, s1 = 0, s2 = 0, s3 = 0, s4 = 0, y0 = 0, y1 = 0, y2 = 0;
+      for (const [t, p] of h) { const u = t - now, u2 = u * u; s0++; s1 += u; s2 += u2; s3 += u2 * u; s4 += u2 * u2; y0 += p; y1 += p * u; y2 += p * u2; }
+      const det = s0 * (s2 * s4 - s3 * s3) - s1 * (s1 * s4 - s3 * s2) + s2 * (s1 * s3 - s2 * s2);
+      if (Math.abs(det) < 1e-12) return null;
+      const c0 = (y0 * (s2 * s4 - s3 * s3) - s1 * (y1 * s4 - s3 * y2) + s2 * (y1 * s3 - s2 * y2)) / det;
+      const c1 = (s0 * (y1 * s4 - y2 * s3) - y0 * (s1 * s4 - s3 * s2) + s2 * (s1 * y2 - y1 * s2)) / det;
+      const c2 = (s0 * (s2 * y2 - y1 * s3) - s1 * (s1 * y2 - y1 * s2) + y0 * (s1 * s3 - s2 * s2)) / det;
+      return {v: c1, p: c0, a: 2 * c2};
+    };
+    return {
+      set q(v) { q = v; },
+      add(t, p) { ev.push([t, p]); while (ev.length && ev[0][0] < t - 1) ev.shift(); },
+      reset() { ev = []; seg = -Infinity; w = 0; tw = null; lastV = 0; },
+      get(now) {
+        if (!ev.length) return {v: 0, p: null};
+        const last = ev[ev.length - 1];
+        const idle = now - last[0];
+        if (idle >= TUNE.handStill) { w = 0; tw = null; return {v: 0, p: last[1], idle}; }
+        // a pointer that is overdue (quiet for longer than its usual gap between samples, and for longer than it takes to
+        // move 2 pixels at its last speed) is still where it was: a sample at "now" stops the fits from carrying it on
+        // forward (no forward blip when a hand stops), while a slow creep with sparse samples is left alone
+        const gaps = []; for (let i = Math.max(1, ev.length - 8); i < ev.length; i++) gaps.push(ev[i][0] - ev[i - 1][0]);
+        gaps.sort((a, b) => a - b);
+        const gap = gaps.length ? gaps[gaps.length >> 1] : 1 / 60;
+        const overdue = idle > Math.max(1.5 * gap + 1 / 60, 2 * q / Math.max(Math.abs(lastV), .05));
+        const all = overdue ? ev.concat([[now, last[1]]]) : ev;
+        let short = all.filter(e => e[0] >= now - TUNE.handWinShort);
+        if (short.length < 3) short = all.slice(-3);
+        const vs = fit(short, now).v;
+        // coarse pixels (a small window on screen) get a longer window: 0.7 s at 66 px per meter or more, about 0.87 s at 28
+        const win = TUNE.handWin + 8 * Math.max(0, q - .015);
+        let h = all.filter(e => e[0] >= Math.max(now - win, seg)), f = h.length >= 2 ? fit(h, now) : {v: vs, p: last[1]};
+        if (Math.abs(vs - f.v) > TUNE.handTurn + 2 * q / TUNE.handWinShort) { seg = now - TUNE.handWinShort; h = all.filter(e => e[0] >= seg); f = h.length >= 2 ? fit(h, now) : {v: vs, p: last[1]}; }
+        // speeding up or slowing down: a straight line runs behind (or ahead of) the hand, so a curved (quadratic) fit is
+        // blended in by how clearly it shows an acceleration (more than 0.1 m/s squared plus 4 pixels' worth, fully by
+        // 0.35 more), and the blend weight itself moves smoothly (over 0.25 s), so the two fits never flip frame to frame
+        const g = h.length >= 6 ? fit2(h, now) : null;
+        const want = g ? clamp((Math.abs(g.a) - TUNE.handCurveA0 - TUNE.handCurvePx * q) / TUNE.handCurveA1, 0, 1) : 0;
+        if (tw != null && now > tw) w += (want - w) * Math.min(1, (now - tw) / TUNE.handCurveTau);
+        tw = now;
+        if (g) f = {v: f.v + w * (g.v - f.v), p: f.p == null ? g.p : f.p + w * (g.p - f.p)};
+        // a pointer that has stopped sending samples fades to rest over 0.1 to 0.3 s (no step in the velocity)
+        lastV = f.v;
+        const fade = 1 - clamp((idle - .1) / (TUNE.handStill - .1), 0, 1), p = f.p == null ? last[1] : f.p;
+        return {v: f.v * fade, p: last[1] + (p - last[1]) * fade, idle};
+      },
+    };
+  }
+
+  // one 1/60 s step. inp: {mode, pointer (m or null), pointerV (m/s), keyV (m/s or null), vWant (m/s), aSet (m/s squared)}
+  // returns the step's events: stop (-1 left end stop hit, 1 right, 0 none)
+  function step(c, inp) {
+    let a;
+    if (inp.mode === 'pedal') a = inp.aSet;
+    else {
+      let vw;
+      if (inp.mode === 'throttle') vw = inp.vWant;
+      else if (inp.keyV != null) vw = inp.keyV;
+      else if (inp.pointer != null) {
+        // a moving pointer is soft-followed (whole-pixel wobble barely moves the cart); a pointer held still is closed in firmly
+        const firm = clamp(((inp.pointerIdle || 0) - TUNE.handStill) / .4, 0, 1);
+        const ff = clamp(inp.pointerV || 0, -TUNE.handFF, TUNE.handFF), k = TUNE.handSoft + (TUNE.handSoftStill - TUNE.handSoft) * firm;
+        const d = clamp(inp.pointer, 0, LEN) - c.x - (c.v - ff) * TUNE.follow, m = Math.abs(d);
+        vw = ff + Math.sign(d) * (Math.sqrt(2 * TUNE.handBrake * m + k * k) - k);
+      } else vw = 0;
+      vw = clamp(vw, -VMAX, VMAX);
+      a = clamp((vw - c.v) / (inp.mode === 'throttle' ? TUNE.throttleLag : TUNE.follow), -AMAX, AMAX);
+    }
+    const want = a;
+    // top speed: the velocity clamps at plus or minus 3 m/s, and the acceleration that would pass it is dropped
+    c.top = false;
+    let vn = c.v + a * DT;
+    if (Math.abs(vn) > VMAX) { vn = Math.sign(vn) * VMAX; a = (vn - c.v) / DT; c.top = Math.abs(want) > 1e-9; }
+    let xn = c.x + c.v * DT + .5 * a * DT * DT, stop = 0;
+    c.push = 0;
+    // end stops: x clamps and v becomes 0 (the stop's push is not added to the a record; the tool marks it instead)
+    if (xn <= 0 || xn >= LEN) {
+      const side = xn <= 0 ? -1 : 1, moving = Math.abs(c.v) > 1e-6 || Math.abs(vn) > 1e-6;
+      xn = side < 0 ? 0 : LEN;
+      if (moving && Math.sign(vn || c.v) === side && c.parked !== side) stop = side;
+      c.parked = side; vn = 0;
+      // parked against the stop: the cart does not move; a push into the stop is held by it
+      if (Math.sign(want) === side) c.push = want;
+      a = 0; c.top = false;
+    } else c.parked = 0;
+    c.x = xn; c.v = vn; c.a = a;
+    c.acc += a * DT; c.steps++;
+    if (stop) c.stop = stop;
+    return stop;
+  }
+  // run a step and, every 0.05 s, add a sample to rec ({x, v, a, stops: [index], ends at N})
+  // the a sample is the average acceleration over the 0.05 s before it (so it belongs at the middle of that interval)
+  function tick(c, inp, rec) {
+    step(c, inp);
+    if (c.steps % STEPS) return false;
+    rec.x.push(c.x); rec.v.push(c.v); rec.a.push(c.acc / SAMPLE); c.acc = 0;
+    if (c.stop) { rec.stops.push({i: rec.x.length - 1, side: c.stop}); c.stop = 0; }
+    return true;
+  }
+  const record = c => ({x: [c.x], v: [c.v], a: [0], stops: []});
+  const tOf = i => i * SAMPLE;                         // sample time of index i (x and v)
+  const taOf = i => i ? (i - .5) * SAMPLE : 0;         // where an a sample is drawn (the middle of its interval)
+
+  // ---------- targets: piecewise constant acceleration, or a velocity set at the start of a piece (a kink) ----------
+  const TARGETS = [
+    {id: 1, name: 'Wait, then walk', graph: 'x', ctl: 'hand', x0: 2, v0: 0, P: [[3, 'v', 0], [9, 'v', 1], [12, 'v', 0]]},
+    {id: 2, name: 'Out and back', graph: 'x', ctl: 'hand', x0: 1, v0: 0, P: [[6, 'v', 1], [12, 'v', -1]]},
+    {id: 3, name: 'Fast, then slow', graph: 'x', ctl: 'throttle', x0: 1, v0: 0, P: [[4, 'v', 1.5], [12, 'v', .25]]},
+    {id: 4, name: 'Steady cruise', graph: 'v', ctl: 'throttle', x0: 1, v0: 0, P: [[1, 'a', 1], [7, 'a', 0], [8, 'a', -1], [12, 'a', 0]]},
+    {id: 5, name: 'Speed up, cruise, brake', graph: 'v', ctl: 'throttle', x0: 1, v0: 0, P: [[3, 'a', .5], [5, 'a', 0], [8, 'a', -.5], [12, 'a', 0]]},
+    {id: 6, name: 'Turnaround', graph: 'v', ctl: 'pedal', x0: 4, v0: 1.5, P: [[6, 'a', -.5], [9, 'a', .5], [12, 'a', 0]],
+      note: 'The cart stops for an instant at 3 s. Is the acceleration zero there?'},
+    {id: 7, name: 'Steady push', graph: 'a', ctl: 'pedal', x0: 1, v0: 0, P: [[5, 'a', .2], [7, 'a', 0], [12, 'a', -.2]]},
+    {id: 8, name: 'Back up and stop', graph: 'a', ctl: 'pedal', x0: 8, v0: 0, P: [[5, 'a', -.2], [7, 'a', 0], [9, 'a', .5], [12, 'a', 0]]},
+    {id: 9, name: 'Smooth arrival', graph: 'x', ctl: 'pedal', x0: 1, v0: 0, P: [[4, 'a', .25], [8, 'a', 0], [12, 'a', -.25]]},
+    {id: 10, name: 'Two trips', graph: 'v', ctl: 'throttle', x0: 3, v0: 0,
+      P: [[.5, 'a', 2], [3, 'a', 0], [3.5, 'a', -2], [6, 'a', 0], [6.5, 'a', -2], [10, 'a', 0], [10.5, 'a', 2], [12, 'a', 0]]},
+  ];
+  // the exact motion of a target: pieces, kinks (velocity jumps), x(t), v(t), a(t) and where it ends
+  function build(T) {
+    const seg = [], kinks = [];
+    let t = 0, x = T.x0, v = T.v0;
+    for (const [t1, kind, val] of T.P) {
+      let a = 0;
+      if (kind === 'v') { if (val !== v) kinks.push({t, dv: val - v}); v = val; } else a = val;
+      seg.push({t0: t, t1, x0: x, v0: v, a});
+      const d = t1 - t; x += v * d + a * d * d / 2; v += a * d; t = t1;
+    }
+    const find = t => seg.find(s => t < s.t1) || seg[seg.length - 1];
+    const X = t => { t = clamp(t, 0, RUN); const s = find(t), d = t - s.t0; return s.x0 + s.v0 * d + s.a * d * d / 2; };
+    const V = t => { t = clamp(t, 0, RUN); const s = find(t); return s.v0 + s.a * (t - s.t0); };
+    const A = t => find(clamp(t, 0, RUN)).a;
+    return {T, seg, kinks, x: X, v: V, a: A, end: {x: +x.toFixed(9), v: +v.toFixed(9)}, at: {x: X, v: V, a: A}};
+  }
+  // the graph you control with each control, and how many steps that is from the target's graph
+  const OF = {hand: 'x', throttle: 'v', pedal: 'a'}, ORDER = {x: 0, v: 1, a: 2};
+  const hardWay = (ctl, graph) => Math.abs(ORDER[OF[ctl]] - ORDER[graph]) === 2;
+
+  // match percent = share of the 240 samples inside the band (missing samples are misses); RMS over the samples done
+  function score(rec, B) {
+    const q = B.T.graph, band = BAND[q];
+    let inside = 0, se = 0, n = 0;
+    for (let i = 1; i <= N; i++) {
+      if (i >= rec[q].length) continue;
+      const ref = q === 'a' ? B.a(taOf(i)) : B[q](tOf(i)), e = rec[q][i] - ref;
+      if (Math.abs(e) <= band + 1e-9) inside++;
+      se += e * e; n++;
+    }
+    return {pct: Math.round(100 * inside / N), inside, rms: n ? Math.sqrt(se / n) : 0, done: n};
+  }
+  // links: the slope of x at sample i (central difference), the a value at sample time i, the area under v from 0
+  const slope = (arr, i) => { const n = arr.length - 1; if (n < 1) return 0; const a = Math.max(0, i - 1), b = Math.min(n, i + 1); return (arr[b] - arr[a]) / ((b - a) * SAMPLE); };
+  const aAt = (rec, i) => { const n = rec.a.length - 1; if (n < 1) return 0; if (i <= 0) return rec.a[1]; if (i >= n) return rec.a[n]; return (rec.a[i] + rec.a[i + 1]) / 2; };
+  function area(vs, i) { let s = 0; for (let k = 1; k <= i && k < vs.length; k++) s += (vs[k - 1] + vs[k]) / 2 * SAMPLE; return s; }
+
+  return {DT, STEPS, SAMPLE, RUN, N, LEN, VMAX, AMAX, MASS, BAND, RANGE, UNIT, TUNE, TARGETS, OF, clamp, tracker,
+    cart, step, tick, record, tOf, taOf, build, hardWay, score, slope, aAt, area};
+})();
+/* ==== end of MOTION ENGINE ==== */
+
+(() => {
+  const $ = id => document.getElementById(id);
+  const {say, wait} = Curio;
+  const M = Motion, fmt = Plane.fmt, clamp = M.clamp;
+  const NS = 'http://www.w3.org/2000/svg';
+  const mk = (tag, attrs = {}, parent) => { const e = document.createElementNS(NS, tag); for (const k in attrs) if (attrs[k] != null) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; };
+  const sv = $('sv');
+  const f2 = v => fmt(Math.abs(v) < .005 ? 0 : v, 2).replace(/^(−?\d+)$/, '$1.00').replace(/^(−?\d+\.\d)$/, '$10');
+  const f1 = v => { const s = (Math.abs(v) < .05 ? 0 : v).toFixed(1); return s.replace('-', '−'); };
+  const QN = {x: 'Position', v: 'Velocity', a: 'Acceleration'};
+  const GRAPH_WORD = {x: 'position', v: 'velocity', a: 'acceleration'};
+  const CTL_NAME = {hand: 'Hand', throttle: 'Throttle', pedal: 'Pedal'};
+
+  // ---------- spoken lines (voice/lines.json lists every one) ----------
+  const L = {
+    exploreWelcome: 'Drive the cart and watch three graphs draw at once: position, velocity and acceleration.',
+    hand: 'Hand control. Drag the cart. Its velocity and acceleration are worked out from how you move it.',
+    throttle: 'Throttle control. You set the velocity. Position is the running total of it.',
+    pedal: 'Pedal control. You set the acceleration. Velocity builds up from it, then position from velocity.',
+    links: 'Move across a finished run. The slope of each graph is the value of the one below it.',
+    raceWelcome: 'Pick a target graph and match it as closely as you can. Your best run comes back as a ghost.',
+    go: 'Three, two, one, go.',
+    hardWay: 'This is the hard way. You control a graph two steps away from the target.',
+    turnaround: 'Watch the moment the cart turns around. Its velocity is zero, but is its acceleration?',
+  };
+  // the panel hints (Read speaks them, so they are recorded too)
+  const HINT = {
+    hand: 'Drag the cart. The computer works out your velocity and acceleration.',
+    throttle: 'You set the speed and direction. Position is the running total.',
+    pedal: 'You set the push. Velocity builds up from it, and position from velocity.',
+    race: 'Pick a target, then press Start. Keep your solid line inside the shaded band for the whole run.',
+  };
+  const WELCOME = {explore: 'exploreWelcome', race: 'raceWelcome'};
+
+  // ======================================================================================
+  // State
+  // ======================================================================================
+  const state = {mode: 'explore', ctl: 'hand', run: 'idle', startAt: 1, pendingStart: false, links: false, cursor: null,
+    switches: [], target: 0, phase: 'ready', count: 0, result: null, all3: false, replayT: 0, spring: false};
+  const sl = {throttle: 0, pedal: 0};
+  let cart = M.cart(1, 0), rec = M.record(cart), B = null, ghost = null, drag = null, keyDir = 0, keySlow = false;
+  let stopMarks = [];   // end stop marks: {i, side}
+
+  // bests: {"<target id>:<control>": {pct, rms, x, v, a}} in localStorage (works without it)
+  const KEY = 'curio-mgm-best';
+  let bests = {};
+  try { bests = JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch { bests = {}; }
+  const saveBests = () => { try { localStorage.setItem(KEY, JSON.stringify(bests)); } catch {} };
+  const bestKey = (i = state.target, c = state.ctl) => M.TARGETS[i].id + ':' + c;
+  const r3 = a => a.map(v => Math.round(v * 1000) / 1000);
+
+  // ======================================================================================
+  // Stage: the track strip on top, then the x, v and a graphs on one time axis (drawn at real pixel size)
+  // ======================================================================================
+  let G = null, P = {}, S = {};          // geometry, planes by graph, scene elements
+  function geom(W, H) {
+    const GL = W < 480 ? 40 : 46, GR = W < 480 ? 70 : W < 700 ? 82 : 96, PW = Math.max(120, W - GL - GR);
+    const TH = Math.round(clamp(H * .2, 84, 132)), bottom = 30, gap = H >= 640 ? 20 : 14;
+    const gh = Math.max(56, Math.floor((H - TH - 8 - bottom - 2 * gap) / 3));
+    const tops = [TH + 8, TH + 8 + gh + gap, TH + 8 + 2 * (gh + gap)];
+    return {W, H, GL, GR, PW, TH, gh, tops, ppm: PW / M.LEN};
+  }
+  const mx = m => G.GL + m * G.ppm;      // track meters to stage pixels
+
+  function build() {
+    const st = $('stage'), r = st.getBoundingClientRect();
+    const W = Math.max(300, Math.round(r.width)), H = Math.max(300, Math.round(r.height));
+    G = geom(W, H);
+    hand.q = 1 / G.ppm;
+    sv.setAttribute('width', W); sv.setAttribute('height', H); sv.setAttribute('viewBox', `0 0 ${W} ${H}`);
+    sv.textContent = '';
+    const defs = mk('defs', {}, sv);
+    // area fills: forward (above zero) hatched one way, backward (below zero) dotted, so color is not the only signal
+    const pp = mk('pattern', {id: 'hPos', width: 7, height: 7, patternUnits: 'userSpaceOnUse', patternTransform: 'rotate(45)'}, defs);
+    mk('rect', {width: 7, height: 7, fill: 'rgba(54,201,221,.10)'}, pp); mk('line', {x1: 0, y1: 0, x2: 0, y2: 7, stroke: 'rgba(54,201,221,.55)', 'stroke-width': 2}, pp);
+    const pn = mk('pattern', {id: 'hNeg', width: 7, height: 7, patternUnits: 'userSpaceOnUse'}, defs);
+    mk('rect', {width: 7, height: 7, fill: 'rgba(255,179,107,.10)'}, pn); mk('circle', {cx: 3.5, cy: 3.5, r: 1.4, fill: 'rgba(255,179,107,.75)'}, pn);
+    buildTrack();
+    P = {};
+    const lab = G.gh >= 110;
+    const spec = {
+      x: {y: M.RANGE.x, grid: [1, lab ? 1 : 2], labels: [G.PW >= 560 ? 1 : 2, lab ? 2 : 5]},
+      v: {y: M.RANGE.v, grid: [1, 1], labels: [G.PW >= 560 ? 1 : 2, lab ? 1 : 3]},
+      a: {y: M.RANGE.a, grid: [1, .5], labels: [G.PW >= 560 ? 1 : 2, lab ? 1 : 2]},
+    };
+    ['x', 'v', 'a'].forEach((q, k) => {
+      const holder = mk('g', {class: 'gpane', 'data-q': q}, sv);
+      const g = Plane(holder, {x: [0, M.RUN], y: spec[q].y, width: G.PW, height: G.gh, left: G.GL, top: G.tops[k],
+        grid: spec[q].grid, labels: spec[q].labels, ticks: 'edge',
+        tickFormat: (v, axis) => axis === 'x' ? (q === 'a' ? fmt(v) : '') : fmt(v)});
+      mk('rect', {x: 0, y: 0, width: G.PW, height: G.gh, fill: 'var(--gr-bg)'}, g.layer('back'));
+      const lay = {band: mk('g', {}, g.layer('plot')), area: mk('g', {}, g.layer('plot')), tgt: mk('g', {}, g.layer('plot')),
+        ghost: mk('path', {fill: 'none', stroke: 'var(--ghost)', 'stroke-width': 2.2, 'stroke-dasharray': '1.5 4', 'stroke-linecap': 'round'}, g.layer('plot')),
+        you: mk('path', {fill: 'none', stroke: 'var(--you)', 'stroke-width': 2.6, 'stroke-linejoin': 'round'}, g.layer('plot')),
+        marks: mk('g', {}, g.layer('labels')), link: mk('g', {}, g.layer('labels')), linkF: mk('g', {}, g.layer('front'))};
+      const frame = mk('rect', {x: 0, y: 0, width: G.PW, height: G.gh, fill: 'none', stroke: 'var(--line)', 'stroke-width': 1.5, rx: 2}, g.layer('labels'));
+      const chip = mk('rect', {x: 2, y: 2, height: 18, rx: 4, fill: 'rgba(14,21,32,.88)'}, g.layer('labels'));
+      const title = mk('text', {x: 7, y: 15, class: 'gtitle halo'}, g.layer('labels'));
+      title.textContent = `${QN[q]} ${q} (${M.UNIT[q]})`;
+      const tw = title.getComputedTextLength ? title.getComputedTextLength() : 110;
+      chip.setAttribute('width', Math.round(tw + 10));
+      const tagG = mk('g', {transform: `translate(${Math.round(14 + tw)},4)`}, g.layer('labels'));
+      mk('rect', {x: 0, y: 0, width: 96, height: 15, rx: 7.5, fill: 'var(--brand)'}, tagG);
+      mk('text', {x: 48, y: 11, 'text-anchor': 'middle', class: 'gtag'}, tagG).textContent = 'you control this';
+      // the live readout on the right edge
+      const rx = G.PW + 8, ro = mk('g', {}, g.layer('labels'));
+      mk('text', {x: rx, y: 13, class: 'rq'}, ro).textContent = q;
+      const rv = mk('text', {x: rx, y: 32, class: 'rv'}, ro), ru = mk('text', {x: rx, y: 46, class: 'ru'}, ro);
+      ru.textContent = M.UNIT[q];
+      const rs = mk('text', {x: rx, y: 61, class: 'rs'}, ro), rs2 = mk('text', {x: rx, y: 74, class: 'rs'}, ro);
+      // links: a focusable cursor stop for each graph (arrow keys move the time cursor)
+      const foc = mk('g', {class: 'gfoc', role: 'slider', 'aria-label': `Time cursor on the ${GRAPH_WORD[q]} graph`, 'aria-valuemin': 0, 'aria-valuemax': 12}, g.layer('labels'));
+      mk('rect', {x: -3, y: -3, width: G.PW + 6, height: G.gh + 6, class: 'fring', rx: 4}, foc);
+      foc.addEventListener('keydown', e => cursorKey(e));
+      P[q] = {g, lay, frame, tagG, rv, rs, rs2, foc, holder, titleW: Math.round(12 + tw), tagW: Math.round(14 + tw + 96)};
+    });
+    // the time axis label and the links pointer area over all three graphs
+    mk('text', {x: G.GL + G.PW + 8, y: G.tops[2] + G.gh + 18, class: 'st'}, sv).textContent = 'time (s)';
+    S.switchG = mk('g', {class: 'deco'}, sv);
+    const hit = mk('rect', {x: G.GL, y: G.tops[0], width: G.PW, height: G.tops[2] + G.gh - G.tops[0], fill: 'transparent', class: 'linkhit'}, sv);
+    hit.style.pointerEvents = 'none'; S.hit = hit;
+    hit.addEventListener('pointermove', e => cursorPointer(e));
+    hit.addEventListener('pointerdown', e => cursorPointer(e));
+    renderStatic(); render();
+  }
+
+  function buildTrack() {
+    const {GL, PW, TH, ppm} = G, top = 0;
+    const trk = mk('g', {class: 'trk'}, sv);
+    S.trk = trk;
+    mk('image', {href: 'art:track-bench', x: 0, y: top, width: G.W, height: TH, preserveAspectRatio: 'xMidYMid slice', opacity: .4, class: 'deco'}, trk);
+    mk('rect', {x: 0, y: top, width: G.W, height: TH, fill: 'rgba(10,15,23,.35)', class: 'deco'}, trk);
+    const railY = TH - 30; S.railY = railY;
+    // rail and ticks every 1 m
+    mk('rect', {x: mx(0) - 4, y: railY, width: PW + 8, height: 6, rx: 2, fill: '#8d99a8', class: 'deco'}, trk);
+    mk('rect', {x: mx(0) - 4, y: railY, width: PW + 8, height: 2, fill: '#c9d3df', class: 'deco'}, trk);
+    for (let m = 0; m <= M.LEN; m++) {
+      mk('line', {x1: mx(m), x2: mx(m), y1: railY + 7, y2: railY + (m % 5 ? 12 : 15), stroke: '#c9d3df', 'stroke-width': 1.2, class: 'deco'}, trk);
+      mk('text', {x: mx(m), y: railY + 25, 'text-anchor': 'middle', class: 'st halo deco'}, trk).textContent = m;
+    }
+    mk('text', {x: mx(M.LEN) + 14, y: railY + 25, class: 'st halo deco'}, trk).textContent = 'm';
+    // end stops at 0 and 10 m
+    for (const m of [0, M.LEN]) mk('rect', {x: mx(m) + (m ? 0 : -5), y: railY - 18, width: 5, height: 18, rx: 1, fill: '#d8dee6', class: 'deco'}, trk);
+    // the motion sensor box at the 0 m end, with a faint beam to the cart
+    const sx = mx(0) - 34, sy = railY - 30;
+    S.beam = mk('line', {x1: sx + 24, y1: sy + 12, x2: sx + 24, y2: sy + 12, stroke: 'rgba(54,201,221,.35)', 'stroke-width': 1.5, 'stroke-dasharray': '3 4', class: 'deco'}, trk);
+    mk('rect', {x: sx, y: sy, width: 24, height: 24, rx: 3, fill: '#2a3442', stroke: '#8d99a8', 'stroke-width': 1.2, class: 'deco'}, trk);
+    mk('circle', {cx: sx + 12, cy: sy + 12, r: 7, fill: '#11161e', stroke: '#62789a', class: 'deco'}, trk);
+    mk('circle', {cx: sx + 12, cy: sy + 12, r: 3, fill: '#36c9dd', opacity: .7, class: 'deco'}, trk);
+    mk('text', {x: sx + 12, y: sy - 5, 'text-anchor': 'middle', class: 'st halo deco'}, trk).textContent = 'sensor';
+    mk('text', {x: G.W - 8, y: 14, 'text-anchor': 'end', class: 'st halo deco'}, trk).textContent = 'cart mass 2.0 kg';
+    // Race key: line styles, so color is never the only signal
+    S.key = mk('g', {class: 'deco', transform: `translate(${G.GL + 2},10)`}, trk);
+    let kx = 0;
+    for (const [lab, st, dash, w] of [['you', 'var(--you)', null, 2.6], ['ghost', 'var(--ghost)', '1.5 4', 2.2], ['target', 'var(--tgt)', '7 5', 2.4]]) {
+      mk('line', {x1: kx, x2: kx + 22, y1: 0, y2: 0, stroke: st, 'stroke-width': w, 'stroke-dasharray': dash, 'stroke-linecap': dash === '1.5 4' ? 'round' : null}, S.key);
+      mk('text', {x: kx + 27, y: 4, class: 'st halo'}, S.key).textContent = lab;
+      kx += 27 + lab.length * 6.2 + 12;
+    }
+    // ghost cart (dotted outline), hand point, the cart and its force arrow, notes, countdown
+    const cw = clamp(.55 * ppm, 30, 56), ch = Math.round(cw * .42);
+    S.cw = cw; S.ch = ch;
+    S.ghost = mk('g', {class: 'deco', visibility: 'hidden'}, trk);
+    mk('rect', {x: -cw / 2, y: -ch - 7, width: cw, height: ch, rx: 4, fill: 'none', stroke: 'var(--ghost)', 'stroke-width': 2, 'stroke-dasharray': '2 3'}, S.ghost);
+    for (const wx of [-cw * .3, cw * .3]) mk('circle', {cx: wx, cy: -5, r: 4.5, fill: 'none', stroke: 'var(--ghost)', 'stroke-width': 1.6, 'stroke-dasharray': '2 2'}, S.ghost);
+    S.hand = mk('g', {class: 'deco', visibility: 'hidden'}, trk);
+    mk('path', {d: 'M0,0 l-6,-10 h12 z', fill: 'var(--muted)'}, S.hand);
+    mk('line', {x1: 0, y1: 0, x2: 0, y2: 10, stroke: 'var(--muted)', 'stroke-width': 1.5, 'stroke-dasharray': '2 2'}, S.hand);
+    const c = S.cart = mk('g', {class: 'cart', tabindex: 0, role: 'slider', 'aria-label': 'Cart. Drag along the track, or hold the Left or Right arrow',
+      'aria-valuemin': 0, 'aria-valuemax': 10}, trk);
+    S.cartHit = mk('rect', {x: -Math.max(26, cw / 2 + 6), y: -Math.max(46, ch + 22), width: Math.max(52, cw + 12), height: Math.max(52, ch + 28), fill: 'transparent'}, c);
+    mk('rect', {x: -cw / 2 - 4, y: -ch - 11, width: cw + 8, height: ch + 14, rx: 6, class: 'ring'}, c);
+    mk('rect', {x: -cw / 2, y: -ch - 7, width: cw, height: ch, rx: 4, fill: '#d9e2ec', stroke: '#4d5a6b', 'stroke-width': 1.2}, c);
+    mk('rect', {x: -cw / 2 + 3, y: -ch - 4, width: cw - 6, height: Math.max(4, ch * .28), rx: 2, fill: 'var(--brand)', opacity: .85}, c);
+    mk('rect', {x: -cw / 2 - 2, y: -10, width: cw + 4, height: 4, rx: 1.5, fill: '#4d5a6b'}, c);
+    for (const wx of [-cw * .3, cw * .3]) { mk('circle', {cx: wx, cy: -5, r: 5, fill: '#1d242e', stroke: '#9aa7b6', 'stroke-width': 1.5}, c); mk('circle', {cx: wx, cy: -5, r: 1.6, fill: '#9aa7b6'}, c); }
+    mk('line', {x1: 0, y1: 1, x2: 0, y2: 7, stroke: 'var(--brand)', 'stroke-width': 2}, c);
+    S.arrow = mk('g', {class: 'deco'}, trk);
+    S.arrowP = mk('path', {fill: 'var(--force)'}, S.arrow);
+    S.arrowT = mk('text', {class: 'stb halo', 'text-anchor': 'middle'}, S.arrow);
+    S.arrowN = mk('text', {class: 'st halo', 'text-anchor': 'middle'}, S.arrow);
+    S.count = mk('text', {x: G.GL + PW / 2, y: TH / 2 - 8, class: 'count halo deco'}, trk);
+    S.count.style.transformOrigin = `${G.GL + PW / 2}px ${TH / 2 - 8}px`;
+    // driving: drag the cart, or press anywhere on the track to grab it there
+    trk.addEventListener('pointerdown', e => {
+      if (e.button || state.ctl !== 'hand') return;
+      e.preventDefault(); S.cart.focus({preventScroll: true});
+      try { trk.setPointerCapture(e.pointerId); } catch {}
+      drag = {id: e.pointerId, p: toM(e)}; S.cart.classList.add('drag');
+      hand.reset(); hand.add(e.timeStamp / 1000, drag.p);
+      drove();
+    });
+    trk.addEventListener('pointermove', e => {
+      if (!drag || e.pointerId !== drag.id) return;
+      const all = e.getCoalescedEvents ? e.getCoalescedEvents() : [];
+      for (const c of all.length ? all : [e]) hand.add(c.timeStamp / 1000, toM(c));
+      drag.p = toM(e); dirty = true;
+    });
+    const end = e => { if (drag && e.pointerId === drag.id) { drag = null; S.cart.classList.remove('drag'); dirty = true; } };
+    trk.addEventListener('pointerup', end); trk.addEventListener('pointercancel', end);
+    c.addEventListener('keydown', e => {
+      if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+      e.preventDefault();
+      if (state.ctl !== 'hand') { note(tipFor('keys')); return; }
+      keyDir = e.key === 'ArrowLeft' ? -1 : 1; keySlow = e.shiftKey; drove();
+    });
+    c.addEventListener('keyup', e => { if ((e.key === 'ArrowLeft' && keyDir < 0) || (e.key === 'ArrowRight' && keyDir > 0)) keyDir = 0; });
+    c.addEventListener('blur', () => { keyDir = 0; });
+  }
+  function toM(e) { const p = sv.createSVGPoint(); p.x = e.clientX; p.y = e.clientY; const q = p.matrixTransform(sv.getScreenCTM().inverse()); return clamp((q.x - G.GL) / G.ppm, 0, M.LEN); }
+
+  // ---------- drawing data ----------
+  const yOf = (q, v) => clamp(v, M.RANGE[q][0] - .6, M.RANGE[q][1] + .6);   // keep paths near the plane (clipped there)
+  function pathOf(q, r, len) {
+    const g = P[q].g, arr = r[q], n = Math.min(len == null ? arr.length : len + 1, arr.length);
+    let d = '';
+    for (let i = 0; i < n; i++) { const t = q === 'a' ? M.taOf(i) : M.tOf(i); const [u, v] = g.px(t, yOf(q, arr[i])); d += (i ? 'L' : 'M') + u.toFixed(1) + ',' + v.toFixed(1); }
+    return n > 1 ? d : '';
+  }
+  // off-scale: a small arrow at the edge where a trace leaves the range
+  function offMarks(q, r, len, cls) {
+    const g = P[q].g, arr = r[q], n = Math.min(len == null ? arr.length : len + 1, arr.length), [lo, hi] = M.RANGE[q];
+    let out = 0;
+    for (let i = 0; i < n; i++) {
+      const o = arr[i] > hi + 1e-6 ? 1 : arr[i] < lo - 1e-6 ? -1 : 0;
+      if (o && o !== out) {
+        const t = q === 'a' ? M.taOf(i) : M.tOf(i), [u] = g.px(t, 0), v = o > 0 ? 0 : G.gh;
+        mk('path', {d: `M${u},${v + o * -1}l-5,${o * 8}h10z`, fill: cls}, P[q].lay.marks);
+      }
+      out = o;
+    }
+  }
+  // the target's dashed curve on graph q (pieces, so jumps stay open), the band on its own graph, and kink notes
+  function drawTarget(q, withBand) {
+    const g = P[q].g, lay = P[q].lay;
+    lay.tgt.textContent = ''; lay.band.textContent = '';
+    if (q === 'a') S.kinkShort = false;
+    if (!B) return;
+    for (const s of B.seg) {
+      const f = t => B.at[q](Math.min(t, s.t1 - 1e-9));
+      if (withBand) {
+        const b = M.BAND[q], n = 24; let up = '', dn = '';
+        for (let k = 0; k <= n; k++) { const t = s.t0 + (s.t1 - s.t0) * k / n, y = f(t); const [u, v] = g.px(t, y + b), [, v2] = g.px(t, y - b); up += (k ? 'L' : 'M') + u.toFixed(1) + ',' + v.toFixed(1); dn = 'L' + u.toFixed(1) + ',' + v2.toFixed(1) + dn; }
+        mk('path', {d: up + dn + 'Z', fill: 'var(--tgt-band)'}, lay.band);
+      }
+      const n = 30; let d = '';
+      for (let k = 0; k <= n; k++) { const t = s.t0 + (s.t1 - s.t0) * k / n; const [u, v] = g.px(t, yOf(q, f(t))); d += (k ? 'L' : 'M') + u.toFixed(1) + ',' + v.toFixed(1); }
+      mk('path', {d, fill: 'none', stroke: 'var(--tgt)', 'stroke-width': 2.4, 'stroke-dasharray': '7 5'}, lay.tgt);
+    }
+    // a position target's kinks: the velocity jumps there, so a has no value (open gaps) and the push is huge
+    if (q === 'a' && B.kinks.length) {
+      let first = true;
+      for (const k of B.kinks) {
+        const [u, v0] = g.px(k.t, 0), up = k.dv > 0, v1 = up ? 2 : G.gh - 2;
+        mk('circle', {cx: u, cy: v0, r: 3.5, fill: 'var(--gr-bg)', stroke: 'var(--tgt)', 'stroke-width': 1.6}, lay.tgt);
+        mk('line', {x1: u, y1: v0 + (up ? -5 : 5), x2: u, y2: v1 + (up ? 6 : -6), stroke: 'var(--tgt)', 'stroke-width': 1.6, 'stroke-dasharray': '3 3'}, lay.tgt);
+        mk('path', {d: `M${u},${v1}l-5,${up ? 8 : -8}h10z`, fill: 'var(--tgt)'}, lay.tgt);
+        if (first && k.t > 0) {
+          first = false;
+          // room beside this kink, up to the next kink's arrow (or the edge) on each side
+          const us = B.kinks.map(o => g.px(o.t, 0)[0]);
+          const nextR = Math.min(G.PW - 3, ...us.filter(x => x > u + 1).map(x => x - 9)), nextL = Math.max(3, ...us.filter(x => x < u - 1).map(x => x + 9));
+          const roomR = nextR - (u + 9), roomL = (u - 9) - nextL, full = 'a real cart needs a sudden large push', w = textLen(full);
+          const y = up ? G.gh - 22 : 26, fitsV = G.gh >= 84;
+          let x, anc, lines;
+          if (fitsV && roomR >= w) { x = u + 9; anc = 'start'; lines = ['a jumps here:', full]; }
+          else if (fitsV && roomL >= w) { x = u - 9; anc = 'end'; lines = ['a jumps here:', full]; }
+          else { const r = roomR >= roomL; x = r ? u + 9 : u - 9; anc = r ? 'start' : 'end'; lines = ['a jumps here']; S.kinkShort = true; }
+          const y0 = lines.length > 1 ? y : (up ? G.gh - 10 : 18);
+          lines.forEach((t, j) => { mk('text', {x, y: y0 + 13 * j, 'text-anchor': anc, class: 'lk tg halo'}, lay.tgt).textContent = t; });
+        }
+      }
+    }
+  }
+
+  // what does not change every frame: the controlled-graph frame and tag, targets, switch ticks
+  function renderStatic() {
+    if (!G) return;
+    const mine = M.OF[state.ctl];
+    for (const q of ['x', 'v', 'a']) {
+      const p = P[q], on = q === mine;
+      p.frame.setAttribute('stroke', on ? 'var(--brand)' : 'var(--line)'); p.frame.setAttribute('stroke-width', on ? 2.5 : 1.5);
+      p.tagG.setAttribute('visibility', on ? 'visible' : 'hidden');
+      const race = state.mode === 'race' && B, after = state.phase === 'done' || state.phase === 'replay';
+      if (race && (q === B.T.graph || (state.all3 && after))) drawTarget(q, q === B.T.graph);
+      else { p.lay.tgt.textContent = ''; p.lay.band.textContent = ''; }
+      if (state.links && state.mode === 'explore') p.foc.setAttribute('tabindex', 0); else p.foc.removeAttribute('tabindex');
+    }
+    $('kinkNote').textContent = S.kinkShort && state.all3 && B && B.kinks.length ? 'Where the dashed a graph jumps: a real cart needs a sudden large push there.' : '';
+    S.switchG.textContent = '';
+    if (state.mode === 'explore') for (const s of state.switches) {
+      const [u] = P.a.g.px(s.t, 0), x = G.GL + u, y0 = G.tops[0], y1 = G.tops[2] + G.gh;
+      mk('line', {x1: x, x2: x, y1: y0, y2: y1, stroke: 'rgba(232,237,243,.35)', 'stroke-width': 1, 'stroke-dasharray': '2 4'}, S.switchG);
+      mk('path', {d: `M${x},${y1 + 1}l-4,7h8z`, fill: 'var(--ink)'}, S.switchG);
+      mk('text', {x: x + 5, y: y1 + 26, class: 'st halo'}, S.switchG).textContent = CTL_NAME[s.ctl];
+    }
+    sv.classList.toggle('links-on', state.links && state.mode === 'explore');
+    S.key.setAttribute('visibility', state.mode === 'race' ? 'visible' : 'hidden');
+    S.hit.style.pointerEvents = state.links && state.mode === 'explore' ? 'all' : 'none';
+    S.cart.setAttribute('tabindex', state.ctl === 'hand' ? 0 : -1);
+    S.cart.style.cursor = state.ctl === 'hand' ? '' : 'default';
+  }
+
+  // the frame: traces, carts, arrow, readouts, links
+  let dirty = true;
+  function render() {
+    if (!G) return;
+    const race = state.mode === 'race';
+    const showRec = race && state.phase === 'replay' ? Math.floor(state.replayT / M.SAMPLE + 1e-9) : null;
+    for (const q of ['x', 'v', 'a']) {
+      const p = P[q];
+      p.lay.marks.textContent = '';
+      p.lay.you.setAttribute('d', pathOf(q, rec, showRec));
+      offMarks(q, rec, showRec, 'var(--you)');
+      // the ghost plays in step with the run (or the replay)
+      const gi = ghostIndex();
+      p.lay.ghost.setAttribute('d', ghost && gi != null ? pathOf(q, ghost, gi) : '');
+    }
+    // end stop marks on the a graph
+    for (const s of stopMarks) {
+      if (showRec != null && s.i > showRec) continue;
+      const g = P.a.g, [u] = g.px(M.tOf(s.i), 0), top = s.side < 0, y = top ? 1 : G.gh - 1;
+      mk('path', {d: `M${u},${y}l-6,${top ? 10 : -10}h12z`, fill: 'var(--neg)', stroke: 'var(--halo)', 'stroke-width': 1}, P.a.lay.marks);
+      const inR = u > G.PW - 70;   // near the right edge the label sits to the left of the mark, inside the graph
+      mk('text', {x: inR ? u - 8 : u + 8, y: top ? 12 : G.gh - 5, 'text-anchor': inR ? 'end' : 'start', class: 'lk halo', style: 'fill:var(--neg)'}, P.a.lay.marks).textContent = 'end stop';
+    }
+    // carts
+    const shown = showRec != null ? at(rec, state.replayT) : {x: cart.x, v: cart.v};
+    S.cart.setAttribute('transform', `translate(${mx(shown.x).toFixed(1)},${S.railY})`);
+    S.cart.setAttribute('aria-valuenow', +shown.x.toFixed(2));
+    S.cart.setAttribute('aria-valuetext', `x = ${f2(shown.x)} m, v = ${f2(shown.v)} meters per second`);
+    S.beam.setAttribute('x2', mx(shown.x) - S.cw / 2); S.beam.setAttribute('y2', S.railY - S.ch / 2 - 7);
+    const gt = ghostTime();
+    if (ghost && gt != null) { const gp = at(ghost, gt); S.ghost.setAttribute('visibility', 'visible'); S.ghost.setAttribute('transform', `translate(${mx(gp.x).toFixed(1)},${S.railY})`); }
+    else S.ghost.setAttribute('visibility', 'hidden');
+    if (drag && state.ctl === 'hand') { S.hand.setAttribute('visibility', 'visible'); S.hand.setAttribute('transform', `translate(${mx(drag.p).toFixed(1)},${S.railY - S.ch - 12})`); }
+    else S.hand.setAttribute('visibility', 'hidden');
+    // the net force arrow (F = m a), hidden under 0.05 N; parked against an end stop, the arrow shows the push
+    const aNow = showRec != null ? rec.a[Math.max(1, Math.min(showRec, rec.a.length - 1))] || 0 : liveA();
+    const pushing = showRec == null && cart.push && state.ctl === 'pedal';
+    const F = M.MASS * (pushing ? cart.push : aNow);
+    if (Math.abs(F) >= .05) {
+      const x0 = mx(shown.x), y = S.railY - S.ch - 17, len = clamp(Math.abs(F) / 4, 0, 1) * Math.max(44, G.ppm * 1.6) + 14, dir = Math.sign(F);
+      const x1 = x0 + dir * len;
+      S.arrowP.setAttribute('d', `M${x0},${y - 2.5}H${x1 - dir * 10}V${y - 7}L${x1},${y}L${x1 - dir * 10},${y + 7}V${y + 2.5}H${x0}Z`);
+      // the label sits past the arrowhead, or above the arrow when that runs off the stage
+      const lab = `${f2(Math.abs(F))} N`, lw = lab.length * 7.4 + 6, room = dir > 0 ? G.W - x1 : x1;
+      if (room > lw) { S.arrowT.setAttribute('x', x1 + dir * 5); S.arrowT.setAttribute('y', y + 4); S.arrowT.setAttribute('text-anchor', dir > 0 ? 'start' : 'end'); }
+      else { S.arrowT.setAttribute('x', (x0 + x1) / 2); S.arrowT.setAttribute('y', y - 10); S.arrowT.setAttribute('text-anchor', 'middle'); }
+      S.arrowT.textContent = lab;
+      S.arrowN.setAttribute('x', x0 - dir * (S.cw / 2 + 8)); S.arrowN.setAttribute('y', y + 4); S.arrowN.setAttribute('text-anchor', dir > 0 ? 'end' : 'start');
+      S.arrowN.textContent = pushing ? 'the end stop pushes back' : '';
+      S.arrow.setAttribute('visibility', 'visible');
+    } else S.arrow.setAttribute('visibility', 'hidden');
+    // readouts on the right edge of each graph
+    let vals = showRec != null ? {x: shown.x, v: shown.v, a: aNow} : {x: cart.x, v: cart.v, a: aNow}, atTxt = '';
+    // with Show links on, the readouts give the values at the time cursor (the ringed values)
+    if (linkable()) { const n = rec.x.length - 1, i = clamp(state.cursor == null ? Math.round(n / 2) : state.cursor, 0, n); vals = {x: rec.x[i], v: rec.v[i], a: M.aAt(rec, i)}; atTxt = `at ${fmt(M.tOf(i), 2)} s`; }
+    for (const q of ['x', 'v', 'a']) {
+      const p = P[q];
+      p.rv.textContent = f2(vals[q]);
+      p.rs.textContent = atTxt; p.rs2.textContent = ''; p.rs.setAttribute('class', 'rs');
+    }
+    if (cart.top && state.ctl === 'pedal' && showRec == null) { P.a.rs.textContent = 'top speed'; P.a.rs.setAttribute('class', 'rs off'); }
+    if (race && B && (state.phase === 'run' || state.phase === 'replay')) {
+      const q = B.T.graph, i = showRec != null ? Math.min(showRec, rec[q].length - 1) : rec[q].length - 1;
+      if (i >= 1) {
+        const ref = q === 'a' ? B.a(M.taOf(i)) : B[q](M.tOf(i)), e = rec[q][i] - ref, p = P[q];
+        if (Math.abs(e) <= M.BAND[q] + 1e-9) { p.rs.textContent = '✓ in band'; p.rs.setAttribute('class', 'rs in'); }
+        else { p.rs.textContent = 'off by'; p.rs2.textContent = `${q === 'x' ? f1(Math.abs(e)) : f2(Math.abs(e))} ${M.UNIT[q]}`; p.rs.setAttribute('class', 'rs off'); p.rs2.setAttribute('class', 'rs off'); }
+      }
+    }
+    renderLinks();
+    // countdown
+    if (race && (state.phase === 'count' || (state.phase === 'run' && cart.steps * M.DT < .6))) {
+      const txt = state.phase === 'count' && state.count > 0 ? String(state.count) : 'Go';
+      if (S.count.textContent !== txt) { S.count.textContent = txt; S.count.classList.remove('zoom'); if (!Curio.reduce) { void S.count.getBBox(); S.count.classList.add('zoom'); } }
+    } else if (S.count.textContent) { S.count.textContent = ''; S.count.classList.remove('zoom'); }
+    dirty = false;
+  }
+  const textLen = t => t.length * 6.9;
+  const liveA = () => rec.a.length > 1 ? rec.a[rec.a.length - 1] : 0;
+  // a recorded run at time t (linear between samples)
+  function at(r, t) {
+    const f = clamp(t / M.SAMPLE, 0, r.x.length - 1), i = Math.floor(f), k = f - i, j = Math.min(i + 1, r.x.length - 1);
+    return {x: r.x[i] + (r.x[j] - r.x[i]) * k, v: r.v[i] + (r.v[j] - r.v[i]) * k};
+  }
+  function ghostTime() {
+    if (state.mode !== 'race' || !ghost) return null;
+    if (state.phase === 'run') return cart.steps * M.DT;
+    if (state.phase === 'replay') return state.replayT;
+    if (state.phase === 'done') return Math.min(M.RUN, (rec.x.length - 1) * M.SAMPLE);
+    return 0;
+  }
+  function ghostIndex() { const t = ghostTime(); return t == null ? null : Math.floor(t / M.SAMPLE + 1e-9); }
+
+  // ======================================================================================
+  // Show links: slopes and areas at a time cursor (paused or finished runs, Explore)
+  // ======================================================================================
+  const linkable = () => state.mode === 'explore' && state.links && (state.run === 'paused' || state.run === 'done') && rec.x.length > 2;
+  function renderLinks() {
+    for (const q of ['x', 'v', 'a']) { P[q].lay.link.textContent = ''; P[q].lay.linkF.textContent = ''; }
+    if (!linkable()) return;
+    const n = rec.x.length - 1, i = clamp(state.cursor == null ? Math.round(n / 2) : state.cursor, 0, n), t = M.tOf(i);
+    const sx = M.slope(rec.x, i), sv_ = M.slope(rec.v, i), vI = rec.v[i], aI = M.aAt(rec, i), ar = M.area(rec.v, i), dx = rec.x[i] - rec.x[0];
+    for (const q of ['x', 'v', 'a']) {
+      const g = P[q].g, [u] = g.px(t, 0);
+      mk('line', {x1: u, x2: u, y1: 0, y2: G.gh, stroke: 'var(--ink)', 'stroke-width': 1.2, 'stroke-dasharray': '4 3', opacity: .8}, P[q].lay.linkF);
+    }
+    const side = t < M.RUN * .6 ? 1 : -1;
+    // small graphs (the 16:10 preview, phones) get fewer labels: each link is printed once, as the slope on the upper
+    // graph or as the value on the lower one, so labels never stack
+    const small = G.gh < 110;
+    // a label beside u: on the preferred side when it fits inside the plane, else the other side
+    const textW = text => textLen(text) + 4;
+    // labels on one graph never overlap: a label that would sit on an earlier one moves up or down a line
+    // the title and its tag are taken first (the tag only shows on the controlled graph, but keep the room anyway)
+    const boxes = {x: [], v: [], a: []};
+    for (const q of ['x', 'v', 'a']) { const w = q === M.OF[state.ctl] ? P[q].tagW : P[q].titleW; boxes[q].push({x0: 0, x1: w, y0: 0, y1: 21}); }
+    const free = (q, x0, w, yy) => !boxes[q].some(b => x0 < b.x1 && x0 + w > b.x0 && yy - 10 < b.y1 && yy + 4 > b.y0);
+    const take = (q, x0, w, yy) => boxes[q].push({x0, x1: x0 + w, y0: yy - 10, y1: yy + 4});
+    const label = (q, u, y, text, pref = side, cls = 'lk', style) => {
+      // try the preferred side first, then the other, at the wanted height and then a line or two above and below;
+      // a label with no free spot is left out rather than drawn over another one
+      const w = textW(text);
+      for (const dir of [pref > 0 ? 1 : -1, pref > 0 ? -1 : 1]) {
+        if (dir > 0 ? u + 10 + w > G.PW - 3 : u - 10 - w < 3) continue;
+        const x = u + dir * 10, x0 = dir > 0 ? x : x - w;
+        for (const d of [0, 14, -14, 28, -28, 42, -42, 56, -56]) {
+          const yy = y + d;
+          if (yy < 12 || yy > G.gh - 4) continue;
+          if (!free(q, x0, w, yy)) continue;
+          take(q, x0, w, yy);
+          const e = mk('text', {x, y: yy, 'text-anchor': dir > 0 ? 'start' : 'end', class: cls + ' halo', style}, P[q].lay.link); e.textContent = text; return e;
+        }
+      }
+      return null;
+    };
+    const tangent = (q, y0, s) => {
+      const g = P[q].g, h = 1.1;
+      const [u0, v0] = g.px(t - h, y0 - s * h), [u1, v1] = g.px(t + h, y0 + s * h), [uc, vc] = g.px(t, y0);
+      mk('line', {x1: u0, y1: v0, x2: u1, y2: v1, stroke: 'var(--ink)', 'stroke-width': 2}, P[q].lay.linkF);
+      // labels keep off the tangent line too (a text baseline about 4 px below the line would cross it)
+      for (let k = 0; k < 8; k++) { const xa = u0 + (u1 - u0) * k / 8, xb = u0 + (u1 - u0) * (k + 1) / 8, ya = v0 + (v1 - v0) * k / 8, yb = v0 + (v1 - v0) * (k + 1) / 8;
+        boxes[q].push({x0: Math.min(xa, xb), x1: Math.max(xa, xb), y0: Math.min(ya, yb) - 2, y1: Math.max(ya, yb) + 2}); }
+      mk('circle', {cx: uc, cy: vc, r: 3.5, fill: 'var(--ink)'}, P[q].lay.linkF);
+      return [uc, vc];
+    };
+    const ring = (q, y, text) => {
+      const g = P[q].g, [uc, vc] = g.px(t, clamp(y, M.RANGE[q][0], M.RANGE[q][1]));
+      mk('circle', {cx: uc, cy: vc, r: 8, fill: 'none', stroke: 'var(--ink)', 'stroke-width': 2.2}, P[q].lay.link);
+      // ring values go below the point, slopes above it (each flips near an edge)
+      const ly = clamp(vc < G.gh - 16 ? vc + 20 : vc - 12, 12, G.gh - 4);
+      // small graphs: the ringed value is in the readout beside the graph, so the ring needs no text of its own
+      if (!small) label(q, uc, ly, text);
+    };
+    // area under v from 0 to the cursor: above zero hatched, below zero dotted (both clipped to their side)
+    {
+      const g = P.v.g, [, z] = g.px(0, 0);
+      let d = ''; const [u0] = g.px(0, 0); d = `M${u0},${z}`;
+      for (let k = 0; k <= i; k++) { const [u, v] = g.px(M.tOf(k), yOf('v', rec.v[k])); d += `L${u.toFixed(1)},${v.toFixed(1)}`; }
+      const [ue] = g.px(t, 0); d += `L${ue},${z}Z`;
+      const cp = 'clipPos' + P.v.g.clipId, cn = 'clipNeg' + P.v.g.clipId;
+      const defs = mk('defs', {}, P.v.lay.linkF);
+      mk('rect', {x: 0, y: 0, width: G.PW, height: z}, mk('clipPath', {id: cp}, defs));
+      mk('rect', {x: 0, y: z, width: G.PW, height: G.gh - z}, mk('clipPath', {id: cn}, defs));
+      mk('path', {d, fill: 'url(#hPos)', 'clip-path': `url(#${cp})`}, P.v.lay.linkF);
+      mk('path', {d, fill: 'url(#hNeg)', 'clip-path': `url(#${cn})`}, P.v.lay.linkF);
+      P.v.lay.linkF.insertBefore(defs, P.v.lay.linkF.firstChild);
+    }
+    // x graph: tangent and slope; bracket the change in x from 0 to the cursor
+    const [ux, vx] = tangent('x', rec.x[i], sx);
+    const sy = clamp(vx + (vx > G.gh / 2 ? -14 : 22), 12, G.gh - 4);
+    if (!label('x', ux, sy, `slope ${f2(sx)} m/s`)) label('x', ux, sy, `slope ${f2(sx)}`);
+    {
+      // the matching rise on x, bracketed just before the cursor, from x at 0 s to x at the cursor
+      const g = P.x.g, [u0, y0] = g.px(0, rec.x[0]), [u1, y1] = g.px(t, rec.x[i]), bxp = u1 - 8;
+      mk('line', {x1: u0, y1: y0, x2: u1, y2: y0, stroke: 'var(--neg)', 'stroke-width': 1.3, 'stroke-dasharray': '3 3'}, P.x.lay.linkF);
+      mk('path', {d: `M${bxp + 4},${y0}H${bxp}V${y1}H${bxp + 4}`, fill: 'none', stroke: 'var(--neg)', 'stroke-width': 2}, P.x.lay.link);
+      const my = Math.abs(y1 - y0) < 14 ? y0 + (y0 > G.gh / 2 ? -8 : 16) : (y0 + y1) / 2 + 4;
+      if (!small) label('x', bxp, clamp(my, 26, G.gh - 4), `change in x = ${f1(dx)} m`, -1, 'lk', 'fill:var(--neg)');
+    }
+    // v graph: ring the value (same number as the x slope), tangent and slope, the area label
+    // the area label in the corner away from the cursor (placed first, so the cursor labels move around it), with a key
+    // to the two fills when both are there and the graph is wide enough
+    const both = rec.v.slice(0, i + 1).some(v => v > .02) && rec.v.slice(0, i + 1).some(v => v < -.02);
+    const cx = side > 0 ? G.PW - 6 : 6, ca = side > 0 ? 'end' : 'start';
+    // corner(): the first free spot from a list of [x, anchor, y]
+    const corner = (spots, text, style) => {
+      const w = textW(text);
+      for (const [x, anc, y] of spots) {
+        const x0 = anc === 'end' ? x - w : x;
+        if (!free('v', x0, w, y)) continue;
+        take('v', x0, w, y); mk('text', {x, y, 'text-anchor': anc, class: 'lk halo', style}, P.v.lay.link).textContent = text; return true;
+      }
+      return false;
+    };
+    const far = [cx, ca], near = [side > 0 ? 6 : G.PW - 6, side > 0 ? 'start' : 'end'];
+    const [uv, vv] = tangent('v', vI, sv_);
+    ring('v', vI, `v = ${f2(vI)} m/s`);
+    const spots = [[...far, G.gh - 6], [...near, G.gh - 6], [G.PW - 6, 'end', 17], [...far, G.gh - 20], [...near, G.gh - 20], [...far, 31], [...near, 31]];
+    // the full sentence where it fits, else the short form (the x graph's bracket shows the same change)
+    if (!corner(spots, `area = change in x = ${f1(ar)} m`, 'fill:var(--neg)')) corner(spots, `area = ${f1(ar)} m`, 'fill:var(--neg)');
+    if (both && G.PW >= 420) corner([[...far, G.gh - 20]], 'hatched adds, dotted subtracts');
+    if (!small) label('v', uv, clamp(vv > 24 ? vv - 10 : vv + 34, 12, G.gh - 4), `slope ${f2(sv_)} m/s²`);
+    // a graph: ring the value (same number as the v slope)
+    ring('a', aI, `a = ${f2(aI)} m/s²`);
+    const txt = `At ${fmt(t, 2)} s: slope of x ${f2(sx)} m/s, v ${f2(vI)} m/s; slope of v ${f2(sv_)}, a ${f2(aI)} meters per second squared; area under v ${f1(ar)} m, change in x ${f1(dx)} m`;
+    for (const q of ['x', 'v', 'a']) { P[q].foc.setAttribute('aria-valuenow', +t.toFixed(2)); P[q].foc.setAttribute('aria-valuetext', txt); }
+  }
+  function cursorPointer(e) {
+    if (!linkable()) return;
+    const g = P.x.g, [t] = g.eventCoord(e);
+    state.cursor = clamp(Math.round(t / M.SAMPLE), 0, rec.x.length - 1); dirty = true;
+  }
+  function cursorKey(e) {
+    if (!linkable()) return;
+    const d = {ArrowLeft: -2, ArrowRight: 2, ArrowDown: -2, ArrowUp: 2, Home: -1e9, End: 1e9}[e.key];
+    if (d == null) return;
+    e.preventDefault();
+    const n = rec.x.length - 1;
+    state.cursor = clamp((state.cursor == null ? Math.round(n / 2) : state.cursor) + d, 0, n); dirty = true;
+  }
+
+  // ======================================================================================
+  // The vertical slider (Throttle sets velocity, Pedal sets acceleration), with a center detent at 0
+  // ======================================================================================
+  const VS = {throttle: {min: -3, max: 3, step: .1, big: .5, label: 'velocity', unit: 'm/s', say: 'meters per second', tick: .5, lab: 1, detent: .15},
+    pedal: {min: -2, max: 2, step: .05, big: .25, label: 'acceleration', unit: 'm/s²', say: 'meters per second squared', tick: .25, lab: 1, detent: .08}};
+  const vsEl = $('vs');
+  let vsDrag = null;
+  function vsBuild() {
+    const c = VS[state.ctl]; if (!c) return;
+    $('vsLab').textContent = c.label;
+    const box = $('vsTicks'); box.textContent = '';
+    const pct = v => (10 + (c.max - v) / (c.max - c.min) * 80);
+    for (let v = c.min; v <= c.max + 1e-9; v += c.tick) {
+      const vv = +v.toFixed(3), z = Math.abs(vv) < 1e-9;
+      const tk = document.createElement('div'); tk.className = 'vs-tick' + (z ? ' zero' : ''); tk.style.top = `calc(10px + ${(c.max - vv) / (c.max - c.min)} * (100% - 20px))`; box.appendChild(tk);
+      if (Math.abs(vv / c.lab - Math.round(vv / c.lab)) < 1e-6) {
+        const tl = document.createElement('span'); tl.className = 'vs-tl' + (z ? ' zero' : ''); tl.textContent = fmt(vv); tl.style.top = tk.style.top; box.appendChild(tl);
+      }
+    }
+    vsShow();
+  }
+  function vsShow() {
+    const c = VS[state.ctl]; if (!c) return;
+    const v = sl[state.ctl], f = (c.max - v) / (c.max - c.min), z = c.max / (c.max - c.min);
+    $('vsThumb').style.top = `calc(10px + ${f} * (100% - 20px))`;
+    const fill = $('vsFill'), a = Math.min(f, z), b = Math.max(f, z);
+    fill.style.top = `calc(10px + ${a} * (100% - 20px))`; fill.style.height = `calc(${b - a} * (100% - 20px))`;
+    const txt = `${fmt(v, 2)} ${c.unit}`;
+    $('vsVal').textContent = txt;
+    vsEl.setAttribute('aria-valuemin', c.min); vsEl.setAttribute('aria-valuemax', c.max); vsEl.setAttribute('aria-valuenow', v);
+    vsEl.setAttribute('aria-valuetext', `${fmt(v, 2).replace('−', 'minus ')} ${c.say}`);
+  }
+  function vsSet(v, src) {
+    const c = VS[state.ctl]; if (!c) return;
+    v = clamp(Math.round(v / c.step) * c.step, c.min, c.max);
+    if (src === 'drag' && Math.abs(v) <= c.detent) v = 0;      // the center detent
+    v = +v.toFixed(3);
+    if (v === sl[state.ctl]) return;
+    sl[state.ctl] = v; vsShow(); dirty = true;
+    drove();
+  }
+  const vsFromY = e => { const c = VS[state.ctl], r = vsEl.getBoundingClientRect(), f = clamp((e.clientY - r.top - 10) / (r.height - 20), 0, 1); return c.max - f * (c.max - c.min); };
+  vsEl.addEventListener('pointerdown', e => { if (e.button) return; e.preventDefault(); vsEl.focus(); vsEl.setPointerCapture(e.pointerId); vsDrag = e.pointerId; vsSet(vsFromY(e), 'drag'); });
+  vsEl.addEventListener('pointermove', e => { if (vsDrag === e.pointerId) vsSet(vsFromY(e), 'drag'); });
+  const vsEnd = e => { if (vsDrag !== e.pointerId) return; vsDrag = null; if (state.spring) vsSet(0, 'spring'); };
+  vsEl.addEventListener('pointerup', vsEnd); vsEl.addEventListener('pointercancel', vsEnd);
+  const VSKEYS = ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'PageUp', 'PageDown', 'Home'];
+  vsEl.addEventListener('keydown', e => {
+    const c = VS[state.ctl]; if (!c || !VSKEYS.includes(e.key)) return;
+    e.preventDefault();
+    const v = sl[state.ctl];
+    const nv = {ArrowUp: v + c.step, ArrowRight: v + c.step, ArrowDown: v - c.step, ArrowLeft: v - c.step, PageUp: v + c.big, PageDown: v - c.big, Home: 0}[e.key];
+    vsSet(nv, 'key');
+  });
+  vsEl.addEventListener('keyup', e => { if (state.spring && VSKEYS.includes(e.key) && e.key !== 'Home') vsSet(0, 'spring'); });
+  $('spring').onchange = e => { state.spring = e.target.checked; if (state.spring && vsDrag == null) vsSet(0, 'spring'); };
+
+  // ======================================================================================
+  // Running: a fixed 1/60 s step; Explore sweeps 0 to 12 s, Race counts down then runs 12 s
+  // ======================================================================================
+  // the hand tracker turns pointer samples into a steady pointer position and velocity (MOTION ENGINE)
+  const hand = M.tracker(); let handNow = {v: 0, p: null};
+  const input = () => ({mode: state.ctl, pointer: drag ? (handNow.p == null ? drag.p : handNow.p) : null, pointerV: drag ? handNow.v : 0, pointerIdle: handNow.idle || 0, keyV: keyDir ? keyDir * (keySlow ? .3 : 1) : null, vWant: sl.throttle, aSet: sl.pedal});
+  const simOn = () => state.mode === 'explore' ? state.run === 'running' : state.phase === 'run';
+  function stepOnce() {
+    if (M.tick(cart, input(), rec)) {
+      const last = rec.stops[rec.stops.length - 1];
+      if (last && last.i === rec.x.length - 1) stopMarks.push(last);
+    }
+    if (cart.steps >= M.RUN / M.DT - 1e-9) endRun();
+  }
+  function endRun() {
+    if (state.mode === 'explore') { state.run = 'done'; drag = null; keyDir = 0; renderButtons(); }
+    else finishRace(false);
+  }
+  // a control input in Explore starts the clock from a fresh screen (free drive)
+  function drove() {
+    dirty = true;
+    if (state.mode === 'explore' && state.run === 'idle') { state.run = 'running'; renderButtons(); }
+  }
+  let lastNow = null, acc = 0, manual = false;
+  function frame(now) {
+    requestAnimationFrame(frame);
+    const dt = lastNow == null ? 0 : Math.min(.1, (now - lastNow) / 1000); lastNow = now;
+    if (manual) return;
+    if (drag) handNow = hand.get(performance.now() / 1000);
+    if (simOn()) { acc += dt; while (acc >= M.DT - 1e-9 && simOn()) { acc -= M.DT; stepOnce(); } dirty = true; } else acc = 0;
+    if (state.mode === 'race' && state.phase === 'count') countTick(now);
+    if (state.mode === 'race' && state.phase === 'replay') { state.replayT += dt; if (state.replayT >= (rec.x.length - 1) * M.SAMPLE) { state.replayT = 0; state.phase = 'done'; renderRace(); } dirty = true; }
+    if (dirty) render();
+  }
+  requestAnimationFrame(frame);
+  // reset the cart and the record (x0, v0) and the control surfaces
+  function resetRun(x0, v0) {
+    cart = M.cart(x0, v0); rec = M.record(cart); stopMarks = []; drag = null; keyDir = 0; acc = 0; state.cursor = null;
+    state.switches = [];
+  }
+
+  // ---------- Explore ----------
+  function explorePlay() {
+    if (state.run === 'running') { state.run = 'paused'; }
+    else if (state.run === 'done') { resetRun(cart.x, 0); state.run = 'running'; }
+    else state.run = 'running';
+    renderButtons(); renderStatic(); dirty = true;
+  }
+  function exploreClear() {
+    let x0 = cart.x;
+    if (state.pendingStart) { x0 = state.startAt; state.pendingStart = false; }
+    resetRun(x0, 0); state.run = 'idle';
+    renderButtons(); renderStatic(); dirty = true;
+  }
+  $('go').onclick = explorePlay;
+  $('clear').onclick = exploreClear;
+  $('links').onclick = () => {
+    state.links = !state.links;
+    if (state.links) { narrate('links'); if (state.cursor == null) state.cursor = Math.round((rec.x.length - 1) / 2); }
+    renderButtons(); renderStatic(); dirty = true;
+  };
+  $('startAt').addEventListener('change', e => {
+    let v = parseFloat(String(e.target.value).replace('−', '-'));
+    if (!isFinite(v)) v = state.startAt;
+    v = clamp(Math.round(v * 10) / 10, 0, 10); e.target.value = v; state.startAt = v;
+    // a fresh screen moves the cart at once; otherwise the new start waits for Clear
+    if (state.run === 'idle' && rec.x.length <= 1) { resetRun(v, 0); state.pendingStart = false; }
+    else state.pendingStart = true;
+    renderButtons(); dirty = true;
+  });
+
+  // ---------- Race ----------
+  function loadTarget(i, quiet) {
+    hush(); stopAll();
+    state.target = (i + M.TARGETS.length) % M.TARGETS.length;
+    const T = M.TARGETS[state.target];
+    B = M.build(T); state.phase = 'ready'; state.result = null; state.all3 = false;
+    setControl(T.ctl, true);
+    resetForTarget();
+    if (!quiet && T.id === 6) narrate('turnaround');
+    renderRace(); renderStatic(); dirty = true;
+  }
+  function resetForTarget() {
+    const T = M.TARGETS[state.target];
+    resetRun(T.x0, T.v0);
+    sl.throttle = T.v0; sl.pedal = 0; vsShow();
+    loadGhost();
+  }
+  function loadGhost() { const b = bests[bestKey()]; ghost = b && b.x ? {x: b.x, v: b.v, a: b.a} : null; }
+  function raceStart() {
+    if (state.phase === 'count' || state.phase === 'run') return;
+    hush();
+    resetForTarget(); state.result = null; state.all3 = false;
+    state.phase = 'count'; state.countStart = null; state.count = 3;
+    keepFocus(['start', 'again', 'again2', 'nextT', 'next2'], 'stop');
+    // the hard-way line on the first hard-way run; otherwise "Three, two, one, go" on the first countdown (then tones)
+    const T = M.TARGETS[state.target], hard = M.hardWay(state.ctl, T.graph);
+    state.voiceGo = hard ? (narrate('hardWay'), false) : narrate('go');
+    renderRace(); renderStatic(); dirty = true;
+  }
+  function countTick(now) {
+    if (state.countStart == null) { state.countStart = now; if (!state.voiceGo) Curio.tone(523, .12, .04); }
+    const el = (now - state.countStart) / 1000, c = 3 - Math.floor(el);
+    if (c !== state.count) {
+      state.count = c;
+      if (!state.voiceGo) Curio.tone(c > 0 ? 523 : 880, c > 0 ? .12 : .25, .04);
+      dirty = true;
+      if (c <= 0) { state.phase = 'run'; acc = 0; renderRace(); }
+    }
+  }
+  function finishRace(early) {
+    const T = M.TARGETS[state.target], sc = M.score(rec, B), k = bestKey(), old = bests[k];
+    const isNew = !old || sc.pct > old.pct;
+    if (isNew) { bests[k] = {pct: sc.pct, rms: +sc.rms.toFixed(4), x: r3(rec.x), v: r3(rec.v), a: r3(rec.a)}; saveBests(); }
+    state.result = {...sc, early, isNew, best: isNew ? sc.pct : old.pct, ctl: state.ctl, hard: M.hardWay(state.ctl, T.graph)};
+    state.phase = 'done'; drag = null; keyDir = 0;
+    keepFocus(['stop'], 'again2');
+    if (isNew && sc.pct > 0) Curio.yes();
+    $('live').textContent = `Run finished. Match ${sc.pct} percent. ${isNew ? 'New best.' : `Best stays ${old.pct} percent.`}`;
+    renderRace(); renderCards(); renderStatic(); dirty = true;
+  }
+  function raceStop() { if (state.phase === 'run') finishRace(true); else if (state.phase === 'count') { state.phase = 'ready'; keepFocus(['stop'], 'start'); renderRace(); dirty = true; } }
+  function raceAgain() { hush(); stopAll(); state.phase = 'ready'; state.result = null; state.all3 = false; resetForTarget(); renderRace(); renderStatic(); dirty = true; }
+  $('start').onclick = raceStart;
+  $('stop').onclick = raceStop;
+  $('again').onclick = $('again2').onclick = raceAgain;
+  $('nextT').onclick = $('next2').onclick = () => { loadTarget(state.target + 1); focusLater('start'); };
+  $('all3').onclick = () => { state.all3 = !state.all3; renderRace(); renderStatic(); dirty = true; };
+  $('replay').onclick = () => { if (state.phase !== 'done') return; state.phase = 'replay'; state.replayT = 0; renderRace(); dirty = true; };
+  $('forget').onclick = () => {
+    if (!confirm('Forget all your best runs and ghosts for Motion Graph Match on this device?')) return;
+    bests = {}; try { localStorage.removeItem(KEY); } catch {}
+    ghost = null; renderCards(); renderRace(); dirty = true;
+  };
+  function focusLater(id) { setTimeout(() => { const e = $(id); if (e && !e.disabled && e.offsetParent) e.focus(); }, 0); }
+  function stopAll() { state.phase = state.mode === 'race' ? 'ready' : state.phase; state.replayT = 0; drag = null; keyDir = 0; }
+
+  // ======================================================================================
+  // Controls
+  // ======================================================================================
+  function setControl(c, quiet) {
+    if (state.mode === 'race' && (state.phase === 'run' || state.phase === 'count' || state.phase === 'replay')) return;
+    const was = state.ctl;
+    state.ctl = c;
+    // keep the motion continuous: Throttle takes the current velocity, Pedal starts at 0, Hand holds the cart where it is
+    if (c !== was) {
+      if (c === 'throttle') sl.throttle = clamp(Math.round(cart.v * 10) / 10, -3, 3);
+      if (c === 'pedal') sl.pedal = 0;
+      drag = null; keyDir = 0;
+      if (state.mode === 'explore' && (state.run === 'running' || state.run === 'paused') && rec.x.length > 1) state.switches.push({t: (rec.x.length - 1) * M.SAMPLE, ctl: c});
+    }
+    if (state.mode === 'race' && c !== was) {
+      if (state.phase === 'done') { state.phase = 'ready'; state.result = null; state.all3 = false; resetForTarget(); }
+      else loadGhost();
+      const T = M.TARGETS[state.target]; if (c === 'throttle') { sl.throttle = T.v0; }
+    }
+    for (const b of document.querySelectorAll('.pk')) b.setAttribute('aria-pressed', b.dataset.ctl === c);
+    $('sliderBox').hidden = c === 'hand'; $('handNote').hidden = c !== 'hand';
+    vsBuild();
+    // a control line that has not started yet is dropped when another control is picked
+    dropLines(['hand', 'throttle', 'pedal'].filter(k => k !== c));
+    if (!quiet) narrate(c);
+    renderHint(); renderStatic(); renderCards(); if (state.mode === 'race') renderRace(); dirty = true;
+  }
+  for (const b of document.querySelectorAll('.pk')) b.onclick = () => setControl(b.dataset.ctl);
+
+  // ======================================================================================
+  // Panel text and buttons
+  // ======================================================================================
+  function renderHint() { $('hint').textContent = state.mode === 'race' ? HINT.race : HINT[state.ctl]; }
+  function note(t) { $('runNote').textContent = t; }
+  function tipFor(k) { return k === 'keys' ? 'The arrow keys on the cart work with Hand control. Pick Hand, or use the slider.' : ''; }
+  function renderButtons() {
+    const r = state.run;
+    $('go').textContent = r === 'running' ? '❚❚ Pause' : '▶ Go';
+    $('go').setAttribute('aria-label', r === 'running' ? 'Pause' : r === 'done' ? 'Go, a fresh sweep' : 'Go');
+    $('links').setAttribute('aria-pressed', state.links);
+    let n = r === 'idle' ? 'Drive to start the clock, or press Go.' : r === 'paused' ? 'Paused. Press Go to keep driving.' :
+      r === 'done' ? '12 s done. Press Go for a fresh sweep.' : '';
+    if (state.links && r === 'running') n = 'Show links works on a paused or finished run.';
+    else if (state.links && (r === 'paused' || r === 'done')) n = 'Move the pointer across the graphs, or Tab to a graph and use the arrow keys.';
+    if (state.pendingStart) n += (n ? ' ' : '') + `Start at ${fmt(state.startAt)} m applies on Clear.`;
+    note(n);
+  }
+  function cardBest(i) {
+    const id = M.TARGETS[i].id, out = [];
+    for (const c of ['hand', 'throttle', 'pedal']) { const b = bests[id + ':' + c]; if (b) out.push(`${CTL_NAME[c]} ${b.pct}%`); }
+    return out.length ? 'Best: ' + out.join(', ') : '';
+  }
+  // a tiny thumbnail of a target's curve on its own graph
+  function thumb(i) {
+    const T = M.TARGETS[i], b = M.build(T), q = T.graph, W = 70, H = 34;
+    // each thumbnail is scaled to its own curve (with zero in view for v and a), so small pushes still show their shape
+    const ys = []; for (let k = 0; k <= 240; k++) ys.push(b.at[q](k * .05));
+    let lo = Math.min(...ys, q === 'x' ? Infinity : 0), hi = Math.max(...ys, q === 'x' ? -Infinity : 0);
+    const pad = Math.max(.1, (hi - lo) * .12); lo -= pad; hi += pad;
+    const X = t => 15 + t / M.RUN * (W - 18), Y = v => 3 + (hi - v) / (hi - lo) * (H - 6);
+    let d = '';
+    for (const s of b.seg) for (let k = 0; k <= 12; k++) { const t = s.t0 + (s.t1 - s.t0) * k / 12; d += (k ? 'L' : 'M') + X(t).toFixed(1) + ',' + Y(b.at[q](Math.min(t, s.t1 - 1e-9))).toFixed(1); }
+    const z = q === 'x' ? '' : `<line x1="15" x2="${W - 3}" y1="${Y(0)}" y2="${Y(0)}" stroke="#62789a" stroke-width="1"/>`;
+    return `<svg viewBox="0 0 ${W} ${H}" aria-hidden="true"><rect x=".5" y=".5" width="${W - 1}" height="${H - 1}" rx="3" fill="#0e1520" stroke="#2b3646"/>${z}<path d="${d}" fill="none" stroke="#f2a93b" stroke-width="2" stroke-dasharray="4 2.5"/><text x="7.5" y="${H / 2 + 4}" text-anchor="middle" font-size="10" font-family="Segoe UI,sans-serif" font-weight="700" fill="#a6b3c4">${q}</text></svg>`;
+  }
+  const thumbs = M.TARGETS.map((_, i) => thumb(i));
+  function renderCards() {
+    const box = $('cards');
+    if (!box.children.length) M.TARGETS.forEach((T, i) => {
+      const b = document.createElement('button'); b.className = 'card'; b.dataset.i = i;
+      b.innerHTML = `${thumbs[i]}<span><span class="cn">${T.id}. ${T.name}</span><span class="cm"></span><span class="cb"></span></span>`;
+      b.querySelector('span>span').style.display = 'block'; b.querySelector('.cm').style.display = 'block'; b.querySelector('.cb').style.display = 'block';
+      b.onclick = () => { if (state.phase === 'run' || state.phase === 'count') return; loadTarget(i); };
+      box.appendChild(b);
+    });
+    for (const b of box.children) {
+      const i = +b.dataset.i, T = M.TARGETS[i], hard = M.hardWay(state.ctl, T.graph);
+      b.setAttribute('aria-pressed', i === state.target);
+      b.querySelector('.cm').innerHTML = `${GRAPH_WORD[T.graph]} graph, ${CTL_NAME[T.ctl]} suggested${T.v0 ? ', starts moving' : ''}${hard ? '<span class="tag">hard way</span>' : ''}`;
+      b.querySelector('.cb').textContent = cardBest(i);
+      b.disabled = state.phase === 'run' || state.phase === 'count' || state.phase === 'replay';
+    }
+  }
+  // a focused button that is about to be disabled hands focus on, so keyboard users never land on the page body
+  function keepFocus(fromIds, toId) { const a = document.activeElement; if (a && fromIds.includes(a.id)) focusLater(toId); }
+  function renderRace() {
+    if (state.mode !== 'race') return;
+    const T = M.TARGETS[state.target], ph = state.phase, hard = M.hardWay(state.ctl, T.graph);
+    $('tName').innerHTML = `Target ${T.id}: ${T.name} <span style="font-weight:400;color:var(--muted)">(${GRAPH_WORD[T.graph]})</span>${hard ? '<span class="tag">hard way</span>' : ''}`;
+    const b = bests[bestKey()];
+    let n = T.note ? T.note + ' ' : '';
+    if (T.v0) n = `Starts moving at ${fmt(T.v0)} m/s. ` + n;
+    if (ph === 'ready') n += b ? `Ghost: your best with ${CTL_NAME[state.ctl]}, ${b.pct} percent.` : `No ${CTL_NAME[state.ctl]} best yet for this target.`;
+    if (ph === 'count') n = 'Get ready. The cart is held at the start.';
+    if (ph === 'run') n = 'Stay inside the shaded band.';
+    if (ph === 'replay') n = 'Replaying your run' + (ghost ? ' and the ghost.' : '.');
+    $('tNote').textContent = n.trim();
+    const busy = ph === 'run' || ph === 'count' || ph === 'replay';
+    $('start').disabled = busy; $('stop').disabled = !(ph === 'run' || ph === 'count');
+    const done = ph === 'done' || ph === 'replay';
+    if (ph === 'replay') keepFocus(['all3', 'again2', 'next2'], 'replay');
+    $('again').hidden = $('nextT').hidden = done;
+    for (const p of document.querySelectorAll('.pk')) p.disabled = busy;
+    $('res').hidden = !(done && state.result);
+    if (state.result) {
+      const r = state.result, q = T.graph;
+      $('resDl').innerHTML = `<dt>Match</dt><dd>${r.pct}% <span style="color:var(--muted)">(time inside the band)</span></dd>` +
+        `<dt>RMS error</dt><dd>${f2(r.rms)} ${M.UNIT[q]}${r.early ? ` <span style="color:var(--muted)">(first ${fmt(r.done * M.SAMPLE, 1)} s)</span>` : ''}</dd>` +
+        `<dt>Best</dt><dd>${r.best}% <span style="color:var(--muted)">(${CTL_NAME[r.ctl]})</span>${r.hard ? '<span class="tag">hard way</span>' : ''}</dd>`;
+      $('resLine').textContent = r.isNew ? 'New best' : `Best stays ${r.best} percent`;
+      $('resLine').className = 'rline' + (r.isNew ? ' ok' : '');
+      $('all3').setAttribute('aria-pressed', state.all3);
+      $('replay').setAttribute('aria-disabled', ph === 'replay'); $('again2').disabled = ph === 'replay'; $('next2').disabled = ph === 'replay';
+      $('all3').disabled = ph === 'replay';
+    }
+    renderCards();
+  }
+
+  // ======================================================================================
+  // Narration: one welcome per mode; a line is marked said when it starts; nothing queued cuts off Read
+  // ======================================================================================
+  const said = new Set(), queued = new Map();
+  let tapped = false, vq = Promise.resolve(), vgen = 0, readP = Promise.resolve();
+  // the first tap unlocks sound; the welcome waits until that tap's own click has landed (a mode button gives the new
+  // mode's welcome). A first tap on Read or Sound does not bring a welcome after it.
+  for (const ev of ['pointerdown', 'keydown']) addEventListener(ev, e => {
+    if (tapped) return; tapped = true;
+    const b = e.target && e.target.closest ? e.target.closest('button') : null;
+    if (b && (b.id === 'read' || b.id === 'sound')) return;
+    // a mode button switches mode on its click, which queues that mode's welcome; anything else gets this one first
+    if (!(b && /^m-/.test(b.id))) narrate(WELCOME[state.mode]);
+  }, true);
+  // queued: key -> token; dropping a key (or a stop) makes its waiting task skip, and its trigger can queue it again
+  function narrate(key) {
+    if (!tapped || !Curio.sound || said.has(key) || queued.has(key)) return false;
+    const tok = {}; queued.set(key, tok);
+    const gen = vgen, line = L[key];
+    vq = vq.then(async () => {
+      await readP;
+      if (gen !== vgen || queued.get(key) !== tok) return;
+      queued.delete(key); said.add(key);
+      await Promise.race([say(line), wait(2500 + 80 * line.length)]);
+    });
+    return true;
+  }
+  function hush() { vgen++; queued.clear(); vq = Promise.resolve(); readP = Promise.resolve(); Curio.stop(); }
+  const dropLines = keys => keys.forEach(k => queued.delete(k));
+  function readNow() { hush(); const h = $('hint').textContent; readP = Promise.race([say([h], true), wait(2500 + 80 * h.length)]).catch(() => {}); }
+
+  // ======================================================================================
+  // Modes
+  // ======================================================================================
+  function setMode(m) {
+    hush();
+    state.mode = m;
+    document.body.dataset.mode = m;
+    for (const k of ['explore', 'race']) $('m-' + k).setAttribute('aria-pressed', k === m);
+    for (const el of document.querySelectorAll('[data-modes]')) el.hidden = !el.dataset.modes.split(' ').includes(m);
+    $('res').hidden = true;
+    for (const p of document.querySelectorAll('.pk')) p.disabled = false;
+    if (m === 'explore') {
+      B = null; ghost = null; state.phase = 'ready'; state.run = 'idle'; state.pendingStart = false;
+      resetRun(state.startAt, 0); sl.throttle = 0; sl.pedal = 0;
+      setControl(state.ctl, true);
+      renderButtons();
+    } else {
+      state.run = 'idle';
+      loadTarget(state.target, true);
+    }
+    renderHint(); renderStatic(); dirty = true;
+    narrate(WELCOME[m]);
+  }
+  for (const k of ['explore', 'race']) $('m-' + k).onclick = () => setMode(k);
+
+  // every line the tool can say (voice/lines.json records them all)
+  const allLines = () => [...new Set([...Object.values(L), HINT.hand, HINT.throttle, HINT.pedal, HINT.race])];
+
+  // ======================================================================================
+  // Layout (see the CSS note)
+  // ======================================================================================
+  let page = null, lastSize = '';
+  function pageLayout() { const w = innerWidth, h = innerHeight; return w >= 1000 && h >= 700 ? 'wide' : w >= 600 && w / h >= 1.25 ? 'compact' : 'stack'; }
+  function relayout() {
+    const p = pageLayout();
+    if (p !== page) { page = p; for (const c of ['wide', 'compact', 'stack']) document.body.classList.toggle(c, c === p); }
+    const st = $('stage');
+    if (page === 'stack') { const w = st.getBoundingClientRect().width || innerWidth; st.style.height = Math.round(clamp(w * 1.2, 470, 700)) + 'px'; }
+    else st.style.height = '';
+    const r = st.getBoundingClientRect(), key = Math.round(r.width) + 'x' + Math.round(r.height);
+    if (key !== lastSize) { lastSize = key; build(); }
+  }
+  new ResizeObserver(() => relayout()).observe($('stage'));
+  addEventListener('resize', () => relayout());
+
+  Curio.init({clips: "voice:*", rate: .95, readFallback: () => $('hint').textContent});
+  $('read').onclick = readNow;
+
+  // for checking frames: drive(seconds, fn(t) -> {pointer, keyV, throttle, pedal}) steps the simulation by hand
+  function drive(sec, fn) {
+    manual = true;
+    const n = Math.round(sec / M.DT);
+    for (let k = 0; k < n && simOn(); k++) {
+      const o = fn ? fn(cart.steps * M.DT) || {} : {};
+      if ('pointer' in o) {
+        const t = cart.steps * M.DT;
+        if (o.pointer == null) drag = null;
+        else { if (!drag) hand.reset(); if (!drag || drag.p !== o.pointer) hand.add(t, o.pointer); drag = {id: -1, p: o.pointer}; handNow = hand.get(t); }
+      }
+      if ('keyV' in o) { keyDir = o.keyV ? Math.sign(o.keyV) : 0; keySlow = Math.abs(o.keyV || 0) < .5; }
+      if ('throttle' in o) sl.throttle = o.throttle;
+      if ('pedal' in o) sl.pedal = o.pedal;
+      stepOnce();
+    }
+    drag = null; keyDir = 0; vsShow(); manual = false; render();
+    return {t: cart.steps * M.DT, x: cart.x, v: cart.v, a: liveA(), n: rec.x.length};
+  }
+  window.__tool = {state, setMode, allLines, setControl, loadTarget, drive, said, queued, M, sl, bests: () => bests,
+    get rec() { return rec; }, get cart() { return cart; }, get B() { return B; }, get ghost() { return ghost; }, get G() { return G; },
+    go: explorePlay, clear: exploreClear, start: raceStart, stopRun: raceStop, again: raceAgain, finish: () => finishRace(false),
+    beginRun() { if (state.phase !== 'count') raceStart(); state.phase = 'run'; state.count = 0; renderRace(); },
+    cursor(i) { state.cursor = i; render(); }, render, hint: () => $('hint').textContent,
+    curio: () => ({last: Curio.last, sound: Curio.sound, reduce: Curio.reduce}), layout: () => ({page, G})};
+  relayout();
+  setMode('explore');
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+{
+  "Drive the cart and watch three graphs draw at once: position, velocity and acceleration.": "qwen3-tts-1.7b-base clone",
+  "Hand control. Drag the cart. Its velocity and acceleration are worked out from how you move it.": "qwen3-tts-1.7b-base clone",
+  "Throttle control. You set the velocity. Position is the running total of it.": "qwen3-tts-1.7b-base clone",
+  "Pedal control. You set the acceleration. Velocity builds up from it, then position from velocity.": "qwen3-tts-1.7b-base clone",
+  "Move across a finished run. The slope of each graph is the value of the one below it.": "qwen3-tts-1.7b-base clone",
+  "Pick a target graph and match it as closely as you can. Your best run comes back as a ghost.": "qwen3-tts-1.7b-base clone",
+  "Three, two, one, go.": "qwen3-tts-1.7b-base clone",
+  "This is the hard way. You control a graph two steps away from the target.": "qwen3-tts-1.7b-base clone",
+  "Watch the moment the cart turns around. Its velocity is zero, but is its acceleration?": "qwen3-tts-1.7b-base clone",
+  "Drag the cart. The computer works out your velocity and acceleration.": "qwen3-tts-1.7b-base clone",
+  "You set the speed and direction. Position is the running total.": "qwen3-tts-1.7b-base clone",
+  "You set the push. Velocity builds up from it, and position from velocity.": "qwen3-tts-1.7b-base clone",
+  "Pick a target, then press Start. Keep your solid line inside the shaded band for the whole run.": "qwen3-tts-1.7b-base clone"
+}

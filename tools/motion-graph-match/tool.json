@@ -1,0 +1,26 @@
+{
+  "id": "motion-graph-match",
+  "status": "beta",
+  "hook": "Drive a lab cart by setting only its position, velocity or acceleration, and watch all three motion graphs draw at once. Then race a ghost of your best run on ten target graphs.",
+  "outcome": "Read and make position, velocity and acceleration graphs, and see that each graph is the slope of the one above it and the area under the one below it",
+  "driver": "students",
+  "minutes": "15-30",
+  "modes": [
+    "Explore",
+    "Race"
+  ],
+  "grades_label": "Grade 11",
+  "sources": [
+    "OpenStax, University Physics Volume 1, chapter 3, Motion Along a Straight Line (displacement, velocity, acceleration, slopes and areas of motion graphs, constant-acceleration equations): https://openstax.org/books/university-physics-volume-1/pages/3-introduction",
+    "OpenStax, Physics (high school), chapter 2, Motion in One Dimension: https://openstax.org/books/physics/pages/2-introduction",
+    "OpenStax, University Physics Volume 1, section 5.3, Newton's Second Law (the F = m a force readout): https://openstax.org/books/university-physics-volume-1/pages/5-3-newtons-second-law",
+    "NGSS HS-PS2-1: https://www.nextgenscience.org/pe/hs-ps2-1-motion-and-stability-forces-and-interactions",
+    "Misconceptions targeted: McDermott, Rosenquist and van Zee, Student difficulties in connecting graphs and physics, American Journal of Physics 55, 503 (1987); Beichner, Testing student interpretation of kinematics graphs, American Journal of Physics 62, 750 (1994)",
+    "Target motions are original, built from piecewise definitions and integrated exactly (end positions checked)",
+    "Cart, track, sensor, graphs, thumbnails and arrows drawn in code; sounds generated in the browser",
+    "Background image generated on this PC with FLUX.1-schnell (Apache 2.0), no people",
+    "Narration generated with Qwen3-TTS (Apache 2.0), cloning a Google Gemini text-to-speech voice"
+  ],
+  "third_party": [],
+  "updated": "2026-10-25"
+}

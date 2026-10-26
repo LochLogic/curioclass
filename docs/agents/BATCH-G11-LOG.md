@@ -90,3 +90,4 @@ Read every "Not like" list against the other 14. No two tools share a one idea o
 - field-lines: re-verify FIX: one new should-fix, the wide layout at 1366x768 (a common school laptop) pushes the main buttons below the fold. 1366x768 added to the standard size list. Final round sent.
 - motion-graph-match: final check FIX: an eased stop draws a comb-shaped a graph (fit switching); one targeted extra round sent (past the 2-round limit, justified: it is the tool's core graph).
 - field-lines: final round fixed the wide layout under 900 px tall (buttons-first order). Done.
+- motion-graph-match: extra round blended the two pointer fits (eased-stop jag 0.22 to 0.06 at 1280), removed the stop blip; exact-tracking scores 100, 82, 86, 100. Done. Batch complete: 10 tools live.

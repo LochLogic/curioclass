@@ -1,0 +1,20 @@
+{
+ "bank": "hs-narrator",
+ "voice": "Kore",
+ "style": "Read clearly and naturally, at a moderate pace",
+ "lines": [
+  "Drive the cart and watch three graphs draw at once: position, velocity and acceleration.",
+  "Hand control. Drag the cart. Its velocity and acceleration are worked out from how you move it.",
+  "Throttle control. You set the velocity. Position is the running total of it.",
+  "Pedal control. You set the acceleration. Velocity builds up from it, then position from velocity.",
+  "Move across a finished run. The slope of each graph is the value of the one below it.",
+  "Pick a target graph and match it as closely as you can. Your best run comes back as a ghost.",
+  "Three, two, one, go.",
+  "This is the hard way. You control a graph two steps away from the target.",
+  "Watch the moment the cart turns around. Its velocity is zero, but is its acceleration?",
+  "Drag the cart. The computer works out your velocity and acceleration.",
+  "You set the speed and direction. Position is the running total.",
+  "You set the push. Velocity builds up from it, and position from velocity.",
+  "Pick a target, then press Start. Keep your solid line inside the shaded band for the whole run."
+ ]
+}
