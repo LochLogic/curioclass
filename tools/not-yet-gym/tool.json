@@ -1,0 +1,29 @@
+{
+  "id": "not-yet-gym",
+  "status": "beta",
+  "hook": "Train Bix, a little brain buddy, on real puzzles: a not-yet you come back from with a strategy earns a gold comeback stripe, and the goals you set open new rooms.",
+  "outcome": "Set a personal goal, plan a strategy for when you get stuck, and keep going after mistakes by trying a new approach",
+  "driver": "students or teacher",
+  "minutes": "15-25",
+  "modes": [
+    "Gym",
+    "Goals",
+    "Locker"
+  ],
+  "grades_label": "Grades 3-5",
+  "sources": [
+    "CASEL, What Is the CASEL Framework? Self-Management: setting personal goals, self-motivation, planning: https://casel.org/fundamentals-of-sel/what-is-the-casel-framework/",
+    "Dweck, C. S. (2006). Mindset: The New Psychology of Success. Random House ('not yet' framing, mistakes as information)",
+    "Dweck, C. S. (2015). Carol Dweck Revisits the 'Growth Mindset'. Education Week (new strategies and help from others, not effort alone): https://www.edweek.org/leadership/opinion-carol-dweck-revisits-the-growth-mindset/2015/09",
+    "Sisk, V. F., et al. (2018). Psychological Science 29(4), 549-571, and Yeager, D. S., et al. (2019). Nature 573, 364-369 (small average effects, so the tool only says practice helps)",
+    "American Psychological Association, Building your resilience: https://www.apa.org/topics/resilience/building-your-resilience",
+    "CDC, Coping with Stress (slow breaths): https://www.cdc.gov/mental-health/living-with/index.html",
+    "Anderson, M. and Feil, T. (1998). Turning Lights Out with Linear Algebra. Mathematics Magazine 71(4), 300-303; Light Mat starts checked by brute force over all 512 press sets",
+    "Number Lift fewest moves checked by breadth-first search over floors 0 to 20",
+    "Gym hall backdrop: generated locally with FLUX; Bix, Dot, doors, puzzles, goal board and locker drawn in code",
+    "Illustrations drawn with FLUX.1-schnell (Apache 2.0) on a local computer, edited for Curio Class",
+    "Narration generated with Qwen3-TTS (Apache 2.0), cloning a Google Gemini text-to-speech voice"
+  ],
+  "third_party": [],
+  "updated": "2026-10-26"
+}

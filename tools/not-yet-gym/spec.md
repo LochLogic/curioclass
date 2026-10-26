@@ -1,12 +1,14 @@
-# Brain Gym
+# Not Yet Gym
+
+(Renamed from "Brain Gym" on 2026-10-26: that name is a registered trademark of a commercial program. Folder and id are now not-yet-gym.)
 
 ## One idea
-Bix, a little brain buddy, gets visibly stronger from what you do after a mistake: every "not yet" that you come back from with a strategy adds a gold comeback stripe to Bix's headband, and first-try wins are worth less than comebacks.
+Bix, a little brain buddy, visibly levels up from what you do after a mistake: every "not yet" that you come back from with a strategy adds a gold comeback stripe to Bix's headband, and first-try wins are worth less than comebacks.
 
 ## Not like
-- walk-in-their-shoes (3-5, story): that tool is a story seen through several characters' feelings. Brain Gym has no story or perspectives; it is a training loop with one creature, real puzzles and goal setting.
+- walk-in-their-shoes (3-5, story): that tool is a story seen through several characters' feelings. Not Yet Gym has no story or perspectives; it is a training loop with one creature, real puzzles and goal setting.
 - habit-hero (K-2 health, creature): Pip's meters go down after a less healthy choice. Bix's meters never go down. A mistake costs nothing and opens the door to the biggest reward.
-- calm-corner (K-2 SEL): a guided calm-down tool. Brain Gym has one 3-breath pause as a single strategy card, never a guided calm activity.
+- calm-corner (K-2 SEL): a guided calm-down tool. Not Yet Gym has one 3-breath pause as a single strategy card, never a guided calm activity.
 
 ## Who and how
 - Grade 3-5, Social and Emotional Learning, module Growth Mindset and Goals.
@@ -16,7 +18,7 @@ Bix, a little brain buddy, gets visibly stronger from what you do after a mistak
 - Modes (tool.json): ["Gym", "Goals", "Locker"].
 
 ## Screens and modes
-Header: title "Brain Gym" with small line "Practice, mistakes and goals", the mode buttons **Gym**, **Goals**, **Locker** (keys 1 to 3), then **Motion**, **Sound**, **Read**. Stage on the left, panel on the right (panel below on narrow screens). Panel always has the hint paragraph (`hint`), Bix's **Know-how** bar with the stage name, and the comeback stripe count.
+Header: title "Not Yet Gym" with small line "Practice, mistakes and goals", the mode buttons **Gym**, **Goals**, **Locker** (keys 1 to 3), then **Motion**, **Sound**, **Read**. Stage on the left, panel on the right (panel below on narrow screens). Panel always has the hint paragraph (`hint`), Bix's **Know-how** bar with the stage name, and the comeback stripe count.
 
 ### Gym (opens first)
 - Stage: a side view of a gym hall drawn in code over the gym-hall backdrop. Five room doors in a row: **Pattern Ladder** and **Memory Mirror** (open), **Light Mat** and **Number Lift** (locked, padlock drawn on the door), **Summit Circuit** (locked, at the top of a short climbing wall). Bix stands on the floor in front of the doors.
@@ -45,7 +47,7 @@ Header: title "Brain Gym" with small line "Practice, mistakes and goals", the mo
 | 1 | 0 | Rookie | none | a small hop |
 | 2 | 8 | Warming up | sweatband (holds the comeback stripes) | jumping jacks (3) |
 | 3 | 20 | On a roll | sneakers | a spin |
-| 4 | 35 | Strong mover | gym bag over one shoulder | juggles three small balls |
+| 4 | 35 | Smooth mover | gym bag over one shoulder | juggles three small balls |
 | 5 | 55 | Summit buddy | star medal | a cartwheel |
 
 Know-how points: solve on the first try +1; comeback (a solve after a not-yet or an "I'm stuck" in the same puzzle) +3; extra +1 if a strategy card was used before that comeback solve; finish a goal +5. Points come only the first time a puzzle is solved; replays are free practice. Each comeback adds one gold stripe (up to 10 drawn, then a number on the band).
@@ -153,7 +155,7 @@ Do not say the brain grows, builds neurons or gets "stronger" like a muscle. Bix
 - Taps during a Memory playback are ignored; the pads show "Watch" until playback ends.
 - Teacher on a projector: every target at least 60 px in rooms; choices and pads are big enough for "point and vote".
 - Extremes: after stage 5 the bar reads "Summit buddy" and stays full; points still count as a number. More than 10 stripes shows "x12" on the band.
-- Save Bix stores {know-how, stripes, stage, open rooms, solved rungs, goals done, active goal and plan, stickers, color} to localStorage `curio-brain-gym` (try/catch). No text is ever typed. On load with a save: "Welcome back" and resume. Without Save, nothing persists on reload.
+- Save Bix stores {know-how, stripes, stage, open rooms, solved rungs, goals done, active goal and plan, stickers, color} to localStorage `curio-not-yet-gym` (try/catch). No text is ever typed. On load with a save: "Welcome back" and resume. Without Save, nothing persists on reload.
 - Start over: asks "Start over with a new Bix? Your saved progress will be cleared." with **Yes, start over** and **Cancel**; clears the save and returns to Gym stage 1.
 - Mode switch or Back to gym stops speech and any playback; a breathing card in progress is cancelled.
 - Keyboard: arrows move between choices, pads and mat squares; Enter or Space taps; 1 to 3 switch modes; Escape closes the strategy cards.
@@ -169,9 +171,9 @@ Do not say the brain grows, builds neurons or gets "stronger" like a muscle. Bix
 - Everything else (Bix, Dot, gear, doors, puzzles, goal board, stickers, locker) is drawn in code.
 
 ## Voice
-Bank voice: `big-sister` (Leda, friendly older student), style: "Say in a friendly, upbeat, encouraging way, like an older kid coaching a younger friend at the gym." Bix speaks in the first person. walk-in-their-shoes should not use big-sister.
+Bank voice: `upbeat-guide` (Zephyr, bright and clear), style: "Say brightly and clearly, in a friendly, encouraging way, like an upbeat coach at the gym." Bix speaks in the first person. (Spec check 2026-10-26: conflict-coach has big-sister; walk-in-their-shoes has gentle-storyteller.)
 Welcomes (one per mode):
-- "Welcome to the Brain Gym! I'm Bix. Pick a room and let's practice something hard."
+- "Welcome to the Not Yet Gym! I'm Bix. Pick a room and let's practice something hard."
 - "Let's set a goal. Pick one card, then pick what you'll try when you get stuck."
 - "This is my locker. Everything here, I earned by practicing with you."
 Room instructions (first entry):
@@ -184,7 +186,7 @@ Reactions:
 - Not yet (rotate): "Not yet. What could we try?" / "Hmm. That one's tricky. Pick a strategy." / "Not yet is okay. Let's look again."
 - First try: "Got it!" / "Nice thinking!"
 - Comeback: "We came back! That's a comeback stripe." / "You didn't give up. Look at my headband!"
-- Stage up: "I feel stronger at this already!"
+- Stage up: "All that practice is paying off!"
 - Goal done: "Goal done! A new room just opened."
 - Summit done: "We made it to the summit. Thanks for practicing with me."
 - Tap Bix (rotate): "Practice makes things easier." / "Mistakes show us what to practice next." / "Want to try a new room?"

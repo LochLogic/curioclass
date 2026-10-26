@@ -1,0 +1,16 @@
+{
+  "style": "Bright, friendly flat illustration for a school gym: warm wood, pale lavender walls, cheerful accent colors, soft daylight, clean shapes, nothing busy.",
+  "assets": [
+    {
+      "name": "gym-hall",
+      "prompt": "Empty background: a bright, empty school gymnasium seen straight on from the side. A warm wooden floor across the bottom third, pale lavender walls, a short colorful climbing wall at the far right, a row of plain solid color pennant flags along the top, soft daylight from high windows. The middle of the wall is plain and empty with lots of space. No writing, no numbers, no posters, no logos. No people, no animals. Flat illustration.",
+      "aspect": "16:9",
+      "width": 1600,
+      "quality": 72,
+      "local_note": "shown behind the Gym map under a white 40 percent overlay; the tool draws the floor, five doors and Bix over it, so keep the middle and bottom plain",
+      "source": "flux1-schnell (local)",
+      "sd": "A bright empty school gymnasium, side view. Warm honey wooden floor, pale lavender walls, a short colorful climbing wall on the far right, a row of plain solid color pennant flags near the ceiling, soft daylight from high windows. Wide empty plain wall in the middle. Flat illustration, clean shapes, soft colors, empty room.",
+      "review": "pending"
+    }
+  ]
+}
