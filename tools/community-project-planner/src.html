@@ -1,0 +1,1511 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Community Project Planner · Lead a team, not just a budget · Curio Class</title>
+<meta name="description" content="Lead a six-week neighborhood project where the scarce resource is your volunteers: match people to work they're good at, pick a lead move each week, let people rest, and see whether the project and the team both make it. Then plan a project of your own. Grades 9-12 social and emotional learning. Works offline.">
+<!--
+Community Project Planner (Curio Class)
+Grades 9-12, Social and Emotional Learning, module Leadership and Community (SEL). Standards: CASEL Relationship Skills
+(showing leadership in groups; practicing teamwork and collaborative problem-solving; seeking or offering support and help
+when needed) and Responsible Decision-Making (reflecting on one's role to promote personal, family, and community
+well-being).
+Students drive on laptops (a teacher can project one project and let the class vote on each week's lead move).
+Run a Project: a six-week tycoon with three resources (hours, dollars, team energy), six made-up volunteers drawn in code,
+three made-up projects with events at weeks 2, 4 and 5, one lead move a week. No text input anywhere in this mode.
+Plan Your Own: a one-page plan form with a live timeline and budget; nothing is stored until Save, Clear removes it.
+Everything in the game (projects, prices, needs, energy) is a made-up model for discussion, labeled as made up.
+Sources: CASEL framework; Eisner, Grimm, Maynard and Washburn, The New Volunteer Workforce (SSIR, Winter 2009), on
+matching volunteers' skills and recognizing them (teacher notes only). Volunteers, faces, icons and the timeline are drawn
+in code; banner images are local FLUX art. One file, no network requests. Content CC BY 4.0, code MIT. curioclass.org
+-->
+<link rel="stylesheet" href="kit:curio">
+<link rel="stylesheet" href="kit:theme-912">
+<style>
+:root{--brand:#56c7b8;--brand-ink:#1c1203;--card:#202a38;--card-line:#33415a;
+  --sk-H:#e8b04a;--sk-O:#7cc7ff;--sk-L:#ff9ad5;--sk-D:#c9a0ff;
+  --b-fired:#b8e986;--b-steady:#ffd166;--b-tired:#ffb8a8;--b-empty:#ff8a8a;--b-back:#8d97a5}
+/* page layouts, picked in script (relayout()), as in collision-lab:
+   wide    (1000 px or wider and 700 px or taller): stage left, 360 px panel right;
+   compact (700 px or wider otherwise, such as the 16:10 embed or 760x900): a narrower panel, a one-row header;
+           short boxes (under 700 px tall) also get small cards so the board, lead moves and Run week fit;
+   stack   (under 700 px wide): the panel under the stage, the page scrolls.
+   The board is real HTML at real pixel size (never scaled), so text keeps its size in every box. */
+body{grid-template-rows:auto minmax(0,1fr)}
+main{grid-template-columns:minmax(0,1fr) 360px;min-height:0}
+.stage{min-height:0;background:var(--paper);overflow:auto}
+.panel{min-height:0}
+.panel>*{flex-shrink:0}
+body.compact main{grid-template-columns:minmax(0,1fr) 280px}
+body.compact.short main{grid-template-columns:minmax(0,1fr) 262px}
+@media (max-width:759px){body.compact.short main{grid-template-columns:minmax(0,1fr) 244px}}
+body.compact header{padding:2px 8px;gap:4px;flex-wrap:nowrap;min-width:0}
+body.compact h1{font-size:16px;white-space:nowrap;min-width:0;overflow:hidden;text-overflow:ellipsis}
+body.compact h1 small{display:none}
+body.compact .seg{flex:none}
+body.compact .seg button,body.compact .icon-btn{min-height:44px;padding:0 9px;font-size:13.5px;white-space:nowrap}
+body.compact .icon-btn{flex:none}
+body.compact .panel{padding:6px 8px;gap:6px}
+body.compact .sec{padding:6px 8px}
+body.compact .hint{font-size:13.5px;line-height:1.3}
+body.stack main{grid-template-columns:minmax(0,1fr);align-content:start}
+body.stack .stage{overflow:visible}
+body.stack .panel{border-left:0;border-top:1px solid var(--line);overflow:visible}
+body.stack{height:auto}
+@media (max-width:560px){
+  .seg{display:grid;grid-template-columns:1fr 1fr;border-radius:14px;width:100%}
+  .seg button{min-height:44px;font-size:14px;padding:0 6px}
+  .icon-btn{min-height:44px;padding:0 12px;font-size:15px}
+}
+/* focus: a white ring on the dark header; the kit's .seg clips outlines, so its buttons get an inset ring,
+   dark on the pressed (teal) button: #10161f on #56c7b8 is 9.4:1, #ffffff on #1c2532 is 15.9:1 */
+header :focus-visible{outline-color:#ffffff}
+.seg button:focus-visible{outline:3px solid #ffffff;outline-offset:-6px;box-shadow:inset 0 0 0 2px #10161f}
+.seg button[aria-pressed="true"]:focus-visible{outline-color:#10161f;box-shadow:inset 0 0 0 2px #56c7b8}
+:focus-visible{outline-color:#ffffff}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.muted{color:var(--muted)}
+/* ---------- panel ---------- */
+.sec{display:flex;flex-direction:column;gap:6px}
+.sec>h2{margin:0}
+.wk{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 14px;font-size:15px}
+.wk b{font-family:var(--readout-font);font-size:17px;color:var(--brand)}
+.leads{display:grid;grid-template-columns:1fr 1fr;gap:5px}
+.leads .btn{line-height:1.15;padding:3px 6px;font-size:14px}
+body.compact .leads{grid-template-columns:1fr 1fr 1fr;gap:4px}
+body.compact .leads .btn{font-size:12.5px;padding:2px 4px}
+body.compact.short .sec>h2{display:none}
+.runrow{display:grid;grid-template-columns:1fr 1.5fr;gap:6px}
+.runbar:empty,.runbar.off{display:none!important}
+body.stack .runbar{position:sticky;bottom:0;z-index:6;background:var(--paper);border-top:1px solid var(--line);margin:0 -14px -16px;padding:6px 14px 8px;display:flex;flex-direction:column;gap:6px;box-shadow:0 -6px 14px #0009}
+body.stack .runbar .sec{padding:0;background:none;border:0}
+body.stack .runbar .sec>h2{display:none}
+body.stack .runbar .leads{display:flex;overflow-x:auto;gap:5px;padding:2px}
+body.stack .runbar .leads .btn{flex:none;white-space:nowrap;min-height:44px}
+.runrow .btn{line-height:1.15}
+.smallrow{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.smallrow .btn{font-size:13px;font-weight:600;line-height:1.15;padding:2px 6px}
+.small{font-size:13px;color:var(--muted);margin:0;line-height:1.4}
+.small:empty{display:none}
+#status{font-size:13.5px;color:var(--ink);margin:0;min-height:0}
+#status:empty{display:none}
+body.compact .wk{font-size:13px;gap:2px 10px}
+body.compact .wk b{font-size:14.5px}
+body.compact .small,body.compact #status{font-size:12px;line-height:1.3}
+body.compact .smallrow .btn{font-size:12px}
+body.compact .big-btn{min-height:44px;font-size:15px}
+.ok-msg{margin:0;font-size:13.5px;color:var(--ok)}
+.ok-msg:empty{display:none}
+.confirm{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:14px}
+.confirm span{flex:1 0 100%}
+.confirm .btn{flex:1 1 auto}
+/* ---------- stage screens ---------- */
+.screen{padding:12px 14px 16px;display:flex;flex-direction:column;gap:10px;min-height:100%}
+body.compact.short .screen{padding:6px 8px 8px;gap:6px}
+/* picker */
+.pick-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.pcard{background:var(--card);border:1px solid var(--card-line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
+.pcard .pimg{aspect-ratio:16/10;background:linear-gradient(135deg,#56c7b8,#141b25);position:relative;overflow:hidden}
+.pcard .pimg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pcard .pbody{padding:10px 12px 12px;display:flex;flex-direction:column;gap:5px;flex:1}
+.pcard h3{margin:0;font:700 18px/1.2 'Segoe UI',system-ui,sans-serif}
+.pcard .diff{font-size:13px;color:var(--brand);font-weight:700}
+.pcard p{margin:0;font-size:14.5px;line-height:1.38}
+.pcard .bud{font-family:var(--readout-font);font-size:14px;color:var(--muted)}
+.pcard .btn{margin-top:auto}
+.made-up{margin:0;font-size:14px;color:var(--muted)}
+.meet-row{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}
+.meet-row>div{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:13.5px;text-align:center}
+.meet-row .face{width:54px;height:54px}
+.meet-row .sk{display:flex;gap:3px;align-items:center;color:var(--muted);font-size:12.5px}
+.how{margin:0;padding-left:18px;font-size:14.5px;line-height:1.4;display:flex;flex-direction:column;gap:4px}
+body.compact.short .meet-row .face{width:34px;height:34px}
+body.compact.short .meet-row>div{font-size:11.5px}
+body.compact.short .meet-row .sk{font-size:11px}
+body.compact.short .how{font-size:12.5px;line-height:1.3;gap:2px}
+@media (max-width:560px){.meet-row{grid-template-columns:repeat(3,minmax(0,1fr))}}
+body.compact.short .pick-grid{gap:6px}
+body.compact.short .pcard .pbody{padding:5px 7px 7px;gap:3px}
+body.compact.short .pcard h3{font-size:13.5px}
+body.compact.short .pcard p{font-size:12px;line-height:1.28}
+body.compact.short .pcard .diff,body.compact.short .pcard .bud{font-size:11.5px}
+body.compact.short .made-up{font-size:12px}
+body.compact.short .pcard .btn{min-height:44px;font-size:13px;padding:0 6px}
+@media (max-width:560px){.pick-grid{grid-template-columns:1fr}.pcard{flex-direction:row}.pcard .pimg{width:38%;aspect-ratio:auto;min-height:120px}}
+/* banner strip: the project's 4:1 image under a dark gradient so the title keeps 12:1 or more */
+.banner{position:relative;border-radius:10px;overflow:hidden;min-height:56px;background:linear-gradient(90deg,#2f6f68,#141b25);flex:none}
+.banner img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.banner::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,#0d1219 0%,#0d1219e6 40%,#0d121900 75%)}
+.banner .bt{position:relative;z-index:1;padding:6px 14px;display:flex;flex-direction:column;justify-content:center;min-height:56px}
+.banner h2{margin:0;font:800 21px/1.15 'Segoe UI',system-ui,sans-serif;color:#fff}
+.banner .wkof{font-size:14px;color:#e8edf3}
+body.compact.short .banner,body.compact.short .banner .bt{min-height:38px}
+body.compact.short .banner .bt{padding:3px 10px;flex-direction:row;align-items:baseline;gap:10px;justify-content:flex-start}
+body.compact.short .banner h2{font-size:15px}
+body.compact.short .banner .wkof{font-size:12px}
+/* task board */
+.tasks{display:grid;grid-template-columns:repeat(var(--tcols,3),minmax(0,1fr));gap:8px}
+.task{position:relative;background:var(--card);border:1px solid var(--card-line);border-radius:10px;display:flex;flex-direction:column;min-width:0}
+.task .stripe{position:absolute;left:0;top:0;bottom:0;width:6px;border-radius:10px 0 0 10px}
+.task .main{all:unset;box-sizing:border-box;display:flex;flex-direction:column;gap:2px;padding:6px 9px 6px 14px;cursor:pointer;border-radius:10px;min-height:44px;flex:1}
+.task .main:focus-visible{outline:3px solid #ffffff;outline-offset:-2px}
+.task.target .main{box-shadow:inset 0 0 0 2px var(--brand)}
+.task .top svg{flex:none}
+.boardwrap.narrow .task .top .skw{display:none}
+.task .top{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+.task .tag{margin-left:auto;font-size:11px;letter-spacing:.06em;color:var(--muted);border:1px solid var(--card-line);border-radius:999px;padding:0 6px}
+.task .tag.bonus{color:var(--brand);border-color:var(--brand)}
+.task .name{font-weight:700;font-size:15px;line-height:1.2;color:var(--ink)}
+.bar{position:relative;height:9px;border-radius:5px;background:#0d1219;overflow:hidden;border:1px solid var(--card-line)}
+.bar i{position:absolute;left:0;top:0;bottom:0;background:var(--brand);border-radius:5px}
+.bar i.pv{background:repeating-linear-gradient(135deg,#56c7b880 0 4px,#56c7b830 4px 8px)}
+.task .row{display:flex;align-items:baseline;gap:8px;font-size:13px;color:var(--muted);flex-wrap:wrap}
+.task .nums{font-family:var(--readout-font);color:var(--ink);font-size:13px}
+.task .state{font-weight:700;color:var(--ink)}
+.task .state.done{color:var(--b-fired)}
+.task .pv-t{color:var(--ink)}
+.task .pv-t.warn{color:var(--warn)}
+.task .who{font-size:13px;color:var(--ink);line-height:1.25;min-height:16px}
+.task .buy{margin:0 8px 8px 14px;min-height:44px;font-size:13.5px;line-height:1.15;padding:2px 8px}
+.task.done{border-color:#4d6b3a}
+.task.fund{grid-column:1 / -1}
+.task.fund .main{flex-direction:row;flex-wrap:wrap;align-items:center;gap:2px 12px;min-height:44px}
+.task.fund .top .tag{margin-left:6px}
+.task.fund .name{font-size:14.5px}
+.task.locked .name,.task.paused .name{color:#c9d2dd}
+body.compact.short .tasks{gap:5px}
+body.compact.short .task .main{padding:4px 6px 4px 11px;gap:2px}
+body.compact.short .task .stripe{width:5px}
+body.compact.short .task .top{font-size:11px;gap:4px}
+body.compact.short .task .top .skw{display:none}
+body.compact.short .task .tag{font-size:11px;padding:0 4px}
+body.compact.short .task .name{font-size:12.5px;line-height:1.15}
+body.compact.short .task .row,body.compact.short .task .nums,body.compact.short .task .who{font-size:11px;gap:4px;line-height:1.2;min-height:0}
+body.compact.short .bar{height:6px}
+body.compact.short .task .buy{margin:0 5px 5px 11px;min-height:36px;font-size:11.5px;padding:1px 5px}
+/* team row */
+.team{display:grid;grid-template-columns:repeat(var(--vcols,6),minmax(0,1fr));gap:8px}
+.vol{background:var(--card);border:1px solid var(--card-line);border-radius:10px;padding:6px 8px 8px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.vol.sel{border-color:var(--brand);box-shadow:0 0 0 2px var(--brand)}
+.vol.back{border-style:dashed}
+.vol.back .fwrap,.vol.back .en .bar{opacity:.45}
+.vol .pick{all:unset;box-sizing:border-box;display:flex;align-items:center;gap:8px;cursor:pointer;border-radius:8px;min-height:44px}
+.vol .pick:focus-visible{outline:3px solid #ffffff;outline-offset:2px}
+.vol .face{width:42px;height:42px;flex:none}
+.vol .nm{font-weight:700;font-size:14.5px;line-height:1.15;color:var(--ink)}
+.vol .hrs{font-size:12.5px;color:var(--muted)}
+.vol .nmw{display:flex;flex-direction:column;gap:2px;min-width:0}
+.vol .skills{display:flex;align-items:center;gap:4px;font-size:12.5px;color:var(--ink)}
+.vol .skills>span{display:inline-flex;align-items:center}
+.vol .skills .hrs{display:inline;margin-left:3px;white-space:nowrap;font-family:inherit}
+.vol .en{display:flex;align-items:center;gap:5px;font-size:12.5px;font-weight:700}
+.vol .en .bar{flex:1;height:8px;min-width:24px}
+.vol .cares{font-size:12.5px;color:var(--muted);line-height:1.2}
+.vol .cares b{color:var(--ink);font-weight:600}
+.vol select{min-height:44px;width:100%;border-radius:8px;border:1px solid var(--btn-line);background:#0b1017;color:var(--ink);font-size:13.5px;padding:0 4px}
+.vol select:disabled{opacity:.5}
+.vol .kbd{font-family:var(--readout-font);font-size:11px;color:var(--muted);border:1px solid var(--card-line);border-radius:4px;padding:0 4px;margin-left:auto}
+body.compact.short .team{gap:5px}
+body.compact.short .vol{padding:3px 5px 5px;gap:2px}
+body.compact.short .vol .face{width:32px;height:32px}
+body.compact.short .vol .nm{font-size:12.5px}
+body.compact.short .vol .hrs,body.compact.short .vol .skills,body.compact.short .vol .en,body.compact.short .vol .cares{font-size:11px}
+body.compact.short .vol select{min-height:34px;font-size:12px}
+body.compact.short .vol .kbd{display:none}
+body.compact.short .hw,.boardwrap.tight .hw{display:none}
+body.compact.short .vol .face{width:26px;height:26px}
+body.compact.short .vol .pick{gap:4px;min-height:36px}
+body.compact.short .vol .skills svg{width:12px;height:12px}
+body.compact.short .vol .skills{gap:2px}
+body.compact.short .vol .en{flex-wrap:wrap;gap:1px 3px;line-height:1.1}
+body.compact.short .vol .en .bar{flex:1 0 100%;height:5px}
+body.compact.short .vol select{min-height:36px;font-size:11.5px;padding:0 2px}
+body.compact.short .task.fund .main{gap:0 8px;min-height:36px}
+body.compact.short .task.fund .name{font-size:12.5px}
+body.tiny .vol select{display:none}
+/* tiny volunteer card: face and name on one line, skills and hours under them, then what they do this week */
+body.compact.short.tiny .team{gap:3px}
+body.compact.short.tiny .vol{padding:3px 2px 4px}
+body.compact.short.tiny .vol .pick{display:grid;grid-template-columns:19px minmax(0,1fr);gap:1px 2px;align-items:center;min-height:36px}
+body.compact.short.tiny .vol .nmw{display:contents}
+body.compact.short.tiny .vol .face{width:19px;height:19px;display:block}
+body.compact.short.tiny .vol .nm{font-size:11.5px;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+body.compact.short.tiny .vol .skills{grid-column:1 / -1;min-width:0;overflow:hidden}
+body.compact.short.tiny .vol .en{gap:1px 2px}
+body.compact.short.tiny .vol .en svg{width:11px;height:11px}
+/* the glyph flows with the band word, so "Running on empty" takes two lines, not three */
+body.compact.short.tiny .vol .en{display:block}
+body.compact.short.tiny .vol .en .gl{display:inline;margin-right:2px}
+body.compact.short.tiny .vol .en .gl svg{display:inline;vertical-align:-1px}
+body.compact.short.tiny .vol .en .bw{display:inline}
+body.compact.short.tiny .vol .en .bar{display:block;margin-top:1px}
+.vol .on{display:none}
+body.tiny .vol .on{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:11px;line-height:1.2;color:var(--ink);border-left:3px solid var(--card-line);padding-left:3px}
+body.tiny .vol .on.rest{color:var(--muted);font-style:italic}
+body.compact .runrow .btn{padding-left:4px;padding-right:4px}
+body.tiny .task .name{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+body.tiny .task:not(.fund) .row,body.tiny .task .who{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+body.tiny .task:not(.fund) .row>span+span:not(:empty){margin-left:4px}
+body.tiny .vol .cares{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+body.compact.short .vol .en .bar{height:4px}
+.shr,.pname{display:none}
+body.tiny .lng{display:none}
+body.tiny .shr{display:inline}
+body.tiny .task:not(.fund) .bar{display:none}
+body.tiny .task:not(.fund) .row .pv-t{display:block;margin-left:0!important}
+body.tiny .vol.back .en .bar{display:none}
+body.tiny .banner{display:none}
+body.tiny .pname{display:block;flex:1 0 100%;font-weight:700;color:var(--ink)}
+/* tiny but not so short (800x500): room for the banner strip and the task bars again */
+@media (min-height:470px){body.tiny .banner{display:block}body.tiny .pname{display:none}body.tiny .task:not(.fund) .bar{display:block}
+  body.tiny .vol .on{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;white-space:normal;overflow-wrap:anywhere}}
+.calm g.bob,.calm .bob{animation:none!important}
+.bob{animation:bob 3.2s ease-in-out infinite;transform-origin:24px 40px}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-1.2px)}}
+/* overlay card (events and confirmations) */
+.boardwrap{position:relative;display:flex;flex-direction:column;gap:8px}
+body.compact.short .boardwrap{gap:5px}
+.overlay{position:absolute;inset:0;z-index:5;background:#05080dc4;display:flex;align-items:flex-start;justify-content:center;padding:18px 12px;border-radius:10px}
+.ocard{background:var(--sec-bg);border:1px solid var(--btn-line);border-radius:12px;padding:14px 16px;max-width:560px;width:100%;display:flex;flex-direction:column;gap:8px;box-shadow:0 10px 30px #0008}
+.ocard h2{margin:0;font:700 12px/1.2 'Segoe UI',system-ui,sans-serif;letter-spacing:.09em;text-transform:uppercase;color:var(--brand)}
+.ocard p{margin:0;font-size:17px;line-height:1.4}
+.ocard .opts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.ocard .opt{display:flex;flex-direction:column;align-items:flex-start;gap:2px;text-align:left;padding:8px 10px;min-height:56px;line-height:1.2}
+.ocard .opt small{font-weight:400;font-size:13px;color:var(--muted)}
+.ocard .opt[aria-disabled="true"]{opacity:.5;cursor:not-allowed}
+.ocard .opt .nem{color:var(--warn);font-weight:700}
+body.compact.short .overlay{padding:6px}
+body.compact.short .ocard{padding:8px 10px;gap:5px}
+body.compact.short .ocard p{font-size:14px}
+body.compact.short .ocard .opt{font-size:13px;min-height:44px;padding:4px 7px}
+body.compact.short .ocard .opt small{font-size:11.5px}
+@media (max-width:560px){.ocard .opts{grid-template-columns:1fr}}
+/* week summary */
+.summary{background:var(--sec-bg);border:1px solid var(--line);border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;gap:8px}
+.sumhead{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.sumhead h3{margin:0;font:700 17px 'Segoe UI',system-ui,sans-serif;flex:1}
+.sumhead h3:focus{outline:none}
+.sumgrid{display:grid;grid-template-columns:1fr 1fr;gap:6px 16px}
+.summary h4{margin:0 0 3px;font:700 12px 'Segoe UI',system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.summary ul{margin:0;padding-left:0;list-style:none;font-size:14px;line-height:1.38}
+.summary li{margin:0 0 2px}
+.summary .num{font-family:var(--readout-font)}
+.summary .pos{color:var(--b-fired)} .summary .neg{color:var(--warn)}
+.summary .note{color:var(--muted);font-size:13.5px}
+.summary .quote{font-style:italic}
+body.compact.short .summary{padding:6px 8px;gap:5px}
+body.compact.short .summary ul{font-size:12px;line-height:1.3}
+body.compact.short .sumhead h3{font-size:14px}
+body.compact.short .summary h4{font-size:11px}
+body.compact.short .summary .note{font-size:11.5px}
+@media (max-width:620px){.sumgrid{grid-template-columns:1fr}}
+/* report */
+.report{display:flex;flex-direction:column;gap:10px}
+.report h3{margin:0;font:800 22px/1.25 'Segoe UI',system-ui,sans-serif;color:var(--ink)}
+.report h3:focus{outline:none}
+.report .facts{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:15px}
+.report .facts b{font-family:var(--readout-font);color:var(--brand)}
+.report h4{margin:4px 0 2px;font:700 12px 'Segoe UI',system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.report ul{margin:0;padding-left:20px;font-size:15px;line-height:1.42}
+.report .rteam{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:14px}
+.report .rteam span{display:inline-flex;align-items:center;gap:5px}
+.report .acts{display:flex;flex-wrap:wrap;gap:8px}
+body.compact.short .report h3{font-size:16px}
+body.compact.short .report .facts,body.compact.short .report ul,body.compact.short .report .rteam{font-size:12.5px}
+/* plan your own */
+.form{display:flex;flex-direction:column;gap:10px}
+.form h3{margin:0;font:700 18px 'Segoe UI',system-ui,sans-serif}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:8px 12px}
+.fields label,.trow label{display:flex;flex-direction:column;gap:3px;font-size:13px;color:var(--muted);font-weight:600}
+.fields .wide{grid-column:1 / -1}
+.form input[type=text],.form input[type=number],.form select{min-height:44px;border-radius:8px;border:1px solid var(--btn-line);background:#0b1017;color:var(--ink);font-size:15px;padding:0 10px;width:100%;font-family:inherit}
+.trows{display:flex;flex-direction:column;gap:8px}
+.trow{background:var(--card);border:1px solid var(--card-line);border-radius:10px;padding:8px 10px;display:grid;
+  grid-template-columns:minmax(150px,2fr) minmax(110px,1fr) minmax(130px,1.1fr) auto minmax(80px,.7fr) 44px;gap:6px 8px;align-items:end}
+.trow .weeks{display:flex;flex-direction:column;gap:3px;font-size:13px;color:var(--muted);font-weight:600}
+.trow .wbtns{display:flex;gap:3px}
+.trow .wbtns .btn{min-width:44px;min-height:44px;padding:0 4px;font-size:13px}
+.trow .rm{min-width:44px;padding:0;font-size:18px}
+.keep{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:15px}
+.keep label{display:inline-flex;align-items:center;gap:8px;min-height:44px}
+.keep input{width:20px;height:20px;accent-color:var(--brand)}
+fieldset{border:1px solid var(--line);border-radius:10px;margin:0;padding:6px 12px 8px}
+legend{font-size:13px;color:var(--muted);font-weight:700;padding:0 4px}
+.tl{background:var(--sec-bg);border:1px solid var(--line);border-radius:10px;padding:8px}
+.tl svg{display:block;max-width:100%;height:auto}
+.tl text{font-family:'Segoe UI',system-ui,sans-serif}
+.form:not(.tabular) .trow{grid-template-columns:minmax(0,1fr) minmax(0,1fr) 96px;grid-template-areas:"name name rm" "skill role cost" "weeks weeks weeks"}
+.form:not(.tabular) .trow .tname{grid-area:name}.form:not(.tabular) .trow .rm{grid-area:rm;justify-self:end}
+.form:not(.tabular) .trow .lsk{grid-area:skill}.form:not(.tabular) .trow .lro{grid-area:role}.form:not(.tabular) .trow .lco{grid-area:cost}.form:not(.tabular) .trow .weeks{grid-area:weeks}
+@media (max-width:560px){.fields{grid-template-columns:1fr}}
+.thead{display:none}
+.form.tabular .fields{grid-template-columns:1fr 1fr 1.5fr 150px}
+.form.tabular .fields .wide{grid-column:auto}
+.form.tabular .thead{display:grid;grid-template-columns:minmax(150px,2fr) minmax(110px,1fr) minmax(130px,1.1fr) 284px minmax(80px,.7fr) 44px;gap:8px;padding:0 11px;font-size:13px;font-weight:600;color:var(--muted)}
+.form.tabular .trow{grid-template-columns:minmax(150px,2fr) minmax(110px,1fr) minmax(130px,1.1fr) 284px minmax(80px,.7fr) 44px;padding:4px 10px;align-items:center}
+.form.tabular .trow .lt{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.form.tabular .trows{gap:5px}
+.budget{font-size:15px;display:flex;flex-direction:column;gap:2px}
+.budget b{font-family:var(--readout-font)}
+.notes{margin:0;padding-left:0;list-style:none;display:flex;flex-direction:column;gap:5px;font-size:14px;line-height:1.38}
+.notes li{background:var(--tip-bg);border-left:3px solid var(--brand);border-radius:6px;padding:5px 8px}
+.notes:empty{display:none}
+.exs{display:flex;flex-direction:column;gap:5px}
+.exs .btn{text-align:left}
+#printArea{display:none}
+@media print{
+  @page{margin:12mm}
+  :root{color-scheme:light}
+  html{background:#fff}
+  body{display:block;background:#fff;color:#000;min-height:0;height:auto}
+  header,main,#live{display:none!important}
+  #printArea{display:block;font:11pt/1.38 'Segoe UI',Arial,sans-serif;color:#000}
+  #printArea h1{font:800 18pt 'Segoe UI',Arial,sans-serif;margin:0 0 4px}
+  #printArea h2{font:700 12pt 'Segoe UI',Arial,sans-serif;margin:10px 0 4px}
+  #printArea p{margin:2px 0}
+  #printArea ul{margin:2px 0;padding-left:18px}
+  #printArea table{border-collapse:collapse;width:100%;font-size:10pt}
+  #printArea th,#printArea td{border:1px solid #000;padding:3px 6px;text-align:left}
+  #printArea .tlp svg{width:100%;height:auto;max-height:80mm}
+  #printArea .foot{font-size:9pt;color:#333;margin-top:8px}
+  #printArea section{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Community Project Planner <small>Lead a team, not just a budget.</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-run" aria-pressed="true">Run a Project</button>
+    <button id="m-plan" aria-pressed="false">Plan Your Own</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true" title="Turn animation on or off">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+  <button class="icon-btn" id="read">🔊 Read</button>
+</header>
+<main>
+  <div class="stage" id="stage">
+    <!-- Run a Project: picker -->
+    <div class="screen" id="picker" data-mode="run">
+      <div class="pick-grid" id="pickGrid"></div>
+      <p class="made-up">Maple Street is a made-up neighborhood. The volunteers are made up too.</p>
+      <div class="sec meet"><h2>Your team (the same six in every project)</h2><div class="meet-row" id="meetRow"></div></div>
+    </div>
+    <!-- Run a Project: week board, summary and report -->
+    <div class="screen" id="board" hidden>
+      <div class="banner" id="banner"><img id="bannerImg" alt=""><div class="bt"><h2 id="bName"></h2><span class="wkof" id="bWeek"></span></div></div>
+      <div class="boardwrap" id="boardWrap">
+        <div class="tasks" id="tasks" role="group" aria-label="Task board"></div>
+        <div class="summary" id="summary" hidden></div>
+        <div class="team" id="team" role="group" aria-label="Volunteers"></div>
+        <div class="overlay" id="overlay" hidden><div class="ocard" id="ocard" role="dialog" aria-modal="true" aria-labelledby="oTitle"></div></div>
+      </div>
+      <div class="runbar" id="runbar"></div>
+    </div>
+    <div class="screen" id="reportView" hidden><div class="report" id="report"></div></div>
+    <!-- Plan Your Own -->
+    <div class="screen" id="planView" hidden>
+      <div class="form" id="form">
+        <h3>My project plan</h3>
+        <div class="fields">
+          <label>Project name<input type="text" id="fName" maxlength="60" autocomplete="off"></label>
+          <label>Who it helps<input type="text" id="fWho" maxlength="80" autocomplete="off"></label>
+          <label class="wide">What done looks like<input type="text" id="fDone" maxlength="120" autocomplete="off"></label>
+          <label>Budget we have ($)<input type="number" id="fBudget" min="0" max="10000" step="1" inputmode="numeric"></label>
+        </div>
+        <div class="thead" aria-hidden="true"><span>Task</span><span>Skill</span><span>Role</span><span>Weeks</span><span>Supplies $</span><span></span></div>
+        <div class="trows" id="trows"></div>
+        <div><button class="btn" id="addTask">+ Add task</button></div>
+        <fieldset><legend>How I'll keep the team going</legend><div class="keep" id="keep"></div></fieldset>
+        <div class="tl" id="timeline" aria-label="Timeline"></div>
+      </div>
+    </div>
+  </div>
+  <aside class="panel" id="panel">
+    <p class="hint" id="hint"></p>
+    <div data-show="picker" class="sec">
+      <h2>How it works</h2>
+      <ul class="how"><li>Six weeks. Each week, put people on tasks, pick one lead move, then run the week.</li>
+        <li>Watch three things: hours, dollars and team energy.</li><li>Something will come up in weeks 2, 4 and 5.</li>
+        <li>Strong skill: filled icon. Okay skill: outline icon.</li></ul>
+    </div>
+    <div data-show="board" class="sec" id="secWeek">
+      <h2>Week</h2>
+      <div class="wk"><span class="pname" id="wkProj"></span><span id="wkLine">Week <b id="wkN">1</b> of 6</span><span>Money <b id="money">$0</b></span><span>Hours this week <b id="hours">0</b></span></div>
+    </div>
+    <div data-show="board" class="sec" id="secLead">
+      <h2>Lead move</h2>
+      <div class="leads" id="leads" role="group" aria-label="Lead move"></div>
+    </div>
+    <div data-show="board" class="runrow" id="runRow">
+      <button class="btn" id="clearA" aria-label="Clear assignments">Clear<span class="lng"> assignments</span></button>
+      <button class="big-btn" id="runWeek">Run week 1</button>
+    </div>
+    <p id="status" aria-live="polite"></p>
+    <div data-show="board" class="smallrow">
+      <button class="btn" id="restart">Restart project</button>
+      <button class="btn" id="another">Pick another project</button>
+    </div>
+    <p data-show="board" class="small">Keys: 1 to 6 pick a volunteer, then Q W E A S D a task, F Fundraise, R Rest. L changes the lead move, Enter runs the week.</p>
+    <div data-show="report" class="sec"><h2>Talk about it</h2><ul class="how" id="rTalk"></ul></div>
+    <div data-show="report" class="sec"><h2>Week by week</h2><ul class="how" id="rWeeks"></ul></div>
+    <!-- plan -->
+    <div data-show="plan" class="sec">
+      <h2>Budget</h2>
+      <div class="budget" id="budget"></div>
+    </div>
+    <ul data-show="plan" class="notes" id="notes"></ul>
+    <div data-show="plan" class="sec">
+      <button class="btn" id="exBtn" aria-expanded="false" aria-controls="exs">Start from an example</button>
+      <div class="exs" id="exs" hidden><p class="small">This replaces what is in the form.</p></div>
+      <div class="smallrow"><button class="btn" id="pPrint">Print plan</button><button class="btn" id="pSave">Save on this device</button></div>
+      <button class="btn" id="pClear">Clear</button>
+      <div class="confirm" id="pConfirm" hidden><span>Clear the whole plan and remove it from this computer?</span><button class="btn" id="pYes">Clear everything</button><button class="btn" id="pKeep">Keep it</button></div>
+      <p class="ok-msg" id="pMsg" aria-live="polite"></p>
+    </div>
+    <p data-show="plan" class="small">This stays on this computer. Nothing is sent anywhere. Save keeps it here until you press Clear.</p>
+  </aside>
+</main>
+<div id="printArea"></div>
+<p class="sr" id="live" aria-live="polite"></p>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const {say, wait} = Curio;
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c]));
+  const rnd = x => Math.floor(x + 0.5 + 1e-9);   // round half up (and 11.5 stays 11.5 after x1.15 float error)
+  const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+  const state = {mode: 'run', screen: 'picker', pid: null, sel: null};
+
+  // ======================================================================================
+  // Content (spec: Content). Everything here is made up.
+  // ======================================================================================
+  const SK = {
+    H: {word: 'Hands-on', color: '#e8b04a', pat: 'hatch', role: 'Build lead'},
+    O: {word: 'Outreach', color: '#7cc7ff', pat: 'dots', role: 'Outreach lead'},
+    L: {word: 'Logistics', color: '#ff9ad5', pat: 'solid', role: 'Logistics lead'},
+    D: {word: 'Design', color: '#c9a0ff', pat: 'stripes', role: 'Design lead'},
+  };
+  const SKILL_KEYS = ['H', 'O', 'L', 'D'];
+  const CARES = {thanks: 'Thanks', say: 'Having a say', plan: 'A clear plan', checkin: 'Check-ins'};
+  const VOLS = [
+    {id: 'dana', name: 'Dana Okafor', first: 'Dana', st: 'H', ok: 'L', h: 6, cares: 'thanks', skin: '#6b3f26', hair: 'coily', hairC: '#17110e', top: 'hoodie', topC: '#3f8f4f'},
+    {id: 'luis', name: 'Luis Herrera', first: 'Luis', st: 'O', ok: 'D', h: 5, cares: 'say', skin: '#b07a50', hair: 'wavy', hairC: '#2a1a12', top: 'jacket', topC: '#2f5fa8'},
+    {id: 'mei', name: 'Mei Chen', first: 'Mei', st: 'L', ok: 'O', h: 4, cares: 'plan', skin: '#e9c39c', hair: 'bob', hairC: '#121014', top: 'sweater', topC: '#e0b43a'},
+    {id: 'tariq', name: 'Tariq Haddad', first: 'Tariq', st: 'D', ok: 'H', h: 5, cares: 'say', skin: '#c08b5c', hair: 'short', hairC: '#15110f', top: 'shirt', topC: '#8a929c', glasses: true},
+    {id: 'grace', name: 'Grace Whitehorse', first: 'Grace', st: 'O', ok: 'L', h: 3, cares: 'checkin', skin: '#9a6440', hair: 'long', hairC: '#0f0d0d', top: 'flannel', topC: '#b03a32'},
+    {id: 'ben', name: 'Ben Novak', first: 'Ben', st: 'H', ok: 'D', h: 6, cares: 'checkin', skin: '#f3cfae', hair: 'short', hairC: '#8a3b1e', top: 'tee', topC: '#7b4fb0', freckles: true},
+  ];
+  const VOL = Object.fromEntries(VOLS.map(v => [v.id, v]));
+  const T = (id, name, skill, need, supply, cost, lock, core, means, verb) => ({id, name, skill, need, supply, cost, lock, core, means, verb: verb || 'Buy'});
+  const PROJECTS = [
+    {id: 'river', name: 'Riverside Cleanup', diff: 'Start here', goal: 'Clean a mile of the river trail and keep it clean.', budget: 400, art: 'art:banner-river',
+      intro: 'Riverside Cleanup. A good first project. Start by finding where the trash is.',
+      tasks: [
+        T('map', 'Map the trash hot spots', 'L', 20, null, 0, null, true, 'You know where the worst spots are.'),
+        T('signup', 'Sign up cleanup volunteers', 'O', 35, null, 0, null, true, 'About 40 neighbors signed up for cleanup day.'),
+        T('cleanup', 'Cleanup day', 'H', 50, 'gloves, bags and grabbers', 150, 'map', true, 'A mile of riverbank is clean.'),
+        T('recycle', 'Sort the recycling', 'H', 20, null, 0, null, true, 'Cans and bottles went to recycling, not the landfill.'),
+        T('signs', 'Keep It Clean trail signs', 'D', 25, 'signboards', 90, null, true, 'Signs at each trail entrance.'),
+        T('photos', 'Before-and-after photo show', 'D', 20, 'prints', 40, null, false, 'The library shows the photos for a month.'),
+      ]},
+    {id: 'garden', name: 'Library Lot Garden', diff: 'Some jobs wait for others', goal: 'Turn the empty lot beside the library into a garden anyone can use.', budget: 600, art: 'art:banner-garden',
+      intro: 'The library garden. Some jobs have to wait for others. Plan the order.',
+      tasks: [
+        T('permit', 'Get permission and plan the beds', 'L', 20, null, 0, null, true, 'The city said yes, and the plan fits the lot.'),
+        T('beds', 'Build six raised beds', 'H', 50, 'lumber', 240, 'permit', true, 'Six raised beds stand in the lot.'),
+        T('plant', 'Fill and plant', 'H', 30, 'soil and seedlings', 180, 'beds', true, 'The beds are planted.'),
+        T('water', 'Recruit neighbors to water', 'O', 30, null, 0, null, true, 'A watering schedule with a name for every day.'),
+        T('gsigns', 'Signs and a garden map', 'D', 20, 'paint and boards', 60, null, true, 'Anyone can find their way around.'),
+        T('opening', 'Opening day', 'L', 25, 'snacks and tables', 50, null, false, 'Neighbors came to see it open.'),
+      ]},
+    {id: 'coats', name: 'Winter Coat Drive', diff: 'Tight budget', goal: 'Collect, clean and hand out warm coats before the cold.', budget: 300, art: 'art:banner-coats',
+      intro: 'The coat drive. Money is tight, so every dollar and every hour counts.',
+      tasks: [
+        T('flyer', 'Flyer and poster design', 'D', 15, null, 0, null, true, 'A flyer people actually read.'),
+        T('spread', 'Spread the word', 'O', 40, 'flyer printing', 60, 'flyer', true, 'The whole neighborhood heard about it.'),
+        T('boxes', 'Drop-off boxes at five places', 'L', 20, 'boxes', 40, null, true, 'Five places to drop off a coat.'),
+        T('wash', 'Sort and wash coats', 'H', 45, 'laundromat', 120, null, true, 'About 120 coats are clean and sorted by size.', 'Pay for'),
+        T('handout', 'Hand-out day', 'L', 30, 'racks and hangers', 50, 'wash', true, 'Families picked out coats that fit.'),
+        T('hats', 'Hat and glove table', 'O', 20, null, 0, null, false, 'Stores gave hats and gloves to go with the coats.'),
+      ]},
+  ];
+  const PROJ = Object.fromEntries(PROJECTS.map(p => [p.id, p]));
+  const PICK_LABEL = {river: 'Riverside Cleanup (start here)', garden: 'Library Lot Garden', coats: 'Winter Coat Drive (tight budget)'};
+
+  // events: text, two options {label, cost(g) -> words, money(g) -> dollars needed now, apply(g)}
+  const EVENTS = {
+    river: {
+      2: {text: 'Rain raised the river and moved the trash.',
+        A: {label: 'Re-map the hot spots', cost: () => 'Map needs 10 more points.', apply: g => needChg(g, 'map', 10)},
+        B: {label: 'Wait a week to look', cost: () => 'Map and Cleanup day take no hours this week.', apply: g => { g.ev.paused.push('map', 'cleanup'); }}},
+      4: {text: 'A local news station asks for an interview.',
+        A: {label: 'Send Luis', cost: g => 'Luis has 4 fewer hours this week. ' + (isDone(g, 'signup') ? 'Sign-up is done, so a viewer donates $30.' : 'Sign-up needs 15 fewer points.'),
+          apply: g => { g.ev.hours.luis = -4; if (isDone(g, 'signup')) g.ev.donate = 30; else needChg(g, 'signup', -15); }},
+        B: {label: 'Skip it', cost: () => 'Nothing changes.', apply: () => {}}},
+      5: {text: 'Half the grabbers broke.',
+        A: {label: 'Buy more ($40)', cost: () => 'Costs $40.', money: () => 40, apply: g => spend(g, 40, 'more grabbers')},
+        B: {label: 'Borrow from the parks department', cost: () => 'Grace has 3 fewer hours this week.', apply: g => { g.ev.hours.grace = -3; }}},
+    },
+    garden: {
+      2: {text: 'Lumber went up $40.',
+        A: {label: 'Pay the new price', cost: g => g.t.beds.bought ? 'Costs $40 now (the lumber is already bought).' : 'Lumber will cost $40 more.',
+          money: g => g.t.beds.bought ? 40 : 0, apply: g => { if (g.t.beds.bought) spend(g, 40, 'the lumber price'); else g.t.beds.cost += 40; }},
+        B: {label: 'Ask the hardware store for a deal', cost: () => 'Luis has 3 fewer hours this week. The price stays.', apply: g => { g.ev.hours.luis = -3; }}},
+      4: {text: 'A heat wave is coming.',
+        A: {label: 'Keep the usual hours', cost: () => 'Everyone who works this week loses 8 more energy.', apply: g => { g.ev.heatE = 8; }},
+        B: {label: 'Work early mornings', cost: () => 'Hands-on progress x0.8 this week.', apply: g => { g.ev.heat = true; }}},
+      5: {text: 'A neighbor says a bed blocks the sidewalk path.',
+        A: {label: 'Listen and redraw the map', cost: () => 'Signs need 8 more points. Everyone +4 energy.', apply: g => { needChg(g, 'gsigns', 8); for (const v of VOLS) g.ev.energy[v.id] = 4; g.ev.energyWhy = 'listened to a neighbor'; }},
+        B: {label: "Say it's approved and move on", cost: () => 'Recruit neighbors needs 10 more points (word gets around).', apply: g => needChg(g, 'water', 10)}},
+    },
+    coats: {
+      2: {text: 'A store offers 40 coats if someone picks them up.',
+        A: {label: 'Send Dana with a car', cost: () => 'Dana has 3 fewer hours this week. Sort and wash needs 10 more points. About 160 coats in the end.',
+          apply: g => { g.ev.hours.dana = -3; needChg(g, 'wash', 10); g.coats160 = true; }},
+        B: {label: 'Say thanks, not now', cost: () => 'Nothing changes.', apply: () => {}}},
+      4: {text: 'Snow closes the community center this week.',
+        A: {label: 'Move to the library meeting room ($25)', cost: () => 'Costs $25.', money: () => 25, apply: g => spend(g, 25, 'the library room')},
+        B: {label: 'Take the week off', cost: () => 'No task takes hours this week. Everyone rests (+20).', apply: g => { g.ev.allRest = true; }}},
+      5: {text: 'Mei and Luis disagree about who should get coats first.',
+        A: {label: 'Hear both, then set a fair rule together', cost: () => "Uses this week's lead move. Mei and Luis +6 energy.",
+          apply: g => { g.ev.leadUsed = true; g.lead = 'none'; g.ev.energy = {mei: 6, luis: 6}; g.ev.energyWhy = 'were heard'; }},
+        B: {label: 'Decide it yourself, fast', cost: () => 'Mei and Luis -10 energy.', apply: g => { g.ev.energy = {mei: -10, luis: -10}; g.ev.energyWhy = 'were not heard'; }}},
+    },
+  };
+
+  const LEADS = [
+    {id: 'thank', label: 'Thank the team'}, {id: 'ask', label: 'Ask for ideas'}, {id: 'checkin', label: 'Check in'},
+    {id: 'plan', label: 'Planning meeting'}, {id: 'push', label: 'Push harder'}, {id: 'none', label: 'No lead move'},
+  ];
+  const BANDS = [
+    {id: 'fired', word: 'Fired up', min: 80, color: '#b8e986', factor: 1},
+    {id: 'steady', word: 'Steady', min: 55, color: '#ffd166', factor: 1},
+    {id: 'tired', word: 'Tired', min: 30, color: '#ffb8a8', factor: .75},
+    {id: 'empty', word: 'Running on empty', min: 1, color: '#ff8a8a', factor: .5},
+    {id: 'back', word: 'Stepping back', min: -1, color: '#8d97a5', factor: 0},
+  ];
+  const BAND = Object.fromEntries(BANDS.map(b => [b.id, b]));
+  const bandOf = e => e >= 80 ? 'fired' : e >= 55 ? 'steady' : e >= 30 ? 'tired' : e >= 1 ? 'empty' : 'back';
+  const NOTE = {fired: "I'm good. Keep it coming.", steady: 'Doing fine. A thank-you goes a long way.', tired: 'I could use a lighter week.',
+    empty: 'Honestly, I need a week off.', back: "I'll be back. I just need a break."};
+  const TIERS = ['Finished, and the team wants to do another one.', 'Finished, but the team is worn out.',
+    'Partly done. The neighborhood still got something real.', 'Not this time. Try leading it a different way.'];
+  const QUESTIONS = ['Which week did the team feel best, and what did you do that week?', 'Who did you learn about by checking in, and what changed after?',
+    'If you led it again, what is one thing you would do sooner?'];
+
+  // every fixed line (narration and panel hints), recorded with the wise-mentor bank voice
+  const L = {
+    'w-run': "You're leading a neighborhood project. Pick one. Your volunteers are your biggest resource.",
+    'w-plan': "Plan a project of your own. Use roles, not names. It stays on this computer.",
+    'h-assign': 'Pick a volunteer, then a task. People do best on their strong skill.',
+    'h-lead': "Pick one lead move for the week. You won't know what people care about until you check in.",
+    'h-tired': 'Someone is tired. A rest week now can save the project later.',
+    'h-event': 'Things change. Choose, then plan the week around it.',
+    'h-week6': 'Last week. Finish what you can, and thank the people who showed up.',
+    'h-plan': "Give each task a skill, a role and the weeks it runs. Watch the budget as you go.",
+  };
+  const WELCOME = {run: 'w-run', plan: 'w-plan'};
+  const allLines = () => [...new Set([...Object.values(L), ...PROJECTS.map(p => p.intro), ...TIERS])];
+
+  // ======================================================================================
+  // The model (spec: Interactions). Pure functions on a game object, so frames and replays can be checked.
+  // ======================================================================================
+  function newGame(pid) {
+    const p = PROJ[pid];
+    const g = {pid, week: 1, money: p.budget, t: {}, v: {}, assign: {}, lead: 'none', last: null, revealed: false, log: [],
+      hoursGiven: 0, everBack: [], coats160: false, pending: null, evChosen: null, spent: [], startBand: {}, ev: null, done: false};
+    for (const t of p.tasks) g.t[t.id] = {need: t.need, prog: 0, bought: !t.cost, cost: t.cost};
+    for (const v of VOLS) g.v[v.id] = {e: 80, back: 0};
+    weekStart(g);
+    return g;
+  }
+  const taskDef = (g, id) => PROJ[g.pid].tasks.find(t => t.id === id);
+  const isDone = (g, id) => g.t[id].prog >= g.t[id].need;
+  function unlocked(g, id) { const d = taskDef(g, id); return !d.lock || isDone(g, d.lock) || g.t[id].prog > 0; }
+  const isOpen = (g, id) => !isDone(g, id) && unlocked(g, id) && g.t[id].bought;
+  const paused = (g, id) => g.ev.allRest || (id !== 'fund' && g.ev.paused.includes(id));
+  const canTake = (g, id) => !g.ev.allRest && (id === 'fund' || (isOpen(g, id) && !paused(g, id)));
+  function needChg(g, id, d) { const t = g.t[id]; t.need = d > 0 ? t.need + d : Math.max(t.prog, t.need + d); }
+  function spend(g, amt, what) { g.money -= amt; g.spent.push([what, amt]); }
+  function buy(g, id) {
+    const t = g.t[id];
+    if (t.bought || !unlocked(g, id) || g.money < t.cost) return false;
+    spend(g, t.cost, taskDef(g, id).supply); t.bought = true; return true;
+  }
+  function weekStart(g) {
+    g.ev = {hours: {}, paused: [], allRest: false, heat: false, heatE: 0, energy: {}, energyWhy: '', leadUsed: false, donate: 0};
+    g.spent = []; g.lead = 'none'; g.evChosen = null;
+    for (const v of VOLS) {
+      const s = g.v[v.id];
+      if (s.back > 0) g.startBand[v.id] = 'back';
+      else if (s.e <= 0) { s.back = 2; g.startBand[v.id] = 'back'; if (!g.everBack.includes(v.id)) g.everBack.push(v.id); }
+      else g.startBand[v.id] = bandOf(s.e);
+    }
+    g.pending = EVENTS[g.pid][g.week] ? g.week : null;
+    dropInvalid(g);
+  }
+  function chooseEvent(g, opt) {
+    const e = EVENTS[g.pid][g.pending], o = e[opt];
+    if (o.money && g.money < o.money(g)) return false;
+    o.apply(g); g.evChosen = opt; g.pending = null; dropInvalid(g); return true;
+  }
+  function dropInvalid(g) {
+    for (const k of Object.keys(g.assign)) if (g.startBand[k] === 'back' || !canTake(g, g.assign[k])) delete g.assign[k];
+  }
+  function setAssign(g, vid, tid) {
+    if (g.startBand[vid] === 'back' || g.pending) return false;
+    if (!tid || tid === 'rest') { delete g.assign[vid]; return true; }
+    if (!canTake(g, tid)) return false;
+    g.assign[vid] = tid; return true;
+  }
+  const hoursOf = (g, vid) => Math.max(0, VOL[vid].h + (g.ev.hours[vid] || 0));
+  const skillOf = (g, tid) => tid === 'fund' ? 'O' : taskDef(g, tid).skill;
+  const matchOf = (vid, sk) => sk === VOL[vid].st ? 2 : sk === VOL[vid].ok ? 1.5 : 1;
+  // the cut an Ask for ideas makes: 8 points off the Open core task with the most need left (ties: first in list)
+  function askCut(g) {
+    let best = null, left = -1;
+    for (const d of PROJ[g.pid].tasks) if (d.core && isOpen(g, d.id)) { const l = g.t[d.id].need - g.t[d.id].prog; if (l > left) { left = l; best = d.id; } }
+    return best;
+  }
+  // this week's numbers for the current plan, without changing anything (the card previews use it; runWeek applies it)
+  function compute(g) {
+    const lead = g.ev.leadUsed ? 'none' : g.lead, push = lead === 'push' ? 1.5 : 1;
+    const cut = lead === 'ask' ? askCut(g) : null;
+    const per = {}, raw = {}, hrs = {}, gains = {}, wasted = {}, wastedH = {};
+    let hours = 0;
+    for (const [vid, tid] of Object.entries(g.assign)) {
+      const h = hoursOf(g, vid), m = matchOf(vid, skillOf(g, tid));
+      const pts = rnd(h * m * BAND[g.startBand[vid]].factor * push);
+      per[vid] = pts; raw[tid] = (raw[tid] || 0) + pts; hrs[tid] = (hrs[tid] || 0) + h * push; hours += h * push;
+    }
+    for (const [tid, r] of Object.entries(raw)) {
+      let mult = 1;
+      if (lead === 'plan') mult *= 1.15;
+      if (g.ev.heat && tid !== 'fund' && taskDef(g, tid).skill === 'H') mult *= .8;
+      const gp = rnd(r * mult);
+      if (tid === 'fund') { gains.fund = gp; continue; }
+      const t = g.t[tid], need = tid === cut ? Math.max(t.prog, t.need - 8) : t.need, left = need - t.prog;
+      gains[tid] = Math.min(gp, left);
+      if (gp > left) { wasted[tid] = gp - left; wastedH[tid] = Math.max(1, rnd((gp - left) * hrs[tid] / gp)); }
+    }
+    return {lead, push, cut, per, raw, hrs, gains, wasted, wastedH, hours};
+  }
+  function runWeek(g) {
+    if (g.pending || g.done) return null;
+    const c = compute(g), lead = c.lead, half = lead !== 'none' && lead === g.last;
+    const bon = x => half ? Math.floor(x / 2) : x;
+    const before = Object.fromEntries(Object.entries(g.t).map(([k, t]) => [k, isDone(g, k)]));
+    if (c.cut) { const t = g.t[c.cut]; t.need = Math.max(t.prog, t.need - 8); }
+    for (const [tid, n] of Object.entries(c.gains)) if (tid !== 'fund') g.t[tid].prog += n;
+    const raised = 6 * (c.gains.fund || 0);
+    g.money += raised + g.ev.donate; g.hoursGiven += c.hours;
+    const ech = {}, why = {}, notes = {};
+    for (const v of VOLS) {
+      const s = g.v[v.id], b = g.startBand[v.id];
+      if (b === 'back') { ech[v.id] = 0; why[v.id] = []; continue; }
+      const parts = [];
+      const tid = g.assign[v.id];
+      if (tid) {
+        const m = matchOf(v.id, skillOf(g, tid));
+        parts.push(m === 2 ? [-6, 'worked on a strong skill'] : m === 1.5 ? [-10, 'worked on an okay skill'] : [-14, 'worked outside their skills']);
+        if (lead === 'push') parts.push([-10, 'pushed harder']);
+        if (g.ev.heatE) parts.push([-g.ev.heatE, 'worked in the heat']);
+      } else parts.push([20, 'rested']);
+      const c2 = v.cares;
+      if (lead === 'thank') parts.push([bon(6) + (c2 === 'thanks' ? bon(8) : 0), 'thanked']);
+      if (lead === 'ask') parts.push([bon(3) + (c2 === 'say' ? bon(10) : 0), 'asked for ideas']);
+      if (lead === 'checkin') parts.push([bon(3) + (c2 === 'checkin' ? bon(10) : 0), 'checked in']);
+      if (lead === 'plan' && c2 === 'plan') parts.push([bon(10), 'a clear plan']);
+      if (g.ev.energy[v.id]) parts.push([g.ev.energy[v.id], g.ev.energyWhy]);
+      const d = parts.reduce((a, p) => a + p[0], 0), ne = clamp(s.e + d, 0, 100);
+      ech[v.id] = ne - s.e; s.e = ne; why[v.id] = parts.filter(p => p[0] !== 0);
+      if (lead === 'checkin') notes[v.id] = NOTE[b];
+    }
+    if (lead === 'checkin') { g.revealed = true; for (const v of VOLS) if (g.startBand[v.id] === 'back') notes[v.id] = NOTE.back; }
+    const returning = [];
+    for (const v of VOLS) {
+      const s = g.v[v.id];
+      if (g.startBand[v.id] === 'back') { s.back--; if (s.back === 0) { s.e = 40; returning.push(v.id); } }
+    }
+    const newDone = Object.keys(g.t).filter(k => isDone(g, k) && !before[k]);
+    const stepping = VOLS.filter(v => g.startBand[v.id] !== 'back' && g.v[v.id].e === 0).map(v => v.id);
+    const entry = {week: g.week, lead, half, cut: c.cut, per: c.per, gains: c.gains, wasted: c.wasted, wastedH: c.wastedH, ech, why, notes,
+      e: Object.fromEntries(VOLS.map(v => [v.id, g.v[v.id].e])), money: g.money, raised, donate: g.ev.donate, spent: g.spent.slice(),
+      bands: {...g.startBand}, prog: Object.fromEntries(Object.entries(g.t).map(([k, t]) => [k, [t.prog, t.need]])), newDone, stepping, returning,
+      assign: {...g.assign}, hours: c.hours, allRest: g.ev.allRest};
+    g.log.push(entry); g.last = lead;
+    if (g.week === 6) g.done = true;
+    return entry;
+  }
+  function nextWeek(g) { if (g.done) return; g.week++; weekStart(g); }
+  function outcome(g) {
+    const p = PROJ[g.pid], core = p.tasks.filter(t => t.core), nd = core.filter(t => isDone(g, t.id)).length;
+    const avg = VOLS.reduce((a, v) => a + g.v[v.id].e, 0) / VOLS.length;
+    const tier = nd === core.length && avg >= 55 && !g.everBack.length ? 0 : nd === core.length ? 1 : nd >= 3 ? 2 : 3;
+    const bonus = p.tasks.find(t => !t.core);
+    return {tier, sentence: TIERS[tier], core: nd, coreOf: core.length, bonus: isDone(g, bonus.id), money: g.money, avg, hours: g.hoursGiven, back: g.everBack.slice()};
+  }
+  // replay a plan of weeks [{ev, buy, a: {vol: task}, lead}] on a fresh game (for checking against the Python model)
+  function replay(pid, plan) {
+    const g = newGame(pid);
+    for (const wk of plan) {
+      if (g.pending) chooseEvent(g, wk.ev || 'B');
+      for (const b of wk.buy || []) if (!buy(g, b)) throw new Error('buy failed ' + b + ' week ' + g.week);
+      g.assign = {};
+      for (const [vid, tid] of Object.entries(wk.a)) if (!setAssign(g, vid, tid)) throw new Error('assign failed ' + vid + ' ' + tid + ' week ' + g.week);
+      g.lead = g.ev.leadUsed ? 'none' : wk.lead;
+      runWeek(g); nextWeek(g);
+    }
+    return {log: g.log.map(l => ({week: l.week, lead: l.lead, half: l.half, cut: l.cut, per: l.per, gains: l.gains, wasted: l.wasted, e: l.e, money: l.money, bands: l.bands, prog: l.prog})), outcome: outcome(g)};
+  }
+
+  // ======================================================================================
+  // Drawing in code: faces, skill icons, band glyphs
+  // ======================================================================================
+  const NS = 'http://www.w3.org/2000/svg';
+  const ICON = {
+    H: f => `<path d="M3 13.5 9 7.5" stroke="${f.c}" stroke-width="2.4" stroke-linecap="round"/><path d="M7.2 3.6 10.6 2.2 13.8 5.4 12.4 8.8 10.6 9.2 6.8 5.4Z" fill="${f.fill}" stroke="${f.c}" stroke-width="1.4" stroke-linejoin="round"/>`,
+    O: f => `<path d="M2.5 6.2h2.6l6.4-3.4v10.4L5.1 9.8H2.5Z" fill="${f.fill}" stroke="${f.c}" stroke-width="1.4" stroke-linejoin="round"/><path d="M5 9.9 6.2 13.6" stroke="${f.c}" stroke-width="1.6" stroke-linecap="round"/><path d="M13.2 6.2q1.4 1.8 0 3.6" stroke="${f.c}" stroke-width="1.4" fill="none" stroke-linecap="round"/>`,
+    L: f => `<rect x="3.2" y="3" width="9.6" height="11.4" rx="1.4" fill="${f.fill}" stroke="${f.c}" stroke-width="1.4"/><rect x="5.8" y="1.6" width="4.4" height="2.6" rx=".8" fill="${f.c}"/><path d="M5.6 7.4h4.8M5.6 10.2h4.8" stroke="${f.fill === 'none' ? f.c : '#202a38'}" stroke-width="1.3" stroke-linecap="round"/>`,
+    D: f => `<path d="M3 13l.8-3.2 7.4-7.4 2.4 2.4-7.4 7.4Z" fill="${f.fill}" stroke="${f.c}" stroke-width="1.4" stroke-linejoin="round"/><path d="M9.6 4l2.4 2.4" stroke="${f.fill === 'none' ? f.c : '#202a38'}" stroke-width="1.2"/>`,
+  };
+  function icon(sk, filled, size = 16, color) {
+    const c = color || SK[sk].color;
+    return `<svg width="${size}" height="${size}" viewBox="0 0 16 16" aria-hidden="true" focusable="false">${ICON[sk]({c, fill: filled ? c : 'none'})}</svg>`;
+  }
+  const GLYPH = {
+    fired: c => `<path d="M7 2 12 8H9v6H5V8H2Z" fill="${c}"/>`,
+    steady: c => `<rect x="2" y="6" width="10" height="3" rx="1" fill="${c}"/>`,
+    tired: c => `<path d="M7 13 2 7h3V1h4v6h3Z" fill="${c}"/>`,
+    empty: c => `<path d="M7 8 2 3.5h10ZM7 14 2 9.5h10Z" fill="${c}"/>`,
+    back: c => `<rect x="3" y="3" width="3" height="9" rx="1" fill="${c}"/><rect x="8" y="3" width="3" height="9" rx="1" fill="${c}"/>`,
+  };
+  const glyph = (b, size = 13) => `<svg width="${size}" height="${size}" viewBox="0 0 14 15" aria-hidden="true" focusable="false">${GLYPH[b](BAND[b].color)}</svg>`;
+  function hairBack(v) {
+    if (v.hair === 'long') return `<path d="M12 20c0-9 5-13 12-13s12 4 12 13v19H12Z" fill="${v.hairC}"/>`;
+    if (v.hair === 'bob') return `<path d="M12.5 21c0-9 5-13.5 11.5-13.5S35.5 12 35.5 21v8.5h-23Z" fill="${v.hairC}"/>`;
+    return '';
+  }
+  function hairFront(v) {
+    const c = v.hairC;
+    switch (v.hair) {
+      case 'coily': return [[16, 12], [20, 9.6], [24.5, 8.8], [29, 9.8], [32.4, 12.6], [14.6, 16], [33.6, 16.4], [18, 11.2], [27, 9]].map(([x, y]) => `<circle cx="${x}" cy="${y}" r="3.6" fill="${c}"/>`).join('');
+      case 'wavy': return `<path d="M13.4 19c-.6-7 4.4-11.6 10.6-11.6 6.4 0 11 4.4 10.4 11.4-1.6-2.6-3-3.4-4.6-2.2-1.6-2.6-3.6-3-5.4-1.4-1.8-2-4-2-5.8 0-1.6-.8-3.4.2-5.2 3.8Z" fill="${c}"/>`;
+      case 'bob': return `<path d="M13 18c0-6.6 4.8-10.6 11-10.6S35 11.4 35 18v1.2H13Z" fill="${c}"/>`;
+      case 'short': return `<path d="M13.6 17.6c-.2-6 4.4-9.8 10.4-9.8s10.6 3.6 10.4 9.8c-1.4-2.6-3.4-3.8-5.4-3.8H19c-2 0-4 1.2-5.4 3.8Z" fill="${c}"/>`;
+      case 'long': return `<path d="M13 19.4c0-7.4 4.6-11.6 11-11.6s11 4.2 11 11.6c-3.6-1.4-6.4-4-7.6-6.6-2.6 3.6-8.6 6.2-14.4 6.6Z" fill="${c}"/>`;
+    }
+    return '';
+  }
+  function top(v) {
+    const c = v.topC;
+    let s = `<path d="M7 48c0-8 7-12.6 17-12.6S41 40 41 48Z" fill="${c}"/>`;
+    if (v.top === 'hoodie') s += `<path d="M15.6 37.6c2 4.6 14.8 4.6 16.8 0" fill="none" stroke="#2c6b39" stroke-width="2.4"/><path d="M21.5 41v5M26.5 41v5" stroke="#d8e8dc" stroke-width="1.1"/>`;
+    if (v.top === 'jacket') s += `<path d="M24 36.2v12" stroke="#1d3f74" stroke-width="1.6"/><path d="M18.6 36.4 24 42l5.4-5.6" fill="none" stroke="#c9d8ef" stroke-width="1.6"/>`;
+    if (v.top === 'sweater') s += `<path d="M19.4 36.4q4.6 3.4 9.2 0" fill="none" stroke="#a8842a" stroke-width="2"/>`;
+    if (v.top === 'shirt') s += `<path d="M19.8 36.2 24 40.4l4.2-4.2" fill="none" stroke="#5f6670" stroke-width="1.6"/>`;
+    if (v.top === 'flannel') s += `<path d="M10 42h28M8.6 45.4h31M16 36.4V48M24 35.4V48M32 36.4V48" stroke="#5e1612" stroke-width="1.1" opacity=".8"/>`;
+    if (v.top === 'tee') s += `<path d="M20 36.2q4 2.8 8 0" fill="none" stroke="#5a378a" stroke-width="1.8"/>`;
+    return s;
+  }
+  // a face whose mouth, eyes and posture follow the energy band
+  function faceSVG(v, b) {
+    const tilt = b === 'tired' ? 'translate(0 1.2) rotate(-4 24 30)' : b === 'empty' ? 'translate(0 2.4) rotate(6 24 30)' : b === 'back' ? 'translate(0 1.6) rotate(-8 24 30)' : '';
+    const eyeY = 21.4;
+    let eyes;
+    if (b === 'back') eyes = `<path d="M18 ${eyeY}q2 1.6 4 0M26 ${eyeY}q2 1.6 4 0" stroke="#1b1310" stroke-width="1.4" fill="none" stroke-linecap="round"/>`;
+    else if (b === 'empty') eyes = `<path d="M18 ${eyeY}h4M26 ${eyeY}h4" stroke="#1b1310" stroke-width="1.6" stroke-linecap="round"/><path d="M18 ${eyeY + 1}q2 1 4 0M26 ${eyeY + 1}q2 1 4 0" stroke="#1b1310" stroke-width="1" fill="none"/>`;
+    else eyes = `<circle cx="20" cy="${eyeY}" r="1.5" fill="#1b1310"/><circle cx="28" cy="${eyeY}" r="1.5" fill="#1b1310"/>`;
+    const mouth = {fired: 'M19.4 26.4q4.6 4.4 9.2 0', steady: 'M20.4 27.2q3.6 1.8 7.2 0', tired: 'M21 28.4q3-1.6 6 0', empty: 'M21.4 28h5.2', back: 'M22 27.8q2 .8 4 0'}[b];
+    const extras = (v.glasses ? `<circle cx="20" cy="${eyeY}" r="3.3" fill="none" stroke="#e8edf3" stroke-width="1.1"/><circle cx="28" cy="${eyeY}" r="3.3" fill="none" stroke="#e8edf3" stroke-width="1.1"/><path d="M23.3 ${eyeY}h1.4" stroke="#e8edf3" stroke-width="1.1"/>` : '') +
+      (v.freckles ? [[17.6, 24.4], [19.2, 25.4], [16.8, 25.8], [30.4, 24.4], [28.8, 25.4], [31.2, 25.8]].map(([x, y]) => `<circle cx="${x}" cy="${y}" r=".55" fill="#b5653a"/>`).join('') : '');
+    const z = b === 'back' ? `<text x="37" y="12" font-size="8" font-weight="700" fill="#a6b3c4" font-family="Segoe UI,sans-serif">z</text>` : '';
+    return `<svg class="face" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><circle cx="24" cy="24" r="23.5" fill="#141b25"/>
+      <g class="${b === 'fired' ? 'bob' : ''}"><g transform="${tilt}">${hairBack(v)}${top(v)}<rect x="21" y="29" width="6" height="7" rx="2" fill="${v.skin}"/>
+      <circle cx="24" cy="20" r="10.6" fill="${v.skin}"/>${hairFront(v)}${eyes}<path d="${mouth}" stroke="#3a1d14" stroke-width="1.6" fill="none" stroke-linecap="round"/>${extras}</g></g>${z}</svg>`;
+  }
+
+  // ======================================================================================
+  // Run a Project: picker
+  // ======================================================================================
+  $('pickGrid').innerHTML = PROJECTS.map(p => `<div class="pcard"><div class="pimg"><img src="${p.art}" alt="" onerror="this.remove()"></div>
+    <div class="pbody"><h3>${esc(p.name)}</h3><span class="diff">${esc(p.diff)}</span><p>${esc(p.goal)}</p><span class="bud">Budget $${p.budget}</span>
+    <button class="btn" data-pick="${p.id}" aria-label="Lead this project: ${esc(PICK_LABEL[p.id])}">Lead this project</button></div></div>`).join('');
+  for (const b of document.querySelectorAll('[data-pick]')) b.onclick = () => pickProject(b.dataset.pick);
+  $('meetRow').innerHTML = VOLS.map(v => `<div>${faceSVG(v, 'fired')}<b>${esc(v.first)}</b><span class="sk"><span title="Strong: ${SK[v.st].word}">${icon(v.st, true, 14)}</span><span title="Okay: ${SK[v.ok].word}">${icon(v.ok, false, 14)}</span> ${v.h} h</span><span class="sr">Strong ${SK[v.st].word}, okay ${SK[v.ok].word}, ${v.h} hours a week</span></div>`).join('');
+
+  let G = null;          // the current game
+  let lastSum = null;    // the week summary on screen
+  let confirmFor = null; // 'restart' | 'another' while the Start over card is up
+
+  function pickProject(pid) {
+    hush();
+    state.pid = pid; G = newGame(pid); state.sel = null; lastSum = null; confirmFor = null;
+    buildBoard();
+    showScreen('board');
+    cue([PROJ[pid].intro], 200, () => state.pid === pid && state.screen === 'board');
+    refresh();
+    focusAfter();
+  }
+
+  // ======================================================================================
+  // The week board: built once per project, then updated in place (never rebuilt mid-tap)
+  // ======================================================================================
+  const TASK_KEYS = ['Q', 'W', 'E', 'A', 'S', 'D'];
+  const TC = {}, VC = {};
+  function buildBoard() {
+    const p = PROJ[state.pid];
+    $('bannerImg').src = p.art; $('bannerImg').hidden = false; $('bannerImg').onerror = () => { $('bannerImg').hidden = true; };
+    $('bName').textContent = p.name; $('wkProj').textContent = p.name;
+    const tasks = [...p.tasks.map((t, i) => ({...t, key: TASK_KEYS[i]})), {id: 'fund', name: 'Fundraise', skill: 'O', core: false, fund: true, key: 'F'}];
+    $('tasks').innerHTML = tasks.map(t => `<div class="task${t.fund ? ' fund' : ''}" data-t="${t.id}"><span class="stripe" style="background:${SK[t.skill].color}"></span>
+      <button class="main" data-tmain="${t.id}"><span class="top" style="color:${SK[t.skill].color}">${icon(t.skill, true, 15)}<span class="skw">${SK[t.skill].word}</span>
+      <span class="tag ${t.fund ? '' : t.core ? '' : 'bonus'}">${t.fund ? 'Money' : t.core ? 'Core' : 'Bonus'}</span></span>
+      <span class="name">${esc(t.name)}</span>
+      ${t.fund ? '<span class="row"><span class="nums">$6 per point</span><span>never done</span></span>' : '<span class="bar"><i class="pv"></i><i class="pg"></i></span>'}
+      <span class="row"><span class="state"></span><span class="pv-t"></span></span><span class="who"></span></button>
+      ${t.fund ? '' : `<button class="btn buy" data-buy="${t.id}" hidden></button>`}</div>`).join('');
+    for (const el of $('tasks').querySelectorAll('.task')) {
+      const id = el.dataset.t;
+      TC[id] = {el, main: el.querySelector('.main'), state: el.querySelector('.state'), pv: el.querySelector('.pv-t'), who: el.querySelector('.who'),
+        pg: el.querySelector('i.pg'), pvb: el.querySelector('i.pv'), buy: el.querySelector('.buy'), name: tasks.find(t => t.id === id).name};
+      TC[id].main.onclick = () => taskClick(id);
+      if (TC[id].buy) TC[id].buy.onclick = () => buyClick(id);
+    }
+    const opts = tasks.map(t => `<option value="${t.id}">${esc(t.name)}</option>`).join('');
+    $('team').innerHTML = VOLS.map((v, i) => `<div class="vol" data-v="${v.id}">
+      <button class="pick" data-vpick="${v.id}"><span class="fwrap"></span><span class="nmw"><span class="nm">${esc(v.first)}</span>
+        <span class="skills"><span title="Strong: ${SK[v.st].word}">${icon(v.st, true, 15)}</span><span title="Okay: ${SK[v.ok].word}">${icon(v.ok, false, 15)}</span><span class="hrs"></span></span></span><span class="kbd">${i + 1}</span></button>
+      <div class="en"><span class="gl"></span><span class="bw"></span><span class="bar"><i></i></span></div>
+      <div class="cares">Cares<span class="hw"> about</span>: <b>?</b></div>
+      <div class="on" aria-hidden="true"></div>
+      <select data-vsel="${v.id}" aria-label="${esc(v.first)} is working on"><option value="rest">Rest</option>${opts}</select></div>`).join('');
+    for (const el of $('team').querySelectorAll('.vol')) {
+      const id = el.dataset.v;
+      VC[id] = {el, pick: el.querySelector('.pick'), fwrap: el.querySelector('.fwrap'), hrs: el.querySelector('.hrs'), gl: el.querySelector('.gl'), bw: el.querySelector('.bw'),
+        bar: el.querySelector('.en .bar i'), cares: el.querySelector('.cares b'), sel: el.querySelector('select'), on: el.querySelector('.on'), face: ''};
+      VC[id].pick.onclick = () => volClick(id);
+      VC[id].sel.onchange = () => { const tid = VC[id].sel.value; setAssign(G, id, tid); state.sel = null; refresh(); status(assignWords(id)); };
+    }
+    $('leads').innerHTML = LEADS.map(l => `<button class="btn" data-lead="${l.id}" aria-pressed="false">${l.label}</button>`).join('');
+    for (const b of $('leads').querySelectorAll('[data-lead]')) b.onclick = () => setLead(b.dataset.lead);
+    layoutBoard();
+  }
+  const assignWords = vid => G.assign[vid] ? `${VOL[vid].first} is on ${TC[G.assign[vid]].name}.` : `${VOL[vid].first} rests this week.`;
+  function volClick(vid) {
+    if (!G || G.pending || state.screen !== 'board' || G.startBand[vid] === 'back') { if (G && G.startBand[vid] === 'back') status(`${VOL[vid].first} is stepping back to rest. Back soon.`); return; }
+    state.sel = state.sel === vid ? null : vid;
+    refresh();
+    status(state.sel ? `${VOL[vid].first} picked. Now pick a task, or press R to rest.` : '');
+  }
+  function taskClick(tid) {
+    if (!G || G.pending || state.screen !== 'board') return;
+    const vid = state.sel;
+    if (!vid) { status('Pick a volunteer first, then a task.'); return; }
+    if (G.assign[vid] === tid) { delete G.assign[vid]; state.sel = null; refresh(); status(`${VOL[vid].first} rests this week.`); return; }
+    if (!canTake(G, tid)) { status(tid !== 'fund' && isDone(G, tid) ? 'That task is done.' : 'That task is not open yet.'); return; }
+    setAssign(G, vid, tid); state.sel = null; refresh(); status(assignWords(vid));
+  }
+  function buyClick(tid) {
+    if (!G || G.pending) return;
+    const d = taskDef(G, tid);
+    if (buy(G, tid)) { refresh(); status(`Bought ${d.supply} for $${G.t[tid].cost}. The task is open.`); TC[tid].main.focus(); }
+  }
+  function setLead(id) {
+    if (!G || G.ev.leadUsed || G.pending) return;
+    G.lead = id; refresh();
+  }
+  function taskState(tid) {
+    const g = G, d = taskDef(g, tid), t = g.t[tid];
+    if (isDone(g, tid)) return {k: 'done', w: 'Done ✓'};
+    if (!unlocked(g, tid)) return {k: 'locked', w: `Needs: ${TC[d.lock].name} done first`};
+    if (!t.bought) return {k: 'supply', w: 'Needs supplies'};
+    if (paused(g, tid)) return {k: 'paused', w: 'Paused this week'};
+    return {k: 'open', w: 'Open'};
+  }
+  // update every card and the panel from the game state (text and attributes only)
+  function refresh() {
+    if (!G) return;
+    const g = G, c = compute(g), p = PROJ[g.pid];
+    $('bWeek').textContent = `Week ${g.week} of 6`;
+    for (const d of [...p.tasks, {id: 'fund'}]) {
+      const tc = TC[d.id];
+      const who = Object.entries(g.assign).filter(([, t]) => t === d.id).map(([v]) => VOL[v].first);
+      // tiny boxes have one short line: "Dana, Luis +4" keeps the count visible
+      const whoH = who.length > 3 ? `<span class="lng">${who.join(', ')}</span><span class="shr">${who.slice(0, 2).join(', ')} +${who.length - 2}</span>` : who.join(', ');
+      if (tc.who.innerHTML !== whoH) tc.who.innerHTML = whoH;
+      const gain = c.gains[d.id] || 0;
+      if (d.id === 'fund') {
+        const paus = g.ev.allRest;
+        tc.state.textContent = paus ? 'Paused this week' : 'Open';
+        tc.pv.textContent = who.length ? `This week: +${gain} ($${gain * 6})` : '';
+        tc.pv.classList.remove('warn');
+        tc.el.classList.toggle('paused', paus); tc.el.classList.add('fund');
+        tc.el.classList.toggle('target', !!state.sel && !paus && !g.pending);
+        tc.main.setAttribute('aria-label', `Fundraise, Outreach, $6 per point, ${paus ? 'paused this week' : 'open'}${who.length ? ', ' + who.join(', ') + ', this week plus ' + gain + ' points' : ''}`);
+        continue;
+      }
+      const t = g.t[d.id], s = taskState(d.id);
+      tc.el.className = 'task ' + s.k;
+      tc.state.textContent = s.w; tc.state.classList.toggle('done', s.k === 'done');
+      const nums = `${Math.min(t.prog, t.need)} / ${t.need}`;
+      let pv = '';
+      // short boxes hide the .lng words: "+18 (7 h wasted)" instead of "This week: +18 (7 extra hours wasted)"
+      if (who.length) pv = `<span class="lng">This week: </span>+${gain}` + (c.wasted[d.id] ? ` (${c.wastedH[d.id]}<span class="lng"> extra hour${c.wastedH[d.id] === 1 ? '' : 's'}</span><span class="shr"> h</span> wasted)` : '');
+      if (tc.pv.innerHTML !== pv) tc.pv.innerHTML = pv; tc.pv.classList.toggle('warn', !!c.wasted[d.id]);
+      tc.pg.style.width = (100 * Math.min(1, t.prog / t.need)) + '%';
+      tc.pvb.style.width = (100 * Math.min(1, (t.prog + gain) / t.need)) + '%';
+      tc.state.dataset.nums = nums;
+      tc.state.textContent = `${nums}  ·  ${s.w}`;
+      if (tc.buy) {
+        const show = s.k === 'supply';
+        if (!show && tc.buy === document.activeElement) tc.main.focus();
+        tc.buy.hidden = !show;
+        if (show) {
+          const short = g.money < t.cost;
+          tc.buy.textContent = short ? `${d.verb} ${d.supply} $${t.cost}: need $${t.cost - g.money} more` : `${d.verb} ${d.supply} $${t.cost}`;
+          tc.buy.disabled = short || !!g.pending;
+        }
+      }
+      tc.el.classList.toggle('target', !!state.sel && canTake(g, d.id) && !g.pending);
+      tc.main.setAttribute('aria-label', `${d.name}, ${SK[d.skill].word}, ${d.core ? 'core' : 'bonus'}, ${nums}, ${s.w}${who.length ? ', ' + who.join(', ') + ', ' + pv : ''}`);
+    }
+    for (const v of VOLS) {
+      const vc = VC[v.id], s = g.v[v.id], sb = g.startBand[v.id], back = sb === 'back';
+      const shown = back ? 'back' : bandOf(s.e);
+      if (vc.face !== shown) { vc.fwrap.innerHTML = faceSVG(v, shown); vc.face = shown; }
+      const h = hoursOf(g, v.id);
+      vc.hrs.innerHTML = back ? '<span class="lng">resting</span><span class="shr">0 h</span>' : h !== v.h ? `${h} h<span class="hw"> this week</span>` : `${v.h} h<span class="hw"> a week</span>`;
+      vc.gl.innerHTML = glyph(shown);
+      const bw = back ? `Stepping back<span class="lng">${s.back === 2 ? ', back in 2 weeks' : ', back next week'}</span>` : BAND[shown].word;
+      if (vc.bw.innerHTML !== bw) vc.bw.innerHTML = bw;
+      vc.bw.style.color = BAND[shown].color;
+      vc.bar.style.width = s.e + '%'; vc.bar.style.background = BAND[shown].color;
+      vc.cares.textContent = g.revealed ? CARES[v.cares] : '?';
+      vc.el.classList.toggle('back', back);
+      vc.el.classList.toggle('sel', state.sel === v.id);
+      vc.pick.setAttribute('aria-pressed', state.sel === v.id);
+      vc.pick.setAttribute('aria-label', `${v.name}, strong ${SK[v.st].word}, okay ${SK[v.ok].word}, ${h} hours, ${back ? 'stepping back' : BAND[shown].word}, energy ${s.e}, cares about ${g.revealed ? CARES[v.cares] : 'not known yet'}, ${back ? 'resting' : g.assign[v.id] ? 'on ' + TC[g.assign[v.id]].name : 'resting this week'}`);
+      const val = g.assign[v.id] || 'rest';
+      // what they do this week (shown on the card only in tiny boxes, where the menu is hidden)
+      const onW = back ? 'Resting' : g.ev.allRest ? 'Week off' : val === 'rest' ? 'Resting' : TC[val].name;
+      if (vc.on.textContent !== onW) vc.on.textContent = onW;
+      vc.on.classList.toggle('rest', val === 'rest' || back || g.ev.allRest);
+      vc.on.style.borderLeftColor = val !== 'rest' && !back && !g.ev.allRest ? SK[skillOf(g, val)].color : '';
+      for (const o of vc.sel.options) o.disabled = o.value !== 'rest' && !canTake(g, o.value);
+      if (vc.sel.value !== val) vc.sel.value = val;
+      const dis = back || g.ev.allRest || !!g.pending || state.screen !== 'board';
+      if (dis && document.activeElement === vc.sel) vc.pick.focus();
+      vc.sel.disabled = dis;
+    }
+    // panel
+    $('wkN').textContent = g.week; $('money').textContent = '$' + g.money;
+    $('hours').textContent = String(c.hours);
+    const leadOff = g.ev.leadUsed || !!g.pending || state.screen !== 'board';
+    for (const b of $('leads').querySelectorAll('[data-lead]')) {
+      b.setAttribute('aria-pressed', (g.ev.leadUsed ? 'none' : g.lead) === b.dataset.lead);
+      if (leadOff && document.activeElement === b) $('runWeek').focus();
+      b.disabled = leadOff;
+    }
+    if (page === 'stack') {   // the sticky bar scrolls its lead moves sideways: keep the pressed one in view
+      const L = $('leads'), b = L.querySelector('[aria-pressed="true"]');
+      if (b) { const lr = L.getBoundingClientRect(), br = b.getBoundingClientRect(); if (br.left < lr.left || br.right > lr.right) L.scrollLeft += br.left - lr.left - 8; }
+    }
+    $('runWeek').textContent = `Run week ${g.week}`;
+    $('runWeek').disabled = !!g.pending || state.screen !== 'board';
+    $('clearA').disabled = !!g.pending || state.screen !== 'board' || !Object.keys(g.assign).length;
+    if ($('clearA').disabled && document.activeElement === $('clearA') && !$('runWeek').disabled) $('runWeek').focus();
+    if (state.screen === 'board') setHint(L[boardHintKey()]);
+    if (state.screen === 'board') narrate(boardHintKey(), () => state.screen === 'board' && state.mode === 'run');
+  }
+  function boardHintKey() {
+    const g = G;
+    if (g.pending) return 'h-event';
+    if (g.week === 6) return 'h-week6';
+    if (g.evChosen) return 'h-event';
+    if (VOLS.some(v => ['tired', 'empty'].includes(g.startBand[v.id]))) return 'h-tired';
+    if (g.week === 1 && !Object.keys(g.assign).length) return 'h-assign';
+    if (g.week === 1 && g.lead === 'none') return 'h-lead';
+    return g.lead === 'none' ? 'h-lead' : 'h-assign';
+  }
+  function layoutBoard() {
+    const w = $('stage').clientWidth;
+    $('boardWrap').style.setProperty('--tcols', w >= 420 ? 3 : 2);
+    const tab = w >= 940; if ($('form').classList.contains('tabular') !== tab) $('form').classList.toggle('tabular', tab);
+    if (state.mode === 'plan') { const tw = $('timeline').clientWidth; if (tw !== lastTW) { lastTW = tw; drawTimeline($('timeline'), false); } }
+    const short = document.body.classList.contains('short') && page === 'compact';
+    const vc = short || w >= 860 ? 6 : w >= 380 ? 3 : 2;
+    $('boardWrap').style.setProperty('--vcols', vc);
+    const tc = w >= 420 ? 3 : 2, narrow = w / tc < 170; if ($('boardWrap').classList.contains('narrow') !== narrow) $('boardWrap').classList.toggle('narrow', narrow);
+    const tight = w / vc < 200; if ($('boardWrap').classList.contains('tight') !== tight) $('boardWrap').classList.toggle('tight', tight);
+  }
+
+  // ---------- event card and Start over card (over the board; the board is inert until a choice) ----------
+  function showEvent() {
+    const g = G, e = EVENTS[g.pid][g.pending];
+    const o = opt => {
+      const x = e[opt], need = x.money ? x.money(g) : 0, short = need > g.money;
+      return `<button class="btn opt" data-opt="${opt}" ${short ? 'aria-disabled="true"' : ''}><span>${esc(x.label)}</span><small>${esc(x.cost(g))}</small>${short ? '<small class="nem">Not enough money</small>' : ''}</button>`;
+    };
+    $('ocard').innerHTML = `<h2 id="oTitle">Week ${g.pending}: something came up</h2><p>${esc(e.text)}</p><div class="opts">${o('A')}${o('B')}</div>`;
+    for (const b of $('ocard').querySelectorAll('[data-opt]')) b.onclick = () => {
+      if (b.getAttribute('aria-disabled') === 'true') { status('Not enough money for that one.'); return; }
+      chooseEvent(G, b.dataset.opt); closeOverlay(); refresh(); status(`You chose: ${e[b.dataset.opt].label}.` + (G.ev.leadUsed ? ' That is your lead move this week.' : '')); focusAfter();
+    };
+    openOverlay();
+  }
+  function showConfirm(what) {
+    confirmFor = what;
+    $('ocard').innerHTML = `<h2 id="oTitle">${what === 'restart' ? 'Restart project' : 'Pick another project'}</h2><p>Start over? This week's plan is lost.</p>
+      <div class="opts"><button class="btn opt" id="cYes"><span>Start over</span></button><button class="btn opt" id="cNo"><span>Keep going</span></button></div>`;
+    $('cYes').onclick = () => { const w = confirmFor; confirmFor = null; closeOverlay(); if (w === 'restart') pickProject(state.pid); else toPicker(); };
+    $('cNo').onclick = () => { const w = confirmFor; confirmFor = null; closeOverlay(); if (G && G.pending && state.screen === 'board') { focusAfter(); return; } refresh(); (w === 'restart' ? $('restart') : $('another')).focus(); };
+    openOverlay();
+    $('cNo').focus();
+  }
+  function openOverlay() {
+    $('overlay').hidden = false;
+    for (const id of ['tasks', 'team', 'summary']) $(id).inert = true;
+    for (const id of ['secLead']) $(id).inert = true;
+    $('runWeek').disabled = true; $('clearA').disabled = true;
+  }
+  function closeOverlay() {
+    $('overlay').hidden = true; $('ocard').innerHTML = '';
+    for (const id of ['tasks', 'team', 'summary', 'secLead']) $(id).inert = false;
+  }
+  $('overlay').addEventListener('keydown', e => {
+    if (e.key === 'Escape' && $('cNo')) { e.preventDefault(); $('cNo').click(); return; }
+    if (e.key !== 'Tab') return;
+    const f = [...$('ocard').querySelectorAll('button')], first = f[0], last = f[f.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  });
+  // focus somewhere sensible after the board changes (never let it drop to body)
+  function focusAfter() {
+    if (state.mode !== 'run') return;
+    if (state.screen === 'board' && G && G.pending) { showEvent(); const b = $('ocard').querySelector('[data-opt]:not([aria-disabled="true"])') || $('ocard').querySelector('[data-opt]'); b.focus(); return; }
+    if (state.screen === 'board') { const v = VOLS.find(v => G.startBand[v.id] !== 'back'); if (v) hotFocus(VC[v.id].pick); else $('runWeek').focus(); return; }
+    if (state.screen === 'summary') { $('sumStart').focus(); return; }
+    if (state.screen === 'report') { $('rTitle').focus(); return; }
+    if (state.screen === 'picker') document.querySelector('[data-pick]').focus();
+  }
+
+  // ---------- run the week, then the summary ----------
+  function doRun() {
+    if (!G || G.pending || state.screen !== 'board' || !$('overlay').hidden) return;
+    state.sel = null; status('');
+    lastSum = runWeek(G);
+    Curio.tone(523, .18, .04);
+    showScreen('summary');
+    renderSummary(lastSum);
+    refresh();
+    setHint(L[VOLS.some(v => ['tired', 'empty'].includes(bandOf(G.v[v.id].e)) && G.v[v.id].e > 0) ? 'h-tired' : G.week === 5 ? 'h-week6' : 'h-lead']);
+    if (state.screen === 'summary' && $('hint').textContent === L['h-tired']) narrate('h-tired', () => state.screen === 'summary');
+    focusAfter();
+  }
+  const sgn = n => (n > 0 ? '+' : '') + n;
+  function renderSummary(s) {
+    const g = G, p = PROJ[g.pid];
+    const tasks = Object.entries(s.gains).filter(([k]) => k !== 'fund').map(([k, n]) => {
+      const done = s.newDone.includes(k);
+      // the idea's cut finished it: credit the idea, not "+0 ... (N extra hours wasted)"
+      if (done && k === s.cut && !n) return `<li>${esc(TC[k].name)} <b class="pos">Done ✓</b> (the team's idea finished it${s.wasted[k] ? `, so the ${s.wastedH[k]} hour${s.wastedH[k] === 1 ? '' : 's'} on it had nothing left to do` : ''})</li>`;
+      if (done && k === s.cut) return `<li><span class="num">+${n}</span> ${esc(TC[k].name)} <b class="pos">Done ✓</b> (with the team's idea${s.wasted[k] ? `; <span class="neg">${s.wastedH[k]} extra hour${s.wastedH[k] === 1 ? '' : 's'} wasted</span>` : ''})</li>`;
+      return `<li><span class="num">+${n}</span> ${esc(TC[k].name)}${done ? ' <b class="pos">Done ✓</b>' : ''}${s.wasted[k] ? ` <span class="neg">(${s.wastedH[k]} extra hour${s.wastedH[k] === 1 ? '' : 's'} wasted)</span>` : ''}</li>`;
+    });
+    for (const k of s.newDone) if (!(k in s.gains)) tasks.push(`<li>${esc(TC[k].name)} <b class="pos">Done ✓</b> (the team's idea finished it)</li>`);
+    if (!tasks.length) tasks.push(`<li class="note">${s.allRest ? 'The whole team took the week off.' : 'No task moved this week.'}</li>`);
+    const extra = [];
+    if (s.cut) extra.push(`The team's idea cut 8 points from ${esc(TC[s.cut].name)}.`);
+    if (s.lead === 'plan') extra.push('A clear plan: all progress x1.15.');
+    if (s.half) extra.push('Same move as last week: it lands a little softer.');
+    const vols = VOLS.map(v => {
+      if (s.bands[v.id] === 'back') return `<li><b>${v.first}</b>: stepping back to rest${s.returning.includes(v.id) ? ', back next week at 40' : ''}.</li>`;
+      const parts = s.why[v.id].map(([n, w]) => `<span class="num ${n > 0 ? 'pos' : 'neg'}">${sgn(n)}</span>, ${esc(w)}`).join('; ');
+      return `<li><b>${v.first}</b>: ${parts} <span class="muted">(now ${s.e[v.id]}, ${BAND[bandOf(s.e[v.id])].word})</span>${s.stepping.includes(v.id) ? ' <span class="neg">Needs a break: stepping back for two weeks.</span>' : ''}</li>`;
+    });
+    const notes = Object.entries(s.notes).map(([v, n]) => `<li><b>${VOL[v].first}</b>: <span class="quote">"${esc(n)}"</span></li>`);
+    const money = [];
+    if (s.raised) money.push(`<li><span class="num pos">+$${s.raised}</span> fundraising</li>`);
+    if (s.donate) money.push(`<li><span class="num pos">+$${s.donate}</span> a viewer's donation</li>`);
+    for (const [w, a] of s.spent) money.push(`<li><span class="num neg">-$${a}</span> ${esc(w)}</li>`);
+    money.push(`<li>Money now: <span class="num">$${s.money}</span></li>`);
+    const last = s.week === 6;
+    $('summary').innerHTML = `<div class="sumhead"><h3 id="sumTitle" tabindex="-1">Week ${s.week} of 6: how it went</h3>
+      <button class="big-btn" id="sumStart">${last ? 'See how it went' : `Start week ${s.week + 1}`}</button></div>
+      <div class="sumgrid"><div><h4>Tasks</h4><ul>${tasks.join('')}</ul>${extra.length ? `<p class="note">${extra.join(' ')}</p>` : ''}
+      <h4 style="margin-top:6px">Money</h4><ul>${money.join('')}</ul></div>
+      <div><h4>Team energy</h4><ul>${vols.join('')}</ul>${notes.length ? `<h4 style="margin-top:6px">Check-in notes</h4><ul>${notes.join('')}</ul>` : ''}</div></div>`;
+    $('sumStart').onclick = () => startNext();
+  }
+  function startNext() {
+    if (!G) return;
+    if (G.done) { showReport(); return; }
+    nextWeek(G); lastSum = null; status('');
+    showScreen('board'); refresh(); focusAfter();
+  }
+
+  // ---------- report ----------
+  function showReport() {
+    const g = G, o = outcome(g), p = PROJ[g.pid];
+    const means = p.tasks.filter(t => isDone(g, t.id)).map(t => t.id === 'wash' && g.coats160 ? 'About 160 coats are clean and sorted by size.' : t.means);
+    const bonus = p.tasks.find(t => !t.core);
+    $('report').innerHTML = `<h3 id="rTitle" tabindex="-1">${esc(o.sentence)}</h3>
+      <p class="muted" style="margin:0;font-size:14px">${esc(p.name)}, six weeks. A made-up project and a simple model, for talking about how to lead.</p>
+      <div class="facts"><span>Core tasks done <b>${o.core} of ${o.coreOf}</b></span><span>Bonus <b>${o.bonus ? 'done' : 'not done'}</b></span>
+        <span>Money left <b>$${o.money}</b></span><span>Hours given <b>${o.hours}</b></span></div>
+      <div class="acts"><button class="big-btn" id="rAgain">Try it again</button><button class="btn" id="rAnother">Pick another project</button><button class="btn" id="rPrint">Print report</button></div>
+      <h4>What it means</h4>${means.length ? `<ul>${means.map(m => `<li>${esc(m)}</li>`).join('')}</ul>` : '<p class="muted" style="margin:0">No task got all the way to Done this time.</p>'}
+      <h4>The team at the end</h4><div class="rteam">${VOLS.map(v => { const b = g.v[v.id].back > 0 ? 'back' : bandOf(g.v[v.id].e); return `<span>${glyph(b)}<b>${v.first}</b> ${BAND[b].word}</span>`; }).join('')}</div>
+      <p class="muted" style="margin:0;font-size:14px">Talk it over: the questions are in the panel, and Print report has them too.</p>`;
+    $('rTalk').innerHTML = QUESTIONS.map(q => `<li>${esc(q)}</li>`).join('');
+    $('rWeeks').innerHTML = g.log.map(l => { const avg = Math.round(VOLS.reduce((a, v) => a + l.e[v.id], 0) / VOLS.length); return `<li>Week ${l.week}: ${esc(LEADS.find(x => x.id === l.lead).label)}. Team energy ${avg}.</li>`; }).join('');
+    $('rAgain').onclick = () => pickProject(g.pid);
+    $('rAnother').onclick = () => toPicker();
+    $('rPrint').onclick = () => { buildPrint(); print(); };
+    showScreen('report');
+    setHint(o.sentence);
+    cue([o.sentence], 250, () => state.screen === 'report' && state.mode === 'run');
+    focusAfter();
+  }
+
+  function toPicker() {
+    hush(); G = null; state.pid = null; state.sel = null; lastSum = null;
+    showScreen('picker'); setHint(L['w-run']); status(''); focusAfter();
+  }
+  function showScreen(s) {
+    state.screen = s;
+    const run = state.mode === 'run';
+    $('picker').hidden = !(run && s === 'picker');
+    $('board').hidden = !(run && (s === 'board' || s === 'summary'));
+    $('reportView').hidden = !(run && s === 'report');
+    $('planView').hidden = run;
+    $('tasks').hidden = s === 'summary'; $('summary').hidden = s !== 'summary'; $('runbar').classList.toggle('off', s === 'summary');
+    if (s !== 'board' && s !== 'summary') closeOverlay();
+    for (const el of document.querySelectorAll('[data-show]')) {
+      const k = el.dataset.show;
+      el.hidden = !(k === 'plan' ? !run : k === 'picker' ? run && s === 'picker' : k === 'report' ? run && s === 'report' : run && k === 'board' && (s === 'board' || s === 'summary'));
+    }
+    $('stage').scrollTop = 0;
+    if (s === 'report' || s === 'picker') status('');
+  }
+  $('runWeek').onclick = doRun;
+  $('clearA').onclick = () => { if (!G) return; G.assign = {}; state.sel = null; refresh(); status('Everyone rests unless you assign them.'); };
+  $('restart').onclick = () => showConfirm('restart');
+  $('another').onclick = () => showConfirm('another');
+
+  // A volunteer or task card that got focus from a click, a hotkey or the tool itself: Enter there runs the week.
+  // One reached with Tab keeps Enter as its own activation.
+  let runOnEnter = null, focusing = null;
+  const CARD = '.vol .pick, .task .main, [data-lead]';   // a lead move is often the last click before running
+  function hotFocus(el) { runOnEnter = focusing = el; el.focus(); focusing = null; }
+  addEventListener('pointerdown', e => {
+    const b = e.target.closest && e.target.closest(CARD);
+    focusing = b; if (b && b === document.activeElement) runOnEnter = b;
+  }, true);
+  addEventListener('focusin', e => { runOnEnter = e.target === focusing ? e.target : null; focusing = null; });
+  // keys: 1 to 6 pick a volunteer, Q W E A S D a task, F Fundraise, R Rest, L the lead move, Enter runs, Escape cancels
+  addEventListener('keydown', e => {
+    if (e.ctrlKey || e.metaKey || e.altKey || state.mode !== 'run' || !G) return;
+    const t = e.target, tag = t && t.tagName;
+    if (tag === 'INPUT' || tag === 'SELECT' || tag === 'TEXTAREA') return;
+    if (!$('overlay').hidden) return;
+    if (state.screen === 'summary' && e.key === 'Enter' && tag !== 'BUTTON') { e.preventDefault(); startNext(); return; }
+    if (state.screen !== 'board' || G.pending) return;
+    const k = e.key.length === 1 ? e.key.toUpperCase() : e.key;
+    if (/^[1-6]$/.test(k)) { e.preventDefault(); const v = VOLS[+k - 1]; volClick(v.id); if (state.sel === v.id) hotFocus(VC[v.id].pick); return; }
+    if (k === 'Escape') { if (state.sel) { state.sel = null; refresh(); status(''); } return; }
+    if (k === 'L') { e.preventDefault(); if (G.ev.leadUsed) return; const i = LEADS.findIndex(l => l.id === G.lead); setLead(LEADS[(i + 1) % LEADS.length].id); status('Lead move: ' + LEADS.find(l => l.id === G.lead).label); return; }
+    // Enter runs the week, except on a control the student moved to with Tab (that control does its own job)
+    if (k === 'Enter' && (tag !== 'BUTTON' || t === runOnEnter)) { e.preventDefault(); doRun(); return; }
+    const ti = TASK_KEYS.indexOf(k);
+    if ((ti >= 0 || k === 'F' || k === 'R') && state.sel) {
+      e.preventDefault();
+      const vid = state.sel;
+      if (k === 'R') { setAssign(G, vid, 'rest'); state.sel = null; refresh(); status(assignWords(vid)); return; }
+      const tid = k === 'F' ? 'fund' : PROJ[G.pid].tasks[ti].id;
+      taskClick(tid);
+      hotFocus(VC[vid].pick);
+    }
+  });
+
+  // ======================================================================================
+  // Plan Your Own (nothing is written to localStorage until Save)
+  // ======================================================================================
+  const KEY = 'curio-community-project-planner-plan';
+  const ROLES = ['Project lead', 'Outreach lead', 'Build lead', 'Logistics lead', 'Design lead', 'Anyone'];
+  const KEEP = ['Thank people in public', 'Ask for ideas', 'Check in one by one', 'Hold a planning meeting', 'Plan rest weeks'];
+  const EX_WEEKS = {river: {map: [1, 2], signup: [1, 2, 3], signs: [1, 2], recycle: [2], cleanup: [3, 4], photos: [4, 5]},
+    garden: {permit: [1], water: [1, 2, 3], gsigns: [1, 3], beds: [2, 3], plant: [4, 5], opening: [5, 6]},
+    coats: {flyer: [1], spread: [2, 3, 4], boxes: [2, 3], wash: [3, 4], handout: [5, 6], hats: [5, 6]}};
+  const emptyRow = () => ({name: '', skill: 'H', role: 'Anyone', weeks: [false, false, false, false, false, false], cost: ''});
+  const emptyPlan = () => ({name: '', who: '', done: '', budget: '', tasks: [emptyRow(), emptyRow(), emptyRow()], keep: KEEP.map(() => false)});
+  let plan = emptyPlan();
+  $('keep').innerHTML = KEEP.map((k, i) => `<label><input type="checkbox" data-keep="${i}"> ${esc(k)}</label>`).join('');
+  for (const c of $('keep').querySelectorAll('input')) c.onchange = () => { plan.keep[+c.dataset.keep] = c.checked; planChanged(); };
+  for (const [id, f] of [['fName', 'name'], ['fWho', 'who'], ['fDone', 'done'], ['fBudget', 'budget']]) $(id).oninput = () => { plan[f] = $(id).value; planChanged(); };
+  $('exs').insertAdjacentHTML('beforeend', PROJECTS.map(p => `<button class="btn" data-ex="${p.id}">${esc(p.name)}</button>`).join(''));
+  $('exBtn').onclick = () => { const open = $('exs').hidden; $('exs').hidden = !open; $('exBtn').setAttribute('aria-expanded', open); if (open) $('exs').querySelector('[data-ex]').focus(); };
+  for (const b of $('exs').querySelectorAll('[data-ex]')) b.onclick = () => {
+    const p = PROJ[b.dataset.ex];
+    plan = {name: p.name, who: '', done: p.goal, budget: String(p.budget), keep: KEEP.map(() => false),
+      tasks: p.tasks.map(t => ({name: t.name, skill: t.skill, role: SK[t.skill].role, weeks: [1, 2, 3, 4, 5, 6].map(w => EX_WEEKS[p.id][t.id].includes(w)), cost: t.cost ? String(t.cost) : ''}))};
+    renderForm(); planChanged();
+    $('exs').hidden = true; $('exBtn').setAttribute('aria-expanded', 'false'); $('exBtn').focus();
+    okMsg(`Loaded the ${p.name} example. Change anything.`);
+  };
+  function renderForm() {
+    $('fName').value = plan.name; $('fWho').value = plan.who; $('fDone').value = plan.done; $('fBudget').value = plan.budget;
+    for (const c of $('keep').querySelectorAll('input')) c.checked = !!plan.keep[+c.dataset.keep];
+    $('trows').innerHTML = plan.tasks.map((t, i) => `<div class="trow" data-row="${i}">
+      <label class="tname"><span class="lt">Task ${i + 1}</span><input type="text" maxlength="50" data-f="name" aria-label="Task ${i + 1} name" value="${esc(t.name)}" autocomplete="off"></label>
+      <label class="lsk"><span class="lt">Skill</span><select data-f="skill" aria-label="Task ${i + 1} skill">${SKILL_KEYS.map(k => `<option value="${k}" ${t.skill === k ? 'selected' : ''}>${SK[k].word}</option>`).join('')}</select></label>
+      <label class="lro"><span class="lt">Role</span><select data-f="role" aria-label="Task ${i + 1} role">${ROLES.map(r => `<option ${t.role === r ? 'selected' : ''}>${r}</option>`).join('')}</select></label>
+      <div class="weeks" role="group" aria-label="Task ${i + 1} weeks"><span class="lt">Weeks</span><span class="wbtns">${t.weeks.map((w, j) => `<button class="btn" data-w="${j}" aria-pressed="${w}" aria-label="Task ${i + 1}, week ${j + 1}">W${j + 1}</button>`).join('')}</span></div>
+      <label class="lco"><span class="lt">Supplies $</span><input type="number" min="0" max="10000" step="1" inputmode="numeric" data-f="cost" aria-label="Task ${i + 1} supplies in dollars" value="${esc(t.cost)}"></label>
+      <button class="btn rm" data-rm="${i}" aria-label="Remove task ${i + 1}" title="Remove task">×</button></div>`).join('');
+    for (const row of $('trows').querySelectorAll('.trow')) {
+      const i = +row.dataset.row;
+      for (const el of row.querySelectorAll('[data-f]')) el.oninput = el.onchange = () => { plan.tasks[i][el.dataset.f] = el.value; planChanged(); };
+      for (const b of row.querySelectorAll('[data-w]')) b.onclick = () => { const j = +b.dataset.w; plan.tasks[i].weeks[j] = !plan.tasks[i].weeks[j]; b.setAttribute('aria-pressed', plan.tasks[i].weeks[j]); planChanged(); };
+      row.querySelector('[data-rm]').onclick = () => {
+        plan.tasks.splice(i, 1); renderForm(); planChanged();
+        const rm = $('trows').querySelectorAll('[data-rm]');
+        (rm[Math.min(i, rm.length - 1)] || $('addTask')).focus();
+      };
+    }
+    $('addTask').disabled = plan.tasks.length >= 8;
+  }
+  $('addTask').onclick = () => {
+    if (plan.tasks.length >= 8) return;
+    plan.tasks.push(emptyRow()); renderForm(); planChanged();
+    const rows = $('trows').querySelectorAll('.trow input[data-f="name"]'); rows[rows.length - 1].focus();
+    if (plan.tasks.length >= 8) status('That is the most tasks a one-page plan holds (8).');
+  };
+  const num = s => { const n = parseFloat(s); return isFinite(n) && n > 0 ? Math.min(10000, Math.round(n)) : 0; };
+  function planNotes() {
+    const notes = [], sup = plan.tasks.reduce((a, t) => a + num(t.cost), 0), bud = num(plan.budget);
+    if (sup > bud) notes.push(`Over budget by $${sup - bud}. Cut a supply, or plan a Fundraise task.`);
+    for (let w = 0; w < 6; w++) { const m = plan.tasks.filter(t => t.weeks[w]).length; if (m >= 4) notes.push(`Week ${w + 1} has ${m} tasks at once. That's a lot for one team.`); }
+    const any = plan.tasks.some(t => t.weeks.some(Boolean));
+    if (any && !plan.tasks.some(t => t.weeks[5])) notes.push('Nothing in the last week. A wrap-up or thank-you event fits there.');
+    if (!plan.keep.some(Boolean)) notes.push("How will people want to keep showing up?");
+    return {notes, sup, bud};
+  }
+  function planChanged() {
+    const {notes, sup, bud} = planNotes();
+    $('budget').innerHTML = `<span>Supplies <b>$${sup}</b> of <b>$${bud}</b></span>` + (sup > bud ? `<span class="warn"><b>!</b> Over by <b>$${sup - bud}</b></span>` : `<span class="ok">✓ <b>$${bud - sup}</b> left</span>`);
+    const html = notes.map(n => `<li>${esc(n)}</li>`).join('');
+    if ($('notes').innerHTML !== html) $('notes').innerHTML = html;
+    drawTimeline($('timeline'), false);
+  }
+  // the timeline: one row per task, a bar on each chosen week in its skill color and pattern (never color alone)
+  function drawTimeline(host, printing) {
+    const rows = plan.tasks, W = printing ? 760 : Math.max(280, Math.round((host.clientWidth || 760) - 18)), slim = W < 440, lw = Math.min(260, Math.round(W * (slim ? .4 : .34))), top = 26, rh = 30, H = top + Math.max(1, rows.length) * rh + 8, cw = (W - lw - 8) / 6;
+    const ink = printing ? '#000' : '#e8edf3', mut = printing ? '#333' : '#a6b3c4', grid = printing ? '#999' : '#2b3646';
+    const pid = printing ? 'pp' : 'sp';
+    const defs = SKILL_KEYS.map(k => {
+      const c = printing ? '#000' : '#0d1219', bg = printing ? '#fff' : SK[k].color, fg = printing ? '#000' : '#0d1219';
+      const id = `${pid}-${k}`;
+      if (SK[k].pat === 'hatch') return `<pattern id="${id}" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="8" height="8" fill="${bg}"/><rect width="2.4" height="8" fill="${fg}" opacity="${printing ? .9 : .45}"/></pattern>`;
+      if (SK[k].pat === 'dots') return `<pattern id="${id}" width="7" height="7" patternUnits="userSpaceOnUse"><rect width="7" height="7" fill="${bg}"/><circle cx="3.5" cy="3.5" r="1.5" fill="${fg}" opacity="${printing ? .9 : .45}"/></pattern>`;
+      if (SK[k].pat === 'stripes') return `<pattern id="${id}" width="6" height="6" patternUnits="userSpaceOnUse"><rect width="6" height="6" fill="${bg}"/><rect width="6" height="2" fill="${fg}" opacity="${printing ? .9 : .45}"/></pattern>`;
+      return `<pattern id="${id}" width="6" height="6" patternUnits="userSpaceOnUse"><rect width="6" height="6" fill="${printing ? '#bbb' : bg}"/></pattern>`;
+    }).join('');
+    let s = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Timeline: ${rows.length} tasks over six weeks"><defs>${defs}</defs>`;
+    for (let w = 0; w < 6; w++) {
+      const x = lw + w * cw;
+      s += `<text x="${x + cw / 2}" y="16" font-size="13" font-weight="700" fill="${mut}" text-anchor="middle">W${w + 1}</text><line x1="${x}" x2="${x}" y1="${top - 4}" y2="${H - 6}" stroke="${grid}"/>`;
+    }
+    rows.forEach((t, i) => {
+      const y = top + i * rh, mx = Math.max(10, Math.floor((lw - (slim ? 10 : 78)) / 7.2)), nm = (t.name || `Task ${i + 1}`).slice(0, mx) + ((t.name || '').length > mx ? '…' : '');
+      s += `<line x1="0" x2="${W}" y1="${y + rh}" y2="${y + rh}" stroke="${grid}" stroke-dasharray="2 4"/>`;
+      s += `<text x="4" y="${y + 19}" font-size="13.5" fill="${t.name ? ink : mut}">${esc(nm)}</text>`;
+      if (!slim) s += `<text x="${lw - 8}" y="${y + 19}" font-size="11.5" fill="${mut}" text-anchor="end">${SK[t.skill].word}</text>`;
+      t.weeks.forEach((on, w) => { if (on) s += `<rect x="${lw + w * cw + 3}" y="${y + 5}" width="${cw - 6}" height="${rh - 10}" rx="5" fill="url(#${pid}-${t.skill})" stroke="${printing ? '#000' : SK[t.skill].color}" stroke-width="1.5"/>`; });
+    });
+    s += '</svg>';
+    host.innerHTML = s;
+  }
+  let okTimer = 0;
+  function okMsg(t) { $('pMsg').textContent = t; clearTimeout(okTimer); okTimer = setTimeout(() => { $('pMsg').textContent = ''; }, 3000); }
+  $('pSave').onclick = () => {
+    try { localStorage.setItem(KEY, JSON.stringify(plan)); okMsg('Saved'); }
+    catch { okMsg("Couldn't save here. Print it instead."); }
+  };
+  $('pClear').onclick = () => { $('pConfirm').hidden = false; $('pKeep').focus(); };
+  $('pKeep').onclick = () => { $('pConfirm').hidden = true; $('pClear').focus(); };
+  $('pYes').onclick = () => {
+    plan = emptyPlan();
+    try { localStorage.removeItem(KEY); } catch {}
+    $('pConfirm').hidden = true; renderForm(); planChanged(); okMsg('Your plan is cleared.'); $('pClear').focus();
+  };
+  $('pPrint').onclick = () => { buildPrint(); print(); };
+  let loadedNote = '';
+  try {
+    const raw = localStorage.getItem(KEY);
+    if (raw) {
+      const p = JSON.parse(raw);
+      if (p && Array.isArray(p.tasks)) {
+        plan = {...emptyPlan(), ...p, tasks: p.tasks.slice(0, 8).map(t => ({...emptyRow(), ...t, weeks: [0, 1, 2, 3, 4, 5].map(j => !!(t.weeks || [])[j])})), keep: KEEP.map((k, i) => !!(p.keep || [])[i])};
+        loadedNote = 'Loaded your saved plan.';
+      }
+    }
+  } catch {}
+
+  // ---------- print: the report or the plan, on one light page ----------
+  function buildPrint() {
+    const pa = $('printArea');
+    if (state.mode === 'plan') {
+      const {notes, sup, bud} = planNotes();
+      pa.innerHTML = `<h1>${esc(plan.name || 'My project plan')}</h1>
+        <p><b>Who it helps:</b> ${esc(plan.who)}</p><p><b>What done looks like:</b> ${esc(plan.done)}</p>
+        <p><b>Budget:</b> $${bud}. <b>Supplies:</b> $${sup}. ${sup > bud ? `Over by $${sup - bud}.` : `$${bud - sup} left.`}</p>
+        <section><h2>Tasks</h2><table><tr><th>Task</th><th>Skill</th><th>Role</th><th>Weeks</th><th>Supplies</th></tr>
+        ${plan.tasks.map((t, i) => `<tr><td>${esc(t.name || 'Task ' + (i + 1))}</td><td>${SK[t.skill].word}</td><td>${esc(t.role)}</td><td>${t.weeks.map((w, j) => w ? 'W' + (j + 1) : '').filter(Boolean).join(' ')}</td><td>$${num(t.cost)}</td></tr>`).join('')}</table></section>
+        <section><h2>Timeline</h2><div class="tlp" id="tlp"></div></section>
+        <section><h2>How I'll keep the team going</h2><ul>${KEEP.filter((k, i) => plan.keep[i]).map(k => `<li>${esc(k)}</li>`).join('') || '<li>(none checked yet)</li>'}</ul></section>
+        ${notes.length ? `<section><h2>Notes</h2><ul>${notes.map(n => `<li>${esc(n)}</li>`).join('')}</ul></section>` : ''}
+        <p class="foot">Community Project Planner, Curio Class. Patterns: Hands-on hatch, Outreach dots, Logistics solid, Design stripes.</p>`;
+      drawTimeline($('tlp'), true);
+    } else if (state.screen === 'report' && G) {
+      const o = outcome(G), p = PROJ[G.pid];
+      const means = p.tasks.filter(t => isDone(G, t.id)).map(t => t.id === 'wash' && G.coats160 ? 'About 160 coats are clean and sorted by size.' : t.means);
+      pa.innerHTML = `<h1>${esc(p.name)}: report</h1><p><b>${esc(o.sentence)}</b></p>
+        <p>Core tasks done: ${o.core} of ${o.coreOf}. Bonus: ${o.bonus ? 'done' : 'not done'}. Money left: $${o.money}. Hours given: ${o.hours}.</p>
+        <section><h2>What it means</h2><ul>${means.map(m => `<li>${esc(m)}</li>`).join('') || '<li>No task got all the way to Done.</li>'}</ul></section>
+        <section><h2>The team at the end</h2><p>${VOLS.map(v => `${v.first}: ${BAND[G.v[v.id].back > 0 ? 'back' : bandOf(G.v[v.id].e)].word}`).join('; ')}</p></section>
+        <section><h2>Week by week</h2><table><tr><th>Week</th><th>Lead move</th><th>Progress</th><th>Money</th></tr>
+        ${G.log.map(l => `<tr><td>${l.week}</td><td>${LEADS.find(x => x.id === l.lead).label}</td><td>${Object.entries(l.gains).map(([k, n]) => `${TC[k].name} +${n}`).join(', ') || 'none'}</td><td>$${l.money}</td></tr>`).join('')}</table></section>
+        <section><h2>Talk about it</h2><ul>${QUESTIONS.map(q => `<li>${esc(q)}</li>`).join('')}</ul></section>
+        <p class="foot">Community Project Planner, Curio Class. Maple Street, its projects and volunteers are made up; the numbers are a simple model for discussion.</p>`;
+    } else if (G) {
+      const p = PROJ[G.pid];
+      pa.innerHTML = `<h1>${esc(p.name)}: week ${G.week} of 6</h1><p>Money $${G.money}.</p><table><tr><th>Task</th><th>Progress</th></tr>
+        ${p.tasks.map(t => `<tr><td>${esc(t.name)}</td><td>${Math.min(G.t[t.id].prog, G.t[t.id].need)} / ${G.t[t.id].need}${isDone(G, t.id) ? ' Done' : ''}</td></tr>`).join('')}</table>
+        <p class="foot">Community Project Planner, Curio Class. Made-up project.</p>`;
+    } else pa.innerHTML = `<h1>Community Project Planner</h1><p>${PROJECTS.map(p => esc(PICK_LABEL[p.id])).join('<br>')}</p><p class="foot">Curio Class</p>`;
+  }
+  addEventListener('beforeprint', buildPrint);
+
+  // ======================================================================================
+  // Narration: one welcome per mode (after the first tap), a project intro on picking, each hint once,
+  // the report tier line; Read always wins (collision-lab / resilience-map pattern)
+  // ======================================================================================
+  const said = new Set(), queued = new Set(), started = [];
+  let tapped = false, vq = Promise.resolve(), vgen = 0, readP = Promise.resolve(), cues = 0;
+  for (const ev of ['pointerdown', 'keydown']) addEventListener(ev, e => {
+    if (tapped) return; tapped = true;
+    const b = e.target && e.target.closest ? e.target.closest('button') : null;
+    if (b && b.id === 'sound') return;
+    const before = cues;
+    // decide after this tap's own handler has run: if it queued its own line, or was Read, skip the welcome (unmarked)
+    const go = () => {
+      removeEventListener('click', go); removeEventListener('keyup', go); clearTimeout(fb);
+      setTimeout(() => { if (b && b.id === 'read') return; if (cues === before) welcome(); });
+    };
+    addEventListener('click', go); addEventListener('keyup', go); const fb = setTimeout(go, 1500);
+  }, true);
+  // a fixed line, once; ok() is checked when its turn comes (a line whose moment has passed is dropped, unmarked)
+  function narrate(key, ok) {
+    if (!tapped || !Curio.sound || said.has(key) || queued.has(key)) return false;
+    queued.add(key); cues++;
+    const gen = vgen, line = L[key];
+    vq = vq.then(async () => {
+      await readP;
+      if (gen !== vgen) return;            // dropped by hush(): not marked said, so its trigger can queue it again
+      queued.delete(key);
+      if (ok && !ok()) return;
+      said.add(key); started.push(line);
+      await Promise.race([say(line), wait(2500 + 80 * line.length)]);
+    });
+    return true;
+  }
+  // a line for this moment only (a project intro, the report line): cuts what is queued, waits for Read, dropped if the moment passed
+  function cue(lines, delay, ok) {
+    if (!tapped || !Curio.sound) return;
+    const gen = ++vgen; queued.clear(); cues++;
+    vq = (async () => {
+      await wait(delay); await readP;
+      if (gen !== vgen || !ok()) return;
+      started.push(...lines);
+      await Promise.race([say(lines), wait(2500 + 80 * lines.join(' ').length)]);
+    })();
+  }
+  // the mode's welcome, once; the Run welcome says "Pick one", so it only fits the picker (mid-project it stays unsaid)
+  function welcome() {
+    const m = state.mode;
+    if (m === 'run' && state.screen !== 'picker') return;
+    narrate(WELCOME[m], () => state.mode === m && (m === 'plan' || state.screen === 'picker'));
+  }
+  function hush() { vgen++; queued.clear(); vq = Promise.resolve(); readP = Promise.resolve(); Curio.stop(); }   // a stopped Read clip never ends, so nothing may wait on it
+  function readNow() {
+    hush(); const h = $('hint').textContent;
+    started.push('READ:' + h);
+    readP = Promise.race([say([h], true), wait(2500 + 80 * h.length)]).catch(() => {});
+  }
+  function setHint(h) { if ($('hint').textContent !== h) $('hint').textContent = h; }
+  function status(s) { $('status').textContent = s; }
+
+  // ======================================================================================
+  // Modes and layout
+  // ======================================================================================
+  function setMode(m) {
+    hush();
+    state.mode = m;
+    document.body.dataset.mode = m;
+    for (const k of ['run', 'plan']) $('m-' + k).setAttribute('aria-pressed', k === m);
+    status('');
+    if (m === 'plan') {
+      showScreen(state.screen);
+      setHint(L['h-plan']); renderForm(); planChanged();
+      if (loadedNote) { okMsg(loadedNote); loadedNote = ''; }
+    } else {
+      showScreen(state.screen);
+      if (state.screen === 'picker') setHint(L['w-run']);
+      else if (state.screen === 'report') setHint(outcome(G).sentence);
+      else { refresh(); if (state.screen === 'board' && G.pending && $('overlay').hidden) showEvent(); }
+    }
+    relayout();
+    $('panel').scrollTop = 0;
+    welcome();
+  }
+  for (const k of ['run', 'plan']) $('m-' + k).onclick = () => { if (state.mode !== k) setMode(k); };
+
+  let page = null, lastTW = 0;
+  function pageLayout() { const w = innerWidth, h = innerHeight; return w < 600 ? 'stack' : w >= 1000 && h >= 700 ? 'wide' : 'compact'; }
+  function relayout() {
+    const p = pageLayout();
+    if (p !== page) {
+      page = p; for (const c of ['wide', 'compact', 'stack']) document.body.classList.toggle(c, c === p);
+      const f = document.activeElement, inBar = p === 'stack';
+      if (inBar && $('secLead').parentNode !== $('runbar')) $('runbar').append($('secLead'), $('runRow'));
+      if (!inBar && $('secLead').parentNode === $('runbar')) $('secWeek').after($('secLead'), $('runRow'));
+      if (f && f !== document.activeElement && f.isConnected) f.focus({preventScroll: true});
+    }
+    document.body.classList.toggle('short', innerHeight < 700);
+    document.body.classList.toggle('tiny', p === 'compact' && (innerHeight < 520 || (innerHeight < 700 && innerWidth < 860)));   // narrow short windows (a half-screen laptop browser) need the small cards too
+    layoutBoard();
+  }
+  new ResizeObserver(() => relayout()).observe($('stage'));
+  addEventListener('resize', () => relayout());
+
+  // Sound turned back on after a silent start: the mode's welcome, if it was never said
+  Curio.onSound(on => { if (on && tapped) welcome(); });
+  Curio.init({clips: "voice:*", rate: .9, readFallback: () => $('hint').textContent});
+  $('read').onclick = readNow;
+
+  window.__tool = {state, setMode, allLines, L, TIERS, PROJECTS, VOLS, EVENTS, said, queued, started, KEY,
+    newGame, runWeek, nextWeek, compute, chooseEvent, setAssign, buy, outcome, replay, pickProject, doRun, startNext, showReport,
+    get game() { return G; }, get plan() { return plan; }, planNotes, planChanged, renderForm,
+    hint: () => $('hint').textContent, layout: () => ({page, short: document.body.classList.contains('short')}),
+    curio: () => ({last: Curio.last, sound: Curio.sound, reduce: Curio.reduce})};
+  relayout();
+  setMode('run');
+})();
+</script>
+</body>
+</html>

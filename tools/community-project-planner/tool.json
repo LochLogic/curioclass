@@ -1,0 +1,23 @@
+{
+  "id": "community-project-planner",
+  "status": "beta",
+  "hook": "Lead a six-week neighborhood project where the scarce resource is your volunteers, not your money: match people to work they're good at, check in, let them rest, and see whether the project and the team both make it to the finish.",
+  "outcome": "Plan and lead a group project by matching people to tasks, sharing the work over time and keeping the team going",
+  "driver": "students or teacher",
+  "minutes": "20-35",
+  "modes": [
+    "Run a Project",
+    "Plan Your Own"
+  ],
+  "grades_label": "Grades 9-12",
+  "sources": [
+    "CASEL, What Is the CASEL Framework? (Relationship Skills: showing leadership in groups, practicing teamwork and collaborative problem-solving, seeking or offering support and help when needed; Responsible Decision-Making: reflecting on one's role to promote personal, family, and community well-being), casel.org/fundamentals-of-sel/what-is-the-casel-framework/",
+    "Eisner, Grimm, Maynard and Washburn, The New Volunteer Workforce, Stanford Social Innovation Review, Winter 2009 (matching volunteers' skills to assignments and recognizing their contributions), ssir.org/articles/entry/the_new_volunteer_workforce",
+    "Banners drawn with FLUX.1-schnell (Apache 2.0) on a local computer, edited for Curio Class",
+    "Volunteers, faces, icons and timeline drawn in code; projects, people and numbers are made up",
+    "Illustrations drawn with FLUX.1-schnell (Apache 2.0) on a local computer, edited for Curio Class",
+    "Narration generated with Qwen3-TTS (Apache 2.0), cloning a Google Gemini text-to-speech voice"
+  ],
+  "third_party": [],
+  "updated": "2026-10-26"
+}

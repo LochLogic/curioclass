@@ -1,0 +1,38 @@
+{
+  "style": "Soft painted illustration for a high school civic tool: calm morning and afternoon light, gentle textures, muted greens, warm browns and soft teal, wide open scenes, nothing busy.",
+  "assets": [
+    {
+      "name": "banner-river",
+      "prompt": "Wide panoramic landscape: a quiet river trail in early morning light, a dirt path running along a grassy bank, tall trees and soft mist over calm water, a few scattered cans and paper scraps near the reeds, soft painted illustration. The middle of the picture shows the river bend and the path clearly. The trail is empty and peaceful. No people, no animals, no writing.",
+      "sd": "Wide panoramic landscape: a quiet river trail in early morning light, a dirt path running along a grassy bank, tall trees and soft mist over calm water, a few scattered cans and paper scraps near the reeds, soft painted illustration. The middle of the picture shows the river bend and the path clearly. The trail is empty and peaceful.",
+      "aspect": "4:1",
+      "width": 1600,
+      "quality": 72,
+      "local_note": "4:1 banner across the top of the Riverside Cleanup week board, also cropped to 16:10 on the picker card, so keep the middle interesting; sits under a dark gradient on the left (title text), so the left quarter can be plain; fallback is a flat teal-to-panel gradient",
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "banner-garden",
+      "prompt": "Wide panoramic scene: an empty grassy lot beside a small red brick library building, a chain-link fence along the edge, warm afternoon sun and long soft shadows, a few young trees, soft painted illustration. The library walls are plain brick with blank windows. The middle of the picture shows the open lot clearly. The lot is empty and quiet. No people, no animals, no writing, no signs.",
+      "sd": "Wide panoramic scene: an empty grassy lot beside a small red brick library building, a chain-link fence along the edge, warm afternoon sun and long soft shadows, a few young trees, soft painted illustration. The library walls are plain brick with blank windows. The middle of the picture shows the open lot clearly. The lot is empty and quiet.",
+      "aspect": "4:1",
+      "width": 1600,
+      "quality": 72,
+      "local_note": "4:1 banner across the top of the Library Lot Garden week board, also cropped to 16:10 on the picker card, so keep the middle interesting; sits under a dark gradient on the left (title text), so the left quarter can be plain; fallback is a flat teal-to-panel gradient",
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "banner-coats",
+      "prompt": "Wide panoramic interior: a bright community center room with rolling racks of colorful winter coats on hangers, stacks of plain brown cardboard boxes, a wooden floor, a large window with soft falling snow outside, soft painted illustration. All boxes and walls are completely blank. The middle of the picture shows the coat racks clearly. The room is empty and calm. No people, no animals, no writing.",
+      "sd": "Wide panoramic interior: a bright community center room with rolling racks of colorful winter coats on hangers, stacks of plain brown cardboard boxes, a wooden floor, a large window with soft falling snow outside, soft painted illustration. All boxes and walls are completely blank. The middle of the picture shows the coat racks clearly. The room is empty and calm.",
+      "aspect": "4:1",
+      "width": 1600,
+      "quality": 72,
+      "local_note": "4:1 banner across the top of the Winter Coat Drive week board, also cropped to 16:10 on the picker card, so keep the middle interesting; sits under a dark gradient on the left (title text), so the left quarter can be plain; fallback is a flat teal-to-panel gradient",
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    }
+  ]
+}
