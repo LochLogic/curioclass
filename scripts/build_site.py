@@ -299,7 +299,8 @@ def lib_story(r, collection):
 stories = [lib_story(r, 'stories') for r in read('library/stories-pd.csv') + read('library/stories-sw.csv')
            if r['decision'] != 'reserve']
 speeches = [lib_story(r, 'speeches') for r in read('library/speeches.csv') if r['decision'] != 'reserve']
-sacred = [lib_story(r, 'sacred') for r in read('library/sacred-texts.csv') if r['decision'] != 'reserve']
+sacred = sorted((lib_story(r, 'sacred') for r in read('library/sacred-texts.csv') if r['decision'] != 'reserve'),
+                key=lambda s: re.sub(r'^the ', '', s['title'].lower()))  # alphabetical, ignoring a leading "The"
 if '--preview' in sys.argv:  # local check of the reader with a made-up story; never part of a deploy build
     stories.append(lib_story(dict(id='reader-preview', title='The Lion and the Mouse', author='after Aesop', source='aesop-winter',
                                   grades='K-3', kind='fable', origin='Greece', decision='in', folder=SITE / 'fixtures' / 'reader-preview'), 'stories'))

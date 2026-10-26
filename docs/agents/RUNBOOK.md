@@ -68,6 +68,5 @@ then the item goes back to "ready" with a reply on the comment and the comment m
 - **Paused (specs done, not built):** circuit-builder, sound-studio, satire-decoder, usage-panel, stock-market-1929.
   Their specs predate STANDARDS.md (one voice, no Look section): update voice and accent before building.
 - **Lesson plans (2026-10-25):** every tool gets `plan.md` (docs/LESSON-PLANS.md). Cory approved the three grade-2
-  test plans, and 28 plans went live on 2026-10-25. Backfill the other 36 live tools with plan agents and add plans
-  to new waves.
+  test plans, and every live tool (62) had a plan by 2026-10-25. New waves add the plan as part of going live.
 - **Parked K-2 tools waiting on voice:** see the Review Desk "Parked" filter.
