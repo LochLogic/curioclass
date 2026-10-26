@@ -78,18 +78,24 @@ def stretch(a, rate):
     return np.clip(out, -32768, 32767).astype(np.int16)
 
 
-def encode(pcm, tempo=1.0):
+def encode(pcm, tempo=1.0, kbps=24):
     """Trim the silence at both ends and encode a small MP3 (24 kbps is plenty for one voice).
-    tempo above 1 speeds the speech up without raising the pitch (lines.json "tempo")."""
+    tempo above 1 speeds the speech up without raising the pitch (lines.json "tempo").
+    lines.json "kbps" (for example 16) shrinks a tool with many lines to fit the 2 MB limit."""
     import numpy as np, lameenc
     a = np.frombuffer(pcm, dtype=np.int16)
     loud = np.flatnonzero(np.abs(a) > 400)
     if len(loud):
         a = a[max(0, loud[0] - 2400):loud[-1] + 3600]  # keep 0.1 s before and 0.15 s after
+    speech = np.abs(a[np.abs(a) > 400]).astype(float)
+    if len(speech):
+        rms = np.sqrt((speech ** 2).mean())
+        if rms < 3500:  # lift a quiet take toward a typical one (about 4500), never past a 28000 peak
+            a = (a * min(4500 / rms, 28000 / speech.max())).astype(np.int16)
     if tempo != 1.0:
         a = stretch(a, tempo)
     enc = lameenc.Encoder()
-    enc.set_bit_rate(24); enc.set_in_sample_rate(24000); enc.set_channels(1); enc.set_quality(2)
+    enc.set_bit_rate(kbps); enc.set_in_sample_rate(24000); enc.set_channels(1); enc.set_quality(2)
     return enc.encode(a.tobytes()) + enc.flush()
 
 
@@ -150,7 +156,7 @@ def main():
             r.write_bytes(record(text, spec.get('voice', 'Puck'), spec.get('style', 'Read this aloud clearly and warmly'))); made += 1
         elif f.exists() and '--reencode' not in sys.argv:
             continue
-        f.write_bytes(encode(r.read_bytes(), spec.get('tempo', 1.0)))
+        f.write_bytes(encode(r.read_bytes(), spec.get('tempo', 1.0), spec.get('kbps', 24)))
         print(f'recorded {f.name}: {f.stat().st_size // 1024} KB  {text[:60]}')
     for old in folder.glob('*.mp3'):
         if old.name not in keep:

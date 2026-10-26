@@ -1,0 +1,18 @@
+{
+  "id": "walk-in-their-shoes",
+  "status": "beta",
+  "hook": "Replay one small moment in each animal character's shoes, find the one thing each of them knew that nobody else did, then choose what happens next and see how it lands on everyone.",
+  "outcome": "Take another person's perspective: notice what each character knows and feels at the same moment, and how one choice lands differently on each of them",
+  "driver": "students or teacher",
+  "minutes": "10-20",
+  "modes": [],
+  "grades_label": "Grades 3-5",
+  "sources": [
+    "CASEL, What Is the CASEL Framework? Social Awareness: the abilities to understand the perspectives of and empathize with others: https://casel.org/fundamentals-of-sel/what-is-the-casel-framework/",
+    "Stories, characters and lines: original writing for Curio Class",
+    "Characters, shoes, settings and book covers drawn in code",
+    "Narration generated with Qwen3-TTS (Apache 2.0), cloning a Google Gemini text-to-speech voice"
+  ],
+  "third_party": [],
+  "updated": "2026-10-26"
+}

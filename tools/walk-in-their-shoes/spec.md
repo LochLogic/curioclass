@@ -65,7 +65,7 @@ Secrets:
 - Wren: "I asked Rory to save my seat because I get nervous walking in late."
 Beats (Tamsin / Rory / Wren; expressions T, R, W):
 1. N: "It was Tamsin's first day. She carried her tray into the noisy lunchroom." Tamsin: "So many tables. Where do I go?" Rory: "Same table as always. I'll keep this spot for Wren." Wren: "Band practice is running long today." (Wren is shown at the band room door, small, in the corner of the scene) (worried, happy, calm)
-2. N: "Tamsin saw an empty seat next to Rory and walked over." Tamsin: "That seat is empty. Maybe they'll let me sit there." Rory: "Who's that? I don't think I know her." Wren: "I hope Rory remembers my seat." (nervous, surprised, worried)
+2. N: "Tamsin saw an empty seat next to Rory and walked over." Tamsin: "That seat is empty. Maybe they'll let me sit there." Rory: "Who's that? I don't think I know her." Wren: "I hope Rory remembers my seat." (worried, surprised, worried)
 3. N: "Rory said, That seat's taken. Tamsin walked away fast." Tamsin: "Nobody wants me here. I should have stayed home." (own words: left out, embarrassed) Rory: "Wait, was she new? I didn't mean it like that." (own words: confused, sorry) Wren: "Here I come. I'm glad my seat is ready." (own words: relieved, hopeful) (sad, worried, calm)
 4. N: "Wren sat down. Across the room, Tamsin ate alone. Rory had to decide what to do." Tamsin: "I'll just look at my food until lunch is over." Rory: "I kept my promise. So why do I feel bad?" Wren: "Who is that sitting by herself?" (sad, worried, surprised)
 Decision: "What should Rory do?"
@@ -136,6 +136,7 @@ Spoken lines, all recorded:
 - The 10 UI lines above (fill-in names make one clip per name where a name appears: record the shoes, beat 3 and beat 4 lines once per character, 9 characters).
 - Every beat narration (12), every beat thought (36), every secret (9), every ending narration (9) and every ending thought (27), word for word from Content.
 - Not spoken: chips, button labels, teasers, Talk it over questions (the teacher reads those).
+- As built: Read in a character view also speaks that character's Only I know card (hint, secret, then the bubble), and picking a choice plays one soft tone (silent with Sound off).
 - Auto-play: on entering a beat, its narration (Narrator view) or thought (character view, after reveal on beat 3). The shelf line plays once on first tap. Read speaks the current hint, then the visible bubble or narration. Follow the STANDARDS.md voice queue (welcome once, mark said when started, hush resolves Read).
 
 ## Family engine

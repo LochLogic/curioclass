@@ -1,0 +1,1052 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Walk in Their Shoes · Perspective taking stories · Curio Class</title>
+<meta name="description" content="Replay one small moment in each animal character's shoes, find the one thing each of them knew that nobody else did, then choose what happens next and see how it lands on everyone. Grades 3-5 social and emotional learning. Works offline.">
+<!--
+Walk in Their Shoes (Curio Class)
+Grades 3-5, Social and Emotional Learning, module Perspective Taking. Standard: CASEL Social Awareness (understanding
+the perspectives of others and empathizing with them).
+Either driver: a teacher on a projector for a morning meeting (the class votes on the choice out loud) or pairs on a laptop.
+Three short branching storybooks (The Muddy Sleeve, The Saved Seat, The Last Goal). The shoe rack switches the same beat
+between the Narrator and each character's view: a thought bubble and an "Only I know" secret. On the big moment the
+student can guess first (feeling chips, never graded), then the class picks what happens next and sees each ending
+through everyone's eyes. No score, no timer, nothing typed and nothing saved but the shared Motion setting.
+Source: CASEL, "What Is the CASEL Framework?" (Social Awareness). Stories, characters and lines are original writing for
+Curio Class. Characters, shoes, settings and covers are drawn in code. One file, no network requests.
+Content CC BY 4.0, code MIT. curioclass.org
+-->
+<link rel="stylesheet" href="kit:curio">
+<style>
+header :focus-visible{outline-color:#fff}
+:root{
+  --paper:#fbf5e9;--ink:#2b2118;--muted:#6b5d4f;--line:#e9dcc3;--focus:#1f6f8b;
+  --brand:#8a5a10;--btn:#7a4f0d;--btn-line:#b88a3e;--head-ink:#fffaf0;--panel:#fffaf0;
+  --card:#ffffff;--chip:#f6ecd8;
+}
+/* three page layouts, picked in script (relayout()), as in collision-lab:
+   wide    (1000 px or wider and 700 px or taller): stage column on the left, 360 px panel on the right;
+   compact (a short landscape box such as the 16:10 embed): a 290 px panel, a one-row header, action boxes first;
+   stack   (narrow or portrait): the panel under the stage, the page scrolls.
+   The scene SVG is drawn at its real pixel size, so thought bubbles keep a readable size in every box. */
+main{grid-template-columns:minmax(0,1fr) 360px;min-height:0}
+body.compact main{grid-template-columns:minmax(0,1fr) 304px}
+@media (min-width:900px){body.compact main{grid-template-columns:minmax(0,1fr) 320px}}
+body.compact header{padding:4px 8px;gap:6px;flex-wrap:nowrap;min-width:0}
+body.compact h1{font-size:17px;white-space:nowrap;min-width:0;overflow:hidden;text-overflow:ellipsis}
+body.compact h1 small{display:none}
+body.compact .icon-btn{min-height:44px;padding:0 10px;font-size:14px;white-space:nowrap;flex:none}
+body.stack{height:auto}
+body.stack main{grid-template-columns:minmax(0,1fr);align-content:start}
+body.stack .panel{border-left:0;border-top:3px solid var(--line);overflow:visible}
+@media (min-width:600px){
+  body.stack .panel{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:start;align-content:start}
+  body.stack #hint,body.stack #secret,body.stack .foot{grid-column:1}
+  body.stack #acts{grid-column:2;grid-row:1/span 3;display:flex;flex-direction:column;gap:10px}
+  body.stack .foot{margin-top:0}
+}
+/* 6: in the stacked page the Talk it over card covers the whole window, not the short panel */
+body.stack .talk{position:fixed;inset:0;z-index:20}
+@media (max-width:560px){ .icon-btn{min-height:44px;padding:0 12px;font-size:15px} }
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ---------- shelf ---------- */
+#shelf{grid-column:1/-1;padding:18px 20px 24px;overflow:auto;min-height:0;display:flex;flex-direction:column;justify-content:center}
+.shelf-intro{font-size:19px;line-height:1.4;margin:0 0 14px;text-align:center}
+.covers{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;width:100%;max-width:min(1300px,calc((100vh - 230px) * 2.6));margin:0 auto}
+.cover{position:relative;display:flex;flex-direction:column;text-align:left;border:3px solid #0000;border-radius:8px 18px 18px 8px;
+  padding:0 0 12px 0;background:var(--cv);box-shadow:0 6px 0 #0002,0 2px 10px #0002;overflow:hidden;min-height:44px}
+.cover::before{content:'';position:absolute;left:0;top:0;bottom:0;width:16px;background:var(--brand);border-right:3px solid #0002}
+.cover:hover{transform:translateY(-2px)}
+.cover:focus-visible{outline:4px solid var(--focus);outline-offset:4px}
+.cover svg{display:block;width:100%;height:auto}
+.cover .ct{display:block;margin:4px 14px 0 28px;font:800 24px/1.15 'Trebuchet MS','Segoe UI',sans-serif;color:var(--ink)}
+.cover .cq{display:block;margin:6px 14px 0 28px;font-size:16px;line-height:1.35;color:var(--ink)}
+.cover .cn{display:block;margin:6px 14px 0 28px;font-size:14px;color:var(--ink);opacity:.85}
+body.compact #shelf{padding:8px 10px 10px}
+body.compact .shelf-intro{font-size:15px;margin-bottom:8px}
+body.compact .covers{gap:10px}
+body.compact .cover .ct{font-size:17px;margin-top:2px}
+body.compact .cover .cq{font-size:13px;margin-top:3px}
+body.compact .cover .cn{font-size:12px;margin-top:3px}
+@media (max-width:640px){
+  .covers{grid-template-columns:1fr}
+  .cover{display:grid;grid-template-columns:44% 1fr;align-items:center;padding:0}
+  .cover svg{grid-row:1/4;align-self:stretch;height:100%;object-fit:cover}
+  .cover .ct{margin:10px 10px 0 12px;font-size:19px}
+  .cover .cq,.cover .cn{margin:4px 10px 0 12px}
+  .cover .cn{margin-bottom:10px}
+}
+
+/* ---------- story view: stage column ---------- */
+.col{display:flex;flex-direction:column;min-height:0;min-width:0}
+.stage{position:relative;overflow:hidden;min-height:0;flex:1 1 auto;background:#dfe6ea}
+#sv{position:absolute;left:0;top:0;display:block}
+#sv.fade{animation:fade .45s ease-out}
+@keyframes fade{from{opacity:.25}to{opacity:1}}
+.bub{position:absolute;background:#fff;color:var(--ink);border:3px solid var(--ink);border-radius:22px;padding:.45em .7em;
+  line-height:1.3;font-weight:600;box-shadow:0 3px 0 #0002;transform-origin:50% 100%;animation:pop .35s ease-out}
+.bub.q{font:800 2.6em/1 'Trebuchet MS',sans-serif;padding:.12em .5em .18em;text-align:center}
+.bub .who{display:block;font-size:.72em;font-weight:700;color:var(--brand);letter-spacing:.02em;margin-bottom:1px}
+.dotb{position:absolute;background:#fff;border:3px solid var(--ink);border-radius:50%}
+@keyframes pop{from{transform:scale(.6);opacity:0}to{transform:scale(1);opacity:1}}
+.spot{animation:pulse 2.6s ease-in-out infinite}
+.calm .spot,.calm #sv.fade,.calm .bub{animation:none!important}
+@keyframes pulse{50%{opacity:.6}}
+.cap{background:#fffdf7;border-top:3px solid var(--line);padding:8px 16px;min-height:0;font-size:20px;line-height:1.35;text-align:center}
+.cap.small{font-size:14px;color:var(--muted);padding:5px 14px}
+.cap.small b{color:var(--ink);font-weight:600}
+.nav{display:flex;align-items:center;justify-content:center;gap:14px;padding:6px 12px;background:var(--paper)}
+.btn{border:2px solid var(--brand);background:#fff;color:var(--brand);border-radius:12px;min-height:48px;min-width:48px;padding:0 16px;font-weight:700;font-size:17px}
+.btn:hover:not(:disabled){background:#fbf0dc}
+.btn:disabled{opacity:.4;cursor:default}
+.btn.solid{background:var(--brand);color:#fff}
+.btn.solid:hover:not(:disabled){background:#76490b}
+.dots{display:flex;gap:10px;align-items:center}
+.dots i{display:block;width:14px;height:14px;border-radius:50%;border:2px solid var(--brand);background:#fff}
+.dots i.on{width:22px;height:22px;background:var(--brand);box-shadow:0 0 0 3px #fff,0 0 0 5px var(--brand)}
+.dots i.done{background:#e3c79a}
+.rackrow{display:flex;align-items:stretch;gap:10px;padding:6px 12px 10px;background:var(--paper);border-top:2px solid var(--line)}
+.rack{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;flex:1 1 auto;min-width:0}
+.shoe{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;border:2px solid var(--line);background:#fff;
+  border-radius:14px;min-height:60px;padding:3px 4px 4px;font-size:14px;font-weight:600;line-height:1.1;color:var(--ink);box-shadow:0 3px 0 #0001}
+.shoe svg{width:84px;height:38px;flex:none}
+.shoe span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.shoe[aria-pressed="true"]{border:4px solid var(--brand);background:#fdf1dc;transform:translateY(-4px);box-shadow:0 6px 0 #8a5a1033;padding:1px 2px 2px}
+.tracker{flex:0 0 150px;display:flex;align-items:center;font-size:14px;line-height:1.3;color:var(--muted);font-weight:600}
+.tracker b{color:var(--brand)}
+body.compact .cap{font-size:14px;padding:4px 8px}
+body.compact .cap.small{font-size:11.5px;padding:3px 8px}
+body.compact .nav{padding:3px 8px;gap:10px}
+body.compact .btn{min-height:44px;font-size:14px;padding:0 10px}
+body.compact .rackrow{padding:3px 6px 5px;gap:6px}
+body.compact .rack{gap:5px}
+body.compact .shoe{min-height:52px;font-size:11px;padding:1px 2px;gap:0}
+body.compact .shoe span{white-space:normal;text-align:center;line-height:1.05}
+body.compact .shoe svg{width:54px;height:24px}
+body.compact .tracker{flex-basis:54px;font-size:11px}
+body.compact .dots{gap:7px}
+body.compact .dots i{width:11px;height:11px}
+body.compact .dots i.on{width:16px;height:16px}
+body.stack .rackrow{flex-wrap:wrap}
+@media (max-width:640px){.shoe span{white-space:normal;text-align:center;line-height:1.1}.shoe svg{width:64px;height:30px}.foot .btn{font-size:14px;padding:0 3px}}
+@media (max-width:400px){.foot .btn{font-size:13px}.foot .btn .ic{display:none}}
+body.stack .tracker{flex:1 1 100%;justify-content:center}
+
+/* ---------- panel ---------- */
+.panel{position:relative;gap:10px}
+.card{background:var(--card);border:2px solid var(--line);border-radius:14px;padding:10px 12px}
+.card h2{margin:0 0 4px;font:800 15px 'Trebuchet MS','Segoe UI',sans-serif;letter-spacing:.04em;text-transform:uppercase;color:var(--brand)}
+.card p{margin:0;font-size:17px;line-height:1.4}
+.secret{border-color:var(--brand);border-style:dashed;background:#fffdf6}
+.secret h2::before{content:'🔒 '}
+.chips{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin:6px 0 8px}
+.chip{border:2px solid var(--line);background:var(--chip);border-radius:999px;min-height:44px;padding:0 4px;font-size:15px;font-weight:600;color:var(--ink)}
+.chip[aria-pressed="true"]{border:3px solid var(--brand);background:#fff;font-weight:800}
+.chip[aria-pressed="true"]::before{content:'● ';color:var(--brand);font-size:.8em}
+.row{display:flex;gap:8px;flex-wrap:wrap}
+.row .btn{flex:1 1 auto}
+.words{margin:4px 0 0;font-size:16px;line-height:1.5}
+.words div{margin:2px 0}
+.words .lab{color:var(--muted);font-weight:600}
+.words b{font-weight:800}
+.words b::before{content:'';display:inline-block;width:.5em;height:.5em;border-radius:50%;background:var(--brand);margin:0 .25em .08em 0}
+.q4{font-weight:700;margin:0 0 6px!important}
+.choices{display:flex;flex-direction:column;gap:6px}
+.choice{text-align:left;border:2px solid var(--brand);background:#fff;color:var(--ink);border-radius:12px;min-height:48px;padding:6px 12px;font-size:16px;font-weight:600;line-height:1.25}
+.choice:hover{background:#fbf0dc}
+.choice .lt{display:inline-block;min-width:1.6em;font-weight:800;color:var(--brand)}
+.foot{display:flex;gap:8px;flex-wrap:wrap;margin-top:auto;padding-top:4px}
+.foot{flex-wrap:nowrap}
+.foot .btn{flex:1 1 auto;font-size:15px;padding:0 6px;white-space:nowrap}
+body.compact .foot .ic{display:none}
+.hint{margin:0}
+@media (max-height:860px){.chip{min-height:44px;font-size:14.5px}.chips{gap:5px;margin:4px 0 6px}.card{padding:8px 10px}.panel{gap:8px}}
+.talk{position:absolute;inset:0;background:var(--panel);padding:14px 16px;overflow:auto;z-index:3;display:flex;flex-direction:column;gap:10px}
+.talk h2{margin:0;font:800 20px 'Trebuchet MS',sans-serif;color:var(--brand)}
+.talk ol{margin:0;padding-left:1.3em;font-size:18px;line-height:1.45}
+.talk li{margin:0 0 10px}
+.talk li.gen{list-style:none;margin-left:-1.3em;color:var(--muted);font-style:italic;border-top:2px solid var(--line);padding-top:10px}
+body.compact .panel{padding:6px 8px;gap:6px}
+body.compact .hint{font-size:13.5px;line-height:1.35}
+body.compact .card{padding:5px 8px;border-radius:10px}
+body.compact .card h2{font-size:12px;margin-bottom:2px}
+body.compact .card p{font-size:13.5px;line-height:1.3}
+body.compact .chips{gap:4px;margin:3px 0 5px}
+body.compact .chip{font-size:12.5px;min-height:44px}
+body.compact .choice{font-size:13px;min-height:44px;padding:3px 8px}
+body.compact .choices{gap:4px}
+body.compact .words{font-size:13px}
+body.compact .foot{gap:5px;padding-top:0}
+body.compact .foot .btn{font-size:12.5px;padding:0 6px}
+body.compact .talk ol{font-size:14px}
+body.compact .talk h2{font-size:16px}
+/* short boxes: hint, Only I know, then the action box; the action boxes lose their headings (the hint and question say it) */
+body.compact #guess h2,body.compact #whatnext h2{display:none}
+body.compact .chips{grid-template-columns:repeat(4,minmax(0,1fr))}
+body.compact .chip{font-size:10.5px;padding:0;letter-spacing:-.02em}
+body.compact #guess{padding:4px 6px}
+body.compact #guess .chips{gap:3px;margin:2px 0 4px}
+body.compact #guess .row{flex-wrap:nowrap;gap:5px}
+body.compact #guess .row .btn{padding:0 6px;font-size:12.5px;white-space:nowrap}
+body.compact .secret p{font-size:12.5px}
+.calm .cover:hover{transform:none}
+@media print{
+  header .icon-btn,.rackrow,.foot,#endBtns,.talk,.dots,#back,#next{display:none!important}
+  body,body.compact,body.stack{background:#fff}
+  main,body.compact main,body.stack main{display:block!important;height:auto!important;overflow:visible!important}
+  .stage{width:672px!important;height:422px!important;max-width:none!important;break-inside:avoid}
+  .panel{width:7in!important;max-height:none!important;overflow:visible!important}
+  .spot,.bub,#sv.fade{animation:none!important}
+  *:focus,*:focus-visible{outline:none!important}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Walk in Their Shoes <small>One moment, three points of view.</small></h1>
+  <button class="icon-btn" id="motion" aria-pressed="true" title="Turn animation on or off">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+  <button class="icon-btn" id="read">🔊 Read</button>
+</header>
+<main id="main">
+  <section id="shelf" aria-label="Story shelf">
+    <p class="shelf-intro" id="shelfHint"></p>
+    <div class="covers" id="covers"></div>
+  </section>
+  <div class="col" id="col" hidden>
+    <div class="stage" id="stage"><svg id="sv" role="img" aria-labelledby="svTitle" xmlns="http://www.w3.org/2000/svg"></svg><div id="bubs"></div></div>
+    <div class="cap" id="cap"></div>
+    <div class="nav">
+      <button class="btn" id="back" aria-label="Back">◀ Back</button>
+      <div class="dots" id="dots" role="img"></div>
+      <button class="btn solid" id="next" aria-label="Next">Next ▶</button>
+    </div>
+    <div class="rackrow">
+      <div class="rack" id="rack" role="group" aria-label="Whose view"></div>
+      <div class="tracker" id="tracker" aria-live="polite"></div>
+    </div>
+  </div>
+  <aside class="panel" id="panel" hidden>
+    <p class="hint" id="hint"></p>
+    <div class="card secret" id="secret"><h2>Only I know</h2><p id="secretText"></p></div>
+    <div id="acts">
+      <div class="card" id="guess"><h2>Guess first</h2><div id="guessBody"></div></div>
+      <div class="card" id="whatnext"><h2>What next?</h2><p class="q4" id="q4"></p><div class="choices" id="choices"></div></div>
+      <div class="row" id="endBtns"><button class="btn solid" id="again">↺ Try another choice</button></div>
+    </div>
+    <div class="foot">
+      <button class="btn" id="talkBtn" aria-haspopup="dialog"><span class="ic">💬 </span>Talk it over</button>
+      <button class="btn" id="restart">Start over</button>
+      <button class="btn" id="stories"><span class="ic">📚 </span>Stories</button>
+    </div>
+    <div class="talk" id="talk" role="dialog" aria-modal="false" aria-labelledby="talkH" hidden>
+      <h2 id="talkH" tabindex="-1">Talk it over</h2>
+      <ol id="talkList"></ol>
+      <div class="row"><button class="btn solid" id="talkClose">Close</button></div>
+    </div>
+  </aside>
+</main>
+<p class="sr" id="live" aria-live="polite"></p>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const {say, wait} = Curio;
+  const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+  const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+
+  // ======================================================================================
+  // Content (word for word from the spec; original writing for Curio Class)
+  // ======================================================================================
+  const CHIPS = ['happy', 'proud', 'worried', 'embarrassed', 'frustrated', 'left out', 'confused', 'sorry', 'hopeful', 'nervous', 'relieved', 'annoyed'];
+  const STORIES = [
+    {
+      id: 'mud', title: 'The Muddy Sleeve', teaser: 'A borrowed jacket comes back muddy.', setting: 'playground', cover: '#e9b25a',
+      chars: [
+        {name: 'Juniper', animal: 'fox', shoes: {type: 'boot', c: '#d63b2f'}, shoesName: 'red rain boots'},
+        {name: 'Pip', animal: 'rabbit', shoes: {type: 'sneaker', c: '#2f9e4f'}, shoesName: 'green sneakers'},
+        {name: 'Otto', animal: 'bear', shoes: {type: 'hightop', c: '#2f6fd6'}, shoesName: 'big blue high-tops'},
+      ],
+      secrets: [
+        "My grandma gave me this jacket for my birthday. I promised her I'd take good care of it.",
+        'I slipped in the mud because I was helping a little kid who fell off the slide.',
+        'I saw the whole thing. Pip ran over to help that kid before anyone else did.',
+      ],
+      beats: [
+        {n: 'It was a cold, windy recess. Pip forgot a jacket, so Juniper lent hers.',
+          t: ['I hope Pip is careful with it.', "Juniper is so nice. I'm finally warm!", 'Brr. I wish I had a jacket like that.'], ex: ['happy', 'happy', 'calm']},
+        {n: 'Near the slide, a little kid tumbled into a puddle. Pip ran over.',
+          t: ["Where is Pip running? I can't see from here.", "Oh no, that kid is crying. I'll help them up.", 'Pip got there fast. Nobody else even moved.'], ex: ['calm', 'worried', 'surprised']},
+        {n: 'When the bell rang, Pip gave the jacket back. One sleeve was covered in mud.',
+          t: ["My grandma's jacket! It's ruined, and I'll have to tell her.", "Uh oh. I didn't even notice the sleeve. Juniper looks so upset.", "Juniper doesn't know why it's muddy. Should I say something?"],
+          own: [['worried', 'frustrated'], ['embarrassed', 'sorry'], ['nervous', 'confused']], ex: ['upset', 'worried', 'worried']},
+        {n: 'Everyone stood still for a moment. Juniper had to decide what to say.',
+          t: ['I want to yell. But I also want to know what happened.', "Please don't be mad. I can explain.", 'This feels awkward.'], ex: ['upset', 'worried', 'worried']},
+      ],
+      decider: 0, question: 'What should Juniper do?',
+      choices: [
+        {label: 'Yell: You ruined it!', n: "Juniper shouted and stomped inside. Pip didn't get a chance to explain.",
+          t: ["I'm still upset, and now I feel bad for yelling too.", "I wanted to say sorry, but she didn't let me.", "I didn't speak up. Maybe I should have."], ex: ['upset', 'sad', 'worried']},
+        {label: 'Ask: What happened to the sleeve?', n: 'Pip explained about the little kid, and Otto nodded. They found wipes in the classroom.',
+          t: ['Oh. Pip was helping someone. The mud mostly came off, too.', "I'm glad she asked. I'll be more careful next time.", "I'm glad I could back Pip up."], ex: ['calm', 'happy', 'happy']},
+        {label: 'Say nothing and walk away', n: 'Juniper took the jacket and walked off without a word. Pip wondered all afternoon.',
+          t: ["I'm still upset, and I don't even know what happened.", 'Is she mad at me? I wish I knew.', 'Nobody talked about it. It felt weird all day.'], ex: ['upset', 'worried', 'sad']},
+      ],
+      talk: ["What did Otto know that Juniper didn't?", 'If you were Pip, what would you want Juniper to know?'],
+    },
+    {
+      id: 'seat', title: 'The Saved Seat', teaser: 'A new kid looks for a place to sit.', setting: 'lunchroom', cover: '#8fcbc1',
+      chars: [
+        {name: 'Tamsin', animal: 'heron', shoes: {type: 'slipon', c: '#f2c230', s: '#b9790c'}, shoesName: 'yellow striped slip-ons', note: 'new to school'},
+        {name: 'Rory', animal: 'badger', shoes: {type: 'sneaker', c: '#f08a24'}, shoesName: 'orange sneakers'},
+        {name: 'Wren', animal: 'owl', shoes: {type: 'boot', c: '#8a4fc4', cuff: 1}, shoesName: 'purple boots'},
+      ],
+      secrets: [
+        "At my old school I always sat with my cousin. Today I don't know anyone.",
+        "I promised Wren I'd save her a seat. She's coming late from band practice.",
+        'I asked Rory to save my seat because I get nervous walking in late.',
+      ],
+      beats: [
+        {n: "It was Tamsin's first day. She carried her tray into the noisy lunchroom.",
+          t: ['So many tables. Where do I go?', "Same table as always. I'll keep this spot for Wren.", 'Band practice is running long today.'], ex: ['worried', 'happy', 'calm']},
+        {n: 'Tamsin saw an empty seat next to Rory and walked over.',
+          t: ["That seat is empty. Maybe they'll let me sit there.", "Who's that? I don't think I know her.", 'I hope Rory remembers my seat.'], ex: ['worried', 'surprised', 'worried']},
+        {n: "Rory said, That seat's taken. Tamsin walked away fast.",
+          t: ['Nobody wants me here. I should have stayed home.', "Wait, was she new? I didn't mean it like that.", "Here I come. I'm glad my seat is ready."],
+          own: [['left out', 'embarrassed'], ['confused', 'sorry'], ['relieved', 'hopeful']], ex: ['sad', 'worried', 'calm']},
+        {n: 'Wren sat down. Across the room, Tamsin ate alone. Rory had to decide what to do.',
+          t: ["I'll just look at my food until lunch is over.", 'I kept my promise. So why do I feel bad?', 'Who is that sitting by herself?'], ex: ['sad', 'worried', 'surprised']},
+      ],
+      decider: 1, question: 'What should Rory do?',
+      choices: [
+        {label: 'Go invite Tamsin over', n: "Rory walked over and said, Sorry, that seat was saved. Want to sit with us? There's room on the end.",
+          t: ["They weren't saying no to me. It was just a saved seat.", 'Keeping a promise and being kind can both happen.', 'Now I know someone new, too.'], ex: ['happy', 'happy', 'happy']},
+        {label: 'Stay put and keep eating', n: 'Rory stayed put. Tamsin ate alone and left early.',
+          t: ['Maybe tomorrow will be better. Maybe not.', 'I keep thinking about her face.', 'Rory seems quiet. Is something wrong?'], ex: ['sad', 'worried', 'surprised']},
+        {label: 'Tell Wren and decide together', n: "Rory whispered to Wren. Wren said, Let's both go say hi.",
+          t: ['Two kids came over to say hi. My shoulders relaxed.', 'Wren made it easier to go.', 'I know how it feels to walk in alone.'], ex: ['happy', 'happy', 'happy']},
+      ],
+      talk: ['Why did Rory say the seat was taken? What did Tamsin think it meant?', 'Was Rory wrong to keep the promise? Was there a way to do both?'],
+    },
+    {
+      id: 'goal', title: 'The Last Goal', teaser: 'One goal decides the game.', setting: 'field', cover: '#f4b98a',
+      chars: [
+        {name: 'Bea', animal: 'turtle', shoes: {type: 'cleat', c: '#2b2b2b', l: '#46d66f'}, shoesName: 'cleats with green laces', note: 'goalie'},
+        {name: 'Max', animal: 'goat', shoes: {type: 'cleat', c: '#fafafa', l: '#9aa3ad'}, shoesName: 'white cleats'},
+        {name: 'Dot', animal: 'hedgehog', shoes: {type: 'cleat', c: '#f06aa6', l: '#ffffff'}, shoesName: 'pink cleats'},
+      ],
+      secrets: [
+        'My glove came loose right before the last kick. I tried to fix it, but there was no time.',
+        'My big brother came to watch. I really wanted to win in front of him.',
+        "I lost the ball right before that kick. That's how the other team got it.",
+      ],
+      beats: [
+        {n: 'The score was tied, one to one, with one minute left.',
+          t: ['Stay ready. Watch the ball.', 'My brother is watching. We have to win!', "Here comes the ball. I've got it."], ex: ['calm', 'happy', 'happy']},
+        {n: 'Dot lost the ball. The other team kicked hard at the goal.',
+          t: ['My glove is loose! Not now!', 'No, no, no! Stop it, Bea!', 'Oh no, that was my ball.'], ex: ['worried', 'surprised', 'worried']},
+        {n: 'The ball slipped past Bea. The whistle blew. Max shouted, We lost because of you!',
+          t: ["I tried so hard. Everyone thinks it's my fault.", 'We were so close. My brother saw us lose.', 'It started with me, not Bea. Should I say so?'],
+          own: [['embarrassed', 'frustrated'], ['frustrated', 'annoyed'], ['sorry', 'nervous']], ex: ['sad', 'upset', 'worried']},
+        {n: 'The team walked off the field. Max had to decide what to say next.',
+          t: ['I just want to go home.', "I'm still mad. But was it really Bea?", 'If I speak up, will Max be mad at me instead?'], ex: ['sad', 'upset', 'worried']},
+      ],
+      decider: 1, question: 'What should Max do?',
+      choices: [
+        {label: 'Keep blaming Bea', n: 'Max kept grumbling about Bea all the way to the bus.',
+          t: ["Maybe I shouldn't play goalie anymore.", "Blaming her didn't make me feel any better.", 'I never said it was my ball. I feel bad.'], ex: ['sad', 'upset', 'worried']},
+        {label: 'Say: Sorry I yelled. We all tried.', n: 'Max stopped and said sorry. Dot said, I lost the ball first. Bea showed them her loose glove.',
+          t: ["So it wasn't only me. I'll check my glove next time.", "Losing still stinks, but we're still a team.", "I'm glad I said it. It felt like a weight came off."], ex: ['calm', 'calm', 'happy']},
+        {label: 'Walk off and stay quiet', n: 'Max walked off alone. Nobody talked on the way to the bus.',
+          t: ["Max is still mad at me. I'm sure of it.", "I didn't really mean what I said. I just didn't say so.", "Everybody went quiet. I don't like it."], ex: ['sad', 'sad', 'worried']},
+      ],
+      talk: ["Max's brother was watching. How might that change how Max acted?", "What did Dot know that Max didn't?"],
+    },
+  ];
+  const GENERAL_TALK = "Think of a time a story looked different once you knew more. You don't have to share it.";
+
+  // UI lines (spec "UI lines"); names fill in, one recorded clip per name
+  const UI = {
+    shelf: "Pick a story. You'll get to step into each character's shoes.",
+    start: "Press Next to read, or click someone's shoes to step into them.",
+    shoes: n => `You're in ${n}'s shoes. Read the thought bubble and the Only I know card.`,
+    guess: n => `How might ${n} feel right now? Pick up to two words, or just look.`,
+    both: (n, w) => `You and ${n} both picked ${w.join(' and ')}.`,
+    diff: (n, w) => `${n} used different words: ${w[0]} and ${w[1]}.`,
+    after: "Now try someone else's shoes at this same moment.",
+    b4few: 'Before you choose, try at least one other pair of shoes.',
+    b4: n => `What should ${n} do? Pick one and see what happens.`,
+    b5: 'Step into each pair of shoes to see how this ending felt to them.',
+    all: "You've walked in everyone's shoes.",
+  };
+
+  // ======================================================================================
+  // State
+  // ======================================================================================
+  const state = {screen: 'shelf', s: 0, beat: 1, view: 'n', choice: null, tried: new Set(), revealed: new Set(), picks: [[], [], []], allSaid: false, talk: false};
+  const story = () => STORIES[state.s];
+  function freshStory(i) {
+    said.delete(UI.all);   // the all-shoes line is said once per story
+    Object.assign(state, {s: i, beat: 1, view: 'n', choice: null, tried: new Set(), revealed: new Set(), picks: [[], [], []], allSaid: false, talk: false});
+  }
+
+  // ======================================================================================
+  // Drawing: characters, shoes, settings (all in code)
+  // ======================================================================================
+  // shoes: a pair at the feet, local units, bottom at y = 0
+  function shoeOne(sh) {
+    const c = sh.c, dark = '#2b2118';
+    const st = `stroke="${dark}" stroke-width="2" stroke-linejoin="round"`;
+    if (sh.type === 'boot') {
+      return `<path d="M-9 0 L17 0 Q23 0 23 -6 Q22 -12 11 -13 L8 -32 L-9 -32 Z" fill="${c}" ${st}/>` +
+        (sh.cuff ? `<rect x="-11" y="-36" width="21" height="7" rx="3" fill="${c}" ${st}/>` : `<path d="M-9 -27 L8 -27" stroke="#fff8" stroke-width="2"/>`) +
+        `<path d="M-9 -3 L22 -3" stroke="${dark}" stroke-width="2"/>`;
+    }
+    if (sh.type === 'hightop') {
+      return `<path d="M-10 0 L18 0 Q24 0 24 -6 Q23 -12 12 -13 L8 -27 L-10 -27 Z" fill="${c}" ${st}/>` +
+        `<path d="M12 -13 Q23 -12 24 -6 L24 -4 L13 -4 Z" fill="#fff" ${st}/><rect x="-11" y="-4" width="36" height="5" rx="2" fill="#fff" ${st}/>` +
+        `<path d="M-2 -23 L5 -23 M-1 -18 L7 -18 M0 -13 L9 -13" stroke="#fff" stroke-width="2.2"/>`;
+    }
+    if (sh.type === 'slipon') {
+      return `<path d="M-9 0 L17 0 Q23 0 23 -5 Q22 -10 12 -11 L3 -13 Q-3 -14 -9 -12 Z" fill="${c}" ${st}/>` +
+        `<path d="M-4 -12.5 L-4 -1 M2 -13 L2 -1 M8 -12 L8 -1 M14 -10.5 L14 -1" stroke="${sh.s}" stroke-width="2.6"/>` +
+        `<path d="M-9 0 L17 0 Q23 0 23 -5 Q22 -10 12 -11 L3 -13 Q-3 -14 -9 -12 Z" fill="none" ${st}/>`;
+    }
+    const lift = sh.type === 'cleat' ? -3 : 0;
+    let s = `<g transform="translate(0 ${lift})"><path d="M-9 0 L17 0 Q23 0 23 -5 Q22 -10 12 -11 L3 -14 Q-3 -15 -9 -13 Z" fill="${c}" ${st}/>`;
+    if (sh.type === 'sneaker') s += `<rect x="-10" y="-4" width="34" height="5" rx="2" fill="#fff" ${st}/><path d="M2 -12 L7 -9 M5 -13 L10 -10" stroke="#fff" stroke-width="2.2"/>`;
+    else s += `<path d="M1 -12 L6 -9 M4 -13.5 L9 -10.5" stroke="${sh.l}" stroke-width="2.6"/><path d="M-6 -7 L18 -7" stroke="${sh.l}" stroke-width="1.6" opacity=".8"/>`;
+    s += '</g>';
+    if (sh.type === 'cleat') s += [-6, 1, 8, 15].map(x => `<rect x="${x}" y="-3" width="4" height="4" fill="${dark}"/>`).join('');
+    return s;
+  }
+  const shoes = (sh, gap = 15) => `<g transform="translate(${-gap} 0) scale(-1 1)">${shoeOne(sh)}</g><g transform="translate(${gap} 0)">${shoeOne(sh)}</g>`;
+
+  // a face: eyes, brows and mouth around the head center (0, -118); my = mouth line
+  function face(expr, my, big) {
+    const k = '#2b2118', ex = big ? 15 : 14, ey = -121;
+    let eyes = '', brows = '', mouth = '';
+    const eye = x => `<circle cx="${x}" cy="${ey}" r="5.5" fill="${k}"/><circle cx="${x + 1.8}" cy="${ey - 2}" r="1.8" fill="#fff"/>`;
+    if (expr === 'happy') eyes = [-ex, ex].map(x => `<path d="M${x - 6} ${ey + 1} Q${x} ${ey - 7} ${x + 6} ${ey + 1}" fill="none" stroke="${k}" stroke-width="3.2" stroke-linecap="round"/>`).join('');
+    else if (expr === 'surprised') eyes = [-ex, ex].map(x => `<circle cx="${x}" cy="${ey}" r="7.5" fill="#fff" stroke="${k}" stroke-width="2"/><circle cx="${x}" cy="${ey}" r="4" fill="${k}"/>`).join('');
+    else eyes = eye(-ex) + eye(ex);
+    // brows: [outer y, inner y] for the left brow, mirrored on the right
+    const B = {calm: [-135, -136], happy: [-137, -139], sad: [-133, -141], upset: [-141, -132], worried: [-134, -142], surprised: [-145, -146]}[expr];
+    const bw = (o, i, s) => `<path d="M${s * (ex + 8)} ${o} Q${s * (ex + 1)} ${(o + i) / 2 - 1.5} ${s * (ex - 6)} ${i}" fill="none" stroke="${k}" stroke-width="3.2" stroke-linecap="round"/>`;
+    brows = bw(B[0], B[1], -1) + bw(B[0], B[1], 1);
+    const sk = `fill="none" stroke="${k}" stroke-width="3" stroke-linecap="round"`;
+    if (expr === 'calm') mouth = `<path d="M-7 ${my} Q0 ${my + 5} 7 ${my}" ${sk}/>`;
+    else if (expr === 'happy') mouth = `<path d="M-11 ${my - 2} Q0 ${my + 13} 11 ${my - 2} Z" fill="#6b2a2a" stroke="${k}" stroke-width="2.4" stroke-linejoin="round"/><path d="M-5 ${my + 4} Q0 ${my + 8} 5 ${my + 4}" fill="#e07a7a"/>`;
+    else if (expr === 'sad') mouth = `<path d="M-8 ${my + 4} Q0 ${my - 4} 8 ${my + 4}" ${sk}/>`;
+    else if (expr === 'upset') mouth = `<path d="M-10 ${my + 4} Q0 ${my - 3} 10 ${my + 4}" fill="none" stroke="${k}" stroke-width="3.6" stroke-linecap="round"/>`;
+    else if (expr === 'worried') mouth = `<path d="M-9 ${my + 1} q4.5 -4 9 0 q4.5 4 9 0" ${sk}/>`;
+    else mouth = `<ellipse cx="0" cy="${my + 2}" rx="5" ry="7" fill="#6b2a2a" stroke="${k}" stroke-width="2"/>`;
+    const blush = expr === 'happy' || expr === 'upset' ? [-25, 25].map(x => `<ellipse cx="${x}" cy="-106" rx="6" ry="3.5" fill="${expr === 'upset' ? '#e2584a' : '#f08c8c'}" opacity=".55"/>`).join('') : '';
+    return blush + eyes + brows + mouth;
+  }
+
+  // animals: [fur, belly, top of head (for bubbles), species scale]
+  const ANIMAL = {
+    fox: {fur: '#d8752c', belly: '#fbeee0', top: -170, sc: 1},
+    rabbit: {fur: '#b9a184', belly: '#f6ecdd', top: -212, sc: .95},
+    bear: {fur: '#8b5a3c', belly: '#d8b48c', top: -165, sc: 1.14},
+    heron: {fur: '#a9bfcf', belly: '#f4f7f9', top: -170, sc: 1.02},
+    badger: {fur: '#8b8784', belly: '#d9d4cc', top: -165, sc: 1},
+    owl: {fur: '#94704f', belly: '#ead6b4', top: -172, sc: .96},
+    turtle: {fur: '#86ad55', belly: '#e6d68e', top: -158, sc: .98},
+    goat: {fur: '#eee4d2', belly: '#fbf6ec', top: -176, sc: 1.02},
+    hedgehog: {fur: '#7a5236', belly: '#efd5aa', top: -168, sc: .92},
+  };
+
+  // one character, feet at (0, 0), about 170 units tall. o: {jacket, mud, hold, tray, loose}
+  function drawChar(ch, expr, o = {}) {
+    const A = ANIMAL[ch.animal], f = A.fur, b = A.belly, k = '#2b2118';
+    const ol = `stroke="${k}" stroke-width="2.6" stroke-linejoin="round"`;
+    let back = '', ears = '', headDeco = '', muzzle = '', my = -100;
+    const an = ch.animal;
+    if (an === 'fox') {
+      back = `<path d="M24 -40 Q74 -54 66 -102 Q60 -70 30 -62 Z" fill="${f}" ${ol}/><path d="M66 -102 Q72 -86 62 -80 Q60 -92 66 -102 Z" fill="#fff"/>`;
+      ears = `<path d="M-34 -136 L-30 -176 L-6 -150 Z" fill="${f}" ${ol}/><path d="M34 -136 L30 -176 L6 -150 Z" fill="${f}" ${ol}/><path d="M-30 -168 L-28 -176 L-20 -164 Z M30 -168 L28 -176 L20 -164 Z" fill="${k}"/>`;
+      muzzle = `<path d="M-30 -110 Q-18 -96 0 -90 Q18 -96 30 -110 Q26 -82 0 -80 Q-26 -82 -30 -110 Z" fill="#fff6ec"/><ellipse cx="0" cy="-107" rx="5.5" ry="4" fill="${k}"/>`;
+      my = -97;
+    } else if (an === 'rabbit') {
+      ears = `<ellipse cx="-16" cy="-176" rx="11" ry="34" fill="${f}" ${ol}/><ellipse cx="16" cy="-176" rx="11" ry="34" fill="${f}" ${ol}/><ellipse cx="-16" cy="-174" rx="5" ry="24" fill="#f2b8c0"/><ellipse cx="16" cy="-174" rx="5" ry="24" fill="#f2b8c0"/>`;
+      muzzle = `<ellipse cx="0" cy="-102" rx="15" ry="11" fill="#fbf4ea"/><path d="M-4 -108 L4 -108 L0 -104 Z" fill="#e88a9a" stroke="#c46a7a" stroke-width="1.5"/>`;
+      my = -98;
+    } else if (an === 'bear') {
+      ears = `<circle cx="-30" cy="-146" r="13" fill="${f}" ${ol}/><circle cx="30" cy="-146" r="13" fill="${f}" ${ol}/><circle cx="-30" cy="-146" r="6" fill="${b}"/><circle cx="30" cy="-146" r="6" fill="${b}"/>`;
+      muzzle = `<ellipse cx="0" cy="-102" rx="18" ry="13" fill="${b}"/><ellipse cx="0" cy="-108" rx="7" ry="5" fill="${k}"/>`;
+      my = -98;
+    } else if (an === 'heron') {
+      headDeco = `<path d="M-6 -154 Q-26 -172 -42 -166 Q-24 -162 -14 -150 Z M2 -155 Q-10 -178 -26 -178 Q-12 -170 -6 -152 Z" fill="#6f8798" ${ol}/>`;
+      muzzle = `<path d="M-6 -112 L44 -104 L-6 -98 Z" fill="#f0b43c" stroke="${k}" stroke-width="2.4" stroke-linejoin="round"/><path d="M-6 -105 L40 -104" stroke="#b97d16" stroke-width="1.6"/>`;
+      my = -90;
+    } else if (an === 'badger') {
+      ears = `<circle cx="-30" cy="-146" r="10" fill="#3a3533" ${ol}/><circle cx="30" cy="-146" r="10" fill="#3a3533" ${ol}/>`;
+      headDeco = `<path d="M-4 -104 L-13 -154 Q-21 -159 -27 -151 L-13 -103 Z M4 -104 L13 -154 Q21 -159 27 -151 L13 -103 Z" fill="#2f2a28"/><path d="M-36 -110 Q-30 -96 -18 -92 L-16 -100 Q-28 -104 -36 -110 Z M36 -110 Q30 -96 18 -92 L16 -100 Q28 -104 36 -110 Z" fill="#b7b2ab"/>`;
+      muzzle = `<ellipse cx="0" cy="-106" rx="6.5" ry="4.5" fill="${k}"/>`;
+      my = -97;
+    } else if (an === 'owl') {
+      ears = `<path d="M-32 -140 L-30 -170 L-14 -150 Z M32 -140 L30 -170 L14 -150 Z" fill="${f}" ${ol}/>`;
+      headDeco = `<circle cx="-15" cy="-121" r="15" fill="#f4e6c8" stroke="#b08c62" stroke-width="2"/><circle cx="15" cy="-121" r="15" fill="#f4e6c8" stroke="#b08c62" stroke-width="2"/>`;
+      muzzle = `<path d="M-6 -110 L6 -110 L0 -98 Z" fill="#e59a2f" stroke="${k}" stroke-width="2" stroke-linejoin="round"/>`;
+      my = -91;
+    } else if (an === 'turtle') {
+      muzzle = `<ellipse cx="0" cy="-104" rx="3" ry="2" fill="${k}" opacity=".6"/>`;
+      my = -98;
+    } else if (an === 'goat') {
+      ears = `<ellipse cx="-42" cy="-126" rx="14" ry="6" fill="${f}" ${ol} transform="rotate(18 -42 -126)"/><ellipse cx="42" cy="-126" rx="14" ry="6" fill="${f}" ${ol} transform="rotate(-18 42 -126)"/>`;
+      headDeco = `<path d="M-16 -152 Q-30 -178 -10 -176 Q-20 -168 -8 -154 Z M16 -152 Q30 -178 10 -176 Q20 -168 8 -154 Z" fill="#9b9187" ${ol}/>`;
+      muzzle = `<ellipse cx="0" cy="-102" rx="16" ry="12" fill="#fff9f0"/><path d="M-4 -108 L4 -108 L0 -104 Z" fill="#d98a8a"/><path d="M-6 -82 L0 -66 L6 -82 Z" fill="#d8ccb8" ${ol}/>`;
+      my = -97;
+    } else if (an === 'hedgehog') {
+      const sp = []; for (let i = 0; i <= 16; i++) { const a = Math.PI * (1.05 + i * .9 / 16 * 2.2), r1 = i % 2 ? 50 : 64; sp.push([Math.cos(a) * r1, -100 + Math.sin(a) * r1 * 1.1]); }
+      back = `<path d="M${sp.map(p => p[0].toFixed(1) + ' ' + p[1].toFixed(1)).join(' L')} Z" fill="${f}" ${ol}/>`;
+      ears = `<circle cx="-27" cy="-148" r="8" fill="#d9b58a" ${ol}/><circle cx="27" cy="-148" r="8" fill="#d9b58a" ${ol}/>`;
+      muzzle = `<ellipse cx="0" cy="-104" rx="14" ry="10" fill="#f6e2c2"/><circle cx="0" cy="-109" r="5" fill="${k}"/>`;
+      my = -97;
+    }
+    const headFill = an === 'hedgehog' ? '#e9cfa6' : an === 'badger' ? '#f2efea' : f;
+    const legs = an === 'heron' ? `<path d="M-15 -22 L-15 -10 M15 -22 L15 -10" stroke="#e0a23a" stroke-width="5"/>` :
+      `<rect x="-22" y="-26" width="13" height="18" rx="5" fill="${f}" ${ol}/><rect x="9" y="-26" width="13" height="18" rx="5" fill="${f}" ${ol}/>`;
+    let body;
+    if (an === 'turtle') {
+      body = `<ellipse cx="0" cy="-60" rx="40" ry="42" fill="#5d7a36" ${ol}/><ellipse cx="0" cy="-58" rx="27" ry="33" fill="${b}" stroke="#a8964e" stroke-width="2"/>` +
+        `<path d="M-27 -66 L27 -66 M-25 -48 L25 -48 M0 -90 L0 -26" stroke="#b8a55a" stroke-width="2"/>`;
+    } else if (an === 'owl') {
+      body = `<ellipse cx="0" cy="-58" rx="36" ry="42" fill="${f}" ${ol}/><ellipse cx="0" cy="-54" rx="23" ry="30" fill="${b}"/>` +
+        [[-8, -66], [8, -66], [0, -54], [-10, -44], [10, -44]].map(p => `<path d="M${p[0] - 4} ${p[1]} q4 5 8 0" fill="none" stroke="#b08c62" stroke-width="2"/>`).join('');
+    } else {
+      body = `<ellipse cx="0" cy="-58" rx="35" ry="41" fill="${f}" ${ol}/><ellipse cx="0" cy="-54" rx="22" ry="29" fill="${b}"/>`;
+    }
+    // arms (a jacket gets sleeves instead)
+    const handC = an === 'turtle' ? '#f08a24' : f;
+    let armL = `<ellipse cx="-38" cy="-60" rx="9" ry="21" fill="${f}" ${ol} transform="rotate(14 -38 -60)"/>`;
+    let armR = `<ellipse cx="38" cy="-60" rx="9" ry="21" fill="${f}" ${ol} transform="rotate(-14 38 -60)"/>`;
+    if (an === 'turtle') {
+      armL += o.loose ? `<g transform="rotate(-38 -46 -40)"><rect x="-58" y="-40" width="22" height="20" rx="7" fill="${handC}" ${ol}/><path d="M-56 -32 L-38 -32" stroke="#fff" stroke-width="3"/></g>` :
+        `<rect x="-55" y="-46" width="20" height="19" rx="7" fill="${handC}" ${ol}/><path d="M-53 -38 L-37 -38" stroke="#fff" stroke-width="3"/>`;
+      armR += `<rect x="35" y="-46" width="20" height="19" rx="7" fill="${handC}" ${ol}/><path d="M37 -38 L53 -38" stroke="#fff" stroke-width="3"/>`;
+    }
+    let jacket = '';
+    if (o.jacket) {
+      const J = '#6d4a8f';
+      jacket = `<path d="M-33 -86 Q0 -100 33 -86 L36 -24 Q0 -16 -36 -24 Z" fill="${J}" ${ol}/><path d="M0 -94 L0 -20" stroke="#4e3368" stroke-width="2.4"/>` +
+        `<path d="M-20 -94 L0 -74 L20 -94" fill="none" stroke="#4e3368" stroke-width="2.4"/>`;
+      armL = `<path d="M-32 -84 Q-54 -66 -50 -36 L-38 -34 Q-38 -60 -26 -72 Z" fill="${J}" ${ol}/>`;
+      armR = `<path d="M32 -84 Q54 -66 50 -36 L38 -34 Q38 -60 26 -72 Z" fill="${J}" ${ol}/>`;
+      if (o.mud) armL += `<path d="M-50 -52 Q-56 -44 -50 -36 L-38 -34 Q-36 -44 -40 -50 Q-44 -56 -50 -52 Z" fill="#6b4a2a" opacity=".92"/><circle cx="-44" cy="-60" r="3" fill="#6b4a2a"/>`;
+    }
+    let held = '';
+    if (o.hold) {   // the jacket, folded over the arms
+      const mud = o.hold === 'clean' ? .35 : .95;
+      held = `<path d="M-34 -58 Q0 -66 34 -58 L30 -34 Q0 -28 -30 -34 Z" fill="#6d4a8f" ${ol}/><path d="M-34 -58 Q-42 -46 -30 -34" fill="none" stroke="#4e3368" stroke-width="2"/>` +
+        `<path d="M10 -60 Q24 -62 32 -56 L29 -38 Q18 -36 12 -42 Z" fill="#6b4a2a" opacity="${mud}"/>`;
+    }
+    let tray = '';
+    if (o.tray) tray = `<rect x="-36" y="-50" width="72" height="12" rx="4" fill="#d9c49a" ${ol}/><circle cx="-18" cy="-55" r="8" fill="#e85f4a" ${ol}/><rect x="-2" y="-62" width="12" height="14" rx="2" fill="#fff" ${ol}/><ellipse cx="22" cy="-54" rx="9" ry="5" fill="#f3c74a" ${ol}/>`;
+    const head = `<circle cx="0" cy="-118" r="38" fill="${headFill}" ${ol}/>`;
+    const parts = back + legs + `<g>${shoes(ch.shoes)}</g>` + body + jacket + armL + armR + held + tray + ears + head + headDeco + muzzle + face(expr, my, an === 'owl');
+    return parts;
+  }
+
+  // the open-book Narrator icon, centered at (0, 0) in a 60 x 34 box
+  const bookIcon = `<path d="M0 -12 Q-14 -20 -28 -16 L-28 14 Q-14 10 0 17 Q14 10 28 14 L28 -16 Q14 -20 0 -12 Z" fill="#fff" stroke="#2b2118" stroke-width="2.6" stroke-linejoin="round"/>` +
+    `<path d="M0 -12 L0 17" stroke="#2b2118" stroke-width="2.6"/><path d="M-22 -8 Q-12 -11 -5 -6 M-22 -1 Q-12 -4 -5 1 M-22 6 Q-12 3 -5 8 M22 -8 Q12 -11 5 -6 M22 -1 Q12 -4 5 1 M22 6 Q12 3 5 8" fill="none" stroke="#8a5a10" stroke-width="2"/>`;
+
+  // ---------- settings ----------
+  function setting(kind, W, H, hz, uid = 'sc') {
+    let s = '';
+    if (kind === 'playground') {
+      s += `<defs><linearGradient id="sky1-${uid}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#a9bccb"/><stop offset="1" stop-color="#dde5ea"/></linearGradient></defs>`;
+      s += `<rect width="${W}" height="${hz + 2}" fill="url(#sky1-${uid})"/>`;
+      // clouds with a little shading
+      for (const [x, y, r] of [[.16, .14, 1], [.62, .1, 1.3], [.88, .2, .8]]) {
+        const cx = x * W, cy = y * H, R = r * Math.min(W, H) * .05;
+        s += `<g opacity=".9"><ellipse cx="${cx}" cy="${cy + R * .3}" rx="${R * 2.2}" ry="${R * .8}" fill="#c9d4dc"/><circle cx="${cx - R}" cy="${cy}" r="${R * .8}" fill="#eef2f5"/><circle cx="${cx + R * .2}" cy="${cy - R * .3}" r="${R}" fill="#f4f7f9"/><circle cx="${cx + R * 1.2}" cy="${cy + R * .1}" r="${R * .7}" fill="#eef2f5"/></g>`;
+      }
+      // autumn trees along the back
+      const tc = ['#e0a030', '#d9822b', '#c9692a', '#e8b84a', '#d27a2a'];
+      for (let i = 0; i < 9; i++) {
+        const x = (i + .3) / 8.6 * W, r = H * (.09 + (i % 3) * .018), y = hz - r * .9;
+        s += `<rect x="${x - r * .1}" y="${y}" width="${r * .2}" height="${hz - y + 4}" fill="#7a5236"/><circle cx="${x}" cy="${y}" r="${r}" fill="${tc[i % 5]}"/><circle cx="${x - r * .4}" cy="${y - r * .3}" r="${r * .45}" fill="#f2c46a" opacity=".55"/>`;
+      }
+      s += `<rect y="${hz}" width="${W}" height="${H - hz}" fill="#b4b76c"/>`;
+      s += `<path d="M0 ${hz} L${W} ${hz}" stroke="#8f9356" stroke-width="3"/>`;
+      // wood-chip patch under the slide, and a fence
+      for (let i = 0; i < 30; i++) { const x = (i * 97 % 101) / 101 * W, y = hz + ((i * 53 % 89) / 89) * (H - hz); s += `<ellipse cx="${x}" cy="${y}" rx="${4 + i % 3}" ry="2" fill="#d98a2b" opacity=".7" transform="rotate(${i * 37 % 180} ${x} ${y})"/>`; }
+      // slide on the left
+      const sx = W * .08, sb = hz + (H - hz) * .35, sh = (H - hz) * .2 + H * .25;
+      s += `<path d="M${sx} ${sb} L${sx} ${sb - sh} M${sx + W * .04} ${sb} L${sx + W * .04} ${sb - sh}" stroke="#4a6fa5" stroke-width="5"/>`;
+      for (let i = 1; i < 5; i++) s += `<path d="M${sx} ${sb - sh * i / 5} L${sx + W * .04} ${sb - sh * i / 5}" stroke="#4a6fa5" stroke-width="3"/>`;
+      s += `<path d="M${sx + W * .04} ${sb - sh} Q${sx + W * .12} ${sb - sh * .6} ${sx + W * .2} ${sb - 4} L${sx + W * .2} ${sb + 6} Q${sx + W * .1} ${sb - sh * .38} ${sx + W * .04} ${sb - sh + Math.max(14, sh * .14)} Z" fill="#e0533f" stroke="#2b2118" stroke-width="2"/>`;
+      s += `<rect x="${sx - 6}" y="${sb - sh - 12}" width="${W * .04 + 12}" height="12" rx="3" fill="#f2c230" stroke="#2b2118" stroke-width="2"/>`;
+      // the puddle
+      const px = W * .2, py = hz + (H - hz) * .72;
+      s += `<ellipse cx="${px}" cy="${py}" rx="${W * .09}" ry="${(H - hz) * .08}" fill="#7d6a52"/><ellipse cx="${px - W * .01}" cy="${py - 2}" rx="${W * .06}" ry="${(H - hz) * .04}" fill="#9aa6ae" opacity=".7"/>`;
+    } else if (kind === 'lunchroom') {
+      s += `<rect width="${W}" height="${hz + 2}" fill="#a6d3cb"/><rect y="${hz - H * .06}" width="${W}" height="${H * .06}" fill="#8dc2b9"/>`;
+      // windows with soft daylight
+      for (let i = 0; i < 3; i++) {
+        const x = W * (.1 + i * .22), y = H * .08, w = W * .14, h = hz * .5;
+        s += `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="6" fill="#e6f3f6" stroke="#f7fbfb" stroke-width="6"/><path d="M${x + w / 2} ${y} L${x + w / 2} ${y + h} M${x} ${y + h / 2} L${x + w} ${y + h / 2}" stroke="#f7fbfb" stroke-width="4"/><rect x="${x + 6}" y="${y + 6}" width="${w * .3}" height="${h * .2}" fill="#fff" opacity=".6"/>`;
+      }
+      // the band room door, back right, with a music note on its window
+      const dx = W * .84, dw = W * .12, dh = hz * .78, dy = hz + (H - hz) * .12 - dh;
+      s += `<rect x="${dx}" y="${dy}" width="${dw}" height="${dh}" fill="#c08a52" stroke="#2b2118" stroke-width="2.5"/><rect x="${dx + dw * .2}" y="${dy + dh * .12}" width="${dw * .6}" height="${dh * .25}" fill="#e6f3f6" stroke="#2b2118" stroke-width="2"/>` +
+        `<g transform="translate(${dx + dw * .5} ${dy + dh * .27}) scale(${dh / 200})"><ellipse cx="-6" cy="8" rx="7" ry="5" fill="#2b2118"/><path d="M0 8 L0 -16 L10 -12" fill="none" stroke="#2b2118" stroke-width="3"/></g>` +
+        `<circle cx="${dx + dw * .15}" cy="${dy + dh * .6}" r="${Math.max(3, dw * .05)}" fill="#f2c230" stroke="#2b2118" stroke-width="1.5"/>`;
+      // floor tiles
+      s += `<rect y="${hz}" width="${W}" height="${H - hz}" fill="#efe4cc"/>`;
+      for (let i = 1; i < 6; i++) { const y = hz + (H - hz) * (i / 6) ** 1.4; s += `<path d="M0 ${y} L${W} ${y}" stroke="#ddd0b2" stroke-width="2"/>`; }
+      for (let i = -6; i <= 6; i++) s += `<path d="M${W / 2 + i * W * .06} ${hz} L${W / 2 + i * W * .2} ${H}" stroke="#ddd0b2" stroke-width="2"/>`;
+    } else {
+      s += `<defs><linearGradient id="sky3-${uid}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f3b48c"/><stop offset="1" stop-color="#fbe2c6"/></linearGradient></defs>`;
+      s += `<rect width="${W}" height="${hz + 2}" fill="url(#sky3-${uid})"/>`;
+      s += `<circle cx="${W * .78}" cy="${hz - H * .06}" r="${H * .08}" fill="#ffd98a" opacity=".9"/>`;
+      // distant tree line
+      let p = `M0 ${hz}`; for (let i = 0; i <= 24; i++) p += ` Q${(i + .5) / 24 * W} ${hz - H * (.05 + (i % 3) * .02)} ${(i + 1) / 24 * W} ${hz}`;
+      s += `<path d="${p} Z" fill="#5f8a4a"/>`;
+      // grass with mown stripes
+      s += `<rect y="${hz}" width="${W}" height="${H - hz}" fill="#86b95e"/>`;
+      for (let i = 0; i < 8; i += 2) s += `<path d="M${W * i / 8} ${hz} L${W * (i + 1) / 8} ${hz} L${W * ((i + 1) / 8 * 1.6 - .3)} ${H} L${W * (i / 8 * 1.6 - .3)} ${H} Z" fill="#7cae55"/>`;
+      s += `<path d="M${W * .42} ${hz} L${W * .5} ${H}" stroke="#f4f7ef" stroke-width="3" opacity=".8"/>`;
+      s += `<ellipse cx="${W * .62}" cy="${hz + (H - hz) * .5}" rx="${W * .16}" ry="${(H - hz) * .18}" fill="none" stroke="#f4f7ef" stroke-width="3" opacity=".7"/>`;
+      // goal at the left, back
+      const gx = W * .015, gw = W * .2, gb = hz + (H - hz) * .34, gh = H * .3;
+      let net = ''; for (let i = 1; i < 8; i++) net += `M${gx + gw * i / 8} ${gb - gh} L${gx + gw * i / 8} ${gb} `; for (let i = 1; i < 6; i++) net += `M${gx} ${gb - gh * i / 6} L${gx + gw} ${gb - gh * i / 6} `;
+      s += `<rect x="${gx}" y="${gb - gh}" width="${gw}" height="${gh}" fill="#ffffff22"/><path d="${net}" stroke="#fff" stroke-width="1.4" opacity=".75"/>` +
+        `<path d="M${gx} ${gb} L${gx} ${gb - gh} L${gx + gw} ${gb - gh} L${gx + gw} ${gb}" fill="none" stroke="#fff" stroke-width="6" stroke-linejoin="round"/><path d="M${gx} ${gb} L${gx} ${gb - gh} L${gx + gw} ${gb - gh} L${gx + gw} ${gb}" fill="none" stroke="#2b2118" stroke-width="1.5" opacity=".5"/>`;
+    }
+    return s;
+  }
+
+  // ---------- where everyone stands, beat by beat: [x, depth (0 front, 1 back), options] ----------
+  const POS = {
+    mud: {
+      1: [[.42, 0], [.58, 0, {jacket: 1}], [.76, 0]],
+      2: [[.76, .4], [.34, 0, {jacket: 1, mud: 1}], [.56, .12]],
+      3: [[.58, 0, {hold: 'mud'}], [.40, 0], [.78, 0]],
+      4: [[.58, 0, {hold: 'mud'}], [.40, 0], [.78, 0]],
+      A: [[.88, .5, {hold: 'mud'}], [.42, 0], [.64, 0]],
+      B: [[.52, 0, {hold: 'clean'}], [.35, 0], [.70, 0]],
+      C: [[.90, .55, {hold: 'mud'}], [.42, 0], [.64, 0]],
+    },
+    seat: {
+      1: [[.14, .05, {tray: 1}], [.46, .3], [.91, 1]],
+      2: [[.63, .22, {tray: 1}], [.46, .3], [.91, 1]],
+      3: [[.15, 0, {tray: 1}], [.46, .3], [.76, .6]],
+      4: [[.87, .5, {tray: 1}], [.40, .3], [.56, .3]],
+      A: [[.72, .3, {tray: 1}], [.40, .3], [.56, .3]],
+      B: [[.92, .6, {tray: 1}], [.42, .3], [.58, .3]],
+      C: [[.72, .3, {tray: 1}], [.40, .3], [.56, .3]],
+    },
+    goal: {
+      1: [[.12, .25], [.68, 0], [.46, .05]],
+      2: [[.12, .25, {loose: 1}], [.65, 0], [.44, .05]],
+      3: [[.14, .25, {loose: 1}], [.45, 0], [.68, .05]],
+      4: [[.32, 0, {loose: 1}], [.56, 0], [.76, 0]],
+      A: [[.27, 0, {loose: 1}], [.60, 0], [.80, 0]],
+      B: [[.40, 0, {loose: 1}], [.56, 0], [.72, 0]],
+      C: [[.32, 0, {loose: 1}], [.88, .5], [.56, 0]],
+    },
+  };
+  const beatKey = () => state.beat === 5 ? 'ABC'[state.choice] : state.beat;
+
+  // ======================================================================================
+  // Rendering
+  // ======================================================================================
+  const sv = $('sv');
+  let geo = null, lastKey = '';
+  function curBeat() { const st = story(); return state.beat === 5 ? st.choices[state.choice] : st.beats[state.beat - 1]; }
+  function exprs() { return curBeat().ex; }
+
+  function drawScene(fade) {
+    const st = story(), r = $('stage').getBoundingClientRect();
+    const W = Math.max(260, Math.round(r.width)), H = Math.max(150, Math.round(r.height));
+    sv.setAttribute('width', W); sv.setAttribute('height', H); sv.setAttribute('viewBox', `0 0 ${W} ${H}`);
+    const hz = H * .5, front = H * .965, back = hz + (H - hz) * .12;
+    const gy = d => front - d * (front - back), ds = d => 1 - .5 * d;
+    const base = Math.min(H * .43, W * .2) / 170;   // a front character's scale
+    const pos = POS[st.id][beatKey()], ex = exprs(), view = state.view;
+    let s = `<title id="svTitle">${esc(sceneLabel())}</title>` + setting(st.setting, W, H, hz);
+    // furniture and props that stand in the scene
+    if (st.id === 'seat') {
+      const table = (x0, x1, d) => { const y = gy(d), sc = ds(d), th = 12 * base * 170 / 100 * sc * 1.4, ty = y - 58 * base * sc * 1.25;
+        return `<rect x="${x0 * W}" y="${ty}" width="${(x1 - x0) * W}" height="${th}" rx="4" fill="#f7eed8" stroke="#2b2118" stroke-width="2"/>` +
+          `<path d="M${x0 * W + 10} ${ty + th} L${x0 * W + 10} ${y - 4} M${x1 * W - 10} ${ty + th} L${x1 * W - 10} ${y - 4}" stroke="#9a8a6a" stroke-width="5"/>`; };
+      s += table(.3, .7, .42) + table(.78, .97, .62);
+      // the saved seat: a stool beside Rory until Wren sits in it
+      if (state.beat <= 3) { const y = gy(.34), sc = ds(.34) * base; s += `<rect x="${W * .6 - 22 * sc}" y="${y - 52 * sc}" width="${44 * sc}" height="${10 * sc}" rx="${4 * sc}" fill="#e0533f" stroke="#2b2118" stroke-width="2"/><path d="M${W * .6 - 16 * sc} ${y - 42 * sc} L${W * .6 - 18 * sc} ${y} M${W * .6 + 16 * sc} ${y - 42 * sc} L${W * .6 + 18 * sc} ${y}" stroke="#6b5d4f" stroke-width="${Math.max(2, 4 * sc)}"/>`; }
+    }
+    if (st.id === 'mud' && state.beat === 2) {   // the little kid in the puddle: a duckling
+      const x = W * .19, y = hz + (H - hz) * .74, sc = base * .8;
+      s += `<g transform="translate(${x} ${y}) scale(${sc})"><ellipse cx="0" cy="-22" rx="26" ry="20" fill="#f5d33a" stroke="#2b2118" stroke-width="2.6"/><circle cx="12" cy="-48" r="17" fill="#f5d33a" stroke="#2b2118" stroke-width="2.6"/>` +
+        `<path d="M26 -48 L40 -44 L26 -40 Z" fill="#f08a24" stroke="#2b2118" stroke-width="2"/><circle cx="16" cy="-52" r="3" fill="#2b2118"/><path d="M18 -45 q2 5 0 9" stroke="#5aa8e0" stroke-width="3" fill="none"/></g>`;
+    }
+    if (st.id === 'goal') {   // the ball
+      const B = {1: [.53, .05], 2: [.27, .3, .22], 3: [.1, .44], 4: [.1, .44], A: [.1, .44], B: [.1, .44], C: [.1, .44]}[beatKey()];
+      const x = B[0] * W, y = gy(B[1]) - (B[2] || 0) * H, rr = 13 * base * ds(B[1]) * 1.3;
+      s += `<ellipse cx="${x}" cy="${gy(B[1])}" rx="${rr}" ry="${rr * .3}" fill="#0002"/><g transform="translate(${x} ${y - rr})"><circle r="${rr}" fill="#fff" stroke="#2b2118" stroke-width="2"/><path d="M0 ${-rr * .45} L${rr * .43} ${-rr * .14} L${rr * .27} ${rr * .36} L${-rr * .27} ${rr * .36} L${-rr * .43} ${-rr * .14} Z" fill="#2b2118"/></g>`;
+      if (state.beat === 2) s += `<path d="M${x + rr * 2} ${y - rr} q${W * .06} ${-H * .04} ${W * .14} ${-H * .01}" fill="none" stroke="#fff" stroke-width="3" stroke-dasharray="6 6" opacity=".85"/>`;
+    }
+    // characters, back ones first
+    const order = [0, 1, 2].sort((a, b) => pos[b][1] - pos[a][1]);
+    geo = {W, H, heads: []};
+    for (const i of order) {
+      const [x, d, o] = pos[i], ch = st.chars[i], A = ANIMAL[ch.animal];
+      const sc = base * ds(d) * A.sc, px = x * W, py = gy(d);
+      geo.heads[i] = {x: px, top: py + A.top * sc, headTop: py - 160 * sc, sc};
+      const sel = view === i, dim = view !== 'n' && !sel;
+      let g = '';
+      if (sel) g += `<g class="spot"><ellipse cx="0" cy="-82" rx="74" ry="108" fill="#ffe7a8" opacity=".55"/></g><ellipse cx="0" cy="0" rx="64" ry="13" fill="#ffe7a8" stroke="var(--brand)" stroke-width="${6}" />`;
+      else g += `<ellipse cx="0" cy="0" rx="40" ry="8" fill="#0002"/>`;
+      g += drawChar(ch, ex[i], o || {});
+      s += `<g transform="translate(${px.toFixed(1)} ${py.toFixed(1)}) scale(${sc.toFixed(3)})"${dim ? ' opacity=".85"' : ''}>${g}</g>`;
+    }
+    sv.innerHTML = s;
+    if (fade && !Curio.reduce) { sv.classList.remove('fade'); void sv.getBoundingClientRect(); sv.classList.add('fade'); }
+    drawBubble();
+  }
+
+  function sceneLabel() {
+    const st = story(), names = st.chars.map((c, i) => `${c.name} the ${c.animal} looks ${exprs()[i]}`);
+    return `${st.title}, page ${state.beat}: ${names.join(', ')}.`;
+  }
+
+  // the thought bubble (HTML over the scene, so it wraps), or a "?" on the big moment before the reveal
+  function bubbleText() {
+    if (state.view === 'n') return null;
+    const i = state.view;
+    if (state.beat === 3 && !state.revealed.has(i)) return {q: true};
+    return {t: curBeat().t[i]};
+  }
+  function drawBubble() {
+    const box = $('bubs'); box.innerHTML = '';
+    const b = bubbleText(); if (!b || !geo) return;
+    const {W, H} = geo, h = geo.heads[state.view], ch = story().chars[state.view];
+    const fs = clamp(Math.min(H * .037, W * .019), 10.5, 19);
+    const el = document.createElement('div');
+    el.className = 'bub' + (b.q ? ' q' : '');
+    el.style.fontSize = fs + 'px';
+    if (b.q) { el.innerHTML = '?<span class="sr"> ' + esc(ch.name) + "'s thought is hidden</span>"; }
+    else { el.style.width = Math.round(clamp(W * .42, 150, 340)) + 'px'; el.innerHTML = `<span class="who">${esc(ch.name)} thinks</span>${esc(b.t)}`; }
+    box.appendChild(el);
+    const bw = el.offsetWidth, bh = el.offsetHeight, gap = Math.max(14, fs * 1.4);
+    let left = clamp(h.x - bw / 2, 6, W - bw - 6), top = h.top - gap - bh, side = false;
+    if (top < 6) {   // no room above the head: beside it
+      side = true; top = clamp(h.top, 6, H - bh - 6);
+      left = h.x + 60 * h.sc + bw + 6 < W ? h.x + 60 * h.sc : h.x - 60 * h.sc - bw;
+      left = clamp(left, 6, W - bw - 6);
+    }
+    el.style.left = left + 'px'; el.style.top = top + 'px';
+    // tail: two small circles from the bubble toward the head
+    const ax = side ? (left > h.x ? left : left + bw) : clamp(h.x, left + 20, left + bw - 20), ay = side ? top + bh / 2 : top + bh;
+    const tx = h.x, ty = h.top;
+    for (const [f, r] of [[.35, fs * .55], [.7, fs * .35]]) {
+      const d = document.createElement('div'); d.className = 'dotb';
+      const cx = ax + (tx - ax) * f, cy = ay + (ty - ay) * f;
+      Object.assign(d.style, {width: 2 * r + 'px', height: 2 * r + 'px', left: cx - r + 'px', top: cy - r + 'px', borderWidth: Math.max(2, fs * .15) + 'px'});
+      box.appendChild(d);
+    }
+  }
+
+  // ---------- shelf ----------
+  function coverArt(st) {
+    const W = 300, H = 190, hz = 110;
+    let s = `<svg viewBox="0 0 ${W} ${H}" aria-hidden="true" preserveAspectRatio="xMidYMid slice">` + setting(st.setting, W, H, hz, 'cv-' + st.id);
+    st.chars.forEach((ch, i) => {
+      const x = [92, 168, 238][i], sc = .52 * ANIMAL[ch.animal].sc;
+      s += `<g transform="translate(${x} ${H - 8}) scale(${sc})"><ellipse cx="0" cy="0" rx="40" ry="8" fill="#0002"/>${drawChar(ch, 'happy', i === 1 && st.id === 'mud' ? {jacket: 1} : st.id === 'seat' && i === 0 ? {tray: 1} : {})}</g>`;
+    });
+    return s + '</svg>';
+  }
+  function buildShelf() {
+    $('covers').innerHTML = STORIES.map((st, i) => `<button class="cover" id="cover${i}" style="--cv:${st.cover}" aria-label="${esc(st.title)}. ${esc(st.teaser)}">` +
+      `${coverArt(st)}<span class="ct">${esc(st.title)}</span><span class="cq">${esc(st.teaser)}</span>` +
+      `<span class="cn">${st.chars.map(c => c.name).join(', ')}</span></button>`).join('');
+    STORIES.forEach((st, i) => { $('cover' + i).onclick = () => openStory(i); });
+  }
+
+  // ---------- rack ----------
+  function buildRack() {
+    const st = story();
+    const items = [{label: 'Narrator', icon: `<svg viewBox="-34 -22 68 44" aria-hidden="true">${bookIcon}</svg>`}].concat(
+      st.chars.map(c => ({label: `${c.name}'s shoes`, icon: `<svg viewBox="-44 -40 88 44" aria-hidden="true">${shoes(c.shoes, 18)}</svg>`})));
+    $('rack').innerHTML = items.map((it, k) => `<button class="shoe" id="rk${k}" aria-pressed="false" title="Key ${k + 1}">${it.icon}<span>${esc(it.label)}</span></button>`).join('');
+    items.forEach((it, k) => { $('rk' + k).onclick = () => setView(k === 0 ? 'n' : k - 1); });
+  }
+
+  // ---------- hint ----------
+  function hintParts() {
+    if (state.screen === 'shelf') return [UI.shelf];
+    const st = story(), v = state.view, name = v === 'n' ? '' : st.chars[v].name, dec = st.chars[st.decider].name;
+    const tried = state.tried.size;
+    if (state.beat === 5) return [UI.b5];
+    if (state.beat === 4) {
+      const b = tried < 2 ? UI.b4few : UI.b4(dec);
+      return v === 'n' ? [b] : [UI.shoes(name), b];
+    }
+    if (v === 'n') return [UI.start];
+    if (state.beat === 3) {
+      if (!state.revealed.has(v)) return [UI.guess(name)];
+      const cmp = compareLine(v);
+      return cmp ? [cmp, UI.after] : [UI.after];
+    }
+    return [UI.shoes(name)];
+  }
+  function compareLine(v) {
+    const st = story(), own = st.beats[2].own[v], picks = state.picks[v], name = st.chars[v].name;
+    if (!picks.length) return null;
+    const both = own.filter(w => picks.includes(w));
+    return both.length ? UI.both(name, both) : UI.diff(name, own);
+  }
+
+  // ---------- the whole story view ----------
+  function render(fade) {
+    const st = story(), v = state.view, b = state.beat;
+    // caption
+    const cap = $('cap'); cap.className = 'cap' + (v === 'n' ? '' : ' small');
+    cap.innerHTML = (v === 'n' ? '' : '<b>Narrator:</b> ') + esc(curBeat().n);
+    // nav
+    $('back').disabled = b === 1; $('next').disabled = b >= 4;
+    $('dots').innerHTML = [1, 2, 3, 4, 5].map(k => `<i class="${k === b ? 'on' : k < b ? 'done' : ''}"></i>`).join('');
+    $('dots').setAttribute('aria-label', `Page ${b} of 5`);
+    for (let k = 0; k < 4; k++) $('rk' + k).setAttribute('aria-pressed', (k === 0 ? 'n' : k - 1) === v);
+    const n = state.tried.size;
+    $('tracker').innerHTML = n === 3 ? `<span><b>Shoes tried: 3 of 3.</b> ${esc(UI.all)}</span>` : `<span>Shoes tried: <b>${n} of 3</b></span>`;
+    // panel
+    $('hint').textContent = hintParts().join(' ');
+    $('secret').hidden = v === 'n';
+    if (v !== 'n') $('secretText').textContent = st.secrets[v];
+    renderGuess();
+    $('whatnext').hidden = b !== 4;
+    if (b === 4) {
+      $('q4').textContent = st.question;
+      $('choices').innerHTML = st.choices.map((c, k) => `<button class="choice" id="ch${k}"><span class="lt">${'ABC'[k]}</span>${esc(c.label)}</button>`).join('');
+      st.choices.forEach((c, k) => { $('ch' + k).onclick = () => choose(k); });
+    }
+    $('endBtns').hidden = b !== 5;
+    $('talkList').innerHTML = st.talk.map(q => `<li>${esc(q)}</li>`).join('') + `<li class="gen">${esc(GENERAL_TALK)}</li>`;
+    drawScene(fade);
+    const bt = bubbleText();
+    $('live').textContent = (v === 'n' ? curBeat().n : bt && bt.t ? `${st.chars[v].name} thinks: ${bt.t}` : `${st.chars[v].name}'s thought is hidden.`);
+  }
+  function renderGuess() {
+    const v = state.view, box = $('guess');
+    box.querySelector('h2').textContent = state.view !== 'n' && state.revealed.has(v) ? 'Feeling words' : 'Guess first';
+    box.hidden = !(state.beat === 3 && v !== 'n');
+    if (box.hidden) return;
+    const st = story(), name = st.chars[v].name, picks = state.picks[v];
+    if (!state.revealed.has(v)) {
+      $('guessBody').innerHTML = `<div class="chips" role="group" aria-label="Feeling words, pick up to two">` +
+        CHIPS.map((w, k) => `<button class="chip" id="cp${k}" aria-pressed="${picks.includes(w)}">${esc(w)}</button>`).join('') + `</div>` +
+        `<div class="row"><button class="btn solid" id="see">See what ${esc(name)} thinks</button><button class="btn" id="just">Just show me</button></div>`;
+      CHIPS.forEach((w, k) => { $('cp' + k).onclick = () => pick(w); });
+      $('see').onclick = () => reveal(); $('just').onclick = () => reveal();
+    } else {
+      const own = st.beats[2].own[v];
+      const mark = (w, other) => other.includes(w) ? `<b>${esc(w)}</b>` : esc(w);
+      $('guessBody').innerHTML = `<div class="words">` + (picks.length ? `<div><span class="lab">Your words:</span> ${picks.map(w => mark(w, own)).join(', ')}</div>` : '') +
+        `<div><span class="lab">${esc(name)}'s words:</span> ${own.map(w => mark(w, picks)).join(', ')}</div></div>`;
+    }
+  }
+
+  // ======================================================================================
+  // Actions
+  // ======================================================================================
+  function showScreen(sc) {
+    state.screen = sc;
+    $('shelf').hidden = sc !== 'shelf'; $('col').hidden = sc === 'shelf'; $('panel').hidden = sc === 'shelf';
+    document.body.dataset.screen = sc;
+    closeTalk(true);
+    lastKey = ''; relayout();
+  }
+  function openStory(i) {
+    hush(); freshStory(i); buildRack(); showScreen('story');
+    render(true); speakView(); $('next').focus();
+  }
+  function goShelf() {
+    hush(); showScreen('shelf');
+    $('shelfHint').textContent = UI.shelf;
+    narrate(UI.shelf, {once: true});
+    const f = $('cover' + state.s); if (f) f.focus();
+  }
+  function markTried() {
+    if (state.view === 'n') return;
+    const had = state.tried.size;
+    state.tried.add(state.view);
+    if (had < 3 && state.tried.size === 3 && !state.allSaid) state.allSaid = 'pending';
+  }
+  function setView(v) {
+    if (state.screen !== 'story') return;
+    hush(); state.view = v; markTried(); render(false); speakView();
+  }
+  function go(dir) {
+    if (state.screen !== 'story') return;
+    if (dir < 0) {
+      if (state.beat === 1) return;
+      if (state.beat === 5) { tryAgain(); return; }
+      state.beat--;
+    } else { if (state.beat >= 4) return; state.beat++; }
+    hush(); render(true); speakView();
+  }
+  function choose(k) { hush(); state.choice = k; state.beat = 5; render(true); speakView(); Curio.tone(523, .25, .035); $('again').focus(); }
+  function tryAgain() { hush(); state.choice = null; state.beat = 4; render(true); speakView(); if ($('ch0')) $('ch0').focus(); }
+  function restart() { hush(); freshStory(state.s); render(true); speakView(); $('back').focus(); }
+  function pick(w) {
+    const p = state.picks[state.view], i = p.indexOf(w);
+    if (i >= 0) p.splice(i, 1); else { p.push(w); if (p.length > 2) p.shift(); }   // a third pick replaces the oldest
+    renderGuess(); $('hint').textContent = hintParts().join(' ');
+    const k = CHIPS.indexOf(w); if ($('cp' + k)) $('cp' + k).focus();
+  }
+  function reveal() {
+    const v = state.view; hush(); state.revealed.add(v); render(false);
+    $('guess').setAttribute('tabindex', '-1'); $('guess').focus({preventScroll: true});   // the See button is gone: keep focus in the card
+    narrate(curBeat().t[v], {moment: momentKey()});
+    narrateAll();
+  }
+  // the line for this view on entering a beat: narration, or the thought (after the reveal on beat 3)
+  function speakView() {
+    const b = bubbleText(), m = momentKey();
+    if (state.view === 'n') narrate(curBeat().n, {moment: m});
+    else if (b && b.t) narrate(b.t, {moment: m});
+    narrateAll();
+  }
+  function narrateAll() { if (state.tried.size === 3) narrate(UI.all, {story: state.s, once: true}); }   // until it has started once in this story (said is cleared per story)
+
+  // Talk it over
+  function openTalk() { state.talk = true; $('talk').hidden = false; $('talkH').focus(); }
+  function closeTalk(silent) { if (!state.talk) { $('talk').hidden = true; return; } state.talk = false; $('talk').hidden = true; if (!silent) $('talkBtn').focus(); }
+
+  $('back').onclick = () => go(-1); $('next').onclick = () => go(1);
+  $('again').onclick = tryAgain; $('restart').onclick = restart; $('stories').onclick = goShelf;
+  $('talkBtn').onclick = openTalk; $('talkClose').onclick = () => closeTalk();
+
+  addEventListener('keydown', e => {
+    if (e.ctrlKey || e.metaKey || e.altKey) return;
+    if (e.key === 'Escape' && state.talk) { e.preventDefault(); closeTalk(); return; }
+    if (e.key === 'Tab' && state.talk && $('talk').contains(document.activeElement)) { e.preventDefault(); $('talkClose').focus(); return; }
+    if (state.screen !== 'story' || state.talk) return;
+    if (e.key === 'ArrowLeft') { e.preventDefault(); go(-1); }
+    else if (e.key === 'ArrowRight') { e.preventDefault(); go(1); }
+    else if (/^[1-4]$/.test(e.key)) { e.preventDefault(); const k = +e.key; setView(k === 1 ? 'n' : k - 2); $('rk' + (k - 1)).focus(); }
+  });
+
+  // ======================================================================================
+  // Narration: one line at a time; Read always wins (the collision-lab queue)
+  // ======================================================================================
+  const said = new Set(), queued = new Set(), started = [];
+  let tapped = false, vq = Promise.resolve(), vgen = 0, readP = Promise.resolve(), qcount = 0;
+  const momentKey = () => state.screen + ':' + state.s + ':' + state.beat + ':' + state.view + ':' + state.choice + ':' + (state.view !== 'n' && state.revealed.has(state.view));
+  const capMs = line => 3500 + 95 * line.length;
+  for (const ev of ['pointerdown', 'keydown']) addEventListener(ev, e => {
+    if (tapped) return; tapped = true;
+    const b = e.target && e.target.closest ? e.target.closest('button') : null;
+    if (b && b.id === 'sound') return;
+    const q0 = qcount, isRead = b && b.id === 'read';
+    // decide after this tap's own click has run: if it queued its own line (or was Read), skip the welcome, unmarked
+    const go = () => { removeEventListener('click', go, true); clearTimeout(fb); setTimeout(() => { if (!isRead && qcount === q0 && state.screen === 'shelf') narrate(UI.shelf, {once: true}); }); };
+    addEventListener('click', go, true); const fb = setTimeout(go, 700);
+  }, true);
+  // opts.once: a welcome, said at most once; opts.moment: drop it if the screen has moved on before it starts
+  function narrate(line, opts = {}) {
+    if (!tapped || !Curio.sound || (opts.once && said.has(line)) || queued.has(line)) return false;
+    queued.add(line); qcount++;
+    const gen = vgen, m = opts.moment, sid = opts.story;
+    vq = vq.then(async () => {
+      await readP;
+      if (gen !== vgen) return;                                     // dropped by hush(): not marked said
+      queued.delete(line);
+      if (m && m !== momentKey()) return;                            // its moment has passed (another beat or view is showing)
+      if (sid !== undefined && (state.screen !== 'story' || sid !== state.s)) return;
+      said.add(line); started.push(line);
+      await Promise.race([say(line), wait(capMs(line))]);
+    });
+    return true;
+  }
+  function hush() { vgen++; queued.clear(); vq = Promise.resolve(); readP = Promise.resolve(); Curio.stop(); }   // a stopped Read clip never ends, so nothing may wait on it
+  function readParts() {
+    const parts = hintParts();
+    if (state.screen === 'story') {
+      if (state.view !== 'n') { parts.push(story().secrets[state.view]); const b = bubbleText(); if (b && b.t) parts.push(b.t); }
+      else parts.push(curBeat().n);
+    }
+    return parts;
+  }
+  function readNow() {
+    hush(); qcount++;
+    const parts = readParts(), len = parts.join(' ').length;
+    started.push('READ:' + parts.join(' | '));
+    readP = Promise.race([say(parts, true), wait(capMs('x'.repeat(len)) + 400 * parts.length)]).catch(() => {});
+  }
+  Curio.onSound(on => { if (on && tapped && state.screen === 'shelf') narrate(UI.shelf, {once: true}); });
+
+  // ======================================================================================
+  // Layout
+  // ======================================================================================
+  let page = null;
+  function pageLayout() { const w = innerWidth, h = innerHeight; return w >= 1000 && h >= 700 ? 'wide' : w >= 600 && w / h >= 1.25 ? 'compact' : 'stack'; }
+  function relayout() {
+    const p = pageLayout();
+    if (p !== page) { page = p; for (const c of ['wide', 'compact', 'stack']) document.body.classList.toggle(c, c === p); }
+    if (state.screen !== 'story') return;
+    const st = $('stage');
+    if (page === 'stack') { const w = st.getBoundingClientRect().width || innerWidth; st.style.height = Math.round(clamp(Math.min(w * .45, innerHeight * .34), 220, 400)) + 'px'; st.style.flex = 'none'; }
+    else { st.style.height = ''; st.style.flex = ''; }
+    const r = st.getBoundingClientRect(), key = Math.round(r.width) + 'x' + Math.round(r.height);
+    if (key === lastKey) return;
+    lastKey = key; drawScene(false);
+  }
+  // print: redraw the scene and bubbles at a fixed 7 by 4.4 inch size that fits Letter
+  let printing = false;
+  addEventListener('beforeprint', () => {
+    if (state.screen !== 'story') return;
+    printing = true; const st = $('stage');
+    st.style.width = '672px'; st.style.height = '422px'; st.style.flex = 'none';
+    lastKey = ''; drawScene(false);
+  });
+  addEventListener('afterprint', () => {
+    if (!printing) return; printing = false;
+    $('stage').style.width = ''; lastKey = ''; relayout();
+  });
+  new ResizeObserver(() => { if (!printing) relayout(); }).observe($('stage'));
+  addEventListener('resize', () => { if (!printing) relayout(); });
+  Curio.onMotion(() => { if (state.screen === 'story') drawScene(false); });
+
+  // every line the tool can say, so the voice scripts can record them
+  function allLines() {
+    const L = [UI.shelf, UI.start];
+    for (const st of STORIES) for (const c of st.chars) L.push(UI.shoes(c.name));
+    for (const st of STORIES) for (const c of st.chars) L.push(UI.guess(c.name));
+    for (const st of STORIES) st.chars.forEach((c, i) => {
+      const own = st.beats[2].own[i];
+      L.push(UI.both(c.name, [own[0]]), UI.both(c.name, [own[1]]), UI.both(c.name, own), UI.diff(c.name, own));
+    });
+    L.push(UI.after, UI.b4few);
+    for (const st of STORIES) L.push(UI.b4(st.chars[st.decider].name));
+    L.push(UI.b5, UI.all);
+    for (const st of STORIES) {
+      for (const b of st.beats) L.push(b.n, ...b.t);
+      L.push(...st.secrets);
+      for (const c of st.choices) L.push(c.n, ...c.t);
+    }
+    return [...new Set(L)];
+  }
+
+  Curio.init({clips: "voice:*", rate: .9});
+  $('read').onclick = readNow;
+  buildShelf();
+  $('shelfHint').textContent = UI.shelf;
+  showScreen('shelf');
+  window.__tool = {state, STORIES, UI, allLines, openStory, goShelf, setView, go, choose, tryAgain, restart, pick, reveal, openTalk, closeTalk,
+    said, queued, started, draw: {drawChar, setting, shoes, bookIcon, ANIMAL}, hint: () => $('hint').textContent, layout: () => ({page}), readParts, geo: () => geo,
+    curio: () => ({last: Curio.last, sound: Curio.sound, reduce: Curio.reduce}),
+    setMode: () => {}};   // no modes in this tool
+})();
+</script>
+</body>
+</html>
