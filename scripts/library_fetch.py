@@ -5,7 +5,8 @@ Gets the illustrated EPUB3 and the plain text for every pg id in data/library/so
 `--storyweaver` instead gets the illustrations for data/library/stories-sw.csv (run scripts/library_sw.py first).
 `--other` gets the Wikisource sources (`where` = wikisource:<page>) into library/_sources/other/<key>/text.txt.
 `--archive` gets Internet Archive OCR text (`where` = archive:<identifier>) and `--sefaria` a whole Tanakh version from
-Sefaria (`where` = sefaria:<version title>), into the same other/<key>/ folders.
+Sefaria (`where` = sefaria:<version title>), into the same other/<key>/ folders. `--url` gets a single file
+(`where` = url:<address>), such as a NASA PDF kept in the Wayback Machine, into other/<key>/ under its own name.
 """
 import csv
 import html
@@ -81,7 +82,8 @@ def archive():
         ident, d = row["where"][len("archive:"):], ROOT / "library" / "_sources" / "other" / row["key"]
         d.mkdir(parents=True, exist_ok=True)
         files = fetch_json(f"https://archive.org/metadata/{ident}")["files"]
-        name = next((f["name"] for f in files if f["name"].endswith("_djvu.txt")), f"{ident}_djvu.txt")
+        name = next((f["name"] for f in files if f["name"].endswith("_djvu.txt")),
+                    next((f["name"] for f in files if f["name"].endswith(".txt")), f"{ident}_djvu.txt"))
         print(row["key"], get(f"https://archive.org/download/{ident}/{urllib.parse.quote(name)}", d / "text.txt", 3), flush=True)
         (d / "source.json").write_text(json.dumps({"url": f"https://archive.org/details/{ident}"}, indent=1), encoding="utf-8")
 
@@ -111,6 +113,23 @@ def sefaria():
         (d / "source.json").write_text(json.dumps({"version": version, "books": books, "url": "https://www.sefaria.org/texts/Tanakh"}, indent=1), encoding="utf-8")
 
 
+def single_files():
+    """Sources whose `where` is url:<address>: one file, saved under the last part of the address."""
+    for row in csv.DictReader(open(ROOT / "data/library/sources.csv", encoding="utf-8")):
+        if not row["where"].startswith("url:"):
+            continue
+        url, d = row["where"][len("url:"):], ROOT / "library" / "_sources" / "other" / row["key"]
+        d.mkdir(parents=True, exist_ok=True)
+        f = d / urllib.parse.unquote(url.rstrip("/").rsplit("/", 1)[-1])
+        print(row["key"], get(url, f, 3), flush=True)
+        if f.suffix.lower() == ".pdf" and f.exists() and not (d / "text.txt").exists():
+            import pypdf  # the PDF's own text layer (often OCR, rough like archive text; cleaned up in processing)
+            pages = pypdf.PdfReader(f).pages
+            (d / "text.txt").write_text("\n\n".join(f"== page {i} ==\n" + (p.extract_text() or "")
+                                                   for i, p in enumerate(pages, 1)), encoding="utf-8")
+        (d / "source.json").write_text(json.dumps({"url": url}, indent=1), encoding="utf-8")
+
+
 def fetch_json(url):
     for wait in (6, 30, 90):
         time.sleep(wait)
@@ -138,6 +157,8 @@ def main():
         return archive()
     if "--sefaria" in sys.argv:
         return sefaria()
+    if "--url" in sys.argv:
+        return single_files()
     for row in csv.DictReader(open(ROOT / "data/library/sources.csv", encoding="utf-8")):
         for n in row["pg"].split():
             d = OUT / n
