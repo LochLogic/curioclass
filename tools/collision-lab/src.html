@@ -1,0 +1,1589 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Collision Lab · Momentum and collisions · Curio Class</title>
+<meta name="description" content="Collide two gliders on an air track and watch total momentum stay the same while kinetic energy goes missing, then crash a glider into a force sensor through four noses and design a crumple zone that keeps the peak force low. Grade 11 physics. Works offline.">
+<!--
+Collision Lab (Curio Class)
+Grade 11, physics, Momentum and Collisions. Standards: NGSS HS-PS2-2 (total momentum is conserved with no net external
+force) and HS-PS2-3 (design, evaluate and refine a device that minimizes the force on an object in a collision).
+Students drive, alone or in pairs on laptops (also works on a projector for a teacher demo).
+Air Track: two gliders, four bumpers (coefficient of restitution e), a Before and After ledger of momentum and kinetic
+energy, a center of mass frame, measurement noise and predictions. Crumple Zone: one glider into a force sensor wall
+through a steel, spring, rubber or crumple nose; a force-time graph with the impulse shaded, ghost curves and four
+design specs (one cannot be met). Notebook: recorded runs, three plots, copyable tables and conclusion boxes.
+Facts: OpenStax, University Physics Volume 1, sections 7.1, 7.2, 9.3 to 9.6 and 15.1; OpenStax, College Physics 2e,
+section 8.2; HyperPhysics, Coefficient of Restitution; NGSS HS-PS2. Every preset and reference number was recomputed
+in Python (closed forms and an independent velocity Verlet run) on 2026-10-25. Glider masses, spring constants, crush
+forces and the four specs are invented lab settings, not real equipment ratings or crash standards.
+Everything is drawn in code; sounds are made in the browser. One file, no network requests.
+Content CC BY 4.0, code MIT. curioclass.org
+-->
+<link rel="stylesheet" href="kit:curio">
+<link rel="stylesheet" href="kit:theme-912">
+<style>
+:root{--brand:#3cc8dc;--brand-ink:#03191d;--ga:#6cb4ff;--gb:#ffab5c;--tot:#d9e1ea;--halo:#0b1017;--cur:#3cc8dc;--ghost:#a6b3c4;
+  --neg:#ffb36b;--cm:#f4f7fb}
+/* three page layouts, picked in script (relayout()), as in motion-graph-match:
+   wide    (1000 px or wider and 700 px or taller): stage on the left, 360 px panel on the right;
+   compact (a short landscape box such as the 16:10 embed, 680x425 to 1000x625): a 290 px panel, a one-row header, the run
+           buttons and main settings first, so they are visible without scrolling;
+   stack   (narrow or portrait): the panel under the stage, the page scrolls.
+   The stage SVG is drawn at its real pixel size (not scaled), so scene text keeps its size in every box. */
+main{grid-template-columns:minmax(0,1fr) 360px;min-height:0}
+.stage{min-height:0;background:radial-gradient(ellipse at 30% 20%,#121c2a,#0a0f17 72%)}
+#sv{position:absolute;left:0;top:0;display:block}
+#nb{position:absolute;inset:0;overflow:auto;padding:12px 14px 20px}
+body.compact main{grid-template-columns:minmax(0,1fr) 290px}
+@media (min-width:900px){body.compact main{grid-template-columns:minmax(0,1fr) 320px}}
+body.compact header{padding:4px 8px;gap:4px;flex-wrap:nowrap;min-width:0}
+body.compact h1{font-size:16px;white-space:nowrap;min-width:0;overflow:hidden;text-overflow:ellipsis}
+body.compact h1 small{display:none}
+body.compact .seg{flex:none}
+body.compact .seg button,body.compact .icon-btn{min-height:44px;padding:0 8px;font-size:13.5px;white-space:nowrap}
+body.compact .icon-btn{flex:none}
+body.compact .panel{padding:6px 8px;gap:6px}
+body.compact .sec{padding:6px 8px}
+body.compact .sec>h2{display:none}
+body.compact .hint{font-size:13.5px;line-height:1.35}
+body.compact .btn{font-size:13.5px;padding:0 6px}
+body.compact .sl label{font-size:12px;gap:2px}
+body.compact .sl output{font-size:11.5px}
+body.compact .sliders{gap:0 8px}
+body.compact .sl input[type=range]{height:38px}
+body.compact .chk{font-size:13px;min-height:44px}
+body.compact .small{font-size:12px}
+body.compact .spec-btn{min-height:44px}
+body.stack{height:auto}
+body.stack main{grid-template-columns:minmax(0,1fr);align-content:start}
+body.stack .panel{border-left:0;border-top:1px solid var(--line)}
+body.stack[data-mode="nb"] #nb{position:static;overflow:visible}
+@media (max-width:560px){
+  .seg{display:grid;grid-template-columns:1fr 1fr 1fr;border-radius:14px;width:100%}
+  .seg button{min-height:44px;font-size:14px;padding:0 6px}
+  .icon-btn{min-height:44px;padding:0 12px;font-size:15px}
+}
+/* panel */
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.row{display:flex;gap:6px;flex-wrap:wrap}
+.row .btn{flex:1 1 auto}
+.btn.go{background:var(--brand);border-color:var(--brand);color:var(--brand-ink)}
+.btn.go:disabled{opacity:.45}
+.small{font-size:13px;color:var(--muted);margin:5px 0 0;line-height:1.35}
+.small:empty{display:none}
+.sl{display:flex;flex-direction:column;min-width:0}
+.sl label{display:flex;justify-content:space-between;gap:6px;font-size:14px;color:var(--muted);font-weight:600;line-height:1.2}
+.sl output{color:var(--ink);font:700 14px var(--readout-font);white-space:nowrap}
+.sl input[type=range]{height:40px}
+.sl input[type=range]:disabled{opacity:.45;cursor:not-allowed}
+.sliders{display:grid;grid-template-columns:1fr 1fr;gap:0 12px;align-items:end}
+.chk{display:flex;align-items:center;gap:8px;min-height:44px;font-size:14px;cursor:pointer;line-height:1.2}
+.chk input{width:20px;height:20px;margin:0;flex:none;accent-color:var(--brand)}
+.toggles{display:grid;grid-template-columns:1fr 1fr;gap:0 10px}
+select.sel{min-height:44px;width:100%;border-radius:8px;border:1px solid var(--btn-line);background:var(--btn);color:var(--ink);
+  font:600 15px 'Segoe UI',system-ui,sans-serif;padding:0 8px;margin-bottom:6px}
+.picks{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px}
+.picks .btn{padding:0 2px}
+.cmp{font:13px/1.45 var(--readout-font);margin:6px 0 0;color:var(--ink)}
+.cmp:empty{display:none}
+.pred{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.pred label{font-size:13px;color:var(--muted);font-weight:600;display:flex;flex-direction:column;gap:2px}
+.pred input.num{width:100%}
+.spec-list{display:flex;flex-direction:column;gap:5px}
+.spec-btn{text-align:left;min-height:52px;display:block;padding:3px 10px;line-height:1.25;width:100%}
+.spec-btn small{display:block;font-weight:400;font-size:12px;color:var(--muted)}
+.spec-btn[aria-pressed="true"] small{color:var(--brand-ink)}
+.spec-btn:disabled{opacity:.4}
+.spechead{font-size:13.5px;line-height:1.35;margin:0 0 6px}
+.lines{margin:6px 0 0;padding:0;list-style:none;font:13px/1.45 var(--readout-font)}
+.lines li.met::before{content:'✓ ';color:var(--ok)}
+.lines li.not::before{content:'✗ ';color:var(--warn)}
+.specmet{font-weight:700;color:var(--ok);margin:6px 0 0}
+.specmet::before{content:'✓ '}
+.info{font-size:13px;color:var(--ink);margin:6px 0 0;line-height:1.35}
+/* notebook */
+.nbh{font:700 13px 'Segoe UI',system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:14px 0 6px}
+.nbh:first-child{margin-top:0}
+.plots{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:10px}
+.plot{background:var(--sec-bg);border:1px solid var(--line);border-radius:10px;padding:6px 6px 4px;min-width:0}
+.plot h3{margin:2px 4px 2px;font:600 13.5px 'Segoe UI',system-ui,sans-serif;color:var(--ink)}
+.plot svg{display:block}
+.legend{display:flex;flex-wrap:wrap;gap:2px 12px;font-size:12px;color:var(--muted);margin:2px 4px 0}
+.legend svg{display:inline-block;vertical-align:-2px;margin-right:3px}
+.tbar{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-bottom:6px}
+.tbar .note{font-size:13px;color:var(--muted)}
+.twrap{overflow:auto;max-width:100%;border:1px solid var(--line);border-radius:8px;max-height:340px}
+.twrap table.inst{width:max-content;font-size:12.5px}
+.twrap th{position:sticky;top:0;background:var(--sec-bg);white-space:nowrap}
+.twrap td{white-space:nowrap}
+.twrap td.l,.twrap th.l{text-align:left}
+.empty{font-size:13px;color:var(--muted);padding:8px 10px;margin:0}
+.copybox{margin-top:6px}
+.copybox textarea{width:100%;height:110px;background:#0b1017;color:var(--ink);border:1px solid var(--btn-line);border-radius:8px;
+  font:12px var(--readout-font);padding:6px}
+.concl label{display:block;font-weight:600;font-size:14px;line-height:1.3;margin:8px 0 4px}
+.concl label:first-of-type{margin-top:0}
+.concl textarea{width:100%;min-height:70px;resize:vertical;background:#0b1017;color:var(--ink);border:1px solid var(--btn-line);
+  border-radius:8px;padding:8px;font:14px/1.4 'Segoe UI',system-ui,sans-serif}
+/* scene */
+.st{fill:var(--gr-text);font:11px 'Segoe UI',system-ui,sans-serif}
+.stb{fill:var(--ink);font:600 12px 'Segoe UI',system-ui,sans-serif}
+.halo{paint-order:stroke;stroke:var(--halo);stroke-width:4px;stroke-linejoin:round}
+.rd{font-family:var(--readout-font)}
+.glider{outline:none;cursor:grab}
+.glider.drag{cursor:grabbing}
+.glider.locked{cursor:default}
+.glider .ring{fill:none;stroke:transparent;stroke-width:3}
+.glider:focus-visible .ring{stroke:var(--focus)}
+.deco{pointer-events:none}
+#sv .gr-tick{font-size:11px}
+#sv .gr-axlabel{font-size:12px}
+.nbsv .gr-tick{font-size:11px}
+.nbsv .gr-axlabel{font-size:12px}
+</style>
+</head>
+<body>
+<header>
+  <h1>Collision Lab <small>Momentum and collisions</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-air" aria-pressed="true">Air Track</button>
+    <button id="m-cz" aria-pressed="false">Crumple Zone</button>
+    <button id="m-nb" aria-pressed="false">Notebook</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true" title="Turn animation on or off">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+  <button class="icon-btn" id="read" title="Read the hint aloud">🔊 Read</button>
+</header>
+<main>
+  <div class="stage" id="stage">
+    <svg id="sv" role="group" aria-label="The bench"></svg>
+    <div id="nb" hidden>
+      <h2 class="nbh">Plots</h2>
+      <div class="plots">
+        <figure class="plot" style="margin:0"><h3>Total momentum after vs before</h3><div id="pl1"></div><div class="legend" id="lg1"></div></figure>
+        <figure class="plot" style="margin:0"><h3>Kinetic energy kept vs bounciness e</h3><div id="pl2"></div><div class="legend" id="lg2"></div>
+          <p class="small" style="margin:4px 4px 0">With measurement noise on, a measured value can land above 100 percent. Can a collision really make energy?</p></figure>
+        <figure class="plot" style="margin:0"><h3>Peak force vs contact time</h3><div id="pl3"></div><div class="legend" id="lg3"></div></figure>
+      </div>
+      <h2 class="nbh" id="tAtL">Air Track runs</h2>
+      <div class="tbar"><button class="btn" id="copyAt">Copy table</button><button class="btn" id="clearAt">Clear table</button><span class="note" id="noteAt" aria-live="polite"></span></div>
+      <div class="copybox" id="boxAt" hidden><p class="small">Select all and copy.</p><textarea readonly aria-label="Air Track runs as tab separated text"></textarea></div>
+      <div class="twrap" id="wrapAt" tabindex="0" role="region" aria-labelledby="tAtL"></div>
+      <h2 class="nbh" id="tCzL">Crumple Zone runs</h2>
+      <div class="tbar"><button class="btn" id="copyCz">Copy table</button><button class="btn" id="clearCz">Clear table</button><span class="note" id="noteCz" aria-live="polite"></span></div>
+      <div class="copybox" id="boxCz" hidden><p class="small">Select all and copy.</p><textarea readonly aria-label="Crumple Zone runs as tab separated text"></textarea></div>
+      <div class="twrap" id="wrapCz" tabindex="0" role="region" aria-labelledby="tCzL"></div>
+    </div>
+  </div>
+  <aside class="panel" id="panel">
+    <p class="hint" id="hint"></p>
+
+    <!-- Air Track -->
+    <section class="sec" data-modes="air" aria-label="Run">
+      <div class="row">
+        <button class="btn go" id="atLaunch">▶ Launch</button>
+        <button class="btn" id="atJump" hidden>⏭ Jump to collision</button>
+        <button class="btn" id="atReset">↺ Reset</button>
+        <button class="btn" id="atRecord">✎ Record run</button>
+      </div>
+      <p class="small" id="atNote" aria-live="polite"></p>
+      <div class="cmp" id="cmpBox" aria-live="polite"></div>
+    </section>
+    <section class="sec" data-modes="air" id="predSec" aria-labelledby="predL" hidden>
+      <h2 id="predL">Predict</h2>
+      <div class="pred">
+        <label>Your vA after (m/s)<input class="num" id="predA" type="number" min="-2" max="2" step="0.01" inputmode="decimal"></label>
+        <label>Your vB after (m/s)<input class="num" id="predB" type="number" min="-2" max="2" step="0.01" inputmode="decimal"></label>
+      </div>
+    </section>
+    <section class="sec" data-modes="air" aria-labelledby="setL">
+      <h2 id="setL">Setup</h2>
+      <label class="sr" for="preset">Presets</label>
+      <select class="sel" id="preset"></select>
+      <div class="picks" role="group" aria-label="Bumper" id="bumps"></div>
+      <p class="small" id="bumpNote"></p>
+      <div id="eBox" hidden></div>
+      <div class="sliders" id="atSliders"></div>
+    </section>
+    <section class="sec" data-modes="air" aria-labelledby="viewL">
+      <h2 id="viewL">View and measure</h2>
+      <div class="toggles">
+        <label class="chk"><input type="checkbox" id="tCM"> Show center of mass</label>
+        <label class="chk"><input type="checkbox" id="tRide"> Ride with center of mass</label>
+        <label class="chk"><input type="checkbox" id="tSlowA"> Slow motion</label>
+        <label class="chk"><input type="checkbox" id="tNoise"> Measurement noise</label>
+        <label class="chk"><input type="checkbox" id="tPred"> Predict</label>
+      </div>
+    </section>
+
+    <!-- Crumple Zone -->
+    <section class="sec" data-modes="cz" aria-label="Run">
+      <div class="row">
+        <button class="btn go" id="czLaunch">▶ Launch</button>
+        <button class="btn" id="czReset">↺ Reset</button>
+        <button class="btn" id="czRecord">✎ Record run</button>
+      </div>
+      <div class="row" style="margin-top:6px">
+        <button class="btn" id="czGhosts">Clear ghosts</button>
+        <button class="btn" id="czSpec" aria-expanded="false" aria-controls="specCard">Spec sheet</button>
+      </div>
+      <p class="small" id="czNote" aria-live="polite"></p>
+    </section>
+    <section class="sec" data-modes="cz" id="specCard" aria-labelledby="specL" hidden>
+      <h2 id="specL">Spec sheet</h2>
+      <p class="spechead">Design specs for this lab (invented, not real crash standards). One of these specs cannot be met. Find it and show why with numbers.</p>
+      <ul class="lines" id="specLines" aria-live="polite"></ul>
+      <p class="specmet" id="specMet" hidden>Spec met.</p>
+      <div class="spec-list" id="specList" style="margin-top:6px"></div>
+      <div class="row" style="margin-top:6px"><button class="btn" id="specLeave" disabled>Leave spec</button><button class="btn" id="specClose">Close card</button></div>
+    </section>
+    <section class="sec" data-modes="cz" aria-labelledby="noseL">
+      <h2 id="noseL">Nose</h2>
+      <div class="picks" role="group" aria-label="Nose" id="noses"></div>
+      <div class="sliders" id="crSliders"></div>
+      <p class="info" id="noseInfo"></p>
+    </section>
+    <section class="sec" data-modes="cz" aria-labelledby="glL">
+      <h2 id="glL">Glider</h2>
+      <div class="sliders" id="czSliders"></div>
+    </section>
+    <section class="sec" data-modes="cz" aria-label="Graph and speed">
+      <div class="toggles">
+        <label class="chk"><input type="checkbox" id="tLock"> Lock graph axes</label>
+        <label class="chk"><input type="checkbox" id="tSlowC"> Slow motion</label>
+      </div>
+    </section>
+
+    <!-- Notebook -->
+    <section class="sec concl" data-modes="nb" aria-labelledby="conL">
+      <h2 id="conL">Conclusions</h2>
+      <div id="concl"></div>
+      <p class="small" id="saveNote"></p>
+    </section>
+  </aside>
+</main>
+<div class="sr" id="live" aria-live="polite"></div>
+<script src="kit:curio"></script>
+<script src="kit:graphing"></script>
+<script>
+/* FORCES ENGINE: begin */
+// Collision Lab physics: one-dimensional collisions on an air track and a glider hitting a force sensor through a nose.
+// No DOM access in this block, so it can move to kit/forces.js when the forces family gets an engine doc.
+// Units: kg, m, s, N. Positive velocity is to the right on the air track, and toward the wall on the crumple bench.
+const Forces = (() => {
+  const GLIDER = .20, TRACK = 2.00, END_LO = GLIDER / 2, END_HI = TRACK - GLIDER / 2, K_BACK = 50000, DT = 1e-5, AFTER = 3;
+
+  // a collision with coefficient of restitution e (1 elastic, 0 they stick together)
+  function collide1D(m1, v1, m2, v2, e) {
+    const M = m1 + m2, P = m1 * v1 + m2 * v2;
+    let a = (P + m2 * e * (v2 - v1)) / M, b = (P + m1 * e * (v1 - v2)) / M;
+    if (e === 0) a = b = P / M;
+    return {v1: a, v2: b, p0: P, p1: m1 * a + m2 * b, ke0: .5 * m1 * v1 * v1 + .5 * m2 * v2 * v2,
+      ke1: .5 * m1 * a * a + .5 * m2 * b * b, vcm: P / M};
+  }
+  // seconds until two bodies (centers x1 < x2) close the distance to gap, or null if body 1 never catches body 2
+  function contactTime1D(x1, v1, x2, v2, gap) {
+    const d = x2 - x1 - gap, close = v1 - v2;
+    if (d <= 0) return 0;
+    return close > 1e-12 ? d / close : null;
+  }
+  // a whole air track run: {mA, vA, xA, mB, vB, xB, e}. Gliders slide freely; the run ends when a glider reaches an end
+  // stop (it stops there, no bounce) or 3 s after the collision. kind: 'still' (nothing moves), 'none' (no collision:
+  // reason 'never' when A never catches B, 'end' when a glider reaches an end stop first) or 'collide'.
+  function airRun(s) {
+    const toEnd = (x, v) => v > 1e-12 ? (END_HI - x) / v : v < -1e-12 ? (x - END_LO) / -v : Infinity;
+    if (Math.abs(s.vA) < 1e-12 && Math.abs(s.vB) < 1e-12) return {kind: 'still', T: 0, tc: null};
+    const tc = contactTime1D(s.xA, s.vA, s.xB, s.vB, GLIDER);
+    const tEnd = Math.min(toEnd(s.xA, s.vA), toEnd(s.xB, s.vB));
+    const free = t => [s.xA + s.vA * t, s.xB + s.vB * t];
+    if (tc == null || tc > tEnd) return {kind: 'none', reason: tc == null ? 'never' : 'end', T: tEnd, tc: null, pos: free, vel: () => [s.vA, s.vB]};
+    const c = collide1D(s.mA, s.vA, s.mB, s.vB, s.e);
+    const xa = s.xA + s.vA * tc, xb = s.xB + s.vB * tc;
+    const after = Math.min(AFTER, toEnd(xa, c.v1), toEnd(xb, c.v2));
+    return {kind: 'collide', tc, T: tc + after, c, endStop: after < AFTER,
+      pos: t => t <= tc ? free(t) : [xa + c.v1 * (t - tc), xb + c.v2 * (t - tc)],
+      vel: t => t < tc ? [s.vA, s.vB] : [c.v1, c.v2]};
+  }
+
+  // a glider of mass m hits the sensor wall at speed v through a nose:
+  //   {type: 'spring', k}                      F = k x, fully elastic (the steel and spring noses)
+  //   {type: 'rubber', k, e}                   loads with k; from the peak unloads along F = Fmax - (k / e squared)(xmax - x)
+  //   {type: 'crumple', Fc, L, kBack: 50000}   crushes at Fc while moving in; past L a steel backing pushes Fc + kBack (x - L)
+  //                                            moving in and kBack (x - L) moving out (crushed material does not push back)
+  // x = how far the nose is pushed in (m), u = speed toward the wall. Integrated with velocity Verlet at dt = 0.00001 s.
+  // Returns {samples: [[t, F, x]...], peak, tPeak, contactTime, crushUsed, vAfter, impulse, dp, ke0, result}.
+  function noseRun(m, v, nose) {
+    const t = nose.type, kb = nose.kBack || K_BACK;
+    const k2 = t === 'rubber' ? nose.k / (nose.e * nose.e) : 0;
+    const bottoms = t === 'crumple' && .5 * m * v * v > nose.Fc * nose.L + 1e-6;
+    let out = false, xm = 0, Fm = 0;
+    const force = (x, u) => {
+      if (t === 'spring') return Math.max(0, nose.k * x);
+      if (t === 'rubber') return out ? Math.max(0, Fm - k2 * (xm - x)) : nose.k * Math.max(0, x);
+      if (x < nose.L || !bottoms) return u > 0 ? nose.Fc : 0;
+      return u > 0 ? nose.Fc + kb * (x - nose.L) : Math.max(0, kb * (x - nose.L));
+    };
+    // where the force falls to zero on the way out (every unloading line is straight in x)
+    const zeroAt = () => t === 'spring' ? 0 : t === 'rubber' ? xm - Fm / k2 : nose.L;
+    const all = [[0, 0, 0]];
+    let x = 0, u = v, time = 0, f = force(0, v), imp = 0, peak = f, tPeak = 0, xmax = 0, steps = 0, vAfter = 0, result = 'Bounced';
+    all.push([0, f, 0]);
+    for (;;) {
+      const a = -f / m;
+      const xn = x + u * DT + .5 * a * DT * DT;
+      let fn = force(xn, u + a * DT);
+      let un = u + .5 * (a - fn / m) * DT;
+      if (t === 'rubber' && !out && un <= 0) { out = true; xm = xn; Fm = nose.k * xn; fn = force(xn, un); }
+      if (t === 'crumple' && !bottoms && un <= 0) {
+        // the crumple stops the glider: constant force, so the stopping point inside this step is exact
+        const fr = u / (u - un), dt = DT * fr;
+        x += u * dt + .5 * a * dt * dt; time += dt; imp += f * dt; xmax = Math.max(xmax, x);
+        all.push([time, f, x], [time, 0, x]);
+        vAfter = 0; result = 'Stopped'; break;
+      }
+      if (un < 0 && fn <= 0) {
+        // moving out and the force has reached zero inside this step: contact ends there
+        const x0 = zeroAt(), fr = Math.min(1, Math.max(0, (x - x0) / (x - xn))), dt = DT * fr;
+        imp += .5 * f * dt; time += dt; vAfter = u + (un - u) * fr; x = x0;
+        all.push([time, 0, x]);
+        result = bottoms ? 'Bottomed out' : 'Bounced'; break;
+      }
+      imp += .5 * (f + fn) * DT; time += DT; x = xn; u = un; f = fn;
+      if (x > xmax) xmax = x;
+      if (f > peak) { peak = f; tPeak = time; }
+      all.push([time, f, x]);
+      if (++steps > 300000) break;   // a guard only: the longest contact any setting allows is under 0.5 s
+    }
+    // keep about 1500 samples for drawing (always the first two, the peak and the last two)
+    let samples = all;
+    if (all.length > 1600) {
+      const stride = Math.ceil(all.length / 1500), keep = new Set([0, 1, all.length - 2, all.length - 1]);
+      let ip = 0; for (let i = 0; i < all.length; i++) if (all[i][1] > all[ip][1]) ip = i;
+      keep.add(ip);
+      samples = all.filter((s, i) => i % stride === 0 || keep.has(i));
+    }
+    const crushUsed = t === 'crumple' && !bottoms ? Math.min(xmax, nose.L) : xmax;
+    return {samples, peak, tPeak, contactTime: time, crushUsed, vAfter, impulse: imp, dp: m * (vAfter - v), ke0: .5 * m * v * v, result};
+  }
+
+  return {GLIDER, TRACK, END_LO, END_HI, K_BACK, DT, AFTER, collide1D, contactTime1D, airRun, noseRun};
+})();
+/* FORCES ENGINE: end */
+
+(() => {
+  const $ = id => document.getElementById(id);
+  const {say, wait} = Curio;
+  const F = Forces;
+  const NS = 'http://www.w3.org/2000/svg';
+  const mk = (tag, attrs = {}, parent) => { const e = document.createElementNS(NS, tag); for (const k in attrs) if (attrs[k] != null) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; };
+  const txt = (parent, x, y, s, cls, anchor) => { const e = mk('text', {x, y, class: cls, 'text-anchor': anchor}, parent); e.textContent = s; return e; };
+  const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+  const sv = $('sv');
+
+  // ---------- number formats (on screen a true minus sign; copied tables use a plain hyphen for spreadsheets) ----------
+  const MINUS = '−';
+  const z = (v, dp) => Math.abs(v) < .5 * Math.pow(10, -dp) ? 0 : v;
+  const fx = (v, dp) => { const r = z(v, dp); return (r < 0 ? MINUS : '') + Math.abs(r).toFixed(dp); };
+  const fsg = (v, dp) => { const r = z(v, dp); return (r > 0 ? '+' : r < 0 ? MINUS : '') + Math.abs(r).toFixed(dp); };
+  const ax = (v, dp) => { const r = z(v, dp); return (r < 0 ? '-' : '') + Math.abs(r).toFixed(dp); };
+  const pct = (a, b) => Math.round(+(100 * a / b).toFixed(6));   // whole percent; 62.4999... from floating point counts as 62.5
+  const fJ = E => E.toFixed(3).replace(/(\.\d\d)0$/, '$1');   // 1.125 J stays 1.125, 0.25 J stays 0.25
+  const spoken = s => s.replace(/−/g, 'minus ').replace(/\+/g, 'plus ');
+
+  // ======================================================================================
+  // Spoken lines (voice/lines.json lists every one) and the fixed hints (Read speaks them, so they are recorded too)
+  // ======================================================================================
+  const L = {
+    'at-welcome': 'This is an air track. The gliders ride on air, so almost nothing slows them down. Set the masses and speeds, pick a bumper, and launch.',
+    'at-first-run': 'Look at the momentum bars. The total before and the total after are the same.',
+    'at-energy': 'Now look at the energy bars. Kinetic energy was not all kept. Where do you think it went?',
+    'at-cm-frame': 'You are riding along with the center of mass. From here the two momenta are equal and opposite, and they add up to zero.',
+    'at-predict': 'Type the speeds you expect after the collision, then launch and compare.',
+    'at-no-collision': 'Glider A never catches glider B, so they never collide.',
+    'cz-welcome': 'This is the crumple zone bench. A glider hits a force sensor through a nose you choose, and the graph shows force over time.',
+    'cz-first-run': "The shaded area under the curve is the impulse. It always equals the glider's change in momentum.",
+    'cz-bounce': 'This glider bounced back. Its change in momentum is bigger than a glider that just stops, so the impulse is bigger too.',
+    'cz-bottom': 'It bottomed out. The crumple zone ran out of room, and the stiff steel behind it took the rest of the hit.',
+    'cz-spec': 'Each spec sets a force limit and a crush length. One of them cannot be met. Find it and show why with numbers.',
+    'cz-spec-met': 'Spec met.',
+    'nb-welcome': 'Every run you record lands here. If momentum is conserved, your points fall on the dashed line.',
+  };
+  const HINT = {
+    air: 'Set the masses and speeds, pick a bumper, then press Launch. Drag a glider to move its start spot.',
+    airDone: 'Compare the Before and After rows, then record the run for the Notebook.',
+    still: 'Nothing is moving. Give a glider some speed.',
+    never: 'No collision: A never catches B.',
+    endFirst: 'No collision: a glider reached an end stop before A caught B.',
+    predict: 'Type both predictions to unlock Launch.',
+    cz: 'Pick a nose and press Launch. The graph shows the force on the glider while it touches the sensor.',
+    czDone: 'Read the peak force and the impulse, then record the run for the Notebook.',
+    nb: 'Record runs on the two benches, then use the plots and tables to answer the questions.',
+    full: 'Notebook full. Copy and clear a table to keep going.',
+  };
+  const WELCOME = {air: 'at-welcome', cz: 'cz-welcome', nb: 'nb-welcome'};
+  const allLines = () => [...new Set([...Object.values(L), ...Object.values(HINT)])];
+
+  // ======================================================================================
+  // Settings
+  // ======================================================================================
+  const BUMPERS = {
+    spring: {name: 'Spring', e: 1, note: 'Spring bumper: e = 1.00, an ideal spring (all kinetic energy kept).'},
+    rubber: {name: 'Rubber', e: .6, note: 'Rubber bumper: e = 0.60.'},
+    velcro: {name: 'Velcro', e: 0, note: 'Velcro bumper: e = 0.00, the gliders stick together.'},
+    custom: {name: 'Custom', e: null, note: 'Custom bumper: set the bounciness e.'},
+  };
+  const PRESETS = [
+    {name: 'Equal masses, spring', mA: .25, vA: .6, mB: .25, vB: 0, bumper: 'spring'},
+    {name: 'Equal masses, Velcro', mA: .25, vA: .6, mB: .25, vB: 0, bumper: 'velcro'},
+    {name: 'Heavy hits light', mA: .5, vA: .4, mB: .1, vB: 0, bumper: 'spring'},
+    {name: 'Light hits heavy', mA: .1, vA: .6, mB: .5, vB: 0, bumper: 'spring'},
+    {name: 'Head on, Velcro', mA: .25, vA: .5, mB: .25, vB: -.5, bumper: 'velcro'},
+    {name: 'Rubber bumper', mA: .25, vA: .6, mB: .25, vB: 0, bumper: 'rubber'},
+    {name: 'The chase', mA: .25, vA: .8, mB: .5, vB: .2, bumper: 'velcro'},
+  ];
+  const NOSES = {
+    steel: {name: 'Steel', len: .02, info: 'Steel nose: a stiff spring, k = 50,000 N/m, fully elastic.', obj: () => ({type: 'spring', k: 50000})},
+    spring: {name: 'Spring', len: .16, info: 'Spring nose: k = 200 N/m, fully elastic.', obj: () => ({type: 'spring', k: 200})},
+    rubber: {name: 'Rubber', len: .08, info: 'Rubber nose: loads at k = 1,000 N/m and unloads along a steeper line, with e = 0.50, so it bounces back at half speed.', obj: () => ({type: 'rubber', k: 1000, e: .5})},
+    crumple: {name: 'Crumple', len: null, info: 'Crumple nose: crushes at a steady force until it runs out of length. Steel backing (50,000 N/m) behind it.', obj: () => ({type: 'crumple', Fc: cz.Fc, L: cz.L / 100, kBack: 50000})},
+  };
+  // design specs for this lab (invented). Shown names never say which one cannot be met.
+  const SPECS = [
+    {name: 'Gentle stop', m: .5, v: 1, F: 10, L: 5},
+    {name: 'Heavy cart', m: 1, v: 1.5, F: 30, L: 6},
+    {name: 'Fast and light', m: .5, v: 2, F: 15, L: 10},
+    {name: 'Heavy and fast', m: 1, v: 2, F: 15, L: 10},
+  ];
+
+  const state = {mode: 'air'};
+  const at = {mA: .25, vA: .6, mB: .25, vB: 0, xA: .5, xB: 1.2, bumper: 'spring', eCustom: .5, showCM: false, ride: false, slow: false, noise: false, predict: false};
+  let atRun = null;   // {sim, t, phase: 'run' | 'done', contact, meas, e, noise, recorded, frame}
+  const cz = {m: .5, v: 1, nose: 'steel', Fc: 5, L: 5, lock: false, slow: false, spec: -1, axes: {T: 200, F: 20}};
+  let czRun = null;   // the run on the bench (animating or finished): {res, label, nose, m, v, Fc, L, phase, clock, d}
+  let ghosts = [];    // up to three earlier runs: {res, label}
+  let czCrushed = 0, czLiveF = 0;  // how far the crumple block stays crushed after the last run (m)
+
+  // ======================================================================================
+  // Notebook storage (works without it)
+  // ======================================================================================
+  const KEY = 'curio-collision-lab';
+  let store = {at: [], cz: [], text: ['', '', '', '']}, canSave = true;
+  try {
+    const raw = localStorage.getItem(KEY);
+    if (raw) { const o = JSON.parse(raw) || {}; if (Array.isArray(o.at)) store.at = o.at; if (Array.isArray(o.cz)) store.cz = o.cz; if (Array.isArray(o.text)) store.text = [0, 1, 2, 3].map(i => String(o.text[i] || '')); }
+    localStorage.setItem(KEY + '-probe', '1'); localStorage.removeItem(KEY + '-probe');
+  } catch { canSave = false; }
+  function save() {
+    if (!canSave) return showSaveNote();
+    try { localStorage.setItem(KEY, JSON.stringify(store)); } catch { canSave = false; }
+    showSaveNote();
+  }
+  function showSaveNote() { $('saveNote').textContent = canSave ? 'Saved on this device only.' : 'Notes will not be saved on this device.'; }
+  const MAXROWS = 30;
+
+  // ======================================================================================
+  // Panel controls
+  // ======================================================================================
+  function slider(box, o) {
+    const id = 's-' + o.id;
+    const wrap = document.createElement('div'); wrap.className = 'sl';
+    wrap.innerHTML = `<label for="${id}"><span>${o.label}</span><output for="${id}" id="${id}-o"></output></label><input type="range" id="${id}" min="${o.min}" max="${o.max}" step="${o.step}">`;
+    box.appendChild(wrap);
+    const inp = wrap.querySelector('input'), out = wrap.querySelector('output');
+    const h = {el: inp, wrap, set(v) { inp.value = v; show(); }, get value() { return +inp.value; }};
+    const show = () => { const s = o.fmt(+inp.value); out.textContent = s; inp.setAttribute('aria-valuetext', spoken(s)); };
+    inp.addEventListener('input', () => { show(); o.onInput(+(+inp.value).toFixed(4)); });
+    h.set(o.value);
+    return h;
+  }
+  const SL = {};
+  SL.mA = slider($('atSliders'), {id: 'mA', label: 'Mass A', min: .1, max: 1, step: .05, value: at.mA, fmt: v => v.toFixed(2) + ' kg', onInput: v => atSet('mA', v)});
+  SL.vA = slider($('atSliders'), {id: 'vA', label: 'Velocity A', min: -1, max: 1, step: .05, value: at.vA, fmt: v => fsg(v, 2) + ' m/s', onInput: v => atSet('vA', v)});
+  SL.mB = slider($('atSliders'), {id: 'mB', label: 'Mass B', min: .1, max: 1, step: .05, value: at.mB, fmt: v => v.toFixed(2) + ' kg', onInput: v => atSet('mB', v)});
+  SL.vB = slider($('atSliders'), {id: 'vB', label: 'Velocity B', min: -1, max: 1, step: .05, value: at.vB, fmt: v => fsg(v, 2) + ' m/s', onInput: v => atSet('vB', v)});
+  SL.e = slider($('eBox'), {id: 'e', label: 'Bounciness (e)', min: 0, max: 1, step: .05, value: at.eCustom, fmt: v => v.toFixed(2), onInput: v => atSet('eCustom', v)});
+  SL.cm = slider($('czSliders'), {id: 'cm', label: 'Glider mass', min: .2, max: 1, step: .05, value: cz.m, fmt: v => v.toFixed(2) + ' kg', onInput: v => czSet('m', v)});
+  SL.cv = slider($('czSliders'), {id: 'cv', label: 'Impact speed', min: .2, max: 2, step: .05, value: cz.v, fmt: v => v.toFixed(2) + ' m/s', onInput: v => czSet('v', v)});
+  SL.Fc = slider($('crSliders'), {id: 'Fc', label: 'Crush force', min: 1, max: 40, step: .5, value: cz.Fc, fmt: v => v.toFixed(1) + ' N', onInput: v => czSet('Fc', v)});
+  SL.L = slider($('crSliders'), {id: 'L', label: 'Crush length', min: 1, max: 10, step: .5, value: cz.L, fmt: v => v.toFixed(1) + ' cm', onInput: v => czSet('L', v)});
+
+  $('preset').innerHTML = '<option value="">Presets</option>' + PRESETS.map((p, i) => `<option value="${i}">${i + 1}. ${p.name}</option>`).join('');
+  for (const k in BUMPERS) {
+    const b = document.createElement('button'); b.className = 'btn'; b.dataset.bump = k; b.textContent = BUMPERS[k].name;
+    b.onclick = () => { at.bumper = k; $('preset').value = ''; atChanged(); };
+    $('bumps').appendChild(b);
+  }
+  for (const k in NOSES) {
+    const b = document.createElement('button'); b.className = 'btn'; b.dataset.nose = k; b.textContent = NOSES[k].name;
+    b.onclick = () => czSet('nose', k);
+    $('noses').appendChild(b);
+  }
+  SPECS.forEach((s, i) => {
+    const b = document.createElement('button'); b.className = 'btn spec-btn'; b.dataset.spec = i; b.setAttribute('aria-pressed', 'false');
+    b.innerHTML = `${i + 1}. ${s.name}: ${s.m.toFixed(2)} kg at ${s.v.toFixed(2)} m/s<small>Peak force under ${s.F} N, crush length at most ${s.L.toFixed(1)} cm, must not bounce. Energy to absorb ${fJ(.5 * s.m * s.v * s.v)} J.</small>`;
+    b.onclick = () => pickSpec(i);
+    $('specList').appendChild(b);
+  });
+  const QUESTIONS = ['What stayed the same in every Air Track run? Use your plot.', 'What did the bumper change, and where did the missing energy go?',
+    'Which nose design gave the lowest peak force, and why does a longer contact time help?', 'Which spec could not be met? Show the numbers.'];
+  QUESTIONS.forEach((q, i) => {
+    const lab = document.createElement('label'); lab.htmlFor = 'q' + i; lab.textContent = q;
+    const ta = document.createElement('textarea'); ta.id = 'q' + i; ta.value = store.text[i] || '';
+    let tmr = 0;
+    ta.addEventListener('input', () => { store.text[i] = ta.value; clearTimeout(tmr); tmr = setTimeout(save, 400); });
+    ta.addEventListener('blur', () => { store.text[i] = ta.value; save(); });
+    $('concl').append(lab, ta);
+  });
+
+  // ======================================================================================
+  // AIR TRACK
+  // ======================================================================================
+  const bumpE = () => at.bumper === 'custom' ? at.eCustom : BUMPERS[at.bumper].e;
+  const running = () => (state.mode === 'air' && atRun && atRun.phase === 'run') || (state.mode === 'cz' && czRun && czRun.phase !== 'done');
+
+  function atSet(k, v) { at[k] = v; $('preset').value = ''; atChanged(); }
+  // any setting change: a finished run resets, the start spots stay legal, the screen redraws
+  function atChanged() {
+    if (atRun && atRun.phase === 'run') return;
+    atRun = null;
+    atClampStarts();
+    atPanel(); atLedger(); atDraw(true); atHint();
+  }
+  function atClampStarts() {
+    at.xA = clamp(at.xA, .15, 1.6); at.xB = clamp(at.xB, at.xA + .25, 1.85);
+    if (at.xB - at.xA < .25 - 1e-9) at.xA = at.xB - .25;
+  }
+  function applyPreset(i) {
+    const p = PRESETS[i]; if (!p || running()) return;
+    Object.assign(at, {mA: p.mA, vA: p.vA, mB: p.mB, vB: p.vB, bumper: p.bumper, xA: .5, xB: 1.2});
+    for (const k of ['mA', 'vA', 'mB', 'vB']) SL[k].set(at[k]);
+    $('preset').value = String(i);
+    atChanged();
+  }
+  $('preset').onchange = () => { if ($('preset').value !== '') applyPreset(+$('preset').value); };
+
+  const predVal = id => { const s = $(id).value.trim(); if (s === '') return null; const v = +s; return isFinite(v) && v >= -2 && v <= 2 ? v : null; };
+  const predReady = () => !at.predict || (predVal('predA') != null && predVal('predB') != null);
+  for (const id of ['predA', 'predB']) $(id).addEventListener('input', () => { atPanel(); atHint(); });
+
+  function atPanel() {
+    const run = !!(atRun && atRun.phase === 'run');
+    for (const k of ['mA', 'vA', 'mB', 'vB', 'e']) SL[k].el.disabled = run;
+    $('preset').disabled = run;
+    for (const b of $('bumps').children) { b.setAttribute('aria-pressed', b.dataset.bump === at.bumper); b.disabled = run; }
+    $('eBox').hidden = at.bumper !== 'custom';
+    $('bumpNote').textContent = BUMPERS[at.bumper].note;
+    $('predSec').hidden = !at.predict || state.mode !== 'air';
+    $('predA').disabled = $('predB').disabled = run;
+    $('atLaunch').disabled = run || !predReady();
+    $('atReset').disabled = false;
+    $('atRecord').disabled = !(atRun && atRun.contact && !atRun.recorded && atRun.sim.kind === 'collide') || store.at.length >= MAXROWS;
+    $('atJump').hidden = !(run && atRun.sim.kind === 'collide' && atRun.sim.tc > 8 && atRun.t < atRun.sim.tc - .5);
+    $('tCM').checked = at.showCM; $('tRide').checked = at.ride; $('tSlowA').checked = at.slow; $('tNoise').checked = at.noise; $('tPred').checked = at.predict;
+  }
+  function atHint() {
+    if (state.mode !== 'air') return;
+    let h = HINT.air;
+    if (atRun && atRun.sim.kind === 'none') h = atRun.sim.reason === 'never' ? HINT.never : HINT.endFirst;
+    else if (atRun && atRun.contact) h = store.at.length >= MAXROWS && !atRun.recorded ? HINT.full : HINT.airDone;
+    else if (!atRun && at.predict && !predReady()) h = HINT.predict;
+    setHint(h);
+  }
+
+  const noiseF = () => 1 + (Math.random() * 2 - 1) * .02;
+  function atLaunch() {
+    if (state.mode !== 'air' || (atRun && atRun.phase === 'run') || !predReady()) return;
+    atRun = null; atClampStarts();
+    let e = bumpE();
+    if (at.noise && at.bumper === 'rubber') e = Math.round((.55 + Math.random() * .1) * 1000) / 1000;
+    const sim = F.airRun({mA: at.mA, vA: at.vA, xA: at.xA, mB: at.mB, vB: at.vB, xB: at.xB, e});
+    if (sim.kind === 'still') {
+      atPanel(); atLedger(); atDraw(true); setHint(HINT.still); live(HINT.still); Curio.tone(220, .12, .03); return;
+    }
+    const n = at.noise ? [noiseF(), noiseF(), noiseF(), noiseF()] : [1, 1, 1, 1];
+    const after = sim.kind === 'collide' ? [sim.c.v1, sim.c.v2] : [at.vA, at.vB];
+    const meas = {vA0: at.vA * n[0], vB0: at.vB * n[1], vA1: after[0] * (sim.kind === 'collide' ? n[2] : n[0]), vB1: after[1] * (sim.kind === 'collide' ? n[3] : n[1])};
+    atRun = {sim, t: 0, phase: 'run', contact: false, meas, e, noise: at.noise, recorded: false, set: {...at}, vcm: (at.mA * at.vA + at.mB * at.vB) / (at.mA + at.mB)};
+    $('atNote').textContent = ''; $('cmpBox').textContent = '';
+    if (sim.kind === 'none') { atRun.contact = false; narrate(sim.reason === 'never' ? 'at-no-collision' : 'endFirst'); live(sim.reason === 'never' ? HINT.never : HINT.endFirst); }
+    Curio.tone(sim.kind === 'collide' ? 392 : 330, .12, .03);
+    atPanel(); atLedger(); atHint();
+    if (Curio.reduce) { atRun.t = sim.T; atStep(0); }
+    loop();
+  }
+  // advance the run by dt seconds of sim time (crossing the collision fills the After row)
+  function atStep(dt) {
+    const r = atRun; if (!r || r.phase !== 'run') return;
+    r.t = Math.min(r.sim.T, r.t + dt);
+    if (r.sim.kind === 'collide' && !r.contact && r.t >= r.sim.tc) atContact();
+    if (r.t >= r.sim.T - 1e-12) atFinish();
+  }
+  function atContact() {
+    const r = atRun; r.contact = true;
+    Curio.tone(r.e > .5 ? 660 : 300, .14, .05, r.e > .5 ? 'sine' : 'triangle');
+    atLedger(); atPanel();
+    if (at.predict) {
+      const pa = predVal('predA'), pb = predVal('predB'), line = (g, you, m) => `${g}. You: ${fsg(you, 2)}, measured: ${fsg(m, 2)}, off by ${Math.abs(you - m).toFixed(2)} m/s`;
+      $('cmpBox').innerHTML = `<div>${line('Glider A', pa, r.meas.vA1)}</div><div>${line('Glider B', pb, r.meas.vB1)}</div>`;
+    }
+    live(`After the collision: A ${spoken(fsg(r.meas.vA1, 2))} meters per second, B ${spoken(fsg(r.meas.vB1, 2))} meters per second.`);
+    narrate('at-first-run');
+    const c = r.sim.c;
+    if (c.ke0 > 0 && pct(c.ke1, c.ke0) < 100) narrate('at-energy');
+  }
+  function atFinish() {
+    const r = atRun; r.phase = 'done'; r.t = r.sim.T;
+    atPanel(); atHint(); atDraw();
+  }
+  function atReset() {
+    atRun = null; atClampStarts();
+    $('atNote').textContent = ''; $('cmpBox').textContent = '';
+    atPanel(); atLedger(); atDraw(true); atHint();
+  }
+  function atRecord() {
+    const r = atRun;
+    if (!r || !r.contact || r.recorded || r.sim.kind !== 'collide') return;
+    if (store.at.length >= MAXROWS) { setHint(HINT.full); return; }
+    const m = r.meas, s = r.set;
+    const p0 = s.mA * m.vA0 + s.mB * m.vB0, p1 = s.mA * m.vA1 + s.mB * m.vB1;
+    const k0 = .5 * s.mA * m.vA0 ** 2 + .5 * s.mB * m.vB0 ** 2, k1 = .5 * s.mA * m.vA1 ** 2 + .5 * s.mB * m.vB1 ** 2;
+    const run = (store.at.reduce((a, x) => Math.max(a, x.run), 0)) + 1;
+    store.at.push({run, bumper: s.bumper, e: r.e, mA: s.mA, vA: m.vA0, mB: s.mB, vB: m.vB0, vA1: m.vA1, vB1: m.vB1, p0, p1, k0, k1,
+      kept: k0 > 0 ? pct(k1, k0) : 0, frame: at.ride ? 'center of mass' : 'lab'});
+    r.recorded = true; save();
+    $('atNote').textContent = `Recorded as run ${run}.`; live(`Recorded as run ${run}.`);
+    Curio.tone(523, .15, .04);
+    atPanel(); atHint();
+  }
+  $('atLaunch').onclick = atLaunch;
+  $('atReset').onclick = atReset;
+  $('atRecord').onclick = atRecord;
+  $('atJump').onclick = () => { if (atRun && atRun.phase === 'run' && atRun.sim.kind === 'collide') { atRun.t = Math.max(atRun.t, atRun.sim.tc - .5); atPanel(); $('atLaunch').focus(); } };
+  $('tCM').onchange = () => { at.showCM = $('tCM').checked; atDraw(true); };
+  $('tRide').onchange = () => { at.ride = $('tRide').checked; if (at.ride) narrate('at-cm-frame'); atLedger(); atDraw(true); };
+  $('tSlowA').onchange = () => { at.slow = $('tSlowA').checked; };
+  $('tNoise').onchange = () => { at.noise = $('tNoise').checked; atChanged(); };
+  $('tPred').onchange = () => { at.predict = $('tPred').checked; if (at.predict) narrate('at-predict'); atChanged(); };
+
+  // ---------- the air track stage (real pixels) ----------
+  let G = null, S = {};
+  function geomAT(W, H) {
+    const pad = W < 480 ? 10 : 16, L0 = pad + 8, ppm = (W - 2 * pad - 16) / F.TRACK;
+    const TH = Math.round(clamp(H * .42, 186, 290));
+    const railY = TH - 54;
+    const gw = F.GLIDER * ppm, gh = clamp(gw * .36, 14, 26);
+    let ph = clamp(gw * .085, 3, 6);
+    const avail = railY - 30 - gh - 44;
+    ph = Math.max(2, Math.min(ph, avail / 10 - 1));
+    return {W, H, pad, L0, ppm, TH, railY, gw, gh, ph, fs: W < 480 ? 11 : 12};
+  }
+  const wx = x => G.L0 + x * G.ppm;
+  // what the screen shows right now: positions, velocities (lab) and the frame offset
+  function atNow() {
+    if (atRun && atRun.sim.pos) {
+      const [xA, xB] = atRun.sim.pos(atRun.t);
+      const m = atRun.meas, after = atRun.contact || (atRun.sim.kind === 'collide' && atRun.t >= atRun.sim.tc);
+      const vel = after ? [m.vA1, m.vB1] : [m.vA0, m.vB0];
+      // a glider that has reached an end stop has stopped there
+      if (atRun.phase === 'done') { if (xA <= F.END_LO + 1e-6 || xA >= F.END_HI - 1e-6) vel[0] = 0; if (xB <= F.END_LO + 1e-6 || xB >= F.END_HI - 1e-6) vel[1] = 0; }
+      return {xA, xB, vA: vel[0], vB: vel[1], set: atRun.set};
+    }
+    return {xA: at.xA, xB: at.xB, vA: at.vA, vB: at.vB, set: at};
+  }
+  const vcmOf = s => (s.mA * s.vA + s.mB * s.vB) / (s.mA + s.mB);
+  function frameV() { if (!at.ride) return 0; return atRun && atRun.vcm != null ? atRun.vcm : vcmOf(at); }
+  function rideOffset(n) { if (!at.ride) return 0; const s = n.set; return (s.mA * n.xA + s.mB * n.xB) / (s.mA + s.mB) - F.TRACK / 2; }
+
+  function buildAT(W, H) {
+    G = geomAT(W, H);
+    const {L0, ppm, railY, TH} = G;
+    sv.setAttribute('aria-label', 'The air track with gliders A and B, and the momentum and kinetic energy ledger');
+    const defs = mk('defs', {}, sv);
+    const hp = mk('pattern', {id: 'velc', width: 4, height: 4, patternUnits: 'userSpaceOnUse'}, defs);
+    mk('rect', {width: 4, height: 4, fill: '#2b3646'}, hp); mk('path', {d: 'M0,4L4,0M-1,1L1,-1M3,5L5,3', stroke: '#c9d3df', 'stroke-width': 1}, hp);
+    const tp = mk('pattern', {id: 'totP', width: 6, height: 6, patternUnits: 'userSpaceOnUse', patternTransform: 'rotate(45)'}, defs);
+    mk('rect', {width: 6, height: 6, fill: 'rgba(217,225,234,.55)'}, tp); mk('line', {x1: 0, y1: 0, x2: 0, y2: 6, stroke: 'rgba(217,225,234,.95)', 'stroke-width': 2}, tp);
+    S.frameT = txt(sv, G.pad, 16, '', 'stb halo deco');
+    S.clockT = txt(sv, W - G.pad, 16, '', 'st halo rd deco', 'end');
+    S.bumpT = txt(sv, G.pad, 32, '', 'st halo deco');
+    S.world = mk('g', {}, sv);
+    const w = S.world;
+    // rail with air holes, ruler, end stops
+    mk('rect', {x: wx(0) - 6, y: railY, width: F.TRACK * ppm + 12, height: 9, rx: 2, fill: '#8d99a8', class: 'deco'}, w);
+    mk('rect', {x: wx(0) - 6, y: railY, width: F.TRACK * ppm + 12, height: 2, fill: '#c9d3df', class: 'deco'}, w);
+    const holeStep = Math.max(6, ppm * .04);
+    let holes = '';
+    for (let x = wx(0) + 4; x < wx(F.TRACK) - 2; x += holeStep) holes += `M${x.toFixed(1)},${railY + 5.5}h1.6`;
+    mk('path', {d: holes, stroke: '#3a4554', 'stroke-width': 2, class: 'deco'}, w);
+    for (let i = 0; i <= 20; i++) {
+      const x = wx(i / 10), big = i % 5 === 0;
+      mk('line', {x1: x, x2: x, y1: railY + 10, y2: railY + (big ? 19 : 15), stroke: '#c9d3df', 'stroke-width': big ? 1.5 : 1, class: 'deco'}, w);
+      if (big) txt(w, x, railY + 31, (i / 10).toFixed(2) + (i === 20 ? ' m' : ''), 'st halo deco', i === 20 ? 'end' : i === 0 ? 'start' : 'middle');
+    }
+    for (const x of [0, F.TRACK]) mk('rect', {x: wx(x) + (x ? 0 : -6), y: railY - 26, width: 6, height: 26, rx: 1, fill: '#d8dee6', class: 'deco'}, w);
+    // center of mass marker (a triangle under the track)
+    S.cm = mk('g', {class: 'deco'}, w);
+    mk('path', {d: 'M0,0 l-7,11 h14 z', fill: 'var(--cm)', stroke: '#0b1017', 'stroke-width': 1.5}, S.cm);
+    txt(S.cm, 10, 10, 'center of mass', 'st halo');
+    S.cm.setAttribute('visibility', 'hidden');
+    S.arrows = mk('g', {class: 'deco'}, w);
+    S.gl = {A: gliderG('A'), B: gliderG('B')};
+    S.ledger = mk('g', {class: 'deco'}, sv);
+    atLedger(); atDraw(true);
+  }
+  function gliderG(k) {
+    const g = mk('g', {class: 'glider', tabindex: 0, role: 'slider', 'aria-label': `Glider ${k} start spot. Drag, or use the Left and Right arrows`,
+      'aria-valuemin': .15, 'aria-valuemax': 1.85}, S.world);
+    g.addEventListener('pointerdown', e => {
+      if (e.button || atRun && atRun.phase === 'run') return;
+      e.preventDefault(); g.focus({preventScroll: true}); g.setPointerCapture(e.pointerId); g.classList.add('drag');
+      const n0 = atNow(); g._drag = {id: e.pointerId, dx: worldX(e) - (k === 'A' ? n0.xA : n0.xB)};
+    });
+    g.addEventListener('pointermove', e => { if (g._drag && e.pointerId === g._drag.id) moveGlider(k, worldX(e) - g._drag.dx); });
+    const end = e => { if (g._drag && e.pointerId === g._drag.id) { g._drag = null; g.classList.remove('drag'); } };
+    g.addEventListener('pointerup', end); g.addEventListener('pointercancel', end);
+    g.addEventListener('keydown', e => {
+      const d = {ArrowLeft: -.05, ArrowRight: .05, ArrowDown: -.05, ArrowUp: .05}[e.key];
+      if (d == null) return;
+      e.preventDefault();
+      if (atRun && atRun.phase === 'run') return;
+      moveGlider(k, (k === 'A' ? at.xA : at.xB) + d);
+    });
+    return g;
+  }
+  function worldX(e) {
+    const p = sv.createSVGPoint(); p.x = e.clientX; p.y = e.clientY;
+    const q = p.matrixTransform(sv.getScreenCTM().inverse());
+    return (q.x + rideOffset(atNow()) * G.ppm - G.L0) / G.ppm;
+  }
+  function moveGlider(k, x) {
+    if (atRun && atRun.phase === 'run') return;
+    x = Math.round(x / .05) * .05;
+    if (k === 'A') at.xA = +clamp(x, .15, Math.min(1.6, at.xB - .25)).toFixed(2);
+    else at.xB = +clamp(x, Math.max(.4, at.xA + .25), 1.85).toFixed(2);
+    if (atRun) atRun = null;
+    atPanel(); atLedger(); atDraw(true); atHint();
+  }
+  // a glider: body with its letter, the bumper on the inner face, a base block and mass plates, the mass label
+  function drawGlider(k, m) {
+    const g = S.gl[k], {gw, gh, ph} = G;
+    g.textContent = '';
+    const plates = Math.round(+((m - .10) / .10).toFixed(6)), stackH = (plates + 1) * (ph + 1);
+    const top = -(gh + stackH);
+    mk('rect', {x: -gw / 2 - 4, y: top - 22, width: gw + 8, height: gh + stackH + 26, fill: 'transparent'}, g);
+    mk('rect', {x: -gw / 2 - 6, y: top - 19, width: gw + 12, height: gh + stackH + 23, rx: 5, class: 'ring'}, g);
+    const col = k === 'A' ? 'var(--ga)' : 'var(--gb)';
+    mk('rect', {x: -gw / 2, y: -gh, width: gw, height: gh, rx: 3, fill: col, stroke: '#0b1017', 'stroke-width': 1.2}, g);
+    // the bumper pad on the face that meets the other glider
+    const bw = Math.max(4, gw * .08), side = k === 'A' ? 1 : -1, bx = side > 0 ? gw / 2 - bw : -gw / 2;
+    const bump = at.bumper;
+    if (bump === 'spring') {
+      let d = `M${bx + (side > 0 ? 0 : bw)},${-gh + 2}`;
+      for (let i = 1; i <= 6; i++) d += `L${bx + (i % 2 ? (side > 0 ? bw : 0) : (side > 0 ? 0 : bw))},${-gh + 2 + i * (gh - 4) / 6}`;
+      mk('rect', {x: bx, y: -gh + 1, width: bw, height: gh - 2, fill: '#1c2532'}, g);
+      mk('path', {d, fill: 'none', stroke: '#e8edf3', 'stroke-width': 1.3}, g);
+    } else if (bump === 'rubber') mk('rect', {x: bx, y: -gh + 1, width: bw, height: gh - 2, rx: bw / 2, fill: '#2a2f36', stroke: '#9aa7b6', 'stroke-width': 1}, g);
+    else if (bump === 'velcro') mk('rect', {x: bx, y: -gh + 1, width: bw, height: gh - 2, fill: 'url(#velc)'}, g);
+    else { mk('rect', {x: bx, y: -gh + 1, width: bw, height: gh - 2, fill: '#3a4554', stroke: '#c9d3df', 'stroke-width': 1}, g); }
+    const lx = side > 0 ? -bw / 2 : bw / 2;
+    const fsz = clamp(gh - 3, 11, 18);
+    mk('text', {x: lx, y: -gh / 2 + fsz * .36, 'text-anchor': 'middle', style: `font:800 ${fsz}px 'Segoe UI',system-ui,sans-serif`, fill: '#0b1017'}, g).textContent = k;
+    // base block, then plates
+    let y = -gh - (ph + 1);
+    mk('rect', {x: -gw * .3, y, width: gw * .6, height: ph + 1, fill: '#4d5a6b', stroke: '#0b1017', 'stroke-width': .8}, g);
+    for (let i = 0; i < plates; i++) {
+      y -= ph + 1;
+      mk('rect', {x: -gw * .36, y, width: gw * .72, height: ph, rx: 1, fill: i % 2 ? '#aab5c3' : '#c9d3df', stroke: '#0b1017', 'stroke-width': .6}, g);
+    }
+    txt(g, 0, top - 5, m.toFixed(2) + ' kg', 'st halo rd', 'middle');
+    g._top = top;
+  }
+  // gliders, arrows, center of mass, the frame offset and the clock (layout = true redraws the gliders too)
+  function atDraw(layout) {
+    if (state.mode !== 'air' || !G) return;
+    const n = atNow(), s = n.set, off = rideOffset(n);
+    if (layout || S._mA !== s.mA || S._mB !== s.mB || S._bump !== (atRun ? atRun.set.bumper : at.bumper)) {
+      const b0 = at.bumper; if (atRun) at.bumper = atRun.set.bumper;
+      drawGlider('A', s.mA); drawGlider('B', s.mB);
+      at.bumper = b0; S._mA = s.mA; S._mB = s.mB; S._bump = atRun ? atRun.set.bumper : at.bumper;
+    }
+    S.world.setAttribute('transform', `translate(${(-off * G.ppm).toFixed(1)},0)`);
+    S.gl.A.setAttribute('transform', `translate(${wx(n.xA).toFixed(1)},${G.railY})`);
+    S.gl.B.setAttribute('transform', `translate(${wx(n.xB).toFixed(1)},${G.railY})`);
+    S.gl.A.setAttribute('aria-valuenow', at.xA); S.gl.A.setAttribute('aria-valuetext', `center at ${at.xA.toFixed(2)} meters`);
+    S.gl.B.setAttribute('aria-valuenow', at.xB); S.gl.B.setAttribute('aria-valuetext', `center at ${at.xB.toFixed(2)} meters`);
+    for (const k of ['A', 'B']) S.gl[k].classList.toggle('locked', !!(atRun && atRun.phase === 'run'));
+    // velocity arrows (in the frame shown): 1 m/s is drawn as 0.25 m of track
+    S.arrows.textContent = '';
+    const fv = frameV();
+    for (const [k, x, v] of [['A', n.xA, n.vA - fv], ['B', n.xB, n.vB - fv]]) {
+      const y = G.railY + S.gl[k]._top - 24, x0 = wx(x), sx0 = x0 - off * G.ppm;
+      let len = v * .25 * G.ppm;
+      len = clamp(sx0 + len, G.pad, G.W - G.pad) - sx0;   // the arrow stays on the stage
+      const col = k === 'A' ? 'var(--ga)' : 'var(--gb)';
+      if (Math.abs(len) >= 4) {
+        const dir = Math.sign(len), tip = x0 + len, hl = Math.min(9, Math.abs(len));
+        mk('line', {x1: x0, y1: y, x2: tip - dir * hl, y2: y, stroke: col, 'stroke-width': 3}, S.arrows);
+        mk('path', {d: `M${tip},${y} l${-dir * hl},-6 v12 z`, fill: col}, S.arrows);
+      } else mk('circle', {cx: x0, cy: y, r: 3, fill: col}, S.arrows);
+      const sx = x0 - off * G.ppm, lx = clamp(sx, G.pad + 46, G.W - G.pad - 46) + off * G.ppm;
+      txt(S.arrows, lx, y - 7, `${k} ${fsg(v, 2)} m/s`, 'stb halo rd', 'middle');
+    }
+    // center of mass
+    const xcm = (s.mA * n.xA + s.mB * n.xB) / (s.mA + s.mB);
+    S.cm.setAttribute('visibility', at.showCM || at.ride ? 'visible' : 'hidden');
+    S.cm.setAttribute('transform', `translate(${wx(xcm).toFixed(1)},${G.railY + 36})`);
+    S.frameT.textContent = at.ride ? `Frame: moving with the center of mass at ${fsg(vcmOf(atRun ? atRun.set : at), 2)} m/s` : 'Frame: lab';
+    const e = atRun && atRun.e != null ? atRun.e : bumpE();
+    const bname = BUMPERS[atRun ? atRun.set.bumper : at.bumper].name;
+    S.bumpT.textContent = `Bumper: ${bname}, e = ${e.toFixed(atRun && atRun.noise && atRun.set.bumper === 'rubber' ? 3 : 2)}`;
+    S.clockT.textContent = atRun && atRun.sim.kind !== 'still' ? `t = ${atRun.t.toFixed(2)} s${at.slow && atRun.phase === 'run' ? ', slow motion' : ''}` : '';
+  }
+
+  // ---------- the ledger: Before and After, momentum (from a center zero line) and kinetic energy ----------
+  function atValues() {
+    const fv = frameV();
+    const s = atRun ? atRun.set : at, m = atRun ? atRun.meas : {vA0: at.vA, vB0: at.vB};
+    const row = (va, vb) => { const a = va - fv, b = vb - fv; return {p: [s.mA * a, s.mB * b, s.mA * a + s.mB * b], k: [.5 * s.mA * a * a, .5 * s.mB * b * b, .5 * s.mA * a * a + .5 * s.mB * b * b]}; };
+    const before = row(m.vA0, m.vB0);
+    const hasAfter = !!(atRun && (atRun.contact || atRun.sim.kind === 'none'));
+    const after = hasAfter ? row(m.vA1, m.vB1) : null;
+    return {before, after, noise: !!(atRun && atRun.noise)};
+  }
+  function atLedger() {
+    if (state.mode !== 'air' || !G) return;
+    const g = S.ledger; g.textContent = '';
+    const {W, H, pad, TH} = G, V = atValues();
+    const top = TH + 6, gap = W < 480 ? 10 : 18, cw = (W - 2 * pad - gap) / 2, fs = G.fs;
+    const twoLines = W < 640, lineY = H - (twoLines ? 24 : 12);
+    const rowsTop = top + 20, avail = lineY - 20 - rowsTop;
+    const bh = clamp(avail / 2 / 3 - 16 / 3 - 4, 9, 22), rowH = 16 + 3 * (bh + 4);
+    // scales: one per quantity, shared by Before and After so the bars compare
+    const vals = [V.before, V.after].filter(Boolean);
+    const pMax = Math.max(.01, ...vals.flatMap(r => r.p.map(Math.abs))), kMax = Math.max(.001, ...vals.flatMap(r => r.k));
+    mk('line', {x1: pad, x2: W - pad, y1: top - 4, y2: top - 4, stroke: 'var(--line)', 'stroke-width': 1}, g);
+    txt(g, pad, top + 10, 'Momentum p (kg·m/s)', 'stb halo');
+    txt(g, pad + cw + gap, top + 10, 'Kinetic energy KE (J)', 'stb halo');
+    const names = ['A', 'B', 'Total'], cols = ['var(--ga)', 'var(--gb)', 'url(#totP)'];
+    const nameW = W < 480 ? 34 : 40;
+    [['Before', V.before], ['After', V.after]].forEach(([label, r], ri) => {
+      const y0 = rowsTop + ri * (rowH + 6);
+      for (const [ci, x0] of [[0, pad], [1, pad + cw + gap]]) {
+        const head = label + (r ? '' : atRun && atRun.phase === 'run' ? ': waiting for the collision' : ': launch to measure');
+        txt(g, x0, y0 + 11, head, r ? 'stb halo' : 'st halo');
+        const bx0 = x0 + nameW, bw = cw - nameW - 4;
+        const zx = ci === 0 ? bx0 + bw / 2 : bx0;
+        // zero line
+        mk('line', {x1: zx, x2: zx, y1: y0 + 14, y2: y0 + 16 + 3 * (bh + 4), stroke: '#c9d3df', 'stroke-width': 1.5}, g);
+        if (ci === 0) { mk('line', {x1: bx0, x2: bx0 + bw, y1: y0 + 16 + 3 * (bh + 4), y2: y0 + 16 + 3 * (bh + 4), stroke: 'var(--line)'}, g); }
+        for (let i = 0; i < 3; i++) {
+          const by = y0 + 17 + i * (bh + 4);
+          txt(g, x0, by + bh / 2 + 4, names[i], i === 2 ? 'stb halo' : 'stb halo');
+          if (!r) continue;
+          const v = ci === 0 ? r.p[i] : r.k[i];
+          // leave room past the longest bar for its value, so every value sits outside its bar
+          const twMax = 6.5 * fs * .62 + 8;
+          const sc = ci === 0 ? Math.min((bw / 2 - 6) * .7, bw / 2 - twMax) / pMax : Math.min((bw - 6) * .75, bw - twMax - 4) / kMax;
+          const len = v * sc;
+          const x1 = Math.min(zx, zx + len), wdt = Math.max(Math.abs(len), Math.abs(v) > 1e-9 ? 1.5 : 0);
+          mk('rect', {x: x1, y: by, width: wdt, height: bh, fill: cols[i], stroke: i === 2 ? '#e8edf3' : '#0b1017', 'stroke-width': 1}, g);
+          // the letter on the bar too, so color is never the only signal
+          if (wdt > 18 && i < 2) txt(g, x1 + (len >= 0 ? 4 : wdt - 4), by + bh / 2 + 4, names[i], 'deco', len >= 0 ? 'start' : 'end').setAttribute('style', `font:800 ${Math.min(12, bh - 1)}px 'Segoe UI',sans-serif;fill:#0b1017`);
+          const s = ci === 0 ? fx(v, 3) : fx(v, 4);
+          const tw = s.length * fs * .62 + 6;
+          // the value just past the end of its bar (inside the bar's end when there is no room)
+          let tx, an, inside = false;
+          if (len >= 0) { tx = zx + len + 4; an = 'start'; if (tx + tw > bx0 + bw + 8) { tx = zx + len - 4; an = 'end'; inside = true; } }
+          else { tx = zx + len - 4; an = 'end'; if (tx - tw < bx0 - 2) { tx = zx + len + 4; an = 'start'; inside = true; } }
+          const vt = txt(g, tx, by + bh / 2 + 4, s, inside ? 'stb rd' : 'stb halo rd', an);
+          if (inside) vt.setAttribute('style', 'fill:#0b1017');
+        }
+      }
+    });
+    // the one-line summary
+    let line;
+    const pb = V.before.p[2], kb = V.before.k[2];
+    if (!V.after) line = `Momentum: before ${fx(pb, 3)} kg·m/s. Launch to measure after.`;
+    else {
+      const pa = V.after.p[2], ka = V.after.k[2];
+      const kept = kb > 1e-12 ? `Kinetic energy kept: ${pct(ka, kb)} percent.` : 'No kinetic energy before in this frame.';
+      if (V.noise) {
+        const diff = Math.abs(pb) > 5e-4 ? `difference ${(100 * Math.abs(pa - pb) / Math.abs(pb)).toFixed(1)} percent` : `difference ${fx(Math.abs(pa - pb), 3)} kg·m/s`;
+        line = `Momentum: before ${fx(pb, 3)}, after ${fx(pa, 3)} (${diff}). ${kept}`;
+      } else line = `Momentum: before ${fx(pb, 3)} kg·m/s, after ${fx(pa, 3)} kg·m/s. ${kept}`;
+      if (atRun.sim.kind === 'none' && !twoLines) line = `No collision, so After is the same as Before. ${line}`;
+    }
+    const parts = twoLines ? line.replace(/(kg·m\/s\.|percent\)\.) /, '$1|').split('|') : [line];
+    parts.forEach((t, i) => { const lt = txt(g, pad, lineY + i * 14, t, 'stb halo'); lt.setAttribute('style', `font-size:${fs + (twoLines ? 0 : 1)}px`); fitText(lt, W - 2 * pad); });
+    S.ledgerLine = line;
+  }
+  // shrink a text line until it fits its width (never below 10 px)
+  function fitText(el, w) {
+    let fs = parseFloat(getComputedStyle(el).fontSize) || 12;
+    try { while (el.getComputedTextLength() > w && fs > 10) { fs -= .5; el.style.fontSize = fs + 'px'; } } catch {}
+  }
+
+  // ======================================================================================
+  // CRUMPLE ZONE
+  // ======================================================================================
+  const noseLen = (k, L = cz.L) => k === 'crumple' ? L / 100 + .01 : NOSES[k].len;
+  const noseLabel = r => r.nose === 'crumple' ? `Crumple ${r.Fc.toFixed(1)} N, ${r.L.toFixed(1)} cm` : NOSES[r.nose].name;
+  function czSet(k, v) {
+    if (running()) return;
+    cz[k] = v;
+    if (k === 'nose' || k === 'L' || k === 'Fc') czCrushed = 0;
+    if (czRun && czRun.phase === 'done') czRun.parked = true;   // the glider goes back to its start; the curve stays
+    czPanel(); czDraw();
+  }
+  function czPanel() {
+    const run = running() && state.mode === 'cz', spec = cz.spec >= 0;
+    for (const b of $('noses').children) { b.setAttribute('aria-pressed', b.dataset.nose === cz.nose); b.disabled = run; }
+    $('noseInfo').textContent = NOSES[cz.nose].info;
+    $('crSliders').hidden = cz.nose !== 'crumple';
+    SL.Fc.el.disabled = SL.L.el.disabled = run;
+    SL.cm.el.disabled = SL.cv.el.disabled = run || spec;
+    $('czLaunch').disabled = run;
+    $('czRecord').disabled = !(czRun && czRun.phase === 'done' && !czRun.recorded) || store.cz.length >= MAXROWS;
+    $('czGhosts').disabled = !ghosts.length;
+    for (const b of $('specList').children) { b.setAttribute('aria-pressed', +b.dataset.spec === cz.spec); b.disabled = run; }
+    $('specLeave').disabled = !spec || run;
+    $('tLock').checked = cz.lock; $('tSlowC').checked = cz.slow;
+  }
+  function czHint() {
+    if (state.mode !== 'cz') return;
+    if (czRun && czRun.phase === 'done') setHint(store.cz.length >= MAXROWS && !czRun.recorded ? HINT.full : HINT.czDone);
+    else setHint(HINT.cz);
+  }
+  // auto axes: the tallest and longest curve on screen, unless locked
+  const NICE = [1, 1.2, 1.5, 2, 2.5, 3, 4, 5, 6, 8, 10];
+  function niceCeil(v) { const p = Math.pow(10, Math.floor(Math.log10(v))); for (const n of NICE) if (n * p >= v - 1e-12) return n * p; return 10 * p; }
+  function niceStep(lo, hi) { const r = (hi - lo) / 4, p = Math.pow(10, Math.floor(Math.log10(r))); for (const n of [1, 2, 2.5, 5, 10]) if (n * p >= r) return n * p; return 10 * p; }
+  function czAutoAxes() {
+    if (cz.lock) return;
+    const runs = [...ghosts, ...(czRun ? [czRun] : [])];
+    if (!runs.length) { cz.axes = {T: 200, F: 20}; return; }
+    cz.axes = {T: niceCeil(1000 * Math.max(...runs.map(r => r.res.contactTime)) * 1.05), F: niceCeil(Math.max(...runs.map(r => r.res.peak)) * 1.12)};
+  }
+  function czLaunch() {
+    if (state.mode !== 'cz' || running()) return;
+    if (czRun) { ghosts.push(czRun); if (ghosts.length > 3) ghosts.shift(); }
+    const nose = NOSES[cz.nose].obj();
+    const res = F.noseRun(cz.m, cz.v, nose);
+    const run = {res, nose: cz.nose, m: cz.m, v: cz.v, Fc: cz.Fc, L: cz.L, phase: 'approach', clock: 0, recorded: false};
+    run.label = noseLabel(run);
+    // display timing: roll in (0.4 to 1.6 s), the contact stretched to 1.5 to 3 s, then roll back if it bounced
+    run.d = {a: clamp(.3 / cz.v, .4, 1.6), c: clamp(1.5 + res.contactTime * 8, 1.5, 3), l: res.vAfter < 0 ? .9 : 0};
+    czRun = run; czCrushed = 0;
+    czAutoAxes();
+    $('czNote').textContent = '';
+    czPanel(); czHint(); buildGraph(); czDraw();
+    if (Curio.reduce) czAdvance(1e9);
+    loop();
+  }
+  // advance the bench clock by dt display seconds
+  function czAdvance(dt) {
+    const r = czRun; if (!r || r.phase === 'done') return;
+    r.clock += dt;
+    const {a, c, l} = r.d;
+    if (r.phase === 'approach' && r.clock >= a) { r.phase = 'contact'; Curio.tone(r.res.peak > 60 ? 220 : 330, .12, .04, 'triangle'); }
+    if (r.phase === 'contact' && r.clock >= a + c) { r.phase = 'leave'; czContactDone(); }
+    if (r.phase === 'leave' && r.clock >= a + c + l) czFinish();
+  }
+  function czContactDone() {
+    const r = czRun;
+    if (r.nose === 'crumple') czCrushed = Math.min(r.res.crushUsed, r.L / 100) + (r.res.result === 'Bottomed out' ? 0 : 0);
+    czReadouts();
+    live(`Peak force ${r.res.peak.toFixed(1)} newtons. Contact time ${(r.res.contactTime * 1000).toFixed(1)} milliseconds. Impulse ${r.res.impulse.toFixed(2)} newton seconds. ${r.res.result}.`);
+    narrate('cz-first-run');
+    if (r.res.result === 'Bottomed out') narrate('cz-bottom');
+    else if (r.res.result === 'Bounced') narrate('cz-bounce');
+    specCheck();
+  }
+  function czFinish() {
+    const r = czRun; r.phase = 'done';
+    czPanel(); czHint(); czDraw();
+  }
+  function czReset() {
+    if (czRun && czRun.phase !== 'done') { czRun.clock = 1e9; czAdvance(0); }
+    if (czRun) czRun.parked = true;
+    czCrushed = 0; $('czNote').textContent = '';
+    czPanel(); czHint(); czDraw();
+  }
+  function czRecord() {
+    const r = czRun;
+    if (!r || r.phase !== 'done' || r.recorded) return;
+    if (store.cz.length >= MAXROWS) { setHint(HINT.full); return; }
+    const run = store.cz.reduce((a, x) => Math.max(a, x.run), 0) + 1;
+    store.cz.push({run, nose: r.nose, Fc: r.nose === 'crumple' ? r.Fc : null, L: r.nose === 'crumple' ? r.L : null, m: r.m, v: r.v,
+      peak: r.res.peak, ct: r.res.contactTime * 1000, crush: r.res.crushUsed * 100, imp: r.res.impulse, va: r.res.vAfter, result: r.res.result});
+    r.recorded = true; save();
+    $('czNote').textContent = `Recorded as run ${run}.`; live(`Recorded as run ${run}.`);
+    Curio.tone(523, .15, .04);
+    czPanel(); czHint();
+  }
+  $('czLaunch').onclick = czLaunch;
+  $('czReset').onclick = czReset;
+  $('czRecord').onclick = czRecord;
+  $('czGhosts').onclick = () => { ghosts = []; czAutoAxes(); czPanel(); buildGraph(); czDraw(); };
+  $('tLock').onchange = () => { cz.lock = $('tLock').checked; if (!cz.lock) { czAutoAxes(); buildGraph(); } czDraw(); };
+  $('tSlowC').onchange = () => { cz.slow = $('tSlowC').checked; };
+
+  // ---------- spec sheet ----------
+  function openSpec(open) {
+    $('specCard').hidden = !open; $('czSpec').setAttribute('aria-expanded', open);
+    if (open) narrate('cz-spec');
+  }
+  $('czSpec').onclick = () => { const open = $('specCard').hidden; openSpec(open); if (open) $('specList').firstElementChild.focus(); };
+  $('specClose').onclick = () => { openSpec(false); $('czSpec').focus(); };
+  function pickSpec(i) {
+    if (running()) return;
+    cz.spec = i; const s = SPECS[i];
+    cz.m = s.m; cz.v = s.v; SL.cm.set(s.m); SL.cv.set(s.v);
+    if (czRun && czRun.phase === 'done') czRun.parked = true;
+    $('specLines').textContent = ''; $('specMet').hidden = true;
+    const li = document.createElement('li'); li.textContent = `Limits: peak force under ${s.F} N, crush length at most ${s.L.toFixed(1)} cm, must not bounce. Mass and speed are locked. Launch to test a nose.`;
+    $('specLines').appendChild(li);
+    czPanel(); czDraw();
+  }
+  $('specLeave').onclick = () => { cz.spec = -1; $('specLines').textContent = ''; $('specMet').hidden = true; czPanel(); };
+  // one plain line per limit, after each launch on a spec
+  function specLines(sp, r) {
+    const res = r.res, out = [];
+    const pk = Math.round(res.peak * 10) / 10, pOK = pk < sp.F;
+    out.push([pOK, `Peak force ${pk.toFixed(1)} N, limit ${sp.F} N: ${pOK ? 'met' : 'not met'}.`]);
+    if (r.nose === 'crumple') { const ok = r.L <= sp.L + 1e-9; out.push([ok, `Crush length ${r.L.toFixed(1)} cm, limit ${sp.L.toFixed(1)} cm: ${ok ? 'met' : 'not met'}.`]); }
+    else { const c = res.crushUsed * 100, ok = c <= sp.L + 1e-9; out.push([ok, `Crush used ${c.toFixed(2)} cm, limit ${sp.L.toFixed(1)} cm: ${ok ? 'met' : 'not met'}.`]); }
+    const b = res.vAfter < -1e-9;
+    out.push([!b, b ? `Bounced back at ${fsg(res.vAfter, 2)} m/s, must not bounce: not met.` : 'Did not bounce, must not bounce: met.']);
+    return out;
+  }
+  function specCheck() {
+    if (cz.spec < 0 || !czRun) return;
+    const sp = SPECS[cz.spec];
+    if (Math.abs(czRun.m - sp.m) > 1e-9 || Math.abs(czRun.v - sp.v) > 1e-9) return;
+    const lines = specLines(sp, czRun);
+    const ul = $('specLines'); ul.textContent = '';
+    const head = document.createElement('li'); head.textContent = `${czRun.label}, energy at impact ${fJ(czRun.res.ke0)} J:`; ul.appendChild(head);
+    for (const [ok, t] of lines) { const li = document.createElement('li'); li.className = ok ? 'met' : 'not'; li.textContent = t; ul.appendChild(li); }
+    const all = lines.every(l => l[0]);
+    $('specMet').hidden = !all;
+    if (all) { Curio.yes(); narrate('cz-spec-met#' + cz.spec); }
+  }
+
+  // ---------- the crumple bench stage (real pixels): graph on top, the track and magnified nose, the readouts ----------
+  let C = null, gp = null;
+  function geomCZ(W, H) {
+    const pad = W < 480 ? 8 : 14, small = W < 560 || H < 440;
+    const roH = W < 480 ? 122 : small ? 108 : 128, ctxH = W - 2 * pad < 780 ? 30 : 20;
+    const trH = Math.round(clamp(H * .2, 76, 150));
+    const grH = H - roH - ctxH - trH - 6;
+    return {W, H, pad, small, roH, ctxH, trH, grH, grTop: 0, trTop: grH, roTop: grH + trH + 4, ctxTop: H - ctxH};
+  }
+  function buildCZ(W, H) {
+    C = geomCZ(W, H);
+    sv.setAttribute('aria-label', 'Crumple zone bench: a force against time graph, the glider and the sensor wall, and the readouts');
+    const defs = mk('defs', {}, sv);
+    const hp = mk('pattern', {id: 'impH', width: 7, height: 7, patternUnits: 'userSpaceOnUse', patternTransform: 'rotate(45)'}, defs);
+    mk('rect', {width: 7, height: 7, fill: 'rgba(60,200,220,.16)'}, hp); mk('line', {x1: 0, y1: 0, x2: 0, y2: 7, stroke: 'rgba(60,200,220,.5)', 'stroke-width': 2}, hp);
+    mk('clipPath', {id: 'insetClip'}, defs);
+    S.graph = mk('g', {}, sv);
+    S.track = mk('g', {class: 'deco'}, sv);
+    S.ro = mk('g', {class: 'deco'}, sv);
+    S.ctx = mk('g', {class: 'deco'}, sv);
+    // the context line (on screen only)
+    const words = 'Car crumple zones, airbags and helmet foam all work this way: a longer stop means a smaller force for the same change in momentum.'.split(' ');
+    let line = '', y = C.ctxTop + 12, t = txt(S.ctx, C.pad, y, '', 'st halo');
+    for (const w of words) {
+      t.textContent = line ? line + ' ' + w : w;
+      if (t.getComputedTextLength() > W - 2 * C.pad && line) { t.textContent = line; y += 13; t = txt(S.ctx, C.pad, y, w, 'st halo'); line = w; }
+      else line = t.textContent;
+    }
+    buildGraph(); czDraw();
+  }
+  function buildGraph() {
+    if (state.mode !== 'cz' || !C) return;
+    S.graph.textContent = '';
+    const GL = C.small ? 54 : 60, GR = 12, GT = 24, GB = C.small ? 40 : 44;
+    const PW = C.W - GL - GR - C.pad, PH = Math.max(60, C.grH - GT - GB);
+    gp = Plane(S.graph, {x: [0, cz.axes.T], y: [0, cz.axes.F], width: PW, height: PH, left: GL + C.pad / 2, top: GT, grid: niceStep, labels: niceStep,
+      ticks: 'edge', xLabel: 'time (ms)', yLabel: 'force (N)'});
+    mk('rect', {x: 0, y: 0, width: PW, height: PH, fill: 'var(--gr-bg)'}, gp.layer('back'));
+    mk('rect', {x: 0, y: 0, width: PW, height: PH, fill: 'none', stroke: 'var(--line)', 'stroke-width': 1.5}, gp.layer('labels'));
+    S.gTitle = txt(S.graph, GL + C.pad / 2, 15, 'Force on the glider from the sensor wall', 'stb halo');
+    S.gLock = txt(S.graph, GL + C.pad / 2 + PW, 15, '', 'st halo', 'end');
+    S.gShade = mk('path', {fill: 'url(#impH)', stroke: 'none'}, gp.layer('plot'));
+    S.gLab = mk('g', {}, gp.layer('labels'));
+    gp.PW = PW; gp.PH = PH;
+  }
+  // samples up to physics time tp (s), with the last point interpolated
+  function upTo(samples, tp) {
+    const out = [];
+    for (let i = 0; i < samples.length; i++) {
+      const s = samples[i];
+      if (s[0] <= tp) { out.push(s); continue; }
+      const p = samples[i - 1]; if (p) { const f = (tp - p[0]) / (s[0] - p[0] || 1); out.push([tp, p[1] + (s[1] - p[1]) * f, p[2] + (s[2] - p[2]) * f]); }
+      break;
+    }
+    return out;
+  }
+  function physT(r) {
+    if (!r) return 0;
+    if (r.phase === 'approach') return 0;
+    if (r.phase === 'contact') return clamp((r.clock - r.d.a) / r.d.c, 0, 1) * r.res.contactTime;
+    return r.res.contactTime;
+  }
+  const GHOST_DASH = ['9 5', '3 4', '12 4 2 4'];
+  function drawCurves() {
+    if (!gp) return;
+    gp.clear();
+    S.gLab.textContent = '';
+    const {T, F: Fm} = cz.axes;
+    const toPx = (t, f) => gp.px(t * 1000, f);
+    ghosts.forEach((gh, i) => {
+      const s = gh.res.samples, n = s.length - 1;
+      gp.param(u => { const p = s[Math.round(u)]; return [p[0] * 1000, p[1]]; }, [0, n], {samples: n, color: 'var(--ghost)', width: 2, dashed: GHOST_DASH[(ghosts.length - 1 - i) % 3], id: 'gh'});
+      const [px, py] = toPx(gh.res.tPeak, Math.min(gh.res.peak, Fm));
+      const lt = txt(S.gLab, clamp(px, 4, gp.PW - 4), Math.max(11, py - 6), gh.label, 'st halo', px > gp.PW - 60 ? 'end' : px < 50 ? 'start' : 'middle');
+    });
+    const r = czRun;
+    if (!r || (r.phase === 'approach')) {
+      S.gShade.setAttribute('d', '');
+      if (!r && !ghosts.length) txt(S.gLab, gp.PW / 2, gp.PH / 2, 'Press Launch to measure force against time.', 'stb halo', 'middle');
+      S.gLock.textContent = cz.lock ? 'axes locked' : '';
+      return;
+    }
+    const part = upTo(r.res.samples, physT(r));
+    if (part.length > 1) {
+      const n = part.length - 1;
+      gp.param(u => { const p = part[Math.round(u)]; return [p[0] * 1000, p[1]]; }, [0, n], {samples: n, color: 'var(--cur)', width: 2.8, id: 'cur', label: `Force against time, ${r.label}`});
+      let d = 'M' + toPx(0, 0).map(v => v.toFixed(1)).join(',');
+      for (const p of part) d += 'L' + toPx(p[0], p[1]).map(v => clamp(v, -1e4, 1e4).toFixed(1)).join(',');
+      d += 'L' + toPx(part[n][0], 0).map(v => v.toFixed(1)).join(',') + 'Z';
+      S.gShade.setAttribute('d', d);
+    }
+    const done = r.phase === 'leave' || r.phase === 'done';
+    // peak and impulse labels
+    if (done) {
+      const res = r.res;
+      const [qx, qy] = toPx(res.tPeak, Math.min(res.peak, Fm));
+      if (res.peak > Fm * 1.001) txt(S.gLab, clamp(qx + 6, 4, gp.PW - 4), 12, `peak off scale: ${res.peak.toFixed(0)} N`, 'stb halo', qx > gp.PW - 130 ? 'end' : 'start');
+      else txt(S.gLab, clamp(qx, 30, gp.PW - 30), Math.max(12, qy - 7), `peak ${res.peak.toFixed(1)} N`, 'stb halo', 'middle');
+      const [ex] = toPx(res.contactTime, 0);
+      const imp = `impulse = ${res.impulse.toFixed(2)} N·s`;
+      const yMid = clamp(toPx(0, Math.min(res.peak, Fm) * .45)[1], 26, gp.PH - 8);
+      const right = ex + 8 + imp.length * 6.6 < gp.PW;
+      txt(S.gLab, right ? ex + 8 : Math.max(6, ex / 2), right ? yMid : Math.min(gp.PH - 8, yMid + 16), imp, 'stb halo', right ? 'start' : 'middle');
+    }
+    S.gLock.textContent = cz.lock ? 'axes locked' : '';
+  }
+
+  // the track strip: the glider rolling in, the nose, the sensor wall; a magnified inset of the nose with a cm ruler
+  function noseState() {
+    const r = czRun && !czRun.parked ? czRun : null;
+    const key = r ? r.nose : cz.nose, L = r ? r.L : cz.L;
+    let front = -.30, comp = 0, crushed = czCrushed;
+    if (r) {
+      const a = r.d.a, kvis = .30 / a;   // display meters per display second while rolling
+      if (r.phase === 'approach') front = -.30 + kvis * r.clock;
+      else if (r.phase === 'contact') { front = 0; const p = upTo(r.res.samples, physT(r)); comp = p.length ? p[p.length - 1][2] : 0; }
+      else {
+        // rolls back from the wall over the leave time: as far as it rolled in, scaled by its speed after
+        const back = r.res.vAfter < 0 ? clamp((r.clock - a - r.d.c) / r.d.l, 0, 1) * .30 * (-r.res.vAfter / r.v) : 0;
+        front = -Math.max(0, back); comp = 0;
+      }
+      if (r.nose === 'crumple' && r.phase === 'contact') crushed = Math.min(comp, L / 100);
+    }
+    return {key, L, front, comp, crushed, m: r ? r.m : cz.m, v: r ? r.v : cz.v, r};
+  }
+  // draw the nose with its back at bx (px) and front at fx (px), scale s px per m, vertical center cy, height h
+  function drawNose(g, ns, bx, fxp, s, cy, h) {
+    const {key, L} = ns;
+    if (key === 'crumple') {
+      const back = .01 * s, crushPx = ns.crushed * s, steelIn = Math.max(0, ns.comp - L / 100) * s;
+      mk('rect', {x: bx, y: cy - h / 2, width: Math.max(1, back - steelIn), height: h, fill: '#8d99a8', stroke: '#0b1017', 'stroke-width': .8}, g);
+      const bl = bx + back - steelIn, blockW = Math.max(0, fxp - bl);
+      mk('rect', {x: bl, y: cy - h * .42, width: blockW, height: h * .84, fill: '#c7a46a', stroke: '#0b1017', 'stroke-width': .8}, g);
+      // crushed folds at the front
+      if (crushPx > 1.5 && blockW > 2) {
+        const fw = Math.min(blockW, Math.max(3, h * .25)); let d = `M${fxp - fw},${cy - h * .42}`;
+        for (let i = 1; i <= 6; i++) d += `L${fxp - (i % 2 ? 0 : fw)},${cy - h * .42 + i * h * .84 / 6}`;
+        mk('path', {d, fill: 'none', stroke: '#5a4423', 'stroke-width': 1.2}, g);
+      }
+      return;
+    }
+    if (key === 'spring') {
+      const w = fxp - bx, coils = 8; let d = `M${bx},${cy}`;
+      for (let i = 0; i < coils * 2; i++) d += `L${bx + w * (i + .5) / (coils * 2)},${cy + (i % 2 ? h * .38 : -h * .38)}`;
+      d += `L${fxp},${cy}`;
+      mk('path', {d, fill: 'none', stroke: '#e8edf3', 'stroke-width': 1.4}, g);
+      mk('rect', {x: fxp - 2, y: cy - h * .42, width: 3, height: h * .84, fill: '#c9d3df'}, g);
+      return;
+    }
+    if (key === 'rubber') {
+      const bulge = ns.comp / .08 * h * .25;
+      mk('rect', {x: bx, y: cy - h * .4 - bulge / 2, width: Math.max(1, fxp - bx), height: h * .8 + bulge, rx: Math.min(6, (fxp - bx) / 2), fill: '#2a2f36', stroke: '#9aa7b6', 'stroke-width': 1}, g);
+      return;
+    }
+    mk('rect', {x: bx, y: cy - h * .4, width: Math.max(1, fxp - bx), height: h * .8, fill: '#b8c2ce', stroke: '#0b1017', 'stroke-width': .8}, g);
+  }
+  function czDraw() {
+    if (state.mode !== 'cz' || !C) return;
+    drawCurves();
+    const g = S.track; g.textContent = '';
+    const {W, pad, trTop, trH} = C;
+    const ns = noseState();
+    const mainW = Math.round((W - 2 * pad) * .56), insW = W - 2 * pad - mainW - 10;
+    const railY = trTop + trH - 20, wallX = pad + mainW - 8, s = (mainW - 18) / .72;
+    mk('rect', {x: pad, y: trTop + 2, width: W - 2 * pad, height: trH - 4, rx: 6, fill: 'rgba(255,255,255,.025)', stroke: 'var(--line)'}, g);
+    // rail and the wall with its force sensor plate
+    mk('rect', {x: pad + 6, y: railY, width: wallX - pad - 6, height: 6, rx: 2, fill: '#8d99a8'}, g);
+    mk('rect', {x: wallX + 3, y: trTop + 10, width: 9, height: railY - trTop - 4, fill: '#5d6b7c', stroke: '#0b1017'}, g);
+    mk('rect', {x: wallX, y: railY - 34, width: 3, height: 30, fill: 'var(--brand)'}, g);
+    txt(g, wallX + 2, railY + 17, 'force sensor', 'st halo', 'end');
+    // the glider: body 0.20 m, front face at the nose's back
+    const nl = noseLen(ns.key, ns.L), cur = Math.max(0, nl - ns.comp - (ns.key === 'crumple' ? Math.max(0, ns.crushed - Math.max(0, ns.comp - ns.L / 100) * 0) : 0));
+    const noseNow = ns.key === 'crumple' ? nl - ns.crushed - Math.max(0, ns.comp - ns.L / 100) : nl - ns.comp;
+    const fxp = wallX + ns.front * s, bxp = fxp - noseNow * s, gw = .20 * s, gh = clamp(gw * .32, 14, 24);
+    const gx = bxp - gw;
+    mk('rect', {x: gx, y: railY - gh, width: gw, height: gh, rx: 3, fill: '#d9e2ec', stroke: '#0b1017', 'stroke-width': 1.2}, g);
+    txt(g, gx + gw / 2, railY - gh / 2 + 5, 'G', 'deco', 'middle').setAttribute('style', `font:800 ${Math.min(15, gh - 2)}px 'Segoe UI',sans-serif;fill:#0b1017`);
+    const plates = Math.round(+((ns.m - .1) / .1).toFixed(6)), ph = Math.max(1.5, Math.min(clamp(gh * .2, 2.5, 4), (railY - trTop - 34 - gh) / 10 - 1));
+    let y = railY - gh - ph - 1;
+    mk('rect', {x: gx + gw * .2, y, width: gw * .6, height: ph + 1, fill: '#4d5a6b'}, g);
+    for (let i = 0; i < plates; i++) { y -= ph + 1; mk('rect', {x: gx + gw * .14, y, width: gw * .72, height: ph, rx: 1, fill: i % 2 ? '#aab5c3' : '#c9d3df', stroke: '#0b1017', 'stroke-width': .5}, g); }
+    const roomy = trH >= 100;   // a short strip leaves the mass to the readouts, so the speed label has room
+    if (roomy) txt(g, gx + gw / 2, y - 4, ns.m.toFixed(2) + ' kg', 'st halo rd', 'middle');
+    drawNose(g, ns, bxp, fxp, s, railY - gh / 2, gh * .9);
+    // speed arrow while rolling
+    const r = ns.r;
+    let vNow = null;
+    if (!r || r.phase === 'approach') vNow = ns.v; else if (r.phase === 'leave' || r.phase === 'done') vNow = r.res.vAfter;
+    if (vNow != null && !(r && r.phase === 'done' && r.res.result === 'Stopped')) {
+      const ay = roomy ? Math.max(trTop + 14, y - 22) : Math.max(trTop + 12, y - 10), len = clamp(vNow * 30, -60, 60);
+      if (Math.abs(len) > 3) { const dir = Math.sign(len), x0 = gx + gw / 2; mk('line', {x1: x0, y1: ay, x2: x0 + len - dir * 7, y2: ay, stroke: 'var(--neg)', 'stroke-width': 2.5}, g); mk('path', {d: `M${x0 + len},${ay} l${-dir * 7},-5 v10 z`, fill: 'var(--neg)'}, g); }
+      // the speed beside the arrow's tail, on the side away from where it points
+      const x0 = gx + gw / 2, toRight = vNow >= 0;
+      txt(g, toRight ? Math.max(pad + 60, x0 - 6) : x0 + 6, ay + 4, `${fsg(vNow, 2)} m/s`, 'stb halo rd', toRight ? 'end' : 'start');
+    } else if (r && r.phase === 'contact') {
+      const p = upTo(r.res.samples, physT(r));
+      czLiveF = p.length ? p[p.length - 1][1] : 0;
+    }
+    // the magnified inset
+    const ix = wallX + 22, iy = trTop + 8, ih = trH - 16, iw = insW - 12;
+    if (iw > 60) {
+      const ig = mk('g', {}, g);
+      mk('rect', {x: ix, y: iy, width: iw, height: ih, rx: 5, fill: '#0b1017', stroke: 'var(--btn-line)'}, ig);
+      const win = nl + .04, si = (iw - 22) / win, iwall = ix + iw - 14, icy = iy + ih * .48, ihh = Math.min(ih * .46, 40);
+      const cp = sv.querySelector('#insetClip'); cp.textContent = ''; mk('rect', {x: ix + 1, y: iy + 1, width: iw - 2, height: ih - 2}, cp);
+      const inner = mk('g', {'clip-path': 'url(#insetClip)'}, ig);
+      mk('rect', {x: iwall, y: iy + 4, width: 10, height: ih - 8, fill: '#5d6b7c'}, inner);
+      mk('rect', {x: iwall - 3, y: icy - ihh / 2 - 4, width: 3, height: ihh + 8, fill: 'var(--brand)'}, inner);
+      const away = ns.front < -.012, ifx = iwall - 3 + Math.min(0, ns.front) * si, ibx = ifx - noseNow * si;   // after a bounce the glider rolls out of this view
+      mk('rect', {x: ibx - .06 * si, y: icy - ihh / 2, width: .06 * si, height: ihh, fill: '#d9e2ec', stroke: '#0b1017'}, inner);
+      drawNose(inner, ns, ibx, ifx, si, icy, ihh * .9);
+      // ruler in cm from the wall
+      const step = si * .01 >= 9 ? 1 : si * .01 >= 4 ? 2 : 5, lstep = si * .01 * 5 >= 34 ? 5 : 10;
+      for (let c = 0; c <= win * 100 + 1e-9; c += step) {
+        const x = iwall - 3 - c * si / 100; if (x < ix + 4) break;
+        const big = c % lstep === 0;
+        mk('line', {x1: x, x2: x, y1: iy + ih - 4, y2: iy + ih - (big ? 12 : 8), stroke: '#c9d3df', 'stroke-width': 1}, inner);
+        if (big && c > 0) txt(inner, x, iy + ih - 14, String(c), 'st', 'middle');
+      }
+      txt(ig, ix + 6, iy + 13, `magnified, cm from wall`, 'st halo');
+      if (ifx < ix + 8) { const d = (-ns.front * 100).toFixed(0); const t = txt(ig, ix + (iw - 14) / 2, icy, iw < 240 ? `out of view: ${d} cm away` : `glider out of view: ${d} cm from the wall`, 'stb halo', 'middle'); fitText(t, iw - 34); }
+      if (r && r.phase === 'contact') txt(ig, ix + iw - 24, iy + 28, `F = ${czLiveF.toFixed(1)} N`, 'stb halo rd', 'end');
+    }
+    czReadouts();
+  }
+  function czReadouts() {
+    if (state.mode !== 'cz' || !C) return;
+    const g = S.ro; g.textContent = '';
+    const {W, pad, roTop, roH, small} = C;
+    const r = czRun && (czRun.phase === 'leave' || czRun.phase === 'done') ? czRun : null, res = r && r.res;
+    const head = r ? `Last run: ${r.label}, ${r.m.toFixed(2)} kg at ${r.v.toFixed(2)} m/s` : czRun ? 'Measuring...' : 'Readouts fill in after a run.';
+    txt(g, pad, roTop + 12, head, 'stb halo');
+    const cells = [
+      ['Peak force', res ? res.peak.toFixed(1) + ' N' : ''],
+      ['Contact time', res ? (res.contactTime * 1000).toFixed(1) + ' ms' : ''],
+      ['Average force', res ? (res.impulse / res.contactTime).toFixed(1) + ' N' : ''],
+      ['Crush used', res ? (res.crushUsed * 100).toFixed(2) + ' cm' : ''],
+      ['Impulse', res ? res.impulse.toFixed(2) + ' N·s' : ''],
+      [W < 480 ? 'Change in p' : small ? 'Momentum change' : 'Change in momentum', res ? fx(res.dp, 2) + ' kg·m/s' : ''],
+      ['Speed after', res ? fsg(res.vAfter, 2) + ' m/s' : ''],
+      ['Energy at impact', fJ(res ? res.ke0 : .5 * cz.m * cz.v * cz.v) + ' J'],
+    ];
+    const cols = 4, cw = (W - 2 * pad) / cols, chh = small ? 31 : 40, y0 = roTop + 20;
+    cells.forEach(([k, v], i) => {
+      const cx = pad + (i % cols) * cw, cy = y0 + Math.floor(i / cols) * (chh + 2);
+      mk('rect', {x: cx + 1, y: cy, width: cw - 3, height: chh, rx: 5, fill: 'var(--sec-bg)', stroke: 'var(--line)'}, g);
+      const kt = txt(g, cx + 6, cy + (small ? 12 : 13), k, 'st'); fitText(kt, cw - 12);
+      const vt = txt(g, cx + 6, cy + chh - (small ? 5 : 7), v || '...', 'rd'); vt.setAttribute('style', `font:700 ${small ? 13 : 15}px var(--readout-font);fill:${v ? 'var(--ink)' : 'var(--muted)'}`);
+      fitText(vt, cw - 12);
+    });
+    // tags and the impulse check
+    let ty = y0 + 2 * (chh + 2) + 12, tx = pad;
+    if (res) {
+      const tags = [];
+      if (res.vAfter < -1e-9) tags.push('↩ Bounced');
+      if (res.result === 'Stopped') tags.push('■ Stopped');
+      if (res.result === 'Bottomed out') tags.push('▲ Bottomed out');
+      for (const t of tags) {
+        const tw = t.length * 6.8 + 14;
+        mk('rect', {x: tx, y: ty - 11, width: tw, height: 16, rx: 8, fill: 'none', stroke: 'var(--neg)'}, g);
+        txt(g, tx + tw / 2, ty + 1, t, 'stb', 'middle').setAttribute('style', 'fill:var(--neg);font-size:11px');
+        tx += tw + 6;
+      }
+      const agree = Math.abs(Math.abs(res.dp) - res.impulse) / Math.abs(res.dp) * 100;
+      if (W < 480) { tx = pad - 2; ty += 16; }
+      const ck = txt(g, tx + 2, ty + 1, small ? `Impulse matches the momentum change within ${agree.toFixed(1)} percent.` : `Impulse and change in momentum agree within ${agree.toFixed(1)} percent (minus means away from the wall).`, 'st halo');
+      fitText(ck, W - pad - tx - 4);
+    }
+  }
+
+  // ======================================================================================
+  // NOTEBOOK
+  // ======================================================================================
+  const B_SHAPE = {spring: 'circle', rubber: 'square', velcro: 'triangle', custom: 'diamond'};
+  const B_COL = {spring: 'var(--gr-1)', rubber: 'var(--gr-2)', velcro: 'var(--gr-3)', custom: 'var(--gr-4)'};
+  const N_SHAPE = {steel: 'square', spring: 'circle', rubber: 'triangle', crumple: 'diamond'};
+  const N_COL = {steel: 'var(--gr-4)', spring: 'var(--gr-1)', rubber: 'var(--gr-2)', crumple: 'var(--gr-3)'};
+  function shapeD(shape, r) {
+    if (shape === 'square') return `M${-r * .85},${-r * .85}h${r * 1.7}v${r * 1.7}h${-r * 1.7}z`;
+    if (shape === 'triangle') return `M0,${-r * 1.1}L${r},${r * .75}L${-r},${r * .75}z`;
+    if (shape === 'diamond') return `M0,${-r * 1.2}L${r * 1.05},0L0,${r * 1.2}L${-r * 1.05},0z`;
+    return `M${-r},0a${r},${r} 0 1,0 ${2 * r},0a${r},${r} 0 1,0 ${-2 * r},0`;
+  }
+  const keyIcon = (shape, col) => `<svg width="14" height="14" viewBox="-7 -7 14 14" aria-hidden="true"><path d="${shapeD(shape, 5)}" fill="${col}" stroke="#0b1017"/></svg>`;
+  function plotBox(id, xr, yr, xl, yl, opts = {}) {
+    const box = $(id); box.textContent = '';
+    const W = Math.max(220, Math.round(box.getBoundingClientRect().width || 260)), H = Math.round(clamp(W * .72, 190, 300));
+    const svg = mk('svg', {width: W, height: H, viewBox: `0 0 ${W} ${H}`, class: 'nbsv', role: 'img'}, box);
+    const g = Plane(svg, {x: xr, y: yr, width: W - 66, height: H - 56, left: 56, top: 8, grid: opts.grid || niceStep, labels: opts.labels || niceStep, ticks: 'edge', xLabel: xl, yLabel: yl});
+    mk('rect', {x: 0, y: 0, width: W - 66, height: H - 56, fill: 'var(--gr-bg)'}, g.layer('back'));
+    g.svg = svg;
+    return g;
+  }
+  function mark(g, x, y, shape, col, label, text) {
+    const p = g.point(x, y, {shape: 'none', ariaLabel: label});
+    mk('path', {d: shapeD(shape, 5.5), fill: col, stroke: '#0b1017', 'stroke-width': 1.2}, p.body);
+    if (text) txt(p.body, 8, -7, text, 'st halo');
+    return p;
+  }
+  function range(vals, pad, minSpan) {
+    let lo = Math.min(...vals), hi = Math.max(...vals);
+    if (hi - lo < minSpan) { const c = (hi + lo) / 2; lo = c - minSpan / 2; hi = c + minSpan / 2; }
+    const p = (hi - lo) * pad; return [lo - p, hi + p];
+  }
+  function buildNB() {
+    // plot 1: total momentum after vs before, with y = x
+    const A = store.at;
+    const pv = A.flatMap(r => [r.p0, r.p1]).concat([0]);
+    const [lo, hi] = A.length ? range(pv, .12, .1) : [-.1, .4];
+    const g1 = plotBox('pl1', [lo, hi], [lo, hi], 'p before (kg·m/s)', 'p after (kg·m/s)');
+    g1.fn(x => x, {color: 'var(--gr-axis)', width: 1.5, dashed: '6 5', label: 'the line y = x: after equals before'});
+    g1.label(lo + (hi - lo) * .8, lo + (hi - lo) * .62, 'y = x', {anchor: 'start', layer: 'labels'});
+    for (const r of A) mark(g1, r.p0, r.p1, B_SHAPE[r.bumper], B_COL[r.bumper], `Run ${r.run}, ${BUMPERS[r.bumper].name}: before ${fx(r.p0, 3)}, after ${fx(r.p1, 3)} kilogram meters per second`);
+    if (!A.length) g1.label((lo + hi) / 2, (lo + hi) / 2 - (hi - lo) * .2, 'No runs recorded yet.', {anchor: 'middle', layer: 'labels'});
+    g1.svg.setAttribute('aria-label', `Plot of total momentum after against before, ${A.length} runs`);
+    $('lg1').innerHTML = $('lg2').innerHTML = Object.keys(BUMPERS).map(k => `<span>${keyIcon(B_SHAPE[k], B_COL[k])}${BUMPERS[k].name}</span>`).join('');
+    // plot 2: kinetic energy kept vs e
+    const kTop = Math.max(104, ...A.map(r => r.kept + 4));
+    const g2 = plotBox('pl2', [-.04, 1.04], [-4, kTop], 'bounciness e', 'KE kept (percent)', {grid: [.1, 10], labels: [.2, 20]});
+    for (const r of A) mark(g2, r.e, r.kept, B_SHAPE[r.bumper], B_COL[r.bumper], `Run ${r.run}, e ${r.e.toFixed(2)}, kept ${r.kept} percent`);
+    if (!A.length) g2.label(.5, 50, 'No runs recorded yet.', {anchor: 'middle', layer: 'labels'});
+    g2.svg.setAttribute('aria-label', `Plot of kinetic energy kept against bounciness e, ${A.length} runs`);
+    // plot 3: peak force vs contact time, labeled by nose
+    const Z = store.cz;
+    const tmax = Z.length ? niceCeil(Math.max(...Z.map(r => r.ct)) * 1.1) : 200, fmax = Z.length ? niceCeil(Math.max(...Z.map(r => r.peak)) * 1.15) : 20;
+    const g3 = plotBox('pl3', [0, tmax], [0, fmax], 'contact time (ms)', 'peak force (N)');
+    for (const r of Z) mark(g3, r.ct, r.peak, N_SHAPE[r.nose], N_COL[r.nose], `Run ${r.run}, ${NOSES[r.nose].name}: ${r.ct.toFixed(1)} milliseconds, ${r.peak.toFixed(1)} newtons`, NOSES[r.nose].name);
+    if (!Z.length) g3.label(tmax / 2, fmax / 2, 'No runs recorded yet.', {anchor: 'middle', layer: 'labels'});
+    g3.svg.setAttribute('aria-label', `Plot of peak force against contact time, ${Z.length} runs`);
+    $('lg3').innerHTML = Object.keys(NOSES).map(k => `<span>${keyIcon(N_SHAPE[k], N_COL[k])}${NOSES[k].name}</span>`).join('');
+    nbTables();
+  }
+  const AT_COLS = [['Run', r => r.run, r => r.run], ['Bumper', r => BUMPERS[r.bumper].name, r => BUMPERS[r.bumper].name, 'l'], ['e', r => r.e.toFixed(2), r => r.e.toFixed(2)],
+    ['mA (kg)', r => r.mA.toFixed(2), r => r.mA.toFixed(2)], ['vA (m/s)', r => fsg(r.vA, 2), r => ax(r.vA, 2)], ['mB (kg)', r => r.mB.toFixed(2), r => r.mB.toFixed(2)],
+    ['vB (m/s)', r => fsg(r.vB, 2), r => ax(r.vB, 2)], ['vA after (m/s)', r => fsg(r.vA1, 2), r => ax(r.vA1, 2)], ['vB after (m/s)', r => fsg(r.vB1, 2), r => ax(r.vB1, 2)],
+    ['p before (kg·m/s)', r => fx(r.p0, 3), r => ax(r.p0, 3)], ['p after (kg·m/s)', r => fx(r.p1, 3), r => ax(r.p1, 3)], ['KE before (J)', r => r.k0.toFixed(4), r => r.k0.toFixed(4)],
+    ['KE after (J)', r => r.k1.toFixed(4), r => r.k1.toFixed(4)], ['KE kept (percent)', r => r.kept, r => r.kept], ['Frame', r => r.frame, r => r.frame, 'l']];
+  const CZ_COLS = [['Run', r => r.run, r => r.run], ['Nose', r => NOSES[r.nose].name, r => NOSES[r.nose].name, 'l'], ['F_c (N)', r => r.Fc != null ? r.Fc.toFixed(1) : '', r => r.Fc != null ? r.Fc.toFixed(1) : ''],
+    ['L (cm)', r => r.L != null ? r.L.toFixed(1) : '', r => r.L != null ? r.L.toFixed(1) : ''], ['m (kg)', r => r.m.toFixed(2), r => r.m.toFixed(2)], ['v (m/s)', r => r.v.toFixed(2), r => r.v.toFixed(2)],
+    ['Peak force (N)', r => r.peak.toFixed(1), r => r.peak.toFixed(1)], ['Contact time (ms)', r => r.ct.toFixed(1), r => r.ct.toFixed(1)], ['Crush used (cm)', r => r.crush.toFixed(2), r => r.crush.toFixed(2)],
+    ['Impulse (N·s)', r => r.imp.toFixed(2), r => r.imp.toFixed(2)], ['Speed after (m/s)', r => fsg(r.va, 2), r => ax(r.va, 2)], ['Result', r => r.result, r => r.result, 'l']];
+  function table(wrap, cols, rows, empty) {
+    wrap.textContent = '';
+    if (!rows.length) { const p = document.createElement('p'); p.className = 'empty'; p.textContent = empty; wrap.appendChild(p); return; }
+    const t = document.createElement('table'); t.className = 'inst';
+    t.innerHTML = '<thead><tr>' + cols.map(c => `<th scope="col" class="${c[3] || ''}">${c[0]}</th>`).join('') + '</tr></thead><tbody>' +
+      rows.map(r => '<tr>' + cols.map(c => `<td class="${c[3] || ''}">${c[1](r)}</td>`).join('') + '</tr>').join('') + '</tbody>';
+    wrap.appendChild(t);
+  }
+  function nbTables() {
+    table($('wrapAt'), AT_COLS, store.at, 'No Air Track runs yet. Press Record run after a collision.');
+    table($('wrapCz'), CZ_COLS, store.cz, 'No Crumple Zone runs yet. Press Record run after a launch.');
+    $('copyAt').disabled = $('clearAt').disabled = !store.at.length;
+    $('copyCz').disabled = $('clearCz').disabled = !store.cz.length;
+  }
+  const tsv = (cols, rows) => [cols.map(c => c[0]).join('\t'), ...rows.map(r => cols.map(c => c[2](r)).join('\t'))].join('\n');
+  function copyTable(which) {
+    const cols = which === 'at' ? AT_COLS : CZ_COLS, rows = store[which], text = tsv(cols, rows);
+    const note = $(which === 'at' ? 'noteAt' : 'noteCz'), box = $(which === 'at' ? 'boxAt' : 'boxCz');
+    const fallback = () => { box.hidden = false; const ta = box.querySelector('textarea'); ta.value = text; ta.focus(); ta.select(); note.textContent = 'Copy did not work here.'; };
+    try {
+      if (!navigator.clipboard || !navigator.clipboard.writeText) return fallback();
+      navigator.clipboard.writeText(text).then(() => { box.hidden = true; note.textContent = `Copied ${rows.length} row${rows.length === 1 ? '' : 's'}. Paste into a spreadsheet.`; }, fallback);
+    } catch { fallback(); }
+  }
+  const armed = {};
+  function clearTable(which) {
+    const btn = $(which === 'at' ? 'clearAt' : 'clearCz'), note = $(which === 'at' ? 'noteAt' : 'noteCz');
+    if (!armed[which]) {
+      armed[which] = setTimeout(() => { armed[which] = 0; btn.textContent = 'Clear table'; }, 4000);
+      btn.textContent = 'Press again to clear'; note.textContent = 'This removes every row in this table.'; return;
+    }
+    clearTimeout(armed[which]); armed[which] = 0; btn.textContent = 'Clear table';
+    store[which] = []; save(); note.textContent = 'Table cleared.';
+    buildNB();
+  }
+  $('copyAt').onclick = () => copyTable('at'); $('copyCz').onclick = () => copyTable('cz');
+  $('clearAt').onclick = () => clearTable('at'); $('clearCz').onclick = () => clearTable('cz');
+
+  // ======================================================================================
+  // Animation loop (one for both benches)
+  // ======================================================================================
+  let rafOn = false, lastT = 0;
+  function loop() {
+    if (rafOn) return; rafOn = true; lastT = performance.now();
+    requestAnimationFrame(tick);
+  }
+  function tick(now) {
+    const dt = Math.min(.05, (now - lastT) / 1000); lastT = now;
+    let more = false;
+    if (state.mode === 'air' && atRun && atRun.phase === 'run') {
+      if (Curio.reduce) atRun.t = atRun.sim.T;
+      atStep(Curio.reduce ? 0 : dt * (at.slow ? .25 : 1));
+      atDraw(); if (atRun.phase === 'run') { more = true; $('atJump').hidden = !(atRun.sim.kind === 'collide' && atRun.sim.tc > 8 && atRun.t < atRun.sim.tc - .5); }
+    }
+    if (state.mode === 'cz' && czRun && czRun.phase !== 'done') {
+      czAdvance(Curio.reduce ? 1e9 : dt * (cz.slow ? .25 : 1));
+      czDraw(); if (czRun.phase !== 'done') more = true;
+    }
+    if (more) requestAnimationFrame(tick); else rafOn = false;
+  }
+  Curio.onMotion(reduce => { if (reduce) { if (atRun && atRun.phase === 'run') { atRun.t = atRun.sim.T; atStep(0); atDraw(); } if (czRun && czRun.phase !== 'done') { czAdvance(1e9); czDraw(); } } });
+
+  // ======================================================================================
+  // Narration: a welcome on entering each mode (after the first tap), one at a time; Read always wins
+  // ======================================================================================
+  const said = new Set(), queued = new Set();
+  let tapped = false, vq = Promise.resolve(), vgen = 0, readP = Promise.resolve();
+  for (const ev of ['pointerdown', 'keydown']) addEventListener(ev, e => {
+    if (tapped) return; tapped = true;
+    const b = e.target && e.target.closest ? e.target.closest('button') : null;
+    if (b && b.id === 'sound') return;
+    if (b && b.id === 'read') {
+      // Read speaks first; the welcome is queued once Read's click has run, so it waits for Read to finish
+      const go = () => { removeEventListener('click', go, true); clearTimeout(fb); setTimeout(() => narrate(WELCOME[state.mode])); };
+      addEventListener('click', go, true); const fb = setTimeout(go, 1500);
+      return;
+    }
+    // a mode button switches mode on its click, which queues that mode's welcome; anything else gets this one first
+    if (b && /^m-/.test(b.id)) setTimeout(() => narrate(WELCOME[state.mode]), 350); else narrate(WELCOME[state.mode]);
+  }, true);
+  function narrate(key) {
+    if (!tapped || !Curio.sound || said.has(key) || queued.has(key)) return false;
+    queued.add(key);
+    const base = key.split('#')[0], gen = vgen, line = L[base] || HINT[base];
+    vq = vq.then(async () => {
+      await readP;
+      if (gen !== vgen) return;            // dropped by hush(): not marked said, so its trigger can queue it again
+      queued.delete(key); said.add(key);
+      await Promise.race([say(line), wait(2500 + 80 * line.length)]);
+    });
+    return true;
+  }
+  function hush() { vgen++; queued.clear(); vq = Promise.resolve(); readP = Promise.resolve(); Curio.stop(); }   // a stopped Read clip never ends, so nothing may wait on it
+  function readNow() { hush(); const h = $('hint').textContent; readP = Promise.race([say([h], true), wait(2500 + 80 * h.length)]).catch(() => {}); }
+  function setHint(h) { if ($('hint').textContent !== h) $('hint').textContent = h; }
+  function live(s) { $('live').textContent = s; }
+
+  // ======================================================================================
+  // Modes and layout
+  // ======================================================================================
+  function setMode(m) {
+    hush();
+    // leaving a bench pauses its run; coming back starts from Reset
+    if (atRun && atRun.phase === 'run') atRun = null;
+    if (czRun && czRun.phase !== 'done') { czRun = null; czCrushed = 0; }
+    state.mode = m;
+    document.body.dataset.mode = m;
+    for (const k of ['air', 'cz', 'nb']) $('m-' + k).setAttribute('aria-pressed', k === m);
+    for (const el of document.querySelectorAll('[data-modes]')) el.hidden = !el.dataset.modes.split(' ').includes(m);
+    $('predSec').hidden = !(m === 'air' && at.predict);
+    if (m !== 'cz') $('specCard').hidden = true; else $('specCard').hidden = $('czSpec').getAttribute('aria-expanded') !== 'true';
+    sv.style.display = m === 'nb' ? 'none' : '';
+    $('nb').hidden = m !== 'nb';
+    lastSize = ''; relayout();
+    if (m === 'air') { atPanel(); atHint(); }
+    else if (m === 'cz') { czPanel(); czHint(); }
+    else { setHint(HINT.nb); showSaveNote(); }
+    narrate(WELCOME[m]);
+  }
+  for (const k of ['air', 'cz', 'nb']) $('m-' + k).onclick = () => { if (state.mode !== k) setMode(k); };
+
+  let page = null, lastSize = '';
+  function pageLayout() { const w = innerWidth, h = innerHeight; return w >= 1000 && h >= 700 ? 'wide' : w >= 600 && w / h >= 1.25 ? 'compact' : 'stack'; }
+  function relayout() {
+    const p = pageLayout();
+    if (p !== page) { page = p; for (const c of ['wide', 'compact', 'stack']) document.body.classList.toggle(c, c === p); }
+    const st = $('stage');
+    if (page === 'stack') {
+      const w = st.getBoundingClientRect().width || innerWidth;
+      st.style.height = state.mode === 'nb' ? 'auto' : Math.round(state.mode === 'cz' ? clamp(w * 1.1, 500, 680) : clamp(w * .72, 430, 600)) + 'px';
+    } else st.style.height = '';
+    const r = st.getBoundingClientRect(), key = state.mode + ':' + Math.round(r.width) + 'x' + Math.round(r.height);
+    if (key === lastSize) return;
+    lastSize = key;
+    if (state.mode === 'nb') { buildNB(); return; }
+    const W = Math.max(300, Math.round(r.width)), H = Math.max(300, Math.round(r.height));
+    sv.setAttribute('width', W); sv.setAttribute('height', H); sv.setAttribute('viewBox', `0 0 ${W} ${H}`);
+    sv.textContent = ''; S = {}; gp = null;
+    if (state.mode === 'air') buildAT(W, H); else buildCZ(W, H);
+  }
+  new ResizeObserver(() => relayout()).observe($('stage'));
+  addEventListener('resize', () => relayout());
+
+  // keyboard: Space launches and R resets on the two benches (not while typing or on a focused button)
+  addEventListener('keydown', e => {
+    if (e.ctrlKey || e.metaKey || e.altKey || state.mode === 'nb') return;
+    const t = e.target, tag = t && t.tagName;
+    if (tag === 'TEXTAREA' || tag === 'SELECT' || (tag === 'INPUT' && t.type !== 'range' && t.type !== 'checkbox')) return;
+    if (e.key === ' ') {
+      if (tag === 'BUTTON' || (tag === 'INPUT' && t.type === 'checkbox')) return;
+      e.preventDefault(); state.mode === 'air' ? atLaunch() : czLaunch();
+    } else if (e.key === 'r' || e.key === 'R') { e.preventDefault(); state.mode === 'air' ? atReset() : czReset(); }
+  });
+
+  // Sound turned back on after a silent start: the mode's welcome, if it was never said
+  Curio.onSound(on => { if (on && tapped) narrate(WELCOME[state.mode]); });
+  Curio.init({clips: "voice:*", rate: .95, readFallback: () => $('hint').textContent});
+  $('read').onclick = readNow;
+
+  // for checking frames: finish a run at once, set values, read what the screen shows
+  function atSetAll(o) { if (atRun && atRun.phase === 'run') atRun = null; Object.assign(at, o); for (const k of ['mA', 'vA', 'mB', 'vB']) SL[k].set(at[k]); SL.e.set(at.eCustom); atChanged(); }
+  function atFinishNow() { if (atRun && atRun.phase === 'run') { atRun.t = atRun.sim.T; if (atRun.sim.kind === 'collide' && !atRun.contact) atContact(); atFinish(); } }
+  function czSetAll(o) { Object.assign(cz, o); SL.cm.set(cz.m); SL.cv.set(cz.v); SL.Fc.set(cz.Fc); SL.L.set(cz.L); czPanel(); czDraw(); }
+  function czFinishNow() { if (czRun && czRun.phase !== 'done') { czAdvance(1e9); czDraw(); } }
+  window.__tool = {state, setMode, allLines, at, cz, F, said, queued, store, applyPreset, atSetAll, atLaunch, atFinishNow, atReset, atRecord,
+    czSetAll, czLaunch, czFinishNow, czReset, czRecord, pickSpec, openSpec, specLines, SPECS,
+    get atRun() { return atRun; }, get czRun() { return czRun; }, get ghosts() { return ghosts; },
+    ledger: () => S.ledgerLine, atValues, hint: () => $('hint').textContent, layout: () => ({page}), buildNB,
+    curio: () => ({last: Curio.last, sound: Curio.sound, reduce: Curio.reduce})};
+  setMode('air');
+})();
+</script>
+</body>
+</html>

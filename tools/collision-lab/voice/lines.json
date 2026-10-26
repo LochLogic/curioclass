@@ -1,0 +1,30 @@
+{
+ "bank": "hs-narrator",
+ "voice": "Kore",
+ "style": "Read clearly and naturally, at a moderate pace",
+ "lines": [
+  "This is an air track. The gliders ride on air, so almost nothing slows them down. Set the masses and speeds, pick a bumper, and launch.",
+  "Look at the momentum bars. The total before and the total after are the same.",
+  "Now look at the energy bars. Kinetic energy was not all kept. Where do you think it went?",
+  "You are riding along with the center of mass. From here the two momenta are equal and opposite, and they add up to zero.",
+  "Type the speeds you expect after the collision, then launch and compare.",
+  "Glider A never catches glider B, so they never collide.",
+  "This is the crumple zone bench. A glider hits a force sensor through a nose you choose, and the graph shows force over time.",
+  "The shaded area under the curve is the impulse. It always equals the glider's change in momentum.",
+  "This glider bounced back. Its change in momentum is bigger than a glider that just stops, so the impulse is bigger too.",
+  "It bottomed out. The crumple zone ran out of room, and the stiff steel behind it took the rest of the hit.",
+  "Each spec sets a force limit and a crush length. One of them cannot be met. Find it and show why with numbers.",
+  "Spec met.",
+  "Every run you record lands here. If momentum is conserved, your points fall on the dashed line.",
+  "Set the masses and speeds, pick a bumper, then press Launch. Drag a glider to move its start spot.",
+  "Compare the Before and After rows, then record the run for the Notebook.",
+  "Nothing is moving. Give a glider some speed.",
+  "No collision: A never catches B.",
+  "No collision: a glider reached an end stop before A caught B.",
+  "Type both predictions to unlock Launch.",
+  "Pick a nose and press Launch. The graph shows the force on the glider while it touches the sensor.",
+  "Read the peak force and the impulse, then record the run for the Notebook.",
+  "Record runs on the two benches, then use the plots and tables to answer the questions.",
+  "Notebook full. Copy and clear a table to keep going."
+ ]
+}

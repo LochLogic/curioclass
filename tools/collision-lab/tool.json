@@ -1,0 +1,27 @@
+{
+  "id": "collision-lab",
+  "status": "beta",
+  "hook": "Collide two gliders on an air track and watch total momentum stay put while kinetic energy goes missing, then crash a glider into a force sensor and design a crumple zone that keeps the peak force low.",
+  "outcome": "Show with momentum and energy ledgers that total momentum is conserved in every collision while kinetic energy depends on the bounciness e, and use impulse as the area under a force-time graph to design a nose that lowers the peak force",
+  "driver": "students",
+  "minutes": "30-45",
+  "modes": [
+    "Air Track",
+    "Crumple Zone",
+    "Notebook"
+  ],
+  "grades_label": "Grade 11",
+  "sources": [
+    "OpenStax, University Physics Volume 1, chapter 9, sections 9.3 to 9.6: conservation of momentum, elastic and inelastic collisions, center of mass (CC BY 4.0): https://openstax.org/books/university-physics-volume-1/pages/9-introduction",
+    "OpenStax, College Physics 2e, section 8.2 Impulse: impulse equals change in momentum, longer contact time lowers force (CC BY 4.0): https://openstax.org/books/college-physics-2e/pages/8-2-impulse",
+    "HyperPhysics, Coefficient of Restitution, and OpenStax University Physics Volume 1, section 9.4: http://hyperphysics.phy-astr.gsu.edu/hbase/elacol.html",
+    "OpenStax, University Physics Volume 1, sections 7.1, 7.2 and 15.1: work by a constant force, spring force and energy, period of a mass on a spring: https://openstax.org/books/university-physics-volume-1/pages/15-1-simple-harmonic-motion",
+    "NGSS HS-PS2-2 and HS-PS2-3: https://www.nextgenscience.org/dci-arrangement/hs-ps2-motion-and-stability-forces-and-interactions",
+    "Every preset and reference result recomputed in Python (closed forms and an independent velocity Verlet run) and checked against the tool's own engine (2026-10-25)",
+    "Glider masses, spring constants, crush forces and the four design specs are invented lab settings, not real equipment ratings or crash standards",
+    "Track, gliders, noses, sensor wall, bars, graphs and plots drawn in code; sounds generated in the browser",
+    "Narration generated with Qwen3-TTS (Apache 2.0), cloning a Google Gemini text-to-speech voice"
+  ],
+  "third_party": [],
+  "updated": "2026-10-25"
+}
