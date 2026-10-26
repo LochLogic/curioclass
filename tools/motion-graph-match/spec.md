@@ -37,7 +37,8 @@ the panel. On narrow screens the panel moves under the graphs.
   end stops at 0 m and 10 m, the cart (a lab cart with wheels, drawn in code) and a net force arrow on the cart
   labeled in newtons (hidden when the force is under 0.05 N). In Race a ghost cart (outline only, dotted) runs too.
 - **Graphs (top to bottom):** Position x (m), range 0 to 10. Velocity v (m/s), range -3 to 3. Acceleration a (m/s
-  squared shown as "m/s²" on screen), range -2 to 2. Time axis 0 to 12 s on all three, gridlines every 1 s. Each graph
+  squared shown as "m/s²" on screen), range -2 to 2. Time axis 0 to 12 s on all three, gridlines every 1 s (in Explore the 12 s window scrolls once a run passes 12 s; see
+  Explore). Each graph
   has a live value readout on its right edge with units. A zero line is drawn heavier on v and a.
 - **Control picker (panel, both modes):** three big buttons `Hand` (you set position), `Throttle` (you set velocity),
   `Pedal` (you set acceleration). The graph you control gets a small "you control this" tag and a brighter frame.
@@ -47,16 +48,24 @@ the panel. On narrow screens the panel moves under the graphs.
   (a checkbox under the slider, off by default) is on.
 
 ### Explore (opens first)
-Free drive. The clock runs from 0 to 12 s while you drive, sweeping the graphs like a scope.
+Free drive with no time limit. The clock runs from 0 s while you drive and keeps running until you press `Pause` or
+`Clear`.
 Panel buttons: `Go` / `Pause` (one toggle), `Clear` (wipes traces, clock to 0, cart stays where it is), `Show links`
 (toggle), `Start at` (a small number field for the cart start, 0 to 10 m, default 1 m, applies on Clear).
-At 12 s the clock stops and the run freezes so it can be read; `Go` starts a fresh sweep (traces clear).
+For the first 12 s the traces draw across a fixed 0 to 12 s axis. After that the three graphs scroll together like a
+strip chart: the newest moment stays at the right edge and the window always shows the latest 12 s, with the time
+labels moving with the gridlines (a label too close to the right edge, where it would touch "time (s)", is left out).
+Samples older than the window plus about 3 s are dropped (in chunks), so a run can go on for as long as the class wants without slowing
+down; control-switch ticks and end stop marks scroll off with their samples. `Pause` freezes the window so it can be
+read, `Go` carries on from there, and `Clear` returns to 0 s.
 - **Show links:** when on, a vertical time cursor follows the pointer across all three graphs (or arrow keys move it
   in 0.1 s steps when a graph has focus). At the cursor: a tangent segment on the x graph with its slope printed
   ("slope 1.20 m/s"), and the v graph value at that time ringed with the same number; a tangent on the v graph with
   slope printed and the a graph value ringed; the area under v from 0 to the cursor shaded (positive above the zero
   line, negative below, two different fill patterns, not color alone) with the label "area = change in x = 3.4 m" and
-  the matching rise on the x graph bracketed. This works on a paused or finished run only.
+  the matching rise on the x graph bracketed. This works on a paused run only. On a run that has scrolled, the area
+  and the change in x are measured from the left edge of the window (the earliest time in view), not from 0 s; the
+  cursor stays inside the window.
 - **Hint line** (one sentence in the panel, changes with control): Hand: "Drag the cart. The computer works out your
   velocity and acceleration." Throttle: "You set the speed and direction. Position is the running total." Pedal: "You
   set the push. Velocity builds up from it, and position from velocity."
@@ -189,7 +198,7 @@ none (family field is empty). Optional reuse of `kit/graphing.js` for axes only,
 3. Pedal held at 0.2 m/s² from rest for 5 s gives a flat a line, v rising to 1.0 m/s, and x rising about 2.5 m
    (curved); the force arrow reads 0.4 N.
 4. Driving into the 10 m end stop stops the cart, sets v to 0 and shows an "end stop" mark, not a spike.
-5. Show links on a finished run: the tangent slope printed on x matches the ringed v value, and the shaded v area
+5. Show links on a paused run (including one that has scrolled past 12 s): the tangent slope printed on x matches the ringed v value, and the shaded v area
    matches the bracketed change in x, within 0.1.
 6. Race: every one of the 10 targets loads, starts the cart at its x0 (target 6 already moving at 1.5 m/s), and each
    v or a target's `Show all three` ends at the end position stated in Content.

@@ -20,7 +20,7 @@ grouping: Pairs on devices, with whole-class pauses.
 1. On the projector, drag the cart from 1 m to about 7 m and let go. "Why does the velocity graph make a bump? Why does acceleration go up, then down?"
 2. Pairs pick **Throttle**, press **Clear** and push the slider to 1.0 m/s. "What does position do?" (Climbs 1 m every second.)
 3. Pairs pick **Pedal**, press **Clear** and hold 0.2 m/s² for 5 s. They record velocity (1.0 m/s) and position (about 2.5 m). The force arrow reads 0.40 N.
-4. Pairs let a run reach 12 s and turn on **Show links**.
+4. Pairs press **Pause** and turn on **Show links**. (Explore runs until you pause it: past 12 s the graphs scroll.)
 
 ## Make sense (10 min)
 
