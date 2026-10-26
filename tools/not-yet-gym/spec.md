@@ -21,14 +21,14 @@ Bix, a little brain buddy, visibly levels up from what you do after a mistake: e
 Header: title "Not Yet Gym" with small line "Practice, mistakes and goals", the mode buttons **Gym**, **Goals**, **Locker** (keys 1 to 3), then **Motion**, **Sound**, **Read**. Stage on the left, panel on the right (panel below on narrow screens). Panel always has the hint paragraph (`hint`), Bix's **Know-how** bar with the stage name, and the comeback stripe count.
 
 ### Gym (opens first)
-- Stage: a side view of a gym hall drawn in code over the gym-hall backdrop. Five room doors in a row: **Pattern Ladder** and **Memory Mirror** (open), **Light Mat** and **Number Lift** (locked, padlock drawn on the door), **Summit Circuit** (locked, at the top of a short climbing wall). Bix stands on the floor in front of the doors.
+- Stage: a side view of the gym-hall painting with a floor laid over it. Five painted room doors in a row, each tinted its room color: **Pattern Ladder** and **Memory Mirror** (open), **Light Mat** and **Number Lift** (locked: greyed, with a padlock on the door), **Summit Circuit** (locked, at the top of a short painted climbing wall). Bix stands on the floor in front of the doors.
 - Tap Bix: Bix does its current move (see Content, stages) and says a short line.
 - Tap an open door: enter that room. Tap a locked door: the door rattles, the hint reads "This room opens when you finish a goal. Go to Goals to pick one." and a **Pick a goal** button appears in the panel.
 - Inside a room: the puzzle fills the stage, Bix stands in the lower left corner and reacts. Room controls in the panel: **I'm stuck** (opens the strategy cards), **Back to gym**, and a rung row (small numbered circles, solved ones filled, current one outlined; tap any solved or current rung to play it).
 - After a solve: a **Next rung** button. After the last rung of a room: "Room complete" card with **Back to gym**.
 
 ### Goals
-- Stage: a goal board (cork board drawn in code) with goal cards. Cards for rooms that are still locked are not shown.
+- Stage: a goal board (a tiled cork texture in a wood frame) with goal cards. Cards for rooms that are still locked are not shown.
 - Step 1, "Pick one goal": tap a card to make it the active goal (only one at a time). **Change goal** replaces it (no penalty).
 - Step 2, "Make a plan": pick one strategy card you will try first when you get stuck. The plan shows on the active goal card ("When I'm stuck, I'll try: Slow down and check").
 - The active goal shows a progress line in the panel in every mode ("2 of 3 strategies used").
@@ -58,7 +58,7 @@ Know-how points: solve on the first try +1; comeback (a solve after a not-yet or
 3. **Use a hint**: shows the puzzle's hint.
 4. **Take three breaths**: Bix breathes in and out three times on screen (4 s in, 4 s out, so 24 s), with **Skip**. Then back to the puzzle.
 5. **Break it into parts**: the room's parts effect.
-6. **Ask a friend**: "Turn to a neighbor. Ask: what do you notice?" with **Show a friend's idea**, which shows the puzzle's hint in a speech bubble from Dot (a small round brain friend drawn in code).
+6. **Ask a friend**: "Turn to a neighbor. Ask: what do you notice?" with **Show a friend's idea**, which shows the puzzle's hint in a speech bubble from Dot (a small round brain friend, a painting).
 
 ### Pattern Ladder (open at start), 9 rungs. Pick what comes next (4 choices).
 | # | Sequence | Answer | Other choices | Hint |
@@ -148,7 +148,7 @@ Progress counts only from when the goal is picked.
 Do not say the brain grows, builds neurons or gets "stronger" like a muscle. Bix's growth is a picture of skill and practice.
 
 ## Interactions in detail
-- Bix's faces (drawn in code): happy (idle), focused (puzzle showing), thinking (after a not-yet: hand on chin, never sad or crying), cheering (comeback: big jump plus a gold stripe sliding onto the band), proud (first-try solve: thumbs up), calm (breathing card). Stage-ups: Bix glows, the new gear drops on, and the stage name shows for 2 s.
+- Bix's faces (six paintings, one per face, tinted to the chosen color; the headband, stripes and gear are placed on top): happy (idle), focused (puzzle showing), thinking (after a not-yet: hand on chin, never sad or crying), cheering (comeback: big jump plus a gold stripe sliding onto the band), proud (first-try solve: thumbs up), calm (breathing card). Stage-ups: Bix glows, the new gear drops on, and the stage name shows for 2 s.
 - After every not-yet the strategy cards slide up automatically, with **Just try again** as a seventh, plain button. "I'm stuck" opens the same cards at any time.
 - Cards can be used any number of times; each card used the first time puts its sticker on the Locker wall.
 - A puzzle remembers its not-yet flag until solved or until you leave the room; leaving and coming back starts the rung fresh (no comeback credit carried over).
@@ -167,8 +167,11 @@ Do not say the brain grows, builds neurons or gets "stronger" like a muscle. Bix
 - Stage drawn at real pixel size and re-laid out per size (STANDARDS.md "Sizes"); room controls and the strategy cards stay visible without scrolling at 1366x768 and in the 680x425 preview.
 
 ## Art
-- gym-hall: "bright empty school gymnasium, warm wooden floor, pale lavender walls, a short colorful climbing wall, plain solid color pennant flags, soft daylight from high windows, flat illustration"; 16:9; cutout no; people no; behind the Gym map with a white 40% overlay so doors and Bix read clearly. Local FLUX.
-- Everything else (Bix, Dot, gear, doors, puzzles, goal board, stickers, locker) is drawn in code.
+- gym-hall: "bright empty school gymnasium, warm wooden floor, pale lavender walls, a short colorful climbing wall, plain solid color pennant flags, soft daylight from high windows, flat illustration"; 16:9; cutout no; people no; behind the Gym map with a white 25% overlay so doors and Bix read clearly. Local FLUX.1-schnell.
+- Bix (bix, bix-focused, bix-thinking, bix-cheer, bix-proud, bix-calm) and Dot: OpenAI gpt-image, cutouts 480 (Dot 240) tall. Bix is painted pale and tinted per swatch with an SVG color filter; Dot stays pale lavender. The arched headband and its stripes are drawn in code, clipped to the painting.
+- Gear (sneaker, gym-bag, medal), door, padlock, climb-wall, the five room backdrops (room-pattern, room-memory, room-light, room-lift, room-summit, behind each room under a 55% paper wash), locker-room (behind the Locker, 20% wash) and board-cork (512x320 tile): FLUX.2 [klein] on Cloudflare Workers AI. Doors are tinted per room; a locked door is greyed.
+- Full prompts, sizes and anchors: art/prompts.json and art-plan.md. Each image is inlined once into a hidden svg and placed with use.
+- Still drawn in code: the headband and stripes, puzzles, labels, cards, speech bubbles, stickers and the goal board frame.
 
 ## Voice
 Bank voice: `upbeat-guide` (Zephyr, bright and clear), style: "Say brightly and clearly, in a friendly, encouraging way, like an upbeat coach at the gym." Bix speaks in the first person. (Spec check 2026-10-26: conflict-coach has big-sister; walk-in-their-shoes has gentle-storyteller.)

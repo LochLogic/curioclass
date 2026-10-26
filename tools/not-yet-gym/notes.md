@@ -26,4 +26,4 @@ Know-how never goes down, and a mistake never costs anything. Points come only t
 - On a projector, the class can vote on each answer and on which strategy card to try.
 - The tool says "practice helps" and never that the brain grows like a muscle. Studies of growth-mindset messages find small average effects, so the tool sticks to what is well supported: practice, new strategies and asking for help.
 - **Take three breaths** is one quick pause, not a calm-down activity. If a student is upset, the school counselor is the right next step.
-- Bix, the puzzles, the goal board and the locker are drawn in code. Every Light Mat and Number Lift puzzle was checked to be solvable in its listed fewest moves.
+- Bix, Dot and the gym, rooms and locker are illustrations (made with image tools, then edited for Curio Class); the puzzles are drawn in code. Every Light Mat and Number Lift puzzle was checked to be solvable in its listed fewest moves.

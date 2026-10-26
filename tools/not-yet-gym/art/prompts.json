@@ -127,7 +127,8 @@
       "height": 360,
       "quality": 70,
       "local_note": "one door for all five rooms, tinted per room in code (multiply filter with ROOMS[room].door; locked uses the greyed mix color). Shown at 56-132 x 84-210 CSS px over the code door rect (preserveAspectRatio none; the 9:16 to 1:1.55 squash is small). The name plaque, Locked / New! / n of N labels, padlock and star stay on top in code. Keep the plaque area pale so the code label reads.",
-      "review": "pending"
+      "review": "pending",
+      "source": "flux2-klein-4b (Cloudflare)"
     },
     {
       "name": "padlock",
@@ -139,7 +140,8 @@
       "height": 120,
       "quality": 72,
       "local_note": "locked doors on the Gym map: replaces the code padlock in gymScene, shown at 20-40 CSS px. Rattles with the door (a-rattle).",
-      "review": "pending"
+      "review": "pending",
+      "source": "flux2-klein-4b (Cloudflare)"
     },
     {
       "name": "climb-wall",
@@ -151,7 +153,8 @@
       "width": 400,
       "quality": 70,
       "local_note": "the base under the Summit Circuit door on the Gym map: replaces the code rect and nine circles (wallW x wallH, about 70-165 x 40-120 CSS px). Drawn with preserveAspectRatio xMidYMin slice, clipped to the wall rect.",
-      "review": "pending"
+      "review": "pending",
+      "source": "flux2-klein-4b (Cloudflare)"
     },
     {
       "name": "sneaker",
@@ -163,7 +166,8 @@
       "width": 128,
       "quality": 72,
       "local_note": "Bix's stage 3 gear: one image used twice, mirrored for the left foot, placed at the painting's foot anchors (replaces the code shoes in bix()). Shown at about 10-90 CSS px wide. Drops on with a-drop.",
-      "review": "pending"
+      "review": "pending",
+      "source": "flux2-klein-4b (Cloudflare)"
     },
     {
       "name": "gym-bag",
@@ -175,7 +179,8 @@
       "width": 200,
       "quality": 72,
       "local_note": "Bix's stage 4 gear: the bag hangs at Bix's hip; its strap stays a code line from the shoulder anchor to the bag (replaces the code bag in bix()). Shown at about 25-130 CSS px wide.",
-      "review": "pending"
+      "review": "pending",
+      "source": "flux2-klein-4b (Cloudflare)"
     },
     {
       "name": "medal",
@@ -187,7 +192,8 @@
       "height": 160,
       "quality": 72,
       "local_note": "Bix's stage 5 gear (also given by the Summit Circuit finish): placed at the chest anchor (replaces the code medal in bix()). Shown at about 15-110 CSS px tall.",
-      "review": "pending"
+      "review": "pending",
+      "source": "flux2-klein-4b (Cloudflare)"
     },
     {
       "name": "room-pattern",
@@ -197,7 +203,8 @@
       "width": 1280,
       "quality": 58,
       "local_note": "Pattern Ladder room view: replaces the flat #roomBg gradient in roomScene, full frame (xMidYMid slice) under a paper overlay (#fbf7ff at about .55) so the puzzle reads; the code floor strip stays. Keep the middle plain: the puzzle fills it.",
-      "review": "pending"
+      "review": "pending",
+      "source": "flux2-klein-4b (Cloudflare)"
     },
     {
       "name": "room-memory",
@@ -207,7 +214,8 @@
       "width": 1280,
       "quality": 58,
       "local_note": "Memory Mirror room view: replaces the flat #roomBg gradient in roomScene, full frame (xMidYMid slice) under a paper overlay (#fbf7ff at about .55) so the puzzle reads; the code floor strip stays. Keep the middle plain: the puzzle fills it.",
-      "review": "pending"
+      "review": "pending",
+      "source": "flux2-klein-4b (Cloudflare)"
     },
     {
       "name": "room-light",
@@ -217,7 +225,8 @@
       "width": 1280,
       "quality": 58,
       "local_note": "Light Mat room view: replaces the flat #roomBg gradient in roomScene, full frame (xMidYMid slice) under a paper overlay (#fbf7ff at about .55) so the puzzle reads; the code floor strip stays. Keep the middle plain: the puzzle fills it.",
-      "review": "pending"
+      "review": "pending",
+      "source": "flux2-klein-4b (Cloudflare)"
     },
     {
       "name": "room-lift",
@@ -227,7 +236,8 @@
       "width": 1280,
       "quality": 58,
       "local_note": "Number Lift room view: replaces the flat #roomBg gradient in roomScene, full frame (xMidYMid slice) under a paper overlay (#fbf7ff at about .55) so the puzzle reads; the code floor strip stays. Keep the middle plain: the puzzle fills it.",
-      "review": "pending"
+      "review": "pending",
+      "source": "flux2-klein-4b (Cloudflare)"
     },
     {
       "name": "room-summit",
@@ -237,7 +247,8 @@
       "width": 1280,
       "quality": 58,
       "local_note": "Summit Circuit room view: replaces the flat #roomBg gradient in roomScene, full frame (xMidYMid slice) under a paper overlay (#fbf7ff at about .55) so the puzzle reads; the code floor strip stays. Keep the middle plain: the puzzle fills it.",
-      "review": "pending"
+      "review": "pending",
+      "source": "flux2-klein-4b (Cloudflare)"
     },
     {
       "name": "board-cork",
@@ -247,7 +258,8 @@
       "width": 1024,
       "quality": 56,
       "local_note": "Goals board: a texture clipped to the inner board rect in goalsScene (replaces the flat #c99a63 fill and the 70 code speckles); the code wood frame (#8a5a2b) and the goal cards stay on top. A full-frame texture, not a scene.",
-      "review": "pending"
+      "review": "pending",
+      "source": "flux2-klein-4b (Cloudflare)"
     },
     {
       "name": "locker-room",
@@ -257,7 +269,8 @@
       "width": 1280,
       "quality": 58,
       "local_note": "Locker view: replaces the code locker row and floor in lockerScene (full frame, xMidYMax slice so the floor stays at the bottom), under a light paper overlay (about .25); Bix, the sticker wall and the Coach's corner cards draw on top.",
-      "review": "pending"
+      "review": "pending",
+      "source": "flux2-klein-4b (Cloudflare)"
     }
   ]
 }

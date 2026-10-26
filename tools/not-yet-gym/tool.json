@@ -20,7 +20,8 @@
     "CDC, Coping with Stress (slow breaths): https://www.cdc.gov/mental-health/living-with/index.html",
     "Anderson, M. and Feil, T. (1998). Turning Lights Out with Linear Algebra. Mathematics Magazine 71(4), 300-303; Light Mat starts checked by brute force over all 512 press sets",
     "Number Lift fewest moves checked by breadth-first search over floors 0 to 20",
-    "Gym hall backdrop: generated locally with FLUX; Bix, Dot, doors, puzzles, goal board and locker drawn in code",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class",
+    "Illustrations drawn with FLUX.2 [klein] (Apache 2.0) on Cloudflare Workers AI, edited for Curio Class",
     "Illustrations drawn with FLUX.1-schnell (Apache 2.0) on a local computer, edited for Curio Class",
     "Narration generated with Qwen3-TTS (Apache 2.0), cloning a Google Gemini text-to-speech voice"
   ],

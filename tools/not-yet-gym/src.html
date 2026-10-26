@@ -18,7 +18,9 @@ first solve, so replays are free practice.
 Facts: CASEL framework; Dweck (2006, 2015); Sisk et al. (2018) and Yeager et al. (2019) for why the tool only says
 "practice helps"; APA "Building your resilience"; CDC "Coping with Stress". Light Mat starts checked by brute force over
 all 512 press sets (unique solutions, Anderson and Feil 1998); Number Lift fewest moves by breadth-first search
-(2026-10-26). Bix, Dot, the doors, puzzles, board and locker are drawn in code; the gym hall backdrop is the one image.
+(2026-10-26). Art (2026-10-26): Bix (six faces, painted pale and tinted per color) and Dot are gpt-image-2 paintings;
+the gym hall is FLUX.1-schnell; the door, padlock, climbing wall, sneakers, gym bag, medal, five rooms, cork and locker
+room are FLUX.2 klein. The headband and stripes, puzzles, labels, cards and stickers are drawn in code.
 Saving happens only when Save Bix is pressed (localStorage curio-not-yet-gym); nothing is ever typed.
 One file, no network requests. Content CC BY 4.0, code MIT. curioclass.org
 -->
@@ -149,7 +151,11 @@ body.compact .tray-h h2{font-size:15px}
 .a-juggle .ball{animation:jug .8s linear 3}
 .a-juggle .ball.b2{animation-delay:-.27s}
 .a-juggle .ball.b3{animation-delay:-.53s}
-@keyframes jug{0%{transform:translate(-62px,-50px)}25%{transform:translate(-30px,-150px)}50%{transform:translate(0px,-190px)}75%{transform:translate(30px,-150px)}100%{transform:translate(62px,-50px)}}
+@keyframes jug{0%{transform:translate(-108px,-168px)}25%{transform:translate(-56px,-250px)}50%{transform:translate(0px,-280px)}75%{transform:translate(56px,-250px)}100%{transform:translate(108px,-168px)}}
+.a-fadein{animation:fadein .26s ease-out both}
+@keyframes fadein{0%{opacity:0}100%{opacity:1}}
+.a-fadeout{animation:fadeout2 .26s ease-out both}
+@keyframes fadeout2{0%{opacity:1}100%{opacity:0}}
 .a-cart{animation:cart 1.3s ease-in-out;transform-origin:50% 50%}
 @keyframes cart{0%{transform:none}50%{transform:translateX(60px) rotate(180deg)}100%{transform:translateX(0) rotate(360deg)}}
 .a-jump{animation:bigjump .9s ease-out}
@@ -188,6 +194,30 @@ body.compact .tray-h h2{font-size:15px}
 </style>
 </head>
 <body>
+<!-- every painting once; scenes place them with <use href="#im-name"> (tint filters and the cork tile are added by the script) -->
+<svg id="artdefs" aria-hidden="true" focusable="false" width="0" height="0" style="position:absolute;width:0;height:0;overflow:hidden"><defs>
+<image id="im-bix" href="art:bix" width="444" height="480"/>
+<image id="im-bix-focused" href="art:bix-focused" width="444" height="480"/>
+<image id="im-bix-thinking" href="art:bix-thinking" width="435" height="480"/>
+<image id="im-bix-cheer" href="art:bix-cheer" width="565" height="480"/>
+<image id="im-bix-proud" href="art:bix-proud" width="520" height="480"/>
+<image id="im-bix-calm" href="art:bix-calm" width="444" height="480"/>
+<image id="im-dot" href="art:dot" width="246" height="240"/>
+<image id="im-sneaker" href="art:sneaker" width="128" height="73"/>
+<image id="im-gym-bag" href="art:gym-bag" width="200" height="146"/>
+<image id="im-medal" href="art:medal" width="95" height="160"/>
+<image id="im-door" href="art:door" width="170" height="360"/>
+<image id="im-padlock" href="art:padlock" width="85" height="120"/>
+<image id="im-climb-wall" href="art:climb-wall" width="400" height="267"/>
+<image id="im-gym-hall" href="art:gym-hall" width="1600" height="914"/>
+<image id="im-room-pattern" href="art:room-pattern" width="1024" height="640"/>
+<image id="im-room-memory" href="art:room-memory" width="1024" height="640"/>
+<image id="im-room-light" href="art:room-light" width="1024" height="640"/>
+<image id="im-room-lift" href="art:room-lift" width="1024" height="640"/>
+<image id="im-room-summit" href="art:room-summit" width="1024" height="640"/>
+<image id="im-locker-room" href="art:locker-room" width="1024" height="640"/>
+<image id="im-board-cork" href="art:board-cork" width="512" height="320"/>
+</defs></svg>
 <header>
   <h1>Not Yet Gym <small>Practice, mistakes and goals</small></h1>
   <div class="seg" role="group" aria-label="Mode">
@@ -490,6 +520,11 @@ body.compact .tray-h h2{font-size:15px}
     return {cls: a.cls, style: `animation-delay:${Math.round(a.t0 - now())}ms;`};
   }
   let schedT = 0, schedAt = 0;
+  // a painting from #artdefs covering the box x, y, w, h (like preserveAspectRatio slice; ax, ay = which part stays)
+  function cover(name, iw, ih, x, y, w, h, ax = .5, ay = .5) {
+    const k = Math.max(w / iw, h / ih);
+    return `<use href="#im-${name}" transform="translate(${f1(x + (w - iw * k) * ax)} ${f1(y + (h - ih * k) * ay)}) scale(${k.toFixed(4)})"/>`;
+  }
   function schedule(ms) { const at = now() + ms; if (schedT && schedAt <= at && schedAt > now()) return; clearTimeout(schedT); schedAt = at; schedT = setTimeout(() => { schedT = 0; render(); }, ms); }
   function wrap(text, maxW, fs) {
     const cw = fs * .53, max = Math.max(3, Math.floor(maxW / cw)), out = [];
@@ -543,84 +578,80 @@ body.compact .tray-h h2{font-size:15px}
   const iconSvg = (id, col) => `<svg viewBox="0 0 24 24" aria-hidden="true">${icon(id, col)}</svg>`;
 
   // ======================================================================================
-  // Bix and Dot, drawn in code. Design units: feet at (0,0), Bix about 200 wide and 230 tall.
+  // Bix and Dot: paintings (gpt-image-2), one per face. Bix is painted pale and tinted to the chosen color with a
+  // multiply filter; the headband, stripes, juggling balls and glow are code. Every image is defined once in the hidden
+  // #artdefs <svg> (body) and placed with <use>, so each art: token is inlined once and never re-parsed on render.
+  // Anchors are image pixels measured from the cutouts: body box x0-x1, top-bot; gy = ground line; feet [x0, x1, bottom].
+  // Design units outside the painting: feet at (0,0), Bix about 235 tall, body 188 wide (the keyframes use these units).
   // ======================================================================================
-  const BLOB = (() => {
-    const pts = [];
-    for (let i = 0; i < 96; i++) { const t = i / 96 * Math.PI * 2, r = 1 + .045 * Math.cos(9 * t); pts.push(f1(74 * r * Math.cos(t)) + ',' + f1(-118 + 66 * r * Math.sin(t))); }
-    return 'M' + pts.join(' L') + ' Z';
+  const PAINT = {
+    happy: {im: 'bix', x0: 5, x1: 430, top: 5, bot: 376, gy: 474, feet: [[104, 190, 474], [250, 340, 474]]},
+    focused: {im: 'bix-focused', x0: 4, x1: 430, top: 4, bot: 376, gy: 474, feet: [[104, 195, 474], [250, 341, 474]]},
+    thinking: {im: 'bix-thinking', x0: 5, x1: 429, top: 5, bot: 376, gy: 474, feet: [[104, 194, 474], [250, 340, 474]]},
+    cheer: {im: 'bix-cheer', x0: 71, x1: 484, top: 4, bot: 361, gy: 474, feet: [[131, 211, 447], [330, 415, 474]]},
+    proud: {im: 'bix-proud', x0: 5, x1: 430, top: 5, bot: 374, gy: 474, feet: [[110, 200, 474], [255, 346, 474]]},
+    calm: {im: 'bix-calm', x0: 5, x1: 430, top: 4, bot: 375, gy: 474, feet: [[104, 194, 474], [250, 340, 474]]},
+  };
+  (function artDefs() {   // tint filters (Bix colors, door colors) and the cork tile, next to the images in #artdefs
+    const tint = (id, hex) => { const [r, g, b] = [1, 3, 5].map(i => (parseInt(hex.slice(i, i + 2), 16) / 255).toFixed(3));
+      return `<filter id="${id}" color-interpolation-filters="sRGB" x="0" y="0" width="1" height="1"><feColorMatrix type="matrix" values="${r} 0 0 0 0 0 ${g} 0 0 0 0 0 ${b} 0 0 0 0 0 1 0"/></filter>`; };
+    let d = Object.entries(COLORS).map(([k, c]) => tint('tint-' + k, c.c)).join('');
+    for (const [k, R] of Object.entries(ROOMS)) d += tint('door-' + k, R.door) + tint('doorx-' + k, mix(R.door, '#c7c2d3', .65));
+    d += `<pattern id="pat-cork" patternUnits="userSpaceOnUse" width="512" height="320"><use href="#im-board-cork"/></pattern>`;
+    $('artdefs').querySelector('defs').insertAdjacentHTML('beforeend', d);
   })();
   function gearOf(st) { return {band: st >= 1 || S.stripes > 0, shoes: st >= 2, bag: st >= 3, medal: st >= 4 || S.medal}; }
-  function bix(o) {
-    const st = stageOf(S.kh), g = gearOf(st), col = COLORS[S.color].c, dk = mix(col, '#2a2340', .3), limb = '#4b3a6b', ink = '#2a2340';
-    const face = o.face || 'happy', id = 'bx' + (++uid), drop = animOn('gear') ? anims.gear.piece : null, dropA = animAttr('gear');
+  let bixFace = null;
+  // one painting with its gear, in image pixels, ground point at (0,0) after the transform; quiet = no drop/slide animations
+  function fig(key, g, quiet) {
+    const p = PAINT[key], f = 188 / (p.x1 - p.x0), cx = (p.x0 + p.x1) / 2, id = 'bx' + (++uid), ink = '#2a2340';
+    const drop = !quiet && animOn('gear') ? anims.gear.piece : null, dropA = animAttr('gear');
     const dropped = (piece, svg) => piece === drop ? `<g class="${dropA.cls}" style="${dropA.style}">${svg}</g>` : svg;
-    let s = `<ellipse cx="0" cy="2" rx="62" ry="9" fill="#2a234022"/>`;
-    // legs and feet
-    s += `<path d="M-24 -56 L-27 -10 M24 -56 L27 -10" stroke="${limb}" stroke-width="11" stroke-linecap="round" fill="none"/>`;
-    s += g.shoes ? dropped('shoes', [-1, 1].map(d => `<g transform="translate(${d * 30} -8)"><path d="M-20 4 Q-21 -9 -6 -10 Q4 -10 8 -4 Q20 -3 21 4 Z" fill="#fff" stroke="${ink}" stroke-width="2.5" transform="scale(${d} 1)"/>` +
-      `<rect x="-21" y="3" width="42" height="5" rx="2" fill="#8d85a3"/><path d="M-9 -6 L-1 -2" stroke="#5a2fb8" stroke-width="3" stroke-linecap="round" transform="scale(${d} 1)"/></g>`).join(''))
-      : `<ellipse cx="-30" cy="-5" rx="16" ry="8" fill="${dk}"/><ellipse cx="30" cy="-5" rx="16" ry="8" fill="${dk}"/>`;
-    // gym bag behind the body, strap over one shoulder
-    if (g.bag) s += dropped('bag', `<path d="M46 -168 L-74 -58" stroke="#2f6fd0" stroke-width="7" stroke-linecap="round"/><rect x="-104" y="-66" width="56" height="36" rx="9" fill="#2f6fd0" stroke="${ink}" stroke-width="2.5"/>` +
-      `<path d="M-100 -54 H-52" stroke="#fff" stroke-width="2" stroke-dasharray="4 3"/>`);
-    // body: a bumpy brain blob with folds
-    s += `<clipPath id="${id}"><path d="${BLOB}"/></clipPath>`;
-    s += `<path d="${BLOB}" fill="${col}" stroke="${dk}" stroke-width="4"/>`;
-    s += `<g fill="none" stroke="${dk}" stroke-width="3.2" stroke-linecap="round"><path d="M0 -183 C-7 -170 7 -158 0 -146"/><path d="M-52 -150 c8 -12 20 -6 24 -16"/>` +
-      `<path d="M30 -166 c10 4 16 14 28 10"/><path d="M-62 -124 c10 0 13 -10 21 -8"/><path d="M48 -128 c6 -8 14 -6 18 -2"/></g>`;
-    // sweatband with the comeback stripes
+    let s = `<g transform="scale(${f.toFixed(4)}) translate(${f1(-cx)} ${-p.gy})"><ellipse cx="${cx}" cy="${p.gy + 2}" rx="160" ry="18" fill="#2a234022"/>`;
+    // gym bag at the left side, behind the body: the near hand rests on its handles
+    if (g.bag) { const bw = 135; s += dropped('bag', `<use href="#im-gym-bag" transform="translate(${p.x0 - 40} ${p.bot - 40}) scale(${(bw / 200).toFixed(4)})"/>`); }
+    s += `<use href="#im-${p.im}" filter="url(#tint-${S.color})"/>`;
+    // sweatband with the comeback stripes: an arched strip clipped to the painting's outline (alpha mask)
     if (g.band) {
-      const n = S.stripes, slideA = animAttr('stripe');
-      let band = `<g clip-path="url(#${id})"><rect x="-80" y="-160" width="160" height="22" fill="#5a2fb8"/><path d="M-80 -157 H80 M-80 -141 H80" stroke="#fff" stroke-width="2" opacity=".7"/>`;
-      if (n > 10) band += `<rect x="-38" y="-158" width="8" height="18" fill="#ffcf4a" stroke="#b88a00"/><text x="-24" y="-143" font-size="16" font-weight="800" fill="#fff">x${n}</text>`;
+      const n = S.stripes, slideA = quiet ? {cls: ''} : animAttr('stripe'), y0 = p.top + 72, y1 = p.top + 114, a = p.x0 - 10, b = p.x1 + 10;
+      const off = x => { const t = (x - a) / (b - a); return -48 * t * (1 - t); };
+      const arc = (y, dy = 0) => `M${a} ${y + 10 + dy} Q${cx} ${y - 14 + dy} ${b} ${y + 10 + dy}`;
+      let band = `<mask id="${id}" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="-100" y="-100" width="800" height="700"><use href="#im-${p.im}"/></mask><g mask="url(#${id})">` +
+        `<path d="${arc(y0)} L${b} ${y1 + 10} Q${cx} ${y1 - 14} ${a} ${y1 + 10} Z" fill="#5a2fb8" stroke="${ink}" stroke-width="4"/>` +
+        `<path d="${arc(y0, 7)} ${arc(y1, -7)}" stroke="#fff" stroke-width="3" fill="none" opacity=".6"/>`;
+      if (n > 10) band += `<rect x="${f1(cx - 70)}" y="${f1(y0 + 6 + off(cx - 66))}" width="13" height="${y1 - y0 - 12}" rx="2" fill="#ffcf4a" stroke="#b88a00" stroke-width="2"/>` +
+        `<text x="${f1(cx - 46)}" y="${f1(y1 - 9 + off(cx - 20))}" font-size="34" font-weight="800" fill="#fff">x${n}</text>`;
       else for (let i = 0; i < n; i++) {
-        const r = `<rect x="${-46 + i * 9.6}" y="-158" width="6" height="18" rx="1" fill="#ffcf4a" stroke="#b88a00" stroke-width="1"/>`;
+        const x = cx - 114 + i * 24, r = `<rect x="${f1(x)}" y="${f1(y0 + 6 + off(x + 6))}" width="12" height="${y1 - y0 - 12}" rx="2" fill="#ffcf4a" stroke="#b88a00" stroke-width="2"/>`;
         band += i === n - 1 && slideA.cls ? `<g class="${slideA.cls}" style="${slideA.style}">${r}</g>` : r;
       }
       s += dropped('band', band + '</g>');
     }
-    // face
-    const eye = (x) => `<ellipse cx="${x}" cy="-111" rx="6.5" ry="8" fill="${ink}"/><circle cx="${x + 2}" cy="-114" r="2.2" fill="#fff"/>`;
-    const closedUp = x => `<path d="M${x - 8} -109 Q${x} -120 ${x + 8} -109" stroke="${ink}" stroke-width="4" fill="none" stroke-linecap="round"/>`;
-    const closedDown = x => `<path d="M${x - 8} -112 Q${x} -105 ${x + 8} -112" stroke="${ink}" stroke-width="4" fill="none" stroke-linecap="round"/>`;
-    s += `<circle cx="-42" cy="-94" r="8" fill="#ff7fa3" opacity=".45"/><circle cx="42" cy="-94" r="8" fill="#ff7fa3" opacity=".45"/>`;
-    const mouthSmile = `<path d="M-14 -92 Q0 -79 14 -92" stroke="${ink}" stroke-width="4" fill="none" stroke-linecap="round"/>`;
-    if (face === 'happy') s += eye(-24) + eye(24) + mouthSmile;
-    else if (face === 'focused') s += `<ellipse cx="-24" cy="-110" rx="6" ry="6" fill="${ink}"/><ellipse cx="24" cy="-110" rx="6" ry="6" fill="${ink}"/><circle cx="-22" cy="-112" r="2" fill="#fff"/><circle cx="26" cy="-112" r="2" fill="#fff"/>` +
-      `<path d="M-33 -126 L-15 -122 M33 -126 L15 -122" stroke="${ink}" stroke-width="3.5" stroke-linecap="round"/><path d="M-10 -89 Q0 -85 10 -89" stroke="${ink}" stroke-width="4" fill="none" stroke-linecap="round"/>`;
-    else if (face === 'thinking') s += `<ellipse cx="-22" cy="-112" rx="6" ry="7.5" fill="${ink}"/><ellipse cx="26" cy="-112" rx="6" ry="7.5" fill="${ink}"/><circle cx="-19" cy="-116" r="2.2" fill="#fff"/><circle cx="29" cy="-116" r="2.2" fill="#fff"/>` +
-      `<path d="M14 -131 Q25 -138 35 -130" stroke="${ink}" stroke-width="3.5" fill="none" stroke-linecap="round"/><path d="M-32 -126 L-14 -126" stroke="${ink}" stroke-width="3.5" stroke-linecap="round"/>` +
-      `<path d="M-8 -89 Q-2 -93 4 -89 Q8 -86 11 -89" stroke="${ink}" stroke-width="4" fill="none" stroke-linecap="round"/>`;
-    else if (face === 'cheer') s += closedUp(-24) + closedUp(24) + `<path d="M-19 -97 Q0 -66 19 -97 Z" fill="#7a2340" stroke="${ink}" stroke-width="3" stroke-linejoin="round"/><path d="M-9 -80 Q0 -74 9 -80" fill="#ff8fae"/>`;
-    else if (face === 'proud') s += closedUp(-24) + closedUp(24) + `<path d="M-16 -94 Q0 -76 16 -94" stroke="${ink}" stroke-width="4.5" fill="none" stroke-linecap="round"/>`;
-    else if (face === 'calm') s += closedDown(-24) + closedDown(24) + `<path d="M-9 -90 Q0 -84 9 -90" stroke="${ink}" stroke-width="4" fill="none" stroke-linecap="round"/>`;
-    // arms by face
-    const hand = (x, y) => `<circle cx="${x}" cy="${y}" r="10" fill="${col}" stroke="${dk}" stroke-width="3"/>`;
-    const arm = (d) => `<path d="${d}" stroke="${limb}" stroke-width="9" stroke-linecap="round" fill="none"/>`;
-    const down = arm('M-66 -100 Q-82 -86 -86 -64') + hand(-86, -62) + arm('M66 -100 Q82 -86 86 -64') + hand(86, -62);
-    const up = arm('M-66 -112 Q-84 -136 -82 -168') + hand(-82, -170) + arm('M66 -112 Q84 -136 82 -168') + hand(82, -170);
-    if (face === 'cheer') s += up;
-    else if (face === 'thinking') s += arm('M-66 -100 Q-82 -86 -86 -64') + hand(-86, -62) + arm('M64 -96 Q66 -60 26 -74') + hand(22, -76);
-    else if (face === 'proud') s += arm('M-66 -100 Q-82 -86 -86 -64') + hand(-86, -62) + arm('M66 -106 Q92 -112 94 -134') +
-      `<rect x="89" y="-160" width="9" height="20" rx="4.5" fill="${col}" stroke="${dk}" stroke-width="3"/>` + hand(94, -136);
-    else s += `<g class="armsd">${down}</g><g class="armsu" style="opacity:0">${up}</g>`;
-    // star medal
-    if (g.medal) s += dropped('medal', `<path d="M-22 -78 L0 -46 L22 -78" stroke="#c0392b" stroke-width="7" fill="none" stroke-linejoin="round"/><polygon points="${star(0, -40, 16, 7)}" fill="#ffcf4a" stroke="#b88a00" stroke-width="2.5"/>`);
-    // juggling balls (only seen while juggling)
-    s += `<g class="balls">${['#ff7a6b', '#5b8def', '#4cae6a'].map((c, i) => `<circle class="ball b${i + 1}" cx="0" cy="0" r="10" fill="${c}" stroke="${ink}" stroke-width="2"/>`).join('')}</g>`;
+    // sneakers over the painted feet (one image, mirrored for the left foot)
+    if (g.shoes) s += dropped('shoes', p.feet.map(([xa, xb, yb], i) => {
+      const w = (xb - xa) * 1.2, h = w * 73 / 128, x = (xa + xb) / 2 - w / 2, y = yb + 5 - h, k = w / 128;
+      return i ? `<use href="#im-sneaker" transform="translate(${f1(x)} ${f1(y)}) scale(${k.toFixed(4)})"/>` : `<use href="#im-sneaker" transform="translate(${f1(x + w)} ${f1(y)}) scale(${(-k).toFixed(4)} ${k.toFixed(4)})"/>`;
+    }).join(''));
+    if (g.medal) s += dropped('medal', `<use href="#im-medal" transform="translate(${f1(cx - 27)} ${p.bot - 76}) scale(${(54 / 95).toFixed(4)})"/>`);
+    return s + '</g>';
+  }
+  function bix(o) {
+    const g = gearOf(stageOf(S.kh)), face = o.face || 'happy', mv = animAttr('bix'), move = animOn('bix') ? anims.bix.cls : '';
+    if (face !== bixFace) { const from = bixFace; bixFace = face; if (from) anim('face', 'a-fadein', 260, {from}); }
+    const fa = animOn('face'), fs = animAttr('face').style, shape = move === 'a-juggle' ? 'cheer' : face;
+    let s;
+    if (move === 'a-jacks' && face === 'happy') s = `<g class="armsd">${fig('happy', g)}</g><g class="armsu" style="opacity:0">${fig('cheer', g, true)}</g>`;
+    else if (fa && fa.from !== shape) s = `<g class="a-fadeout" style="${fs}">${fig(fa.from, g, true)}</g><g class="a-fadein" style="${fs}">${fig(shape, g)}</g>`;
+    else s = fig(shape, g);
+    // juggling balls (only seen while juggling), thrown between the raised hands of the cheer painting
+    s += `<g class="balls">${['#ff7a6b', '#5b8def', '#4cae6a'].map((c, i) => `<circle class="ball b${i + 1}" cx="0" cy="0" r="11" fill="${c}" stroke="#2a2340" stroke-width="2"/>`).join('')}</g>`;
     // glow behind, for a stage-up
     const gl = animAttr('glow');
-    const glow = gl.cls ? `<g class="${gl.cls}" style="${gl.style}"><ellipse cx="0" cy="-110" rx="118" ry="112" fill="url(#bxglow)"/></g>` : '';
-    const mv = animAttr('bix');
+    const glow = gl.cls ? `<g class="${gl.cls}" style="${gl.style}"><ellipse cx="0" cy="-124" rx="132" ry="122" fill="url(#bxglow)"/></g>` : '';
     return `<g transform="translate(${f1(o.x)} ${f1(o.y)}) scale(${(o.h / 235).toFixed(4)})" class="deco">${glow}<g class="bxw ${mv.cls}" style="${mv.style}">${s}</g></g>`;
   }
-  function dot(x, y, h) {
-    const k = h / 80;
-    return `<g transform="translate(${f1(x)} ${f1(y)}) scale(${k.toFixed(3)})" class="deco"><ellipse cx="0" cy="0" rx="22" ry="5" fill="#2a234022"/>` +
-      `<path d="M-14 -6 L-16 -2 M14 -6 L16 -2" stroke="#4b3a6b" stroke-width="6" stroke-linecap="round"/>` +
-      `<circle cx="0" cy="-40" r="32" fill="#c9b6ff" stroke="#7d62c9" stroke-width="3.5"/><path d="M-12 -66 c4 -6 10 -4 12 -10 M8 -64 c6 2 10 6 14 4" stroke="#7d62c9" stroke-width="3" fill="none" stroke-linecap="round"/>` +
-      `<circle cx="-11" cy="-42" r="4.5" fill="#2a2340"/><circle cx="11" cy="-42" r="4.5" fill="#2a2340"/><path d="M-9 -29 Q0 -21 9 -29" stroke="#2a2340" stroke-width="3.5" fill="none" stroke-linecap="round"/></g>`;
+  function dot(x, y, h) {   // Dot, the Ask a friend helper (not tinted); feet at (x, y), h = height
+    return `<g transform="translate(${f1(x)} ${f1(y)}) scale(${(h / 235).toFixed(4)})" class="deco"><ellipse cx="0" cy="0" rx="80" ry="10" fill="#2a234022"/><use href="#im-dot" x="-133" y="-235"/></g>`;
   }
   function bubble(x, y, w, text, fs, tail = 'left') {   // x,y = top-left of the bubble
     const ln = wrap(text, w - 20, fs), h = ln.length * fs * 1.25 + 16;
@@ -1123,9 +1154,9 @@ body.compact .tray-h h2{font-size:15px}
   // ---------- Gym map ----------
   function gymScene() {
     const w = W, h = Hh, floorY = Math.round(h * .64);
-    let s = `<image href="art:gym-hall" x="0" y="0" width="${w}" height="${h}" preserveAspectRatio="xMidYMid slice"/><rect width="${w}" height="${h}" fill="#fff" opacity=".4"/>`;
+    let s = cover('gym-hall', 1600, 914, 0, 0, w, h) + `<rect width="${w}" height="${h}" fill="#fff" opacity=".25"/>`;
     // the floor, drawn over the backdrop so doors and Bix stand on it
-    s += `<rect x="0" y="${floorY}" width="${w}" height="${h - floorY}" fill="#e8c38e" opacity=".92"/><g stroke="#c99a63" stroke-width="1.5" opacity=".7">` +
+    s += `<rect x="0" y="${floorY}" width="${w}" height="${h - floorY}" fill="#e8c38e" opacity=".6"/><g stroke="#c99a63" stroke-width="1.5" opacity=".5">` +
       [...Array(6).keys()].map(i => `<path d="M0 ${f1(floorY + (h - floorY) * (i + 1) / 7)} H${w}"/>`).join('') + `</g><rect x="0" y="${floorY - 3}" width="${w}" height="6" fill="#c99a63"/>`;
     // five doors: four on the floor, the Summit door on top of a short climbing wall
     const slotW = (w - 24) / 5.3, dw = clamp(slotW * .78, 56, 132), dh = clamp(Math.min(dw * 1.55, h * .34), 84, 210);
@@ -1136,24 +1167,20 @@ body.compact .tray-h h2{font-size:15px}
       const R = ROOMS[room], open = S.open[room], isSum = room === 'summit';
       const cx = 12 + gap + (isSum ? 4 * (dw + gap) + wallW / 2 : i * (dw + gap) + dw / 2);
       const base = isSum ? floorY - wallH : floorY, x = cx - dw / 2, y = base - dh;
-      if (isSum) {   // climbing wall with colorful holds
-        s += `<rect x="${f1(cx - wallW / 2)}" y="${f1(floorY - wallH)}" width="${f1(wallW)}" height="${f1(wallH)}" fill="#9c8bc9" stroke="#5a4a8a" stroke-width="2"/>`;
-        const hc = ['#ff7a6b', '#ffcf4a', '#4cae6a', '#5b8def'];
-        for (let k = 0; k < 9; k++) s += `<circle class="deco" cx="${f1(cx - wallW / 2 + wallW * ((k * 37) % 100) / 100 * .85 + wallW * .07)}" cy="${f1(floorY - wallH + wallH * ((k * 53) % 100) / 100 * .8 + wallH * .1)}" r="${f1(clamp(wallW * .045, 3, 7))}" fill="${hc[k % 4]}"/>`;
+      if (isSum) {   // the painted climbing wall, cropped to the wall box
+        const wx = cx - wallW / 2, wy = floorY - wallH;
+        s += `<clipPath id="cwall"><rect x="${f1(wx)}" y="${f1(wy)}" width="${f1(wallW)}" height="${f1(wallH)}" rx="4"/></clipPath><g clip-path="url(#cwall)" class="deco">${cover('climb-wall', 400, 267, wx, wy, wallW, wallH, .5, 0)}</g>`;
       }
-      const col = open ? R.door : mix(R.door, '#c7c2d3', .65);
       const ra = anims.rattle && anims.rattle.room === room ? animAttr('rattle') : {cls: '', style: ''};
-      let d = `<g class="${ra.cls}" style="${ra.style}"><rect x="${f1(x)}" y="${f1(y)}" width="${f1(dw)}" height="${f1(dh)}" rx="8" fill="${col}" stroke="#2a2340" stroke-width="2.5"/>` +
-        `<rect x="${f1(x + dw * .12)}" y="${f1(y + dh * .42)}" width="${f1(dw * .76)}" height="${f1(dh * .5)}" rx="5" fill="none" stroke="#ffffff66" stroke-width="2"/>` +
-        `<circle cx="${f1(x + dw * .82)}" cy="${f1(y + dh * .62)}" r="${f1(dw * .05)}" fill="#ffcf4a" stroke="#2a2340" stroke-width="1.5"/>`;
+      // the painted door, tinted to the room color (greyed while locked)
+      let d = `<g class="${ra.cls}" style="${ra.style}"><use href="#im-door" transform="translate(${f1(x)} ${f1(y)}) scale(${(dw / 170).toFixed(4)} ${(dh / 360).toFixed(4)})" filter="url(#door${open ? '' : 'x'}-${room})"/>`;
       // name plaque
       const ln = wrap(R.name, dw * .84, fs), ph = ln.length * fs * 1.15 + 10;
       d += `<rect x="${f1(x + dw * .06)}" y="${f1(y + dh * .06)}" width="${f1(dw * .88)}" height="${f1(ph)}" rx="5" fill="#fff" stroke="#2a2340" stroke-width="1.5"/>` +
         tblock(ln, cx, y + dh * .06 + 5 + fs * .9, fs, 'text-anchor="middle" font-weight="800" fill="#2a2340"', 1.15);
       if (!open) {
         const lk = clamp(dw * .34, 20, 40), ly = y + dh * .62;
-        d += `<g class="deco"><path d="M${f1(cx - lk * .3)} ${f1(ly - lk * .2)} v${f1(-lk * .25)} a${f1(lk * .3)} ${f1(lk * .3)} 0 0 1 ${f1(lk * .6)} 0 v${f1(lk * .25)}" fill="none" stroke="#2a2340" stroke-width="${f1(lk * .11)}"/>` +
-          `<rect x="${f1(cx - lk / 2)}" y="${f1(ly - lk * .22)}" width="${f1(lk)}" height="${f1(lk * .72)}" rx="${f1(lk * .12)}" fill="#ffcf4a" stroke="#2a2340" stroke-width="2"/><circle cx="${f1(cx)}" cy="${f1(ly + lk * .1)}" r="${f1(lk * .1)}" fill="#2a2340"/></g>` +
+        d += `<use class="deco" href="#im-padlock" transform="translate(${f1(cx - lk * .42)} ${f1(ly - lk * .62)}) scale(${(lk * .84 / 85).toFixed(4)})"/>` +
           `<text x="${f1(cx)}" y="${f1(y + dh - 8)}" font-size="${f1(Math.max(11, fs * .92))}" text-anchor="middle" font-weight="800" fill="#2a2340" paint-order="stroke" stroke="#fff" stroke-width="3">Locked</text>`;
       } else if (S.newRoom === room) {
         d += `<g class="deco a-pulse"><polygon points="${star(x + dw - 4, y + 4, fs * 1.3)}" fill="#ffcf4a" stroke="#2a2340" stroke-width="1.5"/></g><text x="${f1(cx)}" y="${f1(y + dh - 8)}" font-size="${f1(Math.max(11, fs * .92))}" text-anchor="middle" font-weight="800" fill="#fff" paint-order="stroke" stroke="#2a2340" stroke-width="3">New!</text>`;
@@ -1165,7 +1192,8 @@ body.compact .tray-h h2{font-size:15px}
       s += tg('door-' + room, R.name + (open ? `, open, ${S.solved[room].length} of ${R.n} rungs solved` : ', locked'), d, [x, y, dw, dh], {grp: 'doors', r: 8});
     });
     // Bix on the floor in front of the doors
-    const bh = clamp(Math.min(h - floorY - 10, h * .33) * 1.25, 80, 260), bx = w / 2, by = h - 10;
+    // the painted head reaches the top of bh, so keep it under the door labels
+    const by = h - 10, bh = Math.min(clamp(Math.min(h - floorY - 10, h * .33) * 1.25, 80, 260), by - floorY - 3), bx = w / 2;
     s += tg('bix', 'Bix. Tap to see a move', `<rect x="${f1(bx - bh * .45)}" y="${f1(by - bh)}" width="${f1(bh * .9)}" height="${f1(bh)}" fill="transparent"/>` + bix({x: bx, y: by, h: bh, face: 'happy'}),
       [bx - bh * .45, by - bh, bh * .9, bh], {r: 20});
     if (state.bubble && now() < state.bubble.until) {
@@ -1184,10 +1212,11 @@ body.compact .tray-h h2{font-size:15px}
   // ---------- Rooms ----------
   function roomScene() {
     const w = W, h = Hh;
-    let s = `<rect width="${w}" height="${h}" fill="url(#roomBg)"/><defs><linearGradient id="roomBg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f6f1ff"/><stop offset="1" stop-color="#e6dcf7"/></linearGradient></defs>`;
+    // the room's painting (Summit rungs use the summit room), under a paper wash so the puzzle reads
+    let s = cover('room-' + P.room, 1024, 640, 0, 0, w, h, .5, 1) + `<rect width="${w}" height="${h}" fill="#fbf7ff" opacity=".55"/>`;
     s += `<rect x="0" y="${h - 18}" width="${w}" height="18" fill="#e8c38e"/><rect x="0" y="${h - 19}" width="${w}" height="3" fill="#c99a63"/>`;
     // Bix in the lower left: reserve a strip at the side or at the bottom, whichever leaves the puzzle bigger
-    const pad = 10, bh = clamp(Math.min(h * .3, w * .3), 64, 190), bw = bh * .82;
+    const pad = 10, bh = clamp(Math.min(h * .3, w * .3), 64, 190), bw = bh * .95;   // the painted Bix with its bag is about .9 bh wide
     const titleH = clamp(h * .07, 22, 34);
     const side = {x: bw + pad, y: pad + titleH, w: w - bw - 2 * pad, h: h - 2 * pad - titleH - 14};
     const bottom = {x: pad, y: pad + titleH, w: w - 2 * pad, h: h - bh - 2 * pad - titleH - 4};
@@ -1200,7 +1229,7 @@ body.compact .tray-h h2{font-size:15px}
     if (lay.status) s += `<text x="${f1(w - pad - 4)}" y="${f1(pad + tfs)}" font-size="${f1(tfs * .85)}" text-anchor="end" font-weight="700" fill="#2a2340">${esc(lay.status)}</text>`;
     s += lay.draw();
     // Bix and, when asked, Dot with a friend's idea
-    const bxX = pad + bw / 2, bxY = h - 20;
+    const bxX = pad + bh * .49, bxY = h - 20;
     s += bix({x: bxX, y: bxY, h: bh, face: P.face});
     if (state.banner) s += bannerAt(bxX + 10, bxY - bh - 6, clamp(bh * .12, 13, 20));
     if (P.friend) {
@@ -1404,9 +1433,8 @@ body.compact .tray-h h2{font-size:15px}
   function goalsScene() {
     const w = W, h = Hh, m = clamp(w * .02, 8, 18);
     let s = `<rect width="${w}" height="${h}" fill="#efe8fb"/><rect x="${m}" y="${m}" width="${w - 2 * m}" height="${h - 2 * m}" rx="14" fill="#8a5a2b"/>` +
-      `<rect x="${m + 10}" y="${m + 10}" width="${w - 2 * m - 20}" height="${h - 2 * m - 20}" rx="8" fill="#c99a63"/>`;
-    // cork speckles
-    for (let i = 0; i < 70; i++) s += `<circle class="deco" cx="${f1(m + 14 + ((i * 97) % 1000) / 1000 * (w - 2 * m - 28))}" cy="${f1(m + 14 + ((i * 61) % 1000) / 1000 * (h - 2 * m - 28))}" r="1.6" fill="#a87a48"/>`;
+      `<rect x="${m + 10}" y="${m + 10}" width="${w - 2 * m - 20}" height="${h - 2 * m - 20}" rx="8" fill="#c99a63"/>` +   // under the tile while it loads
+      `<rect x="${m + 10}" y="${m + 10}" width="${w - 2 * m - 20}" height="${h - 2 * m - 20}" rx="8" fill="url(#pat-cork)"/>`;
     const ix = m + 18, iy = m + 18, iw = w - 2 * m - 36, ih = h - 2 * m - 36;
     const avail = S.goal ? [GOAL[S.goal]] : GOALS.filter(g => goalShown(g) && !S.goalsDone.includes(g.id)), done = GOALS.filter(g => S.goalsDone.includes(g.id));
     const wideB = iw > ih * 1.05, hfs = clamp(Math.min(iw, ih) * .045, 13, 20);
@@ -1470,11 +1498,8 @@ body.compact .tray-h h2{font-size:15px}
   // ---------- Locker ----------
   function lockerScene() {
     const w = W, h = Hh;
-    let s = `<rect width="${w}" height="${h}" fill="#e9e1f7"/>`;
-    const lw = clamp(w / 9, 50, 110);
-    for (let x = 0; x < w; x += lw) s += `<g class="deco"><rect x="${f1(x + 2)}" y="0" width="${f1(lw - 4)}" height="${f1(h * .74)}" fill="#d6caef" stroke="#b8a9dc" stroke-width="2"/>` +
-      [0, 1, 2].map(k => `<path d="M${f1(x + lw * .25)} ${f1(18 + k * 8)} h${f1(lw * .5)}" stroke="#b8a9dc" stroke-width="3" stroke-linecap="round"/>`).join('') + `</g>`;
-    s += `<rect x="0" y="${f1(h * .74)}" width="${w}" height="${f1(h * .26)}" fill="#e8c38e"/><rect x="0" y="${f1(h * .74)}" width="${w}" height="4" fill="#c99a63"/>`;
+    // the painted locker room, floor kept at the bottom, under a light paper wash
+    let s = `<rect width="${w}" height="${h}" fill="#e9e1f7"/>` + cover('locker-room', 1024, 640, 0, 0, w, h, .5, 1) + `<rect width="${w}" height="${h}" fill="#fbf7ff" opacity=".2"/>`;
     const port = w < h * 1.15;
     const factH = w >= 760 ? clamp(h * .26, 110, 190) : port ? clamp(h * .4, 165, 260) : clamp(h * .46, 150, 230);
     const topH = h - factH - 16;
