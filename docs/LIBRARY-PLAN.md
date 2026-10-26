@@ -1,7 +1,32 @@
 # Reading Room: public domain and openly licensed story library (plan)
 
-Status: plan AGREED by Cory 2026-10-25 (decisions at the bottom), nothing downloaded yet. Downloads and text cleanup
-run in bulk once the pilot proves the format.
+Status: plan AGREED by Cory 2026-10-25 (decisions at the bottom). The 700 stories are curated and their sources are
+downloaded (see "Inventory" below). Text cleanup and the story pages come next, starting with the pilot.
+
+## Inventory (2026-10-25)
+
+| File | What |
+|---|---|
+| `data/library/sources.csv` | One row per source book: key, title, author, year, basis, license, where, Gutenberg ids |
+| `data/library/stories-pd.csv` | Public domain, not-renewed, CC and US government stories: 472 in the library, 65 on `reserve` |
+| `data/library/stories-sw.csv` | 233 StoryWeaver picture books (levels 1 to 5, mostly K-3) |
+| `library/_sources/` | Raw downloads, not in git: `gutenberg/<id>/` (EPUB with images + text), `storyweaver/<id>.json` + illustrations |
+| `scripts/library_fetch.py` | Downloads the Gutenberg books (mirror, 2 s apart) and, with `--storyweaver`, the StoryWeaver illustrations |
+| `scripts/library_sw.py` | Splits Cory's saved StoryWeaver export into one JSON per book |
+| `scripts/library_check.py` | Every story's source is on disk and its title is found in the text |
+
+**Newer and better known (Cory, 2026-10-25).** The first pass leaned on 1850 to 1920 collections. Cory asked for a
+newer, more widely known selection, so 70 stories were added: Newbery winners from 1924 to 1929, the first Nancy
+Drew and Hardy Boys books, Christie, Hemingway, Fitzgerald, Faulkner, Hurston, Harlem Renaissance poets, My
+Father's Dragon and Stormy, Misty's Foal (never renewed), 1950s and 60s Bradbury, Vonnegut, Philip K. Dick, Asimov
+and Piper stories (never renewed), Doctorow's Little Brother (CC BY-NC-SA), and post-1930 presidential speeches and
+the Apollo 11 transcript (US government). The 65 least-known older picks moved to `reserve`: kept on file, not in
+the library, and available as swaps.
+
+Hard limit: famous children's books from after 1930 (Dr. Seuss, Charlotte's Web, Narnia, The Hobbit) are still
+under copyright and cannot be in the library. The renewal and CC routes are where newer titles come from. For the
+never-renewed titles we rely on Project Gutenberg's own copyright clearance (it checks renewals before posting a
+post-1930 US work) and record that in `story.json`.
 
 ## The idea
 
@@ -50,9 +75,11 @@ The 1930 line is only the simplest rule. These are also open to us, in order of 
    - Book Dash: CC BY 4.0, professionally illustrated.
    - Global Digital Library, and Bloom Library (check each book's license).
 
-   We take only CC BY, CC BY-SA and CC0. NC (noncommercial) and ND (no changes) licenses are left out: NC
-   doesn't fit our CC BY content, and ND forbids the adaptations we've agreed to make. A CC BY-SA story keeps
-   CC BY-SA on its own page.
+   All Creative Commons licenses are in (Cory, 2026-10-25). Each story page shows its own license. ND (no
+   derivatives) stories are kept word for word: no abridging or retelling, and our glosses and questions sit
+   beside the text, never in it. NC (noncommercial) fits because Curio Class is free forever. A CC BY-SA story
+   keeps CC BY-SA on its own page. StoryWeaver needs a login to read; Cory made an account, and its books were
+   saved through his signed-in Chrome. StoryWeaver also carries Book Dash and African Storybook titles.
 2. **US works from 1931 to 1963 whose copyright was never renewed.** Before 1964 a copyright lapsed after 28
    years unless it was renewed, and most books were never renewed. The famous ones usually were. Each one is
    checked against the Copyright Office renewal records (the Stanford renewal database covers books) and the
