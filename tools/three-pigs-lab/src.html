@@ -201,24 +201,12 @@ td.mat-name{font-weight:700}
   </aside>
 </main>
 
+<script src="kit:curio"></script>
 <script>
 (() => {
   const $ = id => document.getElementById(id);
   const NS = 'http://www.w3.org/2000/svg';
-  // Motion follows the device's "reduce motion" setting until the teacher picks, then the choice is remembered
-  let reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  try { const m = localStorage.getItem('curio-motion'); if (m) reduce = m === 'calm'; } catch {}
-  function showMotion() {
-    document.body.classList.toggle('calm', reduce);
-    $('motion').setAttribute('aria-pressed', !reduce);
-    $('motion').textContent = reduce ? '⏸ Motion' : '✨ Motion';
-  }
-  showMotion();
-  $('motion').onclick = () => {
-    reduce = !reduce;
-    try { localStorage.setItem('curio-motion', reduce ? 'calm' : 'on'); } catch {}
-    showMotion();
-  };
+  // Motion, Sound and Read come from the shared kit (kit/curio.js); Curio.reduce is the motion setting
   const GROUND = 440;
 
   // Simplified properties on a 0-3 scale: strong, waterproof, see-through, warm
@@ -232,7 +220,8 @@ td.mat-name{font-weight:700}
     metal:  {name: 'Metal', tex: 'art:tex-metal',  strong: 3, water: 3, see: 0, warm: 0, piece: '#a9b2bc', pat: '<rect width="24" height="24" fill="#a9b2bc"/><path d="M0 12h24" stroke="#8a939d" stroke-width="2"/><circle cx="4" cy="4" r="1.6" fill="#6f7882"/><circle cx="20" cy="4" r="1.6" fill="#6f7882"/><circle cx="4" cy="20" r="1.6" fill="#6f7882"/><circle cx="20" cy="20" r="1.6" fill="#6f7882"/>'},
   };
   const adj = k => MATS[k].adj || MATS[k].name;
-  const state = {walls: 'straw', roof: 'straw', sound: true, busy: false, notes: {}};
+  let bubbleText = '';  // the speech bubble on screen, for Read
+  const state = {walls: 'straw', roof: 'straw', busy: false, notes: {}};
   const WORDS = {
     wolf: ['Blew away!', 'Fell down', 'Wobbled, but stood', "Didn't budge"],
     rain: ['Soaked through', 'Drip, drip, drip', 'A few drips', 'Stayed dry'],
@@ -318,6 +307,7 @@ td.mat-name{font-weight:700}
     $('pig-home').style.display = see === 0 ? 'none' : '';
   }
   function reset() {
+    hush();
     stopParticles();
     $('fx').innerHTML = ''; $('weather').innerHTML = ''; $('wolf').innerHTML = ''; $('inset').innerHTML = '';
     $('scene').classList.remove('night', 'storm');
@@ -327,13 +317,14 @@ td.mat-name{font-weight:700}
   }
 
   function setResult(text) { $('result').textContent = text; }
-  // Keep a speech bubble up long enough for a teacher to read it aloud
-  async function say(x, y, text, who) {
+  // A story beat: the bubble stays up long enough for a teacher to read it aloud, and until the narrator has said it
+  async function beat(x, y, text, who, ms = 1400 + text.length * 75) {
     const b = bubble(x, y, text, who);
-    await wait(1400 + text.length * 75);
-    b.remove();
+    await Promise.all([wait(ms), voice(spoken(text))]);
+    b.remove(); if (bubbleText === text) bubbleText = '';
   }
   function bubble(x, y, text, who) {
+    bubbleText = text;
     const g = el('g', {class: 'bubble', transform: `translate(${x} ${y})`}, $('fx'));
     const w = text.length * 11 + 40;
     el('rect', {x: -w / 2, y: -34, width: w, height: 48, rx: 22, fill: '#fff', stroke: '#2b2420', 'stroke-width': 3}, g);
@@ -359,7 +350,7 @@ td.mat-name{font-weight:700}
   // ---------- sound ----------
   let ctx;
   function noise(dur, type, freq, gain, when = 0) {
-    if (!state.sound) return;
+    if (!Curio.sound) return;
     ctx ||= new (window.AudioContext || window.webkitAudioContext)();
     const len = ctx.sampleRate * dur, buf = ctx.createBuffer(1, len, ctx.sampleRate), d = buf.getChannelData(0);
     for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * Math.sin(Math.PI * i / len);
@@ -374,8 +365,8 @@ td.mat-name{font-weight:700}
     const g = el('g', {}, $('fx'));
     g.innerHTML = markup;
     parts.push({g, x, y, vx, vy, r: rnd(0, 360), vr, gravity, life, t: 0, floor, bounce, drag, fade});
-    if (!raf && !reduce) raf = requestAnimationFrame(tick);
-    if (reduce) settle(parts[parts.length - 1]);
+    if (!raf && !Curio.reduce) raf = requestAnimationFrame(tick);
+    if (Curio.reduce) settle(parts[parts.length - 1]);
   }
   function step(p, dt) {
     p.t += dt;
@@ -407,19 +398,20 @@ td.mat-name{font-weight:700}
     wolf.innerHTML = `<g id="wolf-pos" transform="translate(-200 300)">${wolfMarkup()}</g>`;
     const pos = $('wolf-pos');
     // walks in
-    pos.style.transition = reduce ? 'none' : 'transform 2.2s cubic-bezier(.3,.7,.4,1)';
+    pos.style.transition = Curio.reduce ? 'none' : 'transform 2.2s cubic-bezier(.3,.7,.4,1)';
     requestAnimationFrame(() => pos.setAttribute('transform', 'translate(150 300)'));
     await wait(2600);
-    await say(260, 230, 'Little pig, little pig, let me come in!', 'left');
+    await beat(260, 230, 'Little pig, little pig, let me come in!', 'left');
     await wait(400);
-    await say(640, 200, 'Not by the hair of my chinny chin chin!', 'right');
+    await beat(640, 200, 'Not by the hair of my chinny chin chin!', 'right');
     await wait(400);
     // huff: the wolf breathes in
     const b3 = bubble(260, 230, 'Then I\'ll HUFF...', 'left');
     $('wolf-head').classList.add('inhale'); wolfPose('wolf-huff');
-    await wait(2800); b3.remove();
+    await Promise.all([wait(2800), voice(spoken('Then I\'ll HUFF...'))]); b3.remove();
     // ...and PUFF
     const b4 = bubble(260, 230, '...and I\'ll PUFF!', 'left');
+    const puffLine = voice(spoken('...and I\'ll PUFF!'));
     $('wolf-head').classList.remove('inhale'); $('wolf-head').classList.add('blow'); wolfPose('wolf-blow');
     noise(2.2, 'bandpass', 500, 1.3);
     wind = 900;
@@ -429,7 +421,7 @@ td.mat-name{font-weight:700}
       spawn(`<ellipse rx="7" ry="4" fill="${['#7ab25a', '#c9a34a', '#a5c96a'][Math.floor(rnd(0, 3))]}"/>`, rnd(200, 320), rnd(380, 440), rnd(300, 600), rnd(-300, -100),
         {vr: rnd(-400, 400), gravity: 250, life: 2.5, drag: .5, fade: true});
     }, 90);
-    await wait(1600); b4.remove();
+    await Promise.all([wait(1600), puffLine]); b4.remove(); bubbleText = '';
     await wait(1400);  // the gust builds before the house gives
     const walls = $('walls-g'), roof = $('roof-g'), house = $('house'), m = MATS[state.walls];
     if (lvl === 0) {
@@ -465,7 +457,7 @@ td.mat-name{font-weight:700}
         $('wolf-head').classList.remove('blow');
         wolfPose('wolf-huff');
         const b5 = bubble(260, 230, 'Huff... puff... phew!', 'left');
-        await wait(2600); b5.remove();
+        await Promise.all([wait(2600), voice('Huff... puff... phew!')]); b5.remove(); bubbleText = '';
         wolfPose('wolf-dizzy');
         $('fx').insertAdjacentHTML('beforeend', '<g class="stars" transform="translate(110 370)"><path d="M0-30l4 10 10 1-8 7 3 10-9-6-9 6 3-10-8-7 10-1z" fill="#ffd25e"/><path d="M40-10l3 7 7 1-5 5 2 7-7-4-7 4 2-7-5-5 7-1z" fill="#ffd25e"/></g>');
         await wait(2400);
@@ -483,7 +475,7 @@ td.mat-name{font-weight:700}
   }
   function runAway() {
     const p = $('pig-home');
-    p.style.transition = reduce ? 'none' : 'transform 2.2s ease-in';
+    p.style.transition = Curio.reduce ? 'none' : 'transform 2.2s ease-in';
     p.setAttribute('transform', 'translate(1250 360)');
   }
 
@@ -505,7 +497,7 @@ td.mat-name{font-weight:700}
     await wait(1400);
     noise(5.5, 'highpass', 2500, .55);
     $('weather').insertAdjacentHTML('beforeend', Array.from({length: 90}, (_, i) =>
-      `<path class="drop" style="animation-delay:-${((i * 37) % 70) / 100}s" d="M${(i * 53) % 1100 - 50} ${reduce ? (i * 61) % 460 : 0}l-6 26" stroke="#4a8fd0" stroke-width="3.5" stroke-linecap="round"/>`).join('') +
+      `<path class="drop" style="animation-delay:-${((i * 37) % 70) / 100}s" d="M${(i * 53) % 1100 - 50} ${Curio.reduce ? (i * 61) % 460 : 0}l-6 26" stroke="#4a8fd0" stroke-width="3.5" stroke-linecap="round"/>`).join('') +
       '<g class="puddles"><ellipse cx="250" cy="470" rx="80" ry="10" fill="#7fb0d8"/><ellipse cx="760" cy="486" rx="100" ry="12" fill="#7fb0d8"/><ellipse cx="520" cy="510" rx="70" ry="8" fill="#7fb0d8"/></g>');
     await wait(1200);
     // splashes where rain hits the roof
@@ -529,16 +521,18 @@ td.mat-name{font-weight:700}
     const lvl = MATS[state.walls].see;
     const lens = el('g', {transform: 'translate(330 340)'}, $('fx'));
     lens.innerHTML = '<circle r="56" fill="url(#glow)"/><circle r="56" fill="none" stroke="#2b2420" stroke-width="9"/><circle r="56" fill="none" stroke="#c9a34a" stroke-width="4"/><path d="M40 40l46 46" stroke="#2b2420" stroke-width="16" stroke-linecap="round"/><path d="M40 40l46 46" stroke="#7a522c" stroke-width="9" stroke-linecap="round"/>';
-    lens.style.transition = reduce ? 'none' : 'transform 2.6s ease-in-out';
+    lens.style.transition = Curio.reduce ? 'none' : 'transform 2.6s ease-in-out';
     await wait(200);
     lens.setAttribute('transform', 'translate(570 345)');
     await wait(2700);
     if (lvl >= 2) {
       showPig({wave: true});
       bubble(640, 250, 'Hi there!', 'right');
+      await voice('Hi there!');
     } else if (lvl === 1) {
       $('fx').insertAdjacentHTML('beforeend', '<g transform="translate(560 360)" opacity=".35"><ellipse cx="0" cy="36" rx="34" ry="26" fill="#2b2420"/><circle r="26" fill="#2b2420"/><path d="M-22 -16l-6-18 16 8zM22 -16l6-18-16 8z" fill="#2b2420"/></g>');
       bubble(640, 250, 'Is that... a shadow?', 'right');
+      await voice('Is that... a shadow?');
     } else {
       $('fx').insertAdjacentHTML('beforeend', '<text x="570" y="370" text-anchor="middle" font-family="Georgia,serif" font-size="80" font-weight="700" fill="#2b2420">?</text>');
     }
@@ -598,7 +592,7 @@ td.mat-name{font-weight:700}
     await wait(1600);
     noise(5, 'lowpass', 600, .35);
     $('weather').insertAdjacentHTML('beforeend', Array.from({length: 70}, (_, i) =>
-      `<g class="flake" style="animation-delay:-${((i * 41) % 300) / 100}s;animation-duration:${3 + (i % 5) * .4}s"><circle class="drift" style="animation-delay:-${(i % 7) * .3}s" cx="${(i * 71) % 1050 - 20}" cy="${reduce ? (i * 67) % 420 : 0}" r="${3 + (i % 3)}" fill="#fff" opacity="${.7 + (i % 3) * .1}"/></g>`).join('') +
+      `<g class="flake" style="animation-delay:-${((i * 41) % 300) / 100}s;animation-duration:${3 + (i % 5) * .4}s"><circle class="drift" style="animation-delay:-${(i % 7) * .3}s" cx="${(i * 71) % 1050 - 20}" cy="${Curio.reduce ? (i * 67) % 420 : 0}" r="${3 + (i % 3)}" fill="#fff" opacity="${.7 + (i % 3) * .1}"/></g>`).join('') +
       snowGround());
     $('snow-roof').innerHTML = snowRoof() +
       (lvl < 2 ? '<g class="icicles" fill="#d7ecf7">' + Array.from({length: 9}, (_, i) => `<path d="M${336 + i * 40} 256l7 ${16 + (i % 3) * 10}l7 -${16 + (i % 3) * 10}z"/>`).join('') + '</g>' : '');
@@ -615,7 +609,9 @@ td.mat-name{font-weight:700}
   }
 
   function finish(mat, test, level, text) {
+    bubbleText = '';
     setResult(text);
+    voice(text);
     note(mat, test, level);
     $('rebuild').hidden = false;
   }
@@ -629,39 +625,58 @@ td.mat-name{font-weight:700}
   }));
   $('rebuild').onclick = reset;
 
-  $('sound').onclick = e => {
-    state.sound = !state.sound;
-    e.currentTarget.setAttribute('aria-pressed', state.sound);
-    e.currentTarget.textContent = state.sound ? '🔔 Sound' : '🔇 Sound';
-  };
-  // Read aloud with the most natural voice this browser offers (see Marching Band for the ranking notes)
-  function bestVoice() {
-    const voices = speechSynthesis.getVoices().filter(v => /^en(-|_|$)/i.test(v.lang));
-    const score = v => (/natural|neural/i.test(v.name) ? 50 : 0) + (/premium|enhanced/i.test(v.name) ? 40 : 0) +
-      (/google/i.test(v.name) ? 30 : 0) + (/aria|jenny|ava|samantha|libby|sonia/i.test(v.name) ? 10 : 0) +
-      (/en-US/i.test(v.lang) ? 5 : 0) + (v.default ? 1 : 0) - (/david|mark|zira|desktop/i.test(v.name) ? 20 : 0);
-    return voices.sort((a, b) => score(b) - score(a))[0] || null;
+  // ---------- narration: every story beat and result in one narrator voice; Read always wins ----------
+  // Spoken text must match voice/lines.json exactly (a recording plays; otherwise the browser voice reads it)
+  const WELCOME = 'Help the pig build a house. Pick the walls and the roof, then test them with the wolf, the rain, a peek and a cold night.';
+  const START = 'What do you think will happen? Predict first!', PREDICT = 'Predict first, then test!';
+  const SPOKEN = {"Then I'll HUFF...": "Then I'll huff,", "...and I'll PUFF!": "and I'll puff!"};  // the bubbles shout in capitals; the voice says the words
+  const spoken = t => SPOKEN[t] || t;
+  const build = () => `${adj(state.walls)} walls and a ${adj(state.roof).toLowerCase()} roof.`;
+  const said = new Set(), queued = new Set();
+  let tapped = false, vq = Promise.resolve(), vgen = 0, readP = Promise.resolve(), hushed = () => {}, hushP = new Promise(r => hushed = r);
+  // Queue a line; resolves when it has been said, or at once when it is dropped (Sound off, hush, Read, a new test).
+  // once: a key for a line said only once (the welcome); it is marked said when it starts, never when queued
+  function voice(text, once) {
+    if (!tapped || !Curio.sound) return Promise.resolve();
+    if (once) { if (said.has(once) || queued.has(once)) return Promise.resolve(); queued.add(once); }
+    const gen = vgen;
+    const p = vq.then(async () => {
+      await readP;
+      if (gen !== vgen) return;            // dropped by hush(): not marked said, so its trigger can queue it again
+      if (once) { queued.delete(once); said.add(once); }
+      await Promise.race([Curio.say(text), wait(2500 + 80 * text.length), hushP]);
+    });
+    vq = p.catch(() => {});
+    return p;
   }
-  if ('speechSynthesis' in window) {
-    // Chrome fills its voice list late; hold an early utterance until the good voices load, or it falls back to a robotic default
-    const speak = speechSynthesis.speak.bind(speechSynthesis);
-    speechSynthesis.speak = u => {
-      if (speechSynthesis.getVoices().length) return speak(u);
-      let done = false;
-      const go = () => { if (done) return; done = true; const v = bestVoice(); if (v) { u.voice = v; u.lang = v.lang; } speak(u); };
-      speechSynthesis.addEventListener('voiceschanged', go, {once: true});
-      setTimeout(go, 1500);
-    };
-    speechSynthesis.getVoices();
+  // a stopped clip never ends, so hush also releases every line (and Read) still waiting on one
+  function hush() { vgen++; queued.clear(); vq = Promise.resolve(); readP = Promise.resolve(); Curio.stop(); hushed(); hushP = new Promise(r => hushed = r); }
+  // Read: the result, else the speech bubble showing, else the build line under Test it
+  function readParts() {
+    const r = $('result').textContent;
+    if (r) return [r];
+    if (bubbleText) return [spoken(bubbleText)];
+    return $('predict').textContent === START ? [START] : [build(), PREDICT];
   }
-  $('read').onclick = () => {
-    if (!('speechSynthesis' in window)) return;
-    speechSynthesis.cancel();
-    const u = new SpeechSynthesisUtterance($('result').textContent || $('predict').textContent);
-    const v = bestVoice();
-    if (v) { u.voice = v; u.lang = v.lang; }
-    u.rate = .95; u.pitch = 1; speechSynthesis.speak(u);
-  };
+  function readNow() {
+    hush();
+    const parts = readParts(), n = parts.join(' ').length;
+    readP = Promise.race([Curio.say(parts, true), wait(2500 + 80 * n), hushP]).catch(() => {});
+  }
+  const welcome = () => voice(WELCOME, 'welcome');
+  // The welcome waits for the first tap. A test tells its own story, so it skips the welcome (left unsaid);
+  // for anything else it is queued after that tap's own click has run, so the click's reset can't drop it
+  for (const ev of ['pointerdown', 'keydown']) addEventListener(ev, e => {
+    if (tapped) return; tapped = true;
+    const b = e.target && e.target.closest ? e.target.closest('button') : null;
+    if (b && (b.id === 'sound' || b.classList.contains('test'))) return;
+    const go = () => { removeEventListener('click', go, true); clearTimeout(fb); setTimeout(welcome); };
+    addEventListener('click', go, true); const fb = setTimeout(go, 1500);
+  }, true);
+  Curio.onSound(on => { if (on && tapped) welcome(); else if (!on) hush(); });
+  Curio.init({clips: "voice:*", rate: .95});
+  $('read').onclick = readNow;
+  window.__pigs = {state, said, queued, readParts, last: () => Curio.last};  // for checking frames
 
   drawHouse();
 })();

@@ -21,3 +21,10 @@ Making change is counting up. If a pretzel costs 35¢ and you pay with two quart
 - Tap a coin in **Your change** to take it back. Too much or too little change, and the customer says so.
 - At 3:45 the bell rings and the day's money is added up in dollars and cents. **Open again** starts a new day with new customers.
 - Sound starts on. There's no score.
+
+## Voice
+
+- One friendly narrator voice speaks for every customer: their hellos, what they paid, too much or too little change, their thanks, and the closing total.
+- Nothing is said until the first tap. Money is said in words ("25 cents", "one dollar").
+- **Read** says the speech bubble again (or the closing summary). Read always stops other speech first.
+- **Sound** off silences the customers and the sound effects; Read still speaks.

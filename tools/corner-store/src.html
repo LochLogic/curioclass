@@ -159,24 +159,12 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
   </aside>
 </main>
 
+<script src="kit:curio"></script>
 <script>
 (() => {
   const $ = id => document.getElementById(id);
   const SVGNS = 'http://www.w3.org/2000/svg';
-  // Motion follows the device's "reduce motion" setting until the teacher picks, then the choice is remembered
-  let reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  try { const m = localStorage.getItem('curio-motion'); if (m) reduce = m === 'calm'; } catch {}
-  function showMotion() {
-    document.body.classList.toggle('calm', reduce);
-    $('motion').setAttribute('aria-pressed', !reduce);
-    $('motion').textContent = reduce ? '⏸ Motion' : '✨ Motion';
-  }
-  showMotion();
-  $('motion').onclick = () => {
-    reduce = !reduce;
-    try { localStorage.setItem('curio-motion', reduce ? 'calm' : 'on'); } catch {}
-    showMotion();
-  };
+  // Motion, Sound and Read come from the shared kit (kit/curio.js)
   const wait = ms => new Promise(r => setTimeout(r, ms));  // same pacing with motion off, so sounds stay in step
   const readMs = text => 1400 + text.length * 75;
 
@@ -244,7 +232,7 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
   const THANKS = ['Thank you! See you tomorrow!', 'Yum! Thanks!', 'Thanks a bunch!', 'That’s just right. Thank you!', 'Perfect change. Thanks!'];
   const CUSTOMERS = 9, OPEN = 15 * 60;  // 3:00 pm, in minutes
 
-  const state = {day: [], n: 0, labels: true, sound: true, busy: false, counted: 0, change: [], till: 0, served: 0};
+  const state = {day: [], n: 0, labels: true, busy: false, counted: 0, change: [], till: 0, served: 0};
   const pick = a => a[Math.floor(Math.random() * a.length)];
   const shuffle = a => { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
 
@@ -269,14 +257,14 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
   let ctx;
   const audio = () => (ctx ||= new (window.AudioContext || window.webkitAudioContext)());
   function tone(type, f0, f1, dur, gain, when = 0) {
-    if (!state.sound) return;
+    if (!Curio.sound) return;
     const a = audio(), o = a.createOscillator(), g = a.createGain(), t = a.currentTime + when;
     o.type = type; o.frequency.setValueAtTime(f0, t); o.frequency.exponentialRampToValueAtTime(f1, t + dur);
     g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(gain, t + 0.01); g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
     o.connect(g).connect(a.destination); o.start(t); o.stop(t + dur + 0.05);
   }
   function noise(dur, freq, gain, type = 'lowpass', when = 0) {
-    if (!state.sound) return;
+    if (!Curio.sound) return;
     const a = audio(), len = a.sampleRate * dur, buf = a.createBuffer(1, len, a.sampleRate), d = buf.getChannelData(0);
     for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * (1 - i / len) ** 3;
     const src = a.createBufferSource(), f = a.createBiquadFilter(), g = a.createGain();
@@ -398,12 +386,20 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
       <g transform="translate(${w / 2 + 2} ${-h * .5}) rotate(7)" filter="url(#shadow)"><path d="M0 0L20-22H112V22H20Z" fill="#fff6c9" stroke="#8a5a12" stroke-width="3" stroke-linejoin="round"/><circle cx="17" r="4.5" fill="#8a5a12"/>
       <text x="67" y="11" text-anchor="middle" font-family="'Trebuchet MS','Segoe UI',sans-serif" font-size="32" font-weight="800" fill="#2a2622">${it.price}¢</text></g></g>` : '';
   }
-  function say(text) {
+  // Show a customer's speech bubble and have the narrator say it. Returns when the line has been said (or dropped).
+  // A new bubble drops the old bubble's line if it hasn't finished, but never cuts off Read
+  function say(text, parts = text ? [spoken(text)] : []) {
     $('say').replaceChildren();
-    if (!text) return;
+    drop();
+    bubbleParts = parts;
+    if (!text) return Promise.resolve();
+    const done = voice(parts);
     const fo = el('foreignObject', {x: 586, y: 70, width: 384, height: 230}, $('say'));
     fo.innerHTML = `<div xmlns="http://www.w3.org/1999/xhtml" class="speech pop" role="status">${text}<svg class="tail" viewBox="0 0 44 34" aria-hidden="true"><path d="M8 0L0 32L34 0Z" fill="#fff"/><path d="M8 1.5L0 32L34 1.5" fill="none" stroke="#2a2622" stroke-width="3" stroke-linejoin="round"/></svg></div>`;
+    return done;
   }
+  // a money line is said one sentence at a time, so a few short recordings cover every price and amount paid
+  const sayEach = text => say(text, sentences(text));
   function clock(min, animate = true) {
     const m = min % 60, hr = Math.floor(min / 60) % 12 || 12;
     $('minute').style.transform = `rotate(${m * 6}deg)`;
@@ -453,8 +449,8 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
     customer('arrive');
     await wait(1100);
     const hi = pick(HELLO).replace('{a}', it.a).replace('{name}', it.name);
-    say(hi); item(true);
-    await wait(readMs(hi));
+    const hiSaid = say(hi); item(true);
+    await Promise.all([wait(readMs(hi)), hiSaid]);
     const pay = 'Here you go!';
     say(pay);
     c.coins.some(v => v === 100) ? SFX.bill() : c.coins.forEach((v, i) => setTimeout(() => SFX.clink(v), i * 120));
@@ -469,7 +465,7 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
     drawPaid();
     if (state.counted === c.coins.length) {
       const price = ITEMS[c.item].price;
-      say(c.paid === price ? `That’s ${cents(c.paid)}. Just right for ${it(c)}!` : `That’s ${cents(c.paid)}. ${cap(it(c))} is ${cents(price)}, so I need some change, please.`);
+      sayEach(c.paid === price ? `That’s ${cents(c.paid)}. Just right for ${it(c)}!` : `That’s ${cents(c.paid)}. ${cap(it(c))} is ${cents(price)}, so I need some change, please.`);
       drawChange();
     }
     panel();
@@ -494,18 +490,18 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
     const giving = state.change.reduce((s, v) => s + v, 0);
     if (giving !== need) {
       const price = ITEMS[c.item].price;
-      if (giving > need) { SFX.whoa(); say(`Whoa, that’s too much change! Count up from ${cents(price)} again. Stop at ${cents(c.paid)}.`); }
-      else { SFX.hmm(); say(`Hmm, I paid ${cents(c.paid)}. Count up from ${cents(price)} to ${cents(c.paid)}. I think I need a little more.`); }
+      if (giving > need) { SFX.whoa(); sayEach(`Whoa, that’s too much change! Count up from ${cents(price)} again. Stop at ${cents(c.paid)}.`); }
+      else { SFX.hmm(); sayEach(`Hmm, I paid ${cents(c.paid)}. Count up from ${cents(price)} to ${cents(c.paid)}. I think I need a little more.`); }
       return;
     }
     state.busy = true; panel();
     SFX.chaching();
     state.till += ITEMS[c.item].price; state.served++;
     const thanks = pick(THANKS);
-    say(thanks);
+    const thanksSaid = say(thanks);
     $('customer').firstElementChild.classList.replace('arrive', 'hop');
     $('item').replaceChildren();
-    await wait(Math.max(1600, readMs(thanks) - 600));
+    await Promise.all([wait(Math.max(1600, readMs(thanks) - 600)), thanksSaid]);
     clock(OPEN + 5 * (state.n + 1));
     say('');
     $('customer').firstElementChild.className = 'leave';
@@ -530,11 +526,13 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
       <text x="530" y="222" text-anchor="middle" font-family="Segoe UI,sans-serif" font-size="21" font-weight="700" fill="#2a2622">${state.served} customers. The till has</text>
       <text x="530" y="296" text-anchor="middle" font-family="Trebuchet MS,sans-serif" font-size="62" font-weight="800" fill="#2f7d4f">${dollars(total)}</text>
       <text x="530" y="340" text-anchor="middle" font-family="Segoe UI,sans-serif" font-size="21" font-weight="700" fill="#6d6257">That’s ${total}¢. A dollar is 100¢.</text></g>`;
-    say('');
+    say('', closingParts(state.served, total));
+    voice(bubbleParts);
     $('say').dataset.text = text;
     state.busy = false; panel();
   }
   function openDay() {
+    hush();
     state.day = planDay(); state.n = 0; state.till = 0; state.served = 0;
     $('closed').replaceChildren(); delete $('say').dataset.text;
     clock(OPEN, false);
@@ -547,44 +545,61 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
     e.currentTarget.setAttribute('aria-pressed', state.labels);
     if (state.n < CUSTOMERS && state.day.length) { drawPaid(); drawChange(); }
   };
-  $('sound').onclick = e => {
-    state.sound = !state.sound;
-    e.currentTarget.setAttribute('aria-pressed', state.sound);
-    e.currentTarget.textContent = state.sound ? '🔔 Sound' : '🔇 Sound';
-  };
-  // Read aloud with the most natural voice this browser offers
-  function bestVoice() {
-    const voices = speechSynthesis.getVoices().filter(v => /^en(-|_|$)/i.test(v.lang));
-    const score = v => (/natural|neural/i.test(v.name) ? 50 : 0) + (/premium|enhanced/i.test(v.name) ? 40 : 0) +
-      (/google/i.test(v.name) ? 30 : 0) + (/aria|jenny|ava|samantha|libby|sonia/i.test(v.name) ? 10 : 0) +
-      (/en-US/i.test(v.lang) ? 5 : 0) + (v.default ? 1 : 0) - (/david|mark|zira|desktop/i.test(v.name) ? 20 : 0);
-    return voices.sort((a, b) => score(b) - score(a))[0] || null;
+  // ---------- narration: the customers' lines in one narrator voice; Read always wins ----------
+  // Spoken text must match voice/lines.json exactly (a recording plays; otherwise the browser voice reads it).
+  // Money is said in words: 25¢ is "25 cents" and $1.00 is "one dollar". Customers only ever pay up to a dollar,
+  // so every customer line is a fixed sentence (money lines one sentence at a time, to keep the file small);
+  // the closing total is said in pieces, with its cents from a counted group of "1 cent" to "99 cents".
+  const spoken = t => t.replace(/’/g, "'").replace(/\$1\.00/g, 'one dollar').replace(/(\d+)¢/g, '$1 cents');
+  const sentences = t => spoken(t).split(/(?<=[.!?]) +/);
+  const centsWord = c => c === 1 ? '1 cent' : `${c} cents`;
+  function closingParts(served, total) {
+    const d = Math.floor(total / 100), c = total % 100;
+    return [`Closing time! The bell rang at 3:45. You helped ${served} customers.`,
+      `The till has ${d} dollar${d === 1 ? '' : 's'}${c ? ' and' : '.'}`, ...(c ? [centsWord(c)] : []),
+      `That's ${d} hundred${c ? '' : ' cents!'}`, ...(c ? [centsWord(c)] : [])].filter(Boolean);
   }
-  if ('speechSynthesis' in window) {
-    // Chrome fills its voice list late; hold an early utterance until the good voices load, or it falls back to a robotic default
-    const speak = speechSynthesis.speak.bind(speechSynthesis);
-    speechSynthesis.speak = u => {
-      if (speechSynthesis.getVoices().length) return speak(u);
-      let done = false;
-      const go = () => { if (done) return; done = true; const v = bestVoice(); if (v) { u.voice = v; u.lang = v.lang; } speak(u); };
-      speechSynthesis.addEventListener('voiceschanged', go, {once: true});
-      setTimeout(go, 1500);
-    };
-    speechSynthesis.getVoices();
+  let bubbleParts = [], tapped = false, vq = Promise.resolve(), vgen = 0, readP = Promise.resolve(), reading = 0;
+  let freeLines = () => {}, linesFreed = new Promise(r => freeLines = r), freeRead = () => {}, readFreed = new Promise(r => freeRead = r);
+  // Queue a line (one or more parts); resolves when said, or at once when dropped (Sound off, a new bubble, a new day)
+  function voice(parts) {
+    if (!tapped || !Curio.sound || !parts.length) return Promise.resolve();
+    const gen = vgen, n = parts.join(' ').length;
+    const p = vq.then(async () => {
+      await readP;
+      if (gen !== vgen) return;
+      await Promise.race([Curio.say(parts), wait(2500 + 80 * n), linesFreed]);
+    });
+    vq = p.catch(() => {});
+    return p;
   }
-  $('read').onclick = () => {
-    if (!('speechSynthesis' in window)) return;
-    speechSynthesis.cancel();
-    const text = ($('say').dataset.text || $('say').textContent).trim().replace(/¢/g, ' cents');
-    if (!text) return;
-    const u = new SpeechSynthesisUtterance(text);
-    const v = bestVoice();
-    if (v) { u.voice = v; u.lang = v.lang; }
-    u.rate = .95; u.pitch = 1; speechSynthesis.speak(u);
-  };
+  // drop lines that are queued or playing (a stopped clip never ends, so their waiters are released too); Read keeps going
+  function drop() { vgen++; vq = Promise.resolve(); freeLines(); linesFreed = new Promise(r => freeLines = r); if (!reading) Curio.stop(); }
+  function hush() { drop(); reading = 0; readP = Promise.resolve(); freeRead(); readFreed = new Promise(r => freeRead = r); Curio.stop(); }
+  // Read: the bubble showing (or the closing summary), from the same fixed lines
+  function readNow() {
+    hush();
+    const parts = bubbleParts.length ? bubbleParts : [], me = ++reading;
+    if (!parts.length) { reading = 0; return; }
+    readP = Promise.race([Curio.say(parts, true), wait(2500 + 80 * parts.join(' ').length), readFreed]).catch(() => {})
+      .then(() => { if (reading === me) reading = 0; });
+  }
+  // nothing is said before the first tap; the line on screen then is said once that tap's own click has run
+  // (unless that tap was Read, the Sound button, or queued its own line)
+  for (const ev of ['pointerdown', 'keydown']) addEventListener(ev, e => {
+    if (tapped) return; tapped = true;
+    const b = e.target && e.target.closest ? e.target.closest('button') : null;
+    if (b && (b.id === 'sound' || b.id === 'read')) return;
+    const shown = bubbleParts;
+    const go = () => { removeEventListener('click', go, true); clearTimeout(fb); setTimeout(() => { if (bubbleParts === shown) voice(shown); }); };
+    addEventListener('click', go, true); const fb = setTimeout(go, 1500);
+  }, true);
+  Curio.onSound(on => { if (!on) hush(); });
+  Curio.init({clips: "voice:*", rate: .95});
+  $('read').onclick = readNow;
 
   drawMenu(); drawDrawer();
-  window.__store = state; window.__close = close;  // for checking frames
+  window.__store = state; window.__close = close; window.__said = () => Curio.last; window.__parts = () => bubbleParts;  // for checking frames
   openDay();
 })();
 </script>

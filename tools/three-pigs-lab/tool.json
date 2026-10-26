@@ -10,7 +10,8 @@
   "sources": [
     "Illustrations generated with Google Gemini, edited for Curio Class",
     "Sounds generated in the browser",
-    "Material properties simplified for grade 2 on a 0-3 scale"
+    "Material properties simplified for grade 2 on a 0-3 scale",
+    "Narration generated with Qwen3-TTS (Apache 2.0), cloning a Google Gemini text-to-speech voice"
   ],
   "third_party": [],
   "updated": "2026-10-23"

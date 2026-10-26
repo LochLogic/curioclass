@@ -19,3 +19,10 @@ No material is best at everything. Bricks beat the wolf but you can't see throug
 - Walls are tested by Wolf, Peek and Cold night. The roof is tested by Rain.
 - Sound starts on (the Sound button turns it off). There's no score.
 - Properties are simplified for 2nd grade (each material gets a 0-3 rating).
+
+## Voice
+
+- One storyteller voice reads the whole story: the wolf, the pig and each result. The story waits for each line to finish before it moves on.
+- Nothing is said until the first tap. Then a short welcome plays once (skipped if the first tap starts a test).
+- **Read** says the result, or the speech bubble on screen during a test, or the build line under Test it. Read always stops other speech first.
+- **Sound** off silences the narrator and the sound effects; Read still speaks.
