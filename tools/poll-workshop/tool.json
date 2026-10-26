@@ -1,0 +1,30 @@
+{
+  "id": "poll-workshop",
+  "status": "beta",
+  "hook": "Poll an invented town of 20,000 whose true answer is hidden, then reveal it: a bigger sample shrinks the plus or minus, but a biased poll of 2,000 people can still be confidently wrong.",
+  "outcome": "Explain how the way a sample is chosen and the way a question is worded bias a survey, estimate a proportion with a margin of error, and see why the margin of error covers only the luck of the draw",
+  "driver": "students",
+  "minutes": "20-40",
+  "modes": [
+    "Workshop",
+    "Case file",
+    "Budget desk"
+  ],
+  "grades_label": "Grade 11",
+  "sources": [
+    "Squire, Peverill (1988), \"Why the 1936 Literary Digest Poll Failed,\" Public Opinion Quarterly 52(1): 125-133: https://doi.org/10.1086/269085",
+    "Lohr, Sharon L. and J. Michael Brick (2017), \"Roosevelt Predicted to Win: Revisiting the 1936 Literary Digest Poll,\" Statistics, Politics and Policy 8(1): 65-84 (10 million mailed, almost 2.4 million returned, frame from telephone and automobile lists; cites the Digest's final count, Landon 1,293,669 to Roosevelt 972,897): https://doi.org/10.1515/spp-2016-0006",
+    "Office of the Clerk, US House of Representatives, Statistics of the Presidential and Congressional Election of November 3, 1936 (Roosevelt 60.8 percent, Landon 36.5 percent): https://history.house.gov/Institution/Election-Statistics/",
+    "National Archives, Electoral College results, 1936 (523 to 8): https://www.archives.gov/electoral-college/1936",
+    "Pew Research Center (2016), 5 key things to know about the margin of error in election polls: https://www.pewresearch.org/short-reads/2016/09/08/understanding-the-margin-of-error-in-election-polls/",
+    "Pew Research Center, Writing Survey Questions: https://www.pewresearch.org/our-methods/u-s-surveys/writing-survey-questions/",
+    "Diez, Cetinkaya-Rundel and Barr, OpenIntro Statistics, 4th ed., sections 1.3 and 1.4 (CC BY-SA): https://www.openintro.org/book/os/",
+    "Common Core State Standards for Mathematics, High School Statistics and Probability (S-IC.A.1, S-IC.B.3, S-IC.B.4, S-ID.A.4): https://www.thecorestandards.org/Math/Content/HSS/",
+    "Millbrook, its residents, opinions, lists and every bias size are invented for this tool (said on screen); results checked by simulation 2026-10-25",
+    "Map, dots, wall, bars and normal curve drawn in code; sounds generated in the browser",
+    "Background texture generated on this PC with FLUX.1-schnell (Apache 2.0), no people",
+    "Narration generated with Qwen3-TTS (Apache 2.0), cloning a Google Gemini text-to-speech voice"
+  ],
+  "third_party": [],
+  "updated": "2026-10-25"
+}

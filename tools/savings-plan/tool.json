@@ -1,7 +1,6 @@
 {
   "id": "savings-plan",
   "status": "beta",
-  "stage": "built",
   "hook": "Race two savings plans day by day: a doubling penny loses to ten dollars a week for ten days, then wins by millions, and every deposit and running total is in the ledger.",
   "outcome": "Write sequences explicitly and recursively, read a balance as a partial sum, and derive and use the arithmetic and geometric series formulas",
   "driver": "students",
@@ -16,7 +15,9 @@
     "Common Core State Standards for Mathematics, F-IF.A.3 and A-SSE.B.4: https://www.thecorestandards.org/Math/Content/HSF/IF/ and https://www.thecorestandards.org/Math/Content/HSA/SSE/",
     "Every preset and customer number computed by the tool's ledger (each deposit rounded to the cent, half up; balance = sum of rounded deposits), checked against an independent Python recomputation (2026-10-25)",
     "Customers, goals and plans are invented; no real prices, rates or people",
-    "Chart, ledger, cards, locks and checks drawn in code; sounds generated in the browser"
+    "Chart, ledger, cards, locks and checks drawn in code; sounds generated in the browser",
+    "Background images generated on this PC with FLUX.1-schnell (Apache 2.0), no people",
+    "Narration generated with Qwen3-TTS (Apache 2.0), cloning a Google Gemini text-to-speech voice"
   ],
   "third_party": [],
   "updated": "2026-10-25"

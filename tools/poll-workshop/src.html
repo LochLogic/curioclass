@@ -1,0 +1,1290 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Poll Workshop · Who you ask beats how many · Curio Class</title>
+<meta name="description" content="Poll an invented town of 20,000 whose true answer is hidden, then reveal it. A bigger sample shrinks the plus or minus, but only a fair method puts the headline near the truth. Grade 11 statistics. Works offline.">
+<!--
+Poll Workshop (Curio Class)
+Grade 11 math, Statistics and Probability, Statistical Inference: S-IC.A.1 (statistics as a process for making
+inferences about a population from a sample), S-IC.B.3 (sample surveys and the role of randomization), S-IC.B.4
+(estimate a population proportion and a margin of error from a sample survey), S-ID.A.4 (fit a normal distribution).
+Students drive, on their own laptops; also works on a projector. Workshop: design a poll of Millbrook (who you ask, how
+you ask, how many), run it over and over, then reveal the truth. Case file: the 1936 Literary Digest poll, rerun in
+Millbrook. Budget desk: three rounds of publishing one headline on a $10,000 budget.
+The one idea: a bigger sample shrinks the plus or minus, but bias does not shrink with sample size, and the printed
+margin of error does not cover it.
+Facts: Squire (1988) Public Opinion Quarterly 52(1):125-133 and Lohr and Brick (2017) Statistics, Politics and Policy
+8(1):65-84 for the Literary Digest poll (10 million mailed, about 2.4 million returned; final Digest count Landon
+1,293,669 to Roosevelt 972,897, 57 to 43 between the two); Office of the Clerk, US House, 1936 election statistics
+(Roosevelt 60.8 percent, Landon 36.5 percent); National Archives (523 to 8 electoral votes); Pew Research Center on the
+margin of error and on question wording; OpenIntro Statistics 4th ed. sections 1.3 and 1.4 (CC BY-SA).
+Millbrook and all its numbers are invented (said on screen). Map, dots, wall, bars and curve drawn in code;
+one painted texture (newsprint) behind the headline card.
+One file, no network requests. Content CC BY 4.0, code MIT. curioclass.org
+-->
+<link rel="stylesheet" href="kit:curio">
+<link rel="stylesheet" href="kit:theme-912">
+<style>
+:root{--brand:#f0b650;--brand-ink:#1c1203;--yes:#ffc94a;--no:#7cc8ff;--truth:#ffffff;--halo:#0b1017}
+/* three layouts, picked in script (layout()):
+   wide    (1200 px or wider and 700 px or taller): map and wall on the left, a Results column, the design panel right;
+   compact (a short landscape box, such as the 16:10 embed at 680x425 to 1000x625): map and wall left, a compact
+           panel right with the design controls first (the method list becomes a select), then the results;
+   stack   (narrow or portrait): map and wall on top, the panel under them. */
+main{grid-template-columns:minmax(0,1fr) 300px 410px}
+@media (max-height:820px){body.wide header{padding:6px 20px}body.wide h1{font-size:26px}body.wide h1 small{display:none}
+  body.wide .seg button,body.wide .icon-btn{min-height:46px}body.wide .panel{padding:10px 14px}}
+body:not(.wide) main{grid-template-columns:minmax(0,1fr) 370px}
+body.compact main{grid-template-columns:minmax(0,1fr) 300px}
+@media (min-width:900px){body.compact main{grid-template-columns:minmax(0,1fr) 340px}}
+body:not(.wide) .rescol{display:none}
+.stage{display:flex;flex-direction:column;background:radial-gradient(ellipse at 30% 20%,#121c2a,#0a0f17 70%);min-height:0}
+.mapbox{position:relative;flex:1 1 54%;min-height:0;display:flex;flex-direction:column}
+.mapcv{position:relative;flex:1;min-height:0}
+.mapfoot{display:flex;justify-content:space-between;align-items:center;gap:4px 10px;padding:2px 8px 3px;flex-wrap:wrap}
+.wallbox{position:relative;flex:1 1 46%;min-height:0;display:flex;flex-direction:column;border-top:1px solid var(--line);background:#0c121a}
+#map{position:absolute;inset:0;width:100%;height:100%;display:block}
+.maptag{font:600 12.5px 'Segoe UI',system-ui,sans-serif;color:var(--muted)}
+.mapkey{display:flex;gap:10px;font:600 12.5px 'Segoe UI',system-ui,sans-serif;color:var(--ink)}
+.mapkey span{display:inline-flex;align-items:center;gap:4px}
+.mapkey svg{width:14px;height:14px}
+.wallbar{display:flex;align-items:center;gap:6px 8px;padding:4px 8px;flex-wrap:wrap}
+.wallbar h2{margin:0 auto 0 0;font:700 12px/1.2 'Segoe UI',system-ui,sans-serif;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+.wallbar label{font-size:13px;color:var(--muted);display:inline-flex;align-items:center;gap:6px}
+.wallbar .sel{width:auto;max-width:190px}
+.sel{min-height:44px;border-radius:8px;border:1px solid var(--btn-line);background:var(--btn);color:var(--ink);font:600 14px 'Segoe UI',system-ui,sans-serif;padding:0 8px;max-width:100%}
+.wallwrap{position:relative;flex:1;min-height:0}
+#wall{position:absolute;inset:0;width:100%;height:100%;display:block;overflow:visible}
+#wall:focus-visible{outline-offset:-4px}
+.wkey{display:flex;flex-wrap:wrap;gap:2px 10px;padding:0 8px 4px;font:12px 'Segoe UI',system-ui,sans-serif;color:var(--muted);min-height:4px}
+.wkey i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:4px;vertical-align:-1px}
+.wtip{position:absolute;z-index:5;max-width:260px;background:#1b2430;border:1px solid var(--btn-line);border-radius:8px;padding:6px 9px;font:13px/1.35 'Segoe UI',system-ui,sans-serif;color:var(--ink);pointer-events:none;box-shadow:0 4px 14px #0008}
+.wtip b{font-family:var(--readout-font)}
+/* wall drawing */
+.w-axis{stroke:#c9d3df;stroke-width:1.2}
+.w-tick{fill:var(--muted);font:12px var(--readout-font)}
+.w-title{fill:var(--muted);font:12px 'Segoe UI',system-ui,sans-serif}
+.w-50{stroke:#c9d3df;stroke-width:1.2;stroke-dasharray:4 4;opacity:.7}
+.w-dot.drop{animation:drop .35s ease-out both}
+@keyframes drop{from{transform:translateY(-26px);opacity:0}to{transform:none;opacity:1}}
+.w-new{fill:none;stroke:var(--ink);stroke-width:1.6}
+.w-bar{stroke:var(--ink);stroke-width:2}
+.w-sel{fill:none;stroke:var(--focus);stroke-width:2}
+.w-truth{stroke:var(--truth);stroke-width:2.5}
+.w-tlabel{fill:var(--truth);font:700 13px 'Segoe UI',system-ui,sans-serif;paint-order:stroke;stroke:var(--halo);stroke-width:4px;stroke-linejoin:round}
+.w-curve{fill:none;stroke:var(--brand);stroke-width:2}
+.w-shade{fill:rgba(240,182,80,.16)}
+.w-note{fill:var(--ink);font:600 13px 'Segoe UI',system-ui,sans-serif;paint-order:stroke;stroke:var(--halo);stroke-width:4px}
+.w-small{fill:var(--brand);font:600 12px 'Segoe UI',system-ui,sans-serif;paint-order:stroke;stroke:var(--halo);stroke-width:4px}
+.w-lane{stroke:#2b3646;stroke-width:1}
+.w-lanecap{fill:var(--ink);font:600 11.5px 'Segoe UI',system-ui,sans-serif}
+.w-plate{fill:rgba(12,18,26,.88)}
+.w-empty{fill:var(--muted);font:14px 'Segoe UI',system-ui,sans-serif}
+/* panel and results */
+.rescol{background:var(--panel);border-left:1px solid var(--line);padding:10px;display:flex;flex-direction:column;gap:10px;overflow:auto;min-width:0}
+.glab{display:block;font-size:13px;font-weight:600;color:var(--muted);margin:7px 0 3px}
+.glab:first-of-type{margin-top:0}
+.methods{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.mbtn{text-align:left;min-height:44px;padding:4px 7px;border-radius:8px;border:1px solid var(--btn-line);background:var(--btn);color:var(--ink);font:600 14px/1.2 'Segoe UI',system-ui,sans-serif}
+.mbtn small{display:block;font-weight:400;font-size:12px;color:var(--muted);margin-top:1px;line-height:1.22}
+.mbtn[aria-pressed="true"]{background:var(--brand);border-color:var(--brand);color:var(--brand-ink)}
+.mbtn[aria-pressed="true"] small{color:#3b2a08}
+.mbtn:hover{border-color:var(--muted)}
+#methodSel{width:100%}
+.mdesc{margin:4px 0 0;font-size:13px;color:var(--muted);line-height:1.3}
+.grp{display:flex}
+.grp .btn{border-radius:0;margin-left:-1px;flex:1;padding:0 6px}
+.grp .btn:first-child{border-radius:8px 0 0 8px;margin-left:0}
+.grp .btn:last-child{border-radius:0 8px 8px 0}
+.qtext{margin:5px 0 0;font-size:14px;line-height:1.35;font-style:italic;color:var(--ink)}
+.nrow{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:10px;align-items:center;margin-top:4px}
+.nrow .glab{margin:0}
+.nread{font:700 16px var(--readout-font);color:var(--ink);min-width:5.6em;text-align:right}
+.btnrow{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.btnrow .btn{flex:1 1 auto}
+.big-btn.run{min-height:44px;font-size:16px;padding:0 14px;flex:1 1 auto}
+.cost{margin:8px 0 0;font:600 14px var(--readout-font)}
+.cost.over{color:var(--warn)}
+.cost.over::before{content:'⚠ '}
+.rbig{font:700 20px/1.2 var(--readout-font);margin:0;color:var(--ink)}
+.rline{margin:3px 0 0;font:14.5px/1.35 var(--readout-font);color:var(--ink)}
+.rline:empty{display:none}
+.rnone{margin:0;color:var(--muted);font-size:14px}
+.few{margin:4px 0 0;font-size:14px;color:var(--warn)}
+.few::before{content:'⚠ '}
+.paper{margin:8px 0 0;border-radius:6px;padding:9px 12px 8px;color:#1d1a14;
+  background:linear-gradient(rgba(239,233,216,.86),rgba(233,226,206,.9)),url(art:newsprint) center/cover,#ece5d1;box-shadow:0 2px 8px #0006}
+.paper .hl{margin:0;font:800 19px/1.2 Georgia,'Times New Roman',serif;letter-spacing:-.2px}
+.paper .dl{margin:5px 0 0;font:italic 13px/1.3 Georgia,'Times New Roman',serif;color:#3a342a;border-top:1px solid #8a8070;padding-top:4px}
+.info{margin:8px 0 0;font-size:13px;color:var(--muted);line-height:1.35}
+.tl{margin:0 0 3px;font-size:14.5px;line-height:1.35}
+.tl b{font-family:var(--readout-font);font-weight:700}
+ul.caught{margin:2px 0 0;padding:0;list-style:none;font-size:14px;line-height:1.4}
+ul.caught li{margin-bottom:3px}
+ul.caught b{font-family:var(--readout-font)}
+ul.caught svg{vertical-align:-1px}
+.tl b.yes{color:var(--ok)} .tl b.no{color:var(--warn)}
+.tl b.yes::before{content:'✓ '} .tl b.no::before{content:'✗ '}
+.hidden-truth{margin:0;color:var(--muted);font-size:14px}
+table.who{width:100%;font-size:13px}
+table.who th,table.who td{padding:3px 5px}
+table.who td:first-child,table.who th:first-child{text-align:left;font-family:'Segoe UI',system-ui,sans-serif}
+table.who tr.sub th{text-align:left;color:var(--brand);font-family:'Segoe UI',system-ui,sans-serif;border-left:0;border-right:0}
+table.who tr.big td{outline:2px solid var(--brand);outline-offset:-2px}
+table.who tr.big td:first-child::after{content:' ◀';color:var(--brand)}
+table.who td.bars{width:70px;padding:3px 4px}
+.pb{display:block;height:5px;border-radius:2px;margin:1px 0}
+.pb.s{background:var(--brand)}
+.pb.t{background:#8796aa}
+.whokey{margin:5px 0 0;font-size:12px;color:var(--muted)}
+.whokey i{display:inline-block;width:14px;height:5px;border-radius:2px;margin:0 4px 1px 0;vertical-align:middle}
+.case p{margin:0 0 8px;font-size:14.5px;line-height:1.45}
+.case .cite{font-size:12px;color:var(--muted);margin:0}
+.case ol{margin:8px 0 0;padding-left:20px;font-size:14.5px;line-height:1.45}
+.case ol li{margin-bottom:4px}
+.case .btn{text-align:left;min-height:44px;padding:6px 10px;width:100%;margin-top:6px}
+.case .done::after{content:' ✓ ran 20'}
+.brief p{margin:0;font-size:15px;line-height:1.4}
+.brief .round{font:700 14px var(--readout-font);color:var(--brand);margin-top:6px}
+.log{margin:0;padding-left:20px;font-size:13.5px;line-height:1.45}
+.log li{margin-bottom:6px}
+.log:empty::before{content:'No rounds published yet.';color:var(--muted);margin-left:-20px}
+.panel .tip,.rescol .tip{margin-top:auto;font-size:13.5px}
+.rescol .hint{font-size:15.5px;line-height:1.4}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+/* compact */
+body.compact header{padding:4px 8px;gap:4px;flex-wrap:nowrap;min-width:0}
+body.compact h1{font-size:16px;white-space:nowrap;min-width:0;overflow:hidden;text-overflow:ellipsis}
+body.compact h1 small{display:none}
+body.compact .seg{flex:none}
+body.compact .seg button,body.compact .icon-btn{min-height:44px;padding:0 8px;font-size:13.5px;white-space:nowrap}
+body.compact .icon-btn{flex:none;min-width:44px;padding:0 6px}
+body.compact .icon-btn .lbl{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+body.compact .panel{padding:6px 8px;gap:6px}
+body.compact .sec{padding:6px 8px}
+body.compact .sec>h2{margin-bottom:4px}
+body.compact #designSec>h2{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+body.compact .glab{margin:4px 0 2px;font-size:12px}
+body.compact .hint{font-size:14px}
+body.compact .btn{font-size:13.5px}
+body.compact .btnrow{margin-top:6px}
+body.compact .qtext{font-size:12.5px;margin-top:3px}
+body.compact .mdesc{font-size:12px;margin-top:2px}
+body.compact .rbig{font-size:18px}
+body.compact .paper .hl{font-size:16px}
+body.compact .wallbar{padding:2px 6px}
+body.compact .wallbar{flex-wrap:nowrap}
+body.compact .wallbar h2{font-size:11px;letter-spacing:.05em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+body.compact .wallbar h2.now{font:700 13px var(--readout-font);letter-spacing:0;text-transform:none;color:var(--brand)}
+body.compact .wallbar .sel{font-size:13px;max-width:130px;padding:0 4px}
+body.compact .wallbar label{gap:4px}
+body.compact .mapbox{flex-basis:41%}
+body.compact .wkey{flex-wrap:nowrap;white-space:nowrap;overflow:hidden;min-height:0;padding-bottom:2px}
+body.compact .wkey span:not(.imp){display:none}
+body.compact .wallbar label .lt{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+body.compact .brief>h2{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+body.compact .brief p{font-size:13.5px;line-height:1.3}
+body.compact .brief .round{margin-top:3px;font-size:13px}
+body.compact .cost{font-size:13px}
+body.compact .mapkey,body.compact .maptag{font-size:11.5px}
+body.compact .mapkey{gap:7px}
+body.compact .mapfoot{padding:1px 6px 2px}
+body:not(.compact) #methodSel,body:not(.compact) #methodSelL{display:none}
+body.compact .methods{display:none}
+body.compact #designSec{display:flex;flex-direction:column;gap:6px}
+body.compact #designSec .btnrow,body.compact #designSec .cost{order:-1;margin-top:0}
+body.compact #designSec .glab{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+body.compact .mdesc,body.compact .qtext{margin-top:-3px}
+body.compact .btnrow .btn,body.compact .big-btn.run{padding:0 8px}
+body.compact .case{display:flex;flex-direction:column}
+body.compact .case .btn{order:-1;margin:0 0 6px}
+body.compact .case h2{order:-2}
+/* stack */
+body.stack{height:auto}
+body.stack main{grid-template-columns:minmax(0,1fr);align-content:start}
+body.stack .panel{border-left:0;border-top:1px solid var(--line)}
+body.stack .stage{flex:none}
+body.stack .mapbox{flex:none;height:calc(min(100vw,900px) * .54)}
+body.stack .wallbox{flex:none;height:460px}
+@media (max-width:520px){header{gap:8px}.seg button,.icon-btn{padding:0 10px;font-size:14.5px;min-height:46px}.methods{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+  <h1>Poll Workshop <small>Who you ask matters more than how many.</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-work" aria-pressed="true">Workshop</button>
+    <button id="m-case" aria-pressed="false">Case file</button>
+    <button id="m-budget" aria-pressed="false">Budget desk</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true" title="Turn animation on or off">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true" title="Turn sound on or off">🔔 Sound</button>
+  <button class="icon-btn" id="read" title="Read the hint aloud">🔊 <span class="lbl">Read</span></button>
+</header>
+<main>
+  <div class="stage" id="stage">
+    <div class="mapbox">
+      <div class="mapcv" id="mapbox"><canvas id="map" role="img" aria-label="Map of Millbrook"></canvas></div>
+      <div class="mapfoot">
+      <div class="mapkey" id="mapkey" aria-hidden="true">
+        <span><svg viewBox="0 0 14 14"><circle cx="7" cy="7" r="6" fill="var(--yes)"/><path d="M3.8 7.2l2.2 2.2 4.2-4.6" fill="none" stroke="#1c1203" stroke-width="1.8"/></svg>said yes</span>
+        <span><svg viewBox="0 0 14 14"><circle cx="7" cy="7" r="5.4" fill="none" stroke="var(--no)" stroke-width="1.6"/><path d="M4.8 4.8l4.4 4.4M9.2 4.8l-4.4 4.4" stroke="var(--no)" stroke-width="1.5"/></svg>said no</span>
+        <span><svg viewBox="0 0 14 14"><circle cx="7" cy="7" r="2" fill="#8a96a8"/></svg>not asked</span>
+      </div>
+      <div class="maptag" id="maptag"></div>
+      </div>
+    </div>
+    <div class="wallbox" id="wallbox">
+      <div class="wallbar">
+        <h2 id="wallH">Headline wall</h2>
+        <label for="show"><span class="lt">Show</span> <select class="sel" id="show"></select></label>
+        <button class="btn" id="curve" aria-pressed="false" data-short="Curve">Normal curve</button>
+      </div>
+      <div class="wallwrap" id="wallwrap">
+        <svg id="wall" tabindex="0" role="application" aria-roledescription="dot plot" aria-describedby="wallHelp"></svg>
+        <div class="wtip" id="wtip" hidden></div>
+      </div>
+      <div class="wkey" id="wkey" aria-hidden="true"></div>
+      <p class="sr" id="wallHelp">Each row is one poll design and each dot is one poll result. Left and Right arrow keys move between dots, Up and Down move between rows, Home and End jump to the ends.</p>
+      <p class="sr" id="wallLive" aria-live="polite"></p>
+      <ol class="sr" id="wallText" aria-label="Headline wall values"></ol>
+    </div>
+  </div>
+  <div class="rescol" id="rescol"></div>
+  <aside class="panel" id="panel">
+    <p class="hint" id="hint"></p>
+    <section class="sec brief" id="brief" data-mode="budget" hidden>
+      <h2>Budget desk</h2>
+      <p>The Millbrook Courier gives you $10,000. Publish one headline you can stand behind.</p>
+      <p class="round" id="roundLbl"></p>
+    </section>
+    <section class="sec case" id="caseSec" data-mode="case" hidden>
+      <h2>Case file: 1936</h2>
+      <p>In 1936 the Literary Digest mailed about 10 million straw ballots, with names drawn largely from telephone directories and car registration lists, plus its own subscribers. About 2.4 million came back. The Digest predicted Alf Landon would beat Franklin Roosevelt, 57 percent to 43 percent. Roosevelt won with 60.8 percent of the popular vote to Landon's 36.5 percent, and 523 electoral votes to 8. George Gallup, with a much smaller sample chosen to match the voting public, called a Roosevelt win. In 1936, people with phones and cars were better off than most voters, and the people who mailed ballots back were not a random slice either.</p>
+      <p class="cite">Sources: Squire (1988), Public Opinion Quarterly; Office of the Clerk, US House; National Archives.</p>
+      <button class="btn" id="caseDigest" data-short="▶ Run the Digest's method">▶ Run the Digest's method in Millbrook</button>
+      <button class="btn" id="caseFair" data-short="▶ Run a fair method">▶ Run a fair method in Millbrook</button>
+      <ol>
+        <li>Two million answers and still wrong: what did the Digest's sample miss?</li>
+        <li>Which Millbrook method copies the Digest, and what does its plus or minus claim?</li>
+        <li>Why can a few thousand well-chosen people beat millions?</li>
+      </ol>
+    </section>
+    <section class="sec" id="designSec" data-mode="work budget">
+      <h2>Design your poll</h2>
+      <span class="glab" id="whoL">Who you ask</span>
+      <div class="methods" id="methods" role="group" aria-labelledby="whoL"></div>
+      <label class="sr" for="methodSel" id="methodSelL">Who you ask</label>
+      <select class="sel" id="methodSel"></select>
+      <p class="mdesc" id="mdesc"></p>
+      <span class="glab" id="howL">How you ask</span>
+      <div class="grp" id="wordings" role="group" aria-labelledby="howL"></div>
+      <p class="qtext" id="qtext"></p>
+      <div class="nrow"><span class="glab" id="nL">How many</span><input type="range" id="nRange" min="0" max="8" step="1" aria-labelledby="nL"><span class="nread" id="nRead" aria-hidden="true"></span></div>
+      <p class="cost" id="cost" data-mode="budget" aria-live="polite"></p>
+      <div class="btnrow" data-mode="work">
+        <button class="big-btn run" id="run">▶ Run poll</button>
+        <button class="btn" id="run50" data-short="Run 50 more">Run 50 more like this</button>
+      </div>
+      <div class="btnrow" data-mode="work">
+        <button class="btn" id="reveal" aria-pressed="false" data-short="Reveal">Reveal the truth</button>
+        <button class="btn" id="clear">Clear wall</button>
+        <button class="btn" id="newTown">New town</button>
+      </div>
+      <div class="btnrow" data-mode="budget">
+        <button class="big-btn run" id="publish">Publish</button>
+        <button class="btn" id="nextRound">Next round</button>
+        <button class="btn" id="startOver">Start over</button>
+      </div>
+    </section>
+    <section class="sec" id="resSec">
+      <h2>Results</h2>
+      <div id="resBody"></div>
+    </section>
+    <section class="sec" id="truthSec">
+      <h2>The truth</h2>
+      <div id="truthBody"></div>
+    </section>
+    <section class="sec" id="logSec" data-mode="budget" hidden>
+      <h2>Round log</h2>
+      <ol class="log" id="log"></ol>
+    </section>
+    <section class="sec" id="whoSec">
+      <h2>Who answered</h2>
+      <div id="whoBody"></div>
+    </section>
+    <p class="tip" id="tip">Millbrook is invented, so its true answer can be known. Its numbers are made up to show how polls behave; real bias sizes vary.</p>
+  </aside>
+</main>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const {say, wait} = Curio;
+
+  /* SAMPLING ENGINE (family: sampling)
+     Self-contained, no DOM: a seeded random generator, a town builder, the sampling methods (simple random, stratified,
+     cluster, systematic, weighted without replacement) and the poll numbers (p-hat, 95 percent margin of error).
+     Written so it can be lifted into kit/sampling.js later. Everything a tool needs to say about its own town
+     (sizes, ages, opinions, lists) is passed in as data. */
+  const Sampling = (() => {
+    // mulberry32: a small seeded generator, so the same seed gives the same town and the same runs on every load
+    function rng(seed) {
+      let a = seed >>> 0;
+      const r = () => { a = (a + 0x6D2B79F5) >>> 0; let t = a; t = Math.imul(t ^ (t >>> 15), t | 1); t ^= t + Math.imul(t ^ (t >>> 7), t | 61); return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+      r.normal = () => { let u = 0; while (u === 0) u = r(); return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * r()); };
+      r.int = n => Math.floor(r() * n);
+      return r;
+    }
+    // a town of groups (neighborhoods) made of blocks; residents are stored in list order: group, block, house.
+    // cfg: {seed, offset, groups: [{name, residents, blocks, ages: [shares in percent], shift}], ageBase: [percent],
+    //       blockSd, clamp: [lo, hi], traits: {name: (resident, r) => 0 or 1}}
+    function town(cfg) {
+      const r = rng(cfg.seed), G = cfg.groups, N = G.reduce((s, g) => s + g.residents, 0), A = cfg.ageBase.length;
+      const t = {seed: cfg.seed, offset: cfg.offset, N, groups: G, nBlocks: G.reduce((s, g) => s + g.blocks, 0),
+        group: new Uint8Array(N), block: new Uint16Array(N), age: new Uint8Array(N), yes: new Uint8Array(N), chance: new Float32Array(N),
+        blockShift: [], groupStart: [], blockStart: [], traits: {}};
+      for (const k in cfg.traits || {}) t.traits[k] = new Uint8Array(N);
+      let i = 0, b = 0;
+      G.forEach((g, gi) => {
+        t.groupStart.push(i);
+        // exact age counts for the group (largest remainder), shuffled over its residents
+        const raw = g.ages.map(s => s / 100 * g.residents), cnt = raw.map(Math.floor);
+        let left = g.residents - cnt.reduce((s, c) => s + c, 0);
+        raw.map((v, k) => [v - cnt[k], k]).sort((x, y) => y[0] - x[0]).slice(0, left).forEach(([, k]) => cnt[k]++);
+        const ages = []; cnt.forEach((c, k) => { for (let j = 0; j < c; j++) ages.push(k); });
+        for (let j = ages.length - 1; j > 0; j--) { const m = r.int(j + 1); [ages[j], ages[m]] = [ages[m], ages[j]]; }
+        const per = g.residents / g.blocks;
+        for (let bk = 0; bk < g.blocks; bk++, b++) {
+          const sh = r.normal() * cfg.blockSd;
+          t.blockShift.push(sh); t.blockStart.push(i);
+          for (let h = 0; h < per; h++, i++) {
+            const ag = ages[i - t.groupStart[gi]];
+            t.group[i] = gi; t.block[i] = b; t.age[i] = ag;
+            const p = Math.min(cfg.clamp[1], Math.max(cfg.clamp[0], cfg.ageBase[ag] + g.shift + sh + cfg.offset));
+            t.chance[i] = p;
+            t.yes[i] = r() * 100 < p ? 1 : 0;
+            for (const k in cfg.traits || {}) t.traits[k][i] = cfg.traits[k]({group: gi, age: ag, yes: t.yes[i]}, r) ? 1 : 0;
+          }
+        }
+      });
+      t.blockStart.push(N); t.groupStart.push(N);
+      let y = 0; for (let j = 0; j < N; j++) y += t.yes[j];
+      t.truth = 100 * y / N;
+      // shares of the whole town by group and by age band (percent), for comparing samples with the town
+      t.groupPct = G.map(g => 100 * g.residents / N);
+      t.agePct = Array.from({length: A}, (_, k) => { let c = 0; for (let j = 0; j < N; j++) c += t.age[j] === k; return 100 * c / N; });
+      return t;
+    }
+    // simple random sample of n from the indices from..to-1 (partial Fisher-Yates on a scratch array)
+    let scratch = new Int32Array(0);
+    function simple(r, from, to, n, out = [], ) {
+      const m = to - from;
+      if (scratch.length < m) scratch = new Int32Array(m);
+      for (let j = 0; j < m; j++) scratch[j] = from + j;
+      for (let j = 0; j < n; j++) { const k = j + r.int(m - j); const v = scratch[k]; scratch[k] = scratch[j]; scratch[j] = v; out.push(v); }
+      return out;
+    }
+    // counts in proportion to shares (percent) that add to exactly n (largest remainder)
+    function apportion(shares, n) {
+      const raw = shares.map(s => s / 100 * n), c = raw.map(Math.floor);
+      const left = n - c.reduce((s, v) => s + v, 0);
+      raw.map((v, k) => [v - c[k], k]).sort((x, y) => y[0] - x[0] || x[1] - y[1]).slice(0, left).forEach(([, k]) => c[k]++);
+      return c;
+    }
+    // stratified: a simple random sample inside each group, in the given shares of n
+    function stratified(r, t, n, shares) {
+      const c = apportion(shares, n), out = [];
+      c.forEach((k, g) => simple(r, t.groupStart[g], t.groupStart[g + 1], k, out));
+      return out;
+    }
+    // cluster: m random blocks, then n split evenly over them (the remainder one each to the first blocks picked)
+    function cluster(r, t, n, m) {
+      const blocks = simple(r, 0, t.nBlocks, m), out = [], base = Math.floor(n / m), rem = n - base * m;
+      blocks.forEach((b, j) => simple(r, t.blockStart[b], t.blockStart[b + 1], base + (j < rem ? 1 : 0), out));
+      return out;
+    }
+    // systematic: every k-th resident on the list from a random start in 0..k-1, k = floor(N / n)
+    function systematic(r, t, n) {
+      const k = Math.floor(t.N / n), s = r.int(k), out = [];
+      for (let j = 0; j < n; j++) out.push(s + j * k);
+      return out;
+    }
+    // weighted draw without replacement (the key method): key = u to the power 1/w, keep the n largest keys.
+    // Uses log keys, log(u) / w, which order the same way; weight 0 is never picked.
+    // weights: a Float64Array (one weight per resident, worked out once per town) or a function j => w.
+    let keys = new Float64Array(0), work = new Float64Array(0);
+    function weighted(r, N, weights, n) {
+      if (keys.length < N) { keys = new Float64Array(N); work = new Float64Array(N); }
+      const wf = typeof weights === 'function' ? weights : j => weights[j];
+      let pos = 0;
+      for (let j = 0; j < N; j++) { const w = wf(j); if (w > 0) { keys[j] = Math.log(1 - r()) / w; work[pos++] = keys[j]; } else keys[j] = -Infinity; }
+      if (pos < n) n = pos;
+      if (!n) return [];
+      const cut = kth(work, pos, pos - n), out = [];   // the n-th largest key
+      for (let j = 0; j < N && out.length < n; j++) if (keys[j] >= cut && keys[j] > -Infinity) out.push(j);
+      return out;
+    }
+    // the k-th smallest of a[0..len-1] (Hoare quickselect, in place)
+    function kth(a, len, k) {
+      let lo = 0, hi = len - 1;
+      while (hi > lo) {
+        const piv = a[(lo + hi) >> 1];
+        let i = lo, j = hi;
+        while (i <= j) {
+          while (a[i] < piv) i++;
+          while (a[j] > piv) j--;
+          if (i <= j) { const t = a[i]; a[i] = a[j]; a[j] = t; i++; j--; }
+        }
+        if (k <= j) hi = j; else if (k >= i) lo = i; else break;
+      }
+      return a[k];
+    }
+    // the 95 percent margin of error printed by polls, in percentage points (simple random formula; 0.5 at p = 0 or 1)
+    function moe(p, n) { const q = p <= 0 || p >= 1 ? .5 : p; return 196 * Math.sqrt(q * (1 - q) / n); }
+    return {rng, town, simple, apportion, stratified, cluster, systematic, weighted, moe};
+  })();
+  /* END SAMPLING ENGINE */
+
+  // ======================================================================================
+  // MILLBROOK (tool content: the invented town, the methods, the wording, the headline rules)
+  // ======================================================================================
+  const AGES = ['18-29', '30-49', '50-64', '65+'];
+  const AGE_SAY = ['18 to 29', '30 to 49', '50 to 64', '65 and over'];
+  const HOODS = [
+    {name: 'Downtown', residents: 6000, blocks: 60, ages: [35, 35, 18, 12], shift: 6},
+    {name: 'Riverside', residents: 5000, blocks: 50, ages: [20, 40, 25, 15], shift: 4},
+    {name: 'Hillside', residents: 4000, blocks: 40, ages: [10, 30, 30, 30], shift: -10},
+    {name: 'Eastfield Farms', residents: 5000, blocks: 50, ages: [15, 30, 30, 25], shift: -8},
+  ];
+  const LIST_P = [30, 50, 90, 75], MALL_P = [45, 30, 15, 10];
+  const makeTown = (seed, offset) => Sampling.town({seed, offset, groups: HOODS, ageBase: [72, 52, 36, 24], blockSd: 10, clamp: [2, 98],
+    traits: {
+      list: (p, r) => r() * 100 < LIST_P[p.group] * (p.age === 0 ? .5 : 1),   // on the car and phone list
+      mall: (p, r) => r() * 100 < MALL_P[p.age],                               // shops at the mall on Saturday
+    }});
+  const ONLINE_AGE = [1.5, 1, .6, .3], PHONE_AGE = [5, 8, 15, 35];
+  // each weighted method's weights, worked out once per town (they never change: opinions are fixed at creation)
+  const weightsOf = (t, id, f) => { const c = t.wcache || (t.wcache = {}); if (!c[id]) { c[id] = new Float64Array(t.N); for (let j = 0; j < t.N; j++) c[id][j] = f(j); } return c[id]; };
+  const METHODS = [
+    {id: 'srs', name: 'Simple random', desc: 'The computer picks names at random from the full town list.', cost: 25,
+      pick: (r, t, n) => Sampling.simple(r, 0, t.N, n)},
+    {id: 'strat', name: 'Stratified', desc: 'Random picks inside each neighborhood, in proportion to its size.', cost: 25,
+      pick: (r, t, n) => Sampling.stratified(r, t, n, [30, 25, 20, 25])},
+    {id: 'cluster', name: 'Cluster', desc: 'Pick random blocks, then ask people on those blocks.', cost: 8,
+      pick: (r, t, n) => Sampling.cluster(r, t, n, Math.min(200, Math.max(2, Math.ceil(n / 40))))},
+    {id: 'sys', name: 'Systematic', desc: 'Every k-th house on the street list, from a random start.', cost: 25,
+      pick: (r, t, n) => Sampling.systematic(r, t, n)},
+    {id: 'mall', name: 'Mall on Saturday', desc: 'Stop shoppers at the Downtown mall.', cost: 3, biased: true,
+      pick: (r, t, n) => Sampling.weighted(r, t.N, weightsOf(t, 'mall', j => (t.traits.mall[j] ? 1 : .05) * (t.group[j] === 0 ? 1.5 : 1)), n)},
+    {id: 'online', name: 'Online poll', desc: 'Post it on the town page; whoever answers counts.', cost: 0, biased: true,
+      pick: (r, t, n) => Sampling.weighted(r, t.N, weightsOf(t, 'online', j => (t.yes[j] ? 8 : 3) * ONLINE_AGE[t.age[j]]), n)},
+    {id: 'phone', name: 'Daytime phone calls', desc: 'Call homes on a weekday afternoon.', cost: 6, biased: true,
+      pick: (r, t, n) => Sampling.weighted(r, t.N, weightsOf(t, 'phone', j => PHONE_AGE[t.age[j]]), n)},
+    {id: 'mail', name: 'Mail to car and phone owners', desc: 'Mail ballots to people on car and phone lists, count what comes back.', cost: 2, biased: true,
+      pick: (r, t, n) => Sampling.weighted(r, t.N, weightsOf(t, 'mail', j => t.traits.list[j] ? (t.yes[j] ? 1 : 1.5) : 0), n)},
+  ];
+  const WORDINGS = [
+    {id: 'neutral', name: 'Neutral', q: 'Do you support or oppose building a skate park at Riverside Park?', flip: 0},
+    {id: 'yes', name: 'Leans yes', q: 'Would you support a skate park that gives local teens a safe place to go?', flip: .15},
+    {id: 'no', name: 'Leans no', q: 'Should the town spend $1.2 million of taxpayer money on a skate park?', flip: .2},
+  ];
+  const NS_STOPS = [20, 50, 100, 200, 400, 600, 1000, 1500, 2000];
+  // one poll: who was asked and what each said (wording flips drawn fresh every run)
+  function poll(t, r, design) {
+    const m = METHODS[design.method], w = WORDINGS[design.wording];
+    const who = m.pick(r, t, design.n), said = new Uint8Array(who.length);
+    let yes = 0;
+    who.forEach((j, k) => {
+      let a = t.yes[j];
+      if (w.id === 'yes' && !a && r() < w.flip) a = 1;
+      else if (w.id === 'no' && a && r() < w.flip) a = 0;
+      said[k] = a; yes += a;
+    });
+    const n = who.length, p = yes / n, pct = 100 * p, moe = Sampling.moe(p, n);
+    return {method: design.method, wording: design.wording, n, yes, pct, moe, who, said, truth: t.truth,
+      caught: Math.abs(pct - t.truth) <= moe};
+  }
+
+  // ======================================================================================
+  // State: Workshop and Case file share one town and one wall; Budget desk has its own (one dot per round)
+  // ======================================================================================
+  const newCtx = (seed, offset) => {
+    const town = makeTown(seed, offset);
+    return {town, r: Sampling.rng((seed ^ 0x5bd1e995) >>> 0), wall: [], last: null, revealed: false, runs: 0, nextId: 1};
+  };
+  const state = {mode: 'work', design: {method: 0, wording: 0, n: 400}, show: 'all', curve: false,
+    caseRan: {digest: false, fair: false}, round: 1, published: false, log: [], sel: null};
+  const towns = Sampling.rng(20261025), budgetTowns = Sampling.rng(1937);
+  const W = newCtx(1936, 0);           // the default town: seed 1936, offset 0
+  let B = null;                         // the Budget desk round's town
+  const ctx = () => state.mode === 'budget' ? B : W;
+  const BUDGET = 10000;
+  const fmt1 = v => (Math.round(v * 10) / 10).toFixed(1);
+  const money = v => '$' + Math.round(v).toLocaleString('en-US');
+  const cap = s => s[0].toUpperCase() + s.slice(1);
+
+  // the printed numbers, from the rounded values shown on screen so the headline always matches what is printed
+  function printed(res) {
+    const p = +fmt1(res.pct), m = +fmt1(res.moe);
+    const yes = Math.round(res.pct), no = 100 - yes;   // whole percents that add to 100
+    const P = Math.round(p * 10), M = Math.round(m * 10);   // in tenths, so 54.9 minus 4.9 is exactly 50.0
+    const word = P - M > 500 ? 'backs' : P + M < 500 ? 'says no' : 'split';
+    const hl = word === 'backs' ? `Poll: Millbrook backs skate park, ${yes} to ${no}` :
+      word === 'says no' ? `Poll: Millbrook says no to skate park, ${yes} to ${no}` : 'Poll: Millbrook split on skate park';
+    return {p, m, word, hl, dl: `Millbrook Courier. Survey of ${res.n.toLocaleString('en-US')} residents, plus or minus ${fmt1(res.moe)} points.`};
+  }
+  // a headline is right when it is honest about the town: "backs" needs the truth above 50, "says no" below 50,
+  // and "split" (its plus or minus covers 50) needs the truth inside that plus or minus
+  const verdictRight = (res, truth) => {
+    const w = printed(res).word;
+    return w === 'backs' ? truth > 50 : w === 'says no' ? truth < 50 : Math.abs(res.pct - truth) <= res.moe;
+  };
+
+  // ======================================================================================
+  // Spoken lines (voice/lines.json lists every one) and hints (Read speaks the hint's spoken form)
+  // ======================================================================================
+  const L = {
+    welcomeW: 'Welcome to Millbrook. Every one of these dots knows how they feel about a new skate park. You only get to ask some of them.',
+    howto: 'Pick who you ask, how you ask, and how many. Then run the poll and read your headline.',
+    runMore: 'One poll can be lucky. Run the same design fifty more times and see where the results land.',
+    reveal: 'Here is the truth. A fair method scatters around it. A biased one lands off to the side, and more people will not move it back.',
+    moe: 'The plus or minus only covers the luck of the draw. It says nothing about who you left out.',
+    welcomeC: "In nineteen thirty six, a magazine polled more than two million people and still called the election wrong. Let's see why.",
+    caseAfter: 'Same town, same number of people. The only difference is who got asked.',
+    welcomeB: 'The Millbrook Courier has ten thousand dollars for a poll. Spend it on the design you trust most.',
+    close: 'This one is close. Think about how small your plus or minus needs to be.',
+    publish: "Published. Let's see how it held up.",
+  };
+  // [shown, spoken]: the spoken form spells out what a voice could misread
+  const HINTS = {
+    start: ['Pick who you ask, then press Run poll.'],
+    more: ['Try Run 50 more like this, then Reveal the truth.', 'Try Run fifty more like this, then Reveal the truth.'],
+    biased: ['More people will not fix this. Try n = 2000 and see.', 'More people will not fix this. Try n equals two thousand and see.'],
+    fair: ['A fair method scatters around the truth. Now try a biased method, or a leaning question, and compare.'],
+    case0: ['Run the Digest\'s method, then a fair method. Each button runs 20 polls of 2,000 people in Millbrook.',
+      'Run the Digest\'s method, then a fair method. Each button runs twenty polls of two thousand people in Millbrook.'],
+    case1: ['Now run the other one. Same town, same 2,000 people per poll.', 'Now run the other one. Same town, same two thousand people per poll.'],
+    case2: ['Same number of people, two piles. Compare each pile and its plus or minus with the truth line.'],
+    budget0: ['Design a poll that costs $10,000 or less, then Publish. One poll per round, and the truth stays hidden until then.',
+      'Design a poll that costs ten thousand dollars or less, then Publish. One poll per round, and the truth stays hidden until then.'],
+    budget1: ['Check your two results, then press Next round.'],
+    budget3: ['Three rounds done. Read your round log, or Start over with new towns.'],
+    biased2: [L.moe],   // a biased method already at n = 2000: the recorded line says why more people did not help
+  };
+  let hintKey = 'start';
+  function setHint(k) { hintKey = k; $('hint').textContent = HINTS[k][0]; }
+  function workHint() {
+    const c = W;
+    if (c.revealed) setHint(METHODS[state.design.method].biased ? (state.design.n >= 2000 ? 'biased2' : 'biased') : 'fair');
+    else setHint(c.runs >= 3 ? 'more' : 'start');
+  }
+  function caseHint() { const r = state.caseRan; setHint(r.digest && r.fair ? 'case2' : r.digest || r.fair ? 'case1' : 'case0'); }
+
+  // ======================================================================================
+  // Narration: one welcome per mode, queued only on entering a mode; lines never cut off Read
+  // ======================================================================================
+  const said = new Set(), queued = new Set();
+  let tapped = false, pending = false, held = [], vq = Promise.resolve(), vgen = 0, readP = Promise.resolve();
+  const WELCOME = {work: ['welcomeW', 'howto'], case: ['welcomeC'], budget: ['welcomeB']};
+  // The first tap unlocks sound. Lines its own click asks for are held until that click has run, then the welcome
+  // of the mode the student is now in goes first, and the held lines after it.
+  for (const ev of ['pointerdown', 'keydown']) addEventListener(ev, () => {
+    if (tapped) return;
+    tapped = true; pending = true;
+    const done = () => {
+      if (!pending) return;
+      pending = false;
+      const h = held; held = [];
+      narrate(WELCOME[state.mode]);
+      for (const [k, a] of h) narrate(k, a);
+    };
+    addEventListener(ev === 'keydown' ? 'keyup' : 'click', () => setTimeout(done, 0), {once: true});   // bubbles here after the button's own handler
+    setTimeout(done, 1500);   // no click came (a drag or a scroll)
+  }, true);
+  function narrate(keys, again) {
+    if (!tapped) return;
+    if (pending) { held.push([keys, again]); return; }
+    for (const key of [].concat(keys)) {
+      if (!again && (said.has(key) || queued.has(key))) continue;
+      queued.add(key);
+      const gen = vgen, line = L[key];
+      vq = vq.then(async () => {
+        await readP;
+        if (gen !== vgen) return;
+        queued.delete(key); said.add(key);   // said when it starts, not when it is queued
+        await Promise.race([say(line), wait(2500 + 80 * line.length)]);
+      });
+    }
+  }
+  function hush() { vgen++; queued.clear(); held = []; vq = Promise.resolve(); Curio.stop(); }
+  function readNow() {
+    hush();
+    const h = HINTS[hintKey];
+    readP = say([h[1] || h[0]], true).catch(() => {});
+  }
+
+  // ======================================================================================
+  // The map (canvas, drawn at the real pixel size): neighborhoods, blocks, a river, 20,000 grey dots, rings
+  // ======================================================================================
+  const WORLD = {w: 1000, h: 520};
+  const REGIONS = [   // world units; blocks laid out cols x rows inside each neighborhood
+    {x: 14, y: 14, w: 470, h: 222, cols: 10, rows: 6},
+    {x: 516, y: 14, w: 470, h: 222, cols: 10, rows: 5},
+    {x: 14, y: 290, w: 470, h: 216, cols: 8, rows: 5},
+    {x: 516, y: 290, w: 470, h: 216, cols: 10, rows: 5},
+  ];
+  // each resident's spot in the world: block cell, then a 10 by 10 grid with a little jitter (fixed by a seed)
+  const pos = (() => {
+    const N = 20000, xs = new Float32Array(N), ys = new Float32Array(N), jr = Sampling.rng(77);
+    let i = 0;
+    REGIONS.forEach((R, g) => {
+      const bw = R.w / R.cols, bh = R.h / R.rows, nb = HOODS[g].blocks;
+      for (let b = 0; b < nb; b++) {
+        const cx = R.x + (b % R.cols) * bw, cy = R.y + Math.floor(b / R.cols) * bh;
+        for (let h = 0; h < 100; h++, i++) {
+          xs[i] = cx + 4 + ((h % 10) + .5 + (jr() - .5) * .7) * (bw - 8) / 10;
+          ys[i] = cy + 4 + (Math.floor(h / 10) + .5 + (jr() - .5) * .7) * (bh - 8) / 10;
+        }
+      }
+    });
+    return {xs, ys};
+  })();
+  const cv = $('map'), base = document.createElement('canvas');
+  let mv = {s: 1, ox: 0, oy: 0, w: 0, h: 0, dpr: 1}, baseFor = null, ringAnim = null;
+  function mapSize() {
+    const r = $('mapbox').getBoundingClientRect(), dpr = Math.min(2, devicePixelRatio || 1);
+    const s = Math.min(r.width / WORLD.w, r.height / WORLD.h);
+    mv = {s, ox: (r.width - WORLD.w * s) / 2, oy: (r.height - WORLD.h * s) / 2, w: r.width, h: r.height, dpr};
+    cv.width = Math.round(r.width * dpr); cv.height = Math.round(r.height * dpr);
+    base.width = cv.width; base.height = cv.height;
+    baseFor = null;
+  }
+  function drawBase() {
+    const t = ctx().town, key = t.seed + ':' + cv.width + 'x' + cv.height;
+    if (baseFor === key) return;
+    baseFor = key;
+    const c = base.getContext('2d'), {s, ox, oy, dpr} = mv;
+    c.setTransform(dpr, 0, 0, dpr, 0, 0);
+    c.clearRect(0, 0, mv.w, mv.h);
+    c.save(); c.translate(ox, oy); c.scale(s, s);
+    // land
+    c.fillStyle = '#101823'; c.fillRect(0, 0, WORLD.w, WORLD.h);
+    // the river, between the north and south halves, with Riverside Park on its north bank
+    c.beginPath(); c.moveTo(-10, 246);
+    for (let x = 0; x <= WORLD.w + 10; x += 20) c.lineTo(x, 252 + Math.sin(x / 70) * 6);
+    for (let x = WORLD.w + 10; x >= -10; x -= 20) c.lineTo(x, 276 + Math.sin(x / 70 + .8) * 6);
+    c.closePath(); c.fillStyle = '#1b3a57'; c.fill(); c.strokeStyle = '#2f5d86'; c.lineWidth = 1.5 / s; c.stroke();
+    // Main Street between east and west
+    c.fillStyle = '#18212d'; c.fillRect(488, 0, 24, 246); c.fillRect(488, 282, 24, WORLD.h);
+    const tints = ['#1a2433', '#18263a', '#1d2530', '#1c2a26'];
+    REGIONS.forEach((R, g) => {
+      const bw = R.w / R.cols, bh = R.h / R.rows;
+      c.fillStyle = tints[g];
+      for (let b = 0; b < HOODS[g].blocks; b++) {
+        const x = R.x + (b % R.cols) * bw, y = R.y + Math.floor(b / R.cols) * bh;
+        c.fillRect(x + 1.5, y + 1.5, bw - 3, bh - 3);
+      }
+    });
+    // residents: tiny grey dots, opinions hidden
+    const rr = Math.max(.55, Math.min(1.5, 1.05 * s * 1.6)) / s;
+    c.fillStyle = '#7f8b9c';
+    for (let i = 0; i < t.N; i++) { c.fillRect(pos.xs[i] - rr, pos.ys[i] - rr, rr * 2, rr * 2); }
+    c.restore();
+  }
+  // neighborhood names at a fixed, readable size, on top of everything
+  function mapLabels(c) {
+    const {s, ox, oy} = mv;
+    c.font = `700 ${s < .5 ? 11.5 : 13}px 'Segoe UI', system-ui, sans-serif`;
+    REGIONS.forEach((R, g) => {
+      const text = HOODS[g].name, w = c.measureText(text).width;
+      const x = ox + R.x * s + 4, y = oy + (g < 2 ? R.y : R.y + R.h) * s + (g < 2 ? 3 : -19);
+      c.fillStyle = 'rgba(8,12,18,.88)'; c.fillRect(x, y, w + 10, 17);
+      c.fillStyle = '#e8edf3'; c.fillText(text, x + 5, y + 13);
+    });
+    c.font = `italic 600 ${s < .5 ? 10.5 : 12}px 'Segoe UI', system-ui, sans-serif`;
+    const pk = 'Riverside Park', pw = c.measureText(pk).width, px = ox + 750 * s - pw / 2, py = oy + 268 * s + 4;
+    c.fillStyle = 'rgba(14,32,50,.85)'; c.fillRect(px - 4, py - 11, pw + 8, 15);
+    c.fillStyle = '#9cc7ef'; c.fillText(pk, px, py);
+  }
+  function drawMap(alpha = 1) {
+    drawBase();
+    const c = cv.getContext('2d'), {s, ox, oy, dpr} = mv, last = ctx().last;
+    c.setTransform(1, 0, 0, 1, 0, 0);
+    c.clearRect(0, 0, cv.width, cv.height);
+    c.drawImage(base, 0, 0);
+    c.setTransform(dpr, 0, 0, dpr, 0, 0);
+    if (last && alpha > 0) {
+      const r = Math.max(2.6, Math.min(6, s * 6.5)), mark = r >= 4;
+      c.globalAlpha = alpha; c.lineWidth = r >= 4 ? 1.6 : 1.2;
+      last.who.forEach((j, k) => {
+        const x = ox + pos.xs[j] * s, y = oy + pos.ys[j] * s;
+        c.beginPath(); c.arc(x, y, r, 0, Math.PI * 2);
+        if (last.said[k]) {
+          c.fillStyle = '#ffc94a'; c.fill();
+          if (mark) { c.strokeStyle = '#1c1203'; c.beginPath(); c.moveTo(x - r * .5, y); c.lineTo(x - r * .12, y + r * .42); c.lineTo(x + r * .52, y - r * .4); c.stroke(); }
+        } else {
+          c.strokeStyle = '#7cc8ff'; c.stroke();
+          if (mark) { const q = r * .42; c.beginPath(); c.moveTo(x - q, y - q); c.lineTo(x + q, y + q); c.moveTo(x + q, y - q); c.lineTo(x - q, y + q); c.stroke(); }
+        }
+      });
+      c.globalAlpha = 1;
+    }
+    mapLabels(c);
+    const t = ctx().town;
+    $('maptag').textContent = last ? `${t.N.toLocaleString('en-US')} residents · ${last.n.toLocaleString('en-US')} asked` : `${t.N.toLocaleString('en-US')} residents · opinions hidden`;
+    cv.setAttribute('aria-label', 'Map of Millbrook, an invented town of 20,000 residents in four neighborhoods: Downtown, Riverside, Hillside and Eastfield Farms. ' +
+      (last ? `The newest poll asked ${last.n} people: ${last.yes} said yes (filled dots with a check) and ${last.n - last.yes} said no (hollow dots with an x).` : 'No one has been asked yet.'));
+  }
+  function showRings() {
+    clearTimeout(ringAnim);
+    if (Curio.reduce) { drawMap(1); return; }
+    const t0 = performance.now();
+    const step = () => { const a = Math.min(1, (performance.now() - t0) / 600); drawMap(a); if (a < 1) ringAnim = setTimeout(step, 16); };
+    step();
+  }
+
+  // ======================================================================================
+  // The headline wall (SVG at the real pixel size): 1-point bins, plus-or-minus bars, truth line, normal curve
+  // ======================================================================================
+  const SV = 'http://www.w3.org/2000/svg';
+  const mk = (tag, attrs, parent) => { const e = document.createElementNS(SV, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; };
+  const MCOL = ['#5aa9ff', '#5fd39a', '#c9a0ff', '#7fe0e0', '#ff8a8a', '#ffb15c', '#e58cd0', '#d9c27a'];
+  const SHORT = ['Random', 'Stratified', 'Cluster', 'Systematic', 'Mall', 'Online', 'Phone', 'Mail'];
+  let drawnIds = new Set(), geom = null;
+  const shown = () => {
+    const c = ctx(), v = state.show;
+    return c.wall.filter(d => d.shown && (v === 'all' || d.method === +v));
+  };
+  // is the truth on show? Workshop: the Reveal button. Case file: once both case runs are done. Budget desk: after Publish.
+  const isRevealed = () => state.mode === 'case' ? state.caseRan.digest && state.caseRan.fair : ctx().revealed;
+  // a design (method, wording, n) is one lane of the wall; on the Budget desk each round is its own lane
+  const laneKey = d => state.mode === 'budget' ? 'R' + d.round : `${d.method}|${d.wording}|${d.n}`;
+  function laneName(d, short) {
+    const m = short ? SHORT[d.method] : METHODS[d.method].name, w = d.wording ? `, ${WORDINGS[d.wording].name.toLowerCase()}` : '';
+    return (d.round ? `Round ${d.round}: ` : '') + `${m}${w}, n = ${d.n.toLocaleString('en-US')}`;
+  }
+  function laneList(dots) {
+    const m = new Map();
+    for (const d of dots) {
+      const k = laneKey(d);
+      if (!m.has(k)) m.set(k, {key: k, d, dots: [], last: 0});
+      const L = m.get(k); L.dots.push(d); L.last = Math.max(L.last, d.id);
+    }
+    return [...m.values()];
+  }
+  const fitOf = dots => {
+    const n = dots.length, m = dots.reduce((s, d) => s + d.pct, 0) / n;
+    return {n, m, sd: Math.sqrt(dots.reduce((s, d) => s + (d.pct - m) ** 2, 0) / (n - 1)) || .3};
+  };
+  // each method has its own dot shape as well as its own color
+  function shape(method, x, y, r, attrs, parent) {
+    const poly = (k, rot, rr = r) => { let d = ''; for (let i = 0; i < k; i++) { const a = rot + i * 2 * Math.PI / k; d += (i ? 'L' : 'M') + (x + rr * Math.cos(a)).toFixed(1) + ',' + (y + rr * Math.sin(a)).toFixed(1); } return d + 'Z'; };
+    const star = () => { let d = ''; for (let i = 0; i < 10; i++) { const a = -Math.PI / 2 + i * Math.PI / 5, rr = i % 2 ? r * .5 : r * 1.25; d += (i ? 'L' : 'M') + (x + rr * Math.cos(a)).toFixed(1) + ',' + (y + rr * Math.sin(a)).toFixed(1); } return d + 'Z'; };
+    const D = [null, poly(4, Math.PI / 4, r * 1.15), poly(4, 0, r * 1.3), poly(3, -Math.PI / 2, r * 1.3), poly(3, Math.PI / 2, r * 1.3), poly(6, 0, r * 1.15), null, star()][method];
+    if (method === 0) return mk('circle', Object.assign({cx: x.toFixed(1), cy: y.toFixed(1), r: r.toFixed(2)}, attrs), parent);
+    if (method === 6) { const q = r * 1.25, t = r * .5; return mk('path', Object.assign({d: `M${x - t},${y - q}h${2 * t}v${q - t}h${q - t}v${2 * t}h${t - q}v${q - t}h${-2 * t}v${t - q}h${t - q}v${-2 * t}h${q - t}z`}, attrs), parent); }
+    return mk('path', Object.assign({d: D}, attrs), parent);
+  }
+  const shapeSvg = (m, size = 12) => { const g = document.createElementNS(SV, 'svg'); g.setAttribute('viewBox', '0 0 12 12'); g.setAttribute('width', size); g.setAttribute('height', size); shape(m, 6, 6, 4, {fill: MCOL[m]}, g); return g.outerHTML; };
+  function drawWall() {
+    const svg = $('wall'), box = $('wallwrap').getBoundingClientRect(), c = ctx(), budget = state.mode === 'budget', rev = isRevealed();
+    const Wd = Math.max(200, box.width), Hd = Math.max(80, box.height), narrow = Wd < 470;
+    svg.setAttribute('viewBox', `0 0 ${Wd} ${Hd}`);
+    svg.textContent = '';
+    const L0 = 16, R0 = Wd - 16, top = rev && !budget ? 22 : 6, axisY = Hd - 24, plotH = axisY - top;
+    const X = v => L0 + (R0 - L0) * v / 100;
+    geom = {X, axisY, L0, R0, top};
+    // axis, ticks, the dashed 50 line
+    mk('line', {x1: L0, x2: R0, y1: axisY, y2: axisY, class: 'w-axis'}, svg);
+    const every = Wd < 420 ? 20 : 10;
+    for (let v = 0; v <= 100; v += 10) {
+      mk('line', {x1: X(v), x2: X(v), y1: axisY, y2: axisY + 4, class: 'w-axis'}, svg);
+      if (v % every === 0) mk('text', {x: X(v), y: axisY + 16, 'text-anchor': v === 0 ? 'start' : v === 100 ? 'end' : 'middle', class: 'w-tick'}, svg).textContent = v + (v === 100 ? '%' : '');
+    }
+    mk('line', {x1: X(50), x2: X(50), y1: top, y2: axisY, class: 'w-50'}, svg);
+    const all = shown();
+    // lanes: in order of first use; when there are more than fit, the most recently used ones
+    let lanes = laneList(all);
+    const CAP = 15, maxLanes = Math.max(1, Math.floor(plotH / 30));
+    const hiddenLanes = Math.max(0, lanes.length - maxLanes);
+    if (hiddenLanes) { const keep = new Set(lanes.slice().sort((a, b) => b.last - a.last).slice(0, maxLanes).map(l => l.key)); lanes = lanes.filter(l => keep.has(l.key)); }
+    const laneH = plotH / Math.max(1, lanes.length);
+    const binW = (R0 - L0) / 100;
+    const dots = [];
+    let rMin = 6;
+    lanes.forEach((ln, li) => {
+      const y0 = top + li * laneH, base = y0 + laneH - 2, room = base - (y0 + CAP) - 1;
+      ln.y0 = y0; ln.base = base; ln.room = room;
+      if (li < lanes.length - 1) mk('line', {x1: L0, x2: R0, y1: y0 + laneH, y2: y0 + laneH, class: 'w-lane'}, svg);
+      const bins = new Map(); let maxStack = 0;
+      for (const d of ln.dots) { const b = Math.min(99, Math.floor(d.pct)); const k = bins.get(b) || 0; d.bin = b; d.k = k; bins.set(b, k + 1); maxStack = Math.max(maxStack, k + 1); }
+      const r = budget ? Math.min(5, room / 2) : Math.max(1.3, Math.min(binW * .46, 5, room / (2 * Math.max(1, maxStack))));
+      const pitch = Math.min(2 * r, (room - r) / Math.max(1, maxStack - 1 || 1));
+      ln.r = r; ln.pitch = pitch; rMin = Math.min(rMin, r);
+      for (const d of ln.dots) { d.x = X(d.bin + .5); d.y = base - r - Math.min(d.k * pitch, room - 2 * r); d.r = r; d.lane = li; dots.push(d); }
+      // the normal curve, fitted to this design's dots only
+      if (state.curve && ln.dots.length >= 10) {
+        const F = fitOf(ln.dots); ln.fit = F;
+        const f = x => Math.min(room, F.n * Math.exp(-.5 * ((x - F.m) / F.sd) ** 2) / (F.sd * Math.sqrt(2 * Math.PI)) * pitch);
+        const lo = Math.max(0, F.m - 4 * F.sd), hi = Math.min(100, F.m + 4 * F.sd), a = Math.max(0, F.m - 1.96 * F.sd), b = Math.min(100, F.m + 1.96 * F.sd);
+        const pts = (u, v, k = 100) => { let t = ''; for (let i = 0; i <= k; i++) { const x = u + (v - u) * i / k; t += `${X(x).toFixed(1)},${(base - f(x)).toFixed(1)} `; } return t; };
+        mk('path', {d: `M${X(a)},${base} L${pts(a, b)} L${X(b)},${base} Z`, class: 'w-shade'}, svg);
+        mk('polyline', {points: pts(lo, hi), class: 'w-curve'}, svg);
+      }
+      // the lane's own truth on the Budget desk (each round is a different town)
+      if (budget && ln.dots[0].round && (ln.dots[0].round !== state.round || state.published)) {
+        const tx = X(ln.dots[0].truth);
+        mk('line', {x1: tx, x2: tx, y1: y0 + CAP - 1, y2: base + 2, class: 'w-truth'}, svg);
+      }
+    });
+    // dots, each method in its own shape and color
+    const g = mk('g', {}, svg);
+    for (const d of dots) shape(d.method, d.x, d.y, d.r, {fill: MCOL[d.method], class: 'w-dot' + (drawnIds.has(d.id) ? '' : ' drop')}, g);
+    drawnIds = new Set(dots.map(d => d.id));
+    // the newest dot's bar, and the selected dot's bar
+    const newest = dots.length ? dots.reduce((a, b) => b.id > a.id ? b : a) : null;
+    const bar = (d, cls) => {
+      const y = d.y, a = X(Math.max(0, d.pct - d.moe)), b = X(Math.min(100, d.pct + d.moe)), h = Math.min(5, d.r + 3);
+      mk('line', {x1: a, x2: b, y1: y, y2: y, class: 'w-bar'}, svg);
+      mk('line', {x1: a, x2: a, y1: y - h, y2: y + h, class: 'w-bar'}, svg);
+      mk('line', {x1: b, x2: b, y1: y - h, y2: y + h, class: 'w-bar'}, svg);
+      mk('circle', {cx: d.x, cy: d.y, r: d.r + 2.5, class: cls}, svg);
+    };
+    if (newest) bar(newest, 'w-new');
+    const sel = dots.find(d => d.id === state.sel);
+    if (sel && sel !== newest) bar(sel, 'w-sel');
+    else if (sel) mk('circle', {cx: sel.x, cy: sel.y, r: sel.r + 4.5, class: 'w-sel'}, svg);
+    // the truth line (Workshop and Case file: one town, one truth)
+    if (rev && !budget) {
+      const tx = X(c.town.truth);
+      mk('line', {x1: tx, x2: tx, y1: top - 6, y2: axisY, class: 'w-truth'}, svg);
+      const t = mk('text', {x: tx, y: top - 9, class: 'w-tlabel'}, svg);
+      t.textContent = `True support: ${fmt1(c.town.truth)} percent (neutral question)`;
+      const w = t.getComputedTextLength(), right = tx + 6 + w > Wd - 4;
+      t.setAttribute('text-anchor', right ? 'end' : 'start'); t.setAttribute('x', right ? Math.max(w + 4, tx - 6) : tx + 6);
+    }
+    // lane captions last, on a dark plate, so nothing covers them: shape, design, and what the lane shows
+    lanes.forEach(ln => {
+      const d = ln.d, k = ln.dots.length, caught = ln.dots.filter(x => x.caught).length, parts = [laneName(d, narrow)];
+      if (budget) { if (d.round !== state.round || state.published) parts.push(`truth ${fmt1(d.truth)}%`); }
+      else parts.push(`${k} poll${k === 1 ? '' : 's'}`);
+      if (rev && !budget) parts.push(`caught ${caught} of ${k}`);
+      if (ln.fit) parts.push(`mean ${fmt1(ln.fit.m)}, sd ${fmt1(ln.fit.sd)}`);
+      const t = mk('text', {x: L0 + 14, y: ln.y0 + 11, class: 'w-lanecap'}, svg);
+      t.textContent = parts.join(' · ');
+      const w = t.getComputedTextLength();
+      const plate = mk('rect', {x: L0 - 2, y: ln.y0 + 1, width: w + 20, height: 13, rx: 3, class: 'w-plate'}, svg);
+      svg.insertBefore(plate, t);
+      shape(d.method, L0 + 5, ln.y0 + 7.5, 3.6, {fill: MCOL[d.method]}, svg);
+    });
+    if (state.curve && !lanes.some(l => l.fit)) mk('text', {x: (L0 + R0) / 2, y: top + (lanes.length ? laneH / 2 + 8 : 22), 'text-anchor': 'middle', class: 'w-note'}, svg).textContent = 'Run at least 10 polls of this design.';
+    if (!dots.length) mk('text', {x: (L0 + R0) / 2, y: (top + axisY) / 2 + 4, 'text-anchor': 'middle', class: 'w-empty'}, svg).textContent =
+      c.wall.length ? 'No dots for this method yet.' : budget ? 'One row per published round.' : 'Each poll you run adds one dot here.';
+    geom.r = rMin;
+    $('wkey').innerHTML = '<span>each row: one design (who, how, how many)</span><span>each dot: one poll, percent who said yes</span>' +
+      (newest ? '<span>ring and bar: newest poll and its plus or minus</span>' : '') +
+      (state.curve && lanes.some(l => l.fit) ? '<span>shaded: middle 95 percent of the fitted curve</span>' : '') +
+      (hiddenLanes ? `<span class="imp">${hiddenLanes} older design${hiddenLanes === 1 ? '' : 's'} not shown: pick a method in Show</span>` : '');
+    // text alternative
+    $('wallText').innerHTML = dots.map(d => `<li>${dotText(d)}</li>`).join('');
+    svg.setAttribute('aria-label', `Headline wall: ${dots.length} poll${dots.length === 1 ? '' : 's'} in ${lanes.length} design${lanes.length === 1 ? '' : 's'}, on a 0 to 100 percent axis` +
+      (rev && !budget ? `, true support ${fmt1(c.town.truth)} percent.` : '.'));
+    tip();
+  }
+  const dotText = d => `${METHODS[d.method].name}, ${WORDINGS[d.wording].name}, n = ${d.n}: ${fmt1(d.pct)} percent, plus or minus ${fmt1(d.moe)} points` +
+    (d.round ? ` (round ${d.round})` : '');
+  // the tooltip for the hovered or focused dot
+  function tip() {
+    const el = $('wtip'), d = shown().find(x => x.id === state.sel);
+    if (!d || d.x == null) { el.hidden = true; return; }
+    el.hidden = false;
+    el.innerHTML = `${METHODS[d.method].name}, ${WORDINGS[d.wording].name}, n = ${d.n}<br><b>${fmt1(d.pct)}%</b> plus or minus <b>${fmt1(d.moe)}</b>` + (d.round ? ` · round ${d.round}` : '');
+    const box = $('wallwrap').getBoundingClientRect(), w = el.offsetWidth, h = el.offsetHeight;
+    let x = d.x - w / 2, y = d.y - h - 14;
+    if (y < 0) y = d.y + 14;
+    el.style.left = Math.max(2, Math.min(box.width - w - 2, x)) + 'px'; el.style.top = Math.max(0, y) + 'px';
+  }
+  $('wall').addEventListener('pointermove', e => {
+    const b = $('wall').getBoundingClientRect(), x = e.clientX - b.left, y = e.clientY - b.top;
+    let best = null, bd = 1e9;
+    for (const d of shown()) { if (d.x == null || !drawnIds.has(d.id)) continue; const q = (d.x - x) ** 2 + (d.y - y) ** 2; if (q < bd) { bd = q; best = d; } }
+    const id = best && bd < Math.max(100, (best.r + 6) ** 2) ? best.id : null;
+    if (id !== state.sel) { state.sel = id; drawWall(); }
+  });
+  $('wall').addEventListener('pointerleave', () => { if (document.activeElement !== $('wall') && state.sel != null) { state.sel = null; drawWall(); } });
+  $('wall').addEventListener('keydown', e => {
+    const list = shown().filter(d => d.lane != null && drawnIds.has(d.id)).sort((a, b) => a.lane - b.lane || a.pct - b.pct || a.id - b.id);
+    if (!list.length) return;
+    let i = list.findIndex(d => d.id === state.sel);
+    const k = e.key;
+    if (k === 'ArrowRight') i = i < 0 ? 0 : Math.min(list.length - 1, i + 1);
+    else if (k === 'ArrowLeft') i = i < 0 ? list.length - 1 : Math.max(0, i - 1);
+    else if ((k === 'ArrowUp' || k === 'ArrowDown') && i >= 0) {
+      const cur = list[i], lane = cur.lane + (k === 'ArrowDown' ? 1 : -1), cand = list.filter(d => d.lane === lane);
+      if (cand.length) i = list.indexOf(cand.reduce((a, b) => Math.abs(b.pct - cur.pct) < Math.abs(a.pct - cur.pct) ? b : a));
+    }
+    else if (k === 'ArrowUp' || k === 'ArrowDown') i = 0;
+    else if (k === 'Home') i = 0;
+    else if (k === 'End') i = list.length - 1;
+    else if (k === 'Escape') { state.sel = null; drawWall(); return; }
+    else return;
+    e.preventDefault();
+    state.sel = list[i].id; drawWall();
+    $('wallLive').textContent = `${i + 1} of ${list.length}. ${dotText(list[i])}.`;
+  });
+  $('wall').addEventListener('focus', () => {
+    if (state.sel == null) { const l = shown(); if (l.length) { const d = l.reduce((a, b) => b.id > a.id ? b : a); state.sel = d.id; drawWall(); $('wallLive').textContent = 'Newest poll. ' + dotText(d) + '.'; } }
+  });
+  $('wall').addEventListener('blur', () => { state.sel = null; drawWall(); });
+
+  // ======================================================================================
+  // Running polls
+  // ======================================================================================
+  let dropTimer = null, dropQ = [];
+  function flushDrops() { clearTimeout(dropTimer); dropTimer = null; for (const d of dropQ) d.shown = true; dropQ = []; }
+  function addDots(list, ms) {
+    flushDrops();
+    const c = ctx();
+    for (const d of list) { d.shown = false; c.wall.push(d); }
+    while (c.wall.length > 500) c.wall.shift();   // the wall keeps at most 500 dots
+    if (Curio.reduce || list.length === 1 || !ms) { list.forEach(d => d.shown = true); drawWall(); renderTruth(); return; }
+    dropQ = list.slice();
+    const gap = ms / list.length;
+    const step = () => {
+      const d = dropQ.shift(); if (!d) { dropTimer = null; return; }
+      d.shown = true; drawWall(); renderTruth();
+      if (dropQ.length) dropTimer = setTimeout(step, gap); else dropTimer = null;
+    };
+    step();
+  }
+  function runPolls(times, design = state.design, ms = 2000) {
+    const c = ctx(), out = [];
+    for (let k = 0; k < times; k++) {
+      const res = poll(c.town, c.r, design);
+      res.id = c.nextId++;
+      if (state.mode === 'budget') res.round = state.round;
+      out.push(res);
+    }
+    c.last = out[out.length - 1]; c.runs += times;
+    addDots(out, ms);
+    showRings();
+    renderResults(); renderTruth();
+    Curio.tone(620, .08, .03);
+    return out;
+  }
+  $('run').onclick = () => {
+    runPolls(1);
+    narrate('runMore');
+    workHint();
+  };
+  $('run50').onclick = () => { runPolls(50); workHint(); };
+  function setReveal(on) {
+    const c = ctx();
+    c.revealed = on;
+    revealLabel();
+    drawWall(); renderTruth();
+    if (state.mode === 'work') workHint();
+  }
+  function revealLabel() {
+    const b = $('reveal'), on = W.revealed, full = on ? 'Hide the truth' : 'Reveal the truth';
+    b.setAttribute('aria-pressed', on); b.dataset.full = full; b.dataset.short = on ? 'Hide' : 'Reveal';
+    b.textContent = curLayout === 'compact' ? b.dataset.short : full;
+    if (curLayout === 'compact') b.setAttribute('aria-label', full);
+  }
+  $('reveal').onclick = () => { setReveal(!W.revealed); if (W.revealed) narrate(['reveal', 'moe']); };
+  $('clear').onclick = () => {
+    flushDrops(); W.wall = []; W.runs = 0; W.last = null; state.sel = null;
+    state.caseRan = {digest: false, fair: false}; renderCase();
+    setReveal(false); drawMap(); renderResults(); workHint();
+  };
+  $('newTown').onclick = () => {
+    flushDrops();
+    const seed = 1 + towns.int(2e9), offset = -12 + 24 * towns();
+    Object.assign(W, newCtx(seed, offset));
+    state.caseRan = {digest: false, fair: false}; renderCase();
+    state.sel = null; setReveal(false); drawMap(); renderResults(); workHint();
+  };
+
+  // ---------- design controls ----------
+  METHODS.forEach((m, i) => {
+    const b = document.createElement('button');
+    b.className = 'mbtn'; b.dataset.m = i; b.setAttribute('aria-pressed', 'false');
+    b.innerHTML = `${m.name}<small>${m.desc}</small>`;
+    b.onclick = () => setDesign({method: i});
+    $('methods').appendChild(b);
+    const o = document.createElement('option'); o.value = i; o.textContent = m.name; $('methodSel').appendChild(o);
+  });
+  $('methodSel').onchange = () => setDesign({method: +$('methodSel').value});
+  WORDINGS.forEach((w, i) => {
+    const b = document.createElement('button');
+    b.className = 'btn'; b.dataset.w = i; b.textContent = w.name; b.setAttribute('aria-pressed', 'false');
+    b.onclick = () => setDesign({wording: i});
+    $('wordings').appendChild(b);
+  });
+  $('nRange').oninput = () => setDesign({n: NS_STOPS[+$('nRange').value]});
+  // the Show dropdown
+  [['all', 'All methods'], ...METHODS.map((m, i) => [i, m.name])].forEach(([v, t]) => { const o = document.createElement('option'); o.value = v; o.textContent = t; $('show').appendChild(o); });
+  $('show').onchange = () => { state.show = $('show').value; state.sel = null; drawWall(); renderTruth(); };
+  $('curve').onclick = () => { state.curve = !state.curve; $('curve').setAttribute('aria-pressed', state.curve); drawWall(); };
+  // changing the design runs nothing; the next run uses it
+  function setDesign(o) {
+    Object.assign(state.design, o);
+    renderDesign();
+    if (state.mode === 'work') workHint();
+  }
+  function renderDesign() {
+    const d = state.design, m = METHODS[d.method];
+    for (const b of $('methods').children) b.setAttribute('aria-pressed', +b.dataset.m === d.method);
+    for (const b of $('wordings').children) b.setAttribute('aria-pressed', +b.dataset.w === d.wording);
+    $('methodSel').value = d.method;
+    $('mdesc').textContent = curLayout === 'compact' ? m.desc : '';
+    $('qtext').textContent = '"' + WORDINGS[d.wording].q + '"';
+    $('nRange').value = NS_STOPS.indexOf(d.n);
+    $('nRead').textContent = 'n = ' + d.n.toLocaleString('en-US');
+    $('nRange').setAttribute('aria-valuetext', 'n = ' + d.n);
+    // Budget desk cost
+    const cost = m.cost * d.n, over = cost - BUDGET;
+    const ce = $('cost');
+    const lead = curLayout === 'compact' ? '' : 'Cost ';
+    ce.textContent = over > 0 ? `${lead}${money(m.cost)} × ${d.n.toLocaleString('en-US')} = ${money(cost)}. Over budget by ${money(over)}` :
+      `${lead}${money(m.cost)} × ${d.n.toLocaleString('en-US')} = ${money(cost)} of ${money(BUDGET)}`;
+    ce.setAttribute('aria-label', 'Cost: ' + ce.textContent);
+    ce.classList.toggle('over', over > 0);
+    $('publish').disabled = over > 0 || state.published;
+  }
+
+  // ======================================================================================
+  // Results, truth and who answered
+  // ======================================================================================
+  function renderResults() {
+    const c = ctx(), res = c.last;
+    if (!res) {
+      $('resBody').innerHTML = `<p class="rnone">${state.mode === 'budget' ? 'Nothing published yet this round.' : 'No poll yet. Design one and press Run poll.'}</p>`;
+      $('whoBody').innerHTML = '<p class="rnone">After a poll: who got asked, compared with the whole town.</p>';
+      wallTitle();
+      return;
+    }
+    const pr = printed(res);
+    $('resBody').innerHTML =
+      `<p class="rbig">${res.yes.toLocaleString('en-US')} of ${res.n.toLocaleString('en-US')} said yes</p>` +
+      `<p class="rline">${fmt1(res.pct)} percent, plus or minus ${fmt1(res.moe)} points</p>` +
+      `<p class="rline" style="color:var(--muted);font-size:13px;font-family:inherit">${METHODS[res.method].name}, ${WORDINGS[res.wording].name}</p>` +
+      (res.n < 30 ? '<p class="few">Too few people to trust a plus or minus.</p>' : '') +
+      `<div class="paper"><p class="hl">${pr.hl}</p><p class="dl">${pr.dl}</p></div>` +
+      '<p class="info">Every method here gets the simple random formula for its plus or minus, 1.96 times the square root of p(1 − p) / n, because that is what published polls print.</p>';
+    renderWho(res, c.town);
+    wallTitle();
+  }
+  function renderWho(res, t) {
+    const n = res.who.length, ag = [0, 0, 0, 0], gp = [0, 0, 0, 0];
+    for (const j of res.who) { ag[t.age[j]]++; gp[t.group[j]]++; }
+    const rows = [
+      ...AGES.map((a, k) => ({head: 'Age band', name: a, say: AGE_SAY[k], s: 100 * ag[k] / n, t: t.agePct[k]})),
+      ...HOODS.map((h, k) => ({head: 'Neighborhood', name: h.name, say: h.name, s: 100 * gp[k] / n, t: t.groupPct[k]})),
+    ];
+    const big = rows.reduce((a, b) => Math.abs(b.s - b.t) > Math.abs(a.s - a.t) ? b : a);
+    const max = Math.max(...rows.map(r => Math.max(r.s, r.t)), 1);
+    let h = '<table class="inst who"><tr><th>group</th><th>sample</th><th>town</th><th><span class="sr">bars</span></th></tr>', head = '';
+    for (const r of rows) {
+      if (r.head !== head) { head = r.head; h += `<tr class="sub"><th colspan="4">${head}</th></tr>`; }
+      h += `<tr class="${r === big ? 'big' : ''}"><td>${r.name}</td><td>${r.s.toFixed(0)}%</td><td>${r.t.toFixed(0)}%</td>` +
+        `<td class="bars" aria-hidden="true"><span class="pb s" style="width:${(100 * r.s / max).toFixed(0)}%"></span><span class="pb t" style="width:${(100 * r.t / max).toFixed(0)}%"></span></td></tr>`;
+    }
+    h += `</table><p class="whokey">◀ biggest gap: ${big.name}, ${big.s.toFixed(0)} percent of the sample against ${big.t.toFixed(0)} percent of the town.</p>` + '<p class="whokey"><i style="background:var(--brand)"></i>sample <i style="background:#8796aa;margin-left:8px"></i>whole town</p>';
+    $('whoBody').innerHTML = h;
+  }
+  function renderTruth() {
+    const c = ctx(), el = $('truthBody');
+    if (state.mode === 'budget') {
+      if (!state.published || !c.last) { el.innerHTML = '<p class="hidden-truth">Hidden until you publish.</p>'; return; }
+      const res = c.last, pr = printed(res);
+      const inside = Math.abs(res.pct - c.town.truth) <= res.moe, right = verdictRight(res, c.town.truth);
+      el.innerHTML = `<p class="tl">True support: <b>${fmt1(c.town.truth)} percent</b></p>` +
+        `<p class="tl">Truth inside your plus or minus: <b class="${inside ? 'yes' : 'no'}">${inside ? 'yes' : 'no'}</b></p>` +
+        `<p class="tl">Headline verdict right: <b class="${right ? 'yes' : 'no'}">${right ? 'yes' : 'no'}</b></p>` +
+        `<p class="info">Your headline says "${pr.word}". A "backs" headline is right when the truth is above 50 percent, "says no" when it is below 50, and "split" when the truth is inside your plus or minus.</p>`;
+      return;
+    }
+    if (!isRevealed()) { el.innerHTML = `<p class="hidden-truth">${state.mode === 'case' ? 'Hidden until both case runs are done.' : 'Hidden. Press Reveal the truth.'}</p>`; return; }
+    const dots = shown(), newest = c.last;
+    let h = `<p class="tl">True support: <b>${fmt1(c.town.truth)} percent</b> (neutral question)</p>`;
+    if (newest) {
+      const off = Math.abs(newest.pct - c.town.truth), inside = off <= newest.moe;
+      h += `<p class="tl">Newest poll off by <b>${fmt1(off)} points</b></p><p class="tl">Inside its plus or minus: <b class="${inside ? 'yes' : 'no'}">${inside ? 'yes' : 'no'}</b></p>`;
+    }
+    if (dots.length) {
+      h += '<p class="tl">Plus or minus caught the truth, design by design:</p><ul class="caught">' + laneList(dots).map(ln => {
+        const k = ln.dots.length, caught = ln.dots.filter(d => d.caught).length;
+        return `<li>${shapeSvg(ln.d.method)} ${laneName(ln.d)}: <b>${caught} of ${k}</b></li>`;
+      }).join('') + '</ul>';
+    }
+    el.innerHTML = h;
+  }
+
+  // ======================================================================================
+  // Case file
+  // ======================================================================================
+  function caseRun(which) {
+    const design = which === 'digest' ? {method: 7, wording: 0, n: 2000} : {method: 1, wording: 0, n: 2000};
+    Object.assign(state.design, design); renderDesign();
+    state.show = 'all'; $('show').value = 'all';
+    runPolls(20, design, 1200);
+    state.caseRan[which] = true;
+    renderCase();
+    if (state.caseRan.digest && state.caseRan.fair) {
+      drawWall(); renderTruth();
+      narrate('caseAfter');
+    }
+    caseHint();
+  }
+  function renderCase() {
+    $('caseDigest').classList.toggle('done', state.caseRan.digest);
+    $('caseFair').classList.toggle('done', state.caseRan.fair);
+  }
+  $('caseDigest').onclick = () => caseRun('digest');
+  $('caseFair').onclick = () => caseRun('fair');
+
+  // ======================================================================================
+  // Budget desk: three rounds, one publish each, no score
+  // ======================================================================================
+  function budgetTown(round) {
+    let seed, offset, t;
+    for (let tries = 0; tries < 400; tries++) {
+      seed = 1 + budgetTowns.int(2e9); offset = -12 + 24 * budgetTowns();
+      if (round < 3) break;
+      t = makeTown(seed, offset);
+      if (t.truth >= 48 && t.truth <= 52) break;   // round 3, "Close race": redraw until the truth is 48 to 52
+    }
+    return newCtx(seed, offset);
+  }
+  function startRound(round, keepWall) {
+    flushDrops();
+    const wall = B ? B.wall : [], nextId = B ? B.nextId : 1;
+    state.round = round; state.published = false;
+    B = budgetTown(round);
+    if (keepWall) { B.wall = wall; B.nextId = nextId; }
+    state.sel = null;
+    renderBudget();
+    if (round === 3) narrate('close', true);
+  }
+  function renderBudget() {
+    $('roundLbl').textContent = `Round ${state.round} of 3${state.round === 3 ? ', "Close race"' : ''}`;
+    $('publish').hidden = false;
+    $('nextRound').hidden = !state.published || state.round >= 3;
+    $('startOver').hidden = !(state.published && state.round >= 3) && state.log.length === 0;
+    $('log').innerHTML = state.log.map(e => `<li>${e}</li>`).join('');
+    renderDesign();
+    if (state.mode === 'budget') {
+      setHint(state.published ? (state.round >= 3 ? 'budget3' : 'budget1') : 'budget0');
+      drawMap(); drawWall(); renderResults(); renderTruth();
+    }
+  }
+  $('publish').onclick = () => {
+    const d = state.design, m = METHODS[d.method];
+    if (state.published || m.cost * d.n > BUDGET) return;
+    runPolls(1, d, 0);
+    state.published = true; B.revealed = true;
+    const res = B.last, pr = printed(res);
+    const inside = Math.abs(res.pct - B.town.truth) <= res.moe, right = verdictRight(res, B.town.truth);
+    state.log.push(`<b>Round ${state.round}:</b> ${m.name}, ${WORDINGS[d.wording].name}, n = ${d.n.toLocaleString('en-US')}, ${money(m.cost * d.n)}. ` +
+      `Result ${fmt1(res.pct)}% plus or minus ${fmt1(res.moe)} ("${pr.word}"). Truth ${fmt1(B.town.truth)}%. ` +
+      `Inside: ${inside ? 'yes' : 'no'}. Verdict right: ${right ? 'yes' : 'no'}.`);
+    narrate('publish', true);
+    renderBudget();
+  };
+  $('nextRound').onclick = () => { if (state.round < 3 && state.published) startRound(state.round + 1, true); };
+  $('startOver').onclick = () => { state.log = []; B = null; startRound(1, false); };
+
+  // ======================================================================================
+  // Modes
+  // ======================================================================================
+  const MODES = {work: 'Workshop', case: 'Case file', budget: 'Budget desk'};
+  function setMode(m) {
+    hush(); flushDrops(); clearTimeout(ringAnim);
+    state.mode = m; state.sel = null;
+    for (const k in MODES) $('m-' + k).setAttribute('aria-pressed', k === m);
+    document.body.dataset.mode = m;
+    for (const el of document.querySelectorAll('[data-mode]')) el.hidden = !el.dataset.mode.split(' ').includes(m);
+    if (m === 'budget' && !B) startRound(1, false);
+    if (m === 'case') { state.show = 'all'; $('show').value = 'all'; }
+    wallTitle();
+    revealLabel();
+    if (m === 'work') workHint(); else if (m === 'case') caseHint(); else renderBudget();
+    renderDesign();
+    drawMap(); drawWall(); renderResults(); renderTruth();
+    narrate(WELCOME[m]);
+  }
+  for (const k in MODES) $('m-' + k).onclick = () => { if (state.mode !== k) setMode(k); };
+
+  function wallTitle() {
+    const b = state.mode === 'budget', last = ctx() && ctx().last, h = $('wallH');
+    h.classList.toggle('now', curLayout === 'compact' && !!last);
+    // compact: the newest result sits here, since the Results panel is below the fold in a small box
+    h.textContent = curLayout === 'compact' ? (last ? `${fmt1(last.pct)}% ± ${fmt1(last.moe)}: ${printed(last).word}` : b ? 'Your rounds' : 'Wall') :
+      b ? 'Your rounds' : 'Headline wall';
+  }
+  // every line the tool can say, so the voice scripts can record them (window.__tool.allLines())
+  const allLines = () => [...new Set([...Object.values(L), ...Object.values(HINTS).map(h => h[1] || h[0])])];
+
+  // ---------- layout: wide, compact (short landscape boxes) or stack (narrow); see the CSS note ----------
+  const WIDE = {rescol: ['hint', 'brief', 'resSec', 'truthSec', 'whoSec', 'tip'], panel: ['caseSec', 'designSec', 'logSec']};
+  const SMALL = {panel: ['designSec', 'brief', 'caseSec', 'resSec', 'truthSec', 'hint', 'logSec', 'whoSec', 'tip']};
+  const STACK = {panel: ['hint', 'brief', 'caseSec', 'designSec', 'resSec', 'truthSec', 'logSec', 'whoSec', 'tip']};
+  let curLayout = null;
+  function layout() {
+    const w = innerWidth, h = innerHeight;
+    const Lk = w >= 1200 && h >= 700 ? 'wide' : w >= 600 && w / h >= 1.25 ? 'compact' : 'stack';
+    if (Lk !== curLayout) {
+      curLayout = Lk;
+      for (const c of ['wide', 'compact', 'stack']) document.body.classList.toggle(c, c === Lk);
+      const put = (parent, ids) => ids.forEach(id => parent.appendChild($(id)));
+      if (Lk === 'wide') { put($('rescol'), WIDE.rescol); put($('panel'), WIDE.panel); }
+      else put($('panel'), (Lk === 'stack' ? STACK : SMALL).panel);
+      for (const b of ['motion', 'sound']) {
+        const el = $(b);
+        if (Lk === 'compact') el.setAttribute('aria-label', b === 'motion' ? 'Motion' : 'Sound'); else el.removeAttribute('aria-label');
+      }
+      for (const b of document.querySelectorAll('[data-short]')) {
+        if (!b.dataset.full) b.dataset.full = b.textContent;
+        b.textContent = Lk === 'compact' ? b.dataset.short : b.dataset.full;
+        if (Lk === 'compact') b.setAttribute('aria-label', b.dataset.full); else b.removeAttribute('aria-label');
+      }
+      renderDesign(); wallTitle();
+    }
+  }
+  // the kit writes the Motion and Sound labels; in compact the words hide and the emoji stay (the name stays for screen readers)
+  const iconOnly = () => {
+    for (const id of ['motion', 'sound']) {
+      const el = $(id), t = el.textContent.trim();
+      if (curLayout === 'compact') { const sp = t.indexOf(' '); if (sp > 0 && !el.querySelector('.lbl')) el.innerHTML = t.slice(0, sp) + ' <span class="lbl">' + t.slice(sp + 1) + '</span>'; }
+    }
+  };
+  new MutationObserver(iconOnly).observe(document.querySelector('header'), {subtree: true, childList: true});
+  layout();
+  addEventListener('resize', layout);
+  new ResizeObserver(() => { mapSize(); drawMap(); drawWall(); }).observe($('mapbox'));
+  new ResizeObserver(() => drawWall()).observe($('wallwrap'));
+
+  Curio.init({clips: "voice:*", rate: .95, readFallback: () => $('hint').textContent});
+  $('read').onclick = readNow;
+  iconOnly();
+  Curio.onMotion(() => { layout(); iconOnly(); });
+
+  // for checking frames
+  window.__tool = {state, setMode, allLines, METHODS, WORDINGS, NS_STOPS, Sampling, makeTown, poll, printed,
+    get W() { return W; }, get B() { return B; }, ctx, setDesign, runPolls, setReveal, shown, startRound, layout: () => curLayout,
+    run(times = 1) { return times === 50 ? $('run50').click() : $('run').click(); },
+    stats(list = shown()) {
+      const n = list.length, m = n ? list.reduce((s, d) => s + d.pct, 0) / n : NaN;
+      const sd = n > 1 ? Math.sqrt(list.reduce((s, d) => s + (d.pct - m) ** 2, 0) / (n - 1)) : NaN;
+      return {n, mean: m, sd, caught: list.filter(d => d.caught).length, truth: ctx().town.truth, moe: n ? list[n - 1].moe : NaN};
+    }};
+  mapSize();
+  setMode('work');
+})();
+</script>
+</body>
+</html>

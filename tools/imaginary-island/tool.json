@@ -1,12 +1,15 @@
 {
   "id": "imaginary-island",
   "status": "beta",
-  "stage": "built",
   "hook": "Every spot on the island is a complex number. Adding walks you a fixed step, times i swings you a quarter turn around the harbor, and squaring sends you spiraling out to sea.",
   "outcome": "Add, multiply and conjugate complex numbers, see multiplication as turning and stretching on the complex plane, and locate the complex solutions of a quadratic",
   "driver": "students",
   "minutes": "15-25",
-  "modes": ["Explore", "Clue Trail", "Springs"],
+  "modes": [
+    "Explore",
+    "Clue Trail",
+    "Springs"
+  ],
   "grades_label": "Grade 11",
   "sources": [
     "OpenStax, College Algebra 2e, 2.4 Complex Numbers (CC BY 4.0): https://openstax.org/books/college-algebra-2e/pages/2-4-complex-numbers",
@@ -14,7 +17,9 @@
     "OpenStax, Precalculus 2e, 8.5 Polar Form of Complex Numbers (CC BY 4.0): https://openstax.org/books/precalculus-2e/pages/8-5-polar-form-of-complex-numbers",
     "Common Core State Standards for Mathematics, High School Number and Quantity (N-CN): https://www.thecorestandards.org/Math/Content/HSN/CN/",
     "Landmark values, clues and presets are arithmetic, checked in the tool (2026-10-25)",
-    "Coastline, sea, landmark icons, markers and graph drawn in code; island terrain texture painted locally (no people), clipped to the coast; sounds generated in the browser"
+    "Coastline, sea, landmark icons, markers and graph drawn in code; island terrain texture painted locally (no people), clipped to the coast; sounds generated in the browser",
+    "Background images generated on this PC with FLUX.1-schnell (Apache 2.0), no people",
+    "Narration generated with Qwen3-TTS (Apache 2.0), cloning a Google Gemini text-to-speech voice"
   ],
   "third_party": [],
   "updated": "2026-10-25"

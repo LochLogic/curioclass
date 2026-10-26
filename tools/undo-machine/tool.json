@@ -1,12 +1,14 @@
 {
   "id": "undo-machine",
   "status": "beta",
-  "stage": "built",
   "hook": "Number tokens ride out along a chain of machines and must ride home along the undo chain you build, until squaring or rounding crashes two of them into one output and only a gate can save the day.",
   "outcome": "Compose functions, write and verify an inverse by undoing in reverse order, read inverses from a graph as a reflection across y = x, and restrict a domain to make a function one-to-one",
   "driver": "students",
   "minutes": "15-30",
-  "modes": ["Workshop", "Puzzles"],
+  "modes": [
+    "Workshop",
+    "Puzzles"
+  ],
   "grades_label": "Grade 11",
   "sources": [
     "Common Core State Standards for Mathematics, High School Functions, Building Functions (F-BF.A.1c, F-BF.B.4a to 4d, F-BF.B.5): https://www.thecorestandards.org/Math/Content/HSF/BF/",
@@ -14,7 +16,8 @@
     "OpenStax, Precalculus 2e, 1.7 Inverse Functions: one-to-one functions, undoing in reverse order, restricting the domain of x squared, the graph of an inverse reflects across y = x (CC BY 4.0): https://openstax.org/books/precalculus-2e/pages/1-7-inverse-functions",
     "OpenStax, Precalculus 2e, 6.3 Logarithmic Functions: log base b undoes b to the x (CC BY 4.0): https://openstax.org/books/precalculus-2e/pages/6-3-logarithmic-functions",
     "Puzzle answers checked by direct arithmetic on every test token (2026-10-25)",
-    "Machines, conveyors, tokens, gate, chute and graph drawn in code; sounds generated in the browser"
+    "Machines, conveyors, tokens, gate, chute and graph drawn in code; sounds generated in the browser",
+    "Narration generated with Qwen3-TTS (Apache 2.0), cloning a Google Gemini text-to-speech voice"
   ],
   "third_party": [],
   "updated": "2026-10-25"

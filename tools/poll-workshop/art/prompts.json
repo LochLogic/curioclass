@@ -1,0 +1,19 @@
+{
+  "house_style": "Muted, realistic texture for a high school statistics tool with a dark interface. Flat, even, calm. No text, no letters, no numbers, no watermark, no border, no frame.",
+  "style": "Old newspaper stock: soft off-white newsprint with faint fibers, kept light and plain so a printed headline set on top stays easy to read.",
+  "assets": [
+    {
+      "name": "newsprint",
+      "prompt": "Aged newsprint paper texture, faint fibers, soft off-white, flat even lighting, filling the whole frame edge to edge. Plain blank paper only: no text, no letters, no headlines, no columns of print, no photos, no folds or creases, no stains, no people, no hands.",
+      "aspect": "4:1",
+      "width": 1200,
+      "quality": 70,
+      "cutout": false,
+      "people": false,
+      "local_note": "background of the headline card (about 280 to 380 px wide, 90 to 130 px tall, background-size cover) under a light paper-colored wash at about 86 percent, so it only adds a little grain; it must stay pale and even so the dark serif headline stays readable",
+      "review": "pending",
+      "sd": "Extreme close-up macro photograph of a blank sheet of old off-white paper, faint visible fibers and a soft warm aged tint, flat even lighting, the plain paper fills the entire frame edge to edge.",
+      "source": "flux1-schnell (local)"
+    }
+  ]
+}

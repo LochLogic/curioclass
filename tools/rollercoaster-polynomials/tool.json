@@ -1,19 +1,24 @@
 {
   "id": "rollercoaster-polynomials",
   "status": "beta",
-  "stage": "built",
   "hook": "Plant a coaster's footings in the ground, choose how each one meets it, and the track you get is the polynomial, drawn to scale. Then survey hidden tracks with synthetic division.",
   "outcome": "Connect the zeros, multiplicities and leading coefficient of a polynomial to its graph, and use the remainder theorem to find factors",
   "driver": "students",
   "minutes": "20-40",
-  "modes": ["Build", "Survey", "Commissions"],
+  "modes": [
+    "Build",
+    "Survey",
+    "Commissions"
+  ],
   "grades_label": "Grade 11",
   "sources": [
     "OpenStax, College Algebra 2e, 5.3 Graphs of Polynomial Functions (CC BY 4.0): https://openstax.org/books/college-algebra-2e/pages/5-3-graphs-of-polynomial-functions",
     "OpenStax, College Algebra 2e, 5.4 Dividing Polynomials and 5.5 Zeros of Polynomial Functions (CC BY 4.0): https://openstax.org/books/college-algebra-2e/pages/5-5-zeros-of-polynomial-functions",
     "Common Core State Standards for Mathematics, High School Algebra (A-APR) and Functions (F-IF): https://www.thecorestandards.org/Math/Content/HSA/APR/",
     "Plans, orders and blueprints are original, checked by expansion and numeric sampling (2026-10-25)",
-    "Track, plane, car and fog drawn in code; sounds generated in the browser"
+    "Track, plane, car and fog drawn in code; sounds generated in the browser",
+    "Background images generated on this PC with FLUX.1-schnell (Apache 2.0), no people",
+    "Narration generated with Qwen3-TTS (Apache 2.0), cloning a Google Gemini text-to-speech voice"
   ],
   "third_party": [],
   "updated": "2026-10-25"

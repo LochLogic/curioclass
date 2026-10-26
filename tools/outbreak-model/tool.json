@@ -1,12 +1,15 @@
 {
   "id": "outbreak-model",
   "status": "beta",
-  "stage": "built",
   "hook": "Drag a target line to any number, like 1 million, and logarithms tell you exactly when a spreading rumor or outbreak gets there, worked in base 2, base 10 and base e, all landing on the same answer.",
   "outcome": "Solve exponential models for time with logarithms in base 2, 10 and e, read percent growth from an exponential, and see where a pure exponential model breaks",
   "driver": "students",
   "minutes": "15-30",
-  "modes": ["Grow", "Ask when", "Hit the ceiling"],
+  "modes": [
+    "Grow",
+    "Ask when",
+    "Hit the ceiling"
+  ],
   "grades_label": "Grade 11",
   "sources": [
     "OpenStax, Algebra and Trigonometry 2e, sections 6.5 to 6.7: logarithmic properties, exponential and logarithmic equations, exponential and logarithmic models (CC BY 4.0): https://openstax.org/details/books/algebra-and-trigonometry-2e",
@@ -15,7 +18,8 @@
     "US Census Bureau, 2020 Census apportionment results: United States 331,449,281 (April 1, 2020): https://www.census.gov/data/tables/2020/dec/2020-apportionment-data.html",
     "United Nations, Day of Eight Billion (November 15, 2022): https://www.un.org/en/dayof8billion",
     "All stories are invented round numbers, labeled as made-up examples in the tool; worked answers computed from the formulas (checked 2026-10-25)",
-    "Graph, lines, shading, counter and cards drawn in code; sounds generated in the browser"
+    "Graph, lines, shading, counter and cards drawn in code; sounds generated in the browser",
+    "Narration generated with Qwen3-TTS (Apache 2.0), cloning a Google Gemini text-to-speech voice"
   ],
   "third_party": [],
   "updated": "2026-10-25"
