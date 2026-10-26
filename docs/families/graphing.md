@@ -50,6 +50,8 @@ Details (added by rollercoaster-polynomials, 2026-10-25):
   Pixel positions written to the SVG (curves, segments, labels, points) are clamped to plus or minus 100,000 px, so a
   value far off the plane never prints in exponent form (which SVG rejects); a point that far off is also hidden with
   the `visibility` attribute until it comes back (a tool's own `style.visibility` still wins).
+  A `g.view` lands exactly on its target range on the last frame (added by savings-plan, 2026-10-25: easing from a
+  range of 10^107 down to 583 used to end at 0, because x0 + (x1 - x0) is not x1 in floating point when x0 is huge).
 - **Colors.** `color: 1` to `4` means `var(--gr-1)` to `var(--gr-4)` and also applies that series' dash pattern
   (1 solid, 2 `10 6`, 3 `2 5`, 4 `12 4 2 4`), so color is never the only signal; any CSS color also works.
   `dashed: true` or a dash string overrides. The grid, axes and tick text read `--gr-grid`, `--gr-grid-major`,

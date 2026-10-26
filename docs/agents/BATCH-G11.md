@@ -40,3 +40,8 @@ satire-decoder, usage-panel, stock-market-1929.
 - **About the 16:10 preview:** the tool page (site/templates/tool.html) shows the tool in a 16:10 preview box next to a
   "Play full screen" button. The preview must look inviting, readable (scene text about 10 px or more) and usable, but
   full screen (a laptop window, 1280x720 and up) is the main way students use it. Don't sacrifice the full-size layout.
+- **Voice behavior (learned from tools 1 to 6):** one welcome per mode, queued when the mode is entered (or after the
+  first unlocking tap). Mark a line said when it starts playing, not when it is queued; a stop drops lines that never
+  started, and their trigger can queue them again. Read always stops other speech and speaks the current hint; nothing
+  queued may cut Read off. Test this with real clicks, including clicking around during a welcome.
+  Test voice with held clicks (press, wait about 120 ms, release): instant scripted clicks hide pointerdown/click races.

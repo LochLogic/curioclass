@@ -1,0 +1,44 @@
+{
+  "house_style": "Muted, realistic digital painting for the background of a high school math tool with a dark interface. Low contrast, calm and quiet. No text, no letters, no numbers, no watermark, no border, no frame.",
+  "style": "A dark savings ledger desk: warm walnut, dim lamp light, copper and steel accents, kept low contrast so charts and panels drawn on top stay readable.",
+  "assets": [
+    {
+      "name": "desk-surface",
+      "prompt": "Empty background: a dark walnut desk top seen straight from above, filling the whole frame. Soft warm lamp light falls from the top left corner and fades to deep shadow toward the bottom right. Subtle wood grain, a few faint fine scratches. The desk is completely empty: no objects, no papers, no coins, no lamp visible, no hands, no people. No text anywhere. Muted, low contrast and dark, made to sit behind a dark user interface.",
+      "aspect": "16:10",
+      "width": 1600,
+      "quality": 70,
+      "cutout": false,
+      "people": false,
+      "local_note": "Plan Desk background, shown heavily darkened (about 12 percent visible) behind the chart and panels; keep it plain and empty",
+      "review": "pending",
+      "source": "flux1-schnell (local)"
+    },
+    {
+      "name": "penny-coin",
+      "prompt": "A single worn copper one-cent coin lying at a slight angle, studio light from the upper left, soft reflections on the copper, plain dark background. The coin face shows only a plain worn relief pattern: no portrait, no face, no head, no person, no letters, no numbers, no text.",
+      "aspect": "1:1",
+      "height": 160,
+      "quality": 80,
+      "cutout": true,
+      "key": "magenta",
+      "people": false,
+      "local_note": "tiny icon (24 to 34 px) on the Penny vs ten preset button and on Eli's customer card; must read as a copper coin at that size; no portrait or text on the coin",
+      "review": "pending",
+      "sd": "A single worn copper coin lying flat, seen from slightly above, studio light from the upper left, soft reflections on the copper. The coin face is smooth and blank apart from a raised rim and one simple raised wheat sprig in the center. Completely blank, no lettering, no numbers, no portrait.",
+      "source": "flux1-schnell (local)"
+    },
+    {
+      "name": "vault-door",
+      "prompt": "Empty background: a round steel bank vault door, closed, seen straight on from the front, filling most of the frame. Heavy bolts around the rim, a large spoked wheel handle in the middle, brushed steel with soft dim light and deep shadows. No people, no hands, no text, no letters, no numbers, no logos.",
+      "aspect": "4:3",
+      "width": 1200,
+      "quality": 72,
+      "cutout": false,
+      "people": false,
+      "local_note": "header image of the season summary, shown about 150 px tall and cropped to a wide strip (object-fit cover); keep the door centered",
+      "review": "pending",
+      "source": "flux1-schnell (local)"
+    }
+  ]
+}

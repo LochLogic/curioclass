@@ -1,0 +1,1443 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Savings Plan · Sequences and series · Curio Class</title>
+<meta name="description" content="Race two savings plans day by day: a sequence of deposits and the series that is the balance. Watch a doubling penny lose for ten days and then win by millions, see the sum shortcuts derived with your own numbers, then run a savings-plan desk for a season of customers. Grade 11 Algebra 2. Works offline.">
+<!--
+Savings Plan (Curio Class)
+Grade 11, Algebra 2, Sequences and Series: F-IF.A.3 (sequences are functions on the integers, defined recursively) and
+A-SSE.B.4 (derive and use the finite geometric series formula); the arithmetic series appears as its partner.
+Students drive, on their own laptops. Race: two deposit plans side by side, each shown as a sequence (what goes in) and
+its partial sums (what you have), with lead changes, a ledger and the two sum shortcuts derived with the plan's own
+numbers. Plan Desk: a season of 8 invented customers with goals, deadlines and limits; build a plan that works, or say
+it can't be done.
+Facts: OpenStax, Algebra and Trigonometry 2e, sections 13.2 to 13.4 (CC BY 4.0); Common Core State Standards for
+Mathematics (F-IF.A.3, A-SSE.B.4). Every preset and customer number is computed by the ledger below (each deposit rounded
+to the cent, half up; the balance is the sum of rounded deposits). No real prices, rates or people.
+Chart, ledger, cards, locks and checks drawn in code. Art: desk-surface, penny-coin, vault-door (no people).
+One file, no network requests. Content CC BY 4.0, code MIT. curioclass.org
+-->
+<link rel="stylesheet" href="kit:curio">
+<link rel="stylesheet" href="kit:theme-912">
+<style>
+:root{--brand:#2fa37a;--brand-ink:#04140d;--halo:#0b1017;--goal:#ffd166;--cap:#ff8a8a}
+/* three layouts, picked in script (layout()):
+   wide    (1200 px or wider and 700 px or taller): chart with a controls bar under it, panel on the right
+           (Race: the two plan cards side by side; Desk: customer card left of the chart, builder in the panel);
+   compact (a short landscape box such as the 16:10 embed at 680x425 to 1000x625): chart left, compact panel right,
+           the main controls first;
+   stack   (narrow or portrait): chart on top, the panel under it. */
+main{grid-template-columns:minmax(0,1fr) 380px}
+body.wide.race main{grid-template-columns:minmax(0,1fr) 540px}
+body.wide.desk main{grid-template-columns:minmax(0,1fr) 400px}
+.graphcol{display:flex;flex-direction:column;min-width:0;min-height:0;position:relative}
+.toprow{display:grid;grid-template-columns:minmax(0,1fr);flex:1;min-height:0}
+body.wide.desk .toprow{grid-template-columns:270px minmax(0,1fr)}
+.custwide{overflow:auto;padding:10px;min-width:0}
+.custwide:empty,body:not(.wide) .custwide,body.race .custwide{display:none}
+.stagewrap{position:relative;min-width:0;min-height:0;display:flex;flex:1}
+.stagewrap .stage{flex:1;min-height:0}
+body.season .custwide,body.season #bar{display:none}
+body.wide.desk.season .toprow{grid-template-columns:minmax(0,1fr)}
+.stage{background:radial-gradient(ellipse at 30% 20%,#122028,#0a0f17 70%)}
+body.desk .graphcol{background:linear-gradient(rgba(9,13,19,.86),rgba(9,13,19,.9)),url(art:desk-surface) center/cover}
+body.desk .stage{background:rgba(10,15,23,.55)}
+.scene{width:720px;height:490px}
+#sv{display:block;width:720px;height:490px;overflow:visible;touch-action:pan-y}
+.controls{display:flex;flex-wrap:wrap;gap:8px 14px;padding:8px 12px 10px;background:var(--head-bg);border-top:1px solid var(--line);align-items:flex-end}
+body:not(.wide) .controls{display:none}
+body.desk .controls{background:rgba(16,22,31,.92)}
+.ctl{display:flex;flex-direction:column;gap:3px;min-width:0}
+.glab,.ctl>label{font-size:13px;font-weight:600;color:var(--muted)}
+.grp{display:inline-flex;gap:0;flex-wrap:nowrap}
+.grp .btn{border-radius:0;margin-left:-1px}
+.grp .btn:first-child{border-radius:8px 0 0 8px;margin-left:0}
+.grp .btn:last-child{border-radius:0 8px 8px 0}
+.btnrow{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.slot{width:250px;max-width:100%}
+.slot .gr-slider{grid-template-columns:minmax(0,1fr) 5.6em;gap:0 8px}
+.slot .gr-slider label{font-size:13px;color:var(--muted)}
+.slot input.num{width:5.6em;padding:0 6px}
+.clampmsg{margin:2px 0 0;font-size:13px;color:var(--warn);min-height:0}
+.clampmsg:empty{display:none}
+/* panel */
+.panel{gap:10px}
+.panel .tip{margin-top:auto}
+.presets{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+body.wide .presets{grid-template-columns:repeat(4,minmax(0,1fr))}
+.presets .btn{display:flex;align-items:center;justify-content:center;gap:6px;padding:0 8px;font-size:14px;line-height:1.15}
+.presets img{width:24px;height:24px;flex:none}
+.cards{display:grid;grid-template-columns:minmax(0,1fr);gap:8px}
+body.wide .cards,body.stack.two .cards{grid-template-columns:repeat(2,minmax(0,1fr))}
+.card{display:flex;flex-direction:column;gap:6px;min-width:0}
+.card>h2{display:flex;align-items:center;gap:6px;margin:0!important}
+.card .swatch{flex:none}
+.nmrow{display:flex;gap:6px;align-items:center}
+.nmrow label{font-size:13px;color:var(--muted);font-weight:600}
+.nm{min-height:44px;width:100%;min-width:0;padding:0 8px;border-radius:8px;border:1px solid var(--btn-line);background:#0b1017;color:var(--ink);font:600 15px 'Segoe UI',system-ui,sans-serif}
+.typegrp{display:grid;grid-template-columns:1fr 1fr}
+.typegrp .btn{font-size:13px;line-height:1.15;padding:2px 6px;border-radius:0}
+.typegrp .btn:first-child{border-radius:8px 0 0 8px}
+.typegrp .btn:last-child{border-radius:0 8px 8px 0;margin-left:-1px}
+.card .slot{width:100%}
+.card .slot .gr-slider{grid-template-columns:minmax(0,1fr) 5em;gap:0 6px}
+.card .slot input.num{width:5em;font-size:15px}
+.card.sec{padding:8px 10px}
+body.wide .presets .btn{white-space:nowrap;font-size:13.5px;padding:0 4px}
+body.wide #bar #leadSec{flex:1 1 100%;padding:6px 10px}
+body.wide #bar .lead p{display:inline;margin-right:10px}
+body.wide #bar .grp .btn{padding:0 10px;font-size:14px}
+.nmrow .ltr{font:800 16px 'Segoe UI',system-ui,sans-serif;min-width:.8em}
+.ytl{fill:var(--gr-text);font-weight:600}
+#cDays{width:170px}
+#cDays .gr-slider{grid-template-columns:minmax(0,1fr) 3.6em}
+#cDays input.num{width:3.6em}
+.everyrow{display:flex;align-items:center;gap:8px}
+.everyrow .glab{min-width:3.2em}
+.rule{margin:0;font:13px/1.5 var(--readout-font);color:var(--ink)}
+.rule .rl{color:var(--muted);font-family:'Segoe UI',system-ui,sans-serif;font-size:12.5px}
+.rule sup,.steps sup,.fbox sup{font-size:.72em}
+.rule sub,.steps sub,.fbox sub{font-size:.72em}
+dl.readouts{font-size:13.5px}
+dl.readouts dd{word-break:break-word}
+.lead p{margin:0 0 3px;font:14px/1.45 'Segoe UI',system-ui,sans-serif}
+.lead p.first{font-weight:700}
+.lead .note{color:var(--goal);font-size:13.5px;margin-top:6px}
+.lead .note:empty{display:none}
+.small{font-size:13px;color:var(--muted);margin:4px 0 0;line-height:1.35}
+.small:empty{display:none}
+.lock{display:inline-flex;align-items:center;gap:3px;font-size:12px;font-weight:700;color:var(--goal);margin-left:6px;vertical-align:middle}
+.lock svg{width:12px;height:13px}
+.btn.wide{padding:0 14px}
+/* graph text: grows when the stage is scaled down (--ts from the stage scale) */
+.gtitle{fill:var(--ink);font:700 calc(14px * var(--ts,1)) 'Segoe UI',system-ui,sans-serif}
+.rd{fill:var(--ink);font:calc(13px * var(--ts,1)) var(--readout-font)}
+.rd .rn{font-weight:700}
+.gl{font:600 calc(12.5px * var(--ts,1)) 'Segoe UI',system-ui,sans-serif;paint-order:stroke;stroke:var(--halo);stroke-width:4px;stroke-linejoin:round}
+.gl.lead{fill:var(--goal)}
+.gl.off{fill:var(--warn)}
+.gl.goal{fill:var(--goal)}
+.gl.cap{fill:var(--cap)}
+.gl.over{fill:var(--cap)}
+#sv .gr-tick{font-size:calc(12.5px * var(--ts,1))}
+#sv .gr-axlabel{font-size:calc(13.5px * var(--ts,1))}
+.bar{fill:var(--gr-1);stroke:var(--paper);stroke-width:1}
+.bar.overcap{fill:url(#overHatch);stroke:var(--cap);stroke-width:1.5}
+.bar.grow{transform-box:fill-box;transform-origin:50% 100%;animation:barup 110ms ease-out}
+@keyframes barup{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+.cursor-hit{fill:transparent;cursor:crosshair}
+#cursorG:focus{outline:none}
+/* drawers: over the stage (full screen in the stacked layout) */
+.drawer{position:absolute;inset:8px;z-index:5;background:#0e141d;border:1px solid var(--btn-line);border-radius:12px;display:flex;flex-direction:column;min-height:0;box-shadow:0 10px 30px #0008}
+body.stack .drawer{position:fixed;inset:0;border-radius:0;z-index:20}
+body.compact .drawer{position:fixed;left:8px;right:8px;bottom:8px;top:calc(var(--hb,52px) + 6px);z-index:20}
+body.compact table.ledger{font-size:13px}
+body.stack table.ledger{font-size:11px;letter-spacing:-.2px}
+body.stack table.ledger th,body.stack table.ledger td{padding:3px 3px}
+body.stack .drawer .dbody{padding-left:6px;padding-right:6px}
+body.stack table.ledger td.tag .tagb{padding:0 3px}
+.dhead{display:flex;align-items:center;gap:8px;padding:8px 10px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.dhead h2{margin:0 auto 0 0;font:700 16px 'Segoe UI',system-ui,sans-serif}
+.dbody{overflow:auto;padding:8px 10px;min-height:0;flex:1}
+table.ledger{width:100%;font-size:13.5px}
+table.ledger thead th{position:sticky;top:0;background:#1a2330;z-index:1}
+table.ledger td.tag{text-align:left;font-family:'Segoe UI',system-ui,sans-serif}
+.tagb{display:inline-block;border:1px solid var(--goal);color:var(--goal);border-radius:6px;padding:0 6px;font-size:12.5px;font-weight:700}
+table.ledger tr.chg td{background:rgba(255,209,102,.07)}
+.ledger-note{margin:0 0 6px;font-size:13px;color:var(--muted)}
+.steps{margin:0;padding-left:22px;font:15px/1.5 'Segoe UI',system-ui,sans-serif}
+.steps li{margin:0 0 10px}
+.steps li.in{animation:fadein 250ms ease-out}
+@keyframes fadein{from{opacity:0}to{opacity:1}}
+.steps .num{display:block;font:14px/1.6 var(--readout-font);color:var(--muted);margin-top:2px}
+.steps .val{display:block;font:700 15px/1.5 var(--readout-font);color:var(--brand);margin-top:2px}
+.cancel{display:grid;grid-template-columns:auto repeat(6,auto);gap:2px 8px;font:14px/1.6 var(--readout-font);color:var(--ink);margin-top:4px;justify-content:start;overflow-x:auto}
+.cancel .st{position:relative;color:var(--muted)}
+.cancel .st::after{content:'';position:absolute;left:-2px;right:-2px;top:52%;border-top:2px solid var(--cap);transform-origin:left;animation:strike 250ms ease-out}
+@keyframes strike{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.cancel .rsep{grid-column:1/-1;border-top:1px solid var(--line)}
+.stepcount{font-size:13px;color:var(--muted)}
+/* Plan Desk */
+.deskbar{display:flex;align-items:center;gap:6px 12px;flex-wrap:wrap;padding:6px 12px;background:rgba(16,22,31,.92);border-bottom:1px solid var(--line)}
+.deskbar .who{font:700 15px 'Segoe UI',system-ui,sans-serif}
+.deskbar .cash{font:700 15px var(--readout-font);color:var(--brand)}
+.deskbar .sum{font-size:13.5px;color:var(--muted);flex-basis:100%}
+.slots{display:flex;gap:4px;flex-wrap:wrap}
+.slots span{min-width:58px;height:26px;padding:0 4px;border:1px solid var(--line);border-radius:6px;font:600 11.5px/24px 'Segoe UI',system-ui,sans-serif;color:var(--muted);text-align:center;white-space:nowrap}
+.slots span.now{border-color:var(--focus);color:var(--ink)}
+.slots span.good{color:var(--ok);border-color:var(--ok)}
+.slots span.bad{color:var(--warn);border-color:var(--warn)}
+.cust .cname{display:flex;align-items:center;gap:8px;margin:0;font:700 18px 'Segoe UI',system-ui,sans-serif}
+.cust .cname img{width:34px;height:34px}
+.cust .cfor{color:var(--muted);font:400 14px 'Segoe UI',system-ui,sans-serif}
+.cust .cname{margin-bottom:6px!important}
+.cust blockquote{margin:0 0 8px;padding:6px 10px;border-left:3px solid var(--brand);font:italic 15px/1.4 'Segoe UI',system-ui,sans-serif;color:var(--ink);background:#111821;border-radius:0 8px 8px 0}
+.cust dl.readouts{font-size:14px}
+.checks{list-style:none;margin:0;padding:0;display:grid;gap:4px}
+body.wide .checks{grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 16px}
+.checks li{display:grid;grid-template-columns:22px 1fr;gap:4px;font-size:14px;line-height:1.35}
+.checks .ic{font-weight:800;text-align:center}
+.checks li.yes .ic{color:var(--ok)}
+.checks li.no .ic{color:var(--warn)}
+.checks .cw{font-weight:700}
+.checks li.yes .cw{color:var(--ok)}
+.checks li.no .cw{color:var(--warn)}
+body.wide #checksSec{flex:1;min-width:0;background:transparent;border:0;padding:0}
+.result{margin:0;font:15px/1.45 'Segoe UI',system-ui,sans-serif}
+.result.good{color:var(--ok)}
+.result.bad{color:var(--warn)}
+.result+.result{margin-top:4px}
+.confirm{border:1px solid var(--goal);border-radius:8px;padding:8px;margin-top:8px}
+.confirm p{margin:0 0 6px;font-weight:700}
+.fbox{font:15px/1.6 var(--readout-font)}
+.fbox .q{display:inline-block;border:2px solid var(--goal);color:var(--goal);border-radius:4px;padding:0 5px;line-height:1.2;font-weight:700}
+.fbox p{margin:0 0 4px}
+.big-btn{font-size:16px}
+.deskbtns{display:flex;flex-wrap:wrap;gap:6px}
+.deskbtns .btn{flex:1 1 auto}
+.summary .vault{display:block;width:100%;max-height:150px;object-fit:cover;border-radius:8px;opacity:.9}
+.summary table{width:100%;margin-top:8px;font-size:13.5px}
+.summary td,.summary th{text-align:left!important;vertical-align:top}
+.summary .tot{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:6px;margin-top:8px}
+.summary .tot div{background:var(--sec-bg);border:1px solid var(--line);border-radius:8px;padding:6px 8px;font-size:13px;color:var(--muted)}
+.summary .tot b{display:block;font:700 18px var(--readout-font);color:var(--ink)}
+.summary .end{margin:10px 0 0;font-weight:700}
+/* compact */
+.cardtabs{display:none}
+body.compact .cardtabs{display:grid;grid-template-columns:1fr 1fr;gap:4px}
+body.compact .cardtabs .btn{display:flex;align-items:center;gap:4px;padding:0 6px;font-size:13px;min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+body.compact .cardtabs .btn span{overflow:hidden;text-overflow:ellipsis}
+body.compact .cardtabs .swatch{width:26px}
+body.compact .cards .card:not(.on){display:none}
+body.compact .card .nmrow{order:9}
+body.compact .card .nmrow .swatch,body.compact .card .nmrow .ltr{display:none}
+body.compact .card dl.readouts,body.compact .rule .rl,body.compact .rule .rl+br{display:none}
+body.compact .card .slot .gr-slider{grid-template-columns:4.3em minmax(0,1fr) 4.8em;gap:0 6px}
+body.compact .card .slot .gr-slider label{grid-column:auto;font-size:12px;line-height:1.15;color:var(--muted)}
+body.compact .card .slot input.num{width:4.8em;font-size:14px;padding:0 5px}
+body.compact .card.sec{padding:6px 8px;gap:5px}
+body.compact .typegrp .btn{font-size:12.5px}
+body.compact .cust .cname{font-size:16px}
+body.compact .cust .cname img{width:26px;height:26px}
+body.compact .cust .cfor{font-size:13px}
+body.compact .cust blockquote{font-size:13.5px;padding:4px 8px;margin:4px 0 6px}
+body.compact .cust dl.readouts{gap:1px 10px;font-size:13px}
+body.compact .deskbtns{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+body.compact .deskbtns #runBtn,body.compact .deskbtns #nextBtn{grid-column:1/-1;min-height:46px;order:-1}
+body.compact .deskbtns .btn{padding:0 6px;font-size:13.5px}
+body.compact main{grid-template-columns:minmax(0,1fr) 300px}
+body.compact.race main,body.compact.desk main{grid-template-columns:minmax(0,1fr) 300px}
+@media (min-width:980px){body.compact.race main,body.compact.desk main{grid-template-columns:minmax(0,1fr) 340px}}
+body.compact header{padding:4px 8px;gap:4px;flex-wrap:nowrap;min-width:0}
+body.compact h1{font-size:16px;white-space:nowrap;min-width:0;overflow:hidden;text-overflow:ellipsis}
+body.compact h1 small{display:none}
+body.compact .seg button,body.compact .icon-btn{min-height:44px;padding:0 8px;font-size:13.5px;white-space:nowrap}
+body.compact .seg,body.compact .icon-btn{flex:none}
+body.compact .panel{padding:8px 10px;gap:8px}
+body.compact .sec{padding:6px 9px}
+body.compact .sec>h2{margin-bottom:4px}
+body.compact .hint{font-size:14px}
+body.compact .btn{font-size:14px;padding:0 9px}
+body.compact .presets .btn{font-size:13px;padding:0 4px}
+body.compact .deskbar{padding:6px 8px;gap:4px 8px;border:1px solid var(--line);border-radius:10px;background:var(--sec-bg)}
+body.compact .deskbar .sum{display:none}
+body.compact .slots span{min-width:0;width:24px;font-size:0;padding:0}
+body.compact .slots span::before{content:attr(data-g);font-size:12px}
+body.compact .deskbar .who,body.compact .deskbar .cash{font-size:13.5px}
+body.stack{height:auto}
+body.stack main{grid-template-columns:minmax(0,1fr)!important;align-content:start}
+body.stack .panel{border-left:0;border-top:1px solid var(--line)}
+body.stack .stagewrap{flex:none}
+body.stack .slots span{min-width:0;width:26px;font-size:0;padding:0}
+body.stack .slots span::before{content:attr(data-g);font-size:12px}
+@media (max-width:520px){header{gap:8px}.seg button,.icon-btn{padding:0 11px;font-size:15px;min-height:46px}}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+</style>
+</head>
+<body class="race">
+<header>
+  <h1>Savings Plan <small>Sequences and series, Curio Class</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-race" aria-pressed="true">Race</button>
+    <button id="m-desk" aria-pressed="false">Plan Desk</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true" title="Turn animation on or off">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+  <button class="icon-btn" id="read">🔊 Read</button>
+</header>
+<main>
+  <div class="graphcol" id="graphcol">
+    <div class="deskbar" id="deskbar" data-mode="desk" hidden>
+      <span class="who" id="dbWho">Customer 1 of 8</span>
+      <span class="cash" id="dbCash" aria-live="polite">Desk cash: $0</span>
+      <div class="slots" id="slots" role="list" aria-label="Season so far"></div>
+      <span class="sum" id="dbSum"></span>
+    </div>
+    <div class="toprow" id="toprow">
+      <div class="custwide" id="custWide"></div>
+      <div class="stagewrap" id="stagewrap">
+        <div class="stage" id="stage">
+          <div class="scene" id="scene">
+            <svg id="sv" viewBox="0 0 720 490" role="group" aria-label="Chart">
+              <defs>
+                <pattern id="overHatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+                  <rect width="6" height="6" fill="rgba(255,138,138,.35)"/><line x1="0" y1="0" x2="0" y2="6" stroke="#ff8a8a" stroke-width="2"/>
+                </pattern>
+              </defs>
+              <g id="gRace">
+                <text class="rd" id="rdDay" x="16" y="18"></text>
+                <g id="rdA"></g><g id="rdB"></g>
+                <text class="gtitle ytl" id="yTitle" x="94" y="84" text-anchor="end">dollars</text>
+                <g id="gPlaneR"></g>
+              </g>
+              <g id="gDesk" style="display:none">
+                <text class="gtitle" id="dTitle1" x="16" y="20">Balance (what you have)</text>
+                <g id="gPlaneD1"></g>
+                <text class="gtitle" id="dTitle2" x="16" y="314">Each deposit (what goes in)</text>
+                <g id="gPlaneD2"></g>
+              </g>
+            </svg>
+          </div>
+        </div>
+        <section class="drawer" id="ledger" role="dialog" aria-modal="false" aria-labelledby="ledgerH" hidden>
+          <div class="dhead"><h2 id="ledgerH">Ledger</h2><button class="btn" id="ledgerClose">Close ledger</button></div>
+          <div class="dbody" style="padding-top:0">
+            <p class="ledger-note" id="ledgerNote" style="margin-top:8px"></p>
+            <table class="inst ledger" id="ledgerTable"></table>
+          </div>
+        </section>
+        <section class="drawer" id="shortcut" role="dialog" aria-modal="false" aria-labelledby="scH" hidden>
+          <div class="dhead"><h2 id="scH">Shortcut</h2><span class="stepcount" id="scCount"></span></div>
+          <div class="dbody"><ol class="steps" id="scSteps" aria-live="polite"></ol></div>
+          <div class="dhead" style="border-top:1px solid var(--line);border-bottom:0">
+            <button class="btn" id="scBack">◀ Back</button><button class="btn" id="scNext">Next step ▶</button><button class="btn" id="scClose">Close</button>
+          </div>
+        </section>
+        <section class="drawer summary" id="summary" role="dialog" aria-modal="false" aria-labelledby="sumH" hidden>
+          <div class="dhead"><h2 id="sumH">Season summary</h2><button class="btn" id="againBtn">Play the season again</button></div>
+          <div class="dbody" id="sumBody"></div>
+        </section>
+      </div>
+    </div>
+    <div class="controls" id="bar"></div>
+  </div>
+  <aside class="panel" id="panel">
+    <p class="hint" id="hint"></p>
+    <!-- Race -->
+    <section class="sec" id="cPresets" data-mode="race" aria-labelledby="prH">
+      <h2 id="prH">Presets</h2>
+      <div class="presets">
+        <button class="btn" data-preset="0"><img src="art:penny-coin" alt="">Penny vs ten</button>
+        <button class="btn" data-preset="1">Climb vs steady</button>
+        <button class="btn" data-preset="2">Raise vs steady</button>
+        <button class="btn" data-preset="3">Halving vs steady</button>
+      </div>
+    </section>
+    <div class="ctl" id="cView" data-mode="race"><span class="glab" id="vwL">Show</span>
+      <div class="grp" role="group" aria-labelledby="vwL"><button class="btn" data-view="have">What you have</button><button class="btn" data-view="in">What goes in</button></div></div>
+    <div class="ctl" id="cFit" data-mode="race"><span class="glab" id="ftL">Scale</span>
+      <div class="grp" role="group" aria-labelledby="ftL"><button class="btn" data-fit="both">Fit both</button><button class="btn" data-fit="small">Fit the smaller</button><button class="btn" data-fit="log">Log scale</button></div></div>
+    <div class="ctl slot" id="cDays" data-mode="race"></div>
+    <section class="sec lead" id="leadSec" data-mode="race" aria-labelledby="ldH">
+      <h2 id="ldH">Who leads</h2>
+      <div id="leadText" aria-live="polite"></div>
+      <p class="note" id="leadNote"></p>
+    </section>
+    <div class="cards" id="cardsSec" data-mode="race">
+      <div class="cardtabs" id="cardTabs" role="group" aria-label="Plan card to show"><button class="btn" data-tab="A"></button><button class="btn" data-tab="B"></button></div>
+    </div>
+    <div class="btnrow" id="cShort" data-mode="race">
+      <button class="btn" id="ledgerBtn" aria-expanded="false">Ledger</button><button class="btn" id="scA">Show the shortcut for A</button><button class="btn" id="scB">Show the shortcut for B</button>
+    </div>
+    <!-- Plan Desk -->
+    <section class="sec cust" id="custCard" data-mode="desk" aria-labelledby="cuName"></section>
+    <section class="sec" id="builder" data-mode="desk" aria-labelledby="buH">
+      <h2 id="buH">Plan builder</h2>
+      <div class="card" id="dCard"></div>
+    </section>
+    <section class="sec" id="deskBtns" data-mode="desk" aria-label="Desk actions">
+      <div class="deskbtns">
+        <button class="btn" id="formulaBtn" aria-expanded="false">Show the formula</button>
+        <button class="big-btn" id="runBtn">▶ Run the plan</button>
+        <button class="btn" id="cantBtn">Can't be done</button>
+        <button class="big-btn" id="nextBtn" hidden>Next customer ▶</button>
+      </div>
+      <div class="confirm" id="confirm" hidden>
+        <p id="confirmQ">Turn them away?</p>
+        <div class="btnrow"><button class="btn" id="yesAway">Yes, turn away</button><button class="btn" id="keepWork">Keep working</button></div>
+      </div>
+    </section>
+    <section class="sec" id="resultSec" data-mode="desk" aria-labelledby="reH" hidden>
+      <h2 id="reH">Result</h2>
+      <div id="result" aria-live="polite"></div>
+    </section>
+    <section class="sec" id="formulaSec" data-mode="desk" aria-labelledby="foH" hidden>
+      <h2 id="foH">The formula</h2>
+      <div class="fbox" id="fbox"></div>
+    </section>
+    <section class="sec" id="checksSec" data-mode="desk" aria-labelledby="chH">
+      <h2 id="chH">Checks</h2>
+      <ul class="checks" id="checks" aria-live="polite"></ul>
+    </section>
+    <p class="tip" id="tip"></p>
+  </aside>
+</main>
+<script src="kit:curio"></script>
+<script src="kit:graphing"></script>
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const {say, wait} = Curio;
+  const fmt = Plane.fmt;
+  const NS = 'http://www.w3.org/2000/svg';
+  const mk = (tag, attrs = {}, parent) => { const e = document.createElementNS(NS, tag); for (const k in attrs) if (attrs[k] != null) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; };
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'})[c]);
+
+  // ---------- spoken lines (voice/lines.json lists every one) ----------
+  const L = {
+    'race-welcome': 'Two saving plans, one race. Change either plan and watch who pulls ahead, and when.',
+    'race-penny': 'The doubling penny starts with one cent. Watch day eleven, then look at what day thirty asks you to put in.',
+    'shortcut-multiply': 'Here is the shortcut for a multiply plan. Write the sum, multiply it by the ratio, and subtract. Almost everything cancels.',
+    'shortcut-add': 'Here is the shortcut for an add plan. Write the sum forward and backward, then add the two rows. Every column is the same.',
+    'desk-welcome': "Welcome to the Plan Desk. Each customer brings a goal, a deadline and a limit. Build a plan that works, or say it can't be done.",
+    'cust-ana': 'Ana needs three hundred dollars for a bike in twenty weeks, never more than twenty five dollars a week. Any plan is fine.',
+    'cust-ben': 'Ben adds one dollar more every week. He needs five hundred dollars in twenty six weeks. Pick his first deposit.',
+    'cust-cam': "Cam's deposits grow ten percent every week. He needs four hundred dollars in twelve weeks. Pick his first deposit.",
+    'cust-dee': 'Dee starts with five dollars and adds the same raise every week. She needs four hundred dollars in sixteen weeks.',
+    'cust-eli': 'Eli wants to double every day for ten days and reach one hundred dollars, never more than sixty dollars in a day.',
+    'cust-fay': "Fay's deposits shrink to eighty percent of the last one each week. She needs three hundred dollars in ten weeks.",
+    'cust-gus': 'Gus can start with five dollars at most and never go over forty five a week. He needs nine hundred fifty dollars in forty weeks.',
+    'cust-ivy': 'Ivy needs two thousand dollars in twenty weeks. She can start with twenty dollars and never go over one hundred fifty a week.',
+    'desk-end': "That's the season. Look back at each plan, and at the one that could never work.",
+  };
+
+  // ======================================================================================
+  // SAVINGS LEDGER (tool-only block: deposit sequences, partial sums, money words, sum formulas).
+  // Money is kept in whole cents as BigInt, so every deposit rounds to the cent (half up) exactly and the balance
+  // is the exact sum of the rounded deposits, at any size. A plan: {type: 'add' | 'mul', first (cents), add (cents),
+  // times (hundredths: 110 means times 1.10), every (1 day or 7 days)}. Deposit k (k = 1, 2, ...) lands on day
+  // every x (k - 1) + 1.
+  // ======================================================================================
+  const B = BigInt;
+  const rhu = (num, den) => { // num / den rounded half up (den > 0); negative num rounds toward the nearer cent too
+    if (num < 0n) return -rhu(-num, den);
+    return (2n * num + den) / (2n * den);
+  };
+  // the first n deposits of a plan, in cents
+  function depositList(p, n) {
+    const out = [];
+    if (p.type === 'add') { const a = B(p.first), d = B(p.add); for (let k = 0; k < n; k++) out.push(a + B(k) * d); return out; }
+    const R = B(p.times);
+    if (p.times === 100) { for (let k = 0; k < n; k++) out.push(B(p.first)); return out; }
+    let num = B(p.first), den = 1n;
+    for (let k = 0; k < n; k++) {
+      const v = rhu(num, den); out.push(v);
+      if (R < 100n && v === 0n) { for (let j = k + 1; j < n; j++) out.push(0n); break; }   // a shrinking plan that has reached 0 stays 0
+      num *= R; den *= 100n;
+    }
+    return out;
+  }
+  // a plan over a horizon of D days: days, deposits, balances (BigInt cents) and the same as Numbers (dollars)
+  function runPlan(p, D) {
+    const days = []; for (let d = 1; d <= D; d += p.every) days.push(d);
+    const dep = depositList(p, days.length), bal = []; let s = 0n;
+    for (const v of dep) { s += v; bal.push(s); }
+    return {p, days, dep, bal, n: days.length, depN: dep.map(v => Number(v) / 100), balN: bal.map(v => Number(v) / 100),
+      total: s, last: dep[dep.length - 1] || 0n};
+  }
+  // the sum shortcut, exact, rounded to the cent: add S = n(a_1 + a_n) / 2; multiply S = a(1 - r^n) / (1 - r)
+  function formulaCents(p, n) {
+    if (p.type === 'add') { const a1 = B(p.first), an = a1 + B(n - 1) * B(p.add); return rhu(B(n) * (a1 + an), 2n); }
+    if (p.times === 100) return B(n) * B(p.first);
+    const R = B(p.times), H = 100n ** B(n);
+    let num = B(p.first) * (R ** B(n) - H), den = (R - 100n) * (100n ** B(n - 1));
+    if (den < 0n) { num = -num; den = -den; }
+    return rhu(num, den);
+  }
+  // for a shrinking multiply plan: the most it can ever reach (the exact limit a / (1 - r), or the rounded ledger if higher)
+  function shrinkLimit(p) {
+    const exact = rhu(B(p.first) * 100n, B(100 - p.times));
+    let s = 0n; for (const v of depositList(p, 4000)) { if (v === 0n) break; s += v; }
+    return s > exact ? s : exact;
+  }
+
+  // ---------- money and number words ----------
+  const commas = s => String(s).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  const SUPS = '⁰¹²³⁴⁵⁶⁷⁸⁹';
+  const supNum = e => String(e).split('').map(c => c === '-' ? '⁻' : SUPS[+c]).join('');
+  const TRILLION_C = 100000000000000n;   // $1 trillion in cents
+  function sciText(v) { let [m, e] = v.toExponential(2).split('e'); return `$${m} × 10${supNum(+e)}`; }
+  // cents (BigInt) as money: "$1,234.50"; above $1 trillion, "$1.07 × 10¹³" (three significant figures)
+  function money(c) {
+    c = B(c);
+    if (c > TRILLION_C) return sciText(Number(c) / 100);
+    const neg = c < 0n; if (neg) c = -c;
+    const s = c.toString().padStart(3, '0');
+    return (neg ? '−' : '') + '$' + commas(s.slice(0, -2)) + '.' + s.slice(-2);
+  }
+  // whole dollars without cents ("$300", "$1,700"), for goals, caps and limits
+  const moneyShort = c => { c = B(c); return c % 100n === 0n && c <= TRILLION_C ? '$' + commas((c / 100n).toString()) : money(c); };
+  // a number inside a formula: whole cents without decimals ("10", "0.01", "6.74")
+  const fnum = c => { c = B(c); if (c > TRILLION_C) return sciText(Number(c) / 100).slice(1); const s = c.toString().padStart(3, '0'); return c % 100n === 0n ? commas(s.slice(0, -2)) : commas(s.slice(0, -2)) + '.' + s.slice(-2); };
+  const rnum = t => String(+(t / 100).toFixed(2));   // a ratio inside a formula: 2, 1.1, 0.5
+  const rfix = t => (t / 100).toFixed(2);              // a ratio in words, as the slider shows it: 2.00, 1.10, 0.80
+  const say$ = t => t.replace(/\$(\d[\d.]*) × 10([⁰¹²³⁴⁵⁶⁷⁸⁹⁻]+)/g, (m, a, e) => `${a} times 10 to the ${e.split('').map(ch => ch === '⁻' ? 'minus ' : SUPS.indexOf(ch)).join('')} dollars`).replace(/−/g, 'minus ');
+  // superscript exponents as real superscripts: HTML <sup>, and raised tspans in SVG (the readout font has no superscript 0)
+  const SUPRE = /10([⁰¹²³⁴⁵⁶⁷⁸⁹⁻]+)/g;
+  const unsup = e => e.split('').map(ch => ch === '⁻' ? '−' : SUPS.indexOf(ch)).join('');
+  const sups = html => String(html).replace(SUPRE, (m, e) => `10<sup>${unsup(e)}</sup>`);
+  function svgText(parent, text, attrs = {}) {   // a tspan run, with any exponent raised
+    let last = 0, m, up = false; SUPRE.lastIndex = 0;
+    const add = (t, a) => { if (t) mk('tspan', a, parent).textContent = t; };
+    while ((m = SUPRE.exec(text))) {
+      add(text.slice(last, m.index) + '10', Object.assign({}, attrs, up ? {dy: '.3em'} : {}));
+      add(unsup(m[1]), {dy: '-.42em', 'font-size': '72%'}); up = true;
+      last = m.index + m[0].length;
+    }
+    add(text.slice(last) || (up ? ' ' : ''), Object.assign({}, attrs, up ? {dy: '.3em'} : {}));
+  }
+  // numbers on the chart axes
+  function tickMoney(v) {
+    if (Math.abs(v) < 1e-9) return '$0';
+    if (v > 1e12) return sciText(v);
+    if (v >= 1e9) return '$' + fmt(v / 1e9, 2) + ' billion';
+    if (v >= 1e6) return '$' + fmt(v / 1e6, 2) + ' million';
+    if (v >= 1000) return '$' + commas(Math.round(v));
+    return '$' + (Math.abs(v - Math.round(v)) < 1e-9 ? String(Math.round(v)) : v.toFixed(2));
+  }
+  function logTick(e) {   // a power of ten as money: "$0.01", "$1", "$10,000", "$10¹²"
+    if (e < 0) return '$' + Math.pow(10, e).toFixed(Math.max(2, -e));
+    if (e < 12) return '$' + commas('1' + '0'.repeat(e));
+    return '$10' + supNum(e);
+  }
+  // input parsing: "$1,000.50", "6.74", ".5"
+  function parseNum(text) {
+    const s = String(text).trim().replace(/[$,\s]/g, '');
+    if (!/^(\d+\.?\d*|\.\d+)$/.test(s)) return null;
+    const v = Number(s); return isFinite(v) ? v : null;
+  }
+  const centsOf = v => Math.round(v * 100 + 1e-7);   // dollars typed or slid, to whole cents (half up)
+
+  // rule text, both forms (HTML)
+  function ruleHTML(p) {
+    if (p.type === 'add') {
+      const a = fnum(p.first), d = fnum(p.add);
+      return [`a<sub>n</sub> = ${a} + (n − 1) × ${d}`, `a<sub>1</sub> = ${a}, a<sub>n</sub> = a<sub>n−1</sub> + ${d}`];
+    }
+    const a = fnum(p.first), r = rnum(p.times);
+    return [`a<sub>n</sub> = ${a} × ${r}<sup>n − 1</sup>`, `a<sub>1</sub> = ${a}, a<sub>n</sub> = ${r} × a<sub>n−1</sub>`];
+  }
+  function ruleSay(p) {
+    if (p.type === 'add') return `a n equals ${fnum(p.first)} plus n minus 1 times ${fnum(p.add)}`;
+    return `a n equals ${fnum(p.first)} times ${rnum(p.times)} to the n minus 1`;
+  }
+
+  // ======================================================================================
+  // State
+  // ======================================================================================
+  const PRESETS = [
+    {label: 'Penny vs ten', days: 30, A: {name: 'Ten a week', type: 'add', first: 1000, add: 0, every: 7},
+      B: {name: 'Doubling penny', type: 'mul', first: 1, times: 200, every: 1}},
+    {label: 'Climb vs steady', days: 280, A: {name: 'Steady twenty', type: 'add', first: 2000, add: 0, every: 7},
+      B: {name: 'Add a dollar', type: 'add', first: 100, add: 100, every: 7}},
+    {label: 'Raise vs steady', days: 200, A: {name: 'Steady twenty', type: 'add', first: 2000, add: 0, every: 7},
+      B: {name: 'Ten percent raise', type: 'mul', first: 500, times: 110, every: 7}},
+    {label: 'Halving vs steady', days: 70, A: {name: 'Steady twenty', type: 'add', first: 2000, add: 0, every: 7},
+      B: {name: 'Halving', type: 'mul', first: 6400, times: 50, every: 7}},
+  ];
+  const freshPlan = o => ({name: o.name, type: o.type, first: o.first, add: o.type === 'add' ? o.add : 0, times: o.type === 'mul' ? o.times : 100,
+    every: o.every, mem: {add: o.type === 'add' ? o.add : null, mul: o.type === 'mul' ? o.times : null}});
+  const state = {mode: 'race', tab: 'A', preset: 0, A: null, B: null, days: 30, view: 'have', fit: 'both', cursor: null,
+    ledgerOpen: false, sc: null};
+  const LIM = {first: [1, 100000], add: [0, 10000], times: [50, 300]};
+
+  // ======================================================================================
+  // RACE: the chart
+  // ======================================================================================
+  const niceNear = x => { if (!(x > 0)) return 1; const e = Math.floor(Math.log10(x)), m = x / Math.pow(10, e); return (m < 1.5 ? 1 : m < 3.5 ? 2 : m < 7.5 ? 5 : 10) * Math.pow(10, e); };
+  const mant = s => Math.round(s / Math.pow(10, Math.floor(Math.log10(s) + 1e-9)));
+  const isLog = () => state.fit === 'log';
+  const labX = (lo, hi) => Math.max(1, niceNear((hi - lo) / 7));
+  const gridX = (lo, hi) => { const l = labX(lo, hi); return l < 2 ? 1 : l / (mant(l) === 5 ? 5 : 2); };
+  const logStep = (lo, hi) => { const r = hi - lo; return r <= 7 ? 1 : r <= 16 ? 2 : Math.max(2, niceNear(r / 7)); };
+  const labY = (lo, hi) => isLog() ? logStep(lo, hi) : niceNear((hi - lo) / 5);
+  const gridY = (lo, hi) => { if (isLog()) return hi - lo <= 40 ? 1 : logStep(lo, hi); const l = labY(lo, hi); return l / (mant(l) === 5 ? 5 : 2); };
+  // two chart shapes: wide (720 x 490, for wide stages) and tall (560 x 540, for the near-square stage of the 16:10 embed and
+  // of phones), so chart text stays about 10 px or more on screen; the planes are rebuilt when the shape changes
+  const GEO = {
+    wide: {w: 720, h: 490, names: true, rd: [18, 39, 60], ytl: [94, 84], RP: {left: 104, top: 94, W: 590, H: 340},
+      D1: {left: 104, top: 36, W: 590, H: 236}, D2: {left: 104, top: 326, W: 590, H: 112}, t2: 314},
+    tall: {w: 560, h: 540, names: false, rd: [18, 39, 60], ytl: [90, 84], RP: {left: 100, top: 94, W: 440, H: 386},
+      D1: {left: 100, top: 36, W: 440, H: 286}, D2: {left: 100, top: 374, W: 440, H: 112}, t2: 362},
+  };
+  let geo = GEO.wide, RP = geo.RP, g = null, plotG, markG, labG;
+  const curG = mk('g', {id: 'cursorG', tabindex: 0, role: 'slider', 'aria-label': 'Chart cursor. Left and Right arrows step from deposit to deposit.'});
+  const curHit = mk('rect', {class: 'cursor-hit', x: 0, y: 0}, curG);
+  const curFocus = mk('rect', {x: -3, y: -3, fill: 'none', stroke: 'var(--focus)', 'stroke-width': 3, rx: 4, visibility: 'hidden'}, curG);
+  const curLine = mk('line', {stroke: 'var(--ink)', 'stroke-width': 1, 'stroke-dasharray': '3 4', opacity: .6, y1: 0, 'pointer-events': 'none'}, curG);
+  const curDots = mk('g', {'pointer-events': 'none'}, curG);
+  function makeRacePlane() {
+    const keep = g ? g.range : null;
+    $('gPlaneR').textContent = '';
+    g = Plane($('gPlaneR'), {x: [0, 30], y: [0, 100], width: RP.W, height: RP.H, left: RP.left, top: RP.top, grid: [gridX, gridY], labels: [labX, labY],
+      ticks: 'edge', xLabel: 'day',
+      tickFormat: (v, axis) => axis === 'x' ? commas(Math.round(v)) : isLog() ? (Math.abs(v - Math.round(v)) < 1e-6 ? logTick(Math.round(v)) : null) : tickMoney(v)});
+    plotG = mk('g', {}, g.layer('plot'));
+    markG = mk('g', {}, g.layer('front'));
+    labG = mk('g', {}, g.layer('labels'));
+    g.layer('labels').appendChild(curG);
+    for (const [el, pad] of [[curHit, 0], [curFocus, 6]]) { el.setAttribute('width', RP.W + pad); el.setAttribute('height', RP.H + pad); }
+    curLine.setAttribute('y2', RP.H);
+    $('rdDay').setAttribute('y', geo.rd[0]);
+    $('yTitle').setAttribute('x', geo.ytl[0]); $('yTitle').setAttribute('y', geo.ytl[1]);
+    g.onView(drawRace);
+    if (keep) g.view(keep.x, keep.y, {ms: 0});
+  }
+  const clampPx = v => Math.max(-1e5, Math.min(1e5, v));
+  const P = (x, y) => { const [u, v] = g.px(x, y); return [clampPx(u), clampPx(v)]; };
+  const yOf = v => isLog() ? (v > 0 ? Math.log10(v) : null) : v;
+  const dotD = (u, v, r, shape) => shape === 'sq' ?
+    `M${(u).toFixed(1)},${(v - r * 1.35).toFixed(1)}l${(r * 1.35).toFixed(1)},${(r * 1.35).toFixed(1)}l${(-r * 1.35).toFixed(1)},${(r * 1.35).toFixed(1)}l${(-r * 1.35).toFixed(1)},${(-r * 1.35).toFixed(1)}z` :
+    `M${(u - r).toFixed(1)},${v.toFixed(1)}a${r},${r} 0 1,0 ${2 * r},0a${r},${r} 0 1,0 ${-2 * r},0z`;
+  let R = null;   // the current race: {A, B, rows, changes, D}
+
+  function computeRace() {
+    const D = state.days, a = runPlan(state.A, D), b = runPlan(state.B, D);
+    const rows = []; let ia = 0, ib = 0, lead = null; const changes = [];
+    let balA = 0n, balB = 0n;
+    for (let d = 1; d <= D; d++) {
+      let da = null, db = null;
+      if (ia < a.n && a.days[ia] === d) { da = a.dep[ia]; balA = a.bal[ia]; ia++; }
+      if (ib < b.n && b.days[ib] === d) { db = b.dep[ib]; balB = b.bal[ib]; ib++; }
+      if (da == null && db == null) continue;
+      const L2 = balA > balB ? 'A' : balB > balA ? 'B' : 'T';
+      const row = {day: d, da, db, balA, balB, lead: L2, change: false, first: lead == null};
+      if (lead != null && L2 !== lead) { row.change = true; changes.push(row); }
+      lead = L2; rows.push(row);
+    }
+    R = {A: a, B: b, rows, changes, D, start: rows.length ? rows[0].lead : 'T'};
+    return R;
+  }
+  // the lead readout: lines of text
+  function leadLines() {
+    const {rows, changes, start} = R;
+    if (!rows.length) return ['No deposits yet.'];
+    if (!changes.length) return [start === 'T' ? 'Tied the whole way.' : `${start} leads the whole way.`];
+    const out = [start === 'T' ? 'Tied on day 1.' : `${start} leads from day 1.`];
+    for (const c of changes.slice(0, 4)) {
+      if (c.lead === 'T') out.push(`Tied on day ${c.day} at ${money(c.balA)}.`);
+      else { const hi = c.lead === 'A' ? c.balA : c.balB, lo = c.lead === 'A' ? c.balB : c.balA; out.push(`${c.lead} takes the lead on day ${c.day} (${money(hi)} to ${money(lo)}).`); }
+    }
+    if (changes.length > 4) out.push(`and ${changes.length - 4} more.`);
+    return out;
+  }
+  function leadNote() {
+    const notes = [];
+    for (const k of ['A', 'B']) {
+      const p = state[k];
+      if (p.type === 'mul' && p.times < 100) notes.push(`${p.times === 50 ? 'Halving' : 'Shrinking'} plans add less and less: this one can never pass ${moneyShort(shrinkLimit(p))}.` + (state.A.type === 'mul' && state.A.times < 100 && state.B.type === 'mul' && state.B.times < 100 ? ` (${k})` : ''));
+    }
+    return notes.join(' ');
+  }
+
+  // the y range for a fit: {have: balances, in: deposits}
+  function seriesOf(k) { const r = R[k]; return state.view === 'have' ? r.balN : r.depN; }
+  function topOf(k) { const s = seriesOf(k); return s.length ? Math.max(...s) : 0; }
+  function windowY() {
+    const ta = topOf('A'), tb = topOf('B');
+    if (isLog()) {
+      const pos = [...seriesOf('A'), ...seriesOf('B')].filter(v => v > 0);
+      if (!pos.length) return [-2, 0];
+      const lo = Math.floor(Math.log10(Math.min(...pos)) + 1e-9), hi = Math.log10(Math.max(...pos)) + .15;
+      return [lo, Math.max(hi, lo + 1)];
+    }
+    const top = state.fit === 'small' ? Math.min(ta, tb) : Math.max(ta, tb);
+    return [0, Math.max(top * 1.1, .05)];
+  }
+  function setRaceView(anim) {
+    const yr = windowY(), xr = [0, state.days];
+    const cur = g.range, same = cur.x[0] === xr[0] && cur.x[1] === xr[1] && Math.abs(cur.y[0] - yr[0]) < 1e-12 && Math.abs(cur.y[1] - yr[1]) < 1e-12 * Math.max(1, Math.abs(yr[1]));
+    g.view(xr, yr, {ms: anim && !same && !Curio.reduce ? 400 : 0});
+    if (same) drawRace();
+  }
+  const STY = {A: {color: 'var(--gr-1)', dash: null, shape: 'c'}, B: {color: 'var(--gr-2)', dash: '10 6', shape: 'sq'}};
+  function drawRace() {
+    if (!R || state.mode !== 'race') return;
+    plotG.textContent = ''; markG.textContent = ''; labG.textContent = '';
+    const {x: X, y: Y} = g.range, D = state.days;
+    for (const k of ['A', 'B']) {
+      const r = R[k], s = STY[k], dots = [];
+      const rad = r.n > 150 ? 3.2 : r.n > 60 ? 3.6 : 4.6, many = r.n > 60;
+      if (state.view === 'have') {
+        let d = '';
+        for (let i = 0; i < r.n; i++) {
+          const y = yOf(r.balN[i]); if (y == null) continue;
+          const [u, v] = P(r.days[i], y), next = i + 1 < r.n ? r.days[i + 1] : D;
+          const [u2] = P(next, y);
+          d += (d ? 'V' + v.toFixed(1) : `M${u.toFixed(1)},${v.toFixed(1)}`) + 'H' + u2.toFixed(1);
+          if (r.n <= 150) dots.push(dotD(u, v, rad, s.shape));   // above 150 deposits the dots would blur into a band: the step line alone, with its dash
+        }
+        mk('path', {d, fill: 'none', stroke: s.color, 'stroke-width': many ? 3 : 2.5, 'stroke-dasharray': s.dash, 'stroke-linejoin': 'round'}, plotG);
+      } else {
+        for (let i = 0; i < r.n; i++) {
+          const y = yOf(r.depN[i]); if (y == null) continue;   // $0 is not drawn on a log scale
+          const [u, v] = P(r.days[i], y); dots.push(dotD(u, v, rad + .4, s.shape));
+        }
+      }
+      mk('path', {d: dots.join(''), fill: s.color, stroke: many ? 'none' : 'var(--paper)', 'stroke-width': 1.2}, plotG);
+    }
+    // lead changes: a thin vertical marker and a label
+    const shown = R.changes.slice(0, 6);
+    const offY = !isLog() && ['A', 'B'].some(k => seriesOf(k).some(v => v > Y[1])) ? 40 : 16;   // under an off-the-chart label
+    shown.forEach((c, i) => {
+      const [u] = P(c.day, 0);
+      if (u < -1 || u > RP.W + 1) return;
+      mk('line', {x1: u.toFixed(1), x2: u.toFixed(1), y1: 0, y2: RP.H, stroke: 'var(--goal)', 'stroke-width': 1.2, 'stroke-dasharray': '2 3'}, markG);
+      const right = u > RP.W * .62;
+      const t = mk('text', {class: 'gl lead', x: (u + (right ? -6 : 6)).toFixed(1), y: offY + (i % 3) * 17, 'text-anchor': right ? 'end' : 'start'}, labG);
+      t.textContent = c.lead === 'T' ? `Tied, day ${c.day}` : `${c.lead} leads, day ${c.day}`;
+    });
+    // off the chart (Fit the smaller): an arrow where the bigger plan leaves the top, with its value
+    if (!isLog()) for (const k of ['A', 'B']) {
+      const s = seriesOf(k), r = R[k], i = s.findIndex(v => v > Y[1]);
+      if (i < 0) continue;
+      const [u] = P(r.days[i], Y[1]), right = u > RP.W * .55;
+      mk('path', {d: `M${u.toFixed(1)},-2 l-8,12 h5 v10 h6 v-10 h5 z`, fill: 'var(--warn)', transform: 'translate(0,2)'}, labG);
+      const top = state.view === 'have' ? r.total : r.dep.reduce((m, v) => v > m ? v : m, 0n);
+      const t = mk('text', {class: 'gl off', x: (u + (right ? -12 : 12)).toFixed(1), y: 16 + (k === 'A' ? 18 : 0), 'text-anchor': right ? 'end' : 'start'}, labG);
+      svgText(t, `${k} off the chart: ${state.view === 'have' ? 'balance' : 'top deposit'} ${money(top)}`);
+    }
+    drawCursor();
+  }
+  // ---------- the chart cursor (trace-style: hover, or focus and Left and Right by deposit) ----------
+  function cursorRow() { if (!R || !R.rows.length) return null; const i = state.cursor == null ? R.rows.length - 1 : Math.min(state.cursor, R.rows.length - 1); return R.rows[i]; }
+  function balAt(k, day) { const r = R[k]; let i = -1; for (let j = 0; j < r.n && r.days[j] <= day; j++) i = j; return i < 0 ? 0n : r.bal[i]; }
+  function cursorText(row) {
+    const part = k => { const dep = k === 'A' ? row.da : row.db; return `${k}: deposit ${dep == null ? '$0' : money(dep)}, balance ${money(k === 'A' ? row.balA : row.balB)}`; };
+    return {day: `Day ${row.day}.`, A: part('A') + '.', B: part('B') + '.'};
+  }
+  function drawCursor() {
+    curDots.textContent = '';
+    const row = cursorRow(); if (!row) return;
+    const t = cursorText(row);
+    $('rdDay').textContent = `Day ${row.day}` + (state.cursor == null ? (geo.names ? ' (the last deposit day; hover or use the arrow keys for others)' : ' (the last deposit day)') : '');
+    for (const k of ['A', 'B']) {
+      const el = $('rd' + k); el.textContent = '';
+      const y = k === 'A' ? geo.rd[1] : geo.rd[2], s = STY[k];
+      mk('line', {x1: 16, x2: 40, y1: y - 4.5, y2: y - 4.5, stroke: s.color, 'stroke-width': 3, 'stroke-dasharray': s.dash}, el);
+      mk('path', {d: dotD(28, y - 4.5, 4.4, s.shape), fill: s.color, stroke: 'var(--paper)', 'stroke-width': 1.2}, el);
+      const tx = mk('text', {class: 'rd', x: 48, y}, el);
+      const nm = mk('tspan', {class: 'rn', fill: s.color}, tx); nm.textContent = geo.names ? `${k} ${state[k].name || 'Plan ' + k}` : k;
+      svgText(tx, ': ' + t[k].slice(3));
+    }
+    const [u] = P(row.day, 0);
+    curLine.setAttribute('x1', u.toFixed(1)); curLine.setAttribute('x2', u.toFixed(1));
+    for (const k of ['A', 'B']) {
+      const val = state.view === 'have' ? Number(k === 'A' ? row.balA : row.balB) / 100 : (k === 'A' ? row.da : row.db);
+      if (val == null) continue;
+      const y = yOf(typeof val === 'bigint' ? Number(val) / 100 : val); if (y == null) continue;
+      const [, v] = P(row.day, y); if (v < -2 || v > RP.H + 2) continue;
+      mk('circle', {cx: u.toFixed(1), cy: v.toFixed(1), r: 7, fill: 'none', stroke: 'var(--ink)', 'stroke-width': 2}, curDots);
+    }
+    curG.setAttribute('aria-valuetext', `${t.day} ${t.A} ${t.B}`);
+    curG.setAttribute('aria-valuenow', row.day); curG.setAttribute('aria-valuemin', 1); curG.setAttribute('aria-valuemax', state.days);
+  }
+  curG.addEventListener('pointermove', e => {
+    if (!R || !R.rows.length) return;
+    const [x] = g.eventCoord(e);
+    let best = 0; R.rows.forEach((r, i) => { if (Math.abs(r.day - x) < Math.abs(R.rows[best].day - x)) best = i; });
+    if (state.cursor !== best) { state.cursor = best; drawCursor(); }
+  });
+  curG.addEventListener('pointerleave', () => { if (document.activeElement !== curG) { state.cursor = null; drawCursor(); } });
+  curG.addEventListener('focus', () => { curFocus.setAttribute('visibility', 'visible'); });
+  curG.addEventListener('blur', () => { curFocus.setAttribute('visibility', 'hidden'); });
+  curG.addEventListener('keydown', e => {
+    if (!R || !R.rows.length) return;
+    const n = R.rows.length, cur = state.cursor == null ? n - 1 : state.cursor;
+    const to = {ArrowLeft: cur - 1, ArrowDown: cur - 1, ArrowRight: cur + 1, ArrowUp: cur + 1, Home: 0, End: n - 1, PageUp: cur + 10, PageDown: cur - 10}[e.key];
+    if (to == null) return;
+    e.preventDefault(); state.cursor = Math.max(0, Math.min(n - 1, to)); drawCursor();
+  });
+
+  // ======================================================================================
+  // RACE: the panel (two plan cards, days, presets, lead, shortcut, ledger)
+  // ======================================================================================
+  const lockSVG = '<svg viewBox="0 0 12 13" aria-hidden="true"><rect x="1" y="5.5" width="10" height="7" rx="1.5" fill="currentColor"/><path d="M3.3 5.6V4a2.7 2.7 0 0 1 5.4 0v1.6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>';
+  const swatchSVG = k => `<svg class="swatch" width="34" height="14" aria-hidden="true"><line x1="2" x2="32" y1="7" y2="7" stroke="${STY[k].color}" stroke-width="3" ${STY[k].dash ? `stroke-dasharray="${STY[k].dash}"` : ''}/><path d="${dotD(17, 7, 4.4, STY[k].shape)}" fill="${STY[k].color}" stroke="#0d1219" stroke-width="1.2"/></svg>`;
+  // a card's controls (used by both Race cards and the Desk builder): {root, key, get(), onChange(), fixed()}
+  function buildCard(root, opt) {
+    const id = opt.id;
+    root.innerHTML = (opt.name ? `<div class="nmrow">${opt.title}<input class="nm" id="${id}-name" maxlength="20" autocomplete="off" spellcheck="false" aria-label="${opt.nameLabel}"></div>` : opt.title ? `<h2>${opt.title}</h2>` : '') +
+      `<div class="typegrp" role="group" aria-label="Plan type${opt.ariaSuffix || ''}" id="${id}-type"><button class="btn" data-t="add">Add the same amount</button><button class="btn" data-t="mul">Multiply by the same number</button></div>
+       <div class="slot" id="${id}-first"></div><p class="clampmsg" id="${id}-firstmsg" aria-live="polite"></p>
+       <div class="slot" id="${id}-add"></div><p class="clampmsg" id="${id}-addmsg" aria-live="polite"></p>
+       <div class="slot" id="${id}-times"></div><p class="clampmsg" id="${id}-timesmsg" aria-live="polite"></p>
+       <div class="everyrow"><span class="glab" id="${id}-evL">Every</span><div class="grp" role="group" aria-labelledby="${id}-evL" id="${id}-every"><button class="btn" data-e="1">day</button><button class="btn" data-e="7">week</button></div><span id="${id}-evlock"></span></div>
+       <p class="rule" id="${id}-rule"></p>
+       ${opt.readout ? `<dl class="readouts" id="${id}-ro"></dl>` : ''}`;
+    const c = {root, id};
+    const msgT = {};
+    const clampMsg = (key, text) => { const el = $(`${id}-${key}msg`); el.textContent = text; clearTimeout(msgT[key]); msgT[key] = setTimeout(() => { el.textContent = ''; }, 3000); };
+    const mkParse = (key, lo, hi, txt, toUnit) => text => {
+      const v = parseNum(text); if (v == null) return null;     // blank or not a number: back to the last good value
+      const u = toUnit(v);
+      if (u < lo || u > hi) { clampMsg(key, txt); return Math.min(hi, Math.max(lo, u)) / 100; }
+      return u / 100;
+    };
+    c.first = Plane.slider($(`${id}-first`), {label: 'First deposit, $', min: .01, max: 1000, scale: 'log', value: 10, id: `${id}-firstR`,
+      format: v => (centsOf(v) / 100).toFixed(2), parse: mkParse('first', ...LIM.first, 'Kept between $0.01 and $1,000.00', centsOf),
+      onInput: (v, src) => { const cts = Math.min(LIM.first[1], Math.max(LIM.first[0], centsOf(v))); opt.set({first: cts}); if (src === 'slider') c.first.set(cts / 100, true); }});
+    c.add = Plane.slider($(`${id}-add`), {label: 'Add each time, $', min: 0, max: 100, step: .01, value: 0, id: `${id}-addR`,
+      format: v => (centsOf(v) / 100).toFixed(2), parse: mkParse('add', ...LIM.add, 'Kept between $0.00 and $100.00', centsOf),
+      onInput: v => opt.set({add: Math.min(LIM.add[1], Math.max(0, centsOf(v)))})});
+    c.times = Plane.slider($(`${id}-times`), {label: 'Times each time', min: .5, max: 3, step: .01, value: 1, id: `${id}-timesR`,
+      format: v => (centsOf(v) / 100).toFixed(2), parse: mkParse('times', ...LIM.times, 'Kept between 0.50 and 3.00', centsOf),
+      onInput: v => opt.set({times: Math.min(LIM.times[1], Math.max(LIM.times[0], centsOf(v)))})});
+    // the log slider moves a cent per arrow press (a dollar with Page Up and Page Down), so exact plans can be set by keyboard
+    c.first.range.addEventListener('keydown', e => {
+      const d = {ArrowRight: 1, ArrowUp: 1, ArrowLeft: -1, ArrowDown: -1, PageUp: 100, PageDown: -100}[e.key];
+      if (d == null) return;
+      e.preventDefault();
+      const cur = opt.get().first, nx = Math.min(LIM.first[1], Math.max(LIM.first[0], cur + d));
+      if (nx !== cur) { c.first.set(nx / 100, true); opt.set({first: nx}); }
+    });
+    c.add.range.addEventListener('keydown', e => { const d = {PageUp: 100, PageDown: -100}[e.key]; if (d == null) return; e.preventDefault(); const nx = Math.min(LIM.add[1], Math.max(0, opt.get().add + d)); c.add.set(nx / 100, true); opt.set({add: nx}); });
+    c.times.range.addEventListener('keydown', e => { const d = {PageUp: 10, PageDown: -10}[e.key]; if (d == null) return; e.preventDefault(); const nx = Math.min(LIM.times[1], Math.max(LIM.times[0], opt.get().times + d)); c.times.set(nx / 100, true); opt.set({times: nx}); });
+    c.first.range.setAttribute('aria-label', 'First deposit in dollars, from 0.01 to 1,000. Arrow keys change it by one cent, Page Up and Page Down by one dollar.');
+    for (const b of root.querySelectorAll('[data-t]')) b.onclick = () => opt.setType(b.dataset.t);
+    for (const b of root.querySelectorAll('[data-e]')) b.onclick = () => opt.set({every: +b.dataset.e});
+    if (opt.name) { const nm = $(`${id}-name`); nm.addEventListener('input', () => opt.set({name: nm.value.slice(0, 20)}, true)); }
+    const lockTag = '<span class="lock">' + lockSVG + 'fixed</span>';
+    // show the plan; fx = what is fixed: {type, first, add, times, every}; dis = everything disabled (running)
+    c.show = (p, fx = {}, dis = false) => {
+      if (opt.name && document.activeElement !== $(`${id}-name`)) $(`${id}-name`).value = p.name;
+      for (const b of root.querySelectorAll('[data-t]')) { b.setAttribute('aria-pressed', b.dataset.t === p.type); b.disabled = dis || (!!fx.type && b.dataset.t !== p.type); }
+      for (const b of root.querySelectorAll('[data-e]')) { b.setAttribute('aria-pressed', +b.dataset.e === p.every); b.disabled = dis || (!!fx.every && +b.dataset.e !== p.every); }
+      $(`${id}-type`).setAttribute('aria-label', 'Plan type' + (fx.type ? ', fixed by the customer' : ''));
+      $(`${id}-evlock`).innerHTML = fx.every ? lockTag : '';
+      c.first.set(p.first / 100, true); c.add.set(p.add / 100, true); c.times.set(p.times / 100, true);
+      $(`${id}-add`).hidden = p.type !== 'add'; $(`${id}-addmsg`).hidden = p.type !== 'add';
+      $(`${id}-times`).hidden = p.type !== 'mul'; $(`${id}-timesmsg`).hidden = p.type !== 'mul';
+      for (const [key, sl, lab] of [['first', c.first, 'First deposit, $'], ['add', c.add, 'Add each time, $'], ['times', c.times, 'Times each time']]) {
+        const locked = !!fx[key];
+        sl.range.disabled = dis || locked; if (sl.box) sl.box.disabled = dis || locked;
+        sl.el.querySelector('label').innerHTML = esc(lab) + (locked ? lockTag : '');
+        if (sl.box) sl.box.setAttribute('aria-label', lab.replace(', $', ' in dollars') + (locked ? ', fixed by the customer' : ', type a number'));
+      }
+      if (fx.type) { const tg = $(`${id}-type`); if (!tg.nextElementSibling || !tg.nextElementSibling.classList.contains('typelock')) { const s = document.createElement('p'); s.className = 'small typelock'; tg.after(s); } tg.nextElementSibling.innerHTML = lockTag + ' The customer set the plan type.'; }
+      else { const tg = $(`${id}-type`); if (tg.nextElementSibling && tg.nextElementSibling.classList.contains('typelock')) tg.nextElementSibling.remove(); }
+      const [ex, rec] = ruleHTML(p);
+      $(`${id}-rule`).innerHTML = `<span class="rl">Rule, explicit then recursive</span><br>${ex}<br>${rec}`;
+      $(`${id}-rule`).setAttribute('aria-label', 'Rule: ' + ruleSay(p));
+    };
+    return c;
+  }
+  // type change keeps the first deposit and brings back the last step used for that type on this card (else $0 or 1.00)
+  function switchType(p, t) {
+    if (p.type === t) return;
+    p.mem[p.type] = p.type === 'add' ? p.add : p.times;
+    p.type = t;
+    if (t === 'add') p.add = p.mem.add != null ? p.mem.add : 0; else p.times = p.mem.mul != null ? p.mem.mul : 100;
+  }
+  const cards = {};
+  for (const k of ['A', 'B']) {
+    const sec = document.createElement('section'); sec.className = 'sec card'; sec.id = 'card' + k;
+    sec.setAttribute('aria-label', 'Plan ' + k); $('cardsSec').appendChild(sec);
+    cards[k] = buildCard(sec, {id: 'c' + k, name: true, readout: true, title: `${swatchSVG(k)}<span class="ltr" aria-hidden="true">${k}</span>`, nameLabel: `Plan ${k} name, up to 20 characters`, ariaSuffix: ' for plan ' + k,
+      get: () => state[k],
+      set: (o, quiet) => { const p = state[k]; Object.assign(p, o); if ('add' in o) p.mem.add = o.add; if ('times' in o) p.mem.mul = o.times; if (quiet) { drawCursor(); renderLedger(); renderTabs(); return; } raceChanged(); },
+      setType: t => { switchType(state[k], t); raceChanged(); }});
+  }
+  const daysSl = Plane.slider($('cDays'), {label: 'Days', min: 7, max: 365, step: 1, value: 30, id: 'daysR', format: v => String(Math.round(v)),
+    parse: text => { const v = parseNum(text); if (v == null) return null; const r = Math.round(v); if (r < 7 || r > 365) { $('daysMsg').textContent = 'Kept between 7 and 365'; clearTimeout(daysSl.t); daysSl.t = setTimeout(() => { $('daysMsg').textContent = ''; }, 3000); } return r; },
+    onInput: v => { state.days = Math.round(v); raceChanged(); }});
+  { const m = document.createElement('p'); m.className = 'clampmsg'; m.id = 'daysMsg'; m.setAttribute('aria-live', 'polite'); $('cDays').appendChild(m); }
+
+  function renderTabs() {
+    for (const b of document.querySelectorAll('[data-tab]')) {
+      const k = b.dataset.tab; b.setAttribute('aria-pressed', state.tab === k);
+      b.innerHTML = `${swatchSVG(k)}<span>${k}: ${esc(state[k].name || 'Plan ' + k)}</span>`;
+      $('card' + k).classList.toggle('on', state.tab === k);
+    }
+  }
+  function renderCards() {
+    renderTabs();
+    for (const k of ['A', 'B']) {
+      const p = state[k], r = R[k];
+      cards[k].show(p);
+      const unit = p.every === 1 ? 'day' : 'week';
+      $(`c${k}-ro`).innerHTML = `<dt>Deposits so far</dt><dd>${r.n} <span style="color:var(--muted);font-family:'Segoe UI',sans-serif">by day ${state.days}</span></dd>` +
+        sups(`<dt>This deposit</dt><dd>${money(r.last)}</dd><dt>Balance now</dt><dd>${money(r.total)}</dd>`);
+      $('sc' + k).textContent = `Show the shortcut for ${k}`;
+    }
+  }
+  function renderLead() {
+    const lines = leadLines();
+    $('leadText').innerHTML = sups(lines.map((t, i) => `<p class="${i === 0 ? 'first' : ''}">${esc(t)}</p>`).join(''));
+    $('leadNote').textContent = leadNote();
+  }
+  function renderPresetButtons() {
+    for (const b of document.querySelectorAll('[data-preset]')) b.setAttribute('aria-pressed', +b.dataset.preset === state.preset);
+    for (const b of document.querySelectorAll('[data-view]')) b.setAttribute('aria-pressed', b.dataset.view === state.view);
+    for (const b of document.querySelectorAll('[data-fit]')) b.setAttribute('aria-pressed', b.dataset.fit === state.fit);
+  }
+  function raceChanged(anim) {
+    if (state.sc) { state.sc = null; $('shortcut').hidden = true; }   // a changed plan closes a derivation that used the old numbers
+    computeRace();
+    if (state.cursor != null && state.cursor >= R.rows.length) state.cursor = null;
+    renderCards(); renderLead(); renderPresetButtons(); renderLedger();
+    daysSl.set(state.days, true);
+    setRaceView(anim);
+    $('sv').setAttribute('aria-label', `Chart of ${state.view === 'have' ? 'balances' : 'deposits'} by day for plans A and B over ${state.days} days. ` + leadLines().join(' '));
+  }
+  function loadPreset(i) {
+    const pr = PRESETS[i];
+    state.preset = i; state.A = freshPlan(pr.A); state.B = freshPlan(pr.B); state.days = pr.days; state.cursor = null;
+    raceChanged(false);
+  }
+  for (const b of document.querySelectorAll('[data-preset]')) b.onclick = () => { hush(); loadPreset(+b.dataset.preset); if (+b.dataset.preset === 0) narrate('race-penny'); };
+  for (const b of document.querySelectorAll('[data-tab]')) b.onclick = () => { state.tab = b.dataset.tab; renderCards(); };
+  for (const b of document.querySelectorAll('[data-view]')) b.onclick = () => { if (state.view === b.dataset.view) return; state.view = b.dataset.view; renderPresetButtons(); setRaceView(true); };
+  for (const b of document.querySelectorAll('[data-fit]')) b.onclick = () => { if (state.fit === b.dataset.fit) return; state.fit = b.dataset.fit; renderPresetButtons(); setRaceView(true); };
+
+  // ---------- the ledger drawer ----------
+  function renderLedger() {
+    if (!state.ledgerOpen || !R) return;
+    const nA = esc(state.A.name || 'Plan A'), nB = esc(state.B.name || 'Plan B');
+    $('ledgerNote').textContent = `One row for each day either plan deposits, days 1 to ${state.days}. Each deposit is rounded to the cent; each balance is the sum of the rounded deposits. A "lead" tag marks a change of leader (a tie counts).`;
+    let h = `<caption class="vh">Ledger: A is ${nA}, B is ${nB}</caption><thead><tr><th scope="col">Day</th><th scope="col">A deposit</th><th scope="col">A balance</th><th scope="col">B deposit</th><th scope="col">B balance</th><th scope="col">Lead</th></tr></thead><tbody>`;
+    for (const r of R.rows) {
+      const who = r.lead === 'T' ? 'tied' : r.lead, tag = r.change ? `<span class="tagb">lead</span> ${who}` : r.first ? who : '';
+      h += `<tr${r.change ? ' class="chg"' : ''}><th scope="row">${r.day}</th><td>${r.da == null ? '' : money(r.da)}</td><td>${money(r.balA)}</td><td>${r.db == null ? '' : money(r.db)}</td><td>${money(r.balB)}</td><td class="tag">${tag}</td></tr>`;
+    }
+    $('ledgerTable').innerHTML = sups(h + '</tbody>');
+  }
+  function openLedger() {
+    closeShortcut(true);
+    state.ledgerOpen = true; $('ledger').hidden = false; $('ledgerBtn').setAttribute('aria-expanded', true);
+    renderLedger(); $('ledgerClose').focus();
+  }
+  function closeLedger(quiet) {
+    if (!state.ledgerOpen) return;
+    state.ledgerOpen = false; $('ledger').hidden = true; $('ledgerBtn').setAttribute('aria-expanded', false);
+    if (!quiet) { Curio.stop(); $('ledgerBtn').focus(); }
+  }
+  $('ledgerBtn').onclick = () => state.ledgerOpen ? closeLedger() : openLedger();
+  $('ledgerClose').onclick = () => closeLedger();
+
+  // ---------- the shortcut drawer ----------
+  const sup = s => `<sup>${s}</sup>`;
+  function shortcutSteps(k) {
+    const p = state[k], r = R[k], n = r.n, led = money(r.total);
+    if (p.type === 'mul' && p.times === 100) {
+      return {kind: 'same', steps: [`Every deposit is the same: S = n × a = ${n} × ${fnum(p.first)} = <b>${money(formulaCents(p, n))}</b>. (The shortcut would divide by zero, so it is not needed.)<span class="num">The ledger says ${led}.</span>`]};
+    }
+    if (p.type === 'mul') {
+      const a = fnum(p.first), rr = rnum(p.times), ar = j => j === 0 ? a : `${a}(${rr})${j > 1 ? sup(j) : ''}`;
+      const val = money(formulaCents(p, n));
+      const terms = n <= 4 ? [...Array(n).keys()].map(ar) : [ar(0), ar(1), ar(2), '...', ar(n - 1)];
+      const rterms = n <= 4 ? [...Array(n).keys()].map(j => ar(j + 1)) : [ar(1), ar(2), '...', ar(n - 1), ar(n)];
+      // step 3: the two rows lined up, the middle terms struck out
+      const top = n <= 1 ? [a, ''] : [a, ...(n <= 4 ? [...Array(n - 1).keys()].map(j => ar(j + 1)) : [ar(1), ar(2), '...', ar(n - 1)]), ''];
+      const bot = n <= 1 ? ['', ar(1)] : ['', ...(n <= 4 ? [...Array(n - 1).keys()].map(j => ar(j + 1)) : [ar(1), ar(2), '...', ar(n - 1)]), ar(n)];
+      const cols = top.length;
+      const cell = (t, i, row) => { const mid = i > 0 && i < cols - 1; return `<span class="${mid && t ? 'st' : ''}">${t ? (i > 0 && row === 0 && t ? '+ ' : row === 1 && i > 1 ? '+ ' : '') + t : ''}</span>`; };
+      const grid = `<div class="cancel" style="grid-template-columns:auto repeat(${cols},auto)" aria-label="S minus r S: every middle term cancels"><span>S =</span>${top.map((t, i) => cell(t, i, 0)).join('')}<span>${rr}S =</span>${bot.map((t, i) => cell(t, i, 1)).join('')}<span class="rsep"></span></div>`;
+      return {kind: 'mul', steps: [
+        `Write the sum: S = a + ar + ar${sup(2)} + ... + ar${sup('n−1')}.<span class="num">S = ${terms.join(' + ').replace('+ ... +', '+ ... +')}</span>`,
+        `Multiply every term by r: rS = ar + ar${sup(2)} + ... + ar${sup('n−1')} + ar${sup('n')}.<span class="num">${rr}S = ${rterms.join(' + ')}</span>`,
+        `Line them up and subtract. Every middle term cancels: S − rS = a − ar${sup('n')}.${grid}<span class="num">S − ${rr}S = ${a} − ${ar(n)}</span>`,
+        `Factor: S(1 − r) = a(1 − r${sup('n')}), so S = a(1 − r${sup('n')}) / (1 − r).<span class="num">S(1 − ${rr}) = ${a}(1 − ${rr}${sup(n)})</span>`,
+        `With this plan: S = ${a}(1 − ${rr}${sup(n)}) / (1 − ${rr}) = <b>${val}</b>. The ledger says ${led}.<span class="num">a = ${a}, r = ${rr}, n = ${n} deposits so far. ${val === led ? 'They match.' : 'The ledger rounds every deposit to the cent, so it can differ by a few cents.'}</span>`,
+      ]};
+    }
+    const a1 = fnum(p.first), d = fnum(p.add), anC = B(p.first) + B(n - 1) * B(p.add), an = fnum(anC);
+    const t = j => fnum(B(p.first) + B(j) * B(p.add));
+    const fw = n <= 4 ? [...Array(n).keys()].map(t) : [t(0), t(1), t(2), '...', t(n - 1)];
+    const bw = n <= 4 ? [...Array(n).keys()].reverse().map(t) : [t(n - 1), t(n - 2), t(n - 3), '...', t(0)];
+    const sumCol = fnum(B(p.first) + anC);
+    const val = money(formulaCents(p, n));
+    return {kind: 'add', steps: [
+      `Write the sum forward: S = a${'<sub>1</sub>'} + a<sub>2</sub> + ... + a<sub>n</sub>.<span class="num">S = ${fw.join(' + ')}</span>`,
+      `Write it backward: S = a<sub>n</sub> + a<sub>n−1</sub> + ... + a<sub>1</sub>.<span class="num">S = ${bw.join(' + ')}</span>`,
+      `Add the two rows. Every column adds to the same thing, a<sub>1</sub> + a<sub>n</sub>, and there are n columns: 2S = n(a<sub>1</sub> + a<sub>n</sub>).<span class="num">${n <= 4 ? fw.map((x, i) => `${x} + ${bw[i]}`).join(', ') : `${fw[0]} + ${bw[0]}, ${fw[1]} + ${bw[1]}, ${fw[2]} + ${bw[2]}, ...`}: each is ${sumCol}, ${n} times. 2S = ${n} × ${sumCol}</span>`,
+      `So S = n(a<sub>1</sub> + a<sub>n</sub>) / 2, where a<sub>n</sub> = a<sub>1</sub> + (n − 1)d.<span class="num">a<sub>${n}</sub> = ${a1} + (${n} − 1) × ${d} = ${an}</span>`,
+      `With this plan: S = ${n}(${a1} + ${an}) / 2 = <b>${val}</b>. The ledger says ${led}.<span class="num">a<sub>1</sub> = ${a1}, d = ${d}, n = ${n} deposits so far. ${val === led ? 'They match.' : 'The ledger rounds every deposit to the cent, so it can differ by a few cents.'}</span>`,
+    ]};
+  }
+  function renderShortcut(animLast) {
+    const sc = state.sc; if (!sc) return;
+    const {kind, steps} = shortcutSteps(sc.k);
+    sc.total = steps.length; sc.step = Math.min(sc.step, steps.length);
+    const p = state[sc.k];
+    $('scH').textContent = `Shortcut for ${sc.k}: ${p.name || 'Plan ' + sc.k} (${kind === 'add' ? 'an add plan' : kind === 'same' ? 'times 1.00' : 'a multiply plan'})`;
+    $('scSteps').innerHTML = sups(steps.slice(0, sc.step).map((s, i) => `<li class="${animLast && i === sc.step - 1 ? 'in' : ''}">${s}</li>`).join(''));
+    $('scCount').textContent = `Step ${sc.step} of ${steps.length}`;
+    $('scBack').disabled = sc.step <= 1; $('scNext').disabled = sc.step >= steps.length;
+  }
+  function openShortcut(k) {
+    closeLedger(true);
+    state.sc = {k, step: 1};
+    $('shortcut').hidden = false;
+    renderShortcut(true);
+    const kind = state[k].type === 'add' ? 'shortcut-add' : 'shortcut-multiply';
+    hush(); narrate(kind);
+    $('scNext').disabled ? $('scClose').focus() : $('scNext').focus();
+  }
+  function closeShortcut(quiet) {
+    if (!state.sc) return;
+    const k = state.sc.k; state.sc = null; $('shortcut').hidden = true;
+    if (!quiet) { hush(); $('sc' + k).focus(); }
+  }
+  $('scA').onclick = () => openShortcut('A');
+  $('scB').onclick = () => openShortcut('B');
+  $('scNext').onclick = () => { if (state.sc.step < state.sc.total) { state.sc.step++; renderShortcut(true); } if ($('scNext').disabled) $('scClose').focus(); };
+  $('scBack').onclick = () => { if (state.sc.step > 1) { state.sc.step--; renderShortcut(false); } if ($('scBack').disabled) $('scNext').focus(); };
+  $('scClose').onclick = () => closeShortcut();
+  addEventListener('keydown', e => {
+    if (e.key !== 'Escape') return;
+    if (state.sc) closeShortcut(); else if (state.ledgerOpen) closeLedger();
+    else if (!$('confirm').hidden) $('keepWork').click();
+  });
+
+  // ======================================================================================
+  // PLAN DESK
+  // ======================================================================================
+  const CUSTOMERS = [
+    {key: 'ana', name: 'Ana', for: 'a used bike', goal: 30000, n: 20, every: 7, cap: 2500, firstMax: null, fixed: {}, start: {type: 'add', first: 1000},
+      quote: 'Any plan is fine, I just want the bike by summer.', model: {type: 'add', first: 1500, add: 0}, rule: 'None (open plan)'},
+    {key: 'ben', name: 'Ben', for: 'a concert trip', goal: 50000, n: 26, every: 7, cap: 4000, firstMax: null, fixed: {type: 'add', add: 100}, start: {first: 100},
+      quote: "I'm doing the add-a-dollar challenge. What should my first deposit be?", model: {type: 'add', first: 674, add: 100}, rule: 'Add $1.00 more each week'},
+    {key: 'cam', name: 'Cam', for: 'a laptop repair', goal: 40000, n: 12, every: 7, cap: 6000, firstMax: null, fixed: {type: 'mul', times: 110}, start: {first: 100},
+      quote: 'My hours go up every week, so each deposit is 10 percent more than the last.', model: {type: 'mul', first: 1871, times: 110}, rule: 'Each deposit is 1.10 times the last'},
+    {key: 'dee', name: 'Dee', for: 'a keyboard', goal: 40000, n: 16, every: 7, cap: 5000, firstMax: null, fixed: {type: 'add', first: 500}, start: {add: 0},
+      quote: 'I can only start with five dollars. Then the same raise every week.', model: {type: 'add', first: 500, add: 267}, rule: 'Start at $5.00, then add the same amount each week'},
+    {key: 'eli', name: 'Eli', for: 'a fishing kit', goal: 10000, n: 10, every: 1, cap: 6000, firstMax: null, fixed: {type: 'mul', times: 200}, start: {first: 1}, penny: true,
+      quote: "I love the doubling penny. Double it every day, but I can't put in more than sixty dollars in one day.", model: {type: 'mul', first: 10, times: 200}, rule: 'Double the deposit every day'},
+    {key: 'fay', name: 'Fay', for: 'a class trip', goal: 30000, n: 10, every: 7, cap: 7000, firstMax: 7000, fixed: {type: 'mul', times: 80}, start: {first: 100},
+      quote: 'My summer job is winding down, so each deposit is 80 percent of the one before.', model: {type: 'mul', first: 6722, times: 80}, rule: 'Each deposit is 0.80 times the last'},
+    {key: 'gus', name: 'Gus', for: 'a drum kit', goal: 95000, n: 40, every: 7, cap: 4500, firstMax: 500, fixed: {}, start: {type: 'add', first: 100},
+      quote: 'Open plan. I can barely start, but I can climb.', model: {type: 'add', first: 500, add: 97}, rule: 'None (open plan)'},
+    {key: 'ivy', name: 'Ivy', for: 'a car down payment', goal: 200000, n: 20, every: 7, cap: 15000, firstMax: 2000, fixed: {}, start: {type: 'add', first: 1000},
+      quote: 'Open plan. Can you get me there?', model: null, impossible: true, best: 170000, rule: 'None (open plan)'},
+  ];
+  const desk = {i: 0, cash: 0, shownCash: 0, results: [], plan: null, phase: 'build', runRow: 0, showFormula: false, confirm: false};
+  const cust = () => CUSTOMERS[desk.i];
+  const per = c => c.every === 1 ? 'day' : 'week';
+  const Per = c => c.every === 1 ? 'Day' : 'Week';
+  function deskPlanFor(c) {
+    const f = c.fixed, s = c.start;
+    const type = f.type || s.type || 'add';
+    return {name: c.name, type, first: f.first != null ? f.first : s.first != null ? s.first : 100, add: f.add != null ? f.add : s.add != null ? s.add : 0,
+      times: f.times != null ? f.times : 100, every: c.every, mem: {add: null, mul: null}};
+  }
+  const dCard = buildCard($('dCard'), {id: 'dk', name: false, readout: false,
+    get: () => desk.plan,
+    set: o => { if (desk.phase !== 'build') return; const c = cust(); for (const k in o) if (c.fixed[k] == null && k !== 'every') desk.plan[k] = o[k]; deskChanged(); },
+    setType: t => { if (desk.phase !== 'build' || cust().fixed.type) return; switchType(desk.plan, t); deskChanged(); }});
+
+  // checks, always from the ledger
+  function evaluate(c, p) {
+    const r = runPlan(p, (c.n - 1) * c.every + 1);
+    const over = r.dep.findIndex(v => v > B(c.cap));
+    const total = r.total, goal = B(c.goal);
+    return {r, total, reach: total >= goal, gap: goal - total, over, capOk: over < 0, maxDep: r.dep.reduce((m, v) => v > m ? v : m, 0n),
+      firstOk: c.firstMax == null || B(p.first) <= B(c.firstMax), tight: total >= goal && total * 100n <= goal * 105n};
+  }
+  function modelText(c) {
+    if (!c.model) return `none. The best possible is ${moneyShort(c.best)}, short of ${moneyShort(c.goal)}.`;
+    const m = c.model, ev = evaluate(c, {...m, add: m.add || 0, times: m.times || 100, every: c.every});
+    return `first deposit ${money(m.first)}, ${m.type === 'add' ? `add ${money(m.add)} each ${per(c)}` : `times ${rfix(m.times)} each ${per(c)}`}: ${money(ev.total)} by ${per(c)} ${c.n}`;
+  }
+  function deskChanged() { renderDesk(); }
+  function setDeskView() {
+    const c = cust(), ev = evaluate(c, desk.plan);
+    const topB = Math.max(c.goal / 100 * 1.3, Number(ev.total) / 100 * 1.08);
+    const topD = Math.max(c.cap / 100 * 1.35, Number(ev.maxDep) / 100 * 1.1);
+    g1.view([0, c.n + .7], [0, topB], {ms: 0}); g2.view([0, c.n + .7], [0, topD], {ms: 0});
+  }
+  let DP1 = geo.D1, DP2 = geo.D2, g1 = null, g2 = null, d1G, d1L, d2G, d2L;
+  const labXd = (lo, hi) => Math.max(1, niceNear((hi - lo) / 8));
+  const labYd = (lo, hi) => niceNear((hi - lo) / 4);
+  const gridYd = (lo, hi) => { const l = labYd(lo, hi); return l / (mant(l) === 5 ? 5 : 2); };
+  function makeDeskPlanes() {
+    $('gPlaneD1').textContent = ''; $('gPlaneD2').textContent = '';
+    g1 = Plane($('gPlaneD1'), {x: [0, 21], y: [0, 400], width: DP1.W, height: DP1.H, left: DP1.left, top: DP1.top, grid: [labXd, gridYd], labels: [labXd, labYd], ticks: 'edge',
+      tickFormat: (v, axis) => axis === 'x' ? commas(Math.round(v)) : tickMoney(v)});
+    g2 = Plane($('gPlaneD2'), {x: [0, 21], y: [0, 40], width: DP2.W, height: DP2.H, left: DP2.left, top: DP2.top, grid: [labXd, gridYd], labels: [labXd, (lo, hi) => niceNear((hi - lo) / 3)], ticks: 'edge', xLabel: 'week',
+      tickFormat: (v, axis) => axis === 'x' ? commas(Math.round(v)) : tickMoney(v)});
+    d1G = mk('g', {}, g1.layer('plot')); d1L = mk('g', {}, g1.layer('labels'));
+    d2G = mk('g', {}, g2.layer('plot')); d2L = mk('g', {}, g2.layer('labels'));
+    $('dTitle2').setAttribute('y', geo.t2);
+    g2.onView(relabelDeskX);
+  }
+  function drawDesk(growRow) {
+    if (state.mode !== 'desk') return;
+    const c = cust(), ev = evaluate(c, desk.plan), r = ev.r;
+    d1G.textContent = d1L.textContent = d2G.textContent = d2L.textContent = '';
+    const upto = desk.phase === 'running' ? desk.runRow : r.n;
+    // bars (deposits)
+    const P2 = (x, y) => { const [u, v] = g2.px(x, y); return [clampPx(u), clampPx(v)]; };
+    const [, base2] = P2(0, 0);
+    const bw = Math.max(2, Math.min(26, (P2(1, 0)[0] - P2(0, 0)[0]) * .64));
+    for (let i = 0; i < upto; i++) {
+      const [u, v] = P2(i + 1, r.depN[i]);
+      const top = Math.max(-4, v), h = Math.max(0, base2 - top);
+      mk('rect', {class: 'bar' + (r.dep[i] > B(c.cap) ? ' overcap' : '') + (growRow === i + 1 ? ' grow' : ''), x: (u - bw / 2).toFixed(1), y: top.toFixed(1), width: bw.toFixed(1), height: h.toFixed(1)}, d2G);
+    }
+    // cap line, labeled
+    const [, vc] = P2(0, c.cap / 100);
+    mk('line', {x1: 0, x2: DP2.W, y1: vc.toFixed(1), y2: vc.toFixed(1), stroke: 'var(--cap)', 'stroke-width': 2, 'stroke-dasharray': '8 5'}, d2G);
+    mk('text', {class: 'gl cap', x: DP2.W - 6, y: (vc - 6).toFixed(1), 'text-anchor': 'end'}, d2L).textContent = `Cap ${moneyShort(c.cap)} a ${per(c)}`;
+    if (ev.over >= 0 && ev.over < upto) {
+      const [u] = P2(ev.over + 1, 0), left = u > DP2.W * .5;
+      mk('text', {class: 'gl over', x: (u + (left ? -bw / 2 - 6 : bw / 2 + 6)).toFixed(1), y: Math.min(base2 - 6, vc + 18).toFixed(1), 'text-anchor': left ? 'end' : 'start'}, d2L).textContent = `over the cap, ${per(c)} ${ev.over + 1}`;
+    }
+    // balance: dots and flat steps, then the goal line
+    const P1 = (x, y) => { const [u, v] = g1.px(x, y); return [clampPx(u), clampPx(v)]; };
+    let d = '', dots = '';
+    for (let i = 0; i < upto; i++) {
+      const [u, v] = P1(i + 1, r.balN[i]), [u2] = P1(i + 1 < upto ? i + 2 : i + 1, 0);
+      d += (d ? 'V' + v.toFixed(1) : `M${u.toFixed(1)},${v.toFixed(1)}`) + 'H' + u2.toFixed(1);
+      dots += dotD(u, v, r.n > 30 ? 3.2 : 4.2, 'c');
+    }
+    mk('path', {d, fill: 'none', stroke: 'var(--brand)', 'stroke-width': 2.6, 'stroke-linejoin': 'round'}, d1G);
+    mk('path', {d: dots, fill: 'var(--brand)', stroke: 'var(--paper)', 'stroke-width': 1.2}, d1G);
+    const [, vg] = P1(0, c.goal / 100);
+    mk('line', {x1: 0, x2: DP1.W, y1: vg.toFixed(1), y2: vg.toFixed(1), stroke: 'var(--goal)', 'stroke-width': 2, 'stroke-dasharray': '10 5'}, d1G);
+    mk('text', {class: 'gl goal', x: 8, y: (vg - 7).toFixed(1)}, d1L).textContent = `Goal ${moneyShort(c.goal)} by ${per(c)} ${c.n}`;
+    if (upto > 0) {
+      const [u, v] = P1(upto, r.balN[upto - 1]);
+      const right = u > DP1.W * .7, nearGoal = Math.abs(v - 12 - vg) < 14;
+      let ty = v < 24 ? v + 20 : v - 12; if (nearGoal) ty = v < vg ? v - 12 : v + 22;
+      const t = mk('text', {class: 'gl', fill: 'var(--brand)', x: (u + (right ? -8 : 8)).toFixed(1), y: Math.max(14, Math.min(DP1.H - 6, ty)).toFixed(1), 'text-anchor': right ? 'end' : 'start'}, d1L);
+      t.textContent = money(r.bal[upto - 1]);
+    }
+  }
+  function renderChecks() {
+    const c = cust(), p = desk.plan, ev = evaluate(c, p);
+    const items = [];
+    items.push([ev.reach, 'Reaches the goal by the deadline', ev.reach ? `${money(ev.total)} by ${per(c)} ${c.n}` : `short by ${money(ev.gap)}`]);
+    items.push([ev.capOk, 'No deposit over the cap', ev.capOk ? `largest ${money(ev.maxDep)} of ${moneyShort(c.cap)}` : `${per(c)} ${ev.over + 1} asks for ${money(ev.r.dep[ev.over])}`]);
+    if (c.firstMax != null) items.push([ev.firstOk, 'First deposit within the limit', ev.firstOk ? `${money(p.first)} of at most ${moneyShort(c.firstMax)}` : `${money(p.first)} is over ${moneyShort(c.firstMax)}`]);
+    const fx = c.fixed, ruleBits = [];
+    if (fx.type) ruleBits.push(fx.type === 'add' ? 'add type' : 'multiply type');
+    if (fx.add != null) ruleBits.push(`add ${money(fx.add)}`);
+    if (fx.times != null) ruleBits.push(`times ${rfix(fx.times)}`);
+    if (fx.first != null) ruleBits.push(`first ${money(fx.first)}`);
+    items.push([true, "Follows the customer's rule", ruleBits.length ? ruleBits.join(', ') + ' (fixed)' : 'open plan']);
+    $('checks').innerHTML = sups(items.map(([ok, name, detail]) => `<li class="${ok ? 'yes' : 'no'}"><span class="ic" aria-hidden="true">${ok ? '✓' : '✗'}</span><span>${esc(name)}: <span class="cw">${ok ? 'yes' : 'no'}</span>, ${esc(detail)}</span></li>`).join(''));
+    return ev;
+  }
+  function formulaHTML() {
+    const c = cust(), p = desk.plan, n = c.n, fx = c.fixed, Q = '<span class="q" aria-label="unknown">?</span>';
+    const a1 = fx.first != null ? fnum(fx.first) : Q, ev = evaluate(c, p);
+    if (p.type === 'add') {
+      const d = fx.add != null ? fnum(fx.add) : Q;
+      const main = `S<sub>${n}</sub> = ${n}(${fx.first != null ? a1 : 'a<sub>1</sub>'} + a<sub>${n}</sub>) / 2`;
+      const sub = `with a<sub>${n}</sub> = ${fx.first != null ? a1 : 'a<sub>1</sub>'} + ${n - 1} × ${d}` + (fx.first == null ? `, a<sub>1</sub> = ${Q}` : '');
+      return `<p>${main},</p><p>${sub}</p><p class="small">Your plan right now: S<sub>${n}</sub> = ${money(ev.total)}</p>`;
+    }
+    const r = fx.times != null ? rnum(fx.times) : Q;
+    return `<p>S<sub>${n}</sub> = a<sub>1</sub>(1 − ${r}<sup>${n}</sup>) / (1 − ${r}),</p><p>with a<sub>1</sub> = ${a1}${fx.times == null ? `, r = ${Q}` : ''}</p><p class="small">Your plan right now: S<sub>${n}</sub> = ${money(ev.total)}</p>`;
+  }
+  function renderSlots() {
+    $('slots').innerHTML = CUSTOMERS.map((c, i) => {
+      const r = desk.results[i];
+      const word = r ? r.word : i === desk.i && desk.phase !== 'season' ? 'now' : '';
+      const cls = r ? (r.good ? 'good' : 'bad') : i === desk.i && desk.phase !== 'season' ? 'now' : '';
+      const gl = r ? (r.good ? '✓' : r.word === 'turned away' ? '↩' : '✗') : i === desk.i ? '•' : '';
+      return `<span role="listitem" class="${cls}" data-g="${gl}" aria-label="${c.name}: ${r ? word : i === desk.i && desk.phase !== 'season' ? 'now' : 'waiting'}" title="${c.name}">${r ? (r.good ? '✓ ' : '✗ ') + word : c.name}</span>`;
+    }).join('');
+  }
+  function renderCustCard() {
+    const c = cust();
+    const html = `<p class="cname" id="cuName">${c.penny ? '<img src="art:penny-coin" alt="">' : ''}<span>${c.name}<span class="cfor">, saving for ${c.for}</span></span></p>
+      <blockquote>"${esc(c.quote)}"</blockquote>
+      <dl class="readouts"><dt>Goal</dt><dd>${moneyShort(c.goal)}</dd><dt>Deadline</dt><dd>${c.n} ${per(c)}s</dd><dt>Most in one deposit</dt><dd>${moneyShort(c.cap)}</dd>
+      ${c.firstMax != null ? `<dt>First deposit at most</dt><dd>${moneyShort(c.firstMax)}</dd>` : ''}<dt class="fr">Fixed rule</dt><dd class="fr" style="font-family:inherit">${esc(c.rule)}</dd></dl>`;
+    $('custCard').innerHTML = html;
+  }
+  function renderDesk(growRow) {
+    if (desk.phase === 'season') { renderSlots(); return; }
+    const c = cust(), running = desk.phase === 'running', done = desk.phase === 'done';
+    $('dbWho').textContent = `Customer ${desk.i + 1} of 8: ${c.name}`;
+    $('dbSum').textContent = `${moneyShort(c.goal)} in ${c.n} ${per(c)}s, at most ${moneyShort(c.cap)} a ${per(c)}${c.firstMax != null ? `, first deposit at most ${moneyShort(c.firstMax)}` : ''}. Rule: ${c.rule}.`;
+    renderSlots();
+    dCard.show(desk.plan, {...c.fixed, every: true}, running || done);
+    const ev = renderChecks();
+    $('fbox').innerHTML = sups(formulaHTML());
+    $('formulaSec').hidden = !desk.showFormula;
+    $('formulaBtn').setAttribute('aria-expanded', desk.showFormula);
+    $('formulaBtn').textContent = desk.showFormula ? 'Hide the formula' : 'Show the formula';
+    for (const id of ['formulaBtn', 'runBtn', 'cantBtn']) $(id).disabled = running || done;
+    $('runBtn').hidden = $('cantBtn').hidden = done;
+    $('nextBtn').hidden = !done;
+    $('nextBtn').textContent = desk.i === 7 ? 'Season summary ▶' : 'Next customer ▶';
+    $('confirm').hidden = !desk.confirm;
+    $('confirmQ').textContent = `Turn ${c.name} away?`;
+    setDeskView(); drawDesk(growRow);
+    $('sv').setAttribute('aria-label', `Plan Desk chart for ${c.name}: balance ${money(ev.total)} by ${per(c)} ${c.n} against a goal of ${moneyShort(c.goal)}; largest deposit ${money(ev.maxDep)} against a cap of ${moneyShort(c.cap)}.`);
+  }
+  function tickCash(to) {
+    const from = desk.shownCash; desk.shownCash = to;
+    if (Curio.reduce || to === from) { $('dbCash').textContent = `Desk cash: ${moneyShort(to)}`; return; }
+    const t0 = performance.now(), ms = 600;
+    const step = () => { const t = Math.min(1, (performance.now() - t0) / ms); $('dbCash').textContent = `Desk cash: ${moneyShort(Math.round((from + (to - from) * t) / 100) * 100)}`; if (t < 1) setTimeout(step, 30); else $('dbCash').textContent = `Desk cash: ${moneyShort(to)}`; };
+    step();
+  }
+  function showResult(lines, good) {
+    $('resultSec').hidden = false;
+    $('result').innerHTML = sups(lines.map(t => `<p class="result ${good ? 'good' : 'bad'}">${good ? '✓ ' : '✗ '}${esc(t)}</p>`).join(''));
+  }
+  async function runPlan2() {
+    if (desk.phase !== 'build') return;
+    const c = cust(), p = {...desk.plan}, ev = evaluate(c, p), myI = desk.i;
+    desk.phase = 'running'; desk.runRow = 0; desk.confirm = false; renderDesk();
+    for (let k = 1; k <= ev.r.n; k++) {
+      await wait(120);
+      if (desk.i !== myI || desk.phase !== 'running') return;
+      desk.runRow = k; drawDesk(k);
+      if (k % 2 === 1 || k === ev.r.n) Curio.tone(520 + Math.min(18, k) * 18, .05, .02, 'triangle');
+    }
+    await wait(250);
+    if (desk.i !== myI) return;
+    const P = per(c), PP = Per(c);
+    let lines, fee = 0, word, good = false, kind;
+    if (!ev.firstOk) { lines = [`The first deposit is over ${moneyShort(c.firstMax)}. ${c.name} goes elsewhere.`]; word = 'over limit'; kind = 'first'; }
+    else if (!ev.capOk) { lines = [`${PP} ${ev.over + 1} asks for ${money(ev.r.dep[ev.over])}, over the ${moneyShort(c.cap)} cap. ${c.name} goes elsewhere.`]; word = 'over cap'; kind = 'cap'; }
+    else if (!ev.reach) { lines = [`Short by ${money(ev.gap)} at ${P} ${c.n}. ${c.name} goes elsewhere.`]; word = 'short'; kind = 'short'; }
+    else { good = true; fee = 2000 + (ev.tight ? 1000 : 0); word = ev.tight ? 'tight' : 'works'; kind = ev.tight ? 'tight' : 'works';
+      lines = [`Plan works: ${money(ev.total)} by ${P} ${c.n}. Fee $20.`]; if (ev.tight) lines.push('Tight plan, +$10.'); }
+    if (c.impossible && !good) lines.push(`No plan can reach ${moneyShort(c.goal)} here. The best is ${moneyShort(c.best)}.`);
+    desk.results[desk.i] = {word, good, fee, kind, did: describePlan(c, p, ev), lines};
+    desk.cash += fee; desk.phase = 'done'; desk.runRow = ev.r.n;
+    renderDesk(); showResult(lines, good);
+    tickCash(desk.cash);
+    if (good) Curio.yes();
+    $('nextBtn').focus();
+  }
+  function describePlan(c, p, ev) {
+    return `first ${money(p.first)}, ${p.type === 'add' ? `add ${money(p.add)}` : `times ${rfix(p.times)}`} each ${per(c)}: ${money(ev.total)}`;
+  }
+  function turnAway() {
+    const c = cust(); desk.confirm = false;
+    let lines, fee = 0, good = false;
+    if (c.impossible) { lines = [`Right call. The best possible is ${moneyShort(c.best)}, short of ${moneyShort(c.goal)}. Fee $15.`]; fee = 1500; good = true; }
+    else lines = [`This one could be done. One plan that works: ${modelText(c)}.`];
+    desk.results[desk.i] = {word: 'turned away', good, fee, kind: good ? 'right' : 'wrong', did: 'turned away', lines};
+    desk.cash += fee; desk.phase = 'done';
+    renderDesk(); showResult(lines, good); tickCash(desk.cash);
+    if (good) Curio.yes();
+    $('nextBtn').focus();
+  }
+  function loadCustomer(i, speak = true) {
+    desk.i = i; desk.plan = deskPlanFor(CUSTOMERS[i]); desk.phase = 'build'; desk.runRow = 0; desk.confirm = false;
+    $('resultSec').hidden = true; $('result').innerHTML = '';
+    renderCustCard(); renderDesk(); relabelDeskX();
+    if (speak) narrate('cust-' + CUSTOMERS[i].key + '#' + desk.season);
+  }
+  function relabelDeskX() { if (!desk.plan) return; for (const t of $('gPlaneD2').querySelectorAll('.gr-axlabel')) if (t.textContent === 'week' || t.textContent === 'day') t.textContent = per(cust()); }
+  function showSeason() {
+    desk.phase = 'season'; seasonView();
+    const res = desk.results, worked = res.filter(r => r && (r.kind === 'works' || r.kind === 'tight')).length, tight = res.filter(r => r && r.kind === 'tight').length;
+    const right = res.filter(r => r && r.kind === 'right').length;
+    const rows = CUSTOMERS.map((c, i) => { const r = res[i] || {did: 'not seen', lines: []}; return `<tr><th scope="row">${c.name}</th><td>${esc(r.word || '')}</td><td>${esc(r.did)}${r.fee ? ` (fee ${moneyShort(r.fee)})` : ''}</td><td>${esc(c.model ? modelText(c) : 'none: no plan can work. Right call: turn her away.')}</td></tr>`; }).join('');
+    $('sumBody').innerHTML = `<img class="vault" src="art:vault-door" alt="">
+      <div class="tot"><div><b>${worked} of 7</b>plans that worked</div><div><b>${tight}</b>tight plans</div><div><b>${right} of 1</b>right calls</div><div><b>${moneyShort(desk.cash)}</b>desk cash of a possible $225</div></div>
+      <table class="inst"><caption class="vh">Each customer: what you did and a model plan</caption><thead><tr><th scope="col">Customer</th><th scope="col">Result</th><th scope="col">What you did</th><th scope="col">A model plan</th></tr></thead><tbody>${rows}</tbody></table>
+      <p class="end">Season over. Every plan here was a sequence; every goal was a sum.</p>`;
+    $('summary').hidden = false; renderSlots();
+    $('againBtn').focus();
+    hush(); narrate('desk-end#' + desk.season);
+  }
+  function newSeason() {
+    hush();
+    desk.season = (desk.season || 0) + 1; desk.cash = 0; desk.shownCash = 0; desk.results = []; desk.showFormula = false;
+    $('dbCash').textContent = 'Desk cash: $0';
+    $('summary').hidden = true;
+    loadCustomer(0, desk.season > 1); seasonView();
+  }
+  // while the season summary is up it takes the desk: the builder, checks and customer card step aside
+  function seasonView() {
+    const on = state.mode === 'desk' && desk.phase === 'season';
+    document.body.classList.toggle('season', on);
+    for (const id of ['custCard', 'builder', 'deskBtns', 'resultSec', 'formulaSec', 'checksSec']) $(id).hidden = on || (id === 'resultSec' && desk.phase !== 'done') || (id === 'formulaSec' && !desk.showFormula) || state.mode !== 'desk';
+    $('dbWho').textContent = on ? 'Season over' : $('dbWho').textContent;
+    if (on) $('dbSum').textContent = `Desk cash ${moneyShort(desk.cash)} of a possible $225.`;
+    $('hint').innerHTML = on ? SEASON_HINT : MODES[state.mode].hint;
+  }
+  $('runBtn').onclick = runPlan2;
+  $('cantBtn').onclick = () => { if (desk.phase !== 'build') return; desk.confirm = true; renderDesk(); $('yesAway').focus(); };
+  $('yesAway').onclick = () => { if (desk.phase !== 'build') return; turnAway(); };
+  $('keepWork').onclick = () => { desk.confirm = false; renderDesk(); $('cantBtn').focus(); };
+  $('formulaBtn').onclick = () => { desk.showFormula = !desk.showFormula; renderDesk(); };
+  $('nextBtn').onclick = () => { hush(); if (desk.i === 7) showSeason(); else { loadCustomer(desk.i + 1); $('runBtn').focus(); } };
+  $('againBtn').onclick = () => { newSeason(); $('runBtn').focus(); };
+
+  // ======================================================================================
+  // Narration: a welcome on entering each mode (after the first tap), one at a time; Read always wins
+  // ======================================================================================
+  const said = new Set(), queued = new Set();   // said: started playing; queued: waiting in this generation
+  let tapped = false, vq = Promise.resolve(), vgen = 0;
+  addEventListener('pointerdown', firstTap, true); addEventListener('keydown', firstTap, true);
+  function firstTap(e) {
+    if (tapped) return; tapped = true;   // from here the tap's own handlers may narrate
+    removeEventListener('pointerdown', firstTap, true); removeEventListener('keydown', firstTap, true);
+    const isRead = !!(e.target && e.target.closest && e.target.closest('#read'));
+    const saidBefore = said.size;
+    // the opening mode's welcome waits until this tap's click has run. If the tap queued a line of its own (a preset,
+    // a shortcut, a mode button) or is Read, the welcome is skipped without being marked said, so entering the mode
+    // again plays it; otherwise it is queued now.
+    let done = false;
+    const go = () => {
+      if (done) return; done = true; removeEventListener('click', go, true); clearTimeout(fallback);
+      setTimeout(() => {
+        if (isRead || queued.size || said.size > saidBefore) return;
+        if (state.mode === 'race') narrate(state.preset === 0 && !raceEdited() ? ['race-welcome', 'race-penny'] : 'race-welcome');
+        else if (desk.phase !== 'season') { narrate('desk-welcome'); narrate('cust-' + cust().key + '#' + desk.season); }
+      });
+    };
+    addEventListener('click', go, true);
+    const fallback = setTimeout(go, 900);   // a drag or a key that makes no click
+  }
+  const raceEdited = () => JSON.stringify([state.A, state.B].map(p => [p.type, p.first, p.add, p.times, p.every])) !== JSON.stringify([PRESETS[0].A, PRESETS[0].B].map(p => [p.type, p.first, p.type === 'add' ? p.add : 0, p.type === 'mul' ? p.times : 100, p.every]));
+  function narrate(keys) {
+    if (!tapped) return;
+    for (const key of [].concat(keys)) {
+      const line = L[key.split('#')[0]], gen = vgen;
+      if (!line || said.has(key) || queued.has(key)) continue;
+      queued.add(key);
+      vq = vq.then(() => {
+        if (gen !== vgen) return null;          // dropped by hush(): not marked, so its trigger can queue it again
+        queued.delete(key); said.add(key);
+        return Promise.race([say(line), wait(2500 + 80 * line.length)]);
+      });
+    }
+  }
+  function hush() { vgen++; vq = Promise.resolve(); queued.clear(); Curio.stop(); }
+  function readNow() {
+    const hint = $('hint').textContent;
+    let more;
+    if (state.mode === 'race') more = say$(leadLines().join(' ') + ' ' + leadNote());
+    else if (desk.phase === 'season') more = `Season over. Desk cash ${moneyShort(desk.cash)} of a possible $225.`;
+    else { const c = cust(); more = `${c.name} says: ${c.quote} Goal: ${moneyShort(c.goal)}. Deadline: ${c.n} ${per(c)}s. Most in one deposit: ${moneyShort(c.cap)}.` + (c.firstMax != null ? ` First deposit at most ${moneyShort(c.firstMax)}.` : '') + ` Fixed rule: ${c.rule}.`; }
+    hush(); say([hint, more], true);
+  }
+
+  // ======================================================================================
+  // Modes
+  // ======================================================================================
+  const TIPS = ['A sequence is a list: what goes in each time. A series is its running sum: what you have.',
+    'An add plan grows by the same amount each time; a multiply plan grows by the same factor.',
+    'The doubling penny loses for ten days. By day thirty, one deposit is more than all of the other plan.',
+    'Hover over the chart, or Tab to it and use the arrow keys, to read any day.'];
+  let tipI = -1;
+  const SEASON_HINT = '<b>Season over.</b> Look back at what you did for each customer beside a model plan that works, then press Play the season again.';
+  const MODES = {
+    race: {hint: '<b>Race.</b> Two plans, side by side. Change either one and watch who pulls ahead, and when. Open the ledger for every deposit, or show the shortcut for the sum.'},
+    desk: {hint: "<b>Plan Desk.</b> Build a plan that reaches the customer's goal by the deadline without breaking a limit, then press Run the plan. If no plan can work, say so."},
+  };
+  let modeReady = false;
+  function setMode(m) {
+    if (modeReady && state.mode === m) return;
+    modeReady = true;
+    hush();
+    closeShortcut(true); closeLedger(true);
+    state.mode = m;
+    document.body.classList.toggle('race', m === 'race'); document.body.classList.toggle('desk', m === 'desk');
+    for (const k in MODES) $('m-' + k).setAttribute('aria-pressed', k === m);
+    $('hint').innerHTML = MODES[m].hint;
+    tipI = (tipI + 1) % TIPS.length; $('tip').textContent = TIPS[tipI];
+    for (const el of document.querySelectorAll('[data-mode]')) el.hidden = el.dataset.mode !== m;
+    if (m === 'desk') { $('summary').hidden = desk.phase !== 'season'; }
+    else $('summary').hidden = true;
+    seasonView();
+    $('gRace').style.display = m === 'race' ? '' : 'none'; $('gDesk').style.display = m === 'desk' ? '' : 'none';
+    layout(true);
+    if (m === 'race') raceChanged(); else renderDesk();
+    if (m === 'race') narrate('race-welcome');
+    else { narrate('desk-welcome'); if (desk.phase !== 'season') narrate('cust-' + cust().key + '#' + desk.season); }
+  }
+  for (const k in MODES) $('m-' + k).onclick = () => setMode(k);
+
+  // every line the tool can say, so the voice scripts can record them (window.__tool.allLines())
+  const allLines = () => [...new Set(Object.values(L))];
+
+  // ---------- layout: wide, compact or stack (see the CSS note) ----------
+  const ORDER = {
+    wide: {race: {bar: ['cView', 'cFit', 'cDays', 'leadSec'], panel: ['cPresets', 'cardsSec', 'cShort', 'hint', 'tip']},
+      desk: {bar: ['checksSec'], cust: ['custCard'], panel: ['builder', 'deskBtns', 'resultSec', 'formulaSec', 'hint', 'tip']}},
+    compact: {race: {panel: ['cardsSec', 'cDays', 'cPresets', 'cView', 'cFit', 'leadSec', 'cShort', 'hint', 'tip']},
+      desk: {panel: ['deskbar', 'custCard', 'deskBtns', 'resultSec', 'builder', 'checksSec', 'formulaSec', 'hint', 'tip']}},
+    stack: {race: {panel: ['cPresets', 'cView', 'cFit', 'leadSec', 'cDays', 'cardsSec', 'cShort', 'hint', 'tip']},
+      desk: {panel: ['custCard', 'builder', 'deskBtns', 'resultSec', 'checksSec', 'formulaSec', 'hint', 'tip']}},
+  };
+  let curLayout = null, curMode = null;
+  function layout(force) {
+    const w = innerWidth, h = innerHeight;
+    const Lk = w >= 1200 && h >= 700 ? 'wide' : w >= 600 && w / h >= 1.25 ? 'compact' : 'stack';
+    document.body.classList.toggle('two', w >= 600);
+    if (Lk === curLayout && state.mode === curMode && !force) return;
+    curLayout = Lk; curMode = state.mode;
+    for (const c of ['wide', 'compact', 'stack']) document.body.classList.toggle(c, c === Lk);
+    document.body.style.setProperty('--hb', document.querySelector('header').getBoundingClientRect().height + 'px');
+    const o = ORDER[Lk][state.mode], put = (parent, ids) => (ids || []).forEach(id => parent.appendChild($(id)));
+    if (!o.panel.includes('deskbar')) $('graphcol').insertBefore($('deskbar'), $('toprow'));
+    put($('panel'), o.panel); put($('bar'), o.bar); put($('custWide'), o.cust);
+    if (!o.cust && $('custCard').parentNode !== $('panel')) $('panel').insertBefore($('custCard'), $('panel').firstChild);
+  }
+  addEventListener('resize', () => { layout(); document.body.style.setProperty('--hb', document.querySelector('header').getBoundingClientRect().height + 'px'); });
+
+  Curio.init({clips: "voice:*", rate: .95, readFallback: () => $('hint').textContent});
+  $('read').onclick = readNow;
+  // the chart's shape and scale: tall in a near-square stage, wide otherwise; text on the chart grows when the stage is
+  // scaled down (--ts), so it stays readable in the 16:10 embed
+  function setGeo(kind) {
+    if (geo === GEO[kind] && g) return false;
+    geo = GEO[kind]; RP = geo.RP; DP1 = geo.D1; DP2 = geo.D2;
+    $('sv').setAttribute('viewBox', `0 0 ${geo.w} ${geo.h}`);
+    for (const el of [$('sv'), $('scene')]) { el.style.width = geo.w + 'px'; el.style.height = geo.h + 'px'; }
+    makeRacePlane(); makeDeskPlanes();
+    return true;
+  }
+  function fitStage() {
+    const st = $('stage'), r = st.getBoundingClientRect();
+    const kind = curLayout === 'stack' ? (innerWidth < 700 ? 'tall' : 'wide') : r.width / Math.max(1, r.height) < 1.2 ? 'tall' : 'wide';
+    const changed = setGeo(kind);
+    if (curLayout === 'stack') $('stagewrap').style.height = Math.round(Math.min(innerWidth * geo.h / geo.w + 8, innerHeight * .8)) + 'px';
+    else $('stagewrap').style.height = '';
+    const r2 = st.getBoundingClientRect(), sc = Math.min(r2.width / geo.w, r2.height / geo.h) || 1;
+    $('scene').style.setProperty('--s', sc);
+    const ts = Math.min(1.5, Math.max(1, .8 / sc)).toFixed(2);
+    const tsChanged = $('sv').style.getPropertyValue('--ts') !== ts;
+    if (tsChanged) $('sv').style.setProperty('--ts', ts);
+    if (changed || tsChanged) { if (state.mode === 'race') { if (R) setRaceView(false); } else if (desk.plan) renderDesk(); }
+  }
+  new ResizeObserver(fitStage).observe($('stage'));
+
+  // for checking frames
+  window.__tool = {state, desk, setMode, allLines, loadPreset, computeRace, leadLines, leadNote, money, formulaCents, depositList, runPlan, evaluate, CUSTOMERS,
+    get R() { return R; }, get g() { return g; }, get g1() { return g1; }, get g2() { return g2; }, get geo() { return geo; },
+    setPlan(k, o) { Object.assign(state[k], o); raceChanged(); },
+    setDays(d) { state.days = d; raceChanged(); },
+    view(v) { document.querySelector(`[data-view="${v}"]`).click(); },
+    fit(f) { document.querySelector(`[data-fit="${f}"]`).click(); },
+    openLedger, closeLedger, openShortcut, closeShortcut, nextStep: () => $('scNext').click(), steps: () => [...$('scSteps').children].map(li => li.textContent),
+    ledgerRow: d => R.rows.find(r => r.day === d), cursor(i) { state.cursor = i; drawCursor(); },
+    deskPlan(o) { const c = cust(); for (const k in o) if (c.fixed[k] == null) desk.plan[k] = o[k]; renderDesk(); },
+    run: runPlan2, turnAway, loadCustomer, showSeason, newSeason, checks: () => [...$('checks').children].map(li => li.textContent), result: () => $('result').textContent,
+    typeFirst(k, text) { const b = cards[k].first.box; b.value = text; b.dispatchEvent(new Event('change')); }, cards};
+  // start: Race with preset 1, the desk at customer 1
+  desk.season = 1; desk.plan = deskPlanFor(CUSTOMERS[0]);
+  state.A = freshPlan(PRESETS[0].A); state.B = freshPlan(PRESETS[0].B);
+  layout(true);
+  fitStage();
+  renderCustCard();
+  setMode('race');
+})();
+</script>
+</body>
+</html>

@@ -26,7 +26,8 @@ from art import CUTOUT, HOUSE_STYLE, KEYS  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 URL = os.environ.get('CURIO_SD_URL', 'http://localhost:5002')
-SIZES = {'1:1': (1024, 1024), '16:9': (1344, 768), '9:16': (768, 1344), '3:4': (896, 1152), '4:3': (1152, 896)}
+SIZES = {'1:1': (1024, 1024), '16:9': (1344, 768), '9:16': (768, 1344), '3:4': (896, 1152), '4:3': (1152, 896),
+         '16:10': (1536, 960), '4:1': (1536, 384), '5:1': (1600, 320)}  # multiples of 64
 
 
 def txt2img(prompt, w, h, seed):

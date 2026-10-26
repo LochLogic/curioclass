@@ -377,8 +377,10 @@ const Plane = (() => {
     let viewGen = 0;
     function view(xr, yr, {ms = 600} = {}) {
       const x0 = [...X], y0 = [...Y], my = ++viewGen;
+      // the last frame lands exactly on the target (x0 + (x1 - x0) is not x1 in floating point when x0 is huge)
       const apply = t => { const e = t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
-        X = [x0[0] + (xr[0] - x0[0]) * e, x0[1] + (xr[1] - x0[1]) * e]; Y = [y0[0] + (yr[0] - y0[0]) * e, y0[1] + (yr[1] - y0[1]) * e]; redraw(); };
+        if (t >= 1) { X = [...xr]; Y = [...yr]; } else { X = [x0[0] + (xr[0] - x0[0]) * e, x0[1] + (xr[1] - x0[1]) * e]; Y = [y0[0] + (yr[0] - y0[0]) * e, y0[1] + (yr[1] - y0[1]) * e]; }
+        redraw(); };
       if (!ms || (window.Curio && Curio.reduce)) { apply(1); return Promise.resolve(); }
       return new Promise(done => { const s = performance.now(); const step = now => { if (my !== viewGen) return done(); const t = Math.min(1, (now - s) / ms); apply(t); t < 1 ? requestAnimationFrame(step) : done(); }; requestAnimationFrame(step); });
     }

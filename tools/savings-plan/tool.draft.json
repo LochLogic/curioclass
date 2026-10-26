@@ -1,0 +1,23 @@
+{
+  "id": "savings-plan",
+  "status": "beta",
+  "stage": "built",
+  "hook": "Race two savings plans day by day: a doubling penny loses to ten dollars a week for ten days, then wins by millions, and every deposit and running total is in the ledger.",
+  "outcome": "Write sequences explicitly and recursively, read a balance as a partial sum, and derive and use the arithmetic and geometric series formulas",
+  "driver": "students",
+  "minutes": "25-40",
+  "modes": [
+    "Race",
+    "Plan Desk"
+  ],
+  "grades_label": "Grade 11",
+  "sources": [
+    "OpenStax, Algebra and Trigonometry 2e, sections 13.2 to 13.4: arithmetic and geometric sequences, series and their notations, both sum derivations (CC BY 4.0): https://openstax.org/books/algebra-and-trigonometry-2e/pages/13-4-series-and-their-notations",
+    "Common Core State Standards for Mathematics, F-IF.A.3 and A-SSE.B.4: https://www.thecorestandards.org/Math/Content/HSF/IF/ and https://www.thecorestandards.org/Math/Content/HSA/SSE/",
+    "Every preset and customer number computed by the tool's ledger (each deposit rounded to the cent, half up; balance = sum of rounded deposits), checked against an independent Python recomputation (2026-10-25)",
+    "Customers, goals and plans are invented; no real prices, rates or people",
+    "Chart, ledger, cards, locks and checks drawn in code; sounds generated in the browser"
+  ],
+  "third_party": [],
+  "updated": "2026-10-25"
+}
