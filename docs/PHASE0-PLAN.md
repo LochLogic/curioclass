@@ -201,7 +201,7 @@ S:\CurioClass\
 - Phase 1: modules.csv for K-12 across all subjects, aligned to CCSS / NGSS / C3 and a state baseline
 - Phase 2: at least one tool concept per module (tools.csv rows with status = Concept)
 - Phase 3: build, tune, publish
-- Reading Room: public domain story library, plan in docs/LIBRARY-PLAN.md (draft 2026-10-25, awaiting Cory)
+- Reading Room: public domain story library, plan in docs/LIBRARY-PLAN.md (agreed 2026-10-25; pilot = 10 stories, grades 3-5)
 - Far back of the roadmap (parked 2026-10-25): instrument learning paths. One tool per instrument with about 10 to 12
   levels inside, beginner to early intermediate, on a shared engine (mic pitch detection, Web MIDI, Note Ninja staff).
   Recorder first, then keyboard, ukulele, guitar, voice; band instruments partly (a browser can't see the player's

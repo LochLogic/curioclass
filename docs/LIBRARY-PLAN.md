@@ -1,7 +1,7 @@
-# Reading Room: public domain story library (plan, DRAFT for Cory)
+# Reading Room: public domain and openly licensed story library (plan)
 
-Status: draft 2026-10-25, nothing downloaded yet. The path and structure get agreed first; downloads and text
-cleanup then run in bulk.
+Status: plan AGREED by Cory 2026-10-25 (decisions at the bottom), nothing downloaded yet. Downloads and text cleanup
+run in bulk once the pilot proves the format.
 
 ## The idea
 
@@ -22,8 +22,8 @@ Stories are tagged by **grade range**, not one grade, because a fable works from
 |---|---|---|
 | K-2 | about 120 | Mostly **teacher read-aloud** (fits teacher-led K-2). Public domain picture books for early readers are thin, since most are post-1930. Fables, nursery tales, Potter, poems, short folk tales. |
 | 3-5 | about 180 | The deepest shelf: fairy and folk tales from many places, Just So Stories, Oz, Wind in the Willows chapters, myths. |
-| 6-8 | about 180 | Myths and legends, adventure (Stevenson, London), Sherlock Holmes stories, poetry, first-person history (Douglass excerpts). |
-| 9-12 | about 200 | Poe, Twain, O. Henry, Chekhov, Chopin, Hughes and Dunbar poems, Shakespeare scenes, founding speeches and documents. |
+| 6-8 | about 180 | Myths and legends, adventure (Stevenson, London), Sherlock Holmes stories, poetry, short first-person history. |
+| 9-12 | about 200 | Poe, Twain, O. Henry, Chekhov, Chopin, Hughes and Dunbar poems, whole short plays, founding speeches and documents. |
 | **Total** | **about 680** | Spread over 13 grades, that gives each grade about 60 to 90 fits. |
 
 ## What counts as public domain
@@ -38,6 +38,36 @@ Stories are tagged by **grade range**, not one grade, because a fable works from
 - Also free to use: US government works and CC0 texts.
 - Every story records its source edition, year, URL and translator in `story.json`. A checker refuses a story
   without them.
+
+## Newer stories we can use (after 1930)
+
+The 1930 line is only the simplest rule. These are also open to us, in order of how much they help:
+
+1. **Openly licensed children's books (CC BY, CC BY-SA, CC0).** These fill the thin K-2 shelf with modern,
+   leveled, illustrated picture books from many cultures:
+   - Pratham Books StoryWeaver: thousands of leveled stories (levels 1 to 4), CC BY 4.0, in many languages.
+   - African Storybook: thousands of picture books, CC BY.
+   - Book Dash: CC BY 4.0, professionally illustrated.
+   - Global Digital Library, and Bloom Library (check each book's license).
+
+   We take only CC BY, CC BY-SA and CC0. NC (noncommercial) and ND (no changes) licenses are left out: NC
+   doesn't fit our CC BY content, and ND forbids the adaptations we've agreed to make. A CC BY-SA story keeps
+   CC BY-SA on its own page.
+2. **US works from 1931 to 1963 whose copyright was never renewed.** Before 1964 a copyright lapsed after 28
+   years unless it was renewed, and most books were never renewed. The famous ones usually were. Each one is
+   checked against the Copyright Office renewal records (the Stanford renewal database covers books) and the
+   check is saved in `story.json`. Slower, so used for specific good finds, not bulk.
+3. **US works from 1931 to 1977 published without a copyright notice.** Rare for books, more common for
+   pamphlets and magazine pieces. Only with clear evidence.
+4. **US federal government works, any year.** Mostly nonfiction (NASA, National Park Service, Library of
+   Congress oral histories such as the WPA life histories, which need a careful read for dialect and content).
+5. **Our own retellings and translations.** A folk tale or myth itself has no owner, so we can retell it from
+   several old sources in our own words, or translate an old non-English text ourselves. The result is a new
+   Curio Class work under CC BY, labeled as a retelling. This is the adaptation route below. Retellings of
+   stories from living cultures get outside review.
+
+`story.json` records which of these routes the story came by (`basis`: pd-1930, cc-license, not-renewed,
+no-notice, us-gov, retelling).
 
 ## Sources
 
@@ -61,8 +91,10 @@ Each candidate gets one of three outcomes, and the reason goes in `story.json`:
    "How the Leopard Got His Spots" (it uses a slur), and the original Doctor Dolittle.
 
 More rules:
-- **No silent edits.** If we abridge or adapt a story (likely for some K-2 read-alouds), the page says
-  "Adapted by Curio Class from ..." and links the original.
+- **The "out" list is handled by the agents and not shown to Cory** (his call, 2026-10-25). Reasons are still
+  saved in `stories.csv` so a decision can be looked up later.
+- **Adaptations are welcome but always labeled.** If we abridge, modernize or retell a story, the page says
+  "Adapted by Curio Class from ..." and links the original. No silent edits.
 - **Folk tales from a living culture,** often first collected by outsiders, get the same outside-review flag as
   Nations and Art Passport.
 - **Breadth of the world.** Track where stories come from (region, culture, original language) so the shelf isn't
@@ -87,8 +119,9 @@ One HTML file per story, offline, under the tool size cap:
   plain plate (an ornament or title card) is fine.
 - **Word help:** old-fashioned or hard words are underlined and a tap gives a short meaning. Written by an agent,
   checked by the verify agent.
-- **Read-aloud** (later, once the voice bank exists): sentence highlighting while the narration plays. With about
-  680 stories, this is the biggest cost, so it goes in waves, K-2 first.
+- **Read-aloud for K-2 stories** (once the voice bank exists): sentence highlighting while the narration plays.
+  Read-aloud for grades 3-12 is at the end of the roadmap; those stories put their effort into text, word help and
+  questions.
 - **Before / during / after:** 3 to 6 discussion questions tied to CCSS RL or RI codes, plus one "try this"
   activity.
 - **Teacher note:** summary, length in minutes read aloud, themes, content notes, and the source edition.
@@ -105,8 +138,15 @@ library/<id>/<id>.html          the bundled reader (made by a script, like bundl
 scripts/library.py              build, level, check (source fields present, no Gutenberg branding left, size cap)
 ```
 
-`kind` = fable, fairy tale, folk tale, myth, short story, chapter (from a longer book), poem, play scene, speech or
-document. Longer books (Oz, Wind in the Willows) come in as **chapter sets**, one entry with chapters inside.
+`kind` = fable, fairy tale, folk tale, myth, short story, picture book, poem, play, speech or document. Longer books
+(Oz, Wind in the Willows) come in whole, as **chapter sets**: one entry with chapters inside.
+
+## Excerpts: a separate add-on shelf
+
+Excerpts (a Shakespeare scene, a Douglass chapter, a passage from a novel) are **not part of the main library**.
+They live on their own shelf, `/library/excerpts/`, with `excerpt: true` in `story.json`. They are built after the
+main library is done and never count toward the per-grade goals. Each one names the work it comes from, says
+what was cut, and links the full text.
 
 ## Site pages
 
@@ -117,6 +157,7 @@ document. Longer books (Oz, Wind in the Willows) come in as **chapter sets**, on
 | `/library/kind/<kind>/` | Fables, myths, poems, ... |
 | `/library/shelf/<theme>/` | Themed shelves: tricksters, animals who talk, journeys, voices of freedom |
 | `/library/<id>/` | Story page (summary, teacher note, read, download) |
+| `/library/excerpts/` | The excerpts add-on shelf (later) |
 
 Links both ways with the rest of the site: grade pages get a small "From the Reading Room" strip, and ELA
 reading-literature modules link to matching stories by standard code. Later, a few **"works with any story"
@@ -126,13 +167,13 @@ tools** (story map, character feelings tracker, compare two versions) can open a
 
 1. **Candidate list** (agent, no downloads): title, author, year, edition, source, grades, kind, origin. About 900
    candidates for the 680 spots.
-2. **License and curation pass** (agent, then Cory skims the list of "out" and "with a note" stories).
+2. **License and curation pass** (agents only; a second agent checks the first one's "out" and "with a note" calls).
 3. **Bulk download** (after this plan is agreed): text and illustration scans, into an untrusted downloads folder.
 4. **Clean and level** (script plus agent): strip branding, fix OCR, mark chapters, compute the level.
 5. **Enrich** (agent): glosses, questions, teacher note.
 6. **Verify** (fresh agent, cold): text matches the source, glosses and codes are right, notes are fair.
 7. **Bundle and go live** in waves of about 50, onto the Review Desk like the tools.
-8. **Voice** later, by wave.
+8. **Voice** for K-2 stories as the voice bank allows. Grades 3-12 read-aloud and the excerpts shelf come last.
 
 ## Pilot (before any bulk work)
 
@@ -149,11 +190,12 @@ Ten stories in the 3-5 band, built end to end to prove the format, the reader an
 9. An Anansi story (collection to be chosen and checked)
 10. "The Owl and the Pussy-cat" (Lear, poem)
 
-## Decisions for Cory
+## Decisions (Cory, 2026-10-25)
 
-1. Name: "Reading Room" OK?
-2. Allow clearly labeled **adaptations** for K-2 read-alouds, or originals only?
-3. Include **excerpts** from long works (a Shakespeare scene, a Douglass chapter), or whole works only?
-4. Is the "out" list a quick skim for you, or do you want to see every borderline story?
-5. Read-aloud for all stories eventually, or only K-2 plus selected ones?
-6. Pilot band: 3-5 as above, or start with K-2?
+1. Name: **Reading Room**.
+2. **Adaptations are OK,** always labeled.
+3. **Excerpts are OK, but only on their own add-on shelf,** built after the main library.
+4. **Cory does not see the "out" list.** Agents decide, a second agent checks.
+5. **Read-aloud for K-2 is important;** read-aloud for other grades goes to the end of the roadmap.
+6. Pilot band: no preference, so the pilot stays 3-5 as above (the deepest shelf, and needs no voice).
+7. Post-1930 sources are in, by the routes in "Newer stories we can use".
