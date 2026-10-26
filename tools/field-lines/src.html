@@ -1,0 +1,1374 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Field Lines · Gravity and Electrostatics · Curio Class</title>
+<meta name="description" content="One layout of objects drawn twice, as a gravity field and as an electric field, so students see that both fall off as one over r squared and that the real difference is that charge has two signs and mass has one. Then the spreading argument for one over r squared, and real force pairs from a hydrogen atom to Earth and Moon. Grade 11 physics. Works offline.">
+<!--
+Field Lines (Curio Class)
+Grade 11, physics. Standard: NGSS HS-PS2-4 (use Newton's law of gravitation and Coulomb's law to describe and predict
+the gravitational and electrostatic forces between objects). Students drive, often alone on a laptop; also works on a
+projector. Pure explore: no score, no timer, no win state.
+Twin boards: every object is drawn on a gravity board and an electric board at once, with field lines, an arrow grid,
+strength shading and a probe that reads both fields. Spread: 36 lines fanning out over r squared tiles, with a plot of
+36 over r squared. Real pairs: gravity and electric forces for five real pairs on one log scale.
+Facts: NIST CODATA 2018 (G, k, e, proton and electron mass, Bohr radius); NASA Earth and Moon Fact Sheets; OpenStax
+College Physics 2e section 31.1 (nucleus scale); OpenStax University Physics Volume 1 section 13.2 and Volume 2
+sections 5.4 and 5.6 (field directions, inverse square spreading); NGSS HS-PS2-4. Every Real pairs force and ratio is
+computed live from the constants and was checked in Python on 2026-10-25. Board units on Twin boards are invented
+(the constant is 1 on both boards so the pictures match).
+Everything is drawn in code (SVG and canvas). One file, no network requests. Content CC BY 4.0, code MIT. curioclass.org
+-->
+<link rel="stylesheet" href="kit:curio">
+<link rel="stylesheet" href="kit:theme-912">
+<style>
+:root{--brand:#E8B54A;--brand-ink:#1c1203;--grav:#E8B54A;--pos:#FF6E61;--neg:#62AEFF;--fl:#C9D3E3;--halo:#0b1017}
+/* three page layouts, picked in script (relayout()), as in collision-lab:
+   wide    (1000 px or wider and 700 px or taller): stage on the left, 360 px panel on the right;
+   compact (a short landscape box such as the 16:10 embed): a 290 px panel and a one-row header;
+   stack   (narrow or portrait): the panel under the stage, the page scrolls.
+   The stage is drawn at its real pixel size (not scaled), so scene text keeps its size in every box. */
+main{grid-template-columns:minmax(0,1fr) 360px;min-height:0}
+.stage{min-height:0;background:radial-gradient(ellipse at 30% 20%,#121c2a,#0a0f17 72%)}
+#cv,#sv{position:absolute;left:0;top:0;display:block}
+body.compact main{grid-template-columns:minmax(0,1fr) 290px}
+@media (min-width:900px){body.compact main{grid-template-columns:minmax(0,1fr) 320px}}
+body.compact header{padding:4px 8px;gap:4px;flex-wrap:nowrap;min-width:0}
+body.compact h1{font-size:16px;white-space:nowrap;min-width:0;overflow:hidden;text-overflow:ellipsis}
+body.compact h1 small{display:none}
+body.compact header .seg{flex:none}
+body.compact header .seg button,body.compact .icon-btn{min-height:44px;padding:0 8px;font-size:13.5px;white-space:nowrap}
+body.compact .icon-btn{flex:none}
+body.compact .panel{padding:6px 8px;gap:6px}
+body.compact .sec{padding:6px 8px}
+body.compact .sec>h2{display:none}
+body.compact .hint{font-size:13.5px;line-height:1.35}
+body.compact .btn{font-size:13px;padding:0 4px}
+body.compact .small{font-size:11.5px}
+body.compact .rd{font-size:12px}
+body.compact .pairs{display:grid;grid-template-columns:1fr 1fr;gap:4px}
+body.compact .pairs .btn{padding:0 6px;font-size:12.5px}
+body.compact .why{font-size:12.5px}
+/* in a short box the probe (readout and buttons) comes before the view toggles, so it shows without scrolling */
+body.compact #secView,body.short #secView{order:2} body.compact #secPre,body.short #secPre{display:none}
+/* in a short box the presets become a select beside the Add buttons, and the probe buttons sit above its readout */
+.presel{display:none;min-height:44px;min-width:0;border-radius:8px;border:1px solid var(--btn-line);background:var(--btn);color:var(--ink);
+  font:600 13px 'Segoe UI',system-ui,sans-serif;padding:0 4px}
+body.compact .presel,body.short .presel{display:block}
+body.compact #addRow,body.short #addRow{grid-template-columns:1.3fr 1fr 1fr}
+body.compact #secProbe,body.short #secProbe{display:flex;flex-direction:column}
+/* wide but under 900 px tall (most laptops): the same panel order, so the probe buttons and presets stay in reach */
+body.short .presel{font-size:14px}
+body.compact #probeBtns,body.short #probeBtns{order:-2;margin:0 0 6px}
+body.compact #relRd,body.short #relRd{order:-1;margin:0 0 4px}
+body.stack{height:auto}
+body.stack main{grid-template-columns:minmax(0,1fr);align-content:start}
+body.stack .panel{border-left:0;border-top:1px solid var(--line)}
+@media (max-width:560px){
+  header .seg{display:grid;grid-template-columns:1fr 1fr 1fr;border-radius:14px;width:100%}
+  header .seg button{min-height:44px;font-size:14px;padding:0 6px}
+  .icon-btn{min-height:44px;padding:0 12px;font-size:15px}
+}
+/* panel */
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.row{display:grid;gap:6px}
+.r2{grid-template-columns:1fr 1fr}.r3{grid-template-columns:1fr 1fr 1fr}.r4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.row+.row,.row+.small,.small+.row,.rd+.row,.row+.rd{margin-top:6px}
+.btn{line-height:1.1}
+.small{font-size:13px;color:var(--muted);margin:0;line-height:1.35}
+.small:empty{display:none}
+.rd{font:13.5px/1.45 var(--readout-font);margin:0;color:var(--ink)}
+.rd p{margin:0;display:flex;gap:6px;align-items:baseline}
+.rd .glyph{flex:none;width:14px;height:14px;align-self:center}
+.rd .glyph.none{visibility:hidden}
+.sel-read{margin:6px 0 0;font:13px var(--readout-font);color:var(--ink)}
+.panel .seg{border-radius:10px;display:grid;grid-template-columns:1fr 1fr}
+.panel .seg button{min-height:44px;font-size:15px}
+.sl label{display:flex;justify-content:space-between;font-weight:600;font-size:14px;color:var(--muted)}
+.sl output{color:var(--ink);font:700 14px var(--readout-font)}
+.pairs{display:flex;flex-direction:column;gap:5px}
+.pairs .btn{text-align:left;padding:0 10px}
+.why{font-size:14px;line-height:1.4;margin:6px 0 0}
+.why:empty{display:none}
+/* scene */
+.st{fill:var(--gr-text);font:11px 'Segoe UI',system-ui,sans-serif}
+.stb{fill:var(--ink);font:600 13px 'Segoe UI',system-ui,sans-serif}
+.halo{paint-order:stroke;stroke:var(--halo);stroke-width:4px;stroke-linejoin:round}
+.mono{font-family:var(--readout-font)}
+.deco{pointer-events:none}
+.ob,.pr{outline:none;cursor:grab}
+.ob.drag,.pr.drag{cursor:grabbing}
+.ob .fring,.pr .fring{fill:none;stroke:transparent;stroke-width:3}
+.ob:focus-visible .fring,.pr:focus-visible .fring{stroke:var(--focus)}
+.pulse{animation:pulse .3s ease-out}
+@keyframes pulse{0%{transform:scale(1)}45%{transform:scale(1.28)}100%{transform:scale(1)}}
+#sv .gr-tick{font-size:11px}
+#sv .gr-axlabel{font-size:12px}
+</style>
+</head>
+<body>
+<header>
+  <h1>Field Lines <small>Gravity and Electrostatics</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-tb" aria-pressed="true">Twin boards</button>
+    <button id="m-sp" aria-pressed="false">Spread</button>
+    <button id="m-rp" aria-pressed="false">Real pairs</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true" title="Turn animation on or off">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+  <button class="icon-btn" id="read" title="Read the hint aloud">🔊 Read</button>
+</header>
+<main>
+  <div class="stage" id="stage">
+    <canvas id="cv" aria-hidden="true"></canvas>
+    <svg id="sv" role="group" aria-label="The boards"></svg>
+  </div>
+  <aside class="panel" id="panel">
+    <p class="hint" id="hint" aria-live="polite"></p>
+    <p class="sr" id="live" aria-live="polite"></p>
+
+    <!-- Twin boards -->
+    <section class="sec" data-modes="tb" aria-labelledby="objL">
+      <h2 id="objL">Objects</h2>
+      <div class="row r2" id="addRow"><select class="presel" id="preSel" aria-label="Preset"></select><button class="btn" id="addP">Add +</button><button class="btn" id="addN">Add −</button></div>
+      <div id="selBox" hidden>
+        <div class="row r4">
+          <button class="btn" id="smaller">Smaller</button><button class="btn" id="bigger">Bigger</button>
+          <button class="btn" id="flip">Flip sign</button><button class="btn" id="remove">Remove</button>
+        </div>
+        <p class="sel-read" id="selRead" aria-live="polite"></p>
+      </div>
+    </section>
+    <section class="sec" data-modes="tb" aria-labelledby="viewL" id="secView">
+      <h2 id="viewL">View</h2>
+      <div class="row r3">
+        <button class="btn" id="vLines" aria-pressed="true">Field lines</button>
+        <button class="btn" id="vArrows" aria-pressed="false">Arrow grid</button>
+        <button class="btn" id="vShade" aria-pressed="false">Strength shading</button>
+      </div>
+      <p class="small" id="lineNote" style="margin-top:6px"></p>
+    </section>
+    <section class="sec" data-modes="tb" aria-labelledby="probeL" id="secProbe">
+      <h2 id="probeL">Probe</h2>
+      <div class="rd" id="probeRd">
+        <p><svg class="glyph" id="glG" viewBox="-8 -8 16 16" aria-hidden="true"><g><path d="M-6,0H5M1,-4L5,0L1,4" fill="none" stroke="var(--grav)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g></svg><span id="rdG"></span></p>
+        <p><svg class="glyph" id="glE" viewBox="-8 -8 16 16" aria-hidden="true"><g><path d="M-6,0H5M1,-4L5,0L1,4" fill="none" stroke="var(--pos)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g></svg><span id="rdE"></span></p>
+        <p><svg class="glyph none" viewBox="-8 -8 16 16" aria-hidden="true"></svg><span id="rdD"></span></p>
+      </div>
+      <p class="small" style="margin-top:4px">Board units. Real values are in Real pairs.</p>
+      <p class="rd" id="relRd" aria-live="polite" style="margin-top:4px"></p>
+      <div class="row r4" id="probeBtns">
+        <button class="btn" id="dbl">Double distance</button><button class="btn" id="hlv">Halve distance</button>
+        <button class="btn" id="rel">Release probe</button><button class="btn" id="clr">Clear paths</button>
+      </div>
+    </section>
+    <section class="sec" data-modes="tb" aria-labelledby="preL" id="secPre">
+      <h2 id="preL">Presets</h2>
+      <div class="row r3" id="presets"></div>
+    </section>
+
+    <!-- Spread -->
+    <section class="sec" data-modes="sp" aria-labelledby="spL" hidden>
+      <h2 id="spL">Screen</h2>
+      <div class="sl"><label for="spR">Distance <output id="spRo"></output></label>
+        <input type="range" id="spR" min="1" max="5" step="0.5" value="1"></div>
+      <div class="rd" style="margin-top:4px"><p id="spArea"></p><p id="spLines"></p><p id="spStr"></p></div>
+    </section>
+    <section class="sec" data-modes="sp" aria-labelledby="spK" hidden>
+      <h2 id="spK">Law</h2>
+      <div class="seg" role="group" aria-label="Law"><button id="spG" aria-pressed="true">Gravity</button><button id="spE" aria-pressed="false">Electric</button></div>
+      <div class="row" style="margin-top:6px"><button class="btn" id="spOne" aria-pressed="false">Show one over r</button></div>
+    </section>
+
+    <!-- Real pairs -->
+    <section class="sec" data-modes="rp" aria-labelledby="rpL" hidden>
+      <h2 id="rpL">Pairs</h2>
+      <div class="pairs" id="pairs"></div>
+    </section>
+    <section class="sec" data-modes="rp" aria-labelledby="rpD" hidden>
+      <h2 id="rpD">Distance</h2>
+      <p class="rd" id="rpDist"></p>
+      <div class="row r3" style="margin-top:6px">
+        <button class="btn" id="rpDbl">Double distance</button><button class="btn" id="rpHlv">Halve distance</button><button class="btn" id="rpRst">Reset distance</button>
+      </div>
+      <p class="small" id="rpNote" style="margin-top:6px"></p>
+      <p class="why" id="rpWhy"></p>
+    </section>
+  </aside>
+</main>
+<script src="kit:curio"></script>
+<script src="kit:graphing"></script>
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const {say, wait} = Curio;
+  const NS = 'http://www.w3.org/2000/svg';
+  const mk = (tag, attrs = {}, parent) => {
+    const e = document.createElementNS(NS, tag);
+    for (const k in attrs) if (attrs[k] != null) e.setAttribute(k, attrs[k]);
+    if (parent) parent.appendChild(e);
+    return e;
+  };
+  const txt = (parent, x, y, s, cls, anchor) => { const t = mk('text', {x, y, class: cls, 'text-anchor': anchor || 'start'}, parent); t.textContent = s; return t; };
+  const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+  const MINUS = '−';
+  const fmt2 = v => (Math.abs(v) < .005 ? 0 : v).toFixed(2);
+  const state = {mode: 'tb'};
+
+  // ======================================================================================
+  // FIELD ENGINE: field math, line tracer, probe integrator, real-pair forces. No DOM code here,
+  // so it can move to a kit file (kit/forces.js) later. Board units: a 12 by 12 board, constant 1.
+  // ======================================================================================
+  const F = (() => {
+    const SIZE = 12, MARGIN = 2, PROBE_R = .12;
+    const radius = s => .25 + .08 * s;
+    // objects packed into arrays; gravity treats every object as negative (its field points in)
+    function pack(objs, kind) {
+      const n = objs.length, X = new Float64Array(n), Y = new Float64Array(n), Q = new Float64Array(n), R = new Float64Array(n);
+      objs.forEach((o, i) => { X[i] = o.x; Y[i] = o.y; Q[i] = (kind === 'g' ? -1 : o.c) * o.s; R[i] = radius(o.s); });
+      return {n, X, Y, Q, R};
+    }
+    // field at (x, y): sum of q / r^2 away from each object (q < 0 points toward it); inside a disc r = radius
+    function fieldP(P, x, y, out) {
+      let ex = 0, ey = 0;
+      for (let i = 0; i < P.n; i++) {
+        const dx = x - P.X[i], dy = y - P.Y[i], d2 = dx * dx + dy * dy;
+        if (d2 === 0) continue;
+        const d = Math.sqrt(d2), r = d < P.R[i] ? P.R[i] : d, m = P.Q[i] / (r * r) / d;
+        ex += m * dx; ey += m * dy;
+      }
+      out[0] = ex; out[1] = ey; return out;
+    }
+    const field = (objs, kind, x, y) => fieldP(pack(objs, kind), x, y, [0, 0]);
+    // field lines: 6 per size unit evenly around each object, RK4 with a fixed 0.05 unit step along the field
+    // (positives) or against it (negatives). A line stops on another disc, 2 units outside the board, at a zero
+    // point (the direction turns back on itself), or after 2000 steps. A line from a negative that ends on a
+    // positive is dropped: it is already drawn from the positive. Arrows every 2 units point along the field.
+    function trace(objs, kind, opt = {}) {
+      const step = opt.step || .05, maxSteps = opt.maxSteps || 2000, per = opt.perSize || 6, every = opt.arrowEvery || 2;
+      const P = pack(objs, kind), lines = [], arrows = [], f = [0, 0];
+      const k1 = [0, 0], k2 = [0, 0], k3 = [0, 0], k4 = [0, 0];
+      const dir = (x, y, sg, o) => { fieldP(P, x, y, f); const m = Math.hypot(f[0], f[1]); if (!(m > 1e-12)) return false; o[0] = sg * f[0] / m; o[1] = sg * f[1] / m; return true; };
+      let steps = 0;
+      // arrowheads: each line starts at its own phase (no rings of arrows), and one that would land within 0.45
+      // units of another arrow is skipped (no piles where lines bunch together)
+      const cell = new Map(), ckey = (x, y) => Math.floor(x / .5) * 4096 + Math.floor(y / .5);
+      const crowded = (x, y) => { const cx = Math.floor(x / .5), cy = Math.floor(y / .5);
+        for (let a = -1; a <= 1; a++) for (let b = -1; b <= 1; b++) { const l = cell.get((cx + a) * 4096 + cy + b); if (l) for (let q = 0; q < l.length; q += 2) if ((l[q] - x) ** 2 + (l[q + 1] - y) ** 2 < .2) return true; }
+        return false; };
+      for (let i = 0; i < P.n; i++) {
+        const sg = P.Q[i] > 0 ? 1 : -1, n = Math.round(per * objs[i].s);
+        for (let j = 0; j < n; j++) {
+          const a = 2 * Math.PI * (j + .5) / n;
+          let x = P.X[i] + (P.R[i] + .01) * Math.cos(a), y = P.Y[i] + (P.R[i] + .01) * Math.sin(a);
+          const pts = [x, y], la = [];
+          let end = -1, arc = 0, next = .8 + ((j * .618034 + i * .37) % 1) * every, pdx = 0, pdy = 0;
+          for (let s = 0; s < maxSteps; s++) {
+            if (!dir(x, y, sg, k1) || !dir(x + k1[0] * step / 2, y + k1[1] * step / 2, sg, k2) ||
+                !dir(x + k2[0] * step / 2, y + k2[1] * step / 2, sg, k3) || !dir(x + k3[0] * step, y + k3[1] * step, sg, k4)) break;
+            let dx = (k1[0] + 2 * k2[0] + 2 * k3[0] + k4[0]) / 6, dy = (k1[1] + 2 * k2[1] + 2 * k3[1] + k4[1]) / 6;
+            const dm = Math.hypot(dx, dy);
+            if (dm < .3) break;                                // the samples disagree: a zero point
+            dx *= step / dm; dy *= step / dm;
+            if (s > 0 && dx * pdx + dy * pdy < 0) break;       // turned back: a zero point
+            pdx = dx; pdy = dy; x += dx; y += dy; arc += step; steps++;
+            pts.push(x, y);
+            if (arc >= next) { la.push(x, y, Math.atan2(sg * dy, sg * dx)); next += every; }  // placed below, once the line is kept
+            if (x < -MARGIN || y < -MARGIN || x > SIZE + MARGIN || y > SIZE + MARGIN) break;
+            let hit = -1;
+            for (let q = 0; q < P.n; q++) { if (q === i) continue; const ex = x - P.X[q], ey = y - P.Y[q]; if (ex * ex + ey * ey < P.R[q] * P.R[q]) { hit = q; break; } }
+            if (hit >= 0) { end = hit; break; }
+          }
+          if (sg < 0 && end >= 0 && P.Q[end] > 0) continue;
+          lines.push(pts);
+          for (let q = 0; q < la.length; q += 3) {
+            const ax = la[q], ay = la[q + 1];
+            if (crowded(ax, ay)) continue;
+            arrows.push(ax, ay, la[q + 2]);
+            const k = ckey(ax, ay); if (!cell.has(k)) cell.set(k, []); cell.get(k).push(ax, ay);
+          }
+        }
+      }
+      return {lines, arrows, steps};
+    }
+    // release: the probe starts at rest and moves with acceleration equal to the field (unit mass or unit test
+    // charge), velocity Verlet with dt = 0.002. Ends: 'landed' (touches a disc), 'escaped' (leaves the board),
+    // 'time' (8 s), 'still' (no field at the start). pts holds x, y, t every 0.02 s. turns holds x, y, t where the
+    // velocity reverses (a turnaround of a swing); side is how far the path ever strays from the line through the
+    // start along the first pull (near 0: the probe swung along a straight line).
+    function release(objs, kind, x0, y0, opt = {}) {
+      const dt = opt.dt || .002, T = opt.T || 8, every = .02, P = pack(objs, kind), a = fieldP(P, x0, y0, [0, 0]);
+      if (Math.hypot(a[0], a[1]) < 1e-6) return {pts: [x0, y0, 0], end: 'still', on: -1, t: 0, turns: [], side: 0};
+      let x = x0, y = y0, vx = 0, vy = 0, ax = a[0], ay = a[1], t = 0, nextS = every, end = 'time', on = -1, side = 0;
+      const pts = [x, y, 0], na = [0, 0], turns = [], am = Math.hypot(a[0], a[1]), ux = a[0] / am, uy = a[1] / am;
+      while (t < T) {
+        x += vx * dt + .5 * ax * dt * dt; y += vy * dt + .5 * ay * dt * dt;
+        fieldP(P, x, y, na);
+        const pvx = vx, pvy = vy;
+        vx += .5 * (ax + na[0]) * dt; vy += .5 * (ay + na[1]) * dt; ax = na[0]; ay = na[1]; t += dt;
+        if (pvx * vx + pvy * vy < 0) turns.push(x, y, t);
+        side = Math.max(side, Math.abs((x - x0) * uy - (y - y0) * ux));
+        for (let q = 0; q < P.n; q++) { const dx = x - P.X[q], dy = y - P.Y[q], R = P.R[q] + PROBE_R; if (dx * dx + dy * dy < R * R) { end = 'landed'; on = q; break; } }
+        if (end === 'landed') break;
+        if (x < 0 || y < 0 || x > SIZE || y > SIZE) { end = 'escaped'; break; }
+        if (t >= nextS) { pts.push(x, y, t); nextS += every; }
+      }
+      pts.push(x, y, Math.min(t, T));
+      return {pts, end, on, t: Math.min(t, T), turns, side};
+    }
+    // Spread: 36 lines through a screen r by r tiles at distance r (r squared tiles)
+    const SPREAD_LINES = 36;
+    const linesPerTile = r => SPREAD_LINES / (r * r);
+    // offsets (0 to r) of the 6 lines per side, measured from one edge of the screen
+    const lineOffsets = r => Array.from({length: 6}, (_, i) => (i + .5) * r / 6);
+    // real constants: NIST CODATA 2018; Earth and Moon: NASA fact sheets
+    const C = {G: 6.67430e-11, k: 8.9875517923e9, e: 1.602176634e-19, mp: 1.67262192369e-27, me: 9.1093837015e-31,
+      a0: 5.29177210903e-11, ME: 5.9722e24, RE: 6.3710e6, MM: 7.346e22, DEM: 3.844e8};
+    const gravity = (m1, m2, r) => C.G * m1 * m2 / (r * r);          // always attracts
+    const coulomb = (q1, q2, r) => C.k * q1 * q2 / (r * r);          // positive: repel, negative: attract
+    return {SIZE, MARGIN, PROBE_R, radius, field, trace, release, linesPerTile, lineOffsets, C, gravity, coulomb};
+  })();
+
+  // ======================================================================================
+  // Narration: a welcome on entering each mode (after the first tap), one at a time; Read always wins
+  // ======================================================================================
+  const L = {
+    'tb-welcome': 'Welcome to Field Lines. Each object has a mass and a charge. The left board shows its gravity, and the right board shows its electric field.',
+    'tb-howto': 'Drag the objects to move them. Drag the small ring, the probe, to read the field at any spot.',
+    'tb-negative': 'Mass comes in only one sign, so gravity always pulls. Charge comes in two, so it can push or pull.',
+    'tb-double': 'Twice as far away, the field is one quarter as strong, on both boards.',
+    'tb-release': 'The probe starts at rest. Watch where each field sends it.',
+    'tb-zero': 'Here the pulls cancel, and the field is zero.',
+    'sp-welcome': 'Here is why both laws use one over r squared. The same lines spread out over more area as you move away.',
+    'sp-two': 'At twice the distance, the lines cover four times the area, so each patch gets one quarter of them.',
+    'rp-welcome': 'Now with real numbers. Pick a pair and compare the gravity and electric forces between them.',
+    'rp-ratio': 'Both forces changed by the same factor, so the ratio between them did not change.',
+    'rp-hydrogen': 'In a hydrogen atom, the electric pull is about two times ten to the thirty nine times stronger than gravity.',
+    'rp-earthmoon': 'Earth and the Moon are neutral overall, so their charges cancel and gravity is the force that is left.',
+  };
+  const H = {
+    start: 'Same objects, two laws. Drag the probe and compare the two readouts.',
+    negative: 'On the left, every mass pulls. Gravity looks exactly like a world where every charge is negative: all lines point in.',
+    dipole: 'The electric board shows a dipole: lines run from plus to minus. The gravity board shows two masses that both pull.',
+    zero: 'Between two equal pulls there is a spot where they cancel. The field reads zero here.',
+    double: 'Twice as far, one quarter the field. Both boards obey one over r squared.',
+    halve: 'Half as far, four times the field.',
+    release: 'Starting from rest, the probe follows the field. Gravity only ever pulls it in.',
+    swing: 'On the center line the sideways pulls balance, so the probe falls through the middle and swings back and forth. Nudge it sideways and try again.',
+    still: 'The probe sits still: the pulls cancel here.',
+    offBoard: 'That would put the probe off the board. Move it closer first.',
+    edge: 'The probe cannot go inside a disc, so it stopped at the disc edge.',
+    limit: 'Six objects is the limit. Remove one to add more.',
+    empty: 'The boards are empty. Use the Add buttons to place an object.',
+    spStart: 'Move the Distance slider. The same 36 lines spread over more tiles as the screen moves away.',
+    spOne: 'The dashed curve is 36 over r. The real curve falls faster, because the area grows as r squared, not as r.',
+    spKind: 'The shape is the same for both laws. Only the constant in front changes.',
+    rpStart: 'Pick a pair. Both bars share one log scale, and each tick is ten more powers of ten.',
+    rpStep: 'Both forces follow one over r squared, so they change by the same factor.',
+    rpApple: 'The apple sits on the surface. Any closer and it would be inside Earth, where this formula does not apply.',
+  };
+  const LINE_NOTE = 'Line spacing on a flat screen is a sketch. In 3D the lines spread over a sphere, so trust the readout and the Spread mode for strength.';
+  const WELCOME = {tb: 'tb-welcome', sp: 'sp-welcome', rp: 'rp-welcome'};
+  const AFTER = {'tb-welcome': 'tb-howto'};
+  const said = new Set(), queued = new Set();
+  let tapped = false, vq = Promise.resolve(), vgen = 0, readP = Promise.resolve();
+  for (const ev of ['pointerdown', 'keydown']) addEventListener(ev, e => {
+    if (tapped) return; tapped = true;
+    const b = e.target && e.target.closest ? e.target.closest('button') : null;
+    if (b && b.id === 'sound') return;
+    if (b && b.id === 'read') {
+      // Read speaks first; the welcome is queued once Read's click has run, so it waits for Read to finish
+      const go = () => { removeEventListener('click', go, true); clearTimeout(fb); setTimeout(() => welcome(state.mode)); };
+      addEventListener('click', go, true); const fb = setTimeout(go, 1500);
+      return;
+    }
+    // a mode button switches mode on its click, which queues that mode's welcome; anything else gets this one first
+    if (b && /^m-/.test(b.id)) setTimeout(() => welcome(state.mode), 350); else welcome(state.mode);
+  }, true);
+  // still(): checked when the line's turn comes; a line about something no longer on screen is dropped unsaid
+  function narrate(key, still) {
+    if (!tapped || !Curio.sound || said.has(key) || queued.has(key)) return false;
+    queued.add(key);
+    const gen = vgen, line = L[key];
+    vq = vq.then(async () => {
+      await readP;
+      if (gen !== vgen) return;            // dropped by hush(): not marked said, so its trigger can queue it again
+      if (still && !still()) { queued.delete(key); return; }
+      queued.delete(key); said.add(key);
+      await Promise.race([say(line), wait(2500 + 80 * line.length)]);
+    });
+    return true;
+  }
+  function welcome(m) {
+    const k = WELCOME[m];
+    narrate(k);
+    if (AFTER[k]) narrate(AFTER[k]);
+    if (m === 'rp') pairLine();
+  }
+  function hush() { vgen++; queued.clear(); vq = Promise.resolve(); readP = Promise.resolve(); Curio.stop(); }   // a stopped Read clip never ends, so nothing may wait on it
+  function readNow() { hush(); const h = $('hint').textContent; readP = Promise.race([say([h], true), wait(2500 + 80 * h.length)]).catch(() => {}); }
+  function setHint(h) { if ($('hint').textContent !== h) $('hint').textContent = h; }
+  function live(s) { $('live').textContent = s; }
+
+  // ======================================================================================
+  // Twin boards: state
+  // ======================================================================================
+  const PRESETS = {
+    single: {label: 'Single', objs: [[6, 6, 3, 1]], probe: [9, 6], hint: 'start'},
+    like: {label: 'Like pair', objs: [[4, 6, 3, 1], [8, 6, 3, 1]], probe: [6, 6], hint: 'zero'},
+    opposite: {label: 'Opposite pair', objs: [[4, 6, 3, 1], [8, 6, 3, -1]], probe: [6, 8.5], hint: 'dipole'},
+    big: {label: 'Big and small', objs: [[4.5, 6, 5, 1], [9, 6, 1, 1]], probe: [6.5, 8], hint: 'start'},
+    row: {label: 'Row of three', objs: [[3, 6, 2, 1], [6, 6, 2, -1], [9, 6, 2, 1]], probe: [6, 9], hint: 'negative'},
+    clear: {label: 'Clear all', objs: [], probe: null, hint: 'empty'},
+  };
+  const MAX_OBJ = 6;
+  let nextId = 1;
+  const tb = {objs: [], sel: null, probe: {x: 6, y: 8.5}, view: {lines: true, arrows: false, shade: false},
+    trails: null, run: null, factor: null, dfactor: null, lastHint: 'start'};
+  const objById = id => tb.objs.find(o => o.id === id);
+  const PR = F.PROBE_R;
+
+  function free(o, x, y) {
+    const R = F.radius(o.s);
+    if (x < R || y < R || x > 12 - R || y > 12 - R) return false;
+    for (const p of tb.objs) if (p !== o && Math.hypot(p.x - x, p.y - y) < R + F.radius(p.s) + .05) return false;
+    return true;
+  }
+  // the nearest free spot to (x, y) on the board (rings of growing radius)
+  function nearestFree(o, x, y) {
+    const R = F.radius(o.s);
+    x = clamp(x, R, 12 - R); y = clamp(y, R, 12 - R);
+    if (free(o, x, y)) return [x, y];
+    for (let rad = .1; rad < 17; rad += .1) {
+      let best = null;
+      const n = Math.max(12, Math.round(rad * 24));
+      for (let k = 0; k < n; k++) {
+        const a = 2 * Math.PI * k / n, nx = x + rad * Math.cos(a), ny = y + rad * Math.sin(a);
+        if (free(o, nx, ny)) { best = [nx, ny]; break; }
+      }
+      if (best) return [+best[0].toFixed(3), +best[1].toFixed(3)];
+    }
+    return [x, y];
+  }
+  // the probe stays on the board and outside every disc (pushed to the disc edge)
+  function fixProbe() {
+    const p = tb.probe;
+    for (let pass = 0; pass < 4; pass++) {
+      p.x = clamp(p.x, 0, 12); p.y = clamp(p.y, 0, 12);
+      let moved = false;
+      for (const o of tb.objs) {
+        const R = F.radius(o.s) + PR, dx = p.x - o.x, dy = p.y - o.y, d = Math.hypot(dx, dy);
+        if (d < R - 1e-9) { const ux = d ? dx / d : 1, uy = d ? dy / d : 0; p.x = o.x + ux * R; p.y = o.y + uy * R; moved = true; }
+      }
+      if (!moved) break;
+    }
+    p.x = +p.x.toFixed(6); p.y = +p.y.toFixed(6);
+  }
+  function probeFields() {
+    const g = F.field(tb.objs, 'g', tb.probe.x, tb.probe.y), e = F.field(tb.objs, 'e', tb.probe.x, tb.probe.y);
+    return {g, e, gm: Math.hypot(...g), em: Math.hypot(...e)};
+  }
+  function nearest() {
+    let best = null, bd = Infinity;
+    for (const o of tb.objs) { const d = Math.hypot(o.x - tb.probe.x, o.y - tb.probe.y); if (d < bd) { bd = d; best = o; } }
+    return best;
+  }
+  const refObj = () => (tb.sel != null && objById(tb.sel)) || nearest();
+  function isZero() {
+    if (!tb.objs.length) return false;
+    const f = probeFields(), top = Math.max(...tb.objs.map(o => o.s));
+    return f.gm < .02 * top && f.em < .02 * top;
+  }
+  const zeroStill = () => state.mode === 'tb' && isZero();
+  const hasNeg = () => tb.objs.some(o => o.c < 0), mixed = () => hasNeg() && tb.objs.some(o => o.c > 0);
+  const TRANSIENT = new Set(['zero', 'double', 'halve', 'release', 'swing', 'still', 'offBoard', 'edge', 'limit']);
+  function tbHint(k) { tb.lastHint = k; if (state.mode === 'tb') setHint(H[k]); }
+
+  // something on the board changed: lines must be traced again; trails and readout factors are cleared
+  let linesDirty = true, baseDirty = true;
+  function objsChanged() { linesDirty = true; baseDirty = true; stopRun(); tb.trails = null; tb.factor = null; tb.dfactor = null; $('relRd').textContent = ''; req(); }
+  function probeChanged(keepFactor) { if (!keepFactor) { tb.factor = null; tb.dfactor = null; } if (tb.trails || tb.run) { stopRun(); tb.trails = null; baseDirty = true; $('relRd').textContent = ''; } req(); }
+
+  function applyPreset(k) {
+    const p = PRESETS[k];
+    tb.objs = p.objs.map(([x, y, s, c]) => ({id: nextId++, x, y, s, c}));
+    tb.sel = null;
+    if (p.probe) { tb.probe.x = p.probe[0]; tb.probe.y = p.probe[1]; }
+    fixProbe();
+    rebuildObjs();
+    objsChanged();
+    tbPanel();
+    return p.hint;
+  }
+  function presetClick(k) {
+    const h = applyPreset(k);
+    tbHint(h);
+    if (k === 'like') narrate('tb-zero', zeroStill);
+    if (hasNeg()) narrate('tb-negative');
+    live(PRESETS[k].label + ' preset');
+  }
+  function addObj(c) {
+    if (tb.objs.length >= MAX_OBJ) { tbHint('limit'); return; }
+    const o = {id: nextId++, x: 6, y: 6, s: 2, c};
+    [o.x, o.y] = nearestFree(o, 6, 6);
+    tb.objs.push(o);
+    rebuildObjs(); select(o.id); fixProbe(); objsChanged();
+    if (tb.objs.length >= MAX_OBJ) tbHint('limit');
+    else if (c < 0) { tbHint('negative'); narrate('tb-negative'); }
+    else tbHint(mixed() ? 'dipole' : 'start');
+    focusObj(o.id);
+    live(`Added ${objName(o)}`);
+  }
+  function select(id) {
+    tb.sel = id;
+    tbPanel(); req();
+  }
+  function sizeSel(d) {
+    const o = objById(tb.sel); if (!o) return;
+    const s = clamp(o.s + d, 1, 5); if (s === o.s) return;
+    o.s = s; [o.x, o.y] = nearestFree(o, o.x, o.y); fixProbe();
+    objsChanged(); tbPanel(); live(objName(o));
+  }
+  function flipSel() {
+    const o = objById(tb.sel); if (!o) return;
+    o.c = -o.c;
+    objsChanged(); tbPanel();
+    // mass has no sign: the gravity disc only pulses to say so
+    const el = S.obj && S.obj[o.id];
+    if (el && !Curio.reduce) { const d = el.gDisc; d.classList.remove('pulse'); void d.getBoundingClientRect(); d.classList.add('pulse'); }
+    if (o.c < 0) { tbHint('negative'); narrate('tb-negative'); } else tbHint(mixed() ? 'dipole' : 'start');
+    live(objName(o));
+  }
+  function removeSel() {
+    const i = tb.objs.findIndex(o => o.id === tb.sel); if (i < 0) return;
+    tb.objs.splice(i, 1); tb.sel = null;
+    rebuildObjs(); objsChanged(); tbPanel();
+    tbHint(tb.objs.length ? 'start' : 'empty');
+    const nx = tb.objs[i] || tb.objs[i - 1];
+    if (nx) focusObj(nx.id); else if (S.probeG) S.probeG.g.focus({preventScroll: true});
+    live('Removed');
+  }
+  function moveObj(o, x, y, drop) {
+    const R = F.radius(o.s);
+    o.x = clamp(x, R, 12 - R); o.y = clamp(y, R, 12 - R);
+    if (drop) [o.x, o.y] = nearestFree(o, o.x, o.y);
+    fixProbe(); objsChanged();
+  }
+  function moveProbe(x, y) {
+    tb.probe.x = x; tb.probe.y = y; fixProbe(); probeChanged();
+    afterProbeMove();
+  }
+  function afterProbeMove() {
+    if (isZero()) { tbHint('zero'); narrate('tb-zero', zeroStill); }
+    else if (TRANSIENT.has(tb.lastHint)) tbHint(tb.objs.length ? 'start' : 'empty');
+  }
+  // Double and Halve: move the probe along the line from the selected (or nearest) object
+  function scaleProbe(f) {
+    const o = refObj(); if (!o) { tbHint('empty'); return; }
+    const dx = tb.probe.x - o.x, dy = tb.probe.y - o.y, d = Math.hypot(dx, dy);
+    let nd = d * f, k = f > 1 ? 'double' : 'halve';
+    const nx = o.x + dx * f, ny = o.y + dy * f;
+    if (f > 1 && (nx < 0 || ny < 0 || nx > 12 || ny > 12)) { tbHint('offBoard'); return; }
+    const minD = F.radius(o.s) + PR;
+    if (nd < minD) { if (d <= minD + 1e-6) { tbHint('edge'); return; } nd = minD; k = 'edge'; }
+    const before = probeFields();
+    tb.probe.x = o.x + dx / d * nd; tb.probe.y = o.y + dy / d * nd;
+    fixProbe();
+    const after = probeFields();
+    probeChanged(true);
+    tb.factor = {g: before.gm > 1e-9 ? after.gm / before.gm : null, e: before.em > 1e-9 ? after.em / before.em : null};
+    tb.dfactor = Math.hypot(tb.probe.x - o.x, tb.probe.y - o.y) / d;
+    tbHint(k);
+    if (k === 'double') narrate('tb-double');
+    req();
+  }
+  // Release: both boards at once
+  function release() {
+    if (tb.run) stopRun();
+    if (!tb.objs.length) { tb.trails = null; tbHint('empty'); $('relRd').textContent = 'No objects on the board, so there is no field to follow.'; baseDirty = true; req(); return; }
+    const g = F.release(tb.objs, 'g', tb.probe.x, tb.probe.y), e = F.release(tb.objs, 'e', tb.probe.x, tb.probe.y);
+    narrate('tb-release');
+    if (g.end === 'still' && e.end === 'still') { tb.trails = null; tbHint('still'); $('relRd').textContent = relText(g, e); baseDirty = true; req(); return; }
+    // straight down a line of symmetry: the probe falls through the middle and swings back, so say why
+    tbHint(g.end === 'time' && g.turns.length >= 3 && g.side < .05 ? 'swing' : 'release');
+    tb.trails = {g, e};
+    if (Curio.reduce) { tb.run = null; $('relRd').textContent = relText(g, e); }
+    else { tb.run = {t0: performance.now(), T: Math.max(g.t, e.t), shown: false}; $('relRd').textContent = 'Released…'; }
+    baseDirty = true; req();
+  }
+  function relText(g, e) {
+    const one = (r, kind) => {
+      if (r.end === 'landed') { const o = tb.objs[r.on]; return 'landed on ' + (kind === 'g' ? 'm ' + o.s : (o.c > 0 ? '+' : MINUS) + o.s); }
+      if (r.end === 'escaped') return 'escaped';
+      if (r.end === 'still') return kind === 'g' ? 'stayed still, the pulls cancel' : 'stayed still, the fields cancel';
+      const n = r.turns.length / 3;
+      return n ? `turned back ${n} time${n === 1 ? '' : 's'}, still moving after 8 seconds` : 'still moving after 8 seconds';
+    };
+    return `Gravity: ${one(g, 'g')}. Electric: ${one(e, 'e')}.`;
+  }
+  function stopRun() { if (tb.run) { tb.run = null; } }
+  function finishRun() { if (tb.run) { tb.run = null; $('relRd').textContent = relText(tb.trails.g, tb.trails.e); req(); } }
+  function clearPaths() { stopRun(); tb.trails = null; $('relRd').textContent = ''; baseDirty = true; req(); }
+  const objName = o => `object, size ${o.s}, mass ${o.s}, charge ${o.c > 0 ? 'plus' : 'minus'} ${o.s}`;
+
+  // ======================================================================================
+  // Twin boards: drawing (canvas for fields and trails, SVG for discs and the probe)
+  // ======================================================================================
+  const sv = $('sv'), cv = $('cv'), cx = cv.getContext('2d');
+  let S = {}, G = null, W = 0, Hh = 0, dpr = 1;
+  const base = document.createElement('canvas'), bx = base.getContext('2d');
+  let cache = {g: null, e: null}, shadeImg = {g: null, e: null};
+  const perf = {trace: 0, base: 0, steps: 0};
+
+  function geomTB(W, H) {
+    const pad = 12, th = 22;
+    const sideB = Math.min((W - 3 * pad) / 2, H - 2 * pad - th), stackB = Math.min(W - 2 * pad, (H - 3 * pad - 2 * th) / 2);
+    const stack = stackB > sideB * 1.05 || (page === 'stack' && innerWidth < 720);
+    const B = Math.floor(stack ? stackB : sideB), ppu = B / 12;
+    let b;
+    if (stack) {
+      const x0 = Math.round((W - B) / 2), y0 = Math.round((H - (2 * B + 2 * th + pad)) / 2 + th);
+      b = [{kind: 'g', x: x0, y: y0}, {kind: 'e', x: x0, y: y0 + B + pad + th}];
+    } else {
+      const x0 = Math.round((W - (2 * B + pad)) / 2), y0 = Math.round((H - (B + th)) / 2 + th);
+      b = [{kind: 'g', x: x0, y: y0}, {kind: 'e', x: x0 + B + pad, y: y0}];
+    }
+    for (const q of b) { q.B = B; q.ppu = ppu; }
+    return {boards: b, B, ppu, stack, th};
+  }
+  const toPx = (b, x, y) => [b.x + x * b.ppu, b.y + y * b.ppu];
+  function eventBoard(e, b) {
+    const p = sv.createSVGPoint(); p.x = e.clientX; p.y = e.clientY;
+    const q = p.matrixTransform(sv.getScreenCTM().inverse());
+    return [(q.x - b.x) / b.ppu, (q.y - b.y) / b.ppu];
+  }
+
+  function buildTB() {
+    G = geomTB(W, Hh);
+    sv.setAttribute('aria-label', 'Two boards: gravity on the ' + (G.stack ? 'top' : 'left') + ', electric on the ' + (G.stack ? 'bottom' : 'right'));
+    const defs = mk('defs', {}, sv);
+    S.boards = G.boards.map((b, i) => {
+      mk('rect', {x: b.x, y: b.y, width: b.B, height: b.B}, mk('clipPath', {id: 'clip' + i}, defs));
+      txt(sv, b.x, b.y - 8, b.kind === 'g' ? 'Gravity (mass)' : 'Electric (charge)', 'stb deco').setAttribute('fill', b.kind === 'g' ? 'var(--grav)' : 'var(--ink)');
+      if (b.B >= 260) txt(sv, b.x + b.B, b.y - 8, '1 square = 1 unit', 'st deco', 'end');
+      const g = mk('g', {'clip-path': `url(#clip${i})`}, sv);
+      const bg = mk('rect', {x: b.x, y: b.y, width: b.B, height: b.B, fill: 'transparent'}, g);
+      bg.addEventListener('pointerdown', () => { if (tb.sel != null) { select(null); } });
+      const objs = mk('g', {}, g), fx = mk('g', {class: 'deco'}, g);
+      return {b, g, objs, fx};
+    });
+    S.obj = {};
+    S.probeG = null;
+    rebuildObjs();
+    baseDirty = true; linesDirty = linesDirty || !cache.g;
+    frame();
+  }
+  // persistent SVG groups for each object (the gravity copy is the keyboard stop), and the probe on each board
+  function rebuildObjs() {
+    if (!S.boards || state.mode !== 'tb') return;
+    const keep = new Set(tb.objs.map(o => o.id));
+    for (const id in S.obj) if (!keep.has(+id)) { S.obj[id].g.remove(); S.obj[id].e.remove(); delete S.obj[id]; }
+    for (const o of tb.objs) if (!S.obj[o.id]) S.obj[o.id] = {g: objG(o, 0), e: objG(o, 1)};
+    // DOM order = tab order: the objects in list order, then the probe
+    for (const o of tb.objs) { S.boards[0].objs.appendChild(S.obj[o.id].g); S.boards[1].objs.appendChild(S.obj[o.id].e); }
+    for (const id in S.obj) { S.obj[id].gDisc = S.obj[id].g.querySelector('.disc'); }
+    if (!S.probeG) S.probeG = probeG(0), S.probeE = probeG(1);
+    for (const [k, i] of [['probeG', 0], ['probeE', 1]]) S.boards[i].objs.appendChild(S[k].g);
+  }
+  function objG(o, bi) {
+    const b = G.boards[bi], kb = bi === 0;
+    const g = mk('g', {class: 'ob', tabindex: kb ? 0 : null, role: kb ? 'button' : null, 'aria-hidden': kb ? null : 'true'});
+    g._id = o.id;
+    mk('circle', {class: 'hit', r: 22, fill: 'transparent'}, g);
+    const sel = mk('circle', {class: 'selring', fill: 'none', stroke: '#f4f7fb', 'stroke-width': 2, 'stroke-dasharray': '5 4'}, g);
+    const fr = mk('circle', {class: 'fring'}, g);
+    const disc = mk('g', {class: 'disc'}, g);
+    mk('circle', {class: 'body', stroke: '#0b1017', 'stroke-width': 1.5}, disc);
+    mk('text', {class: 'lab', 'text-anchor': 'middle', 'font-weight': 700}, disc);
+    mk('text', {class: 'lab2 halo', 'text-anchor': 'start', 'font-weight': 700}, g);
+    g._parts = {sel, fr};
+    g.addEventListener('pointerdown', e => {
+      if (e.button) return;
+      e.preventDefault(); e.stopPropagation();
+      const ob = objById(g._id); if (!ob) return;
+      select(ob.id);
+      S.obj[ob.id].g.focus({preventScroll: true});
+      g.setPointerCapture(e.pointerId); g.classList.add('drag');
+      const [ux, uy] = eventBoard(e, G.boards[bi]);
+      g._drag = {id: e.pointerId, dx: ux - ob.x, dy: uy - ob.y, moved: false};
+    });
+    g.addEventListener('pointermove', e => {
+      if (!g._drag || e.pointerId !== g._drag.id) return;
+      const ob = objById(g._id); if (!ob) return;
+      const [ux, uy] = eventBoard(e, G.boards[bi]);
+      g._drag.moved = true; moveObj(ob, ux - g._drag.dx, uy - g._drag.dy, false);
+    });
+    const end = e => {
+      if (!g._drag || e.pointerId !== g._drag.id) return;
+      const moved = g._drag.moved; g._drag = null; g.classList.remove('drag');
+      const ob = objById(g._id); if (!ob || !moved) return;
+      moveObj(ob, ob.x, ob.y, true);
+      if (isZero()) { tbHint('zero'); narrate('tb-zero', zeroStill); } else if (TRANSIENT.has(tb.lastHint)) tbHint('start');
+      live(`${objName(ob)} at ${ob.x.toFixed(2)}, ${ob.y.toFixed(2)}`);
+    };
+    g.addEventListener('pointerup', end); g.addEventListener('pointercancel', end);
+    if (kb) {
+      g.addEventListener('focus', () => { if (tb.sel !== g._id) select(g._id); });
+      g.addEventListener('keydown', e => objKey(e, g._id));
+    }
+    return g;
+  }
+  function objKey(e, id) {
+    const o = objById(id); if (!o) return;
+    const st = e.shiftKey ? 1 : .25;
+    const d = {ArrowLeft: [-st, 0], ArrowRight: [st, 0], ArrowUp: [0, -st], ArrowDown: [0, st]}[e.key];
+    if (d) { e.preventDefault(); moveObj(o, o.x + d[0], o.y + d[1], true); if (isZero()) { tbHint('zero'); narrate('tb-zero', zeroStill); } live(`${o.x.toFixed(2)}, ${o.y.toFixed(2)}`); return; }
+    if (e.key === '+' || e.key === '=') { e.preventDefault(); sizeSel(1); return; }
+    if (e.key === '-' || e.key === '_') { e.preventDefault(); sizeSel(-1); return; }
+    if (e.key === 's' || e.key === 'S') { e.preventDefault(); flipSel(); return; }
+    if (e.key === 'Delete' || e.key === 'Backspace') { e.preventDefault(); removeSel(); return; }
+  }
+  function focusObj(id) { const el = S.obj && S.obj[id]; if (el) el.g.focus({preventScroll: true}); }
+  function probeG(bi) {
+    const kb = bi === 0;
+    const g = mk('g', {class: 'pr', tabindex: kb ? 0 : null, role: kb ? 'button' : null, 'aria-hidden': kb ? null : 'true'});
+    mk('circle', {r: 22, fill: 'transparent'}, g);
+    mk('circle', {class: 'fring', r: 13}, g);
+    const arrow = mk('path', {class: 'parrow', fill: 'none', stroke: '#f4f7fb', 'stroke-width': 2.2, 'stroke-linecap': 'round', 'stroke-linejoin': 'round'});
+    g.appendChild(arrow);
+    const ring = mk('g', {}, g);
+    mk('circle', {r: 7, fill: 'rgba(11,16,23,.55)', stroke: '#f4f7fb', 'stroke-width': 2}, ring);
+    mk('path', {d: 'M-11,0H-3M3,0H11M0,-11V-3M0,3V11', stroke: '#f4f7fb', 'stroke-width': 1.5}, ring);
+    const lab = mk('text', {class: 'st halo mono', x: 12, y: -10}, g);
+    lab.setAttribute('fill', '#f4f7fb');
+    const res = {g, arrow, lab, bi};
+    g.addEventListener('pointerdown', e => {
+      if (e.button || tb.run) { if (tb.run) { stopRun(); probeChanged(); } else return; }
+      e.preventDefault(); e.stopPropagation();
+      S.probeG.g.focus({preventScroll: true});
+      g.setPointerCapture(e.pointerId); g.classList.add('drag');
+      const [ux, uy] = eventBoard(e, G.boards[bi]);
+      g._drag = {id: e.pointerId, dx: ux - tb.probe.x, dy: uy - tb.probe.y};
+    });
+    g.addEventListener('pointermove', e => {
+      if (!g._drag || e.pointerId !== g._drag.id) return;
+      const [ux, uy] = eventBoard(e, G.boards[bi]);
+      tb.probe.x = ux - g._drag.dx; tb.probe.y = uy - g._drag.dy; fixProbe(); probeChanged();
+      afterProbeMove();
+    });
+    const end = e => { if (g._drag && e.pointerId === g._drag.id) { g._drag = null; g.classList.remove('drag'); live(probeLive()); } };
+    g.addEventListener('pointerup', end); g.addEventListener('pointercancel', end);
+    if (kb) {
+      g.setAttribute('aria-label', 'Probe. Drag it, or use the arrow keys, to read both fields');
+      g.addEventListener('keydown', e => {
+        const st = e.shiftKey ? 1 : .25;
+        const d = {ArrowLeft: [-st, 0], ArrowRight: [st, 0], ArrowUp: [0, -st], ArrowDown: [0, st]}[e.key];
+        if (!d) return;
+        e.preventDefault(); moveProbe(tb.probe.x + d[0], tb.probe.y + d[1]); live(probeLive());
+      });
+    }
+    return res;
+  }
+  const probeLive = () => `Probe at ${tb.probe.x.toFixed(2)}, ${tb.probe.y.toFixed(2)}. ${$('rdG').textContent} ${$('rdE').textContent}`;
+
+  // the base layer: board, shading, grid, arrow grid and field lines (redrawn only when something changes)
+  function heat(kind) {
+    const N = 64, c = document.createElement('canvas'); c.width = c.height = N;
+    const x = c.getContext('2d'), img = x.createImageData(N, N);
+    for (let j = 0; j < N; j++) for (let i = 0; i < N; i++) {
+      const f = F.field(tb.objs, kind, (i + .5) * 12 / N, (j + .5) * 12 / N), m = Math.hypot(f[0], f[1]);
+      const t = m > 0 ? clamp((Math.log10(m) + 2) / 3, 0, 1) : 0, k = (j * N + i) * 4;   // log strength 0.01 to 10
+      img.data[k] = 90 + 110 * t; img.data[k + 1] = 120 + 90 * t; img.data[k + 2] = 230; img.data[k + 3] = 150 * t;
+    }
+    x.putImageData(img, 0, 0); return c;
+  }
+  function drawBase() {
+    const t0 = performance.now();
+    if (linesDirty) {
+      if (tb.view.lines) { cache.g = F.trace(tb.objs, 'g'); cache.e = F.trace(tb.objs, 'e'); perf.steps = cache.g.steps + cache.e.steps; }
+      shadeImg = {g: null, e: null};
+      linesDirty = false; perf.trace = performance.now() - t0;
+    }
+    base.width = cv.width; base.height = cv.height;
+    bx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    bx.clearRect(0, 0, W, Hh);
+    for (const b of G.boards) {
+      const k = b.kind;
+      bx.save();
+      bx.beginPath(); bx.rect(b.x, b.y, b.B, b.B); bx.clip();
+      bx.fillStyle = '#0e1520'; bx.fillRect(b.x, b.y, b.B, b.B);
+      if (tb.view.shade && tb.objs.length) {
+        if (!shadeImg[k]) shadeImg[k] = heat(k);
+        bx.imageSmoothingEnabled = true; bx.drawImage(shadeImg[k], b.x, b.y, b.B, b.B);
+      }
+      bx.lineWidth = 1;
+      for (let i = 1; i < 12; i++) {
+        bx.strokeStyle = i === 6 ? 'rgba(255,255,255,.13)' : 'rgba(255,255,255,.06)';
+        const u = Math.round(b.x + i * b.ppu) + .5, v = Math.round(b.y + i * b.ppu) + .5;
+        bx.beginPath(); bx.moveTo(u, b.y); bx.lineTo(u, b.y + b.B); bx.moveTo(b.x, v); bx.lineTo(b.x + b.B, v); bx.stroke();
+      }
+      if (tb.view.arrows && tb.objs.length) drawArrowGrid(b);
+      if (tb.view.lines && cache[k]) drawLines(b, cache[k]);
+      bx.restore();
+      bx.strokeStyle = '#3a4658'; bx.lineWidth = 1; bx.strokeRect(b.x + .5, b.y + .5, b.B - 1, b.B - 1);
+    }
+    baseDirty = false; perf.base = performance.now() - t0;
+  }
+  function drawLines(b, c) {
+    const p = b.ppu;
+    bx.strokeStyle = 'rgba(201,211,227,.82)'; bx.lineWidth = Math.max(1.1, p * .035); bx.lineJoin = 'round';
+    bx.beginPath();
+    for (const pts of c.lines) {
+      bx.moveTo(b.x + pts[0] * p, b.y + pts[1] * p);
+      for (let i = 2; i < pts.length; i += 4) bx.lineTo(b.x + pts[i] * p, b.y + pts[i + 1] * p);
+      const n = pts.length; bx.lineTo(b.x + pts[n - 2] * p, b.y + pts[n - 1] * p);
+    }
+    bx.stroke();
+    bx.fillStyle = '#C9D3E3';
+    const s = clamp(p * .2, 4, 8);
+    bx.beginPath();
+    for (let i = 0; i < c.arrows.length; i += 3) {
+      const x = b.x + c.arrows[i] * p, y = b.y + c.arrows[i + 1] * p, a = c.arrows[i + 2];
+      const ca = Math.cos(a), sa = Math.sin(a);
+      bx.moveTo(x + ca * s, y + sa * s);
+      bx.lineTo(x - ca * s * .7 - sa * s * .6, y - sa * s * .7 + ca * s * .6);
+      bx.lineTo(x - ca * s * .7 + sa * s * .6, y - sa * s * .7 - ca * s * .6);
+      bx.closePath();
+    }
+    bx.fill();
+  }
+  // 13 by 13 arrows: length is the log of strength (capped at 0.8 units), brightness scales with it too
+  function drawArrowGrid(b) {
+    const p = b.ppu, n = 13;
+    for (let j = 0; j < n; j++) for (let i = 0; i < n; i++) {
+      const x = (i + .5) * 12 / n, y = (j + .5) * 12 / n;
+      if (tb.objs.some(o => Math.hypot(o.x - x, o.y - y) < F.radius(o.s) + .1)) continue;
+      const f = F.field(tb.objs, b.kind, x, y), m = Math.hypot(f[0], f[1]);
+      if (!(m > 1e-6)) continue;
+      const len = clamp(.12 + .3 * (Math.log10(m) + 2), .12, .8), al = .3 + .7 * (len - .12) / .68;
+      const ux = f[0] / m, uy = f[1] / m;
+      const x0 = b.x + (x - ux * len / 2) * p, y0 = b.y + (y - uy * len / 2) * p, x1 = b.x + (x + ux * len / 2) * p, y1 = b.y + (y + uy * len / 2) * p;
+      const hs = clamp(p * .16, 3, 7);
+      bx.strokeStyle = bx.fillStyle = `rgba(201,211,227,${al.toFixed(2)})`; bx.lineWidth = Math.max(1.2, p * .04);
+      bx.beginPath(); bx.moveTo(x0, y0); bx.lineTo(x1, y1); bx.stroke();
+      bx.beginPath(); bx.moveTo(x1, y1); bx.lineTo(x1 - ux * hs - uy * hs * .55, y1 - uy * hs + ux * hs * .55); bx.lineTo(x1 - ux * hs + uy * hs * .55, y1 - uy * hs - ux * hs * .55); bx.closePath(); bx.fill();
+    }
+  }
+  // the probe's position on a board during a release (each board's probe follows its own path)
+  function runPos(r, t) {
+    const p = r.pts; let i = 0;
+    while (i + 3 < p.length && p[i + 5] <= t) i += 3;
+    if (i + 3 >= p.length) return [p[p.length - 3], p[p.length - 2]];
+    const a = (t - p[i + 2]) / Math.max(1e-9, p[i + 5] - p[i + 2]);
+    return [p[i] + (p[i + 3] - p[i]) * clamp(a, 0, 1), p[i + 1] + (p[i + 4] - p[i + 1]) * clamp(a, 0, 1)];
+  }
+  // trails: each pass after a turnaround is drawn a little to the side, so a swing back and forth shows as a
+  // switchback instead of one stroke drawn over itself; turnarounds get a small dot
+  function drawTrails(t) {
+    if (!tb.trails) return;
+    for (const b of G.boards) {
+      const r = tb.trails[b.kind]; if (!r || r.end === 'still') continue;
+      const p = r.pts, P = b.ppu, tr = r.turns;
+      let ux = p.length > 3 ? p[3] - p[0] : 1, uy = p.length > 3 ? p[4] - p[1] : 0; const um = Math.hypot(ux, uy) || 1; ux /= um; uy /= um;
+      const off = tt => { let k = 0; for (let i = 2; i < tr.length; i += 3) if (tr[i] <= tt) k++; return Math.min(k, 10) * 8; };
+      const at = (x, y, tt) => { const o = off(tt); return [b.x + x * P - uy * o, b.y + y * P + ux * o]; };
+      cx.save(); cx.beginPath(); cx.rect(b.x, b.y, b.B, b.B); cx.clip();
+      const col = b.kind === 'g' ? '#E8B54A' : '#FF6E61';
+      cx.strokeStyle = cx.fillStyle = col; cx.lineWidth = 2.6; cx.lineCap = 'round'; cx.lineJoin = 'round';
+      cx.setLineDash(b.kind === 'g' ? [] : [7, 5]);
+      cx.beginPath(); let q0 = at(p[0], p[1], 0); cx.moveTo(q0[0], q0[1]);
+      for (let i = 3; i < p.length; i += 3) {
+        if (p[i + 2] > t) { const q = runPos(r, t), z = at(q[0], q[1], t); cx.lineTo(z[0], z[1]); break; }
+        const z = at(p[i], p[i + 1], p[i + 2]); cx.lineTo(z[0], z[1]);
+      }
+      cx.stroke(); cx.setLineDash([]);
+      for (let i = 0; i < tr.length; i += 3) { if (tr[i + 2] > t) break; const z = at(tr[i], tr[i + 1], tr[i + 2] + 1e-6); cx.beginPath(); cx.arc(z[0], z[1], 3.2, 0, 7); cx.fill(); }
+      // the end point: a dot for landed, an open ring for the time limit
+      if (t >= r.t && r.end !== 'escaped') { const z = at(p[p.length - 3], p[p.length - 2], r.t + 1); cx.beginPath(); cx.arc(z[0], z[1], 4.5, 0, 7); r.end === 'landed' ? cx.fill() : (cx.lineWidth = 2, cx.stroke()); }
+      cx.restore();
+    }
+  }
+
+  // ---------- the frame: canvas, discs, probe, readouts ----------
+  let rafPending = false;
+  function req() { if (!rafPending) { rafPending = true; requestAnimationFrame(frame); } }
+  function frame() {
+    rafPending = false;
+    if (state.mode !== 'tb' || !G || !S.boards) { if (state.mode === 'tb') tbReadouts(); return; }
+    if (baseDirty || linesDirty) drawBase();
+    cx.setTransform(1, 0, 0, 1, 0, 0); cx.clearRect(0, 0, cv.width, cv.height); cx.drawImage(base, 0, 0);
+    cx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    let t = Infinity;
+    if (tb.run) {
+      t = (performance.now() - tb.run.t0) / 1000;
+      if (t >= tb.run.T + .7) { finishRun(); t = Infinity; }
+    }
+    drawTrails(t);
+    drawObjs();
+    drawProbe(t);
+    tbReadouts();
+    if (tb.run) { if (t >= tb.run.T && !tb.run.shown) { tb.run.shown = true; $('relRd').textContent = relText(tb.trails.g, tb.trails.e); } req(); }
+  }
+  function drawObjs() {
+    for (const o of tb.objs) {
+      const el = S.obj[o.id]; if (!el) continue;
+      for (const [g, b] of [[el.g, G.boards[0]], [el.e, G.boards[1]]]) {
+        const [u, v] = toPx(b, o.x, o.y), R = F.radius(o.s) * b.ppu, gr = b.kind === 'g';
+        g.setAttribute('transform', `translate(${u.toFixed(1)},${v.toFixed(1)})`);
+        const body = g.querySelector('.body'), lab = g.querySelector('.lab'), lab2 = g.querySelector('.lab2');
+        body.setAttribute('r', R.toFixed(1));
+        body.setAttribute('fill', gr ? 'var(--grav)' : o.c > 0 ? 'var(--pos)' : 'var(--neg)');
+        g.querySelector('.hit').setAttribute('r', Math.max(22, R + 4));
+        g._parts.sel.setAttribute('r', (R + 5).toFixed(1)); g._parts.sel.setAttribute('visibility', tb.sel === o.id ? 'visible' : 'hidden');
+        g._parts.fr.setAttribute('r', (R + 9).toFixed(1));
+        const full = gr ? 'm ' + o.s : (o.c > 0 ? '+' : MINUS) + o.s, fs = clamp(b.ppu * .4, 10.5, 15);
+        const fits = full.length * fs * .58 < 2 * R - 3;
+        lab.setAttribute('font-size', fs); lab.setAttribute('y', (fs * .35).toFixed(1)); lab.setAttribute('fill', '#0b1017');
+        lab2.setAttribute('font-size', fs);
+        if (fits) { lab.textContent = full; lab2.textContent = ''; }
+        else {
+          // too small for the full label: the sign (or m) stays inside, the full label sits beside the disc
+          lab.textContent = gr ? (2 * R > fs * .7 ? 'm' : '') : (2 * R > fs * .6 ? (o.c > 0 ? '+' : MINUS) : '');
+          lab2.textContent = full; lab2.setAttribute('x', (R + 3).toFixed(1)); lab2.setAttribute('y', (-R - 1).toFixed(1));
+          lab2.setAttribute('fill', gr ? 'var(--grav)' : o.c > 0 ? 'var(--pos)' : 'var(--neg)');
+        }
+        if (b.kind === 'g') g.setAttribute('aria-label', `${o.c > 0 ? 'Positive' : 'Negative'} object, size ${o.s}${tb.sel === o.id ? ', selected' : ''}, at ${o.x.toFixed(2)}, ${o.y.toFixed(2)}. Arrow keys move it, plus and minus change size, S flips the sign, Delete removes it`);
+      }
+    }
+  }
+  function drawProbe(t) {
+    const f = probeFields();
+    for (const P of [S.probeG, S.probeE]) {
+      const b = G.boards[P.bi], r = tb.run && tb.trails ? tb.trails[b.kind] : null;
+      const pos = r && isFinite(t) && r.end !== 'still' ? runPos(r, t) : [tb.probe.x, tb.probe.y];
+      const [u, v] = toPx(b, pos[0], pos[1]);
+      P.g.setAttribute('transform', `translate(${u.toFixed(1)},${v.toFixed(1)})`);
+      const vec = b.kind === 'g' ? f.g : f.e, m = b.kind === 'g' ? f.gm : f.em;
+      if (r || m < .005) { P.arrow.setAttribute('d', ''); }
+      else {
+        // the field at the probe as an arrow: length grows with the log of strength
+        const len = clamp(14 + 14 * (Math.log10(m) + 1), 10, 46), ux = vec[0] / m, uy = vec[1] / m, x1 = ux * (len + 9), y1 = uy * (len + 9), x0 = ux * 9, y0 = uy * 9;
+        P.arrow.setAttribute('d', `M${x0.toFixed(1)},${y0.toFixed(1)}L${x1.toFixed(1)},${y1.toFixed(1)}M${(x1 - ux * 6 - uy * 4).toFixed(1)},${(y1 - uy * 6 + ux * 4).toFixed(1)}L${x1.toFixed(1)},${y1.toFixed(1)}L${(x1 - ux * 6 + uy * 4).toFixed(1)},${(y1 - uy * 6 - ux * 4).toFixed(1)}`);
+      }
+      P.lab.textContent = r ? '' : fmt2(m);
+      // the value label goes in the corner that is furthest from the field arrow and from every disc
+      let best = null, bs = -Infinity;
+      for (const [cxl, cyl, anc] of [[14, -12, 'start'], [14, 22, 'start'], [-15, -12, 'end'], [-15, 22, 'end']]) {
+        const mx = cxl + (anc === 'start' ? 14 : -14), my = cyl - 4;   // the label's middle, in px from the probe
+        let sc = m >= .005 && !r ? -(mx * vec[0] + my * vec[1]) / m / 20 : 0;
+        for (const o of tb.objs) {
+          const ox = (o.x - pos[0]) * b.ppu, oy = (o.y - pos[1]) * b.ppu, dd = Math.hypot(mx - ox, my - oy) - F.radius(o.s) * b.ppu;
+          if (dd < 24) sc -= (24 - dd) / 4;
+        }
+        if (sc > bs) { bs = sc; best = [cxl, cyl, anc]; }
+      }
+      P.lab.setAttribute('text-anchor', best[2]); P.lab.setAttribute('x', best[0]); P.lab.setAttribute('y', best[1]);
+    }
+  }
+  function tbReadouts() {
+    const f = probeFields(), near = nearest(), ref = refObj(), none = !tb.objs.length;
+    const dirWord = (vec, m) => { if (!near) return ''; const dx = near.x - tb.probe.x, dy = near.y - tb.probe.y; return vec[0] * dx + vec[1] * dy > 0 ? 'pointing in' : 'pointing out'; };
+    const fac = k => tb.factor && tb.factor[k] != null ? ` (× ${tb.factor[k].toFixed(2)})` : '';
+    const line = (name, vec, m, k, cancel) => none ? `${name} field here: 0.00 units (no objects)` :
+      m < .005 ? `${name} field here: 0.00, ${cancel}${fac(k)}` : `${name} field here: ${fmt2(m)} units, ${dirWord(vec, m)}${fac(k)}`;
+    $('rdG').textContent = line('Gravity', f.g, f.gm, 'g', 'the pulls cancel');
+    $('rdE').textContent = line('Electric', f.e, f.em, 'e', 'the fields cancel');
+    for (const [id, vec, m] of [['glG', f.g, f.gm], ['glE', f.e, f.em]]) {
+      const gl = $(id); gl.classList.toggle('none', none || m < .005);
+      gl.firstElementChild.setAttribute('transform', `rotate(${(Math.atan2(vec[1], vec[0]) * 180 / Math.PI).toFixed(1)})`);
+    }
+    $('rdD').textContent = ref ? `Distance to ${tb.sel != null && objById(tb.sel) ? 'selected' : 'nearest'}: ${Math.hypot(ref.x - tb.probe.x, ref.y - tb.probe.y).toFixed(2)} units${tb.dfactor ? ` (× ${+tb.dfactor.toFixed(2)})` : ''}` : 'Distance: no objects on the board';
+  }
+  function tbPanel() {
+    const o = objById(tb.sel);
+    $('selBox').hidden = !o;
+    if (o) {
+      $('selRead').textContent = `Size ${o.s}, mass ${o.s}, charge ${o.c > 0 ? '+' : MINUS}${o.s}`;
+      $('smaller').disabled = o.s <= 1; $('bigger').disabled = o.s >= 5;
+    }
+    $('addP').disabled = $('addN').disabled = tb.objs.length >= MAX_OBJ;
+    for (const [id, k] of [['vLines', 'lines'], ['vArrows', 'arrows'], ['vShade', 'shade']]) $(id).setAttribute('aria-pressed', tb.view[k]);
+    $('lineNote').textContent = tb.view.lines ? LINE_NOTE : '';
+  }
+  function setView(k, v) { tb.view[k] = v == null ? !tb.view[k] : v; if (k === 'lines') linesDirty = true; baseDirty = true; tbPanel(); req(); }
+
+  $('addP').onclick = () => addObj(1); $('addN').onclick = () => addObj(-1);
+  $('smaller').onclick = () => sizeSel(-1); $('bigger').onclick = () => sizeSel(1);
+  $('flip').onclick = flipSel; $('remove').onclick = removeSel;
+  $('vLines').onclick = () => setView('lines'); $('vArrows').onclick = () => setView('arrows'); $('vShade').onclick = () => setView('shade');
+  $('dbl').onclick = () => scaleProbe(2); $('hlv').onclick = () => scaleProbe(.5);
+  $('rel').onclick = release; $('clr').onclick = clearPaths;
+  { const o = document.createElement('option'); o.value = ''; o.textContent = 'Presets'; o.disabled = true; $('preSel').appendChild(o); }
+  for (const k in PRESETS) { const o = document.createElement('option'); o.value = k; o.textContent = PRESETS[k].label; $('preSel').appendChild(o); }
+  $('preSel').value = '';
+  $('preSel').onchange = () => { const k = $('preSel').value; if (k) presetClick(k); $('preSel').value = ''; };
+  for (const k in PRESETS) { const b = document.createElement('button'); b.className = 'btn'; b.id = 'p-' + k; b.textContent = PRESETS[k].label; b.onclick = () => presetClick(k); $('presets').appendChild(b); }
+
+  // ======================================================================================
+  // Spread
+  // ======================================================================================
+  const sp = {r: 1, shown: 1, kind: 'g', one: false, anim: null};
+  const FORMULA = {g: ['Gravity', 'g = G M / r²', 'G = 6.674 × 10⁻¹¹ N m² / kg²'], e: ['Electric', 'E = k q / r²', 'k = 8.988 × 10⁹ N m² / C²']};
+  const spColor = () => sp.kind === 'g' ? 'var(--grav)' : 'var(--pos)';
+  function spStrength(r) {
+    if (r === 1) return 'Strength: the same as distance 1';
+    if (Number.isInteger(r)) return `Strength: 1/${r * r} of distance 1`;
+    return `Strength: ${(1 / (r * r)).toFixed(3)} of distance 1`;
+  }
+  function spPanel() {
+    const r = sp.r, lpt = F.linesPerTile(r);
+    $('spRo').textContent = Plane.fmt(r, 1);
+    $('spR').value = r; $('spR').setAttribute('aria-valuetext', `distance ${Plane.fmt(r, 1)}`);
+    $('spArea').textContent = `Area: ${Plane.fmt(r * r, 2)} tile${r === 1 ? '' : 's'}`;
+    $('spLines').textContent = `Lines per tile: ${Plane.fmt(lpt, 2)}${Number.isInteger(+lpt.toFixed(6)) ? '' : ' on average'}`;
+    $('spStr').textContent = spStrength(r);
+    $('spG').setAttribute('aria-pressed', sp.kind === 'g'); $('spE').setAttribute('aria-pressed', sp.kind === 'e');
+    $('spOne').setAttribute('aria-pressed', sp.one);
+  }
+  function spSet(r) {
+    r = clamp(Math.round(r * 2) / 2, 1, 5);
+    sp.r = r; spPanel();
+    if (r === 2) narrate('sp-two');
+    if (Curio.reduce) { sp.shown = r; spDraw(); return; }
+    const from = sp.shown, t0 = performance.now(), me = sp.anim = {};
+    const step = now => { if (sp.anim !== me) return; const a = clamp((now - t0) / 350, 0, 1), e = a < .5 ? 2 * a * a : 1 - Math.pow(-2 * a + 2, 2) / 2; sp.shown = from + (r - from) * e; spDraw(); if (a < 1) requestAnimationFrame(step); };
+    requestAnimationFrame(step);
+  }
+  $('spR').addEventListener('input', () => spSet(+$('spR').value));
+  $('spG').onclick = () => { sp.kind = 'g'; spPanel(); if (state.mode === 'sp') { buildSP(); setHint(H.spKind); } };
+  $('spE').onclick = () => { sp.kind = 'e'; spPanel(); if (state.mode === 'sp') { buildSP(); setHint(H.spKind); } };
+  $('spOne').onclick = () => { sp.one = !sp.one; spPanel(); if (state.mode === 'sp') { buildSP(); setHint(sp.one ? H.spOne : H.spStart); } };
+
+  function buildSP() {
+    sv.textContent = ''; S = {};
+    sv.setAttribute('aria-label', 'Spreading diagram and a plot of lines per tile against distance');
+    const side = W / Hh >= .95;
+    const dA = side ? {x: 0, y: 0, w: Math.round(W * (W < 560 ? .5 : .56)), h: Hh} : {x: 0, y: 0, w: W, h: Math.round(Hh * .54)};
+    const pA = side ? {x: dA.w, y: 0, w: W - dA.w, h: Hh} : {x: 0, y: dA.h, w: W, h: Hh - dA.h};
+    // diagram: a small rotated view (turned 38 degrees, tipped 9 degrees) so the screen faces the source and the
+    // reader sees its tiles; scaled to fit the largest screen (r = 5) and the ruler
+    const card = Math.min(64, Math.max(48, dA.h * .14));
+    const yw = 38 * Math.PI / 180, pt0 = 9 * Math.PI / 180, cyw = Math.cos(yw), syw = Math.sin(yw), cpt = Math.cos(pt0), spt = Math.sin(pt0);
+    const proj = (x, y, z) => { const zp = -x * syw + z * cyw; return [x * cyw + z * syw, y * cpt - zp * spt]; };
+    const RY = 3.3, box = [[0, 0, 0], [0, -RY, 0], [5, -RY, 0]];
+    for (const a of [-2.5, 2.5]) for (const b of [-2.5, 2.5]) box.push([5, a, b]);
+    const pb = box.map(q => proj(...q)), xs = pb.map(q => q[0]), ys = pb.map(q => q[1]);
+    const x0b = Math.min(...xs), x1b = Math.max(...xs), y0b = Math.min(...ys), y1b = Math.max(...ys);
+    const top0 = card + 42, bot0 = 46;
+    const u = Math.max(8, Math.min((dA.w - 70) / (x1b - x0b), (dA.h - top0 - bot0) / (y1b - y0b)));
+    const ox = dA.x + 40 + ((dA.w - 70) - u * (x1b - x0b)) / 2 - x0b * u, oy = dA.y + top0 + y1b * u;
+    S.sp = {u, ox, oy, proj, RY, dA, pA};
+    S.spG = mk('g', {class: 'deco'}, sv);
+    // formula card
+    const f = FORMULA[sp.kind], fc = mk('g', {class: 'deco'}, sv);
+    mk('rect', {x: dA.x + 10, y: dA.y + 8, width: Math.min(dA.w - 20, 300), height: card - 6, rx: 8, fill: '#18202b', stroke: '#2b3646'}, fc);
+    const t1 = txt(fc, dA.x + 20, dA.y + 8 + (card - 6) * .38, f[0] + ': ' + f[1], 'stb'); t1.setAttribute('fill', spColor());
+    txt(fc, dA.x + 20, dA.y + 8 + (card - 6) * .78, f[2], 'st').setAttribute('style', 'font-size:12px;fill:var(--ink)');
+    // plot
+    const mL = 40, mB = 46, mT = 34, mR = 14;
+    const pw = Math.max(60, pA.w - mL - mR), ph = Math.max(100, pA.h - mT - mB);
+    const pg = mk('g', {}, sv);
+    const g = Plane(pg, {x: [0, 6], y: [0, 40], width: pw, height: ph, left: pA.x + mL, top: pA.y + mT, grid: [1, 5], labels: [1, 10], ticks: 'edge',
+      xLabel: 'distance r'});
+    txt(pg, pA.x + mL - 30, pA.y + mT - 12, 'lines per tile', 'st').setAttribute('style', 'font-size:12px;font-weight:600;fill:var(--gr-text)');
+    g.fn(r => 36 / (r * r), {domain: [.5, 6], color: sp.kind === 'g' ? '#E8B54A' : '#FF6E61', width: 3, label: 'lines per tile = 36 / r squared'});
+    if (sp.one) g.fn(r => 36 / r, {domain: [.5, 6], color: '#C9D3E3', width: 2, dashed: '8 6', label: 'for comparison, 36 / r'});
+    S.pt = g.point(sp.shown, 36 / (sp.shown * sp.shown), {r: 7, color: sp.kind === 'g' ? '#E8B54A' : '#FF6E61', ariaLabel: 'current distance'});
+    S.ptLab = txt(pg, 0, 0, '', 'st halo mono');
+    S.ptLab.setAttribute('style', 'font-size:12px;fill:var(--ink)');
+    const lg = mk('g', {class: 'deco'}, pg), lx = pA.x + mL + pw - 8, ly = pA.y + mT + ph * .3;
+    const l1 = txt(lg, lx, ly, 'solid: 36 / r²', 'st halo', 'end'); l1.setAttribute('style', 'font-size:12px;fill:var(--ink)');
+    if (sp.one) { const l2 = txt(lg, lx, ly + 16, 'dashed: 36 / r', 'st halo', 'end'); l2.setAttribute('style', 'font-size:12px;fill:var(--ink)'); }
+    S.plane = g;
+    spDraw();
+  }
+  function spDraw() {
+    if (state.mode !== 'sp' || !S.sp) return;
+    const {u, ox, oy, proj, RY} = S.sp, d = sp.shown, g = S.spG, col = spColor();
+    g.textContent = '';
+    // x is distance from the source, y is up, z is across
+    const P = (x, y, z) => { const q = proj(x, y, z); return [ox + u * q[0], oy - u * q[1]]; };
+    const pt = p => p[0].toFixed(1) + ',' + p[1].toFixed(1);
+    // ruler
+    const r0 = P(0, -RY, 0), r5 = P(5, -RY, 0);
+    mk('line', {x1: r0[0], x2: r5[0], y1: r0[1], y2: r5[1], stroke: '#62789a', 'stroke-width': 1.5}, g);
+    for (let i = 0; i <= 5; i++) { const q = P(i, -RY, 0); mk('line', {x1: q[0], x2: q[0], y1: q[1], y2: q[1] + 5, stroke: '#62789a'}, g); txt(g, q[0], q[1] + 17, String(i), 'st', 'middle'); }
+    const rm = P(2.5, -RY, 0); txt(g, rm[0], P(0, -RY, 0)[1] + 34, 'distance r from the source', 'st', 'middle');
+    const rd = P(d, -RY, 0); mk('path', {d: `M${rd[0].toFixed(1)},${(rd[1] - 2).toFixed(1)}l-5,-8h10z`, fill: col}, g);
+    // a faint outline of the screen at distance 1, for comparison
+    const sq = (x, h, attrs) => mk('path', Object.assign({d: `M${pt(P(x, h, -h))}L${pt(P(x, h, h))}L${pt(P(x, -h, h))}L${pt(P(x, -h, -h))}Z`}, attrs), g);
+    if (Math.abs(d - 1) > .01) sq(1, .5, {fill: 'none', stroke: '#62789a', 'stroke-dasharray': '4 4'});
+    // the screen and its tiles (tiles counted from the top front corner)
+    const h = d / 2;
+    sq(d, h, {fill: 'rgba(201,211,227,.07)', stroke: '#C9D3E3', 'stroke-width': 1.5});
+    let grid = '';
+    for (let k = 1; k < d - 1e-9; k++) { grid += `M${pt(P(d, h - k, -h))}L${pt(P(d, h - k, h))}`; grid += `M${pt(P(d, h, -h + k))}L${pt(P(d, -h, -h + k))}`; }
+    mk('path', {d: grid, stroke: 'rgba(201,211,227,.45)', 'stroke-width': 1}, g);
+    const tw = Math.min(1, d);
+    mk('path', {d: `M${pt(P(d, h, -h))}L${pt(P(d, h, -h + tw))}L${pt(P(d, h - tw, -h + tw))}L${pt(P(d, h - tw, -h))}Z`, fill: col, 'fill-opacity': .28, stroke: col, 'stroke-width': 2}, g);
+    // the 36 lines: 6 by 6 through the screen; lines through the highlighted tile are bright
+    const offs = F.lineOffsets(d);
+    let dim = '', hot = '', dots = '', hotN = 0;
+    for (const a of offs) for (const b of offs) {
+      const y = h - a, z = -h + b, inTile = a < 1 - 1e-9 && b < 1 - 1e-9;
+      const q = P(d, y, z), seg = `M${pt(P(0, 0, 0))}L${pt(q)}`;
+      if (inTile) { hot += seg; hotN++; } else dim += seg;
+      dots += `M${(q[0] - 1.8).toFixed(1)},${q[1].toFixed(1)}a1.8,1.8 0 1,0 3.6,0a1.8,1.8 0 1,0 -3.6,0`;
+    }
+    mk('path', {d: dim, stroke: 'rgba(201,211,227,.32)', 'stroke-width': 1}, g);
+    mk('path', {d: hot, stroke: col, 'stroke-width': 1.6}, g);
+    mk('path', {d: dots, fill: '#C9D3E3'}, g);
+    // the source
+    const s0 = P(0, 0, 0);
+    mk('circle', {cx: s0[0], cy: s0[1], r: 10, fill: col, stroke: '#0b1017', 'stroke-width': 1.5}, g);
+    const sl = txt(g, s0[0], s0[1] + 4, sp.kind === 'g' ? 'm' : '+', 'stb', 'middle'); sl.setAttribute('fill', '#0b1017');
+    txt(g, s0[0], s0[1] + 26, 'source', 'st halo', 'middle');
+    // labels on the screen
+    // the screen's distance, joined to the ruler; the area label sits beside that join
+    const sb = P(d, -h, 0), sr = P(d, -RY, 0);
+    mk('line', {x1: sb[0], y1: sb[1], x2: sr[0], y2: sr[1] - 10, stroke: col, 'stroke-dasharray': '3 4', 'stroke-opacity': .7}, g);
+    const st = P(d, h, 0);
+    txt(g, st[0], Math.min(P(d, h, -h)[1], st[1]) - 26, `${Plane.fmt(d * d, 2)} tile${Math.abs(d - 1) < .01 ? '' : 's'} at r = ${Plane.fmt(d, 2)}`, 'stb halo', 'middle');
+    const tl = P(d, h, -h + tw / 2);
+    const tt = txt(g, tl[0], tl[1] - 10, `this tile: ${hotN} line${hotN === 1 ? '' : 's'}${Math.abs(hotN - 36 / (d * d)) > .01 ? ` (average ${Plane.fmt(36 / (d * d), 2)})` : ''}`, 'st halo', 'middle'); tt.setAttribute('style', 'font-size:12px;font-weight:600;fill:var(--ink)');
+    // plot point
+    if (S.pt) {
+      S.pt.set(d, 36 / (d * d));
+      const [u2, v2] = S.plane.px(d, 36 / (d * d));
+      S.ptLab.textContent = `r = ${Plane.fmt(d, 2)}: ${Plane.fmt(36 / (d * d), 2)}`;
+      // above and to the right of the point, where the falling curve is not; near the right edge, straight above it
+      const L0 = S.sp.pA.x + 40, T0 = S.sp.pA.y + 34, right = u2 < S.plane.width - 100;
+      S.ptLab.setAttribute('text-anchor', right ? 'start' : 'end');
+      S.ptLab.setAttribute('x', (L0 + u2 + (right ? 10 : 4)).toFixed(1)); S.ptLab.setAttribute('y', (T0 + Math.max(14, v2 - (right ? 12 : 22))).toFixed(1));
+    }
+  }
+
+  // ======================================================================================
+  // Real pairs
+  // ======================================================================================
+  const C = F.C, mu = 1e-6;
+  const PAIRS = [
+    {id: 'h', name: 'Hydrogen atom', a: {n: 'proton', m: C.mp, q: C.e, r: 16}, b: {n: 'electron', m: C.me, q: -C.e, r: 9}, d: C.a0,
+      dNote: 'the Bohr radius', voice: 'rp-hydrogen', why: 'This electric pull is what holds the atom together. Gravity is far too weak to matter.'},
+    {id: 'pp', name: 'Two protons', a: {n: 'proton', m: C.mp, q: C.e, r: 16}, b: {n: 'proton', m: C.mp, q: C.e, r: 16}, d: 1e-15,
+      dNote: 'about the size of a nucleus', why: 'Two protons push apart. Something stronger than both, the strong nuclear force, holds a nucleus together.'},
+    {id: 'balls', name: 'Two 1 kg balls, 1 μC each', a: {n: '1 kg, +1 μC', m: 1, q: mu, r: 18}, b: {n: '1 kg, +1 μC', m: 1, q: mu, r: 18}, d: 1,
+      why: 'Even a small extra charge beats the gravity between everyday objects.'},
+    {id: 'apple', name: 'Earth and an apple', a: {n: 'Earth', m: C.ME, q: 0, r: 34, earth: true}, b: {n: '1 kg apple', m: 1, q: 0, r: 8, apple: true}, d: C.RE,
+      dNote: 'Earth’s mean radius', minF: 1, why: 'This is the apple’s weight. Matter is almost perfectly neutral, so its charges cancel out.'},
+    {id: 'em', name: 'Earth and Moon', a: {n: 'Earth', m: C.ME, q: 0, r: 34, earth: true}, b: {n: 'Moon', m: C.MM, q: 0, r: 15, moon: true}, d: C.DEM,
+      dNote: 'mean distance', voice: 'rp-earthmoon', why: 'Gravity is weak but it only adds up. Charge cancels, so at the scale of planets gravity is the force that is left.'},
+  ];
+  const rp = {i: 0, f: PAIRS.map(() => 1), stepped: false};
+  // 3 significant figures: {m: '2.27', e: 39}; plain when 1 <= x < 1000
+  function sci(x) {
+    if (x === 0) return {m: '0', e: null};
+    let e = Math.floor(Math.log10(Math.abs(x))), m = x / Math.pow(10, e);
+    if (+Math.abs(m).toFixed(2) >= 10) { m /= 10; e++; }
+    if (e >= 0 && e < 3) return {m: x.toPrecision(3), e: null};
+    return {m: m.toFixed(2), e};
+  }
+  const sciText = x => { const s = sci(x); return s.e == null ? s.m : `${s.m} × 10^${s.e}`; };
+  function sciHTML(x) { const s = sci(x); return s.e == null ? s.m : `${s.m} × 10<sup>${String(s.e).replace('-', MINUS)}</sup>`; }
+  function sciSVG(el, x, pre = '', post = '') {
+    el.textContent = '';
+    const s = sci(x);
+    const a = mk('tspan', {}, el); a.textContent = pre + s.m + (s.e == null ? '' : ' × 10');
+    if (s.e != null) { const b = mk('tspan', {dy: '-0.45em', 'font-size': '72%'}, el); b.textContent = String(s.e).replace('-', MINUS); }
+    if (post) { const c = mk('tspan', {dy: s.e != null ? '0.45em' : null}, el); c.textContent = post; }
+  }
+  function rpValues() {
+    const p = PAIRS[rp.i], d = p.d * rp.f[rp.i];
+    const fg = F.gravity(p.a.m, p.b.m, d), fe = F.coulomb(p.a.q, p.b.q, d);
+    return {p, d, fg, fe, ratio: fe ? Math.abs(fe) / fg : 0};
+  }
+  // a pair's line plays only while that pair is still on screen
+  function pairLine() { const i = rp.i, p = PAIRS[i]; if (p.voice) narrate(p.voice, () => state.mode === 'rp' && rp.i === i); }
+  function rpPick(i) {
+    rp.i = i; rpPanel(); if (state.mode === 'rp') buildRP();
+    pairLine();
+    setHint(H.rpStart);
+  }
+  function rpStep(k) {
+    const p = PAIRS[rp.i], lo = p.minF || 1 / 8;
+    const nf = k === 0 ? 1 : clamp(rp.f[rp.i] * k, lo, 8);
+    if (nf === rp.f[rp.i]) return;
+    rp.f[rp.i] = nf;
+    if (k !== 0) {
+      rp.stepped = true;
+      if (p.a.q) { narrate('rp-ratio'); setHint(H.rpStep); }
+    }
+    rpPanel(); rpDraw();
+  }
+  function rpPanel() {
+    const {p, d} = rpValues(), f = rp.f[rp.i];
+    for (const [i, b] of [...$('pairs').children].entries()) b.setAttribute('aria-pressed', i === rp.i);
+    const rel = f === 1 ? (p.dNote ? `, ${p.dNote}` : ', the start') : f > 1 ? `, ${f} times the start` : `, 1/${1 / f} of the start`;
+    const forces = f === 1 ? '' : `<br>Forces: ${f > 1 ? '1/' + f * f : f ** -2 + ' times'}${f > 1 ? ' of the start' : ' the start'}`;
+    $('rpDist').innerHTML = `Distance: ${sciHTML(d)} m${rel}${forces}`;
+    $('rpDbl').disabled = f >= 8; $('rpHlv').disabled = f <= (p.minF || 1 / 8); $('rpRst').disabled = f === 1;
+    $('rpNote').textContent = p.minF && f <= p.minF ? H.rpApple : rp.stepped && p.a.q ? 'Both forces changed by the same factor. The ratio stayed the same.' : '';
+    $('rpWhy').textContent = 'Why: ' + p.why;
+  }
+  PAIRS.forEach((p, i) => { const b = document.createElement('button'); b.className = 'btn'; b.id = 'pair-' + p.id; b.textContent = p.name; b.onclick = () => rpPick(i); $('pairs').appendChild(b); });
+  $('rpDbl').onclick = () => rpStep(2); $('rpHlv').onclick = () => rpStep(.5); $('rpRst').onclick = () => rpStep(0);
+
+  function buildRP() {
+    sv.textContent = ''; S = {};
+    sv.setAttribute('aria-label', 'A pair drawing, two force bars on one log scale and the ratio');
+    const defs = mk('defs', {}, sv);
+    const pat = mk('pattern', {id: 'stripe', width: 12, height: 12, patternUnits: 'userSpaceOnUse', patternTransform: 'rotate(45)'}, defs);
+    mk('rect', {width: 6, height: 12, fill: '#FF6E61'}, pat); mk('rect', {x: 6, width: 6, height: 12, fill: '#62AEFF'}, pat);
+    const pad = 18, x0 = pad + 6, x1 = W - pad - 6;
+    const dh = clamp(Hh * .36, 140, 230);
+    const big = clamp(W / 30, 17, 28);
+    S.rp = {pad, x0, x1, dh, big};
+    S.draw = mk('g', {}, sv);
+    // log axis 10^-70 N to 10^40 N, a tick every 10 powers (labels every 20 when narrow)
+    const ay = dh + 30;
+    S.rp.ay = ay;
+    const ax = mk('g', {class: 'deco'}, sv);
+    const X = v => x0 + (Math.log10(v) + 70) / 110 * (x1 - x0);
+    S.rp.X = X;
+    const lstep = (x1 - x0) / 11 < 40 ? 20 : 10;
+    txt(ax, x0, ay - 10, 'force in newtons, log scale', 'st');
+    mk('line', {x1: x0, x2: x1, y1: ay, y2: ay, stroke: '#62789a', 'stroke-width': 1.5}, ax);
+    for (let e = -70; e <= 40; e += 10) {
+      const x = x0 + (e + 70) / 110 * (x1 - x0);
+      mk('line', {x1: x, x2: x, y1: ay, y2: ay + 6, stroke: '#62789a'}, ax);
+      mk('line', {x1: x, x2: x, y1: ay + 6, y2: ay + 150, stroke: 'rgba(255,255,255,.05)'}, ax);
+      if ((e + 70) % lstep === 0) {
+        const t = txt(ax, x, ay + 20, e === 0 ? '1' : '10', 'st', 'middle');
+        if (e) { const sup = mk('tspan', {dy: '-0.45em', 'font-size': '75%'}, t); sup.textContent = String(e).replace('-', MINUS); }
+      }
+    }
+    const bh = 26, gy = ay + 54, ey = gy + bh + 40;
+    S.rp.gy = gy; S.rp.ey = ey; S.rp.bh = bh;
+    S.gLab = txt(sv, x0, gy - 7, 'Gravity force', 'stb'); S.gLab.setAttribute('fill', 'var(--grav)');
+    S.eLab = txt(sv, x0, ey - 7, 'Electric force', 'stb');
+    S.gBar = mk('rect', {x: x0, y: gy, height: bh, rx: 3, fill: '#E8B54A'}, sv);
+    S.eBar = mk('rect', {x: x0, y: ey, height: bh, rx: 3, fill: 'url(#stripe)', stroke: '#0b1017'}, sv);
+    S.gVal = txt(sv, 0, gy + bh / 2 + 5, '', 'stb halo mono');
+    S.eVal = txt(sv, 0, ey + bh / 2 + 5, '', 'stb halo mono');
+    S.ratio = txt(sv, W / 2, Math.min(Hh - 18, ey + bh + 30 + big), '', 'stb halo', 'middle');
+    S.ratio.setAttribute('style', `font-size:${big}px`);
+    rpDraw();
+  }
+  function rpDraw() {
+    if (state.mode !== 'rp' || !S.rp) return;
+    const {p, d, fg, fe, ratio} = rpValues(), f = rp.f[rp.i], {x0, x1, X, dh} = S.rp;
+    // pair drawing: two circles and a distance arrow that stretches with the log of the distance step
+    const g = S.draw; g.textContent = '';
+    const cxm = W / 2, cy = Math.max(dh * .5, Math.max(p.a.r, p.b.r) + 44), L0 = Math.min(W * .42, 360), Lp = L0 * (1 + Math.log2(f) / 6);
+    const ax = cxm - Lp / 2, bxp = cxm + Lp / 2;
+    const ball = (o, x) => {
+      const fill = o.earth ? '#3f78b8' : o.moon ? '#9aa3ad' : o.apple ? '#d9534a' : o.q > 0 ? 'var(--pos)' : o.q < 0 ? 'var(--neg)' : '#9aa3ad';
+      mk('circle', {cx: x, cy, r: o.r, fill, stroke: '#0b1017', 'stroke-width': 1.5}, g);
+      const sign = o.q > 0 ? '+' : o.q < 0 ? MINUS : '';
+      if (sign) { const t = txt(g, x, cy + 5, sign, 'stb', 'middle'); t.setAttribute('fill', '#0b1017'); t.setAttribute('style', 'font-size:15px'); }
+      txt(g, x, cy + o.r + 17, o.n, 'st halo', 'middle').setAttribute('style', 'font-size:12px;fill:var(--ink)');
+    };
+    // the distance is center to center
+    const ya = cy - Math.max(p.a.r, p.b.r) - 14;
+    mk('line', {x1: ax, x2: ax, y1: cy, y2: ya - 6, stroke: '#62789a', 'stroke-dasharray': '3 3'}, g);
+    mk('line', {x1: bxp, x2: bxp, y1: cy, y2: ya - 6, stroke: '#62789a', 'stroke-dasharray': '3 3'}, g);
+    mk('path', {d: `M${ax + 2},${ya}H${bxp - 2}M${ax + 9},${ya - 5}L${ax + 2},${ya}L${ax + 9},${ya + 5}M${bxp - 9},${ya - 5}L${bxp - 2},${ya}L${bxp - 9},${ya + 5}`,
+      stroke: '#C9D3E3', 'stroke-width': 1.8, fill: 'none', 'stroke-linecap': 'round'}, g);
+    const dl = txt(g, cxm, ya - 9, '', 'stb halo mono', 'middle'); sciSVG(dl, d, '', ' m');
+    mk('line', {x1: ax, x2: bxp, y1: cy, y2: cy, stroke: 'rgba(201,211,227,.25)', 'stroke-dasharray': '2 4'}, g);
+    ball(p.a, ax); ball(p.b, bxp);
+    txt(g, W - S.rp.pad, dh - 2, 'drawing not to scale', 'st', 'end');
+    // bars
+    const gx = X(fg);
+    S.gBar.setAttribute('width', Math.max(2, gx - x0).toFixed(1));
+    sciSVG(S.gVal, fg, '', ' N, attract');
+    // the value sits after the bar end, or above the bar (right-aligned to its end) when there is no room
+    const place = (el, xe, yb) => {
+      const w = el.getComputedTextLength ? el.getComputedTextLength() : 120;
+      if (xe + 8 + w <= W - 6) { el.setAttribute('x', (xe + 8).toFixed(1)); el.setAttribute('y', yb + S.rp.bh / 2 + 5); el.setAttribute('text-anchor', 'start'); }
+      else {
+        // above the bar, after its name label, ending at the bar end when there is room
+        const lab = yb === S.rp.gy ? S.gLab : S.eLab, after = x0 + lab.getComputedTextLength() + 14;
+        el.setAttribute('x', Math.max(after, Math.min(xe, W - 6) - w).toFixed(1)); el.setAttribute('y', yb - 7); el.setAttribute('text-anchor', 'start');
+      }
+    };
+    place(S.gVal, gx, S.rp.gy);
+    if (fe) {
+      const ex = X(Math.abs(fe));
+      S.eBar.setAttribute('width', Math.max(2, ex - x0).toFixed(1)); S.eBar.removeAttribute('visibility');
+      sciSVG(S.eVal, Math.abs(fe), '', fe < 0 ? ' N, attract' : ' N, repel'); place(S.eVal, ex, S.rp.ey);
+      sciSVG(S.ratio, ratio, 'Electric is ', ' times stronger.');
+    } else {
+      S.eBar.setAttribute('visibility', 'hidden');
+      S.eVal.textContent = 'about 0: both are neutral overall'; S.eVal.setAttribute('x', x0); S.eVal.setAttribute('y', S.rp.ey + S.rp.bh / 2 + 5); S.eVal.setAttribute('text-anchor', 'start');
+      S.ratio.textContent = 'Gravity wins here.';
+    }
+    S.ratio.setAttribute('fill', fe ? 'var(--ink)' : 'var(--grav)');
+  }
+
+  // ======================================================================================
+  // Modes and layout
+  // ======================================================================================
+  function setMode(m) {
+    hush();
+    if (tb.run) finishRun();
+    state.mode = m;
+    document.body.dataset.mode = m;
+    for (const k of ['tb', 'sp', 'rp']) $('m-' + k).setAttribute('aria-pressed', k === m);
+    for (const el of document.querySelectorAll('[data-modes]')) el.hidden = !el.dataset.modes.split(' ').includes(m);
+    cv.style.display = m === 'tb' ? '' : 'none';
+    if (m === 'tb') { tbPanel(); setHint(H[tb.lastHint]); }
+    else if (m === 'sp') { spPanel(); setHint(H.spStart); }
+    else { rpPanel(); setHint(H.rpStart); }
+    lastSize = ''; relayout();
+    welcome(m);
+  }
+  for (const k of ['tb', 'sp', 'rp']) $('m-' + k).onclick = () => { if (state.mode !== k) setMode(k); };
+
+  let page = null, lastSize = '';
+  function pageLayout() { const w = innerWidth, h = innerHeight; return w >= 1000 && h >= 700 ? 'wide' : w >= 600 && w / h >= 1.25 ? 'compact' : 'stack'; }
+  function relayout() {
+    const p = pageLayout();
+    if (p !== page) { page = p; for (const c of ['wide', 'compact', 'stack']) document.body.classList.toggle(c, c === p); }
+    document.body.classList.toggle('short', page === 'wide' && innerHeight < 900);
+    const st = $('stage');
+    if (page === 'stack') {
+      const w = st.getBoundingClientRect().width || innerWidth;
+      const hh = state.mode === 'tb' ? (innerWidth < 720 ? 2 * (w - 24) + 36 + 44 : (w - 36) / 2 + 24 + 22) :
+        state.mode === 'sp' ? clamp(w * 1.5, 520, 900) : clamp(w * .95, 440, 560);
+      st.style.height = Math.round(hh) + 'px';
+    } else st.style.height = '';
+    const r = st.getBoundingClientRect(), key = state.mode + ':' + Math.round(r.width) + 'x' + Math.round(r.height);
+    if (key === lastSize) return;
+    lastSize = key;
+    W = Math.max(280, Math.round(r.width)); Hh = Math.max(260, Math.round(r.height));
+    dpr = Math.min(2, devicePixelRatio || 1);
+    sv.setAttribute('width', W); sv.setAttribute('height', Hh); sv.setAttribute('viewBox', `0 0 ${W} ${Hh}`);
+    cv.width = Math.round(W * dpr); cv.height = Math.round(Hh * dpr); cv.style.width = W + 'px'; cv.style.height = Hh + 'px';
+    sv.textContent = ''; S = {}; G = null;
+    if (state.mode === 'tb') buildTB(); else if (state.mode === 'sp') buildSP(); else buildRP();
+  }
+  new ResizeObserver(() => relayout()).observe($('stage'));
+  addEventListener('resize', () => relayout());
+  addEventListener('keydown', e => { if (e.key === 'Escape' && state.mode === 'tb' && tb.sel != null) { select(null); live('Nothing selected'); } });
+  Curio.onMotion(reduce => { if (reduce && tb.run) finishRun(); if (reduce && sp.anim) { sp.anim = null; sp.shown = sp.r; spDraw(); } });
+
+  // every line the tool can say: the narration plus the hints (Read speaks the hint)
+  const allLines = () => [...new Set([...Object.values(L), ...Object.values(H)])];
+
+  Curio.init({clips: "voice:*", rate: .95, readFallback: () => $('hint').textContent});
+  $('read').onclick = readNow;
+
+  window.__tool = {state, setMode, allLines, F, tb, sp, rp, PAIRS, said, queued, applyPreset, presetClick, addObj, select, sizeSel, flipSel, removeSel,
+    moveObj: (id, x, y, drop = true) => moveObj(objById(id), x, y, drop), moveProbe, scaleProbe, release, finishRun, clearPaths, setView, spSet, rpPick, rpStep,
+    rpValues, probeFields, perf, cache: () => cache, hint: () => $('hint').textContent, layout: () => ({page, W, H: Hh, G}),
+    readouts: () => ({g: $('rdG').textContent, e: $('rdE').textContent, d: $('rdD').textContent, rel: $('relRd').textContent}),
+    curio: () => ({last: Curio.last, sound: Curio.sound, reduce: Curio.reduce})};
+  applyPreset('opposite');
+  tb.lastHint = 'start';
+  setMode('tb');
+})();
+</script>
+</body>
+</html>

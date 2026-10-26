@@ -5,6 +5,7 @@ If the spec is wrong or impossible, stop and report it rather than improvising.
 
 ## Read first
 
+0. `docs/agents/STANDARDS.md`: standing rules (variety, sizes, voice behavior, testing, art). It wins over this brief.
 1. `tools/<tool-id>/spec.md`: everything you build.
 2. `docs/TOOL-CONTRACT.md`, `docs/KIT.md`, `docs/POLISH.md`.
 3. `kit/starter/src.html`: start from a copy of it.
@@ -34,7 +35,7 @@ If the spec is wrong or impossible, stop and report it rather than improvising.
 ## Check before you report
 
 1. `CURIO_DRAFT=1 python scripts/bundle_tool.py <tool-id>` bundles cleanly.
-2. `python scripts/shoot.py <tool-id> <name> "<js>"` for the default screen, every mode, and the extremes.
+2. `python scripts/drive.py <tool-id> shots.json <out>` (or shoot.py for quick frames) for the default screen, every mode, and the extremes.
    Look at every PNG. Fix overlaps, clipping, unreadable text and anything the spec's "Done when" fails.
 3. No console errors (shoot.py prints them).
 

@@ -87,3 +87,6 @@ Read every "Not like" list against the other 14. No two tools share a one idea o
 - collision-lab: final round fixed the stuck-Read wait, Sound-on welcome, inset agreement and label crowding. Done.
 - field-lines: verify FIX: the symmetric Release swing is invisible (trail overdraws itself), notes' nudge count wrong, the stuck-Read wait again, stale pair line, preview fold, Spread overflow at 680x425.
 - Cory approved Collision Lab and Habit Hero (painted hands).
+- field-lines: re-verify FIX: one new should-fix, the wide layout at 1366x768 (a common school laptop) pushes the main buttons below the fold. 1366x768 added to the standard size list. Final round sent.
+- motion-graph-match: final check FIX: an eased stop draws a comb-shaped a graph (fit switching); one targeted extra round sent (past the 2-round limit, justified: it is the tool's core graph).
+- field-lines: final round fixed the wide layout under 900 px tall (buttons-first order). Done.

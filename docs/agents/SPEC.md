@@ -5,6 +5,7 @@ must stand on its own: anything not in the spec will not be in the tool.
 
 ## Read first (in this order)
 
+0. `docs/agents/STANDARDS.md`: standing rules (variety, sizes, voice, art). It wins over this brief.
 1. `python scripts/neighbors.py <tool-id>`: the concept, module, standards, format, family siblings and nearby tools.
 2. `docs/PHASE2-CONCEPTS.md` sections "Variety", "Content guardrails" and "Not a quiz bank".
 3. `docs/TOOL-CONTRACT.md` and `docs/KIT.md` (what every tool already gets for free).
@@ -44,10 +45,12 @@ must stand on its own: anything not in the spec will not be in the tool.
 <all the data: items, values, texts, scenes. Complete, not "and so on".>
 ## Interactions in detail
 <the moment-to-moment behavior, edge cases, what happens at the extremes, reset>
+## Look
+<accent color and scene palette, different from neighbors; contrast ratios>
 ## Art
-<name: one-line prompt; aspect; cutout yes/no; people yes/no>  (or "none: drawn in code")
+<name: one-line prompt; aspect; cutout yes/no; people yes/no; how it is used>  (or "none: drawn in code")
 ## Voice
-<voice name and style line, then every fixed line>  (or "none")
+<bank voice id (different from neighbors, see STANDARDS.md), style line, then every fixed line>  (or "none")
 ## Family engine
 <which engine parts it uses and the content it feeds them>  (or "none")
 ## Sources

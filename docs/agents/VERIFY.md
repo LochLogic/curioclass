@@ -5,6 +5,7 @@ what is wrong before Cory does. Do not fix anything: report.
 
 ## Read
 
+0. `docs/agents/STANDARDS.md`: standing rules; check the tool against every one of them.
 1. `tools/<tool-id>/spec.md` (what it must do) and `docs/POLISH.md` (how it must feel).
 2. `tools/<tool-id>/src.html`, `notes.md`, `art/prompts.json`, `voice/lines.json`.
 

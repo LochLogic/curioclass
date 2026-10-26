@@ -1,0 +1,24 @@
+{
+  "id": "field-lines",
+  "status": "beta",
+  "hook": "One layout of objects drawn twice, as gravity and as electric field, so you see both laws fall off as one over r squared and that the real difference is that charge has two signs.",
+  "outcome": "Use Newton's law of gravitation and Coulomb's law to compare gravitational and electric fields and forces, explain why both fall off as one over r squared, and predict how the forces between real pairs change with distance",
+  "driver": "students",
+  "minutes": "10-25",
+  "modes": [],
+  "grades_label": "Grade 11",
+  "sources": [
+    "NIST CODATA 2018 recommended values: G, k (from the vacuum permittivity), e, proton and electron mass, Bohr radius: https://physics.nist.gov/cuu/Constants/",
+    "NASA Earth Fact Sheet: Earth mass 5.9722 x 10^24 kg, mean radius 6371.0 km: https://nssdc.gsfc.nasa.gov/planetary/factsheet/earthfact.html",
+    "NASA Moon Fact Sheet: Moon mass 0.07346 x 10^24 kg, mean Earth to Moon distance 384,400 km: https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html",
+    "OpenStax, College Physics 2e, section 31.1: nucleus scale about 10^-15 m (CC BY 4.0): https://openstax.org/books/college-physics-2e/pages/31-1-nuclear-radioactivity",
+    "OpenStax, University Physics Volume 2, sections 5.4 and 5.6, and Volume 1, section 13.2: field line conventions and the inverse square spreading argument (CC BY 4.0): https://openstax.org/details/books/university-physics-volume-2",
+    "NGSS HS-PS2-4: https://www.nextgenscience.org/pe/hs-ps2-4-motion-and-stability-forces-and-interactions",
+    "Every Real pairs force and ratio is computed live from the constants above and was checked in Python (2026-10-25)",
+    "Twin boards use invented board units with the constant set to 1 on both boards, so the two pictures can be compared directly",
+    "Boards, field lines, diagrams, plot and bars drawn in code",
+    "Narration generated with Qwen3-TTS (Apache 2.0), cloning a Google Gemini text-to-speech voice"
+  ],
+  "third_party": [],
+  "updated": "2026-10-25"
+}
