@@ -22,7 +22,7 @@ the concept catalog, the neighbors script, the kit, the family specs and the bri
 | 7. Art | daily rhythm (docs/ART.md) | | Cloudflare, local FLUX, Codex, Gemini for people |
 | 8. Voice | daily rhythm (scripts/voice.py) | | Gemini or the local voice |
 | 9. Review | Cory, on the Review Desk | | approve, or notes back to step 5 |
-| 10. Live | rename tool.draft.json to tool.json, deploy | | |
+| 10. Live | rename tool.draft.json to tool.json, make the card art (`python scripts/preview.py <id>`, look at it), deploy | | preview.svg |
 
 `python scripts/board.py` shows where every tool is (docs/BUILD-BOARD.md). It reads the files, so it can't drift.
 
