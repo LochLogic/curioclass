@@ -74,7 +74,7 @@ def problems(tid, module=None):
         if len(found) < 4:
             out.append(f'only {len(found)} bold names found in the tool ({sorted(found)}); name at least 4 real buttons, items or labels')
     raw = (TOOLS / tid / 'plan.md').read_text(encoding='utf-8')
-    if '—' in raw:
+    if '\u2014' in raw:
         out.append('em dash')
     if re.search(r'\bCurio\b(?! Class)', raw):
         out.append('"Curio" without "Class"')
