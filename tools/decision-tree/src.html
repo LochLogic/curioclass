@@ -17,7 +17,9 @@ Side by side: the same branches under two goal sets.
 Sources: CASEL, "What Is the CASEL Framework?". The tree is a teaching picture, not a research claim. Every dilemma,
 consequence and goal code is original fictional content written for Curio Class. The tool says "often" and "isn't
 always", never that a choice is right or wrong. There is no text box; nothing is stored except the kit's Motion setting.
-Tree, leaves, icons and sign are drawn in code; the hillside backdrop is a local FLUX.1-schnell painting with no people.
+Leaves, branches, icons and bands are drawn in code; the hillside backdrop is a local FLUX.1-schnell painting; the four
+kid portraits are OpenAI gpt-image drawings and the tree base, sign plank, branch tips and graft knot are FLUX.2 [klein]
+paintings, all edited for Curio Class.
 One file, no network requests. Content CC BY 4.0, code MIT. curioclass.org
 -->
 <link rel="stylesheet" href="kit:curio">
@@ -25,7 +27,7 @@ One file, no network requests. Content CC BY 4.0, code MIT. curioclass.org
 :root{
   --paper:#f6f8ee;--ink:#1f2a1a;--muted:#5a6352;--line:#dfe5cf;--focus:#a3306e;
   --brand:#4a6417;--btn:#3d5312;--btn-line:#7f9a45;--head-ink:#ffffff;--panel:#ffffff;
-  --sky:#dfeef2;--bark:#6b4a2f;--leaf:#cfe6b8;--bloom:#f7d3e2;--wilt:#ecd9bf;
+  --sky:#dfeef2;--bark:#74503a;--wood:#93664a;--leaf:#cfe6b8;--bloom:#f7d3e2;--wilt:#ecd9bf;
   --b-bloom:#b8336a;--b-even:#2f6e34;--b-wilt:#8a5a2b;--soft:#eef3e2;
 }
 :focus-visible{outline:3px solid var(--focus);outline-offset:2px}
@@ -63,6 +65,9 @@ body.stack .panel{border-left:0;border-top:3px solid var(--line)}
   .seg button{min-height:44px;font-size:14px;padding:0 6px}
   .icon-btn{min-height:44px;padding:0 12px;font-size:15px}
 }
+[hidden]{display:none!important}
+.dcard .kp{width:28px;height:28px;border-radius:50%;object-fit:cover;object-position:50% 22%;background:var(--soft)}
+body.compact .dcard .kp{width:24px;height:24px}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .hint{margin:0}
 .panel section{display:flex;flex-direction:column;gap:6px}
@@ -76,7 +81,7 @@ body.compact .panel section{gap:4px}
 body.compact .btn{font-size:13px;padding:0 6px}
 /* dilemma picker */
 .picker{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px}
-.dcard{display:grid;grid-template-columns:24px 1fr;gap:0 4px;align-items:center;text-align:left;min-height:48px;
+.dcard{display:grid;grid-template-columns:28px 1fr;gap:0 4px;align-items:center;text-align:left;min-height:48px;
   border:2px solid var(--line);border-radius:12px;background:#fff;padding:3px 5px}
 .dcard .ic{width:24px;height:24px;color:var(--brand)}
 .dcard b{font-size:15px;line-height:1.1}
@@ -105,7 +110,9 @@ body.short #tip{order:9}
 body.compact #tools,body.short #tools{order:6}
 body.compact #tip,body.short #tip{order:7}
 body.compact #secTime{order:1}
-body.compact #hint{order:3}
+body.compact #choose{order:1}
+body.stack #choose{order:-1}
+body.short #setup,body.compact #setup{display:none}
 body.compact #secOpts{order:2}
 body.compact #sbsLine,body.compact #swapRow,body.compact #result{order:3}
 body.stack #secTime{order:-1}
@@ -156,9 +163,82 @@ body.compact .ticks{margin-top:-13px}
 body.compact .opts,body.compact .chips{gap:4px}
 body.compact .panel{gap:5px}
 body.compact .ticks{font-size:11px}
-.tools{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px}
-.tools .btn{font-size:13.5px;line-height:1.1;padding:0 4px}
-body.compact .tools .btn{font-size:12px}
+/* tool row (nav-plan N5): a "Try" group of three, then two smaller utility buttons; one row of five in compact */
+.tools{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px}
+.tools h2{grid-column:1 / -1}
+.tools .btn{grid-column:span 2;font-size:13.5px;line-height:1.1;padding:0 4px}
+.tools .btn.util{grid-column:span 3;min-height:40px;border-color:var(--btn-line);color:var(--ink);font-weight:600}
+.btn .sh{display:none}
+body.compact .tools{grid-template-columns:repeat(5,minmax(0,1fr));gap:4px}
+body.compact .tools h2{display:none}
+body.compact .tools .btn,body.compact .tools .btn.util{grid-column:auto;font-size:12px;min-height:44px;padding:0 2px}
+body.compact .btn .lg{display:none}
+body.compact .btn .sh{display:inline}
+.btn[aria-disabled="true"]{opacity:.45}
+.btn.primary{background:var(--brand);color:#fff;width:100%}
+.btn.primary[aria-pressed="true"]{background:var(--btn)}
+/* compact and short: Choose joins the time row (as Swap does in compact Side by side) so the tool row stays on screen */
+body.short #choose .lg{display:none}
+body.short #choose .sh{display:inline}
+.timebox #choose{grid-row:1 / span 2;align-self:start;width:auto;padding:0 10px}
+body.short .timebox:has(#choose:not([hidden])){grid-template-columns:1fr auto auto}
+body.short .timebox #choose{grid-column:3}
+body.compact .timebox:has(#choose:not([hidden])){grid-template-columns:auto 1fr auto}
+body.compact .timebox #choose{grid-column:3;padding:0 8px}
+body.short .tools h2,body.compact #goalsH{display:none}
+/* guide (nav-plan N1, N5): step strip or mode bar, then the hint */
+.guide{display:flex;flex-direction:column;gap:6px;order:-2}
+.steps{display:grid;grid-template-columns:repeat(4,auto);gap:4px}
+body[data-mode="sbs"] .steps{grid-template-columns:repeat(3,auto)}
+.step{display:flex;align-items:center;gap:4px;min-height:44px;border:2px solid var(--line);border-radius:12px;background:#fff;color:var(--ink);
+  padding:2px 4px;font-size:13px;font-weight:700;line-height:1.1;text-align:left;min-width:0}
+.step .n{flex:none;width:20px;height:20px;border-radius:50%;border:2px solid var(--brand);color:var(--brand);display:grid;place-items:center;font-size:13px;font-weight:800}
+.step.done .n{background:var(--brand);color:#fff}
+.step[aria-current="step"]{border-color:var(--brand);background:var(--brand);color:#fff}
+.step[aria-current="step"] .n{border-color:#fff;color:#fff;background:transparent}
+.modebar{display:flex;align-items:center;gap:8px;min-height:44px;border:2px solid var(--b-bloom);border-radius:12px;background:#fbe9f1;padding:0 0 0 10px;font-size:15px}
+.modebar b{flex:1}
+.modebar .btn{border-color:var(--b-bloom);color:var(--b-bloom)}
+.hint{font-size:15px;line-height:1.35;color:var(--ink)}
+#stepNow{display:none;color:var(--brand)}
+body.compact .steps{display:none}
+body.compact #stepNow{display:inline}
+body.compact .guide{gap:4px}
+body.compact .modebar{min-height:40px;font-size:13px}
+/* band labels on the stage set the time (nav-plan N3) */
+.blab{position:absolute;writing-mode:vertical-rl;transform:rotate(180deg);border:0;border-radius:8px;background:transparent;color:var(--ink);
+  font:700 13px 'Segoe UI',system-ui,sans-serif;padding:0;display:flex;align-items:center;justify-content:center;white-space:nowrap;overflow:hidden;cursor:pointer}
+.blab.sm{font-size:10.5px}
+.blab.on{background:var(--brand);color:#fff}
+/* the sign on the trunk opens the story (nav-plan N2) */
+.sign{position:absolute;transform:translateX(-50%);display:flex;align-items:center;justify-content:center;gap:6px;
+  border-style:solid;border-width:5px 16px;border-image:var(--sign) 22 64 fill / 5px 16px stretch;background:none;
+  color:#2e1c0e;font:700 15px 'Segoe UI',system-ui,sans-serif;padding:0 2px;white-space:nowrap;overflow:hidden;filter:drop-shadow(0 2px 1px #0004)}
+/* a light wash over the plank keeps the dark words at 7:1 or more on every grain */
+.sign::before{content:"";position:absolute;inset:0;background:#fff4e2;opacity:.45;border-radius:3px}
+.sign>*{position:relative}
+.sign .ic{width:17px;height:17px}
+.sign.sm{font-size:12px;gap:4px;padding:0 7px}
+.sign.sm .ic{width:14px;height:14px}
+.story{position:absolute;left:50%;top:9%;transform:translateX(-50%);width:min(480px,calc(100% - 48px));max-height:calc(100% - 20px);overflow:auto;z-index:5;
+  background:#fff;border:3px solid var(--brand);border-radius:16px;padding:12px 14px;box-shadow:0 8px 30px #0003;font-size:15px;line-height:1.4}
+.story .x{position:absolute;right:0;top:0;min-width:44px;min-height:44px;border:0;background:none;font-size:22px;color:var(--muted)}
+.story .sbody{display:flex;gap:12px;align-items:flex-start}
+.story h3{margin:0 40px 4px 0;font-size:18px}
+.story p{margin:0}
+.story ol{margin:8px 0 0;padding-left:22px;font-weight:600}
+.story .snote{margin-top:6px;font-size:13px;color:var(--muted)}
+#storyPick{margin-top:8px}
+#storyPick:empty{display:none}
+.por{flex:none;width:128px;height:116px;border-radius:12px;object-fit:cover;object-position:50% 30%;background:var(--soft)}
+body.compact .story{left:calc(50% + 13px);top:6px;font-size:13px;line-height:1.3;padding:8px 10px;width:calc(100% - 44px)}
+body.compact .story h3{font-size:15px}
+body.compact .story ol{margin-top:4px}
+body.compact .por{width:64px;height:58px}
+.ccard .path{margin:0 0 6px;font-size:14px;color:var(--muted)}
+body.compact .ccard .path{font-size:12px}
+details.tip summary{min-height:44px;display:flex;align-items:center;cursor:pointer;font-weight:700;color:var(--muted)}
+details.tip p{margin:0;font-size:13.5px;color:var(--muted)}
 .result{margin:0;font-size:15px;font-weight:700;color:var(--brand);background:var(--soft);border-radius:10px;padding:8px 10px}
 .result:empty{display:none}
 body.compact .result{font-size:13px;padding:4px 8px}
@@ -193,7 +273,12 @@ body.compact .tip{display:none}
 @keyframes fadein{from{opacity:.15}to{opacity:1}}
 .crown{position:absolute;display:flex;align-items:center;gap:6px;border:0;background:rgba(255,255,255,.88);border-radius:14px;padding:3px 6px;
   transition:left .5s,width .5s,opacity .3s;box-shadow:0 1px 0 #0002;justify-content:center}
-.crown .let{flex:none;width:36px;height:36px;border-radius:50%;background:var(--bark);color:#fff;font:800 22px 'Trebuchet MS',sans-serif;display:grid;place-items:center}
+.crown .let{position:relative;flex:none;width:34px;height:34px;margin:4px 8px 0 0;border-radius:50%;background:var(--bark);color:#fff;font:800 21px 'Trebuchet MS',sans-serif;display:grid;place-items:center}
+/* the painted branch tip sits on the letter's shoulder: blossom, leaves or a wilted sprig (the badge still says it in words) */
+.crown .let::after{content:"";position:absolute;right:-12px;top:-9px;width:26px;height:26px;background:var(--tip,var(--tip-even)) center / contain no-repeat;transition:background-image .3s}
+.calm .crown .let::after{transition:none}
+.crown.s-bloom .let{--tip:var(--tip-bloom)}
+.crown.s-wilt .let{--tip:var(--tip-wilt)}
 .crown .cb{display:flex;flex-direction:column;align-items:flex-start;gap:1px;min-width:0}
 .chipb{display:inline-flex;align-items:center;gap:3px;border-radius:999px;padding:1px 7px 1px 4px;color:#fff;font-size:12.5px;font-weight:700;white-space:nowrap}
 .chipb .ic{width:15px;height:15px}
@@ -201,7 +286,8 @@ body.compact .tip{display:none}
 .chipb.none{background:#fff;color:var(--ink);border:1.5px solid var(--muted)}
 .crown .tal{font-size:12px;color:var(--ink);white-space:nowrap}
 .crown.narrow{flex-direction:column;gap:1px;padding:2px}
-.crown.narrow .let{width:26px;height:26px;font-size:16px}
+.crown.narrow .let{width:24px;height:24px;margin:3px 8px 0 0;font-size:15px}
+.crown.narrow .let::after{right:-9px;top:-7px;width:18px;height:18px}
 .crown.narrow .cb{align-items:center}
 .crown.narrow .chipb{font-size:10.5px;padding:0 5px 0 3px}
 .crown.narrow .chipb .ic{width:12px;height:12px}
@@ -211,7 +297,8 @@ body.compact .tip{display:none}
 .crown.xs .chipb .ic{display:none}
 .crown.xs .tal{font-size:10px}
 .crown.slim{gap:3px;padding:2px 3px}
-.crown.slim .let{width:26px;height:26px;font-size:16px}
+.crown.slim .let{width:26px;height:26px;margin:3px 10px 0 0;font-size:16px}
+.crown.slim .let::after{right:-10px;top:-8px;width:20px;height:20px}
 .crown.slim .chipb{font-size:10.5px;padding:0 5px 0 3px}
 .crown.slim .chipb .ic{width:12px;height:12px}
 .crown.slim .tal{font-size:10.5px}
@@ -234,15 +321,20 @@ body.compact .tip{display:none}
 .dim{opacity:.25!important}
 .tlab{position:absolute;font:800 15px 'Trebuchet MS',sans-serif;color:#fff;background:var(--brand);border-radius:999px;padding:2px 12px;transform:translateX(-50%);white-space:nowrap}
 .ghost{position:absolute;font-size:11px;line-height:1.2;color:var(--muted);text-align:center;background:rgba(255,255,255,.75);border:1.5px dashed var(--muted);border-radius:8px;padding:2px 4px;transform:translateX(-50%)}
-#sv .bpath{fill:none;stroke:var(--bark);stroke-linecap:round;transition:stroke-dasharray .5s ease-out,d .5s,opacity .3s}
-#sv .guide{fill:none;stroke:var(--bark);stroke-dasharray:2 6;opacity:.5;stroke-linecap:round;transition:d .5s}
+#sv .bpath{fill:none;stroke:var(--wood);stroke-linecap:round;transition:stroke-dasharray .5s ease-out,d .5s,opacity .3s}
+#sv .guide{fill:none;stroke:var(--wood);stroke-dasharray:2 6;opacity:.5;stroke-linecap:round;transition:d .5s}
 #sv .bud{fill:#8fbf6a;stroke:#5c8a3c;stroke-width:1.5;transition:cx .5s,cy .5s,opacity .3s}
 #sv .dim{opacity:.25}
 .calm #sv .bpath{transition:none}
+#sv .branches{filter:drop-shadow(0 0 .8px #4a321e)}
 /* choose card */
 .ccard{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(520px,calc(100% - 24px));max-height:calc(100% - 20px);overflow:auto;
   background:#fff;border:3px solid var(--brand);border-radius:16px;padding:12px 16px;box-shadow:0 8px 30px #0003;font-size:15px;line-height:1.4}
 .ccard h3{margin:0 0 6px;font-size:18px}
+.ccard .chead{display:flex;gap:10px;align-items:center;margin-bottom:6px}
+.ccard .chead h3{margin:0}
+.ccp{flex:none;width:56px;height:56px;border-radius:50%;object-fit:cover;object-position:50% 22%;background:var(--soft)}
+body.compact .ccp{width:40px;height:40px}
 .ccard ol{margin:0 0 8px;padding-left:20px}
 .ccard .look{background:var(--soft);border-radius:10px;padding:8px 10px;margin:0 0 10px;font-weight:600}
 .ccard .row{display:flex;gap:8px;flex-wrap:wrap;position:sticky;bottom:-12px;background:#fff;padding:6px 0 12px;margin-bottom:-12px}   /* the buttons stay in view when a short card scrolls */
@@ -279,7 +371,16 @@ body.compact .ccard h3{font-size:15px}
 </header>
 <main>
   <aside class="panel" id="panel">
-    <p class="hint" id="hint" aria-live="polite"></p>
+    <div class="guide" id="guide">
+      <nav class="steps" id="steps" aria-label="Steps">
+        <button class="step" data-s="0"><span class="n">1</span><span class="w"></span></button>
+        <button class="step" data-s="1"><span class="n">2</span><span class="w"></span></button>
+        <button class="step" data-s="2"><span class="n">3</span><span class="w"></span></button>
+        <button class="step" data-s="3"><span class="n">4</span><span class="w"></span></button>
+      </nav>
+      <div class="modebar" id="modebar" hidden><b id="mbT"></b><button class="btn" id="mbCancel">Cancel</button></div>
+      <p class="hint" id="hint" aria-live="polite"><b id="stepNow"></b> <span id="hintT"></span></p>
+    </div>
     <div class="detail" id="detail" role="region" aria-label="Leaf details" aria-live="polite" hidden></div>
     <section aria-label="Dilemma" id="secDil">
       <h2 class="sr">Dilemma</h2>
@@ -307,22 +408,30 @@ body.compact .ccard h3{font-size:15px}
         <button class="btn" id="play">▶ Play</button>
       </div>
     </section>
+    <button class="btn primary" id="choose" aria-pressed="false" hidden><span class="lg">Choose a branch</span><span class="sh">Choose</span></button>
     <p class="result" id="sbsLine" data-modes="sbs" aria-live="polite"></p>
     <div data-modes="sbs" id="swapRow"><button class="btn" id="swap" data-modes="sbs" aria-label="Swap goal sets" style="width:100%">⇄ Swap goal sets</button></div>
     <p class="result" id="result" data-modes="grow" aria-live="polite"></p>
-    <div class="tools" id="tools" data-modes="grow">
+    <div class="tools" id="tools" data-modes="grow" role="group" aria-labelledby="tryH">
+      <h2 id="tryH">Try</h2>
       <button class="btn" id="graft" aria-pressed="false">Graft</button>
-      <button class="btn" id="call" aria-pressed="false">Make a call</button>
-      <button class="btn" id="who" aria-pressed="false">Who it touches</button>
-      <button class="btn" id="choose" aria-pressed="false">Choose a branch</button>
-      <button class="btn" id="print-btn">Print tree</button>
-      <button class="btn" id="clear">Clear tree</button>
+      <button class="btn" id="call" aria-pressed="false"><span class="lg">Make a call</span><span class="sh">Call</span></button>
+      <button class="btn" id="who" aria-pressed="false"><span class="lg">Who it touches</span><span class="sh">Who</span></button>
+      <button class="btn util" id="print-btn"><span class="lg">Print tree</span><span class="sh">Print</span></button>
+      <button class="btn util" id="clear"><span class="lg">Clear tree</span><span class="sh">Clear</span></button>
     </div>
-    <p class="tip" id="tip">Keys: 1 to 4 plant or pull up A to D (5 for the graft), G graft, left and right arrows move time, P plays, W shows who it touches, Escape cancels.</p>
+    <details class="tip" id="tip"><summary>Keys</summary><p>1 to 4 plant or pull up A to D (5 for the graft), G graft, left and right arrows move time, P plays, W shows who it touches, Escape cancels.</p></details>
   </aside>
   <div class="stage" id="stage" role="region" aria-label="The decision tree">
     <svg id="sv" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"></svg>
     <div id="lay"></div>
+    <div class="story" id="story" role="region" aria-labelledby="storyH" hidden>
+      <button class="x" id="storyX" aria-label="Close the story">×</button>
+      <div class="sbody"><div id="storyPor"></div><div><h3 id="storyH"></h3><p id="storyP"></p></div></div>
+      <ol id="storyGo"></ol>
+      <div id="storyPick"></div>
+      <p class="snote">Tap the sign on the tree to read this again.</p>
+    </div>
     <div class="ccard" id="ccard" role="dialog" aria-modal="false" aria-labelledby="ccH" hidden></div>
   </div>
 </main>
@@ -356,14 +465,11 @@ body.compact .ccard h3{font-size:15px}
     moon: '<path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/>',
     wave: '<path d="M2 10c2.5-3 5-3 7.5 0s5 3 7.5 0 3.5-2 5-1M2 16c2.5-3 5-3 7.5 0s5 3 7.5 0 3.5-2 5-1"/>',
     // dilemma cards
-    pin: '<path d="M12 2c1.6 0 2.2 1.4 2.2 2.8 0 1.4-1 2.1-1 3.1 0 1 3.3 3 3.3 7.3 0 3-1.6 5.9-4.5 6.8-2.9-.9-4.5-3.8-4.5-6.8 0-4.3 3.3-6.3 3.3-7.3s-1-1.7-1-3.1C9.8 3.4 10.4 2 12 2z"/><path d="M10.6 8.5h2.8"/>',
-    phone: '<rect x="7" y="2" width="10" height="20" rx="2"/><rect x="9.5" y="7" width="5" height="4" rx="1"/><circle cx="12" cy="9" r="1"/><path d="M10.5 18.5h3"/>',
-    jar: '<path d="M8 3h8M8.5 3v3L6 9v10a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V9l-2.5-3V3"/><circle cx="12" cy="15" r="3"/><path d="M12 13.6v2.8"/>',
-    cart: '<path d="M6 3h12v13l-2 2.5V21H8v-2.5L6 16z"/><rect x="9" y="6" width="6" height="5" rx="1"/><path d="M9 14.5h2M13 14.5h2"/>',
     // badges and marks
     flower: '<circle cx="12" cy="12" r="2.4"/><path d="M12 9.6c-1.6-3.2 1.6-5.6 0-6.6-1.6 1 1.6 3.4 0 6.6zM14.3 11.3c2.6-2.4 5.9-.4 6.3-2.2-1.7-.6-3.7 2.3-6.3 2.2zM13.4 14.1c1.4 3.3 5.2 3.1 4.7 4.9-1.8-.1-2.3-3.6-4.7-4.9zM10.6 14.1c-1.4 3.3-5.2 3.1-4.7 4.9 1.8-.1 2.3-3.6 4.7-4.9zM9.7 11.3C7.1 8.9 3.8 10.9 3.4 9.1c1.7-.6 3.7 2.3 6.3 2.2z"/>',
     leaf: '<path d="M5 19C5 10 11 5 20 4c-1 9-6 15-15 15z"/><path d="M5 19l8-8"/>',
     curl: '<path d="M6 19c0-7 4-12 12-14-.5 4-2 7-4.5 9"/><path d="M13.5 14c-1.8 1.5-4.2 2-4.2.2 0-1.5 2-2 3 0"/><path d="M6 19l5-6"/>',
+    book: '<path d="M4 5.5C6.5 4 9.5 4 12 6c2.5-2 5.5-2 8-.5V19c-2.5-1.5-5.5-1.5-8 .5-2.5-2-5.5-2-8-.5z"/><path d="M12 6v13.5"/>',
     up: '<path d="M12 19V5M6 11l6-6 6 6"/>', down: '<path d="M12 5v14M6 13l6 6 6-6"/>', flat: '<path d="M5 12h14"/>',
   };
   const icon = (n, cls = '') => `<svg class="ic ${cls}" viewBox="0 0 24 24" aria-hidden="true">${ICON[n]}</svg>`;
@@ -494,14 +600,31 @@ body.compact .ccard h3{font-size:15px}
     agree: 'Both goal sets agree here.',
     differ: 'Same choices, different goals, different best branch.',
     sbspick: 'Pick at least one goal for Goals A and for Goals B.',
+    // reasons for a tool that is not ready yet (nav-plan N4)
+    callWhen: 'Plant two branches and turn on a goal, then make your call before next month.',
+    callLate: 'Calls are made before next month. Slide back to make one.',
+    chooseWhen: 'Slide time to next month first, then choose a branch.',
   };
   for (const d of DIL) { L['setup-' + d.id] = d.setup; L['look-' + d.id] = d.look; }
   const allLines = () => [...new Set(Object.values(L))];
 
   // ---------- state ----------
   const state = {mode: 'grow', di: 0, planted: new Set(), goals: new Set(), t: 0, who: false, sub: null, graftSel: null, misses: 0,
-    flag: null, result: '', card: null, flash: null, found: new Set(), gA: new Set(), gB: new Set(), detail: null};
+    flag: null, result: '', card: null, flash: null, found: new Set(), gA: new Set(), gB: new Set(), detail: null,
+    story: true, reached: false, chosen: false, sbsMoved: false};
   const dil = () => DIL[state.di];
+
+  // ---------- art map: the one place each painting is named (bundle_tool inlines a copy per token, so one token each) ----------
+  // portraits by dilemma id, then the tree pieces
+  const ART = {booking: 'art:kid-dev', quiz: 'art:kid-kai', tablet: 'art:kid-nia', game: 'art:kid-theo',
+    base: 'art:tree-base', sign: 'art:sign-plank', bloom: 'art:tip-bloom', even: 'art:tip-even', wilt: 'art:tip-wilt', knot: 'art:graft-knot'};
+  // the painted base: its trunk top sits this far down the image (x center, y), so the vector branches grow out of it
+  const BASE = {w: 640, h: 554, tx: .497, ty: .28};
+  // the sign plank and the branch tips are CSS backgrounds, set once
+  for (const [k, v] of [['--sign', ART.sign], ['--tip-bloom', ART.bloom], ['--tip-even', ART.even], ['--tip-wilt', ART.wilt]])
+    document.documentElement.style.setProperty(k, `url("${v}")`);
+  // a kid's portrait (alt is empty: the name is always in the text beside it)
+  const kidPic = (d, cls) => `<img class="${cls}" src="${ART[d.id]}" alt="">`;
   let playTimer = null;
 
   // standing = ups minus downs over the goals that are on, across every leaf from Right away up to time t
@@ -553,8 +676,14 @@ body.compact .ccard h3{font-size:15px}
     if (state.mode === 'grow') return [{key: 'g', x: 0, y: 0, w: W, h: H, letters: plantedOrder(), goals: state.goals, label: null, main: true}];
     const set = new Set(['A', 'B', 'C', 'D']); if (state.found.has(d.id)) set.add('G');
     const letters = order(d, set, true);
-    if (W / H >= 1.3 || (page === 'stack' && W >= 560)) return [{key: 'a', x: 0, y: 0, w: W / 2, h: H, letters, goals: state.gA, label: 'Goals A'}, {key: 'b', x: W / 2, y: 0, w: W / 2, h: H, letters, goals: state.gB, label: 'Goals B'}];
-    return [{key: 'a', x: 0, y: 0, w: W, h: H / 2, letters, goals: state.gA, label: 'Goals A'}, {key: 'b', x: 0, y: H / 2, w: W, h: H / 2, letters, goals: state.gB, label: 'Goals B'}];
+    if (sbsWide()) return [{key: 'a', x: 0, y: 0, w: W / 2, h: H, letters, goals: state.gA, label: 'Goals A (left)'}, {key: 'b', x: W / 2, y: 0, w: W / 2, h: H, letters, goals: state.gB, label: 'Goals B (right)'}];
+    return [{key: 'a', x: 0, y: 0, w: W, h: H / 2, letters, goals: state.gA, label: 'Goals A (top)'}, {key: 'b', x: 0, y: H / 2, w: W, h: H / 2, letters, goals: state.gB, label: 'Goals B (bottom)'}];
+  }
+  // Side by side: the two trees sit left and right, or top and bottom in a tall box (nav-plan N8)
+  const sbsWide = () => !W || W / H >= 1.3 || (page === 'stack' && W >= 560);
+  function sbsHeads() {
+    const w = sbsWide();
+    $('gaH').textContent = `Goals A, ${w ? 'left' : 'top'} tree`; $('gbH').textContent = `Goals B, ${w ? 'right' : 'bottom'} tree`;
   }
   // geometry of one tree box
   function geo(T) {
@@ -580,30 +709,50 @@ body.compact .ccard h3{font-size:15px}
     svgEl('rect', {x: 0, y: 0, width: W, height: H, fill: '#dfeef2'}, sv);
     svgEl('path', {d: `M0 ${H * .78} Q ${W * .3} ${H * .6} ${W * .6} ${H * .74} T ${W} ${H * .7} V ${H} H 0 Z`, fill: '#a9cf8a'}, sv);
     svgEl('image', {href: 'art:bg-hillside', x: 0, y: 0, width: W, height: H, preserveAspectRatio: 'xMidYMid slice'}, sv);
-    svgEl('rect', {x: 0, y: 0, width: W, height: H, fill: '#f6f8ee', opacity: .35}, sv);
-    gStatic = svgEl('g', {}, sv); gBranch = svgEl('g', {}, sv); gTop = svgEl('g', {}, sv);
-    const d = dil();
+    svgEl('rect', {x: 0, y: 0, width: W, height: H, fill: '#f6f8ee', opacity: .28}, sv);
+    gStatic = svgEl('g', {}, sv); gBranch = svgEl('g', {class: 'branches'}, sv); gTop = svgEl('g', {}, sv);
     for (const T of ts) {
       const g = geo(T);
-      for (let j = 0; j < 3; j++) {
-        svgEl('rect', {x: T.x + 2, y: g.bandY(j) + 1, width: T.w - 4, height: g.bh - 2, rx: 10, fill: '#ffffff', opacity: j % 2 ? .22 : .38}, gStatic);
-        const ly = g.bandY(j) + g.bh / 2, lx = T.x + 15;
-        const tx = svgEl('text', {x: lx, y: ly, transform: `rotate(-90 ${lx} ${ly})`, 'text-anchor': 'middle', 'dominant-baseline': 'middle',
-          'font-size': g.bh < 70 ? 10.5 : 13, 'font-weight': 700, fill: '#1f2a1a', 'font-family': 'Segoe UI, system-ui, sans-serif'}, gStatic);
-        if (g.bh < 46) tx.remove();
-        tx.textContent = g.bh < 56 ? TIMES[j].replace('Right away', 'Now').replace('Next ', '') : TIMES[j];
-      }
-      // mound, trunk and sign
+      // mound and trunk (the bands, their labels and the sign are live: renderTree)
       const by = T.y + T.h;
-      svgEl('ellipse', {cx: g.tx, cy: by + 4, rx: Math.min(T.w * .32, 260), ry: g.trunkH * .32, fill: '#8fbf6a', opacity: .95}, gStatic);
-      const tw = g.narrow ? 16 : 24;
-      svgEl('path', {d: `M${g.tx - tw} ${by} C ${g.tx - tw * .5} ${by - g.trunkH * .5} ${g.tx - 6} ${g.ty + 10} ${g.tx - 5} ${g.ty} L ${g.tx + 5} ${g.ty} C ${g.tx + 6} ${g.ty + 10} ${g.tx + tw * .5} ${by - g.trunkH * .5} ${g.tx + tw} ${by} Z`, fill: '#6b4a2f'}, gStatic);
-      const sfs = g.trunkH < 70 ? 12 : 15, font = `700 ${sfs}px Segoe UI, system-ui, sans-serif`;
-      const swid = Math.min(textW(d.sign, font) + 22, T.w - 40), sh = sfs + 14, sy = by - g.trunkH * .52 - sh / 2;
-      svgEl('rect', {x: g.tx - swid / 2, y: sy, width: swid, height: sh, rx: 6, fill: '#6b4a2f', stroke: '#4a321e', 'stroke-width': 2}, gStatic);
-      const st = svgEl('text', {x: g.tx, y: sy + sh / 2 + 1, 'text-anchor': 'middle', 'dominant-baseline': 'middle', 'font-size': sfs, 'font-weight': 700, fill: '#ffffff', 'font-family': 'Segoe UI, system-ui, sans-serif'}, gStatic);
-      st.textContent = d.sign;
+      // the painted trunk and mound: its trunk top meets the branches at (tx, ty), its bottom just below the stage edge
+      const ih = (by + 6 - g.ty) / (1 - BASE.ty), iw = ih * BASE.w / BASE.h;
+      svgEl('image', {href: ART.base, x: g.tx - iw * BASE.tx, y: g.ty - ih * BASE.ty, width: iw, height: ih}, gStatic);
     }
+  }
+  // the three time bands: the slider's band is highlighted and its label is a button that sets the time (nav-plan N3)
+  function renderBands(T, g) {
+    for (let j = 0; j < 3; j++) {
+      const k = T.key + ':band' + j, cur = j === state.t;
+      const [r] = getEl(k, () => { const e = svgEl('rect', {rx: 10}); gStatic.prepend(e); return e; });   // under the painted base
+      r.setAttribute('x', T.x + 2); r.setAttribute('y', g.bandY(j) + 1); r.setAttribute('width', T.w - 4); r.setAttribute('height', g.bh - 2);
+      r.setAttribute('fill', cur ? '#eef4df' : '#ffffff'); r.setAttribute('opacity', cur ? .78 : j > state.t ? .16 : j % 2 ? .22 : .38);
+      const [b] = getEl(k + ':lab', () => {
+        const el = document.createElement('button'); el.className = 'blab'; el.tabIndex = -1;
+        el.onclick = () => setT(j); lay.appendChild(el); return el;
+      });
+      b.style.left = (T.x + 2) + 'px'; b.style.top = (g.bandY(j) + 1) + 'px'; b.style.width = '24px'; b.style.height = (g.bh - 2) + 'px';
+      b.textContent = g.bh < 46 ? '' : g.bh < 56 ? TIMES[j].replace('Right away', 'Now').replace('Next ', '') : TIMES[j];
+      b.className = 'blab' + (g.bh < 70 ? ' sm' : '') + (cur ? ' on' : '');
+      b.setAttribute('aria-label', 'Go to ' + TIMES[j]);
+    }
+  }
+  // the sign on the trunk: a button that opens the story (nav-plan N2)
+  function renderSign(T, g, d) {
+    const [s] = getEl(T.key + ':sign', () => {
+      const el = document.createElement('button'); el.className = 'sign';
+      el.innerHTML = icon('book') + '<span></span>';
+      el.onclick = () => { state.story = storyHidden(); update(); };
+      lay.appendChild(el); return el;
+    });
+    const by = T.y + T.h, sm = g.trunkH < 70, sfs = sm ? 12 : 15, sh = Math.max(sfs + 16, 32);
+    s.className = 'sign' + (sm ? ' sm' : '');
+    s.lastChild.textContent = d.sign;
+    s.style.maxWidth = (T.w - 40) + 'px'; s.style.height = sh + 'px';
+    s.style.left = g.tx + 'px'; s.style.top = (by - g.trunkH * .52 - sh / 2) + 'px';
+    s.setAttribute('aria-label', `${d.sign} Read the story: ${d.title}`);
+    s.setAttribute('aria-expanded', !storyHidden());
+    s.setAttribute('aria-controls', 'story');
   }
   function getEl(key, make) {
     let e = dyn.get(key), fresh = false;
@@ -626,6 +775,7 @@ body.compact .ccard h3{font-size:15px}
   }
   function renderTree(T, d, later) {
     const g = geo(T), t = state.t, main = !!T.main;
+    renderBands(T, g); renderSign(T, g, d);
     if (T.label) {
       const [lb] = getEl(T.key + ':label', () => { const e = document.createElement('div'); e.className = 'tlab'; lay.appendChild(e); return e; });
       lb.textContent = T.label; lb.style.left = (T.x + T.w / 2) + 'px'; lb.style.top = (T.y + 3) + 'px';
@@ -722,7 +872,7 @@ body.compact .ccard h3{font-size:15px}
       c.querySelector('.chipb').innerHTML = (bi ? icon(bi) : '') + bw;
       c.querySelector('.tal').textContent = st === 'none' ? '' : cwid < 110 ? `${tl.up}↑ ${tl.dn}↓` : tallyText(tl);
       c.querySelector('.tal').hidden = st === 'none';
-      c.className = 'crown' + (g.tiny ? ' narrow' : g.narrow ? ' slim' : '') + (cwid < 110 ? ' xs' : '') + (main && state.flag === Lt ? ' flagged' : '') + (dim ? ' dim' : '') +
+      c.className = 'crown s-' + st + (g.tiny ? ' narrow' : g.narrow ? ' slim' : '') + (cwid < 110 ? ' xs' : '') + (main && state.flag === Lt ? ' flagged' : '') + (dim ? ' dim' : '') +
         (main && state.sub === 'graft' ? ' pick' : '') + (main && state.graftSel === Lt ? ' sel' : '');
       c.setAttribute('aria-label', `Branch ${Lt}${Lt === 'G' ? ', the graft' : ''}: ${opt.text} ${st === 'none' ? 'Pick a goal.' : bw + ', ' + tallyText(tl) + '.'}${main && state.flag === Lt ? ' Your call.' : ''}${T.label ? ' ' + T.label + '.' : ''}`);
     });
@@ -738,10 +888,10 @@ body.compact .ccard h3{font-size:15px}
         const [ln] = getEl(T.key + ':link' + par, () => svgEl('path', {fill: 'none', stroke: '#4a321e', 'stroke-width': 2.5, 'stroke-dasharray': '4 3'}, gTop));
         ln.setAttribute('d', `M${px} ${ky} L ${kx} ${ky - 2}`);
       }
-      const [kn] = getEl(T.key + ':knot', () => svgEl('circle', {r: 8, fill: '#8a5a2b', stroke: '#f6f8ee', 'stroke-width': 3}, gTop));
-      kn.setAttribute('cx', kx); kn.setAttribute('cy', ky - 2);
+      const [kn] = getEl(T.key + ':knot', () => svgEl('image', {href: ART.knot, width: 30, height: 30}, gTop));
+      kn.setAttribute('x', kx - 15); kn.setAttribute('y', ky - 17);
       const [kt] = getEl(T.key + ':knotT', () => { const e = svgEl('text', {'text-anchor': 'start', 'dominant-baseline': 'middle', 'font-size': 12, 'font-weight': 800, fill: '#1f2a1a', stroke: '#f6f8ee', 'stroke-width': 3, 'paint-order': 'stroke', 'font-family': 'Segoe UI, sans-serif'}, gTop); e.textContent = 'Graft'; return e; });
-      kt.setAttribute('x', kx + 12); kt.setAttribute('y', ky - 2);   // beside the knot, clear of the sign and the leaves
+      kt.setAttribute('x', kx + 15); kt.setAttribute('y', ky - 2);   // beside the knot, clear of the sign and the leaves
     }
   }
 
@@ -749,7 +899,7 @@ body.compact .ccard h3{font-size:15px}
   // Panel
   // ======================================================================================
   function buildPicker() {
-    $('picker').innerHTML = DIL.map((d, i) => `<button class="dcard" data-i="${i}" aria-pressed="false" aria-label="${esc(d.title)}, ${d.name}">${icon(d.icon)}<b>${d.name}</b><span>${esc(d.title)}</span></button>`).join('');
+    $('picker').innerHTML = DIL.map((d, i) => `<button class="dcard" data-i="${i}" aria-pressed="false" aria-label="${esc(d.title)}, ${d.name}">${kidPic(d, 'kp')}<b>${d.name}</b><span>${esc(d.title)}</span></button>`).join('');
     for (const b of $('picker').children) b.onclick = () => pickDilemma(+b.dataset.i, true);
   }
   function buildChips(id, set) {
@@ -772,8 +922,8 @@ body.compact .ccard h3{font-size:15px}
     if (state.sub === 'choose') return ['choose'];
     if (state.sub === 'graft') return state.misses >= 2 ? ['graft', 'two'] : ['graft'];
     if (state.sub === 'call') return ['call'];
+    if (!state.goals.size) return ['nogoals'];   // step 1 first, as the step strip and story card say
     if (!state.planted.size) return ['nothing'];
-    if (!state.goals.size) return ['nogoals'];
     if (state.t === 2) return state.resultKey ? [state.resultKey, 'month'] : ['month'];
     return ['ready'];
   }
@@ -802,23 +952,86 @@ body.compact .ccard h3{font-size:15px}
     }
     const tm = $('time'); tm.value = state.t; tm.setAttribute('aria-valuetext', TIMES[state.t]);
     [...$('ticks').children].forEach((s, i) => s.classList.toggle('on', i === state.t));
-    $('play').textContent = playTimer ? '■ Stop' : '▶ Play';
-    $('play').setAttribute('aria-label', playTimer ? 'Stop playing' : 'Play through time');
+    $('play').textContent = playTimer ? '■ Stop' : state.t === 2 ? '↺ Replay' : '▶ Play';
+    $('play').setAttribute('aria-label', playTimer ? 'Stop playing' : state.t === 2 ? 'Play again from Right away' : 'Play through time');
     const n = state.planted.size;
-    $('graft').textContent = state.sub === 'graft' ? 'Cancel graft' : 'Graft';
+    $('graft').textContent = state.sub === 'graft' ? (page === 'compact' ? 'Cancel' : 'Cancel graft') : 'Graft';
     $('graft').setAttribute('aria-pressed', state.sub === 'graft');
     $('graft').disabled = state.found.has(d.id) && state.sub !== 'graft';
     $('call').setAttribute('aria-pressed', state.sub === 'call');
-    $('call').disabled = !(n >= 2 && state.t < 2 && state.goals.size) && state.sub !== 'call';
+    // not-ready tools stay pressable and say why (nav-plan N4)
+    $('call').setAttribute('aria-disabled', !callReady() && state.sub !== 'call');
     $('choose').setAttribute('aria-pressed', state.sub === 'choose');
-    $('choose').disabled = !(n >= 1 && state.t === 2) && state.sub !== 'choose';
+    $('choose').setAttribute('aria-disabled', !chooseReady() && state.sub !== 'choose');
+    $('choose').hidden = !(grow && (state.t === 2 || state.sub === 'choose'));
     $('who').setAttribute('aria-pressed', state.who);
     $('result').textContent = state.result;
     if (state.mode === 'sbs') $('sbsLine').textContent = sbsLine().text;
-    const h = hintText(); if ($('hint').textContent !== h) $('hint').textContent = h;
+    const h = hintText(); if ($('hintT').textContent !== h) $('hintT').textContent = h;
+    updateSteps(); sbsHeads();
     showDetail();
     showCard();
+    showStory();
   }
+  // ---------- step strip and mode bar (nav-plan N1, N5) ----------
+  const callReady = () => state.planted.size >= 2 && state.t < 2 && state.goals.size > 0;
+  const chooseReady = () => state.planted.size >= 1 && state.t === 2;
+  const STEPS = {grow: ['Goals', 'Plant', 'Slide time', 'Choose'], sbs: ['Goals A', 'Goals B', 'Slide time']};
+  function stepState() {
+    const grow = state.mode === 'grow';
+    const done = grow ? [state.goals.size > 0, state.planted.size >= 2, state.reached, state.chosen]
+      : [state.gA.size > 0, state.gB.size > 0, state.sbsMoved || state.t > 0];
+    return {words: STEPS[state.mode], done, cur: done.indexOf(false)};   // cur -1: every step done
+  }
+  function updateSteps() {
+    const s = stepState(), sub = state.mode === 'grow' && state.sub;
+    $('steps').hidden = !!sub; $('modebar').hidden = !sub;
+    if (sub) $('mbT').textContent = {graft: 'Grafting', call: 'Making a call', choose: 'Choosing'}[sub];
+    [...$('steps').children].forEach((b, i) => {
+      b.hidden = i >= s.words.length;
+      if (b.hidden) return;
+      b.querySelector('.w').textContent = s.words[i];
+      b.querySelector('.n').textContent = s.done[i] ? '✓' : i + 1;
+      b.classList.toggle('done', s.done[i]);
+      if (i === s.cur) b.setAttribute('aria-current', 'step'); else b.removeAttribute('aria-current');
+      b.setAttribute('aria-label', `Step ${i + 1}: ${s.words[i]}${s.done[i] ? ', done' : i === s.cur ? ', now' : ''}`);
+    });
+    const c = s.cur < 0 ? s.words.length - 1 : s.cur;
+    $('stepNow').textContent = sub ? '' : `Step ${c + 1} of ${s.words.length}:`;
+  }
+  function stepTap(i) {
+    const first = id => $(id).firstElementChild;
+    if (state.mode === 'grow') {
+      if (i === 0) first('chips').focus();
+      else if (i === 1) ([...$('opts').children].find(b => !state.planted.has(b.dataset.l)) || first('opts')).focus();
+      else if (i === 2) $('time').focus();
+      else chooseBtn();
+    } else (i === 0 ? first('chipsA') : i === 1 ? first('chipsB') : $('time')).focus();
+  }
+  for (const b of $('steps').children) b.onclick = () => stepTap(+b.dataset.s);
+  function cancelSub(focus) {
+    const from = state.sub; if (!from) return;
+    state.sub = null; state.graftSel = null; update();
+    if (focus) { const b = $(from); if (b && !b.hidden) b.focus(); }
+  }
+  $('mbCancel').onclick = () => cancelSub(true);
+  // ---------- the story card (nav-plan N2) ----------
+  const storyHidden = () => !state.story || !!state.card;
+  const signEl = () => dyn.get((state.mode === 'grow' ? 'g' : 'a') + ':sign');
+  function showStory() {
+    const box = $('story'), d = dil(), hide = storyHidden();
+    box.hidden = hide;
+    if (hide) return;
+    if (box.dataset.k === d.id + state.mode) return;
+    box.dataset.k = d.id + state.mode;
+    $('storyPor').innerHTML = kidPic(d, 'por');
+    $('storyH').textContent = `${d.title} (${d.name})`;
+    $('storyP').textContent = d.setup;
+    $('storyGo').innerHTML = state.mode === 'grow' ? `<li>Pick what matters to ${esc(d.name)}.</li><li>Tap an option to plant it as a branch.</li>`
+      : '<li>Turn on goals for Goals A and for Goals B.</li><li>Slide time and compare the two trees.</li>';
+  }
+  function closeStory() { state.story = false; update(); const s = signEl(); if (s) s.focus(); }
+  $('storyX').onclick = closeStory;
   function showDetail() {
     const box = $('detail'), q = state.detail;
     if (!q) { box.hidden = true; return; }
@@ -852,13 +1065,24 @@ body.compact .ccard h3{font-size:15px}
     // under 300 px the card turns into a scrolling sliver, so center it instead (it lists the chosen branch's leaves itself)
     if (parts.length && cw >= 300) { c.style.width = cw + 'px'; c.style.left = (right ? r : l - cw) + 'px'; c.style.transform = 'translateY(-50%)'; c.classList.toggle('slim', cw < 300); }
     else { c.style.width = ''; c.style.left = ''; c.style.transform = ''; c.classList.remove('slim'); }
-    c.innerHTML = `<h3 id="ccH">${d.name} chose: ${esc(o.text.replace(/\.$/, ''))}.</h3>
+    c.innerHTML = `<div class="chead">${kidPic(d, 'ccp')}<h3 id="ccH">${d.name} chose: ${esc(o.text.replace(/\.$/, ''))}.</h3></div>
+      <p class="path">${esc(pathText())}</p>
       <ol>${o.leaves.map((lf, j) => `<li><b>${TIMES[j]}:</b> ${esc(lf.t)}</li>`).join('')}</ol>
       <p class="look">${esc(d.look)}</p>
-      <div class="row"><button class="btn" id="cBack">Back to the tree</button><button class="btn" id="cNext">Next dilemma</button></div>`;
+      <div class="row"><button class="btn" id="cBack">Back to the tree</button><button class="btn" id="cNext">Next dilemma</button><button class="btn" id="cSbs">Compare goals side by side</button></div>`;
     $('cBack').onclick = () => { state.card = null; state.sub = null; update(); $('choose').focus(); };
-    $('cNext').onclick = () => { pickDilemma((state.di + 1) % DIL.length, true); $('picker').children[state.di].focus(); };
+    $('cNext').onclick = () => { pickDilemma((state.di + 1) % DIL.length, true); const b = $('picker').children[state.di]; if (b.offsetParent) b.focus(); else $('storyX').focus(); };
+    // on to Side by side with this tree's goals as Goals A (nav-plan N7)
+    $('cSbs').onclick = () => {
+      const g = [...state.goals]; state.gA.clear(); for (const x of g) state.gA.add(x); state.gB.clear();
+      setMode('sbs'); $('chipsB').firstElementChild.focus();
+    };
     $('cBack').focus({preventScroll: true}); c.scrollTop = 0;   // a slim card opens at its heading
+  }
+  // the path the student took, for the choose card and the print (nav-plan N7)
+  function pathText() {
+    const d = dil(), goals = [...state.goals].sort().map(gi => d.goals[gi].label);
+    return `Your path: goals on: ${goals.length ? goals.join(', ') : 'none'}. Planted: ${plantedOrder().join(', ') || 'none'}.${state.flag ? ' Your call: ' + state.flag + '.' : ''}`;
   }
   function update(fade) {
     const a = document.activeElement, had = a && a !== document.body ? a : null;
@@ -869,10 +1093,12 @@ body.compact .ccard h3{font-size:15px}
   function keepFocus(a) {
     const gone = e => !e || !e.isConnected || e.disabled || e.classList.contains('off') || !!e.closest('[hidden]') || e.offsetParent === null;
     if (!gone(a)) return;
-    const d = dil(), opt = l => $('opts').querySelector(`[data-l="${l}"]`), tools = [...$('tools').children];
+    const d = dil(), opt = l => $('opts').querySelector(`[data-l="${l}"]`), tools = [...$('tools').querySelectorAll('button')];
     let c = [];
     if (a._L) c = [!a._crown && dyn.get(a._T + ':' + a._L + ':crown'), opt(a._L)];
     else if (a.closest && a.closest('#ccard')) c = [$('choose')];
+    else if (a.closest && a.closest('#steps')) c = [$('mbCancel')];
+    else if (a.closest && a.closest('#story')) c = [signEl(), $('opts').firstElementChild];
     else if (a.dataset && a.dataset.l) c = [opt(a.dataset.l)];
     else if (tools.includes(a)) {
       if (a.id === 'graft' && state.found.has(d.id)) c.push(opt('G'));
@@ -890,6 +1116,7 @@ body.compact .ccard h3{font-size:15px}
     hush(); stopPlay();
     state.di = i; state.planted.clear(); state.goals.clear(); state.gA.clear(); state.gB.clear();
     state.t = 0; state.sub = null; state.graftSel = null; state.misses = 0; state.flag = null; state.result = ''; state.resultKey = ''; state.card = null; state.flash = null; state.detail = null;
+    state.reached = false; state.chosen = false; state.sbsMoved = false; state.story = state.mode === 'grow';
     buildChips('chips', state.goals); buildChips('chipsA', state.gA); buildChips('chipsB', state.gB); buildOpts();
     update();
     if (user) narrate('setup-' + dil().id);
@@ -911,6 +1138,7 @@ body.compact .ccard h3{font-size:15px}
     } else {
       if (x === 'G') for (const p of d.pair) state.planted.add(p);   // a graft grows between both parents
       state.planted.add(x);
+      state.story = false;   // the first branch puts the story away (the sign brings it back)
     }
     if (state.planted.size < 2 && state.sub === 'call') state.sub = null;
     if (!state.planted.size && state.sub === 'choose') state.sub = null;
@@ -931,6 +1159,8 @@ body.compact .ccard h3{font-size:15px}
     if (!fromPlay) stopPlay();
     if (t === state.t) { updatePanel(); return; }
     const was = state.t; state.t = t;
+    if (state.mode === 'grow' && t === 2) state.reached = true;
+    if (state.mode === 'sbs') state.sbsMoved = true;
     if (state.sub === 'call' && t === 2) state.sub = null;
     if (state.sub === 'choose' && t < 2) state.sub = null;
     if (state.card && t < 2) state.card = null;
@@ -986,22 +1216,24 @@ body.compact .ccard h3{font-size:15px}
       update(); narrate('miss#' + (++missN)); if (state.misses >= 2) narrate('two#' + d.id);
     }
   }
+  let reasonN = 0;
+  function reason(key) { state.flash = [key]; update(); narrate(key + '#' + (++reasonN)); }
   function callBtn() {
     if (state.mode !== 'grow') return;
     if (state.sub === 'call') { state.sub = null; update(); return; }
-    if (state.planted.size < 2 || state.t >= 2 || !state.goals.size) return;
+    if (!callReady()) return reason(state.t >= 2 ? 'callLate' : 'callWhen');
     state.sub = 'call'; state.graftSel = null; state.flash = null; update(); narrate('call');
   }
   function chooseBtn() {
     if (state.mode !== 'grow') return;
     if (state.sub === 'choose') { state.sub = null; state.card = null; update(); return; }
-    if (!state.planted.size || state.t < 2) return;
+    if (!chooseReady()) return reason(state.t < 2 ? 'chooseWhen' : 'nothing');
     state.sub = 'choose'; state.graftSel = null; state.flash = null; update(); narrate('choose');
   }
   function branchPick(x) {
     if (state.sub === 'graft') return graftTap(x);
     if (state.sub === 'call') { state.flag = x; update(); return; }
-    if (state.sub === 'choose') { state.card = x; state.sub = null; update(); narrate('look-' + dil().id); }
+    if (state.sub === 'choose') { state.card = x; state.sub = null; state.chosen = true; update(); narrate('look-' + dil().id); }
   }
   function leafTap(T, x, j, el) {
     if (T.main && state.sub) return branchPick(x);
@@ -1015,12 +1247,13 @@ body.compact .ccard h3{font-size:15px}
   function clearTree() {
     stopPlay();
     state.planted.clear(); state.t = 0; state.sub = null; state.graftSel = null; state.flag = null; state.result = ''; state.resultKey = ''; state.card = null; state.flash = null; state.detail = null;
+    state.reached = false; state.chosen = false; state.story = true;
     update();
   }
   function buildPrint() {
     const d = dil(), goals = [...state.goals].sort(), letters = plantedOrder();
     let h = `<h1>Decision Tree: ${esc(d.title)} (${d.name})</h1><p>${esc(d.setup)}</p>
-      <p><b>Goals on:</b> ${goals.length ? goals.map(gi => esc(d.goals[gi].label)).join('; ') : 'none'}<br><b>Time:</b> ${TIMES[state.t]}</p>`;
+      <p><b>Goals on:</b> ${goals.length ? goals.map(gi => esc(d.goals[gi].label)).join('; ') : 'none'}<br><b>Time:</b> ${TIMES[state.t]}${state.flag ? '<br><b>Your call:</b> ' + state.flag : ''}${state.card ? '<br><b>Chose:</b> ' + state.card : ''}</p>`;
     if (!letters.length) h += '<p>No branches planted yet.</p>';
     for (const x of letters) {
       const tl = tally(d, x, state.goals, state.t), st = status(tl, state.goals);
@@ -1082,6 +1315,7 @@ body.compact .ccard h3{font-size:15px}
     hush(); stopPlay();
     state.mode = m; document.body.dataset.mode = m;
     state.sub = null; state.graftSel = null; state.card = null; state.flash = null; state.detail = null;
+    state.story = m === 'grow' && !state.planted.size;
     for (const k of ['grow', 'sbs']) $('m-' + k).setAttribute('aria-pressed', k === m);
     for (const el of document.querySelectorAll('[data-modes]')) el.hidden = !el.dataset.modes.split(' ').includes(m);
     lastSize = ''; relayout();
@@ -1105,7 +1339,14 @@ body.compact .ccard h3{font-size:15px}
     if (page === 'compact' && sw.parentNode !== tb) { tb.appendChild(sw); sw.textContent = '⇄ Swap'; }
     else if (page !== 'compact' && sw.parentNode === tb) { $('swapRow').appendChild(sw); sw.textContent = '⇄ Swap goal sets'; }
     if (over && det.parentNode !== st) st.appendChild(det);
-    else if (!over && det.parentNode !== $('panel')) $('hint').after(det);
+    else if (!over && det.parentNode !== $('panel')) $('guide').after(det);
+    const ch = $('choose'), inRow = page === 'compact' || document.body.classList.contains('short');
+    if (inRow && ch.parentNode !== tb) tb.appendChild(ch);
+    else if (!inRow && ch.parentNode === tb) $('secTime').after(ch);
+    // compact: the dilemma picker lives in the story card (nav-plan N2, N6)
+    const pk = $('picker');
+    if (page === 'compact' && pk.parentNode !== $('storyPick')) $('storyPick').appendChild(pk);
+    else if (page !== 'compact' && pk.parentNode !== $('secDil')) $('secDil').insertBefore(pk, $('setup'));
     if (page === 'stack') {
       // short enough that the time box (first in the stacked panel) shows with the tree
       const w = st.getBoundingClientRect().width || innerWidth;
@@ -1116,7 +1357,7 @@ body.compact .ccard h3{font-size:15px}
     lastSize = key;
     W = Math.max(280, Math.round(r.width)); H = Math.max(300, Math.round(r.height));
     sv.setAttribute('width', W); sv.setAttribute('height', H); sv.setAttribute('viewBox', `0 0 ${W} ${H}`);
-    staticKey = ''; render();
+    staticKey = ''; render(); sbsHeads();
   }
   new ResizeObserver(() => relayout()).observe($('stage'));
   addEventListener('resize', () => relayout());
@@ -1139,7 +1380,8 @@ body.compact .ccard h3{font-size:15px}
     const t = e.target, k = e.key;
     if (k === 'Escape') {
       if (state.card) { state.card = null; update(); $('choose').focus(); }
-      else if (state.sub) { state.sub = null; state.graftSel = null; update(); }
+      else if (state.sub) cancelSub(!!(t && t.closest && t.closest('#guide')));
+      else if (!storyHidden()) closeStory();
       else if (state.detail) closeDetail();
       return;
     }
@@ -1164,7 +1406,7 @@ body.compact .ccard h3{font-size:15px}
   buildPicker();
   // for checking frames
   window.__tool = {state, setMode, allLines, DIL, L, tally, bestOf, pickDilemma, togglePlant, optionTap, toggleGoal, setT, graftBtn, graftTap,
-    callBtn, chooseBtn, branchPick, whoBtn, clearTree, buildPrint, sbsLine, hintText, said, queued,
+    callBtn, chooseBtn, branchPick, stepState, stepTap, cancelSub, closeStory, whoBtn, clearTree, buildPrint, sbsLine, hintText, said, queued,
     layout: () => ({page, W, H}), curio: () => ({last: Curio.last, sound: Curio.sound, reduce: Curio.reduce})};
   document.body.dataset.mode = 'grow';
   for (const el of document.querySelectorAll('[data-modes]')) el.hidden = !el.dataset.modes.split(' ').includes('grow');
