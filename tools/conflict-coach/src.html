@@ -1,0 +1,1250 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Conflict Coach · Say the hard thing two ways · Curio Class</title>
+<meta name="description" content="Replay five ordinary arguments between two middle schoolers: swap a blaming line for an I-statement or a reflective listen, rewind any line, and watch the other kid's face, reply and the conversation meter change. Build an I-statement from tiles, then practice with a partner. Grades 6-8 social and emotional learning. Works offline.">
+<!--
+Conflict Coach (Curio Class)
+Grades 6-8, Social and Emotional Learning, module Conflict Resolution (SEL). Standard: CASEL Relationship Skills
+(communicating effectively, listening actively, resolving conflicts constructively).
+Students in pairs on one laptop, or a teacher on a projector with the class voting on each move (keys 1 to 4 or A to D,
+R rewinds, N goes on). Scenes: three turns per fictional scene (Say it, Hear them, Fix it), four lines to pick from, a
+conversation meter, and Rewind, which keeps the taken-back line on the stage as a faded "Last time" bubble.
+Line Builder: an I-statement from tiles, with a coach check of each part. Partner Cards: Speaker and Listener cards to
+read aloud, swap and print.
+Sources: CASEL, "What Is the CASEL Framework?"; Thomas Gordon, Parent Effectiveness Training (1970) and Gordon Training
+International, "I-Messages"; Carl R. Rogers and Richard E. Farson, "Active Listening" (1957). The coach says "usually"
+and "easier to hear", never "always" or "proven". Every scene is fictional and ordinary; there is no text box, and
+nothing is stored except the list of Clean run scenes and the kit's Motion setting.
+Characters, meter and bench are drawn in code; backdrops are local FLUX.1-schnell paintings with no people.
+One file, no network requests. Content CC BY 4.0, code MIT. curioclass.org
+-->
+<link rel="stylesheet" href="kit:curio">
+<style>
+:root{
+  --paper:#fff8f1;--ink:#26211f;--muted:#6b5d55;--line:#ecd9c6;--focus:#1f5f8b;
+  --brand:#b3471d;--btn:#9a3b16;--btn-line:#d9784c;--head-ink:#ffffff;--panel:#ffffff;
+  --s0:#a1302a;--s1:#8a5a00;--s2:#6b5d55;--s3:#1f5f8b;--s4:#2f6b3a;
+  --you:#f6ead8;--card:#fffdf9;
+}
+/* three page layouts, picked in script (relayout()), as in collision-lab:
+   wide    (1000 px or wider and 700 px or taller): stage on the left, 360 px panel on the right;
+   compact (a short landscape box such as the 16:10 embed, 680x425 to 1000x625): a 290 px panel, a one-row header;
+   stack   (narrow or portrait): the panel under the stage, the page scrolls.
+   The stage is drawn at its real pixel size (SVG plus HTML bubbles), never scaled, so text keeps its size. */
+main{grid-template-columns:minmax(0,1fr) 360px;min-height:0}
+.stage{min-height:0;background:#f3e3cf}
+#sv{position:absolute;left:0;top:0;display:block}
+#lay{position:absolute;inset:0;pointer-events:none}
+body.compact main{grid-template-columns:minmax(0,1fr) 290px}
+@media (min-width:900px){body.compact main{grid-template-columns:minmax(0,1fr) 320px}}
+body.compact header{padding:4px 8px;gap:4px;flex-wrap:nowrap;min-width:0}
+body.compact h1{font-size:16px;white-space:nowrap;min-width:0;overflow:hidden;text-overflow:ellipsis}
+body.compact h1 small{display:none}
+body.compact .seg{flex:none}
+body.compact .seg button,body.compact .icon-btn{min-height:44px;padding:0 8px;font-size:13.5px;white-space:nowrap}
+body.compact .icon-btn{flex:none}
+body.compact .panel{padding:6px 8px;gap:6px}
+body.compact .hint{font-size:13.5px;line-height:1.3;margin:0}
+body.stack{height:auto}
+body.stack main{grid-template-columns:minmax(0,1fr);align-content:start}
+body.stack .panel{border-left:0;border-top:3px solid var(--line)}
+@media (max-width:560px){
+  .seg{display:grid;grid-template-columns:1fr 1fr 1fr;border-radius:14px;width:100%}
+  .seg button{min-height:44px;font-size:14px;padding:0 6px}
+  .icon-btn{min-height:44px;padding:0 12px;font-size:15px}
+}
+/* focus on the brown header: white ring (5.47:1 on brand, 6.97:1 on btn); the kit's .seg clips outlines, so its buttons get an inset ring */
+header :focus-visible{outline-color:#fff}
+.seg button:focus-visible{outline:3px solid #fff;outline-offset:-6px;box-shadow:inset 0 0 0 2px #26211f}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.hint{margin:0}
+.panel h2{margin:0;font:700 13px 'Segoe UI',system-ui,sans-serif;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.btn{min-height:44px;border-radius:10px;border:2px solid var(--brand);background:#fff;color:var(--brand);font-weight:700;font-size:15px;padding:0 12px}
+.btn.go{background:var(--brand);color:#fff}
+.btn:disabled{opacity:.45;cursor:default}
+.btn[aria-pressed="true"]{background:var(--brand);color:#fff}
+.row{display:flex;gap:6px;flex-wrap:wrap}
+.row .btn{flex:1 1 auto}
+body.compact .btn{font-size:13.5px;padding:0 8px}
+/* scene picker: full cards on the Scenes start screen, a row of face chips everywhere else */
+.picker{display:flex;flex-direction:column;gap:6px}
+.scard{display:grid;grid-template-columns:48px 1fr;gap:2px 10px;align-items:center;text-align:left;min-height:56px;
+  border:2px solid var(--line);border-radius:12px;background:var(--card);padding:6px 10px;position:relative}
+.scard:hover{border-color:var(--brand)}
+.scard svg{grid-row:1 / span 2;width:48px;height:48px}
+.scard b{font-size:16px}
+.scard b small{font-weight:500;color:var(--muted);font-size:14px}
+.scard .su{font-size:13.5px;line-height:1.35;color:var(--muted)}
+.scard .ck{position:absolute;right:8px;top:6px;font-size:13px;font-weight:700;color:var(--s4)}
+.picker.chips{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:4px}
+.picker.chips .scard{grid-template-columns:1fr;justify-items:center;gap:0;padding:3px 2px;min-height:52px;text-align:center}
+.picker.chips .scard svg{grid-row:auto;width:28px;height:28px}
+.picker.chips .scard b{font-size:12px;line-height:1.1}
+.picker.chips .scard b small,.picker.chips .scard .su{display:none}
+.picker.chips .scard .ck{right:3px;top:1px;font-size:12px}
+.picker.chips .scard[aria-pressed="true"]{border-color:var(--brand);background:#fbe7dc}
+body.compact .picker.full .su{display:none}
+body.compact .picker.full .scard{min-height:48px;padding:3px 8px}
+body.compact .picker.full .scard svg{width:38px;height:38px}
+.turnlab{margin:0;font:700 14px 'Segoe UI',system-ui,sans-serif;color:var(--brand)}
+body.compact .turnlab{font-size:13px}
+/* the four move cards */
+.moves{display:flex;flex-direction:column;gap:6px}
+.move{display:grid;grid-template-columns:28px 1fr;gap:4px 8px;align-items:start;text-align:left;min-height:44px;
+  border:2px solid var(--line);border-radius:12px;background:var(--card);padding:7px 10px 7px 7px;font-size:15px;line-height:1.35}
+.move .let{width:28px;height:28px;border-radius:50%;background:var(--brand);color:#fff;font-weight:800;display:grid;place-items:center;font-size:14px}
+.move .tag{grid-column:2;font-size:13px;font-weight:700;color:var(--brand)}
+.move .tag:empty{display:none}
+.move:hover:not([aria-disabled="true"]){border-color:var(--brand)}
+.move[aria-disabled="true"]{opacity:.62;cursor:default}
+.move.picked{opacity:1;border:3px solid var(--brand);background:#fff3ea}
+body.compact .move{font-size:13px;line-height:1.28;padding:4px 6px 4px 4px;grid-template-columns:22px 1fr;gap:2px 6px}
+body.compact .move .let{width:22px;height:22px;font-size:12px}
+body.compact .move .tag{font-size:12px}
+body.compact .moves{gap:4px}
+.coach{background:#fbf1e6;border-left:5px solid var(--brand);border-radius:8px;padding:8px 10px;font-size:15px;line-height:1.4}
+.coach b{display:block;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--brand)}
+body.compact .coach{font-size:13px;padding:5px 8px;line-height:1.3}
+.clip{background:#fff;border:2px solid var(--line);border-radius:12px;padding:8px 10px}
+.clip ol{margin:4px 0 0;padding-left:20px;font-size:14.5px;line-height:1.4}
+.clip li span{color:var(--muted)}
+.clip .clean{margin:6px 0 0;font-weight:800;color:var(--s4)}
+.clip .clean::before{content:'\2713  '}
+body.compact .clip ol{font-size:13px}
+/* line builder */
+.rowtabs{display:none;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px}
+body.tabbed .rowtabs{display:grid}
+.rowtabs button{min-height:44px;border-radius:10px;border:2px solid var(--line);background:var(--card);font-size:12.5px;font-weight:700;line-height:1.1;padding:2px}
+.rowtabs button[aria-pressed="true"]{border-color:var(--brand);background:#fbe7dc}
+.rowtabs button .f{display:block;font-weight:500;color:var(--muted);font-size:11px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.trow h3{margin:0 0 2px;font:700 14px 'Segoe UI',system-ui,sans-serif}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:4px}
+.tile{min-height:44px;border-radius:10px;border:2px solid var(--line);background:var(--card);font-size:14px;line-height:1.2;padding:3px 6px}
+.tile[aria-pressed="true"]{border-color:var(--brand);background:#fbe7dc;font-weight:700}
+body.tabbed .trow:not(.on){display:none}
+body.tabbed .trow h3{display:none}
+body.compact .tile{font-size:13px}
+.lbrows{display:flex;flex-direction:column;gap:6px}
+.capp,.cap.capp{position:static;margin-top:6px;font-size:13.5px;line-height:1.35;padding:6px 10px}
+.lbbtns{display:grid;grid-template-columns:auto auto auto;gap:6px}
+.lbbtns .btn{padding:0 8px;font-size:14.5px}
+body.picking #hint{order:-1}
+#scenesSec{display:flex;flex-direction:column;gap:6px}
+#scenesSec>*{margin-top:0!important}
+body.compact #coach{order:-2}
+body.compact #actRow{order:-1}
+body.stack #coach{order:-2}
+body.stack #actRow{order:-1}
+.lastp{background:#fbf3e8;border:2px dashed #8a6d4f;border-radius:12px;padding:6px 10px;font-size:14px;line-height:1.35;color:var(--muted)}
+.lastp b{display:block;color:var(--ink);font-size:12.5px}
+body.compact .lastp{font-size:13px;padding:4px 8px}
+body.compact .lastp,body.stack .lastp{order:-1}
+/* stage overlays: bubbles, captions, ending card, the line builder frame, partner cards */
+.bub{position:absolute;background:#fff;color:var(--ink);border:2px solid #d7c2ac;border-radius:16px;padding:8px 12px;
+  line-height:1.38;box-shadow:0 3px 0 #0001;transition:opacity .35s,transform .35s}
+.bub .who{display:block;font-size:.78em;font-weight:700;color:var(--muted);margin-bottom:1px}
+.bub.their::after{content:'';position:absolute;right:-12px;top:18px;border:10px solid transparent;border-left:14px solid #fff;border-right:0}
+.bub.their::before{content:'';position:absolute;right:-16px;top:16px;border:12px solid transparent;border-left:16px solid #d7c2ac;border-right:0}
+.bub.you{background:var(--you);border-color:#d9bf98}
+.bub.you::after{content:'';position:absolute;left:22px;bottom:-14px;border:10px solid transparent;border-top:14px solid var(--you);border-bottom:0}
+.bub.you::before{content:'';position:absolute;left:20px;bottom:-18px;border:12px solid transparent;border-top:16px solid #d9bf98;border-bottom:0}
+.bub.last{background:#fbf3e8;opacity:1;color:var(--muted);border:2px dashed #8a6d4f;box-shadow:none}
+.bub.last .who{color:var(--ink)}
+.bub.last::after,.bub.last::before{display:none}
+.bub.rise{opacity:0;transform:translateY(26px)}
+.calm .bub.rise{transform:none}
+.bub.fade{opacity:0}
+.cap{position:absolute;background:#fffdf9ee;border:2px solid var(--line);border-radius:12px;padding:8px 12px;line-height:1.4}
+.cap b{display:block;font-size:.8em;letter-spacing:.06em;text-transform:uppercase;color:var(--brand)}
+.endcard{position:absolute;background:#fffdf9;border:3px solid var(--ink);border-radius:18px;padding:14px 18px;text-align:center;
+  box-shadow:0 8px 28px #0003;line-height:1.4;transition:opacity .4s,transform .4s}
+.endcard .big{display:flex;justify-content:center;align-items:center;gap:10px;font:800 1.35em 'Trebuchet MS','Segoe UI',sans-serif}
+.endcard .big svg{flex:none}
+.endcard.rise{opacity:0;transform:scale(.94)}
+.calm .endcard.rise{transform:none}
+.lbframe{position:absolute;background:#fffdf9;border:2px solid var(--line);border-radius:16px;padding:10px 14px;line-height:2.05;
+  font-family:'Trebuchet MS','Segoe UI',sans-serif;font-weight:700;pointer-events:auto}
+.slot{display:inline-flex;flex-direction:column;align-items:center;vertical-align:top;margin:0 1px 0 2px;line-height:1.2;min-height:44px;justify-content:center;
+  border:0;border-bottom:3px dashed var(--brand);background:#fbe7dc;border-radius:8px 8px 2px 2px;padding:3px 8px;font:inherit;line-height:1.2;color:var(--ink)}
+.slot.full{border-bottom-style:solid;background:#fff1e3}
+.slot .num{color:var(--brand);font-weight:800}
+.slot .mk{display:block;font:700 max(10.5px,.55em) 'Segoe UI',system-ui,sans-serif;margin-top:3px;padding:1px 6px;border-radius:999px;white-space:nowrap}
+.slot .mk.ok{background:#e3f0e4;color:#20502a}
+.slot .mk.trap{background:#f9e0dd;color:#7d221d}
+.slot .mk.empty{background:#efe7df;color:var(--ink)}
+.pcwrap{position:absolute;display:flex;gap:14px;justify-content:center;align-items:stretch;pointer-events:auto;perspective:1200px}
+.pcard{flex:1 1 0;max-width:580px;background:#fffdf9;border:3px solid var(--ink);border-radius:16px;padding:12px 14px;line-height:1.42;
+  box-shadow:0 6px 0 #0002;transform-style:preserve-3d}
+.pcard h3{margin:0 0 2px;line-height:1.2;font:800 1.25em 'Trebuchet MS','Segoe UI',sans-serif;display:flex;align-items:center;gap:8px}
+.pcard .who{font-size:max(11px,.82em);font-weight:700;color:var(--muted);letter-spacing:.04em;text-transform:uppercase}
+.pcard p{margin:6px 0}
+.pcard .frame{background:#fbe7dc;border-radius:10px;padding:6px 10px;font-weight:700}
+.pcard .lab{font-size:max(11px,.8em);font-weight:700;color:var(--brand);text-transform:uppercase;letter-spacing:.05em;display:block}
+.pcard.flip{animation:flip .5s ease-in-out}
+@keyframes flip{0%{transform:rotateY(0)}50%{transform:rotateY(90deg)}100%{transform:rotateY(0)}}
+.both{position:absolute;background:#fffdf9;border:2px dashed var(--ink);border-radius:14px;padding:8px 12px;line-height:1.4;pointer-events:auto}
+.both b{color:var(--brand)}
+.bothp{margin-top:6px;background:#fffdf9;border:2px dashed var(--ink);border-radius:12px;padding:6px 10px;font-size:13.5px;line-height:1.35}
+.bothp b{color:var(--brand)}
+
+#printCards{display:none}
+@media print{
+  @page{margin:14mm}
+  body{display:block;background:#fff;color:#000;min-height:0}
+  header,main{display:none!important}
+  #printCards{display:block}
+  #printCards .pc{border:2px solid #000;border-radius:10px;padding:12px 16px;margin:0 0 14px;break-inside:avoid;font:14pt/1.45 'Segoe UI',Arial,sans-serif}
+  #printCards h2{margin:0 0 4px;font:800 18pt 'Trebuchet MS',Arial,sans-serif}
+  #printCards .meta{font-size:11pt;margin:0 0 8px}
+  #printCards p{margin:6px 0}
+  #printCards .lab{font-weight:700;font-size:11pt;text-transform:uppercase;letter-spacing:.05em;display:block}
+  #printCards .frame{border:1.5px dashed #000;padding:6px 10px;font-weight:700}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Conflict Coach <small>Say the hard thing two ways and watch what changes.</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-scenes" aria-pressed="true">Scenes</button>
+    <button id="m-builder" aria-pressed="false">Line Builder</button>
+    <button id="m-partner" aria-pressed="false">Partner Cards</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true" title="Turn animation on or off">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+  <button class="icon-btn" id="read">🔊 Read</button>
+</header>
+<main>
+  <div class="stage" id="stage">
+    <svg id="sv" role="img" aria-label="The bench"></svg>
+    <div id="lay"></div>
+  </div>
+  <aside class="panel" id="panel">
+    <div class="picker full" id="picker" role="group" aria-label="Scenes"></div>
+    <button class="btn" id="clearChecks" data-modes="scenes">Clear checks</button>
+    <p class="turnlab" id="turnLab"></p>
+    <p class="hint" id="hint"></p>
+    <div data-modes="scenes" id="scenesSec">
+      <div class="moves" id="moves" role="group" aria-label="What you could say"></div>
+      <div class="row" id="actRow" hidden style="margin-top:6px">
+        <button class="btn" id="rewind" title="Key R">⟲ Rewind</button>
+        <button class="btn go" id="next" title="Key N">Next ▶</button>
+      </div>
+      <div class="row" id="endRow" hidden style="margin-top:6px">
+        <button class="btn" id="endRewind" title="Key R">⟲ Rewind</button>
+        <button class="btn" id="replay">Replay scene</button>
+        <button class="btn go" id="nextScene">Next scene</button>
+        <button class="btn" id="pickScene">Pick a scene</button>
+      </div>
+      <div class="lastp" id="lastPanel" hidden></div>
+      <div class="coach" id="coach" hidden style="margin-top:6px"><b>Coach</b><span id="coachTxt"></span></div>
+      <div class="clip" id="clip" hidden style="margin-top:6px"><h2>Coach clipboard</h2><ol id="clipList"></ol><p class="clean" id="cleanMsg" hidden>Clean run. Every move was a strong one.</p></div>
+    </div>
+    <div data-modes="builder" id="builderSec" hidden>
+      <div class="rowtabs" id="rowTabs" role="group" aria-label="Sentence parts"></div>
+      <div class="lbrows" id="lbRows"></div>
+      <div class="lbbtns" style="margin-top:6px">
+        <button class="btn" id="lbCheck">Check my line</button>
+        <button class="btn go" id="lbSay" disabled>Say it to them</button>
+        <button class="btn" id="lbClear">Clear</button>
+      </div>
+      <div class="cap capp" id="checkPanel" hidden></div>
+    </div>
+    <div data-modes="partner" id="partnerSec" hidden>
+      <div class="row">
+        <button class="btn go" id="swap">⇄ Swap roles</button>
+        <button class="btn" id="pcNext">Next scene</button>
+      </div>
+      <div class="row" style="margin-top:6px">
+        <button class="btn" id="showBoth" aria-pressed="false">Show both sides</button>
+        <button class="btn" id="print">🖨 Print cards</button>
+      </div>
+      <div class="bothp" id="bothPanel" hidden></div>
+    </div>
+    <p class="sr" id="live" aria-live="polite"></p>
+  </aside>
+</main>
+<div id="printCards"></div>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const {say, wait} = Curio;
+  const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c]));
+  const shuffle = a => { const b = a.slice(); for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [b[i], b[j]] = [b[j], b[i]]; } return b; };
+
+  // ======================================================================================
+  // Content (the spec's Content section, word for word)
+  // ======================================================================================
+  const MOVES = {
+    istate: {name: 'I-statement', d: 2, s: true, coach: 'I-statement. You said how you feel, what happened and what you need, without blaming. That is easier to hear.'},
+    half: {name: 'Half an I-statement', d: 1, coach: 'Half an I-statement. You named a feeling, but not what you need. Add an ask.'},
+    blame: {name: 'You-statement', d: -1, coach: 'You-statement. It starts with what they did wrong, so people usually defend themselves.'},
+    brush: {name: 'Brush-off', d: 0, coach: 'Brush-off. It avoids the fight now, but the problem is still there.'},
+    reflect: {name: 'Reflective listen', d: 2, s: true, coach: 'Reflective listen. You said back their feeling and their reason. They can tell you heard them.'},
+    fixfast: {name: 'Fix it too fast', d: 0, coach: 'Fix it too fast. You jumped to a solution before showing you heard them.'},
+    defend: {name: 'Yeah-but', d: -1, coach: 'Yeah-but. You went back to your side before they finished theirs.'},
+    dismiss: {name: 'Dismiss', d: -1, coach: 'Dismiss. Telling someone their reason doesn\'t count makes them dig in.'},
+    both: {name: 'Both-sides plan', d: 2, s: true, coach: 'Both-sides plan. It meets your need and theirs.'},
+    ask: {name: 'Ask what works', d: 2, s: true, coach: 'Ask what works. Inviting their idea makes it a plan you made together.'},
+    givein: {name: 'Give in', d: 0, coach: 'Give in. It ends the argument, but your need disappears. Try one that works for both.'},
+    demand: {name: 'Demand', d: -1, coach: 'Demand. An order, not a plan. It usually starts the fight again.'},
+  };
+  const TURNS = [
+    {key: 'say', label: 'Say it', moves: ['istate', 'half', 'blame', 'brush'], hint: 'h-say'},
+    {key: 'hear', label: 'Hear them', moves: ['reflect', 'fixfast', 'defend', 'dismiss'], hint: 'h-hear'},
+    {key: 'fix', label: 'Fix it', moves: ['both', 'ask', 'givein', 'demand'], hint: 'h-fix'},
+  ];
+  const STOPS = [
+    {word: 'Heated', lines: ['Heated'], icon: 'flame', c: '--s0'},
+    {word: 'Tense', lines: ['Tense'], icon: 'zig', c: '--s1'},
+    {word: 'Calm', lines: ['Calm'], icon: 'flat', c: '--s2'},
+    {word: 'Listening', lines: ['Listening'], icon: 'ear', c: '--s3'},
+    {word: 'Working it out', lines: ['Working', 'it out'], icon: 'hands', c: '--s4'},
+  ];
+  const POSTURE_WORDS = ['brows down, mouth tight, arms crossed, turned away', 'half turned away, hands gripped in the lap', 'calm, hands on knees',
+    'facing you, head tilted, listening', 'facing you with a small smile, one hand open'];
+  const ENDS = ['stuck', 'stuck', 'okay', 'worked', 'worked'];
+  const ENDNAME = {stuck: 'Still stuck', okay: 'Okay for now', worked: 'Worked it out'};
+  const ENDSTOP = {stuck: 0, okay: 2, worked: 4};
+
+  const SC = [
+    {id: 'slides', title: 'The Slides', name: 'Jordan', bg: 'art:bg-classroom', wall: '#efe0cc', floor: '#c8a37c',
+      look: {skin: '#7a4a2e', hair: 'short', hc: '#17110e', shirt: '#3f6e8c', pants: '#2f3a48', shoe: '#2a2a2a'},
+      setup: 'Your group project is due Friday. Jordan said they\'d make four slides. It\'s Wednesday and their slides are blank.',
+      say: {istate: 'I feel stressed when our slides are still blank on Wednesday, because I want us to get a good grade. Can we figure out a plan today?', half: 'I\'m really stressed about the slides.', blame: 'You never do your part. You\'re so lazy.', brush: 'Whatever, I\'ll just do them myself.'},
+      side: 'I\'m sorry. My grandma\'s been staying with us and I\'ve had no quiet place to work this week.',
+      hear: {reflect: 'So it\'s been hard to focus at home with your grandma there, and you\'re stuck.', fixfast: 'Just do them at lunch then.', defend: 'Yeah, but I have stuff going on too.', dismiss: 'That\'s not really an excuse.'},
+      fix: {both: 'What if we work on them together in the library after school tomorrow?', ask: 'What would help you get them done by Thursday?', givein: 'Never mind, I\'ll do all of it.', demand: 'Just have them done by tonight or I\'m telling the teacher.'},
+      end: {stuck: 'Jordan goes quiet and walks off. The slides are still blank.', okay: 'Jordan says they\'ll try. You\'re both still a little worried.', worked: 'You meet in the library Thursday. Jordan finishes three slides and you help with the fourth.'},
+      hidden: 'Your house is crowded and loud this week and you\'re embarrassed to say so.',
+      why: 'The Speaker wants the group to get a good grade, and the slides are still blank.',
+      other: 'Jordan\'s house is crowded and loud this week, and they\'re embarrassed to say so.',
+      lb: [['stressed', 'worried', 'frustrated', 'like you don\'t care'], ['our slides are blank on Wednesday', 'the plan isn\'t done yet', 'we\'re two days from the due date', 'you\'re being lazy'],
+        ['I want a good grade', 'I can\'t finish it alone', 'I want us to be ready', 'you always do this'], ['make a plan today', 'split the slides', 'work on it after school', 'agree you finish them all tonight']]},
+    {id: 'markers', title: 'The Markers', name: 'Priya', bg: 'art:bg-artroom', wall: '#f2e5d6', floor: '#b88d6b',
+      look: {skin: '#a8714b', hair: 'braid', hc: '#1f140f', shirt: '#7a4f8f', pants: '#3b3346', shoe: '#5a3a2a'},
+      setup: 'In art class, Priya keeps taking markers from your desk without asking. Today two came back with the caps off, dried out.',
+      say: {istate: 'I feel frustrated when my markers come back dried out, because I bought them for my project. Could you ask me before you borrow them?', half: 'I\'m frustrated about my markers.', blame: 'You keep stealing my stuff. You\'re so rude.', brush: 'Never mind, take whatever.'},
+      side: 'I didn\'t think you\'d mind. Mine ran out last week and I didn\'t want to ask the teacher again.',
+      hear: {reflect: 'So yours ran out, and you felt awkward asking the teacher for more.', fixfast: 'Just buy your own then.', defend: 'I\'d never take someone\'s stuff without asking.', dismiss: 'That\'s not my problem.'},
+      fix: {both: 'What if we share a cup of markers on the table, and we both put the caps back on?', ask: 'What would make it easy for you to ask me first?', givein: 'Forget it, you can just use them.', demand: 'Don\'t touch my markers ever again.'},
+      end: {stuck: 'Priya slides the markers back without a word. The table is quiet.', okay: 'Priya says she\'ll ask next time. You\'re still a little annoyed about the dried ones.', worked: 'You set a shared cup between you. Priya brings two new markers for it on Monday.'},
+      hidden: 'Your markers ran out, and asking the teacher again felt embarrassing.',
+      why: 'The Speaker bought those markers for a project, and two are dried out now.',
+      other: 'Priya\'s markers ran out, and asking the teacher again felt embarrassing.',
+      lb: [['frustrated', 'annoyed', 'upset', 'like you don\'t respect me'], ['my markers come back dried out', 'the caps are left off', 'my markers are gone from my desk', 'you steal my stuff'],
+        ['I bought them for my project', 'I need them to finish', 'I take care of my things', 'you\'re so rude'], ['agree to ask before borrowing', 'share a cup on the table', 'both put the caps back on', 'agree you never touch them again']]},
+    {id: 'tryout', title: 'The Tryout', name: 'Mateo', bg: 'art:bg-hallway', wall: '#e6dccc', floor: '#a99c8b',
+      look: {skin: '#c68a5e', hair: 'curls', hc: '#2a1a12', shirt: '#c08a2a', pants: '#2c3a4a', shoe: '#33302e'},
+      setup: 'You told Mateo you\'re trying out for the school play and asked him to keep it quiet. Today two kids in your class asked you about it.',
+      say: {istate: 'I felt embarrassed when other kids asked about the tryout, because I wasn\'t ready for people to know. Can we talk about keeping things between us?', half: 'I felt really embarrassed today.', blame: 'You told everyone. You can\'t keep your mouth shut.', brush: 'It doesn\'t matter. Everyone knows now.'},
+      side: 'I only told Ava and Jin because I was excited for you. I didn\'t know it was a big secret.',
+      hear: {reflect: 'So you were excited for me, and you didn\'t know how much I wanted it kept quiet.', fixfast: 'Okay, so just tell them you were joking.', defend: 'I said it was a secret, though.', dismiss: 'Being excited doesn\'t make it okay.'},
+      fix: {both: 'Next time I share something, could I say if it\'s private, and you check before you tell anyone?', ask: 'What would help you know when something is just between us?', givein: 'Whatever, you can tell people stuff.', demand: 'You\'re never telling anyone anything I say again.'},
+      end: {stuck: 'Mateo says \'fine\' and walks to his next class.', okay: 'Mateo says he\'ll be more careful. It still stings a little.', worked: 'Mateo asks Ava and Jin to keep it quiet. After the tryout, he\'s the first one to ask how it went.'},
+      hidden: 'You were proud of your friend, and you didn\'t realize it was meant to be private.',
+      why: 'The Speaker wasn\'t ready for people to know about the tryout.',
+      other: 'Mateo was proud of his friend, and he didn\'t realize it was meant to be private.',
+      lb: [['embarrassed', 'hurt', 'surprised', 'like you can\'t be trusted'], ['kids ask about the tryout', 'people know before I tell them', 'kids bring it up in class', 'you blab to everyone'],
+        ['I\'m not ready for people to know', 'I\'m nervous about it', 'I want to tell people myself', 'you always tell everyone everything'], ['keep private things between us', 'check before sharing', 'talk about what\'s private', 'agree you never tell anyone anything']]},
+    {id: 'lab', title: 'The Lab Controls', name: 'Aiyana', bg: 'art:bg-lab', wall: '#e5e8e1', floor: '#a0a79f',
+      look: {skin: '#8d5a3b', hair: 'long', hc: '#120d0b', shirt: '#2f7f78', pants: '#3a3a3a', shoe: '#3d2c22'},
+      setup: 'In science lab, Aiyana always runs the experiment. You end up just writing things down.',
+      say: {istate: 'I feel bored when I only take notes, because I want to learn the lab too. Could we switch jobs halfway?', half: 'I\'m kind of bored in lab.', blame: 'You always hog everything. You\'re so bossy.', brush: 'It\'s fine, I\'ll write.'},
+      side: 'I just get nervous we\'ll mess up the steps and lose points.',
+      hear: {reflect: 'So you\'re nervous about our grade, and you want to make sure the steps are right.', fixfast: 'Just let me do it next time.', defend: 'I wouldn\'t mess it up.', dismiss: 'That\'s silly. It\'s just a lab.'},
+      fix: {both: 'What if I run it next time and you check the steps with me?', ask: 'What would make you okay with switching?', givein: 'Never mind, you can keep doing it.', demand: 'Starting now, I do it every time.'},
+      end: {stuck: 'Aiyana grabs the beaker again. You pick up the pencil.', okay: 'Aiyana lets you pour one step. It\'s a start.', worked: 'Next lab you run it while Aiyana reads the steps. You both finish early.'},
+      hidden: 'You worry about grades, and doing it yourself feels safer.',
+      why: 'The Speaker wants to learn the lab too, not just take notes.',
+      other: 'Aiyana worries about grades, and doing it herself feels safer.',
+      lb: [['bored', 'left out', 'frustrated', 'like you think I\'m dumb'], ['I only take notes', 'I don\'t get to pour', 'you run every step', 'you\'re bossy'],
+        ['I want to learn it too', 'I learn by doing', 'I want to be ready for the test', 'you\'re a control freak'], ['switch jobs halfway', 'take turns each lab', 'run it together', 'agree I do every step from now on']]},
+    {id: 'weekend', title: 'The Weekend Plan', name: 'Sam', bg: 'art:bg-courtyard', wall: '#d8a07f', floor: '#c6b399',
+      look: {skin: '#f1c8a0', hair: 'bob', hc: '#5e3b22', shirt: '#8c3b52', pants: '#33415a', shoe: '#2b2b2b'},
+      setup: 'Sam planned a movie trip with friends this weekend. You heard about it after, and you weren\'t asked.',
+      say: {istate: 'I felt hurt when I heard about the movie after, because I like hanging out with all of you. Could you include me next time?', half: 'I felt hurt about the movie.', blame: 'You left me out on purpose.', brush: 'I didn\'t want to go anyway.'},
+      side: 'My mom only had room for three in the car. I felt bad about it.',
+      hear: {reflect: 'So there wasn\'t room in the car, and you felt bad about it too.', fixfast: 'Then just take the bus next time.', defend: 'You could have asked to come.', dismiss: 'That sounds made up.'},
+      fix: {both: 'Next time could we pick a place we can all get to, like the park?', ask: 'How could we plan it next time so I\'m in?', givein: 'It\'s okay, you don\'t have to invite me.', demand: 'Next time you have to ask me first.'},
+      end: {stuck: 'Sam says \'okay\' and changes the subject.', okay: 'Sam says they\'ll text you next time.', worked: 'Sam starts a group chat for Saturday at the park, and you\'re the first one added.'},
+      hidden: 'There wasn\'t room, and you felt bad but didn\'t know how to say it.',
+      why: 'The Speaker likes hanging out with Sam\'s group, and heard about the movie after.',
+      other: 'Sam\'s mom only had room for three, and Sam felt bad but didn\'t know how to say it.',
+      lb: [['hurt', 'left out', 'sad', 'like you don\'t want me around'], ['I hear about plans after', 'I\'m not asked', 'I see the photos after', 'you leave me out on purpose'],
+        ['I like hanging out with you', 'I\'d want to come', 'our friendship matters to me', 'you always do this'], ['all go together next time', 'plan something we can all do', 'start a group chat for plans', 'agree you always ask me first']]},
+  ];
+  const COURTYARD = {bg: 'art:bg-courtyard', wall: '#d8a07f', floor: '#c6b399'};
+  // Line Builder: the trap is the fourth tile in each row (the spec's T)
+  const LB_GOOD = ['Feeling word', 'Just the facts', 'About you', 'Doable ask'];
+  const LB_TRAP = ['That\'s a thought, not a feeling', 'That\'s a judgment', 'That\'s about them', 'That\'s a demand'];
+  const LB_WHY = ['Feel like you... is a thought about them, not a feeling. Try one word: hurt, worried, upset.',
+    'That\'s a judgment about them. Say only what happened, what a camera would see.',
+    'That\'s about them. Say why it matters to you.', 'That\'s a demand. Ask for something you could both agree to.'];
+  const LB_ROW = ['Feeling', 'What happened', 'Why it matters', 'Your ask'];
+  const LB_REPLY = ['Okay. I didn\'t know it bugged you that much. Yeah, let\'s try that.', 'I mean, okay, but that part felt kind of harsh.', 'Why are you attacking me?'];
+
+  // narration (the spec's Voice section): welcomes, hints, coach lines, endings, clean run
+  const L = {
+    'welcome-scenes': 'Pick a scene. You\'ll choose what to say, and you can rewind any line to try it another way.',
+    'welcome-builder': 'Build an I-statement. Pick one tile for each part, then check your line.',
+    'welcome-partner': 'Grab a partner. One of you is the Speaker, one is the Listener. Then swap.',
+    'h-say': 'Say how you feel, what happened and what you need.',
+    'h-hear': 'Say back their feeling and their reason before you answer.',
+    'h-fix': 'Look for a plan that works for both of you.',
+    'h-rewind': 'See the faded line? That was last time. Compare how they react.',
+    'h-builder': 'A feeling is one word, like hurt or worried. \'I feel like you\' is a thought, not a feeling.',
+    'h-partner': 'Listener, say back what you heard before you share your side.',
+    'end-worked': 'You worked it out.', 'end-okay': 'Okay for now.', 'end-stuck': 'Still stuck. Try rewinding a line.',
+    'clean': 'Clean run. Every move was a strong one.',
+  };
+  const WELCOME = {scenes: 'welcome-scenes', builder: 'welcome-builder', partner: 'welcome-partner'};
+  const allLines = () => [...new Set([...Object.values(L), ...Object.values(MOVES).map(m => m.coach)])];
+
+  // ======================================================================================
+  // State
+  // ======================================================================================
+  const CLEAN_KEY = 'curio-conflict-coach-clean';
+  let clean = [];
+  try { const v = JSON.parse(localStorage.getItem(CLEAN_KEY) || '[]'); if (Array.isArray(v)) clean = v.filter(x => SC.some(s => s.id === x)); } catch {}
+  const saveClean = () => { try { if (clean.length) localStorage.setItem(CLEAN_KEY, JSON.stringify(clean)); else localStorage.removeItem(CLEAN_KEY); } catch {} };
+
+  const state = {
+    mode: 'scenes', scene: 0,
+    phase: 'picker',            // Scenes: picker, turn, end
+    turn: 0, meter: 1, before: [1, 1, 1], picks: [null, null, null], order: [], revealed: false,
+    last: null,                 // the taken-back line on this turn: {text, name, after}
+    stage: 0,                   // how far the current pick's reveal has got: 0 none, 1 your bubble, 2 meter and face, 3 reply and coach
+    posture: 2,
+    lb: {slots: [null, null, null, null], order: [], checked: false, said: false, row: 0},
+    pc: {swapped: false, both: false},
+  };
+  const sc = () => SC[state.scene];
+
+  // ======================================================================================
+  // Drawing the other kid (SVG, in code): five postures, eased over 400 ms
+  // ======================================================================================
+  // local units: hips on the seat at (0, 0); x toward the viewer is negative (you sit to the left, on the same bench)
+  const POSE = [
+    // f: facing (-1 toward you, 1 turned away); tilt: head tilt in degrees; brow: -1 down and in, 1 raised; mouth: -1 frown, 1 smile
+    {f: 1, tilt: 6, brow: -1, mouth: -.6, mw: 9, lean: 12, arms: 'crossed'},   // Heated: turned away, leaning back, arms folded
+    {f: .4, tilt: -3, brow: -.5, mouth: -.25, mw: 11, lean: 2, arms: 'lap'},    // Tense: half turned, hands gripped together in the lap
+    {f: -.15, tilt: 0, brow: 0, mouth: .05, mw: 13, lean: 0, arms: 'knees'},
+    {f: -.7, tilt: -10, brow: 1, mouth: .2, mw: 11, lean: -3, arms: 'knees'},
+    {f: -.7, tilt: -4, brow: .55, mouth: .9, mw: 16, lean: -5, arms: 'open'},
+  ];
+  function armPts(kind, w) {
+    const sn = [4 - w / 2 + 8, -86], sf = [4 + w / 2 - 8, -86];
+    if (kind === 'crossed') return {near: [sn, [4 - w / 2 - 3, -54], [4 + w / 2 - 2, -62]], far: [sf, [4 + w / 2 + 5, -56], [4 - w / 2 + 4, -66]]};
+    if (kind === 'lap') return {near: [sn, [4 - w / 2 - 6, -50], [-24, -30]], far: [sf, [4 + w / 2 + 3, -50], [-16, -32]]};
+    if (kind === 'open') return {near: [sn, [4 - w / 2 - 12, -46], [-74, -50]], far: [sf, [4 + w / 2 + 4, -46], [-38, -26]]};
+    return {near: [sn, [4 - w / 2 - 8, -46], [-54, -24]], far: [sf, [4 + w / 2 + 4, -46], [-38, -26]]};
+  }
+  function poseVals(i) {
+    const p = POSE[i], w = 58 * (1 - .2 * Math.abs(p.f)), a = armPts(p.arms, w);
+    return {f: p.f, tilt: p.tilt, brow: p.brow, mouth: p.mouth, mw: p.mw, lean: p.lean, w, open: p.arms === 'open' ? 1 : 0,
+      pts: [...a.near, ...a.far].flat()};
+  }
+  const lerpV = (a, b, t) => { const o = {}; for (const k in a) o[k] = Array.isArray(a[k]) ? a[k].map((v, i) => v + (b[k][i] - v) * t) : a[k] + (b[k] - a[k]) * t; return o; };
+  const n1 = v => Math.round(v * 10) / 10;
+  function hairBack(look, f) {
+    const c = look.hc, dx = -f * 5;
+    if (look.hair === 'long') return `<path d="M${dx - 34} -150 Q${dx - 38} -100 ${dx - 30} -78 L${dx + 32} -78 Q${dx + 38} -100 ${dx + 34} -150 Z" fill="${c}"/>`;
+    if (look.hair === 'bob') return `<path d="M${dx - 37} -150 Q${dx - 40} -118 ${dx - 30} -110 L${dx + 30} -110 Q${dx + 40} -118 ${dx + 37} -150 Z" fill="${c}"/>`;
+    if (look.hair === 'braid') {
+      const bx = 22 + f * 8; let s = '';
+      for (let i = 0; i < 5; i++) s += `<ellipse cx="${n1(bx + i * 1.5)}" cy="${-118 + i * 13}" rx="7" ry="8" fill="${c}" stroke="#00000033" stroke-width="1"/>`;
+      return s + `<circle cx="${n1(bx + 7)}" cy="-52" r="4" fill="#d9a441"/>`;
+    }
+    return '';
+  }
+  function hairTop(look, f) {
+    const c = look.hc, dx = -f * 3;
+    if (look.hair === 'short') return `<path d="M${dx - 34} -146 Q${dx - 34} -178 ${dx} -178 Q${dx + 34} -178 ${dx + 34} -146 Q${dx + 18} -160 ${dx} -158 Q${dx - 20} -160 ${dx - 34} -146 Z" fill="${c}"/>`;
+    if (look.hair === 'curls') {
+      let s = ''; const pts = [[-30, -150], [-24, -164], [-12, -173], [2, -176], [16, -172], [27, -162], [32, -149], [-6, -165], [10, -164]];
+      for (const [x, y] of pts) s += `<circle cx="${x + dx}" cy="${y}" r="10" fill="${c}"/>`;
+      return s;
+    }
+    if (look.hair === 'braid') return `<path d="M${dx - 34} -142 Q${dx - 36} -178 ${dx} -178 Q${dx + 36} -178 ${dx + 34} -142 Q${dx + 30} -160 ${dx + 4} -163 Q${dx - 26} -162 ${dx - 34} -142 Z" fill="${c}"/><path d="M${dx + 2} -177 L${dx + 3} -163" stroke="#ffffff22" stroke-width="2"/>`;
+    if (look.hair === 'long') return `<path d="M${dx - 35} -138 Q${dx - 37} -179 ${dx} -179 Q${dx + 37} -179 ${dx + 35} -138 Q${dx + 26} -162 ${dx + 1} -166 Q${dx - 26} -162 ${dx - 35} -138 Z" fill="${c}"/>`;
+    if (look.hair === 'bob') return `<path d="M${dx - 37} -132 Q${dx - 38} -180 ${dx} -180 Q${dx + 38} -180 ${dx + 37} -132 L${dx + 30} -134 Q${dx + 28} -150 ${dx + 14} -154 Q${dx - 12} -150 ${dx - 32} -152 L${dx - 30} -132 Z" fill="${c}"/>`;
+    return '';
+  }
+  function headSVG(look, v) {
+    const dx = v.f * 12, sp = 11 * (1 - .3 * Math.abs(v.f)), ey = -142;
+    const ex1 = dx - sp, ex2 = dx + sp;
+    const bUp = 3.5 * Math.max(v.brow, 0), inner = -v.brow * 3.6;
+    const by = -152 - bUp;
+    const brow = (ex, side) => `<path d="M${n1(ex - 6 * side)} ${n1(by)} L${n1(ex + 5 * side)} ${n1(by + inner)}" stroke="${look.hc === '#5e3b22' ? '#4a2c18' : '#1a120e'}" stroke-width="3.2" stroke-linecap="round"/>`;
+    const my = -123, mh = v.mw / 2;
+    let s = `<g transform="rotate(${n1(v.tilt)} 0 -108)">`;
+    if (!v.noBack) s += hairBack(look, v.f);
+    s += `<rect x="-7" y="-114" width="14" height="18" rx="5" fill="${look.skin}"/>`;
+    s += `<circle cx="0" cy="-140" r="34" fill="${look.skin}"/>`;
+    if (Math.abs(v.f) > .15) s += `<ellipse cx="${n1(-v.f * 27)}" cy="-138" rx="5" ry="8" fill="${look.skin}" stroke="#00000022"/>`;
+    s += `<ellipse cx="${n1(ex1)}" cy="${ey}" rx="${n1(3.6 * (1 - .25 * Math.max(-v.f, 0)))}" ry="4.6" fill="#201713"/>`;
+    s += `<ellipse cx="${n1(ex2)}" cy="${ey}" rx="${n1(3.6 * (1 - .25 * Math.max(v.f, 0)))}" ry="4.6" fill="#201713"/>`;
+    s += `<circle cx="${n1(ex1 + 1)}" cy="${ey - 1.5}" r="1.2" fill="#fff"/><circle cx="${n1(ex2 + 1)}" cy="${ey - 1.5}" r="1.2" fill="#fff"/>`;
+    s += brow(ex1, 1) + brow(ex2, -1);
+    s += `<path d="M${n1(dx + v.f * 4 - 1)} -138 q${n1(-2 + v.f * 3)} 5 1 6" stroke="#00000044" stroke-width="2" fill="none" stroke-linecap="round"/>`;
+    s += `<path d="M${n1(dx - mh)} ${my} Q${n1(dx)} ${n1(my + v.mouth * 8)} ${n1(dx + mh)} ${my}" stroke="#4a2420" stroke-width="3" fill="none" stroke-linecap="round"/>`;
+    s += hairTop(look, v.f);
+    return s + '</g>';
+  }
+  function kidSVG(look, v) {
+    const p = v.pts, P = i => `${n1(p[i * 2])} ${n1(p[i * 2 + 1])}`;
+    const limb = (d, c, w) => `<path d="${d}" stroke="${c}" stroke-width="${w}" fill="none" stroke-linecap="round" stroke-linejoin="round"/>`;
+    const arm = (a, b, c) => limb(`M${P(a)} L${P(b)} L${P(c)}`, look.shirt, 15) + limb(`M${P(a)} L${P(b)}`, '#ffffff1c', 5);
+    const hand = (c, open) => open ? `<ellipse cx="${n1(p[c * 2] - 3)}" cy="${n1(p[c * 2 + 1] - 1)}" rx="10.5" ry="5.5" fill="${look.skin}" transform="rotate(-12 ${n1(p[c * 2])} ${n1(p[c * 2 + 1])})"/><path d="M${n1(p[c * 2] - 10)} ${n1(p[c * 2 + 1] - 1)} q8 3 15 -2" stroke="#00000030" stroke-width="1.5" fill="none"/>` : `<circle cx="${n1(p[c * 2])}" cy="${n1(p[c * 2 + 1])}" r="7.5" fill="${look.skin}"/>`;
+    const crossed = p[4] > 0;   // the near hand reaches across the chest
+    let s = '';
+    // far leg (behind), seated: thigh along the seat toward you, shin down to the floor
+    s += limb('M10 -14 L-40 -18 L-44 60', look.pants, 21) + `<ellipse cx="-52" cy="64" rx="14" ry="6" fill="${look.shoe}"/>`;
+    s += `<g transform="rotate(${n1(v.lean)} 0 0)">`;
+    s += `<g transform="translate(4 0) rotate(${n1(v.tilt)} 0 -108)">${hairBack(look, v.f)}</g>`;
+    if (!crossed) s += arm(3, 4, 5);   // far arm reaches past the body to the far knee
+    const w = v.w, cx = 4;
+    s += `<path d="M${n1(cx - w / 2 - 2)} 0 L${n1(cx - w / 2)} -84 Q${n1(cx - w / 2)} -100 ${n1(cx - w / 2 + 14)} -100 L${n1(cx + w / 2 - 14)} -100 Q${n1(cx + w / 2)} -100 ${n1(cx + w / 2)} -84 L${n1(cx + w / 2 + 2)} 0 Z" fill="${look.shirt}"/>`;
+    s += `<path d="M${n1(cx - w / 2)} -84 L${n1(cx - w / 2 - 2)} 0" stroke="#00000022" stroke-width="5"/>`;
+    s += `<path d="M${n1(cx - 9 + v.f * 8)} -100 Q${n1(cx + v.f * 8)} -90 ${n1(cx + 9 + v.f * 8)} -100" stroke="#00000030" stroke-width="3" fill="none"/>`;
+    s += '</g>';
+    // near leg, in front of the body
+    s += limb('M4 -8 L-58 -12 L-62 64', look.pants, 24) + limb('M2 -14 L-56 -18', '#ffffff18', 7);
+    s += `<ellipse cx="-71" cy="68" rx="15" ry="6.5" fill="${look.shoe}"/>`;
+    s += `<g transform="rotate(${n1(v.lean)} 0 0)">`;
+    if (!crossed) s += hand(5, false);
+    s += `<g transform="translate(4 0)">${headSVG(look, {...v, noBack: true})}</g>`;
+    if (crossed) s += arm(3, 4, 5) + hand(5, false);
+    s += arm(0, 1, 2) + hand(2, v.open > .5);
+    return s + '</g>';
+  }
+  function faceIcon(look) {
+    return `<svg viewBox="-44 -186 88 92" aria-hidden="true">${headSVG(look, poseVals(2))}</svg>`;
+  }
+  let kidV = poseVals(2), kidAnim = 0;
+  function setPosture(i, instant) {
+    state.posture = i;
+    const to = poseVals(i), from = kidV, id = ++kidAnim;
+    sv.setAttribute('aria-label', kidLabel());
+    if (instant || Curio.reduce) { kidV = to; drawKid(); return; }
+    const t0 = performance.now();
+    const step = now => {
+      if (id !== kidAnim) return;
+      const t = clamp((now - t0) / 400, 0, 1), e = t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+      kidV = lerpV(from, to, e); drawKid();
+      if (t < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }
+  function kidLabel() {
+    if (state.mode === 'partner') return 'Two partner cards on a courtyard wall';
+    if (state.mode === 'scenes' && state.phase === 'picker') return 'An empty bench';
+    return `${sc().name} on the bench: ${POSTURE_WORDS[state.posture]}`;
+  }
+
+  // ======================================================================================
+  // The stage: drawn at real pixel size and re-laid out per box
+  // ======================================================================================
+  const sv = $('sv'), lay = $('lay');
+  let G = null;
+  const NS = 'http://www.w3.org/2000/svg';
+  function icon(kind, s, color, sw = 2.4) {
+    const k = s / 24, g = `<g transform="scale(${n1(k * 100) / 100})" fill="none" stroke="${color}" stroke-width="${sw}" stroke-linecap="round" stroke-linejoin="round">`;
+    const d = {
+      flame: `<path d="M0 -11 C5 -5 8 -1 8 3 A8 8 0 0 1 -8 3 C-8 -2 -4 -4 -3 -8 C-1 -5 0 -3 0 -1 C2 -3 2 -7 0 -11 Z" fill="${color}" fill-opacity=".25"/>`,
+      zig: '<path d="M-10 3 L-6 -4 L-2 4 L2 -4 L6 4 L10 -3"/>',
+      flat: '<path d="M-10 0 L10 0"/><circle cx="-10" cy="0" r="1.2"/><circle cx="10" cy="0" r="1.2"/>',
+      ear: '<path d="M-5 -2 C-5 -9 0 -11 3 -11 C8 -11 10 -7 10 -4 C10 1 5 2 4 6 C3 10 0 11 -2 10"/><path d="M-1 -3 C-1 -6 4 -7 5 -4 C6 -2 3 -1 2 1"/>',
+      hands: '<path d="M-2 9 L-2 -1 M-2 -1 L-4 -8 M-2 -1 L-7 -5 M-2 9 C-8 9 -10 4 -9 -1"/><path d="M2 9 L2 -1 M2 -1 L4 -8 M2 -1 L7 -5 M2 9 C8 9 10 4 9 -1"/>',
+      check: '<path d="M-7 0 L-2 6 L8 -6"/>',
+      trap: '<path d="M0 -9 L9 7 L-9 7 Z"/><path d="M0 -2 L0 2"/><circle cx="0" cy="4.6" r=".4"/>',
+    }[kind];
+    return g + d + '</g>';
+  }
+  const cssv = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+  let page = null, lastSize = '', lbNeed = 0;  // lbNeed: the stacked stage grows to hold the whole Line Builder frame
+  function pageLayout() { const w = innerWidth, h = innerHeight; return w >= 1000 && h >= 700 ? 'wide' : w >= 600 && w / h >= 1.25 ? 'compact' : 'stack'; }
+  function relayout(force) {
+    const p = pageLayout();
+    if (p !== page) { page = p; for (const c of ['wide', 'compact', 'stack']) document.body.classList.toggle(c, c === p); }
+    // Line Builder shows one tile row at a time (with tabs) when the four rows would not fit beside the stage
+    document.body.classList.toggle('tabbed', p === 'compact' || p === 'stack' || (p === 'wide' && innerHeight < 760));
+    const st = $('stage');
+    if (page === 'stack') {
+      const w = st.getBoundingClientRect().width || innerWidth;
+      // Scenes and Line Builder: leave about 400 px under the header for the panel, so the move cards or tiles show without scrolling
+      const hh = document.querySelector('header').offsetHeight;
+      st.style.height = Math.round(state.mode === 'partner' ? clamp(w * 1.25, 520, 760) : Math.max(state.mode === 'builder' ? lbNeed : 0, clamp(innerHeight - hh - 400, 320, Math.min(w * .95, 600)))) + 'px';
+      if (state.mode === 'partner' && w > 560) st.style.height = Math.round(clamp(w * .7, 420, 600)) + 'px';
+    } else st.style.height = '';
+    const r = st.getBoundingClientRect(), key = state.mode + ':' + Math.round(r.width) + 'x' + Math.round(r.height);
+    if (key === lastSize && !force) return;
+    lastSize = key;
+    const W = Math.max(300, Math.round(r.width)), H = Math.max(300, Math.round(r.height));
+    sv.setAttribute('width', W); sv.setAttribute('height', H); sv.setAttribute('viewBox', `0 0 ${W} ${H}`);
+    const pad = W < 520 ? 8 : 14;
+    const fs = W < 460 ? 13 : W < 640 ? 14 : W < 900 ? 15.5 : H > 640 ? 18 : 16.5;
+    G = {W, H, pad, fs};
+    drawStage();
+  }
+  function drawStage() {
+    if (!G) return;
+    const {W, H, pad, fs} = G;
+    const place = state.mode === 'scenes' && state.phase !== 'picker' ? sc() : state.mode === 'scenes' ? COURTYARD : COURTYARD;
+    let s = '';
+    // backdrop: flat paper scene first (the fallback), then the painting, softened so the bubbles read
+    s += `<rect width="${W}" height="${H}" fill="${place.wall}"/><rect y="${n1(H * .62)}" width="${W}" height="${n1(H * .38)}" fill="${place.floor}"/>`;
+    const draft = /^data:image\/svg/.test(place.bg);
+    if (!draft) s += `<image href="${place.bg}" x="0" y="0" width="${W}" height="${H}" preserveAspectRatio="xMidYMid slice"/>`;
+    s += `<rect width="${W}" height="${H}" fill="#fff8f1" opacity="${draft ? .2 : .32}"/>`;
+    if (draft) s += `<image href="${place.bg}" x="${n1(W * .45)}" y="${n1(H * .5)}" width="44" height="44" opacity=".8"/>`;
+    // meter and turn strip (Scenes only)
+    let topY = pad;
+    if (state.mode === 'scenes') {
+      const m = meterSVG(W, pad); s += m.svg; topY = m.bottom + 6;
+      const t = stripSVG(W, topY, pad); s += t.svg; topY = t.bottom + 8;
+    }
+    G.topY = topY;
+    // the kid and the bench
+    const kidCol = state.mode === 'partner' ? 0 : clamp(W * .3, 110, 300);
+    let k = Math.min(kidCol / 140, (H - 8 - topY - 6) / 262, 1.45);
+    if (state.mode === 'builder') k = Math.min(k, 1.35);
+    const seatY = H - 6 - 76 * k, kidX = W - pad - 90 * k;  // room on the right for the Heated lean-back
+    Object.assign(G, {k, seatY, kidX, colX: pad, colR: state.mode === 'partner' ? W - pad : kidX - 64 * k - pad});
+    s += benchSVG(W, H, seatY, kidX, k, state.mode === 'partner');
+    const showKid = state.mode === 'builder' || (state.mode === 'scenes' && state.phase !== 'picker');
+    s += `<g id="kidG" transform="translate(${n1(kidX)} ${n1(seatY)}) scale(${n1(k * 1000) / 1000})">${showKid ? kidSVG(sc().look, kidV) : ''}</g>`;
+    if (showKid) {
+      const nameY = Math.min(H - 6, seatY + 80 * k + 2);
+      s += `<text x="${n1(kidX + 4 * k)}" y="${n1(seatY - 190 * k)}" text-anchor="middle" font-size="${Math.max(12, fs - 2)}" font-weight="700" fill="#26211f" stroke="#fff8f1" stroke-width="4" paint-order="stroke">${esc(sc().name)}</text>`;
+    }
+    sv.innerHTML = s;
+    sv.setAttribute('aria-label', kidLabel());
+    placeOverlays();
+  }
+  function drawKid() {
+    const g = sv.querySelector('#kidG');
+    if (g && g.childElementCount) g.innerHTML = kidSVG(sc().look, kidV);
+  }
+  function benchSVG(W, H, seatY, kidX, k, wallOnly) {
+    if (wallOnly) return '';
+    const x1 = kidX + 70 * k, top0 = seatY + 4 * k;
+    const yL = top0 + 26 * k;     // the near end, off to the bottom left, is lower: you are sitting on it
+    let s = '';
+    // backrest planks behind the kid
+    const by1 = seatY - 66 * k, by2 = seatY - 40 * k;
+    for (const [a, b] of [[by1, 13], [by2, 13]]) s += `<path d="M-10 ${n1(a + 20 * k)} L${n1(x1)} ${n1(a)} L${n1(x1)} ${n1(a + b * k)} L-10 ${n1(a + 20 * k + b * k * 1.5)} Z" fill="#8e5f37" stroke="#6b4426" stroke-width="1.5"/>`;
+    s += `<rect x="${n1(x1 - 10 * k)}" y="${n1(by1)}" width="${n1(8 * k)}" height="${n1(top0 - by1)}" fill="#6b4426"/>`;
+    // legs at the far end
+    s += `<rect x="${n1(x1 - 14 * k)}" y="${n1(top0 + 8 * k)}" width="${n1(10 * k)}" height="${n1(Math.max(0, H - top0 - 8 * k))}" fill="#5d3b20"/>`;
+    // seat
+    s += `<path d="M-10 ${n1(yL)} L${n1(x1)} ${n1(top0)} L${n1(x1)} ${n1(top0 + 10 * k)} L-10 ${n1(yL + 24 * k)} Z" fill="#a06d40" stroke="#6b4426" stroke-width="1.5"/>`;
+    s += `<path d="M-10 ${n1(yL + 3 * k)} L${n1(x1)} ${n1(top0 + 2 * k)}" stroke="#c48d5a" stroke-width="${n1(2 * k)}"/>`;
+    return s;
+  }
+  function meterSVG(W, pad) {
+    const x0 = pad, x1 = W - pad, sw = (x1 - x0) / 5, narrow = sw < 120;
+    const ic = W < 520 ? 18 : 24, fw = W < 520 ? 11.5 : W < 800 ? 12.5 : 14;
+    const y0 = pad, iy = y0 + ic / 2 + 2, ty = y0 + ic + 13;  // the marker sits on the bar, clear of the icons above
+    let s = `<rect x="${x0 - 4}" y="${y0 - 4}" width="${x1 - x0 + 8}" height="0" fill="none"/>`;
+    const lines = narrow ? 2 : 1, wy = ty + 8 + fw;
+    const bottom = wy + (lines - 1) * (fw + 1) + 5;
+    s += `<rect x="${x0 - 4}" y="${y0 - 4}" width="${x1 - x0 + 8}" height="${n1(bottom - y0 + 8)}" rx="12" fill="#fffdf9" opacity=".92" stroke="#ecd9c6"/>`;
+    for (let i = 0; i < 5; i++) {
+      const c = cssv(STOPS[i].c), cx = x0 + sw * (i + .5), on = Math.round(state.meter) === i;
+      s += `<rect x="${n1(x0 + sw * i + 1)}" y="${n1(ty - 3)}" width="${n1(sw - 2)}" height="6" rx="3" fill="${c}" opacity="${on ? 1 : .55}"/>`;
+      s += `<g transform="translate(${n1(cx)} ${n1(iy)})">${icon(STOPS[i].icon, ic, c)}</g>`;
+      const ws = narrow ? STOPS[i].lines : [STOPS[i].word];
+      ws.forEach((w, j) => {
+        s += `<text x="${n1(cx)}" y="${n1(wy + j * (fw + 1))}" text-anchor="middle" font-size="${fw}" font-weight="${on ? 800 : 600}" fill="${on ? c : '#26211f'}"${on ? ' text-decoration="underline"' : ''}>${esc(w)}</text>`;
+      });
+    }
+    const mx = v => x0 + sw * (v + .5);
+    if (state.last != null && state.mode === 'scenes') s += `<circle cx="${n1(mx(state.last.after))}" cy="${n1(ty)}" r="7.5" fill="#fff" fill-opacity=".6" stroke="#26211f" stroke-width="2" stroke-dasharray="3 3" opacity=".8"><title>Last time</title></circle>`;
+    s += `<g id="mk" data-y="${n1(ty)}" style="transform:translate(${n1(mx(state.meter))}px,${n1(ty)}px)"><circle r="7.5" fill="#26211f" stroke="#fff" stroke-width="2.5"/></g>`;
+    return {svg: s, bottom};
+  }
+  function stripSVG(W, y, pad) {
+    if (state.phase === 'picker') return {svg: '', bottom: y - 8};
+    const fz = W < 520 ? 12.5 : 14, h = fz + 12;
+    let s = '', x = pad;
+    TURNS.forEach((t, i) => {
+      const label = `${i + 1} ${t.label}`, w = label.length * fz * .56 + 22;
+      const cur = state.phase === 'turn' && state.turn === i, done = state.phase === 'end' || i < state.turn;
+      s += `<rect x="${n1(x)}" y="${n1(y)}" width="${n1(w)}" height="${h}" rx="${h / 2}" fill="${cur ? '#b3471d' : '#fffdf9'}" stroke="${cur ? '#b3471d' : '#c9b29a'}" stroke-width="2"/>`;
+      s += `<text x="${n1(x + w / 2)}" y="${n1(y + h / 2 + fz * .36)}" text-anchor="middle" font-size="${fz}" font-weight="${cur ? 800 : 600}" fill="${cur ? '#fff' : '#26211f'}">${done ? '✓ ' : ''}${esc(label)}</text>`;
+      x += w + 6;
+    });
+    const rest = W - pad - x;
+    const title = `${sc().title}, with ${sc().name}`;
+    if (W >= 800 && rest > title.length * fz * .52) s += `<text x="${W - pad}" y="${n1(y + h / 2 + fz * .36)}" text-anchor="end" font-size="${fz}" font-weight="700" fill="#26211f" stroke="#fff8f1" stroke-width="4" paint-order="stroke">${esc(title)}</text>`;
+    return {svg: s, bottom: y + h};
+  }
+  // animate the meter marker to its new stop (the svg is rebuilt; CSS transition carries the move)
+  function moveMeter(from) {
+    drawStage();
+    const mk = sv.querySelector('#mk');
+    if (!mk || Curio.reduce || from === state.meter) return;
+    const sw = (G.W - 2 * G.pad) / 5, y = mk.dataset.y, to = mk.style.transform;
+    mk.style.transition = 'none';
+    mk.style.transform = `translate(${n1(G.pad + sw * (from + .5))}px,${y}px)`;
+    mk.getBoundingClientRect();
+    mk.style.transition = 'transform .5s ease-in-out';
+    mk.style.transform = to;
+  }
+
+  // ---------- HTML overlays: bubbles, captions, the ending card, the frame, the cards ----------
+  function el(cls, html, style = {}) { const d = document.createElement('div'); d.className = cls; d.innerHTML = html; Object.assign(d.style, style); return d; }
+  function placeOverlays() {
+    const {W, H, pad} = G;
+    lay.replaceChildren(); lay.style.overflowY = ''; lay.style.pointerEvents = '';
+    if (state.mode === 'scenes') placeScenes();
+    else if (state.mode === 'builder') placeBuilder();
+    else placePartner();
+  }
+  // stack bubbles in the column left of the kid: their line on top (tail to the kid), yours rising from the bottom left
+  function fitColumn(items, top, bottom, x, w, fs0) {
+    // items: [{node, at: 'top' | 'bottom', w}] ; shrink the font until they fit (returns false if they never did)
+    let fit = false;
+    for (let fs = fs0; fs >= 11; fs -= 1) {
+      let h = 0;
+      for (const it of items) { it.node.style.fontSize = fs + 'px'; it.node.style.width = Math.round(it.w || w) + 'px'; lay.appendChild(it.node); it.h = it.node.offsetHeight; h += it.h; }
+      h += (items.length - 1) * 16;
+      if (h <= bottom - top) { fit = true; break; }
+    }
+    let yt = top, yb = bottom;
+    for (const it of items.filter(i => i.at === 'top')) { it.node.style.top = Math.round(yt) + 'px'; it.node.style.left = Math.round(it.x != null ? it.x : x) + 'px'; yt += it.h + 14; }
+    for (const it of items.filter(i => i.at === 'bottom').reverse()) { yb -= it.h; it.node.style.top = Math.round(yb) + 'px'; it.node.style.left = Math.round(it.x != null ? it.x : x) + 'px'; yb -= 18; }
+    return fit;
+  }
+  const lastReply = () => state.turn > 0 ? replyFor(state.turn - 1, state.picks[state.turn - 1], state.before[state.turn]) : null;
+  function placeScenes() {
+    const {W, H, pad, fs, topY, colX, colR} = G;
+    const colW = colR - colX;
+    if (state.phase === 'picker') {
+      const w = Math.min(W - 2 * pad, 560);
+      const c = el('cap', `<b>How it works</b>Every scene has three turns: <strong>1 Say it</strong>, <strong>2 Hear them</strong>, <strong>3 Fix it</strong>. You pick what to say. The meter at the top shows how the talk is going, from Heated to Working it out. Rewind any line to try it another way.`);
+      c.style.fontSize = fs + 'px'; c.style.width = w + 'px'; lay.appendChild(c);
+      c.style.left = Math.round((W - w) / 2) + 'px'; c.style.top = Math.round(topY + Math.max(0, (H * .62 - topY - c.offsetHeight) / 2)) + 'px';
+      return;
+    }
+    const items = [];
+    const T = state.turn, pick = state.picks[T];
+    $('lastPanel').hidden = true;
+    // top: the setup before the first line, otherwise their latest reply
+    let theirText = null;
+    if (state.phase === 'end') theirText = replyFor(2, state.picks[2], state.before[2]);
+    else if (pick && state.stage >= 3) theirText = replyFor(T, pick, state.before[T]);
+    else theirText = lastReply();
+    if (theirText) items.push({node: el('bub their', `<span class="who">${esc(sc().name)}</span>${esc(theirText)}`), at: 'top', w: Math.min(colW, 520)});
+    else items.push({node: el('cap', `<b>${esc(sc().title)}</b>${esc(sc().setup)}`), at: 'top', w: Math.min(colW, 560)});
+    const sideBySide = colW > 620;
+    const bw = sideBySide ? (colW - 16) / 2 : Math.min(colW, 520);
+    if (state.phase === 'turn' && state.last) {
+      const n = el('bub last', `<span class="who">Last time · the meter went to ${STOPS[state.last.after].word}</span>${esc(state.last.text)}`);
+      items.push({node: n, at: 'bottom', w: bw, x: sideBySide ? colX : null});
+    }
+    if (state.phase === 'turn' && pick && state.stage >= 1) {
+      const n = el('bub you', `<span class="who">You</span>${esc(sc()[TURNS[T].key][pick])}`);
+      if (state.stage === 1 && !state.shownYou) { n.classList.add('rise'); requestAnimationFrame(() => requestAnimationFrame(() => n.classList.remove('rise'))); state.shownYou = true; }
+      items.push({node: n, at: 'bottom', w: bw, x: sideBySide && state.last ? colX + bw + 16 : null});
+    }
+    if (sideBySide && state.last && pick && state.stage >= 1) {
+      // side by side: both sit on the bottom line
+      const [a, b] = items.slice(-2);
+      fitColumn(items.slice(0, -2), topY, H - pad, colX, colW, fs);
+      for (const it of [a, b]) { it.node.style.fontSize = fs + 'px'; it.node.style.width = Math.round(bw) + 'px'; lay.appendChild(it.node); }
+      const h = Math.max(a.node.offsetHeight, b.node.offsetHeight);
+      a.node.style.left = colX + 'px'; b.node.style.left = Math.round(colX + bw + 16) + 'px';
+      a.node.style.top = Math.round(H - pad - 18 - a.node.offsetHeight) + 'px'; b.node.style.top = Math.round(H - pad - 18 - b.node.offsetHeight) + 'px';
+    } else if (!fitColumn(items, topY, H - pad - 18, colX, colW, fs) && state.last && state.phase === 'turn') {
+      // too small for both (the preview, phones): the reply stays on the stage and Last time moves to the panel
+      const li = items.findIndex(it => it.node.classList.contains('last'));
+      if (li >= 0) { items[li].node.remove(); items.splice(li, 1); }
+      fitColumn(items, topY, H - pad - 18, colX, colW, fs);
+      const lp = $('lastPanel');
+      lp.innerHTML = `<b>Last time · the meter went to ${STOPS[state.last.after].word}</b>${esc(state.last.text)}`;
+      lp.hidden = false;
+    }
+    if (state.phase === 'end') {
+      const e = ENDS[state.meter], w = Math.min(W - 2 * pad, 480), c = cssv(STOPS[ENDSTOP[e]].c);
+      const n = el('endcard', `<div class="big"><svg width="34" height="34" viewBox="-14 -14 28 28" aria-hidden="true">${icon(STOPS[ENDSTOP[e]].icon, 26, c, 2.6)}</svg><span style="color:${c}">${ENDNAME[e]}</span></div><p style="margin:6px 0 0">${esc(sc().end[e])}</p>${state.cleanNow ? '<p style="margin:6px 0 0;font-weight:800;color:#2f6b3a">✓ Clean run</p>' : ''}`);
+      n.style.fontSize = fs + 'px'; n.style.width = w + 'px'; lay.appendChild(n);
+      n.style.left = Math.round((W - w) / 2) + 'px'; n.style.top = Math.round(Math.max(topY, (topY + H) / 2 - n.offsetHeight / 2 - 20)) + 'px';
+      if (state.endFresh) { n.classList.add('rise'); requestAnimationFrame(() => requestAnimationFrame(() => n.classList.remove('rise'))); state.endFresh = false; }
+      for (const b of lay.querySelectorAll('.bub,.cap')) b.style.opacity = .35;
+    }
+  }
+  function lbSentence(withNums) {
+    const sl = state.lb.slots, row = sc().lb;
+    const part = i => sl[i] == null ? (withNums ? `[ ${i + 1} ]` : '___') : row[i][sl[i]];
+    return `I feel ${part(0)} when ${part(1)} because ${part(2)}. Could we ${part(3)}?`;
+  }
+  function placeBuilder() {
+    const {W, H, pad, fs, colX, colR} = G;
+    const colW = colR - colX, top = pad;
+    const ffs = W < 460 ? 17 : W < 700 ? 19 : H > 640 ? 26 : 22;
+    const sl = state.lb.slots, row = sc().lb;
+    const slot = (i, pu = '') => {
+      const v = sl[i], mk = state.lb.checked ? markFor(i) : null;
+      const badge = mk ? `<span class="mk ${mk.cls}">${mk.cls === 'ok' ? '✓' : mk.cls === 'trap' ? '⚠' : '?'} ${esc(mk.label)}</span>` : '';
+      return `<button class="slot${v == null ? '' : ' full'}" data-slot="${i}" aria-label="Part ${i + 1}, ${LB_ROW[i]}: ${v == null ? 'empty' : esc(row[i][v]) + '. Press to empty it'}${mk ? '. ' + esc(mk.label) : ''}"><span>${v == null ? `<span class="num">${i + 1}</span>` : esc(row[i][v])}${pu}</span>${badge}</button>`;
+    };
+    const f = el('lbframe', `I feel ${slot(0)} when ${slot(1)} because ${slot(2, '.')} Could we ${slot(3, '?')}`);
+    const fw = Math.min(colW, 640);
+    for (let s = ffs; s >= 12; s -= 1) {
+      f.style.fontSize = s + 'px'; f.style.width = fw + 'px'; lay.appendChild(f);
+      if (f.offsetHeight < (H - 2 * pad) * (state.lb.said ? .5 : .8)) break;
+    }
+    f.style.left = colX + 'px'; f.style.top = top + 'px';
+    if (page === 'stack' && f.offsetHeight + 2 * pad + 4 > H + 1 && lbNeed < f.offsetHeight + 2 * pad + 4) { lbNeed = f.offsetHeight + 2 * pad + 4; requestAnimationFrame(() => relayout(true)); }
+    f.querySelectorAll('.slot').forEach(b => b.onclick = () => { const i = +b.dataset.slot; if (sl[i] != null) { sl[i] = null; lbChanged(i); const n = lay.querySelector(`.slot[data-slot="${i}"]`); if (n) n.focus(); else { const t = document.querySelector('.trow.on .tile, .trow .tile'); if (t) t.focus(); } } else { state.lb.row = i; buildLB(); } });
+    const items = [], t = trapCount(), y0 = top + f.offsetHeight + 12;
+    if (state.lb.checked) {
+      const bad = sl.map((v, i) => markFor(i)).map((m, i) => ({...m, i})).filter(m => m.cls !== 'ok');
+      const split = m => { const w = m.why || ''; if (!w.startsWith(m.label)) return [m.label + '.', w]; const j = w.indexOf('.') + 1; return [w.slice(0, j), w.slice(j).trim()]; };
+      const html = bad.length ? bad.map(m => { const [h, rest] = split(m); return `<p style="margin:2px 0"><b style="display:inline;text-transform:none;letter-spacing:0;font-size:1em;color:${m.cls === 'trap' ? '#7d221d' : 'inherit'}">${m.cls === 'trap' ? '⚠' : '?'} ${m.i + 1}: ${esc(h)}</b> ${esc(rest)}</p>`; }).join('')
+        : '<p style="margin:2px 0">✓ All four parts work: a feeling word, just the facts, about you, and a doable ask.</p>';
+      items.push({node: el('cap', `<b>Coach check</b>${html}`), at: 'top', w: Math.min(colW, 640)});
+    }
+    if (state.lb.said) {
+      if (state.lb.replied) items.push({node: el('bub their', `<span class="who">${esc(sc().name)}</span>${esc(LB_REPLY[Math.min(t, 2)])}`), at: 'top', w: Math.min(colW, 460)});
+      const you = el('bub you', `<span class="who">You</span>${esc(lbSentence(false))}`);
+      if (state.lb.fresh) { you.classList.add('rise'); requestAnimationFrame(() => requestAnimationFrame(() => you.classList.remove('rise'))); state.lb.fresh = false; }
+      items.push({node: you, at: 'bottom', w: Math.min(colW, 520)});
+    }
+    $('checkPanel').hidden = true;
+    if (items.length && !fitColumn(items, y0, H - pad - 18, colX, colW, fs) && state.lb.checked) {
+      // no room under the frame: the badges stay on the frame and the explanations go in the panel under the buttons
+      const cp = $('checkPanel'); cp.innerHTML = items[0].node.innerHTML; cp.hidden = false;
+      items[0].node.remove(); items.shift();
+    }
+    if (items.length && !fitColumn(items, y0, H - pad - 18, colX, colW, fs) && state.lb.said) {
+      // a tiny box (the 16:10 preview): the talk only; the frame is back on the next change
+      if (!fitColumn(items, y0, H - pad - 18, colX, colW, fs)) { f.remove(); fitColumn(items, top, H - pad - 18, colX, colW, fs); }
+    }
+  }
+  function speakerCard(sw) {
+    const s = sc(), f2 = s.lb[0].slice(0, 2);
+    return `<span class="who">${sw ? 'Partner 2' : 'Partner 1'}</span><h3>🗣 Speaker</h3>
+      <p><span class="lab">Your side</span>${esc(s.setup)}</p>
+      <p class="frame">I feel ___ when ___ because ___. Could we ___?</p>
+      <p><span class="lab">Feeling words you could use</span>${esc(f2[0])} or ${esc(f2[1])}</p>`;
+  }
+  function listenerCard(sw) {
+    const s = sc();
+    return `<span class="who">${sw ? 'Partner 1' : 'Partner 2'}</span><h3>👂 Listener</h3>
+      <p><span class="lab">You are ${esc(s.name)}. Only you know this</span>${esc(s.hidden)}</p>
+      <p class="frame">So you feel ___ because ___. Did I get that right?</p>
+      <p class="frame">From my side, ___.</p>`;
+  }
+  function placePartner() {
+    const {W, H, pad} = G;
+    const narrow = W < 440;
+    const fs0 = W < 460 ? 13.5 : W < 760 ? 14.5 : W >= 1300 && H > 800 ? 20 : H > 640 ? 17.5 : 16;
+    const gw = Math.min(W - 2 * pad, 1180), gx = Math.round((W - gw) / 2);
+    let wrap, n, h;
+    // in the short 16:10 preview the Both sides text goes in the panel under its button, so the cards keep their size
+    const bothHere = state.pc.both && page !== 'compact', bothTxt = `<b>Both sides.</b> ${esc(sc().why)} ${esc(sc().other)}<br>What did each of you not know at the start?`;
+    $('bothPanel').hidden = !(state.pc.both && page === 'compact');
+    $('bothPanel').innerHTML = state.pc.both && page === 'compact' ? bothTxt : '';
+    for (let fs = fs0; fs >= 11; fs -= .5) {
+      lay.replaceChildren();
+      wrap = el('pcwrap', ''); n = null;
+      wrap.style.left = gx + 'px'; wrap.style.top = pad + 'px'; wrap.style.width = gw + 'px'; wrap.style.fontSize = fs + 'px';
+      if (narrow) wrap.style.flexDirection = 'column';
+      if (W < 640) wrap.style.gap = '8px';
+      const a = el('pcard', state.pc.swapped ? listenerCard(true) : speakerCard(false));
+      const b = el('pcard', state.pc.swapped ? speakerCard(true) : listenerCard(false));
+      a.id = 'cardL'; b.id = 'cardR';
+      if (W < 640) for (const c of [a, b]) c.style.padding = '8px 10px';
+      if (narrow) a.style.maxWidth = b.style.maxWidth = 'none';
+      wrap.append(a, b); lay.appendChild(wrap);
+      h = wrap.offsetHeight;
+      if (bothHere) {
+        n = el('both', bothTxt);
+        n.style.fontSize = fs + 'px'; n.style.left = gx + 'px'; n.style.width = gw + 'px'; lay.appendChild(n);
+        h += 10 + n.offsetHeight;
+      }
+      if (h <= H - 2 * pad) break;
+    }
+    if (state.pc.flip) { state.pc.flip = false; if (!Curio.reduce) for (const c of wrap.children) c.classList.add('flip'); }
+    const y0 = Math.max(pad, Math.round((H - h) / 2 - 10));
+    wrap.style.top = y0 + 'px';
+    lay.style.overflowY = h > H - 2 * pad ? 'auto' : '';
+    lay.style.pointerEvents = h > H - 2 * pad ? 'auto' : '';
+    if (h > H - 2 * pad) lay.appendChild(el('', '', {position: 'absolute', top: (y0 + h) + 'px', height: pad + 'px', width: '1px'}));
+    if (n) n.style.top = (y0 + wrap.offsetHeight + 10) + 'px';
+  }
+
+  // ======================================================================================
+  // Scenes
+  // ======================================================================================
+  let timers = [], moment = 0;
+  const later = (ms, fn) => { const id = setTimeout(fn, ms); timers.push(id); };
+  const clearTimers = () => { timers.forEach(clearTimeout); timers = []; };
+  function lcFirst(s) { return /^I[ ']/.test(s) ? s : s[0].toLowerCase() + s.slice(1); }
+  function replyFor(t, move, meterBefore) {
+    if (!move) return null;
+    if (t === 0) {
+      const after = clamp(meterBefore + MOVES[move].d, 0, 4);
+      if (after === 0) return 'Wow. Okay. Well, ' + lcFirst(sc().side);
+      if (move === 'brush') return 'Um, okay. Well, ' + lcFirst(sc().side);
+      return sc().side;
+    }
+    if (t === 1) return {reflect: 'Yeah. Exactly.', fixfast: 'It\'s not that easy.', defend: 'See, you\'re not even listening.', dismiss: 'Forget it then.'}[move];
+    return {both: 'Yeah, that could work.', ask: 'Yeah, that could work.', givein: 'Oh. Okay, if you\'re sure.', demand: 'You can\'t just tell me what to do.'}[move];
+  }
+  function startScene(i) {
+    hush(); clearTimers(); moment++;
+    state.scene = i;
+    Object.assign(state, {phase: 'turn', turn: 0, meter: 1, before: [1, 1, 1], picks: [null, null, null], last: null, stage: 0, cleanNow: false});
+    kidV = poseVals(1); state.posture = 1;
+    state.order = shuffle(TURNS[0].moves);
+    renderPicker(); renderScenesPanel(); relayout(true);
+    narrate(TURNS[0].hint);
+  }
+  function showTurn() {
+    state.order = shuffle(TURNS[state.turn].moves);
+    renderScenesPanel(); drawStage();
+  }
+  function pick(i) {
+    if (state.mode !== 'scenes' || state.phase !== 'turn' || state.picks[state.turn]) return;
+    const move = state.order[i]; if (!move) return;
+    const T = state.turn, my = ++moment;
+    state.picks[T] = move; state.stage = 1; state.shownYou = false;
+    renderScenesPanel(); drawStage();
+    live(`You say: ${sc()[TURNS[T].key][move]}`);
+    const from = state.meter;
+    // the coach line is queued now (so a first tap counts as having queued its own line) and spoken when the box appears
+    cue([MOVES[move].coach], 1400, () => moment === my);
+    later(650, () => {
+      state.meter = clamp(state.before[T] + MOVES[move].d, 0, 4); state.stage = 2;
+      setPosture(state.meter); moveMeter(from);
+    });
+    later(1400, () => {
+      state.stage = 3; state.revealed = true;
+      renderScenesPanel(); drawStage();
+      live(`${sc().name} says: ${replyFor(T, move, state.before[T])}`);
+    });
+  }
+  // finish the current reveal at once (for checking frames)
+  function finishNow() {
+    if (state.phase !== 'turn' || !state.picks[state.turn] || state.stage >= 3) return;
+    clearTimers(); const T = state.turn;
+    state.meter = clamp(state.before[T] + MOVES[state.picks[T]].d, 0, 4); state.stage = 3; state.revealed = true;
+    setPosture(state.meter, true); renderScenesPanel(); drawStage();
+  }
+  function rewind() {
+    if (state.mode !== 'scenes') return;
+    if (state.phase === 'end') { state.phase = 'turn'; state.turn = 2; state.cleanNow = false; }
+    const T = state.turn, move = state.picks[T];
+    if (state.phase !== 'turn' || !move) return;
+    clearTimers(); moment++; hush();
+    const after = clamp(state.before[T] + MOVES[move].d, 0, 4);
+    state.last = {text: sc()[TURNS[T].key][move], name: MOVES[move].name, after};
+    state.picks[T] = null; state.stage = 0; state.revealed = false;
+    state.meter = state.before[T];
+    setPosture(state.meter);
+    state.order = shuffle(TURNS[T].moves);
+    renderScenesPanel(); drawStage();
+    live(`Rewound. Last time the meter went to ${STOPS[after].word}. Pick again.`);
+    narrate('h-rewind');
+    setTimeout(() => { const b = $('moves').querySelector('button'); if (b && document.activeElement && /rewind/i.test(document.activeElement.id)) b.focus(); });
+  }
+  function next() {
+    if (state.mode !== 'scenes' || state.phase !== 'turn' || state.stage < 3) return;
+    clearTimers(); moment++;
+    if (state.turn < 2) {
+      state.turn++; state.before[state.turn] = state.meter; state.last = null; state.stage = 0; state.revealed = false;
+      showTurn(); narrate(TURNS[state.turn].hint);
+      setTimeout(() => { const b = $('moves').querySelector('button'); if (b && document.activeElement && document.activeElement.id === 'next') b.focus(); });
+      return;
+    }
+    // the ending
+    state.phase = 'end'; state.last = null; state.endFresh = true;
+    const e = ENDS[state.meter], isClean = state.picks.every(m => MOVES[m].s);
+    state.cleanNow = isClean;
+    if (isClean && !clean.includes(sc().id)) { clean.push(sc().id); saveClean(); }
+    renderPicker(); renderScenesPanel(); drawStage();
+    if (isClean) Curio.yes();
+    const my = moment;
+    cue(isClean ? [L['end-' + e], L.clean] : [L['end-' + e]], 300, () => moment === my);
+    live(`${ENDNAME[e]}. ${sc().end[e]}${isClean ? ' Clean run.' : ''}`);
+    setTimeout(() => { if (document.activeElement && document.activeElement.id === 'next') $('nextScene').focus(); });
+  }
+  function toPicker() {
+    hush(); clearTimers(); moment++;
+    state.phase = 'picker'; state.last = null; state.meter = 1;
+    renderPicker(); renderScenesPanel(); relayout(true);
+  }
+  function renderPicker() {
+    const pk = $('picker'), full = state.mode === 'scenes' && state.phase === 'picker';
+    pk.className = 'picker ' + (full ? 'full' : 'chips');
+    document.body.classList.toggle('picking', full);  // the welcome hint sits above the five scene cards, inside the fold
+    pk.replaceChildren();
+    SC.forEach((s, i) => {
+      const b = document.createElement('button');
+      b.className = 'scard';
+      const done = clean.includes(s.id);
+      b.innerHTML = `${faceIcon(s.look)}<b>${esc(s.title)} <small>(${esc(s.name)})</small></b><span class="su">${esc(s.setup)}</span>${done ? '<span class="ck" title="Clean run">✓</span>' : ''}`;
+      if (!full) b.innerHTML = `${faceIcon(s.look)}<b>${esc(s.name)}</b>${done ? '<span class="ck">✓</span>' : ''}`;
+      b.setAttribute('aria-label', `${s.title}, with ${s.name}${done ? ', clean run done' : ''}`);
+      if (!full) b.setAttribute('aria-pressed', i === state.scene && !(state.mode === 'scenes' && state.phase === 'picker'));
+      b.onclick = () => chooseScene(i);
+      pk.appendChild(b);
+    });
+    $('clearChecks').hidden = !(full && clean.length);
+  }
+  function chooseScene(i) {
+    const ae = document.activeElement, fromCard = !!ae && $('picker').contains(ae);
+    if (state.mode === 'scenes') startScene(i);
+    else if (state.mode === 'builder') { Curio.stop(); state.scene = i; lbReset(); renderPicker(); buildLB(); drawStage(); }
+    else { Curio.stop(); state.scene = i; state.pc.both = false; $('showBoth').setAttribute('aria-pressed', 'false'); renderPicker(); drawStage(); }
+    // the picker was rebuilt under a keyboard user: go on to the first move card, or stay on the chosen scene's chip
+    if (fromCard && (document.activeElement === document.body || !document.activeElement.isConnected)) {
+      const to = state.mode === 'scenes' ? $('moves').querySelector('.move') : $('picker').querySelector('[aria-pressed="true"]');
+      if (to) to.focus();
+    }
+  }
+  function renderScenesPanel() {
+    const ph = state.phase, T = state.turn, pk = state.picks[T];
+    const ae = document.activeElement, hadFocus = !!ae && ae !== document.body && $('panel').contains(ae);
+    $('moves').hidden = ph !== 'turn';
+    $('actRow').hidden = !(ph === 'turn' && pk && state.stage >= 3);
+    $('endRow').hidden = ph !== 'end';
+    $('clip').hidden = ph !== 'end';
+    $('coach').hidden = !(ph === 'turn' && pk && state.stage >= 3);
+    $('turnLab').textContent = ph === 'picker' ? '' : ph === 'end' ? `${sc().title} · the ending` : `${sc().title} · Turn ${T + 1} of 3: ${TURNS[T].label}`;
+    $('turnLab').hidden = ph === 'picker';
+    setHint(hintText());
+    if (ph === 'turn') {
+      const mv = $('moves'); mv.replaceChildren();
+      state.order.forEach((m, i) => {
+        const b = document.createElement('button');
+        b.className = 'move' + (pk === m ? ' picked' : '');
+        b.dataset.move = m;
+        const tag = pk === m ? MOVES[m].name + (MOVES[m].s ? ' · strong move' : '') : '';
+        b.innerHTML = `<span class="let" aria-hidden="true">${'ABCD'[i]}</span><span class="txt">${esc(sc()[TURNS[T].key][m])}</span><span class="tag">${esc(tag)}</span>`;
+        b.setAttribute('aria-label', `${'ABCD'[i]}: ${sc()[TURNS[T].key][m]}${tag ? '. ' + tag : ''}`);
+        if (pk) b.setAttribute('aria-disabled', 'true');
+        b.onclick = () => pick(i);
+        mv.appendChild(b);
+      });
+      if (pk && state.stage >= 3) $('coachTxt').textContent = MOVES[pk].coach;
+    }
+    if (ph === 'end') {
+      $('clipList').innerHTML = state.picks.map((m, i) => `<li>${esc(MOVES[m].name)}${MOVES[m].s ? ' ★' : ''} <span>(${TURNS[i].label}${MOVES[m].s ? ', strong move' : ''})</span></li>`).join('');
+      $('cleanMsg').hidden = !state.cleanNow;
+    }
+    // keyboard users keep their place: the re-render replaced or hid the focused control, so focus the next one by role
+    const cur = document.activeElement;
+    if (hadFocus && (!cur || cur === document.body || !cur.isConnected || cur.offsetParent === null)) {
+      const mv = $('moves');
+      const to = ph === 'end' ? $('nextScene') : ph !== 'turn' ? $('picker').querySelector('.scard') : pk && state.stage >= 3 ? $('next') : pk ? mv.querySelector('.move.picked') : mv.querySelector('.move');
+      if (to) to.focus();
+    }
+  }
+  function hintText() {
+    if (state.mode === 'builder') return L['h-builder'];
+    if (state.mode === 'partner') return L['h-partner'];
+    if (state.phase === 'picker') return L['welcome-scenes'];
+    if (state.phase === 'end') return L['end-' + ENDS[state.meter]];
+    if (state.last) return L['h-rewind'];
+    return L[TURNS[state.turn].hint];
+  }
+  $('rewind').onclick = rewind; $('endRewind').onclick = rewind; $('next').onclick = next;
+  $('replay').onclick = () => startScene(state.scene);
+  $('nextScene').onclick = () => startScene((state.scene + 1) % SC.length);
+  $('pickScene').onclick = toPicker;
+  $('clearChecks').onclick = () => { clean = []; saveClean(); renderPicker(); live('Checks cleared.'); $('picker').querySelector('button').focus(); };
+
+  // ======================================================================================
+  // Line Builder
+  // ======================================================================================
+  function lbReset() {
+    lbNeed = 0;
+    Object.assign(state.lb, {slots: [null, null, null, null], checked: false, said: false, replied: false, row: 0, order: [0, 1, 2, 3].map(() => shuffle([0, 1, 2, 3]))});
+    clearTimers(); kidV = poseVals(2); state.posture = 2;
+  }
+  const trapCount = () => state.lb.slots.filter(v => v === 3).length;
+  function markFor(i) {
+    const v = state.lb.slots[i];
+    if (v == null) return {cls: 'empty', label: 'Pick one'};
+    return v === 3 ? {cls: 'trap', label: LB_TRAP[i], why: LB_WHY[i]} : {cls: 'ok', label: LB_GOOD[i]};
+  }
+  function buildLB() {
+    const s = sc(), lb = state.lb;
+    const tabs = $('rowTabs'); tabs.replaceChildren();
+    const rows = $('lbRows'); rows.replaceChildren();
+    LB_ROW.forEach((name, r) => {
+      const t = document.createElement('button');
+      t.innerHTML = `${r + 1} ${esc(name)}<span class="f">${lb.slots[r] == null ? '-' : esc(s.lb[r][lb.slots[r]])}</span>`;
+      t.setAttribute('aria-pressed', lb.row === r);
+      t.onclick = () => { lb.row = r; buildLB(); const p = $('rowTabs').querySelector('[aria-pressed="true"]'); if (p) p.focus(); };
+      tabs.appendChild(t);
+      const d = document.createElement('div'); d.className = 'trow' + (lb.row === r ? ' on' : '');
+      d.innerHTML = `<h3>${r + 1} ${esc(name)}</h3>`;
+      const g = document.createElement('div'); g.className = 'tiles'; g.setAttribute('role', 'group'); g.setAttribute('aria-label', `${r + 1} ${name}`);
+      lb.order[r].forEach(ti => {
+        const b = document.createElement('button'); b.className = 'tile'; b.textContent = s.lb[r][ti];
+        b.setAttribute('aria-pressed', lb.slots[r] === ti);
+        b.onclick = () => {
+          lb.slots[r] = ti;
+          if (document.body.classList.contains('tabbed')) { const nx = [1, 2, 3, 0].map(k => (r + k) % 4).find(k => lb.slots[k] == null); if (nx != null) lb.row = nx; }
+          lbChanged(r, true);
+        };
+        g.appendChild(b);
+      });
+      d.appendChild(g); rows.appendChild(d);
+    });
+    $('lbSay').disabled = lb.slots.some(v => v == null);
+  }
+  function lbChanged(r, keepFocus) {
+    const lb = state.lb; clearTimers();
+    lb.checked = false; lb.said = false; lb.replied = false;
+    setPosture(2, false);
+    const f = document.activeElement, tileTxt = f && f.classList.contains('tile') ? f.textContent : null;
+    buildLB(); drawStage();
+    if (keepFocus && tileTxt != null) { const b = [...document.querySelectorAll('.tile')].find(x => x.textContent === tileTxt && x.closest('.trow.on, .lbrows')); if (b && b.offsetParent) b.focus(); else { const t = document.querySelector('.trow.on .tile'); if (t) t.focus(); } }
+  }
+  $('lbCheck').onclick = () => {
+    state.lb.checked = true; buildLB(); drawStage();
+    const n = trapCount(), empty = state.lb.slots.filter(v => v == null).length;
+    live(`Checked. ${state.lb.slots.map((v, i) => markFor(i).label).join('. ')}.`);
+  };
+  $('lbSay').onclick = () => {
+    const lb = state.lb; if (lb.slots.some(v => v == null)) return;
+    clearTimers(); lb.said = true; lb.replied = false; lb.fresh = true; drawStage();
+    live(`You say: ${lbSentence(false)}`);
+    const t = trapCount();
+    later(900, () => { setPosture(t === 0 ? 4 : t === 1 ? 1 : 0); });
+    later(1500, () => { lb.replied = true; drawStage(); live(`${sc().name} says: ${LB_REPLY[Math.min(t, 2)]}`); });
+  };
+  $('lbClear').onclick = () => { const r = state.lb.order; lbReset(); state.lb.order = r; setPosture(2, true); buildLB(); drawStage(); };
+
+  // ======================================================================================
+  // Partner Cards
+  // ======================================================================================
+  $('swap').onclick = () => { state.pc.swapped = !state.pc.swapped; state.pc.flip = true; drawStage(); live(state.pc.swapped ? 'Swapped. Partner 2 is the Speaker now.' : 'Swapped. Partner 1 is the Speaker now.'); };
+  $('pcNext').onclick = () => chooseScene((state.scene + 1) % SC.length);
+  $('showBoth').onclick = () => { state.pc.both = !state.pc.both; $('showBoth').setAttribute('aria-pressed', state.pc.both); drawStage(); };
+  $('print').onclick = () => { buildPrint(); window.print(); };
+  function buildPrint() {
+    const s = sc();
+    $('printCards').innerHTML = `<div class="pc"><h2>Speaker</h2><p class="meta">Conflict Coach, Curio Class · ${esc(s.title)}</p>
+      <p><span class="lab">Your side</span>${esc(s.setup)}</p><p class="frame">I feel ___ when ___ because ___. Could we ___?</p>
+      <p><span class="lab">Feeling words you could use</span>${esc(s.lb[0][0])} or ${esc(s.lb[0][1])}</p></div>
+      <div class="pc"><h2>Listener</h2><p class="meta">Conflict Coach, Curio Class · ${esc(s.title)}</p>
+      <p><span class="lab">You are ${esc(s.name)}. Only you know this</span>${esc(s.hidden)}</p>
+      <p class="frame">So you feel ___ because ___. Did I get that right?</p><p class="frame">From my side, ___.</p></div>`;
+  }
+  addEventListener('beforeprint', buildPrint);
+
+  // ======================================================================================
+  // Narration: one welcome per mode (after the first tap), hints once, coach lines per pick; Read always wins
+  // ======================================================================================
+  const said = new Set(), queued = new Set(), started = [];
+  let tapped = false, vq = Promise.resolve(), vgen = 0, readP = Promise.resolve(), cues = 0;
+  for (const ev of ['pointerdown', 'keydown']) addEventListener(ev, e => {
+    if (tapped) return; tapped = true;
+    const b = e.target && e.target.closest ? e.target.closest('button') : null;
+    if (b && b.id === 'sound') return;
+    const before = cues;
+    // decide after this tap's own handler has run: if it queued its own line, or was Read, skip the welcome (unmarked)
+    const go = () => {
+      removeEventListener('click', go); removeEventListener('keyup', go); clearTimeout(fb);
+      setTimeout(() => { if (b && b.id === 'read') { narrate(WELCOME[state.mode]); return; } if (cues === before) narrate(WELCOME[state.mode]); });
+    };
+    addEventListener('click', go); addEventListener('keyup', go); const fb = setTimeout(go, 1500);
+  }, true);
+  function narrate(key) {
+    if (!tapped || !Curio.sound || said.has(key) || queued.has(key)) return false;
+    queued.add(key); cues++;
+    const gen = vgen, line = L[key];
+    vq = vq.then(async () => {
+      await readP;
+      if (gen !== vgen) return;            // dropped by hush(): not marked said, so its trigger can queue it again
+      queued.delete(key); said.add(key); started.push(line);
+      await Promise.race([say(line), wait(2500 + 80 * line.length)]);
+    });
+    return true;
+  }
+  // a line for this moment only (a coach line, an ending): cuts what is queued, waits for Read, dropped if the moment passed
+  function cue(lines, delay, ok) {
+    if (!tapped || !Curio.sound) return;
+    const gen = ++vgen; queued.clear(); cues++;
+    vq = (async () => {
+      await wait(delay); await readP;
+      if (gen !== vgen || !ok()) return;
+      started.push(...lines);
+      const len = lines.join(' ').length;
+      await Promise.race([say(lines), wait(2500 + 80 * len)]);
+    })();
+  }
+  function hush() { vgen++; queued.clear(); vq = Promise.resolve(); readP = Promise.resolve(); Curio.stop(); }   // a stopped Read clip never ends, so nothing may wait on it
+  function readParts() {
+    const p = [$('hint').textContent];
+    if (state.mode === 'scenes' && state.phase === 'turn' && state.picks[state.turn] && state.stage >= 3) p.push(MOVES[state.picks[state.turn]].coach);
+    if (state.mode === 'scenes' && state.phase === 'end' && state.cleanNow) p.push(L.clean);
+    return p;
+  }
+  function readNow() { hush(); const p = readParts(), n = p.join(' ').length; for (const k in L) if (p.includes(L[k]) && k.startsWith('welcome')) said.add(k);   // Read said the welcome: don't repeat it
+    started.push('READ:' + p.join(' | ')); readP = Promise.race([say(p, true), wait(2500 + 80 * n)]).catch(() => {}); }
+  function setHint(h) { if ($('hint').textContent !== h) $('hint').textContent = h; }
+  function live(s) { $('live').textContent = s; }
+
+  // ======================================================================================
+  // Modes, keys, start
+  // ======================================================================================
+  function setMode(m) {
+    hush(); clearTimers(); moment++;
+    state.mode = m;
+    document.body.dataset.mode = m;
+    for (const k of ['scenes', 'builder', 'partner']) $('m-' + k).setAttribute('aria-pressed', k === m);
+    for (const el of document.querySelectorAll('[data-modes]')) el.hidden = !el.dataset.modes.split(' ').includes(m);
+    $('turnLab').hidden = true;
+    if (m === 'scenes') {
+      // switching modes resets the scene: back to the picker
+      Object.assign(state, {phase: 'picker', turn: 0, meter: 1, picks: [null, null, null], last: null, stage: 0});
+      renderScenesPanel();
+    } else if (m === 'builder') { lbReset(); setPosture(2, true); buildLB(); setHint(L['h-builder']); }
+    else { state.pc = {swapped: false, both: false}; $('showBoth').setAttribute('aria-pressed', 'false'); setHint(L['h-partner']); }
+    renderPicker();
+    lastSize = ''; relayout(true);
+    narrate(WELCOME[m]);
+  }
+  for (const k of ['scenes', 'builder', 'partner']) $('m-' + k).onclick = () => { if (state.mode !== k) setMode(k); };
+  new ResizeObserver(() => relayout()).observe($('stage'));
+  addEventListener('resize', () => relayout());
+
+  // projector keys in Scenes: 1 to 4 or A to D pick, R rewinds, N goes on
+  addEventListener('keydown', e => {
+    if (e.ctrlKey || e.metaKey || e.altKey || state.mode !== 'scenes') return;
+    const k = e.key.toLowerCase();
+    const i = '1234'.indexOf(k) >= 0 ? '1234'.indexOf(k) : 'abcd'.indexOf(k);
+    if (k.length === 1 && i >= 0 && state.phase === 'turn' && !state.picks[state.turn]) { e.preventDefault(); pick(i); const b = $('moves').children[i]; if (b) b.focus(); }
+    else if (k === 'r' && ((state.phase === 'turn' && state.picks[state.turn] && state.stage >= 3) || state.phase === 'end')) { e.preventDefault(); rewind(); }
+    else if (k === 'n' && state.phase === 'turn' && state.stage >= 3) { e.preventDefault(); next(); }
+  });
+
+  Curio.onSound(on => { if (on && tapped) narrate(WELCOME[state.mode]); });
+  Curio.onMotion(() => drawStage());
+  Curio.init({clips: "voice:*", rate: .95, readFallback: () => $('hint').textContent});
+  $('read').onclick = readNow;
+
+  window.__tool = {state, setMode, allLines, startScene, pick, rewind, next, finishNow, toPicker, chooseScene, said, queued, started, MOVES, TURNS, SC,
+    lbPick: (r, ti) => { state.lb.slots[r] = ti; lbChanged(r); }, lbCheck: () => $('lbCheck').click(), lbSay: () => $('lbSay').click(),
+    hint: () => $('hint').textContent, layout: () => ({page, G}), clean: () => clean.slice(),
+    curio: () => ({last: Curio.last, sound: Curio.sound, reduce: Curio.reduce})};
+  setMode('scenes');
+})();
+</script>
+</body>
+</html>

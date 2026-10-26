@@ -11,13 +11,13 @@ Say the same hard thing two ways and watch the other kid react: rewind any line 
 ## Who and how
 - Grade 6-8, Social and Emotional Learning, module "Conflict Resolution (SEL)".
 - Driver: students or teacher. Students pair up on one laptop, or a teacher runs Scenes on a projector during advisory and the class votes on each move out loud. 15 to 25 minutes.
-- Standards: CASEL Relationship Skills (communicating effectively, listening actively, resolving conflicts constructively). Also matches Illinois SEL Standard 2D (prevent, manage and resolve interpersonal conflicts in constructive ways).
+- Standards: CASEL Relationship Skills (communicating effectively, listening actively, resolving conflicts constructively).
 - Sensitive by default: every scene is fictional and ordinary. The tool never asks a student to type, pick or say anything about their own life, family or classmates. There is no text box anywhere in the tool.
 
 ## Screens and modes
 Header: title "Conflict Coach", mode tabs `Scenes`, `Line Builder`, `Partner Cards` (`.seg`), icon buttons `Motion`, `Sound`, `Read`. Opens in Scenes on the scene picker. Stage on the left, panel on the right (`.panel`, hint paragraph id `hint`).
 
-**Scene picker (top of the panel in Scenes and Line Builder).** Five cards, each with the other kid's name, a one-line setup and a small drawn face: `The Slides` (Jordan), `The Jacket` (Priya), `The Lunch Seat` (Mateo), `The Lab Controls` (Aiyana), `The Weekend Plan` (Sam). A small check appears on a card after a Clean run (see Scenes).
+**Scene picker (top of the panel in Scenes and Line Builder).** Five cards, each with the other kid's name, a one-line setup and a small drawn face: `The Slides` (Jordan), `The Markers` (Priya), `The Tryout` (Mateo), `The Lab Controls` (Aiyana), `The Weekend Plan` (Sam). A small check appears on a card after a Clean run (see Scenes).
 
 **Scenes (the main mode, explore first).**
 - Stage: a bench-and-wall backdrop for the scene's place (art below), the other kid drawn in code on the right, sitting at the far end of the bench, half facing you. You are never drawn: the view is from your seat. Their speech bubble is above them; your line appears as a bubble rising from the bottom left.
@@ -39,7 +39,7 @@ Header: title "Conflict Coach", mode tabs `Scenes`, `Line Builder`, `Partner Car
 - Stage: two big cards side by side, `Speaker` and `Listener`, for the current scene.
 - Speaker card: the situation from the speaker's side and the frame "I feel ___ when ___ because ___. Could we ___?" with two feeling-word suggestions.
 - Listener card: the other side's hidden reason (from Content) and the frame "So you feel ___ because ___. Did I get that right?" then "From my side, ___."
-- Buttons: `Swap roles` (cards flip with a short turn, instant when Motion is off), `Next scene`, `Show both sides` (reveals both reasons for the after-talk), `Print cards`.
+- Buttons: `Swap roles` (cards flip with a short turn, instant when Motion is off), `Next scene`, `Show both sides` (reveals both reasons for the after-talk, in the third person so both partners can read it: "Both sides." the Speaker's reason, the other kid's reason, then "What did each of you not know at the start?"; in the short 16:10 preview it shows in the panel under the buttons), `Print cards`.
 
 ## Content
 Strong moves are marked (S). Meter changes: I-statement +2, half I-statement +1, brush-off 0, blame -1; reflective listen +2, fix-it-fast 0, defend -1, dismiss -1; both-sides plan +2 (S), ask what works +2 (S), give in 0, demand -1. The meter starts at `Tense` (stop 2 of 5) and clamps at both ends. Ending by final stop: Heated or Tense = still stuck, Calm = okay for now, Listening or Working it out = worked it out.
@@ -66,26 +66,26 @@ Coach lines (one per move, shown after every pick, with the scene's name filled 
 - Endings: stuck "Jordan goes quiet and walks off. The slides are still blank." Okay "Jordan says they'll try. You're both still a little worried." Worked "You meet in the library Thursday. Jordan finishes three slides and you help with the fourth."
 - Hidden reason (Partner Cards): "Your house is crowded and loud this week and you're embarrassed to say so."
 
-**2. The Jacket (Priya).** Setup: "You lent Priya your favorite jacket. She gave it back with a juice stain on the sleeve."
-- Say it: I-statement "I feel upset when my jacket comes back stained, because it's my favorite. Could we figure out how to clean it?" Half "I'm upset about my jacket." Blame "You ruined my jacket. You're so careless." Brush-off "It's fine. Forget it."
-- Their side: "I didn't even see it. I'm really sorry. I was hoping you wouldn't be mad."
-- Hear them: Reflective "So you didn't notice it, and you were worried I'd be mad." Fix-it-fast "Just pay for a new one." Defend "Well, I'd have noticed." Dismiss "Not noticing doesn't make it okay."
-- Fix it: Both-sides "Could you help me try to wash it out this weekend?" Ask "What do you think we should do about it?" Give in "Don't worry about it, it's just a jacket." Demand "You have to buy me a new one."
-- Endings: stuck "Priya says sorry again but won't look at you." Okay "Priya offers to try a stain remover. It's a start." Worked "You wash it together Saturday. Most of the stain comes out."
-- Hidden reason: "You didn't see the stain, and you feel awful that you might lose a friend over it."
+**2. The Markers (Priya).** Setup: "In art class, Priya keeps taking markers from your desk without asking. Today two came back with the caps off, dried out."
+- Say it: I-statement "I feel frustrated when my markers come back dried out, because I bought them for my project. Could you ask me before you borrow them?" Half "I'm frustrated about my markers." Blame "You keep stealing my stuff. You're so rude." Brush-off "Never mind, take whatever."
+- Their side: "I didn't think you'd mind. Mine ran out last week and I didn't want to ask the teacher again."
+- Hear them: Reflective "So yours ran out, and you felt awkward asking the teacher for more." Fix-it-fast "Just buy your own then." Defend "I'd never take someone's stuff without asking." Dismiss "That's not my problem."
+- Fix it: Both-sides "What if we share a cup of markers on the table, and we both put the caps back on?" Ask "What would make it easy for you to ask me first?" Give in "Forget it, you can just use them." Demand "Don't touch my markers ever again."
+- Endings: stuck "Priya slides the markers back without a word. The table is quiet." Okay "Priya says she'll ask next time. You're still a little annoyed about the dried ones." Worked "You set a shared cup between you. Priya brings two new markers for it on Monday."
+- Hidden reason (Partner Cards): "Your markers ran out, and asking the teacher again felt embarrassing."
 
-**3. The Lunch Seat (Mateo).** Setup: "You asked Mateo to save you a seat at lunch. When you got there, he'd given it to someone else."
-- Say it: I-statement "I felt left out when my seat was gone, because I was looking forward to sitting with you. Can we work out saving seats?" Half "I felt left out at lunch." Blame "You gave away my seat. You're a terrible friend." Brush-off "I don't care where I sit."
-- Their side: "The new kid, Theo, didn't know anyone. I thought you'd be there way sooner."
-- Hear them: Reflective "So you were trying to help Theo, and you didn't know I'd be late." Fix-it-fast "Okay, so just tell him to move tomorrow." Defend "I was only five minutes late." Dismiss "That doesn't matter, you promised."
-- Fix it: Both-sides "Could we pull up another chair so all three of us fit?" Ask "How could we do it tomorrow so it works for both of us?" Give in "Fine, I'll sit somewhere else." Demand "Tomorrow you save my seat, no matter what."
-- Endings: stuck "Mateo shrugs and turns back to Theo." Okay "Mateo says he'll try to save a seat next time." Worked "The next day there are three chairs. Theo laughs at your joke."
-- Hidden reason: "A new kid had nowhere to sit, and you wanted to be kind."
+**3. The Tryout (Mateo).** Setup: "You told Mateo you're trying out for the school play and asked him to keep it quiet. Today two kids in your class asked you about it."
+- Say it: I-statement "I felt embarrassed when other kids asked about the tryout, because I wasn't ready for people to know. Can we talk about keeping things between us?" Half "I felt really embarrassed today." Blame "You told everyone. You can't keep your mouth shut." Brush-off "It doesn't matter. Everyone knows now."
+- Their side: "I only told Ava and Jin because I was excited for you. I didn't know it was a big secret."
+- Hear them: Reflective "So you were excited for me, and you didn't know how much I wanted it kept quiet." Fix-it-fast "Okay, so just tell them you were joking." Defend "I said it was a secret, though." Dismiss "Being excited doesn't make it okay."
+- Fix it: Both-sides "Next time I share something, could I say if it's private, and you check before you tell anyone?" Ask "What would help you know when something is just between us?" Give in "Whatever, you can tell people stuff." Demand "You're never telling anyone anything I say again."
+- Endings: stuck "Mateo says 'fine' and walks to his next class." Okay "Mateo says he'll be more careful. It still stings a little." Worked "Mateo asks Ava and Jin to keep it quiet. After the tryout, he's the first one to ask how it went."
+- Hidden reason: "You were proud of your friend, and you didn't realize it was meant to be private."
 
 **4. The Lab Controls (Aiyana).** Setup: "In science lab, Aiyana always runs the experiment. You end up just writing things down."
 - Say it: I-statement "I feel bored when I only take notes, because I want to learn the lab too. Could we switch jobs halfway?" Half "I'm kind of bored in lab." Blame "You always hog everything. You're so bossy." Brush-off "It's fine, I'll write."
 - Their side: "I just get nervous we'll mess up the steps and lose points."
-- Hear them: Reflective "So you're nervous about our grade, so you want to make sure the steps are right." Fix-it-fast "Just let me do it next time." Defend "I wouldn't mess it up." Dismiss "That's silly. It's just a lab."
+- Hear them: Reflective "So you're nervous about our grade, and you want to make sure the steps are right." Fix-it-fast "Just let me do it next time." Defend "I wouldn't mess it up." Dismiss "That's silly. It's just a lab."
 - Fix it: Both-sides "What if I run it next time and you check the steps with me?" Ask "What would make you okay with switching?" Give in "Never mind, you can keep doing it." Demand "Starting now, I do it every time."
 - Endings: stuck "Aiyana grabs the beaker again. You pick up the pencil." Okay "Aiyana lets you pour one step. It's a start." Worked "Next lab you run it while Aiyana reads the steps. You both finish early."
 - Hidden reason: "You worry about grades, and doing it yourself feels safer."
@@ -98,14 +98,14 @@ Coach lines (one per move, shown after every pick, with the scene's name filled 
 - Endings: stuck "Sam says 'okay' and changes the subject." Okay "Sam says they'll text you next time." Worked "Sam starts a group chat for Saturday at the park, and you're the first one added."
 - Hidden reason: "There wasn't room, and you felt bad but didn't know how to say it."
 
-Their replies, same in every scene: after Say it they always answer with the scene's "Their side" line; if the meter landed on Heated, it starts "Wow. Okay. Well, " and they fold their arms; after a brush-off it starts "Um, okay. Well, ". After Hear them: reflective "Yeah. Exactly." Fix-it-fast "It's not that easy." Defend "See, this is why I didn't say anything." Dismiss "Forget it then." After Fix it: both-sides or ask what works "Yeah, that could work." Give in "Oh. Okay, if you're sure." Demand "You can't just tell me what to do." Then the ending card.
+Their replies, same in every scene: after Say it they always answer with the scene's "Their side" line; if the meter landed on Heated, it starts "Wow. Okay. Well, " and they fold their arms; after a brush-off it starts "Um, okay. Well, ". After Hear them: reflective "Yeah. Exactly." Fix-it-fast "It's not that easy." Defend "See, you're not even listening." Dismiss "Forget it then." After Fix it: both-sides or ask what works "Yeah, that could work." Give in "Oh. Okay, if you're sure." Demand "You can't just tell me what to do." Then the ending card.
 
 **Line Builder tiles** (per scene; one trap per row, marked T, all others good):
-- The Slides: feeling `stressed`, `worried`, `frustrated`, T `like you don't care`. When `our slides are blank on Wednesday`, `the plan isn't done yet`, `we're two days from the due date`, T `you're being lazy`. Because `I want a good grade`, `I can't finish it alone`, `I want us to be ready`, T `you always do this`. Ask `make a plan today`, `split the slides`, `work on it after school`, T `do it right now`.
-- The Jacket: `upset`, `sad`, `disappointed`, T `like you're careless`. When `my jacket came back stained`, `there's juice on the sleeve`, `I saw the stain`, T `you wrecked it`. Because `it's my favorite`, `I wear it a lot`, `I saved up for it`, T `you never take care of things`. Ask `try to clean it together`, `look up how to get stains out`, `talk about what to do`, T `buy me a new one`.
-- The Lunch Seat: `left out`, `disappointed`, `sad`, T `that you're a bad friend`. When `my seat was gone`, `I couldn't find a spot`, `I ate at another table`, T `you ditched me`. Because `I wanted to sit with you`, `lunch is my favorite part of the day`, `I was looking forward to it`, T `you only care about the new kid`. Ask `pull up another chair`, `plan seats together`, `all sit together tomorrow`, T `never do that again`.
-- The Lab Controls: `bored`, `left out`, `frustrated`, T `like you think I'm dumb`. When `I only take notes`, `I don't get to pour`, `you run every step`, T `you're bossy`. Because `I want to learn it too`, `I learn by doing`, `I want to be ready for the test`, T `you're a control freak`. Ask `switch jobs halfway`, `take turns each lab`, `run it together`, T `let me do everything`.
-- The Weekend Plan: `hurt`, `left out`, `sad`, T `that you don't like me`. When `I heard about the movie after`, `I wasn't asked`, `I saw the photos`, T `you left me out on purpose`. Because `I like hanging out with you`, `I'd have wanted to come`, `you're my friends`, T `you always do this`. Ask `include me next time`, `plan something we can all do`, `text me about plans`, T `always ask me first`.
+- The Slides: feeling `stressed`, `worried`, `frustrated`, T `like you don't care`. When `our slides are blank on Wednesday`, `the plan isn't done yet`, `we're two days from the due date`, T `you're being lazy`. Because `I want a good grade`, `I can't finish it alone`, `I want us to be ready`, T `you always do this`. Ask `make a plan today`, `split the slides`, `work on it after school`, T `agree you finish them all tonight`.
+- The Markers: `frustrated`, `annoyed`, `upset`, T `like you don't respect me`. When `my markers come back dried out`, `the caps are left off`, `my markers are gone from my desk`, T `you steal my stuff`. Because `I bought them for my project`, `I need them to finish`, `I take care of my things`, T `you're so rude`. Ask `agree to ask before borrowing`, `share a cup on the table`, `both put the caps back on`, T `agree you never touch them again`.
+- The Tryout: `embarrassed`, `hurt`, `surprised`, T `like you can't be trusted`. When `kids ask about the tryout`, `people know before I tell them`, `kids bring it up in class`, T `you blab to everyone`. Because `I'm not ready for people to know`, `I'm nervous about it`, `I want to tell people myself`, T `you always tell everyone everything`. Ask `keep private things between us`, `check before sharing`, `talk about what's private`, T `agree you never tell anyone anything`.
+- The Lab Controls: `bored`, `left out`, `frustrated`, T `like you think I'm dumb`. When `I only take notes`, `I don't get to pour`, `you run every step`, T `you're bossy`. Because `I want to learn it too`, `I learn by doing`, `I want to be ready for the test`, T `you're a control freak`. Ask `switch jobs halfway`, `take turns each lab`, `run it together`, T `agree I do every step from now on`.
+- The Weekend Plan: `hurt`, `left out`, `sad`, T `like you don't want me around`. When `I hear about plans after`, `I'm not asked`, `I see the photos after`, T `you leave me out on purpose`. Because `I like hanging out with you`, `I'd want to come`, `our friendship matters to me`, T `you always do this`. Ask `all go together next time`, `plan something we can all do`, `start a group chat for plans`, T `agree you always ask me first`.
 
 Trap explanations: feeling row "Feel like you... is a thought about them, not a feeling. Try one word: hurt, worried, upset." When row "That's a judgment about them. Say only what happened, what a camera would see." Because row "That's about them. Say why it matters to you." Ask row "That's a demand. Ask for something you could both agree to."
 
@@ -113,7 +113,7 @@ Line Builder replies: no traps "Okay. I didn't know it bugged you that much. Yea
 
 ## Interactions in detail
 - Scenes: the four cards are buttons (44 px tall minimum, full sentence, keyboard focusable). Picking is one tap. Cards dim but stay readable after a pick; the picked one gets a border and the move's name.
-- Faces, drawn in code (SVG), like tools/feelings-faces: a head with hair, brows, eyes, mouth, plus a body with arms and a slight body turn. Five postures matching the meter: Heated (brows down, mouth tight, arms crossed, turned away), Tense (arms crossed, half turned), Calm (neutral mouth, hands on knees), Listening (facing you, head tilt, brows up), Working it out (small smile, facing you, one hand open). Changes ease over 400 ms, instant when Motion is off.
+- Faces, drawn in code (SVG), like tools/feelings-faces: a head with hair, brows, eyes, mouth, plus a body with arms and a slight body turn. Five postures matching the meter: Heated (brows down, mouth tight, arms crossed, turned away and leaning back), Tense (half turned, hands gripped together in the lap), Calm (neutral mouth, hands on knees), Listening (facing you, head tilt, brows up), Working it out (small smile, facing you, one hand open). Changes ease over 400 ms, instant when Motion is off.
 - Characters: Jordan (skin #7a4a2e, short black hair), Priya (#a8714b, long dark braid), Mateo (#c68a5e, dark curls), Aiyana (#8d5a3b, long straight black hair), Sam (#f1c8a0, brown bob). Simple clothes in scene colors. Names and looks are a mix on purpose; no scene ties a trait to a group.
 - Rewind can be pressed any number of times on the same turn; only the most recent taken-back line shows as the faded "Last time" bubble. Rewind on turn 2 or 3 restores the meter to its value before that turn. A Clean run counts only the final three lines kept, so rewinding is never punished.
 - Replay scene starts the meter at Tense again. Switching scenes or modes calls `Curio.stop()` and resets the scene.
@@ -133,8 +133,8 @@ Line Builder replies: no traps "Okay. I didn't know it bugged you that much. Yea
 ## Art
 Backdrops only, no people or figures anywhere (local FLUX). Characters are drawn in code. Each is a full-frame 16:9 backdrop behind the bench, softened with a light overlay so the bubbles read.
 - bg-classroom: "an empty middle school classroom in warm afternoon light, tables with laptops closed, a blank whiteboard, soft painted illustration"; 16:9; cutout no; people no; The Slides.
-- bg-hallway: "an empty school hallway with a row of blue lockers and a wooden bench, warm light, soft painted illustration"; 16:9; cutout no; people no; The Jacket.
-- bg-cafeteria: "an empty school cafeteria with long tables and orange chairs, sunny windows, soft painted illustration"; 16:9; cutout no; people no; The Lunch Seat.
+- bg-artroom: "an empty middle school art room with paint-splashed tables, jars of brushes and blank paper on the walls, warm light, soft painted illustration"; 16:9; cutout no; people no; The Markers.
+- bg-hallway: "an empty school hallway with a row of blue lockers and a wooden bench, warm light, blank bulletin board, soft painted illustration"; 16:9; cutout no; people no; The Tryout.
 - bg-lab: "an empty school science lab with beakers and a sink on a long counter, blank wall posters, soft painted illustration"; 16:9; cutout no; people no; The Lab Controls.
 - bg-courtyard: "an empty school courtyard with a brick wall, a wooden bench and a small tree, late afternoon, soft painted illustration"; 16:9; cutout no; people no; The Weekend Plan and the Line Builder and Partner Cards stage.
 The bench in front is drawn in code so the characters sit on it. If an image fails, the stage falls back to a flat paper scene with the bench.
@@ -160,7 +160,6 @@ none
 
 ## Sources
 - CASEL, "What Is the CASEL Framework?" (Relationship Skills: communicating effectively, listening actively, resolving conflicts constructively): https://casel.org/fundamentals-of-sel/what-is-the-casel-framework/
-- Illinois State Board of Education, Social/Emotional Learning Standards, Goal 2, Standard 2D: https://www.isbe.net/Pages/Social-Emotional-Learning-Standards.aspx (builder: check the 2D wording before quoting it in notes)
 - I-statements ("I-messages") as a way to state a problem without blame: Thomas Gordon, Parent Effectiveness Training (1970); Gordon Training International, "I-Messages": https://www.gordontraining.com/
 - Active (reflective) listening, saying back the speaker's feeling and meaning: Carl R. Rogers and Richard E. Farson, "Active Listening" (1957), University of Chicago Industrial Relations Center.
 - The coach lines say "usually" and "easier to hear", not "always" or "proven". Keep that wording.

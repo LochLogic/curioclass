@@ -1,0 +1,25 @@
+{
+  "id": "conflict-coach",
+  "status": "beta",
+  "hook": "Say the same hard thing two ways: rewind any line of a fictional argument, swap a blaming line for an I-statement or a real reflective listen, and watch the other kid's face, reply and the conversation meter change.",
+  "outcome": "Use I-statements, reflective listening and both-sides plans to work through an ordinary conflict with a peer",
+  "driver": "students or teacher",
+  "minutes": "15-25",
+  "modes": [
+    "Scenes",
+    "Line Builder",
+    "Partner Cards"
+  ],
+  "grades_label": "Grades 6-8",
+  "sources": [
+    "CASEL, What Is the CASEL Framework? (Relationship Skills: communicating effectively, listening actively, resolving conflicts constructively), casel.org",
+    "I-statements (I-messages): Thomas Gordon, Parent Effectiveness Training (1970); Gordon Training International, I-Messages, gordontraining.com",
+    "Active (reflective) listening: Carl R. Rogers and Richard E. Farson, Active Listening (1957), University of Chicago Industrial Relations Center",
+    "Backdrops drawn with FLUX.1-schnell (Apache 2.0) on a local computer, edited for Curio Class",
+    "Characters, meter and bench drawn in code",
+    "Illustrations drawn with FLUX.1-schnell (Apache 2.0) on a local computer, edited for Curio Class",
+    "Narration generated with Qwen3-TTS (Apache 2.0), cloning a Google Gemini text-to-speech voice"
+  ],
+  "third_party": [],
+  "updated": "2026-10-26"
+}

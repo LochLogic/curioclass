@@ -1,0 +1,60 @@
+{
+  "style": "Soft painted illustration for a middle school SEL tool: warm, friendly light, gentle textures, calm colors, simple shapes, nothing busy.",
+  "assets": [
+    {
+      "name": "bg-classroom",
+      "prompt": "Empty background: an empty middle school classroom in warm afternoon light, tables with closed laptops along the back, a blank whiteboard on the far wall, a window with soft daylight at the right, soft painted illustration. Seen straight on at seated eye level. The bottom third of the picture is a plain, softly lit floor with lots of empty space. All boards, posters and papers are completely blank. The room is empty and quiet. No people, no animals, no writing.",
+      "sd": "Empty background: an empty middle school classroom in warm afternoon light, tables with closed laptops along the back, a blank whiteboard on the far wall, a window with soft daylight at the right, soft painted illustration. Seen straight on at seated eye level. The bottom third of the picture is a plain, softly lit floor with lots of empty space. All boards, posters and papers are completely blank. The room is empty and quiet.",
+      "aspect": "16:9",
+      "width": 1600,
+      "quality": 72,
+      "local_note": "backdrop for The Slides: full frame behind the code-drawn bench and kid, under a light paper overlay; keep the bottom third plain floor (the bench is drawn in code there) and the walls blank",
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "bg-artroom",
+      "prompt": "Empty background: an empty middle school art room in warm light, paint-splashed tables along the back wall, jars of brushes on a shelf, sheets of blank white paper pinned to the walls, soft painted illustration. Seen straight on at seated eye level. The bottom third of the picture is a plain, softly lit floor with lots of empty space. All boards, posters and papers are completely blank. The room is empty and quiet. No people, no animals, no writing.",
+      "sd": "Empty background: an empty middle school art room in warm light, paint-splashed tables along the back wall, jars of brushes on a shelf, sheets of blank white paper pinned to the walls, soft painted illustration. Seen straight on at seated eye level. The bottom third of the picture is a plain, softly lit floor with lots of empty space. All boards, posters and papers are completely blank. The room is empty and quiet.",
+      "aspect": "16:9",
+      "width": 1600,
+      "quality": 72,
+      "local_note": "backdrop for The Markers: full frame behind the code-drawn bench and kid, under a light paper overlay; keep the bottom third plain floor (the bench is drawn in code there) and the walls blank",
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "bg-hallway",
+      "prompt": "Empty background: an empty school hallway in warm light, a long row of blue lockers along the back wall, a blank cork bulletin board, a polished floor, soft painted illustration. Seen straight on at seated eye level. The bottom third of the picture is a plain, softly lit floor with lots of empty space. All boards, posters and papers are completely blank. The room is empty and quiet. No people, no animals, no writing.",
+      "sd": "Empty background: an empty school hallway in warm light, a long row of blue lockers along the back wall, a blank cork bulletin board, a polished floor, soft painted illustration. Seen straight on at seated eye level. The bottom third of the picture is a plain, softly lit floor with lots of empty space. All boards, posters and papers are completely blank. The room is empty and quiet.",
+      "aspect": "16:9",
+      "width": 1600,
+      "quality": 72,
+      "local_note": "backdrop for The Tryout: full frame behind the code-drawn bench and kid, under a light paper overlay; keep the bottom third plain floor (the bench is drawn in code there) and the walls blank",
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "bg-lab",
+      "prompt": "Empty background: an empty school science lab, a long counter along the back wall with a sink and a few glass beakers, blank pale wall posters, soft painted illustration. Seen straight on at seated eye level. The bottom third of the picture is a plain, softly lit floor with lots of empty space. All boards, posters and papers are completely blank. The room is empty and quiet. No people, no animals, no writing.",
+      "sd": "Empty background: an empty school science lab, a long counter along the back wall with a sink and a few glass beakers, blank pale wall posters, soft painted illustration. Seen straight on at seated eye level. The bottom third of the picture is a plain, softly lit floor with lots of empty space. All boards, posters and papers are completely blank. The room is empty and quiet.",
+      "aspect": "16:9",
+      "width": 1600,
+      "quality": 72,
+      "local_note": "backdrop for The Lab Controls: full frame behind the code-drawn bench and kid, under a light paper overlay; keep the bottom third plain floor (the bench is drawn in code there) and the walls blank",
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "bg-courtyard",
+      "prompt": "Empty background: an empty school courtyard in late afternoon light, a warm red brick wall across the back, a small tree with green leaves at the far left, a paved ground, soft painted illustration. Seen straight on at seated eye level. The bottom third of the picture is a plain, softly lit floor with lots of empty space. All boards, posters and papers are completely blank. The room is empty and quiet. No people, no animals, no writing.",
+      "sd": "Empty background: an empty school courtyard in late afternoon light, a warm red brick wall across the back, a small tree with green leaves at the far left, a paved ground, soft painted illustration. Seen straight on at seated eye level. The bottom third of the picture is a plain, softly lit floor with lots of empty space. All boards, posters and papers are completely blank. The room is empty and quiet.",
+      "aspect": "16:9",
+      "width": 1600,
+      "quality": 72,
+      "local_note": "backdrop for The Weekend Plan, Line Builder and Partner Cards: full frame behind the code-drawn bench and kid, under a light paper overlay; keep the bottom third plain floor (the bench is drawn in code there) and the walls blank",
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    }
+  ]
+}
