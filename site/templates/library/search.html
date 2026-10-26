@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% from "macros.html" import crumbs %}
+{% block title %}Search the Reading Room · Curio Class{% endblock %}
+{% block robots %}<meta name="robots" content="noindex">{% endblock %}
+{% block main %}
+<div class="wrap">
+  {{ crumbs(trail) }}
+  <div class="page-head"><h1>Search the Reading Room</h1><p>Search {{ n }} stories, poems, plays, myths, speeches and sacred texts by title, author, first line, kind, place or grade. Searching happens on your device.</p></div>
+  <form class="search" role="search" style="margin-top:20px" action="/library/search/" onsubmit="return false">
+    <label class="sr-only" for="q">Search the Reading Room</label>
+    <input id="q" name="q" type="search" placeholder="Try Poe, raven, fables, Japan or grade 4" autofocus>
+    <button>Search</button>
+  </form>
+  <p class="search-hint">Add a grade to narrow it: <code>poems grade 3</code></p>
+  <label class="ready-toggle" style="margin-top:10px"><input type="checkbox" id="ready-only"> Ready to read only</label>
+  <p class="count" id="count" role="status" aria-live="polite" style="margin-top:16px"></p>
+  <div class="search-results" id="results"></div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script>
+(async () => {
+  const q = document.getElementById('q'), out = document.getElementById('results'), count = document.getElementById('count');
+  const only = document.getElementById('ready-only');
+  const data = await fetch('/library/search-index.json').then(r => r.json());
+  const fold = s => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+  const words_of = s => ' ' + fold(s).replace(/[^a-z0-9]+/g, ' ') + ' ';  // every word starts after a space
+  data.forEach(d => { d.hay = words_of([d.t, d.a, d.k, d.s, d.c, d.o, d.l, d.x].join(' ')); d.ft = words_of(d.t); d.fa = words_of(d.a); });
+  const esc = s => s.replace(/[&<>"]/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c]));
+  const GRADE = /^(k|[1-9]|1[0-2])(st|nd|rd|th)?$/;
+  const run = () => {
+    let words = fold(q.value).replace(/[^a-z0-9]+/g, ' ').split(/\s+/).filter(Boolean), grade = null;
+    words = words.filter((w, i) => {  // "grade 3", "gr 3", "3rd", "K" set a grade filter instead of matching text
+      if (w === 'grade' || w === 'grades' || w === 'gr') return false;
+      const m = w.match(GRADE), after = i && /^(grade|grades|gr)$/.test(words[i - 1]);
+      if (m && (after || w === 'k' || m[2])) { grade = m[1]; return false; }
+      return true;
+    });
+    if (!words.length && !grade) { out.innerHTML = ''; count.textContent = ''; return; }
+    const score = d => words.reduce((s, w) => {  // a whole word beats the start of one; title, then author, then the rest
+      const whole = ' ' + w + ' ', start = ' ' + w;
+      return s + (d.ft.includes(whole) ? 6 : d.fa.includes(whole) ? 5 : d.ft.includes(start) ? 3 :
+                  d.fa.includes(start) ? 2 : d.hay.includes(whole) ? 1.5 : 1);
+    }, 0);
+    const hits = data.filter(d => (!grade || d.f.includes(grade)) && (!only.checked || d.r) && words.every(w => d.hay.includes(' ' + w)))
+      .map(d => [score(d) + (d.r ? 0.5 : 0), d]).sort((a, b) => b[0] - a[0]).map(x => x[1]);
+    count.textContent = hits.length + (hits.length === 1 ? ' title' : ' titles') + (grade ? ' for ' + (grade === 'k' ? 'kindergarten' : 'grade ' + grade) : '');
+    out.innerHTML = hits.slice(0, 120).map(d =>
+      '<a href="' + d.u + '"><b>' + esc(d.t) + '</b>' + (d.r ? ' <span class="tag built">Ready</span>' : '') +
+      '<small>' + [d.a, d.k, d.g, d.c].filter(Boolean).map(esc).join(' · ') + '</small>' +
+      (d.l ? '<small><i>' + esc(d.l) + '</i></small>' : '') + '</a>').join('');
+  };
+  q.value = new URLSearchParams(location.search).get('q') || '';
+  q.addEventListener('input', run);
+  only.addEventListener('change', run);
+  run();
+})();
+</script>
+{% endblock %}

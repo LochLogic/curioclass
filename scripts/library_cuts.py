@@ -122,6 +122,7 @@ CUTS = {
     "dickinson-frigate": ("txt:There is no frigate like a book", "the poem alone"),
     "dickinson-narrow": ("txt:A narrow fellow in the grass", "the poem alone"),
     "dickinson-success": ("txt:Success is counted sweetest", "the poem alone"),
+    "poe-mother": ("Because I feel that, in the Heavens above >> than its soul-life", "the sonnet alone (the book has no heading for it)"),
     # single stories in collections whose title heading is also the book's
     "crane-open-boat": ("@45 >> @292", "the title story"),
     "wilde-happy-prince": ("@17 >> @102", "the title story"),

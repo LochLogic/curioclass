@@ -235,6 +235,11 @@ scroll or page view, print) and a one-file offline download at `/library/<id>/<i
 `python scripts/build_site.py --preview`, which adds a made-up fable from `site/fixtures/reader-preview/` at
 `/library/reader-preview/`. Never deploy a `--preview` build.
 
+**Search** (2026-10-26): `/library/search/` searches every Reading Room title on the device, from
+`/library/search-index.json` (title, author, kind, shelf, collection, origin, tradition, grades and the opening words
+of the text). A grade in the query ("poems grade 3", "K", "7th") filters by grade; whole words rank above word starts.
+The Reading Room home has a search box, and every list page links to it.
+
 Still to do: themed shelves, the "From the Reading Room" strip on grade pages, read-aloud for K-2, and a
 self-hosted dyslexia-friendly font for the Spaced option (it uses Verdana with extra spacing for now).
 

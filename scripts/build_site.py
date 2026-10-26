@@ -303,6 +303,9 @@ def lib_story(r, collection):
         if r['decision'] == 'note' and warn and not meta.get('teacher_note'):  # the curation pass's content flags
             meta = dict(meta, teacher_note=f'<p><strong>Content note:</strong> {html_escape("; ".join(warn))}. '
                                            'Read it first and decide how to set it up for your class.</p>')
+        first = next((p for p in text.split('\n\n') if p.strip() and not re.match(r'\s*(#|!\[|---|<)', p)), '')
+        first = re.sub(r'[*_\\]', '', GLOSS.sub(r'\1', first)).split()  # the opening words, for search
+        s.update(first=' '.join(first[:14]) + (' ...' if len(first) > 14 else ''))
         s.update(ready=True, meta=meta, html=html, toc=toc, words=words, minutes=max(1, round(words / 200)),
                  summary=meta.get('summary', s.get('summary', '')), art=(folder / 'art').is_dir())
     return s
@@ -386,6 +389,14 @@ for sec in myth_sections:
     render('library/list.html', sec['href'], title=sec['label'], trail=[lib_trail, ('Mythology', '/library/mythology/'), (sec['label'], None)],
            lede=f"{sec['blurb']} {len(sec['items'])} titles.", sections=[dict(sec, href=None, blurb='')], show_grades=True)
 render('library/sacred.html', '/library/sacred-texts/', trail=[lib_trail, ('Sacred Texts', None)], items=sacred)
+LIB_COLL = {'stories': '', 'speeches': 'Speeches and Documents', 'mythology': 'Mythology', 'sacred': 'Sacred Texts'}
+lib_index = [{'t': s['title'], 'a': s.get('author', ''), 'k': s['kind'], 's': SHELVES[s['shelf']][0] if s['shelf'] else '',
+              'c': LIB_COLL[s['collection']], 'o': s.get('origin', ''), 'g': grade_label(s['grades']), 'f': s['fit'],
+              'u': s['url'], 'r': s['ready'], 'l': s.get('first', ''),
+              'x': ' '.join(MYTH[t][0] for t in [s.get('tradition')] + s.get('traditions', []) if t in MYTH)}
+             for s in stories + speeches + myth_own + sacred]
+(DIST / 'library' / 'search-index.json').write_text(json.dumps(lib_index, ensure_ascii=False, separators=(',', ':')), encoding='utf-8')
+render('library/search.html', '/library/search/', index=False, trail=[lib_trail, ('Search', None)], n=len(lib_index))
 for s in stories + speeches + myth_own + sacred:
     if not s['ready']:
         render('library/story.html', s['url'], s=s, index=False)

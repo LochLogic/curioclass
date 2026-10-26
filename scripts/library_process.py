@@ -481,6 +481,26 @@ def save_art(data, dest):
     return True
 
 
+FIXES = {  # id -> [(old, new)]: typos in the source text itself, applied after every other step
+    "poe-helen": [("How statue-like I me thee stand", "How statue-like I see thee stand")],
+    "poe-marie-roget": [('THE MYSTERY OF MARIE ROGET.\n\nA SEQUEL TO "THE MURDERS IN THE RUE MORGUE."\n\n', ""),
+                        ("lauft. Selten fallen sie zusammen. Menschen und zufalle modifieiren gewohulich",
+                         "läuft. Selten fallen sie zusammen. Menschen und Zufälle modificiren gewöhnlich")],
+    "poe-composition": [('" Barnaby Rudge,"', '"Barnaby Rudge,"')],
+}
+
+
+def fix(sid, text):
+    """Editors' brackets from the 1903 Raven edition ({*1} footnote marks whose notes are not kept, {image}, {...ed.}),
+    a footnote or editor's note standing alone, then the row's FIXES."""
+    text = re.sub(r"\n\n(\\?\{\\?\*\d+\}|\\?\{This poem|\(Note: No figures)[^\n]*", "", text)
+    text = re.sub(r"\s*\\?\{\\?\*\d+\}", "", text)
+    text = re.sub(r"\s*\\?\{(image|[^{}\n|]*—\s*ed\.?)\}", "", text, flags=re.I)
+    for a, b in FIXES.get(sid, []):
+        text = text.replace(a, b)
+    return text
+
+
 def write_story(sid, blocks, z, meta):
     d = LIB / sid
     old = d / "story.json"
@@ -540,7 +560,7 @@ def write_story(sid, blocks, z, meta):
     out = [x for i, x in enumerate(out)  # a bare chapter number left over before the next piece's heading
            if not (re.fullmatch(r"#+ [IVXLC\d]+\.?", x) and i + 1 < len(out) and out[i + 1].startswith("#"))]
     out = trim_ends(out)
-    text = "\n\n".join(out) + "\n"
+    text = fix(sid, "\n\n".join(out) + "\n")
     (d / "text.md").write_text(text, encoding="utf-8", newline="\n")
     if (d / "art").is_dir() and not any((d / "art").iterdir()):
         (d / "art").rmdir()
@@ -702,7 +722,7 @@ def storyweaver(r):
             bits.append("  \n".join(clean(md_escape(l)) for l in text.splitlines() if l.strip()))
         if bits:
             out.append("\n\n".join(bits))
-    (d / "text.md").write_text("\n\n---\n\n".join(out) + "\n", encoding="utf-8", newline="\n")
+    (d / "text.md").write_text(fix(r["id"], "\n\n---\n\n".join(out) + "\n"), encoding="utf-8", newline="\n")
     prev = json.loads(old.read_text(encoding="utf-8")) if old.exists() else {}
     prev.setdefault("summary", " ".join(book.get("description", "").split()))
     old.write_text(json.dumps(prev, indent=1, ensure_ascii=False) + "\n", encoding="utf-8", newline="\n")
