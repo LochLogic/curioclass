@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% from "macros.html" import book %}
+{% block title %}Reading Room · Curio Class{% endblock %}
+{% block description %}Free stories, poems, plays and speeches for K-12 classrooms. Read on screen, project, print or download. Public domain and openly licensed.{% endblock %}
+{% block main %}
+<div class="wrap">
+  <section class="lib-hero">
+    <p class="eyebrow">The Reading Room</p>
+    <h1>Stories worth reading <em>aloud</em>, and alone.</h1>
+    <p class="lede">{{ n }} stories, poems and plays for every grade, plus a shelf of great American speeches. Read them on screen, put them on the projector, print them or take them offline.</p>
+  </section>
+
+  <div class="promise">
+    <span>Free forever</span><span>Public domain or openly licensed</span><span>Adaptations always labeled</span><span>Print or download any story</span>
+  </div>
+
+  <section class="block" aria-labelledby="lib-grades-h">
+    <div class="block-head"><h2 id="lib-grades-h">Pick a grade</h2></div>
+    <div class="grades">
+      {% for bid, b in bands.items() %}
+      <div class="band">
+        <h3><a href="/library/grade/{{ BAND_SLUG[bid] }}/" style="text-decoration:none">{{ b.label | replace('Grades ', '') }}</a></h3>
+        <span class="who">{{ band_counts[bid] }} stories</span>
+        <div class="chips">{% for g in b.grade_list %}<a href="/library/grade/{{ g }}/" aria-label="{{ grade_label(g) }}, {{ grade_counts[g] }} stories">{{ grade_short(g) }}</a>{% endfor %}</div>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="lib-ready-h">
+    <div class="block-head"><h2 id="lib-ready-h">Ready to read</h2></div>
+    {% if ready %}
+    <div class="books">{% for s in ready %}{{ book(s, True) }}{% endfor %}</div>
+    {% else %}
+    <div class="desk-note">
+      <p class="eyebrow">On the reading desk</p>
+      <p>The first stories are being set, checked and given questions right now. They will show up here as each one is finished. Until then, every title below has its own page so you can see what is coming.</p>
+    </div>
+    {% endif %}
+  </section>
+
+  <section class="block" aria-labelledby="lib-shelves-h">
+    <div class="block-head"><h2 id="lib-shelves-h">Browse the shelves</h2></div>
+    <div class="styles">
+      {% for sh in shelves %}
+      <a class="style-card" href="{{ sh.href }}"><b>{{ sh.label }}</b><span>{{ sh.blurb }} {{ sh['items'] | length }} titles.</span></a>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="lib-speeches-h">
+    <a class="speech-shelf" href="/library/speeches/">
+      <span class="eyebrow">A separate collection</span>
+      <h2 id="lib-speeches-h">Speeches and Documents</h2>
+      <p>{{ speeches | length }} founding documents and speeches, from the Declaration of Independence to the Brandenburg Gate. Always in the speaker's own words, never adapted.</p>
+      <span class="go">Open the collection →</span>
+    </a>
+  </section>
+</div>
+{% endblock %}

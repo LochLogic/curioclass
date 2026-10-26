@@ -1,0 +1,16 @@
+{# The reader: shared by the story page and the offline download. Needs s.html; reader.css and reader.js inlined by the caller. #}
+<div class="reader" id="reader" data-theme="paper" data-font="serif" data-view="scroll" style="--size:20px">
+  <div class="reader-bar" role="toolbar" aria-label="Reading options">
+    <span class="rb-group" aria-label="Text size"><button type="button" data-act="smaller" aria-label="Smaller text">A−</button><button type="button" data-act="bigger" aria-label="Bigger text">A+</button></span>
+    <span class="rb-group" aria-label="Font">{% for v, l in [('serif', 'Book'), ('sans', 'Plain'), ('spaced', 'Spaced')] %}<button type="button" data-set="font" data-val="{{ v }}">{{ l }}</button>{% endfor %}</span>
+    <span class="rb-group" aria-label="Colors">{% for v, l in [('paper', 'Paper'), ('sepia', 'Sepia'), ('night', 'Night')] %}<button type="button" data-set="theme" data-val="{{ v }}">{{ l }}</button>{% endfor %}</span>
+    <span class="rb-group" aria-label="View">{% for v, l in [('scroll', 'Scroll'), ('pages', 'Pages')] %}<button type="button" data-set="view" data-val="{{ v }}">{{ l }}</button>{% endfor %}</span>
+    <button type="button" data-act="print">Print</button>
+  </div>
+  <article class="story-text" lang="en">
+    <h1 class="story-title">{{ s.title }}</h1>
+    <p class="story-by">{{ s.author }}{% if s.meta.adapted %} · <span class="adapted">Adapted: {{ s.meta.adapted }}</span>{% endif %}</p>
+    {{ s.html | safe }}
+  </article>
+  <div class="pager" hidden><button type="button" data-act="prev">← Back</button><span class="pager-at" aria-live="polite"></span><button type="button" data-act="next">Next →</button></div>
+</div>

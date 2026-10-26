@@ -1,0 +1,10 @@
+{# Before, during and after questions from story.json: {"before": [{"q": "...", "ccss": "RL.3.1"}], ...}. Plain strings work too. #}
+{% set qs = s.meta.questions or {} %}
+{% for part, label in [('before', 'Before reading'), ('during', 'While reading'), ('after', 'After reading')] %}
+{% if qs[part] %}
+<h3>{{ label }}</h3>
+<ol class="questions">
+  {% for item in qs[part] %}<li>{% if item is mapping %}{{ item.q }}{% if item.ccss %} <code>{{ item.ccss }}</code>{% endif %}{% else %}{{ item }}{% endif %}</li>{% endfor %}
+</ol>
+{% endif %}
+{% endfor %}

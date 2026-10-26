@@ -3,7 +3,7 @@
 Run from the repo root:  python scripts/build_site.py
 Needs Jinja2 and Markdown (pip install jinja2 markdown). No other dependencies.
 """
-import csv, json, re, shutil, sys
+import base64, csv, json, re, shutil, sys
 from collections import defaultdict
 from datetime import date
 from pathlib import Path
@@ -236,10 +236,111 @@ for t in tools:
     else:
         render('bench.html', t['url'], t=t, related=related, collection=collection, index=False)
 
+# ---------- reading room ----------
+# Rows come from data/library/*.csv (reserve rows stay off the site). A story is ready once library/<id>/text.md exists;
+# until then its page says it is on the reading desk. docs/LIBRARY-PLAN.md has the story.json and text.md format.
+LIB = ROOT / 'library'
+SHELVES = {  # shelf slug -> (label, blurb, kinds)
+    'picture-books': ('Picture books', 'Short, illustrated, made for reading together.', ['picture book']),
+    'short-stories': ('Short stories', 'One sitting, one story.', ['short story']),
+    'poems': ('Poems', 'Read them out loud. Then read them again.', ['poem']),
+    'tales': ('Myths, fables and folk tales', 'Stories people told long before anyone wrote them down.',
+              ['folk tale', 'fairy tale', 'fable', 'myth', 'legend', 'epic']),
+    'chapter-books': ('Chapter books and novels', 'Longer reads, chapter by chapter.', ['chapter book', 'chapter set', 'novel']),
+    'plays': ('Plays', 'Parts for the whole class.', ['play']),
+    'true-stories': ('True stories', 'Memoir, essays and real lives.', ['memoir', 'nonfiction', 'essay']),
+}
+KIND_SHELF = {k: sid for sid, (_, _, kinds) in SHELVES.items() for k in kinds}
+BASIS = {'pd-1930': 'Public domain in the United States (first published {year}).',
+         'not-renewed': 'Public domain in the United States (published {year}, copyright not renewed).',
+         'us-gov': 'A work of the U.S. government, in the public domain.'}
+GLOSS = re.compile(r'\{([^{}|\n]+)\|([^{}\n]+)\}')
+lib_sources = {s['key']: s for s in read('library/sources.csv')}
+
+
+def lib_story(r, collection):
+    g = r['grades'].lower()
+    s = dict(r, collection=collection, grades=g, fit=expand(g), url=f'/library/{r["id"]}/', shelf=KIND_SHELF.get(r['kind']),
+             band=next(b for b in bands if expand(g)[0] in bands[b]['grade_list']), ready=False, meta={})
+    if 'sw_id' in r:  # StoryWeaver: names and blurb come from the saved export
+        sw = LIB / '_sources' / 'storyweaver' / f'{r["sw_id"]}.json'
+        book = json.loads(sw.read_text(encoding='utf-8')) if sw.exists() else {}
+        s.update(author=book.get('authors') or r['publisher'], summary=' '.join(book.get('description', '').split()),
+                 credit=f'{r["license"]}. Published by {r["publisher"]} on StoryWeaver.', source_url=book.get('url', ''))
+    else:
+        src = lib_sources[r['source']]
+        s['credit'] = BASIS.get(src['basis'], src['license'] + '.').format(year=src['year'])
+        s['source_url'] = f'https://www.gutenberg.org/ebooks/{src["pg"].split()[0]}' if src['pg'] else ''
+    folder = Path(r['folder']) if r.get('folder') else LIB / r['id']
+    if (folder / 'text.md').exists():
+        text = (folder / 'text.md').read_text(encoding='utf-8')
+        meta = json.loads((folder / 'story.json').read_text(encoding='utf-8')) if (folder / 'story.json').exists() else {}
+        html = GLOSS.sub(lambda m: f'<button type="button" class="gloss" data-gloss="{m[2].replace(chr(34), "&quot;")}">{m[1]}</button>',
+                         markdown.markdown(text))
+        words = meta.get('words') or len(GLOSS.sub(r'\1', text).split())
+        s.update(ready=True, meta=meta, html=html, words=words, minutes=max(1, round(words / 200)),
+                 summary=meta.get('summary', s.get('summary', '')), art=(folder / 'art').is_dir())
+    return s
+
+
+stories = [lib_story(r, 'stories') for r in read('library/stories-pd.csv') + read('library/stories-sw.csv')
+           if r['decision'] != 'reserve']
+speeches = [lib_story(r, 'speeches') for r in read('library/speeches.csv') if r['decision'] != 'reserve']
+if '--preview' in sys.argv:  # local check of the reader with a made-up story; never part of a deploy build
+    stories.append(lib_story(dict(id='reader-preview', title='The Lion and the Mouse', author='after Aesop', source='aesop-winter',
+                                  grades='K-3', kind='fable', origin='Greece', decision='in', folder=SITE / 'fixtures' / 'reader-preview'), 'stories'))
+stories.sort(key=lambda s: (not s['ready'], s['title'].removeprefix('The ')))
+lib_ready = [s for s in stories + speeches if s['ready']]
+
+
+def lib_sections(items):
+    """Stories grouped by shelf, in shelf order, for the listing pages."""
+    return [dict(id=sid, label=lab, blurb=blurb, href=f'/library/kind/{sid}/', items=[s for s in items if s['shelf'] == sid])
+            for sid, (lab, blurb, _) in SHELVES.items() if any(s['shelf'] == sid for s in items)]
+
+
+lib_trail = ('Reading Room', '/library/')
+render('library/home.html', '/library/', n=len(stories), shelves=lib_sections(stories), speeches=speeches, ready=lib_ready[:8],
+       bands=bands, band_counts={b: sum(1 for s in stories if s['band'] == b) for b in bands},
+       grade_counts={g: sum(1 for s in stories if g in s['fit']) for g in GRADES})
+for g in GRADES:
+    items = [s for s in stories if g in s['fit']]
+    render('library/list.html', f'/library/grade/{g}/', title=grade_label(g), trail=[lib_trail, (grade_label(g), None)],
+           lede=f'{len(items)} stories, poems and plays that fit {grade_label(g).lower()}.', sections=lib_sections(items))
+for bid, b in bands.items():
+    items = [s for s in stories if s['band'] == bid]
+    render('library/list.html', f'/library/grade/{BAND_SLUG[bid]}/', title=b['label'], trail=[lib_trail, (b['label'], None)],
+           lede=f'{len(items)} stories that start in {b["label"].lower()}.', sections=lib_sections(items), show_grades=True)
+for sid, (lab, blurb, _) in SHELVES.items():
+    items = [s for s in stories if s['shelf'] == sid]
+    by_band = [dict(id=BAND_SLUG[b], label=bands[b]['label'], blurb='', href=f'/library/grade/{BAND_SLUG[b]}/',
+                    items=[s for s in items if s['band'] == b]) for b in bands]
+    render('library/list.html', f'/library/kind/{sid}/', title=lab, trail=[lib_trail, (lab, None)],
+           lede=f'{blurb} {len(items)} in the Reading Room.', sections=[x for x in by_band if x['items']], show_grades=True)
+render('library/list.html', '/library/speeches/', title='Speeches and Documents', trail=[lib_trail, ('Speeches and Documents', None)],
+       lede='Founding documents and the speeches that moved the country, in their own words. Never adapted.',
+       sections=[dict(id='collection', label='The collection', blurb='', href=None, items=speeches)], show_grades=True)
+for s in stories + speeches:
+    if not s['ready']:
+        render('library/story.html', s['url'], s=s, index=False)
+        continue
+    dest = DIST / 'library' / s['id']
+    if s['art']:
+        shutil.copytree(Path(s.get('folder') or LIB / s['id']) / 'art', dest / 'art')
+    render('library/story.html', s['url'], s=s)
+    bundle = env.get_template('library/bundle.html').render(s=s, path=s['url'])
+    for img in set(re.findall(r'src="(art/[^"]+)"', bundle)):  # the download is one offline file, so the art goes inline
+        f = Path(s.get('folder') or LIB / s['id']) / img
+        mime = {'.svg': 'image/svg+xml', '.png': 'image/png', '.webp': 'image/webp'}.get(f.suffix, 'image/jpeg')
+        bundle = bundle.replace(f'src="{img}"', f'src="data:{mime};base64,{base64.b64encode(f.read_bytes()).decode()}"')
+    (dest / f'{s["id"]}.html').write_text(bundle, encoding='utf-8')
+
 # search index and static pages
 index = [{'t': t['title'], 'u': t['url'], 'g': grade_label(t['module']['grade']), 's': t['subject_info']['short'],
           'f': t['format_info']['label'], 'm': t['module']['title'], 'c': ' '.join(t['module']['codes']),
           'd': t['concept'], 'b': t['built']} for t in tools]
+index += [{'t': s['title'], 'u': s['url'], 'g': grade_label(s['grades']), 's': 'Reading Room', 'f': s['kind'],
+           'm': s.get('author', ''), 'c': '', 'd': s.get('summary', ''), 'b': s['ready']} for s in stories + speeches]
 (DIST / 'search-index.json').write_text(json.dumps(index, separators=(',', ':')), encoding='utf-8')
 render('search.html', '/search/', index=False)
 for name in ['about', 'teachers', 'privacy', 'accessibility', 'license']:

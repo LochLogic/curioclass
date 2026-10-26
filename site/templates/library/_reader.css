@@ -1,0 +1,40 @@
+.reader { --r-bg: #fffdf8; --r-ink: #1f2430; --r-muted: #5e6472; --r-line: #e4dccb; --r-chip: #f3eee2; --r-accent: #b23a17;
+  background: var(--r-bg); color: var(--r-ink); border: 1px solid var(--r-line); border-radius: 18px; }
+.reader[data-theme="sepia"] { --r-bg: #f4ecd8; --r-ink: #3b2f20; --r-muted: #6b5a43; --r-line: #dccbaa; --r-chip: #e9dcc0; --r-accent: #8a4b14; }
+.reader[data-theme="night"] { --r-bg: #171a21; --r-ink: #e4e1d8; --r-muted: #a3a7b3; --r-line: #2e333e; --r-chip: #252a34; --r-accent: #f08a62; }
+.reader-bar { display: flex; flex-wrap: wrap; gap: 8px; padding: 10px 12px; border-bottom: 1px solid var(--r-line); background: var(--r-chip); position: sticky; top: var(--reader-top, 0); z-index: 2; border-radius: 18px 18px 0 0; }
+.reader-bar button { font: 600 14px/1 var(--sans, system-ui, sans-serif); color: var(--r-ink); background: transparent; border: 0; padding: 9px 11px; border-radius: 8px; cursor: pointer; min-height: 36px; }
+.reader-bar button[aria-pressed="true"] { background: var(--r-bg); box-shadow: 0 0 0 1.5px var(--r-ink); }
+.reader-bar button:hover { background: var(--r-bg); }
+.rb-group { display: inline-flex; gap: 2px; padding-right: 8px; border-right: 1px solid var(--r-line); }
+.story-text { max-width: 66ch; margin: 0 auto; padding: 32px 22px 40px; font: 400 var(--size)/1.7 var(--serif, Georgia, 'Times New Roman', serif); }
+.reader[data-font="sans"] .story-text { font-family: var(--sans, 'Segoe UI', system-ui, sans-serif); }
+.reader[data-font="spaced"] .story-text { font-family: Verdana, 'Segoe UI', system-ui, sans-serif; letter-spacing: .04em; word-spacing: .16em; line-height: 1.95; }
+.reader[data-font="spaced"] .story-text p { text-align: left; }
+.story-title { font: 600 calc(var(--size) * 1.8)/1.1 var(--serif, Georgia, serif); margin: 0 0 6px; letter-spacing: -.01em; }
+.story-by { margin: 0 0 28px; color: var(--r-muted); font-size: .85em; }
+.adapted { color: var(--r-accent); font-weight: 600; }
+.story-text h2 { font: 600 1.25em/1.2 var(--serif, Georgia, serif); margin: 1.8em 0 .6em; }
+.story-text p { margin: 0 0 1em; }
+.story-text img { display: block; max-width: min(100%, 560px); max-height: 55vh; width: auto; height: auto; margin: 1.2em auto; border-radius: 10px; }
+.story-text blockquote { margin: 1em 0; padding-left: 1em; border-left: 3px solid var(--r-line); }
+.story-text hr { border: 0; text-align: center; margin: 2em 0; }
+.story-text hr::after { content: '* * *'; color: var(--r-muted); letter-spacing: .5em; }
+.gloss { font: inherit; color: inherit; background: none; border: 0; padding: 0; border-bottom: 2px dotted var(--r-accent); cursor: help; position: relative; }
+.gloss-pop { position: absolute; left: 50%; bottom: calc(100% + 8px); transform: translateX(-50%); width: max-content; max-width: 260px; background: var(--r-ink); color: var(--r-bg);
+  font: 500 15px/1.4 var(--sans, system-ui, sans-serif); letter-spacing: 0; word-spacing: 0; padding: 8px 12px; border-radius: 8px; z-index: 5; text-align: left; white-space: normal; }
+.reader[data-view="pages"] .story-text > .r-page:not(.on) { display: none; }
+.reader[data-view="pages"] .story-text { min-height: 60vh; }
+.pager { border-radius: 0 0 18px 18px; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 16px; border-top: 1px solid var(--r-line); background: var(--r-chip); }
+.pager button { font: 600 15px var(--sans, system-ui, sans-serif); color: var(--r-ink); background: var(--r-bg); border: 1.5px solid var(--r-ink); border-radius: 999px; padding: 10px 18px; cursor: pointer; }
+.pager button:disabled { opacity: .35; cursor: default; }
+.pager-at { font: 600 14px var(--sans, system-ui, sans-serif); color: var(--r-muted); }
+@media print {
+  .site-head, .site-foot, .reader-bar, .pager, .crumbs, .no-print, .skip { display: none !important; }
+  body { background: #fff; }
+  .reader { border: 0; background: #fff; color: #000; }
+  .story-text { padding: 0; max-width: none; font-size: 13pt; }
+  .story-text > .r-page { display: block !important; }
+  .gloss { border: 0; }
+  .gloss-pop { display: none; }
+}

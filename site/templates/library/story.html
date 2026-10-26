@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% from "macros.html" import crumbs %}
+{% set home = ('Speeches and Documents', '/library/speeches/') if s.collection == 'speeches' else ('Grades ' ~ BAND_SLUG[s.band] | upper, '/library/grade/' ~ BAND_SLUG[s.band] ~ '/') %}
+{% block title %}{{ s.title }}{% if not s.ready %} (coming soon){% endif %} · Reading Room · Curio Class{% endblock %}
+{% block description %}{{ s.summary or (s.title ~ ' by ' ~ s.author ~ ', free to read in the Curio Class Reading Room.') }}{% endblock %}
+{% block robots %}{% if not s.ready %}<meta name="robots" content="noindex">{% endif %}{% endblock %}
+{% block head %}{% if s.ready %}<style>{% include "library/_reader.css" %}</style>{% endif %}{% endblock %}
+{% block main %}
+<div class="wrap">
+  {{ crumbs([('Reading Room', '/library/'), home, (s.title, None)]) }}
+  {% if s.ready %}
+  <div class="story-head">
+    <div>
+      <p class="eyebrow">{{ s.kind }} · {{ grade_label(s.grades) }}</p>
+      <h1>{{ s.title }}</h1>
+      <p class="hook">{{ s.author }}</p>
+      {% if s.summary %}<p class="summary">{{ s.summary }}</p>{% endif %}
+      <div class="actions no-print">
+        <a class="btn primary" href="#reader">Start reading</a>
+        <a class="btn" href="{{ s.id }}.html" download>Download (works offline)</a>
+      </div>
+    </div>
+    <dl class="facts">
+      <dt>Grades</dt><dd><a href="/library/grade/{{ BAND_SLUG[s.band] }}/">{{ grade_label(s.grades) }}</a></dd>
+      <dt>Kind</dt><dd>{% if s.shelf %}<a href="/library/kind/{{ s.shelf }}/">{{ s.kind }}</a>{% else %}{{ s.kind }}{% endif %}</dd>
+      {% if s.meta.level %}<dt>Reading Room level</dt><dd>{{ s.meta.level }}</dd>{% endif %}
+      <dt>Length</dt><dd>{{ '{:,}'.format(s.words) }} words, about {{ s.minutes }} min</dd>
+      {% if s.origin %}<dt>From</dt><dd>{{ s.origin }}</dd>{% endif %}
+      <dt>Text</dt><dd>{% if s.meta.adapted %}Adapted: {{ s.meta.adapted }}{% else %}Original text{% endif %}</dd>
+    </dl>
+  </div>
+  {% include "library/_reader.html" %}
+  <div class="story-after">
+    {% if s.meta.questions %}<section class="panel"><h2>Questions</h2>{% include "library/_questions.html" %}</section>{% endif %}
+    {% if s.meta.teacher_note %}<section class="panel teacher-note"><h2>For the teacher</h2>{{ s.meta.teacher_note | safe }}</section>{% endif %}
+    <section class="panel source-note"><h2>Source and license</h2><p>{{ s.credit }}{% if s.source_url %} <a href="{{ s.source_url }}">Original source</a>.{% endif %}{% if s.meta.adapted %} This version is adapted, and labeled that way everywhere it appears.{% endif %}</p></section>
+  </div>
+  {% else %}
+  <div class="bench-hero">
+    <p class="eyebrow" style="color:#9a8f78">On the reading desk · coming soon</p>
+    <h1>{{ s.title }}</h1>
+    <p style="font-size:20px;color:var(--muted);margin:8px 0 18px">{{ s.author }}</p>
+    {% if s.summary %}<p style="max-width:60ch">{{ s.summary }}</p>{% endif %}
+    <dl class="facts" style="max-width:600px;background:transparent">
+      <dt>Grades</dt><dd><a href="/library/grade/{{ BAND_SLUG[s.band] }}/">{{ grade_label(s.grades) }}</a></dd>
+      <dt>Kind</dt><dd>{% if s.shelf %}<a href="/library/kind/{{ s.shelf }}/">{{ s.kind }}</a>{% else %}{{ s.kind }}{% endif %}</dd>
+      {% if s.origin %}<dt>From</dt><dd>{{ s.origin }}</dd>{% endif %}
+      <dt>License</dt><dd>{{ s.credit }}</dd>
+    </dl>
+    <p style="margin:18px 0 0;color:var(--muted);max-width:60ch">This one is being set, checked and given questions. When it is ready you can read it here, print it or download it.</p>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}
+{% block scripts %}{% if s.ready %}<script>{% include "library/_reader.js" %}</script>{% endif %}{% endblock %}

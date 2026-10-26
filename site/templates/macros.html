@@ -49,3 +49,11 @@
 {% macro crumbs(items) %}
 <nav class="crumbs" aria-label="Breadcrumb">{% for label, href in items %}{% if href %}<a href="{{ href }}">{{ label }}</a>{% else %}<span>{{ label }}</span>{% endif %}{% if not loop.last %} › {% endif %}{% endfor %}</nav>
 {% endmacro %}
+
+{% macro book(s, show_grades=False) %}
+<a class="book{% if s.ready %} ready{% endif %}" href="{{ s.url }}" data-shelf="{{ s.shelf or s.kind }}"{% if s.ready %} data-ready{% endif %}>
+  <b>{{ s.title }}</b>
+  <span class="by">{{ s.author }}</span>
+  <span class="meta">{% if s.ready %}<span class="tag built">Ready</span>{% endif %}{% if show_grades %}<span class="tag">{{ grade_label(s.grades) }}</span>{% endif %}<span class="tag">{{ s.kind }}</span></span>
+</a>
+{% endmacro %}

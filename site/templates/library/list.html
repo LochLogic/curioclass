@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% from "macros.html" import book, crumbs %}
+{% block title %}{{ title }} · Reading Room · Curio Class{% endblock %}
+{% block main %}
+<div class="wrap">
+  {{ crumbs(trail) }}
+  <div class="page-head"><h1>{{ title }}</h1><p>{{ lede }}</p></div>
+  <div class="browse" id="lib-browse">
+    <aside class="browse-nav" aria-label="Sections">
+      <p class="eyebrow">On this page</p>
+      <nav>{% for sec in sections %}<a href="#{{ sec.id }}"{% if not sec['items'] | selectattr('ready') | list %} data-empty{% endif %}><i style="background:var(--library)"></i>{{ sec.label }}<b>{{ sec['items'] | length }}</b></a>{% endfor %}</nav>
+      <label class="ready-toggle"><input type="checkbox" id="ready-only"> Ready to read only</label>
+    </aside>
+    <div>
+      <label class="lib-filter"><span class="sr-only">Filter by title or author</span><input type="search" id="lib-q" placeholder="Filter by title or author"></label>
+      {% for sec in sections %}
+      <section class="browse-group" id="{{ sec.id }}"{% if sec['items'] | selectattr('ready') | list %} data-ready{% endif %}>
+        <div class="group-head"><h2>{% if sec.href %}<a href="{{ sec.href }}">{{ sec.label }}</a>{% else %}{{ sec.label }}{% endif %}</h2><span>{{ sec['items'] | length }} titles{% if sec.blurb %} · {{ sec.blurb }}{% endif %}</span></div>
+        <div class="books">{% for s in sec['items'] %}{{ book(s, show_grades) }}{% endfor %}</div>
+      </section>
+      {% endfor %}
+      <p class="none-ready" id="lib-none" hidden>Nothing matches yet. The first stories are still on the reading desk.</p>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script>
+(function () {
+  var root = document.getElementById('lib-browse'), q = document.getElementById('lib-q'), only = document.getElementById('ready-only');
+  var none = document.getElementById('lib-none');
+  function apply() {
+    var term = q.value.trim().toLowerCase(), shown = 0;
+    root.classList.toggle('ready-only', only.checked);
+    root.querySelectorAll('.browse-group').forEach(function (g) {
+      var n = 0;
+      g.querySelectorAll('.book').forEach(function (b) {
+        var ok = (!term || b.textContent.toLowerCase().indexOf(term) > -1) && (!only.checked || b.hasAttribute('data-ready'));
+        b.hidden = !ok;
+        n += ok;
+      });
+      g.hidden = !n;
+      shown += n;
+    });
+    none.hidden = shown > 0;
+  }
+  q.addEventListener('input', apply);
+  only.addEventListener('change', apply);
+})();
+</script>
+{% endblock %}

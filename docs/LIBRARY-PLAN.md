@@ -211,6 +211,33 @@ Links both ways with the rest of the site: grade pages get a small "From the Rea
 reading-literature modules link to matching stories by standard code. Later, a few **"works with any story"
 tools** (story map, character feelings tracker, compare two versions) can open any story in the library.
 
+### Built (2026-10-25): pages ready to populate
+
+`scripts/build_site.py` (section "reading room") and `site/templates/library/` build every page above except themed
+shelves and excerpts. Kinds are grouped into seven shelves (`/library/kind/<shelf>/`: picture-books, short-stories,
+poems, tales, chapter-books, plays, true-stories). Band pages live at `/library/grade/k-2/` and so on. Every row not
+marked `reserve` gets a page now; until its text exists the page says "on the reading desk" and is kept out of the
+sitemap and search engines.
+
+**To make a story ready**, add `library/<id>/` (same id as the CSV row):
+
+- `text.md`: the story in Markdown. `## Heading` for chapters or parts, `---` for a scene break (also a page break in
+  page view), `![alt](art/p01.jpg)` for pictures. A gloss is `{word|meaning}`; readers tap the word to see the meaning.
+- `story.json` (all optional): `summary`, `level` (Reading Room level, never "Lexile"), `adapted` (say how, for
+  example "abridged to 1,200 words"; shown on the page and in the download), `words` (else counted),
+  `questions` `{"before": [...], "during": [...], "after": [...]}` where each item is a string or
+  `{"q": "...", "ccss": "RL.3.2"}`, and `teacher_note` (HTML).
+- `art/`: pictures used by `text.md`. They are copied to the site and inlined into the download.
+
+The build then makes the story page with the reader (text size, Book, Plain or Spaced font, Paper, Sepia or Night,
+scroll or page view, print) and a one-file offline download at `/library/<id>/<id>.html`. Attribution comes from
+`sources.csv` (or the StoryWeaver export) automatically. To check the reader locally without a real story, run
+`python scripts/build_site.py --preview`, which adds a made-up fable from `site/fixtures/reader-preview/` at
+`/library/reader-preview/`. Never deploy a `--preview` build.
+
+Still to do: themed shelves, the "From the Reading Room" strip on grade pages, read-aloud for K-2, and a
+self-hosted dyslexia-friendly font for the Spaced option (it uses Verdana with extra spacing for now).
+
 ## The pipeline
 
 1. **Candidate list** (agent, no downloads): title, author, year, edition, source, grades, kind, origin. About 900

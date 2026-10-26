@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ s.title }} · Curio Class Reading Room</title>
+<style>
+body { margin: 0; background: #fbf8f1; color: #1f2430; font: 17px/1.55 'Segoe UI', system-ui, sans-serif; }
+.wrap { max-width: 900px; margin: 0 auto; padding: 16px; }
+.after { max-width: 66ch; margin: 24px auto; }
+.after h2 { font: 600 22px Georgia, serif; margin: 24px 0 8px; }
+.after h3 { font: 600 17px Georgia, serif; margin: 16px 0 6px; }
+.after code { font: 600 12px Consolas, monospace; background: #f3eee2; padding: 2px 6px; border-radius: 5px; }
+.after p, .after li { color: #3b4150; }
+.foot { text-align: center; color: #5e6472; font-size: 14px; margin: 28px 0 12px; }
+{% include "library/_reader.css" %}
+</style>
+</head>
+<body>
+<div class="wrap">
+{% include "library/_reader.html" %}
+<div class="after no-print">
+  {% if s.meta.questions %}<h2>Questions</h2>{% include "library/_questions.html" %}{% endif %}
+  {% if s.meta.teacher_note %}<h2>For the teacher</h2>{{ s.meta.teacher_note | safe }}{% endif %}
+</div>
+<p class="foot">{{ s.credit }}{% if s.meta.adapted %} Adapted for the Curio Class Reading Room.{% endif %}<br>From the Reading Room at curioclass.org{{ s.url }}. Free forever.</p>
+</div>
+<script>{% include "library/_reader.js" %}</script>
+</body>
+</html>
