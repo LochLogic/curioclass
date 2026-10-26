@@ -1,0 +1,42 @@
+{
+  "style": "Flat, clean illustration for a middle school math tool about two trains on a prairie railroad: warm golden prairie, pale blue sky, soft afternoon light, simple shapes, gentle colors, uncluttered. No text, no letters, no numbers, no logos, no watermark, no border, no frame.",
+  "assets": [
+    {
+      "name": "prairie-backdrop",
+      "prompt": "Empty landscape background: a wide flat golden prairie under a pale blue sky, low distant hills along the horizon, a few small cottonwood trees spaced far apart, soft afternoon light, flat illustration style. Seen straight on from low eye level. The lower half of the picture is smooth, even golden grass with lots of open space. No people, no animals, no buildings, no roads, no railway, no writing.",
+      "sd": "Empty landscape background: a wide flat golden prairie under a pale blue sky, low distant hills along the horizon, a few small cottonwood trees spaced far apart, soft afternoon light, flat illustration style. Seen straight on from low eye level. The lower half of the picture is smooth, even golden grass with lots of open space, quiet and open.",
+      "aspect": "5:1",
+      "width": 1800,
+      "quality": 72,
+      "local_note": "full-width backdrop of the scene strip (cropped to cover, xMidYMid slice, so a 5:1 image fills strips from about 4:1 to 19:1 at a light 18 percent paper wash); rails, station posts, names, trains and the gap bracket are drawn in code over the lower half, so keep that half plain grass; fallback: the code-drawn sky, hills, grass and cottonwoods in drawPrairie()",
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "pending"
+    },
+    {
+      "name": "train-a",
+      "prompt": "Side view, exactly in profile, of a short maroon and cream passenger train facing right: one streamlined locomotive at the right end and two passenger coaches behind it to the left, a cream stripe along the sides, plain blank sides with simple windows, black wheels on the bottom edge, flat illustration, the whole train in frame from end to end, centered on a plain white background. No people, no writing.",
+      "sd": "Side view, exactly in profile, of a short maroon and cream passenger train facing right: one streamlined locomotive at the right end and two passenger coaches behind it to the left, a cream stripe along the sides, plain blank sides with simple windows, black wheels on the bottom edge, flat illustration, the whole train in frame from end to end, centered on a plain white background.",
+      "cutout": true,
+      "key": "magenta",
+      "aspect": "4:1",
+      "height": 160,
+      "quality": 78,
+      "local_note": "Train A in the scene strip, drawn at 4:1 (72 to 120 px long, 18 to 30 px tall), wheels on the rail at the bottom edge, mirrored when westbound; a white letter A on a dark badge is drawn in code over its middle, so plain sides are best; fallback: drawTrain() in code",
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "pending"
+    },
+    {
+      "name": "train-b",
+      "prompt": "Side view, exactly in profile, of a short blue freight train facing right: one blue diesel locomotive at the right end and three plain blue boxcars behind it to the left, plain blank sides, black wheels on the bottom edge, flat illustration, the whole train in frame from end to end, centered on a plain white background. No people, no writing.",
+      "sd": "Side view, exactly in profile, of a short blue freight train facing right: one blue diesel locomotive at the right end and three plain blue boxcars behind it to the left, plain blank sides, black wheels on the bottom edge, flat illustration, the whole train in frame from end to end, centered on a plain white background.",
+      "cutout": true,
+      "key": "magenta",
+      "aspect": "4:1",
+      "height": 160,
+      "quality": 78,
+      "local_note": "Train B in the scene strip, same size and use as train-a (white letter B on a dark badge drawn over it in code), mirrored when westbound; fallback: drawTrain() in code",
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "pending"
+    }
+  ]
+}

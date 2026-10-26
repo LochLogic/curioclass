@@ -20,3 +20,9 @@ graphing). It is the first tool built for grades 6-8 as a band, so it sets the b
 - **Voice:** one bank voice (spec picks it; check neighbors). Grades 3+ rule: a welcome per mode, short
   instructions, the hints Read uses. About 10 to 25 lines. Write "miles per hour", "kilometers", never symbols.
 - **Trademark check** on the tool name at spec time.
+
+## Log
+
+| Tool | Live | Verify | Notes |
+|---|---|---|---|
+| two-trains | 2026-10-26 | FIX (2 blockers: card 6 gave the answer away), fix, re-verify FIX (2 small layout), fix 2, integrator look | news-reader voice (14 lines), 3 Cloudflare FLUX images, kit/graphing.js unchanged; 509 KB |

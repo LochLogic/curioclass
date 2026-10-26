@@ -1,0 +1,1183 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Two Trains · Systems of linear equations · Curio Class</title>
+<meta name="description" content="Two trains on one railroad and their two lines on one distance-time graph: drag speeds and departure times, press Play, and see where the trains meet, where they never meet, and when they run together. Grade 8 math. Works offline.">
+<!--
+Two Trains (Curio Class)
+Grade 8, math, Linear Equations and Systems. Standards: 8.EE.C.8 (a: the solution of a system is where the graphs
+cross; b: solve systems, including no solution and infinitely many; c: real-world problems with two linear equations).
+Students drive on laptops, alone or in pairs (also works on a projector for a teacher demo).
+Yard: free play with two trains on the fictional Prairie Line (Ashford, mile 0, to Brookport, mile 300). Each train is
+d = m(t - s) + p. The meeting is where the two lines cross; the same speed and direction never meet (no solution);
+the same equation always meets (infinitely many); and lines can cross at a time the trains are not both running.
+Dispatch: eight ticket cards, each setting part of a schedule for the student to finish.
+Facts: CCSS 8.EE.C.8; OpenStax Elementary Algebra 2e, sections 3.5 and 5.1; 49 CFR 213.9 (track class speed limits).
+The Prairie Line, its towns, the trains, presets and cards are invented. Every meeting time and mile was recomputed in
+Python with exact fractions (2026-10-26). Art: FLUX.2 [klein] (Cloudflare) when present, otherwise drawn in code.
+One file, no network requests. Content CC BY 4.0, code MIT. curioclass.org
+-->
+<link rel="stylesheet" href="kit:curio">
+<style>
+:root{
+  /* band 6-8, light; contrast (WCAG 2.1): brand on paper 7.61, white on brand 8.14, ink on paper 12.63,
+     muted on paper 5.61, A color on paper 4.85 and on white 5.18, B color on paper 6.27 */
+  --paper:#fbf7ef;--panel:#ffffff;--ink:#22303c;--muted:#5b6470;--line:#d9cfbf;--focus:#c2410c;
+  --brand:#8c2f39;--btn:#74242d;--btn-line:#c27d85;--head-ink:#ffffff;
+  --gr-1:#c2410c;--gr-2:#1d4ed8;--gr-3:#047857;--gr-4:#7c3aed;
+  --gr-grid:rgba(120,98,70,.13);--gr-grid-major:rgba(120,98,70,.30);--gr-axis:#6d6253;--gr-text:#4f4a42;
+  --ticket:#fff4dc;--ticket-line:#d8b878;--ok:#166534;
+}
+main{grid-template-columns:minmax(0,1fr) 400px;min-height:0}
+.stage{min-height:0;background:var(--paper)}
+#sv{position:absolute;left:0;top:0;display:block;touch-action:none}
+/* three page layouts, picked in script (relayout()), as in collision-lab:
+   wide (1000 px or wider and 700 px or taller), compact (short landscape boxes such as the 16:10 embed), stack (narrow) */
+body.compact main{grid-template-columns:minmax(0,1fr) 300px}
+@media (min-width:900px){body.compact main{grid-template-columns:minmax(0,1fr) 340px}}
+body.compact header{padding:4px 8px;gap:4px;flex-wrap:nowrap;min-width:0}
+body.compact h1{font-size:16px;white-space:nowrap;min-width:0;overflow:hidden;text-overflow:ellipsis}
+body.compact h1 small{display:none}
+body.compact .seg{flex:none}
+body.compact .seg button,body.compact .icon-btn{min-height:44px;padding:0 8px;font-size:13.5px;white-space:nowrap}
+body.compact .icon-btn{flex:none}
+body.compact .panel{padding:6px 8px;gap:6px}
+body.compact .status{padding:5px 8px;font-size:13px}
+body.compact .status b{font-size:13.5px}
+body.compact .btn{font-size:13.5px;padding:0 6px}
+body.compact .card{padding:5px 6px}
+body.compact .eqs{display:none}
+body.compact .gr-slider label{font-size:11.5px}
+body.compact .gr-slider input[type=range]{height:44px}
+body.compact .gr-slider .num{width:66px;min-height:44px;font-size:12.5px;padding:0 4px}
+body.compact .card h2 small{display:none}
+body.compact .card h2{font-size:13.5px}
+body.compact .dir .btn{font-size:12.5px}
+body.compact .lg,body:not(.compact) .sm2{display:none}
+body.compact .clock{display:none}
+body.compact .hint{font-size:13.5px}
+body.compact .clock{font-size:12.5px}
+body.compact .small{font-size:12px}
+body.stack{height:auto}
+body.stack main{grid-template-columns:minmax(0,1fr);align-content:start}
+body.stack .panel{border-left:0;border-top:3px solid var(--line)}
+@media (max-width:560px){
+  .seg{display:grid;grid-template-columns:1fr 1fr;border-radius:14px;width:100%}
+  .seg button{min-height:44px;font-size:15px}
+  .icon-btn{min-height:44px;padding:0 12px;font-size:15px}
+}
+/* panel */
+.panel{gap:10px;position:relative}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.status{border:2px solid var(--brand);border-radius:12px;padding:8px 12px;background:#fff;font-size:15px;line-height:1.35;margin:0}
+.status b{display:block;color:var(--brand);font-size:16px}
+.status b .ic{display:inline-block;min-width:1.3em;font-weight:800}
+.row{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.btn{min-height:44px;border-radius:10px;border:2px solid var(--btn-line);background:#fff;color:var(--ink);font-weight:700;font-size:15px;padding:0 12px}
+.btn.go{background:var(--brand);border-color:var(--brand);color:#fff}
+.btn:disabled,.btn[aria-disabled="true"]{opacity:.45;cursor:not-allowed}
+.btn[aria-pressed="true"]{background:var(--brand);border-color:var(--brand);color:#fff}
+.clock{font-variant-numeric:tabular-nums;font-size:14px;color:var(--ink);font-weight:600;margin-left:auto}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.card{border:1px solid var(--line);border-radius:12px;padding:8px;background:#fff;min-width:0;display:flex;flex-direction:column;gap:4px}
+.card h2{margin:0;font-size:15px;display:flex;align-items:center;gap:6px;white-space:nowrap}
+.dir .btn{white-space:nowrap}
+.badge{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:6px;background:#22303c;color:#fff;font:800 14px 'Segoe UI',system-ui,sans-serif;flex:none;border:3px solid}
+.card.A .badge{border-color:var(--gr-1)}
+.card.B .badge{border-color:var(--gr-2)}
+.card h2 small{font-weight:500;color:var(--muted);font-size:12.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dir{display:grid;grid-template-columns:1fr 1fr;gap:4px}
+.dir .btn{padding:0 2px;font-size:13.5px}
+.gr-slider{gap:0 6px}
+.gr-slider label{font-size:12.5px;color:var(--muted);line-height:1.2}
+.gr-slider input[type=range]{width:100%;min-width:0;height:44px;accent-color:var(--brand);margin:0}
+.gr-slider .num{width:80px;min-height:44px;border:1px solid var(--btn-line);border-radius:8px;font:600 14px 'Segoe UI',system-ui,sans-serif;padding:0 6px;color:var(--ink);background:#fff}
+.gr-slider.locked input,.gr-slider.locked .num{opacity:.5}
+.gr-slider.locked label::after{content:' \1F512'}
+.eqs{font:13.5px/1.4 'Cascadia Mono',Consolas,ui-monospace,monospace;color:var(--ink);margin:2px 0 0}
+.eqs span{display:block;font:11.5px 'Segoe UI',system-ui,sans-serif;color:var(--muted)}
+.toggles{display:flex;gap:4px 14px;flex-wrap:wrap}
+.chk{display:flex;align-items:center;gap:8px;min-height:44px;font-size:14.5px;cursor:pointer}
+.chk input{width:20px;height:20px;margin:0;accent-color:var(--brand)}
+.alg{font:14px/1.5 'Cascadia Mono',Consolas,ui-monospace,monospace;background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:8px 10px;margin:0}
+.alg div:last-child{font-weight:700}
+select.sel{min-height:44px;width:100%;border-radius:10px;border:2px solid var(--btn-line);background:#fff;color:var(--ink);font:600 15px 'Segoe UI',system-ui,sans-serif;padding:0 8px}
+.small{font-size:12.5px;color:var(--muted);margin:0;line-height:1.35}
+.tip{background:var(--ticket);border-left:4px solid var(--brand);border-radius:8px;color:var(--ink);margin:0}
+.hint{margin:0}
+/* dispatch tickets: a perforated edge cut with a radial mask */
+.tickets{display:grid;grid-template-columns:repeat(8,minmax(44px,1fr));gap:1px}
+body.compact .tickets,body.stack .tickets{grid-template-columns:repeat(4,minmax(0,1fr));gap:4px}
+body.compact .dcard{padding:5px 8px;gap:4px}
+body.compact .dcard p{font-size:13px;line-height:1.3}
+body.compact .dhead{min-height:24px}
+body.compact .dcard h2{font-size:14px}
+body.compact .pred label{font-size:11.5px;gap:0}
+.ticket{position:relative;min-height:44px;min-width:0;border:0;border-radius:6px;background:var(--ticket);color:var(--ink);font-size:12px;line-height:1.15;
+  padding:2px 4px 2px 9px;text-align:center;box-shadow:inset 0 0 0 1px var(--ticket-line);
+  -webkit-mask:radial-gradient(circle 4px at 0 50%,transparent 98%,#000) left/100% 12px repeat-y;mask:radial-gradient(circle 4px at 0 50%,transparent 98%,#000) left/100% 12px repeat-y}
+.ticket b{display:block;font-size:16px;color:var(--brand)}
+.ticket[aria-pressed="true"]{background:var(--brand);color:#fff;box-shadow:none}
+.ticket[aria-pressed="true"] b{color:#fff}
+.ticket .done{position:absolute;right:3px;top:1px;font-size:11px;font-weight:800;color:var(--ok)}
+.ticket[aria-pressed="true"] .done{color:#fff}
+.dcard{position:relative;background:var(--ticket);border:1px dashed var(--ticket-line);border-radius:10px;padding:8px 10px;display:flex;flex-direction:column;gap:6px}
+.dcard h2{margin:0;font-size:15px;color:var(--brand)}
+.dcard p{margin:0;font-size:14px;line-height:1.35}
+.dmsg{font-weight:600}
+.dmsg:empty{display:none}
+.pred{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.pred label{font-size:12.5px;color:var(--muted);font-weight:600;display:flex;flex-direction:column;gap:2px}
+.pred input{min-height:44px;border:1px solid var(--btn-line);border-radius:8px;font:600 14px 'Segoe UI',system-ui,sans-serif;padding:0 6px;width:100%}
+.dhead{display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:30px}
+.stamp{flex:none;transform:rotate(-8deg);border:3px double var(--brand);color:var(--brand);border-radius:8px;
+  padding:2px 8px;font:800 16px 'Trebuchet MS','Segoe UI',sans-serif;letter-spacing:.06em;text-transform:uppercase;background:rgba(255,255,255,.6);animation:stampIn .45s ease-out}
+@keyframes stampIn{from{transform:rotate(-8deg) scale(2.2);opacity:0}to{transform:rotate(-8deg) scale(1);opacity:1}}
+/* scene */
+.st{fill:var(--ink);font:600 11.5px 'Segoe UI',system-ui,sans-serif}
+.sm{fill:var(--muted);font:11px 'Segoe UI',system-ui,sans-serif}
+.halo{paint-order:stroke;stroke:#fffaf0;stroke-width:3.5px;stroke-linejoin:round}
+.deco{pointer-events:none}
+.flash{animation:flash .9s ease-in-out 1}
+@keyframes flash{0%,100%{opacity:1}35%{opacity:.25}70%{opacity:1}}
+#sv .gr-tick{font-size:12px}
+body.compact #sv .gr-tick{font-size:11px}
+.tab{cursor:ew-resize;outline:none}
+.tab:focus-visible .tabring{stroke:var(--focus)}
+.tabring{fill:none;stroke:transparent;stroke-width:3}
+.gr-pt.locked{cursor:not-allowed}
+</style>
+</head>
+<body>
+<header>
+  <h1>Two Trains <small>Systems of linear equations</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-yard" aria-pressed="true">Yard</button>
+    <button id="m-dispatch" aria-pressed="false">Dispatch</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true" title="Turn animation on or off">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+  <button class="icon-btn" id="read" title="Read the hint aloud">🔊 Read</button>
+</header>
+<main>
+  <div class="stage" id="stage">
+    <svg id="sv" role="group" aria-label="The Prairie Line and its distance-time graph"></svg>
+  </div>
+  <aside class="panel" id="panel">
+    <p class="status" id="status" role="status"><b id="stTitle"></b><span id="stText"></span></p>
+    <div class="row">
+      <button class="btn go" id="play">▶ Play</button>
+      <button class="btn" id="jump">⏭ <span class="lg">Jump to meeting</span><span class="sm2">Meeting</span></button>
+      <button class="btn" id="restart" title="Clock back to 12:00 pm (R)">↺ Restart</button>
+      <span class="clock" id="clock" aria-live="off"></span>
+    </div>
+    <section class="dcard" id="dcard" data-modes="dispatch" aria-labelledby="dTitle">
+      <div class="dhead" id="dhead"><h2 id="dTitle"></h2></div>
+      <p id="dText"></p>
+      <div class="pred" id="pred" hidden>
+        <label>Your meeting time<input id="pTime" type="text" inputmode="text" placeholder="like 1:45 pm" autocomplete="off"></label>
+        <label>Your mile<input id="pMile" type="text" inputmode="decimal" placeholder="like 95" autocomplete="off"></label>
+      </div>
+      <div class="row">
+        <button class="btn go" id="check">Check</button>
+        <button class="btn go" id="cant" hidden>It can't be done</button>
+        <button class="btn" id="dHint">Show a hint</button>
+        <button class="btn" id="next">Next card</button>
+      </div>
+      <p class="dmsg" id="dMsg" aria-live="polite"></p>
+      <p class="small" id="dHintText" hidden></p>
+    </section>
+    <div class="cards" id="cards"></div>
+    <div class="tickets" id="tickets" role="group" aria-label="Dispatch tickets" data-modes="dispatch"></div>
+    <div class="toggles">
+      <label class="chk"><input type="checkbox" id="tGap"> Show gap</label>
+      <label class="chk"><input type="checkbox" id="tAlg"> Show the algebra</label>
+    </div>
+    <div class="alg" id="alg" hidden aria-live="polite"></div>
+    <div data-modes="yard">
+      <label class="sr" for="preset">Presets</label>
+      <select class="sel" id="preset"></select>
+    </div>
+    <p class="tip" id="tip" aria-live="polite"></p>
+    <p class="hint" id="hint"></p>
+    <p class="small" data-modes="yard" id="fact">Real US track rules: on Class 4 track, freight trains may run up to 60 miles per hour and passenger trains up to 80 (49 CFR 213.9).</p>
+  </aside>
+</main>
+<script src="kit:curio"></script>
+<script src="kit:graphing"></script>
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const {say, wait} = Curio;
+  const NS = 'http://www.w3.org/2000/svg';
+  const mk = (tag, attrs = {}, parent) => { const e = document.createElementNS(NS, tag); for (const k in attrs) if (attrs[k] != null) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; };
+  const txt = (parent, x, y, s, cls, anchor) => { const e = mk('text', {x, y, class: cls, 'text-anchor': anchor}, parent); e.textContent = s; return e; };
+  const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+  const fmt = Plane.fmt;
+  const sv = $('sv');
+
+  // ======================================================================================
+  // Art: real FLUX art when the bundle has it, otherwise the code-drawn stand-ins below
+  // ======================================================================================
+  const ART = {backdrop: 'art:prairie-backdrop', A: 'art:train-a', B: 'art:train-b'};
+  const TRAIN_ASPECT = {A: 693 / 160, B: 865 / 160};
+  const realArt = u => /^data:image\/(webp|png|jpeg)/.test(u);
+
+  // ======================================================================================
+  // Spoken lines (voice/lines.json lists every one); lines 13 and 14 are the hints Read uses
+  // ======================================================================================
+  const L = {
+    'yard-welcome': "Two trains, one railroad, one graph. Change a train's start, departure time or speed, then press Play and watch where they meet.",
+    'yard-ladder': 'The strip beside the graph is the railroad turned on its side. Each train sits at the height of its line.',
+    'first-meet': 'They met. On the graph, that is exactly where the two lines cross.',
+    'first-never': 'Same speed, same direction. The gap never shrinks, so the lines never cross. That system has no solution.',
+    'first-always': 'Same equation. The two lines sit on top of each other, so every point is a solution.',
+    'first-offtrack': 'The equations cross, but at a time when the trains are not both running. On the track, they never meet.',
+    'gap': 'The gap between the trains is the distance between the two lines, straight up and down.',
+    'algebra': 'Setting the two equations equal finds the one time when both trains are at the same mile.',
+    'dispatch-welcome': 'This is dispatch. Each ticket sets part of a schedule. You set the rest so the trains do what the ticket asks.',
+    'card-solved': 'On time. Nice work.',
+    'card-predict': 'Work out the meeting time and mile first. Then press Play and see if you called it.',
+    'card-twice': "Can two straight lines cross twice? Try it, and if you think it can't be done, say so.",
+    'hint-yard': 'Drag the round dot to move a departure. Drag the square to change the speed.',
+    'hint-dispatch': 'Locked settings come from the ticket. Change the others, then press Check.',
+  };
+  const WELCOME = {yard: 'yard-welcome', dispatch: 'dispatch-welcome'};
+  const allLines = () => [...new Set(Object.values(L))];
+
+  // ======================================================================================
+  // The Prairie Line (invented) and the trains
+  // ======================================================================================
+  const STATIONS = [['Ashford', 0], ['Cedar Flats', 45], ['Millbrook', 120], ['Pine Hollow', 180], ['Granite Falls', 240], ['Brookport', 300]];
+  const END = 300, TMAX = 7, HOURS_PER_SEC = .5;   // Play runs 2 seconds per hour
+  const NAMES = {A: 'Passenger', B: 'Freight'};
+  const T = (dir, p, s, v) => ({dir, p, s, v});    // dir +1 eastbound, -1 westbound; p mile; s hours after noon; v miles per hour
+  const PRESETS = [
+    {name: 'Head on', A: T(1, 0, 0, 60), B: T(-1, 300, 0, 40)},
+    {name: 'Catch up', A: T(1, 0, 0, 40), B: T(1, 0, 1, 60)},
+    {name: 'Same speed', A: T(1, 45, 0, 35), B: T(1, 0, 0, 35)},
+    {name: 'Same schedule', A: T(1, 0, 0, 60), B: T(1, 120, 2, 60)},
+    {name: 'Too slow to catch', A: T(1, 45, 0, 50), B: T(1, 0, 0, 40)},
+  ];
+  // Dispatch cards. lock lists the settings fixed by the card. check(st) says whether the target holds.
+  const CARDS = [
+    {name: 'Meet at Millbrook', A: T(1, 0, 0, 40), B: T(-1, 300, 0, 30), lock: ['A.dir', 'A.p', 'A.s', 'A.v', 'B.dir', 'B.p', 'B.s'],
+      text: "Train A leaves Ashford at noon, eastbound at 40 miles per hour. Train B leaves Brookport at noon, westbound. Set B's speed so they meet at Millbrook (mile 120).",
+      hint: 'When does A reach Millbrook? B has that long to cover 180 miles.', target: {mile: 120}, place: 'at Millbrook'},
+    {name: 'The catch', A: T(1, 0, 0, 40), B: T(1, 0, 1, 80), lock: ['A.dir', 'A.p', 'A.s', 'A.v', 'B.dir', 'B.p', 'B.v'],
+      text: "Train A leaves Ashford at noon at 40 miles per hour. Train B follows from Ashford at 80 miles per hour. Set B's departure so B catches A at Granite Falls (mile 240).",
+      hint: 'A reaches mile 240 at 6:00 pm. How long does B need for 240 miles?', target: {mile: 240}, place: 'at Granite Falls'},
+    {name: 'Hold the gap', A: T(1, 45, 0, 35), B: T(1, 0, 0, 20), lock: ['A.dir', 'A.p', 'A.s', 'A.v', 'B.dir', 'B.p', 'B.s'],
+      text: "Train A leaves Cedar Flats (mile 45) at noon at 35 miles per hour. Train B leaves Ashford at noon. Set B's speed so the gap between them stays the same the whole trip.",
+      hint: "Turn on Show gap and watch it as you change B's speed. When does it stop changing?", target: {kind: 'never'}},
+    {name: 'One schedule', A: T(1, 0, 0, 60), B: T(1, 120, 2, 40), lock: ['A.dir', 'A.p', 'A.s', 'A.v', 'B.dir', 'B.p', 'B.s'],
+      text: 'Train A leaves Ashford at noon at 60 miles per hour. Train B leaves Millbrook (mile 120) at 2:00 pm. Give B the same equation as A.',
+      hint: 'Write both equations in d = mt + b form and compare.', target: {kind: 'always'}},
+    {name: 'Late start', A: T(-1, 300, 0, 40), B: T(1, 0, 1, 60), lock: ['A.dir', 'A.p', 'A.s', 'A.v', 'B.dir', 'B.p', 'B.v'],
+      text: "Train A leaves Brookport at noon, westbound at 40 miles per hour. Train B leaves Ashford eastbound at 60 miles per hour. Set B's departure so they meet at Millbrook (mile 120).",
+      hint: 'A reaches Millbrook at 4:30 pm. B needs 2 hours to get there.', target: {mile: 120}, place: 'at Millbrook'},
+    {name: 'Call it first', A: T(1, 0, 1, 75), B: T(-1, 300, 0, 50), lock: ['A.dir', 'A.p', 'A.s', 'A.v', 'B.dir', 'B.p', 'B.s', 'B.v'], predict: true,
+      text: 'Train A leaves Ashford at 1:00 pm at 75 miles per hour. Train B leaves Brookport at noon, westbound at 50 miles per hour. Predict when and where they meet, then press Play.',
+      hint: 'Set 75(t − 1) equal to 300 − 50t.'},
+    {name: 'Meet twice', A: T(1, 0, 0, 60), B: T(-1, 300, 0, 40), lock: [], twice: true,
+      text: 'Nothing is locked. Make Train A and Train B meet at two different places.',
+      hint: 'Try every case: lines that cross, lines side by side, and the same line. How many meetings does each give?'},
+    {name: 'Junction at four', A: T(-1, 300, 0, 40), B: T(1, 0, 0, 40), lock: ['A.dir', 'A.p', 'A.s', 'B.dir', 'B.p', 'B.s'],
+      text: 'Train A leaves Brookport at noon, westbound. Train B leaves Ashford at noon, eastbound. Set both speeds so they meet at Granite Falls (mile 240) at 4:00 pm.',
+      hint: 'A has 4 hours to go 60 miles. B has 4 hours to go 240.', target: {mile: 240, t: 4}, place: 'at Granite Falls at 4:00 pm'},
+  ];
+  const HINT = {yard: L['hint-yard'], dispatch: L['hint-dispatch']};
+
+  const state = {mode: 'yard', t: 0, playing: false, showGap: false, showAlg: false, card: 0, solved: new Set(), revealed: false, metAt: null};
+  const yard = {A: {...PRESETS[0].A}, B: {...PRESETS[0].B}};
+  let disp = null;          // {A, B} for the current Dispatch card
+  let tr = yard;            // the trains on screen
+
+  // solved tickets are remembered on this device only (works without it)
+  const KEY = 'curio-two-trains';
+  try { const o = JSON.parse(localStorage.getItem(KEY) || '{}'); if (Array.isArray(o.solved)) o.solved.forEach(i => state.solved.add(i)); } catch {}
+  const saveSolved = () => { try { localStorage.setItem(KEY, JSON.stringify({solved: [...state.solved]})); } catch {} };
+
+  // ======================================================================================
+  // The math, exact on the step grid: times are quarter hours, so every value is a fraction
+  // ======================================================================================
+  const R = (n, d = 1) => d < 0 ? {n: -n, d: -d} : {n, d};
+  const cmpR = (a, b) => a.n * b.d - b.n * a.d;
+  const val = a => a.n / a.d;
+  function lineOf(t) {
+    const S = Math.round(t.s * 4), m = t.dir * t.v, B4 = 4 * t.p - m * S;   // b = B4 / 4
+    const arr = R(S * t.v + 4 * (t.dir > 0 ? END - t.p : t.p), 4 * t.v);  // reaches its terminus
+    const end = cmpR(arr, R(TMAX)) < 0 ? arr : R(TMAX);
+    return {m, B4, b: B4 / 4, s: t.s, S, p: t.p, arr, end};
+  }
+  // where a train actually is at clock time t: waiting at its station, running, or stopped at its terminus
+  function posAt(t, k) {
+    const x = tr[k], Lk = lineOf(x);
+    if (t <= x.s) return x.p;
+    return clamp(x.p + Lk.m * (Math.min(t, val(Lk.arr)) - x.s), 0, END);
+  }
+  function solve() {
+    const A = lineOf(tr.A), B = lineOf(tr.B);
+    if (A.m === B.m) {
+      if (A.B4 === B.B4) {
+        const lo = R(Math.max(A.S, B.S), 4), hi = cmpR(A.end, B.end) <= 0 ? A.end : B.end;
+        return {kind: 'always', A, B, lo, hi, overlap: cmpR(lo, hi) <= 0};
+      }
+      return {kind: 'never', A, B, gap: Math.abs(A.B4 - B.B4) / 4};
+    }
+    const t = R(B.B4 - A.B4, 4 * (A.m - B.m));
+    const d = R(A.m * t.n * 4 + A.B4 * t.d, 4 * t.d);
+    const start = R(Math.max(A.S, B.S), 4), endMin = cmpR(A.end, B.end) <= 0 ? A.end : B.end;
+    const on = cmpR(t, start) >= 0 && cmpR(t, endMin) <= 0;
+    let why = '';
+    if (!on && val(t) >= 0 && val(t) <= TMAX) {
+      if (cmpR(t, start) < 0) why = ` Train ${A.S >= B.S ? 'A' : 'B'} has not left yet then.`;
+      else { const k = cmpR(A.end, B.end) <= 0 ? 'A' : 'B'; why = ` Train ${k} has already reached ${tr[k].dir > 0 ? 'Brookport' : 'Ashford'} by then.`; }
+    }
+    return {kind: on ? 'one' : 'off', A, B, t, d, tv: val(t), dv: val(d), why};
+  }
+
+  // ---------- words for numbers ----------
+  function clockOf(t) {   // hours after noon -> "2:15 pm" (nearest minute)
+    const tot = 720 + Math.round(t * 60), hh = Math.floor(((tot % 1440) + 1440) % 1440 / 60), mm = ((tot % 60) + 60) % 60;
+    return `${hh % 12 || 12}:${String(mm).padStart(2, '0')} ${hh >= 12 ? 'pm' : 'am'}`;
+  }
+  const exactMin = r => (r.n * 60) % r.d === 0;
+  const exactTenth = r => (r.n * 10) % r.d === 0;
+  const exactHund = r => (r.n * 100) % r.d === 0;
+  function timeWords(r) {
+    const v = val(r);
+    if (v < 0) return `${exactHund(r) ? '' : 'about '}${fmt(-v, 2)} hours before noon`;
+    if (v > 12) return `${exactHund(r) ? '' : 'about '}${fmt(v, 2)} hours after noon`;
+    return `${exactMin(r) ? '' : 'about '}${clockOf(v)}`;
+  }
+  const mileWords = r => `${exactTenth(r) ? '' : 'about '}${fmt(val(r), 1)}`;
+  const mileAt = r => `${exactTenth(r) ? '' : 'about '}mile ${fmt(val(r), 1)}`;   // "about mile 171.4", not "mile about 171.4"
+  const stationAt = d => { const s = STATIONS.find(([, m]) => Math.abs(m - d) <= .5); return s ? s[0] : null; };
+  const signed = (v, first) => v < 0 ? (first ? '−' : ' − ') + fmt(-v, 2) : (first ? '' : ' + ') + fmt(v, 2);
+  const rhsSI = Lk => `${fmt(Lk.m)}t${Lk.b ? signed(Lk.b) : ''}`;
+  const eqSI = Lk => `d = ${rhsSI(Lk)}`;
+  const eqStory = Lk => `d = ${fmt(Lk.m)}(t − ${fmt(Lk.s, 2)}) + ${fmt(Lk.p)}`;
+
+  const TITLES = {one: ['×', 'One meeting'], never: ['∥', 'Never meet'], always: ['≡', 'Always together'], off: ['≠', 'Lines cross, trains don’t meet']};
+  // the gap on the track stays the line gap at every quarter hour (nobody waiting or stopped)
+  const steadyGap = st => { for (let q = 0; q <= TMAX * 4; q++) if (Math.abs(Math.abs(posAt(q / 4, 'A') - posAt(q / 4, 'B')) - st.gap) > 1e-9) return false; return true; };
+  function statusText(st) {
+    if (st.kind === 'one') {
+      const name = stationAt(st.dv), tw = timeWords(st.t);
+      if (name === 'Ashford') return `They meet at ${tw} at Ashford, mile 0.`;
+      return `They meet at ${tw}, ${mileWords(st.d)} miles from Ashford${name ? ` (${name})` : ''}.`;
+    }
+    if (st.kind === 'never') return steadyGap(st) ? `Same speed, same direction: the gap stays ${fmt(st.gap, 2)} miles forever. No solution.`
+      : `Same speed, same direction: the lines stay ${fmt(st.gap, 2)} miles apart and never cross. No solution. On the track the gap changes while a train waits to leave or after it stops at the end of the line.`;
+    if (st.kind === 'always') {
+      const base = 'Same equation: wherever one is, the other is too. Infinitely many solutions.';
+      if (!st.overlap) return base + ' But they are never on the line at the same time.';
+      if (cmpR(st.lo, st.hi) === 0) return base + ` Together on the line only at ${timeWords(st.lo)}.`;
+      return base + ` Side by side from ${timeWords(st.lo)} to ${timeWords(st.hi)}.`;
+    }
+    return `The equations cross at ${timeWords(st.t)}, at ${mileAt(st.d)}.${st.why} The trains never meet on the track.`;
+  }
+  function algebraLines(st) {
+    const {A, B} = st, out = [`A: ${eqSI(A)}`, `B: ${eqSI(B)}`, `Set them equal: ${rhsSI(A)} = ${rhsSI(B)}`];
+    if (st.kind === 'never') { out.push(`${fmt(A.b, 2)} = ${fmt(B.b, 2)}. That is never true: no solution.`); return out; }
+    if (st.kind === 'always') { out.push('0 = 0. That is always true: infinitely many solutions.'); return out; }
+    const ex = exactHund(st.t), eq = ex ? '=' : '≈', dEx = exactTenth(st.d) && ex;
+    out.push(`${fmt(A.m - B.m)}t = ${fmt(B.b - A.b, 2)}`);
+    const tw = st.tv < 0 || st.tv > 12 ? timeWords(st.t) : (exactMin(st.t) ? '' : 'about ') + clockOf(st.tv);
+    out.push(`t ${eq} ${fmt(st.tv, 2)}, so ${tw}`);
+    out.push(`d ${dEx ? '=' : '≈'} ${fmt(A.m)}(${fmt(st.tv, 2)})${A.b ? signed(A.b) : ''} ${dEx ? '=' : '≈'} ${fmt(st.dv, 1)} miles`);
+    if (st.kind === 'off') out.push('Not on the track: the trains are not both running then.');
+    return out;
+  }
+
+  // ======================================================================================
+  // Panel: two train cards with sliders, the status, the clock row
+  // ======================================================================================
+  const locks = () => state.mode === 'dispatch' ? CARDS[state.card].lock : [];
+  const isLocked = (k, f) => locks().includes(k + '.' + f);
+  const SL = {A: {}, B: {}}, DIRB = {A: {}, B: {}}, EQ = {};
+  const hoursParse = s => {   // "1:15 pm", "1:15", "13:15", "1.25" -> hours after noon, or null
+    s = String(s).trim().toLowerCase().replace('−', '-');
+    let m = s.match(/^(\d{1,2})(?::(\d{2}))?\s*(am|pm|a\.m\.|p\.m\.)?$/);
+    if (m && (m[2] != null || m[3])) {
+      let h = +m[1], mi = m[2] != null ? +m[2] : 0; if (mi > 59) return null;
+      const ap = m[3] ? m[3][0] : null;
+      if (ap === 'a') { if (h !== 12) return null; h = 0; }
+      else if (h === 12) h = 0; else if (h > 12) h -= 12;
+      return h + mi / 60;
+    }
+    m = s.match(/^\d+(\.\d+)?$/);
+    return m ? +s : null;
+  };
+  function buildCards() {
+    for (const k of ['A', 'B']) {
+      const c = document.createElement('section'); c.className = 'card ' + k; c.setAttribute('aria-label', `Train ${k}, ${NAMES[k]}`);
+      c.innerHTML = `<h2><span class="badge" aria-hidden="true">${k}</span>Train ${k} <small>${NAMES[k]}</small></h2>
+        <div class="dir" role="group" aria-label="Train ${k} direction"><button class="btn" data-d="1">→ East<span class="sr">bound</span></button><button class="btn" data-d="-1">← West<span class="sr">bound</span></button></div>
+        <div class="sls"></div><p class="eqs"><span>Story form</span><b data-e="story"></b><span>Slope-intercept form</span><b data-e="si"></b></p>`;
+      $('cards').appendChild(c);
+      for (const b of c.querySelectorAll('.dir .btn')) {
+        DIRB[k][b.dataset.d] = b;
+        b.onclick = () => setTrain(k, {dir: +b.dataset.d}, 'button');
+      }
+      EQ[k] = {story: c.querySelector('[data-e="story"]'), si: c.querySelector('[data-e="si"]')};
+      const box = c.querySelector('.sls');
+      const mkS = (f, o) => {
+        const h = Plane.slider(box, Object.assign({id: `s${k}${f}`, box: true, onInput: v => {
+          if (isLocked(k, f)) { h.set(tr[k][f], true); lockNote(); return; }
+          setTrain(k, {[f]: v}, 'slider');
+        }}, o));
+        h.box.addEventListener('focus', () => { if (isLocked(k, f)) lockNote(); });
+        h.range.addEventListener('focus', () => { if (isLocked(k, f)) lockNote(); });
+        SL[k][f] = h;
+      };
+      mkS('p', {label: 'Starts at (mile)', min: 0, max: 300, step: 5, value: tr[k].p, format: v => fmt(v),
+        parse: s => { const v = parseFloat(String(s).replace('−', '-')); return isFinite(v) ? Math.round(v / 5) * 5 : null; }});
+      mkS('s', {label: 'Departs', min: 0, max: 4, step: .25, value: tr[k].s, format: v => clockOf(v),
+        parse: s => { const v = hoursParse(s); return v == null ? null : Math.round(v * 4) / 4; }});
+      mkS('v', {label: 'Speed (miles per hour)', min: 10, max: 100, step: 5, value: tr[k].v, format: v => fmt(v),
+        parse: s => { const v = parseFloat(s); return isFinite(v) ? Math.round(v / 5) * 5 : null; }});
+      SL[k].v.range.setAttribute('aria-valuetext', '');
+    }
+  }
+  // screen-reader values with words, refreshed with the panel
+  function sliderWords(k) {
+    const x = tr[k], st = stationAt(x.p);
+    SL[k].p.range.setAttribute('aria-valuetext', `mile ${x.p}${st ? ', ' + st : ''}`);
+    SL[k].v.range.setAttribute('aria-valuetext', `${x.v} miles per hour`);
+  }
+  let tipTimer = 0;
+  function tip(s) { $('tip').textContent = s; clearTimeout(tipTimer); if (s) tipTimer = setTimeout(() => { $('tip').textContent = ''; }, 6000); }
+  function lockNote() { tip('Set by dispatch: this setting is part of the ticket.'); }
+
+  // one place every control writes through: sliders, boxes, buttons, the dots on the graph
+  function setTrain(k, patch, source) {
+    const x = tr[k];
+    for (const f in patch) {
+      if (isLocked(k, f)) { if (patch[f] !== x[f]) lockNote(); continue; }
+      x[f] = patch[f];
+    }
+    // a train never starts at its own terminus
+    const dirName = x.dir > 0 ? 'An eastbound' : 'A westbound', term = x.dir > 0 ? 'Brookport' : 'Ashford', other = x.dir > 0 ? 'Ashford' : 'Brookport';
+    if (x.dir > 0 && x.p >= END || x.dir < 0 && x.p <= 0) {
+      if ('dir' in patch && !isLocked(k, 'p')) { x.p = x.dir > 0 ? 0 : END; tip(`${dirName} train can't start at ${term}, so it starts at ${other}.`); }
+      else { x.p = x.dir > 0 ? END - 5 : 5; tip(`${dirName} train can't start at ${term}.`); }
+    }
+    if (state.mode === 'yard') $('preset').value = '';
+    changed(source);
+  }
+  function syncControls() {
+    for (const k of ['A', 'B']) {
+      for (const f of ['p', 's', 'v']) {
+        const h = SL[k][f]; h.value = tr[k][f]; h.refresh();
+        h.el.classList.toggle('locked', isLocked(k, f));
+        h.range.setAttribute('aria-disabled', isLocked(k, f)); h.box.readOnly = isLocked(k, f);
+      }
+      sliderWords(k);
+      for (const d of ['1', '-1']) { const b = DIRB[k][d]; b.setAttribute('aria-pressed', String(tr[k].dir) === d); b.setAttribute('aria-disabled', isLocked(k, 'dir') && String(tr[k].dir) !== d); }
+      const Lk = lineOf(tr[k]);
+      EQ[k].story.textContent = eqStory(Lk); EQ[k].si.textContent = eqSI(Lk);
+    }
+  }
+
+  // ======================================================================================
+  // Status, algebra and Dispatch hiding (card 6 must not give the answer away before Play)
+  // ======================================================================================
+  let ST = null;
+  const hideAnswer = () => state.mode === 'dispatch' && CARDS[state.card].predict && !state.revealed;
+  function showStatus() {
+    ST = solve();
+    if (hideAnswer()) {
+      $('stTitle').innerHTML = '<span class="ic" aria-hidden="true">?</span>Your call';
+      $('stText').textContent = 'Predict the meeting time and mile, then press Play.';
+    } else {
+      const [ic, name] = TITLES[ST.kind];
+      $('stTitle').innerHTML = `<span class="ic" aria-hidden="true">${ic}</span>${name}`;
+      $('stText').textContent = statusText(ST);
+    }
+    $('alg').hidden = !state.showAlg || hideAnswer();
+    $('tAlg').disabled = hideAnswer(); $('tGap').disabled = hideAnswer();
+    if (!$('alg').hidden) $('alg').innerHTML = algebraLines(ST).map(s => `<div>${s.replace(/&/g, '&amp;').replace(/</g, '&lt;')}</div>`).join('');
+    $('jump').disabled = ST.kind !== 'one' || hideAnswer();
+    // first-time voice beats; each is dropped if the status has changed before it plays
+    if (ST.kind === 'never' && steadyGap(ST)) narrate('first-never', () => ST.kind === 'never' && steadyGap(ST));
+    if (ST.kind === 'always') narrate('first-always', () => ST.kind === 'always');
+    if (ST.kind === 'off') narrate('first-offtrack', () => ST.kind === 'off');
+    if (state.mode === 'dispatch' && CARDS[state.card].twice && ST.kind === 'always' && !state.solved.has(state.card)) {
+      $('dMsg').textContent = "That's infinitely many meetings, not two. Can you get exactly two?";
+    }
+  }
+  const statusSpoken = () => $('stText').textContent.replace(/−/g, 'minus ');
+
+  // ======================================================================================
+  // Stage: the scene strip, the route ladder and the graph, drawn at real pixel size
+  // ======================================================================================
+  let G = null, g = null, S = {};
+  function geom(W, H) {
+    const names = W >= 560;
+    const sh = Math.round(clamp(H * .22, 100, 170));
+    const top = sh + 50, bottom = 62;
+    const ladX = names ? 116 : 44;            // the ladder rail; station names end 24 px left of it
+    const left = ladX + 22 + 40, right = 14;   // markers sit 10 px either side of the rail, tick labels after them
+    return {W, H, sh, top, left, ladX, names, gw: Math.max(160, W - left - right), gh: Math.max(120, H - top - bottom), fs: W < 560 ? 11 : 11.5};
+  }
+  // scene x for a mile
+  const sx = mi => G.sx0 + (G.sx1 - G.sx0) * mi / END;
+
+  function build(W, H) {
+    G = geom(W, H);
+    S = {};
+    const defs = mk('defs', {}, sv);
+    // ---------- scene strip ----------
+    const sh = G.sh, scene = mk('g', {class: 'deco'}, sv);
+    mk('rect', {x: 0, y: 0, width: W, height: sh}, mk('clipPath', {id: 'sclip'}, defs));
+    const sc = mk('g', {'clip-path': 'url(#sclip)'}, scene);
+    if (realArt(ART.backdrop)) {
+      mk('image', {href: ART.backdrop, x: 0, y: 0, width: W, height: sh, preserveAspectRatio: 'xMidYMid slice'}, sc);
+      mk('rect', {x: 0, y: 0, width: W, height: sh, fill: '#fffaf0', opacity: .18}, sc);
+    } else drawPrairie(sc, W, sh);
+    mk('line', {x1: 0, x2: W, y1: sh - .5, y2: sh - .5, stroke: 'var(--line)', 'stroke-width': 1}, scene);
+    // each train keeps its own picture's shape (A 693 x 160, B 865 x 160): no squash
+    const th = Math.round(clamp(sh * .2, 18, 32)), TL = {A: Math.round(th * TRAIN_ASPECT.A), B: Math.round(th * TRAIN_ASPECT.B)}, tlMax = Math.max(TL.A, TL.B);
+    G.th = th; G.tl = TL; G.sx0 = 10 + tlMax / 2; G.sx1 = W - 10 - tlMax / 2;
+    G.yA = Math.round(sh * .56); G.yB = Math.round(sh * .9);
+    for (const y of [G.yA, G.yB]) drawTrack(scene, y, W);
+    // stations: a post down to the lower track, the name on one of two rows so neighbors never collide
+    STATIONS.forEach(([name, mi], i) => {
+      const x = sx(mi), ny = i % 2 ? 29 : 14;
+      mk('line', {x1: x, x2: x, y1: ny + 4, y2: G.yB + 3, stroke: '#5b6470', 'stroke-width': 1.2, 'stroke-dasharray': '2 3', opacity: .8}, scene);
+      mk('rect', {x: x - 3, y: ny + 3, width: 6, height: 4, rx: 1, fill: '#5b6470'}, scene);
+      const anchor = i === 0 ? 'start' : i === STATIONS.length - 1 ? 'end' : 'middle';
+      txt(scene, x + (i === 0 ? -6 : i === STATIONS.length - 1 ? 6 : 0), ny, G.W >= 700 ? `${name} ${mi}` : name, 'st halo', anchor);
+    });
+    // meeting flag, gap bracket, trains (the trains on top)
+    S.flag = mk('g', {visibility: 'hidden'}, scene);
+    mk('line', {x1: 0, x2: 0, y1: G.yB, y2: 40, stroke: '#3b2a1e', 'stroke-width': 2}, S.flag);
+    mk('path', {d: 'M0,40 l18,6 l-18,6 z', fill: 'var(--brand)', stroke: '#fff', 'stroke-width': 1}, S.flag);
+    S.gapG = mk('g', {visibility: 'hidden'}, scene);
+    S.gapLine = mk('path', {fill: 'none', stroke: 'var(--brand)', 'stroke-width': 2}, S.gapG);
+    S.gapT = txt(S.gapG, 0, 0, '', 'st halo', 'middle');
+    S.train = {};
+    for (const k of ['A', 'B']) {
+      const tl = TL[k], o = mk('g', {}, scene), fade = mk('g', {}, o), body = mk('g', {}, fade), lab = txt(o, 0, 0, '', 'sm halo', 'start');
+      // wheels on the rail: the picture's bottom edge is the wheel bottoms, set on the rail's top line
+      if (realArt(ART[k])) mk('image', {href: ART[k], x: -tl / 2, y: -th + 1, width: tl, height: th, preserveAspectRatio: 'none'}, body);
+      else drawTrain(body, k, tl, th);
+      const bd = mk('g', {}, fade), bs = Math.round(clamp(th * .85, 17, 22));
+      mk('rect', {x: -bs / 2, y: -th / 2 - bs / 2, width: bs, height: bs, rx: 4, fill: '#22303c', stroke: k === 'A' ? 'var(--gr-1)' : 'var(--gr-2)', 'stroke-width': 2.5}, bd);
+      mk('text', {x: 0, y: -th / 2 + bs * .34, 'text-anchor': 'middle', fill: '#fff', style: `font:800 ${Math.round(bs * .72)}px 'Segoe UI',system-ui,sans-serif`}, bd).textContent = k;
+      S.train[k] = {o, fade, body, lab};
+    }
+
+    // ---------- graph ----------
+    const gG = mk('g', {}, sv);
+    g = Plane(gG, {x: [0, TMAX], y: [0, END], width: G.gw, height: G.gh, left: G.left, top: G.top, grid: [.5, 15], labels: [1, 60],
+      ticks: 'edge'});
+    // clock sublabels and the axis titles (own text: the route ladder takes the engine's y title spot)
+    const lab = g.layer('labels');
+    for (let h = 0; h <= TMAX; h++) { const [u] = g.px(h, 0); txt(lab, u, G.gh + 33, `${h === 0 ? 12 : h} pm`, 'sm', 'middle'); }
+    txt(lab, G.gw / 2, G.gh + 52, 'time (hours after noon)', 'gr-axlabel', 'middle');
+    const yl = mk('text', {transform: `translate(${-G.left + 13},${G.gh / 2}) rotate(-90)`, 'text-anchor': 'middle', class: 'gr-axlabel'}, lab);
+    yl.textContent = 'distance from Ashford (miles)';
+
+    // ---------- route ladder: the railroad turned on its side, aligned to the y scale ----------
+    const lad = mk('g', {class: 'deco'}, sv), lx = G.ladX, y0 = G.top + g.px(0, 0)[1], y1 = G.top + g.px(0, END)[1];
+    mk('rect', {x: lx - 4, y: y1 - 2, width: 8, height: y0 - y1 + 4, rx: 3, fill: '#e9dfcc'}, lad);
+    for (const dx of [-2.5, 2.5]) mk('line', {x1: lx + dx, x2: lx + dx, y1: y1, y2: y0, stroke: '#4a4f57', 'stroke-width': 1.3}, lad);
+    STATIONS.forEach(([name, mi]) => {
+      const y = G.top + g.px(0, mi)[1];
+      mk('line', {x1: lx - 7, x2: lx + 7, y1: y, y2: y, stroke: '#5b6470', 'stroke-width': 2}, lad);
+      if (G.names) txt(lad, lx - 24, y + 4, name, 'sm', 'end');
+    });
+    S.lad = {};
+    for (const k of ['A', 'B']) {
+      const o = mk('g', {}, lad);
+      mk('rect', {x: -9, y: -9, width: 18, height: 18, rx: 4, fill: k === 'A' ? 'var(--gr-1)' : 'var(--gr-2)', stroke: '#fff', 'stroke-width': 1.5}, o);
+      mk('text', {x: 0, y: 4.5, 'text-anchor': 'middle', fill: '#fff', style: "font:800 12px 'Segoe UI',system-ui,sans-serif"}, o).textContent = k;
+      S.lad[k] = o;
+    }
+
+    // ---------- things on the graph ----------
+    S.cursor = g.segment([0, 0], [0, END], {color: '#22303c', width: 1.5, dashed: '5 4', layer: 'front'});
+    S.gapSeg = g.segment([0, 0], [0, 0], {color: 'var(--brand)', width: 3.5, layer: 'front'});
+    S.gapLab = g.label(0, 0, '', {layer: 'labels', dx: 8, dy: 4});
+    S.gapLab.el.classList.add('halo');
+    S.now = {};
+    for (const k of ['A', 'B']) { S.now[k] = g.point(0, 0, {r: 5, color: k === 'A' ? 1 : 2}); S.now[k].el.style.pointerEvents = 'none'; }
+    S.ring = g.point(0, 0, {shape: 'none'});
+    mk('circle', {r: 13, fill: 'none', stroke: '#22303c', 'stroke-width': 2.5}, S.ring.body);
+    mk('circle', {r: 4, fill: '#22303c'}, S.ring.body);
+    S.ring.el.setAttribute('aria-hidden', 'true'); S.ring.el.style.pointerEvents = 'none';
+    S.meetLab = g.label(0, 0, '', {layer: 'labels'});
+    S.meetLab.el.classList.add('halo');
+    S.dot = {}; S.spd = {};
+    for (const k of ['A', 'B']) {
+      const kk = k;
+      S.dot[k] = g.point(tr[k].s, tr[k].p, {draggable: true, r: 9, color: k === 'A' ? 1 : 2,
+        ariaLabel: `Train ${k} departure. Drag, or use the arrow keys`,
+        valueText: (x, y) => `Train ${kk} departs ${clockOf(x)} from mile ${fmt(y)}`,
+        snap: (x, y) => snapDot(kk, x, y),
+        onMove: (x, y) => setTrain(kk, {s: x, p: y}, 'dot'),
+        onKey: (e, h) => dotKey(kk, e)});
+      const lk = {x: tr[k].s + 1};
+      S.spd[k] = g.point(tr[k].s + 1, tr[k].p + tr[k].dir * tr[k].v, {draggable: true, shape: 'none', lock: lk,
+        ariaLabel: `Train ${k} speed handle. Drag up or down, or use the arrow keys`,
+        valueText: () => `Train ${kk}: ${tr[kk].v} miles per hour ${tr[kk].dir > 0 ? 'eastbound' : 'westbound'}`,
+        snap: (x, y) => [lk.x, y],
+        onMove: (x, y) => speedDrag(kk, y),
+        onDrop: () => { S.spd[kk].dragging = false; placeHandles(); },
+        onKey: e => speedKey(kk, e)});
+      S.spd[k].lock = lk;
+      mk('rect', {x: -8, y: -8, width: 16, height: 16, rx: 2, fill: k === 'A' ? 'var(--gr-1)' : 'var(--gr-2)', stroke: '#fff', 'stroke-width': 2}, S.spd[k].body);
+      S.spd[k].lab = mk('text', {x: 13, y: 4, class: 'sm halo', style: 'font-weight:600'}, S.spd[k].body);
+      for (const h of [S.dot[k], S.spd[k]]) h.el.addEventListener('focus', () => { if (h === S.dot[k] ? isLocked(k, 's') && isLocked(k, 'p') : isLocked(k, 'v')) lockNote(); });
+    }
+    // legend: line style, letter and equation, so color is never the only signal
+    S.legend = mk('g', {class: 'deco'}, sv);
+    // the clock cursor's tab, above the graph (its own drag: it sits outside the plane)
+    S.tab = mk('g', {class: 'tab', tabindex: 0, role: 'slider', 'aria-label': 'Clock. Drag, or use the Left and Right arrows', 'aria-valuemin': 0, 'aria-valuemax': TMAX}, sv);
+    mk('rect', {x: -34, y: -38, width: 68, height: 44, fill: 'transparent'}, S.tab);
+    mk('rect', {x: -31, y: -27, width: 62, height: 22, rx: 6, class: 'tabring'}, S.tab);
+    mk('rect', {x: -29, y: -25, width: 58, height: 18, rx: 5, fill: '#22303c'}, S.tab);
+    mk('path', {d: 'M-6,-7 L6,-7 L0,6 Z', fill: '#22303c'}, S.tab);
+    S.tabT = mk('text', {x: 0, y: -12, 'text-anchor': 'middle', fill: '#fff', style: "font:700 11.5px 'Segoe UI',system-ui,sans-serif"}, S.tab);
+    S.tab.addEventListener('pointerdown', e => { if (e.button) return; e.preventDefault(); if (clockLocked()) return; S.tab.focus({preventScroll: true}); S.tab.setPointerCapture(e.pointerId); S.tab._d = e.pointerId; pause(); });
+    S.tab.addEventListener('pointermove', e => { if (S.tab._d === e.pointerId) dragClock(e); });
+    const end = e => { if (S.tab._d === e.pointerId) S.tab._d = null; };
+    S.tab.addEventListener('pointerup', end); S.tab.addEventListener('pointercancel', end);
+    S.tab.addEventListener('keydown', e => {
+      const d = {ArrowLeft: -.25, ArrowRight: .25, ArrowDown: -.25, ArrowUp: .25, Home: -99, End: 99}[e.key];
+      if (d == null) return; e.preventDefault(); if (clockLocked()) return; pause();
+      setClock(Math.round((state.t + d) * 4) / 4);
+    });
+    g.onClick((x) => { if (clockLocked()) return; pause(); setClock(Math.round(clamp(x, 0, TMAX) / .05) * .05); });
+    plot(); drawNow();
+  }
+  function dragClock(e) { const [x] = g.eventCoord(e); pause(); setClock(Math.round(clamp(x, 0, TMAX) / .05) * .05); }
+
+  // ---------- code-drawn stand-ins for the art ----------
+  function drawPrairie(p, W, h) {
+    const gr = mk('linearGradient', {id: 'sky', x1: 0, x2: 0, y1: 0, y2: 1}, sv.querySelector('defs'));
+    mk('stop', {offset: 0, 'stop-color': '#bfdcec'}, gr); mk('stop', {offset: 1, 'stop-color': '#eef4ef'}, gr);
+    mk('rect', {x: 0, y: 0, width: W, height: h, fill: 'url(#sky)'}, p);
+    const hz = h * .42;
+    let d = `M0,${hz}`;
+    for (let x = 0; x <= W + 40; x += 40) d += ` Q${x + 20},${hz - 10 - 8 * Math.sin(x / 97)} ${x + 40},${hz - 2 * Math.cos(x / 61)}`;
+    mk('path', {d: d + ` L${W + 40},${h} L0,${h} Z`, fill: '#b7c49a'}, p);
+    const gg = mk('linearGradient', {id: 'grass', x1: 0, x2: 0, y1: 0, y2: 1}, sv.querySelector('defs'));
+    mk('stop', {offset: 0, 'stop-color': '#e8d38f'}, gg); mk('stop', {offset: 1, 'stop-color': '#d9b866'}, gg);
+    mk('rect', {x: 0, y: hz + 4, width: W, height: h - hz, fill: 'url(#grass)'}, p);
+    // a few cottonwoods on the horizon and grass strokes
+    for (const f of [.07, .31, .58, .86]) {
+      const x = W * f, y = hz + 6, s = h * .13;
+      mk('rect', {x: x - 1.5, y: y - s * .6, width: 3, height: s * .6, fill: '#6b4f3a'}, p);
+      for (const [dx, dy, r] of [[0, -s, s * .55], [-s * .45, -s * .75, s * .4], [s * .45, -s * .78, s * .42]]) mk('circle', {cx: x + dx, cy: y + dy, r, fill: '#7f9a55'}, p);
+    }
+    let gs = '';
+    for (let x = 6; x < W; x += 13) { const y = hz + 12 + ((x * 37) % 23) * h * .02; gs += `M${x},${y.toFixed(1)}l2,-5M${x + 4},${(y + 1).toFixed(1)}l-1,-4`; }
+    mk('path', {d: gs, stroke: '#c49f4c', 'stroke-width': 1, opacity: .6}, p);
+  }
+  function drawTrack(p, y, W) {
+    mk('rect', {x: 0, y: y + 1, width: W, height: 6, fill: '#9c8f7c'}, p);
+    let ties = '';
+    for (let x = 2; x < W; x += 7) ties += `M${x},${y - 1}v8`;
+    mk('path', {d: ties, stroke: '#6b4f3a', 'stroke-width': 3}, p);
+    mk('line', {x1: 0, x2: W, y1: y + .5, y2: y + .5, stroke: '#3d4148', 'stroke-width': 1.6}, p);
+    mk('line', {x1: 0, x2: W, y1: y + 4.5, y2: y + 4.5, stroke: '#3d4148', 'stroke-width': 1.6}, p);
+  }
+  // a short train facing right (east), from -tl/2 to tl/2 and from -th to 0
+  function drawTrain(p, k, tl, th) {
+    const A = k === 'A', x0 = -tl / 2, cars = A ? 3 : 4, cw = tl / cars, wy = -th * .14, wr = th * .12;
+    for (let i = 0; i < cars; i++) {
+      const x = x0 + i * cw + 1, w = cw - 2, loco = i === cars - 1;
+      if (A) {
+        const d = loco ? `M${x},${-th * .88} h${w * .62} q${w * .38},0 ${w * .38},${th * .55} v${th * .2} h${-w} z` : null;
+        if (loco) mk('path', {d, fill: '#8c2f39', stroke: '#4a1a20', 'stroke-width': 1}, p);
+        else mk('rect', {x, y: -th * .88, width: w, height: th * .75, rx: th * .12, fill: '#8c2f39', stroke: '#4a1a20', 'stroke-width': 1}, p);
+        mk('rect', {x: x + 1, y: -th * .55, width: w * (loco ? .6 : 1) - 2, height: th * .12, fill: '#f3e6c8'}, p);   // cream stripe
+        for (let j = 0; j < (loco ? 1 : 3); j++) mk('rect', {x: x + 3 + j * (w - 6) / 3, y: -th * .8, width: (w - 6) / 3 - 2, height: th * .2, rx: 1, fill: '#f3e6c8'}, p);
+      } else if (loco) {
+        mk('rect', {x, y: -th * .78, width: w, height: th * .64, rx: 2, fill: '#1d4ed8', stroke: '#13307d', 'stroke-width': 1}, p);
+        mk('rect', {x: x + w * .55, y: -th * .95, width: w * .4, height: th * .22, rx: 1, fill: '#1d4ed8', stroke: '#13307d', 'stroke-width': 1}, p);
+        mk('rect', {x: x + w * .6, y: -th * .9, width: w * .3, height: th * .12, fill: '#dbe5ff'}, p);
+        mk('rect', {x, y: -th * .42, width: w, height: th * .07, fill: '#f2c94c'}, p);
+      } else {
+        mk('rect', {x, y: -th * .86, width: w, height: th * .72, rx: 1.5, fill: '#2f5fd0', stroke: '#13307d', 'stroke-width': 1}, p);
+        mk('line', {x1: x + w / 2, x2: x + w / 2, y1: -th * .8, y2: -th * .2, stroke: '#13307d', 'stroke-width': 1}, p);
+      }
+      for (const f of [.22, .78]) mk('circle', {cx: x + w * f, cy: wy, r: wr, fill: '#2b2b2b'}, p);
+    }
+  }
+
+  // ---------- dots and handles on the graph ----------
+  function snapDot(k, x, y) {
+    const t = tr[k];
+    x = isLocked(k, 's') ? t.s : clamp(Math.round(x * 4) / 4, 0, 4);
+    if (isLocked(k, 'p')) y = t.p;
+    else {
+      const st = STATIONS.find(([, m]) => Math.abs(m - y) <= 3);
+      y = st ? st[1] : Math.round(y / 5) * 5;
+      y = t.dir > 0 ? clamp(y, 0, END - 5) : clamp(y, 5, END);
+    }
+    return [x, y];
+  }
+  function dotKey(k, e) {
+    const d = {ArrowLeft: ['s', -.25], ArrowRight: ['s', .25], ArrowUp: ['p', 5], ArrowDown: ['p', -5]}[e.key];
+    if (!d) return false;
+    if (isLocked(k, d[0])) { lockNote(); return true; }
+    const t = tr[k], v = d[0] === 's' ? clamp(t.s + d[1], 0, 4) : clamp(t.p + d[1], t.dir > 0 ? 0 : 5, t.dir > 0 ? END - 5 : END);
+    setTrain(k, {[d[0]]: v}, 'dot');
+    return true;
+  }
+  // the handle sits one hour after departure, or half or a quarter hour when an hour would leave the graph
+  function handleSpan(t) { for (const h of [1, .5, .25]) { const y = t.p + t.dir * t.v * h; if (y >= 0 && y <= END && t.s + h <= TMAX) return h; } return .25; }
+  function speedDrag(k, y) {
+    const t = tr[k], h = S.spd[k].span;
+    S.spd[k].dragging = true;
+    if (isLocked(k, 'v') && isLocked(k, 'dir')) { lockNote(); placeHandles(); return; }
+    let m = Math.round((y - t.p) / h / 5) * 5;
+    // flipping direction skips the band between -10 and 10
+    if (Math.abs(m) < 10) m = (y > t.p ? 10 : y < t.p ? -10 : t.dir * 10);
+    m = clamp(m, -100, 100);
+    const patch = {v: Math.abs(m)};
+    if (Math.sign(m) !== t.dir) patch.dir = Math.sign(m);
+    if (isLocked(k, 'dir') && patch.dir) { lockNote(); delete patch.dir; patch.v = t.dir > 0 ? 10 : 10; }
+    if (isLocked(k, 'v')) delete patch.v;
+    setTrain(k, patch, 'handle');
+  }
+  function speedKey(k, e) {
+    const d = {ArrowUp: 5, ArrowRight: 5, ArrowDown: -5, ArrowLeft: -5}[e.key];
+    if (d == null) return false;
+    const t = tr[k];
+    if (isLocked(k, 'v')) { lockNote(); return true; }
+    let m = t.dir * t.v + d;
+    if (Math.abs(m) < 10) { if (isLocked(k, 'dir')) { lockNote(); return true; } m = d > 0 ? 10 : -10; }
+    m = clamp(m, -100, 100);
+    setTrain(k, Math.sign(m) !== t.dir ? {v: Math.abs(m), dir: Math.sign(m)} : {v: Math.abs(m)}, 'handle');
+    return true;
+  }
+  function placeHandles() {
+    for (const k of ['A', 'B']) {
+      const t = tr[k], dot = S.dot[k], sp = S.spd[k];
+      if (!dot.dragging) dot.set(t.s, t.p);
+      if (!sp.dragging) sp.span = handleSpan(t);
+      const h = sp.span; sp.lock.x = t.s + h;
+      sp.set(t.s + h, clamp(t.p + t.dir * t.v * h, 0, END));
+      const words = h === 1 ? '1 h' : h === .5 ? '30 min' : '15 min';
+      sp.lab.textContent = `${t.dir > 0 ? '+' : '−'}${fmt(t.v * h, 2)} mi in ${words}`;
+      // keep the label inside the plane on the right
+      const [u] = g.px(t.s + h, 0); sp.lab.setAttribute('x', u > G.gw - 110 ? -13 : 13); sp.lab.setAttribute('text-anchor', u > G.gw - 110 ? 'end' : 'start');
+      for (const [hd, f] of [[dot, isLocked(k, 's') && isLocked(k, 'p')], [sp, isLocked(k, 'v') && isLocked(k, 'dir')]]) {
+        hd.el.classList.toggle('locked', f); hd.el.setAttribute('aria-disabled', f);
+      }
+    }
+  }
+
+  // ---------- plotting the two lines (on any setting change) ----------
+  function plot() {
+    if (!g) return;
+    drawLines();
+    placeHandles();
+    drawLegend();
+    drawNow();
+  }
+  // the two lines; while card 6 waits for a prediction they are drawn only up to the clock and grow as the trains run
+  function drawLines() {
+    const hide = hideAnswer();
+    g.clear('lines'); S.linesHid = hide;
+    for (const k of ['A', 'B']) {
+      const Lk = lineOf(tr[k]), f = t => Lk.m * t + Lk.b, c = k === 'A' ? 1 : 2, hi = hide ? Math.min(val(Lk.end), state.t) : val(Lk.end);
+      if (!hide) g.fn(f, {color: c, width: 2, dashed: '2 6', opacity: .45, id: 'lines'});
+      if (hi > Lk.s + 1e-9) g.fn(f, {color: c, width: 3.5, domain: [Lk.s, hi], id: 'lines', label: `Train ${k}: ${eqSI(Lk)}`});
+    }
+  }
+  // card 6: before the reveal the clock moves only with Play
+  function clockLocked() { if (!hideAnswer()) return false; tip('Make your call first: until the trains meet, the clock moves only with Play.'); return true; }
+  function drawLegend() {
+    const lg = S.legend; lg.textContent = '';
+    const rows = ['A', 'B'].map(k => [k, eqSI(lineOf(tr[k]))]);
+    const fs = G.W < 560 ? 11 : 12.5, rh = fs + 8, pad = 6;
+    const box = mk('rect', {rx: 6, fill: '#fffdf8', stroke: 'var(--line)', opacity: .94}, lg);
+    let w = 0;
+    rows.forEach(([k, eq], i) => {
+      const y = pad + rh * i + rh / 2;
+      mk('line', {x1: pad, x2: pad + 26, y1: y, y2: y, stroke: k === 'A' ? 'var(--gr-1)' : 'var(--gr-2)', 'stroke-width': 3.5, 'stroke-dasharray': k === 'B' ? '10 6' : null}, lg);
+      const t = mk('text', {x: pad + 32, y: y + fs * .36, fill: 'var(--ink)', style: `font:600 ${fs}px 'Segoe UI',system-ui,sans-serif`}, lg);
+      t.textContent = `${k}: ${eq}`;
+      w = Math.max(w, t.getComputedTextLength ? t.getComputedTextLength() : eq.length * fs * .55);
+    });
+    const BW = pad + 32 + w + pad, BH = pad * 2 + rh * 2;
+    box.setAttribute('width', BW); box.setAttribute('height', BH);
+    // the first corner no solid line runs through
+    // corners first, then edge middles (ties keep this order)
+    const xs = [G.gw - BW - 6, 6, (G.gw - BW) / 2], ys = [6, G.gh - BH - 6, (G.gh - BH) / 2];
+    const corners = [[xs[0], ys[0]], [xs[0], ys[1]], [xs[1], ys[0]], [xs[1], ys[1]], [xs[2], ys[1]], [xs[2], ys[0]], [xs[0], ys[2]], [xs[1], ys[2]]];
+    // then a 6 x 6 sweep of the plot, for narrow graphs where every corner is busy
+    for (let i = 0; i <= 5; i++) for (let j = 0; j <= 5; j++) corners.push([6 + (G.gw - BW - 12) * i / 5, 6 + (G.gh - BH - 12) * j / 5]);
+    const st = ST || solve();
+    const score = ([cx, cy]) => {
+      let n = 0;
+      for (const k of ['A', 'B']) {
+        const Lk = lineOf(tr[k]);
+        for (let i = 0; i <= 40; i++) { const t = Lk.s + (val(Lk.end) - Lk.s) * i / 40, [u, v] = g.px(t, Lk.m * t + Lk.b); if (u > cx - 4 && u < cx + BW + 4 && v > cy - 4 && v < cy + BH + 4) n++; }
+      }
+      // keep the speed handles and their "+60 mi in 1 h" labels clear too
+      for (const k of ['A', 'B']) { const h = S.spd[k]; if (!h) continue; const [u, v] = g.px(h.x, h.y); if (u + 100 > cx && u - 10 < cx + BW && v + 10 > cy && v - 10 < cy + BH) n += 6; }
+      if (st.kind === 'one') { const [u, v] = g.px(st.tv, st.dv); if (u > cx - 200 && u < cx + BW + 30 && v > cy - 40 && v < cy + BH + 40) n += 100; }
+      return n;
+    };
+    const ranked = corners.map((cn, i) => [cn, score(cn), i]).sort((p, q) => p[1] - q[1] || p[2] - q[2]); S.legendScores = ranked.map(r => [r[2], r[1]]);
+    const c = ranked[0][0];
+    // on a narrow graph where nothing is free, a speed-handle label the legend would cover is left out (the speed is in the panel)
+    for (const k of ['A', 'B']) { const h = S.spd[k], [u, v] = g.px(h.x, h.y), hit = u + 100 > c[0] && u - 10 < c[0] + BW && v + 10 > c[1] && v - 10 < c[1] + BH;
+      h.lab.style.visibility = hit ? 'hidden' : ''; }
+    lg.setAttribute('transform', `translate(${G.left + c[0]},${G.top + c[1]})`);
+  }
+
+  // ---------- everything that follows the clock ----------
+  function drawNow() {
+    if (!g) return;
+    const t = state.t, st = ST || solve(), hide = hideAnswer();
+    if (hide || S.linesHid) drawLines();
+    S.tab.setAttribute('aria-disabled', hide ? 'true' : 'false'); S.tab.style.opacity = hide ? .55 : '';
+    const [cu] = g.px(t, 0);
+    S.cursor.set([t, 0], [t, END]);
+    S.tab.setAttribute('transform', `translate(${(G.left + cu).toFixed(1)},${G.top - 10})`);
+    S.tabT.textContent = clockOf(t).replace(' ', ' ');
+    S.tab.setAttribute('aria-valuenow', t); S.tab.setAttribute('aria-valuetext', `${clockOf(t)}, ${fmt(t, 2)} hours after noon`);
+    $('clock').textContent = `${clockOf(t)} (t = ${fmt(t, 2)} h)`;
+    const pos = {A: posAt(t, 'A'), B: posAt(t, 'B')};
+    for (const k of ['A', 'B']) {
+      const x = tr[k], Lk = lineOf(x), wait0 = t < x.s, arrived = t >= val(Lk.arr) - 1e-9;
+      // scene
+      const o = S.train[k], X = sx(pos[k]), Y = k === 'A' ? G.yA : G.yB;
+      o.o.setAttribute('transform', `translate(${X.toFixed(1)},${Y})`);
+      o.body.setAttribute('transform', x.dir < 0 ? 'scale(-1,1)' : 'scale(1,1)');
+      o.fade.setAttribute('opacity', wait0 ? .4 : 1);
+      o.lab.textContent = wait0 ? `departs ${clockOf(x.s)}` : arrived ? 'arrived' : '';
+      const right = X < G.W / 2;
+      o.lab.setAttribute('x', right ? G.tl[k] / 2 + 5 : -G.tl[k] / 2 - 5); o.lab.setAttribute('text-anchor', right ? 'start' : 'end');
+      o.lab.setAttribute('y', -G.th / 2 + 4);
+      // ladder
+      S.lad[k].setAttribute('transform', `translate(${G.ladX + (k === 'A' ? -10 : 10)},${(G.top + g.px(0, pos[k])[1]).toFixed(1)})`);
+      // where each train is now, on the graph
+      S.now[k].set(t, pos[k]);
+    }
+    // the gap: on the graph at the cursor, and as a bracket in the scene
+    const gap = Math.abs(pos.A - pos.B), bothWait = t < tr.A.s && t < tr.B.s, gapTxt = bothWait ? 'not left yet' : `gap ${fmt(gap, 1)} miles`;
+    const sg = state.showGap && !hide;
+    S.gapSeg.el.style.display = sg ? '' : 'none'; S.gapLab.el.style.display = sg ? '' : 'none';
+    if (sg) {
+      S.gapSeg.set([t, pos.A], [t, pos.B]);
+      S.gapLab.move(t, (pos.A + pos.B) / 2); S.gapLab.set(gapTxt);
+      const nearMeet = st.kind === 'one' && !hide && Math.abs(g.px(t, 0)[0] - g.px(st.tv, 0)[0]) < 140 && Math.abs(g.px(0, (pos.A + pos.B) / 2)[1] - g.px(0, st.dv)[1]) < 30;
+      S.gapLab.el.setAttribute('y', g.px(0, (pos.A + pos.B) / 2)[1] + (nearMeet ? 24 : 4));
+      const left = t > TMAX * .62; S.gapLab.el.setAttribute('text-anchor', left ? 'end' : 'start'); S.gapLab.el.setAttribute('x', g.px(t, 0)[0] + (left ? -9 : 9));
+    }
+    S.gapG.setAttribute('visibility', sg ? 'visible' : 'hidden');
+    if (sg) {
+      const xa = sx(pos.A), xb = sx(pos.B), y = Math.round((G.yA + G.yB - G.th) / 2 + 2);
+      S.gapLine.setAttribute('d', `M${xa},${y - 5}v10M${xa},${y}H${xb}M${xb},${y - 5}v10`);
+      S.gapT.setAttribute('x', ((xa + xb) / 2).toFixed(1)); S.gapT.setAttribute('y', y - 5); S.gapT.textContent = gapTxt;
+    }
+    // the meeting: ring always (unless predicting), label and flag once the clock reaches it
+    const one = st.kind === 'one' && !hide, reached = one && t >= st.tv - 1e-9;
+    S.ring.el.style.display = one ? '' : 'none';
+    if (one) S.ring.set(st.tv, st.dv);
+    S.meetLab.el.style.display = reached ? '' : 'none';
+    if (reached) {
+      const left = st.tv > 4.2, low = st.dv > END - 40;
+      S.meetLab.set(`meet ${timeWords(st.t)}, ${mileAt(st.d)}`);
+      S.meetLab.move(st.tv, st.dv);
+      const [u, v] = g.px(st.tv, st.dv);
+      S.meetLab.el.setAttribute('x', u + (left ? -18 : 18)); S.meetLab.el.setAttribute('y', v + (low ? 26 : -14));
+      S.meetLab.el.setAttribute('text-anchor', left ? 'end' : 'start');
+      const wl = S.meetLab.el.getComputedTextLength ? S.meetLab.el.getComputedTextLength() : 150;
+      if (!left && u + 18 + wl > G.gw + 10) { S.meetLab.el.setAttribute('text-anchor', 'end'); S.meetLab.el.setAttribute('x', Math.min(u - 18, G.gw)); }
+      if (left && u - 18 - wl < -10) { S.meetLab.el.setAttribute('text-anchor', 'start'); S.meetLab.el.setAttribute('x', Math.max(u + 18, 0)); }
+    }
+    S.flag.setAttribute('visibility', reached ? 'visible' : 'hidden');
+    if (reached) S.flag.setAttribute('transform', `translate(${sx(st.dv).toFixed(1)},0)`);
+  }
+
+  // ======================================================================================
+  // The clock: Play, Pause, Restart, Jump to meeting
+  // ======================================================================================
+  let raf = 0, run0 = {at: 0, t: 0};
+  function setClock(t) { state.t = clamp(+t.toFixed(6), 0, TMAX); drawNow(); }
+  function showPlay() { $('play').textContent = state.playing ? '⏸ Pause' : '▶ Play'; $('play').disabled = !playReady(); }
+  const playReady = () => !(state.mode === 'dispatch' && CARDS[state.card].predict && !state.revealed && !predOk());
+  function play() {
+    if (state.playing) return pause();
+    if (!playReady()) { tip('Fill in both predictions first.'); return; }
+    if (state.t >= TMAX - 1e-9) setClock(0);
+    narrate('yard-ladder', () => state.mode === 'yard');
+    if (Curio.reduce) { advance(TMAX - state.t); return; }
+    state.playing = true; showPlay();
+    // the clock follows the wall clock, so a slow or throttled frame rate never slows the trains
+    run0 = {at: performance.now(), t: state.t}; cancelAnimationFrame(raf); raf = requestAnimationFrame(tick);
+  }
+  function pause() { if (!state.playing) return; state.playing = false; cancelAnimationFrame(raf); showPlay(); }
+  function tick(now) {
+    if (!state.playing) return;
+    if (Curio.reduce) { advance(TMAX - state.t); return; }
+    const target = run0.t + Math.max(0, now - run0.at) / 1000 * HOURS_PER_SEC;
+    advance(Math.max(0, target - state.t));
+    if (state.playing) raf = requestAnimationFrame(tick);
+  }
+  // move the clock forward by dh hours; crossing the meeting time plays its moment
+  function advance(dh) {
+    const t0 = state.t, t1 = Math.min(TMAX, t0 + dh), st = ST;
+    state.t = t1;
+    // a meeting at noon counts when Play starts there; a clock parked on the meeting (Jump) does not replay it
+    if (st && st.kind === 'one' && st.tv <= t1 + 1e-9 && (st.tv > t0 + 1e-9 || (t0 === 0 && st.tv === 0 && state.metAt == null))) meetMoment(st);
+    if (t1 >= TMAX) { state.playing = false; cancelAnimationFrame(raf); showPlay(); afterRun(); }
+    drawNow();
+  }
+  function meetMoment(st) {
+    state.metAt = st.tv;
+    Curio.tone(311, .28, .05, 'triangle'); setTimeout(() => Curio.tone(392, .34, .05, 'triangle'), 200);
+    if (!Curio.reduce) for (const k of ['A', 'B']) { const o = S.train[k].o; o.classList.remove('flash'); void o.getBBox(); o.classList.add('flash'); }
+    narrate('first-meet', () => true);
+    if (state.mode === 'dispatch' && CARDS[state.card].predict) reveal();
+  }
+  function afterRun() { if (state.mode === 'dispatch' && CARDS[state.card].predict && !state.revealed) reveal(); }
+  function restart() { pause(); state.metAt = null; setClock(0); }
+  function jump() { if (!ST || ST.kind !== 'one' || hideAnswer()) return; pause(); setClock(ST.tv); }
+  $('play').onclick = play; $('restart').onclick = restart; $('jump').onclick = jump;
+
+  // ======================================================================================
+  // Changes
+  // ======================================================================================
+  function changed(source) {
+    if (state.mode === 'dispatch') { $('dMsg').textContent = ''; stamp(false); }
+    syncControls();
+    showStatus();
+    plot();
+    showPlay();
+  }
+
+  // ======================================================================================
+  // Yard presets
+  // ======================================================================================
+  $('preset').innerHTML = '<option value="">Presets</option>' + PRESETS.map((p, i) => `<option value="${i}">${i + 1}. ${p.name}</option>`).join('');
+  function applyPreset(i) {
+    const p = PRESETS[i]; if (!p) return;
+    yard.A = {...p.A}; yard.B = {...p.B};
+    if (state.mode === 'yard') tr = yard;
+    pause(); state.metAt = null; state.t = 0;
+    changed('preset');
+    $('preset').value = String(i);
+  }
+  $('preset').onchange = () => { if ($('preset').value !== '') applyPreset(+$('preset').value); };
+
+  // ======================================================================================
+  // Dispatch
+  // ======================================================================================
+  CARDS.forEach((c, i) => {
+    const b = document.createElement('button'); b.className = 'ticket'; b.dataset.card = i;
+    b.innerHTML = `<b>${i + 1}</b><span class="done" aria-hidden="true"></span>`; b.title = c.name;
+    b.onclick = () => pickCard(i);
+    $('tickets').appendChild(b);
+  });
+  function showTickets() {
+    for (const b of $('tickets').children) {
+      const i = +b.dataset.card, s = state.solved.has(i);
+      b.setAttribute('aria-pressed', i === state.card); b.querySelector('.done').textContent = s ? '✓' : '';
+      b.setAttribute('aria-label', `Ticket ${i + 1}, ${CARDS[i].name}${s ? ', solved' : ''}`);
+    }
+  }
+  // the hint line: cards 6 and 7 have no Check, so they get their own recorded line
+  const modeHint = () => { if (state.mode !== 'dispatch') return HINT.yard; const c = CARDS[state.card]; return c.predict ? L['card-predict'] : c.twice ? L['card-twice'] : HINT.dispatch; };
+  function pickCard(i) {
+    const c = CARDS[i];
+    state.card = i; state.revealed = false;
+    disp = {A: {...c.A}, B: {...c.B}}; tr = disp;
+    pause(); state.metAt = null; state.t = 0;
+    hush();
+    $('dTitle').textContent = `${i + 1}. ${c.name}`;
+    $('dText').textContent = c.text;
+    $('hint').textContent = modeHint();
+    $('dHintText').textContent = c.hint; $('dHintText').hidden = true;
+    $('pred').hidden = !c.predict; $('pTime').value = ''; $('pMile').value = '';
+    $('check').hidden = !!(c.predict || c.twice); $('cant').hidden = !c.twice;
+    $('dMsg').textContent = '';
+    stamp(false);   // the big stamp only right after a correct answer; earlier solves keep the tick on their ticket
+    showTickets();
+    changed('card');
+    if (c.predict) narrate('card-predict', () => state.mode === 'dispatch' && state.card === i);
+    if (c.twice) narrate('card-twice', () => state.mode === 'dispatch' && state.card === i);
+  }
+  function stamp(on) {
+    const old = $('dhead').querySelector('.stamp'); if (old) old.remove();
+    if (!on) return;
+    const s = document.createElement('div'); s.className = 'stamp'; s.textContent = 'On time'; s.setAttribute('aria-hidden', 'true');
+    $('dhead').appendChild(s);
+  }
+  function solved(msg) {
+    const i = state.card, first = !state.solved.has(i);
+    state.solved.add(i); saveSolved();
+    $('dMsg').textContent = msg;
+    stamp(true); showTickets();
+    Curio.tone(311, .28, .05, 'triangle'); setTimeout(() => Curio.tone(392, .34, .05, 'triangle'), 200);
+    if (first) narrate('card-solved#' + i, () => state.mode === 'dispatch' && state.card === i);
+  }
+  const placeOf = mi => { const n = stationAt(mi); return n ? `at ${n}` : `at mile ${fmt(mi, 1)}`; };
+  // what happened, in plain words, without giving the answer away
+  function whatHappened(st) {
+    if (st.kind === 'one') return `They meet at ${timeWords(st.t)} at ${mileAt(st.d)}`;
+    if (st.kind === 'never') return 'They never meet: same speed, same direction';
+    if (st.kind === 'always') return 'Same equation: they are together the whole time they both run';
+    return `The lines cross at ${timeWords(st.t)}, but the trains never meet on the track`;
+  }
+  function check() {
+    const c = CARDS[state.card], st = ST, tg = c.target;
+    if (!tg) return;
+    if (tg.kind) {
+      if (st.kind === tg.kind) return solved(tg.kind === 'never' ? `The gap stays ${fmt(st.gap, 2)} miles the whole trip. Parallel lines: no solution.` : 'Same equation, same line: infinitely many solutions.');
+      if (tg.kind === 'never') return void ($('dMsg').textContent = st.kind === 'one' ? `The gap changes: it closes to zero at ${timeWords(st.t)}, ${mileAt(st.d)}.` : 'The gap changes as the trains run.');
+      return void ($('dMsg').textContent = `Not the same equation yet: A is ${eqSI(st.A)} and B is ${eqSI(st.B)}.`);
+    }
+    const okMile = st.kind === 'one' && st.d.n === tg.mile * st.d.d, okT = tg.t == null || (st.kind === 'one' && st.t.n === tg.t * st.t.d);
+    stamp(false);
+    if (okMile && okT) return solved(`They meet at ${timeWords(st.t)} ${placeOf(st.dv)}. On time.`);
+    $('dMsg').textContent = `${whatHappened(st)}, not ${c.place}.`;
+  }
+  $('check').onclick = check;
+  $('cant').onclick = () => solved("Right. Two different straight lines cross at most once. The only way to meet more than once is the same line, and then they meet everywhere, not twice.");
+  $('dHint').onclick = () => { $('dHintText').hidden = false; };
+  $('next').onclick = () => pickCard((state.card + 1) % CARDS.length);
+  // card 6: both predictions before Play
+  const predTime = () => { const v = hoursParse($('pTime').value); return v != null && v >= 0 && v <= TMAX ? v : null; };
+  const predMile = () => { const s = $('pMile').value.trim().replace('−', '-'); if (!/^-?\d+(\.\d+)?$/.test(s)) return null; const v = +s; return v >= 0 && v <= END ? v : null; };
+  const predOk = () => predTime() != null && predMile() != null;
+  for (const id of ['pTime', 'pMile']) $(id).addEventListener('input', () => { if (!state.revealed) { $('dMsg').textContent = ''; } showPlay(); });
+  function reveal() {
+    const st = ST, pt = predTime(), pm = predMile();
+    state.revealed = true; showStatus(); drawNow(); showPlay();
+    if (pt == null || pm == null || st.kind !== 'one') return;
+    const msg = `You said ${clockOf(pt)} at mile ${fmt(pm, 1)}. They met at ${timeWords(st.t)} at ${mileAt(st.d)}.`;
+    if (Math.abs(pt - st.tv) <= 1 / 60 + 1e-9 && Math.abs(pm - st.dv) <= 1 + 1e-9) solved(msg + ' You called it.');
+    else $('dMsg').textContent = msg + ' Press Restart, change your call and try again.';
+  }
+  // a new prediction after a reveal hides the answer again
+  for (const id of ['pTime', 'pMile']) $(id).addEventListener('change', () => { if (state.revealed && !state.solved.has(state.card)) { state.revealed = false; state.metAt = null; setClock(0); showStatus(); drawNow(); showPlay(); } });
+
+  // ======================================================================================
+  // Toggles
+  // ======================================================================================
+  $('tGap').onchange = () => { state.showGap = $('tGap').checked; if (state.showGap) narrate('gap', () => state.showGap); drawNow(); };
+  $('tAlg').onchange = () => { state.showAlg = $('tAlg').checked; if (state.showAlg) narrate('algebra', () => state.showAlg); showStatus(); };
+
+  // ======================================================================================
+  // Narration: a welcome on entering each mode (after the first tap), one at a time; Read always wins
+  // (the queue from collision-lab: narrate, hush, readNow, firstTap)
+  // ======================================================================================
+  const said = new Set(), queued = new Set();
+  let tapped = false, vq = Promise.resolve(), vgen = 0, readP = Promise.resolve();
+  for (const ev of ['pointerdown', 'keydown']) addEventListener(ev, e => {
+    if (tapped) return; tapped = true;
+    const b = e.target && e.target.closest ? e.target.closest('button') : null;
+    if (b && b.id === 'sound') return;
+    if (b && b.id === 'read') {
+      const go = () => { removeEventListener('click', go, true); clearTimeout(fb); setTimeout(() => narrate(WELCOME[state.mode])); };
+      addEventListener('click', go, true); const fb = setTimeout(go, 1500);
+      return;
+    }
+    // decide after this tap's own click handler has run: if it queued its own line, skip the welcome (unmarked)
+    const before = queued.size + said.size;
+    const go = () => { removeEventListener('click', go, true); clearTimeout(fb); setTimeout(() => { if (queued.size + said.size === before) narrate(WELCOME[state.mode]); }, 0); };
+    addEventListener('click', go, true); const fb = setTimeout(go, 600);
+  }, true);
+  function narrate(key, valid) {
+    if (!tapped || !Curio.sound || said.has(key) || queued.has(key)) return false;
+    queued.add(key);
+    const base = key.split('#')[0], gen = vgen, line = L[base];
+    vq = vq.then(async () => {
+      await readP;
+      if (gen !== vgen) return;                       // dropped by hush(): not marked said, so its trigger can queue it again
+      queued.delete(key);
+      if (valid && !valid()) return;                  // its moment has passed: dropped unmarked
+      said.add(key);
+      await Promise.race([say(line), wait(2500 + 80 * line.length)]);
+    });
+    return true;
+  }
+  function hush() { vgen++; queued.clear(); vq = Promise.resolve(); readP = Promise.resolve(); Curio.stop(); }   // a stopped Read clip never ends, so nothing may wait on it
+  function readNow() {
+    hush();
+    const parts = [$('hint').textContent, statusSpoken()];
+    readP = Promise.race([say(parts, true), wait(3000 + 80 * parts.join(' ').length)]).catch(() => {});
+  }
+
+  // ======================================================================================
+  // Modes and layout
+  // ======================================================================================
+  function setMode(m) {
+    hush(); pause();
+    state.mode = m;
+    document.body.dataset.mode = m;
+    for (const k of ['yard', 'dispatch']) $('m-' + k).setAttribute('aria-pressed', k === m);
+    for (const el of document.querySelectorAll('[data-modes]')) el.hidden = !el.dataset.modes.split(' ').includes(m);
+    $('hint').textContent = modeHint();
+    tip('');
+    state.metAt = null; state.t = 0;
+    if (m === 'yard') { tr = yard; changed('mode'); }
+    else if (!disp) pickCard(0);
+    else { tr = disp; showTickets(); changed('mode'); }
+    narrate(WELCOME[m]);
+  }
+  for (const k of ['yard', 'dispatch']) $('m-' + k).onclick = () => { if (state.mode !== k) setMode(k); };
+
+  let page = null, lastSize = '';
+  function pageLayout() { const w = innerWidth, h = innerHeight; return w >= 1000 && h >= 700 ? 'wide' : w >= 600 && w / h >= 1.25 ? 'compact' : 'stack'; }
+  function relayout() {
+    const p = pageLayout();
+    if (p !== page) { page = p; for (const c of ['wide', 'compact', 'stack']) document.body.classList.toggle(c, c === p); }
+    const st = $('stage');
+    if (page === 'stack') { const w = st.getBoundingClientRect().width || innerWidth; st.style.height = Math.round(clamp(w * .95, 420, 620)) + 'px'; }
+    else st.style.height = '';
+    // the train cards sit side by side unless the panel is narrow
+    $('cards').style.gridTemplateColumns = $('panel').getBoundingClientRect().width < 330 && page === 'stack' ? '1fr' : '';
+    const r = st.getBoundingClientRect(), key = Math.round(r.width) + 'x' + Math.round(r.height);
+    if (key === lastSize) return;
+    lastSize = key;
+    const W = Math.max(300, Math.round(r.width)), H = Math.max(320, Math.round(r.height));
+    sv.setAttribute('width', W); sv.setAttribute('height', H); sv.setAttribute('viewBox', `0 0 ${W} ${H}`);
+    sv.textContent = '';
+    build(W, H);
+  }
+  new ResizeObserver(() => relayout()).observe($('stage'));
+  addEventListener('resize', () => relayout());
+
+  // keyboard: Space plays or pauses, R restarts the clock (not while typing or on a focused button)
+  addEventListener('keydown', e => {
+    if (e.ctrlKey || e.metaKey || e.altKey) return;
+    const t = e.target, tag = t && t.tagName;
+    if (tag === 'TEXTAREA' || tag === 'SELECT' || (tag === 'INPUT' && t.type !== 'range' && t.type !== 'checkbox')) return;
+    if (e.key === ' ') {
+      if (tag === 'BUTTON' || (tag === 'INPUT' && t.type === 'checkbox')) return;
+      e.preventDefault(); play();
+    } else if (e.key === 'r' || e.key === 'R') { e.preventDefault(); restart(); }
+  });
+
+  Curio.onSound(on => { if (on && tapped) narrate(WELCOME[state.mode]); });
+  Curio.onMotion(reduce => { if (reduce && state.playing) advance(TMAX - state.t); });
+  Curio.init({clips: "voice:*", rate: .95, readFallback: () => $('hint').textContent});
+  $('read').onclick = readNow;
+
+  buildCards();
+  // for checking frames
+  window.__tool = {state, setMode, allLines, applyPreset, pickCard, check, setTrain, setClock, play, pause, advance, restart, jump, solve, lineOf, posAt,
+    CARDS, PRESETS, said, queued, get tr() { return tr; }, get ST() { return ST; }, statusText: () => $('stText').textContent, title: () => $('stTitle').textContent,
+    alg: () => $('alg').innerText, hint: () => $('hint').textContent, layout: () => ({page}), msg: () => $('dMsg').textContent,
+    S: () => S, curio: () => ({last: Curio.last, sound: Curio.sound, reduce: Curio.reduce}),
+    finish: () => { if (state.playing || state.t < TMAX) advance(TMAX - state.t); }};
+  setMode('yard');
+})();
+</script>
+</body>
+</html>

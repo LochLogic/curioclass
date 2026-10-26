@@ -1,0 +1,25 @@
+{
+  "id": "two-trains",
+  "status": "beta",
+  "hook": "Two trains on one railroad, two lines on one graph: set their starts, departure times and speeds, press Play, and watch where (and whether) they meet.",
+  "outcome": "Solve a system of two linear equations by graphing and by setting the equations equal, and explain why a system has one solution, no solution or infinitely many using trains that meet, never meet or run together",
+  "driver": "students or teacher",
+  "minutes": "10-35",
+  "modes": [
+    "Yard",
+    "Dispatch"
+  ],
+  "grades_label": "Grade 8",
+  "sources": [
+    "Common Core State Standards, Grade 8 Expressions and Equations, 8.EE.C.8: https://www.thecorestandards.org/Math/Content/8/EE/",
+    "OpenStax, Elementary Algebra 2e, 5.1 Solve Systems of Equations by Graphing: one, no and infinitely many solutions (CC BY 4.0): https://openstax.org/books/elementary-algebra-2e/pages/5-1-solve-systems-of-equations-by-graphing",
+    "OpenStax, Elementary Algebra 2e, 3.5 Solve Uniform Motion Applications: distance equals rate times time (CC BY 4.0): https://openstax.org/books/elementary-algebra-2e/pages/3-5-solve-uniform-motion-applications",
+    "49 CFR 213.9, Classes of track: operating speed limits (Class 4 track: freight 60, passenger 80 miles per hour): https://www.ecfr.gov/current/title-49/subtitle-B/chapter-II/part-213/subpart-A/section-213.9",
+    "The Prairie Line, its towns and miles, the trains, presets and Dispatch cards are invented for the tool; every meeting time and mile was recomputed in Python with exact fractions (2026-10-26)",
+    "Rails, stations, route ladder, graph, badges, flag, gap bracket, stamp and tickets drawn in code; backdrop and trains from FLUX.2 [klein] 4B (Apache 2.0) on Cloudflare Workers AI; sounds generated in the browser",
+    "Narration generated with Qwen3-TTS (Apache 2.0), cloning a Google Gemini text-to-speech voice",
+    "Illustrations drawn with FLUX.2 [klein] (Apache 2.0) on Cloudflare Workers AI, edited for Curio Class"
+  ],
+  "third_party": [],
+  "updated": "2026-10-26"
+}
