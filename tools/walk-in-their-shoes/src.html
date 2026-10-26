@@ -15,7 +15,8 @@ between the Narrator and each character's view: a thought bubble and an "Only I 
 student can guess first (feeling chips, never graded), then the class picks what happens next and sees each ending
 through everyone's eyes. No score, no timer, nothing typed and nothing saved but the shared Motion setting.
 Source: CASEL, "What Is the CASEL Framework?" (Social Awareness). Stories, characters and lines are original writing for
-Curio Class. Characters, shoes, settings and covers are drawn in code. One file, no network requests.
+Curio Class. Illustrations: characters by OpenAI gpt-image, settings, shoes and props by FLUX.2 [klein] (Apache 2.0) on Cloudflare
+Workers AI, all edited for Curio Class. One file, no network requests.
 Content CC BY 4.0, code MIT. curioclass.org
 -->
 <link rel="stylesheet" href="kit:curio">
@@ -112,7 +113,7 @@ body.compact .cover .cn{font-size:12px;margin-top:3px}
 .rack{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;flex:1 1 auto;min-width:0}
 .shoe{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;border:2px solid var(--line);background:#fff;
   border-radius:14px;min-height:60px;padding:3px 4px 4px;font-size:14px;font-weight:600;line-height:1.1;color:var(--ink);box-shadow:0 3px 0 #0001}
-.shoe svg{width:84px;height:38px;flex:none}
+.shoe img{width:84px;height:38px;flex:none;object-fit:contain}
 .shoe span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
 .shoe[aria-pressed="true"]{border:4px solid var(--brand);background:#fdf1dc;transform:translateY(-4px);box-shadow:0 6px 0 #8a5a1033;padding:1px 2px 2px}
 .tracker{flex:0 0 150px;display:flex;align-items:center;font-size:14px;line-height:1.3;color:var(--muted);font-weight:600}
@@ -125,13 +126,13 @@ body.compact .rackrow{padding:3px 6px 5px;gap:6px}
 body.compact .rack{gap:5px}
 body.compact .shoe{min-height:52px;font-size:11px;padding:1px 2px;gap:0}
 body.compact .shoe span{white-space:normal;text-align:center;line-height:1.05}
-body.compact .shoe svg{width:54px;height:24px}
+body.compact .shoe img{width:54px;height:24px}
 body.compact .tracker{flex-basis:54px;font-size:11px}
 body.compact .dots{gap:7px}
 body.compact .dots i{width:11px;height:11px}
 body.compact .dots i.on{width:16px;height:16px}
 body.stack .rackrow{flex-wrap:wrap}
-@media (max-width:640px){.shoe span{white-space:normal;text-align:center;line-height:1.1}.shoe svg{width:64px;height:30px}.foot .btn{font-size:14px;padding:0 3px}}
+@media (max-width:640px){.shoe span{white-space:normal;text-align:center;line-height:1.1}.shoe img{width:64px;height:30px}.foot .btn{font-size:14px;padding:0 3px}}
 @media (max-width:400px){.foot .btn{font-size:13px}.foot .btn .ic{display:none}}
 body.stack .tracker{flex:1 1 100%;justify-content:center}
 
@@ -394,234 +395,68 @@ body.compact .secret p{font-size:12.5px}
   }
 
   // ======================================================================================
-  // Drawing: characters, shoes, settings (all in code)
+  // Art: painted characters, settings and props (art-plan.md). Every art: token appears once, here.
   // ======================================================================================
-  // shoes: a pair at the feet, local units, bottom at y = 0
-  function shoeOne(sh) {
-    const c = sh.c, dark = '#2b2118';
-    const st = `stroke="${dark}" stroke-width="2" stroke-linejoin="round"`;
-    if (sh.type === 'boot') {
-      return `<path d="M-9 0 L17 0 Q23 0 23 -6 Q22 -12 11 -13 L8 -32 L-9 -32 Z" fill="${c}" ${st}/>` +
-        (sh.cuff ? `<rect x="-11" y="-36" width="21" height="7" rx="3" fill="${c}" ${st}/>` : `<path d="M-9 -27 L8 -27" stroke="#fff8" stroke-width="2"/>`) +
-        `<path d="M-9 -3 L22 -3" stroke="${dark}" stroke-width="2"/>`;
-    }
-    if (sh.type === 'hightop') {
-      return `<path d="M-10 0 L18 0 Q24 0 24 -6 Q23 -12 12 -13 L8 -27 L-10 -27 Z" fill="${c}" ${st}/>` +
-        `<path d="M12 -13 Q23 -12 24 -6 L24 -4 L13 -4 Z" fill="#fff" ${st}/><rect x="-11" y="-4" width="36" height="5" rx="2" fill="#fff" ${st}/>` +
-        `<path d="M-2 -23 L5 -23 M-1 -18 L7 -18 M0 -13 L9 -13" stroke="#fff" stroke-width="2.2"/>`;
-    }
-    if (sh.type === 'slipon') {
-      return `<path d="M-9 0 L17 0 Q23 0 23 -5 Q22 -10 12 -11 L3 -13 Q-3 -14 -9 -12 Z" fill="${c}" ${st}/>` +
-        `<path d="M-4 -12.5 L-4 -1 M2 -13 L2 -1 M8 -12 L8 -1 M14 -10.5 L14 -1" stroke="${sh.s}" stroke-width="2.6"/>` +
-        `<path d="M-9 0 L17 0 Q23 0 23 -5 Q22 -10 12 -11 L3 -13 Q-3 -14 -9 -12 Z" fill="none" ${st}/>`;
-    }
-    const lift = sh.type === 'cleat' ? -3 : 0;
-    let s = `<g transform="translate(0 ${lift})"><path d="M-9 0 L17 0 Q23 0 23 -5 Q22 -10 12 -11 L3 -14 Q-3 -15 -9 -13 Z" fill="${c}" ${st}/>`;
-    if (sh.type === 'sneaker') s += `<rect x="-10" y="-4" width="34" height="5" rx="2" fill="#fff" ${st}/><path d="M2 -12 L7 -9 M5 -13 L10 -10" stroke="#fff" stroke-width="2.2"/>`;
-    else s += `<path d="M1 -12 L6 -9 M4 -13.5 L9 -10.5" stroke="${sh.l}" stroke-width="2.6"/><path d="M-6 -7 L18 -7" stroke="${sh.l}" stroke-width="1.6" opacity=".8"/>`;
-    s += '</g>';
-    if (sh.type === 'cleat') s += [-6, 1, 8, 15].map(x => `<rect x="${x}" y="-3" width="4" height="4" fill="${dark}"/>`).join('');
-    return s;
-  }
-  const shoes = (sh, gap = 15) => `<g transform="translate(${-gap} 0) scale(-1 1)">${shoeOne(sh)}</g><g transform="translate(${gap} 0)">${shoeOne(sh)}</g>`;
-
-  // a face: eyes, brows and mouth around the head center (0, -118); my = mouth line
-  function face(expr, my, big) {
-    const k = '#2b2118', ex = big ? 15 : 14, ey = -121;
-    let eyes = '', brows = '', mouth = '';
-    const eye = x => `<circle cx="${x}" cy="${ey}" r="5.5" fill="${k}"/><circle cx="${x + 1.8}" cy="${ey - 2}" r="1.8" fill="#fff"/>`;
-    if (expr === 'happy') eyes = [-ex, ex].map(x => `<path d="M${x - 6} ${ey + 1} Q${x} ${ey - 7} ${x + 6} ${ey + 1}" fill="none" stroke="${k}" stroke-width="3.2" stroke-linecap="round"/>`).join('');
-    else if (expr === 'surprised') eyes = [-ex, ex].map(x => `<circle cx="${x}" cy="${ey}" r="7.5" fill="#fff" stroke="${k}" stroke-width="2"/><circle cx="${x}" cy="${ey}" r="4" fill="${k}"/>`).join('');
-    else eyes = eye(-ex) + eye(ex);
-    // brows: [outer y, inner y] for the left brow, mirrored on the right
-    const B = {calm: [-135, -136], happy: [-137, -139], sad: [-133, -141], upset: [-141, -132], worried: [-134, -142], surprised: [-145, -146]}[expr];
-    const bw = (o, i, s) => `<path d="M${s * (ex + 8)} ${o} Q${s * (ex + 1)} ${(o + i) / 2 - 1.5} ${s * (ex - 6)} ${i}" fill="none" stroke="${k}" stroke-width="3.2" stroke-linecap="round"/>`;
-    brows = bw(B[0], B[1], -1) + bw(B[0], B[1], 1);
-    const sk = `fill="none" stroke="${k}" stroke-width="3" stroke-linecap="round"`;
-    if (expr === 'calm') mouth = `<path d="M-7 ${my} Q0 ${my + 5} 7 ${my}" ${sk}/>`;
-    else if (expr === 'happy') mouth = `<path d="M-11 ${my - 2} Q0 ${my + 13} 11 ${my - 2} Z" fill="#6b2a2a" stroke="${k}" stroke-width="2.4" stroke-linejoin="round"/><path d="M-5 ${my + 4} Q0 ${my + 8} 5 ${my + 4}" fill="#e07a7a"/>`;
-    else if (expr === 'sad') mouth = `<path d="M-8 ${my + 4} Q0 ${my - 4} 8 ${my + 4}" ${sk}/>`;
-    else if (expr === 'upset') mouth = `<path d="M-10 ${my + 4} Q0 ${my - 3} 10 ${my + 4}" fill="none" stroke="${k}" stroke-width="3.6" stroke-linecap="round"/>`;
-    else if (expr === 'worried') mouth = `<path d="M-9 ${my + 1} q4.5 -4 9 0 q4.5 4 9 0" ${sk}/>`;
-    else mouth = `<ellipse cx="0" cy="${my + 2}" rx="5" ry="7" fill="#6b2a2a" stroke="${k}" stroke-width="2"/>`;
-    const blush = expr === 'happy' || expr === 'upset' ? [-25, 25].map(x => `<ellipse cx="${x}" cy="-106" rx="6" ry="3.5" fill="${expr === 'upset' ? '#e2584a' : '#f08c8c'}" opacity=".55"/>`).join('') : '';
-    return blush + eyes + brows + mouth;
-  }
-
-  // animals: [fur, belly, top of head (for bubbles), species scale]
-  const ANIMAL = {
-    fox: {fur: '#d8752c', belly: '#fbeee0', top: -170, sc: 1},
-    rabbit: {fur: '#b9a184', belly: '#f6ecdd', top: -212, sc: .95},
-    bear: {fur: '#8b5a3c', belly: '#d8b48c', top: -165, sc: 1.14},
-    heron: {fur: '#a9bfcf', belly: '#f4f7f9', top: -170, sc: 1.02},
-    badger: {fur: '#8b8784', belly: '#d9d4cc', top: -165, sc: 1},
-    owl: {fur: '#94704f', belly: '#ead6b4', top: -172, sc: .96},
-    turtle: {fur: '#86ad55', belly: '#e6d68e', top: -158, sc: .98},
-    goat: {fur: '#eee4d2', belly: '#fbf6ec', top: -176, sc: 1.02},
-    hedgehog: {fur: '#7a5236', belly: '#efd5aa', top: -168, sc: .92},
+  const ART = {
+    juniper: ['art:juniper-0', 'art:juniper-1', 'art:juniper-2', 'art:juniper-3'],
+    pip: ['art:pip-0', 'art:pip-1', 'art:pip-2', 'art:pip-3', 'art:pip-4'],
+    otto: ['art:otto-0', 'art:otto-1', 'art:otto-2', 'art:otto-3', 'art:otto-4'],
+    tamsin: ['art:tamsin-0', 'art:tamsin-1', 'art:tamsin-2'],
+    rory: ['art:rory-0', 'art:rory-1', 'art:rory-2'],
+    wren: ['art:wren-0', 'art:wren-1', 'art:wren-2', 'art:wren-3'],
+    bea: ['art:bea-0', 'art:bea-1', 'art:bea-2', 'art:bea-3'],
+    max: ['art:max-0', 'art:max-1', 'art:max-2', 'art:max-3', 'art:max-4'],
+    dot: ['art:dot-0', 'art:dot-1'],
+    bg: {playground: 'art:bg-playground', lunchroom: 'art:bg-lunchroom', field: 'art:bg-field'},
+    shoes: {Juniper: 'art:shoes-juniper', Pip: 'art:shoes-pip', Otto: 'art:shoes-otto', Tamsin: 'art:shoes-tamsin', Rory: 'art:shoes-rory',
+      Wren: 'art:shoes-wren', Bea: 'art:shoes-bea', Max: 'art:shoes-max', Dot: 'art:shoes-dot'},
+    duckling: 'art:duckling', stool: 'art:stool', book: 'art:book',
   };
+  const CELLS = "json:cells";   // [width, height] of every painted cell, written by scripts/split_sheet.py
+  const PROP = {duckling: [110, 90], stool: [90, 113]};
+  // decode every picture once up front, so a page turn never flashes an empty figure
+  const warm = [];
+  (function walk(v) { if (typeof v === 'string') { const im = new Image(); im.src = v; warm.push(im); } else Object.values(v).forEach(walk); })(ART);
 
-  // one character, feet at (0, 0), about 170 units tall. o: {jacket, mud, hold, tray, loose}
+  // which painted cell shows each character's expression (and what they wear or hold) on this page
+  const LOOKS = {
+    Juniper: (e, o) => o.hold ? (o.hold === 'clean' ? 3 : 2) : e === 'happy' ? 0 : 1,
+    Pip: (e, o) => o.jacket ? (o.mud ? 1 : 0) : ({worried: 2, sad: 3, happy: 4})[e] ?? 2,
+    Otto: e => ({calm: 0, surprised: 1, worried: 2, happy: 3, sad: 4})[e] ?? 0,
+    Tamsin: e => ({worried: 0, sad: 1, happy: 2})[e] ?? 0,
+    Rory: e => ({happy: 0, surprised: 1, worried: 2})[e] ?? 0,
+    Wren: e => ({calm: 0, worried: 1, surprised: 2, happy: 3})[e] ?? 0,
+    Bea: (e, o) => e === 'worried' ? 1 : e === 'sad' ? 2 : o.loose ? 3 : 0,   // the loose glove shows from page 2 on
+    Max: e => ({happy: 0, surprised: 1, upset: 2, calm: 3, sad: 4})[e] ?? 0,
+    Dot: e => e === 'happy' ? 0 : 1,
+  };
+  function look(ch, expr, o = {}) {
+    const key = ch.name.toLowerCase(), k = LOOKS[ch.name](expr, o), [w, h] = CELLS[key][k];
+    return {href: ART[key][k], w, h, k};
+  }
+  // species scale, so a bear stands taller than a hedgehog (every cell is about 170 units tall)
+  const ANIMAL = {fox: {sc: 1}, rabbit: {sc: 1.04}, bear: {sc: 1.12}, heron: {sc: 1.08}, badger: {sc: 1}, owl: {sc: .95}, turtle: {sc: .95}, goat: {sc: 1.03}, hedgehog: {sc: .9}};
+
+  // one character, feet at (0, 0), in cell units. o: {jacket, mud, hold, tray, loose}
   function drawChar(ch, expr, o = {}) {
-    const A = ANIMAL[ch.animal], f = A.fur, b = A.belly, k = '#2b2118';
-    const ol = `stroke="${k}" stroke-width="2.6" stroke-linejoin="round"`;
-    let back = '', ears = '', headDeco = '', muzzle = '', my = -100;
-    const an = ch.animal;
-    if (an === 'fox') {
-      back = `<path d="M24 -40 Q74 -54 66 -102 Q60 -70 30 -62 Z" fill="${f}" ${ol}/><path d="M66 -102 Q72 -86 62 -80 Q60 -92 66 -102 Z" fill="#fff"/>`;
-      ears = `<path d="M-34 -136 L-30 -176 L-6 -150 Z" fill="${f}" ${ol}/><path d="M34 -136 L30 -176 L6 -150 Z" fill="${f}" ${ol}/><path d="M-30 -168 L-28 -176 L-20 -164 Z M30 -168 L28 -176 L20 -164 Z" fill="${k}"/>`;
-      muzzle = `<path d="M-30 -110 Q-18 -96 0 -90 Q18 -96 30 -110 Q26 -82 0 -80 Q-26 -82 -30 -110 Z" fill="#fff6ec"/><ellipse cx="0" cy="-107" rx="5.5" ry="4" fill="${k}"/>`;
-      my = -97;
-    } else if (an === 'rabbit') {
-      ears = `<ellipse cx="-16" cy="-176" rx="11" ry="34" fill="${f}" ${ol}/><ellipse cx="16" cy="-176" rx="11" ry="34" fill="${f}" ${ol}/><ellipse cx="-16" cy="-174" rx="5" ry="24" fill="#f2b8c0"/><ellipse cx="16" cy="-174" rx="5" ry="24" fill="#f2b8c0"/>`;
-      muzzle = `<ellipse cx="0" cy="-102" rx="15" ry="11" fill="#fbf4ea"/><path d="M-4 -108 L4 -108 L0 -104 Z" fill="#e88a9a" stroke="#c46a7a" stroke-width="1.5"/>`;
-      my = -98;
-    } else if (an === 'bear') {
-      ears = `<circle cx="-30" cy="-146" r="13" fill="${f}" ${ol}/><circle cx="30" cy="-146" r="13" fill="${f}" ${ol}/><circle cx="-30" cy="-146" r="6" fill="${b}"/><circle cx="30" cy="-146" r="6" fill="${b}"/>`;
-      muzzle = `<ellipse cx="0" cy="-102" rx="18" ry="13" fill="${b}"/><ellipse cx="0" cy="-108" rx="7" ry="5" fill="${k}"/>`;
-      my = -98;
-    } else if (an === 'heron') {
-      headDeco = `<path d="M-6 -154 Q-26 -172 -42 -166 Q-24 -162 -14 -150 Z M2 -155 Q-10 -178 -26 -178 Q-12 -170 -6 -152 Z" fill="#6f8798" ${ol}/>`;
-      muzzle = `<path d="M-6 -112 L44 -104 L-6 -98 Z" fill="#f0b43c" stroke="${k}" stroke-width="2.4" stroke-linejoin="round"/><path d="M-6 -105 L40 -104" stroke="#b97d16" stroke-width="1.6"/>`;
-      my = -90;
-    } else if (an === 'badger') {
-      ears = `<circle cx="-30" cy="-146" r="10" fill="#3a3533" ${ol}/><circle cx="30" cy="-146" r="10" fill="#3a3533" ${ol}/>`;
-      headDeco = `<path d="M-4 -104 L-13 -154 Q-21 -159 -27 -151 L-13 -103 Z M4 -104 L13 -154 Q21 -159 27 -151 L13 -103 Z" fill="#2f2a28"/><path d="M-36 -110 Q-30 -96 -18 -92 L-16 -100 Q-28 -104 -36 -110 Z M36 -110 Q30 -96 18 -92 L16 -100 Q28 -104 36 -110 Z" fill="#b7b2ab"/>`;
-      muzzle = `<ellipse cx="0" cy="-106" rx="6.5" ry="4.5" fill="${k}"/>`;
-      my = -97;
-    } else if (an === 'owl') {
-      ears = `<path d="M-32 -140 L-30 -170 L-14 -150 Z M32 -140 L30 -170 L14 -150 Z" fill="${f}" ${ol}/>`;
-      headDeco = `<circle cx="-15" cy="-121" r="15" fill="#f4e6c8" stroke="#b08c62" stroke-width="2"/><circle cx="15" cy="-121" r="15" fill="#f4e6c8" stroke="#b08c62" stroke-width="2"/>`;
-      muzzle = `<path d="M-6 -110 L6 -110 L0 -98 Z" fill="#e59a2f" stroke="${k}" stroke-width="2" stroke-linejoin="round"/>`;
-      my = -91;
-    } else if (an === 'turtle') {
-      muzzle = `<ellipse cx="0" cy="-104" rx="3" ry="2" fill="${k}" opacity=".6"/>`;
-      my = -98;
-    } else if (an === 'goat') {
-      ears = `<ellipse cx="-42" cy="-126" rx="14" ry="6" fill="${f}" ${ol} transform="rotate(18 -42 -126)"/><ellipse cx="42" cy="-126" rx="14" ry="6" fill="${f}" ${ol} transform="rotate(-18 42 -126)"/>`;
-      headDeco = `<path d="M-16 -152 Q-30 -178 -10 -176 Q-20 -168 -8 -154 Z M16 -152 Q30 -178 10 -176 Q20 -168 8 -154 Z" fill="#9b9187" ${ol}/>`;
-      muzzle = `<ellipse cx="0" cy="-102" rx="16" ry="12" fill="#fff9f0"/><path d="M-4 -108 L4 -108 L0 -104 Z" fill="#d98a8a"/><path d="M-6 -82 L0 -66 L6 -82 Z" fill="#d8ccb8" ${ol}/>`;
-      my = -97;
-    } else if (an === 'hedgehog') {
-      const sp = []; for (let i = 0; i <= 16; i++) { const a = Math.PI * (1.05 + i * .9 / 16 * 2.2), r1 = i % 2 ? 50 : 64; sp.push([Math.cos(a) * r1, -100 + Math.sin(a) * r1 * 1.1]); }
-      back = `<path d="M${sp.map(p => p[0].toFixed(1) + ' ' + p[1].toFixed(1)).join(' L')} Z" fill="${f}" ${ol}/>`;
-      ears = `<circle cx="-27" cy="-148" r="8" fill="#d9b58a" ${ol}/><circle cx="27" cy="-148" r="8" fill="#d9b58a" ${ol}/>`;
-      muzzle = `<ellipse cx="0" cy="-104" rx="14" ry="10" fill="#f6e2c2"/><circle cx="0" cy="-109" r="5" fill="${k}"/>`;
-      my = -97;
-    }
-    const headFill = an === 'hedgehog' ? '#e9cfa6' : an === 'badger' ? '#f2efea' : f;
-    const legs = an === 'heron' ? `<path d="M-15 -22 L-15 -10 M15 -22 L15 -10" stroke="#e0a23a" stroke-width="5"/>` :
-      `<rect x="-22" y="-26" width="13" height="18" rx="5" fill="${f}" ${ol}/><rect x="9" y="-26" width="13" height="18" rx="5" fill="${f}" ${ol}/>`;
-    let body;
-    if (an === 'turtle') {
-      body = `<ellipse cx="0" cy="-60" rx="40" ry="42" fill="#5d7a36" ${ol}/><ellipse cx="0" cy="-58" rx="27" ry="33" fill="${b}" stroke="#a8964e" stroke-width="2"/>` +
-        `<path d="M-27 -66 L27 -66 M-25 -48 L25 -48 M0 -90 L0 -26" stroke="#b8a55a" stroke-width="2"/>`;
-    } else if (an === 'owl') {
-      body = `<ellipse cx="0" cy="-58" rx="36" ry="42" fill="${f}" ${ol}/><ellipse cx="0" cy="-54" rx="23" ry="30" fill="${b}"/>` +
-        [[-8, -66], [8, -66], [0, -54], [-10, -44], [10, -44]].map(p => `<path d="M${p[0] - 4} ${p[1]} q4 5 8 0" fill="none" stroke="#b08c62" stroke-width="2"/>`).join('');
-    } else {
-      body = `<ellipse cx="0" cy="-58" rx="35" ry="41" fill="${f}" ${ol}/><ellipse cx="0" cy="-54" rx="22" ry="29" fill="${b}"/>`;
-    }
-    // arms (a jacket gets sleeves instead)
-    const handC = an === 'turtle' ? '#f08a24' : f;
-    let armL = `<ellipse cx="-38" cy="-60" rx="9" ry="21" fill="${f}" ${ol} transform="rotate(14 -38 -60)"/>`;
-    let armR = `<ellipse cx="38" cy="-60" rx="9" ry="21" fill="${f}" ${ol} transform="rotate(-14 38 -60)"/>`;
-    if (an === 'turtle') {
-      armL += o.loose ? `<g transform="rotate(-38 -46 -40)"><rect x="-58" y="-40" width="22" height="20" rx="7" fill="${handC}" ${ol}/><path d="M-56 -32 L-38 -32" stroke="#fff" stroke-width="3"/></g>` :
-        `<rect x="-55" y="-46" width="20" height="19" rx="7" fill="${handC}" ${ol}/><path d="M-53 -38 L-37 -38" stroke="#fff" stroke-width="3"/>`;
-      armR += `<rect x="35" y="-46" width="20" height="19" rx="7" fill="${handC}" ${ol}/><path d="M37 -38 L53 -38" stroke="#fff" stroke-width="3"/>`;
-    }
-    let jacket = '';
-    if (o.jacket) {
-      const J = '#6d4a8f';
-      jacket = `<path d="M-33 -86 Q0 -100 33 -86 L36 -24 Q0 -16 -36 -24 Z" fill="${J}" ${ol}/><path d="M0 -94 L0 -20" stroke="#4e3368" stroke-width="2.4"/>` +
-        `<path d="M-20 -94 L0 -74 L20 -94" fill="none" stroke="#4e3368" stroke-width="2.4"/>`;
-      armL = `<path d="M-32 -84 Q-54 -66 -50 -36 L-38 -34 Q-38 -60 -26 -72 Z" fill="${J}" ${ol}/>`;
-      armR = `<path d="M32 -84 Q54 -66 50 -36 L38 -34 Q38 -60 26 -72 Z" fill="${J}" ${ol}/>`;
-      if (o.mud) armL += `<path d="M-50 -52 Q-56 -44 -50 -36 L-38 -34 Q-36 -44 -40 -50 Q-44 -56 -50 -52 Z" fill="#6b4a2a" opacity=".92"/><circle cx="-44" cy="-60" r="3" fill="#6b4a2a"/>`;
-    }
-    let held = '';
-    if (o.hold) {   // the jacket, folded over the arms
-      const mud = o.hold === 'clean' ? .35 : .95;
-      held = `<path d="M-34 -58 Q0 -66 34 -58 L30 -34 Q0 -28 -30 -34 Z" fill="#6d4a8f" ${ol}/><path d="M-34 -58 Q-42 -46 -30 -34" fill="none" stroke="#4e3368" stroke-width="2"/>` +
-        `<path d="M10 -60 Q24 -62 32 -56 L29 -38 Q18 -36 12 -42 Z" fill="#6b4a2a" opacity="${mud}"/>`;
-    }
-    let tray = '';
-    if (o.tray) tray = `<rect x="-36" y="-50" width="72" height="12" rx="4" fill="#d9c49a" ${ol}/><circle cx="-18" cy="-55" r="8" fill="#e85f4a" ${ol}/><rect x="-2" y="-62" width="12" height="14" rx="2" fill="#fff" ${ol}/><ellipse cx="22" cy="-54" rx="9" ry="5" fill="#f3c74a" ${ol}/>`;
-    const head = `<circle cx="0" cy="-118" r="38" fill="${headFill}" ${ol}/>`;
-    const parts = back + legs + `<g>${shoes(ch.shoes)}</g>` + body + jacket + armL + armR + held + tray + ears + head + headDeco + muzzle + face(expr, my, an === 'owl');
-    return parts;
+    const L = look(ch, expr, o);
+    return `<image href="${L.href}" x="${(-L.w / 2).toFixed(1)}" y="${-L.h}" width="${L.w}" height="${L.h}"/>`;
   }
 
-  // the open-book Narrator icon, centered at (0, 0) in a 60 x 34 box
-  const bookIcon = `<path d="M0 -12 Q-14 -20 -28 -16 L-28 14 Q-14 10 0 17 Q14 10 28 14 L28 -16 Q14 -20 0 -12 Z" fill="#fff" stroke="#2b2118" stroke-width="2.6" stroke-linejoin="round"/>` +
-    `<path d="M0 -12 L0 17" stroke="#2b2118" stroke-width="2.6"/><path d="M-22 -8 Q-12 -11 -5 -6 M-22 -1 Q-12 -4 -5 1 M-22 6 Q-12 3 -5 8 M22 -8 Q12 -11 5 -6 M22 -1 Q12 -4 5 1 M22 6 Q12 3 5 8" fill="none" stroke="#8a5a10" stroke-width="2"/>`;
-
-  // ---------- settings ----------
-  function setting(kind, W, H, hz, uid = 'sc') {
-    let s = '';
-    if (kind === 'playground') {
-      s += `<defs><linearGradient id="sky1-${uid}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#a9bccb"/><stop offset="1" stop-color="#dde5ea"/></linearGradient></defs>`;
-      s += `<rect width="${W}" height="${hz + 2}" fill="url(#sky1-${uid})"/>`;
-      // clouds with a little shading
-      for (const [x, y, r] of [[.16, .14, 1], [.62, .1, 1.3], [.88, .2, .8]]) {
-        const cx = x * W, cy = y * H, R = r * Math.min(W, H) * .05;
-        s += `<g opacity=".9"><ellipse cx="${cx}" cy="${cy + R * .3}" rx="${R * 2.2}" ry="${R * .8}" fill="#c9d4dc"/><circle cx="${cx - R}" cy="${cy}" r="${R * .8}" fill="#eef2f5"/><circle cx="${cx + R * .2}" cy="${cy - R * .3}" r="${R}" fill="#f4f7f9"/><circle cx="${cx + R * 1.2}" cy="${cy + R * .1}" r="${R * .7}" fill="#eef2f5"/></g>`;
-      }
-      // autumn trees along the back
-      const tc = ['#e0a030', '#d9822b', '#c9692a', '#e8b84a', '#d27a2a'];
-      for (let i = 0; i < 9; i++) {
-        const x = (i + .3) / 8.6 * W, r = H * (.09 + (i % 3) * .018), y = hz - r * .9;
-        s += `<rect x="${x - r * .1}" y="${y}" width="${r * .2}" height="${hz - y + 4}" fill="#7a5236"/><circle cx="${x}" cy="${y}" r="${r}" fill="${tc[i % 5]}"/><circle cx="${x - r * .4}" cy="${y - r * .3}" r="${r * .45}" fill="#f2c46a" opacity=".55"/>`;
-      }
-      s += `<rect y="${hz}" width="${W}" height="${H - hz}" fill="#b4b76c"/>`;
-      s += `<path d="M0 ${hz} L${W} ${hz}" stroke="#8f9356" stroke-width="3"/>`;
-      // wood-chip patch under the slide, and a fence
-      for (let i = 0; i < 30; i++) { const x = (i * 97 % 101) / 101 * W, y = hz + ((i * 53 % 89) / 89) * (H - hz); s += `<ellipse cx="${x}" cy="${y}" rx="${4 + i % 3}" ry="2" fill="#d98a2b" opacity=".7" transform="rotate(${i * 37 % 180} ${x} ${y})"/>`; }
-      // slide on the left
-      const sx = W * .08, sb = hz + (H - hz) * .35, sh = (H - hz) * .2 + H * .25;
-      s += `<path d="M${sx} ${sb} L${sx} ${sb - sh} M${sx + W * .04} ${sb} L${sx + W * .04} ${sb - sh}" stroke="#4a6fa5" stroke-width="5"/>`;
-      for (let i = 1; i < 5; i++) s += `<path d="M${sx} ${sb - sh * i / 5} L${sx + W * .04} ${sb - sh * i / 5}" stroke="#4a6fa5" stroke-width="3"/>`;
-      s += `<path d="M${sx + W * .04} ${sb - sh} Q${sx + W * .12} ${sb - sh * .6} ${sx + W * .2} ${sb - 4} L${sx + W * .2} ${sb + 6} Q${sx + W * .1} ${sb - sh * .38} ${sx + W * .04} ${sb - sh + Math.max(14, sh * .14)} Z" fill="#e0533f" stroke="#2b2118" stroke-width="2"/>`;
-      s += `<rect x="${sx - 6}" y="${sb - sh - 12}" width="${W * .04 + 12}" height="12" rx="3" fill="#f2c230" stroke="#2b2118" stroke-width="2"/>`;
-      // the puddle
-      const px = W * .2, py = hz + (H - hz) * .72;
-      s += `<ellipse cx="${px}" cy="${py}" rx="${W * .09}" ry="${(H - hz) * .08}" fill="#7d6a52"/><ellipse cx="${px - W * .01}" cy="${py - 2}" rx="${W * .06}" ry="${(H - hz) * .04}" fill="#9aa6ae" opacity=".7"/>`;
-    } else if (kind === 'lunchroom') {
-      s += `<rect width="${W}" height="${hz + 2}" fill="#a6d3cb"/><rect y="${hz - H * .06}" width="${W}" height="${H * .06}" fill="#8dc2b9"/>`;
-      // windows with soft daylight
-      for (let i = 0; i < 3; i++) {
-        const x = W * (.1 + i * .22), y = H * .08, w = W * .14, h = hz * .5;
-        s += `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="6" fill="#e6f3f6" stroke="#f7fbfb" stroke-width="6"/><path d="M${x + w / 2} ${y} L${x + w / 2} ${y + h} M${x} ${y + h / 2} L${x + w} ${y + h / 2}" stroke="#f7fbfb" stroke-width="4"/><rect x="${x + 6}" y="${y + 6}" width="${w * .3}" height="${h * .2}" fill="#fff" opacity=".6"/>`;
-      }
-      // the band room door, back right, with a music note on its window
-      const dx = W * .84, dw = W * .12, dh = hz * .78, dy = hz + (H - hz) * .12 - dh;
-      s += `<rect x="${dx}" y="${dy}" width="${dw}" height="${dh}" fill="#c08a52" stroke="#2b2118" stroke-width="2.5"/><rect x="${dx + dw * .2}" y="${dy + dh * .12}" width="${dw * .6}" height="${dh * .25}" fill="#e6f3f6" stroke="#2b2118" stroke-width="2"/>` +
-        `<g transform="translate(${dx + dw * .5} ${dy + dh * .27}) scale(${dh / 200})"><ellipse cx="-6" cy="8" rx="7" ry="5" fill="#2b2118"/><path d="M0 8 L0 -16 L10 -12" fill="none" stroke="#2b2118" stroke-width="3"/></g>` +
-        `<circle cx="${dx + dw * .15}" cy="${dy + dh * .6}" r="${Math.max(3, dw * .05)}" fill="#f2c230" stroke="#2b2118" stroke-width="1.5"/>`;
-      // floor tiles
-      s += `<rect y="${hz}" width="${W}" height="${H - hz}" fill="#efe4cc"/>`;
-      for (let i = 1; i < 6; i++) { const y = hz + (H - hz) * (i / 6) ** 1.4; s += `<path d="M0 ${y} L${W} ${y}" stroke="#ddd0b2" stroke-width="2"/>`; }
-      for (let i = -6; i <= 6; i++) s += `<path d="M${W / 2 + i * W * .06} ${hz} L${W / 2 + i * W * .2} ${H}" stroke="#ddd0b2" stroke-width="2"/>`;
-    } else {
-      s += `<defs><linearGradient id="sky3-${uid}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f3b48c"/><stop offset="1" stop-color="#fbe2c6"/></linearGradient></defs>`;
-      s += `<rect width="${W}" height="${hz + 2}" fill="url(#sky3-${uid})"/>`;
-      s += `<circle cx="${W * .78}" cy="${hz - H * .06}" r="${H * .08}" fill="#ffd98a" opacity=".9"/>`;
-      // distant tree line
-      let p = `M0 ${hz}`; for (let i = 0; i <= 24; i++) p += ` Q${(i + .5) / 24 * W} ${hz - H * (.05 + (i % 3) * .02)} ${(i + 1) / 24 * W} ${hz}`;
-      s += `<path d="${p} Z" fill="#5f8a4a"/>`;
-      // grass with mown stripes
-      s += `<rect y="${hz}" width="${W}" height="${H - hz}" fill="#86b95e"/>`;
-      for (let i = 0; i < 8; i += 2) s += `<path d="M${W * i / 8} ${hz} L${W * (i + 1) / 8} ${hz} L${W * ((i + 1) / 8 * 1.6 - .3)} ${H} L${W * (i / 8 * 1.6 - .3)} ${H} Z" fill="#7cae55"/>`;
-      s += `<path d="M${W * .42} ${hz} L${W * .5} ${H}" stroke="#f4f7ef" stroke-width="3" opacity=".8"/>`;
-      s += `<ellipse cx="${W * .62}" cy="${hz + (H - hz) * .5}" rx="${W * .16}" ry="${(H - hz) * .18}" fill="none" stroke="#f4f7ef" stroke-width="3" opacity=".7"/>`;
-      // goal at the left, back
-      const gx = W * .015, gw = W * .2, gb = hz + (H - hz) * .34, gh = H * .3;
-      let net = ''; for (let i = 1; i < 8; i++) net += `M${gx + gw * i / 8} ${gb - gh} L${gx + gw * i / 8} ${gb} `; for (let i = 1; i < 6; i++) net += `M${gx} ${gb - gh * i / 6} L${gx + gw} ${gb - gh * i / 6} `;
-      s += `<rect x="${gx}" y="${gb - gh}" width="${gw}" height="${gh}" fill="#ffffff22"/><path d="${net}" stroke="#fff" stroke-width="1.4" opacity=".75"/>` +
-        `<path d="M${gx} ${gb} L${gx} ${gb - gh} L${gx + gw} ${gb - gh} L${gx + gw} ${gb}" fill="none" stroke="#fff" stroke-width="6" stroke-linejoin="round"/><path d="M${gx} ${gb} L${gx} ${gb - gh} L${gx + gw} ${gb - gh} L${gx + gw} ${gb}" fill="none" stroke="#2b2118" stroke-width="1.5" opacity=".5"/>`;
-    }
-    return s;
+  // ---------- settings: a painted backdrop, cropped to fill like CSS cover ----------
+  const BG_ASPECT = 720 / 411;
+  const HORIZON = {playground: .56, lunchroom: .68, field: .54};   // where the ground meets the back, as a fraction of the painting's height
+  function cover(W, H) {   // how the painting maps onto a W x H box (xMidYMid slice)
+    const s = Math.max(W / BG_ASPECT, H) / H, pw = H * BG_ASPECT * s, ph = H * s;
+    return {x: f => (W - pw) / 2 + f * pw, y: f => (H - ph) / 2 + f * ph};
+  }
+  function setting(kind, W, H) {
+    return `<image href="${ART.bg[kind]}" width="${W}" height="${H}" preserveAspectRatio="xMidYMid slice"/>`;
+  }
+  const horizon = (kind, W, H) => cover(W, H).y(HORIZON[kind]);
+  function prop(name, x, y, sc) {   // a small painted prop standing at (x, y)
+    const [w, h] = PROP[name];
+    return `<image href="${ART[name]}" x="${(x - w * sc / 2).toFixed(1)}" y="${(y - h * sc).toFixed(1)}" width="${(w * sc).toFixed(1)}" height="${(h * sc).toFixed(1)}"/>`;
   }
 
   // ---------- where everyone stands, beat by beat: [x, depth (0 front, 1 back), options] ----------
@@ -636,8 +471,8 @@ body.compact .secret p{font-size:12.5px}
       C: [[.90, .55, {hold: 'mud'}], [.42, 0], [.64, 0]],
     },
     seat: {
-      1: [[.14, .05, {tray: 1}], [.46, .3], [.91, 1]],
-      2: [[.63, .22, {tray: 1}], [.46, .3], [.91, 1]],
+      1: [[.14, .05, {tray: 1}], [.46, .3], [.94, 1]],
+      2: [[.63, .22, {tray: 1}], [.46, .3], [.94, 1]],
       3: [[.15, 0, {tray: 1}], [.46, .3], [.76, .6]],
       4: [[.87, .5, {tray: 1}], [.40, .3], [.56, .3]],
       A: [[.72, .3, {tray: 1}], [.40, .3], [.56, .3]],
@@ -668,27 +503,16 @@ body.compact .secret p{font-size:12.5px}
     const st = story(), r = $('stage').getBoundingClientRect();
     const W = Math.max(260, Math.round(r.width)), H = Math.max(150, Math.round(r.height));
     sv.setAttribute('width', W); sv.setAttribute('height', H); sv.setAttribute('viewBox', `0 0 ${W} ${H}`);
-    const hz = H * .5, front = H * .965, back = hz + (H - hz) * .12;
+    const hz = horizon(st.setting, W, H), front = H * .965, back = hz + (H - hz) * .12;
     const gy = d => front - d * (front - back), ds = d => 1 - .5 * d;
     const base = Math.min(H * .43, W * .2) / 170;   // a front character's scale
     const pos = POS[st.id][beatKey()], ex = exprs(), view = state.view;
-    let s = `<title id="svTitle">${esc(sceneLabel())}</title>` + setting(st.setting, W, H, hz);
-    // furniture and props that stand in the scene
-    if (st.id === 'seat') {
-      const table = (x0, x1, d) => { const y = gy(d), sc = ds(d), th = 12 * base * 170 / 100 * sc * 1.4, ty = y - 58 * base * sc * 1.25;
-        return `<rect x="${x0 * W}" y="${ty}" width="${(x1 - x0) * W}" height="${th}" rx="4" fill="#f7eed8" stroke="#2b2118" stroke-width="2"/>` +
-          `<path d="M${x0 * W + 10} ${ty + th} L${x0 * W + 10} ${y - 4} M${x1 * W - 10} ${ty + th} L${x1 * W - 10} ${y - 4}" stroke="#9a8a6a" stroke-width="5"/>`; };
-      s += table(.3, .7, .42) + table(.78, .97, .62);
-      // the saved seat: a stool beside Rory until Wren sits in it
-      if (state.beat <= 3) { const y = gy(.34), sc = ds(.34) * base; s += `<rect x="${W * .6 - 22 * sc}" y="${y - 52 * sc}" width="${44 * sc}" height="${10 * sc}" rx="${4 * sc}" fill="#e0533f" stroke="#2b2118" stroke-width="2"/><path d="M${W * .6 - 16 * sc} ${y - 42 * sc} L${W * .6 - 18 * sc} ${y} M${W * .6 + 16 * sc} ${y - 42 * sc} L${W * .6 + 18 * sc} ${y}" stroke="#6b5d4f" stroke-width="${Math.max(2, 4 * sc)}"/>`; }
-    }
-    if (st.id === 'mud' && state.beat === 2) {   // the little kid in the puddle: a duckling
-      const x = W * .19, y = hz + (H - hz) * .74, sc = base * .8;
-      s += `<g transform="translate(${x} ${y}) scale(${sc})"><ellipse cx="0" cy="-22" rx="26" ry="20" fill="#f5d33a" stroke="#2b2118" stroke-width="2.6"/><circle cx="12" cy="-48" r="17" fill="#f5d33a" stroke="#2b2118" stroke-width="2.6"/>` +
-        `<path d="M26 -48 L40 -44 L26 -40 Z" fill="#f08a24" stroke="#2b2118" stroke-width="2"/><circle cx="16" cy="-52" r="3" fill="#2b2118"/><path d="M18 -45 q2 5 0 9" stroke="#5aa8e0" stroke-width="3" fill="none"/></g>`;
-    }
+    let s = `<title id="svTitle">${esc(sceneLabel())}</title>` + setting(st.setting, W, H);
+    // props that stand in the scene (the tables are part of the lunchroom painting) that stand in the scene
+    if (st.id === 'seat' && state.beat <= 3) s += prop('stool', W * .6, gy(.34), ds(.34) * base * .62);   // the saved seat, until Wren sits in it
+    if (st.id === 'mud' && state.beat === 2) s += prop('duckling', cover(W, H).x(.19), cover(W, H).y(.9), base * .62);   // the little kid in the puddle
     if (st.id === 'goal') {   // the ball
-      const B = {1: [.53, .05], 2: [.27, .3, .22], 3: [.1, .44], 4: [.1, .44], A: [.1, .44], B: [.1, .44], C: [.1, .44]}[beatKey()];
+      const B = {1: [.53, .05], 2: [.3, .3, .2], 3: [.26, .92], 4: [.26, .92], A: [.26, .92], B: [.26, .92], C: [.26, .92]}[beatKey()];   // ends in the painted goal
       const x = B[0] * W, y = gy(B[1]) - (B[2] || 0) * H, rr = 13 * base * ds(B[1]) * 1.3;
       s += `<ellipse cx="${x}" cy="${gy(B[1])}" rx="${rr}" ry="${rr * .3}" fill="#0002"/><g transform="translate(${x} ${y - rr})"><circle r="${rr}" fill="#fff" stroke="#2b2118" stroke-width="2"/><path d="M0 ${-rr * .45} L${rr * .43} ${-rr * .14} L${rr * .27} ${rr * .36} L${-rr * .27} ${rr * .36} L${-rr * .43} ${-rr * .14} Z" fill="#2b2118"/></g>`;
       if (state.beat === 2) s += `<path d="M${x + rr * 2} ${y - rr} q${W * .06} ${-H * .04} ${W * .14} ${-H * .01}" fill="none" stroke="#fff" stroke-width="3" stroke-dasharray="6 6" opacity=".85"/>`;
@@ -698,8 +522,8 @@ body.compact .secret p{font-size:12.5px}
     geo = {W, H, heads: []};
     for (const i of order) {
       const [x, d, o] = pos[i], ch = st.chars[i], A = ANIMAL[ch.animal];
-      const sc = base * ds(d) * A.sc, px = x * W, py = gy(d);
-      geo.heads[i] = {x: px, top: py + A.top * sc, headTop: py - 160 * sc, sc};
+      const sc = base * ds(d) * A.sc, px = x * W, py = gy(d), L = look(ch, ex[i], o || {});
+      geo.heads[i] = {x: px, top: py - (L.h + 6) * sc, headTop: py - L.h * sc, sc};
       const sel = view === i, dim = view !== 'n' && !sel;
       let g = '';
       if (sel) g += `<g class="spot"><ellipse cx="0" cy="-82" rx="74" ry="108" fill="#ffe7a8" opacity=".55"/></g><ellipse cx="0" cy="0" rx="64" ry="13" fill="#ffe7a8" stroke="var(--brand)" stroke-width="${6}" />`;
@@ -756,11 +580,11 @@ body.compact .secret p{font-size:12.5px}
 
   // ---------- shelf ----------
   function coverArt(st) {
-    const W = 300, H = 190, hz = 110;
-    let s = `<svg viewBox="0 0 ${W} ${H}" aria-hidden="true" preserveAspectRatio="xMidYMid slice">` + setting(st.setting, W, H, hz, 'cv-' + st.id);
+    const W = 300, H = 190;
+    let s = `<svg viewBox="0 0 ${W} ${H}" aria-hidden="true" preserveAspectRatio="xMidYMid slice">` + setting(st.setting, W, H);
     st.chars.forEach((ch, i) => {
-      const x = [92, 168, 238][i], sc = .52 * ANIMAL[ch.animal].sc;
-      s += `<g transform="translate(${x} ${H - 8}) scale(${sc})"><ellipse cx="0" cy="0" rx="40" ry="8" fill="#0002"/>${drawChar(ch, 'happy', i === 1 && st.id === 'mud' ? {jacket: 1} : st.id === 'seat' && i === 0 ? {tray: 1} : {})}</g>`;
+      const x = [92, 168, 238][i], sc = .62 * ANIMAL[ch.animal].sc;
+      s += `<g transform="translate(${x} ${H - 8}) scale(${sc})"><ellipse cx="0" cy="0" rx="40" ry="8" fill="#0002"/>${drawChar(ch, 'happy', i === 1 && st.id === 'mud' ? {jacket: 1} : {})}</g>`;
     });
     return s + '</svg>';
   }
@@ -774,8 +598,8 @@ body.compact .secret p{font-size:12.5px}
   // ---------- rack ----------
   function buildRack() {
     const st = story();
-    const items = [{label: 'Narrator', icon: `<svg viewBox="-34 -22 68 44" aria-hidden="true">${bookIcon}</svg>`}].concat(
-      st.chars.map(c => ({label: `${c.name}'s shoes`, icon: `<svg viewBox="-44 -40 88 44" aria-hidden="true">${shoes(c.shoes, 18)}</svg>`})));
+    const items = [{label: 'Narrator', icon: `<img src="${ART.book}" alt="">`}].concat(
+      st.chars.map(c => ({label: `${c.name}'s shoes`, icon: `<img src="${ART.shoes[c.name]}" alt="">`})));
     $('rack').innerHTML = items.map((it, k) => `<button class="shoe" id="rk${k}" aria-pressed="false" title="Key ${k + 1}">${it.icon}<span>${esc(it.label)}</span></button>`).join('');
     items.forEach((it, k) => { $('rk' + k).onclick = () => setView(k === 0 ? 'n' : k - 1); });
   }
@@ -1043,7 +867,7 @@ body.compact .secret p{font-size:12.5px}
   $('shelfHint').textContent = UI.shelf;
   showScreen('shelf');
   window.__tool = {state, STORIES, UI, allLines, openStory, goShelf, setView, go, choose, tryAgain, restart, pick, reveal, openTalk, closeTalk,
-    said, queued, started, draw: {drawChar, setting, shoes, bookIcon, ANIMAL}, hint: () => $('hint').textContent, layout: () => ({page}), readParts, geo: () => geo,
+    said, queued, started, draw: {drawChar, setting, look, LOOKS, CELLS, ANIMAL, horizon}, hint: () => $('hint').textContent, layout: () => ({page}), readParts, geo: () => geo,
     curio: () => ({last: Curio.last, sound: Curio.sound, reduce: Curio.reduce}),
     setMode: () => {}};   // no modes in this tool
 })();

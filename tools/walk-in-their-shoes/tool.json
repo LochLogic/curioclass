@@ -10,8 +10,9 @@
   "sources": [
     "CASEL, What Is the CASEL Framework? Social Awareness: the abilities to understand the perspectives of and empathize with others: https://casel.org/fundamentals-of-sel/what-is-the-casel-framework/",
     "Stories, characters and lines: original writing for Curio Class",
-    "Characters, shoes, settings and book covers drawn in code",
-    "Narration generated with Qwen3-TTS (Apache 2.0), cloning a Google Gemini text-to-speech voice"
+    "Narration generated with Qwen3-TTS (Apache 2.0), cloning a Google Gemini text-to-speech voice",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class",
+    "Illustrations drawn with FLUX.2 [klein] (Apache 2.0) on Cloudflare Workers AI, edited for Curio Class"
   ],
   "third_party": [],
   "updated": "2026-10-26"

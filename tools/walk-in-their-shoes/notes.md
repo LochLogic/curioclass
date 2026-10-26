@@ -30,4 +30,4 @@ Each story's **Talk it over** card has two questions for that story plus one for
 - Keys: Left and Right arrows go Back and Next; keys 1 to 4 pick Narrator and the three pairs of shoes; Escape closes Talk it over.
 - One storyteller voice reads every line, as in a read-aloud. Each page's narration or thought plays when you open it. **Read** speaks the hint, the Only I know card and the thought bubble (or the narration). **Sound** turns the automatic reading off.
 - Nothing is typed, scored, timed or saved, apart from the shared Motion setting. Motion off removes the bubble pop, the spotlight pulse and the page fade; the pacing stays the same.
-- Characters, shoes, settings and covers are all drawn in code, with no people anywhere.
+- The characters are painted illustrations (OpenAI gpt-image) and the settings, shoes and props are painted with FLUX.2 [klein], all edited for Curio Class. No people anywhere: every character is an animal.

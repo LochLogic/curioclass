@@ -114,3 +114,18 @@ In order: re-encode backgrounds at quality 50 (about 6 KB back); keep the vector
 painted pairs (14 KB back); merge rarely used cells (Otto surprised into worried, Max surprised into upset; about 9 KB).
 Voice is already 16 kbps (1.23 MB of MP3); dropping to 12 kbps would free about 300 KB but costs clarity in a
 read-aloud tool, so it is the last resort, not the plan.
+
+## As built (2026-10-26)
+
+- The real budget was the bundle, not the 227 KB plan: base64 adds a third, so the art had to stay near 165 KB for
+  a bundle under 1.95 MB. Final: 165.0 KB of WebP, bundle 1,945,373 bytes.
+- Cells: `scripts/split_sheet.py` keys each raw sheet, splits it at its empty columns (Otto's sheet had two shoes
+  touching, so it cut at the emptiest column there), scales the whole sheet so its tallest figure is 170 px (a slumped
+  pose stays shorter), and saves `art/<name>-<n>.webp` at quality 24 with alpha quality 10, plus `cells.json`.
+  35 cells, 93.5 KB (2.7 KB each on average): Juniper 9.9, Pip 12.1, Otto 11.7, Tamsin 8.6, Rory 8.1, Wren 12.3,
+  Bea 11.1, Max 13.6, Dot 6.1. The nine whole-sheet WebPs were deleted; the raws stay in art/raw/.
+- Settings 41.4 KB (720x411; the field is trimmed 3.5 percent for its painted frame), shoes 21.0 KB (100 px wide,
+  quality 50), duckling, stool and book 9.1 KB.
+- Horizons measured from the paintings: playground .56, lunchroom .68, field .54. Wren waits by the band room door
+  at x .94; the ball ends inside the painted goal at x .26.
+- Covers reuse each setting and the characters' cells; no extra cover art.

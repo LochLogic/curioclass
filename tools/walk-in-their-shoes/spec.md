@@ -18,12 +18,12 @@ Replay the same small moment in each character's shoes and find the one thing ea
 ## Screens and modes
 No mode buttons. Two screens.
 
-**1. Story shelf** (start screen). Three book covers drawn in code, side by side (stacked at 375 wide): "The Muddy Sleeve", "The Saved Seat", "The Last Goal". Each cover shows its three animal characters and a one-line teaser. Click a cover to open it. Header: title "Walk in Their Shoes", Motion, Sound, Read.
+**1. Story shelf** (start screen). Three book covers (each story's painted setting with its three characters), side by side (stacked at 375 wide): "The Muddy Sleeve", "The Saved Seat", "The Last Goal". Each cover shows its three animal characters and a one-line teaser. Click a cover to open it. Header: title "Walk in Their Shoes", Motion, Sound, Read.
 
 **2. Story view.**
-- Stage (left or top): the scene for the current beat, drawn in code: setting background plus the three characters with their expression for this beat. Under the scene, beat dots (1 to 5) and buttons **Back** and **Next**.
+- Stage (left or top): the scene for the current beat: the painted setting plus the three characters with their expression for this beat. Under the scene, beat dots (1 to 5) and buttons **Back** and **Next**.
 - In **Narrator** view the narration line sits in a caption strip under the scene. In a character's view that character gets a soft spotlight ring, the other two are shown at 85 percent opacity, and the character's thought bubble appears above their head with their thought for this beat. The caption strip still shows the narration in small type.
-- **Shoe rack** (a row under the stage, always visible): four buttons. **Narrator** (an open book icon) and one button per character showing that character's shoes drawn in code, with the name under them ("Pip's shoes"). The selected one is raised and outlined. A small tracker beside the rack: "Shoes tried: 1 of 3" (counts characters whose view the student opened in this story; Narrator does not count).
+- **Shoe rack** (a row under the stage, always visible): four buttons. **Narrator** (an open book icon) and one button per character showing a painting of that character's shoes, with the name under them ("Pip's shoes"). The selected one is raised and outlined. A small tracker beside the rack: "Shoes tried: 1 of 3" (counts characters whose view the student opened in this story; Narrator does not count).
 - Panel (right or bottom):
   - Hint paragraph (`hint`), changes with context (lines in Content, "UI lines").
   - **Only I know** card: in a character's view, that character's secret (Content). Hidden in Narrator view. Shown from beat 1 on, so the secret is the first thing a student finds.
@@ -36,7 +36,7 @@ No mode buttons. Two screens.
 ## Content
 Feeling chips (one set for all stories): happy, proud, worried, embarrassed, frustrated, left out, confused, sorry, hopeful, nervous, relieved, annoyed.
 
-Expressions drawn per character: calm, happy, sad, upset, worried, surprised. Listed below per beat as (expression).
+Expressions: calm, happy, sad, upset, worried, surprised, listed below per beat as (expression). Each character is painted only in the expressions its story uses (see Art).
 
 ### Story 1: The Muddy Sleeve
 Teaser: "A borrowed jacket comes back muddy."
@@ -127,7 +127,11 @@ General talk question (all stories, last line of the card): "Think of a time a s
 - Book covers on the shelf each use their story's scene color as the cover.
 
 ## Art
-none: drawn in code. Nine animal characters (fox, rabbit, bear, heron, badger, owl, turtle, goat, hedgehog) as simple round SVG figures with six expressions each (eyebrow, eye and mouth changes), nine pairs of shoes (also used on the rack), three settings, three book covers, the open-book Narrator icon and preview.svg. No people anywhere.
+Painted illustrations (Cory, 2026-10-26: "lets just improve the graphics"); plan and budget in `art-plan.md`, prompts in `art/prompts.json`.
+- Characters: OpenAI gpt-image-2 through Codex (`scripts/gptart.py`), one character sheet per character with every look that character needs (35 cells: Juniper 4, Pip 5, Otto 5, Tamsin 3, Rory 3, Wren 4, Bea 4, Max 5, Dot 2), split into one WebP per cell by `scripts/split_sheet.py` (170 px tall; sizes in `cells.json`). Outfits and props: Juniper's mustard sweater and the light blue jacket (worn by Pip on pages 1 and 2, held by Juniper from page 3), Tamsin's lunch tray, Wren's flute case, Bea's loose goalie glove from page 2, sky-blue team jerseys for Max and Dot.
+- Settings, shoes and props: FLUX.2 [klein] on Cloudflare Workers AI (`scripts/cfart.py`): the playground (slide, puddle), the lunchroom (tables, band room door), the soccer field (goal), the duckling, the saved-seat stool, the Narrator's open book and the nine pairs of shoes on the rack.
+- Stays vector: thought bubbles, the spotlight and brand ring under the selected character, shadows, dimming and the soccer ball.
+- No people anywhere.
 
 ## Voice
 Bank `gentle-storyteller` (voice Vindemiatrix), style "Say gently and expressively, like a grandmother reading a picture book aloud". Not used by any SEL neighbor (calm-corner uses Achernar, feelings tools use Puck; not-yet-gym must pick a different one). One storyteller voices every character, as in a read-aloud.
