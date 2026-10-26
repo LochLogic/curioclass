@@ -1,0 +1,22 @@
+{
+  "id": "decision-tree",
+  "status": "beta",
+  "hook": "Grow a fictional kid's decision as a tree, then slide time from Right away to Next month and watch branches bloom or wilt against the goals you pick.",
+  "outcome": "Anticipate and compare the short- and long-term consequences of several options against chosen goals, and combine options into a better one",
+  "driver": "students or teacher",
+  "minutes": "15-25",
+  "modes": [
+    "Grow",
+    "Side by side"
+  ],
+  "grades_label": "Grades 6-8",
+  "sources": [
+    "CASEL, What Is the CASEL Framework? (Responsible Decision-Making: identifying solutions for personal and social problems; anticipating and evaluating the consequences of one's actions), casel.org",
+    "Dilemmas, consequences and goal codes: original fictional content written for Curio Class",
+    "Tree, leaves, icons and sign drawn in code",
+    "Illustrations drawn with FLUX.1-schnell (Apache 2.0) on a local computer, edited for Curio Class",
+    "Narration generated with Qwen3-TTS (Apache 2.0), cloning a Google Gemini text-to-speech voice"
+  ],
+  "third_party": [],
+  "updated": "2026-10-26"
+}

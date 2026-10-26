@@ -1,0 +1,1176 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Decision Tree · Grow a choice over time · Curio Class</title>
+<meta name="description" content="Grow a fictional kid's decision as a tree: plant the options, pick the goals that matter, then slide time from Right away to Next month and watch branches bloom or wilt. Graft two options into a better one, and compare two goal sets side by side. Grades 6-8 social and emotional learning. Works offline.">
+<!--
+Decision Tree (Curio Class)
+Grades 6-8, Social and Emotional Learning, module Responsible Decisions (SEL). Standard: CASEL Responsible
+Decision-Making (identifying solutions for personal and social problems; anticipating and evaluating the consequences of
+one's actions).
+Students on laptops, alone or in pairs, or a teacher on a projector with the class calling out goals and branches.
+Grow: four fictional, ordinary dilemmas; plant options as branches, turn goals on, slide time through Right away, Next
+week and Next month, graft two options into a fifth, make a call, choose a branch, print the tree.
+Side by side: the same branches under two goal sets.
+Sources: CASEL, "What Is the CASEL Framework?". The tree is a teaching picture, not a research claim. Every dilemma,
+consequence and goal code is original fictional content written for Curio Class. The tool says "often" and "isn't
+always", never that a choice is right or wrong. There is no text box; nothing is stored except the kit's Motion setting.
+Tree, leaves, icons and sign are drawn in code; the hillside backdrop is a local FLUX.1-schnell painting with no people.
+One file, no network requests. Content CC BY 4.0, code MIT. curioclass.org
+-->
+<link rel="stylesheet" href="kit:curio">
+<style>
+:root{
+  --paper:#f6f8ee;--ink:#1f2a1a;--muted:#5a6352;--line:#dfe5cf;--focus:#a3306e;
+  --brand:#4a6417;--btn:#3d5312;--btn-line:#7f9a45;--head-ink:#ffffff;--panel:#ffffff;
+  --sky:#dfeef2;--bark:#6b4a2f;--leaf:#cfe6b8;--bloom:#f7d3e2;--wilt:#ecd9bf;
+  --b-bloom:#b8336a;--b-even:#2f6e34;--b-wilt:#8a5a2b;--soft:#eef3e2;
+}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+header :focus-visible{outline-color:#fff}
+/* three page layouts, picked in script (relayout()), as in collision-lab:
+   wide    (1000 px or wider and 700 px or taller): stage on the left, 360 px panel on the right;
+   compact (a short landscape box such as the 16:10 embed, 680x425 to 1000x625): a slim panel, one-row header,
+           options and goal chips in two columns so they and the time slider fit without scrolling;
+   stack   (narrow or portrait): the panel under the stage, the page scrolls.
+   The stage is drawn at its real pixel size (SVG plus HTML leaves), never scaled, so text keeps its size. */
+main{grid-template-columns:minmax(0,1fr) 360px;min-height:0}
+/* the panel comes first in the page (tab order: panel controls before the leaves), drawn on the right */
+main>.stage{grid-column:1;grid-row:1}
+main>.panel{grid-column:2;grid-row:1}
+body.stack main>.panel{grid-column:1;grid-row:2}
+.stage{min-height:0;background:var(--sky)}
+#sv{position:absolute;left:0;top:0;display:block}
+#lay{position:absolute;inset:0;pointer-events:none}
+#lay>*{pointer-events:auto}
+body.compact main{grid-template-columns:minmax(0,1fr) 300px}
+@media (min-width:900px){body.compact main{grid-template-columns:minmax(0,1fr) 330px}}
+body.compact header{padding:4px 8px;gap:4px;flex-wrap:nowrap;min-width:0}
+body.compact h1{font-size:16px;white-space:nowrap;min-width:0;overflow:hidden;text-overflow:ellipsis}
+body.compact h1 small{display:none}
+body.compact .seg{flex:none}
+body.compact .seg button,body.compact .icon-btn{min-height:44px;padding:0 8px;font-size:13.5px;white-space:nowrap}
+body.compact .icon-btn{flex:none}
+body.compact .panel{padding:6px 8px;gap:6px}
+body.compact .hint{font-size:13px;line-height:1.25}
+body.stack{height:auto}
+body.stack main{grid-template-columns:minmax(0,1fr);align-content:start}
+body.stack .panel{border-left:0;border-top:3px solid var(--line)}
+@media (max-width:560px){
+  .seg{display:grid;grid-template-columns:1fr 1fr;border-radius:14px;width:100%}
+  .seg button{min-height:44px;font-size:14px;padding:0 6px}
+  .icon-btn{min-height:44px;padding:0 12px;font-size:15px}
+}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.hint{margin:0}
+.panel section{display:flex;flex-direction:column;gap:6px}
+.panel h2{margin:0;font:700 13px 'Segoe UI',system-ui,sans-serif;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+body.compact .panel h2{font-size:11.5px}
+body.compact .panel section{gap:4px}
+.ic{width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.btn{min-height:44px;border-radius:10px;border:2px solid var(--brand);background:#fff;color:var(--brand);font-weight:700;font-size:15px;padding:0 10px}
+.btn:disabled{opacity:.45;cursor:default}
+.btn[aria-pressed="true"]{background:var(--brand);color:#fff}
+body.compact .btn{font-size:13px;padding:0 6px}
+/* dilemma picker */
+.picker{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px}
+.dcard{display:grid;grid-template-columns:24px 1fr;gap:0 4px;align-items:center;text-align:left;min-height:48px;
+  border:2px solid var(--line);border-radius:12px;background:#fff;padding:3px 5px}
+.dcard .ic{width:24px;height:24px;color:var(--brand)}
+.dcard b{font-size:15px;line-height:1.1}
+.dcard span{grid-column:1 / -1;font-size:11.5px;line-height:1.15;color:var(--muted)}
+.dcard[aria-pressed="true"]{border-color:var(--brand);background:#eef4df;box-shadow:inset 0 0 0 1px var(--brand)}
+body.compact .picker{grid-template-columns:repeat(4,minmax(0,1fr));gap:4px}
+body.compact .dcard{grid-template-columns:1fr;justify-items:center;min-height:44px;padding:2px;text-align:center}
+body.compact .dcard .ic{grid-row:auto;width:20px;height:20px}
+body.compact .dcard b{font-size:12.5px}
+body.compact .dcard span{display:none}
+.setup{margin:0;font-size:14.5px;line-height:1.4}
+body.compact .setup{font-size:12.5px;line-height:1.3}
+body.compact #secDil,body.short #secDil{display:contents}
+body.compact #setup,body.short #setup{order:5}
+/* short wide (laptop heights): the subtitle, picker titles and some gaps go so options, slider and tools fit with five branches */
+body.short h1 small{display:none}
+body.short .panel{gap:8px;padding-top:8px;padding-bottom:8px}
+body.short .panel section{gap:5px}
+body.short .dcard{min-height:44px}
+body.short .dcard span{display:none}
+body.short .hint{font-size:14px;line-height:1.3}
+body.short .opt{font-size:13.5px;line-height:1.25;padding:5px 7px 5px 5px}
+body.short #result{order:6}
+body.short #setup{order:8}
+body.short #tip{order:9}
+body.compact #tools,body.short #tools{order:6}
+body.compact #tip,body.short #tip{order:7}
+body.compact #secTime{order:1}
+body.compact #hint{order:3}
+body.compact #secOpts{order:2}
+body.compact #sbsLine,body.compact #swapRow,body.compact #result{order:3}
+body.stack #secTime{order:-1}
+/* goal chips */
+.chips{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.chip{display:flex;align-items:center;gap:6px;text-align:left;min-height:44px;border:2px solid var(--line);border-radius:999px;
+  background:#fff;padding:3px 10px 3px 6px;font-size:14px;line-height:1.15;font-weight:600}
+.chip .ic{color:var(--brand)}
+.chip::after{content:'';margin-left:auto;flex:none;width:0}
+.chip[aria-pressed="true"]{border-color:var(--brand);background:var(--brand);color:#fff}
+.chip[aria-pressed="true"] .ic{color:#fff}
+.chip[aria-pressed="true"]::after{content:'✓';width:auto;font-weight:800}
+body.compact .chip{font-size:12px;gap:4px;padding:2px 6px 2px 4px;border-radius:14px}
+body.compact .chip .ic{width:16px;height:16px}
+/* option cards */
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.opt{display:grid;grid-template-columns:26px 1fr;gap:2px 7px;align-items:start;text-align:left;min-height:44px;
+  border:2px solid var(--line);border-radius:12px;background:#fff;padding:6px 8px 6px 6px;font-size:14px;line-height:1.3}
+.opt .let{width:26px;height:26px;border-radius:50%;background:var(--brand);color:#fff;font-weight:800;display:grid;place-items:center;font-size:14px}
+.opt .tag{display:inline-block;font-size:12px;font-weight:700;color:#fff;background:var(--brand);border-radius:999px;padding:0 7px;line-height:1.45;white-space:nowrap}
+.opt .tag u{color:#fff!important;font-weight:600}
+.opt[aria-pressed="false"] .tag{display:none}
+.opt[aria-pressed="true"]{border-color:var(--brand);background:#eef4df}
+.opt.g{grid-column:1 / -1}
+.opt.g .let{background:var(--bark)}
+.opt.pick{border-style:dashed;border-color:var(--brand)}
+.opt.sel{outline:3px solid var(--b-bloom);outline-offset:1px}
+body.compact .opt{font-size:12px;line-height:1.25;padding:3px 5px 3px 3px;grid-template-columns:20px 1fr;gap:1px 5px}
+body.compact .opt .let{width:20px;height:20px;font-size:12px}
+body.compact .opt,body.short .opt{position:relative}
+body.compact .opt[aria-pressed="true"]{padding-top:6px}
+body.compact .opt .tag,body.short .opt .tag{position:absolute;right:6px;top:-8px;font-size:10.5px;padding:0 6px;border:1.5px solid #fff}
+body.short .opt .tag{top:-9px;font-size:11px}
+/* time */
+.timebox{display:grid;grid-template-columns:1fr auto;gap:4px 10px;align-items:center}
+.timebox input{width:100%;height:44px;accent-color:var(--brand);margin:0}
+.ticks{grid-column:1;display:flex;justify-content:space-between;font-size:12.5px;font-weight:700;color:var(--muted);margin-top:-12px}
+.ticks span.on{color:var(--brand)}
+.timebox .btn{grid-row:1 / span 2;grid-column:2}
+body.compact .timebox{grid-template-columns:auto 1fr;gap:0 8px}
+body.compact .timebox .btn{grid-column:1;grid-row:1 / span 2;align-self:start}
+body.compact .timebox input,body.compact .ticks{grid-column:2}
+#swapRow:empty{display:none}
+/* compact Side by side: Swap joins the time row so it stays on screen */
+body.compact .timebox:has(#swap:not([hidden])){grid-template-columns:auto 1fr auto}
+body.compact .timebox #swap{grid-column:3;grid-row:1 / span 2;align-self:start;width:auto!important;padding:0 8px}
+body.compact .ticks{margin-top:-13px}
+body.compact .opts,body.compact .chips{gap:4px}
+body.compact .panel{gap:5px}
+body.compact .ticks{font-size:11px}
+.tools{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px}
+.tools .btn{font-size:13.5px;line-height:1.1;padding:0 4px}
+body.compact .tools .btn{font-size:12px}
+.result{margin:0;font-size:15px;font-weight:700;color:var(--brand);background:var(--soft);border-radius:10px;padding:8px 10px}
+.result:empty{display:none}
+body.compact .result{font-size:13px;padding:4px 8px}
+.detail{background:var(--soft);border-left:5px solid var(--brand);border-radius:8px;padding:8px 10px;font-size:14px;line-height:1.38;position:relative}
+.detail h3{margin:0 40px 2px 0;font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:var(--brand)}
+.detail p{margin:0 0 4px}
+.detail ul{margin:2px 0 0;padding:0;list-style:none;display:grid;gap:2px}
+.detail li{display:flex;gap:6px;align-items:center;font-size:13px}
+.detail .x{position:absolute;right:0;top:0;min-height:44px;min-width:44px;border:0;background:none;font-size:20px;color:var(--muted)}
+.stage>.detail{position:absolute;left:8px;right:8px;margin:0 auto;max-width:460px;z-index:6;background:#fff;border:2px solid var(--brand);border-left-width:5px;
+  box-shadow:0 6px 22px #0003;max-height:calc(100% - 16px);overflow:auto;top:8px}
+.stage>.detail.low{top:auto;bottom:8px}
+body.compact .detail{font-size:12.5px;padding:5px 8px}
+body.compact .tip{display:none}
+/* stage: leaves, crowns, labels */
+.leaf{position:absolute;display:flex;flex-direction:column;gap:3px;text-align:left;border:2px solid #9fbf83;border-radius:14px 4px 14px 4px;
+  background:var(--leaf);color:var(--ink);padding:4px 6px;overflow:hidden;transform-origin:50% 100%;
+  transition:left .5s,width .5s,bottom .5s,transform .5s,opacity .4s,background-color .3s,border-color .3s;box-shadow:0 2px 0 #0002}
+.leaf.s-bloom{background:var(--bloom);border-color:#d99ab4}
+.leaf.s-wilt{background:var(--wilt);border-color:#c4a57c}
+.leaf.off{transform:scale(.08);opacity:0;pointer-events:none;visibility:hidden;transition:left .5s,width .5s,bottom .5s,transform .4s,opacity .3s,visibility 0s .4s}
+.leaf .lt{display:-webkit-box;-webkit-box-orient:vertical;overflow:hidden;line-height:1.3}
+.leaf .who{font-size:.85em;font-style:italic;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.marks{display:flex;flex-wrap:wrap;gap:2px 5px}
+.mk{display:inline-flex;align-items:center}
+.mk .ic{width:1.15em;height:1.15em;color:var(--ink)}
+.mk .ar{width:.95em;height:.95em;stroke-width:3}
+.mk.up .ar{color:var(--b-even)}
+.mk.down .ar{color:var(--b-wilt)}
+.mk.flat .ar{color:var(--muted)}
+.fade .marks,.fade .chipb{animation:fadein .3s ease-out}
+@keyframes fadein{from{opacity:.15}to{opacity:1}}
+.crown{position:absolute;display:flex;align-items:center;gap:6px;border:0;background:rgba(255,255,255,.88);border-radius:14px;padding:3px 6px;
+  transition:left .5s,width .5s,opacity .3s;box-shadow:0 1px 0 #0002;justify-content:center}
+.crown .let{flex:none;width:36px;height:36px;border-radius:50%;background:var(--bark);color:#fff;font:800 22px 'Trebuchet MS',sans-serif;display:grid;place-items:center}
+.crown .cb{display:flex;flex-direction:column;align-items:flex-start;gap:1px;min-width:0}
+.chipb{display:inline-flex;align-items:center;gap:3px;border-radius:999px;padding:1px 7px 1px 4px;color:#fff;font-size:12.5px;font-weight:700;white-space:nowrap}
+.chipb .ic{width:15px;height:15px}
+.chipb.bloom{background:var(--b-bloom)}.chipb.even{background:var(--b-even)}.chipb.wilt{background:var(--b-wilt)}
+.chipb.none{background:#fff;color:var(--ink);border:1.5px solid var(--muted)}
+.crown .tal{font-size:12px;color:var(--ink);white-space:nowrap}
+.crown.narrow{flex-direction:column;gap:1px;padding:2px}
+.crown.narrow .let{width:26px;height:26px;font-size:16px}
+.crown.narrow .cb{align-items:center}
+.crown.narrow .chipb{font-size:10.5px;padding:0 5px 0 3px}
+.crown.narrow .chipb .ic{width:12px;height:12px}
+.crown.narrow .tal{font-size:10.5px}
+.crown{overflow:hidden}
+.crown.xs .chipb{font-size:10px;padding:0 4px}
+.crown.xs .chipb .ic{display:none}
+.crown.xs .tal{font-size:10px}
+.crown.slim{gap:3px;padding:2px 3px}
+.crown.slim .let{width:26px;height:26px;font-size:16px}
+.crown.slim .chipb{font-size:10.5px;padding:0 5px 0 3px}
+.crown.slim .chipb .ic{width:12px;height:12px}
+.crown.slim .tal{font-size:10.5px}
+.crown.slim .flag{position:absolute;right:1px;top:1px;width:16px;height:16px}
+.leaf.nar{padding:3px 4px;gap:2px}
+.leaf.nar .marks{gap:1px 3px}
+.leaf.nar .mk .ic{width:.95em;height:.95em}
+.leaf.nar .mk .ar{width:.75em;height:.75em}
+.leaf .marks.ao{gap:1px 1px}
+.leaf.tiny{padding:2px 3px;gap:1px}
+.leaf.tiny .lt{line-height:1.15}
+.leaf.tiny .who{font-size:.85em;line-height:1.05}
+#lay>.leaf.meas{position:absolute;left:-9999px;top:0;visibility:hidden;pointer-events:none;transition:none;max-height:none}
+.leaf .marks.ao .mk .ar{width:.9em;height:.9em}
+.crown .flag{display:none;width:20px;height:20px;flex:none}
+.crown.flagged .flag{display:block}
+.crown.narrow .flag{position:absolute;right:1px;top:1px;width:16px;height:16px}
+.pick{outline:3px dashed var(--brand);outline-offset:1px}
+.sel{outline:3px solid var(--b-bloom)!important;outline-offset:2px}
+.dim{opacity:.25!important}
+.tlab{position:absolute;font:800 15px 'Trebuchet MS',sans-serif;color:#fff;background:var(--brand);border-radius:999px;padding:2px 12px;transform:translateX(-50%);white-space:nowrap}
+.ghost{position:absolute;font-size:11px;line-height:1.2;color:var(--muted);text-align:center;background:rgba(255,255,255,.75);border:1.5px dashed var(--muted);border-radius:8px;padding:2px 4px;transform:translateX(-50%)}
+#sv .bpath{fill:none;stroke:var(--bark);stroke-linecap:round;transition:stroke-dasharray .5s ease-out,d .5s,opacity .3s}
+#sv .guide{fill:none;stroke:var(--bark);stroke-dasharray:2 6;opacity:.5;stroke-linecap:round;transition:d .5s}
+#sv .bud{fill:#8fbf6a;stroke:#5c8a3c;stroke-width:1.5;transition:cx .5s,cy .5s,opacity .3s}
+#sv .dim{opacity:.25}
+.calm #sv .bpath{transition:none}
+/* choose card */
+.ccard{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(520px,calc(100% - 24px));max-height:calc(100% - 20px);overflow:auto;
+  background:#fff;border:3px solid var(--brand);border-radius:16px;padding:12px 16px;box-shadow:0 8px 30px #0003;font-size:15px;line-height:1.4}
+.ccard h3{margin:0 0 6px;font-size:18px}
+.ccard ol{margin:0 0 8px;padding-left:20px}
+.ccard .look{background:var(--soft);border-radius:10px;padding:8px 10px;margin:0 0 10px;font-weight:600}
+.ccard .row{display:flex;gap:8px;flex-wrap:wrap;position:sticky;bottom:-12px;background:#fff;padding:6px 0 12px;margin-bottom:-12px}   /* the buttons stay in view when a short card scrolls */
+body.compact .ccard .row,.ccard.slim .row{bottom:-8px;padding-bottom:8px;margin-bottom:-8px}
+.ccard .row .btn{flex:1 1 auto}
+body.compact .ccard{font-size:13px;padding:8px 10px}
+body.compact .ccard h3{font-size:15px}
+.ccard.slim{padding:8px 9px;font-size:13px}
+.ccard.slim h3{font-size:14.5px}
+.ccard.slim ol{padding-left:16px}
+.ccard.slim .row{flex-direction:column}
+#print{display:none}
+@media print{
+  header,main{display:none!important}
+  body{display:block;background:#fff;color:#000}
+  #print{display:block;font:12pt/1.4 Georgia,serif;color:#000}
+  #print h1{font-size:18pt;margin:0 0 6pt}
+  #print h2{font-size:13pt;margin:12pt 0 3pt}
+  #print ol{margin:0;padding-left:18pt}
+  #print .m{font-size:10.5pt}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Decision Tree <small>Plant the options, pick what matters, then slide time forward.</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-grow" aria-pressed="true">Grow</button>
+    <button id="m-sbs" aria-pressed="false">Side by side</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true" title="Turn animation on or off">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+  <button class="icon-btn" id="read">🔊 Read</button>
+</header>
+<main>
+  <aside class="panel" id="panel">
+    <p class="hint" id="hint" aria-live="polite"></p>
+    <div class="detail" id="detail" role="region" aria-label="Leaf details" aria-live="polite" hidden></div>
+    <section aria-label="Dilemma" id="secDil">
+      <h2 class="sr">Dilemma</h2>
+      <div class="picker" id="picker" role="group" aria-label="Pick a dilemma"></div>
+      <p class="setup" id="setup"></p>
+    </section>
+    <section data-modes="grow">
+      <h2 id="goalsH">What matters?</h2>
+      <div class="chips" id="chips" role="group" aria-labelledby="goalsH"></div>
+    </section>
+    <section data-modes="sbs">
+      <h2 id="gaH">Goals A</h2>
+      <div class="chips" id="chipsA" role="group" aria-labelledby="gaH"></div>
+      <h2 id="gbH">Goals B</h2>
+      <div class="chips" id="chipsB" role="group" aria-labelledby="gbH"></div>
+    </section>
+    <section data-modes="grow" id="secOpts">
+      <h2 class="sr" id="optH">Options</h2>
+      <div class="opts" id="opts" role="group" aria-labelledby="optH"></div>
+    </section>
+    <section aria-label="Time" id="secTime">
+      <div class="timebox">
+        <input type="range" id="time" min="0" max="2" step="1" value="0" aria-label="Time" aria-valuetext="Right away">
+        <div class="ticks" id="ticks"><span>Right away</span><span>Next week</span><span>Next month</span></div>
+        <button class="btn" id="play">▶ Play</button>
+      </div>
+    </section>
+    <p class="result" id="sbsLine" data-modes="sbs" aria-live="polite"></p>
+    <div data-modes="sbs" id="swapRow"><button class="btn" id="swap" data-modes="sbs" aria-label="Swap goal sets" style="width:100%">⇄ Swap goal sets</button></div>
+    <p class="result" id="result" data-modes="grow" aria-live="polite"></p>
+    <div class="tools" id="tools" data-modes="grow">
+      <button class="btn" id="graft" aria-pressed="false">Graft</button>
+      <button class="btn" id="call" aria-pressed="false">Make a call</button>
+      <button class="btn" id="who" aria-pressed="false">Who it touches</button>
+      <button class="btn" id="choose" aria-pressed="false">Choose a branch</button>
+      <button class="btn" id="print-btn">Print tree</button>
+      <button class="btn" id="clear">Clear tree</button>
+    </div>
+    <p class="tip" id="tip">Keys: 1 to 4 plant or pull up A to D (5 for the graft), G graft, left and right arrows move time, P plays, W shows who it touches, Escape cancels.</p>
+  </aside>
+  <div class="stage" id="stage" role="region" aria-label="The decision tree">
+    <svg id="sv" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"></svg>
+    <div id="lay"></div>
+    <div class="ccard" id="ccard" role="dialog" aria-modal="false" aria-labelledby="ccH" hidden></div>
+  </div>
+</main>
+<div id="print"></div>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const {say, wait} = Curio;
+  const NS = 'http://www.w3.org/2000/svg';
+  const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+  const TIMES = ['Right away', 'Next week', 'Next month'];
+  const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+
+  // ---------- icons, drawn in code (24 x 24, stroked) ----------
+  const ICON = {
+    handshake: '<path d="M2 11l4-4 3 1 3-2 3 2h3l4 4"/><path d="M6 7l-3 4 6 6 2-1 2 1 6-6"/><path d="M9 13l2 2M11.5 11.5l2 2"/>',
+    heart: '<path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.5-7 10-7 10z"/>',
+    star: '<path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/>',
+    gear: '<circle cx="12" cy="12" r="3"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M5.3 18.7l2.1-2.1M16.6 7.4l2.1-2.1"/><circle cx="12" cy="12" r="6.5"/>',
+    shield: '<path d="M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z"/>',
+    check: '<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8.5 12.5l2.5 2.5 4.5-5"/>',
+    dots: '<circle cx="5.5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="18.5" cy="12" r="2"/>',
+    bulb: '<path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-4 10.5c.8.8 1 1.6 1 2.5h6c0-.9.2-1.7 1-2.5A6 6 0 0 0 12 3z"/>',
+    tablet: '<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 6h8v10H8z"/><path d="M11 18.5h2"/>',
+    two: '<circle cx="8.5" cy="12" r="5"/><circle cx="15.5" cy="12" r="5"/>',
+    calendar: '<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/>',
+    clock: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+    ribbon: '<circle cx="12" cy="9" r="5"/><path d="M9 13l-2 8 5-3 5 3-2-8"/>',
+    pad: '<path d="M7 8h10a4.5 4.5 0 0 1 4.5 4.5v.5a3 3 0 0 1-5.4 1.8L15 13.5H9l-1.1 1.3A3 3 0 0 1 2.5 13v-.5A4.5 4.5 0 0 1 7 8z"/><path d="M7.5 10.5v3M6 12h3"/><circle cx="16" cy="11" r=".6"/><circle cx="17.5" cy="12.8" r=".6"/>',
+    moon: '<path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/>',
+    wave: '<path d="M2 10c2.5-3 5-3 7.5 0s5 3 7.5 0 3.5-2 5-1M2 16c2.5-3 5-3 7.5 0s5 3 7.5 0 3.5-2 5-1"/>',
+    // dilemma cards
+    pin: '<path d="M12 2c1.6 0 2.2 1.4 2.2 2.8 0 1.4-1 2.1-1 3.1 0 1 3.3 3 3.3 7.3 0 3-1.6 5.9-4.5 6.8-2.9-.9-4.5-3.8-4.5-6.8 0-4.3 3.3-6.3 3.3-7.3s-1-1.7-1-3.1C9.8 3.4 10.4 2 12 2z"/><path d="M10.6 8.5h2.8"/>',
+    phone: '<rect x="7" y="2" width="10" height="20" rx="2"/><rect x="9.5" y="7" width="5" height="4" rx="1"/><circle cx="12" cy="9" r="1"/><path d="M10.5 18.5h3"/>',
+    jar: '<path d="M8 3h8M8.5 3v3L6 9v10a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V9l-2.5-3V3"/><circle cx="12" cy="15" r="3"/><path d="M12 13.6v2.8"/>',
+    cart: '<path d="M6 3h12v13l-2 2.5V21H8v-2.5L6 16z"/><rect x="9" y="6" width="6" height="5" rx="1"/><path d="M9 14.5h2M13 14.5h2"/>',
+    // badges and marks
+    flower: '<circle cx="12" cy="12" r="2.4"/><path d="M12 9.6c-1.6-3.2 1.6-5.6 0-6.6-1.6 1 1.6 3.4 0 6.6zM14.3 11.3c2.6-2.4 5.9-.4 6.3-2.2-1.7-.6-3.7 2.3-6.3 2.2zM13.4 14.1c1.4 3.3 5.2 3.1 4.7 4.9-1.8-.1-2.3-3.6-4.7-4.9zM10.6 14.1c-1.4 3.3-5.2 3.1-4.7 4.9 1.8-.1 2.3-3.6 4.7-4.9zM9.7 11.3C7.1 8.9 3.8 10.9 3.4 9.1c1.7-.6 3.7 2.3 6.3 2.2z"/>',
+    leaf: '<path d="M5 19C5 10 11 5 20 4c-1 9-6 15-15 15z"/><path d="M5 19l8-8"/>',
+    curl: '<path d="M6 19c0-7 4-12 12-14-.5 4-2 7-4.5 9"/><path d="M13.5 14c-1.8 1.5-4.2 2-4.2.2 0-1.5 2-2 3 0"/><path d="M6 19l5-6"/>',
+    up: '<path d="M12 19V5M6 11l6-6 6 6"/>', down: '<path d="M12 5v14M6 13l6 6 6-6"/>', flat: '<path d="M5 12h14"/>',
+  };
+  const icon = (n, cls = '') => `<svg class="ic ${cls}" viewBox="0 0 24 24" aria-hidden="true">${ICON[n]}</svg>`;
+  const FLAG = '<svg class="flag" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 21V3" stroke="#1f2a1a" stroke-width="2.2" stroke-linecap="round"/><path d="M6 4h12l-3 4 3 4H6z" fill="#b8336a"/></svg>';
+
+  // ---------- content (spec "Content"; original fictional dilemmas for Curio Class) ----------
+  const D = (id, name, title, icn, setup, sign, goals, opts, pair, look) => ({id, name, title, icon: icn, setup, sign, look, pair,
+    goals: goals.map(([label, ic]) => ({label, ic})),
+    opts: Object.fromEntries(Object.entries(opts).map(([L, [text, leaves]]) => [L, {text, leaves: leaves.map(([t, who, code, short]) => ({t, who, code, short}))}]))});
+  const DIL = [
+    D('booking', 'Dev', 'The Double Booking', 'pin',
+      "Robotics practice and Ana's bowling party are both this Saturday at 2. The robot competition is next month.", 'Practice or the party?',
+      [['Keep my word to the team', 'handshake'], ['Be a good friend to Ana', 'heart'], ['Have fun', 'star'], ['Be ready for the meet', 'gear']],
+      {A: ["Skip practice and go bowling. Don't tell anyone.", [
+          ['Bowling is a blast. At practice, the team waits for you.', 'team', '-++0', 'Team waits for you'],
+          ['Coach asks where you were. A teammate had to cover your job.', 'Coach, team', '-00-', 'Coach asks why'],
+          ['The arm you never tested jams at the meet.', 'team, Dev', '-0--', 'Arm jams at meet']]],
+       B: ["Go to practice. Don't say anything to Ana.", [
+          ['Practice goes well. At the party, Ana keeps looking at the door.', 'Dev, Ana', '+--+', 'Ana waits at the door'],
+          ['Ana hears you were just at practice and goes quiet.', 'Ana', '0-00', 'Ana goes quiet'],
+          ['The arm works at the meet. Things with Ana still feel a bit off.', 'team, Ana', '+-++', 'Ana feels off']]],
+       C: ['Ask Coach if you can leave practice early.', [
+          ['Coach says yes, once the arm is tested. You rush and arrive as the cake comes out.', 'Coach, Ana', '+++0', 'Here for the cake'],
+          ['Coach asks you to make up the hour on Tuesday, your free afternoon.', 'Coach, Dev', '00-+', 'Make-up Tuesday'],
+          ['The arm mostly works. A test you rushed shows up as a small glitch.', 'team', '000-', 'A small glitch']]],
+       D: ["Tell Ana you can't come, and ask to bowl with her Sunday.", [
+          ['Ana is disappointed, but she says Sunday works.', 'Ana', '+0-+', 'Ana says Sunday'],
+          ["Sunday bowling, just the two of you. It's a good time.", 'Ana, Dev', '0++0', 'Fun Sunday'],
+          ['The arm works at the meet, and Ana comes to cheer.', 'team, Ana', '++++', 'Ana cheers']]],
+       G: ["Text Ana you'll be late, leave practice early, and bowl with her Sunday too.", [
+          ['You test the arm, leave early and catch the end of the party. Ana saved you a slice.', 'Coach, Ana', '+++0', "Party's end"],
+          ["Sunday bowling too, but Tuesday's make-up practice eats your free afternoon.", 'Ana, Dev', '0+-+', 'Lose free Tuesday'],
+          ['The arm works, apart from one small glitch. Ana comes to cheer.', 'team, Ana', '++0-', 'One glitch']]]},
+      'CD', 'Which consequence did you not see coming when you planted the branches?'),
+    D('quiz', 'Kai', 'The Quiz Photo', 'phone',
+      "At 9 at night, someone posts a photo of tomorrow's math quiz in the class group chat.", 'Look or not?',
+      [['Be honest', 'shield'], ['Do well on the quiz', 'check'], ['Stay in with the group', 'dots'], ['Really learn the math', 'bulb']],
+      {A: ['Open the photo and memorize the answers.', [
+          ['Ten minutes and you know every answer. Easy night.', 'Kai', '-0+-', 'An easy night'],
+          ["Ms. Ortiz spots the same wrong answer on twelve quizzes. Everyone retakes a new quiz, you aren't ready, and the group argues about who posted it.", 'Ms. Ortiz, class, group', '----', 'Everyone retakes it'],
+          ['The unit test covers the same math, and you never really learned it. The group chat has gone quiet since the retake.', 'Kai, group', '0---', 'Never learned it']]],
+       B: ["Don't open it. Study like normal.", [
+          ['You study for an hour while the chat keeps buzzing.', 'Kai', '+0-+', 'Chat keeps buzzing'],
+          ["Ms. Ortiz gives a new quiz. You're ready for it.", 'Kai, class', '++0+', 'Ready for new quiz'],
+          ['The unit test goes fine.', 'Kai', '0+0+', 'Unit test fine']]],
+       C: ['Mute the chat and go to bed early.', [
+          ['No photo, no studying. Lights out at 9:30.', 'Kai', '+00-', 'Lights out early'],
+          ['The new quiz catches you unready.', 'Kai', '0-0-', 'Caught unready'],
+          ["You're a step behind for the unit test.", 'Kai', '0-0-', 'Behind for the test']]],
+       D: ['Tell Ms. Ortiz about the photo.', [
+          ['You send her a short message. A few kids guess it was you.', 'Ms. Ortiz, group', '+0-0', "Kids guess it's you"],
+          ['She swaps in a new quiz. Some friends act cold for a few days.', 'group', '+0-0', 'Friends act cold'],
+          ['Things settle down with the group.', 'group', '+0+0', 'Things settle down']]],
+       G: ['Study like normal, and tell Ms. Ortiz without naming anyone.', [
+          ['You study, then message her that a photo of the quiz is going around.', 'Kai, Ms. Ortiz', '+00+', 'Study, then tell'],
+          ['The new quiz is harder than the first. You pass, but only just.', 'Kai, class', '+-0+', 'Pass, only just'],
+          ['Someone works out who told, and there are a few days of cold shoulders. The unit test goes fine.', 'group, Kai', '0+-+', 'Cold shoulders, test fine']]]},
+      'BD', 'Which goal did you turn on first, and did it change which branch looked best?'),
+    D('tablet', 'Nia', 'The Tablet Fund', 'jar',
+      'Nia has saved $80 toward a $150 drawing tablet. This Saturday her friends are going to the county fair, and a day there costs about $35.', 'Spend or save?',
+      [['Get the tablet soon', 'tablet'], ['Have fun with friends', 'two'], ['Stick to my saving plan', 'calendar'], ['Have free time', 'clock']],
+      {A: ['Go to the fair and spend the $35.', [
+          ['Rides, fried dough and a photo strip with everyone. Your fund drops to $45.', 'Nia, friends', '-+-0', 'Fair day, $45 left'],
+          ['You check the tablet price again. It feels a long way off now.', 'Nia', '-0-0', 'Tablet feels far'],
+          ['Still saving. Your friends are already planning the next outing.', 'Nia, friends', '-+00', 'Friends plan more']]],
+       B: ['Skip the fair and keep saving.', [
+          ['You stay home. Your friends post fair photos all afternoon.', 'Nia, friends', '+-+0', 'Fair photos all day'],
+          ['Your allowance brings the fund to $90.', 'Nia', '+0+0', 'Fund reaches $90'],
+          ['The fund reaches $110. The tablet is in sight.', 'Nia', '+0+0', 'Fund reaches $110']]],
+       C: ['Go to the fair, but bring only $10.', [
+          ['You skip most rides and share snacks. Fun, even watching from the rail.', 'Nia, friends', '0++0', 'Cheap fun at fair'],
+          ['Your allowance brings the fund to $80 again.', 'Nia', '00+0', 'Back to $80'],
+          ['The tablet is still a while off.', 'Nia', '-000', 'Tablet still far off']]],
+       D: ['Ask a neighbor if you can walk their dog for money.', [
+          ['Mr. Lee says yes, $5 a walk after school. The first walk is Saturday, so you miss the fair.', 'Mr. Lee, Nia', '+-0-', 'Walks, no fair'],
+          ['Five walks, $25 more. Your afternoons are short.', 'Mr. Lee, Nia', '+00-', 'Five walks, $25'],
+          ['The fund hits $150 and you buy the tablet, but the walks still take every afternoon.', 'Nia, Mr. Lee', '+0+-', 'Tablet, busy days']]],
+       G: ["Go to the fair with $10, and start walking Mr. Lee's dog on Monday.", [
+          ['A fun, cheap day at the fair. Walks start Monday.', 'friends, Mr. Lee', '0++0', 'A cheap fair day'],
+          ['The walks earn back more than the fair cost. Your afternoons are short.', 'Mr. Lee, Nia', '+00-', 'Walks pay it back'],
+          ['You buy the tablet a little later than you would have with walks alone.', 'Nia', '++0-', 'Tablet, a bit later']]]},
+      'CD', 'What did the branch you chose cost Nia, and was it worth it?'),
+    D('game', 'Theo', 'The New Game', 'cart',
+      "It's Monday. Theo's science project is due Friday and he hasn't started. The game all his friends are playing came out today.", 'Game or project?',
+      [['Turn in good work', 'ribbon'], ['Play with friends online', 'pad'], ['Get enough sleep', 'moon'], ['Keep the week calm', 'wave']],
+      {A: ['Play tonight. Start the project Thursday.', [
+          ['A great night of gaming with friends.', 'friends', '0+0+', 'Gaming night'],
+          ["Thursday you're up past midnight gluing the poster.", 'Theo, family', '-0--', 'Up past midnight'],
+          ['The grade is a C, and your friends are on to a new game.', 'Theo', '-000', 'A C grade']]],
+       B: ['Do the whole project tonight. No game.', [
+          ['You stay up late and get most of it done.', 'Theo', '+--0', 'Up late working'],
+          ['Done early. You play all weekend.', 'Theo, friends', '0+0+', 'Done, play all weekend'],
+          ["A good grade. You're a level behind your friends, but you catch up.", 'Theo, friends', '+000', 'Good grade, behind']]],
+       C: ['Plan it: one part each night, then play.', [
+          ['Thirty minutes on the project, then an hour of the game.', 'Theo, friends', '++00', 'Project, then game'],
+          ['Wednesday the glue runs out. You skip the game to get more.', 'Theo', '0-00', 'Glue runs out'],
+          ['A good grade, and you kept up with the game.', 'Theo, friends', '++0+', 'Good grade, kept up']]],
+       D: ['Ask a classmate to be your project partner.', [
+          ['Jun says yes, if you do the poster.', 'Jun', '+000', 'Jun says yes'],
+          ['Jun does his part on time. You do yours late.', 'Jun, Theo', '00-0', 'Yours is late'],
+          ['A decent grade, and a new friend to play with.', 'Jun, Theo', '++00', 'A new friend']]],
+       G: ['Partner with Jun and split the nights: project first, then play together.', [
+          ['You and Jun plan it on a call, then play together.', 'Jun, friends', '++0+', 'Plan, then play'],
+          ['Jun is sick two nights. You cover his part and stay up late.', 'Jun, Theo', '+---', 'Jun is sick'],
+          ['A good grade, and gaming with Jun becomes a thing.', 'Jun, Theo', '++00', 'Gaming with Jun']]]},
+      'CD', 'Which branch looked best right away? Was it still best by next month?'),
+  ];
+
+  // ---------- voice lines (spec "Voice"); leaf texts and option cards stay on screen only ----------
+  const L = {
+    welGrow: 'Plant a few options, pick what matters, then slide time forward and watch what grows.',
+    welSbs: "Same choices, two sets of goals. Watch where they agree and where they don't.",
+    nothing: 'Tap an option to plant it as a branch.',
+    nogoals: 'Turn on at least one goal so the leaves can show what helps and what hurts.',
+    ready: "Now slide time forward. The best branch right away isn't always the best one later.",
+    graft: 'Tap two branches that could both happen at once.',
+    miss: "Those two don't fit together. Try a different pair.",
+    found: 'Nice graft. Two options together made a new one.',
+    two: 'Look for two options that could both happen.',
+    few: 'Plant at least two branches first.',
+    call: 'Pick the branch you think will be standing best by next month.',
+    called: 'You called it.',
+    surprise: 'Surprise. A different branch is standing best by next month.',
+    surprise2: 'Surprise. Other branches are standing best by next month.',
+    callgoal: 'Turn on a goal to see which branch stands best.',
+    month: "That's next month. Choose the branch you'd go with.",
+    choose: "Pick the branch you'd choose. There's no wrong pick here.",
+    agree: 'Both goal sets agree here.',
+    differ: 'Same choices, different goals, different best branch.',
+    sbspick: 'Pick at least one goal for Goals A and for Goals B.',
+  };
+  for (const d of DIL) { L['setup-' + d.id] = d.setup; L['look-' + d.id] = d.look; }
+  const allLines = () => [...new Set(Object.values(L))];
+
+  // ---------- state ----------
+  const state = {mode: 'grow', di: 0, planted: new Set(), goals: new Set(), t: 0, who: false, sub: null, graftSel: null, misses: 0,
+    flag: null, result: '', card: null, flash: null, found: new Set(), gA: new Set(), gB: new Set(), detail: null};
+  const dil = () => DIL[state.di];
+  let playTimer = null;
+
+  // standing = ups minus downs over the goals that are on, across every leaf from Right away up to time t
+  function tally(d, Lt, goals, t) {
+    let up = 0, dn = 0;
+    for (let j = 0; j <= t; j++) { const c = d.opts[Lt].leaves[j].code; for (const g of goals) { if (c[g] === '+') up++; else if (c[g] === '-') dn++; } }
+    return {up, dn, net: up - dn};
+  }
+  function bestOf(d, letters, goals, t) {
+    if (!letters.length) return [];
+    const s = letters.map(x => [x, tally(d, x, goals, t).net]), m = Math.max(...s.map(v => v[1]));
+    return s.filter(v => v[1] === m).map(v => v[0]);
+  }
+  const status = (tl, goals) => !goals.size ? 'none' : tl.up > tl.dn ? 'bloom' : tl.up < tl.dn ? 'wilt' : 'even';
+  const BADGE = {bloom: ['Blooming', 'flower'], even: ['Even', 'leaf'], wilt: ['Wilting', 'curl'], none: ['Pick a goal', null]};
+  const tallyText = tl => `${tl.up} up, ${tl.dn} down`;
+  const fmtLetters = a => a.length < 2 ? a.join('') : a.slice(0, -1).join(', ') + ' and ' + a[a.length - 1];
+  // branch order on the tree: A to D left to right, the graft between its two parents
+  function order(d, set, withGhost) {
+    const out = ['A', 'B', 'C', 'D'].filter(x => set.has(x));
+    const g = set.has('G') ? 'G' : withGhost ? 'g?' : null;
+    if (g) { const i = out.indexOf(d.pair[0]); out.splice(i + 1, 0, g); }
+    return out;
+  }
+  const plantedOrder = () => order(dil(), state.planted, false);
+  const markWord = c => c === '+' ? 'helps' : c === '-' ? 'hurts' : 'no change';
+  const markCls = c => c === '+' ? 'up' : c === '-' ? 'down' : 'flat';
+
+  // ======================================================================================
+  // Stage: drawn at real pixel size per box; dynamic parts kept by key so growth can animate
+  // ======================================================================================
+  const sv = $('sv'), lay = $('lay');
+  let W = 0, H = 0, page = null, lastSize = '', staticKey = '', gen = 0;
+  const dyn = new Map();
+  const svgEl = (tag, attrs, parent) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; };
+  let gStatic, gBranch, gTop;
+  const mctx = document.createElement('canvas').getContext('2d');
+  const textW = (s, font) => { mctx.font = font; return mctx.measureText(s).width; };
+  let meas = null;
+  function textLines(txt, cls, fs, cw) {
+    if (!meas) { meas = document.createElement('div'); meas.setAttribute('aria-hidden', 'true'); meas.innerHTML = '<span class="lt"></span>'; lay.appendChild(meas); }
+    meas.className = 'leaf meas' + cls; meas.style.fontSize = fs + 'px'; meas.style.width = cw + 'px';
+    const lt = meas.firstChild; lt.textContent = txt;
+    return Math.round(lt.getBoundingClientRect().height / parseFloat(getComputedStyle(lt).lineHeight));
+  }
+
+  function trees() {
+    const d = dil();
+    if (state.mode === 'grow') return [{key: 'g', x: 0, y: 0, w: W, h: H, letters: plantedOrder(), goals: state.goals, label: null, main: true}];
+    const set = new Set(['A', 'B', 'C', 'D']); if (state.found.has(d.id)) set.add('G');
+    const letters = order(d, set, true);
+    if (W / H >= 1.3 || (page === 'stack' && W >= 560)) return [{key: 'a', x: 0, y: 0, w: W / 2, h: H, letters, goals: state.gA, label: 'Goals A'}, {key: 'b', x: W / 2, y: 0, w: W / 2, h: H, letters, goals: state.gB, label: 'Goals B'}];
+    return [{key: 'a', x: 0, y: 0, w: W, h: H / 2, letters, goals: state.gA, label: 'Goals A'}, {key: 'b', x: 0, y: H / 2, w: W, h: H / 2, letters, goals: state.gB, label: 'Goals B'}];
+  }
+  // geometry of one tree box
+  function geo(T) {
+    const gut = 26, n = Math.max(T.letters.length, 1);
+    const colW = (T.w - gut - 10) / n;
+    const narrow = colW < 150, tiny = colW < 100;
+    const labH = T.label ? 26 : 0;
+    const crownH = tiny ? 62 : narrow ? 42 : 50;
+    const trunkH = clamp(T.h * .14, 40, 100);
+    const fork = clamp(T.h * .06, 16, 54);
+    const top = T.y + labH + crownH + 6;
+    const bh = (T.y + T.h - trunkH - fork - top) / 3;
+    const bandY = j => top + (2 - j) * bh;                // top edge of band j (0 R, 1 W, 2 M)
+    const nodeY = j => bandY(j) + bh - 5;                // bottom of the leaf in band j
+    const cx = i => T.x + gut + 5 + colW * (i + .5);
+    const cw = Math.min(colW - 10, 270);
+    const fs = cw >= 230 ? 15.5 : cw >= 168 ? 14 : cw >= 120 ? 13 : cw >= 90 ? 12 : 11;
+    return {gut, colW, narrow, tiny, labH, crownH, trunkH, top, bh, bandY, nodeY, cx, cw, fs, tx: T.x + T.w / 2, ty: T.y + T.h - trunkH,
+      crownTop: T.y + labH + 3, crownBot: T.y + labH + crownH};
+  }
+  function buildStatic(ts) {
+    sv.textContent = '';
+    svgEl('rect', {x: 0, y: 0, width: W, height: H, fill: '#dfeef2'}, sv);
+    svgEl('path', {d: `M0 ${H * .78} Q ${W * .3} ${H * .6} ${W * .6} ${H * .74} T ${W} ${H * .7} V ${H} H 0 Z`, fill: '#a9cf8a'}, sv);
+    svgEl('image', {href: 'art:bg-hillside', x: 0, y: 0, width: W, height: H, preserveAspectRatio: 'xMidYMid slice'}, sv);
+    svgEl('rect', {x: 0, y: 0, width: W, height: H, fill: '#f6f8ee', opacity: .35}, sv);
+    gStatic = svgEl('g', {}, sv); gBranch = svgEl('g', {}, sv); gTop = svgEl('g', {}, sv);
+    const d = dil();
+    for (const T of ts) {
+      const g = geo(T);
+      for (let j = 0; j < 3; j++) {
+        svgEl('rect', {x: T.x + 2, y: g.bandY(j) + 1, width: T.w - 4, height: g.bh - 2, rx: 10, fill: '#ffffff', opacity: j % 2 ? .22 : .38}, gStatic);
+        const ly = g.bandY(j) + g.bh / 2, lx = T.x + 15;
+        const tx = svgEl('text', {x: lx, y: ly, transform: `rotate(-90 ${lx} ${ly})`, 'text-anchor': 'middle', 'dominant-baseline': 'middle',
+          'font-size': g.bh < 70 ? 10.5 : 13, 'font-weight': 700, fill: '#1f2a1a', 'font-family': 'Segoe UI, system-ui, sans-serif'}, gStatic);
+        if (g.bh < 46) tx.remove();
+        tx.textContent = g.bh < 56 ? TIMES[j].replace('Right away', 'Now').replace('Next ', '') : TIMES[j];
+      }
+      // mound, trunk and sign
+      const by = T.y + T.h;
+      svgEl('ellipse', {cx: g.tx, cy: by + 4, rx: Math.min(T.w * .32, 260), ry: g.trunkH * .32, fill: '#8fbf6a', opacity: .95}, gStatic);
+      const tw = g.narrow ? 16 : 24;
+      svgEl('path', {d: `M${g.tx - tw} ${by} C ${g.tx - tw * .5} ${by - g.trunkH * .5} ${g.tx - 6} ${g.ty + 10} ${g.tx - 5} ${g.ty} L ${g.tx + 5} ${g.ty} C ${g.tx + 6} ${g.ty + 10} ${g.tx + tw * .5} ${by - g.trunkH * .5} ${g.tx + tw} ${by} Z`, fill: '#6b4a2f'}, gStatic);
+      const sfs = g.trunkH < 70 ? 12 : 15, font = `700 ${sfs}px Segoe UI, system-ui, sans-serif`;
+      const swid = Math.min(textW(d.sign, font) + 22, T.w - 40), sh = sfs + 14, sy = by - g.trunkH * .52 - sh / 2;
+      svgEl('rect', {x: g.tx - swid / 2, y: sy, width: swid, height: sh, rx: 6, fill: '#6b4a2f', stroke: '#4a321e', 'stroke-width': 2}, gStatic);
+      const st = svgEl('text', {x: g.tx, y: sy + sh / 2 + 1, 'text-anchor': 'middle', 'dominant-baseline': 'middle', 'font-size': sfs, 'font-weight': 700, fill: '#ffffff', 'font-family': 'Segoe UI, system-ui, sans-serif'}, gStatic);
+      st.textContent = d.sign;
+    }
+  }
+  function getEl(key, make) {
+    let e = dyn.get(key), fresh = false;
+    if (!e) { e = make(); dyn.set(key, e); fresh = true; }
+    e._gen = gen;
+    return [e, fresh];
+  }
+  function render(fade) {
+    if (!W) return;                  // not laid out yet
+    const ts = trees();
+    const sk = state.mode + state.di + ':' + W + 'x' + H + ':' + ts.map(T => T.letters.length > 0 ? geo(T).narrow + ':' + Math.round(geo(T).bh) : '').join();
+    if (sk !== staticKey) { staticKey = sk; buildStatic(ts); for (const e of dyn.values()) e.remove(); dyn.clear(); }
+    gen++;
+    const later = [];
+    const d = dil();
+    for (const T of ts) renderTree(T, d, later);
+    for (const [k, e] of dyn) if (e._gen !== gen) { e.remove(); dyn.delete(k); }
+    if (fade) { lay.classList.remove('fade'); void lay.offsetWidth; lay.classList.add('fade'); }
+    if (later.length) requestAnimationFrame(() => requestAnimationFrame(() => later.forEach(f => f())));
+  }
+  function renderTree(T, d, later) {
+    const g = geo(T), t = state.t, main = !!T.main;
+    if (T.label) {
+      const [lb] = getEl(T.key + ':label', () => { const e = document.createElement('div'); e.className = 'tlab'; lay.appendChild(e); return e; });
+      lb.textContent = T.label; lb.style.left = (T.x + T.w / 2) + 'px'; lb.style.top = (T.y + 3) + 'px';
+    }
+    const stopY = [g.bandY(0), g.bandY(1), g.crownBot];
+    T.letters.forEach((Lt, i) => {
+      const cx = g.cx(i), k = T.key + ':' + Lt;
+      const n0 = g.nodeY(0);
+      const s0 = `M${g.tx} ${g.ty} C ${g.tx} ${g.ty - (g.ty - n0) * .55} ${cx} ${g.ty - (g.ty - n0) * .35} ${cx} ${n0}`;
+      if (Lt === 'g?') {
+        // Side by side, graft not found yet: a faint bud with a label
+        const [p] = getEl(k + ':p', () => svgEl('path', {class: 'bpath'}, gBranch));
+        p.setAttribute('d', s0); p.style.strokeWidth = g.narrow ? 3 : 4; p.style.opacity = .35; p.style.strokeDasharray = '6 6';
+        const [b] = getEl(k + ':bud', () => svgEl('circle', {class: 'bud', r: 7}, gTop));
+        b.setAttribute('cx', cx); b.setAttribute('cy', n0); b.style.opacity = .5;
+        const [gl] = getEl(k + ':gl', () => { const e = document.createElement('div'); e.className = 'ghost'; e.textContent = 'Graft not found yet'; lay.appendChild(e); return e; });
+        gl.style.left = cx + 'px'; gl.style.width = Math.max(60, Math.min(g.colW - 6, 120)) + 'px'; gl.style.top = (n0 - Math.min(g.bh - 14, 44)) + 'px';
+        return;
+      }
+      const opt = d.opts[Lt], tl = tally(d, Lt, T.goals, t), st = status(tl, T.goals);
+      const dim = main && state.card && state.card !== Lt;
+      // the branch: curve from the trunk, then straight up through the bands to the crown
+      const [p, fresh] = getEl(k + ':p', () => svgEl('path', {class: 'bpath'}, gBranch));
+      const tmp = svgEl('path', {d: s0}); gBranch.appendChild(tmp); const l0 = tmp.getTotalLength(); tmp.remove();
+      const dpath = `${s0} L ${cx} ${g.crownBot}`;
+      p.setAttribute('d', dpath); p.style.d = `path("${dpath}")`;
+      p.style.strokeWidth = g.narrow ? 5 : 7;
+      const total = l0 + (n0 - g.crownBot) + 2, reach = l0 + (n0 - stopY[t]);
+      const dash = `${reach} ${total + 50}`;
+      p._dash = dash;
+      if (fresh) { p.style.strokeDasharray = `0 ${total + 50}`; later.push(() => { p.style.strokeDasharray = p._dash; }); } else if (!p._wait) p.style.strokeDasharray = dash;
+      if (fresh) { p._wait = true; later.push(() => { p._wait = false; }); }
+      p.classList.toggle('dim', !!dim);
+      const [gd] = getEl(k + ':guide', () => svgEl('path', {class: 'guide'}, gStatic));
+      const gdd = `M${cx} ${stopY[t]} L ${cx} ${g.crownBot}`; gd.setAttribute('d', gdd); gd.style.d = `path("${gdd}")`; gd.style.display = t < 2 ? '' : 'none';
+      // buds where leaves have not grown yet
+      // very short bands (a small Side by side box): no leaf cards, a leaf dot per band instead; the crown opens the details
+      const mini = g.bh < 46;
+      for (let j = mini ? 0 : 1; j < 3; j++) {
+        const [b] = getEl(k + ':bud' + j, () => svgEl('circle', {class: 'bud', r: g.narrow ? 5 : 7}, gTop));
+        b.setAttribute('cx', cx); b.setAttribute('cy', g.nodeY(j) - (mini ? g.bh / 2 - 5 : 0)); b.style.cx = cx + 'px'; b.style.cy = (g.nodeY(j) - (mini ? g.bh / 2 - 5 : 0)) + 'px';
+        if (mini) { b.setAttribute('r', j <= t ? 7 : 4); b.style.fill = j <= t ? ({bloom: '#f7d3e2', wilt: '#ecd9bf'}[st] || '#cfe6b8') : ''; b.style.opacity = 1; }
+        else b.style.opacity = j > t ? 1 : 0;
+      }
+      if (mini) opt.leaves.forEach((lf, j) => { const e = dyn.get(k + ':leaf' + j); if (e) { e.remove(); dyn.delete(k + ':leaf' + j); } });
+      // the leaves
+      if (!mini) opt.leaves.forEach((lf, j) => {
+        const [e, fr] = getEl(k + ':leaf' + j, () => {
+          const el = document.createElement('button'); el.className = 'leaf off';
+          el.innerHTML = '<span class="lt"></span><span class="who"></span><span class="marks"></span>';
+          el.onclick = () => leafTap(T, Lt, j, el); el._L = Lt; el._T = T.key; lay.appendChild(el); return el;
+        });
+        const on = j <= t;
+        const goals = [...T.goals].sort();
+        e.style.fontSize = g.fs + 'px';
+        e.style.width = g.cw + 'px'; e.style.left = (cx - g.cw / 2) + 'px'; e.style.bottom = (H - g.nodeY(j)) + 'px';
+        const maxH = g.bh - 12; e.style.maxHeight = maxH + 'px';
+        // how many text lines fit above the marks (narrow leaves collapse to the first words; tap shows the full text)
+        const tiny = g.cw < 70 || (state.who && g.cw < 100), sz = (g.narrow ? ' nar' : '') + (tiny ? ' tiny' : '');
+        const padX = tiny ? 10 : g.narrow ? 12 : 16;
+        let perRow = Math.max(1, Math.floor((g.cw - padX) / (g.fs * (g.narrow ? 1.72 : 2.2) + (g.narrow ? 3 : 5))));
+        const ao = g.narrow && goals.length > perRow;     // small leaf: one row of arrows in goal order (the tap shows each goal by name)
+        if (ao) perRow = Math.max(1, Math.floor((g.cw - padX + 1) / (g.fs * .9 + 1)));
+        const marksH = goals.length ? Math.ceil(goals.length / perRow) * g.fs * (ao ? .95 : 1.2) + (ao ? 2 : 3) : 0;
+        const whoH = state.who ? (tiny ? g.fs * .85 * 1.05 : g.fs * 1.2) + 2 : 0;
+        const lines = Math.floor((maxH - (tiny ? 10 : g.narrow ? 14 : 16) - marksH - whoH) / (g.fs * (tiny ? 1.15 : 1.3)));
+        const lt = e.children[0], wh = e.children[1], mk = e.children[2];
+        // the full text if it fits in the lines left (measured off screen at the leaf's final width), else its short title; a tap shows the full text
+        const short = textLines(lf.t, sz, g.fs, g.cw) > lines;
+        lt.textContent = short ? lf.short : lf.t; lt.style.webkitLineClamp = Math.max(lines, 1); lt.hidden = lines < 1;
+        // a narrow leaf names the first person plus a count (the tap and the accessible name list everyone)
+        const ppl = lf.who.split(', ');
+        wh.textContent = g.narrow && ppl.length > 1 ? `${ppl[0]} +${ppl.length - 1}` : lf.who; wh.hidden = !state.who;
+        mk.className = 'marks' + (ao ? ' ao' : '');
+        mk.innerHTML = goals.map(gi => `<span class="mk ${markCls(lf.code[gi])}">${ao ? '' : icon(d.goals[gi].ic)}${icon(markCls(lf.code[gi]), 'ar')}</span>`).join('');
+        mk.hidden = !goals.length;
+        const words = goals.map(gi => `${d.goals[gi].label}: ${markWord(lf.code[gi])}`).join('. ');
+        e.setAttribute('aria-label', `${Lt}, ${TIMES[j]}: ${lf.t}${state.who ? ' Touches: ' + lf.who + '.' : ''}${words ? ' ' + words + '.' : ''}`);
+        e.className = 'leaf s-' + st + sz + (short ? ' short' : '') + (on ? '' : ' off') + (dim ? ' dim' : '') + (main && state.sub === 'graft' ? ' pick' : '') + (main && state.graftSel === Lt ? ' sel' : '');
+        e._on = on;
+        if (fr && on) { e.classList.add('off'); later.push(() => e.classList.toggle('off', !e._on)); }
+        e.tabIndex = on ? 0 : -1;
+      });
+      // the crown: big letter, badge and tally
+      const [c] = getEl(k + ':crown', () => {
+        const el = document.createElement('button'); el.className = 'crown';
+        el.innerHTML = `<span class="let">${Lt}</span><span class="cb"><span class="chipb"></span><span class="tal"></span></span>${FLAG}`;
+        el.onclick = () => crownTap(T, Lt, el); el._L = Lt; el._T = T.key; el._crown = true; lay.appendChild(el); return el;
+      });
+      const cwid = Math.min(g.colW - 6, g.tiny ? 110 : 190);
+      c.style.left = (cx - cwid / 2) + 'px'; c.style.width = cwid + 'px'; c.style.top = g.crownTop + 'px'; c.style.height = (g.crownH - 6) + 'px';
+      const [bw, bi] = BADGE[st];
+      c.querySelector('.chipb').className = 'chipb ' + st;
+      c.querySelector('.chipb').innerHTML = (bi ? icon(bi) : '') + bw;
+      c.querySelector('.tal').textContent = st === 'none' ? '' : cwid < 110 ? `${tl.up}↑ ${tl.dn}↓` : tallyText(tl);
+      c.querySelector('.tal').hidden = st === 'none';
+      c.className = 'crown' + (g.tiny ? ' narrow' : g.narrow ? ' slim' : '') + (cwid < 110 ? ' xs' : '') + (main && state.flag === Lt ? ' flagged' : '') + (dim ? ' dim' : '') +
+        (main && state.sub === 'graft' ? ' pick' : '') + (main && state.graftSel === Lt ? ' sel' : '');
+      c.setAttribute('aria-label', `Branch ${Lt}${Lt === 'G' ? ', the graft' : ''}: ${opt.text} ${st === 'none' ? 'Pick a goal.' : bw + ', ' + tallyText(tl) + '.'}${main && state.flag === Lt ? ' Your call.' : ''}${T.label ? ' ' + T.label + '.' : ''}`);
+    });
+    // the graft knot, linked to both parents
+    const gi = T.letters.indexOf('G');
+    if (gi >= 0) {
+      const n0 = g.nodeY(0), ky = g.ty - (g.ty - n0) * .45;
+      const at = i => { const cx = g.cx(i); return [g.tx + (cx - g.tx) * .5, ky]; };
+      const [kx] = at(gi);
+      for (const par of d.pair) {
+        const pi = T.letters.indexOf(par); if (pi < 0) continue;
+        const [px] = at(pi);
+        const [ln] = getEl(T.key + ':link' + par, () => svgEl('path', {fill: 'none', stroke: '#4a321e', 'stroke-width': 2.5, 'stroke-dasharray': '4 3'}, gTop));
+        ln.setAttribute('d', `M${px} ${ky} L ${kx} ${ky - 2}`);
+      }
+      const [kn] = getEl(T.key + ':knot', () => svgEl('circle', {r: 8, fill: '#8a5a2b', stroke: '#f6f8ee', 'stroke-width': 3}, gTop));
+      kn.setAttribute('cx', kx); kn.setAttribute('cy', ky - 2);
+      const [kt] = getEl(T.key + ':knotT', () => { const e = svgEl('text', {'text-anchor': 'start', 'dominant-baseline': 'middle', 'font-size': 12, 'font-weight': 800, fill: '#1f2a1a', stroke: '#f6f8ee', 'stroke-width': 3, 'paint-order': 'stroke', 'font-family': 'Segoe UI, sans-serif'}, gTop); e.textContent = 'Graft'; return e; });
+      kt.setAttribute('x', kx + 12); kt.setAttribute('y', ky - 2);   // beside the knot, clear of the sign and the leaves
+    }
+  }
+
+  // ======================================================================================
+  // Panel
+  // ======================================================================================
+  function buildPicker() {
+    $('picker').innerHTML = DIL.map((d, i) => `<button class="dcard" data-i="${i}" aria-pressed="false" aria-label="${esc(d.title)}, ${d.name}">${icon(d.icon)}<b>${d.name}</b><span>${esc(d.title)}</span></button>`).join('');
+    for (const b of $('picker').children) b.onclick = () => pickDilemma(+b.dataset.i, true);
+  }
+  function buildChips(id, set) {
+    const d = dil();
+    $(id).innerHTML = d.goals.map((g, i) => `<button class="chip" data-g="${i}" aria-pressed="${set.has(i)}">${icon(g.ic)}<span>${esc(g.label)}</span></button>`).join('');
+    for (const b of $(id).children) b.onclick = () => toggleGoal(set, +b.dataset.g);
+  }
+  function buildOpts(focusL) {
+    const d = dil(), a = document.activeElement, had = $('opts').contains(a) ? a.dataset.l : null;
+    const letters = ['A', 'B', 'C', 'D', ...(state.found.has(d.id) ? ['G'] : [])];
+    $('opts').innerHTML = letters.map(x => `<button class="opt${x === 'G' ? ' g' : ''}" data-l="${x}" aria-pressed="false"><span class="let">${x}</span><span class="tx">${esc(d.opts[x].text)} <span class="tag">Planted · <u>Pull up</u></span></span></button>`).join('');
+    for (const b of $('opts').children) b.onclick = () => optionTap(b.dataset.l);
+    // a rebuild keeps keyboard focus on the same card (or the new graft card)
+    if (had) { const nb = $('opts').querySelector(`[data-l="${focusL || had}"]`) || $('opts').firstElementChild; if (nb) nb.focus(); }
+  }
+  function hintParts() {
+    if (state.mode === 'sbs') return state.gA.size && state.gB.size ? ['welSbs'] : ['welSbs', 'sbspick'];
+    if (state.card) return ['look-' + dil().id];
+    if (state.flash) return state.flash;
+    if (state.sub === 'choose') return ['choose'];
+    if (state.sub === 'graft') return state.misses >= 2 ? ['graft', 'two'] : ['graft'];
+    if (state.sub === 'call') return ['call'];
+    if (!state.planted.size) return ['nothing'];
+    if (!state.goals.size) return ['nogoals'];
+    if (state.t === 2) return state.resultKey ? [state.resultKey, 'month'] : ['month'];
+    return ['ready'];
+  }
+  const hintText = () => hintParts().map(k => L[k]).join(' ');
+  function sbsLine() {
+    if (!state.gA.size || !state.gB.size) return {text: L.sbspick, same: null};   // no conclusion from an empty goal set
+    const d = dil(), letters = order(d, new Set(['A', 'B', 'C', 'D', ...(state.found.has(d.id) ? ['G'] : [])]), false);
+    const a = bestOf(d, letters, state.gA, state.t), b = bestOf(d, letters, state.gB, state.t);
+    const same = a.join() === b.join();
+    return {text: `Standing best at ${TIMES[state.t]}: A: ${a.join(', ')}. B: ${b.join(', ')}. ${same ? L.agree : L.differ}`, same};
+  }
+  function updatePanel() {
+    const d = dil(), grow = state.mode === 'grow';
+    for (const b of $('picker').children) b.setAttribute('aria-pressed', +b.dataset.i === state.di);
+    $('setup').innerHTML = `<b>${esc(d.title)}.</b> ${esc(d.setup)}`;
+    $('goalsH').textContent = `What matters to ${d.name}?`;
+    for (const [id, set] of [['chips', state.goals], ['chipsA', state.gA], ['chipsB', state.gB]])
+      for (const b of $(id).children) b.setAttribute('aria-pressed', set.has(+b.dataset.g));
+    if ($('opts').children.length !== 4 + (state.found.has(d.id) ? 1 : 0)) buildOpts();
+    for (const b of $('opts').children) {
+      const x = b.dataset.l, on = state.planted.has(x);
+      b.setAttribute('aria-pressed', on);
+      b.classList.toggle('pick', state.sub === 'graft' && on);
+      b.classList.toggle('sel', state.graftSel === x);
+      b.setAttribute('aria-label', `${x}: ${d.opts[x].text} ${on ? 'Planted. Press to pull up.' : 'Press to plant.'}`);
+    }
+    const tm = $('time'); tm.value = state.t; tm.setAttribute('aria-valuetext', TIMES[state.t]);
+    [...$('ticks').children].forEach((s, i) => s.classList.toggle('on', i === state.t));
+    $('play').textContent = playTimer ? '■ Stop' : '▶ Play';
+    $('play').setAttribute('aria-label', playTimer ? 'Stop playing' : 'Play through time');
+    const n = state.planted.size;
+    $('graft').textContent = state.sub === 'graft' ? 'Cancel graft' : 'Graft';
+    $('graft').setAttribute('aria-pressed', state.sub === 'graft');
+    $('graft').disabled = state.found.has(d.id) && state.sub !== 'graft';
+    $('call').setAttribute('aria-pressed', state.sub === 'call');
+    $('call').disabled = !(n >= 2 && state.t < 2 && state.goals.size) && state.sub !== 'call';
+    $('choose').setAttribute('aria-pressed', state.sub === 'choose');
+    $('choose').disabled = !(n >= 1 && state.t === 2) && state.sub !== 'choose';
+    $('who').setAttribute('aria-pressed', state.who);
+    $('result').textContent = state.result;
+    if (state.mode === 'sbs') $('sbsLine').textContent = sbsLine().text;
+    const h = hintText(); if ($('hint').textContent !== h) $('hint').textContent = h;
+    showDetail();
+    showCard();
+  }
+  function showDetail() {
+    const box = $('detail'), q = state.detail;
+    if (!q) { box.hidden = true; return; }
+    const d = dil(), lf = d.opts[q.L].leaves[q.j];
+    box.hidden = false;
+    box.classList.toggle('low', q.j === 2);
+    box.innerHTML = `<h3>${q.L} · ${TIMES[q.j]}${q.label ? ' · ' + q.label : ''}</h3><p>${esc(lf.t)}</p><p><b>Touches:</b> ${esc(lf.who)}</p>
+      <ul>${d.goals.map((g, gi) => `<li class="mk ${markCls(lf.code[gi])}">${icon(g.ic)}${icon(markCls(lf.code[gi]), 'ar')}<span>${esc(g.label)}: ${markWord(lf.code[gi])}</span></li>`).join('')}</ul>
+      <button class="x" id="detailX" aria-label="Close">×</button>`;
+    $('detailX').onclick = closeDetail;
+  }
+  function closeDetail() {
+    const q = state.detail; state.detail = null; showDetail();
+    if (!q) return;
+    const from = q.from, ok = e => e && e.isConnected && !e.classList.contains('off') && !e.disabled && e.offsetParent !== null;
+    const c = from && dyn.get(from._T + ':' + from._L + ':crown');
+    for (const e of [from, c, $('opts').querySelector(`[data-l="${q.L}"]`), $('time')]) if (ok(e)) { e.focus(); return; }
+  }
+  function showCard() {
+    const c = $('ccard'), x = state.card;
+    if (!x || state.mode !== 'grow') { c.hidden = true; return; }
+    const d = dil(), o = d.opts[x];
+    if (!c.hidden && c.dataset.k === d.id + x) return;
+    c.dataset.k = d.id + x; c.hidden = false;
+    // sit beside the chosen branch, not over it, when the stage is wide enough
+    // the chosen column's full extent (crown and leaves, from their target styles, not mid-transition spots), then the wider free side
+    const parts = [dyn.get('g:' + x + ':crown'), ...[0, 1, 2].map(j => dyn.get('g:' + x + ':leaf' + j))].filter(Boolean);
+    const l = parts.length ? Math.min(...parts.map(e => parseFloat(e.style.left))) - 6 : 0;
+    const r = parts.length ? Math.max(...parts.map(e => parseFloat(e.style.left) + parseFloat(e.style.width))) + 6 : 0;
+    const right = W - r >= l, free = right ? W - r : l, cw = Math.min(520, free - 8);
+    // under 300 px the card turns into a scrolling sliver, so center it instead (it lists the chosen branch's leaves itself)
+    if (parts.length && cw >= 300) { c.style.width = cw + 'px'; c.style.left = (right ? r : l - cw) + 'px'; c.style.transform = 'translateY(-50%)'; c.classList.toggle('slim', cw < 300); }
+    else { c.style.width = ''; c.style.left = ''; c.style.transform = ''; c.classList.remove('slim'); }
+    c.innerHTML = `<h3 id="ccH">${d.name} chose: ${esc(o.text.replace(/\.$/, ''))}.</h3>
+      <ol>${o.leaves.map((lf, j) => `<li><b>${TIMES[j]}:</b> ${esc(lf.t)}</li>`).join('')}</ol>
+      <p class="look">${esc(d.look)}</p>
+      <div class="row"><button class="btn" id="cBack">Back to the tree</button><button class="btn" id="cNext">Next dilemma</button></div>`;
+    $('cBack').onclick = () => { state.card = null; state.sub = null; update(); $('choose').focus(); };
+    $('cNext').onclick = () => { pickDilemma((state.di + 1) % DIL.length, true); $('picker').children[state.di].focus(); };
+    $('cBack').focus({preventScroll: true}); c.scrollTop = 0;   // a slim card opens at its heading
+  }
+  function update(fade) {
+    const a = document.activeElement, had = a && a !== document.body ? a : null;
+    updatePanel(); render(fade);
+    if (had) keepFocus(had);
+  }
+  // focus never drops to the page: a hidden, removed or disabled control hands it to the nearest sensible one
+  function keepFocus(a) {
+    const gone = e => !e || !e.isConnected || e.disabled || e.classList.contains('off') || !!e.closest('[hidden]') || e.offsetParent === null;
+    if (!gone(a)) return;
+    const d = dil(), opt = l => $('opts').querySelector(`[data-l="${l}"]`), tools = [...$('tools').children];
+    let c = [];
+    if (a._L) c = [!a._crown && dyn.get(a._T + ':' + a._L + ':crown'), opt(a._L)];
+    else if (a.closest && a.closest('#ccard')) c = [$('choose')];
+    else if (a.dataset && a.dataset.l) c = [opt(a.dataset.l)];
+    else if (tools.includes(a)) {
+      if (a.id === 'graft' && state.found.has(d.id)) c.push(opt('G'));
+      if (a.id === 'call') c.push($('choose'));
+      const i = tools.indexOf(a); c.push(...tools.slice(i + 1), ...tools.slice(0, i));
+    }
+    for (const e of [...c, $('time')]) if (e && !gone(e)) { e.focus(); return; }
+  }
+
+  // ======================================================================================
+  // Actions
+  // ======================================================================================
+  function stopPlay() { if (playTimer) { clearInterval(playTimer); playTimer = null; } }
+  function pickDilemma(i, user) {
+    hush(); stopPlay();
+    state.di = i; state.planted.clear(); state.goals.clear(); state.gA.clear(); state.gB.clear();
+    state.t = 0; state.sub = null; state.graftSel = null; state.misses = 0; state.flag = null; state.result = ''; state.resultKey = ''; state.card = null; state.flash = null; state.detail = null;
+    buildChips('chips', state.goals); buildChips('chipsA', state.gA); buildChips('chipsB', state.gB); buildOpts();
+    update();
+    if (user) narrate('setup-' + dil().id);
+  }
+  function optionTap(x) {
+    if (state.mode !== 'grow') return;
+    if (x === 'G' && !state.found.has(dil().id)) return;
+    if (state.sub === 'graft') return graftTap(x);
+    if (state.sub === 'call' || state.sub === 'choose') return state.planted.has(x) ? branchPick(x) : null;
+    togglePlant(x);
+  }
+  function togglePlant(x) {
+    const d = dil(); state.flash = null;
+    if (state.planted.has(x)) {
+      state.planted.delete(x);
+      if (d.pair.includes(x)) state.planted.delete('G');   // pulling up a parent also pulls up its graft
+      if (state.flag && !state.planted.has(state.flag)) { state.flag = null; state.result = ''; }
+      if (state.detail && !state.planted.has(state.detail.L)) state.detail = null;
+    } else {
+      if (x === 'G') for (const p of d.pair) state.planted.add(p);   // a graft grows between both parents
+      state.planted.add(x);
+    }
+    if (state.planted.size < 2 && state.sub === 'call') state.sub = null;
+    if (!state.planted.size && state.sub === 'choose') state.sub = null;
+    recomputeResult(false);
+    update();
+    if (state.planted.size) narrate(state.goals.size ? (state.t === 2 ? 'month' : 'ready') : 'nogoals');
+  }
+  function toggleGoal(set, gi) {
+    if (set.has(gi)) set.delete(gi); else set.add(gi);
+    state.flash = null;
+    recomputeResult(false);
+    update(true);
+    if (state.mode === 'grow') { if (state.planted.size && state.goals.size) narrate(state.t === 2 ? 'month' : 'ready'); }
+    else { const s = sbsLine().same; narrate(s === null ? 'sbspick' : s ? 'agree' : 'differ'); }
+  }
+  function setT(t, fromPlay) {
+    t = clamp(t, 0, 2);
+    if (!fromPlay) stopPlay();
+    if (t === state.t) { updatePanel(); return; }
+    const was = state.t; state.t = t;
+    if (state.sub === 'call' && t === 2) state.sub = null;
+    if (state.sub === 'choose' && t < 2) state.sub = null;
+    if (state.card && t < 2) state.card = null;
+    if (state.flash && state.flash[0] !== 'found') state.flash = null;
+    recomputeResult(was < 2 && t === 2);
+    update();
+    if (state.mode === 'sbs' && t > was) { const s = sbsLine().same; if (s !== null) narrate(s ? 'agree' : 'differ'); }
+  }
+  let resultN = 0;
+  function recomputeResult(arrived) {
+    if (state.mode !== 'grow' || !state.flag || state.t < 2) { if (state.t < 2 || !state.flag) { state.result = ''; state.resultKey = ''; } return; }
+    // with no goal on every branch ties at zero, so there is no call to report
+    if (!state.goals.size) { state.result = L.callgoal; state.resultKey = 'callgoal'; if (arrived) narrate('callgoal#' + (++resultN)); return; }
+    const d = dil(), b = bestOf(d, plantedOrder(), state.goals, 2);
+    const hit = b.includes(state.flag), key = hit ? 'called' : b.length > 1 ? 'surprise2' : 'surprise';
+    state.result = hit ? L.called : `Surprise: ${fmtLetters(b)} ${b.length > 1 ? 'are' : 'is'} standing best by next month.`;
+    state.resultKey = key;
+    if (arrived) { if (hit) Curio.yes(); narrate(key + '#' + (++resultN)); }
+  }
+  function play() {
+    if (playTimer) { stopPlay(); updatePanel(); return; }
+    if (state.t === 2) setT(0, true);
+    playTimer = setInterval(() => {
+      if (state.t >= 2) { stopPlay(); updatePanel(); return; }
+      setT(state.t + 1, true);
+      if (state.t >= 2) { stopPlay(); updatePanel(); }
+    }, 1200);
+    updatePanel();
+  }
+  function graftBtn() {
+    if (state.mode !== 'grow') return;
+    if (state.sub === 'graft') { state.sub = null; state.graftSel = null; update(); return; }
+    if (state.found.has(dil().id)) return;
+    state.card = null;
+    if (state.planted.size < 2) { state.flash = ['few']; update(); narrate('few'); return; }
+    state.sub = 'graft'; state.graftSel = null; state.flash = null; update(); narrate('graft');
+  }
+  let missN = 0;
+  function graftTap(x) {
+    const d = dil();
+    if (!state.planted.has(x) || x === 'G') return;
+    if (!state.graftSel) { state.graftSel = x; state.flash = null; update(); return; }
+    if (state.graftSel === x) { state.graftSel = null; update(); return; }
+    const pair = [state.graftSel, x].sort().join('');
+    state.graftSel = null;
+    if (pair === d.pair) {
+      state.found.add(d.id); state.planted.add('G'); state.sub = null; state.flash = ['found'];
+      buildOpts('G'); update(); narrate('found#' + d.id);
+    } else {
+      state.misses++;
+      state.flash = state.misses >= 2 ? ['miss', 'two'] : ['miss'];
+      // the miss line shows until the next pick; graft mode stays on, with the extra line after two misses
+      update(); narrate('miss#' + (++missN)); if (state.misses >= 2) narrate('two#' + d.id);
+    }
+  }
+  function callBtn() {
+    if (state.mode !== 'grow') return;
+    if (state.sub === 'call') { state.sub = null; update(); return; }
+    if (state.planted.size < 2 || state.t >= 2 || !state.goals.size) return;
+    state.sub = 'call'; state.graftSel = null; state.flash = null; update(); narrate('call');
+  }
+  function chooseBtn() {
+    if (state.mode !== 'grow') return;
+    if (state.sub === 'choose') { state.sub = null; state.card = null; update(); return; }
+    if (!state.planted.size || state.t < 2) return;
+    state.sub = 'choose'; state.graftSel = null; state.flash = null; update(); narrate('choose');
+  }
+  function branchPick(x) {
+    if (state.sub === 'graft') return graftTap(x);
+    if (state.sub === 'call') { state.flag = x; update(); return; }
+    if (state.sub === 'choose') { state.card = x; state.sub = null; update(); narrate('look-' + dil().id); }
+  }
+  function leafTap(T, x, j, el) {
+    if (T.main && state.sub) return branchPick(x);
+    state.detail = {L: x, j, label: T.label, from: el}; showDetail();
+  }
+  function crownTap(T, x, el) {
+    if (T.main && state.sub) return branchPick(x);
+    state.detail = {L: x, j: state.t, label: T.label, from: el}; showDetail();
+  }
+  function whoBtn() { if (state.mode !== 'grow') return; state.who = !state.who; update(); }
+  function clearTree() {
+    stopPlay();
+    state.planted.clear(); state.t = 0; state.sub = null; state.graftSel = null; state.flag = null; state.result = ''; state.resultKey = ''; state.card = null; state.flash = null; state.detail = null;
+    update();
+  }
+  function buildPrint() {
+    const d = dil(), goals = [...state.goals].sort(), letters = plantedOrder();
+    let h = `<h1>Decision Tree: ${esc(d.title)} (${d.name})</h1><p>${esc(d.setup)}</p>
+      <p><b>Goals on:</b> ${goals.length ? goals.map(gi => esc(d.goals[gi].label)).join('; ') : 'none'}<br><b>Time:</b> ${TIMES[state.t]}</p>`;
+    if (!letters.length) h += '<p>No branches planted yet.</p>';
+    for (const x of letters) {
+      const tl = tally(d, x, state.goals, state.t), st = status(tl, state.goals);
+      h += `<h2>${x}. ${esc(d.opts[x].text)}</h2><p>Standing at ${TIMES[state.t]}: ${st === 'none' ? 'Pick a goal' : BADGE[st][0] + ', ' + tallyText(tl)}</p><ol>`;
+      d.opts[x].leaves.forEach((lf, j) => {
+        if (j > state.t) return;
+        h += `<li><b>${TIMES[j]}:</b> ${esc(lf.t)} <i>(Touches: ${esc(lf.who)})</i>${goals.length ? '<br><span class="m">' + goals.map(gi => `${esc(d.goals[gi].label)}: ${markWord(lf.code[gi])}`).join('; ') + '</span>' : ''}</li>`;
+      });
+      h += '</ol>';
+    }
+    if (letters.length && state.t < 2) h += '<p><i>Slide to Next month to print every leaf.</i></p>';
+    h += '<p style="font-size:9pt">Curio Class, curioclass.org</p>';
+    $('print').innerHTML = h;
+  }
+  addEventListener('beforeprint', buildPrint);
+
+  // ======================================================================================
+  // Narration: a welcome on entering each mode (after the first tap), one at a time; Read always wins
+  // ======================================================================================
+  const said = new Set(), queued = new Set();
+  let tapped = false, vq = Promise.resolve(), vgen = 0, readP = Promise.resolve(), narrN = 0;
+  const WELCOME = {grow: 'welGrow', sbs: 'welSbs'};
+  for (const ev of ['pointerdown', 'keydown']) addEventListener(ev, e => {
+    if (tapped) return; tapped = true;
+    const b = e.target && e.target.closest ? e.target.closest('button') : null;
+    if (b && b.id === 'sound') return;
+    // decide after this tap's own handler has run: if it queued its own line, or was Read, skip the welcome (unmarked)
+    const n0 = narrN, isRead = b && b.id === 'read';
+    let done = false;
+    const go = () => { if (done) return; done = true; removeEventListener('click', onClick); clearTimeout(fb); if (isRead || narrN > n0) return; narrate(WELCOME[state.mode]); };
+    const onClick = () => setTimeout(go);
+    if (ev === 'keydown') setTimeout(go); else addEventListener('click', onClick);
+    const fb = setTimeout(go, 1500);
+  }, true);
+  function narrate(key) {
+    if (!tapped || !Curio.sound || said.has(key) || queued.has(key)) return false;
+    queued.add(key); narrN++;
+    const base = key.split('#')[0], g = vgen, line = L[base];
+    if (!line) return false;
+    vq = vq.then(async () => {
+      await readP;
+      if (g !== vgen) return;            // dropped by hush(): not marked said, so its trigger can queue it again
+      queued.delete(key); said.add(key);
+      await Promise.race([say(line), wait(2500 + 80 * line.length)]);
+    });
+    return true;
+  }
+  function hush() { vgen++; queued.clear(); vq = Promise.resolve(); readP = Promise.resolve(); Curio.stop(); }   // a stopped Read clip never ends, so nothing may wait on it
+  function readNow() {
+    hush();
+    const parts = hintParts().map(k => L[k]);
+    readP = Promise.race([say(parts, true), wait(2500 + 80 * parts.join(' ').length)]).catch(() => {});
+  }
+
+  // ======================================================================================
+  // Modes, layout, keys
+  // ======================================================================================
+  function setMode(m) {
+    hush(); stopPlay();
+    state.mode = m; document.body.dataset.mode = m;
+    state.sub = null; state.graftSel = null; state.card = null; state.flash = null; state.detail = null;
+    for (const k of ['grow', 'sbs']) $('m-' + k).setAttribute('aria-pressed', k === m);
+    for (const el of document.querySelectorAll('[data-modes]')) el.hidden = !el.dataset.modes.split(' ').includes(m);
+    lastSize = ''; relayout();
+    updatePanel();
+    narrate(WELCOME[m]);
+  }
+  $('m-grow').onclick = () => { if (state.mode !== 'grow') setMode('grow'); };
+  $('m-sbs').onclick = () => { if (state.mode !== 'sbs') setMode('sbs'); };
+
+  function pageLayout() { const w = innerWidth, h = innerHeight; return w >= 1000 && h >= 700 ? 'wide' : w >= 600 && w / h >= 1.25 ? 'compact' : 'stack'; }
+  function relayout() {
+    const p = pageLayout();
+    if (p !== page) { page = p; for (const c of ['wide', 'compact', 'stack']) document.body.classList.toggle(c, c === p); }
+    document.body.classList.toggle('short', page === 'wide' && innerHeight < 900);
+    const st = $('stage'), det = $('detail'), over = page !== 'wide' || innerHeight < 900;
+    // the leaf detail: in the panel in the tall wide layout, else a card over the stage, next to the tree
+    // compact: Swap sits in the time row; elsewhere it is a full-width button under the line
+    const shortTicks = page === 'compact' && state.mode === 'sbs';   // a narrower slider there: Now, Week, Month
+    [...$('ticks').children].forEach((s, i) => { s.textContent = shortTicks ? ['Now', 'Week', 'Month'][i] : TIMES[i]; });
+    const sw = $('swap'), tb = document.querySelector('.timebox');
+    if (page === 'compact' && sw.parentNode !== tb) { tb.appendChild(sw); sw.textContent = '⇄ Swap'; }
+    else if (page !== 'compact' && sw.parentNode === tb) { $('swapRow').appendChild(sw); sw.textContent = '⇄ Swap goal sets'; }
+    if (over && det.parentNode !== st) st.appendChild(det);
+    else if (!over && det.parentNode !== $('panel')) $('hint').after(det);
+    if (page === 'stack') {
+      // short enough that the time box (first in the stacked panel) shows with the tree
+      const w = st.getBoundingClientRect().width || innerWidth;
+      st.style.height = Math.round(state.mode === 'sbs' ? (w >= 560 ? clamp(w * .85, 460, 640) : clamp(w * 1.45, 520, 900)) : clamp(w * .95, 380, 640)) + 'px';
+    } else st.style.height = '';
+    const r = st.getBoundingClientRect(), key = state.mode + ':' + Math.round(r.width) + 'x' + Math.round(r.height);
+    if (key === lastSize) return;
+    lastSize = key;
+    W = Math.max(280, Math.round(r.width)); H = Math.max(300, Math.round(r.height));
+    sv.setAttribute('width', W); sv.setAttribute('height', H); sv.setAttribute('viewBox', `0 0 ${W} ${H}`);
+    staticKey = ''; render();
+  }
+  new ResizeObserver(() => relayout()).observe($('stage'));
+  addEventListener('resize', () => relayout());
+
+  $('time').oninput = () => setT(+$('time').value);
+  [...$('ticks').children].forEach((s, i) => { s.style.cursor = 'pointer'; s.onclick = () => setT(i); });
+  $('play').onclick = play;
+  $('graft').onclick = graftBtn;
+  $('call').onclick = callBtn;
+  $('choose').onclick = chooseBtn;
+  $('who').onclick = whoBtn;
+  $('clear').onclick = clearTree;
+  $('print-btn').onclick = () => { buildPrint(); window.print(); };
+  $('swap').onclick = () => {
+    const a = new Set(state.gA); state.gA.clear(); for (const x of state.gB) state.gA.add(x); state.gB.clear(); for (const x of a) state.gB.add(x);
+    update(true);
+  };
+  addEventListener('keydown', e => {
+    if (e.ctrlKey || e.metaKey || e.altKey) return;
+    const t = e.target, k = e.key;
+    if (k === 'Escape') {
+      if (state.card) { state.card = null; update(); $('choose').focus(); }
+      else if (state.sub) { state.sub = null; state.graftSel = null; update(); }
+      else if (state.detail) closeDetail();
+      return;
+    }
+    if (k === 'ArrowLeft' || k === 'ArrowRight') {
+      if (t && t.tagName === 'INPUT') return;   // the slider handles its own arrows
+      e.preventDefault(); setT(state.t + (k === 'ArrowRight' ? 1 : -1)); return;
+    }
+    if (k === 'p' || k === 'P') { e.preventDefault(); play(); return; }
+    if (state.mode !== 'grow') return;
+    if (k >= '1' && k <= '4') { e.preventDefault(); optionTap('ABCD'[+k - 1]); }
+    else if (k === '5') { e.preventDefault(); optionTap('G'); }
+    else if (k === 'g' || k === 'G') { e.preventDefault(); graftBtn(); }
+    else if (k === 'w' || k === 'W') { e.preventDefault(); whoBtn(); }
+  });
+
+  // Sound turned back on after a silent start: the mode's welcome, if it was never said
+  Curio.onSound(on => { if (on && tapped) narrate(WELCOME[state.mode]); });
+  Curio.onMotion(() => render());
+  Curio.init({clips: "voice:*", rate: .95, readFallback: () => hintText()});
+  $('read').onclick = readNow;
+
+  buildPicker();
+  // for checking frames
+  window.__tool = {state, setMode, allLines, DIL, L, tally, bestOf, pickDilemma, togglePlant, optionTap, toggleGoal, setT, graftBtn, graftTap,
+    callBtn, chooseBtn, branchPick, whoBtn, clearTree, buildPrint, sbsLine, hintText, said, queued,
+    layout: () => ({page, W, H}), curio: () => ({last: Curio.last, sound: Curio.sound, reduce: Curio.reduce})};
+  document.body.dataset.mode = 'grow';
+  for (const el of document.querySelectorAll('[data-modes]')) el.hidden = !el.dataset.modes.split(' ').includes('grow');
+  pickDilemma(0, false);
+  relayout();
+})();
+</script>
+</body>
+</html>

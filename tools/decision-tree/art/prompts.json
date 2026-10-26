@@ -1,0 +1,16 @@
+{
+  "style": "Soft painted illustration for a middle school SEL tool: an outdoor orchard feel, fresh greens and pale sky blues, gentle late morning light, calm and uncluttered.",
+  "assets": [
+    {
+      "name": "bg-hillside",
+      "prompt": "Empty background: a gentle grassy hill under a wide pale blue sky, rolling green fields fading into soft hills, a few small white clouds, late morning light, soft painted illustration. Seen straight on from low eye level. The whole middle of the picture is open pale sky and smooth grass with lots of empty space. The landscape is quiet and open. No people, no animals, no buildings, no writing.",
+      "sd": "Empty background: a gentle grassy hill under a wide pale blue sky, rolling green fields fading into soft hills, a few small white clouds, late morning light, soft painted illustration. Seen straight on from low eye level. The whole middle of the picture is open pale sky and smooth grass with lots of empty space. The landscape is quiet, open and calm.",
+      "aspect": "16:9",
+      "width": 1600,
+      "quality": 72,
+      "local_note": "full-frame backdrop behind the code-drawn tree in both modes, under a 35% paper overlay so leaves read; keep the middle open (the tree, bands and leaves are drawn there); fallback if it fails: the flat sky band and drawn green hill already in the code",
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    }
+  ]
+}
