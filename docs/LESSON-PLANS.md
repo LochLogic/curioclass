@@ -64,7 +64,7 @@ grouping: Whole class on the carpet, with turn-and-talk partners.
 ## Short on time
 ```
 
-- `focus` is one or more of the module's standard codes (space separated); the page shows their text.
+- `focus` is one or more of the module's standard codes (semicolon separated, as in modules.csv); the page shows their text.
 - `goal` is an "I can" sentence a student could say.
 - **Before class:** setup in two or three bullets.
 - **Timed parts:** numbered steps. Questions in quotes, with expected answers in parentheses.

@@ -37,6 +37,11 @@ def parse(tid):
     return {'meta': meta, 'sections': sections, 'body': body}
 
 
+def focus(meta):
+    """The plan's focus codes: semicolon separated, like modules.csv (some codes have spaces)."""
+    return [c.strip() for c in meta.get('focus', '').split(';') if c.strip()]
+
+
 def problems(tid, module=None):
     plan = parse(tid)
     if plan is None:
@@ -56,13 +61,13 @@ def problems(tid, module=None):
     if meta.get('minutes', '').isdigit() and total != int(meta['minutes']):
         out.append(f"parts add up to {total} min, header says {meta['minutes']}")
     if module:
-        k2 = module['grade'] in ('k', '1', '2')
+        k2 = all(g in ('k', '1', '2') for g in module['grade'].split('-'))
         if not (30 <= total <= (40 if k2 else 50)):
             out.append(f'{total} min is outside {"30-40 (K-2)" if k2 else "30-50"}')
         if k2 and any(m > 15 for _, m in timed):
             out.append('K-2 parts are 15 min at most')
         codes = module['standards'].split(';')
-        out += [f'focus {c} is not one of this module\'s standards {codes}' for c in meta.get('focus', '').split() if c not in codes]
+        out += [f'focus {c} is not one of this module\'s standards {codes}' for c in focus(meta) if c not in codes]
     words = len(re.findall(r"[\w']+", plan['body'] + ' '.join(meta.values())))
     if words > MAX_WORDS:
         out.append(f'{words} words, the limit is {MAX_WORDS}')

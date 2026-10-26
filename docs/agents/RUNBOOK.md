@@ -46,7 +46,7 @@ no blocker left, look at one frame yourself (the 680x425 preview is a good one) 
 1. Rename tool.draft.json to tool.json, drop `"stage"`, add the credits to `sources` (FLUX images, Qwen3-TTS narration,
    Gemini art if any).
 2. `python scripts/preview.py <id>` (card art; pass `--js=` to open a livelier screen, and look at it).
-3. `python scripts/build_site.py`, `python scripts/check_site.py`, `npx wrangler deploy`.
+3. `python scripts/build_site.py --library`, `python scripts/check_site.py`, `npx wrangler deploy`.
 4. Review Desk (https://claude.ai/artifact/SVXBzgyS941dyqmEzQHgNC) with ArtifactData: set `items/<id>` to
    `{built, changed (what's new, what to check), order (next number), status: "ready", subject, title, url}`.
 5. Commit and push (Cory's standing rule). Log it in the batch log.
@@ -67,7 +67,7 @@ then the item goes back to "ready" with a reply on the comment and the comment m
 - **Grade 11 batch: complete** (10 tools live 2026-10-26).
 - **Paused (specs done, not built):** circuit-builder, sound-studio, satire-decoder, usage-panel, stock-market-1929.
   Their specs predate STANDARDS.md (one voice, no Look section): update voice and accent before building.
-- **Lesson plans (2026-10-25):** every tool gets `plan.md` (docs/LESSON-PLANS.md). Three grade-2 test plans exist
-  (melt-or-not, contraction-crusher, hamburger-paragraph) for Cory and a working teacher to judge. After that
-  verdict, backfill the other live tools with plan agents and add plans to new waves.
+- **Lesson plans (2026-10-25):** every tool gets `plan.md` (docs/LESSON-PLANS.md). Cory approved the three grade-2
+  test plans, and 28 plans went live on 2026-10-25. Backfill the other 36 live tools with plan agents and add plans
+  to new waves.
 - **Parked K-2 tools waiting on voice:** see the Review Desk "Parked" filter.

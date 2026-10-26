@@ -239,8 +239,8 @@ Still to do: themed shelves, the "From the Reading Room" strip on grade pages, r
 self-hosted dyslexia-friendly font for the Spaced option (it uses Verdana with extra spacing for now).
 
 **Deploy gate.** A plain `python scripts/build_site.py` leaves the whole Reading Room out (no `/library/` pages, nav
-or footer link, sitemap entries or search rows). Build with `--library` to include it. Per Cory (2026-10-25) the
-Reading Room stays out of deploys until the 10 pilot stories are ready.
+or footer link, sitemap entries or search rows). Build with `--library` to include it. Cory lifted the earlier hold on
+2026-10-25: deploys now build with `--library` and the Reading Room goes live as it is, to be filled in later.
 
 ### Mythology and Sacred Texts (2026-10-25)
 

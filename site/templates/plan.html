@@ -18,7 +18,7 @@
       </div>
     </div>
     <dl class="facts">
-      <dt>Standard</dt><dd>{% for c in meta.focus.split() %}<a href="/standards/{{ slug(c) }}/"><code>{{ c }}</code></a> {{ std_framework[c] }}{% if not loop.last %}<br>{% endif %}{% endfor %}</dd>
+      <dt>Standard</dt><dd>{% for c in meta.focus.split(';') | map('trim') %}<a href="/standards/{{ slug(c) }}/"><code>{{ c }}</code></a> {{ std_framework[c] }}{% if not loop.last %}<br>{% endif %}{% endfor %}</dd>
       <dt>Shape</dt><dd>{{ arc[0] }}</dd>
       <dt>Grouping</dt><dd>{{ meta.grouping }}</dd>
       <dt>You need</dt><dd>{{ meta.materials }}</dd>
