@@ -1,0 +1,29 @@
+{
+  "id": "resilience-map",
+  "status": "beta",
+  "hook": "Split an ordinary stress into the part you can change and the part you can't, and watch different routes light up across an island of ways people cope. Then see what stress does in the body and build a private plan from chips.",
+  "outcome": "Tell the part of a stressful situation you can change from the part you can't, match problem-focused and emotion-focused coping strategies to each, and know where to get help",
+  "driver": "students",
+  "minutes": "15-30",
+  "modes": [
+    "The map",
+    "Stress in the body",
+    "My plan"
+  ],
+  "grades_label": "Grades 9-12",
+  "sources": [
+    "988 Suicide & Crisis Lifeline: call, text or chat, available 24/7/365, for everyone (checked 2026-10-26): https://988lifeline.org",
+    "CDC, Managing Stress (May 12, 2026): coping strategies, common reactions to stress, 988: https://www.cdc.gov/mental-health/living-with/index.html",
+    "NIMH, I'm So Stressed Out! Fact Sheet (NIH Pub. No. 20-MH-8125): https://www.nimh.nih.gov/health/publications/so-stressed-out-fact-sheet",
+    "MedlinePlus, Stress and your health (reviewed 5/15/2026): https://medlineplus.gov/ency/article/003211.htm",
+    "Lazarus, R. S., and Folkman, S. (1984). Stress, Appraisal, and Coping. Springer; Folkman, S., and Moskowitz, J. T. (2004). Coping: pitfalls and promise. Annual Review of Psychology 55: 745-774",
+    "CASEL, What Is the CASEL Framework? (Self-Management): https://casel.org/fundamentals-of-sel/what-is-the-casel-framework/",
+    "Harvard Center on the Developing Child, Resilience (teacher notes): https://developingchild.harvard.edu/science/key-concepts/resilience/",
+    "911 for immediate danger: https://www.911.gov",
+    "Situations and people are fictional",
+    "Island, pins, icons, figure and chart drawn in code; sounds generated in the browser",
+    "Narration generated with Qwen3-TTS (Apache 2.0), cloning a Google Gemini text-to-speech voice"
+  ],
+  "third_party": [],
+  "updated": "2026-10-26"
+}

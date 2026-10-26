@@ -1,0 +1,1100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Resilience Map · Ways to handle stress · Curio Class</title>
+<meta name="description" content="Explore an island map of ways people handle stress. Pick an ordinary situation, flip between the part a teen can change and the part they can't, and watch different routes light up. See what stress does in the body, then build a private plan from chips. Grades 9-12 social and emotional learning. Works offline.">
+<!--
+Resilience Map (Curio Class)
+Grades 9-12, Social and Emotional Learning, module Stress and Resilience. Standard: CASEL Self-Management (identifying
+and using stress management strategies, using planning and organizational skills, setting personal and collective goals).
+Students drive on laptops (a teacher can project the map for a discussion). The map: an island with 20 landmarks in five
+areas; eight fictional situations each split into the part they can change (work on the problem: solid route, wrench)
+and the part they can't (handle how it feels: long-dash route, wave). Stress in the body: seven hotspots and a week chart
+comparing a short burst with stress that keeps going. My plan: a printable card built from chips only (no text field);
+it stays in page memory until Save writes ids only to localStorage, and Clear removes it.
+Sources: 988 Suicide & Crisis Lifeline (988lifeline.org); CDC, Managing Stress; NIMH, I'm So Stressed Out! fact sheet;
+MedlinePlus, Stress and your health; Lazarus and Folkman (1984) and Folkman and Moskowitz (2004) on problem-focused and
+emotion-focused coping; CASEL framework (Self-Management); 911.gov. Every situation is about a fictional teen; nothing
+asks a student what is stressing them, and nothing scores feelings.
+Island, pins, icons, figure and chart are drawn in code. One file, no network requests. Content CC BY 4.0, code MIT.
+curioclass.org
+-->
+<link rel="stylesheet" href="kit:curio">
+<link rel="stylesheet" href="kit:theme-912">
+<style>
+:root{--brand:#f2a0b8;--brand-ink:#2a0f19;--sea:#10263a;--land:#35543f;--sand:#d9c79a;--ridge:#4a4f62;--route:#ffe08a;
+  --ring:#8fd3ff;--foot:#1a1420;--fig:#71879e}
+/* three page layouts, picked in script (relayout()), as in collision-lab:
+   wide    (1000 px or wider and 700 px or taller): stage on the left, 360 px panel on the right;
+   compact (a short landscape box such as the 16:10 embed, 680x425 to 1000x625): a 290 px panel, a one-row header,
+           the situation buttons and the switch first, so they show without scrolling;
+   stack   (narrow or portrait): the panel under the stage, the page scrolls.
+   The panel comes first in the page so Tab reaches its controls before the 20 pins. The stage SVG is drawn at its real
+   pixel size (never scaled), so map text keeps its size in every box. */
+body{grid-template-rows:auto minmax(0,1fr) auto}
+main{grid-template-columns:minmax(0,1fr) 360px;min-height:0}
+main>.stage{grid-column:1;grid-row:1}
+main>.panel{grid-column:2;grid-row:1}
+.stage{min-height:0;background:var(--sea)}
+#sv{position:absolute;left:0;top:0;display:block}
+#ov{position:absolute;inset:0;pointer-events:none}
+#planView{position:absolute;inset:0;overflow:auto;padding:14px 16px 18px;background:#0f1822}
+body.compact main{grid-template-columns:minmax(0,1fr) 290px}
+@media (min-width:900px){body.compact main{grid-template-columns:minmax(0,1fr) 320px}}
+body.compact header{padding:2px 8px;gap:4px;flex-wrap:nowrap;min-width:0}
+body.compact h1{font-size:16px;white-space:nowrap;min-width:0;overflow:hidden;text-overflow:ellipsis}
+body.compact h1 small{display:none}
+body.compact .seg{flex:none}
+body.compact .seg button,body.compact .icon-btn{min-height:44px;padding:0 8px;font-size:13.5px;white-space:nowrap}
+body.compact .icon-btn{flex:none}
+body.compact .panel{padding:6px 8px;gap:6px}
+body.compact .sec{padding:6px 8px}
+body.compact .sec>h2{display:none}
+body.compact .hint{font-size:13.5px;line-height:1.3}
+body.compact .btn{font-size:13.5px;padding:0 6px}
+body.stack{height:auto}
+body.stack main{grid-template-columns:minmax(0,1fr);align-content:start}
+body.stack main>.stage{grid-column:1;grid-row:1}
+body.stack main>.panel{grid-column:1;grid-row:2;border-left:0;border-top:1px solid var(--line);overflow:visible}
+body.stack[data-mode="plan"] #planView{position:static;overflow:visible}
+body.stack[data-mode="plan"] .stage{height:auto!important}
+@media (max-width:560px){
+  .seg{display:grid;grid-template-columns:1fr 1.5fr 1fr;border-radius:14px;width:100%}
+  .seg button{min-height:44px;font-size:14px;padding:0 6px;line-height:1.15}
+  .icon-btn{min-height:44px;padding:0 12px;font-size:15px}
+}
+/* focus: the theme's light ring on the dark header; the kit's .seg clips outlines, so its buttons get an inset ring,
+   dark on the pressed (dawn rose) button: #10161f on #f2a0b8 is 10.6:1, #8fe3ff on #1c2532 is 11.0:1 */
+header :focus-visible{outline-color:#8fe3ff}
+.seg button:focus-visible{outline:3px solid #8fe3ff;outline-offset:-6px;box-shadow:inset 0 0 0 2px #10161f}
+.seg button[aria-pressed="true"]:focus-visible{outline-color:#10161f;box-shadow:inset 0 0 0 2px #f2a0b8}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+/* panel */
+.sec{display:flex;flex-direction:column;gap:6px}
+.sec>h2{margin:0}
+.small{font-size:13px;color:var(--muted);margin:0;line-height:1.4}
+.small:empty{display:none}
+.sits{display:grid;grid-template-columns:1fr 1fr;gap:5px}
+.sits .btn{text-align:left;line-height:1.2;padding:3px 8px;font-size:14px}
+body.compact .sits{gap:4px}
+body.compact .sits .btn{font-size:12.5px;padding:2px 6px;line-height:1.15}
+.switch{display:grid;grid-template-columns:1fr 1fr;gap:5px}
+.switch .btn{line-height:1.2;padding:3px 6px}
+.story{margin:0;font-size:15px;line-height:1.4}
+.half{margin:0;font-size:14.5px;line-height:1.4}
+.half b{color:var(--brand)}
+.route{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:5px}
+.route .btn{width:100%;text-align:left;display:grid;grid-template-columns:22px 1fr;gap:2px 8px;align-items:start;padding:6px 8px;
+  font-weight:400;line-height:1.35;font-size:14px}
+.route .btn b{font-weight:700}
+.route svg{margin-top:2px}
+body.compact .story,body.compact .half,body.compact .route .btn{font-size:13px}
+/* the situation bar: sticky at the top of the panel when scrolled past, and at the bottom when still below the fold,
+   so the switch is always on screen while a situation is picked */
+.sitbar{position:sticky;top:-14px;bottom:-14px;z-index:3;margin:0 -16px;padding:8px 16px;background:var(--panel);
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:5px}
+.sitbar[hidden]{display:none}
+.sitrow{display:flex;align-items:center;gap:8px}
+.sitrow p{margin:0;flex:1 1 auto;min-width:0;font-weight:700;font-size:14.5px;line-height:1.25;color:var(--brand)}
+.sitrow .btn{flex:none;font-size:13.5px;padding:0 10px}
+body.compact .sitbar{top:-6px;bottom:-6px;margin:0 -8px;padding:5px 8px;gap:4px}
+body.compact .sitrow p{font-size:13px}
+body.compact .sitrow .btn{font-size:12.5px;padding:0 8px}
+body.stack .sitbar{top:0;bottom:var(--footh,0px)}
+body.stack[data-mode="body"] #burstSec{order:-1}
+#lmSec,#sitBox{scroll-margin-top:var(--barh,0px)}
+body.compact #chipGroups .sec>h2{display:block;font-size:11.5px;margin:0}
+body.compact .acts .small{font-size:12px;line-height:1.3}
+.card h3{margin:0;font:700 17px/1.25 'Segoe UI',system-ui,sans-serif;color:var(--ink)}
+.card .area{margin:2px 0 0;font-size:13px;color:var(--muted)}
+.card p{margin:6px 0 0;font-size:14.5px;line-height:1.42}
+.card .lab{display:block;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--brand)}
+.card .src{font-size:12.5px;color:var(--muted)}
+.card .btn{margin-top:8px;width:100%}
+.card a{color:var(--brand)}
+.empty{margin:0;font-size:14px;color:var(--muted)}
+body.compact .card h3{font-size:15px}
+body.compact .card p{font-size:13px}
+.chips{display:flex;flex-wrap:wrap;gap:5px}
+.chips .btn{font-weight:600;font-size:14px;padding:0 10px;border-radius:999px}
+.chips .btn[aria-pressed="true"]::before{content:'\2713  '}
+body.compact .chips .btn{font-size:13px;padding:0 8px}
+.msg{margin:0;font-size:13px;color:var(--warn);min-height:0}
+.msg:empty{display:none}
+.acts{position:sticky;bottom:-14px;margin:0 -16px -14px;padding:8px 16px 12px;background:var(--panel);border-top:1px solid var(--line);
+  display:flex;flex-direction:column;gap:6px}
+body.compact .acts{bottom:-6px;margin:0 -8px -6px;padding:6px 8px 6px}
+body.stack .acts{position:static;margin:0;padding:8px 0 0;border-top:0}
+.actrow{display:grid;grid-template-columns:1.7fr 1fr 1fr;gap:5px}
+.confirm{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:14px}
+.confirm[hidden]{display:none}
+.confirm span{flex:1 0 100%}
+.confirm .btn{flex:1 1 auto}
+.ok-msg{margin:0;font-size:13.5px;color:var(--ok)}
+.ok-msg:empty{display:none}
+/* footer: one calm help line in every mode */
+footer{background:var(--foot);border-top:1px solid #2e2433;color:var(--ink);display:flex;align-items:center;gap:10px;
+  padding:2px 16px;font-size:14.5px;line-height:1.35;min-height:48px}
+footer p{margin:0;flex:1 1 auto}
+footer a{color:var(--ink);text-decoration:underline;text-underline-offset:2px}
+footer .btn{flex:none;min-height:44px}
+footer .btn:focus-visible{outline-width:3px;outline-offset:-1px}
+footer .short{display:none}
+@media (max-height:499px){footer .full{display:none} footer .short{display:inline} footer{padding:2px 10px;font-size:13.5px}}
+body.stack footer{position:sticky;bottom:0;z-index:5;padding:4px 12px;font-size:14px;min-height:52px}
+body.stack footer .full{display:none} body.stack footer .short{display:inline}
+body.stack[data-mode="plan"] main>.panel{grid-row:1;border-top:0;border-bottom:1px solid var(--line)}
+body.stack[data-mode="plan"] main>.stage{grid-row:2}
+dialog{background:var(--sec-bg);color:var(--ink);border:1px solid var(--btn-line);border-radius:12px;padding:16px 20px;max-width:min(520px,calc(100vw - 32px))}
+dialog::backdrop{background:#05080dcc}
+dialog h2{margin:0 0 6px;font:700 18px 'Segoe UI',system-ui,sans-serif}
+dialog p{margin:8px 0;font-size:15px;line-height:1.45}
+dialog a{color:var(--brand)}
+dialog .dlgacts{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+dialog .btn{min-width:110px}
+/* map scene */
+.lbl{font:600 13px 'Segoe UI',system-ui,sans-serif;fill:var(--ink);paint-order:stroke;stroke:#0b1a28;stroke-width:4px;stroke-linejoin:round}
+.lbl.b{font-weight:800}
+.lbl.dim{opacity:.62}
+.alab{font:700 13px 'Segoe UI',system-ui,sans-serif;fill:#f3eee4;letter-spacing:.04em;paint-order:stroke;stroke:#0b1a28;stroke-width:4px;stroke-linejoin:round}
+.leg{font:500 12px 'Segoe UI',system-ui,sans-serif;fill:#c4d0dd}
+.pin{outline:none;cursor:pointer;transition:opacity .3s}
+.pin.dim{opacity:.32}
+.pin.dim:focus-visible{opacity:1;transition:none}
+.pin .fring{fill:none;stroke:transparent;stroke-width:3;stroke-dasharray:5 3}
+.pin:focus-visible .fring{stroke:#ffffff}
+.pin .oring{fill:none;stroke:transparent;stroke-width:3}
+.pin.open .oring{stroke:var(--ring)}
+.pin .badge,.pin .num{display:none}
+.pin.onroute .badge,.pin.onroute .num{display:inline}
+.num text{font:800 11px 'Segoe UI',system-ui,sans-serif;fill:#10263a}
+.rt{transition:opacity .3s}
+.beam{animation:beam 4s ease-in-out infinite}
+@keyframes beam{0%,100%{opacity:.16}50%{opacity:.44}}
+.calm .beam{animation:none;opacity:.3}
+/* body scene */
+.hs{outline:none;cursor:pointer}
+.hs .pill{fill:#1c2532;stroke:#8193ad;stroke-width:1.5}
+.hs.open .pill{fill:var(--brand);stroke:var(--brand)}
+.hs .pt{font:600 13px 'Segoe UI',system-ui,sans-serif;fill:var(--ink)}
+.hs.open .pt{fill:var(--brand-ink);font-weight:800}
+.hs .fring{fill:none;stroke:transparent;stroke-width:3;stroke-dasharray:5 3}
+.hs:focus-visible .fring{stroke:#ffffff}
+.cap{position:absolute;color:var(--ink);font-size:14px;line-height:1.42}
+.cap p{margin:0 0 6px}
+.cap .always{color:var(--muted)}
+/* plan card (screen) */
+.pcard{max-width:760px;margin:0 auto;background:#f7f3ec;color:#1d1a14;border-radius:14px;padding:14px 16px}
+.pcard h2{margin:0 0 10px;font:800 22px 'Trebuchet MS','Segoe UI',sans-serif;color:#1d1a14}
+.pgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pbox{border:2px solid #b9ab92;border-radius:10px;padding:8px 10px;background:#fffdf8;min-width:0}
+.pbox h3{margin:0 0 4px;font:700 14.5px 'Segoe UI',system-ui,sans-serif;color:#3a2d16}
+.pbox ul{margin:0;padding-left:18px;font-size:14.5px;line-height:1.4}
+.pbox .none{margin:0;font-size:13.5px;color:#5d5446}
+.pbox.any{grid-column:1 / -1;border-color:#7c5a66;background:#fdf1f4}
+.pbox.any p{margin:2px 0;font-size:14.5px;line-height:1.4}
+.pcard .pfoot{margin:8px 0 0;font-size:12.5px;color:#5d5446}
+body.compact .pcard{padding:8px 10px}
+body.compact .pcard h2{font-size:17px;margin-bottom:6px}
+body.compact .pgrid{gap:6px}
+body.compact .pbox{padding:5px 7px}
+body.compact .pbox h3{font-size:12.5px}
+body.compact .pbox ul,body.compact .pbox.any p{font-size:12.5px;line-height:1.3}
+body.compact .pbox .none{font-size:12px}
+body.compact #planView{padding:8px}
+@media (max-width:520px){.pgrid{grid-template-columns:1fr}}
+#printPlan{display:none}
+@media print{
+  @page{margin:14mm}
+  body{display:block;background:#fff;color:#000;min-height:0;height:auto}
+  header,main,footer,dialog,#live{display:none!important}
+  #printPlan{display:block;font:12pt/1.4 'Segoe UI',Arial,sans-serif;color:#000}
+  #printPlan h2{margin:0 0 10px;font:800 20pt 'Trebuchet MS',Arial,sans-serif}
+  #printPlan .pb{border:2px solid #000;border-radius:8px;padding:8px 12px;margin:0 0 10px;break-inside:avoid}
+  #printPlan h3{margin:0 0 4px;font:700 12pt 'Segoe UI',Arial,sans-serif}
+  #printPlan ul{margin:0;padding-left:20px}
+  #printPlan .blank{border-bottom:1px solid #000;height:22px}
+  #printPlan p{margin:2px 0}
+  #printPlan .pfoot{margin-top:8px;font-size:10pt}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Resilience Map <small>Ways people handle stress</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-map" aria-pressed="true">The map</button>
+    <button id="m-body" aria-pressed="false">Stress in the body</button>
+    <button id="m-plan" aria-pressed="false">My plan</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true" title="Turn animation on or off">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+  <button class="icon-btn" id="read" title="Read the hint aloud">🔊 Read</button>
+</header>
+<main>
+  <aside class="panel" id="panel">
+    <p class="hint" id="hint"></p>
+
+    <!-- The map -->
+    <section class="sec" data-modes="map" id="sitSec" aria-labelledby="sitL">
+      <h2 id="sitL">Try a situation</h2>
+      <div class="sits" id="sits" role="group" aria-labelledby="sitL"></div>
+    </section>
+    <!-- the picked situation and its switch stay pinned to the panel's top (or bottom) edge while the panel scrolls -->
+    <div class="sitbar" id="sitBar" data-modes="map" role="group" aria-label="Picked situation">
+      <div class="sitrow"><p id="sitName"></p><button class="btn" id="clearSit">Clear situation</button></div>
+      <div class="switch" role="group" aria-label="Which part of the situation">
+        <button class="btn" id="hChange" aria-pressed="true">The part they can change</button>
+        <button class="btn" id="hCant" aria-pressed="false">The part they can't</button>
+      </div>
+    </div>
+    <section class="sec" data-modes="map" id="sitBox" aria-label="Situation">
+      <p class="story" id="story"></p>
+      <p class="half" id="halfText"></p>
+      <ol class="route" id="routeList" aria-label="Route, in order"></ol>
+      <p class="small">Researchers who study coping describe two kinds: working on the problem, and handling how it feels. Matching the kind to the part you can change often helps.</p>
+    </section>
+    <section class="sec card" data-modes="map" id="lmSec" aria-labelledby="lmL" aria-live="polite">
+      <h2 id="lmL">Landmark</h2>
+      <div id="lmCard"></div>
+    </section>
+
+    <!-- Stress in the body -->
+    <section class="sec" data-modes="body" id="burstSec" aria-label="Kind of stress">
+      <div class="switch" role="group" aria-label="Kind of stress">
+        <button class="btn" id="bShort" aria-pressed="true">A short burst</button>
+        <button class="btn" id="bLong" aria-pressed="false">Stress that keeps going</button>
+      </div>
+    </section>
+    <section class="sec card" data-modes="body" id="hsSec" aria-labelledby="hsL" aria-live="polite">
+      <h2 id="hsL">In the body</h2>
+      <div id="hsCard"></div>
+    </section>
+
+    <!-- My plan -->
+    <div data-modes="plan" id="chipGroups" style="display:flex;flex-direction:column;gap:8px"></div>
+    <div class="acts" data-modes="plan">
+      <div class="actrow">
+        <button class="btn" id="pSave">Save on this device</button>
+        <button class="btn" id="pClear">Clear</button>
+        <button class="btn" id="pPrint">Print</button>
+      </div>
+      <div class="confirm" id="pConfirm" hidden>
+        <span id="pConfirmQ">Clear your plan?</span>
+        <button class="btn" id="pYes">Yes, clear</button>
+        <button class="btn" id="pKeep">Keep it</button>
+      </div>
+      <p class="ok-msg" id="pMsg" aria-live="polite"></p>
+      <p class="small">This plan stays on this computer. Nothing is sent anywhere. You don't have to fill in anything.</p>
+    </div>
+  </aside>
+  <div class="stage" id="stage">
+    <svg id="sv" role="group" aria-label="Island map"></svg>
+    <div id="ov"></div>
+    <div id="planView" hidden></div>
+  </div>
+</main>
+<footer>
+  <p><span class="full">Need to talk? A trusted adult at school can help. In the US, call or text 988, or chat at <a href="https://988lifeline.org" target="_blank" rel="noopener">988lifeline.org</a>.</span><span class="short">Need to talk? A trusted adult, or call or text 988.</span></p>
+  <button class="btn" id="moreHelp" aria-haspopup="dialog">More help</button>
+</footer>
+<dialog id="helpDlg" aria-labelledby="helpT">
+  <h2 id="helpT">More help</h2>
+  <div id="helpLines"></div>
+  <div class="dlgacts"><button class="btn" id="helpRead">🔉 Read this</button><button class="btn" id="helpClose">Close</button></div>
+</dialog>
+<div id="printPlan" aria-hidden="true"></div>
+<div class="sr" id="live" aria-live="polite"></div>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const {say, wait} = Curio;
+  const clamp = (x, a, b) => Math.max(a, Math.min(b, x));
+  const n1 = x => Math.round(x * 10) / 10;
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c]));
+  const NS = 'http://www.w3.org/2000/svg';
+  const sv = $('sv');
+
+  // ======================================================================================
+  // Content (spec "Content"; sources in the header comment and notes.md)
+  // ======================================================================================
+  const SRC = {NIMH: "NIMH, I'm So Stressed Out! fact sheet", CDC: 'CDC, Managing Stress', CASEL: 'CASEL framework, Self-Management',
+    MedlinePlus: 'MedlinePlus, Stress and your health', L988: '988lifeline.org'};
+  const AREAS = {body: 'Body Coast', mind: 'Mind Woods', people: 'People Village', action: 'Action Ridge', light: 'The Lighthouse'};
+  const KIND = {change: 'Works on the problem', ride: 'Helps handle how it feels', both: 'Fits both halves'};
+  // u, v: where the pin sits in the island box (0 to 1); short: the name on the pin
+  const LM = [
+    {id: 'sleep', name: 'Keep a sleep routine', short: 'Sleep routine', area: 'body', kind: 'ride', u: .07, v: .30, icon: 'moon',
+      what: 'Going to bed and getting up at about the same time.', small: 'Pick a bedtime for tonight and set a reminder 30 minutes before it.',
+      fits: 'Almost always; stress and poor sleep feed each other.', src: ['NIMH', 'CDC']},
+    {id: 'move', name: 'Move more', short: 'Move more', area: 'body', kind: 'ride', u: .17, v: .44, icon: 'shoe',
+      what: 'Any movement counts: a walk, a game, dancing in your room.', small: 'A 10 minute walk. CDC suggests starting small and building up to 2 and a half hours a week.',
+      fits: "The part you can't change, or a stuck moment.", src: ['CDC']},
+    {id: 'meals', name: 'Eat regular meals', short: 'Regular meals', area: 'body', kind: 'ride', u: .06, v: .58, icon: 'bowl',
+      what: 'Regular, healthy meals keep energy steady.', small: 'Plan a real breakfast for tomorrow.',
+      fits: 'Busy weeks, when meals are the first thing skipped.', src: ['NIMH', 'CDC']},
+    {id: 'caffeine', name: 'Go easy on caffeine', short: 'Easy on caffeine', area: 'body', kind: 'ride', u: .17, v: .72, icon: 'cup',
+      what: 'Lots of soda, coffee or energy drinks can make a stressed body feel more on edge.', small: 'Swap one caffeinated drink for water.',
+      fits: 'Late nights before a big day.', src: ['NIMH']},
+    {id: 'breathe', name: 'Deep breaths and a stretch', short: 'Breathe, stretch', area: 'body', kind: 'ride', u: .07, v: .86, icon: 'breath',
+      what: 'Slow breathing and stretching help the body settle.', small: 'Three slow breaths, then roll your shoulders.',
+      fits: 'Right before the hard moment.', src: ['CDC']},
+    {id: 'unwind', name: 'Make time to unwind', short: 'Unwind', area: 'mind', kind: 'ride', u: .27, v: .06, icon: 'note',
+      what: 'Plan time for something relaxing you enjoy.', small: "Put 20 minutes of something you like on today's list.",
+      fits: 'A week with no breaks in it.', src: ['CDC']},
+    {id: 'unplug', name: 'Take a break from news and social media', short: 'Unplug', area: 'mind', kind: 'ride', u: .46, v: .03, icon: 'phone',
+      what: 'Stepping away from the feed for a while.', small: 'Phone in another room for one hour.',
+      fits: 'When scrolling keeps the worry going.', src: ['CDC']},
+    {id: 'journal', name: 'Keep a journal', short: 'Journal', area: 'mind', kind: 'ride', u: .65, v: .06, icon: 'book',
+      what: 'Writing thoughts down to get them out of your head.', small: 'Write three lines on paper tonight (not in this tool).',
+      fits: 'Thoughts that keep circling.', src: ['NIMH', 'CDC']},
+    {id: 'rethink', name: 'Question an unhelpful thought', short: 'Rethink a thought', area: 'mind', kind: 'ride', u: .36, v: .23, icon: 'bulb',
+      what: 'Noticing a thought like "I always mess up" and asking if it is really true.', small: 'Write the thought, then a fairer version of it.',
+      fits: 'After a setback.', src: ['NIMH']},
+    {id: 'grateful', name: 'Notice something good', short: 'Notice good', area: 'mind', kind: 'ride', u: .55, v: .21, icon: 'star',
+      what: 'Practicing gratitude: naming something that went right.', small: 'Name one good thing from today.',
+      fits: 'Long stretches of stress.', src: ['CDC']},
+    {id: 'outside', name: 'Get outside', short: 'Get outside', area: 'mind', kind: 'ride', u: .72, v: .25, icon: 'sun',
+      what: 'Time outdoors, active or just relaxing.', small: 'Eat lunch outside or walk the long way.',
+      fits: 'Days spent indoors on screens.', src: ['CDC']},
+    {id: 'trust', name: 'Talk with someone you trust', short: 'Talk to someone', area: 'people', kind: 'both', u: .33, v: .50, icon: 'bubble',
+      what: 'Telling a person you trust what is going on and how you feel.', small: 'Think of who that could be (the plan has role chips).',
+      fits: 'Both halves; a good listener helps you see which part you can change.', src: ['CDC']},
+    {id: 'friends', name: 'Friends who help in a good way', short: 'Good friends', area: 'people', kind: 'both', u: .47, v: .46, icon: 'heart',
+      what: 'Time with friends or family who help you cope in a positive way.', small: 'Make a plan with one of them this week.',
+      fits: "When you'd rather pull away.", src: ['NIMH']},
+    {id: 'group', name: 'A club, team or community group', short: 'Join a group', area: 'people', kind: 'both', u: .61, v: .50, icon: 'dots',
+      what: 'Being part of something: a club, a team, a community or faith group.', small: 'Look at one club list or team sign-up.',
+      fits: 'Moves, changes, or feeling left out.', src: ['CDC']},
+    {id: 'steps', name: 'Break it into small steps', short: 'Small steps', area: 'action', kind: 'change', u: .93, v: .36, icon: 'stairs',
+      what: 'Turning one big task into pieces you can start.', small: 'Write the first step small enough to do in 10 minutes.',
+      fits: 'Big tasks that feel too big to start.', src: ['CASEL']},
+    {id: 'schedule', name: 'Make a plan with times', short: 'Plan with times', area: 'action', kind: 'change', u: .83, v: .49, icon: 'cal',
+      what: 'Putting the steps on a calendar.', small: 'Block two study times this week.',
+      fits: 'Deadlines that pile up.', src: ['CASEL']},
+    {id: 'askearly', name: 'Ask early', short: 'Ask early', area: 'action', kind: 'change', u: .94, v: .62, icon: 'ask',
+      what: 'Asking the person in charge (a teacher, coach or manager) before it becomes a crisis.', small: 'Write the one-sentence question you would ask.',
+      fits: 'Due dates, schedules, rules: anything someone else sets.', src: ['CASEL']},
+    {id: 'goal', name: 'Set one small goal', short: 'One small goal', area: 'action', kind: 'change', u: .83, v: .75, icon: 'flag',
+      what: 'Choosing one thing to work on and when.', small: '"By Friday I will..."',
+      fits: 'After a disappointment, when you want to get better.', src: ['CASEL']},
+    {id: 'talkdirect', name: 'Talk it through with them', short: 'Talk it through', area: 'action', kind: 'change', u: .93, v: .88, icon: 'swap',
+      what: 'Speaking directly and calmly with the person the problem is about.', small: 'Plan your first sentence: what happened and what you need.',
+      fits: 'Problems with another person.', src: ['CASEL']},
+    {id: 'help', name: 'Get help (the Lighthouse)', short: 'Get help', area: 'light', kind: 'both', u: .62, v: .955, icon: 'light',
+      what: "When stress won't go away or feels like too much, more support helps: a trusted adult at school, a counselor, a doctor. Call or text 988 any time.",
+      fits: 'Any time. Asking for help is a strength, not a last step.', src: ['NIMH', 'MedlinePlus', 'L988']},
+  ];
+  const LMI = Object.fromEntries(LM.map(l => [l.id, l]));
+  const HARBOR = {u: .40, v: .93};
+
+  const SITS = [
+    {id: 'dev', label: 'Dev: test on Friday', story: 'Dev has a chemistry test on Friday and keeps putting off studying.',
+      change: {text: 'how and when he studies.', route: [['steps', 'Split the unit into four topics, one per night.'], ['schedule', 'Two study blocks on the calendar, Tuesday and Wednesday.'], ['askearly', "Ask the teacher Monday about the part he doesn't get."]]},
+      cant: {text: 'the test is Friday no matter what.', route: [['sleep', 'A full night Thursday helps more than a late cram.'], ['breathe', 'Three slow breaths before the test starts.'], ['rethink', "'I'm bad at chemistry' becomes 'I haven't learned unit 4 yet.'"]]}},
+    {id: 'ana', label: "Ana: didn't make varsity", story: 'Ana tried out and made JV, not varsity.',
+      change: {text: 'how she trains for next year.', route: [['askearly', 'Ask the coach what to work on.'], ['goal', 'One skill goal for the season.'], ['schedule', 'Extra practice twice a week.']]},
+      cant: {text: "this season's roster.", route: [['friends', "Time with friends who aren't about the team."], ['move', 'Play for fun this weekend.'], ['rethink', "'I'm not good enough' becomes 'Not yet, this year.'"]]}},
+    {id: 'sam', label: 'Sam: moving in March', story: "Sam's family is moving across town, so Sam will change schools.",
+      change: {text: 'how Sam gets ready.', route: [['group', 'Look up clubs at the new school.'], ['schedule', 'Set a weekly call with old friends.'], ['steps', 'Visit the new school before the first day.']]},
+      cant: {text: 'the move itself.', route: [['trust', 'Tell someone how it really feels.'], ['journal', 'Write about what Sam will miss and what might be good.'], ['unwind', 'Keep one favorite routine the same.']]}},
+    {id: 'priya', label: 'Priya: group project', story: "Priya's group partner isn't doing his share, and the project is due in a week.",
+      change: {text: 'how the work is split and who knows.', route: [['talkdirect', 'Ask him which part he will finish by Wednesday.'], ['steps', 'List every task with a name next to it.'], ['askearly', 'Tell the teacher now, not the night before.']]},
+      cant: {text: 'how her partner acts.', route: [['breathe', 'Settle before the talk, not during the anger.'], ['rethink', "'This is all on me' becomes 'I can do my part well.'"], ['friends', 'Vent to a friend who will also make her laugh.']]}},
+    {id: 'malik', label: 'Malik: everything due at once', story: 'Malik has three assignments due the same week as a big game.',
+      change: {text: 'the order and timing.', route: [['schedule', 'A day-by-day plan for the week.'], ['askearly', 'Ask about one extension before the week starts.'], ['steps', 'Start the biggest one first, 10 minutes at a time.']]},
+      cant: {text: 'the due dates and the game.', route: [['sleep', 'Keep the bedtime even this week.'], ['meals', 'Real meals, not just snacks.'], ['caffeine', 'Water instead of a third energy drink.']]}},
+    {id: 'lena', label: 'Lena: friend group shift', story: "Lena's best friend has been spending most of her time with a new group.",
+      change: {text: 'who Lena reaches out to.', route: [['talkdirect', 'Tell her friend she misses her, without blame.'], ['group', 'Try one new club.'], ['goal', 'Sit with someone new once this week.']]},
+      cant: {text: 'who her friend spends time with.', route: [['trust', 'Talk with someone she trusts about it.'], ['grateful', 'Notice the friends who did show up.'], ['unplug', 'Take a break from watching their posts.']]}},
+    {id: 'tomas', label: 'Tomás: work schedule', story: "Tomás's first job posted his shifts for the week of his finals.",
+      change: {text: 'whether he asks for a swap.', route: [['askearly', 'Ask the manager today about trading one shift.'], ['schedule', 'Plan study time around the shifts that stay.'], ['steps', 'Find a coworker who might trade.']]},
+      cant: {text: "the schedule that's already posted.", route: [['breathe', 'A slow breath before asking.'], ['outside', 'A walk between shift and studying.'], ['sleep', 'Protect sleep on the work nights.']]}},
+    {id: 'grace', label: 'Grace: waiting to hear', story: 'Grace auditioned for the spring play and the cast list comes out in a week.',
+      change: {text: 'what she does while she waits.', route: [['goal', 'Pick a backup way to be part of the play, like crew.'], ['steps', "Get the lines she'd need ready, just in case."]]},
+      cant: {text: "the director's decision.", route: [['unwind', 'Plan something fun for cast list day.'], ['unplug', 'Stop refreshing the group chat.'], ['friends', 'Wait with a friend, not alone.']]}},
+  ];
+  const SITI = Object.fromEntries(SITS.map(s => [s.id, s]));
+
+  const HS = [
+    {id: 'brain', name: 'Brain', text: 'Stress hormones make the brain more alert. That helps in a real emergency.', src: ['MedlinePlus'], sign: 'edge'},
+    {id: 'head', name: 'Head', text: 'Headaches are a common physical reaction to stress.', src: ['CDC', 'MedlinePlus'], sign: 'headache'},
+    {id: 'focus', name: 'Focus', text: 'Stress can make it hard to concentrate and make decisions, and can bring forgetfulness.', src: ['CDC', 'MedlinePlus'], sign: 'focus'},
+    {id: 'sleep', name: 'Sleep', text: 'Nightmares or trouble sleeping can come with stress.', src: ['CDC'], sign: 'nosleep'},
+    {id: 'heart', name: 'Heart', text: 'Stress hormones raise your pulse, so your heart beats faster.', src: ['MedlinePlus'], sign: 'heart'},
+    {id: 'muscles', name: 'Muscles', text: 'Muscles tense up. Lasting tension can show up as body pains or a stiff neck and shoulders.', src: ['MedlinePlus', 'CDC'], sign: 'shoulders'},
+    {id: 'stomach', name: 'Stomach', text: 'Stomach problems or an upset stomach can come with stress.', src: ['CDC', 'MedlinePlus'], sign: 'stomach'},
+  ];
+  const HSI = Object.fromEntries(HS.map(h => [h.id, h]));
+  const SIGNS = [['heart', 'Racing heart'], ['shoulders', 'Tense shoulders'], ['headache', 'Headache'], ['stomach', 'Upset stomach'],
+    ['nosleep', 'Trouble sleeping'], ['focus', 'Hard to focus'], ['edge', 'Feeling on edge'], ['snap', 'Snapping at people']];
+  const ROLES = [['parent', 'Parent or guardian'], ['family', 'Another family adult'], ['counselor', 'School counselor'], ['teacher', 'A teacher'],
+    ['coach', 'A coach'], ['friend', 'A friend'], ['nurse', 'A school nurse'], ['faith', 'A faith or community leader'], ['boss', 'A boss or coworker']];
+  const BOXES = [
+    {id: 'signs', title: 'Signs I might notice', chips: SIGNS},
+    {id: 'change', title: 'When I can change it, I can...', chips: LM.filter(l => l.kind === 'change').map(l => [l.id, l.name])},
+    {id: 'ride', title: "When I can't change it, I can...", chips: LM.filter(l => l.id !== 'help' && l.kind !== 'change').map(l => [l.id, l.name])},
+    {id: 'people', title: 'People I can go to', chips: ROLES},
+  ];
+  const BOXI = Object.fromEntries(BOXES.map(b => [b.id, b]));
+  const ANYTIME = ['A trusted adult at school, like a counselor, teacher or coach.', 'Call or text 988, or chat at 988lifeline.org (988 Suicide & Crisis Lifeline).'];
+  // the More help dialog (and the Lighthouse card) say exactly this, from 988lifeline.org, 911.gov and the spec
+  const HELP_HTML = [
+    '988 Suicide &amp; Crisis Lifeline: call or text 988, or chat at <a href="https://988lifeline.org" target="_blank" rel="noopener">988lifeline.org</a>. Free and confidential, any time, day or night (24/7/365). The 988 Lifeline is for everyone.',
+    'If someone is in immediate danger, call 911.',
+    'A trusted adult at school, like a school counselor, teacher, nurse or coach, can help you find support.',
+    "This tool is for learning. It can't tell you what you feel or diagnose anything.",
+  ];
+  const BURST = 'In short bursts, stress can help you avoid danger or meet a deadline. Then the body settles.';
+  const LASTS = 'When stress lasts, the body stays alert even though there is no danger. Over months that is linked to health problems, which is why recovery time matters.';
+  const ALWAYS = 'Resilience is coming back toward calm. The map has routes that help.';
+  const CURVE = {short: [.15, .15, .15, .18, .86, .22, .15, .15], long: [.15, .72, .82, .85, .86, .84, .83, .85]};   // a lead-in point, then Mon to Sun
+
+  // ======================================================================================
+  // Voice: every line the tool can say (recorded with the soft-breath bank voice)
+  // ======================================================================================
+  const L = {
+    'w-map': 'This is a map of ways people handle stress. Click any pin to look around, or try a situation.',
+    'w-body': "Here's what stress does in the body. Click a spot to read about it, and compare a short burst with stress that keeps going.",
+    'w-plan': "You can build your own map here. Pick what fits you. It stays on this computer, and you don't have to fill in anything.",
+    'h-map': 'Click a pin to read about it. Pick a situation to see which routes fit.',
+    'h-sit': "Flip between the part they can change and the part they can't. Watch the routes move.",
+    'h-body': 'Click a spot on the figure. Then switch between a short burst and stress that keeps going.',
+    'h-plan': 'Click chips to add them. Save keeps it on this computer, Clear erases it, Print gives you a copy.',
+    'help': 'If you need to talk, a trusted adult at school can help. In the US, you can call or text nine eight eight, any time.',
+  };
+  const WELCOME = {map: 'w-map', body: 'w-body', plan: 'w-plan'};
+  const allLines = () => [...new Set(Object.values(L))];
+
+  // ======================================================================================
+  // State
+  // ======================================================================================
+  const state = {mode: 'map', sit: null, half: 'change', open: null, hs: null, burst: 'short'};
+  const plan = {signs: [], change: [], ride: [], people: []};
+  const KEY = 'curio-resilience-plan';
+  const valid = {}; for (const b of BOXES) valid[b.id] = new Set(b.chips.map(c => c[0]));
+  try {
+    const raw = localStorage.getItem(KEY);
+    if (raw) { const o = JSON.parse(raw); for (const b of BOXES) if (Array.isArray(o[b.id])) plan[b.id] = o[b.id].filter(id => valid[b.id].has(id)).slice(0, 4); }
+  } catch {}
+  const boxOf = id => LMI[id] && LMI[id].kind === 'change' ? 'change' : 'ride';
+  const route = () => state.sit ? SITI[state.sit][state.half].route.map(r => r[0]) : [];
+
+  // ======================================================================================
+  // Little drawn icons (20 x 20 boxes, stroked in the current color)
+  // ======================================================================================
+  const ICON = {
+    moon: '<path d="M13.5 3.5a7 7 0 1 0 3 11.5 5.5 5.5 0 0 1-3-11.5z"/>',
+    shoe: '<path d="M3 13.5c3 0 4-1 5-4l1.5 1.2c1.5 1.1 3.5 1.6 5.5 1.8 1.6.2 2 1.3 2 3H3z"/><path d="M3 16.5h14"/>',
+    bowl: '<path d="M2.5 9.5h15a7.5 6.5 0 0 1-15 0z"/><path d="M7 6.5l1-3M12 6.5l1-3"/>',
+    cup: '<path d="M4 8h10v5a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4z"/><path d="M14 9.5h1.5a2 2 0 0 1 0 4H14"/><path d="M7.5 5.5c-.8-1 .8-2 0-3M10.5 5.5c-.8-1 .8-2 0-3"/>',
+    breath: '<circle cx="10" cy="10" r="2.5"/><circle cx="10" cy="10" r="6.5" stroke-dasharray="2.5 2"/>',
+    note: '<path d="M8 15V4.5l8-1.5v10.5"/><circle cx="6" cy="15" r="2.2"/><circle cx="14" cy="13.5" r="2.2"/>',
+    phone: '<rect x="6" y="2.5" width="8" height="15" rx="1.8"/><path d="M3 3l14 14"/>',
+    book: '<rect x="4.5" y="3" width="11" height="14" rx="1.5"/><path d="M7.5 7h5M7.5 10h5M7.5 13h3"/>',
+    bulb: '<path d="M7 13.5c0-2.5-2.5-3.5-2.5-6.5a5.5 5.5 0 0 1 11 0c0 3-2.5 4-2.5 6.5z"/><path d="M7.5 16.5h5"/>',
+    star: '<path d="M10 2.5l2.2 4.8 5.2.6-3.9 3.5 1.1 5.2L10 14l-4.6 2.6 1.1-5.2-3.9-3.5 5.2-.6z"/>',
+    sun: '<circle cx="10" cy="10" r="3.5"/><path d="M10 2v2.2M10 15.8V18M2 10h2.2M15.8 10H18M4.3 4.3l1.6 1.6M14.1 14.1l1.6 1.6M4.3 15.7l1.6-1.6M14.1 5.9l1.6-1.6"/>',
+    bubble: '<path d="M3 4.5h14v8.5H9l-4 3.5V13H3z"/>',
+    heart: '<path d="M10 16.5S3 12.3 3 7.6A3.6 3.6 0 0 1 10 6a3.6 3.6 0 0 1 7 1.6c0 4.7-7 8.9-7 8.9z"/>',
+    dots: '<circle cx="10" cy="5.5" r="2.4"/><circle cx="5" cy="14" r="2.4"/><circle cx="15" cy="14" r="2.4"/>',
+    stairs: '<path d="M3 17h4v-4h4V9h4V5h2"/>',
+    cal: '<rect x="3" y="4.5" width="14" height="12.5" rx="1.5"/><path d="M3 8.5h14M7 2.5v4M13 2.5v4M7 12h2M11 12h2"/>',
+    ask: '<path d="M7 7a3 3 0 1 1 4.2 2.8c-.9.4-1.2 1-1.2 2v.7"/><circle cx="10" cy="16" r=".6" fill="currentColor"/>',
+    flag: '<path d="M5 18V3"/><path d="M5 3.5h10l-2.5 3.5 2.5 3.5H5"/>',
+    swap: '<path d="M3 7h12l-3-3M17 13H5l3 3"/>',
+    light: '<path d="M8 17l1-10h2l1 10z"/><path d="M7.5 7h5M8.5 4.5h3V7h-3z"/><path d="M6.5 17h7"/>',
+    leaf: '<path d="M4 16c0-7 4-11 12-12-1 8-5 12-12 12z"/><path d="M4 16l7-7"/>',
+    tree: '<path d="M10 2.5l5 7h-3l4 5H4l4-5H5z"/><path d="M10 14.5V18"/>',
+    houses: '<path d="M2 17V10l4-3.5L10 10v7z"/><path d="M10 17v-6l4-3.5 4 3.5v6z"/>',
+    peak: '<path d="M2 17l6-11 3.5 6 2-3L18 17z"/>',
+  };
+  const icon = (name, x, y, size, color, sw = 1.7) =>
+    `<g transform="translate(${n1(x - size / 2)} ${n1(y - size / 2)}) scale(${n1(size / 20 * 100) / 100})" fill="none" stroke="${color}" stroke-width="${n1(sw * 20 / size * 100) / 100}" stroke-linecap="round" stroke-linejoin="round" style="color:${color}">${ICON[name]}</g>`;
+  const WRENCH = '<path d="M-4.2 4.2L1 -1"/><path d="M1.2-4.6a2.9 2.9 0 1 0 3.4 3.4l-1.6.3-1.4-1.4.3-1.6z"/>';
+  const WAVE = '<path d="M-5 0.8c1.2-2.2 2.4-2.2 3.4 0s2.2 2.2 3.4 0 2.2-2.2 3.4 0"/>';
+
+  // text width for label placement
+  const mctx = document.createElement('canvas').getContext('2d');
+  function tw(text, fs, wt = 600) { mctx.font = `${wt} ${fs}px 'Segoe UI', system-ui, sans-serif`; return mctx.measureText(text).width; }
+  const hit = (a, b) => a.x < b.x + b.w && b.x < a.x + a.w && a.y < b.y + b.h && b.y < a.y + a.h;
+
+  // smooth closed path through points (Catmull-Rom as cubic Bezier)
+  function blob(pts) {
+    const n = pts.length; let d = `M${n1(pts[0][0])} ${n1(pts[0][1])}`;
+    for (let i = 0; i < n; i++) {
+      const p0 = pts[(i - 1 + n) % n], p1 = pts[i], p2 = pts[(i + 1) % n], p3 = pts[(i + 2) % n];
+      d += `C${n1(p1[0] + (p2[0] - p0[0]) / 6)} ${n1(p1[1] + (p2[1] - p0[1]) / 6)} ${n1(p2[0] - (p3[0] - p1[0]) / 6)} ${n1(p2[1] - (p3[1] - p1[1]) / 6)} ${n1(p2[0])} ${n1(p2[1])}`;
+    }
+    return d + 'Z';
+  }
+
+  // ======================================================================================
+  // The map
+  // ======================================================================================
+  let M = null;   // this size's map geometry
+  function buildMap(W, H) {
+    const fs = W >= 820 && H >= 520 ? 13.5 : W >= 560 ? 12 : 11;
+    const r = clamp(Math.min(W, H) * .03, 13, 18);
+    const t1 = 'Solid, wrench: work on the problem.', t2 = 'Dashes, wave: handle how it feels.';
+    const legOne = 12 + 50 + tw(t1, fs, 500) + 24 + 50 + tw(t2, fs, 500) + 12 <= W;
+    const legH = legOne ? fs + 16 : fs * 2 + 22;
+    // the island outline runs from -0.04 to 1.05 across the box and -0.08 to 1.06 down it: keep all of it on the stage
+    const bw = (W - 16) / 1.09, bh = (H - legH - 14) / 1.14;
+    const box = {x: 8 + .04 * bw, y: 6 + .08 * bh, w: bw, h: bh};
+    const P = (u, v) => [box.x + u * box.w, box.y + v * box.h];
+    M = {W, H, fs, r, box, P, legH};
+    const outline = [[.02, .24], [.12, .1], [.22, -.04], [.36, -.06], [.5, -.08], [.66, -.05], [.8, .04], [.92, .16], [1.03, .3], [1.05, .5], [1.04, .72],
+      [1.03, .92], [.88, 1.0], [.74, .98], [.67, 1.06], [.58, 1.06], [.52, .98], [.44, .99], [.40, 1.0], [.36, .98], [.24, 1.0], [.1, 1.0], [-.03, .94], [-.04, .72], [-.04, .48]].map(([u, v]) => P(u, v));
+    const ridge = [[.76, .2], [.88, .14], [1.06, .26], [1.08, .6], [1.06, .98], [.86, 1.04], [.76, .86], [.73, .55]].map(([u, v]) => P(u, v));
+    let s = `<defs><clipPath id="isl"><path d="${blob(outline)}"/></clipPath>
+      <pattern id="hatch" width="9" height="9" patternUnits="userSpaceOnUse" patternTransform="rotate(35)"><path d="M0 0v9" stroke="#5b6176" stroke-width="2"/></pattern></defs>`;
+    s += `<rect width="${W}" height="${H}" fill="#10263a"/>`;
+    // a few calm wave marks on the sea
+    for (const [u, v] of [[-.02, .06], [.98, -.02], [.2, 1.12], [1.0, 1.1], [-.05, 1.12], [.85, -.06]]) {
+      const [x, y] = P(u, v); if (x < 6 || x > W - 30 || y < 6 || y > H - legH - 6) continue;
+      s += `<path d="M${n1(x)} ${n1(y)}q6-5 12 0t12 0" fill="none" stroke="#24445f" stroke-width="2" stroke-linecap="round"/>`;
+    }
+    // island: a sand shore around green land, a hatched grey ridge to the east, a lighter village in the middle
+    s += `<path d="${blob(outline)}" fill="#35543f" stroke="#d9c79a" stroke-width="7" stroke-linejoin="round"/>`;
+    s += `<g clip-path="url(#isl)"><path d="${blob(ridge)}" fill="#4a4f62"/><path d="${blob(ridge)}" fill="url(#hatch)" opacity=".5"/>`;
+    const [wx, wy] = P(.5, .13), [vx, vy] = P(.47, .55);
+    s += `<ellipse cx="${n1(wx)}" cy="${n1(wy)}" rx="${n1(box.w * .3)}" ry="${n1(box.h * .19)}" fill="#2c4736"/>`;
+    s += `<ellipse cx="${n1(vx)}" cy="${n1(vy)}" rx="${n1(box.w * .2)}" ry="${n1(box.h * .15)}" fill="#45604c"/></g>`;
+    // harbor: a short dock into the sea
+    const [hx, hy] = P(HARBOR.u, HARBOR.v);
+    M.harbor = [hx, hy];
+    s += `<path d="M${n1(hx)} ${n1(hy)}v${n1(box.h * .07 + 8)}M${n1(hx - 6)} ${n1(hy + box.h * .07 + 8)}h12" stroke="#c9b48a" stroke-width="3" stroke-linecap="round" fill="none"/>`;
+    s += `<circle cx="${n1(hx)}" cy="${n1(hy)}" r="4.5" fill="#ffe08a" stroke="#0b1a28" stroke-width="1.5"/>`;
+    // the lighthouse beam (a slow 4 s pulse; static with Motion off)
+    const [lx, ly] = P(LMI.help.u, LMI.help.v);
+    const bl = Math.min(W - lx - 6, r * 5.5);
+    s += `<path class="beam" d="M${n1(lx + r * .4)} ${n1(ly - r * .5)}L${n1(lx + bl)} ${n1(ly - r * 1.7)}L${n1(lx + bl)} ${n1(ly + r * 1.2)}Z" fill="#ffe08a" opacity=".3"/>`;
+    s += `<g id="routeLayer"></g><g id="pinLayer"></g><g id="labelLayer"></g>`;
+    // legend: line style plus glyph, never color alone
+    const ly0 = H - legH + (legOne ? legH / 2 : fs * .5 + 7);
+    const leg = (x, y, dash, glyph, text) => `<path d="M${x} ${y}h26" stroke="#ffe08a" stroke-width="3"${dash ? ' stroke-dasharray="9 6"' : ''} fill="none"/>` +
+      `<g transform="translate(${x + 38} ${y})" fill="none" stroke="#ffe08a" stroke-width="1.8" stroke-linecap="round">${glyph}</g>` +
+      `<text class="leg" x="${x + 50}" y="${y + fs * .36}" style="font-size:${fs}px">${text}</text>`;
+    s += `<rect x="0" y="${H - legH}" width="${W}" height="${legH}" fill="#0c1e2e"/>`;
+    if (legOne) s += leg(12, ly0, false, WRENCH, t1) + leg(12 + 50 + tw(t1, fs, 500) + 24, ly0, true, WAVE, t2);
+    else s += leg(12, ly0, false, WRENCH, t1) + leg(12, ly0 + fs + 8, true, WAVE, t2);
+    sv.innerHTML = s;
+    // pins: built once per size (focus survives redraws), west to east in Tab order
+    const layer = $('pinLayer');
+    M.pins = {};
+    for (const l of [...LM].sort((a, b) => a.u - b.u || a.v - b.v)) {
+      const [x, y] = P(l.u, l.v);
+      const g = document.createElementNS(NS, 'g');
+      g.setAttribute('class', 'pin'); g.setAttribute('tabindex', '0'); g.setAttribute('role', 'button');
+      g.dataset.id = l.id;
+      const light = l.id === 'help';
+      g.innerHTML = `<circle cx="${n1(x)}" cy="${n1(y)}" r="22" fill="transparent"/>` +
+        `<circle class="fring" cx="${n1(x)}" cy="${n1(y)}" r="${n1(r + 9)}"/>` +
+        `<circle class="oring" cx="${n1(x)}" cy="${n1(y)}" r="${n1(r + 4.5)}"/>` +
+        `<circle cx="${n1(x)}" cy="${n1(y)}" r="${n1(r)}" fill="${light ? '#f7f1e3' : '#16283a'}" stroke="${light ? '#ffe08a' : '#e8edf3'}" stroke-width="2"/>` +
+        icon(l.icon, x, y, r * 1.25, light ? '#2a1e10' : '#e8edf3') +
+        `<g class="badge" transform="translate(${n1(x + r * .8)} ${n1(y - r * .8)})"><circle r="8.5" fill="#10263a" stroke="#ffe08a" stroke-width="1.6"/>` +
+        `<g class="gl" fill="none" stroke="#ffe08a" stroke-width="1.7" stroke-linecap="round"></g></g>` +
+        `<g class="num" transform="translate(${n1(x - r * .8)} ${n1(y - r * .8)})"><circle r="8" fill="#ffe08a" stroke="#0b1a28" stroke-width="1.5"/><text text-anchor="middle" y="4"></text></g>`;
+      g.addEventListener('click', () => openLandmark(l.id, true));
+      g.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLandmark(l.id, true); } });
+      layer.appendChild(g);
+      M.pins[l.id] = {g, x, y};
+    }
+    // pins and the harbor are obstacles for every label (each pin label may touch only its own pin)
+    const obst = LM.map(l => { const [x, y] = P(l.u, l.v); return {x: x - r - 11, y: y - r - 11, w: 2 * r + 22, h: 2 * r + 14}; });   // the pin plus its number and glyph badges
+    obst.push({x: hx - 8, y: hy - 8, w: 16, h: 16 + box.h * .07 + 8});
+    M.obst = obst;
+    M.AL = [['light', 'light', [[.79, 1.0], [.8, .94], [.48, 1.06], [.86, 1.0], [.3, 1.06]]], ['body', 'leaf', [[.08, .15], [.05, .2], [.1, .1], [.04, .3], [.15, .04], [.02, .42]]],
+      ['mind', 'tree', [[.46, .135], [.47, .15], [.55, .125], [.4, .2], [.62, .2], [.5, .0], [.32, .04], [.68, .04], [.35, .3], [.6, .32]]], ['people', 'houses', [[.47, .63], [.47, .66], [.47, .37], [.4, .7], [.55, .45]]],
+      ['action', 'peak', [[.86, .2], [.88, .23], [.84, .25], [.9, .3], [.9, .07], [.78, .1], [.95, .45], [.82, .42], [.95, .7]]]];
+    // do all five area names and all 20 pin labels fit with nothing dropped? then show them all
+    M.all = !!layoutLabels(true);
+    drawMapState(false);
+  }
+  // font box of a label, so the placed rect matches what the text really covers
+  function fbox(fs, wt) { mctx.font = `${wt} ${fs}px 'Segoe UI', system-ui, sans-serif`; const m = mctx.measureText('Hg'); return [m.fontBoundingBoxAscent || fs * .92, m.fontBoundingBoxDescent || fs * .25]; }
+  // places every label for the current state, highest priority first: the Lighthouse area and its Get help pin
+  // always; then the open pin and the route pins; then the other area names; then (when they all fit) every other pin.
+  // A label with no free spot is dropped (strict: the whole layout fails), so labels never overlap each other or a pin.
+  function layoutLabels(strict) {
+    const {fs, r, W, H, legH, P} = M, rt = strict ? [] : route(), taken = [], out = [];
+    const inB = q => q.x >= 2 && q.x + q.w <= W - 2 && q.y >= 2 && q.y + q.h <= H - legH - 1;
+    const free = (q, own) => inB(q) && !taken.some(o => hit(o, q)) && !M.obst.some((o, i) => i !== own && hit(o, q));
+    const area = (a, force) => {
+      const [, ic, cands] = M.AL.find(x => x[0] === a), text = AREAS[a], isz = fs + 3, [asc, desc] = fbox(fs, 700);
+      const w = tw(text, fs, 700) + isz + 7, h = Math.max(isz, asc + desc) + 2;
+      const rects = cands.map(([u, v]) => { const [cx, cy] = P(u, v); return {x: clamp(cx - w / 2, 4, W - w - 4), y: clamp(cy - h / 2, 2, H - legH - h - 2), w, h}; });
+      let best = rects.find(q => free(q, -1));
+      if (!best) { if (strict) return false; if (!force) return true; best = rects[0]; }
+      taken.push(best); out.push({type: 'area', a, ic, text, rect: best, isz, asc, desc}); return true;
+    };
+    const pin = (id, force) => {
+      const l = LMI[id], i = LM.indexOf(l), [x, y] = P(l.u, l.v), bold = !strict && state.open === id;
+      for (const f of [fs, fs - 1.5]) {               // a slightly smaller font before giving up
+        const [asc, desc] = fbox(f, bold ? 800 : 600), w = tw(l.short, f, bold ? 800 : 600) + 4, h = asc + desc;
+        const cands = [[x - w / 2, y + r + 3], [x - w / 2, y - r - 12 - h], [x + r + 12, y - h / 2], [x - r - 12 - w, y - h / 2],
+          [x + r * .5, y + r + 2], [x - r * .5 - w, y + r + 2], [x + r + 12, y + 2], [x - r - 12 - w, y + 2], [x + r + 12, y - h - 2],
+          [x - r - 12 - w, y - h - 2], [x - w / 2, y + r + 12]];
+        const q = cands.map(([cx, cy]) => ({x: cx, y: cy, w, h})).find(q => free(q, i));
+        if (q) { taken.push(q); out.push({type: 'pin', id, rect: q, bold, f, asc}); return true; }
+        if (strict) return false;
+      }
+      if (force) { const q = {x: clamp(x - (tw(l.short, fs, 600) + 4) / 2, 2, W - 2), y: y + r + 3, w: tw(l.short, fs, 600) + 4, h: fs * 1.3}; taken.push(q); out.push({type: 'pin', id, rect: q, bold, f: fs, asc: fs}); }
+      return !!force || !strict;          // dropped (not an error) unless strict
+    };
+    if (!area('light', true) || !pin('help', true)) return null;
+    const first = [...(state.open && !strict && state.open !== 'help' ? [state.open] : []), ...rt.filter(id => id !== state.open)];
+    for (const id of first) if (!pin(id, false)) return null;
+    for (const a of ['body', 'mind', 'people', 'action']) if (!area(a, false)) return null;
+    if (strict || M.all) for (const l of LM) if (l.id !== 'help' && !first.includes(l.id)) if (!pin(l.id, false)) return null;
+    return out;
+  }
+  // a route pin, an open pin, dimming, the route path and the labels for the current state
+  function drawMapState(fade = true) {
+    if (!M || state.mode !== 'map') return;
+    const rt = route(), cant = state.half === 'cant';
+    for (const l of LM) {
+      const p = M.pins[l.id], on = rt.includes(l.id);
+      p.g.classList.toggle('dim', !!state.sit && !on && l.id !== 'help');   // the Lighthouse is never dimmed
+      p.g.classList.toggle('onroute', on);
+      p.g.classList.toggle('open', state.open === l.id);
+      p.g.querySelector('.gl').innerHTML = on ? (cant ? WAVE : WRENCH) : '';
+      p.g.querySelector('.num text').textContent = on ? rt.indexOf(l.id) + 1 : '';
+      p.g.setAttribute('aria-pressed', state.open === l.id);
+      p.g.setAttribute('aria-label', `${l.name}, ${AREAS[l.area]}${on ? `, stop ${rt.indexOf(l.id) + 1} on the route for the part they ${cant ? "can't change" : 'can change'}` : ''}`);
+    }
+    // route path from the harbor through the route pins in order: solid (can change) or long dashes (can't)
+    const layer = $('routeLayer'), old = [...layer.children];
+    if (rt.length) {
+      let [px, py] = M.harbor, d = `M${n1(px)} ${n1(py)}`;
+      const lh = M.pins.help, clear = M.r + 12;
+      rt.forEach((id, i) => {
+        const {x, y} = M.pins[id], mx = (px + x) / 2, my = (py + y) / 2, dx = x - px, dy = y - py, base = (i % 2 ? -1 : 1) * .12;
+        // the nearest the curve comes to the Lighthouse, sampled; try stronger bends (either way) until it clears
+        const near = k => { let m = 1e9; const cx = mx - dy * k, cy = my + dx * k;
+          for (let t = 0; t <= 1; t += .02) { const a = (1 - t) * (1 - t), b = 2 * (1 - t) * t, c = t * t; m = Math.min(m, Math.hypot(a * px + b * cx + c * x - lh.x, a * py + b * cy + c * y - lh.y)); }
+          return m; };
+        let k = base, bestD = near(base);
+        if (bestD < clear) for (const kk of [-base, .3, -.3, .45, -.45, .6, -.6, .8, -.8]) { const dd = near(kk); if (dd > bestD) { bestD = dd; k = kk; } if (dd >= clear) { k = kk; break; } }
+        d += `Q${n1(mx - dy * k)} ${n1(my + dx * k)} ${n1(x)} ${n1(y)}`; px = x; py = y;
+      });
+      const g = document.createElementNS(NS, 'g');
+      g.setAttribute('class', 'rt'); g.dataset.half = state.half;
+      g.innerHTML = `<path d="${d}" fill="none" stroke="#0b1a28" stroke-width="7" stroke-linecap="round" opacity=".6"/>` +
+        `<path d="${d}" fill="none" stroke="#ffe08a" stroke-width="3.5" stroke-linecap="round"${cant ? ' stroke-dasharray="14 9"' : ''}/>`;
+      if (fade && !Curio.reduce) { g.style.opacity = 0; layer.appendChild(g); requestAnimationFrame(() => requestAnimationFrame(() => { g.style.opacity = 1; })); }
+      else layer.appendChild(g);
+    }
+    for (const o of old) {
+      if (fade && !Curio.reduce) { o.style.opacity = 0; setTimeout(() => o.remove(), 320); } else o.remove();
+    }
+    // labels (area names and pin names), placed fresh for this state
+    const lab = layoutLabels(false) || [];
+    let s = '';
+    for (const o of lab) {
+      const {rect} = o;
+      if (o.type === 'area') {
+        s += `<g class="area" data-a="${o.a}">` + icon(o.ic, rect.x + o.isz / 2, rect.y + rect.h / 2, o.isz, '#f3eee4', 1.6) +
+          `<text class="alab" x="${n1(rect.x + o.isz + 5)}" y="${n1(rect.y + 1 + (rect.h - 2 - o.asc - o.desc) / 2 + o.asc)}" style="font-size:${M.fs}px">${esc(o.text)}</text></g>`;
+        continue;
+      }
+      const id = o.id, dim = state.sit && !rt.includes(id) && id !== 'help' && id !== state.open;
+      s += `<text class="lbl${o.bold ? ' b' : ''}${dim ? ' dim' : ''}" data-for="${id}" x="${n1(rect.x + 2)}" y="${n1(rect.y + o.asc)}" style="font-size:${o.f}px">${esc(LMI[id].short)}</text>`;
+    }
+    $('labelLayer').innerHTML = s;
+    $('labelLayer').setAttribute('aria-hidden', 'true');
+  }
+
+  // ======================================================================================
+  // Stress in the body: a plain figure with seven hotspots, and a week chart
+  // ======================================================================================
+  let B = null;
+  function buildBody(W, H) {
+    // three arrangements: figure beside the chart with pills on both sides (wide boxes), figure above the chart (narrow
+    // and tall), or a narrow figure with one column of pills beside the chart (small, short boxes such as the preview)
+    const lay = W >= 560 ? 'side2' : H >= 520 ? 'vert' : 'side1', side = lay !== 'vert';
+    const fs = W >= 760 && H >= 480 ? 14 : 12.5;
+    const fig = lay === 'side2' ? {x: 0, y: 0, w: clamp(W * .45, 250, 440), h: H} : lay === 'side1' ? {x: 0, y: 0, w: clamp(W * .44, 165, 240), h: H} : {x: 0, y: 0, w: W, h: Math.round(H * .5)};
+    const ch = side ? {x: fig.w, y: 0, w: W - fig.w, h: H} : {x: 0, y: fig.h, w: W, h: H - fig.h};
+    let s = `<rect width="${W}" height="${H}" fill="#0f1a26"/>`;
+    // the figure: rounded shapes, one gray-blue fill, no face (a 100 x 220 design)
+    const pillW = Math.max(...HS.map(h => tw(h.name, fs, 800))) + 22;
+    const one = lay === 'side1';
+    const k = one ? Math.min((fig.w - pillW - 34) / 100, (fig.h - 30) / 220) : Math.min((fig.w - 2 * pillW - 40) / 100, (fig.h - 30) / 220);
+    const ox = one ? fig.x + pillW + 24 + ((fig.w - pillW - 24) - 100 * k) / 2 : fig.x + fig.w / 2 - 50 * k, oy = fig.y + (fig.h - 220 * k) / 2;
+    const X = u => n1(ox + u * k), Y = v => n1(oy + v * k);
+    const rr = (x, y, w, h, rx) => `<rect x="${X(x)}" y="${Y(y)}" width="${n1(w * k)}" height="${n1(h * k)}" rx="${n1(rx * k)}"/>`;
+    s += `<g fill="#71879e">${rr(12, 50, 14, 66, 7)}${rr(74, 50, 14, 66, 7)}${rr(30, 112, 17, 100, 8.5)}${rr(53, 112, 17, 100, 8.5)}${rr(26, 46, 48, 76, 18)}${rr(44, 38, 12, 12, 3)}` +
+      `<circle cx="${X(50)}" cy="${Y(22)}" r="${n1(18 * k)}"/></g>`;
+    // where each hotspot points on the figure; a small moon beside the head for sleep
+    const PT = one ? {brain: [50, 8], sleep: [16, 6], focus: [38, 16], head: [34, 29], heart: [44, 62], muscles: [19, 60], stomach: [50, 94]}
+      : {brain: [50, 10], focus: [38, 18], head: [65, 24], sleep: [82, 10], heart: [41, 62], muscles: [80, 60], stomach: [52, 94]};
+    s += icon('moon', ox + PT.sleep[0] * k, oy + PT.sleep[1] * k, Math.max(12, 14 * k), '#c4d0dd', 1.5);
+    const cols = one ? [[-1, ['brain', 'sleep', 'focus', 'head', 'heart', 'muscles', 'stomach']]]
+      : [[-1, ['brain', 'focus', 'heart', 'stomach']], [1, ['sleep', 'head', 'muscles']]];
+    const gap = one ? 46 : 50;
+    B = {W, H, fs, side, lay, fig, ch};
+    let hs = '';
+    for (const [col, ids] of cols) {
+      let lastY = -1e9;
+      // spread the pills at least one 44 px target apart, then keep them inside the figure box
+      const out = ids.map(id => (lastY = Math.max(oy + PT[id][1] * k, lastY + gap)));
+      const over = out[out.length - 1] - (fig.y + fig.h - 24); if (over > 0) for (let i = 0; i < out.length; i++) out[i] -= over;
+      if (out[0] < fig.y + 23) { const d = fig.y + 23 - out[0]; for (let i = 0; i < out.length; i++) out[i] += d; }
+      for (let i = 1; i < out.length; i++) out[i] = Math.max(out[i], out[i - 1] + gap);
+      ids.forEach((id, i) => {
+        const h = HSI[id], py = out[i], pw = tw(h.name, fs, 800) + 22;
+        const px = col < 0 ? fig.x + 10 : fig.x + fig.w - 10 - pw;
+        const [bx, by] = [ox + PT[id][0] * k, oy + PT[id][1] * k];
+        const ex = col < 0 ? px + pw : px;
+        hs += `<g class="hs" tabindex="0" role="button" data-id="${id}" aria-label="${h.name}">` +
+          `<path d="M${n1(ex)} ${n1(py)}L${n1(bx)} ${n1(by)}" stroke="#a6b3c4" stroke-width="1.5" fill="none"/>` +
+          `<circle cx="${n1(bx)}" cy="${n1(by)}" r="4.5" fill="#f2a0b8" stroke="#0f1a26" stroke-width="1.5"/>` +
+          `<rect x="${n1(px)}" y="${n1(py - 22)}" width="${n1(pw)}" height="44" fill="transparent"/>` +
+          `<rect class="fring" x="${n1(px - 5)}" y="${n1(py - 21)}" width="${n1(pw + 10)}" height="42" rx="21"/>` +
+          `<rect class="pill" x="${n1(px)}" y="${n1(py - 16)}" width="${n1(pw)}" height="32" rx="16"/>` +
+          `<text class="pt" x="${n1(px + pw / 2)}" y="${n1(py + fs * .36)}" text-anchor="middle" style="font-size:${fs}px">${h.name}</text></g>`;
+      });
+    }
+    s += `<g id="hsLayer">${hs}</g>`;
+    s += `<g id="chartLayer"></g>`;
+    sv.innerHTML = s;
+    for (const g of sv.querySelectorAll('.hs')) {
+      g.addEventListener('click', () => openHotspot(g.dataset.id));
+      g.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openHotspot(g.dataset.id); } });
+    }
+    drawBodyState();
+  }
+  function drawBodyState() {
+    if (!B || state.mode !== 'body') return;
+    for (const g of sv.querySelectorAll('.hs')) { const on = g.dataset.id === state.hs; g.classList.toggle('open', on); g.setAttribute('aria-pressed', on); }
+    const {ch, fs, side} = B;
+    // captions as HTML under the chart (they wrap)
+    const capFs = B.lay === 'side1' ? 12 : fs, padX = side ? 12 : 16;
+    const capW = ch.w - 2 * padX;
+    const ov = $('ov');
+    ov.innerHTML = `<div class="cap" id="cap" style="font-size:${capFs}px;width:${n1(capW)}px"><p id="capMain">${state.burst === 'short' ? BURST : LASTS}</p><p class="always">${ALWAYS}</p></div>`;
+    // the caption height is the longer of the two captions, so the chart does not jump when the switch flips
+    const cap = $('cap'), cm = $('capMain'), other = state.burst === 'short' ? LASTS : BURST, cur = cm.textContent;
+    cm.textContent = other; const h1 = cap.offsetHeight; cm.textContent = cur; const capH = Math.max(h1, cap.offsetHeight);
+    const top = ch.y + (side ? 18 : 6), bottom = ch.y + ch.h - capH - 16;
+    cap.style.left = n1(ch.x + padX) + 'px'; cap.style.top = n1(bottom + 10) + 'px';
+    const inY = B.lay === 'side1', afs = inY ? 11 : fs - 1, tfs = fs + 1, x0 = ch.x + padX + (inY ? 0 : tw('on alert', afs, 600) + 8), x1 = ch.x + ch.w - padX - 6, y0 = top + tfs + 14, y1 = bottom - fs - 10;
+    const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'], step = (x1 - x0) / 7;
+    const dx = i => x0 + step * (i + .5), yv = v => y1 - v * (y1 - y0);
+    let s = `<text x="${n1(ch.x + padX)}" y="${n1(top + tfs)}" style="font:700 ${tfs}px 'Segoe UI',system-ui,sans-serif" fill="#e8edf3">Stress over a week</text>`;
+    s += `<rect x="${n1(x0)}" y="${n1(y0)}" width="${n1(x1 - x0)}" height="${n1(y1 - y0)}" fill="#0b141e" stroke="#2b3646"/>`;
+    s += `<rect x="${n1(x0)}" y="${n1(yv(.25))}" width="${n1(x1 - x0)}" height="${n1(yv(0) - yv(.25))}" fill="#1b3a33" opacity=".7"/>`;
+    const yl = inY ? x0 + 5 : x0 - 6, anc = inY ? 'start' : 'end';
+    s += `<text x="${n1(yl)}" y="${n1(y0 + afs + 2)}" text-anchor="${anc}" style="font-size:${afs}px" fill="#a6b3c4">on alert</text>`;
+    s += `<text x="${n1(yl)}" y="${n1(y1 - 4)}" text-anchor="${anc}" style="font-size:${afs}px" fill="#a6b3c4">calm</text>`;
+    days.forEach((d, i) => { s += `<text x="${n1(dx(i))}" y="${n1(y1 + afs + 5)}" text-anchor="middle" style="font-size:${afs}px" fill="#a6b3c4">${d}</text>`; });
+    const vals = CURVE[state.burst], pts = [[x0 + 2, yv(vals[0])], ...vals.slice(1).map((v, i) => [dx(i), yv(v)])];
+    let d = `M${n1(pts[0][0])} ${n1(pts[0][1])}`;
+    for (let i = 1; i < pts.length; i++) { const [ax, ay] = pts[i - 1], [bx, by] = pts[i], mx = (ax + bx) / 2; d += `C${n1(mx)} ${n1(ay)} ${n1(mx)} ${n1(by)} ${n1(bx)} ${n1(by)}`; }
+    s += `<path d="${d}L${n1(pts[pts.length - 1][0])} ${n1(y1)}L${n1(pts[0][0])} ${n1(y1)}Z" fill="#f2a0b8" opacity=".12"/>`;
+    s += `<path d="${d}" fill="none" stroke="#f2a0b8" stroke-width="3.5" stroke-linecap="round"/>`;
+    for (const [x, y] of pts.slice(1)) s += `<circle cx="${n1(x)}" cy="${n1(y)}" r="4" fill="#f2a0b8" stroke="#0b141e" stroke-width="1.5"/>`;
+    const lay = $('chartLayer');
+    lay.innerHTML = s;
+    lay.setAttribute('role', 'img');
+    lay.setAttribute('aria-label', state.burst === 'short' ? 'Stress over a week: calm until a rise on Thursday, back to calm by Friday.' : 'Stress over a week: rises on Monday and stays high all week.');
+  }
+
+  // ======================================================================================
+  // Panel: situations, the switch, landmark and hotspot cards
+  // ======================================================================================
+  const sits = $('sits');
+  for (const s of SITS) {
+    const b = document.createElement('button');
+    b.className = 'btn'; b.id = 's-' + s.id; b.textContent = s.label; b.setAttribute('aria-pressed', 'false');
+    b.onclick = () => pickSituation(s.id);
+    sits.appendChild(b);
+  }
+  function pickSituation(id) {
+    if (state.sit === id) return;                // picking the same one again does nothing
+    state.sit = id; state.half = 'change';
+    renderSit(); drawMapState(true);
+    narrate('h-sit', () => state.mode === 'map' && !!state.sit);
+    live(`${SITI[id].label}. The part they can change: ${route().map(r => LMI[r].name).join(', ')}.`);
+  }
+  function clearSituation() {
+    if (!state.sit) return;
+    const was = state.sit, f = $('sitBar').contains(document.activeElement);
+    state.sit = null; renderSit(); drawMapState(true); live('Situation cleared. Every pin is showing.');
+    if (f) $('s-' + was).focus();             // the Clear button just hid: focus goes back to that situation's button
+  }
+  function setHalf(h) {
+    if (!state.sit || state.half === h) return;
+    state.half = h; renderSit(); drawMapState(true);
+    live(`${h === 'change' ? 'The part they can change' : "The part they can't"}: ${route().map(r => LMI[r].name).join(', ')}.`);
+  }
+  $('clearSit').onclick = clearSituation;
+  $('hChange').onclick = () => setHalf('change');
+  $('hCant').onclick = () => setHalf('cant');
+  const glyphSvg = cant => `<svg width="20" height="20" viewBox="-10 -10 20 20" aria-hidden="true"><circle r="9" fill="#10263a" stroke="#ffe08a" stroke-width="1.5"/><g fill="none" stroke="#ffe08a" stroke-width="1.7" stroke-linecap="round">${cant ? WAVE : WRENCH}</g></svg>`;
+  function renderSit() {
+    for (const s of SITS) $('s-' + s.id).setAttribute('aria-pressed', state.sit === s.id);
+    $('sitBar').hidden = $('sitBox').hidden = state.mode !== 'map' || !state.sit;
+    if (state.mode === 'map') setHint(L[state.sit ? 'h-sit' : 'h-map']);
+    if (!state.sit) return;
+    const s = SITI[state.sit], h = s[state.half], cant = state.half === 'cant';
+    $('sitName').textContent = s.label;
+    $('story').textContent = s.story;
+    $('hChange').setAttribute('aria-pressed', !cant); $('hCant').setAttribute('aria-pressed', cant);
+    $('halfText').innerHTML = `<b>${cant ? "Can't change:" : 'Can change:'}</b> ${esc(h.text)}`;
+    $('routeList').innerHTML = h.route.map(([id, fit], i) => `<li><button class="btn" data-id="${id}">${glyphSvg(cant)}<span><b>${i + 1}. ${esc(LMI[id].name)}.</b> ${esc(fit)}</span></button></li>`).join('');
+    for (const b of $('routeList').querySelectorAll('button')) b.onclick = () => openLandmark(b.dataset.id, false);
+  }
+  const srcLine = src => (src.length > 1 ? 'Sources: ' : 'Source: ') + src.map(k => SRC[k]).join('; ') + '.';
+  function openLandmark(id, fromPin) {
+    const was = state.open;
+    state.open = id;
+    if (was !== id) Curio.tone(740, .12, .018);   // a very soft tick (silent with Sound off)
+    renderCard(); drawMapState(false);
+    const sec = $('lmSec');
+    if (!fromPin || !inView(sec)) reveal(sec);
+  }
+  // keyboard focus is never left under a sticky bar: the plan's Save/Clear/Print row, the situation bar (stuck at the
+  // top or the bottom) or, in stack, the footer
+  $('panel').addEventListener('focusin', e => {
+    const el = e.target;
+    if (!el.matches(':focus-visible') || el.closest(page === 'stack' ? '.sitbar' : '.acts, .sitbar')) return;
+    requestAnimationFrame(() => {             // after the browser's own focus scroll, so sticky bars sit where they will stay
+    const stack = page === 'stack', sc = stack ? document.scrollingElement : $('panel'), pr = $('panel').getBoundingClientRect();
+    let top = stack ? 0 : pr.top, bot = stack ? document.querySelector('footer').getBoundingClientRect().top : Math.min(pr.bottom, innerHeight);
+    const sb = $('sitBar');
+    if (!sb.hidden) { const b = sb.getBoundingClientRect(); if (b.top <= top + 2) top = b.bottom; else if (b.bottom >= bot - 2) bot = b.top; }
+    const ac = document.querySelector('.acts');
+    if (state.mode === 'plan' && !stack) bot = Math.min(bot, ac.getBoundingClientRect().top);
+    const r = el.getBoundingClientRect();
+    if (r.bottom > bot - 4) sc.scrollTop += r.bottom - bot + 10;
+    else if (r.top < top + 4) sc.scrollTop -= top - r.top + 10;
+    });
+  });
+  // the pinned situation bar covers the panel's top edge: keep cards clear of it
+  const barH = () => { const b = $('sitBar'); return b.hidden ? 0 : b.offsetHeight + 6; };
+  function inView(el) { const r = el.getBoundingClientRect(), p = $('panel').getBoundingClientRect(); return r.top >= Math.max(0, p.top) + barH() && r.top + 60 <= Math.min(innerHeight, p.bottom); }
+  function reveal(sec) { $('panel').style.setProperty('--barh', barH() + 'px'); sec.scrollIntoView({block: 'nearest', behavior: Curio.reduce ? 'auto' : 'smooth'}); }
+  function renderCard() {
+    const c = $('lmCard');
+    if (!state.open) { c.innerHTML = '<p class="empty">Click any pin to read about it.</p>'; return; }
+    const l = LMI[state.open];
+    if (l.id === 'help') {
+      c.innerHTML = `<h3>${esc(l.name)}</h3><p class="area">${AREAS[l.area]}</p><p>${esc(l.what)}</p>` +
+        HELP_HTML.map(t => `<p>${t}</p>`).join('') + `<p><span class="lab">Fits best when</span>${esc(l.fits)}</p><p class="src">${srcLine(l.src)}</p>`;
+      return;
+    }
+    c.innerHTML = `<h3>${esc(l.name)}</h3><p class="area">${AREAS[l.area]} · ${KIND[l.kind]}</p><p>${esc(l.what)}</p>` +
+      `<p><span class="lab">Try it small</span>${esc(l.small)}</p><p><span class="lab">Fits best when</span>${esc(l.fits)}</p>` +
+      `<p class="src">${srcLine(l.src)}</p><button class="btn" id="lmAdd"></button>`;
+    addButton($('lmAdd'), boxOf(l.id), l.id, 'Add to my plan');
+  }
+  // the Add button on a card: Add / In my plan (pressed, removes it) / Box full (4), disabled
+  function addButton(b, box, id, label) {
+    const inPlan = plan[box].includes(id), full = !inPlan && plan[box].length >= 4;
+    b.setAttribute('aria-pressed', inPlan);
+    b.disabled = full;
+    b.textContent = inPlan ? '✓ In my plan' : full ? 'Box full (4)' : label;
+    b.onclick = () => { togglePick(box, id); const f = document.activeElement === b; refreshCards(); if (f) b.focus(); };
+  }
+  function refreshCards() {
+    const a = $('lmAdd'); if (a && state.open && state.open !== 'help') addButton(a, boxOf(state.open), state.open, 'Add to my plan');
+    const h = $('hsAdd'); if (h && state.hs) addButton(h, 'signs', HSI[state.hs].sign, 'Add this sign to my plan');
+    renderChips(); renderPlanCard();
+  }
+  function openHotspot(id) {
+    const was = state.hs; state.hs = id;
+    if (was !== id) Curio.tone(740, .12, .018);
+    const h = HSI[id], c = $('hsCard');
+    c.innerHTML = `<h3>${h.name}</h3><p>${esc(h.text)}</p><p class="src">${srcLine(h.src)}</p><button class="btn" id="hsAdd"></button>`;
+    addButton($('hsAdd'), 'signs', h.sign, 'Add this sign to my plan');
+    drawBodyState();
+    const sec = $('hsSec'); if (!inView(sec)) reveal(sec);
+  }
+  function setBurst(b) { if (state.burst === b) return; state.burst = b; $('bShort').setAttribute('aria-pressed', b === 'short'); $('bLong').setAttribute('aria-pressed', b === 'long'); drawBodyState(); live(b === 'short' ? BURST : LASTS); }
+  $('bShort').onclick = () => setBurst('short');
+  $('bLong').onclick = () => setBurst('long');
+
+  // ======================================================================================
+  // My plan: chips only, page memory until Save
+  // ======================================================================================
+  const msgTimers = {};
+  function togglePick(box, id) {
+    const a = plan[box], i = a.indexOf(id);
+    if (i >= 0) { a.splice(i, 1); groupMsg(box, ''); return true; }
+    if (a.length >= 4) { groupMsg(box, 'Four is plenty. Remove one to add another.'); return false; }
+    a.push(id); groupMsg(box, ''); return true;
+  }
+  function groupMsg(box, t) {
+    const m = $('msg-' + box); if (!m) return;
+    m.textContent = t; clearTimeout(msgTimers[box]);
+    if (t) msgTimers[box] = setTimeout(() => { m.textContent = ''; }, 5000);
+  }
+  function buildChips() {
+    const wrap = $('chipGroups');
+    wrap.innerHTML = BOXES.map(b => `<section class="sec" aria-labelledby="cg-${b.id}"><h2 id="cg-${b.id}">${esc(b.title)}</h2>` +
+      `<div class="chips" role="group" aria-labelledby="cg-${b.id}">${b.chips.map(([id, t]) => `<button class="btn" data-box="${b.id}" data-id="${id}" aria-pressed="false">${esc(t)}</button>`).join('')}</div>` +
+      `<p class="msg" id="msg-${b.id}" aria-live="polite"></p></section>`).join('');
+    for (const c of wrap.querySelectorAll('button')) c.onclick = () => { togglePick(c.dataset.box, c.dataset.id); refreshCards(); };
+  }
+  function renderChips() { for (const c of $('chipGroups').querySelectorAll('button')) c.setAttribute('aria-pressed', plan[c.dataset.box].includes(c.dataset.id)); }
+  const chipText = (box, id) => BOXI[box].chips.find(c => c[0] === id)[1];
+  function renderPlanCard() {
+    const pv = $('planView');
+    pv.innerHTML = `<div class="pcard" id="pcard"><h2>My resilience map</h2><div class="pgrid">` +
+      BOXES.map(b => `<section class="pbox"><h3>${esc(b.title)}</h3>${plan[b.id].length ? `<ul>${plan[b.id].map(id => `<li>${esc(chipText(b.id, id))}</li>`).join('')}</ul>` : '<p class="none">Nothing picked yet.</p>'}</section>`).join('') +
+      `<section class="pbox any"><h3>Any time</h3>${ANYTIME.map(t => `<p>${esc(t)}</p>`).join('')}</section></div>` +
+      `<p class="pfoot">Made with Resilience Map, Curio Class. Stays on this computer.</p></div>`;
+  }
+  function buildPrint() {
+    $('printPlan').innerHTML = `<h2>My resilience map</h2>` +
+      BOXES.map(b => `<div class="pb"><h3>${esc(b.title)}</h3>${plan[b.id].length ? `<ul>${plan[b.id].map(id => `<li>${esc(chipText(b.id, id))}</li>`).join('')}</ul>` : '<div class="blank"></div><div class="blank"></div>'}</div>`).join('') +
+      `<div class="pb"><h3>Any time</h3>${ANYTIME.map(t => `<p>${esc(t)}</p>`).join('')}</div>` +
+      `<p class="pfoot">Made with Resilience Map, Curio Class.</p>`;
+  }
+  addEventListener('beforeprint', buildPrint);
+  let okTimer = 0;
+  function okMsg(t) { $('pMsg').textContent = t; clearTimeout(okTimer); okTimer = setTimeout(() => { $('pMsg').textContent = ''; }, 3000); }
+  $('pSave').onclick = () => {
+    try { localStorage.setItem(KEY, JSON.stringify(plan)); okMsg('Saved on this computer.'); }
+    catch { okMsg("Couldn't save here. Print it instead."); }
+  };
+  $('pClear').onclick = () => { $('pConfirm').hidden = false; $('pKeep').focus(); };
+  $('pKeep').onclick = () => { $('pConfirm').hidden = true; $('pClear').focus(); };
+  $('pYes').onclick = () => {
+    for (const b of BOXES) plan[b.id] = [];
+    try { localStorage.removeItem(KEY); } catch {}
+    $('pConfirm').hidden = true; refreshCards(); okMsg('Your plan is cleared.'); $('pClear').focus();
+  };
+  $('pPrint').onclick = () => { buildPrint(); print(); };
+
+  // ======================================================================================
+  // Help dialog: Esc and Close close it, focus stays inside while it is open and returns to More help
+  // ======================================================================================
+  const dlg = $('helpDlg');
+  $('helpLines').innerHTML = HELP_HTML.map(t => `<p>${t}</p>`).join('');
+  $('moreHelp').onclick = () => {
+    hush(); dlg.showModal(); $('helpClose').focus();   // never spoken on open: speakers would tell the room
+  };
+  $('helpRead').onclick = () => readLine(L.help);   // only when the student asks
+  $('helpClose').onclick = () => dlg.close();
+  dlg.addEventListener('close', () => { hush(); $('moreHelp').focus(); });
+  dlg.addEventListener('keydown', e => {
+    if (e.key !== 'Tab') return;
+    const f = [...dlg.querySelectorAll('a[href],button')], first = f[0], last = f[f.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  });
+
+  // ======================================================================================
+  // Narration: one welcome per mode (after the first tap), the situation hint once, the help line; Read always wins
+  // ======================================================================================
+  const said = new Set(), queued = new Set(), started = [];
+  let tapped = false, vq = Promise.resolve(), vgen = 0, readP = Promise.resolve(), cues = 0;
+  for (const ev of ['pointerdown', 'keydown']) addEventListener(ev, e => {
+    if (tapped) return; tapped = true;
+    const b = e.target && e.target.closest ? e.target.closest('button') : null;
+    if (b && b.id === 'sound') return;
+    const before = cues;
+    // decide after this tap's own handler has run: if it queued its own line, or was Read, skip the welcome (unmarked)
+    const go = () => {
+      removeEventListener('click', go); removeEventListener('keyup', go); clearTimeout(fb);
+      setTimeout(() => { if (b && (b.id === 'read' || b.id === 'moreHelp')) return; if (cues === before) narrate(WELCOME[state.mode]); });
+    };
+    addEventListener('click', go); addEventListener('keyup', go); const fb = setTimeout(go, 1500);
+  }, true);
+  // a fixed line, once; ok() is checked when its turn comes (a line whose moment has passed is dropped, unmarked)
+  function narrate(key, ok) {
+    if (!tapped || !Curio.sound || said.has(key) || queued.has(key)) return false;
+    queued.add(key); cues++;
+    const gen = vgen, line = L[key];
+    vq = vq.then(async () => {
+      await readP;
+      if (gen !== vgen) return;            // dropped by hush(): not marked said, so its trigger can queue it again
+      queued.delete(key);
+      if ((ok && !ok()) || dlg.open) return;   // nothing plays by itself while More help is open
+      said.add(key); started.push(line);
+      await Promise.race([say(line), wait(2500 + 80 * line.length)]);
+    });
+    return true;
+  }
+  function hush() { vgen++; queued.clear(); vq = Promise.resolve(); readP = Promise.resolve(); Curio.stop(); }   // a stopped Read clip never ends, so nothing may wait on it
+  function readNow() { readLine($('hint').textContent); }
+  function readLine(h) {
+    hush(); started.push('READ:' + h);
+    readP = Promise.race([say([h], true), wait(2500 + 80 * h.length)]).catch(() => {});
+  }
+  function setHint(h) { if ($('hint').textContent !== h) $('hint').textContent = h; }
+  function live(s) { $('live').textContent = s; }
+
+  // ======================================================================================
+  // Modes and layout
+  // ======================================================================================
+  function setMode(m) {
+    hush();
+    state.mode = m;
+    document.body.dataset.mode = m;
+    for (const k of ['map', 'body', 'plan']) $('m-' + k).setAttribute('aria-pressed', k === m);
+    for (const el of document.querySelectorAll('[data-modes]')) el.hidden = !el.dataset.modes.split(' ').includes(m);
+    $('planView').hidden = m !== 'plan';
+    sv.style.display = m === 'plan' ? 'none' : '';
+    $('ov').innerHTML = '';
+    sv.setAttribute('aria-label', m === 'body' ? 'A figure with seven hotspots, and a chart of stress over a week' : 'Island map');
+    if (m === 'map') { renderSit(); renderCard(); setHint(L[state.sit ? 'h-sit' : 'h-map']); }
+    else if (m === 'body') { setHint(L['h-body']); if (!state.hs) $('hsCard').innerHTML = '<p class="empty">Click a spot on the figure to read about it.</p>'; else openHotspot(state.hs); }
+    else { setHint(L['h-plan']); renderChips(); renderPlanCard(); $('pConfirm').hidden = true; }
+    lastSize = ''; relayout();
+    $('panel').scrollTop = 0;
+    narrate(WELCOME[m]);
+  }
+  for (const k of ['map', 'body', 'plan']) $('m-' + k).onclick = () => { if (state.mode !== k) setMode(k); };
+
+  let page = null, lastSize = '';
+  function pageLayout() { const w = innerWidth, h = innerHeight; return w >= 1000 && h >= 700 ? 'wide' : w >= 600 && w / h >= 1.25 ? 'compact' : 'stack'; }
+  function relayout() {
+    const p = pageLayout();
+    if (p !== page) { page = p; for (const c of ['wide', 'compact', 'stack']) document.body.classList.toggle(c, c === p); }
+    const st = $('stage');
+    document.body.style.setProperty('--footh', (page === 'stack' ? document.querySelector('footer').offsetHeight : 0) + 'px');
+    if (page === 'stack' && state.mode !== 'plan') {
+      const w = st.getBoundingClientRect().width || innerWidth;
+      st.style.height = Math.round(state.mode === 'body' ? (w < 560 ? clamp(Math.min(w * 1.6, innerHeight - 290), 520, 760) : clamp(w * .7, 420, 600)) : Math.min(clamp(w * .92, 340, 620), Math.max(300, innerHeight * .55))) + 'px';
+    } else st.style.height = '';
+    if (state.mode === 'plan') return;
+    const r = st.getBoundingClientRect(), key = state.mode + ':' + Math.round(r.width) + 'x' + Math.round(r.height);
+    if (key === lastSize) return;
+    lastSize = key;
+    const W = Math.max(300, Math.round(r.width)), H = Math.max(300, Math.round(r.height));
+    sv.setAttribute('width', W); sv.setAttribute('height', H); sv.setAttribute('viewBox', `0 0 ${W} ${H}`);
+    const f = document.activeElement, fid = f && f.dataset ? f.dataset.id : null, fpin = f && f.classList && (f.classList.contains('pin') || f.classList.contains('hs'));
+    if (state.mode === 'map') buildMap(W, H); else buildBody(W, H);
+    if (fpin && fid) { const g = sv.querySelector(`[data-id="${fid}"]`); if (g) g.focus(); }
+  }
+  new ResizeObserver(() => relayout()).observe($('stage'));
+  addEventListener('resize', () => relayout());
+
+  // Sound turned back on after a silent start: the mode's welcome, if it was never said
+  Curio.onSound(on => { if (on && tapped) narrate(WELCOME[state.mode]); });
+  Curio.onMotion(() => { if (state.mode === 'map') drawMapState(false); });
+  Curio.init({clips: "voice:*", rate: .9, readFallback: () => $('hint').textContent});
+  $('read').onclick = readNow;
+
+  buildChips(); renderCard();
+  window.__tool = {state, plan, setMode, allLines, pickSituation, clearSituation, setHalf, openLandmark, openHotspot, setBurst, togglePick,
+    route, said, queued, started, LM, SITS, HS, L, KEY,
+    lit: () => LM.filter(l => !M.pins[l.id].g.classList.contains('dim')).map(l => l.id),
+    onRoute: () => LM.filter(l => M.pins[l.id].g.classList.contains('onroute')).map(l => l.id),
+    path: () => { const p = sv.querySelectorAll('#routeLayer .rt'); const last = p[p.length - 1]; return last ? {half: last.dataset.half, dash: last.querySelectorAll('path')[1].getAttribute('stroke-dasharray'), d: last.querySelectorAll('path')[1].getAttribute('d')} : null; },
+    hint: () => $('hint').textContent, layout: () => ({page, all: M && M.all, fs: M && M.fs}),
+    curio: () => ({last: Curio.last, sound: Curio.sound, reduce: Curio.reduce})};
+  setMode('map');
+})();
+</script>
+</body>
+</html>
