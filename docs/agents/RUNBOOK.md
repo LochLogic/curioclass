@@ -65,6 +65,22 @@ then the item goes back to "ready" with a reply on the comment and the comment m
   retrofit the 10 grade 11 tools and the K-2 tools onto it. The first four G11 tools (rollercoaster, island, outbreak,
   ferris) predate the held-click rule and may still have the first-tap race.
 - **Grade 11 batch: complete** (10 tools live 2026-10-26).
+- **SEL batch (2026-10-26):** log in `docs/agents/BATCH-SEL-LOG.md`. Brain Gym was renamed Not Yet Gym ("Brain Gym"
+  is a registered trademark); check every new tool name against trademarks at spec time.
+- **Voice size and level (voice.py):** lines.json `"kbps": 16` re-encodes a tool with many lines to fit the 2 MB
+  bundle limit (walk-in-their-shoes, 156 lines). `encode` now lifts a quiet take (speech RMS under 3500) toward 4500,
+  capped at a 28000 peak; run `--reencode` on an older tool if a clip sounds faint.
+- **Agent Chrome hygiene:** every agent that drives Chrome gets its own scratch folder, `--user-data-dir`, and private
+  ports, and kills only the pids it started. One builder killed Chromes by name pattern and broke two other agents;
+  two verifiers once shared a scratch folder. `scripts/drive.py` starts Chrome with Popen, which sometimes never
+  opens the debug port ("chrome did not start"); then launch Chrome with PowerShell `Start-Process` on the same port
+  and drive.py reuses it. Its `--host` mode writes host.html into the tool folder: delete it after.
+- **check_concepts drift:** `python scripts/check_concepts.py --write` regenerates `data/tools-concepts.csv` from the
+  concept sources (`data/concepts/*.txt`) and silently reverts any row edited only in the CSV (six were lost and
+  restored on 2026-10-26: line-safari, art-passport, paint-mixer, orchestra-zoo, beat-lab, fingerspell-flash). Edit
+  the concept source, not the CSV (those six are now copied back into `data/concepts/electives.txt`).
+- **Integrator fixes:** when both fix rounds are used and one narrow should-fix remains, fixing it yourself and
+  appending an "Integrator fix" note to verify.md (with what you rechecked) has worked four times.
 - **Paused (specs done, not built):** circuit-builder, sound-studio, satire-decoder, usage-panel, stock-market-1929.
   Their specs predate STANDARDS.md (one voice, no Look section): update voice and accent before building.
 - **Lesson plans (2026-10-25):** every tool gets `plan.md` (docs/LESSON-PLANS.md). Cory approved the three grade-2
