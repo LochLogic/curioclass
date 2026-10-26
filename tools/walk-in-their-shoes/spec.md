@@ -4,7 +4,7 @@
 Replay the same small moment in each character's shoes and find the one thing each of them knew that nobody else did, then choose what happens next and see how it lands on everyone.
 
 ## Not like
-- not-yet-gym: it trains one creature through challenges with goals and unlocks; this is a short storybook with no goals, no score and no growth meter, where the mechanic is switching viewpoint on one fixed moment.
+- comeback-club: it trains one creature through challenges with goals and unlocks; this is a short storybook with no goals, no score and no growth meter, where the mechanic is switching viewpoint on one fixed moment.
 - feelings-faces (K-2): it reads one face's eyebrows, eyes and mouth; here the faces only show what others could see, and the point is the hidden reason behind them.
 - feelings-weather-report and calm-corner (K-2): those name and calm your own feelings; this never asks about the student's own feelings, only about fictional characters'.
 
@@ -134,7 +134,7 @@ Painted illustrations (Cory, 2026-10-26: "lets just improve the graphics"); plan
 - No people anywhere.
 
 ## Voice
-Bank `gentle-storyteller` (voice Vindemiatrix), style "Say gently and expressively, like a grandmother reading a picture book aloud". Not used by any SEL neighbor (calm-corner uses Achernar, feelings tools use Puck; not-yet-gym must pick a different one). One storyteller voices every character, as in a read-aloud.
+Bank `gentle-storyteller` (voice Vindemiatrix), style "Say gently and expressively, like a grandmother reading a picture book aloud". Not used by any SEL neighbor (calm-corner uses Achernar, feelings tools use Puck; comeback-club must pick a different one). One storyteller voices every character, as in a read-aloud.
 
 Spoken lines, all recorded:
 - The 10 UI lines above (fill-in names make one clip per name where a name appears: record the shoes, beat 3 and beat 4 lines once per character, 9 characters).

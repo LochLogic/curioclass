@@ -6,7 +6,7 @@ Grow a fictional kid's decision as a tree, then drag time from Right away to Nex
 ## Not like
 - conflict-coach (6-8, roleplay): there you replay one conversation line by line and the choice is how to say it. Here nobody talks, nothing is rewound, and the choice is what to do: you compare several whole options side by side as branches over time.
 - walk-in-their-shoes (3-5, story): there you replay one moment through each character's eyes and pick one ending. Here you never switch viewpoint; you lay out every option at once, pick the goals, and scrub time across all of them.
-- not-yet-gym (3-5, creature): a training loop with one creature and puzzles. No creature, no puzzles here; the only thing that grows is the tree you plant.
+- comeback-club (3-5, creature): a training loop with one creature and puzzles. No creature, no puzzles here; the only thing that grows is the tree you plant.
 - calm-corner, feelings-weather-report (K-2): those name and calm feelings. Here no one's feelings are scored; branches are marked only against a fictional kid's goals.
 
 ## Who and how
@@ -185,7 +185,7 @@ So in every dilemma the right-away leader is not the next-month leader with all 
 - Everything else (branches, leaves, bands, buds, goal icons, preview.svg) is drawn in code. Each painting is named once in an `ART` map in src.html (the bundler inlines a copy per name).
 
 ## Voice
-Bank voice `casual-peer` (Zubenelgenubi): "Say casually and naturally, like a friendly teenager explaining something." Not used by any sibling (walk-in-their-shoes gentle-storyteller, not-yet-gym upbeat-guide, conflict-coach big-sister). Leaf texts and option cards are on screen only. Fixed lines:
+Bank voice `casual-peer` (Zubenelgenubi): "Say casually and naturally, like a friendly teenager explaining something." Not used by any sibling (walk-in-their-shoes gentle-storyteller, comeback-club upbeat-guide, conflict-coach big-sister). Leaf texts and option cards are on screen only. Fixed lines:
 - Welcome, Grow: "Plant a few options, pick what matters, then slide time forward and watch what grows."
 - Welcome, Side by side: "Same choices, two sets of goals. Watch where they agree and where they don't."
 - Setup, one per dilemma: the four Setup texts in Content.

@@ -8,7 +8,7 @@ Every stress has a part you can change and a part you can't: pick an ordinary si
 - community-project-planner (9-12 SEL, tycoon): it runs a project with a budget, team and time. Here nothing is managed or scored; the only "plan" is a short personal coping plan made from chips.
 - stress-toolkit (6-8 health, sandbox, not built): it tries breathing, grounding and journaling exercises and tracks which help. Here no exercise is run or timed and nothing is tracked; strategies are places to read about and match to a situation.
 - calm-corner (K-2): guided calm-down activities on a projector. Here there is no guided breathing at all (one landmark mentions deep breaths as text).
-- not-yet-gym (3-5): growth mindset as a training loop with stripes. No rewards, goals met or progress here.
+- comeback-club (3-5): growth mindset as a training loop with stripes. No rewards, goals met or progress here.
 
 ## Who and how
 - Grades 9-12, Social and Emotional Learning, module Stress and Resilience. Format: Explorer.
