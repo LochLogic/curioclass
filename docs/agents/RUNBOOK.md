@@ -77,6 +77,16 @@ then the item goes back to "ready" with a reply on the comment and the comment m
   concept sources (`data/concepts/*.txt`) and silently reverts any row edited only in the CSV (six were lost and
   restored on 2026-10-26: line-safari, art-passport, paint-mixer, orchestra-zoo, beat-lab, fingerspell-flash). Edit
   the concept source, not the CSV (those six are now copied back into `data/concepts/electives.txt`).
+- **Deploy while agents are mid-edit:** `build_site.py` (and `check_tools.py`) rebundle every tool from its src.html,
+  so a deploy from the working folder ships half-built tools. Commit the finished tool, then build and deploy from a
+  clean worktree of main (`git worktree add <scratch>/deploy-wt main`; robocopy `library/` across once with
+  `/E /XC /XN /XO`, since its art is not in git). An unchanged `git status` there after the build means the bundles
+  matched the commit.
+- **Graphics pass (2026-10-26):** people and characters from Codex (`gptart.py`; base first, pick it, then siblings
+  with `"ref"` + `"ref_mode": "style"` and variants with plain `"ref"`); scenes and props from Cloudflare FLUX.2
+  (`cfart.py`, free). Avoid candidates with light streaks across the key color (they break the cutout). Character
+  sheets: `scripts/split_sheet.py` cuts one sheet into mood cells. Each agent driving Chrome needs its own debugging
+  port, not just its own profile (two agents both on 9471 kept killing each other's runs).
 - **Integrator fixes:** when both fix rounds are used and one narrow should-fix remains, fixing it yourself and
   appending an "Integrator fix" note to verify.md (with what you rechecked) has worked four times.
 - **Paused (specs done, not built):** circuit-builder, sound-studio, satire-decoder, usage-panel, stock-market-1929.
