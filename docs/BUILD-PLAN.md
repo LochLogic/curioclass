@@ -18,6 +18,7 @@ the concept catalog, the neighbors script, the kit, the family specs and the bri
 | 3. Build | fresh build agent | `docs/agents/BUILD.md` | draft tool: src.html, tool.draft.json, notes.md, art/prompts.json, voice/lines.json |
 | 4. Verify | fresh verify agent, cold | `docs/agents/VERIFY.md` | `tools/<id>/verify.md`, PASS or FIX with findings |
 | 5. Fix | the build agent again (at most 2 rounds) | its verify.md | then a re-verify |
+| 5b. Lesson plan | fresh plan agent, after a PASS | `docs/agents/PLAN.md` | `tools/<id>/plan.md`, checked by `scripts/check_plans.py` (docs/LESSON-PLANS.md) |
 | 6. Integrate | the integrating session | this file | commit, board, art and voice queues |
 | 7. Art | daily rhythm (docs/ART.md) | | Cloudflare, local FLUX, Codex, Gemini for people |
 | 8. Voice | daily rhythm (scripts/voice.py) | | Gemini or the local voice |
@@ -67,6 +68,6 @@ children's tools and are not used. See docs/POLISH.md (Sound and voice) and docs
 
 1. `python scripts/board.py --wave N` for the list.
 2. Spec agents in parallel (they only write spec.md). Read all the specs together; send back overlaps.
-3. Build agents, then verify agents, one tool each. Builds only touch their own tool folder, so they can run in
+3. Build agents, then verify agents, then plan agents for each PASS, one tool each. Builds only touch their own tool folder, so they can run in
    parallel; a family's first tool runs before its siblings (it writes the engine).
 4. Integrate: check_tools, commit, board, queue art and voice, add to the Review Desk when art and voice are in.

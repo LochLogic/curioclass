@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% from "macros.html" import crumbs %}
+{% set m = t.module %}
+{% block title %}Lesson plan: {{ t.title }}, {{ t.meta.grades_label | lower }} · Curio Class{% endblock %}
+{% block description %}A free {{ meta.minutes }}-minute lesson plan built around {{ t.title }}: {{ meta.goal }}{% endblock %}
+{% block main %}
+<div class="wrap plan-page">
+  <div class="no-print">{{ crumbs([(grade_label(m.grade), grade_href(m.grade)), (t.subject_info.short, '/subjects/' ~ m.subject ~ '/'), (t.title, t.url), ('Lesson plan', None)]) }}</div>
+  <div class="plan-head">
+    <div>
+      <p class="eyebrow">Lesson plan · {{ t.meta.grades_label }} · {{ meta.minutes }} minutes</p>
+      <h1>{{ t.title }}</h1>
+      <p class="plan-goal">{{ meta.goal }}</p>
+      <div class="actions no-print">
+        <a class="btn primary" href="{{ t.url }}{{ t.tool_id }}" target="_blank" rel="noopener">▶ Open the tool</a>
+        <button class="btn" type="button" onclick="print()">Print the plan</button>
+        <a class="btn" href="{{ t.url }}{{ t.tool_id }}" download="{{ t.file }}">Download the tool</a>
+      </div>
+    </div>
+    <dl class="facts">
+      <dt>Standard</dt><dd>{% for c in meta.focus.split() %}<a href="/standards/{{ slug(c) }}/"><code>{{ c }}</code></a> {{ std_framework[c] }}{% if not loop.last %}<br>{% endif %}{% endfor %}</dd>
+      <dt>Shape</dt><dd>{{ arc[0] }}</dd>
+      <dt>Grouping</dt><dd>{{ meta.grouping }}</dd>
+      <dt>You need</dt><dd>{{ meta.materials }}</dd>
+      <dt>Tool</dt><dd>curioclass.org{{ t.url }}</dd>
+    </dl>
+  </div>
+  <ol class="plan-flow" aria-label="The lesson at a glance">
+    {% for title, mins, _ in sections if mins %}<li style="flex-grow:{{ mins }}"><b>{{ title }}</b><span>{{ mins }} min</span></li>{% endfor %}
+  </ol>
+  <div class="plan-body">
+    {% for title, mins, html in sections %}
+    <section class="plan-part{% if not mins %} plan-aside{% endif %}">
+      <h2>{{ title }}{% if mins %} <span>{{ mins }} min</span>{% endif %}</h2>
+      {{ html | safe }}
+    </section>
+    {% endfor %}
+  </div>
+  <p class="plan-foot">How each button works is in the <a href="{{ t.url }}">teacher notes</a>. From Curio Class, free under CC BY 4.0: change it, print it, share it.</p>
+</div>
+{% endblock %}

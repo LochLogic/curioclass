@@ -17,6 +17,7 @@ BASE_URL = 'https://curioclass.org'
 sys.path.insert(0, str(Path(__file__).parent))
 from standards import validate  # noqa: E402
 from bundle_tool import bundle_all  # noqa: E402
+import check_plans  # noqa: E402
 
 bundle_all()  # tools with src.html get their art inlined first
 
@@ -87,6 +88,10 @@ for c in read('tools-concepts.csv'):
         notes = folder / 'notes.md'
         t['notes_html'] = markdown.markdown(notes.read_text(encoding='utf-8')) if notes.exists() else ''
         t['preview'] = (folder / 'preview.svg').exists()
+        t['plan'] = check_plans.parse(c['tool_id'])
+        bad = check_plans.problems(c['tool_id'], m)
+        if bad:
+            sys.exit(f"{c['tool_id']}/plan.md: " + '; '.join(bad) + ' (python scripts/check_plans.py)')
         span = re.search(r'(K|\d+)(?:-(\d+))?$', t['meta'].get('grades_label', ''))
         t['fit'] = expand(f'{span[1]}-{span[2] or span[1]}'.lower()) if span else m['grades']
     tools.append(t)
@@ -237,6 +242,10 @@ for t in tools:
         if t['preview']:
             shutil.copy2(TOOLS / t['tool_id'] / 'preview.svg', dest / 'preview.svg')
         render('tool.html', t['url'], t=t, related=related, collection=collection)
+        if t['plan']:
+            plan = t['plan']
+            render('plan.html', t['url'] + 'plan/', t=t, meta=plan['meta'], arc=check_plans.ARCS[plan['meta']['arc']],
+                   sections=[(title, mins, markdown.markdown(text)) for title, mins, text in plan['sections']])
     else:
         render('bench.html', t['url'], t=t, related=related, collection=collection, index=False)
 

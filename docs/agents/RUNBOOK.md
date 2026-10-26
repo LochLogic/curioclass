@@ -25,6 +25,7 @@ the account's session usage limit stopped 4 parallel agents once (they resume wi
 | Verify | fresh, cold | "You are the verify agent for ONE Curio Class tool: `<id>`. ... Follow docs/agents/VERIFY.md exactly, cold, plus STANDARDS.md. Recompute every number yourself. Write tools/<id>/verify.md (verdict line first). Do not fix anything, do not commit." |
 | Fix | the SAME build agent (SendMessage to it) | Paste the findings, should-fix first, with the verifier's suggested causes. |
 | Re-verify | fresh, cold | "An earlier verify found ...; the builder says all are fixed. Re-check each yourself, cold, and check nothing regressed. Append '## Re-verify' to verify.md." |
+| Plan | fresh, after the final PASS | "You are the plan agent for ONE Curio Class tool: `<id>`. ... Follow docs/agents/PLAN.md exactly, plus docs/LESSON-PLANS.md and STANDARDS.md. Only write tools/<id>/plan.md. `python scripts/check_plans.py <id>` must pass. Do not commit." Read the plan yourself once: would a sub manage with it? |
 
 At most 2 fix rounds; a third only for a narrow, well-diagnosed problem in the tool's core. After the last round with
 no blocker left, look at one frame yourself (the 680x425 preview is a good one) instead of another full re-verify.
@@ -66,4 +67,7 @@ then the item goes back to "ready" with a reply on the comment and the comment m
 - **Grade 11 batch: complete** (10 tools live 2026-10-26).
 - **Paused (specs done, not built):** circuit-builder, sound-studio, satire-decoder, usage-panel, stock-market-1929.
   Their specs predate STANDARDS.md (one voice, no Look section): update voice and accent before building.
+- **Lesson plans (2026-10-25):** every tool gets `plan.md` (docs/LESSON-PLANS.md). Three grade-2 test plans exist
+  (melt-or-not, contraction-crusher, hamburger-paragraph) for Cory and a working teacher to judge. After that
+  verdict, backfill the other live tools with plan agents and add plans to new waves.
 - **Parked K-2 tools waiting on voice:** see the Review Desk "Parked" filter.

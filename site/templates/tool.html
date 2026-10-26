@@ -17,6 +17,7 @@
       <div class="actions">
         <a class="btn primary" href="{{ t.url }}{{ t.tool_id }}" target="_blank" rel="noopener">▶ Play full screen</a>
         <a class="btn" href="{{ t.url }}{{ t.tool_id }}" download="{{ t.file }}">Download</a>
+        {% if t.plan %}<a class="btn" href="{{ t.url }}plan/">Lesson plan</a>{% endif %}
         <a class="btn" href="#p-embed" onclick="document.getElementById('t-embed').click()">Embed</a>
       </div>
       <dl class="facts">
@@ -37,6 +38,7 @@
     <button role="tab" aria-selected="false" aria-controls="p-src" id="t-src">Sources and license</button>
   </div>
   <div class="panel notes-body" role="tabpanel" id="p-notes" aria-labelledby="t-notes">
+    {% if t.plan %}<p class="plan-link">Planning a whole lesson? <a href="{{ t.url }}plan/">Here is a {{ t.plan.meta.minutes }}-minute lesson plan</a> that opens the standard and brings the class to this tool.</p>{% endif %}
     {% if t.notes_html %}{{ t.notes_html | safe }}{% else %}<p>Teacher notes coming soon.</p>{% endif %}
   </div>
   <div class="panel" role="tabpanel" id="p-std" aria-labelledby="t-std" hidden>
