@@ -22,7 +22,7 @@ Thirteen K-2 band tools, coded first, art second, polish third.
 
 About 115 images left: 103 for FLUX overnight, 12 people for Gemini.
 
-A draft keeps `tool.draft.json` instead of `tool.json`: the site leaves it on the bench and check_tools skips it. Build one for testing with `CURIO_DRAFT=1 python scripts/bundle_tool.py <id>` (placeholder circles for missing art; the generated html is gitignored per folder). When its art is in, rename `tool.draft.json` to `tool.json`, delete the folder's `.gitignore`, and it ships with the next deploy.
+A draft keeps `tool.draft.json` instead of `tool.json`: the site leaves it on the bench and check_tools skips it. Build one for testing with `CURIO_DRAFT=1 python scripts/bundle_tool.py <id>` (placeholder circles for missing art; the generated html, like every tool bundle, is gitignored). When its art is in, rename `tool.draft.json` to `tool.json` and it ships with the next deploy.
 
 Voice: every tool has `voice/lines.json` (Puck voice, a style line per tool). Nothing is recorded yet (Gemini credits); tools fall back to the browser voice. I Spy Science has about 250 lines, so it takes a few days of quota.
 

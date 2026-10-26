@@ -21,7 +21,6 @@ If the spec is wrong or impossible, stop and report it rather than improvising.
 - `notes.md`: teacher notes (a 5-minute start, the modes, talk questions, good to know). Look at `tools/shape-talk/notes.md`.
 - `art/prompts.json`: the spec's art list in the format of `tools/calm-corner/art/prompts.json`. Do not draw art.
 - `voice/lines.json`: voice, style and every line `allLines()` returns. Do not record.
-- `.gitignore` containing `<tool-id>.html` (draft builds are not committed).
 
 ## Rules
 

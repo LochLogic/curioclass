@@ -9,3 +9,6 @@ tools/*/voice/raw/
 tools/*/host.html
 library/_sources/
 library/*/art/
+# tool bundles are build output (build_site.py and check_tools.py remake them from src.html)
+tools/*/*.html
+!tools/*/src.html
