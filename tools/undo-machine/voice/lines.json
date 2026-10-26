@@ -1,0 +1,18 @@
+{
+ "bank": "hs-narrator",
+ "voice": "Kore",
+ "style": "Read clearly and naturally, at a moderate pace",
+ "lines": [
+  "Welcome to the Undo Machine. Build a chain on the top line, then build the chain that brings every number home on the bottom line.",
+  "Press Run to send the test numbers through. Each one rides out on top and has to ride home on the bottom.",
+  "Twelve puzzles. Each one gives you a chain of machines. Your job is to bring every number home.",
+  "Start at the out end. The last thing done is the first thing to undo.",
+  "Two different numbers just came out the same. Once that happens, no machine can know which one to send back.",
+  "A gate decides which numbers may enter. Keep everything entering the fold on one side of zero, and the crash goes away.",
+  "Every number made it home. Your bottom line is the inverse.",
+  "Some numbers came home as something else. Check the lost tray to see where they ended up.",
+  "The graph shows your chain, your undo chain, and the line y equals x. Press Mirror to flip your chain across that line.",
+  "The mirror image has two points above one input. That flipped graph is not a function, so the chain can't be undone as built.",
+  "Puzzle eleven. Build a two machine chain that undoes itself, so doing it twice brings every number home."
+ ]
+}

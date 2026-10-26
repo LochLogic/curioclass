@@ -1,0 +1,1757 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Undo Machine · Ride out, ride home · Curio Class</title>
+<meta name="description" content="Send numbers out along a chain of machines, then build the undo chain that brings every one home. Feel why undoing runs in reverse order, and watch squaring and rounding crash two numbers into one until a gate fixes it. Grade 11 Algebra 2. Works offline.">
+<!--
+Undo Machine (Curio Class)
+Grade 11, Algebra 2 / Functions, module "Building and Inverting Functions": F-BF.A.1c (compose functions), F-BF.B.4a
+(write an inverse), F-BF.B.4b (verify by composition), F-BF.B.4c (read inverse values from a graph or table), F-BF.B.4d
+(make a function invertible by restricting the domain), F-BF.B.5 (exponents and logs are inverses).
+Students drive, on their own laptops. Workshop: build any forward chain and any undo chain and run eight test numbers
+out along the top line and home along the bottom one. Puzzles: twelve locked chains to undo, gate or prove impossible.
+The one idea: undoing goes in reverse order, and a machine that forgets something (square, absolute value, round)
+crashes two numbers into one output until a gate on the input keeps the fold on one side of zero.
+Facts: OpenStax Precalculus 2e, sections 1.4, 1.7 and 6.3 (CC BY 4.0); Common Core State Standards for Mathematics.
+Puzzle answers checked by direct arithmetic. Machines, conveyors, tokens, gate, chute and graph drawn in code; no images.
+One file, no network requests. Content CC BY 4.0, code MIT. curioclass.org
+-->
+<link rel="stylesheet" href="kit:curio">
+<link rel="stylesheet" href="kit:theme-912">
+<style>
+/* copper accent: 6.8:1 on --panel, 6.4:1 on --sec-bg, --brand-ink on it 7.2:1 */
+:root{--brand:#e98a4c;--brand-ink:#1c1203;--bad:#ff9d8a;--plate:#121922;--card:#1b2431;--card-2:#222d3c;--belt:#0a0f16;--halo:#0b1017}
+body:not(.stack){height:100vh}
+main{min-height:0;grid-template-columns:minmax(0,1fr) 360px}
+.floorcol{order:1;display:flex;flex-direction:column;min-width:0;min-height:0;background:var(--paper)}
+.panel{order:2;min-height:0}
+.stage{flex:1;min-height:0;background:radial-gradient(ellipse at 40% 30%,#141d29,#0a0f16 75%)}
+#fitbox,#fitboxC{position:relative;width:100%;height:100%}
+.scene{width:1200px;height:560px}
+#sceneC{width:760px;height:520px}
+body.wide #fitboxC,body:not(.wide) #fitbox{display:none}
+#fl{display:block;overflow:visible;touch-action:manipulation}
+/* compact: verdict and tip ride in a bar under the floor; Run and the mode buttons sit in short rows above the parts */
+.cbar,.cctl{display:none}
+body.compact .cbar{display:flex;gap:8px;padding:5px 10px;background:var(--head-bg);border-top:1px solid var(--line);align-items:stretch}
+body.compact .cbar .verdict{flex:1.6;padding:4px 9px;gap:2px;min-width:0}
+body.compact .cbar .tip{flex:1;font-size:13px;line-height:1.3;padding:4px 9px;min-width:0}
+body.compact .cbar .vic{width:24px;height:24px;font-size:14px}
+body.compact .cbar .vword{font-size:15px}
+body.compact .cbar .vdetail{font-size:12.5px;line-height:1.3;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+body.compact .cctl{display:flex;flex-direction:column;gap:6px}
+body.compact .cctl .btnrow:empty{display:none}
+body.compact .cctl .big-btn{flex:1;min-width:76px;font-size:15px;padding:0 8px;border-radius:8px}
+body.compact .cctl .btn{flex:1 1 auto;font-size:13px;padding:0 6px}
+body.compact .cctl .btnrow{flex-wrap:nowrap;gap:5px}
+body.compact #cr4{display:flex;flex-wrap:wrap;gap:5px}
+#panel>#cr4:empty{display:none}
+body.compact #cr4 .btn{flex:1 1 auto;font-size:13px;padding:0 6px}
+body.compact .part{min-height:44px}
+body.compact #lvH,body.compact #binH{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+body.compact #binSec{padding:5px}
+body.compact #gateSec{padding:5px 8px}
+body.compact #gateSec>h2{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+body.compact .gaterow{flex-wrap:nowrap;gap:5px}
+body.compact .glabel{margin:3px 0 0;font-size:13px}
+body.compact #gateSec .btn{padding:0 10px}
+body.compact #levelSec{padding:5px 7px}
+body.compact .ltitle,body.compact .goal{display:inline}
+body.compact .ltitle::after{content:" "}
+body.compact .levels{margin-bottom:4px}
+body.compact #myNum{min-width:0;width:100%}
+body.compact #runRow,body.compact #pzBtns,body.compact #toolBtns{display:none}
+body.compact .ltitle{font-size:13px;margin:0}
+body.compact .goal{font-size:13px}
+.invv{display:none}
+body.compact .invv{display:inline}
+body.compact .formula .inv{display:none}
+/* formula strip */
+.formula{display:flex;flex-wrap:wrap;gap:4px 22px;align-items:baseline;padding:8px 14px;background:var(--head-bg);border-bottom:1px solid var(--line);
+  font:600 17px/1.35 var(--readout-font);min-height:44px}
+.formula .fx{display:inline-flex;gap:8px;align-items:baseline;white-space:nowrap}
+.formula .fx b{font-weight:700}
+.formula .f1 b{color:var(--gr-1)} .formula .f2 b{color:var(--gr-2)}
+.formula sup,.eqs sup,.vdetail sup{font:700 .78em/0 'Segoe UI',system-ui,sans-serif;vertical-align:.55em;margin-left:1px}
+.formula .dom{color:var(--muted);font-weight:400}
+.formula .inv{color:var(--ok);font-family:'Segoe UI',system-ui,sans-serif;font-size:15px;white-space:normal}
+.formula .inv b{font-family:var(--readout-font)}
+.sw{display:inline-block;width:26px;height:0;border-top:3px solid;vertical-align:middle;position:relative;top:-4px}
+.sw1{border-color:var(--gr-1)} .sw2{border-color:var(--gr-2);border-top-style:dashed} .sw3{border-color:var(--gr-3);border-top-style:dotted} .sw4{border-color:var(--gr-4);border-top-style:dashed;border-top-width:2px}
+/* layouts (layout() in script): wide = 1000 px or wider and 700 px or taller; compact = a short landscape box such as
+   the 16:10 embed (680x425 to 1000x625), panel beside the floor; stack = narrow or portrait, panel under the floor */
+body.compact main{grid-template-columns:minmax(0,1fr) clamp(248px,30vw,300px)}
+body.compact header{padding:4px 10px;gap:6px;flex-wrap:nowrap}
+body.compact h1{font-size:17px;white-space:nowrap}
+body.compact h1 small{display:none}
+body.compact .seg button,body.compact .icon-btn{min-height:44px;padding:0 9px;font-size:14px;white-space:nowrap}
+body.compact .panel{padding:8px 10px;gap:8px}
+body.compact .sec{padding:6px 9px}
+body.compact .sec>h2{margin-bottom:4px}
+body.compact .hint{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+body.compact .formula{font-size:14px;padding:4px 10px;gap:2px 14px;min-height:0}
+body.compact .formula .inv{font-size:13px}
+body.compact .btn{font-size:14px;padding:0 8px}
+body.compact .big-btn{min-height:44px}
+body.compact .levels{grid-template-columns:repeat(12,44px);overflow-x:auto;padding-bottom:4px}
+body.compact .vword{font-size:16px}
+body.compact .bin{max-height:none}
+body.stack{height:auto}
+body.stack main{grid-template-columns:minmax(0,1fr);align-content:start}
+body.stack .panel{border-left:0;border-top:1px solid var(--line)}
+body.stack .stage{flex:none;height:auto;min-height:0}
+body.stack #fitboxC{height:auto;aspect-ratio:760/520}
+body.compact .bin{grid-template-columns:repeat(2,minmax(0,1fr))}
+body.compact .part{gap:4px;padding:4px 5px}
+body.compact .part .ps{min-width:1.8em;font-size:15px}
+body.compact .part .pn{font-size:12.5px}
+body.compact #binNote{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+@media (max-width:520px){header{gap:8px}.seg button,.icon-btn{padding:0 11px;font-size:15px;min-height:46px}.formula{font-size:14px}}
+/* panel */
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.btnrow{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.grp{display:inline-flex}
+.grp .btn{border-radius:0;margin-left:-1px}
+.grp .btn:first-child{border-radius:8px 0 0 8px;margin-left:0}
+.grp .btn:last-child{border-radius:0 8px 8px 0}
+.small{font-size:13px;color:var(--muted);margin:6px 0 0;line-height:1.35}
+.small:empty{display:none}
+.verdict{display:flex;flex-direction:column;gap:4px}
+.vlight{display:flex;align-items:center;gap:10px}
+.vic{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:50%;border:2px solid var(--btn-line);font:700 18px 'Segoe UI',system-ui,sans-serif;color:var(--muted);flex:none}
+.vword{font:700 18px 'Segoe UI',system-ui,sans-serif}
+.verdict.ok .vic{background:var(--ok);border-color:var(--ok);color:#06210f}
+.verdict.ok .vword{color:var(--ok)}
+.verdict.lost .vic{background:var(--warn);border-color:var(--warn);color:#2b0c05}
+.verdict.lost .vword{color:var(--warn)}
+.verdict.cant .vic{background:transparent;border-color:var(--bad);color:var(--bad);border-width:3px}
+.verdict.cant .vword{color:var(--bad)}
+.verdict.none .vic{border-style:dashed}
+.verdict.unsure .vic{border-color:var(--warn);color:var(--warn);border-style:dashed}
+.verdict.unsure .vword{color:var(--warn)}
+.vdetail{margin:0;font-size:14px;line-height:1.4;color:var(--ink)}
+.vdetail:empty{display:none}
+.vdetail .num{font-family:var(--readout-font);white-space:nowrap}
+.runrow{display:flex;gap:8px}
+.runrow .big-btn{flex:1}
+.myrow{display:flex;gap:6px;align-items:center}
+.myrow input.num{width:7em;flex:1;min-width:0}
+.levels{display:grid;grid-template-columns:repeat(6,1fr);gap:5px}
+.levels .btn{padding:0;font-family:var(--readout-font);position:relative}
+.levels .btn .ck{color:var(--ok);font-family:'Segoe UI',sans-serif;margin-left:2px}
+.levels .btn[aria-current="true"]{background:var(--brand);border-color:var(--brand);color:var(--brand-ink)}
+.levels .btn[aria-current="true"] .ck{color:#06331a}
+.ltitle{margin:6px 0 2px;font:700 16px 'Segoe UI',system-ui,sans-serif}
+.goal{margin:0;font-size:15px;line-height:1.4}
+.gaterow{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.gval{font:700 17px var(--readout-font);min-width:2.6em;text-align:center}
+.glabel{margin:6px 0 0;font:600 15px var(--readout-font);color:var(--brand)}
+.edname{margin:0 0 6px;font-weight:600}
+.bin{display:grid;grid-template-columns:repeat(auto-fill,minmax(112px,1fr));gap:6px;max-height:300px;overflow:auto;padding:2px}
+.part{display:flex;align-items:center;gap:8px;min-height:48px;padding:4px 8px;border-radius:8px;border:1px solid var(--btn-line);background:var(--card);color:var(--ink);text-align:left;touch-action:pan-y;user-select:none}
+.part .ps{font:700 17px var(--readout-font);min-width:2.3em;text-align:center;color:var(--brand)}
+.part .pn{font-size:13.5px;line-height:1.15}
+.part[aria-pressed="true"]{background:var(--brand);border-color:var(--brand);color:var(--brand-ink)}
+.part[aria-pressed="true"] .ps{color:var(--brand-ink)}
+.part:hover{border-color:var(--muted)}
+.ghost{position:fixed;z-index:50;pointer-events:none;opacity:.92;transform:translate(-50%,-50%);box-shadow:0 6px 18px #0008}
+.panel .tip{border-left-color:var(--focus)}
+#gv{display:block;width:100%;max-width:340px;height:auto;margin:0 auto}
+.eqs{list-style:none;margin:6px 0 6px;padding:0;font:14px/1.6 var(--readout-font)}
+.eqs li{display:flex;gap:8px;align-items:center}
+.mfail{margin:6px 0 0;font-size:14px;color:var(--bad);font-weight:600}
+.mfail:empty{display:none}
+#gv .gr-label.vlab{fill:var(--bad);font:700 12px 'Segoe UI',system-ui,sans-serif;paint-order:stroke;stroke:var(--halo);stroke-width:4px}
+/* the floor (SVG) */
+.dock{fill:#141c27;stroke:var(--line);stroke-width:2}
+.docklab{fill:var(--ink);font:800 calc(16px * var(--ts,1)) 'Segoe UI',system-ui,sans-serif;letter-spacing:.12em;text-anchor:middle}
+.subl{fill:var(--muted);font:600 calc(12px * var(--ts,1)) 'Segoe UI',system-ui,sans-serif;letter-spacing:.08em;text-anchor:middle}
+.linelab{fill:var(--muted);font:700 calc(12px * var(--ts,1)) 'Segoe UI',system-ui,sans-serif;letter-spacing:.14em}
+.belt{fill:var(--belt);stroke:#2a3546;stroke-width:1.5}
+.chev{fill:none;stroke:#334256;stroke-width:2;stroke-dasharray:8 18}
+.running .chev.f{animation:beltF 1s linear infinite}
+.running .chev.u{animation:beltU 1s linear infinite}
+@keyframes beltF{to{stroke-dashoffset:-26}}
+@keyframes beltU{to{stroke-dashoffset:26}}
+.chute{fill:none;stroke:#0a0f16;stroke-width:28;stroke-linecap:round}
+.chute2{fill:none;stroke:#2a3546;stroke-width:2;stroke-dasharray:6 8}
+.tray{fill:#10161f;stroke:var(--line);stroke-width:2;stroke-dasharray:7 5}
+
+.traylab{fill:var(--warn);font:800 calc(14px * var(--ts,1)) 'Segoe UI',system-ui,sans-serif;letter-spacing:.12em}
+.trayempty{fill:var(--muted);font:italic calc(14px * var(--ts,1)) 'Segoe UI',system-ui,sans-serif}
+.traytxt{fill:var(--ink);font:600 calc(14px * var(--ts,1)) 'Segoe UI',system-ui,sans-serif}
+.traytxt .v{font-family:var(--readout-font);font-weight:700;fill:var(--warn)}
+.slot{fill:rgba(255,255,255,.015);stroke:rgba(255,255,255,.13);stroke-width:1.5;stroke-dasharray:6 6}
+.slot.hot{stroke:var(--brand);stroke-opacity:.7}
+.slottxt{fill:#95a2b4;font:600 calc(13px * var(--ts,1)) 'Segoe UI',system-ui,sans-serif;text-anchor:middle;pointer-events:none}
+.curbox{fill:none;stroke:var(--focus);stroke-width:4;stroke-dasharray:10 6;pointer-events:none}
+.curtxt{fill:var(--focus);font:700 calc(14px * var(--ts,1)) 'Segoe UI',system-ui,sans-serif;text-anchor:middle;pointer-events:none}
+.card{cursor:pointer;outline:none}
+.card .body{fill:var(--card);stroke:var(--btn-line);stroke-width:1.5}
+.card.und .body{stroke-dasharray:7 4}
+.card .acc{pointer-events:none}
+.card.fwd .acc{fill:var(--gr-1)} .card.und .acc{fill:var(--gr-2)} .card.lap .acc{fill:var(--gr-1)}
+.card .sym{fill:var(--ink);font:700 30px 'Segoe UI',system-ui,sans-serif;text-anchor:middle;pointer-events:none}
+.card.und .sym{font-size:25px}
+.card .sym.w{font-size:22px}
+.card .nm{fill:var(--muted);font:600 calc(13px * var(--ts,1)) 'Segoe UI',system-ui,sans-serif;text-anchor:middle;pointer-events:none}
+.card.und .nm{font-size:calc(11.5px * var(--ts,1))}
+.card .cb rect{fill:var(--card-2);stroke:var(--btn-line);stroke-width:1}
+.card .cb:hover rect{stroke:var(--ink)}
+.card .cb text{fill:var(--ink);font:700 20px 'Segoe UI',system-ui,sans-serif;text-anchor:middle;pointer-events:none}
+.card .cb.x text{font-size:16px}
+.card .ring{fill:none;stroke:transparent;stroke-width:4}
+.card:focus-visible .ring{stroke:var(--focus)}
+.card.sel .ring{stroke:var(--focus);stroke-dasharray:8 5}
+.card:focus-visible.sel .ring{stroke-dasharray:none}
+.card.locked .body{fill:#161d28;stroke-dasharray:none;stroke:#3b4859}
+.card.locked .sym{fill:#b9c4d2}
+.card .lock{fill:var(--muted);font:calc(12px * var(--ts,1)) 'Segoe UI',system-ui,sans-serif;text-anchor:middle}
+.card.lap{opacity:.8}
+.card.ghostcard .body{fill:transparent;stroke:var(--focus);stroke-dasharray:4 4}
+.card.ghostcard .sym{fill:var(--focus)} .card.ghostcard .nm{fill:var(--focus)}
+.rd{fill:var(--brand);font:700 calc(15px * var(--ts,1)) var(--readout-font);text-anchor:middle;paint-order:stroke;stroke:var(--halo);stroke-width:4px}
+.gatepost{fill:#3b4859}
+.gatebar{fill:var(--brand);stroke:var(--brand-ink);stroke-width:1}
+.gatesign rect{fill:#1b2431;stroke:var(--brand);stroke-width:1.5}
+.gatesign text{fill:var(--ink);font:700 calc(14px * var(--ts,1)) var(--readout-font);text-anchor:middle}
+.coltxt{fill:var(--bad);font:700 calc(14px * var(--ts,1)) 'Segoe UI',system-ui,sans-serif;text-anchor:middle}
+.coltxt .v{font-family:var(--readout-font)}
+.colchip rect{fill:#2a1a17;stroke:var(--bad);stroke-width:2}
+.colchip text{fill:var(--ink);font:700 calc(14px * var(--ts,1)) var(--readout-font);text-anchor:middle}
+.colx{fill:var(--bad);font:800 13px 'Segoe UI',system-ui,sans-serif;text-anchor:middle;letter-spacing:.06em}
+.tok{pointer-events:none}
+.tok rect{fill:var(--brand);stroke:#0b1017;stroke-width:1.5}
+.tok text.tv{fill:var(--brand-ink);font:700 calc(14px * var(--ts,1)) var(--readout-font);text-anchor:middle}
+.tok.dim rect{fill:#2b323c;stroke:var(--muted);stroke-dasharray:4 3}
+.tok.dim text.tv{fill:var(--muted)}
+.tok.home rect{fill:var(--ok)}
+.tok.home text.tv{fill:#06210f}
+.tok.lost rect{fill:#3a2620;stroke:var(--warn)}
+.tok.lost text.tv{fill:var(--warn)}
+.ttag{fill:var(--warn);font:700 calc(11px * var(--ts,1)) 'Segoe UI',system-ui,sans-serif;text-anchor:middle;paint-order:stroke;stroke:var(--halo);stroke-width:3px}
+.rejtag{fill:var(--warn);font:700 calc(12px * var(--ts,1)) 'Segoe UI',system-ui,sans-serif;text-anchor:middle;paint-order:stroke;stroke:var(--halo);stroke-width:3px}
+</style>
+</head>
+<body>
+<header>
+  <h1>Undo Machine <small>Ride out on top. Ride home on the bottom.</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-workshop" aria-pressed="true">Workshop</button>
+    <button id="m-puzzles" aria-pressed="false">Puzzles</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true" title="Turn animation on or off">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+  <button class="icon-btn" id="read">🔊 Read</button>
+</header>
+<main>
+  <aside class="panel" id="panel">
+    <section class="sec" id="levelSec" hidden>
+      <h2 id="lvH">Puzzles</h2>
+      <div class="levels" id="levels" role="group" aria-labelledby="lvH"></div>
+      <p class="ltitle" id="lTitle"></p>
+      <p class="goal" id="goal"></p>
+    </section>
+    <p class="hint" id="hint"></p>
+    <section class="sec verdict" id="verdictSec" aria-live="polite">
+      <div class="vlight"><span class="vic" id="vIcon" aria-hidden="true">○</span><span class="vword" id="vWord">Not run yet</span></div>
+      <p class="vdetail" id="vDetail"></p>
+    </section>
+    <div class="cctl" id="cctl"><div class="btnrow" id="cr1"></div><div class="btnrow" id="cr2"></div><div class="btnrow" id="cr3"></div><div class="btnrow" id="cr4"></div></div>
+    <div class="runrow" id="runRow"><button class="big-btn" id="runBtn">▶ Run</button></div>
+    <div class="myrow" id="myRow">
+      <label class="sr" for="myNum">Your number</label>
+      <input class="num" id="myNum" inputmode="decimal" autocomplete="off" placeholder="Number" aria-describedby="tip">
+      <button class="btn" id="sendBtn" data-short="Send">Send my number</button>
+    </div>
+    <div class="btnrow" id="pzBtns" hidden>
+      <button class="btn" id="hintBtn">Hint</button>
+      <button class="btn" id="cantBtn">Can't be undone</button>
+      <button class="btn" id="resetBtn" data-short="Reset">Reset puzzle</button>
+      <button class="btn" id="nextBtn" data-short="Next" disabled>Next puzzle</button>
+    </div>
+    <div class="btnrow" id="toolBtns">
+      <button class="btn" id="gateBtn" aria-pressed="false">Gate</button>
+      <button class="btn" id="graphBtn" aria-pressed="false">Graph</button>
+      <button class="btn" id="randBtn" data-short="Random">Random chain</button>
+      <button class="btn" id="clearUBtn">Clear undo</button>
+      <button class="btn" id="clearBtn">Clear all</button>
+    </div>
+    <p class="tip" id="tip" aria-live="polite"></p>
+    <section class="sec" id="gateSec" hidden>
+      <h2>Gate</h2>
+      <div class="gaterow">
+        <div class="grp" role="group" aria-label="Gate direction"><button class="btn" id="gGe" aria-pressed="true" aria-label="greater than or equal to">≥</button><button class="btn" id="gLe" aria-pressed="false" aria-label="less than or equal to">≤</button></div>
+        <div class="grp" role="group" aria-label="Gate value"><button class="btn" id="gDec" aria-label="Gate value down">−</button><button class="btn" id="gInc" aria-label="Gate value up">+</button></div>
+        <span class="gval" id="gVal" aria-hidden="true">0</span>
+      </div>
+      <p class="glabel" id="gLabel" aria-live="polite"></p>
+    </section>
+    <section class="sec" id="editSec" hidden>
+      <h2>Selected machine</h2>
+      <p class="edname" id="edName"></p>
+      <div class="btnrow">
+        <button class="btn" id="edDec" aria-label="Number down by 1">− 1</button><button class="btn" id="edInc" aria-label="Number up by 1">+ 1</button>
+        <button class="btn" id="edL" aria-label="Move one slot left">◀</button><button class="btn" id="edR" aria-label="Move one slot right">▶</button>
+        <button class="btn" id="edDel">✕ Remove</button>
+      </div>
+    </section>
+    <section class="sec" id="binSec">
+      <h2 id="binH">Parts</h2>
+      <p class="small" id="binNote">Drag a part onto a slot, or tap it and then tap a slot. Keyboard: Enter lifts it, arrow keys pick a slot, Enter drops, Escape cancels.</p>
+      <div class="bin" id="bin" role="group" aria-labelledby="binH"></div>
+    </section>
+    <section class="sec" id="graphSec" hidden>
+      <h2>Graph</h2>
+      <svg id="gv" viewBox="0 0 320 320" role="group" aria-label="Graph of f, g and y equals x"><g id="gPlane"></g></svg>
+      <ul class="eqs" id="eqs"></ul>
+      <button class="btn" id="mirrorBtn" aria-pressed="false">Mirror</button>
+      <p class="mfail" id="mFail" aria-live="polite"></p>
+      <p class="small" id="mNote"></p>
+    </section>
+  </aside>
+  <div class="floorcol">
+    <div class="formula" id="formula" aria-live="polite"></div>
+    <div class="stage" id="stage"><div id="fitbox">
+      <div class="scene" id="scene">
+        <svg id="fl" viewBox="0 0 1200 560" role="group" aria-label="Machine floor">
+          <defs>
+            <linearGradient id="plateG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#151d28"/><stop offset=".5" stop-color="#111821"/><stop offset="1" stop-color="#151d28"/></linearGradient>
+          </defs>
+          <g id="gBase"></g>
+          <g id="gSlots"></g>
+          <g id="gGate"></g>
+          <g id="gCards"></g>
+          <g id="gGhost"></g>
+          <g id="gRead"></g>
+          <g id="gCol"></g>
+          <g id="gTray"></g>
+          <g id="gRej"></g>
+          <g id="gTok" aria-hidden="true"></g>
+          <g id="gMv"></g>
+          <g id="gCur"></g>
+        </svg>
+      </div>
+    </div><div id="fitboxC"><div class="scene" id="sceneC"></div></div></div>
+    <div class="cbar" id="cbar"></div>
+  </div>
+</main>
+<div class="sr" id="live" aria-live="polite"></div>
+<script src="kit:curio"></script>
+<script src="kit:graphing"></script>
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const {say} = Curio;
+  const NS = 'http://www.w3.org/2000/svg';
+  const mk = (tag, attrs = {}, parent) => { const e = document.createElementNS(NS, tag); for (const k in attrs) if (attrs[k] != null) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; };
+  const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;');
+
+  // ---------- spoken lines (voice/lines.json lists every one) ----------
+  const L = {
+    'workshop-welcome': 'Welcome to the Undo Machine. Build a chain on the top line, then build the chain that brings every number home on the bottom line.',
+    'workshop-run': 'Press Run to send the test numbers through. Each one rides out on top and has to ride home on the bottom.',
+    'puzzles-welcome': 'Twelve puzzles. Each one gives you a chain of machines. Your job is to bring every number home.',
+    'order-hint': 'Start at the out end. The last thing done is the first thing to undo.',
+    'collision-found': 'Two different numbers just came out the same. Once that happens, no machine can know which one to send back.',
+    'gate-intro': 'A gate decides which numbers may enter. Keep everything entering the fold on one side of zero, and the crash goes away.',
+    'all-home': 'Every number made it home. Your bottom line is the inverse.',
+    'some-lost': 'Some numbers came home as something else. Check the lost tray to see where they ended up.',
+    'graph-intro': 'The graph shows your chain, your undo chain, and the line y equals x. Press Mirror to flip your chain across that line.',
+    'mirror-fails': "The mirror image has two points above one input. That flipped graph is not a function, so the chain can't be undone as built.",
+    'self-undo': 'Puzzle eleven. Build a two machine chain that undoes itself, so doing it twice brings every number home.',
+  };
+  // each line at most once per session (all-home and some-lost: once per mode); Read repeats on demand
+  // A small queue, so one line never cuts another off. A line counts as said when it starts playing; hush() (a mode
+  // change, a new puzzle, Read) drops lines that never started without marking them, so their trigger can queue them
+  // again. With Sound off nothing is queued or used up. Read always wins: queued lines wait until it has finished.
+  const said = new Set(), queued = new Set();
+  let tapped = false, vq = Promise.resolve(), vgen = 0, reading = Promise.resolve();
+  const capped = (p, text) => Promise.race([p, Curio.wait(2500 + 80 * text.length)]);   // a stopped clip never resolves
+  function once(key, perMode) {
+    const k = perMode ? key + ':' + state.mode : key;
+    if (!tapped || !Curio.sound || said.has(k) || queued.has(k)) return;
+    queued.add(k);
+    const gen = vgen;
+    vq = vq.then(() => reading).then(() => {
+      queued.delete(k);
+      if (gen !== vgen || !Curio.sound) return null;   // dropped, not marked
+      said.add(k);
+      return capped(say(L[key]), L[key]);
+    });
+  }
+  function hush() { vgen++; vq = Promise.resolve(); reading = Promise.resolve(); queued.clear(); Curio.stop(); }
+  // the opening mode's welcome waits until the first tap's own click has run; if that tap queued a line of its own
+  // (a mode button, Gate, Graph) or was Read, the welcome is skipped unmarked, so entering the mode again plays it
+  function firstTap(e) {
+    if (tapped) return; tapped = true;
+    removeEventListener('pointerdown', firstTap, true); removeEventListener('keydown', firstTap, true);
+    const isRead = !!(e.target && e.target.closest && e.target.closest('#read'));
+    const saidBefore = said.size;
+    let done = false;
+    const go = () => {
+      if (done) return; done = true; removeEventListener('click', go, true); clearTimeout(fallback);
+      setTimeout(() => {
+        if (isRead || queued.size || said.size > saidBefore) return;
+        once(state.mode === 'workshop' ? 'workshop-welcome' : 'puzzles-welcome');
+      });
+    };
+    addEventListener('click', go, true);
+    const fallback = setTimeout(go, 900);   // a drag or a key that makes no click
+  }
+  addEventListener('pointerdown', firstTap, true); addEventListener('keydown', firstTap, true);
+
+  /* ==== FUNCTION-MACHINE ENGINE (lift to kit/function-machine.js later) ==== */
+  // Pure logic, nothing here touches the DOM. A chain is a list of machines {p: part id, a: parameter (or undefined)}.
+  // PARTS: rule, domain, formula template, partner undo and kind for each part. run(): one input through a chain with
+  // per-step values and rejections. formula(): the chain as an expression. track(): the set of values that can enter
+  // each machine, as a union of intervals. collision(): two inputs that give one output, when a machine is unsafe.
+  const FM = (() => {
+    const INF = Infinity;
+    const neg = n => n < 0 ? '−' + Math.abs(n) : String(n);
+    const ex = (t, h) => ({t, h: h == null ? t : h, bare: false});
+    const wrap = s => s.bare ? s : {t: `(${s.t})`, h: `(${s.h})`, bare: false};
+    const sign = a => a > 0 ? 'inc' : 'dec';
+    const PARTS = {
+      add: {name: 'Add', bin: 'Add a', binSym: '+a', param: [1, 20], def: 3, sym: a => '+' + a, label: a => `Add ${a}`,
+        rule: (x, a) => x + a, tpl: (s, a) => ex(`${s.t} + ${a}`, `${s.h} + ${a}`), partner: 'sub', kind: 'one-to-one', map: () => 'inc'},
+      sub: {name: 'Subtract', bin: 'Subtract a', binSym: '−a', param: [1, 20], def: 3, sym: a => '−' + a, label: a => `Subtract ${a}`,
+        rule: (x, a) => x - a, tpl: (s, a) => ex(`${s.t} − ${a}`, `${s.h} − ${a}`), partner: 'add', kind: 'one-to-one', map: () => 'inc'},
+      mul: {name: 'Multiply by', bin: 'Multiply by a', binSym: '×a', param: [-10, 10], def: 2, sym: a => '×' + neg(a), label: a => `Multiply by ${neg(a)}`,
+        rule: (x, a) => a * x, tpl: (s, a) => s.bare ? ex(`${neg(a)}x`) : ex(`${neg(a)}(${s.t})`, `${neg(a)}(${s.h})`), partner: 'div', kind: 'one-to-one', map: sign},
+      div: {name: 'Divide by', bin: 'Divide by a', binSym: '÷a', param: [-10, 10], def: 2, sym: a => '÷' + (a < 0 ? `(${neg(a)})` : a), label: a => `Divide by ${neg(a)}`,
+        rule: (x, a) => x / a, tpl: (s, a) => { const w = wrap(s), d = a < 0 ? `(${neg(a)})` : a; return ex(`${w.t} / ${d}`, `${w.h} / ${d}`); }, partner: 'mul', kind: 'one-to-one', map: sign},
+      flip: {name: 'Flip sign', bin: 'Flip sign', binSym: '−x', sym: () => '−x', label: () => 'Flip sign',
+        rule: x => -x, tpl: s => { const w = wrap(s); return ex('−' + w.t, '−' + w.h); }, partner: 'flip', kind: 'one-to-one, self-undoing', map: () => 'dec'},
+      recip: {name: 'Reciprocal', bin: 'Reciprocal', binSym: '1/x', sym: () => '1/x', label: () => 'Reciprocal',
+        rule: x => 1 / x, dom: x => x === 0 ? "1/x can't take 0" : null, tpl: s => s.bare ? ex('1 / x') : ex(`1 / (${s.t})`, `1 / (${s.h})`), partner: 'recip', kind: 'one-to-one, self-undoing', map: () => 'recip'},
+      sq: {name: 'Square', bin: 'Square', binSym: 'x²', sym: () => 'x²', label: () => 'Square',
+        rule: x => x * x, tpl: s => { const w = wrap(s); return ex(w.t + '²', w.h + '<sup>2</sup>'); }, partner: 'sqrt', kind: 'folds at 0', map: () => 'fold'},
+      sqrt: {name: 'Square root', bin: 'Square root', binSym: '√x', sym: () => '√x', label: () => 'Square root',
+        rule: x => Math.sqrt(x), dom: x => x < 0 ? '√ needs 0 or more' : null, tpl: s => s.bare ? ex('√x') : ex(`√(${s.t})`, `√(${s.h})`), partner: 'sq', kind: 'one-to-one', map: () => 'inc', lo: [0, true]},
+      cube: {name: 'Cube', bin: 'Cube', binSym: 'x³', sym: () => 'x³', label: () => 'Cube',
+        rule: x => x * x * x, tpl: s => { const w = wrap(s); return ex(w.t + '³', w.h + '<sup>3</sup>'); }, partner: 'cbrt', kind: 'one-to-one', map: () => 'inc'},
+      cbrt: {name: 'Cube root', bin: 'Cube root', binSym: '∛x', sym: () => '∛x', label: () => 'Cube root',
+        rule: x => Math.cbrt(x), tpl: s => s.bare ? ex('∛x') : ex(`∛(${s.t})`, `∛(${s.h})`), partner: 'cube', kind: 'one-to-one', map: () => 'inc'},
+      pow2: {name: 'Power of 2', bin: 'Power of 2', binSym: '2ˣ', sym: () => '2ˣ', label: () => 'Power of 2',
+        rule: x => Math.pow(2, x), tpl: s => ex(s.bare ? '2^x' : `2^(${s.t})`, `2<sup>${s.h}</sup>`), partner: 'log', kind: 'one-to-one', map: () => 'inc'},
+      log: {name: 'Log base 2', bin: 'Log base 2', binSym: 'log₂', sym: () => 'log₂', label: () => 'Log base 2',
+        rule: x => Math.log2(x), dom: x => x <= 0 ? 'log₂ needs more than 0' : null, tpl: s => ex(`log₂(${s.t})`, `log₂(${s.h})`), partner: 'pow2', kind: 'one-to-one', map: () => 'inc', lo: [0, false]},
+      abs: {name: 'Absolute value', bin: 'Absolute value', binSym: '|x|', sym: () => '|x|', label: () => 'Absolute value',
+        rule: x => Math.abs(x), tpl: s => ex(`|${s.t}|`, `|${s.h}|`), partner: null, kind: 'folds at 0', map: () => 'fold'},
+      round: {name: 'Round', bin: 'Round', binSym: '≈', sym: () => 'round', label: () => 'Round',
+        rule: x => Math.floor(x + 0.5), tpl: s => ex(`round(${s.t})`, `round(${s.h})`), partner: null, kind: 'many-to-one', map: () => 'round'},
+      five: {name: 'Always 5', bin: 'Always 5', binSym: '5', sym: () => '5', label: () => 'Always 5',
+        rule: () => 5, tpl: () => ex('5'), partner: null, kind: 'many-to-one', map: () => 'const'},
+    };
+    const ORDER = ['add', 'sub', 'mul', 'div', 'flip', 'recip', 'sq', 'sqrt', 'cube', 'cbrt', 'pow2', 'log', 'abs', 'round', 'five'];
+    const TOKENS = [-6, -2.5, -1, 0, 0.5, 2, 3, 9];
+    const hasParam = p => !!PARTS[p].param;
+
+    // one machine on one value: {v} or {tag} (outside the domain, or not finite: "too big")
+    function apply(m, x) {
+      const P = PARTS[m.p], tag = P.dom && P.dom(x);
+      if (tag) return {tag};
+      const v = P.rule(x, m.a);
+      return isFinite(v) ? {v} : {tag: 'too big'};
+    }
+    const passes = (gate, x) => !gate || !gate.on || (gate.dir === 'ge' ? x >= gate.c : x <= gate.c);
+    // one input through a chain: {start, gate: blocked?, vals: value after each machine, rej: {at, tag} | null, out}
+    function run(chain, x, gate) {
+      if (!passes(gate, x)) return {start: x, gate: true, vals: [], rej: null, out: null};
+      const vals = []; let v = x;
+      for (let i = 0; i < chain.length; i++) {
+        const r = apply(chain[i], v);
+        if (r.tag) return {start: x, gate: false, vals, rej: {at: i, tag: r.tag}, out: null};
+        v = r.v; vals.push(v);
+      }
+      return {start: x, gate: false, vals, rej: null, out: v};
+    }
+    const home = (res, start) => Math.abs(res - start) <= 1e-9 * Math.max(1, Math.abs(start));
+    const same = (p, q) => Math.abs(p - q) <= 1e-9 * Math.max(1, Math.abs(p), Math.abs(q));
+
+    // the chain as an expression: {t: plain text, h: html (2 to the x as a superscript)}; no simplifying
+    function formula(chain) {
+      let s = {t: 'x', h: 'x', bare: true};
+      for (const m of chain) s = PARTS[m.p].tpl(s, m.a);
+      return s;
+    }
+
+    // ---- interval sets: [{lo, hi, li, hc}] (li / hc: the end is included) ----
+    const ALL = () => [{lo: -INF, hi: INF, li: false, hc: false}];
+    function norm(set) {
+      const s = set.map(iv => ({...iv, li: iv.li && isFinite(iv.lo), hc: iv.hc && isFinite(iv.hi)}))
+        .filter(iv => iv.lo < iv.hi || (iv.lo === iv.hi && iv.li && iv.hc))
+        .sort((p, q) => p.lo - q.lo || (q.li - p.li));
+      const out = [];
+      for (const iv of s) {
+        const last = out[out.length - 1];
+        if (last && (iv.lo < last.hi || (iv.lo === last.hi && (last.hc || iv.li)))) {
+          if (iv.hi > last.hi) { last.hi = iv.hi; last.hc = iv.hc; } else if (iv.hi === last.hi) last.hc = last.hc || iv.hc;
+        } else out.push({...iv});
+      }
+      return out;
+    }
+    // a monotone part maps the ends (a decreasing one swaps them); a stretch that floating point squeezes to one
+    // number (2 to the x of a huge negative) keeps that number
+    const mono = (set, f, dir) => set.map(iv => {
+      const o = dir === 'inc' ? {lo: f(iv.lo), hi: f(iv.hi), li: iv.li, hc: iv.hc} : {lo: f(iv.hi), hi: f(iv.lo), li: iv.hc, hc: iv.li};
+      if (o.lo === o.hi && iv.lo < iv.hi) { o.li = o.hc = true; }
+      return o;
+    });
+    function trimLo(set, lo, inc) { // intersect with [lo, inf) or (lo, inf)
+      const out = [];
+      for (const iv of set) {
+        if (iv.hi < lo || (iv.hi === lo && !(iv.hc && inc))) continue;
+        const nl = Math.max(iv.lo, lo), li = iv.lo > lo ? iv.li : iv.lo < lo ? inc : iv.li && inc;
+        out.push({lo: nl, hi: iv.hi, li, hc: iv.hc});
+      }
+      return out;
+    }
+    function recipSet(set) { // drop 0, then 1/x on each side (decreasing on each side)
+      const out = [];
+      for (const iv of set) {
+        if (iv.lo < 0) { const hi = Math.min(iv.hi, 0), hc = iv.hi < 0 ? iv.hc : false;
+          out.push({lo: hi === 0 ? -INF : 1 / hi, hi: iv.lo === -INF ? 0 : 1 / iv.lo, li: hi === 0 ? false : hc, hc: iv.lo === -INF ? false : iv.li}); }
+        if (iv.hi > 0) { const lo = Math.max(iv.lo, 0), li = iv.lo > 0 ? iv.li : false;
+          out.push({lo: iv.hi === INF ? 0 : 1 / iv.hi, hi: lo === 0 ? INF : 1 / lo, li: iv.hi === INF ? false : iv.hc, hc: lo === 0 ? false : li}); }
+      }
+      return out;
+    }
+    function foldSet(set, f) { // square or absolute value: the image of each interval
+      return set.map(iv => {
+        if (iv.lo >= 0) return {lo: f(iv.lo), hi: f(iv.hi), li: iv.li, hc: iv.hc};
+        if (iv.hi <= 0) return {lo: f(iv.hi), hi: f(iv.lo), li: iv.hc, hc: iv.li};
+        const a = f(iv.lo), b = f(iv.hi);
+        return {lo: 0, hi: Math.max(a, b), li: true, hc: a > b ? iv.li : a < b ? iv.hc : iv.li || iv.hc};
+      });
+    }
+    const gateSet = gate => !gate || !gate.on ? ALL() : gate.dir === 'ge' ? [{lo: gate.c, hi: INF, li: true, hc: false}] : [{lo: -INF, hi: gate.c, li: false, hc: true}];
+    // {sets: the set entering each machine, unsafe: indexes of machines that can merge two inputs, out}
+    function track(chain, gate) {
+      let set = gateSet(gate);
+      const sets = [], unsafe = [];
+      chain.forEach((m, i) => {
+        const P = PARTS[m.p], kind = P.map(m.a);
+        sets.push(set.map(iv => ({...iv})));
+        let s = set;
+        if (P.lo) s = trimLo(s, P.lo[0], P.lo[1]);
+        if (kind === 'inc' || kind === 'dec') s = mono(s, x => P.rule(x, m.a), kind);
+        else if (kind === 'recip') s = recipSet(s);
+        else if (kind === 'fold') {
+          if (!(s.every(iv => iv.lo >= 0) || s.every(iv => iv.hi <= 0))) unsafe.push(i);
+          s = foldSet(s, x => P.rule(x));
+        } else if (kind === 'round') {
+          if (s.length) unsafe.push(i);
+          s = s.map(iv => ({lo: isFinite(iv.lo) ? P.rule(iv.lo) : iv.lo, hi: isFinite(iv.hi) ? P.rule(iv.hi) : iv.hi, li: true, hc: true}));
+        } else if (kind === 'const') {
+          if (s.length) unsafe.push(i);
+          s = s.length ? [{lo: 5, hi: 5, li: true, hc: true}] : [];
+        }
+        set = norm(s.map(iv => ({...iv, lo: isNaN(iv.lo) ? -INF : iv.lo, hi: isNaN(iv.hi) ? INF : iv.hi})));
+      });
+      return {sets, unsafe, out: set};
+    }
+    // inputs to try, in the spec's order: 0, 1, -1 ... 10, -10, then the tenths near zero first (the same numbers
+    // skipped); then a wider fallback (integers to 1000, hundredths to 10) for folds far from zero
+    function* candidates() {
+      yield 0;
+      for (let k = 1; k <= 10; k++) { yield k; yield -k; }
+      for (let k = 1; k <= 100; k++) { if (k % 10) { yield k / 10; yield -k / 10; } }
+      for (let k = 11; k <= 1000; k++) { yield k; yield -k; }
+      for (let k = 1; k <= 1000; k++) { if (k % 10) { yield k / 100; yield -k / 100; } }
+    }
+    // A pair is a real crash only when the proof is visible in the arithmetic itself: at an unsafe machine the two
+    // values entering it are different but the machine sends them to the same value (a fold sees v and -v, Round
+    // sees one rounding step, Always 5 sees anything), and both values survive every machine after it. Outputs that
+    // are merely close never count (2^-26 - 15 and 2^-27 - 15 square to nearly, not exactly, 225), and every value
+    // on both paths must stay clear of the sizes where floating point swallows a small difference (2^-60 + 15 is 15).
+    const tame = v => v === 0 || (Math.abs(v) >= 1e-9 && Math.abs(v) <= 1e15);
+    // loose (only for pairs shown as "about"): a fold may see v and -v to within a relative 1e-12
+    function crashAt(chain, unsafe, ra, rb, loose) {
+      if (ra.out == null || rb.out == null || ra.start === rb.start) return -1;
+      const A = [ra.start, ...ra.vals], B = [rb.start, ...rb.vals];   // A[i] is the value entering machine i
+      if (!A.every(tame) || !B.every(tame)) return -1;
+      // 2 to the x is never 0: a 0 there is underflow, never evidence
+      for (let i = 0; i < chain.length; i++) if (chain[i].p === 'pow2' && (A[i + 1] === 0 || B[i + 1] === 0)) return -1;
+      // a value within a hair of a half step may round the other way in exact arithmetic
+      const nearHalf = v => { const f = v - Math.floor(v); return Math.abs(f - .5) <= 1e-9 * Math.max(1, Math.abs(v)); };
+      for (const i of unsafe) {
+        const ea = A[i], eb = B[i], kind = PARTS[chain[i].p].map(chain[i].a);
+        if (ea === eb) return -1;
+        const ok = kind === 'fold' ? ea !== 0 && (loose ? Math.abs(ea + eb) <= 1e-12 * Math.abs(ea) : Math.abs(ea) === Math.abs(eb) && Math.sign(ea) !== Math.sign(eb)) :
+          kind === 'round' ? A[i + 1] === B[i + 1] && !nearHalf(ea) && !nearHalf(eb) : kind === 'const';
+        if (ok) return i;
+      }
+      return -1;
+    }
+    function pairOf(chain, unsafe, a, b, gate, loose) {
+      const ra = run(chain, a, gate), rb = run(chain, b, gate), at = crashAt(chain, unsafe, ra, rb, loose);
+      return at < 0 ? null : {a, b, y: ra.out, at};
+    }
+    // {a, b, y, at}: the first listed input b that crashes into an earlier input a; else a pair worked out from the
+    // interval sets ({approx: true} when its inputs only crash unrounded); else {unconfirmed: true, at} when a machine
+    // is unsafe but no pair that survives the rest of the chain turned up (the tool then never claims an inverse);
+    // null when every machine is safe
+    function collision(chain, gate) {
+      const tr = track(chain, gate);
+      if (!tr.unsafe.length) return null;
+      const byOut = new Map();
+      for (const x of candidates()) {
+        const r = run(chain, x, gate);
+        if (r.out == null) continue;
+        const key = r.out.toPrecision(9), list = byOut.get(key) || [];
+        for (const e of list) { const at = crashAt(chain, tr.unsafe, e, r); if (at >= 0) return {a: e.start, b: x, y: e.out, at}; }
+        list.push(r); byOut.set(key, list);
+      }
+      return pairFromSets(chain, gate, tr) || {unconfirmed: true, at: tr.unsafe[0]};
+    }
+    // fallback: pick two values the unsafe machine merges from the set entering it, keep only values whose merged
+    // result survives the machines after it, carry them back to inputs through the machines before it (one-to-one
+    // there, each undone by its partner), and prefer inputs that still crash when rounded to 4 decimals
+    // simple numbers inside (lo, hi), finite or not, simplest first
+    function niceIn(lo, hi, n = 160) {
+      const out = [], ok = v => v > lo && v < hi && !out.includes(v);
+      const from = isFinite(lo) ? lo : (isFinite(hi) ? hi - 1000 : -1000), to = isFinite(hi) ? hi : from + 1000;
+      // each step size adds a share, starting from the number closest to zero (small, simple inputs first)
+      const zero = Math.min(to, Math.max(from, 0)), share = Math.ceil(n / 8);
+      for (const step of [1, 0.5, 0.25, 0.1, 0.05, 0.01, 0.001, 0.0001]) {
+        const k0 = Math.round(zero / step), span = Math.min(4000, (to - from) / step + 1), start = out.length;
+        for (let d = 0; out.length - start < share && d <= span; d++) for (const k of d ? [k0 + d, k0 - d] : [k0]) { const v = +(k * step).toFixed(6); if (ok(v)) out.push(v); }
+      }
+      if (isFinite(lo) && isFinite(hi) && lo > 0) for (let k = 1; k < 40; k++) { const v = lo * Math.pow(hi / lo, k / 40); if (ok(v)) out.push(v); }
+      if (isFinite(lo) && isFinite(hi)) { const m = (lo + hi) / 2; if (ok(m)) out.push(m); }
+      // powers of 2 and 10 reach a stretch far from zero (Round then Square root, Subtract 7 needs 49 or more)
+      for (let k = -20; k <= 50; k++) for (const v of [Math.pow(2, k), -Math.pow(2, k)]) if (ok(v)) out.push(v);
+      for (let k = -6; k <= 15; k++) for (const v of [Math.pow(10, k), -Math.pow(10, k)]) if (ok(v)) out.push(v);
+      return out;
+    }
+    const inSet = (S, v) => S.some(iv => (v > iv.lo || (v === iv.lo && iv.li)) && (v < iv.hi || (v === iv.hi && iv.hc)));
+    function invert(m, v, S) {
+      const a = m.a, P = PARTS[m.p];
+      const c = {add: [v - a], sub: [v + a], mul: [v / a], div: [v * a], flip: [-v], recip: [1 / v], sq: [Math.sqrt(v), -Math.sqrt(v)],
+        sqrt: [v * v], cube: [Math.cbrt(v)], cbrt: [v * v * v], pow2: [Math.log2(v)], log: [Math.pow(2, v)], abs: [v, -v]}[m.p] || [];
+      return c.find(x => isFinite(x) && inSet(S, x) && !(P.dom && P.dom(x)) && same(P.rule(x, a), v));
+    }
+    function pairFromSets(chain, gate, tr) {
+      let backup = null, tries = 0;
+      for (const i of tr.unsafe) {
+        const S = tr.sets[i], m = chain[i], P = PARTS[m.p], kind = P.map(m.a), rest = chain.slice(i + 1);
+        const survives = v => run(rest, P.rule(v, m.a), null).out != null;
+        const pairs = [];
+        if (kind === 'fold') {   // a magnitude that enters on both sides of zero
+          for (const iv of S) for (const jv of S) {
+            const lo = Math.max(iv.lo, -jv.hi, 0), hi = Math.min(iv.hi, -jv.lo);
+            if (hi > lo) for (const v of niceIn(lo, hi)) pairs.push([v, -v]);
+          }
+        } else if (kind === 'round') {   // two values in one rounding step
+          for (const iv of S) for (const v of niceIn(iv.lo - 1e-9, iv.hi + 1e-9, 120)) {
+            const k = P.rule(v);
+            const w = [k + 0.25, k - 0.25, k + 0.4, k - 0.4, k + 0.1, k - 0.1, v + 1e-3].find(u => u !== v && P.rule(u) === k);
+            if (w != null) pairs.push([v, w]);
+          }
+        } else {   // always 5: any two values
+          for (const iv of S) { const vs = niceIn(iv.lo, iv.hi, 6); if (vs.length > 1) pairs.push([vs[0], vs[1]]); }
+        }
+        for (const [v, w] of pairs) {
+          if (++tries > 4000) return backup;
+          if (!inSet(S, v) || !inSet(S, w) || !survives(v)) continue;
+          const xs = [v, w].map(u => { for (let j = i - 1; j >= 0 && u != null; j--) u = invert(chain[j], u, tr.sets[j]); return u; });
+          if (xs.some(x => x == null || !isFinite(x))) continue;
+          const rd = xs.map(x => +x.toFixed(4));
+          const nice = rd[0] !== rd[1] && rd.every(x => Math.abs(x) <= 1e6) && pairOf(chain, tr.unsafe, rd[0], rd[1], gate);   // shown in full, so typing them crashes
+          if (nice) return nice;
+          if (!backup) { const raw = pairOf(chain, tr.unsafe, xs[0], xs[1], gate, true); if (raw) backup = Object.assign(raw, {approx: true}); }
+        }
+      }
+      return backup;
+    }
+    return {PARTS, ORDER, TOKENS, hasParam, apply, run, passes, home, same, formula, track, collision, crashAt};
+  })();
+  /* ==== end FUNCTION-MACHINE ENGINE ==== */
+
+  const {PARTS, TOKENS} = FM;
+  // values as the tool shows them: up to 4 decimals, trailing zeros cut, a true minus sign; beyond 1,000,000 in size,
+  // scientific notation (7.29e+8)
+  function fmtV(v) {
+    if (!isFinite(v)) return 'too big';
+    let s;
+    if (Math.abs(v) > 1e6) s = v.toExponential(2).replace(/\.?0+e/, 'e');
+    else { s = String(+v.toFixed(4)); if (s === '-0') s = '0'; }
+    return s.replace('-', '−');
+  }
+  const sayNum = s => String(s).replace(/−/g, 'minus ');
+
+  // ---------- puzzles ----------
+  const M = (p, a) => ({p, a});
+  const LEVELS = [
+    {title: 'Warm-up', F: [M('add', 5)], goal: 'Bring every token home.', kind: 'undo', ans: [M('sub', 5)]},
+    {title: 'Socks and shoes', F: [M('mul', 3), M('add', 4)], goal: 'Bring every token home.', kind: 'undo', ans: [M('sub', 4), M('div', 3)]},
+    {title: 'Three steps', F: [M('sub', 2), M('mul', 5), M('add', 1)], goal: 'Bring every token home.', kind: 'undo', ans: [M('sub', 1), M('div', 5), M('add', 2)]},
+    {title: 'Cubed', F: [M('cube'), M('sub', 8)], goal: 'Bring every token home.', kind: 'undo', ans: [M('add', 8), M('cbrt')]},
+    {title: 'Its own undo', F: [M('recip')], goal: 'Bring every token home with one machine.', kind: 'undo', ans: [M('recip')], one: true},
+    {title: 'Exponent and log', F: [M('pow2'), M('mul', 3)], goal: 'Bring every token home.', kind: 'undo', ans: [M('div', 3), M('log')]},
+    {title: 'The crash', F: [M('add', 3), M('sq')], goal: 'Make it undoable with a gate, then undo it.', kind: 'gate'},
+    {title: 'Forgetful', F: [M('abs'), M('add', 1)], goal: 'Make it undoable with a gate, then undo it.', kind: 'gate'},
+    {title: 'Lost for good', F: [M('round'), M('mul', 2)], goal: "Undo it, or show it can't be done.", kind: 'lost'},
+    {title: 'Deep fold', F: [M('sq'), M('add', 1), M('recip')], goal: 'Make it undoable with a gate, then undo it.', kind: 'gate'},
+    {title: 'Mirror machine', F: [], goal: 'Build a 2-machine chain that undoes itself. It must change at least one number.', kind: 'self'},
+    {title: 'Long way home', F: [M('sub', 1), M('cube'), M('mul', 2), M('add', 7)], goal: 'Bring every token home.', kind: 'undo', ans: [M('sub', 7), M('div', 2), M('cbrt'), M('add', 1)]},
+  ];
+  const HINTS = {
+    undo: ['Start at the OUT end. What was the last thing done?',
+      'Each machine is undone by its opposite: add and subtract, multiply and divide, cube and cube root, power of 2 and log base 2.', 'ghost'],
+    gate: ['Press Run. Which two tokens crashed into the same output?',
+      'The crash happens at the fold. Keep the numbers entering it all on one side of zero.', 'gate'],
+    lost: ['Press Run with any undo line. Do 0 and 0.1 come out the same?',
+      'If two inputs give one output, no machine can know which one to send back.'],
+    self: ['Flip sign undoes itself. What could you add after it so the pair still does?',
+      'Try sending x to 10 minus x. What happens if you do it twice?'],
+  };
+  const SOLVED_KEY = 'curio-undo-machine-solved';
+  let solved = new Set();
+  try { solved = new Set(JSON.parse(localStorage.getItem(SOLVED_KEY) || '[]')); } catch {}
+  function saveSolved() { try { localStorage.setItem(SOLVED_KEY, JSON.stringify([...solved])); } catch {} }
+
+  // ---------- state ----------
+  let uid = 0;
+  const item = (p, a) => ({p, a: FM.hasParam(p) ? (a != null ? a : PARTS[p].def) : undefined, id: ++uid});
+  const newLines = () => ({F: [], U: [], gate: {on: false, dir: 'ge', c: 0}});
+  const state = {mode: 'workshop', ws: newLines(), pz: Object.assign(newLines(), {level: 1, hints: 0, revealed: false, ghost: null}),
+    graph: false, mirror: false, lift: null, cursor: null, sel: null, col: null, ran: false, results: null, verdict: null};
+  const cur = () => state.mode === 'workshop' ? state.ws : state.pz;
+  const lvl = () => LEVELS[state.pz.level - 1];
+  const isPz = () => state.mode === 'puzzles';
+  const self11 = () => isPz() && lvl().kind === 'self';
+  const maxF = () => self11() ? 2 : 6;
+  const maxU = 8;
+  const fLocked = () => isPz() && !self11();
+  const undoChain = () => self11() ? cur().F : cur().U;   // level 11: the second lap runs the forward line again
+  const gateAllowed = () => !isPz() || [7, 8, 9, 10].includes(state.pz.level);
+
+  // ---------- floor geometry: two designs ----------
+  // full (1200 x 560, wide screens): every slot is drawn. compact (760 x 520, the 16:10 embed, short boxes and narrow
+  // screens): only the filled slots plus one empty slot are drawn, so the cards and their text stay big enough to read
+  const GEO = {
+    full: {W: 1200, H: 560, dyn: false,
+      home: {x: 10, y: 30, w: 124, h: 432, lab: 56, div: 286, back: 302}, wait: {cols: [41, 103], y0: 84, dy: 44, one: [72, 120]}, homeRows: {y0: 322, dy: 36}, tokS: 1,
+      out: {x: 1048, y: 30, w: 142, h: 200}, gateX: 172, signY: 116,
+      fy: 48, fh: 116, fBelt: 190, fx0: 210, fx1: 1036, fMax: 138,
+      uy: 308, uh: 114, uBelt: 446, ux0: 140, ux1: 1096, uMax: 120, homeEnd: 150,
+      beltF: [134, 1048], beltU: [134, 1104], chute: [[1150, 212], [1198, 262], [1198, 410], [1100, 446]],
+      rej: {y0: 222, dy: 28, dx: 46, s: .85},
+      tray: {x: 10, y: 478, w: 1180, h: 76, cols: 4, colW: 278, x0: 76, y0: 498, dy: 36, lab: [26, 522], empty: [90, 522]},
+      labF: [140, 22], labU: [140, 471]},
+    compact: {W: 760, H: 520, dyn: true,
+      home: {x: 6, y: 26, w: 108, h: 384, lab: 48, div: 226, back: 241}, wait: {cols: [32, 88], y0: 70, dy: 36, one: [60, 110]}, homeRows: {y0: 266, dy: 32}, tokS: .8,
+      out: {x: 656, y: 26, w: 98, h: 170}, gateX: 145, signY: 96,
+      fy: 46, fh: 112, fBelt: 176, fx0: 174, fx1: 650, fMax: 164,
+      uy: 272, uh: 112, uBelt: 400, ux0: 118, ux1: 700, uMax: 164, homeEnd: 128,
+      beltF: [114, 656], beltU: [114, 712], chute: [[728, 198], [756, 240], [756, 364], [706, 400]],
+      rej: {y0: 200, dy: 22, dx: 50, s: .75},
+      tray: {x: 6, y: 418, w: 748, h: 96, cols: 2, colW: 336, x0: 80, y0: 434, dy: 24, lab: [12, 470], empty: [86, 470]},
+      labF: [118, 18], labU: [118, 258]},
+  };
+  let G = GEO.full;
+  const D = 400, GAP = 250;   // ms per machine, ms between tokens leaving HOME
+  let TS = 1;                 // text on the floor grows (to 1.3 times) when the floor is scaled down
+  const CARD_GAP = 12;
+
+  function drawBase() {
+    const b = $('gBase'); b.textContent = '';
+    const {W, H, home: hm, out: o} = G;
+    mk('rect', {x: 0, y: 0, width: W, height: H, rx: 14, fill: 'url(#plateG)'}, b);
+    for (const [x, y] of [[8, 8], [W - 8, 8], [8, H - 8], [W - 8, H - 8], [W / 2, 8], [W / 2, H - 8]]) mk('circle', {cx: x, cy: y, r: 3, fill: '#263142'}, b);
+    // HOME dock and OUT bin
+    const hx = hm.x + hm.w / 2;
+    mk('rect', {x: hm.x, y: hm.y, width: hm.w, height: hm.h, rx: 12, class: 'dock'}, b);
+    mk('text', {x: hx, y: hm.lab, class: 'docklab'}, b).textContent = 'HOME';
+    mk('text', {x: hx, y: hm.back, class: 'subl'}, b).textContent = 'BACK HOME';
+    mk('line', {x1: hm.x + 12, x2: hm.x + hm.w - 12, y1: hm.div, y2: hm.div, stroke: '#2b3646', 'stroke-width': 1.5, 'stroke-dasharray': '4 4'}, b);
+    mk('rect', {x: o.x, y: o.y, width: o.w, height: o.h, rx: 12, class: 'dock'}, b);
+    mk('text', {x: o.x + o.w / 2, y: o.y + 26, class: 'docklab'}, b).textContent = 'OUT';
+    // belts with direction chevrons (they roll during a run; still when Motion is off)
+    const [f0, f1] = G.beltF, [u0, u1] = G.beltU, yf = G.fBelt, yu = G.uBelt;
+    mk('rect', {x: f0, y: yf - 10, width: f1 - f0, height: 20, rx: 4, class: 'belt'}, b);
+    mk('path', {d: `M${f0 + 6},${yf}H${f1 - 4}`, class: 'chev f', 'stroke-width': 10, stroke: '#1b2533'}, b);
+    for (let x = f0 + 16; x < f1 - 8; x += 26) mk('path', {d: `M${x},${yf - 6}L${x + 6},${yf}L${x},${yf + 6}`, fill: 'none', stroke: '#33435a', 'stroke-width': 2}, b);
+    mk('rect', {x: u0, y: yu - 10, width: u1 - u0, height: 20, rx: 4, class: 'belt'}, b);
+    mk('path', {d: `M${u1 - 8},${yu}H${u0 + 6}`, class: 'chev u', 'stroke-width': 10, stroke: '#1b2533'}, b);
+    for (let x = u1 - 14; x > u0 + 6; x -= 26) mk('path', {d: `M${x},${yu - 6}L${x - 6},${yu}L${x},${yu + 6}`, fill: 'none', stroke: '#33435a', 'stroke-width': 2}, b);
+    // the chute from OUT down to the start of the undo line
+    const [c0, c1, c2, c3] = G.chute, cd = `M${c0}C${c1} ${c2} ${c3}`;
+    mk('path', {d: cd, class: 'chute'}, b);
+    mk('path', {d: cd, class: 'chute2'}, b);
+    // line labels
+    mk('text', {x: G.labF[0], y: G.labF[1], class: 'linelab'}, b).textContent = 'FORWARD  →';
+    mk('text', {x: G.labU[0], y: G.labU[1], class: 'linelab', id: 'undoLab'}, b).textContent = '←  UNDO';
+    // lost tray
+    const tr = G.tray;
+    mk('rect', {x: tr.x, y: tr.y, width: tr.w, height: tr.h, rx: 10, class: 'tray'}, b);
+    mk('text', {x: tr.lab[0], y: tr.lab[1], class: 'traylab'}, b).textContent = 'LOST';
+  }
+
+  // ---------- slots ----------
+  // slots a part can be dropped into on a line (0: none, as on the level 11 lap-2 line)
+  function slotsOf(line) {
+    const cap = line === 'F' ? maxF() : self11() ? 0 : maxU;
+    if (!G.dyn || !cap) return cap;
+    const n = cur()[line].length, drop = !(line === 'F' && fLocked());
+    let k = n + (drop ? 1 : 0);
+    if (line === 'U' && isPz() && state.pz.ghost) k = Math.max(k, state.pz.ghost.idx + 1);
+    return Math.max(1, Math.min(cap, k));
+  }
+  // positions laid out on a line: the full design always spaces 6 (top) and 8 (undo); compact spaces what it draws
+  function laneN(line) {
+    if (!G.dyn) return line === 'F' ? 6 : 8;
+    if (line === 'U' && self11()) return Math.max(1, cur().F.length);
+    return slotsOf(line);
+  }
+  function pitch(line) {
+    const n = laneN(line), [x0, x1, max] = line === 'F' ? [G.fx0, G.fx1, G.fMax] : [G.ux0, G.ux1, G.uMax];
+    return Math.min((x1 - x0) / n, G.dyn ? max : Infinity);
+  }
+  const fx = i => G.fx0 + pitch('F') * (i + .5);
+  const ux = k => G.ux1 - pitch('U') * (k + .5);   // the undo line runs right to left
+  function slotBox(line, i) {
+    const p = pitch(line), w = p - CARD_GAP;
+    return line === 'F' ? {x: fx(i) - w / 2, y: G.fy, w, h: G.fh, cx: fx(i), gap: CARD_GAP} : {x: ux(i) - w / 2, y: G.uy, w, h: G.uh, cx: ux(i), gap: CARD_GAP};
+  }
+  function renderSlots() {
+    const g = $('gSlots'); g.textContent = '';
+    const Lc = cur();
+    for (const line of ['F', 'U']) {
+      const n = slotsOf(line), filled = Lc[line].length, canDrop = !(line === 'F' && fLocked());
+      for (let i = 0; i < n; i++) {
+        const s = slotBox(line, i);
+        const r = mk('rect', {x: s.x, y: s.y, width: s.w, height: s.h, rx: 9, class: 'slot' + (state.lift && canDrop && i <= filled ? ' hot' : ''), 'data-line': line, 'data-slot': i}, g);
+        r.addEventListener('click', () => slotClick(line, i));
+        if (i === filled && canDrop) {
+          const t = mk('text', {x: s.cx, y: s.y + s.h / 2 + 5, class: 'slottxt'}, g);
+          t.textContent = filled === 0 ? (line === 'F' ? 'drop a part' : 'undo parts') : '+';
+          if (filled === 0 && t.textContent.length * 7.2 * TS > s.w - 8) { t.setAttribute('textLength', s.w - 8); t.setAttribute('lengthAdjust', 'spacingAndGlyphs'); }
+        }
+      }
+    }
+    $('undoLab').textContent = self11() ? '←  LAP 2: THE SAME CHAIN AGAIN' : '←  UNDO';
+  }
+  function cardLabel(line, i, m, locked) {
+    const where = line === 'F' ? 'Top line' : 'Undo line';
+    return `${where} machine ${i + 1}: ${PARTS[m.p].label(m.a)}.` + (locked ? ' Locked in this puzzle.' :
+      (FM.hasParam(m.p) ? ' Plus and minus keys change the number.' : '') + ' Brackets move it, Delete removes it.');
+  }
+  const squeeze = (el, est, max) => { if (est > max) { el.setAttribute('textLength', Math.max(12, max)); el.setAttribute('lengthAdjust', 'spacingAndGlyphs'); } };
+  // the card's buttons draw small, but each takes taps over a larger invisible area (HIT design px, about 44 screen px
+  // at 1280 x 720), spilling into the gap between cards; the hit areas never overlap one another
+  const HIT = 58;
+  function drawCard(parent, line, i, m, opt = {}) {
+    const fw = line === 'F', s = slotBox(line, i), w = s.w, h = s.h, P = PARTS[m.p];
+    const cls = 'card ' + (opt.lap ? 'lap' : fw ? 'fwd' : 'und') + (opt.locked ? ' locked' : '') + (opt.ghost ? ' ghostcard' : '') +
+      (state.sel && state.sel.id === m.id ? ' sel' : '');
+    const g = mk('g', {class: cls, transform: `translate(${s.x},${s.y})`, 'data-line': line, 'data-idx': i, 'data-id': m.id,
+      tabindex: opt.ghost || opt.lap ? null : 0, role: opt.ghost || opt.lap ? 'img' : 'button',
+      'aria-label': opt.ghost ? `Hint: try ${P.label(m.a)} here` : opt.lap ? `Lap 2 machine ${i + 1}: ${P.label(m.a)}` : cardLabel(line, i, m, opt.locked)}, parent);
+    mk('rect', {x: -5, y: -5, width: w + 10, height: h + 10, rx: 13, class: 'ring'}, g);
+    mk('rect', {x: 0, y: 0, width: w, height: h, rx: 9, class: 'body'}, g);
+    if (!opt.ghost) mk('rect', {x: 1, y: 1, width: w - 2, height: 5, rx: 2, class: 'acc'}, g);
+    const sym = P.sym(m.a), small = sym.length > 4 || w < 90;
+    const st = mk('text', {x: w / 2, y: Math.round(h * .38) + 6, class: 'sym' + (small ? ' w' : '')}, g); st.textContent = sym;
+    squeeze(st, sym.length * (small ? 13 : 17), w - 50);   // clear of the remove button in the corner
+    const nm = mk('text', {x: w / 2, y: Math.round(h * .6), class: 'nm'}, g); nm.textContent = opt.ghost ? 'hint' : P.label(m.a);
+    squeeze(nm, nm.textContent.length * (fw ? 7 : 6.2) * TS, w - 8);
+    if (opt.locked) { mk('text', {x: w / 2, y: h - 14, class: 'lock'}, g).textContent = '🔒 locked'; }
+    if (opt.lap) { mk('text', {x: w / 2, y: h - 14, class: 'lock'}, g).textContent = 'lap 2'; }
+    if (!opt.locked && !opt.ghost && !opt.lap) {
+      const btn = (x, y, bw, bh, label, cls2, fn, hit) => {
+        const b = mk('g', {class: 'cb ' + cls2}, g);
+        mk('rect', {x: hit[0], y: hit[1], width: hit[2], height: hit[3], style: 'fill:transparent;stroke:none'}, b);
+        mk('rect', {x, y, width: bw, height: bh, rx: 6}, b);
+        mk('text', {x: x + bw / 2, y: y + bh / 2 + 7}, b).textContent = label;
+        b.addEventListener('click', e => { e.stopPropagation(); fn(); });
+        b.addEventListener('pointerdown', e => e.stopPropagation());
+      };
+      const bw = Math.min(44, (w - 12) / 2), bh = Math.min(38, h * .33), half = s.gap / 2, hh = Math.min(HIT, h / 2 - 2);
+      if (FM.hasParam(m.p)) {
+        btn(4, h - bh - 4, bw, bh, '−', 'dec', () => editStep(line, m.id, -1), [-half, h - hh, w / 2 + half, hh + 10]);
+        btn(w - bw - 4, h - bh - 4, bw, bh, '+', 'inc', () => editStep(line, m.id, 1), [w / 2, h - hh, w / 2 + half, hh + 10]);
+      }
+      // remove: the top corner and above it (the readout row), clear of the steppers below
+      btn(w - 25, 4, 21, 20, '×', 'x', () => editRemove(line, m.id), [w - HIT + half, -22, HIT, Math.min(HIT, h - hh - 2 + 22)]);
+    }
+    if (!opt.ghost && !opt.lap) {
+      g.addEventListener('click', () => cardClick(line, m.id));
+      g.addEventListener('focus', () => { selectCard(line, m.id, true); });
+      g.addEventListener('keydown', e => cardKey(e, line, m.id));
+    }
+    return g;
+  }
+  function renderCards() {
+    const fid = document.activeElement && document.activeElement.dataset && document.activeElement.dataset.id;
+    const g = $('gCards'); g.textContent = '';
+    const Lc = cur();
+    Lc.F.forEach((m, i) => drawCard(g, 'F', i, m, {locked: fLocked()}));
+    if (self11()) Lc.F.forEach((m, i) => drawCard(g, 'U', i, m, {lap: true}));
+    else Lc.U.forEach((m, i) => drawCard(g, 'U', i, m, {}));
+    const gh = $('gGhost'); gh.textContent = '';
+    if (isPz() && state.pz.ghost && !self11()) drawCard(gh, 'U', state.pz.ghost.idx, state.pz.ghost.m, {ghost: true});
+    if (fid) { const el = g.querySelector(`[data-id="${fid}"]`); if (el) el.focus({preventScroll: true}); }
+    renderEditor(); renderMove();
+  }
+  function renderGate() {
+    const g = $('gGate'); g.textContent = '';
+    const gt = cur().gate;
+    if (!gt.on) return;
+    const x = G.gateX, y = G.fBelt;
+    mk('rect', {x: x - 4, y: y - 30, width: 8, height: 50, rx: 2, class: 'gatepost'}, g);
+    mk('rect', {x: x - 22, y: y - 34, width: 44, height: 8, rx: 3, class: 'gatebar'}, g);
+    const s = mk('g', {class: 'gatesign'}, g);
+    const st = `x ${gt.dir === 'ge' ? '≥' : '≤'} ${fmtV(gt.c)}`, sw = Math.max(58, st.length * 8.4 + 12);
+    mk('rect', {x: x - sw / 2, y: G.signY, width: sw, height: 28, rx: 6}, s);
+    mk('text', {x, y: G.signY + 19}, s).textContent = st;
+    mk('text', {x, y: G.signY - 7, class: 'subl'}, g).textContent = 'GATE';
+  }
+  // the crash pair on the OUT bin: one row of chips when they fit, else one chip per row; never wider than the bin
+  function renderCollision() {
+    const g = $('gCol'); g.textContent = '';
+    const c = shownCol();
+    if (!c) return;
+    const o = G.out, cx = o.x + o.w / 2, maxW = o.w - 8;
+    const label = v => (about(c, v) ? '≈' : '') + fmtV(v), cw = v => Math.min(maxW, Math.max(36, label(v).length * 8 + 14));
+    const chip = (x, y, v) => { const t = label(v), w = cw(v), k = mk('g', {class: 'colchip'}, g);
+      mk('rect', {x: x - w / 2, y, width: w, height: 24, rx: 12}, k);
+      const tx = mk('text', {x, y: y + 17}, k); tx.textContent = t; squeeze(tx, t.length * 8, w - 10); };
+    let y = o.y + 44;
+    mk('text', {x: cx, y, class: 'colx'}, g).textContent = 'CRASH';
+    y += 8;
+    const wa = cw(c.a), wb = cw(c.b), and = 30;
+    if (wa + wb + and <= maxW) {
+      const x0 = cx - (wa + wb + and) / 2;
+      chip(x0 + wa / 2, y, c.a);
+      mk('text', {x: x0 + wa + and / 2, y: y + 17, class: 'coltxt'}, g).textContent = 'and';
+      chip(x0 + wa + and + wb / 2, y, c.b);
+      y += 46;
+    } else {
+      chip(cx, y, c.a); y += 27;
+      mk('text', {x: cx, y: y + 10, class: 'coltxt'}, g).textContent = 'and'; y += 15;
+      chip(cx, y, c.b); y += 44;
+    }
+    mk('text', {x: cx, y, class: 'coltxt'}, g).textContent = 'both come out';
+    const t2 = mk('text', {x: cx, y: y + 18, class: 'coltxt'}, g);
+    t2.innerHTML = `as <tspan class="v">${esc(label(c.y))}</tspan>`;
+  }
+  // in Puzzles the crash is found by running (or by pressing Can't be undone); in Workshop it shows after every edit
+  const shownCol = () => state.col && (!isPz() || state.pz.revealed) ? state.col : null;
+
+  function renderFormula() {
+    const Lc = cur(), f = FM.formula(Lc.F), gt = Lc.gate;
+    const dom = gt.on ? `<span class="dom">, for x ${gt.dir === 'ge' ? '≥' : '≤'} ${fmtV(gt.c)}</span>` : '';
+    let html = `<span class="fx f1"><span class="sw sw1" aria-hidden="true"></span><b>f(x)</b> = <span>${f.h}${dom}</span></span>`;
+    if (self11()) html += `<span class="fx f2"><span class="sw sw2" aria-hidden="true"></span><b>lap 2</b> = <span>f(f(x))</span></span>`;
+    else html += `<span class="fx f2"><span class="sw sw2" aria-hidden="true"></span><b>g(x)</b> = <span>${FM.formula(Lc.U).h}</span></span>`;
+    const r = state.results;
+    if (r && r.verdict === 'ok' && r.full && !(self11() && !r.changed)) {
+      html += self11() ? `<span class="fx inv">✓ <b>f(f(x)) = x</b> for every token that got through, so f is its own inverse</span>` :
+        `<span class="fx inv">✓ <b>g(x) = f<sup>−1</sup>(x)</b> &nbsp;g(f(x)) = x for every token that got through</span>`;
+    }
+    $('formula').innerHTML = html;
+  }
+
+  // ---------- panel ----------
+  const VERD = {
+    idle: {icon: '○', word: 'Not run yet'},
+    ok: {icon: '✓', word: 'Undoes it'},
+    unsure: {icon: '?', word: "Can't confirm the undo"},
+    lost: {icon: '!', word: 'Some tokens lost'},
+    cant: {icon: '✕', word: "Can't be undone as built"},
+    none: {icon: '∅', word: 'Nothing got through'},
+  };
+  function setVerdict(kind, detail) {
+    state.verdict = {kind, detail};
+    const v = VERD[kind];
+    $('verdictSec').className = 'sec verdict ' + kind;
+    $('vIcon').textContent = v.icon; $('vWord').textContent = v.word;
+    $('vDetail').innerHTML = detail || '';
+  }
+  const gotHome = n => n === 1 ? 'The 1 token that got through came home.' : `All ${n} tokens that got through came home.`;
+  const numSpan = v => `<span class="num">${esc(fmtV(v))}</span>`;
+  // an approximate pair (worked out, irrational inputs) says so: typing the rounded numbers would not crash
+  const about = (c, v) => c.approx && +fmtV(v).replace('−', '-') !== v ? 'about ' : '';
+  function colSentence(c) { return `${about(c, c.a)}${numSpan(c.a)} and ${about(c, c.b)}${numSpan(c.b)} both come out as ${about(c, c.y)}${numSpan(c.y)}.`; }
+  function idleVerdict() {
+    const c = shownCol();
+    if (c) setVerdict('cant', colSentence(c) + ` No undo line can send ${numSpan(c.y)} back to both.`);
+    else setVerdict('idle', isPz() ? '' : 'Press Run to send the 8 test tokens through.');
+  }
+  function renderPanel() {
+    const pz = isPz();
+    $('levelSec').hidden = !pz; $('pzBtns').hidden = !pz; $('myRow').hidden = pz;
+    for (const id of ['hintBtn', 'cantBtn', 'resetBtn', 'nextBtn']) $(id).hidden = !pz;   // they may sit outside #pzBtns (compact)
+    $('cr2').hidden = !pz; $('cr3').hidden = pz;
+    // compact: the parts come right after Run (and the puzzle buttons); Gate, Graph and the clear buttons follow the
+    // parts, with the gate controls right under them, so the parts stay in the first screen of the panel
+    if (curLayout === 'compact') { $('panel').insertBefore($('cr4'), $('binSec').nextSibling); $('panel').insertBefore($('gateSec'), $('cr4').nextSibling); }
+    else { if ($('cr4').parentNode !== $('cctl')) $('cctl').appendChild($('cr4')); if ($('gateSec').nextElementSibling !== $('editSec')) $('panel').insertBefore($('gateSec'), $('editSec')); }
+    for (const id of ['randBtn', 'clearUBtn', 'clearBtn']) $(id).hidden = pz;
+    $('gateBtn').hidden = !gateAllowed();
+    $('hint').innerHTML = pz ? '<b>Puzzles.</b> The top line is locked. Build the undo line on the bottom from the parts, then press Run.' :
+      '<b>Workshop.</b> Build a chain on the top line from the parts, then build the chain that brings every number home on the bottom line. Press Run to test it.';
+    if (pz) {
+      const n = state.pz.level, lv = lvl();
+      const box = $('levels');
+      if (!box.children.length) LEVELS.forEach((l, i) => {
+        const b = document.createElement('button'); b.className = 'btn'; b.dataset.n = i + 1;
+        b.onclick = () => { loadLevel(i + 1); };
+        box.appendChild(b);
+      });
+      [...box.children].forEach((b, i) => {
+        const s = solved.has(i + 1);
+        b.innerHTML = `${i + 1}${s ? '<span class="ck" aria-hidden="true">✓</span>' : ''}`;
+        b.setAttribute('aria-label', `Level ${i + 1}: ${LEVELS[i].title}${s ? ', solved' : ''}`);
+        b.title = LEVELS[i].title;
+        b.setAttribute('aria-current', i + 1 === n);
+      });
+      const curB = box.children[n - 1];   // keep the current level in view when the row scrolls (compact)
+      if (box.scrollWidth > box.clientWidth) box.scrollLeft = Math.max(0, curB.offsetLeft - box.offsetLeft - (box.clientWidth - curB.offsetWidth) / 2);
+      $('lTitle').textContent = `${n}. ${lv.title}${solved.has(n) ? '  ✓ solved' : ''}`;
+      $('goal').textContent = lv.goal;
+      $('nextBtn').disabled = !solved.has(n) || n === 12;
+      if (self11()) $('hint').innerHTML = '<b>Puzzle 11.</b> The top line is yours, 2 slots. Run sends each token through it twice: the second lap rides the bottom line.';
+    }
+    const gt = cur().gate, gOn = gt.on && gateAllowed();
+    $('gateBtn').setAttribute('aria-pressed', gOn);
+    $('gateSec').hidden = !gOn;
+    $('gGe').setAttribute('aria-pressed', gt.dir === 'ge'); $('gLe').setAttribute('aria-pressed', gt.dir === 'le');
+    $('gVal').textContent = fmtV(gt.c);
+    $('gDec').disabled = gt.c <= -10; $('gInc').disabled = gt.c >= 10;
+    $('gLabel').textContent = `Only x ${gt.dir === 'ge' ? '≥' : '≤'} ${fmtV(gt.c)} may enter`;
+    $('graphBtn').setAttribute('aria-pressed', state.graph);
+    $('graphSec').hidden = !state.graph;
+    renderBin();
+  }
+  // the < and > move buttons of the selected card, drawn above the cards so a neighbor never covers them
+  function renderMove() {
+    const g = $('gMv'); g.textContent = '';
+    const s = state.sel; if (!s || (s.line === 'F' && fLocked())) return;
+    const arr = cur()[s.line], i = arr.findIndex(m => m.id === s.id); if (i < 0) return;
+    const b = slotBox(s.line, i), n = arr.length, vis = s.line === 'F' ? i : n - 1 - i;
+    // drawn above the card's top edge, each with a HIT-sized tap area (the readout row is not interactive)
+    const btn = (cx, label, dir, on) => {
+      if (!on) return;
+      const k = mk('g', {class: 'card'}, g), c = mk('g', {class: 'cb'}, k);
+      mk('rect', {x: cx - HIT / 2, y: b.y - HIT - 2, width: HIT, height: HIT, style: 'fill:transparent;stroke:none'}, c);
+      mk('rect', {x: cx - 15, y: b.y - 34, width: 30, height: 28, rx: 6}, c);
+      mk('text', {x: cx, y: b.y - 14, style: 'font-size:15px'}, c).textContent = label;
+      c.addEventListener('click', e => { e.stopPropagation(); editMove(s.line, s.id, dir); });
+    };
+    btn(b.x + 8, '◀', -1, vis > 0); btn(b.x + b.w - 8, '▶', 1, vis < n - 1);
+  }
+  function renderEditor() {
+    const s = state.sel, sec = $('editSec');
+    const m = s && cur()[s.line === 'F' ? 'F' : 'U'].find(x => x.id === s.id);
+    if (!m) { sec.hidden = true; return; }
+    const line = s.line, i = cur()[line].indexOf(m), locked = line === 'F' && fLocked();
+    sec.hidden = false;
+    $('edName').textContent = `${line === 'F' ? 'Top line' : 'Undo line'}, slot ${i + 1}: ${PARTS[m.p].label(m.a)}${locked ? ' (locked in this puzzle)' : ''}`;
+    const hp = FM.hasParam(m.p), [lo, hi] = hp ? PARTS[m.p].param : [0, 0];
+    $('edDec').hidden = $('edInc').hidden = !hp || locked;
+    $('edDec').disabled = hp && m.a <= lo; $('edInc').disabled = hp && m.a >= hi;
+    for (const id of ['edL', 'edR', 'edDel']) $(id).hidden = locked;
+    const n = cur()[line].length, vis = line === 'F' ? i : n - 1 - i;   // visual position from the left
+    $('edL').disabled = vis <= 0; $('edR').disabled = vis >= n - 1;
+  }
+  function renderBin() {
+    const bin = $('bin');
+    if (!bin.children.length) FM.ORDER.forEach(p => {
+      const b = document.createElement('button'); b.className = 'part'; b.dataset.p = p;
+      b.innerHTML = `<span class="ps" aria-hidden="true">${PARTS[p].binSym}</span><span class="pn">${PARTS[p].bin}</span>`;
+      b.setAttribute('aria-pressed', 'false');
+      b.setAttribute('aria-label', PARTS[p].bin);
+      wirePart(b, p);
+      bin.appendChild(b);
+    });
+    for (const b of bin.children) b.setAttribute('aria-pressed', !!(state.lift && state.lift.p === b.dataset.p));
+  }
+  function tip(text) { $('tip').textContent = text || ''; }
+  function live(text) { $('live').textContent = text; }
+
+  // ---------- placing parts: drag, tap then tap, or the keyboard ----------
+  function lineFull(line) { return cur()[line].length >= (line === 'F' ? maxF() : maxU); }
+  function canUse(line) {
+    if (line === 'F' && fLocked()) { tip('The top line is locked in this puzzle. Build on the bottom line.'); return false; }
+    if (line === 'U' && self11()) { tip('In this puzzle the bottom line is lap 2: it runs your top line again. Build on the top line.'); return false; }
+    return true;
+  }
+  function place(line, idx, p) {
+    if (!canUse(line)) return false;
+    if (lineFull(line)) { tip(`This line is full (${line === 'F' ? maxF() : maxU} machines)`); return false; }
+    const arr = cur()[line];
+    idx = Math.max(0, Math.min(idx, arr.length));
+    const m = item(p);
+    arr.splice(idx, 0, m);
+    if (isPz()) state.pz.ghost = null;
+    edited();
+    tip('');
+    live(`${PARTS[p].label(m.a)} placed on the ${line === 'F' ? 'top' : 'undo'} line, slot ${idx + 1}.`);
+    if (line === 'F' && !state.ran) once('workshop-run');
+    return true;
+  }
+  function defaultCursor() {
+    const Lc = cur();
+    let line = isPz() ? (self11() ? 'F' : 'U') : (Lc.F.length && !lineFull('U') && Lc.U.length < Lc.F.length ? 'U' : 'F');
+    if (!isPz() && lineFull('F')) line = 'U';
+    return {line, idx: Lc[line].length};
+  }
+  function lift(p) {
+    if (state.lift && state.lift.p === p) { dropLift(); return; }
+    state.lift = {p}; state.cursor = defaultCursor();
+    renderBin(); renderSlots(); renderCursor();
+    tip(`${PARTS[p].bin} lifted. Tap a slot, or use the arrow keys and Enter. Escape cancels.`);
+  }
+  function dropLift(msg) {
+    state.lift = null; state.cursor = null;
+    renderBin(); renderSlots(); renderCursor();
+    if (msg != null) tip(msg);
+  }
+  function renderCursor() {
+    const g = $('gCur'); g.textContent = '';
+    const c = state.cursor;
+    if (!c || !state.lift) return;
+    const n = slotsOf(c.line);
+    if (!n) return;
+    const s = slotBox(c.line, Math.min(c.idx, n - 1));
+    mk('rect', {x: s.x - 7, y: s.y - 7, width: s.w + 14, height: s.h + 14, rx: 13, class: 'curbox'}, g);
+    mk('text', {x: s.cx, y: c.line === 'F' ? s.y + s.h + 28 : s.y - 14, class: 'curtxt'}, g).textContent = c.idx < cur()[c.line].length ? '▼ insert here' : '▼ drop here';
+  }
+  function moveCursor(dx, dy) {
+    const c = state.cursor; if (!c) return;
+    if (dy) {
+      const line = dy < 0 ? 'F' : 'U';
+      if (slotsOf(line)) { c.line = line; c.idx = Math.min(c.idx, cur()[line].length); }
+    }
+    if (dx) {
+      const n = cur()[c.line].length, max = Math.min(n, slotsOf(c.line) - 1);
+      const step = c.line === 'F' ? dx : -dx;   // the undo line runs right to left
+      c.idx = Math.max(0, Math.min(max, c.idx + step));
+    }
+    renderCursor();
+    live(`${c.line === 'F' ? 'Top' : 'Undo'} line, slot ${c.idx + 1} of ${slotsOf(c.line)}`);
+  }
+  function wirePart(b, p) {
+    let drag = null, suppress = false, ghost = null;
+    b.addEventListener('pointerdown', e => {
+      if (e.button) return;
+      drag = {x: e.clientX, y: e.clientY, moved: false};
+      try { b.setPointerCapture(e.pointerId); } catch {}
+    });
+    b.addEventListener('pointermove', e => {
+      if (!drag) return;
+      if (!drag.moved && Math.hypot(e.clientX - drag.x, e.clientY - drag.y) > 8) {
+        drag.moved = true;
+        ghost = b.cloneNode(true); ghost.classList.add('ghost'); ghost.removeAttribute('id'); ghost.style.width = b.offsetWidth + 'px';
+        document.body.appendChild(ghost);
+        state.lift = {p}; renderSlots(); renderBin();
+      }
+      if (drag.moved) {
+        ghost.style.left = e.clientX + 'px'; ghost.style.top = e.clientY + 'px';
+        const t = slotAt(e.clientX, e.clientY);
+        state.cursor = t; renderCursor();
+      }
+    });
+    const end = e => {
+      if (!drag) return;
+      const d = drag; drag = null;
+      if (ghost) { ghost.remove(); ghost = null; }
+      if (d.moved) {
+        suppress = true;
+        const t = e && e.type === 'pointerup' ? slotAt(e.clientX, e.clientY) : null;
+        state.lift = null; state.cursor = null;
+        if (t) place(t.line, t.idx, p);
+        renderBin(); renderSlots(); renderCursor();
+      }
+    };
+    b.addEventListener('pointerup', end);
+    b.addEventListener('pointercancel', end);
+    b.addEventListener('click', () => { if (suppress) { suppress = false; return; } lift(p); });
+    b.addEventListener('keydown', e => {
+      if (!state.lift || state.lift.p !== p) return;
+      const k = e.key;
+      if (k === 'ArrowLeft') moveCursor(-1, 0); else if (k === 'ArrowRight') moveCursor(1, 0);
+      else if (k === 'ArrowUp') moveCursor(0, -1); else if (k === 'ArrowDown') moveCursor(0, 1);
+      else if (k === 'Enter' || k === ' ') { const c = state.cursor; state.lift = null; state.cursor = null; if (c) place(c.line, c.idx, p); renderBin(); renderSlots(); renderCursor(); }
+      else if (k === 'Escape') dropLift('Cancelled.');
+      else return;
+      e.preventDefault();
+    });
+  }
+  // the slot under a screen point, or null when it is off the floor
+  function slotAt(cx, cy) {
+    const svg = $('fl'), pt = svg.createSVGPoint(); pt.x = cx; pt.y = cy;
+    const q = pt.matrixTransform(svg.getScreenCTM().inverse());
+    if (q.x < 0 || q.x > G.W || q.y < 0 || q.y > G.H) return null;
+    let line = q.y < (G.fy + G.fh + G.uy) / 2 ? 'F' : 'U';
+    if (!slotsOf(line)) line = 'F';
+    const n = Math.min(cur()[line].length, slotsOf(line) - 1);
+    let best = 0, bd = Infinity;
+    for (let i = 0; i <= n; i++) { const d = Math.abs(slotBox(line, i).cx - q.x); if (d < bd) { bd = d; best = i; } }
+    return {line, idx: best};
+  }
+  function slotClick(line, i) {
+    if (!state.lift) return;
+    const p = state.lift.p; state.lift = null; state.cursor = null;
+    place(line, i, p);
+    renderBin(); renderSlots(); renderCursor();
+  }
+
+  // ---------- editing machines ----------
+  const find = (line, id) => { const arr = cur()[line]; const i = arr.findIndex(m => m.id === id); return [arr, i, arr[i]]; };
+  function lockedMsg(line) { if (line === 'F' && fLocked()) { tip('This machine is locked in this puzzle.'); return true; } return false; }
+  function editStep(line, id, d) {
+    if (lockedMsg(line)) return;
+    const [, , m] = find(line, id); if (!m || !FM.hasParam(m.p)) return;
+    const [lo, hi] = PARTS[m.p].param;
+    let a = m.a + d; if (a === 0) a += d;
+    if (a < lo || a > hi) return;
+    m.a = a; edited();
+    live(PARTS[m.p].label(m.a));
+  }
+  function editRemove(line, id) {
+    if (lockedMsg(line)) return;
+    const [arr, i, m] = find(line, id); if (!m) return;
+    arr.splice(i, 1);
+    if (state.sel && state.sel.id === id) state.sel = null;
+    edited();
+    live(`${PARTS[m.p].label(m.a)} removed.`);
+    const next = $('gCards').querySelector(`[data-line="${line}"][data-idx="${Math.min(i, arr.length - 1)}"]`);
+    if (next) next.focus();
+  }
+  function editMove(line, id, dir) {   // dir: -1 visual left, 1 visual right
+    if (lockedMsg(line)) return;
+    const [arr, i, m] = find(line, id); if (!m) return;
+    const j = i + (line === 'F' ? dir : -dir);
+    if (j < 0 || j >= arr.length) return;
+    arr.splice(i, 1); arr.splice(j, 0, m);
+    edited();
+    live(`Moved to slot ${j + 1}.`);
+  }
+  function selectCard(line, id, quiet) {
+    state.sel = {line, id};
+    for (const c of $('gCards').children) c.classList.toggle('sel', +c.dataset.id === id);
+    renderEditor(); renderMove();
+  }
+  function cardClick(line, id) {
+    const [, i] = find(line, id);
+    if (state.lift) { slotClick(line, i); return; }
+    selectCard(line, id);
+  }
+  function cardKey(e, line, id) {
+    const k = e.key;
+    if (state.lift && (k === 'Enter' || k === ' ')) { const [, i] = find(line, id); slotClick(line, i); e.preventDefault(); return; }
+    if (k === '+' || k === '=') editStep(line, id, 1);
+    else if (k === '-' || k === '_') editStep(line, id, -1);
+    else if (k === 'Delete' || k === 'Backspace') editRemove(line, id);
+    else if (k === '[' || k === '<' || k === ',') editMove(line, id, -1);
+    else if (k === ']' || k === '>' || k === '.') editMove(line, id, 1);
+    else if (k === 'Escape') { state.sel = null; if (document.activeElement && document.activeElement.blur) document.activeElement.blur(); renderCards(); }
+    else if (k === 'Enter' || k === ' ') selectCard(line, id);
+    else return;
+    e.preventDefault();
+  }
+  $('edDec').onclick = () => state.sel && editStep(state.sel.line, state.sel.id, -1);
+  $('edInc').onclick = () => state.sel && editStep(state.sel.line, state.sel.id, 1);
+  $('edL').onclick = () => state.sel && editMove(state.sel.line, state.sel.id, -1);
+  $('edR').onclick = () => state.sel && editMove(state.sel.line, state.sel.id, 1);
+  $('edDel').onclick = () => state.sel && editRemove(state.sel.line, state.sel.id);
+
+  // any edit: stop the run, clear its results and the verdict, check for a collision again (no animation)
+  function edited() {
+    stopRun(); state.results = null; state.mirror = false; state.pz.ghost = null;
+    const Lc = cur();
+    const col = FM.collision(Lc.F, gateAllowed() ? Lc.gate : null);
+    state.col = col && !col.unconfirmed ? col : null;
+    state.unsure = col && col.unconfirmed ? col : null;
+    if (shownCol()) once('collision-found');
+    resetTokens();
+    idleVerdict();
+    render();
+  }
+  function render() { renderSlots(); renderCards(); renderGate(); renderCollision(); renderFormula(); renderPanel(); renderCursor(); if (state.graph) renderGraph(); }
+
+  // ---------- running tokens ----------
+  let runS = null;   // the run in progress (or finished, until the next edit)
+  const waitPos = (i, n) => n === 1 ? G.wait.one : [G.wait.cols[i % 2], G.wait.y0 + G.wait.dy * Math.floor(i / 2)];
+  const homePos = j => [G.wait.cols[j % 2], G.homeRows.y0 + G.homeRows.dy * Math.floor(j / 2)];
+  const trayPos = j => [G.tray.x0 + G.tray.colW * (j % G.tray.cols) + 28 * G.tokS, G.tray.y0 + G.tray.dy * Math.floor(j / G.tray.cols)];
+  const rejPos = (j, r) => [fx(j) + G.rej.dx * (r % 3 - 1), G.rej.y0 + G.rej.dy * Math.floor(r / 3)];
+  function tokW(s) { return Math.max(40, s.length * 8.6 * TS + 16); }
+  function makeTok(x, i, n) {
+    const g = mk('g', {class: 'tok'}, $('gTok'));
+    const rect = mk('rect', {y: -14, height: 28, rx: 14}, g);
+    const text = mk('text', {y: 5, class: 'tv'}, g);
+    const tag = mk('text', {y: 26, class: 'ttag'}, g);
+    const t = {x, i, el: g, rect, text, tag, label: ''};
+    setTok(t, fmtV(x));
+    const [px, py] = waitPos(i, n); posTok(t, px, py, G.tokS);
+    return t;
+  }
+  function setTok(t, s) { t.label = s; t.text.textContent = s; const w = tokW(s); t.rect.setAttribute('x', -w / 2); t.rect.setAttribute('width', w); }
+  function posTok(t, x, y, sc) { t.el.setAttribute('transform', `translate(${x.toFixed(1)},${y.toFixed(1)})` + (sc && sc !== 1 ? ` scale(${sc.toFixed(3)})` : '')); }
+  function resetTokens(values = TOKENS) {
+    $('gTok').textContent = ''; $('gRead').textContent = ''; $('gRej').textContent = '';
+    drawTray([]);
+    values.forEach((x, i) => makeTok(x, i, values.length));
+  }
+  function drawTray(entries) {
+    const g = $('gTray'); g.textContent = '';
+    if (!entries.length) { const t = mk('text', {x: G.tray.empty[0], y: G.tray.empty[1], class: 'trayempty'}, g); t.textContent = 'Tokens that come back wrong, or get stopped on the undo line, land here.'; squeeze(t, t.textContent.length * 6.6 * TS, G.tray.x + G.tray.w - G.tray.empty[0] - 12); return; }
+    entries.forEach((e, j) => {
+      const [x, y] = trayPos(j);
+      const tw = tokW(fmtV(e.start)) * G.tokS, t = mk('text', {x: x + tw / 2 + 8, y: y + 5, class: 'traytxt'}, g);
+      t.innerHTML = e.tag ? `stopped: ${esc(e.tag)}` : `came back as <tspan class="v">${esc(fmtV(e.final))}</tspan>`;
+      const room = G.tray.colW - 36 - tw, est = t.textContent.length * 7.4 * TS;
+      if (est > room) { t.setAttribute('textLength', room); t.setAttribute('lengthAdjust', 'spacingAndGlyphs'); }
+    });
+  }
+  function readout(line, j, v) {
+    const g = $('gRead');
+    let el = g.querySelector(`[data-k="${line}${j}"]`);
+    if (!el) el = mk('text', {class: 'rd', 'data-k': line + j, x: line === 'F' ? fx(j) : ux(j), y: line === 'F' ? G.fy - 8 : G.uy - 8}, g);
+    el.textContent = fmtV(v);
+  }
+  function dim(t, tag) { t.el.classList.add('dim'); t.tag.textContent = tag || ''; }
+  // plan every token's stops; the clock then plays them out (motion off: they jump stop to stop on the same beat)
+  function planRun(values) {
+    const Lc = cur(), F = Lc.F, U = undoChain(), gate = gateAllowed() ? Lc.gate : null;
+    const toks = values.map((x, i) => makeTok(x, i, values.length));
+    let nHome = 0, nLost = 0; const rejCount = {}, rejTags = {}, tray = [];
+    toks.forEach((t, i) => {
+      const S = [{p: waitPos(i, values.length), s: G.tokS}];
+      const r1 = FM.run(F, t.x, gate);
+      t.res = {start: t.x, blocked: r1.gate, fwdRej: !!r1.rej, out: r1.out, home: false, final: null, tag: null};
+      if (r1.gate) { S[0].fn = () => dim(t, 'gate'); t.S = S; return; }
+      if (gate && gate.on) S.push({p: [G.gateX, G.fBelt]});
+      let v = t.x;
+      for (let j = 0; j < F.length; j++) {
+        if (r1.rej && r1.rej.at === j) {
+          const tag = r1.rej.tag, rc = rejCount[j] = (rejCount[j] || 0);
+          rejCount[j]++; rejTags[j] = rejTags[j] || new Set(); rejTags[j].add(tag);
+          S.push({p: [fx(j), G.fBelt], fn: () => { dim(t, ''); }});
+          S.push({p: rejPos(j, rc), s: G.rej.s, fn: () => { setTok(t, fmtV(t.x)); showRejTag(j, [...rejTags[j]], Math.ceil(rejCount[j] / 3)); }});
+          t.S = S; return;
+        }
+        const val = r1.vals[j];
+        S.push({p: [fx(j), G.fBelt], fn: () => { setTok(t, fmtV(val)); readout('F', j, val); }});
+        v = val;
+      }
+      S.push({p: [G.out.x + G.out.w / 2, G.fBelt]});
+      S.push({p: G.chute[3], chute: true});
+      const r2 = FM.run(U, v, null);
+      for (let k = 0; k < U.length; k++) {
+        if (r2.rej && r2.rej.at === k) {
+          const tag = r2.rej.tag, j = tray.length;
+          tray.push({start: t.x, tag}); t.res.tag = tag; nLost++;
+          S.push({p: [ux(k), G.uBelt], fn: () => { dim(t, tag); }});
+          S.push({p: trayPos(j), s: G.tokS, fn: () => { t.el.classList.remove('dim'); t.el.classList.add('lost'); t.tag.textContent = ''; setTok(t, fmtV(t.x)); drawTray(tray.slice(0, j + 1)); }});
+          t.S = S; return;
+        }
+        const val = r2.vals[k];
+        S.push({p: [ux(k), G.uBelt], fn: () => { setTok(t, fmtV(val)); readout('U', k, val); }});
+      }
+      const fin = r2.out;
+      t.res.final = fin;
+      S.push({p: [G.homeEnd, G.uBelt]});   // ride the belt to the HOME end, then step off
+      if (FM.home(fin, t.x)) {
+        t.res.home = true; const j = nHome++;
+        S.push({p: homePos(j), s: G.tokS, fn: () => { t.el.classList.add('home'); setTok(t, fmtV(t.x)); }});
+      } else {
+        const j = tray.length; tray.push({start: t.x, final: fin}); nLost++;
+        S.push({p: trayPos(j), s: G.tokS, fn: () => { t.el.classList.add('lost'); setTok(t, fmtV(t.x)); drawTray(tray.slice(0, j + 1)); }});
+      }
+      t.S = S;
+    });
+    return {toks, tray};
+  }
+  function showRejTag(j, tags, rows) {
+    const g = $('gRej');
+    let el = g.querySelector(`[data-j="${j}"]`);
+    if (!el) el = mk('text', {class: 'rejtag', 'data-j': j, x: fx(j)}, g);
+    el.setAttribute('y', G.rej.y0 + G.rej.dy * (rows - 1) + 26);
+    el.textContent = tags.join(', ');
+  }
+  function startRun(values, mine) {
+    stopRun(); state.results = null;
+    $('gTok').textContent = ''; $('gRead').textContent = ''; $('gRej').textContent = ''; drawTray([]);
+    idleVerdict();
+    const plan = planRun(values);
+    const toks = plan.toks;
+    toks.forEach(t => { t.start = t.i * GAP; t.done = -1; });
+    const end = Math.max(...toks.map(t => t.start + (t.S.length - 1) * D)) + 120;
+    runS = {toks, end, t0: performance.now(), timer: null, mine, values, live: true};
+    state.ran = true;
+    $('fl').classList.add('running');
+    $('runBtn').textContent = '■ Stop';
+    tick();
+  }
+  const ease = f => f * f * (3 - 2 * f);
+  function bez(p0, p1, p2, p3, t) { const u = 1 - t; return [0, 1].map(k => u * u * u * p0[k] + 3 * u * u * t * p1[k] + 3 * u * t * t * p2[k] + t * t * t * p3[k]); }
+  function tick() {
+    const r = runS; if (!r || !r.live) return;
+    const el = performance.now() - r.t0;
+    for (const t of r.toks) {
+      const s = el - t.start; if (s < 0) continue;
+      const h = Math.min(Math.floor(s / D), t.S.length - 1);
+      while (t.done < h) { t.done++; const st = t.S[t.done]; st.fn && st.fn(); }
+      let p = t.S[h].p, sc = t.S[h].s || 1;
+      if (h < t.S.length - 1 && !Curio.reduce) {
+        const f = ease((s - h * D) / D), a = t.S[h].p, b = t.S[h + 1];
+        p = b.chute ? bez(a, [G.chute[1][0] - 8, G.chute[1][1]], [G.chute[2][0] - 2, G.chute[2][1]], b.p, f) : [a[0] + (b.p[0] - a[0]) * f, a[1] + (b.p[1] - a[1]) * f];
+        sc = sc + ((b.s || 1) - sc) * f;
+      }
+      posTok(t, p[0], p[1], sc);
+    }
+    if (el > r.end) finishRun(); else r.timer = setTimeout(tick, 16);
+  }
+  function stopRun() {
+    if (runS) { runS.live = false; clearTimeout(runS.timer); }
+    runS = null;
+    $('fl').classList.remove('running');
+    $('runBtn').textContent = '▶ Run';
+  }
+  function skipRun() { if (runS && runS.live) { runS.t0 = performance.now() - runS.end - 1; clearTimeout(runS.timer); tick(); } }
+  function finishRun() {
+    const r = runS; if (!r) return;
+    r.live = false; clearTimeout(r.timer);
+    $('fl').classList.remove('running'); $('runBtn').textContent = '▶ Run';
+    const toks = r.toks, through = toks.filter(t => !t.res.blocked && !t.res.fwdRej);
+    const blocked = toks.filter(t => t.res.blocked).length, fRej = toks.filter(t => t.res.fwdRej).length;
+    if (isPz()) state.pz.revealed = true;
+    const homeAll = through.length && through.every(t => t.res.home);
+    const changed = through.some(t => !FM.same(t.res.out, t.res.start));
+    const c = state.col;
+    // a machine that may merge inputs, with no pair found that survives the rest, never earns "Undoes it"
+    let kind = c ? 'cant' : !through.length ? 'none' : homeAll ? (state.unsure ? 'unsure' : 'ok') : 'lost';
+    // a real crash among the tokens themselves (checked the same strict way as the crash pair)
+    let crash = null;
+    const Lc = cur(), gt = gateAllowed() ? Lc.gate : null, uns = FM.track(Lc.F, gt).unsafe, runs = through.map(t => FM.run(Lc.F, t.x, gt));
+    for (let i = 0; i < through.length && !crash; i++) for (let j = i + 1; j < through.length; j++) if (FM.crashAt(Lc.F, uns, runs[i], runs[j]) >= 0) { crash = [through[i], through[j]]; break; }
+    const notCounted = [blocked ? `${blocked} stopped by the gate` : '', fRej ? `${fRej} stopped by a machine on the top line` : ''].filter(Boolean).join(', ');
+    const nc = notCounted ? ` Not counted: ${notCounted}.` : '';
+    let detail = '';
+    if (kind === 'cant') {
+      detail = colSentence(c) + ` No undo line can send ${numSpan(c.y)} back to both.`;
+      if (crash) detail += ` In this run, ${numSpan(crash[0].x)} and ${numSpan(crash[1].x)} both left the top line as ${numSpan(crash[0].res.out)}.`;
+    } else if (kind === 'none') detail = 'Every token was stopped before OUT, by the gate or by a machine that cannot take it.';
+    else if (kind === 'unsure') {
+      const m = Lc.F[state.unsure.at];
+      detail = `${gotHome(through.length).slice(0, -1)}, but machine ${state.unsure.at + 1} (${esc(PARTS[m.p].label(m.a))}) can send different numbers to one output, and no such pair was found that gets through the rest of the chain. The undo can't be confirmed for every number.${nc}`;
+    }
+    else if (kind === 'ok') {
+      detail = through.length === 1 && r.mine ? `Your number ${numSpan(through[0].x)} came home. Press Run to test all 8.` :
+        `${gotHome(through.length)}${nc}` + (self11() ? '' : '<span class="invv"> g(x) = f<sup>−1</sup>(x).</span>');
+      if (self11() && !changed) detail = 'Every token came home, but the chain changes nothing. The puzzle needs a chain that changes at least one number.';
+    } else {
+      const lost = through.filter(t => !t.res.home);
+      const names = lost.slice(0, 3).map(t => t.res.tag ? `${numSpan(t.x)} was stopped (${esc(t.res.tag)})` : `${numSpan(t.x)} came back as ${numSpan(t.res.final)}`);
+      detail = `Lost: ${names.join('; ')}${lost.length > 3 ? `; and ${lost.length - 3} more` : ''}.${nc}`;
+    }
+    setVerdict(kind, detail);
+    state.results = {verdict: kind, full: !r.mine, changed, crash};
+    renderCollision(); renderFormula();
+    if (kind === 'ok' && !(self11() && !changed)) { Curio.yes(); if (!r.mine) once('all-home', true); }
+    else if (kind === 'lost') { Curio.tone(220, .35, .04); once('some-lost', true); }
+    else if (kind === 'cant') once('collision-found');
+    if (isPz()) checkSolved(kind, changed);
+  }
+  $('runBtn').onclick = () => { if (runS && runS.live) { stopRun(); resetTokens(); idleVerdict(); return; } state.sel = null; renderCards(); startRun(TOKENS, false); };
+  $('sendBtn').onclick = sendMine;
+  $('myNum').addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); sendMine(); } });
+  function sendMine() {
+    const raw = $('myNum').value.trim().replace(/−/g, '-');
+    const n = raw === '' ? NaN : Number(raw);
+    if (!isFinite(n)) { tip('Type a number, like -2.5'); return; }
+    tip('');
+    startRun([n], true);
+  }
+
+  // ---------- puzzles ----------
+  function checkSolved(kind, changed) {
+    const lv = lvl(), Lc = cur(), n = state.pz.level;
+    let ok = false;
+    if (lv.kind === 'undo') ok = kind === 'ok' && (!lv.one || Lc.U.length === 1);
+    else if (lv.kind === 'gate') ok = kind === 'ok' && Lc.gate.on;
+    else if (lv.kind === 'self') ok = kind === 'ok' && Lc.F.length === 2 && changed;
+    if (lv.kind === 'undo' && lv.one && kind === 'ok' && Lc.U.length !== 1) tip('Every token came home, but this puzzle asks for one machine.');
+    if (lv.kind === 'self' && kind === 'ok' && Lc.F.length !== 2) tip('Every token came home, but this puzzle needs two machines on the top line.');
+    else if (lv.kind === 'self' && kind === 'ok' && !changed) tip('Not yet: every token came home, but the chain changes nothing. Pick two machines that change the numbers.');
+    if (ok) solve(n, 'Solved! ' + (n < 12 ? 'Press Next puzzle when you are ready.' : 'That was the last puzzle.'));
+  }
+  function solve(n, msg) {
+    solved.add(n); saveSolved();
+    renderPanel(); tip(msg);
+  }
+  function loadLevel(n) {
+    stopRun(); hush();
+    const pz = state.pz, lv = LEVELS[n - 1];
+    pz.level = n; pz.F = lv.F.map(m => item(m.p, m.a)); pz.U = []; pz.gate = {on: false, dir: 'ge', c: 0};
+    pz.hints = 0; pz.revealed = false; pz.ghost = null;
+    state.sel = null; state.lift = null; state.cursor = null;
+    tip('');
+    edited();
+    if (lv.kind === 'self') once('self-undo');
+  }
+  $('resetBtn').onclick = () => loadLevel(state.pz.level);
+  $('nextBtn').onclick = () => { if (state.pz.level < 12) loadLevel(state.pz.level + 1); };
+  $('hintBtn').onclick = () => {
+    const pz = state.pz, lv = lvl(), list = HINTS[lv.kind], h = list[Math.min(pz.hints, list.length - 1)];
+    pz.hints++;
+    if (lv.kind === 'undo' && pz.hints === 1) once('order-hint');
+    if (h === 'ghost') {
+      const ans = lv.ans, U = pz.U;
+      let i = 0; while (i < ans.length && U[i] && U[i].p === ans[i].p && U[i].a === ans[i].a) i++;
+      if (i >= ans.length) { pz.ghost = null; tip('Your undo line already matches one answer. Press Run.'); }
+      else { pz.ghost = {idx: Math.min(i, U.length), m: item(ans[i].p, ans[i].a)}; tip(`Hint: the glowing outline on the undo line shows a part to try there: ${PARTS[ans[i].p].label(ans[i].a)}.`); }
+      renderCards();
+    } else if (h === 'gate') {
+      const g = pz.gate; if (!g.on) { g.on = true; g.c = 0; } g.dir = 'ge';
+      once('gate-intro');
+      edited();
+      tip('The gate is on and set to ≥. Now choose its value.');
+    } else tip(h);
+  };
+  $('cantBtn').onclick = () => {
+    const lv = lvl(), pz = state.pz;
+    if (lv.kind === 'lost') {
+      pz.revealed = true; stopRun(); resetTokens(); idleVerdict(); renderCollision();
+      const c = state.col;
+      setVerdict('cant', colSentence(c) + ' Two inputs, one output. Nothing can send it back.');
+      once('collision-found');
+      solve(pz.level, 'Solved! Two inputs, one output. Nothing can send it back.');
+    } else if (lv.kind === 'gate' && state.col) {
+      pz.revealed = true; idleVerdict(); renderCollision();
+      tip('As built, no. But a gate can fix this one.');
+      once('collision-found');
+    } else tip('This one can be undone. Run your undo line to test it.');
+  };
+
+  // ---------- workshop buttons ----------
+  $('gateBtn').onclick = () => {
+    const g = cur().gate;
+    if (g.on) g.on = false; else { g.on = true; g.dir = 'ge'; g.c = 0; once('gate-intro'); }
+    edited();
+  };
+  $('gGe').onclick = () => { cur().gate.dir = 'ge'; edited(); };
+  $('gLe').onclick = () => { cur().gate.dir = 'le'; edited(); };
+  $('gDec').onclick = () => { const g = cur().gate; if (g.c > -10) { g.c--; edited(); } };
+  $('gInc').onclick = () => { const g = cur().gate; if (g.c < 10) { g.c++; edited(); } };
+  $('clearUBtn').onclick = () => { cur().U = []; state.sel = null; edited(); };
+  $('clearBtn').onclick = () => { const Lc = cur(); Lc.F = []; Lc.U = []; Lc.gate.on = false; state.sel = null; edited(); };
+  $('randBtn').onclick = () => {
+    const Lc = cur(), rnd = n => Math.floor(Math.random() * n), pick = a => a[rnd(a.length)];
+    const safe = ['add', 'sub', 'mul', 'div', 'flip', 'cube', 'cbrt', 'pow2'], limited = ['recip', 'sqrt', 'log'];
+    const parts = [];
+    let usedLimited = false;
+    for (let i = 0; i < 3; i++) {
+      let p = pick(Math.random() < .25 && !usedLimited ? limited : safe);
+      if (limited.includes(p)) usedLimited = true;
+      if (p === 'pow2' && parts.some(q => q.p === 'cube' || q.p === 'pow2')) p = 'add';   // keep the numbers on the floor
+      if (p === 'cube' && parts.some(q => q.p === 'pow2' || q.p === 'cube')) p = 'sub';
+      parts.push({p});
+    }
+    if (Math.random() >= .75) parts[rnd(3)] = {p: pick(['sq', 'abs'])};
+    const param = p => p === 'add' || p === 'sub' ? 1 + rnd(9) : pick([2, 3, 4, 5, -2, -3]);
+    Lc.F = parts.map(q => item(q.p, FM.hasParam(q.p) ? param(q.p) : undefined));
+    Lc.U = []; Lc.gate.on = false; state.sel = null;
+    edited();
+    live('New random chain: ' + Lc.F.map(m => PARTS[m.p].label(m.a)).join(', then ') + '.');
+  };
+
+  // ---------- graph view (kit:graphing) ----------
+  let gpl = null, morph = null;
+  function plane() {
+    if (gpl) return gpl;
+    gpl = Plane($('gPlane'), {x: [-10, 10], y: [-10, 10], width: 300, height: 300, left: 10, top: 10, grid: 1, labels: 5, ticks: 'axis'});
+    return gpl;
+  }
+  const fOf = x => { const Lc = cur(), r = FM.run(Lc.F, x, gateAllowed() ? Lc.gate : null); return r.out == null ? NaN : r.out; };
+  const gOf = x => { const r = FM.run(undoChain(), x, null); return r.out == null ? NaN : r.out; };
+  function gateDomain() {
+    const g = cur().gate;
+    if (!g.on || !gateAllowed()) return [-10, 10];
+    return g.dir === 'ge' ? [Math.max(-10, g.c), 10] : [-10, Math.min(10, g.c)];
+  }
+  function renderGraph() {
+    const g = plane();
+    if (morph) { clearTimeout(morph); morph = null; }
+    g.clear();
+    const back = g.layer('back'); back.querySelectorAll('.gband').forEach(e => e.remove());
+    const Lc = cur(), gt = Lc.gate;
+    const fText = FM.formula(Lc.F), gText = self11() ? FM.formula(Lc.F) : FM.formula(Lc.U);
+    g.fn(x => x, {color: 3, width: 2, id: 'yx', label: 'y = x'});
+    g.fn(gOf, {color: 2, width: 3, id: 'g', label: 'g(x) = ' + gText.t});
+    g.fn(fOf, {color: 1, width: 3, id: 'f', label: 'f(x) = ' + fText.t});
+    if (gt.on && gateAllowed()) {
+      const [a, b] = gt.dir === 'ge' ? [-10, gt.c] : [gt.c, 10];
+      if (b > a) {
+        const p = g.px(a, 0.45), q = g.px(b, -0.45);
+        mk('rect', {class: 'gband', x: p[0], y: p[1], width: q[0] - p[0], height: q[1] - p[1], fill: 'rgba(255,184,168,.28)', stroke: 'var(--warn)', 'stroke-dasharray': '3 3'}, back);
+      }
+    }
+    const dom = gt.on && gateAllowed() ? `, for x ${gt.dir === 'ge' ? '≥' : '≤'} ${fmtV(gt.c)}` : '';
+    const items = [`<li><span class="sw sw1" aria-hidden="true"></span>f(x) = ${fText.h}${dom}</li>`,
+      `<li><span class="sw sw2" aria-hidden="true"></span>${self11() ? 'lap 2 runs f again: ' + fText.h : 'g(x) = ' + gText.h}</li>`,
+      `<li><span class="sw sw3" aria-hidden="true"></span>y = x</li>`];
+    if (state.mirror) items.push(`<li><span class="sw sw4" aria-hidden="true"></span>mirror of f: x = f(t), y = t</li>`);
+    if (gt.on && gateAllowed()) items.push(`<li style="color:var(--warn)">▒ shaded on the x axis: inputs the gate blocks</li>`);
+    $('eqs').innerHTML = items.join('');
+    $('mirrorBtn').setAttribute('aria-pressed', state.mirror);
+    $('mFail').textContent = ''; $('mNote').textContent = state.mirror ? '' : 'Mirror flips f across the line y = x. If g is right, the mirror lands on g.';
+    if (state.mirror) drawMirror(1);
+  }
+  function drawMirror(p) {
+    const g = plane(), [t0, t1] = gateDomain();
+    g.clear('mirror');
+    if (t1 <= t0) return;
+    g.param(t => { const y = fOf(t); return isFinite(y) ? [(1 - p) * t + p * y, (1 - p) * y + p * t] : null; }, [t0, t1],
+      {color: 4, width: 6, opacity: .8, layer: 'back', id: 'mirror', samples: 600, label: 'mirror of f across y = x'});   // a wide band under g, so a right g shows lying on it
+    if (p >= 1) mirrorCheck();
+  }
+  function mirrorCheck() {
+    const g = plane(), c = state.col;
+    g.clear('vl');
+    if (!c) { $('mFail').textContent = ''; $('mNote').textContent = cur().U.length || self11() ? 'If the dashed g lies on the mirror, g undoes f.' : 'Build an undo line: if it is right, its dashed graph lies on the mirror.'; return; }
+    const x = c.y;
+    if (Math.abs(x) <= 10) {
+      g.segment([x, -10], [x, 10], {color: 'var(--bad)', width: 2, dashed: '6 4', id: 'vl'});
+      for (const y of [c.a, c.b]) if (Math.abs(y) <= 10) g.point(x, y, {r: 7, color: 'var(--bad)', id: 'vl', ariaLabel: `mirror point (${fmtV(x)}, ${fmtV(y)})`});
+      const right = x <= 0, opt = {anchor: right ? 'start' : 'end', dx: right ? 8 : -8, id: 'vl', class: 'vlab', layer: 'labels'};
+      g.label(x, 8.6, 'One output, two ways back:', opt);
+      g.label(x, 7.4, 'the undo is not a function', opt);
+    }
+    $('mFail').textContent = `One output, two ways back: the undo is not a function. Above x = ${fmtV(x)} the mirror has two points, y = ${fmtV(c.a)} and y = ${fmtV(c.b)}.`;
+    $('mNote').textContent = '';
+    once('mirror-fails');
+  }
+  $('graphBtn').onclick = () => {
+    state.graph = !state.graph; renderPanel();
+    if (state.graph) { renderGraph(); once('graph-intro'); $('graphSec').scrollIntoView({block: 'nearest'}); }
+  };
+  $('mirrorBtn').onclick = () => {
+    state.mirror = !state.mirror;
+    if (!state.mirror) { renderGraph(); return; }
+    renderGraph();   // draws the full mirror; now morph it from f when Motion is on
+    if (Curio.reduce) return;
+    const t0 = performance.now(), ms = 1200;
+    const stepM = () => {
+      const p = Math.min(1, (performance.now() - t0) / ms), e = p < .5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
+      plane().clear('vl'); $('mFail').textContent = '';
+      drawMirror(e);
+      morph = p < 1 ? setTimeout(stepM, 16) : null;
+    };
+    stepM();
+  };
+
+  // ---------- modes ----------
+  function setMode(m) {
+    if (m === state.mode && document.body.dataset.ready) return;
+    hush(); stopRun();
+    state.mode = m; state.sel = null; state.lift = null; state.cursor = null;
+    for (const k of ['workshop', 'puzzles']) $('m-' + k).setAttribute('aria-pressed', k === m);
+    tip('');
+    if (m === 'puzzles' && !state.pz.loaded) { state.pz.loaded = true; loadLevel(state.pz.level); }
+    else edited();
+    once(m === 'workshop' ? 'workshop-welcome' : 'puzzles-welcome');
+    document.body.dataset.ready = 1;
+  }
+  $('m-workshop').onclick = () => setMode('workshop');
+  $('m-puzzles').onclick = () => setMode('puzzles');
+  addEventListener('keydown', e => { if (e.key === 'Escape' && state.lift) dropLift('Cancelled.'); });
+
+  // Read: the goal (Puzzles) and the current verdict, else the hint
+  function readNow() {
+    const parts = [];
+    if (isPz()) parts.push(`Puzzle ${state.pz.level}, ${lvl().title}. ${lvl().goal}`);
+    const v = state.verdict;
+    const det = $('vDetail').cloneNode(true); det.querySelectorAll('.invv').forEach(e => e.remove());
+    if (v && v.kind !== 'idle') parts.push(VERD[v.kind].word + '. ' + sayNum(det.textContent));
+    else if (!isPz()) parts.push($('hint').textContent);
+    hush();
+    const text = parts.map(p => p.replace(/≥/g, 'at least').replace(/≤/g, 'at most'));
+    reading = capped(say(text, true), text.join(' ') + text.join(' '));
+  }
+
+  // every line the tool can say, so the voice scripts can record them (window.__tool.allLines())
+  const allLines = () => [...new Set(Object.values(L))];
+
+  // ---------- layout: wide, compact (short landscape boxes) or stack (narrow); see the CSS note ----------
+  let curLayout = null;
+  // compact moves the verdict and tip under the floor and gathers Run and the mode buttons in short rows; the other
+  // layouts put every element back in its first place
+  const ORIG = {};
+  for (const id of ['panel', 'runRow', 'pzBtns', 'toolBtns']) ORIG[id] = [...$(id).children].map(e => e.id);
+  const COMPACT = {cr1: ['runBtn', 'cantBtn'], cr2: ['hintBtn', 'resetBtn', 'nextBtn'], cr3: ['myRow'], cr4: ['gateBtn', 'graphBtn', 'randBtn', 'clearUBtn', 'clearBtn'], cbar: ['verdictSec', 'tip']};
+  function layout() {
+    const w = innerWidth, h = innerHeight;
+    const k = w >= 1000 && h >= 700 ? 'wide' : w >= 600 && w / h >= 1.25 ? 'compact' : 'stack';
+    if (k === curLayout) return;
+    curLayout = k;
+    for (const c of ['wide', 'compact', 'stack']) document.body.classList.toggle(c, c === k);
+    if (k === 'compact') { for (const box in COMPACT) COMPACT[box].forEach(id => $(box).appendChild($(id))); }
+    else for (const box in ORIG) ORIG[box].forEach(id => id && $(box).appendChild($(id)));
+    for (const b of document.querySelectorAll('[data-short]')) {
+      if (!b.dataset.full) b.dataset.full = b.textContent;
+      b.textContent = k === 'compact' ? b.dataset.short : b.dataset.full;
+      if (k === 'compact') b.setAttribute('aria-label', b.dataset.full); else b.removeAttribute('aria-label');
+    }
+    applyGeo(k === 'wide' ? 'full' : 'compact');
+  }
+  // switch the floor design: the SVG moves into that design's scene box (each box is fitted by Curio.fit)
+  function applyGeo(name) {
+    if (G === GEO[name] && $('gBase').childNodes.length) return;
+    G = GEO[name];
+    const svg = $('fl');
+    $(name === 'full' ? 'scene' : 'sceneC').appendChild(svg);
+    svg.setAttribute('viewBox', `0 0 ${G.W} ${G.H}`);
+    svg.style.width = G.W + 'px'; svg.style.height = G.H + 'px';
+    drawBase();
+    fitText();
+    if (!document.body.dataset.ready) return;
+    stopRun(); state.results = null; resetTokens(); idleVerdict(); render();
+  }
+  // floor text grows (up to 1.3 times) when the floor is drawn small
+  function fitText() {
+    const box = $(G === GEO.full ? 'fitbox' : 'fitboxC').getBoundingClientRect(), sc = Math.min(box.width / G.W, box.height / G.H);
+    if (!sc) return;
+    const ts = +Math.min(G.dyn ? 1.5 : 1.3, Math.max(1, .8 / sc)).toFixed(2);
+    if (ts === TS) return;
+    TS = ts; $('fl').style.setProperty('--ts', ts);
+    if (!document.body.dataset.ready) return;
+    render();
+    if (runS) runS.toks.forEach(t => setTok(t, t.label)); else resetTokens();
+  }
+  layout();
+  addEventListener('resize', layout);
+
+  Curio.init({clips: "voice:*", rate: .95, readFallback: () => $('hint').textContent});
+  $('read').onclick = readNow;
+  Curio.fit('fitbox', 'scene', 1200, 560);
+  Curio.fit('fitboxC', 'sceneC', 760, 520);
+  const ro = new ResizeObserver(fitText); ro.observe($('fitbox')); ro.observe($('fitboxC'));
+
+  // for checking frames
+  window.__tool = {state, setMode, allLines, FM, LEVELS, fmtV, loadLevel, skipRun, render,
+    place: (line, idx, p, a) => { const ok = place(line, idx, p); if (ok && a != null) { cur()[line][Math.min(idx, cur()[line].length - 1)].a = a; edited(); } return ok; },
+    setLines(F, U) { const Lc = cur(); if (F) Lc.F = F.map(([p, a]) => item(p, a)); if (U) Lc.U = U.map(([p, a]) => item(p, a)); edited(); },
+    setGate(on, dir = 'ge', c = 0) { Object.assign(cur().gate, {on, dir, c}); edited(); },
+    run: () => startRun(TOKENS, false), send: n => { $('myNum').value = n; sendMine(); },
+    verdict: () => ({kind: state.verdict.kind, word: $('vWord').textContent, detail: $('vDetail').textContent}),
+    formula: () => $('formula').textContent, tray: () => $('gTray').textContent, solved: () => [...solved],
+    tokens: () => runS ? runS.toks.map(t => ({x: t.x, label: t.label, tag: t.tag.textContent, cls: t.el.getAttribute('class')})) : [],
+    graph(on = true) { if (state.graph !== on) $('graphBtn').click(); }, mirror() { $('mirrorBtn').click(); },
+    hint: () => { $('hintBtn').click(); return $('tip').textContent; }, cant: () => { $('cantBtn').click(); return [$('tip').textContent, $('vDetail').textContent]; },
+    tip: () => $('tip').textContent, spoken: () => [...said], queued: () => [...queued], last: () => Curio.last};
+  setMode('workshop');
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+{
+  "Welcome to the Undo Machine. Build a chain on the top line, then build the chain that brings every number home on the bottom line.": "qwen3-tts-1.7b-base clone",
+  "Press Run to send the test numbers through. Each one rides out on top and has to ride home on the bottom.": "qwen3-tts-1.7b-base clone",
+  "Twelve puzzles. Each one gives you a chain of machines. Your job is to bring every number home.": "qwen3-tts-1.7b-base clone",
+  "Start at the out end. The last thing done is the first thing to undo.": "qwen3-tts-1.7b-base clone",
+  "Two different numbers just came out the same. Once that happens, no machine can know which one to send back.": "qwen3-tts-1.7b-base clone",
+  "A gate decides which numbers may enter. Keep everything entering the fold on one side of zero, and the crash goes away.": "qwen3-tts-1.7b-base clone",
+  "Every number made it home. Your bottom line is the inverse.": "qwen3-tts-1.7b-base clone",
+  "Some numbers came home as something else. Check the lost tray to see where they ended up.": "qwen3-tts-1.7b-base clone",
+  "The graph shows your chain, your undo chain, and the line y equals x. Press Mirror to flip your chain across that line.": "qwen3-tts-1.7b-base clone",
+  "The mirror image has two points above one input. That flipped graph is not a function, so the chain can't be undone as built.": "qwen3-tts-1.7b-base clone",
+  "Puzzle eleven. Build a two machine chain that undoes itself, so doing it twice brings every number home.": "qwen3-tts-1.7b-base clone"
+}
