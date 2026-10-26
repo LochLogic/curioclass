@@ -4,6 +4,8 @@ Gets the illustrated EPUB3 and the plain text for every pg id in data/library/so
 2 seconds, from the aleph.pglaf.org mirror (Gutenberg asks robots to use mirrors). Skips files already on disk.
 `--storyweaver` instead gets the illustrations for data/library/stories-sw.csv (run scripts/library_sw.py first).
 `--other` gets the Wikisource sources (`where` = wikisource:<page>) into library/_sources/other/<key>/text.txt.
+`--archive` gets Internet Archive OCR text (`where` = archive:<identifier>) and `--sefaria` a whole Tanakh version from
+Sefaria (`where` = sefaria:<version title>), into the same other/<key>/ folders.
 """
 import csv
 import html
@@ -71,6 +73,41 @@ def wikisource():
         print(row["key"], len(parts), "of", len(pages), "pages", flush=True)
 
 
+def archive():
+    """Internet Archive books: the OCR plain text (<id>_djvu.txt). Rough; cleaned up in processing."""
+    for row in csv.DictReader(open(ROOT / "data/library/sources.csv", encoding="utf-8")):
+        if not row["where"].startswith("archive:"):
+            continue
+        ident, d = row["where"][len("archive:"):], ROOT / "library" / "_sources" / "other" / row["key"]
+        d.mkdir(parents=True, exist_ok=True)
+        print(row["key"], get(f"https://archive.org/download/{ident}/{ident}_djvu.txt", d / "text.txt", 3), flush=True)
+        (d / "source.json").write_text(json.dumps({"url": f"https://archive.org/details/{ident}"}, indent=1), encoding="utf-8")
+
+
+def sefaria():
+    """A Tanakh translation from Sefaria, book by book, as text with chapter and verse numbers."""
+    for row in csv.DictReader(open(ROOT / "data/library/sources.csv", encoding="utf-8")):
+        if not row["where"].startswith("sefaria:"):
+            continue
+        version, d = row["where"][len("sefaria:"):], ROOT / "library" / "_sources" / "other" / row["key"]
+        if (d / "text.txt").exists():
+            continue
+        d.mkdir(parents=True, exist_ok=True)
+        index = fetch_json("https://www.sefaria.org/api/index/")
+        tanakh = next(c for c in index if c["category"] == "Tanakh")
+        books = [b["title"] for sec in tanakh["contents"] if "contents" in sec for b in sec["contents"] if "title" in b]
+        parts = []
+        for book in books:
+            got = fetch_json(f"https://www.sefaria.org/api/v3/texts/{urllib.parse.quote(book)}?"
+                             + urllib.parse.urlencode({"version": "english|" + version}))
+            chapters = got["versions"][0]["text"] if got.get("versions") else []
+            parts.append(f"== {book} ==\n" + "\n".join(
+                f"{c}:{v} " + html_text(t) for c, ch in enumerate(chapters, 1) for v, t in enumerate(ch, 1) if t))
+            print(row["key"], book, len(chapters), "chapters", flush=True)
+        (d / "text.txt").write_text("\n\n".join(parts), encoding="utf-8")
+        (d / "source.json").write_text(json.dumps({"version": version, "books": books, "url": "https://www.sefaria.org/texts/Tanakh"}, indent=1), encoding="utf-8")
+
+
 def fetch_json(url):
     for wait in (6, 30, 90):
         time.sleep(wait)
@@ -94,6 +131,10 @@ def main():
         return storyweaver()
     if "--other" in sys.argv:
         return wikisource()
+    if "--archive" in sys.argv:
+        return archive()
+    if "--sefaria" in sys.argv:
+        return sefaria()
     for row in csv.DictReader(open(ROOT / "data/library/sources.csv", encoding="utf-8")):
         for n in row["pg"].split():
             d = OUT / n

@@ -238,6 +238,32 @@ scroll or page view, print) and a one-file offline download at `/library/<id>/<i
 Still to do: themed shelves, the "From the Reading Room" strip on grade pages, read-aloud for K-2, and a
 self-hosted dyslexia-friendly font for the Spaced option (it uses Verdana with extra spacing for now).
 
+**Deploy gate.** A plain `python scripts/build_site.py` leaves the whole Reading Room out (no `/library/` pages, nav
+or footer link, sitemap entries or search rows). Build with `--library` to include it. Per Cory (2026-10-25) the
+Reading Room stays out of deploys until the 10 pilot stories are ready.
+
+### Mythology and Sacred Texts (2026-10-25)
+
+**Mythology** (`/library/mythology/`, one page per tradition) comes from `data/library/mythology.csv`, which has the
+usual columns plus `tradition`: greek, roman, homer, beowulf, norse, celtic, egyptian, mesopotamian, native, african,
+south-asian, east-asian, mesoamerican, pacific (labels and blurbs in `MYTH` in `build_site.py`). A row with a blank
+title is a cross-listing: it names a story that lives in another collection by id, so the Odyssey or the Zitkala-Sa
+Iktomi stories appear on both shelves with one page. Native stories are credited to their nation and told by Native
+writers where possible; the tradition page notes that some stories (Lakota and Dakota Iktomi) are told only in winter.
+
+**Sacred Texts** (`/library/sacred-texts/`) comes from `data/library/sacred-texts.csv`: one central text per
+religion, each in a single public-domain English translation, presented without commentary. The framing is "for
+teaching about religion, not for teaching religion". Choices: Tanakh (JPS 1917, via Sefaria), Bible (KJV), Qur'an
+(Pickthall 1930), Bhagavad Gita (Arnold), Dhammapada (Muller), Japji (Macauliffe 1909), Tattvartha Sutra (Jaini 1920),
+Tao Te Ching and Analects (Legge), Kojiki (Chamberlain), the Gathas (Mills, selection), Book of Mormon, the Hidden
+Words, the Egyptian Book of the Dead (Budge, selections) and the Poetic Edda (Bellows). Still to verify: the Jain
+archive item really is Jaini's translation, and the Hidden Words edition year and copyright basis. The long ones
+(Bible, Tanakh, Qur'an) will need a multi-part reader with a table of contents before they can be made ready.
+
+**Fetch modes** in `scripts/library_fetch.py`: Gutenberg (default), `--storyweaver`, `--other` (Wikisource),
+`--archive` (Internet Archive OCR text) and `--sefaria` (a Tanakh version). The last three write to
+`library/_sources/other/<key>/`.
+
 ## The pipeline
 
 1. **Candidate list** (agent, no downloads): title, author, year, edition, source, grades, kind, origin. About 900

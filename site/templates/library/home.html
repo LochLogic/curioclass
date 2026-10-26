@@ -48,11 +48,23 @@
     </div>
   </section>
 
-  <section class="block" aria-labelledby="lib-speeches-h">
+  <section class="block collections-row" aria-label="Collections">
+    <a class="speech-shelf" href="/library/mythology/">
+      <span class="eyebrow">A collection</span>
+      <h2>Mythology</h2>
+      <p>{{ n_myth }} myths, epics and legends from {{ n_trad }} traditions: Greek and Roman gods, Homer, Beowulf, the Norse, Gilgamesh, Native American, African, Asian and Pacific stories.</p>
+      <span class="go">Open the collection →</span>
+    </a>
     <a class="speech-shelf" href="/library/speeches/">
-      <span class="eyebrow">A separate collection</span>
-      <h2 id="lib-speeches-h">Speeches and Documents</h2>
+      <span class="eyebrow">A collection</span>
+      <h2>Speeches and Documents</h2>
       <p>{{ speeches | length }} founding documents and speeches, from the Declaration of Independence to the Brandenburg Gate. Always in the speaker's own words, never adapted.</p>
+      <span class="go">Open the collection →</span>
+    </a>
+    <a class="speech-shelf" href="/library/sacred-texts/">
+      <span class="eyebrow">A collection</span>
+      <h2>Sacred Texts</h2>
+      <p>A central text from {{ sacred | length }} religious traditions, living and ancient, each in one public-domain English translation. For learning about religions, with no commentary.</p>
       <span class="go">Open the collection →</span>
     </a>
   </section>

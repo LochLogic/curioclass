@@ -182,8 +182,8 @@ ozaki-old-man,The Story of the Old Man Who Made Withered Trees to Flower,Yei The
 ozaki-jelly,The Jelly Fish and the Monkey,Yei Theodora Ozaki (retold),ozaki,2-4,folk tale,Japan,reserve,,Jelly Fish
 ozaki-bag-rice,My Lord Bag of Rice,Yei Theodora Ozaki (retold),ozaki,4-6,folk tale,Japan,reserve,,Bag of Rice
 ozaki-hunter,The Happy Hunter and the Skilful Fisher,Yei Theodora Ozaki (retold),ozaki,4-6,folk tale,Japan,reserve,,Happy Hunter
-chinese-set-1,"Chinese fairy tales (set I, picked in processing)",Richard Wilhelm (collected),wilhelm-chinese,3-6,folk tale,China,in,set of 4 from the actual contents,
-chinese-set-2,"Chinese fairy tales (set II, picked in processing)",Richard Wilhelm (collected),wilhelm-chinese,4-7,folk tale,China,reserve,set of 4 from the actual contents,
+chinese-set-1,Chinese fairy tales (set I),Richard Wilhelm (collected),wilhelm-chinese,3-6,folk tale,China,in,set of 4 from the actual contents,
+chinese-set-2,Chinese fairy tales (set II),Richard Wilhelm (collected),wilhelm-chinese,4-7,folk tale,China,reserve,set of 4 from the actual contents,
 chinese-herd-boy,The Herd Boy and the Weaving Maiden,Richard Wilhelm (collected),wilhelm-chinese,3-6,folk tale,China,in,,Weaving Maiden
 russian-baba,Baba Yaga and the Little Girl with the Kind Heart,Arthur Ransome (retold),ransome-russian,2-5,folk tale,Russia,in,,Kind Heart
 russian-fool,The Fool of the World and the Flying Ship,Arthur Ransome (retold),ransome-russian,3-6,folk tale,Russia,in,,Flying Ship
@@ -192,14 +192,9 @@ russian-frost,Frost,Arthur Ransome (retold),ransome-russian,3-5,folk tale,Russia
 russian-tsar-golden,The Golden Fish,Arthur Ransome (retold),ransome-russian,2-5,folk tale,Russia,reserve,,Golden Fish
 russian-sadko,Sadko,Arthur Ransome (retold),ransome-russian,4-7,folk tale,Russia,reserve,,Sadko
 westafrica-anansi-1,How We Got the Name 'Spider Tales',W. H. Barker and Cecilia Sinclair (collected),barker-westafrica,2-5,folk tale,Ghana,in,,Spider Tales
-westafrica-set,"West African folk tales: Anansi and others (set, picked in processing)",W. H. Barker and Cecilia Sinclair (collected),barker-westafrica,2-5,folk tale,Ghana,in,set of 6 from contents; outside review flag,Anansi
-westafrica-set-2,"West African folk tales (set II, picked in processing)",W. H. Barker and Cecilia Sinclair (collected),barker-westafrica,3-6,folk tale,West Africa,in,set of 6 from contents; outside review flag,Tortoise
-indian-set,"Indian fairy tales (set, picked in processing)",Joseph Jacobs (collected),jacobs-indian,2-5,folk tale,India,in,set of 5 from contents,Lambikin
-celtic-connla,Connla and the Fairy Maiden,Traditional (Jacobs),jacobs-celtic,4-6,folk tale,Ireland,reserve,,Connla
-celtic-guleesh,Guleesh,Traditional (Jacobs),jacobs-celtic,4-7,folk tale,Ireland,reserve,,Guleesh
-celtic-tailor,The Sprightly Tailor,Traditional (Jacobs),jacobs-celtic,3-6,folk tale,Scotland,reserve,,Sprightly Tailor
-celtic-munachar,Munachar and Manachar,Traditional (Jacobs),jacobs-celtic,K-3,folk tale,Ireland,reserve,,Munachar
-celtic-knockmany,The Legend of Knockmany,Traditional (Jacobs),jacobs-celtic,3-6,folk tale,Ireland,reserve,,Knockmany
+westafrica-set,West African folk tales: Anansi and others (set),W. H. Barker and Cecilia Sinclair (collected),barker-westafrica,2-5,folk tale,Ghana,in,set of 6 from contents; outside review flag,Anansi
+westafrica-set-2,West African folk tales (set II),W. H. Barker and Cecilia Sinclair (collected),barker-westafrica,3-6,folk tale,West Africa,in,set of 6 from contents; outside review flag,Tortoise
+indian-set,Indian fairy tales (set),Joseph Jacobs (collected),jacobs-indian,2-5,folk tale,India,in,set of 5 from contents,Lambikin
 zitkala-iktomi-ducks,Iktomi and the Ducks,Zitkala-Sa,zitkala-legends,3-6,folk tale,Dakota (Yankton),in,Dakota author retelling her own people's stories,Iktomi and the Ducks
 zitkala-iktomi-muskrat,Iktomi and the Muskrat,Zitkala-Sa,zitkala-legends,3-6,folk tale,Dakota (Yankton),in,,Muskrat
 zitkala-iktomi-coyote,Iktomi and the Coyote,Zitkala-Sa,zitkala-legends,3-6,folk tale,Dakota (Yankton),in,,Iktomi and the Coyote
@@ -208,9 +203,7 @@ zitkala-tree-bound,The Tree-Bound,Zitkala-Sa,zitkala-legends,3-6,folk tale,Dakot
 zitkala-toad,The Toad and the Boy,Zitkala-Sa,zitkala-legends,3-6,folk tale,Dakota (Yankton),in,,The Toad and the Boy
 zitkala-memories,Impressions of an Indian Childhood,Zitkala-Sa,zitkala-stories,6-10,memoir,Dakota (Yankton),note,boarding school and family separation; hard history,Indian Childhood
 zitkala-school,The School Days of an Indian Girl,Zitkala-Sa,zitkala-stories,6-10,memoir,Dakota (Yankton),note,boarding school; hard history,School Days
-wigwam-set-1,"Wigwam Evenings: Sioux folk tales (set I, picked in processing)",Charles A. Eastman and Elaine Goodale Eastman,eastman-wigwam,2-5,folk tale,Dakota (Santee),in,set of 4; Dakota author,
-wigwam-set-2,"Wigwam Evenings: Sioux folk tales (set II, picked in processing)",Charles A. Eastman and Elaine Goodale Eastman,eastman-wigwam,2-5,folk tale,Dakota (Santee),reserve,set of 4; Dakota author,
-wigwam-set-3,"Wigwam Evenings: Sioux folk tales (set III, picked in processing)",Charles A. Eastman and Elaine Goodale Eastman,eastman-wigwam,3-6,folk tale,Dakota (Santee),reserve,set of 4; Dakota author,
+wigwam-set-1,Wigwam Evenings: Sioux folk tales (set I),Charles A. Eastman and Elaine Goodale Eastman,eastman-wigwam,2-5,folk tale,Dakota (Santee),in,set of 4; Dakota author,
 indian-boyhood,Indian Boyhood,Charles A. Eastman,eastman-boyhood,5-8,memoir,Dakota (Santee),in,chapter set; Dakota author,Boyhood
 wizard-oz,The Wonderful Wizard of Oz,L. Frank Baum,baum-oz,3-6,chapter book,United States,in,chapter set,Dorothy
 wind-willows,The Wind in the Willows,Kenneth Grahame,grahame-willows,3-7,chapter book,England,in,chapter set,River Bank
@@ -234,21 +227,8 @@ wilde-nightingale,The Nightingale and the Rose,Oscar Wilde,wilde-happy,6-9,fairy
 wilde-friend,The Devoted Friend,Oscar Wilde,wilde-happy,4-7,fairy tale,Ireland,reserve,,Devoted Friend
 wilde-rocket,The Remarkable Rocket,Oscar Wilde,wilde-happy,4-7,fairy tale,Ireland,reserve,,Rocket
 golden-river,The King of the Golden River,John Ruskin,ruskin-golden,3-6,fairy tale,England,reserve,,Golden River
-wonder-gorgon,The Gorgon's Head,Nathaniel Hawthorne,hawthorne-wonder,4-7,myth,Greece,reserve,,Gorgon
-wonder-pandora,The Paradise of Children,Nathaniel Hawthorne,hawthorne-wonder,3-6,myth,Greece,reserve,,Pandora
-wonder-apples,The Three Golden Apples,Nathaniel Hawthorne,hawthorne-wonder,4-7,myth,Greece,reserve,,Golden Apples
-wonder-pitcher,The Miraculous Pitcher,Nathaniel Hawthorne,hawthorne-wonder,3-6,myth,Greece,reserve,,Pitcher
-tangle-minotaur,The Minotaur,Nathaniel Hawthorne,hawthorne-tanglewood,4-7,myth,Greece,reserve,,Minotaur
-tangle-pygmies,The Pygmies,Nathaniel Hawthorne,hawthorne-tanglewood,4-7,myth,Greece,reserve,,Pygmies
-tangle-teeth,The Dragon's Teeth,Nathaniel Hawthorne,hawthorne-tanglewood,4-7,myth,Greece,reserve,,Dragon's Teeth
-tangle-circe,Circe's Palace,Nathaniel Hawthorne,hawthorne-tanglewood,4-7,myth,Greece,reserve,,Circe
-tangle-pomegranate,The Pomegranate Seeds,Nathaniel Hawthorne,hawthorne-tanglewood,4-7,myth,Greece,reserve,,Pomegranate
-tangle-fleece,The Golden Fleece,Nathaniel Hawthorne,hawthorne-tanglewood,4-7,myth,Greece,reserve,,Golden Fleece
 odin-set,The Children of Odin: Norse myths,Padraic Colum,colum-odin,5-8,myth,Norse,in,chapter set,Odin
 colum-odysseus,The Adventures of Odysseus and the Tale of Troy,Padraic Colum,colum-odysseus,5-8,myth,Greece,in,chapter set,Telemachus
-colum-fleece,The Golden Fleece and the Heroes Who Lived Before Achilles,Padraic Colum,colum-fleece,5-8,myth,Greece,reserve,chapter set,Jason
-heroes-perseus,Perseus,Charles Kingsley,kingsley-heroes,5-8,myth,Greece,reserve,,Perseus
-heroes-theseus,Theseus,Charles Kingsley,kingsley-heroes,5-8,myth,Greece,reserve,,Theseus
 robin-hood,The Merry Adventures of Robin Hood,Howard Pyle,pyle-robin,5-8,chapter book,England,in,chapter set,Robin Hood
 king-arthur,The Story of King Arthur and His Knights,Howard Pyle,pyle-arthur,5-8,chapter book,England,in,chapter set,Arthur
 fifty-famous-1,Fifty Famous Stories Retold (set I: legends),James Baldwin,baldwin-fifty,2-5,legend,Europe,reserve,"set of 6: King Alfred and the Cakes, Bruce and the Spider, William Tell, Androclus and the Lion, Damon and Pythias, Horatius at the Bridge",Androclus
@@ -315,8 +295,8 @@ london-to-build,To Build a Fire,Jack London,london-lostface,8-11,short story,Uni
 london-lost-face,Lost Face,Jack London,london-lostface,10-12,short story,United States,reserve,torture scene,Lost Face
 chekhov-bet,The Bet,Anton Chekhov,chekhov-party,9-12,short story,Russia,in,,The Bet
 chekhov-vanka,Vanka,Anton Chekhov,chekhov-party,6-9,short story,Russia,in,,Vanka
-chekhov-schoolmaster-set,"Chekhov stories (set I, picked in processing)",Anton Chekhov,chekhov-schoolmaster,9-12,short story,Russia,reserve,set of 3 from contents,
-chekhov-chorus-set,"Chekhov stories (set II, picked in processing)",Anton Chekhov,chekhov-chorus,9-12,short story,Russia,reserve,set of 3 from contents,
+chekhov-schoolmaster-set,Chekhov stories (set I),Anton Chekhov,chekhov-schoolmaster,9-12,short story,Russia,reserve,set of 3 from contents,
+chekhov-chorus-set,Chekhov stories (set II),Anton Chekhov,chekhov-chorus,9-12,short story,Russia,reserve,set of 3 from contents,
 maupassant-necklace,The Necklace,Guy de Maupassant,maupassant,8-11,short story,France,in,,Necklace
 maupassant-string,The Piece of String,Guy de Maupassant,maupassant,9-12,short story,France,reserve,,Piece of String
 maupassant-two-friends,Two Friends,Guy de Maupassant,maupassant,10-12,short story,France,reserve,war; the friends are shot,Two Friends

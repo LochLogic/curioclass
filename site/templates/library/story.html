@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% from "macros.html" import crumbs %}
-{% set home = ('Speeches and Documents', '/library/speeches/') if s.collection == 'speeches' else ('Grades ' ~ BAND_SLUG[s.band] | upper, '/library/grade/' ~ BAND_SLUG[s.band] ~ '/') %}
+{% set homes = {'speeches': ('Speeches and Documents', '/library/speeches/'), 'mythology': ('Mythology', '/library/mythology/'), 'sacred': ('Sacred Texts', '/library/sacred-texts/')} %}
+{% set home = homes[s.collection] if s.collection in homes else ('Grades ' ~ BAND_SLUG[s.band] | upper, '/library/grade/' ~ BAND_SLUG[s.band] ~ '/') %}
 {% block title %}{{ s.title }}{% if not s.ready %} (coming soon){% endif %} · Reading Room · Curio Class{% endblock %}
 {% block description %}{{ s.summary or (s.title ~ ' by ' ~ s.author ~ ', free to read in the Curio Class Reading Room.') }}{% endblock %}
 {% block robots %}{% if not s.ready %}<meta name="robots" content="noindex">{% endif %}{% endblock %}
@@ -25,7 +26,7 @@
       <dt>Kind</dt><dd>{% if s.shelf %}<a href="/library/kind/{{ s.shelf }}/">{{ s.kind }}</a>{% else %}{{ s.kind }}{% endif %}</dd>
       {% if s.meta.level %}<dt>Reading Room level</dt><dd>{{ s.meta.level }}</dd>{% endif %}
       <dt>Length</dt><dd>{{ '{:,}'.format(s.words) }} words, about {{ s.minutes }} min</dd>
-      {% if s.origin %}<dt>From</dt><dd>{{ s.origin }}</dd>{% endif %}
+      {% if s.origin %}<dt>{{ 'Tradition' if s.collection == 'sacred' else 'From' }}</dt><dd>{{ s.origin }}</dd>{% endif %}
       <dt>Text</dt><dd>{% if s.meta.adapted %}Adapted: {{ s.meta.adapted }}{% else %}Original text{% endif %}</dd>
     </dl>
   </div>
@@ -44,7 +45,8 @@
     <dl class="facts" style="max-width:600px;background:transparent">
       <dt>Grades</dt><dd><a href="/library/grade/{{ BAND_SLUG[s.band] }}/">{{ grade_label(s.grades) }}</a></dd>
       <dt>Kind</dt><dd>{% if s.shelf %}<a href="/library/kind/{{ s.shelf }}/">{{ s.kind }}</a>{% else %}{{ s.kind }}{% endif %}</dd>
-      {% if s.origin %}<dt>From</dt><dd>{{ s.origin }}</dd>{% endif %}
+      {% if s.origin %}<dt>{{ 'Tradition' if s.collection == 'sacred' else 'From' }}</dt><dd>{{ s.origin }}</dd>{% endif %}
+      {% if s.collection == 'sacred' %}<dt>This edition</dt><dd>{{ s.note | capitalize }}</dd>{% endif %}
       <dt>License</dt><dd>{{ s.credit }}</dd>
     </dl>
     <p style="margin:18px 0 0;color:var(--muted);max-width:60ch">This one is being set, checked and given questions. When it is ready you can read it here, print it or download it.</p>

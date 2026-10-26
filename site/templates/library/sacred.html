@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% from "macros.html" import crumbs %}
+{% block title %}Sacred Texts · Reading Room · Curio Class{% endblock %}
+{% block description %}The central texts of the world's religions, one public-domain English translation each, for teaching about religion.{% endblock %}
+{% block main %}
+<div class="wrap">
+  {{ crumbs(trail) }}
+  <div class="page-head">
+    <h1>Sacred Texts</h1>
+    <p>A central text from {{ items | length }} religious traditions, living and ancient, so students can read what each one actually says. One public-domain English translation of each, presented as written, without commentary.</p>
+  </div>
+  <div class="about-note">
+    <p><b>For teaching about religion, not for teaching religion.</b> These are here so classes can study the world's faiths from their own texts, the way social studies and world history standards ask. Nothing here endorses or ranks any tradition.</p>
+    <p>Every translation is old enough to be in the public domain, so some of the language is dated, and some were made by scholars from outside the tradition. Each page names its translator and year. Where we could only include part of a text, the page says so.</p>
+  </div>
+  <div class="sacred-list">
+    {% for s in items %}
+    <a class="sacred-row" href="{{ s.url }}">
+      <span class="trad">{{ s.origin }}</span>
+      <span><b>{{ s.title }}</b>{% if s.ready %}<span class="tag built">Ready</span>{% endif %}</span>
+      <small>{{ s.author }}{% if s.note != 'complete' %} · {{ s.note }}{% endif %}</small>
+    </a>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

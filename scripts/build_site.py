@@ -123,6 +123,10 @@ env = Environment(loader=FileSystemLoader(SITE / 'templates'), autoescape=select
 env.globals.update(subjects=subjects, formats=formats, grade_label=grade_label, grade_short=grade_short, grade_href=grade_href,
                    slug=slug, std_framework=std_framework, year=date.today().year, n_tools=len(tools),
                    n_built=len(built), n_bench=len(bench), BAND_SLUG=BAND_SLUG, FREE_FORMATS=FREE_FORMATS)
+# The Reading Room stays out of deploy builds until its pilot stories are ready (Cory, 2026-10-25).
+# --library builds it; --preview builds it plus the made-up fixture story.
+LIBRARY_LIVE = bool({'--library', '--preview'} & set(sys.argv))
+env.globals['library_live'] = LIBRARY_LIVE
 pages, sitemap = 0, []
 
 
@@ -286,11 +290,41 @@ def lib_story(r, collection):
 stories = [lib_story(r, 'stories') for r in read('library/stories-pd.csv') + read('library/stories-sw.csv')
            if r['decision'] != 'reserve']
 speeches = [lib_story(r, 'speeches') for r in read('library/speeches.csv') if r['decision'] != 'reserve']
+sacred = [lib_story(r, 'sacred') for r in read('library/sacred-texts.csv') if r['decision'] != 'reserve']
 if '--preview' in sys.argv:  # local check of the reader with a made-up story; never part of a deploy build
     stories.append(lib_story(dict(id='reader-preview', title='The Lion and the Mouse', author='after Aesop', source='aesop-winter',
                                   grades='K-3', kind='fable', origin='Greece', decision='in', folder=SITE / 'fixtures' / 'reader-preview'), 'stories'))
 stories.sort(key=lambda s: (not s['ready'], s['title'].removeprefix('The ')))
-lib_ready = [s for s in stories + speeches if s['ready']]
+# Mythology: its own rows plus rows from other collections cross-listed by id alone (blank title).
+MYTH = {  # tradition -> (label, blurb)
+    'greek': ('Greek myths', 'Gods of Olympus, monsters and the heroes who faced them.'),
+    'roman': ('Roman myths and legends', 'The founding of Rome, its early heroes, and the myths Ovid and Virgil retold.'),
+    'homer': ('The Odyssey and the Iliad', "Homer's two epics, in full translations and in retellings for younger readers."),
+    'beowulf': ('Beowulf', 'The Old English epic of a hero, a monster, a mother and a dragon.'),
+    'norse': ('Norse myths', 'Odin, Thor, Loki and the end of the world, from the Eddas and the sagas.'),
+    'celtic': ('Celtic myths and legends', 'Irish and Scottish gods, Finn and the Fianna, and Cuchulain.'),
+    'egyptian': ('Ancient Egypt', 'Ra, Osiris, Isis and the stories of the Nile.'),
+    'mesopotamian': ('Gilgamesh and Mesopotamia', 'The oldest written stories: Gilgamesh, the flood and the making of the world.'),
+    'native': ('Native American stories', 'Each story is credited to the nation it comes from, and told by Native writers where we can. '
+               'Some, like Lakota and Dakota Iktomi stories, are traditionally told only in winter, and teachers may want to honor that.'),
+    'african': ('African folklore', 'Anansi, Cunnie Rabbit and the stories of West, Central and Southern Africa.'),
+    'south-asian': ('South Asian epics and fables', 'The Ramayana, the Jataka tales and Indian folk tales.'),
+    'east-asian': ('Chinese and Japanese myths', "P'an Ku, the Monkey King, Izanagi and Izanami."),
+    'mesoamerican': ('Maya, Aztec and Inca', "The Popol Vuh, Quetzalcoatl and the myths of the Andes, plus Brazil's how-and-why tales."),
+    'pacific': ('Hawaiian and Maori', 'Pele, Maui and the stories of the Pacific.'),
+}
+by_lib_id = {x['id']: x for x in stories + speeches + sacred}
+mythology = []
+for r in read('library/mythology.csv'):
+    if r['decision'] == 'reserve':
+        continue
+    x = by_lib_id[r['id']] if not r['title'] else lib_story(r, 'mythology')
+    mythology.append(dict(x, tradition=r['tradition']) if r['title'] else x)
+    if not r['title']:
+        x.setdefault('traditions', []).append(r['tradition'])
+myth_own = [x for x in mythology if x['collection'] == 'mythology']
+myth_trad = {t: [x for x in mythology if x.get('tradition') == t or t in x.get('traditions', [])] for t in MYTH}
+lib_ready = [s for s in stories + speeches + myth_own + sacred if s['ready']]
 
 
 def lib_sections(items):
@@ -301,6 +335,7 @@ def lib_sections(items):
 
 lib_trail = ('Reading Room', '/library/')
 render('library/home.html', '/library/', n=len(stories), shelves=lib_sections(stories), speeches=speeches, ready=lib_ready[:8],
+       n_myth=len(mythology), n_trad=len(MYTH), sacred=sacred,
        bands=bands, band_counts={b: sum(1 for s in stories if s['band'] == b) for b in bands},
        grade_counts={g: sum(1 for s in stories if g in s['fit']) for g in GRADES})
 for g in GRADES:
@@ -320,7 +355,16 @@ for sid, (lab, blurb, _) in SHELVES.items():
 render('library/list.html', '/library/speeches/', title='Speeches and Documents', trail=[lib_trail, ('Speeches and Documents', None)],
        lede='Founding documents and the speeches that moved the country, in their own words. Never adapted.',
        sections=[dict(id='collection', label='The collection', blurb='', href=None, items=speeches)], show_grades=True)
-for s in stories + speeches:
+myth_sections = [dict(id=t, label=lab, blurb=blurb, href=f'/library/mythology/{t}/', items=myth_trad[t])
+                 for t, (lab, blurb) in MYTH.items() if myth_trad[t]]
+render('library/list.html', '/library/mythology/', title='Mythology', trail=[lib_trail, ('Mythology', None)],
+       lede=f'{len(mythology)} myths, epics and legends from {len(myth_sections)} traditions around the world.',
+       sections=myth_sections, show_grades=True)
+for sec in myth_sections:
+    render('library/list.html', sec['href'], title=sec['label'], trail=[lib_trail, ('Mythology', '/library/mythology/'), (sec['label'], None)],
+           lede=f"{sec['blurb']} {len(sec['items'])} titles.", sections=[dict(sec, href=None, blurb='')], show_grades=True)
+render('library/sacred.html', '/library/sacred-texts/', trail=[lib_trail, ('Sacred Texts', None)], items=sacred)
+for s in stories + speeches + myth_own + sacred:
     if not s['ready']:
         render('library/story.html', s['url'], s=s, index=False)
         continue
@@ -335,12 +379,16 @@ for s in stories + speeches:
         bundle = bundle.replace(f'src="{img}"', f'src="data:{mime};base64,{base64.b64encode(f.read_bytes()).decode()}"')
     (dest / f'{s["id"]}.html').write_text(bundle, encoding='utf-8')
 
+if not LIBRARY_LIVE:
+    shutil.rmtree(DIST / 'library')
+    sitemap[:] = [p for p in sitemap if not p.startswith('/library/')]
+
 # search index and static pages
 index = [{'t': t['title'], 'u': t['url'], 'g': grade_label(t['module']['grade']), 's': t['subject_info']['short'],
           'f': t['format_info']['label'], 'm': t['module']['title'], 'c': ' '.join(t['module']['codes']),
           'd': t['concept'], 'b': t['built']} for t in tools]
 index += [{'t': s['title'], 'u': s['url'], 'g': grade_label(s['grades']), 's': 'Reading Room', 'f': s['kind'],
-           'm': s.get('author', ''), 'c': '', 'd': s.get('summary', ''), 'b': s['ready']} for s in stories + speeches]
+           'm': s.get('author', ''), 'c': '', 'd': s.get('summary', ''), 'b': s['ready']} for s in stories + speeches + myth_own + sacred if LIBRARY_LIVE]
 (DIST / 'search-index.json').write_text(json.dumps(index, separators=(',', ':')), encoding='utf-8')
 render('search.html', '/search/', index=False)
 for name in ['about', 'teachers', 'privacy', 'accessibility', 'license']:

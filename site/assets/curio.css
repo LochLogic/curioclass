@@ -325,3 +325,17 @@ section.block { padding: 56px 0 8px; }
 .source-note p { color: var(--muted); font-size: 15px; }
 .source-note a { color: var(--accent-ink); }
 .reader { --reader-top: 68px; scroll-margin-top: 80px; }
+.collections-row { display: grid; gap: 16px; }
+@media (min-width: 900px) { .collections-row { grid-template-columns: repeat(3, 1fr); } }
+.collections-row .speech-shelf h2 { font-size: clamp(24px, 2.6vw, 30px); }
+.sacred-list { display: grid; gap: 0; border-top: 1px solid var(--line); margin-top: 18px; }
+.sacred-row { display: grid; gap: 4px 20px; padding: 16px 4px; border-bottom: 1px solid var(--line); text-decoration: none; }
+@media (min-width: 760px) { .sacred-row { grid-template-columns: 200px 1fr 260px; align-items: baseline; } }
+.sacred-row .trad { font: 600 13px var(--sans); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.sacred-row b { font: 600 20px/1.25 var(--serif); }
+.sacred-row small { color: var(--muted); font-size: 14px; }
+.sacred-row:hover b { text-decoration: underline; }
+.sacred-row .tag.built { margin-left: 8px; vertical-align: middle; }
+.about-note { max-width: 70ch; background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 22px; margin-top: 20px; }
+.about-note p { margin: 0 0 8px; color: var(--muted); font-size: 15px; }
+.about-note p:last-child { margin: 0; }
