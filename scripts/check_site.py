@@ -17,9 +17,14 @@ for page in DIST.rglob('*.html'):
         # Cloudflare serves x.html at x (html_handling: auto-trailing-slash)
         if not (target.is_file() or (target / 'index.html').is_file() or target.with_name(target.name + '.html').is_file()):
             broken.setdefault(url, page.relative_to(DIST).as_posix())
-print(f'{pages} pages checked, {len(broken)} broken internal links, {len(external)} external loads')
+files = [f for f in DIST.rglob('*') if f.is_file()]
+big = [f.relative_to(DIST).as_posix() for f in files if f.stat().st_size > 25 * 2 ** 20]  # Cloudflare's asset limits
+print(f'{pages} pages checked, {len(broken)} broken internal links, {len(external)} external loads, '
+      f'{len(files)} files (limit 20000), {len(big)} over 25 MiB')
+for f in big:
+    print('  too big', f)
 for url, where in list(broken.items())[:20]:
     print('  broken', url, 'on', where)
 for e in external:
     print('  external', e)
-sys.exit(1 if broken or external else 0)
+sys.exit(1 if broken or external or big or len(files) > 20000 else 0)

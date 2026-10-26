@@ -147,10 +147,10 @@ jungle-seal,The White Seal,Rudyard Kipling,kipling-jungle,4-7,short story,Englan
 jungle-toomai,Toomai of the Elephants,Rudyard Kipling,kipling-jungle,4-7,short story,England,note,colonial-era India setting,Toomai
 andersen-duckling,The Ugly Duckling,Hans Christian Andersen,andersen-full,K-4,fairy tale,Denmark,in,,Ugly Duckling
 andersen-clothes,The Emperor's New Clothes,Hans Christian Andersen,andersen,2-5,fairy tale,Denmark,in,,New Clothes
-andersen-pea,The Princess and the Pea,Hans Christian Andersen,andersen,K-3,fairy tale,Denmark,in,,Pea
+andersen-pea,The Princess and the Pea,Hans Christian Andersen,andersen-full,K-3,fairy tale,Denmark,in,,Pea
 andersen-thumbelina,Thumbelina,Hans Christian Andersen,andersen-full,1-4,fairy tale,Denmark,in,,Thumbelina
 andersen-soldier,The Steadfast Tin Soldier,Hans Christian Andersen,andersen-full,2-5,fairy tale,Denmark,in,,Tin Soldier
-andersen-nightingale,The Nightingale,Hans Christian Andersen,andersen,3-6,fairy tale,Denmark,in,,Nightingale
+andersen-nightingale,The Nightingale,Hans Christian Andersen,andersen-full,3-6,fairy tale,Denmark,in,,Nightingale
 andersen-snow-queen,The Snow Queen,Hans Christian Andersen,andersen,4-7,fairy tale,Denmark,in,chapter set (seven stories),Snow Queen
 andersen-fir,The Fir Tree,Hans Christian Andersen,andersen,3-6,fairy tale,Denmark,reserve,,Fir Tree
 andersen-match,The Little Match Girl,Hans Christian Andersen,andersen,3-6,fairy tale,Denmark,note,a child dies of cold; sad ending,Match
@@ -264,7 +264,7 @@ ohenry-cop,The Cop and the Anthem,O. Henry,ohenry-four,8-11,short story,United S
 ohenry-red-chief,The Ransom of Red Chief,O. Henry,ohenry-whirligigs,6-9,short story,United States,note,a boy plays at a stereotyped 'Indian chief',Red Chief
 ohenry-twenty,After Twenty Years,O. Henry,ohenry-four,6-9,short story,United States,in,,Twenty Years
 ohenry-retrieved,A Retrieved Reformation,O. Henry,ohenry-roads,7-10,short story,United States,in,,Retrieved Reformation
-ohenry-last-leaf,The Last Leaf,O. Henry,ohenry-four,7-10,short story,United States,in,,Last Leaf
+ohenry-last-leaf,The Last Leaf,O. Henry,ohenry-trimmed,7-10,short story,United States,in,,Last Leaf
 ohenry-furnished,The Furnished Room,O. Henry,ohenry-four,10-12,short story,United States,note,ends in suicide,Furnished Room
 poe-tell-tale,The Tell-Tale Heart,Edgar Allan Poe,poe-works,8-11,short story,United States,note,murder told by the murderer,Tell-Tale
 poe-cask,The Cask of Amontillado,Edgar Allan Poe,poe-works,8-11,short story,United States,note,murder,Amontillado
@@ -280,7 +280,7 @@ poe-dream,A Dream Within a Dream,Edgar Allan Poe,poe-works,8-12,poem,United Stat
 sleepy-hollow,The Legend of Sleepy Hollow,Washington Irving,irving-sleepy,6-9,short story,United States,in,,Ichabod
 rip-van-winkle,Rip Van Winkle,Washington Irving,irving-rip,5-8,short story,United States,in,,Rip
 saki-open-window,The Open Window,Saki,saki-beasts,7-10,short story,England,in,,Open Window
-saki-interlopers,The Interlopers,Saki,saki-beasts,8-11,short story,England,in,,Interlopers
+saki-interlopers,The Interlopers,Saki,saki-toys,8-11,short story,England,in,,Interlopers
 saki-storyteller,The Story-Teller,Saki,saki-beasts,6-9,short story,England,in,,Story-Teller
 saki-tobermory,Tobermory,Saki,saki-chronicles,8-11,short story,England,reserve,,Tobermory
 saki-sredni,Sredni Vashtar,Saki,saki-chronicles,9-12,short story,England,reserve,dark ending,Sredni
@@ -293,8 +293,8 @@ time-machine,The Time Machine,H. G. Wells,wells-time,8-11,chapter book,England,i
 war-worlds,The War of the Worlds,H. G. Wells,wells-war,8-11,chapter book,England,in,chapter set,Martians
 london-to-build,To Build a Fire,Jack London,london-lostface,8-11,short story,United States,in,,To Build a Fire
 london-lost-face,Lost Face,Jack London,london-lostface,10-12,short story,United States,reserve,torture scene,Lost Face
-chekhov-bet,The Bet,Anton Chekhov,chekhov-party,9-12,short story,Russia,in,,The Bet
-chekhov-vanka,Vanka,Anton Chekhov,chekhov-party,6-9,short story,Russia,in,,Vanka
+chekhov-bet,The Bet,Anton Chekhov,chekhov-school,9-12,short story,Russia,in,,The Bet
+chekhov-vanka,Vanka,Anton Chekhov,chekhov-cook,6-9,short story,Russia,in,,Vanka
 chekhov-schoolmaster-set,Chekhov stories (set I),Anton Chekhov,chekhov-schoolmaster,9-12,short story,Russia,reserve,set of 3 from contents,
 chekhov-chorus-set,Chekhov stories (set II),Anton Chekhov,chekhov-chorus,9-12,short story,Russia,reserve,set of 3 from contents,
 maupassant-necklace,The Necklace,Guy de Maupassant,maupassant,8-11,short story,France,in,,Necklace
@@ -342,13 +342,13 @@ bartleby,Bartleby,Herman Melville,melville-piazza,11-12,short story,United State
 araby,Araby,James Joyce,joyce-dubliners,10-12,short story,Ireland,in,,Araby
 eveline,Eveline,James Joyce,joyce-dubliners,10-12,short story,Ireland,in,,Eveline
 the-dead,The Dead,James Joyce,joyce-dubliners,12,short story,Ireland,in,,The Dead
-hemingway-river,Big Two-Hearted River,Ernest Hemingway,hemingway-ourtime,11-12,short story,United States,in,,Two-Hearted
+hemingway-river,Big Two-Hearted River,Ernest Hemingway,hemingway-ourtime,11-12,short story,United States,reserve,no public domain text online yet (the 1925 In Our Time is not on Gutenberg; 61085 is the 1924 vignettes),Two-Hearted
 hemingway-cat,Cat in the Rain,Ernest Hemingway,hemingway-ourtime,11-12,short story,United States,reserve,,Cat in the Rain
 fitz-bernice,Bernice Bobs Her Hair,F. Scott Fitzgerald,fitzgerald-flappers,9-12,short story,United States,in,,Bernice
 fitz-button,The Curious Case of Benjamin Button,F. Scott Fitzgerald,fitzgerald-jazz,9-12,short story,United States,in,,Benjamin Button
 mansfield-party,The Garden Party,Katherine Mansfield,mansfield-garden,10-12,short story,New Zealand,reserve,,Garden Party
 mansfield-brill,Miss Brill,Katherine Mansfield,mansfield-garden,10-12,short story,New Zealand,reserve,,Miss Brill
-mansfield-doll,The Doll's House,Katherine Mansfield,mansfield-garden,7-10,short story,New Zealand,in,,Doll's House
+mansfield-doll,The Doll's House,Katherine Mansfield,mansfield-doves,7-10,short story,New Zealand,in,,Doll's House
 chesnutt-goophered,The Goophered Grapevine,Charles W. Chesnutt,chesnutt-conjure,10-12,short story,United States,note,dialect; slavery; Black author's framing of plantation tales,Goophered
 chesnutt-wife,The Wife of His Youth,Charles W. Chesnutt,chesnutt-wife,10-12,short story,United States,reserve,colorism and slavery's aftermath,Wife of His Youth
 cather-pauls-case,Paul's Case,Willa Cather,cather-troll,11-12,short story,United States,note,ends in suicide,Paul's Case
@@ -357,7 +357,7 @@ crane-open-boat,The Open Boat,Stephen Crane,crane-open,10-12,short story,United 
 crane-bride,The Bride Comes to Yellow Sky,Stephen Crane,crane-open,9-12,short story,United States,reserve,,Yellow Sky
 bierce-owl-creek,An Occurrence at Owl Creek Bridge,Ambrose Bierce,bierce-soldiers,10-12,short story,United States,in,,Owl Creek
 bierce-fables-set,Fantastic Fables (set),Ambrose Bierce,bierce-fables,9-12,fable,United States,reserve,set of 10 satirical fables,
-chopin-hour,The Story of an Hour,Kate Chopin,chopin-awakening,10-12,short story,United States,in,,Story of an Hour
+chopin-hour,The Story of an Hour,Kate Chopin,chopin-hour-ws,10-12,short story,United States,in,,Story of an Hour
 chopin-desiree,Desiree's Baby,Kate Chopin,chopin-bayou,10-12,short story,United States,note,race and slavery; hard history,Baby
 yellow-wallpaper,The Yellow Wallpaper,Charlotte Perkins Gilman,gilman-wallpaper,11-12,short story,United States,note,postpartum mental illness,wallpaper
 harte-outcasts,The Outcasts of Poker Flat,Bret Harte,harte-luck,9-12,short story,United States,reserve,,Poker Flat
@@ -393,7 +393,7 @@ whitman-myself,Song of Myself (sections 1 to 6),Walt Whitman,whitman-leaves,10-1
 hughes-rivers,The Negro Speaks of Rivers,Langston Hughes,hughes-weary,7-12,poem,United States,in,,Speaks of Rivers
 hughes-mother,Mother to Son,Langston Hughes,hughes-weary,5-12,poem,United States,in,,Mother to Son
 hughes-too,"I, Too",Langston Hughes,hughes-weary,6-12,poem,United States,in,"I, Too",I am the darker brother
-hughes-dreams,Dreams,Langston Hughes,hughes-weary,4-12,poem,United States,in,,Hold fast to dreams
+hughes-dreams,Dream Variations,Langston Hughes,hughes-weary,4-12,poem,United States,in,"""Dreams"" (Hold fast to dreams) is not in a public domain book online; Dream Variations is from The Weary Blues (1926)",To fling my arms wide
 hughes-weary-blues,The Weary Blues,Langston Hughes,hughes-weary,9-12,poem,United States,in,,Weary Blues
 hughes-dream-variations,Dream Variations,Langston Hughes,hughes-weary,6-12,poem,United States,in,,Dream Variations
 mckay-if-we-must,If We Must Die,Claude McKay,mckay-harlem,10-12,poem,Jamaica / United States,note,written after the 1919 race riots,If We Must Die
@@ -402,7 +402,7 @@ mckay-tropics,The Tropics in New York,Claude McKay,mckay-harlem,8-12,poem,Jamaic
 cullen-incident,Incident,Countee Cullen,cullen-color,8-12,poem,United States,note,a child hears a racial slur,Incident
 cullen-heritage,Heritage,Countee Cullen,cullen-color,11-12,poem,United States,in,,Heritage
 cullen-yet,Yet Do I Marvel,Countee Cullen,cullen-color,10-12,poem,United States,reserve,,Yet Do I Marvel
-johnson-lift,Lift Every Voice and Sing,James Weldon Johnson,johnson-book,4-12,poem,United States,in,,Lift Every Voice
+johnson-lift,Lift Every Voice and Sing,James Weldon Johnson,johnson-lift-1900,4-12,poem,United States,in,,Lift Every Voice
 johnson-book-set,The Book of American Negro Poetry (selected),James Weldon Johnson (editor),johnson-book,8-12,poem,United States,reserve,"set of 8 by different poets, picked in processing",
 dunbar-mask,We Wear the Mask,Paul Laurence Dunbar,dunbar-poems,8-12,poem,United States,in,,Wear the Mask
 dunbar-sympathy,Sympathy,Paul Laurence Dunbar,dunbar-poems,8-12,poem,United States,in,,caged bird
@@ -412,19 +412,19 @@ yeats-old,When You Are Old,W. B. Yeats,yeats-poems,10-12,poem,Ireland,reserve,,W
 yeats-stolen,The Stolen Child,W. B. Yeats,yeats-poems,7-12,poem,Ireland,in,,Stolen Child
 eliot-waste-land,The Waste Land,T. S. Eliot,eliot-waste,12,poem,England,reserve,,April is the cruellest
 eliot-prufrock,The Love Song of J. Alfred Prufrock,T. S. Eliot,eliot-prufrock,11-12,poem,England,in,,Prufrock
-millay-candle,First Fig,Edna St. Vincent Millay,millay-harp,9-12,poem,United States,in,,My candle burns
+millay-candle,First Fig,Edna St. Vincent Millay,millay-figs,9-12,poem,United States,in,,My candle burns
 millay-renascence,Renascence,Edna St. Vincent Millay,millay-renascence,9-12,poem,United States,reserve,,Renascence
 millay-harp-weaver,The Ballad of the Harp-Weaver,Edna St. Vincent Millay,millay-harp,7-12,poem,United States,in,,Harp-Weaver
 millay-spring,Spring,Edna St. Vincent Millay,millay-second,10-12,poem,United States,reserve,,To what purpose
-teasdale-rains,There Will Come Soft Rains,Sara Teasdale,rainbow-gold,6-12,poem,United States,in,,Soft Rains
-teasdale-barter,Barter,Sara Teasdale,teasdale-rivers,6-12,poem,United States,in,,Barter
+teasdale-rains,There Will Come Soft Rains,Sara Teasdale,teasdale-flame,6-12,poem,United States,in,,Soft Rains
+teasdale-barter,Barter,Sara Teasdale,teasdale-love,6-12,poem,United States,in,,Barter
 owen-dulce,Dulce et Decorum Est,Wilfred Owen,owen-poems,9-12,poem,England,note,gas attack; war violence,Dulce
 owen-anthem,Anthem for Doomed Youth,Wilfred Owen,owen-poems,9-12,poem,England,reserve,,Doomed Youth
-mccrae-flanders,In Flanders Fields,John McCrae,rainbow-gold,5-12,poem,Canada,in,,Flanders
+mccrae-flanders,In Flanders Fields,John McCrae,mccrae-fields,5-12,poem,Canada,in,,Flanders
 golden-ozymandias,Ozymandias,Percy Bysshe Shelley,golden-treasury,8-12,poem,England,in,,Ozymandias
 golden-daffodils,I Wandered Lonely as a Cloud,William Wordsworth,golden-treasury,6-12,poem,England,in,,Lonely as a cloud
 golden-autumn,To Autumn,John Keats,golden-treasury,10-12,poem,England,reserve,,Season of mists
-golden-tiger,The Tiger,William Blake,golden-treasury,6-12,poem,England,in,,Tiger
+golden-tiger,The Tiger,William Blake,blake-songs,6-12,poem,England,in,,Tiger
 golden-sonnet18,Sonnet 18,William Shakespeare,golden-treasury,8-12,poem,England,in,,summer's day
 golden-sonnet29,Sonnet 29,William Shakespeare,golden-treasury,10-12,poem,England,reserve,,disgrace with fortune
 golden-westminster,Composed upon Westminster Bridge,William Wordsworth,golden-treasury,9-12,poem,England,reserve,,Westminster

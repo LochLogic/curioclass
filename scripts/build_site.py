@@ -6,6 +6,7 @@ Needs Jinja2 and Markdown (pip install jinja2 markdown). No other dependencies.
 import base64, csv, json, re, shutil, sys
 from collections import defaultdict
 from datetime import date
+from html import escape as html_escape
 from pathlib import Path
 
 import markdown
@@ -290,8 +291,19 @@ def lib_story(r, collection):
         meta = json.loads((folder / 'story.json').read_text(encoding='utf-8')) if (folder / 'story.json').exists() else {}
         html = GLOSS.sub(lambda m: f'<button type="button" class="gloss" data-gloss="{m[2].replace(chr(34), "&quot;")}">{m[1]}</button>',
                          markdown.markdown(text))
+        heads = re.findall(r'<h2>(.*?)</h2>', html)
+        toc = [(f'part-{i}', re.sub(r'<[^>]+>', '', h)) for i, h in enumerate(heads, 1)] if len(heads) >= 3 else []
+        if toc:  # long works get a contents list; each part heading gets an anchor
+            n = iter(range(1, len(heads) + 1))
+            html = re.sub(r'<h2>', lambda m: f'<h2 id="part-{next(n)}">', html)
         words = meta.get('words') or len(GLOSS.sub(r'\1', text).split())
-        s.update(ready=True, meta=meta, html=html, words=words, minutes=max(1, round(words / 200)),
+        note = re.sub(r',? ?teacher note( required)?', '', r.get('note', '')).replace('check for', 'may have')
+        warn = [p for p in re.split(r';\s*', note)  # the curator's shorthand, minus its working notes
+                if p and not re.match(r'(chapter )?set\b|picked in|whole|complete|newbery|cc by|outside review|discuss', p, re.I)]
+        if r['decision'] == 'note' and warn and not meta.get('teacher_note'):  # the curation pass's content flags
+            meta = dict(meta, teacher_note=f'<p><strong>Content note:</strong> {html_escape("; ".join(warn))}. '
+                                           'Read it first and decide how to set it up for your class.</p>')
+        s.update(ready=True, meta=meta, html=html, toc=toc, words=words, minutes=max(1, round(words / 200)),
                  summary=meta.get('summary', s.get('summary', '')), art=(folder / 'art').is_dir())
     return s
 

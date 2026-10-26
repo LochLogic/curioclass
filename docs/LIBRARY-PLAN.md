@@ -1,7 +1,7 @@
 # Reading Room: public domain and openly licensed story library (plan)
 
-Status: plan AGREED by Cory 2026-10-25 (decisions at the bottom). The 700 stories are curated and their sources are
-downloaded (see "Inventory" below). Text cleanup and the story pages come next, starting with the pilot.
+Status: plan AGREED by Cory 2026-10-25 (decisions at the bottom). The 700 stories are curated, downloaded and, since
+2026-10-26, processed into readable text (see "Processing" below). Word help, questions and teacher notes come next.
 
 ## Inventory (2026-10-25)
 
@@ -263,6 +263,31 @@ archive item really is Jaini's translation, and the Hidden Words edition year an
 **Fetch modes** in `scripts/library_fetch.py`: Gutenberg (default), `--storyweaver`, `--other` (Wikisource),
 `--archive` (Internet Archive OCR text) and `--sefaria` (a Tanakh version). The last three write to
 `library/_sources/other/<key>/`.
+
+### Processing: every row readable (2026-10-26)
+
+`scripts/library_process.py` turns the downloads into `library/<id>/text.md`, `story.json` and `art/` for every row not
+on `reserve` (586 rows; the StoryWeaver books, Wikisource, Sefaria and archive.org texts each have their own reader in
+the same script). Run `python scripts/library_cuts.py && python scripts/library_process.py <ids>`; `--redo` redoes
+every row and `--report` writes `library/_sources/process-report.csv` (how each row was placed, words, flags).
+`--outline SOURCE [words | a-b]` prints a source's numbered blocks, which is how cuts are written. Git keeps
+`text.md` and `story.json` (about 90 MB); `art/` (about 350 MB) is left out like `_sources/`, and `--redo` remakes it
+from the downloads (fetch first on a fresh machine).
+
+How a Gutenberg row is placed, in order: a hand cut in `scripts/library_cuts.py` (syntax in its docstring: `#Heading`,
+`start >> end` with phrases or `@N` block numbers, `[Label]` pieces, `txt:` for a poem from the plain text), else the
+heading that matches the title (or the row's `find` text), else the whole book when the book is the story. The walk
+reads the epub in document order: contents tables are skipped but picture-layout tables are read cell by cell,
+`<pre>` verse keeps its lines and indents, titled poem groups (Mother Goose) split by title, drop caps are rejoined,
+text wrapped around pictures a word to a line is joined back into paragraphs (and a drop cap set as a letter picture
+comes back from the plain text). `trim_ends` then strips front matter (copyright, printers, contents), the back
+(publisher ads, series lists, transcriber notes, glossaries, pronunciation lists, "Notes to ..."), and anything after
+a closing THE END.
+
+Known gaps, by choice: `tattvartha` has no usable source yet (the row stays "on the reading desk"); the 1925 In Our
+Time is not on Gutenberg, so the Hemingway stories from it stay on reserve. Swaps made while processing are recorded in
+each row's `note`: "Dream Variations" replaces Hughes's "Dreams" (not in a public domain book online), and the
+Caroling Dusk selection leaves out "Incident" (a slur) and "Song for a Dark Girl" (a lynching).
 
 ## The pipeline
 

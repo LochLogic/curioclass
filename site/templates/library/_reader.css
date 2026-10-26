@@ -15,7 +15,13 @@
 .story-by { margin: 0 0 28px; color: var(--r-muted); font-size: .85em; }
 .adapted { color: var(--r-accent); font-weight: 600; }
 .story-text h2 { font: 600 1.25em/1.2 var(--serif, Georgia, serif); margin: 1.8em 0 .6em; }
+.story-text h3, .story-text h4 { font: 600 1.05em/1.25 var(--serif, Georgia, serif); margin: 1.5em 0 .5em; }
 .story-text p { margin: 0 0 1em; }
+.toc { max-width: 66ch; margin: 16px auto 0; padding: 0 22px; font: 500 15px/1.4 var(--sans, system-ui, sans-serif); }
+.toc summary { cursor: pointer; font-weight: 700; padding: 8px 0; color: var(--r-ink); }
+.toc ol { margin: 4px 0 8px; padding-left: 1.6em; max-height: 50vh; overflow: auto; columns: 2 16em; column-gap: 2em; }
+.toc li { margin: 0 0 4px; break-inside: avoid; }
+.toc a { color: var(--r-accent); }
 .story-text img { display: block; max-width: min(100%, 560px); max-height: 55vh; width: auto; height: auto; margin: 1.2em auto; border-radius: 10px; }
 .story-text blockquote { margin: 1em 0; padding-left: 1em; border-left: 3px solid var(--r-line); }
 .story-text hr { border: 0; text-align: center; margin: 2em 0; }

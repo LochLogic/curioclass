@@ -57,6 +57,12 @@
   }
 
   r.addEventListener('click', function (e) {
+    var link = e.target.closest('.toc a');
+    if (link && prefs.view === 'pages') {  // jump to the page that holds this part
+      var target = document.getElementById(link.getAttribute('href').slice(1)), pg = target && target.closest('.r-page');
+      if (pg) { e.preventDefault(); page = Array.prototype.indexOf.call(text.children, pg); show(); r.scrollIntoView({ block: 'start' }); }
+      return;
+    }
     var b = e.target.closest('button');
     if (!b) return;
     if (b.classList.contains('gloss')) {

@@ -7,6 +7,7 @@ Gets the illustrated EPUB3 and the plain text for every pg id in data/library/so
 `--archive` gets Internet Archive OCR text (`where` = archive:<identifier>) and `--sefaria` a whole Tanakh version from
 Sefaria (`where` = sefaria:<version title>), into the same other/<key>/ folders. `--url` gets a single file
 (`where` = url:<address>), such as a NASA PDF kept in the Wayback Machine, into other/<key>/ under its own name.
+`--sacred-texts` gets clean transcriptions from archive.sacred-texts.com (`where` = sacredtexts:<dir>/<page run>).
 """
 import csv
 import html
@@ -141,6 +142,20 @@ def fetch_json(url):
     raise RuntimeError("still rate limited: " + url)
 
 
+def sacred_texts():
+    """Sources whose `where` is sacredtexts:<dir>/<prefix><first>-<last> (a run of page numbers, zero-padded like the
+    first) go to library/_sources/other/<key>/st-<page>.htm, from the classic archive.sacred-texts.com pages."""
+    for row in csv.DictReader(open(ROOT / "data/library/sources.csv", encoding="utf-8")):
+        m = re.match(r"sacredtexts:(.+/)(\D*?)(\d+)-(\d+)$", row["where"])
+        if not m:
+            continue
+        d = ROOT / "library" / "_sources" / "other" / row["key"]
+        d.mkdir(parents=True, exist_ok=True)
+        for n in range(int(m[3]), int(m[4]) + 1):
+            page = f"{m[2]}{n:0{len(m[3])}d}.htm"
+            print(row["key"], page, get(f"https://archive.sacred-texts.com/{m[1]}{page}", d / f"st-{page}"), flush=True)
+
+
 def html_text(h):
     h = re.sub(r"<(style|script).*?</\1>", " ", h, flags=re.S)
     h = re.sub(r"</p>|<br\s*/?>|</div>|</h\d>", "\n", h)
@@ -159,6 +174,8 @@ def main():
         return sefaria()
     if "--url" in sys.argv:
         return single_files()
+    if "--sacred-texts" in sys.argv:
+        return sacred_texts()
     for row in csv.DictReader(open(ROOT / "data/library/sources.csv", encoding="utf-8")):
         for n in row["pg"].split():
             d = OUT / n

@@ -267,7 +267,7 @@ asimov-youth,Youth,Isaac Asimov,1952,not-renewed,public domain (not renewed),gut
 doctorow-brother,Little Brother,Cory Doctorow,2008,cc-license,CC BY-NC-SA 3.0,gutenberg,30142
 doctorow-printcrime,Printcrime,Cory Doctorow,2006,cc-license,CC BY-NC-SA 2.5,gutenberg,19000
 fdr-1941,The Four Freedoms (1941 State of the Union),Franklin D. Roosevelt,1941,us-gov,public domain (US government),wikisource:Franklin Delano Roosevelt's Eighth State of the Union Address,
-eisenhower-farewell,Farewell Address,Dwight D. Eisenhower,1961,us-gov,public domain (US government),wikisource:Eisenhower's farewell address,
+eisenhower-farewell,Farewell Address,Dwight D. Eisenhower,1961,us-gov,public domain (US government),wikisource:Eisenhower's farewell address (press copy),
 jfk-moon,Address at Rice University on the Space Effort,John F. Kennedy,1962,us-gov,public domain (US government),wikisource:We choose to go to the moon,
 lbj-overcome,Special Message to Congress: The American Promise,Lyndon B. Johnson,1965,us-gov,public domain (US government),wikisource:We Shall Overcome (Johnson),
 nasa-apollo11,Apollo 11 air-to-ground transcript (landing and first steps),NASA,1969,us-gov,public domain (US government),url:http://web.archive.org/web/20220408232630id_/https://historycollection.jsc.nasa.gov/JSCHistoryPortal/history/mission_trans/AS11_TEC.PDF,
@@ -382,7 +382,7 @@ stephens-irish,Irish Fairy Tales,Stephens,1920,pd-1930,public domain,gutenberg,2
 hull-cuchulain,"Cuchulain, the Hound of Ulster",Hull,1909,pd-1930,public domain,gutenberg,52963
 spence-egypt,Myths and Legends of Ancient Egypt,Spence,1915,pd-1930,public domain,gutenberg,43662
 murray-egypt,Ancient Egyptian Legends,Murray,1920,pd-1930,public domain,gutenberg,74354
-thompson-gilgamish,The Epic of Gilgamish,R. Campbell Thompson,1928,pd-1930,public domain,archive:thompson-1928-gilgamesh,
+thompson-gilgamish,The Epic of Gilgamish,R. Campbell Thompson,1928,pd-1930,public domain,sacredtexts:ane/eog/eog03-14,
 mackenzie-babylon,Myths of Babylonia and Assyria,Mackenzie,1915,pd-1930,public domain,gutenberg,16653
 budge-creation,The Babylonian Legends of the Creation,Budge,1921,pd-1930,public domain,gutenberg,9914
 pjohnson-vancouver,Legends of Vancouver,E. Pauline Johnson,1911,pd-1930,public domain,gutenberg,3478
@@ -409,12 +409,24 @@ kjv,"The Bible, King James Version",,1611,pd-1930,public domain,gutenberg,10
 pickthall-quran,The Meaning of the Glorious Koran (from Three Translations of the Koran side by side),Pickthall,1930,pd-1930,public domain,gutenberg,16955
 arnold-gita,"The Song Celestial, or Bhagavad-Gita",Arnold,1885,pd-1930,public domain,gutenberg,2388
 muller-dhammapada,Dhammapada,Max Muller,1881,pd-1930,public domain,gutenberg,2017
-macauliffe-sikh,"The Sikh Religion, Volume 1",Macauliffe,1909,pd-1930,public domain,archive:thesikhreligion01macauoft,
+macauliffe-sikh,"The Sikh Religion, Volume 1",Macauliffe,1909,pd-1930,public domain,sacredtexts:skh/tsr1/tsr121-121,
 jaini-tattvartha,"Tattvarthadhigama Sutra (Sacred Books of the Jainas, Volume 2)",J. L. Jaini,1920,pd-1930,public domain,archive:in.ernet.dli.2015.287470,
 legge-tao,The Tao Teh King,Legge,1891,pd-1930,public domain,gutenberg,216
 legge-analects,The Analects of Confucius,Legge,1861,pd-1930,public domain,gutenberg,3330
 chamberlain-kojiki,Kojiki,Chamberlain,1882,pd-1930,public domain,"wikisource:Kojiki (Chamberlain, 1882)",
-mills-gathas,"The Zend-Avesta, Part III (the Gathas)",Mills,1887,pd-1930,public domain,archive:zendavesta03darm,
+mills-gathas,"The Zend-Avesta, Part III (the Gathas)",Mills,1887,pd-1930,public domain,sacredtexts:zor/sbe31/sbe31006-31022,
 book-of-mormon,The Book of Mormon,,1830,pd-1930,public domain,gutenberg,17
 hidden-words,The Hidden Words of Baha'u'llah,,1923,not-renewed,public domain,gutenberg,16941
 budge-dead,The Book of the Dead,Budge,1895,pd-1930,public domain,gutenberg,7145
+mansfield-doves,"The Doves' Nest, and Other Stories",Mansfield,1923,pd-1930,public domain,gutenberg,66871
+johnson-lift-1900,Lift Every Voice and Sing (song lyric),James Weldon Johnson,1900,pd-1930,public domain,hand:1900 song lyric (words by James Weldon Johnson; music by J. Rosamond Johnson),
+chekhov-school,"The Schoolmistress, and Other Stories",Chekhov (tr. Garnett),1920,pd-1930,public domain,gutenberg,1732
+chekhov-cook,The Cook's Wedding and Other Stories,Chekhov (tr. Garnett),1922,pd-1930,public domain,gutenberg,13417
+chopin-hour-ws,The Story of an Hour,Kate Chopin,1894,pd-1930,public domain,wikisource:The Story of an Hour,
+saki-toys,The Toys of Peace,Saki,1919,pd-1930,public domain,gutenberg,1477
+ohenry-trimmed,The Trimmed Lamp,Henry,1907,pd-1930,public domain,gutenberg,3707
+millay-figs,A Few Figs from Thistles,Millay,1920,pd-1930,public domain,gutenberg,4399
+teasdale-flame,Flame and Shadow,Teasdale,1920,pd-1930,public domain,gutenberg,591
+mccrae-fields,In Flanders Fields and Other Poems,McCrae,1919,pd-1930,public domain,gutenberg,353
+blake-songs,Songs of Innocence and of Experience,Blake,1794,pd-1930,public domain,gutenberg,1934
+teasdale-love,Love Songs,Teasdale,1917,pd-1930,public domain,gutenberg,442

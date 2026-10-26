@@ -1,0 +1,138 @@
+![Picture for page 1](art/01.jpg)
+
+Tara and her family are home!  
+“It’s good to be back, isn’t it Tara?” says Ma.  
+Tara nods. “I’m hungry!”  
+Madhav rubs his stomach. “Also hungry,” he says loudly.  
+Tara and her family are home!  
+“It’s good to be back, isn’t it Tara?” says Ma.  
+Tara nods. “ I’m hungry! ”  
+Madhav rubs his stomach. “ Also hungry ,” he says loudly.
+
+---
+
+![Picture for page 2](art/02.jpg)
+
+“We have milk, eggs,  
+bread  
+and vegetables in the fridge,” says Ma.  
+“I’ll cook dinner!” says Pa.  
+“Pa, can you make fried rice?” asks Tara.  
+“Fried rice,” Madhav echoes.
+
+---
+
+![Picture for page 3](art/03.jpg)
+
+As soon as Tara, Madhav, Ma and Pa enter the house, they know that something is wrong. Very wrong.  
+"Chee! What’s that smell?” cries Tara.  
+“A MONSTER!” yells Madhav.
+
+---
+
+![Picture for page 4](art/04.jpg)
+
+It is hot, dark and stinky. The whole house smells!  
+Where is the smell coming from?
+
+---
+
+![Picture for page 5](art/05.jpg)
+
+Ma checks the bedroom.  
+Madhav checks the bathroom.
+
+---
+
+![Picture for page 6](art/06.jpg)
+
+Tara checks the dining room.  
+Pa checks the kitchen.
+
+---
+
+![Picture for page 7](art/07.jpg)
+
+“It’s coming from there,” says Pa, pointing at the fridge.  
+“A stinky fridge monster?” gasps Tara.  
+“Scared,” says Madhav, hugging Ma.  
+“Let’s open the fridge and see what’s inside,” says Ma.
+
+---
+
+![Picture for page 8](art/08.jpg)
+
+Ma opens the fridge. Everyone covers their noses and mouths.  
+“Hmm, it’s warm inside and the light is off,” says Ma, sticking her arm into the fridge.  
+“What happened?” asks Tara.  
+"The fridge stopped working some time ago," Pa explains.  
+"Without the cold air, everything spoiled,” says Ma, glumly.  
+“Has the milk gone bad?” asks Tara.  
+“Yes, can you smell how sour it is?” asks Ma.  
+“Milk needs to be kept cold to stay fresh,” says Pa.
+
+---
+
+![Picture for page 9](art/09.jpg)
+
+“Has the bread gone bad?” asks Tara.  
+“Yes, do you see that green stuff? That’s mould,” says Pa, “It grows on the bread.”  
+“Fuzzy,” says Madhav, curiously.  
+“Don’t touch it,” says Pa. “You’ll fall sick if you eat it.”
+
+---
+
+![Picture for page 10](art/10.jpg)
+
+“Have the vegetables gone bad too?” asks Tara, sadly.  
+“Yes, they’re rotten,” says Ma. “We can’t eat them.”
+
+---
+
+![Picture for page 11](art/11.jpg)
+
+Madhav picks up an egg and drops it.  
+“Madhav, now it smells even worse!” shouts Tara.  
+“Oh no! These have gone bad too,” says Pa.  
+Tara is sure she can never eat eggs again.  
+“Yuck, yuck, yuck!” cries Madhav, running away while Pa cleans up the mess.
+
+---
+
+![Picture for page 12](art/12.jpg)
+
+They put all the rotten food into garbage bags and clear the fridge.  
+“Why do things go bad?” asks Tara.  
+“Everything goes bad over time. The cold air of the fridge keeps food fresh for longer. When it’s warm, food goes bad faster,” says Ma.
+
+---
+
+![Picture for page 13](art/13.jpg)
+
+﻿  
+“Does all food spoil?”asks Tara  
+“Not this rice,” says Ma, “Or these potatoes, at least for a while.”  
+“And not this pickle,” says Pa.  
+“And not this ghee,” says Ma.  
+"We can eat ghee rice and potatoes!" says Tara, happily.
+
+---
+
+![Picture for page 14](art/14.jpg)
+
+Invisible Monsters  
+Tara and Madhav thought there was an invisible monster in their house. While there was no monster to be found, they were right about there being something invisible!  
+When food goes ‘bad’ — meaning it cannot be eaten by human beings — it’s because something invisible has begun to eat the food. These invisible beings are called microbes.  
+Microbes aren’t totally invisible: they’re just very, very, very tiny (tinier than the tiniest insect you’ve ever seen). You need a machine called a microscope to be able to see them. They look something like this.
+
+---
+
+![Picture for page 15](art/15.jpg)
+
+When Food Goes Bad  
+Some foods spoil quicker than others and some foods spoil very slowly.  
+Wet foods, like many fruits and vegetables, spoil faster.  
+Dry foods, like uncooked dal and rice, spoil slower.  
+Eggs, meat and cheese spoil fast.  
+Preserved foods, like pickles and ghee, spoil very slowly.  
+Packaged foods, like biscuits and sweets, spoil the slowest.

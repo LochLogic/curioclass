@@ -7,6 +7,7 @@
     <span class="rb-group" aria-label="View">{% for v, l in [('scroll', 'Scroll'), ('pages', 'Pages')] %}<button type="button" data-set="view" data-val="{{ v }}">{{ l }}</button>{% endfor %}</span>
     <button type="button" data-act="print">Print</button>
   </div>
+  {% if s.toc %}<details class="toc no-print"><summary>Contents · {{ s.toc | length }} parts</summary><ol>{% for id, t in s.toc %}<li><a href="#{{ id }}">{{ t }}</a></li>{% endfor %}</ol></details>{% endif %}
   <article class="story-text" lang="en">
     <h1 class="story-title">{{ s.title }}</h1>
     <p class="story-by">{{ s.author }}{% if s.meta.adapted %} · <span class="adapted">Adapted: {{ s.meta.adapted }}</span>{% endif %}</p>
