@@ -259,10 +259,12 @@ writers where possible; the tradition page notes that some stories (Lakota and D
 **Sacred Texts** (`/library/sacred-texts/`) comes from `data/library/sacred-texts.csv`: one central text per
 religion, each in a single public-domain English translation, presented without commentary. The framing is "for
 teaching about religion, not for teaching religion". Choices: Tanakh (JPS 1917, via Sefaria), Bible (KJV), Qur'an
-(Pickthall 1930), Bhagavad Gita (Arnold), Dhammapada (Muller), Japji (Macauliffe 1909), Tattvartha Sutra (Jaini 1920),
+(Pickthall 1930), Bhagavad Gita (Arnold), Dhammapada (Muller), Japji (Macauliffe 1909), Kalpa Sutra: Lives of the Jinas (Jacobi 1884),
 Tao Te Ching and Analects (Legge), Kojiki (Chamberlain), the Gathas (Mills, selection), Book of Mormon, the Hidden
-Words, the Egyptian Book of the Dead (Budge, selections) and the Poetic Edda (Bellows). Still to verify: the Jain
-archive item really is Jaini's translation, and the Hidden Words edition year and copyright basis. The long ones
+Words, the Egyptian Book of the Dead (Budge, selections) and the Poetic Edda (Bellows). The Jain text was first the Tattvartha
+Sutra (Jaini 1920), but no clean scan exists; the Kalpa Sutra was cleaned by hand from two scans of Sacred Books of
+the East 22 (2026-10-26; footnotes out, names without diacritics, Jacobi's G and K written as J and Ch). Still to
+verify: the Hidden Words edition year and copyright basis. The long ones
 (Bible, Tanakh, Qur'an) will need a multi-part reader with a table of contents before they can be made ready.
 
 **Fetch modes** in `scripts/library_fetch.py`: Gutenberg (default), `--storyweaver`, `--other` (Wikisource),
@@ -289,7 +291,7 @@ comes back from the plain text). `trim_ends` then strips front matter (copyright
 (publisher ads, series lists, transcriber notes, glossaries, pronunciation lists, "Notes to ..."), and anything after
 a closing THE END.
 
-Known gaps, by choice: `tattvartha` has no usable source yet (the row stays "on the reading desk"); the 1925 In Our
+Known gaps, by choice: the 1925 In Our
 Time is not on Gutenberg, so the Hemingway stories from it stay on reserve. Swaps made while processing are recorded in
 each row's `note`: "Dream Variations" replaces Hughes's "Dreams" (not in a public domain book online), and the
 Caroling Dusk selection leaves out "Incident" (a slur) and "Song for a Dark Girl" (a lynching).
