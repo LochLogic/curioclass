@@ -23,7 +23,7 @@ Header: title "Community Project Planner", mode tabs `Run a Project`, `Plan Your
 2. **Week board** (stage), top to bottom:
    - Banner strip (the project's 4:1 image) with the project name and "Week N of 6".
    - Task board: a grid of task cards (3 columns wide at 1366 px, 2 under 1000 px). Each card: skill color stripe plus skill icon and word, task name, a progress bar "18 / 50", state label, a "This week: +N" preview, and the names of volunteers assigned. Core tasks carry "Core"; the bonus task carries "Bonus". A `Fundraise` card is always present (Outreach skill, never Done).
-   - Team row: six volunteer cards (drawn in code, see Interactions). Each: face, name, strong skill (filled icon), okay skill (outline icon), "5 h a week", energy bar with a band word, "Cares about: ?" (revealed after the first Check in), and a select "Working on" (Rest, then every Open task, then Fundraise).
+   - Team row: six volunteer cards (painted portraits, see Art and Interactions). Each: face, name, strong skill (filled icon), okay skill (outline icon), "5 h a week", energy bar with a band word, "Cares about: ?" (revealed after the first Check in), and a select "Working on" (Rest, then every Open task, then Fundraise).
 3. **Panel**: section WEEK ("Week 3 of 6", money "$412", total hours this week); section LEAD MOVE (six `.btn` toggles, one pressed at a time: `Thank the team`, `Ask for ideas`, `Check in`, `Planning meeting`, `Push harder`, `No lead move`, default `No lead move`); the hint; buttons `Clear assignments`, big `Run week 3`; small `Restart project` and `Pick another project` at the bottom.
 4. **Event card**: at the start of weeks 2, 4 and 5, a card over the board (not a browser dialog) with the event text and two buttons (the two options, with their costs written on them). The board is inert until one is chosen. An option the team cannot afford is disabled with "Not enough money".
 5. **Week summary** (replaces the task board until dismissed): per task "+N" (and "Done" if finished), per volunteer energy change with a reason ("-6, worked on a strong skill", "+20, rested", "+8, thanked"), any check-in notes, money in and out. Button `Start week N+1` (after week 6: `See how it went`).
@@ -40,7 +40,7 @@ Stage: a one-page plan form above a timeline chart. Panel: hint, budget readout,
 ## Content
 
 ### Volunteers (same six in every project)
-| Name | Strong | Okay | Hours a week | Cares about | Look (drawn in code) |
+| Name | Strong | Okay | Hours a week | Cares about | Look (portrait) |
 |---|---|---|---|---|---|
 | Dana Okafor | Hands-on | Logistics | 6 | Thanks | skin #6b3f26, short coily black hair, green hoodie |
 | Luis Herrera | Outreach | Design | 5 | Having a say | skin #b07a50, wavy dark hair, blue jacket |
@@ -134,7 +134,7 @@ Examples: each of the three projects loads its name, goal, budget, its six tasks
 - Run week is always allowed (even with nobody assigned). Week 6 ends the project and goes to the report.
 - Keys: 1 to 6 select a volunteer, then Q, W, E, A, S, D pick the task cards in order, F Fundraise, R Rest; L cycles the lead move; Enter runs the week; Escape cancels a selection. All controls are reachable by Tab with visible focus.
 - Restart project and Pick another project ask on the event-card overlay ("Start over? This week's plan is lost.") with `Start over` and `Keep going`.
-- Faces: each volunteer's mouth and posture follow the band (smile and upright, neutral, small frown and slumped, eyes half closed, eyes closed and resting). Motion off: no bob, changes are instant.
+- Faces: each volunteer's portrait follows the band: Fired up and Steady show the base painting (Fired up with a slow bob), Tired the tired painting, Running on empty the tired painting tilted and a little desaturated, Stepping back the tired painting in grey at .45 with a pause badge. The band word, glyph and bar still carry the meaning. Motion off: no bob, changes are instant. Portraits show in the meet row (72 px), the volunteer cards (42 px, down to 19 px in the tiny layout, zoomed to the face), the week summary and the report's team row.
 - Verified play path (builder: confirm numbers in Python): Riverside, all core done by week 5 with Map/Sign-up week 1, signs week 1-2, Cleanup weeks 2 to 3, recycling week 4, using strong skills, Check in week 1 then alternating Thank and Ask for ideas. Naive play (everyone on one task, Push harder every week) must drive someone to Stepping back by week 4. Both must hold for all three projects; tune needs by at most 10 if not, and update this spec's numbers in notes.md.
 - Plan Your Own: typing updates the timeline and budget live. Nothing is written to localStorage until `Save on this device` (key `curio-community-project-planner-plan`, JSON, try/catch, a "Saved" status for 3 s). On load, a saved plan is restored and the panel says "Loaded your saved plan." `Clear` asks (inline, `Clear everything` / `Keep it`), then empties the form and removes the key. `Print plan` prints the form and timeline on one page in light colors (print stylesheet: white paper, dark ink, patterns kept). `Print report` likewise for the report.
 - localStorage holds only the saved plan (when Saved) and the kit Motion key. No game progress is stored.
@@ -147,11 +147,13 @@ Examples: each of the three projects loads its name, goal, budget, its six tasks
 - Minimal celebration: finishing a task shows "Done" and a check, no confetti.
 
 ## Art
-Local FLUX, no people or figures (batch rule). Volunteers are drawn in code. Each is a 4:1 banner across the top of the week board and on the picker card (cropped to 16:10 there, so keep the middle interesting).
+Banners: local FLUX, no people or figures. Volunteers: gpt-image-2 portraits through Codex (people, reviewed), see below. Each banner is a 4:1 banner across the top of the week board and on the picker card (cropped to 16:10 there, so keep the middle interesting).
 - banner-river: "a quiet river trail at morning, a dirt path along a grassy bank, trees and soft light, a few litter pieces near reeds, soft painted illustration"; 4:1; cutout no; people no; Riverside Cleanup.
 - banner-garden: "an empty grassy lot beside a small brick library building, a chain-link fence, afternoon sun, soft painted illustration, blank walls"; 4:1; cutout no; people no; Library Lot Garden.
 - banner-coats: "a community center room with rolling racks of colorful winter coats and cardboard boxes, plain blank boxes, window with falling snow, soft painted illustration"; 4:1; cutout no; people no; Winter Coat Drive.
-Fallback if an image fails: a flat teal-to-panel gradient with the project name. Plan Your Own has no images (timeline drawn in code). These three are not used by any batch sibling.
+Fallback if an image fails: a flat teal-to-panel gradient with the project name.
+
+Volunteer portraits (added 2026-10-26 after Cory's review, "needs better graphics for the people"): gpt-image-2 through Codex, editorial graphic-novel style (own `house_style` in prompts.json), head-and-shoulders bust, cut out, 192 px WebP, about 7 KB each, 12 in all (89 KB). `vol-<id>` is the base (Fired up, Steady, meet row) and `vol-<id>-tired` the low-energy variant (Tired, Running on empty, Stepping back). vol-dana was drawn first as the style anchor; the other five used it as a style-only reference. Ages: Dana early 40s, Luis 17, Mei about 27, Tariq 19, Grace late 50s, Ben 16. If a portrait fails to load, the old face drawn in code takes its place. Full plan: art-plan.md. Plan Your Own has no images (timeline drawn in code). These three are not used by any batch sibling.
 
 ## Voice
 Bank voice `wise-mentor` (Gacrux): "Say thoughtfully and warmly, like a wise high school mentor." A mentor talking to a teen who's leading for the first time; different from siblings (gentle-storyteller, upbeat-guide, big-sister). Narration only for welcomes, project intros, hints and the report tier line; task and event text is on screen only. Fixed lines:

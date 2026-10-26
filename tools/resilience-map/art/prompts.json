@@ -1,0 +1,32 @@
+{
+  "style": "Calm, grown-up illustration for a high school health and SEL tool: muted dusk colors, quiet light, careful painterly detail, nothing cute, no cartoon faces, no mascots.",
+  "assets": [
+    {
+      "name": "map-island",
+      "house_style": "Refined painted illustration in the manner of a modern illustrated atlas: careful gouache and watercolor texture, subtle relief shading, muted twilight palette, calm and grown-up, not cartoonish. No text, no letters, no numbers, no labels, no compass, no legend, no watermark, no border, no frame.",
+      "prompt": "Aerial painting of one small temperate island seen from directly above at calm twilight, centered in the frame, filling about two thirds of the width and most of the height, surrounded on every side by calm deep navy sea (#10263a) that darkens evenly toward all four edges of the picture, with soft pale surf along the shore. The island has five clear regions. West shore: wide pale sand beaches and low dunes with dune grass (#d9c79a sand). North half: a dense, dark green pine and oak forest (#2c4736) seen from above as soft treetops. Center: a small village of about a dozen tiny houses with dark slate roofs around a green common, with grassy meadow between the houses. East third: rugged grey-blue rocky hills and a long ridge with soft shadows (#4a4f62). South shore: a narrow rocky point a little right of center with one small white lighthouse tower and a warm lit lamp, and a short wooden dock reaching into the sea a little left of center. The rest of the land is open meadow (#35543f). Muted, slightly desaturated colors, gentle light from the upper left, soft long shadows. The land is meadow, forest, rock and sand only, with no roads, trails or paths. Blank roofs, no signs, no boats, no people.",
+      "sd": "Aerial painting of one small temperate island seen from directly above at calm twilight, centered, filling about two thirds of the width and most of the height, surrounded on every side by calm deep navy sea that darkens evenly toward all four edges, soft pale surf along the shore. West shore: wide pale sand beaches and low dunes with dune grass. North half: dense dark green pine forest seen from above as soft treetops. Center: a small village of about a dozen tiny houses with dark slate roofs around a green common, grassy meadow between the houses. East third: rugged grey-blue rocky hills and a long ridge with soft shadows. South shore: a narrow rocky point a little right of center with one small white lighthouse tower with a warm lit lamp, and a short wooden dock a little left of center. The rest of the land is open green meadow. Muted, slightly desaturated twilight colors, gentle light from the upper left, soft long shadows. Untouched meadow, forest, rock and sand, plain roofs, calm empty water.",
+      "aspect": "16:9",
+      "width": 1600,
+      "quality": 72,
+      "local_note": "The map mode stage: replaces the code-drawn island (buildMap outline/ridge/woods/village/wave marks/dock). Shown uniformly scaled so the island box fits the stage; the sea extends past the island so wide stages crop sea, not land. Pins, labels, route paths, the harbor dot, the lighthouse beam and the legend stay code on top. After the pick, measure the island box and re-place every pin u,v on its region (see art-plan.md). Avoid the word 'map' in the sd prompt: it invites fake lettering.",
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "pending"
+    },
+    {
+      "name": "body-figure",
+      "house_style": "Clean, modern medical illustration for a high school health class: calm and respectful, smooth soft shading, gentle rim light, muted colors, precise but friendly, not gory, not cartoonish. No text, no letters, no labels, no leader lines, no arrows, no logos, no watermark, no border, no frame.",
+      "prompt": "Front view of one standing human figure for a health class diagram of stress in the body. The figure is a smooth, featureless form like an artist's mannequin: a smooth head with no face and no hair, a neutral, gender-neutral teen build with no surface anatomy, all one matte slate gray-blue (#71879e) with soft shading and a faint lighter rim light. Inside the silhouette, softly visible as if through frosted glass and drawn in calm muted tones: the brain inside the head (muted dusty rose), the heart in the chest just right of the picture's center line, the body's own left side, as in a real body seen from the front (muted rose red), the stomach just under the ribs, also right of the center line (warm muted ochre), and fine, lighter blue muscle fiber lines over the neck, the tops of the shoulders and the upper arms. Nothing else inside: no skeleton, no lungs, no blood vessels. Pose: standing upright and symmetrical, facing straight ahead, arms relaxed and held a little away from the sides, hands open, feet slightly apart on one ground line, the whole figure in frame from the top of the head to the feet. Calm, clear and respectful.",
+      "people": true,
+      "cutout": true,
+      "key": "green",
+      "despill": true,
+      "aspect": "9:16",
+      "height": 800,
+      "quality": 74,
+      "local_note": "Stress in the body: replaces the code-drawn figure (buildBody rounded rects and head circle). Hotspot pills, leader lines, the rose hotspot dots and the sleep moon stay code on top; after the pick, measure each hotspot point (brain, head, focus, heart, muscles, stomach, sleep moon) as fractions of the image and replace PT. Shown up to about 520 CSS px tall.",
+      "source": "gpt-image-2 (Codex)",
+      "review": "pending"
+    }
+  ]
+}

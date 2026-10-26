@@ -31,7 +31,10 @@ def prompt_for(spec, asset, ref):
     style = '' if asset.get('skip_style') else spec.get('style', '')
     cut = CUTOUT.format(key=KEYS[asset.get('key', 'green')]) if asset.get('cutout') is True else ''
     p = ' '.join(x for x in [asset.get('house_style', spec.get('house_style', HOUSE_STYLE)), style, asset['prompt'], cut] if x)
-    if ref:
+    if ref and asset.get('ref_mode') == 'style':  # a different character drawn the same way
+        p += (' Match only the drawing style, line quality, lighting and framing of the attached reference image.'
+              ' Draw a different person or character, exactly as described.')
+    elif ref:
         p += ' Match the character design, colors and drawing style of the attached reference image exactly.'
     return p
 

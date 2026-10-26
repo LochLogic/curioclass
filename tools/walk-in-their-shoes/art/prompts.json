@@ -1,4 +1,300 @@
 {
-  "style": "None needed: the spec draws everything in code (nine animal characters with six expressions each, nine pairs of shoes, three settings, three book covers, the open-book Narrator icon and preview.svg). No people anywhere.",
-  "assets": []
+ "style": "Picture-book cast for a grades 3-5 storybook: personified animal kids about the size of a nine-year-old, standing upright on two legs, round friendly shapes, soft gouache and colored pencil with a thin warm brown outline, gentle light from the upper left, warm natural fur colors and bright clear shoe colors. Faces are large with clear eyebrows, eyes and mouths so each feeling reads at a small size. Every figure is drawn full length from ear tips to shoe soles, facing three-quarters toward the viewer, all figures the same height and standing on the same baseline, with wide empty space between figures so no two touch or overlap.",
+ "assets": [
+  {
+   "name": "juniper",
+   "prompt": "A character sheet of one character, Juniper, a young red fox girl with orange-red fur, a white muzzle and chest, a bushy white-tipped tail, wearing a mustard-yellow knit sweater, dark brown leggings and bright red rubber rain boots. 4 full-length drawings of this same character side by side in one row, left to right, evenly spaced, the same size, outfit and colors in every drawing: 1) happy, a big open smile, arms relaxed at her sides. 2) calm, a small gentle closed-mouth smile, hands loosely together. 3) upset, eyebrows pulled down and a tight frown, holding a light blue puffy jacket folded over both forearms, one sleeve smeared with brown mud. 4) calm, relaxed eyebrows and a small smile, holding the same light blue puffy jacket folded over both forearms, the jacket clean.",
+   "cutout": true,
+   "aspect": "16:9",
+   "height": 240,
+   "quality": 70,
+   "cells": [
+    "happy",
+    "calm",
+    "upset-muddy",
+    "calm-clean"
+   ],
+   "skip_local": true,
+   "source": "gpt-image-2 (Codex)"
+  },
+  {
+   "name": "pip",
+   "prompt": "A character sheet of one character, Pip, a young rabbit boy with light tan fur, a cream muzzle, long upright ears with pink insides, wearing a short-sleeved red-and-white striped t-shirt, navy shorts and bright green sneakers. 5 full-length drawings of this same character side by side in one row, left to right, evenly spaced, the same size, outfit and colors in every drawing: 1) happy, a big smile, wearing a clean light blue puffy jacket zipped up over the t-shirt. 2) worried, eyebrows tilted up in the middle and a wobbly mouth, wearing the light blue puffy jacket with the left sleeve smeared with brown mud. 3) worried, eyebrows tilted up and a wobbly mouth, no jacket, hands clasped in front. 4) sad, eyebrows tilted up, eyes looking down, a small downturned mouth, ears drooping, no jacket. 5) happy, a big smile, ears upright, no jacket.",
+   "cutout": true,
+   "aspect": "16:9",
+   "height": 240,
+   "quality": 70,
+   "cells": [
+    "happy-jacket",
+    "worried-jacket",
+    "worried",
+    "sad",
+    "happy"
+   ],
+   "skip_local": true,
+   "source": "gpt-image-2 (Codex)",
+   "key": "magenta",
+   "ref": "juniper",
+   "ref_mode": "style"
+  },
+  {
+   "name": "otto",
+   "prompt": "A character sheet of one character, Otto, a big young brown bear boy with a tan muzzle and round ears, wearing a plain grey t-shirt, brown corduroy pants and big bright blue high-top sneakers. 5 full-length drawings of this same character side by side in one row, left to right, evenly spaced, the same size, outfit and colors in every drawing: 1) calm, a small gentle closed-mouth smile, arms hugging himself a little as if chilly. 2) surprised, eyebrows raised high, eyes wide and round, mouth a small open circle. 3) worried, eyebrows tilted up in the middle, a wobbly mouth, one paw at his chin. 4) happy, a big warm smile. 5) sad, eyes looking down, a small downturned mouth, shoulders slumped.",
+   "cutout": true,
+   "aspect": "16:9",
+   "height": 240,
+   "quality": 70,
+   "cells": [
+    "calm",
+    "surprised",
+    "worried",
+    "happy",
+    "sad"
+   ],
+   "skip_local": true,
+   "source": "gpt-image-2 (Codex)",
+   "ref": "juniper",
+   "ref_mode": "style"
+  },
+  {
+   "name": "tamsin",
+   "prompt": "A character sheet of one character, Tamsin, a young grey-blue heron girl with long thin orange legs, a long yellow-orange beak, a soft crest of feathers at the back of her head, wearing a lavender cardigan over a white shirt and yellow slip-on shoes with brown stripes, holding a cafeteria lunch tray with a red apple, a small milk carton and a sandwich in both wings in every drawing. 3 full-length drawings of this same character side by side in one row, left to right, evenly spaced, the same size, outfit and colors in every drawing: 1) worried, eyebrows tilted up in the middle, eyes looking around, holding the tray close. 2) sad, eyes looking down, head lowered, holding the tray low. 3) happy, a relaxed bright smile, head up, holding the tray.",
+   "cutout": true,
+   "aspect": "4:3",
+   "height": 240,
+   "quality": 70,
+   "cells": [
+    "worried",
+    "sad",
+    "happy"
+   ],
+   "skip_local": true,
+   "source": "gpt-image-2 (Codex)",
+   "ref": "juniper",
+   "ref_mode": "style"
+  },
+  {
+   "name": "rory",
+   "prompt": "A character sheet of one character, Rory, a young badger boy with grey fur, a white face with two black stripes running from nose to ears, wearing a green-and-white raglan t-shirt, khaki pants and bright orange sneakers. 3 full-length drawings of this same character side by side in one row, left to right, evenly spaced, the same size, outfit and colors in every drawing: 1) happy, a friendly smile. 2) surprised, eyebrows raised high, eyes wide, mouth a small open circle. 3) worried, eyebrows tilted up in the middle, a wobbly mouth, one paw rubbing the back of his neck.",
+   "cutout": true,
+   "aspect": "4:3",
+   "height": 240,
+   "quality": 70,
+   "cells": [
+    "happy",
+    "surprised",
+    "worried"
+   ],
+   "skip_local": true,
+   "source": "gpt-image-2 (Codex)",
+   "ref": "juniper",
+   "ref_mode": "style"
+  },
+  {
+   "name": "wren",
+   "prompt": "A character sheet of one character, Wren, a young brown owl girl with a cream face disc, small ear tufts, big round eyes and a small orange beak, wearing a teal hoodie and purple boots with a folded cuff, carrying a small black flute case by its handle in every drawing. 4 full-length drawings of this same character side by side in one row, left to right, evenly spaced, the same size, outfit and colors in every drawing: 1) calm, a small gentle smile. 2) worried, eyebrows tilted up in the middle, a wobbly beak line. 3) surprised, eyebrows raised high, eyes extra wide. 4) happy, a big smile, eyes crinkled.",
+   "cutout": true,
+   "aspect": "16:9",
+   "height": 240,
+   "quality": 70,
+   "cells": [
+    "calm",
+    "worried",
+    "surprised",
+    "happy"
+   ],
+   "skip_local": true,
+   "source": "gpt-image-2 (Codex)",
+   "ref": "juniper",
+   "ref_mode": "style"
+  },
+  {
+   "name": "bea",
+   "prompt": "A character sheet of one character, Bea, a young turtle girl with olive-green skin and a brown shell on her back, wearing a bright yellow long-sleeved goalkeeper jersey, black shorts, orange goalkeeper gloves and black soccer cleats with green laces. 4 full-length drawings of this same character side by side in one row, left to right, evenly spaced, the same size, outfit and colors in every drawing: 1) calm and ready, a small focused smile, both gloves on, hands up in front like a goalie. 2) worried, eyebrows tilted up in the middle, a wobbly mouth, the right glove hanging half off her hand by its strap. 3) sad, eyes looking down, a small downturned mouth, shoulders slumped, the right glove hanging half off her hand. 4) calm, a small soft smile, holding up the loose right glove in her left hand to show it.",
+   "cutout": true,
+   "aspect": "16:9",
+   "height": 240,
+   "quality": 70,
+   "cells": [
+    "calm",
+    "worried",
+    "sad",
+    "calm-glove"
+   ],
+   "skip_local": true,
+   "source": "gpt-image-2 (Codex)",
+   "key": "magenta",
+   "ref": "juniper",
+   "ref_mode": "style"
+  },
+  {
+   "name": "max",
+   "prompt": "A character sheet of one character, Max, a young white goat boy with cream fur, small curved grey horns, floppy ears and a short chin tuft, wearing a sky-blue soccer jersey, white shorts, sky-blue socks and white soccer cleats. 5 full-length drawings of this same character side by side in one row, left to right, evenly spaced, the same size, outfit and colors in every drawing: 1) happy, a big excited smile, fists raised a little. 2) surprised, eyebrows raised high, eyes wide, mouth open. 3) upset, eyebrows pulled down hard, a tight frown, fists clenched at his sides. 4) calm, relaxed eyebrows, a small gentle smile. 5) sad, eyes looking down, a small downturned mouth, shoulders slumped.",
+   "cutout": true,
+   "aspect": "16:9",
+   "height": 240,
+   "quality": 70,
+   "cells": [
+    "happy",
+    "surprised",
+    "upset",
+    "calm",
+    "sad"
+   ],
+   "skip_local": true,
+   "source": "gpt-image-2 (Codex)",
+   "ref": "juniper",
+   "ref_mode": "style"
+  },
+  {
+   "name": "dot",
+   "prompt": "A character sheet of one character, Dot, a small young hedgehog girl with brown spines, a light tan face and belly, a round black nose, wearing a sky-blue soccer jersey, white shorts, sky-blue socks and pink soccer cleats. 2 full-length drawings of this same character side by side in one row, left to right, evenly spaced, the same size, outfit and colors in every drawing: 1) happy, a big bright smile. 2) worried, eyebrows tilted up in the middle, a wobbly mouth, paws held together at her chest.",
+   "cutout": true,
+   "aspect": "4:3",
+   "height": 240,
+   "quality": 70,
+   "cells": [
+    "happy",
+    "worried"
+   ],
+   "skip_local": true,
+   "source": "gpt-image-2 (Codex)",
+   "ref": "juniper",
+   "ref_mode": "style"
+  },
+  {
+   "name": "bg-playground",
+   "prompt": "Warm storybook background painting in soft gouache and colored pencil, gentle muted colors, soft edges, a calm open scene. An empty school playground at recess on a cold windy autumn day, wide view, eye level. Grey-blue sky with soft clouds across the top half. A row of gold and orange autumn trees along the back. The ground starts exactly halfway down the picture: even olive-green grass and wood chips across the whole lower half, open in the middle. A red slide with a blue ladder at the far left. A shallow brown muddy puddle on the ground in the lower left, below the slide.",
+   "aspect": "16:9",
+   "width": 720,
+   "quality": 55,
+   "skip_style": true
+  },
+  {
+   "name": "bg-lunchroom",
+   "prompt": "Warm storybook background painting in soft gouache and colored pencil, gentle muted colors, soft edges, a calm open scene. An empty school lunchroom, wide view, eye level. Soft teal walls across the top half with three tall windows letting in daylight. A plain wooden door with a small square window at the far right of the back wall. The floor starts exactly halfway down the picture: cream tiled floor across the whole lower half. One long cream lunch table with benches in the middle distance across the center, and a smaller cream table at the right. The front of the floor is open.",
+   "aspect": "16:9",
+   "width": 720,
+   "quality": 55,
+   "skip_style": true
+  },
+  {
+   "name": "bg-field",
+   "prompt": "Warm storybook background painting in soft gouache and colored pencil, gentle muted colors, soft edges, a calm open scene. An empty grassy soccer field at the end of the day, wide view, eye level. Peach and soft orange evening sky with a low warm sun at the right across the top half, a dark green tree line along the horizon. The grass starts exactly halfway down the picture: green grass with wide mown stripes across the whole lower half, a white halfway line and part of a white center circle. A white soccer goal with a net at the far left, back. The front of the field is open.",
+   "aspect": "16:9",
+   "width": 720,
+   "quality": 55,
+   "skip_style": true
+  },
+  {
+   "name": "duckling",
+   "prompt": "Warm storybook illustration in soft gouache and colored pencil with a thin warm brown outline. A small fluffy yellow duckling sitting in a shallow brown puddle, splashed with mud, crying with one small tear, side view facing right.",
+   "cutout": true,
+   "aspect": "1:1",
+   "width": 110,
+   "quality": 70,
+   "skip_style": true
+  },
+  {
+   "name": "stool",
+   "prompt": "Warm storybook illustration in soft gouache and colored pencil with a thin warm brown outline. A single round red cafeteria stool with grey metal legs, side view, plain and empty.",
+   "cutout": true,
+   "aspect": "1:1",
+   "width": 90,
+   "quality": 70,
+   "skip_style": true
+  },
+  {
+   "name": "book",
+   "prompt": "Warm storybook illustration in soft gouache and colored pencil with a thin warm brown outline. An open storybook seen from the front, pages fanned slightly, cream pages with soft mustard-brown wavy lines, a mustard-brown cover.",
+   "cutout": true,
+   "aspect": "4:3",
+   "width": 96,
+   "quality": 72,
+   "skip_style": true
+  },
+  {
+   "name": "shoes-juniper",
+   "prompt": "Warm storybook illustration in soft gouache and colored pencil with a thin warm brown outline. A pair of bright red rubber rain boots, side view, standing side by side, toes pointing left, a small clear icon.",
+   "cutout": true,
+   "aspect": "4:3",
+   "width": 128,
+   "quality": 72,
+   "skip_style": true
+  },
+  {
+   "name": "shoes-pip",
+   "prompt": "Warm storybook illustration in soft gouache and colored pencil with a thin warm brown outline. A pair of bright green sneakers with white soles and white laces, side view, standing side by side, toes pointing left, a small clear icon.",
+   "cutout": true,
+   "aspect": "4:3",
+   "width": 128,
+   "quality": 72,
+   "skip_style": true,
+   "key": "magenta"
+  },
+  {
+   "name": "shoes-otto",
+   "prompt": "Warm storybook illustration in soft gouache and colored pencil with a thin warm brown outline. A pair of big bright blue high-top sneakers with white soles, side view, standing side by side, toes pointing left, a small clear icon.",
+   "cutout": true,
+   "aspect": "4:3",
+   "width": 128,
+   "quality": 72,
+   "skip_style": true
+  },
+  {
+   "name": "shoes-tamsin",
+   "prompt": "Warm storybook illustration in soft gouache and colored pencil with a thin warm brown outline. A pair of yellow slip-on shoes with brown stripes, side view, standing side by side, toes pointing left, a small clear icon.",
+   "cutout": true,
+   "aspect": "4:3",
+   "width": 128,
+   "quality": 72,
+   "skip_style": true
+  },
+  {
+   "name": "shoes-rory",
+   "prompt": "Warm storybook illustration in soft gouache and colored pencil with a thin warm brown outline. A pair of bright orange sneakers with white soles, side view, standing side by side, toes pointing left, a small clear icon.",
+   "cutout": true,
+   "aspect": "4:3",
+   "width": 128,
+   "quality": 72,
+   "skip_style": true
+  },
+  {
+   "name": "shoes-wren",
+   "prompt": "Warm storybook illustration in soft gouache and colored pencil with a thin warm brown outline. A pair of purple ankle boots with a folded cuff, side view, standing side by side, toes pointing left, a small clear icon.",
+   "cutout": true,
+   "aspect": "4:3",
+   "width": 128,
+   "quality": 72,
+   "skip_style": true
+  },
+  {
+   "name": "shoes-bea",
+   "prompt": "Warm storybook illustration in soft gouache and colored pencil with a thin warm brown outline. A pair of black soccer cleats with bright green laces, side view, standing side by side, toes pointing left, a small clear icon.",
+   "cutout": true,
+   "aspect": "4:3",
+   "width": 128,
+   "quality": 72,
+   "skip_style": true,
+   "key": "magenta"
+  },
+  {
+   "name": "shoes-max",
+   "prompt": "Warm storybook illustration in soft gouache and colored pencil with a thin warm brown outline. A pair of white soccer cleats with grey studs, side view, standing side by side, toes pointing left, a small clear icon.",
+   "cutout": true,
+   "aspect": "4:3",
+   "width": 128,
+   "quality": 72,
+   "skip_style": true
+  },
+  {
+   "name": "shoes-dot",
+   "prompt": "Warm storybook illustration in soft gouache and colored pencil with a thin warm brown outline. A pair of pink soccer cleats with white laces, side view, standing side by side, toes pointing left, a small clear icon.",
+   "cutout": true,
+   "aspect": "4:3",
+   "width": 128,
+   "quality": 72,
+   "skip_style": true
+  }
+ ]
 }

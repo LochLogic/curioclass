@@ -12,13 +12,14 @@ Grades 9-12, Social and Emotional Learning, module Leadership and Community (SEL
 when needed) and Responsible Decision-Making (reflecting on one's role to promote personal, family, and community
 well-being).
 Students drive on laptops (a teacher can project one project and let the class vote on each week's lead move).
-Run a Project: a six-week tycoon with three resources (hours, dollars, team energy), six made-up volunteers drawn in code,
+Run a Project: a six-week tycoon with three resources (hours, dollars, team energy), six made-up volunteers (painted portraits),
 three made-up projects with events at weeks 2, 4 and 5, one lead move a week. No text input anywhere in this mode.
 Plan Your Own: a one-page plan form with a live timeline and budget; nothing is stored until Save, Clear removes it.
 Everything in the game (projects, prices, needs, energy) is a made-up model for discussion, labeled as made up.
 Sources: CASEL framework; Eisner, Grimm, Maynard and Washburn, The New Volunteer Workforce (SSIR, Winter 2009), on
-matching volunteers' skills and recognizing them (teacher notes only). Volunteers, faces, icons and the timeline are drawn
-in code; banner images are local FLUX art. One file, no network requests. Content CC BY 4.0, code MIT. curioclass.org
+matching volunteers' skills and recognizing them (teacher notes only). Volunteer portraits are gpt-image-2 art (Codex), with
+the energy band shown by a tired variant plus CSS; the old code faces stay as a fallback. Icons and the timeline are
+drawn in code; banner images are local FLUX art. One file, no network requests. Content CC BY 4.0, code MIT. curioclass.org
 -->
 <link rel="stylesheet" href="kit:curio">
 <link rel="stylesheet" href="kit:theme-912">
@@ -117,10 +118,10 @@ body.compact.short .screen{padding:6px 8px 8px;gap:6px}
 .made-up{margin:0;font-size:14px;color:var(--muted)}
 .meet-row{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}
 .meet-row>div{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:13.5px;text-align:center}
-.meet-row .face{width:54px;height:54px}
+.meet-row .face{width:72px;height:72px}
 .meet-row .sk{display:flex;gap:3px;align-items:center;color:var(--muted);font-size:12.5px}
 .how{margin:0;padding-left:18px;font-size:14.5px;line-height:1.4;display:flex;flex-direction:column;gap:4px}
-body.compact.short .meet-row .face{width:34px;height:34px}
+body.compact.short .meet-row .face{width:44px;height:44px}
 body.compact.short .meet-row>div{font-size:11.5px}
 body.compact.short .meet-row .sk{font-size:11px}
 body.compact.short .how{font-size:12.5px;line-height:1.3;gap:2px}
@@ -196,7 +197,7 @@ body.compact.short .task .buy{margin:0 5px 5px 11px;min-height:36px;font-size:11
 .vol .nm{font-weight:700;font-size:14.5px;line-height:1.15;color:var(--ink)}
 .vol .hrs{font-size:12.5px;color:var(--muted)}
 .vol .nmw{display:flex;flex-direction:column;gap:2px;min-width:0}
-.vol .skills{display:flex;align-items:center;gap:4px;font-size:12.5px;color:var(--ink)}
+.vol .skills{display:flex;flex-wrap:wrap;align-items:center;gap:0 4px;font-size:12.5px;color:var(--ink)}  /* "resting" drops under the icons instead of running into the key badge */
 .vol .skills>span{display:inline-flex;align-items:center}
 .vol .skills .hrs{display:inline;margin-left:3px;white-space:nowrap;font-family:inherit}
 .vol .en{display:flex;align-items:center;gap:5px;font-size:12.5px;font-weight:700}
@@ -217,7 +218,7 @@ body.compact.short .hw,.boardwrap.tight .hw{display:none}
 body.compact.short .vol .face{width:26px;height:26px}
 body.compact.short .vol .pick{gap:4px;min-height:36px}
 body.compact.short .vol .skills svg{width:12px;height:12px}
-body.compact.short .vol .skills{gap:2px}
+body.compact.short .vol .skills{gap:2px;flex-wrap:nowrap}
 body.compact.short .vol .en{flex-wrap:wrap;gap:1px 3px;line-height:1.1}
 body.compact.short .vol .en .bar{flex:1 0 100%;height:5px}
 body.compact.short .vol select{min-height:36px;font-size:11.5px;padding:0 2px}
@@ -261,6 +262,20 @@ body.tiny .pname{display:block;flex:1 0 100%;font-weight:700;color:var(--ink)}
 @media (min-height:470px){body.tiny .banner{display:block}body.tiny .pname{display:none}body.tiny .task:not(.fund) .bar{display:block}
   body.tiny .vol .on{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;white-space:normal;overflow-wrap:anywhere}}
 .calm g.bob,.calm .bob{animation:none!important}
+/* painted portraits (gpt-image): a circle crop of the bust; the band picks the base or tired painting, CSS adds the rest */
+.pf{display:block;position:relative;flex:none}
+.pf .pfc{position:absolute;inset:0;border-radius:50%;overflow:hidden;background:#141b25;box-shadow:inset 0 0 0 1px #ffffff14}
+.pf img{position:absolute;left:-9%;top:4%;width:118%;height:auto;max-width:none;display:block}
+.pf.b-empty img{transform:translateY(2px) rotate(5deg);transform-origin:50% 70%;filter:saturate(.65)}
+.pf.b-back img{filter:grayscale(1) brightness(.9)}
+.pf .zb{position:absolute;right:-3px;bottom:-3px;width:42%;height:42%;min-width:10px;min-height:10px;border-radius:50%;background:#4a5568;color:#e8edf3;display:grid;place-items:center;font:700 9px/1 'Segoe UI',sans-serif;box-shadow:0 0 0 1.5px #202a38}
+.pf .zb svg{width:62%;height:62%}
+/* small circles: zoom in on the face so it still reads at 26 and 19 px */
+body.compact.short .vol .pf img,.summary .pf img{left:-25%;top:2%;width:150%}
+body.compact.short.tiny .vol .pf img{left:-32%;top:2%;width:164%}
+body.compact.short.tiny .vol .pf .zb{display:none}
+.summary .face{display:inline-block;width:22px;height:22px;vertical-align:-6px;margin-right:5px}
+body.compact.short .summary .face{width:16px;height:16px;vertical-align:-4px;margin-right:3px}
 .bob{animation:bob 3.2s ease-in-out infinite;transform-origin:24px 40px}
 @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-1.2px)}}
 /* overlay card (events and confirmations) */
@@ -309,7 +324,9 @@ body.compact.short .summary .note{font-size:11.5px}
 .report h4{margin:4px 0 2px;font:700 12px 'Segoe UI',system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
 .report ul{margin:0;padding-left:20px;font-size:15px;line-height:1.42}
 .report .rteam{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:14px}
-.report .rteam span{display:inline-flex;align-items:center;gap:5px}
+.report .rteam>span{display:inline-flex;align-items:center;gap:5px}
+.report .rteam .face{width:34px;height:34px}
+body.compact.short .report .rteam .face{width:24px;height:24px}
 .report .acts{display:flex;flex-wrap:wrap;gap:8px}
 body.compact.short .report h3{font-size:16px}
 body.compact.short .report .facts,body.compact.short .report ul,body.compact.short .report .rteam{font-size:12.5px}
@@ -811,7 +828,24 @@ legend{font-size:13px;color:var(--muted);font-weight:700;padding:0 4px}
     if (v.top === 'tee') s += `<path d="M20 36.2q4 2.8 8 0" fill="none" stroke="#5a378a" stroke-width="1.8"/>`;
     return s;
   }
-  // a face whose mouth, eyes and posture follow the energy band
+  // painted portraits (gpt-image-2): base for Fired up and Steady, tired for the low bands; each art: token appears once
+  const PORT = {
+    dana: ['art:vol-dana', 'art:vol-dana-tired'], luis: ['art:vol-luis', 'art:vol-luis-tired'], mei: ['art:vol-mei', 'art:vol-mei-tired'],
+    tariq: ['art:vol-tariq', 'art:vol-tariq-tired'], grace: ['art:vol-grace', 'art:vol-grace-tired'], ben: ['art:vol-ben', 'art:vol-ben-tired']};
+  const PORT_BAD = new Set();   // a portrait that failed to load falls back to the face drawn in code
+  const pauseSVG = '<svg viewBox="0 0 10 10" aria-hidden="true" focusable="false"><path d="M3 2v6M7 2v6" stroke="#e8edf3" stroke-width="2" stroke-linecap="round"/></svg>';
+  function faceHTML(v, b) {
+    const src = PORT[v.id] && PORT[v.id][b === 'fired' || b === 'steady' ? 0 : 1];
+    if (!src || PORT_BAD.has(src)) return faceSVG(v, b);
+    return `<span class="face pf b-${b}" data-fv="${v.id}" data-fb="${b}" aria-hidden="true"><span class="pfc"><img class="${b === 'fired' ? 'bob' : ''}" src="${src}" alt="" draggable="false"></span>${b === 'back' ? `<span class="zb">${pauseSVG}</span>` : ''}</span>`;
+  }
+  // a broken portrait swaps itself for the code face, here and in every later render
+  document.addEventListener('error', e => {
+    const img = e.target; if (!(img instanceof HTMLImageElement)) return;
+    const f = img.closest('.pf'); if (!f) return;
+    PORT_BAD.add(img.getAttribute('src')); f.outerHTML = faceSVG(VOL[f.dataset.fv], f.dataset.fb);
+  }, true);
+  // a face whose mouth, eyes and posture follow the energy band (fallback when a portrait cannot load)
   function faceSVG(v, b) {
     const tilt = b === 'tired' ? 'translate(0 1.2) rotate(-4 24 30)' : b === 'empty' ? 'translate(0 2.4) rotate(6 24 30)' : b === 'back' ? 'translate(0 1.6) rotate(-8 24 30)' : '';
     const eyeY = 21.4;
@@ -835,7 +869,7 @@ legend{font-size:13px;color:var(--muted);font-weight:700;padding:0 4px}
     <div class="pbody"><h3>${esc(p.name)}</h3><span class="diff">${esc(p.diff)}</span><p>${esc(p.goal)}</p><span class="bud">Budget $${p.budget}</span>
     <button class="btn" data-pick="${p.id}" aria-label="Lead this project: ${esc(PICK_LABEL[p.id])}">Lead this project</button></div></div>`).join('');
   for (const b of document.querySelectorAll('[data-pick]')) b.onclick = () => pickProject(b.dataset.pick);
-  $('meetRow').innerHTML = VOLS.map(v => `<div>${faceSVG(v, 'fired')}<b>${esc(v.first)}</b><span class="sk"><span title="Strong: ${SK[v.st].word}">${icon(v.st, true, 14)}</span><span title="Okay: ${SK[v.ok].word}">${icon(v.ok, false, 14)}</span> ${v.h} h</span><span class="sr">Strong ${SK[v.st].word}, okay ${SK[v.ok].word}, ${v.h} hours a week</span></div>`).join('');
+  $('meetRow').innerHTML = VOLS.map(v => `<div>${faceHTML(v, 'steady')}<b>${esc(v.first)}</b><span class="sk"><span title="Strong: ${SK[v.st].word}">${icon(v.st, true, 14)}</span><span title="Okay: ${SK[v.ok].word}">${icon(v.ok, false, 14)}</span> ${v.h} h</span><span class="sr">Strong ${SK[v.st].word}, okay ${SK[v.ok].word}, ${v.h} hours a week</span></div>`).join('');
 
   let G = null;          // the current game
   let lastSum = null;    // the week summary on screen
@@ -976,7 +1010,7 @@ legend{font-size:13px;color:var(--muted);font-weight:700;padding:0 4px}
     for (const v of VOLS) {
       const vc = VC[v.id], s = g.v[v.id], sb = g.startBand[v.id], back = sb === 'back';
       const shown = back ? 'back' : bandOf(s.e);
-      if (vc.face !== shown) { vc.fwrap.innerHTML = faceSVG(v, shown); vc.face = shown; }
+      if (vc.face !== shown) { vc.fwrap.innerHTML = faceHTML(v, shown); vc.face = shown; }
       const h = hoursOf(g, v.id);
       vc.hrs.innerHTML = back ? '<span class="lng">resting</span><span class="shr">0 h</span>' : h !== v.h ? `${h} h<span class="hw"> this week</span>` : `${v.h} h<span class="hw"> a week</span>`;
       vc.gl.innerHTML = glyph(shown);
@@ -1123,9 +1157,9 @@ legend{font-size:13px;color:var(--muted);font-weight:700;padding:0 4px}
     if (s.lead === 'plan') extra.push('A clear plan: all progress x1.15.');
     if (s.half) extra.push('Same move as last week: it lands a little softer.');
     const vols = VOLS.map(v => {
-      if (s.bands[v.id] === 'back') return `<li><b>${v.first}</b>: stepping back to rest${s.returning.includes(v.id) ? ', back next week at 40' : ''}.</li>`;
+      if (s.bands[v.id] === 'back') return `<li>${faceHTML(v, 'back')}<b>${v.first}</b>: stepping back to rest${s.returning.includes(v.id) ? ', back next week at 40' : ''}.</li>`;
       const parts = s.why[v.id].map(([n, w]) => `<span class="num ${n > 0 ? 'pos' : 'neg'}">${sgn(n)}</span>, ${esc(w)}`).join('; ');
-      return `<li><b>${v.first}</b>: ${parts} <span class="muted">(now ${s.e[v.id]}, ${BAND[bandOf(s.e[v.id])].word})</span>${s.stepping.includes(v.id) ? ' <span class="neg">Needs a break: stepping back for two weeks.</span>' : ''}</li>`;
+      return `<li>${faceHTML(v, s.e[v.id] > 0 ? bandOf(s.e[v.id]) : 'back')}<b>${v.first}</b>: ${parts} <span class="muted">(now ${s.e[v.id]}, ${BAND[bandOf(s.e[v.id])].word})</span>${s.stepping.includes(v.id) ? ' <span class="neg">Needs a break: stepping back for two weeks.</span>' : ''}</li>`;
     });
     const notes = Object.entries(s.notes).map(([v, n]) => `<li><b>${VOL[v].first}</b>: <span class="quote">"${esc(n)}"</span></li>`);
     const money = [];
@@ -1159,7 +1193,7 @@ legend{font-size:13px;color:var(--muted);font-weight:700;padding:0 4px}
         <span>Money left <b>$${o.money}</b></span><span>Hours given <b>${o.hours}</b></span></div>
       <div class="acts"><button class="big-btn" id="rAgain">Try it again</button><button class="btn" id="rAnother">Pick another project</button><button class="btn" id="rPrint">Print report</button></div>
       <h4>What it means</h4>${means.length ? `<ul>${means.map(m => `<li>${esc(m)}</li>`).join('')}</ul>` : '<p class="muted" style="margin:0">No task got all the way to Done this time.</p>'}
-      <h4>The team at the end</h4><div class="rteam">${VOLS.map(v => { const b = g.v[v.id].back > 0 ? 'back' : bandOf(g.v[v.id].e); return `<span>${glyph(b)}<b>${v.first}</b> ${BAND[b].word}</span>`; }).join('')}</div>
+      <h4>The team at the end</h4><div class="rteam">${VOLS.map(v => { const b = g.v[v.id].back > 0 ? 'back' : bandOf(g.v[v.id].e); return `<span>${faceHTML(v, b)}${glyph(b)}<b>${v.first}</b> ${BAND[b].word}</span>`; }).join('')}</div>
       <p class="muted" style="margin:0;font-size:14px">Talk it over: the questions are in the panel, and Print report has them too.</p>`;
     $('rTalk').innerHTML = QUESTIONS.map(q => `<li>${esc(q)}</li>`).join('');
     $('rWeeks').innerHTML = g.log.map(l => { const avg = Math.round(VOLS.reduce((a, v) => a + l.e[v.id], 0) / VOLS.length); return `<li>Week ${l.week}: ${esc(LEADS.find(x => x.id === l.lead).label)}. Team energy ${avg}.</li>`; }).join('');
