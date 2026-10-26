@@ -88,7 +88,8 @@ then the item goes back to "ready" with a reply on the comment and the comment m
   (`tools/*/*.html` except `src.html`). Each bundle inlines the tool's art and voice, which git already holds, and
   every rebuild added a new 1 to 2 MB copy to the history; at ~586 tools that would have pushed the repo past
   GitHub's recommended 1 GB. Commit src.html, art and voice; never force-add a bundle. Per-tool `.gitignore` files
-  are no longer needed.
+  are no longer needed. Exceptions: elements-inspector and state-quest are hand-written single files (no src.html),
+  so the `.gitignore` keeps their html tracked.
 - **Graphics pass (2026-10-26):** people and characters from Codex (`gptart.py`; base first, pick it, then siblings
   with `"ref"` + `"ref_mode": "style"` and variants with plain `"ref"`); scenes and props from Cloudflare FLUX.2
   (`cfart.py`, free). Avoid candidates with light streaks across the key color (they break the cutout). Character
