@@ -86,6 +86,8 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
 .tbox svg{width:250px;height:190px}
 /* the painted mouth: the part being brushed is lit, the others rest in shade */
 .mouth{position:relative;width:330px;height:190px}
+.wash{width:330px;height:190px;display:flex;justify-content:center}
+.wash img{height:100%;width:auto;object-fit:contain}
 .mouth img{width:100%;height:100%;object-fit:contain}
 .mouth .q{position:absolute;width:50%;height:50%;border-radius:40px;background:#fffdf8a8;transition:background .4s}
 .mouth .q.on{background:transparent;box-shadow:inset 0 0 0 5px #ffd34d,0 0 18px #ffd34d}
@@ -330,11 +332,10 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
   // ---------- Timers ----------
   const WASH = [['Wet', 'Wet your hands with clean water.'], ['Soap', 'Add soap.'], ['Scrub', 'Scrub palms, backs, between fingers, thumbs and nails.'], ['Rinse', 'Rinse with water.'], ['Dry', 'Dry with a clean towel.']];
   const TEETH = [['Top left', 'Brush the top teeth on this side.'], ['Top right', 'Now the top teeth on the other side.'], ['Bottom left', 'Bottom teeth on this side.'], ['Bottom right', 'Bottom teeth on the other side.']];
-  function hands(svg) {
-    el('ellipse', {cx: 125, cy: 120, rx: 100, ry: 56, fill: '#cfeffd'}, svg);
-    for (const [x, r] of [[95, -18], [155, 18]]) { const g = el('g', {transform: `translate(${x} 95) rotate(${r})`}, svg); el('rect', {x: -30, y: -50, width: 60, height: 100, rx: 28, fill: '#f2c39b', stroke: '#8a5a3c', 'stroke-width': 4}, g); }
-    const b = el('g', {}, svg);
-    for (let i = 0; i < 9; i++) { const c = el('circle', {cx: 70 + (i * 37) % 120, cy: 60 + (i * 23) % 80, r: 8 + i % 3 * 4, fill: '#fff', stroke: '#9bd3f2', 'stroke-width': 2}, b); if (!reduce) c.animate([{transform: 'translateY(0)', opacity: 1}, {transform: 'translateY(-30px)', opacity: 0}], {duration: 1400, delay: -i * 160, iterations: Infinity}); }
+  const WASH_ART = ['art:wash-wet', 'art:wash-soap', 'art:wash-scrub', 'art:wash-rinse', 'art:wash-dry'];
+  function hands(box, k) {
+    box.innerHTML = `<img src="${WASH_ART[k]}" alt="">`;
+    if (k === 2 && !reduce) box.firstChild.animate([{transform: 'rotate(-4deg)'}, {transform: 'rotate(4deg)'}], {duration: 450, iterations: Infinity, direction: 'alternate'});  // scrubbing
   }
   function mouth(box, part) {
     const qs = [['Top left', 0, 0], ['Top right', 50, 0], ['Bottom left', 0, 50], ['Bottom right', 50, 50]];
@@ -359,8 +360,8 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
     const steps = kind === 'wash' ? WASH : TEETH;
     $('ctrl').innerHTML = '<button class="big-btn soft" id="tstop">■ Stop</button>'; $('tstop').onclick = () => { state.run++; music(false); timerMenu(); };
     const render = (k, secs, part) => {
-      $('tbox').innerHTML = `<div class="big">${secs}</div>${kind === 'wash' ? '<svg id="tsvg" viewBox="0 0 250 190" aria-hidden="true"></svg>' : '<div class="mouth" id="tsvg"></div>'}<div class="step">${steps[k][1]}</div><div class="steps">${steps.map((s, i) => `<i class="${i < k ? 'done' : i === k ? 'on' : ''}">${s[0]}</i>`).join('')}</div>`;
-      kind === 'wash' ? hands($('tsvg')) : mouth($('tsvg'), part);
+      $('tbox').innerHTML = `<div class="big">${secs}</div>${kind === 'wash' ? '<div class="wash" id="tsvg" aria-hidden="true"></div>' : '<div class="mouth" id="tsvg"></div>'}<div class="step">${steps[k][1]}</div><div class="steps">${steps.map((s, i) => `<i class="${i < k ? 'done' : i === k ? 'on' : ''}">${s[0]}</i>`).join('')}</div>`;
+      kind === 'wash' ? hands($('tsvg'), k) : mouth($('tsvg'), part);
     };
     // handwashing: 3 seconds to wet and soap, 20 seconds of scrubbing, then rinse and dry; teeth: 30 seconds a part
     const plan = kind === 'wash' ? [[0, 3], [1, 3], [2, 20], [3, 4], [4, 4]] : [[0, 30], [1, 30], [2, 30], [3, 30]];

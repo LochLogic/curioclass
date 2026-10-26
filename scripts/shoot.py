@@ -36,7 +36,7 @@ def main():
     page.write_text(src.replace('<head>', '<head>' + head, 1).replace('</body>', tail + '</body>'), encoding='utf-8')
     chrome = next((c for c in CHROME if Path(c).exists()), None) or sys.exit('Chrome not found')
     png = out / f'{a.name}.png'
-    subprocess.run([chrome, '--headless=new', '--disable-gpu', '--hide-scrollbars', f'--window-size={a.size}',
+    subprocess.run([chrome, '--headless=new', '--mute-audio', '--disable-gpu', '--hide-scrollbars', f'--window-size={a.size}',
                     f'--virtual-time-budget={a.wait}', f'--screenshot={png}', page.resolve().as_uri()], check=True,
                    stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     print(png if png.exists() else 'no screenshot written (under a sandbox, run Chrome from PowerShell Start-Process -Wait)')

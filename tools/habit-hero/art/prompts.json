@@ -48,6 +48,62 @@
       "width": 560,
       "source": "gemini",
       "review": "ok"
+    },
+    {
+      "name": "wash-wet",
+      "prompt": "A pair of a young child's cartoon hands, seen from the front, just the two hands and wrists, no arms, no body, no face. Friendly bold outlines, warm skin, five fingers on each hand. The hands are held under a gentle stream of clean running water, with water drops splashing off the fingers.",
+      "cutout": true,
+      "key": "magenta",
+      "aspect": "1:1",
+      "width": 420,
+      "people": true,
+      "ref": "mouth",
+      "ref_mode": "style",
+      "despill": true
+    },
+    {
+      "name": "wash-soap",
+      "prompt": "A pair of a young child's cartoon hands, seen from the front, just the two hands and wrists, no arms, no body, no face. Friendly bold outlines, warm skin, five fingers on each hand. One hand holds out a palm with a small blob of pink soap on it, the other hand points at it, a few small bubbles.",
+      "cutout": true,
+      "key": "magenta",
+      "aspect": "1:1",
+      "width": 420,
+      "people": true,
+      "ref": "wash-wet",
+      "despill": true
+    },
+    {
+      "name": "wash-scrub",
+      "prompt": "A pair of a young child's cartoon hands, seen from the front, just the two hands and wrists, no arms, no body, no face. Friendly bold outlines, warm skin, five fingers on each hand. The hands are rubbing together covered in fluffy white soap suds, fingers interlaced, lots of round bubbles floating up.",
+      "cutout": true,
+      "key": "magenta",
+      "aspect": "1:1",
+      "width": 420,
+      "people": true,
+      "ref": "wash-wet",
+      "despill": true
+    },
+    {
+      "name": "wash-rinse",
+      "prompt": "A pair of a young child's cartoon hands, seen from the front, just the two hands and wrists, no arms, no body, no face. Friendly bold outlines, warm skin, five fingers on each hand. The soapy hands are rinsed under running water, suds sliding off into drops.",
+      "cutout": true,
+      "key": "magenta",
+      "aspect": "1:1",
+      "width": 420,
+      "people": true,
+      "ref": "wash-wet",
+      "despill": true
+    },
+    {
+      "name": "wash-dry",
+      "prompt": "A pair of a young child's cartoon hands, seen from the front, just the two hands and wrists, no arms, no body, no face. Friendly bold outlines, warm skin, five fingers on each hand. The hands are drying on a soft blue towel, clean and shiny.",
+      "cutout": true,
+      "key": "magenta",
+      "aspect": "1:1",
+      "width": 420,
+      "people": true,
+      "ref": "wash-wet",
+      "despill": true
     }
   ]
 }

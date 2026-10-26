@@ -45,3 +45,5 @@ satire-decoder, usage-panel, stock-market-1929.
   started, and their trigger can queue them again. Read always stops other speech and speaks the current hint; nothing
   queued may cut Read off. Test this with real clicks, including clicking around during a welcome.
   Test voice with held clicks (press, wait about 120 ms, release): instant scripted clicks hide pointerdown/click races.
+- **Mute test browsers:** start every Chrome with `--mute-audio` (Cory hears test sounds otherwise). Clips still play
+  silently with normal timing, so voice tests still work.
