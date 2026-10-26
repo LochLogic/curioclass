@@ -63,7 +63,10 @@ then the item goes back to "ready" with a reply on the comment and the comment m
   ferris) predate the held-click rule and may still have the first-tap race.
 - **Grade 11 batch: complete** (10 tools live 2026-10-26).
 - **SEL batch (2026-10-26):** log in `docs/agents/BATCH-SEL-LOG.md`. Brain Gym was renamed Not Yet Gym ("Brain Gym"
-  is a registered trademark); check every new tool name against trademarks at spec time.
+  is a registered trademark), then renamed Comeback Club 2026-10-26 (id comeback-club); check every new tool name
+  against trademarks at spec time.
+- **Renamed or moved tools:** add the old path to `data/redirects.csv` (old,new); `build_site.py` writes
+  `dist/_redirects` (Workers static assets honor it, 301) and `check_site.py` fails if a target does not resolve.
 - **Voice size and level (voice.py):** lines.json `"kbps": 16` re-encodes a tool with many lines to fit the 2 MB
   bundle limit (walk-in-their-shoes, 156 lines). `encode` now lifts a quiet take (speech RMS under 3500) toward 4500,
   capped at a 28000 peak; run `--reencode` on an older tool if a clip sounds faint.

@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Not Yet Gym · Practice, mistakes and goals · Curio Class</title>
+<title>Comeback Club · Practice, mistakes and goals · Curio Class</title>
 <meta name="description" content="Train Bix, a little brain buddy, on real puzzles. A not-yet that you come back from with a strategy is worth more than a first-try win, and goals you pick open new rooms. Grades 3-5 social and emotional learning. Works offline.">
 <!--
-Not Yet Gym (Curio Class)
+Comeback Club (Curio Class)
 Grades 3-5, Social and Emotional Learning, module Growth Mindset and Goals. Standard: CASEL Self-Management (setting
 personal goals, self-motivation, planning).
 Students on laptops, or the teacher on a projector with the class voting. Modes: Gym (five puzzle rooms: Pattern Ladder,
@@ -21,7 +21,7 @@ all 512 press sets (unique solutions, Anderson and Feil 1998); Number Lift fewes
 (2026-10-26). Art (2026-10-26): Bix (six faces, painted pale and tinted per color) and Dot are gpt-image-2 paintings;
 the gym hall is FLUX.1-schnell; the door, padlock, climbing wall, sneakers, gym bag, medal, five rooms, cork and locker
 room are FLUX.2 klein. The headband and stripes, puzzles, labels, cards and stickers are drawn in code.
-Saving happens only when Save Bix is pressed (localStorage curio-not-yet-gym); nothing is ever typed.
+Saving happens only when Save Bix is pressed (localStorage curio-comeback-club); nothing is ever typed.
 One file, no network requests. Content CC BY 4.0, code MIT. curioclass.org
 -->
 <link rel="stylesheet" href="kit:curio">
@@ -219,7 +219,7 @@ body.compact .tray-h h2{font-size:15px}
 <image id="im-board-cork" href="art:board-cork" width="512" height="320"/>
 </defs></svg>
 <header>
-  <h1>Not Yet Gym <small>Practice, mistakes and goals</small></h1>
+  <h1>Comeback Club <small>Practice, mistakes and goals</small></h1>
   <div class="seg" role="group" aria-label="Mode">
     <button id="m-gym" aria-pressed="true">Gym</button>
     <button id="m-goals" aria-pressed="false">Goals</button>
@@ -231,7 +231,7 @@ body.compact .tray-h h2{font-size:15px}
 </header>
 <main>
   <div class="stage" id="stage">
-    <svg id="sv" role="group" aria-label="Not Yet Gym"></svg>
+    <svg id="sv" role="group" aria-label="Comeback Club"></svg>
     <div class="tray" id="tray" hidden></div>
     <div id="fx" aria-hidden="true"></div>
   </div>
@@ -322,7 +322,7 @@ body.compact .tray-h h2{font-size:15px}
 
   // spoken and hint lines (voice/lines.json lists every one; Read speaks the hint paragraph, so hints are recorded too)
   const L = {
-    wGym: "Welcome to the Not Yet Gym! I'm Bix. Pick a room and let's practice something hard.",
+    wGym: "Welcome to the Comeback Club! I'm Bix. Pick a room and let's practice something hard.",
     wBack: "Welcome back! Let's keep practicing.",
     wGoals: "Let's set a goal. Pick one card, then pick what you'll try when you get stuck.",
     wLocker: 'This is my locker. Everything here, I earned by practicing with you.',
@@ -449,7 +449,11 @@ body.compact .tray-h h2{font-size:15px}
   const anims = {};      // name -> {cls, t0, dur, ...}: survives redraws (negative animation delays keep it in step)
   let rot = {ny: 0, first: 0, cb: 0, tap: 0};
 
-  const SAVE_KEY = 'curio-not-yet-gym';
+  const SAVE_KEY = 'curio-comeback-club';
+  try {  // the tool was called Not Yet Gym until 2026-10-26: move a save made then to the new key, once
+    const old = localStorage.getItem('curio-not-yet-gym');
+    if (old !== null) { if (localStorage.getItem(SAVE_KEY) === null) localStorage.setItem(SAVE_KEY, old); localStorage.removeItem('curio-not-yet-gym'); }
+  } catch {}
   function snapshot() {
     return {v: 1, kh: S.kh, stripes: S.stripes, stage: stageOf(S.kh), open: S.open, solved: S.solved, goalsDone: S.goalsDone,
       goal: S.goal, plan: S.plan, G: S.G, stickers: S.stickers, helped: S.helped, medal: S.medal, color: S.color};

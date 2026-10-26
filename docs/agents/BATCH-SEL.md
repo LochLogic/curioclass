@@ -3,7 +3,7 @@
 Cory asked for the remaining tools in the Social and Emotional Learning section. The two K-2 ones (feelings-weather-report,
 calm-corner) are already live, so this batch is the six grades 3-12 tools, in build order:
 
-walk-in-their-shoes (3-5, story), not-yet-gym (3-5, creature), conflict-coach (6-8, roleplay), decision-tree (6-8,
+walk-in-their-shoes (3-5, story), comeback-club (3-5, creature), conflict-coach (6-8, roleplay), decision-tree (6-8,
 builder), resilience-map (9-12, explorer), community-project-planner (9-12, tycoon).
 
 The SEL subject is a light shelf (CASEL framework). These six are its whole 3-12 offering, so each should be a tool a
@@ -22,7 +22,7 @@ teacher would actually open for an advisory or morning-meeting period.
   wording against the source in the spec. No other tool needs a help line, but every tool's notes.md says the
   teacher's school counselor is the right next step if a student is upset.
 - **No diagnosis, no scores on feelings.** No tool tells a student what they feel or labels them. Win states and points
-  are fine where the format calls for them (not-yet-gym's challenges, community-project-planner's budget), never for
+  are fine where the format calls for them (comeback-club's challenges, community-project-planner's budget), never for
   emotions themselves. Conflict-coach grades the moves (an I-statement, a reflective listen), not the person.
 - **People in art.** Local FLUX must never draw people, and these are people stories. Draw characters in code (simple,
   friendly, varied skin tones, like tools/feelings-faces), or use animal characters, or scenes without figures. Do not

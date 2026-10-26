@@ -1,4 +1,6 @@
-# Not Yet Gym art plan
+# Comeback Club art plan
+
+(Renamed from Not Yet Gym on 2026-10-26; Cory picked "Comeback Club" from the Name table below.)
 
 Cory's review: "name is okay but im sure there is a better one. graphics could use a bit for work". Today the one image
 is the FLUX backdrop `art/gym-hall.webp` (50 KB); Bix, Dot, the doors, the climbing wall, the room views, the goal board
@@ -51,8 +53,8 @@ animations play, exactly as today. The stage-up glow (`#bxglow`, 1115) stays cod
 
 ## Assets
 
-Codex = `python scripts/gptart.py not-yet-gym <names>` (gpt-image-2, the only source for characters with faces or hands;
-these are `"people": true` so the FLUX scripts skip them). FLUX = `python scripts/cfart.py not-yet-gym <names>`
+Codex = `python scripts/gptart.py comeback-club <names>` (gpt-image-2, the only source for characters with faces or hands;
+these are `"people": true` so the FLUX scripts skip them). FLUX = `python scripts/cfart.py comeback-club <names>`
 (Cloudflare FLUX.2 klein, free; it uses the `"sd"` prompt and adds "No people."). Cutouts are on green (none of them is
 green; Dot is lilac, the climbing wall's green holds sit inside the panel and survive the key because the cutout keeps
 interior pixels, but check them).
@@ -86,7 +88,7 @@ the thumbs-up hand or a variant that drifts off the pale body color. FLUX: 13 as
 
 ## Size
 
-Measured 2026-10-26: `python scripts/bundle_tool.py not-yet-gym` gives `not-yet-gym.html` at 1,352,634 bytes
+Measured 2026-10-26: `python scripts/bundle_tool.py not-yet-gym` (now comeback-club) gave `not-yet-gym.html` at 1,352,634 bytes
 (1,321 KB; the script prints 1319). The limit (`scripts/check_tools.py`) is 2 x 1024 x 1024 = 2,097,152 bytes, so
 **headroom today is 744,518 bytes (727 KB of bundle, about 545 KB of WebP after base64)**. Of today's bundle, recorded
 speech is 1,145 KB of base64 and the gym-hall image 67 KB.
@@ -103,15 +105,15 @@ lines are recorded above 16 kbps today). `gym-hall` stays, so nothing is freed t
 
 ## Draw order
 
-1. `bix` alone (Codex). Pick it (`python scripts/localart.py not-yet-gym --pick bix:20`) so `art/raw/bix.png` exists for
+1. `bix` alone (Codex). Pick it (`python scripts/localart.py comeback-club --pick bix:20`) so `art/raw/bix.png` exists for
    the refs. Check it tints well: try it under the pink and mint filters before going on (pale, evenly lit body, no
    pink patches, no text).
 2. The five variants and Dot:
-   `python scripts/gptart.py not-yet-gym bix-focused bix-thinking bix-cheer bix-proud bix-calm dot`
+   `python scripts/gptart.py comeback-club bix-focused bix-thinking bix-cheer bix-proud bix-calm dot`
    Look at all six Bix side by side: same body shape, same size of body, all front facing, thinking never sad.
 3. FLUX objects and scenes (free, 3 candidates each):
-   `python scripts/cfart.py not-yet-gym door padlock climb-wall sneaker gym-bag medal --n 3`
-   `python scripts/cfart.py not-yet-gym room-pattern room-memory room-light room-lift room-summit board-cork locker-room --n 3`
+   `python scripts/cfart.py comeback-club door padlock climb-wall sneaker gym-bag medal --n 3`
+   `python scripts/cfart.py comeback-club room-pattern room-memory room-light room-lift room-summit board-cork locker-room --n 3`
    Pick with `localart.py --pick name:<k>` (FLUX candidates are k 9 to 11).
 4. Review every image (Bix hands and faces, no lettering anywhere, rooms plain in the middle), set `review` in
    prompts.json.
@@ -137,7 +139,7 @@ lines are recorded above 16 kbps today). `gym-hall` stays, so nothing is freed t
 - Update spec.md (Art, Look, "drawn in code" lines), notes.md (Good to know), the src.html header comment (lines 20-21)
   and tool.json sources: add "Illustrations generated with OpenAI gpt-image, edited for Curio Class" and the
   Cloudflare FLUX.2 klein (Apache 2.0) credit next to the FLUX.1-schnell one. Rebuild preview.svg
-  (`scripts/preview.py not-yet-gym`), it shows the vector Bix.
+  (`scripts/preview.py comeback-club`), it shows the vector Bix.
 
 ## What stays vector
 
@@ -167,6 +169,9 @@ USPTO search in class 41 (education) and 9 (software) is the real one before a r
 
 If Cory picks one with "Comeback", the welcome line ("Welcome to the Not Yet Gym!") and the title need re-recording
 (one voice line, `voice.py`).
+
+Decision 2026-10-26: Cory picked **Comeback Club**. Title, id, folder, save key and the welcome line changed; the
+welcome line still needs recording.
 
 ## Questions for Cory
 

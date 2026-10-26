@@ -1,5 +1,8 @@
 # Verify: brain-gym (cold, 2026-10-26)
 
+(History. The tool was renamed Not Yet Gym, then renamed Comeback Club 2026-10-26; it now lives in tools/comeback-club.
+Names, paths and save keys below are as they were when each pass ran.)
+
 **Verdict: FIX** (2 blockers, 6 should-fix, nits below)
 
 How checked: draft bundle `tools/brain-gym/brain-gym.html` (fresh, same timestamp as src.html) in muted headless Chrome on
