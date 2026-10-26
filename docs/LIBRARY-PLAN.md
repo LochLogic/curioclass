@@ -8,8 +8,9 @@ downloaded (see "Inventory" below). Text cleanup and the story pages come next, 
 | File | What |
 |---|---|
 | `data/library/sources.csv` | One row per source book: key, title, author, year, basis, license, where, Gutenberg ids |
-| `data/library/stories-pd.csv` | Public domain, not-renewed, CC and US government stories: 472 in the library, 65 on `reserve` |
-| `data/library/stories-sw.csv` | 233 StoryWeaver picture books (levels 1 to 5, mostly K-3) |
+| `data/library/stories-pd.csv` | Public domain, not-renewed and CC stories: 463 in the library, 147 on `reserve` |
+| `data/library/stories-sw.csv` | 237 StoryWeaver picture books (levels 1 to 5, mostly K-3) |
+| `data/library/speeches.csv` | The separate Speeches and Documents collection (15, not counted in the 700) |
 | `library/_sources/` | Raw downloads, not in git: `gutenberg/<id>/` (EPUB with images + text), `storyweaver/<id>.json` + illustrations |
 | `scripts/library_fetch.py` | Downloads the Gutenberg books (mirror, 2 s apart) and, with `--storyweaver`, the StoryWeaver illustrations |
 | `scripts/library_sw.py` | Splits Cory's saved StoryWeaver export into one JSON per book |
@@ -19,9 +20,18 @@ downloaded (see "Inventory" below). Text cleanup and the story pages come next, 
 newer, more widely known selection, so 70 stories were added: Newbery winners from 1924 to 1929, the first Nancy
 Drew and Hardy Boys books, Christie, Hemingway, Fitzgerald, Faulkner, Hurston, Harlem Renaissance poets, My
 Father's Dragon and Stormy, Misty's Foal (never renewed), 1950s and 60s Bradbury, Vonnegut, Philip K. Dick, Asimov
-and Piper stories (never renewed), Doctorow's Little Brother (CC BY-NC-SA), and post-1930 presidential speeches and
-the Apollo 11 transcript (US government). The 65 least-known older picks moved to `reserve`: kept on file, not in
-the library, and available as swaps.
+and Piper stories (never renewed), and Doctorow's Little Brother (CC BY-NC-SA). The 65 least-known older picks
+moved to `reserve`: kept on file, not in the library, and available as swaps.
+
+**Round 2: lean as far into new and popular as possible (Cory, 2026-10-25).** 83 more added: every Hardy Boys book
+through 1930, nine more Christie, Sayers and Wodehouse titles, Zorro, the Scarlet Pimpernel, Captain Blood, the
+Oz sequels and Nesbit's magic books, and the mid-century science fiction that young readers still find: Andre
+Norton, Harry Harrison (Deathworld, The Stainless Steel Rat), Weinbaum, Leiber, Pohl, Sheckley, Silverberg,
+Bradley, E. E. Smith, Piper and more Philip K. Dick. 82 more older picks moved to reserve (147 in all). Classic
+fairy tales and folk tales that every child knows stay in, as do the world folk tales (the plan's breadth rule);
+StoryWeaver's modern picture books carry most of K-2. Speeches moved to their own collection (below).
+
+Library total: 463 + 237 StoryWeaver = **700**.
 
 Hard limit: famous children's books from after 1930 (Dr. Seuss, Charlotte's Web, Narnia, The Hobbit) are still
 under copyright and cannot be in the library. The renewal and CC routes are where newer titles come from. For the
@@ -175,6 +185,16 @@ They live on their own shelf, `/library/excerpts/`, with `excerpt: true` in `sto
 main library is done and never count toward the per-grade goals. Each one names the work it comes from, says
 what was cut, and links the full text.
 
+## Speeches and Documents: a separate collection
+
+Speeches and founding documents are **their own collection** (Cory, 2026-10-25), not part of the 700 stories:
+`data/library/speeches.csv`, shown at `/library/speeches/`. Same story page format (text, word help, questions,
+teacher note), tagged by grade range. Now: the Declaration, the Gettysburg Address, Lincoln's Second Inaugural,
+Douglass's "What to the Slave Is the Fourth of July?", FDR's First Inaugural, Four Freedoms and Pearl Harbor
+addresses, Eisenhower's Farewell, Kennedy's Inaugural and moon speech, Johnson's "We Shall Overcome", Reagan's
+Challenger and Brandenburg Gate speeches, and the Apollo 11 landing transcript. US government works are free to
+use; speeches by private citizens (for example "I Have a Dream") are still under copyright and stay out.
+
 ## Site pages
 
 | URL | Page |
@@ -184,6 +204,7 @@ what was cut, and links the full text.
 | `/library/kind/<kind>/` | Fables, myths, poems, ... |
 | `/library/shelf/<theme>/` | Themed shelves: tricksters, animals who talk, journeys, voices of freedom |
 | `/library/<id>/` | Story page (summary, teacher note, read, download) |
+| `/library/speeches/` | Speeches and Documents (its own collection) |
 | `/library/excerpts/` | The excerpts add-on shelf (later) |
 
 Links both ways with the rest of the site: grade pages get a small "From the Reading Room" strip, and ELA

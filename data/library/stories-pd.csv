@@ -7,9 +7,9 @@ mrs-tiggy-winkle,The Tale of Mrs. Tiggy-Winkle,Beatrix Potter,potter-tiggy,K-2,p
 two-bad-mice,The Tale of Two Bad Mice,Beatrix Potter,potter-mice,K-2,picture book,England,in,,Hunca Munca
 tom-kitten,The Tale of Tom Kitten,Beatrix Potter,potter-tom,K-2,picture book,England,in,,Tom Kitten
 jeremy-fisher,The Tale of Mr. Jeremy Fisher,Beatrix Potter,potter-jeremy,K-2,picture book,England,in,,Jeremy
-mrs-tittlemouse,The Tale of Mrs. Tittlemouse,Beatrix Potter,potter-tittlemouse,K-2,picture book,England,in,,Tittlemouse
+mrs-tittlemouse,The Tale of Mrs. Tittlemouse,Beatrix Potter,potter-tittlemouse,K-2,picture book,England,reserve,,Tittlemouse
 flopsy-bunnies,The Tale of the Flopsy Bunnies,Beatrix Potter,potter-flopsy,K-2,picture book,England,in,,Flopsy
-pie-and-patty-pan,The Tale of the Pie and the Patty-Pan,Beatrix Potter,potter-pie,K-3,picture book,England,in,,Ribby
+pie-and-patty-pan,The Tale of the Pie and the Patty-Pan,Beatrix Potter,potter-pie,K-3,picture book,England,reserve,,Ribby
 johnny-town-mouse,The Tale of Johnny Town-Mouse,Beatrix Potter,potter-johnny,K-2,picture book,England,in,,Timmy Willie
 tailor-of-gloucester,The Tailor of Gloucester,Beatrix Potter,potter-tailor,1-3,picture book,England,in,,Simpkin
 pooh-1,In Which We Are Introduced to Winnie-the-Pooh and Some Bees,A. A. Milne,milne-pooh,K-3,short story,England,in,,Some Bees
@@ -70,23 +70,23 @@ mr-fox,Mr. Fox,Traditional (Jacobs),jacobs-english,6-8,folk tale,England,reserve
 cap-o-rushes,Cap o' Rushes,Traditional (Jacobs),jacobs-english,3-6,folk tale,England,reserve,,Cap o' Rushes
 kate-crackernuts,Kate Crackernuts,Traditional (Jacobs),jacobs-english,3-6,folk tale,Scotland,reserve,,Kate Crackernuts
 little-red-hen,The Little Red Hen,Traditional,little-red-hen,K-2,folk tale,England,in,,Red Hen
-johnny-crow,Johnny Crow's Garden,L. Leslie Brooke,brooke-crow,K-1,picture book,England,in,,Johnny Crow
+johnny-crow,Johnny Crow's Garden,L. Leslie Brooke,brooke-crow,K-1,picture book,England,reserve,,Johnny Crow
 velveteen-rabbit,The Velveteen Rabbit,Margery Williams,velveteen,1-4,picture book,England,in,,Velveteen
 billy-goats-gruff,The Three Billy Goats Gruff,Traditional (Norway),dasent-norse,K-2,folk tale,Norway,in,,Billy Goats
 the-pancake,The Pancake,Traditional (Norway),dasent-norse,K-2,folk tale,Norway,in,,Pancake
-bear-stumpy-tail,Why the Bear Is Stumpy-Tailed,Traditional (Norway),dasent-norse,K-3,folk tale,Norway,in,,Stumpy
+bear-stumpy-tail,Why the Bear Is Stumpy-Tailed,Traditional (Norway),dasent-norse,K-3,folk tale,Norway,reserve,,Stumpy
 princess-glass-hill,The Princess on the Glass Hill,Traditional (Norway),dasent-popular,3-5,folk tale,Norway,reserve,,Glass Hill
-east-of-sun,East o' the Sun and West o' the Moon,Traditional (Norway),dasent-popular,4-7,folk tale,Norway,in,,East o' the Sun
+east-of-sun,East o' the Sun and West o' the Moon,Traditional (Norway),dasent-popular,4-7,folk tale,Norway,reserve,,East o' the Sun
 why-sea-salt,Why the Sea Is Salt,Traditional (Norway),dasent-popular,3-5,folk tale,Norway,reserve,,Sea is Salt
 boots-troll,Boots Who Ate a Match with the Troll,Traditional (Norway),dasent-popular,2-4,folk tale,Norway,reserve,,Troll
 jataka-monkey-croc,The Monkey and the Crocodile,Jataka (Babbitt),babbitt-jataka,K-3,fable,India,in,,Monkey and the Crocodile
 jataka-talkative-turtle,The Turtle Who Couldn't Stop Talking,Jataka (Babbitt),babbitt-jataka,K-3,fable,India,in,,Turtle
 jataka-timid-rabbit,"The Foolish, Timid Rabbit",Jataka (Babbitt),babbitt-jataka,K-3,fable,India,in,,Timid Rabbit
 jataka-quails,The Quarrel of the Quails,Jataka (Babbitt),babbitt-jataka,K-3,fable,India,in,,Quails
-jataka-ox,The Ox Who Won the Forfeit,Jataka (Babbitt),babbitt-jataka,1-3,fable,India,in,,Forfeit
-jataka-merchant,The Wise and the Foolish Merchant,Jataka (Babbitt),babbitt-jataka,2-4,fable,India,in,,Merchant
-jataka-more-1,"More Jataka Tales: The Monkey Gardeners, and others (set)",Jataka (Babbitt),babbitt-more,K-3,fable,India,in,"set of 4, picked in processing",Monkey
-burgess-west-1,Old Mother West Wind,Thornton W. Burgess,burgess-west,K-2,short story,United States,in,,Old Mother West Wind
+jataka-ox,The Ox Who Won the Forfeit,Jataka (Babbitt),babbitt-jataka,1-3,fable,India,reserve,,Forfeit
+jataka-merchant,The Wise and the Foolish Merchant,Jataka (Babbitt),babbitt-jataka,2-4,fable,India,reserve,,Merchant
+jataka-more-1,"More Jataka Tales: The Monkey Gardeners, and others (set)",Jataka (Babbitt),babbitt-more,K-3,fable,India,reserve,"set of 4, picked in processing",Monkey
+burgess-west-1,Old Mother West Wind,Thornton W. Burgess,burgess-west,K-2,short story,United States,reserve,,Old Mother West Wind
 burgess-west-2,Johnny Chuck Finds the Best Thing in the World,Thornton W. Burgess,burgess-west,K-2,short story,United States,reserve,,Best Thing in the World
 burgess-west-3,Why Grandfather Frog Has No Tail,Thornton W. Burgess,burgess-why,K-2,short story,United States,reserve,,Grandfather Frog
 burgess-why-set,"Mother West Wind ""Why"" Stories (set)",Thornton W. Burgess,burgess-why,K-3,short story,United States,reserve,"set of 4, picked in processing",Why
@@ -95,7 +95,7 @@ burgess-children-set,Mother West Wind's Children (set),Thornton W. Burgess,burge
 reddy-fox,The Adventures of Reddy Fox,Thornton W. Burgess,burgess-reddy,1-3,chapter book,United States,reserve,chapter set,Reddy Fox
 peter-cottontail,The Adventures of Peter Cottontail,Thornton W. Burgess,burgess-peter,1-3,chapter book,United States,in,chapter set,Peter
 burgess-animal-book,The Burgess Animal Book for Children (selected chapters),Thornton W. Burgess,burgess-animal,2-5,nonfiction,United States,reserve,set of animal chapters,Peter Rabbit
-uncle-wiggily-1,Uncle Wiggily stories (set I),Howard R. Garis,uncle-wiggily,K-2,short story,United States,in,"set of 5 bedtime stories, picked in processing",Uncle Wiggily
+uncle-wiggily-1,Uncle Wiggily stories (set I),Howard R. Garis,uncle-wiggily,K-2,short story,United States,reserve,"set of 5 bedtime stories, picked in processing",Uncle Wiggily
 uncle-wiggily-2,Uncle Wiggily stories (set II),Howard R. Garis,uncle-wiggily,K-2,short story,United States,reserve,"set of 5 bedtime stories, picked in processing",Uncle Wiggily
 raggedy-ann-1,How Raggedy Ann Got Her Candy Heart,Johnny Gruelle,gruelle-ann,K-2,short story,United States,in,,Candy Heart
 raggedy-ann-2,Raggedy Ann and the Kite,Johnny Gruelle,gruelle-ann,K-2,short story,United States,in,,Kite
@@ -105,8 +105,8 @@ lear-limericks,Limericks (set),Edward Lear,lear-book,1-4,poem,England,in,set of 
 rossetti-sing-set,Sing-Song: rhymes (set),Christina Rossetti,rossetti-sing,K-2,poem,England,in,set incl. Who Has Seen the Wind?,Who has seen the wind
 field-wynken,"Wynken, Blynken, and Nod",Eugene Field,field-poems,K-3,poem,United States,in,,Wynken
 field-duel,The Duel,Eugene Field,field-poems,K-3,poem,United States,reserve,,calico cat
-field-little-boy-blue,Little Boy Blue,Eugene Field,field-poems,2-5,poem,United States,note,about a child who has died; gentle but sad,Little Boy Blue
-peacock-pie-set,Peacock Pie: rhymes (set),Walter de la Mare,delamare-peacock,1-4,poem,England,in,"set incl. The Cupboard, Some One",Some One
+field-little-boy-blue,Little Boy Blue,Eugene Field,field-poems,2-5,poem,United States,reserve,about a child who has died; gentle but sad,Little Boy Blue
+peacock-pie-set,Peacock Pie: rhymes (set),Walter de la Mare,delamare-peacock,1-4,poem,England,reserve,"set incl. The Cupboard, Some One",Some One
 grimm-musicians,The Bremen Town-Musicians,Brothers Grimm,grimm-crane,K-3,fairy tale,Germany,in,,Musicians
 grimm-porridge,Sweet Porridge,Brothers Grimm,grimm-crane,K-2,fairy tale,Germany,reserve,,Porridge
 grimm-seven-kids,The Wolf and the Seven Young Kids,Brothers Grimm,grimm-crane,K-2,fairy tale,Germany,in,,Seven Little Kids
@@ -115,15 +115,15 @@ grimm-hansel,Hansel and Gretel,Brothers Grimm,grimm,2-5,fairy tale,Germany,in,,H
 grimm-rumpel,Rumpelstiltskin,Brothers Grimm,grimm,2-5,fairy tale,Germany,in,,Rumpelstiltskin
 grimm-frog,The Frog-Prince,Brothers Grimm,grimm,2-4,fairy tale,Germany,in,,Frog-Prince
 grimm-rapunzel,Rapunzel,Brothers Grimm,grimm,2-5,fairy tale,Germany,in,,Rapunzel
-grimm-snow-rose,Snow-White and Rose-Red,Brothers Grimm,grimm,2-5,fairy tale,Germany,in,,Rose-Red
-grimm-golden-goose,The Golden Goose,Brothers Grimm,grimm,1-4,fairy tale,Germany,in,,Golden Goose
+grimm-snow-rose,Snow-White and Rose-Red,Brothers Grimm,grimm,2-5,fairy tale,Germany,reserve,,Rose-Red
+grimm-golden-goose,The Golden Goose,Brothers Grimm,grimm,1-4,fairy tale,Germany,reserve,,Golden Goose
 grimm-dancing,The Twelve Dancing Princesses,Brothers Grimm,grimm,3-5,fairy tale,Germany,in,,Dancing Princesses
 grimm-redcap,Little Red-Cap,Brothers Grimm,grimm,K-3,fairy tale,Germany,in,,Red-Cap
 grimm-ashputtel,Ashputtel,Brothers Grimm,grimm,3-6,fairy tale,Germany,note,original ending: birds peck out the stepsisters' eyes,Ashputtel
 grimm-snowdrop,Snowdrop,Brothers Grimm,grimm,3-6,fairy tale,Germany,in,,Snowdrop
 grimm-fisherman,The Fisherman and His Wife,Brothers Grimm,grimm,2-5,fairy tale,Germany,in,,Fisherman and His Wife
 grimm-tailor,The Valiant Little Tailor,Brothers Grimm,grimm,2-5,fairy tale,Germany,in,,Tailor
-grimm-tom-thumb,Tom Thumb,Brothers Grimm,grimm,2-4,fairy tale,Germany,in,,Tom Thumb
+grimm-tom-thumb,Tom Thumb,Brothers Grimm,grimm,2-4,fairy tale,Germany,reserve,,Tom Thumb
 grimm-water-life,The Water of Life,Brothers Grimm,grimm,4-6,fairy tale,Germany,reserve,,Water of Life
 grimm-golden-bird,The Golden Bird,Brothers Grimm,grimm,4-6,fairy tale,Germany,reserve,,Golden Bird
 grimm-jorinda,Jorinda and Jorindel,Brothers Grimm,grimm,3-6,fairy tale,Germany,reserve,,Jorinda
@@ -152,7 +152,7 @@ andersen-thumbelina,Thumbelina,Hans Christian Andersen,andersen-full,1-4,fairy t
 andersen-soldier,The Steadfast Tin Soldier,Hans Christian Andersen,andersen-full,2-5,fairy tale,Denmark,in,,Tin Soldier
 andersen-nightingale,The Nightingale,Hans Christian Andersen,andersen,3-6,fairy tale,Denmark,in,,Nightingale
 andersen-snow-queen,The Snow Queen,Hans Christian Andersen,andersen,4-7,fairy tale,Denmark,in,chapter set (seven stories),Snow Queen
-andersen-fir,The Fir Tree,Hans Christian Andersen,andersen,3-6,fairy tale,Denmark,in,,Fir Tree
+andersen-fir,The Fir Tree,Hans Christian Andersen,andersen,3-6,fairy tale,Denmark,reserve,,Fir Tree
 andersen-match,The Little Match Girl,Hans Christian Andersen,andersen,3-6,fairy tale,Denmark,note,a child dies of cold; sad ending,Match
 andersen-swans,The Wild Swans,Hans Christian Andersen,andersen-full,3-6,fairy tale,Denmark,in,,Wild Swans
 andersen-tinder,The Tinder-Box,Hans Christian Andersen,andersen-full,3-5,fairy tale,Denmark,reserve,,Tinder
@@ -163,7 +163,7 @@ perrault-cinderella,Cinderella,Charles Perrault,perrault,1-4,fairy tale,France,i
 perrault-sleeping,The Sleeping Beauty in the Wood,Charles Perrault,perrault,2-5,fairy tale,France,in,,Sleeping Beauty
 perrault-riding-hood,Little Red Riding Hood,Charles Perrault,perrault,1-3,fairy tale,France,in,,Riding Hood
 perrault-diamonds,Diamonds and Toads,Charles Perrault,perrault,2-4,fairy tale,France,reserve,,Toads
-perrault-bluebeard,Blue Beard,Charles Perrault,perrault,6-8,fairy tale,France,note,locked room of murdered wives; spooky,Blue Beard
+perrault-bluebeard,Blue Beard,Charles Perrault,perrault,6-8,fairy tale,France,reserve,locked room of murdered wives; spooky,Blue Beard
 blue-beauty,Beauty and the Beast,Traditional (Lang),lang-blue,3-6,fairy tale,France,reserve,,Beauty and the Beast
 blue-felicia,Felicia and the Pot of Pinks,Traditional (Lang),lang-blue,3-5,fairy tale,France,reserve,,Felicia
 blue-goldilocks,The Story of Pretty Goldilocks,Traditional (Lang),lang-blue,3-5,fairy tale,France,reserve,,Pretty Goldilocks
@@ -173,24 +173,24 @@ blue-white-cat,The White Cat,Traditional (Lang),lang-blue,3-6,fairy tale,France,
 arabian-aladdin,Aladdin and the Wonderful Lamp,Arabian Nights (Lang),lang-arabian,4-7,fairy tale,Middle East,note,set in a Western-imagined 'China'; discuss where the story comes from,Aladdin
 arabian-fisherman,The Fisherman and the Genie,Arabian Nights (Lang),lang-arabian,4-7,fairy tale,Middle East,in,,The Story of the Fisherman
 arabian-sindbad,The Seven Voyages of Sindbad the Sailor,Arabian Nights (Lang),lang-arabian,5-8,fairy tale,Middle East,note,chapter set; some dated depictions of peoples met on voyages,Sindbad
-arabian-horse,The Enchanted Horse,Arabian Nights (Lang),lang-arabian,4-7,fairy tale,Middle East,in,,Enchanted Horse
+arabian-horse,The Enchanted Horse,Arabian Nights (Lang),lang-arabian,4-7,fairy tale,Middle East,reserve,,Enchanted Horse
 ozaki-momotaro,"Momotaro, or the Story of the Son of a Peach",Yei Theodora Ozaki (retold),ozaki,1-4,folk tale,Japan,in,,Momotaro
 ozaki-sparrow,The Tongue-Cut Sparrow,Yei Theodora Ozaki (retold),ozaki,2-4,folk tale,Japan,in,,Tongue-Cut Sparrow
 ozaki-urashima,"The Story of Urashima Taro, the Fisher Lad",Yei Theodora Ozaki (retold),ozaki,3-6,folk tale,Japan,in,,Urashima
 ozaki-mirror,The Mirror of Matsuyama,Yei Theodora Ozaki (retold),ozaki,3-6,folk tale,Japan,in,,Matsuyama
-ozaki-old-man,The Story of the Old Man Who Made Withered Trees to Flower,Yei Theodora Ozaki (retold),ozaki,2-4,folk tale,Japan,in,,Withered Trees
-ozaki-jelly,The Jelly Fish and the Monkey,Yei Theodora Ozaki (retold),ozaki,2-4,folk tale,Japan,in,,Jelly Fish
-ozaki-bag-rice,My Lord Bag of Rice,Yei Theodora Ozaki (retold),ozaki,4-6,folk tale,Japan,in,,Bag of Rice
-ozaki-hunter,The Happy Hunter and the Skilful Fisher,Yei Theodora Ozaki (retold),ozaki,4-6,folk tale,Japan,in,,Happy Hunter
+ozaki-old-man,The Story of the Old Man Who Made Withered Trees to Flower,Yei Theodora Ozaki (retold),ozaki,2-4,folk tale,Japan,reserve,,Withered Trees
+ozaki-jelly,The Jelly Fish and the Monkey,Yei Theodora Ozaki (retold),ozaki,2-4,folk tale,Japan,reserve,,Jelly Fish
+ozaki-bag-rice,My Lord Bag of Rice,Yei Theodora Ozaki (retold),ozaki,4-6,folk tale,Japan,reserve,,Bag of Rice
+ozaki-hunter,The Happy Hunter and the Skilful Fisher,Yei Theodora Ozaki (retold),ozaki,4-6,folk tale,Japan,reserve,,Happy Hunter
 chinese-set-1,"Chinese fairy tales (set I, picked in processing)",Richard Wilhelm (collected),wilhelm-chinese,3-6,folk tale,China,in,set of 4 from the actual contents,
 chinese-set-2,"Chinese fairy tales (set II, picked in processing)",Richard Wilhelm (collected),wilhelm-chinese,4-7,folk tale,China,reserve,set of 4 from the actual contents,
 chinese-herd-boy,The Herd Boy and the Weaving Maiden,Richard Wilhelm (collected),wilhelm-chinese,3-6,folk tale,China,in,,Weaving Maiden
 russian-baba,Baba Yaga and the Little Girl with the Kind Heart,Arthur Ransome (retold),ransome-russian,2-5,folk tale,Russia,in,,Kind Heart
 russian-fool,The Fool of the World and the Flying Ship,Arthur Ransome (retold),ransome-russian,3-6,folk tale,Russia,in,,Flying Ship
-russian-snow,The Little Daughter of the Snow,Arthur Ransome (retold),ransome-russian,2-5,folk tale,Russia,in,,Daughter of the Snow
+russian-snow,The Little Daughter of the Snow,Arthur Ransome (retold),ransome-russian,2-5,folk tale,Russia,reserve,,Daughter of the Snow
 russian-frost,Frost,Arthur Ransome (retold),ransome-russian,3-5,folk tale,Russia,reserve,,Frost
 russian-tsar-golden,The Golden Fish,Arthur Ransome (retold),ransome-russian,2-5,folk tale,Russia,reserve,,Golden Fish
-russian-sadko,Sadko,Arthur Ransome (retold),ransome-russian,4-7,folk tale,Russia,in,,Sadko
+russian-sadko,Sadko,Arthur Ransome (retold),ransome-russian,4-7,folk tale,Russia,reserve,,Sadko
 westafrica-anansi-1,How We Got the Name 'Spider Tales',W. H. Barker and Cecilia Sinclair (collected),barker-westafrica,2-5,folk tale,Ghana,in,,Spider Tales
 westafrica-set,"West African folk tales: Anansi and others (set, picked in processing)",W. H. Barker and Cecilia Sinclair (collected),barker-westafrica,2-5,folk tale,Ghana,in,set of 6 from contents; outside review flag,Anansi
 westafrica-set-2,"West African folk tales (set II, picked in processing)",W. H. Barker and Cecilia Sinclair (collected),barker-westafrica,3-6,folk tale,West Africa,in,set of 6 from contents; outside review flag,Tortoise
@@ -209,7 +209,7 @@ zitkala-toad,The Toad and the Boy,Zitkala-Sa,zitkala-legends,3-6,folk tale,Dakot
 zitkala-memories,Impressions of an Indian Childhood,Zitkala-Sa,zitkala-stories,6-10,memoir,Dakota (Yankton),note,boarding school and family separation; hard history,Indian Childhood
 zitkala-school,The School Days of an Indian Girl,Zitkala-Sa,zitkala-stories,6-10,memoir,Dakota (Yankton),note,boarding school; hard history,School Days
 wigwam-set-1,"Wigwam Evenings: Sioux folk tales (set I, picked in processing)",Charles A. Eastman and Elaine Goodale Eastman,eastman-wigwam,2-5,folk tale,Dakota (Santee),in,set of 4; Dakota author,
-wigwam-set-2,"Wigwam Evenings: Sioux folk tales (set II, picked in processing)",Charles A. Eastman and Elaine Goodale Eastman,eastman-wigwam,2-5,folk tale,Dakota (Santee),in,set of 4; Dakota author,
+wigwam-set-2,"Wigwam Evenings: Sioux folk tales (set II, picked in processing)",Charles A. Eastman and Elaine Goodale Eastman,eastman-wigwam,2-5,folk tale,Dakota (Santee),reserve,set of 4; Dakota author,
 wigwam-set-3,"Wigwam Evenings: Sioux folk tales (set III, picked in processing)",Charles A. Eastman and Elaine Goodale Eastman,eastman-wigwam,3-6,folk tale,Dakota (Santee),reserve,set of 4; Dakota author,
 indian-boyhood,Indian Boyhood,Charles A. Eastman,eastman-boyhood,5-8,memoir,Dakota (Santee),in,chapter set; Dakota author,Boyhood
 wizard-oz,The Wonderful Wizard of Oz,L. Frank Baum,baum-oz,3-6,chapter book,United States,in,chapter set,Dorothy
@@ -226,19 +226,19 @@ black-beauty,Black Beauty,Anna Sewell,sewell-beauty,4-7,chapter book,England,in,
 railway-children,The Railway Children,E. Nesbit,nesbit-railway,4-7,chapter book,England,in,chapter set,Railway
 nesbit-dragon-tamers,The Dragon Tamers,E. Nesbit,nesbit-dragons,3-6,short story,England,in,,Dragon Tamers
 nesbit-ice-dragon,"The Ice Dragon, or Do as You Are Told",E. Nesbit,nesbit-dragons,3-6,short story,England,in,,Ice Dragon
-nesbit-book-beasts,The Book of Beasts,E. Nesbit,nesbit-dragons,3-6,short story,England,in,,Book of Beasts
-nesbit-island,The Island of the Nine Whirlpools,E. Nesbit,nesbit-dragons,3-6,short story,England,in,,Whirlpools
+nesbit-book-beasts,The Book of Beasts,E. Nesbit,nesbit-dragons,3-6,short story,England,reserve,,Book of Beasts
+nesbit-island,The Island of the Nine Whirlpools,E. Nesbit,nesbit-dragons,3-6,short story,England,reserve,,Whirlpools
 wilde-happy-prince,The Happy Prince,Oscar Wilde,wilde-happy,3-7,fairy tale,Ireland,in,,Happy Prince
 wilde-selfish-giant,The Selfish Giant,Oscar Wilde,wilde-happy,2-6,fairy tale,Ireland,in,,Selfish Giant
 wilde-nightingale,The Nightingale and the Rose,Oscar Wilde,wilde-happy,6-9,fairy tale,Ireland,in,,Nightingale
-wilde-friend,The Devoted Friend,Oscar Wilde,wilde-happy,4-7,fairy tale,Ireland,in,,Devoted Friend
-wilde-rocket,The Remarkable Rocket,Oscar Wilde,wilde-happy,4-7,fairy tale,Ireland,in,,Rocket
-golden-river,The King of the Golden River,John Ruskin,ruskin-golden,3-6,fairy tale,England,in,,Golden River
-wonder-gorgon,The Gorgon's Head,Nathaniel Hawthorne,hawthorne-wonder,4-7,myth,Greece,in,,Gorgon
-wonder-pandora,The Paradise of Children,Nathaniel Hawthorne,hawthorne-wonder,3-6,myth,Greece,in,,Pandora
+wilde-friend,The Devoted Friend,Oscar Wilde,wilde-happy,4-7,fairy tale,Ireland,reserve,,Devoted Friend
+wilde-rocket,The Remarkable Rocket,Oscar Wilde,wilde-happy,4-7,fairy tale,Ireland,reserve,,Rocket
+golden-river,The King of the Golden River,John Ruskin,ruskin-golden,3-6,fairy tale,England,reserve,,Golden River
+wonder-gorgon,The Gorgon's Head,Nathaniel Hawthorne,hawthorne-wonder,4-7,myth,Greece,reserve,,Gorgon
+wonder-pandora,The Paradise of Children,Nathaniel Hawthorne,hawthorne-wonder,3-6,myth,Greece,reserve,,Pandora
 wonder-apples,The Three Golden Apples,Nathaniel Hawthorne,hawthorne-wonder,4-7,myth,Greece,reserve,,Golden Apples
 wonder-pitcher,The Miraculous Pitcher,Nathaniel Hawthorne,hawthorne-wonder,3-6,myth,Greece,reserve,,Pitcher
-tangle-minotaur,The Minotaur,Nathaniel Hawthorne,hawthorne-tanglewood,4-7,myth,Greece,in,,Minotaur
+tangle-minotaur,The Minotaur,Nathaniel Hawthorne,hawthorne-tanglewood,4-7,myth,Greece,reserve,,Minotaur
 tangle-pygmies,The Pygmies,Nathaniel Hawthorne,hawthorne-tanglewood,4-7,myth,Greece,reserve,,Pygmies
 tangle-teeth,The Dragon's Teeth,Nathaniel Hawthorne,hawthorne-tanglewood,4-7,myth,Greece,reserve,,Dragon's Teeth
 tangle-circe,Circe's Palace,Nathaniel Hawthorne,hawthorne-tanglewood,4-7,myth,Greece,reserve,,Circe
@@ -246,23 +246,23 @@ tangle-pomegranate,The Pomegranate Seeds,Nathaniel Hawthorne,hawthorne-tanglewoo
 tangle-fleece,The Golden Fleece,Nathaniel Hawthorne,hawthorne-tanglewood,4-7,myth,Greece,reserve,,Golden Fleece
 odin-set,The Children of Odin: Norse myths,Padraic Colum,colum-odin,5-8,myth,Norse,in,chapter set,Odin
 colum-odysseus,The Adventures of Odysseus and the Tale of Troy,Padraic Colum,colum-odysseus,5-8,myth,Greece,in,chapter set,Telemachus
-colum-fleece,The Golden Fleece and the Heroes Who Lived Before Achilles,Padraic Colum,colum-fleece,5-8,myth,Greece,in,chapter set,Jason
-heroes-perseus,Perseus,Charles Kingsley,kingsley-heroes,5-8,myth,Greece,in,,Perseus
+colum-fleece,The Golden Fleece and the Heroes Who Lived Before Achilles,Padraic Colum,colum-fleece,5-8,myth,Greece,reserve,chapter set,Jason
+heroes-perseus,Perseus,Charles Kingsley,kingsley-heroes,5-8,myth,Greece,reserve,,Perseus
 heroes-theseus,Theseus,Charles Kingsley,kingsley-heroes,5-8,myth,Greece,reserve,,Theseus
 robin-hood,The Merry Adventures of Robin Hood,Howard Pyle,pyle-robin,5-8,chapter book,England,in,chapter set,Robin Hood
 king-arthur,The Story of King Arthur and His Knights,Howard Pyle,pyle-arthur,5-8,chapter book,England,in,chapter set,Arthur
-fifty-famous-1,Fifty Famous Stories Retold (set I: legends),James Baldwin,baldwin-fifty,2-5,legend,Europe,in,"set of 6: King Alfred and the Cakes, Bruce and the Spider, William Tell, Androclus and the Lion, Damon and Pythias, Horatius at the Bridge",Androclus
+fifty-famous-1,Fifty Famous Stories Retold (set I: legends),James Baldwin,baldwin-fifty,2-5,legend,Europe,reserve,"set of 6: King Alfred and the Cakes, Bruce and the Spider, William Tell, Androclus and the Lion, Damon and Pythias, Horatius at the Bridge",Androclus
 fifty-famous-2,Fifty Famous Stories Retold (set II),James Baldwin,baldwin-fifty,2-5,legend,Europe,reserve,set of 6 picked in processing; skip any colonial pieces,Cornelia
 tolstoy-three-questions,The Three Questions,Leo Tolstoy,tolstoy-man,3-8,short story,Russia,in,,Three Questions
-tolstoy-where-love,Where Love Is God Is,Leo Tolstoy,tolstoy-man,6-9,short story,Russia,in,,Where Love Is
-tolstoy-what-men,What Men Live By,Leo Tolstoy,tolstoy-man,7-10,short story,Russia,in,,What Men Live By
-tolstoy-fables,Fables for Children (set),Leo Tolstoy,tolstoy-twenty,K-3,fable,Russia,in,set of short fables,
+tolstoy-where-love,Where Love Is God Is,Leo Tolstoy,tolstoy-man,6-9,short story,Russia,reserve,,Where Love Is
+tolstoy-what-men,What Men Live By,Leo Tolstoy,tolstoy-man,7-10,short story,Russia,reserve,,What Men Live By
+tolstoy-fables,Fables for Children (set),Leo Tolstoy,tolstoy-twenty,K-3,fable,Russia,reserve,set of short fables,
 rootabaga-1,How They Bring Back the Village of Cream Puffs When the Wind Blows It Away,Carl Sandburg,sandburg-rootabaga,2-5,short story,United States,in,,Cream Puffs
 rootabaga-2,The Two Skyscrapers Who Decided to Have a Child,Carl Sandburg,sandburg-rootabaga,2-5,short story,United States,in,,Skyscrapers
 rootabaga-3,How the Hat Ashes Shovel Helped Snoo Foo,Carl Sandburg,sandburg-rootabaga,2-5,short story,United States,in,,Snoo Foo
-rootabaga-4,"The Story of Jason Squiff and Why He Had a Popcorn Hat, Popcorn Mittens and Popcorn Shoes",Carl Sandburg,sandburg-rootabaga,2-5,short story,United States,in,,Jason Squiff
-rootabaga-5,How to Tell Corn Fairies If You See 'Em,Carl Sandburg,sandburg-rootabaga,2-5,short story,United States,in,,Corn Fairies
-rootabaga-6,The Wedding Procession of the Rag Doll and the Broom Handle and Who Was in It,Carl Sandburg,sandburg-rootabaga,2-5,short story,United States,in,,Rag Doll
+rootabaga-4,"The Story of Jason Squiff and Why He Had a Popcorn Hat, Popcorn Mittens and Popcorn Shoes",Carl Sandburg,sandburg-rootabaga,2-5,short story,United States,reserve,,Jason Squiff
+rootabaga-5,How to Tell Corn Fairies If You See 'Em,Carl Sandburg,sandburg-rootabaga,2-5,short story,United States,reserve,,Corn Fairies
+rootabaga-6,The Wedding Procession of the Rag Doll and the Broom Handle and Who Was in It,Carl Sandburg,sandburg-rootabaga,2-5,short story,United States,reserve,,Rag Doll
 anne-green-gables,Anne of Green Gables,L. M. Montgomery,montgomery-anne,5-8,chapter book,Canada,in,chapter set,Anne
 little-women,Little Women,Louisa May Alcott,alcott-women,6-9,chapter book,United States,in,chapter set,Jo
 tom-sawyer,The Adventures of Tom Sawyer,Mark Twain,twain-sawyer,5-8,chapter book,United States,note,chapter set; slurs and the 'Injun Joe' villain; teacher note required,Tom
@@ -302,23 +302,23 @@ rip-van-winkle,Rip Van Winkle,Washington Irving,irving-rip,5-8,short story,Unite
 saki-open-window,The Open Window,Saki,saki-beasts,7-10,short story,England,in,,Open Window
 saki-interlopers,The Interlopers,Saki,saki-beasts,8-11,short story,England,in,,Interlopers
 saki-storyteller,The Story-Teller,Saki,saki-beasts,6-9,short story,England,in,,Story-Teller
-saki-tobermory,Tobermory,Saki,saki-chronicles,8-11,short story,England,in,,Tobermory
-saki-sredni,Sredni Vashtar,Saki,saki-chronicles,9-12,short story,England,note,dark ending,Sredni
+saki-tobermory,Tobermory,Saki,saki-chronicles,8-11,short story,England,reserve,,Tobermory
+saki-sredni,Sredni Vashtar,Saki,saki-chronicles,9-12,short story,England,reserve,dark ending,Sredni
 monkeys-paw,The Monkey's Paw,W. W. Jacobs,jacobs-lady,7-10,short story,England,in,,Monkey's Paw
 twain-jumping-frog,The Celebrated Jumping Frog of Calaveras County,Mark Twain,twain-jumping,7-10,short story,United States,in,,Jumping Frog
-wells-country-blind,The Country of the Blind,H. G. Wells,wells-short,9-12,short story,England,in,,Country of the Blind
-wells-star,The Star,H. G. Wells,wells-short,8-11,short story,England,in,The Star,The Star
-wells-door,The Door in the Wall,H. G. Wells,wells-short,9-12,short story,England,in,,Door in the Wall
+wells-country-blind,The Country of the Blind,H. G. Wells,wells-short,9-12,short story,England,reserve,,Country of the Blind
+wells-star,The Star,H. G. Wells,wells-short,8-11,short story,England,reserve,The Star,The Star
+wells-door,The Door in the Wall,H. G. Wells,wells-short,9-12,short story,England,reserve,,Door in the Wall
 time-machine,The Time Machine,H. G. Wells,wells-time,8-11,chapter book,England,in,chapter set,Time Traveller
 war-worlds,The War of the Worlds,H. G. Wells,wells-war,8-11,chapter book,England,in,chapter set,Martians
 london-to-build,To Build a Fire,Jack London,london-lostface,8-11,short story,United States,in,,To Build a Fire
-london-lost-face,Lost Face,Jack London,london-lostface,10-12,short story,United States,note,torture scene,Lost Face
+london-lost-face,Lost Face,Jack London,london-lostface,10-12,short story,United States,reserve,torture scene,Lost Face
 chekhov-bet,The Bet,Anton Chekhov,chekhov-party,9-12,short story,Russia,in,,The Bet
 chekhov-vanka,Vanka,Anton Chekhov,chekhov-party,6-9,short story,Russia,in,,Vanka
-chekhov-schoolmaster-set,"Chekhov stories (set I, picked in processing)",Anton Chekhov,chekhov-schoolmaster,9-12,short story,Russia,in,set of 3 from contents,
-chekhov-chorus-set,"Chekhov stories (set II, picked in processing)",Anton Chekhov,chekhov-chorus,9-12,short story,Russia,in,set of 3 from contents,
+chekhov-schoolmaster-set,"Chekhov stories (set I, picked in processing)",Anton Chekhov,chekhov-schoolmaster,9-12,short story,Russia,reserve,set of 3 from contents,
+chekhov-chorus-set,"Chekhov stories (set II, picked in processing)",Anton Chekhov,chekhov-chorus,9-12,short story,Russia,reserve,set of 3 from contents,
 maupassant-necklace,The Necklace,Guy de Maupassant,maupassant,8-11,short story,France,in,,Necklace
-maupassant-string,The Piece of String,Guy de Maupassant,maupassant,9-12,short story,France,in,,Piece of String
+maupassant-string,The Piece of String,Guy de Maupassant,maupassant,9-12,short story,France,reserve,,Piece of String
 maupassant-two-friends,Two Friends,Guy de Maupassant,maupassant,10-12,short story,France,reserve,war; the friends are shot,Two Friends
 douglass-narrative,Narrative of the Life of Frederick Douglass,Frederick Douglass,douglass-narrative,8-12,memoir,United States,note,chapter set; slavery and violence; hard history,Douglass
 up-from-slavery,Up from Slavery,Booker T. Washington,washington-slavery,8-12,memoir,United States,note,chapter set; slavery; hard history,Slavery
@@ -354,42 +354,42 @@ farewell-arms,A Farewell to Arms,Ernest Hemingway,hemingway-farewell,11-12,novel
 mrs-dalloway,Mrs. Dalloway,Virginia Woolf,woolf-dalloway,12,novel,England,note,suicide,Clarissa
 moby-dick,Moby-Dick,Herman Melville,melville-moby,11-12,novel,United States,in,chapter set,Ishmael
 goodman-brown,Young Goodman Brown,Nathaniel Hawthorne,hawthorne-mosses,10-12,short story,United States,in,,Goodman Brown
-birthmark,The Birthmark,Nathaniel Hawthorne,hawthorne-mosses,10-12,short story,United States,in,,Birthmark
+birthmark,The Birthmark,Nathaniel Hawthorne,hawthorne-mosses,10-12,short story,United States,reserve,,Birthmark
 rappaccini,Rappaccini's Daughter,Nathaniel Hawthorne,hawthorne-mosses,10-12,short story,United States,reserve,,Rappaccini
-heidegger,Dr. Heidegger's Experiment,Nathaniel Hawthorne,hawthorne-twice,8-11,short story,United States,in,,Heidegger
-black-veil,The Minister's Black Veil,Nathaniel Hawthorne,hawthorne-twice,10-12,short story,United States,in,,Black Veil
+heidegger,Dr. Heidegger's Experiment,Nathaniel Hawthorne,hawthorne-twice,8-11,short story,United States,reserve,,Heidegger
+black-veil,The Minister's Black Veil,Nathaniel Hawthorne,hawthorne-twice,10-12,short story,United States,reserve,,Black Veil
 bartleby,Bartleby,Herman Melville,melville-piazza,11-12,short story,United States,in,,Bartleby
 araby,Araby,James Joyce,joyce-dubliners,10-12,short story,Ireland,in,,Araby
 eveline,Eveline,James Joyce,joyce-dubliners,10-12,short story,Ireland,in,,Eveline
 the-dead,The Dead,James Joyce,joyce-dubliners,12,short story,Ireland,in,,The Dead
 hemingway-river,Big Two-Hearted River,Ernest Hemingway,hemingway-ourtime,11-12,short story,United States,in,,Two-Hearted
-hemingway-cat,Cat in the Rain,Ernest Hemingway,hemingway-ourtime,11-12,short story,United States,in,,Cat in the Rain
+hemingway-cat,Cat in the Rain,Ernest Hemingway,hemingway-ourtime,11-12,short story,United States,reserve,,Cat in the Rain
 fitz-bernice,Bernice Bobs Her Hair,F. Scott Fitzgerald,fitzgerald-flappers,9-12,short story,United States,in,,Bernice
 fitz-button,The Curious Case of Benjamin Button,F. Scott Fitzgerald,fitzgerald-jazz,9-12,short story,United States,in,,Benjamin Button
-mansfield-party,The Garden Party,Katherine Mansfield,mansfield-garden,10-12,short story,New Zealand,in,,Garden Party
-mansfield-brill,Miss Brill,Katherine Mansfield,mansfield-garden,10-12,short story,New Zealand,in,,Miss Brill
+mansfield-party,The Garden Party,Katherine Mansfield,mansfield-garden,10-12,short story,New Zealand,reserve,,Garden Party
+mansfield-brill,Miss Brill,Katherine Mansfield,mansfield-garden,10-12,short story,New Zealand,reserve,,Miss Brill
 mansfield-doll,The Doll's House,Katherine Mansfield,mansfield-garden,7-10,short story,New Zealand,in,,Doll's House
 chesnutt-goophered,The Goophered Grapevine,Charles W. Chesnutt,chesnutt-conjure,10-12,short story,United States,note,dialect; slavery; Black author's framing of plantation tales,Goophered
-chesnutt-wife,The Wife of His Youth,Charles W. Chesnutt,chesnutt-wife,10-12,short story,United States,note,colorism and slavery's aftermath,Wife of His Youth
+chesnutt-wife,The Wife of His Youth,Charles W. Chesnutt,chesnutt-wife,10-12,short story,United States,reserve,colorism and slavery's aftermath,Wife of His Youth
 cather-pauls-case,Paul's Case,Willa Cather,cather-troll,11-12,short story,United States,note,ends in suicide,Paul's Case
-cather-wagner,A Wagner Matinee,Willa Cather,cather-troll,10-12,short story,United States,in,,Wagner
+cather-wagner,A Wagner Matinee,Willa Cather,cather-troll,10-12,short story,United States,reserve,,Wagner
 crane-open-boat,The Open Boat,Stephen Crane,crane-open,10-12,short story,United States,in,,Open Boat
-crane-bride,The Bride Comes to Yellow Sky,Stephen Crane,crane-open,9-12,short story,United States,in,,Yellow Sky
+crane-bride,The Bride Comes to Yellow Sky,Stephen Crane,crane-open,9-12,short story,United States,reserve,,Yellow Sky
 bierce-owl-creek,An Occurrence at Owl Creek Bridge,Ambrose Bierce,bierce-soldiers,10-12,short story,United States,in,,Owl Creek
-bierce-fables-set,Fantastic Fables (set),Ambrose Bierce,bierce-fables,9-12,fable,United States,in,set of 10 satirical fables,
+bierce-fables-set,Fantastic Fables (set),Ambrose Bierce,bierce-fables,9-12,fable,United States,reserve,set of 10 satirical fables,
 chopin-hour,The Story of an Hour,Kate Chopin,chopin-awakening,10-12,short story,United States,in,,Story of an Hour
 chopin-desiree,Desiree's Baby,Kate Chopin,chopin-bayou,10-12,short story,United States,note,race and slavery; hard history,Baby
 yellow-wallpaper,The Yellow Wallpaper,Charlotte Perkins Gilman,gilman-wallpaper,11-12,short story,United States,note,postpartum mental illness,wallpaper
-harte-outcasts,The Outcasts of Poker Flat,Bret Harte,harte-luck,9-12,short story,United States,in,,Poker Flat
-harte-luck,The Luck of Roaring Camp,Bret Harte,harte-luck,9-12,short story,United States,in,,Roaring Camp
-twain-hadleyburg,The Man That Corrupted Hadleyburg,Mark Twain,twain-hadleyburg,11-12,short story,United States,in,,Hadleyburg
-winesburg-set,"Winesburg, Ohio (selected tales)",Sherwood Anderson,anderson-winesburg,12,short story,United States,in,"set of 4, picked in processing",Winesburg
+harte-outcasts,The Outcasts of Poker Flat,Bret Harte,harte-luck,9-12,short story,United States,reserve,,Poker Flat
+harte-luck,The Luck of Roaring Camp,Bret Harte,harte-luck,9-12,short story,United States,reserve,,Roaring Camp
+twain-hadleyburg,The Man That Corrupted Hadleyburg,Mark Twain,twain-hadleyburg,11-12,short story,United States,reserve,,Hadleyburg
+winesburg-set,"Winesburg, Ohio (selected tales)",Sherwood Anderson,anderson-winesburg,12,short story,United States,reserve,"set of 4, picked in processing",Winesburg
 tagore-kabuliwala,The Cabuliwallah,Rabindranath Tagore,tagore-hungry,6-10,short story,India,in,,Cabuliwallah
-tagore-postmaster,The Postmaster,Rabindranath Tagore,tagore-hungry,9-12,short story,India,in,,Postmaster
+tagore-postmaster,The Postmaster,Rabindranath Tagore,tagore-hungry,9-12,short story,India,reserve,,Postmaster
 tagore-hungry,The Hungry Stones,Rabindranath Tagore,tagore-hungry,10-12,short story,India,reserve,,Hungry Stones
-gitanjali-set,Gitanjali (selected poems),Rabindranath Tagore,tagore-gitanjali,9-12,poem,India,in,set incl. 'Where the mind is without fear',without fear
+gitanjali-set,Gitanjali (selected poems),Rabindranath Tagore,tagore-gitanjali,9-12,poem,India,reserve,set incl. 'Where the mind is without fear',without fear
 prophet-set,The Prophet (selected chapters),Kahlil Gibran,gibran-prophet,9-12,poem,Lebanon,in,"set: On Children, On Friendship, On Work, On Joy and Sorrow",On Children
-dunbar-nelson-rocque,The Goodness of St. Rocque,Alice Dunbar-Nelson,dunbar-nelson-rocque,9-12,short story,United States,in,,St. Rocque
+dunbar-nelson-rocque,The Goodness of St. Rocque,Alice Dunbar-Nelson,dunbar-nelson-rocque,9-12,short story,United States,reserve,,St. Rocque
 frost-road,The Road Not Taken,Robert Frost,frost-interval,7-12,poem,United States,in,,Road Not Taken
 frost-woods,Stopping by Woods on a Snowy Evening,Robert Frost,frost-hampshire,5-12,poem,United States,in,,Stopping by Woods
 frost-gold,Nothing Gold Can Stay,Robert Frost,frost-hampshire,6-12,poem,United States,in,,Nothing Gold
@@ -408,7 +408,7 @@ dickinson-success,Success is counted sweetest,Emily Dickinson,dickinson-poems,8-
 whitman-captain,O Captain! My Captain!,Walt Whitman,whitman-leaves,6-12,poem,United States,in,,O Captain
 whitman-america,I Hear America Singing,Walt Whitman,whitman-leaves,5-12,poem,United States,in,,America Singing
 whitman-astronomer,When I Heard the Learn'd Astronomer,Walt Whitman,whitman-leaves,7-12,poem,United States,in,,Learn'd Astronomer
-whitman-spider,A Noiseless Patient Spider,Walt Whitman,whitman-leaves,9-12,poem,United States,in,,Patient Spider
+whitman-spider,A Noiseless Patient Spider,Walt Whitman,whitman-leaves,9-12,poem,United States,reserve,,Patient Spider
 whitman-myself,Song of Myself (sections 1 to 6),Walt Whitman,whitman-leaves,10-12,poem,United States,in,,Song of Myself
 hughes-rivers,The Negro Speaks of Rivers,Langston Hughes,hughes-weary,7-12,poem,United States,in,,Speaks of Rivers
 hughes-mother,Mother to Son,Langston Hughes,hughes-weary,5-12,poem,United States,in,,Mother to Son
@@ -418,54 +418,47 @@ hughes-weary-blues,The Weary Blues,Langston Hughes,hughes-weary,9-12,poem,United
 hughes-dream-variations,Dream Variations,Langston Hughes,hughes-weary,6-12,poem,United States,in,,Dream Variations
 mckay-if-we-must,If We Must Die,Claude McKay,mckay-harlem,10-12,poem,Jamaica / United States,note,written after the 1919 race riots,If We Must Die
 mckay-america,America,Claude McKay,mckay-harlem,10-12,poem,Jamaica / United States,in,,America
-mckay-tropics,The Tropics in New York,Claude McKay,mckay-harlem,8-12,poem,Jamaica / United States,in,,Tropics in New York
+mckay-tropics,The Tropics in New York,Claude McKay,mckay-harlem,8-12,poem,Jamaica / United States,reserve,,Tropics in New York
 cullen-incident,Incident,Countee Cullen,cullen-color,8-12,poem,United States,note,a child hears a racial slur,Incident
 cullen-heritage,Heritage,Countee Cullen,cullen-color,11-12,poem,United States,in,,Heritage
-cullen-yet,Yet Do I Marvel,Countee Cullen,cullen-color,10-12,poem,United States,in,,Yet Do I Marvel
+cullen-yet,Yet Do I Marvel,Countee Cullen,cullen-color,10-12,poem,United States,reserve,,Yet Do I Marvel
 johnson-lift,Lift Every Voice and Sing,James Weldon Johnson,johnson-book,4-12,poem,United States,in,,Lift Every Voice
-johnson-book-set,The Book of American Negro Poetry (selected),James Weldon Johnson (editor),johnson-book,8-12,poem,United States,in,"set of 8 by different poets, picked in processing",
+johnson-book-set,The Book of American Negro Poetry (selected),James Weldon Johnson (editor),johnson-book,8-12,poem,United States,reserve,"set of 8 by different poets, picked in processing",
 dunbar-mask,We Wear the Mask,Paul Laurence Dunbar,dunbar-poems,8-12,poem,United States,in,,Wear the Mask
 dunbar-sympathy,Sympathy,Paul Laurence Dunbar,dunbar-poems,8-12,poem,United States,in,,caged bird
-dunbar-douglass,Douglass,Paul Laurence Dunbar,dunbar-poems,9-12,poem,United States,in,,Douglass
+dunbar-douglass,Douglass,Paul Laurence Dunbar,dunbar-poems,9-12,poem,United States,reserve,,Douglass
 yeats-innisfree,The Lake Isle of Innisfree,W. B. Yeats,yeats-poems,7-12,poem,Ireland,in,,Innisfree
-yeats-old,When You Are Old,W. B. Yeats,yeats-poems,10-12,poem,Ireland,in,,When You Are Old
+yeats-old,When You Are Old,W. B. Yeats,yeats-poems,10-12,poem,Ireland,reserve,,When You Are Old
 yeats-stolen,The Stolen Child,W. B. Yeats,yeats-poems,7-12,poem,Ireland,in,,Stolen Child
-eliot-waste-land,The Waste Land,T. S. Eliot,eliot-waste,12,poem,England,in,,April is the cruellest
+eliot-waste-land,The Waste Land,T. S. Eliot,eliot-waste,12,poem,England,reserve,,April is the cruellest
 eliot-prufrock,The Love Song of J. Alfred Prufrock,T. S. Eliot,eliot-prufrock,11-12,poem,England,in,,Prufrock
 millay-candle,First Fig,Edna St. Vincent Millay,millay-harp,9-12,poem,United States,in,,My candle burns
-millay-renascence,Renascence,Edna St. Vincent Millay,millay-renascence,9-12,poem,United States,in,,Renascence
+millay-renascence,Renascence,Edna St. Vincent Millay,millay-renascence,9-12,poem,United States,reserve,,Renascence
 millay-harp-weaver,The Ballad of the Harp-Weaver,Edna St. Vincent Millay,millay-harp,7-12,poem,United States,in,,Harp-Weaver
-millay-spring,Spring,Edna St. Vincent Millay,millay-second,10-12,poem,United States,in,,To what purpose
+millay-spring,Spring,Edna St. Vincent Millay,millay-second,10-12,poem,United States,reserve,,To what purpose
 teasdale-rains,There Will Come Soft Rains,Sara Teasdale,rainbow-gold,6-12,poem,United States,in,,Soft Rains
 teasdale-barter,Barter,Sara Teasdale,teasdale-rivers,6-12,poem,United States,in,,Barter
 owen-dulce,Dulce et Decorum Est,Wilfred Owen,owen-poems,9-12,poem,England,note,gas attack; war violence,Dulce
-owen-anthem,Anthem for Doomed Youth,Wilfred Owen,owen-poems,9-12,poem,England,in,,Doomed Youth
+owen-anthem,Anthem for Doomed Youth,Wilfred Owen,owen-poems,9-12,poem,England,reserve,,Doomed Youth
 mccrae-flanders,In Flanders Fields,John McCrae,rainbow-gold,5-12,poem,Canada,in,,Flanders
 golden-ozymandias,Ozymandias,Percy Bysshe Shelley,golden-treasury,8-12,poem,England,in,,Ozymandias
 golden-daffodils,I Wandered Lonely as a Cloud,William Wordsworth,golden-treasury,6-12,poem,England,in,,Lonely as a cloud
-golden-autumn,To Autumn,John Keats,golden-treasury,10-12,poem,England,in,,Season of mists
+golden-autumn,To Autumn,John Keats,golden-treasury,10-12,poem,England,reserve,,Season of mists
 golden-tiger,The Tiger,William Blake,golden-treasury,6-12,poem,England,in,,Tiger
 golden-sonnet18,Sonnet 18,William Shakespeare,golden-treasury,8-12,poem,England,in,,summer's day
-golden-sonnet29,Sonnet 29,William Shakespeare,golden-treasury,10-12,poem,England,in,,disgrace with fortune
+golden-sonnet29,Sonnet 29,William Shakespeare,golden-treasury,10-12,poem,England,reserve,,disgrace with fortune
 golden-westminster,Composed upon Westminster Bridge,William Wordsworth,golden-treasury,9-12,poem,England,reserve,,Westminster
 golden-chapman,On First Looking into Chapman's Homer,John Keats,golden-treasury,11-12,poem,England,reserve,,Chapman
 golden-highland,The Solitary Reaper,William Wordsworth,golden-treasury,9-12,poem,England,reserve,,Solitary Reaper
-golden-milton,On His Blindness,John Milton,golden-treasury,10-12,poem,England,in,,His Blindness
+golden-milton,On His Blindness,John Milton,golden-treasury,10-12,poem,England,reserve,,His Blindness
 golden-lucasta,To Lucasta: Going to the Wars,Richard Lovelace,golden-treasury,10-12,poem,England,reserve,,Lucasta
 golden-mutability,Ode to the West Wind,Percy Bysshe Shelley,golden-treasury,11-12,poem,England,reserve,,West Wind
 longfellow-revere,Paul Revere's Ride,Henry Wadsworth Longfellow,longfellow-poems,4-8,poem,United States,in,,Paul Revere
 longfellow-arrow,The Arrow and the Song,Henry Wadsworth Longfellow,longfellow-poems,3-7,poem,United States,reserve,,Arrow and the Song
-longfellow-psalm,A Psalm of Life,Henry Wadsworth Longfellow,longfellow-poems,7-12,poem,United States,in,,Psalm of Life
+longfellow-psalm,A Psalm of Life,Henry Wadsworth Longfellow,longfellow-poems,7-12,poem,United States,reserve,,Psalm of Life
 longfellow-blacksmith,The Village Blacksmith,Henry Wadsworth Longfellow,longfellow-poems,4-8,poem,United States,in,,Village Blacksmith
 longfellow-children-hour,The Children's Hour,Henry Wadsworth Longfellow,longfellow-poems,3-6,poem,United States,reserve,,Children's Hour
 rainbow-gold-set,Rainbow Gold (selected poems for young readers),Sara Teasdale (editor),rainbow-gold,4-8,poem,Various,in,"set of 8, picked in processing",
-gettysburg,The Gettysburg Address,Abraham Lincoln,lincoln-addresses,5-12,speech,United States,in,,Four score
-lincoln-second,Second Inaugural Address,Abraham Lincoln,lincoln-addresses,9-12,speech,United States,in,,malice toward none
-fdr-first,First Inaugural Address,Franklin D. Roosevelt,fdr-inaugural,8-12,speech,United States,in,,fear itself
-jfk-inaugural,Inaugural Address,John F. Kennedy,jfk-inaugural,7-12,speech,United States,in,,ask not
-declaration,The Declaration of Independence,Thomas Jefferson and others,declaration,5-12,document,United States,in,,When in the Course
-eloquence-douglass-july,What to the Slave Is the Fourth of July?,Frederick Douglass,dunbar-nelson-eloquence,9-12,speech,United States,note,slavery; hard history,Fourth of July
-eloquence-set,Masterpieces of Negro Eloquence (selected speeches),Alice Dunbar-Nelson (editor),dunbar-nelson-eloquence,9-12,speech,United States,in,"set of 4 speeches, picked in processing",
 gag-millions-cats,Millions of Cats,Wanda Gag,gag-cats,K-2,picture book,United States,in,Newbery Honor 1929,hundreds of cats
 my-fathers-dragon,My Father's Dragon,Ruth Stiles Gannett,gannett-dragon,1-4,short story,United States,in,chapter set; Newbery Honor 1949,Elmer
 stormy-mistys-foal,"Stormy, Misty's Foal",Marguerite Henry,henry-stormy,3-6,short story,United States,in,chapter set,Stormy
@@ -508,7 +501,7 @@ hemingway-sun,The Sun Also Rises,Ernest Hemingway,hemingway-sun,11-12,short stor
 faulkner-sound,The Sound and the Fury,William Faulkner,faulkner-sound,11-12,short story,United States,note,"chapter set; slurs, hard history of the Jim Crow South",Benjy
 fitzgerald-winter,Winter Dreams,F. Scott Fitzgerald,fitzgerald-sad,9-12,short story,United States,in,,Winter Dreams
 fitzgerald-rich-boy,The Rich Boy,F. Scott Fitzgerald,fitzgerald-sad,11-12,short story,United States,in,,The Rich Boy
-hurston-colored-me,How It Feels to Be Colored Me,Zora Neale Hurston,hurston-colored,9-12,speech,United States,in,essay,colored
+hurston-colored-me,How It Feels to Be Colored Me,Zora Neale Hurston,hurston-colored,9-12,essay,United States,in,essay,colored
 hurston-eatonville,The Eatonville Anthology,Zora Neale Hurston,hurston-eatonville,9-12,short story,United States,in,,Eatonville
 caroling-dusk,Caroling Dusk: Harlem Renaissance poems (selected),Countee Cullen (editor),cullen-caroling,8-12,poem,United States,in,"set, picked in processing (Hughes, Bontemps, Bennett, Cullen and more)",
 call-of-cthulhu,The Call of Cthulhu,H. P. Lovecraft,lovecraft-cthulhu,10-12,short story,United States,note,"racist descriptions, teacher note",Cthulhu
@@ -528,16 +521,91 @@ piper-little-fuzzy,Little Fuzzy,H. Beam Piper,piper-fuzzy,6-10,short story,Unite
 asimov-youth,Youth,Isaac Asimov,asimov-youth,6-9,short story,United States,in,,Slim
 doctorow-little-brother,Little Brother,Cory Doctorow,doctorow-brother,9-12,short story,United States,note,"chapter set; CC BY-NC-SA; police detention, some language",Marcus
 doctorow-printcrime,Printcrime,Cory Doctorow,doctorow-printcrime,8-12,short story,England,in,CC BY-NC-SA,printer
-fdr-four-freedoms,The Four Freedoms,Franklin D. Roosevelt,fdr-1941,6-12,speech,United States,in,,
-fdr-infamy,Day of Infamy Address,Franklin D. Roosevelt,fdr-infamy,5-12,speech,United States,in,,
-eisenhower-farewell,Farewell Address,Dwight D. Eisenhower,eisenhower-farewell,9-12,speech,United States,in,,
-jfk-moon,We Choose to Go to the Moon,John F. Kennedy,jfk-moon,5-12,speech,United States,in,,
-lbj-we-shall-overcome,The American Promise (We Shall Overcome),Lyndon B. Johnson,lbj-overcome,7-12,speech,United States,in,,
-apollo-11,Apollo 11: The Eagle Has Landed,NASA,nasa-apollo11,3-12,document,United States,in,transcript excerpt as a whole document (landing and first steps),
-reagan-challenger,Address on the Challenger Disaster,Ronald Reagan,reagan-1986,4-12,speech,United States,in,,
-reagan-brandenburg,Remarks at the Brandenburg Gate,Ronald Reagan,reagan-1987,7-12,speech,United States,in,,
 most-dangerous-game,The Most Dangerous Game,Richard Connell,connell-game,8-11,short story,United States,note,hunting of people; violence,Rainsford
 sandburg-fog,Fog,Carl Sandburg,sandburg-chicago,3-8,poem,United States,in,,little cat feet
 sandburg-chicago-poem,Chicago,Carl Sandburg,sandburg-chicago,9-12,poem,United States,in,,Hog Butcher
 johnson-creation,The Creation,James Weldon Johnson,johnson-trombones,6-12,poem,United States,in,,I'm lonely
 larsen-passing,Passing,Nella Larsen,larsen-passing,11-12,short story,United States,note,chapter set; racism and a violent end,Clare
+land-of-oz,The Marvelous Land of Oz,L. Frank Baum,baum-land,3-6,chapter set,United States,in,,Tip
+ozma-of-oz,Ozma of Oz,L. Frank Baum,baum-ozma,3-6,chapter set,United States,in,,Billina
+five-children-and-it,Five Children and It,E. Nesbit,nesbit-five,3-6,chapter set,England,note,"a few dated portrayals, teacher note",Psammead
+phoenix-carpet,The Phoenix and the Carpet,E. Nesbit,nesbit-phoenix,3-6,chapter set,England,note,the India chapter has dated portrayals,Phoenix
+kari-elephant,Kari the Elephant,Dhan Gopal Mukerji,mukerji-kari,2-5,chapter set,India,in,,Kari
+hardy-boys-chums,The Missing Chums (Hardy Boys 4),Franklin W. Dixon,dixon-chums,4-7,chapter set,United States,note,"1928 original text, check for dated portrayals",Hardy
+hardy-boys-gold,Hunting for Hidden Gold (Hardy Boys 5),Franklin W. Dixon,dixon-gold,4-7,chapter set,United States,note,"1928 original text, check for dated portrayals",Hardy
+hardy-boys-shore,The Shore Road Mystery (Hardy Boys 6),Franklin W. Dixon,dixon-shore,4-7,chapter set,United States,note,"1928 original text, check for dated portrayals",Hardy
+hardy-boys-caves,The Secret of the Caves (Hardy Boys 7),Franklin W. Dixon,dixon-caves,4-7,chapter set,United States,note,"1929 original text, check for dated portrayals",Hardy
+hardy-boys-cabin,The Mystery of Cabin Island (Hardy Boys 8),Franklin W. Dixon,dixon-cabin,4-7,chapter set,United States,note,"1929 original text, check for dated portrayals",Hardy
+hardy-boys-airport,The Great Airport Mystery (Hardy Boys 9),Franklin W. Dixon,dixon-airport,4-7,chapter set,United States,note,"1930 original text, check for dated portrayals",Hardy
+mark-of-zorro,The Mark of Zorro,Johnston McCulley,mcculley-zorro,6-9,chapter set,United States (Spanish California),in,,Zorro
+scarlet-pimpernel,The Scarlet Pimpernel,Baroness Orczy,orczy-pimpernel,8-12,chapter set,England and France,note,"antisemitic portrayal of one character, teacher note",Pimpernel
+thirty-nine-steps,The Thirty-Nine Steps,John Buchan,buchan-steps,8-12,chapter set,Scotland,note,"antisemitic remarks by a character, teacher note",Hannay
+captain-blood,Captain Blood,Rafael Sabatini,sabatini-blood,8-12,chapter set,Caribbean,note,slavery and violence,Peter Blood
+kidnapped,Kidnapped,Robert Louis Stevenson,stevenson-kidnapped,6-9,chapter set,Scotland,in,,David Balfour
+prince-pauper,The Prince and the Pauper,Mark Twain,twain-pauper,5-8,chapter set,England,in,,Tom Canty
+martian-odyssey,A Martian Odyssey,Stanley G. Weinbaum,weinbaum-odyssey,7-10,short story,United States,in,,Tweel
+pygmalions-spectacles,Pygmalion's Spectacles,Stanley G. Weinbaum,weinbaum-spectacles,9-12,short story,United States,in,the first virtual reality story,Ludwig
+pail-of-air,A Pail of Air,Fritz Leiber,leiber-pail,6-9,short story,United States,in,,Pa
+tunnel-under-world,The Tunnel Under the World,Frederik Pohl,pohl-tunnel,9-12,short story,United States,in,,Burckhardt
+beyond-lies-wub,Beyond Lies the Wub,Philip K. Dick,dick-wub,7-10,short story,United States,in,,wub
+dick-crystal-crypt,The Crystal Crypt,Philip K. Dick,dick-crypt,8-11,short story,United States,in,,Martian
+watchbird,Watchbird,Robert Sheckley,sheckley-watchbird,9-12,short story,United States,in,,Watchbird
+deathworld,Deathworld,Harry Harrison,harrison-deathworld,9-12,chapter set,United States,in,,Pyrrus
+stainless-steel-rat,The Stainless Steel Rat,Harry Harrison,harrison-rat,8-12,short story,United States,in,,Slippery Jim
+skylark-of-space,The Skylark of Space,E. E. Smith,smith-skylark,8-11,chapter set,United States,in,,Seaton
+time-traders,The Time Traders,Andre Norton,norton-traders,6-9,chapter set,United States,in,,Ross Murdock
+star-born,Star Born,Andre Norton,norton-starborn,6-9,chapter set,United States,in,,Dalgard
+plague-ship,Plague Ship,Andre Norton,norton-plague,6-9,chapter set,United States,in,,Dane Thorson
+storm-over-warlock,Storm Over Warlock,Andre Norton,norton-warlock,6-9,chapter set,United States,in,,Shann
+star-surgeon,Star Surgeon,Alan E. Nourse,nourse-surgeon,7-10,chapter set,United States,in,,Dal Timgar
+space-viking,Space Viking,H. Beam Piper,piper-viking,9-12,chapter set,United States,note,war violence,Trask
+lone-star-planet,Lone Star Planet,H. Beam Piper,piper-lonestar,8-11,chapter set,United States,in,,Silas
+street-wasnt-there,The Street That Wasn't There,Clifford D. Simak,simak-street,9-12,short story,United States,in,,Anderson
+planet-savers,The Planet Savers,Marion Zimmer Bradley,bradley-savers,9-12,chapter set,United States,in,,Darkover
+runaway-skyscraper,The Runaway Skyscraper,Murray Leinster,leinster-skyscraper,6-9,short story,United States,in,,Metropolitan Tower
+colour-out-of-space,The Colour Out of Space,H. P. Lovecraft,lovecraft-colour,9-12,short story,United States,in,,Nahum
+dunwich-horror,The Dunwich Horror,H. P. Lovecraft,lovecraft-dunwich,10-12,short story,United States,note,horror violence,Whateley
+pickmans-model,Pickman's Model,H. P. Lovecraft,lovecraft-pickman,10-12,short story,United States,in,,Pickman
+christie-adversary,The Secret Adversary,Agatha Christie,christie-adversary,7-10,chapter set,England,in,first Tommy and Tuppence,Tuppence
+christie-brown-suit,The Man in the Brown Suit,Agatha Christie,christie-brown,8-12,chapter set,England and South Africa,note,"colonial setting, dated portrayals",Anne
+christie-big-four,The Big Four,Agatha Christie,christie-bigfour,8-12,chapter set,England,note,"dated portrayal of a Chinese villain, teacher note",Poirot
+christie-blue-train,The Mystery of the Blue Train,Agatha Christie,christie-bluetrain,8-12,chapter set,France,in,,Poirot
+christie-seven-dials,The Seven Dials Mystery,Agatha Christie,christie-dials,8-12,chapter set,England,in,,Bundle
+christie-partners,Partners in Crime (selected stories),Agatha Christie,christie-partners,7-10,short story,England,in,"set, picked in processing",
+christie-quin,The Mysterious Mr. Quin (selected stories),Agatha Christie,christie-quin,9-12,short story,England,in,"set, picked in processing",
+sayers-clouds,Clouds of Witness,Dorothy L. Sayers,sayers-clouds,9-12,chapter set,England,in,,Wimsey
+sayers-strong-poison,Strong Poison,Dorothy L. Sayers,sayers-poison,9-12,chapter set,England,in,first Harriet Vane,Harriet
+lord-peter-views,Lord Peter Views the Body (selected stories),Dorothy L. Sayers,sayers-views,9-12,short story,England,in,"set, picked in processing",
+inimitable-jeeves,The Inimitable Jeeves (selected stories),P. G. Wodehouse,wodehouse-inimitable,9-12,short story,England,in,"set, picked in processing",
+very-good-jeeves,"Very Good, Jeeves (selected stories)",P. G. Wodehouse,wodehouse-verygood,9-12,short story,England,in,"set, picked in processing",
+death-archbishop,Death Comes for the Archbishop,Willa Cather,cather-archbishop,11-12,chapter set,United States (New Mexico),note,colonial framing of Native and Mexican people,Latour
+babbitt,Babbitt,Sinclair Lewis,lewis-babbitt,11-12,chapter set,United States,in,,Babbitt
+age-of-innocence,The Age of Innocence,Edith Wharton,wharton-innocence,11-12,chapter set,United States,in,,Newland Archer
+this-side-paradise,This Side of Paradise,F. Scott Fitzgerald,fitzgerald-paradise,11-12,chapter set,United States,in,,Amory
+show-boat,Show Boat,Edna Ferber,ferber-showboat,11-12,chapter set,United States,note,"racism and slurs, teacher note",Magnolia
+sea-wolf,The Sea-Wolf,Jack London,london-seawolf,9-12,chapter set,United States,note,violence,Wolf Larsen
+purple-sage,Riders of the Purple Sage,Zane Grey,grey-purple,9-12,chapter set,United States,note,"anti-Mormon framing, violence",Lassiter
+mysterious-island,The Mysterious Island,Jules Verne,verne-island,6-9,chapter set,France,note,"a dated portrayal of Neb, teacher note",Cyrus Harding
+earths-core,At the Earth's Core,Edgar Rice Burroughs,burroughs-earthcore,6-9,chapter set,United States,in,,Pellucidar
+land-time-forgot,The Land That Time Forgot,Edgar Rice Burroughs,burroughs-landtime,7-10,chapter set,United States,note,war violence,Caspak
+herland,Herland,Charlotte Perkins Gilman,gilman-herland,10-12,chapter set,United States,note,"eugenic ideas of its time, teacher note",Herland
+conan-red-nails,Red Nails (Conan),Robert E. Howard,howard-rednails,10-12,short story,United States,note,violence,Conan
+dick-piper-woods,Piper in the Woods,Philip K. Dick,dick-piper,8-11,short story,United States,in,,Pipers
+dick-mr-spaceship,Mr. Spaceship,Philip K. Dick,dick-spaceship,9-12,short story,United States,in,,Kramer
+space-tug,Space Tug,Murray Leinster,leinster-tug,6-9,chapter set,United States,in,,Joe Kenmore
+triplanetary,Triplanetary,E. E. Smith,smith-triplanetary,8-11,chapter set,United States,in,,Costigan
+sargasso-of-space,The Sargasso of Space,Edmond Hamilton,hamilton-sargasso,7-10,short story,United States,in,,Pallas
+cosmic-express,The Cosmic Express,Jack Williamson,williamson-express,7-10,short story,United States,in,,Eric
+dorothy-wizard-oz,Dorothy and the Wizard in Oz,L. Frank Baum,baum-dorothy,3-6,chapter set,United States,in,,Eureka
+right-ho-jeeves,"Right Ho, Jeeves",P. G. Wodehouse,wodehouse-rightho,9-12,chapter set,England,in,,Gussie
+starmans-quest,Starman's Quest,Robert Silverberg,silverberg-starman,6-9,chapter set,United States,in,,Alan
+key-out-of-time,Key Out of Time,Andre Norton,norton-keytime,6-9,chapter set,United States,in,,Ross
+star-hunter,Star Hunter,Andre Norton,norton-hunter,7-10,chapter set,United States,in,,Vye
+year-big-thaw,Year of the Big Thaw,Marion Zimmer Bradley,bradley-thaw,6-9,short story,United States,in,,thaw
+dick-skull,The Skull,Philip K. Dick,dick-skull,9-12,short story,United States,in,,Conger
+dick-hanging-stranger,The Hanging Stranger,Philip K. Dick,dick-hanging,10-12,short story,United States,note,horror,Loyce
+emerald-city-oz,The Emerald City of Oz,L. Frank Baum,baum-emerald,3-6,chapter set,United States,in,,Emerald City
+treasure-seekers,The Story of the Treasure Seekers,E. Nesbit,nesbit-seekers,3-6,chapter set,England,in,,Bastable
+rebecca-sunnybrook,Rebecca of Sunnybrook Farm,Kate Douglas Wiggin,wiggin-rebecca,4-7,chapter set,United States,in,,Rebecca
+space-prison,Space Prison,Tom Godwin,godwin-prison,8-11,chapter set,United States,note,violence,Ragath
+gamblers-world,Gambler's World,Keith Laumer,laumer-gambler,9-12,short story,United States,in,,Retief
