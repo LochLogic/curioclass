@@ -12,3 +12,5 @@ library/*/art/
 # tool bundles are build output (build_site.py and check_tools.py remake them from src.html)
 tools/*/*.html
 !tools/*/src.html
+!tools/elements-inspector/elements-inspector.html
+!tools/state-quest/state-quest.html
