@@ -10,13 +10,14 @@
   ],
   "grades_label": "Grades K-2",
   "third_party": [],
-  "updated": "2026-10-23",
+  "updated": "2026-10-26",
   "hook": "Travel the world through 14 real works of art, from a giant wave in Japan to a blue hippo from Egypt. Look closer, say what you see and feel, and collect a passport stamp for every visit.",
   "outcome": "Describe what they see in artworks from many cultures, share how art makes them feel, and connect each work to the people and place that made it",
   "minutes": "10-25",
   "sources": [
     "Artworks: The Metropolitan Museum of Art, Open Access (public domain, CC0)",
     "World map: Natural Earth (public domain)",
-    "Illustrations generated with Google Gemini, edited for Curio Class"
+    "Illustrations generated with Google Gemini, edited for Curio Class",
+    "Narration generated with Qwen3-TTS (Apache 2.0), cloning a Google Gemini text-to-speech voice"
   ]
 }

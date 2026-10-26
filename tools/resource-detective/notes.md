@@ -19,3 +19,4 @@ Everything we use started as a natural resource: trees, plants, water, soil, roc
 - Some cases accept more than one fair answer, and the detective explains why (orange trees are plants too).
 - Solved cases get a stamp, so the class can see which ones are left.
 - Sound starts on (the Sound button turns it off). There's no score.
+- A narrator voice (an old park ranger) reads each new case, each clue as it is pinned up, and the trail as it is followed. **Read** repeats the last thing the detective said, or the newest clue. With Sound off only **Read** speaks.

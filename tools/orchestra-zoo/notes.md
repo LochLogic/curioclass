@@ -41,3 +41,9 @@ Pick a **Melody**, a **Bass** and a **Beat** instrument and press **Play the ban
 - The recordings are real instruments from the University of Iowa Musical Instrument Samples, free for any use. Single notes are re-pitched in the browser to play the tunes. The harp, timpani, snare drum, bass drum and triangle are synthesized.
 - Escape stops any sound. Space plays and stops the band.
 - Turning Motion off stops the bouncing and floating notes; the music is unchanged.
+
+## Voice
+
+- A narrator (the playful-friend voice from the bank) says a welcome for each mode, each family's intro, each instrument's fact, the guessing question and the right-answer lines, once the class taps or presses a key. Nothing talks before the first tap.
+- The narrator waits for the music: it never talks over an instrument, the band or Play all, and a tune starting cuts the line short.
+- **🔊 Read** stops the music and says the instructions on screen. **Sound** off silences the narrator at once.

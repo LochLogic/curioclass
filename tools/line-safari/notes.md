@@ -37,3 +37,10 @@
 
 - Lines, shapes and colors are three of the elements of art. Paint Mixer (grades 3-5) goes further with color.
 - Turning Motion off shows each line at once instead of drawing it; the teacher sets the pace either way.
+
+## Voice
+
+- A narrator (the bright-teacher voice from the bank) says every fixed line once the class taps or presses a key: a welcome for each mode, the question at each Lines stop, the name and both card sentences when a line is named, and short feedback in Shapes and Colors. Nothing talks before the first tap.
+- **🔊 Read** says the instructions on screen right now (the card in Lines, the message in Shapes and Colors). Read always wins over other narration; tapping again cuts old feedback off, so fast tapping never piles up talk.
+- **Sound** off silences narration and chimes; Read still speaks. Turning Sound back on says the mode's welcome if it was never heard.
+- Spoken counts are left out on purpose: the screen says "2 of 4", the narrator says "Keep looking!".

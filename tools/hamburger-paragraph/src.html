@@ -23,7 +23,7 @@ Content CC BY 4.0, code MIT. curioclass.org
 }
 *{box-sizing:border-box}
 html,body{margin:0;height:100%}
-body{background:var(--paper);color:var(--ink);display:grid;grid-template-rows:auto 1fr;min-height:100vh}
+body{background:var(--paper);color:var(--ink);display:grid;grid-template-rows:auto minmax(0,1fr);height:100vh;overflow:hidden}
 button,input{font:inherit;color:inherit}
 button{cursor:pointer}
 :focus-visible{outline:4px solid var(--focus);outline-offset:3px}
@@ -38,7 +38,12 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
 .stage{position:relative;overflow:hidden;background:#f3d9b4;min-height:340px}
 .stage svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
 
-.panel{background:#fff;border-left:3px solid var(--line);padding:16px 18px;display:flex;flex-direction:column;gap:12px;overflow:auto}
+.panel{background:#fff;border-left:3px solid var(--line);padding:16px 18px;display:flex;flex-direction:column;gap:12px;overflow:hidden;min-height:0}
+/* only the sentences (or the Write your own boxes) scroll, so the place buttons and Serve always show */
+#build,#write{flex:1 1 auto;min-height:0;overflow:auto;display:flex;flex-direction:column;gap:8px;padding:2px 3px 4px}
+#build h2{flex:none}
+.panel>*:not(#build):not(#write){flex:none}
+.actions{display:flex;gap:8px;align-items:stretch}.actions .serve{flex:1}
 @media (max-width:759px){.panel{border-left:0;border-top:3px solid var(--line)}}
 .panel h2{margin:4px 0 0;font:700 13px/1 'Segoe UI',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
 .topics{display:flex;flex-wrap:wrap;gap:6px}
@@ -57,8 +62,8 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
 .serve{border:0;border-radius:16px;min-height:62px;font:800 21px/1 'Segoe UI',sans-serif;color:#fff;background:var(--ketchup);box-shadow:0 5px 0 #8e2a1c}
 .serve:active{transform:translateY(3px);box-shadow:0 2px 0 #8e2a1c}
 .serve:disabled{opacity:.5}
-.small-btn{border:2px solid var(--line);background:#fff;border-radius:999px;padding:8px 14px;font-weight:700;min-height:44px;align-self:flex-start}
-.write{display:grid;gap:8px}
+.small-btn{border:2px solid var(--line);background:#fff;border-radius:999px;padding:8px 14px;font-weight:700;min-height:44px}
+.write label{flex:none}
 .write label{display:grid;gap:4px;font-weight:700;font-size:13px;color:var(--muted)}
 .write input{border:2px solid var(--line);border-radius:10px;padding:10px;font:600 16px Georgia,serif;color:var(--ink)}
 .hidden{display:none!important}
@@ -175,8 +180,10 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
       <label>Bottom bun: wrap it up<input data-slot="bottom" maxlength="120"></label>
     </div>
 
-    <button class="serve" id="serve">Serve it! 🛎️</button>
-    <button class="small-btn" id="restart">↺ Start over</button>
+    <div class="actions">
+      <button class="serve" id="serve">Serve it! 🛎️</button>
+      <button class="small-btn" id="restart">↺ Start over</button>
+    </div>
   </aside>
 </main>
 
@@ -293,6 +300,7 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
     return out;
   }
 
+  let topY = 600;
   function drawBurger() {
     const stack = $('stack'), tags = $('tags');
     stack.replaceChildren(); tags.replaceChildren(); $('topper').replaceChildren();
@@ -307,6 +315,7 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
       L.mid = y - lh * .5; L.topY = y - lh;
       y -= lh * (L.slot === 'bottom' ? .62 : L.slot === 'top' ? 1 : .55);
     });
+    topY = list.length ? list.at(-1).topY : 600;   // where the flag goes
     // Sentence tags in a column on the left, top bun at the top, with a line to their layer
     [...list].reverse().forEach((L, i) => {
       const ty = tagTop + i * tagGap;
@@ -327,8 +336,10 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
   }
 
   // ---------- the bear ----------
-  function bear(mood = 'bear', say = '') {
+  let bearParts = [];   // what the bear's bubble says, as recorded lines (Read and narration speak these)
+  function bear(mood = 'bear', say = '', parts) {
     const g = $('bear-g');
+    bearParts = say ? (parts || [say]) : [];
     const name = mood, [w, h] = sizeOf(name), bh = 360, bw = bh * w / h;
     g.innerHTML = `<image class="bear" href="${ART[name]}" x="${-bw / 2}" y="${-bh + 20}" width="${bw}" height="${bh}"/>`;
     if (say) {
@@ -404,29 +415,43 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
   function verdict() {
     const t = TOPICS[state.topic], own = state.topic === 'own';
     const all = [state.top, ...state.fills, state.bottom].filter(Boolean);
-    if (!all.length) return {kind: 'empty', mood: 'bear-huh', say: 'An empty plate? Pick a sentence and put it on the burger first.'};
+    if (!all.length) return {kind: 'empty', mood: 'bear-huh', say: BEAR.empty};
     const boots = own ? [] : all.filter(s => roleOf(s) === 'off');
-    if (boots.length) return {kind: 'boot', mood: 'bear-yuck', say: `A boot?! That sentence isn’t about ${t.about}. Take it off the burger!`};
-    if (!state.top) return {kind: 'notop', mood: 'bear-huh', say: 'Where’s the top bun? A paragraph starts with a topic sentence that tells what it’s about.'};
-    if (!state.bottom) return {kind: 'nobottom', mood: 'bear-huh', say: 'No bottom bun! A closing sentence holds the whole paragraph together.'};
-    if (state.fills.length < 2) return {kind: 'thin', mood: 'bear-huh', say: 'Just bread? Add more details to the middle. Two or three is just right.'};
+    if (boots.length) return {kind: 'boot', mood: 'bear-yuck', say: bootLine(t)};
+    if (!state.top) return {kind: 'notop', mood: 'bear-huh', say: BEAR.notop};
+    if (!state.bottom) return {kind: 'nobottom', mood: 'bear-huh', say: BEAR.nobottom};
+    if (state.fills.length < 2) return {kind: 'thin', mood: 'bear-huh', say: BEAR.thin};
     if (!own) {
-      if (roleOf(state.top) !== 'top') return {kind: 'wrongtop', mood: 'bear-huh', say: 'Hmm. That top bun doesn’t tell me what the whole paragraph is about.'};
-      if (roleOf(state.bottom) !== 'bottom') return {kind: 'wrongbottom', mood: 'bear-huh', say: 'Hmm. That bottom bun doesn’t wrap things up. Which sentence sounds like an ending?'};
+      if (roleOf(state.top) !== 'top') return {kind: 'wrongtop', mood: 'bear-huh', say: BEAR.wrongtop};
+      if (roleOf(state.bottom) !== 'bottom') return {kind: 'wrongbottom', mood: 'bear-huh', say: BEAR.wrongbottom};
       const bad = state.fills.find(s => roleOf(s) !== 'fill');
-      if (bad) return {kind: 'wrongfill', mood: 'bear-huh', say: `“${bad}” sounds like a bun, not a filling. Try moving it.`};
+      // spoken as two recorded lines: the sentence itself, then the bear's tip
+      if (bad) return {kind: 'wrongfill', mood: 'bear-huh', say: `“${bad}” ${BEAR.wrongfill}`, parts: [bad, BEAR.wrongfill]};
       if (t.ordered) {
         const order = t.sentences.filter(s => s[0] === 'fill').map(s => s[1]);
         const mine = state.fills.filter(s => order.includes(s));
-        if (mine.join('|') !== order.filter(s => mine.includes(s)).join('|')) return {kind: 'order', mood: 'bear-huh', say: 'The steps are mixed up! Stack them in order: first, next, last.'};
+        if (mine.join('|') !== order.filter(s => mine.includes(s)).join('|')) return {kind: 'order', mood: 'bear-huh', say: BEAR.order};
       }
     }
-    return {kind: 'yum', mood: 'bear-yum', say: 'Mmm! Topic, details and a closing. A perfect paragraph burger!'};
+    return {kind: 'yum', mood: 'bear-yum', say: BEAR.yum};
   }
+  // The bear's lines (voice/lines.json records every one)
+  const BEAR = {
+    empty: 'An empty plate? Pick a sentence and put it on the burger first.',
+    notop: 'Where’s the top bun? A paragraph starts with a topic sentence that tells what it’s about.',
+    nobottom: 'No bottom bun! A closing sentence holds the whole paragraph together.',
+    thin: 'Just bread? Add more details to the middle. Two or three is just right.',
+    wrongtop: 'Hmm. That top bun doesn’t tell me what the whole paragraph is about.',
+    wrongbottom: 'Hmm. That bottom bun doesn’t wrap things up. Which sentence sounds like an ending?',
+    wrongfill: 'That one sounds like a bun, not a filling. Try moving it.',
+    order: 'The steps are mixed up! Stack them in order: first, next, last.',
+    yum: 'Mmm! Topic, details and a closing. A perfect paragraph burger!',
+  };
+  const bootLine = t => `A boot?! That sentence isn’t about ${t.about}. Take it off the burger!`;   // one per burger, all recorded
 
   async function serve() {
     if (state.busy) return;
-    state.busy = true; setBusy(true); hideTicket();
+    state.busy = true; setBusy(true); hideTicket(); hush();
     const v = verdict(), burger = $('burger');
     if (v.kind !== 'empty') {
       // slide the plate along the counter to the bear
@@ -449,7 +474,7 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
       SFX.boing();
     } else if (v.kind === 'yum') {
       SFX.bell();
-      const top = layers().at(-1);
+      const top = {topY};   // layers() makes fresh objects without a position, so the flag used to land at NaN
       $('topper').innerHTML = `<g class="flag"><path d="M470 ${top.topY + 10}V${top.topY - 70}" stroke="#c9a46a" stroke-width="5" stroke-linecap="round"/>
         <path d="M470 ${top.topY - 70}l52 14-52 14z" fill="#d2553a" stroke="#2a211c" stroke-width="2.5" stroke-linejoin="round"/></g>
         <g class="steam" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity=".8"><path d="M420 ${top.topY - 20}q-12-18 0-34t0-34"/><path d="M525 ${top.topY - 24}q-12-18 0-34t0-34"/></g>`;
@@ -457,9 +482,12 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
     } else {
       SFX.boing();
     }
-    bear(v.mood, v.say);
-    if (v.kind === 'yum') { SFX.yum(); await wait(1600); showTicket(); }
-    await wait(readMs(v.say));
+    bear(v.mood, v.say, v.parts);
+    // the bear speaks once its sound effect is over, never on top of it
+    if (v.kind === 'yum') SFX.yum();
+    const parts = bearParts, spoken = narrate('bear:' + parts.join('|'), parts, {once: false, delay: v.kind === 'yum' ? 800 : 400, still: () => bearParts === parts});
+    if (v.kind === 'yum') { await wait(1600); showTicket(); }
+    await Promise.all([wait(readMs(v.say)), spoken]);
     // the plate comes back unless the burger fell apart; then the class rebuilds
     if (v.kind === 'notop' || v.kind === 'nobottom') {
       burger.style.transform = '';
@@ -488,6 +516,7 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
     Object.assign(state, {top: null, fills: [], bottom: null, trash: [], picked: null, last: null});
     document.querySelectorAll('#write input').forEach(i => i.value = '');
     hideTicket(); bear(); drawTopics(); drawTray(); drawBurger();
+    hush(); welcome();   // a new burger stops any talk; its welcome comes if it was never said
   }
   $('serve').onclick = serve;
   $('restart').onclick = restart;
@@ -496,8 +525,12 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
     state.sound = !state.sound;
     e.currentTarget.setAttribute('aria-pressed', state.sound);
     e.currentTarget.textContent = state.sound ? '🔔 Sound' : '🔇 Sound';
+    if (!state.sound) hush(); else welcome();   // Sound back on: the welcome, if it was never said
   };
-  // Read aloud with the most natural voice this browser offers
+
+  // Only typed text (Write your own) has no recording; it falls back to the browser's voice.
+  // ---------- voice: a recorded clip (voice/lines.json) when the exact text has one, else the browser's best voice ----------
+  const CLIPS = "voice:*";
   function bestVoice() {
     const voices = speechSynthesis.getVoices().filter(v => /^en(-|_|$)/i.test(v.lang));
     const score = v => (/natural|neural/i.test(v.name) ? 50 : 0) + (/premium|enhanced/i.test(v.name) ? 40 : 0) +
@@ -506,28 +539,94 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
     return voices.sort((a, b) => score(b) - score(a))[0] || null;
   }
   if ('speechSynthesis' in window) {
-    // Chrome fills its voice list late; hold an early utterance until the good voices load, or it falls back to a robotic default
-    const speak = speechSynthesis.speak.bind(speechSynthesis);
+    // Chrome fills its voice list late, so an early line waits for it; cancel() also drops a line still waiting
+    const speak = speechSynthesis.speak.bind(speechSynthesis), cancel = speechSynthesis.cancel.bind(speechSynthesis), held = new Set();
     speechSynthesis.speak = u => {
       if (speechSynthesis.getVoices().length) return speak(u);
-      let done = false;
-      const go = () => { if (done) return; done = true; const v = bestVoice(); if (v) { u.voice = v; u.lang = v.lang; } speak(u); };
+      held.add(u);
+      const go = () => { if (!held.delete(u)) return; const v = bestVoice(); if (v) { u.voice = v; u.lang = v.lang; } speak(u); };
       speechSynthesis.addEventListener('voiceschanged', go, {once: true});
       setTimeout(go, 1500);
     };
+    speechSynthesis.cancel = () => { held.forEach(u => u.onend && u.onend()); held.clear(); cancel(); };
     speechSynthesis.getVoices();
   }
-  $('read').onclick = () => {
-    if (!('speechSynthesis' in window)) return;
-    speechSynthesis.cancel();
-    // Read the finished paragraph, else what the bear said, else the picked sentence, else the whole burger top to bottom
-    const ticket = !$('ticket').classList.contains('hidden') && $('ticket').querySelector('p').textContent;
-    const said = $('bear-g').querySelector('.bubble')?.textContent;
-    const text = ticket || said || state.picked || layers().reverse().map(l => l.text).join(' ') || 'Pick a sentence. Does it go on the top bun, in the middle, or on the bottom bun?';
-    const u = new SpeechSynthesisUtterance(text);
-    const v = bestVoice();
-    if (v) { u.voice = v; u.lang = v.lang; }
-    u.rate = .95; u.pitch = 1; speechSynthesis.speak(u);
+  let talk = 0, clip = null, nowKey = '';
+  const voiceLog = [];   // every line that started, for checking (window.__voice)
+  function stopTalk() { talk++; if (clip) { clip.pause(); clip = null; } if ('speechSynthesis' in window) speechSynthesis.cancel(); }
+  function speakOne(text) {
+    voiceLog.push({text, clip: !!CLIPS[text]});
+    return new Promise(done => {
+      if (CLIPS[text]) { clip = new Audio(CLIPS[text]); clip.onended = clip.onerror = () => done(); clip.play().catch(() => done()); return; }
+      if (!('speechSynthesis' in window)) return done();
+      const u = new SpeechSynthesisUtterance(text);
+      const v = bestVoice(); if (v) { u.voice = v; u.lang = v.lang; }
+      u.rate = .95; u.pitch = 1; u.onend = u.onerror = () => done();
+      setTimeout(done, 2500 + 80 * text.length);   // some browsers never fire end; the queue must not stall on them
+      speechSynthesis.speak(u);
+    });
+  }
+  async function say(parts) {
+    stopTalk();
+    const me = talk;
+    for (const p of [].concat(parts)) { if (me !== talk) return; await speakOne(p); await wait(150); }
+  }
+
+  // ---------- narration queue: one line at a time; Read always wins (the collision-lab pattern) ----------
+  const said = new Set(), queued = new Set();
+  let tapped = false, vq = Promise.resolve(), vgen = 0, readP = Promise.resolve();
+  const lineMs = parts => 2500 + 80 * [].concat(parts).join(' ').length;
+  // once: said a single time per page load. still(): checked when the line's turn comes; false drops it (its moment
+  // passed). delay: a pause before it starts, so it never lands on top of a sound effect.
+  function narrate(key, parts, {once = true, still, delay = 0} = {}) {
+    if (!tapped || !state.sound || QUIET() || (once && said.has(key)) || queued.has(key)) return Promise.resolve(false);
+    queued.add(key);
+    const gen = vgen;
+    return vq = vq.then(async () => {
+      await readP;
+      if (delay) await wait(delay);
+      if (gen !== vgen) return false;               // dropped by hush(): not marked said, so its trigger can queue it again
+      queued.delete(key);
+      if ((still && !still()) || QUIET()) return false;
+      if (once) said.add(key);                      // marked when it starts playing, never when queued
+      nowKey = key;
+      await Promise.race([say(parts), wait(lineMs(parts))]);
+      if (nowKey === key) nowKey = '';
+      return true;
+    });
+  }
+  function hush() { vgen++; queued.clear(); vq = Promise.resolve(); readP = Promise.resolve(); nowKey = ''; stopTalk(); }   // a stopped Read clip never ends, so nothing may wait on it
+  function readNow(parts) { hush(); nowKey = 'read'; readP = Promise.race([say(parts), wait(lineMs(parts))]).catch(() => {}).then(() => { if (nowKey === 'read') nowKey = ''; }); }
+  const QUIET = () => false;
+  const WELCOME = 'Let’s build a paragraph burger! Pick a sentence, then choose where it goes.';
+  const OWN = 'Now write your own burger. Type a top bun, three fillings and a bottom bun.';
+  const PICK = 'Pick a sentence. Does it go on the top bun, in the middle, or on the bottom bun?';
+  function welcome() { if (state.topic === 'own') narrate('own', [OWN]); else narrate('welcome', [WELCOME]); }
+  // The very first tap: decide after that tap's own click has run. If it queued its own line, was Read or Sound, or
+  // served the burger, skip the welcome without marking it said (Start over, another burger or Sound on bring it back).
+  for (const ev of ['pointerdown', 'keydown']) addEventListener(ev, e => {
+    if (tapped) return; tapped = true;
+    const b = e.target && e.target.closest ? e.target.closest('button') : null;
+    if (b && (b.id === 'sound' || b.id === 'read')) return;
+    const go = () => { removeEventListener('click', go, true); clearTimeout(fb); setTimeout(() => { if (!queued.size && !nowKey && !state.busy) welcome(); }); };
+    addEventListener('click', go, true); const fb = setTimeout(go, 1500);
+  }, true);
+
+  // Read: the finished paragraph, else what the bear said, else the picked sentence, else the whole burger top to bottom
+  function readParts() {
+    if (!$('ticket').classList.contains('hidden')) return [state.top, ...state.fills, state.bottom].filter(Boolean);
+    if (bearParts.length) return bearParts;
+    if (state.picked) return [state.picked];
+    const all = layers().reverse().map(l => l.text);
+    return all.length ? all : [PICK];
+  }
+  $('read').onclick = () => readNow(readParts());
+
+  // for checking: every line the tool can speak (typed Write your own text aside), and each line that started
+  window.__voice = {
+    lines: () => [WELCOME, OWN, PICK, ...Object.values(BEAR),
+      ...Object.values(TOPICS).filter(t => t.sentences.length).flatMap(t => [bootLine(t), ...t.sentences.map(x => x[1])])],
+    log: voiceLog,
   };
 
   restart();

@@ -43,3 +43,9 @@ All 14 are public-domain images from The Metropolitan Museum of Art's Open Acces
 
 - The museum labels use the real titles; the big headings use child-friendly names.
 - Dates are rounded to "about how many years ago" for young children.
+
+## Voice
+
+- A narrator (the knowing-guide voice from the bank) says the hello on the map, each artwork's name and place, the stamp, the first question, each Look closer find, the questions as you tap through them, the compare question and clue, and the passport page. Nothing talks before the first tap.
+- The fact rows and feelings buttons are not read aloud, to keep talk short.
+- **🔊 Read** says what is on screen now, including the Try it activity. **🔔 Sound** (new) turns the narrator off; Motion is unchanged.

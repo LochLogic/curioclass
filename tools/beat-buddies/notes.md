@@ -36,3 +36,9 @@ The **beat** is the steady pulse that keeps going underneath the music, like a h
 - The space bar starts and stops the music.
 - Speeds are 76, 100 and 126 beats a minute.
 - Turning Motion off keeps the music and the hearts but stops the marching, for classes that find movement on screen distracting.
+
+## Voice
+
+- A narrator (the lively-host voice from the bank) says a welcome for each game, short tips, each card's sound and the echo steps, once the class taps or presses a key. Nothing talks before the first tap.
+- The narrator never talks over the beat. It waits until the march or rhythm stops; "Everybody freeze!" plays in the quiet freeze.
+- **🔊 Read** stops the beat and says the instructions on screen. **Sound** off silences the narrator at once.

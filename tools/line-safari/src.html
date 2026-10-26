@@ -110,6 +110,7 @@ canvas.paper{position:absolute;left:262px;top:88px;width:1164px;height:708px;bor
 <body>
 <header>
   <h1>Line Safari <small>Name the lines, find the shapes, mix the colors.</small></h1>
+  <button class="icon-btn" id="read" title="Read the instructions aloud">🔊 Read</button>
   <button class="icon-btn" id="motion" aria-pressed="true" title="Turn animation on or off">✨ Motion</button>
   <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
 </header>
@@ -128,9 +129,13 @@ canvas.paper{position:absolute;left:262px;top:88px;width:1164px;height:708px;bor
   </div>
 </div>
 
+<script src="kit:curio"></script>
 <script>
 (() => {
   const $ = id => document.getElementById(id);
+  // the kit plays the recorded narration (bundle_tool.py fills the voice token); this tool keeps its own Motion and Sound buttons,
+  // so init runs first and the handlers below replace the kit's
+  Curio.init({clips: "voice:*", rate: .95});
   let reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   try { const m = localStorage.getItem('curio-motion'); if (m) reduce = m === 'calm'; } catch {}
   function showMotion() {
@@ -150,7 +155,10 @@ canvas.paper{position:absolute;left:262px;top:88px;width:1164px;height:708px;bor
 
   // ---------- sound ----------
   let ac = null, soundOn = true;
-  $('sound').onclick = () => { soundOn = !soundOn; $('sound').setAttribute('aria-pressed', soundOn); $('sound').textContent = soundOn ? '🔔 Sound' : '🔕 Sound'; };
+  $('sound').onclick = () => {
+    soundOn = !soundOn; $('sound').setAttribute('aria-pressed', soundOn); $('sound').textContent = soundOn ? '🔔 Sound' : '🔕 Sound';
+    if (!soundOn) hush(); else if (tapped && !said.has(VO.welcome[mode])) intro();   // back on: the mode's welcome, if never said
+  };
   function ctx() { if (!ac) { try { ac = new (window.AudioContext || window.webkitAudioContext)(); } catch { return null; } } if (ac.state === 'suspended') ac.resume(); return ac; }
   function tone(f, t0 = 0, d = .3, type = 'triangle', v = .18) {
     const c = soundOn && ctx(); if (!c) return;
@@ -171,13 +179,128 @@ canvas.paper{position:absolute;left:262px;top:88px;width:1164px;height:708px;bor
     n.connect(f).connect(g).connect(c.destination); n.start(t);
   }
 
+  // ---------- voice ----------
+  // Every spoken line, and nothing else, lives in VO (voice/lines.json lists each one; scratch checks compare the two).
+  // voice:lines-start
+  const VO = {
+    welcome: {
+      lines: "Let's go on a line safari with Zebra! Watch each line draw, then say its name.",
+      shapes: 'Our safari camp is made of shapes! Pick a shape below, then find them all.',
+      colors: "Hi! I'm a chameleon. I can change color. Pick a paint and watch me!",
+      draw: 'Pick a line or a shape, and pick a color. Then draw on the paper!',
+    },
+    ask1: ['What kind of line is this?', 'Watch it draw. Can you name it?'],
+    askN: ['What lines are these?', 'Watch them draw. Can you name them?'],
+    // per stop: what the narrator says when it is named, then the card's two sentences
+    stops: [
+      ["It's a horizontal line!", 'It lies down flat, like the ground and the sky meeting far away.', 'Lie your arm down flat, side to side. Now be a sleepy horizontal line!'],
+      ["They're vertical lines!", 'They stand up tall, like grass growing straight up.', 'Stand up tall and straight like a vertical line. Reach to the sky!'],
+      ["They're diagonal lines!", 'They lean, like rain blowing in the wind, or a slide.', 'Lean your body to the side, like a slide. Can you lean the other way?'],
+      ["It's a zigzag line!", 'Up, down, up, down, with sharp points, like mountains!', 'Make a zigzag in the air with your finger: up, down, up, down!'],
+      ["They're curved lines!", 'They bend smoothly, with no points at all, like a rainbow.', 'Draw a big rainbow over your head with both arms.'],
+      ["It's a wavy line!", 'It goes up and down, smooth and gentle, like water in a river.', 'Make your arm a wavy river. Wiggle it slowly side to side.'],
+      ["It's a spiral line!", 'It curls around and around, like a snail shell.', 'Spin your finger in a spiral, from small to big!'],
+      ["It's a loopy line!", 'It makes loops, like a bird doing loop-the-loops in the sky.', 'Fly like a bird and do a loop-the-loop!'],
+      ["It's a dotted line!", 'Dot, dot, dot! Little dots in a row, like footprints on the path.', 'Tap the dots on your knees: tap, tap, tap!'],
+      ['Thick and thin lines!', 'The tree trunk is a thick line. The branches are thin lines.', 'Make your body thick and wide, then thin and skinny!'],
+    ],
+    finale: ['A whole picture made of lines!', 'Lines can be horizontal, vertical, diagonal, zigzag, curved, wavy, spiral, loopy, dotted, thick and thin.'],
+    find: {circle: 'Find every circle!', square: 'Find every square!', triangle: 'Find every triangle!', rectangle: 'Find every rectangle!',
+      oval: 'Find every oval!', diamond: 'Find every diamond!', star: 'Find every star!', heart: 'Find every heart!'},
+    tip: {circle: 'A circle is perfectly round, with no corners.', square: 'A square is 4 sides that are all the same, and 4 corners.',
+      triangle: 'A triangle is 3 sides and 3 corners.', rectangle: 'A rectangle is 4 sides and 4 corners, two long sides and two short.',
+      oval: 'An oval is round like a stretched circle, or an egg.', diamond: 'A diamond is 4 sides, standing on one corner.',
+      star: 'A star is five points, like the stars we draw.', heart: 'A heart is two round bumps on top and a point below.'},
+    is: {circle: "That's a circle!", square: "That's a square!", triangle: "That's a triangle!", rectangle: "That's a rectangle!",
+      oval: "That's an oval!", diamond: "That's a diamond!", star: "That's a star!", heart: "That's a heart!"},
+    not: {circle: 'That one is a circle.', square: 'That one is a square.', triangle: 'That one is a triangle.', rectangle: 'That one is a rectangle.',
+      oval: 'That one is an oval.', diamond: 'That one is a diamond.', star: 'That one is a star.', heart: 'That one is a heart.'},
+    allOf: {circle: 'You found all the circles!', square: 'You found all the squares!', triangle: 'You found all the triangles!',
+      rectangle: 'You found all the rectangles!', oval: 'You found all the ovals!', diamond: 'You found the diamond!', star: 'You found both stars!',
+      heart: 'You found the heart!'},
+    keep: 'Keep looking!', another: 'Pick another shape.', every: 'Every shape in the camp is found!',
+    prim: {red: "I'm red! Now mix in another primary color.", yellow: "I'm yellow! Now mix in another primary color.", blue: "I'm blue! Now mix in another primary color."},
+    sec: {orange: 'Ta-da! I turned orange!', green: 'Ta-da! I turned green!', purple: 'Ta-da! I turned purple!'},
+    miss: {red: "Hmm, I'm red. Try again!", yellow: "Hmm, I'm yellow. Try again!", blue: "Hmm, I'm blue. Try again!",
+      orange: "Hmm, I'm orange. Try again!", green: "Hmm, I'm green. Try again!", purple: "Hmm, I'm purple. Try again!"},
+    hide: {apple: 'Help me hide on the red apple! Which paint is red?', flower: 'Help me hide on the orange flower! Which two colors make orange?',
+      sun: 'Help me hide on the yellow sun! Which paint is yellow?', leaf: 'Help me hide on the green leaf! Which two colors make green?',
+      butterfly: 'Help me hide on the blue butterfly! Which paint is blue?', grapes: 'Help me hide on the purple grapes! Which two colors make purple?'},
+    hid: {apple: "Where did I go? I'm hiding on the red apple! Press Hide and seek to play again.",
+      flower: "Where did I go? I'm hiding on the orange flower! Press Hide and seek to play again.",
+      sun: "Where did I go? I'm hiding on the yellow sun! Press Hide and seek to play again.",
+      leaf: "Where did I go? I'm hiding on the green leaf! Press Hide and seek to play again.",
+      butterfly: "Where did I go? I'm hiding on the blue butterfly! Press Hide and seek to play again.",
+      grapes: "Where did I go? I'm hiding on the purple grapes! Press Hide and seek to play again."},
+  };
+  // voice:lines-end
+  // The queue (the collision-lab pattern): one line at a time; a welcome per mode after the first tap; Read always wins.
+  const said = new Set(), queued = new Set(), vlog = [];
+  let tapped = false, vq = Promise.resolve(), vgen = 0, readP = Promise.resolve(), reading = 0, vcount = 0;
+  const lineMs = parts => parts.reduce((a, t) => a + 2500 + 80 * t.length, 0);
+  // once: said at most once (welcomes). still(): drop the line if its moment passed before it could start. pre: ms to wait first (after a chime)
+  function narrate(parts, o = {}) {
+    parts = [].concat(parts);
+    const key = parts.join('|');
+    if (!tapped || !soundOn || (o.once && (said.has(key) || queued.has(key)))) return false;
+    queued.add(key); vcount++;
+    const gen = vgen;
+    vq = vq.then(async () => {
+      await readP;
+      if (o.pre) await wait(o.pre);
+      if (gen !== vgen) return;                                  // dropped by hush(): not marked said, so its trigger can queue it again
+      queued.delete(key);
+      if (o.still && !o.still()) return;
+      if (o.once) said.add(key);
+      vlog.push(...parts);
+      await Promise.race([Curio.say(parts), wait(lineMs(parts))]);
+    });
+    return true;
+  }
+  // short feedback: drop whatever is waiting or talking (never Read), then say this
+  function cue(parts, o) {
+    if (!tapped || !soundOn) return false;
+    vgen++; queued.clear(); vq = readP; if (!reading) Curio.stop();
+    return narrate(parts, o);
+  }
+  // a stopped clip never fires "ended", so hush also lets go of the Read promise
+  function hush() { vgen++; queued.clear(); vq = Promise.resolve(); readP = Promise.resolve(); reading = 0; Curio.stop(); }
+  function readNow() {
+    hush(); vcount++;
+    const parts = readParts(), me = reading = vcount;
+    vlog.push(...parts);
+    readP = Promise.race([Curio.say(parts, true), wait(lineMs(parts))]).catch(() => {}).then(() => { if (reading === me) reading = 0; });
+  }
+  $('read').onclick = readNow;
+  // what Read speaks: the instructions on screen right now
+  let msgV = [];
+  function readParts() {
+    if (mode === 'lines') return stop >= STOPS.length ? VO.finale : revealed ? VO.stops[stop] : STOPS[stop].paths.length > 1 ? VO.askN : VO.ask1;
+    if (mode === 'draw') return [VO.welcome.draw];
+    return msgV;
+  }
+  // the mode's welcome (once), and in Lines the question for the stop on screen
+  function intro() {
+    narrate(VO.welcome[mode], {once: true});
+    if (mode === 'lines' && stop < STOPS.length && !revealed) { const at = stop; narrate(STOPS[at].paths.length > 1 ? VO.askN : VO.ask1, {still: () => mode === 'lines' && stop === at && !revealed}); }
+  }
+  // The first tap: decide after its own click has run. If it queued a line (or was Read), the welcome waits for another time.
+  for (const ev of ['pointerdown', 'keydown']) addEventListener(ev, e => {
+    if (tapped) return; tapped = true;
+    const n0 = vcount;
+    const go = () => { removeEventListener('click', go, true); clearTimeout(fb); setTimeout(() => { if (vcount === n0) intro(); }); };
+    addEventListener('click', go, true); const fb = setTimeout(go, 1500);
+  }, true);
+
   // ---------- modes ----------
   let mode = 'lines';
   document.querySelectorAll('[data-mode]').forEach(b => b.onclick = () => setMode(b.dataset.mode));
   function setMode(m) {
+    hush();
     mode = m; lineRun++;
     document.querySelectorAll('[data-mode]').forEach(b => b.setAttribute('aria-pressed', b.dataset.mode === m));
     $('bg').hidden = m === 'draw';
+    narrate(VO.welcome[m], {once: true});   // queued before the mode's own first line (Lines asks about its first stop)
     ({lines: renderLines, shapes: renderShapes, colors: renderColors, draw: renderDraw})[m]();
   }
 
@@ -189,17 +312,17 @@ canvas.paper{position:absolute;left:262px;top:88px;width:1164px;height:708px;bor
   const grass = []; for (let x = 300; x <= 1420; x += 58) if (x < 1030 || x > 1140) grass.push(`M${x} 808 L${x} ${808 - 40 - (x * 37 % 45)}`);
   const rain = []; for (let k = 0; k < 7; k++) rain.push(`M${196 + k * 26} ${214 + (k % 2) * 14} L${170 + k * 26} ${290 + (k % 2) * 14}`);
   const STOPS = [
-    {name: 'Horizontal line', paths: ['M0 522 L1440 522'], w: 9, color: '#8a6a32', say: 'It lies down flat, like the ground and the sky meeting far away.', move: 'Lie your arm down flat, side to side. Now be a sleepy horizontal line!'},
-    {name: 'Vertical lines', paths: grass, w: 7, color: '#3f8f3a', say: 'They stand up tall, like grass growing straight up.', move: 'Stand up tall and straight like a vertical line. Reach to the sky!'},
-    {name: 'Diagonal lines', paths: rain, w: 7, color: '#4a7fb5', say: 'They lean, like rain blowing in the wind, or a slide.', move: 'Lean your body to the side, like a slide. Can you lean the other way?',
+    {name: 'Horizontal line', paths: ['M0 522 L1440 522'], w: 9, color: '#8a6a32'},
+    {name: 'Vertical lines', paths: grass, w: 7, color: '#3f8f3a'},
+    {name: 'Diagonal lines', paths: rain, w: 7, color: '#4a7fb5',
       extra: 'M150 206 Q150 160 196 166 Q210 124 258 136 Q292 108 326 140 Q372 140 368 182 Q382 210 344 212 L160 212 Q140 212 150 206 Z'},
-    {name: 'Zigzag line', paths: ['M470 522 L560 392 L640 470 L740 332 L840 462 L920 382 L1000 522'], w: 10, color: '#7a55a8', say: 'Up, down, up, down, with sharp points, like mountains!', move: 'Make a zigzag in the air with your finger: up, down, up, down!'},
-    {name: 'Curved lines', paths: ['M1010 522 A130 130 0 0 1 1270 522', 'M1036 522 A104 104 0 0 1 1244 522', 'M1062 522 A78 78 0 0 1 1218 522'], w: 12, colors: ['#e8505b', '#f4a52b', '#4a9be0'], say: 'They bend smoothly, with no points at all, like a rainbow.', move: 'Draw a big rainbow over your head with both arms.'},
-    {name: 'Wavy line', paths: [wavy], w: 10, color: '#2f7fd0', say: 'It goes up and down, smooth and gentle, like water in a river.', move: 'Make your arm a wavy river. Wiggle it slowly side to side.'},
-    {name: 'Spiral line', paths: [spiral], w: 7, color: '#e07a1e', say: 'It curls around and around, like a snail shell.', move: 'Spin your finger in a spiral, from small to big!'},
-    {name: 'Loopy line', paths: [loopy], w: 6, color: '#3a3a3a', say: 'It makes loops, like a bird doing loop-the-loops in the sky.', move: 'Fly like a bird and do a loop-the-loop!'},
-    {name: 'Dotted line', paths: ['M430 806 Q540 660 790 560'], w: 13, color: '#8a5a2a', dotted: true, say: 'Dot, dot, dot! Little dots in a row, like footprints on the path.', move: 'Tap the dots on your knees: tap, tap, tap!'},
-    {name: 'Thick and thin lines', paths: ['M1350 724 L1350 470', 'M1350 580 L1290 514', 'M1350 540 L1408 484', 'M1350 500 L1318 444', 'M1350 474 L1384 430'], ws: [30, 6, 6, 5, 5], color: '#5a3a1a', say: 'The tree trunk is a thick line. The branches are thin lines.', move: 'Make your body thick and wide, then thin and skinny!'},
+    {name: 'Zigzag line', paths: ['M470 522 L560 392 L640 470 L740 332 L840 462 L920 382 L1000 522'], w: 10, color: '#7a55a8'},
+    {name: 'Curved lines', paths: ['M1010 522 A130 130 0 0 1 1270 522', 'M1036 522 A104 104 0 0 1 1244 522', 'M1062 522 A78 78 0 0 1 1218 522'], w: 12, colors: ['#e8505b', '#f4a52b', '#4a9be0']},
+    {name: 'Wavy line', paths: [wavy], w: 10, color: '#2f7fd0'},
+    {name: 'Spiral line', paths: [spiral], w: 7, color: '#e07a1e'},
+    {name: 'Loopy line', paths: [loopy], w: 6, color: '#3a3a3a'},
+    {name: 'Dotted line', paths: ['M430 806 Q540 660 790 560'], w: 13, color: '#8a5a2a', dotted: true},
+    {name: 'Thick and thin lines', paths: ['M1350 724 L1350 470', 'M1350 580 L1290 514', 'M1350 540 L1408 484', 'M1350 500 L1318 444', 'M1350 474 L1384 430'], ws: [30, 6, 6, 5, 5], color: '#5a3a1a'},
   ];
   let stop = 0, revealed = false, lineRun = 0;
   function renderLines() {
@@ -228,6 +351,8 @@ canvas.paper{position:absolute;left:262px;top:88px;width:1164px;height:708px;bor
     for (let k = 0; k < Math.min(stop, STOPS.length); k++) { const old = lineEls(k, true); if (stop < STOPS.length) old.classList.add('old'); svg.appendChild(old); }
     if (stop >= STOPS.length) return finale();
     drawCard();
+    const at = stop;
+    (instant ? narrate : cue)(STOPS[at].paths.length > 1 ? VO.askN : VO.ask1, {still: () => mode === 'lines' && stop === at && !revealed});
     const glow = document.createElementNS(SVGNS, 'g'); glow.classList.add('glow'); svg.appendChild(glow);
     const g = lineEls(stop, false); svg.appendChild(g);
     if (reduce) return highlight(glow, g, run, true);
@@ -272,9 +397,8 @@ canvas.paper{position:absolute;left:262px;top:88px;width:1164px;height:708px;bor
     const s = STOPS[stop];
     const dots = STOPS.map((_, k) => `<i class="${k === stop ? 'on' : k < stop ? 'done' : ''}"></i>`).join('');
     $('card').innerHTML = `<div class="stop">Stop ${stop + 1} of ${STOPS.length} ${dots}</div>` + (revealed
-      ? `<h2 style="color:${s.colors ? s.colors[0] : s.color}">${s.name}</h2><p>${s.say}</p><p class="move">🤸 ${s.move}</p>`
-      : s.paths.length > 1 ? `<h2>What lines are these?</h2><p>Watch them draw. Can you name them?</p>`
-      : `<h2>What kind of line is this?</h2><p>Watch it draw. Can you name it?</p>`) +
+      ? `<h2 style="color:${s.colors ? s.colors[0] : s.color}">${s.name}</h2><p>${VO.stops[stop][1]}</p><p class="move">🤸 ${VO.stops[stop][2]}</p>`
+      : `<h2>${(s.paths.length > 1 ? VO.askN : VO.ask1)[0]}</h2><p>${(s.paths.length > 1 ? VO.askN : VO.ask1)[1]}</p>`) +
       `<div class="btns">${stop ? '<button class="big" id="prev">◀</button>' : ''}${revealed ? '' : '<button class="big or" id="reveal">✨ Name it!</button>'}<button class="big" id="drawalong" aria-pressed="${!$('trace').hidden}">✏ Draw along</button><button class="big go" id="next">${stop === STOPS.length - 1 ? 'Finish 🎉' : 'Next stop ▶'}</button></div>`;
     $('prev') && ($('prev').onclick = () => goStop(stop - 1));
     $('reveal') && ($('reveal').onclick = reveal);
@@ -287,13 +411,14 @@ canvas.paper{position:absolute;left:262px;top:88px;width:1164px;height:708px;bor
     g.querySelectorAll('path').forEach((p, k) => { p.style.transition = 'stroke .6s'; if (k === 0 && s.extra) return p.setAttribute('stroke', '#9fb3c8'); const kk = s.extra ? k - 1 : k; p.setAttribute('stroke', s.colors ? s.colors[kk] || s.colors[0] : s.color); });
     if (stop === 6) g.lastElementChild.setAttribute('stroke', '#b0703a');
     drawCard();
+    const at = stop; cue(VO.stops[at], {pre: 350, still: () => mode === 'lines' && stop === at});
     anim($('zebra'), [{transform: 'translateY(0)'}, {transform: 'translateY(-26px) rotate(-3deg)'}, {transform: 'translateY(0)'}], {duration: 500});
   }
   function finale() {
-    $('card').innerHTML = `<div class="stop">Safari complete!</div><h2>A whole picture made of lines!</h2><p>Lines can be horizontal, vertical, diagonal, zigzag, curved, wavy, spiral, loopy, dotted, thick and thin.</p>
+    $('card').innerHTML = `<div class="stop">Safari complete!</div><h2>${VO.finale[0]}</h2><p>${VO.finale[1]}</p>
       <div class="btns"><button class="big" id="prev">◀</button><button class="big or" id="again">↺ Go again</button></div>`;
     $('prev').onclick = () => goStop(STOPS.length - 1); $('again').onclick = () => goStop(0);
-    tada();
+    tada(); cue(VO.finale, {pre: 450, still: () => mode === 'lines' && stop >= STOPS.length});
   }
   // the teacher (or a child at the board) draws along on top of the scene
   let tctx = null;
@@ -345,11 +470,11 @@ canvas.paper{position:absolute;left:262px;top:88px;width:1164px;height:708px;bor
   const an = w => /^[aeiou]/i.test(w) ? 'an' : 'a';
   let target = null, found = new Set();
   function renderShapes() {
-    found = new Set(); target = null;
+    found = new Set(); target = null; msgV = [VO.welcome.shapes];
     $('view').innerHTML = `<svg class="layer" id="camp" viewBox="0 0 1440 810" style="z-index:3"><defs><filter id="cut" x="-10%" y="-10%" width="120%" height="120%"><feDropShadow dx="3" dy="5" stdDeviation="2" flood-color="#000" flood-opacity=".28"/></filter></defs>
       <path d="M1238 640 q60 -40 130 -10" stroke="#4f9b3f" stroke-width="6" fill="none"/><path d="M930 272 q-20 60 10 110 q20 40 -10 90" stroke="#8a5a2a" stroke-width="4" fill="none" stroke-dasharray="10 8"/><path d="M300 342 q10 60 -10 150" stroke="#555" stroke-width="3" fill="none"/>
       ${PIECES.map(([s, m], i) => `<g class="shape" data-i="${i}" data-s="${s}" filter="url(#cut)">${m}</g>`).join('')}</svg>
-      <div class="msg" id="msg">Our safari camp is made of <b>shapes</b>! Pick a shape below, then find them all.</div>
+      <div class="msg" id="msg">${VO.welcome.shapes.replace('shapes', '<b>shapes</b>')}</div>
       <div class="shbar" id="shbar"></div>`;
     $('camp').querySelectorAll('.shape').forEach(g => g.onclick = () => tapShape(g));
     drawBar();
@@ -358,7 +483,7 @@ canvas.paper{position:absolute;left:262px;top:88px;width:1164px;height:708px;bor
   const foundOf = s => [...found].filter(i => PIECES[i][0] === s).length;
   function drawBar() {
     $('shbar').innerHTML = Object.entries(SHAPES).map(([k, s]) => `<button class="shbtn${foundOf(k) === countOf(k) ? ' all' : ''}" data-k="${k}" aria-pressed="${target === k}"><svg viewBox="0 0 54 54" fill="${target === k ? '#c0612b' : '#6b5c48'}">${s.icon}</svg>${s.name}<small>${target === k || foundOf(k) ? `${foundOf(k)} of ${countOf(k)}` : 'find it'}${foundOf(k) === countOf(k) ? ' ✓' : ''}</small></button>`).join('');
-    $('shbar').querySelectorAll('[data-k]').forEach(b => b.onclick = () => { target = b.dataset.k; drawBar(); const s = SHAPES[target]; $('msg').innerHTML = `Find every <b>${s.name.toLowerCase()}</b>! ${an(s.name) === 'an' ? 'An' : 'A'} ${s.name.toLowerCase()} is ${s.tip}.`; ding(); });
+    $('shbar').querySelectorAll('[data-k]').forEach(b => b.onclick = () => { target = b.dataset.k; drawBar(); const s = SHAPES[target]; $('msg').innerHTML = `Find every <b>${s.name.toLowerCase()}</b>! ${an(s.name) === 'an' ? 'An' : 'A'} ${s.name.toLowerCase()} is ${s.tip}.`; ding(); msgV = [VO.find[target], VO.tip[target]]; cue(msgV); });
   }
   function tapShape(g) {
     const i = +g.dataset.i, s = g.dataset.s, S = SHAPES[s];
@@ -366,10 +491,13 @@ canvas.paper{position:absolute;left:262px;top:88px;width:1164px;height:708px;bor
       if (!found.has(i)) { found.add(i); g.classList.add('found'); ding(); anim(g, [{transform: 'translateY(0)'}, {transform: 'translateY(-14px)'}, {transform: 'translateY(0)'}], {duration: 350}); }
       const n = foundOf(s), all = countOf(s);
       $('msg').innerHTML = n === all ? `You found all ${all} ${all > 1 ? S.name.toLowerCase() + 's' : S.name.toLowerCase()}! 🎉 ${found.size === PIECES.length ? 'Every shape in the camp is found!' : 'Pick another shape.'}` : `That's ${an(S.name)} <b>${S.name.toLowerCase()}</b>! ${n} of ${all}. Keep looking!`;
+      msgV = n === all ? [VO.allOf[s], found.size === PIECES.length ? VO.every : VO.another] : [VO.is[s], VO.keep];
       if (n === all) tada();
+      cue(msgV, {pre: n === all ? 450 : 0});
     } else {
       boop(); anim(g, [{transform: 'translateX(0)'}, {transform: 'translateX(-8px)'}, {transform: 'translateX(8px)'}, {transform: 'translateX(0)'}], {duration: 300});
       $('msg').innerHTML = `That one is ${an(S.name)} <b>${S.name.toLowerCase()}</b>: ${S.tip}. We're looking for ${an(SHAPES[target].name)} ${SHAPES[target].name.toLowerCase()}.`;
+      msgV = [VO.not[s], VO.find[target]]; cue(msgV);
     }
     drawBar();
   }
@@ -411,6 +539,7 @@ canvas.paper{position:absolute;left:262px;top:88px;width:1164px;height:708px;bor
     const b = document.querySelector(`[data-p="${p}"]`); anim(b, [{transform: 'rotate(0)'}, {transform: 'rotate(-22deg) translateY(-20px)'}, {transform: 'rotate(0)'}], {duration: 520});
     tone(picked.length === 1 ? 392 : 523, 0, .25, 'sine');
     paintCham();
+    const m = mixName(); cue(msgV, {pre: hidden || (m && !m[2]) ? 450 : 0});   // after the ta-da chime
   }
   function paintCham() {
     const m = mixName();
@@ -420,7 +549,8 @@ canvas.paper{position:absolute;left:262px;top:88px;width:1164px;height:708px;bor
     if (!hidden) { cham.style.transform = ''; cham.style.opacity = 1; }
     if (!m) {
       $('eq').innerHTML = `Pick a paint<small>Red, yellow and blue are the primary colors</small>`;
-      $('msg').innerHTML = hideGoal ? hideMsg() : 'Hi! I\'m a chameleon. I can change color. Pick a paint and watch me!';
+      $('msg').innerHTML = hideGoal ? hideMsg() : VO.welcome.colors;
+      msgV = [hideGoal ? VO.hide[hideGoal] : VO.welcome.colors];
       return;
     }
     const [n, c, prim] = m, sw = k => `<span style="color:${PRIM[k]};-webkit-text-stroke:1px #0003">${k}</span>`;
@@ -429,14 +559,16 @@ canvas.paper{position:absolute;left:262px;top:88px;width:1164px;height:708px;bor
     if (hideGoal) {
       const t = THINGS.find(x => x.id === hideGoal);
       if (n === t.color) return hideNow(t);
-      $('msg').innerHTML = `Hmm, I'm <b style="color:${c}">${n}</b>. The ${t.id} is <b>${t.color}</b>. Try again!`;
-    } else $('msg').innerHTML = prim ? `I'm <b style="color:${c}">${n}</b>! Now mix in another primary color.` : `Ta-da! I turned <b style="color:${c}">${n}</b>!`;
+      // one primary on the way to a mixed color is not a miss yet
+      if (prim && picked.length === 1 && !PRIM[t.color]) { $('msg').innerHTML = `I'm <b style="color:${c}">${n}</b>! Now mix in another primary color.`; msgV = [VO.prim[n]]; }
+      else { $('msg').innerHTML = `Hmm, I'm <b style="color:${c}">${n}</b>. The ${t.id} is <b>${t.color}</b>. Try again!`; msgV = [VO.miss[n], VO.hide[t.id]]; }
+    } else { $('msg').innerHTML = prim ? `I'm <b style="color:${c}">${n}</b>! Now mix in another primary color.` : `Ta-da! I turned <b style="color:${c}">${n}</b>!`; msgV = [prim ? VO.prim[n] : VO.sec[n]]; }
     if (!prim && !hideGoal) tada();
   }
   function hideMsg() { const t = THINGS.find(x => x.id === hideGoal); return `Help me hide on the <b>${t.color} ${t.id}</b>! ${['orange', 'green', 'purple'].includes(t.color) ? 'Which two colors make ' + t.color + '?' : 'Which paint is ' + t.color + '?'}`; }
   function startHide() {
     const pool = THINGS.filter(t => t.id !== hideGoal); hideGoal = pool[Math.floor(Math.random() * pool.length)].id;
-    picked = []; hidden = false; paintCham(); $('msg').innerHTML = hideMsg(); ding();
+    picked = []; hidden = false; paintCham(); $('msg').innerHTML = hideMsg(); ding(); msgV = [VO.hide[hideGoal]]; cue(msgV);
     anim($(`th-${hideGoal}`), [{transform: 'scale(1)'}, {transform: 'scale(1.2)'}, {transform: 'scale(1)'}], {duration: 600, iterations: 2});
   }
   function hideNow(t) {
@@ -445,7 +577,7 @@ canvas.paper{position:absolute;left:262px;top:88px;width:1164px;height:708px;bor
     cham.style.transition = reduce ? 'none' : 'transform 1.2s ease-in-out, opacity 1.2s';
     cham.style.transform = `translate(${tx - cx}px,${ty - cy}px) scale(.3)`; cham.style.opacity = .35;
     $('msg').innerHTML = `Where did I go? 🙈 I'm hiding on the <b>${t.color} ${t.id}</b>! Press <b>Hide and seek</b> to play again.`;
-    hideGoal = null;
+    hideGoal = null; msgV = [VO.hid[t.id]];
     setTimeout(() => { cham.style.transition = ''; }, 1300);
   }
 
@@ -523,7 +655,7 @@ canvas.paper{position:absolute;left:262px;top:88px;width:1164px;height:708px;bor
   }
 
   setMode('lines');
-  window.__ls = {setMode, goStop, reveal, STOPS, pickPot, startHide, get target() { return target; }, tapShapeIdx: i => tapShape(document.querySelector(`.shape[data-i="${i}"]`)), setTarget: k => document.querySelector(`[data-k="${k}"]`).click(),
+  window.__ls = {setMode, goStop, reveal, STOPS, VO, vlog, said, queued, hush, readNow, get reading() { return reading; }, pickPot, startHide, get target() { return target; }, tapShapeIdx: i => tapShape(document.querySelector(`.shape[data-i="${i}"]`)), setTarget: k => document.querySelector(`[data-k="${k}"]`).click(),
     addStroke: (b, pts, c = '#2a6fd6', z = 8) => { strokes.push({brush: b, color: c, size: z, pts}); paint(); }, set hideGoal(v) { hideGoal = v; }};
 })();
 </script>

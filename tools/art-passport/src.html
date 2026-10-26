@@ -35,6 +35,8 @@ h1{margin:0 auto 0 0;font:800 clamp(22px,2.8vw,32px)/1.1 Georgia,'Times New Roma
 h1 small{display:block;font:400 14px/1.3 'Segoe UI',sans-serif;color:#cfe4f3}
 .icon-btn{border:1px solid #4f8bb5;background:#2c74a6;color:#fff;border-radius:999px;min-height:46px;padding:0 16px;font-weight:700;font-size:15px}
 .icon-btn[aria-pressed="false"]{background:#123f60}
+/* the 16:10 preview: drop the subtitle so the buttons stay on one row with the title */
+@media (max-width:760px){h1 small{display:none}}
 
 .stagewrap{position:relative;overflow:hidden;min-height:0;background:#efe2cc}
 .scene{position:absolute;left:50%;top:50%;width:1440px;height:810px;transform:translate(-50%,-50%) scale(var(--s,1));overflow:hidden}
@@ -122,7 +124,9 @@ h1 small{display:block;font:400 14px/1.3 'Segoe UI',sans-serif;color:#cfe4f3}
 <body>
 <header>
   <h1>Art Passport <small>Travel the world through real works of art. Look closely, talk, and collect stamps.</small></h1>
+  <button class="icon-btn" id="read" title="Read the instructions aloud">🔊 Read</button>
   <button class="icon-btn" id="motion" aria-pressed="true" title="Turn animation on or off">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true" title="Turn the narrator on or off">🔔 Sound</button>
 </header>
 <div class="stagewrap" id="stagewrap">
   <div class="scene" id="scene">
@@ -140,9 +144,14 @@ h1 small{display:block;font:400 14px/1.3 'Segoe UI',sans-serif;color:#cfe4f3}
   </div>
 </div>
 
+<script src="kit:curio"></script>
 <script>
 (() => {
   const $ = id => document.getElementById(id);
+  // the kit plays the recorded narration (bundle_tool.py fills the voice token) and runs the Sound button;
+  // this tool keeps its own Motion button, so init runs first and the handler below replaces the kit's
+  Curio.init({clips: "voice:*", rate: .95});
+  const wait = Curio.wait;
   let reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   try { const m = localStorage.getItem('curio-motion'); if (m) reduce = m === 'calm'; } catch {}
   function showMotion() {
@@ -163,64 +172,64 @@ h1 small{display:block;font:400 14px/1.3 'Segoe UI',sans-serif;color:#cfe4f3}
   const ART = [
     {id: 'wave', img: 'art:w39799', kind: 'flat', title: 'The Great Wave', real: 'Under the Wave off Kanagawa', place: 'Japan', lon: 139.7, lat: 35.7,
       who: 'Katsushika Hokusai, an artist in Japan', when: 'About 190 years ago (around 1831)', what: 'A woodblock print: ink on paper', why: 'To sell to people who loved pictures of famous places. Many copies were printed from carved wood blocks.',
-      spots: [[.62, .7, 'Find the snowy mountain far away. It is Mount Fuji, and it looks tiny!'], [.31, .66, 'Find a boat. The people are holding on tight!'], [.47, .16, 'Look at the foam on top of the wave. Does it look like fingers or claws?']],
-      ask: 'Is the wave about to crash? What do you think happens next?', feel: 'Make your arms into a big curling wave. Now freeze, like the picture!', color: '#1f4e8a'},
+      spots: [[.62, .7], [.31, .66], [.47, .16]],
+      color: '#1f4e8a'},
     {id: 'hippo', img: 'art:w544227', kind: 'object', title: 'William the Hippo', real: 'Hippopotamus ("William")', place: 'Egypt', lon: 31.2, lat: 26.5,
       who: 'An artist in ancient Egypt', when: 'About 4,000 years ago', what: 'Faience: crushed stone shaped and baked with a shiny blue-green glaze', why: 'Hippos lived in the Nile River. This little hippo was placed in a tomb. Museum visitors later named it William.',
-      spots: [[.42, .42, 'Find the plants and flowers painted on the hippo. Hippos lived among river plants.'], [.84, .56, 'Look at the face. Is William happy, sleepy or grumpy?']],
-      ask: 'Why do you think the artist made the hippo blue?', feel: 'Walk slowly like a heavy hippo. Now pretend to swim in the river.', color: '#1a8a9a'},
+      spots: [[.42, .42], [.84, .56]],
+      color: '#1a8a9a'},
     {id: 'smile', img: 'art:w313386', kind: 'object', title: 'Smiling Figure', real: 'Smiling figure (Sonriente)', place: 'Mexico', lon: -96.4, lat: 19.2,
       who: 'Artists of the Gulf Coast of Mexico (Classic Veracruz)', when: 'About 1,200 years ago', what: 'Clay, shaped by hand and fired', why: 'Experts think figures like this may show people dancing or celebrating. No one knows for sure!',
-      spots: [[.47, .24, 'Look at the big smile! Can you smile just like this?'], [.47, .09, 'Look at the hat. The pattern goes all the way around.'], [.2, .3, 'Both arms are up. Is this person waving, dancing or cheering?']],
-      ask: 'What do you think this person is so happy about?', feel: 'Stand like the figure: arms up, big smile. Hold it!', color: '#b5653a'},
+      spots: [[.47, .24], [.47, .09], [.2, .3]],
+      color: '#b5653a'},
     {id: 'ciwara', img: 'art:w711020', kind: 'object', title: 'Antelope Headdress', real: 'Ci wara headdress', place: 'Mali', lon: -7.5, lat: 12.6,
       who: 'A Bamana carver in Mali, West Africa', when: 'About 150 years ago', what: 'Carved wood with metal', why: 'Dancers wear a ci wara on top of their heads at farming celebrations. It honors a story about the antelope who taught people to farm.',
-      spots: [[.56, .2, 'Find the long horns reaching up to the sky.'], [.48, .78, 'Look for lines carved into the wood. Are they zigzag or straight?']],
-      ask: 'Why do you think the horns are so long and tall?', feel: 'Leap and bend like an antelope dancing in a field.', color: '#7a4a2a'},
+      spots: [[.56, .2], [.48, .78]],
+      color: '#7a4a2a'},
     {id: 'horse', img: 'art:w39901', kind: 'flat', title: 'Night-Shining White', real: 'Night-Shining White', place: 'China', lon: 108.9, lat: 34.3,
       who: 'Han Gan, a painter in China', when: 'About 1,270 years ago', what: 'Ink on paper', why: 'It shows the favorite horse of an emperor. The red stamps were added by people who owned the painting later.',
-      spots: [[.66, .27, 'Look at the horse\'s eye and mane. Is it calm or excited?'], [.53, .2, 'The horse is tied to a post. It wants to run free!'], [.08, .78, 'Find the red stamps. Each one is the name of someone who owned this painting.']],
-      ask: 'How do you think the horse feels? How can you tell?', feel: 'Gallop in place like a strong horse. Now toss your head!', color: '#9b2d20'},
+      spots: [[.66, .27], [.53, .2], [.08, .78]],
+      color: '#9b2d20'},
     {id: 'dragon', img: 'art:w76114', kind: 'object', title: 'Dragon Jar', real: 'Dragon jar', place: 'Korea', lon: 127, lat: 37.5,
       who: 'A potter and a painter in Korea', when: 'About 250 years ago', what: 'Porcelain (fine white clay) painted with blue', why: 'Dragons in Korea stood for rain clouds, good luck and the king. A jar like this could hold food or flowers.',
-      spots: [[.45, .38, 'Find the dragon\'s face. Can you see its whiskers?'], [.7, .3, 'Little clouds float around the dragon. Dragons were said to bring the rain.'], [.5, .72, 'Look at the scales. Do they look like fish scales?']],
-      ask: 'If this dragon could move, where would it fly?', feel: 'Wiggle your whole body like a dragon in the clouds.', color: '#2a4f8f'},
+      spots: [[.45, .38], [.7, .3], [.5, .72]],
+      color: '#2a4f8f'},
     {id: 'dish', img: 'art:w451490', kind: 'object', title: 'Dish with Two Birds', real: 'Dish Depicting Two Birds among Flowering Plants', place: 'Turkey', lon: 29.7, lat: 40.4,
       who: 'Potters of the town of Iznik, in Turkey', when: 'About 440 years ago', what: 'Painted pottery with a shiny glaze', why: 'Iznik was famous for dishes and tiles in blue, green and bright red.',
-      spots: [[.42, .34, 'Find the two birds. What are they doing?'], [.43, .2, 'Find the big red flower.'], [.89, .56, 'The edge has a pattern that repeats all the way around.']],
-      ask: 'Which colors did the artist use again and again?', feel: 'Flap your wings like the birds, then perch on a flower.', color: '#2a6fb0'},
+      spots: [[.42, .34], [.43, .2], [.89, .56]],
+      color: '#2a6fb0'},
     {id: 'wheat', img: 'art:w436535', kind: 'flat', title: 'Wheat Field with Cypresses', real: 'Wheat Field with Cypresses', place: 'France', lon: 4.8, lat: 43.8,
       who: 'Vincent van Gogh, a painter from the Netherlands', when: 'About 135 years ago (1889)', what: 'Thick oil paint on canvas', why: 'He painted the fields he loved near the town where he lived in France.',
-      spots: [[.8, .35, 'Find the tall dark tree. It looks like a green flame!'], [.3, .16, 'Look at the swirly clouds. The paint is thick and bumpy.'], [.35, .82, 'The golden wheat bends in the wind.']],
-      ask: 'Is it windy in this picture? How do you know?', feel: 'Sway like wheat in the wind, then swirl like the clouds.', color: '#3d6f3a'},
+      spots: [[.8, .35], [.3, .16], [.35, .82]],
+      color: '#3d6f3a'},
     {id: 'harvest', img: 'art:w435809', kind: 'flat', title: 'The Harvesters', real: 'The Harvesters', place: 'Belgium', lon: 4.4, lat: 50.8, labUp: true,
       who: 'Pieter Bruegel the Elder', when: 'About 460 years ago (1565)', what: 'Oil paint on wood', why: 'It shows farm workers cutting wheat at the end of summer. It was one of a set of paintings about the seasons.',
-      spots: [[.79, .82, 'Find the people eating lunch under the tree.'], [.6, .84, 'Someone is taking a nap! Can you find him?'], [.3, .34, 'Far away: a village, a church and boats on the water.']],
-      ask: 'What would you eat for lunch in this field?', feel: 'Pretend to cut wheat, stack it, then take a nap in the sun.', color: '#a97b1f'},
+      spots: [[.79, .82], [.6, .84], [.3, .34]],
+      color: '#a97b1f'},
     {id: 'blanket', img: 'art:w313232', kind: 'flat', title: 'Wearing Blanket', real: 'Wearing Blanket', place: 'Diné (Navajo) Nation', lon: -109.5, lat: 36.2,
       who: 'A Diné (Navajo) weaver', when: 'About 160 years ago', what: 'Wool, woven on an upright loom', why: 'People wore blankets like this around their shoulders. Diné weavers still make beautiful weavings today.',
-      spots: [[.5, .27, 'Find the zigzag lines.'], [.16, .27, 'Find a diamond shape. Can you find another one?'], [.92, .5, 'Look at the stripes on the sides.']],
-      ask: 'What do the zigzags remind you of?', feel: 'Draw a zigzag in the air with your finger. Now a diamond!', color: '#b4402a'},
+      spots: [[.5, .27], [.16, .27], [.92, .5]],
+      color: '#b4402a'},
     {id: 'quilt', img: 'art:w13877', kind: 'flat', title: 'Album Quilt', real: 'Quilt, Album pattern', place: 'United States', lon: -76.6, lat: 39.5,
       who: 'Women of the Brown and Turner families', when: 'About 180 years ago (begun 1846)', what: 'Cotton cloth, cut out and sewn', why: 'In an album quilt, many people each make a square. Then the squares are sewn together and given as a gift.',
-      spots: [[.43, .47, 'Find the blue bird.'], [.13, .5, 'Find a harp, a music instrument!'], [.84, .5, 'Find a basket of flowers. How many can you find?']],
-      ask: 'If our class made a quilt, what would you put on your square?', feel: 'Hold hands with a friend, like the squares are sewn together.', color: '#a51c3a'},
+      spots: [[.43, .47], [.13, .5], [.84, .5]],
+      color: '#a51c3a'},
     {id: 'amo', img: 'art:w313697', kind: 'object', title: 'Carved House Post', real: 'Amo (house post figure)', place: 'New Zealand', lon: 176.2, lat: -38.1,
       who: 'A Māori carver of the Te Arawa people', when: 'About 225 years ago', what: 'Carved wood', why: 'An amo stands at the front of a Māori meeting house. It honors an ancestor, a family member from long ago. Māori people treasure carvings like this.',
-      spots: [[.5, .17, 'Look at the face at the top. What shape are the eyes?'], [.42, .47, 'Find the spirals carved into the wood.']],
-      ask: 'What do you think this figure is saying to visitors?', feel: 'Stand tall and proud like the post, guarding the door.', color: '#6b3b1f'},
+      spots: [[.5, .17], [.42, .47]],
+      color: '#6b3b1f'},
     {id: 'runner', img: 'art:w309427', kind: 'object', title: 'Winged Runner Ear Ornament', real: 'Ear ornament with winged runner', place: 'Peru', lon: -79, lat: -8.1,
       who: 'Moche goldsmiths and stoneworkers in Peru', when: 'About 1,500 years ago', what: 'Gold, with tiny pieces of blue-green stone and shell fitted together like a puzzle', why: 'It was worn in the ear by an important person. The runner may be carrying a message.',
-      spots: [[.5, .45, 'Find the runner. He has wings and a bird face!'], [.12, .42, 'Count the gold balls around the edge.']],
-      ask: 'Where do you think the runner is going so fast?', feel: 'Run in place as fast as you can, then flap your wings!', color: '#c08a1a'},
+      spots: [[.5, .45], [.12, .42]],
+      color: '#c08a1a'},
     {id: 'elephant', img: 'art:w825606', kind: 'flat', title: 'Young Elephant Eating', real: 'Young Elephant Eating', place: 'India', lon: 78, lat: 27.2,
       who: 'A painter at the court of the Mughal emperors', when: 'About 375 years ago', what: 'Paint and gold on paper', why: 'The emperors loved their elephants, so court painters made pictures of their favorites.',
-      spots: [[.17, .7, 'The elephant holds grass in its trunk. Snack time!'], [.55, .88, 'Find the chains around its ankles.'], [.53, .24, 'Find the red blanket on its back.']],
-      ask: 'Is this elephant big or little? How can you tell?', feel: 'Swing your arm like a trunk and scoop up some grass.', color: '#4a3d5e'},
+      spots: [[.17, .7], [.55, .88], [.53, .24]],
+      color: '#4a3d5e'},
   ];
   const BYID = Object.fromEntries(ART.map(a => [a.id, a]));
   const FEELS = [['😊', 'happy'], ['🤩', 'excited'], ['😌', 'calm'], ['😮', 'surprised'], ['🤔', 'curious'], ['😟', 'worried']];
-  const ASKS = [['See', 'What do you <b>see</b>?'], ['Think', 'What does it make you <b>think</b>?'], ['Wonder', 'What do you <b>wonder</b> about it?']];
+  let ASKS = null;   // [button word, question], set once the voice block below has run
   let seen = {}, feelings = {};
   try { seen = JSON.parse(localStorage.getItem('art-passport-stamps') || '{}'); } catch {}
   const saveSeen = () => { try { localStorage.setItem('art-passport-stamps', JSON.stringify(seen)); } catch {} };
@@ -233,11 +242,129 @@ h1 small{display:block;font:400 14px/1.3 'Segoe UI',sans-serif;color:#cfe4f3}
     return [(x + WORLD.xmax) * WORLD.s, (WORLD.ymax - y) * WORLD.s];
   }
 
+  // ---------- voice ----------
+  // Every spoken line, and nothing else, lives in VO (voice/lines.json lists each one, tags stripped). Bold tags are for the screen.
+  // Narrated: each screen's intro, the Look closer finds, the questions and the clue. The fact labels (who, when, made of, why) are not.
+  // voice:lines-start
+  const VO = {
+    hello: "Hello, art explorers! Artists all over the world make art. Tap a picture on the map and let's go see it!",
+    tapMore: 'Tap a picture on the map to visit art from another part of the world.',
+    stamp: 'We got a passport stamp!',
+    intro: {
+      wave: 'This is The Great Wave, from Japan.', hippo: 'This is William the Hippo, from Egypt.', smile: 'This is the Smiling Figure, from Mexico.',
+      ciwara: 'This is an Antelope Headdress, from Mali.', horse: 'This is Night-Shining White, a horse painting from China.', dragon: 'This is the Dragon Jar, from Korea.',
+      dish: 'This is a Dish with Two Birds, from Turkey.', wheat: 'This is Wheat Field with Cypresses, painted in France.', harvest: 'This is The Harvesters, from Belgium.',
+      blanket: 'This is a Wearing Blanket, from the Diné, or Navajo, Nation.', quilt: 'This is an Album Quilt, from the United States.',
+      amo: 'This is a Carved House Post, from New Zealand.', runner: 'This is the Winged Runner Ear Ornament, from Peru.', elephant: 'This is Young Elephant Eating, from India.',
+    },
+    asks: ['What do you <b>see</b>?', 'What does it make you <b>think</b>?', 'What do you <b>wonder</b> about it?'],
+    spot: {
+      wave: ['Find the snowy mountain far away. It is Mount Fuji, and it looks tiny!', 'Find a boat. The people are holding on tight!', 'Look at the foam on top of the wave. Does it look like fingers or claws?'],
+      hippo: ['Find the plants and flowers painted on the hippo. Hippos lived among river plants.', 'Look at the face. Is William happy, sleepy or grumpy?'],
+      smile: ['Look at the big smile! Can you smile just like this?', 'Look at the hat. The pattern goes all the way around.', 'Both arms are up. Is this person waving, dancing or cheering?'],
+      ciwara: ['Find the long horns reaching up to the sky.', 'Look for lines carved into the wood. Are they zigzag or straight?'],
+      horse: ["Look at the horse's eye and mane. Is it calm or excited?", 'The horse is tied to a post. It wants to run free!', 'Find the red stamps. Each one is the name of someone who owned this painting.'],
+      dragon: ["Find the dragon's face. Can you see its whiskers?", 'Little clouds float around the dragon. Dragons were said to bring the rain.', 'Look at the scales. Do they look like fish scales?'],
+      dish: ['Find the two birds. What are they doing?', 'Find the big red flower.', 'The edge has a pattern that repeats all the way around.'],
+      wheat: ['Find the tall dark tree. It looks like a green flame!', 'Look at the swirly clouds. The paint is thick and bumpy.', 'The golden wheat bends in the wind.'],
+      harvest: ['Find the people eating lunch under the tree.', 'Someone is taking a nap! Can you find him?', 'Far away: a village, a church and boats on the water.'],
+      blanket: ['Find the zigzag lines.', 'Find a diamond shape. Can you find another one?', 'Look at the stripes on the sides.'],
+      quilt: ['Find the blue bird.', 'Find a harp, a music instrument!', 'Find a basket of flowers. How many can you find?'],
+      amo: ['Look at the face at the top. What shape are the eyes?', 'Find the spirals carved into the wood.'],
+      runner: ['Find the runner. He has wings and a bird face!', 'Count the gold balls around the edge.'],
+      elephant: ['The elephant holds grass in its trunk. Snack time!', 'Find the chains around its ankles.', 'Find the red blanket on its back.'],
+    },
+    ask: {
+      wave: 'Is the wave about to crash? What do you think happens next?', hippo: 'Why do you think the artist made the hippo blue?',
+      smile: 'What do you think this person is so happy about?', ciwara: 'Why do you think the horns are so long and tall?',
+      horse: 'How do you think the horse feels? How can you tell?', dragon: 'If this dragon could move, where would it fly?',
+      dish: 'Which colors did the artist use again and again?', wheat: 'Is it windy in this picture? How do you know?',
+      harvest: 'What would you eat for lunch in this field?', blanket: 'What do the zigzags remind you of?',
+      quilt: 'If our class made a quilt, what would you put on your square?', amo: 'What do you think this figure is saying to visitors?',
+      runner: 'Where do you think the runner is going so fast?', elephant: 'Is this elephant big or little? How can you tell?',
+    },
+    feel: {
+      wave: 'Make your arms into a big curling wave. Now freeze, like the picture!', hippo: 'Walk slowly like a heavy hippo. Now pretend to swim in the river.',
+      smile: 'Stand like the figure: arms up, big smile. Hold it!', ciwara: 'Leap and bend like an antelope dancing in a field.',
+      horse: 'Gallop in place like a strong horse. Now toss your head!', dragon: 'Wiggle your whole body like a dragon in the clouds.',
+      dish: 'Flap your wings like the birds, then perch on a flower.', wheat: 'Sway like wheat in the wind, then swirl like the clouds.',
+      harvest: 'Pretend to cut wheat, stack it, then take a nap in the sun.', blanket: 'Draw a zigzag in the air with your finger. Now a diamond!',
+      quilt: 'Hold hands with a friend, like the squares are sewn together.', amo: 'Stand tall and proud like the post, guarding the door.',
+      runner: 'Run in place as fast as you can, then flap your wings!', elephant: 'Swing your arm like a trunk and scoop up some grass.',
+    },
+    tryIt: 'Try it!',
+    same: 'What is the <b>same</b>? What is <b>different</b>?',
+    think: 'Think about colors, lines, shapes, animals, people, and what it is made of.',
+    clue: [
+      'Both have curvy, swirly lines. One is a print, one is a painting.',
+      'Both are big animals. One is a sculpture you can walk around, one is a flat painting.',
+      'Both are made of cloth and full of patterns. One is woven, one is sewn from squares.',
+      'Both are blue and white pottery, from far apart in Asia.',
+      'Both show people. One is smiling and dancing; one stands tall and proud.',
+      'Both are animals that love to run and leap.',
+      'Both are wheat fields in summer, painted 300 years apart!',
+      'Both show movement: a runner and a dancing antelope.',
+      'Both have birds and flowers. Can you find them?',
+    ],
+    passport: 'Every time we visit a work of art, we get a stamp. Tap a stamp to visit again.',
+  };
+  // voice:lines-end
+  const plain = h => h.replace(/<[^>]+>/g, '');
+  // The queue (the collision-lab pattern): one line at a time; each screen's intro after the first tap; Read always wins.
+  const said = new Set(), queued = new Set(), vlog = [];
+  let tapped = false, vq = Promise.resolve(), vgen = 0, readP = Promise.resolve(), reading = 0, vcount = 0, entryV = [], readV = () => entryV;
+  const lineMs = parts => parts.reduce((a, t) => a + 2500 + 80 * t.length, 0);
+  // once: said at most once (the hello). still(): drop the line if its moment passed before it could start
+  function narrate(parts, o = {}) {
+    parts = [].concat(parts).map(plain);
+    const key = parts.join('|');
+    if (!tapped || !Curio.sound || (o.once && (said.has(key) || queued.has(key)))) return false;
+    queued.add(key); vcount++;
+    const gen = vgen;
+    vq = vq.then(async () => {
+      await readP;
+      if (gen !== vgen) return;                           // dropped by hush(): not marked said, so its trigger can queue it again
+      queued.delete(key);
+      if (o.still && !o.still()) return;
+      said.add(key);
+      vlog.push(...parts);
+      await Promise.race([Curio.say(parts), wait(lineMs(parts))]);
+    });
+    return true;
+  }
+  // short feedback, or a new screen: drop whatever is waiting or talking (never Read), then say this
+  function cue(parts, o) {
+    if (!tapped || !Curio.sound) return false;
+    vgen++; queued.clear(); vq = readP; if (!reading) Curio.stop();
+    return narrate(parts, o);
+  }
+  // a stopped clip never fires "ended", so hush also lets go of the Read promise
+  function hush() { vgen++; queued.clear(); vq = Promise.resolve(); readP = Promise.resolve(); reading = 0; Curio.stop(); }
+  function readNow() {
+    hush(); vcount++;
+    const parts = readV().map(plain), me = reading = vcount;
+    vlog.push(...parts);
+    readP = Promise.race([Curio.say(parts, true), wait(lineMs(parts))]).catch(() => {}).then(() => { if (reading === me) reading = 0; });
+  }
+  $('read').onclick = readNow;
+  // each screen sets what it says on arrival (entryV) and what Read says (readV)
+  function arrive(parts, read, o) { entryV = parts; readV = read || (() => entryV); return cue(parts, o); }
+  // The first tap: decide after its own click has run. If it queued a line (or was Read), the intro waits for another time.
+  for (const ev of ['pointerdown', 'keydown']) addEventListener(ev, e => {
+    if (tapped) return; tapped = true;
+    const n0 = vcount;
+    const go = () => { removeEventListener('click', go, true); clearTimeout(fb); setTimeout(() => { if (vcount === n0) narrate(entryV); }); };
+    addEventListener('click', go, true); const fb = setTimeout(go, 1500);
+  }, true);
+  // Sound off stops the narrator; back on says this screen's intro if it was never heard
+  Curio.onSound(on => { if (!on) hush(); else if (tapped && !said.has(entryV.map(plain).join('|'))) narrate(entryV); });
+
   // ---------- modes ----------
+  ASKS = ['See', 'Think', 'Wonder'].map((w, i) => [w, VO.asks[i]]);   // the button word is not spoken
   let mode = 'travel', cur = 0;
   document.querySelectorAll('[data-mode]').forEach(b => b.onclick = () => setMode(b.dataset.mode));
   function setMode(m, arg) {
-    mode = m; $('ctl').innerHTML = '';
+    hush(); mode = m; $('ctl').innerHTML = '';
     document.querySelectorAll('[data-mode]').forEach(b => b.setAttribute('aria-pressed', b.dataset.mode === m));
     ({travel: renderTravel, look: () => renderLook(arg ?? cur), compare: renderCompare, passport: renderPassport})[m]();
   }
@@ -258,12 +385,13 @@ h1 small{display:block;font:400 14px/1.3 'Segoe UI',sans-serif;color:#cfe4f3}
     $('surprise').onclick = () => { const left = ART.map((a, i) => i).filter(i => !seen[ART[i].id]); const pool = left.length ? left : ART.map((a, i) => i); setMode('look', pool[Math.floor(Math.random() * pool.length)]); };
     $('view').querySelectorAll('[data-a]').forEach(b => b.onclick = () => setMode('look', +b.dataset.a));
     const n = Object.keys(seen).length;
-    $('say').innerHTML = n ? `We have visited <b>${n} of ${ART.length}</b> places! Tap a picture on the map to visit art from another part of the world.` : 'Hello, art explorers! Artists all over the world make art. Tap a picture on the map and let\'s go see it!';
+    $('say').innerHTML = n ? `We have visited <b>${n} of ${ART.length}</b> places! ${VO.tapMore}` : VO.hello;
+    arrive([n ? VO.tapMore : VO.hello], null, {still: () => mode === 'travel'});   // the count is on screen; the narrator leaves it out
     anim($('guide'), [{transform: 'translateX(-60px)', opacity: 0}, {transform: 'none', opacity: 1}], {duration: 600, easing: 'ease-out'});
   }
 
   // ===== Look =====
-  let askI = 0;
+  let askI = 0, spotK = 0;
   function frameHTML(a, maxW, maxH, id) {
     return `<div class="frame ${a.kind}" ${id ? `id="${id}"` : ''}><div class="zoom"><img class="art" src="${a.img}" alt="${a.title}" style="max-width:${maxW}px;max-height:${maxH}px"><div class="dim"></div></div></div>`;
   }
@@ -280,12 +408,12 @@ h1 small{display:block;font:400 14px/1.3 'Segoe UI',sans-serif;color:#cfe4f3}
         <div><div class="lbl">🔍 Look closer</div><div class="row" id="spots">${a.spots.map((s, k) => `<button class="b" data-s="${k}">${['👀', '🔎', '✨'][k]} Find ${k + 1}</button>`).join('')}</div></div>
         <div class="ask" id="ask"></div>
         <div><div class="lbl">How does it make you feel?</div><div class="row" id="feels">${FEELS.map(([e, w]) => `<button class="feel" data-f="${w}" aria-pressed="false"><span>${e}</span>${w}<i></i></button>`).join('')}</div></div>
-        <div class="try">🤸 <b>Try it:</b> ${a.feel}</div>
+        <div class="try">🤸 <b>Try it:</b> ${VO.feel[a.id]}</div>
       </div>`;
     $('prev').onclick = () => renderLook(cur - 1); $('next').onclick = () => renderLook(cur + 1);
     $('whole').onclick = unzoom;
     $('view').querySelectorAll('[data-s]').forEach(b => b.onclick = () => zoomTo(+b.dataset.s));
-    $('ask').onclick = () => { askI = (askI + 1) % (ASKS.length + 1); drawAsk(); };
+    $('ask').onclick = () => { askI = (askI + 1) % (ASKS.length + 1); drawAsk(); cue(askText()); };
     $('feels').querySelectorAll('[data-f]').forEach(b => b.onclick = () => { const f = feelings[a.id] = feelings[a.id] || {}; f[b.dataset.f] = (f[b.dataset.f] || 0) + 1; drawFeels(); anim(b, [{transform: 'scale(1)'}, {transform: 'scale(1.18)'}, {transform: 'scale(1)'}], {duration: 300}); });
     drawAsk(); drawFeels();
     if (first) {
@@ -295,22 +423,28 @@ h1 small{display:block;font:400 14px/1.3 'Segoe UI',sans-serif;color:#cfe4f3}
       setTimeout(() => { anim(s, [{opacity: 1}, {opacity: 0}], {duration: 500}); setTimeout(() => s.remove(), reduce ? 0 : 480); }, 2600);
     }
     $('ctl').innerHTML = `<button class="b" id="tomap">🗺 Map</button>`; $('tomap').onclick = () => setMode('travel');
+    // arriving: the name and place, the stamp on a first visit, then the first question. Read adds the Try it activity.
+    const at = cur;
+    arrive([VO.intro[a.id], ...(first ? [VO.stamp] : []), ASKS[0][1]], () => $('find').hidden ? [VO.intro[a.id], askText(), VO.tryIt, VO.feel[a.id]] : [VO.spot[a.id][spotK]],
+      {still: () => mode === 'look' && cur === at});
   }
+  const askText = () => askI < ASKS.length ? ASKS[askI][1] : VO.ask[ART[cur].id];
   function drawAsk() {
     const a = ART[cur];
-    $('ask').innerHTML = askI < ASKS.length ? `💬 ${ASKS[askI][1]} <small style="color:var(--muted);font-size:15px">(tap for the next question)</small>` : `💬 ${a.ask}`;
+    $('ask').innerHTML = askI < ASKS.length ? `💬 ${ASKS[askI][1]} <small style="color:var(--muted);font-size:15px">(tap for the next question)</small>` : `💬 ${VO.ask[a.id]}`;
   }
   function drawFeels() {
     const f = feelings[ART[cur].id] || {};
     $('feels').querySelectorAll('[data-f]').forEach(b => { const n = f[b.dataset.f] || 0; b.setAttribute('aria-pressed', n > 0); b.querySelector('i').textContent = n ? n : ''; });
   }
   function zoomTo(k) {
-    const a = ART[cur], [fx, fy, msg] = a.spots[k], fr = $('fr'), img = fr.querySelector('img.art'), w = img.offsetWidth, h = img.offsetHeight, z = 2.4;
+    const a = ART[cur], [fx, fy] = a.spots[k], msg = VO.spot[a.id][k], fr = $('fr'), img = fr.querySelector('img.art'), w = img.offsetWidth, h = img.offsetHeight, z = 2.4;
     // move the spot to the middle of the frame, clamped so the picture still fills it
     const tx = Math.min(0, Math.max(w - w * z, w / 2 - fx * w * z)), ty = Math.min(0, Math.max(h - h * z, h / 2 - fy * h * z));
     img.style.transform = `translate(${tx}px,${ty}px) scale(${z})`;
     const dim = fr.querySelector('.dim'); dim.style.background = `radial-gradient(circle at ${(fx * w * z + tx) / w * 100}% ${(fy * h * z + ty) / h * 100}%,#0000 0,#0000 ${Math.round(Math.min(w, h) * .2)}px,#0009 ${Math.round(Math.min(w, h) * .36)}px)`;
-    fr.classList.add('zoomed'); $('find').hidden = false; $('find').textContent = msg; $('whole').hidden = false;
+    fr.classList.add('zoomed'); $('find').hidden = false; $('find').textContent = msg; $('whole').hidden = false; spotK = k;
+    const at = cur; cue(msg, {still: () => mode === 'look' && cur === at && spotK === k && !$('find').hidden});
     $('spots').querySelectorAll('[data-s]').forEach(b => b.setAttribute('aria-pressed', +b.dataset.s === k));
   }
   function unzoom() {
@@ -319,25 +453,23 @@ h1 small{display:block;font:400 14px/1.3 'Segoe UI',sans-serif;color:#cfe4f3}
   }
 
   // ===== Compare =====
-  const PAIRS = [
-    ['wave', 'wheat', 'Both have curvy, swirly lines. One is a print, one is a painting.'],
-    ['hippo', 'elephant', 'Both are big animals. One is a sculpture you can walk around, one is a flat painting.'],
-    ['blanket', 'quilt', 'Both are made of cloth and full of patterns. One is woven, one is sewn from squares.'],
-    ['dragon', 'dish', 'Both are blue and white pottery, from far apart in Asia.'],
-    ['smile', 'amo', 'Both show people. One is smiling and dancing; one stands tall and proud.'],
-    ['horse', 'ciwara', 'Both are animals that love to run and leap.'],
-    ['harvest', 'wheat', 'Both are wheat fields in summer, painted 300 years apart!'],
-    ['runner', 'ciwara', 'Both show movement: a runner and a dancing antelope.'],
-    ['dish', 'quilt', 'Both have birds and flowers. Can you find them?'],
-  ];
+  // each pair's clue is VO.clue at the same index
+  const PAIRS = [['wave', 'wheat'], ['hippo', 'elephant'], ['blanket', 'quilt'], ['dragon', 'dish'], ['smile', 'amo'], ['horse', 'ciwara'],
+    ['harvest', 'wheat'], ['runner', 'ciwara'], ['dish', 'quilt']];
   let pairI = 0, showHint = false;
-  function renderCompare() {
-    const [l, r, hint] = PAIRS[pairI], A = BYID[l], B = BYID[r];
+  function renderCompare(why) {
+    const [l, r] = PAIRS[pairI], hint = VO.clue[pairI], A = BYID[l], B = BYID[r];
     $('view').innerHTML = `<div class="pair">${[A, B].map(a => `<div class="side">${frameHTML(a, a.kind === 'flat' ? 560 : 600, 380)}<div class="cap">${a.title} · ${a.place}</div></div>`).join('')}</div>
-      <div class="cbar"><div class="q">What is the <b>same</b>? What is <b>different</b>?<small>${showHint ? '💡 ' + hint : 'Think about colors, lines, shapes, animals, people, and what it is made of.'}</small></div>
+      <div class="cbar"><div class="q">${VO.same}<small>${showHint ? '💡 ' + hint : VO.think}</small></div>
       <button class="b" id="hint">💡 A clue</button><button class="b go" id="newpair">🔀 New pair</button></div>`;
-    $('hint').onclick = () => { showHint = !showHint; renderCompare(); };
-    $('newpair').onclick = () => { pairI = (pairI + 1) % PAIRS.length; showHint = false; renderCompare(); };
+    $('hint').onclick = () => { showHint = !showHint; renderCompare(showHint ? 'clue' : 'think'); };
+    $('newpair').onclick = () => { pairI = (pairI + 1) % PAIRS.length; showHint = false; renderCompare('pair'); };
+    // arriving: the question and how to think about it; a clue says just the clue; a new pair just the question
+    const pi = pairI, read = () => [VO.same, showHint ? hint : VO.think], still = {still: () => mode === 'compare' && pairI === pi};
+    if (why === 'clue') { entryV = read(); readV = read; cue(hint, still); }
+    else if (why === 'think') { entryV = read(); readV = read; cue(VO.think, still); }
+    else if (why === 'pair') { entryV = read(); readV = read; cue(VO.same, still); }
+    else arrive(read(), read, still);
     $('view').querySelectorAll('.side .frame').forEach((f, k) => { f.style.cursor = 'pointer'; f.onclick = () => setMode('look', ART.indexOf(k ? B : A)); });
   }
 
@@ -346,12 +478,13 @@ h1 small{display:block;font:400 14px/1.3 'Segoe UI',sans-serif;color:#cfe4f3}
     const n = Object.keys(seen).length;
     $('view').innerHTML = `<div class="book"><div class="pg l"><h2>🛂 Passport</h2><p>This passport belongs to <b>our class</b>.</p>
       <p>Stamps collected: <b style="font-size:30px;color:var(--brand)">${n}</b> of ${ART.length}</p>
-      <p style="color:var(--muted);font-size:18px">Every time we visit a work of art, we get a stamp. Tap a stamp to visit again.</p>
+      <p style="color:var(--muted);font-size:18px">${VO.passport}</p>
       <img src="${TORTOISE}" alt="" style="height:220px;align-self:center;margin-top:auto;filter:drop-shadow(0 6px 4px #0004)">
       <button class="b" id="reset" style="font-size:15px;min-height:44px">↺ Start a new passport</button></div>
       <div class="pg r"><div class="stamps">${ART.map((a, i) => `<button class="st${seen[a.id] ? ' got' : ''}" data-a="${i}" style="--sc:${a.color}"><span class="c" style="${seen[a.id] ? `background-image:url(${a.img})` : ''}">${seen[a.id] ? '' : '?'}</span><small>${seen[a.id] ? a.place : '???'}</small></button>`).join('')}</div></div></div>`;
     $('view').querySelectorAll('[data-a]').forEach(b => b.onclick = () => setMode('look', +b.dataset.a));
     $('reset').onclick = () => { if (!confirm('Start a new passport with no stamps?')) return; seen = {}; saveSeen(); renderPassport(); };
+    arrive([VO.passport], null, {still: () => mode === 'passport'});
   }
 
   addEventListener('keydown', e => {
@@ -361,7 +494,7 @@ h1 small{display:block;font:400 14px/1.3 'Segoe UI',sans-serif;color:#cfe4f3}
     if (e.key === 'Escape') unzoom();
   });
   setMode('travel');
-  window.__ap = {setMode, ART, zoomTo, renderLook, get seen() { return seen; }, set seen(v) { seen = v; }};
+  window.__ap = {VO, vlog, said, hush, readNow, get reading() { return reading; }, setMode, ART, zoomTo, renderLook, get seen() { return seen; }, set seen(v) { seen = v; }};
 })();
 </script>
 </body>

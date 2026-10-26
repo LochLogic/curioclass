@@ -294,31 +294,35 @@ footer.sentence{padding:16px 20px;background:var(--ink);color:#fff;display:flex;
     const eq = $('eq'), say = $('say');
     if (state.mode === 'pairs') {
       const n = state.n, half = Math.floor(n / 2), odd = n % 2 === 1;
-      if (n === 1) {
-        eq.innerHTML = '1 = <span class="em">1 alone</span>';
-        say.textContent = 'One musician, no partner yet. One is odd.';
-      } else if (odd) {
-        eq.innerHTML = `${half} + ${half} + <span class="em">1</span> = ${n}`;
-        say.textContent = `${cap(WORDS[n])} musicians make ${WORDS[half]} pairs, and one has no partner. ${cap(WORDS[n])} is odd.`;
-      } else {
-        eq.innerHTML = `${half} + ${half} = ${n}`;
-        say.textContent = `Everyone has a partner! ${cap(WORDS[n])} is even: ${WORDS[half]} plus ${WORDS[half]}.`;
-      }
+      eq.innerHTML = n === 1 ? '1 = <span class="em">1 alone</span>' : odd ? `${half} + ${half} + <span class="em">1</span> = ${n}` : `${half} + ${half} = ${n}`;
+      say.textContent = pairsLine(n);
+      sayLater();
       return;
     }
     const {r, c} = state, total = r * c;
     eq.innerHTML = Array(r).fill(c).join(' + ') + ` = <span class="em">${total}</span>`;
-    say.textContent = `${cap(WORDS[r])} ${r === 1 ? 'row' : 'rows'} of ${WORDS[c]} make ${WORDS[total]}. ${cap(WORDS[total])} is ${total % 2 ? 'odd' : 'even'}.`;
+    say.textContent = rowsLine(r, c);
     (state.found[total] ||= new Set()).add(`${r} ${r === 1 ? 'row' : 'rows'} of ${c}`);
     const ways = [...state.found[total]];
     $('ways').innerHTML = `<b>Ways you've lined up ${total}:</b><div class="chips">${ways.map(w => `<span>${w}</span>`).join('')}</div>` +
       (ways.length === 1 ? '<div style="margin-top:8px">Can you find another way?</div>' : '');
+    sayLater();
   }
   const cap = s => s[0].toUpperCase() + s.slice(1);
+  // The spoken sentences: 20 for Partners (1 to 20) and 25 for Rows (1 to 5 by 1 to 5), all recorded
+  function pairsLine(n) {
+    const half = Math.floor(n / 2);
+    if (n === 1) return 'One musician, no partner yet. One is odd.';
+    if (n % 2) return `${cap(WORDS[n])} musicians make ${WORDS[half]} ${half === 1 ? 'pair' : 'pairs'}, and one has no partner. ${cap(WORDS[n])} is odd.`;
+    return `Everyone has a partner! ${cap(WORDS[n])} is even: ${WORDS[half]} plus ${WORDS[half]}.`;
+  }
+  const rowsLine = (r, c) => `${cap(WORDS[r])} ${r === 1 ? 'row' : 'rows'} of ${WORDS[c]} ${r === 1 ? 'makes' : 'make'} ${WORDS[r * c]}. ${cap(WORDS[r * c])} is ${r * c % 2 ? 'odd' : 'even'}.`;
 
   // ---------- controls ----------
   function setMode(m) {
+    const changed = state.mode !== m;
     state.mode = m;
+    if (changed) { hush(); narrate('welcome-' + m, [WELCOME[m]]); }
     $('m-pairs').setAttribute('aria-pressed', m === 'pairs');
     $('m-rows').setAttribute('aria-pressed', m === 'rows');
     $('pairs-ctl').classList.toggle('hidden', m !== 'pairs');
@@ -342,10 +346,14 @@ footer.sentence{padding:16px 20px;background:var(--ink);color:#fff;display:flex;
     e.currentTarget.setAttribute('aria-pressed', state.sound);
     e.currentTarget.textContent = state.sound ? '🔔 Sound' : '🔇 Sound';
     if (state.sound) play('drum');
+    if (!state.sound) hush(); else narrate('welcome-' + state.mode, [WELCOME[state.mode]], {delay: 400});   // after the drum
   };
-  // ---------- Read aloud: pick the most natural voice this browser offers ----------
-  // Ranked by name: "Natural"/"Neural" (Edge), "Premium"/"Enhanced" (Apple), Google voices (Chrome).
-  // Some of these voices are online voices: the browser sends the sentence (never anything a student typed) to its maker.
+  // ---------- Read aloud and narration ----------
+  const wait = ms => new Promise(r => setTimeout(r, ms));
+  // Every sentence has a recording; the browser's voice is only a fallback until they are recorded.
+  // The band never plays under speech: March stops it, and nothing is said while the band plays.
+  // ---------- voice: a recorded clip (voice/lines.json) when the exact text has one, else the browser's best voice ----------
+  const CLIPS = "voice:*";
   function bestVoice() {
     const voices = speechSynthesis.getVoices().filter(v => /^en(-|_|$)/i.test(v.lang));
     const score = v => (/natural|neural/i.test(v.name) ? 50 : 0) + (/premium|enhanced/i.test(v.name) ? 40 : 0) +
@@ -354,25 +362,100 @@ footer.sentence{padding:16px 20px;background:var(--ink);color:#fff;display:flex;
     return voices.sort((a, b) => score(b) - score(a))[0] || null;
   }
   if ('speechSynthesis' in window) {
-    // Chrome fills its voice list late; hold an early utterance until the good voices load, or it falls back to a robotic default
-    const speak = speechSynthesis.speak.bind(speechSynthesis);
+    // Chrome fills its voice list late, so an early line waits for it; cancel() also drops a line still waiting
+    const speak = speechSynthesis.speak.bind(speechSynthesis), cancel = speechSynthesis.cancel.bind(speechSynthesis), held = new Set();
     speechSynthesis.speak = u => {
       if (speechSynthesis.getVoices().length) return speak(u);
-      let done = false;
-      const go = () => { if (done) return; done = true; const v = bestVoice(); if (v) { u.voice = v; u.lang = v.lang; } speak(u); };
+      held.add(u);
+      const go = () => { if (!held.delete(u)) return; const v = bestVoice(); if (v) { u.voice = v; u.lang = v.lang; } speak(u); };
       speechSynthesis.addEventListener('voiceschanged', go, {once: true});
       setTimeout(go, 1500);
     };
+    speechSynthesis.cancel = () => { held.forEach(u => u.onend && u.onend()); held.clear(); cancel(); };
     speechSynthesis.getVoices();
   }
+  let talk = 0, clip = null, nowKey = '';
+  const voiceLog = [];   // every line that started, for checking (window.__voice)
+  function stopTalk() { talk++; if (clip) { clip.pause(); clip = null; } if ('speechSynthesis' in window) speechSynthesis.cancel(); }
+  function speakOne(text) {
+    voiceLog.push({text, clip: !!CLIPS[text]});
+    return new Promise(done => {
+      if (CLIPS[text]) { clip = new Audio(CLIPS[text]); clip.onended = clip.onerror = () => done(); clip.play().catch(() => done()); return; }
+      if (!('speechSynthesis' in window)) return done();
+      const u = new SpeechSynthesisUtterance(text);
+      const v = bestVoice(); if (v) { u.voice = v; u.lang = v.lang; }
+      u.rate = .95; u.pitch = 1; u.onend = u.onerror = () => done();
+      setTimeout(done, 2500 + 80 * text.length);   // some browsers never fire end; the queue must not stall on them
+      speechSynthesis.speak(u);
+    });
+  }
+  async function say(parts) {
+    stopTalk();
+    const me = talk;
+    for (const p of [].concat(parts)) { if (me !== talk) return; await speakOne(p); await wait(150); }
+  }
+
+  // ---------- narration queue: one line at a time; Read always wins (the collision-lab pattern) ----------
+  const said = new Set(), queued = new Set();
+  let tapped = false, vq = Promise.resolve(), vgen = 0, readP = Promise.resolve();
+  const lineMs = parts => 2500 + 80 * [].concat(parts).join(' ').length;
+  // once: said a single time per page load. still(): checked when the line's turn comes; false drops it (its moment
+  // passed). delay: a pause before it starts, so it never lands on top of a sound effect.
+  function narrate(key, parts, {once = true, still, delay = 0} = {}) {
+    if (!tapped || !state.sound || QUIET() || (once && said.has(key)) || queued.has(key)) return Promise.resolve(false);
+    queued.add(key);
+    const gen = vgen;
+    return vq = vq.then(async () => {
+      await readP;
+      if (delay) await wait(delay);
+      if (gen !== vgen) return false;               // dropped by hush(): not marked said, so its trigger can queue it again
+      queued.delete(key);
+      if ((still && !still()) || QUIET()) return false;
+      if (once) said.add(key);                      // marked when it starts playing, never when queued
+      nowKey = key;
+      await Promise.race([say(parts), wait(lineMs(parts))]);
+      if (nowKey === key) nowKey = '';
+      return true;
+    });
+  }
+  function hush() { vgen++; queued.clear(); vq = Promise.resolve(); readP = Promise.resolve(); nowKey = ''; stopTalk(); }   // a stopped Read clip never ends, so nothing may wait on it
+  function readNow(parts) { hush(); nowKey = 'read'; readP = Promise.race([say(parts), wait(lineMs(parts))]).catch(() => {}).then(() => { if (nowKey === 'read') nowKey = ''; }); }
+  const QUIET = () => !!marchTimer;
+  const WELCOME = {
+    pairs: 'Line up the band in pairs. Add musicians, and see if everyone gets a partner.',
+    rows: 'Now make rows. Pick how many rows, and how many in each row.',
+  };
+  // After a change, the sentence is said once the buttons rest; a newer sentence replaces it
+  let sayTimer = 0;
+  function sayLater() {
+    clearTimeout(sayTimer); sayTimer = 0;
+    if (!tapped || !state.sound || marchTimer) return;
+    if (nowKey.startsWith('s:')) hush();   // the last sentence is out of date now
+    sayTimer = setTimeout(() => {
+      sayTimer = 0;
+      const line = $('say').textContent;
+      narrate('s:' + line, [line], {once: false, still: () => $('say').textContent === line});
+    }, 700);
+  }
+  // The very first tap: decide after that tap's own click has run. If it queued its own line (a mode, a sentence or the
+  // band), or was Read or Sound, skip the welcome without marking it said (the band stopping or Sound on brings it back).
+  for (const ev of ['pointerdown', 'keydown']) addEventListener(ev, e => {
+    if (tapped) return; tapped = true;
+    const b = e.target && e.target.closest ? e.target.closest('button') : null;
+    if (b && (b.id === 'sound' || b.id === 'read')) return;
+    const go = () => { removeEventListener('click', go, true); clearTimeout(fb); setTimeout(() => { if (!queued.size && !nowKey && !sayTimer && !marchTimer) narrate('welcome-' + state.mode, [WELCOME[state.mode]]); }); };
+    addEventListener('click', go, true); const fb = setTimeout(go, 1500);
+  }, true);
   $('read').onclick = () => {
-    if (!('speechSynthesis' in window)) return;
-    speechSynthesis.cancel();
-    const u = new SpeechSynthesisUtterance($('say').textContent);
-    const v = bestVoice();
-    if (v) { u.voice = v; u.lang = v.lang; }
-    u.rate = .95; u.pitch = 1;
-    speechSynthesis.speak(u);
+    if (marchTimer) stopMarch(true);   // Read stops the band first, so the sentence is never said over the music
+    readNow([$('say').textContent]);
+  };
+
+  // for checking: every line the tool can speak, and each line that started
+  window.__voice = {
+    lines: () => [WELCOME.pairs, WELCOME.rows, ...Array.from({length: 20}, (_, i) => pairsLine(i + 1)),
+      ...Array.from({length: 25}, (_, i) => rowsLine(Math.floor(i / 5) + 1, i % 5 + 1))],
+    log: voiceLog,
   };
 
   // ---------- March! The band marches in place to "When the Saints Go Marching In" (traditional) ----------
@@ -443,15 +526,18 @@ footer.sentence{padding:16px 20px;background:var(--ink);color:#fff;display:flex;
   }
 
   let marchTimer = 0;
-  function stopMarch() {
+  function stopMarch(quiet) {
+    const was = !!marchTimer;
     clearTimeout(marchTimer); marchTimer = 0;
     $('field').classList.remove('marching');
     $('march').setAttribute('aria-pressed', 'false');
     $('march').textContent = 'March! 🥁';
     if (bus) { bus.disconnect(); bus = null; }
+    if (was && !quiet) narrate('welcome-' + state.mode, [WELCOME[state.mode]], {delay: 300});   // the band is done: the welcome, if never said
   }
   $('march').onclick = () => {
     if (marchTimer) return stopMarch();
+    hush(); clearTimeout(sayTimer); sayTimer = 0;   // nothing is said while the band plays
     const field = $('field');
     field.style.setProperty('--step', `${BEAT * 2}s`);
     field.classList.add('marching');

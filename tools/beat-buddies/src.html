@@ -35,6 +35,8 @@ h1{margin:0 auto 0 0;font:800 clamp(22px,2.8vw,32px)/1.1 'Trebuchet MS','Segoe U
 h1 small{display:block;font:400 14px/1.3 'Segoe UI',sans-serif;color:#ffd9cd}
 .icon-btn{border:1px solid #e07c66;background:#d35d44;color:#fff;border-radius:999px;min-height:46px;padding:0 16px;font-weight:700;font-size:15px}
 .icon-btn[aria-pressed="false"]{background:#a63b26}
+/* the 16:10 preview: drop the subtitle so Read, Motion and Sound stay on one row with the title */
+@media (max-width:760px){h1 small{display:none}}
 
 .stagewrap{position:relative;overflow:hidden;min-height:0;background:#bfe3f5}
 .scene{position:absolute;left:50%;top:50%;width:1440px;height:810px;transform:translate(-50%,-50%) scale(var(--s,1));overflow:hidden}
@@ -115,6 +117,7 @@ h1 small{display:block;font:400 14px/1.3 'Segoe UI',sans-serif;color:#ffd9cd}
 <body>
 <header>
   <h1>Beat Buddies <small>March to the steady beat. Build rhythms with animal friends.</small></h1>
+  <button class="icon-btn" id="read" title="Read the instructions aloud">🔊 Read</button>
   <button class="icon-btn" id="motion" aria-pressed="true" title="Turn animation on or off">✨ Motion</button>
   <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
 </header>
@@ -148,9 +151,13 @@ h1 small{display:block;font:400 14px/1.3 'Segoe UI',sans-serif;color:#ffd9cd}
   </div>
 </div>
 
+<script src="kit:curio"></script>
 <script>
 (() => {
   const $ = id => document.getElementById(id);
+  // the kit plays the recorded narration (bundle_tool.py fills the voice token); this tool keeps its own Motion and Sound buttons,
+  // so init runs first and the handlers below replace the kit's
+  Curio.init({clips: "voice:*", rate: .95});
   let reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   try { const m = localStorage.getItem('curio-motion'); if (m) reduce = m === 'calm'; } catch {}
   function showMotion() {
@@ -255,7 +262,7 @@ h1 small{display:block;font:400 14px/1.3 'Segoe UI',sans-serif;color:#ffd9cd}
   })();
   let clock = null;  // {next, beat, bpm, step(beat, t)}
   function startClock(bpm, step, lead = .12) {
-    audio(); stopClock();
+    audio(); stopClock(); music();
     clock = {next: ctx.currentTime + lead, beat: 0, bpm, step};
     const tick = () => {
       if (!clock) return;
@@ -337,10 +344,10 @@ h1 small{display:block;font:400 14px/1.3 'Segoe UI',sans-serif;color:#ffd9cd}
     $('voices').querySelectorAll('button').forEach(b => b.onclick = () => {
       voice = +b.dataset.v;
       $('voices').querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x === b));
-      if (!mr.on) { audio(); const t = ctx.currentTime + .03; ['C5', 'E5', 'G5'].forEach((n, k) => VOICES[voice][1](hz(n), t + k * .18, .3)); }
+      if (!mr.on) { audio(); music(1.6); const t = ctx.currentTime + .03; ['C5', 'E5', 'G5'].forEach((n, k) => VOICES[voice][1](hz(n), t + k * .18, .3)); }
     });
     $('go').onclick = () => mr.on ? stopMarch() : startMarch();
-    $('fz').onclick = () => { mr.freezeGame = !mr.freezeGame; $('fz').setAttribute('aria-pressed', mr.freezeGame); planFreeze(clock ? clock.beat : 0); };
+    $('fz').onclick = () => { mr.freezeGame = !mr.freezeGame; $('fz').setAttribute('aria-pressed', mr.freezeGame); planFreeze(clock ? clock.beat : 0); if (mr.freezeGame) cue(VO.freezeOn, {still: () => mode === 'march' && mr.freezeGame}); };
   }
   const planFreeze = b => { mr.nextFreeze = b + 8 + Math.floor(Math.random() * 12); };
   function startMarch() {
@@ -351,12 +358,12 @@ h1 small{display:block;font:400 14px/1.3 'Segoe UI',sans-serif;color:#ffd9cd}
     startClock(bpm(), (b, t) => {
       const spb = 60 / clock.bpm;
       if (mr.frozen) {
-        if (b >= mr.until) { mr.frozen = false; at(t, () => { $('freeze').hidden = true; $('marchtip').textContent = 'Go! Pat your knees on every heart!'; }); planFreeze(b); }
+        if (b >= mr.until) { mr.frozen = false; music(); at(t, () => { $('freeze').hidden = true; $('marchtip').textContent = VO.tip.go; }); planFreeze(b); }
         else return;
       }
       if (mr.freezeGame && b >= mr.nextFreeze && b % 4 === 0) {  // stop on a downbeat, for four beats or so
         mr.frozen = true; mr.until = b + 4 + Math.floor(Math.random() * 3);
-        at(t, () => { $('freeze').hidden = false; lightHeart(-1); $('marchtip').textContent = 'Everybody freeze!'; anim($('freeze'), [{transform: 'translateX(-50%) scale(.6)', opacity: 0}, {transform: 'translateX(-50%) scale(1)', opacity: 1}], {duration: 260, easing: 'ease-out'}); });
+        at(t, () => { $('freeze').hidden = false; lightHeart(-1); $('marchtip').textContent = VO.tip.freeze; narrate(VO.tip.freeze, {still: () => mr.frozen}); anim($('freeze'), [{transform: 'translateX(-50%) scale(.6)', opacity: 0}, {transform: 'translateX(-50%) scale(1)', opacity: 1}], {duration: 260, easing: 'ease-out'}); });
         return;
       }
       const i = song % 32; song++;
@@ -370,7 +377,7 @@ h1 small{display:block;font:400 14px/1.3 'Segoe UI',sans-serif;color:#ffd9cd}
   }
   function stopMarch() {
     mr.on = false; stopClock(); lightHeart(-1); $('freeze').hidden = true;
-    $('marchtip').textContent = 'Pat your knees on every heart!';
+    $('marchtip').textContent = VO.tip.pat;
     marchCtl();
   }
 
@@ -421,13 +428,13 @@ h1 small{display:block;font:400 14px/1.3 'Segoe UI',sans-serif;color:#ffd9cd}
   function drawPalette() {
     $('palette').innerHTML = Object.entries(CARDS).map(([k, c]) => `<button class="card" data-k="${k}" aria-pressed="${k === ry.tool}" style="border-left:10px solid ${c.color}"><img src="${IMG[k]}" alt=""><div><b style="color:${c.color}">${c.word}</b><span>${c.name}: ${c.tip}</span></div></button>`).join('')
       + `<div class="tools"><button class="toggle" id="tb" aria-pressed="${ry.beat}"><i></i>❤️ Hear the beat</button><button class="toggle" id="tn" aria-pressed="${ry.notes}"><i></i>♩ Show notes</button><button class="big soft" id="mix">🎲 Surprise me</button></div>`;
-    $('palette').querySelectorAll('.card').forEach(b => b.onclick = () => { ry.tool = b.dataset.k; drawPalette(); SFX(ry.tool); });
+    $('palette').querySelectorAll('.card').forEach(b => b.onclick = () => { ry.tool = b.dataset.k; drawPalette(); SFX(ry.tool); const k = ry.tool; cue(VO.card[k], {still: () => mode === 'rhy' && ry.tool === k}); });
     $('tb').onclick = () => { ry.beat = !ry.beat; drawPalette(); };
     $('tn').onclick = () => { ry.notes = !ry.notes; drawPalette(); drawBoxes(ry.pat); };
     $('mix').onclick = () => { ry.pat = randomPattern(3); drawBoxes(ry.pat); if (!ry.playing) playPattern(ry.pat, {times: 1}); };
   }
   function SFX(card) {  // a preview of one card's sound
-    audio(); const t = ctx.currentTime + .02, spb = 60 / bpm();
+    audio(); const t = ctx.currentTime + .02, spb = 60 / bpm(); music(card === 'snail' ? spb * 2 + .3 : .8);
     if (card === 'bear') SND.drum(t);
     if (card === 'bunny') { SND.block(t, 1050); SND.block(t + spb / 2, 1050); }
     if (card === 'snail') SND.long(t, spb * 2 * .9);
@@ -488,11 +495,11 @@ h1 small{display:block;font:400 14px/1.3 'Segoe UI',sans-serif;color:#ffd9cd}
         <button class="big soft" id="clear">Start over</button>
         <button class="big${ry.playing ? ' stop' : ''}" id="go">${ry.playing ? '■ Stop' : '▶ Play'}</button>`;
       wireSpeeds();
-      $('clear').onclick = () => { endPlay(); ry.pat = [null, null, null, null]; drawBoxes(ry.pat); say('Tap a card below, then tap a box.'); };
+      $('clear').onclick = () => { endPlay(); ry.pat = [null, null, null, null]; drawBoxes(ry.pat); banner(VO.build); cue(VO.build); };
       $('go').onclick = () => {
         if (ry.playing) return endPlay();
-        if (ry.pat.some(c => !c)) { say('Fill all four boxes first.'); return; }
-        say('Clap with the buddies!'); playPattern(ry.pat, {times: 4, after: () => say('Again? Or change a card.')});
+        if (ry.pat.some(c => !c)) { banner(VO.fill); cue(VO.fill); return; }
+        banner(VO.clap); playPattern(ry.pat, {times: 4, after: () => { banner(VO.again); narrate(VO.again, {still: () => mode === 'rhy' && !ry.playing}); }});
       };
     } else if (mode === 'echo') {
       const e = ry.echo;
@@ -507,27 +514,27 @@ h1 small{display:block;font:400 14px/1.3 'Segoe UI',sans-serif;color:#ffd9cd}
       if ($('again')) $('again').onclick = () => playPattern(e.pat, {times: 1});
     }
   }
-  function say(t) { $('banner').textContent = t; }
+  function banner(t) { $('banner').textContent = t; bannerV = [t]; }
   function newEcho() {
     endPlay();
     const e = ry.echo; e.pat = randomPattern(e.level); e.stage = 'ready';
     drawBoxes(e.pat, true); rhyCtl();
-    say('Listen to the buddies, then clap it back.');
+    banner(VO.listen); const pat = e.pat; narrate(VO.listen, {still: () => mode === 'echo' && e.stage === 'ready' && e.pat === pat});
   }
   function listenEcho() {
-    const e = ry.echo; e.stage = 'playing'; rhyCtl(); say('Listen...');
+    const e = ry.echo; e.stage = 'playing'; rhyCtl(); banner(VO.listening);
     playPattern(e.pat, {times: 1, hidden: true, after: () => {
       // A breath before the class answers: a quiet pause, then "Ready... go!" on the beat,
       // then the hearts keep the beat for one bar while the class claps.
-      e.stage = 'wait'; rhyCtl(); say('Get ready to clap it back...');
+      e.stage = 'wait'; rhyCtl(); banner(VO.ready);
       setTimeout(() => {
         if (mode !== 'echo' || e.stage !== 'wait') return;
         e.stage = 'clap';
         startClock(bpm(), (b, t) => {
-          if (b >= 6) { at(t, () => { endPlay(); e.stage = 'turn'; rhyCtl(); say('Was that it? Let\'s look.'); }); return false; }
+          if (b >= 6) { at(t, () => { endPlay(); e.stage = 'turn'; rhyCtl(); banner(VO.look); narrate(VO.look, {still: () => mode === 'echo' && e.stage === 'turn'}); }); return false; }
           if (b < 2) {
             SND.block(t, b ? 1300 : 1000);
-            at(t, () => { $('count').classList.add('word'); $('count').textContent = b ? 'Go!' : 'Ready'; if (b) say('Your turn! Clap it back.'); });
+            at(t, () => { $('count').classList.add('word'); $('count').textContent = b ? 'Go!' : 'Ready'; if (b) banner(VO.turn); });
             return;
           }
           SND.heart(t); at(t, () => { $('count').textContent = ''; lightHeart(b - 2); });
@@ -538,20 +545,108 @@ h1 small{display:block;font:400 14px/1.3 'Segoe UI',sans-serif;color:#ffd9cd}
   function showEcho() {
     const e = ry.echo; e.stage = 'shown';
     drawBoxes(e.pat, false); rhyCtl();
-    say(e.pat.filter(c => c !== 'tail').map(c => CARDS[c].word).join('   ·   '));
+    banner(e.pat.filter(c => c !== 'tail').map(c => CARDS[c].word).join('   ·   ')); bannerV = e.pat.filter(c => c !== 'tail').map(c => VO.card[c]);   // Read names each card
     playPattern(e.pat, {times: 1, countIn: false});
   }
+
+  // ---------- voice ----------
+  // Every spoken line, and nothing else, lives in VO (voice/lines.json lists each one; scratch checks compare the two).
+  // voice:lines-start
+  const VO = {
+    welcome: {
+      march: "Let's march with the beat buddies! Press March, and pat your knees on every heart.",
+      rhy: "Let's make a rhythm with the animal cards!",
+      echo: 'Echo time! The buddies play a rhythm. Then you clap it back.',
+    },
+    tip: {pat: 'Pat your knees on every heart!', freeze: 'Everybody freeze!', go: 'Go! Pat your knees on every heart!'},
+    freezeOn: 'Freeze game! When the music stops, freeze like a statue.',
+    card: {bear: 'Bear says ta. One sound.', bunny: 'Bunny says ti-ti. Two quick sounds.', snail: 'Snail says ta-a. One long sound.', owl: 'Owl says shh. A quiet beat.'},
+    build: 'Tap a card below, then tap a box.',
+    fill: 'Fill all four boxes first.',
+    clap: 'Clap with the buddies!',
+    again: 'Again? Or change a card.',
+    listen: 'Listen to the buddies, then clap it back.',
+    listening: 'Listen...',
+    ready: 'Get ready to clap it back...',
+    turn: 'Your turn! Clap it back.',
+    look: "Was that it? Let's look.",
+  };
+  // voice:lines-end
+  // The queue (the collision-lab pattern): one line at a time; a welcome per mode after the first tap; Read always wins.
+  // Music rule: no line starts while the beat or a card sound plays (a freeze is quiet, so "Everybody freeze!" fits in it),
+  // and the music starting cuts the talk at once. Lines still waiting keep waiting for quiet.
+  const said = new Set(), queued = new Set(), vlog = [];
+  let tapped = false, vq = Promise.resolve(), vgen = 0, readP = Promise.resolve(), reading = 0, vcount = 0, busyUntil = 0, bannerV = [];
+  const lineMs = parts => parts.reduce((a, t) => a + 2500 + 80 * t.length, 0);
+  const busy = () => (!!clock && !(mode === 'march' && mr.frozen)) || Date.now() < busyUntil;
+  let cut = () => {};
+  const cutP = () => new Promise(r => { cut = r; });
+  function music(sec = 0) { Curio.stop(); cut(); reading = 0; readP = Promise.resolve(); busyUntil = Math.max(busyUntil, Date.now() + sec * 1000); }
+  // once: said at most once (welcomes). still(): drop the line if its moment passed before it could start
+  function narrate(parts, o = {}) {
+    parts = [].concat(parts);
+    const key = parts.join('|');
+    if (!tapped || !soundOn || (o.once && (said.has(key) || queued.has(key)))) return false;
+    queued.add(key); vcount++;
+    const gen = vgen;
+    vq = vq.then(async () => {
+      await readP;
+      while (busy() && gen === vgen) await wait(100);   // never over the beat
+      if (gen !== vgen) return;                           // dropped by hush(): not marked said, so its trigger can queue it again
+      queued.delete(key);
+      if (o.still && !o.still()) return;
+      if (o.once) said.add(key);
+      vlog.push(...parts);
+      await Promise.race([Curio.say(parts), wait(lineMs(parts)), cutP()]);
+    });
+    return true;
+  }
+  // short feedback: drop whatever is waiting or talking (never Read), then say this
+  function cue(parts, o) {
+    if (!tapped || !soundOn) return false;
+    vgen++; queued.clear(); vq = readP; if (!reading) { Curio.stop(); cut(); }
+    return narrate(parts, o);
+  }
+  // a stopped clip never fires "ended", so hush also lets go of the Read promise
+  function hush() { vgen++; queued.clear(); vq = Promise.resolve(); readP = Promise.resolve(); reading = 0; Curio.stop(); cut(); }
+  // Read: the music stops, then the instructions on screen are read
+  function readNow() {
+    const e = ry.echo;
+    if (mr.on) stopMarch();
+    if (clock || ry.playing) endPlay();
+    if (mode === 'echo' && ['playing', 'wait', 'clap'].includes(e.stage)) { e.stage = 'ready'; drawBoxes(e.pat, true); rhyCtl(); banner(VO.listen); }
+    busyUntil = 0; hush(); vcount++;
+    const parts = mode === 'march' ? [$('marchtip').textContent] : bannerV.filter(Boolean), me = reading = vcount;
+    if (!parts.length) return;
+    vlog.push(...parts);
+    readP = Promise.race([Curio.say(parts, true), wait(lineMs(parts)), cutP()]).catch(() => {}).then(() => { if (reading === me) reading = 0; });
+  }
+  $('read').onclick = readNow;
+  // the mode's welcome (once), then what the banner asks
+  function intro() {
+    narrate(VO.welcome[mode], {once: true});
+    if (mode === 'rhy' && bannerV[0] === VO.build) narrate(VO.build, {still: () => mode === 'rhy'});
+    if (mode === 'echo' && ry.echo.stage === 'ready') narrate(VO.listen, {still: () => mode === 'echo' && ry.echo.stage === 'ready'});
+  }
+  // The first tap: decide after its own click has run. If it queued a line (or was Read), the welcome waits for another time.
+  for (const ev of ['pointerdown', 'keydown']) addEventListener(ev, e => {
+    if (tapped) return; tapped = true;
+    const n0 = vcount;
+    const go = () => { removeEventListener('click', go, true); clearTimeout(fb); setTimeout(() => { if (vcount === n0) intro(); }); };
+    addEventListener('click', go, true); const fb = setTimeout(go, 1500);
+  }, true);
 
   // ---------- modes ----------
   let mode = 'march';
   function setMode(m) {
-    stopClock(); mr.on = false; ry.playing = false; mode = m;
+    stopClock(); hush(); busyUntil = 0; mr.on = false; ry.playing = false; mode = m;
+    narrate(VO.welcome[m], {once: true});
     ['march', 'rhy', 'echo'].forEach(k => $('t-' + k).setAttribute('aria-pressed', k === m));
     $('march').hidden = m !== 'march'; $('rhy').hidden = m === 'march';
     $('hearts').className = 'hearts ' + (m === 'march' ? 'march' : 'rhy');
-    drawHearts(); lightHeart(-1); say(''); $('count').textContent = ''; $('freeze').hidden = true;
+    drawHearts(); lightHeart(-1); banner(''); $('count').textContent = ''; $('freeze').hidden = true;
     if (m === 'march') { placeBuddies(true); marchCtl(); }
-    else if (m === 'rhy') { drawBoxes(ry.pat); drawPalette(); $('palette').hidden = false; rhyCtl(); say('Tap a card below, then tap a box.'); }
+    else if (m === 'rhy') { drawBoxes(ry.pat); drawPalette(); $('palette').hidden = false; rhyCtl(); banner(VO.build); narrate(VO.build, {still: () => mode === 'rhy'}); }
     else { $('palette').hidden = true; newEcho(); }
   }
   $('t-march').onclick = () => setMode('march');
@@ -560,6 +655,7 @@ h1 small{display:block;font:400 14px/1.3 'Segoe UI',sans-serif;color:#ffd9cd}
   $('sound').onclick = e => {
     soundOn = !soundOn;
     if (master) master.gain.value = soundOn ? .9 : 0;
+    if (!soundOn) hush(); else if (tapped && !said.has(VO.welcome[mode])) intro();   // back on: the mode's welcome, if never said
     e.currentTarget.setAttribute('aria-pressed', soundOn);
     e.currentTarget.textContent = soundOn ? '🔔 Sound' : '🔇 Sound';
   };
@@ -569,7 +665,7 @@ h1 small{display:block;font:400 14px/1.3 'Segoe UI',sans-serif;color:#ffd9cd}
     const go = $('go'); go && go.click();
   });
 
-  window.__bb = {setMode, ry, mr, startMarch, stopMarch, playPattern, setSlot, newEcho, listenEcho, showEcho, drawBoxes};  // for checking frames
+  window.__bb = {VO, vlog, said, hush, readNow, get reading() { return reading; }, get busy() { return busy(); }, setMode, ry, mr, startMarch, stopMarch, playPattern, setSlot, newEcho, listenEcho, showEcho, drawBoxes};  // for checking frames
   setMode('march');
 })();
 </script>

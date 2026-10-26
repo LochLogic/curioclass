@@ -15,3 +15,4 @@
 - Sound starts on (the Sound button turns it off). Click any musician to hear them play, or press **March!**
 - Keyboard: **+** and **−** change the band, **M** marches.
 - There's no score. The point is noticing patterns and saying them out loud.
+- A narrator voice welcomes each way of lining up and says the sentence along the bottom a moment after you stop changing the band. It never talks over the band: **March!** stops the voice, and **Read** stops the band before it reads. With Sound off only **Read** speaks.

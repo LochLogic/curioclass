@@ -87,6 +87,10 @@ then the item goes back to "ready" with a reply on the comment and the comment m
   (`cfart.py`, free). Avoid candidates with light streaks across the key color (they break the cutout). Character
   sheets: `scripts/split_sheet.py` cuts one sheet into mood cells. Each agent driving Chrome needs its own debugging
   port, not just its own profile (two agents both on 9471 kept killing each other's runs).
+- **Voice token in comments:** `bundle_tool.py` fills every `"voice:*"` in src.html, comments included, so a comment
+  that quotes the token inlines every clip twice (four K-2 tools did this on 2026-10-26; one went from 1.5 to 2.8 MB).
+  Write "the voice token" in comments. When a tool is still over 2 MB: `"kbps": 16`, re-save backgrounds about 1024
+  wide at quality 45-55, then a small `"tempo"` (1.05) as a last step.
 - **Integrator fixes:** when both fix rounds are used and one narrow should-fix remains, fixing it yourself and
   appending an "Integrator fix" note to verify.md (with what you rechecked) has worked four times.
 - **Paused (specs done, not built):** circuit-builder, sound-studio, satire-decoder, usage-panel, stock-market-1929.

@@ -5,13 +5,14 @@
   "modes": [],
   "grades_label": "Grade 2",
   "third_party": [],
-  "updated": "2026-10-23",
+  "updated": "2026-10-26",
   "hook": "Stack sentences into a burger: topic on top, details in the middle, a closing sentence on the bottom. Then serve it to a hungry bear.",
   "outcome": "Build a paragraph with a topic sentence, details and a closing sentence",
   "minutes": "10-20",
   "sources": [
     "Illustrations generated with Google Gemini, edited for Curio Class",
     "Sounds generated in the browser",
-    "Paragraphs written for Curio Class"
+    "Paragraphs written for Curio Class",
+    "Narration generated with Qwen3-TTS (Apache 2.0), cloning a Google Gemini text-to-speech voice"
   ]
 }

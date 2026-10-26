@@ -5,13 +5,14 @@
   "modes": [],
   "grades_label": "Grade 2",
   "third_party": [],
-  "updated": "2026-10-23",
+  "updated": "2026-10-26",
   "hook": "Crack the case: follow clues and a red string to trace a pencil, a T-shirt and more back to the natural resources they came from.",
   "outcome": "Trace everyday goods back to the natural resources they are made from",
   "minutes": "10-20",
   "sources": [
     "Illustrations generated with Google Gemini, edited for Curio Class",
     "Sounds generated in the browser",
-    "Cases written for Curio Class"
+    "Cases written for Curio Class",
+    "Narration generated with Qwen3-TTS (Apache 2.0), cloning a Google Gemini text-to-speech voice"
   ]
 }

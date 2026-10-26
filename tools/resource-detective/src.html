@@ -23,7 +23,7 @@ Content CC BY 4.0, code MIT. curioclass.org
 }
 *{box-sizing:border-box}
 html,body{margin:0;height:100%}
-body{background:var(--paper);color:var(--ink);display:grid;grid-template-rows:auto 1fr;min-height:100vh}
+body{background:var(--paper);color:var(--ink);display:grid;grid-template-rows:auto minmax(0,1fr);height:100vh;overflow:hidden}
 button{font:inherit;color:inherit;cursor:pointer}
 :focus-visible{outline:4px solid var(--focus);outline-offset:3px}
 header{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:12px 20px;background:#2f2a26;color:#f8f2e6}
@@ -52,6 +52,14 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
 .clue-btn:active:not(:disabled),.solve:active:not(:disabled){transform:translateY(3px);box-shadow:0 2px 0 #0004}
 .clue-btn:disabled,.solve:disabled{opacity:.45;cursor:default}
 .hint{margin:0;font:italic 15px/1.35 Georgia,serif;color:var(--muted)}
+/* a laptop screen (under 900 px tall): smaller tiles, so Next clue and Follow the trail show without scrolling */
+@media (max-height:900px){
+  .panel{padding:12px 16px;gap:9px}
+  .case,.res{min-height:0;padding:4px 4px 5px;gap:2px;font-size:13px}
+  .case img,.res img{width:42px;height:42px}
+  .clue-btn,.solve{min-height:52px;font-size:18px}
+  .hint{font-size:14px}
+}
 
 /* the case board */
 .pin-in{animation:pinin .55s cubic-bezier(.3,1.5,.5,1) both;transform-box:fill-box;transform-origin:50% 0}
@@ -66,7 +74,7 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
 @keyframes sniff{50%{transform:rotate(-2deg) translateY(-3px)}}
 .calm *{animation:none!important;transition:none!important}
 
-@media (max-width:759px),(max-height:620px){
+@media (max-width:759px),(max-height:660px){
   header{padding:6px 12px}
   h1{font-size:19px} h1 small{display:none}
   .icon-btn{min-height:38px;font-size:13px;padding:0 10px}
@@ -155,28 +163,28 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
   };
   // answers: the resources it came from. ok: also fair answers, with a note why.
   const CASES = {
-    pencil: {name: 'Pencil', art: 'art:pencil', making: 'art:make-pencil',
+    pencil: {this: 'this pencil', name: 'Pencil', art: 'art:pencil', making: 'art:make-pencil',
       clues: ['I started out tall and leafy, standing in a forest.', 'My dark middle came from deep inside the ground.', 'At a factory, my dark middle was glued between two strips of wood.'],
       made: 'At a pencil factory, a dark stick of graphite is glued between strips of wood.',
       answers: {trees: 'The wood comes from trees.', rocks: 'The dark graphite is a mineral dug out of rocks.'}},
-    shirt: {name: 'T-shirt', art: 'art:shirt', making: 'art:make-shirt',
+    shirt: {this: 'this T-shirt', name: 'T-shirt', art: 'art:shirt', making: 'art:make-shirt',
       clues: ['I grew in a sunny field.', 'I was white and fluffy, like a little cloud on a stem.', 'I was spun into thread, then woven and sewn.'],
       made: 'Fluffy cotton is spun into thread, woven into cloth and sewn into a shirt.',
       answers: {plants: 'Cotton is a plant. Its fluffy seed pods become thread.'}},
-    juice: {name: 'Orange juice', art: 'art:juice', making: 'art:make-juice',
+    juice: {this: 'this orange juice', name: 'Orange juice', art: 'art:juice', making: 'art:make-juice',
       clues: ['I grew on a tree in a warm, sunny place.', 'I was round and orange, and full of juice.', 'Then I was squeezed!'],
       made: 'Oranges are picked from orange trees and squeezed into juice.',
       answers: {plants: 'Oranges are the fruit of a plant.'},
       ok: {trees: 'Yes! Orange trees are plants too.', water: 'Good thinking! The orange tree drank lots of water to grow its juicy fruit.'}},
-    jar: {name: 'Glass jar', art: 'art:jar', making: 'art:make-jar',
+    jar: {this: 'this glass jar', name: 'Glass jar', art: 'art:jar', making: 'art:make-jar',
       clues: ['I started as tiny grains on a beach.', 'I was melted in a fire much hotter than an oven.', 'Now you can see right through me.'],
       made: 'Sand is melted in a very hot furnace and shaped into glass.',
       answers: {rocks: 'Sand is made of tiny bits of rock. Melted sand becomes glass.'}},
-    mittens: {name: 'Wool mittens', art: 'art:mittens', making: 'art:make-mittens',
+    mittens: {this: 'these wool mittens', name: 'Wool mittens', art: 'art:mittens', making: 'art:make-mittens',
       clues: ['I started out on the back of an animal.', 'Baa!', 'I was clipped off like a haircut, then spun and knitted.'],
       made: 'Wool is clipped from sheep like a haircut, then spun into yarn and knitted.',
       answers: {animals: 'Wool comes from sheep. It grows back, like hair.'}},
-    pot: {name: 'Flower pot', art: 'art:pot', making: 'art:make-pot',
+    pot: {this: 'this flower pot', name: 'Flower pot', art: 'art:pot', making: 'art:make-pot',
       clues: ['I was dug out of the ground.', 'When I was wet, I was soft and squishy.', 'I was baked hard in a hot oven called a kiln.'],
       made: 'Clay is dug from the ground, shaped on a potter’s wheel and baked hard.',
       answers: {soil: 'Clay is a kind of soil.'},
@@ -256,7 +264,9 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
     SFX.string();
   }
 
-  function detective(pose = 'detective', say = '') {
+  let detParts = [];   // what the bubble says, as recorded lines (Read and narration speak these)
+  function detective(pose = 'detective', say = '', parts) {
+    detParts = say ? (parts || [say]) : [];
     const [w, h] = SIZE[pose] || [3, 4], dh = 360, dw = dh * w / h;
     $('det').innerHTML = `<g class="sniff"><image href="${POSE[pose]}" x="${-dw / 2}" y="${-dh}" width="${dw}" height="${dh}"/></g>`;
     $('say').replaceChildren();
@@ -293,17 +303,24 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
     state.clue = 0; state.picked.clear();
     ['strings', 'photos', 'clues', 'stamp-g'].forEach(id => $(id).replaceChildren());
     photo(230, 160, c.art, `The ${c.name.toLowerCase()}`, {size: 190, tilt: -3, id: 'evidence'});
-    detective('detective', `A new case! Where did this ${c.name.toLowerCase()} come from? Let’s look for clues.`);
+    detective('detective', opener(c));
     drawCases(); drawResources(); clueLabel();
+    hush(); narrate('open', detParts, {once: false, delay: 300});   // after the pin sound
   }
+  const opener = c => `A new case! Where did ${c.this} come from? Let’s look for clues.`;
+  const HMM = 'Hmm, interesting… What does that clue tell us?', ALL = 'That’s every clue. Which natural resources did it come from?';
+  const AHA = 'Aha! Let’s follow the trail back to nature!';
 
   $('clue').onclick = () => {
     const c = CASES[state.c];
     if (state.clue >= c.clues.length) return;
     clueCard(state.clue, c.clues[state.clue]);
     state.clue++;
-    detective('detective', state.clue < c.clues.length ? 'Hmm, interesting… What does that clue tell us?' : 'That’s every clue. Which natural resources did it come from?');
+    detective('detective', state.clue < c.clues.length ? HMM : ALL);
     clueLabel();
+    // the narrator reads the new clue, then the detective's question; a newer clue drops it
+    const n = state.clue, cs = state.c;
+    hush(); narrate('clue', [c.clues[n - 1], detParts[0]], {once: false, delay: 250, still: () => state.clue === n && state.c === cs});
   };
 
   async function solve() {
@@ -312,9 +329,10 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
     state.busy = true; setBusy(true);
     $('strings').replaceChildren(); $('stamp-g').replaceChildren();
     [...$('photos').children].forEach(g => { if (g.id !== 'evidence') g.remove(); });
-    detective('detective-aha', 'Aha! Let’s follow the trail back to nature!');
+    hush();
+    detective('detective-aha', AHA);
     SFX.aha();
-    await wait(2400);
+    await Promise.all([wait(2400), narrate('aha', detParts, {once: false, delay: 500})]);
     // the object, then how it was made, then the resources
     const from = {x: 230, y: 160 - 96 * 190 / 180};
     const mid = {x: 445, y: 120};
@@ -322,7 +340,7 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
     await wait(1100);
     const made = photo(mid.x, mid.y + 96 * .9, c.making, 'How it was made', {size: 162, tilt: 2});
     detective('detective', c.made);
-    await wait(readMs(c.made));
+    await Promise.all([wait(readMs(c.made)), narrate('made', detParts, {once: false, delay: 200})]);
     const keys = Object.keys(c.answers);
     const spots = keys.length === 1 ? [{x: 640, y: 220}] : [{x: 630, y: 120}, {x: 650, y: 335}];
     for (let i = 0; i < keys.length; i++) {
@@ -331,35 +349,35 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
       await wait(1100);
       photo(at.x, at.y, RES[k].art, RES[k].name, {size: 148, tilt: i ? 3 : -2});
       detective('detective-aha', c.answers[k]);
-      await wait(readMs(c.answers[k]));
+      await Promise.all([wait(readMs(c.answers[k])), narrate('ans', detParts, {once: false, delay: 200})]);
     }
     // how did the class do?
-    const right = keys.filter(k => state.picked.has(k));
-    const fair = [...state.picked].filter(k => c.ok?.[k]);
-    const off = [...state.picked].filter(k => !c.answers[k] && !c.ok?.[k]);
-    let msg;
-    if (right.length === keys.length && !off.length) {
+    const {parts, solved} = verdict(c, state.picked), right = keys.filter(k => state.picked.has(k));
+    if (solved) {
       SFX.stamp();
       $('stamp-g').innerHTML = `<g class="stamp" transform="translate(232 175) rotate(-12)"><rect x="-122" y="-30" width="244" height="60" rx="8" fill="none" stroke="#c0392b" stroke-width="6"/>
         <text y="12" text-anchor="middle" font-family="Georgia,serif" font-size="34" font-weight="900" fill="#c0392b" letter-spacing="3">CASE SOLVED</text></g>`;
       state.solved.add(state.c);
-      msg = `Case solved! The ${c.name.toLowerCase()} came from ${list(keys.map(k => RES[k].name.toLowerCase()))}.` + (fair.length ? ' ' + fair.map(k => c.ok[k]).join(' ') : '');
-    } else if (!state.picked.size) {
-      SFX.hmm();
-      msg = `There’s the trail! The ${c.name.toLowerCase()} came from ${list(keys.map(k => RES[k].name.toLowerCase()))}. Try another case, and pick your guesses first.`;
-    } else {
-      SFX.hmm();
-      const missed = keys.filter(k => !state.picked.has(k));
-      const names = ks => list(ks.map(k => RES[k].name.toLowerCase()));
-      msg = (right.length || fair.length ? 'Good detective work! ' : 'Not quite! ') +
-        (right.length ? `You found ${names(right)}. ` : '') +
-        (fair.length ? fair.map(k => c.ok[k]).join(' ') + ' ' : '') +
-        (missed.length ? `It ${right.length ? 'also ' : ''}came from ${names(missed)}. ` : '') +
-        (off.length ? `${list(off.map(k => RES[k].name))} ${off.length > 1 ? 'weren’t' : 'wasn’t'} part of this one.` : '');
-    }
-    detective(right.length === keys.length ? 'detective-aha' : 'detective', msg.trim());
+    } else SFX.hmm();
+    detective(right.length === keys.length ? 'detective-aha' : 'detective', parts.join(' '), parts);
     drawCases();
     state.busy = false; setBusy(false);
+    narrate('end', parts, {once: false, delay: 600, still: () => detParts === parts});   // after the stamp or the hmm
+  }
+  // How the class did, as a list of short recorded lines (every one is in voice/lines.json)
+  function verdict(c, picked) {
+    const keys = Object.keys(c.answers), rn = k => RES[k].name.toLowerCase();
+    const right = keys.filter(k => picked.has(k));
+    const fair = [...picked].filter(k => c.ok?.[k]).map(k => c.ok[k]);
+    const off = [...picked].filter(k => !c.answers[k] && !c.ok?.[k]);
+    const missed = keys.filter(k => !picked.has(k));
+    const from = `${c.this.replace(/^(this|these) /, 'The ')} came from ${list(keys.map(rn))}.`;
+    if (right.length === keys.length && !off.length) return {solved: true, parts: ['Case solved!', from, ...fair]};
+    if (!picked.size) return {solved: false, parts: ['There’s the trail!', from, 'Try another case, and pick your guesses first.']};
+    return {solved: false, parts: [right.length || fair.length ? 'Good detective work!' : 'Not quite!',
+      ...(right.length ? [`You found ${list(right.map(rn))}.`] : []), ...fair,
+      ...(missed.length ? [`It ${right.length ? 'also ' : ''}came from ${list(missed.map(rn))}.`] : []),
+      ...off.map(k => `No ${rn(k)} in this one.`)]};
   }
   const list = a => a.length < 2 ? a.join('') : a.slice(0, -1).join(', ') + ' and ' + a.at(-1);
   function setBusy(on) {
@@ -372,8 +390,12 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
     state.sound = !state.sound;
     e.currentTarget.setAttribute('aria-pressed', state.sound);
     e.currentTarget.textContent = state.sound ? '🔔 Sound' : '🔇 Sound';
+    if (!state.sound) hush(); else welcome();   // Sound back on: the welcome, if it was never said
   };
-  // Read aloud with the most natural voice this browser offers
+
+  // Every line has a recording; the browser's voice is only a fallback until they are recorded.
+  // ---------- voice: a recorded clip (voice/lines.json) when the exact text has one, else the browser's best voice ----------
+  const CLIPS = "voice:*";
   function bestVoice() {
     const voices = speechSynthesis.getVoices().filter(v => /^en(-|_|$)/i.test(v.lang));
     const score = v => (/natural|neural/i.test(v.name) ? 50 : 0) + (/premium|enhanced/i.test(v.name) ? 40 : 0) +
@@ -382,27 +404,98 @@ main{display:grid;grid-template-columns:1fr;min-height:0}
     return voices.sort((a, b) => score(b) - score(a))[0] || null;
   }
   if ('speechSynthesis' in window) {
-    // Chrome fills its voice list late; hold an early utterance until the good voices load, or it falls back to a robotic default
-    const speak = speechSynthesis.speak.bind(speechSynthesis);
+    // Chrome fills its voice list late, so an early line waits for it; cancel() also drops a line still waiting
+    const speak = speechSynthesis.speak.bind(speechSynthesis), cancel = speechSynthesis.cancel.bind(speechSynthesis), held = new Set();
     speechSynthesis.speak = u => {
       if (speechSynthesis.getVoices().length) return speak(u);
-      let done = false;
-      const go = () => { if (done) return; done = true; const v = bestVoice(); if (v) { u.voice = v; u.lang = v.lang; } speak(u); };
+      held.add(u);
+      const go = () => { if (!held.delete(u)) return; const v = bestVoice(); if (v) { u.voice = v; u.lang = v.lang; } speak(u); };
       speechSynthesis.addEventListener('voiceschanged', go, {once: true});
       setTimeout(go, 1500);
     };
+    speechSynthesis.cancel = () => { held.forEach(u => u.onend && u.onend()); held.clear(); cancel(); };
     speechSynthesis.getVoices();
   }
-  $('read').onclick = () => {
-    if (!('speechSynthesis' in window)) return;
-    speechSynthesis.cancel();
-    // Read what the detective just said; if a clue was just found, read that clue too
-    const c = CASES[state.c], said = $('say').textContent.trim();
-    const text = state.clue && !state.busy && /clue/i.test(said) ? `Clue ${state.clue}: ${c.clues[state.clue - 1]}` : said;
-    const u = new SpeechSynthesisUtterance(text);
-    const v = bestVoice();
-    if (v) { u.voice = v; u.lang = v.lang; }
-    u.rate = .95; u.pitch = 1; speechSynthesis.speak(u);
+  let talk = 0, clip = null, nowKey = '';
+  const voiceLog = [];   // every line that started, for checking (window.__voice)
+  function stopTalk() { talk++; if (clip) { clip.pause(); clip = null; } if ('speechSynthesis' in window) speechSynthesis.cancel(); }
+  function speakOne(text) {
+    voiceLog.push({text, clip: !!CLIPS[text]});
+    return new Promise(done => {
+      if (CLIPS[text]) { clip = new Audio(CLIPS[text]); clip.onended = clip.onerror = () => done(); clip.play().catch(() => done()); return; }
+      if (!('speechSynthesis' in window)) return done();
+      const u = new SpeechSynthesisUtterance(text);
+      const v = bestVoice(); if (v) { u.voice = v; u.lang = v.lang; }
+      u.rate = .95; u.pitch = 1; u.onend = u.onerror = () => done();
+      setTimeout(done, 2500 + 80 * text.length);   // some browsers never fire end; the queue must not stall on them
+      speechSynthesis.speak(u);
+    });
+  }
+  async function say(parts) {
+    stopTalk();
+    const me = talk;
+    for (const p of [].concat(parts)) { if (me !== talk) return; await speakOne(p); await wait(150); }
+  }
+
+  // ---------- narration queue: one line at a time; Read always wins (the collision-lab pattern) ----------
+  const said = new Set(), queued = new Set();
+  let tapped = false, vq = Promise.resolve(), vgen = 0, readP = Promise.resolve();
+  const lineMs = parts => 2500 + 80 * [].concat(parts).join(' ').length;
+  // once: said a single time per page load. still(): checked when the line's turn comes; false drops it (its moment
+  // passed). delay: a pause before it starts, so it never lands on top of a sound effect.
+  function narrate(key, parts, {once = true, still, delay = 0} = {}) {
+    if (!tapped || !state.sound || QUIET() || (once && said.has(key)) || queued.has(key)) return Promise.resolve(false);
+    queued.add(key);
+    const gen = vgen;
+    return vq = vq.then(async () => {
+      await readP;
+      if (delay) await wait(delay);
+      if (gen !== vgen) return false;               // dropped by hush(): not marked said, so its trigger can queue it again
+      queued.delete(key);
+      if ((still && !still()) || QUIET()) return false;
+      if (once) said.add(key);                      // marked when it starts playing, never when queued
+      nowKey = key;
+      await Promise.race([say(parts), wait(lineMs(parts))]);
+      if (nowKey === key) nowKey = '';
+      return true;
+    });
+  }
+  function hush() { vgen++; queued.clear(); vq = Promise.resolve(); readP = Promise.resolve(); nowKey = ''; stopTalk(); }   // a stopped Read clip never ends, so nothing may wait on it
+  function readNow(parts) { hush(); nowKey = 'read'; readP = Promise.race([say(parts), wait(lineMs(parts))]).catch(() => {}).then(() => { if (nowKey === 'read') nowKey = ''; }); }
+  const QUIET = () => false;
+  const CLUE_N = ['Clue one.', 'Clue two.', 'Clue three.'];
+  // the welcome is the open case's opener, said once; a case picked later says its own opener
+  function welcome() { if (!state.busy && state.clue === 0) narrate('welcome', detParts); }
+  // The very first tap: decide after that tap's own click has run. If it queued its own line, or was Read or Sound,
+  // skip the welcome without marking it said (Sound on brings it back).
+  for (const ev of ['pointerdown', 'keydown']) addEventListener(ev, e => {
+    if (tapped) return; tapped = true;
+    const b = e.target && e.target.closest ? e.target.closest('button') : null;
+    if (b && (b.id === 'sound' || b.id === 'read')) return;
+    const go = () => { removeEventListener('click', go, true); clearTimeout(fb); setTimeout(() => { if (!queued.size && !nowKey) welcome(); }); };
+    addEventListener('click', go, true); const fb = setTimeout(go, 1500);
+  }, true);
+
+  // Read what the detective just said; if a clue was just found, read that clue first
+  function readParts() {
+    const c = CASES[state.c];
+    if (state.clue && !state.busy && (detParts[0] === HMM || detParts[0] === ALL)) return [CLUE_N[state.clue - 1], c.clues[state.clue - 1]];
+    return detParts;
+  }
+  $('read').onclick = () => readNow(readParts());
+
+  // for checking: every line the tool can speak (all six picks tried on every case), and each line that started
+  window.__voice = {
+    lines: () => {
+      const out = [HMM, ALL, AHA, ...CLUE_N];
+      for (const c of Object.values(CASES)) {
+        out.push(opener(c), ...c.clues, c.made, ...Object.values(c.answers));
+        const ks = Object.keys(RES);
+        for (let m = 0; m < 1 << ks.length; m++) out.push(...verdict(c, new Set(ks.filter((k, i) => m >> i & 1))).parts);
+      }
+      return [...new Set(out)];
+    },
+    log: voiceLog,
   };
 
   openCase();

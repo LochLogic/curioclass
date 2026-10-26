@@ -38,6 +38,8 @@ h1{margin:0 auto 0 0;font:800 clamp(22px,2.8vw,32px)/1.1 'Trebuchet MS','Segoe U
 h1 small{display:block;font:400 14px/1.3 'Segoe UI',sans-serif;color:#cdebd5}
 .icon-btn{border:1px solid #5aa673;background:#3c8c58;color:#fff;border-radius:999px;min-height:46px;padding:0 16px;font-weight:700;font-size:15px}
 .icon-btn[aria-pressed="false"]{background:#1f5733}
+/* the 16:10 preview: drop the subtitle so Read, Motion and Sound stay on one row with the title */
+@media (max-width:760px){h1 small{display:none}}
 
 .stagewrap{position:relative;overflow:hidden;min-height:0;background:#bfe3c8}
 .scene{position:absolute;left:50%;top:50%;width:1440px;height:810px;transform:translate(-50%,-50%) scale(var(--s,1));overflow:hidden}
@@ -117,6 +119,7 @@ h1 small{display:block;font:400 14px/1.3 'Segoe UI',sans-serif;color:#cdebd5}
 <body>
 <header>
   <h1>Orchestra Zoo <small>Meet the instrument families. Hear real instruments. Guess who is playing.</small></h1>
+  <button class="icon-btn" id="read" title="Read the instructions aloud">🔊 Read</button>
   <button class="icon-btn" id="motion" aria-pressed="true" title="Turn animation on or off">✨ Motion</button>
   <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
 </header>
@@ -134,9 +137,14 @@ h1 small{display:block;font:400 14px/1.3 'Segoe UI',sans-serif;color:#cdebd5}
   </div>
 </div>
 
+<script src="kit:curio"></script>
 <script>
 (() => {
   const $ = id => document.getElementById(id);
+  // the kit plays the recorded narration (bundle_tool.py fills the voice token); this tool keeps its own Motion and Sound buttons,
+  // so init runs first and the handlers below replace the kit's
+  Curio.init({clips: "voice:*", rate: .95});
+  const wait = Curio.wait;
   let reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   try { const m = localStorage.getItem('curio-motion'); if (m) reduce = m === 'calm'; } catch {}
   function showMotion() {
@@ -161,41 +169,37 @@ h1 small{display:block;font:400 14px/1.3 'Segoe UI',sans-serif;color:#cdebd5}
 
   // ---------- the families ----------
   const FAM = {
-    strings: {name: 'Strings', keeper: 'giraffe', kh: 400, home: 'savanna', how: 'shake strings',
-      hi: 'Welcome to the <b>string family</b>! We make music with strings that shake. Pull a bow across them, or pluck them with your fingers.'},
-    woodwinds: {name: 'Woodwinds', keeper: 'owl', kh: 260, home: 'treetops', how: 'blow air',
-      hi: 'Hoo! Welcome to the <b>woodwind family</b>. Blow air into a tube. Some woodwinds have a thin <b>reed</b> that buzzes.'},
-    brass: {name: 'Brass', keeper: 'elephant', kh: 300, home: 'waterhole', how: 'buzz lips',
-      hi: 'Welcome to the <b>brass family</b>! Buzz your lips into a metal mouthpiece: bzzzz! The tubes make it loud and bright.'},
-    percussion: {name: 'Percussion', keeper: 'gorilla', kh: 280, home: 'jungle', how: 'hit, shake, scrape',
-      hi: 'Welcome to the <b>percussion family</b>! Hit it, shake it or scrape it. Some play notes, some just keep the beat.'},
+    strings: {name: 'Strings', keeper: 'giraffe', kh: 400, home: 'savanna', how: 'shake strings'},
+    woodwinds: {name: 'Woodwinds', keeper: 'owl', kh: 260, home: 'treetops', how: 'blow air'},
+    brass: {name: 'Brass', keeper: 'elephant', kh: 300, home: 'waterhole', how: 'buzz lips'},
+    percussion: {name: 'Percussion', keeper: 'gorilla', kh: 280, home: 'jungle', how: 'hit, shake, scrape'},
   };
   // base = the MIDI note of the lowest recording (recordings sit at C, E, G and the next C up)
   // kind: sus = held notes, ring = notes that ring on after they are struck, hit = unpitched
   // x/b/h: where the instrument stands in its home (center x, bottom y, height)
   const INST = [
-    {id: 'violin', name: 'Violin', fam: 'strings', base: 72, kind: 'sus', x: 520, b: 690, h: 270, fact: 'The violin is the smallest string instrument, so it plays the <b>highest</b> notes. Its bow is strung with horse hair!'},
-    {id: 'cello', name: 'Cello', fam: 'strings', base: 48, kind: 'sus', x: 760, b: 712, h: 390, fact: 'You sit down to play the cello. It stands on the floor between your knees and sings low and warm.'},
-    {id: 'bass', name: 'Double bass', fam: 'strings', base: 36, kind: 'sus', x: 1010, b: 728, h: 470, fact: 'The double bass is taller than a grown-up! It is the biggest, so it plays the <b>lowest</b> string notes.'},
-    {id: 'harp', name: 'Harp', fam: 'strings', base: 60, kind: 'ring', synth: 'harp', x: 1255, b: 728, h: 440, fact: 'A concert harp has 47 strings. You pluck them with your fingers. Long strings are low, short strings are high.'},
-    {id: 'flute', name: 'Flute', fam: 'woodwinds', base: 72, kind: 'sus', x: 470, b: 640, h: 120, fact: 'The flute has no reed. You blow <b>across</b> a hole, like blowing over the top of a bottle.'},
-    {id: 'oboe', name: 'Oboe', fam: 'woodwinds', base: 60, kind: 'sus', x: 690, b: 716, h: 330, fact: 'The oboe has <b>two reeds</b> tied together that buzz. The whole orchestra tunes to the oboe\'s note.'},
-    {id: 'clarinet', name: 'Clarinet', fam: 'woodwinds', base: 60, kind: 'sus', x: 840, b: 716, h: 350, fact: 'The clarinet has <b>one reed</b> that buzzes against the mouthpiece. It can play very low and very high.'},
-    {id: 'sax', name: 'Saxophone', fam: 'woodwinds', base: 60, kind: 'sus', x: 1010, b: 716, h: 330, fact: 'The saxophone is made of metal, but it is a woodwind because it uses a <b>reed</b>. Surprise!'},
-    {id: 'bassoon', name: 'Bassoon', fam: 'woodwinds', base: 48, kind: 'sus', x: 1210, b: 728, h: 470, fact: 'The bassoon\'s tube is almost 9 feet long, folded in half. It plays the <b>lowest</b> woodwind notes.'},
-    {id: 'trumpet', name: 'Trumpet', fam: 'brass', base: 60, kind: 'sus', x: 560, b: 440, h: 120, fact: 'The trumpet is the smallest brass instrument and plays the <b>highest</b>. Press its 3 valves to change the notes.'},
-    {id: 'trombone', name: 'Trombone', fam: 'brass', base: 48, kind: 'sus', x: 520, b: 690, h: 140, fact: 'The trombone has a <b>slide</b> instead of valves. Slide it out for lower notes, in for higher notes.'},
-    {id: 'horn', name: 'French horn', fam: 'brass', base: 48, kind: 'sus', x: 945, b: 700, h: 250, fact: 'The French horn\'s tube is curled in circles. Stretched out straight, it would be about 12 feet long!'},
-    {id: 'tuba', name: 'Tuba', fam: 'brass', base: 36, kind: 'sus', x: 1265, b: 740, h: 380, fact: 'The tuba is the biggest brass instrument, so it plays the <b>lowest</b> brass notes. Oom-pah!'},
-    {id: 'triangle', name: 'Triangle', fam: 'percussion', kind: 'hit', synth: 'triangle', x: 480, b: 492, h: 170, fact: 'A metal bar bent into a triangle. Ting! Hold it by the string so it can ring.'},
-    {id: 'gong', name: 'Gong', fam: 'percussion', kind: 'hit', sample: 'gong', x: 690, b: 492, h: 240, fact: 'A giant metal plate. One soft hit makes a sound that swirls and shimmers for a long time.'},
-    {id: 'cymbals', name: 'Cymbals', fam: 'percussion', kind: 'hit', sample: 'cymbal', x: 935, b: 492, h: 160, fact: 'Crash two metal plates together. CRASH! Then they shimmer.'},
-    {id: 'timpani', name: 'Timpani', fam: 'percussion', base: 43, kind: 'ring', synth: 'timpani', x: 1200, b: 492, h: 200, fact: 'Timpani are big kettle drums that play real <b>notes</b>. A pedal makes the drumhead tighter for higher notes.'},
-    {id: 'snare', name: 'Snare drum', fam: 'percussion', kind: 'hit', synth: 'snare', x: 380, b: 752, h: 170, fact: 'Wires under the snare drum rattle when you hit it. Rat-a-tat-tat!'},
-    {id: 'bassdrum', name: 'Bass drum', fam: 'percussion', kind: 'hit', synth: 'kick', x: 600, b: 752, h: 210, fact: 'The bass drum is so big you can feel its BOOM in your tummy.'},
-    {id: 'xylophone', name: 'Xylophone', fam: 'percussion', base: 72, kind: 'ring', x: 852, b: 752, h: 150, fact: 'Hit the wooden bars with mallets. Short bars play high notes, long bars play low notes.'},
-    {id: 'tambourine', name: 'Tambourine', fam: 'percussion', kind: 'hit', sample: 'tambourine', x: 1088, b: 752, h: 130, fact: 'Shake it or tap it. The little metal jingles go jingle-jingle!'},
-    {id: 'piano', name: 'Piano', fam: 'percussion', base: 60, kind: 'ring', x: 1305, b: 752, h: 230, fact: 'Press a key and a little hammer <b>hits</b> a string inside. So the piano is a bit percussion and a bit strings!'},
+    {id: 'violin', name: 'Violin', fam: 'strings', base: 72, kind: 'sus', x: 520, b: 690, h: 270},
+    {id: 'cello', name: 'Cello', fam: 'strings', base: 48, kind: 'sus', x: 760, b: 712, h: 390},
+    {id: 'bass', name: 'Double bass', fam: 'strings', base: 36, kind: 'sus', x: 1010, b: 728, h: 470},
+    {id: 'harp', name: 'Harp', fam: 'strings', base: 60, kind: 'ring', synth: 'harp', x: 1255, b: 728, h: 440},
+    {id: 'flute', name: 'Flute', fam: 'woodwinds', base: 72, kind: 'sus', x: 470, b: 640, h: 120},
+    {id: 'oboe', name: 'Oboe', fam: 'woodwinds', base: 60, kind: 'sus', x: 690, b: 716, h: 330},
+    {id: 'clarinet', name: 'Clarinet', fam: 'woodwinds', base: 60, kind: 'sus', x: 840, b: 716, h: 350},
+    {id: 'sax', name: 'Saxophone', fam: 'woodwinds', base: 60, kind: 'sus', x: 1010, b: 716, h: 330},
+    {id: 'bassoon', name: 'Bassoon', fam: 'woodwinds', base: 48, kind: 'sus', x: 1210, b: 728, h: 470},
+    {id: 'trumpet', name: 'Trumpet', fam: 'brass', base: 60, kind: 'sus', x: 560, b: 440, h: 120},
+    {id: 'trombone', name: 'Trombone', fam: 'brass', base: 48, kind: 'sus', x: 520, b: 690, h: 140},
+    {id: 'horn', name: 'French horn', fam: 'brass', base: 48, kind: 'sus', x: 945, b: 700, h: 250},
+    {id: 'tuba', name: 'Tuba', fam: 'brass', base: 36, kind: 'sus', x: 1265, b: 740, h: 380},
+    {id: 'triangle', name: 'Triangle', fam: 'percussion', kind: 'hit', synth: 'triangle', x: 480, b: 492, h: 170},
+    {id: 'gong', name: 'Gong', fam: 'percussion', kind: 'hit', sample: 'gong', x: 690, b: 492, h: 240},
+    {id: 'cymbals', name: 'Cymbals', fam: 'percussion', kind: 'hit', sample: 'cymbal', x: 935, b: 492, h: 160},
+    {id: 'timpani', name: 'Timpani', fam: 'percussion', base: 43, kind: 'ring', synth: 'timpani', x: 1200, b: 492, h: 200},
+    {id: 'snare', name: 'Snare drum', fam: 'percussion', kind: 'hit', synth: 'snare', x: 380, b: 752, h: 170},
+    {id: 'bassdrum', name: 'Bass drum', fam: 'percussion', kind: 'hit', synth: 'kick', x: 600, b: 752, h: 210},
+    {id: 'xylophone', name: 'Xylophone', fam: 'percussion', base: 72, kind: 'ring', x: 852, b: 752, h: 150},
+    {id: 'tambourine', name: 'Tambourine', fam: 'percussion', kind: 'hit', sample: 'tambourine', x: 1088, b: 752, h: 130},
+    {id: 'piano', name: 'Piano', fam: 'percussion', base: 60, kind: 'ring', x: 1305, b: 752, h: 230},
   ];
   const BY = Object.fromEntries(INST.map(i => [i.id, i]));
   const famList = f => INST.filter(i => i.fam === f);
@@ -213,7 +217,10 @@ h1 small{display:block;font:400 14px/1.3 'Segoe UI',sans-serif;color:#cdebd5}
   // ---------- sound ----------
   let ac = null, soundOn = true, master = null;
   const BUF = {}; let loading = null;
-  $('sound').onclick = () => { soundOn = !soundOn; $('sound').setAttribute('aria-pressed', soundOn); $('sound').textContent = soundOn ? '🔔 Sound' : '🔕 Sound'; if (!soundOn) stopAll(); };
+  $('sound').onclick = () => {
+    soundOn = !soundOn; $('sound').setAttribute('aria-pressed', soundOn); $('sound').textContent = soundOn ? '🔔 Sound' : '🔕 Sound';
+    if (!soundOn) { stopAll(); hush(); } else if (tapped && !said.has(VO.welcome[mode])) intro();   // back on: the mode's welcome, if never said
+  };
   function b64buf(uri) { const s = atob(uri.slice(uri.indexOf(',') + 1)), u = new Uint8Array(s.length); for (let i = 0; i < s.length; i++) u[i] = s.charCodeAt(i); return u.buffer; }
   function audio() {
     if (!ac) {
@@ -230,7 +237,7 @@ h1 small{display:block;font:400 14px/1.3 'Segoe UI',sans-serif;color:#cdebd5}
     master = ac.createGain(); master.gain.value = .9; master.connect(comp).connect(ac.destination);
   }
   function stopAll() {
-    timers.forEach(clearTimeout); timers = [];
+    timers.forEach(clearTimeout); timers = []; busyUntil = 0;
     if (!ac || !master) return;
     const m = master; m.gain.setTargetAtTime(0, ac.currentTime, .03); setTimeout(() => m.disconnect(), 300); newMaster();
   }
@@ -312,8 +319,10 @@ h1 small{display:block;font:400 14px/1.3 'Segoe UI',sans-serif;color:#cdebd5}
   const later = (ms, fn) => timers.push(setTimeout(fn, ms));
   // play a tune on an instrument; onNote(i) fires as each note sounds (for the bounce)
   async function playTune(inst, tune, beat = .42, onNote) {
+    const tn = inst.kind === 'hit' ? TUNES.hit : tune;
+    music(tn.reduce((a, [, b]) => a + b * beat, 0) + (inst.kind === 'sus' ? .5 : 1.5));   // plus the ring after the last note
     if (!audio()) return 0; await loading;
-    const t0 = ac.currentTime + .08, tn = inst.kind === 'hit' ? TUNES.hit : tune;
+    const t0 = ac.currentTime + .08;
     let t = 0;
     tn.forEach(([s, b], i) => {
       note(inst, inst.kind === 'hit' ? 0 : s, t0 + t, b * beat * .96, master, inst.kind === 'hit' && i === tn.length - 1 ? 1.2 : 1);
@@ -335,18 +344,149 @@ h1 small{display:block;font:400 14px/1.3 'Segoe UI',sans-serif;color:#cdebd5}
     Promise.race([a.finished, new Promise(r => setTimeout(r, 1500))]).then(() => n.remove());
   }
 
+  // ---------- voice ----------
+  // Every spoken line, and nothing else, lives in VO (voice/lines.json lists each one, tags stripped). Bold tags are for the screen.
+  // voice:lines-start
+  const VO = {
+    welcome: {
+      zoo: 'Welcome to the Orchestra Zoo! Four instrument families live here. Tap a home to visit.',
+      guess: "Who's playing? Press Listen, then tap the one you hear.",
+      band: 'Welcome to the zoo band! Pick a melody, a bass and a beat. Then press Play the band.',
+    },
+    hi: {
+      strings: 'Welcome to the <b>string family</b>! We make music with strings that shake. Pull a bow across them, or pluck them with your fingers.',
+      woodwinds: 'Hoo! Welcome to the <b>woodwind family</b>. Blow air into a tube. Some woodwinds have a thin <b>reed</b> that buzzes.',
+      brass: 'Welcome to the <b>brass family</b>! Buzz your lips into a metal mouthpiece: bzzzz! The tubes make it loud and bright.',
+      percussion: 'Welcome to the <b>percussion family</b>! Hit it, shake it or scrape it. Some play notes, some just keep the beat.',
+    },
+    fact: {
+      violin: 'The violin is the smallest string instrument, so it plays the <b>highest</b> notes. Its bow is strung with horse hair!',
+      cello: 'You sit down to play the cello. It stands on the floor between your knees and sings low and warm.',
+      bass: 'The double bass is taller than a grown-up! It is the biggest, so it plays the <b>lowest</b> string notes.',
+      harp: 'A concert harp has 47 strings. You pluck them with your fingers. Long strings are low, short strings are high.',
+      flute: 'The flute has no reed. You blow <b>across</b> a hole, like blowing over the top of a bottle.',
+      oboe: "The oboe has <b>two reeds</b> tied together that buzz. The whole orchestra tunes to the oboe's note.",
+      clarinet: 'The clarinet has <b>one reed</b> that buzzes against the mouthpiece. It can play very low and very high.',
+      sax: 'The saxophone is made of metal, but it is a woodwind because it uses a <b>reed</b>. Surprise!',
+      bassoon: "The bassoon's tube is almost 9 feet long, folded in half. It plays the <b>lowest</b> woodwind notes.",
+      trumpet: 'The trumpet is the smallest brass instrument and plays the <b>highest</b>. Press its 3 valves to change the notes.',
+      trombone: 'The trombone has a <b>slide</b> instead of valves. Slide it out for lower notes, in for higher notes.',
+      horn: "The French horn's tube is curled in circles. Stretched out straight, it would be about 12 feet long!",
+      tuba: 'The tuba is the biggest brass instrument, so it plays the <b>lowest</b> brass notes. Oom-pah!',
+      triangle: 'A metal bar bent into a triangle. Ting! Hold it by the string so it can ring.',
+      gong: 'A giant metal plate. One soft hit makes a sound that swirls and shimmers for a long time.',
+      cymbals: 'Crash two metal plates together. CRASH! Then they shimmer.',
+      timpani: 'Timpani are big kettle drums that play real <b>notes</b>. A pedal makes the drumhead tighter for higher notes.',
+      snare: 'Wires under the snare drum rattle when you hit it. Rat-a-tat-tat!',
+      bassdrum: 'The bass drum is so big you can feel its BOOM in your tummy.',
+      xylophone: 'Hit the wooden bars with mallets. Short bars play high notes, long bars play low notes.',
+      tambourine: 'Shake it or tap it. The little metal jingles go jingle-jingle!',
+      piano: 'Press a key and a little hammer <b>hits</b> a string inside. So the piano is a bit percussion and a bit strings!',
+    },
+    all: {
+      hilo: 'Listen from smallest to biggest. Do the notes get <b>higher</b> or <b>lower</b>? The bigger the instrument, the lower it sounds.',
+      perc: 'Listen to every member of the percussion family, one after another.',
+    },
+    // said after the instruments finish, never over them
+    after: {hilo: 'Did you hear it? The bigger the instrument, the lower it sounds.', perc: 'That was the whole percussion family!'},
+    ask: {fam: 'Listen. Which family is playing?', inst: 'Listen. Which instrument is playing?'},
+    askSame: {strings: 'Listen. Which strings instrument is it?', woodwinds: 'Listen. Which woodwinds instrument is it?',
+      brass: 'Listen. Which brass instrument is it?', percussion: 'Listen. Which percussion instrument is it?'},
+    no: 'Not that one. Listen again!',
+    yes: {
+      violin: "Yes! It's the <b>violin</b>, from the strings family.", cello: "Yes! It's the <b>cello</b>, from the strings family.",
+      bass: "Yes! It's the <b>double bass</b>, from the strings family.", harp: "Yes! It's the <b>harp</b>, from the strings family.",
+      flute: "Yes! It's the <b>flute</b>, from the woodwinds family.", oboe: "Yes! It's the <b>oboe</b>, from the woodwinds family.",
+      clarinet: "Yes! It's the <b>clarinet</b>, from the woodwinds family.", sax: "Yes! It's the <b>saxophone</b>, from the woodwinds family.",
+      bassoon: "Yes! It's the <b>bassoon</b>, from the woodwinds family.", trumpet: "Yes! It's the <b>trumpet</b>, from the brass family.",
+      trombone: "Yes! It's the <b>trombone</b>, from the brass family.", horn: "Yes! It's the <b>French horn</b>, from the brass family.",
+      tuba: "Yes! It's the <b>tuba</b>, from the brass family.", triangle: "Yes! It's the <b>triangle</b>, from the percussion family.",
+      gong: "Yes! It's the <b>gong</b>, from the percussion family.", cymbals: "Yes! It's the <b>cymbals</b>, from the percussion family.",
+      timpani: "Yes! It's the <b>timpani</b>, from the percussion family.", snare: "Yes! It's the <b>snare drum</b>, from the percussion family.",
+      bassdrum: "Yes! It's the <b>bass drum</b>, from the percussion family.", xylophone: "Yes! It's the <b>xylophone</b>, from the percussion family.",
+      tambourine: "Yes! It's the <b>tambourine</b>, from the percussion family.", piano: "Yes! It's the <b>piano</b>, from the percussion family.",
+    },
+  };
+  // voice:lines-end
+  const plain = h => h.replace(/<[^>]+>/g, '');
+  // The queue (the collision-lab pattern): one line at a time; a welcome per mode after the first tap; Read always wins.
+  // Music rule: no line starts while an instrument or the band is sounding, and any instrument starting stops the talk at once.
+  const said = new Set(), queued = new Set(), vlog = [];
+  let tapped = false, vq = Promise.resolve(), vgen = 0, readP = Promise.resolve(), reading = 0, vcount = 0, busyUntil = 0;
+  const lineMs = parts => parts.reduce((a, t) => a + 2500 + 80 * t.length, 0);
+  const busy = () => playing || Date.now() < busyUntil;
+  // an instrument starts: cut the line being said (Read too) at once; lines still waiting keep waiting for quiet
+  let cut = () => {};
+  const cutP = () => new Promise(r => { cut = r; });
+  function music(sec) { Curio.stop(); cut(); reading = 0; readP = Promise.resolve(); busyUntil = Math.max(busyUntil, Date.now() + sec * 1000); }
+  // once: said at most once (welcomes). still(): drop the line if its moment passed before it could start
+  function narrate(parts, o = {}) {
+    parts = [].concat(parts).map(plain);
+    const key = parts.join('|');
+    if (!tapped || !soundOn || (o.once && (said.has(key) || queued.has(key)))) return false;
+    queued.add(key); vcount++;
+    const gen = vgen;
+    vq = vq.then(async () => {
+      await readP;
+      while (busy() && gen === vgen) await wait(150);   // wait for the instruments to finish
+      if (gen !== vgen) return;                           // dropped by hush(): not marked said, so its trigger can queue it again
+      queued.delete(key);
+      if (o.still && !o.still()) return;
+      if (o.once) said.add(key);
+      vlog.push(...parts);
+      await Promise.race([Curio.say(parts), wait(lineMs(parts)), cutP()]);
+    });
+    return true;
+  }
+  // short feedback: drop whatever is waiting or talking (never Read), then say this
+  function cue(parts, o) {
+    if (!tapped || !soundOn) return false;
+    vgen++; queued.clear(); vq = readP; if (!reading) Curio.stop();
+    return narrate(parts, o);
+  }
+  // a stopped clip never fires "ended", so hush also lets go of the Read promise
+  function hush() { vgen++; queued.clear(); vq = Promise.resolve(); readP = Promise.resolve(); reading = 0; Curio.stop(); cut(); }
+  // Read: the instruments stop, then the instructions on screen are read
+  function readNow() {
+    if (playing) stopBand(); stopAll(); hush(); vcount++;
+    const parts = readParts().map(plain), me = reading = vcount;
+    vlog.push(...parts);
+    readP = Promise.race([Curio.say(parts, true), wait(lineMs(parts)), cutP()]).catch(() => {}).then(() => { if (reading === me) reading = 0; });
+  }
+  $('read').onclick = readNow;
+  let bubV = '', tellV = '', lastAsk = '';
+  function readParts() {
+    if (mode === 'zoo') return [curFam ? bubV : VO.welcome.zoo];
+    if (mode === 'guess') return [tellV];
+    return [VO.welcome.band];
+  }
+  // the mode's welcome (once), and in Who's playing the question on screen
+  function intro() {
+    narrate(VO.welcome[mode], {once: true});
+    if (mode === 'guess' && q && !q.done) narrate(tellV, {still: () => mode === 'guess'});
+    if (mode === 'zoo' && curFam) narrate(bubV, {still: () => mode === 'zoo' && curFam});
+  }
+  // The first tap: decide after its own click has run. If it queued a line (or was Read), the welcome waits for another time.
+  for (const ev of ['pointerdown', 'keydown']) addEventListener(ev, e => {
+    if (tapped) return; tapped = true;
+    const n0 = vcount;
+    const go = () => { removeEventListener('click', go, true); clearTimeout(fb); setTimeout(() => { if (vcount === n0) intro(); }); };
+    addEventListener('click', go, true); const fb = setTimeout(go, 1500);
+  }, true);
+
   // ---------- modes ----------
   let mode = 'zoo';
   document.querySelectorAll('[data-mode]').forEach(b => b.onclick = () => setMode(b.dataset.mode));
   function setMode(m, arg) {
-    stopAll(); mode = m;
+    stopAll(); hush(); mode = m; if (playing) playing = false;
     document.querySelectorAll('[data-mode]').forEach(b => b.setAttribute('aria-pressed', b.dataset.mode === m));
+    if (!(m === 'zoo' && arg)) narrate(VO.welcome[m], {once: true});
     ({zoo: arg ? () => renderHome(arg) : renderZoo, guess: renderGuess, band: renderBand})[m]();
   }
 
   // ===== Zoo map =====
   function renderZoo() {
-    $('bg').src = ART.gate;
+    $('bg').src = ART.gate; curFam = null;
     $('view').innerHTML = `<div class="homes">${Object.entries(FAM).map(([k, f]) => `
       <button class="home" data-home="${k}" aria-label="Visit the ${f.name.toLowerCase()} family">
         <img class="hb" src="${ART[f.home]}" alt="">
@@ -364,28 +504,34 @@ h1 small{display:block;font:400 14px/1.3 'Segoe UI',sans-serif;color:#cdebd5}
     $('bg').src = ART[f.home];
     const list = famList(k);
     $('view').innerHTML = `<img class="keeperBig" id="keeper" src="${ART[f.keeper]}" alt="${f.keeper}" style="height:${f.kh}px">
-      <div class="bubble" id="bubble" aria-live="polite">${f.hi}</div>
+      <div class="bubble" id="bubble" aria-live="polite">${VO.hi[k]}</div>
       ${list.map(i => `<button class="inst" data-i="${i.id}" style="left:${i.x}px;bottom:${810 - i.b}px" aria-label="${i.name}"><img src="${ART[i.id]}" alt="" style="height:${i.h}px"><span class="plate">${i.name}</span></button>`).join('')}`;
     $('scene').querySelector('.top').insertAdjacentHTML('beforeend', `<div class="hometools" id="hometools"><button class="big go" id="hilo">▶ ${k === 'percussion' ? 'Play them all' : 'High to low'}</button><button class="big" id="back">◀ Back to the zoo</button></div>`);
-    $('back').onclick = () => { $('hometools').remove(); stopAll(); renderZoo(); };
+    $('back').onclick = () => { $('hometools').remove(); stopAll(); hush(); renderZoo(); };
     $('hilo').onclick = () => playAll(list);
     $('view').querySelectorAll('[data-i]').forEach(b => b.onclick = () => tapInst(BY[b.dataset.i], b));
     anim($('keeper'), [{transform: 'translateY(30px)', opacity: 0}, {transform: 'none', opacity: 1}], {duration: 500, easing: 'ease-out'});
+    bubV = VO.hi[k]; cue(bubV, {still: () => curFam === k});
   }
-  function say(html) { const b = $('bubble'); if (b) b.innerHTML = html; anim($('keeper'), [{transform: 'rotate(0)'}, {transform: 'rotate(-3deg) translateY(-8px)'}, {transform: 'rotate(0)'}], {duration: 450}); }
+  function bubble(html) { const b = $('bubble'); if (b) b.innerHTML = html; anim($('keeper'), [{transform: 'rotate(0)'}, {transform: 'rotate(-3deg) translateY(-8px)'}, {transform: 'rotate(0)'}], {duration: 450}); }
   async function tapInst(inst, btn) {
     stopAll();
     document.querySelectorAll('.inst').forEach(b => b.classList.toggle('on', b === btn));
-    say(`<b>${inst.name}.</b> ${inst.fact}`);
+    bubble(`<b>${inst.name}.</b> ${VO.fact[inst.id]}`); bubV = VO.fact[inst.id];
     const img = btn.querySelector('img'), r = img.getBoundingClientRect(), sr = $('scene').getBoundingClientRect(), s = sr.width / 1440;
     const nx = (r.left + r.width / 2 - sr.left) / s, ny = (r.top - sr.top) / s;
-    const len = await playTune(inst, TUNES[inst.fam], .42, (i, d) => { bounce(img, d); floatNote(nx, ny); });
+    const tune = playTune(inst, TUNES[inst.fam], .42, (i, d) => { bounce(img, d); floatNote(nx, ny); });
+    cue(bubV, {still: () => curFam === inst.fam && bubV === VO.fact[inst.id]});   // waits for the tune to finish
+    const len = await tune;
     later(len * 1000 + 300, () => btn.classList.remove('on'));
   }
   async function playAll(list) {
     stopAll();
     const order = curFam === 'percussion' ? list : list.filter(i => i.id !== 'harp').sort((a, b) => b.base - a.base);
-    say(curFam === 'percussion' ? 'Listen to every member of the percussion family, one after another.' : 'Listen from smallest to biggest. Do the notes get <b>higher</b> or <b>lower</b>? The bigger the instrument, the lower it sounds.');
+    const fam = curFam, k = fam === 'percussion' ? 'perc' : 'hilo';
+    bubble(VO.all[k]); bubV = VO.all[k];
+    const total = order.reduce((a, i) => a + (i.kind === 'hit' ? 2.4 : 2.4) * .42 + .35, 0);
+    music(total + 1); cue(VO.after[k], {still: () => curFam === fam && bubV === VO.all[k]});   // said once the last instrument has played
     if (!audio()) return; await loading;
     const arp = [[0, .6], [4, .6], [7, 1.2]];
     let t = 0;
@@ -410,7 +556,7 @@ h1 small{display:block;font:400 14px/1.3 'Segoe UI',sans-serif;color:#cdebd5}
   ];
   let glvl = 'fam', q = null, score = {right: 0, tries: 0};
   function renderGuess() {
-    $('bg').src = ART.gate; $('hometools')?.remove();
+    $('bg').src = ART.gate; $('hometools')?.remove(); lastAsk = '';
     $('view').innerHTML = `<div class="levels" id="levels">${GLEVELS.map(l => `<button class="big" data-gl="${l.id}">${l.name}</button>`).join('')}</div>
       <div class="score" id="score"></div><div class="tell" id="tell" aria-live="polite"></div>
       <div class="curtain" id="curtain"><div class="q">?</div></div>
@@ -434,11 +580,14 @@ h1 small{display:block;font:400 14px/1.3 'Segoe UI',sans-serif;color:#cdebd5}
     }
     q = {ans, opts, done: false};
     $('curtain').className = 'curtain'; $('curtain').innerHTML = '<div class="q">?</div>';
-    $('tell').textContent = glvl === 'fam' ? 'Listen. Which family is playing?' : glvl === 'same' ? `Listen. Which ${FAM[ans.fam].name.toLowerCase()} instrument is it?` : 'Listen. Which instrument is playing?';
+    const ask = glvl === 'same' ? VO.askSame[ans.fam] : VO.ask[glvl], newAsk = ask !== lastAsk;
+    $('tell').textContent = ask; tellV = lastAsk = ask;
     $('choices').innerHTML = opts.map((o, i) => `<button class="choice" data-o="${i}"><img src="${o.img}" alt=""><b>${o.name}</b></button>`).join('');
     $('choices').querySelectorAll('[data-o]').forEach(b => b.onclick = () => answer(+b.dataset.o, b));
     drawScore();
     if (play) listen();
+    // the question is said when it changes (a new level, or the first one); after a sound it waits for the sound to end
+    if (newAsk || !play) { const me = q; narrate(ask, {still: () => mode === 'guess' && q === me && !q.done}); }
   }
   function drawScore() { $('score').textContent = score.tries ? `⭐ ${score.right} of ${score.tries}` : '⭐ 0'; }
   async function listen() {
@@ -452,7 +601,7 @@ h1 small{display:block;font:400 14px/1.3 'Segoe UI',sans-serif;color:#cdebd5}
     if (!o.right) {
       btn.classList.add('wrong'); anim(btn, [{transform: 'translateX(0)'}, {transform: 'translateX(-10px)'}, {transform: 'translateX(10px)'}, {transform: 'translateX(0)'}], {duration: 300});
       if (!q.missed) { q.missed = true; score.tries++; drawScore(); }
-      $('tell').textContent = 'Not that one. Listen again!';
+      $('tell').textContent = VO.no; tellV = VO.no; cue(VO.no);
       return;
     }
     q.done = true; if (!q.missed) { score.right++; score.tries++; } drawScore();
@@ -460,8 +609,9 @@ h1 small{display:block;font:400 14px/1.3 'Segoe UI',sans-serif;color:#cdebd5}
     const a = q.ans;
     $('curtain').className = 'curtain open'; $('curtain').innerHTML = `<img src="${ART[a.id]}" alt="${a.name}">`;
     anim($('curtain').firstChild, [{transform: 'scale(.6)', opacity: 0}, {transform: 'scale(1.05)', opacity: 1}, {transform: 'scale(1)'}], {duration: 450});
-    $('tell').innerHTML = `Yes! It's the <b>${a.name.toLowerCase()}</b>, from the ${FAM[a.fam].name.toLowerCase()} family.`;
+    $('tell').innerHTML = VO.yes[a.id]; tellV = VO.yes[a.id];
     stopAll(); playTune(a, TWINKLE, .44, () => bounce($('curtain').firstChild));
+    const me = q; cue(tellV, {still: () => mode === 'guess' && q === me});   // after the tune
   }
 
   // ===== Zoo band =====
@@ -501,7 +651,7 @@ h1 small{display:block;font:400 14px/1.3 'Segoe UI',sans-serif;color:#cdebd5}
   function stopBand() { playing = false; stopAll(); $('bplay').textContent = '▶ Play the band'; $('bplay').className = 'big go'; }
   async function playBand() {
     if (!audio()) return; await loading; stopAll();
-    playing = true; $('bplay').textContent = '■ Stop'; $('bplay').className = 'big stop';
+    playing = true; music(0); $('bplay').textContent = '■ Stop'; $('bplay').className = 'big stop';
     const beat = .5, t0 = ac.currentTime + .1, img = id => $('slot-' + id).querySelector('img');
     // each part gets its own volume, so muting works while it plays
     bus = {}; PARTS.forEach(p => { bus[p.id] = ac.createGain(); bus[p.id].gain.value = band.on[p.id] ? 1 : 0; bus[p.id].connect(master); });
@@ -525,12 +675,12 @@ h1 small{display:block;font:400 14px/1.3 'Segoe UI',sans-serif;color:#cdebd5}
   }
 
   addEventListener('keydown', e => {
-    if (e.key === 'Escape') { stopAll(); if (playing) stopBand(); }
+    if (e.key === 'Escape') { stopAll(); hush(); if (playing) stopBand(); }
     if (e.key === ' ' && mode === 'band' && !e.target.closest('button')) { e.preventDefault(); $('bplay').click(); }
   });
 
   setMode('zoo');
-  window.__oz = {setMode, renderHome, INST, BY, playTune, note, audio, get BUF() { return BUF; }, get q() { return q; }, newQ, set glvl(v) { glvl = v; }, band, drawBand, playBand, tapInst};
+  window.__oz = {VO, vlog, said, hush, readNow, get reading() { return reading; }, get busy() { return busy(); }, setMode, renderHome, INST, BY, playTune, note, audio, get BUF() { return BUF; }, get q() { return q; }, newQ, set glvl(v) { glvl = v; }, band, drawBand, playBand, tapInst};
 })();
 </script>
 </body>

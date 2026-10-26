@@ -19,3 +19,4 @@ A paragraph is built like a burger. The **top bun** is the topic sentence: it te
 - **Write your own** lets the class type a burger together. Try it after one or two built ones.
 - Click a sentence on the burger to take it off again.
 - Sound starts on (the Sound button turns it off). There's no score.
+- A narrator voice welcomes the class and reads what the bear says after each serve. **Read** reads the finished paragraph, the bear's words, the picked sentence or the whole burger. With Sound off only **Read** speaks. Sentences typed in **Write your own** are read by the browser's own voice.
