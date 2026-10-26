@@ -1,0 +1,28 @@
+# Batch log: Computer Science, first five (2026-10-26)
+
+Batch note: `docs/agents/BATCH-CS.md`.
+
+## Specs (all five written 2026-10-26)
+
+| Tool | One idea | Accent | Voice | Art |
+|---|---|---|---|---|
+| robot-dance | Bolt dances the cards beside Dot; trips on the first step that differs; the class fixes the bug | magenta #b0206a on navy stage | lively-host | none (code) |
+| computer-builder | each part gives the computer one power; leave it off and see what it can't do | cobalt #2049b8 on wood desk | bright-teacher | 6 (backdrop FLUX.2; goldfish, mouse, panda via Codex) |
+| score-keeper | Star Catch runs beside its program; variables are labeled boxes that change live | raspberry #a82755 on indigo night | friendly-dad | 3 (desert backdrop FLUX.2; ship, rock via Codex) |
+| code-tracer | guess each value in a trace table before the line runs | pencil orange #a8461a on graph paper | clear-teacher | none (code) |
+| game-remix | remix a kid-made game, see what changed, credit the original | deep teal #0b6b6f | big-sister | 13 (3 backdrops FLUX.2; 10 sticker sprites via Codex) |
+
+Spec check: no shared idea, accent, voice or image across the five; score-keeper keeps the space theme, game-remix
+is park, pumpkins and snow.
+
+## Decisions on open questions (integrator, 2026-10-26)
+
+- Standards: every spec lists the module's CSTA 2026 ids plus a 2017 crosswalk. The 2026 wording is not in the repo
+  (only ids), so the crosswalk is inferred by topic; check against the official 2026 PDF when it is at hand.
+- Code.org glossary wording was quoted from memory in three specs: the verify agents check it.
+- robot-dance: Teams on by default (toggle for whole-class play).
+- computer-builder: account safety (E1-SYS-SE-12) left out to keep one idea (secret-keeper covers privacy);
+  microphone and camera stay pretend (no permission prompts, nothing records children).
+- code-tracer: Trace opens first; quiet first-try tally, no stars; progress not saved.
+- game-remix: typed title and remixer name kept as specced (limited characters, nickname default, "first name or a
+  nickname" note); print card names the tool only; no QR code for now.
