@@ -56,11 +56,8 @@ then the item goes back to "ready" with a reply on the comment and the comment m
 
 ## Open items (update as they close)
 
-- **Voice bank (not recorded yet):** 24 candidate Gemini voices (`voices/bank.json`); only warm-teacher and
-  hs-narrator exist. Run `python scripts/voicebank.py` (about 69 Gemini TTS requests; the daily limit is 50 per model,
-  so it may take two days; it resumes from saved takes), then
-  `S:\AI\tts\.venv\Scripts\python.exe scripts/voicebank_sample.py` for `shots/voice-bank.html`. Send Cory the page;
-  he picks keepers (status "kept"). Then STANDARDS.md "Variety" applies with real choices.
+- **Voice bank: done 2026-10-26.** All 25 recorded; Cory kept 23 (adventure-guide and calm-guide dropped).
+  Listening page: `S:\AI\tts\.venv\Scripts\python.exe scripts/voicebank_sample.py` writes `shots/voice-bank.html`.
 - **Voice sweep:** a shared kit helper (narrate, hush, read, first tap, per STANDARDS.md) in `kit/curio.js`, then
   retrofit the 10 grade 11 tools and the K-2 tools onto it. The first four G11 tools (rollercoaster, island, outbreak,
   ferris) predate the held-click rule and may still have the first-tap race.

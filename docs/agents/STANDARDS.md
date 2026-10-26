@@ -8,8 +8,8 @@ below, never on the math. Where this file and your brief differ, this file wins.
 
 The grade 11 batch all shared one narrator and one palette, and side by side they felt samey. From now on:
 
-- **Voice:** each tool gets its own voice from the bank (`voices/bank.json`, the voices with status "kept"; until Cory
-  picks keepers, any voice with a `voices/<id>/ref.wav`). The spec names it, matched to the tool's mood and audience,
+- **Voice:** each tool gets its own voice from the bank (`voices/bank.json`, the voices with status "kept": 23 of 25,
+  picked by Cory 2026-10-26; adventure-guide and calm-guide are "dropped", never use them). The spec names it, matched to the tool's mood and audience,
   and different from its nearest neighbors (`python scripts/neighbors.py <id>` shows them; check their
   `voice/lines.json`).
 - **Palette:** the band theme (`kit/theme-912.css` for 9-12; other bands set their own `:root` colors) is the base. Each
