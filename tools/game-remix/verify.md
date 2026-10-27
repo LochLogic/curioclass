@@ -321,3 +321,12 @@ Checked cold on 2026-10-26 after rebuilding with `CURIO_DRAFT=1 python scripts/b
 Both Re-verify 2 nits are fixed in src.html:
 - **Arrow button width:** in compact layouts the pad buttons now have `min-width:44px; flex-shrink:0`. Measured at 812x375, 667x375 and 680x425: every arrow button is 44x44 and can be tapped (checked with elementFromPoint), and the page has no horizontal scroll.
 - **"Nothing ran for 10 seconds":** the narration queue now records which line is playing. If that line is stepIdle when the child presses Resume, Resume stops it, because its "press Resume" is already done.
+
+## Sharing removed (after Cory's review)
+
+Share mode, the remix code on screen, Copy code, Load a code and the printed card are gone, with their lines, hints,
+how lines, welcome and test hooks (applyCode, makeCode). Save on this device and My saved remixes (Open, Delete, Clear
+saved) moved into Remix: Save and My saved sit with the Remix buttons, and My saved is a drawer (inline on a phone).
+Open asks before replacing unsaved changes (new how line askOpen). The stored form is unchanged, so existing saves
+still open. Checked with held clicks at 1366x768, 812x375, 680x425 and 375x667: both bug fixes, a challenge, save,
+open, delete and clear, and an Arcade run of every card; 0 console errors. Plain build: 1623 KB.

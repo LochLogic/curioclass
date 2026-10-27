@@ -9,7 +9,7 @@ grouping: Whole class for the model, then partners on laptops (one drives, one n
 
 - Open the tool on the projector. It opens in **Arcade** with the shelf of games. Sound on.
 - Write the exit check on the board and cover it.
-- The teacher notes explain every button, remix codes and saving.
+- The teacher notes explain every button and saving.
 
 ## Hook (5 min)
 
@@ -38,8 +38,8 @@ grouping: Whole class for the model, then partners on laptops (one drives, one n
 
 ## Share (5 min)
 
-1. Pairs press **Share** to see their card, then swap laptops with the next pair.
-2. Visitors play the remix and guess what changed, then check the **What changed** list on the card.
+1. Pairs press **Save**, then swap laptops with the next pair.
+2. Visitors play the remix and guess what changed, then check the **What changed** list.
 3. Ask two or three pairs: "Read the credit lines. Whose work is in this game?" (The remixers and the original maker. A borrowed sprite adds a name.)
 
 ## Exit check (4 min)
@@ -59,7 +59,7 @@ Uncover the board. Each child answers on a sticky note:
 - **Support:** start with the challenge "Make the ball worth 3 points in Fetch!": Try it loads the game, and only one number changes.
 - **Support:** use **Slow-mo**, or **Pause** then **Step**, to watch one line at a time.
 - **Stretch:** "Make Snow Bounce harder with exactly one change." "Whose one change made the biggest difference? Why?"
-- **Stretch:** **Borrow** the skunk from Pumpkin Pop. "Why did a second credit line appear?" (You used Leo's work too.) Then **Copy code** so another pair can **Load a code** and remix your remix.
+- **Stretch:** **Borrow** the skunk from Pumpkin Pop. "Why did a second credit line appear?" (You used Leo's work too.)
 
 ## Short on time
 

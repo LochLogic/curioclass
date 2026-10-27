@@ -7,8 +7,7 @@
   "minutes": "25-40",
   "modes": [
     "Arcade",
-    "Remix",
-    "Share"
+    "Remix"
   ],
   "grades_label": "Grade 5",
   "sources": [
@@ -17,7 +16,7 @@
     "Remix as a new project built from another's, and giving credit: Scratch Wiki, Remix: https://en.scratch-wiki.info/wiki/Remix and the Scratch Community Guidelines: https://scratch.mit.edu/community_guidelines",
     "Attribution as the basic condition of reuse: Creative Commons, About CC Licenses: https://creativecommons.org/share-your-work/cclicenses/",
     "Bug and debugging definitions: Code.org CS Fundamentals glossary: https://code.org/curriculum/docs/k-5/glossary",
-    "Crockford base 32 alphabet for the remix code: https://www.crockford.com/base32.html",
+    "Crockford base 32 alphabet for the stored form of a saved remix: https://www.crockford.com/base32.html",
     "Games, makers, remixes and nicknames are original to Curio Class (fictional kids)",
     "Ball, snowball, plain backdrop, thumbnails, program card and preview drawn in code; sounds generated in the browser",
     "Sprites and backdrops drawn with GPT Image (OpenAI) via Codex",

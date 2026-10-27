@@ -12,10 +12,10 @@ attribution, debug by comparing with a working original. CSTA K-12 Computer Scie
 E5-PRO-PD-04, E5-PRO-TR-08, E5-PRO-VD-06; 2017 crosswalk 1B-AP-12, 1B-AP-14, 1B-AP-15, 1B-AP-09.
 Students in pairs on laptops, or the teacher on a projector. Arcade: three kid-made games and four classmates'
 remixes, each program lit line by line as it runs. Remix: change the program itself while What changed and colored
-tags show every difference from the original, and locked credit lines say whose work it builds on. Share: a remix
-code to copy or a printed card; nothing leaves the page and nothing is stored unless Save is pressed.
+tags show every difference from the original, and locked credit lines say whose work it builds on. Save keeps up to
+six remixes in this browser; nothing leaves the page and nothing is stored unless Save is pressed.
 The program is data, run by the small interpreter in the REMIX ENGINE block, which never turns text into code: nothing typed
-is ever parsed as code. A remix code is untrusted input: every field is checked and every change replayed by rules.
+is ever parsed as code. A stored remix is untrusted input: every field is checked and every change replayed by rules.
 Backdrops and sprites are images when painted, drawn in code until then. Sounds are made in the browser.
 Sources in notes.md. One file, no network requests. Content CC BY 4.0, code MIT. curioclass.org
 -->
@@ -32,7 +32,7 @@ Sources in notes.md. One file, no network requests. Content CC BY 4.0, code MIT.
    wide     stage column (run bar, stage, pad, sprite shelf), program card in the middle, panel right. tall (900 px and
             up): stage above its run bar; tight (under 700 px tall): smaller header.
    compact  short landscape boxes (the 16:10 previews): run bar across the top, stage and pad left, panel buttons and
-            the program card right; What changed, sprites, challenges, saved and load open as drawers.
+            the program card right; What changed, sprites, challenges and saved open as drawers.
    stack    narrow or portrait: stage, run bar, pad, panel buttons, sprites, program card (scrolls on its own), rest.
    DOM order is the Tab order: run bar, pad, stage, panel, sprite shelf, program card. */
 header :focus-visible{outline-color:#ffd34d}
@@ -238,18 +238,6 @@ span.chip{border:0;background:none;padding:0;min-height:0;margin:0;font-weight:7
 .lim{font:13px 'Segoe UI',sans-serif;color:var(--muted);margin-left:8px}
 .ro .hdl,.ro .lt,.ro .xb,.ro .addl,.ro .putb{display:none}
 
-/* share card */
-.scard{background:#fff;border:2px solid var(--ink);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:8px;color:#000}
-.scard h3{margin:0;font:800 22px 'Trebuchet MS',sans-serif}
-.scard .by{margin:0;font-size:16px}
-.scard .cr{margin:0;font-style:italic;font-size:14px}
-.scard svg{width:100%;max-width:300px;height:auto;border:1px solid #888;border-radius:6px}
-.scard ul{margin:0;padding-left:18px;font-size:14px}
-.codebox{font:800 20px/1.4 var(--mono);background:#10242a;color:#e8fbf7;border-radius:10px;padding:10px 12px;overflow-wrap:anywhere;letter-spacing:.5px}
-.scard .how{margin:0;font-size:14px}
-.copybox{font:700 15px var(--mono);width:100%;min-height:70px;border:2px solid var(--brand);border-radius:8px;padding:6px}
-.loadrow{display:flex;gap:8px;flex-wrap:wrap}
-.loadrow input{flex:1;min-width:0;font:700 16px var(--mono);min-height:44px;border:2px solid var(--line);border-radius:10px;padding:0 10px;text-transform:uppercase}
 .saved{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
 .saved li{display:flex;gap:6px;align-items:center;flex-wrap:wrap;font-size:15px;border:1px solid var(--line);border-radius:10px;padding:4px 6px}
 .saved li span{flex:1;min-width:120px}
@@ -269,18 +257,6 @@ span.chip{border:0;background:none;padding:0;min-height:0;margin:0;font-weight:7
 .ask p{margin:0 0 14px;font-size:18px;line-height:1.4}
 .ask p.how{font-size:15px;color:var(--muted);margin:-6px 0 14px}
 .ask button{margin-right:8px}
-#printOut{display:none}
-@media print{
-  @page{size:5.5in 8.5in;margin:.35in}
-  body,body.stack,body.wide,body.compact{display:block;height:auto;overflow:visible;background:#fff}
-  body>*:not(#printOut){display:none!important}
-  #printOut{display:block}
-  #printOut .scard{border:2px solid #000;font-size:12px;gap:5px;padding:10px 12px}
-  #printOut .scard h3{font-size:19px}
-  #printOut .scard svg{max-width:2.6in}
-  #printOut .codebox{background:#fff;color:#000;border:2px solid #000;font-size:17px}
-  #printOut .scard ul,#printOut .scard .cr,#printOut .scard .how{font-size:11.5px}
-}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 </style>
 </head>
@@ -290,7 +266,6 @@ span.chip{border:0;background:none;padding:0;min-height:0;margin:0;font-weight:7
   <div class="seg" role="group" aria-label="Mode">
     <button id="m-arcade" aria-pressed="true">Arcade</button>
     <button id="m-remix" aria-pressed="false">Remix</button>
-    <button id="m-share" aria-pressed="false">Share</button>
   </div>
   <button class="icon-btn" id="motion" aria-pressed="true" title="Turn animation on or off">✨ Motion</button>
   <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
@@ -345,18 +320,8 @@ span.chip{border:0;background:none;padding:0;min-height:0;margin:0;font-weight:7
         <button class="pb keep" id="t-changes" aria-expanded="false" aria-controls="changesSec" aria-label="What changed" data-drawer="changesSec"><span class="ico">≠</span><span class="lbl">What changed</span></button>
         <button class="pb keep" id="t-sprites" aria-expanded="false" aria-controls="sprites" aria-label="Sprites" data-drawer="sprites"><span class="ico">🐾</span><span class="lbl">Sprites</span></button>
         <button class="pb" id="t-chal" aria-expanded="false" aria-controls="chalSec" aria-label="Challenges" data-drawer="chalSec"><span class="ico">★</span><span class="lbl">Challenges</span></button>
-      </div>
-      <div id="shareBtns" class="pbtns">
-        <button class="pb keep" id="copy" aria-label="Copy code"><span class="ico">⧉</span><span class="lbl">Copy code</span></button>
-        <button class="pb keep" id="print" aria-label="Print card"><span class="ico">🖨</span><span class="lbl">Print card</span></button>
         <button class="pb keep" id="save" aria-label="Save on this device"><span class="ico">💾</span><span class="sl">Save</span><span class="lbl">Save on this device</span></button>
-        <button class="pb" id="clearSaved" aria-label="Clear saved"><span class="ico">🗑</span><span class="lbl">Clear saved</span></button>
         <button class="pb keep" id="t-saved" aria-expanded="false" aria-controls="savedSec" aria-label="My saved remixes" data-drawer="savedSec"><span class="ico">📂</span><span class="lbl">My saved</span></button>
-        <button class="pb keep" id="t-load" aria-expanded="false" aria-controls="loadSec" aria-label="Load a code" data-drawer="loadSec"><span class="ico">⤓</span><span class="lbl">Load a code</span></button>
-      </div>
-      <div id="copyFallback" class="sec" hidden>
-        <label for="copyBox" class="why">Select all and copy.</label>
-        <textarea id="copyBox" class="copybox" readonly></textarea>
       </div>
       </div>
       <div id="shelfSec" class="shelf" role="group" aria-label="Games"></div>
@@ -374,11 +339,7 @@ span.chip{border:0;background:none;padding:0;min-height:0;margin:0;font-weight:7
       <section id="savedSec" class="sec" aria-labelledby="savedH">
         <div class="dhead"><h2 id="savedH">My saved remixes</h2><button class="pb dclose" data-close="savedSec" aria-label="Close My saved remixes">✕</button></div>
         <ul class="saved" id="savedList"></ul>
-      </section>
-      <section id="loadSec" class="sec" aria-labelledby="loadH">
-        <div class="dhead"><h2 id="loadH">Load a code</h2><button class="pb dclose" data-close="loadSec" aria-label="Close Load a code">✕</button></div>
-        <div class="loadrow"><input id="codeIn" aria-labelledby="loadH" autocomplete="off" spellcheck="false" maxlength="600" placeholder="GR1-...."><button class="pb" id="loadBtn">Load</button></div>
-        <p class="msg" id="loadMsg" role="status"></p>
+        <p><button class="pb" id="clearSaved" aria-label="Clear saved"><span class="ico">🗑</span><span class="lbl">Clear saved</span></button></p>
       </section>
       <div class="defs" id="defs">
         <p>A <b>remix</b> is a new project built from someone else's project.</p>
@@ -412,12 +373,8 @@ span.chip{border:0;background:none;padding:0;min-height:0;margin:0;font-weight:7
       <div class="credits" id="credits"></div>
       <div class="code" id="code"></div>
     </div>
-    <div id="shareWrap" class="sec">
-      <div class="scard" id="scard"></div>
-    </div>
   </div>
 </main>
-<div id="printOut"></div>
 <script src="kit:curio"></script>
 <script>
 (() => {
@@ -1177,12 +1134,8 @@ span.chip{border:0;background:none;padding:0;min-height:0;margin:0;font-weight:7
     bug: 'This remix has a bug. Check What changed. The bug is hiding in one of those changes.',
     fixed: 'You fixed it! Comparing with a working original is a great way to hunt bugs.',
     undo: "Undo goes back one change at a time, so it's safe to try wild ideas.",
-    share: 'Ready to share? Copy your remix code, or print a card. Your credits travel with it.',
-    loaded: 'Code loaded. Remember to keep their credit when you remix it.',
-    loadedFull: "Code loaded. This remix family is full, so you can play it but not change it.",
     chal: 'Challenge done! It has a check mark in Challenges now.',
     stepIdle: 'Nothing ran for 10 seconds. Press Resume, then press a key or click a sprite to make something happen.',
-    badCode: "Hmm, that code doesn't work. Check each letter and try again.",
     saved: 'Saved on this device.',
     end: 'Game over. Want to change a rule and try again?',
   };
@@ -1198,9 +1151,6 @@ span.chip{border:0;background:none;padding:0;min-height:0;margin:0;font-weight:7
     fixRemixRush: "In What changed, tap Jay's score change to find the line in when pumpkin is clicked. Then tap the number and pick a bigger one.",
     fixed: 'Press Play to test your fix.',
     undo: 'Press Undo again to go back one more change.',
-    loaded: 'Press Play to try their game, then change any word to start your own remix.',
-    loadedFull: 'Press Play to try their game. To make your own, pick an original in the Arcade and press Remix this.',
-    badCode: 'Fix the code in the box, then press Load again.',
     saved: 'To open it later, find it in My saved remixes and press Open.',
     end: 'Change a word in the program, then press Play.',
     playKeys: 'Press the key buttons under the stage to play. Or click the stage, then use your keyboard.',
@@ -1212,23 +1162,19 @@ span.chip{border:0;background:none;padding:0;min-height:0;margin:0;font-weight:7
     askStart: 'Press Yes to go back to the original, or No to keep your changes.',
     askNew: 'Press Start new to begin a new remix, or Keep mine to go back to your changes.',
     askClear: 'Press Clear to remove them all, or Keep them to leave them saved.',
-    copyBox: 'The code in the box is selected. Press Ctrl and C together to copy it, or Command and C on a Mac.',
     paused: 'Paused. Press Step to run one line at a time, or Resume to keep going.',
-    shareEmpty: 'Nothing to share yet. Pick a game in the Arcade and press Remix this.',
+    askOpen: 'Press Open to switch to the saved remix, or Keep mine to go back to your changes.',
   };
   const HINT = {
     arcade: 'Pick a game and press Play. Each line lights up as it runs. Like it? Press Remix this.',
     arcadeRemix: "This is a classmate's remix. What changed lists every difference from the game it came from. Press Play to try it.",
     remix: 'Click any word in a box to change it, or add a line. Drag a sprite on the stage to set where it starts.',
     orig: 'This is the original, and it is read only. Press Play to watch it, then press My remix to switch back.',
-    loaded: 'This remix came from a code. Your first change starts your own remix of it, and their credit stays.',
     full: 'This remix family is full. Start from an original: pick one in the Arcade and press Remix this.',
-    share: "Copy your remix code or print a card. To open a friend's remix, paste their code under Load a code.",
-    shareEmpty: 'Nothing to share yet. Pick a game in the Arcade and press Remix this.',
     paused: 'Paused. Press Step to run one line at a time, or Resume to keep going.',
   };
   const FULL = 'This remix family is full. Start from an original.';
-  const EVENT = new Set(['fixed', 'chal', 'badCode', 'loaded', 'loadedFull', 'saved', 'stepIdle']);   // spoken every time
+  const EVENT = new Set(['fixed', 'chal', 'saved', 'stepIdle']);   // spoken every time
   const allLines = () => [...new Set([...Object.values(L), ...Object.values(HOW), ...Object.values(HINT)])];
 
   // ======================================================================================
@@ -1294,7 +1240,7 @@ span.chip{border:0;background:none;padding:0;min-height:0;margin:0;font-weight:7
     if (name !== 'plain' && hasArt(name)) return `<image href="${ART[name]}" width="480" height="360" preserveAspectRatio="xMidYMid slice"/>`;
     return bdShapes(name);
   }
-  // a picture of a program at its start spots (shelf cards, sprite tabs, the share card)
+  // a picture of a program at its start spots (shelf cards, sprite tabs)
   function thumbSVG(P, label) {
     const st = E.starts(P);
     let s = `<svg viewBox="0 0 480 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${label || ''}">` + backdropSVG(P.backdrop);
@@ -1812,7 +1758,7 @@ span.chip{border:0;background:none;padding:0;min-height:0;margin:0;font-weight:7
       const r = E.replay(fam.progs[n - 1], lv.ops.slice(0, k));
       if (r && progKey(r.prog) === want) { lv.ops.length = k; fam = E.build(code); break; }
     }
-    // the code has to fit (names included): untouched default names are shortened first
+    // the stored remix has to fit (names included): untouched default names are shortened first
     if (encLen(code) > E.LIMITS.code && (branched || namesUntouched(w, w.code.levels[w.code.levels.length - 1]))) {
       const who = w.nickDef.split(' ').pop();
       for (const [t, k] of [['My Remix', w.nickDef], ['Remix', w.nickDef], ['Remix', who], ['R', who.slice(0, 1)]]) {
@@ -1821,8 +1767,8 @@ span.chip{border:0;background:none;padding:0;min-height:0;margin:0;font-weight:7
       }
     }
     if (encLen(code) > E.LIMITS.code) {
-      msg(lv.ops.length > 1 ? 'That change would make the remix code too long to share. Undo a change, or make the title shorter.'
-        : !branched && lv.title.length + lv.nick.length > 4 ? 'That change would make the remix code too long to share. Make the title or remixer name shorter.'
+      msg(lv.ops.length > 1 ? 'That change would make the remix too big to save. Undo a change, or make the title shorter.'
+        : !branched && lv.title.length + lv.nick.length > 4 ? 'That change would make the remix too big to save. Make the title or remixer name shorter.'
         : 'The names in this remix family are too long to add a change. Pick an original in the Arcade and press Remix this.');
       return false;
     }
@@ -1880,14 +1826,14 @@ span.chip{border:0;background:none;padding:0;min-height:0;margin:0;font-weight:7
     state.work = {code: c, locked: false, nickDef: nick, fam: E.build(c), undo: []};
     state.view = 'mine'; state.sel = 0; state.selLine = null; state.firstEdit = false; state.fixed = false; state.played = false; state.chal = null;
   }
-  // a loaded family can take one more remixer only if it is under 3 deep and a short new level still fits the code
+  // a stored family (a legacy save of someone else's remix) can take one more remixer only if it is under 3 deep and a short new level still fits the code
   const canBranch = c => c.levels.length < E.LIMITS.depth && encLen({base: c.base, levels: [...c.levels, {title: 'R', nick: 'R', ops: [{k: 'backdrop', v: 0}]}]}) <= E.LIMITS.code;
   function loadWork(code, locked) {
     const nick = randNick();
     state.work = {code: E.clone(code), locked, nickDef: nick, fam: E.build(code), undo: [], full: !canBranch(code)};
     state.view = 'mine'; state.sel = 0; state.selLine = null; state.firstEdit = false; state.fixed = false; state.played = false; state.chal = null;
   }
-  // the title and remixer boxes: letters, digits, space and ' ! - . only, dropped as typed; cut to what the code can hold
+  // the title and remixer boxes: letters, digits, space and ' ! - . only, dropped as typed; cut to what a saved remix can hold
   for (const id of ['title', 'nick']) {
     const box = $(id), field = id === 'title' ? 'title' : 'nick';
     box.addEventListener('input', () => {
@@ -1900,7 +1846,7 @@ span.chip{border:0;background:none;padding:0;min-height:0;margin:0;font-weight:7
         lv[field] = was;
       }
       if (clean !== box.value) { const p = Math.max(0, Math.min(clean.length, box.selectionStart - (box.value.length - clean.length))); box.value = clean; try { box.setSelectionRange(p, p); } catch (e) {} }
-      if (cut) msg(id === 'title' ? 'That title is as long as the remix code can hold.' : 'That remixer name is as long as the remix code can hold.');
+      if (cut) msg(id === 'title' ? 'That title is as long as a saved remix can hold.' : 'That remixer name is as long as a saved remix can hold.');
       if (!w || w.locked) return;
       const lv = w.code.levels[w.code.levels.length - 1];
       const val = clean.trim() ? clean : (id === 'title' ? defTitle(parentTitle(w.code), w.nickDef) : w.nickDef);
@@ -1913,7 +1859,7 @@ span.chip{border:0;background:none;padding:0;min-height:0;margin:0;font-weight:7
   function renderCardHead() { const v = view(); if (!v) return; $('chead').textContent = ''; $('chead').append(h('span', {text: famTitle(v.code)}), h('small', {text: 'by ' + famBy(v.code)})); }
 
   // ======================================================================================
-  // Panels: shelf, What changed, sprites, challenges, share card, saved list
+  // Panels: shelf, What changed, sprites, challenges, saved list
   // ======================================================================================
   function renderShelf() {
     const box = $('shelfSec'), fk = focusKey(), pt = $('panel').scrollTop, st = box.scrollTop; box.textContent = '';
@@ -2101,30 +2047,6 @@ span.chip{border:0;background:none;padding:0;min-height:0;margin:0;font-weight:7
     focusFirstChip();
   }
 
-  // the share card: what prints
-  function renderShare() {
-    const w = state.work, box = $('scard'); box.textContent = '';
-    $('shareWrap').hidden = state.mode !== 'share' || !w;
-    for (const id of ['copy', 'print', 'save']) $(id).disabled = !w || !safeCode() || safeCode().length > E.LIMITS.code;
-    if (!w) return;
-    const c = w.code, n = w.fam.progs.length - 1, P = w.fam.progs[n];
-    const rows = n ? E.diff(w.fam.progs[n - 1], P, w.fam.metas[n - 1]).rows : [];
-    let code = '';
-    try { code = E.encode(c); } catch (e) { code = ''; }
-    box.append(h('h3', {text: famTitle(c)}), h('p', {class: 'by', text: 'by ' + famBy(c)}));
-    for (const cr of E.credits(c)) box.append(h('p', {class: 'cr', text: '🔒 ' + cr}));
-    box.append(h('div', {svg: thumbSVG(P, 'The game at its start'), style: 'display:contents'}));
-    const ul = h('ul');
-    rows.slice(0, 8).forEach(r => ul.append(h('li', {}, h('b', {text: r.tag + ': '}), r.text)));
-    if (rows.length > 8) ul.append(h('li', {text: `and ${rows.length - 8} more`}));
-    if (!rows.length) ul.append(h('li', {text: "No changes yet. It's still the original."}));
-    box.append(h('b', {text: 'What changed'}), ul);
-    const ok = code && code.length <= E.LIMITS.code, cb = h('div', {class: 'codebox', 'aria-label': 'Remix code'});
-    if (ok) code.split('-').forEach((g, i) => { if (i) cb.append('-', h('wbr')); cb.append(g); });
-    else cb.textContent = 'Too long to share. Undo a change, or make the title shorter.';
-    box.append(cb);
-    box.append(h('p', {class: 'how', text: 'Load this code in Game Remix: Share, then Load a code.'}));
-  }
   // saving: only when Save is pressed, only in this browser
   const KEY = 'curio-game-remix';
   function readSaved() {
@@ -2154,56 +2076,32 @@ span.chip{border:0;background:none;padding:0;min-height:0;margin:0;font-weight:7
   function save() {
     if (!state.work) return;
     const code = safeCode();
-    if (!code || code.length > E.LIMITS.code) { msg('This remix code is too long to save. Undo a change, or make the title shorter.'); return; }
+    if (!code || code.length > E.LIMITS.code) { msg('This remix is too big to save. Undo a change, or make the title shorter.'); return; }
     const list = readSaved().filter(r => r.code !== code);
     if (list.length >= 6) { msg('Six remixes are saved. Delete one to save another.'); return; }
     list.unshift({code, at: Date.now(), mine: !state.work.locked});
-    if (!writeSaved(list)) { msg("This browser won't save. Copy the code instead."); return; }
+    if (!writeSaved(list)) { msg("This browser won't save remixes."); return; }
     state.work.saved = true;
     msg('Saved on this device.');
     renderSaved(); narrate('saved'); howTo('saved');
   }
-  function openSaved(i) {
+  async function openSaved(i) {
     const r = readSaved()[i];
     if (!r) return;
     const d = E.decode(r.code);
     if (!d.ok) return;
+    const w = state.work;
+    if (w && w.code.levels[w.code.levels.length - 1].ops.length && !w.saved && E.encode(w.code) !== r.code) {
+      if (!(await ask(`Open ${famTitle(d.code)}? Your changes to ${famTitle(w.code)} will be gone unless you saved them.`, 'Open', 'Keep mine', 'askOpen'))) return;
+    }
     loadWork(d.code, !r.mine); state.work.saved = true;
     closeDrawer(); setMode('remix');
-  }
-  function loadCode(text) {
-    const d = E.decode(text);
-    if (!d.ok) {
-      $('loadMsg').textContent = d.why === 'empty' ? 'Paste or type a code first.' : d.why === 'typo' ? 'That code has a typo. Check each letter and try again.' : "That code isn't a Game Remix code.";
-      if (d.why !== 'empty') { narrate('badCode'); howTo('badCode'); }   // badCode is an event: said on every failed load
-      return false;
-    }
-    $('loadMsg').textContent = '';
-    loadWork(d.code, true);
-    closeDrawer(); setMode('remix');
-    const full = state.work.full; narrate(full ? 'loadedFull' : 'loaded'); howTo(full ? 'loadedFull' : 'loaded');
-    return true;
-  }
-  async function copyCode() {
-    const code = safeCode();
-    if (!code) return;
-    $('copyFallback').hidden = true;
-    try { await navigator.clipboard.writeText(code); msg('Code copied. Paste it anywhere your class shares work.'); }
-    catch (e) { $('copyFallback').hidden = false; const t = $('copyBox'); t.value = code; t.focus(); t.select(); msg(''); howTo('copyBox'); }
-  }
-  function printCard() {
-    if (!state.work) return;
-    renderShare();
-    const out = $('printOut'); out.textContent = '';
-    out.append($('scard').cloneNode(true));
-    out.firstChild.removeAttribute('id');
-    window.print();
   }
 
   // ======================================================================================
   // Narration: a welcome per mode after the first tap, one line at a time; Read always wins
   // ======================================================================================
-  const WELCOME = {arcade: 'arcade', remix: 'remix', share: 'share'};
+  const WELCOME = {arcade: 'arcade', remix: 'remix'};
   const said = new Set(), queued = new Set(), vlog = [];
   let tapped = false, vq = Promise.resolve(), vgen = 0, readP = Promise.resolve();
   for (const ev of ['pointerdown', 'keydown']) addEventListener(ev, e => {
@@ -2224,15 +2122,13 @@ span.chip{border:0;background:none;padding:0;min-height:0;margin:0;font-weight:7
     end: () => state.run === 'ended' || state.run === 'stopped',
     bug: () => !state.fixed,
     first: () => !state.fixed, credit: () => !state.fixed,
-    'how:askDel': asking, 'how:askRemove': asking, 'how:askStart': asking, 'how:askNew': asking, 'how:askClear': asking,
-    'how:copyBox': () => !$('copyFallback').hidden,
+    'how:askDel': asking, 'how:askRemove': asking, 'how:askStart': asking, 'how:askNew': asking, 'how:askClear': asking, 'how:askOpen': asking,
     'how:paused': () => state.run === 'paused', stepIdle: () => state.run === 'paused',
-    remix: () => !!state.work && !state.work.locked, share: () => !!state.work,
+    remix: () => !!state.work && !state.work.locked,
   };
-  // the mode's welcome, only when it fits: Remix waits for a copy the child can change, Share for something to share
+  // the mode's welcome, only when it fits: Remix waits for a copy the child can change
   function welcome() {
     const m = state.mode, w = state.work;
-    if (m === 'share' && !w) { narrate('shareEmpty', true); return; }
     if (m === 'remix' && w && w.locked) return;
     narrate(WELCOME[m]);
   }
@@ -2269,8 +2165,9 @@ span.chip{border:0;background:none;padding:0;min-height:0;margin:0;font-weight:7
     if (state.howto) return HOW[state.howto];
     const v = view();
     if (state.mode === 'arcade') { const a = ARC[state.arc]; return a.bug ? L.bug : a.code ? HINT.arcadeRemix : HINT.arcade; }
-    if (state.mode === 'remix') { const w = state.work; if (state.view === 'orig') return HINT.orig; if (w && w.locked) return w.full ? HINT.full : HINT.loaded; return HINT.remix; }
-    return v ? HINT.share : HINT.shareEmpty;
+    const w = state.work;
+    if (state.view === 'orig') return HINT.orig;
+    return w && w.locked && w.full ? HINT.full : HINT.remix;
   }
   function setHint() { const t = hintText(); if ($('hint').textContent !== t) $('hint').textContent = t; }
   let msgT = 0;
@@ -2286,11 +2183,10 @@ span.chip{border:0;background:none;padding:0;min-height:0;margin:0;font-weight:7
     if (m === 'remix' && !state.work) remixOfSync(ARC[state.arc].fam);
     state.mode = m;
     document.body.dataset.mode = m;
-    for (const k of ['arcade', 'remix', 'share']) $('m-' + k).setAttribute('aria-pressed', k === m);
-    $('copyFallback').hidden = true; msg('');
+    for (const k of ['arcade', 'remix']) $('m-' + k).setAttribute('aria-pressed', k === m);
+    msg('');
     renderAll(); freshGame();
     lastSize = ''; relayout();
-    if (m === 'share' && !state.work) { state.howto = 'shareEmpty'; setHint(); }
     welcome();
     if (m === 'remix' && state.view === 'orig') { narrate('origView'); howTo('compare'); }
   }
@@ -2299,14 +2195,11 @@ span.chip{border:0;background:none;padding:0;min-height:0;margin:0;font-weight:7
     $('arcBtns').hidden = m !== 'arcade';
     $('shelfSec').hidden = m !== 'arcade';
     $('remixBtns').hidden = m !== 'remix';
-    $('shareBtns').hidden = m !== 'share';
     $('chalSec').hidden = m !== 'remix';
-    $('savedSec').hidden = m !== 'share'; $('loadSec').hidden = m !== 'share';
-    $('defs').hidden = m === 'share';
+    $('savedSec').hidden = m !== 'remix';
     $('cmp').hidden = m !== 'remix';
     $('v-orig').setAttribute('aria-pressed', state.view === 'orig'); $('v-mine').setAttribute('aria-pressed', state.view === 'mine');
     $('names').hidden = m !== 'remix' || state.view === 'orig';
-    $('card').hidden = m === 'share';
     const vt = $('viewtag'); vt.hidden = !(m === 'remix' && state.view === 'orig'); vt.textContent = 'Original';
     if (m === 'arcade') {
       renderShelf();
@@ -2320,11 +2213,12 @@ span.chip{border:0;background:none;padding:0;min-height:0;margin:0;font-weight:7
       $('undo').disabled = !(w.undo && w.undo.length) || state.view !== 'mine';
       $('startOver').disabled = w.locked || !lv.ops.length || state.view !== 'mine';
       $('showChg').setAttribute('aria-pressed', state.show);
+      const code = safeCode();
+      $('save').disabled = !code || code.length > E.LIMITS.code;
+      renderSaved();
     }
-    if (m === 'share') { renderShare(); renderSaved(); }
     renderCard(); renderChanges(); renderSprites(); renderChal(); renderChalNow();
     $('t-chal').hidden = m !== 'remix';
-    $('t-saved').hidden = $('t-load').hidden = m !== 'share' || tier !== 'compact';
     setHint();
     placeDrawers();
     rescueFocus();
@@ -2338,7 +2232,7 @@ span.chip{border:0;background:none;padding:0;min-height:0;margin:0;font-weight:7
     if (a.bug) { narrate('bug'); howTo('fixArc' + a.bug); }
     if (tier === 'stack') { lastSize = ''; relayout(); }
   }
-  for (const k of ['arcade', 'remix', 'share']) $('m-' + k).onclick = () => { if (state.mode !== k) setMode(k); };
+  for (const k of ['arcade', 'remix']) $('m-' + k).onclick = () => { if (state.mode !== k) setMode(k); };
   $('remixThis').onclick = async () => { const a = ARC[state.arc]; if (await remixOf(a.fam)) { setMode('remix'); if (a.bug) howTo('fixRemix' + a.bug); if (tier === 'stack') { lastSize = ''; relayout(); } focusFirstChip(); } };
   function focusFirstChip() { const c = document.querySelector('#code button.chip'); if (c) c.focus({preventScroll: true}); }
   $('play').onclick = play;
@@ -2355,10 +2249,8 @@ span.chip{border:0;background:none;padding:0;min-height:0;margin:0;font-weight:7
   $('v-orig').onclick = () => setView('orig'); $('v-mine').onclick = () => setView('mine');
   $('undo').onclick = undo; $('startOver').onclick = startOver;
   $('showChg').onclick = () => { state.show = !state.show; renderAll(); };
-  $('copy').onclick = copyCode; $('print').onclick = printCard; $('save').onclick = save;
+  $('save').onclick = save;
   $('clearSaved').onclick = async () => { if (!readSaved().length) return; if (await ask('Clear every saved remix on this device?', 'Clear', 'Keep them', 'askClear')) { try { localStorage.removeItem(KEY); } catch (e) {} renderSaved(); msg('Saved remixes cleared.'); rescueFocus(true); } };
-  $('loadBtn').onclick = () => loadCode($('codeIn').value);
-  $('codeIn').addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); loadCode($('codeIn').value); } });
 
   // keyboard: Space pauses or resumes (not on a button, the stage or a text box), S steps, Ctrl+Z undoes
   addEventListener('keydown', e => {
@@ -2374,11 +2266,11 @@ span.chip{border:0;background:none;padding:0;min-height:0;margin:0;font-weight:7
   });
 
   // ======================================================================================
-  // Drawers (compact: What changed, sprites, saved, load; every non-stack layout: challenges)
+  // Drawers (compact: What changed, sprites; every non-stack layout: challenges, saved)
   // ======================================================================================
   let openD = null, tier = 'wide', lastSize = '';
-  const DRAWERS = ['changesSec', 'sprites', 'chalSec', 'savedSec', 'loadSec'];
-  const isDrawer = id => tier !== 'stack' && (id === 'chalSec' || tier === 'compact');
+  const DRAWERS = ['changesSec', 'sprites', 'chalSec', 'savedSec'];
+  const isDrawer = id => tier !== 'stack' && (id === 'chalSec' || id === 'savedSec' || tier === 'compact');
   function openDrawer(id) {
     if (openD === id) return;
     closeDrawer();
@@ -2401,7 +2293,7 @@ span.chip{border:0;background:none;padding:0;min-height:0;margin:0;font-weight:7
     for (const id of DRAWERS) {
       const el = $(id), d = isDrawer(id);
       el.classList.toggle('drawer', d && openD === id);
-      const modeOn = !(id === 'chalSec' && state.mode !== 'remix') && !((id === 'savedSec' || id === 'loadSec') && state.mode !== 'share');
+      const modeOn = !((id === 'chalSec' || id === 'savedSec') && state.mode !== 'remix');
       if (d) el.style.display = openD === id && modeOn ? '' : 'none'; else el.style.display = '';
       if (d && openD === id) {
         const tgt = tier === 'compact' ? $('prog').getBoundingClientRect() : $('panel').getBoundingClientRect();
@@ -2413,8 +2305,7 @@ span.chip{border:0;background:none;padding:0;min-height:0;margin:0;font-weight:7
       const id = b.dataset.drawer;
       if (!isDrawer(id)) b.hidden = true;
     }
-    if (state.mode === 'remix') { $('t-chal').hidden = !isDrawer('chalSec'); $('t-changes').hidden = tier !== 'compact'; $('t-sprites').hidden = tier !== 'compact' || $('sprites').hidden; }
-    if (state.mode === 'share') { $('t-saved').hidden = $('t-load').hidden = tier !== 'compact'; }
+    if (state.mode === 'remix') { $('t-chal').hidden = $('t-saved').hidden = tier === 'stack'; $('t-changes').hidden = tier !== 'compact'; $('t-sprites').hidden = tier !== 'compact' || $('sprites').hidden; }
     const v = view(); $('a-changes').hidden = !(tier === 'compact' && state.mode === 'arcade' && v && v.parent);
   }
 
@@ -2461,7 +2352,7 @@ span.chip{border:0;background:none;padding:0;min-height:0;margin:0;font-weight:7
     }
     st.style.width = sw + 'px'; st.style.height = Math.round(sw * .75) + 'px';
     if (t === 'stack') st.style.alignSelf = 'center'; else st.style.alignSelf = '';
-    if (t === 'stack' && state.mode !== 'share') {
+    if (t === 'stack') {
       // a phone: the pad, the hint and (in the Arcade) Remix this stay on the first screen, under a slightly smaller stage
       const over = $(state.mode === 'arcade' ? 'remixThis' : 'hint').getBoundingClientRect().bottom + scrollY - (H - 8);
       if (over > 0) { sw = Math.max(240, sw - Math.ceil(over * 4 / 3)); st.style.width = sw + 'px'; st.style.height = Math.round(sw * .75) + 'px'; }
@@ -2510,12 +2401,12 @@ span.chip{border:0;background:none;padding:0;min-height:0;margin:0;font-weight:7
         if (!t || gone(t)) t = document.querySelector('#code .addl:not(:disabled)') || document.querySelector('#code button');
       }
       else if (/^st:/.test(k)) t = document.querySelector('#stabs button');
-      else if (/^(open|delS):/.test(k)) t = document.querySelector('#savedList button') || $('save');
+      else if (/^(open|delS):/.test(k)) t = document.querySelector('#savedList button') || $('clearSaved');
       else if (/^try:/.test(k)) t = $('t-chal');
     }
     if (from && from.closest && from.closest('#bar')) t = $('play');
     if (from && from.closest && from.closest('#sprites')) t = t || $('swap');
-    if (!t || gone(t)) t = state.mode === 'remix' ? [$('undo'), $('showChg'), $('play')].find(x => !gone(x)) : state.mode === 'share' ? (gone($('copy')) ? $('codeIn') : $('copy')) : $('remixThis');
+    if (!t || gone(t)) t = state.mode === 'remix' ? [$('undo'), $('showChg'), $('play')].find(x => !gone(x)) : $('remixThis');
     if (gone(t)) t = $('play');
     t.focus({preventScroll: true});
   }
@@ -2531,7 +2422,6 @@ span.chip{border:0;background:none;padding:0;min-height:0;margin:0;font-weight:7
   $('read').onclick = readNow;
 
   // for checking: run plays the shown program headless for ms of game time with no input
-  function makeCode() { try { return state.work ? E.encode(state.work.code) : null; } catch (e) { return null; } }
   function load(id) {
     const i = typeof id === 'number' ? id : ARC.findIndex(a => famTitle(a.fam) === id);
     if (state.mode !== 'arcade') setMode('arcade');
@@ -2560,7 +2450,7 @@ span.chip{border:0;background:none;padding:0;min-height:0;margin:0;font-weight:7
       '<svg x="0" y="44" width="640" height="356" viewBox="0 0 480 360" preserveAspectRatio="xMinYMid slice">' + bdShapes('park') + '</svg>' + ball +
       '<path d="M196 236 q40 -30 66 -40" fill="none" stroke="#fff" stroke-width="5" stroke-dasharray="2 10" stroke-linecap="round"/>' + pup + head + card + '</svg>';
   }
-  window.__tool = {state, setMode, allLines, load, applyCode: loadCode, makeCode, engine: E, vlog, said, queued, L, HOW, HINT, ARC, CHAL, previewSVG,
+  window.__tool = {state, setMode, allLines, load, engine: E, vlog, said, queued, L, HOW, HINT, ARC, CHAL, previewSVG,
     run: ms => E.runFor(shownProg(), ms), edit, undo, play, step, stopGame, pickArc, remixOf, setView, save, readSaved, openSaved, findRef, tryChal,
     get G() { return G; }, hint: () => $('hint').textContent, layout: () => ({tier}), view, rescueFocus};
   setMode('arcade');
