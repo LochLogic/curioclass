@@ -225,6 +225,21 @@ add('Wave 4', 'w4', [
     ('enduring-questions', 'Title matches an NEH grant program. Keep, or rename "The Long Argument"?', 'Rename to "The Long Argument".', 'Avoids confusion with the federal program.'),
     ('enduring-questions', 'Add a teacher note on the live local debates and composite experts?', 'Add it.', 'Teachers know what to expect before class.'),
     ('enduring-questions', 'Parent preview for the "who was left out" lines?', 'No preview step; a teacher note is enough.', 'They are standard US history facts.'),
+    ('wave 4 ELA (8 tools)', 'Several agents ask for a "parent preview" of hard content in classic texts (Owl Creek, Dracula, slavery and boarding schools, Trifles, Equiano, Young Goodman Brown, Du Bois, The Open Window). One rule for all?',
+     'One rule: a short "Content notes" line on the tool page and in teacher notes naming what the texts contain; no separate parent preview step.', 'Teachers and parents can see it before class, and the texts stay whole as taught.'),
+    ('character-web', 'Bertha Mason note at grade 9: keep or drop? Codex portraits or monograms?', 'Keep the note; monograms only.', 'Jane Eyre is read with that context; monograms ship with no people images to review.'),
+    ('tension-meter', 'Draw its own chart, or join the data-desk engine?', 'Join data-desk.', 'One chart engine to maintain, and the charts look the same everywhere.'),
+    ('american-lit-timeline', 'Keep Bradford\'s "wild men" line and Edwards\'s sermon? Stop at 1929 (public domain line)?', 'Keep both with context notes; stop at 1929.', 'They are the period\'s own voices; 1929 keeps every text free to show.'),
+    ('shakespeare-remix', 'Modern Afterlives: show modern titles (title only), or pre-1930 works only?', 'Show modern titles, title only.', 'Students recognize West Side Story and The Lion King; titles alone raise no copyright issue.'),
+    ('globe-theatre-stage', 'Delivery shown visually with no audio, since voice.py uses one style per tool. OK?', 'OK for now; add audio when the voice helper supports more than one style.', 'Ships now, gains sound later.'),
+    ('globe-theatre-stage', 'Keep Trifles here as a guest scene, or give it its own tool?', 'Keep it here.', 'A one-act play staged three ways fits this tool\'s idea.'),
+    ('world-lit-atlas', 'Cut "Indian-fashion" from the Azuela passage, or keep with a note?', 'Keep with a note.', 'Who needed a word explained is the lesson of this tool.'),
+    ('world-lit-atlas', 'No pins yet for the Middle East, South America or Oceania. Add them?', 'Add at least the Middle East and South America (for example the Thousand and One Nights and a Machado de Assis story).', 'A world atlas with whole regions missing reads as unfinished.'),
+    ('page-to-screen', 'A made-up Suspicion meter labeled "our estimate": OK?', 'OK.', 'Labeled honestly, and it makes the trade-off visible.'),
+    ('ambiguity-lab', 'Stockton\'s "savage blood": teacher note enough, or on screen for students?', 'On screen, one plain line.', 'Students meet the phrase in the text; context belongs beside it.'),
+    ('ambiguity-lab', 'Invented closed endings OK?', 'OK, labeled as invented.', 'Comparing closed and open endings is the experiment.'),
+    ('idea-threads', 'Check the Eisenhower text against GovInfo page images? One paragraph cut from Du Bois and Thoreau: OK?', 'Yes, check at build; cuts OK if marked with an ellipsis.', 'An accurate primary text, honestly abridged.'),
+    ('tone-dial', 'Spooky Ominous column at grade 10? Audio for the six one-tone versions?', 'Keep Ominous; drop audio.', 'Ominous is mild; one voice style cannot carry six tones.'),
 ], 'Wave 4 build')
 
 add('Art', 'art', [

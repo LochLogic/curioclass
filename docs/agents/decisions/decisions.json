@@ -1577,6 +1577,132 @@
    "blocks": "Wave 4 build"
   },
   {
+   "id": "w4-15",
+   "area": "Wave 4",
+   "tool": "wave 4 ELA (8 tools)",
+   "q": "Several agents ask for a \"parent preview\" of hard content in classic texts (Owl Creek, Dracula, slavery and boarding schools, Trifles, Equiano, Young Goodman Brown, Du Bois, The Open Window). One rule for all?",
+   "rec": "One rule: a short \"Content notes\" line on the tool page and in teacher notes naming what the texts contain; no separate parent preview step.",
+   "why": "Teachers and parents can see it before class, and the texts stay whole as taught.",
+   "blocks": "Wave 4 build"
+  },
+  {
+   "id": "w4-16",
+   "area": "Wave 4",
+   "tool": "character-web",
+   "q": "Bertha Mason note at grade 9: keep or drop? Codex portraits or monograms?",
+   "rec": "Keep the note; monograms only.",
+   "why": "Jane Eyre is read with that context; monograms ship with no people images to review.",
+   "blocks": "Wave 4 build"
+  },
+  {
+   "id": "w4-17",
+   "area": "Wave 4",
+   "tool": "tension-meter",
+   "q": "Draw its own chart, or join the data-desk engine?",
+   "rec": "Join data-desk.",
+   "why": "One chart engine to maintain, and the charts look the same everywhere.",
+   "blocks": "Wave 4 build"
+  },
+  {
+   "id": "w4-18",
+   "area": "Wave 4",
+   "tool": "american-lit-timeline",
+   "q": "Keep Bradford's \"wild men\" line and Edwards's sermon? Stop at 1929 (public domain line)?",
+   "rec": "Keep both with context notes; stop at 1929.",
+   "why": "They are the period's own voices; 1929 keeps every text free to show.",
+   "blocks": "Wave 4 build"
+  },
+  {
+   "id": "w4-19",
+   "area": "Wave 4",
+   "tool": "shakespeare-remix",
+   "q": "Modern Afterlives: show modern titles (title only), or pre-1930 works only?",
+   "rec": "Show modern titles, title only.",
+   "why": "Students recognize West Side Story and The Lion King; titles alone raise no copyright issue.",
+   "blocks": "Wave 4 build"
+  },
+  {
+   "id": "w4-20",
+   "area": "Wave 4",
+   "tool": "globe-theatre-stage",
+   "q": "Delivery shown visually with no audio, since voice.py uses one style per tool. OK?",
+   "rec": "OK for now; add audio when the voice helper supports more than one style.",
+   "why": "Ships now, gains sound later.",
+   "blocks": "Wave 4 build"
+  },
+  {
+   "id": "w4-21",
+   "area": "Wave 4",
+   "tool": "globe-theatre-stage",
+   "q": "Keep Trifles here as a guest scene, or give it its own tool?",
+   "rec": "Keep it here.",
+   "why": "A one-act play staged three ways fits this tool's idea.",
+   "blocks": "Wave 4 build"
+  },
+  {
+   "id": "w4-22",
+   "area": "Wave 4",
+   "tool": "world-lit-atlas",
+   "q": "Cut \"Indian-fashion\" from the Azuela passage, or keep with a note?",
+   "rec": "Keep with a note.",
+   "why": "Who needed a word explained is the lesson of this tool.",
+   "blocks": "Wave 4 build"
+  },
+  {
+   "id": "w4-23",
+   "area": "Wave 4",
+   "tool": "world-lit-atlas",
+   "q": "No pins yet for the Middle East, South America or Oceania. Add them?",
+   "rec": "Add at least the Middle East and South America (for example the Thousand and One Nights and a Machado de Assis story).",
+   "why": "A world atlas with whole regions missing reads as unfinished.",
+   "blocks": "Wave 4 build"
+  },
+  {
+   "id": "w4-24",
+   "area": "Wave 4",
+   "tool": "page-to-screen",
+   "q": "A made-up Suspicion meter labeled \"our estimate\": OK?",
+   "rec": "OK.",
+   "why": "Labeled honestly, and it makes the trade-off visible.",
+   "blocks": "Wave 4 build"
+  },
+  {
+   "id": "w4-25",
+   "area": "Wave 4",
+   "tool": "ambiguity-lab",
+   "q": "Stockton's \"savage blood\": teacher note enough, or on screen for students?",
+   "rec": "On screen, one plain line.",
+   "why": "Students meet the phrase in the text; context belongs beside it.",
+   "blocks": "Wave 4 build"
+  },
+  {
+   "id": "w4-26",
+   "area": "Wave 4",
+   "tool": "ambiguity-lab",
+   "q": "Invented closed endings OK?",
+   "rec": "OK, labeled as invented.",
+   "why": "Comparing closed and open endings is the experiment.",
+   "blocks": "Wave 4 build"
+  },
+  {
+   "id": "w4-27",
+   "area": "Wave 4",
+   "tool": "idea-threads",
+   "q": "Check the Eisenhower text against GovInfo page images? One paragraph cut from Du Bois and Thoreau: OK?",
+   "rec": "Yes, check at build; cuts OK if marked with an ellipsis.",
+   "why": "An accurate primary text, honestly abridged.",
+   "blocks": "Wave 4 build"
+  },
+  {
+   "id": "w4-28",
+   "area": "Wave 4",
+   "tool": "tone-dial",
+   "q": "Spooky Ominous column at grade 10? Audio for the six one-tone versions?",
+   "rec": "Keep Ominous; drop audio.",
+   "why": "Ominous is mild; one voice style cannot carry six tones.",
+   "blocks": "Wave 4 build"
+  },
+  {
    "id": "art-01",
    "area": "Art",
    "tool": "6 wave 1 tools",
