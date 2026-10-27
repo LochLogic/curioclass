@@ -1,0 +1,163 @@
+{
+  "style": "Flat vector illustration for a grade 5 computer science game kids remix on a laptop or projector: bright friendly daytime colors, clean rounded shapes with gentle shading, cheerful and simple, no text anywhere.",
+  "assets": [
+    {
+      "name": "park",
+      "prompt": "A sunny city park seen from above at a gentle angle, soft green lawn, a curving path, two round trees at the edges, a small pond corner, flat vector illustration, open lawn in the middle. No people, no animals, no writing.",
+      "aspect": "4:3",
+      "width": 1280,
+      "quality": 72,
+      "source": "gpt-image-2 (Codex)",
+      "local_note": "backdrop for Fetch!, the whole 480 x 360 stage, cropped to cover; sprites run across the open middle, so keep it clear",
+      "review": "ok"
+    },
+    {
+      "name": "pumpkin-patch",
+      "prompt": "An autumn pumpkin patch field seen from above at a gentle angle, rows of dark soil and green vines, a wooden fence along the top, flat vector illustration, open space in the middle. No people, no animals, no writing.",
+      "aspect": "4:3",
+      "width": 1280,
+      "quality": 72,
+      "source": "gpt-image-2 (Codex)",
+      "local_note": "backdrop for Pumpkin Pop, the whole stage, cropped to cover; pumpkins and the skunk appear at random spots, so no pumpkins painted in the field",
+      "review": "ok"
+    },
+    {
+      "name": "snowy-hill",
+      "prompt": "A quiet snowy hillside under a pale blue winter sky, soft drifts, two small pine trees at the edges, flat vector illustration, smooth open snow across the middle and bottom. No people, no animals, no writing.",
+      "aspect": "4:3",
+      "width": 1280,
+      "quality": 72,
+      "source": "gpt-image-2 (Codex)",
+      "local_note": "backdrop for Snow Bounce, the whole stage, cropped to cover; the penguin slides along the bottom and the snowball bounces through the middle",
+      "review": "ok"
+    },
+    {
+      "name": "puppy",
+      "prompt": "A cheerful cartoon puppy standing, seen from the front, tan and white fur, floppy ears, flat vector sticker style, thick dark outline. The whole puppy in frame, centered, nothing else in the picture.",
+      "aspect": "1:1",
+      "height": 320,
+      "cutout": true,
+      "key": "magenta",
+      "source": "gpt-image-2 (Codex)",
+      "local_note": "the base sprite: a sprite drawn 48 logical px across on the 480 x 360 stage (about 34 to 72 px on screen), also in sprite tabs and shelf thumbnails; spec said \"solid white background\": the cutout wording (magenta key) supplies the background instead",
+      "review": "ok"
+    },
+    {
+      "name": "cat",
+      "prompt": "A cheerful cartoon cat sitting, seen from the front, orange tabby fur, big friendly eyes, flat vector sticker style, thick dark outline. The whole cat in frame, centered, nothing else in the picture.",
+      "aspect": "1:1",
+      "height": 320,
+      "cutout": true,
+      "key": "magenta",
+      "ref": "puppy",
+      "ref_mode": "style",
+      "source": "gpt-image-2 (Codex)",
+      "local_note": "a sprite drawn 48 logical px across on the 480 x 360 stage (about 34 to 72 px on screen), also in sprite tabs and shelf thumbnails; spec said \"solid white background\": the cutout wording (magenta key) supplies the background instead",
+      "review": "ok"
+    },
+    {
+      "name": "bunny",
+      "prompt": "A cheerful cartoon bunny sitting, seen from the front, soft pink and white fur, tall ears, flat vector sticker style, thick dark outline. The whole bunny in frame, centered, nothing else in the picture.",
+      "aspect": "1:1",
+      "height": 320,
+      "cutout": true,
+      "key": "magenta",
+      "ref": "puppy",
+      "ref_mode": "style",
+      "source": "gpt-image-2 (Codex)",
+      "local_note": "a sprite drawn 48 logical px across on the 480 x 360 stage (about 34 to 72 px on screen), also in sprite tabs and shelf thumbnails; spec said \"solid white background\": the cutout wording (magenta key) supplies the background instead",
+      "review": "ok"
+    },
+    {
+      "name": "penguin",
+      "prompt": "A cheerful cartoon penguin standing, seen from the front, black and white with an orange beak and feet, flat vector sticker style, thick dark outline. The whole penguin in frame, centered, nothing else in the picture.",
+      "aspect": "1:1",
+      "height": 320,
+      "cutout": true,
+      "key": "magenta",
+      "ref": "puppy",
+      "ref_mode": "style",
+      "source": "gpt-image-2 (Codex)",
+      "local_note": "a sprite drawn 48 logical px across on the 480 x 360 stage (about 34 to 72 px on screen), also in sprite tabs and shelf thumbnails; spec said \"solid white background\": the cutout wording (magenta key) supplies the background instead",
+      "review": "ok"
+    },
+    {
+      "name": "pumpkin",
+      "prompt": "A cheerful cartoon pumpkin with a short green stem and one curly vine, round and orange, no carved face, flat vector sticker style, thick dark outline. The whole pumpkin in frame, centered, nothing else in the picture.",
+      "aspect": "1:1",
+      "height": 320,
+      "cutout": true,
+      "key": "magenta",
+      "ref": "puppy",
+      "ref_mode": "style",
+      "source": "gpt-image-2 (Codex)",
+      "local_note": "a sprite drawn 48 logical px across on the 480 x 360 stage (about 34 to 72 px on screen), also in sprite tabs and shelf thumbnails; spec said \"solid white background\": the cutout wording (magenta key) supplies the background instead",
+      "review": "ok"
+    },
+    {
+      "name": "carrot",
+      "prompt": "A cheerful cartoon carrot with leafy green top, bright orange, flat vector sticker style, thick dark outline. The whole carrot in frame, centered, nothing else in the picture.",
+      "aspect": "1:1",
+      "height": 320,
+      "cutout": true,
+      "key": "magenta",
+      "ref": "puppy",
+      "ref_mode": "style",
+      "source": "gpt-image-2 (Codex)",
+      "local_note": "a sprite drawn 48 logical px across on the 480 x 360 stage (about 34 to 72 px on screen), also in sprite tabs and shelf thumbnails; spec said \"solid white background\": the cutout wording (magenta key) supplies the background instead",
+      "review": "ok"
+    },
+    {
+      "name": "fish",
+      "prompt": "A cheerful cartoon fish seen from the side, bright blue and yellow, round friendly eye, flat vector sticker style, thick dark outline. The whole fish in frame, centered, nothing else in the picture.",
+      "aspect": "1:1",
+      "height": 320,
+      "cutout": true,
+      "key": "magenta",
+      "ref": "puppy",
+      "ref_mode": "style",
+      "source": "gpt-image-2 (Codex)",
+      "local_note": "a sprite drawn 48 logical px across on the 480 x 360 stage (about 34 to 72 px on screen), also in sprite tabs and shelf thumbnails; spec said \"solid white background\": the cutout wording (magenta key) supplies the background instead",
+      "review": "ok"
+    },
+    {
+      "name": "bee",
+      "prompt": "A cheerful cartoon bee flying, seen from the front, round yellow and black body, small clear wings, friendly smile, not scary, flat vector sticker style, thick dark outline. The whole bee in frame, centered, nothing else in the picture.",
+      "aspect": "1:1",
+      "height": 320,
+      "cutout": true,
+      "key": "magenta",
+      "ref": "puppy",
+      "ref_mode": "style",
+      "source": "gpt-image-2 (Codex)",
+      "local_note": "a sprite drawn 48 logical px across on the 480 x 360 stage (about 34 to 72 px on screen), also in sprite tabs and shelf thumbnails; spec said \"solid white background\": the cutout wording (magenta key) supplies the background instead",
+      "review": "ok"
+    },
+    {
+      "name": "skunk",
+      "prompt": "A cheerful cartoon skunk sitting, seen from the front, black with a white stripe and fluffy tail, friendly smile, not scary, flat vector sticker style, thick dark outline. The whole skunk in frame, centered, nothing else in the picture.",
+      "aspect": "1:1",
+      "height": 320,
+      "cutout": true,
+      "key": "magenta",
+      "ref": "puppy",
+      "ref_mode": "style",
+      "source": "gpt-image-2 (Codex)",
+      "local_note": "a sprite drawn 48 logical px across on the 480 x 360 stage (about 34 to 72 px on screen), also in sprite tabs and shelf thumbnails; spec said \"solid white background\": the cutout wording (magenta key) supplies the background instead",
+      "review": "ok"
+    },
+    {
+      "name": "crow",
+      "prompt": "A cheerful cartoon crow standing, seen from the side, glossy blue-black feathers, friendly eye, not scary, flat vector sticker style, thick dark outline. The whole crow in frame, centered, nothing else in the picture.",
+      "aspect": "1:1",
+      "height": 320,
+      "cutout": true,
+      "key": "magenta",
+      "ref": "puppy",
+      "ref_mode": "style",
+      "source": "gpt-image-2 (Codex)",
+      "local_note": "a sprite drawn 48 logical px across on the 480 x 360 stage (about 34 to 72 px on screen), also in sprite tabs and shelf thumbnails; spec said \"solid white background\": the cutout wording (magenta key) supplies the background instead",
+      "review": "ok"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "id": "game-remix",
+  "status": "beta",
+  "hook": "Open a classmate's working game, press Remix this, and change the program itself while a What changed list tags every difference from the original and a credit line that can't be deleted says whose work you built on.",
+  "outcome": "Modify and combine programs (change a rule, add or move a line, swap or borrow a sprite), give credit when remixing, and find a bug by comparing a remix with the working original it came from",
+  "driver": "students or teacher",
+  "minutes": "25-40",
+  "modes": [
+    "Arcade",
+    "Remix",
+    "Share"
+  ],
+  "grades_label": "Grade 5",
+  "sources": [
+    "CSTA K-12 Computer Science Standards (2017), 1B-AP-09, 1B-AP-12, 1B-AP-14, 1B-AP-15: https://csteachers.org/k12standards/",
+    "Module ids E5-PRO-PD-04, E5-PRO-TR-08, E5-PRO-VD-06: CSTA PK-12 Standards (2026), from data/standards/csta-2026-ids.txt and data/modules.csv",
+    "Remix as a new project built from another's, and giving credit: Scratch Wiki, Remix: https://en.scratch-wiki.info/wiki/Remix and the Scratch Community Guidelines: https://scratch.mit.edu/community_guidelines",
+    "Attribution as the basic condition of reuse: Creative Commons, About CC Licenses: https://creativecommons.org/share-your-work/cclicenses/",
+    "Bug and debugging definitions: Code.org CS Fundamentals glossary: https://code.org/curriculum/docs/k-5/glossary",
+    "Crockford base 32 alphabet for the remix code: https://www.crockford.com/base32.html",
+    "Games, makers, remixes and nicknames are original to Curio Class (fictional kids)",
+    "Ball, snowball, plain backdrop, thumbnails, program card and preview drawn in code; sounds generated in the browser",
+    "Sprites and backdrops drawn with GPT Image (OpenAI) via Codex",
+    "Narration generated with Qwen3-TTS (Apache 2.0), cloning a Google Gemini text-to-speech voice"
+  ],
+  "third_party": [],
+  "updated": "2026-10-27"
+}
