@@ -2,12 +2,22 @@
 {% from "macros.html" import crumbs %}
 {% block title %}{{ label }}: Supply Closet · Curio Class{% endblock %}
 {% block description %}{{ what }}{% endblock %}
-{% block robots %}{% if not items %}<meta name="robots" content="noindex">{% endif %}{% endblock %}
+{% block robots %}{% if not groups %}<meta name="robots" content="noindex">{% endif %}{% endblock %}
 {% block main %}
 <div class="wrap">
   {{ crumbs([('Supply Closet', '/closet/'), (label, None)]) }}
   <div class="page-head"><h1>{{ label }}</h1><p>{{ what }}</p></div>
-  {% if not items %}
+  {% if groups %}
+  <p class="plan-link">Pick a module, then a format and a language (English, Español or both), then print. More grades are on the way.</p>
+  {% for heading, mods in groups %}
+  <section class="group">
+    <h2>{{ heading }}</h2>
+    <ul class="module-list">
+      {% for m in mods %}<li><a href="{{ m.url }}words/"><b>{{ m.title }}</b></a><span>{{ subjects[m.subject].short }} · {{ words[m.module_id] | map(attribute='word') | join(', ') }}</span></li>{% endfor %}
+    </ul>
+  </section>
+  {% endfor %}
+  {% else %}
   <p class="plan-link">This shelf is still being stocked. Until it is, every tool's <a href="/tools/">lesson plan</a> prints on one page.</p>
   {% endif %}
 </div>

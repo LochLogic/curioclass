@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+{% from "macros.html" import crumbs %}
+{% macro draw(c, big=False) %}{% if c.src %}<img src="{{ c.src }}" alt="">{% else %}<span class="draw-it"><span class="en">Draw it</span><span class="es" lang="es">Dibújalo</span></span>{% endif %}{% endmacro %}
+{% block title %}Word Wall: {{ m.title }}, {{ grade_label(m.grade) | lower }} {{ subject.short | lower }} · Curio Class{% endblock %}
+{% block description %}{{ cards | length }} vocabulary words for {{ m.title | lower }}, in English and Spanish: printable wall cards, mini cards and a student glossary.{% endblock %}
+{% block main %}
+<div class="wrap words-page" data-format="wall" data-lang="en" style="--band: var(--{{ subject.color }})">
+  <div class="no-print">
+    {{ crumbs([(grade_label(m.grade), grade_href(m.grade)), (subject.short, '/subjects/' ~ m.subject ~ '/'), (m.title, m.url), ('Word Wall', None)]) }}
+    <div class="page-head">
+      <p class="eyebrow">Word Wall · {{ grade_label(m.grade) }} · {{ subject.short }}</p>
+      <h1>{{ m.title }}</h1>
+      <p>{{ cards | length }} words: {% for c in cards %}{{ c.word }}{% if not loop.last %}, {% endif %}{% endfor %}.</p>
+    </div>
+    <form class="word-controls" onsubmit="return false">
+      <fieldset>
+        <legend>Print as</legend>
+        <label><input type="radio" name="format" value="wall" checked> Wall cards</label>
+        <label><input type="radio" name="format" value="mini"> Mini cards</label>
+        <label><input type="radio" name="format" value="gloss"> My words</label>
+      </fieldset>
+      <fieldset>
+        <legend>Language</legend>
+        <label><input type="radio" name="lang" value="en" checked> English</label>
+        <label><input type="radio" name="lang" value="es"> Español</label>
+        <label><input type="radio" name="lang" value="both"> Both</label>
+      </fieldset>
+      <button class="btn primary" type="button" onclick="print()">Print</button>
+    </form>
+    <p class="word-hint" data-for="wall">Pick a format and a language, then press <b>Print</b>. Wall cards print sideways (landscape), two to a page. Kids can draw in the empty boxes.</p>
+    <p class="word-hint" data-for="mini">Pick a language, then press <b>Print</b>. Eight cards to a page: cut on the dashed lines for pocket charts, matching games and word sorts.</p>
+    <p class="word-hint" data-for="gloss">Pick a language, then press <b>Print</b>. One page per student: they write what each word means in their own words and draw it.</p>
+    <p class="word-note es-note">The Spanish is a first draft. A native speaker has not checked it yet, so read it over before you print.</p>
+  </div>
+
+  <section class="fmt fmt-wall">
+    {% for c in cards %}
+    <article class="wcard">
+      <div class="pic">{{ draw(c) }}</div>
+      <div class="txt">
+        <p class="w en">{{ c.word }}</p>
+        <p class="w es" lang="es">{{ c.es_word }}</p>
+        <p class="d en">{{ c.definition }}</p>
+        <p class="d es" lang="es">{{ c.es_definition }}</p>
+        <p class="x en">{{ c.example }}</p>
+        <p class="x es es-only" lang="es">{{ c.es_example }}</p>
+      </div>
+    </article>
+    {% endfor %}
+  </section>
+
+  <section class="fmt fmt-mini">
+    <div class="mini-grid">
+      {% for c in cards %}
+      <article class="mcard">
+        <div class="pic">{{ draw(c) }}</div>
+        <div class="txt">
+          <p class="w en">{{ c.word }}</p>
+          <p class="w es" lang="es">{{ c.es_word }}</p>
+          <p class="d en">{{ c.definition }}</p>
+          <p class="d es es-only" lang="es">{{ c.es_definition }}</p>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="fmt fmt-gloss">
+    <div class="gloss-head">
+      <h2><span class="en">My words: {{ m.title }}</span><span class="es" lang="es">Mis palabras</span></h2>
+      <p><span class="en">Name</span><span class="es" lang="es">Nombre</span> <span class="blank"></span></p>
+    </div>
+    <table class="gloss">
+      <thead><tr>
+        <th><span class="en">Word</span><span class="es" lang="es">Palabra</span></th>
+        <th><span class="en">What it means</span><span class="es" lang="es">Qué significa</span></th>
+        <th><span class="en">Draw it</span><span class="es" lang="es">Dibújalo</span></th>
+      </tr></thead>
+      <tbody>
+        {% for c in cards %}
+        <tr>
+          <td><b class="en">{{ c.word }}</b><b class="es" lang="es">{{ c.es_word }}</b></td>
+          <td>{% if band == 'k2' %}<span class="en">{{ c.definition }}</span><span class="es" lang="es">{{ c.es_definition }}</span>{% endif %}</td>
+          <td></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
+  <p class="print-foot">{{ m.title }} · {{ grade_label(m.grade) }} {{ subject.short }} · Curio Class, curioclass.org · free under CC BY 4.0</p>
+</div>
+{% endblock %}
+{% block scripts %}
+<script>
+(function () {
+  // ?format=mini&lang=both in the link wins over the choice remembered on this computer
+  var page = document.querySelector('.words-page'), ask = new URLSearchParams(location.search);
+  document.querySelectorAll('.word-controls input').forEach(function (input) {
+    var want = ask.get(input.name);
+    try { want = want || localStorage.getItem('cc-words-' + input.name); } catch (e) {}
+    if (want === input.value) input.checked = true;
+    input.addEventListener('change', function () {
+      page.dataset[input.name] = input.value;
+      try { localStorage.setItem('cc-words-' + input.name, input.value); } catch (e) {}
+    });
+  });
+  document.querySelectorAll('.word-controls input:checked').forEach(function (input) { page.dataset[input.name] = input.value; });
+})();
+</script>
+{% endblock %}

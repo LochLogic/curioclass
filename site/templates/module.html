@@ -28,6 +28,14 @@
     {{ shelf(items) }}
   </section>
 
+  {% if words %}
+  <section class="group">
+    <h2>Word Wall</h2>
+    <p>{{ words | length }} words in English and Spanish: {{ words | map(attribute='word') | join(', ') }}. Print them as wall cards, mini cards or a student glossary.</p>
+    <p><a class="btn" href="{{ m.url }}words/">Print the words</a></p>
+  </section>
+  {% endif %}
+
   {% if plans %}
   <section class="group">
     <h2>Lesson plans</h2>

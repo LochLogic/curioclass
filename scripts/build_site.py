@@ -19,6 +19,7 @@ sys.path.insert(0, str(Path(__file__).parent))
 from standards import validate  # noqa: E402
 from bundle_tool import bundle_all  # noqa: E402
 import check_plans  # noqa: E402
+import check_words  # noqa: E402
 
 bundle_all()  # tools with src.html get their art inlined first
 
@@ -234,12 +235,30 @@ for code, items in standards.items():
     render('standard.html', f'/standards/{slug(code)}/', code=code, framework=std_framework[code], items=uniq,
            mods=sorted(code_modules[code], key=lambda m: GRADES.index(m['grades'][0])), index=False)
 
-# modules: the hub for everything one module has (tools now; Supply Closet shelves as they ship)
+# Word Wall cards (docs/SUPPLY-CLOSET-PLAN.md, Phase C); a bad word list stops a closet build
+words = check_words.load() if CLOSET_LIVE else {}
+for mid, cards in words.items():
+    bad = check_words.problems(mid, cards, modules)
+    if bad:
+        sys.exit('; '.join(bad) + ' (python scripts/check_words.py)')
+
+# modules: the hub for everything one module has (tools, then Supply Closet shelves as they ship)
 for m in modules.values():
     mt = by_module[m['module_id']]
     plans = [t for t in mt if t['built'] and t['plan']]
-    render('module.html', m['url'], m=m, items=mt, plans=plans, subject=subjects[m['subject']],
-           course=courses.get(m['course_id']), index=any(t['built'] for t in mt))
+    cards = words.get(m['module_id'], [])
+    render('module.html', m['url'], m=m, items=mt, plans=plans, words=cards, subject=subjects[m['subject']],
+           course=courses.get(m['course_id']), index=any(t['built'] for t in mt) or bool(cards))
+    if cards:
+        dest = DIST / 'modules' / m['module_id'] / 'words'
+        for c in cards:
+            c['src'] = ''
+            if c['art'].exists():
+                (dest / 'art').mkdir(parents=True, exist_ok=True)
+                shutil.copy2(c['art'], dest / 'art' / c['art'].name)
+                c['src'] = 'art/' + c['art'].name
+        render('closet/words.html', m['url'] + 'words/', m=m, cards=cards, subject=subjects[m['subject']],
+               band=check_words.band(m['grade']))
 
 # tools
 render('list.html', '/tools/', title='Ready to use', lede='Every built tool. Each one is a single file that works offline.',
@@ -275,9 +294,19 @@ CLOSET = [  # slug, label, what it holds
      'that stay up all year. Print on one page or tile them big.'),
     ('game-night', 'Family Game Night', 'Games to play at home with paper, pencils, cards or dice. Nothing to buy.'),
 ]
-render('closet/home.html', '/closet/', shelves=CLOSET)
+# each shelf's items: [(group heading, [module])], grade by grade, subjects in site order
+word_groups = []
+for g in GRADES:
+    mods = sorted((modules[mid] for mid in words if modules[mid]['grades'][0] == g),
+                  key=lambda m: (list(subjects).index(m['subject']), m['title']))
+    if mods:
+        word_groups.append((grade_label(g), mods))
+stock = {'word-wall': word_groups}
+counts = {'word-wall': f'{len(words)} modules, {sum(len(c) for c in words.values())} words' if words else ''}
+render('closet/home.html', '/closet/', shelves=CLOSET, counts=counts)
 for sid, label, what in CLOSET:
-    render('closet/shelf.html', f'/closet/{sid}/', label=label, what=what, items=[], index=False)
+    render('closet/shelf.html', f'/closet/{sid}/', label=label, what=what, groups=stock.get(sid, []), words=words,
+           index=bool(stock.get(sid)))
 
 # ---------- reading room ----------
 # Rows come from data/library/*.csv (reserve rows stay off the site). A story is ready once library/<id>/text.md exists;

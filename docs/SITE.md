@@ -36,6 +36,7 @@ Needs Python with `jinja2` and `markdown`. `dist/` is generated and not committe
 | `/standards/` | Standards index | yes |
 | `/standards/<code>/` | Modules, then tools, for one code | no (noindex until more tools are built) |
 | `/modules/<id>/` | Everything for one module: tools, lesson plans, Supply Closet shelves as they ship | yes once the module has a built tool |
+| `/modules/<id>/words/` | Word Wall print page: wall cards, mini cards, glossary; English, Spanish or both (`?format=`, `?lang=`); built only with `--closet` or `--preview` | yes in closet builds |
 | `/closet/`, `/closet/<shelf>/` | Supply Closet (docs/SUPPLY-CLOSET-PLAN.md); built only with `--closet` or `--preview` until Sub Day ships | yes / noindex while a shelf is empty |
 | `/tools/` | Built tools | yes |
 | `/tools/<id>/` | Tool page (built) | yes |

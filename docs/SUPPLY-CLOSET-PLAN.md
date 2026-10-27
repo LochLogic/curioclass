@@ -1,7 +1,7 @@
 # Supply Closet: teacher resources (plan)
 
-Status: concepts AGREED by Cory 2026-10-26 (decisions at the bottom). This file is the implementation plan; nothing
-is built yet. Open questions for Cory are marked **Q**.
+Status: concepts AGREED by Cory 2026-10-26 (decisions at the bottom). This file is the implementation plan.
+Phase A is done and deployed with the next deploy; Phase C's pilot is built behind `--closet` (not deployed).
 
 The Supply Closet is the teacher-resources side of Curio Class: things to print and put up that go with the tools.
 It is organized like a real supply closet, as shelves:
@@ -43,8 +43,8 @@ It is organized like a real supply closet, as shelves:
 4. **Checked.** Every shelf gets a checker in `scripts/` that the site build runs, like `check_plans.py`.
 5. **Words rules** from `docs/agents/STANDARDS.md` and LESSON-PLANS.md rule 7: no em dashes, "Curio Class" never
    "Curio" alone, grade-level language in anything students read, hard history and health guardrails.
-6. **Spanish** follows the build plan: anything in Spanish needs a native-speaker review before it goes live. Until
-   then it stays out of deploy builds (Q1).
+6. **Spanish** is built alongside English from Phase C on (Cory changed Q1, 2026-10-26). A native-speaker review is
+   still recommended before the closet is deployed; until then each page with Spanish says it is a first draft.
 7. **Review tiers** as for tools: Cory reviews every K-2 item and every sensitive one; others are spot-checked about
    one in four, plus anything a checker or verifier flagged.
 
@@ -177,6 +177,18 @@ arrive with `exit.md`.
 
 ## Phase C: Word Wall
 
+**PILOT BUILT 2026-10-26, not deployed.** Grade 3, all five subjects that have grade 3 modules: 34 modules, 215 cards,
+English and Spanish (`data/closet/words/<subject>.txt`). `scripts/check_words.py` passes and the closet build runs it.
+Print page per module at `/modules/<id>/words/` with three formats (wall cards two to a landscape page, mini cards
+eight to a page, a "My words" glossary) and three languages (English, Español, both), chosen on the page and
+remembered, or set by link (`?format=mini&lang=both`). `/closet/word-wall/` lists the modules by grade; module pages
+get a Word Wall row. Checked in print preview (headless Chrome PDF) and at phone width.
+
+Still open: **pictures** (none drawn: the art quotas are shared with the tool work, so every card shows a dashed
+"Draw it" box until its picture lands in `closet/words/art/<module_id>/<word-slug>.webp`; prompts are already in the
+data, `svg:` ones are diagrams to draw in code), the **Spanish review**, a real-printer test, and Cory's review of the
+word lists. The minutes-per-module measure is for words only so far.
+
 ### The card
 
 | Field | K-2 | 3-5 | 6-12 |
@@ -185,11 +197,13 @@ arrive with `exit.md`.
 | Kid-friendly definition | 12 words max | 15 words max | 20 words max |
 | Picture | required | required | optional (diagrams for science and math) |
 | Example sentence | optional | yes | yes |
-| Spanish word and definition | after review (Q1) | after review | after review |
+| Spanish word, definition and example | yes, first draft | yes, first draft | yes, first draft |
 
-### Data: `data/closet/words/<subject>.csv`
+### Data: `data/closet/words/<subject>.txt`
 
-`module_id, word, definition, example, picture, es_word, es_definition, status`
+One card per line, pipe-separated (definitions have commas, so not CSV):
+`module_id|word|definition|example|picture|es_word|es_definition|es_example`. Spanish definitions may run five words
+over the English cap. Spanish is neutral Latin American.
 
 - 5 to 8 words per module. 586 modules means roughly 3,500 cards; 196 modules are K-5, so roughly 1,200 pictures.
 - **Source of words:** the bold terms already in each tool's `plan.md` and `notes.md`, the module description, and the
@@ -412,7 +426,8 @@ A Foundation ──> B Sub Day ──> (ships with every new tool from here on)
   generic "do the worksheet instead" fallback.
 - Word Wall, Posters and Anchor Charts, and Family Game Night (2-3 per subject per grade): agreed as concepts.
 - The standard-to-tool visual map is the last piece, tied to unit sequencing.
-- Q1: English first; Spanish follows after a native-speaker review.
+- Q1: English first; Spanish follows after a native-speaker review. **Changed 2026-10-26:** Phase C ships with a
+  Spanish version too (the pilot has it); a native-speaker review is still recommended before deploy.
 - Q2: yes to the QR code, always printed with the written-out link beside it.
 - Q3: no approval needed for the poster list.
 - Q4: Game Night starts with the core four subjects.
