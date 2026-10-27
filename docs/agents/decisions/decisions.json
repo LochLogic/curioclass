@@ -1,0 +1,1652 @@
+{
+ "updated": "2026-10-27",
+ "decisions": [
+  {
+   "id": "proj-01",
+   "area": "Project",
+   "tool": "",
+   "q": "Start building wave 1 (75 tools) once this board is answered?",
+   "rec": "Yes. Build the first tool of each new shared engine first (ml-lab, network, security, dance, movement and the rest), then fan out.",
+   "why": "Engines built with their first tool keep every later sibling cheaper and consistent.",
+   "blocks": "Builds and deploy"
+  },
+  {
+   "id": "proj-02",
+   "area": "Project",
+   "tool": "",
+   "q": "Deploy the catalog changes (176 new planned tools, 108 code adds on live and planned tools, 8 renames)?",
+   "rec": "Yes, right after this board, so a rename you reverse never ships as a dead URL.",
+   "why": "Live tools gain standards codes teachers search by, and the catalog shows what is coming.",
+   "blocks": "Builds and deploy"
+  },
+  {
+   "id": "proj-03",
+   "area": "Project",
+   "tool": "computing-team-stories, lake-commons",
+   "q": "Should a Native educator review the Native characters and the fishery-management card before build?",
+   "rec": "Yes. Ask one reviewer to look at both; build everything else meanwhile and hold only those two scenes.",
+   "why": "Authentic portrayal is what makes those scenes usable in classrooms with Native students; holding two scenes costs little.",
+   "blocks": "Builds and deploy"
+  },
+  {
+   "id": "gf-01",
+   "area": "Gap fill",
+   "tool": "Made for Whom?, Voices on the Vote, Missing Voices Archive",
+   "q": "Q3. Teach the hard-history topics plainly at grade level (land taken from Native nations, who was kept from voting, whose 1918 records were kept)?",
+   "rec": "Yes, plainly and at grade level, with sources on screen.",
+   "why": "Teachers need tools that match the C3 standards as written; softened history is harder to teach from.",
+   "blocks": "Later spec waves"
+  },
+  {
+   "id": "gf-02",
+   "area": "Gap fill",
+   "tool": "Cocoa Chain",
+   "q": "Q3. Mention child labor in the cocoa chain, or keep only the drought?",
+   "rec": "Mention it, factually and briefly, with a dated source (US DOL).",
+   "why": "It is the most-taught fact about cocoa; leaving it out makes the tool look incomplete to teachers.",
+   "blocks": "Later spec waves"
+  },
+  {
+   "id": "gf-03",
+   "area": "Gap fill",
+   "tool": "",
+   "q": "Q5. Add a 6-8 civics and economics course instead of parking those tools in cte-explore and us-hist-8?",
+   "rec": "Yes, add the course.",
+   "why": "Teachers browse by course; tools filed under the wrong course are hard to find.",
+   "blocks": "Later spec waves"
+  },
+  {
+   "id": "gf-04",
+   "area": "Gap fill",
+   "tool": "",
+   "q": "Q6. Keep K-2 span modules (one tool with a grade switch) rather than splitting into single grades?",
+   "rec": "Keep the spans.",
+   "why": "One tool with a grade switch serves mixed-grade rooms and saves about 10 builds.",
+   "blocks": "Later spec waves"
+  },
+  {
+   "id": "gf-05",
+   "area": "Gap fill",
+   "tool": "",
+   "q": "Q7. Keep codes that sit on tools from another subject when that tool does the work (ELA codes on ELD tools, C3 on grocery-run)?",
+   "rec": "Keep them.",
+   "why": "Teachers searching a standard find every tool that teaches it, whatever subject it is filed under.",
+   "blocks": "Later spec waves"
+  },
+  {
+   "id": "gf-06",
+   "area": "Gap fill",
+   "tool": "",
+   "q": "Q8. Keep the busy modules (5 to 8 codes across a band)?",
+   "rec": "Keep them.",
+   "why": "The codes are honest; each tool still has one idea.",
+   "blocks": "Later spec waves"
+  },
+  {
+   "id": "gf-07",
+   "area": "Gap fill",
+   "tool": "input-or-output",
+   "q": "Q9. Its module carries E2-SYS-SE-12, which its spec says it does not teach.",
+   "rec": "Add one short activity to the spec that does teach it, so the code stays honest and coverage stays complete.",
+   "why": "Fixes the mismatch without reopening a coverage gap.",
+   "blocks": "Later spec waves"
+  },
+  {
+   "id": "gf-08",
+   "area": "Gap fill",
+   "tool": "media arts",
+   "q": "Q10. Follow the NCAS anchor definitions for MA:Cn10 and Cn11 (the 2021 handout swaps the labels)?",
+   "rec": "Follow the definitions.",
+   "why": "They are the authoritative text; counts are unaffected.",
+   "blocks": "Later spec waves"
+  },
+  {
+   "id": "gf-09",
+   "area": "Gap fill",
+   "tool": "fact-check-desk",
+   "q": "Q11. Take the ELA agent's reshape (almanac editors checking a town record book) to end the clash with misleading-charts?",
+   "rec": "Take it.",
+   "why": "Two distinct tools are worth more than two that feel alike.",
+   "blocks": "Later spec waves"
+  },
+  {
+   "id": "w1-01",
+   "area": "Wave 1",
+   "tool": "biased-bot",
+   "q": "Name the real-world parallel (Gender Shades 2018) in the teacher notes for grade 4?",
+   "rec": "Yes, teacher notes only.",
+   "why": "Gives teachers a real anchor without putting it in front of 9-year-olds.",
+   "blocks": "Wave 1 build"
+  },
+  {
+   "id": "w1-02",
+   "area": "Wave 1",
+   "tool": "ai-evaluator",
+   "q": "Keep it about a model's predictions (pothole flags), or make it about generative AI answers?",
+   "rec": "Keep predictions as specced; add \"fact-check a chatbot\" as a separate later tool idea.",
+   "why": "Precision and recall are what the standard asks; generative AI deserves its own tool.",
+   "blocks": "Wave 1 build"
+  },
+  {
+   "id": "w1-03",
+   "area": "Wave 1",
+   "tool": "packet-race",
+   "q": "Open on Watch (explore first) or straight on Race?",
+   "rec": "Open on Watch, Race one tap away.",
+   "why": "Students understand the network before they are timed on it.",
+   "blocks": "Wave 1 build"
+  },
+  {
+   "id": "w1-04",
+   "area": "Wave 1",
+   "tool": "data-defenders",
+   "q": "Team timer off by default, or start at 20 minutes?",
+   "rec": "Off by default, 20 minutes one tap away.",
+   "why": "Teachers who want urgency can add it; nobody is rushed by surprise.",
+   "blocks": "Wave 1 build"
+  },
+  {
+   "id": "w1-05",
+   "area": "Wave 1",
+   "tool": "secret-keeper",
+   "q": "Who may know a child's password: \"your grown-up at home\", or add \"or your teacher\"?",
+   "rec": "Say \"your grown-up at home or your teacher\".",
+   "why": "Matches what most schools tell K-2 students, so teachers can use it as is.",
+   "blocks": "Wave 1 build"
+  },
+  {
+   "id": "w1-06",
+   "area": "Wave 1",
+   "tool": "secret-keeper",
+   "q": "Keep birthday on the keep-secret side?",
+   "rec": "Keep it, with a line that it is about sharing online, not in class.",
+   "why": "Matches Common Sense guidance without clashing with classroom birthday celebrations.",
+   "blocks": "Wave 1 build"
+  },
+  {
+   "id": "w1-07",
+   "area": "Wave 1",
+   "tool": "data-table-builder",
+   "q": "Keep the made-up practice table (labeled), or use a small real public table?",
+   "rec": "Keep the made-up table; the class's own data is the real data.",
+   "why": "A tiny clean table teaches structure faster; real data comes from the class.",
+   "blocks": "Wave 1 build"
+  },
+  {
+   "id": "w1-08",
+   "area": "Wave 1",
+   "tool": "simulation-studio",
+   "q": "Is the Old Faithful research data set (Azzalini and Bowman 1990) an acceptable source?",
+   "rec": "Yes.",
+   "why": "Published, citable and famous; its real flaws are the lesson.",
+   "blocks": "Wave 1 build"
+  },
+  {
+   "id": "w1-09",
+   "area": "Wave 1",
+   "tool": "simulation-studio",
+   "q": "Keep all 299 rows (paged), or trim to about 200?",
+   "rec": "Keep all 299, paged.",
+   "why": "Real data in full is the point.",
+   "blocks": "Wave 1 build"
+  },
+  {
+   "id": "w1-10",
+   "area": "Wave 1",
+   "tool": "simulation-studio",
+   "q": "Claim Old Faithful here rather than for data-desk-distributions?",
+   "rec": "Yes, keep it here.",
+   "why": "Distributions already has its own desks.",
+   "blocks": "Wave 1 build"
+  },
+  {
+   "id": "w1-11",
+   "area": "Wave 1",
+   "tool": "algorithm-audit",
+   "q": "Frame the unfairness by neighborhood, or name income directly?",
+   "rec": "Neighborhood on screen; teacher notes name income.",
+   "why": "Keeps a 6-8 discussion calm and still gives teachers the full picture.",
+   "blocks": "Wave 1 build"
+  },
+  {
+   "id": "w1-12",
+   "area": "Wave 1",
+   "tool": "algorithm-audit",
+   "q": "Keep the four board and parent portraits, or nameplates only?",
+   "rec": "Keep the portraits (already drawn, pending your look).",
+   "why": "Faces make a role-play easier to follow.",
+   "blocks": "Wave 1 build"
+  },
+  {
+   "id": "w1-13",
+   "area": "Wave 1",
+   "tool": "data-policy-council",
+   "q": "Name real laws (FERPA, COPPA, California SOPIPA), or a generic state law?",
+   "rec": "Keep the real laws.",
+   "why": "Students meet the names they will see in real policy.",
+   "blocks": "Wave 1 build"
+  },
+  {
+   "id": "w1-14",
+   "area": "Wave 1",
+   "tool": "data-policy-council",
+   "q": "Keep the six portraits, or nameplates with icons?",
+   "rec": "Keep the portraits (already drawn, pending your look).",
+   "why": "Same reason as the audit board.",
+   "blocks": "Wave 1 build"
+  },
+  {
+   "id": "w1-15",
+   "area": "Wave 1",
+   "tool": "near-and-far",
+   "q": "Join the perspective family with vanishing-point-studio and city-skyline-studio?",
+   "rec": "Join it.",
+   "why": "Same camera formula: one engine, consistent behavior, less code.",
+   "blocks": "Wave 1 build"
+  },
+  {
+   "id": "w1-16",
+   "area": "Wave 1",
+   "tool": "gallery-critique",
+   "q": "Approve three generated panelist portraits, or initials only?",
+   "rec": "Keep the portraits (already drawn, pending your look).",
+   "why": "A panel of faces reads as a real critique.",
+   "blocks": "Wave 1 build"
+  },
+  {
+   "id": "w1-17",
+   "area": "Wave 1",
+   "tool": "gallery-critique",
+   "q": "Add a curator claim naming the race reading of The Gulf Stream, with a museum source?",
+   "rec": "Yes, with The Met's own label as the source.",
+   "why": "It is the reading museums teach; leaving it out is the bigger risk.",
+   "blocks": "Wave 1 build"
+  },
+  {
+   "id": "w1-18",
+   "area": "Wave 1",
+   "tool": "music-history-radio",
+   "q": "Add a station outside the European-then-American arc (for example West African drumming as a root of American styles)?",
+   "rec": "Add the West African drumming station.",
+   "why": "Makes the history accurate about where American styles came from.",
+   "blocks": "Wave 1 build"
+  },
+  {
+   "id": "w1-19",
+   "area": "Wave 1",
+   "tool": "act-it-out",
+   "q": "Gingerbread Boy: keep the classic ending (the fox eats him, told gently)?",
+   "rec": "Keep the classic ending, told gently.",
+   "why": "It is the version teachers and books use.",
+   "blocks": "Wave 1 build"
+  },
+  {
+   "id": "w1-20",
+   "area": "Wave 1",
+   "tool": "character-voice-booth",
+   "q": "Allow the microphone in the tool page's embedded preview?",
+   "rec": "Allow it for this tool's page; Plan mode still works with no mic.",
+   "why": "Students record without leaving the page.",
+   "blocks": "Wave 1 build"
+  },
+  {
+   "id": "w1-21",
+   "area": "Wave 1",
+   "tool": "levels-and-pathways",
+   "q": "Share one dancer figure with PE (kit/movement.js, dance builds on it)?",
+   "rec": "Yes, one figure.",
+   "why": "One model to maintain; dance and PE look consistent.",
+   "blocks": "Wave 1 build"
+  },
+  {
+   "id": "w1-22",
+   "area": "Wave 1",
+   "tool": "dance-pattern-puzzle",
+   "q": "Keep Mayim Mayim, Seven Jumps and Tinikling?",
+   "rec": "Keep them.",
+   "why": "They are the folk dances most US elementary PE and music teachers already know.",
+   "blocks": "Wave 1 build"
+  },
+  {
+   "id": "w1-23",
+   "area": "Wave 1",
+   "tool": "dance-styles-explorer",
+   "q": "Keep the eight styles, or swap one (West African, a Native social dance)?",
+   "rec": "Add West African dance as a ninth style.",
+   "why": "It is a root of jazz, tap and breaking, so it ties the set together.",
+   "blocks": "Wave 1 build"
+  },
+  {
+   "id": "w1-24",
+   "area": "Wave 1",
+   "tool": "dance-styles-explorer",
+   "q": "Ship with the on-screen disclaimer, or have a dancer from each tradition review the phrases first?",
+   "rec": "Ship with the disclaimer; invite review later.",
+   "why": "Gets the tool to students; review can refine it.",
+   "blocks": "Wave 1 build"
+  },
+  {
+   "id": "w1-25",
+   "area": "Wave 1",
+   "tool": "flipbook-studio",
+   "q": "Add Download GIF (about 10 KB of encoder) so students keep their animation?",
+   "rec": "Add it.",
+   "why": "Students want to keep and show their own work.",
+   "blocks": "Wave 1 build"
+  },
+  {
+   "id": "w1-26",
+   "area": "Wave 1",
+   "tool": "career-cluster-explorer",
+   "q": "Extend the shared careers.json in place (three Handbook fields the live career-match-quiz ignores)?",
+   "rec": "Extend in place.",
+   "why": "One source of career data; the live tool is unaffected.",
+   "blocks": "Wave 1 build"
+  },
+  {
+   "id": "w1-27",
+   "area": "Wave 1",
+   "tool": "workplace-scenarios",
+   "q": "Career Ready Practices tags: keep 2012 numbers, follow the 2024 list, or drop numbers?",
+   "rec": "Drop numbers, show plain names.",
+   "why": "Survives framework renumbering; teachers read names, not numbers.",
+   "blocks": "Wave 1 build"
+  },
+  {
+   "id": "w1-28",
+   "area": "Wave 1",
+   "tool": "workplace-scenarios",
+   "q": "Keep the unkind group-chat choice at stop 4, or soften it?",
+   "rec": "Keep it.",
+   "why": "It is the realistic choice students face; no slur, no names beyond Dev.",
+   "blocks": "Wave 1 build"
+  },
+  {
+   "id": "w1-29",
+   "area": "Wave 1",
+   "tool": "growing-up-q-a",
+   "q": "No question box: keep the teacher button that prints blank slips?",
+   "rec": "Keep the print button.",
+   "why": "Teachers still get anonymous questions, on paper.",
+   "blocks": "Wave 1 build"
+  },
+  {
+   "id": "w1-30",
+   "area": "Wave 1",
+   "tool": "growing-up-q-a",
+   "q": "Default wording: \"Girls and boys\" or \"Body parts\"?",
+   "rec": "No default: ask the teacher once on first open and remember it.",
+   "why": "Each teacher matches their district's curriculum, which widens adoption.",
+   "blocks": "Wave 1 build"
+  },
+  {
+   "id": "w1-31",
+   "area": "Wave 1",
+   "tool": "growing-up-q-a",
+   "q": "Periods, erections and wet dreams on by default?",
+   "rec": "On by default, with the topic switches on the first screen.",
+   "why": "They are the core of puberty lessons; teachers who teach them separately switch them off in one tap.",
+   "blocks": "Wave 1 build"
+  },
+  {
+   "id": "w1-32",
+   "area": "Wave 1",
+   "tool": "growing-up-q-a",
+   "q": "Add a parent line (\"Preview every card at this address; nothing your child does is stored\")?",
+   "rec": "Add it.",
+   "why": "Parent trust is what lets schools use the tool.",
+   "blocks": "Wave 1 build"
+  },
+  {
+   "id": "w1-33",
+   "area": "Wave 1",
+   "tool": "first-aid-responder",
+   "q": "Add an opioid overdose scene (recognize, 911, naloxone, CPR)?",
+   "rec": "Add it as a seventh scene a teacher can switch off.",
+   "why": "Naloxone is now standard in high school health.",
+   "blocks": "Wave 1 build"
+  },
+  {
+   "id": "w1-34",
+   "area": "Wave 1",
+   "tool": "first-aid-responder",
+   "q": "Timer on or off by default?",
+   "rec": "Timer off by default.",
+   "why": "Accuracy first; the race is one tap away.",
+   "blocks": "Wave 1 build"
+  },
+  {
+   "id": "w1-35",
+   "area": "Wave 1",
+   "tool": "game-day-fuel",
+   "q": "Take the rename to \"Game Day Fuel\"?",
+   "rec": "Take it.",
+   "why": "Clearer and distinct from its neighbors.",
+   "blocks": "Wave 1 build"
+  },
+  {
+   "id": "w1-36",
+   "area": "Wave 1",
+   "tool": "game-day-fuel",
+   "q": "Switch to the 2025-2030 Dietary Guidelines numbers where they differ?",
+   "rec": "Switch, rechecked at build.",
+   "why": "Teachers will be teaching the current edition.",
+   "blocks": "Wave 1 build"
+  },
+  {
+   "id": "w1-37",
+   "area": "Wave 1",
+   "tool": "game-day-fuel",
+   "q": "Fictional athletes only, no \"my own week\"?",
+   "rec": "Yes, fictional only.",
+   "why": "Nothing about the student is entered.",
+   "blocks": "Wave 1 build"
+  },
+  {
+   "id": "w1-38",
+   "area": "Wave 1",
+   "tool": "health-claim-checker",
+   "q": "Keep the vaping case first, or move it later?",
+   "rec": "Keep it first.",
+   "why": "It is the claim students meet most.",
+   "blocks": "Wave 1 build"
+  },
+  {
+   "id": "w1-39",
+   "area": "Wave 1",
+   "tool": "pressure-point",
+   "q": "Add a \"go along\" branch?",
+   "rec": "Add it, cutting away from the use and showing what happens next.",
+   "why": "More realistic, without drawing a student vaping or drinking.",
+   "blocks": "Wave 1 build"
+  },
+  {
+   "id": "w1-40",
+   "area": "Wave 1",
+   "tool": "pressure-point",
+   "q": "Alcohol scene (The sleepover) on by default for grade 6?",
+   "rec": "On by default, with a teacher switch.",
+   "why": "Alcohol is in the 6-8 standards.",
+   "blocks": "Wave 1 build"
+  },
+  {
+   "id": "w1-41",
+   "area": "Wave 1",
+   "tool": "pressure-point",
+   "q": "Add a fifth scene: a ride home with someone who has been drinking?",
+   "rec": "Add it.",
+   "why": "A classic refusal-skills lesson teachers look for.",
+   "blocks": "Wave 1 build"
+  },
+  {
+   "id": "w1-42",
+   "area": "Wave 1",
+   "tool": "pressure-point",
+   "q": "Cast drawn in code, or about 11 Codex portraits?",
+   "rec": "Drawn in code.",
+   "why": "Ships sooner and keeps 11 people images out of review.",
+   "blocks": "Wave 1 build"
+  },
+  {
+   "id": "w1-43",
+   "area": "Wave 1",
+   "tool": "stress-toolkit",
+   "q": "Keep 988 in the footer?",
+   "rec": "Keep it in the footer.",
+   "why": "A student in crisis should not have to dig for it; resilience-map already does this.",
+   "blocks": "Wave 1 build"
+  },
+  {
+   "id": "w1-44",
+   "area": "Wave 1",
+   "tool": "stress-toolkit",
+   "q": "Let students save their starred toolkit on the device (names only, with Clear)?",
+   "rec": "Allow it.",
+   "why": "A toolkit you can come back to is the whole point.",
+   "blocks": "Wave 1 build"
+  },
+  {
+   "id": "w1-45",
+   "area": "Wave 1",
+   "tool": "stress-toolkit",
+   "q": "Worry dump: start with an example worry already typed?",
+   "rec": "Yes, an example they can clear.",
+   "why": "Nobody has to write their own worry to try it.",
+   "blocks": "Wave 1 build"
+  },
+  {
+   "id": "w1-46",
+   "area": "Wave 1",
+   "tool": "relationship-spectrum",
+   "q": "Default: friendships and dating, or friendships only?",
+   "rec": "Friendships and dating, with a teacher switch.",
+   "why": "Dating relationships are in the 6-8 standards.",
+   "blocks": "Wave 1 build"
+  },
+  {
+   "id": "w1-47",
+   "area": "Wave 1",
+   "tool": "relationship-spectrum",
+   "q": "Abusive zone: threats, isolating and control, with no physical or sexual harm. Right line?",
+   "rec": "Yes, keep that line.",
+   "why": "Right for 6-8; the Flags glossary still names physical harm.",
+   "blocks": "Wave 1 build"
+  },
+  {
+   "id": "w1-48",
+   "area": "Wave 1",
+   "tool": "relationship-spectrum",
+   "q": "Show loveisrespect text and phone in the footer?",
+   "rec": "Show it in the footer.",
+   "why": "Same reason as 988: help should be one glance away.",
+   "blocks": "Wave 1 build"
+  },
+  {
+   "id": "w1-49",
+   "area": "Wave 1",
+   "tool": "target-toss",
+   "q": "Throwing at the screen: what setup card?",
+   "rec": "Suggest a hoop taped to the wall beside the screen as the default setup.",
+   "why": "Works with interactive flat panels too; no broken screens.",
+   "blocks": "Wave 1 build"
+  },
+  {
+   "id": "w1-50",
+   "area": "Wave 1",
+   "tool": "goal-tracker",
+   "q": "Session-only log, or allow saving on the device with Clear?",
+   "rec": "Allow device saving, this tool only, with Clear.",
+   "why": "A month-long goal is what students and PE teachers want; nothing leaves the device.",
+   "blocks": "Wave 1 build"
+  },
+  {
+   "id": "w1-51",
+   "area": "Wave 1",
+   "tool": "fake-or-fact-lab",
+   "q": "Show a realistic edited photo (shark in a flooded street) as the hoax?",
+   "rec": "Keep it (already drawn).",
+   "why": "Realistic fakes are the ones students need practice spotting.",
+   "blocks": "Wave 1 build"
+  },
+  {
+   "id": "w1-52",
+   "area": "Wave 1",
+   "tool": "fair-use-review",
+   "q": "Keep real case names (Oh, Pretty Woman, Ford's memoir, Prince, Google)?",
+   "rec": "Keep them.",
+   "why": "They are the court cases teachers and textbooks cite.",
+   "blocks": "Wave 1 build"
+  },
+  {
+   "id": "w1-53",
+   "area": "Wave 1",
+   "tool": "fair-use-review",
+   "q": "Add a teacher toggle that hides Theo's call and shows only his factor reasons?",
+   "rec": "Add the toggle.",
+   "why": "Lets a class reach its own call first.",
+   "blocks": "Wave 1 build"
+  },
+  {
+   "id": "w2-01",
+   "area": "Wave 2",
+   "tool": "algebra-tile-studio",
+   "q": "A-SSE.B.3c and A-SSE.B.4 are on the module but not taught. Leave, or place elsewhere?",
+   "rec": "Move B.3c to exponent-rule-builder and B.4 to savings-plan (gr 11), which already teach them.",
+   "why": "Every claimed code is honest and still covered.",
+   "blocks": "Wave 2 build"
+  },
+  {
+   "id": "w2-02",
+   "area": "Wave 2",
+   "tool": "equation-golf",
+   "q": "Quadratics left to launch-pad, letter coefficients to model-my-world. OK?",
+   "rec": "OK.",
+   "why": "Each tool keeps one idea.",
+   "blocks": "Wave 2 build"
+  },
+  {
+   "id": "w2-03",
+   "area": "Wave 2",
+   "tool": "unit-sense",
+   "q": "Take \"Unit Sense\" (applied) or keep \"Unit Detective\"?",
+   "rec": "Take \"Unit Sense\".",
+   "why": "Distinct from the many \"detective\" tools.",
+   "blocks": "Wave 2 build"
+  },
+  {
+   "id": "w2-04",
+   "area": "Wave 2",
+   "tool": "correlation-guessing-game",
+   "q": "S-ID.A touched only through box plots. Enough?",
+   "rec": "Enough; data-desk-distributions owns one-variable work.",
+   "why": "Keeps the guessing game fast.",
+   "blocks": "Wave 2 build"
+  },
+  {
+   "id": "w2-05",
+   "area": "Wave 2",
+   "tool": "work-rate-crew",
+   "q": "Keep the practice-sheet audit for true extraneous roots inside the role play?",
+   "rec": "Keep it.",
+   "why": "A-REI.A.2 asks for extraneous roots, so the audit earns its place.",
+   "blocks": "Wave 2 build"
+  },
+  {
+   "id": "w2-06",
+   "area": "Wave 2",
+   "tool": "paycheck-decoder",
+   "q": "Annualized withholding, or full IRS Pub 15-T tables?",
+   "rec": "Annualized, labeled as an estimate within a few dollars.",
+   "why": "Students follow the math; the tables add nothing they would learn.",
+   "blocks": "Wave 2 build"
+  },
+  {
+   "id": "w2-07",
+   "area": "Wave 2",
+   "tool": "compound-interest-head-start",
+   "q": "Keep the \"A stops at 26\" what-if (A only wins above about 6.58%)?",
+   "rec": "Keep it, framed as investing at a long-run stock index average, not savings.",
+   "why": "It is the famous lesson, told honestly.",
+   "blocks": "Wave 2 build"
+  },
+  {
+   "id": "w2-08",
+   "area": "Wave 2",
+   "tool": "the-credit-card-diaries",
+   "q": "Landlord ending and report wording OK? Teach \"medical collections under $500\"?",
+   "rec": "Wording OK; keep the medical rule with an \"as of 2026\" note and a build-time recheck.",
+   "why": "The rule has shifted since 2025, so a dated line stays true.",
+   "blocks": "Wave 2 build"
+  },
+  {
+   "id": "w2-09",
+   "area": "Wave 2",
+   "tool": "covered-insurance-claims",
+   "q": "Title \"Covered: Insurance Claims\" (applied) and made-up insurer quotes OK?",
+   "rec": "Yes to both.",
+   "why": "Clear topic word; made-up quotes avoid naming real companies.",
+   "blocks": "Wave 2 build"
+  },
+  {
+   "id": "w2-10",
+   "area": "Wave 2",
+   "tool": "path-planner",
+   "q": "Military path framed right? Add p25 to the shared careers.json?",
+   "rec": "Yes to both.",
+   "why": "p25 pay helps every careers tool show a realistic range.",
+   "blocks": "Wave 2 build"
+  },
+  {
+   "id": "w2-11",
+   "area": "Wave 2",
+   "tool": "hospital-shift",
+   "q": "Add the 9 healthcare roles to the shared careers builder? Parent check for the privacy and oxygen scenes?",
+   "rec": "Add the roles; no parent check, a teacher note instead.",
+   "why": "More careers everywhere; the scenes are calm and factual.",
+   "blocks": "Wave 2 build"
+  },
+  {
+   "id": "w2-12",
+   "area": "Wave 2",
+   "tool": "interview-simulator",
+   "q": "Small Resume lines mode enough? Keep the optional unsaved \"Say it your way\" box?",
+   "rec": "Enough for now; keep the box.",
+   "why": "A full resume tool can come later.",
+   "blocks": "Wave 2 build"
+  },
+  {
+   "id": "w2-13",
+   "area": "Wave 2",
+   "tool": "startup-booth",
+   "q": "\"Startup Booth\" OK? $15 to $20 an hour too rosy? Add a valuation line?",
+   "rec": "Keep the name; show the hourly figure beside minimum wage; add the valuation line.",
+   "why": "Honest comparison and a real finance idea for free.",
+   "blocks": "Wave 2 build"
+  },
+  {
+   "id": "w2-14",
+   "area": "Wave 2",
+   "tool": "prototype-lab",
+   "q": "Keep the 0.30 N tip target? Printer-time limit on by default?",
+   "rec": "Keep 0.30 N with a \"classroom simplification\" note; limit on.",
+   "why": "More briefs pass, so students iterate instead of stalling.",
+   "blocks": "Wave 2 build"
+  },
+  {
+   "id": "w2-15",
+   "area": "Wave 2",
+   "tool": "fire-lookout-triangles",
+   "q": "Name the Osborne Firefinder in the history line?",
+   "rec": "Name it if a USFS source confirms it at build.",
+   "why": "A real named instrument makes the history concrete.",
+   "blocks": "Wave 2 build"
+  },
+  {
+   "id": "w2-16",
+   "area": "Wave 2",
+   "tool": "flight-planner",
+   "q": "Magnetic variation left out. Add one plan with variation?",
+   "rec": "Add one optional plan with variation.",
+   "why": "Real pilots do it; the optional plan keeps the base simple.",
+   "blocks": "Wave 2 build"
+  },
+  {
+   "id": "w2-17",
+   "area": "Wave 2",
+   "tool": "image-transformer",
+   "q": "Is the 3x3 color filter enough for A-REI.C.9?",
+   "rec": "Enough.",
+   "why": "It is a real 3x3 use students can see.",
+   "blocks": "Wave 2 build"
+  },
+  {
+   "id": "w2-18",
+   "area": "Wave 2",
+   "tool": "polar-rose-studio",
+   "q": "Allow \"Download PNG\" of the student's rose?",
+   "rec": "Allow it.",
+   "why": "Students keep their own work.",
+   "blocks": "Wave 2 build"
+  },
+  {
+   "id": "w2-19",
+   "area": "Wave 2",
+   "tool": "conic-focus-finder",
+   "q": "Agree with \"Conic Focus Finder\" (applied) and the no-cone reshape?",
+   "rec": "Agree.",
+   "why": "Ends the clash and names the topic.",
+   "blocks": "Wave 2 build"
+  },
+  {
+   "id": "w2-20",
+   "area": "Wave 2",
+   "tool": "zoom-to-the-limit",
+   "q": "Add F-IF.B.6 to its module (added in review)?",
+   "rec": "Keep it added.",
+   "why": "The tool teaches average rate of change.",
+   "blocks": "Wave 2 build"
+  },
+  {
+   "id": "w2-21",
+   "area": "Wave 2",
+   "tool": "speedometer",
+   "q": "Implicit differentiation (AP-CALC.U3) not covered. Leave out, or later?",
+   "rec": "Add a short related-rates-and-implicit mode here.",
+   "why": "The module claims U3, so the claim becomes honest.",
+   "blocks": "Wave 2 build"
+  },
+  {
+   "id": "w2-22",
+   "area": "Wave 2",
+   "tool": "optimization-workshop",
+   "q": "Local linearity and L'Hospital's rule (AP-CALC.U4) not covered. Where?",
+   "rec": "Local linearity in zoom-to-the-limit (zoom in, see the line); L'Hospital in hole-hunter.",
+   "why": "Each fits a tool's existing idea.",
+   "blocks": "Wave 2 build"
+  },
+  {
+   "id": "w2-23",
+   "area": "Wave 2",
+   "tool": "solid-spinner",
+   "q": "U8 average value and motion on a line not taught. Shell method left out on purpose?",
+   "rec": "Add a short accumulation mode here; agree on leaving shells out.",
+   "why": "Covers the AP unit honestly in a tool already about accumulation.",
+   "blocks": "Wave 2 build"
+  },
+  {
+   "id": "w2-24",
+   "area": "Wave 2",
+   "tool": "slope-field-garden",
+   "q": "Euler's method and logistic models kept, marked BC?",
+   "rec": "Agree.",
+   "why": "BC students get them, AB students see the label.",
+   "blocks": "Wave 2 build"
+  },
+  {
+   "id": "w2-25",
+   "area": "Wave 2",
+   "tool": "identity-proof-race",
+   "q": "F-TF.B.5 and parts of AP-PRECALC.U3 not taught. Narrow the codes? Fake cards OK?",
+   "rec": "Narrow the codes to what it teaches; fake cards OK in Race.",
+   "why": "Teachers trust standards lists that are accurate.",
+   "blocks": "Wave 2 build"
+  },
+  {
+   "id": "w2-26",
+   "area": "Wave 2",
+   "tool": "proof-tower",
+   "q": "Keep \"Proof Tower\" (applied)? Levels in order or all open?",
+   "rec": "Keep the name; all levels open, suggested order marked.",
+   "why": "Teachers jump to the proof they are teaching.",
+   "blocks": "Wave 2 build"
+  },
+  {
+   "id": "w2-27",
+   "area": "Wave 2",
+   "tool": "ramp-and-roof",
+   "q": "Use ADA rules as the class standard for home ramps?",
+   "rec": "Yes.",
+   "why": "A real, documented rule students can look up.",
+   "blocks": "Wave 2 build"
+  },
+  {
+   "id": "w2-28",
+   "area": "Wave 2",
+   "tool": "slice-and-stack",
+   "q": "Keep \"Slice and Stack\" (applied)?",
+   "rec": "Keep it.",
+   "why": "Avoids the mobile game name.",
+   "blocks": "Wave 2 build"
+  },
+  {
+   "id": "w2-29",
+   "area": "Wave 2",
+   "tool": "packaging-challenge",
+   "q": "Real can sizes with no brands. Add an invented cereal-style box?",
+   "rec": "Keep real cans, no invented box.",
+   "why": "Real sizes are the hook.",
+   "blocks": "Wave 2 build"
+  },
+  {
+   "id": "w2-30",
+   "area": "Wave 2",
+   "tool": "coordinate-proof-lab",
+   "q": "Trapezoid exclusive or inclusive? Move Frac into kit/curio.js as Curio.Frac? Voice hs-narrator OK?",
+   "rec": "Keep exclusive with a one-line note; yes to Curio.Frac; voice OK.",
+   "why": "Matches most US geometry texts; one shared exact-fraction class.",
+   "blocks": "Wave 2 build"
+  },
+  {
+   "id": "w2-31",
+   "area": "Wave 2",
+   "tool": "medical-test-paradox",
+   "q": "Keep the module's S-CP.B codes? Use a real screening example's numbers, credited, disease unnamed?",
+   "rec": "Keep the codes; yes to the real numbers.",
+   "why": "Real numbers make the paradox land.",
+   "blocks": "Wave 2 build"
+  },
+  {
+   "id": "w2-32",
+   "area": "Wave 2",
+   "tool": "design-the-study",
+   "q": "Energy-drink study OK for school, or music versus silence?",
+   "rec": "Default to music versus silence; offer the energy-drink study as a teacher pick.",
+   "why": "No school will object to the default, and teachers who want caffeine have it.",
+   "blocks": "Wave 2 build"
+  },
+  {
+   "id": "w2-33",
+   "area": "Wave 2",
+   "tool": "design-the-study, courtroom-statistics, data-desk-distributions",
+   "q": "Light themes instead of the dark 9-12 theme?",
+   "rec": "Yes, light.",
+   "why": "They are paper documents; paper reads better light.",
+   "blocks": "Wave 2 build"
+  },
+  {
+   "id": "w2-34",
+   "area": "Wave 2",
+   "tool": "courtroom-statistics",
+   "q": "Show both the test band and the AP (Wald) interval, or only the AP interval?",
+   "rec": "Only the AP interval, with a note.",
+   "why": "Matches what AP students are graded on.",
+   "blocks": "Wave 2 build"
+  },
+  {
+   "id": "w2-35",
+   "area": "Wave 2",
+   "tool": "fair-dice-investigation",
+   "q": "Board game cafe instead of a casino? Independence test only in help text?",
+   "rec": "Cafe yes; add a short independence round.",
+   "why": "AP-STAT.U8 needs the independence test in the tool, not in help.",
+   "blocks": "Wave 2 build"
+  },
+  {
+   "id": "w2-36",
+   "area": "Wave 2",
+   "tool": "data-desk-distributions",
+   "q": "Add a two-way table desk? Recent presidents (Trump 70, Biden 78) fine?",
+   "rec": "Add the desk; presidents fine.",
+   "why": "Covers AP U2 properly; ages are plain facts.",
+   "blocks": "Wave 2 build"
+  },
+  {
+   "id": "w2-37",
+   "area": "Wave 2",
+   "tool": "game-show-strategist",
+   "q": "Add the two engine additions to the probability family? Briefcases modeled on a TV format, unnamed?",
+   "rec": "Yes to both.",
+   "why": "Better engine for every probability tool.",
+   "blocks": "Wave 2 build"
+  },
+  {
+   "id": "w2-38",
+   "area": "Wave 2",
+   "tool": "sample-machine",
+   "q": "Add a two-hopper mode for sampling distributions of a difference?",
+   "rec": "Add it.",
+   "why": "AP U5 needs it.",
+   "blocks": "Wave 2 build"
+  },
+  {
+   "id": "w2-39",
+   "area": "Wave 2",
+   "tool": "emerging-tech-pitch",
+   "q": "\"Town meetings\" brief OK? Add an unsaved free-text box?",
+   "rec": "Town meetings OK; add an unsaved notes box.",
+   "why": "Students jot their pitch without anything being stored.",
+   "blocks": "Wave 2 build"
+  },
+  {
+   "id": "w2-40",
+   "area": "Wave 2",
+   "tool": "cloud-through-time",
+   "q": "Company names off screen, towns and ENIAC/UNIVAC named: right line? Keep The Dalles water figures?",
+   "rec": "Right line; keep the figures with dated newspaper sources.",
+   "why": "Real numbers are the lesson.",
+   "blocks": "Wave 2 build"
+  },
+  {
+   "id": "w2-41",
+   "area": "Wave 2",
+   "tool": "dice-in-the-chatbot",
+   "q": "Debate claim 8 (real LLMs sample their next words) OK? Keep 60-character typing, never saved?",
+   "rec": "Yes to both.",
+   "why": "True, widely documented, and students like typing their own.",
+   "blocks": "Wave 2 build"
+  },
+  {
+   "id": "w2-42",
+   "area": "Wave 2",
+   "tool": "pull-request-review",
+   "q": "Case 1: GPL code in an MIT project, or code with no license?",
+   "rec": "Keep GPL.",
+   "why": "It is the real-world case developers hit.",
+   "blocks": "Wave 2 build"
+  },
+  {
+   "id": "w2-43",
+   "area": "Wave 2",
+   "tool": "sprint-board",
+   "q": "Built for one shared laptop. OK?",
+   "rec": "OK.",
+   "why": "No network needed.",
+   "blocks": "Wave 2 build"
+  },
+  {
+   "id": "w2-44",
+   "area": "Wave 2",
+   "tool": "coin-cell-greenhouse",
+   "q": "Made-up board sized like real parts? Add a typed text view?",
+   "rec": "Made-up board OK; add a read-only text view generated from the blocks.",
+   "why": "Bridges blocks to typed code.",
+   "blocks": "Wave 2 build"
+  },
+  {
+   "id": "w2-45",
+   "area": "Wave 2",
+   "tool": "catalog-column-rules",
+   "q": "Add t.validate to the shared data-desk engine in this build? Rule-break counts known only after the pull?",
+   "rec": "Yes to both.",
+   "why": "Every data-desk tool gains validation.",
+   "blocks": "Wave 2 build"
+  },
+  {
+   "id": "w2-46",
+   "area": "Wave 2",
+   "tool": "computing-team-stories",
+   "q": "Add 11 careers to careers.json?",
+   "rec": "Add them.",
+   "why": "Grows every careers tool.",
+   "blocks": "Wave 2 build"
+  },
+  {
+   "id": "w3-01",
+   "area": "Wave 3",
+   "tool": "body-thermostat",
+   "q": "Safety pauses say \"get help\" with no phone number. Fine?",
+   "rec": "Fine.",
+   "why": "No crisis line fits a body-temperature tool.",
+   "blocks": "Wave 3 build"
+  },
+  {
+   "id": "w3-02",
+   "area": "Wave 3",
+   "tool": "energy-accountant",
+   "q": "Share NOAA CO2 with climate-dashboard (seasonal swing here, long-term there)?",
+   "rec": "Share it.",
+   "why": "Different uses; same trusted source.",
+   "blocks": "Wave 3 build"
+  },
+  {
+   "id": "w3-03",
+   "area": "Wave 3",
+   "tool": "energy-accountant",
+   "q": "Amino acid entry is an atom-only summary, labeled. Keep, or show a real two-step path?",
+   "rec": "Keep the labeled summary.",
+   "why": "The ledger stays readable.",
+   "blocks": "Wave 3 build"
+  },
+  {
+   "id": "w3-04",
+   "area": "Wave 3",
+   "tool": "tree-of-life",
+   "q": "HS-LS4-2 and LS4-3 rest on the one-trait finch model. Enough?",
+   "rec": "Enough.",
+   "why": "One trait shows the mechanism cleanly.",
+   "blocks": "Wave 3 build"
+  },
+  {
+   "id": "w3-05",
+   "area": "Wave 3",
+   "tool": "tree-of-life",
+   "q": "Hippo cytochrome c not sequenced. Keep the gap, or swap the species?",
+   "rec": "Keep the gap as a real-data lesson.",
+   "why": "The whale case keeps its partner.",
+   "blocks": "Wave 3 build"
+  },
+  {
+   "id": "w3-06",
+   "area": "Wave 3",
+   "tool": "reserve-designer",
+   "q": "Budget $4,000k, or a teacher setting?",
+   "rec": "Keep $4,000k as the default and add the teacher setting.",
+   "why": "Teachers can make it harder.",
+   "blocks": "Wave 3 build"
+  },
+  {
+   "id": "w3-07",
+   "area": "Wave 3",
+   "tool": "reserve-designer",
+   "q": "If the SH 9 crossing figure can't be confirmed, a vague tip?",
+   "rec": "Yes, vague if unconfirmed.",
+   "why": "Never ship an unverified number.",
+   "blocks": "Wave 3 build"
+  },
+  {
+   "id": "w3-08",
+   "area": "Wave 3",
+   "tool": "membrane-gatekeeper",
+   "q": "Airway level names cystic fibrosis and F508del. Keep?",
+   "rec": "Keep, with the name.",
+   "why": "Real-world relevance; calm and factual.",
+   "blocks": "Wave 3 build"
+  },
+  {
+   "id": "w3-09",
+   "area": "Wave 3",
+   "tool": "mitosis-mixer",
+   "q": "Add real micrographs later as an optional view?",
+   "rec": "Yes, later, public-domain images.",
+   "why": "Students see the real thing.",
+   "blocks": "Wave 3 build"
+  },
+  {
+   "id": "w3-10",
+   "area": "Wave 3",
+   "tool": "carrying-capacity",
+   "q": "Wolves slider capped at 6?",
+   "rec": "Cap at 6 with a \"real wolves would starve first\" note.",
+   "why": "Avoids a misleading collapse.",
+   "blocks": "Wave 3 build"
+  },
+  {
+   "id": "w3-11",
+   "area": "Wave 3",
+   "tool": "protein-factory",
+   "q": "Keep sickle cell disease, hemoglobin C and cystic fibrosis names on the cards?",
+   "rec": "Keep them.",
+   "why": "Students learn why the mutations matter.",
+   "blocks": "Wave 3 build"
+  },
+  {
+   "id": "w3-12",
+   "area": "Wave 3",
+   "tool": "punnett-predictor",
+   "q": "Mutations only via protein-factory, or add nondisjunction?",
+   "rec": "Add a short nondisjunction card.",
+   "why": "HS-LS3-2 names errors in meiosis.",
+   "blocks": "Wave 3 build"
+  },
+  {
+   "id": "w3-13",
+   "area": "Wave 3",
+   "tool": "punnett-predictor",
+   "q": "If the Campbell fly counts can't be checked, use Morgan's original counts?",
+   "rec": "Use Morgan's original counts.",
+   "why": "Primary source, easy to cite.",
+   "blocks": "Wave 3 build"
+  },
+  {
+   "id": "w3-14",
+   "area": "Wave 3",
+   "tool": "bond-battle",
+   "q": "KCl, MgCl2 and SiO2 boiling points vary. Use PubChem at build and note it?",
+   "rec": "Yes.",
+   "why": "One named source.",
+   "blocks": "Wave 3 build"
+  },
+  {
+   "id": "w3-15",
+   "area": "Wave 3",
+   "tool": "bond-battle",
+   "q": "Should equation-balancer, mole-bakery and hand-warmer-lab join the molecules family?",
+   "rec": "Join.",
+   "why": "They use the engine; family docs keep them in step.",
+   "blocks": "Wave 3 build"
+  },
+  {
+   "id": "w3-16",
+   "area": "Wave 3",
+   "tool": "gas-law-lab",
+   "q": "Only code is HS-PS3-2 (gas laws have no NGSS PE). Fine?",
+   "rec": "Fine.",
+   "why": "Gas laws are still taught everywhere.",
+   "blocks": "Wave 3 build"
+  },
+  {
+   "id": "w3-17",
+   "area": "Wave 3",
+   "tool": "equation-balancer",
+   "q": "HS-PS1-2 met only through ion charges. Add combustion products?",
+   "rec": "Add predicting combustion products.",
+   "why": "A staple of chemistry class.",
+   "blocks": "Wave 3 build"
+  },
+  {
+   "id": "w3-18",
+   "area": "Wave 3",
+   "tool": "mole-bakery",
+   "q": "Day 4's 90 percent yeast yield is made up (labeled). Keep?",
+   "rec": "Keep, labeled.",
+   "why": "Percent yield is in the course.",
+   "blocks": "Wave 3 build"
+  },
+  {
+   "id": "w3-19",
+   "area": "Wave 3",
+   "tool": "hand-warmer-lab",
+   "q": "Dissolving framed as \"a small bond budget too\", with the iron warmer as the true reaction. OK?",
+   "rec": "OK.",
+   "why": "Honest and still teaches energy in bonds.",
+   "blocks": "Wave 3 build"
+  },
+  {
+   "id": "w3-20",
+   "area": "Wave 3",
+   "tool": "hand-warmer-lab",
+   "q": "T4 target of 0.50 kJ per gram is made up. Keep, or only compare packs?",
+   "rec": "Keep it, labeled as a design goal.",
+   "why": "A target gives students something to aim at.",
+   "blocks": "Wave 3 build"
+  },
+  {
+   "id": "w3-21",
+   "area": "Wave 3",
+   "tool": "equilibrium-seesaw",
+   "q": "Pairing rate constant with temperature, or show both rates rising?",
+   "rec": "Show both rates rising.",
+   "why": "Avoids teaching a misconception.",
+   "blocks": "Wave 3 build"
+  },
+  {
+   "id": "w3-22",
+   "area": "Wave 3",
+   "tool": "equilibrium-seesaw",
+   "q": "Ammonia card qualitative only. Enough for HS-PS1-6?",
+   "rec": "Enough for now.",
+   "why": "A numeric mode needs a sourced Kp table.",
+   "blocks": "Wave 3 build"
+  },
+  {
+   "id": "w3-23",
+   "area": "Wave 3",
+   "tool": "ph-mystery-liquids",
+   "q": "HS-PS1-2 fits weakly. Keep or move?",
+   "rec": "Move it off this tool; equation-balancer already covers it.",
+   "why": "Accurate standards lists.",
+   "blocks": "Wave 3 build"
+  },
+  {
+   "id": "w3-24",
+   "area": "Wave 3",
+   "tool": "ph-mystery-liquids",
+   "q": "Conductivity bulb thresholds are a model choice. OK?",
+   "rec": "OK.",
+   "why": "Labeled as a model.",
+   "blocks": "Wave 3 build"
+  },
+  {
+   "id": "w3-25",
+   "area": "Wave 3",
+   "tool": "half-life-dice",
+   "q": "C-14 half-life: 5,730 (OpenStax) or 5,700 plus or minus 30 (NNDC)?",
+   "rec": "5,730 with a note on the newer value.",
+   "why": "Matches textbooks and AP.",
+   "blocks": "Wave 3 build"
+  },
+  {
+   "id": "w3-26",
+   "area": "Wave 3",
+   "tool": "biome-atlas",
+   "q": "Dodge City the only miss. Add a second?",
+   "rec": "One miss is enough.",
+   "why": "The lesson lands once.",
+   "blocks": "Wave 3 build"
+  },
+  {
+   "id": "w3-27",
+   "area": "Wave 3",
+   "tool": "biome-atlas",
+   "q": "Only HS-LS2-6 taught. Add a climate standard?",
+   "rec": "Enough.",
+   "why": "Climate tools carry those.",
+   "blocks": "Wave 3 build"
+  },
+  {
+   "id": "w3-28",
+   "area": "Wave 3",
+   "tool": "biome-atlas",
+   "q": "Succession times rounded and labeled approximate. Precise enough?",
+   "rec": "Precise enough.",
+   "why": "Labeled honestly.",
+   "blocks": "Wave 3 build"
+  },
+  {
+   "id": "w3-29",
+   "area": "Wave 3",
+   "tool": "population-dashboard",
+   "q": "Keep HS-ESS3-1 (covered only by the people, yields and land panel)?",
+   "rec": "Keep it.",
+   "why": "The panel addresses resources and population.",
+   "blocks": "Wave 3 build"
+  },
+  {
+   "id": "w3-30",
+   "area": "Wave 3",
+   "tool": "population-dashboard",
+   "q": "Feed is a world-scale formula. Enough for HS-LS2-1?",
+   "rec": "Enough.",
+   "why": "carrying-capacity simulates it.",
+   "blocks": "Wave 3 build"
+  },
+  {
+   "id": "w3-31",
+   "area": "Wave 3",
+   "tool": "population-dashboard",
+   "q": "Energy per person stands in for footprint. Add water or land?",
+   "rec": "Keep one resource.",
+   "why": "One clear lens.",
+   "blocks": "Wave 3 build"
+  },
+  {
+   "id": "w3-32",
+   "area": "Wave 3",
+   "tool": "grid-operator",
+   "q": "AEO2023 build costs with 2024 fuel prices, flat 7%. OK, or newer tables?",
+   "rec": "OK; update at build if newer EIA tables are out.",
+   "why": "Dated and sourced.",
+   "blocks": "Wave 3 build"
+  },
+  {
+   "id": "w3-33",
+   "area": "Wave 3",
+   "tool": "grid-operator",
+   "q": "Existing coal paid off is the lesson. Add a carbon price slider?",
+   "rec": "Add it, off by default.",
+   "why": "Teachers ask about it; off by default keeps policy optional.",
+   "blocks": "Wave 3 build"
+  },
+  {
+   "id": "w3-34",
+   "area": "Wave 3",
+   "tool": "grid-operator",
+   "q": "Unserved energy never priced; reliability its own score?",
+   "rec": "Agree.",
+   "why": "Keeps the trade-off visible.",
+   "blocks": "Wave 3 build"
+  },
+  {
+   "id": "w3-35",
+   "area": "Wave 3",
+   "tool": "up-the-watershed",
+   "q": "Take \"Up the Watershed\" (applied)?",
+   "rec": "Take it.",
+   "why": "Keeps the topic word.",
+   "blocks": "Wave 3 build"
+  },
+  {
+   "id": "w3-36",
+   "area": "Wave 3",
+   "tool": "up-the-watershed",
+   "q": "The $5,000 rain advisory meets the beach goal without cleaning the water. Keep as an option?",
+   "rec": "Keep it, scored as \"beach goal met, water still dirty\".",
+   "why": "An honest trade-off students debate.",
+   "blocks": "Wave 3 build"
+  },
+  {
+   "id": "w3-37",
+   "area": "Wave 3",
+   "tool": "up-the-watershed",
+   "q": "Costs, flows and loads made up, scaled to EPA guidance. OK?",
+   "rec": "OK.",
+   "why": "Labeled as made up.",
+   "blocks": "Wave 3 build"
+  },
+  {
+   "id": "w3-38",
+   "area": "Wave 3",
+   "tool": "design-challenge-studio",
+   "q": "Challenge 3 saves typed text in localStorage. OK?",
+   "rec": "OK, with a Clear button.",
+   "why": "Students return to their own design.",
+   "blocks": "Wave 3 build"
+  },
+  {
+   "id": "w3-39",
+   "area": "Wave 3",
+   "tool": "design-challenge-studio",
+   "q": "Option costs and the room made up. Fine?",
+   "rec": "Fine.",
+   "why": "Labeled.",
+   "blocks": "Wave 3 build"
+  },
+  {
+   "id": "w3-40",
+   "area": "Wave 3",
+   "tool": "design-challenge-studio",
+   "q": "Water treatment framed as a simulation with \"follow local guidance\". Enough?",
+   "rec": "Enough.",
+   "why": "Uses CDC ratings.",
+   "blocks": "Wave 3 build"
+  },
+  {
+   "id": "w3-41",
+   "area": "Wave 3",
+   "tool": "feedback-loop-builder",
+   "q": "ESS2-1 and ESS2-3 only via Deep Earth cards. OK? Show the 3.42 C lap model beside the IPCC 3 C?",
+   "rec": "OK; show both.",
+   "why": "Students see the model and the consensus side by side.",
+   "blocks": "Wave 3 build"
+  },
+  {
+   "id": "w3-42",
+   "area": "Wave 3",
+   "tool": "water-shapes-earth",
+   "q": "Illustrative rates on the benches OK?",
+   "rec": "OK, labeled.",
+   "why": "Fair tests still work.",
+   "blocks": "Wave 3 build"
+  },
+  {
+   "id": "w3-43",
+   "area": "Wave 3",
+   "tool": "climate-dashboard",
+   "q": "How deep should Futures and the carbon budget go for grade 9? Refresh data yearly or freeze?",
+   "rec": "Keep the AR6 ranges; freeze with an \"as of\" date and refresh yearly by script.",
+   "why": "Current data without surprise changes mid-year.",
+   "blocks": "Wave 3 build"
+  },
+  {
+   "id": "w3-44",
+   "area": "Wave 3",
+   "tool": "lake-commons",
+   "q": "Take \"Lake Commons\" (applied)? Add a sourced Indigenous fishery-management card, reviewed by a Native educator?",
+   "rec": "Take the name; add the card once reviewed.",
+   "why": "Real commons management, told right.",
+   "blocks": "Wave 3 build"
+  },
+  {
+   "id": "w3-45",
+   "area": "Wave 3",
+   "tool": "star-life-story",
+   "q": "Only the Sun and 20 solar masses have sourced later stages. Find a track set (MIST)?",
+   "rec": "Yes, use MIST tracks.",
+   "why": "Every mass gets a real story.",
+   "blocks": "Wave 3 build"
+  },
+  {
+   "id": "w3-46",
+   "area": "Wave 3",
+   "tool": "orbit-lab",
+   "q": "Is Rock Clock an honest home for ESS1-5 and ESS1-6?",
+   "rec": "Yes.",
+   "why": "Radiometric dating fits a time-and-orbits tool.",
+   "blocks": "Wave 3 build"
+  },
+  {
+   "id": "w3-47",
+   "area": "Wave 3",
+   "tool": "zipline-energy",
+   "q": "Lab rules, or a real standard (ASTM F2959)?",
+   "rec": "Lab rules, with ASTM F2959 named in Sources.",
+   "why": "The standard is paywalled; naming it is honest.",
+   "blocks": "Wave 3 build"
+  },
+  {
+   "id": "w3-48",
+   "area": "Wave 3",
+   "tool": "spectrum-explorer",
+   "q": "How to frame real health claims? Keep Signal Lab here?",
+   "rec": "Sourced claim cards (WHO, FDA) with a teacher note; keep Signal Lab.",
+   "why": "Students check claims against named sources.",
+   "blocks": "Wave 3 build"
+  },
+  {
+   "id": "w3-49",
+   "area": "Wave 3",
+   "tool": "hot-meets-cold",
+   "q": "Keep the 12-particle mode where heat briefly flows backward (with an honesty note)?",
+   "rec": "Keep it.",
+   "why": "Shows the second law is statistical, a real insight.",
+   "blocks": "Wave 3 build"
+  },
+  {
+   "id": "w3-50",
+   "area": "Wave 3",
+   "tool": "curling-stones",
+   "q": "Sweeping only lowers friction, no curl. OK?",
+   "rec": "OK.",
+   "why": "Curl needs physics past the course.",
+   "blocks": "Wave 3 build"
+  },
+  {
+   "id": "w4-01",
+   "area": "Wave 4",
+   "tool": "research-notebook",
+   "q": "Pokagon's 1895 sentence says \"white men\" and \"red men\". Keep with a context note, or drop?",
+   "rec": "Keep it with a short context note.",
+   "why": "A real primary source in its own words is what research lessons need.",
+   "blocks": "Wave 4 build"
+  },
+  {
+   "id": "w4-02",
+   "area": "Wave 4",
+   "tool": "research-notebook",
+   "q": "Treat a reference entry written for Curio Class as a citable source?",
+   "rec": "Yes, labeled \"written for Curio Class\" in the citation.",
+   "why": "Students practice citing a reference work without copyright trouble.",
+   "blocks": "Wave 4 build"
+  },
+  {
+   "id": "w4-03",
+   "area": "Wave 4",
+   "tool": "portrait-in-four-media",
+   "q": "Use a made-up conservator interview (labeled) and a storyboard with a deliberate wrong date and unhedged \"firsts\"?",
+   "rec": "Yes, all labeled.",
+   "why": "Planted errors are what students learn to catch.",
+   "blocks": "Wave 4 build"
+  },
+  {
+   "id": "w4-04",
+   "area": "Wave 4",
+   "tool": "portrait-in-four-media",
+   "q": "Is Anna Atkins (botanist and photographer) a good fit for \"a scientist's life\"?",
+   "rec": "Keep Atkins.",
+   "why": "Her life is told very differently across media, and her photos are public domain.",
+   "blocks": "Wave 4 build"
+  },
+  {
+   "id": "w4-05",
+   "area": "Wave 4",
+   "tool": "source-mixer",
+   "q": "A 1936 radio transcript instead of a \"video transcript\"?",
+   "rec": "Use the radio transcript.",
+   "why": "FDR's fireside chat is public domain and easy to cite.",
+   "blocks": "Wave 4 build"
+  },
+  {
+   "id": "w4-06",
+   "area": "Wave 4",
+   "tool": "source-mixer",
+   "q": "Let teachers see or change the support/complication tags?",
+   "rec": "Teachers can see them; editing later if asked.",
+   "why": "Transparency now, without extra build work.",
+   "blocks": "Wave 4 build"
+  },
+  {
+   "id": "w4-07",
+   "area": "Wave 4",
+   "tool": "question-sharpener",
+   "q": "Tycoon currency is hours, not money. Enough of a reshape?",
+   "rec": "Enough.",
+   "why": "Time is the real research budget.",
+   "blocks": "Wave 4 build"
+  },
+  {
+   "id": "w4-08",
+   "area": "Wave 4",
+   "tool": "question-sharpener",
+   "q": "Keep AASL.Inquire on a grade 12 ELA tool?",
+   "rec": "Keep it.",
+   "why": "School librarians find the tool too.",
+   "blocks": "Wave 4 build"
+  },
+  {
+   "id": "w4-09",
+   "area": "Wave 4",
+   "tool": "question-sharpener",
+   "q": "Add a \"my own topic\" path?",
+   "rec": "Add it, unsaved.",
+   "why": "Students sharpen the question they really have to research.",
+   "blocks": "Wave 4 build"
+  },
+  {
+   "id": "w4-10",
+   "area": "Wave 4",
+   "tool": "source-portfolio",
+   "q": "Native educator review of the made-up tribal fisheries department beside the real Lower Elwha Klallam card?",
+   "rec": "Yes, in the same review as computing-team-stories and lake-commons.",
+   "why": "One reviewer, three scenes.",
+   "blocks": "Wave 4 build"
+  },
+  {
+   "id": "w4-11",
+   "area": "Wave 4",
+   "tool": "source-portfolio",
+   "q": "Keep C3 D1.5, D3.1 and D3.2 on a library tool?",
+   "rec": "Keep them.",
+   "why": "Social studies teachers search those codes.",
+   "blocks": "Wave 4 build"
+  },
+  {
+   "id": "w4-12",
+   "area": "Wave 4",
+   "tool": "enduring-questions",
+   "q": "Title matches an NEH grant program. Keep, or rename \"The Long Argument\"?",
+   "rec": "Rename to \"The Long Argument\".",
+   "why": "Avoids confusion with the federal program.",
+   "blocks": "Wave 4 build"
+  },
+  {
+   "id": "w4-13",
+   "area": "Wave 4",
+   "tool": "enduring-questions",
+   "q": "Add a teacher note on the live local debates and composite experts?",
+   "rec": "Add it.",
+   "why": "Teachers know what to expect before class.",
+   "blocks": "Wave 4 build"
+  },
+  {
+   "id": "w4-14",
+   "area": "Wave 4",
+   "tool": "enduring-questions",
+   "q": "Parent preview for the \"who was left out\" lines?",
+   "rec": "No preview step; a teacher note is enough.",
+   "why": "They are standard US history facts.",
+   "blocks": "Wave 4 build"
+  },
+  {
+   "id": "art-01",
+   "area": "Art",
+   "tool": "6 wave 1 tools",
+   "q": "Review the 23 wave 1 people images (secret-keeper 6, input-or-output 1, design-for-a-friend 3, algorithm-audit 4, data-policy-council 6, gallery-critique 3).",
+   "rec": "Approve them as a batch; flag only the ones you want redrawn.",
+   "why": "They block nothing until build, and a batch review is fastest.",
+   "blocks": "Builds"
+  },
+  {
+   "id": "art-02",
+   "area": "Art",
+   "tool": "design-for-a-friend",
+   "q": "Kofi's appearance: the spec gives none; the redraw made him a Black teen.",
+   "rec": "Keep the redraw.",
+   "why": "Gives the three friends some variety.",
+   "blocks": "Builds"
+  },
+  {
+   "id": "art-03",
+   "area": "Art",
+   "tool": "algorithm-audit, design-for-a-friend",
+   "q": "Small green flecks remain on Rivera, Lindqvist and Ana.",
+   "rec": "Clean them with a despill touch-up at build.",
+   "why": "Cheap, and visible on light backgrounds.",
+   "blocks": "Builds"
+  },
+  {
+   "id": "art-04",
+   "area": "Art",
+   "tool": "wave 1 tools",
+   "q": "The 105 non-people wave 1 assets are placed, review pending.",
+   "rec": "Approve as placed; redraw at build only where they look wrong in place.",
+   "why": "Judging art in the built tool is faster and more accurate.",
+   "blocks": "Builds"
+  },
+  {
+   "id": "art-05",
+   "area": "Art",
+   "tool": "gallery-critique",
+   "q": "Mary Cassatt, The Child's Bath shows a young child partly undressed for a bath. Keep?",
+   "rec": "Keep it.",
+   "why": "A standard school artwork, used in classrooms nationwide.",
+   "blocks": "Builds"
+  },
+  {
+   "id": "art-06",
+   "area": "Art",
+   "tool": "world-music-map",
+   "q": "The siku (panpipes) has no usable museum photo.",
+   "rec": "Draw it with local FLUX (an object, no people).",
+   "why": "Every instrument on the map gets a picture.",
+   "blocks": "Builds"
+  },
+  {
+   "id": "art-07",
+   "area": "Art",
+   "tool": "design-the-study",
+   "q": "Wave 2 person image: editor Dr. Mara Quill.",
+   "rec": "Approve.",
+   "why": "Clean cutout, hands right.",
+   "blocks": "Builds"
+  },
+  {
+   "id": "art-08",
+   "area": "Art",
+   "tool": "wave 2 tools",
+   "q": "Wave 2 redraw candidates (rmt-sandstone, pc-kraft, courtroom-empty, cafe-after-hours, cts-river-lab).",
+   "rec": "Redraw at build only if they look wrong in place.",
+   "why": "Same reason as wave 1.",
+   "blocks": "Builds"
+  }
+ ]
+}

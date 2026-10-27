@@ -1,0 +1,250 @@
+<title>Curio Class Decisions</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap">
+<style>
+:root {
+  --bg: #f6f4ef; --card: #ffffff; --ink: #1d2430; --muted: #5d6675; --line: #dedad0;
+  --accent: #0f6b62; --accent-ink: #ffffff; --accent-soft: #e2f0ed;
+  --rec-bg: #f1f7f5; --rec-line: #b9d8d1;
+  --other: #8a4b00; --other-soft: #fbeedd; --hold: #5a5f8c; --hold-soft: #e9eaf5;
+  --focus: #1b66d1;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #12161c; --card: #1a2028; --ink: #e6e9ee; --muted: #9aa3b0; --line: #2c343f;
+  --accent: #4cc2b2; --accent-ink: #08201c; --accent-soft: #173330;
+  --rec-bg: #15282a; --rec-line: #24504b;
+  --other: #f0b066; --other-soft: #33261a; --hold: #aab0e8; --hold-soft: #23263b;
+  --focus: #7fb2ff; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #12161c; --card: #1a2028; --ink: #e6e9ee; --muted: #9aa3b0; --line: #2c343f;
+  --accent: #4cc2b2; --accent-ink: #08201c; --accent-soft: #173330;
+  --rec-bg: #15282a; --rec-line: #24504b;
+  --other: #f0b066; --other-soft: #33261a; --hold: #aab0e8; --hold-soft: #23263b;
+  --focus: #7fb2ff; color-scheme: dark }
+
+body { background: var(--bg); color: var(--ink); font: 15px/1.5 "IBM Plex Sans", system-ui, sans-serif; }
+.wrap { max-width: 920px; margin: 0 auto; padding-block: 28px 64px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+h1, h2 { font-family: "Source Serif 4", Georgia, serif; text-wrap: balance; margin: 0; }
+h1 { font-size: 30px; font-weight: 600; }
+.lede { color: var(--muted); max-width: 64ch; margin: 6px 0 0; }
+.tally { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; margin: 22px 0 8px; }
+.tile { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; }
+.tile b { display: block; font: 600 24px/1.2 "Source Serif 4", Georgia, serif; }
+.tile span { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .06em; }
+.bar { height: 6px; border-radius: 3px; background: var(--line); overflow: hidden; margin: 6px 0 20px; display: flex; }
+.bar i { display: block; height: 100%; }
+.status { font-size: 13px; color: var(--muted); margin-bottom: 14px; min-height: 1.5em; }
+.status.warn { color: var(--other); }
+
+.controls { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg);
+  padding: 10px 0; border-bottom: 1px solid var(--line); display: flex; flex-direction: column; gap: 8px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { border: 1px solid var(--line); background: var(--card); color: var(--ink); border-radius: 999px;
+  padding: 4px 12px; font: 500 13px "IBM Plex Sans", system-ui, sans-serif; cursor: pointer; }
+.chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.chip small { opacity: .75; margin-left: 4px; }
+.row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+input[type="search"] { flex: 1 1 220px; min-width: 0; padding: 7px 10px; border: 1px solid var(--line); border-radius: 8px;
+  background: var(--card); color: var(--ink); font: inherit; }
+
+section { margin-top: 28px; }
+.sec-head { display: flex; flex-wrap: wrap; gap: 10px; align-items: baseline; justify-content: space-between; margin-bottom: 10px; }
+.sec-head h2 { font-size: 22px; }
+.sec-head .meta { color: var(--muted); font-size: 13px; }
+.card { background: var(--card); border: 1px solid var(--line); border-left: 4px solid var(--line); border-radius: 10px;
+  padding: 14px 16px; margin-bottom: 10px; display: grid; gap: 8px; min-width: 0; }
+.card[data-choice="rec"] { border-left-color: var(--accent); }
+.card[data-choice="other"] { border-left-color: var(--other); }
+.card[data-choice="hold"] { border-left-color: var(--hold); }
+.tool { font: 600 12px "IBM Plex Sans", sans-serif; letter-spacing: .04em; color: var(--muted); text-transform: uppercase; }
+.tool code { font: inherit; text-transform: none; letter-spacing: 0; }
+.q { font-weight: 500; margin: 0; }
+.rec { background: var(--rec-bg); border: 1px solid var(--rec-line); border-radius: 8px; padding: 8px 12px; }
+.rec b { color: var(--accent); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; margin-right: 6px; }
+.why { color: var(--muted); font-size: 13.5px; margin: 0; }
+.acts { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+button.b { border: 1px solid var(--line); background: var(--card); color: var(--ink); border-radius: 8px;
+  padding: 6px 12px; font: 500 13.5px "IBM Plex Sans", system-ui, sans-serif; cursor: pointer; }
+button.b:hover { border-color: var(--muted); }
+button.b.on.rec { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+button.b.on.other { background: var(--other-soft); border-color: var(--other); color: var(--other); }
+button.b.on.hold { background: var(--hold-soft); border-color: var(--hold); color: var(--hold); }
+button.b.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+button.b:disabled { opacity: .5; cursor: default; }
+button:focus-visible, input:focus-visible, textarea:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+.blocks { margin-left: auto; font-size: 12px; color: var(--muted); }
+textarea { width: 100%; box-sizing: border-box; min-height: 60px; padding: 8px 10px; border: 1px solid var(--line);
+  border-radius: 8px; background: var(--bg); color: var(--ink); font: inherit; resize: vertical; }
+.note-row { display: grid; gap: 6px; }
+.saved { font-size: 12px; color: var(--muted); }
+.empty { color: var(--muted); padding: 20px 0; }
+@media (max-width: 520px) { .blocks { margin-left: 0; width: 100%; } h1 { font-size: 25px; } }
+</style>
+
+<div class="wrap">
+  <h1>Curio Class Decisions</h1>
+  <p class="lede">Every open call across the project, each with a recommendation that leans toward a more useful site.
+    Accept, make a different call with a note, or put it on hold. Answers save as you go and Claude reads them back.</p>
+
+  <div class="tally" id="tally"></div>
+  <div class="bar" id="bar" aria-hidden="true"></div>
+  <div class="status" id="status">Loading decisions...</div>
+
+  <div class="controls">
+    <div class="chips" id="areas" role="group" aria-label="Area"></div>
+    <div class="row">
+      <div class="chips" id="states" role="group" aria-label="Status"></div>
+      <input type="search" id="q" placeholder="Search tool or question" aria-label="Search">
+    </div>
+  </div>
+
+  <div id="list"></div>
+</div>
+
+<script>
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+let D = [], A = {}, db = null, area = 'All', state = 'Open', query = '';
+let confirming = null;              // section waiting on "Accept N? Yes"
+const drafts = {};                  // unsaved note text per id
+const openNote = new Set();         // cards with the note box open
+const touched = new Set();          // answered since the filter last changed: stay on screen so Undo and notes still work
+
+const LS = 'curio-decisions-answers';
+function lsLoad() { try { return JSON.parse(localStorage.getItem(LS) || '{}'); } catch { return {}; } }
+function lsSave() { try { localStorage.setItem(LS, JSON.stringify(A)); } catch {} }
+
+function setStatus(t, warn) { const s = $('#status'); s.textContent = t; s.className = 'status' + (warn ? ' warn' : ''); }
+
+async function save(id, choice, note) {
+  const body = { choice, note: note || '', at: new Date().toISOString() };
+  touched.add(id); A[id] = body; lsSave(); render();
+  if (!db) return;
+  try { await db.doc('answers/' + id).set(body); }
+  catch (e) { setStatus('Could not save to the shared board (' + (e.code || 'error') + '). Kept in this browser only.', true); }
+}
+async function clearAns(id) {
+  delete A[id]; lsSave(); render();
+  if (db) { try { await db.doc('answers/' + id).delete(); } catch {} }
+}
+
+function counts(list) {
+  const c = { total: list.length, rec: 0, other: 0, hold: 0 };
+  list.forEach(d => { const a = A[d.id]; if (a) c[a.choice]++; });
+  c.open = c.total - c.rec - c.other - c.hold;
+  return c;
+}
+
+function matches(d) {
+  if (area !== 'All' && d.area !== area) return false;
+  const a = A[d.id];
+  if (touched.has(d.id) && (area === 'All' || d.area === area)) return true;
+  if (state === 'Open' && a) return false;
+  if (state === 'Hold' && !(a && a.choice === 'hold')) return false;
+  if (state === 'Answered' && !(a && a.choice !== 'hold')) return false;
+  if (query) { const h = (d.tool + ' ' + d.q + ' ' + d.rec).toLowerCase(); if (!h.includes(query)) return false; }
+  return true;
+}
+
+function render() {
+  const c = counts(D);
+  $('#tally').innerHTML = [['Open', c.open], ['Accepted', c.rec], ['Own call', c.other], ['On hold', c.hold], ['Total', c.total]]
+    .map(([k, v]) => `<div class="tile"><b>${v}</b><span>${k}</span></div>`).join('');
+  const pct = n => c.total ? (100 * n / c.total) + '%' : '0';
+  $('#bar').innerHTML = `<i style="width:${pct(c.rec)};background:var(--accent)"></i><i style="width:${pct(c.other)};background:var(--other)"></i><i style="width:${pct(c.hold)};background:var(--hold)"></i>`;
+
+  const areas = ['All', ...new Set(D.map(d => d.area))];
+  $('#areas').innerHTML = areas.map(a => {
+    const n = counts(a === 'All' ? D : D.filter(d => d.area === a)).open;
+    return `<button class="chip" data-area="${esc(a)}" aria-pressed="${a === area}">${esc(a)}<small>${n} open</small></button>`;
+  }).join('');
+  $('#states').innerHTML = ['Open', 'Hold', 'Answered', 'All'].map(s =>
+    `<button class="chip" data-state="${s}" aria-pressed="${s === state}">${s === 'Hold' ? 'On hold' : s}</button>`).join('');
+
+  const shown = D.filter(matches);
+  if (!shown.length) {
+    $('#list').innerHTML = `<p class="empty">${D.length && state === 'Open' && counts(D).open === 0 ? 'Every decision is answered. Claude can pick them up now.' : 'Nothing matches this view.'}</p>`;
+    return;
+  }
+  const groups = {};
+  shown.forEach(d => (groups[d.area] = groups[d.area] || []).push(d));
+  $('#list').innerHTML = Object.entries(groups).map(([g, items]) => {
+    const openIds = items.filter(d => !A[d.id]).map(d => d.id);
+    const bulk = !openIds.length ? '' : confirming === g
+      ? `<span class="row"><button class="b primary" data-bulk-yes="${esc(g)}">Accept ${openIds.length} recommendations</button><button class="b" data-bulk-no>Cancel</button></span>`
+      : `<button class="b" data-bulk="${esc(g)}">Accept all ${openIds.length} shown</button>`;
+    return `<section><div class="sec-head"><h2>${esc(g)}</h2><span class="meta">${items.length} shown</span>${bulk}</div>${items.map(card).join('')}</section>`;
+  }).join('');
+}
+
+function card(d) {
+  const a = A[d.id], ch = a ? a.choice : '';
+  const showNote = openNote.has(d.id) || ch === 'other' || (a && a.note);
+  const noteVal = drafts[d.id] !== undefined ? drafts[d.id] : (a ? a.note : '');
+  const when = a ? new Date(a.at).toLocaleString([], { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }) : '';
+  return `<article class="card" data-choice="${ch}" id="c-${d.id}">
+    ${d.tool ? `<div class="tool"><code>${esc(d.tool)}</code></div>` : ''}
+    <p class="q">${esc(d.q)}</p>
+    <div class="rec"><b>Recommended</b>${esc(d.rec)}</div>
+    <p class="why">${esc(d.why)}</p>
+    <div class="acts">
+      <button class="b rec ${ch === 'rec' ? 'on' : ''}" data-act="rec" data-id="${d.id}">${ch === 'rec' ? 'Accepted' : 'Accept'}</button>
+      <button class="b other ${ch === 'other' ? 'on' : ''}" data-act="other" data-id="${d.id}">Different call</button>
+      <button class="b hold ${ch === 'hold' ? 'on' : ''}" data-act="hold" data-id="${d.id}">Hold</button>
+      ${!showNote ? `<button class="b" data-act="note" data-id="${d.id}">Add note</button>` : ''}
+      ${a ? `<button class="b" data-act="clear" data-id="${d.id}">Undo</button>` : ''}
+      <span class="blocks">${esc(d.id)} &middot; waits: ${esc(d.blocks)}</span>
+    </div>
+    ${showNote ? `<div class="note-row">
+      <textarea data-note="${d.id}" placeholder="${ch === 'other' ? 'What call do you want instead?' : 'Note for Claude (optional)'}">${esc(noteVal)}</textarea>
+      <div class="row"><button class="b primary" data-act="savenote" data-id="${d.id}">Save note</button>
+      ${a ? `<span class="saved">Saved ${esc(when)}</span>` : ''}</div></div>` : ''}
+  </article>`;
+}
+
+document.addEventListener('input', e => {
+  if (e.target.id === 'q') { query = e.target.value.trim().toLowerCase(); render(); e.target.focus(); return; }
+  const id = e.target.dataset.note; if (id) drafts[id] = e.target.value;
+});
+document.addEventListener('click', e => {
+  const t = e.target.closest('button'); if (!t) return;
+  if (t.dataset.area) { area = t.dataset.area; confirming = null; touched.clear(); render(); return; }
+  if (t.dataset.state) { state = t.dataset.state; confirming = null; touched.clear(); render(); return; }
+  if (t.dataset.bulk) { confirming = t.dataset.bulk; render(); return; }
+  if ('bulkNo' in t.dataset) { confirming = null; render(); return; }
+  if (t.dataset.bulkYes) {
+    const ids = D.filter(d => d.area === t.dataset.bulkYes && matches(d) && !A[d.id]).map(d => d.id);
+    confirming = null;
+    (async () => { for (const id of ids) await save(id, 'rec', drafts[id] || ''); setStatus(`Accepted ${ids.length} recommendations.`); })();
+    return;
+  }
+  const id = t.dataset.id, act = t.dataset.act; if (!id) return;
+  const note = drafts[id] !== undefined ? drafts[id] : (A[id] ? A[id].note : '');
+  if (act === 'rec' || act === 'hold') save(id, act, note);
+  else if (act === 'other') { openNote.add(id); save(id, 'other', note); setTimeout(() => { const ta = document.querySelector(`[data-note="${id}"]`); if (ta) ta.focus(); }); }
+  else if (act === 'note') { openNote.add(id); render(); const ta = document.querySelector(`[data-note="${id}"]`); if (ta) ta.focus(); }
+  else if (act === 'savenote') { const ch = A[id] ? A[id].choice : 'hold'; save(id, ch, note); delete drafts[id]; }
+  else if (act === 'clear') { openNote.delete(id); delete drafts[id]; clearAns(id); }
+});
+
+(async () => {
+  A = lsLoad();
+  try {
+    const r = await fetch('decisions.json'); const j = await r.json();
+    D = j.decisions;
+    setStatus(`${D.length} decisions, list updated ${j.updated}. Connecting to the shared board...`);
+  } catch { setStatus('Could not load the decisions list.', true); return; }
+  render();
+  db = window.claude ? await claude.use('db') : null;
+  if (!db) { setStatus('Shared saving is unavailable in this view: answers stay in this browser only. Open the artifact signed in to save them for Claude.', true); return; }
+  db.collection('answers').limit(1000).onSnapshot(snap => {
+    const fresh = {};
+    snap.docs.forEach(doc => { if (doc.exists) fresh[doc.id] = doc.data(); });
+    A = fresh; lsSave(); render();
+    setStatus(`${D.length} decisions. Answers save to the shared board as you go.`);
+  }, err => setStatus('Lost the connection to the shared board (' + (err.code || 'error') + '). Reload to reconnect.', true));
+})();
+</script>
