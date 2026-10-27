@@ -1,0 +1,26 @@
+{
+  "id": "code-tracer",
+  "status": "beta",
+  "hook": "Before each line of a short program runs, write your prediction in the trace table, then run the line and watch the real value slide in beside your guess. Twelve programs with variables, repeat and if, and a Workbench for changing the numbers.",
+  "outcome": "Trace how a short program changes its variables one line at a time, including repeat loops and if statements, and check whether a program's note tells the truth about what it does",
+  "driver": "students or teacher",
+  "minutes": "15-25",
+  "modes": [
+    "Trace",
+    "Workbench"
+  ],
+  "grades_label": "Grade 4",
+  "sources": [
+    "CSTA K-12 Computer Science Standards, 2026 PK-12 identifiers E4-PRO-VD-06, E4-PRO-RD-07, E4-PRO-TR-08: https://csteachers.org/k12standards/",
+    "CSTA K-12 Computer Science Standards (2017), 1B-AP-09, 1B-AP-17, 1B-AP-15: https://csteachers.org/k12standards/",
+    "Code.org CS Fundamentals glossary (variable, loop, conditional): https://code.org/curriculum/docs/k-5/glossary",
+    "Scratch Wiki, Variable: https://en.scratch-wiki.info/wiki/Variable",
+    "The Python Tutorial 3.1 and 3.2 (assignment, comments): https://docs.python.org/3/tutorial/introduction.html",
+    "Trace tables: Isaac Computer Science and BBC Bitesize",
+    "Programs are original to Curio Class",
+    "Code card, notebook page, chips and stamp drawn in code; sounds generated in the browser",
+    "Narration generated with Qwen3-TTS (Apache 2.0), cloning a Google Gemini text-to-speech voice"
+  ],
+  "third_party": [],
+  "updated": "2026-10-27"
+}

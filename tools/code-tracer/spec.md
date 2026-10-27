@@ -65,7 +65,7 @@ Levels (line 1 is the note; trace steps are line:result; ★ = the aha step whos
 | 1 | One box | Apples | `# count the apples in the basket` / `apples = 3` / `apples = apples + 2` / `apples = apples - 1` / `say apples` | 2: apples 3; 3: apples 5; 4: apples 4; 5: says 4 | step 2 | none |
 | 2 | One box | New value | `# the last value wins` / `steps = 2` / `steps = 7` / `steps = steps + 1` / `say steps` | 2: 2; 3: 7; 4: 8; 5: says 8 | step 2 | none |
 | 3 | One box | Double up | `# coins after a trade` / `coins = 10` / `coins = coins - 4` / `coins = coins + coins` / `say coins` | 2: 10; 3: 6; 4: 12; 5: says 12 | step 3 | none |
-| 4 | Two boxes | Copy, not link | `# b gets a copy of a` / `a = 4` / `b = a` / `a = 9` / `say b` | 2: a 4; 3: b 4; 4: a 9; 5: says 4 | step 4 | none |
+| 4 | Two boxes | Just a copy | `# b gets a copy of a` / `a = 4` / `b = a` / `a = 9` / `say b` | 2: a 4; 3: b 4; 4: a 9; 5: says 4 | step 4 | none |
 | 5 | Two boxes | Cats and dogs | `# count the pets` / `cats = 5` / `dogs = cats + 2` / `cats = dogs - 1` / `dogs = dogs + cats` / `say dogs` | 2: cats 5; 3: dogs 7; 4: cats 6; 5: dogs 13; 6: says 13 | step 4 | none |
 | 6 | Two boxes | The swap | `# swap left and right` / `left = 3` / `right = 8` / `left = right` / `right = left` / `say left` / `say right` | 2: left 3; 3: right 8; 4: left 8; 5: right 8; 6: says 8; 7: says 8 | step 4 | answer **No** |
 | 7 | Repeat | Jumps | `# count 4 jumps` / `jumps = 0` / `repeat 4 times:` / `  jumps = jumps + 1` / `say jumps` | 2: 0; 3: round 1 of 4; 4: 1; round 2; 2; round 3; 3; round 4; 4; 5: says 4 | step 9 | none |
@@ -83,7 +83,7 @@ Workbench number ranges: values and `if` numbers 0 to 20; repeat counts 1 to 6; 
 
 ## Interactions in detail
 - Typing: digits, Backspace, and `-` (sign toggle) work from the keyboard when the panel or stage has focus; max 4 digits in Trace, 6 in Workbench; leading zeros dropped ("07" is 7). The guess shows live in the dashed cell.
-- Run line with an empty cell: nothing runs, the cell shakes once, line 14 plays.
+- Run line with an empty cell: nothing runs, the cell shakes once, the tip shows line 14 (spoken the first time only).
 - Match: the real value lands on top of the guess, a green check mark and the word "matched" appear in the cell corner, soft chime (`Curio.yes`). First match per page load: line 3.
 - Miss: the real value lands bold; the guess stays in the cell, small, struck through, in muted brown, so the row shows both. Low soft tone, never a buzzer. First miss per page load: line 4. On the level's ★ step, the why line (W1 to W12) replaces the hint and is spoken if the guess missed (shown, not spoken, if it matched; Read speaks it).
 - If steps: Yes/No (or Y/N keys). Right or wrong, Check gets "yes" or "no" with a check mark or the struck-through guess, same as numbers. On "no", the body lines dim with "skipped" and the ▶ jumps past them.
@@ -116,16 +116,18 @@ Bank voice `clear-teacher` (Iapetus), style "Say clearly and kindly, like a pati
 2. "Type your guess in the empty box, then press Run line." (hint for number steps)
 3. "It matched. You traced that line just like the computer would."
 4. "Not quite. Read the line again. The right side is worked out first, then stored in the variable on the left."
-5. "This line asks a question. Is it true? Choose yes or no." (first if step; hint for if steps)
+5. "This line asks a question. Is it true? Tap Yes or No, then press Run line." (first if step; hint for if steps)
 6. "A repeat line runs the lines tucked under it again and again. Watch the round number." (first round row)
 7. "Lines that start with a hash sign are notes for people. The computer skips them." (after level 1 is traced, after 9)
-8. "Now test the note. Does the note tell the truth about what happened?" (note check)
-9. "Traced! Your table is a record of every step the program took." (level done)
-10. "You traced all twelve programs. Try the Workbench and change the numbers."
-11. "This is the Workbench. Tap a number in the code to change it, then step through and watch the table." (Workbench welcome)
-12. "You changed the code. Is the note still true? Notes don't change by themselves." (first number change)
+8. "Now test the note. Does it tell the truth about what happened? Tap Yes or No on the note card." (note check)
+9. "Traced! Your table is a record of every step the program took." (level done, note levels; 9b on the others)
+9b. "Traced! Your table is a record of every step the program took. Press Next for a new program." (level done, levels without a note check; hint after the level)
+10. "You traced all twelve programs. Press Workbench to change the numbers."
+11. "This is the Workbench. Tap a number in the code to change it, then press Step and watch the table." (Workbench welcome)
+11b. "The program is done. Press Restart to run it again, or tap a number to change it." (Workbench: the program has run to its end and Step is off; hint until Back, Restart or a number change)
+12. "You changed the code. Notes don't change by themselves. Press Step, then check: is the note still true?" (first number change)
 13. "Here is what that line does. Next time, try a guess first." (first Just show me)
-14. "Type a guess first, or press Just show me." (every empty Run line, not once only)
+14. "Type a guess first, or press Just show me." (first empty Run line only; after that the tip and the box shake show it silently)
 
 Why lines (★ steps, W1 to W12):
 - W1 "apples equals apples plus 2 takes the 3 already in apples, adds 2, and stores 5 back in apples."
@@ -142,14 +144,14 @@ Why lines (★ steps, W1 to W12):
 - W12 "In round 4, lives is 0. Is 0 more than 0? No. So lives stops at 0."
 
 Note check feedback (N1 to N6):
-- N1 (level 6, No): "Right. The note says swap, but both ended up 8. The code does not do what the note says. Try Swap with a spare on the Workbench."
-- N2 (level 6, Yes): "Look at the last row. left is 8 and right is 8. Did the 3 get swapped over?"
-- N3 (level 9, Yes): "Right. total ended at 6, and 1 plus 2 plus 3 is 6. The note is true."
-- N4 (level 9, No): "Check the table. total ended at 6. What is 1 plus 2 plus 3?"
-- N5 (level 12, Yes): "Right. Four rounds, but lives stopped at 0. The if kept it from going below 0."
-- N6 (level 12, No): "Look down the lives column. Did it ever go below 0?"
+- N1 (level 6, No): "Right. The note says swap, but both ended up 8. The code does not do what the note says. Press Next, or try Swap with a spare on the Workbench."
+- N2 (level 6, Yes): "Look at the last row. left is 8 and right is 8. Did the 3 get swapped over? Press Next for a new program."
+- N3 (level 9, Yes): "Right. total ended at 6, and 1 plus 2 plus 3 is 6. The note is true. Press Next for a new program."
+- N4 (level 9, No): "Check the table. total ended at 6. What is 1 plus 2 plus 3? Press Next for a new program."
+- N5 (level 12, Yes): "Right. Four rounds, but lives stopped at 0. The if kept it from going below 0. Press Workbench to change the numbers."
+- N6 (level 12, No): "Look down the lives column. Did it ever go below 0? Press Workbench to change the numbers."
 
-Which line when: Trace entry queues 1 then 2. Workbench entry queues 11. Level done: 9, then 7 (first time), then 8 on note levels; after level 12: 10. Hint while a number step waits is 2, an if step 5, after a ★ step the W line until the next step runs, during a note check 8, after answering the N line.
+Which line when: Trace entry queues 1 then 2. Workbench entry queues 11; when a Workbench program reaches its end, 11b (hint, and spoken once). Level done: 9b (or 9 then 8 on note levels), with 7 after it the first time; when all 12 levels are traced: 10. Hint while a number step waits is 2, an if step 5, after a level 9b, during a note check 8, after answering the N line. After a ★ step the W line shows in the tip box (and is spoken if the guess missed) until the next step runs, while the hint keeps naming the next action. Tip text for 3, 4 and 13 shows the first time whether or not Sound is on. How-to lines (2, 5, 8, 9b, 11, 11b, 12, 14) are spoken the first time their step comes up only; after that they update the hint silently, and Read still speaks them.
 
 ## Family engine
 none. No CS family engine exists. The trace engine stays inside `src.html` in its marked block (pure: program data plus number overrides in, step list out), so it could later merge with score-keeper's VARIABLES ENGINE if Cory wants one shared interpreter.

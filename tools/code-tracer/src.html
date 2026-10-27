@@ -1,0 +1,1678 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Code Tracer · Predict, then run · Curio Class</title>
+<meta name="description" content="Before each line of a short program runs, predict what it will do in a trace table, then run the line and check. Twelve levels with variables, repeat and if, plus a Workbench for changing the numbers. Grade 4 computer science. Works offline.">
+<!--
+Code Tracer (Curio Class)
+Grade 4, computer science, module Trace the Code (Algorithms and Programming): follow how data changes variables;
+document programs. CSTA K-12 Computer Science Standards, 2026 identifiers E4-PRO-VD-06, E4-PRO-RD-07, E4-PRO-TR-08
+(2017 crosswalk: 1B-AP-09, 1B-AP-17, 1B-AP-15).
+Pairs on laptops, or the teacher on a projector with the class holding up whiteboard guesses.
+Trace: 12 short programs. Before each line runs, type what it will do into the next row of the trace table, press
+Run line, and the real value lands beside the guess. Repeat rows write their round; if lines ask yes or no; levels 6, 9
+and 12 end by testing whether the note tells the truth. Workbench: step any program forward and back, and change the
+numbers in the code to see the trace change.
+The programs are data, run by the small interpreter in the TRACE ENGINE block: no eval, no new Function, nothing a
+student types is ever parsed as code (typing only makes a number guess). Code card, notebook page, chips, check marks
+and the "Traced!" stamp are drawn in code; sounds are made in the browser.
+Facts: Code.org CS Fundamentals glossary (variable, loop, conditional), Scratch Wiki "Variable", The Python Tutorial
+3.1-3.2 (assignment, comments), Isaac Computer Science and BBC Bitesize (trace tables). Programs are original to
+Curio Class. Sources in notes.md. One file, no network requests. Content CC BY 4.0, code MIT. curioclass.org
+-->
+<link rel="stylesheet" href="kit:curio">
+<style>
+:root{
+  --paper:#f6f4ec;--panel:#ffffff;--ink:#1f2a36;--muted:#5d6672;--line:#e2ddd0;--focus:#2f5bd3;
+  --brand:#a8461a;--btn:#a8461a;--btn-line:#d38a62;--head-ink:#ffffff;--gold:#ffd27a;
+  --slate:#22303c;--slate2:#1a252f;--c-text:#e8eef3;--c-name:#ffd27a;--c-num:#8fd3ff;--c-kw:#ff9e7a;--c-note:#a6d99f;
+  --c-run:#34495c;--c-edge:#f08a4b;--c-skip:#9aa7b4;--c-gut:#8d9cab;
+  --grid:#d9e4f0;--thead:#fde7c8;--ok:#1f7a3d;--struck:#7a6a5e;--carry:#6b7179;--sheet:#fbfaf5;
+  --mono:Consolas,Menlo,monospace;
+  --pw:320px;--cw:400px;--cfs:20px;--clh:1.6;--tfs:15px;--tw:20px;--key:48px;
+}
+/* Page layouts, picked in script (relayout()); everything is drawn at its real pixel size:
+   wide     1000 px and wider, 560 px and taller: code card, trace table, panel in three columns.
+            short (under 900 px tall): the keypad and Run line come first in the panel; tight (under 700 px): smaller gaps.
+   compact  short landscape boxes (the 680x425 and 800x500 previews): the same three columns, a compact keypad,
+            code 14 px, table 13 px.
+   mid      600 px and wider, not landscape (760 wide): code card and table side by side, the panel below with the
+            keypad in one row.
+   phone    under 600 px (375 wide in an iframe): code card, table (at most 40 percent of the height), then a bar fixed
+            to the bottom with the keypad (two rows) and Run line.
+   The panel comes first in the page so Tab goes: mode buttons, header buttons, keypad, Run line, Just show me,
+   Restart, Next, Print, level dots, then the number chips on the code card (Workbench). */
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px;box-shadow:0 0 0 2px #fff}
+body{height:100%;overflow:hidden}
+body.mid,body.phone{height:auto;overflow:auto}
+header{gap:10px}
+.seg button+button{border-left:2px solid var(--btn-line)}
+body.tight header,body.compact header,body.phone header,body.mid header{padding:6px 12px;gap:8px}
+body.tight .seg button,body.tight .icon-btn,body.compact .seg button,body.compact .icon-btn,body.phone .seg button,body.phone .icon-btn{min-height:44px;font-size:15px;padding:0 12px}
+body.compact h1 small,body.phone h1 small{display:none}
+#m-wb.glow1{animation:wbglow 1.2s ease-in-out 3}
+@keyframes wbglow{50%{background:#ffd27a;color:#3a2c00}}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+main{display:grid;min-height:0;overflow:hidden}
+body.wide main,body.compact main{grid-template-columns:minmax(0,1fr) var(--pw);grid-template-areas:"stage panel"}
+body.mid main,body.phone main{grid-template-columns:minmax(0,1fr);grid-template-areas:"stage" "panel";overflow:visible}
+
+/* ---------- the stage: code card beside the notebook page ---------- */
+.stage{grid-area:stage;display:flex;gap:12px;padding:12px;min-height:0;overflow:hidden;background:var(--paper)}
+body.compact .stage{gap:6px;padding:8px 6px}
+body.phone .stage{flex-direction:column;padding:8px;gap:8px}
+.code{flex:0 0 var(--cw);width:var(--cw);min-width:0;min-height:0;background:var(--slate);color:var(--c-text);border-radius:14px;display:flex;flex-direction:column;
+  box-shadow:0 4px 0 #0000002a;position:relative;overflow:hidden}
+body.phone .code{flex:none;width:auto}
+.cbar{display:flex;align-items:center;gap:8px;padding:7px 12px;background:var(--slate2);font:600 15px/1.2 'Segoe UI',system-ui,sans-serif;color:#cfd8e1;flex:none}
+.cbar .dots{display:flex;gap:5px}
+.cbar .dots i{width:10px;height:10px;border-radius:50%;background:#e0705c}
+.cbar .dots i+i{background:#e9b949}
+.cbar .dots i+i+i{background:#6cbf73}
+#codeTitle{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+body.compact .cbar{padding:5px 10px;font-size:13px}
+.lines{flex:1 1 auto;min-height:0;overflow:auto;padding:8px 0 10px;font:var(--cfs)/var(--clh) var(--mono)}
+.ln{display:flex;align-items:flex-start;position:relative;border-left:4px solid transparent;padding-right:10px;min-height:calc(var(--cfs) * var(--clh))}
+body[data-mode="wb"] .ln{min-height:var(--wbh,44px);align-items:center}
+.gut{flex:none;width:3em;display:flex;justify-content:flex-end;align-items:baseline;color:var(--c-gut);user-select:none;padding-right:.45em}
+.gut .mk{width:1.1em;text-align:center;font-size:.8em}
+.gut .no{font-size:.8em;min-width:1.3em;text-align:right}
+.ln.ran .mk::before{content:"✓";color:#7f93a6}
+.ln.run{background:var(--c-run);border-left-color:var(--c-edge)}
+.ln.run .mk::before{content:"▶";color:var(--c-edge)}
+.ln.run .no{color:#dfe7ee}
+.ln.pulse{animation:pulse .4s ease-out}
+.ln.lit{animation:lit .7s ease-in-out}
+@keyframes pulse{0%{background:#4d6a85}100%{background:var(--c-run)}}
+@keyframes lit{0%,100%{background:var(--c-run)}40%{background:#4d6a85}}
+.txt{white-space:pre;flex:none}
+.ln.note .txt{white-space:pre-wrap;flex:1 1 auto;min-width:0;padding-left:2ch;text-indent:-2ch}
+.ind{display:inline-block;width:2ch;align-self:stretch;flex:none;position:relative}
+.ind::before{content:"";position:absolute;left:.6ch;top:-2px;bottom:-2px;border-left:2px solid #4f6478}
+.t-name{color:var(--c-name)}.t-num{color:var(--c-num)}.t-kw{color:var(--c-kw)}.t-note{color:var(--c-note)}
+.ln.skip .txt,.ln.skip .txt *{color:var(--c-skip)}
+.ln.skip:not(.run){background:var(--slate2)}
+.lines.tagwrap .ln:has(.skipTag){flex-wrap:wrap}
+.lines.tagwrap .skipTag{margin:0 0 4px calc(var(--gutpx) + 4px)}
+.tagx{flex:none;margin-left:10px;align-self:center;font:700 12px/1 'Segoe UI',system-ui,sans-serif;border-radius:999px;padding:4px 8px;white-space:nowrap}
+.skipTag{background:#3b4a58;color:#d5dde5}
+.qTag{background:#ffd27a;color:#3a2c00}
+.ln.note:has(.qTag){flex-wrap:wrap}
+.ln.note .qTag{margin:2px 0 6px calc(3 * var(--cfs) + 4px)}
+.ln.note:has(.qTag) .txt{flex-basis:calc(100% - 3 * var(--cfs) - 12px)}
+button.num{font:inherit;color:var(--c-num);background:#2c3d4d;border:0;border-bottom:2px dotted var(--c-num);border-radius:5px;padding:0 .3em;margin:0 .05em;
+  min-width:44px;min-height:var(--wbh,44px);line-height:1;cursor:pointer}
+button.num:hover{background:#365066}
+button.num.chg{background:#4a3f1f;color:#ffd27a;border-bottom-color:#ffd27a}
+.ln.skip button.num{color:var(--c-skip)}
+#stepper{position:absolute;z-index:6;display:flex;align-items:center;gap:6px;background:#fff;color:var(--ink);border-radius:12px;padding:6px;box-shadow:0 8px 24px #0007;border:2px solid var(--brand)}
+#stepper button{width:44px;height:44px;border:2px solid var(--line);border-radius:10px;background:#fff;font:800 24px/1 'Segoe UI',sans-serif;color:var(--brand);padding:0}
+#stepper button[aria-disabled="true"]{opacity:.4;cursor:default}
+#stVal{min-width:3.2em;text-align:center;font:800 22px/1 var(--mono)}
+#stRange{position:absolute;left:0;right:0;top:100%;margin-top:3px;font:600 12px 'Segoe UI',sans-serif;color:#fff;text-align:center;text-shadow:0 1px 2px #000}
+
+/* the notebook page with its trace table */
+.page{flex:1 1 0;min-width:0;min-height:0;display:flex;flex-direction:column;position:relative;border-radius:6px 14px 14px 6px;padding:10px 12px 8px 22px;
+  background-color:var(--sheet);background-image:linear-gradient(90deg,transparent 12px,#f2b8a0 12px,#f2b8a0 14px,transparent 14px),
+  linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:100% 100%,18px 18px,18px 18px;
+  box-shadow:0 4px 0 #0000001c,inset 0 0 0 1px #e3dccb}
+body.compact .page{padding:6px 4px 6px 17px}
+body.compact .gut{width:2.5em;padding-right:.35em}
+body.phone .page{flex:none}
+.phead{display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin:0 0 6px;flex:none}
+.phead h2{margin:0;font:800 19px/1.2 'Trebuchet MS','Segoe UI',sans-serif;color:var(--brand)}
+.phead span{font-size:14px;color:var(--muted);font-weight:600;white-space:nowrap}
+body.compact .phead h2{font-size:15px}
+body.compact .phead{margin-bottom:3px}
+body.compact .phead span,body.phone .phead span{display:none}
+.tw{flex:1 1 auto;min-height:0;overflow:auto;border-radius:6px;background:#fffdf7cc}
+table{border-collapse:separate;border-spacing:0;width:100%;font:var(--tfs)/1.25 'Segoe UI',system-ui,sans-serif;color:var(--ink)}
+th{position:sticky;top:0;z-index:1;background:var(--thead);font:700 var(--tfs)/1.2 'Segoe UI',system-ui,sans-serif;padding:6px 6px;border-bottom:2px solid #e9c99a;text-align:center;white-space:nowrap}
+th.vn{font-family:var(--mono);font-weight:700}
+td{border-bottom:1px solid var(--grid);border-right:1px solid var(--grid);text-align:center;vertical-align:middle;padding:4px 5px;white-space:nowrap}
+td:last-child,th:last-child{border-right:0}
+td.sn,td.lnn{color:var(--muted);font-variant-numeric:tabular-nums;width:1%}
+td.c{color:var(--carry);font:400 calc(var(--tfs) * .9) var(--mono)}
+.v{display:block;font:700 var(--tw)/1.15 var(--mono);color:var(--ink)}
+td.ck .v{font:700 calc(var(--tfs) * 1.02)/1.2 'Segoe UI',system-ui,sans-serif;white-space:normal}
+td.ck.yn .v{font:700 var(--tw)/1.15 var(--mono)}
+.ok{display:block;font:700 12px/1.2 'Segoe UI',system-ui,sans-serif;color:var(--ok);white-space:nowrap}
+.ok::before{content:"✓ "}
+.gs{display:block;font:400 15px/1.2 var(--mono);color:var(--struck);text-decoration:line-through;text-decoration-thickness:2px}
+.sh{display:inline-block;font:700 11px/1.3 'Segoe UI',sans-serif;color:var(--muted);background:#ece6d8;border-radius:6px;padding:0 5px;margin-top:1px}
+.pred{display:inline-block;min-width:2.3em;min-height:1.4em;border:2px dashed var(--brand);border-radius:7px;font:700 var(--tw)/1.3 var(--mono);color:var(--brand);padding:0 .25em;background:#fff8ee}
+.pred.ghost{border-color:transparent;background:none}
+.pred.shake{animation:shake .45s ease-in-out}
+@keyframes shake{20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}
+td.land{box-shadow:inset 0 0 0 3px var(--c-edge)}
+td.pop .v{animation:pop .35s ease-out}
+@keyframes pop{0%{transform:scale(1.35)}100%{transform:none}}
+tr.pending td{background:#fff3e2}
+tr.newest td{background:#fff9ee}
+.refused{padding:12px;color:var(--ink);font-weight:600;white-space:normal;text-align:left}
+.foot{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:4px 12px;padding-top:6px;font-size:15px;flex:none;min-height:26px}
+#tally{font-weight:700}
+#res{color:var(--muted)}
+body.compact th{font-size:12px;padding:4px 3px}
+body.compact td{padding:3px 3px}
+body.compact .ok{white-space:normal;font-size:10.5px;line-height:1.1}
+/* tt: the table was too wide for its column (guardTable), so it packs tighter */
+body.tt th{padding:5px 3px}
+body.tt td{padding:3px 2px}
+body.tt .ok{white-space:normal;font-size:11px;line-height:1.1}
+body.tt2 table{font-size:12px}
+body.tt2 th{font-size:11px;padding:4px 0}
+body.tt2 td{padding:2px 0}
+body.tt2 .v,body.tt2 td.ck.yn .v{font-size:13px}
+body.tt2 td.ck .v{font-size:12px}
+body.tt2 .ok{font-size:10px}
+body.tt2 .pred{min-width:1.6em;font-size:14px}
+body.tt2 .gs{font-size:13px}
+body.compact #run{padding:0 8px;gap:5px;font-size:16px;white-space:nowrap}
+body.compact #show{white-space:nowrap}
+body.compact .runrow{flex-wrap:wrap;gap:2px 8px}
+body.compact #run{flex:1 1 100%}
+body.compact #show{flex:1 1 100%;min-height:44px}
+body.compact td{padding:3px 2px}
+body.compact .foot{font-size:13px;padding-top:3px;min-height:20px}
+body.done[data-mode="trace"] .tw::after{content:"";display:block;height:88px}
+#stamp{position:absolute;right:16px;bottom:34px;z-index:3;pointer-events:none;width:150px;height:76px;transform:rotate(-8deg)}
+#stamp.drop{animation:drop .5s cubic-bezier(.3,1.4,.6,1)}
+@keyframes drop{0%{transform:translateY(-60px) rotate(-14deg) scale(1.6);opacity:0}60%{opacity:1}100%{transform:rotate(-8deg)}}
+body.compact #stamp{width:110px;height:56px;bottom:24px;right:10px}
+#chip{position:fixed;left:0;top:0;z-index:50;pointer-events:none;background:var(--gold);color:#3a2c00;border:2px solid var(--brand);border-radius:8px;
+  font:700 18px/1.2 var(--mono);padding:2px 8px;box-shadow:0 4px 10px #0004;white-space:nowrap}
+
+/* ---------- the panel ---------- */
+.panel{grid-area:panel;background:var(--panel);border-left:3px solid var(--line);padding:12px 14px;gap:10px;overflow:auto;min-height:0}
+body.compact .panel{padding:6px 10px;gap:5px;scrollbar-width:none}
+body.tight .panel{padding:8px 12px;gap:8px}
+body.mid .panel,body.phone .panel{border-left:0;border-top:3px solid var(--line);overflow:visible}
+.hint{margin:0;font-size:17px;line-height:1.4}
+body.compact .hint{font-size:14px;line-height:1.3}
+body.tight .hint{font-size:16px}
+.tip{margin:0;font-size:15px;background:#fff7ea;border:2px solid #f3dcc0}
+body.compact .tip{font-size:13px;padding:6px 8px}
+#bar{display:flex;flex-direction:column;gap:8px}
+body.compact #bar{gap:6px}
+#ask{display:flex;flex-direction:column;gap:8px}
+body.compact #ask{gap:5px}
+#plabel{margin:0;font-weight:700;font-size:17px;line-height:1.25}
+#plabel code{font:700 1em var(--mono);color:var(--brand)}
+body.compact #plabel{font-size:14px}
+#keypad{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+.key{min-height:var(--key);border:2px solid var(--line);border-radius:12px;background:#fff;font:700 22px/1 var(--mono);color:var(--ink);box-shadow:0 3px 0 #0000001a;padding:0}
+.key:active,.key.hit{background:#fde7c8;border-color:var(--brand)}
+body.compact .key{font-size:18px;border-radius:9px}
+#yn{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.ynb{min-height:64px;border:3px solid var(--line);border-radius:14px;background:#fff;font:800 22px/1 'Trebuchet MS','Segoe UI',sans-serif;color:var(--ink)}
+.ynb[aria-pressed="true"]{border-color:var(--brand);background:var(--thead)}
+.ynb[aria-pressed="true"]::before{content:"● "}
+body.compact .ynb{min-height:48px;font-size:18px}
+.runrow{display:flex;gap:8px;align-items:center}
+#run{flex:1 1 auto;display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--gold);color:#3a2c00;border:3px solid var(--brand);min-height:58px;font-size:21px}
+#run svg{width:18px;height:18px}
+body.compact #run{min-height:44px;font-size:17px;border-radius:12px}
+#show{flex:none;background:none;border:0;color:var(--brand);text-decoration:underline;text-underline-offset:3px;font-weight:700;font-size:15px;min-height:44px;padding:0 6px;border-radius:8px}
+body.compact #show{font-size:13px;padding:0 3px}
+.nav{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+body.compact .nav #restart svg{display:none}
+.nb{min-height:44px;border:2px solid var(--line);border-radius:12px;background:#fff;font:700 15px/1.1 'Segoe UI',system-ui,sans-serif;color:var(--ink);display:inline-flex;align-items:center;
+  justify-content:center;gap:5px;padding:0 6px;box-shadow:0 3px 0 #00000014}
+.nb svg{width:18px;height:18px;flex:none}
+.nb:disabled,.nb[aria-disabled="true"]{opacity:.45;cursor:default;box-shadow:none}
+.nb.glow{border-color:var(--brand);background:var(--thead);animation:glow 1.4s ease-in-out infinite}
+@keyframes glow{50%{box-shadow:0 0 0 5px #f08a4b66}}
+.calm .nb.glow{box-shadow:0 0 0 4px #f08a4b66}
+body.compact .nb{font-size:13px;padding:0 3px;gap:3px}
+#notecard{background:#fff;border:2px solid var(--line);border-left:6px solid var(--brand);border-radius:12px;padding:10px 12px;display:flex;flex-direction:column;gap:8px}
+#notecard h2{margin:0;font:800 18px/1.2 'Trebuchet MS','Segoe UI',sans-serif;color:var(--brand)}
+#ncNote{display:block;background:var(--slate);color:var(--c-note);font:600 16px/1.3 var(--mono);border-radius:8px;padding:6px 10px}
+#notecard .row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+#notecard .ynb.right{border-color:var(--ok);background:#e5f3e9}
+#notecard .ynb.right::after{content:" ✓";color:var(--ok)}
+#notecard .ynb:disabled{cursor:default;opacity:.7}
+#notecard .ynb.right:disabled{opacity:1}
+body.compact #notecard{padding:6px 8px;gap:5px}
+body.compact #notecard h2{font-size:15px}
+body.compact #ncNote{font-size:13px}
+#levels{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 10px}
+.set{min-width:0}
+.set .sl{display:block;font-size:13px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px}
+.set .dots{display:flex;gap:4px}
+.dot{width:44px;height:44px;border-radius:50%;border:2px solid #c9bfae;background:#fff;font:700 16px/1 'Segoe UI',sans-serif;color:var(--ink);padding:0;position:relative;flex:none}
+.dot.done{background:var(--brand);border-color:var(--brand);color:#fff}
+.dot.done::after{content:"✓";position:absolute;right:-4px;top:-5px;width:18px;height:18px;border-radius:50%;background:var(--ok);color:#fff;font-size:11px;line-height:18px;border:2px solid #fff}
+.dot[aria-current="true"]{box-shadow:0 0 0 3px #fff,0 0 0 6px var(--ink)}
+body.compact #levels{grid-template-columns:1fr;gap:5px}
+body.compact .dot{width:44px;height:44px}
+#wbmain{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+#wbmain .nb{min-height:52px;font-size:16px;white-space:nowrap;padding:0 4px}
+body.wide:not(.big) #wbmain{grid-template-columns:1fr 1.3fr 1fr 56px}
+body.wide:not(.big) #wbrestart .w{display:none}
+#wbmain #step{background:var(--gold);border-color:var(--brand);color:#3a2c00}
+body.compact #wbmain{grid-template-columns:1fr 1fr}
+body.compact #wbmain .nb{min-height:44px;font-size:14px}
+#wbmore{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.pair{display:flex;border:2px solid var(--line);border-radius:12px;overflow:hidden;background:#fff;grid-column:1/-1}
+.pair .lbl{display:flex;align-items:center;padding:0 10px;font-weight:700;color:var(--muted);font-size:14px;background:#faf7f0}
+.pair button{flex:1;border:0;background:#fff;min-height:44px;font-weight:700;font-size:15px;color:var(--ink)}
+.pair button+button{border-left:2px solid var(--line)}
+.pair button[aria-pressed="true"]{background:var(--brand);color:#fff}
+.tog .st{font-size:12px;font-weight:800;border-radius:999px;padding:2px 7px;background:#efe9dc;color:var(--muted)}
+.tog[aria-pressed="true"]{border-color:var(--brand)}
+.tog[aria-pressed="true"] .st{background:var(--brand);color:#fff}
+#progs{display:grid;grid-template-columns:repeat(auto-fill,minmax(132px,1fr));gap:6px}
+#progs h3{grid-column:1/-1;margin:2px 0 0;font-size:13px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+.pg{min-height:44px;border:2px solid var(--line);border-radius:10px;background:#fff;text-align:left;padding:4px 8px;font-size:14px;font-weight:600;color:var(--ink)}
+.pg b{color:var(--brand);margin-right:4px}
+.pg[aria-pressed="true"]{border-color:var(--brand);background:var(--thead)}
+
+/* tight: a wide screen in a short window (1366x657, 1280x600) */
+body.tight #run{min-height:50px}
+body.tight .ynb{min-height:54px}
+body.tight #plabel{font-size:16px}
+
+/* mid: the keypad in one row */
+body.mid #keypad{grid-template-columns:repeat(12,minmax(0,1fr));gap:4px}
+body.mid .key{font-size:19px}
+body.mid #ask{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"label label" "keys run" "yn run";gap:8px}
+body.mid #plabel{grid-area:label}
+body.mid #keypad{grid-area:keys}
+body.mid #yn{grid-area:yn}
+body.mid #yn:not([hidden])+.runrow,body.mid .runrow{grid-area:run;flex-direction:column;align-items:stretch;gap:2px}
+body.mid #run{min-height:48px;font-size:18px;padding:0 14px}
+body.mid #show{min-height:44px}
+body.mid #levels{grid-template-columns:repeat(4,minmax(0,1fr))}
+
+/* phone: the bar fixed to the bottom */
+body.phone #bar{position:fixed;left:0;right:0;bottom:0;z-index:20;background:#fff;border-top:3px solid var(--line);box-shadow:0 -4px 14px #0000001f;padding:6px 8px 8px;gap:6px}
+body.phone #ask{display:grid;grid-template-columns:minmax(0,1fr);gap:6px}
+body.phone #keypad{grid-template-columns:repeat(6,minmax(0,1fr));gap:4px}
+body.phone .key{min-height:44px;font-size:19px}
+body.phone{--clh:1.4}
+body.phone header{padding:4px 8px;gap:6px}
+body.phone .seg button,body.phone .icon-btn{min-height:44px;font-size:14px;padding:0 10px}
+body.phone .cbar{padding:5px 10px;font-size:13px}
+body.phone .lines{padding:4px 0 6px}
+body.phone #plabel{font-size:15px}
+body.phone .ynb{min-height:48px}
+body.phone #run{min-height:46px;font-size:16px;border-radius:12px;white-space:nowrap;padding:0 12px}
+body.phone #show{font-size:13px;padding:0 2px;white-space:nowrap}
+body.phone #run{gap:6px;padding:0 10px}
+body.phone .nb .w{display:none}
+body.phone[data-mode="trace"] #bar{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"ask ask" "run nav"}
+body.phone[data-mode="trace"] #ask{display:contents}
+body.phone[data-mode="trace"] #plabel,body.phone[data-mode="trace"] #keypad,body.phone[data-mode="trace"] #yn{grid-column:1/-1}
+body.phone[data-mode="trace"] .runrow{grid-column:1}
+body.phone[data-mode="trace"] #lvnav{grid-column:2;grid-template-columns:repeat(3,44px)}
+body.phone[data-mode="trace"].done #lvnav{grid-column:1/-1;grid-template-columns:repeat(3,minmax(0,1fr))}
+body.phone[data-mode="trace"].done .nb .w{display:inline}
+body.phone #levels{grid-template-columns:repeat(2,minmax(0,1fr))}
+body.phone #wbmain .nb{min-height:46px;font-size:14px}
+.calm .key:active{transform:none}
+
+@media print{
+  header,.panel,#bar,#chip,#stepper,.cbar .dots,.foot,#stamp,tr.pending,.qTag,.phead span{display:none!important}
+  body,body.mid,body.phone{display:block;height:auto;overflow:visible;background:#fff;padding:0!important}
+  #printTitle{display:block!important;font:800 22px 'Trebuchet MS',sans-serif;margin:0 0 10px}
+  main,.stage{display:block!important;overflow:visible!important;height:auto!important;padding:0!important;background:#fff}
+  .code{width:auto!important;background:#fff!important;color:#111!important;border:1px solid #999;box-shadow:none;margin:0 0 14px;break-inside:avoid}
+  .cbar{background:#f1f1f1;color:#111}
+  .lines{overflow:visible;font-size:15px!important}
+  .ln,body[data-mode="wb"] .ln{min-height:0;background:none!important;border-left-color:transparent!important}
+  .t-name,.t-num,.t-kw,.t-note,.gut,.ln.skip .txt,button.num{color:#111!important;background:none!important;border:0!important}
+  .t-kw{font-weight:700}.t-note{font-style:italic}
+  .ln .mk::before{content:""!important}
+  .gut .no,.ln.run .no{color:#111!important}
+  .skipTag{background:none!important;color:#111!important;border:1px solid #888}
+  .page{box-shadow:none;background:#fff!important;padding:0}
+  .tw{overflow:visible!important;height:auto!important;max-height:none!important}
+  th{position:static;background:#eee}
+  td.land{box-shadow:none}
+}
+#printTitle{display:none}
+</style>
+</head>
+<body data-mode="trace">
+<header id="hdr">
+  <h1>Code Tracer <small>Predict, then run</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-trace" aria-pressed="true">Trace</button>
+    <button id="m-wb" aria-pressed="false">Workbench</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true" title="Turn animation on or off">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+  <button class="icon-btn" id="read">🔊 Read</button>
+</header>
+<main id="main">
+  <aside class="panel" id="panel">
+    <p class="hint" id="hint"></p>
+    <div id="bar">
+      <div id="ask">
+        <p id="plabel"></p>
+        <div id="keypad" role="group" aria-label="Number keys">
+          <button class="key" data-k="1">1</button><button class="key" data-k="2">2</button><button class="key" data-k="3">3</button>
+          <button class="key" data-k="4">4</button><button class="key" data-k="5">5</button><button class="key" data-k="6">6</button>
+          <button class="key" data-k="7">7</button><button class="key" data-k="8">8</button><button class="key" data-k="9">9</button>
+          <button class="key" data-k="-" aria-label="Minus sign">−</button><button class="key" data-k="0">0</button><button class="key" data-k="back" aria-label="Delete">⌫</button>
+        </div>
+        <div id="yn" role="group" aria-label="Your answer" hidden>
+          <button class="ynb" id="yes" aria-pressed="false">Yes</button><button class="ynb" id="no" aria-pressed="false">No</button>
+        </div>
+        <div class="runrow">
+          <button class="big-btn gold" id="run"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 2l14 8-14 8z" fill="currentColor"/></svg>Run line</button>
+          <button id="show">Just show me</button>
+        </div>
+      </div>
+      <div id="lvnav" class="nav">
+        <button class="nb" id="restart" aria-label="Restart level"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4a8 8 0 1 1-7.4 5H2l4-5 4 5H7.2A5.5 5.5 0 1 0 12 6.5z" fill="currentColor"/></svg><span class="w">Restart</span></button>
+        <button class="nb" id="next" aria-label="Next level"><span class="w">Next</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11h11l-4-4 1.6-1.6L19.2 12l-6.6 6.6L11 17l4-4H4z" fill="currentColor"/></svg></button>
+        <button class="nb" id="print" aria-label="Print trace"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h10v4H7zM4 8h16a2 2 0 0 1 2 2v6h-4v4H6v-4H2v-6a2 2 0 0 1 2-2zm4 7v3h8v-3z" fill="currentColor"/></svg><span class="w">Print</span></button>
+      </div>
+      <div id="wbmain" hidden>
+        <button class="nb" id="back" aria-label="Back one step">◀ <span class="w">Back</span></button>
+        <button class="nb" id="step" aria-label="Step">Step ▶</button>
+        <button class="nb" id="play" aria-label="Play">▶ <span class="w">Play</span></button>
+        <button class="nb" id="wbrestart" aria-label="Restart"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4a8 8 0 1 1-7.4 5H2l4-5 4 5H7.2A5.5 5.5 0 1 0 12 6.5z" fill="currentColor"/></svg><span class="w">Restart</span></button>
+      </div>
+    </div>
+    <p class="tip" id="tip"></p>
+    <div id="notecard" role="group" aria-labelledby="ncTitle" hidden>
+      <h2 id="ncTitle">Does the note tell the truth?</h2>
+      <code id="ncNote"></code>
+      <div class="row"><button class="ynb" id="ncYes">Yes</button><button class="ynb" id="ncNo">No</button></div>
+    </div>
+    <div id="levels" role="group" aria-label="Levels"></div>
+    <div id="wbmore" hidden>
+      <div class="pair" role="group" aria-labelledby="spdLbl"><span class="lbl" id="spdLbl">Speed</span><button id="slow" aria-pressed="true">Slow</button><button id="quick" aria-pressed="false">Quick</button></div>
+      <button class="nb tog" id="predict" aria-pressed="false">Predict <span class="st">off</span></button>
+      <button class="nb" id="resetNums">Reset numbers</button>
+      <button class="nb" id="wbprint" style="grid-column:1/-1"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h10v4H7zM4 8h16a2 2 0 0 1 2 2v6h-4v4H6v-4H2v-6a2 2 0 0 1 2-2zm4 7v3h8v-3z" fill="currentColor"/></svg>Print trace</button>
+    </div>
+    <div id="progs" role="group" aria-label="Programs" hidden></div>
+  </aside>
+  <div class="stage" id="stage">
+    <h2 id="printTitle"></h2>
+    <section class="code" id="code" aria-label="The program">
+      <div class="cbar"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span id="codeTitle"></span></div>
+      <div class="lines" id="lines"></div>
+      <div id="stepper" role="group" aria-label="Change the number" hidden>
+        <button id="stDown" aria-label="One less">−</button><output id="stVal" aria-live="polite"></output><button id="stUp" aria-label="One more">+</button>
+        <span id="stRange"></span>
+      </div>
+    </section>
+    <section class="page" id="page" aria-label="Trace table">
+      <div class="phead"><h2 id="pageTitle">Trace table</h2><span id="setName"></span></div>
+      <div class="tw" id="tw"><table id="tbl"></table></div>
+      <div class="foot"><span id="tally"></span><span id="res"></span></div>
+      <svg id="stamp" viewBox="0 0 150 76" aria-hidden="true" hidden>
+        <rect x="4" y="4" width="142" height="68" rx="16" fill="#fff6" stroke="#c8551f" stroke-width="5"/>
+        <rect x="11" y="11" width="128" height="54" rx="11" fill="none" stroke="#c8551f" stroke-width="2"/>
+        <text x="75" y="48" text-anchor="middle" font-family="'Trebuchet MS','Segoe UI',sans-serif" font-weight="900" font-size="30" fill="#c8551f" letter-spacing="1">Traced!</text>
+      </svg>
+    </section>
+  </div>
+</main>
+<div id="live" class="sr" aria-live="polite"></div>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const wait = ms => new Promise(r => setTimeout(r, ms));
+  const now = () => performance.now();
+  const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+  const fmt = v => v == null ? '' : v < 0 ? '−' + (-v) : String(v);
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[c]));
+
+  // ======================================================================================
+  // Every line the tool speaks (spec "Voice"); the hint is always one of them, so Read can use the recordings
+  // ======================================================================================
+  const L = {
+    welcome: 'Welcome to Code Tracer. A program runs one line at a time. Before each line runs, predict what it will do. Then run it and check.',
+    type: 'Type your guess in the empty box, then press Run line.',
+    match: 'It matched. You traced that line just like the computer would.',
+    miss: 'Not quite. Read the line again. The right side is worked out first, then stored in the variable on the left.',
+    ifq: 'This line asks a question. Is it true? Tap Yes or No, then press Run line.',
+    rep: 'A repeat line runs the lines tucked under it again and again. Watch the round number.',
+    notes: 'Lines that start with a hash sign are notes for people. The computer skips them.',
+    check: 'Now test the note. Does it tell the truth about what happened? Tap Yes or No on the note card.',
+    traced: 'Traced! Your table is a record of every step the program took.',
+    tracedNext: 'Traced! Your table is a record of every step the program took. Press Next for a new program.',
+    all: 'You traced all twelve programs. Press Workbench to change the numbers.',
+    wb: 'This is the Workbench. Tap a number in the code to change it, then press Step and watch the table.',
+    wbDone: 'The program is done. Press Restart to run it again, or tap a number to change it.',
+    changed: "You changed the code. Notes don't change by themselves. Press Step, then check: is the note still true?",
+    shown: 'Here is what that line does. Next time, try a guess first.',
+    empty: 'Type a guess first, or press Just show me.',
+  };
+  const WHY = [
+    'apples equals apples plus 2 takes the 3 already in apples, adds 2, and stores 5 back in apples.',
+    'Setting steps to 7 throws the 2 away. A variable holds only one value at a time.',
+    'coins plus coins is 6 plus 6. Both use the value coins holds right now.',
+    'b equals a copied the 4. When a changed later, b kept its own 4.',
+    'Use the newest value in each column. cats was 6 by then, so dogs becomes 7 plus 6, which is 13.',
+    'left got the 8 first, so the 3 was gone. Then right equals left copied 8 back.',
+    'Each round adds 1 to jumps. Four rounds, four more.',
+    'Each round doubles blocks: 1, then 2, then 4, then 8.',
+    'Each round, total adds the current n, then n goes up by one. 1 plus 2 plus 3 is 6.',
+    'temp is 75. Is 75 more than 80? No, so the line inside the if is skipped and fan stays 0.',
+    'The first if made points 18. So the second if sees 18, which is more than 15.',
+    'In round 4, lives is 0. Is 0 more than 0? No. So lives stops at 0.',
+  ];
+  const NOTE_FB = {
+    6: {yes: 'Look at the last row. left is 8 and right is 8. Did the 3 get swapped over? Press Next for a new program.',
+        no: 'Right. The note says swap, but both ended up 8. The code does not do what the note says. Press Next, or try Swap with a spare on the Workbench.'},
+    9: {yes: 'Right. total ended at 6, and 1 plus 2 plus 3 is 6. The note is true. Press Next for a new program.',
+        no: 'Check the table. total ended at 6. What is 1 plus 2 plus 3? Press Next for a new program.'},
+    12: {yes: 'Right. Four rounds, but lives stopped at 0. The if kept it from going below 0. Press Workbench to change the numbers.',
+         no: 'Look down the lives column. Did it ever go below 0? Press Workbench to change the numbers.'},
+  };
+  const allLines = () => [...new Set([L.welcome, L.type, L.match, L.miss, L.ifq, L.rep, L.notes, L.check, L.traced, L.tracedNext, L.all, L.wb, L.wbDone, L.changed, L.shown, L.empty,
+    ...WHY, NOTE_FB[6].no, NOTE_FB[6].yes, NOTE_FB[9].yes, NOTE_FB[9].no, NOTE_FB[12].yes, NOTE_FB[12].no])];
+
+  /* TRACE ENGINE: begin */
+  // The tiny language Code Tracer's programs are written in, and its interpreter. Program data and number overrides
+  // in, display lines and a step list out. No DOM access, no eval, no new Function: nothing typed is ever parsed. Every
+  // statement is checked before anything runs; anything unexpected is refused (a 'refused' step) instead of run.
+  //   {note: 'text'}                                    # text           (shown, never run)
+  //   {set: 'dogs', a: 'cats', op: '+', b: {n: 2, id}}  dogs = cats + 2  (op '+', '-' or '*'; a, b a name or a number)
+  //   {set: 'a', a: {n: 4, id}}                         a = 4
+  //   {say: 'dogs'}                                     say dogs
+  //   {repeat: {n: 4, id}, body: [...]}                 repeat 4 times:
+  //   {if: ['temp', '>', {n: 80, id}], body: [...]}     if temp > 80:   (comparison '>' or '<')
+  // run() returns steps {step, line, kind: 'set'|'say'|'repeat'|'if'|'refused', var, before, after, check, says, ok,
+  // round, of, skipped: [lines], body: [lines], vars: {values after the step}}.
+  const TraceEngine = (() => {
+    const MAXV = 9999999, MAXSTEPS = 400, MAXDEPTH = 3, MAXLINES = 30;
+    const has = (o, k) => o != null && Object.prototype.hasOwnProperty.call(o, k);
+    const NAME = /^[a-z]{1,10}$/;
+    const OPS = {'+': (a, b) => a + b, '-': (a, b) => a - b, '*': (a, b) => a * b};
+    const CMPS = {'>': (a, b) => a > b, '<': (a, b) => a < b};
+    const WORDS = {'>': 'is more than', '<': 'is less than', '*': 'times', '+': 'plus', '-': 'minus'};
+    const isName = x => typeof x === 'string' && NAME.test(x);
+    const isNum = x => x !== null && typeof x === 'object' && !Array.isArray(x) && Number.isInteger(x.n) && x.n >= 0 && x.n <= 999 &&
+      typeof x.id === 'string' && /^[a-z0-9]{1,8}$/.test(x.id) && Object.keys(x).every(k => k === 'n' || k === 'id');
+    const isTerm = x => isName(x) || isNum(x);
+    const only = (s, keys) => Object.keys(s).every(k => keys.includes(k));
+    // number ranges the Workbench allows: repeat counts 1-6, a number after * 0-5, any other number 0-20 (0-100 where
+    // the program's own number is bigger than 20, as temp 75 and the 80 it is checked against)
+    const range = nm => nm.role === 'repeat' ? [1, 6] : nm.role === 'times' ? [0, 5] : [0, nm.n > 20 ? 100 : 20];
+
+    // check every statement and number it; {nodes, lines, nums, names, problem}
+    function compile(program) {
+      const lines = [], nums = Object.create(null), names = [];
+      let problem = null;
+      const fail = why => { if (!problem) problem = why; return null; };
+      const name = x => { if (!names.includes(x)) names.push(x); };
+      const num = (t, role) => { if (has(nums, t.id)) return fail('a number id is used twice'); nums[t.id] = {n: t.n, role}; };
+      const term = (t, role) => { if (!isTerm(t)) return fail('a value is not a name or a whole number'); if (typeof t === 'string') name(t); else num(t, role); return true; };
+      function walk(list, depth) {
+        if (!Array.isArray(list) || !list.length) return fail('an empty block');
+        if (depth > MAXDEPTH) return fail('blocks nested too deep');
+        const out = [];
+        for (const s of list) {
+          if (problem) return null;
+          if (lines.length >= MAXLINES) return fail('too many lines');
+          if (s === null || typeof s !== 'object' || Array.isArray(s)) return fail('a line that is not a statement');
+          const nd = {n: lines.length + 1, depth, s, kind: null, body: null};
+          lines.push(nd);
+          if (has(s, 'note')) {
+            if (!only(s, ['note']) || typeof s.note !== 'string' || s.note.length > 60 || /[\n\r]/.test(s.note)) return fail('a bad note');
+            nd.kind = 'note';
+          } else if (has(s, 'set')) {
+            if (!only(s, ['set', 'a', 'op', 'b']) || !isName(s.set)) return fail('a bad set line');
+            if (has(s, 'op') !== has(s, 'b')) return fail('an operator without two values');
+            if (has(s, 'op') && !(typeof s.op === 'string' && has(OPS, s.op))) return fail('an unknown operator');
+            if (!term(s.a, 'value')) return null;
+            if (has(s, 'b') && !term(s.b, s.op === '*' ? 'times' : 'value')) return null;
+            name(s.set);
+            nd.kind = 'set';
+          } else if (has(s, 'say')) {
+            if (!only(s, ['say']) || !term(s.say, 'value')) return fail('a bad say line');
+            nd.kind = 'say';
+          } else if (has(s, 'repeat')) {
+            if (!only(s, ['repeat', 'body']) || !isNum(s.repeat) || s.repeat.n > 20) return fail('a bad repeat line');
+            num(s.repeat, 'repeat');
+            nd.kind = 'repeat';
+            nd.body = walk(s.body, depth + 1);
+            if (!nd.body) return null;
+          } else if (has(s, 'if')) {
+            const c = s.if;
+            if (!only(s, ['if', 'body']) || !Array.isArray(c) || c.length !== 3 || typeof c[1] !== 'string' || !has(CMPS, c[1])) return fail('a bad if line');
+            if (!term(c[0], 'value') || !term(c[2], 'value')) return null;
+            nd.kind = 'if';
+            nd.body = walk(s.body, depth + 1);
+            if (!nd.body) return null;
+          } else return fail('an unknown kind of line');
+          out.push(nd);
+        }
+        return out;
+      }
+      const nodes = Array.isArray(program) ? walk(program, 0) : fail('not a program');
+      if (!problem && (!program.length || !has(program[0], 'note'))) fail('line 1 must be a note');
+      return {nodes, lines, nums, names, problem};
+    }
+    // the values of the numbers, after Workbench changes (each checked against its range)
+    function numbers(c, overrides) {
+      const val = Object.create(null);
+      for (const id in c.nums) val[id] = c.nums[id].n;
+      if (overrides == null) return {val};
+      if (typeof overrides !== 'object' || Array.isArray(overrides)) return {problem: 'bad number changes'};
+      for (const id of Object.keys(overrides)) {
+        if (!has(c.nums, id)) return {problem: 'a change to a number that is not in the program'};
+        const v = overrides[id], r = range(c.nums[id]);
+        if (!Number.isInteger(v) || v < r[0] || v > r[1]) return {problem: 'a number outside its range'};
+        val[id] = v;
+      }
+      return {val};
+    }
+    function bodyLines(nd) { const out = []; const w = ns => ns.forEach(x => { out.push(x.n); if (x.body) w(x.body); }); w(nd.body); return out; }
+
+    function run(program, overrides) {
+      const c = compile(program);
+      if (c.problem) return [{step: 1, line: null, kind: 'refused', why: c.problem}];
+      const nv = numbers(c, overrides);
+      if (nv.problem) return [{step: 1, line: null, kind: 'refused', why: nv.problem}];
+      const val = nv.val, vars = Object.create(null), steps = [];
+      const snap = () => { const o = {}; for (const k of c.names) if (k in vars) o[k] = vars[k]; return o; };
+      class Stop { constructor(why, line) { this.why = why; this.line = line; } }
+      const get = (t, line) => {
+        if (typeof t === 'string') { if (!(t in vars)) throw new Stop(t + ' has no value yet', line); return vars[t]; }
+        return val[t.id];
+      };
+      const push = o => {
+        if (steps.length >= MAXSTEPS) throw new Stop('too many steps', o.line);
+        steps.push(Object.assign({step: steps.length + 1, var: null, before: null, after: null, check: null, says: null}, o, {vars: snap()}));
+      };
+      function exec(nodes) {
+        for (const nd of nodes) {
+          const s = nd.s;
+          if (nd.kind === 'set') {
+            let v = get(s.a, nd.n);
+            if (s.op) v = OPS[s.op](v, get(s.b, nd.n));
+            if (!Number.isFinite(v) || Math.abs(v) > MAXV) throw new Stop('a number too big to keep', nd.n);
+            const before = s.set in vars ? vars[s.set] : null;
+            vars[s.set] = v;
+            push({line: nd.n, kind: 'set', var: s.set, before, after: v});
+          } else if (nd.kind === 'say') {
+            push({line: nd.n, kind: 'say', says: get(s.say, nd.n)});
+          } else if (nd.kind === 'repeat') {
+            const k = val[s.repeat.id], body = bodyLines(nd);
+            for (let r = 1; r <= k; r++) {
+              push({line: nd.n, kind: 'repeat', round: r, of: k, check: 'round ' + r + ' of ' + k, body});
+              exec(nd.body);
+            }
+          } else if (nd.kind === 'if') {
+            const a = get(s.if[0], nd.n), b = get(s.if[2], nd.n), ok = CMPS[s.if[1]](a, b), body = bodyLines(nd);
+            push({line: nd.n, kind: 'if', ok, check: ok ? 'yes' : 'no', skipped: ok ? [] : body, body, a, b});
+            if (ok) exec(nd.body);
+          }
+        }
+      }
+      try { exec(c.nodes); }
+      catch (e) { if (!(e instanceof Stop)) throw e; steps.push({step: steps.length + 1, line: e.line, kind: 'refused', why: e.why, vars: snap()}); }
+      return steps;
+    }
+    // the program as the code card shows it: one entry per line with its tokens
+    function view(program, overrides) {
+      const c = compile(program);
+      if (c.problem) return {problem: c.problem, lines: [], names: [], nums: {}};
+      const nv = numbers(c, overrides), val = nv.val || numbers(c).val;
+      const T = (t, text, id) => ({t, text, id});
+      const term = x => typeof x === 'string' ? T('name', x) : T('num', fmt(val[x.id]), x.id);
+      const lines = c.lines.map(nd => {
+        const s = nd.s;
+        let tk;
+        if (nd.kind === 'note') tk = [T('note', '# ' + s.note)];
+        else if (nd.kind === 'set') tk = [T('name', s.set), T('op', ' = '), term(s.a), ...(s.op ? [T('op', ' ' + s.op + ' '), term(s.b)] : [])];
+        else if (nd.kind === 'say') tk = [T('kw', 'say'), T('op', ' '), term(s.say)];
+        else if (nd.kind === 'repeat') tk = [T('kw', 'repeat'), T('op', ' '), term(s.repeat), T('op', ' '), T('kw', 'times'), T('op', ':')];
+        else tk = [T('kw', 'if'), T('op', ' '), term(s.if[0]), T('op', ' ' + s.if[1] + ' '), term(s.if[2]), T('op', ':')];
+        return {n: nd.n, depth: nd.depth, kind: nd.kind, tokens: tk, s};
+      });
+      const nums = {};
+      for (const id in c.nums) nums[id] = {n: c.nums[id].n, value: val[id], role: c.nums[id].role, range: range(c.nums[id])};
+      return {lines, names: c.names, nums};
+    }
+    // a line in words, for screen readers ("if temp is more than 80")
+    function words(line) { return line.tokens.map(t => t.t === 'op' ? t.text.replace(/[><*+\-]/g, m => WORDS[m]) : t.t === 'note' ? 'note: ' + t.text.slice(2) : t.text).join(''); }
+    return {run, view, words, WORDS};
+  })();
+  /* TRACE ENGINE: end */
+
+  // ======================================================================================
+  // The programs (spec "Content"); star = the aha step, note = the right answer to the note check
+  // ======================================================================================
+  const N = (n, id) => ({n, id});
+  const PROGS = [
+    {set: 'One box', title: 'Apples', star: 2, code: [{note: 'count the apples in the basket'}, {set: 'apples', a: N(3, 'n1')},
+      {set: 'apples', a: 'apples', op: '+', b: N(2, 'n2')}, {set: 'apples', a: 'apples', op: '-', b: N(1, 'n3')}, {say: 'apples'}]},
+    {set: 'One box', title: 'New value', star: 2, code: [{note: 'the last value wins'}, {set: 'steps', a: N(2, 'n1')}, {set: 'steps', a: N(7, 'n2')},
+      {set: 'steps', a: 'steps', op: '+', b: N(1, 'n3')}, {say: 'steps'}]},
+    {set: 'One box', title: 'Double up', star: 3, code: [{note: 'coins after a trade'}, {set: 'coins', a: N(10, 'n1')},
+      {set: 'coins', a: 'coins', op: '-', b: N(4, 'n2')}, {set: 'coins', a: 'coins', op: '+', b: 'coins'}, {say: 'coins'}]},
+    {set: 'Two boxes', title: 'Just a copy', star: 4, code: [{note: 'b gets a copy of a'}, {set: 'a', a: N(4, 'n1')}, {set: 'b', a: 'a'},
+      {set: 'a', a: N(9, 'n2')}, {say: 'b'}]},
+    {set: 'Two boxes', title: 'Cats and dogs', star: 4, code: [{note: 'count the pets'}, {set: 'cats', a: N(5, 'n1')}, {set: 'dogs', a: 'cats', op: '+', b: N(2, 'n2')},
+      {set: 'cats', a: 'dogs', op: '-', b: N(1, 'n3')}, {set: 'dogs', a: 'dogs', op: '+', b: 'cats'}, {say: 'dogs'}]},
+    {set: 'Two boxes', title: 'The swap', star: 4, note: 'no', code: [{note: 'swap left and right'}, {set: 'left', a: N(3, 'n1')}, {set: 'right', a: N(8, 'n2')},
+      {set: 'left', a: 'right'}, {set: 'right', a: 'left'}, {say: 'left'}, {say: 'right'}]},
+    {set: 'Repeat', title: 'Jumps', star: 9, code: [{note: 'count 4 jumps'}, {set: 'jumps', a: N(0, 'n1')},
+      {repeat: N(4, 'n2'), body: [{set: 'jumps', a: 'jumps', op: '+', b: N(1, 'n3')}]}, {say: 'jumps'}]},
+    {set: 'Repeat', title: 'Doubling tower', star: 7, code: [{note: 'the tower doubles 3 times'}, {set: 'blocks', a: N(1, 'n1')},
+      {repeat: N(3, 'n2'), body: [{set: 'blocks', a: 'blocks', op: '*', b: N(2, 'n3')}]}, {say: 'blocks'}]},
+    {set: 'Repeat', title: 'Add them up', star: 10, note: 'yes', code: [{note: 'add 1 + 2 + 3'}, {set: 'total', a: N(0, 'n1')}, {set: 'n', a: N(1, 'n2')},
+      {repeat: N(3, 'n3'), body: [{set: 'total', a: 'total', op: '+', b: 'n'}, {set: 'n', a: 'n', op: '+', b: N(1, 'n4')}]}, {say: 'total'}]},
+    {set: 'If', title: 'Fan check', star: 3, code: [{note: 'turn the fan on when it is hot'}, {set: 'fan', a: N(0, 'n1')}, {set: 'temp', a: N(75, 'n2')},
+      {if: ['temp', '>', N(80, 'n3')], body: [{set: 'fan', a: N(1, 'n4')}]}, {say: 'fan'}]},
+    {set: 'If', title: 'Bonus round', star: 4, code: [{note: 'big bonus, but too big resets'}, {set: 'points', a: N(8, 'n1')},
+      {if: ['points', '>', N(5, 'n2')], body: [{set: 'points', a: 'points', op: '+', b: N(10, 'n3')}]},
+      {if: ['points', '>', N(15, 'n4')], body: [{set: 'points', a: N(0, 'n5')}]}, {say: 'points'}]},
+    {set: 'If', title: 'Careful lives', star: 12, note: 'yes', code: [{note: 'lives never go below 0'}, {set: 'lives', a: N(3, 'n1')},
+      {repeat: N(4, 'n2'), body: [{if: ['lives', '>', N(0, 'n3')], body: [{set: 'lives', a: 'lives', op: '-', b: N(1, 'n4')}]}]}, {say: 'lives'}]},
+    {set: 'Workbench', title: 'Swap with a spare', code: [{note: 'swap left and right, using a spare box'}, {set: 'left', a: N(3, 'n1')}, {set: 'right', a: N(8, 'n2')},
+      {set: 'spare', a: 'left'}, {set: 'left', a: 'right'}, {set: 'right', a: 'spare'}, {say: 'left'}, {say: 'right'}]},
+  ];
+  const SETS = ['One box', 'Two boxes', 'Repeat', 'If'];
+  PROGS.forEach((p, i) => { p.id = i + 1; if (p.star) p.why = WHY[i]; });
+
+  // ======================================================================================
+  // State: each mode keeps its own place for the page load (nothing is saved)
+  // ======================================================================================
+  const state = {mode: 'trace', busy: false};
+  const doneLv = new Set();
+  const T = {mode: 'trace', prog: 1, gen: 0};
+  const W = {mode: 'wb', prog: 1, gen: 0, nums: {}, playing: false, quick: false, predict: false};
+  const cur = () => state.mode === 'trace' ? T : W;
+  const P = V => PROGS[V.prog - 1];
+  const guessKind = s => s && (s.kind === 'set' || s.kind === 'say' || s.kind === 'if');
+  const realOf = s => s.kind === 'if' ? (s.ok ? 'yes' : 'no') : s.kind === 'say' ? s.says : s.kind === 'set' ? s.after : s.check;
+  const shownVal = (s, v) => typeof v === 'number' ? fmt(v) : String(v);
+  function load(V) {
+    const p = P(V), ov = V === W ? W.nums[p.id] : undefined;
+    V.view = TraceEngine.view(p.code, ov);
+    V.steps = TraceEngine.run(p.code, ov);
+    kbuf.length = 0; V.sq = 0;
+    V.i = 0; V.rows = []; V.guess = ''; V.yn = null; V.gen++; V.whyHint = null; V.res = '';
+    V.cols = [...V.view.names.map(n => ({kind: 'var', name: n})), ...(V.view.lines.some(l => l.kind === 'repeat' || l.kind === 'if') ? [{kind: 'check'}] : []), {kind: 'says'}];
+    if (V === T) { T.matches = 0; T.done = false; T.noteAns = null; T.total = T.steps.filter(guessKind).length; T.doneGuesses = 0; }
+  }
+  const refused = V => V.steps.length && V.steps[V.steps.length - 1].kind === 'refused';
+  // waiting for a prediction: Trace always, the Workbench when Predict is on
+  const asking = () => { const V = cur(); const s = V.steps[V.i]; return !!s && s.kind !== 'refused' && (V === T ? !T.done : W.predict); };
+
+  // ======================================================================================
+  // The code card
+  // ======================================================================================
+  let lineEls = {};
+  function renderCode() {
+    const V = cur(), p = P(V), host = $('lines'), wb = V === W;
+    closeStepper(true);
+    $('codeTitle').textContent = (wb ? 'Program ' : 'Level ') + p.id + ' · ' + p.title;
+    host.innerHTML = '';
+    lineEls = {};
+    const changed = wb && isChanged();
+    for (const ln of V.view.lines) {
+      const d = document.createElement('div');
+      d.className = 'ln' + (ln.kind === 'note' ? ' note' : '');
+      d.dataset.n = ln.n;
+      let html = `<span class="gut" aria-hidden="true"><span class="mk"></span><span class="no">${ln.n}</span></span>`;
+      for (let k = 0; k < ln.depth; k++) html += '<span class="ind" aria-hidden="true"></span>';
+      html += '<span class="txt">';
+      for (const t of ln.tokens) {
+        if (t.t === 'num' && wb) {
+          const nm = V.view.nums[t.id], chg = nm.value !== nm.n;
+          html += `<button class="num${chg ? ' chg' : ''}" data-id="${esc(t.id)}" aria-label="${esc(t.text)}, a number on line ${ln.n}: change it" aria-haspopup="true">${esc(t.text)}</button>`;
+        } else if (t.t === 'op') html += esc(t.text);
+        else html += `<span class="t-${t.t}">${esc(t.text)}</span>`;
+      }
+      html += '</span>';
+      if (ln.kind === 'note' && changed) html += '<span class="tagx qTag">? changed: still true?</span>';
+      d.innerHTML = html;
+      d.setAttribute('aria-label', 'Line ' + ln.n + ': ' + TraceEngine.words(ln));
+      host.appendChild(d);
+      lineEls[ln.n] = d;
+    }
+    decorate();
+  }
+  // ▶ on the line about to run, faint ticks on lines that ran, "skipped" on lines a false if passed over this time
+  function decorate(runLine) {
+    const V = cur(), ran = new Set(), skip = new Set();
+    for (let k = 0; k < V.i; k++) {
+      const s = V.steps[k];
+      if (!s || s.kind === 'refused') continue;
+      ran.add(s.line);
+      if (s.kind === 'repeat' || (s.kind === 'if' && s.ok)) s.body.forEach(n => skip.delete(n));
+      if (s.kind === 'if' && !s.ok) s.skipped.forEach(n => skip.add(n));
+    }
+    const nx = V.steps[V.i], at = runLine != null ? runLine : nx && nx.kind !== 'refused' && !(V === T && T.done) ? nx.line : null;
+    for (const n in lineEls) {
+      const el = lineEls[n], k = +n;
+      el.classList.toggle('run', k === at);
+      el.classList.toggle('ran', ran.has(k) && k !== at);
+      el.classList.toggle('skip', skip.has(k) && k !== at);
+      let tg = el.querySelector('.skipTag');
+      if (skip.has(k) && k !== at && !tg) { tg = document.createElement('span'); tg.className = 'tagx skipTag'; tg.textContent = 'skipped'; el.appendChild(tg); }
+      if (!(skip.has(k) && k !== at) && tg) tg.remove();
+      if (k === at) el.setAttribute('aria-current', 'step'); else el.removeAttribute('aria-current');
+    }
+    if (at != null) {
+      const el = lineEls[at], box = $('lines');
+      if (el && (el.offsetTop < box.scrollTop || el.offsetTop + el.offsetHeight > box.scrollTop + box.clientHeight)) box.scrollTop = el.offsetTop - box.clientHeight / 3;
+    }
+  }
+
+  // ======================================================================================
+  // The trace table
+  // ======================================================================================
+  function guessText(V) {
+    const s = V.steps[V.i];
+    if (s && s.kind === 'if') return V.yn || '';
+    return V.guess.replace('-', '−');
+  }
+  // which column a step writes in
+  const writes = (s, col) => col.kind === 'var' ? s.kind === 'set' && s.var === col.name : col.kind === 'check' ? s.kind === 'repeat' || s.kind === 'if' : s.kind === 'say';
+  function cellHTML(V, k, col, phase) {
+    const s = V.steps[k], r = V.rows[k] || {};
+    const cls = col.kind === 'check' ? 'ck' + (s.kind === 'if' ? ' yn' : '') : col.kind === 'says' ? 'sy' : 'vr';
+    if (writes(s, col)) {
+      if (phase !== 'final') {
+        const g = phase === 'pending' || (r.how === 'match' || r.how === 'miss') ? (k === V.i ? guessText(V) : '') : '';
+        const ghost = phase === 'incoming' && !V.flyGuess;
+        return `<td class="${cls} w tgt"><span class="pred${ghost ? ' ghost' : ''}">${esc(phase === 'incoming' ? V.flyGuess || '' : g)}</span></td>`;
+      }
+      let h = `<span class="v">${esc(shownVal(s, realOf(s)))}</span>`;
+      if (r.how === 'match') h += '<span class="ok">matched</span>';
+      else if (r.how === 'miss') h += `<span class="gs" aria-label="your guess ${esc(r.guessText)}">${esc(r.guessText)}</span>`;
+      else if (r.how === 'shown') h += '<span class="sh">shown</span>';
+      return `<td class="${cls} w">${h}</td>`;
+    }
+    if (col.kind === 'var' && phase === 'final' && has(s.vars, col.name)) return `<td class="c">${fmt(s.vars[col.name])}</td>`;
+    return `<td class="${cls}"></td>`;
+  }
+  const has = (o, k) => Object.prototype.hasOwnProperty.call(o, k);
+  // rows 0..i-1 final; then the incoming row (a step in flight) or the pending row (waiting for a guess)
+  function renderTable(extra) {
+    const V = cur(), tbl = $('tbl');
+    if (V.view.problem || (V.steps[0] && V.steps[0].kind === 'refused' && V.steps[0].line == null)) {
+      tbl.innerHTML = `<tbody><tr><td class="refused">This program can't run: ${esc((V.view.problem || V.steps[0].why))}.</td></tr></tbody>`;
+      return;
+    }
+    let h = '<caption class="sr">Trace table: one row for each step the program took</caption><thead><tr><th scope="col">Step</th><th scope="col">Line</th>';
+    for (const c of V.cols) h += c.kind === 'var' ? `<th scope="col" class="vn">${esc(c.name)}</th>` : `<th scope="col">${c.kind === 'check' ? 'Check' : 'Says'}</th>`;
+    h += '</tr></thead><tbody>';
+    const row = (k, phase) => {
+      const s = V.steps[k];
+      if (s.kind === 'refused') return `<tr><td class="sn">${s.step}</td><td class="lnn">${s.line || ''}</td><td class="refused" colspan="${V.cols.length}">Stopped: ${esc(s.why)}.</td></tr>`;
+      let r = `<tr class="${phase === 'pending' ? 'pending' : k === V.i - 1 ? 'newest' : ''}" data-k="${k}"><td class="sn">${s.step}</td><td class="lnn">${s.line}</td>`;
+      for (const c of V.cols) r += cellHTML(V, k, c, phase);
+      return r + '</tr>';
+    };
+    for (let k = 0; k < V.i; k++) h += row(k, 'final');
+    if (extra === 'incoming') h += row(V.i, 'incoming');
+    else if (asking() && guessKind(V.steps[V.i]) && !state.busy) h += row(V.i, 'pending');
+    tbl.innerHTML = h + '</tbody>';
+    const tw = $('tw');
+    tw.scrollTop = tw.scrollHeight;
+    guardTable();
+    keepClear();
+  }
+  // the table never scrolls sideways: if it is too wide, pack it tighter, then put the "skipped" tag under its line
+  function guardTable() {
+    const V = cur(), tw = $('tw');
+    if (state.busy) return;
+    if (!tw.clientWidth) return;
+    // a value sliding into its cell pokes past the edge for a moment: measure once it has landed
+    const moving = tw.getAnimations ? tw.getAnimations({subtree: true}).filter(an => an.playState === 'running') : [];
+    if (moving.length) { if (!guardTable.wait) guardTable.wait = Promise.all(moving.map(an => an.finished.catch(() => {}))).then(() => { guardTable.wait = null; guardTable(); }); return; }
+    // start loose every time, so a momentary overflow never leaves the table packed small for good
+    V.sq = 0; applySq();
+    while (tw.scrollWidth > tw.clientWidth && V.sq < 3) { V.sq++; applySq(); }
+  }
+  // 1: tighter cells, 2: the "skipped" tag goes under its line (a narrower code card), 3: smaller table type
+  function applySq() { const q = cur().sq || 0; document.body.classList.toggle('tt', q >= 1); document.body.classList.toggle('tt2', q >= 3); fitCode(); }
+  // on a phone the keypad bar is fixed at the bottom: scroll so the row or card being waited on sits above it
+  function keepClear(el) {
+    if (lay.tier !== 'phone') return;
+    const V = cur();
+    el = el || (V === T && T.done && P(T).note && !T.noteAns && state.mode === 'trace' ? $('notecard') : null) || $('tbl').querySelector('tr.pending') || $('tbl').querySelector('tr.newest');
+    if (!el || !el.offsetParent) return;
+    const bar = $('bar'), barTop = getComputedStyle(bar).position === 'fixed' ? bar.getBoundingClientRect().top : innerHeight;
+    const r = el.getBoundingClientRect(), hdr = Math.max(0, $('hdr').getBoundingClientRect().bottom);
+    let dy = 0;
+    if (r.bottom > barTop - 8) dy = Math.min(r.bottom - barTop + 12, r.top - hdr - 8);
+    if (dy > 0) (document.scrollingElement || document.documentElement).scrollBy(0, dy);
+  }
+  function updatePending() { const p = $('tbl').querySelector('tr.pending .pred'); if (p) p.textContent = guessText(cur()); }
+  function footer() {
+    const V = cur();
+    $('tally').textContent = V === T ? `First-try matches: ${T.matches} of ${T.total}` : V.steps.length ? `Row ${V.i} of ${V.steps.length}` : '';
+    $('res').textContent = V.res || (V === W && V.i >= V.steps.length && V.steps.length ? 'The program is done.' : '');
+  }
+
+  // ======================================================================================
+  // Running a line: the chip flies from the end of the code line into its cell (400 ms; Motion off: the value
+  // appears in place with an orange outline for the same 400 ms)
+  // ======================================================================================
+  const FLY = 400, LAND = 300, REPEAT = 700;
+  let chip = null;
+  function dropChip() { if (chip) { chip.remove(); chip = null; } }
+  async function landStep(V, r) {
+    const k = V.i, s = V.steps[k], gen = V.gen;
+    V.flyGuess = r.how === 'match' || r.how === 'miss' ? r.guessText : '';
+    renderTable('incoming');
+    const el = lineEls[s.line];
+    decorate(s.line);
+    if (el) { el.classList.remove('pulse'); void el.offsetWidth; el.classList.add('pulse'); }
+    const tgt = $('tbl').querySelector(`tr[data-k="${k}"] td.tgt .pred`);
+    if (!Curio.reduce && el && tgt) {
+      const a = el.querySelector('.txt').getBoundingClientRect(), b = tgt.getBoundingClientRect();
+      dropChip();
+      chip = document.createElement('div');
+      chip.id = 'chip';
+      chip.setAttribute('aria-hidden', 'true');
+      chip.textContent = shownVal(s, realOf(s));
+      document.body.appendChild(chip);
+      const cw = chip.offsetWidth, ch = chip.offsetHeight;
+      const x0 = a.right + 6, y0 = a.top + a.height / 2 - ch / 2, x1 = b.left + b.width / 2 - cw / 2, y1 = b.top + b.height / 2 - ch / 2;
+      chip.animate([{transform: `translate(${x0}px,${y0}px) scale(1)`}, {transform: `translate(${(x0 + x1) / 2}px,${Math.min(y0, y1) - 24}px) scale(1.12)`, offset: .5},
+        {transform: `translate(${x1}px,${y1}px) scale(1)`}], {duration: FLY, easing: 'ease-in-out', fill: 'forwards'});
+      await wait(FLY);
+      if (gen !== V.gen) return false;
+      dropChip();
+      V.rows[k] = r; V.i++;
+      renderTable();
+      const td = $('tbl').querySelector(`tr[data-k="${k}"] td.w`);
+      if (td) td.classList.add('pop');
+    } else {
+      V.rows[k] = r; V.i++;
+      renderTable();
+      const td = $('tbl').querySelector(`tr[data-k="${k}"] td.w`);
+      if (td) td.classList.add('land');
+      await wait(FLY);
+      if (gen !== V.gen) { if (V.i === k + 1 && V.rows.length === k + 1) { V.i = k; V.rows.length = k; } return false; }
+      if (td) td.classList.remove('land');
+    }
+    decorate();
+    return true;
+  }
+  // repeat rows need no guess: the repeat line lights for 700 ms and writes its round in Check
+  async function repeats(V) {
+    const gen = V.gen;
+    while (V.steps[V.i] && V.steps[V.i].kind === 'repeat') {
+      const k = V.i, s = V.steps[k];
+      V.rows[k] = {how: null}; V.i++;
+      decorate(s.line);
+      const el = lineEls[s.line];
+      if (el) { el.classList.remove('lit', 'pulse'); void el.offsetWidth; el.classList.add('lit'); }
+      renderTable();
+      const td = $('tbl').querySelector(`tr[data-k="${k}"] td.w`);
+      if (td) td.classList.add('land');
+      say1('rep', L.rep, () => cur() === V && V.gen === gen);
+      footer();
+      await wait(REPEAT);
+      if (gen !== V.gen) return false;
+      if (td) td.classList.remove('land');
+      if (el) el.classList.remove('lit');
+    }
+    return true;
+  }
+  function parseGuess(g) {
+    const neg = g.startsWith('-'), d = neg ? g.slice(1) : g;
+    if (!d) return null;
+    return (neg ? -1 : 1) * parseInt(d, 10);
+  }
+
+  // Run line (or Just show me): Trace, and the Workbench with Predict on
+  async function runLine(show) {
+    const V = cur();
+    if (state.busy || !asking()) return;
+    const s = V.steps[V.i];
+    if (s.kind === 'repeat') { state.busy = true; sync(); await repeats(V); finishRun(V); return; }
+    let r;
+    if (show) r = {how: 'shown'};
+    else {
+      const g = s.kind === 'if' ? V.yn : parseGuess(V.guess);
+      if (g == null) { emptyRun(); return; }
+      const real = realOf(s);
+      r = {how: g === real ? 'match' : 'miss', guessText: s.kind === 'if' ? g : fmt(g)};
+    }
+    const gen = V.gen, k = V.i;
+    state.busy = true;
+    V.whyHint = null; V.res = '';
+    setTip('');
+    sync();
+    if (!(await landStep(V, r))) return;
+    // what happened, on screen (templated, never spoken)
+    const rv = shownVal(s, realOf(s));
+    V.res = r.how === 'match' ? `Matched: ${rv}.` : r.how === 'miss' ? `You said ${r.guessText}. It is ${rv}.` : `Shown: ${rv}.`;
+    live(`Line ${s.line}: ${s.kind === 'if' ? 'the answer is ' + rv : s.kind === 'say' ? 'says ' + rv : s.var + ' is ' + rv}. ${r.how === 'match' ? 'Matched.' : r.how === 'miss' ? 'Your guess was ' + r.guessText + '.' : ''}`);
+    if (V === T) { T.doneGuesses++; if (r.how === 'match') T.matches++; }
+    const star = V === T && P(T).star === k + 1;
+    if (r.how === 'match') { Curio.yes(); }
+    else Curio.tone(r.how === 'shown' ? 330 : 220, .28, .04);
+    if (star) V.whyHint = P(T).why;
+    // voice: the why line on the aha step (spoken if the guess missed), else the first match / first miss
+    const here = () => cur() === V && V.gen === gen && V.i <= k + 2;
+    // the tip shows the first match, miss and shown on screen whether or not Sound is on; on the aha step the why
+    // line goes in the tip (the hint keeps saying what to do next) and is spoken if the guess missed
+    const tipOnce = (key, text) => { say1(key, text, here); if (!tipSeen.has(key)) { tipSeen.add(key); setTip(text); } };
+    if (star) {
+      setTip(P(T).why);
+      const lv = P(T).id;
+      if (r.how !== 'match') narrate('why' + lv, P(T).why, {once: true, front: true, valid: () => state.mode === 'trace' && T.prog === lv});
+      else say1('match', L.match, here);
+    } else if (r.how === 'shown') tipOnce('shown', L.shown);
+    else if (r.how === 'match') tipOnce('match', L.match);
+    else if (r.how === 'miss') tipOnce('miss', L.miss);
+    footer();
+    setHintNow();
+    await wait(LAND);
+    if (gen !== V.gen) return;
+    if (!(await repeats(V))) return;
+    finishRun(V);
+  }
+  function finishRun(V) {
+    state.busy = false;
+    V.guess = ''; V.yn = null;
+    if (V === T && !T.steps[T.i] && !T.done) finishLevel();
+    if (V === W) wbEnd();
+    // the bar changes size after this (keypad out, Next in): look again once the layout settles
+    if (lay.tier === 'phone') requestAnimationFrame(() => requestAnimationFrame(() => keepClear()));
+    renderTable();
+    decorate();
+    footer();
+    setHintNow();
+    sync();
+    const s = V.steps[V.i];
+    if (asking() && s && s.kind === 'if') say1('ifq', L.ifq, () => cur() === V && V.steps[V.i] === s);
+    for (const k of kbuf.splice(0)) k === 'run' ? runLine(false) : (k === 'yes' || k === 'no') ? chooseYN(k) : press(k);
+  }
+  function emptyRun() {
+    const p = $('tbl').querySelector('tr.pending .pred');
+    if (p) { p.classList.remove('shake'); void p.offsetWidth; p.classList.add('shake'); setTimeout(() => p.classList.remove('shake'), 500); }
+    Curio.tone(196, .2, .035);
+    setTip(L.empty);
+    // line 14 is a how-to line: spoken the first time only, then the tip and the shake carry it (Read still says the hint)
+    narrate('empty', L.empty, {once: true, valid: () => asking()});
+  }
+  function finishLevel() {
+    const p = P(T), first = doneLv.size === 0;
+    T.done = true;
+    doneLv.add(p.id);
+    const st = $('stamp');
+    st.removeAttribute('hidden'); st.classList.remove('drop'); void st.getBoundingClientRect(); st.classList.add('drop');
+    Curio.tone(523, .3, .04); setTimeout(() => Curio.tone(784, .4, .04), 160);
+    renderLevels();
+    const lv = p.id, ok = () => state.mode === 'trace' && T.prog === lv;
+    if (p.note) say1('traced', L.traced, ok); else say1('tracedNext', L.tracedNext, ok);
+    if (first) say1('notes', L.notes, ok);
+    if (p.note) { say1('check', L.check, () => ok() && !T.noteAns); $('ncNote').textContent = '# ' + p.code[0].note; }
+    else allDone();
+  }
+  function allDone() {
+    if (doneLv.size === 12 && !said.has('all') && !vq.some(q => q.key === 'all')) {
+      setTip(L.all);
+      say1('all', L.all, () => true);
+      const b = $('m-wb'); b.classList.remove('glow1'); void b.offsetWidth; b.classList.add('glow1');
+      setTimeout(() => b.classList.remove('glow1'), 3800);
+    }
+  }
+  function answerNote(ans) {
+    if (!T.done || T.noteAns || state.mode !== 'trace') return;
+    const p = P(T);
+    T.noteAns = ans;
+    const fb = NOTE_FB[p.id][ans];
+    narrate('nfb' + p.id + ans, fb, {once: true, valid: () => $('hint').textContent === fb});
+    if (ans === p.note) Curio.yes(); else Curio.tone(220, .28, .04);
+    setHintNow();
+    sync();
+    allDone();
+  }
+
+  // ======================================================================================
+  // The hint (always one fixed line) and the tip under it
+  // ======================================================================================
+  function hintNow() {
+    const V = cur(), s = V.steps[V.i];
+    if (V === T) {
+      if (T.done) {
+        const p = P(T);
+        if (p.note) return T.noteAns ? NOTE_FB[p.id][T.noteAns] : L.check;
+        return L.tracedNext;
+      }
+      return s && s.kind === 'if' ? L.ifq : L.type;
+    }
+    if (W.predict && s && s.kind !== 'refused') return s.kind === 'if' ? L.ifq : L.type;
+    if (W.steps.length && W.i >= W.steps.length) return L.wbDone;
+    return isChanged() ? L.changed : L.wb;
+  }
+  function setHintNow() { const h = hintNow(); if ($('hint').textContent !== h) $('hint').textContent = h; }
+  function setTip(t) { $('tip').textContent = t; }
+  function live(t) { $('live').textContent = t; }
+
+  // ======================================================================================
+  // Typing a guess
+  // ======================================================================================
+  // keys typed while a line is still landing are kept and typed into the next guess
+  const kbuf = [];
+  function hold(k) { if (state.busy && asking() && kbuf.length < 8) { kbuf.push(k); return true; } return false; }
+  function press(k) {
+    const V = cur(), s = V.steps[V.i];
+    if (hold(k)) return;
+    if (state.busy || !asking() || !guessKind(s) || s.kind === 'if') return;
+    const maxD = V === T ? 4 : 6;
+    let neg = V.guess.startsWith('-'), d = neg ? V.guess.slice(1) : V.guess;
+    if (k === '-') neg = !neg;
+    else if (k === 'back') { if (d) d = d.slice(0, -1); else neg = false; }
+    else if (/^[0-9]$/.test(k)) { if (d === '0') d = ''; if (d.length >= maxD) return; d += k; }
+    V.guess = (neg ? '-' : '') + d;
+    updatePending();
+  }
+  function chooseYN(v) {
+    const V = cur(), s = V.steps[V.i];
+    if (hold(v)) return;
+    if (state.busy || !asking() || !s || s.kind !== 'if') return;
+    V.yn = v;
+    $('yes').setAttribute('aria-pressed', v === 'yes'); $('no').setAttribute('aria-pressed', v === 'no');
+    updatePending();
+  }
+  for (const b of $('keypad').children) b.onclick = () => press(b.dataset.k);
+  $('yes').onclick = () => chooseYN('yes');
+  $('no').onclick = () => chooseYN('no');
+  $('run').onclick = () => runLine(false);
+  $('show').onclick = () => runLine(true);
+  $('ncYes').onclick = () => answerNote('yes');
+  $('ncNo').onclick = () => answerNote('no');
+  function flashKey(k) {
+    const b = $('keypad').querySelector(`[data-k="${k}"]`);
+    if (b && !b.offsetParent) return;
+    if (b) { b.classList.add('hit'); setTimeout(() => b.classList.remove('hit'), 140); }
+  }
+  addEventListener('keydown', e => {
+    if (e.ctrlKey || e.metaKey || e.altKey) return;
+    const t = document.activeElement;
+    if (!$('stepper').hidden && $('stepper').contains(t)) return;
+    if (state.mode === 'trace' && T.done && $('notecard').offsetParent && !T.noteAns) {
+      if (e.key === 'y' || e.key === 'Y') { e.preventDefault(); answerNote('yes'); return; }
+      if (e.key === 'n' || e.key === 'N') { e.preventDefault(); answerNote('no'); return; }
+    }
+    if (!asking()) return;
+    const V = cur(), s = V.steps[V.i];
+    const inHeader = t && t.closest && t.closest('header');
+    if (/^[0-9]$/.test(e.key) && s.kind !== 'if') { e.preventDefault(); press(e.key); flashKey(e.key); }
+    else if ((e.key === '-' || e.key === 'Subtract') && s.kind !== 'if') { e.preventDefault(); press('-'); flashKey('-'); }
+    else if (e.key === 'Backspace' && s.kind !== 'if') { e.preventDefault(); press('back'); flashKey('back'); }
+    else if ((e.key === 'y' || e.key === 'Y') && s.kind === 'if') { e.preventDefault(); chooseYN('yes'); }
+    else if ((e.key === 'n' || e.key === 'N') && s.kind === 'if') { e.preventDefault(); chooseYN('no'); }
+    else if (e.key === 'Enter' && !inHeader) {
+      // Enter runs the line from the keypad, Yes/No, Run line or anywhere off a button; other buttons keep their own Enter
+      const yn = t && t.closest && t.closest('#yn');
+      const ok = !t || t === document.body || yn || (t.closest && (t.closest('#keypad') || t.id === 'run' || (t.closest('#stage') && t.tagName !== 'BUTTON')));
+      if (!ok) return;
+      e.preventDefault();
+      if (e.repeat) return;
+      if (yn && t.id) chooseYN(t.id);
+      if (hold('run')) return;
+      runLine(false);
+    }
+  });
+
+  // ======================================================================================
+  // Trace levels
+  // ======================================================================================
+  function renderLevels() {
+    const host = $('levels');
+    if (!host.children.length) {
+      for (const sn of SETS) {
+        const d = document.createElement('div');
+        d.className = 'set';
+        d.innerHTML = `<span class="sl">${sn}</span><div class="dots"></div>`;
+        PROGS.filter(p => p.set === sn).forEach(p => {
+          const b = document.createElement('button');
+          b.className = 'dot'; b.dataset.lv = p.id; b.textContent = p.id;
+          b.onclick = () => openLevel(p.id, true);
+          d.querySelector('.dots').appendChild(b);
+        });
+        host.appendChild(d);
+      }
+    }
+    for (const b of host.querySelectorAll('.dot')) {
+      const n = +b.dataset.lv, p = PROGS[n - 1];
+      b.classList.toggle('done', doneLv.has(n));
+      b.setAttribute('aria-current', n === T.prog);
+      b.setAttribute('aria-label', `Level ${n}, ${p.title}${doneLv.has(n) ? ', traced' : ''}`);
+    }
+  }
+  function openLevel(n, toRun) {
+    hush();
+    state.busy = false;
+    dropChip();
+    T.prog = clamp(n | 0, 1, 12);
+    load(T);
+    $('stamp').setAttribute('hidden', '');
+    setTip('');
+    if (state.mode === 'trace') showMode();
+    // a level opened from a dot, Restart or Next: focus goes to Run line, so typing and Enter go to the new level
+    if (toRun && state.mode === 'trace') $('run').focus({preventScroll: true});
+  }
+  $('restart').onclick = () => openLevel(T.prog, true);
+  $('next').onclick = () => { if (T.prog < 12 && !$('next').disabled) openLevel(T.prog + 1, true); };
+  $('print').onclick = $('wbprint').onclick = () => { try { window.print(); } catch {} };
+
+  // ======================================================================================
+  // Workbench
+  // ======================================================================================
+  function isChanged() { const o = W.nums[W.prog]; return !!o && Object.keys(o).length > 0; }
+  function renderProgs() {
+    const host = $('progs');
+    if (!host.children.length) {
+      host.innerHTML = '<h3 id="pgLbl">Program</h3>';
+      for (const p of PROGS) {
+        const b = document.createElement('button');
+        b.className = 'pg'; b.dataset.p = p.id;
+        b.innerHTML = `<b>${p.id}</b>${esc(p.title)}`;
+        b.onclick = () => openProg(p.id);
+        host.appendChild(b);
+      }
+    }
+    for (const b of host.querySelectorAll('.pg')) b.setAttribute('aria-pressed', +b.dataset.p === W.prog);
+  }
+  function openProg(n) {
+    hush();
+    stopPlay();
+    state.busy = false;
+    dropChip();
+    W.prog = clamp(n | 0, 1, 13);
+    load(W);
+    if (state.mode === 'wb') showMode();
+  }
+  async function wbStep() {
+    if (state.busy || W.i >= W.steps.length || W.steps[W.i].kind === 'refused') return false;
+    if (W.predict) { await runLine(false); return true; }
+    state.busy = true;
+    sync();
+    const ok = await landStep(W, {how: null});
+    if (!ok) return false;
+    state.busy = false;
+    footer();
+    setHintNow();
+    sync();
+    wbEnd();
+    return true;
+  }
+  // the end of a Workbench program: Step and Play turn off, so the hint (and the voice, once) names Restart
+  function wbEnd() {
+    if (cur() === W && W.steps.length && W.i >= W.steps.length) say1('wbDone', L.wbDone, () => state.mode === 'wb' && W.i >= W.steps.length);
+  }
+  function wbBack() {
+    if (W.i <= 0) return;
+    if (state.busy) { W.gen++; state.busy = false; dropChip(); }
+    stopPlay();
+    W.i--; W.rows.length = W.i; W.guess = ''; W.yn = null; W.res = '';
+    renderTable(); decorate(); footer(); setHintNow(); sync();
+  }
+  let playGen = 0;
+  function stopPlay() { if (W.playing) { W.playing = false; playGen++; } }
+  async function play() {
+    if (W.predict || W.i >= W.steps.length) return;
+    W.playing = true;
+    const g = ++playGen;
+    sync();
+    while (W.playing && g === playGen && W.i < W.steps.length && W.steps[W.i].kind !== 'refused') {
+      const t0 = now();
+      if (!state.busy && !(await wbStep())) break;
+      if (g !== playGen) return;
+      await wait(Math.max(0, (W.quick ? 500 : 1200) - (now() - t0)));
+    }
+    if (g === playGen) { W.playing = false; sync(); }
+  }
+  $('step').onclick = () => { stopPlay(); wbStep(); };
+  $('back').onclick = wbBack;
+  $('play').onclick = () => { if (W.playing) { stopPlay(); sync(); } else play(); };
+  $('wbrestart').onclick = () => { stopPlay(); state.busy = false; dropChip(); load(W); renderCode(); refreshAll(); };
+  $('slow').onclick = () => { W.quick = false; sync(); };
+  $('quick').onclick = () => { W.quick = true; sync(); };
+  $('predict').onclick = () => {
+    W.predict = !W.predict; stopPlay();
+    if (state.busy) { W.gen++; state.busy = false; dropChip(); }
+    W.guess = ''; W.yn = null;
+    renderTable(); decorate(); footer(); setHintNow(); sync();
+  };
+  $('resetNums').onclick = () => {
+    if (!isChanged()) return;
+    W.nums[W.prog] = {};
+    stopPlay(); state.busy = false; dropChip();
+    load(W); renderCode(); refreshAll();
+  };
+
+  // the number stepper on the code card
+  let stepId = null;
+  function openStepper(id) {
+    const V = W, nm = V.view.nums[id];
+    if (!nm) return;
+    stepId = id;
+    const st = $('stepper');
+    st.hidden = false;
+    paintStepper();
+    $('stUp').focus();
+  }
+  function paintStepper() {
+    const st = $('stepper'), nm = W.view.nums[stepId], chipEl = $('lines').querySelector(`button.num[data-id="${stepId}"]`);
+    if (!nm || !chipEl) return closeStepper(true);
+    $('stVal').textContent = fmt(nm.value);
+    $('stDown').setAttribute('aria-disabled', nm.value <= nm.range[0]);
+    $('stUp').setAttribute('aria-disabled', nm.value >= nm.range[1]);
+    $('stRange').textContent = nm.range[0] + ' to ' + nm.range[1];
+    const code = $('code').getBoundingClientRect(), c = chipEl.getBoundingClientRect();
+    const w = st.offsetWidth, h = st.offsetHeight;
+    let x = c.left - code.left + c.width / 2 - w / 2, y = c.bottom - code.top + 6;
+    if (y + h + 18 > code.height) y = c.top - code.top - h - 22;
+    st.style.left = clamp(x, 4, code.width - w - 4) + 'px';
+    st.style.top = Math.max(4, y) + 'px';
+  }
+  function closeStepper(silent) {
+    const st = $('stepper');
+    if (st.hidden) return;
+    const id = stepId;
+    st.hidden = true; stepId = null;
+    if (!silent) { const c = $('lines').querySelector(`button.num[data-id="${id}"]`); if (c) c.focus(); }
+  }
+  function nudge(d) {
+    const nm = W.view.nums[stepId];
+    if (!nm) return;
+    const v = clamp(nm.value + d, nm.range[0], nm.range[1]);
+    if (v === nm.value) return;
+    const o = W.nums[W.prog] || (W.nums[W.prog] = {});
+    if (v === nm.n) delete o[stepId]; else o[stepId] = v;
+    const id = stepId;
+    stopPlay(); state.busy = false; dropChip();
+    load(W);
+    const wasOpen = true;
+    renderCode();
+    stepId = id; $('stepper').hidden = !wasOpen;
+    paintStepper();
+    refreshAll();
+    if (isChanged()) narrate('changed', L.changed, {once: true, valid: () => state.mode === 'wb' && isChanged()});
+  }
+  $('stUp').onclick = () => nudge(1);
+  $('stDown').onclick = () => nudge(-1);
+  $('stepper').addEventListener('keydown', e => {
+    if (e.key === 'Escape') { e.preventDefault(); closeStepper(); }
+    else if (e.key === 'ArrowUp' || e.key === 'ArrowRight') { e.preventDefault(); nudge(1); }
+    else if (e.key === 'ArrowDown' || e.key === 'ArrowLeft') { e.preventDefault(); nudge(-1); }
+  });
+  $('lines').addEventListener('click', e => {
+    const b = e.target.closest && e.target.closest('button.num');
+    if (!b || state.mode !== 'wb') return;
+    if (stepId === b.dataset.id && !$('stepper').hidden) closeStepper(); else openStepper(b.dataset.id);
+  });
+  document.addEventListener('pointerdown', e => {
+    if ($('stepper').hidden) return;
+    if (e.target.closest('#stepper') || e.target.closest('button.num')) return;
+    closeStepper(true);
+  }, true);
+  $('stepper').addEventListener('focusout', e => {
+    setTimeout(() => { const a = document.activeElement; if (!$('stepper').hidden && !$('stepper').contains(a) && !(a && a.matches && a.matches('button.num'))) closeStepper(true); }, 0);
+  });
+
+  // ======================================================================================
+  // Panel state; a focused control that turns off hands focus on (never to the page)
+  // ======================================================================================
+  const gone = el => !el || el.disabled || el.offsetParent === null || el.getAttribute('aria-disabled') === 'true' && el.classList.contains('nb');
+  function rescueFocus(a) {
+    if (!a || a === document.body || !a.closest) return;
+    if (document.contains(a) && !gone(a)) return;
+    const tr = state.mode === 'trace';
+    const order = [];
+    if (a.closest('#keypad')) order.push('yes', 'run');
+    if (a.closest('#yn')) order.push('run', 'yes');
+    if (a.closest('#notecard')) order.push('next', 'restart');
+    if (a.id === 'next') order.push('restart');
+    if (a.id === 'step') order.push('back', 'wbrestart');
+    if (a.id === 'back') order.push('step', 'play');
+    if (a.id === 'play') order.push('step');
+    order.push(...(tr ? ['run', 'ncYes', 'next', 'restart'] : ['run', 'step', 'back', 'wbrestart']));
+    for (const id of order) { const t = $(id); if (!gone(t)) { t.focus(); return; } }
+    const any = [...$('panel').querySelectorAll('button')].find(b => !gone(b));
+    if (any) any.focus();
+  }
+  function sync() {
+    const fw = document.activeElement;
+    const tr = state.mode === 'trace', V = cur(), s = V.steps[V.i], ask = asking();
+    document.body.classList.toggle('done', tr && T.done);
+    $('ask').hidden = !ask;
+    const isIf = !!s && s.kind === 'if';
+    $('keypad').hidden = !ask || isIf || (s && s.kind === 'repeat');
+    $('yn').hidden = !ask || !isIf;
+    $('yes').setAttribute('aria-pressed', V.yn === 'yes'); $('no').setAttribute('aria-pressed', V.yn === 'no');
+    $('plabel').innerHTML = ask ? promptLabel(V, s) : '';
+    $('show').hidden = !ask || (s && s.kind === 'repeat');
+    // Trace parts
+    $('lvnav').hidden = !tr;
+    $('levels').hidden = !tr;
+    const p = P(T), noteWait = tr && T.done && !!p.note;
+    $('notecard').hidden = !noteWait;
+    if (noteWait) {
+      for (const [id, v] of [['ncYes', 'yes'], ['ncNo', 'no']]) {
+        const b = $(id);
+        b.disabled = !!T.noteAns;
+        b.classList.toggle('right', !!T.noteAns && v === p.note);
+        b.setAttribute('aria-pressed', T.noteAns === v);
+      }
+    }
+    const nx = $('next'), canNext = T.prog < 12 && !(T.done && p.note && !T.noteAns);
+    nx.disabled = !canNext;
+    nx.classList.toggle('glow', canNext && T.done);
+    // Workbench parts
+    $('wbmain').hidden = tr; $('wbmore').hidden = tr; $('progs').hidden = tr;
+    if (!tr) {
+      const end = W.i >= W.steps.length || (W.steps[W.i] && W.steps[W.i].kind === 'refused');
+      $('back').disabled = W.i === 0;
+      $('step').disabled = end;
+      $('play').disabled = W.predict || end;
+      $('play').innerHTML = W.playing ? '⏸ <span class="w">Pause</span>' : '▶ <span class="w">Play</span>';
+      $('play').setAttribute('aria-label', W.playing ? 'Pause' : 'Play');
+      $('slow').setAttribute('aria-pressed', !W.quick); $('quick').setAttribute('aria-pressed', W.quick);
+      $('predict').setAttribute('aria-pressed', W.predict); $('predict').querySelector('.st').textContent = W.predict ? 'on' : 'off';
+      $('resetNums').disabled = !isChanged();
+    }
+    if (!tr || !T.done) $('stamp').setAttribute('hidden', '');
+    rescueFocus(fw);
+    if (lay.tier === 'phone') padForBar();
+  }
+  const CMPW = {'>': 'more than', '<': 'less than'};
+  function promptLabel(V, s) {
+    if (!s) return '';
+    const val = t => typeof t === 'string' ? `<code>${esc(t)}</code>` : esc(fmt(V.view.nums[t.id].value));
+    if (s.kind === 'set') return `After line ${s.line}, <code>${esc(s.var)}</code> will be`;
+    if (s.kind === 'say') return `Line ${s.line} says`;
+    if (s.kind === 'repeat') return `Line ${s.line} starts a round.`;
+    const c = V.view.lines[s.line - 1].s.if;
+    return `Line ${s.line}: is ${val(c[0])} ${CMPW[c[1]]} ${val(c[2])}?`;
+  }
+  function refreshAll() {
+    renderTable(); decorate(); footer(); setHintNow(); sync(); fitCode();
+  }
+
+  // ======================================================================================
+  // Narration: one line at a time; a welcome per mode after the first tap; Read always wins (STANDARDS.md)
+  // ======================================================================================
+  const said = new Set(), vq = [], vlog = [], tipSeen = new Set();
+  let tapped = false, nq = 0, vgen = 0, vbusy = false, readP = Promise.resolve();
+  function narrate(key, text, o = {}) {
+    if (!tapped || !Curio.sound) return false;
+    if (o.once && (said.has(key) || vq.some(q => q.key === key))) return false;
+    const it = {key, text, once: o.once, valid: o.valid};
+    if (o.front) vq.unshift(it); else vq.push(it);
+    nq++;
+    pump();
+    return true;
+  }
+  const say1 = (key, text, valid) => narrate(key, text, {once: true, valid}) || said.has(key) ? !said.has(key) || vq.some(q => q.key === key) : false;
+  async function pump() {
+    if (vbusy) return;
+    vbusy = true;
+    const gen = vgen;
+    try {
+      while (vq.length) {
+        await readP;
+        if (gen !== vgen) return;
+        const it = vq.shift();
+        if (!it || (it.valid && !it.valid())) continue;   // its moment has passed
+        if (it.once) said.add(it.key);                     // said when it starts, never when queued
+        vlog.push({t: Math.round(now()), key: it.key, text: it.text});
+        await Promise.race([Curio.say(it.text), wait(2500 + 80 * it.text.length)]);
+        if (gen !== vgen) return;
+      }
+    } finally { if (gen === vgen) vbusy = false; }
+  }
+  // drop every line that has not started (unmarked, so its trigger can queue it again); a stopped Read never ends, so
+  // nothing may keep waiting on it
+  function hush() { vgen++; vq.length = 0; vbusy = false; readP = Promise.resolve(); Curio.stop(); }
+  function readNow() {
+    hush();
+    const text = $('hint').textContent;
+    vlog.push({t: Math.round(now()), key: 'read', text, read: true});
+    readP = Promise.race([Curio.say(text, true), wait(3000 + 80 * text.length)]).catch(() => {});
+  }
+  function welcome() {
+    if (state.mode === 'trace') {
+      narrate('welcome', L.welcome, {once: true, valid: () => state.mode === 'trace'});
+      narrate('type', L.type, {once: true, valid: () => state.mode === 'trace'});
+    } else narrate('wb', L.wb, {once: true, valid: () => state.mode === 'wb'});
+  }
+  // the very first tap or key: decide after that tap's own click has run. If it queued its own line, or was Read or
+  // Sound, the welcome waits (unmarked) for the next mode entry or Sound on.
+  for (const ev of ['pointerdown', 'keydown']) addEventListener(ev, e => {
+    if (tapped) return;
+    tapped = true;
+    const b = e.target && e.target.closest ? e.target.closest('button') : null, n0 = nq;
+    let done = false;
+    const decide = () => {
+      if (done) return; done = true;
+      if (b && (b.id === 'read' || b.id === 'sound')) return;
+      if (nq !== n0) return;
+      welcome();
+    };
+    const endEv = ev === 'pointerdown' ? 'click' : 'keyup';
+    const after = () => { removeEventListener(endEv, after, true); clearTimeout(fb); setTimeout(decide, 0); };
+    addEventListener(endEv, after, true);
+    const fb = setTimeout(after, 1500);
+  }, true);
+
+  // ======================================================================================
+  // Modes
+  // ======================================================================================
+  function showMode() {
+    const m = state.mode;
+    document.body.dataset.mode = m;
+    $('m-trace').setAttribute('aria-pressed', m === 'trace');
+    $('m-wb').setAttribute('aria-pressed', m === 'wb');
+    const V = cur(), p = P(V);
+    $('setName').textContent = V === T ? p.set : 'Workbench';
+    $('printTitle').textContent = 'Code Tracer · ' + (V === T ? 'Level ' : 'Program ') + p.id + ': ' + p.title;
+    $('stamp').toggleAttribute('hidden', !(V === T && T.done));
+    if (m === 'trace') renderLevels(); else renderProgs();
+    renderCode();
+    relayout(true);
+    refreshAll();
+  }
+  function setMode(m) {
+    if (m !== 'trace' && m !== 'wb') return;
+    hush();
+    stopPlay();
+    state.busy = false;
+    dropChip();
+    closeStepper(true);
+    // each mode keeps its own place (level or program, rows, numbers); a line in flight is dropped, not half-written
+    cur().gen++;
+    state.mode = m;
+    setTip('');
+    const V = cur();
+    if (!V.view) load(V);
+    V.guess = ''; V.yn = null;
+    showMode();
+    if (tapped) welcome();
+    if (asking() && V.steps[V.i].kind === 'repeat') runLine(false);
+    // the last line landed while the other mode was open: finish the level now
+    else if (V === T && !T.done && T.steps.length && !T.steps[T.i]) { finishLevel(); refreshAll(); }
+  }
+  $('m-trace').onclick = () => { if (state.mode !== 'trace') setMode('trace'); };
+  $('m-wb').onclick = () => { if (state.mode !== 'wb') setMode('wb'); };
+
+  // ======================================================================================
+  // Layout: every part at its real pixel size
+  // ======================================================================================
+  const lay = {tier: null};
+  let charW = .55;
+  try { const cx = document.createElement('canvas').getContext('2d'); cx.font = '100px Consolas, Menlo, monospace'; charW = cx.measureText('0000000000').width / 1000; } catch {}
+  function relayout(force) {
+    const w = innerWidth, h = innerHeight, B = document.body;
+    const tier = w >= 1000 && h >= 560 ? 'wide' : w >= 600 && w / h >= 1.25 ? 'compact' : w >= 600 ? 'mid' : 'phone';
+    const short = tier === 'wide' && h < 900, tight = tier === 'wide' && h < 700;
+    if (force || tier !== lay.tier || short !== lay.short || tight !== lay.tight) {
+      Object.assign(lay, {tier, short, tight});
+      for (const c of ['wide', 'compact', 'mid', 'phone']) B.classList.toggle(c, c === tier);
+      B.classList.toggle('short', short); B.classList.toggle('tight', tight);
+      // under about 900 px tall (and in every smaller layout) the keypad and Run line come before the hint
+      const pnl = $('panel'), hint = $('hint');
+      if (tier === 'wide' && !short) pnl.insertBefore(hint, $('bar'));
+      else pnl.insertBefore(hint, $('bar').nextSibling);
+      pnl.insertBefore($('tip'), hint.nextSibling);
+      // compact: Restart, Next and Print go under the hint, so the hint is not pushed off the bottom while a guess waits
+      if (tier === 'compact') pnl.insertBefore($('lvnav'), $('tip').nextSibling);
+      else $('bar').insertBefore($('lvnav'), $('wbmain'));
+    }
+    const main = $('main');
+    const pw = tier === 'wide' ? (w >= 1600 ? 380 : w >= 1280 ? 340 : 320) : tier === 'compact' ? Math.round(clamp(w * .29, 196, 260)) : 0;
+    main.style.setProperty('--pw', pw + 'px');
+    const key = tier === 'compact' ? 36 : tight ? 44 : tier === 'wide' && h < 800 ? 46 : 50;
+    main.style.setProperty('--key', key + 'px');
+    const big = tier === 'wide' && w >= 1600;
+    B.classList.toggle('big', big);
+    const tfs = tier === 'compact' ? 13 : tier === 'phone' ? 13 : tier === 'mid' ? 14 : tight ? 14 : big ? 17 : 15;
+    const tw = tier === 'compact' ? 16 : tier === 'phone' ? 17 : tier === 'mid' ? 18 : big ? 24 : 20;
+    main.style.setProperty('--tfs', tfs + 'px'); main.style.setProperty('--tw', tw + 'px');
+    // a new window size starts the table squeeze over; other relayouts (the bar changing) keep it
+    if (w !== lay.w || h !== lay.h) { T.sq = 0; W.sq = 0; lay.w = w; lay.h = h; }
+    fitCode();
+    guardTable();
+  }
+  // the code font: as large as fits (14 px or more anywhere, 18 px or more at 1366x768), the card about 40 percent
+  function fitCode() {
+    const V = cur(); if (!V.view) return;
+    const tier = lay.tier, main = $('main'), st = $('stage'), wb = V === W;
+    const lines = V.view.lines;
+    const pad = tier === 'compact' || tier === 'phone' ? 16 : 24;
+    const sw = Math.max(240, st.clientWidth - pad - (tier === 'phone' ? 0 : tier === 'compact' ? 8 : 12));
+    const share = tier === 'phone' ? 1 : tier === 'compact' ? .4 : .42;
+    const gut = tier === 'compact' ? 2.5 : 3;
+    // lines inside an if can be skipped: they need room for the "skipped" tag after them (about 76 px)
+    const skippable = new Set();
+    lines.forEach((l, i) => { if (l.kind === 'if') for (let j = i + 1; j < lines.length && lines[j].depth > l.depth; j++) skippable.add(j); });
+    const TAG = 78;
+    // a line's width in px at font size f (number chips on the Workbench are at least 44 px wide)
+    const lw = (l, f) => gut * f + 14 + l.depth * 2 * charW * f + l.tokens.reduce((a, t) => a + (wb && t.t === 'num' ? Math.max(44, t.text.length * charW * f + .4 * f + 4) + .1 * f : t.text.length * charW * f), 0);
+    const widest = (f, tag) => Math.max(gut * f + 14 + 16 * charW * f, ...lines.filter(l => l.kind !== 'note').map(l => lw(l, f) + (tag && skippable.has(lines.indexOf(l)) ? TAG : 0)));
+    const minF = 14, maxF = tier === 'compact' ? 15 : tier === 'phone' ? 15 : tier === 'mid' ? 18 : 24;
+    const target = sw * share - 4, cap = tier === 'phone' ? sw : sw * (tier === 'compact' ? (wb ? .5 : .46) : .52);
+    let fs = minF;
+    for (let f = maxF; f >= minF; f--) if (widest(f, false) <= target) { fs = f; break; }
+    // tall enough for every line too (the Workbench keeps 44 px lines for the number chips)
+    const hdr = $('hdr').offsetHeight;
+    const avail = (tier === 'wide' || tier === 'compact') ? innerHeight - hdr - pad - 40 : 9999;
+    const lh = tier === 'phone' ? 1.4 : 1.6;
+    if (!wb && avail < 9999) fs = Math.max(minF, Math.min(fs, Math.floor(avail / ((lines.length + 1) * lh))));
+    // room for the "skipped" tag on the same line: shrink the font a little if that is enough, or put the tag under the line
+    let wrapTag = (V.sq || 0) >= 2;
+    if (!wrapTag && skippable.size && widest(fs, true) > cap) {
+      let f2 = fs;
+      while (f2 > Math.max(minF, fs - 3) && widest(f2, true) > cap) f2--;
+      if (widest(f2, true) <= cap) fs = f2; else wrapTag = true;
+    }
+    $('lines').classList.toggle('tagwrap', wrapTag);
+    main.style.setProperty('--gutpx', Math.round(gut * fs) + 'px');
+    main.style.setProperty('--chpx', (2 * charW * fs).toFixed(1) + 'px');
+    const wbh = wb ? Math.max(Math.round(fs * lh), 44) : 0;
+    main.style.setProperty('--cfs', fs + 'px');
+    if (wb) main.style.setProperty('--wbh', wbh + 'px');
+    let cw = Math.ceil(widest(fs, !wrapTag && skippable.size > 0) + 4);
+    if (tier !== 'phone') cw = Math.min(Math.max(cw, Math.round(sw * .34)), Math.round(cap));
+    // the Workbench chips cannot shrink below 44 px: let the code card take a little more room rather than clip a chip
+    if (wb && tier !== 'phone') cw = Math.max(cw, Math.min(Math.ceil(widest(fs, false) + 12), Math.round(sw * .6)));
+    main.style.setProperty('--cw', tier === 'phone' ? 'auto' : cw + 'px');
+    // stack layouts: the table takes what is left (at most 40 percent of the height on a phone)
+    const pg = $('page');
+    if (tier === 'phone') {
+      const codeH = $('code').offsetHeight, barH = $('bar').offsetHeight;
+      const room = innerHeight - hdr - codeH - barH - 8 * 3;
+      pg.style.height = Math.round(clamp(room, 150, Math.max(150, innerHeight * .4))) + 'px';
+      st.style.height = '';
+    } else if (tier === 'mid') {
+      pg.style.height = '';
+      const need = $('bar').offsetHeight + 120;
+      st.style.height = Math.round(clamp(innerHeight - hdr - need, 300, 620)) + 'px';
+    } else { pg.style.height = ''; st.style.height = ''; }
+    if (!$('stepper').hidden) paintStepper();
+    const tw = $('tw'); tw.scrollTop = tw.scrollHeight;
+  }
+  function padForBar() { document.body.style.paddingBottom = lay.tier === 'phone' ? $('bar').offsetHeight + 'px' : ''; }
+  let rq = 0;
+  const queueLayout = () => { cancelAnimationFrame(rq); rq = requestAnimationFrame(() => { relayout(); padForBar(); keepClear(); }); };
+  addEventListener('resize', queueLayout);
+  // the table can grow wider after it is drawn (a scrollbar appears, the stamp spacer): check again whenever it changes size
+  new ResizeObserver(() => guardTable()).observe($('tbl'));
+  new ResizeObserver(() => guardTable()).observe($('tw'));
+  new ResizeObserver(queueLayout).observe($('bar'));
+
+  Curio.onSound(on => { if (!on) hush(); else if (tapped) welcome(); });
+  Curio.init({clips: "voice:*", rate: .95, readFallback: () => $('hint').textContent});
+  $('read').onclick = readNow;
+
+  // a picture of level 5 for the tool card (preview.svg), drawn from the same data and colors
+  function previewSVG() {
+    const p = PROGS[4], v = TraceEngine.view(p.code), steps = TraceEngine.run(p.code);
+    const X = s => esc(s);
+    let o = '<svg xmlns="http://www.w3.org/2000/svg" width="640" height="400" viewBox="0 0 640 400">';
+    o += '<defs><pattern id="g" width="16" height="16" patternUnits="userSpaceOnUse"><path d="M16 0H0V16" fill="none" stroke="#d9e4f0" stroke-width="1"/></pattern></defs>';
+    o += '<rect width="640" height="400" fill="#f6f4ec"/><rect width="640" height="46" fill="#a8461a"/>';
+    o += '<text x="20" y="31" font-family="Trebuchet MS,Segoe UI,sans-serif" font-weight="800" font-size="24" fill="#fff">Code Tracer</text>';
+    o += '<text x="176" y="30" font-family="Segoe UI,sans-serif" font-size="15" fill="#ffe9dc">Predict, then run</text>';
+    // code card
+    o += '<rect x="14" y="60" width="262" height="326" rx="14" fill="#22303c"/><rect x="14" y="60" width="262" height="30" rx="14" fill="#1a252f"/><rect x="14" y="76" width="262" height="14" fill="#1a252f"/>';
+    o += '<circle cx="30" cy="75" r="5" fill="#e0705c"/><circle cx="45" cy="75" r="5" fill="#e9b949"/><circle cx="60" cy="75" r="5" fill="#6cbf73"/>';
+    o += `<text x="74" y="80" font-family="Segoe UI,sans-serif" font-size="13" font-weight="600" fill="#cfd8e1">Level 5 · ${X(p.title)}</text>`;
+    const col = {name: '#ffd27a', num: '#8fd3ff', kw: '#ff9e7a', note: '#a6d99f', op: '#e8eef3'};
+    v.lines.forEach((l, i) => {
+      const y = 116 + i * 34, run = l.n === 5;
+      if (run) o += `<rect x="14" y="${y - 20}" width="262" height="30" fill="#34495c"/><rect x="14" y="${y - 20}" width="4" height="30" fill="#f08a4b"/><text x="24" y="${y}" font-size="12" fill="#f08a4b" font-family="Segoe UI Symbol,sans-serif">▶</text>`;
+      else if (l.n > 1 && l.n < 5) o += `<text x="25" y="${y}" font-size="12" fill="#7f93a6" font-family="Segoe UI Symbol,sans-serif">✓</text>`;
+      o += `<text x="52" y="${y}" font-family="Consolas,Menlo,monospace" font-size="13" fill="${run ? '#dfe7ee' : '#8d9cab'}" text-anchor="end">${l.n}</text>`;
+      o += `<text x="62" y="${y}" font-family="Consolas,Menlo,monospace" font-size="${l.kind === 'note' ? 15 : 17}" xml:space="preserve">`;
+      for (const t of l.tokens) o += `<tspan fill="${col[t.t]}">${X(t.text)}</tspan>`;
+      o += '</text>';
+    });
+    // notebook page and table
+    o += '<rect x="290" y="60" width="336" height="326" rx="10" fill="#fbfaf5"/><rect x="290" y="60" width="336" height="326" rx="10" fill="url(#g)"/><rect x="302" y="60" width="2" height="326" fill="#f2b8a0"/>';
+    o += '<text x="314" y="88" font-family="Trebuchet MS,Segoe UI,sans-serif" font-weight="800" font-size="18" fill="#a8461a">Trace table</text>';
+    const cx = [330, 370, 430, 500, 575], heads = ['Step', 'Line', 'cats', 'dogs', 'Says'];
+    o += '<rect x="312" y="100" width="304" height="30" fill="#fde7c8"/>';
+    heads.forEach((hd, i) => { o += `<text x="${cx[i]}" y="120" text-anchor="middle" font-family="${i > 1 && i < 4 ? 'Consolas,Menlo,monospace' : 'Segoe UI,sans-serif'}" font-weight="700" font-size="14" fill="#1f2a36">${hd}</text>`; });
+    const rows = [{g: 'match'}, {g: 'miss', guess: '2'}, {g: 'match'}];
+    rows.forEach((r, k) => {
+      const s = steps[k], y = 130 + k * 50, mid = y + 25;
+      o += `<line x1="312" x2="616" y1="${y + 50}" y2="${y + 50}" stroke="#d9e4f0" stroke-width="1.5"/>`;
+      o += `<text x="${cx[0]}" y="${mid + 5}" text-anchor="middle" font-family="Segoe UI,sans-serif" font-size="14" fill="#5d6672">${s.step}</text><text x="${cx[1]}" y="${mid + 5}" text-anchor="middle" font-family="Segoe UI,sans-serif" font-size="14" fill="#5d6672">${s.line}</text>`;
+      ['cats', 'dogs'].forEach((nm, j) => {
+        const x = cx[2 + j];
+        if (s.var === nm) {
+          o += `<text x="${x}" y="${mid + 2}" text-anchor="middle" font-family="Consolas,Menlo,monospace" font-weight="700" font-size="21" fill="#1f2a36">${s.after}</text>`;
+          if (r.g === 'match') o += `<text x="${x}" y="${mid + 19}" text-anchor="middle" font-family="Segoe UI,sans-serif" font-weight="700" font-size="11" fill="#1f7a3d">✓ matched</text>`;
+          else o += `<text x="${x}" y="${mid + 19}" text-anchor="middle" font-family="Consolas,Menlo,monospace" font-size="13" fill="#7a6a5e">${r.guess}</text><line x1="${x - 6}" x2="${x + 6}" y1="${mid + 14}" y2="${mid + 14}" stroke="#7a6a5e" stroke-width="2"/>`;
+        } else if (nm in s.vars) o += `<text x="${x}" y="${mid + 5}" text-anchor="middle" font-family="Consolas,Menlo,monospace" font-size="14" fill="#6b7179">${s.vars[nm]}</text>`;
+      });
+    });
+    // the pending row: a dashed box under dogs, waiting for a guess
+    const y = 280;
+    o += `<rect x="312" y="${y}" width="304" height="50" fill="#fff3e2"/><text x="${cx[0]}" y="${y + 30}" text-anchor="middle" font-family="Segoe UI,sans-serif" font-size="14" fill="#5d6672">4</text><text x="${cx[1]}" y="${y + 30}" text-anchor="middle" font-family="Segoe UI,sans-serif" font-size="14" fill="#5d6672">5</text>`;
+    o += `<rect x="${cx[3] - 24}" y="${y + 10}" width="48" height="30" rx="7" fill="#fff8ee" stroke="#a8461a" stroke-width="2" stroke-dasharray="6 4"/><text x="${cx[3]}" y="${y + 32}" text-anchor="middle" font-family="Consolas,Menlo,monospace" font-weight="700" font-size="20" fill="#a8461a">1</text>`;
+    o += '<text x="314" y="370" font-family="Segoe UI,sans-serif" font-weight="700" font-size="15" fill="#1f2a36">First-try matches: 2 of 5</text>';
+    return o + '</svg>';
+  }
+
+  window.__tool = {state, setMode, allLines, setLevel: openLevel, openProg, engine: TraceEngine, PROGS, L, WHY, NOTE_FB, vlog, lay, relayout, previewSVG,
+    trace: (id, overrides) => Number.isInteger(id) && id >= 1 && id <= PROGS.length ? TraceEngine.run(PROGS[id - 1].code, overrides) : [{step: 1, line: null, kind: 'refused', why: 'no program ' + String(id).slice(0, 20)}],
+    get T() { return T; }, get W() { return W; }, get busy() { return state.busy; }, get vq() { return vq.map(q => q.key); }, get tapped() { return tapped; },
+    get said() { return [...said]; }, hush, doneLv};
+  renderLevels();
+  load(T);
+  showMode();
+})();
+</script>
+</body>
+</html>
