@@ -53,3 +53,14 @@ is park, pumpkins and snow.
 - Deployed at version 1fbe025b.
 - game-remix: fix round 1 and the art are done. 49 lines (17 new, none recorded yet). A cold re-verify has started. The
   bundle may reach 1.5 to 1.9 MB once voiced; use kbps 16 if it goes over.
+
+## 2026-10-27: game-remix live (order 52)
+- Fix round 2 covered the "don't nag" overreach: the builder had made every line once per page load. Lines are now split
+  into how-to lines (spoken once) and event lines (fixed, chal, badCode, loaded, loadedFull, saved, stepIdle), which are
+  spoken every time. Re-verify 2 PASS with two nits. Integrator fix: compact pad buttons have min-width 44, and Resume
+  stops the stepIdle line.
+- Voice: 52 lines from the big-sister bank. The liveliness check found five flat takes (9, 17, 18, 21, 22, including "You
+  fixed it!"), re-recorded with 5 takes each. Bundle is 1843 KB.
+- Plan: 45 min, model then make. Findings for a later pass: sharing between devices needs a channel the class already
+  uses; Kai's bug sits under "Changes Kai made", not under "No changes yet".
+- Live at deploy 31d01acc. Desk item ready. Stats now: live 75.
