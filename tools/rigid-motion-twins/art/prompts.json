@@ -1,0 +1,17 @@
+{
+  "house_style": "Realistic close-up natural stone texture photograph seen straight down, even soft light, no shadows, seamless and edge to edge. No text, no letters, no numbers, no logos, no watermark, no border, no frame.",
+  "style": "A texture behind a coordinate plane, cropped square; it fills the whole frame with nothing else in it.",
+  "assets": [
+    {
+      "name": "rmt-sandstone",
+      "prompt": "A flat slab of pale rippled sandstone filling the entire frame edge to edge, seen straight down from above, soft even light, fine sand grain, gentle low ripple marks, warm tan and cream colors, smooth blank surface.",
+      "aspect": "16:9",
+      "cutout": false,
+      "width": 1280,
+      "quality": 70,
+      "sd": "Top-down photograph of a flat rippled sandstone rock surface filling the entire frame, many gentle wavy parallel ripple ridges running across it, warm tan, ochre and sandy beige colors, fine sand grain, soft even daylight, natural stone texture.",
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "house_style": "Flat illustration for a high school statistics mystery, noir mood: moody night lighting, deep shadows, one warm lamp, muted colors, clean shapes, empty room. No text, no letters, no numbers, no logos, no watermark, no border, no frame.",
+  "style": "Used dimmed behind the title card and case picker.",
+  "assets": [
+    {
+      "name": "cafe-after-hours",
+      "prompt": "A cozy board game cafe after closing: wooden shelves of game boxes with plain blank spines, a green felt table with a few scattered dice under a single warm hanging lamp, chairs pushed in, dark windows.",
+      "aspect": "16:9",
+      "cutout": false,
+      "width": 1280,
+      "quality": 70,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    }
+  ]
+}

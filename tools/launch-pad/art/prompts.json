@@ -1,0 +1,16 @@
+{
+  "house_style": "Flat painted illustration for a high school math simulator: a dark dusk palette of deep navy and slate with a faint warm coral glow at the horizon, simple clean shapes, soft gradients, calm and uncluttered, deserted. No text, no letters, no numbers, no logos, no watermark, no border, no frame.",
+  "style": "Used dim behind the launch scene, so the sky stays open and dark.",
+  "assets": [
+    {
+      "name": "lp-field-dusk",
+      "prompt": "Wide view of an open sports field at dusk seen from the side: a long flat strip of dark grass across the bottom fifth, a low line of distant trees along the horizon, a huge open dark blue dusk sky filling the rest of the picture with a faint warm glow just above the horizon, empty and deserted.",
+      "aspect": "16:9",
+      "cutout": false,
+      "width": 1600,
+      "quality": 70,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    }
+  ]
+}

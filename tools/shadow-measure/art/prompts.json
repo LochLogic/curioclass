@@ -1,0 +1,16 @@
+{
+  "house_style": "Flat painted illustration for a high school geometry lab: clean simple shapes, soft pastel daylight colors, a pale blue sky, calm, deserted, every surface blank. No text, no letters, no numbers, no logos, no watermark, no border, no frame.",
+  "style": "The far backdrop above the horizon line; objects that cast shadows are drawn by the tool.",
+  "assets": [
+    {
+      "name": "sm-schoolyard",
+      "prompt": "A quiet school playground seen from the side at mid afternoon: a big open pale blue sky filling the top half, a low red brick school building far in the back with plain blank walls and windows, a strip of green grass across the bottom, clear and sunny, empty and deserted.",
+      "aspect": "16:9",
+      "cutout": false,
+      "width": 1600,
+      "quality": 70,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    }
+  ]
+}

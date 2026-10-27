@@ -1,0 +1,16 @@
+{
+  "house_style": "Painterly landscape illustration for a high school trigonometry map tool: calm dusk colors, deep blue haze over forested ridges, soft warm light at the horizon, quiet and empty. No text, no letters, no numbers, no logos, no watermark, no border, no frame.",
+  "style": "Shown dimmed behind the welcome card and in the preview.",
+  "assets": [
+    {
+      "name": "flt-lookout-dusk",
+      "prompt": "A small wooden fire lookout cabin with wraparound windows on a rocky mountain summit at dusk, forested ridges fading into blue haze behind it, one thin column of gray smoke rising far away from a distant ridge, an empty landscape.",
+      "aspect": "16:9",
+      "cutout": false,
+      "width": 1280,
+      "quality": 70,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "house_style": "Flat editorial illustration for a high school statistics tool, like a modern magazine portrait: clean shapes, soft shading, warm muted colors, natural and respectful. No text, no letters, no numbers, no logos, no watermark, no border, no frame.",
+  "style": "The journal editor, Dr. Mara Quill, shown beside her letters on a light paper page.",
+  "assets": [
+    {
+      "name": "editor-quill",
+      "prompt": "Chest-up portrait of a sharp-eyed woman in her sixties with silver hair in a low bun and reading glasses on a thin beaded chain, wearing a dark navy cardigan, holding a blue pencil over a paper manuscript whose lines are plain gray strokes, looking at the viewer with a dry, kind expression.",
+      "aspect": "1:1",
+      "cutout": true,
+      "despill": true,
+      "people": true,
+      "width": 360,
+      "quality": 82,
+      "source": "gpt-image-2 (Codex)",
+      "review": "pending"
+    }
+  ]
+}

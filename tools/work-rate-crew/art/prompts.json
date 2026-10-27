@@ -1,0 +1,16 @@
+{
+  "house_style": "Flat illustration for a high school math roleplay about a house-painting crew: clean simple shapes, warm dusk light, muted colors, deserted. No text, no letters, no numbers, no logos, no watermark, no border, no frame.",
+  "style": "Used dim behind the wall panel's frame.",
+  "assets": [
+    {
+      "name": "wrc-house-dusk",
+      "prompt": "The front of a two-story wooden clapboard house seen straight on at dusk: the left half freshly painted a clean pale sage green, the right half old faded gray paint that is peeling, two aluminum ladders leaning on the wall, canvas drop cloths on the ground, paint buckets with plain blank sides, a plain front door, an empty front yard.",
+      "aspect": "16:9",
+      "cutout": false,
+      "width": 1600,
+      "quality": 70,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    }
+  ]
+}

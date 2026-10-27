@@ -1,0 +1,37 @@
+{
+  "house_style": "Crisp, simple photo-like illustration for a high school matrix tool: bright clear full color, sharp detail, one clear subject, simple uncluttered background. No text, no letters, no numbers, no logos, no watermark, no border, no frame.",
+  "style": "Pictures to transform with a matrix; each is a 4:3 photo shown on a dark darkroom canvas.",
+  "assets": [
+    {
+      "name": "imt-lighthouse",
+      "prompt": "A white and red striped lighthouse on a rocky point under a clear blue afternoon sky, waves breaking on the rocks below.",
+      "aspect": "4:3",
+      "cutout": false,
+      "width": 800,
+      "quality": 80,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "imt-balloon",
+      "prompt": "One bright striped hot air balloon floating over green rolling fields, a simple clear blue sky, plain colored stripes on the balloon.",
+      "aspect": "4:3",
+      "cutout": false,
+      "width": 800,
+      "quality": 80,
+      "sd": "One bright hot air balloon with wide vertical stripes of red, yellow and blue floating high in the sky, far away and small, over green rolling fields, a small empty wicker basket hanging below it, a simple clear blue sky.",
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "pending"
+    },
+    {
+      "name": "imt-fox",
+      "prompt": "A red fox sitting in a snowy clearing, seen from the side, its head and body facing left, snowy pine trees softly blurred behind.",
+      "aspect": "4:3",
+      "cutout": false,
+      "width": 800,
+      "quality": 80,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    }
+  ]
+}

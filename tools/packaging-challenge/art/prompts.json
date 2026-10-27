@@ -1,0 +1,16 @@
+{
+  "house_style": "Realistic close-up material texture photograph, even soft light, no shadows, seamless and edge to edge. No text, no letters, no numbers, no logos, no watermark, no border, no frame.",
+  "style": "A texture tiled and clipped to box shapes, so it fills the whole frame with nothing else in it.",
+  "assets": [
+    {
+      "name": "pc-kraft",
+      "prompt": "A flat sheet of plain brown corrugated kraft cardboard filling the entire frame edge to edge, seen straight on from above, soft even light, fine paper fibers, blank surface.",
+      "aspect": "1:1",
+      "cutout": false,
+      "width": 512,
+      "quality": 72,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    }
+  ]
+}

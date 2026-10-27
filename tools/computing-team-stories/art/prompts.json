@@ -1,0 +1,58 @@
+{
+  "house_style": "Soft illustrated style for a high school computer science tool: warm muted colors, gentle light, clean shapes, an empty room, every screen dark and blank, every surface blank. No text, no letters, no numbers, no logos, no watermark, no border, no frame.",
+  "style": "Team card thumbnails (cropped) and a faint backdrop behind the story strip; five empty workspaces in one shared style.",
+  "assets": [
+    {
+      "name": "cts-game-studio",
+      "prompt": "An empty indie game studio at dusk: two desks with dark blank monitors, open sketchbooks with doodled creatures, a game controller, warm desk lamps.",
+      "aspect": "16:9",
+      "cutout": false,
+      "width": 960,
+      "quality": 70,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "cts-health-office",
+      "prompt": "An empty county health office in daylight: a large paper map of a town pinned to a corkboard with colored pins, a laptop with a dark blank screen on a desk, a white clinic cooler box.",
+      "aspect": "16:9",
+      "cutout": false,
+      "width": 960,
+      "quality": 70,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "cts-river-lab",
+      "prompt": "An empty university lab: a tall server rack with small lights, a table model of a mountain river valley, stacks of old paper logbooks tied with string.",
+      "aspect": "16:9",
+      "cutout": false,
+      "width": 960,
+      "quality": 70,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "cts-newsroom",
+      "prompt": "An empty newsroom desk at night: three dark blank monitors, a police radio scanner, a coffee mug, a printed map with blank labels.",
+      "aspect": "16:9",
+      "cutout": false,
+      "width": 960,
+      "quality": 70,
+      "sd": "An empty newsroom desk at night, lit by one desk lamp: three dark blank monitors in a row, a black police radio scanner with plain buttons, a coffee mug, a printed street map that shows only roads and rivers, dark windows behind, soft illustrated style.",
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "pending"
+    },
+    {
+      "name": "cts-limb-lab",
+      "prompt": "An empty workshop bench: a white 3D-printed robotic hand, a small 3D printer, calipers and coiled wires, a pencil sketch of a hand on paper.",
+      "aspect": "16:9",
+      "cutout": false,
+      "width": 960,
+      "quality": 70,
+      "sd": "An empty workshop bench: a white 3D-printed robotic hand lying on the bench, a small plain white 3D printer box with a glass door, a pair of steel calipers, coiled red and black wires, a pencil sketch of an open hand on a sheet of paper, soft illustrated style.",
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    }
+  ]
+}
