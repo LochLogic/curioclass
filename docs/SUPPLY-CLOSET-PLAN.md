@@ -362,8 +362,10 @@ words cap, no em dashes, K-1 games have no reading step).
 
 The module order in `modules.csv` follows the frameworks' own order, which is not always a teaching order. An agent
 drafts `sequence.csv` per subject and grade from the frameworks and common pacing; Cory spot-checks one region per
-subject. Q5: should we look at published progressions and pacing guides for reference first, and check their
-licenses before leaning on any of them?
+subject. Q5 research is done (2026-10-27): see `docs/MAP-RESEARCH.md`. In short, math leans on two CC BY 4.0
+sources (the CCSS Progressions and IM K-12 first edition), middle school science on NGSS Appendix K, and the rest on
+framework order plus a few rules. NonCommercial sources are cross-check only. The file gains a `basis` column so
+every order says where it came from, and `builds_on` is computed from the standards codes where it can be.
 
 ### Build
 
@@ -380,6 +382,40 @@ The `/standards/<code>/` page shows a small map of where the code's modules sit,
 
 Done when: every module appears on a region map, every region has a trail, and the map's shading matches the build
 board.
+
+---
+
+## Teacher-guide links (planned 2026-10-27, not built)
+
+Should closet items link to each tool's teacher guide? Yes. A teacher holding a word card or an anchor chart is one
+click from the lesson it supports, and the guide already exists for every built tool: the teacher notes (the tool
+page's Teacher notes tab, `/tools/<id>/`), the lesson plan (`/tools/<id>/plan/`) and the Sub Day packet
+(`/tools/<id>/sub/`).
+
+What links today: the module page lists lesson plans, the anchor chart names its tools with a lesson plan link, and
+Sub Day links each packet. The Word Wall pages and the Game Night teacher hint do not link to any guide, and no tool
+page links back to the closet.
+
+**Part 1, closet side (ours, safe to build any time):**
+
+- One macro, `teach_strip(tools)`, in a closet template file: for each built tool of the module, its title, then
+  "Teacher notes · Lesson plan · Sub Day" (each shown only when it exists). Screen only (`no-print`), so printed
+  cards, charts and family games stay clean.
+- Placed on: the module word page (`/modules/<id>/words/`), the anchor chart page (replacing its inline sentence),
+  and the Game Night page's teacher hint. Not on the printed family game sheet itself, which keeps only "Play it at
+  curioclass.org/tools/<id>/".
+- Modules with no built tool show nothing (no "coming soon" line).
+- `check_site.py` already fails on broken internal links, so a guide link to a missing plan cannot ship.
+
+**Part 2, tool side (waits for the tools chat; do not start from the closet):**
+
+- `tool.html` and `plan.html` gain a small "From the Supply Closet" line: Word Wall, anchor chart and games for the
+  tool's module, shown only when they exist and the closet is live.
+- These templates belong to the tools work, so Part 2 is a handoff note for that chat, or a change made after it
+  finishes, never edited from here while it is running.
+
+Done when: every closet page for a module with a built tool links to that tool's notes, plan and Sub Day, and (after
+Part 2) every tool page links back to its module's closet items.
 
 ---
 
@@ -433,7 +469,7 @@ A Foundation ──> B Sub Day ──> (ships with every new tool from here on)
 | Phase | Pilot | Measure before scaling |
 |---|---|---|
 | B | Sub Day for 10 tools across bands, then the backfill | print quality on a real printer, minutes per `exit.md`, Cory's send-back rate |
-| C | Grade 3 word wall, all subjects (done; words now cover all 586 modules) | minutes per module for pictures and review, picture reject rate |
+| C | Grade 3 word wall, all subjects (done; words now cover all 762 modules) | minutes per module for pictures and review, picture reject rate |
 | D | Anchor charts for the 72 modules with plans | which layouts cover which subjects, tile print alignment |
 | E | 10 games | play-test notes, how often a game needed a rewrite |
 | F | Grade 3 regions for the four core subjects | does the trail read right to a teacher, phone layout |
@@ -462,3 +498,4 @@ A Foundation ──> B Sub Day ──> (ships with every new tool from here on)
 - Q3: no approval needed for the poster list.
 - Q4: Game Night starts with the core four subjects.
 - Q5: research published progressions and pacing guides (and their licenses) before drafting `sequence.csv`.
+  Done 2026-10-27: `docs/MAP-RESEARCH.md`.
