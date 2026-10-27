@@ -7,7 +7,7 @@
 ## The two modes
 
 - **Dance Floor:** free play and a quick brain break. Tap a move to add a card (up to 8). Tap a card to pick it up: then tap a move to change it, use the arrows to move it earlier or later, or the trash can to take it away. **Clear** empties the strip. The turtle and rabbit button switches between Slow and Quick.
-- **Fix-It Show:** 8 short rounds. Dot knows the real dance. Bolt's cards start with one bug in them. Press **Watch Dot** to see the real dance (as often as you like), then **Go!**: both robots dance together, and Bolt trips on the first step that does not match. That card wobbles with a red "?" and Dot's thought bubble shows the right move. The class fixes the cards and presses **Go!** again. When Bolt does the whole dance, the round is fixed and **Next round** lights up.
+- **Fix-It Show:** 8 short rounds. Dot knows the real dance. Bolt's cards start with one bug in them. Press **Watch Dot** to see the real dance (as often as you like), then **Go!**: both robots dance together, and Bolt trips on the first step that does not match. That card wobbles with a red "?" and Dot's thought bubble shows the right move. The narrator then says how to fix that kind of bug (tap the wrong card and pick the right move, move it with the arrows, add a missing move, or trash the extra one), and the hint line keeps showing it. The class fixes the cards and presses **Go!** again. When Bolt does the whole dance, the round is fixed and **Next round** lights up.
   - Rounds 1 to 4: one wrong card. Pick it up and tap the right move.
   - Rounds 5 and 6: two cards in the wrong order. Use the arrows.
   - Round 7: a card is missing. Add it (it goes at the end), then walk it into place with the left arrow.

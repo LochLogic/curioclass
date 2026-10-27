@@ -151,10 +151,15 @@ Trips and wins:
 33. "That's the show! Everybody take a bow!"
 34. "Team Star and Team Moon, you're both dance champs!" (finale, Teams on)
 
+How to fix (added 2026-10-26 after Cory's review: every trip says how to do the fix):
+43. "Tap the card in the wrong spot. Then use the arrows to move it."
+44. "Tap the extra card. Then tap the trash can."
+45. "Now tap the right move, or use the arrows or the trash can." (picking a card after a trip, once per round)
+
 Move names (tray taps and previews):
 35. "Clap!" 36. "Jump!" 37. "Spin!" 38. "Wave!" 39. "Hands up!" 40. "Touch your toes!" 41. "Wiggle!" 42. "Stomp!"
 
-Which line when: Dance Floor entry queues 1 then 2. Fix-It entry queues 3 then the round line (14 to 21) then the team line (22/23, Teams on). After Watch Dot ends: 5. Trip: 24 then 25, or 26 or 27 alone. Second trip in the same round: the round's fix hint (rounds 1-4: 6; 5-6: 7; 7: 9; 8: 8) after a wrong move, 26 again after running out, 8 after an extra step. Win: 28, then 29 (first win only), then 30/31 or 32. Finale: 33 then 34 (Teams on). Read speaks the current `#hint` line (always one of 2 to 13 or 24 to 28, and 33 in the finale). The finale has no team winner line on purpose: the show celebrates both.
+Which line when: Dance Floor entry queues 1 then 2. Fix-It entry queues 3 then the round line (14 to 21) then the team line (22/23, Teams on). After Watch Dot ends: 5. Trip: 24 then 25 (first trip of the round only), or 26 or 27, and then always the how-to-fix line, which also stays as the hint: after a wrong move the round's line (rounds 1-4: 6; 5-6: 43; 7: 9; 8: 44), after running out 9, after an extra step 44. Picking a card after a trip: 45 (once per round), and the first edit after that turns the hint to 5 (not spoken). Win: 28, then 29 (first win only), then 30/31 or 32. Finale: 33 then 34 (Teams on). Read speaks the current `#hint` line (always one of 2 to 13, 24 to 28 or 43 to 45, and 33 in the finale). The finale has no team winner line on purpose: the show celebrates both.
 
 ## Family engine
 none. The robot family (loop-garden, bee-bot-garden, traffic-light-coder) has no `docs/families/robot.md` or `kit/robot.js` yet, and loop-garden carries its own code. Do not write a family engine for this tool; keep the card strip and step runner inside `src.html`, written cleanly (a `program` array of move ids, a `run(program, target)` step loop with an onStep callback) so a later family engine can lift it.

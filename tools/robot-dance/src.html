@@ -376,6 +376,9 @@ body.stack .mv .ico{width:42px;height:48px}
     h7: 'Use the arrows to move a card.',
     h8: 'Tap the trash can to take a card away.',
     h9: 'Add the missing move. Then use the arrows to move it into place.',
+    hO: 'Tap the card in the wrong spot. Then use the arrows to move it.',
+    hX: 'Tap the extra card. Then tap the trash can.',
+    hS: 'Now tap the right move, or use the arrows or the trash can.',
     h10: 'Add a card first. Tap a move!',
     h11: "That's eight cards! Press Go to see your dance.",
     h12: 'All clear! Make a new dance.',
@@ -404,8 +407,8 @@ body.stack .mv .ico{width:42px;height:48px}
     f33: "That's the show! Everybody take a bow!",
     f34: "Team Star and Team Moon, you're both dance champs!",
   };
-  const FIXHINT = [L.h6, L.h6, L.h6, L.h6, L.h7, L.h7, L.h9, L.h8];
-  const allLines = () => [...new Set([L.w1, L.h2, L.w3, L.h4, L.h5, L.h6, L.h7, L.h8, L.h9, L.h10, L.h11, L.h12, L.h13,
+  const FIXHINT = [L.h6, L.h6, L.h6, L.h6, L.hO, L.hO, L.h9, L.hX];
+  const allLines = () => [...new Set([L.w1, L.h2, L.w3, L.h4, L.h5, L.h6, L.h7, L.h8, L.h9, L.hO, L.hX, L.hS, L.h10, L.h11, L.h12, L.h13,
     ...L.rounds, L.tStar, L.tMoon, L.t24, L.t25, L.t26, L.t27, L.t28, L.t29, L.s30, L.s31, L.s32, L.f33, L.f34,
     ...ORDER.map(m => MOVES[m].say)])];
 
@@ -1045,7 +1048,15 @@ body.stack .mv .ico{width:42px;height:48px}
   }
   function setStep(i) { state.step = i; syncRows(); cells.forEach((c, k) => { const b = c.querySelector('.card'); if (b) b.classList.toggle('on', k === i); }); placePtr(); }
 
-  function select(i) { state.sel = i; renderStrip(); }
+  function select(i) {
+    state.sel = i; renderStrip();
+    // after a trip, picking a card says what the card buttons and tray can do (once per round)
+    if (state.mode === 'fx' && state.bug != null && !fx.finale) {
+      setHint(L.hS);
+      const r = fx.r, ok = () => state.mode === 'fx' && fx.r === r && state.sel != null;
+      narrate('sel#' + fx.show + '#' + r, L.hS, {once: true, valid: ok});
+    }
+  }
   function deselect() { if (state.sel == null) return; state.sel = null; renderStrip(); }
   strip.addEventListener('click', e => {
     const b = e.target.closest('.card'); if (!b || state.dancing) return;
@@ -1109,6 +1120,7 @@ body.stack .mv .ico{width:42px;height:48px}
     if (bolt.base === 'sit' || bolt.base === 'puzzled') setBase(bolt, 'stand');
     if (dot.base === 'bow') setBase(dot, 'stand');
     if (!state.dancing) state.bubble = null;
+    if (fx.hint === L.hS) setHint(L.h5);
   }
 
   // ======================================================================================
@@ -1276,14 +1288,15 @@ body.stack .mv .ico{width:42px;height:48px}
     state.thought = res.result === 'wrong' ? ROUNDS[r].dot[i] : null;
     endDance();
     const line = res.result === 'wrong' ? L.t24 : res.result === 'ranout' ? L.t26 : L.t27;
-    const fixLine = res.result === 'ranout' ? L.t26 : res.result === 'extra' ? L.h8 : FIXHINT[r];
+    // every trip ends on how to fix that kind of bug, and the hint shows it
+    const fixLine = res.result === 'ranout' ? L.h9 : res.result === 'extra' ? L.hX : FIXHINT[r];
     const first = fx.trips === 1;
-    setHint(first ? line : fixLine);
+    setHint(fixLine);
     dropIntros();
     const e = state.evt, ok = () => state.evt === e && state.mode === 'fx' && fx.r === r;
     narrate('trip#' + e, line, {valid: ok});
-    if (!first) { if (fixLine !== line) narrate('fix#' + e, fixLine, {valid: ok}); }
-    else if (res.result === 'wrong') narrate('look#' + e, L.t25, {valid: ok});
+    if (first && res.result === 'wrong') narrate('look#' + e, L.t25, {valid: ok});
+    narrate('fix#' + e, fixLine, {valid: ok});
     live(res.result === 'ranout' ? `Bolt ran out of cards at step ${i + 1}.` : res.result === 'extra' ? `Bolt has an extra step, step ${i + 1}.` : `Bolt tripped on step ${i + 1}.`);
   }
 
@@ -1593,7 +1606,7 @@ body.stack .mv .ico{width:42px;height:48px}
   function captionHeight() {
     const h = $('hint'), keep = h.textContent;
     let mx = 0;
-    for (const t of [L.h2, L.h4, L.h5, L.h6, L.h7, L.h8, L.h9, L.h10, L.h11, L.h12, L.h13, L.t24, L.t25, L.t26, L.t27, L.t28]) { h.textContent = t; mx = Math.max(mx, h.offsetHeight); }
+    for (const t of [L.h2, L.h4, L.h5, L.h6, L.h7, L.h8, L.h9, L.hO, L.hX, L.hS, L.h10, L.h11, L.h12, L.h13, L.t24, L.t25, L.t26, L.t27, L.t28]) { h.textContent = t; mx = Math.max(mx, h.offsetHeight); }
     h.textContent = keep;
     return mx;
   }
