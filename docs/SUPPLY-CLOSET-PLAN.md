@@ -1,8 +1,7 @@
 # Supply Closet: teacher resources (plan)
 
 Status: concepts AGREED by Cory 2026-10-26 (decisions at the bottom). This file is the implementation plan.
-Phase A is done and deployed with the next deploy; Phase C's word lists are written for all 586 modules and built
-behind `--closet` (not deployed).
+Phase A and Phase C's words (all 586 modules) went LIVE 2026-10-27; deploy builds now use `--library --closet`.
 
 The Supply Closet is the teacher-resources side of Curio Class: things to print and put up that go with the tools.
 It is organized like a real supply closet, as shelves:
@@ -178,7 +177,7 @@ arrive with `exit.md`.
 
 ## Phase C: Word Wall
 
-**FULL COLLECTION WRITTEN 2026-10-27, not deployed.** The grade 3 pilot (2026-10-26: 34 modules, 215 cards) was
+**FULL COLLECTION LIVE 2026-10-27.** The grade 3 pilot (2026-10-26: 34 modules, 215 cards) was
 followed by every other grade and subject: **all 586 modules, 3,533 cards, English and Spanish**, in 12 subject files
 (`data/closet/words/<subject>.txt`, about 880 KB). `scripts/check_words.py` reports 0 problems and the closet build
 runs it. A closet build makes 591 word pages (about 9.3 MB, roughly 16 KB each, before pictures); `check_site.py`
