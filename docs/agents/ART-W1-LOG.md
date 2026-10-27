@@ -154,9 +154,25 @@ All 3 placed, local FLUX round 1.
 - rq-garden-bloom c2: placed, local FLUX round 1 (c1 had a caption, c3 a lettered sign). The pink flowers look more like coneflowers than milkweed.
 - rq-trail-map: placed, local FLUX round 2 c2. Round 1 gave square boxes or only 3 or 4 clearings. This one has five empty round clearings, a cabin, a small school and a flower garden, but no clear library or nature center, and the dotted trail has a loose end at the left. The builder should check that it fits the stops drawn in code.
 
-## Public-domain works for the builder to fetch
+## Public-domain works (fetched 2026-10-27)
 
-These were not drawn or downloaded. They are left out of prompts.json, so the builder fetches them.
+Fetched with `scripts/pd_art.py` from The Met Collection API and the Art Institute of Chicago API. Each work was
+saved only after the museum's own record marked it public domain (CC0). Files: tools/<id>/art/pd-<museum>-<id>.webp,
+long side up to 1400 px, 120 KB or less (fine prints were shrunk to fit). Use them as `art:pd-met-365241`. Title,
+artist, date, credit line and collection link for each are in tools/<id>/art/public-domain.json, for the tool's
+Sources and credits. They are not in prompts.json, so art.py never redraws them.
+
+- 50 of 51 saved. A contact sheet showed every image is the right work.
+- Missing: world-music-map siku, Met 501326. The Met's only photo is 60x108 px, and its search API is gone (HTTP
+  410), so no other copy was found. Draw it with local FLUX (an object, no people), or find another public-domain
+  photo when the tool is built.
+- Alternate views: koto uses the Met's first additional image (`met:500576@1`); the primary was a thin 636x123
+  strip. The bagpipe (1400x373) lies flat and the ud and saron are old black and white photos; usable, but the
+  builder may want to crop or recheck them.
+- For Cory's review: Mary Cassatt, The Child's Bath (gallery-critique) shows a young child partly undressed for a
+  bath. It is a standard school artwork; keep it, or swap for another Cassatt.
+
+The list as it was handed over:
 
 - near-and-far: Hogarth, Satire on False Perspective, The Met 365241.
 - gallery-critique: AIC 20684, Met 11122, AIC 111442.
@@ -181,4 +197,4 @@ That is 51 works in all (1 + 3 + 18 + 21 + 8).
 - Cory reviews all 128 placed assets, starting with the 23 people images: secret-keeper (6), input-or-output (1), design-for-a-friend (3), algorithm-audit (4), data-policy-council (6) and gallery-critique (3).
 - Decisions for Cory: Kofi's appearance (the spec gives none), and whether to keep the small green flecks on Rivera, Lindqvist and Ana.
 - Possible redraws once the tools are built: virtual-gallery creek (over the size budget), research-quest rq-trail-map (layout against the stops in code), captain-s-choices bus (not yellow), stress-toolkit st-rooftop (dusk, not night), data-defenders dd-night-hallway (warm, not moonlit).
-- The builder fetches the 51 public-domain works above.
+- Public-domain works: 50 of 51 fetched (above); the siku is missing, and The Child's Bath waits on Cory.
