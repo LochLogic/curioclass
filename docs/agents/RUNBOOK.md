@@ -64,19 +64,13 @@ then the item goes back to "ready" with a reply on the comment and the comment m
 
 ## Open items (update as they close)
 
-- PAUSED 2026-10-27 (token limit), safe to resume. State:
-  - Decision board: https://claude.ai/artifact/3K6SQRTyc3VdAfbVg9ERis, source docs/agents/decisions/ (make_decisions.py
-    writes decisions.json; republish board.html with decisions.json as a file). Cory is answering it: do NOT edit or
-    republish until Cory says they are done (each republish reloads their page). Answers: ArtifactData list `answers`.
-  - Wave 4 specs: ela-research, ela-lit, ela-argument done and logged in BATCH-W4-LOG.md (committed). ela-craft agent was
-    stopped mid-run: all 9 folders have a spec.md but none is verified complete, uncommitted; rerun or finish that group.
-    eld-hs (6) was stopped before writing anything; rerun it. Then log both, add their questions to the board (after
-    Cory finishes), and run the wave 4 joint review (spec_sheet, accents, wave_standards, checks, renames; voices
-    already repeat across ela groups).
-  - Wave 3 art: agent stopped while waiting on its first contact sheets; FLUX stopped. Partial art (uncommitted, unreviewed)
-    sits in tools/<id>/art for biome-atlas, carrying-capacity, design-challenge-studio, grid-operator, lake-commons,
-    mole-bakery, ph-mystery-liquids, reserve-designer, tree-of-life, up-the-watershed. Restart the art night from there.
-  - Then: pd_art for Met/AIC works named in wave 4 specs; wave 1 builds wait on the board answers.
+- RESUMED 2026-10-27. Cory answered the decision board (172 of 208). Their standing rules are in
+  docs/agents/decisions/BASELINE.md (answers.json beside it): every agent reads it and settles routine calls with it.
+  Bring Cory only the important questions, each with full context. The board (https://claude.ai/artifact/3K6SQRTyc3VdAfbVg9ERis)
+  is no longer the main channel.
+  - Running: ela-craft finish (8 specs checked, speech-coach written), eld-hs (6 specs), wave 3 art (FLUX).
+  - Next: log both groups in BATCH-W4-LOG.md, run the wave 4 joint review, pd_art for Met/AIC works in wave 4 specs,
+    then the wave 1 builds (answers are in; growing-up-q-a goes to Cory before any live push).
 
 - **Spec wave 1: specced 2026-10-27, not built.** 75 tools outside the core subjects (CS, arts, media and careers,
   health, PE, library); note `docs/agents/BATCH-W1.md`, log and Cory's 54 open questions in
