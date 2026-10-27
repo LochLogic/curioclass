@@ -1,0 +1,29 @@
+{
+  "house_style": "Moody realistic digital painting for a high school energy game: night and dusk light, deep navy and slate with amber and soft blue glows, clean and uncluttered, deserted. No text, no letters, no numbers, no logos, no watermark, no border, no frame.",
+  "style": "Backdrops for a dark control-room stage: shown faint behind cards, and as a thin strip at the top.",
+  "assets": [
+    {
+      "name": "control-room",
+      "prompt": "An empty power grid control room at night: a large curved wall of glowing screens showing simple colored line charts and wavy curves, rows of empty desks with dark chairs in front, amber and blue light, quiet and empty.",
+      "aspect": "16:9",
+      "cutout": false,
+      "width": 1280,
+      "quality": 62,
+      "people": false,
+      "sd": "An empty dark control room at night, seen from the back of the room: a long curved wall of large flat screens across the front, each screen showing one smooth glowing wavy line in amber, green or blue on plain black, no grid and no labels; two curved rows of empty desks with dark chairs and small dark monitors in front; dim amber and blue light, quiet.",
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "skyline",
+      "prompt": "A coastal city skyline at dusk seen across calm water: many office towers with warm lit windows reflected in the water, a deep blue sky with an amber glow at the horizon, a few small white wind turbines on a far hill at one side.",
+      "aspect": "4:1",
+      "cutout": false,
+      "width": 1600,
+      "quality": 70,
+      "people": false,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    }
+  ]
+}

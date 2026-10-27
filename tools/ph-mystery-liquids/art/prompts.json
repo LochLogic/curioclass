@@ -1,0 +1,17 @@
+{
+  "house_style": "Painterly realistic illustration for a high school chemistry mystery: cool daylight, slate blues and soft grays with a few warm highlights, calm and quiet, deserted. No text, no letters, no numbers, no logos, no watermark, no border, no frame.",
+  "style": "A backdrop shown behind the case card under a 70 percent dark overlay.",
+  "assets": [
+    {
+      "name": "phm-prep-room",
+      "prompt": "A school chemistry prep room after a small flood: a wooden shelf of plain clear glass bottles with blank white labels, a damp tiled floor with a few shallow puddles reflecting the light, a window with soft daylight, empty and quiet.",
+      "aspect": "16:9",
+      "cutout": false,
+      "width": 1280,
+      "quality": 66,
+      "people": false,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "house_style": "Naturalistic landscape painting for a high school ecology simulator: realistic plants and land, soft natural light, muted calm colors, a wide empty view with open ground in the foreground, deserted and still. No text, no letters, no numbers, no logos, no watermark, no border, no frame.",
+  "style": "Wide backdrops under a dark stage; small animal icons are drawn on top of the open foreground, so the foreground stays plain and uncluttered.",
+  "assets": [
+    {
+      "name": "cc-forest-edge",
+      "prompt": "A northern forest edge meeting a grassy clearing in late summer: dark spruce, fir and birch trees along the back, shrubs and young saplings at the forest margin, and a wide open stretch of short grass and low browse across the foreground, empty and still.",
+      "aspect": "16:9",
+      "cutout": false,
+      "width": 1600,
+      "quality": 50,
+      "people": false,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "cc-tundra-island",
+      "prompt": "A treeless subarctic island tundra under an overcast sky: low rolling green-brown hills, pale gray-green lichen mats and short grass and sedge, a band of gray sea at the horizon, and a wide open stretch of flat tundra across the foreground, empty and still.",
+      "aspect": "16:9",
+      "cutout": false,
+      "width": 1600,
+      "quality": 50,
+      "people": false,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    }
+  ]
+}

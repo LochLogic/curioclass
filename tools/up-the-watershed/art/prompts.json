@@ -1,0 +1,96 @@
+{
+  "house_style": "Realistic documentary-style painting for a high school watershed mystery, like a field photo: natural daylight, true colors, clear subject, calm, deserted. No text, no letters, no numbers, no logos, no watermark, no border, no frame.",
+  "style": "One set of eight sibling suspect cards, every scene in the same painted style and framing, the suspect clearly in the middle of the picture.",
+  "assets": [
+    {
+      "name": "pasture",
+      "prompt": "Brown cattle standing in a shallow creek in a green pasture, trampled muddy banks, summer.",
+      "aspect": "4:3",
+      "cutout": false,
+      "width": 560,
+      "quality": 75,
+      "people": false,
+      "sd": "Four brown cattle standing knee-deep in the middle of a shallow muddy creek that winds through a green summer pasture, trampled muddy banks with hoof prints, a few trees in the distance.",
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "fields",
+      "prompt": "Flat young cornfields in early summer with a round drainage tile pipe outlet sticking out of a ditch bank, clear water flowing from the pipe into the ditch.",
+      "aspect": "4:3",
+      "cutout": false,
+      "width": 560,
+      "quality": 75,
+      "people": false,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "construction",
+      "prompt": "A graded bare brown soil construction site next to a small creek, a muddy runoff channel carrying brown water down into the creek, a parked yellow excavator in the distance, cloudy day.",
+      "aspect": "4:3",
+      "cutout": false,
+      "width": 560,
+      "quality": 75,
+      "people": false,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "storm-drain",
+      "prompt": "A round concrete storm drain outfall pipe in the bank under a small town bridge, water pouring from the pipe into a creek after rain, wet stones, overcast light.",
+      "aspect": "4:3",
+      "cutout": false,
+      "width": 560,
+      "quality": 75,
+      "people": false,
+      "sd": "A large round concrete pipe opening set in a plain concrete wall in a creek bank, a strong stream of brown rainwater pouring out of the dark pipe opening into a creek below, wet stones, the underside of a small concrete road bridge overhead, overcast sky after rain.",
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "sewer",
+      "prompt": "An old round brick manhole with a plain rusty iron lid on a grassy creek bank, damp dark ground around it, the creek beside it, a few small town houses in the background.",
+      "aspect": "4:3",
+      "cutout": false,
+      "width": 560,
+      "quality": 75,
+      "people": false,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "plant",
+      "prompt": "Aerial view of a small town wastewater treatment plant beside a river: several round clarifier tanks with water, rectangular aeration basins, a few low buildings, green grass around it.",
+      "aspect": "4:3",
+      "cutout": false,
+      "width": 560,
+      "quality": 75,
+      "people": false,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "geese",
+      "prompt": "A flock of Canada geese on a sandy lake beach, black necks and heads with white chinstraps, brown bodies, calm water behind them, morning light.",
+      "aspect": "4:3",
+      "cutout": false,
+      "width": 560,
+      "quality": 75,
+      "people": false,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "beach",
+      "prompt": "A small lake beach on a summer afternoon: an empty tall white wooden lifeguard chair on the sand, calm blue water, empty smooth sand, trees along the far shore.",
+      "aspect": "4:3",
+      "cutout": false,
+      "width": 560,
+      "quality": 75,
+      "people": false,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    }
+  ]
+}

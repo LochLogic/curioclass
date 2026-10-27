@@ -1,0 +1,176 @@
+{
+  "house_style": "Realistic natural history portrait painting for a high school biology explorer, like a plate in a museum field guide: one organism, accurate anatomy and true natural colors for its species, centered with a little space around it so it fits inside a circle, on a plain smooth dark slate gray background, soft studio light from the upper left. No text, no letters, no numbers, no logos, no watermark, no border, no frame.",
+  "style": "One set of fifteen sibling portraits shown as small round tips on a dark tree of life: every organism in the same painted style, on the same plain dark slate background, filling about two thirds of the frame.",
+  "assets": [
+    {
+      "name": "tol-chimp",
+      "prompt": "An adult common chimpanzee, head and shoulders, calm and relaxed, facing slightly to the left, coarse black hair, a bare dark gray-brown face with a heavy brow ridge, large rounded ears and a pale muzzle.",
+      "aspect": "1:1",
+      "cutout": false,
+      "width": 512,
+      "quality": 78,
+      "people": false,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "tol-rhesus",
+      "prompt": "A rhesus macaque monkey sitting, whole body in frame, face toward the viewer, gray-brown fur turning orange-tan on the lower back and hips, a bare pinkish face, short tail.",
+      "aspect": "1:1",
+      "cutout": false,
+      "width": 512,
+      "quality": 78,
+      "people": false,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "tol-mouse",
+      "prompt": "A brown house mouse on all fours, side view facing left, whole body in frame, soft gray-brown fur with a paler belly, large round thin ears, small black eyes, pink feet, and a long thin nearly hairless tail as long as its body.",
+      "aspect": "1:1",
+      "cutout": false,
+      "width": 512,
+      "quality": 78,
+      "people": false,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "tol-dog",
+      "prompt": "A medium-size mixed breed dog sitting, three-quarter view, whole body in frame, short tan coat with a white chest and white paws, soft floppy ears, a bare plain neck, friendly calm face.",
+      "aspect": "1:1",
+      "cutout": false,
+      "width": 512,
+      "quality": 78,
+      "people": false,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "tol-horse",
+      "prompt": "A bay horse, head and neck only, side view facing left, glossy reddish-brown coat, black mane, black muzzle, a bare head free of any tack, calm dark eye.",
+      "aspect": "1:1",
+      "cutout": false,
+      "width": 512,
+      "quality": 78,
+      "people": false,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "tol-whale",
+      "prompt": "A gray whale surfacing from dark slate gray water, side view, the long back and narrow arched head above the surface, mottled gray skin with white and pale orange barnacle patches, a low hump followed by a row of small knuckles along the back toward the tail.",
+      "sd": "A gray whale swimming at the surface of calm dark slate gray water, side view facing left: a long slender mottled gray body covered in many white and pale yellow blotches of barnacles and scars, a short narrow pointed head with a gently arched upper jaw, a smooth back with a small low hump two thirds of the way back followed by a row of small bumps toward the tail, short paddle-shaped flippers, broad dark tail flukes.",
+      "aspect": "1:1",
+      "cutout": false,
+      "width": 512,
+      "quality": 78,
+      "people": false,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "tol-hippo",
+      "prompt": "A common hippopotamus standing in shallow water up to its knees, three-quarter view, whole body in frame, massive barrel-shaped body, smooth gray-brown skin with pinkish tones around the eyes, ears and mouth, small ears and eyes and nostrils high on the broad head, short thick legs.",
+      "aspect": "1:1",
+      "cutout": false,
+      "width": 512,
+      "quality": 78,
+      "people": false,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "tol-kangaroo",
+      "prompt": "A red kangaroo standing upright, side view facing left, whole body in frame, large powerful hind legs and long feet, a long thick tail resting on the ground, short forearms, tall upright ears, reddish-brown fur with a pale belly, a black and white patch on the side of the muzzle.",
+      "aspect": "1:1",
+      "cutout": false,
+      "width": 512,
+      "quality": 78,
+      "people": false,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "tol-chicken",
+      "prompt": "A brown hen standing, side view facing left, whole body in frame, rich red-brown feathers, a small red comb and red wattles, a yellow beak, yellow scaly legs.",
+      "aspect": "1:1",
+      "cutout": false,
+      "width": 512,
+      "quality": 78,
+      "people": false,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "tol-rattlesnake",
+      "prompt": "An eastern diamondback rattlesnake coiled at rest, seen from slightly above, head resting calmly on its coils with the mouth closed, a clear pattern of dark brown diamonds outlined in cream along its olive-brown back, a segmented rattle at the tail tip.",
+      "aspect": "1:1",
+      "cutout": false,
+      "width": 512,
+      "quality": 78,
+      "people": false,
+      "sd": "A realistic eastern diamondback rattlesnake lying in a relaxed coil on a plain dark slate background, seen from above at an angle. Its back shows a long chain of bold dark brown diamonds, each diamond edged with a bright cream border, on an olive-tan body. Large flat triangular head with a dark band through the eye edged by two cream stripes, mouth closed, resting on the coil. The tail tip ends in a pale segmented rattle with black and white bands just before it.",
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "tol-bullfrog",
+      "prompt": "An American bullfrog sitting, three-quarter view, whole body in frame, smooth olive green back with faint darker mottling, pale cream throat, golden eye, a very large round eardrum behind the eye with a fold of skin curving from the eye around the eardrum, long folded hind legs.",
+      "aspect": "1:1",
+      "cutout": false,
+      "width": 512,
+      "quality": 78,
+      "people": false,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "tol-tuna",
+      "prompt": "A skipjack tuna, side view facing left, whole fish in frame, sleek torpedo-shaped body, dark steel blue-purple back, silvery belly with four to six dark lengthwise stripes running along the lower sides, a row of small yellowish finlets near the tail, a crescent-shaped tail fin.",
+      "aspect": "1:1",
+      "cutout": false,
+      "width": 512,
+      "quality": 78,
+      "people": false,
+      "sd": "A realistic skipjack tuna fish, side view facing left, on a plain dark slate background. Short stout torpedo body, dark blue-violet back with no stripes, bright silver lower sides and belly crossed by four thick dark gray-blue horizontal stripes running from the pectoral fin to the tail. Small finlets along the back and belly near the tail, a deeply forked crescent tail.",
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "tol-fly",
+      "prompt": "A fruit fly, macro close-up, side view facing left, whole insect in frame, large bright red compound eyes, a tan-yellow body, an abdomen with dark brown bands, two clear wings folded over the back, six thin legs, short antennae.",
+      "aspect": "1:1",
+      "cutout": false,
+      "width": 512,
+      "quality": 78,
+      "people": false,
+      "sd": "A tiny common fruit fly, close-up natural history painting, side view facing left: large bright red round compound eyes, a pale tan-brown thorax, a short rounded abdomen with thin dark brown bands, two clear wings lying flat over the back, six thin tan legs standing on a flat surface, short feathery antennae.",
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "tol-yeast",
+      "prompt": "Budding yeast cells as seen through a microscope against a dark field: a loose cluster of round to oval pale cream translucent cells of similar size, several with a small round bud growing from one side, soft glowing edges.",
+      "aspect": "1:1",
+      "cutout": false,
+      "width": 512,
+      "quality": 78,
+      "people": false,
+      "sd": "A biology textbook illustration of budding yeast cells seen under a light microscope, a round circular microscope field of view glowing softly on a dark slate background. Inside the circle float about a dozen large translucent oval cells with thin outlines and a faint grainy interior, each cell with a visible small round nucleus. Several cells have a small daughter bud pinched off one end, joined by a narrow neck, like a figure eight with one small loop.",
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "tol-wheat",
+      "prompt": "A single ripe ear of bread wheat on its stem, standing upright in the center, golden straw color, plump grains packed in tight rows along the ear, short bristly awns, one thin leaf on the stem.",
+      "aspect": "1:1",
+      "cutout": false,
+      "width": 512,
+      "quality": 78,
+      "people": false,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    }
+  ]
+}

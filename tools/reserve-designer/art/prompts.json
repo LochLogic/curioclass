@@ -1,0 +1,75 @@
+{
+  "house_style": "Realistic wildlife field-guide painting for a high school ecology builder: one North American animal centered in its natural habitat, accurate anatomy and true natural colors for its species, soft daylight, naturalistic detail, calm. No text, no letters, no numbers, no logos, no watermark, no border, no frame.",
+  "style": "One set of six sibling portraits shown as small squares in species rows and as larger cards: every animal in the same painted field-guide style and soft daylight, the animal large and centered, filling about half of the frame, with its habitat around it.",
+  "assets": [
+    {
+      "name": "rd-elk",
+      "prompt": "A bull elk standing in a grassy meadow at the edge of a conifer forest, side view facing left, whole body in frame, large branching antlers, tan-brown body, a darker chocolate brown neck mane and legs, a pale cream rump patch.",
+      "aspect": "1:1",
+      "cutout": false,
+      "width": 512,
+      "quality": 78,
+      "people": false,
+      "source": "flux1-schnell (local)",
+      "review": "pending",
+      "sd": "A bull elk standing in a grassy meadow at the edge of a conifer forest, side view facing left, whole body in frame, large branching antlers, tan-brown body, a darker chocolate brown neck mane and legs, a pale cream rump patch. Clean unsigned painting, the corners of the picture are plain grass and sky with no marks."
+    },
+    {
+      "name": "rd-prairie-dog",
+      "prompt": "A black-tailed prairie dog standing upright on its hind legs beside the bare dirt mound of its burrow on short-grass prairie, whole body in frame, tan fur, small rounded ears, dark eyes, a short tail with a black tip.",
+      "aspect": "1:1",
+      "cutout": false,
+      "width": 512,
+      "quality": 78,
+      "people": false,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "rd-wood-frog",
+      "prompt": "A wood frog sitting on wet brown fallen leaves at the edge of a small woodland pond, three-quarter view, whole body in frame, tan to reddish-brown smooth skin, a bold dark brown mask stripe running from the snout through the eye to behind the eardrum, a pale stripe along the upper lip, thin light ridges along the sides of the back.",
+      "aspect": "1:1",
+      "cutout": false,
+      "width": 512,
+      "quality": 78,
+      "people": false,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "rd-bear",
+      "prompt": "An American black bear walking through a sunny forest clearing, side view facing left, whole body in frame, glossy black fur, a tan-brown muzzle, a straight face profile, rounded upright ears, a level back line with the shoulders no higher than the rump.",
+      "aspect": "1:1",
+      "cutout": false,
+      "width": 512,
+      "quality": 78,
+      "people": false,
+      "source": "flux1-schnell (local)",
+      "review": "pending",
+      "sd": "An American black bear walking through a sunny forest clearing, side view facing left, whole body in frame, glossy black fur, a tan-brown muzzle, a straight face profile, rounded upright ears, a level back line with the shoulders no higher than the rump. Clean unsigned painting, the corners of the picture are plain grass and trees with no marks."
+    },
+    {
+      "name": "rd-ovenbird",
+      "prompt": "An ovenbird, a small songbird of the warbler family, standing on the forest floor among brown fallen leaves, side view, whole bird in frame, plain olive-brown back and wings, a white chest and belly with bold dark streaks, a bold white eye ring, an orange crown stripe bordered by two black stripes on top of the head, pinkish legs.",
+      "aspect": "1:1",
+      "cutout": false,
+      "width": 512,
+      "quality": 78,
+      "people": false,
+      "sd": "An ovenbird, a small plump ground-walking songbird that looks like a tiny thrush, standing on brown fallen leaves on the forest floor, side view, whole bird in frame: plain olive-brown back, wings and tail; a white breast and belly covered in rows of bold black spots and streaks like a thrush; a bold white ring around a large dark eye; on top of the head a dull orange stripe running from the forehead to the back of the head, bordered on each side by a thin black stripe; thin pink legs.",
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "rd-otter",
+      "prompt": "A North American river otter resting on a grassy river bank with its head raised and alert, three-quarter view, whole body in frame, sleek dark brown fur, a paler silvery-brown throat and chin, small rounded ears, long whiskers, a long thick tapering tail, the river behind it.",
+      "aspect": "1:1",
+      "cutout": false,
+      "width": 512,
+      "quality": 78,
+      "people": false,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    }
+  ]
+}

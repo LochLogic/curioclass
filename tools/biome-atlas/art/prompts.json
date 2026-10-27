@@ -1,0 +1,117 @@
+{
+  "house_style": "Naturalistic landscape painting for a high school biome atlas: realistic plants true to the named biome and region, a wide eye-level view, natural light, calm, wild land with no buildings or roads. No text, no letters, no numbers, no logos, no watermark, no border, no frame.",
+  "style": "One set of ten sibling biome cards: every scene in the same painted style and the same wide eye-level framing, with sky across the top third and the biome's plants clearly readable at a small size.",
+  "assets": [
+    {
+      "name": "tundra",
+      "prompt": "Low arctic tundra plain in summer: a flat wide plain of mosses, sedges and cushions of small white and pink flowers, low ground hugging plants with no trees, a pale sky, natural light.",
+      "aspect": "16:9",
+      "cutout": false,
+      "width": 720,
+      "quality": 66,
+      "people": false,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "boreal",
+      "prompt": "Larch and spruce taiga on flat land in late summer: tall straight narrow conifers, a mossy floor with low shrubs, soft light.",
+      "aspect": "16:9",
+      "cutout": false,
+      "width": 720,
+      "quality": 66,
+      "people": false,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "deciduous",
+      "prompt": "Temperate oak and hickory forest in summer: tall broadleaf trees with full green canopies, sunlight filtering through the leaves onto a leafy forest floor with young saplings.",
+      "aspect": "16:9",
+      "cutout": false,
+      "width": 720,
+      "quality": 66,
+      "people": false,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "temperate-rain",
+      "prompt": "Pacific Northwest coast temperate rainforest: giant conifers with massive trunks, sword ferns and moss-covered fallen logs, hanging moss on branches, soft misty light.",
+      "aspect": "16:9",
+      "cutout": false,
+      "width": 720,
+      "quality": 66,
+      "people": false,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "mediterranean",
+      "prompt": "Mediterranean shrubland on a sunny hillside in dry summer: dense evergreen shrubs with small leathery gray-green leaves, a few small twisted evergreen oaks, dry golden grass between the shrubs, bright sun.",
+      "aspect": "16:9",
+      "cutout": false,
+      "width": 720,
+      "quality": 66,
+      "people": false,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "dry-grass",
+      "prompt": "Dry shortgrass steppe under a big open sky: low tan and green bunch grasses across flat land, distant low hills, late afternoon light.",
+      "aspect": "16:9",
+      "cutout": false,
+      "width": 720,
+      "quality": 66,
+      "people": false,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "desert",
+      "prompt": "Sonoran desert: tall saguaro cactus with upturned arms, scattered round creosote bushes, rocky sandy ground, distant rocky mountains, clear blue sky.",
+      "aspect": "16:9",
+      "cutout": false,
+      "width": 720,
+      "quality": 66,
+      "people": false,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "trop-savanna",
+      "prompt": "Miombo woodland savanna in southern Africa in the dry season: scattered broadleaf trees with wide spreading crowns standing above tall golden grass, warm hazy dry season light.",
+      "aspect": "16:9",
+      "cutout": false,
+      "width": 720,
+      "quality": 66,
+      "people": false,
+      "sd": "Miombo woodland in Zambia in the dry season: an open woodland of medium-height broadleaf trees with rounded spreading crowns of small feathery leaflets, some crowns turning copper-red and bronze with new leaves, the trees standing well apart above tall golden dry grass on flat land, warm hazy light.",
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "trop-seasonal",
+      "prompt": "West African semi-deciduous tropical forest in the dry season: tall broadleaf trees, some with bare leafless crowns among others still green, a thinner understory, dry hazy light.",
+      "aspect": "16:9",
+      "cutout": false,
+      "width": 720,
+      "quality": 66,
+      "people": false,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "trop-rain",
+      "prompt": "Amazon rainforest seen from a calm brown river bank: a dense layered green canopy of many tall broadleaf trees, palms and hanging vines along the water's edge, warm humid light.",
+      "aspect": "16:9",
+      "cutout": false,
+      "width": 720,
+      "quality": 66,
+      "people": false,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    }
+  ]
+}

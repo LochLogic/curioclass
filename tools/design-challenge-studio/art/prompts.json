@@ -1,0 +1,51 @@
+{
+  "house_style": "Realistic painterly illustration for a high school engineering design studio: natural light, true colors, clean and calm, deserted. No text, no letters, no numbers, no logos, no watermark, no border, no frame.",
+  "style": "A faint backdrop for the classroom challenge and three small source chips for the water challenge, all in the same painted style.",
+  "assets": [
+    {
+      "name": "classroom",
+      "prompt": "An empty high school classroom on a hot afternoon: strong golden sunlight streaming through tall west-facing windows across rows of empty desks and chairs, warm light, plain blank walls, quiet.",
+      "aspect": "16:9",
+      "cutout": false,
+      "width": 1280,
+      "quality": 62,
+      "people": false,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "stream",
+      "prompt": "A clear mountain stream flowing over rounded stones in a green forest, clear water showing the pebbles on the bottom.",
+      "aspect": "4:3",
+      "cutout": false,
+      "width": 400,
+      "quality": 78,
+      "people": false,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "river",
+      "prompt": "A muddy brown river after heavy rain, the water high and swollen against its grassy banks, overcast sky.",
+      "aspect": "4:3",
+      "cutout": false,
+      "width": 400,
+      "quality": 78,
+      "people": false,
+      "source": "flux1-schnell (local)",
+      "review": "pending",
+      "sd": "A wide muddy brown river in flood after heavy rain, seen from the bank: fast churning opaque brown water with ripples and swirls, carrying a few broken branches, the water risen over the grassy banks and up around the trunks of bare willows on the far side, gray overcast sky."
+    },
+    {
+      "name": "rain-barrel",
+      "prompt": "A plain blue plastic rain barrel standing under a house downspout in a green garden, the downspout feeding into the top of the barrel.",
+      "aspect": "4:3",
+      "cutout": false,
+      "width": 400,
+      "quality": 78,
+      "people": false,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    }
+  ]
+}

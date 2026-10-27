@@ -1,0 +1,18 @@
+{
+  "house_style": "Painterly realistic illustration for a high school chemistry game: warm dim early-morning light, deep browns and soft cream highlights, calm and cozy, deserted. No text, no letters, no numbers, no logos, no watermark, no border, no frame.",
+  "style": "A backdrop shown behind the order board under a 70 percent dark overlay, so the middle stays calm and uncluttered.",
+  "assets": [
+    {
+      "name": "mb-counter",
+      "prompt": "A cozy small bakery counter at early morning, seen straight on: a wooden counter top in front with a flour-dusted marble slab, an empty glass display case, a blank plain dark chalkboard on the back wall, warm light from a window at one side, empty and quiet.",
+      "aspect": "16:9",
+      "cutout": false,
+      "width": 1280,
+      "quality": 66,
+      "people": false,
+      "sd": "Early morning in a small cozy pastry kitchen, seen straight on: a wooden counter top across the front with a flour-dusted white marble slab on it, an empty curved glass display case on the counter, the back wall plain warm cream plaster with one large empty matte black slate panel in a simple wooden frame, a window at the left with warm golden light, wooden shelves with plain round loaves and ceramic bowls.",
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    }
+  ]
+}

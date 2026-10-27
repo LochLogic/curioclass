@@ -1,0 +1,17 @@
+{
+  "house_style": "Soft painterly landscape illustration for a high school resources game: early morning light, deep lake blues, forest greens and warm roof colors, calm and peaceful, deserted. No text, no letters, no numbers, no logos, no watermark, no border, no frame.",
+  "style": "The town background at year 0, shown under a scrim with live overlays drawn on top (forest loss, mud, boats, homes), so the lake and slopes stay open and readable.",
+  "assets": [
+    {
+      "name": "lake-town",
+      "prompt": "A calm lake town seen from a low hill at a slant: forested green hills around a wide blue lake, a few small wooden docks on the near shore, a cluster of small houses with brown and gray roofs, a river mouth entering the lake through a green floodplain meadow, early morning light, still water, empty and quiet.",
+      "aspect": "16:9",
+      "cutout": false,
+      "width": 1600,
+      "quality": 70,
+      "people": false,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    }
+  ]
+}
