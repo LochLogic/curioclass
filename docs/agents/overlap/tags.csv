@@ -1,587 +1,587 @@
-tool_id,title,band,subject,live,format,family,skill,action,setting
-big-book-pointer,Big Book Pointer,K-2,ela,n,showdown,big-book,"print concepts: where to start, word boundaries, left to right",predict-reveal,giant picture book [book]
-rhyme-time-rumble,Rhyme Time Rumble,K-2,ela,n,showdown,,hearing rhymes and clapping syllables,predict-reveal,silly picture pairs [generic]
-letter-lanterns,Letter Lanterns,K-2,ela,n,creature,letter-pals,letter-sound correspondence,care-for,lantern creature village [creature]
-story-stage,Story Stage,K-2,ela,n,sandbox,story-stage,"retelling a story's characters, setting and events",manipulate,folktale puppet stage [stage]
-book-detectives,Book Detectives,K-2,ela,n,mystery,,"title, author, illustrator and main topic of a book",investigate,book as crime scene [detective]
-my-story-strip,My Story Strip,K-2,ela,n,studio,comic-maker,"drawing, telling and labeling a short story",compose,three-panel strip [comic]
-sentence-train,Sentence Train,K-2,ela,n,builder,sentence-train,"capitals, spaces and end marks in a sentence",build,word-car train [vehicle]
-turn-and-talk-wheel,Turn and Talk Wheel,K-2,ela,n,showdown,,taking turns and using talk moves in a conversation,discuss,spinner and timer [generic]
-blend-bakery,Blend Bakery,K-2,ela,n,arcade,,decoding blends and digraphs,drill,word cupcakes [shop-food]
-echo-reader,Echo Reader,K-2,ela,n,lab,read-aloud,reading aloud with accuracy and expression,rehearse,read-along booth [film-media]
-story-map-treasure,Story Map Treasure,K-2,ela,n,map,story-map,"story elements: start, problem, events, solution, lesson",order,treasure map [treasure]
-who-said-that,Who Said That?,K-2,ela,n,sort,,telling who is speaking: a character or the narrator,sort,speech bubbles [generic]
-text-feature-safari,Text Feature Safari,K-2,ela,n,explorer,text-features,"what headings, captions and glossaries do",explore,animal nonfiction page [animals]
-first-next-last,"First, Next, Last",K-2,ela,n,builder,sentence-train,ordering a how-to or story with transition words,order,picture cards [generic]
-word-zoo,Word Zoo,K-2,ela,n,sort,,"sorting nouns, verbs and adjectives",sort,word animals in habitats [animals]
-context-clue-hunt,Context Clue Hunt,K-2,ela,n,mystery,,using context clues to guess a word's meaning,predict-reveal,silly-word sentences [generic]
-vowel-team-tag,Vowel Team Tag,K-2,ela,n,race,,"vowel team spellings (ai, ee, oa)",drill,chase maze [fantasy]
-moral-of-the-story,Moral of the Story,K-2,ela,n,cards,folktales,finding a fable's moral,match,fable cards [folktale]
-two-sides-theater,Two Sides Theater,K-2,ela,n,roleplay,,telling the same scene from two characters' points of view,rehearse,Three Little Pigs from the wolf's view [stage]
-main-idea-umbrella,Main Idea Umbrella,K-2,ela,n,builder,,main topic over key details,build,umbrella and raindrops [weather]
-pie-sort,PIE Sort,K-2,ela,n,sort,,"author's purpose: persuade, inform, entertain",sort,pies [kitchen-food]
-hamburger-paragraph,Hamburger Paragraph,K-2,ela,y,builder,,"topic sentence, details and closing sentence",build,burger stack for a bear [kitchen-food]
-contraction-crusher,Contraction Crusher,K-2,ela,y,arcade,,forming contractions; the apostrophe replaces letters,drill,word press [robot-machine]
-word-lab,Word Lab,K-2,ela,n,lab,word-lab,prefixes and compound words,build,beakers [lab]
-syllable-surgeon,Syllable Surgeon,3-5,ela,n,puzzle,,splitting long words into syllables and suffixes,solve,operating table [body-medical]
-character-choice-story,Character Choice Story,3-5,ela,n,story,choose-path,how a character's actions reveal traits,choose-path,short story [generic]
-story-building-blocks,Story Building Blocks,3-5,ela,n,builder,,"how chapters, scenes and stanzas build on each other",order,building blocks [construction]
-headline-writer,Headline Writer,3-5,ela,n,studio,,main idea and key details of a news story,compose,kids' news [newsroom]
-structure-spotter,Structure Spotter,3-5,ela,n,sort,text-features,"sequence, cause and effect, comparison structures",sort,science paragraphs [generic]
-persuasion-poster,Persuasion Poster,3-5,ela,n,studio,,opinion writing with reasons and linking words,compose,class pet campaign poster [newsroom]
-dialogue-director,Dialogue Director,3-5,ela,n,studio,comic-maker,writing dialogue with quotation marks,compose,speech-bubble strip [comic]
-mad-libs-machine,Mad Libs Machine,3-5,ela,n,arcade,,parts of speech and verb tense in context,build,fill-in-the-blank story machine [generic]
-idiom-illustrator,Idiom Illustrator,3-5,ela,n,studio,,literal vs figurative meaning of idioms,compose,drawing card [generic]
-theme-tracker,Theme Tracker,3-5,ela,n,explorer,,determining a theme from supporting details,annotate,public-domain story [generic]
-genre-remix,Genre Remix,3-5,ela,n,studio,,"how prose, drama and poetry differ",compose,prose scene [generic]
-myth-museum,Myth Museum,3-5,ela,n,explorer,myths,everyday words that allude to Greek myths,explore,myth exhibits [museum]
-blueprint-builder,Blueprint Builder,3-5,ela,n,puzzle,,writing a paragraph to fit a text structure,build,blueprint [construction]
-eyewitness-vs-reporter,Eyewitness vs Reporter,3-5,ela,n,mystery,,firsthand vs secondhand accounts,compare,diary vs news article on a storm [newsroom]
-evidence-locker,Evidence Locker,3-5,ela,n,builder,evidence,supporting a claim with quotations,build,evidence locker [detective]
-research-rover,Research Rover,3-5,ela,n,explorer,research,taking notes from sources and outlining,explore,rover in a mini library [library]
-grammar-garage,Grammar Garage,3-5,ela,n,puzzle,,"modals, progressive tense and prepositional phrases",fix,grammar garage [construction]
-root-detective-cards,Root Detective Cards,3-5,ela,n,cards,word-lab,Greek and Latin roots and affixes,match,collectible root cards [generic]
-inference-interrogation,Inference Interrogation,3-5,ela,n,mystery,,quoting text to prove an inference,investigate,interrogation [detective]
-character-face-off,Character Face-Off,3-5,ela,n,cards,,comparing characters and themes across stories,compare,trading-card match-up [generic]
-simile-slam,Simile Slam,3-5,ela,n,arcade,,writing similes and metaphors,drill,class wall [generic]
-fact-fusion,Fact Fusion,3-5,ela,n,data,research,integrating facts from several sources,build,three short sources [generic]
-claim-court,Claim Court,3-5,ela,n,roleplay,evidence,judging an author's reasons and evidence,sort,claim on trial [courtroom]
-essay-architect,Essay Architect,3-5,ela,n,builder,,logical order of paragraphs and transitions,order,wobbly building [construction]
-slow-mo-writer,Slow-Mo Writer,3-5,ela,n,studio,,slowing a moment with sensory detail,compose,slow-motion animation [film-media]
-comma-chameleon,Comma Chameleon,3-5,ela,n,puzzle,,comma placement changes meaning,solve,chameleon picture [animals]
-plot-rollercoaster,Plot Rollercoaster,6-8,ela,n,builder,story-map,plot arc and character change,order,rollercoaster [amusement-park]
-perspective-camera,Perspective Camera,6-8,ela,n,simulator,,"first, second and third person point of view",simulate-tune,camera [film-media]
-summary-squeeze,Summary Squeeze,6-8,ela,n,race,,central idea and objective summary,compose,word-count squeeze [generic]
-argument-x-ray,Argument X-Ray,6-8,ela,n,explorer,evidence,"claims, reasons and evidence in an argument",annotate,x-ray [body-medical]
-debate-prep-desk,Debate Prep Desk,6-8,ela,n,builder,evidence,"claims with reasons and evidence, tested against counterarguments",build,prep desk [council-debate]
-source-sorter,Source Sorter,6-8,ela,n,sort,research,"source credibility, quoting vs paraphrasing, citation",sort,source cards [generic]
-discussion-dashboard,Discussion Dashboard,6-8,ela,n,showdown,,prepared discussion with talk moves and question stems,discuss,projector dashboard [generic]
-sentence-remixer,Sentence Remixer,6-8,ela,n,puzzle,,combining sentences; pronoun agreement,build,glitching sentences [generic]
-word-thermometer,Word Thermometer,6-8,ela,n,sort,,connotation and word nuance,order,thermometer scale [generic]
-setting-swap,Setting Swap,6-8,ela,n,simulator,,how setting shapes plot and characters,simulate-tune,story moved in time and place [generic]
-history-or-fiction,History or Fiction?,6-8,ela,n,mystery,,historical fiction vs primary sources,compare,primary sources [generic]
-poetry-soundboard,Poetry Soundboard,6-8,ela,n,studio,poetry,"rhyme, repetition and meter",compose,soundboard [music]
-logic-gym,Logic Gym,6-8,ela,n,arcade,fallacies,relevance and sufficiency of evidence,drill,gym [sports]
-two-authors-one-event,"Two Authors, One Event",6-8,ela,n,explorer,,how two authors shape the same event,compare,two articles [generic]
-counterclaim-ping-pong,Counterclaim Ping-Pong,6-8,ela,n,roleplay,,answering counterclaims with rebuttals,debate,ping-pong with a bot [sports]
-explainer-studio,Explainer Studio,6-8,ela,n,studio,,informative writing with headings and definitions,compose,magazine page [newsroom]
-sentence-diagram-builder,Sentence Diagram Builder,6-8,ela,n,puzzle,,"simple, compound, complex sentences",build,sentence tree [generic]
-allusion-hunter,Allusion Hunter,6-8,ela,n,explorer,myths,interpreting allusions,hunt,"lyrics, ads and headlines [generic]"
-dramatic-irony-theater,Dramatic Irony Theater,6-8,ela,n,story,,dramatic irony and suspense,predict-reveal,short scene [stage]
-remix-lab,Remix Lab,6-8,ela,n,studio,,how modern works transform myths and tales,plan,retelling planner [generic]
-paragraph-surgeon,Paragraph Surgeon,6-8,ela,n,puzzle,,how sentences develop an idea in a paragraph,fix,surgery [body-medical]
-fact-check-desk,Fact Check Desk,6-8,ela,n,data,fact-check,weighing conflicting sources against their evidence,investigate,fact-check desk [newsroom]
-town-hall-debate,Town Hall Debate,6-8,ela,n,roleplay,,formal argument and rebuttal of an opposing speaker,debate,town hall [council-debate]
-flashback-editor,Flashback Editor,6-8,ela,n,builder,,flashback and pacing,order,editing timeline [film-media]
-pitch-deck-studio,Pitch Deck Studio,6-8,ela,n,studio,,presenting claims with evidence; media motives,compose,slide pitch [business-money]
-voice-switcher,Voice Switcher,6-8,ela,n,simulator,,active and passive voice,simulate-tune,news headlines [newsroom]
-character-web,Character Web,9-12,ela,n,explorer,,conflicting motivations that drive theme,explore,public-domain novel [generic]
-tension-meter,Tension Meter,9-12,ela,n,data,,parallel plots and flashbacks build tension,analyze-data,story with meter graph [generic]
-shakespeare-remix,Shakespeare Remix,9-12,ela,n,studio,shakespeare,how authors transform source material,compare,Shakespeare scene and adaptations [generic]
-rhetoric-spotter,Rhetoric Spotter,9-12,ela,n,sort,rhetoric,"ethos, pathos, logos and rhetorical devices",sort,speeches [generic]
-founding-words-explorer,Founding Words Explorer,9-12,ela,n,explorer,founding-docs,reading founding documents and their echoes,explore,founding documents [generic]
-argument-builder-pro,Argument Builder Pro,9-12,ela,n,builder,evidence,"claim, counterclaim, rebuttal and evidence",build,argument outline [generic]
-research-notebook,Research Notebook,9-12,ela,n,explorer,research,"sustained research, synthesis and citation",plan,research notebook [generic]
-parallel-parking,Parallel Parking,9-12,ela,n,puzzle,,parallel structure,solve,parking lot [vehicle]
-world-lit-atlas,World Lit Atlas,9-12,ela,n,map,,culture in world literature,explore,world map [generic]
-tone-dial,Tone Dial,9-12,ela,n,simulator,,how word choice shapes tone,simulate-tune,tone dial [generic]
-page-to-screen,Page to Screen,9-12,ela,n,explorer,,one story in two media,compare,storyboard [film-media]
-fallacy-field-guide,Fallacy Field Guide,9-12,ela,n,cards,fallacies,spotting logical fallacies,match,field guide collection [nature]
-thesis-workshop,Thesis Workshop,9-12,ela,n,builder,,arguable thesis with evidence and analysis,build,workshop [generic]
-socratic-seminar-board,Socratic Seminar Board,9-12,ela,n,showdown,,seminar discussion that builds on diverse views,discuss,projector talk map [generic]
-punctuation-power-ups,Punctuation Power-Ups,9-12,ela,n,race,,"semicolons, colons and dashes",drill,racing power-ups [generic]
-american-lit-timeline,American Lit Timeline,9-12,ela,n,timeline,lit-timeline,American literary movements in context,order,timeline [generic]
-satire-decoder,Satire Decoder,9-12,ela,n,mystery,,what satire says vs what it means,investigate,case board [detective]
-premise-inspector,Premise Inspector,9-12,ela,n,explorer,founding-docs,premises and reasoning in founding documents,annotate,founding documents [generic]
-source-mixer,Source Mixer,9-12,ela,n,data,research,integrating sources in different media,build,"text, chart, video and image [generic]"
-rhetorical-situation-simulator,Rhetorical Situation Simulator,9-12,ela,n,simulator,rhetoric,"speaker, audience and purpose",simulate-tune,speech [generic]
-personal-essay-studio,Personal Essay Studio,9-12,ela,n,studio,,drafting a personal essay,compose,writing studio [generic]
-usage-panel,Usage Panel,9-12,ela,n,roleplay,,contested usage and changing style rules,debate,dictionary usage panel [council-debate]
-globe-theatre-stage,Globe Theatre Stage,9-12,ela,n,explorer,shakespeare,how delivery changes meaning in Shakespeare,explore,Globe theatre [stage]
-ambiguity-lab,Ambiguity Lab,9-12,ela,n,lab,,how a structural choice changes meaning,experiment,public-domain story [generic]
-argument-map,Argument Map,9-12,ela,n,builder,rhetoric,load-bearing claims in a complex argument,build,node map [generic]
-inquiry-planner,Inquiry Planner,9-12,ela,n,tycoon,research,managing an extended research project,manage,project manager [business-money]
-speech-coach,Speech Coach,9-12,ela,n,lab,,pacing and delivery of a speech,rehearse,rehearsal meters [generic]
-ad-agency,Ad Agency,9-12,ela,n,tycoon,fact-check,persuasion techniques in media,manage,ad agency [business-money]
-word-family-tree,Word Family Tree,9-12,ela,n,explorer,word-lab,word origins through roots,explore,word family tree [family-tree]
-classroom-phrases-game,Classroom Phrases Game,K-2,eld,y,showdown,eld-talk,"classroom phrases: asking for help, following directions",drill,picture prompts [generic]
-retell-puppets,Retell Puppets,K-2,eld,n,sandbox,story-stage,"retelling beginning, middle and end with sentence frames",manipulate,puppet show [stage]
-shape-talk,Shape Talk,K-2,eld,y,cards,,describing shapes with sentence frames,converse,guess-the-hidden-shape [generic]
-i-spy-science,I Spy Science,K-2,eld,y,explorer,,naming and describing what you see,hunt,zoomable nature photos [nature]
-community-map-words,Community Map Words,K-2,eld,y,map,,"community places, people and jobs vocabulary",explore,friendly town map [town]
-talk-moves-trainer,Talk Moves Trainer,3-5,eld,n,roleplay,eld-talk,"agreeing, disagreeing and building on ideas",converse,animated classmates [generic]
-opinion-builder,Opinion Builder,3-5,eld,n,builder,,opinion with reasons using because and so,build,sentence frames [generic]
-math-explainer,Math Explainer,3-5,eld,n,studio,,explaining a word-problem solution with sequence words,compose,recording booth [generic]
-chain-reaction,Chain Reaction,3-5,eld,n,puzzle,,"cause and effect connectors (because, so, as a result)",build,chain reaction machine [robot-machine]
-time-machine-talk,Time Machine Talk,3-5,eld,n,story,,past tense and sequence words,choose-path,time machine [time-travel]
-summary-scaffold,Summary Scaffold,6-8,eld,n,builder,research,summarizing with citation frames,build,graphic organizer [generic]
-word-problem-decoder,Word Problem Decoder,6-8,eld,n,puzzle,,math words mapped to operations,annotate,word problems [generic]
-cer-builder,CER Builder,6-8,eld,n,builder,evidence,claim-evidence-reasoning paragraph for an experiment,build,simple experiment [lab]
-perspective-frames,Perspective Frames,6-8,eld,n,sort,,comparing viewpoints with comparison frames,sort,speaker statements [generic]
-idiom-island,Idiom Island,6-8,eld,y,map,,idioms: literal vs real meaning,explore,idiom island [island]
-argument-frames-pro,Argument Frames Pro,9-12,eld,n,roleplay,eld-talk,academic argument and counterargument language,debate,mock debate [council-debate]
-definition-duel,Definition Duel,9-12,eld,n,cards,,precise math definitions and conditions,match,duel cards [generic]
-chart-narrator,Chart Narrator,9-12,eld,n,data,,describing trends in charts with language frames,analyze-data,real charts [generic]
-historian-s-toolkit,Historian's Toolkit,9-12,eld,n,mystery,,language of causation and evaluation in history,annotate,historian's argument [generic]
-inbox-simulator,Inbox Simulator,9-12,eld,n,simulator,,formal vs casual register in emails,converse,email inbox [business-money]
-library-adventure,Library Adventure,K-2,library,y,map,library,how the library is organized; fiction vs nonfiction,explore,cartoon library [library]
-wonder-wall,Wonder Wall,K-2,library,y,showdown,,sorting questions by how to answer them,sort,class wonder wall [generic]
-keyword-kitchen,Keyword Kitchen,3-5,library,n,puzzle,,choosing keywords for a search,experiment,search recipe [kitchen-food]
-credit-card-builder,Credit Card Builder,3-5,library,n,builder,,"crediting books, websites and images",build,credit cards [generic]
-fake-or-fact-lab,Fake or Fact Lab,6-8,library,n,lab,fact-check,evaluating websites and posts with lateral reading,investigate,fact lab [lab]
-research-quest,Research Quest,6-8,library,n,story,,stages of the research process,choose-path,quest [fantasy]
-boolean-builder,Boolean Builder,9-12,library,n,sandbox,,Boolean search and databases,experiment,Venn diagram [generic]
-fair-use-court,Fair Use Court,9-12,library,n,roleplay,,fair use factors and Creative Commons,debate,fair use court [courtroom]
-line-safari,Line Safari,K-2,arts,y,showdown,paint-studio,"lines, shapes and primary colors",discuss,savanna [animals]
-art-passport,Art Passport,K-2,arts,y,explorer,art-museum,looking at art from many cultures,explore,world art map with passport [museum]
-paint-mixer,Paint Mixer,3-5,arts,y,lab,paint-studio,"color mixing, tints and shades",experiment,paint studio [studio]
-depth-detective,Depth Detective,3-5,arts,n,puzzle,,"overlap, size and placement for depth",manipulate,picture scene [generic]
-art-style-match,Art Style Match,3-5,arts,n,cards,art-museum,matching artworks to artists and movements,match,paintings [museum]
-design-fixer,Design Fixer,6-8,arts,n,puzzle,,"balance, contrast and emphasis",fix,poster layouts [studio]
-vanishing-point-studio,Vanishing Point Studio,6-8,arts,y,studio,perspective,one-point perspective drawing,compose,drawing studio [studio]
-art-through-time,Art Through Time,6-8,arts,n,timeline,art-museum,art movements in historical context,explore,scrolling timeline [museum]
-gallery-critique,Gallery Critique,9-12,arts,n,roleplay,art-museum,"describe, analyze, interpret, judge",debate,gallery [museum]
-city-skyline-studio,City Skyline Studio,9-12,arts,n,studio,perspective,two-point perspective and composition,compose,city skyline [town]
-virtual-gallery,Virtual Gallery,9-12,arts,n,builder,,curating and presenting a portfolio,build,virtual gallery [museum]
-beat-buddies,Beat Buddies,K-2,arts,y,showdown,rhythm,steady beat vs rhythm,move-along,marching animal friends [animals]
-sound-elevator,Sound Elevator,K-2,arts,y,sandbox,,"high and low pitch, loud and soft",manipulate,elevator [robot-machine]
-orchestra-zoo,Orchestra Zoo,K-2,arts,y,explorer,instruments,instrument families by sight and sound,explore,orchestra zoo [animals]
-note-ninja,Note Ninja,3-5,arts,y,arcade,,naming notes on the staff,drill,ninja arcade [generic]
-melody-maker,Melody Maker,3-5,arts,y,studio,music-studio,composing on a scale with solfege,compose,scale grid [music]
-song-form-builder,Song Form Builder,3-5,arts,n,builder,music-studio,"AB, ABA and rondo form",build,section blocks [music]
-chord-explorer,Chord Explorer,6-8,arts,y,sandbox,music-studio,triads and chord progressions,explore,keyboard [music]
-world-music-map,World Music Map,6-8,arts,n,map,instruments,musical traditions around the world,explore,world map [travel-map]
-band-practice,Band Practice,6-8,arts,n,race,rhythm,playing in time with an ensemble,rehearse,virtual band [music]
-theory-gym,Theory Gym,9-12,arts,n,puzzle,,"intervals, keys and cadences",drill,gym [sports]
-music-history-radio,Music History Radio,9-12,arts,n,timeline,,musical eras from chant to hip hop,explore,radio dial [film-media]
-beat-lab,Beat Lab,9-12,arts,y,studio,music-studio,composing and producing a track,compose,production studio [music]
-story-dress-up,Story Dress-Up,K-2,arts,n,showdown,,acting out a story with movement,rehearse,costume board [stage]
-character-voice-booth,Character Voice Booth,3-5,arts,n,lab,,voice and emotion choices for a character,experiment,voice booth [film-media]
-stage-blocker,Stage Blocker,6-8,arts,n,builder,stage,"blocking, stage directions and design",build,top-down stage [stage]
-director-s-chair,Director's Chair,9-12,arts,n,story,stage,directing choices change interpretation,choose-path,classic scene [stage]
-move-like-me,Move Like Me,K-2,arts,n,showdown,dance,locomotor and nonlocomotor moves at levels,move-along,animated dancer [generic]
-dance-pattern-puzzle,Dance Pattern Puzzle,3-5,arts,n,puzzle,dance,dance sequences in a pattern,order,move cards [stage]
-choreography-board,Choreography Board,6-8,arts,n,studio,dance,formations and transitions on a stage,compose,stage and timeline [stage]
-dance-styles-explorer,Dance Styles Explorer,9-12,arts,n,explorer,dance,dance styles and critique,explore,dance styles [generic]
-frame-it,Frame It,6-8,arts,y,lab,,"rule of thirds, leading lines, light",experiment,virtual camera [film-media]
-flipbook-studio,Flipbook Studio,6-8,arts,n,studio,,"frames, timing and onion skinning",compose,flipbook [studio]
-storyboard-studio,Storyboard Studio,9-12,arts,n,studio,,"shots, angles and cuts",plan,storyboard [film-media]
-brand-builder,Brand Builder,9-12,arts,n,builder,,"typography, color and layout",compose,fictional business brand [business-money]
-habit-hero,Habit Hero,K-2,health-pe,y,creature,habit-hero,"daily habits: brushing, washing, sleep",care-for,hero character [creature]
-lunch-tray-builder,Lunch Tray Builder,K-2,health-pe,y,builder,food,food groups and balanced meals,build,lunch tray [kitchen-food]
-feelings-faces,Feelings Faces,K-2,health-pe,y,showdown,feelings,naming feelings and kind responses,discuss,faces and scenes [generic]
-safety-street,Safety Street,K-2,health-pe,y,story,,"fire, traffic and water safety choices",choose-path,neighborhood street [town]
-label-detective,Label Detective,3-5,health-pe,y,mystery,food,reading nutrition labels,investigate,snack labels [detective]
-body-systems-tour,Body Systems Tour,3-5,health-pe,n,explorer,,how body systems work together,explore,ride through the body [body-medical]
-germ-spread-sim,Germ Spread Sim,3-5,health-pe,y,simulator,,how germs spread and prevention,simulate-tune,classroom [generic]
-growing-up-q-a,Growing Up Q&A,3-5,health-pe,n,explorer,,puberty basics,explore,Q&A guide [generic]
-pressure-point,Pressure Point,6-8,health-pe,n,story,,refusal skills for vaping and alcohol,choose-path,peer scenarios [generic]
-stress-toolkit,Stress Toolkit,6-8,health-pe,n,sandbox,feelings,trying coping strategies,experiment,toolkit [generic]
-boundaries-builder,Boundaries Builder,6-8,health-pe,n,roleplay,,communication and boundary setting,converse,friend and family scenarios [generic]
-screen-time-detective,Screen Time Detective,6-8,health-pe,n,data,,analyzing screen time patterns,analyze-data,screen time log [detective]
-meal-and-move-planner,Meal and Move Planner,9-12,health-pe,n,builder,food,energy balance of meals and workouts,plan,weekly meal plan [kitchen-food]
-first-aid-responder,First Aid Responder,9-12,health-pe,n,race,,emergency response order and CPR rhythm,order,emergency scenarios [generic]
-health-claim-checker,Health Claim Checker,9-12,health-pe,n,mystery,,evaluating health claims and sources,investigate,viral claims [detective]
-mind-map,Mind Map,9-12,health-pe,y,explorer,feelings,"mental health conditions, myths and support",explore,mind map [generic]
-animal-moves,Animal Moves,K-2,health-pe,y,showdown,movement,locomotor skills,move-along,animal moves [animals]
-target-toss,Target Toss,K-2,health-pe,n,lab,,throwing form,drill,board target [sports]
-playbook,Playbook,3-5,health-pe,n,builder,,"offense, defense and space",plan,game board [sports]
-fitness-circuit,Fitness Circuit,3-5,health-pe,n,race,movement,"cardio, strength, flexibility, heart rate",move-along,circuit timer [sports]
-rules-referee,Rules Referee,6-8,health-pe,n,escape,,calling sport rules,solve,locker room escape [sports]
-goal-tracker,Goal Tracker,6-8,health-pe,n,creature,habit-hero,setting and tracking fitness goals,care-for,growing avatar [creature]
-fitness-program-designer,Fitness Program Designer,9-12,health-pe,n,builder,,designing a FITT fitness program,plan,training program [sports]
-captain-s-choices,Captain's Choices,9-12,health-pe,n,story,,leadership and team culture,choose-path,team captain [sports]
-robot-dance,Robot Dance,K-2,computer-science,y,showdown,robot,sequencing commands and debugging,program,dancing robot [robot-machine]
-class-snack-vote,Class Snack Vote,K-2,computer-science,n,data,class-poll,collecting class votes to decide,analyze-data,class snack vote [kitchen-food]
-secret-keeper,Secret Keeper,K-2,computer-science,n,sort,,public vs private information,sort,robot guide [robot-machine]
-bee-bot-garden,Bee Bot Garden,K-2,computer-science,n,puzzle,robot,arrow-command paths and debugging,program,bee in a flower garden [garden-farm]
-pattern-finder,Pattern Finder,K-2,computer-science,n,showdown,,AI finds patterns in data,sort,simple AI [robot-machine]
-computer-builder,Computer Builder,K-2,computer-science,y,builder,,parts of a computer,build,computer [robot-machine]
-loop-garden,Loop Garden,K-2,computer-science,y,puzzle,robot,"sequence, events and repeat loops",program,rabbit gardener [garden-farm]
-teach-the-robot,Teach the Robot,K-2,computer-science,n,lab,ml-lab,training data teaches a model,experiment,robot learner [robot-machine]
-input-output-machine,Input-Output Machine,K-2,computer-science,n,sandbox,,input and output devices,explore,computer [robot-machine]
-traffic-light-coder,Traffic Light Coder,3-5,computer-science,n,builder,robot,if-then selection,program,traffic lights [vehicle]
-score-keeper,Score Keeper,3-5,computer-science,y,lab,,variables in a program,experiment,simple game [generic]
-internet-journey,Internet Journey,3-5,computer-science,n,story,network,how messages travel; personal info,choose-path,internet route [travel-map]
-code-tracer,Code Tracer,3-5,computer-science,y,puzzle,,tracing variables line by line,predict-reveal,code [generic]
-data-table-builder,Data Table Builder,3-5,computer-science,n,data,data-desk,organizing data into tables and charts,analyze-data,class data [generic]
-biased-bot,Biased Bot,3-5,computer-science,n,lab,ml-lab,skewed training data,experiment,AI bot [robot-machine]
-network-detective,Network Detective,3-5,computer-science,n,mystery,network,wired vs wireless; authentication,investigate,network case [detective]
-game-remix,Game Remix,3-5,computer-science,y,studio,,modifying programs,compose,simple game [generic]
-fruit-sorter-ai,Fruit Sorter AI,3-5,computer-science,n,lab,ml-lab,training a classifier by features,experiment,fruit [kitchen-food]
-data-defenders,Data Defenders,3-5,computer-science,n,escape,security,"confidentiality, integrity, availability",solve,school data defense [cyber]
-design-for-a-friend,Design for a Friend,3-5,computer-science,n,roleplay,,human-centered design,converse,user persona [generic]
-flowchart-factory,Flowchart Factory,6-8,computer-science,n,builder,,flowcharts and pseudocode,build,flowchart factory [factory]
-code-kitchen,Code Kitchen,6-8,computer-science,n,puzzle,,procedures and data types,program,recipes [kitchen-food]
-model-mechanic,Model Mechanic,6-8,computer-science,n,lab,ml-lab,tuning a model for accuracy and bias,simulate-tune,model mechanic [construction]
-misleading-charts,Misleading Charts,6-8,computer-science,n,mystery,,spotting misleading charts,investigate,chart case [detective]
-packet-race,Packet Race,6-8,computer-science,n,race,network,how packets travel and reroute,simulate-tune,packet network [cyber]
-phishing-spotter,Phishing Spotter,6-8,computer-science,n,arcade,security,spotting phishing tells,sort,inbox [cyber]
-algorithm-audit,Algorithm Audit,6-8,computer-science,n,roleplay,,bias and ethics in algorithms,debate,fictional school audit [generic]
-sorting-showdown,Sorting Showdown,9-12,computer-science,n,simulator,,sorting algorithm efficiency,simulate-tune,algorithm race [generic]
-api-playground,API Playground,9-12,computer-science,n,sandbox,,modular programs and APIs,build,mock APIs [generic]
-ai-evaluator,AI Evaluator,9-12,computer-science,n,lab,ml-lab,evaluating AI outputs and training data,investigate,AI test bench [lab]
-simulation-studio,Simulation Studio,9-12,computer-science,n,data,data-desk,simulating and cleaning data,analyze-data,data studio [generic]
-network-architect,Network Architect,9-12,computer-science,n,builder,network,designing networks,build,school network [cyber]
-capture-the-flag,Capture the Flag,9-12,computer-science,n,escape,security,"passwords, encryption, social engineering",solve,CTF [cyber]
-data-policy-council,Data Policy Council,9-12,computer-science,n,roleplay,,"data privacy policy, law and ethics",debate,policy council [council-debate]
-fingerspell-flash,Fingerspell Flash,K-12,world-languages,y,arcade,asl,manual alphabet handshapes and reading fingerspelling,drill,signer video [generic]
-asl-hello-booth,ASL Hello Booth,K-12,world-languages,n,showdown,asl,ASL greetings and getting attention,rehearse,signer video [generic]
-asl-number-bingo,ASL Number Bingo,K-12,world-languages,n,cards,asl,"ASL numbers, colors and time signs",match,bingo [generic]
-sign-parameters-lab,Sign Parameters Lab,K-12,world-languages,n,lab,asl,how a sign's parameters change meaning,experiment,sign lab [lab]
-asl-family-tree,ASL Family Tree,K-12,world-languages,n,builder,asl,ASL family and home vocabulary,build,family tree [family-tree]
-face-the-grammar,Face the Grammar,6-12,world-languages,n,puzzle,asl,non-manual markers and question grammar,match,facial expressions [generic]
-classifier-scenes,Classifier Scenes,6-12,world-languages,y,studio,asl,classifiers to show location and movement,compose,scene [generic]
-deaf-culture-explorer,Deaf Culture Explorer,6-12,world-languages,n,explorer,asl,"Deaf history, culture and community",explore,community voices [generic]
-asl-story-theater,ASL Story Theater,9-12,world-languages,n,studio,asl,ASL role shift and visual storytelling,compose,story recording [stage]
-hola-hallway,Hola Hallway,K-12,world-languages,n,showdown,spanish,Spanish greetings and courtesy phrases,choose-path,hallway [generic]
-calendario-vivo,Calendario Vivo,K-12,world-languages,n,sandbox,spanish,"Spanish numbers, colors, days and weather",explore,calendar [generic]
-mi-casa,Mi Casa,K-12,world-languages,n,explorer,spanish,Spanish family and home vocabulary,explore,house [home]
-mi-día,Mi Día,K-12,world-languages,n,timeline,spanish,Spanish daily routine and reflexive verbs,order,daily timeline [generic]
-el-restaurante,El Restaurante,K-12,world-languages,n,roleplay,spanish,ordering food in Spanish,converse,restaurant [shop-food]
-verb-conjugation-race,Verb Conjugation Race,6-12,world-languages,n,race,spanish,present tense conjugation,drill,car race [vehicle]
-ciudad-perdida,Ciudad Perdida,6-12,world-languages,n,map,spanish,asking for and giving directions in Spanish,locate,city map [town]
-detective-del-pasado,Detective del Pasado,6-12,world-languages,n,mystery,spanish,preterite and imperfect storytelling,investigate,mystery [detective]
-mundo-hispano,Mundo Hispano,6-12,world-languages,n,map,spanish,cultures of the Spanish-speaking world,explore,world map [travel-map]
-consejero,Consejero,9-12,world-languages,n,roleplay,spanish,subjunctive for advice and opinions,converse,friends' problems [generic]
-debate-en-español,Debate en Español,9-12,world-languages,n,roleplay,spanish,defending positions in Spanish,debate,current events debate [council-debate]
-career-cluster-explorer,Career Cluster Explorer,6-8,cte,n,explorer,careers,the 14 career clusters,explore,career videos [generic]
-career-match-quiz,Career Match Quiz,6-8,cte,y,sort,careers,matching interests to careers,sort,quiz [generic]
-workplace-scenarios,Workplace Scenarios,6-8,cte,n,story,,"teamwork, communication and professionalism",choose-path,workplace [business-money]
-path-planner,Path Planner,9-12,cte,n,builder,careers,"college, apprenticeship, certificate, military paths",plan,route map [generic]
-interview-simulator,Interview Simulator,9-12,cte,n,roleplay,,answering job interview questions,converse,interview room [business-money]
-startup-tycoon,Startup Tycoon,9-12,cte,n,tycoon,,"business plan, startup costs and pitch",manage,startup [business-money]
-prototype-lab,Prototype Lab,9-12,cte,n,lab,,"prototype, test and iterate",experiment,workshop [lab]
-hospital-shift,Hospital Shift,9-12,cte,n,story,careers,medical terms and care careers,choose-path,hospital shift [body-medical]
-paycheck-decoder,Paycheck Decoder,9-12,cte,n,explorer,money,"gross vs net pay, taxes and benefits",explore,paycheck [generic]
-first-apartment-budget,First Apartment Budget,9-12,cte,y,tycoon,money,budgeting needs vs wants,manage,first apartment [home]
-compound-interest-garden,Compound Interest Garden,9-12,cte,n,simulator,money,compound interest over decades,simulate-tune,savings garden [garden-farm]
-the-credit-card-diaries,The Credit Card Diaries,9-12,cte,n,story,money,"credit scores, loans and interest",choose-path,young adult life [generic]
-market-time-machine,Market Time Machine,9-12,cte,y,simulator,money,"stocks, bonds, index funds and risk",simulate-tune,market history [time-travel]
-scam-shield,Scam Shield,9-12,cte,n,escape,money,spotting scams; insurance basics,solve,scam traps [cyber]
-feelings-weather-report,Feelings Weather Report,K-2,sel,y,showdown,feelings,naming feelings as weather,discuss,weather report [weather]
-calm-corner,Calm Corner,K-2,sel,y,sandbox,feelings,breathing and calm-down tools,manipulate,calm tools [generic]
-walk-in-their-shoes,Walk in Their Shoes,3-5,sel,y,story,,understanding others' feelings and views,choose-path,story [generic]
-comeback-club,Comeback Club,3-5,sel,y,creature,,growth mindset and goals,care-for,brain character [creature]
-conflict-coach,Conflict Coach,6-8,sel,y,roleplay,,I-statements and active listening,converse,peer conflicts [generic]
-decision-tree,Decision Tree,6-8,sel,y,builder,,weighing consequences of choices,build,decision tree [generic]
-resilience-map,Resilience Map,9-12,sel,y,explorer,,stress responses and resilience strategies,explore,map [generic]
-community-project-planner,Community Project Planner,9-12,sel,y,tycoon,,leading a service project,manage,community project [town]
-hundred-hop,Hundred Hop,K-2,math,y,showdown,number-path,counting by ones and tens to 100,predict-reveal,frog on number path [nature]
-sheep-count,Sheep Count,K-2,math,n,showdown,,one-to-one counting and how many,count-along,sheep pen [garden-farm]
-snack-scale,Snack Scale,K-2,math,n,sandbox,balance,"more, less, same up to 10",predict-reveal,snack seesaw [kitchen-food]
-bus-stop,Bus Stop,K-2,math,n,story,,add and subtract within 10 stories,discuss,school bus [vehicle]
-ten-frame-factory,Ten Frame Factory,K-2,math,n,sandbox,ten-frame,teen numbers as ten and some more,manipulate,ten frame [factory]
-who-wins,Who Wins?,K-2,math,n,showdown,,"comparing length, weight and height",predict-reveal,animal face-off [animals]
-toy-box-sort,Toy Box Sort,K-2,math,n,sort,,sorting objects into categories and counting,sort,toy box [toys]
-shape-spy,Shape Spy,K-2,math,n,explorer,,naming 2D and 3D shapes in the world,hunt,photos of playground and street [town]
-pattern-block-pond,Pattern Block Pond,K-2,math,n,sandbox,pattern-blocks,composing shapes from pattern blocks,compose,lily pad [nature]
-story-problem-theater,Story Problem Theater,K-2,math,n,story,,solving add and subtract word problems within 20,manipulate,animated stories [stage]
-make-ten-machine,Make Ten Machine,K-2,math,n,puzzle,,making ten as a fact strategy,manipulate,conveyor machine [robot-machine]
-balance-the-beam,Balance the Beam,K-2,math,n,puzzle,balance,equal sign as balance,solve,balance scale [balance]
-number-path-rescue,Number Path Rescue,K-2,math,n,race,number-path,counting and writing numerals to 120,drill,rising river [water]
-bundle-bakery,Bundle Bakery,K-2,math,n,tycoon,base-ten,tens and ones place value,manage,cookie boxes [shop-food]
-elevator-hundred,Elevator Hundred,K-2,math,n,simulator,number-path,adding tens and ones,simulate-tune,elevator building [robot-machine]
-paperclip-ruler,Paperclip Ruler,K-2,math,n,lab,,measuring with same-size units,experiment,classroom objects [generic]
-clock-shop,Clock Shop,K-2,math,n,sandbox,clock,telling time to the half hour,manipulate,clock [shop-food]
-class-poll,Class Poll,K-2,math,n,data,class-poll,tallies and picture graphs,analyze-data,class vote on pets or snacks [generic]
-pizza-party,Pizza Party,K-2,math,n,builder,fraction-food,halves and fourths as fair shares,build,pizza [kitchen-food]
-treasure-map-steps,Treasure Map Steps,K-2,math,n,mystery,,two-step add and subtract problems,solve,pirate map [treasure]
-fact-rally,Fact Rally,K-2,math,n,arcade,,addition and subtraction fact fluency,drill,tennis bot [sports]
-marching-band,Marching Band,K-2,math,y,builder,,"odd, even and arrays",build,marching band [music]
-place-value-vault,Place Value Vault,K-2,math,n,escape,base-ten,three-digit place value,solve,vault codes [treasure]
-jump-line,Jump Line,K-2,math,n,sandbox,number-line,adding and subtracting with an open number line,manipulate,open number line [generic]
-estimation-station,Estimation Station,K-2,math,n,race,,estimating and measuring length,drill,ruler [generic]
-corner-store,Corner Store,K-2,math,y,tycoon,money,"counting coins, making change, time",manage,snack stand [shop-food]
-lunch-line-data,Lunch Line Data,K-2,math,n,data,class-poll,line plots and bar graphs,analyze-data,cafeteria data [kitchen-food]
-garden-grid,Garden Grid,K-2,math,n,builder,,partitioning rectangles into rows and columns,build,garden bed [garden-farm]
-equal-groups-zoo,Equal Groups Zoo,3-5,math,n,sandbox,arrays,equal groups and arrays,manipulate,feeding zoo animals [animals]
-multiplication-dungeon,Multiplication Dungeon,3-5,math,n,arcade,,multiplication facts fluency,drill,dungeon crawl [fantasy]
-pattern-detective,Pattern Detective,3-5,math,n,mystery,,explaining arithmetic patterns,investigate,alibi case [detective]
-roller-coaster-rounding,Roller Coaster Rounding,3-5,math,n,simulator,number-line,rounding to 10 and 100,simulate-tune,roller coaster [amusement-park]
-fraction-trail,Fraction Trail,3-5,math,n,map,number-line,fractions on a number line and equivalence,locate,hiking trail [travel-map]
-kitchen-lab,Kitchen Lab,3-5,math,n,lab,,"elapsed time, volume and mass",experiment,recipes [kitchen-food]
-graph-glow-up,Graph Glow-Up,3-5,math,n,builder,graphs,scaled picture and bar graphs,fix,crowded graph [generic]
-tile-the-floor,Tile the Floor,3-5,math,n,puzzle,area,area as tiling and rows times columns,solve,rooms [home]
-fence-builder,Fence Builder,3-5,math,n,builder,area,perimeter vs area,build,dog pen fence [garden-farm]
-shape-family-tree,Shape Family Tree,3-5,math,n,sort,,classifying quadrilaterals,sort,shape family tree [family-tree]
-growth-spurt,Growth Spurt,3-5,math,n,simulator,,times as many vs more than,simulate-tune,animals and plants [nature]
-prime-garden,Prime Garden,3-5,math,n,puzzle,,"factor pairs, prime and composite",solve,number garden [garden-farm]
-rule-machine,Rule Machine,3-5,math,n,puzzle,function-machine,finding the rule of a pattern,solve,function machine [robot-machine]
-stadium-count,Stadium Count,3-5,math,n,explorer,,place value to a million,explore,stadium crowd [sports]
-area-model-builder,Area Model Builder,3-5,math,n,sandbox,area,area model multiplication,manipulate,rectangles [generic]
-fraction-wall-duel,Fraction Wall Duel,3-5,math,n,cards,fraction-wall,equivalent and comparing fractions,match,fraction wall cards [generic]
-recipe-scaler,Recipe Scaler,3-5,math,n,tycoon,fraction-food,whole number times fraction,manage,recipe orders [shop-food]
-money-and-meters,Money and Meters,3-5,math,n,simulator,,decimal tenths and hundredths,manipulate,"dimes, meter sticks, grids [generic]"
-unit-ladder,Unit Ladder,3-5,math,n,race,,converting units,drill,conversion ladder [generic]
-skate-park-angles,Skate Park Angles,3-5,math,n,builder,,measuring angles with a protractor,build,skate park [sports]
-mirror-studio,Mirror Studio,3-5,math,n,studio,,lines of symmetry,compose,mirror [studio]
-expression-escape,Expression Escape,3-5,math,n,escape,,grouping symbols in expressions,solve,escape locks [treasure]
-two-rule-race,Two Rule Race,3-5,math,n,simulator,coordinate,two numeric patterns graphed as ordered pairs,simulate-tune,snail race [vehicle]
-powers-of-ten-zoom,Powers of Ten Zoom,3-5,math,n,explorer,,powers of ten and decimal place value,explore,galaxy to atom zoom [space]
-grocery-run,Grocery Run,3-5,math,n,tycoon,money,multi-digit and decimal operations,manage,grocery store [shop-food]
-fraction-kitchen,Fraction Kitchen,3-5,math,n,puzzle,fraction-food,adding fractions with unlike denominators,solve,measuring cups [kitchen-food]
-shrink-ray,Shrink Ray,3-5,math,n,simulator,,fraction multiplication as scaling,simulate-tune,shrink ray [robot-machine]
-seed-sprout-data,Seed Sprout Data,3-5,math,n,data,,line plots with fractional data,analyze-data,seedlings [garden-farm]
-box-packer,Box Packer,3-5,math,n,puzzle,,volume of rectangular prisms,solve,shipping boxes [shipping]
-battleship-grid,Battleship Grid,3-5,math,n,cards,coordinate,graphing points in the first quadrant,locate,ships grid [water]
-shape-courtroom,Shape Courtroom,3-5,math,n,roleplay,,hierarchy of 2D shapes,debate,shape on trial [courtroom]
-smoothie-lab,Smoothie Lab,6-8,math,y,lab,ratio,ratios and equivalent ratios,experiment,smoothie bar [kitchen-food]
-how-many-fit,How Many Fit?,6-8,math,n,sandbox,fraction-wall,dividing fractions as measuring,manipulate,fraction bars [generic]
-factor-forge,Factor Forge,6-8,math,y,arcade,,"prime factors, GCF and LCM",drill,number forge [forge]
-deep-sea-dive,Deep Sea Dive,6-8,math,n,map,number-line,negative numbers and absolute value,locate,deep sea [water]
-expression-garden,Expression Garden,6-8,math,n,builder,algebra-tiles,writing and simplifying expressions,build,algebra tile garden [garden-farm]
-balance-puzzle,Balance Puzzle,6-8,math,n,puzzle,balance,one-step equations with a balance,solve,balance scale [balance]
-lemonade-stand,Lemonade Stand,6-8,math,n,tycoon,,dependent and independent variables,simulate-tune,lemonade stand [shop-food]
-net-folder,Net Folder,6-8,math,n,sandbox,,nets and surface area,manipulate,boxes and pyramids [generic]
-question-lab,Question Lab,6-8,math,n,sort,,statistical vs non-statistical questions,sort,survey questions [generic]
-box-plot-builder,Box Plot Builder,6-8,math,n,data,data-desk,"box plots, mean, median and MAD",analyze-data,sports and weather data [generic]
-tax-and-tip,Tax and Tip,6-8,math,n,tycoon,ratio,"percent, tax, tip and proportionality",manage,diner register [shop-food]
-hot-air-and-sandbags,Hot Air and Sandbags,6-8,math,n,simulator,,operations with signed numbers,simulate-tune,hot air balloon [vehicle]
-expression-match,Expression Match,6-8,math,n,cards,algebra-tiles,equivalent linear expressions,match,memory cards [generic]
-phone-plan-showdown,Phone Plan Showdown,6-8,math,n,roleplay,,comparing plans with equations,debate,phone plan sale [shop-food]
-blueprint-studio,Blueprint Studio,6-8,math,n,studio,,scale drawings and floor plans,compose,bedroom floor plan [home]
-pizza-physics,Pizza Physics,6-8,math,n,lab,,circumference and area of circles,experiment,pizzas [kitchen-food]
-jellybean-jar,Jellybean Jar,6-8,math,n,simulator,sampling,random sampling and inference,simulate-tune,jellybean jar [generic]
-carnival-odds,Carnival Odds,6-8,math,n,simulator,probability,theoretical vs experimental probability,simulate-tune,carnival [amusement-park]
-square-root-hunt,Square Root Hunt,6-8,math,n,puzzle,number-line,approximating irrational numbers,solve,zooming number line [generic]
-size-of-everything,Size of Everything,6-8,math,y,explorer,,scientific notation across scales,explore,virus to galaxy scale [space]
-ski-slope-designer,Ski Slope Designer,6-8,math,n,builder,graphing,slope as rise over run,build,ski runs [sports]
-two-trains,Two Trains,6-8,math,y,simulator,graphing,systems of two linear equations,simulate-tune,two trains [vehicle]
-function-machine-factory,Function Machine Factory,6-8,math,n,puzzle,function-machine,functions as one output per input,build,function machines [factory]
-story-graphs,Story Graphs,6-8,math,n,sort,graphing,matching stories to graphs,match,story cards and graphs [generic]
-dance-floor-moves,Dance Floor Moves,6-8,math,n,studio,transformations,rigid motions and dilations as sequences,compose,dance floor [stage]
-square-slicer,Square Slicer,6-8,math,n,puzzle,,Pythagorean theorem by dissection,solve,park shortcut [town]
-ice-cream-shop,Ice Cream Shop,6-8,math,n,tycoon,,"volume of cylinders, cones and spheres",manage,ice cream shop [shop-food]
-data-detective,Data Detective,6-8,math,n,data,data-desk,"scatter plots, lines of fit, two-way tables",analyze-data,real data [generic]
-exponent-rule-builder,Exponent Rule Builder,9-12,math,n,puzzle,,rational exponents and exponent rules,experiment,patterns [generic]
-unit-detective,Unit Detective,9-12,math,n,mystery,,dimensional analysis of claims,investigate,headlines [newsroom]
-algebra-tile-studio,Algebra Tile Studio,9-12,math,n,sandbox,algebra-tiles,factoring and completing the square with tiles,manipulate,algebra tiles [generic]
-polynomial-garden,Polynomial Garden,9-12,math,n,builder,algebra-tiles,multiplying polynomials as area,build,polynomial garden [garden-farm]
-model-my-world,Model My World,9-12,math,n,builder,,writing equations for real situations,build,real situations [generic]
-equation-golf,Equation Golf,9-12,math,n,puzzle,balance,solving equations in few legal moves,solve,golf [sports]
-intersection-quest,Intersection Quest,9-12,math,n,race,graphing,solving systems three ways,drill,graph race [generic]
-graph-story-lab,Graph Story Lab,9-12,math,n,explorer,graphing,"domain, range and key features",annotate,real graphs [generic]
-which-model-wins,Which Model Wins?,9-12,math,n,data,data-desk,linear vs quadratic vs exponential fits,analyze-data,real data sets [generic]
-launch-pad,Launch Pad,9-12,math,n,simulator,graphing,roots of quadratics as landing points,simulate-tune,projectile launch [space]
-correlation-guessing-game,Correlation Guessing Game,9-12,math,n,arcade,,estimating correlation; residuals,drill,guessing game [generic]
-transformation-golf,Transformation Golf,9-12,math,n,puzzle,transformations,rigid motions and congruence,solve,golf [sports]
-proof-blocks,Proof Blocks,9-12,math,n,puzzle,,statements and reasons in a proof,build,proof blocks [generic]
-shadow-measure,Shadow Measure,9-12,math,n,lab,,similar triangles for indirect measurement,experiment,flagpole [generic]
-ramp-and-roof,Ramp and Roof,9-12,math,n,builder,,"sine, cosine and tangent in design",build,ramps and roofs [construction]
-circle-theorem-explorer,Circle Theorem Explorer,9-12,math,n,explorer,,"angle, chord and tangent relationships",explore,dynamic geometry [generic]
-coordinate-proof-lab,Coordinate Proof Lab,9-12,math,n,sandbox,coordinate,proving shape properties with coordinates,solve,coordinate grid [generic]
-slice-it,Slice It,9-12,math,n,explorer,,cross sections and solids of rotation,explore,3D solids [generic]
-packaging-challenge,Packaging Challenge,9-12,math,n,builder,,minimizing material for a volume,build,packaging [shipping]
-medical-test-paradox,Medical Test Paradox,9-12,math,n,simulator,probability,conditional probability of test results,simulate-tune,disease test [body-medical]
-imaginary-island,Imaginary Island,9-12,math,y,map,,complex plane and multiplication by i,explore,complex island [island]
-rollercoaster-polynomials,Rollercoaster Polynomials,9-12,math,y,builder,graphing,"zeros, degree and end behavior",build,coaster track [amusement-park]
-work-rate-crew,Work Rate Crew,9-12,math,n,roleplay,,combined work rates,manage,painting crews [construction]
-outbreak-model,Outbreak Model,9-12,math,y,simulator,,exponential growth and logarithms,simulate-tune,outbreak [body-medical]
-ferris-wheel,Ferris Wheel,9-12,math,y,simulator,,periodic trig models,simulate-tune,ferris wheel [amusement-park]
-undo-machine,Undo Machine,9-12,math,y,puzzle,function-machine,composing and inverting functions,build,function machines [robot-machine]
-savings-plan,Savings Plan,9-12,math,y,tycoon,,arithmetic and geometric sequences,simulate-tune,saving plans [business-money]
-poll-workshop,Poll Workshop,9-12,math,y,data,sampling,"sampling, bias and margin of error",simulate-tune,poll headline [newsroom]
-function-family-reunion,Function Family Reunion,9-12,math,n,explorer,graphing,parent functions and transformations,explore,function family reunion [family-tree]
-identity-proof-race,Identity Proof Race,9-12,math,n,race,,proving trig identities,drill,proof race [generic]
-flight-planner,Flight Planner,9-12,math,n,simulator,,adding velocity vectors,simulate-tune,plane in crosswind [vehicle]
-image-transformer,Image Transformer,9-12,math,n,studio,,matrix transformations,experiment,photo [studio]
-polar-rose-studio,Polar Rose Studio,9-12,math,n,studio,,polar equations as art,compose,art [studio]
-cone-slicer,Cone Slicer,9-12,math,n,explorer,,conic sections from a double cone,explore,double cone [generic]
-zoom-to-the-limit,Zoom to the Limit,9-12,math,n,explorer,,secant to tangent,explore,zooming curve [generic]
-data-desk-distributions,Data Desk: Distributions,9-12,math,n,data,data-desk,describing distributions,analyze-data,public data [generic]
-design-the-study,Design the Study,9-12,math,n,story,,sampling and experiment design,plan,journal editor [newsroom]
-game-show-strategist,Game Show Strategist,9-12,math,n,simulator,probability,expected value and probability models,simulate-tune,game show [game-show]
-sample-machine,Sample Machine,9-12,math,n,simulator,sampling,sampling distributions and the CLT,simulate-tune,sample machine [robot-machine]
-courtroom-statistics,Courtroom Statistics,9-12,math,n,roleplay,,significance tests and p-values,debate,claim on trial [courtroom]
-fair-dice-investigation,Fair Dice Investigation,9-12,math,n,mystery,,chi-square and slope inference,investigate,loaded die [game-show]
-hole-hunter,Hole Hunter,9-12,math,n,puzzle,,"holes, jumps and asymptotes",fix,graphs [generic]
-speedometer,Speedometer,9-12,math,n,simulator,,derivative as rate,simulate-tune,car [vehicle]
-optimization-workshop,Optimization Workshop,9-12,math,n,builder,,optimization with derivatives,build,field fence and can [garden-farm]
-rain-gauge,Rain Gauge,9-12,math,n,simulator,,Riemann sums and accumulation,simulate-tune,rain tank [weather]
-solid-spinner,Solid Spinner,9-12,math,n,explorer,,disk and washer volumes,explore,solids [generic]
-slope-field-garden,Slope Field Garden,9-12,math,n,sandbox,,slope fields and solution curves,explore,slope field garden [garden-farm]
-push-the-pumpkin,Push the Pumpkin,K-2,science,n,showdown,,pushes and pulls change motion,predict-reveal,pumpkin and wagon [garden-farm]
-shade-builder,Shade Builder,K-2,science,n,builder,,sunlight warms surfaces; shade,build,sandbox [town]
-terrarium-pal,Terrarium Pal,K-2,science,n,creature,terrarium,what living things need,care-for,terrarium snail and plant [creature]
-weather-wardrobe,Weather Wardrobe,K-2,science,n,showdown,weather,daily and seasonal weather patterns,discuss,dress-up character [weather]
-beaver-builders,Beaver Builders,K-2,science,n,simulator,,animals change their environment,simulate-tune,beaver stream [nature]
-vibration-station,Vibration Station,K-2,science,n,lab,,vibration makes sound,experiment,rubber bands and drums [music]
-shadow-puppet-studio,Shadow Puppet Studio,K-2,science,n,studio,,light and shadows; materials,experiment,shadow puppets [stage]
-nature-inventor,Nature Inventor,K-2,science,n,builder,,body parts inspire designs,build,nature inventions [nature]
-who-s-my-baby,Who's My Baby?,K-2,science,n,cards,,young resemble parents,match,parent and baby cards [animals]
-sky-diary,Sky Diary,K-2,science,n,explorer,sky,"patterns of sun, moon and stars",predict-reveal,sky [space]
-three-pigs-lab,Three Pigs Lab,K-2,science,y,lab,,testing material properties,experiment,three pigs houses [folktale]
-melt-or-not,Melt or Not?,K-2,science,y,sort,,reversible vs irreversible change,sort,everyday changes [kitchen-food]
-plant-experiment-shelf,Plant Experiment Shelf,K-2,science,n,lab,terrarium,fair test of plant needs,experiment,plant shelf [garden-farm]
-habitat-hunt,Habitat Hunt,K-2,science,y,explorer,,comparing biodiversity in habitats,hunt,habitats [nature]
-fast-or-slow,Fast or Slow?,K-2,science,n,timeline,,fast and slow Earth events,order,timeline [generic]
-island-maker,Island Maker,K-2,science,n,studio,,landforms and bodies of water,compose,island sculpting [island]
-tug-of-war-arena,Tug of War Arena,3-5,science,n,simulator,forces,balanced and unbalanced forces,simulate-tune,tug of war [sports]
-magnet-maze,Magnet Maze,3-5,science,n,puzzle,,magnetic and static forces,solve,magnet maze [fantasy]
-life-cycle-wheel,Life Cycle Wheel,3-5,science,n,sort,,comparing life cycles,order,life cycle wheels [animals]
-wolf-pack-survival,Wolf Pack Survival,3-5,science,n,simulator,,living in groups aids survival,simulate-tune,"wolves, fish, bees [animals]"
-puppy-traits,Puppy Traits,3-5,science,n,explorer,,inherited vs environmental traits,explore,puppy litters [animals]
-fossil-dig,Fossil Dig,3-5,science,n,lab,fossils,fossils show past environments,hunt,quarry [nature]
-climate-postcards,Climate Postcards,3-5,science,n,data,weather,weather data and climates,analyze-data,postcards [travel-map]
-bowling-lab,Bowling Lab,3-5,science,n,lab,,speed and energy in collisions,experiment,bowling [sports]
-rube-goldberg-workshop,Rube Goldberg Workshop,3-5,science,n,builder,,energy conversion devices,build,contraption [robot-machine]
-secret-code-signals,Secret Code Signals,3-5,science,n,puzzle,,patterns transfer information,compose,secret code [cyber]
-how-animals-see,How Animals See,3-5,science,y,explorer,,structures and senses; how eyes see,explore,animal vision [animals]
-canyon-reader,Canyon Reader,3-5,science,n,mystery,fossils,rock layers and Earth history,investigate,canyon wall [nature]
-erosion-table,Erosion Table,3-5,science,n,simulator,,weathering and erosion,simulate-tune,sand table [nature]
-town-planner-disaster-ready,Town Planner: Disaster Ready,3-5,science,n,tycoon,,energy resources and hazard mitigation,manage,town planner [town]
-particle-zoom,Particle Zoom,3-5,science,n,explorer,particles,matter made of particles,explore,sugar and balloon zoom [kitchen-food]
-mystery-powders,Mystery Powders,3-5,science,n,mystery,,identifying materials; new substances,investigate,mystery powders [lab]
-drop-zone,Drop Zone,3-5,science,n,lab,,gravity pulls down,experiment,"Earth, Moon, Mars [space]"
-food-web-jenga,Food Web Jenga,3-5,science,n,simulator,ecosystem,food webs and removing a species,simulate-tune,food web tower [generic]
-shadow-clock,Shadow Clock,3-5,science,n,lab,sky,daily and seasonal shadow patterns,experiment,stick shadow [space]
-sphere-connections,Sphere Connections,3-5,science,n,cards,,interactions of Earth's spheres,match,sphere cards [generic]
-community-solutions,Community Solutions,3-5,science,n,roleplay,,community environmental solutions,debate,town meeting [council-debate]
-moon-phase-model,Moon Phase Model,6-8,science,y,simulator,sky,"moon phases, eclipses and seasons",simulate-tune,Earth-Moon orbit [space]
-planet-builder,Planet Builder,6-8,science,n,sandbox,,gravity and orbits,experiment,solar system [space]
-earth-s-calendar,Earth's Calendar,6-8,science,n,timeline,,geologic time scale,order,calendar year [generic]
-plate-puzzle,Plate Puzzle,6-8,science,n,puzzle,,plate tectonics evidence,solve,continents [generic]
-raindrop-s-journey,Raindrop's Journey,6-8,science,n,story,,water cycle and weather,choose-path,water molecule journey [water]
-ocean-conveyor,Ocean Conveyor,6-8,science,n,simulator,,winds and ocean currents,simulate-tune,globe [water]
-cooler-challenge,Cooler Challenge,6-8,science,n,builder,,insulation and heat transfer design,build,lunchbox cooler [kitchen-food]
-cell-city,Cell City,6-8,science,n,explorer,cells,organelles and body systems,explore,cell city [town]
-molecule-builder,Molecule Builder,6-8,science,n,sandbox,molecules,atoms into molecules,build,molecule kit [lab]
-particle-party,Particle Party,6-8,science,n,simulator,particles,particle motion and state changes,simulate-tune,particles [lab]
-reaction-kitchen,Reaction Kitchen,6-8,science,n,lab,molecules,conservation of mass in reactions,experiment,kitchen reactions [kitchen-food]
-leaf-factory,Leaf Factory,6-8,science,n,tycoon,,photosynthesis and respiration,manage,leaf factory [factory]
-predator-prey-island,Predator-Prey Island,6-8,science,n,simulator,ecosystem,predator-prey cycles,simulate-tune,wolves and moose [island]
-energy-pyramid,Energy Pyramid,6-8,science,n,builder,ecosystem,energy flow in ecosystems,build,pyramid [nature]
-invasive-species-alert,Invasive Species Alert,6-8,science,n,story,,invasive species and biodiversity,choose-path,lake [nature]
-resource-map,Resource Map,6-8,science,n,map,,uneven distribution of resources,locate,resource map [travel-map]
-crash-test-lab,Crash Test Lab,6-8,science,n,lab,forces,Newton's third law; collisions,experiment,carts [vehicle]
-electromagnet-lab,Electromagnet Lab,6-8,science,n,lab,,electromagnet strength,experiment,coils [lab]
-skate-park-energy,Skate Park Energy,6-8,science,n,simulator,,kinetic and potential energy,simulate-tune,skate park [sports]
-wave-tank,Wave Tank,6-8,science,n,sandbox,,wave amplitude and frequency,experiment,wave tank [water]
-gene-pool,Gene Pool,6-8,science,n,simulator,genetics,"genes, mutations, reproduction",simulate-tune,fantasy creatures [creature]
-bug-hunt,Bug Hunt,6-8,science,n,arcade,,natural selection and camouflage,hunt,bird hunting bugs [nature]
-hazard-forecaster,Hazard Forecaster,6-8,science,n,data,,forecasting hazards from data,analyze-data,hazard data [generic]
-bridge-builder,Bridge Builder,6-8,science,n,builder,,"design, test and optimize",build,bridge [construction]
-membrane-gatekeeper,Membrane Gatekeeper,9-12,science,n,arcade,cells,cell membrane transport,sort,cell membrane [body-medical]
-body-thermostat,Body Thermostat,9-12,science,n,simulator,,feedback and homeostasis,simulate-tune,body [body-medical]
-mitosis-mixer,Mitosis Mixer,9-12,science,n,sort,cells,stages of mitosis and differentiation,order,microscope images [lab]
-energy-accountant,Energy Accountant,9-12,science,n,data,,carbon and energy through photosynthesis and respiration,analyze-data,energy ledger [business-money]
-protein-factory,Protein Factory,9-12,science,n,puzzle,genetics,transcription and translation,solve,protein factory [factory]
-punnett-predictor,Punnett Predictor,9-12,science,n,simulator,genetics,Punnett predictions vs simulated offspring,simulate-tune,Punnett square [generic]
-tree-of-life,Tree of Life,9-12,science,n,explorer,,evidence for common ancestry,explore,tree of life [family-tree]
-carrying-capacity,Carrying Capacity,9-12,science,n,simulator,ecosystem,logistic growth and carrying capacity,simulate-tune,deer population [nature]
-reserve-designer,Reserve Designer,9-12,science,n,builder,,designing a reserve with corridors,build,nature reserve [nature]
-star-life-story,Star Life Story,9-12,science,n,timeline,astronomy,stellar life cycles and element formation,order,stars [space]
-orbit-lab,Orbit Lab,9-12,science,n,simulator,astronomy,Kepler's laws with real planet data,simulate-tune,orbits [space]
-feedback-loop-builder,Feedback Loop Builder,9-12,science,n,builder,,climate feedback loops,build,causal loop diagram [generic]
-water-shapes-earth,Water Shapes Earth,9-12,science,n,lab,,water's properties shape the surface,experiment,rocks and rivers [nature]
-climate-dashboard,Climate Dashboard,9-12,science,n,data,,long-term climate trends vs noise,analyze-data,climate data [generic]
-island-economy,Island Economy,9-12,science,n,tycoon,,sustainable resource management,manage,island economy [island]
-elements-inspector,Elements Inspector,9-12,science,y,explorer,elements,atomic structure and periodic patterns,explore,periodic table [lab]
-bond-battle,Bond Battle,9-12,science,n,cards,molecules,ionic vs covalent bonds; intermolecular forces,match,atom cards [generic]
-equation-balancer,Equation Balancer,9-12,science,n,puzzle,,balancing chemical equations,solve,atom scale [balance]
-mole-bakery,Mole Bakery,9-12,science,n,tycoon,,limiting reactant and yield,manage,mole bakery [shop-food]
-hand-warmer-lab,Hand Warmer Lab,9-12,science,n,lab,,exothermic and endothermic reactions,experiment,hand warmer design [lab]
-equilibrium-seesaw,Equilibrium Seesaw,9-12,science,n,simulator,,Le Chatelier's principle,simulate-tune,seesaw [balance]
-gas-law-lab,Gas Law Lab,9-12,science,n,lab,particles,"pressure, volume and temperature",experiment,piston and balloon [lab]
-ph-detective,pH Detective,9-12,science,n,mystery,,pH and neutralization,investigate,mystery liquids [detective]
-half-life-dice,Half-Life Dice,9-12,science,n,simulator,,radioactive decay and half-life,simulate-tune,dice [generic]
-motion-graph-match,Motion Graph Match,9-12,science,y,race,,position and velocity graphs,move-along,motion graph [generic]
-space-cargo,Space Cargo,9-12,science,n,simulator,forces,F = ma,simulate-tune,zero-g cargo [space]
-collision-lab,Collision Lab,9-12,science,y,lab,forces,conservation of momentum,experiment,air track [lab]
-field-lines,Field Lines,9-12,science,y,sandbox,,gravitational and electric fields,explore,field sandbox [generic]
-roller-coaster-physics,Roller Coaster Physics,9-12,science,n,builder,,conservation of energy with friction,build,roller coaster [amusement-park]
-circuit-builder,Circuit Builder,9-12,science,n,sandbox,,"circuits, current and voltage",build,circuit board [lab]
-sound-studio,Sound Studio,9-12,science,n,studio,,"frequency, wavelength and harmonics",compose,synth and scope [music]
-spectrum-explorer,Spectrum Explorer,9-12,science,n,explorer,,the electromagnetic spectrum,explore,spectrum slider [generic]
-biome-atlas,Biome Atlas,9-12,science,n,map,,biomes from temperature and rainfall,predict-reveal,world biomes [travel-map]
-population-dashboard,Population Dashboard,9-12,science,n,data,,population and resource use,analyze-data,country data [generic]
-power-grid-tycoon,Power Grid Tycoon,9-12,science,n,tycoon,,energy source tradeoffs,manage,city power grid [town]
-watershed-detective,Watershed Detective,9-12,science,n,mystery,,tracing pollution sources,investigate,watershed [water]
-design-challenge-studio,Design Challenge Studio,9-12,science,n,builder,,breaking down global challenges and tradeoffs,plan,design studio [lab]
-playground-rules,Playground Rules,K-2,social-studies,n,showdown,,why we have rules,discuss,playground [town]
-me-on-the-map,Me on the Map,K-2,social-studies,y,map,me-map,nested places from room to planet,explore,zoom map [travel-map]
-then-and-now-flip,Then and Now Flip,K-2,social-studies,n,sort,,past and present,sort,old and new pictures [generic]
-backpack-pack,Backpack Pack,K-2,social-studies,n,sort,,needs vs wants,sort,camping backpack [travel-map]
-symbol-spotter,Symbol Spotter,K-2,social-studies,n,explorer,,national symbols and holidays,explore,symbols [generic]
-community-helpers-village,Community Helpers Village,K-2,social-studies,n,sandbox,,community helpers and roles,manipulate,helper village [town]
-compass-rose-quest,Compass Rose Quest,K-2,social-studies,n,puzzle,me-map,map keys and cardinal directions,locate,map treasures [treasure]
-my-life-timeline,My Life Timeline,K-2,social-studies,n,timeline,timeline-maker,sequencing personal history,order,personal timeline [generic]
-market-day,Market Day,K-2,social-studies,n,tycoon,market,"goods vs services, producers and consumers",manage,market stall [shop-food]
-festival-passport,Festival Passport,K-2,social-studies,n,explorer,,traditions and festivals around the world,explore,festival passport [travel-map]
-town-council,Town Council,K-2,social-studies,n,roleplay,,how communities make decisions,debate,town council [council-debate]
-three-towns,Three Towns,K-2,social-studies,n,sort,,"urban, suburban and rural",sort,three towns [town]
-changemaker-cards,Changemaker Cards,K-2,social-studies,n,cards,,people who made a difference,explore,collectible cards [generic]
-piggy-bank-planner,Piggy Bank Planner,K-2,social-studies,n,tycoon,money,"saving, spending and trade",manage,piggy bank [business-money]
-resource-detective,Resource Detective,K-2,social-studies,y,mystery,,objects traced to natural resources,investigate,everyday objects [detective]
-map-maker,Map Maker,3-5,social-studies,n,studio,me-map,"map key, scale and grid",compose,imaginary town map [town]
-then-and-now-overlay,Then-and-Now Overlay,3-5,social-studies,n,explorer,history-overlay,how the local community changed,explore,old photo overlay [town]
-class-election,Class Election,3-5,social-studies,n,showdown,election,voting and elections,rehearse,class election [council-debate]
-pizza-shop-assembly-line,Pizza Shop Assembly Line,3-5,social-studies,n,tycoon,,specialization and productivity,manage,pizza shop [shop-food]
-day-in-the-life,Day in the Life,3-5,social-studies,n,story,,comparing communities worldwide,choose-path,kids around the world [travel-map]
-state-story-timeline,State Story Timeline,3-5,social-studies,n,timeline,timeline-maker,state history from Native nations to statehood,order,timeline template [generic]
-state-quest,State Quest,3-5,social-studies,y,map,state-quest,locating US states,locate,US map [travel-map]
-bill-to-law-board-game,Bill to Law Board Game,3-5,social-studies,n,cards,bill-to-law,how a bill becomes law,choose-path,board game [generic]
-state-economy-map,State Economy Map,3-5,social-studies,n,map,,industries and resources by region,locate,layered state maps [travel-map]
-settle-the-valley,Settle the Valley,3-5,social-studies,n,simulator,,people adapt to and change environments,simulate-tune,valley [nature]
-nations-of-north-america,Nations of North America,3-5,social-studies,y,map,,Native nations and their environments,explore,nations map [travel-map]
-ship-s-log,Ship's Log,3-5,social-studies,n,story,,consequences of a 1600s voyage,choose-path,ship voyage [water]
-revolution-road,Revolution Road,3-5,social-studies,n,timeline,,causes and events of the Revolution,order,timeline [generic]
-rights-match,Rights Match,3-5,social-studies,n,sort,founding-docs,matching scenarios to amendments,sort,scenarios [generic]
-colonial-trade-routes,Colonial Trade Routes,3-5,social-studies,n,map,,colonial trade and slavery,locate,trade routes [travel-map]
-five-themes-field-trip,Five Themes Field Trip,6-8,social-studies,n,explorer,,five themes of geography,annotate,city photos [town]
-hunter-to-farmer,Hunter to Farmer,6-8,social-studies,n,simulator,,foraging vs farming,simulate-tune,seasons [garden-farm]
-river-kingdom,River Kingdom,6-8,social-studies,n,tycoon,,river valley civilizations,manage,river kingdom [water]
-silk-road-traders,Silk Road Traders,6-8,social-studies,n,cards,silk-road,trade and spread of ideas,match,trade cards [travel-map]
-agora-assembly,Agora Assembly,6-8,social-studies,n,roleplay,,Athenian democracy,debate,assembly [council-debate]
-rome-republic-to-empire,Rome: Republic to Empire,6-8,social-studies,n,story,,republic to empire,choose-path,Roman senate [council-debate]
-region-compare,Region Compare,6-8,social-studies,n,data,data-desk,comparing world regions with data,analyze-data,region data [generic]
-constantinople-defense,Constantinople Defense,6-8,social-studies,n,simulator,,how Byzantium lasted,simulate-tune,city walls [fantasy]
-house-of-wisdom,House of Wisdom,6-8,social-studies,n,explorer,,Islamic golden age knowledge,explore,House of Wisdom [library]
-salt-and-gold-caravan,Salt and Gold Caravan,6-8,social-studies,n,tycoon,,trans-Saharan trade,manage,caravan [travel-map]
-mongol-messenger,Mongol Messenger,6-8,social-studies,n,race,,Mongol relay and connections,move-along,relay race [travel-map]
-manor-life,Manor Life,6-8,social-studies,n,creature,,feudal roles and seasons,care-for,manor [garden-farm]
-tenochtitlan-builder,Tenochtitlan Builder,6-8,social-studies,n,builder,,"Aztec, Maya and Inca engineering",build,city on a lake [town]
-printing-press,Printing Press,6-8,social-studies,n,simulator,,spread of ideas by print,simulate-tune,pamphlets [newsroom]
-columbian-exchange,Columbian Exchange,6-8,social-studies,n,sort,,"origins of plants, animals, diseases",sort,exchange [travel-map]
-colonial-newsroom,Colonial Newsroom,6-8,social-studies,n,studio,,Patriot vs Loyalist spin on events,compose,colonial papers [newsroom]
-constitutional-convention,Constitutional Convention,6-8,social-studies,n,roleplay,founding-docs,negotiating representation,debate,convention [council-debate]
-two-parties,Two Parties,6-8,social-studies,n,cards,,Hamilton vs Jefferson debates,match,debate cards [generic]
-expansion-map,Expansion Map,6-8,social-studies,n,map,,"territory, trails and Native removal",explore,layered map [travel-map]
-mill-town,Mill Town,6-8,social-studies,n,story,,mill conditions and reform,choose-path,textile mill [factory]
-voices-of-freedom,Voices of Freedom,6-8,social-studies,n,explorer,primary-sources,primary sources on slavery and abolition,explore,primary sources [generic]
-civil-war-map-room,Civil War Map Room,6-8,social-studies,n,map,,campaigns and turning points,explore,animated war map [travel-map]
-reconstruction-amendments,Reconstruction Amendments,6-8,social-studies,n,explorer,founding-docs,Reconstruction amendments and Jim Crow,explore,amendments [generic]
-ideas-that-spread,Ideas That Spread,9-12,social-studies,n,map,,Enlightenment ideas and revolutions,trace,idea map [travel-map]
-factory-floor,Factory Floor,9-12,social-studies,n,tycoon,,industrialization effects,manage,factory [factory]
-scramble-for-africa,Scramble for Africa,9-12,social-studies,n,explorer,,imperialism and resistance,explore,before and after maps [travel-map]
-alliance-web,Alliance Web,9-12,social-studies,n,simulator,,alliance system causes of WWI,simulate-tune,alliance web [generic]
-inflation-wallet,Inflation Wallet,9-12,social-studies,n,simulator,,hyperinflation and extremism,simulate-tune,bakery in 1923 [shop-food]
-remembrance-archive,Remembrance Archive,9-12,social-studies,n,explorer,primary-sources,Holocaust and WWII testimony,explore,archive [generic]
-cold-war-crisis-room,Cold War Crisis Room,9-12,social-studies,n,roleplay,,Cuban Missile Crisis choices,choose-path,crisis room [council-debate]
-independence-timeline,Independence Timeline,9-12,social-studies,n,timeline,,independence movements,order,map and timeline [generic]
-where-s-my-phone-from,Where's My Phone From?,9-12,social-studies,n,data,data-desk,supply chains and trade data,trace,phone parts [travel-map]
-robber-baron-or-captain,Robber Baron or Captain?,9-12,social-studies,n,roleplay,,judging industrialists,debate,trial [courtroom]
-muckraker-studio,Muckraker Studio,9-12,social-studies,n,studio,,investigative journalism and reform,compose,expose [newsroom]
-empire-debate,Empire Debate,9-12,social-studies,n,roleplay,,annexation debate,debate,Philippines debate [council-debate]
-stock-market-1929,Stock Market 1929,9-12,social-studies,n,simulator,,margin trading and the crash,simulate-tune,stock market [business-money]
-home-front-mobilizer,Home Front Mobilizer,9-12,social-studies,n,tycoon,,mobilization and internment,manage,home front [factory]
-movement-strategy-room,Movement Strategy Room,9-12,social-studies,n,story,,planning a civil rights campaign,plan,strategy room [council-debate]
-space-race,Space Race,9-12,social-studies,n,race,,Cold War space race milestones,move-along,rockets [space]
-decades-explorer,Decades Explorer,9-12,social-studies,n,explorer,,change since 1980,explore,decades [generic]
-build-a-government,Build a Government,9-12,social-studies,n,builder,,designing a government,build,new island nation [island]
-federal-or-state,Federal or State?,9-12,social-studies,n,sort,,"federal, state and shared powers",sort,powers [generic]
-checks-and-balances,Checks and Balances,9-12,social-studies,n,cards,bill-to-law,checks and balances,match,strategy cards [generic]
-supreme-court-simulator,Supreme Court Simulator,9-12,social-studies,n,roleplay,,landmark cases,debate,Supreme Court [courtroom]
-campaign-manager,Campaign Manager,9-12,social-studies,n,tycoon,election,"campaigns, polling and Electoral College",manage,campaign [council-debate]
-local-changemaker-planner,Local Changemaker Planner,9-12,social-studies,n,builder,,planning a civic action project,plan,local government [town]
-opportunity-cost-game,Opportunity Cost Game,9-12,social-studies,n,arcade,,opportunity cost,drill,rapid choices [generic]
-concert-ticket-market,Concert Ticket Market,9-12,social-studies,y,simulator,market,"supply, demand and equilibrium",simulate-tune,concert tickets [music]
-lemonade-monopoly,Lemonade Monopoly,9-12,social-studies,n,tycoon,market,competition vs monopoly,manage,lemonade stands [shop-food]
-economy-dashboard,Economy Dashboard,9-12,social-studies,n,data,data-desk,"GDP, inflation and unemployment",analyze-data,economic data [generic]
-fed-chair,Fed Chair,9-12,social-studies,n,simulator,,"interest rates, inflation, unemployment",simulate-tune,Federal Reserve [business-money]
-trade-island,Trade Island,9-12,social-studies,n,tycoon,,comparative advantage and tariffs,manage,two islands [island]
-brain-explorer,Brain Explorer,9-12,social-studies,n,explorer,,brain regions and neurons,explore,3D brain [body-medical]
-illusion-lab,Illusion Lab,9-12,social-studies,n,lab,,illusions and memory,experiment,perception tests [lab]
-train-your-dog,Train Your Dog,9-12,social-studies,n,creature,,classical and operant conditioning,care-for,virtual dog [creature]
-conformity-experiments,Conformity Experiments,9-12,social-studies,n,simulator,,conformity and bystander effect,simulate-tune,classic experiments [lab]
+tool_id,title,band,subject,live,format,family,skill_key,skill,action,setting_group,setting
+big-book-pointer,Big Book Pointer,K-2,ela,n,showdown,big-book,print-concepts,"print concepts: where to start, word boundaries, left to right",predict-reveal,book,giant picture book
+rhyme-time-rumble,Rhyme Time Rumble,K-2,ela,n,showdown,,rhyme-syllables,hearing rhymes and clapping syllables,predict-reveal,generic,silly picture pairs
+letter-lanterns,Letter Lanterns,K-2,ela,n,creature,letter-pals,letter-sounds,letter-sound correspondence,care-for,creature,lantern creature village
+story-stage,Story Stage,K-2,ela,n,sandbox,story-stage,retell-story,"retelling a story's characters, setting and events",manipulate,stage,folktale puppet stage
+book-detectives,Book Detectives,K-2,ela,n,mystery,,book-parts,"title, author, illustrator and main topic of a book",investigate,detective,book as crime scene
+my-story-strip,My Story Strip,K-2,ela,n,studio,comic-maker,draw-tell-write,"drawing, telling and labeling a short story",compose,comic,three-panel strip
+sentence-train,Sentence Train,K-2,ela,n,builder,sentence-train,sentence-conventions,"capitals, spaces and end marks in a sentence",build,vehicle,word-car train
+turn-and-talk-wheel,Turn and Talk Wheel,K-2,ela,n,showdown,,conversation-turns,taking turns and using talk moves in a conversation,discuss,generic,spinner and timer
+blend-bakery,Blend Bakery,K-2,ela,n,arcade,,blends-digraphs,decoding blends and digraphs,drill,shop-food,word cupcakes
+echo-reader,Echo Reader,K-2,ela,n,lab,read-aloud,reading-fluency,reading aloud with accuracy and expression,rehearse,film-media,read-along booth
+story-map-treasure,Story Map Treasure,K-2,ela,n,map,story-map,story-elements,"story elements: start, problem, events, solution, lesson",order,treasure,treasure map
+who-said-that,Who Said That?,K-2,ela,n,sort,,narrator-vs-character,telling who is speaking: a character or the narrator,sort,generic,speech bubbles
+text-feature-safari,Text Feature Safari,K-2,ela,n,explorer,text-features,text-features,"what headings, captions and glossaries do",explore,animals,animal nonfiction page
+first-next-last,"First, Next, Last",K-2,ela,n,builder,sentence-train,sequence-writing,ordering a how-to or story with transition words,order,generic,picture cards
+word-zoo,Word Zoo,K-2,ela,n,sort,,parts-of-speech,"sorting nouns, verbs and adjectives",sort,animals,word animals in habitats
+context-clue-hunt,Context Clue Hunt,K-2,ela,n,mystery,,context-clues,using context clues to guess a word's meaning,predict-reveal,generic,silly-word sentences
+vowel-team-tag,Vowel Team Tag,K-2,ela,n,race,,vowel-teams,"vowel team spellings (ai, ee, oa)",drill,fantasy,chase maze
+moral-of-the-story,Moral of the Story,K-2,ela,n,cards,folktales,fable-moral,finding a fable's moral,match,folktale,fable cards
+two-sides-theater,Two Sides Theater,K-2,ela,n,roleplay,,character-pov,telling the same scene from two characters' points of view,rehearse,folktale,Three Little Pigs from the wolf's view
+main-idea-umbrella,Main Idea Umbrella,K-2,ela,n,builder,,main-idea,main topic over key details,build,weather,umbrella and raindrops
+pie-sort,PIE Sort,K-2,ela,n,sort,,authors-purpose,"author's purpose: persuade, inform, entertain",sort,kitchen-food,pies
+hamburger-paragraph,Hamburger Paragraph,K-2,ela,y,builder,,paragraph-structure,"topic sentence, details and closing sentence",build,kitchen-food,burger stack for a bear
+contraction-crusher,Contraction Crusher,K-2,ela,y,arcade,,contractions,forming contractions; the apostrophe replaces letters,drill,robot-machine,word press
+word-lab,Word Lab,K-2,ela,n,lab,word-lab,word-building,prefixes and compound words,build,lab,beakers
+syllable-surgeon,Syllable Surgeon,3-5,ela,n,puzzle,,multisyllable-decoding,splitting long words into syllables and suffixes,solve,body-medical,operating table
+character-choice-story,Character Choice Story,3-5,ela,n,story,choose-path,character-traits,how a character's actions reveal traits,choose-path,generic,short story
+story-building-blocks,Story Building Blocks,3-5,ela,n,builder,,text-parts,"how chapters, scenes and stanzas build on each other",order,construction,building blocks
+headline-writer,Headline Writer,3-5,ela,n,studio,,main-idea,main idea and key details of a news story,compose,newsroom,kids' news
+structure-spotter,Structure Spotter,3-5,ela,n,sort,text-features,text-structure,"sequence, cause and effect, comparison structures",sort,generic,science paragraphs
+persuasion-poster,Persuasion Poster,3-5,ela,n,studio,,opinion-writing,opinion writing with reasons and linking words,compose,newsroom,class pet campaign poster
+dialogue-director,Dialogue Director,3-5,ela,n,studio,comic-maker,dialogue-punctuation,writing dialogue with quotation marks,compose,comic,speech-bubble strip
+mad-libs-machine,Mad Libs Machine,3-5,ela,n,arcade,,parts-of-speech,parts of speech and verb tense in context,build,generic,fill-in-the-blank story machine
+idiom-illustrator,Idiom Illustrator,3-5,ela,n,studio,,figurative-literal,literal vs figurative meaning of idioms,compose,generic,drawing card
+theme-tracker,Theme Tracker,3-5,ela,n,explorer,,theme,determining a theme from supporting details,annotate,generic,public-domain story
+genre-remix,Genre Remix,3-5,ela,n,studio,,genre-forms,"how prose, drama and poetry differ",compose,generic,prose scene
+myth-museum,Myth Museum,3-5,ela,n,explorer,myths,myth-allusions,everyday words that allude to Greek myths,explore,museum,myth exhibits
+blueprint-builder,Blueprint Builder,3-5,ela,n,puzzle,,text-structure,writing a paragraph to fit a text structure,build,construction,blueprint
+eyewitness-vs-reporter,Eyewitness vs Reporter,3-5,ela,n,mystery,,firsthand-secondhand,firsthand vs secondhand accounts,compare,newsroom,diary vs news article on a storm
+evidence-locker,Evidence Locker,3-5,ela,n,builder,evidence,quote-evidence,supporting a claim with quotations,build,detective,evidence locker
+research-rover,Research Rover,3-5,ela,n,explorer,research,short-research,taking notes from sources and outlining,explore,library,rover in a mini library
+grammar-garage,Grammar Garage,3-5,ela,n,puzzle,,grammar-usage,"modals, progressive tense and prepositional phrases",fix,construction,grammar garage
+root-detective-cards,Root Detective Cards,3-5,ela,n,cards,word-lab,greek-latin-roots,Greek and Latin roots and affixes,match,generic,collectible root cards
+inference-interrogation,Inference Interrogation,3-5,ela,n,mystery,,quote-evidence,quoting text to prove an inference,investigate,detective,interrogation
+character-face-off,Character Face-Off,3-5,ela,n,cards,,compare-characters,comparing characters and themes across stories,compare,generic,trading-card match-up
+simile-slam,Simile Slam,3-5,ela,n,arcade,,similes-metaphors,writing similes and metaphors,drill,generic,class wall
+fact-fusion,Fact Fusion,3-5,ela,n,data,research,multiple-sources,integrating facts from several sources,build,generic,three short sources
+claim-court,Claim Court,3-5,ela,n,roleplay,evidence,reasons-evidence,judging an author's reasons and evidence,sort,courtroom,claim on trial
+essay-architect,Essay Architect,3-5,ela,n,builder,,essay-organization,logical order of paragraphs and transitions,order,construction,wobbly building
+slow-mo-writer,Slow-Mo Writer,3-5,ela,n,studio,,narrative-pacing,slowing a moment with sensory detail,compose,film-media,slow-motion animation
+comma-chameleon,Comma Chameleon,3-5,ela,n,puzzle,,commas,comma placement changes meaning,solve,animals,chameleon picture
+plot-rollercoaster,Plot Rollercoaster,6-8,ela,n,builder,story-map,plot-structure,plot arc and character change,order,amusement-park,rollercoaster
+perspective-camera,Perspective Camera,6-8,ela,n,simulator,,narrator-pov,"first, second and third person point of view",simulate-tune,film-media,camera
+summary-squeeze,Summary Squeeze,6-8,ela,n,race,,summary,central idea and objective summary,compose,generic,word-count squeeze
+argument-x-ray,Argument X-Ray,6-8,ela,n,explorer,evidence,trace-argument,"claims, reasons and evidence in an argument",annotate,body-medical,x-ray
+debate-prep-desk,Debate Prep Desk,6-8,ela,n,builder,evidence,counterclaims,"claims with reasons and evidence, tested against counterarguments",build,generic,prep desk
+source-sorter,Source Sorter,6-8,ela,n,sort,research,source-credibility,"source credibility, quoting vs paraphrasing, citation",sort,generic,source cards
+discussion-dashboard,Discussion Dashboard,6-8,ela,n,showdown,,discussion-skills,prepared discussion with talk moves and question stems,discuss,generic,projector dashboard
+sentence-remixer,Sentence Remixer,6-8,ela,n,puzzle,,combining-sentences,combining sentences; pronoun agreement,build,generic,glitching sentences
+word-thermometer,Word Thermometer,6-8,ela,n,sort,,connotation,connotation and word nuance,order,generic,thermometer scale
+setting-swap,Setting Swap,6-8,ela,n,simulator,,setting-plot-interplay,how setting shapes plot and characters,simulate-tune,generic,story moved in time and place
+history-or-fiction,History or Fiction?,6-8,ela,n,mystery,,fiction-vs-history,historical fiction vs primary sources,compare,generic,primary sources
+poetry-soundboard,Poetry Soundboard,6-8,ela,n,studio,poetry,poetic-sound,"rhyme, repetition and meter",compose,music,soundboard
+logic-gym,Logic Gym,6-8,ela,n,arcade,fallacies,evaluate-reasoning,relevance and sufficiency of evidence,drill,sports,gym
+two-authors-one-event,"Two Authors, One Event",6-8,ela,n,explorer,,compare-authors,how two authors shape the same event,compare,generic,two articles
+counterclaim-ping-pong,Counterclaim Ping-Pong,6-8,ela,n,roleplay,,counterclaims,answering counterclaims with rebuttals,debate,sports,ping-pong with a bot
+explainer-studio,Explainer Studio,6-8,ela,n,studio,,informative-writing,informative writing with headings and definitions,compose,newsroom,magazine page
+sentence-diagram-builder,Sentence Diagram Builder,6-8,ela,n,puzzle,,combining-sentences,"simple, compound, complex sentences",build,generic,sentence tree
+allusion-hunter,Allusion Hunter,6-8,ela,n,explorer,myths,allusions,interpreting allusions,hunt,generic,"lyrics, ads and headlines"
+dramatic-irony-theater,Dramatic Irony Theater,6-8,ela,n,story,,dramatic-irony,dramatic irony and suspense,predict-reveal,stage,short scene
+remix-lab,Remix Lab,6-8,ela,n,studio,,modern-retellings,how modern works transform myths and tales,plan,generic,retelling planner
+paragraph-surgeon,Paragraph Surgeon,6-8,ela,n,puzzle,,paragraph-development,how sentences develop an idea in a paragraph,fix,body-medical,surgery
+fact-check-desk,Fact Check Desk,6-8,ela,n,data,fact-check,conflicting-sources,weighing conflicting sources against their evidence,investigate,newsroom,fact-check desk
+town-hall-debate,Town Hall Debate,6-8,ela,n,roleplay,,counterclaims,formal argument and rebuttal of an opposing speaker,debate,council-debate,town hall
+flashback-editor,Flashback Editor,6-8,ela,n,builder,,narrative-structure,flashback and pacing,order,film-media,editing timeline
+pitch-deck-studio,Pitch Deck Studio,6-8,ela,n,studio,,presentation-media,presenting claims with evidence; media motives,compose,business-money,slide pitch
+voice-switcher,Voice Switcher,6-8,ela,n,simulator,,active-passive,active and passive voice,simulate-tune,newsroom,news headlines
+character-web,Character Web,9-12,ela,n,explorer,,complex-characters,conflicting motivations that drive theme,explore,generic,public-domain novel
+tension-meter,Tension Meter,9-12,ela,n,data,,structure-tension,parallel plots and flashbacks build tension,analyze-data,generic,story with meter graph
+shakespeare-remix,Shakespeare Remix,9-12,ela,n,studio,shakespeare,source-transformation,how authors transform source material,compare,generic,Shakespeare scene and adaptations
+rhetoric-spotter,Rhetoric Spotter,9-12,ela,n,sort,rhetoric,rhetorical-appeals,"ethos, pathos, logos and rhetorical devices",sort,generic,speeches
+founding-words-explorer,Founding Words Explorer,9-12,ela,n,explorer,founding-docs,founding-documents,reading founding documents and their echoes,explore,generic,founding documents
+argument-builder-pro,Argument Builder Pro,9-12,ela,n,builder,evidence,argumentative-essay,"claim, counterclaim, rebuttal and evidence",build,generic,argument outline
+research-notebook,Research Notebook,9-12,ela,n,explorer,research,research-project,"sustained research, synthesis and citation",plan,generic,research notebook
+parallel-parking,Parallel Parking,9-12,ela,n,puzzle,,parallel-structure,parallel structure,solve,vehicle,parking lot
+world-lit-atlas,World Lit Atlas,9-12,ela,n,map,,world-literature,culture in world literature,explore,generic,world map
+tone-dial,Tone Dial,9-12,ela,n,simulator,,tone-word-choice,how word choice shapes tone,simulate-tune,generic,tone dial
+page-to-screen,Page to Screen,9-12,ela,n,explorer,,page-vs-screen,one story in two media,compare,film-media,storyboard
+fallacy-field-guide,Fallacy Field Guide,9-12,ela,n,cards,fallacies,fallacies,spotting logical fallacies,match,nature,field guide collection
+thesis-workshop,Thesis Workshop,9-12,ela,n,builder,,literary-thesis,arguable thesis with evidence and analysis,build,generic,workshop
+socratic-seminar-board,Socratic Seminar Board,9-12,ela,n,showdown,,discussion-skills,seminar discussion that builds on diverse views,discuss,generic,projector talk map
+punctuation-power-ups,Punctuation Power-Ups,9-12,ela,n,race,,semicolons-colons,"semicolons, colons and dashes",drill,generic,racing power-ups
+american-lit-timeline,American Lit Timeline,9-12,ela,n,timeline,lit-timeline,lit-movements,American literary movements in context,order,generic,timeline
+satire-decoder,Satire Decoder,9-12,ela,n,mystery,,satire-irony,what satire says vs what it means,investigate,detective,case board
+premise-inspector,Premise Inspector,9-12,ela,n,explorer,founding-docs,founding-documents,premises and reasoning in founding documents,annotate,generic,founding documents
+source-mixer,Source Mixer,9-12,ela,n,data,research,integrating-sources,integrating sources in different media,build,generic,"text, chart, video and image"
+rhetorical-situation-simulator,Rhetorical Situation Simulator,9-12,ela,n,simulator,rhetoric,rhetorical-situation,"speaker, audience and purpose",simulate-tune,generic,speech
+personal-essay-studio,Personal Essay Studio,9-12,ela,n,studio,,personal-essay,drafting a personal essay,compose,generic,writing studio
+usage-panel,Usage Panel,9-12,ela,n,roleplay,,contested-usage,contested usage and changing style rules,debate,council-debate,dictionary usage panel
+globe-theatre-stage,Globe Theatre Stage,9-12,ela,n,explorer,shakespeare,staging-interpretation,how delivery changes meaning in Shakespeare,explore,stage,Globe theatre
+ambiguity-lab,Ambiguity Lab,9-12,ela,n,lab,,structure-meaning,how a structural choice changes meaning,experiment,generic,public-domain story
+argument-map,Argument Map,9-12,ela,n,builder,rhetoric,argument-structure,load-bearing claims in a complex argument,build,generic,node map
+inquiry-planner,Inquiry Planner,9-12,ela,n,tycoon,research,research-project,managing an extended research project,manage,business-money,project manager
+speech-coach,Speech Coach,9-12,ela,n,lab,,presentation-delivery,pacing and delivery of a speech,rehearse,generic,rehearsal meters
+ad-agency,Ad Agency,9-12,ela,n,tycoon,fact-check,media-persuasion,persuasion techniques in media,manage,business-money,ad agency
+word-family-tree,Word Family Tree,9-12,ela,n,explorer,word-lab,etymology,word origins through roots,explore,family-tree,word family tree
+classroom-phrases-game,Classroom Phrases Game,K-2,eld,y,showdown,eld-talk,classroom-language,"classroom phrases: asking for help, following directions",drill,generic,picture prompts
+retell-puppets,Retell Puppets,K-2,eld,n,sandbox,story-stage,retell-story,"retelling beginning, middle and end with sentence frames",manipulate,stage,puppet show
+shape-talk,Shape Talk,K-2,eld,y,cards,,describe-shapes,describing shapes with sentence frames,converse,generic,guess-the-hidden-shape
+i-spy-science,I Spy Science,K-2,eld,y,explorer,,describe-observations,naming and describing what you see,hunt,nature,zoomable nature photos
+community-map-words,Community Map Words,K-2,eld,y,map,,community-vocabulary,"community places, people and jobs vocabulary",explore,town,friendly town map
+talk-moves-trainer,Talk Moves Trainer,3-5,eld,n,roleplay,eld-talk,academic-conversation,"agreeing, disagreeing and building on ideas",converse,generic,animated classmates
+opinion-builder,Opinion Builder,3-5,eld,n,builder,,opinion-writing,opinion with reasons using because and so,build,generic,sentence frames
+math-explainer,Math Explainer,3-5,eld,n,studio,,explain-math-steps,explaining a word-problem solution with sequence words,compose,generic,recording booth
+chain-reaction,Chain Reaction,3-5,eld,n,puzzle,,cause-effect-language,"cause and effect connectors (because, so, as a result)",build,robot-machine,chain reaction machine
+time-machine-talk,Time Machine Talk,3-5,eld,n,story,,past-tense,past tense and sequence words,choose-path,time-travel,time machine
+summary-scaffold,Summary Scaffold,6-8,eld,n,builder,research,summary,summarizing with citation frames,build,generic,graphic organizer
+word-problem-decoder,Word Problem Decoder,6-8,eld,n,puzzle,,math-language,math words mapped to operations,annotate,generic,word problems
+cer-builder,CER Builder,6-8,eld,n,builder,evidence,claim-evidence-reasoning,claim-evidence-reasoning paragraph for an experiment,build,lab,simple experiment
+perspective-frames,Perspective Frames,6-8,eld,n,sort,,compare-perspectives,comparing viewpoints with comparison frames,sort,generic,speaker statements
+idiom-island,Idiom Island,6-8,eld,y,map,,idioms,idioms: literal vs real meaning,explore,island,idiom island
+argument-frames-pro,Argument Frames Pro,9-12,eld,n,roleplay,eld-talk,argumentative-essay,academic argument and counterargument language,debate,council-debate,mock debate
+definition-duel,Definition Duel,9-12,eld,n,cards,,math-definitions,precise math definitions and conditions,match,generic,duel cards
+chart-narrator,Chart Narrator,9-12,eld,n,data,,describe-trends,describing trends in charts with language frames,analyze-data,generic,real charts
+historian-s-toolkit,Historian's Toolkit,9-12,eld,n,mystery,,historical-argument,language of causation and evaluation in history,annotate,generic,historian's argument
+inbox-simulator,Inbox Simulator,9-12,eld,n,simulator,,formal-register,formal vs casual register in emails,converse,business-money,email inbox
+library-adventure,Library Adventure,K-2,library,y,map,library,library-layout,how the library is organized; fiction vs nonfiction,explore,library,cartoon library
+wonder-wall,Wonder Wall,K-2,library,y,showdown,,asking-questions,sorting questions by how to answer them,sort,generic,class wonder wall
+keyword-kitchen,Keyword Kitchen,3-5,library,n,puzzle,,search-keywords,choosing keywords for a search,experiment,kitchen-food,search recipe
+credit-card-builder,Credit Card Builder,3-5,library,n,builder,,crediting-sources,"crediting books, websites and images",build,generic,credit cards
+fake-or-fact-lab,Fake or Fact Lab,6-8,library,n,lab,fact-check,source-credibility,evaluating websites and posts with lateral reading,investigate,lab,fact lab
+research-quest,Research Quest,6-8,library,n,story,,research-process,stages of the research process,choose-path,fantasy,quest
+boolean-builder,Boolean Builder,9-12,library,n,sandbox,,boolean-search,Boolean search and databases,experiment,generic,Venn diagram
+fair-use-court,Fair Use Court,9-12,library,n,roleplay,,fair-use,fair use factors and Creative Commons,debate,courtroom,fair use court
+line-safari,Line Safari,K-2,arts,y,showdown,paint-studio,elements-of-art,"lines, shapes and primary colors",discuss,animals,savanna
+art-passport,Art Passport,K-2,arts,y,explorer,art-museum,art-cultures,looking at art from many cultures,explore,travel-map,world art map with passport
+paint-mixer,Paint Mixer,3-5,arts,y,lab,paint-studio,color-theory,"color mixing, tints and shades",experiment,studio,paint studio
+depth-detective,Depth Detective,3-5,arts,n,puzzle,,perspective-depth,"overlap, size and placement for depth",manipulate,generic,picture scene
+art-style-match,Art Style Match,3-5,arts,n,cards,art-museum,art-movements,matching artworks to artists and movements,match,museum,paintings
+design-fixer,Design Fixer,6-8,arts,n,puzzle,,design-principles,"balance, contrast and emphasis",fix,studio,poster layouts
+vanishing-point-studio,Vanishing Point Studio,6-8,arts,y,studio,perspective,one-point-perspective,one-point perspective drawing,compose,studio,drawing studio
+art-through-time,Art Through Time,6-8,arts,n,timeline,art-museum,art-history,art movements in historical context,explore,museum,scrolling timeline
+gallery-critique,Gallery Critique,9-12,arts,n,roleplay,art-museum,art-critique,"describe, analyze, interpret, judge",debate,museum,gallery
+city-skyline-studio,City Skyline Studio,9-12,arts,n,studio,perspective,two-point-perspective,two-point perspective and composition,compose,town,city skyline
+virtual-gallery,Virtual Gallery,9-12,arts,n,builder,,portfolio-curation,curating and presenting a portfolio,build,museum,virtual gallery
+beat-buddies,Beat Buddies,K-2,arts,y,showdown,rhythm,steady-beat,steady beat vs rhythm,move-along,animals,marching animal friends
+sound-elevator,Sound Elevator,K-2,arts,y,sandbox,,pitch-dynamics,"high and low pitch, loud and soft",manipulate,robot-machine,elevator
+orchestra-zoo,Orchestra Zoo,K-2,arts,y,explorer,instruments,instrument-families,instrument families by sight and sound,explore,animals,orchestra zoo
+note-ninja,Note Ninja,3-5,arts,y,arcade,,reading-music,naming notes on the staff,drill,generic,ninja arcade
+melody-maker,Melody Maker,3-5,arts,y,studio,music-studio,melody-scales,composing on a scale with solfege,compose,music,scale grid
+song-form-builder,Song Form Builder,3-5,arts,n,builder,music-studio,musical-form,"AB, ABA and rondo form",build,music,section blocks
+chord-explorer,Chord Explorer,6-8,arts,y,sandbox,music-studio,chords,triads and chord progressions,explore,music,keyboard
+world-music-map,World Music Map,6-8,arts,n,map,instruments,world-music,musical traditions around the world,explore,travel-map,world map
+band-practice,Band Practice,6-8,arts,n,race,rhythm,ensemble-timing,playing in time with an ensemble,rehearse,music,virtual band
+theory-gym,Theory Gym,9-12,arts,n,puzzle,,music-theory,"intervals, keys and cadences",drill,sports,gym
+music-history-radio,Music History Radio,9-12,arts,n,timeline,,music-history,musical eras from chant to hip hop,explore,film-media,radio dial
+beat-lab,Beat Lab,9-12,arts,y,studio,music-studio,music-production,composing and producing a track,compose,music,production studio
+story-dress-up,Story Dress-Up,K-2,arts,n,showdown,,creative-drama,acting out a story with movement,rehearse,stage,costume board
+character-voice-booth,Character Voice Booth,3-5,arts,n,lab,,character-voice,voice and emotion choices for a character,experiment,film-media,voice booth
+stage-blocker,Stage Blocker,6-8,arts,n,builder,stage,stage-blocking,"blocking, stage directions and design",build,stage,top-down stage
+director-s-chair,Director's Chair,9-12,arts,n,story,stage,staging-interpretation,directing choices change interpretation,choose-path,stage,classic scene
+move-like-me,Move Like Me,K-2,arts,n,showdown,dance,locomotor-skills,locomotor and nonlocomotor moves at levels,move-along,generic,animated dancer
+dance-pattern-puzzle,Dance Pattern Puzzle,3-5,arts,n,puzzle,dance,dance-patterns,dance sequences in a pattern,order,stage,move cards
+choreography-board,Choreography Board,6-8,arts,n,studio,dance,choreography,formations and transitions on a stage,compose,stage,stage and timeline
+dance-styles-explorer,Dance Styles Explorer,9-12,arts,n,explorer,dance,dance-styles,dance styles and critique,explore,generic,dance styles
+frame-it,Frame It,6-8,arts,y,lab,,photo-composition,"rule of thirds, leading lines, light",experiment,film-media,virtual camera
+flipbook-studio,Flipbook Studio,6-8,arts,n,studio,,animation-frames,"frames, timing and onion skinning",compose,studio,flipbook
+storyboard-studio,Storyboard Studio,9-12,arts,n,studio,,film-production,"shots, angles and cuts",plan,film-media,storyboard
+brand-builder,Brand Builder,9-12,arts,n,builder,,graphic-design,"typography, color and layout",compose,business-money,fictional business brand
+habit-hero,Habit Hero,K-2,health-pe,y,creature,habit-hero,healthy-habits,"daily habits: brushing, washing, sleep",care-for,creature,hero character
+lunch-tray-builder,Lunch Tray Builder,K-2,health-pe,y,builder,food,food-groups,food groups and balanced meals,build,kitchen-food,lunch tray
+feelings-faces,Feelings Faces,K-2,health-pe,y,showdown,feelings,naming-feelings,naming feelings and kind responses,discuss,generic,faces and scenes
+safety-street,Safety Street,K-2,health-pe,y,story,,safety-choices,"fire, traffic and water safety choices",choose-path,town,neighborhood street
+label-detective,Label Detective,3-5,health-pe,y,mystery,food,nutrition-labels,reading nutrition labels,investigate,detective,snack labels
+body-systems-tour,Body Systems Tour,3-5,health-pe,n,explorer,,body-systems,how body systems work together,explore,body-medical,ride through the body
+germ-spread-sim,Germ Spread Sim,3-5,health-pe,y,simulator,,germ-spread,how germs spread and prevention,simulate-tune,generic,classroom
+growing-up-q-a,Growing Up Q&A,3-5,health-pe,n,explorer,,puberty,puberty basics,explore,generic,Q&A guide
+pressure-point,Pressure Point,6-8,health-pe,n,story,,refusal-skills,refusal skills for vaping and alcohol,choose-path,generic,peer scenarios
+stress-toolkit,Stress Toolkit,6-8,health-pe,n,sandbox,feelings,coping-strategies,trying coping strategies,experiment,generic,toolkit
+boundaries-builder,Boundaries Builder,6-8,health-pe,n,roleplay,,conflict-resolution,communication and boundary setting,converse,generic,friend and family scenarios
+screen-time-detective,Screen Time Detective,6-8,health-pe,n,data,,screen-time,analyzing screen time patterns,analyze-data,detective,screen time log
+meal-and-move-planner,Meal and Move Planner,9-12,health-pe,n,builder,food,energy-balance,energy balance of meals and workouts,plan,kitchen-food,weekly meal plan
+first-aid-responder,First Aid Responder,9-12,health-pe,n,race,,first-aid,emergency response order and CPR rhythm,order,generic,emergency scenarios
+health-claim-checker,Health Claim Checker,9-12,health-pe,n,mystery,,health-claims,evaluating health claims and sources,investigate,detective,viral claims
+mind-map,Mind Map,9-12,health-pe,y,explorer,feelings,mental-health,"mental health conditions, myths and support",explore,generic,mind map
+animal-moves,Animal Moves,K-2,health-pe,y,showdown,movement,locomotor-skills,locomotor skills,move-along,animals,animal moves
+target-toss,Target Toss,K-2,health-pe,n,lab,,throw-catch,throwing form,drill,sports,board target
+playbook,Playbook,3-5,health-pe,n,builder,,game-strategy,"offense, defense and space",plan,sports,game board
+fitness-circuit,Fitness Circuit,3-5,health-pe,n,race,movement,fitness-components,"cardio, strength, flexibility, heart rate",move-along,sports,circuit timer
+rules-referee,Rules Referee,6-8,health-pe,n,escape,,sport-rules,calling sport rules,solve,sports,locker room escape
+goal-tracker,Goal Tracker,6-8,health-pe,n,creature,habit-hero,fitness-goals,setting and tracking fitness goals,care-for,creature,growing avatar
+fitness-program-designer,Fitness Program Designer,9-12,health-pe,n,builder,,fitt-program,designing a FITT fitness program,plan,sports,training program
+captain-s-choices,Captain's Choices,9-12,health-pe,n,story,,sportsmanship,leadership and team culture,choose-path,sports,team captain
+robot-dance,Robot Dance,K-2,computer-science,y,showdown,robot,sequence-debug,sequencing commands and debugging,program,robot-machine,dancing robot
+class-snack-vote,Class Snack Vote,K-2,computer-science,n,data,class-poll,class-data,collecting class votes to decide,analyze-data,kitchen-food,class snack vote
+secret-keeper,Secret Keeper,K-2,computer-science,n,sort,,private-info,public vs private information,sort,robot-machine,robot guide
+bee-bot-garden,Bee Bot Garden,K-2,computer-science,n,puzzle,robot,sequence-debug,arrow-command paths and debugging,program,garden-farm,bee in a flower garden
+pattern-finder,Pattern Finder,K-2,computer-science,n,showdown,,ai-patterns,AI finds patterns in data,experiment,robot-machine,simple AI
+computer-builder,Computer Builder,K-2,computer-science,y,builder,,hardware-parts,parts of a computer,build,robot-machine,computer
+loop-garden,Loop Garden,K-2,computer-science,y,puzzle,robot,loops,"sequence, events and repeat loops",program,garden-farm,rabbit gardener
+teach-the-robot,Teach the Robot,K-2,computer-science,n,lab,ml-lab,ai-patterns,training data teaches a model,experiment,robot-machine,robot learner
+input-output-machine,Input-Output Machine,K-2,computer-science,n,sandbox,,hardware-parts,input and output devices,explore,robot-machine,computer
+traffic-light-coder,Traffic Light Coder,3-5,computer-science,n,builder,robot,conditionals,if-then selection,program,vehicle,traffic lights
+score-keeper,Score Keeper,3-5,computer-science,y,lab,,variables,variables in a program,experiment,generic,simple game
+internet-journey,Internet Journey,3-5,computer-science,n,story,network,internet-basics,how messages travel; personal info,choose-path,travel-map,internet route
+code-tracer,Code Tracer,3-5,computer-science,y,puzzle,,code-tracing,tracing variables line by line,predict-reveal,generic,code
+data-table-builder,Data Table Builder,3-5,computer-science,n,data,data-desk,data-tables,organizing data into tables and charts,analyze-data,generic,class data
+biased-bot,Biased Bot,3-5,computer-science,n,lab,ml-lab,train-classifier,skewed training data,experiment,robot-machine,AI bot
+network-detective,Network Detective,3-5,computer-science,n,mystery,network,networks,wired vs wireless; authentication,investigate,detective,network case
+game-remix,Game Remix,3-5,computer-science,y,studio,,remix-code,modifying programs,compose,generic,simple game
+fruit-sorter-ai,Fruit Sorter AI,3-5,computer-science,n,lab,ml-lab,train-classifier,training a classifier by features,experiment,kitchen-food,fruit
+data-defenders,Data Defenders,3-5,computer-science,n,escape,security,cia-triad,"confidentiality, integrity, availability",solve,cyber,school data defense
+design-for-a-friend,Design for a Friend,3-5,computer-science,n,roleplay,,user-design,human-centered design,converse,generic,user persona
+flowchart-factory,Flowchart Factory,6-8,computer-science,n,builder,,flowcharts,flowcharts and pseudocode,build,generic,flowcharts
+code-kitchen,Code Kitchen,6-8,computer-science,n,puzzle,,procedures,procedures and data types,program,kitchen-food,recipes
+model-mechanic,Model Mechanic,6-8,computer-science,n,lab,ml-lab,ml-tuning,tuning a model for accuracy and bias,simulate-tune,construction,model mechanic
+misleading-charts,Misleading Charts,6-8,computer-science,n,mystery,,misleading-charts,spotting misleading charts,investigate,detective,chart case
+packet-race,Packet Race,6-8,computer-science,n,race,network,packets,how packets travel and reroute,simulate-tune,cyber,packet network
+phishing-spotter,Phishing Spotter,6-8,computer-science,n,arcade,security,phishing,spotting phishing tells,sort,cyber,inbox
+algorithm-audit,Algorithm Audit,6-8,computer-science,n,roleplay,,algorithm-bias,bias and ethics in algorithms,debate,generic,fictional school audit
+sorting-showdown,Sorting Showdown,9-12,computer-science,n,simulator,,sorting-algorithms,sorting algorithm efficiency,simulate-tune,generic,algorithm race
+api-playground,API Playground,9-12,computer-science,n,sandbox,,apis,modular programs and APIs,build,generic,mock APIs
+ai-evaluator,AI Evaluator,9-12,computer-science,n,lab,ml-lab,ai-evaluation,evaluating AI outputs and training data,investigate,lab,AI test bench
+simulation-studio,Simulation Studio,9-12,computer-science,n,data,data-desk,data-science,simulating and cleaning data,analyze-data,generic,data studio
+network-architect,Network Architect,9-12,computer-science,n,builder,network,network-design,designing networks,build,cyber,school network
+capture-the-flag,Capture the Flag,9-12,computer-science,n,escape,security,cybersecurity,"passwords, encryption, social engineering",solve,cyber,CTF
+data-policy-council,Data Policy Council,9-12,computer-science,n,roleplay,,data-policy,"data privacy policy, law and ethics",debate,council-debate,policy council
+fingerspell-flash,Fingerspell Flash,K-12,world-languages,y,arcade,asl,fingerspelling,manual alphabet handshapes and reading fingerspelling,drill,generic,signer video
+asl-hello-booth,ASL Hello Booth,K-12,world-languages,n,showdown,asl,asl-greetings,ASL greetings and getting attention,rehearse,generic,signer video
+asl-number-bingo,ASL Number Bingo,K-12,world-languages,n,cards,asl,asl-numbers,"ASL numbers, colors and time signs",match,generic,bingo
+sign-parameters-lab,Sign Parameters Lab,K-12,world-languages,n,lab,asl,sign-parameters,how a sign's parameters change meaning,experiment,lab,sign lab
+asl-family-tree,ASL Family Tree,K-12,world-languages,n,builder,asl,asl-family-vocab,ASL family and home vocabulary,build,family-tree,family tree
+face-the-grammar,Face the Grammar,6-12,world-languages,n,puzzle,asl,asl-grammar,non-manual markers and question grammar,match,generic,facial expressions
+classifier-scenes,Classifier Scenes,6-12,world-languages,y,studio,asl,asl-classifiers,classifiers to show location and movement,compose,generic,scene
+deaf-culture-explorer,Deaf Culture Explorer,6-12,world-languages,n,explorer,asl,deaf-culture,"Deaf history, culture and community",explore,generic,community voices
+asl-story-theater,ASL Story Theater,9-12,world-languages,n,studio,asl,asl-storytelling,ASL role shift and visual storytelling,compose,generic,story recording
+hola-hallway,Hola Hallway,K-12,world-languages,n,showdown,spanish,spanish-greetings,Spanish greetings and courtesy phrases,choose-path,generic,hallway
+calendario-vivo,Calendario Vivo,K-12,world-languages,n,sandbox,spanish,spanish-calendar,"Spanish numbers, colors, days and weather",explore,generic,calendar
+mi-casa,Mi Casa,K-12,world-languages,n,explorer,spanish,spanish-family-home,Spanish family and home vocabulary,explore,home,house
+mi-día,Mi Día,K-12,world-languages,n,timeline,spanish,spanish-routine,Spanish daily routine and reflexive verbs,order,generic,daily timeline
+el-restaurante,El Restaurante,K-12,world-languages,n,roleplay,spanish,spanish-food,ordering food in Spanish,converse,shop-food,restaurant
+verb-conjugation-race,Verb Conjugation Race,6-12,world-languages,n,race,spanish,spanish-present,present tense conjugation,drill,vehicle,car race
+ciudad-perdida,Ciudad Perdida,6-12,world-languages,n,map,spanish,spanish-directions,asking for and giving directions in Spanish,locate,town,city map
+detective-del-pasado,Detective del Pasado,6-12,world-languages,n,mystery,spanish,spanish-past,preterite and imperfect storytelling,investigate,detective,mystery
+mundo-hispano,Mundo Hispano,6-12,world-languages,n,map,spanish,spanish-cultures,cultures of the Spanish-speaking world,explore,travel-map,world map
+consejero,Consejero,9-12,world-languages,n,roleplay,spanish,spanish-subjunctive,subjunctive for advice and opinions,converse,generic,friends' problems
+debate-en-español,Debate en Español,9-12,world-languages,n,roleplay,spanish,spanish-debate,defending positions in Spanish,debate,council-debate,current events debate
+career-cluster-explorer,Career Cluster Explorer,6-8,cte,n,explorer,careers,career-clusters,the 14 career clusters,explore,generic,career videos
+career-match-quiz,Career Match Quiz,6-8,cte,y,sort,careers,career-interests,matching interests to careers,sort,generic,quiz
+workplace-scenarios,Workplace Scenarios,6-8,cte,n,story,,workplace-skills,"teamwork, communication and professionalism",choose-path,business-money,workplace
+path-planner,Path Planner,9-12,cte,n,builder,careers,education-paths,"college, apprenticeship, certificate, military paths",plan,generic,route map
+interview-simulator,Interview Simulator,9-12,cte,n,roleplay,,job-interview,answering job interview questions,converse,business-money,interview room
+startup-tycoon,Startup Tycoon,9-12,cte,n,tycoon,,entrepreneurship,"business plan, startup costs and pitch",manage,business-money,startup
+prototype-lab,Prototype Lab,9-12,cte,n,lab,,engineering-design,"prototype, test and iterate",experiment,lab,workshop
+hospital-shift,Hospital Shift,9-12,cte,n,story,careers,healthcare-careers,medical terms and care careers,choose-path,body-medical,hospital shift
+paycheck-decoder,Paycheck Decoder,9-12,cte,n,explorer,money,paychecks,"gross vs net pay, taxes and benefits",explore,generic,paycheck
+first-apartment-budget,First Apartment Budget,9-12,cte,y,tycoon,money,budgeting,budgeting needs vs wants,manage,home,first apartment
+compound-interest-garden,Compound Interest Garden,9-12,cte,n,simulator,money,savings-growth,compound interest over decades,simulate-tune,garden-farm,savings garden
+the-credit-card-diaries,The Credit Card Diaries,9-12,cte,n,story,money,credit-debt,"credit scores, loans and interest",choose-path,generic,young adult life
+market-time-machine,Market Time Machine,9-12,cte,y,simulator,money,investing,"stocks, bonds, index funds and risk",simulate-tune,time-travel,market history
+scam-shield,Scam Shield,9-12,cte,n,escape,money,scams-insurance,spotting scams; insurance basics,solve,cyber,scam traps
+feelings-weather-report,Feelings Weather Report,K-2,sel,y,showdown,feelings,naming-feelings,naming feelings as weather,discuss,weather,weather report
+calm-corner,Calm Corner,K-2,sel,y,sandbox,feelings,self-regulation,breathing and calm-down tools,manipulate,generic,calm tools
+walk-in-their-shoes,Walk in Their Shoes,3-5,sel,y,story,,perspective-taking,understanding others' feelings and views,choose-path,generic,story
+comeback-club,Comeback Club,3-5,sel,y,creature,,growth-mindset,growth mindset and goals,care-for,creature,brain character
+conflict-coach,Conflict Coach,6-8,sel,y,roleplay,,conflict-resolution,I-statements and active listening,converse,generic,peer conflicts
+decision-tree,Decision Tree,6-8,sel,y,builder,,responsible-decisions,weighing consequences of choices,build,generic,decision tree
+resilience-map,Resilience Map,9-12,sel,y,explorer,,stress-resilience,stress responses and resilience strategies,explore,generic,map
+community-project-planner,Community Project Planner,9-12,sel,y,tycoon,,community-project,leading a service project,manage,town,community project
+hundred-hop,Hundred Hop,K-2,math,y,showdown,number-path,counting-100,counting by ones and tens to 100,predict-reveal,nature,frog on number path
+sheep-count,Sheep Count,K-2,math,n,showdown,,counting-objects,one-to-one counting and how many,count-along,garden-farm,sheep pen
+snack-scale,Snack Scale,K-2,math,n,sandbox,balance,compare-quantities,"more, less, same up to 10",predict-reveal,kitchen-food,snack seesaw
+bus-stop,Bus Stop,K-2,math,n,story,,add-subtract-10,add and subtract within 10 stories,discuss,vehicle,school bus
+ten-frame-factory,Ten Frame Factory,K-2,math,n,sandbox,ten-frame,teen-numbers,teen numbers as ten and some more,manipulate,factory,ten frame
+who-wins,Who Wins?,K-2,math,n,showdown,,measurable-attributes,"comparing length, weight and height",predict-reveal,animals,animal face-off
+toy-box-sort,Toy Box Sort,K-2,math,n,sort,,classify-count,sorting objects into categories and counting,sort,toys,toy box
+shape-spy,Shape Spy,K-2,math,n,explorer,,identify-shapes,naming 2D and 3D shapes in the world,hunt,town,photos of playground and street
+pattern-block-pond,Pattern Block Pond,K-2,math,n,sandbox,pattern-blocks,compose-shapes,composing shapes from pattern blocks,compose,nature,lily pad
+story-problem-theater,Story Problem Theater,K-2,math,n,story,,word-problems-20,solving add and subtract word problems within 20,manipulate,generic,animated stories
+make-ten-machine,Make Ten Machine,K-2,math,n,puzzle,,make-ten,making ten as a fact strategy,manipulate,robot-machine,conveyor machine
+balance-the-beam,Balance the Beam,K-2,math,n,puzzle,balance,equal-sign,equal sign as balance,solve,balance,balance scale
+number-path-rescue,Number Path Rescue,K-2,math,n,race,number-path,counting-120,counting and writing numerals to 120,drill,water,rising river
+bundle-bakery,Bundle Bakery,K-2,math,n,tycoon,base-ten,place-value-tens,tens and ones place value,manage,shop-food,cookie boxes
+elevator-hundred,Elevator Hundred,K-2,math,n,simulator,number-path,add-within-100,adding tens and ones,solve,robot-machine,elevator building
+paperclip-ruler,Paperclip Ruler,K-2,math,n,lab,,nonstandard-measure,measuring with same-size units,experiment,generic,classroom objects
+clock-shop,Clock Shop,K-2,math,n,sandbox,clock,telling-time,telling time to the half hour,manipulate,generic,clock
+class-poll,Class Poll,K-2,math,n,data,class-poll,class-data,tallies and picture graphs,analyze-data,generic,class vote on pets or snacks
+pizza-party,Pizza Party,K-2,math,n,builder,fraction-food,equal-shares,halves and fourths as fair shares,manipulate,kitchen-food,pizza
+treasure-map-steps,Treasure Map Steps,K-2,math,n,mystery,,two-step-problems,two-step add and subtract problems,solve,treasure,pirate map
+fact-rally,Fact Rally,K-2,math,n,arcade,,fact-fluency,addition and subtraction fact fluency,drill,sports,tennis bot
+marching-band,Marching Band,K-2,math,y,builder,,odd-even-arrays,"odd, even and arrays",build,music,marching band
+place-value-vault,Place Value Vault,K-2,math,n,escape,base-ten,place-value-1000,three-digit place value,solve,treasure,vault codes
+jump-line,Jump Line,K-2,math,n,sandbox,number-line,add-within-1000,adding and subtracting with an open number line,manipulate,generic,open number line
+estimation-station,Estimation Station,K-2,math,n,race,,measure-length,estimating and measuring length,drill,generic,ruler
+corner-store,Corner Store,K-2,math,y,tycoon,money,money-time,"counting coins, making change, time",manage,shop-food,snack stand
+lunch-line-data,Lunch Line Data,K-2,math,n,data,class-poll,bar-graphs,line plots and bar graphs,analyze-data,kitchen-food,cafeteria data
+garden-grid,Garden Grid,K-2,math,n,builder,,partition-rectangles,partitioning rectangles into rows and columns,build,garden-farm,garden bed
+equal-groups-zoo,Equal Groups Zoo,3-5,math,n,sandbox,arrays,multiplication-meaning,equal groups and arrays,manipulate,animals,feeding zoo animals
+multiplication-dungeon,Multiplication Dungeon,3-5,math,n,arcade,,times-tables,multiplication facts fluency,drill,fantasy,dungeon crawl
+pattern-detective,Pattern Detective,3-5,math,n,mystery,,arithmetic-patterns,explaining arithmetic patterns,investigate,detective,alibi case
+roller-coaster-rounding,Roller Coaster Rounding,3-5,math,n,simulator,number-line,rounding,rounding to 10 and 100,simulate-tune,amusement-park,roller coaster
+fraction-trail,Fraction Trail,3-5,math,n,map,number-line,fractions-number-line,fractions on a number line and equivalence,locate,travel-map,hiking trail
+kitchen-lab,Kitchen Lab,3-5,math,n,lab,,measure-volume-mass,"elapsed time, volume and mass",experiment,kitchen-food,recipes
+graph-glow-up,Graph Glow-Up,3-5,math,n,builder,graphs,scaled-graphs,scaled picture and bar graphs,fix,generic,crowded graph
+tile-the-floor,Tile the Floor,3-5,math,n,puzzle,area,area,area as tiling and rows times columns,solve,home,rooms
+fence-builder,Fence Builder,3-5,math,n,builder,area,perimeter,perimeter vs area,build,garden-farm,dog pen fence
+shape-family-tree,Shape Family Tree,3-5,math,n,sort,,classify-shapes,classifying quadrilaterals,sort,family-tree,shape family tree
+growth-spurt,Growth Spurt,3-5,math,n,simulator,,multiplicative-comparison,times as many vs more than,simulate-tune,nature,animals and plants
+prime-garden,Prime Garden,3-5,math,n,puzzle,,factors-primes,"factor pairs, prime and composite",solve,garden-farm,number garden
+rule-machine,Rule Machine,3-5,math,n,puzzle,function-machine,number-patterns,finding the rule of a pattern,solve,robot-machine,function machine
+stadium-count,Stadium Count,3-5,math,n,explorer,,place-value-million,place value to a million,explore,sports,stadium crowd
+area-model-builder,Area Model Builder,3-5,math,n,sandbox,area,multidigit-multiplication,area model multiplication,manipulate,generic,rectangles
+fraction-wall-duel,Fraction Wall Duel,3-5,math,n,cards,fraction-wall,equivalent-fractions,equivalent and comparing fractions,match,generic,fraction wall cards
+recipe-scaler,Recipe Scaler,3-5,math,n,tycoon,fraction-food,multiply-fractions,whole number times fraction,manage,shop-food,recipe orders
+money-and-meters,Money and Meters,3-5,math,n,simulator,,decimals-tenths,decimal tenths and hundredths,manipulate,generic,"dimes, meter sticks, grids"
+unit-ladder,Unit Ladder,3-5,math,n,race,,unit-conversion,converting units,drill,generic,conversion ladder
+skate-park-angles,Skate Park Angles,3-5,math,n,builder,,angles,measuring angles with a protractor,build,sports,skate park
+mirror-studio,Mirror Studio,3-5,math,n,studio,,symmetry,lines of symmetry,compose,studio,mirror
+expression-escape,Expression Escape,3-5,math,n,escape,,order-of-operations,grouping symbols in expressions,solve,treasure,escape locks
+two-rule-race,Two Rule Race,3-5,math,n,simulator,coordinate,two-patterns,two numeric patterns graphed as ordered pairs,simulate-tune,vehicle,snail race
+powers-of-ten-zoom,Powers of Ten Zoom,3-5,math,n,explorer,,powers-of-ten,powers of ten and decimal place value,explore,space,galaxy to atom zoom
+grocery-run,Grocery Run,3-5,math,n,tycoon,money,decimal-operations,multi-digit and decimal operations,manage,shop-food,grocery store
+fraction-kitchen,Fraction Kitchen,3-5,math,n,puzzle,fraction-food,add-unlike-fractions,adding fractions with unlike denominators,solve,kitchen-food,measuring cups
+shrink-ray,Shrink Ray,3-5,math,n,simulator,,fraction-scaling,fraction multiplication as scaling,simulate-tune,robot-machine,shrink ray
+seed-sprout-data,Seed Sprout Data,3-5,math,n,data,,line-plots-fractions,line plots with fractional data,analyze-data,garden-farm,seedlings
+box-packer,Box Packer,3-5,math,n,puzzle,,volume,volume of rectangular prisms,solve,shipping,shipping boxes
+battleship-grid,Battleship Grid,3-5,math,n,cards,coordinate,coordinate-plane,graphing points in the first quadrant,locate,water,ships grid
+shape-courtroom,Shape Courtroom,3-5,math,n,roleplay,,classify-shapes,hierarchy of 2D shapes,debate,courtroom,shape on trial
+smoothie-lab,Smoothie Lab,6-8,math,y,lab,ratio,ratios,ratios and equivalent ratios,experiment,kitchen-food,smoothie bar
+how-many-fit,How Many Fit?,6-8,math,n,sandbox,fraction-wall,divide-fractions,dividing fractions as measuring,manipulate,generic,fraction bars
+factor-forge,Factor Forge,6-8,math,y,arcade,,gcf-lcm,"prime factors, GCF and LCM",drill,forge,number forge
+deep-sea-dive,Deep Sea Dive,6-8,math,n,map,number-line,negative-numbers,negative numbers and absolute value,locate,water,deep sea
+expression-garden,Expression Garden,6-8,math,n,builder,algebra-tiles,expressions,writing and simplifying expressions,build,garden-farm,algebra tile garden
+balance-puzzle,Balance Puzzle,6-8,math,n,puzzle,balance,one-step-equations,one-step equations with a balance,solve,balance,balance scale
+lemonade-stand,Lemonade Stand,6-8,math,n,tycoon,,dependent-variables,dependent and independent variables,simulate-tune,shop-food,lemonade stand
+net-folder,Net Folder,6-8,math,n,sandbox,,surface-area,nets and surface area,manipulate,generic,boxes and pyramids
+question-lab,Question Lab,6-8,math,n,sort,,statistical-questions,statistical vs non-statistical questions,sort,generic,survey questions
+box-plot-builder,Box Plot Builder,6-8,math,n,data,data-desk,data-summaries,"box plots, mean, median and MAD",analyze-data,generic,sports and weather data
+tax-and-tip,Tax and Tip,6-8,math,n,tycoon,ratio,proportional-relationships,"percent, tax, tip and proportionality",manage,shop-food,diner register
+hot-air-and-sandbags,Hot Air and Sandbags,6-8,math,n,simulator,,signed-numbers,operations with signed numbers,simulate-tune,vehicle,hot air balloon
+expression-match,Expression Match,6-8,math,n,cards,algebra-tiles,equivalent-expressions,equivalent linear expressions,match,generic,memory cards
+phone-plan-showdown,Phone Plan Showdown,6-8,math,n,roleplay,,linear-equations,comparing plans with equations,debate,shop-food,phone plan sale
+blueprint-studio,Blueprint Studio,6-8,math,n,studio,,scale-drawings,scale drawings and floor plans,compose,home,bedroom floor plan
+pizza-physics,Pizza Physics,6-8,math,n,lab,,circles,circumference and area of circles,experiment,kitchen-food,pizzas
+jellybean-jar,Jellybean Jar,6-8,math,n,simulator,sampling,sampling,random sampling and inference,simulate-tune,generic,jellybean jar
+carnival-odds,Carnival Odds,6-8,math,n,simulator,probability,probability,theoretical vs experimental probability,simulate-tune,amusement-park,carnival
+square-root-hunt,Square Root Hunt,6-8,math,n,puzzle,number-line,irrational-numbers,approximating irrational numbers,solve,generic,zooming number line
+size-of-everything,Size of Everything,6-8,math,y,explorer,,scientific-notation,scientific notation across scales,explore,space,virus to galaxy scale
+ski-slope-designer,Ski Slope Designer,6-8,math,n,builder,graphing,slope,slope as rise over run,build,sports,ski runs
+two-trains,Two Trains,6-8,math,y,simulator,graphing,linear-systems,systems of two linear equations,simulate-tune,vehicle,two trains
+function-machine-factory,Function Machine Factory,6-8,math,n,puzzle,function-machine,defining-functions,functions as one output per input,build,factory,function machines
+story-graphs,Story Graphs,6-8,math,n,sort,graphing,qualitative-graphs,matching stories to graphs,match,generic,story cards and graphs
+dance-floor-moves,Dance Floor Moves,6-8,math,n,studio,transformations,transformations,rigid motions and dilations as sequences,compose,stage,dance floor
+square-slicer,Square Slicer,6-8,math,n,puzzle,,pythagorean-theorem,Pythagorean theorem by dissection,solve,town,park shortcut
+ice-cream-shop,Ice Cream Shop,6-8,math,n,tycoon,,volume-cylinders-cones,"volume of cylinders, cones and spheres",manage,shop-food,ice cream shop
+data-detective,Data Detective,6-8,math,n,data,data-desk,bivariate-data,"scatter plots, lines of fit, two-way tables",analyze-data,generic,real data
+exponent-rule-builder,Exponent Rule Builder,9-12,math,n,puzzle,,rational-exponents,rational exponents and exponent rules,experiment,generic,patterns
+unit-detective,Unit Detective,9-12,math,n,mystery,,dimensional-analysis,dimensional analysis of claims,investigate,newsroom,headlines
+algebra-tile-studio,Algebra Tile Studio,9-12,math,n,sandbox,algebra-tiles,polynomial-area-model,factoring and completing the square with tiles,manipulate,generic,algebra tiles
+polynomial-garden,Polynomial Garden,9-12,math,n,builder,algebra-tiles,polynomial-area-model,multiplying polynomials as area,build,garden-farm,polynomial garden
+model-my-world,Model My World,9-12,math,n,builder,,creating-equations,writing equations for real situations,build,generic,real situations
+equation-golf,Equation Golf,9-12,math,n,puzzle,balance,solving-linear-equations,solving equations in few legal moves,solve,sports,golf
+intersection-quest,Intersection Quest,9-12,math,n,race,graphing,linear-systems,solving systems three ways,drill,generic,graph race
+graph-story-lab,Graph Story Lab,9-12,math,n,explorer,graphing,function-features,"domain, range and key features",annotate,generic,real graphs
+which-model-wins,Which Model Wins?,9-12,math,n,data,data-desk,model-comparison,linear vs quadratic vs exponential fits,analyze-data,generic,real data sets
+launch-pad,Launch Pad,9-12,math,n,simulator,graphing,quadratics,roots of quadratics as landing points,simulate-tune,space,projectile launch
+correlation-guessing-game,Correlation Guessing Game,9-12,math,n,arcade,,correlation,estimating correlation; residuals,drill,generic,guessing game
+transformation-golf,Transformation Golf,9-12,math,n,puzzle,transformations,rigid-motions,rigid motions and congruence,solve,sports,golf
+proof-blocks,Proof Blocks,9-12,math,n,puzzle,,geometric-proof,statements and reasons in a proof,build,generic,proof blocks
+shadow-measure,Shadow Measure,9-12,math,n,lab,,similar-triangles,similar triangles for indirect measurement,experiment,generic,flagpole
+ramp-and-roof,Ramp and Roof,9-12,math,n,builder,,right-triangle-trig,"sine, cosine and tangent in design",build,construction,ramps and roofs
+circle-theorem-explorer,Circle Theorem Explorer,9-12,math,n,explorer,,circle-theorems,"angle, chord and tangent relationships",explore,generic,dynamic geometry
+coordinate-proof-lab,Coordinate Proof Lab,9-12,math,n,sandbox,coordinate,coordinate-proof,proving shape properties with coordinates,solve,generic,coordinate grid
+slice-it,Slice It,9-12,math,n,explorer,,cross-sections,cross sections and solids of rotation,explore,generic,3D solids
+packaging-challenge,Packaging Challenge,9-12,math,n,builder,,geometric-modeling,minimizing material for a volume,build,shipping,packaging
+medical-test-paradox,Medical Test Paradox,9-12,math,n,simulator,probability,conditional-probability,conditional probability of test results,simulate-tune,body-medical,disease test
+imaginary-island,Imaginary Island,9-12,math,y,map,,complex-numbers,complex plane and multiplication by i,explore,island,complex island
+rollercoaster-polynomials,Rollercoaster Polynomials,9-12,math,y,builder,graphing,polynomial-zeros,"zeros, degree and end behavior",build,amusement-park,coaster track
+work-rate-crew,Work Rate Crew,9-12,math,n,roleplay,,rational-equations,combined work rates,manage,construction,painting crews
+outbreak-model,Outbreak Model,9-12,math,y,simulator,,exponential-log,exponential growth and logarithms,simulate-tune,body-medical,outbreak
+ferris-wheel,Ferris Wheel,9-12,math,y,simulator,,trig-functions,periodic trig models,simulate-tune,amusement-park,ferris wheel
+undo-machine,Undo Machine,9-12,math,y,puzzle,function-machine,inverse-functions,composing and inverting functions,build,robot-machine,function machines
+savings-plan,Savings Plan,9-12,math,y,tycoon,,savings-growth,arithmetic and geometric sequences,simulate-tune,business-money,saving plans
+poll-workshop,Poll Workshop,9-12,math,y,data,sampling,study-design,"sampling, bias and margin of error",simulate-tune,newsroom,poll headline
+function-family-reunion,Function Family Reunion,9-12,math,n,explorer,graphing,parent-functions,parent functions and transformations,explore,family-tree,function family reunion
+identity-proof-race,Identity Proof Race,9-12,math,n,race,,trig-identities,proving trig identities,drill,generic,proof race
+flight-planner,Flight Planner,9-12,math,n,simulator,,vectors,adding velocity vectors,simulate-tune,vehicle,plane in crosswind
+image-transformer,Image Transformer,9-12,math,n,studio,,matrices,matrix transformations,experiment,studio,photo
+polar-rose-studio,Polar Rose Studio,9-12,math,n,studio,,polar-graphs,polar equations as art,compose,studio,art
+cone-slicer,Cone Slicer,9-12,math,n,explorer,,conic-sections,conic sections from a double cone,explore,generic,double cone
+zoom-to-the-limit,Zoom to the Limit,9-12,math,n,explorer,,limits-rates,secant to tangent,explore,generic,zooming curve
+data-desk-distributions,Data Desk: Distributions,9-12,math,n,data,data-desk,describe-distributions,describing distributions,analyze-data,generic,public data
+design-the-study,Design the Study,9-12,math,n,story,,study-design,sampling and experiment design,plan,newsroom,journal editor
+game-show-strategist,Game Show Strategist,9-12,math,n,simulator,probability,expected-value,expected value and probability models,simulate-tune,game-show,game show
+sample-machine,Sample Machine,9-12,math,n,simulator,sampling,sampling-distributions,sampling distributions and the CLT,simulate-tune,robot-machine,sample machine
+courtroom-statistics,Courtroom Statistics,9-12,math,n,roleplay,,significance-tests,significance tests and p-values,debate,courtroom,claim on trial
+fair-dice-investigation,Fair Dice Investigation,9-12,math,n,mystery,,chi-square,chi-square and slope inference,investigate,game-show,loaded die
+hole-hunter,Hole Hunter,9-12,math,n,puzzle,,continuity,"holes, jumps and asymptotes",fix,generic,graphs
+speedometer,Speedometer,9-12,math,n,simulator,,derivative,derivative as rate,simulate-tune,vehicle,car
+optimization-workshop,Optimization Workshop,9-12,math,n,builder,,optimization,optimization with derivatives,build,garden-farm,field fence and can
+rain-gauge,Rain Gauge,9-12,math,n,simulator,,integral,Riemann sums and accumulation,simulate-tune,weather,rain tank
+solid-spinner,Solid Spinner,9-12,math,n,explorer,,volumes-of-revolution,disk and washer volumes,explore,generic,solids
+slope-field-garden,Slope Field Garden,9-12,math,n,sandbox,,differential-equations,slope fields and solution curves,explore,garden-farm,slope field garden
+push-the-pumpkin,Push the Pumpkin,K-2,science,n,showdown,,push-pull,pushes and pulls change motion,predict-reveal,garden-farm,pumpkin and wagon
+shade-builder,Shade Builder,K-2,science,n,builder,,sunlight-warming,sunlight warms surfaces; shade,build,town,sandbox
+terrarium-pal,Terrarium Pal,K-2,science,n,creature,terrarium,living-needs,what living things need,care-for,creature,terrarium snail and plant
+weather-wardrobe,Weather Wardrobe,K-2,science,n,showdown,weather,weather-patterns,daily and seasonal weather patterns,discuss,weather,dress-up character
+beaver-builders,Beaver Builders,K-2,science,n,simulator,,organisms-change-environment,animals change their environment,simulate-tune,nature,beaver stream
+vibration-station,Vibration Station,K-2,science,n,lab,,sound-vibration,vibration makes sound,experiment,music,rubber bands and drums
+shadow-puppet-studio,Shadow Puppet Studio,K-2,science,n,studio,,light-shadows,light and shadows; materials,experiment,stage,shadow puppets
+nature-inventor,Nature Inventor,K-2,science,n,builder,,biomimicry,body parts inspire designs,build,nature,nature inventions
+who-s-my-baby,Who's My Baby?,K-2,science,n,cards,,parents-offspring,young resemble parents,match,animals,parent and baby cards
+sky-diary,Sky Diary,K-2,science,n,explorer,sky,sky-patterns,"patterns of sun, moon and stars",predict-reveal,space,sky
+three-pigs-lab,Three Pigs Lab,K-2,science,y,lab,,material-properties,testing material properties,experiment,folktale,three pigs houses
+melt-or-not,Melt or Not?,K-2,science,y,sort,,reversible-change,reversible vs irreversible change,sort,kitchen-food,everyday changes
+plant-experiment-shelf,Plant Experiment Shelf,K-2,science,n,lab,terrarium,plant-needs,fair test of plant needs,experiment,garden-farm,plant shelf
+habitat-hunt,Habitat Hunt,K-2,science,y,explorer,,biodiversity,comparing biodiversity in habitats,hunt,nature,habitats
+fast-or-slow,Fast or Slow?,K-2,science,n,timeline,,landform-change,fast and slow Earth events,order,generic,timeline
+island-maker,Island Maker,K-2,science,n,studio,,landforms-water,landforms and bodies of water,compose,island,island sculpting
+tug-of-war-arena,Tug of War Arena,3-5,science,n,simulator,forces,balanced-forces,balanced and unbalanced forces,simulate-tune,sports,tug of war
+magnet-maze,Magnet Maze,3-5,science,n,puzzle,,magnetism,magnetic and static forces,solve,fantasy,magnet maze
+life-cycle-wheel,Life Cycle Wheel,3-5,science,n,sort,,life-cycles,comparing life cycles,order,animals,life cycle wheels
+wolf-pack-survival,Wolf Pack Survival,3-5,science,n,simulator,,group-survival,living in groups aids survival,simulate-tune,animals,"wolves, fish, bees"
+puppy-traits,Puppy Traits,3-5,science,n,explorer,,inherited-traits,inherited vs environmental traits,explore,animals,puppy litters
+fossil-dig,Fossil Dig,3-5,science,n,lab,fossils,fossils-rock-layers,fossils show past environments,hunt,nature,quarry
+climate-postcards,Climate Postcards,3-5,science,n,data,weather,climate,weather data and climates,analyze-data,travel-map,postcards
+bowling-lab,Bowling Lab,3-5,science,n,lab,,speed-energy,speed and energy in collisions,experiment,sports,bowling
+rube-goldberg-workshop,Rube Goldberg Workshop,3-5,science,n,builder,,energy-conversion,energy conversion devices,build,robot-machine,contraption
+secret-code-signals,Secret Code Signals,3-5,science,n,puzzle,,wave-information,patterns transfer information,compose,cyber,secret code
+how-animals-see,How Animals See,3-5,science,y,explorer,,animal-senses,structures and senses; how eyes see,explore,animals,animal vision
+canyon-reader,Canyon Reader,3-5,science,n,mystery,fossils,fossils-rock-layers,rock layers and Earth history,investigate,nature,canyon wall
+erosion-table,Erosion Table,3-5,science,n,simulator,,erosion,weathering and erosion,simulate-tune,nature,sand table
+town-planner-disaster-ready,Town Planner: Disaster Ready,3-5,science,n,tycoon,,resources-hazards,energy resources and hazard mitigation,manage,town,town planner
+particle-zoom,Particle Zoom,3-5,science,n,explorer,particles,particles,matter made of particles,explore,kitchen-food,sugar and balloon zoom
+mystery-powders,Mystery Powders,3-5,science,n,mystery,,mixtures,identifying materials; new substances,investigate,lab,mystery powders
+drop-zone,Drop Zone,3-5,science,n,lab,,gravity,gravity pulls down,experiment,space,"Earth, Moon, Mars"
+food-web-jenga,Food Web Jenga,3-5,science,n,simulator,ecosystem,food-webs,food webs and removing a species,simulate-tune,generic,food web tower
+shadow-clock,Shadow Clock,3-5,science,n,lab,sky,sun-shadows,daily and seasonal shadow patterns,experiment,space,stick shadow
+sphere-connections,Sphere Connections,3-5,science,n,cards,,earth-spheres,interactions of Earth's spheres,match,generic,sphere cards
+community-solutions,Community Solutions,3-5,science,n,roleplay,,protect-earth,community environmental solutions,debate,council-debate,town meeting
+moon-phase-model,Moon Phase Model,6-8,science,y,simulator,sky,moon-phases,"moon phases, eclipses and seasons",simulate-tune,space,Earth-Moon orbit
+planet-builder,Planet Builder,6-8,science,n,sandbox,,gravity-orbits,gravity and orbits,experiment,space,solar system
+earth-s-calendar,Earth's Calendar,6-8,science,n,timeline,,geologic-time,geologic time scale,order,generic,calendar year
+plate-puzzle,Plate Puzzle,6-8,science,n,puzzle,,plate-tectonics,plate tectonics evidence,solve,generic,continents
+raindrop-s-journey,Raindrop's Journey,6-8,science,n,story,,water-cycle,water cycle and weather,choose-path,water,water molecule journey
+ocean-conveyor,Ocean Conveyor,6-8,science,n,simulator,,ocean-circulation,winds and ocean currents,simulate-tune,water,globe
+cooler-challenge,Cooler Challenge,6-8,science,n,builder,,thermal-energy,insulation and heat transfer design,build,kitchen-food,lunchbox cooler
+cell-city,Cell City,6-8,science,n,explorer,cells,cells,organelles and body systems,explore,town,cell city
+molecule-builder,Molecule Builder,6-8,science,n,sandbox,molecules,molecules,atoms into molecules,build,lab,molecule kit
+particle-party,Particle Party,6-8,science,n,simulator,particles,states-of-matter,particle motion and state changes,simulate-tune,lab,particles
+reaction-kitchen,Reaction Kitchen,6-8,science,n,lab,molecules,chemical-reactions,conservation of mass in reactions,experiment,kitchen-food,kitchen reactions
+leaf-factory,Leaf Factory,6-8,science,n,tycoon,,photosynthesis,photosynthesis and respiration,manage,factory,leaf factory
+predator-prey-island,Predator-Prey Island,6-8,science,n,simulator,ecosystem,predator-prey,predator-prey cycles,simulate-tune,island,wolves and moose
+energy-pyramid,Energy Pyramid,6-8,science,n,builder,ecosystem,energy-pyramid,energy flow in ecosystems,build,nature,pyramid
+invasive-species-alert,Invasive Species Alert,6-8,science,n,story,,ecosystem-disruption,invasive species and biodiversity,choose-path,nature,lake
+resource-map,Resource Map,6-8,science,n,map,,earth-resources,uneven distribution of resources,locate,travel-map,resource map
+crash-test-lab,Crash Test Lab,6-8,science,n,lab,forces,newtons-laws,Newton's third law; collisions,experiment,vehicle,carts
+electromagnet-lab,Electromagnet Lab,6-8,science,n,lab,,electromagnetism,electromagnet strength,experiment,lab,coils
+skate-park-energy,Skate Park Energy,6-8,science,n,simulator,,kinetic-potential,kinetic and potential energy,simulate-tune,sports,skate park
+wave-tank,Wave Tank,6-8,science,n,sandbox,,waves,wave amplitude and frequency,experiment,water,wave tank
+gene-pool,Gene Pool,6-8,science,n,simulator,genetics,heredity,"genes, mutations, reproduction",simulate-tune,creature,fantasy creatures
+bug-hunt,Bug Hunt,6-8,science,n,arcade,,natural-selection,natural selection and camouflage,hunt,nature,bird hunting bugs
+hazard-forecaster,Hazard Forecaster,6-8,science,n,data,,natural-hazards,forecasting hazards from data,analyze-data,generic,hazard data
+bridge-builder,Bridge Builder,6-8,science,n,builder,,engineering-design,"design, test and optimize",build,construction,bridge
+membrane-gatekeeper,Membrane Gatekeeper,9-12,science,n,arcade,cells,cell-membrane,cell membrane transport,sort,body-medical,cell membrane
+body-thermostat,Body Thermostat,9-12,science,n,simulator,,homeostasis,feedback and homeostasis,simulate-tune,body-medical,body
+mitosis-mixer,Mitosis Mixer,9-12,science,n,sort,cells,mitosis,stages of mitosis and differentiation,order,lab,microscope images
+energy-accountant,Energy Accountant,9-12,science,n,data,,photosynthesis-respiration,carbon and energy through photosynthesis and respiration,analyze-data,business-money,energy ledger
+protein-factory,Protein Factory,9-12,science,n,puzzle,genetics,protein-synthesis,transcription and translation,solve,factory,protein factory
+punnett-predictor,Punnett Predictor,9-12,science,n,simulator,genetics,inheritance-probability,Punnett predictions vs simulated offspring,simulate-tune,generic,Punnett square
+tree-of-life,Tree of Life,9-12,science,n,explorer,,common-ancestry,evidence for common ancestry,explore,family-tree,tree of life
+carrying-capacity,Carrying Capacity,9-12,science,n,simulator,ecosystem,population-growth,logistic growth and carrying capacity,simulate-tune,nature,deer population
+reserve-designer,Reserve Designer,9-12,science,n,builder,,human-impact,designing a reserve with corridors,build,nature,nature reserve
+star-life-story,Star Life Story,9-12,science,n,timeline,astronomy,stellar-life,stellar life cycles and element formation,order,space,stars
+orbit-lab,Orbit Lab,9-12,science,n,simulator,astronomy,kepler-laws,Kepler's laws with real planet data,simulate-tune,space,orbits
+feedback-loop-builder,Feedback Loop Builder,9-12,science,n,builder,,earth-feedback,climate feedback loops,build,generic,causal loop diagram
+water-shapes-earth,Water Shapes Earth,9-12,science,n,lab,,water-properties,water's properties shape the surface,experiment,nature,rocks and rivers
+climate-dashboard,Climate Dashboard,9-12,science,n,data,,climate-trends,long-term climate trends vs noise,analyze-data,generic,climate data
+island-economy,Island Economy,9-12,science,n,tycoon,,sustainability,sustainable resource management,manage,island,island economy
+elements-inspector,Elements Inspector,9-12,science,y,explorer,elements,periodic-table,atomic structure and periodic patterns,explore,lab,periodic table
+bond-battle,Bond Battle,9-12,science,n,cards,molecules,chemical-bonding,ionic vs covalent bonds; intermolecular forces,match,generic,atom cards
+equation-balancer,Equation Balancer,9-12,science,n,puzzle,,balancing-equations,balancing chemical equations,solve,balance,atom scale
+mole-bakery,Mole Bakery,9-12,science,n,tycoon,,stoichiometry,limiting reactant and yield,manage,shop-food,mole bakery
+hand-warmer-lab,Hand Warmer Lab,9-12,science,n,lab,,reaction-energy,exothermic and endothermic reactions,experiment,lab,hand warmer design
+equilibrium-seesaw,Equilibrium Seesaw,9-12,science,n,simulator,,equilibrium,Le Chatelier's principle,simulate-tune,balance,seesaw
+gas-law-lab,Gas Law Lab,9-12,science,n,lab,particles,gas-laws,"pressure, volume and temperature",experiment,lab,piston and balloon
+ph-detective,pH Detective,9-12,science,n,mystery,,acids-bases,pH and neutralization,investigate,detective,mystery liquids
+half-life-dice,Half-Life Dice,9-12,science,n,simulator,,half-life,radioactive decay and half-life,simulate-tune,generic,dice
+motion-graph-match,Motion Graph Match,9-12,science,y,race,,kinematics-graphs,position and velocity graphs,move-along,generic,motion graph
+space-cargo,Space Cargo,9-12,science,n,simulator,forces,newtons-laws,F = ma,simulate-tune,space,zero-g cargo
+collision-lab,Collision Lab,9-12,science,y,lab,forces,momentum,conservation of momentum,experiment,lab,air track
+field-lines,Field Lines,9-12,science,y,sandbox,,fields,gravitational and electric fields,explore,generic,field sandbox
+roller-coaster-physics,Roller Coaster Physics,9-12,science,n,builder,,energy-conservation,conservation of energy with friction,build,amusement-park,roller coaster
+circuit-builder,Circuit Builder,9-12,science,n,sandbox,,circuits,"circuits, current and voltage",build,lab,circuit board
+sound-studio,Sound Studio,9-12,science,n,studio,,sound-waves,"frequency, wavelength and harmonics",compose,music,synth and scope
+spectrum-explorer,Spectrum Explorer,9-12,science,n,explorer,,em-spectrum,the electromagnetic spectrum,explore,generic,spectrum slider
+biome-atlas,Biome Atlas,9-12,science,n,map,,biomes,biomes from temperature and rainfall,predict-reveal,travel-map,world biomes
+population-dashboard,Population Dashboard,9-12,science,n,data,,population-resources,population and resource use,analyze-data,generic,country data
+power-grid-tycoon,Power Grid Tycoon,9-12,science,n,tycoon,,energy-sources,energy source tradeoffs,manage,town,city power grid
+watershed-detective,Watershed Detective,9-12,science,n,mystery,,pollution,tracing pollution sources,investigate,water,watershed
+design-challenge-studio,Design Challenge Studio,9-12,science,n,builder,,engineering-design,breaking down global challenges and tradeoffs,plan,lab,design studio
+playground-rules,Playground Rules,K-2,social-studies,n,showdown,,rules-citizenship,why we have rules,discuss,town,playground
+me-on-the-map,Me on the Map,K-2,social-studies,y,map,me-map,my-place,nested places from room to planet,explore,travel-map,zoom map
+then-and-now-flip,Then and Now Flip,K-2,social-studies,n,sort,,then-and-now,past and present,sort,generic,old and new pictures
+backpack-pack,Backpack Pack,K-2,social-studies,n,sort,,needs-wants,needs vs wants,sort,travel-map,camping backpack
+symbol-spotter,Symbol Spotter,K-2,social-studies,n,explorer,,national-symbols,national symbols and holidays,explore,generic,symbols
+community-helpers-village,Community Helpers Village,K-2,social-studies,n,sandbox,,community-roles,community helpers and roles,manipulate,town,helper village
+compass-rose-quest,Compass Rose Quest,K-2,social-studies,n,puzzle,me-map,cardinal-directions,map keys and cardinal directions,locate,treasure,map treasures
+my-life-timeline,My Life Timeline,K-2,social-studies,n,timeline,timeline-maker,personal-timeline,sequencing personal history,order,generic,personal timeline
+market-day,Market Day,K-2,social-studies,n,tycoon,market,goods-services,"goods vs services, producers and consumers",manage,shop-food,market stall
+festival-passport,Festival Passport,K-2,social-studies,n,explorer,,world-cultures,traditions and festivals around the world,explore,travel-map,festival passport
+town-council,Town Council,K-2,social-studies,n,roleplay,,local-government,how communities make decisions,debate,council-debate,town council
+three-towns,Three Towns,K-2,social-studies,n,sort,,community-types,"urban, suburban and rural",sort,town,three towns
+changemaker-cards,Changemaker Cards,K-2,social-studies,n,cards,,changemakers,people who made a difference,explore,generic,collectible cards
+piggy-bank-planner,Piggy Bank Planner,K-2,social-studies,n,tycoon,money,saving-spending,"saving, spending and trade",manage,business-money,piggy bank
+resource-detective,Resource Detective,K-2,social-studies,y,mystery,,natural-resources,objects traced to natural resources,investigate,detective,everyday objects
+map-maker,Map Maker,3-5,social-studies,n,studio,me-map,map-skills,"map key, scale and grid",compose,town,imaginary town map
+then-and-now-overlay,Then-and-Now Overlay,3-5,social-studies,n,explorer,history-overlay,local-history,how the local community changed,explore,town,old photo overlay
+class-election,Class Election,3-5,social-studies,n,showdown,election,voting,voting and elections,rehearse,council-debate,class election
+pizza-shop-assembly-line,Pizza Shop Assembly Line,3-5,social-studies,n,tycoon,,specialization,specialization and productivity,manage,shop-food,pizza shop
+day-in-the-life,Day in the Life,3-5,social-studies,n,story,,world-communities,comparing communities worldwide,choose-path,travel-map,kids around the world
+state-story-timeline,State Story Timeline,3-5,social-studies,n,timeline,timeline-maker,state-history,state history from Native nations to statehood,order,generic,timeline template
+state-quest,State Quest,3-5,social-studies,y,map,state-quest,us-states,locating US states,locate,travel-map,US map
+bill-to-law-board-game,Bill to Law Board Game,3-5,social-studies,n,cards,bill-to-law,state-government,how a bill becomes law,choose-path,generic,board game
+state-economy-map,State Economy Map,3-5,social-studies,n,map,,state-economy,industries and resources by region,locate,travel-map,layered state maps
+settle-the-valley,Settle the Valley,3-5,social-studies,n,simulator,,human-environment,people adapt to and change environments,simulate-tune,nature,valley
+nations-of-north-america,Nations of North America,3-5,social-studies,y,map,,indigenous-nations,Native nations and their environments,explore,travel-map,nations map
+ship-s-log,Ship's Log,3-5,social-studies,n,story,,exploration-colonization,consequences of a 1600s voyage,choose-path,water,ship voyage
+revolution-road,Revolution Road,3-5,social-studies,n,timeline,,american-revolution,causes and events of the Revolution,order,generic,timeline
+rights-match,Rights Match,3-5,social-studies,n,sort,founding-docs,bill-of-rights,matching scenarios to amendments,sort,generic,scenarios
+colonial-trade-routes,Colonial Trade Routes,3-5,social-studies,n,map,,colonial-economies,colonial trade and slavery,locate,travel-map,trade routes
+five-themes-field-trip,Five Themes Field Trip,6-8,social-studies,n,explorer,,five-themes,five themes of geography,annotate,town,city photos
+hunter-to-farmer,Hunter to Farmer,6-8,social-studies,n,simulator,,neolithic-revolution,foraging vs farming,simulate-tune,garden-farm,seasons
+river-kingdom,River Kingdom,6-8,social-studies,n,tycoon,,river-civilizations,river valley civilizations,manage,water,river kingdom
+silk-road-traders,Silk Road Traders,6-8,social-studies,n,cards,silk-road,silk-road,trade and spread of ideas,match,travel-map,trade cards
+agora-assembly,Agora Assembly,6-8,social-studies,n,roleplay,,greek-democracy,Athenian democracy,debate,council-debate,assembly
+rome-republic-to-empire,Rome: Republic to Empire,6-8,social-studies,n,story,,roman-republic,republic to empire,choose-path,council-debate,Roman senate
+region-compare,Region Compare,6-8,social-studies,n,data,data-desk,world-regions,comparing world regions with data,analyze-data,generic,region data
+constantinople-defense,Constantinople Defense,6-8,social-studies,n,simulator,,byzantine-empire,how Byzantium lasted,simulate-tune,fantasy,city walls
+house-of-wisdom,House of Wisdom,6-8,social-studies,n,explorer,,islamic-golden-age,Islamic golden age knowledge,explore,library,House of Wisdom
+salt-and-gold-caravan,Salt and Gold Caravan,6-8,social-studies,n,tycoon,,trans-saharan-trade,trans-Saharan trade,manage,travel-map,caravan
+mongol-messenger,Mongol Messenger,6-8,social-studies,n,race,,mongol-empire,Mongol relay and connections,move-along,travel-map,relay race
+manor-life,Manor Life,6-8,social-studies,n,creature,,feudalism,feudal roles and seasons,care-for,garden-farm,manor
+tenochtitlan-builder,Tenochtitlan Builder,6-8,social-studies,n,builder,,americas-civilizations,"Aztec, Maya and Inca engineering",build,town,city on a lake
+printing-press,Printing Press,6-8,social-studies,n,simulator,,printing-press,spread of ideas by print,simulate-tune,newsroom,pamphlets
+columbian-exchange,Columbian Exchange,6-8,social-studies,n,sort,,columbian-exchange,"origins of plants, animals, diseases",sort,travel-map,exchange
+colonial-newsroom,Colonial Newsroom,6-8,social-studies,n,studio,,revolution-causes,Patriot vs Loyalist spin on events,compose,newsroom,colonial papers
+constitutional-convention,Constitutional Convention,6-8,social-studies,n,roleplay,founding-docs,constitution-creation,negotiating representation,debate,council-debate,convention
+two-parties,Two Parties,6-8,social-studies,n,cards,,early-republic,Hamilton vs Jefferson debates,match,generic,debate cards
+expansion-map,Expansion Map,6-8,social-studies,n,map,,westward-expansion,"territory, trails and Native removal",explore,travel-map,layered map
+mill-town,Mill Town,6-8,social-studies,n,story,,industrialization-reform,mill conditions and reform,choose-path,factory,textile mill
+voices-of-freedom,Voices of Freedom,6-8,social-studies,n,explorer,primary-sources,slavery-abolition,primary sources on slavery and abolition,explore,generic,primary sources
+civil-war-map-room,Civil War Map Room,6-8,social-studies,n,map,,civil-war,campaigns and turning points,explore,travel-map,animated war map
+reconstruction-amendments,Reconstruction Amendments,6-8,social-studies,n,explorer,founding-docs,reconstruction,Reconstruction amendments and Jim Crow,explore,generic,amendments
+ideas-that-spread,Ideas That Spread,9-12,social-studies,n,map,,enlightenment,Enlightenment ideas and revolutions,trace,travel-map,idea map
+factory-floor,Factory Floor,9-12,social-studies,n,tycoon,,industrial-revolution,industrialization effects,manage,factory,factory
+scramble-for-africa,Scramble for Africa,9-12,social-studies,n,explorer,,imperialism,imperialism and resistance,explore,travel-map,before and after maps
+alliance-web,Alliance Web,9-12,social-studies,n,simulator,,wwi-causes,alliance system causes of WWI,simulate-tune,generic,alliance web
+inflation-wallet,Inflation Wallet,9-12,social-studies,n,simulator,,interwar-crisis,hyperinflation and extremism,simulate-tune,shop-food,bakery in 1923
+remembrance-archive,Remembrance Archive,9-12,social-studies,n,explorer,primary-sources,holocaust,Holocaust and WWII testimony,explore,generic,archive
+cold-war-crisis-room,Cold War Crisis Room,9-12,social-studies,n,roleplay,,cold-war,Cuban Missile Crisis choices,choose-path,council-debate,crisis room
+independence-timeline,Independence Timeline,9-12,social-studies,n,timeline,,decolonization,independence movements,order,generic,map and timeline
+where-s-my-phone-from,Where's My Phone From?,9-12,social-studies,n,data,data-desk,globalization,supply chains and trade data,trace,travel-map,phone parts
+robber-baron-or-captain,Robber Baron or Captain?,9-12,social-studies,n,roleplay,,gilded-age,judging industrialists,debate,courtroom,trial
+muckraker-studio,Muckraker Studio,9-12,social-studies,n,studio,,progressive-era,investigative journalism and reform,compose,newsroom,expose
+empire-debate,Empire Debate,9-12,social-studies,n,roleplay,,us-imperialism,annexation debate,debate,council-debate,Philippines debate
+stock-market-1929,Stock Market 1929,9-12,social-studies,n,simulator,,great-depression,margin trading and the crash,simulate-tune,business-money,stock market
+home-front-mobilizer,Home Front Mobilizer,9-12,social-studies,n,tycoon,,wwii-home-front,mobilization and internment,manage,factory,home front
+movement-strategy-room,Movement Strategy Room,9-12,social-studies,n,story,,civil-rights,planning a civil rights campaign,plan,council-debate,strategy room
+space-race,Space Race,9-12,social-studies,n,race,,space-race,Cold War space race milestones,move-along,space,rockets
+decades-explorer,Decades Explorer,9-12,social-studies,n,explorer,,modern-america,change since 1980,explore,generic,decades
+build-a-government,Build a Government,9-12,social-studies,n,builder,,government-foundations,designing a government,build,island,new island nation
+federal-or-state,Federal or State?,9-12,social-studies,n,sort,,federalism,"federal, state and shared powers",sort,generic,powers
+checks-and-balances,Checks and Balances,9-12,social-studies,n,cards,bill-to-law,three-branches,checks and balances,match,generic,strategy cards
+supreme-court-simulator,Supreme Court Simulator,9-12,social-studies,n,roleplay,,civil-liberties,landmark cases,debate,courtroom,Supreme Court
+campaign-manager,Campaign Manager,9-12,social-studies,n,tycoon,election,elections,"campaigns, polling and Electoral College",manage,council-debate,campaign
+local-changemaker-planner,Local Changemaker Planner,9-12,social-studies,n,builder,,community-project,planning a civic action project,plan,town,local government
+opportunity-cost-game,Opportunity Cost Game,9-12,social-studies,n,arcade,,opportunity-cost,opportunity cost,drill,generic,rapid choices
+concert-ticket-market,Concert Ticket Market,9-12,social-studies,y,simulator,market,supply-demand,"supply, demand and equilibrium",simulate-tune,music,concert tickets
+lemonade-monopoly,Lemonade Monopoly,9-12,social-studies,n,tycoon,market,market-structures,competition vs monopoly,manage,shop-food,lemonade stands
+economy-dashboard,Economy Dashboard,9-12,social-studies,n,data,data-desk,macroeconomics,"GDP, inflation and unemployment",analyze-data,generic,economic data
+fed-chair,Fed Chair,9-12,social-studies,n,simulator,,monetary-policy,"interest rates, inflation, unemployment",simulate-tune,business-money,Federal Reserve
+trade-island,Trade Island,9-12,social-studies,n,tycoon,,comparative-advantage,comparative advantage and tariffs,manage,island,two islands
+brain-explorer,Brain Explorer,9-12,social-studies,n,explorer,,brain-structures,brain regions and neurons,explore,body-medical,3D brain
+illusion-lab,Illusion Lab,9-12,social-studies,n,lab,,perception-memory,illusions and memory,experiment,lab,perception tests
+train-your-dog,Train Your Dog,9-12,social-studies,n,creature,,conditioning,classical and operant conditioning,care-for,creature,virtual dog
+conformity-experiments,Conformity Experiments,9-12,social-studies,n,simulator,,social-psychology,conformity and bystander effect,simulate-tune,lab,classic experiments
