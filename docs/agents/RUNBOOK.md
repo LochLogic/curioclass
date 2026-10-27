@@ -67,7 +67,7 @@ then the item goes back to "ready" with a reply on the comment and the comment m
 - PAUSED 2026-10-27 (token limit), safe to resume. State:
   - Decision board: https://claude.ai/artifact/3K6SQRTyc3VdAfbVg9ERis, source docs/agents/decisions/ (make_decisions.py
     writes decisions.json; republish board.html with decisions.json as a file). Cory is answering it: do NOT edit or
-    republish until Cory says he is done (each republish reloads his page). Answers: ArtifactData list `answers`.
+    republish until Cory says they are done (each republish reloads their page). Answers: ArtifactData list `answers`.
   - Wave 4 specs: ela-research, ela-lit, ela-argument done and logged in BATCH-W4-LOG.md (committed). ela-craft agent was
     stopped mid-run: all 9 folders have a spec.md but none is verified complete, uncommitted; rerun or finish that group.
     eld-hs (6) was stopped before writing anything; rerun it. Then log both, add their questions to the board (after
