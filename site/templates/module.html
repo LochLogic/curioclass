@@ -3,7 +3,7 @@
 {% set ready = items | selectattr('built') | list %}
 {% block title %}{{ m.title }}: {{ grade_label(m.grade) | lower }} {{ subject.short | lower }} · Curio Class{% endblock %}
 {% block description %}{{ m.description }}. Free interactive tools and lesson plans for {{ grade_label(m.grade) | lower }} {{ subject.short | lower }}.{% endblock %}
-{% block robots %}{% if not ready %}<meta name="robots" content="noindex">{% endif %}{% endblock %}
+{% block robots %}{% if not ready and not words %}<meta name="robots" content="noindex">{% endif %}{% endblock %}
 {% block main %}
 <div class="wrap">
   {{ crumbs([(grade_label(m.grade), grade_href(m.grade)), (subject.short, '/subjects/' ~ m.subject ~ '/'), (m.title, None)]) }}
