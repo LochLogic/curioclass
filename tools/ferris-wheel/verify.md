@@ -152,3 +152,21 @@ How it was checked: rebundled, then driven in muted headless Chrome (own profile
 Hint at the STANDARDS sizes (not changed by this migration, the layout is the same): 14 to 16 px everywhere, no horizontal scroll. It is on screen at 1000x625 and up in every mode. It is below the fold in the compact panel for Ride and Match at 680x425 (top 437 and 444) and for Match at 800x500, and below the stage in the stack layout (760x900 at y 1357, 375x812 at y 882). With how-to lines now silent after their first time, the hint is the only place they stay visible, so this matters a little more than before.
 
 Not changed, worth a later look: the welcomes in Unit Circle and Real Wheels, and "Matched", do not name the next action and control; a failed Check has no spoken line.
+
+## Helper v2
+
+2026-10-27. The kit's `Curio.voice` gained v2 options (docs/KIT.md "Voice"), and this tool now uses them. The spoken lines, the hints and `allLines()` are unchanged word for word (18 lines; `V.allLines()` walks the same flat `L`), so no clip needs recording again. src.html went from 1067 to 1065 lines (16 in, 18 out).
+
+What changed in the code:
+- Setup is one line: `Curio.voice({lines: L, scope: () => state.mode, welcome: () => state.mode + 'Welcome', hint: false, read: () => $('hint').textContent})`. The `WELCOME` map and the `inMode` and `how` helpers are gone; lines are named by key (`V.how('rideDrag')`).
+- `scope` replaces the `state.mode === ...` test that every line carried in its `valid`.
+- `hint: false` plus an explicit `read` replace the no-op hint function (v2 warns in the console when a tool owns the hint and gives no `read`).
+- "The graph is full" and, in Ride, `rideChange` are one sequence (`V.how([full, ['rideChange', {needs: '#rRange'}]])`) in place of `wait: true` and a `.then`. Each part keeps its own checks: `full` while the graph is still full (needs Restart), `rideChange` needs the Radius slider.
+- The tick in `advance` no longer guards on `V.tapped`: `Curio.tone` is silent before the first tap or key in the kit now.
+
+How it was checked: the same 26 fresh-page runs as the migration (muted headless Chrome, own profile, port 9671, held clicks, the clip hook), three times: the committed src on the v1 kit, the committed src on the v2 kit, and this src on the v2 kit. Compared clip by clip (play, end and cut, with text, in order), plus the said set, mode, hint text and V.log (folded repeats expanded):
+- committed src on v2: 26 of 26 the same as v1. The only console message is the expected `read` warning.
+- this src on v2: 26 of 26 the same clips, said sets, modes and hints. One log difference: in "graph full, then the car dragged back", `rideChange` now shows as `dropped (chain)` with `full`; before, it was never queued. No console messages.
+- V.log is shorter: repeated silent lines fold into one entry with a count (pause x5: 6 entries down to 3).
+
+Not changed, a choice for later: v2 can gate the Ride welcome on `!state.playing` (`welcome: () => [key, {valid}]`) and can bring back a welcome skipped by a first tap on Bottom or Right side (`welcomeAfter`). Both would change what is heard, so they were left off.

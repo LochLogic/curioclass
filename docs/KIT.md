@@ -33,7 +33,7 @@ Curio.init({clips: "voice:*", rate: .9, readFallback: () => text})   // once, at
 Curio.say(lineOrLines, force)   // recorded clip if there is one, else the best browser voice; resolves when done
 Curio.stop()                    // stop talking (mode changes, resets)
 Curio.wait(ms)
-Curio.tone(freq, dur, vol, type); Curio.yes()   // chimes (silent when Sound is off)
+Curio.tone(freq, dur, vol, type); Curio.yes()   // chimes (silent when Sound is off, and before the first tap or key)
 Curio.fit('stage', 'scene', 1000, 620)          // scale a fixed-size design to its box (sets --s)
 Curio.reduce, Curio.sound, Curio.last           // current state
 Curio.onMotion(fn), Curio.onSound(fn)           // react to the buttons
@@ -50,70 +50,108 @@ every CS-batch fix round relearned: one line at a time, each line checked when i
 once, results spoken every time, the first-tap welcome, Read, Sound and one log for tests.
 
 ```js
-const V = Curio.voice({welcome, speaks, hint, read, est})   // once, before Curio.init; returns the same V on later calls
-V.say(text, {kind, key, valid, needs, maxAge, hint, wait, now})   // queue a line: true if queued (a promise with wait)
-V.how(text, opts)               // V.say with kind 'how'
+const V = Curio.voice({lines, scope, welcome, speaks, welcomeAfter, hint, read, est})   // once, before Curio.init
+V.say(line, {kind, key, valid, needs, maxAge, hint, wait, now})   // queue a line: true if queued (a promise with wait)
+V.say([line, line, [line, partOpts]], opts)   // a sequence: plays whole, in order (see "Sequences")
+V.how(line, opts)               // V.say with kind 'how'
 V.welcome()                     // queue the mode's welcome if it was never said; true if queued
 V.dropQueued(f)                 // drop lines not started yet (all, or those f(line) picks); the line playing goes on
 V.hush()                        // stop everything: queue, the clip in progress, Read (mode change, reset)
 V.read()                        // what the Read button does (wired for you)
+V.allLines()                    // every string in opts.lines, once each (for __tool.allLines and voice/lines.json)
+V.heard(keyOrText)              // has this line started playing (spoken aloud) yet?
 V.log, V.queue, V.said, V.playing, V.tapped   // for tests and VERIFY
 ```
 
+A `line` is a text, or a key of `opts.lines` (`V.how('rideDrag')` speaks `lines.rideDrag`, and its key is `'rideDrag'`).
+
 Options for `Curio.voice`:
-- `welcome: () => [key, text]`: the current mode's welcome, a list of `[key, text]` pairs, or null when it does not fit
-  now (Remix with nothing to change). Each key is said once. A queued welcome plays only while this still lists it.
+- `lines: L`: the tool's line table. Lines and welcomes can then be named by key, and `V.allLines()` walks it (nested
+  objects and lists too).
+- `scope: () => state.mode`: a line belongs to the scope it was queued in. When it comes to play in a different
+  scope it is dropped (`stale`), with the rest of its sequence. This replaces a `valid: () => state.mode === m` on
+  every line.
+- `welcome: () => entry`: the current mode's welcome, a list of entries, or null when none fits now (Remix with
+  nothing to change). An entry is a key of `lines`, `[key, text]`, or `[key, text, {valid, needs, hint}]` (the text may
+  be left out when the key is in `lines`: `[key, {valid}]`). Each key is said once. A queued welcome plays only while
+  this still lists it and its own `valid` and `needs` pass; a welcome that fails is dropped unmarked and comes again at
+  the next `V.welcome()` (for example `valid: () => !state.playing`, so it never talks over a ride already running).
 - `speaks: '.tile, #try'`: buttons whose line comes later (after an animation); a first tap on one skips the welcome.
-- `hint`: the hint element's id (default `hint`) or a function `text => {}` for a tool that draws its own hint.
-- `read: () => text`: what Read speaks (default: the hint's text). `est: text => ms`: Sound-off pacing (default 600 + 62 per character).
+- `welcomeAfter: true`: a first tap that has its own line (or is a `speaks` button) puts the welcome off instead of
+  skipping it: it is queued once the tap's line has finished. For tools with one mode, where a skipped welcome would
+  never come back. Read and Sound as the first tap still skip it.
+- `hint`: the hint element's id (default `hint`), a function `text => {}` for a tool that draws its own hint, or `false`
+  when the tool owns the hint and lines never write it. With a function or `false`, pass `read` too: Read otherwise
+  falls back to `#hint` and the helper says so once in the console.
+- `read: () => text` (or a list of lines): what Read speaks (default: the hint's text).
+- `est: text => ms`: Sound-off pacing (default 600 + 62 per character).
 
 Options for `say`:
 - `kind`: `'event'` (the default: praise, results, failures, "that code doesn't work") is spoken every time.
   `'how'` (how-to and teaching lines) is spoken the first time it plays, then only shown in the hint, silently.
-- `key`: what "the same line" means (default: the text). A newer copy of a queued line replaces it, and a newer how-to
-  replaces any older queued how-to.
-- `valid: () => bool`, `needs: '#share'` (a selector or a list: each control must be there, shown and enabled),
-  `maxAge: ms` (a game beat that waited too long): checked when the line's turn comes, never when it is queued. A line
-  that fails is dropped and stays unmarked, so its trigger can queue it again.
-- `hint: false`: speak it without putting it in the hint.
-- `wait: true`: return a promise that resolves `'spoken'`, `'silent'` or `'dropped'` once the line has had its turn (with
-  Sound off, after the estimated time). For timing-bound tools: music, Pause and Step.
+- `key`: what "the same line" means (default: the lines key, else the text). A newer copy of a queued line replaces it,
+  and a newer how-to replaces any older queued how-to (a queued sequence goes as one unit).
+- `valid: () => bool`, `needs: '#share'`, `maxAge: ms` (a game beat that waited too long): checked when the line's turn
+  comes, never when it is queued. A line that fails is dropped and stays unmarked, so its trigger can queue it again.
+- `needs` is a selector or a list. Each control must be there, enabled (not `disabled`, not `aria-disabled`), not
+  `visibility: hidden`, and visible to the student: inside the viewport, or inside a scroll panel (the nearest
+  `overflow: auto` or `scroll` ancestor that actually scrolls) whose box is inside the viewport. So a button below the
+  fold of the page does not count, and a button scrolled out of sight in an on-screen side panel does (the student
+  can scroll the panel they are looking at).
+- `hint`: `true` (the default: the line's text goes in the hint), a text (this goes in the hint instead), or `false`
+  (speak it without touching the hint). Ignored when the voice has `hint: false`.
+- `wait: true`: return a promise that resolves `'spoken'`, `'silent'` or `'dropped'` once the line (for a sequence, its
+  last line) has had its turn (with Sound off, after the estimated time). `wait: 'detail'` resolves `{as, why}`
+  instead, with `why` as in the log (`heard`, `off`, `early`, `stale`, `newer`, `chain`, `hush`). For timing-bound
+  tools: music, Pause and Step.
 - `now: true`: drop the queue and cut the line in progress, then speak this one (Read still wins).
 
-Built in: nothing speaks before the first tap or key (lines before it only set the hint). The first tap queues the
-welcome only after the tap's own handler has run, and only if that handler neither queued nor started a line; Read,
-Sound and `speaks` taps skip it, unmarked. Sound off hushes and still updates the hint; Sound on queues the welcome if
-it was never said. Read stops the queue, speaks the hint even with Sound off, and lines queued during it wait for it;
-a hush releases a stopped Read, so nothing waits on it. A line is marked said when it starts playing.
+Sequences: `V.how(['full', 'rideChange'], {needs: '#restart'})` queues both lines as one unit. They play in order, and
+the second never evicts the first (in v1, `V.how(a); V.how(b)` dropped `a`). A newer how-to queued later replaces
+whatever of the sequence has not started yet, as one unit. When one line of a sequence is dropped (stale, newer, hush), the lines after it are dropped
+too (`chain`), unmarked. The options apply to every line; a part written `[line, {valid, needs, kind, key, hint}]`
+adds its own (its `valid` and `needs` are added to the shared ones, its `kind` replaces).
+
+Built in: nothing speaks before the first tap or key (lines before it only set the hint), and `Curio.tone` and
+`Curio.yes` are silent until then too. The first tap queues the welcome only after the tap's own handler has run, and
+only if that handler neither queued nor started a line; Read, Sound and `speaks` taps skip it, unmarked (unless
+`welcomeAfter`). Sound off hushes and still updates the hint; Sound on queues the welcome if it was never said. Read
+stops the queue, speaks `read()` or the hint even with Sound off, and lines queued during it wait for it; a hush
+releases a stopped Read, so nothing waits on it. A line is marked said when it starts playing.
 
 `V.log` holds one entry per line: `{t, key, kind, text, as, why}`, where `as` is `spoken`, `silent` (why: `heard`,
-`off`, `early`), `dropped` (why: `stale`, `newer`, `hush`) or `read`. `V.queue` lists the lines waiting.
+`off`, `early`), `dropped` (why: `stale`, `newer`, `chain`, `hush`) or `read`. Repeats of the same silent or dropped
+line in a row fold into one entry with a count `n` (and `t2`, the time of the last one), so a slider that re-queues its
+how-to on every input leaves one entry, not hundreds. `V.queue` lists the lines waiting.
 
 A tool on the helper (about 20 lines in place of the 60 to 100 line copies):
 
 ```js
+const L = {wA: 'Welcome to the shelf.', shelf: 'Drag a part onto the bench.', build: 'Now press Build.',
+  fixed: 'It works.', name: {gear: 'A gear.', axle: 'An axle.'}, step: ['First...', 'Then...']};
 const V = Curio.voice({
-  welcome: () => ['w-' + state.mode, L.w[state.mode]],
+  lines: L, scope: () => state.mode,
+  welcome: () => state.mode === 'a' ? ['wA', {valid: () => !state.running}] : null,
   speaks: '.tile, #try',
 });
-const howText = () => !state.placed.size ? L.how.shelf : L.how.build;   // the how-to for this moment
+const howKey = () => !state.placed.size ? 'shelf' : 'build';   // the how-to for this moment
 function setMode(m) {
   V.hush();
-  state.mode = m; $('hint').textContent = L.w[m];
-  V.welcome() || V.how(howText());       // the welcome once; after that, the how-to (spoken once)
+  state.mode = m; $('hint').textContent = L.shelf;
+  V.welcome() || V.how(howKey());          // the welcome once; after that, the how-to (spoken once)
 }
 function placePart(id) {
-  V.dropQueued();                         // a newer action: older lines that have not started give way
+  V.dropQueued();                           // a newer action: older lines that have not started give way
   V.say(L.name[id], {valid: () => state.placed.has(id)});
-  V.how(howText(), {valid: () => howText() === L.how.build});
+  V.how('build', {valid: () => howKey() === 'build', needs: '#build'});
 }
-function fixed() { Curio.yes(); V.say(L.fixed); }                       // an event: heard every time
+function fixed() { Curio.yes(); V.say('fixed'); }                        // an event: heard every time
 async function step(i) { await V.say(L.step[i], {wait: true}); runLine(i); }   // Step: go on once it is said
-window.__tool = {state, vlog: V.log, get vq() { return V.queue; }};    // tests read the log
+window.__tool = {state, allLines: V.allLines, vlog: V.log, get vq() { return V.queue; }};    // tests read the log
 ```
 
 Tests: `python scripts/test_voice.py` runs `kit/voice-test.html` (not a tool, never bundled or shipped) in muted
-headless Chrome with held clicks and prints PASS or FAIL per rule.
+headless Chrome with held clicks and prints PASS or FAIL per rule (`--only R28` runs one).
 
 ## curio.css
 

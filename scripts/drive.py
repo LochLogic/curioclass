@@ -15,12 +15,17 @@ shots.json is a list of shots, run in order, each in a fresh tab:
    "url": "http://127.0.0.1:8790/host.html?w=375"   instead of the tool file (narrow widths: see --host)
    "save": "path.json"}    write the js result to a file
 Prints each shot's js result and any console errors, warnings or exceptions (shoot.py does not), saves <name>.png.
-Chrome starts with --mute-audio (clips still play silently with real timing) and is closed at the end.
+Chrome starts with --mute-audio (clips still play silently with real timing) and is closed at the end. If a Chrome is
+already listening on the port, it is used and left running (it is not this script's to close).
+
+    python scripts/drive.py <tool-id> shots.json <outdir> [--port 9383] [--profile <absolute dir>]
+      --port: Chrome's debugging port (default 9383); --profile: Chrome's profile folder (default <outdir>/../chrome-prof).
+      Only the Chrome this script starts is closed at the end, with its child processes (taskkill /T on Windows).
 
     python scripts/drive.py <tool-id> --host [port]   serve tools/<id>/ over http with host.html?w=375&h=812, an iframe
                                                      host page: headless Chrome will not go narrower than about 520 px
 """
-import asyncio, json, sys, subprocess, base64, time, urllib.request
+import asyncio, json, os, sys, subprocess, base64, time, urllib.request
 from pathlib import Path
 import websockets
 
@@ -28,6 +33,7 @@ PORT = 9383
 ROOT = Path(__file__).resolve().parent.parent
 CHROME = r'C:\Program Files\Google\Chrome\Application\chrome.exe'
 TOOL = None  # set from the command line
+PROFILE = None  # --profile: an absolute folder for Chrome's profile (default: next to the output folder)
 
 
 def ensure_chrome(prof):
@@ -71,7 +77,7 @@ class Tab:
 
 async def main(shots, out):
     out.mkdir(parents=True, exist_ok=True)
-    ensure_chrome(out.resolve().parent / 'chrome-prof')  # Chrome can't use a relative profile folder: it shows a "Failed To Create Data Directory" box and exits
+    ensure_chrome(Path(PROFILE).resolve() if PROFILE else out.resolve().parent / 'chrome-prof')  # Chrome can't use a relative profile folder: it shows a "Failed To Create Data Directory" box and exits
     errors = {}
     for s in shots:
         req = urllib.request.Request(f'http://127.0.0.1:{PORT}/json/new?about:blank', method='PUT')
@@ -157,8 +163,23 @@ async def main(shots, out):
         except Exception:
             pass
     print('errors in', len(errors), 'shots')
-    if CHROME_PROC:
+    close_chrome()
+
+
+def close_chrome():
+    """Close the Chrome this script started (only that one): on Windows terminate() leaves headless children on the port."""
+    global CHROME_PROC
+    if not CHROME_PROC:
+        return
+    if os.name == 'nt':
+        subprocess.run(['taskkill', '/T', '/F', '/PID', str(CHROME_PROC.pid)], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    else:
         CHROME_PROC.terminate()
+    try:
+        CHROME_PROC.wait(10)
+    except Exception:
+        CHROME_PROC.kill()
+    CHROME_PROC = None
 
 
 HOST = """<!doctype html><meta charset=utf-8><style>body{margin:0;background:#888}iframe{border:0;display:block;background:#fff}</style>
@@ -174,10 +195,28 @@ def host(tool, port):
 
 
 CHROME_PROC = None
+def flag(name):
+    """Take --name value out of sys.argv (so the positional arguments stay as they were)."""
+    if name not in sys.argv:
+        return None
+    i = sys.argv.index(name)
+    v = sys.argv[i + 1]
+    del sys.argv[i:i + 2]
+    return v
+
+
 if __name__ == '__main__':
+    if '--host' not in sys.argv:
+        PORT = int(flag('--port') or PORT)
+        PROFILE = flag('--profile')
+        if PROFILE and not Path(PROFILE).is_absolute():
+            sys.exit('--profile must be an absolute folder')
     tool = sys.argv[1]
     if '--host' in sys.argv:
         host(tool, int(sys.argv[sys.argv.index('--host') + 1]) if len(sys.argv) > 3 else 8790)
     else:
         TOOL = ROOT / 'tools' / tool / f'{tool}.html'
-        asyncio.run(main(json.loads(Path(sys.argv[2]).read_text(encoding='utf-8')), Path(sys.argv[3])))
+        try:
+            asyncio.run(main(json.loads(Path(sys.argv[2]).read_text(encoding='utf-8')), Path(sys.argv[3])))
+        finally:
+            close_chrome()

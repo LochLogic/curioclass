@@ -286,13 +286,11 @@ body.stack .panel{border-left:0;border-top:1px solid var(--line)}
     match: 'Change the wheel until your curve lands on the dashed one. Press Show my curve to see it all at once.',
     clear: 'Hub raised so the cars clear the ground.',
   };
-  const WELCOME = {ride: 'rideWelcome', unit: 'unitWelcome', real: 'realWelcome', match: 'matchWelcome'};
-  // Narration (docs/KIT.md "Voice"): one welcome per mode; how-to and teaching lines once, then silent; events every
-  // time. The hint is the tool's own (the mode's hint, or a note in state.hintMsg), so lines never write it.
+  // Narration (docs/KIT.md "Voice"): one welcome per mode (L[mode + 'Welcome']); how-to and teaching lines once, then
+  // silent; events every time. A line queued in one mode is dropped if the mode changes first (scope). The hint is the
+  // tool's own (the mode's hint, or a note in state.hintMsg), so lines never write it, and Read speaks it.
   // Event lines (spoken every time): matchYes. Everything else is a how-to or teaching line.
-  const V = Curio.voice({welcome: () => [WELCOME[state.mode], L[WELCOME[state.mode]]], hint: () => {}});
-  const inMode = m => () => state.mode === m;
-  const how = (k, o) => V.how(L[k], {key: k, ...o});
+  const V = Curio.voice({lines: L, scope: () => state.mode, welcome: () => [state.mode + 'Welcome', {valid: () => !(state.mode === 'ride' && state.playing)}],   // no 'Press Play' while it plays hint: false, read: () => $('hint').textContent});
 
   // ======================================================================================
   // CONTENT (from spec.md; sources in the header comment and notes.md)
@@ -822,7 +820,7 @@ body.stack .panel{border-left:0;border-top:1px solid var(--line)}
   }
   const SPEED = () => ({ride: state.fast.ride ? 4 : 1, match: state.fast.match ? 4 : 1, real: state.fast.real ? 5 : 1, unit: TAU / 12})[state.mode];
   function play() {
-    if (state.playing) { stopPlay(); if (state.mode === 'ride') how('rideDrag', {valid: inMode('ride')}); return; }
+    if (state.playing) { stopPlay(); if (state.mode === 'ride') V.how('rideDrag'); return; }
     const m = state.mode;
     if (curT() >= END[m] - 1e-9) { state.t[m] = 0; state.unroll = state.unroll && null; }
     if (state.hintMsg === L.full) state.hintMsg = '';
@@ -843,13 +841,13 @@ body.stack .panel{border-left:0;border-top:1px solid var(--line)}
     const m = state.mode, w = W(), t0 = curT(), end = END[m], t1 = Math.min(end, t0 + d);
     // a soft tick each time the rider passes the top or the bottom
     const a0 = ang(t0, w), a1 = ang(t1, w), cross = c => Math.floor((a0 - c) / TAU) !== Math.floor((a1 - c) / TAU);
-    if (!V.tapped) {} else if (cross(PI / 2)) Curio.tone(880, .07, .03, 'triangle'); else if (cross(-PI / 2)) Curio.tone(440, .07, .03, 'triangle');
+    if (cross(PI / 2)) Curio.tone(880, .07, .03, 'triangle'); else if (cross(-PI / 2)) Curio.tone(440, .07, .03, 'triangle');
     state.t[m] = t1;
     if (t1 >= end - 1e-9) {
       stopPlay(); state.hintMsg = L.full;
-      // the graph is full (how-to, while it is still full), then in Ride what to try next, once the first has had its turn
-      const full = how('full', {valid: () => state.mode === m && state.hintMsg === L.full, needs: '#restart', wait: true});
-      if (m === 'ride') full.then(r => { if (r !== 'dropped') how('rideChange', {valid: inMode('ride'), needs: '#rRange'}); });
+      // the graph is full (how-to, while it is still full), then in Ride what to try next: one sequence
+      const full = ['full', {valid: () => state.hintMsg === L.full, needs: '#restart'}];
+      V.how(m === 'ride' ? [full, ['rideChange', {needs: '#rRange'}]] : [full]);
     }
     render();
   }
@@ -871,7 +869,7 @@ body.stack .panel{border-left:0;border-top:1px solid var(--line)}
     const hadGap = !!state.gap;
     state.gap = null; state.result = ''; $('mres').textContent = $('mres2').textContent = ''; $('wheelNote').textContent = '';
     if (hadGap) build(); else render();
-    if (state.mode === 'ride' && wh().board === 'bottom') how('rideBoard', {valid: () => state.mode === 'ride' && wh().board === 'bottom', needs: '[data-board="right"]'});
+    if (state.mode === 'ride' && wh().board === 'bottom') V.how('rideBoard', {valid: () => wh().board === 'bottom', needs: '[data-board="right"]'});
   }
   const rSl = Plane.slider($('rSlot'), {label: 'Radius (m)', min: RANGE.r[0], max: RANGE.r[1], step: 1, value: DEF.r, id: 'rRange', format: v => fmt(v, 0),
     parse: s => { const v = parseFloat(String(s).replace('−', '-')); return isFinite(v) ? Math.round(v) : null; },
@@ -925,16 +923,16 @@ body.stack .panel{border-left:0;border-top:1px solid var(--line)}
     state.oneRad = {th: curT(), p: 0};
     $('radNote').textContent = 'The purple rod is as long as the radius. Bent onto the rim, it marks 1 radian, about 57.3 degrees. About 6.28 of these fit around: that is 2π.';
     animate('oneRad', 1500);
-    how('unitRadian', {valid: () => state.mode === 'unit' && !!state.oneRad});
+    V.how('unitRadian', {valid: () => !!state.oneRad});
   };
-  $('unrollBtn').onclick = () => { stopPlay(); state.unroll = {p: 0}; animate('unroll', 1500); how('unitUnroll', {valid: () => state.mode === 'unit' && !!state.unroll}); };
-  $('cosBtn').onclick = () => { state.cos = !state.cos; build(); if (state.cos) how('unitCosine', {valid: () => state.mode === 'unit' && state.cos}); };
+  $('unrollBtn').onclick = () => { stopPlay(); state.unroll = {p: 0}; animate('unroll', 1500); V.how('unitUnroll', {valid: () => !!state.unroll}); };
+  $('cosBtn').onclick = () => { state.cos = !state.cos; build(); if (state.cos) V.how('unitCosine', {valid: () => state.cos}); };
 
   // ---------- Real Wheels ----------
   REAL.forEach((w, i) => { const b = document.createElement('button'); b.className = 'btn'; b.dataset.i = i; b.textContent = w.name; b.onclick = () => chooseReal(i); $('realBtns').appendChild(b); });
   function chooseReal(i) {
     stopPlay(); state.real = i; state.t.real = 0; state.hintMsg = '';
-    renderFact(); build(); how('realPeriod', {valid: inMode('real')});
+    renderFact(); build(); V.how('realPeriod');
   }
   function renderFact() {
     const w = REAL[state.real];
@@ -965,7 +963,7 @@ body.stack .panel{border-left:0;border-top:1px solid var(--line)}
       state.matched.add(state.target); state.gap = null; state.showFull = true; state.resultOk = true;
       state.result = `Matched. Your wheel draws this graph. ${TARGETS[state.target].note}`;
       const i = state.target;   // an event: spoken on every match, while this match is still on screen
-      Curio.yes(); V.say(L.matchYes, {key: 'matchYes', valid: () => state.mode === 'match' && state.target === i && state.resultOk && !!state.result});
+      Curio.yes(); V.say('matchYes', {valid: () => state.target === i && state.resultOk && !!state.result});
     } else {
       state.resultOk = false;
       state.gap = {t: wt, a: hOf(wt, fw), b: hOf(wt, ft)};
@@ -1007,7 +1005,7 @@ body.stack .panel{border-left:0;border-top:1px solid var(--line)}
   for (const k of ['ride', 'unit', 'real', 'match']) $('m-' + k).onclick = () => setMode(k);
 
   // every line the tool can say (voice/lines.json records them all)
-  const allLines = () => [...new Set([...Object.values(L), HINT.ride, HINT.unit, HINT.real, HINT.match, HINT.clear])];
+  const allLines = () => [...new Set([...V.allLines(), ...Object.values(HINT)])];
 
   // ======================================================================================
   // Layout and fitting (see the CSS note)

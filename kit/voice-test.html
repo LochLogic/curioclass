@@ -17,15 +17,21 @@
 </head>
 <body>
 <header>
-  <button id="m-a" aria-pressed="true">Mode A</button><button id="m-b">Mode B</button><button id="m-c">Mode C</button>
+  <button id="m-a" aria-pressed="true">Mode A</button><button id="m-b">Mode B</button><button id="m-c">Mode C</button><button id="m-d">Mode D</button>
   <button id="motion">Motion</button><button id="sound" aria-pressed="true">Sound</button><button id="read">Read</button>
 </header>
 <div id="stage">stage (not a button)</div>
 <p id="hint"></p>
 <div>
   <button id="act">Act</button><button id="solo">Solo</button><button id="fail">Fail</button>
-  <button id="slow">Slow</button><button id="fix">Fix</button>
+  <button id="slow">Slow</button><button id="fix">Fix</button><button id="play">Play</button>
+  <button id="ghost" style="visibility: hidden">Ghost</button>
 </div>
+<div id="panel" style="height: 60px; width: 220px; overflow: auto; border: 1px solid #999">
+  <div style="height: 200px">a scroll panel</div><button id="inpanel">In panel</button>
+</div>
+<div style="height: 1400px"></div>
+<button id="below">Below the fold</button>
 <script>
   const $ = id => document.getElementById(id);
   const L = {
@@ -35,8 +41,15 @@
     fail: "That code doesn't work.", howFix: 'Tap Fix to change the code.',
     slow: 'Here it comes.', one: 'One.', two: 'Two.', three: 'Three.',
     long: 'This is a long line that takes a while.', stale: 'Only while the light is on.',
+    wd: 'Welcome to Mode D.', more: {deep: ['A nested line.']},
   };
-  const T = window.T = {L, plays: [], ends: [], pauses: [], state: {mode: 'a', light: true}, tapAt: null, atDecide: null};
+  const T = window.T = {L, plays: [], ends: [], pauses: [], state: {mode: 'a', light: true, playing: false}, tapAt: null, atDecide: null,
+    warns: [], oscs: 0};
+  // options from the query: ?after (welcomeAfter), ?hint=off|fn (the tool owns the hint), ?read (opts.read)
+  const Q = new URLSearchParams(location.search);
+  const warn0 = console.warn; console.warn = (...a) => { T.warns.push(a.join(' ')); warn0.apply(console, a); };
+  const AC = window.AudioContext || window.webkitAudioContext, osc0 = AC.prototype.createOscillator;
+  AC.prototype.createOscillator = function () { T.oscs++; return osc0.call(this); };
 
   // a silent WAV of ms milliseconds; extra samples make every clip's data URI unique
   function wav(ms, extra) {
@@ -49,7 +62,7 @@
     return 'data:audio/wav;base64,' + btoa(bin);
   }
   const clips = {}, srcText = {};
-  Object.values(L).forEach((t, i) => { clips[t] = wav(t === L.long ? 2000 : 500, i); srcText[clips[t]] = t; });
+  [...Object.values(L).filter(t => typeof t === 'string'), ...L.more.deep].forEach((t, i) => { clips[t] = wav(t === L.long ? 2000 : 500, i); srcText[clips[t]] = t; });
   // ground truth: which clips actually start, end, or are cut
   const P = HTMLMediaElement.prototype, play0 = P.play, pause0 = P.pause;
   const ms = () => Math.round(performance.now());
@@ -64,18 +77,22 @@
   addEventListener('keydown', () => { if (T.tapAt == null) T.tapAt = ms(); }, true);
 
   // the tool, as a tool would write it on the helper
+  // three welcome forms: [key, text, {valid}] (A, gated: not while playing), a v1 list (B), a key of lines (D)
+  const W = {a: () => ['w-a', L.wa, {valid: () => !T.state.playing}], b: () => [['w-b', L.wb], ['w-b2', L.wb2]], c: () => null, d: () => 'wd'};
   const V = T.V = Curio.voice({
-    welcome: () => T.state.mode === 'a' ? ['w-a', L.wa] : T.state.mode === 'b' ? [['w-b', L.wb], ['w-b2', L.wb2]] : null,
-    speaks: '#slow',
+    welcome: () => W[T.state.mode](),
+    speaks: '#slow', lines: L, scope: () => T.state.mode, welcomeAfter: Q.has('after'),
+    ...(Q.get('hint') === 'off' ? {hint: false} : Q.get('hint') === 'fn' ? {hint: t => { T.hintFn = t; }} : {}),
+    ...(Q.has('read') ? {read: () => L.three} : {}),
   });
   function setMode(m) {
     V.hush();
     T.state.mode = m;
-    for (const k of ['a', 'b', 'c']) $('m-' + k).setAttribute('aria-pressed', k === m);
+    for (const k of ['a', 'b', 'c', 'd']) $('m-' + k).setAttribute('aria-pressed', k === m);
     $('hint').textContent = L.start;
     V.welcome() || V.how(L.howAct);
   }
-  for (const k of ['a', 'b', 'c']) $('m-' + k).onclick = () => setMode(k);
+  for (const k of ['a', 'b', 'c', 'd']) $('m-' + k).onclick = () => setMode(k);
   $('act').onclick = () => { V.dropQueued(); V.say(L.nice); V.how(L.howAct, {valid: () => T.state.mode !== 'c'}); };
   $('solo').onclick = () => {
     V.say(L.nice);
@@ -83,7 +100,10 @@
   };
   $('fail').onclick = () => { V.dropQueued(); V.say(L.fail); V.how(L.howFix, {needs: '#fix'}); };
   $('slow').onclick = () => setTimeout(() => V.say(L.slow), 400);
+  $('play').onclick = () => { T.state.playing = !T.state.playing; };   // no line of its own
+  $('hint').textContent = L.start;
   V.how(L.start);   // before any tap: shown in the hint, never spoken
+  Curio.tone(440); Curio.yes();   // before any tap: no sound, no audio context
   Curio.init({clips});
 </script>
 </body>

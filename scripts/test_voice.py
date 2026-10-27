@@ -7,7 +7,7 @@ the test page has a silent clip of a known length, so the page also records whic
 cut; every rule checks that V.log's spoken lines match those clips exactly. Exit 1 on any failure.
 Chrome gets its own absolute profile folder, --mute-audio, and is closed (only the process this script started).
 """
-import argparse, asyncio, json, subprocess, sys, tempfile, time, urllib.request
+import argparse, asyncio, json, os, subprocess, sys, tempfile, time, urllib.request
 from pathlib import Path
 import websockets
 
@@ -20,7 +20,7 @@ CHROME = r'C:\Program Files\Google\Chrome\Application\chrome.exe'
 H = """
 const L = T.L, V = T.V;
 const spoken = x => V.log.filter(e => e.as === 'spoken' && e.text === x).length;
-const silent = x => V.log.filter(e => e.as === 'silent' && e.text === x).length;
+const silent = x => V.log.filter(e => e.as === 'silent' && e.text === x).reduce((n, e) => n + (e.n || 1), 0);
 const dropped = x => V.log.filter(e => e.as === 'dropped' && e.text === x);
 const plays = x => T.plays.filter(p => p.text === x).length;
 const P = T.plays.map(p => p.text);
@@ -127,6 +127,73 @@ RULES = [
     ('R24 a first key counts as the first tap',
      [('key', 'Tab'), ('sleep', 1.2)],
      "return [P.join('|') === L.wa, {plays: P}]"),
+    # ---------- helper v2 ----------
+    ('R25 hint: false: the tool owns the hint, so lines never write it (before or after the first tap)',
+     [('js', 'V.how(L.two)'), ('click', '#solo'), ('sleep', 1.0), ('js', 'V.how(L.three)'), ('sleep', .9)],
+     "return [$('hint').textContent === L.start && P.join('|') === [L.nice, L.three].join('|') && T.warns.length === 0, {plays: P, hint: $('hint').textContent, warns: T.warns}]",
+     '?hint=off&read'),
+    ('R26 a line can carry its own hint text, or none',
+     [('click', '#solo'), ('sleep', .9), ('js', 'V.say(L.one, {hint: L.two})'), ('sleep', .8), ('js', 'T.mid = $("hint").textContent; V.say(L.three, {hint: false})'), ('sleep', .8)],
+     "return [T.mid === L.two && $('hint').textContent === L.two && plays(L.three) === 1, {mid: T.mid, hint: $('hint').textContent}]"),
+    ('R27 a hint function without read: Read falls back to #hint, and says so once in the console',
+     [('click', '#read'), ('sleep', 1)],
+     "return [T.warns.length === 1 && /read:/.test(T.warns[0]) && P.join('|') === L.start, {warns: T.warns, plays: P}]", '?hint=fn'),
+    ('R27b read: () => text is what Read speaks',
+     [('click', '#read'), ('sleep', 1)],
+     "return [T.warns.length === 0 && P.join('|') === L.three, {warns: T.warns, plays: P}]", '?hint=fn&read'),
+    ('R28 a sequence of how-tos plays whole (v1 let the second evict the first)',
+     [('click', '#solo'), ('sleep', .9), ('js', 'V.how([L.one, L.two])'), ('sleep', 1.6)],
+     "return [P.join('|') === [L.nice, L.one, L.two].join('|') && V.said.has(L.one) && V.said.has(L.two), {plays: P}]"),
+    ('R28b a newer how-to replaces an older queued sequence as one unit',
+     [('click', '#solo'), ('sleep', .9), ('js', 'V.say(L.long); V.how([L.one, L.two]); V.how(L.three)'), ('sleep', 3)],
+     "return [P.join('|') === [L.nice, L.long, L.three].join('|') && dropped(L.one)[0].why === 'newer' && dropped(L.two)[0].why === 'chain', {plays: P}]"),
+    ('R28c when a line in a sequence is dropped, the rest go too, unmarked; mixed kinds per part',
+     [('click', '#solo'), ('sleep', .9), ('js', "T.r = await V.how([[L.one, {valid: () => false}], L.two], {wait: true});"
+      "V.say([L.fail, [L.howFix, {kind: 'how'}]])"), ('sleep', 1.6), ('js', "V.say([L.fail, [L.howFix, {kind: 'how'}]])"), ('sleep', 1.6)],
+     "return [T.r === 'dropped' && dropped(L.two)[0].why === 'chain' && !V.said.has(L.one) && !V.said.has(L.two)"
+     " && spoken(L.fail) === 2 && spoken(L.howFix) === 1 && silent(L.howFix) === 1, {r: T.r, plays: P}]"),
+    ('R29 welcome gating: a welcome whose valid fails (already playing) is dropped unmarked, and comes at the next entry',
+     [('click', '#play'), ('sleep', .9), ('js', "T.mid = {said: V.said.has('w-a'), d: dropped(L.wa).length}"), ('click', '#play'),
+      ('click', '#m-b'), ('sleep', 2), ('click', '#m-a'), ('sleep', 1.2)],
+     "return [T.mid.said === false && T.mid.d === 1 && plays(L.wa) === 1 && P[P.length - 1] === L.wa, {mid: T.mid, plays: P}]"),
+    ('R30 welcomeAfter: a first tap with its own line gets the welcome after that line',
+     [('click', '#solo'), ('sleep', 2)],
+     "return [P.join('|') === [L.nice, L.wa].join('|') && V.said.has('w-a'), {plays: P}]", '?after'),
+    ('R30b welcomeAfter with a control that speaks later: its line, then the welcome',
+     [('click', '#slow'), ('sleep', 2.2)],
+     "return [P.join('|') === [L.slow, L.wa].join('|'), {plays: P}]", '?after'),
+    ('R30c welcomeAfter: Read and Sound as the first tap still skip the welcome',
+     [('click', '#read'), ('sleep', 1.5)],
+     "return [P.join('|') === L.start && !V.said.has('w-a'), {plays: P}]", '?after'),
+    ('R31 log: repeats fold into one entry with a count; V.heard',
+     [('click', '#solo'), ('sleep', .9), ('js', "T.h0 = V.heard('one'); V.say(L.long); for (let i = 0; i < 20; i++) V.say(L.one)"), ('sleep', 3.2)],
+     "const d = dropped(L.one), all = V.log.filter(e => e.text === L.one);"
+     "return [d.length === 1 && d[0].n === 19 && d[0].why === 'newer' && all.length === 2 && spoken(L.one) === 1"
+     " && T.h0 === false && V.heard('one') && V.heard(L.one) && V.heard(L.long) && !V.heard('two'), {d, n: all.length}]"),
+    ('R32 lines: say and how take a key; a welcome can be a key; allLines() lists every string',
+     [('click', '#solo'), ('sleep', .9), ('js', "V.how('one')"), ('sleep', .9), ('click', '#m-d'), ('sleep', 1)],
+     "const all = V.allLines();"
+     "return [P.join('|') === [L.nice, L.one, L.wd].join('|') && V.said.has('one') && V.log.some(e => e.key === 'one' && e.as === 'spoken')"
+     " && all.includes('A nested line.') && all.includes(L.wd) && all.length === 16, {plays: P, n: all.length}]"),
+    ('R33 scope: lines queued in one scope are dropped when it changes, sequences included',
+     [('click', '#solo'), ('sleep', .9), ('js', "V.say(L.long); V.say(L.one); V.how([L.two, L.three]); setTimeout(() => { T.state.mode = 'c'; }, 300)"), ('sleep', 3)],
+     "return [P.join('|') === [L.nice, L.long].join('|') && dropped(L.one)[0].why === 'stale' && dropped(L.two)[0].why === 'stale'"
+     " && dropped(L.three)[0].why === 'chain', {plays: P}]"),
+    ('R34 needs: below the fold or visibility hidden is off; scrolled out of a panel that is on screen is on',
+     [('click', '#solo'), ('sleep', .9), ('js', "V.say(L.one, {needs: '#below'}); V.say(L.two, {needs: '#inpanel'}); V.say(L.three, {needs: '#ghost'})"), ('sleep', 1.5)],
+     "const b = $('below').getBoundingClientRect(), ip = $('inpanel').getBoundingClientRect(), pn = $('panel').getBoundingClientRect();"
+     "return [b.top > innerHeight && ip.top > pn.bottom && P.join('|') === [L.nice, L.two].join('|') && dropped(L.one).length === 1"
+     " && dropped(L.three).length === 1, {plays: P}]"),
+    ('R35 wait: "detail" gives the reason too (early, off, heard, stale)',
+     [('js', "T.e = await V.say(L.one, {wait: 'detail'})"), ('click', '#sound'), ('js', "T.a = await V.say(L.one, {wait: 'detail'})"),
+      ('click', '#sound'), ('sleep', 1), ('js', "T.b = await V.how(L.two, {wait: 'detail'}); T.c = await V.how(L.two, {wait: 'detail'});"
+      "T.d = await V.say(L.three, {wait: 'detail', valid: () => false}); T.f = await V.say(L.three, {wait: true})")],
+     "const s = x => x && x.as + ':' + (x.why || '');"
+     "return [s(T.e) === 'silent:early' && s(T.a) === 'silent:off' && s(T.b) === 'spoken:' && s(T.c) === 'silent:heard' && s(T.d) === 'dropped:stale' && T.f === 'spoken',"
+     " {e: T.e, a: T.a, b: T.b, c: T.c, d: T.d, f: T.f}]"),
+    ('R36 Curio.tone and Curio.yes make no sound before the first tap; after it they do',
+     [('sleep', .5), ('js', 'T.mid = T.oscs'), ('click', '#stage'), ('js', 'Curio.tone(440)'), ('sleep', .3)],
+     "return [T.mid === 0 && T.oscs === 1, {before: T.mid, after: T.oscs}]"),
 ]
 # every rule also checks: V.log's spoken lines (and Reads) are exactly the clips that started, in order
 INVARIANT = ("const lg = V.log.filter(e => e.as === 'spoken' || e.as === 'read').map(e => e.text);"
@@ -162,7 +229,7 @@ class Tab:
         return r.get('result', {}).get('value')
 
 
-async def run_rule(port, name, steps, check):
+async def run_rule(port, name, steps, check, query=''):
     req = urllib.request.Request(f'http://127.0.0.1:{port}/json/new?about:blank', method='PUT')
     info = json.loads(urllib.request.urlopen(req).read())
     try:
@@ -171,7 +238,7 @@ async def run_rule(port, name, steps, check):
             for d in ['Page', 'Runtime']:
                 await t.send(d + '.enable')
             await t.send('Emulation.setDeviceMetricsOverride', width=1000, height=700, deviceScaleFactor=1, mobile=False)
-            await t.send('Page.navigate', url=PAGE)
+            await t.send('Page.navigate', url=PAGE + query)
             for _ in range(50):
                 await asyncio.sleep(.1)
                 try:
@@ -214,11 +281,11 @@ async def run_rule(port, name, steps, check):
 
 async def main(port, only):
     fails = 0
-    for name, steps, check in RULES:
+    for name, steps, check, *query in RULES:
         if only and not name.split()[0] == only:
             continue
         try:
-            ok, detail = await run_rule(port, name, steps, check)
+            ok, detail = await run_rule(port, name, steps, check, *query)
         except Exception as ex:
             ok, detail = False, repr(ex)
         fails += not ok
@@ -255,8 +322,11 @@ if __name__ == '__main__':
         else:
             sys.exit('chrome did not start')
         fails = asyncio.run(main(a.port, a.only))
-    finally:   # close only the Chrome this script started
-        proc.terminate()
+    finally:   # close only the Chrome this script started, with its child processes
+        if os.name == 'nt':
+            subprocess.run(['taskkill', '/T', '/F', '/PID', str(proc.pid)], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        else:
+            proc.terminate()
         try:
             proc.wait(10)
         except Exception:
