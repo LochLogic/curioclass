@@ -3,9 +3,12 @@ r"""How lively each recorded line sounds: median pitch, pitch movement and speak
     S:\AI\tts\.venv\Scripts\python.exe scripts/voice_liveliness.py <tool-id> [--flat 3.0]
 
 Run it after `localvoice.py` (it needs librosa, which is in the TTS venv). Cory heard a "very bored" batch in Score
-Keeper (2026-10-26); those takes had a pitch movement (semitone SD) under about 3. Lines below --flat are listed at the
-end with their lines.json index, ready for `localvoice.py <id> --redo i,j --takes 5`, which keeps the liveliest take.
-Judge praise lines ("You fixed it!") by ear even when they pass: they should sound the brightest.
+Keeper (2026-10-26); those takes had a pitch movement (semitone SD) under about 3. It was a minor problem, and Cory
+asked that the fix stay gentle (2026-10-27), so this is a reading, not a gate: it flags only clearly flat lines, and a
+redo swaps a flat take for a normal one, never the most excited one. Short plain lines ("Saved on this device.") are
+naturally level, so lines under 30 characters are flagged only below half the threshold. Flagged lines are listed at
+the end with their lines.json index, ready for `localvoice.py <id> --redo i,j --takes 5`. A handful of flags in a
+tool is normal; don't redo a line just because it is the lowest in the list.
 """
 import json, sys
 from pathlib import Path
@@ -39,9 +42,9 @@ def main():
         sd = st.std()
         print(f'{i:2d} f0med {np.median(f0):5.0f}  semis-sd {sd:4.2f}  range {np.percentile(st, 95) - np.percentile(st, 5):4.1f}'
               f'  rate {len(t) / (len(w) / 24000):4.1f}c/s  {t[:55]}')
-        if sd < flat:
+        if sd < (flat / 2 if len(t) < 30 else flat):
             low.append(i)
-    print(f'flat (semis-sd under {flat}): ' + (','.join(map(str, low)) if low else 'none'))
+    print(f'flat (semis-sd under {flat}, or {flat / 2} for lines under 30 characters): ' + (','.join(map(str, low)) if low else 'none'))
 
 
 if __name__ == '__main__':

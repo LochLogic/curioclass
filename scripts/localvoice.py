@@ -39,19 +39,29 @@ def plausible(text, wav):
     return len(text) * .03 < secs < len(text) * .11 + 2.5
 
 
-def liveliest(text, wavs):
-    """The take that sounds least bored: higher median pitch plus more rise and fall (Cory heard a flat batch, 2026-10-26)."""
+def pitch(w):
+    """Median pitch (Hz) and pitch movement (semitone SD) of one take, or None when too little is voiced."""
     import librosa
-    def score(w):
-        w = np.asarray(w, dtype=np.float32)
-        if not plausible(text, w):
-            return -1e9
-        f0, voiced, _ = librosa.pyin(w, fmin=60, fmax=400, sr=SR, frame_length=1024)
-        f0 = f0[voiced & ~np.isnan(f0)]
-        if len(f0) < 10:
-            return -1e9
-        return np.median(f0) / 10 + (12 * np.log2(f0 / np.median(f0))).std()
-    return max(wavs, key=score)
+    f0, voiced, _ = librosa.pyin(np.asarray(w, dtype=np.float32), fmin=60, fmax=400, sr=SR, frame_length=1024)
+    f0 = f0[voiced & ~np.isnan(f0)]
+    if len(f0) < 10:
+        return None
+    return np.median(f0), (12 * np.log2(f0 / np.median(f0))).std()
+
+
+def liveliest(text, wavs, home):
+    """A take with normal life in it, not the most excited one (Cory heard a flat batch, 2026-10-26, and asked that the
+    fix stay gentle, 2026-10-27). The first take stays unless it is flat: movement under 3 semitones. Otherwise the
+    take whose movement is nearest 4.5, the middle of what this bank's healthy takes measure, among takes that stay
+    within 12 percent of the voice's home pitch, so a squeaky or shouted take never wins."""
+    takes = [(w, pitch(w)) for w in wavs if plausible(text, np.asarray(w))]
+    takes = [(w, p) for w, p in takes if p]
+    if not takes:
+        return wavs[0]
+    if takes[0][0] is wavs[0] and takes[0][1][1] >= 3:
+        return wavs[0]
+    near = [(w, p) for w, p in takes if not home or abs(p[0] / home - 1) <= .12] or takes
+    return min(near, key=lambda t: abs(t[1][1] - 4.5))[0]
 
 
 def main():
@@ -86,7 +96,7 @@ def main():
         ref = ref_pick() or (first if rawf(first).exists() else None)
         if not ref:
             sys.exit('could not get a reference clip (Gemini quota?); add one with scripts/voice.py first')
-    # --redo 1,4,9 --takes 5: re-record those lines (lines.json order), keeping the liveliest of N takes
+    # --redo 1,4,9 --takes 5: re-record those lines (lines.json order); a flat first take is swapped for a normal one (liveliest)
     redo = [lines[int(i)] for i in sys.argv[sys.argv.index('--redo') + 1].split(',')] if '--redo' in sys.argv else []
     takes = int(sys.argv[sys.argv.index('--takes') + 1]) if '--takes' in sys.argv else 5
     for t in redo:
@@ -100,6 +110,8 @@ def main():
     m = Qwen3TTSModel.from_pretrained('Qwen/Qwen3-TTS-12Hz-1.7B-Base', device_map='cuda:0', dtype=torch.bfloat16)
     prompt = m.create_voice_clone_prompt(ref_audio=ref_audio or (pcm_of(rawf(ref)).astype(np.float32) / 32768, SR), ref_text=ref)
     flagged = []
+    # the voice's home pitch, from its reference clip: re-takes may not drift far from it
+    home = (pitch(ref_audio[0] if ref_audio else pcm_of(rawf(ref)).astype(np.float32) / 32768) or (None,))[0] if redo else None
     for i in range(0, len(todo), 8):
         batch = todo[i:i + 8]
         wavs, sr = m.generate_voice_clone(text=batch, language=['English'] * len(batch), voice_clone_prompt=prompt)
@@ -107,7 +119,7 @@ def main():
         for text, w in zip(batch, wavs):
             if text in redo:
                 w = liveliest(text, [w, *(m.generate_voice_clone(text=[text], language=['English'], voice_clone_prompt=prompt)[0][0]
-                                          for _ in range(takes - 1))])
+                                          for _ in range(takes - 1))], home)
             if not plausible(text, w):  # one retry for a take that rambles or cuts off
                 w = m.generate_voice_clone(text=[text], language=['English'], voice_clone_prompt=prompt)[0][0]
                 if not plausible(text, w):

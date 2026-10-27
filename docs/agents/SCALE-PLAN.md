@@ -46,7 +46,8 @@ writing specs, and batch each step only after its inputs are final.
 5. **Builds stream** on the new helper, one at a time, with verify running alongside. At most about 3 to 4 agents.
 6. **Voice nights per verified group**, only after the final verify:
    - Narration lines change during fix rounds (game-remix went from 35 to 49 in one round, then to 42 when Cory cut Share).
-   - After each voice night, run `scripts/voice_liveliness.py` and redo the flat takes (`localvoice.py --redo`).
+   - After each voice night, run `scripts/voice_liveliness.py` and redo only clearly flat takes (`localvoice.py --redo`);
+     the check is gentle on purpose, and a flag or two per tool can stay.
    - Local Qwen takes about 1 to 2 s per line, roughly 10 to 15 GPU hours for the whole catalog.
    - Voice and FLUX cannot share the 16 GB card, so art nights and voice nights alternate.
 7. **Reviews per wave** on the Review Desk instead of one at a time.

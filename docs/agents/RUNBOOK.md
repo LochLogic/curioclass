@@ -39,9 +39,11 @@ no blocker left, look at one frame yourself (the 680x425 preview is a good one) 
   when done. People (hands included) go to Gemini: `python scripts/art.py <id> <names>`, Cory reviews them.
 - **Voice:** `S:\AI\tts\.venv\Scripts\python.exe scripts/localvoice.py <id>` clones the tool's bank voice
   (`"bank"` in voice/lines.json) for every line, then encodes. Listen for nothing (you can't); check the printed
-  lengths and flag any very short clip for Cory. Then run `scripts/voice_liveliness.py <id>` (same venv). It lists
-  flat takes (pitch movement under 3 semitones), which Cory hears as bored. Redo them with
-  `localvoice.py <id> --redo i,j --takes 5`, which keeps the liveliest of five. When a fix round changes lines, record
+  lengths and flag any very short clip for Cory. Then run `scripts/voice_liveliness.py <id>` (same venv), a reading,
+  not a gate: it flags only clearly flat takes (pitch movement under 3 semitones, half that for short lines), which
+  Cory heard as bored. Keep the fix gentle (Cory, 2026-10-27): redo a flagged line with
+  `localvoice.py <id> --redo i,j --takes 5`, which keeps a normal take near the voice's home pitch, never the most
+  excited one. A flag or two per tool is normal and can stay. When a fix round changes lines, record
   only the new ones, and delete clips for removed lines (localvoice never removes them).
 
 ## Going live for review
