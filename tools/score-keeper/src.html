@@ -984,8 +984,8 @@ td:nth-child(8){text-align:left}
         changes: {...G.changes}, saved: false};
       soon(Curio.reduce ? 300 : 900, () => { if (state.phase === 'over' && state.mode === 'lab') showResult(); });
     }
-    // Play: every game over says how to go again (not once per page)
-    if (state.mode === 'play' && !vq.some(q => q.key === 'over1')) narrate('over1', L.over1, {valid: () => state.mode === 'play' && state.phase === 'over'});
+    // Play: the first game over says how to go again; later ones leave it to the hint (Cory: don't nag)
+    if (state.mode === 'play') narrate('over1', L.over1, {once: true, valid: () => state.mode === 'play' && state.phase === 'over'});
     live(G && G.why === 'goal' ? 'Goal! The game ended.' : 'Game over.');
     sync();
   }
@@ -1224,9 +1224,9 @@ td:nth-child(8){text-align:left}
     hideBanner();
     $('result').hidden = false;
     syncSave(); sync();
-    // until the first save, every result card says how to keep the run
-    if (!everSaved && !vq.some(q => q.key === 'result1'))
-      narrate('result1', L.result1, {valid: () => state.mode === 'lab' && !$('result').hidden && lastRow && !lastRow.saved});
+    // the first result card says how to keep the run (once: Cory, don't nag)
+    if (!everSaved)
+      narrate('result1', L.result1, {once: true, valid: () => state.mode === 'lab' && !$('result').hidden && lastRow && !lastRow.saved});
     const a = document.activeElement;
     if (a === $('go') || a === document.body || !a) $('saveRun').disabled ? $('runAgain').focus() : $('saveRun').focus();
   }

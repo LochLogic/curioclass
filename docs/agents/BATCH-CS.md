@@ -22,6 +22,8 @@ the first tool in its module, so it should be the one a teacher would open for t
 - **Always say how to act (Cory, 2026-10-26).** Every time the tool waits for the student, the narration and the
   hint name the next action and the control to use ("Tap the wrong card. Then tap the right move."), not only a
   question ("Which card is wrong?"). Walk every waiting moment as a child who can't read.
+- **But say each how-to once (Cory, 2026-10-26).** After the first time, a repeated how-to line only updates the
+  hint, unspoken. computer-builder does this in `howLater` (a `howSaid` set, marked when the line actually plays).
 - **One idea each, no overlap.** loop-garden (grade 2, live) already does repeat blocks with a robot gardener;
   bee-bot-garden (grade 1, concept) will do arrow paths on a grid. robot-dance is about order of steps and finding
   the wrong step (debugging) as a class, not grid paths or loops. code-tracer predicts values line by line;

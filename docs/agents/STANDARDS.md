@@ -62,6 +62,10 @@ hush, readNow, firstTap):
 - Say how to act (Cory, 2026-10-26). Whenever the tool waits for the student, the line and the hint name the next
   action and the control ("Tap the wrong card. Then tap the right move."), not only a question ("Which card is
   wrong?"). VERIFY walks every waiting moment as a student who can't read the screen.
+- But don't nag (Cory, 2026-10-26). A how-to line is spoken the first time its step comes up; after that it only
+  updates the hint, silently, so the screen still shows it and Read still says it. Repeating "Tap another circle, or
+  tap Back to desk." after every selection was annoying. Results, questions and new steps are still spoken. VERIFY
+  counts how often each how-to line is spoken in a run of five actions in a row.
 - Sound off uses nothing up; turning Sound back on queues the mode's welcome if it was never said.
 - Test with held clicks (press, ~120 ms, release): instant scripted clicks hide pointerdown/click races. Log which clips
   actually start (`drive.py` "hold").

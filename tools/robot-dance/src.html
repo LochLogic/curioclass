@@ -1050,11 +1050,11 @@ body.stack .mv .ico{width:42px;height:48px}
 
   function select(i) {
     state.sel = i; renderStrip();
-    // after a trip, picking a card says what the card buttons and tray can do (once per round)
+    // after a trip, picking a card says what the card buttons and tray can do (spoken once; later the hint only)
     if (state.mode === 'fx' && state.bug != null && !fx.finale) {
       setHint(L.hS);
       const r = fx.r, ok = () => state.mode === 'fx' && fx.r === r && state.sel != null;
-      narrate('sel#' + fx.show + '#' + r, L.hS, {once: true, valid: ok});
+      narrate('sel', L.hS, {once: true, valid: ok});
     }
   }
   function deselect() { if (state.sel == null) return; state.sel = null; renderStrip(); }
