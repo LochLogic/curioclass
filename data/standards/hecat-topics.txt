@@ -1,0 +1,102 @@
+# source: https://www.cdc.gov/healthy-youth/hecat/2021-edition.html (module list; module PDFs hecat_module_<abbr>.pdf)
+# source: https://www.cdc.gov/healthy-youth/hecat/pdfs/HECAT_Appendix_03.pdf (Healthy Behavior Outcomes)
+# version: CDC Health Education Curriculum Analysis Tool (HECAT), 2021 edition
+# fetched: 2026-10-27
+# level: section 1 = one HECAT topic module, HECAT.<abbr>; section 2 = one Healthy Behavior Outcome (HBO) within a topic, HECAT.<abbr>.HBO<n>. Prefix-match HBOs to their topic.
+# note: abbreviations are taken from CDC's module PDF filenames (aod, fn, meh, phw, pa, s, sh, t, v, che); CDC does not print them as codes on the page.
+# note: 2021 module names: AOD Alcohol- and Other Drug-Use Prevention; FN Food and Nutrition; MEH Mental and Emotional Health; PHW Personal Health and Wellness; PA Physical Activity; S Safety; SH Sexual Health; T Tobacco-Use Prevention; V Violence Prevention; CHE Comprehensive Health Education.
+# note: "Healthy Eating" (HE) is not a 2021 module; the 2021 edition page lists Food and Nutrition instead. CDC's HECAT index page still lists both names; reading HE as the pre-2021 name of FN is my inference, not stated at source.
+# note: CHE is a combined module with no HBOs of its own. HBO counts (Appendix 3): AOD 8, FN 12, MEH 9, PHW 12, PA 7, S 8, SH 10, T 5, V 10 = 81.
+# section: topics
+HECAT.AOD
+HECAT.FN
+HECAT.MEH
+HECAT.PHW
+HECAT.PA
+HECAT.S
+HECAT.SH
+HECAT.T
+HECAT.V
+HECAT.CHE
+# section: healthy behavior outcomes
+HECAT.AOD.HBO1
+HECAT.AOD.HBO2
+HECAT.AOD.HBO3
+HECAT.AOD.HBO4
+HECAT.AOD.HBO5
+HECAT.AOD.HBO6
+HECAT.AOD.HBO7
+HECAT.AOD.HBO8
+HECAT.FN.HBO1
+HECAT.FN.HBO2
+HECAT.FN.HBO3
+HECAT.FN.HBO4
+HECAT.FN.HBO5
+HECAT.FN.HBO6
+HECAT.FN.HBO7
+HECAT.FN.HBO8
+HECAT.FN.HBO9
+HECAT.FN.HBO10
+HECAT.FN.HBO11
+HECAT.FN.HBO12
+HECAT.MEH.HBO1
+HECAT.MEH.HBO2
+HECAT.MEH.HBO3
+HECAT.MEH.HBO4
+HECAT.MEH.HBO5
+HECAT.MEH.HBO6
+HECAT.MEH.HBO7
+HECAT.MEH.HBO8
+HECAT.MEH.HBO9
+HECAT.PHW.HBO1
+HECAT.PHW.HBO2
+HECAT.PHW.HBO3
+HECAT.PHW.HBO4
+HECAT.PHW.HBO5
+HECAT.PHW.HBO6
+HECAT.PHW.HBO7
+HECAT.PHW.HBO8
+HECAT.PHW.HBO9
+HECAT.PHW.HBO10
+HECAT.PHW.HBO11
+HECAT.PHW.HBO12
+HECAT.PA.HBO1
+HECAT.PA.HBO2
+HECAT.PA.HBO3
+HECAT.PA.HBO4
+HECAT.PA.HBO5
+HECAT.PA.HBO6
+HECAT.PA.HBO7
+HECAT.S.HBO1
+HECAT.S.HBO2
+HECAT.S.HBO3
+HECAT.S.HBO4
+HECAT.S.HBO5
+HECAT.S.HBO6
+HECAT.S.HBO7
+HECAT.S.HBO8
+HECAT.SH.HBO1
+HECAT.SH.HBO2
+HECAT.SH.HBO3
+HECAT.SH.HBO4
+HECAT.SH.HBO5
+HECAT.SH.HBO6
+HECAT.SH.HBO7
+HECAT.SH.HBO8
+HECAT.SH.HBO9
+HECAT.SH.HBO10
+HECAT.T.HBO1
+HECAT.T.HBO2
+HECAT.T.HBO3
+HECAT.T.HBO4
+HECAT.T.HBO5
+HECAT.V.HBO1
+HECAT.V.HBO2
+HECAT.V.HBO3
+HECAT.V.HBO4
+HECAT.V.HBO5
+HECAT.V.HBO6
+HECAT.V.HBO7
+HECAT.V.HBO8
+HECAT.V.HBO9
+HECAT.V.HBO10

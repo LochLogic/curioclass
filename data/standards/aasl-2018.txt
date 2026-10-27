@@ -1,0 +1,76 @@
+# source: https://standards.aasl.org/wp-content/uploads/2026/07/250918-AASL-framework-for-learners.pdf (current, 2nd edition)
+# source: https://ride.ri.gov/Portals/0/Uploads/Documents/Instruction-and-Assessment-World-Class-Standards/Other-Subjects/180206-AASL-framework-for-learners-2.pdf (2018 1st edition; official AASL PDF, hosted by Rhode Island Dept. of Education)
+# version: AASL Standards Framework for Learners, National School Library Standards 2018; structure identical in the 2nd edition now on standards.aasl.org
+# fetched: 2026-10-27
+# level: one learner competency, AASL.<Shared Foundation>.<Domain>.<n>, e.g. AASL.I.A.1
+# note: Shared Foundations: I Inquire, II Include, III Collaborate, IV Curate, V Explore, VI Engage. Domains: A Think, B Create, C Share, D Grow. modules.csv codes AASL.Inquire etc., so map the name to its numeral before prefix-matching (AASL.Inquire -> AASL.I.).
+# note: 68 competencies, counted from both PDFs (same per-cell counts in 2018 and the 2nd edition): I 2/3/4/4, II 3/3/2/3, III 3/2/2/2, IV 3/4/3/3, V 3/2/3/3, VI 3/3/2/3 (Think/Create/Share/Grow).
+# note: the PDFs number items within each cell (1., 2., ...); the dotted code is the standard AASL citation form (e.g. I.A.1), used by AASL and state crosswalks. The 2nd edition rewords some competencies (e.g. I.A.2) but keeps the numbering.
+AASL.I.A.1
+AASL.I.A.2
+AASL.I.B.1
+AASL.I.B.2
+AASL.I.B.3
+AASL.I.C.1
+AASL.I.C.2
+AASL.I.C.3
+AASL.I.C.4
+AASL.I.D.1
+AASL.I.D.2
+AASL.I.D.3
+AASL.I.D.4
+AASL.II.A.1
+AASL.II.A.2
+AASL.II.A.3
+AASL.II.B.1
+AASL.II.B.2
+AASL.II.B.3
+AASL.II.C.1
+AASL.II.C.2
+AASL.II.D.1
+AASL.II.D.2
+AASL.II.D.3
+AASL.III.A.1
+AASL.III.A.2
+AASL.III.A.3
+AASL.III.B.1
+AASL.III.B.2
+AASL.III.C.1
+AASL.III.C.2
+AASL.III.D.1
+AASL.III.D.2
+AASL.IV.A.1
+AASL.IV.A.2
+AASL.IV.A.3
+AASL.IV.B.1
+AASL.IV.B.2
+AASL.IV.B.3
+AASL.IV.B.4
+AASL.IV.C.1
+AASL.IV.C.2
+AASL.IV.C.3
+AASL.IV.D.1
+AASL.IV.D.2
+AASL.IV.D.3
+AASL.V.A.1
+AASL.V.A.2
+AASL.V.A.3
+AASL.V.B.1
+AASL.V.B.2
+AASL.V.C.1
+AASL.V.C.2
+AASL.V.C.3
+AASL.V.D.1
+AASL.V.D.2
+AASL.V.D.3
+AASL.VI.A.1
+AASL.VI.A.2
+AASL.VI.A.3
+AASL.VI.B.1
+AASL.VI.B.2
+AASL.VI.B.3
+AASL.VI.C.1
+AASL.VI.C.2
+AASL.VI.D.1
+AASL.VI.D.2
+AASL.VI.D.3

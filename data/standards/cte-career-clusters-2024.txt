@@ -1,0 +1,109 @@
+# source: https://careertech.org/what-we-do/career-clusters/
+# source: https://careertech.org/wp-content/uploads/2025/06/Guidebook-National-Career-Clusters-Framework.pdf (sub-clusters)
+# version: Advance CTE Modernized National Career Clusters Framework, 2024 (guidebook 2025-06)
+# fetched: 2026-10-27
+# level: section 1 = one Career Cluster, CTE.Career Clusters.<cluster>; section 2 = one Sub-Cluster, CTE.Career Clusters.<cluster>.<sub-cluster>; section 3 = one Career-Ready Practice, CTE.Career Ready Practices.<n>
+# note: 14 Career Clusters (3 Cross-Cutting: Digital Technology, Management & Entrepreneurship, Marketing & Sales) and 72 Sub-Clusters, both matching the totals Advance CTE states. Names spelled as in the guidebook (the web page writes "Hospitality, Events, & Tourism"; the guidebook "Hospitality, Events & Tourism").
+# note: modules.csv codes only CTE.Career Clusters and CTE.Career Ready Practices, so these lines prefix-match those two codes.
+# note: 12 Career-Ready Practices per careertech.org. The final 2024 PDF (careertech.org/wp-content/uploads/2024/10/Career-Ready-Practices.pdf) is image-only, so the 2024 wording and order were NOT verified; lines are numbered 1-12 only.
+# note: older framework (2002, revised 2008): 16 clusters, 79 pathways. Not on careertech.org's current page; list per state sources (e.g. maine.gov/doe/learning/cte/standards/clusters): Agriculture, Food & Natural Resources; Architecture & Construction; Arts, A/V Technology & Communications; Business Management & Administration; Education & Training; Finance; Government & Public Administration; Health Science; Hospitality & Tourism; Human Services; Information Technology; Law, Public Safety, Corrections & Security; Manufacturing; Marketing (Sales & Service); Science, Technology, Engineering & Mathematics; Transportation, Distribution & Logistics. Not included as lines.
+# section: clusters and sub-clusters
+CTE.Career Clusters.Digital Technology
+CTE.Career Clusters.Management & Entrepreneurship
+CTE.Career Clusters.Marketing & Sales
+CTE.Career Clusters.Advanced Manufacturing
+CTE.Career Clusters.Agriculture
+CTE.Career Clusters.Arts, Entertainment, & Design
+CTE.Career Clusters.Construction
+CTE.Career Clusters.Education
+CTE.Career Clusters.Energy & Natural Resources
+CTE.Career Clusters.Financial Services
+CTE.Career Clusters.Healthcare & Human Services
+CTE.Career Clusters.Hospitality, Events & Tourism
+CTE.Career Clusters.Public Service & Safety
+CTE.Career Clusters.Supply Chain & Transportation
+CTE.Career Clusters.Digital Technology.Data Science & Artificial Intelligence
+CTE.Career Clusters.Digital Technology.Information Technology (IT) Support & Services
+CTE.Career Clusters.Digital Technology.Network Systems & Cybersecurity
+CTE.Career Clusters.Digital Technology.Software Solutions
+CTE.Career Clusters.Digital Technology.Unmanned Vehicle Technology
+CTE.Career Clusters.Digital Technology.Web & Cloud
+CTE.Career Clusters.Management & Entrepreneurship.Business Information Management
+CTE.Career Clusters.Management & Entrepreneurship.Entrepreneurship & Small Business
+CTE.Career Clusters.Management & Entrepreneurship.Leadership & Operations
+CTE.Career Clusters.Management & Entrepreneurship.Project Management
+CTE.Career Clusters.Management & Entrepreneurship.Regulation
+CTE.Career Clusters.Marketing & Sales.Market Research, Analytics, & Ethics
+CTE.Career Clusters.Marketing & Sales.Marketing & Advertising
+CTE.Career Clusters.Marketing & Sales.Retail & Customer Experience
+CTE.Career Clusters.Marketing & Sales.Strategic Sales
+CTE.Career Clusters.Advanced Manufacturing.Engineering
+CTE.Career Clusters.Advanced Manufacturing.Industrial Machinery
+CTE.Career Clusters.Advanced Manufacturing.Production & Automation
+CTE.Career Clusters.Advanced Manufacturing.Robotics
+CTE.Career Clusters.Advanced Manufacturing.Safety & Quality Assurance
+CTE.Career Clusters.Agriculture.Agribusiness
+CTE.Career Clusters.Agriculture.Agricultural Technology & Automation
+CTE.Career Clusters.Agriculture.Animal Systems
+CTE.Career Clusters.Agriculture.Food Science & Processing
+CTE.Career Clusters.Agriculture.Plant Systems
+CTE.Career Clusters.Agriculture.Water Systems
+CTE.Career Clusters.Arts, Entertainment, & Design.Design & Digital Arts
+CTE.Career Clusters.Arts, Entertainment, & Design.Fashion & Interiors
+CTE.Career Clusters.Arts, Entertainment, & Design.Fine Arts
+CTE.Career Clusters.Arts, Entertainment, & Design.Lighting & Sound Technology
+CTE.Career Clusters.Arts, Entertainment, & Design.Media Production & Broadcasting
+CTE.Career Clusters.Arts, Entertainment, & Design.Performing Arts
+CTE.Career Clusters.Construction.Architecture & Civil Engineering
+CTE.Career Clusters.Construction.Construction Planning & Development
+CTE.Career Clusters.Construction.Equipment Operation & Maintenance
+CTE.Career Clusters.Construction.Skilled Trades
+CTE.Career Clusters.Education.Early Childhood Development
+CTE.Career Clusters.Education.Education Administration & Leadership
+CTE.Career Clusters.Education.Learner Support & Community Engagement
+CTE.Career Clusters.Education.Teaching, Training & Facilitation
+CTE.Career Clusters.Energy & Natural Resources.Clean & Alternative Energy
+CTE.Career Clusters.Energy & Natural Resources.Conservation & Land Management
+CTE.Career Clusters.Energy & Natural Resources.Ecological Research & Development
+CTE.Career Clusters.Energy & Natural Resources.Environmental Protection
+CTE.Career Clusters.Energy & Natural Resources.Resource Extraction
+CTE.Career Clusters.Energy & Natural Resources.Utilities
+CTE.Career Clusters.Financial Services.Accounting
+CTE.Career Clusters.Financial Services.Banking & Credit
+CTE.Career Clusters.Financial Services.Financial Strategy & Investments
+CTE.Career Clusters.Financial Services.Insurance
+CTE.Career Clusters.Financial Services.Real Estate
+CTE.Career Clusters.Healthcare & Human Services.Behavioral & Mental Health
+CTE.Career Clusters.Healthcare & Human Services.Biotechnology Research & Development
+CTE.Career Clusters.Healthcare & Human Services.Community & Social Services
+CTE.Career Clusters.Healthcare & Human Services.Health Data & Administration
+CTE.Career Clusters.Healthcare & Human Services.Personal Care Services
+CTE.Career Clusters.Healthcare & Human Services.Physical Health
+CTE.Career Clusters.Hospitality, Events & Tourism.Accommodations
+CTE.Career Clusters.Hospitality, Events & Tourism.Conferences & Events
+CTE.Career Clusters.Hospitality, Events & Tourism.Culinary & Food Services
+CTE.Career Clusters.Hospitality, Events & Tourism.Travel & Leisure
+CTE.Career Clusters.Public Service & Safety.Emergency Response
+CTE.Career Clusters.Public Service & Safety.Judicial Systems
+CTE.Career Clusters.Public Service & Safety.Local, State & Federal Services
+CTE.Career Clusters.Public Service & Safety.Military & National Security
+CTE.Career Clusters.Public Service & Safety.Public Safety
+CTE.Career Clusters.Supply Chain & Transportation.Air & Space Transportation
+CTE.Career Clusters.Supply Chain & Transportation.Ground & Rail Transportation
+CTE.Career Clusters.Supply Chain & Transportation.Maintenance & Repair
+CTE.Career Clusters.Supply Chain & Transportation.Marine Transportation
+CTE.Career Clusters.Supply Chain & Transportation.Planning & Logistics
+CTE.Career Clusters.Supply Chain & Transportation.Purchasing & Warehousing
+# section: career-ready practices
+CTE.Career Ready Practices.1
+CTE.Career Ready Practices.2
+CTE.Career Ready Practices.3
+CTE.Career Ready Practices.4
+CTE.Career Ready Practices.5
+CTE.Career Ready Practices.6
+CTE.Career Ready Practices.7
+CTE.Career Ready Practices.8
+CTE.Career Ready Practices.9
+CTE.Career Ready Practices.10
+CTE.Career Ready Practices.11
+CTE.Career Ready Practices.12

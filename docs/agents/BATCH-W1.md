@@ -120,7 +120,7 @@ group's tools differ from each other by design. Then the integrating session run
 
 | Id | Title | Grade | Format | Family |
 |---|---|---|---|---|
-| flowchart-factory | Flowchart Factory | 6-8 | builder | - |
+| chore-flowcharts | Flowchart Factory | 6-8 | builder | - |
 | code-kitchen | Code Kitchen | 6-8 | puzzle | - |
 | sorting-showdown | Sorting Showdown | 9-12 | simulator | - |
 | api-playground | API Playground | 9-12 | sandbox | - |
@@ -132,7 +132,7 @@ group's tools differ from each other by design. Then the integrating session run
 
 | Id | Title | Grade | Format | Family |
 |---|---|---|---|---|
-| depth-detective | Depth Detective | 3-5 | puzzle | - |
+| near-and-far | Depth Detective | 3-5 | puzzle | - |
 | art-style-match | Art Style Match | 3-5 | cards | art-museum |
 | design-fixer | Design Fixer | 6-8 | puzzle | - |
 | art-through-time | Art Through Time | 6-8 | timeline | art-museum |
@@ -158,7 +158,7 @@ group's tools differ from each other by design. Then the integrating session run
 
 | Id | Title | Grade | Format | Family |
 |---|---|---|---|---|
-| story-dress-up | Story Dress-Up | k-2 | showdown | - |
+| act-it-out | Story Dress-Up | k-2 | showdown | - |
 | character-voice-booth | Character Voice Booth | 3-5 | lab | - |
 | stage-blocker | Stage Blocker | 6-8 | builder | stage |
 | director-s-chair | Director's Chair | 9-12 | story | stage |
@@ -197,7 +197,7 @@ group's tools differ from each other by design. Then the integrating session run
 | body-systems-tour | Body Systems Tour | 3-5 | explorer | - |
 | growing-up-q-a | Growing Up Q&A | 3-5 | explorer | - |
 | first-aid-responder | First Aid Responder | 9-12 | race | - |
-| meal-and-move-planner | Meal and Move Planner | 9-12 | builder | food |
+| game-day-fuel | Meal and Move Planner | 9-12 | builder | food |
 | health-claim-checker | Health Claim Checker | 9-12 | mystery | - |
 
 - **meal-and-move-planner:** Topic line under the title on the tool page: "nutrition and fitness planning". Overlap note (left for you to settle in the spec): Plans workouts like fitness-program-designer in 9-12 health; FITT programming stays with that tool. Suggested fix (reshape): "Game Day Fuel": Plan a week of meals around your training days; the tool tracks energy in and out, flags gaps and extremes, and shows how the plan holds up on a game day.. Take it, or solve the clash another way and say how in "Not like". Keep the topic word in the title. Family: stays in food.
@@ -209,7 +209,7 @@ group's tools differ from each other by design. Then the integrating session run
 | pressure-point | Pressure Point | 6-8 | story | - |
 | stress-toolkit | Stress Toolkit | 6-8 | sandbox | feelings |
 | relationship-spectrum | Relationship Spectrum | 6-8 | roleplay | - |
-| screen-time-detective | Screen Time Detective | 6-8 | data | - |
+| screen-week | Screen Time Detective | 6-8 | data | - |
 
 - **relationship-spectrum:** Topic line under the title on the tool page: "healthy relationships and boundaries". Reshaped by the overlap pass (Cory accepted, the concept above is the new one). The clash it fixed: Practices peer communication in scenarios like the live conflict-coach.
 
@@ -236,7 +236,7 @@ group's tools differ from each other by design. Then the integrating session run
 | fake-or-fact-lab | Fake or Fact Lab | 6-8 | lab | fact-check |
 | research-quest | Research Quest | 6-8 | story | - |
 | boolean-builder | Boolean Builder | 9-12 | sandbox | - |
-| fair-use-court | Fair Use Court | 9-12 | roleplay | - |
+| fair-use-review | Fair Use Court | 9-12 | roleplay | - |
 
 - **keyword-fishing:** Topic line under the title on the tool page: "choosing search keywords". Reshaped by the overlap pass (Cory accepted, the concept above is the new one). The clash it fixed: A kitchen experiment beside kitchen-lab and fraction-kitchen in 3-5.
 

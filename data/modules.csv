@@ -33,7 +33,7 @@ library-k-2-asking-good-questions,library,k-2,library,Research,Asking Good Quest
 library-3-5-search-like-a-pro,library,3-5,library,Research,Search Like a Pro,"Keywords, catalogs and kid-safe search",AASL.Curate;AASL.Inquire,AASL-2018,added.txt
 library-3-5-giving-credit,library,3-5,library,Research,Giving Credit,Why and how to credit sources,AASL.Engage,AASL-2018,added.txt
 library-6-8-is-it-reliable,library,6-8,library,Research,Is It Reliable?,"Evaluate websites, authors and evidence; spot misinformation",AASL.Curate;AASL.Engage,AASL-2018,added.txt
-library-6-8-the-research-process,library,6-8,library,Research,The Research Process,"Plan, gather, organize and present research",AASL.Inquire;AASL.Collaborate,AASL-2018,added.txt
+library-6-8-the-research-process,library,6-8,library,Research,The Research Process,"Plan, gather, organize and present research",AASL.Inquire;AASL.Collaborate;AASL.Engage,AASL-2018,added.txt
 library-9-12-databases-and-advanced-search,library,9-12,library,Research,Databases and Advanced Search,"Academic databases, Boolean search and primary sources",AASL.Curate,AASL-2018,added.txt
 library-9-12-citation-copyright-and-fair-use,library,9-12,library,Research,"Citation, Copyright and Fair Use","Citation styles, plagiarism, copyright and Creative Commons",AASL.Engage;AASL.Include,AASL-2018,added.txt
 ela-k-print-concepts-and-the-alphabet,ela,k,ela-k12,Foundational Skills,Print Concepts and the Alphabet,"Letters, words, spaces and reading left to right",RF.K.1,CCSS-ELA,ela.txt
@@ -144,38 +144,38 @@ ela-12-advanced-vocabulary-and-etymology,ela,12,ela-k12,Language,Advanced Vocabu
 arts-k-2-lines-shapes-and-colors,arts,k-2,visual-arts,Visual Arts,"Lines, Shapes and Colors",Elements of art; primary and secondary colors,VA:Cr1;VA:Cr2,NCAS,electives.txt
 arts-k-2-art-from-many-places,arts,k-2,visual-arts,Visual Arts,Art from Many Places,Look at and talk about art from different cultures,VA:Re7;VA:Cn11,NCAS,electives.txt
 arts-3-5-color-theory-and-mixing,arts,3-5,visual-arts,Visual Arts,Color Theory and Mixing,"Color wheel, warm and cool, tints and shades",VA:Cr2,NCAS,electives.txt
-arts-3-5-perspective-and-space,arts,3-5,visual-arts,Visual Arts,Perspective and Space,"Overlap, size and horizon lines",VA:Cr2,NCAS,electives.txt
+arts-3-5-perspective-and-space,arts,3-5,visual-arts,Visual Arts,Perspective and Space,"Overlap, size and horizon lines",VA:Cr2;VA:Re7,NCAS,electives.txt
 arts-3-5-famous-artists-and-movements,arts,3-5,visual-arts,Visual Arts,Famous Artists and Movements,Recognize styles from cave art to modern art,VA:Re7;VA:Cn11,NCAS,electives.txt
 arts-6-8-principles-of-design,arts,6-8,visual-arts,Visual Arts,Principles of Design,"Balance, contrast, emphasis, rhythm and unity",VA:Cr1;VA:Cr2;VA:Re8,NCAS,electives.txt
 arts-6-8-drawing-and-one-point-perspective,arts,6-8,visual-arts,Visual Arts,Drawing and One-Point Perspective,Vanishing points and value shading,VA:Cr2,NCAS,electives.txt
 arts-6-8-art-history-timeline,arts,6-8,visual-arts,Visual Arts,Art History Timeline,Major periods and movements in context,VA:Re7;VA:Cn11,NCAS,electives.txt
 arts-9-12-critique-and-interpretation,arts,9-12,visual-arts,Visual Arts,Critique and Interpretation,"Analyze, interpret and evaluate artworks",VA:Re8;VA:Re9,NCAS,electives.txt
-arts-9-12-two-point-perspective-and-composition,arts,9-12,visual-arts,Visual Arts,Two-Point Perspective and Composition,Advanced spatial drawing and composition,VA:Cr2,NCAS,electives.txt
+arts-9-12-two-point-perspective-and-composition,arts,9-12,visual-arts,Visual Arts,Two-Point Perspective and Composition,Advanced spatial drawing and composition,VA:Cr2;VA:Cr3,NCAS,electives.txt
 arts-9-12-portfolio-and-curation,arts,9-12,visual-arts,Visual Arts,Portfolio and Curation,"Select, present and curate work",VA:Pr4;VA:Pr5;VA:Pr6,NCAS,electives.txt
 arts-k-2-steady-beat-and-rhythm,arts,k-2,music,Music,Steady Beat and Rhythm,Beat vs rhythm; long and short sounds,MU:Pr4;MU:Cr1,NCAS,electives.txt
 arts-k-2-high-and-low-loud-and-soft,arts,k-2,music,Music,"High and Low, Loud and Soft",Pitch and dynamics,MU:Re7,NCAS,electives.txt
 arts-k-2-instrument-families,arts,k-2,music,Music,Instrument Families,Recognize instruments by sight and sound,MU:Re7,NCAS,electives.txt
 arts-3-5-reading-music,arts,3-5,music,Music,Reading Music,"Staff, notes, rests and time signatures",MU:Pr4,NCAS,electives.txt
 arts-3-5-melody-and-scales,arts,3-5,music,Music,Melody and Scales,Solfege and major scales,MU:Cr1;MU:Pr4,NCAS,electives.txt
-arts-3-5-form-and-composition,arts,3-5,music,Music,Form and Composition,AB and ABA form; compose short pieces,MU:Cr2;MU:Cr3,NCAS,electives.txt
+arts-3-5-form-and-composition,arts,3-5,music,Music,Form and Composition,AB and ABA form; compose short pieces,MU:Cr2;MU:Cr3;MU:Re7,NCAS,electives.txt
 arts-6-8-harmony-and-chords,arts,6-8,music,Music,Harmony and Chords,"Intervals, triads and chord progressions",MU:Cr1;MU:Re7,NCAS,electives.txt
-arts-6-8-music-around-the-world,arts,6-8,music,Music,Music Around the World,Musical traditions and their cultures,MU:Cn11,NCAS,electives.txt
+arts-6-8-music-around-the-world,arts,6-8,music,Music,Music Around the World,Musical traditions and their cultures,MU:Cn11;MU:Re7,NCAS,electives.txt
 arts-6-8-ensemble-skills,arts,6-8,music,Music,Ensemble Skills,"Listening, blending and performing together",MU:Pr5;MU:Pr6,NCAS,electives.txt
 arts-9-12-music-theory,arts,9-12,music,Music,Music Theory,"Keys, modulation and analysis",MU:Re7;MU:Re8,NCAS,electives.txt
-arts-9-12-music-history,arts,9-12,music,Music,Music History,Medieval to contemporary styles,MU:Cn11,NCAS,electives.txt
+arts-9-12-music-history,arts,9-12,music,Music,Music History,Medieval to contemporary styles,MU:Cn11;MU:Re7,NCAS,electives.txt
 arts-9-12-composing-and-producing,arts,9-12,music,Music,Composing and Producing,Arrange and produce original music,MU:Cr1;MU:Cr2;MU:Cr3,NCAS,electives.txt
 arts-k-2-pretend-and-play,arts,k-2,theater,Theater,Pretend and Play,Creative drama and storytelling with movement,TH:Cr1;TH:Pr4,NCAS,electives.txt
 arts-3-5-characters-and-scenes,arts,3-5,theater,Theater,Characters and Scenes,"Voice, body and simple scripts",TH:Cr2;TH:Pr4,NCAS,electives.txt
 arts-6-8-scripts-and-staging,arts,6-8,theater,Theater,Scripts and Staging,"Blocking, stage directions and design",TH:Cr1;TH:Pr5,NCAS,electives.txt
 arts-9-12-theater-history-and-directing,arts,9-12,theater,Theater,Theater History and Directing,Theatrical traditions; directing choices,TH:Re8;TH:Cn11,NCAS,electives.txt
 arts-k-2-moving-bodies,arts,k-2,dance,Dance,Moving Bodies,Locomotor and nonlocomotor movement; levels,DA:Cr1;DA:Pr4,NCAS,electives.txt
-arts-3-5-patterns-in-dance,arts,3-5,dance,Dance,Patterns in Dance,"Sequences, tempo and dances from cultures",DA:Cr2;DA:Cn11,NCAS,electives.txt
+arts-3-5-patterns-in-dance,arts,3-5,dance,Dance,Patterns in Dance,"Sequences, tempo and dances from cultures",DA:Cr2;DA:Cn11;DA:Pr5,NCAS,electives.txt
 arts-6-8-choreography,arts,6-8,dance,Dance,Choreography,Create and revise movement phrases,DA:Cr1;DA:Cr2;DA:Cr3,NCAS,electives.txt
-arts-9-12-dance-styles-and-criticism,arts,9-12,dance,Dance,Dance Styles and Criticism,Analyze styles; evaluate performances,DA:Re7;DA:Re8;DA:Re9,NCAS,electives.txt
+arts-9-12-dance-styles-and-criticism,arts,9-12,dance,Dance,Dance Styles and Criticism,Analyze styles; evaluate performances,DA:Re7;DA:Re8;DA:Re9;DA:Cn11,NCAS,electives.txt
 arts-6-8-photography-and-framing,arts,6-8,media-arts,Media Arts,Photography and Framing,"Composition, light and framing",MA:Cr1;MA:Cr2,NCAS,electives.txt
-arts-6-8-animation-basics,arts,6-8,media-arts,Media Arts,Animation Basics,"Frames, timing and stop motion",MA:Cr2;MA:Pr5,NCAS,electives.txt
+arts-6-8-animation-basics,arts,6-8,media-arts,Media Arts,Animation Basics,"Frames, timing and stop motion",MA:Cr2;MA:Pr5;MA:Cr3,NCAS,electives.txt
 arts-9-12-film-and-video-production,arts,9-12,media-arts,Media Arts,Film and Video Production,"Storyboarding, shots and editing",MA:Cr1;MA:Cr2;MA:Cr3,NCAS,electives.txt
-arts-9-12-graphic-design,arts,9-12,media-arts,Media Arts,Graphic Design,"Typography, layout and branding",MA:Cr2,NCAS,electives.txt
+arts-9-12-graphic-design,arts,9-12,media-arts,Media Arts,Graphic Design,"Typography, layout and branding",MA:Cr2;MA:Cr3;VA:Cr3,NCAS,electives.txt
 health-pe-k-2-healthy-habits,health-pe,k-2,health,Health,Healthy Habits,"Handwashing, sleep and taking care of my body",NHES.S1;NHES.S7,NHES-2024,electives.txt
 health-pe-k-2-food-groups,health-pe,k-2,health,Health,Food Groups,Healthy food choices and balanced meals,NHES.S1,NHES-2024,electives.txt
 health-pe-k-2-feelings-and-friends,health-pe,k-2,health,Health,Feelings and Friends,Naming feelings; kind words; asking for help,NHES.S4;NHES.S8,NHES-2024,electives.txt
@@ -183,11 +183,11 @@ health-pe-k-2-safety,health-pe,k-2,health,Health,Safety,"Fire, traffic, water an
 health-pe-3-5-nutrition-labels-and-choices,health-pe,3-5,health,Health,Nutrition Labels and Choices,Reading labels; making healthy choices,NHES.S2;NHES.S5,NHES-2024,electives.txt
 health-pe-3-5-the-human-body-systems,health-pe,3-5,health,Health,The Human Body Systems,How body systems keep us healthy,NHES.S1,NHES-2024,electives.txt
 health-pe-3-5-germs-and-disease-prevention,health-pe,3-5,health,Health,Germs and Disease Prevention,How illness spreads and how to prevent it,NHES.S1;NHES.S7,NHES-2024,electives.txt
-health-pe-3-5-growing-up,health-pe,3-5,health,Health,Growing Up,Puberty basics and changes,NHES.S1,NHES-2024,electives.txt
+health-pe-3-5-growing-up,health-pe,3-5,health,Health,Growing Up,Puberty basics and changes,NHES.S1;NHES.S3,NHES-2024,electives.txt
 health-pe-6-8-substance-use-prevention,health-pe,6-8,health,Health,Substance Use Prevention,"Effects of tobacco, vaping, alcohol and drugs; refusal skills",NHES.S1;NHES.S4;NHES.S5,NHES-2024,electives.txt
 health-pe-6-8-mental-and-emotional-health,health-pe,6-8,health,Health,Mental and Emotional Health,"Stress, coping and getting help",NHES.S1;NHES.S7;NHES.S8,NHES-2024,electives.txt
-health-pe-6-8-healthy-relationships,health-pe,6-8,health,Health,Healthy Relationships,"Communication, boundaries and conflict resolution",NHES.S4,NHES-2024,electives.txt
-health-pe-6-8-digital-wellness,health-pe,6-8,health,Health,Digital Wellness,"Screen time, online safety and media influence",NHES.S2;NHES.S3,NHES-2024,electives.txt
+health-pe-6-8-healthy-relationships,health-pe,6-8,health,Health,Healthy Relationships,"Communication, boundaries and conflict resolution",NHES.S4;NHES.S1,NHES-2024,electives.txt
+health-pe-6-8-digital-wellness,health-pe,6-8,health,Health,Digital Wellness,"Screen time, online safety and media influence",NHES.S2;NHES.S3;NHES.S6,NHES-2024,electives.txt
 health-pe-9-12-nutrition-and-fitness-planning,health-pe,9-12,health,Health,Nutrition and Fitness Planning,Energy balance and personal plans,NHES.S6;NHES.S7,NHES-2024,electives.txt
 health-pe-9-12-first-aid-and-cpr,health-pe,9-12,health,Health,First Aid and CPR,Emergency response basics,NHES.S7,NHES-2024,electives.txt
 health-pe-9-12-accessing-valid-health-information,health-pe,9-12,health,Health,Accessing Valid Health Information,"Evaluate sources, products and services",NHES.S3,NHES-2024,electives.txt

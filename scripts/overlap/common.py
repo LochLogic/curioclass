@@ -2,7 +2,7 @@
 
 tags.csv in docs/agents/overlap is the master tag file: edit it there, then rerun the scripts.
 """
-import csv, os, io, collections, itertools, sys
+import csv, os, io, json, collections, itertools, sys
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 OUT = os.path.join(ROOT, 'docs', 'agents', 'overlap')
@@ -49,8 +49,12 @@ def load(after=False):
     if after:
         from decisions_src import D
         by = {r['tool_id']: r for r in rows}
+        renamed = json.load(io.open(os.path.join(OUT, 'renamed.json'), encoding='utf-8'))  # decisions keep pre-rename ids
         for d in D:
-            r = by[d['id']]
+            r = by[renamed.get(d['id'], d['id'])]
+            if os.path.exists(os.path.join(ROOT, 'tools', r['tool_id'], 'spec.md')):
+                continue  # a spec is newer than the decision: tags.csv already carries its tags
+
             if d.get('title'): r['title'] = d['title']; r['changed'] = True
             if d.get('concept'): r['concept'] = d['concept']; r['changed'] = True
             a = d.get('after')

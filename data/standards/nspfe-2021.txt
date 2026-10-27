@@ -1,0 +1,393 @@
+# source: https://www.councilforeconed.org/wp-content/uploads/2021/10/2021-National-Standards-for-Personal-Financial-Education.pdf
+# version: National Standards for Personal Financial Education, 2021 (Council for Economic Education and Jump$tart Coalition)
+# fetched: 2026-10-27
+# level: one Learning Outcome, NSPFE.<Topic>.<grade>-<standard><letter> (official code 4-1a = 4th grade, Standard 1, Learning Outcome a); grades 4, 8, 12
+# note: the PDF's own numbering is per Topic (4-1, 4-1a ...), so the same code repeats across Topics; Topic names are prefixed, spelled as in modules.csv (NSPFE.Earning Income ...). Topics are numbered I-VI in the PDF: I Earning Income, II Spending, III Saving, IV Investing, V Managing Credit, VI Managing Risk.
+# note: the PDF calls the grade-level items "Standards" (4-1) with lettered "Learning Outcomes" (4-1a); the caller's "benchmarks" = these. 135 Standards, 379 Learning Outcomes.
+# note: per Topic (Standards/Outcomes; standards at grade 4/8/12): Earning Income 27/78 (7/9/11); Spending 19/59 (6/4/9); Saving 20/56 (5/6/9); Investing 23/64 (2/7/14); Managing Credit 23/66 (3/7/13); Managing Risk 23/56 (4/7/12). Numbering checked contiguous; no official total is printed.
+# note: PDF typos normalised: Saving 4.4b, 4.5a, 12.2b and Managing Risk 12.4b printed with a dot are read as 4-4b, 4-5a, 12-2b, 12-4b.
+# section: Earning Income
+NSPFE.Earning Income.4-1a
+NSPFE.Earning Income.4-1b
+NSPFE.Earning Income.4-2a
+NSPFE.Earning Income.4-2b
+NSPFE.Earning Income.4-3a
+NSPFE.Earning Income.4-3b
+NSPFE.Earning Income.4-3c
+NSPFE.Earning Income.4-4a
+NSPFE.Earning Income.4-4b
+NSPFE.Earning Income.4-4c
+NSPFE.Earning Income.4-5a
+NSPFE.Earning Income.4-5b
+NSPFE.Earning Income.4-6a
+NSPFE.Earning Income.4-6b
+NSPFE.Earning Income.4-7a
+NSPFE.Earning Income.4-7b
+NSPFE.Earning Income.8-1a
+NSPFE.Earning Income.8-1b
+NSPFE.Earning Income.8-1c
+NSPFE.Earning Income.8-2a
+NSPFE.Earning Income.8-2b
+NSPFE.Earning Income.8-2c
+NSPFE.Earning Income.8-3a
+NSPFE.Earning Income.8-3b
+NSPFE.Earning Income.8-3c
+NSPFE.Earning Income.8-3d
+NSPFE.Earning Income.8-4a
+NSPFE.Earning Income.8-4b
+NSPFE.Earning Income.8-4c
+NSPFE.Earning Income.8-5a
+NSPFE.Earning Income.8-5b
+NSPFE.Earning Income.8-5c
+NSPFE.Earning Income.8-6a
+NSPFE.Earning Income.8-6b
+NSPFE.Earning Income.8-6c
+NSPFE.Earning Income.8-6d
+NSPFE.Earning Income.8-7a
+NSPFE.Earning Income.8-7b
+NSPFE.Earning Income.8-7c
+NSPFE.Earning Income.8-8a
+NSPFE.Earning Income.8-8b
+NSPFE.Earning Income.8-9a
+NSPFE.Earning Income.8-9b
+NSPFE.Earning Income.8-9c
+NSPFE.Earning Income.12-1a
+NSPFE.Earning Income.12-1b
+NSPFE.Earning Income.12-1c
+NSPFE.Earning Income.12-1d
+NSPFE.Earning Income.12-2a
+NSPFE.Earning Income.12-2b
+NSPFE.Earning Income.12-2c
+NSPFE.Earning Income.12-3a
+NSPFE.Earning Income.12-3b
+NSPFE.Earning Income.12-3c
+NSPFE.Earning Income.12-4a
+NSPFE.Earning Income.12-4b
+NSPFE.Earning Income.12-4c
+NSPFE.Earning Income.12-5a
+NSPFE.Earning Income.12-5b
+NSPFE.Earning Income.12-5c
+NSPFE.Earning Income.12-6a
+NSPFE.Earning Income.12-6b
+NSPFE.Earning Income.12-6c
+NSPFE.Earning Income.12-7a
+NSPFE.Earning Income.12-7b
+NSPFE.Earning Income.12-7c
+NSPFE.Earning Income.12-7d
+NSPFE.Earning Income.12-8a
+NSPFE.Earning Income.12-8b
+NSPFE.Earning Income.12-9a
+NSPFE.Earning Income.12-9b
+NSPFE.Earning Income.12-9c
+NSPFE.Earning Income.12-10a
+NSPFE.Earning Income.12-10b
+NSPFE.Earning Income.12-10c
+NSPFE.Earning Income.12-10d
+NSPFE.Earning Income.12-11a
+NSPFE.Earning Income.12-11b
+# section: Spending
+NSPFE.Spending.4-1a
+NSPFE.Spending.4-1b
+NSPFE.Spending.4-1c
+NSPFE.Spending.4-2a
+NSPFE.Spending.4-2b
+NSPFE.Spending.4-2c
+NSPFE.Spending.4-3a
+NSPFE.Spending.4-3b
+NSPFE.Spending.4-4a
+NSPFE.Spending.4-4b
+NSPFE.Spending.4-5a
+NSPFE.Spending.4-5b
+NSPFE.Spending.4-5c
+NSPFE.Spending.4-6a
+NSPFE.Spending.4-6b
+NSPFE.Spending.8-1a
+NSPFE.Spending.8-1b
+NSPFE.Spending.8-1c
+NSPFE.Spending.8-1d
+NSPFE.Spending.8-2a
+NSPFE.Spending.8-2b
+NSPFE.Spending.8-2c
+NSPFE.Spending.8-2d
+NSPFE.Spending.8-3a
+NSPFE.Spending.8-3b
+NSPFE.Spending.8-3c
+NSPFE.Spending.8-4a
+NSPFE.Spending.8-4b
+NSPFE.Spending.8-4c
+NSPFE.Spending.8-4d
+NSPFE.Spending.12-1a
+NSPFE.Spending.12-1b
+NSPFE.Spending.12-1c
+NSPFE.Spending.12-1d
+NSPFE.Spending.12-2a
+NSPFE.Spending.12-2b
+NSPFE.Spending.12-2c
+NSPFE.Spending.12-3a
+NSPFE.Spending.12-3b
+NSPFE.Spending.12-3c
+NSPFE.Spending.12-4a
+NSPFE.Spending.12-4b
+NSPFE.Spending.12-4c
+NSPFE.Spending.12-5a
+NSPFE.Spending.12-5b
+NSPFE.Spending.12-5c
+NSPFE.Spending.12-6a
+NSPFE.Spending.12-6b
+NSPFE.Spending.12-6c
+NSPFE.Spending.12-7a
+NSPFE.Spending.12-7b
+NSPFE.Spending.12-7c
+NSPFE.Spending.12-8a
+NSPFE.Spending.12-8b
+NSPFE.Spending.12-8c
+NSPFE.Spending.12-8d
+NSPFE.Spending.12-9a
+NSPFE.Spending.12-9b
+NSPFE.Spending.12-9c
+# section: Saving
+NSPFE.Saving.4-1a
+NSPFE.Saving.4-1b
+NSPFE.Saving.4-1c
+NSPFE.Saving.4-2a
+NSPFE.Saving.4-2b
+NSPFE.Saving.4-2c
+NSPFE.Saving.4-3a
+NSPFE.Saving.4-3b
+NSPFE.Saving.4-4a
+NSPFE.Saving.4-4b
+NSPFE.Saving.4-5a
+NSPFE.Saving.4-5b
+NSPFE.Saving.8-1a
+NSPFE.Saving.8-1b
+NSPFE.Saving.8-2a
+NSPFE.Saving.8-2b
+NSPFE.Saving.8-2c
+NSPFE.Saving.8-2d
+NSPFE.Saving.8-3a
+NSPFE.Saving.8-3b
+NSPFE.Saving.8-3c
+NSPFE.Saving.8-4a
+NSPFE.Saving.8-4b
+NSPFE.Saving.8-4c
+NSPFE.Saving.8-5a
+NSPFE.Saving.8-5b
+NSPFE.Saving.8-6a
+NSPFE.Saving.8-6b
+NSPFE.Saving.8-6c
+NSPFE.Saving.12-1a
+NSPFE.Saving.12-1b
+NSPFE.Saving.12-2a
+NSPFE.Saving.12-2b
+NSPFE.Saving.12-2c
+NSPFE.Saving.12-3a
+NSPFE.Saving.12-3b
+NSPFE.Saving.12-3c
+NSPFE.Saving.12-4a
+NSPFE.Saving.12-4b
+NSPFE.Saving.12-4c
+NSPFE.Saving.12-5a
+NSPFE.Saving.12-5b
+NSPFE.Saving.12-5c
+NSPFE.Saving.12-6a
+NSPFE.Saving.12-6b
+NSPFE.Saving.12-6c
+NSPFE.Saving.12-7a
+NSPFE.Saving.12-7b
+NSPFE.Saving.12-7c
+NSPFE.Saving.12-7d
+NSPFE.Saving.12-8a
+NSPFE.Saving.12-8b
+NSPFE.Saving.12-9a
+NSPFE.Saving.12-9b
+NSPFE.Saving.12-9c
+NSPFE.Saving.12-9d
+# section: Investing
+NSPFE.Investing.4-1a
+NSPFE.Investing.4-1b
+NSPFE.Investing.4-2a
+NSPFE.Investing.4-2b
+NSPFE.Investing.8-1a
+NSPFE.Investing.8-1b
+NSPFE.Investing.8-2a
+NSPFE.Investing.8-2b
+NSPFE.Investing.8-2c
+NSPFE.Investing.8-3a
+NSPFE.Investing.8-3b
+NSPFE.Investing.8-4a
+NSPFE.Investing.8-4b
+NSPFE.Investing.8-5a
+NSPFE.Investing.8-5b
+NSPFE.Investing.8-6a
+NSPFE.Investing.8-6b
+NSPFE.Investing.8-7a
+NSPFE.Investing.8-7b
+NSPFE.Investing.8-7c
+NSPFE.Investing.8-7d
+NSPFE.Investing.12-1a
+NSPFE.Investing.12-1b
+NSPFE.Investing.12-1c
+NSPFE.Investing.12-2a
+NSPFE.Investing.12-2b
+NSPFE.Investing.12-2c
+NSPFE.Investing.12-3a
+NSPFE.Investing.12-3b
+NSPFE.Investing.12-3c
+NSPFE.Investing.12-3d
+NSPFE.Investing.12-4a
+NSPFE.Investing.12-4b
+NSPFE.Investing.12-4c
+NSPFE.Investing.12-5a
+NSPFE.Investing.12-5b
+NSPFE.Investing.12-5c
+NSPFE.Investing.12-5d
+NSPFE.Investing.12-6a
+NSPFE.Investing.12-6b
+NSPFE.Investing.12-6c
+NSPFE.Investing.12-6d
+NSPFE.Investing.12-7a
+NSPFE.Investing.12-7b
+NSPFE.Investing.12-7c
+NSPFE.Investing.12-8a
+NSPFE.Investing.12-8b
+NSPFE.Investing.12-8c
+NSPFE.Investing.12-9a
+NSPFE.Investing.12-9b
+NSPFE.Investing.12-10a
+NSPFE.Investing.12-10b
+NSPFE.Investing.12-11a
+NSPFE.Investing.12-11b
+NSPFE.Investing.12-11c
+NSPFE.Investing.12-12a
+NSPFE.Investing.12-12b
+NSPFE.Investing.12-12c
+NSPFE.Investing.12-13a
+NSPFE.Investing.12-13b
+NSPFE.Investing.12-13c
+NSPFE.Investing.12-14a
+NSPFE.Investing.12-14b
+NSPFE.Investing.12-14c
+# section: Managing Credit
+NSPFE.Managing Credit.4-1a
+NSPFE.Managing Credit.4-1b
+NSPFE.Managing Credit.4-2a
+NSPFE.Managing Credit.4-2b
+NSPFE.Managing Credit.4-3a
+NSPFE.Managing Credit.4-3b
+NSPFE.Managing Credit.8-1a
+NSPFE.Managing Credit.8-1b
+NSPFE.Managing Credit.8-1c
+NSPFE.Managing Credit.8-2a
+NSPFE.Managing Credit.8-2b
+NSPFE.Managing Credit.8-2c
+NSPFE.Managing Credit.8-3a
+NSPFE.Managing Credit.8-3b
+NSPFE.Managing Credit.8-4a
+NSPFE.Managing Credit.8-4b
+NSPFE.Managing Credit.8-5a
+NSPFE.Managing Credit.8-5b
+NSPFE.Managing Credit.8-6a
+NSPFE.Managing Credit.8-6b
+NSPFE.Managing Credit.8-6c
+NSPFE.Managing Credit.8-7a
+NSPFE.Managing Credit.8-7b
+NSPFE.Managing Credit.12-1a
+NSPFE.Managing Credit.12-1b
+NSPFE.Managing Credit.12-2a
+NSPFE.Managing Credit.12-2b
+NSPFE.Managing Credit.12-2c
+NSPFE.Managing Credit.12-3a
+NSPFE.Managing Credit.12-3b
+NSPFE.Managing Credit.12-3c
+NSPFE.Managing Credit.12-4a
+NSPFE.Managing Credit.12-4b
+NSPFE.Managing Credit.12-4c
+NSPFE.Managing Credit.12-4d
+NSPFE.Managing Credit.12-5a
+NSPFE.Managing Credit.12-5b
+NSPFE.Managing Credit.12-5c
+NSPFE.Managing Credit.12-5d
+NSPFE.Managing Credit.12-6a
+NSPFE.Managing Credit.12-6b
+NSPFE.Managing Credit.12-6c
+NSPFE.Managing Credit.12-6d
+NSPFE.Managing Credit.12-7a
+NSPFE.Managing Credit.12-7b
+NSPFE.Managing Credit.12-7c
+NSPFE.Managing Credit.12-7d
+NSPFE.Managing Credit.12-8a
+NSPFE.Managing Credit.12-8b
+NSPFE.Managing Credit.12-8c
+NSPFE.Managing Credit.12-9a
+NSPFE.Managing Credit.12-9b
+NSPFE.Managing Credit.12-9c
+NSPFE.Managing Credit.12-10a
+NSPFE.Managing Credit.12-10b
+NSPFE.Managing Credit.12-10c
+NSPFE.Managing Credit.12-10d
+NSPFE.Managing Credit.12-11a
+NSPFE.Managing Credit.12-11b
+NSPFE.Managing Credit.12-11c
+NSPFE.Managing Credit.12-12a
+NSPFE.Managing Credit.12-12b
+NSPFE.Managing Credit.12-12c
+NSPFE.Managing Credit.12-13a
+NSPFE.Managing Credit.12-13b
+NSPFE.Managing Credit.12-13c
+# section: Managing Risk
+NSPFE.Managing Risk.4-1a
+NSPFE.Managing Risk.4-1b
+NSPFE.Managing Risk.4-1c
+NSPFE.Managing Risk.4-1d
+NSPFE.Managing Risk.4-2a
+NSPFE.Managing Risk.4-2b
+NSPFE.Managing Risk.4-3a
+NSPFE.Managing Risk.4-3b
+NSPFE.Managing Risk.4-4a
+NSPFE.Managing Risk.4-4b
+NSPFE.Managing Risk.8-1a
+NSPFE.Managing Risk.8-1b
+NSPFE.Managing Risk.8-2a
+NSPFE.Managing Risk.8-2b
+NSPFE.Managing Risk.8-3a
+NSPFE.Managing Risk.8-3b
+NSPFE.Managing Risk.8-4a
+NSPFE.Managing Risk.8-4b
+NSPFE.Managing Risk.8-5a
+NSPFE.Managing Risk.8-5b
+NSPFE.Managing Risk.8-5c
+NSPFE.Managing Risk.8-6a
+NSPFE.Managing Risk.8-6b
+NSPFE.Managing Risk.8-7a
+NSPFE.Managing Risk.8-7b
+NSPFE.Managing Risk.8-7c
+NSPFE.Managing Risk.12-1a
+NSPFE.Managing Risk.12-1b
+NSPFE.Managing Risk.12-2a
+NSPFE.Managing Risk.12-2b
+NSPFE.Managing Risk.12-3a
+NSPFE.Managing Risk.12-3b
+NSPFE.Managing Risk.12-3c
+NSPFE.Managing Risk.12-4a
+NSPFE.Managing Risk.12-4b
+NSPFE.Managing Risk.12-4c
+NSPFE.Managing Risk.12-5a
+NSPFE.Managing Risk.12-5b
+NSPFE.Managing Risk.12-5c
+NSPFE.Managing Risk.12-6a
+NSPFE.Managing Risk.12-6b
+NSPFE.Managing Risk.12-7a
+NSPFE.Managing Risk.12-7b
+NSPFE.Managing Risk.12-7c
+NSPFE.Managing Risk.12-8a
+NSPFE.Managing Risk.12-8b
+NSPFE.Managing Risk.12-9a
+NSPFE.Managing Risk.12-9b
+NSPFE.Managing Risk.12-10a
+NSPFE.Managing Risk.12-10b
+NSPFE.Managing Risk.12-11a
+NSPFE.Managing Risk.12-11b
+NSPFE.Managing Risk.12-11c
+NSPFE.Managing Risk.12-11d
+NSPFE.Managing Risk.12-12a
+NSPFE.Managing Risk.12-12b
