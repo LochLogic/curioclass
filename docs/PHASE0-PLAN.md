@@ -203,10 +203,69 @@ S:\CurioClass\
 - Phase 3: build, tune, publish
 - Reading Room: public domain story library, plan in docs/LIBRARY-PLAN.md (agreed 2026-10-25; pilot = 10 stories, grades 3-5)
 - Supply Closet: teacher resources (Sub Day packets, Word Wall, Posters and Anchor Charts, Family Game Night, the
-  Map), plan in docs/SUPPLY-CLOSET-PLAN.md (concepts agreed 2026-10-26)
+  Map), plan in docs/SUPPLY-CLOSET-PLAN.md (concepts agreed 2026-10-26); what is left is in the Supply Closet roadmap below
 - Late roadmap (parked 2026-10-26): Worksheet Generator. Click-only practice sheets per module, 3 levels x 2-3 types,
   seed codes, checked answer keys. Design in docs/SUPPLY-CLOSET-PLAN.md; comes after the Supply Closet shelves.
 - Far back of the roadmap (parked 2026-10-25): instrument learning paths. One tool per instrument with about 10 to 12
   levels inside, beginner to early intermediate, on a shared engine (mic pitch detection, Web MIDI, Note Ninja staff).
   Recorder first, then keyboard, ukulele, guitar, voice; band instruments partly (a browser can't see the player's
   hands or hear how they shape the mouthpiece well enough to correct it). Own shelf under Arts and Music.
+
+### Supply Closet roadmap (agreed 2026-10-27)
+
+What is left for the Supply Closet, in order. Nothing here is started. The shelf designs, the review of unmet
+teacher needs and the review items already built are in docs/SUPPLY-CLOSET-PLAN.md.
+
+#### 1. A quality diagram pass on 9-12 Word Wall cards
+
+779 of the 1333 grade 9-12 cards print "Draw it". Unlike K-8, they have **no picture prompt at all**, so each card needs
+a decision first: does a code drawing really help this word? Most 9-12 cards are ELA (210) and social studies (200),
+mostly abstract ideas (theme, fascism, appeasement) where a forced diagram would be weak.
+
+- **Quality bar (Cory, 2026-10-27): good quality only.** A card gets a diagram only when the drawing clearly shows the
+  idea. Anything doubtful stays "Draw it", which is a fine default for older students.
+- **Pilot:** computer science (82 cards: array, binary search, recursion, Big O), CTE (66: finance and business
+  graphs), math and science (10: law of sines, conduction, specific heat). Cory sees contact sheets of the whole pilot
+  before anything ships.
+- **Then, if the pilot holds up:** the diagram-friendly corners of ELA (story structure on a timeline: flashback,
+  foreshadowing, rising action) and social studies (charts and structures: hyperinflation, checks and balances,
+  supply and demand), and the arts and health terms that are really diagrams (rhythm, form, target heart rate).
+- Each picked card gets an `svg:` prompt in its word file and a spec in `diagrams.py`; no new tooling.
+
+#### 2. Anchor charts ride along with each new tool
+
+Today 74 modules have an anchor chart, one per module with a built tool and plan. Rather than writing about 688 charts
+in a separate content push (with no lesson to check them against), **each new tool's build writes its module's chart**,
+the same way Sub Day's `exit.md` became part of the pipeline in Phase B. The bench holds 686 sketched tools, so nearly
+every module gets its chart as its tool is built, and each chart is checked against a real lesson plan.
+
+- **The step:** after `plan.md` (and `exit.md`), write `data/closet/charts/<module-id>.md` if the module has none:
+  pick a layout (steps, parts, compare, cycle, big-idea, list), write the parts in English and Spanish, mark the
+  `[[blank]]` words for the fill-in version. `scripts/check_charts.py` already gates the build, and `build_site.py`
+  already renders every chart file it finds, so no code changes are needed on the closet side.
+- **Pipeline files to change** (same three Sub Day touched): `docs/agents/PLAN.md` (a step after `exit.md`, reported
+  with the plan), `docs/LESSON-PLANS.md` (a short "Anchor chart" section pointing to the chart layouts in docs/SUPPLY-CLOSET-PLAN.md, Phase D) and
+  `scripts/board.py` (a **Chart** column next to **Sub**).
+- **Ownership:** these are tool-workflow files, so the change is a handoff for the tools chat (or made after it
+  finishes a wave), never edited from the closet side while it runs.
+- **Modules with more than one tool:** the first tool built writes the chart; later tools leave it alone unless the
+  chart is missing a big idea their lesson adds.
+- **Not covered:** a module whose tool never leaves the bench gets no chart. If that list is long when the tool waves
+  slow down, a small backfill batch can cover it then.
+
+#### 3. Teacher-guide links, Part 2
+
+Tool pages and lesson plans link back to their module's Word Wall, chart and games (docs/SUPPLY-CLOSET-PLAN.md, "Teacher-guide links"). Same handoff as item 2,
+and it can travel with it.
+
+#### 4. Print the module kit, and Sub Day lite
+
+Review items 5 and 7 in docs/SUPPLY-CLOSET-PLAN.md: one checklist on the module page that prints words, chart, game and Sub Day together, and a
+generic Sub Day for modules without a tool (mini cards for a word sort, the chart and game when they exist, a plan
+around them). Built together, because both gather the same pieces. Item 2 shrinks the need for Sub Day lite over
+time, so it waits until we see how fast charts arrive.
+
+#### Still owed, any time
+
+A real-printer test of every print format, the Spanish native review, family game play-tests, and drafting the Map
+(`docs/MAP-RESEARCH.md`).
