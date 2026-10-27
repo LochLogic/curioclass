@@ -309,7 +309,7 @@ for m in modules.values():
                 shutil.copy2(c['art'], dest / 'art' / c['art'].name)
                 c['src'] = 'art/' + c['art'].name
         render('closet/words.html', m['url'] + 'words/', m=m, cards=cards, subject=subjects[m['subject']],
-               band=check_words.band(m['grade']))
+               band=check_words.band(m['grade']), tools=[t for t in mt if t['built']])
 
 # tools
 render('list.html', '/tools/', title='Ready to use', lede='Every built tool. Each one is a single file that works offline.',
@@ -404,7 +404,8 @@ for gr in GRADES:
     if gs:
         game_sections.append(dict(id=f'grade-{gr}', label=grade_label(gr), games=gs))
 for g in games.values():
-    render('closet/game.html', g['url'], g=g, subject=subjects[g['subject']], subject_es=SUBJECT_ES[g['subject']])
+    render('closet/game.html', g['url'], g=g, subject=subjects[g['subject']], subject_es=SUBJECT_ES[g['subject']],
+           tools=[t for mid in g['module_ids'] for t in by_module[mid] if t['built']])
 render('closet/home.html', '/closet/', shelves=CLOSET, counts=counts)
 for sid, label, what in CLOSET:
     if sid == 'word-wall' and wall:

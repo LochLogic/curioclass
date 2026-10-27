@@ -490,6 +490,10 @@ section.block { padding: 56px 0 8px; }
 
 /* Family Game Night card: one printed page per language (data-lang on .game-page) */
 .game-hint { color: var(--muted); font-size: 15px; margin: 4px 0; max-width: 70ch; }
+.teach-strip { margin: 14px 0 6px; padding: 10px 14px; border-left: 4px solid var(--band, var(--line)); background: var(--card); border-radius: 6px; max-width: 70ch; font-size: 15px; }
+.teach-strip .teach-head { margin: 0 0 4px; font-weight: 700; }
+.teach-strip ul { margin: 0; padding-left: 18px; }
+.teach-strip li { margin: 2px 0; }
 .game-page:not([data-lang="en"]) .es-note { display: block; }
 .game-page[data-lang="en"] .gcard.es, .game-page[data-lang="es"] .gcard.en { display: none; }
 .gcard { background: var(--card); border: 1px solid var(--line); border-top: 10px solid var(--band); border-radius: var(--radius); padding: 22px 26px; margin: 22px 0; max-width: 820px; }

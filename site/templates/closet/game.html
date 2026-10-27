@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% from "macros.html" import crumbs %}
+{% from "closet/_teach.html" import teach_strip %}
 {% macro card(lang) %}
 {% set es = lang == 'es' %}{% set p = 'es_' if es else '' %}
 <article class="gcard {{ lang }}"{% if es %} lang="es"{% endif %}>
@@ -42,6 +43,7 @@
     </form>
     <p class="game-hint">One page. "Both" prints English on the first page and Spanish on the second, so it fits front and back.{% if g.mods %} Goes with {% for m in g.mods %}<a href="{{ m.url }}">{{ m.title }}</a>{{ ', ' if not loop.last }}{% endfor %}.{% endif %}</p>
     <p class="word-note es-note">The Spanish is a first draft. A native speaker has not checked it yet, so read it over before you print.</p>
+    {{ teach_strip(tools) }}
   </div>
   {{ card('en') }}
   {{ card('es') }}

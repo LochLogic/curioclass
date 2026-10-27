@@ -1,0 +1,12 @@
+{# Teacher-guide links for a closet page: each built tool in the module, with its notes, lesson plan and Sub Day packet when they exist. Screen only. #}
+{% macro teach_strip(tools) %}{% if tools %}
+<div class="teach-strip no-print">
+  <p class="teach-head">Teach it with</p>
+  <ul>
+    {% for t in tools %}
+    <li><a href="{{ t.url }}"><b>{{ t.title }}</b></a>:
+      <a href="{{ t.url }}#p-notes">Teacher notes</a>{% if t.plan %} · <a href="{{ t.url }}plan/">Lesson plan</a>{% if t.exit and closet_live %} · <a href="{{ t.url }}sub/">Sub Day</a>{% endif %}{% endif %}</li>
+    {% endfor %}
+  </ul>
+</div>
+{% endif %}{% endmacro %}

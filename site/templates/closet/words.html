@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% from "macros.html" import crumbs %}
+{% from "closet/_teach.html" import teach_strip %}
 {% macro draw(c, big=False) %}{% if c.src %}<img src="{{ c.src }}" alt="">{% else %}<span class="draw-it"><span class="en">Draw it</span><span class="es" lang="es">Dibújalo</span></span>{% endif %}{% endmacro %}
 {% block title %}Word Wall: {{ m.title }}, {{ grade_label(m.grade) | lower }} {{ subject.short | lower }} · Curio Class{% endblock %}
 {% block description %}{{ cards | length }} vocabulary words for {{ m.title | lower }}, in English and Spanish: printable wall cards, mini cards and a student glossary.{% endblock %}
@@ -31,6 +32,7 @@
     <p class="word-hint" data-for="mini">Pick a language, then press <b>Print</b>. Eight cards to a page: cut on the dashed lines for pocket charts, matching games and word sorts.</p>
     <p class="word-hint" data-for="gloss">Pick a language, then press <b>Print</b>. One page per student: they write what each word means in their own words and draw it.</p>
     <p class="word-note es-note">The Spanish is a first draft. A native speaker has not checked it yet, so read it over before you print.</p>
+    {{ teach_strip(tools) }}
   </div>
 
   <section class="fmt fmt-wall">

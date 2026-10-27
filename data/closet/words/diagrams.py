@@ -3345,3 +3345,141 @@ world-languages-k-12-the-five-parameters-of-a-sign/handshape = hand(260, 'fist')
 world-languages-k-12-the-five-parameters-of-a-sign/non-manual-marker = head_outline(280, motion=True)
 # minimal pair: two head outlines with dots at chin and forehead
 world-languages-k-12-the-five-parameters-of-a-sign/minimal-pair = row(head_outline(190, dot='chin'), head_outline(190, dot='forehead'), gap=30)
+
+# ---------- 2026-10-27: the last 176 modules ----------
+# pathway: a dotted zigzag path with a start dot and an end arrow
+arts-3-5-dance-ideas-from-art-and-words/pathway = raw(420, 260, '<path d="M30 220 L130 50 L230 210 L330 50 L380 130" fill="none" stroke="#3a7bd5" stroke-width="12" stroke-dasharray="4 22" stroke-linecap="round"/><circle cx="30" cy="220" r="20" fill="#2f9e5b" stroke="#1f2430" stroke-width="5"/><path d="M362 108 L402 160 L352 158 Z" fill="#e04848" stroke="#1f2430" stroke-width="4" stroke-linejoin="round"/>')
+# level: three steps, low, middle and high
+arts-3-5-dance-ideas-from-art-and-words/level = row(col(star(70, YELLOW), box(w=110, h=60, color=DARK, fill=GREEN, rx=8), gap=8, align='c'), col(star(70, YELLOW), box(w=110, h=150, color=DARK, fill=ORANGE, rx=8), gap=8), col(star(70, YELLOW), box(w=110, h=240, color=DARK, fill=PURPLE, rx=8), gap=8), gap=18, align='b')
+# warm colors: red, orange and yellow swatches
+arts-3-5-mood-and-place-in-art/warm-colors = row(box(w=130, h=200, color=DARK, fill=RED, rx=18), box(w=130, h=200, color=DARK, fill=ORANGE, rx=18), box(w=130, h=200, color=DARK, fill=YELLOW, rx=18), gap=14)
+# cool colors: blue, green and purple swatches
+arts-3-5-mood-and-place-in-art/cool-colors = row(box(w=130, h=200, color=DARK, fill=BLUE, rx=18), box(w=130, h=200, color=DARK, fill=GREEN, rx=18), box(w=130, h=200, color=DARK, fill=PURPLE, rx=18), gap=14)
+# frame: a film strip of five frames, a ball moving a little in each
+arts-3-5-stop-motion-animation/frame = raw(460, 150, '<rect x="0" y="0" width="460" height="150" rx="10" fill="#1f2430"/>' + ''.join(f'<rect x="{12 + i * 34}" y="8" width="18" height="14" rx="3" fill="#fff"/><rect x="{12 + i * 34}" y="128" width="18" height="14" rx="3" fill="#fff"/>' for i in range(14)) + ''.join(f'<rect x="{12 + i * 88}" y="32" width="80" height="86" fill="#fdf0c4"/><circle cx="{30 + i * 88 + i * 9}" cy="{95 - i * 12}" r="13" fill="#e04848" stroke="#1f2430" stroke-width="3"/>' for i in range(5)))
+# storyboard: six numbered boxes in two rows
+arts-3-5-stop-motion-animation/storyboard = grid([box(T(str(i), 40, GRAY), w=120, h=95, color=DARK, fill='#fff', rx=6) for i in range(1, 7)], 3, gap=16)
+# melody: a single line of notes on a staff
+arts-6-8-arranging-a-song/melody = staff([2, 4, 5, 4, 6, 5, 3, 2], size=440)
+# harmony: notes stacked as chords on a staff
+arts-6-8-arranging-a-song/harmony = staff([(0, 2, 4), (1, 3, 5), (2, 4, 6), (0, 2, 4)], size=440)
+# dynamics: a crescendo hairpin opening from thin to wide
+arts-6-8-arranging-a-song/dynamics = raw(440, 200, '<path d="M30 100 L410 30 M30 100 L410 170" fill="none" stroke="#1f2430" stroke-width="12" stroke-linecap="round"/><circle cx="30" cy="100" r="9" fill="#3a7bd5"/>')
+# phrasing: notes on a staff grouped by curved slurs
+arts-6-8-listening-and-reviewing/phrasing = col(raw(440, 50, '<path d="M120 44 Q200 0 270 44" fill="none" stroke="#e04848" stroke-width="7" stroke-linecap="round"/><path d="M300 44 Q350 8 420 44" fill="none" stroke="#e04848" stroke-width="7" stroke-linecap="round"/>'), staff([4, 5, 6, 5, 3, 4, 2], size=440), gap=0)
+# staging: a stage floor plan with two X marks far apart
+arts-6-8-comparing-productions/staging = over(raw(440, 280, '<path d="M20 260 L80 20 H360 L420 260 Z" fill="#efdccb" stroke="#1f2430" stroke-width="6" stroke-linejoin="round"/><path d="M20 260 Q220 290 420 260" fill="none" stroke="#a0673a" stroke-width="6"/>'), row(cross(70, RED), raw(170, 10, ''), cross(70, BLUE), gap=0), dy=10)
+# blocking: a stage floor plan with X marks joined by arrows
+arts-6-8-devising-a-scene/blocking = raw(440, 280, '<path d="M20 260 L80 20 H360 L420 260 Z" fill="#efdccb" stroke="#1f2430" stroke-width="6" stroke-linejoin="round"/><g stroke="#e04848" stroke-width="9" stroke-linecap="round"><path d="M95 195 l30 30 M125 195 l-30 30"/><path d="M205 75 l30 30 M235 75 l-30 30"/><path d="M315 195 l30 30 M345 195 l-30 30"/></g><g fill="none" stroke="#3a7bd5" stroke-width="6" stroke-dasharray="14 10"><path d="M130 190 L200 115"/><path d="M240 115 L310 190"/></g><path d="M208 106 l-18 4 l8 -16 z M318 196 l-2 -18 l14 10 z" fill="#3a7bd5"/>')
+# spacing: four evenly spaced footprints
+arts-6-8-performing-in-different-spaces/spacing = footprints(4, 100)
+# scale: a small gridded sketch, an arrow, a big gridded wall
+arts-6-8-public-art-and-murals/scale = row(grid_shade(3, 3, shaded=0, size=90, cells=[(0, 0), (1, 1), (2, 2)]), arrow(70), grid_shade(3, 3, shaded=0, size=260, cells=[(0, 0), (1, 1), (2, 2)]), gap=18)
+# variable: a box holding the number 0
+computer-science-3-5-plan-it-before-you-code-it/variable = box(T('0', 140), w=220, h=200, color=ORANGE, fill=soft(ORANGE), rx=18)
+# vary: three timer displays showing different times
+computer-science-3-5-why-data-varies/vary = col(digital('12.4'), digital('11.9'), digital('12.7'), gap=14)
+# granularity: a coarse grid beside a fine grid
+computer-science-6-8-data-metadata-and-you/granularity = row(grid_shade(3, 3, size=200, shaded=4), grid_shade(12, 12, size=200, shaded=64), gap=30)
+# contrast: dark text on white beside gray text on gray
+computer-science-6-8-design-for-every-user/contrast = row(box(T('Aa', 90, DARK), w=180, h=180, color=DARK, fill='#fff', rx=16), box(T('Aa', 90, '#a4a8b2'), w=180, h=180, color=DARK, fill='#c4c7cf', rx=16), gap=24)
+# data: a table of sun and cloud days with tally marks
+computer-science-k-2-asking-with-data/data = col(row(sun(100), tally(4, 120), gap=40), row(cloud(110, '#e6e8ee'), tally(2, 120), gap=30), gap=30, align='l')
+# value: a box holding the number 5
+computer-science-k-2-signs-and-changing-values/value = box(T('5', 150), w=220, h=200, color=BLUE, fill=soft(BLUE), rx=18)
+# omission: a sentence strip with a gap marked by three dots
+ela-6-8-commas-dashes-and-ellipses/omission = row(box(w=170, h=80, color=BLUE, fill=soft(BLUE), rx=12), dots(3, cols=3, size=34, color=DARK), box(w=170, h=80, color=BLUE, fill=soft(BLUE), rx=12), gap=18)
+# heading: a page with bold heading bars over text blocks
+ela-6-8-structure-in-informative-writing/heading = page(260, lines=9, bold=(0, 4), indent=(), paras=None)
+# practice: a calendar with a check on every day
+health-pe-3-5-juggling-and-practice-habits/practice = calendar(300, checks=tuple(range(14)), cells=14)
+# progress: three rising steps with a star on top
+health-pe-3-5-juggling-and-practice-habits/progress = over(stairs(3, 320, color=GREEN), star(80), dx=110, dy=-110)
+# common ground: two overlapping circles with the middle shaded
+social-studies-7-panel-of-experts/common-ground = venn(2, shade='both')
+# second: two voting cards, the second one highlighted
+social-studies-8-motion-on-the-floor/second = row(card(T('1', 70), w=130, h=170, color=GRAY), card(T('2', 70), w=130, h=170, color=GREEN, fill=soft(GREEN)), gap=30)
+# pattern: a repeating row of clap, clap, stomp icons
+arts-k-2-making-up-songs/pattern = col(*[row(hand(110), hand(110), footprint(100), gap=14) for _ in range(2)], gap=30)
+# order: three boxes with arrows between them
+arts-k-2-picture-and-sound-stories/order = boxes('1', '2', '3', colors=[GREEN, BLUE, ORANGE], size=60, w=110, h=110, arrows=True)
+# timeline: a horizontal line with four dated dots
+computer-science-3-5-computing-inventions-and-inventors/timeline = timeline(4, 440, labels=['1940', '1970', '1990', '2010'])
+# organize: a table with three columns and tally marks
+computer-science-3-5-fair-surveys/organize = table(cells=[['', 'A', 'B', 'C'], ['1', 'III', 'I', 'IIII'], ['2', 'II', 'IIII', 'I']], size=340)
+# flowchart: a flowchart with an oval, two boxes, a diamond and arrows
+computer-science-3-5-plan-it-before-you-code-it/flowchart = col(box(w=150, h=56, color=BLUE, rx=28), arrow(34, dir='down'), box(w=170, h=56, color=GREEN, rx=8), arrow(34, dir='down'), diamond(150, '?'), arrow(34, dir='down'), box(w=170, h=56, color=GREEN, rx=8), gap=2)
+# loop: a circular arrow around a step box
+computer-science-3-5-plan-it-before-you-code-it/loop = curve_arrow(110, BLUE, start=-70, end=230, inner=box(w=80, h=56, color=ORANGE, rx=8))
+# condition: a diamond with yes and no arrows
+computer-science-3-5-plan-it-before-you-code-it/condition = row(col(check(70), arrow(60, GREEN, dir='left'), gap=4), diamond(220, '?'), col(cross(70), arrow(60, RED), gap=4), gap=6)
+# outlier: a dot plot with one dot far to the right
+computer-science-3-5-why-data-varies/outlier = dotplot([3, 4, 4, 5, 5, 5, 6, 6, 7, 14], size=420, a=0, b=15)
+# relationship: a scatter plot with dots rising left to right
+computer-science-3-5-why-data-varies/relationship = scatter(14, trend=1.0, noise=0.6, size=320, line=True)
+# missing value: a table with one empty cell circled
+computer-science-6-8-cleaning-data-honestly/missing-value = over(table(cells=[['', 'A', 'B', 'C'], ['1', '12', '8', '15'], ['2', '9', '', '11'], ['3', '14', '10', '7']], size=340), raw(80, 80, '<circle cx="40" cy="40" r="34" fill="none" stroke="#e04848" stroke-width="7"/>'), dx=26, dy=22)
+# count: five red cars in a row with tally marks
+computer-science-k-2-asking-with-data/count = col(row(*[car(100) for _ in range(5)], gap=6), tally(5, 170), gap=30)
+# tally: tally marks in groups of five
+computer-science-k-2-asking-with-data/tally = tally(12, 380)
+# steps: three numbered footprints in a row
+computer-science-k-2-fair-rules-for-turns/steps = footprints(3, 100, numbered=True)
+# program: a square drawn by four arrows
+computer-science-k-2-what-the-code-does/program = raw(300, 300, '<g stroke="#3a7bd5" stroke-width="12" stroke-linecap="round" fill="none"><path d="M40 40 H240"/><path d="M260 40 V240"/><path d="M260 260 H60"/><path d="M40 260 V60"/></g><g fill="#3a7bd5"><path d="M262 40 l-30 -16 v32 z"/><path d="M260 262 l-16 -30 h32 z"/><path d="M38 260 l30 -16 v32 z"/><path d="M40 38 l-16 30 h32 z"/></g>')
+# step: one arrow pointing right
+computer-science-k-2-what-the-code-does/step = arrow(300, BLUE, sw=18)
+# rate: a pie chart with a small slice shaded
+cte-6-8-economy-checkup/rate = pie(0.08, 280, ORANGE)
+# compound interest: a bar chart with bars growing faster each year
+cte-6-8-interest-rate-dial/compound-interest = bars([10, 12, 15, 19, 25, 33], size=340, color=GREEN)
+# equilibrium price: two crossing lines on a price graph with the crossing point circled
+cte-6-8-snow-season-prices/equilibrium-price = plot(lambda x: x, lambda x: 8 - x, size=320, xr=(0, 8), yr=(0, 8), points=[(4, 4)])
+# prefix: a word split into a small front block and a big block
+ela-3-5-academic-and-subject-words/prefix = row(box(w=90, h=90, color=ORANGE, fill=soft(ORANGE), rx=10), T('+', 70), box(w=240, h=90, color=BLUE, fill=soft(BLUE), rx=10), gap=10)
+# structure: two boxes with an arrow from problem to solution icons
+ela-3-5-comparing-texts-side-by-side/structure = row(box(warning(110), color=RED, fill=soft(RED)), arrow(80), box(bulb(110), color=GREEN, fill=soft(GREEN)), gap=14)
+# Venn diagram: two overlapping circles
+ela-3-5-comparing-texts-side-by-side/venn-diagram = venn(2)
+# timeline: a horizontal line with four dots and tick marks
+ela-3-5-diagrams-and-how-things-happen/timeline = timeline(4, 440)
+# process: four steps in a circle with arrows
+ela-3-5-diagrams-and-how-things-happen/process = cycle(['1', '2', '3', '4'], size=44)
+# panel: a comic page with three panels in a row
+ela-3-5-pictures-panels-and-performances/panel = row(box(sun(70), w=130, h=150, color=DARK, fill='#fff', rx=4), box(bubble(None, 80), w=130, h=150, color=DARK, fill='#fff', rx=4), box(star(70), w=130, h=150, color=DARK, fill='#fff', rx=4), gap=10)
+# syllable: a word split into four colored blocks
+ela-3-5-readers-theater-and-fluency/syllable = tiles('', '', '', '', colors=[BLUE, ORANGE, GREEN, PURPLE], size=90)
+# comma: a large comma mark
+ela-3-5-revising-and-editing/comma = raw(200, 300, '<circle cx="100" cy="110" r="62" fill="#1f2430"/><path d="M158 120 Q156 225 66 278 L54 260 Q108 214 104 160 Z" fill="#1f2430"/>')
+# dash: a long horizontal punctuation line between two word blocks
+ela-6-8-commas-dashes-and-ellipses/dash = row(box(w=140, h=60, color=BLUE, fill=soft(BLUE), rx=10), raw(110, 20, '<line x1="5" y1="10" x2="105" y2="10" stroke="#1f2430" stroke-width="10" stroke-linecap="round"/>'), box(w=140, h=60, color=BLUE, fill=soft(BLUE), rx=10), gap=12)
+# ellipsis: three dots in a row
+ela-6-8-commas-dashes-and-ellipses/ellipsis = dots(3, cols=3, size=70, color=DARK, gap=40)
+# parenthetical: a sentence bar with a middle part set off by two curved marks
+ela-6-8-commas-dashes-and-ellipses/parenthetical = row(box(w=110, h=60, color=BLUE, fill=soft(BLUE), rx=10), T('(', 90, font="Georgia, serif"), box(w=110, h=60, color=ORANGE, fill=soft(ORANGE), rx=10), T(')', 90, font="Georgia, serif"), box(w=80, h=60, color=BLUE, fill=soft(BLUE), rx=10), gap=6)
+# delineate: an outline with three numbered lines
+ela-6-8-listening-to-speakers-and-discussing/delineate = col(*[row(T(str(i), 54), box(w=260, h=46, color=BLUE, fill=soft(BLUE), rx=8), gap=18) for i in (1, 2, 3)], gap=20)
+# chronological order: numbered boxes 1, 2, 3 joined by arrows
+ela-6-8-narrative-point-of-view-and-structure/chronological-order = boxes('1', '2', '3', size=60, w=100, h=100, arrows=True)
+# logical order: three steps rising left to right
+ela-6-8-presenting-claims-and-findings/logical-order = stairs(3, 340, labels=['1', '2', '3'], color=BLUE)
+# section: a page split into three blocks
+ela-6-8-structure-in-informative-writing/section = page(260, paras=(3, 3, 3), bold=(0, 4, 8))
+# sentence: a word strip starting with a big block and ending with a dot
+ela-k-2-adding-details-and-fixing-sentences/sentence = row(box(w=70, h=90, color=RED, fill=soft(RED), rx=8), box(w=110, h=60, color=BLUE, fill=soft(BLUE), rx=8), box(w=90, h=60, color=BLUE, fill=soft(BLUE), rx=8), dot(30, DARK, fill=DARK), gap=10, align='b')
+# capital: a large capital A beside a small a
+ela-k-2-adding-details-and-fixing-sentences/capital = row(T('A', 260, RED), T('a', 150, GRAY), gap=30, align='b')
+# period: a large black dot
+ela-k-2-adding-details-and-fixing-sentences/period = dot(180, DARK, fill=DARK)
+# complete sentence: a full word strip ending with a dot
+ela-k-2-show-and-tell/complete-sentence = row(box(w=70, h=90, color=RED, fill=soft(RED), rx=8), box(w=100, h=60, color=BLUE, fill=soft(BLUE), rx=8), box(w=80, h=60, color=BLUE, fill=soft(BLUE), rx=8), box(w=100, h=60, color=BLUE, fill=soft(BLUE), rx=8), dot(30, DARK, fill=DARK), gap=8, align='b')
+# sequence: three numbered boxes joined by arrows
+eld-6-12-telling-stories-and-experiences/sequence = boxes('1', '2', '3', colors=[GREEN, BLUE, ORANGE], size=60, w=100, h=100, arrows=True)
+# size: five circles growing from small to large
+health-pe-3-5-worries-and-coping/size = row(*[dot(s, BLUE, fill=soft(BLUE)) for s in (30, 50, 75, 100, 130)], gap=14, align='b')
+# steps: three numbered boxes joined by arrows
+social-studies-1-teddy-bear-makers/steps = row(box(T('1', 50), w=95, h=95, color=GREEN), arrow(50), box(T('2', 50), w=95, h=95, color=BLUE), arrow(50), box(T('3', 50), w=95, h=95, color=ORANGE), gap=8)
+# supply chain: a cocoa pod, a factory and a store joined by arrows
+social-studies-5-cocoa-chain/supply-chain = flow(raw(90, 130, '<ellipse cx="45" cy="65" rx="38" ry="60" fill="#c9852f" stroke="#1f2430" stroke-width="5"/><path d="M45 8 V122 M22 20 Q12 65 22 110 M68 20 Q78 65 68 110" fill="none" stroke="#8a5a1f" stroke-width="4"/>'), raw(130, 120, '<path d="M8 112 V50 L45 70 V50 L82 70 V20 H104 V112 Z" fill="#c4c7cf" stroke="#1f2430" stroke-width="5" stroke-linejoin="round"/><rect x="24" y="82" width="18" height="18" fill="#f5c33b"/><rect x="58" y="82" width="18" height="18" fill="#f5c33b"/>'), house(120, ORANGE), length=50)
+# majority: a pie chart with more than half shaded
+social-studies-8-motion-on-the-floor/majority = pie(0.62, 280, GREEN)

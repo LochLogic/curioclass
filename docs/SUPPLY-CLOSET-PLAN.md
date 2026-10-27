@@ -385,7 +385,7 @@ board.
 
 ---
 
-## Teacher-guide links (planned 2026-10-27, not built)
+## Teacher-guide links (planned 2026-10-27; Part 1 built 2026-10-27)
 
 Should closet items link to each tool's teacher guide? Yes. A teacher holding a word card or an anchor chart is one
 click from the lesson it supports, and the guide already exists for every built tool: the teacher notes (the tool
@@ -396,7 +396,9 @@ What links today: the module page lists lesson plans, the anchor chart names its
 Sub Day links each packet. The Word Wall pages and the Game Night teacher hint do not link to any guide, and no tool
 page links back to the closet.
 
-**Part 1, closet side (ours, safe to build any time):**
+**Part 1, closet side (built 2026-10-27):** a "Teach it with" box (`site/templates/closet/_teach.html`) on 76 module
+word pages, 74 anchor charts and 14 Game Night pages. Notes link to the tool page's notes tab (`#p-notes`).
+
 
 - One macro, `teach_strip(tools)`, in a closet template file: for each built tool of the module, its title, then
   "Teacher notes · Lesson plan · Sub Day" (each shown only when it exists). Screen only (`no-print`), so printed
@@ -416,6 +418,33 @@ page links back to the closet.
 
 Done when: every closet page for a module with a built tool links to that tool's notes, plan and Sub Day, and (after
 Part 2) every tool page links back to its module's closet items.
+
+---
+
+## Review: unmet teacher needs (2026-10-27)
+
+A pass over the four shelves asking "what does a teacher or family still have to do by hand?" Numbers are from the
+2026-10-27 build. Ranked by value for effort; nothing here is started.
+
+**Coverage today.** Word Wall covers all 762 modules (4413 cards). Anchor charts cover 74 modules, Game Night 104
+games, Sub Day 76 packets: all three follow the built tools, so a module without a tool gets words and nothing else.
+1411 cards still print "Draw it" (779 of them in 9-12), waiting for the GPU or for more diagrams.
+
+| # | Need | What a teacher does today | Proposal | Effort |
+|---|---|---|---|---|
+| 1 | A quick vocabulary check | Writes a quiz by hand from the cards | A fourth Word Wall format, "Word check": match words to meanings, plus fill the blank from each example sentence, answer key on page 2, English or Spanish. Built from card data, no new content. A first slice of the parked Worksheet Generator | Small |
+| 2 | Find closet items by search | Search finds tools and modules, not word pages, charts or games (0 closet entries in `search-index.json`) | Add word pages, charts, posters and games to the search index, tagged by shelf | Small |
+| 3 | Send vocabulary home | Copies words into a newsletter | A take-home half sheet per module: the words with short meanings in English and Spanish, and one "ask your child" line. Uses card data | Small |
+| 4 | Use the words in other apps | Retypes them into Quizlet, Gimkit or flashcard apps | A "Download words (CSV)" link on each word page: word, definition, example, and the Spanish columns | Tiny |
+| 5 | Prep a whole module at once | Opens and prints three or four pages | A "Print the module kit" list on the module page: words, chart, game, Sub Day, each a checkbox, printed in one go | Medium |
+| 6 | Pictures on 9-12 cards | Leaves "Draw it" boxes (fine for older students, thin for ELD) | Another diagram pass on 9-12 cards (math, science and CS terms suit code drawings); the rest wait for the GPU | Medium |
+| 7 | A Sub Day for modules without a tool | Writes their own | "Sub Day lite": words (mini cards for a sort), the chart if any, a game if any, and a generic plan around them | Medium |
+| 8 | Charts for every module | Makes their own | Anchor charts for modules without tools, starting where words already carry the big idea. Content work, one subject at a time | Large |
+
+Still open from earlier phases: a real-printer test, Spanish native review, family game play-tests, Part 2 of the
+teacher-guide links (waits for the tools chat), and drafting the Map (`docs/MAP-RESEARCH.md`).
+
+Suggested order: 4, 2, 1, 3 (all small and data-only), then 6, then 5 and 7 together, then 8.
 
 ---
 

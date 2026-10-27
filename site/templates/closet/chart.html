@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% from "macros.html" import crumbs %}
+{% from "closet/_teach.html" import teach_strip %}
 {% block title %}{{ 'Poster' if c.kind == 'poster' else 'Anchor chart' }}: {{ c.title[0] }} · Curio Class{% endblock %}
 {% block description %}{% if c.kind == 'poster' %}A free printable classroom poster: {{ c['for'][0] }}{% else %}A free printable anchor chart for {{ m.title | lower }}, {{ grade_label(m.grade) | lower }}{% endif %}. Finished or fill-in, in English or Spanish, on one page or tiled big.{% endblock %}
 {% block main %}
@@ -13,8 +14,9 @@
     <div class="page-head">
       <p class="eyebrow">{% if c.kind == 'poster' %}Poster · {{ band_label }}{% else %}Anchor chart · {{ grade_label(m.grade) }} · {{ subject.short }}{% endif %}</p>
       <h1>{{ c.title[0] }}</h1>
-      <p>{% if c.kind == 'poster' %}{{ c['for'][0] }}{% else %}The big idea of <a href="{{ m.url }}">{{ m.title }}</a> on one page.{% if tools %} It goes with {% for t in tools %}<a href="{{ t.url }}">{{ t.title }}</a>{% if t.plan %} (<a href="{{ t.url }}plan/">lesson plan</a>){% endif %}{{ ', ' if not loop.last }}{% endfor %}.{% endif %}{% endif %}</p>
+      <p>{% if c.kind == 'poster' %}{{ c['for'][0] }}{% else %}The big idea of <a href="{{ m.url }}">{{ m.title }}</a> on one page.{% endif %}</p>
     </div>
+    {% if c.kind != 'poster' %}{{ teach_strip(tools) }}{% endif %}
     <form class="word-controls" onsubmit="return false">
       {% if c.layout != 'grid' %}
       <fieldset>
