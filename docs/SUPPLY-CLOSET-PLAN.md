@@ -439,7 +439,7 @@ games, Sub Day 76 packets: all three follow the built tools, so a module without
 | 5 | Prep a whole module at once | Opens and prints three or four pages | A "Print the module kit" list on the module page: words, chart, game, Sub Day, each a checkbox, printed in one go | Medium |
 | 6 | Pictures on 9-12 cards | Leaves "Draw it" boxes (fine for older students, thin for ELD) | Another diagram pass on 9-12 cards (math, science and CS terms suit code drawings); the rest wait for the GPU | Medium |
 | 7 | A Sub Day for modules without a tool | Writes their own | "Sub Day lite": words (mini cards for a sort), the chart if any, a game if any, and a generic plan around them | Medium |
-| 8 | Charts for every module | Makes their own | Anchor charts for modules without tools, starting where words already carry the big idea. Content work, one subject at a time | Large |
+| 8 | Charts for every module | Makes their own | Anchor charts for modules without tools. Now planned as a step in the tool build (Roadmap, item 2) | Large |
 
 Still open from earlier phases: a real-printer test, Spanish native review, family game play-tests, Part 2 of the
 teacher-guide links (waits for the tools chat), and drafting the Map (`docs/MAP-RESEARCH.md`).
@@ -450,6 +450,66 @@ Suggested order: 4, 2, 1, 3 (all small and data-only), then 6, then 5 and 7 toge
 key on page 2; Spanish fill-in uses a stem match and skips sentences where the word changes form too much), 2 (762 word
 pages, 74 charts, 48 posters and 104 games in `search-index.json`), 3 (Take home: one page, words with pictures and
 meanings, a five-minute practice idea) and 4 (`<module>-words.csv` on every word page, UTF-8 with BOM for Excel).
+
+---
+
+## Roadmap (agreed 2026-10-27)
+
+What is left for the closet after the review items 1 to 4 shipped, in order. Nothing here is started.
+
+### 1. A quality diagram pass on 9-12 Word Wall cards
+
+779 of the 1333 grade 9-12 cards print "Draw it". Unlike K-8, they have **no picture prompt at all**, so each card needs
+a decision first: does a code drawing really help this word? Most 9-12 cards are ELA (210) and social studies (200),
+mostly abstract ideas (theme, fascism, appeasement) where a forced diagram would be weak.
+
+- **Quality bar (Cory, 2026-10-27): good quality only.** A card gets a diagram only when the drawing clearly shows the
+  idea. Anything doubtful stays "Draw it", which is a fine default for older students.
+- **Pilot:** computer science (82 cards: array, binary search, recursion, Big O), CTE (66: finance and business
+  graphs), math and science (10: law of sines, conduction, specific heat). Cory sees contact sheets of the whole pilot
+  before anything ships.
+- **Then, if the pilot holds up:** the diagram-friendly corners of ELA (story structure on a timeline: flashback,
+  foreshadowing, rising action) and social studies (charts and structures: hyperinflation, checks and balances,
+  supply and demand), and the arts and health terms that are really diagrams (rhythm, form, target heart rate).
+- Each picked card gets an `svg:` prompt in its word file and a spec in `diagrams.py`; no new tooling.
+
+### 2. Anchor charts ride along with each new tool
+
+Today 74 modules have an anchor chart, one per module with a built tool and plan. Rather than writing about 688 charts
+in a separate content push (with no lesson to check them against), **each new tool's build writes its module's chart**,
+the same way Sub Day's `exit.md` became part of the pipeline in Phase B. The bench holds 686 sketched tools, so nearly
+every module gets its chart as its tool is built, and each chart is checked against a real lesson plan.
+
+- **The step:** after `plan.md` (and `exit.md`), write `data/closet/charts/<module-id>.md` if the module has none:
+  pick a layout (steps, parts, compare, cycle, big-idea, list), write the parts in English and Spanish, mark the
+  `[[blank]]` words for the fill-in version. `scripts/check_charts.py` already gates the build, and `build_site.py`
+  already renders every chart file it finds, so no code changes are needed on the closet side.
+- **Pipeline files to change** (same three Sub Day touched): `docs/agents/PLAN.md` (a step after `exit.md`, reported
+  with the plan), `docs/LESSON-PLANS.md` (a short "Anchor chart" section pointing to Phase D's layouts) and
+  `scripts/board.py` (a **Chart** column next to **Sub**).
+- **Ownership:** these are tool-workflow files, so the change is a handoff for the tools chat (or made after it
+  finishes a wave), never edited from the closet side while it runs.
+- **Modules with more than one tool:** the first tool built writes the chart; later tools leave it alone unless the
+  chart is missing a big idea their lesson adds.
+- **Not covered:** a module whose tool never leaves the bench gets no chart. If that list is long when the tool waves
+  slow down, a small backfill batch can cover it then.
+
+### 3. Teacher-guide links, Part 2
+
+Tool pages and lesson plans link back to their module's Word Wall, chart and games (see above). Same handoff as item 2,
+and it can travel with it.
+
+### 4. Print the module kit, and Sub Day lite
+
+Review items 5 and 7: one checklist on the module page that prints words, chart, game and Sub Day together, and a
+generic Sub Day for modules without a tool (mini cards for a word sort, the chart and game when they exist, a plan
+around them). Built together, because both gather the same pieces. Item 2 shrinks the need for Sub Day lite over
+time, so it waits until we see how fast charts arrive.
+
+### Still owed, any time
+
+A real-printer test of every print format, the Spanish native review, family game play-tests, and drafting the Map
+(`docs/MAP-RESEARCH.md`).
 
 ---
 
@@ -485,7 +545,7 @@ comes:
 ## Order and dependencies
 
 ```
-A Foundation ──> B Sub Day ──> (ships with every new tool from here on)
+A Foundation ──> B Sub Day ──> (ships with every new tool from here on; so will its anchor chart, Roadmap 2)
             ├──> C Word Wall ──┐
             ├──> D Charts ─────┼──> F The Map ──> Late: Worksheet Generator
             └──> E Game Night ─┘
