@@ -26,3 +26,8 @@ is park, pumpkins and snow.
 - code-tracer: Trace opens first; quiet first-try tally, no stars; progress not saved.
 - game-remix: typed title and remixer name kept as specced (limited characters, nickname default, "first name or a
   nickname" note); print card names the tool only; no QR code for now.
+
+## Progress
+
+- robot-dance: built; verify PASS WITH FIXES (4 should-fix, 10 nice); fix round 1; re-verify PASS WITH FIXES (1 small); fix round 2; re-verify 2 PASS WITH FIXES (one phone edge: ran out at step 5 hid the "?" cell), fixed by the integrator (second strip row stays while the step or bug is in it) and checked. Line 25 now follows 24 only; spec updated. Plan passes check_plans. Live 2026-10-26.
+  - Follow-up: no round picker and nothing saved, so a class stopping at round 5 replays 1-5 to reach 7 and 8 (plan puts 7 and 8 in the stretch). A 60 px round chooser is a layout change at every tier; left for a later pass.

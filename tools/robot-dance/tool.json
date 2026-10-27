@@ -1,0 +1,24 @@
+{
+  "id": "robot-dance",
+  "status": "beta",
+  "hook": "Bolt the robot dances exactly what the picture cards say. Make a dance card by card, then play the Fix-It Show: watch Dot do the real dance, see Bolt trip on the wrong card, and fix the bug together.",
+  "outcome": "Follow and build a sequence of steps in order, and find and fix the one wrong step (a bug) in a short algorithm",
+  "driver": "teacher",
+  "minutes": "10-20",
+  "modes": [
+    "Dance Floor",
+    "Fix-It Show"
+  ],
+  "grades_label": "Kindergarten",
+  "sources": [
+    "CSTA K-12 Computer Science Standards, 2026 PK-12 identifiers EK-ALG-PS-01, EK-PRO-PD-04, EK-PRO-TR-07: https://csteachers.org/k12standards/",
+    "CSTA K-12 Computer Science Standards (2017), 1A-AP-08, 1A-AP-10, 1A-AP-14: https://csteachers.org/k12standards/",
+    "Code.org CS Fundamentals glossary (algorithm, bug, debugging): https://code.org/curriculum/docs/k-5/glossary",
+    "\"A computer does exactly what the instructions say\": Code.org unplugged lesson \"My Robotic Friends\": https://code.org/curriculum/unplugged",
+    "Move set and Fix-It rounds are original to Curio Class",
+    "Robots, poses, cards, stage and confetti drawn in code; sounds generated in the browser",
+    "Narration generated with Qwen3-TTS (Apache 2.0), cloning a Google Gemini text-to-speech voice"
+  ],
+  "third_party": [],
+  "updated": "2026-10-26"
+}

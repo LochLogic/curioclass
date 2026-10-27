@@ -30,7 +30,7 @@ Stage (both modes), drawn in code, laid out per size (no fixed-design scaling):
 - When a card is selected: it lifts 12 px with a thick outline, and three round 60 px buttons appear under the strip: "Move earlier" (left arrow), "Take away" (trash can), "Move later" (right arrow).
 
 Panel (both modes):
-- `#hint`: one short line (always one of the fixed voice lines below).
+- `#hint`: one short line (always one of the fixed voice lines below; during the finale it shows line 33).
 - Move tray: 8 move buttons in a 2 x 4 grid (4 x 2 in the wide-short layout), each at least 72 px tall, with the move icon (same mini Bolt pose as the card) and the move word.
 - Big buttons: "Go!" (play triangle, `.big-btn.gold`), "Stop" (square, shown in place of Go while dancing), "Speed" toggle (turtle = Slow, rabbit = Quick; default turtle).
 - Dance Floor only: "Clear" (broom icon).
@@ -154,7 +154,7 @@ Trips and wins:
 Move names (tray taps and previews):
 35. "Clap!" 36. "Jump!" 37. "Spin!" 38. "Wave!" 39. "Hands up!" 40. "Touch your toes!" 41. "Wiggle!" 42. "Stomp!"
 
-Which line when: Dance Floor entry queues 1 then 2. Fix-It entry queues 3 then the round line (14 to 21) then the team line (22/23, Teams on). After Watch Dot ends: 5. Trip: 24 (or 26 or 27) then 25 (not after 26). Second trip in the same round: the round's fix hint (rounds 1-4: 6; 5-6: 7; 7: 9; 8: 8). Win: 28, then 29 (first win only), then 30/31 or 32. Finale: 33 then 34 (Teams on). Read speaks the current `#hint` line (always one of 2 to 13 or 24 to 28). The finale has no team winner line on purpose: the show celebrates both.
+Which line when: Dance Floor entry queues 1 then 2. Fix-It entry queues 3 then the round line (14 to 21) then the team line (22/23, Teams on). After Watch Dot ends: 5. Trip: 24 then 25, or 26 or 27 alone. Second trip in the same round: the round's fix hint (rounds 1-4: 6; 5-6: 7; 7: 9; 8: 8) after a wrong move, 26 again after running out, 8 after an extra step. Win: 28, then 29 (first win only), then 30/31 or 32. Finale: 33 then 34 (Teams on). Read speaks the current `#hint` line (always one of 2 to 13 or 24 to 28, and 33 in the finale). The finale has no team winner line on purpose: the show celebrates both.
 
 ## Family engine
 none. The robot family (loop-garden, bee-bot-garden, traffic-light-coder) has no `docs/families/robot.md` or `kit/robot.js` yet, and loop-garden carries its own code. Do not write a family engine for this tool; keep the card strip and step runner inside `src.html`, written cleanly (a `program` array of move ids, a `run(program, target)` step loop with an onStep callback) so a later family engine can lift it.

@@ -1,0 +1,1725 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Robot Dance · Step by step, card by card · Curio Class</title>
+<meta name="description" content="Bolt the robot dances exactly what the picture cards say. Make a dance card by card, then play the Fix-It Show: watch Dot, find the wrong card (the bug) and fix it together. Kindergarten computer science. Works offline.">
+<!--
+Robot Dance (Curio Class)
+Kindergarten, computer science, module Step-by-Step (Algorithms and Programming). CSTA K-12 Computer Science Standards,
+2026 identifiers EK-ALG-PS-01, EK-PRO-PD-04, EK-PRO-TR-07 (2017 crosswalk: 1A-AP-08, 1A-AP-10, 1A-AP-14).
+Teacher led on a projector or smartboard: the class calls out moves, points, votes and dances along standing up.
+Dance Floor: tap moves to lay down picture cards, press Go, and Bolt dances every card in order.
+Fix-It Show: 8 rounds. Dot knows the real dance; Bolt dances its own cards beside Dot and trips on the first step that
+does not match. The class finds the wrong card (the bug) and fixes it (debugging), then teams earn stars.
+Words: Code.org CS Fundamentals glossary (algorithm, bug, debugging); "a computer does exactly what the instructions
+say" from the Code.org unplugged lesson "My Robotic Friends". Moves and rounds are original to Curio Class.
+The card strip and step runner (program array of move ids, run(program, target, onStep)) are kept self contained so a
+later robot family engine can lift them.
+Everything is drawn in code; sounds are made in the browser. One file, no network requests.
+Content CC BY 4.0, code MIT. curioclass.org
+-->
+<link rel="stylesheet" href="kit:curio">
+<style>
+:root{
+  --paper:#fbf6fb;--ink:#2a1830;--muted:#6a5670;--line:#ead9e8;--brand:#b0206a;--focus:#2f5bd3;--gold:#ffd23f;
+  --btn:#8a1653;--btn-line:#e58ab8;--head-ink:#fff;--panel:#fffafd;--navy:#1d2346;--outl:#132036;
+}
+/* Page layouts, picked in script (relayout()), as in collision-lab:
+   wide    (1000 px or wider and 700 px or taller): stage left, 360 px panel right, card strip under the stage;
+           under 900 px tall ("short") the buttons come before the move tray.
+   compact (a short landscape box such as the 16:10 preview, 680x425 to 1000x625): a 250 px icon panel beside the
+           stage, buttons first, the card strip across the whole width so eight cards stay at least 64 px wide.
+   stack   (narrow or portrait): stage, then the strip, then the move tray with Go beside it; the page scrolls.
+   The stage SVG is drawn at its real pixel size and laid out again for every size (no fixed-design scaling). */
+:focus-visible{outline:4px solid var(--focus);outline-offset:3px;box-shadow:0 0 0 3px #fff}
+body{height:100%;overflow:hidden}
+body.stack{height:auto;overflow:auto}
+header{gap:10px}
+.i{width:26px;height:26px;flex:none;display:block}
+.seg button{display:inline-flex;align-items:center;gap:8px;min-height:60px;padding:0 18px}
+.seg button:disabled{opacity:.55;cursor:default}
+.icon-btn{min-height:60px}
+main{grid-template-columns:minmax(0,1fr) 360px;grid-template-rows:minmax(0,1fr) auto;grid-template-areas:"stage panel" "apron panel";min-height:0;overflow:hidden}
+.stage{grid-area:stage;min-height:0;background:var(--navy)}
+#sv{position:absolute;left:0;top:0;display:block}
+.panel{grid-area:panel;background:var(--panel);gap:10px;padding:12px 14px}
+.apron{grid-area:apron;position:relative;background:linear-gradient(#232a57,#151a37);border-top:4px solid #3c4486;
+  padding:var(--apt,30px) 12px 10px;min-width:0}
+body.compact main{grid-template-columns:minmax(0,1fr) 250px;grid-template-areas:"stage panel" "apron apron"}
+@media (min-width:900px){body.compact main{grid-template-columns:minmax(0,1fr) 290px}}
+body.stack main{grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto auto;grid-template-areas:"stage" "apron" "panel";overflow:visible}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* panel */
+.hint{margin:0;min-height:2.9em}
+.tray{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;border-radius:16px;outline:3px solid transparent;outline-offset:4px;transition:outline-color .2s}
+.tray.pulse{outline-color:var(--brand);animation:pulse .7s ease}
+@keyframes pulse{40%{transform:scale(1.03)}}
+.mv{position:relative;display:flex;align-items:center;gap:8px;min-height:76px;border:2px solid var(--line);border-bottom:7px solid var(--c);
+  border-radius:14px;background:#fff;padding:4px 30px 4px 6px;font:700 17px/1.1 'Trebuchet MS','Segoe UI',sans-serif;color:var(--ink);text-align:left;
+  box-shadow:0 3px 0 #0000000f}
+.mv .ico{width:56px;height:64px;flex:none}
+.mv .chip{position:absolute;right:5px;top:5px;width:22px;height:22px;border-radius:6px;background:var(--c);color:var(--gi);padding:2px}
+.mv .chip svg{width:18px;height:18px;display:block}
+.mv:disabled,.pbtn:disabled{opacity:.45;cursor:default}
+.mv:not(:disabled):hover{background:#fff4fa}
+.go-row{display:flex;gap:8px}
+#go{flex:1 1 auto;display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:68px;font-size:26px;background:var(--gold);color:var(--ink)}
+#go .i{width:30px;height:30px}
+#go.stop{background:#fff;color:var(--ink);border:3px solid var(--ink)}
+.pbtn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:64px;min-width:64px;border:2px solid #d9c3d6;background:#fff;
+  border-radius:16px;font:700 16px/1.1 'Trebuchet MS','Segoe UI',sans-serif;color:var(--ink);padding:4px 10px;box-shadow:0 4px 0 #0000001a;text-align:center}
+.pbtn .i{color:var(--brand)}
+.fx-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.fx-row .pbtn{flex-direction:column;gap:3px;min-height:76px;font-size:15px;padding:4px 2px}
+#next.ready{background:#ffe6f2;border-color:var(--brand);box-shadow:0 0 0 4px #b0206a40,0 0 16px #b0206a66}
+.rounds{display:flex;gap:7px;justify-content:center;align-items:center;min-height:26px}
+.rounds i{width:18px;height:18px;border-radius:50%;border:3px solid var(--brand);background:#fff;flex:none}
+.rounds i.done{background:var(--brand)}
+.rounds i.cur{width:24px;height:24px;box-shadow:0 0 0 3px #ffd23f}
+.teams{display:flex;gap:8px;align-items:center}
+#teams{flex-direction:column;gap:2px;font-size:14px;min-width:72px}
+#teams[aria-pressed="false"]{background:#f1e9f0;color:var(--muted)}
+#teams[aria-pressed="false"] .i{color:var(--muted)}
+.badge{flex:1 1 0;display:flex;align-items:center;justify-content:center;gap:6px;min-height:60px;padding:4px 8px;border-radius:999px;border:3px solid var(--line);
+  background:#fff;font:800 28px 'Trebuchet MS','Segoe UI',sans-serif;color:var(--ink)}
+.badge .i{width:32px;height:32px}
+.badge.star .i{color:#d99a00}
+.badge.moon .i{color:#4a5bd0}
+.badge.on{border-color:#e0a800;box-shadow:0 0 0 4px #ffd23f99,0 0 18px #ffd23f}
+.badge[hidden]{display:none}
+
+/* the card strip */
+.apron.flash{border-top-color:var(--gold);box-shadow:inset 0 0 0 4px var(--gold)}
+#apron.rows2 #strip.one-row .cell:nth-child(n+6){display:none}
+#strip{display:grid;grid-template-columns:repeat(var(--cols,8),var(--cw,100px));column-gap:var(--cgap,10px);row-gap:var(--rgap,0px);justify-content:center;position:relative}
+.cell{position:relative;width:var(--cw);height:var(--ch);border-radius:14px}
+.cell.empty{border:3px dashed #7782c4;background:#ffffff0a}
+.card{position:absolute;inset:0;width:100%;height:100%;border:3px solid var(--outl);border-radius:14px;background:#fff;padding:0;overflow:visible;
+  transition:transform .15s ease,box-shadow .15s;color:var(--ink)}
+.card .band{position:absolute;left:0;right:0;top:0;height:18%;background:var(--c);border-radius:10px 10px 0 0;display:flex;justify-content:flex-end;align-items:center;padding-right:5%}
+.card .band svg{height:78%;width:auto;aspect-ratio:1;color:var(--gi);display:block}
+.card .num{position:absolute;left:-9px;top:-11px;width:var(--nd);height:var(--nd);border-radius:50%;background:#fff;border:3px solid var(--outl);
+  font:800 calc(var(--nd)*.58)/1 'Trebuchet MS','Segoe UI',sans-serif;display:flex;align-items:center;justify-content:center;color:var(--ink)}
+.card .pose{position:absolute;left:4%;width:92%;top:20%;height:58%;display:block}
+.card .w{position:absolute;left:2px;right:2px;bottom:3%;font:700 var(--wf)/1.02 'Trebuchet MS','Segoe UI',sans-serif;text-align:center;color:var(--ink)}
+.card[aria-pressed="true"]{transform:translateY(-12px);box-shadow:0 0 0 6px var(--gold),0 0 0 9px var(--outl)}
+.card.on{box-shadow:0 0 0 4px #fff,0 0 24px 10px var(--gold)}
+.card:disabled{cursor:default}
+.cell .bugb{display:none;position:absolute;left:50%;transform:translateX(-50%);top:calc(var(--nd) * -.6);width:var(--nd);height:var(--nd);border-radius:50%;background:#d6203a;color:#fff;border:3px solid #fff;
+  font:900 calc(var(--nd)*.7)/1 'Trebuchet MS',sans-serif;align-items:center;justify-content:center;z-index:2;box-shadow:0 2px 6px #0006}
+.cell.bug .bugb{display:flex}
+.cell.bug .card{animation:wob .32s ease-in-out 3}
+@keyframes wob{25%{rotate:-6deg}75%{rotate:6deg}}
+.card.flip{animation:flip .36s ease-out}
+@keyframes flip{0%{scale:0 1}100%{scale:1 1}}
+#ptr{position:absolute;width:34px;height:var(--ptrh,18px);left:0;top:0;pointer-events:none;transition:left .2s ease;filter:drop-shadow(0 0 6px var(--gold))}
+#ptr svg{width:100%;height:100%;display:block}
+.cbtns{display:flex;gap:16px;justify-content:flex-start;height:72px;align-items:center;margin-top:8px;position:relative}
+.cbtns .in{display:flex;gap:16px;position:relative;transition:left .25s ease}
+.cbtns button{width:60px;height:60px;border-radius:50%;background:#fff;border:3px solid var(--outl);padding:0;display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 0 #0005;color:var(--ink)}
+.cbtns button .i{width:30px;height:30px}
+#cDel{color:#c0182f}
+.cbtns button:disabled{opacity:.4;cursor:default}
+.cbtns.off .in{visibility:hidden}
+
+/* the stage overlays; in compact and stack the hint is a caption at the top of the stage */
+.stage .hint{position:absolute;left:10px;right:10px;top:22px;z-index:2;margin:0;min-height:0;padding:4px 10px;border-radius:10px;background:#0b0e28d9;
+  color:#fff;font-size:15px;line-height:1.3;text-align:center}
+body.compact .stage .hint{font-size:12.5px;padding:3px 8px}
+.finale{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:flex;flex-wrap:wrap;justify-content:center;gap:14px 22px;align-items:center;background:#fffaf2;border:4px solid var(--gold);
+  border-radius:24px;padding:8px 14px;box-shadow:0 8px 30px #0008;z-index:3;max-width:calc(100% - 16px)}
+.fin-teams{display:flex;gap:10px}
+.fbadge{display:flex;align-items:center;gap:6px;font:900 44px/1 'Trebuchet MS','Segoe UI',sans-serif;color:var(--ink)}
+.fbadge .i{width:46px;height:46px}
+body.wide .finale{padding:16px 28px;border-width:6px}
+body.wide .fbadge{font-size:72px}
+body.wide .fbadge .i{width:74px;height:74px}
+body.wide .fin-all .i{width:44px;height:44px}
+body.stage-fin .stage .hint{display:none}
+body.stage-fin #strip,body.stage-fin #cbtns{visibility:hidden}
+.fbadge.star .i{color:#d99a00}
+.fbadge.moon .i{color:#4a5bd0}
+.fin-all{display:flex;gap:2px;color:#d99a00}
+.fin-all .i{width:30px;height:30px}
+#again{display:inline-flex;align-items:center;gap:8px;min-height:64px;background:var(--gold);color:var(--ink);white-space:nowrap}
+
+/* short wide boxes (1280x720, 1366x768): the tray goes under the buttons, four across */
+body.short .tray{grid-template-columns:repeat(4,minmax(0,1fr))}
+body.wide.short .mv{flex-direction:column;gap:0;justify-content:center;text-align:center;min-height:86px;padding:4px 2px 2px;font-size:14px}
+body.wide.short .mv .ico{width:44px;height:50px}
+body.wide.short .mv .chip{width:18px;height:18px;right:3px;top:3px;padding:1px}
+body.wide.short .mv .chip svg{width:16px;height:16px}
+body.wide.short .hint{min-height:2.6em}
+
+/* tight: a wide screen in a short window (1366x657, 1280x600) keeps 60 px targets */
+body.tight .panel{gap:8px;padding:8px 12px}
+body.tight .hint{font-size:15px;min-height:0}
+body.tight #go,body.tight .go-row .pbtn{min-height:64px}
+body.tight.wide.short .mv{min-height:72px}
+body.tight.wide.short .mv .ico{width:38px;height:44px}
+body.tight #teams,body.tight .badge{min-height:60px}
+body.tight .rounds{min-height:20px}
+body.tight .apron{padding-bottom:8px}
+body.tight .finale{flex-wrap:nowrap;padding:8px 18px}
+body.tight .fbadge{font-size:52px}
+body.tight .fbadge .i{width:54px;height:54px}
+
+/* compact: the 16:10 preview on the tool page */
+body.compact header{padding:4px 8px;gap:5px;flex-wrap:nowrap;min-width:0}
+body.compact h1{font-size:17px;white-space:nowrap;min-width:0;overflow:hidden;text-overflow:ellipsis}
+body.compact h1 small{display:none}
+body.compact .seg{flex:none}
+body.compact .seg button,body.compact .icon-btn{min-height:44px;padding:0 9px;font-size:13.5px;white-space:nowrap;gap:5px}
+body.compact .seg .i{width:20px;height:20px}
+body.compact .icon-btn{flex:none}
+body.compact .panel{padding:6px 8px;gap:5px;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));align-content:start}
+body.compact .go-row,body.compact .fx-row{display:contents}
+body.compact #tray,body.compact #rounds,body.compact #teamsBox{grid-column:1/-1}
+body.compact[data-mode=df] #go{grid-column:span 3}
+body.compact[data-mode=fx] #go .w{display:none}
+body.compact .tray{gap:4px}
+body.compact .mv{min-height:52px;padding:2px;justify-content:center;border-bottom-width:5px;border-radius:10px}
+body.compact .mv .w,body.compact .mv .chip{display:none}
+body.compact .mv .ico{width:34px;height:40px}
+body.compact .go-row{gap:5px}
+body.compact #go{min-height:46px;font-size:19px;border-radius:12px;padding:0 4px;min-width:0}
+body.compact #go .i{width:22px;height:22px}
+body.compact .pbtn{min-height:46px;min-width:0;border-radius:12px;padding:2px}
+body.compact .pbtn .w{display:none}
+body.compact .fx-row .pbtn{min-height:46px}
+body.compact #teams{min-width:52px;min-height:44px}
+body.compact .teams{gap:5px}
+body.compact .badge{min-height:40px;font-size:20px;border-width:2px}
+body.compact .badge .i{width:24px;height:24px}
+body.compact .rounds{min-height:18px;gap:5px}
+body.compact .rounds i{width:13px;height:13px;border-width:2px}
+body.compact .rounds i.cur{width:17px;height:17px}
+body.compact .apron{padding:var(--apt,24px) 8px 8px}
+body.compact .cbtns,body.stack .cbtns,body.tight .cbtns{position:absolute;left:0;right:0;bottom:calc(100% - 14px);height:auto;margin:0;pointer-events:none;z-index:3}
+body.compact .cbtns .in,body.stack .cbtns .in,body.tight .cbtns .in{pointer-events:auto;gap:12px}
+body.compact .cbtns button{width:52px;height:52px}
+body.compact .finale,body.stack .finale{flex-wrap:nowrap;padding:6px 10px;gap:10px}
+body.stack .fbadge{font-size:30px}
+body.stack .fbadge .i{width:32px;height:32px}
+body.stack .fin-all .i{width:18px;height:18px}
+body.stack #again{min-height:52px;font-size:16px;padding:0 12px}
+body.compact .fbadge{font-size:30px}
+body.compact .fbadge .i{width:32px;height:32px}
+body.compact #again{min-height:50px;font-size:17px}
+
+/* stack: stage, strip, then the tray with Go beside it */
+body.stack .panel{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:start;border-left:0;border-top:3px solid var(--line);overflow:visible}
+body.stack #tray{grid-column:1;grid-row:1;grid-template-columns:repeat(4,minmax(0,1fr))}
+body.stack .go-row{grid-column:2;grid-row:1;flex-direction:column;width:clamp(86px,21vw,170px)}
+body.stack #go{min-height:76px}
+body.stack .fx-row,body.stack .rounds,body.stack .teams{grid-column:1/-1}
+body.stack .mv{flex-direction:column;gap:0;justify-content:center;text-align:center;padding:4px 2px 2px;font-size:14px;min-height:84px}
+body.stack .mv .ico{width:42px;height:48px}
+@media (max-width:560px){
+  .seg{display:grid;grid-template-columns:1fr 1fr;border-radius:16px;width:100%}
+  .seg button{min-height:52px;font-size:15px;padding:0 8px;justify-content:center}
+  .icon-btn{min-height:52px;padding:0 12px;font-size:15px}
+  body.stack .mv{min-height:62px;padding:2px}
+  body.stack .mv .w,body.stack .mv .chip{display:none}
+  body.stack .go-row .pbtn .w{display:none}
+  body.stack #go{font-size:20px;min-height:62px}
+  body.stack .go-row .pbtn{min-height:60px}
+  body.stack .fx-row .pbtn{font-size:13px}
+  .cbtns{gap:12px}
+  .seg button,.icon-btn{min-height:46px}
+}
+</style>
+</head>
+<body>
+<svg id="defs" aria-hidden="true" focusable="false" style="position:absolute;width:0;height:0;overflow:hidden">
+  <defs>
+    <symbol id="i-note" viewBox="0 0 24 24"><path d="M9 17.5V5.6l10.5-2.6v11.6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><circle cx="6.4" cy="17.6" r="3.1" fill="currentColor"/><circle cx="16.9" cy="14.7" r="3.1" fill="currentColor"/></symbol>
+    <symbol id="i-fix" viewBox="0 0 24 24"><path d="M12.6 7.2a4.3 4.3 0 0 0-5.6 5.6l-5 5a1.7 1.7 0 0 0 0 2.4l1.8 1.8a1.7 1.7 0 0 0 2.4 0l5-5a4.3 4.3 0 0 0 5.6-5.6l-2.7 2.7-2.5-.6-.6-2.5z" fill="currentColor"/><path d="M19 .9l1.2 2.6 2.8.3-2.1 1.9.6 2.8L19 7.1l-2.5 1.4.6-2.8L15 3.8l2.8-.3z" fill="currentColor"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4.2v15.6l12.8-7.8z" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol>
+    <symbol id="i-stop" viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="14" rx="2.5" fill="currentColor"/></symbol>
+    <symbol id="i-turtle" viewBox="0 0 24 24"><path d="M2.6 15.6c0-4.8 3.7-8 8.2-8s8.2 3.2 8.2 8z" fill="currentColor"/><path d="M6.2 11.6l4.6 2.2 4.6-2.2" fill="none" stroke="#fff" stroke-width="1.4" stroke-linejoin="round"/><circle cx="20.6" cy="12.8" r="2.4" fill="currentColor"/><path d="M5.6 15.5v3.2M15.6 15.5v3.2" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"/></symbol>
+    <symbol id="i-rabbit" viewBox="0 0 24 24"><ellipse cx="10.6" cy="16.4" rx="6.8" ry="4.6" fill="currentColor"/><circle cx="17.6" cy="11.6" r="3.4" fill="currentColor"/><path d="M16.4 9.2 14.8 2.6M19.2 9.2l1.2-6.6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><circle cx="3.6" cy="14.6" r="2" fill="currentColor"/></symbol>
+    <symbol id="i-broom" viewBox="0 0 24 24"><path d="M20.5 2 12.6 11.2" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/><path d="M10.4 9.6l4.4 3.5-1.6 2-4.4-3.5z" fill="currentColor"/><path d="M8.5 12.6 2.5 19l5 3.8 5.2-6.8z" fill="currentColor"/><path d="M5.4 19.6l2.6-3.4M8 21.4l2.4-3.2" stroke="#fff" stroke-width="1.2"/></symbol>
+    <symbol id="i-eye" viewBox="0 0 24 24"><path d="M1.5 12S5.5 5 12 5s10.5 7 10.5 7-4 7-10.5 7S1.5 12 1.5 12z" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linejoin="round"/><circle cx="12" cy="12" r="3.8" fill="currentColor"/></symbol>
+    <symbol id="i-restart" viewBox="0 0 24 24"><path d="M19.6 12.6a7.6 7.6 0 1 1-2.4-6.4" fill="none" stroke="currentColor" stroke-width="2.7" stroke-linecap="round"/><path d="M21 2.8V9.4h-6.6z" fill="currentColor"/></symbol>
+    <symbol id="i-next" viewBox="0 0 24 24"><path d="M3.5 12h15M12.5 5.5 19 12l-6.5 6.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-left" viewBox="0 0 24 24"><path d="M20.5 12h-15M11.5 5.5 5 12l6.5 6.5" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-right" viewBox="0 0 24 24"><path d="M3.5 12h15M12.5 5.5 19 12l-6.5 6.5" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24"><path d="M3.5 6.5h17M9 6.5V3.8h6v2.7M5.8 6.5l1 14h10.4l1-14M10 10.2v6.8M14 10.2v6.8" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-faces" viewBox="0 0 24 24"><circle cx="8" cy="10" r="6" fill="currentColor"/><circle cx="16.4" cy="14" r="6" fill="currentColor" stroke="#fff" stroke-width="1.6"/><circle cx="6" cy="9" r="1" fill="#fff"/><circle cx="9.6" cy="9" r="1" fill="#fff"/><circle cx="14.4" cy="13" r="1" fill="#fff"/><circle cx="18.2" cy="13" r="1" fill="#fff"/><path d="M14 16.2q2.4 2 4.8 0" fill="none" stroke="#fff" stroke-width="1.2" stroke-linecap="round"/></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 1.8l3 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17l-6.2 3.4 1.4-6.8-5.1-4.7 6.9-.8z" fill="currentColor" stroke="#7a5600" stroke-width=".8" stroke-linejoin="round"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M15.2 2.2A9.8 9.8 0 1 0 21.8 17.4 7.8 7.8 0 1 1 15.2 2.2z" fill="currentColor" stroke="#22307a" stroke-width=".8" stroke-linejoin="round"/></symbol>
+    <!-- corner glyphs: so a card's move never depends on its color alone -->
+    <symbol id="g-clap" viewBox="0 0 24 24"><path d="M7.5 5l2.6 14M16.5 5l-2.6 14" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/></symbol>
+    <symbol id="g-jump" viewBox="0 0 24 24"><path d="M12 21V4M5 10.8 12 4l7 6.8" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="g-spin" viewBox="0 0 24 24"><path d="M19.4 13.6A7.6 7.6 0 1 1 16.6 5.8" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M20.2 2.4V8.6H14z" fill="currentColor"/></symbol>
+    <symbol id="g-wave" viewBox="0 0 24 24"><path d="M1.8 12.5c1.7-4.6 3.4-4.6 5.1 0s3.4 4.6 5.1 0 3.4-4.6 5.1 0 2.5 3.4 5.1 0" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></symbol>
+    <symbol id="g-up" viewBox="0 0 24 24"><path d="M7 20.5V6.5M3 10.5l4-4 4 4M17 20.5V6.5M13 10.5l4-4 4 4" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="g-toes" viewBox="0 0 24 24"><path d="M12 3v17M5 13.2l7 6.8 7-6.8" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="g-wiggle" viewBox="0 0 24 24"><path d="M1.8 9l4 6.5 4.1-6.5 4.1 6.5 4.1-6.5 4.1 6.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="g-stomp" viewBox="0 0 24 24"><ellipse cx="12.4" cy="15.6" rx="5" ry="6.4" fill="currentColor"/><circle cx="7.4" cy="6.4" r="1.9" fill="currentColor"/><circle cx="10.6" cy="4.4" r="2" fill="currentColor"/><circle cx="14.4" cy="4.4" r="2" fill="currentColor"/><circle cx="17.6" cy="6.4" r="1.9" fill="currentColor"/></symbol>
+    <!-- the eight pose pictures (ico-<move>) are drawn from Bolt's own rig at start-up -->
+  </defs>
+</svg>
+<header id="hdr">
+  <h1>Robot Dance <small>Step by step, card by card</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-df" aria-pressed="true"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-note"/></svg>Dance Floor</button>
+    <button id="m-fx" aria-pressed="false"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-fix"/></svg>Fix-It Show</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true" title="Turn animation on or off">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+  <button class="icon-btn" id="read" title="Read the hint aloud">🔊 Read</button>
+</header>
+<main>
+  <div class="stage" id="stage">
+    <svg id="sv" role="img" aria-label="The dance stage: Bolt the robot dances the cards"></svg>
+    <p class="sr" id="live" aria-live="polite"></p>
+  </div>
+  <aside class="panel" id="panel">
+    <p class="hint" id="hint" aria-live="polite"></p>
+    <div class="tray" id="tray" role="group" aria-label="Moves"></div>
+    <div class="go-row" id="goRow">
+      <button class="big-btn gold" id="go" aria-label="Go"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-play"/></svg><span class="w">Go!</span></button>
+      <button class="pbtn" id="speed" aria-label="Speed: slow"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-turtle"/></svg><span class="w">Slow</span></button>
+      <button class="pbtn" id="clear" data-modes="df" aria-label="Clear"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-broom"/></svg><span class="w">Clear</span></button>
+    </div>
+    <div class="fx-row" id="fxRow" data-modes="fx">
+      <button class="pbtn" id="watch" aria-label="Watch Dot"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-eye"/></svg><span class="w">Watch Dot</span></button>
+      <button class="pbtn" id="over" aria-label="Start over"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-restart"/></svg><span class="w">Start over</span></button>
+      <button class="pbtn" id="next" aria-label="Next round"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-next"/></svg><span class="w">Next round</span></button>
+    </div>
+    <div class="rounds" id="rounds" data-modes="fx" role="img" aria-label="Rounds fixed: 0 of 8"></div>
+    <div class="teams" id="teamsBox" data-modes="fx">
+      <button class="pbtn" id="teams" aria-pressed="true" aria-label="Teams"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-faces"/></svg><span class="w">Teams</span></button>
+      <div class="badge star" id="bStar" role="img" aria-label="Team Star: 0 stars"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-star"/></svg><b>0</b></div>
+      <div class="badge moon" id="bMoon" role="img" aria-label="Team Moon: 0 stars"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-moon"/></svg><b>0</b></div>
+    </div>
+  </aside>
+  <div class="apron" id="apron">
+    <div id="strip" role="list" aria-label="Bolt's cards"><div id="ptr" aria-hidden="true"><svg viewBox="0 0 34 18"><path d="M3 2h28L17 16z" fill="#ffd23f" stroke="#fff" stroke-width="2.5" stroke-linejoin="round"/></svg></div></div>
+    <div class="finale" id="finale" hidden>
+      <div class="fin-teams" id="finTeams">
+        <span class="fbadge star" role="img" id="finStarL"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-star"/></svg><b id="finStar">0</b></span>
+        <span class="fbadge moon" role="img" id="finMoonL"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-moon"/></svg><b id="finMoon">0</b></span>
+      </div>
+      <div class="fin-all" id="finAll" role="img" aria-label="All eight dances fixed"></div>
+      <button class="big-btn gold" id="again" aria-label="Play again"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-restart"/></svg>Play again</button>
+    </div>
+    <div class="cbtns off" id="cbtns">
+      <div class="in" id="cbIn" role="group" aria-label="The picked card">
+        <button id="cLeft" aria-label="Move earlier"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-left"/></svg></button>
+        <button id="cDel" aria-label="Take away"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-trash"/></svg></button>
+        <button id="cRight" aria-label="Move later"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-right"/></svg></button>
+      </div>
+    </div>
+  </div>
+</main>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const NS = 'http://www.w3.org/2000/svg';
+  const wait = Curio.wait;
+  const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+  const clamp01 = v => clamp(v, 0, 1);
+  const lerp = (a, b, t) => a + (b - a) * t;
+  const ease = t => t < .5 ? 2 * t * t : 1 - (-2 * t + 2) ** 2 / 2;
+  const bump = t => Math.sin(Math.PI * clamp01(t));
+  const now = () => performance.now();
+  function mk(tag, attrs, parent) {
+    const e = document.createElementNS(NS, tag);
+    for (const k in attrs || {}) e.setAttribute(k, attrs[k]);
+    if (parent) parent.appendChild(e);
+    return e;
+  }
+
+  // ======================================================================================
+  // Content (spec: Content). Colors with a corner glyph each, so color is never the only signal.
+  // ======================================================================================
+  const MOVES = {
+    clap:   {word: 'Clap',       color: '#e0a800', gi: '#2a1830', say: 'Clap!'},
+    jump:   {word: 'Jump',       color: '#2e9a4f', gi: '#ffffff', say: 'Jump!'},
+    spin:   {word: 'Spin',       color: '#7b4fd0', gi: '#ffffff', say: 'Spin!'},
+    wave:   {word: 'Wave',       color: '#2b86d6', gi: '#ffffff', say: 'Wave!'},
+    up:     {word: 'Hands Up',   color: '#e36a1c', gi: '#2a1830', say: 'Hands up!'},
+    toes:   {word: 'Touch Toes', color: '#12938a', gi: '#ffffff', say: 'Touch your toes!'},
+    wiggle: {word: 'Wiggle',     color: '#d63f8c', gi: '#ffffff', say: 'Wiggle!'},
+    stomp:  {word: 'Stomp',      color: '#8a5a2b', gi: '#ffffff', say: 'Stomp!'},
+  };
+  const ORDER = ['clap', 'jump', 'spin', 'wave', 'up', 'toes', 'wiggle', 'stomp'];
+  // Fix-It rounds: dot = the real dance, bolt = Bolt's buggy start (trip at the first mismatch)
+  const ROUNDS = [
+    {dot: ['wave', 'clap', 'jump'],                 bolt: ['wave', 'clap', 'spin']},
+    {dot: ['clap', 'clap', 'stomp', 'up'],          bolt: ['clap', 'wiggle', 'stomp', 'up']},
+    {dot: ['wiggle', 'toes', 'wiggle', 'jump'],     bolt: ['up', 'toes', 'wiggle', 'jump']},
+    {dot: ['stomp', 'stomp', 'spin', 'clap', 'up'], bolt: ['stomp', 'stomp', 'spin', 'jump', 'up']},
+    {dot: ['jump', 'clap', 'spin', 'wave'],         bolt: ['jump', 'spin', 'clap', 'wave']},
+    {dot: ['toes', 'up', 'wiggle', 'stomp', 'clap'], bolt: ['toes', 'up', 'wiggle', 'clap', 'stomp']},
+    {dot: ['wave', 'jump', 'spin', 'clap'],         bolt: ['wave', 'spin', 'clap']},
+    {dot: ['clap', 'wiggle', 'jump', 'up'],         bolt: ['clap', 'wiggle', 'wiggle', 'jump', 'up']},
+  ];
+
+  // every fixed line (spec: Voice); the hint always shows one of h2..h13 or t24..t28
+  const L = {
+    w1: 'Welcome to Robot Dance! Meet Bolt. Bolt does exactly what the cards say.',
+    h2: 'Tap a move to add a card. Then press Go, and dance along!',
+    w3: 'Welcome to the Fix-It Show! Dot knows the dance. Bolt reads the cards. Can you find the wrong card?',
+    h4: 'Press Watch Dot to see the dance. Then press Go.',
+    h5: 'Now press Go and see if Bolt can do it too.',
+    h6: 'Tap the wrong card. Then tap the right move.',
+    h7: 'Use the arrows to move a card.',
+    h8: 'Tap the trash can to take a card away.',
+    h9: 'Add the missing move. Then use the arrows to move it into place.',
+    h10: 'Add a card first. Tap a move!',
+    h11: "That's eight cards! Press Go to see your dance.",
+    h12: 'All clear! Make a new dance.',
+    h13: 'Ta-da! Bolt danced every card, in order.',
+    rounds: [
+      'Round one: the Hello Dance! Watch Dot first.',
+      'Round two: Clap Clap Stomp! Watch Dot first.',
+      'Round three: Wiggle Time! Watch Dot first.',
+      'Round four: Robot Stomp! Watch Dot first.',
+      'Round five: Mixed Up! Two cards are in the wrong order.',
+      'Round six: Toes and Stomps! Two cards are in the wrong order.',
+      "Round seven: Something's Missing! Watch Dot carefully.",
+      'Round eight: One Too Many! Watch Dot carefully.',
+    ],
+    tStar: "Team Star, it's your turn!",
+    tMoon: "Team Moon, it's your turn!",
+    t24: 'Oops! Bolt tripped. Which card is wrong?',
+    t25: 'Look at Dot. What move should Bolt do here?',
+    t26: 'Uh oh! Bolt ran out of cards. Something is missing!',
+    t27: 'Whoa! Bolt has an extra step. Dot was all done!',
+    t28: 'Hooray! Bolt did the whole dance! You fixed the bug!',
+    t29: 'A wrong card is called a bug. Finding and fixing it is called debugging!',
+    s30: 'A star for Team Star!',
+    s31: 'A star for Team Moon!',
+    s32: 'Great job, everyone!',
+    f33: "That's the show! Everybody take a bow!",
+    f34: "Team Star and Team Moon, you're both dance champs!",
+  };
+  const FIXHINT = [L.h6, L.h6, L.h6, L.h6, L.h7, L.h7, L.h9, L.h8];
+  const allLines = () => [...new Set([L.w1, L.h2, L.w3, L.h4, L.h5, L.h6, L.h7, L.h8, L.h9, L.h10, L.h11, L.h12, L.h13,
+    ...L.rounds, L.tStar, L.tMoon, L.t24, L.t25, L.t26, L.t27, L.t28, L.t29, L.s30, L.s31, L.s32, L.f33, L.f34,
+    ...ORDER.map(m => MOVES[m].say)])];
+
+  // ======================================================================================
+  // State
+  // ======================================================================================
+  let uid = 1;
+  const cardsOf = moves => moves.map(move => ({id: uid++, move}));
+  const state = {mode: 'df', quick: false, dancing: null, sel: null, step: null, bug: null, bubble: null, thought: null,
+    previewId: 0, evt: 0, bulbs: 'idle', bulbPhase: 0, allOnUntil: 0, flashUntil: 0};
+  const df = {cards: [], hint: L.h2};
+  const fx = {r: 0, cards: cardsOf(ROUNDS[0].bolt), fixed: Array(8).fill(false), star: Array(8).fill(null), trips: 0,
+    teams: true, finale: false, show: 0, last: null, wins: 0, hint: L.h4};
+  const prog = () => state.mode === 'df' ? df.cards : fx.cards;
+  const beatMs = () => state.quick ? 900 : 1400;
+  const teamOf = r => r % 2 ? 'moon' : 'star';
+  let danceGen = 0;
+
+  // timers that belong to a dance or a preview, so Stop can drop every sound still to come
+  const timers = {dance: new Set(), pv: new Set()};
+  function later(ms, fn, grp = 'dance') {
+    const t = setTimeout(() => { timers[grp].delete(t); fn(); }, ms);
+    timers[grp].add(t); return t;
+  }
+  function clearTimers(grp) { for (const t of timers[grp]) clearTimeout(t); timers[grp].clear(); }
+
+  // ======================================================================================
+  // Sounds: all synthesized with Curio.tone (silent when Sound is off)
+  // ======================================================================================
+  const T = (f, d, v, type) => Curio.tone(f, d, v, type);
+  const seq = (fs, step, d, v, type, grp) => fs.forEach((f, i) => later(i * step, () => T(f, d, v, type), grp));
+  const SND = {
+    tick: () => T(1250, .045, .022, 'triangle'),
+    clap: () => { T(2300, .03, .045, 'square'); T(3150, .025, .03, 'sawtooth'); T(1650, .03, .02, 'square'); },
+    jump: g => seq([240, 300, 380, 480, 610, 760], 32, .08, .05, 'sine', g),
+    spin: g => seq([320, 420, 540, 680, 820, 680, 540], 48, .09, .03, 'triangle', g),
+    chime: f => T(f, .4, .035, 'sine'),
+    up: g => { T(523, .35, .03); T(659, .35, .03); T(784, .35, .03); later(130, () => T(1046, .35, .035), g); },
+    toes: g => seq([880, 760, 650, 560, 480, 410, 350], 55, .09, .04, 'triangle', g),
+    wiggle: g => seq([440, 540, 440, 540, 440, 540, 440], 70, .07, .035, 'triangle', g),
+    stomp: () => { T(85, .26, .14, 'sine'); T(58, .3, .1, 'triangle'); },
+    boing: g => seq([170, 290, 210, 330, 240], 42, .08, .06, 'sine', g),
+    slide: g => seq([1300, 1160, 1030, 910, 800, 700, 610, 530, 460, 400], 45, .07, .035, 'sine', g),
+    fan: g => { Curio.yes(); later(420, () => seq([784, 988, 1175, 1568], 110, .25, .045, 'triangle', g), g); },
+    slideCard: () => T(660, .06, .025, 'triangle'),
+  };
+
+  // ======================================================================================
+  // Robots: a small rig (legs, torso, arms, head) posed from a handful of numbers each frame.
+  // Bolt is boxy with a square head; Dot is round with a dome head.
+  // ======================================================================================
+  const C = {out: '#132036', teal: '#19a7a0', tealD: '#12857f', mag: '#b0206a', coral: '#ff8a65', coralD: '#e8704d', gold: '#ffd23f'};
+  const GEO = {bolt: {LL: 56, legX: 17, torsoH: 74, shX: 47, shY: 64, neck: 4, eyeY: -47},
+               dot:  {LL: 40, legX: 17, torsoH: 84, shX: 44, shY: 58, neck: 0, eyeY: -27}};
+  const sw = w => ({stroke: C.out, 'stroke-width': w, 'stroke-linejoin': 'round'});
+  function makeRobot(kind) {
+    const g = mk('g', {class: 'robot'});
+    const G = GEO[kind], bolt = kind === 'bolt';
+    const legs = [0, 1].map(() => {
+      const l = mk('g', {}, g);
+      if (bolt) {
+        mk('rect', {x: -8, y: -6, width: 16, height: 58, rx: 7, fill: C.tealD, ...sw(3.5)}, l);
+        mk('rect', {x: -15, y: 44, width: 30, height: 13, rx: 6, fill: '#9db0cf', ...sw(3.5)}, l);
+      } else {
+        mk('rect', {x: -7, y: -6, width: 14, height: 42, rx: 7, fill: C.coralD, ...sw(3.5)}, l);
+        mk('ellipse', {cx: 0, cy: 37, rx: 14, ry: 7.5, fill: '#7a3b52', ...sw(3.5)}, l);
+      }
+      return l;
+    });
+    const torso = mk('g', {}, g);
+    if (bolt) {
+      mk('rect', {x: -43, y: -74, width: 86, height: 76, rx: 13, fill: C.teal, ...sw(4)}, torso);
+      mk('rect', {x: -41, y: -17, width: 82, height: 9, fill: C.tealD}, torso);
+      mk('rect', {x: -23, y: -61, width: 46, height: 30, rx: 7, fill: '#0f5560', ...sw(2.5)}, torso);
+      [[-12, '#ff5fae'], [0, C.gold], [12, '#e9fbff']].forEach(([x, f]) => mk('circle', {cx: x, cy: -46, r: 5, fill: f}, torso));
+    } else {
+      mk('ellipse', {cx: 0, cy: -42, rx: 45, ry: 44, fill: C.coral, ...sw(4)}, torso);
+      mk('ellipse', {cx: -18, cy: -66, rx: 10, ry: 6, fill: '#ffb59c', transform: 'rotate(-30 -18 -66)'}, torso);
+      mk('path', {d: starPath(0, -40, 19, 8.5, 5), fill: C.gold, ...sw(2.5)}, torso);
+    }
+    const head = mk('g', {}, g);
+    let ant, screen, eyes, face, antY;
+    if (bolt) {
+      mk('rect', {x: -10, y: -12, width: 20, height: 14, fill: C.tealD, ...sw(3)}, head);
+      mk('rect', {x: -48, y: -54, width: 11, height: 22, rx: 4, fill: C.mag, ...sw(3)}, head);
+      mk('rect', {x: 37, y: -54, width: 11, height: 22, rx: 4, fill: C.mag, ...sw(3)}, head);
+      antY = -74; ant = mk('g', {}, head);
+      mk('line', {x1: 0, y1: 0, x2: 0, y2: -20, stroke: C.out, 'stroke-width': 4, 'stroke-linecap': 'round'}, ant);
+      mk('circle', {cx: 0, cy: -27, r: 9, fill: C.mag, ...sw(3)}, ant);
+      mk('rect', {x: -39, y: -74, width: 78, height: 64, rx: 13, fill: C.teal, ...sw(4)}, head);
+      screen = mk('rect', {x: -29, y: -65, width: 58, height: 42, rx: 10, fill: '#fff', ...sw(2.5)}, head);
+      face = mk('g', {}, head); eyes = mk('g', {}, face);
+      mk('ellipse', {cx: -11, cy: -47, rx: 5, ry: 7, fill: C.out}, eyes);
+      mk('ellipse', {cx: 11, cy: -47, rx: 5, ry: 7, fill: C.out}, eyes);
+      mk('path', {d: 'M-10 -34 Q0 -27 10 -34', fill: 'none', stroke: C.out, 'stroke-width': 3, 'stroke-linecap': 'round'}, face);
+    } else {
+      antY = -43; ant = mk('g', {}, head);
+      mk('line', {x1: 0, y1: 0, x2: 0, y2: -10, stroke: C.out, 'stroke-width': 3.5, 'stroke-linecap': 'round'}, ant);
+      mk('path', {d: starPath(0, -15, 8, 3.6, 5), fill: C.gold, ...sw(2)}, ant);
+      mk('rect', {x: -31, y: -11, width: 62, height: 13, rx: 6, fill: C.coralD, ...sw(3)}, head);
+      mk('path', {d: 'M-34 -8 C-34 -55 34 -55 34 -8 Z', fill: C.coral, ...sw(4)}, head);
+      screen = mk('rect', {x: -24, y: -38, width: 48, height: 22, rx: 11, fill: '#2a1830', ...sw(2)}, head);
+      face = mk('g', {}, head); eyes = mk('g', {}, face);
+      mk('circle', {cx: -9, cy: -27, r: 4.2, fill: '#9ff3ff'}, eyes);
+      mk('circle', {cx: 9, cy: -27, r: 4.2, fill: '#9ff3ff'}, eyes);
+      mk('path', {d: 'M-5 -20.5 Q0 -17 5 -20.5', fill: 'none', stroke: '#9ff3ff', 'stroke-width': 2, 'stroke-linecap': 'round'}, face);
+    }
+    const arms = [0, 1].map(() => {
+      const a = mk('g', {}, g);
+      if (bolt) {
+        mk('rect', {x: -8, y: -6, width: 16, height: 56, rx: 8, fill: C.teal, ...sw(3.5)}, a);
+        mk('circle', {cx: 0, cy: 58, r: 11, fill: '#dff4f2', ...sw(3.5)}, a);
+        mk('circle', {cx: 0, cy: 0, r: 10, fill: C.tealD, ...sw(3)}, a);
+      } else {
+        mk('rect', {x: -7, y: -5, width: 14, height: 48, rx: 7, fill: C.coral, ...sw(3.5)}, a);
+        mk('circle', {cx: 0, cy: 50, r: 10, fill: '#ffd9cc', ...sw(3.5)}, a);
+        mk('circle', {cx: 0, cy: 0, r: 9, fill: C.coralD, ...sw(3)}, a);
+      }
+      return a;
+    });
+    return {kind, g, G, legs, torso, head, ant, antY, screen, face, eyes, arms, headFront: false, screenFill: bolt ? '#fff' : '#2a1830',
+      backFill: bolt ? C.tealD : C.coralD, x: 0, floor: 0, s: 1, act: null, base: 'stand', baseExtra: null, from: null, fromT: 0, fromDur: 300,
+      cur: null, nextBlink: now() + 2500, head0: [0, 0]};
+  }
+  function starPath(cx, cy, ro, ri, n) {
+    let d = '';
+    for (let i = 0; i < n * 2; i++) {
+      const r = i % 2 ? ri : ro, a = -Math.PI / 2 + i * Math.PI / n;
+      d += (i ? 'L' : 'M') + (cx + r * Math.cos(a)).toFixed(2) + ' ' + (cy + r * Math.sin(a)).toFixed(2);
+    }
+    return d + 'Z';
+  }
+
+  // a pose is a few numbers; arms: 0 hangs down, + swings out and up (180 = straight up), - swings in across the body
+  const STAND = {dx: 0, y: 0, crouch: 0, sx: 1, tilt: 0, hipX: 0, bend: 0, aL: 8, aR: 8, reach: 1, liftL: 0, liftR: 0,
+    head: 0, ant: 0, lookX: 0, lookY: 0, sit: 0, blink: 1};
+  const P0 = (...o) => Object.assign({}, STAND, ...o);
+  const BASES = {
+    stand: {},
+    sit: {sit: 1, aL: 55, aR: 55, head: -10, tilt: 3, lookY: 3, ant: 20},
+    puzzled: {head: 14, aL: 24, aR: 24, lookX: -3, ant: -18},
+    bow: {bend: .7, crouch: 6, aL: -16, aR: -16, lookY: 4},
+    final: {aL: 135, aR: 135, head: -5, ant: 15},
+    watch: {lookX: 6, head: 5},
+  };
+  function mix(a, b, u) { const o = {}; for (const k in STAND) o[k] = a[k] + (b[k] - a[k]) * u; return o; }
+  const f2 = v => Math.round(v * 100) / 100;
+
+  function pose(R, P) {
+    const G = R.G, s = R.s;
+    const sx = Math.sign(P.sx || 1) * Math.max(.06, Math.abs(P.sx));
+    R.g.setAttribute('transform', `translate(${f2(R.x + P.dx * s)},${f2(R.floor - P.y * s)}) scale(${f2(s * sx * 1000) / 1000},${f2(s * 1000) / 1000})`);
+    const crouch = P.crouch + P.sit * G.LL * .78;
+    const hipY = -G.LL + crouch;
+    const legSY = lerp(Math.max(.35, (G.LL - P.crouch) / G.LL), 1, P.sit);
+    const spl = P.sit * 68;
+    R.legs[0].setAttribute('transform', `translate(${f2(-G.legX + P.hipX * .3)},${f2(hipY - P.liftL)}) rotate(${f2(spl)}) scale(1,${f2(legSY)})`);
+    R.legs[1].setAttribute('transform', `translate(${f2(G.legX + P.hipX * .3)},${f2(hipY - P.liftR)}) rotate(${f2(-spl)}) scale(1,${f2(legSY)})`);
+    const wy = hipY + 6, tsy = 1 - .42 * P.bend, tr = P.tilt * Math.PI / 180, ct = Math.cos(tr), st = Math.sin(tr);
+    R.torso.setAttribute('transform', `translate(${f2(P.hipX)},${f2(wy)}) rotate(${f2(P.tilt)}) scale(1,${f2(tsy)})`);
+    const at = (lx, ly) => [P.hipX + lx * ct - ly * st, wy + lx * st + ly * ct];
+    const [lx, ly] = at(-G.shX, -G.shY * tsy), [rx, ry] = at(G.shX, -G.shY * tsy);
+    R.arms[0].setAttribute('transform', `translate(${f2(lx)},${f2(ly)}) rotate(${f2(P.tilt + P.aL)}) scale(1,${f2(P.reach)})`);
+    R.arms[1].setAttribute('transform', `translate(${f2(rx)},${f2(ry)}) rotate(${f2(P.tilt - P.aR)}) scale(1,${f2(P.reach)})`);
+    const [nx, ny] = at(0, -G.torsoH * tsy - G.neck);
+    R.head.setAttribute('transform', `translate(${f2(nx)},${f2(ny + P.bend * 10)}) rotate(${f2(P.tilt + P.head)}) scale(1,${f2(1 - .15 * P.bend)})`);
+    R.head0 = [R.x + nx * s * sx, R.floor - P.y * s + (ny + P.bend * 10 - 40) * s];
+    R.eyes.setAttribute('transform', `translate(${f2(P.lookX)},${f2(P.lookY + P.bend * 5 + G.eyeY)}) scale(1,${f2(P.blink)}) translate(0,${-G.eyeY})`);
+    R.ant.setAttribute('transform', `translate(0,${R.antY}) rotate(${f2(P.ant)})`);
+    const back = sx < 0;
+    if (back !== R.back) { R.back = back; R.face.style.display = back ? 'none' : ''; R.screen.setAttribute('fill', back ? R.backFill : R.screenFill); }
+    const front = P.bend > .3;   // bending over: the head comes in front of the arms
+    if (front !== R.headFront) { R.headFront = front; if (front) R.g.appendChild(R.head); else R.g.insertBefore(R.head, R.arms[0]); }
+  }
+
+  // Each move: f(t) over the part of the beat it fills (t 0..1), key = the one held pose with Motion off, snd = [fraction, sound]
+  const ANIM = {
+    clap: {f: t => {   // hands meet in front of the chin twice, on the two clicks
+        const k = Math.abs(Math.sin(2 * Math.PI * t)), env = ease(clamp01(Math.min(t, 1 - t) / .12)), a = lerp(8, -118 + 46 * (1 - k), env);
+        return {aL: a, aR: a, y: 3 * k * env, head: -3 * k * env};
+      },
+      key: {aL: -118, aR: -118, head: -3}, snd: [[.25, () => SND.clap()], [.75, () => SND.clap()]]},
+    jump: {f: t => {
+        if (t < .22) { const u = ease(t / .22); return {crouch: 16 * u, aL: 8 - 14 * u, aR: 8 - 14 * u}; }
+        if (t < .78) { const u = (t - .22) / .56, b = bump(u); return {y: 40 * Math.sin(Math.PI * u), crouch: 16 * Math.max(0, 1 - u * 5), aL: 8 + 110 * b, aR: 8 + 110 * b, ant: -22 * b}; }
+        return {crouch: 10 * bump((t - .78) / .22)};
+      }, key: {y: 40, aL: 118, aR: 118, ant: -22}, snd: [[.2, g => SND.jump(g)]]},
+    spin: {f: t => { const u = ease(t), b = bump(t); return {sx: Math.cos(2 * Math.PI * u), aL: 8 + 70 * b, aR: 8 + 70 * b, ant: 25 * Math.sin(2 * Math.PI * u)}; },
+      key: {sx: .5, aL: 165, aR: 70, ant: -20}, snd: [[0, g => SND.spin(g)]]},
+    wave: {f: t => {
+        const up = t < .15 ? ease(t / .15) : t > .85 ? ease((1 - t) / .15) : 1;
+        const w = t > .15 && t < .85 ? Math.sin((t - .15) / .7 * 6 * Math.PI) : 0;
+        return {aR: 8 + 142 * up + 20 * w * up, head: 6 * up, lookX: 2 * up};
+      }, key: {aR: 150, head: 6, lookX: 2}, snd: [[.27, () => SND.chime(1046)], [.5, () => SND.chime(1175)], [.73, () => SND.chime(1318)]]},
+    up: {f: t => {
+        const u = t < .2 ? ease(t / .2) : t > .8 ? ease((1 - t) / .2) : 1;
+        const b = t > .2 && t < .8 ? Math.abs(Math.sin((t - .2) / .6 * 2 * Math.PI)) : 0;
+        return {aL: 8 + 150 * u, aR: 8 + 150 * u, reach: 1 + .22 * u, y: 6 * b, head: -4 * u};
+      }, key: {aL: 158, aR: 158, reach: 1.22, head: -4}, snd: [[.12, g => SND.up(g)]]},
+    toes: {f: t => { const e = ease(clamp01(Math.sin(Math.PI * t) * 1.5)); return {bend: e, crouch: 14 * e, reach: 1 + .1 * e, aL: 8 - 32 * e, aR: 8 - 32 * e, lookY: 3 * e}; },
+      key: {bend: 1, crouch: 14, reach: 1.1, aL: -24, aR: -24, lookY: 3}, snd: [[.05, g => SND.toes(g)]]},
+    wiggle: {f: t => {
+        const env = clamp01(Math.sin(Math.PI * t) * 3), w = Math.sin(4 * Math.PI * t) * env;
+        return {hipX: 16 * w, tilt: -12 * w, ant: 30 * Math.sin(4 * Math.PI * t + 1) * env, aL: 8 + 52 * env, aR: 8 + 52 * env, head: 10 * w};
+      }, key: {hipX: 16, tilt: -12, ant: 30, aL: 60, aR: 60, head: 10}, snd: [[0, g => SND.wiggle(g)]]},
+    stomp: {f: t => {
+        if (t < .45) { const u = ease(t / .45); return {liftR: 44 * u, tilt: -6 * u, aL: 8 + 42 * u, aR: 8 + 42 * u, crouch: 3 * u}; }
+        if (t < .53) { const u = (t - .45) / .08; return {liftR: 44 * (1 - u), tilt: -6 * (1 - u), aL: 50, aR: 50, crouch: 3}; }
+        const u = (t - .53) / .47; return {crouch: 8 * bump(u) * (1 - u), aL: 50 - 42 * u, aR: 50 - 42 * u};
+      }, key: {liftR: 44, tilt: -6, aL: 22, aR: 22}, snd: [[.5, () => SND.stomp()]], flash: .5},
+  };
+
+  const bolt = makeRobot('bolt'), dot = makeRobot('dot');
+  dot.G = GEO.dot;
+
+  function setBase(R, name, extra) {
+    if (R.base === name && JSON.stringify(R.baseExtra) === JSON.stringify(extra || null)) return;
+    R.from = R.cur ? {...R.cur} : null; R.fromT = now(); R.fromDur = name === 'stand' && R.base === 'sit' ? 420 : 300;
+    R.base = name; R.baseExtra = extra || null;
+  }
+  // a move inside one beat: fills 80 percent of it
+  function actMove(R, m, beat, sound, grp = 'dance') {
+    const dur = beat * .8;
+    R.act = {kind: 'move', move: m, t0: now(), dur};
+    if (sound) for (const [f, fn] of ANIM[m].snd) later(f * dur, () => fn(grp), grp);
+    if (ANIM[m].flash) later(ANIM[m].flash * dur, () => flashTile(R), grp);
+  }
+  // Bolt starts its card's move, bumps into a wobble and sits down with a bounce (600 ms)
+  function actTrip(R, m, beat) {
+    const mdur = beat * .8, mm = mdur * .4;
+    R.act = {kind: 'trip', move: m, t0: now(), mdur, m: mm, dur: mm + 220 + 600, then: 'sit'};
+    later(mm, () => SND.boing('dance'));
+    later(mm + 220, () => SND.slide('dance'));
+  }
+  function actPose(R, a, ms) {
+    const A = ANIM[a.move];
+    if (a.kind === 'move') return Curio.reduce ? P0(A.key) : P0(A.f(ms / a.dur));
+    if (ms < a.m) return Curio.reduce ? P0(A.key) : P0(A.f(ms / a.mdur));
+    if (Curio.reduce) return P0(BASES.sit);
+    const u = ms - a.m;
+    const wob = P0({tilt: 14 * Math.sin(u / 220 * 3 * Math.PI), aL: 70, aR: 70, head: -8, lookX: 3 * Math.sin(u / 220 * 6 * Math.PI)});
+    if (u < 220) return mix(P0(A.f(a.m / a.mdur)), wob, ease(Math.min(1, u / 80)));
+    const v = clamp01((u - 220) / 600);
+    const p = mix(P0({aL: 70, aR: 70}), P0(BASES.sit), ease(clamp01(v / .55)));
+    if (v > .55) p.y = 12 * bump((v - .55) / .45);
+    return p;
+  }
+  function paramsOf(R, t) {
+    let P = P0(BASES[R.base], R.baseExtra);
+    if (R.from) {
+      const u = (t - R.fromT) / R.fromDur;
+      if (u < 1 && !Curio.reduce) P = mix(R.from, P, ease(u)); else R.from = null;
+    }
+    if (R.act) {
+      const a = R.act, ms = t - a.t0;
+      if (ms >= a.dur) {
+        R.act = null;
+        if (a.then) R.base = a.then;
+        R.from = R.cur ? {...R.cur} : null; R.fromT = t; R.fromDur = 220;
+        P = P0(BASES[R.base], R.baseExtra);
+        if (R.from && !Curio.reduce) P = R.from;
+      } else P = actPose(R, a, ms);
+    } else if (!Curio.reduce && R.base !== 'sit') {   // a blink now and then, so the robots look awake
+      if (t > R.nextBlink + 140) R.nextBlink = t + 2600 + Math.random() * 2600;
+      else if (t > R.nextBlink) P.blink = .12;
+    }
+    R.cur = P;
+    return P;
+  }
+
+  // the eight pose pictures for cards, tray and bubbles: Bolt's own rig in each move's key pose
+  function buildIcons() {
+    const defs = $('defs').querySelector('defs');
+    const tmp = mk('svg', {width: 400, height: 400, style: 'position:absolute;left:-9999px;top:0;visibility:hidden'});
+    document.body.appendChild(tmp);
+    for (const m of ORDER) {
+      const R = makeRobot('bolt'); R.s = 1; R.x = 0; R.floor = 0;
+      const wrap = mk('g', {}, tmp);   // its box includes the robot's own transform (a jump lifts it, a spin squeezes it)
+      const shadow = mk('ellipse', {cx: 0, cy: 3, rx: 44, ry: 6, fill: '#0000002e'}, wrap);
+      wrap.appendChild(R.g);
+      pose(R, P0(ANIM[m].key));
+      const ex = iconMarks(m, R); wrap.appendChild(ex);
+      const b = wrap.getBBox(), bb = shadow.getBBox();
+      const x0 = b.x - 6, y0 = b.y - 6, x1 = b.x + b.width + 6, y1 = bb.y + bb.height + 4;
+      const w = Math.max(x1 - x0, (y1 - y0) * .78), cx = (x0 + x1) / 2;
+      const sym = mk('symbol', {id: 'ico-' + m, viewBox: `${f2(cx - w / 2)} ${f2(y0)} ${f2(w)} ${f2(y1 - y0)}`});
+      sym.appendChild(shadow); sym.appendChild(R.g); sym.appendChild(ex);
+      defs.appendChild(sym);
+    }
+    tmp.remove();
+  }
+  // motion marks drawn on the pictures only (Bolt at x 0, floor 0, shoulders near y -114)
+  function iconMarks(m, R) {
+    const g = mk('g', {fill: 'none', stroke: C.out, 'stroke-width': 4, 'stroke-linecap': 'round'});
+    const line = (x1, y1, x2, y2) => mk('line', {x1, y1, x2, y2}, g);
+    if (m === 'clap') for (const a of [-18, 0, 18, 162, 180, 198]) { const t = a * Math.PI / 180; line(f2(58 * Math.cos(t)), f2(-141 + 58 * Math.sin(t)), f2(72 * Math.cos(t)), f2(-141 + 72 * Math.sin(t))); }
+    if (m === 'jump') { line(-24, -30, -24, -10); line(0, -26, 0, -6); line(24, -30, 24, -10); }
+    if (m === 'spin') { mk('path', {d: 'M-78 -60 A78 20 0 0 0 70 -52', 'stroke-width': 5}, g); mk('path', {d: 'M56 -66 L72 -52 L52 -42', 'stroke-width': 5, 'stroke-linejoin': 'round'}, g); }
+    if (m === 'wave') { mk('path', {d: 'M96 -186 Q104 -170 96 -154'}, g); mk('path', {d: 'M108 -194 Q120 -170 108 -146'}, g); }
+    if (m === 'wiggle') { mk('path', {d: 'M-44 -52 Q-54 -32 -44 -12'}, g); mk('path', {d: 'M-58 -60 Q-72 -32 -58 -4'}, g); mk('path', {d: 'M52 -52 Q62 -32 52 -12'}, g); mk('path', {d: 'M66 -60 Q80 -32 66 -4'}, g); }
+    if (m === 'stomp') { line(-6, 0, -20, -10); line(-10, 6, -28, 6); line(44, 0, 58, -10); line(48, 6, 66, 6); mk('path', {d: 'M-4 10 H 42'}, g); }
+    if (m === 'up') { line(-64, -186, -76, -198); line(-50, -190, -50, -206); line(64, -186, 76, -198); line(50, -190, 50, -206); }
+    return g;
+  }
+  const useIco = (m, attrs) => { const u = mk('use', attrs); u.setAttribute('href', '#ico-' + m); return u; };
+
+  // ======================================================================================
+  // The stage: real pixel size, laid out again for every box
+  // ======================================================================================
+  const sv = $('sv');
+  let S = {};
+  function buildStage(W, H) {
+    sv.setAttribute('width', W); sv.setAttribute('height', H); sv.setAttribute('viewBox', `0 0 ${W} ${H}`);
+    sv.textContent = '';
+    const fxm = state.mode === 'fx', compact = page === 'compact';
+    const footY = Math.round(H - Math.max(12, H * .065) - (compact || page === 'stack' ? 40 : tight ? 48 : 0));
+    const bulbR = Math.max(22, Math.round(H * .05)), topR = bulbR + (capH ? capH + 6 : 0);
+    $('hint').style.top = capH ? Math.round(bulbR * .9) + 'px' : '';
+    const BOLT_H = 238, JUMP = 40;
+    // the move bubble sits above Bolt when there is room, else beside Bolt's head
+    const sAbove = (footY - topR - 20) / (BOLT_H + JUMP + 82);
+    const sSide = (footY - topR - 8) / (BOLT_H + JUMP);
+    const side = sAbove < .62;
+    let s = side ? sSide : sAbove;
+    const bwOf = s => Math.round(74 * s + 18);
+    if (fxm) s = Math.min(s, side ? (W - 2 * bwOf(s) - 40) / 520 : (W - 30) / 560);
+    else s = Math.min(s, side ? (W - 2 * bwOf(s) - 30) / 300 : (W - 30) / 300);
+    s = clamp(s, .32, 1.55);
+    const bw = bwOf(s);
+    let boltX, dotX;
+    if (fxm) {
+      if (side) { boltX = Math.round(10 + bw + 8 + 118 * s); dotX = Math.round(W - (10 + bw + 8 + 130 * s)); }
+      else { boltX = Math.round(W * .31); dotX = Math.round(W * .7); }
+    } else boltX = Math.round(W / 2);
+    const floorTop = Math.round(clamp(footY - 95 * s, H * .38, H * .7));
+    S = {W, H, s, footY, boltX, dotX, side, bw, tiles: [], bulbs: [], bulbKey: '', bubKey: '', thKey: ''};
+
+    const defs = mk('defs', {}, sv);
+    const lg = mk('linearGradient', {id: 'wall', x1: 0, y1: 0, x2: 0, y2: 1}, defs);
+    mk('stop', {offset: 0, 'stop-color': '#151a3a'}, lg); mk('stop', {offset: 1, 'stop-color': '#232a58'}, lg);
+    const fg = mk('linearGradient', {id: 'fade', x1: 0, y1: 0, x2: 0, y2: 1}, defs);
+    mk('stop', {offset: 0, 'stop-color': '#fff', 'stop-opacity': .02}, fg); mk('stop', {offset: 1, 'stop-color': '#fff', 'stop-opacity': .14}, fg);
+    mk('rect', {x: 0, y: 0, width: W, height: H, fill: 'url(#wall)'}, sv);
+    // a few still stars in the night sky behind the stage
+    let seed = 7;
+    const rnd = () => (seed = (seed * 9301 + 49297) % 233280) / 233280;
+    for (let i = 0, n = Math.round(W / 34); i < n; i++)
+      mk('circle', {cx: f2(rnd() * W), cy: f2(bulbR + 8 + rnd() * Math.max(10, floorTop - bulbR - 30)), r: f2(.8 + rnd() * 1.3), fill: '#fff', opacity: f2(.25 + rnd() * .4)}, sv);
+    // a curtain edge on both sides
+    for (const sd of [0, 1]) {
+      const cw = Math.max(18, W * .035), x = sd ? W - cw : 0;
+      mk('path', {d: sd ? `M${W} 0 L${x} 0 Q${x + cw * .2} ${floorTop * .5} ${x + cw * .55} ${floorTop} L${W} ${floorTop} Z`
+                        : `M0 0 L${cw} 0 Q${cw * .8} ${floorTop * .5} ${cw * .45} ${floorTop} L0 ${floorTop} Z`, fill: '#7d1650', opacity: .85}, sv);
+    }
+    // checker floor in perspective
+    mk('rect', {x: 0, y: floorTop, width: W, height: H - floorTop, fill: '#2b3266'}, sv);
+    const rows = 6, cols = 16, vx = W / 2;
+    const yAt = k => floorTop + (H - floorTop) * Math.pow(k / rows, 1.35);
+    const xAt = (j, y) => vx + (j - cols / 2) / (cols / 2) * (W * .55) * (.62 + .9 * (y - floorTop) / (H - floorTop));
+    for (let r = 0; r < rows; r++) for (let j = 0; j < cols; j++) {
+      const ya = yAt(r), yb = yAt(r + 1);
+      const pts = [[xAt(j, ya), ya], [xAt(j + 1, ya), ya], [xAt(j + 1, yb), yb], [xAt(j, yb), yb]];
+      const base = (r + j) % 2 ? '#343c78' : '#2b3266';
+      const el = mk('polygon', {points: pts.map(p => p.map(f2).join(',')).join(' '), fill: base}, sv);
+      S.tiles.push({el, base, cx: (pts[0][0] + pts[2][0]) / 2, cy: (ya + yb) / 2, ya, yb});
+    }
+    mk('line', {x1: 0, y1: floorTop, x2: W, y2: floorTop, stroke: '#4b55a0', 'stroke-width': 2}, sv);
+    // two soft spotlight cones from the top
+    const beams = fxm ? [[W * .2, boltX], [W * .8, dotX]] : [[W * .22, boltX], [W * .78, boltX]];
+    for (const [sx, tx] of beams) {
+      const rw = 105 * s;
+      mk('polygon', {points: `${f2(sx - 10)},0 ${f2(sx + 10)},0 ${f2(tx + rw)},${footY} ${f2(tx - rw)},${footY}`, fill: '#fff', opacity: .12}, sv);
+      mk('ellipse', {cx: tx, cy: footY, rx: f2(rw * 1.05), ry: f2(Math.max(8, rw * .2)), fill: '#fff', opacity: .1}, sv);
+    }
+    // Dot's round star-shaped rug
+    if (fxm) {
+      const rug = mk('g', {transform: `translate(${dotX},${footY + 2}) scale(1,.24)`}, sv);
+      mk('path', {d: starPath(0, 0, 96 * s, 78 * s, 10), fill: '#5e2463', stroke: C.gold, 'stroke-width': 7}, rug);
+      mk('path', {d: starPath(0, 0, 50 * s, 22 * s, 5), fill: C.gold, opacity: .55}, rug);
+    }
+    // robots
+    bolt.s = s; bolt.x = boltX; bolt.floor = footY; sv.appendChild(bolt.g);
+    if (fxm) { dot.s = s * 1.1; dot.x = dotX; dot.floor = footY; sv.appendChild(dot.g); }
+    // stars that circle Bolt's head after a trip
+    S.stars = mk('g', {display: 'none'}, sv);
+    for (let i = 0; i < 3; i++) mk('path', {d: starPath(0, 0, 9 * Math.max(.7, s), 4 * Math.max(.7, s), 5), fill: C.gold, stroke: C.out, 'stroke-width': 1.5}, S.stars);
+    // the move bubble over Bolt
+    {
+      const g = mk('g', {}, sv);
+      let cx, cy, tail;
+      if (side) {
+        cx = boltX - 118 * s - 8 - bw / 2; cy = Math.max(footY - 200 * s, topR + 4 + bw / 2);   // never under the caption
+        tail = `${f2(bw / 2 - 2)},${f2(-bw * .12)} ${f2(bw / 2 + 14)},${f2(bw * .02)} ${f2(bw / 2 - 2)},${f2(bw * .14)}`;
+      } else {
+        cx = boltX; cy = footY - (BOLT_H + JUMP) * s - 14 - bw / 2;
+        tail = `${f2(-bw * .14)},${f2(bw / 2 - 2)} ${f2(bw * .02)},${f2(bw / 2 + 14)} ${f2(bw * .14)},${f2(bw / 2 - 2)}`;
+      }
+      g.setAttribute('transform', `translate(${f2(cx)},${f2(cy)})`);
+      const frame = mk('rect', {x: -bw / 2, y: -bw / 2, width: bw, height: bw, rx: bw * .24, fill: '#fff', stroke: C.out, 'stroke-width': 3}, g);
+      const tl = mk('polygon', {points: tail, fill: '#fff', stroke: C.out, 'stroke-width': 3, 'stroke-linejoin': 'round'}, g);
+      mk('rect', {x: -bw / 2 + 2, y: -bw / 2 + 2, width: bw - 4, height: bw - 4, rx: bw * .22, fill: '#fff'}, g);   // hides the tail's inner edge
+      const ring = mk('rect', {x: -bw / 2 + 5, y: -bw / 2 + 5, width: bw - 10, height: bw - 10, rx: bw * .19, fill: 'none', 'stroke-width': 5, stroke: 'transparent'}, g);
+      const use = useIco('clap', {x: -bw * .38, y: -bw * .4, width: bw * .76, height: bw * .8});
+      g.appendChild(use);
+      const q = mk('text', {x: 0, y: bw * .22, 'text-anchor': 'middle', 'font-size': f2(bw * .62), 'font-weight': 900, 'font-family': "'Trebuchet MS',sans-serif", fill: C.mag}, g);
+      q.textContent = '?';
+      S.bub = {g, frame, tl, ring, use, q};
+    }
+    // Dot's thought bubble (shown after a trip: the move Dot did on that step)
+    if (fxm) {
+      const g = mk('g', {display: 'none'}, sv), tw = bw;
+      let cx, cy, trail;
+      const dotTop = footY - 190 * s * 1.1;
+      if (side) { cx = dotX + 130 * s + 10 + tw / 2; cy = Math.max(footY - 200 * s, topR + 4 + tw * .64); trail = [[-tw * .62, tw * .36, .09], [-tw * .78, tw * .5, .06]]; }
+      else { cx = dotX + 26 * s; cy = dotTop - 26 - tw / 2; trail = [[-tw * .3, tw * .66, .09], [-tw * .42, tw * .82, .06]]; }
+      g.setAttribute('transform', `translate(${f2(cx)},${f2(cy)})`);
+      const blobs = [[0, 0, .5], [-tw * .34, -tw * .12, .3], [tw * .34, -tw * .12, .3], [-tw * .26, tw * .26, .28], [tw * .26, tw * .26, .28], [0, -tw * .34, .3]];
+      for (const [x, y, r] of blobs) mk('circle', {cx: f2(x), cy: f2(y), r: f2(tw * r), fill: '#fff', stroke: C.out, 'stroke-width': 3}, g);
+      for (const [x, y, r] of blobs) mk('circle', {cx: f2(x), cy: f2(y), r: f2(tw * r - 1.6), fill: '#fff'}, g);
+      for (const [x, y, r] of trail) mk('circle', {cx: f2(x), cy: f2(y), r: f2(tw * r), fill: '#fff', stroke: C.out, 'stroke-width': 2.5}, g);
+      const ring = mk('circle', {cx: 0, cy: 0, r: f2(tw * .47), fill: 'none', 'stroke-width': 5, stroke: 'transparent'}, g);
+      const use = useIco('clap', {x: -tw * .38, y: -tw * .42, width: tw * .76, height: tw * .82});
+      g.appendChild(use);
+      S.th = {g, ring, use};
+    } else S.th = null;
+    // the string of bulbs along the top edge: they blink on every beat
+    const n = Math.max(8, Math.round(W / 40)), br = clamp(W / 170, 4.5, 8), by = Math.round(bulbR * .45);
+    let wire = `M0 ${by - br}`;
+    for (let i = 0; i <= n; i++) wire += ` Q${f2((i - .5) * W / n)} ${f2(by + br * .4)} ${f2(i * W / n)} ${f2(by - br)}`;
+    mk('path', {d: wire, fill: 'none', stroke: '#0c0f24', 'stroke-width': 2}, sv);
+    for (let i = 0; i < n; i++) {
+      const c = mk('circle', {cx: f2((i + .5) * W / n), cy: f2(by + br * .4), r: f2(br), stroke: '#0c0f24', 'stroke-width': 1.5}, sv);
+      S.bulbs.push(c);
+    }
+    S.conf = mk('g', {}, sv);
+    S.confetti = [];
+    S.flashT = null;
+    drawOverlays(true);
+  }
+
+  // which tile is under a robot's stomping foot: it flashes gold for a moment
+  function flashTile(R) {
+    if (!S.tiles.length) return;
+    const x = R.x + R.G.legX * R.s, y = R.floor + 4;
+    let best = null, bd = 1e9;
+    for (const t of S.tiles) { const d = (t.cx - x) ** 2 + (3 * (t.cy - y)) ** 2; if (d < bd) { bd = d; best = t; } }
+    if (!best) return;
+    best.el.setAttribute('fill', '#ffd23f');
+    setTimeout(() => best.el.setAttribute('fill', best.base), 260);
+  }
+
+  // confetti for 2 s (Motion on); with Motion off the bulbs all turn on instead
+  function celebrate() {
+    if (Curio.reduce) { state.allOnUntil = now() + 2000; return; }
+    const cols = ORDER.map(m => MOVES[m].color).concat(['#ffffff', '#ffd23f']);
+    S.conf.textContent = ''; S.confetti = [];
+    for (let i = 0; i < 70; i++) {
+      const w = 6 + Math.random() * 7, h = 4 + Math.random() * 5;
+      const el = mk('rect', {x: -w / 2, y: -h / 2, width: w, height: h, rx: 1.5, fill: cols[i % cols.length]}, S.conf);
+      S.confetti.push({el, x: Math.random() * S.W, y: -20 - Math.random() * S.H * .5, vx: (Math.random() - .5) * 60,
+        vy: 80 + Math.random() * 120, r: Math.random() * 360, vr: (Math.random() - .5) * 500});
+    }
+    S.confEnd = now() + 2000;
+  }
+
+  // per-frame drawing of the bubbles, bulbs, trip stars and confetti
+  function drawOverlays(force) {
+    const t = now();
+    const b = S.bub;
+    if (b) {
+      const k = state.bubble || '';
+      if (force || k !== S.bubKey) {
+        S.bubKey = k;
+        const mv = MOVES[k];
+        b.g.setAttribute('opacity', k ? 1 : .22);
+        b.use.setAttribute('display', mv ? '' : 'none');
+        if (mv) b.use.setAttribute('href', '#ico-' + k);
+        b.q.setAttribute('display', k === '?' ? '' : 'none');
+        b.ring.setAttribute('stroke', mv ? mv.color : 'transparent');
+      }
+    }
+    if (S.th) {
+      const k = state.thought || '';
+      if (force || k !== S.thKey) {
+        S.thKey = k;
+        S.th.g.setAttribute('display', k ? '' : 'none');
+        if (k) { S.th.use.setAttribute('href', '#ico-' + k); S.th.ring.setAttribute('stroke', MOVES[k].color); }
+      }
+    }
+    // bulbs: dim at rest, every other one on each beat, flashing at the end of a dance
+    if (S.bulbs.length) {
+      let key;
+      const allOn = t < state.allOnUntil || (state.bulbs === 'flash' && Curio.reduce);
+      if (allOn) key = 'all';
+      else if (state.bulbs === 'flash' || t < state.flashUntil) key = Curio.reduce ? 'all' : 'f' + (Math.floor(t / 170) % 2);
+      else if (state.bulbs === 'beat') key = 'b' + (state.bulbPhase % 2);
+      else key = 'idle';
+      if (force || key !== S.bulbKey) {
+        S.bulbKey = key;
+        S.bulbs.forEach((c, i) => {
+          const on = key === 'all' || (key[0] === 'b' || key[0] === 'f') && (i % 2) === +key[1];
+          c.setAttribute('fill', on ? '#ffd23f' : key === 'idle' ? '#b59a3a' : '#5b5130');
+          c.setAttribute('filter', '');
+          c.style.filter = on ? 'drop-shadow(0 0 5px #ffd23f)' : '';
+        });
+      }
+    }
+    // stars circling a sitting Bolt's head
+    if (S.stars) {
+      const show = bolt.base === 'sit' && !bolt.act && state.mode === 'fx';
+      S.stars.setAttribute('display', show ? '' : 'none');
+      if (show) {
+        const [hx, hy] = bolt.head0, rx = 46 * bolt.s, ry = 12 * bolt.s, a0 = Curio.reduce ? 0 : t / 420;
+        [...S.stars.children].forEach((st, i) => {
+          const a = a0 + i * 2 * Math.PI / 3;
+          st.setAttribute('transform', `translate(${f2(hx + rx * Math.cos(a))},${f2(hy - 52 * bolt.s + ry * Math.sin(a))})`);
+        });
+      }
+    }
+    if (S.confetti && S.confetti.length) {
+      if (t > S.confEnd || Curio.reduce) { S.conf.textContent = ''; S.confetti = []; }
+      else {
+        const dt = Math.min(.05, (t - (S.confT || t)) / 1000);
+        for (const p of S.confetti) {
+          p.vy += 220 * dt; p.x += p.vx * dt; p.y += p.vy * dt; p.r += p.vr * dt;
+          p.el.setAttribute('transform', `translate(${f2(p.x)},${f2(p.y)}) rotate(${f2(p.r)})`);
+        }
+      }
+      S.confT = t;
+    }
+  }
+
+  function frame() {
+    const t = now();
+    if (bolt.g.isConnected) pose(bolt, paramsOf(bolt, t));
+    if (dot.g.isConnected) pose(dot, paramsOf(dot, t));
+    drawOverlays(false);
+    requestAnimationFrame(frame);
+  }
+
+  // ======================================================================================
+  // The card strip
+  // ======================================================================================
+  const strip = $('strip'), cells = [], cardEls = new Map();
+  for (let i = 0; i < 8; i++) {
+    const c = document.createElement('div');
+    c.className = 'cell empty'; c.setAttribute('role', 'listitem');
+    c.innerHTML = '<span class="bugb" aria-hidden="true">?</span>';
+    strip.appendChild(c); cells.push(c);
+  }
+  function makeCard(c) {
+    const b = document.createElement('button');
+    b.className = 'card'; b.dataset.uid = c.id;
+    b.innerHTML = '<span class="band"><svg viewBox="0 0 24 24" aria-hidden="true"><use/></svg></span><span class="num" aria-hidden="true"></span>' +
+      '<svg class="pose" aria-hidden="true"><use width="100%" height="100%"/></svg><span class="w" aria-hidden="true"></span>';
+    cardEls.set(c.id, b);
+    return b;
+  }
+  function setCardMove(b, m) {
+    if (b.dataset.move === m) return;
+    b.dataset.move = m;
+    b.style.setProperty('--c', MOVES[m].color); b.style.setProperty('--gi', MOVES[m].gi);
+    b.querySelector('.band use').setAttribute('href', '#g-' + m);
+    b.querySelector('.pose use').setAttribute('href', '#ico-' + m);
+    b.querySelector('.w').textContent = MOVES[m].word;
+  }
+  function snapshot() { const m = new Map(); for (const [id, b] of cardEls) if (b.isConnected) m.set(id, b.getBoundingClientRect()); return m; }
+  function renderStrip(o = {}) {
+    const P = prog(), act = document.activeElement;
+    for (const [id, b] of cardEls) if (!P.some(c => c.id === id)) { b.remove(); cardEls.delete(id); }
+    cells.forEach((cell, i) => {
+      const c = P[i];
+      cell.classList.toggle('empty', !c);
+      cell.classList.toggle('bug', state.bug === i);
+      const cur = cell.querySelector('.card');
+      if (!c) { if (cur) cur.remove(); return; }
+      const b = cardEls.get(c.id) || makeCard(c);
+      if (cur && cur !== b) cur.remove();
+      if (b.parentNode !== cell) cell.appendChild(b);
+      setCardMove(b, c.move);
+      b.querySelector('.num').textContent = i + 1;
+      b.setAttribute('aria-label', `Step ${i + 1}: ${MOVES[c.move].word}`);
+      b.setAttribute('aria-pressed', state.sel === i);
+      b.classList.toggle('on', state.step === i);
+      b.disabled = !!state.dancing;
+    });
+    if (o.flip && !Curio.reduce) {
+      for (const [id, r0] of o.flip) {
+        const b = cardEls.get(id); if (!b || !b.isConnected) continue;
+        const r1 = b.getBoundingClientRect(), dx = r0.left - r1.left, dy = r0.top - r1.top;
+        if (!dx && !dy) continue;
+        b.style.transition = 'none'; b.style.translate = `${dx}px ${dy}px`;
+        b.getBoundingClientRect();
+        b.style.transition = ''; b.style.transition = 'translate .3s ease, transform .15s ease, box-shadow .15s';
+        b.style.translate = '0px 0px';
+        setTimeout(() => { b.style.transition = ''; b.style.translate = ''; }, 340);
+      }
+    }
+    if (act && act.classList && act.classList.contains('card') && !act.isConnected === false && document.activeElement !== act) act.focus();
+    // a phone strip of two rows hides the second row while it would be empty, and the stage gets that height
+    syncRows();
+    syncCardBtns();
+    placePtr();
+  }
+  function syncCardBtns() {
+    const P = prog(), on = state.sel != null && state.sel < P.length && !state.dancing, fa = document.activeElement;
+    $('cbtns').classList.toggle('off', !on);
+    $('cLeft').disabled = !on || state.sel === 0;
+    $('cRight').disabled = !on || state.sel === P.length - 1;
+    $('cDel').disabled = !on;
+    for (const b of $('cbIn').children) b.tabIndex = on ? 0 : -1;
+    // an arrow that reaches the end of the strip turns off: focus goes to the other arrow, else the picked card
+    if (on && fa && fa.disabled && (fa.id === 'cLeft' || fa.id === 'cRight')) {
+      const o = $(fa.id === 'cLeft' ? 'cRight' : 'cLeft'), c = cells[state.sel] && cells[state.sel].querySelector('.card');
+      if (!o.disabled) o.focus(); else if (c) c.focus();
+    }
+    if (!on) return;
+    const cell = cells[state.sel], ap = $('apron').getBoundingClientRect(), cr = cell.getBoundingClientRect(), inn = $('cbIn');
+    const w = inn.offsetWidth || 212, box = $('cbtns').getBoundingClientRect();
+    // in compact the buttons float over the stage, so they stay left of the panel
+    const right = page === 'compact' || tight ? $('stage').getBoundingClientRect().right : ap.right;
+    const left = clamp(cr.left + cr.width / 2 - w / 2 - box.left, 6 + ap.left - box.left, right - box.left - w - 6);
+    inn.style.left = Math.round(left) + 'px';
+  }
+  function placePtr() {
+    const p = $('ptr'), i = state.step;
+    if (i == null || i > 7 || !cells[i].offsetParent) { p.style.display = 'none'; return; }
+    p.style.display = '';
+    const c = cells[i];
+    p.style.left = Math.round(c.offsetLeft + c.offsetWidth / 2 - 17) + 'px';
+    p.style.top = Math.round(c.offsetTop - p.offsetHeight - 4) + 'px';
+  }
+  // the second row stays while the step or the "?" cell is in it
+  function syncRows() {
+    const one = prog().length <= 4 && !(state.bug >= 4) && !(state.step >= 4);
+    if (one !== $('strip').classList.contains('one-row')) { $('strip').classList.toggle('one-row', one); queueMicrotask(() => relayout()); }
+  }
+  function setStep(i) { state.step = i; syncRows(); cells.forEach((c, k) => { const b = c.querySelector('.card'); if (b) b.classList.toggle('on', k === i); }); placePtr(); }
+
+  function select(i) { state.sel = i; renderStrip(); }
+  function deselect() { if (state.sel == null) return; state.sel = null; renderStrip(); }
+  strip.addEventListener('click', e => {
+    const b = e.target.closest('.card'); if (!b || state.dancing) return;
+    const i = cells.indexOf(b.parentNode);
+    if (state.sel === i) deselect(); else select(i);
+  });
+  strip.addEventListener('keydown', e => {
+    const b = e.target.closest && e.target.closest('.card'); if (!b || state.dancing) return;
+    const i = cells.indexOf(b.parentNode);
+    if (state.sel === i) {
+      if (e.key === 'ArrowLeft') { e.preventDefault(); moveSel(-1, true); }
+      else if (e.key === 'ArrowRight') { e.preventDefault(); moveSel(1, true); }
+      else if (e.key === 'Delete' || e.key === 'Backspace') { e.preventDefault(); removeSel(); }
+    } else if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+      const j = i + (e.key === 'ArrowLeft' ? -1 : 1), n = cells[j] && cells[j].querySelector('.card');
+      if (n) { e.preventDefault(); n.focus(); }
+    }
+  });
+  // tapping the empty stage or the strip's background puts the picked card down
+  for (const id of ['stage', 'apron']) $(id).addEventListener('pointerdown', e => {
+    if (e.target.closest('.card, .cbtns button, .finale')) return;
+    deselect();
+  });
+
+  function moveSel(d, byKey) {
+    const P = prog(), i = state.sel;
+    if (i == null || state.dancing) return;
+    const j = i + d; if (j < 0 || j >= P.length) return;
+    const before = snapshot();
+    [P[i], P[j]] = [P[j], P[i]];
+    state.sel = j;
+    edited();
+    renderStrip({flip: before});
+    SND.slideCard();
+    if (byKey) { const b = cells[j].querySelector('.card'); if (b) b.focus(); }
+    live(`Card moved to step ${j + 1}.`);
+  }
+  function removeSel() {
+    const P = prog(), i = state.sel;
+    if (i == null || state.dancing) return;
+    const hadFocus = document.activeElement && (document.activeElement.closest('.cbtns') || document.activeElement.classList.contains('card'));
+    P.splice(i, 1); state.sel = null;
+    edited();
+    renderStrip();
+    T(330, .12, .04, 'triangle');
+    if (hadFocus) {
+      const k = Math.min(i, P.length - 1), b = k >= 0 && cells[k].querySelector('.card');
+      (b || $('tray').querySelector('.mv')).focus();
+    }
+    live('Card taken away.');
+  }
+  $('cLeft').onclick = () => moveSel(-1);
+  $('cRight').onclick = () => moveSel(1);
+  $('cDel').onclick = () => removeSel();
+
+  // any change to the cards in the Fix-It Show: Bolt gets back up, the "?" and Dot's bubble go away
+  function edited() {
+    state.evt++;
+    if (state.mode !== 'fx') return;
+    state.bug = null; state.thought = null;
+    if (bolt.base === 'sit' || bolt.base === 'puzzled') setBase(bolt, 'stand');
+    if (dot.base === 'bow') setBase(dot, 'stand');
+    if (!state.dancing) state.bubble = null;
+  }
+
+  // ======================================================================================
+  // Tray, preview and the step runner
+  // ======================================================================================
+  const tray = $('tray');
+  for (const m of ORDER) {
+    const b = document.createElement('button');
+    b.className = 'mv'; b.dataset.move = m;
+    b.style.setProperty('--c', MOVES[m].color); b.style.setProperty('--gi', MOVES[m].gi);
+    b.setAttribute('aria-label', MOVES[m].word);
+    b.innerHTML = `<svg class="ico" aria-hidden="true"><use href="#ico-${m}" width="100%" height="100%"/></svg><span class="w">${MOVES[m].word}</span>` +
+      `<span class="chip" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#g-${m}"/></svg></span>`;
+    b.onclick = () => pickMove(m);
+    tray.appendChild(b);
+  }
+  function pickMove(m) {
+    if (state.dancing) return;
+    const P = prog();
+    if (state.sel != null && state.sel < P.length) {
+      const i = state.sel;
+      P[i] = {id: P[i].id, move: m};
+      state.sel = null;
+      edited();
+      renderStrip();
+      const b = cells[i].querySelector('.card');
+      if (b && !Curio.reduce) { b.classList.remove('flip'); b.getBoundingClientRect(); b.classList.add('flip'); setTimeout(() => b.classList.remove('flip'), 400); }
+      live(`Step ${i + 1} is now ${MOVES[m].word}.`);
+      preview(m);
+      return;
+    }
+    if (P.length >= 8) {
+      $('apron').classList.add('flash');
+      setTimeout(() => $('apron').classList.remove('flash'), 900);
+      setHint(L.h11); narrate('h11#' + state.evt, L.h11, {valid: hintStill(L.h11)});
+      return;
+    }
+    P.push({id: uid++, move: m});
+    edited();
+    renderStrip();
+    live(`Step ${P.length}: ${MOVES[m].word}.`);
+    preview(m);
+  }
+  // Bolt does the move once at Slow timing; a new tap cancels it, and only the newest move name is said
+  function preview(m) {
+    cancelPreview();
+    const id = ++state.previewId;
+    if (bolt.base !== 'stand') setBase(bolt, 'stand');
+    actMove(bolt, m, 1400, true, 'pv');
+    state.bubble = m;
+    later(1400 * .8, () => { if (state.previewId === id && !state.dancing) state.bubble = null; }, 'pv');
+    narrate('mv' + id, MOVES[m].say, {valid: () => state.previewId === id});
+  }
+  function cancelPreview() {
+    clearTimers('pv');
+    if (bolt.act && !state.dancing) bolt.act = null;
+    if (!state.dancing && MOVES[state.bubble]) state.bubble = null;
+  }
+
+  // the step runner: program and target are arrays of move ids; onStep(i, mine, theirs, result, beat) draws each beat.
+  // result is ok, wrong (both have a step and they differ), ranout (no card i) or extra (Dot already done)
+  async function run(program, target, onStep) {
+    const g = danceGen;
+    const n = target ? Math.max(program.length, target.length) : program.length;
+    for (let i = 0; i < n; i++) {
+      const b = program[i], d = target ? target[i] : undefined;
+      const res = !target ? 'ok' : b === undefined ? 'ranout' : d === undefined ? 'extra' : b !== d ? 'wrong' : 'ok';
+      const beat = beatMs();
+      onStep(i, b, d, res, beat);
+      await wait(res === 'ok' ? beat : beat + 650);
+      if (g !== danceGen) return {result: 'stopped', step: i};
+      if (res !== 'ok') return {result: res, step: i};
+    }
+    return {result: 'done', step: n};
+  }
+  function beatStart(i) {
+    SND.tick();
+    state.bulbs = 'beat'; state.bulbPhase++;
+    setStep(i);
+  }
+  function startDance(kind) {
+    cancelPreview();
+    state.sel = null;
+    danceGen++;
+    state.dancing = kind;
+    state.evt++;
+    dropMoveNames();
+    sync();
+    renderStrip();
+  }
+  function endDance() {
+    state.dancing = null;
+    state.bulbs = 'idle';
+    setStep(null);
+    sync();
+    renderStrip();
+  }
+  function stopDance() {
+    danceGen++;
+    clearTimers('dance'); clearTimers('pv');
+    for (const R of [bolt, dot]) { R.act = null; setBase(R, 'stand'); }
+    state.bubble = null; state.bug = null; state.thought = null;
+    if (state.dancing) { state.dancing = null; }
+    state.bulbs = 'idle'; state.allOnUntil = 0; state.flashUntil = 0;
+    setStep(null);
+    sync(); renderStrip();
+  }
+  async function getUp() {
+    let w = 0;
+    for (const R of [bolt, dot]) if (R.base !== 'stand') { setBase(R, 'stand'); w = 450; }
+    state.bug = null; state.thought = null; state.bubble = null;
+    renderStrip();
+    if (w) await wait(w);
+  }
+
+  async function go() {
+    if (state.dancing) { stopDance(); hush(); return; }
+    const P = prog().map(c => c.move);
+    if (!P.length) {
+      cancelPreview();
+      tray.classList.remove('pulse'); tray.getBoundingClientRect(); tray.classList.add('pulse');
+      setTimeout(() => tray.classList.remove('pulse'), 900);
+      setHint(L.h10); narrate('h10#' + state.evt, L.h10, {valid: hintStill(L.h10)});
+      return;
+    }
+    startDance('go');
+    const g = danceGen;
+    await getUp();
+    if (g !== danceGen) return;
+    if (state.mode === 'df') {
+      const res = await run(P, null, (i, m, _, __, beat) => {
+        beatStart(i); actMove(bolt, m, beat, true); state.bubble = m;
+      });
+      if (res.result === 'stopped' || g !== danceGen) return;
+      state.bubble = null;
+      setBase(bolt, 'final');
+      state.flashUntil = now() + 1600;
+      T(784, .3, .04); later(140, () => T(1046, .35, .04));
+      endDance();
+      later(1600, () => setBase(bolt, 'stand'));
+      setHint(L.h13);
+      const e = state.evt;
+      narrate('h13#' + e, L.h13, {valid: () => state.evt === e});
+      live('Bolt danced every card.');
+      return;
+    }
+    const target = ROUNDS[fx.r].dot, r = fx.r;
+    const res = await run(P, target, (i, b, d, res, beat) => {
+      beatStart(i);
+      if (res === 'ok') { actMove(bolt, b, beat, true); actMove(dot, d, beat, false); state.bubble = b; }
+      else if (res === 'wrong') { actTrip(bolt, b, beat); actMove(dot, d, beat, true); state.bubble = b; }
+      else if (res === 'ranout') { setBase(bolt, 'puzzled'); actMove(dot, d, beat, true); state.bubble = '?'; }
+      else { setBase(dot, 'bow'); actTrip(bolt, b, beat); state.bubble = b; }
+    });
+    if (res.result === 'stopped' || g !== danceGen || fx.r !== r) return;
+    fx.last = res;
+    if (res.result === 'done') win();
+    else trip(res);
+  }
+
+  function trip(res) {
+    fx.trips++;
+    const r = fx.r, i = res.step;
+    state.bug = i;
+    state.thought = res.result === 'wrong' ? ROUNDS[r].dot[i] : null;
+    endDance();
+    const line = res.result === 'wrong' ? L.t24 : res.result === 'ranout' ? L.t26 : L.t27;
+    const fixLine = res.result === 'ranout' ? L.t26 : res.result === 'extra' ? L.h8 : FIXHINT[r];
+    const first = fx.trips === 1;
+    setHint(first ? line : fixLine);
+    dropIntros();
+    const e = state.evt, ok = () => state.evt === e && state.mode === 'fx' && fx.r === r;
+    narrate('trip#' + e, line, {valid: ok});
+    if (!first) { if (fixLine !== line) narrate('fix#' + e, fixLine, {valid: ok}); }
+    else if (res.result === 'wrong') narrate('look#' + e, L.t25, {valid: ok});
+    live(res.result === 'ranout' ? `Bolt ran out of cards at step ${i + 1}.` : res.result === 'extra' ? `Bolt has an extra step, step ${i + 1}.` : `Bolt tripped on step ${i + 1}.`);
+  }
+
+  function win() {
+    const r = fx.r, team = teamOf(r);
+    const newStar = fx.teams && !fx.star[r];
+    fx.fixed[r] = true;
+    if (newStar) fx.star[r] = team;
+    fx.wins++;
+    state.bubble = null;
+    setBase(bolt, 'final'); setBase(dot, 'final');
+    celebrate();
+    SND.fan('dance');
+    endDance();
+    later(1700, () => { setBase(bolt, 'stand'); setBase(dot, 'stand'); });
+    setHint(L.t28);
+    dropIntros();
+    const e = state.evt, ok = () => state.evt === e && state.mode === 'fx' && fx.r === r;
+    narrate('win#' + e, L.t28, {valid: ok});
+    narrate('debug', L.t29, {once: true, valid: ok});
+    if (newStar) narrate('star#' + e, team === 'star' ? L.s30 : L.s31, {valid: ok});
+    else if (!fx.teams) narrate('all#' + e, L.s32, {valid: ok});
+    live(`Round ${r + 1} fixed!`);
+    if (r === 7) {
+      // the finale waits for the win and star lines to finish (its own dance would make them stale), up to about 12 s
+      const t0 = now(), go = () => {
+        if (state.mode !== 'fx' || fx.r !== 7 || state.dancing || fx.finale || !fx.fixed[7]) return;
+        if ((vq.length || busy) && now() - t0 < 12000) { later(300, go); return; }
+        startFinale();
+      };
+      later(2600, go);
+    }
+  }
+
+  async function watchDot() {
+    if (state.dancing || state.mode !== 'fx') return;
+    startDance('watch');
+    const g = danceGen;
+    await getUp();
+    if (g !== danceGen) return;
+    setBase(bolt, 'watch');
+    const res = await run(ROUNDS[fx.r].dot, null, (i, m, _, __, beat) => {
+      beatStart(i);
+      actMove(dot, m, beat, true);
+      setBase(bolt, 'watch', {head: i % 2 ? -6 : 7, lookX: i % 2 ? 3 : 7});
+    });
+    if (res.result === 'stopped' || g !== danceGen) return;
+    setBase(bolt, 'stand');
+    endDance();
+    setStep(null);
+    setHint(L.h5);
+    const e = state.evt;
+    narrate('h5#' + e, L.h5, {valid: () => state.evt === e && state.mode === 'fx'});
+  }
+
+  // ======================================================================================
+  // Fix-It rounds, teams and the finale
+  // ======================================================================================
+  function openRound(r) {
+    stopDance();
+    fx.r = r; fx.trips = 0; fx.last = null;
+    fx.cards = cardsOf(ROUNDS[r].bolt);
+    state.sel = null;
+    setHint(L.h4);
+    renderStrip(); sync();
+    roundIntro();
+  }
+  function roundIntro() {
+    const r = fx.r, ok = () => state.mode === 'fx' && fx.r === r && !fx.finale;
+    narrate('round#' + fx.show + '#' + r, L.rounds[r], {once: true, valid: ok});
+    if (fx.teams) narrate('team#' + fx.show + '#' + r, teamOf(r) === 'star' ? L.tStar : L.tMoon, {once: true, valid: () => ok() && fx.teams});
+  }
+  function startOver() {
+    if (state.dancing) return;
+    stopDance();
+    fx.cards = cardsOf(ROUNDS[fx.r].bolt);
+    state.sel = null;
+    edited();
+    setHint(L.h4);
+    renderStrip(); sync();
+  }
+  function nextRound() {
+    if (state.dancing || !fx.fixed[fx.r]) return;
+    if (fx.r === 7) { startFinale(); return; }
+    openRound(fx.r + 1);
+  }
+  async function startFinale() {
+    if (state.mode !== 'fx') return;
+    stopDance();
+    fx.finale = true;
+    startDance('finale');
+    setHint(L.f33);
+    const g = danceGen;
+    sync();
+    const ok = () => state.mode === 'fx' && fx.finale;
+    narrate('f33#' + fx.show, L.f33, {valid: ok});
+    if (fx.teams) narrate('f34#' + fx.show, L.f34, {valid: ok});
+    const t = ROUNDS[7].dot;
+    for (let k = 0; k < 2; k++) {
+      const res = await run(t, null, (i, m, _, __, beat) => {
+        beatStart(i); state.bulbs = 'flash';
+        actMove(bolt, m, beat, true); actMove(dot, m, beat, false); state.bubble = m;
+      });
+      if (res.result === 'stopped' || g !== danceGen) return;
+    }
+    state.bubble = null;
+    setBase(bolt, 'final'); setBase(dot, 'final');
+    SND.fan('dance');
+    state.flashUntil = now() + 2000;
+    endDance();
+    sync();
+    const a = document.activeElement;
+    if (!a || a === document.body || a.disabled) $('again').focus();
+  }
+  function playAgain() {
+    stopDance();
+    fx.fixed.fill(false); fx.star.fill(null); fx.finale = false; fx.show++;
+    openRound(0);
+    $('go').focus();
+  }
+
+  // ======================================================================================
+  // Panel state
+  // ======================================================================================
+  // a focused button that turns off hands focus on, so the keyboard never drops to the page
+  let rescued = null;
+  function rescueFocus(a) {
+    const gone = el => el.disabled || el.offsetParent === null;
+    if (!a || a === document.body || a.closest('.cbtns')) return;
+    if (!document.contains(a) || !gone(a)) {
+      // a dance ended: focus that was moved to Stop goes back where it was
+      if (!state.dancing && rescued && a === $('go') && document.contains(rescued) && !gone(rescued)) rescued.focus();
+      if (!state.dancing) rescued = null;
+      return;
+    }
+    let t = state.mode === 'fx' && fx.finale && !state.dancing ? $('again') : a.id === 'next' && !state.dancing ? $('watch') : $('go');
+    if (gone(t)) t = $('go');
+    if (gone(t)) return;
+    rescued = state.dancing && a.id !== 'next' ? a : null;
+    t.focus();
+  }
+  function sync() {
+    const focusWas = document.activeElement;
+    const busy = !!state.dancing, dfm = state.mode === 'df', fin = !dfm && fx.finale;
+    for (const b of tray.children) b.disabled = busy || fin;
+    const go = $('go');
+    go.classList.toggle('stop', busy);
+    go.querySelector('use').setAttribute('href', busy ? '#i-stop' : '#i-play');
+    go.querySelector('.w').textContent = busy ? 'Stop' : 'Go!';
+    go.setAttribute('aria-label', busy ? 'Stop' : 'Go');
+    go.disabled = fin && !busy;
+    $('speed').querySelector('use').setAttribute('href', state.quick ? '#i-rabbit' : '#i-turtle');
+    $('speed').querySelector('.w').textContent = state.quick ? 'Quick' : 'Slow';
+    $('speed').setAttribute('aria-label', 'Speed: ' + (state.quick ? 'quick' : 'slow'));
+    $('clear').disabled = busy;
+    $('watch').disabled = busy || fin;
+    $('over').disabled = busy || fin;
+    const nx = $('next'), canNext = !busy && !fin && fx.fixed[fx.r];
+    nx.disabled = !canNext; nx.classList.toggle('ready', canNext);
+    $('m-df').disabled = busy && dfm;
+    $('m-fx').disabled = busy && !dfm;
+    // round dots
+    const rd = $('rounds');
+    if (!rd.children.length) for (let i = 0; i < 8; i++) rd.appendChild(document.createElement('i'));
+    [...rd.children].forEach((d, i) => { d.classList.toggle('done', fx.fixed[i]); d.classList.toggle('cur', i === fx.r && !fx.finale); });
+    rd.setAttribute('aria-label', `Round ${fx.r + 1} of 8. Rounds fixed: ${fx.fixed.filter(Boolean).length} of 8`);
+    // teams
+    const ns = fx.star.filter(t => t === 'star').length, nm = fx.star.filter(t => t === 'moon').length;
+    $('teams').setAttribute('aria-pressed', fx.teams);
+    for (const [id, n, tm, name] of [['bStar', ns, 'star', 'Team Star'], ['bMoon', nm, 'moon', 'Team Moon']]) {
+      const b = $(id);
+      b.hidden = !fx.teams;
+      b.querySelector('b').textContent = n;
+      b.classList.toggle('on', fx.teams && !fx.finale && teamOf(fx.r) === tm);
+      b.setAttribute('aria-label', `${name}: ${n} ${n === 1 ? 'star' : 'stars'}` + (b.classList.contains('on') ? ', your turn' : ''));
+    }
+    // finale card
+    const fin2 = $('finale');
+    fin2.hidden = !fin;
+    document.body.classList.toggle('stage-fin', fin);
+    if (fin) {
+      $('finTeams').hidden = !fx.teams; $('finAll').hidden = fx.teams;
+      $('finStar').textContent = ns; $('finMoon').textContent = nm;
+      $('finStarL').setAttribute('aria-label', `Team Star: ${ns} stars`); $('finMoonL').setAttribute('aria-label', `Team Moon: ${nm} stars`);
+      if (!$('finAll').children.length) $('finAll').innerHTML = '<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-star"/></svg>'.repeat(8);
+      $('again').disabled = false;
+    }
+    syncCardBtns();
+    rescueFocus(focusWas);
+  }
+  function setHint(h) {
+    if (state.mode === 'df') df.hint = h; else fx.hint = h;
+    if ($('hint').textContent !== h) $('hint').textContent = h;
+  }
+  const hintStill = h => () => $('hint').textContent === h;
+  function live(s) { $('live').textContent = s; }
+
+  $('go').onclick = () => go();
+  $('speed').onclick = () => { state.quick = !state.quick; sync(); };
+  $('clear').onclick = () => {
+    if (state.dancing) return;
+    cancelPreview();
+    df.cards = []; state.sel = null;
+    renderStrip();
+    T(520, .1, .03, 'triangle'); later(90, () => T(390, .14, .03, 'triangle'), 'pv');
+    setHint(L.h12); narrate('h12#' + (++state.evt), L.h12, {valid: hintStill(L.h12)});
+    live('All cards cleared.');
+  };
+  $('watch').onclick = () => watchDot();
+  $('over').onclick = () => startOver();
+  $('next').onclick = () => nextRound();
+  $('again').onclick = () => playAgain();
+  $('teams').onclick = () => {
+    fx.teams = !fx.teams;
+    sync();
+  };
+
+  // ======================================================================================
+  // Narration: one line at a time, a welcome per mode after the first tap; Read always wins (STANDARDS.md)
+  // ======================================================================================
+  const said = new Set(), vq = [], vlog = [];
+  let tapped = false, nq = 0, vgen = 0, busy = false, readP = Promise.resolve();
+  function narrate(key, text, o = {}) {
+    if (!tapped || !Curio.sound) return false;
+    if (o.once && (said.has(key) || vq.some(q => q.key === key))) return false;
+    vq.push({key, text, once: o.once, valid: o.valid});
+    nq++;
+    pump();
+    return true;
+  }
+  async function pump() {
+    if (busy) return;
+    busy = true;
+    const gen = vgen;
+    try {
+      while (vq.length) {
+        await readP;
+        if (gen !== vgen) return;
+        const it = vq.shift();
+        if (!it || (it.valid && !it.valid())) continue;   // its moment has passed
+        if (it.once) said.add(it.key);                     // said when it starts, never when queued
+        vlog.push({t: Math.round(now()), text: it.text});
+        await Promise.race([Curio.say(it.text), wait(2500 + 80 * it.text.length)]);
+        if (gen !== vgen) return;
+      }
+    } finally { if (gen === vgen) busy = false; }
+  }
+  // drop every line that has not started (unmarked, so its trigger can queue it again); a stopped Read never ends, so
+  // nothing may keep waiting on it
+  function hush() { vgen++; vq.length = 0; busy = false; readP = Promise.resolve(); Curio.stop(); }
+  function readNow() {
+    hush();
+    const h = $('hint').textContent;
+    vlog.push({t: Math.round(now()), text: h, read: true});
+    readP = Promise.race([Curio.say([h], true), wait(2500 + 80 * h.length)]).catch(() => {});
+  }
+  // a trip or a win says what just happened; welcome and round lines that have not started yet give way
+  function dropIntros() { for (let i = vq.length - 1; i >= 0; i--) if (/^(w[123]$|round#|team#)/.test(vq[i].key)) vq.splice(i, 1); }
+  function dropMoveNames() { const names = new Set(ORDER.map(m => MOVES[m].say)); for (let i = vq.length - 1; i >= 0; i--) if (names.has(vq[i].text)) vq.splice(i, 1); }
+  function welcome() {
+    if (state.mode === 'df') { narrate('w1', L.w1, {once: true, valid: () => state.mode === 'df'}); narrate('w2', L.h2, {once: true, valid: () => state.mode === 'df'}); }
+    else { narrate('w3', L.w3, {once: true, valid: () => state.mode === 'fx'}); if (!fx.finale) roundIntro(); }
+  }
+  // the very first tap or key: decide after that tap's own click has run. If it queued its own line, or was Read or
+  // Sound, the welcome waits (unmarked) for the next mode entry or Sound on.
+  for (const ev of ['pointerdown', 'keydown']) addEventListener(ev, e => {
+    if (tapped) return;
+    tapped = true;
+    const b = e.target && e.target.closest ? e.target.closest('button') : null, n0 = nq;
+    let done = false;
+    const decide = () => {
+      if (done) return; done = true;
+      if (b && (b.id === 'read' || b.id === 'sound')) return;
+      if (nq !== n0) return;
+      welcome();
+    };
+    const endEv = ev === 'pointerdown' ? 'click' : 'keyup';
+    const after = () => { removeEventListener(endEv, after, true); clearTimeout(fb); setTimeout(decide, 0); };
+    addEventListener(endEv, after, true);
+    const fb = setTimeout(after, 1500);
+  }, true);
+
+  // ======================================================================================
+  // Modes and layout
+  // ======================================================================================
+  function setMode(m) {
+    stopDance();
+    cancelPreview();
+    hush();
+    state.sel = null; state.bug = null; state.thought = null; state.bubble = null;
+    for (const R of [bolt, dot]) { R.base = 'stand'; R.baseExtra = null; R.from = null; R.act = null; }
+    state.mode = m;
+    document.body.dataset.mode = m;
+    $('m-df').setAttribute('aria-pressed', m === 'df'); $('m-fx').setAttribute('aria-pressed', m === 'fx');
+    for (const el of document.querySelectorAll('[data-modes]')) el.hidden = el.dataset.modes !== m;
+    if (m === 'df' && dot.g.isConnected) dot.g.remove();
+    $('hint').textContent = m === 'df' ? df.hint : fx.hint;
+    lastKey = ''; relayout();
+    renderStrip(); sync();
+    if (tapped) welcome();
+  }
+  $('m-df').onclick = () => { if (state.mode !== 'df') setMode('df'); };
+  $('m-fx').onclick = () => { if (state.mode !== 'fx') setMode('fx'); };
+
+  let page = null, short = null, tight = false, lastKey = '', capH = 0;
+  // the caption's tallest possible height at this width, so the robots never sit under it whatever the hint says
+  function captionHeight() {
+    const h = $('hint'), keep = h.textContent;
+    let mx = 0;
+    for (const t of [L.h2, L.h4, L.h5, L.h6, L.h7, L.h8, L.h9, L.h10, L.h11, L.h12, L.h13, L.t24, L.t25, L.t26, L.t27, L.t28]) { h.textContent = t; mx = Math.max(mx, h.offsetHeight); }
+    h.textContent = keep;
+    return mx;
+  }
+  function relayout() {
+    const w = innerWidth, h = innerHeight;
+    const p = (w >= 1000 && h >= 700) || (w >= 1100 && h >= 560) ? 'wide' : w >= 600 && w / h >= 1.25 ? 'compact' : 'stack';
+    const sh = p === 'compact' || (p === 'wide' && h < 900);
+    const tg = p === 'wide' && h < 700;
+    if (p !== page || sh !== short || tg !== tight) {
+      tight = tg;
+      page = p; short = sh;
+      for (const c of ['wide', 'compact', 'stack']) document.body.classList.toggle(c, c === p);
+      document.body.classList.toggle('short', sh);
+      document.body.classList.toggle('tight', tg);
+      // under about 900 px tall the buttons come before the tray (DOM order too, so Tab follows what is seen)
+      const panel = $('panel');
+      if (sh) panel.insertBefore(tray, $('rounds')); else panel.insertBefore(tray, $('goRow'));
+      // compact and stack: the hint becomes a caption on the stage, so the panel keeps only buttons
+      const hint = $('hint');
+      if (p === 'wide') panel.insertBefore(hint, panel.firstChild); else $('stage').appendChild(hint);
+    }
+    // the strip: eight cards in a row (two rows of four on a phone), sized to the box
+    const ap = $('apron'), aw = ap.clientWidth;
+    const rows = p === 'stack' && aw < 560 ? 2 : 1, cols = 8 / rows;
+    const padX = p === 'compact' ? 8 : 12, gap = Math.round(clamp(aw * .012, 5, 12));
+    const cw = Math.min(140, Math.floor((aw - 2 * padX - (cols - 1) * gap) / cols));
+    const bodyH = h - $('hdr').offsetHeight;
+    let ch = Math.round(cw * (rows > 1 ? .8 : 1.2));
+    if (p === 'wide') ch = Math.min(ch, Math.round(bodyH * (sh ? .19 : .2)));
+    if (p === 'compact') ch = Math.min(ch, Math.round(bodyH * .22));
+    ch = Math.max(ch, 66);
+    const ptrH = p === 'compact' ? 14 : 18;
+    ap.style.setProperty('--cw', cw + 'px'); ap.style.setProperty('--ch', ch + 'px'); ap.style.setProperty('--cols', cols);
+    ap.classList.toggle('rows2', rows > 1);
+    ap.style.setProperty('--cgap', gap + 'px'); ap.style.setProperty('--rgap', rows > 1 ? (ptrH + 8) + 'px' : '0px');
+    ap.style.setProperty('--nd', Math.round(clamp(cw * .26, 22, 34)) + 'px');
+    ap.style.setProperty('--wf', clamp(cw * .145, 10, 18).toFixed(1) + 'px');
+    ap.style.setProperty('--ptrh', ptrH + 'px');
+    ap.style.setProperty('--apt', (ptrH + 16) + 'px');
+    // stack: the stage gets what is left so the strip and the tray stay on screen
+    const st = $('stage');
+    if (p === 'stack') {
+      // everything on screen when it fits; on a phone at least the tray and Go, with the rest below
+      const room = h - $('hdr').offsetHeight - ap.offsetHeight, all = room - $('panel').offsetHeight - 4;
+      const trayH = Math.max(tray.offsetHeight, $('goRow').offsetHeight) + 24;
+      st.style.height = Math.round(clamp(all >= 260 ? all : room - trayH, 150, 560)) + 'px';
+    } else st.style.height = '';
+    capH = p === 'wide' ? 0 : captionHeight();
+    const r = st.getBoundingClientRect(), key = state.mode + p + Math.round(r.width) + 'x' + Math.round(r.height) + 'c' + capH;
+    syncCardBtns(); placePtr();
+    if (key === lastKey) return;
+    lastKey = key;
+    buildStage(Math.max(240, Math.round(r.width)), Math.max(160, Math.round(r.height)));
+  }
+  new ResizeObserver(() => relayout()).observe($('stage'));
+  addEventListener('resize', () => relayout());
+
+  addEventListener('keydown', e => {
+    if (e.key === 'Escape' && state.sel != null) {
+      const a = document.activeElement, c = cells[state.sel] && cells[state.sel].querySelector('.card');
+      deselect();
+      if (a && a.classList.contains('card')) a.focus(); else if (a && a.closest('.cbtns') && c) c.focus();   // from the card buttons: back to the card
+    }
+  });
+
+  Curio.onSound(on => { if (!on) hush(); else if (tapped) welcome(); });
+  Curio.onMotion(() => { lastKey = ''; relayout(); });
+  Curio.init({clips: "voice:*", rate: .95, readFallback: () => $('hint').textContent});
+  $('read').onclick = readNow;
+
+  // ======================================================================================
+  // The card picture for preview.svg (night stage, Bolt mid-jump, Dot clapping, four cards in the strip)
+  // ======================================================================================
+  function previewSVG() {
+    const W = 640, H = 400, out = [];
+    const saved = {bolt: [bolt.s, bolt.x, bolt.floor], dot: [dot.s, dot.x, dot.floor]};
+    const hold = mk('svg', {width: W, height: H, viewBox: `0 0 ${W} ${H}`, xmlns: NS});
+    const keepMode = state.mode; state.mode = 'fx';
+    const sv0 = sv.innerHTML, sw0 = sv.getAttribute('width'), sh0 = sv.getAttribute('height'), vb0 = sv.getAttribute('viewBox'), S0 = S;
+    buildStage(W, 300);
+    pose(bolt, P0(ANIM.jump.key)); pose(dot, P0(ANIM.clap.key));
+    S.bub.g.setAttribute('opacity', 1); S.bub.use.setAttribute('display', ''); S.bub.use.setAttribute('href', '#ico-jump'); S.bub.ring.setAttribute('stroke', MOVES.jump.color); S.bub.q.setAttribute('display', 'none');
+    S.bulbs.forEach((c, i) => c.setAttribute('fill', i % 2 ? '#5b5130' : '#ffd23f'));
+    hold.innerHTML = sv.innerHTML;
+    // the strip
+    const ap = mk('g', {}, hold);
+    mk('rect', {x: 0, y: 300, width: W, height: 100, fill: '#1a1f42'}, ap);
+    mk('rect', {x: 0, y: 300, width: W, height: 4, fill: '#3c4486'}, ap);
+    const moves = ['wave', 'clap', 'jump', 'spin'], cw = 66, ch = 78, gap = 10, x0 = (W - (8 * cw + 7 * gap)) / 2;
+    for (let i = 0; i < 8; i++) {
+      const x = x0 + i * (cw + gap), y = 312;
+      if (i >= moves.length) { mk('rect', {x, y, width: cw, height: ch, rx: 10, fill: 'none', stroke: '#7782c4', 'stroke-width': 2.5, 'stroke-dasharray': '7 6'}, ap); continue; }
+      const m = moves[i];
+      mk('rect', {x, y, width: cw, height: ch, rx: 10, fill: '#fff', stroke: C.out, 'stroke-width': 3}, ap);
+      mk('path', {d: `M${x + 1.5} ${y + 14} V${y + 10} a8.5 8.5 0 0 1 8.5 -8.5 H${x + cw - 10} a8.5 8.5 0 0 1 8.5 8.5 V${y + 14} Z`, fill: MOVES[m].color}, ap);
+      const u = useIco(m, {x: x + 6, y: y + 16, width: cw - 12, height: ch - 22}); ap.appendChild(u);
+      mk('circle', {cx: x + 4, cy: y + 2, r: 10, fill: '#fff', stroke: C.out, 'stroke-width': 2.5}, ap);
+      const tx = mk('text', {x: x + 4, y: y + 6.5, 'text-anchor': 'middle', 'font-size': 13, 'font-weight': 800, 'font-family': "'Trebuchet MS',sans-serif", fill: C.out}, ap);
+      tx.textContent = i + 1;
+      if (i === 2) mk('rect', {x: x - 4, y: y - 4, width: cw + 8, height: ch + 8, rx: 13, fill: 'none', stroke: '#ffd23f', 'stroke-width': 4}, ap);
+    }
+    mk('path', {d: `M${x0 + 2 * (cw + gap) + cw / 2 - 12} 293 h24 l-12 12 z`, fill: '#ffd23f', stroke: '#fff', 'stroke-width': 2}, ap);
+    // copy the symbols the picture uses
+    const used = new Set([...hold.querySelectorAll('use')].map(u => u.getAttribute('href')));
+    const defs = mk('defs', {}, null); hold.insertBefore(defs, hold.firstChild);
+    for (const id of used) { const s = document.querySelector(id); if (s) defs.appendChild(s.cloneNode(true)); }
+    out.push(hold.outerHTML);
+    // put the live stage back
+    state.mode = keepMode; S = S0;
+    sv.innerHTML = sv0; sv.setAttribute('width', sw0); sv.setAttribute('height', sh0); sv.setAttribute('viewBox', vb0);
+    [bolt.s, bolt.x, bolt.floor] = saved.bolt; [dot.s, dot.x, dot.floor] = saved.dot;
+    lastKey = ''; relayout();
+    return out[0];
+  }
+
+  // for checking frames
+  window.__tool = {state, setMode, allLines, L, MOVES, ROUNDS, df, fx, said, vlog, vq, pickMove, go, watchDot, startOver, nextRound,
+    openRound, playAgain, select, deselect, moveSel, removeSel, previewSVG, run,
+    get page() { return page; }, hint: () => $('hint').textContent, bolt, dot,
+    stage: () => ({bubble: state.bubble, thought: state.thought, step: state.step, bug: state.bug, boltBase: bolt.base, dotBase: dot.base,
+      boltAct: bolt.act && bolt.act.move, dotAct: dot.act && dot.act.move, dancing: state.dancing}),
+    curio: () => ({last: Curio.last, sound: Curio.sound, reduce: Curio.reduce})};
+  buildIcons();
+  setMode('df');
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
