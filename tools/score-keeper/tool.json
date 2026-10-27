@@ -1,0 +1,26 @@
+{
+  "id": "score-keeper",
+  "status": "beta",
+  "hook": "Play Star Catch while its program runs beside it one highlighted line at a time. Every variable is a labeled box: catch a star and watch a new value fly into score, take a rock and lives drops, let ten seconds pass and speed goes up, while goal never moves.",
+  "outcome": "Identify which values in a program are stored and stay the same and which ones change, and what makes them change",
+  "driver": "students or teacher",
+  "minutes": "20-30",
+  "modes": [
+    "Play",
+    "Lab",
+    "Notebook"
+  ],
+  "grades_label": "Grade 3",
+  "sources": [
+    "CSTA K-12 Computer Science Standards, 2026 PK-12 identifier E3-PRO-VD-06: https://csteachers.org/k12standards/",
+    "CSTA K-12 Computer Science Standards (2017), 1B-AP-09, create programs that use variables to store and modify data: https://csteachers.org/k12standards/",
+    "Code.org CS Fundamentals glossary, Variable: https://code.org/curriculum/docs/k-5/glossary",
+    "Scratch Wiki, Variable (set and change blocks; a variable holds one value at a time): https://en.scratch-wiki.info/wiki/Variable",
+    "Star Catch, its program, game numbers and Lab questions are original to Curio Class",
+    "Night sky, lanes, stars, variable boxes, banners, chart and bins drawn in code; sounds generated in the browser",
+    "Desert backdrop, ship and rock drawn with GPT Image (OpenAI) via Codex",
+    "Narration generated with Qwen3-TTS (Apache 2.0), cloning a Google Gemini text-to-speech voice"
+  ],
+  "third_party": [],
+  "updated": "2026-10-26"
+}

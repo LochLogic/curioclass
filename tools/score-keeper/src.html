@@ -1,0 +1,1727 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Score Keeper · Watch variables change · Curio Class</title>
+<meta name="description" content="Play a tiny space game while its program runs beside it one highlighted line at a time, and watch the variables score, lives, speed, best and goal change in labeled boxes. Grade 3 computer science. Works offline.">
+<!--
+Score Keeper (Curio Class)
+Grade 3, computer science, module Variables in Programs (Algorithms and Programming): identify stored and changing
+values. CSTA K-12 Computer Science Standards, 2026 identifier E3-PRO-VD-06; 2017 crosswalk 1B-AP-09.
+Students in pairs on laptops, or the teacher on a projector. Play: Star Catch runs beside its program; every catch,
+hit and 10-second tick runs its lines one at a time, and each variable is a labeled box whose value card changes.
+Lab: Autopilot plays the same sky, dials change the starting numbers, results go to the notebook. Notebook: runs
+table, score chart, sort the variables into stayed the same / changed, from the evidence.
+The program is data, run by the small interpreter in the VARIABLES ENGINE block: no eval, no new Function, nothing
+typed is ever parsed. Sky, lanes, stars, boxes, banners, chart and bins are drawn in code; backdrop, ship and rock
+are images when painted, drawn in code until then. Sounds are made in the browser.
+Facts: Code.org CS Fundamentals glossary (variable), CSTA 2017 1B-AP-09, Scratch Wiki "Variable". Sources in notes.md.
+One file, no network requests. Content CC BY 4.0, code MIT. curioclass.org
+-->
+<link rel="stylesheet" href="kit:curio">
+<style>
+:root{
+  --paper:#fbf6f1;--panel:#ffffff;--ink:#2a2233;--muted:#5e5468;--line:#e6dbe0;--focus:#3b6fd6;
+  --brand:#a82755;--btn:#a82755;--btn-line:#c95a82;--head-ink:#ffffff;
+  --night:#141a3a;--night2:#1e2650;--gold:#ffd76a;--glow:#f5b83d;--runbg:#fff3cf;
+  --c-score:#9a6a00;--c-lives:#c2412d;--c-speed:#0b7285;--c-best:#6d3fc4;--c-goal:#2f7d32;
+  --mono:'Cascadia Mono','Cascadia Code',Consolas,'Courier New',monospace;
+  --pw:330px;--pc:340px;--bh:130px;
+}
+/* Page layouts, picked in script (relayout()), every part drawn at its real pixel size:
+   wide     1000 px and up: game left, program card middle, panel right; the variable shelf under game and program.
+            short (under 900 px tall): buttons first in the panel, the log shrinks; tight (under 700 px): smaller shelf.
+   compact  short landscape boxes (the 16:10 previews): game and shelf left, a narrow column of buttons and the
+            program card right; the hint becomes a caption on the game.
+   stack    narrow or portrait: game, shelf, controls, program card (scrolls on its own), log; the page scrolls.
+   DOM order is the Tab order: game (result card), controls, hint, program card (dials), question card, log. */
+:focus-visible{outline:4px solid var(--focus);outline-offset:2px;box-shadow:0 0 0 3px #fff}
+body{height:100%;overflow:hidden}
+body.stack{height:auto;overflow:auto}
+body.nbm{overflow:auto}
+header{gap:10px}
+.seg button,.icon-btn{min-height:52px}
+body.tight header,body.compact header,body.stack header{padding:6px 12px;gap:8px}
+body.tight .seg button,body.tight .icon-btn,body.compact .seg button,body.compact .icon-btn,body.stack .seg button,body.stack .icon-btn{min-height:44px;font-size:15px;padding:0 12px}
+body.compact h1 small{display:none}
+.seg button+button{border-left:2px solid var(--btn-line)}
+
+main{display:grid;min-height:0;overflow:hidden;column-gap:12px;row-gap:10px;padding:12px 0 12px 12px;position:relative}
+body.wide main{grid-template-columns:minmax(0,1fr) var(--pc) var(--pw);grid-template-rows:auto auto minmax(0,1fr) auto;
+  grid-template-areas:"stage prog ctrl" "stage prog hint" "stage prog log" "shelf shelf log"}
+body.wide.tall main{grid-template-areas:"stage prog hint" "stage prog ctrl" "stage prog log" "shelf shelf log"}
+body.compact main{grid-template-columns:minmax(0,1fr) var(--pw);grid-template-rows:auto minmax(0,1fr) auto;
+  grid-template-areas:"stage ctrl" "stage prog" "shelf prog";padding:8px 0 8px 8px;column-gap:8px;row-gap:6px}
+body.stack main{grid-template-columns:minmax(0,1fr);grid-template-areas:"stage" "shelf" "ctrl" "prog" "log";overflow:visible;padding:8px;row-gap:8px}
+body.nbm main{grid-template-columns:minmax(0,1fr)!important;grid-template-rows:auto auto!important;grid-template-areas:"hint" "nb"!important;
+  overflow:visible;padding:14px 16px 24px!important;row-gap:10px}
+body.nbm #stage,body.nbm #shelf,body.nbm #ctrl,body.nbm #progcol,body.nbm #logbox,body.nbm #panelbg{display:none}
+#nb{grid-area:nb}
+#panelbg{grid-row:1/5;grid-column:3;background:var(--panel);border-left:3px solid var(--line);margin:-12px 0 -12px 0}
+body.compact #panelbg{grid-row:1/4;grid-column:2;margin:-8px 0}
+body.stack #panelbg{display:none}
+#ctrl,#hint,#logbox{grid-column:3;padding:0 14px 0 4px;min-width:0}
+#ctrl{grid-area:ctrl}#hint{grid-area:hint}#logbox{grid-area:log}
+body.compact #ctrl{padding:0 8px 0 2px}
+body.stack #ctrl,body.stack #logbox{padding:0}
+
+/* the game */
+.stage{grid-area:stage;min-height:0;border-radius:16px;background:var(--night);overflow:hidden;position:relative;touch-action:manipulation}
+body.stack .stage{min-height:0}
+#sv{position:absolute;left:0;top:0;display:block;font-family:'Trebuchet MS','Segoe UI',sans-serif;cursor:pointer}
+.tw{animation:tw 2.6s ease-in-out infinite}
+.calm .tw{animation:none}
+@keyframes tw{50%{opacity:.25}}
+.spark{animation:spark 1.1s ease-out infinite both;transform-box:fill-box;transform-origin:center;opacity:0}
+@keyframes spark{0%{opacity:0;transform:scale(.3)}40%{opacity:1}100%{opacity:0;transform:scale(1.3)}}
+.stage .hint{position:absolute;left:8px;right:8px;top:6px;z-index:3;margin:0;padding:4px 10px;border-radius:10px;background:#0d1230e0;color:#fff;
+  font-size:14px;line-height:1.3;text-align:center;pointer-events:none}
+.stage .hint b{color:var(--gold)}
+#pausePill{position:absolute;right:10px;bottom:10px;z-index:3;background:#fffffff0;color:var(--ink);border-radius:999px;padding:4px 12px;font-weight:800;font-size:15px;pointer-events:none}
+#result{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:4;width:min(94%,430px);max-height:94%;overflow:auto;background:#fff;color:var(--ink);
+  border-radius:16px;padding:12px 16px 14px;box-shadow:0 10px 30px #0008;border:3px solid var(--gold)}
+#result h2{margin:0 0 8px;font:800 19px/1.25 'Trebuchet MS','Segoe UI',sans-serif;color:var(--brand)}
+#result .vals{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin:0 0 8px}
+#result .vals div{background:var(--paper);border:2px solid var(--line);border-radius:10px;text-align:center;padding:4px 2px;font-size:13px;font-weight:700}
+#result .vals b{display:block;font:800 24px/1.1 var(--mono);color:var(--ink)}
+#result .vals svg{display:block;width:22px;height:22px;margin:0 auto 2px}
+#result p{margin:0 0 10px;font-size:15px}
+#result .row{display:flex;gap:8px;flex-wrap:wrap}
+#result .row button{flex:1 1 140px}
+#resultNote{color:var(--muted);font-size:14px!important;margin:8px 0 0!important}
+body.compact #result{padding:8px 10px;width:min(96%,400px)}
+body.compact #result h2{font-size:16px;margin-bottom:4px}
+body.compact #result .vals b{font-size:19px}
+
+/* buttons */
+.bb{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:52px;border:0;border-radius:14px;padding:0 12px;
+  font:800 18px/1.05 'Trebuchet MS','Segoe UI',sans-serif;box-shadow:0 4px 0 #0002;text-align:center;background:#fff;color:var(--ink);border:2px solid var(--line)}
+.bb.main{background:var(--brand);color:#fff;border-color:var(--brand)}
+.bb.gold{background:#ffd34d;color:#3a2c00;border-color:#e0b52a}
+.bb:disabled,.bb[aria-disabled="true"]{opacity:.45;cursor:default;box-shadow:none}
+.sm{min-height:44px;font-size:16px;border-radius:12px}
+#ctrl{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;align-content:start;
+  grid-template-areas:"go go step step" "left left right right" "spd spd spd spd" "ap ap sky sky" "reset reset reset reset"}
+body[data-mode="play"] #ctrl{grid-template-areas:"go go step step" "left left right right" "spd spd spd spd" "ap ap sky sky"}
+#go{grid-area:go;min-height:60px;font-size:20px}#step{grid-area:step;min-height:60px}
+#left{grid-area:left}#right{grid-area:right}#spd{grid-area:spd}#auto{grid-area:ap}#sky{grid-area:sky}#resetLab{grid-area:reset}
+.mv{min-height:60px;font-size:28px;border-radius:16px;background:#fff;border:3px solid var(--line)}
+.mv svg{width:30px;height:30px}
+#spd{display:flex;align-items:center;gap:8px}
+#spd .lbl{font-weight:700;color:var(--muted);font-size:15px;white-space:nowrap}
+.pair{display:flex;flex:1;border:2px solid var(--line);border-radius:999px;overflow:hidden;background:#fff}
+.pair button{flex:1;border:0;background:#fff;min-height:44px;font-weight:700;font-size:16px;padding:0 10px}
+.pair button+button{border-left:2px solid var(--line)}
+.pair button[aria-pressed="true"]{background:var(--brand);color:#fff}
+.tog{min-height:44px;border:2px solid var(--line);border-radius:12px;background:#fff;font-weight:700;font-size:15px;display:flex;align-items:center;
+  justify-content:space-between;gap:6px;padding:0 10px}
+.tog .st{font-size:13px;font-weight:800;border-radius:999px;padding:2px 8px;background:#efe7eb;color:var(--muted)}
+.tog[aria-pressed="true"]{border-color:var(--brand)}
+.tog[aria-pressed="true"] .st{background:var(--brand);color:#fff}
+body.compact #ctrl{gap:6px;grid-template-areas:"go go step reset" "left right spd spd" "ap ap sky sky"}
+body.compact[data-mode="play"] #ctrl{grid-template-areas:"go go step step" "left right spd spd" "ap ap sky sky"}
+body.compact #go,body.compact #step{min-height:52px;font-size:17px}
+body.compact #resetLab{font-size:14px;padding:0 6px}
+body.compact #spd .lbl{display:none}
+body.compact .pair button{padding:0 4px;font-size:15px}
+body.compact .tog{font-size:14px;padding:0 6px}
+body.compact .tog .st{display:none}
+body.compact .tog[aria-pressed="true"]{background:#fbe7ee}
+body.compact .tog::before{content:"☐";font-size:17px}
+body.compact .tog[aria-pressed="true"]::before{content:"☑"}
+body.stack #ctrl{grid-template-columns:2fr 1.3fr 1fr 1fr;grid-template-areas:"go step left right" "spd spd spd spd" "ap ap sky sky" "reset reset reset reset"}
+body.stack[data-mode="play"] #ctrl{grid-template-areas:"go step left right" "spd spd spd spd" "ap ap sky sky"}
+body.stack #go{font-size:18px;padding:0 8px}
+
+.hint{margin:0;font-size:16px;line-height:1.4}
+#hint b{color:var(--brand)}
+body.nbm #hint{font-size:17px;max-width:70ch}
+
+/* program card */
+#progcol{grid-area:prog;display:flex;flex-direction:column;gap:8px;min-height:0;min-width:0}
+#qcard{order:-1;background:#fff;border:2px solid var(--line);border-left:6px solid var(--brand);border-radius:12px;padding:8px 10px;flex:none}
+#qcard .qn{font-size:13px;font-weight:800;color:var(--brand);text-transform:uppercase;letter-spacing:.04em}
+#qtext{margin:2px 0 6px;font-size:16px;line-height:1.35;font-weight:600}
+#qcard .row{display:flex;gap:8px;align-items:center}
+#qcard .row .bb{flex:1}
+body.compact #qcard{padding:4px 8px}
+body.compact #qtext{font-size:14px;margin:0 0 4px}
+body.compact #qcard .qn{display:none}
+#prog{flex:1 1 auto;min-height:0;overflow:auto;background:#fff;border:2px solid var(--line);border-radius:12px;padding:8px 6px 10px;
+  font:var(--pf,15px)/1.35 var(--mono);color:var(--ink);position:relative;scroll-behavior:auto}
+body.stack #prog{max-height:min(70vh,560px)}
+.blk+.blk{margin-top:7px}
+.ln{position:relative;display:flex;align-items:center;flex-wrap:nowrap;white-space:pre;min-height:22px;padding:0 4px 0 22px;border-left:5px solid transparent;border-radius:4px;transition:background .3s}
+.ln.ev{font-weight:800}
+.ln .ind{display:inline-block}
+.ln.run{background:var(--runbg);border-left-color:var(--brand)}
+.ln.run::before{content:"▶";position:absolute;left:4px;color:var(--brand);font-size:12px}
+.ln.ran{background:#fff3cf8c}
+.ln .tag{margin-left:8px;font:800 12px/1 'Segoe UI',sans-serif;border-radius:999px;padding:3px 7px;background:#e8f4ea;color:#1f5f25}
+.ln .tag.no{background:#f4e6ea;color:#7a1f3e}
+.ln.dl{min-height:46px}
+.dial{display:inline-flex;align-items:center;gap:2px;margin-left:2px}
+.dial button{width:44px;height:44px;border:2px solid var(--line);border-radius:10px;background:#fff;font:800 22px/1 'Segoe UI',sans-serif;color:var(--brand);padding:0}
+.dial .dv{min-width:34px;box-sizing:border-box;text-align:center;font:800 17px/40px var(--mono);height:44px;border-radius:8px;background:#fbe7ee;color:var(--brand);padding:0 4px;border:2px solid #f0c3d2;cursor:ns-resize}
+.dial.lock button,.dial.lock .dv{opacity:.5;cursor:default}
+.dial.lock .dv{background:#f3eef0;color:var(--muted);border-color:var(--line)}
+body.compact .ln{padding-left:14px}
+body.compact .dial .dv{min-width:30px}
+body.compact .ln.run::before{left:2px}
+
+/* shelf of variable boxes */
+#shelf{grid-area:shelf;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;position:relative;min-width:0}
+body.wide #shelf{padding-right:0}
+body.narrow #shelf{grid-template-columns:repeat(6,minmax(0,1fr));row-gap:6px}
+body.narrow .vbox{grid-column:span 2}
+body.narrow .vbox:nth-child(4){grid-column:2/span 2}
+.vbox{position:relative;height:var(--bh);--ch:calc(var(--bh) - 20px);min-width:0}
+.crate{position:absolute;left:4%;right:4%;top:0;height:var(--ch)}
+.crate .back{position:absolute;left:5%;right:5%;top:30%;height:32%;background:linear-gradient(#6f4620,#a8733c);border-radius:5px 5px 0 0}
+.crate .back::before,.crate .back::after{content:"";position:absolute;bottom:0;width:34%;height:110%;background:linear-gradient(#e6bb7f,#d3a061);border:2px solid #9c6b34}
+.crate .back::before{left:-2%;transform:skewX(18deg);transform-origin:bottom left;border-radius:3px 6px 0 0}
+.crate .back::after{right:-2%;transform:skewX(-18deg);transform-origin:bottom right;border-radius:6px 3px 0 0}
+.vcard{position:absolute;left:50%;top:0;z-index:1;transform:translateX(-50%);width:min(62%,120px);height:64%;background:#fff;border:2px solid #d9cdd3;border-radius:10px;
+  box-shadow:0 2px 0 #0001;display:flex;align-items:flex-start;justify-content:center;font:800 var(--vd,34px)/1 var(--mono);color:var(--ink);padding-top:calc(var(--ch) * .06)}
+.vcard.empty{border-style:dashed;color:var(--muted);font:700 14px/1 'Segoe UI',sans-serif;padding-top:calc(var(--ch) * .15);background:#fffaf4}
+.vcard.glow{background:var(--runbg);border-color:var(--glow);box-shadow:0 0 0 4px #f5b83d88,0 0 18px #f5b83d}
+.vcard.ring{border-color:var(--glow);box-shadow:0 0 0 4px var(--glow)}
+.vcard.old{z-index:0;pointer-events:none;animation:out .45s ease-in forwards}
+@keyframes out{to{transform:translate(-50%,-70%) rotate(-8deg);opacity:0}}
+.vcard.pop{animation:pop .45s ease-out}
+@keyframes pop{0%{transform:translateX(-50%) translateY(-14%) scale(1.08)}60%{transform:translateX(-50%) translateY(3%)}100%{transform:translateX(-50%)}}
+.vcard.shake{animation:shake .45s ease-in-out}
+@keyframes shake{20%,60%{transform:translateX(calc(-50% - 6px))}40%,80%{transform:translateX(calc(-50% + 6px))}}
+.vbox .same{position:absolute;right:2%;top:4%;z-index:3;background:#fff;border:2px solid var(--muted);color:var(--ink);border-radius:999px;font:800 12px/1 'Segoe UI',sans-serif;padding:3px 7px}
+.front{position:absolute;left:0;right:0;bottom:0;height:50%;background:linear-gradient(#e2b273,#cf9a57);border:2px solid #9c6b34;border-radius:6px 6px 8px 8px;
+  display:flex;align-items:center;justify-content:center;z-index:2;box-shadow:inset 0 -6px 0 #0000001a}
+.vlabel{display:flex;align-items:center;gap:5px;background:#fffdf8;border-radius:7px;padding:2px 8px 2px 5px;font:800 var(--lf,17px)/1.2 var(--mono);color:var(--ink);
+  border-left:5px solid var(--vc);max-width:92%;overflow:hidden}
+.vlabel svg{width:1.15em;height:1.15em;flex:none}
+.vbox.bump .crate{animation:bump .4s ease-out}
+@keyframes bump{40%{transform:translateY(-5px) scale(1.03)}}
+.vbox.bump .front{box-shadow:0 0 0 3px var(--glow),0 0 16px var(--glow)}
+.vcount{position:absolute;left:0;right:0;bottom:0;text-align:center;font-size:13px;line-height:18px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.vcount b{color:var(--ink)}
+#shelf.tiny .vlabel svg,#shelf.tiny .vcount .tm{display:none}
+#shelf.tiny .vlabel{padding:2px 5px}
+#shelf.tiny .vcard.empty{font-size:12px;width:min(70%,120px);padding-left:0;padding-right:0}
+body.paused .vbox *,body.paused .vbox{animation-play-state:paused!important}
+#toast{position:absolute;left:50%;top:calc(var(--capH,0px) + 10px);transform:translateX(-50%);z-index:6;background:var(--ink);color:#fff;border-radius:12px;padding:8px 14px;
+  font-size:15px;font-weight:600;width:max-content;max-width:min(92%,520px);box-shadow:0 6px 18px #0005;pointer-events:none;text-align:center}
+#fly{position:fixed;z-index:60;pointer-events:none;background:#fff;border:3px solid var(--glow);border-radius:10px;font:800 26px/1 var(--mono);color:var(--ink);
+  padding:6px 10px;box-shadow:0 0 16px var(--glow);left:0;top:0}
+
+/* log */
+#logbox{display:flex;flex-direction:column;min-height:0;gap:4px}
+#logbox h2{margin:0;font:800 15px/1.2 'Trebuchet MS','Segoe UI',sans-serif;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+#log{list-style:none;margin:0;padding:0;overflow:auto;flex:1 1 auto;min-height:60px;font-size:14px;border:2px solid var(--line);border-radius:10px;background:#fff}
+#log li{padding:4px 8px;border-bottom:1px solid #f1eaee;font-variant-numeric:tabular-nums}
+#log li:first-child{background:#fff7e0;font-weight:600}
+#log li.sameval{color:var(--muted)}
+#log:empty::before{content:"Value changes show up here.";display:block;padding:6px 8px;color:var(--muted)}
+body.compact #logbox{display:none}
+body.stack #log{max-height:220px}
+
+/* notebook */
+#nb{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:16px;align-items:start}
+body.nb1 #nb{grid-template-columns:minmax(0,1fr)}
+.card{background:#fff;border:2px solid var(--line);border-radius:14px;padding:12px 14px;min-width:0}
+.card h2{margin:0 0 8px;font:800 19px/1.2 'Trebuchet MS','Segoe UI',sans-serif;color:var(--brand)}
+.nbcol{display:flex;flex-direction:column;gap:16px;min-width:0}
+.tblwrap{overflow:auto;max-height:340px;border:1px solid var(--line);border-radius:8px}
+table{border-collapse:collapse;font-size:13px;white-space:nowrap}
+th,td{padding:4px 7px;border-bottom:1px solid #f0e8ec;text-align:right}
+th{position:sticky;top:0;background:#fbe7ee;color:var(--ink);font-weight:800;text-align:center}
+td:nth-child(8){text-align:left}
+.empty-note{color:var(--muted);margin:6px 0}
+.btnrow{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;align-items:center}
+.btnrow .bb{flex:0 1 auto}
+#copyBox textarea{width:100%;height:120px;font:12px var(--mono)}
+#confirm{display:flex;gap:8px;align-items:center;flex-wrap:wrap;background:#fff7e0;border-radius:10px;padding:6px 10px;font-weight:700}
+#chart{display:block;width:100%}
+.sortwrap{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tray{display:flex;flex-wrap:wrap;gap:8px;min-height:60px;padding:8px;border:2px dashed var(--line);border-radius:12px;margin-bottom:10px;background:#fffaf4}
+.bin{min-height:150px;border:3px solid var(--line);border-radius:14px;padding:8px;background:#fdf9fb;display:flex;flex-direction:column;gap:8px}
+.bin h3{margin:0;font:800 16px/1.2 'Trebuchet MS','Segoe UI',sans-serif;display:flex;align-items:center;gap:6px}
+.bin h3 .key{font:800 12px/1 'Segoe UI',sans-serif;border:2px solid var(--muted);border-radius:6px;padding:2px 5px;color:var(--muted)}
+.bin.over,.tray.over{border-color:var(--brand);background:#fbe7ee}
+.vc{display:flex;flex-direction:column;gap:4px;background:#fff;border:2px solid var(--line);border-left:6px solid var(--vcol);border-radius:10px;padding:6px 8px;
+  cursor:grab;touch-action:none;user-select:none;min-width:150px;flex:1 1 150px}
+.vc .nm{display:flex;align-items:center;gap:6px;font:800 16px/1.2 var(--mono)}
+.vc .nm svg{width:20px;height:20px}
+.vc .ct{font-size:13px;color:var(--muted)}
+.vc .acts{display:flex;gap:6px}
+.vc .acts button{flex:1;min-height:44px;border:2px solid var(--line);border-radius:10px;background:#fff;font-weight:700;font-size:14px;padding:0 6px}
+.vc .acts button[aria-pressed="true"]{background:var(--brand);color:#fff;border-color:var(--brand)}
+.vc .fb{font-size:13px;font-weight:700;border-radius:8px;padding:3px 6px}
+.vc .fb.ok{background:#e8f4ea;color:#1f5f25}
+.vc .fb.no{background:#fff3cf;color:#6b4a00}
+.vc .fb.note{background:#f1edf0;color:var(--ink)}
+.vc.drag{opacity:.4}
+#ghost{position:fixed;z-index:70;pointer-events:none;opacity:.9;transform:rotate(-3deg)}
+#feedback{margin:10px 0 0;padding-left:20px;font-size:15px;line-height:1.4}
+#feedback li{margin:3px 0}
+.def{margin:10px 0 0;font-size:15px;color:var(--ink);background:#fff7e0;border-radius:10px;padding:8px 10px}
+.found label{display:block;font-weight:700;margin:8px 0 4px}
+.found textarea{width:100%;min-height:58px;font:15px/1.4 'Segoe UI',sans-serif;border:2px solid var(--line);border-radius:10px;padding:6px 8px;resize:vertical}
+#nbStatus{color:var(--muted);font-weight:600}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@media (max-width:560px){.sortwrap{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header id="hdr">
+  <h1>Score Keeper <small>Watch variables change</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-play" aria-pressed="true">Play</button>
+    <button id="m-lab" aria-pressed="false">Lab</button>
+    <button id="m-nb" aria-pressed="false">Notebook</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true" title="Turn animation on or off">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+  <button class="icon-btn" id="read">🔊 Read</button>
+</header>
+<main id="main">
+  <div id="panelbg" aria-hidden="true"></div>
+  <div class="stage" id="stage" aria-label="Star Catch game: five lanes, the ship at the bottom">
+    <svg id="sv" aria-hidden="true"></svg>
+    <div id="pausePill" hidden>⏸ Paused</div>
+    <div id="toast" hidden role="status"></div>
+    <div id="result" hidden role="dialog" aria-labelledby="resultTitle">
+      <h2 id="resultTitle"></h2>
+      <div class="vals" id="resultVals"></div>
+      <p id="resultCount"></p>
+      <div class="row">
+        <button class="bb main sm" id="saveRun">Save to notebook</button>
+        <button class="bb sm" id="runAgain">▶ Run again</button>
+      </div>
+      <p id="resultNote" hidden></p>
+    </div>
+  </div>
+  <div id="ctrl" role="group" aria-label="Game controls">
+    <button class="bb main" id="go">▶ Play</button>
+    <button class="bb" id="step" disabled>Step</button>
+    <button class="bb mv" id="left" aria-label="Move left"><svg viewBox="0 0 30 30" aria-hidden="true"><path d="M21 4 7 15l14 11z" fill="currentColor"/></svg></button>
+    <button class="bb mv" id="right" aria-label="Move right"><svg viewBox="0 0 30 30" aria-hidden="true"><path d="M9 4l14 11L9 26z" fill="currentColor"/></svg></button>
+    <div id="spd"><span class="lbl" id="spdLbl">Code speed</span>
+      <div class="pair" role="group" aria-labelledby="spdLbl"><button id="cs-watch" aria-pressed="true">Watch</button><button id="cs-quick" aria-pressed="false">Quick</button></div></div>
+    <button class="tog" id="auto" aria-pressed="false">Autopilot <span class="st">off</span></button>
+    <button class="tog" id="sky" aria-pressed="false">Same sky <span class="st">off</span></button>
+    <button class="bb sm" id="resetLab" data-modes="lab" hidden>Reset lab</button>
+  </div>
+  <p class="hint" id="hint"></p>
+  <div id="progcol">
+    <div id="prog" role="region" aria-label="The program"></div>
+    <div id="qcard" data-modes="lab" hidden>
+      <div class="qn" id="qnum">Question 1 of 7</div>
+      <p id="qtext"></p>
+      <div class="row"><button class="bb sm" id="qprev">◀ Prev</button><span class="sr" id="qnum2"></span><button class="bb sm" id="qnext">Next ▶</button></div>
+    </div>
+  </div>
+  <div id="logbox"><h2 id="logTitle">Lab log</h2><ul id="log" aria-labelledby="logTitle" tabindex="0"></ul></div>
+  <div id="shelf" aria-label="Variables"></div>
+  <section id="nb" hidden aria-label="Notebook">
+    <div class="nbcol">
+      <div class="card">
+        <h2>Runs</h2>
+        <p class="empty-note" id="noRuns">No runs yet. In the Lab, press Run, then Save to notebook.</p>
+        <div class="tblwrap" id="tblwrap" tabindex="0" aria-label="Runs table"><table id="tbl"></table></div>
+        <div class="btnrow">
+          <button class="bb sm" id="copyTbl">Copy table</button>
+          <button class="bb sm main" id="saveNb">Save notebook</button>
+          <button class="bb sm" id="clearNb">Clear notebook</button>
+          <span id="nbStatus" role="status"></span>
+        </div>
+        <div id="confirm" hidden>Clear all saved runs? <button class="bb sm" id="clearYes">Yes</button><button class="bb sm" id="clearNo">No</button></div>
+        <div id="copyBox" hidden><p>Select all and copy.</p><textarea id="copyText" readonly aria-label="Table text"></textarea></div>
+      </div>
+      <div class="card">
+        <h2>Score in each run</h2>
+        <svg id="chart" role="img" aria-label="Bar chart of the final score in each saved run"></svg>
+      </div>
+    </div>
+    <div class="nbcol">
+      <div class="card">
+        <h2>Stored or changing?</h2>
+        <div class="tray" id="tray" aria-label="Cards to sort"></div>
+        <div class="sortwrap">
+          <div class="bin" id="bin-same" data-bin="same"><h3>Stayed the same <span class="key">1</span></h3></div>
+          <div class="bin" id="bin-changed" data-bin="changed"><h3>Changed <span class="key">2</span></h3></div>
+        </div>
+        <div class="btnrow"><button class="bb sm main" id="checkSort">Check with my runs</button></div>
+        <ul id="feedback" aria-live="polite"></ul>
+        <p class="def">A variable is a named box that holds one value. Some values are stored and stay the same. Others change while the program runs.</p>
+      </div>
+      <div class="card found">
+        <h2>What I found</h2>
+        <label for="f1">A variable changes when ...</label><textarea id="f1"></textarea>
+        <label for="f2">The variable that never changed was ... I know because ...</label><textarea id="f2"></textarea>
+        <label for="f3">When I changed ..., the game ...</label><textarea id="f3"></textarea>
+      </div>
+    </div>
+  </section>
+</main>
+<div id="fly" hidden aria-hidden="true"></div>
+<div id="live" class="sr" aria-live="polite"></div>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const NS = 'http://www.w3.org/2000/svg';
+  const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+  const now = () => performance.now();
+  const wait = ms => new Promise(r => setTimeout(r, ms));
+  function mk(tag, attrs, parent) {
+    const e = document.createElementNS(NS, tag);
+    for (const k in attrs) e.setAttribute(k, attrs[k]);
+    if (parent) parent.appendChild(e);
+    return e;
+  }
+  const fmt = v => v == null ? '' : v < 0 ? '−' + (-v) : String(v);
+  const times = n => n === 1 ? '1 time' : n + ' times';
+
+  // art: painted images when they exist; until then everything below is drawn in code
+  const ART = {backdrop: 'art:backdrop', ship: 'art:ship', rock: 'art:rock'};
+  const hasArt = n => /^data:image\/(webp|png|jpe?g)/.test(ART[n]);
+
+  // ======================================================================================
+  // Every line the tool speaks (spec "Voice"), and the hints Read speaks
+  // ======================================================================================
+  const QUESTIONS = [
+    'Start lives at 1: press the minus on lives until it says 1, then press Run. How long does the game last now?',
+    'Make a star worth 5: press the plus on the star line until it says 5, then press Run. What happens to score? Why does the game end so soon?',
+    'Make a rock take 0: press the minus on the rock line until it says 0, then press Run. Which box stops changing?',
+    'Start speed at 5: press the plus on speed until it says 5, then press Run. Does the speed box ever change? Look at the if line.',
+    'Start score at 10: press the plus on score until it says 10, then press Run. Did Autopilot catch more stars, or did score just start higher?',
+    'Make a rock take 2: press the plus on the rock line until it says 2, then press Run. Look at lives at the end. Can a variable go below zero?',
+    'Press Run again without changing anything. Which boxes start over, and which keep their value?',
+  ];
+  const L = {
+    w1: 'This is Star Catch. Each box under the game is a variable, and it holds one value. Press Play to start, and steer with the arrow buttons or the arrow keys.',
+    catch1: "You caught a star, so the score line ran. Score got bigger by the star's points, and the old value is gone.",
+    hit1: "Ouch, a rock. The lives line ran and took the rock's amount from lives.",
+    speed1: 'Ten seconds went by, so speed went up. Nobody pressed anything. Time changed that one.',
+    endLives: 'Lives got to zero or less, so the game ended.',
+    endGoal: 'Score reached the goal, so the game ended.',
+    best1: 'Score was more than best, so best saved it.',
+    over1: 'Game over. Press Play again and watch which boxes start over.',
+    result1: 'Press Save to notebook to keep this run. Then press Run again, or turn a dial first.',
+    game2: 'New game. Score, lives and speed went back to their starting values. Did best change? Did goal?',
+    same1: "That line ran, but the value stayed the same. Running a line doesn't always change a box.",
+    pause1: 'Paused. Press Step to run one line at a time.',
+    labW: 'Welcome to the lab. Turn one dial with its minus and plus buttons, then press Run. Autopilot plays the same sky, so you can see what your change does.',
+    q: QUESTIONS,
+    saved: 'Saved to your notebook.',
+    below0: 'Look at lives. The program took away more than was left, so it went below zero.',
+    nbW: 'Here are your runs. Drag each card into a bin, or press Same or Changed on it. Then press Check with my runs.',
+    nb0: 'No runs yet. Go to the Lab, press Run, then press Save to notebook.',
+    sorted: 'Nice work. Your runs are the evidence.',
+    fix1: 'Some cards say Look again. Move each one to the other bin, then press Check with my runs again.',
+    fix2: 'Put every card in a bin, then press Check with my runs again.',
+  };
+  const HINT = {
+    play: 'Press <b>Play</b> to start. Move the ship with the arrow buttons or the arrow keys. Each box is a <b>variable</b>: watch which line changes it.',
+    over: 'Game over. Press <b>Play again</b> and watch which boxes start over.',
+    lab: 'Turn one dial with its minus and plus buttons, then press <b>Run</b>. Autopilot plays the same sky every time, so only your number makes the difference.',
+    result: 'Press <b>Save to notebook</b> to keep this run. Then press <b>Run again</b>, or turn a dial first.',
+    nb: L.nbW,
+    nb0: L.nb0,
+    pause: L.pause1,
+    run: 'Move the ship with the arrow buttons or the arrow keys. Press <b>Pause</b> to stop and look at the boxes.',
+    labRun: 'Autopilot is flying. Watch the boxes change, or press <b>Pause</b> and then <b>Step</b> to run one line.',
+  };
+  const TOAST = 'New value in, old value gone. A variable holds one value at a time.';
+  const plain = h => h.replace(/<[^>]+>/g, '');
+  const allLines = () => [...new Set([L.w1, L.catch1, L.hit1, L.speed1, L.endLives, L.endGoal, L.best1, L.over1, L.result1, L.game2, L.same1, L.pause1, L.labW,
+    ...L.q, L.saved, L.below0, L.nbW, L.nb0, L.sorted, L.fix1, L.fix2, plain(HINT.play), plain(HINT.over), plain(HINT.lab), plain(HINT.result), plain(HINT.run), plain(HINT.labRun)])];
+
+  /* VARIABLES ENGINE: begin */
+  // The tiny language Score Keeper's program is written in. Program data in, one step per line out. No DOM access, no
+  // eval, no new Function, and nothing typed is ever parsed: the program is a list of blocks, the dials only change
+  // numbers inside it. game-remix or code-tracer could reuse this block.
+  //   block  {id, head: 'when you catch a star:', when?: ['lives', '<=', 0], lines: [...]}
+  //   line   {id, set: 'score', value: 0}                 score = 0
+  //          {id, set: 'score', from: 'score', add: 1}    score = score + 1
+  //          {id, set: 'lives', from: 'lives', sub: 1}    lives = lives - 1
+  //          {id, set: 'best', from: 'score'}             best = score
+  //          {id, if: ['speed', '<', 5], then: [...]}     if speed < 5:
+  //          {id, end: true}                              end the game
+  // VarEngine.run(program, vars, blockId) is a generator: each step is {line, block, kind, var, old, new, ok}; kind is
+  // 'event' (a block's first line), 'check' (a when-block's test), 'if', 'set', 'end' or 'refused' (bad data: the block
+  // stops there and no value changes).
+  const VarEngine = (() => {
+    const OPS = Object.assign(Object.create(null), {'<': (a, b) => a < b, '>': (a, b) => a > b, '<=': (a, b) => a <= b, '>=': (a, b) => a >= b});
+    const WORDS = {'<=': 'or less', '>=': 'or more'};
+    const isName = (x, names) => typeof x === 'string' && names.includes(x);
+    const isNum = x => typeof x === 'number' && Number.isInteger(x) && Math.abs(x) <= 999;
+    const isTerm = (x, names) => isNum(x) || isName(x, names);
+    function lineProblem(ln, names) {
+      if (!ln || typeof ln !== 'object') return 'not a line';
+      if ('set' in ln) {
+        if (!isName(ln.set, names)) return 'unknown variable';
+        if ('from' in ln ? !isName(ln.from, names) : !isNum(ln.value)) return 'bad value';
+        if ('add' in ln && !isNum(ln.add)) return 'bad amount';
+        if ('sub' in ln && !isNum(ln.sub)) return 'bad amount';
+        return null;
+      }
+      if ('if' in ln) return testProblem(ln.if, names) || (Array.isArray(ln.then) ? null : 'bad if');
+      if (ln.end === true) return null;
+      return 'unknown line';
+    }
+    function testProblem(c, names) {
+      if (!Array.isArray(c) || c.length !== 3 || typeof c[1] !== 'string' || !OPS[c[1]] || !isTerm(c[0], names) || !isTerm(c[2], names)) return 'bad test';
+      return null;
+    }
+    const value = (x, vars) => typeof x === 'number' ? x : vars[x];
+    function test(c, vars) {
+      const a = value(c[0], vars), b = value(c[2], vars);
+      return typeof a === 'number' && typeof b === 'number' && OPS[c[1]](a, b);
+    }
+    function* lines(ls, vars, block, names) {
+      for (const ln of ls) {
+        const bad = lineProblem(ln, names);
+        if (bad) { yield {line: ln && ln.id, block, kind: 'refused', why: bad}; return false; }
+        if ('if' in ln) {
+          const ok = test(ln.if, vars);
+          yield {line: ln.id, block, kind: 'if', ok};
+          if (ok && (yield* lines(ln.then, vars, block, names)) === false) return false;
+        } else if ('set' in ln) {
+          const old = vars[ln.set];
+          let v = 'from' in ln ? value(ln.from, vars) : ln.value;
+          if (typeof v !== 'number') { yield {line: ln.id, block, kind: 'refused', why: 'empty variable'}; return false; }
+          if ('add' in ln) v += ln.add;
+          if ('sub' in ln) v -= ln.sub;
+          vars[ln.set] = v;
+          yield {line: ln.id, block, kind: 'set', var: ln.set, old, new: v};
+        } else yield {line: ln.id, block, kind: 'end'};
+      }
+      return true;
+    }
+    function* run(program, vars, blockId, names = Object.keys(vars)) {
+      const b = Array.isArray(program) && program.find(x => x && x.id === blockId);
+      if (!b || !Array.isArray(b.lines)) { yield {line: null, block: blockId, kind: 'refused', why: 'no such block'}; return; }
+      if (b.when) {
+        if (testProblem(b.when, names)) { yield {line: b.id, block: b.id, kind: 'refused', why: 'bad test'}; return; }
+        const ok = test(b.when, vars);
+        yield {line: b.id, block: b.id, kind: 'check', ok};
+        if (!ok) return;
+      } else yield {line: b.id, block: b.id, kind: 'event'};
+      yield* lines(b.lines, vars, b.id, names);
+    }
+    // every problem in a program, [] when it can run
+    function validate(program, names) {
+      const out = [];
+      if (!Array.isArray(program)) return ['not a program'];
+      const walk = ls => { for (const ln of ls) { const p = lineProblem(ln, names); if (p) out.push((ln && ln.id) + ': ' + p); else if (ln.if) walk(ln.then); } };
+      for (const b of program) {
+        if (!b || !Array.isArray(b.lines)) { out.push('bad block'); continue; }
+        if (b.when && testProblem(b.when, names)) out.push(b.id + ': bad test');
+        walk(b.lines);
+      }
+      return out;
+    }
+    // the words of a line, as the program card shows them: [text, amount] so a dial can sit on the amount
+    const term = x => typeof x === 'number' ? String(x) : x;
+    function words(ln) {
+      if ('set' in ln) {
+        if (!('from' in ln)) return [ln.set + ' = ', ln.value];
+        if ('add' in ln) return [ln.set + ' = ' + ln.from + ' + ', ln.add];
+        if ('sub' in ln) return [ln.set + ' = ' + ln.from + ' - ', ln.sub];
+        return [ln.set + ' = ' + ln.from, null];
+      }
+      if ('if' in ln) return ['if ' + term(ln.if[0]) + ' ' + ln.if[1] + ' ' + term(ln.if[2]) + ':', null];
+      return ['end the game', null];
+    }
+    const head = b => b.when ? 'when ' + term(b.when[0]) + ' is ' + term(b.when[2]) + ' ' + WORDS[b.when[1]] + ':' : b.head;
+    return {run, validate, words, head};
+  })();
+  /* VARIABLES ENGINE: end */
+
+  // ======================================================================================
+  // The program (spec "Content"), as data; the Lab's dials change the numbers in it
+  // ======================================================================================
+  const NAMES = ['score', 'lives', 'speed', 'best', 'goal'];
+  const DIALS = {
+    scoreStart: {line: 's1', key: 'value', list: [...Array(16).keys()], def: 0, label: 'score start'},
+    livesStart: {line: 's2', key: 'value', list: [1, 2, 3, 4, 5, 6, 7, 8, 9], def: 3, label: 'lives start'},
+    speedStart: {line: 's3', key: 'value', list: [1, 2, 3, 4, 5], def: 1, label: 'speed start'},
+    star: {line: 'c1', key: 'add', list: [1, 2, 5, 10], def: 1, label: 'star adds'},
+    rock: {line: 'h1', key: 'sub', list: [0, 1, 2, 3], def: 1, label: 'rock takes'},
+  };
+  const DEFAULTS = () => Object.fromEntries(Object.entries(DIALS).map(([k, d]) => [k, d.def]));
+  function makeProgram(d = DEFAULTS()) {
+    return [
+      {id: 'page', head: 'when the page opens:', lines: [{id: 'p1', set: 'best', value: 0}, {id: 'p2', set: 'goal', value: 20}]},
+      {id: 'start', head: 'when the game starts:', lines: [{id: 's1', set: 'score', value: d.scoreStart}, {id: 's2', set: 'lives', value: d.livesStart},
+        {id: 's3', set: 'speed', value: d.speedStart}]},
+      {id: 'catch', head: 'when you catch a star:', lines: [{id: 'c1', set: 'score', from: 'score', add: d.star}]},
+      {id: 'hit', head: 'when a rock hits you:', lines: [{id: 'h1', set: 'lives', from: 'lives', sub: d.rock}]},
+      {id: 'tick', head: 'every 10 seconds:', lines: [{id: 't1', if: ['speed', '<', 5], then: [{id: 't2', set: 'speed', from: 'speed', add: 1}]}]},
+      {id: 'lowLives', when: ['lives', '<=', 0], lines: [{id: 'l1', end: true}]},
+      {id: 'goalMet', when: ['score', '>=', 'goal'], lines: [{id: 'g1', end: true}]},
+      {id: 'end', head: 'when the game ends:', lines: [{id: 'e1', if: ['score', '>', 'best'], then: [{id: 'e2', set: 'best', from: 'score'}]}]},
+    ];
+  }
+  const findLine = (prog, id) => { let f = null; const walk = ls => ls.forEach(l => { if (l.id === id) f = l; if (l.then) walk(l.then); }); prog.forEach(b => walk(b.lines)); return f; };
+  const CHECKS = ['lowLives', 'goalMet'];
+  const WHY = {lowLives: 'lives', goalMet: 'goal'};
+
+  // ======================================================================================
+  // Star Catch: the game rules (spec "Game numbers"). No DOM here either, so the Lab's instant run and the live game
+  // are the same code. Times are whole milliseconds of game time.
+  // ======================================================================================
+  const KINDS = 'SSRSSSRSRS', LANES = [2, 4, 1, 3, 5, 2, 3, 1, 4, 3], PLAN = 'CCHCCMDCHC';   // Same sky; Autopilot's plan
+  const every = s => 1600 - 200 * (s - 1), fallMs = s => 3000 - 400 * (s - 1);
+  function seeded(seed) { let a = seed >>> 0; return () => { a = (a + 0x6D2B79F5) >>> 0; let t = a; t = Math.imul(t ^ (t >>> 15), t | 1); t ^= t + Math.imul(t ^ (t >>> 7), t | 61); return ((t ^ (t >>> 14)) >>> 0) / 4294967296; }; }
+  function makeGame(prog, vars, o) {
+    const G = {t: 0, nextSpawn: 0, nextTick: 10000, drops: [], n: 0, caught: 0, hits: 0, ended: false, why: null, rocks: 0, lanes: [],
+      ship: {x: 3}, shipT: 0, o, rand: o.rand || Math.random, changes: {score: 0, lives: 0, speed: 0, best: 0, goal: 0}, started: false};
+    const speedNow = () => clamp(Math.round(typeof vars.speed === 'number' ? vars.speed : 1), 1, 5);
+    // run one block on the real values; count the lines that changed a value (game-time blocks only)
+    function block(id, out) {
+      for (const s of VarEngine.run(prog, vars, id, NAMES)) {
+        out.push(s);
+        if (s.kind === 'set' && s.old !== s.new && s.block !== 'start' && s.block !== 'page') G.changes[s.var]++;
+      }
+      return out;
+    }
+    function fire(ev, drop) {
+      const steps = block(ev, []);
+      if (ev === 'catch' || ev === 'hit') {
+        for (const c of CHECKS) {
+          const n = steps.length;
+          block(c, steps);
+          if (steps.slice(n).some(s => s.kind === 'end')) {
+            G.ended = true; G.why = WHY[c];
+            block('end', steps);
+            break;
+          }
+        }
+      }
+      return {ev, drop, steps, t: G.t};
+    }
+    function spawn() {
+      const s = speedNow(), i = G.n % 10;
+      let kind, lane, plan;
+      if (G.o.sameSky) { kind = KINDS[i]; lane = LANES[i]; plan = PLAN[i]; }
+      else {
+        kind = G.rand() < .7 ? 'S' : 'R';
+        const [a, b] = G.lanes.slice(-2);
+        do { lane = 1 + Math.floor(G.rand() * 5); } while (a != null && a === b && lane === a);   // never three in a row in one lane
+        plan = kind === 'S' ? 'C' : (++G.rocks % 3 === 0 ? 'H' : 'D');
+      }
+      G.lanes.push(lane);
+      G.n++;
+      G.drops.push({n: G.n, kind, lane, plan, spawnT: G.t, landT: G.t + fallMs(s), res: null, resT: 0, rot: Math.round(G.rand() * 360)});
+      G.nextSpawn = G.t + every(s);
+    }
+    // Autopilot: heads for the lane of the next drop it plans to meet (a star to catch, a rock it will not see, or one
+    // lane short of star 6), and steers round a rock it plans to dodge. One lane per 0.25 s, a little quicker only when
+    // a speed change leaves less time than that.
+    function moveShip(t) {
+      const dt = t - G.shipT; G.shipT = t;
+      if (!G.o.autopilot || dt <= 0) return;
+      const sh = G.ship, pending = G.drops.filter(d => !d.res).sort((a, b) => a.landT - b.landT);
+      const must = pending.find(d => d.plan !== 'D');
+      let tgt = Math.round(sh.x), rate = 250;
+      if (must) {
+        tgt = must.plan === 'M' ? (sh.x > must.lane ? must.lane + 1 : sh.x < must.lane ? must.lane - 1 : (must.lane < 3 ? must.lane + 1 : must.lane - 1)) : must.lane;
+        const dist = Math.abs(tgt - sh.x);
+        if (dist > 0) rate = clamp((must.landT - (t - dt) - 40) / dist, 120, 250);
+      }
+      const nx = pending[0];
+      if (nx && nx.plan === 'D') {
+        const R = nx.lane, lanesLeft = (nx.landT - (t - dt)) / rate, dir = Math.sign(tgt - sh.x);
+        const xAt = dir ? (Math.abs(tgt - sh.x) <= lanesLeft ? tgt : sh.x + dir * lanesLeft) : sh.x;
+        if (Math.round(xAt) === R) {
+          if (Math.round(sh.x) !== R) tgt = Math.round(sh.x);
+          else { tgt = R + (tgt > R ? 1 : tgt < R ? -1 : (R < 3 ? 1 : -1)); if (tgt < 1 || tgt > 5) tgt = 2 * R - tgt; }
+        }
+      }
+      const d = tgt - sh.x;
+      if (d) sh.x += Math.sign(d) * Math.min(Math.abs(d), dt / rate);
+      if (Math.abs(sh.x - Math.round(sh.x)) < 1e-6) sh.x = Math.round(sh.x);
+    }
+    // run the game to time toT; stops at the first event that runs code and returns it (null when toT is reached)
+    G.advance = toT => {
+      let guard = 0;
+      while (!G.ended && guard++ < 1000) {
+        let land = Infinity, ld = null;
+        for (const d of G.drops) if (!d.res && d.landT < land) { land = d.landT; ld = d; }
+        const te = Math.min(G.nextSpawn, G.nextTick, land);
+        if (te > toT) { moveShip(toT); G.t = toT; return null; }
+        moveShip(te); G.t = te;
+        if (te === G.nextTick) { G.nextTick += 10000; return fire('tick'); }          // a tick runs first on a tie
+        if (te === land) {
+          ld.resT = te;
+          if (Math.round(G.ship.x) === ld.lane) { G.lastDrop = ld.n; G.lastT = te; }
+          if (Math.round(G.ship.x) !== ld.lane) { ld.res = 'miss'; continue; }
+          if (ld.kind === 'S') { ld.res = 'catch'; G.caught++; return fire('catch', ld); }
+          ld.res = 'hit'; G.hits++; return fire('hit', ld);
+        }
+        spawn();
+        if (G.drops.length > 24) G.drops = G.drops.filter(d => !d.res || G.t - d.resT < 1500);
+      }
+      return null;
+    };
+    G.start = () => block('start', []);
+    G.setLane = l => { G.ship.x = clamp(l, 1, 5); };
+    return G;
+  }
+  // a Lab game played at once, no animation: the result row (spec's reference table; window.__tool.run)
+  function runInstant(set = {}) {
+    const d = Object.assign(DEFAULTS(), set);
+    const prog = makeProgram(d);
+    const vars = {score: null, lives: null, speed: null, best: set.best != null ? set.best : 0, goal: 20};
+    const G = makeGame(prog, vars, {sameSky: set.sameSky !== false, autopilot: set.autopilot !== false, rand: seeded(set.seed || 7)});
+    G.start();
+    let guard = 0, lastT = 0, lastDrop = 0;
+    while (!G.ended && guard++ < 5000) { const f = G.advance(Infinity); if (f && f.drop) { lastDrop = f.drop.n; lastT = f.t; } }
+    return {endsAtDrop: lastDrop, seconds: Math.round(lastT / 100) / 10, because: G.why, score: vars.score, lives: vars.lives, speed: vars.speed,
+      best: vars.best, goal: vars.goal, caught: G.caught, hits: G.hits, changes: {...G.changes}};
+  }
+
+  // ======================================================================================
+  // State
+  // ======================================================================================
+  const state = {mode: 'play', phase: 'idle', paused: false, stepping: false, codeSpeed: 'watch',
+    opts: {play: {autopilot: false, sameSky: false}, lab: {autopilot: true, sameSky: true}},
+    dials: DEFAULTS(), q: 0, startedRounds: 0};
+  const playProg = makeProgram(), labProg = makeProgram();
+  const prog = () => state.mode === 'lab' ? labProg : playProg;
+  const vars = {score: null, lives: null, speed: null, best: null, goal: null};    // the real values
+  const shown = {score: null, lives: null, speed: null, best: null, goal: null};   // what the boxes show (the lines that have run)
+  const counts = {score: 0, lives: 0, speed: 0, best: 0, goal: 0};
+  let G = null, lastRow = null, timeScale = 1;
+  const nb = {runs: [], sort: {}, found: ['', '', ''], checked: false};
+
+  // ======================================================================================
+  // Variable boxes
+  // ======================================================================================
+  const ICONS = {
+    score: '<path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4 6.1 20.5l1.2-6.5L2.5 9.4l6.6-.9z" fill="currentColor"/>',
+    lives: '<path d="M12 21s-8.5-5.3-8.5-11.2A4.8 4.8 0 0 1 12 6.6a4.8 4.8 0 0 1 8.5 3.2C20.5 15.7 12 21 12 21z" fill="currentColor"/>',
+    speed: '<path d="M13.5 2 4.5 13.5h6L9.5 22l9-11.5h-6z" fill="currentColor"/>',
+    best: '<path d="M7 3h10v3h3.5v2.5A4.5 4.5 0 0 1 16.4 13 5 5 0 0 1 13 15.8V18h3.5v3h-9v-3H11v-2.2A5 5 0 0 1 7.6 13 4.5 4.5 0 0 1 3.5 8.5V6H7zm-1.5 5v.5A2.5 2.5 0 0 0 7.3 11 7 7 0 0 1 7 9V8zm13 0H17v1a7 7 0 0 1-.3 2 2.5 2.5 0 0 0 1.8-2.5z" fill="currentColor"/>',
+    goal: '<path d="M5 2h2v20H5zM8 3h11l-2.5 4.5L19 12H8z" fill="currentColor"/>',
+  };
+  const VCOL = {score: 'var(--c-score)', lives: 'var(--c-lives)', speed: 'var(--c-speed)', best: 'var(--c-best)', goal: 'var(--c-goal)'};
+  const icon = (n, cls = '') => `<svg viewBox="0 0 24 24" aria-hidden="true" class="${cls}" style="color:${VCOL[n]}">${ICONS[n]}</svg>`;
+  const boxes = {};
+  for (const n of NAMES) {
+    const b = document.createElement('div');
+    b.className = 'vbox'; b.dataset.v = n; b.style.setProperty('--vc', VCOL[n]);
+    b.setAttribute('role', 'group');
+    b.innerHTML = `<div class="crate"><div class="back"></div><div class="vcard empty">empty</div><div class="front"><div class="vlabel">${icon(n)}<span>${n}</span></div></div></div>
+      <div class="vcount">changed <b>0</b><span class="tm"> times</span></div>`;
+    $('shelf').appendChild(b);
+    boxes[n] = {el: b, card: b.querySelector('.vcard'), count: b.querySelector('.vcount'), crate: b.querySelector('.crate')};
+  }
+  function boxLabel(n) { boxes[n].el.setAttribute('aria-label', `${n}: ${shown[n] == null ? 'empty' : fmt(shown[n])}, changed ${times(counts[n])}`); }
+  function drawBox(n) {
+    const c = boxes[n].card;
+    c.className = 'vcard' + (shown[n] == null ? ' empty' : '');
+    c.textContent = shown[n] == null ? 'empty' : fmt(shown[n]);
+    boxes[n].count.innerHTML = `changed <b>${counts[n]}</b><span class="tm"> ${counts[n] === 1 ? 'time' : 'times'}</span>`;
+    boxLabel(n);
+  }
+  const drawBoxes = () => NAMES.forEach(drawBox);
+  const later = new Set();
+  function soon(ms, fn) { const t = setTimeout(() => { later.delete(t); fn(); }, ms); later.add(t); }
+  function clearSoon() { later.forEach(clearTimeout); later.clear(); }
+  // a new value lands in its box: the old card slides out and fades (gone), the new one bumps in with a gold glow
+  function landValue(n, how) {
+    const B = boxes[n], old = B.card;
+    if (how === 'fly' && old.textContent && !old.classList.contains('empty')) {
+      const ghost = old.cloneNode(true); ghost.className = 'vcard old'; old.parentNode.insertBefore(ghost, old);
+      soon(500, () => ghost.remove());
+    }
+    drawBox(n);
+    const c = B.card;
+    if (how === 'fly') { c.classList.add('pop', 'glow'); B.el.classList.add('bump'); soon(700, () => { c.classList.remove('pop', 'glow'); B.el.classList.remove('bump'); }); }
+    else if (how === 'quick') { c.classList.add('glow'); soon(450, () => c.classList.remove('glow')); }
+    else { c.classList.add('ring'); soon(700, () => c.classList.remove('ring')); }
+  }
+  function sameValue(n) {
+    const B = boxes[n];
+    if (!Curio.reduce) { B.card.classList.remove('shake'); void B.card.offsetWidth; B.card.classList.add('shake'); }
+    else { B.card.classList.add('ring'); }
+    let tag = B.el.querySelector('.same');
+    if (!tag) { tag = document.createElement('span'); tag.className = 'same'; tag.textContent = 'same'; B.crate.appendChild(tag); }
+    soon(1100, () => { tag.remove(); B.card.classList.remove('shake', 'ring'); });
+  }
+
+  // ======================================================================================
+  // The program card
+  // ======================================================================================
+  const lineEls = {}, dialEls = {};
+  function buildProgram() {
+    const host = $('prog'), P = prog(), lab = state.mode === 'lab';
+    host.innerHTML = '';
+    for (const k in lineEls) delete lineEls[k];
+    for (const k in dialEls) delete dialEls[k];
+    const dialOf = {};
+    for (const [k, d] of Object.entries(DIALS)) dialOf[d.line] = k;
+    for (const b of P) {
+      const blk = document.createElement('div'); blk.className = 'blk';
+      const h = document.createElement('div'); h.className = 'ln ev'; h.textContent = VarEngine.head(b);
+      blk.appendChild(h); lineEls[b.id] = h;
+      const walk = (ls, depth) => {
+        for (const ln of ls) {
+          const e = document.createElement('div'); e.className = 'ln';
+          const [txt, amt] = VarEngine.words(ln);
+          const pad = '  '.repeat(depth);
+          const dk = lab ? dialOf[ln.id] : null;
+          if (dk) {
+            e.classList.add('dl');
+            e.appendChild(document.createTextNode(pad + txt));
+            e.appendChild(makeDial(dk));
+          } else e.textContent = pad + txt + (amt != null ? amt : '');
+          blk.appendChild(e); lineEls[ln.id] = e;
+          if (ln.then) walk(ln.then, depth + 1);
+        }
+      };
+      walk(b.lines, 1);
+      host.appendChild(blk);
+    }
+    syncDials();
+  }
+  function makeDial(k) {
+    const D = DIALS[k], w = document.createElement('span');
+    w.className = 'dial';
+    w.innerHTML = `<button tabindex="-1" aria-hidden="true">−</button><span class="dv" role="spinbutton" tabindex="0"></span><button tabindex="-1" aria-hidden="true">+</button>`;
+    const [minus, dv, plus] = w.children;
+    dv.setAttribute('aria-label', D.label);
+    minus.onclick = () => turn(k, -1);
+    plus.onclick = () => turn(k, 1);
+    dv.addEventListener('keydown', e => {
+      const dir = {ArrowUp: 1, ArrowRight: 1, ArrowDown: -1, ArrowLeft: -1, '+': 1, '=': 1, '-': -1, Home: -99, End: 99}[e.key];
+      if (dir == null) return;
+      if (dialsLocked()) return;
+      e.preventDefault(); e.stopPropagation(); turn(k, dir);
+    });
+    dialEls[k] = {w, dv, minus, plus};
+    return w;
+  }
+  const dialsLocked = () => state.phase === 'running';
+  function turn(k, dir) {
+    if (dialsLocked()) return;
+    const D = DIALS[k], i = D.list.indexOf(state.dials[k]);
+    const j = clamp(i + dir, 0, D.list.length - 1);
+    if (j === i) return;
+    state.dials[k] = D.list[j];
+    findLine(labProg, D.line)[D.key] = D.list[j];
+    syncDials();
+    Curio.tone(dir > 0 ? 700 : 560, .08, .03);
+  }
+  function syncDials() {
+    const lock = dialsLocked();
+    for (const [k, e] of Object.entries(dialEls)) {
+      const D = DIALS[k], v = state.dials[k], i = D.list.indexOf(v);
+      e.dv.textContent = String(v);
+      e.dv.setAttribute('aria-valuenow', v); e.dv.setAttribute('aria-valuemin', D.list[0]); e.dv.setAttribute('aria-valuemax', D.list[D.list.length - 1]);
+      e.dv.setAttribute('aria-disabled', lock);
+      e.w.classList.toggle('lock', lock);
+      e.minus.disabled = lock || i === 0; e.plus.disabled = lock || i === D.list.length - 1;
+    }
+  }
+  // highlighting: the running line (raspberry bar, pale gold, a small marker), the line that just ran keeps a tint for 1 s
+  let runEl = null;
+  function highlight(id, tag) {
+    if (runEl) { const r = runEl; r.classList.remove('run'); r.classList.add('ran'); soon(1000, () => r.classList.remove('ran')); const t = r.querySelector('.tag'); if (t) soon(1000, () => t.remove()); }
+    runEl = id ? lineEls[id] : null;
+    if (!runEl) return;
+    runEl.classList.remove('ran'); runEl.classList.add('run');
+    const old = runEl.querySelector('.tag'); if (old) old.remove();
+    if (tag != null) { const t = document.createElement('span'); t.className = 'tag' + (tag ? '' : ' no'); t.textContent = tag ? 'yes' : 'no'; runEl.appendChild(t); }
+    // keep the running line in view inside the card (never scroll the page)
+    // and keep its block's first line (the event that caused it) in view too when both fit
+    const host = $('prog'), r = runEl.getBoundingClientRect(), hr = host.getBoundingClientRect();
+    const blk = runEl.closest('.blk'), head = blk && blk.firstElementChild, top = head ? head.getBoundingClientRect().top : r.top;
+    if (r.bottom - top <= hr.height - 12) {
+      if (top < hr.top + 6) host.scrollTop += top - hr.top - 6;
+      else if (r.bottom > hr.bottom - 6) host.scrollTop += r.bottom - hr.bottom + 6;
+    } else if (r.top < hr.top + 6 || r.bottom > hr.bottom - 6) host.scrollTop += (r.top - hr.top) - (hr.height - r.height) / 2;
+  }
+  function clearHighlight() { if (runEl) runEl.classList.remove('run'); runEl = null; }
+
+  // ======================================================================================
+  // The code runner: one line at a time, at a pace a class can follow (spec "Interactions")
+  // ======================================================================================
+  const dq = [];
+  let cur = null;
+  const busy = () => !!cur || dq.length > 0;
+  const BLOCKLOG = {page: 'Page opened', start: 'Game started', catch: 'Caught a star', hit: 'Rock hit', tick: '10 seconds', end: 'Game ended'};
+  let logPrefix = null, overwrote = false;
+  function stepDur(c) { if (!c.watch) return 200; return c.s.kind === 'event' || c.s.kind === 'check' ? 500 : 700; }
+  function beginStep(c) {
+    const s = c.s;
+    highlight(s.line, s.kind === 'check' || s.kind === 'if' ? s.ok : null);
+    if (s.kind === 'event') {
+      if (s.block === 'start') { for (const n of NAMES) counts[n] = 0; drawBoxes(); }
+      if (s.block === 'catch') { sfx('catch'); beat('catch1', L.catch1, 4000, true); }
+      if (s.block === 'hit') { sfx('hit'); if ((state.mode === 'lab' ? state.dials.rock : 1) > 0) beat('hit1', L.hit1, 4000, true); }   // rock 0: same1 says it
+      if (s.block === 'tick') sfx('tick');
+    }
+    if (s.kind === 'end') {
+      const why = G ? G.why : 'lives';
+      showBanner(why);
+      if (why === 'goal') { Curio.yes(); beat('endGoal', L.endGoal, 6000); }
+      else { Curio.tone(330, .25, .05); setTimeout(() => Curio.tone(220, .4, .05), 200); beat('endLives', L.endLives, 6000); }
+    }
+    if (s.kind === 'set') {
+      c.same = s.old === s.new;
+      if (c.same) { sameValue(s.var); applySet(c); }
+      else if (!c.watch) applySet(c, 'quick');
+      else if (!Curio.reduce) startFly(c);
+    }
+  }
+  function progressStep(c) {
+    if (c.s.kind !== 'set' || c.applied) return;
+    if (c.fly) moveFly(c, Math.min(1, c.el / 500));
+    if (c.el >= (Curio.reduce ? 250 : 500)) applySet(c, c.fly ? 'fly' : 'calm');
+  }
+  function endStep(c) {
+    if (c.s.kind === 'set' && !c.applied) applySet(c, c.fly ? 'fly' : 'calm');
+    if (c.fly) { $('fly').hidden = true; c.fly = false; }
+  }
+  function applySet(c, how) {
+    if (c.applied) return;
+    c.applied = true;
+    const s = c.s, n = s.var, game = s.block !== 'start' && s.block !== 'page';
+    if (c.fly) { $('fly').hidden = true; c.fly = false; }
+    shown[n] = s.new;
+    if (s.old !== s.new) {
+      if (game) counts[n]++;
+      if (how) landValue(n, how); else drawBox(n);
+      if (how === 'fly' || how === 'calm' || how === 'quick') Curio.tone(how === 'fly' ? 988 : 880, .12, .03);
+      if (s.old != null && game && !overwrote) { overwrote = true; toast(TOAST); }
+    } else drawBox(n);
+    const label = logPrefix && s.block === 'page' ? logPrefix : BLOCKLOG[s.block] || s.block;
+    if (s.old == null) addLog(`${label}: ${n} gets ${fmt(s.new)}`);
+    else addLog(`${label}: ${n} ${fmt(s.old)} → ${fmt(s.new)}${s.old === s.new ? ' (same value)' : ''}`, s.old === s.new);
+    if (game) {
+      if (s.old === s.new) beat('same1', L.same1, 4000, s.block !== 'end');
+      else if (n === 'speed' && s.block === 'tick') beat('speed1', L.speed1, 4000, true);
+      else if (n === 'best') beat('best1', L.best1, 8000);
+      if (n === 'lives' && s.new < 0) beat('below0', L.below0, 8000, false, true);
+    }
+    live(`${n} is ${fmt(s.new)}`);
+  }
+  // the flying copy of the new value: an arc from the line to its box, 500 ms
+  function startFly(c) {
+    const f = $('fly'), line = lineEls[c.s.line], card = boxes[c.s.var].card;
+    if (!line || !card) return;
+    const a = line.getBoundingClientRect(), b = card.getBoundingClientRect();
+    f.textContent = fmt(c.s.new); f.hidden = false;
+    const fw = f.offsetWidth, fh = f.offsetHeight;
+    c.p0 = [Math.min(a.right - fw - 6, a.left + 30 + line.textContent.length * 8.6), a.top + a.height / 2 - fh / 2];
+    c.p2 = [b.left + b.width / 2 - fw / 2, b.top + 4];
+    c.p1 = [(c.p0[0] + c.p2[0]) / 2, Math.min(c.p0[1], c.p2[1]) - 90];
+    c.fly = true;
+    moveFly(c, 0);
+  }
+  function moveFly(c, p) {
+    const e = p < .5 ? 2 * p * p : 1 - (-2 * p + 2) ** 2 / 2, u = 1 - e;
+    const x = u * u * c.p0[0] + 2 * u * e * c.p1[0] + e * e * c.p2[0], y = u * u * c.p0[1] + 2 * u * e * c.p1[1] + e * e * c.p2[1];
+    $('fly').style.transform = `translate(${x.toFixed(1)}px,${y.toFixed(1)}px) scale(${(1 + .25 * Math.sin(p * Math.PI)).toFixed(3)})`;
+  }
+  // run the code for dt ms; while stepping, stop after exactly one line
+  function tickCode(dt) {
+    let left = dt;
+    while (left > 0) {
+      if (!cur) {
+        if (!dq.length) return;
+        cur = {s: dq.shift(), el: 0, applied: false, watch: state.codeSpeed === 'watch' || state.stepping};
+        beginStep(cur);
+      }
+      const d = stepDur(cur), use = Math.min(left, d - cur.el);
+      cur.el += use; left -= use;
+      progressStep(cur);
+      if (cur.el >= d) {
+        endStep(cur); cur = null;
+        if (!busy()) clearHighlightSoon();
+        if (state.stepping) { if (state.stepMore) state.stepMore = false; else state.stepping = false; sync(); return; }
+      }
+    }
+  }
+  function clearHighlightSoon() { const r = runEl; soon(state.codeSpeed === 'watch' ? 700 : 300, () => { if (r === runEl && !busy()) highlight(null); }); }
+  // drop the lines still waiting; the boxes catch up with the real values (so best never shows a stale number)
+  function flushCode() {
+    for (const s of [...(cur && !cur.applied ? [cur.s] : []), ...dq]) if (s.kind === 'set') shown[s.var] = s.new;
+    dq.length = 0; if (cur && cur.fly) $('fly').hidden = true; cur = null; clearHighlight();
+    drawBoxes();
+  }
+
+  // ======================================================================================
+  // Games
+  // ======================================================================================
+  function startGame() {
+    if (state.mode === 'nb') return;
+    hideResult(); hideBanner();
+    flushCode();
+    const o = state.opts[state.mode];
+    G = makeGame(prog(), vars, {sameSky: o.sameSky, autopilot: o.autopilot});
+    G.lab = state.mode === 'lab' ? {...state.dials, q: state.q + 1} : null;
+    const again = vars.score != null;
+    dq.push(...G.start());
+    state.phase = 'running'; state.paused = false; state.stepping = false; state.stepMore = false;
+    drops.clear(); dropLayer && (dropLayer.innerHTML = '');
+    if (again) beat('game2', L.game2, 5000, true);
+    lastRow = null;
+    sync();
+  }
+  function onFire(f) { dq.push(...f.steps); }
+  function finishGame() {
+    state.phase = 'over'; state.paused = false; state.stepping = false; state.stepMore = false;
+    clearHighlightSoon();
+    if (state.mode === 'lab' && G) {
+      const L0 = G.lab;
+      lastRow = {q: L0.q, livesStart: L0.livesStart, scoreStart: L0.scoreStart, speedStart: L0.speedStart, star: L0.star, rock: L0.rock,
+        because: G.why, score: vars.score, lives: vars.lives, speed: vars.speed, best: vars.best, goal: vars.goal, caught: G.caught, hits: G.hits, drops: G.lastDrop, secs: Math.round((G.lastT || 0) / 100) / 10,
+        changes: {...G.changes}, saved: false};
+      soon(Curio.reduce ? 300 : 900, () => { if (state.phase === 'over' && state.mode === 'lab') showResult(); });
+    }
+    // Play: every game over says how to go again (not once per page)
+    if (state.mode === 'play' && !vq.some(q => q.key === 'over1')) narrate('over1', L.over1, {valid: () => state.mode === 'play' && state.phase === 'over'});
+    live(G && G.why === 'goal' ? 'Goal! The game ended.' : 'Game over.');
+    sync();
+  }
+  function stopGame() {
+    G = null; flushCode();
+    state.phase = 'idle'; state.paused = false; state.stepping = false; state.stepMore = false;
+    document.body.classList.remove('paused');
+    hideResult(); hideBanner();
+    for (const n of NAMES) boxes[n].el.classList.remove('bump');
+    $('fly').hidden = true;
+  }
+  function togglePause() {
+    if (state.phase !== 'running') return;
+    state.paused = !state.paused; state.stepping = false; state.stepMore = false;
+    if (state.paused) narrate('pause1', L.pause1, {once: true, valid: () => state.paused});
+    sync();
+  }
+  function stepOnce() {
+    if (state.phase !== 'running' || !state.paused) return;
+    if (state.stepping) { state.stepMore = true; return; }   // a press during a step is kept: it runs the next line
+    state.stepping = true;
+    sync();
+  }
+  function goPressed() {
+    if (state.phase === 'running') togglePause();
+    else startGame();
+  }
+  function moveShip(dir, lane) {
+    if (!G || state.phase !== 'running' || state.paused || !G.started || G.ended) return;
+    if (state.opts[state.mode].autopilot) { tipOnce(); return; }
+    if (state.codeSpeed === 'watch' && busy()) return;   // the game is frozen while its code runs
+    const to = lane != null ? lane : Math.round(G.ship.x) + dir;
+    if (to < 1 || to > 5) return;
+    G.setLane(to);
+  }
+  let tipShown = 0;
+  function tipOnce() { if (now() - tipShown < 4000) return; tipShown = now(); toast('Autopilot is flying. Turn it off to steer.', 2600); }
+
+  // the main loop: code first, then the game (frozen while Watch code runs, while paused, and before the start lines finish)
+  let lastF = now(), wasFrozen = false;
+  function frame(t) {
+    const dt = Math.min(100, t - lastF) * timeScale; lastF = t;
+    if (state.phase === 'running' || busy()) {
+      if (!state.paused || state.stepping) tickCode(dt);
+      if (G && state.phase === 'running') {
+        if (!G.started && !busy()) G.started = true;
+        const waitCode = state.codeSpeed === 'watch' && busy();
+        const hold = state.paused && !(state.stepping && !busy());
+        if (G.started && !G.ended && !waitCode && !hold) { const f = G.advance(G.t + Math.round(dt)); if (f) onFire(f); }
+        if (G.ended && !busy()) finishGame();
+      }
+    }
+    const frozen = !!(G && G.started && state.phase === 'running' && state.codeSpeed === 'watch' && busy());
+    if (frozen !== wasFrozen) { wasFrozen = frozen; if (dimEl) dimEl.setAttribute('opacity', frozen ? .32 : 0); }
+    if (cur && cur.fly && !cur.applied) moveFly(cur, Math.min(1, cur.el / 500));
+    renderGame(dt);
+    requestAnimationFrame(frame);
+  }
+
+  // ======================================================================================
+  // The stage: night sky, lanes, backdrop strip, ship, stars and rocks, drawn at real pixel size
+  // ======================================================================================
+  const S = {W: 600, H: 400, laneW: 120, top: 0, shipY: 300, ship: 60, drop: 36, strip: 90};
+  let dropLayer = null, shipG = null, dimEl = null, bannerG = null, laneGlow = null;
+  const drops = new Map();
+  let visX = 3;
+  function laneX(l) { return (l - .5) * S.laneW; }
+  function buildStage(W, H, capH) {
+    const sv = $('sv');
+    sv.setAttribute('width', W); sv.setAttribute('height', H); sv.setAttribute('viewBox', `0 0 ${W} ${H}`);
+    sv.innerHTML = '';
+    const laneW = W / 5, strip = Math.round(clamp(H * .24, 46, W / 4 * .85));
+    const ship = Math.round(clamp(Math.min(laneW * .66, H * .17), 30, 112));
+    const shipY = Math.round(H - strip * .3 - ship * .5);
+    const drop = Math.round(clamp(Math.min(laneW * .38, H * .1), 18, 60));
+    Object.assign(S, {W, H, laneW, strip, ship, shipY, drop, top: capH});
+    const defs = mk('defs', {}, sv);
+    const sky = mk('linearGradient', {id: 'g-sky', x1: 0, y1: 0, x2: 0, y2: 1}, defs);
+    mk('stop', {offset: 0, 'stop-color': '#141a3a'}, sky); mk('stop', {offset: 1, 'stop-color': '#1e2650'}, sky);
+    const gl = mk('radialGradient', {id: 'g-glow'}, defs);
+    mk('stop', {offset: 0, 'stop-color': '#ffd76a', 'stop-opacity': .65}, gl); mk('stop', {offset: 1, 'stop-color': '#ffd76a', 'stop-opacity': 0}, gl);
+    const neb = mk('radialGradient', {id: 'g-neb'}, defs);
+    mk('stop', {offset: 0, 'stop-color': '#b05ad0', 'stop-opacity': .45}, neb); mk('stop', {offset: .6, 'stop-color': '#5b4bc4', 'stop-opacity': .18}, neb); mk('stop', {offset: 1, 'stop-color': '#5b4bc4', 'stop-opacity': 0}, neb);
+    mk('rect', {x: 0, y: 0, width: W, height: H, fill: 'url(#g-sky)'}, sv);
+    // twinkles, already mid-twinkle (negative delays)
+    const r = seeded(W * 31 + H), tw = mk('g', {}, sv), n = Math.round(clamp(W * H / 7000, 18, 90));
+    for (let i = 0; i < n; i++) {
+      const x = r() * W, y = capH + r() * (H - strip - capH) * .95, s = .6 + r() * 1.5;
+      const e = mk('circle', {cx: x.toFixed(1), cy: y.toFixed(1), r: s.toFixed(2), fill: r() < .2 ? '#ffe9a8' : '#ffffff', opacity: (.45 + r() * .5).toFixed(2), class: 'tw'}, tw);
+      e.style.animationDelay = (-r() * 2.6).toFixed(2) + 's'; e.style.animationDuration = (2 + r() * 2).toFixed(2) + 's';
+    }
+    // lanes: faint columns, and a soft glow under the ship's lane
+    for (let i = 1; i < 5; i++) mk('line', {x1: i * laneW, y1: capH, x2: i * laneW, y2: H - strip * .5, stroke: '#ffffff', 'stroke-opacity': .1, 'stroke-width': 2, 'stroke-dasharray': '4 10'}, sv);
+    laneGlow = mk('rect', {x: 0, y: capH, width: laneW, height: H - capH, fill: '#ffd76a', opacity: .05}, sv);
+    // the backdrop strip along the bottom (the painted desert, or dunes drawn in code)
+    const bg = mk('g', {}, sv), y0 = H - strip;
+    if (hasArt('backdrop')) mk('image', {href: ART.backdrop, x: 0, y: y0, width: W, height: strip, preserveAspectRatio: 'xMidYMax slice'}, bg);
+    else {
+      mk('ellipse', {cx: W * .68, cy: y0 + strip * .1, rx: W * .45, ry: strip * .9, fill: 'url(#g-neb)'}, bg);
+      mk('path', {d: `M0 ${y0 + strip * .42} C ${W * .18} ${y0 + strip * .18}, ${W * .36} ${y0 + strip * .5}, ${W * .55} ${y0 + strip * .3} S ${W * .85} ${y0 + strip * .2}, ${W} ${y0 + strip * .36} V ${H} H 0 Z`, fill: '#3a2f6e'}, bg);
+      const rk = (cx, rr) => { mk('ellipse', {cx, cy: y0 + strip * .36, rx: rr * 1.15, ry: rr, fill: '#4a3a7e'}, bg); mk('ellipse', {cx: cx - rr * .3, cy: y0 + strip * .3, rx: rr * .35, ry: rr * .22, fill: '#5d4b93'}, bg); };
+      rk(W * .14, strip * .17); rk(W * .83, strip * .12);
+      mk('path', {d: `M0 ${y0 + strip * .66} C ${W * .25} ${y0 + strip * .48}, ${W * .5} ${y0 + strip * .75}, ${W * .72} ${y0 + strip * .58} S ${W * .95} ${y0 + strip * .55}, ${W} ${y0 + strip * .62} V ${H} H 0 Z`, fill: '#2a2256'}, bg);
+    }
+    shipG = mk('g', {}, sv);
+    drawShip(shipG);
+    dropLayer = mk('g', {}, sv);
+    drops.clear();
+    dimEl = mk('rect', {x: 0, y: 0, width: W, height: H, fill: '#060818', opacity: 0, 'pointer-events': 'none'}, sv);
+    wasFrozen = false;
+    bannerG = mk('g', {'pointer-events': 'none'}, sv);
+    if (bannerShown) showBanner(bannerShown);
+    renderGame(0);
+  }
+  function drawShip(g) {
+    const s = S.ship;
+    if (hasArt('ship')) { mk('image', {href: ART.ship, x: -s / 2, y: -s / 2, width: s, height: s}, g); return; }
+    const k = s / 100, gg = mk('g', {transform: `scale(${k})`}, g);
+    for (const x of [-30, 0, 30]) mk('path', {d: `M${x} 18 L${x * 1.25} 46`, stroke: '#2c3e50', 'stroke-width': 7, 'stroke-linecap': 'round'}, gg);
+    for (const x of [-30, 0, 30]) mk('ellipse', {cx: x * 1.25, cy: 47, rx: 8, ry: 4, fill: '#2c3e50'}, gg);
+    mk('ellipse', {cx: 0, cy: 10, rx: 48, ry: 26, fill: '#1c9c8e', stroke: '#0d5e56', 'stroke-width': 4}, gg);
+    mk('ellipse', {cx: 0, cy: 6, rx: 48, ry: 9, fill: '#f6ecd2', opacity: .9}, gg);
+    mk('circle', {cx: 0, cy: -10, r: 26, fill: '#24b3a2', stroke: '#0d5e56', 'stroke-width': 4}, gg);
+    mk('circle', {cx: 0, cy: -12, r: 16, fill: '#bfe9ff', stroke: '#f6ecd2', 'stroke-width': 5}, gg);
+    mk('ellipse', {cx: -5, cy: -18, rx: 5, ry: 3.5, fill: '#ffffff', opacity: .9}, gg);
+    for (const x of [-30, 0, 30]) mk('circle', {cx: x, cy: 18, r: 4, fill: '#ffd76a'}, gg);
+  }
+  function starPath(r) {
+    const p = [];
+    for (let i = 0; i < 10; i++) { const a = -Math.PI / 2 + i * Math.PI / 5, rr = i % 2 ? r * .45 : r; p.push((Math.cos(a) * rr).toFixed(1) + ',' + (Math.sin(a) * rr).toFixed(1)); }
+    return p.join(' ');
+  }
+  function makeDrop(d) {
+    const g = mk('g', {}, dropLayer), s = S.drop;
+    if (d.kind === 'S') {
+      mk('circle', {r: s * .95, fill: 'url(#g-glow)'}, g);
+      mk('polygon', {points: starPath(s * .55), fill: '#ffd76a', stroke: '#f5b83d', 'stroke-width': 2.5, 'stroke-linejoin': 'round'}, g);
+    } else {
+      const inner = mk('g', {transform: `rotate(${d.rot})`}, g);
+      if (hasArt('rock')) mk('image', {href: ART.rock, x: -s * .6, y: -s * .6, width: s * 1.2, height: s * 1.2}, inner);
+      else {
+        const r = seeded(d.n * 97 + 3), pts = [];
+        for (let i = 0; i < 9; i++) { const a = i / 9 * Math.PI * 2, rr = s * .5 * (.8 + r() * .3); pts.push([Math.cos(a) * rr, Math.sin(a) * rr]); }
+        let path = `M${pts[0][0].toFixed(1)} ${pts[0][1].toFixed(1)}`;
+        for (let i = 0; i < 9; i++) { const a = pts[i], b = pts[(i + 1) % 9]; path += ` Q${(a[0] * 1.08).toFixed(1)} ${(a[1] * 1.08).toFixed(1)} ${((a[0] + b[0]) / 2).toFixed(1)} ${((a[1] + b[1]) / 2).toFixed(1)}`; }
+        mk('path', {d: path + 'Z', fill: '#8a7966', stroke: '#4e4236', 'stroke-width': 2.5}, inner);
+        mk('ellipse', {cx: -s * .12, cy: -s * .1, rx: s * .12, ry: s * .09, fill: '#6b5c4c'}, inner);
+        mk('ellipse', {cx: s * .16, cy: s * .12, rx: s * .08, ry: s * .06, fill: '#6b5c4c'}, inner);
+        mk('ellipse', {cx: -s * .2, cy: -s * .22, rx: s * .1, ry: s * .05, fill: '#b3a28c', opacity: .7}, inner);
+      }
+    }
+    drops.set(d.n, g);
+    return g;
+  }
+  function renderGame(dt) {
+    if (!shipG) return;
+    const live = G && G.started ? G : null;
+    const target = G ? G.ship.x : 3;
+    if (Curio.reduce || (G && state.opts[state.mode].autopilot)) visX = target;
+    else { const k = 1 - Math.exp(-dt / 45); visX += (target - visX) * k; if (Math.abs(target - visX) < .01) visX = target; }
+    let shake = 0;
+    if (live) for (const d of live.drops) if (d.res === 'hit' && live.t - d.resT < 400 && !Curio.reduce) shake = Math.sin((live.t - d.resT) / 25) * 5 * (1 - (live.t - d.resT) / 400);
+    shipG.setAttribute('transform', `translate(${(laneX(visX) + shake).toFixed(1)},${S.shipY})`);
+    laneGlow.setAttribute('x', ((Math.round(visX) - 1) * S.laneW).toFixed(1));
+    const seen = new Set();
+    if (G) {
+      for (const d of G.drops) {
+        const t = G.t;
+        if (d.res && t - d.resT > 600) continue;
+        seen.add(d.n);
+        const g = drops.get(d.n) || makeDrop(d);
+        const y0 = S.top - S.drop, span = d.landT - d.spawnT;
+        let tt = t - d.spawnT;
+        if (Curio.reduce) tt = Math.floor(tt / 250) * 250;     // Motion off: falling things move in steps
+        let y = y0 + (S.shipY - y0) * Math.min(1, tt / span), sc = 1, op = 1;
+        const x = laneX(d.lane);
+        if (d.res) {
+          const a = t - d.resT;
+          if (d.res === 'miss') { y = y0 + (S.shipY - y0) * (tt / span); op = Math.max(0, 1 - a / 500); }
+          else if (d.res === 'catch') { y = S.shipY - S.ship * .25; sc = 1 + a / 400; op = Math.max(0, 1 - a / 350); }
+          else { y = S.shipY - S.ship * .3; sc = 1 - a / 900; op = Math.max(0, 1 - a / 380); }
+          if (Curio.reduce) { sc = 1; if (d.res !== 'miss') op = a < 300 ? 1 : 0; }
+        }
+        g.setAttribute('transform', `translate(${x.toFixed(1)},${y.toFixed(1)}) scale(${sc.toFixed(3)})`);
+        g.setAttribute('opacity', op.toFixed(2));
+      }
+    }
+    for (const [n, g] of drops) if (!seen.has(n)) { g.remove(); drops.delete(n); }
+  }
+  // the end banners, drawn in code: "Game over" (lives) or "Goal!" (score), the goal one with a short gold sparkle
+  let bannerShown = null;
+  function showBanner(why) {
+    bannerShown = why;
+    if (!bannerG) return;
+    bannerG.innerHTML = '';
+    const goal = why === 'goal', fs = Math.round(clamp(S.W * .1, 26, 64)), w = fs * (goal ? 3.6 : 5.6), h = fs * 1.7;
+    const cy = S.top + (S.shipY - S.top) * .42;
+    const g = mk('g', {transform: `translate(${S.W / 2},${cy.toFixed(0)})`}, bannerG);
+    mk('rect', {x: -w / 2, y: -h / 2, width: w, height: h, rx: h * .3, fill: goal ? '#ffd76a' : '#a82755', stroke: '#ffffff', 'stroke-width': 4}, g);
+    const t = mk('text', {x: 0, y: fs * .36, 'text-anchor': 'middle', 'font-size': fs, 'font-weight': 800, fill: goal ? '#3a2c00' : '#ffffff'}, g);
+    t.textContent = goal ? 'Goal!' : 'Game over';
+    if (goal && !Curio.reduce) {
+      const r = seeded(5);
+      for (let i = 0; i < 10; i++) {
+        const a = i / 10 * Math.PI * 2, rx = w * .62, ry = h * .9;
+        // the outer g holds the place; only the inner star scales, so it sparkles where it is and then is gone
+        const at = mk('g', {transform: `translate(${(Math.cos(a) * rx).toFixed(1)},${(Math.sin(a) * ry).toFixed(1)})`}, g);
+        const p = mk('polygon', {points: starPath(fs * (.16 + r() * .12)), fill: '#ffd76a', class: 'spark'}, at);
+        p.style.animationDelay = (i * .11).toFixed(2) + 's'; p.style.animationIterationCount = '2';
+      }
+    }
+  }
+  function hideBanner() { bannerShown = null; if (bannerG) bannerG.innerHTML = ''; }
+
+  // ======================================================================================
+  // Lab: question card, result card, the notebook rows
+  // ======================================================================================
+  function showQuestion(say) {
+    $('qtext').textContent = QUESTIONS[state.q];
+    $('qnum').textContent = `Question ${state.q + 1} of 7`;
+    $('qprev').disabled = state.q === 0; $('qnext').disabled = state.q === 6;
+    if (say) narrate('q' + state.q, L.q[state.q], {once: true, valid: () => state.mode === 'lab' && $('qtext').textContent === QUESTIONS[state.q]});
+  }
+  // a new question starts from the default dials, so its answer matches the teacher notes
+  $('qprev').onclick = () => { if (state.q > 0) { state.q--; dropQ(); resetLab(); showQuestion(true); rescue(); } };
+  $('qnext').onclick = () => { if (state.q < 6) { state.q++; dropQ(); resetLab(); showQuestion(true); rescue(); } };
+  function dropQ() { for (let i = vq.length - 1; i >= 0; i--) if (/^q\d$/.test(vq[i].key)) vq.splice(i, 1); }
+  const BECAUSE = {lives: 'Ended because lives is 0 or less', goal: 'Ended because score is goal or more'};
+  function showResult() {
+    if (!lastRow) return;
+    clearTimeout(toastT); $('toast').hidden = true;   // the card needs the room
+    const r = lastRow;
+    $('resultTitle').textContent = BECAUSE[r.because];
+    $('resultVals').innerHTML = NAMES.map(n => `<div>${icon(n)} ${n}<b>${fmt(r[n])}</b></div>`).join('');
+    $('resultCount').textContent = `Stars caught ${r.caught}, rocks hit ${r.hits}` + (r.drops ? `. The game lasted ${r.drops} ${r.drops === 1 ? 'drop' : 'drops'} (${r.secs} ${r.secs === 1 ? 'second' : 'seconds'}).` : '');
+    hideBanner();
+    $('result').hidden = false;
+    syncSave(); sync();
+    // until the first save, every result card says how to keep the run
+    if (!everSaved && !vq.some(q => q.key === 'result1'))
+      narrate('result1', L.result1, {valid: () => state.mode === 'lab' && !$('result').hidden && lastRow && !lastRow.saved});
+    const a = document.activeElement;
+    if (a === $('go') || a === document.body || !a) $('saveRun').disabled ? $('runAgain').focus() : $('saveRun').focus();
+  }
+  let everSaved = false;
+  function hideResult() { $('result').hidden = true; }
+  function syncSave() {
+    const full = nb.runs.length >= 30, b = $('saveRun'), note = $('resultNote');
+    b.disabled = !lastRow || lastRow.saved || full;
+    b.textContent = lastRow && lastRow.saved ? 'Saved ✓' : 'Save to notebook';
+    note.hidden = !full || (lastRow && lastRow.saved);
+    note.textContent = 'Notebook full. Copy and clear it to keep going.';
+  }
+  $('saveRun').onclick = () => {
+    if (!lastRow || lastRow.saved || nb.runs.length >= 30) return;
+    lastRow.saved = true; everSaved = true;
+    const {saved, ...row} = lastRow;
+    nb.runs.push(row);
+    narrate('saved', L.saved, {once: true});
+    Curio.tone(784, .2, .04);
+    syncSave(); rescue();
+    live('Saved to your notebook.');
+  };
+  $('runAgain').onclick = () => { startGame(); $('go').focus(); };
+  function resetLab() {
+    if (state.phase === 'running') return;
+    stopGame();
+    state.dials = DEFAULTS();
+    for (const [k, D] of Object.entries(DIALS)) findLine(labProg, D.line)[D.key] = D.def;
+    for (const n of ['score', 'lives', 'speed']) { vars[n] = null; shown[n] = null; }
+    for (const n of NAMES) counts[n] = 0;
+    drawBoxes(); syncDials();
+    logPrefix = 'Reset lab';
+    dq.push(...VarEngine.run(labProg, vars, 'page', NAMES));
+    sync();
+  }
+  $('resetLab').onclick = resetLab;
+
+  // ======================================================================================
+  // Log, toast, sounds, live region
+  // ======================================================================================
+  function addLog(text, same) {
+    const li = document.createElement('li'); li.textContent = text; if (same) li.className = 'sameval';
+    const ul = $('log'); ul.insertBefore(li, ul.firstChild);
+    while (ul.children.length > 40) ul.lastChild.remove();
+  }
+  let toastT = 0;
+  function toast(text, ms) {
+    const t = $('toast'); t.textContent = text; t.hidden = false;
+    clearTimeout(toastT); toastT = setTimeout(() => { t.hidden = true; }, ms || 1400 + 75 * text.length);
+  }
+  function sfx(k) {
+    if (k === 'catch') { Curio.tone(784, .14, .045); setTimeout(() => Curio.tone(1175, .18, .04), 90); }
+    else if (k === 'hit') Curio.tone(150, .3, .07, 'triangle');
+    else if (k === 'tick') Curio.tone(660, .08, .025);
+  }
+  function live(s) { $('live').textContent = s; }
+
+  // ======================================================================================
+  // Notebook
+  // ======================================================================================
+  const COLS = ['Run', 'Question', 'lives start', 'score start', 'speed start', 'star adds', 'rock takes', 'Ended because', 'score', 'lives', 'speed', 'best',
+    'goal', 'Stars caught', 'Rocks hit', 'Changes (score/lives/speed/best/goal)'];
+  const ENDED = {lives: 'lives is 0 or less', goal: 'score is goal or more'};
+  const rowCells = (r, i) => [i + 1, r.q, r.livesStart, r.scoreStart, r.speedStart, r.star, r.rock, ENDED[r.because], fmt(r.score), fmt(r.lives), fmt(r.speed),
+    fmt(r.best), fmt(r.goal), r.caught, r.hits, NAMES.map(n => r.changes[n]).join('/')];
+  const sums = () => Object.fromEntries(NAMES.map(n => [n, nb.runs.reduce((a, r) => a + r.changes[n], 0)]));
+  function renderNotebook() {
+    const has = nb.runs.length > 0;
+    $('noRuns').hidden = has; $('tblwrap').hidden = !has;
+    const esc = s => String(s).replace(/[&<>]/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;'})[c]);
+    $('tbl').innerHTML = `<thead><tr>${COLS.map(c => `<th scope="col">${esc(c)}</th>`).join('')}</tr></thead><tbody>${nb.runs.map((r, i) => `<tr>${rowCells(r, i).map(c => `<td>${esc(c)}</td>`).join('')}</tr>`).join('')}</tbody>`;
+    $('copyTbl').disabled = !has;
+    renderChart();
+    renderSort();
+  }
+  function renderChart() {
+    const sv = $('chart'), w = Math.max(280, Math.round(sv.getBoundingClientRect().width || 480)), h = 220;
+    sv.setAttribute('viewBox', `0 0 ${w} ${h}`); sv.setAttribute('height', h);
+    sv.innerHTML = '';
+    const pl = 34, pr = 42, pt = 16, pb = 30, cw = w - pl - pr, ch = h - pt - pb;
+    const max = Math.max(25, ...nb.runs.map(r => r.score));
+    const y = v => pt + ch - ch * Math.max(0, v) / max;
+    for (let v = 0; v <= max; v += 5) {
+      mk('line', {x1: pl, x2: pl + cw, y1: y(v), y2: y(v), stroke: '#efe7eb'}, sv);
+      const t = mk('text', {x: pl - 6, y: y(v) + 4, 'text-anchor': 'end', 'font-size': 12, fill: '#5e5468'}, sv); t.textContent = v;
+    }
+    mk('line', {x1: pl, x2: pl, y1: pt, y2: pt + ch, stroke: '#5e5468'}, sv);
+    mk('line', {x1: pl, x2: pl + cw, y1: pt + ch, y2: pt + ch, stroke: '#5e5468'}, sv);
+    const n = nb.runs.length;
+    if (!n) { const t = mk('text', {x: pl + cw / 2, y: pt + ch / 2, 'text-anchor': 'middle', 'font-size': 15, fill: '#5e5468'}, sv); t.textContent = 'Saved runs show up here.'; }
+    const slot = cw / Math.max(n, 1), bw = Math.min(46, slot * .7), fs = clamp(slot * .45, 9, 13);
+    nb.runs.forEach((r, i) => {
+      const cx = pl + slot * (i + .5), top = y(r.score);
+      mk('rect', {x: cx - bw / 2, y: top, width: bw, height: pt + ch - top, fill: '#a82755', rx: 3}, sv);
+      const v = mk('text', {x: cx, y: top - 4, 'text-anchor': 'middle', 'font-size': fs, 'font-weight': 700, fill: '#2a2233'}, sv); v.textContent = fmt(r.score);
+      const l = mk('text', {x: cx, y: pt + ch + 16, 'text-anchor': 'middle', 'font-size': fs, fill: '#5e5468'}, sv); l.textContent = i + 1;
+    });
+    mk('line', {x1: pl, x2: pl + cw, y1: y(20), y2: y(20), stroke: '#2f7d32', 'stroke-width': 2.5, 'stroke-dasharray': '7 5'}, sv);
+    const g = mk('text', {x: pl + cw + 4, y: y(20) + 4, 'font-size': 13, 'font-weight': 800, fill: '#2f7d32'}, sv); g.textContent = 'goal';
+    const xl = mk('text', {x: pl + cw / 2, y: h - 2, 'text-anchor': 'middle', 'font-size': 12, fill: '#5e5468'}, sv); xl.textContent = 'Run';
+    sv.setAttribute('aria-label', n ? 'Final score in each run: ' + nb.runs.map((r, i) => `run ${i + 1}, ${fmt(r.score)}`).join('; ') + '. Goal line at 20.' : 'No saved runs yet.');
+  }
+  function renderSort(focusVar) {
+    const sm = sums(), tray = $('tray'), bins = {same: $('bin-same'), changed: $('bin-changed')};
+    for (const el of [tray, bins.same, bins.changed]) el.querySelectorAll('.vc').forEach(c => c.remove());
+    for (const n of NAMES) {
+      const c = document.createElement('div'); c.className = 'vc'; c.dataset.v = n; c.tabIndex = 0; c.style.setProperty('--vcol', VCOL[n]);
+      c.setAttribute('role', 'group');
+      const where = nb.sort[n] || null;
+      c.setAttribute('aria-label', `${n}, changed ${times(sm[n])} in your runs, ${where === 'same' ? 'in Stayed the same' : where === 'changed' ? 'in Changed' : 'not sorted'}. Press 1 or 2 to sort.`);
+      const fb = nb.checked && nb.fb && nb.fb[n];
+      c.innerHTML = `<div class="nm">${icon(n)}<span>${n}</span></div><div class="ct">changed ${times(sm[n])} in your runs</div>
+        <div class="acts"><button data-to="same" aria-pressed="${where === 'same'}">Same</button><button data-to="changed" aria-pressed="${where === 'changed'}">Changed</button></div>
+        ${fb ? `<div class="fb ${fb.ok ? 'ok' : fb.ok === null ? 'note' : 'no'}">${fb.ok ? '✓ ' : ''}${fb.short}</div>` : ''}`;
+      c.querySelectorAll('.acts button').forEach(b => b.onclick = e => { e.stopPropagation(); place(n, b.dataset.to, b.dataset.to); });
+      c.addEventListener('keydown', e => {
+        if (e.target !== c) return;
+        if (e.key === '1') { e.preventDefault(); place(n, 'same', 'card'); }
+        else if (e.key === '2') { e.preventDefault(); place(n, 'changed', 'card'); }
+        else if (e.key === '0') { e.preventDefault(); place(n, null, 'card'); }
+      });
+      c.addEventListener('pointerdown', e => dragStart(e, c, n));
+      (where ? bins[where] : tray).appendChild(c);
+    }
+    if (focusVar) {
+      const c = document.querySelector(`.vc[data-v="${focusVar.v}"]`);
+      if (c) (focusVar.to === 'card' ? c : c.querySelector(`button[data-to="${focusVar.to}"]`) || c).focus();
+    }
+  }
+  function place(n, bin, focusTo) {
+    if (bin) nb.sort[n] = bin; else delete nb.sort[n];
+    nb.checked = false; $('feedback').innerHTML = '';
+    Curio.tone(bin === 'same' ? 523 : 659, .1, .03);
+    renderSort(focusTo ? {v: n, to: focusTo} : null);
+  }
+  // drag a card into a bin (whole-pixel pointer input; the bins light up under it)
+  let drag = null;
+  function dragStart(e, c, n) {
+    if (e.button !== 0 || e.target.closest('button')) return;
+    const r = c.getBoundingClientRect();
+    drag = {n, c, dx: e.clientX - r.left, dy: e.clientY - r.top, x0: e.clientX, y0: e.clientY, moved: false, ghost: null};
+    c.setPointerCapture(e.pointerId);
+    c.onpointermove = ev => {
+      if (!drag) return;
+      if (!drag.moved && Math.hypot(ev.clientX - drag.x0, ev.clientY - drag.y0) < 6) return;
+      if (!drag.moved) {
+        drag.moved = true;
+        const g = c.cloneNode(true); g.id = 'ghost'; g.style.width = r.width + 'px'; document.body.appendChild(g); drag.ghost = g;
+        c.classList.add('drag');
+      }
+      drag.ghost.style.left = (ev.clientX - drag.dx) + 'px'; drag.ghost.style.top = (ev.clientY - drag.dy) + 'px';
+      const over = dropTarget(ev.clientX, ev.clientY);
+      for (const el of document.querySelectorAll('.bin,.tray')) el.classList.toggle('over', el === over);
+    };
+    c.onpointerup = c.onpointercancel = ev => {
+      c.onpointermove = c.onpointerup = c.onpointercancel = null;
+      if (!drag) return;
+      const d = drag; drag = null;
+      document.querySelectorAll('.over').forEach(el => el.classList.remove('over'));
+      if (d.ghost) d.ghost.remove();
+      c.classList.remove('drag');
+      if (!d.moved) return;
+      const over = ev.type === 'pointerup' ? dropTarget(ev.clientX, ev.clientY) : null;
+      if (over) place(d.n, over.dataset.bin || null, 'card');
+    };
+  }
+  function dropTarget(x, y) {
+    for (const el of document.querySelectorAll('.bin,.tray')) { const r = el.getBoundingClientRect(); if (x >= r.left && x <= r.right && y >= r.top && y <= r.bottom) return el; }
+    return null;
+  }
+  $('checkSort').onclick = () => {
+    const ul = $('feedback');
+    ul.innerHTML = '';
+    if (!nb.runs.length) { ul.innerHTML = '<li>Save a run from the Lab first.</li>'; nb.checked = false; renderSort(); return; }
+    const sm = sums(); nb.fb = {};
+    for (const n of NAMES) {
+      const k = sm[n], where = nb.sort[n], ct = times(k);
+      let text, ok = false, short;
+      if (!where) { text = `${n}: Put this card in a bin first.`; short = 'Put this card in a bin first.'; }
+      else if (n === 'best' && k === 0) { text = `best changed 0 times in your runs. Try a run that beats best, then check again.`; ok = true; short = 'Try a run that beats best.'; ok = null; }
+      else if (k === 0 && where === 'same') { text = `${n} changed 0 times in your runs. It stayed the same: the program stored it and never changed it.`; ok = true; short = 'Stayed the same'; }
+      else if (k > 0 && where === 'changed') { text = `${n} changed ${ct} in your runs. It is a changing value.`; ok = true; short = 'Changing value'; }
+      else { text = `Look again: ${n} changed ${ct} in your runs.`; short = 'Look again'; }
+      nb.fb[n] = {ok: ok === null ? null : !!ok, short};
+      const li = document.createElement('li'); li.textContent = text; ul.appendChild(li);
+    }
+    nb.checked = true;
+    renderSort();
+    // praise only when every card is right; otherwise say how to fix it
+    const fbs = Object.values(nb.fb);
+    if (fbs.every(f => f.ok !== false)) narrate('sorted', L.sorted, {once: true, valid: modeIs('nb')});
+    else if (!vq.some(q => q.key === 'fix1' || q.key === 'fix2'))
+      narrate(fbs.some(f => f.short === 'Look again') ? 'fix1' : 'fix2', fbs.some(f => f.short === 'Look again') ? L.fix1 : L.fix2, {valid: () => state.mode === 'nb' && nb.checked});
+  };
+  function nbData() { return {runs: nb.runs, sort: nb.sort, found: ['f1', 'f2', 'f3'].map(id => $(id).value)}; }
+  const KEY = 'curio-score-keeper';
+  $('saveNb').onclick = () => {
+    let ok = true;
+    try { localStorage.setItem(KEY, JSON.stringify(nbData())); } catch { ok = false; }
+    status(ok ? 'Notebook saved on this device.' : 'Could not save here (storage is blocked).');
+  };
+  $('clearNb').onclick = () => { $('confirm').hidden = false; $('clearNo').focus(); };
+  $('clearNo').onclick = () => { $('confirm').hidden = true; $('clearNb').focus(); };
+  $('clearYes').onclick = () => {
+    nb.runs = []; nb.sort = {}; nb.checked = false; nb.fb = null;
+    ['f1', 'f2', 'f3'].forEach(id => { $(id).value = ''; });
+    try { localStorage.removeItem(KEY); } catch {}
+    $('confirm').hidden = true; $('feedback').innerHTML = ''; $('copyBox').hidden = true;
+    renderNotebook(); syncSave(); sync();
+    status('Notebook cleared.');
+    $('clearNb').focus();
+  };
+  $('copyTbl').onclick = async () => {
+    const tsv = [COLS.join('\t'), ...nb.runs.map((r, i) => rowCells(r, i).join('\t'))].join('\n')
+      .replace(/−/g, '-');   // a plain minus, so a spreadsheet reads the numbers
+    let ok = false;
+    try { if (navigator.clipboard && window.isSecureContext) { await navigator.clipboard.writeText(tsv); ok = true; } } catch {}
+    if (ok) { $('copyBox').hidden = true; status('Copied. Paste it into a spreadsheet.'); }
+    else { $('copyBox').hidden = false; const t = $('copyText'); t.value = tsv; t.focus(); t.select(); status(''); }
+  };
+  let statusT = 0;
+  function status(s) { $('nbStatus').textContent = s; clearTimeout(statusT); if (s) statusT = setTimeout(() => { $('nbStatus').textContent = ''; }, 5000); }
+  function loadNotebook() {
+    try {
+      const d = JSON.parse(localStorage.getItem(KEY) || 'null');
+      if (!d || !Array.isArray(d.runs)) return;
+      nb.runs = d.runs.filter(r => r && r.changes && typeof r.score === 'number').slice(0, 30);
+      nb.sort = d.sort && typeof d.sort === 'object' ? Object.fromEntries(Object.entries(d.sort).filter(([k, v]) => NAMES.includes(k) && (v === 'same' || v === 'changed'))) : {};
+      (d.found || []).slice(0, 3).forEach((t, i) => { $('f' + (i + 1)).value = String(t || '').slice(0, 2000); });
+    } catch {}
+  }
+
+  // ======================================================================================
+  // Buttons, labels and focus
+  // ======================================================================================
+  let lastFocus = null;
+  addEventListener('focusin', e => { lastFocus = e.target; });
+  const gone = el => !el || !el.isConnected || el.disabled || el.offsetParent === null;
+  // a focused control that turns off or hides hands focus on, never to the page
+  function rescue() {
+    const a = document.activeElement;
+    const lost = a === document.body || a == null ? lastFocus : a;
+    if (!lost || lost === document.body || !gone(lost)) return;
+    if (a !== document.body && a !== lost) return;
+    let t;
+    if (state.mode === 'nb') t = $('copyTbl').disabled ? $('saveNb') : $('copyTbl');
+    else if (lost.id === 'qprev') t = $('qnext');
+    else if (lost.id === 'qnext') t = $('qprev');
+    else if (lost.id === 'saveRun') t = $('runAgain');
+    else t = $('go');
+    if (gone(t)) t = $('go');
+    if (!gone(t)) t.focus();
+  }
+  // the hint names the next action and its control for the moment the tool is waiting in
+  function hintNow() {
+    const m = state.mode;
+    if (m === 'nb') return nb.runs.length ? HINT.nb : HINT.nb0;
+    if (state.phase === 'running') return state.paused ? HINT.pause : m === 'play' ? HINT.run : HINT.labRun;
+    if (m === 'play') return state.phase === 'over' ? HINT.over : HINT.play;
+    return !$('result').hidden ? HINT.result : HINT.lab;
+  }
+  function sync() {
+    const m = state.mode, ph = state.phase, lab = m === 'lab';
+    const go = $('go');
+    go.textContent = ph === 'running' ? (state.paused ? '▶ Resume' : '⏸ Pause') : ph === 'over' ? (lab ? '▶ Run again' : '▶ Play again') : (lab ? '▶ Run' : '▶ Play');
+    $('step').disabled = !(ph === 'running' && state.paused);
+    const o = state.opts[m] || state.opts.play;
+    for (const [id, on] of [['auto', o.autopilot], ['sky', o.sameSky]]) { const b = $(id); b.setAttribute('aria-pressed', on); b.querySelector('.st').textContent = on ? 'on' : 'off'; }
+    $('cs-watch').setAttribute('aria-pressed', state.codeSpeed === 'watch'); $('cs-quick').setAttribute('aria-pressed', state.codeSpeed === 'quick');
+    const manual = !o.autopilot;
+    $('left').setAttribute('aria-disabled', !manual); $('right').setAttribute('aria-disabled', !manual);
+    $('resetLab').disabled = ph === 'running';
+    $('pausePill').hidden = !(ph === 'running' && state.paused);
+    document.body.classList.toggle('paused', ph === 'running' && state.paused && !state.stepping);
+    setHint();
+    syncDials();
+    rescue();
+  }
+  function setHint() {
+    const m = state.mode;
+    $('hint').innerHTML = hintNow();
+  }
+  $('go').onclick = goPressed;
+  $('step').onclick = stepOnce;
+  $('left').onclick = () => moveShip(-1);
+  $('right').onclick = () => moveShip(1);
+  $('cs-watch').onclick = () => { state.codeSpeed = 'watch'; sync(); };
+  $('cs-quick').onclick = () => { state.codeSpeed = 'quick'; sync(); };
+  $('auto').onclick = () => {
+    const o = state.opts[state.mode]; o.autopilot = !o.autopilot;
+    if (G) { G.o.autopilot = o.autopilot; G.ship.x = Math.round(G.ship.x); G.shipT = G.t; }
+    sync();
+  };
+  $('sky').onclick = () => { const o = state.opts[state.mode]; o.sameSky = !o.sameSky; if (G) G.o.sameSky = o.sameSky; sync(); };
+  // tap or click a lane to fly there
+  $('sv').addEventListener('pointerdown', e => {
+    if (!G || state.phase !== 'running') return;
+    const r = $('sv').getBoundingClientRect();
+    moveShip(0, clamp(Math.floor((e.clientX - r.left) / S.laneW) + 1, 1, 5));
+  });
+  // keys: arrows or A/D move, Space pauses and resumes, S steps (never while typing in a box)
+  let spaceDown = false;
+  addEventListener('keydown', e => {
+    if (state.mode === 'nb' || e.ctrlKey || e.metaKey || e.altKey) return;
+    const t = e.target;
+    if (t && t.matches && t.matches('textarea, input, select, [contenteditable="true"]')) return;
+    const running = state.phase === 'running';
+    if (e.key === ' ' && running) { e.preventDefault(); if (!e.repeat) togglePause(); spaceDown = true; return; }
+    if ((e.key === 's' || e.key === 'S') && running) { e.preventDefault(); stepOnce(); return; }
+    if (!running) return;
+    const dir = {ArrowLeft: -1, ArrowRight: 1, a: -1, A: -1, d: 1, D: 1}[e.key];
+    if (dir) { e.preventDefault(); moveShip(dir); }
+  });
+  addEventListener('keyup', e => { if (e.key === ' ' && spaceDown) { e.preventDefault(); spaceDown = false; } });
+
+  // ======================================================================================
+  // Narration: one line at a time, a welcome per mode after the first tap; Read always wins (STANDARDS.md)
+  // ======================================================================================
+  const said = new Set(), vq = [], vlog = [];
+  let tapped = false, nq = 0, vgen = 0, vbusy = false, readP = Promise.resolve();
+  const modeIs = m => () => state.mode === m;
+  // a game beat belongs to its moment: it is dropped (unmarked, so a later moment can say it) once its game is gone,
+  // the mode changed, ms went by without it starting, or (run) the game is no longer running. A long queue skips it.
+  function beat(key, text, ms, run, key1) {
+    const g = G, m = state.mode, t0 = now();
+    if (vq.length >= 2 && !key1) return false;   // key1: the line a Lab question depends on still gets in
+    return narrate(key, text, {once: true, valid: () => G === g && state.mode === m && now() - t0 < ms && (!run || state.phase === 'running')});
+  }
+  function narrate(key, text, o = {}) {
+    if (!tapped || !Curio.sound) return false;
+    if (o.once && (said.has(key) || vq.some(q => q.key === key))) return false;
+    vq.push({key, text, once: o.once, valid: o.valid});
+    nq++;
+    pump();
+    return true;
+  }
+  async function pump() {
+    if (vbusy) return;
+    vbusy = true;
+    const gen = vgen;
+    try {
+      while (vq.length) {
+        await readP;
+        if (gen !== vgen) return;
+        const it = vq.shift();
+        if (!it || (it.valid && !it.valid())) continue;   // its moment has passed
+        if (it.once) said.add(it.key);                     // said when it starts, never when queued
+        vlog.push({t: Math.round(now()), text: it.text});
+        await Promise.race([Curio.say(it.text), wait(2500 + 80 * it.text.length)]);
+        if (gen !== vgen) return;
+      }
+    } finally { if (gen === vgen) vbusy = false; }
+  }
+  // drop every line that has not started (unmarked, so its trigger can queue it again); a stopped Read never ends, so
+  // nothing may keep waiting on it
+  function hush() { vgen++; vq.length = 0; vbusy = false; readP = Promise.resolve(); Curio.stop(); }
+  function readNow() {
+    hush();
+    const parts = [$('hint').textContent];
+    if (state.mode === 'lab') parts.push(QUESTIONS[state.q]);
+    vlog.push({t: Math.round(now()), text: parts.join(' '), read: true});
+    readP = Promise.race([Curio.say(parts, true), wait(3000 + 80 * parts.join(' ').length)]).catch(() => {});
+  }
+  function welcome() {
+    const m = state.mode;
+    if (m === 'play') narrate('w1', L.w1, {once: true, valid: modeIs('play')});
+    else if (m === 'lab') { narrate('labW', L.labW, {once: true, valid: modeIs('lab')}); showQuestion(true); }
+    else if (nb.runs.length) narrate('nbW', L.nbW, {once: true, valid: modeIs('nb')});
+    else narrate('nb0', L.nb0, {once: true, valid: () => state.mode === 'nb' && !nb.runs.length});
+  }
+  // the very first tap or key: decide after that tap's own click has run. If it queued its own line, or was Read or
+  // Sound, the welcome waits (unmarked) for the next mode entry or Sound on.
+  for (const ev of ['pointerdown', 'keydown']) addEventListener(ev, e => {
+    if (tapped) return;
+    tapped = true;
+    const b = e.target && e.target.closest ? e.target.closest('button') : null, n0 = nq;
+    let done = false;
+    const decide = () => {
+      if (done) return; done = true;
+      if (b && (b.id === 'read' || b.id === 'sound')) return;
+      if (nq !== n0) return;
+      welcome();
+    };
+    const endEv = ev === 'pointerdown' ? 'click' : 'keyup';
+    const after = () => { removeEventListener(endEv, after, true); clearTimeout(fb); setTimeout(decide, 0); };
+    addEventListener(endEv, after, true);
+    const fb = setTimeout(after, 1500);
+  }, true);
+
+  // ======================================================================================
+  // Modes and layout
+  // ======================================================================================
+  function setMode(m) {
+    stopGame();
+    hush();
+    state.mode = m;
+    document.body.dataset.mode = m;
+    document.body.classList.toggle('nbm', m === 'nb');
+    for (const k of ['play', 'lab', 'nb']) $('m-' + k).setAttribute('aria-pressed', k === m);
+    for (const el of document.querySelectorAll('[data-modes]')) el.hidden = el.dataset.modes !== m;
+    $('nb').hidden = m !== 'nb';
+    // a new round: the program has not started a game yet, so score, lives and speed hold nothing; best and goal stay
+    for (const n of ['score', 'lives', 'speed']) { vars[n] = null; shown[n] = null; }
+    for (const n of NAMES) counts[n] = 0;
+    drawBoxes();
+    logPrefix = null;
+    $('log').innerHTML = '';   // each mode keeps its own log
+    $('logTitle').textContent = m === 'play' ? 'Game log' : 'Lab log';
+    if (m !== 'nb') { buildProgram(); $('prog').scrollTop = 0; }
+    if (m === 'lab') showQuestion(false);
+    if (m === 'nb') { $('copyBox').hidden = true; $('confirm').hidden = true; }
+    lastKey = '';
+    relayout();
+    if (m === 'nb') renderNotebook();
+    sync();
+    if (tapped) welcome();
+  }
+  $('m-play').onclick = () => { if (state.mode !== 'play') setMode('play'); };
+  $('m-lab').onclick = () => { if (state.mode !== 'lab') setMode('lab'); };
+  $('m-nb').onclick = () => { if (state.mode !== 'nb') setMode('nb'); };
+
+  const lay = {tier: null};
+  let lastKey = '';
+  function captionHeight() {
+    const h = $('hint'), keep = h.innerHTML;
+    let mx = 0;
+    for (const t of [HINT.play, HINT.over, HINT.lab, HINT.result, HINT.pause]) { h.innerHTML = t; mx = Math.max(mx, h.offsetHeight); }
+    h.innerHTML = keep;
+    return mx + 10;
+  }
+  function relayout() {
+    const w = innerWidth, h = innerHeight, b = document.body;
+    const tier = w >= 1000 && h >= 520 ? 'wide' : w >= 600 && w / h >= 1.25 ? 'compact' : 'stack';
+    const short = tier === 'wide' && h < 900, tight = tier === 'wide' && h < 700;
+    Object.assign(lay, {tier, short, tight});
+    for (const c of ['wide', 'compact', 'stack']) b.classList.toggle(c, c === tier);
+    b.classList.toggle('short', short); b.classList.toggle('tight', tight); b.classList.toggle('tall', tier === 'wide' && !short);
+    b.classList.toggle('narrow', tier === 'stack' && w < 560);
+    b.classList.toggle('nb1', w < 900);
+    const main = $('main');
+    const pw = tier === 'compact' ? clamp(Math.round(w * .45), 300, 340) : w >= 1600 ? 360 : w >= 1280 ? 330 : 300;
+    const pc = w >= 1600 ? 450 : w >= 1340 ? 362 : w >= 1280 ? 340 : 318;
+    main.style.setProperty('--pw', pw + 'px'); main.style.setProperty('--pc', pc + 'px');
+    // bigger code on bigger screens, so a projector class can read the running line
+    main.style.setProperty('--pf', (tier === 'compact' || (tier === 'wide' && w < 1280) ? 14 : tier !== 'wide' ? 15 : w >= 1600 && h >= 860 ? 19 : w >= 1340 ? 17 : 15) + 'px');
+    // the hint: in the panel when there is room, a caption on the game otherwise, at the top of the notebook
+    const hint = $('hint');
+    if (state.mode === 'nb' || tier === 'wide') { if (hint.parentNode !== main) main.insertBefore(hint, $('progcol')); }
+    else if (hint.parentNode !== $('stage')) $('stage').appendChild(hint);
+    // box height: the digits stay large (28 px or more at 1366x768)
+    const hdr = $('hdr').offsetHeight, bodyH = h - hdr;
+    let bh = tier === 'wide' ? (tight ? clamp(bodyH * .19, 96, 112) : short ? clamp(bodyH * .19, 112, 132) : clamp(bodyH * .17, 130, 160))
+      : tier === 'compact' ? clamp(bodyH * .25, 78, 104) : (w < 560 ? 92 : 112);
+    bh = Math.round(bh);
+    const shelf = $('shelf');
+    shelf.style.setProperty('--bh', bh + 'px');
+    const crate = bh - 20, vd = Math.round(clamp(crate * .35, 22, 46));
+    shelf.style.setProperty('--vd', vd + 'px');
+    // the name must always show in full: on small boxes drop the icon and the word "times" first
+    const bw = shelf.querySelector('.vbox').offsetWidth, tiny = bw < 104;
+    shelf.classList.toggle('tiny', tiny);
+    const fit = tiny ? (bw * .88 - 20) / 3.1 : (bw * .92 - 24) / 4.5;
+    shelf.style.setProperty('--lf', Math.round(clamp(Math.min(crate * .19, fit), 12, 18)) + 'px');
+    if (state.mode === 'nb') return;
+    const st = $('stage');
+    if (tier === 'stack') {
+      // the game gets what is left so the shelf and the first row of controls stay on screen
+      const row1 = 60 + 8, room = h - hdr - shelf.offsetHeight - row1 - 8 * 4;
+      st.style.height = Math.round(clamp(room, 200, Math.min(w * .85, 560))) + 'px';
+    } else st.style.height = '';
+    const capH = tier === 'wide' ? 0 : captionHeight();
+    st.style.setProperty('--capH', capH + 'px');
+    const r = st.getBoundingClientRect(), W = Math.max(200, Math.round(r.width)), H = Math.max(150, Math.round(r.height));
+    const key = [W, H, capH, tier, Curio.reduce].join('x');
+    if (key === lastKey) return;
+    lastKey = key;
+    buildStage(W, H, capH);
+  }
+  new ResizeObserver(() => relayout()).observe($('stage'));
+  addEventListener('resize', () => { relayout(); if (state.mode === 'nb') renderChart(); });
+
+  Curio.onSound(on => { if (!on) hush(); else if (tapped) welcome(); });
+  Curio.onMotion(() => { lastKey = ''; relayout(); });
+  Curio.init({clips: "voice:*", rate: .95, readFallback: () => $('hint').textContent});
+  $('read').onclick = readNow;
+
+  // when the page opens: best = 0, goal = 20 (silently: the boxes appear holding them)
+  for (const s of VarEngine.run(playProg, vars, 'page', NAMES)) if (s.kind === 'set') shown[s.var] = s.new;
+  loadNotebook();
+  window.__tool = {state, setMode, allLines, run: runInstant, engine: VarEngine, makeProgram, makeGame, vars, shown, counts, vlog, nb, L, HINT, QUESTIONS,
+    get G() { return G; }, get busy() { return busy(); }, get vq() { return vq.map(q => q.text); }, get tapped() { return tapped; }, hush, lay, relayout,
+    speedUp(k) { timeScale = k; }, turn, resetLab, togglePause, stepOnce, startGame};
+  setMode('play');
+  requestAnimationFrame(t => { lastF = t; frame(t); });
+})();
+</script>
+</body>
+</html>

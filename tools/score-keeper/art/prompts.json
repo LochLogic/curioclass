@@ -1,0 +1,39 @@
+{
+  "style": "Flat vector illustration for a grade 3 computer science game on a laptop or projector: a calm night in space, deep indigo and violet tones, soft glows, clean rounded shapes with gentle shading, friendly and simple, no text anywhere.",
+  "assets": [
+    {
+      "name": "backdrop",
+      "prompt": "A quiet purple and blue alien desert horizon at night, smooth rolling dunes and two small round rock formations, soft glowing nebula low in the sky, flat vector illustration, deep indigo upper sky left plain and dark. Wide panorama, the dunes fill the lower half, the upper half is plain dark indigo sky with no stars drawn large and no objects. No people, no animals, no buildings, no writing.",
+      "aspect": "16:9",
+      "width": 1600,
+      "quality": 72,
+      "source": "gpt-image-2 (Codex)",
+      "local_note": "a strip along the bottom of the game behind the ship, cropped to cover (xMidYMax slice), about 24 percent of the game's height; the sky above it is drawn in code, so keep the top plain and dark",
+      "review": "ok"
+    },
+    {
+      "name": "ship",
+      "prompt": "A small friendly round cartoon spaceship seen from the front at a slight angle, teal and cream body, one big round window, three short legs, flat vector. The whole ship in frame, centered, nothing else in the picture.",
+      "aspect": "1:1",
+      "height": 320,
+      "cutout": true,
+      "key": "magenta",
+      "source": "gpt-image-2 (Codex)",
+      "local_note": "the player's ship at the bottom of the game, 30 to 112 px across depending on the window; spec said \"solid white background\": the cutout wording (magenta key) supplies the background instead",
+      "review": "ok"
+    },
+    {
+      "name": "rock",
+      "prompt": "A lumpy grey-brown cartoon space rock with a few craters, flat vector. One rock, the whole rock in frame, centered, nothing else in the picture.",
+      "aspect": "1:1",
+      "height": 240,
+      "cutout": true,
+      "key": "magenta",
+      "ref": "ship",
+      "ref_mode": "style",
+      "source": "gpt-image-2 (Codex)",
+      "local_note": "falling rocks, 22 to 72 px across, rotated randomly; spec said \"solid white background\": the cutout wording (magenta key) supplies the background instead",
+      "review": "ok"
+    }
+  ]
+}

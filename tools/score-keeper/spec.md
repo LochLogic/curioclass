@@ -34,7 +34,7 @@ Three parts, laid out at real pixel size per window (do not scale one fixed desi
 - Every catch, hit, 10-second tick, end check and game end fires its event block, and its lines run visibly (see Interactions).
 
 ### Lab
-- Same screen. Autopilot on and Same sky on by default (both still toggle; the hint says "Autopilot plays the same sky the same way every time, so only the number you change makes the difference.").
+- Same screen. Autopilot on and Same sky on by default (both still toggle; the hint says "Turn one dial with its minus and plus buttons, then press **Run**. Autopilot plays the same sky every time, so only your number makes the difference.").
 - **Question card** above the program card: the current experiment question (Content), with **◀ Prev** and **Next ▶** and "Question 2 of 7".
 - **Dials** appear inside the program card on the five editable numbers: in `lives = 3`, `score = 0`, `speed = 1` (the "when the game starts" lines) and the amounts in `score = score + 1` and `lives = lives - 1`. Each dial is the number with a **−** and **+** button either side (44 px), keyboard focusable, arrow keys work when focused. `best = 0` and `goal = 20` have no dials. Dials lock while a game runs.
 - Buttons: **▶ Run** (Pause/Resume/Step as in Play), **Reset lab** (sets all dials back to their defaults and re-runs "when the page opens", so best goes back to 0), and after each game a **Result card** over the game: "Ended because lives is 0 or less" or "Ended because score is goal or more", then the final value of every box and "Stars caught 8, rocks hit 3". Result card buttons: **Save to notebook** and **Run again**.
@@ -111,13 +111,14 @@ Running "none" a second time without Reset lab: same row but best stays 8 and be
 - lives start 1 to 9; score start 0 to 15; speed start 1 to 5; star amount 1, 2, 5, 10 (− and + step through the list); rock amount 0, 1, 2, 3. Defaults 3, 0, 1, 1, 1.
 
 ### Lab questions (question card)
-1. "Start lives at 1. How long does the game last now?"
-2. "Make a star worth 5. What happens to score? Why does the game end so soon?"
-3. "Make a rock take 0. Which box stops changing?"
-4. "Start speed at 5. Does the speed box ever change? Look at the if line."
-5. "Start score at 10. Did Autopilot catch more stars, or did score just start higher?"
-6. "Make a rock take 2. Look at lives at the end. Can a variable go below zero?"
-7. "Run it twice without changing anything. Which boxes start over, and which keep their value?"
+Each question names the dial to turn and the button to press, then asks (STANDARDS "Say how to act").
+1. "Start lives at 1: press the minus on lives until it says 1, then press Run. How long does the game last now?"
+2. "Make a star worth 5: press the plus on the star line until it says 5, then press Run. What happens to score? Why does the game end so soon?"
+3. "Make a rock take 0: press the minus on the rock line until it says 0, then press Run. Which box stops changing?"
+4. "Start speed at 5: press the plus on speed until it says 5, then press Run. Does the speed box ever change? Look at the if line."
+5. "Start score at 10: press the plus on score until it says 10, then press Run. Did Autopilot catch more stars, or did score just start higher?"
+6. "Make a rock take 2: press the plus on the rock line until it says 2, then press Run. Look at lives at the end. Can a variable go below zero?"
+7. "Press Run again without changing anything. Which boxes start over, and which keep their value?"
 
 ### Runs table columns
 Run, Question, lives start, score start, speed start, star adds, rock takes, Ended because, score, lives, speed, best, goal, Stars caught, Rocks hit, Changes (score/lives/speed/best/goal, as "8/3/2/1/0"). Up to 30 rows; at 30, Save to notebook is disabled with "Notebook full. Copy and clear it to keep going."
@@ -136,7 +137,11 @@ Run, Question, lives start, score start, speed start, star adds, rock takes, End
 3. "When I changed ..., the game ..."
 
 ### On-screen definitions
-- Play hint: "Each box is a **variable**: a name with one value inside. Watch which line changes it."
+- Play hint: "Press **Play** to start. Move the ship with the arrow buttons or the arrow keys. Each box is a **variable**: watch which line changes it."
+- Play game-over hint: "Game over. Press **Play again** and watch which boxes start over."
+- Lab hint: "Turn one dial with its minus and plus buttons, then press **Run**. Autopilot plays the same sky every time, so only your number makes the difference."
+- Lab result-card hint: "Press **Save to notebook** to keep this run. Then press **Run again**, or turn a dial first."
+- Notebook hint: the notebook-welcome line, or with no saved runs the no-runs line.
 - Pause hint: "Paused. Press Step to run one line at a time."
 - First overwrite toast (once per page): "New value in, old value gone. A variable holds one value at a time."
 
@@ -158,34 +163,40 @@ Run, Question, lives start, score start, speed start, star adds, rock takes, End
 - Page and panel: warm off-white `--paper:#fbf6f1`, `--panel:#ffffff`, `--ink:#2a2233`, `--muted:#5e5468`, `--line:#e6dbe0`, `--focus:#3b6fd6`.
 - Accent `--brand:#a82755` (raspberry), `--btn:#a82755`, `--head-ink:#ffffff`. No other built CS tool uses it (loop-garden is green, blue, purple and orange blocks). Running-line background `#fff3cf` with ink text.
 - Box icons and label colors: score gold, lives coral, speed cyan, best violet, goal green; the name and icon are always printed, so color is never the only signal.
-- Contrast (computed, WCAG): white on `#a82755` 6.8:1; `#a82755` on paper 6.3:1; ink on paper 14.2:1; muted on paper 6.6:1; white on `#1e2650` 14.5:1; gold `#ffd76a` on `#1e2650` 10.5:1; dark text on `#f5b83d` glow 9.2:1; focus `#3b6fd6` on paper 4.4:1 (non-text, needs 3:1). All pass AA.
+- Contrast (computed, WCAG): white on `#a82755` 6.8:1; `#a82755` on paper 6.3:1; ink on paper 14.2:1; muted on paper 6.6:1; white on `#1e2650` 14.5:1; gold `#ffd76a` on `#1e2650` 10.5:1; dark text on `#f5b83d` glow 8.6:1; focus `#3b6fd6` on paper 4.4:1 (non-text, needs 3:1). All pass AA.
 - Friendly, a little playful (grade 3): soft bumps and glows, no confetti; the "Goal!" banner gets a short gold sparkle.
 
 ## Art
-- backdrop: "a quiet purple and blue alien desert horizon at night, smooth rolling dunes and two small round rock formations, soft glowing nebula low in the sky, flat vector illustration, deep indigo upper sky left plain and dark" (`scripts/cfart.py`); 4:1; cutout no; people no. Used as a strip along the bottom of the game behind the ship, cropped to cover; the sky above it is drawn in code.
+- backdrop: "a quiet purple and blue alien desert horizon at night, smooth rolling dunes and two small round rock formations, soft glowing nebula low in the sky, flat vector illustration, deep indigo upper sky left plain and dark" (`scripts/cfart.py`); 16:9 (1600x900); cutout no; people no. Used as a strip along the bottom of the game behind the ship, cropped to cover; the sky above it is drawn in code.
 - ship: "a small friendly round cartoon spaceship seen from the front at a slight angle, teal and cream body, one big round window, three short legs, flat vector, solid white background" (`scripts/gptart.py`, base); 1:1; cutout yes; people no. The player's ship.
 - rock: "a lumpy grey-brown cartoon space rock with a few craters, flat vector, solid white background" (`scripts/gptart.py`, sibling of ship with `"ref"` and `"ref_mode": "style"`); 1:1; cutout yes; people no. Falling rocks, rotated randomly.
 - Drawn in code: night sky and twinkles, the five lanes (faint), stars to catch, variable boxes, value cards, flying values, banners, chart, bins. If the art is missing, draw the ship as a teal circle with a window and the rock as a grey blob so the tool still works.
 - No other tool in this batch may use a spaceship, space rock or night desert image.
 
 ## Voice
-`voice/lines.json`: `"bank": "friendly-dad"`, `"voice": "Achird"`, `"style": "Say in a relaxed, friendly way, like a kind dad helping with homework"`. Fits grade 3 and a homework-help feel; differs from loop-garden (hero-coach) and from the batch (lively-host, bright-teacher, clear-teacher, big-sister). Only corner-store (grade 2 math) also uses it; not a near neighbor. On-screen text is the main channel; these are all the fixed lines. Each beat plays once per page load. Read speaks the hint (and, in the Lab, the current question).
-1. play-welcome: "This is Star Catch. Catch the stars and dodge the rocks. Keep an eye on the boxes under the game. Each box is a variable, and it holds one value."
-2. first-catch: "You caught a star, so the line score equals score plus one ran. Score got a new value, and the old one is gone."
-3. first-hit: "Ouch, a rock. That line took one away from lives."
+`voice/lines.json`: `"bank": "friendly-dad"`, `"voice": "Achird"`, `"style": "Say in a relaxed, friendly way, like a kind dad helping with homework"`. Fits grade 3 and a homework-help feel; differs from loop-garden (hero-coach) and from the batch (lively-host, bright-teacher, clear-teacher, big-sister). Only corner-store (grade 2 math) also uses it; not a near neighbor. On-screen text is the main channel; these are all the fixed lines. Each beat plays once per page load, except play-over, lab-result, sort-fix and sort-unsorted, which name the next action every time they apply. A game line is dropped if its moment passes before it starts. Read speaks the hint (and, in the Lab, the current question).
+1. play-welcome: "This is Star Catch. Each box under the game is a variable, and it holds one value. Press Play to start, and steer with the arrow buttons or the arrow keys."
+2. first-catch: "You caught a star, so the score line ran. Score got bigger by the star's points, and the old value is gone."
+3. first-hit (not when a rock takes 0; first-same covers that): "Ouch, a rock. The lives line ran and took the rock's amount from lives."
 4. first-speed: "Ten seconds went by, so speed went up. Nobody pressed anything. Time changed that one."
-5. end-lives: "Lives got to zero, so the game ended."
+5. end-lives: "Lives got to zero or less, so the game ended."
 6. end-goal: "Score reached the goal, so the game ended."
-7. first-best: "Score was more than best, so best saved it. Now press Play again and watch which boxes start over."
-8. second-game: "New game. Score, lives and speed went back to their starting values. Did best change? Did goal?"
-9. first-same: "That line ran, but the value stayed the same. Running a line doesn't always change a box."
-10. first-pause: "Paused. Press Step to run one line at a time."
-11. lab-welcome: "Welcome to the lab. Change one starting number with the dials, let Autopilot play the same sky, and see what changes."
-12. to 18. lab-q1 to lab-q7: the seven Lab questions, word for word, with "Start lives at 1" etc. as written in Content.
-19. saved: "Saved to your notebook."
-20. below-zero: "Look at lives. The program took away more than was left, so it went below zero."
-21. notebook-welcome: "Here are your runs. Sort each variable. Did it stay the same, or did it change?"
-22. sort-checked: "Nice work. Your runs are the evidence."
+7. first-best: "Score was more than best, so best saved it."
+8. play-over (Play, every game over, not once per page): "Game over. Press Play again and watch which boxes start over."
+9. lab-result (Lab, every result card until the first save): "Press Save to notebook to keep this run. Then press Run again, or turn a dial first."
+10. second-game: "New game. Score, lives and speed went back to their starting values. Did best change? Did goal?"
+11. first-same: "That line ran, but the value stayed the same. Running a line doesn't always change a box."
+12. first-pause: "Paused. Press Step to run one line at a time."
+13. lab-welcome: "Welcome to the lab. Turn one dial with its minus and plus buttons, then press Run. Autopilot plays the same sky, so you can see what your change does."
+14. to 20. lab-q1 to lab-q7: the seven Lab questions, word for word, as written in Content.
+21. saved: "Saved to your notebook."
+22. below-zero: "Look at lives. The program took away more than was left, so it went below zero."
+23. notebook-welcome (with saved runs): "Here are your runs. Drag each card into a bin, or press Same or Changed on it. Then press Check with my runs."
+24. notebook-empty (no saved runs): "No runs yet. Go to the Lab, press Run, then press Save to notebook."
+25. sort-checked (only when every card is right): "Nice work. Your runs are the evidence."
+26. sort-fix (any card marked Look again; every Check): "Some cards say Look again. Move each one to the other bin, then press Check with my runs again."
+27. sort-unsorted (no Look again but a card not in a bin; every Check): "Put every card in a bin, then press Check with my runs again."
+Read also speaks the Play, Play game-over, Lab and Lab result-card hints, which are recorded as lines too.
 
 ## Family engine
 none. The interpreter, the game loop and the Same sky pattern live in the tool's script; keep the interpreter in one marked block `/* VARIABLES ENGINE: begin */ ... /* end */` with no DOM access (it takes the program data, the current variables and an event name, and yields one line at a time with `{line, var, old, new}`), so game-remix or code-tracer could reuse it later if Cory wants.
