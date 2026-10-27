@@ -240,6 +240,18 @@ add('Wave 4', 'w4', [
     ('ambiguity-lab', 'Invented closed endings OK?', 'OK, labeled as invented.', 'Comparing closed and open endings is the experiment.'),
     ('idea-threads', 'Check the Eisenhower text against GovInfo page images? One paragraph cut from Du Bois and Thoreau: OK?', 'Yes, check at build; cuts OK if marked with an ellipsis.', 'An accurate primary text, honestly abridged.'),
     ('tone-dial', 'Spooky Ominous column at grade 10? Audio for the six one-tone versions?', 'Keep Ominous; drop audio.', 'Ominous is mild; one voice style cannot carry six tones.'),
+    ('rhetorical-situation-simulator, premise-inspector', 'Widen the Native review: a Nez Perce reader for the Chief Joseph card, a Pequot or Mashpee reader for the Apess cards?',
+     'Yes: one review round, with nation-specific readers where we can find them; build the rest of each tool meanwhile.', 'Accurate names and context are what let teachers use these founding-era cards with confidence.'),
+    ('ela-argument group', 'Show dashes from source texts as "--"?', 'Show them as an en dash (–) or a spaced hyphen, never an em dash.', 'Keeps the house no-em-dash rule while the text still reads naturally.'),
+    ('argument-map', 'Name Madison as Federalist 51\'s author? Full Thoreau essay in a drawer?', 'Name Madison, with a note that authorship was once disputed; add the full essay in a drawer.', 'Scholarly consensus; the full text costs nothing and helps teachers.'),
+    ('rhetoric-spotter', 'Keep Anthony\'s "oligarchy of race" line? Henry\'s slaveholding card at grade 9? Narrator voice for historical speakers?', 'Keep the line and the card; narrator voice, clearly labeled as a reading.', 'Honest history, and no voice pretends to be the real speaker.'),
+    ('rhetorical-situation-simulator', 'Keep Executive Order 9066 on the FDR context card?', 'Keep it.', 'It is part of the honest context for that speech.'),
+    ('theme-ledger', '"The Story of an Hour" fine at grade 9?', 'Fine.', 'It is a staple of grade 9 anthologies.'),
+    ('premise-inspector', 'Stephens: full "corner-stone" sentence or a summary? Grade 11 default, or teacher unlock?', 'Full sentence, on by default, with a context line.', 'The actual words are the evidence; summarizing them softens what students need to see.'),
+    ('founding-words-explorer', 'Today\'s senses: own glosses or Wiktionary? Echoes moved to premise-inspector OK? Add Johnson 1755?', 'Own glosses; split OK; add Johnson 1755 as a second "then".', 'Plain glosses read better; two dictionaries show that meanings move.'),
+    ('thesis-workshop', 'Mild fright in "The Open Window" at grade 10? Show the popular Frost reading failing?', 'Yes to both.', 'Watching a popular reading fail is the strongest lesson in the tool.'),
+    ('audience-shift-briefing', 'Lock the finding in every room, or let students soften it for the class? Keep the EPA heat-deaths card?', 'Lock it; keep the card.', 'The skill is changing the delivery, never the facts.'),
+    ('ad-agency', 'Letters certain at Risk 8, or add chance? Name the FTC, or a made-up Watchdog Desk citing real rules?', 'Add a little chance; name the FTC.', 'Chance makes the risk feel real; naming the FTC teaches who enforces the rules.'),
 ], 'Wave 4 build')
 
 add('Art', 'art', [

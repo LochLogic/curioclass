@@ -67,3 +67,41 @@ Open questions:
 - [idea-threads] Parent preview (Du Bois's "Negro", "Southern outrages")? Check the Eisenhower text against GovInfo
   page images? One paragraph cut from Du Bois and Thoreau: OK?
 - [tone-dial] Spooky Ominous column fine at grade 10? Keep or drop audio for the six one-tone versions?
+
+### ela-argument (11, done)
+
+- No renames.
+- Tools: argument-map (clear-teacher, dark #19ffff), rhetoric-spotter (firm-captain, light #1947ff),
+  rhetorical-situation-simulator (knowing-guide, dark #ffd18c), theme-ledger (smooth-narrator, light #592439),
+  argument-builder-pro (big-sister, #095909), fallacy-field-guide (gravel-ranger, khaki #5c5c08), premise-inspector
+  (science-narrator, dark #cccc14), founding-words-explorer (news-reader, parchment #8c5138), thesis-workshop
+  (wise-mentor, light #5b63a6), audience-shift-briefing (casual-peer, light #a61188), ad-agency (lively-host, dark
+  #a3ff19).
+- Family engines, each in full in one spec: kit/rhetoric.js (argument-map), kit/evidence.js (theme-ledger),
+  kit/fallacies.js (fallacy-field-guide), kit/founding-docs.js (premise-inspector; no docs/families/founding-docs.md
+  yet). ad-agency feeds kit/fact-check.js as fake-or-fact-lab describes it.
+- For the joint review: voices repeat ela-research and ela-lit picks (firm-captain, knowing-guide, big-sister,
+  gravel-ranger, news-reader, wise-mentor, casual-peer); check accents and voices across the whole wave.
+- Confirm at build (only Wikipedia checked): Jefferson as an enslaver, Apess's Pequot identity, New Jersey women voting
+  until 1807, the Atlantic Monthly date for Frost; founding-words-explorer context-card dates (Committee of Style,
+  Farewell Address printing).
+
+Open questions:
+- [group] Show dashes from source texts as "--"?
+- [argument-map] Name Madison as Federalist 51's author, or keep Avalon's "Hamilton or Madison"? 12-paragraph Thoreau
+  excerpt enough, or the full essay in the drawer?
+- [rhetoric-spotter] Keep Anthony's "oligarchy of race" line (A9)? Card on Henry's slaveholding fine for grade 9?
+  Narrator voice for historical speakers?
+- [rhetorical-situation-simulator] Keep Executive Order 9066 on the FDR card? Nez Perce reviewer for the Joseph card
+  and spelling?
+- [theme-ledger] "The Story of an Hour" fine at grade 9?
+- [premise-inspector] Stephens' full "corner-stone" sentence or the summary? Stephens sheet right for grade 11, or
+  teacher unlock? Native reviewer (ideally Pequot or Mashpee) for the Apess and X4 cards?
+- [founding-words-explorer] Own glosses for today's senses, or Wiktionary? "Echoes in later speeches" moved to
+  premise-inspector: OK? Add Johnson's 1755 dictionary as a second "then"?
+- [thesis-workshop] Mild ghost-story fright in "The Open Window" OK at grade 10? Show the popular Frost reading as a
+  chip that visibly fails?
+- [audience-shift-briefing] Lock the finding in every room, or let students soften it for the class? Keep the EPA Salt
+  Lake City heat-deaths card?
+- [ad-agency] Letters certain at Risk 8, or add chance? Name the FTC in the letter, or keep the made-up Watchdog Desk
+  citing the real rules?

@@ -1703,6 +1703,105 @@
    "blocks": "Wave 4 build"
   },
   {
+   "id": "w4-29",
+   "area": "Wave 4",
+   "tool": "rhetorical-situation-simulator, premise-inspector",
+   "q": "Widen the Native review: a Nez Perce reader for the Chief Joseph card, a Pequot or Mashpee reader for the Apess cards?",
+   "rec": "Yes: one review round, with nation-specific readers where we can find them; build the rest of each tool meanwhile.",
+   "why": "Accurate names and context are what let teachers use these founding-era cards with confidence.",
+   "blocks": "Wave 4 build"
+  },
+  {
+   "id": "w4-30",
+   "area": "Wave 4",
+   "tool": "ela-argument group",
+   "q": "Show dashes from source texts as \"--\"?",
+   "rec": "Show them as an en dash (–) or a spaced hyphen, never an em dash.",
+   "why": "Keeps the house no-em-dash rule while the text still reads naturally.",
+   "blocks": "Wave 4 build"
+  },
+  {
+   "id": "w4-31",
+   "area": "Wave 4",
+   "tool": "argument-map",
+   "q": "Name Madison as Federalist 51's author? Full Thoreau essay in a drawer?",
+   "rec": "Name Madison, with a note that authorship was once disputed; add the full essay in a drawer.",
+   "why": "Scholarly consensus; the full text costs nothing and helps teachers.",
+   "blocks": "Wave 4 build"
+  },
+  {
+   "id": "w4-32",
+   "area": "Wave 4",
+   "tool": "rhetoric-spotter",
+   "q": "Keep Anthony's \"oligarchy of race\" line? Henry's slaveholding card at grade 9? Narrator voice for historical speakers?",
+   "rec": "Keep the line and the card; narrator voice, clearly labeled as a reading.",
+   "why": "Honest history, and no voice pretends to be the real speaker.",
+   "blocks": "Wave 4 build"
+  },
+  {
+   "id": "w4-33",
+   "area": "Wave 4",
+   "tool": "rhetorical-situation-simulator",
+   "q": "Keep Executive Order 9066 on the FDR context card?",
+   "rec": "Keep it.",
+   "why": "It is part of the honest context for that speech.",
+   "blocks": "Wave 4 build"
+  },
+  {
+   "id": "w4-34",
+   "area": "Wave 4",
+   "tool": "theme-ledger",
+   "q": "\"The Story of an Hour\" fine at grade 9?",
+   "rec": "Fine.",
+   "why": "It is a staple of grade 9 anthologies.",
+   "blocks": "Wave 4 build"
+  },
+  {
+   "id": "w4-35",
+   "area": "Wave 4",
+   "tool": "premise-inspector",
+   "q": "Stephens: full \"corner-stone\" sentence or a summary? Grade 11 default, or teacher unlock?",
+   "rec": "Full sentence, on by default, with a context line.",
+   "why": "The actual words are the evidence; summarizing them softens what students need to see.",
+   "blocks": "Wave 4 build"
+  },
+  {
+   "id": "w4-36",
+   "area": "Wave 4",
+   "tool": "founding-words-explorer",
+   "q": "Today's senses: own glosses or Wiktionary? Echoes moved to premise-inspector OK? Add Johnson 1755?",
+   "rec": "Own glosses; split OK; add Johnson 1755 as a second \"then\".",
+   "why": "Plain glosses read better; two dictionaries show that meanings move.",
+   "blocks": "Wave 4 build"
+  },
+  {
+   "id": "w4-37",
+   "area": "Wave 4",
+   "tool": "thesis-workshop",
+   "q": "Mild fright in \"The Open Window\" at grade 10? Show the popular Frost reading failing?",
+   "rec": "Yes to both.",
+   "why": "Watching a popular reading fail is the strongest lesson in the tool.",
+   "blocks": "Wave 4 build"
+  },
+  {
+   "id": "w4-38",
+   "area": "Wave 4",
+   "tool": "audience-shift-briefing",
+   "q": "Lock the finding in every room, or let students soften it for the class? Keep the EPA heat-deaths card?",
+   "rec": "Lock it; keep the card.",
+   "why": "The skill is changing the delivery, never the facts.",
+   "blocks": "Wave 4 build"
+  },
+  {
+   "id": "w4-39",
+   "area": "Wave 4",
+   "tool": "ad-agency",
+   "q": "Letters certain at Risk 8, or add chance? Name the FTC, or a made-up Watchdog Desk citing real rules?",
+   "rec": "Add a little chance; name the FTC.",
+   "why": "Chance makes the risk feel real; naming the FTC teaches who enforces the rules.",
+   "blocks": "Wave 4 build"
+  },
+  {
    "id": "art-01",
    "area": "Art",
    "tool": "6 wave 1 tools",
