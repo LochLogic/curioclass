@@ -64,3 +64,17 @@ is park, pumpkins and snow.
 - Plan: 45 min, model then make. Findings for a later pass: sharing between devices needs a channel the class already
   uses; Kai's bug sits under "Changes Kai made", not under "No changes yet".
 - Live at deploy 31d01acc. Desk item ready. Stats now: live 75.
+
+## 2026-10-27: game-remix approved after Share removed; code-tracer live (order 53). Batch complete.
+- game-remix: Cory: "take out the share function... not feasible for a student to pass a code that long." The builder
+  removed Share, remix codes, Load a code and the print card (11 lines gone, one new askOpen line). Save and My saved now
+  live in Remix. The plan's Share step is a laptop swap. Cory then approved it.
+- code-tracer: fix round 2 is done (table never scrolls sideways, Workbench end line 11b, phone keep-clear, skipped-line
+  colors, and line 14 spoken once). Recorded line 11b. Liveliness check: every take has a semitone SD of at least 3.7.
+- The plan agent found the Workbench table stuck at its smallest type. Cause: a value sliding into its cell overflowed for
+  a moment, and the squeeze only went up. Integrator fix: start loose on every check and wait for running animations to
+  finish (see verify.md).
+- Plan findings for later: there is no undo in Trace (Restart wipes the tally), the tally can't tell partners apart, all
+  12 levels take more than one period, and the Workbench has nowhere to rewrite a note.
+- Live at deploy b783cab0. Stats: live 76. All five CS tools are live: robot-dance, computer-builder, score-keeper and
+  game-remix are approved, and code-tracer awaits review.
