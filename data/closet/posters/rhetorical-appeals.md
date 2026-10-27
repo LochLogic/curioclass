@@ -1,4 +1,6 @@
 layout: parts
+color: arts
+theme: classic
 band: 912
 title: Rhetorical appeals | Recursos retóricos
 for: For the English or speech classroom. | Para el salón de inglés o de oratoria.

@@ -1,4 +1,6 @@
 layout: parts
+color: arts
+theme: bold
 band: k2
 title: Shapes all around us | Figuras a nuestro alrededor
 for: For the math corner. Hunt the room for each shape. | Para el rincón de matemáticas. Busquen cada figura en el salón.

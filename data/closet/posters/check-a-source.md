@@ -1,4 +1,6 @@
 layout: steps
+color: library
+theme: classic
 band: 68
 title: Check a source | Revisa una fuente
 for: For the library or computer area. | Para la biblioteca o el área de computadoras.

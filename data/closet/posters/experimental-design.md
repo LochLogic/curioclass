@@ -1,4 +1,6 @@
 layout: parts
+color: science
+theme: soft
 band: 912
 title: Design a fair experiment | Diseña un experimento justo
 for: For the lab wall. | Para el muro del laboratorio.

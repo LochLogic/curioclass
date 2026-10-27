@@ -1,4 +1,6 @@
 layout: parts
+color: math
+theme: bold
 band: 35
 title: Place value | Valor posicional
 for: For the math wall. | Para el muro de matemáticas.

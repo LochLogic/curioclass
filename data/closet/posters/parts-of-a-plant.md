@@ -1,4 +1,6 @@
 layout: parts
+color: science
+theme: bold
 band: k2
 title: Parts of a plant | Partes de una planta
 for: For the science center or next to the class plant. | Para el centro de ciencias o junto a la planta del salón.

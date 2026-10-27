@@ -1,4 +1,6 @@
 layout: parts
+color: arts
+theme: soft
 band: 68
 title: Figurative language | Lenguaje figurado
 for: For the reading and writing wall. | Para el muro de lectura y escritura.

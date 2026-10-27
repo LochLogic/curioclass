@@ -1,4 +1,6 @@
 layout: compare
+color: sel
+theme: bold
 band: 35
 title: Change your words | Cambia tus palabras
 for: For near the door or the work tables. | Para cerca de la puerta o de las mesas de trabajo.

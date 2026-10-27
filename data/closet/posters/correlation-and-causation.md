@@ -1,4 +1,6 @@
 layout: compare
+color: math
+theme: soft
 band: 912
 title: Correlation is not causation | Correlación no es causalidad
 for: For the math, science or social studies wall. | Para el muro de matemáticas, ciencias o estudios sociales.

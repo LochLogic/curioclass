@@ -1,4 +1,6 @@
 layout: parts
+color: lang
+theme: classic
 band: 35
 title: Parts of speech | Las partes de la oración
 for: For the writing center or the grammar wall. | Para el centro de escritura o el muro de gramática.

@@ -1,4 +1,6 @@
 layout: steps
+color: accent
+theme: bold
 band: 912
 title: Lab safety | Seguridad en el laboratorio
 for: For the lab door, to read before every lab. | Para la puerta del laboratorio, para leer antes de cada práctica.

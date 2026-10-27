@@ -1,4 +1,6 @@
 layout: parts
+color: science
+theme: bold
 band: 68
 title: Claim, evidence, reasoning | Afirmación, evidencia, razonamiento
 for: For any subject where students explain an answer. | Para cualquier materia donde se explique una respuesta.

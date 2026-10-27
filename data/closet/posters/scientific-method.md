@@ -1,4 +1,6 @@
 layout: steps
+color: teal
+theme: soft
 band: 35
 title: The scientific method | El método científico
 for: For the science wall, to use during every investigation. | Para el muro de ciencias, para usarlo en cada investigación.

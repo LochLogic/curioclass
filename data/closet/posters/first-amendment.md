@@ -1,4 +1,6 @@
 layout: parts
+color: social
+theme: bold
 band: 912
 title: The First Amendment | La Primera Enmienda
 for: For the civics or government wall. | Para el muro de civismo o de gobierno.

@@ -1,4 +1,6 @@
 layout: steps
+color: lang
+theme: soft
 band: k2
 title: Write a sentence | Escribe una oración
 for: For the writing center. | Para el centro de escritura.

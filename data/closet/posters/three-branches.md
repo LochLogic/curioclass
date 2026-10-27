@@ -1,4 +1,6 @@
 layout: compare
+color: social
+theme: classic
 band: 68
 title: Three branches of government | Los tres poderes del gobierno
 for: For the civics wall. | Para el muro de civismo.

@@ -1,4 +1,6 @@
 layout: compare
+color: sel
+theme: classic
 band: k2
 title: How big is my problem? | ¿Qué tan grande es mi problema?
 for: For the calm-down corner. | Para el rincón de la calma.

@@ -1,4 +1,6 @@
 layout: grid
+color: math
+theme: classic
 grid: hundred
 band: k2
 title: Hundred chart | Tabla del cien

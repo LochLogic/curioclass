@@ -270,19 +270,22 @@ CSS_HEX = dict(re.findall(r'--([a-z]+): (#[0-9a-f]{6});', (ROOT / 'site' / 'asse
 
 
 def chart_page(c, color, **ctx):
-    """/modules/<id>/chart/ or a poster page: a symbol per version and language, and chart.svg for the shelf."""
+    """/modules/<id>/chart/ or a poster page: a symbol per version, language and ink, and chart.svg for the shelf."""
     symbols, versions = [], []
     for v in ['done', 'fill'] if c['layout'] != 'grid' else ['done']:
         for lang in ['en', 'es']:
-            sid = f'c-{v}-{lang}'
-            sym, fits = chart_svg.symbol(c, sid, lang, v == 'fill', color)
-            if not fits:
-                sys.exit(f"{c['file']}: too long to fit on one page ({lang}); cut words (python scripts/charts.py {c['id']})")
-            symbols.append(sym)
-            versions.append(dict(id=sid, version=v, lang=lang, label=f"{c['title'][0 if lang == 'en' else 1]}, "
-                                 f"{'fill-in' if v == 'fill' else 'finished'}, {'English' if lang == 'en' else 'Spanish'}"))
-    render('closet/chart.html', c['url'], c=c, symbols=symbols, versions=versions,
-           tilings=[(n, chart_svg.tiles(n)) for n in (2, 3)], **ctx)
+            for ink in ['color', 'ink']:
+                sid = f'c-{v}-{lang}-{ink}'
+                sym, fits = chart_svg.symbol(c, sid, lang, v == 'fill', color, ink == 'ink')
+                if not fits:
+                    sys.exit(f"{c['file']}: too long to fit on one page ({lang}); cut words (python scripts/charts.py {c['id']})")
+                symbols.append(sym)
+                versions.append(dict(id=sid, key=f'{v}-{lang}-{ink}', label=f"{c['title'][0 if lang == 'en' else 1]}, "
+                                     f"{'fill-in' if v == 'fill' else 'finished'}, {'English' if lang == 'en' else 'Spanish'}"
+                                     f"{', ink saver' if ink == 'ink' else ''}"))
+    w, h = chart_svg.dims(c)
+    render('closet/chart.html', c['url'], c=c, symbols=symbols, versions=versions, w=w, h=h,
+           tilings=[(n, chart_svg.tiles(n, c)) for n in (2, 3)], **ctx)
     (DIST / c['url'].strip('/') / 'chart.svg').write_text(chart_svg.svg(c, 'en', False, color), encoding='utf-8')
 
 
@@ -384,7 +387,7 @@ for gr in GRADES:  # a tool sits under the first grade it is written for
     if ts:
         sub_sections.append(dict(id=f'grade-{gr}', label=grade_label(gr), tools=ts))
 for c in posters.values():
-    chart_page(c, CSS_HEX['teal'], band_label=bands[c['band']]['label'])
+    chart_page(c, CSS_HEX[c.get('color', 'teal')], band_label=bands[c['band']]['label'])
 chart_sections = [dict(id=f'posters-{bid}', label=f"Posters: {b['label']}", items=sorted((c for c in posters.values() if c['band'] == bid), key=lambda c: c['title'][0]))
                   for bid, b in bands.items()]
 for gr in GRADES:  # a chart sits under the first grade its module is written for

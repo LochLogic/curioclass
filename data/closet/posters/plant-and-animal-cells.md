@@ -1,4 +1,6 @@
 layout: compare
+color: science
+theme: classic
 band: 68
 title: Plant and animal cells | Células vegetales y animales
 for: For the life science wall. | Para el muro de ciencias de la vida.

@@ -1,4 +1,6 @@
 layout: cycle
+color: cte
+theme: bold
 band: 68
 title: The engineering design process | El proceso de diseño de ingeniería
 for: For the STEM lab or makerspace. | Para el laboratorio STEM o el taller.

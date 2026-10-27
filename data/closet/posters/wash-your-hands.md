@@ -1,4 +1,6 @@
 layout: steps
+color: health
+theme: classic
 band: k2
 title: Wash your hands | Lávate las manos
 for: For above the classroom sink. | Para arriba del lavabo del salón.

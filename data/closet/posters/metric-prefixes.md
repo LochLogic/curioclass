@@ -1,4 +1,6 @@
 layout: parts
+color: math
+theme: bold
 band: 912
 title: Metric prefixes | Prefijos del sistema métrico
 for: For the science or math wall. | Para el muro de ciencias o matemáticas.

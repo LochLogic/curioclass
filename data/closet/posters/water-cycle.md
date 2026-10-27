@@ -1,4 +1,6 @@
 layout: cycle
+color: eld
+theme: bold
 band: 35
 title: The water cycle | El ciclo del agua
 for: For the science wall. | Para el muro de ciencias.

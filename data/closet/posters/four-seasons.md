@@ -1,4 +1,6 @@
 layout: cycle
+color: science
+theme: classic
 band: k2
 title: The four seasons | Las cuatro estaciones
 for: For the calendar wall. Move a clip to today's season. | Para el muro del calendario. Mueve un clip a la estación de hoy.

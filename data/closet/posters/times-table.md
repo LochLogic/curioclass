@@ -1,4 +1,6 @@
 layout: grid
+color: math
+theme: bold
 grid: times
 band: 35
 title: Times table | Tabla de multiplicar

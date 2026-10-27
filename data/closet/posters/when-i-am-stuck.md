@@ -1,4 +1,6 @@
 layout: steps
+color: teal
+theme: bold
 band: k2
 title: When I am stuck | Cuando estoy atorado
 for: For the work tables, so students try a plan before they wait for help. | Para las mesas de trabajo, para que prueben un plan antes de esperar ayuda.

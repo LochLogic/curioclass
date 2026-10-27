@@ -1,4 +1,6 @@
 layout: parts
+color: library
+theme: bold
 band: 68
 title: Text structures | Estructuras del texto
 for: For the reading wall. | Para el muro de lectura.

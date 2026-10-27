@@ -3,7 +3,7 @@
 {% block title %}{{ 'Poster' if c.kind == 'poster' else 'Anchor chart' }}: {{ c.title[0] }} · Curio Class{% endblock %}
 {% block description %}{% if c.kind == 'poster' %}A free printable classroom poster: {{ c['for'][0] }}{% else %}A free printable anchor chart for {{ m.title | lower }}, {{ grade_label(m.grade) | lower }}{% endif %}. Finished or fill-in, in English or Spanish, on one page or tiled big.{% endblock %}
 {% block main %}
-<div class="wrap chart-page" data-version="done" data-lang="en" data-size="1">
+<div class="wrap chart-page{{ ' wide' if w > h }}" data-version="done" data-lang="en" data-ink="color" data-size="1">
   <div class="no-print">
     {% if c.kind == 'poster' %}
     {{ crumbs([('Supply Closet', '/closet/'), ('Posters and Anchor Charts', '/closet/anchor-charts/'), (c.title[0], None)]) }}
@@ -29,6 +29,11 @@
         <label><input type="radio" name="lang" value="es"> Español</label>
       </fieldset>
       <fieldset>
+        <legend>Print</legend>
+        <label><input type="radio" name="ink" value="color" checked> Color</label>
+        <label><input type="radio" name="ink" value="ink"> Ink saver</label>
+      </fieldset>
+      <fieldset>
         <legend>Size</legend>
         <label><input type="radio" name="size" value="1" checked> One page</label>
         <label><input type="radio" name="size" value="2"> 2 x 2 (17 x 22 in)</label>
@@ -44,15 +49,15 @@
 
   <svg class="chart-defs" aria-hidden="true" width="0" height="0">{% for s in symbols %}{{ s | safe }}{% endfor %}</svg>
   {% for v in versions %}
-  <div class="chart-set" data-v="{{ v.version }}" data-l="{{ v.lang }}">
+  <div class="chart-set{{ ' on' if loop.first }}" data-key="{{ v.key }}">
     <div class="chart-size" data-n="1">
-      <svg class="chart-one" viewBox="0 0 850 1100" role="img" aria-label="{{ v.label }}"><use href="#{{ v.id }}" width="850" height="1100"/></svg>
+      <svg class="chart-one" viewBox="0 0 {{ w }} {{ h }}" role="img" aria-label="{{ v.label }}"><use href="#{{ v.id }}" width="{{ w }}" height="{{ h }}"/></svg>
     </div>
     {% for n, ts in tilings %}
     <div class="chart-size chart-tiles" data-n="{{ n }}" style="--n:{{ n }}">
       {% for t in ts %}
       <figure class="chart-tile">
-        <svg viewBox="{{ t.box }}" preserveAspectRatio="xMidYMid meet" role="img" aria-label="{{ v.label }}, tile {{ loop.index }} of {{ ts | length }}"><use href="#{{ v.id }}" width="850" height="1100"/><rect x="{{ t.cut[0] }}" y="{{ t.cut[1] }}" width="{{ t.cut[2] }}" height="{{ t.cut[3] }}" fill="none" stroke="#777" stroke-width="1.2" stroke-dasharray="6 5" vector-effect="non-scaling-stroke"/></svg>
+        <svg viewBox="{{ t.box }}" preserveAspectRatio="xMidYMid meet" role="img" aria-label="{{ v.label }}, tile {{ loop.index }} of {{ ts | length }}"><use href="#{{ v.id }}" width="{{ w }}" height="{{ h }}"/><rect x="{{ t.cut[0] }}" y="{{ t.cut[1] }}" width="{{ t.cut[2] }}" height="{{ t.cut[3] }}" fill="none" stroke="#777" stroke-width="1.2" stroke-dasharray="6 5" vector-effect="non-scaling-stroke"/></svg>
         <figcaption>Tile {{ loop.index }} of {{ ts | length }}: row {{ t.row }}, column {{ t.col }}</figcaption>
       </figure>
       {% endfor %}
@@ -67,16 +72,23 @@
 (function () {
   // ?version=fill&lang=es&size=2 in the link wins over the choice remembered on this computer
   var page = document.querySelector('.chart-page'), ask = new URLSearchParams(location.search);
+  function show() {  // one .chart-set is on: the one for this version, language and ink
+    var key = [page.dataset.version, page.dataset.lang, page.dataset.ink].join('-');
+    if (!document.querySelector('.chart-set[data-key="' + key + '"]')) key = key.replace(/^fill/, 'done');  // drawn posters have no fill-in
+    document.querySelectorAll('.chart-set').forEach(function (s) { s.classList.toggle('on', s.dataset.key === key); });
+  }
   document.querySelectorAll('.word-controls input').forEach(function (input) {
     var want = ask.get(input.name);
     try { want = want || localStorage.getItem('cc-chart-' + input.name); } catch (e) {}
     if (want === input.value) input.checked = true;
     input.addEventListener('change', function () {
       page.dataset[input.name] = input.value;
+      show();
       try { localStorage.setItem('cc-chart-' + input.name, input.value); } catch (e) {}
     });
   });
   document.querySelectorAll('.word-controls input:checked').forEach(function (input) { page.dataset[input.name] = input.value; });
+  show();
 })();
 </script>
 {% endblock %}

@@ -1,4 +1,6 @@
 layout: steps
+color: eld
+theme: soft
 band: 35
 title: Solve a word problem | Resuelve un problema verbal
 for: For the math wall, to use with any word problem. | Para el muro de matemáticas, para usar con cualquier problema verbal.

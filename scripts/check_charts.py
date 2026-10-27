@@ -6,7 +6,7 @@ docs/SUPPLY-CLOSET-PLAN.md, Phase D.
 
 A chart file is "key: value" header lines, a blank line, then the parts. Every text line is "English | Spanish".
 
-    layout: cycle                                   steps, parts, compare, cycle, big-idea (posters also: grid)
+    layout: cycle                                   steps, parts, compare, cycle, big-idea, list (posters also: grid)
     title: The water cycle | El ciclo del agua
     idea: Water keeps moving. | El agua siempre se mueve.        (optional; big-idea needs one)
     example: ... | ...                                            (optional, a worked example under the chart)
@@ -16,7 +16,9 @@ A chart file is "key: value" header lines, a blank line, then the parts. Every t
 
 "- Label: text" gives an item a label (parts and cycle need one; steps may have one). [[word]] is a blank on the
 fill-in version and bold on the finished one. Posters also have "band: k2" (k2, 35, 68 or 912) and a "for:" line saying
-where it hangs; a grid poster has "grid: hundred" or "grid: times" and no items. build_site.py uses load() and runs
+where it hangs, and may set "color:" (a subject color name from curio.css), "theme:" (classic, bold or soft) and
+"orient: landscape"; a drawn poster has "layout: grid", a "grid:" kind (see GRIDS) and no items ("range: -10 10" sets a
+number line's ends). build_site.py uses load() and runs
 problems() so a bad chart stops a closet build; scripts/charts.py draws them.
 """
 import csv, re, sys
@@ -25,9 +27,13 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 CHARTS = ROOT / 'data' / 'closet' / 'charts'
 POSTERS = ROOT / 'data' / 'closet' / 'posters'
-LAYOUTS = {'steps': (3, 6), 'parts': (3, 6), 'cycle': (3, 6), 'compare': (2, 3), 'big-idea': (2, 4), 'grid': (0, 0)}
+LAYOUTS = {'steps': (3, 6), 'parts': (3, 6), 'cycle': (3, 6), 'compare': (2, 3), 'big-idea': (2, 4), 'list': (6, 12),
+           'grid': (0, 0)}
 LABELED = {'parts', 'cycle'}
-GRIDS = {'hundred', 'times'}
+GRIDS = {'hundred', 'times', 'numberline', 'fractions', 'coordinate', 'unitcircle', 'coins', 'usmap', 'worldmap', 'periodic'}
+LANDSCAPE = {'usmap', 'worldmap', 'periodic'}  # these grids only fit sideways
+THEMES = {'classic', 'bold', 'soft'}
+COLORS = {'math', 'ela', 'science', 'social', 'arts', 'health', 'cs', 'lang', 'cte', 'sel', 'eld', 'library', 'teal', 'accent'}
 BANDS = {'k2', '35', '68', '912'}
 TITLE_CAP, IDEA_CAP, ITEM_CAP, LABEL_CAP, BLANK_CAP = 9, 26, 22, 4, 3  # words; Spanish gets 40% more
 COL_ITEMS = (2, 5)
@@ -100,6 +106,16 @@ def problems(c, modules=None):
             out.append(f"{cid}: band {c.get('band')!r} must be one of {', '.join(sorted(BANDS))}")
         if not c.get('for'):
             out.append(f'{cid}: posters need a "for:" line (what it is for, English | Spanish)')
+        if c.get('color') and c['color'] not in COLORS:
+            out.append(f"{cid}: color {c['color']!r} must be one of {', '.join(sorted(COLORS))}")
+    if c.get('theme') and c['theme'] not in THEMES:
+        out.append(f"{cid}: theme {c['theme']!r} must be one of {', '.join(sorted(THEMES))}")
+    if c.get('orient') not in (None, 'landscape'):
+        out.append(f"{cid}: orient can only be landscape")
+    if lay == 'grid' and (c.get('grid') in LANDSCAPE) != (c.get('orient') == 'landscape'):
+        out.append(f"{cid}: grid {c.get('grid')!r} {'needs' if c.get('grid') in LANDSCAPE else 'cannot have'} orient: landscape")
+    if c.get('range') and not re.fullmatch(r'-?\d+ -?\d+', c['range']):
+        out.append(f"{cid}: range must be two whole numbers, like -10 10")
     lines = []  # (where, en, es, cap)
     if not c.get('title'):
         out.append(f'{cid}: no title')

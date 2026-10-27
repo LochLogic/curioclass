@@ -1,4 +1,6 @@
 layout: parts
+color: sel
+theme: soft
 band: k2
 title: How to be a good listener | Cómo escuchar bien
 for: For the carpet or the circle area, to point to before a story. | Para la alfombra o el círculo, para señalar antes de un cuento.

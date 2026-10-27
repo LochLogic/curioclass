@@ -1,4 +1,6 @@
 layout: steps
+color: math
+theme: soft
 band: 68
 title: Order of operations | Orden de las operaciones
 for: For the math wall. | Para el muro de matemáticas.

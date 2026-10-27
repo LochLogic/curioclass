@@ -1,4 +1,6 @@
 layout: cycle
+color: ela
+theme: classic
 band: 35
 title: The writing process | El proceso de escritura
 for: For the writing center. Clip each writer's name to their step. | Para el centro de escritura. Pon el nombre de cada escritor en su paso.

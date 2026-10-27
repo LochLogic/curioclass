@@ -1,4 +1,6 @@
 layout: steps
+color: ela
+theme: bold
 band: 912
 title: Build an argument essay | Arma un ensayo argumentativo
 for: For the English classroom or writing center. | Para el salón de inglés o el centro de escritura.

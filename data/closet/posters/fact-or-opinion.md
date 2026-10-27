@@ -1,4 +1,6 @@
 layout: compare
+color: ela
+theme: classic
 band: 35
 title: Fact or opinion? | ¿Hecho u opinión?
 for: For the reading wall. | Para el muro de lectura.

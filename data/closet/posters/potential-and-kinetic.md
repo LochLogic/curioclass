@@ -1,4 +1,6 @@
 layout: compare
+color: health
+theme: bold
 band: 68
 title: Two kinds of mechanical energy | Dos tipos de energía mecánica
 for: For the science wall. | Para el muro de ciencias.
