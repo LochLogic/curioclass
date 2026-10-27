@@ -3,7 +3,7 @@
 Run from the repo root:  python scripts/build_site.py
 Needs Jinja2 and Markdown (pip install jinja2 markdown). No other dependencies.
 """
-import base64, csv, json, re, shutil, sys
+import base64, csv, json, random, re, shutil, sys
 from collections import defaultdict
 from datetime import date
 from html import escape as html_escape
@@ -289,6 +289,31 @@ def chart_page(c, color, **ctx):
     (DIST / c['url'].strip('/') / 'chart.svg').write_text(chart_svg.svg(c, 'en', False, color), encoding='utf-8')
 
 
+def word_gap(word, text):
+    """(before, after) around the word in its example sentence, for the Word check fill-in; None if it is not there.
+    Spanish words change form (varía for variar), so a long one-word entry also matches its stem."""
+    hit = re.search(r'(?i)\b' + re.escape(word) + r'\w*', text)
+    if not hit and ' ' not in word and len(word) >= 5:
+        hit = re.search(r'(?i)\b' + re.escape(word[:-2]) + r'\w*', text)
+    return (text[:hit.start()], text[hit.end():]) if hit else None
+
+
+def word_check(seed, cards):
+    """Letters for the Word check matching: the meanings in a fixed shuffle (never the card order), letter A first."""
+    order = list(range(len(cards)))
+    random.Random(seed).shuffle(order)
+    if order == sorted(order):
+        order = order[1:] + order[:1]
+    for pos, i in enumerate(order):
+        cards[i]['letter'] = 'ABCDEFGHIJ'[pos]
+    fill = list(range(len(cards)))  # the fill-in sentences in their own shuffle, so the answers do not run in word order
+    random.Random(seed + '/fill').shuffle(fill)
+    if fill == sorted(fill):
+        fill.reverse()
+    for pos, i in enumerate(fill):
+        cards[i]['fill_rank'] = pos
+
+
 # modules: the hub for everything one module has (tools, then Supply Closet shelves as they ship)
 for m in modules.values():
     mt = by_module[m['module_id']]
@@ -308,6 +333,13 @@ for m in modules.values():
                 (dest / 'art').mkdir(parents=True, exist_ok=True)
                 shutil.copy2(c['art'], dest / 'art' / c['art'].name)
                 c['src'] = 'art/' + c['art'].name
+            c['gap_en'], c['gap_es'] = word_gap(c['word'], c['example']), word_gap(c['es_word'], c['es_example'])
+        word_check(m['module_id'], cards)
+        dest.mkdir(parents=True, exist_ok=True)
+        with open(dest / f"{m['module_id']}-words.csv", 'w', encoding='utf-8-sig', newline='') as f:  # BOM so Excel reads the Spanish
+            out = csv.writer(f)
+            out.writerow(['word', 'definition', 'example', 'palabra', 'definición', 'ejemplo'])
+            out.writerows([c['word'], c['definition'], c['example'], c['es_word'], c['es_definition'], c['es_example']] for c in cards)
         render('closet/words.html', m['url'] + 'words/', m=m, cards=cards, subject=subjects[m['subject']],
                band=check_words.band(m['grade']), tools=[t for t in mt if t['built']])
 
@@ -597,6 +629,20 @@ index += [{'t': m['title'], 'u': m['url'], 'g': grade_label(m['grade']), 's': su
            'b': any(t['built'] for t in by_module[m['module_id']])} for m in modules.values()]
 index += [{'t': s['title'], 'u': s['url'], 'g': grade_label(s['grades']), 's': 'Reading Room', 'f': s['kind'],
            'm': s.get('author', ''), 'c': '', 'd': s.get('summary', ''), 'b': s['ready']} for s in stories + speeches + myth_own + sacred if LIBRARY_LIVE]
+if CLOSET_LIVE:  # Supply Closet items, so "fractions vocabulary" or "photosynthesis chart" finds them
+    for m in modules.values():
+        mod = dict(g=grade_label(m['grade']), s=subjects[m['subject']]['short'], m=m['title'], c=' '.join(m['codes']), b=True)
+        if words.get(m['module_id']):
+            index.append(dict(mod, t=f"Word Wall: {m['title']}", u=m['url'] + 'words/', f='Word Wall',
+                              d='Vocabulary cards: ' + ', '.join(c['word'] for c in words[m['module_id']])))
+        if m['module_id'] in charts:
+            ch = charts[m['module_id']]
+            index.append(dict(mod, t=f"Anchor chart: {ch['title'][0]}", u=ch['url'], f='Anchor chart', d=f"The big idea of {m['title']} on one page"))
+    index += [{'t': f"Poster: {p['title'][0]}", 'u': p['url'], 'g': bands[p['band']]['label'], 's': 'Supply Closet', 'f': 'Poster', 'm': '', 'c': '',
+               'd': p['for'][0], 'b': True} for p in posters.values()]
+    index += [{'t': f"Family game: {g['title']}", 'u': g['url'], 'g': grade_label(g['grade']), 's': subjects[g['subject']]['short'],
+               'f': 'Game Night', 'm': ', '.join(x['title'] for x in g['mods']), 'c': '', 'd': g['learn'], 'b': True}
+              for g in games.values()]
 (DIST / 'search-index.json').write_text(json.dumps(index, separators=(',', ':')), encoding='utf-8')
 render('search.html', '/search/', index=False)
 for name in ['about', 'teachers', 'privacy', 'accessibility', 'license']:

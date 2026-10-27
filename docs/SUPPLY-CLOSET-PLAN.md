@@ -446,6 +446,11 @@ teacher-guide links (waits for the tools chat), and drafting the Map (`docs/MAP-
 
 Suggested order: 4, 2, 1, 3 (all small and data-only), then 6, then 5 and 7 together, then 8.
 
+**Built 2026-10-27:** 1 (Word check: matching plus fill-in from the example sentences, separately shuffled per module,
+key on page 2; Spanish fill-in uses a stem match and skips sentences where the word changes form too much), 2 (762 word
+pages, 74 charts, 48 posters and 104 games in `search-index.json`), 3 (Take home: one page, words with pictures and
+meanings, a five-minute practice idea) and 4 (`<module>-words.csv` on every word page, UTF-8 with BOM for Excel).
+
 ---
 
 ## Late roadmap: Worksheet Generator (parked 2026-10-26)

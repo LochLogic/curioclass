@@ -3344,7 +3344,7 @@ world-languages-k-12-the-five-parameters-of-a-sign/handshape = hand(260, 'fist')
 # non-manual marker: a face outline with motion lines
 world-languages-k-12-the-five-parameters-of-a-sign/non-manual-marker = head_outline(280, motion=True)
 # minimal pair: two head outlines with dots at chin and forehead
-world-languages-k-12-the-five-parameters-of-a-sign/minimal-pair = row(head_outline(190, dot='chin'), head_outline(190, dot='forehead'), gap=30)
+world-languages-k-12-the-five-parameters-of-a-sign/minimal-pair = row(over(pad(head_outline(190, dot='chin'), 24), hand(90, hl=True), dx=40, dy=32), raw(40, 60, '<path d="M8 22 H32 M8 38 H32" stroke="#8a8f9c" stroke-width="6" stroke-linecap="round"/><path d="M30 6 L10 54" stroke="#e04848" stroke-width="6" stroke-linecap="round"/>'), over(pad(head_outline(190, dot='forehead'), 24), hand(90, hl=True), dx=40, dy=-62), gap=14)
 
 # ---------- 2026-10-27: the last 176 modules ----------
 # pathway: a dotted zigzag path with a start dot and an end arrow

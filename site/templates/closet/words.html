@@ -19,6 +19,8 @@
         <label><input type="radio" name="format" value="wall" checked> Wall cards</label>
         <label><input type="radio" name="format" value="mini"> Mini cards</label>
         <label><input type="radio" name="format" value="gloss"> My words</label>
+        <label><input type="radio" name="format" value="check"> Word check</label>
+        <label><input type="radio" name="format" value="home"> Take home</label>
       </fieldset>
       <fieldset>
         <legend>Language</legend>
@@ -31,6 +33,9 @@
     <p class="word-hint" data-for="wall">Pick a format and a language, then press <b>Print</b>. Wall cards print sideways (landscape), two to a page. Kids can draw in the empty boxes.</p>
     <p class="word-hint" data-for="mini">Pick a language, then press <b>Print</b>. Eight cards to a page: cut on the dashed lines for pocket charts, matching games and word sorts.</p>
     <p class="word-hint" data-for="gloss">Pick a language, then press <b>Print</b>. One page per student: they write what each word means in their own words and draw it.</p>
+    <p class="word-hint" data-for="check">Pick a language, then press <b>Print</b>. A quick check: match each word to its meaning, then fill in the missing word in each sentence. The answer key prints on page 2.{% if band == 'k2' %} For young readers, read the meanings aloud.{% endif %}</p>
+    <p class="word-hint" data-for="home">Pick a language, then press <b>Print</b>. One page for families: the words and what they mean, with an easy way to practice at home.</p>
+    <p class="word-dl"><a href="{{ m.module_id }}-words.csv" download>Download the words (CSV)</a> for Quizlet, Gimkit, Kahoot or a spreadsheet: word, meaning, example, and the same in Spanish.</p>
     <p class="word-note es-note">The Spanish is a first draft. A native speaker has not checked it yet, so read it over before you print.</p>
     {{ teach_strip(tools) }}
   </div>
@@ -88,6 +93,62 @@
         {% endfor %}
       </tbody>
     </table>
+  </section>
+
+  <section class="fmt fmt-check">
+    <div class="gloss-head">
+      <h2><span class="en">Word check: {{ m.title }}</span><span class="es" lang="es">Repaso de palabras</span></h2>
+      <p><span class="en">Name</span><span class="es" lang="es">Nombre</span> <span class="blank"></span></p>
+    </div>
+    <h3 class="chk-h"><span class="en">1. Match each word to what it means. Write the letter.</span><span class="es" lang="es">1. Une cada palabra con lo que significa. Escribe la letra.</span></h3>
+    <div class="chk-match">
+      <ol class="chk-words">
+        {% for c in cards %}<li><span class="chk-line"></span> <b class="en">{{ c.word }}</b><b class="es" lang="es">{{ c.es_word }}</b></li>
+        {% endfor %}
+      </ol>
+      <ul class="chk-defs">
+        {% for c in cards | sort(attribute='letter') %}<li><b>{{ c.letter }}</b> <span class="en">{{ c.definition }}</span><span class="es" lang="es">{{ c.es_definition }}</span></li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% set fill_en = cards | selectattr('gap_en') | sort(attribute='fill_rank') | list %}{% set fill_es = cards | selectattr('gap_es') | sort(attribute='fill_rank') | list %}
+    <h3 class="chk-h"><span class="en">2. Fill in the missing word.</span><span class="es" lang="es">2. Completa con la palabra que falta.</span></h3>
+    <ol class="chk-fill en">
+      {% for c in fill_en %}<li>{{ c.gap_en[0] }}<span class="chk-gap"></span>{{ c.gap_en[1] }}</li>
+      {% endfor %}
+    </ol>
+    <ol class="chk-fill es es-alone" lang="es">
+      {% for c in fill_es %}<li>{{ c.gap_es[0] }}<span class="chk-gap"></span>{{ c.gap_es[1] }}</li>
+      {% endfor %}
+    </ol>
+    <div class="chk-key page-break">
+      <h3 class="chk-h"><span class="en">Answer key: {{ m.title }}</span><span class="es" lang="es">Respuestas</span></h3>
+      <p><b><span class="en">1. Matching</span><span class="es" lang="es">1. Unir</span>:</b> {% for c in cards %}{{ loop.index }}-{{ c.letter }}{{ ', ' if not loop.last }}{% endfor %}</p>
+      <p class="en"><b>2. Fill in:</b> {% for c in fill_en %}{{ loop.index }}. {{ c.word }}{{ ', ' if not loop.last }}{% endfor %}</p>
+      <p class="es es-alone" lang="es"><b>2. Completar:</b> {% for c in fill_es %}{{ loop.index }}. {{ c.es_word }}{{ ', ' if not loop.last }}{% endfor %}</p>
+    </div>
+  </section>
+
+  <section class="fmt fmt-home">
+    <div class="home-head">
+      <p class="eyebrow">{{ grade_label(m.grade) }} · {{ subject.short }} · Curio Class</p>
+      <h2><span class="en">Words we are learning: {{ m.title }}</span><span class="es" lang="es">Palabras que estamos aprendiendo</span></h2>
+    </div>
+    <ul class="home-words">
+      {% for c in cards %}
+      <li>
+        <div class="pic">{% if c.src %}<img src="{{ c.src }}" alt="">{% endif %}</div>
+        <div>
+          <p class="w"><b class="en">{{ c.word }}</b><b class="es" lang="es">{{ c.es_word }}</b></p>
+          <p class="d"><span class="en">{{ c.definition }}</span><span class="es" lang="es">{{ c.es_definition }}</span></p>
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+    <div class="home-try">
+      <p class="en"><b>Try this at home.</b> Pick a word and ask your child what it means. Then take turns using it in a sentence about your day. Five minutes is plenty.</p>
+      <p class="es" lang="es"><b>Practiquen en casa.</b> Elijan una palabra y pregúntenle a su hijo o hija qué significa. Después, túrnense para usarla en una oración sobre su día. Cinco minutos bastan.</p>
+    </div>
   </section>
   <p class="print-foot">{{ m.title }} · {{ grade_label(m.grade) }} {{ subject.short }} · Curio Class, curioclass.org · free under CC BY 4.0</p>
 </div>

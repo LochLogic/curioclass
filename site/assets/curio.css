@@ -397,6 +397,41 @@ section.block { padding: 56px 0 8px; }
 .words-page[data-format="wall"] [data-for="wall"], .words-page[data-format="mini"] [data-for="mini"],
 .words-page[data-format="gloss"] [data-for="gloss"], .words-page:not([data-lang="en"]) .es-note { display: block; }
 .words-page[data-format="wall"] .fmt-wall, .words-page[data-format="mini"] .fmt-mini, .words-page[data-format="gloss"] .fmt-gloss { display: block; margin-top: 22px; }
+.words-page[data-format="check"] [data-for="check"], .words-page[data-format="home"] [data-for="home"] { display: block; }
+.words-page[data-format="check"] .fmt-check, .words-page[data-format="home"] .fmt-home { display: block; margin-top: 22px; }
+.words-page[data-lang="both"] .es-alone { display: none; }
+.word-dl { font-size: 15px; margin: 8px 0 4px; max-width: 70ch; }
+.fmt-check, .fmt-home { background: var(--card); padding: 18px 22px; border-radius: 12px; }
+.chk-h { font: 650 18px/1.3 var(--sans); margin: 18px 0 8px; }
+.words-page[data-lang="both"] :is(.chk-h, .chk-key p) .es::before { content: " / "; }
+.chk-match { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr); gap: 24px; }
+.chk-words, .chk-fill { padding-left: 24px; margin: 0; }
+.chk-words li { margin: 0 0 14px; font-size: 17px; }
+.chk-words b.es { font-weight: 500; color: var(--muted); margin-left: 6px; }
+.words-page[data-lang="both"] .chk-words b.es::before { content: "/ "; }
+.words-page[data-lang="es"] .chk-words b.es { font-weight: 700; color: inherit; margin-left: 0; }
+.chk-line { display: inline-block; width: 38px; border-bottom: 1.5px solid var(--ink); margin-right: 6px; }
+.chk-defs { list-style: none; padding: 0; margin: 0; }
+.chk-defs li { margin: 0 0 10px; font-size: 15px; }
+.chk-defs li > b { display: inline-block; width: 22px; }
+.words-page[data-lang="both"] .chk-defs .es { display: block; margin-left: 22px; color: var(--muted); font-size: 13px; }
+.chk-fill li { margin: 0 0 14px; font-size: 16px; line-height: 1.6; }
+.chk-gap { display: inline-block; width: 130px; border-bottom: 1.5px solid var(--ink); margin: 0 4px; }
+.chk-key { margin-top: 28px; border-top: 1.5px dashed var(--line); padding-top: 8px; font-size: 14px; }
+.home-head { border-bottom: 3px solid var(--band); padding-bottom: 6px; }
+.home-head h2 { font-size: 26px; }
+.words-page[data-lang="both"] .home-head h2 .es { display: block; font-size: 20px; color: var(--muted); }
+.home-words { list-style: none; padding: 0; margin: 12px 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 22px; }
+.home-words li { display: grid; grid-template-columns: 80px minmax(0, 1fr); gap: 12px; align-items: center; break-inside: avoid; }
+.home-words .pic { height: 80px; display: flex; align-items: center; justify-content: center; }
+.home-words .pic img { max-width: 100%; max-height: 100%; }
+.home-words .w { font: 650 20px/1.15 var(--serif); margin: 0; }
+.home-words .d { font-size: 14px; margin: 2px 0 0; }
+.words-page[data-lang="both"] .home-words .w .es { font-weight: 500; color: var(--muted); font-size: 16px; }
+.words-page[data-lang="both"] .home-words .w .es::before { content: " / "; }
+.words-page[data-lang="both"] .home-words .d .es { display: block; color: var(--muted); font-size: 13px; }
+.home-try { border: 2px solid var(--band); border-radius: 10px; padding: 10px 14px; margin-top: 10px; }
+.home-try p { margin: 4px 0; font-size: 15px; }
 .words-page[data-lang="en"] .es, .words-page[data-lang="es"] .en, .words-page:not([data-lang="es"]) .es-only { display: none; }
 .words-page[data-lang="both"] :is(.gloss th, .gloss-head h2, .gloss-head p) .es::before { content: " / "; }
 .words-page p { margin: 0; }
@@ -461,6 +496,8 @@ section.block { padding: 56px 0 8px; }
   a { color: inherit; text-decoration: none; }
   .page-break { break-before: page; }
   .print-foot { display: block; font-size: 7.5pt; color: #555; margin-top: 8px; }
+  .fmt-check, .fmt-home { padding: 0; background: none; }
+  .chk-words li, .chk-fill li { margin-bottom: 0.2in; }
   .words-page { max-width: none; padding: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   .words-page .fmt { margin-top: 0 !important; }
   .fmt-wall, .fmt-wall + .print-foot { page: wallcards; }
