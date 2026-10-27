@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% from "macros.html" import crumbs %}
+{% block title %}{{ label }}: Supply Closet · Curio Class{% endblock %}
+{% block description %}{{ what }} Free, printable, in English and Spanish.{% endblock %}
+{% block main %}
+<div class="wrap">
+  {{ crumbs([('Supply Closet', '/closet/'), (label, None)]) }}
+  <div class="page-head"><h1>{{ label }}</h1><p>{{ what }} Every one prints finished, to post, or fill-in, to build with the class, in English or Español. Tiled 2 x 2 or 3 x 3, a page becomes a wall chart up to 25.5 x 33 inches.</p></div>
+  <div class="browse">
+    <aside class="browse-nav" aria-label="Shelves">
+      <p class="eyebrow">Shelves</p>
+      <nav id="browse-links">
+        {% for s in sections %}<a href="#{{ s.id }}" data-target="{{ s.id }}"><i style="background:var(--ink)"></i><span>{{ s.label }}</span><b>{{ s['items'] | length }}</b></a>{% endfor %}
+      </nav>
+    </aside>
+    <div class="browse-main">
+      <label class="jump"><span class="sr-only">Shelves</span>
+        <select id="jump"><option value="">Jump to…</option>{% for s in sections %}<option value="{{ s.id }}">{{ s.label }} ({{ s['items'] | length }})</option>{% endfor %}</select>
+      </label>
+      {% for s in sections %}
+      <section class="group browse-group" id="{{ s.id }}">
+        <div class="group-head"><h2>{{ s.label }}</h2></div>
+        <div class="chart-cards">
+          {% for c in s['items'] %}
+          <a class="chart-card" href="{{ c.url }}"><img src="{{ c.url }}chart.svg" alt="" loading="lazy" width="170" height="220"><b>{{ c.title[0] }}</b><span>{% if c.kind == 'poster' %}{{ c['for'][0] }}{% else %}{{ modules[c.id].title }} · {{ subjects[modules[c.id].subject].short }}{% endif %}</span></a>
+          {% endfor %}
+        </div>
+      </section>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script>
+(() => {
+  const links = [...document.querySelectorAll('#browse-links a')];
+  const byId = Object.fromEntries(links.map(a => [a.dataset.target, a]));
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { links.forEach(a => a.removeAttribute('aria-current')); byId[e.target.id]?.setAttribute('aria-current', 'true'); } });
+  }, {rootMargin: '-90px 0px -70% 0px'});
+  document.querySelectorAll('.browse-group').forEach(g => io.observe(g));
+  document.getElementById('jump').addEventListener('change', e => {
+    if (e.target.value) document.getElementById(e.target.value).scrollIntoView({behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'});
+  });
+})();
+</script>
+{% endblock %}

@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% from "macros.html" import crumbs %}
+{% block title %}{{ 'Poster' if c.kind == 'poster' else 'Anchor chart' }}: {{ c.title[0] }} · Curio Class{% endblock %}
+{% block description %}{% if c.kind == 'poster' %}A free printable classroom poster: {{ c['for'][0] }}{% else %}A free printable anchor chart for {{ m.title | lower }}, {{ grade_label(m.grade) | lower }}{% endif %}. Finished or fill-in, in English or Spanish, on one page or tiled big.{% endblock %}
+{% block main %}
+<div class="wrap chart-page" data-version="done" data-lang="en" data-size="1">
+  <div class="no-print">
+    {% if c.kind == 'poster' %}
+    {{ crumbs([('Supply Closet', '/closet/'), ('Posters and Anchor Charts', '/closet/anchor-charts/'), (c.title[0], None)]) }}
+    {% else %}
+    {{ crumbs([(grade_label(m.grade), grade_href(m.grade)), (subject.short, '/subjects/' ~ m.subject ~ '/'), (m.title, m.url), ('Anchor chart', None)]) }}
+    {% endif %}
+    <div class="page-head">
+      <p class="eyebrow">{% if c.kind == 'poster' %}Poster · {{ band_label }}{% else %}Anchor chart · {{ grade_label(m.grade) }} · {{ subject.short }}{% endif %}</p>
+      <h1>{{ c.title[0] }}</h1>
+      <p>{% if c.kind == 'poster' %}{{ c['for'][0] }}{% else %}The big idea of <a href="{{ m.url }}">{{ m.title }}</a> on one page.{% if tools %} It goes with {% for t in tools %}<a href="{{ t.url }}">{{ t.title }}</a>{% if t.plan %} (<a href="{{ t.url }}plan/">lesson plan</a>){% endif %}{{ ', ' if not loop.last }}{% endfor %}.{% endif %}{% endif %}</p>
+    </div>
+    <form class="word-controls" onsubmit="return false">
+      {% if c.layout != 'grid' %}
+      <fieldset>
+        <legend>Version</legend>
+        <label><input type="radio" name="version" value="done" checked> Finished</label>
+        <label><input type="radio" name="version" value="fill"> Fill-in</label>
+      </fieldset>
+      {% endif %}
+      <fieldset>
+        <legend>Language</legend>
+        <label><input type="radio" name="lang" value="en" checked> English</label>
+        <label><input type="radio" name="lang" value="es"> Español</label>
+      </fieldset>
+      <fieldset>
+        <legend>Size</legend>
+        <label><input type="radio" name="size" value="1" checked> One page</label>
+        <label><input type="radio" name="size" value="2"> 2 x 2 (17 x 22 in)</label>
+        <label><input type="radio" name="size" value="3"> 3 x 3 (25.5 x 33 in)</label>
+      </fieldset>
+      <button class="btn primary" type="button" onclick="print()">Print</button>
+    </form>
+    <p class="word-hint" data-for="done">The finished chart, to post as it is.</p>
+    <p class="word-hint" data-for="fill">The blanks are empty: fill them in with the class during the lesson. The finished version is your answer key.</p>
+    <p class="word-hint" data-for="tiles">Each page is one tile. Trim each page on the dashed line where it meets its neighbor, overlap, and tape. Tiles print in rows, left to right, top to bottom.</p>
+    <p class="word-note es-note">The Spanish is a first draft. A native speaker has not checked it yet, so read it over before you print.</p>
+  </div>
+
+  <svg class="chart-defs" aria-hidden="true" width="0" height="0">{% for s in symbols %}{{ s | safe }}{% endfor %}</svg>
+  {% for v in versions %}
+  <div class="chart-set" data-v="{{ v.version }}" data-l="{{ v.lang }}">
+    <div class="chart-size" data-n="1">
+      <svg class="chart-one" viewBox="0 0 850 1100" role="img" aria-label="{{ v.label }}"><use href="#{{ v.id }}" width="850" height="1100"/></svg>
+    </div>
+    {% for n, ts in tilings %}
+    <div class="chart-size chart-tiles" data-n="{{ n }}" style="--n:{{ n }}">
+      {% for t in ts %}
+      <figure class="chart-tile">
+        <svg viewBox="{{ t.box }}" preserveAspectRatio="xMidYMid meet" role="img" aria-label="{{ v.label }}, tile {{ loop.index }} of {{ ts | length }}"><use href="#{{ v.id }}" width="850" height="1100"/><rect x="{{ t.cut[0] }}" y="{{ t.cut[1] }}" width="{{ t.cut[2] }}" height="{{ t.cut[3] }}" fill="none" stroke="#777" stroke-width="1.2" stroke-dasharray="6 5" vector-effect="non-scaling-stroke"/></svg>
+        <figcaption>Tile {{ loop.index }} of {{ ts | length }}: row {{ t.row }}, column {{ t.col }}</figcaption>
+      </figure>
+      {% endfor %}
+    </div>
+    {% endfor %}
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}
+{% block scripts %}
+<script>
+(function () {
+  // ?version=fill&lang=es&size=2 in the link wins over the choice remembered on this computer
+  var page = document.querySelector('.chart-page'), ask = new URLSearchParams(location.search);
+  document.querySelectorAll('.word-controls input').forEach(function (input) {
+    var want = ask.get(input.name);
+    try { want = want || localStorage.getItem('cc-chart-' + input.name); } catch (e) {}
+    if (want === input.value) input.checked = true;
+    input.addEventListener('change', function () {
+      page.dataset[input.name] = input.value;
+      try { localStorage.setItem('cc-chart-' + input.name, input.value); } catch (e) {}
+    });
+  });
+  document.querySelectorAll('.word-controls input:checked').forEach(function (input) { page.dataset[input.name] = input.value; });
+})();
+</script>
+{% endblock %}

@@ -2,6 +2,7 @@
 
 Status: concepts AGREED by Cory 2026-10-26 (decisions at the bottom). This file is the implementation plan.
 Phase A and Phase C's words (all 586 modules) went LIVE 2026-10-27; deploy builds now use `--library --closet`.
+Phases B, D and E went LIVE 2026-10-27 overnight (status notes under each phase). Only Phase F, The Map, is left.
 
 The Supply Closet is the teacher-resources side of Curio Class: things to print and put up that go with the tools.
 It is organized like a real supply closet, as shelves:
@@ -95,6 +96,10 @@ Done when: every tool crumb links to a real module page, `3.NF.A.1` finds Fracti
 ## Phase B: Sub Day (ships with every new tool)
 
 A one-click packet a teacher prints and leaves on the desk. A skeleton with blanks, not a script.
+
+**Status (2026-10-27): LIVE.** All 74 tools with plans have `exit.md` and a Sub Day page; each prints as five Letter
+pages (checked in headless Chrome, not yet on a real printer). The cover has the QR code (Q2) beside the written link.
+Shelf: `/closet/sub-day/`. Still owed: Cory's review of the K-2 checklists and the sensitive tools.
 
 ### The packet (in print order)
 
@@ -242,6 +247,13 @@ words in a module, no em dashes, the definition does not use the word itself).
 
 ## Phase D: Posters and Anchor Charts
 
+**Status (2026-10-27): LIVE.** 74 anchor charts (every module with a built tool and plan) and 35 posters (10 K-2,
+9 for 3-5, 9 for 6-8, 7 for 9-12), all in English and Spanish, finished and fill-in, one page or tiled 2x2 / 3x3
+(page counts checked in headless Chrome). Files: `data/closet/charts/`, `data/closet/posters/`; drawing in
+`scripts/charts.py`; shelf `/closet/anchor-charts/`. Posters with no layout of their own (maps, the periodic table,
+number lines, the full Bill of Rights) are not made yet: they need their own drawing code or data. A `grid` layout
+covers the hundred chart and the times table.
+
 ### Anchor charts (one per module)
 
 An anchor chart is the module's big idea on one page. Each one is written once as structured text and rendered into
@@ -285,6 +297,9 @@ cap per part, no em dashes).
 ---
 
 ## Phase E: Family Game Night
+
+**Status (2026-10-27): LIVE.** 104 games, 2 per core subject per grade K-12, in English and Spanish; shelf
+`/closet/game-night/`, and a Games row on each module page. Not play-tested yet.
 
 ### Scope
 

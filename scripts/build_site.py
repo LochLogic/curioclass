@@ -22,6 +22,8 @@ import check_plans  # noqa: E402
 import check_words  # noqa: E402
 import check_games  # noqa: E402
 import qr  # noqa: E402
+import check_charts  # noqa: E402
+import charts as chart_svg  # noqa: E402
 
 bundle_all()  # tools with src.html get their art inlined first
 
@@ -257,14 +259,44 @@ for g in games.values():
     for mid in g['module_ids']:
         games_by_module[mid].append(g)
 
+# Posters and Anchor Charts (Phase D): a chart per module, and posters by band; a bad or overfull chart stops the build
+charts = check_charts.load('chart') if CLOSET_LIVE else {}
+posters = check_charts.load('poster') if CLOSET_LIVE else {}
+for c in list(charts.values()) + list(posters.values()):
+    bad = check_charts.problems(c, modules)
+    if bad:
+        sys.exit('; '.join(bad) + ' (python scripts/check_charts.py)')
+CSS_HEX = dict(re.findall(r'--([a-z]+): (#[0-9a-f]{6});', (ROOT / 'site' / 'assets' / 'curio.css').read_text(encoding='utf-8')))
+
+
+def chart_page(c, color, **ctx):
+    """/modules/<id>/chart/ or a poster page: a symbol per version and language, and chart.svg for the shelf."""
+    symbols, versions = [], []
+    for v in ['done', 'fill'] if c['layout'] != 'grid' else ['done']:
+        for lang in ['en', 'es']:
+            sid = f'c-{v}-{lang}'
+            sym, fits = chart_svg.symbol(c, sid, lang, v == 'fill', color)
+            if not fits:
+                sys.exit(f"{c['file']}: too long to fit on one page ({lang}); cut words (python scripts/charts.py {c['id']})")
+            symbols.append(sym)
+            versions.append(dict(id=sid, version=v, lang=lang, label=f"{c['title'][0 if lang == 'en' else 1]}, "
+                                 f"{'fill-in' if v == 'fill' else 'finished'}, {'English' if lang == 'en' else 'Spanish'}"))
+    render('closet/chart.html', c['url'], c=c, symbols=symbols, versions=versions,
+           tilings=[(n, chart_svg.tiles(n)) for n in (2, 3)], **ctx)
+    (DIST / c['url'].strip('/') / 'chart.svg').write_text(chart_svg.svg(c, 'en', False, color), encoding='utf-8')
+
+
 # modules: the hub for everything one module has (tools, then Supply Closet shelves as they ship)
 for m in modules.values():
     mt = by_module[m['module_id']]
     plans = [t for t in mt if t['built'] and t['plan']]
     cards = words.get(m['module_id'], [])
     render('module.html', m['url'], m=m, items=mt, plans=plans, words=cards, subject=subjects[m['subject']],
-           games=games_by_module.get(m['module_id'], []), course=courses.get(m['course_id']),
+           games=games_by_module.get(m['module_id'], []), course=courses.get(m['course_id']), chart=charts.get(m['module_id']),
            index=any(t['built'] for t in mt) or bool(cards))
+    if m['module_id'] in charts:
+        chart_page(charts[m['module_id']], CSS_HEX[subjects[m['subject']]['color']], m=m, subject=subjects[m['subject']],
+                   tools=[t for t in mt if t['built']])
     if cards:
         dest = DIST / 'modules' / m['module_id'] / 'words'
         for c in cards:
@@ -351,7 +383,16 @@ for gr in GRADES:  # a tool sits under the first grade it is written for
     ts = sorted((t for t in sub_tools if t['module']['grades'][0] == gr), key=lambda t: (list(subjects).index(t['module']['subject']), t['title']))
     if ts:
         sub_sections.append(dict(id=f'grade-{gr}', label=grade_label(gr), tools=ts))
-counts = {'sub-day': f'{len(sub_tools)} packets' if sub_tools else '', 'word-wall': wall_tally(list(wall)) if words else '', 'game-night': f'{len(games)} games' if games else ''}
+for c in posters.values():
+    chart_page(c, CSS_HEX['teal'], band_label=bands[c['band']]['label'])
+chart_sections = [dict(id=f'posters-{bid}', label=f"Posters: {b['label']}", items=sorted((c for c in posters.values() if c['band'] == bid), key=lambda c: c['title'][0]))
+                  for bid, b in bands.items()]
+for gr in GRADES:  # a chart sits under the first grade its module is written for
+    cs = sorted((c for c in charts.values() if modules[c['id']]['grades'][0] == gr),
+                key=lambda c: (list(subjects).index(modules[c['id']]['subject']), c['title'][0]))
+    chart_sections.append(dict(id=f'grade-{gr}', label=grade_label(gr), items=cs))
+chart_sections = [s for s in chart_sections if s['items']]
+counts = {'anchor-charts': f'{len(charts)} charts, {len(posters)} posters' if charts else '', 'sub-day': f'{len(sub_tools)} packets' if sub_tools else '', 'word-wall': wall_tally(list(wall)) if words else '', 'game-night': f'{len(games)} games' if games else ''}
 # Game Night: one shelf page with a section per grade (games in subject order), and a print page per game
 SUBJECT_ES = {'math': 'Matemáticas', 'ela': 'Lectura y escritura', 'science': 'Ciencias', 'social-studies': 'Estudios sociales'}
 game_sections = []
@@ -367,6 +408,8 @@ for sid, label, what in CLOSET:
         render('closet/word-wall.html', '/closet/word-wall/', label=label, what=what, wall_bands=wall_bands)
     elif sid == 'sub-day' and sub_tools:
         render('closet/sub-day.html', '/closet/sub-day/', label=label, what=what, sections=sub_sections)
+    elif sid == 'anchor-charts' and charts:
+        render('closet/anchor-charts.html', '/closet/anchor-charts/', label=label, what=what, sections=chart_sections, modules=modules)
     elif sid == 'game-night' and games:
         render('closet/game-night.html', '/closet/game-night/', label=label, what=what, sections=game_sections)
     else:

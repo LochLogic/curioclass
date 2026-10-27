@@ -39,8 +39,12 @@ Needs Python with `jinja2` and `markdown`. `dist/` is generated and not committe
 | `/modules/<id>/words/` | Word Wall print page: wall cards, mini cards, glossary; English, Spanish or both (`?format=`, `?lang=`); built only with `--closet` or `--preview` | yes in closet builds |
 | `/closet/word-wall/<grade>/` | Word Wall list for one grade or span (`k`, `3`, `9-12`, `k-12`), modules grouped by subject | yes in closet builds |
 | `/closet/`, `/closet/<shelf>/` | Supply Closet (docs/SUPPLY-CLOSET-PLAN.md); built only with `--closet` or `--preview` until Sub Day ships | yes / noindex while a shelf is empty |
+| `/modules/<id>/chart/` | Anchor chart (Phase D): finished or fill-in, English or Spanish, one page or tiled 2x2 / 3x3 (`?version=`, `?lang=`, `?size=`); `chart.svg` beside it is the shelf thumbnail | yes in closet builds |
+| `/closet/anchor-charts/posters/<id>/` | Year-long poster, same page and options as an anchor chart | yes in closet builds |
+| `/closet/game-night/<game-id>/` | Family Game Night card (Phase E) | yes in closet builds |
 | `/tools/` | Built tools | yes |
 | `/tools/<id>/` | Tool page (built) | yes |
+| `/tools/<id>/sub/` | Sub Day packet (Phase B): five Letter pages, shown when `tools/<id>/exit.md` exists; built only with `--closet` | no (noindex; it repeats the plan) |
 | `/tools/<id>/` | On the bench page (unbuilt) | no (noindex) |
 | `/tools/<id>/<id>.html` | The tool file itself: play and download | n/a |
 | `/bench/` | All unbuilt concepts | no |

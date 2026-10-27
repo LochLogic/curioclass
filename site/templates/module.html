@@ -36,6 +36,14 @@
   </section>
   {% endif %}
 
+  {% if chart %}
+  <section class="group">
+    <h2>Anchor chart</h2>
+    <p>{{ chart.title[0] }}: the big idea of this module on one page, finished or fill-in, in English or Spanish. Print it on one page or tile it big.</p>
+    <p><a class="btn" href="{{ chart.url }}">Print the anchor chart</a></p>
+  </section>
+  {% endif %}
+
   {% if games %}
   <section class="group">
     <h2>Family Game Night</h2>
