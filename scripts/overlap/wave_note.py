@@ -55,7 +55,8 @@ def tool_note(c, review, choices, by_title, gapfill):
         parts.append(f'{verb} by the overlap pass (Cory accepted; the title and concept above are the new ones). '
                      f'The clash it fixed: {why}.')
     elif ch['choice'] == 'later':
-        sug = f'"{r["new_title"]}"' + (f': {r["new_concept"]}' if r['fix'] == 'reshape' and r.get('new_concept') else '')
+        title = f'"{r["new_title"]}"' if r.get('new_title') else 'keep the title'
+        sug = title + (f': {r["new_concept"]}' if r['fix'] == 'reshape' and r.get('new_concept') else '')
         parts.append(f'Overlap note (left for you to settle in the spec): {why}. Suggested fix ({r["fix"]}): {sug.rstrip(".")}. '
                      'Take it, or solve the clash another way and say how in "Not like". Keep the topic word in the title.')
     elif r['fix'] == 'spec-note':
