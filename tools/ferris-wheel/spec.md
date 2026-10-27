@@ -122,11 +122,13 @@ Bank `hs-narrator`, voice `Kore`, style "Read clearly and naturally, at a modera
 8. unit-cosine: "The sideways distance is the cosine. Cosine squared plus sine squared is always one."
 9. real-welcome: "These are real wheels, drawn to scale. All four share the same axes, so you can compare them."
 10. real-period: "The big wheels take about half an hour to turn once. The first Ferris wheel, in 1893, took about nine minutes."
-11. match-welcome: "Here is a target graph. Change the wheel until your curve lands on top of it."
-12. match-yes: "Matched. Your wheel draws that graph."
-13. match-full: "The graph is full. Press Restart to ride again."
+11. match-welcome: "Here is a target graph. Change the wheel until your curve lands on top of it, then press Check."
+12. match-yes: "Matched. Your wheel draws that graph." (every match)
+13. match-next: "Press Next for a new target." (after the first match, not on target 8)
+14. match-no: "Not yet. The marker shows the biggest gap. Change the wheel and press Check again." (every miss)
+15. match-full: "The graph is full. Press Restart to ride again."
 
-13 lines. Read in any mode reads that mode's hint (readFallback).
+15 lines. Read in any mode reads that mode's hint (readFallback).
 
 ## Family engine
 Family: none, but the tool plots functions, so it reuses `kit/graphing.js` (built by rollercoaster-polynomials to `docs/families/graphing.md`): `Plane` for all graphs, `g.fn` for the riding trace (with `domain: [0, t]`), target and kept curves (dashed), `g.trace` for the draggable graph dot, `g.slider` for the three sliders, `g.label` for kept-curve equations. Colors `--gr-1` (your curve), `--gr-2` (target), `--gr-3` (sideways or cosine), `--gr-4` (kept). The wheel, the unit-circle drawing, the rod and unroll animations are the tool's own SVG, positioned with `g.px` where they touch the graph. If the engine lacks something needed (for example a trace that can be dragged on the time axis only), add it to the engine and its doc in the same change, per the family rules.
@@ -148,5 +150,5 @@ Family: none, but the tool plots functions, so it reuses `kit/graphing.js` (buil
 6. Real Wheels: London Eye shows lowest 15 m, top 135 m, period 30 min, rim speed 0.21 m/s; keeping all four graphs shows four labeled dashed curves on one set of axes.
 7. Match: target 1 is matched by r 15, D 20, P 60 from Bottom in either direction; target 6 is not matched by the target 5 wheel; a miss reports the biggest gap and where.
 8. Motion off: One radian and Unroll jump to their end state, Play still advances; Sound off makes no ticks.
-9. Each mode speaks its welcome line once on first entry after a tap; Read speaks the mode hint; mode switch stops speech and the clock.
+9. Each mode speaks its welcome line once on first entry after a tap (the Ride welcome says Press Play, so it is dropped if the first tap is Play); Read speaks the mode hint; mode switch stops speech and the clock.
 10. Usable at 375 px wide (wheel above graph) and in a 16:10 iframe; no network requests; no em dashes in any text.

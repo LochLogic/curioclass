@@ -78,8 +78,25 @@ body.compact .p-match2{order:2}
 body.compact[data-mode="match"] .p-wheel .glab{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 body.compact[data-mode="match"] .p-wheel .grp+.glab+.grp{margin-top:4px}
 body.compact[data-mode="match"] .p-match .msg{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
-#mres2{display:none}
+#mres2{display:none;scroll-margin-bottom:80px}   /* clear of the held clock when scrolled into view */
 body.compact[data-mode="match"] #mres2:not(:empty){display:block;margin:0 0 6px}
+/* wide panel: what you change comes before the readouts, so the wheel is on screen at 1366x768; in Match the target
+   row and Check come first, then the wheel, then Show my curve and the clock */
+body.wide .p-wheel{order:1} body.wide .p-ro,body.wide .p-show,body.wide .p-keep,body.wide .p-fact{order:2}
+body.wide[data-mode="match"] .p-match2,body.wide[data-mode="match"] .p-clock{order:2}
+/* a short wide window (1366x768, 1280x720): one row per slider and Board at in one row, as in compact; in Match the
+   result moves under the wheel and the clock is held at the bottom of the panel, so Check, the wheel and Play all show */
+@media (max-height:900px){
+  body.wide .slot .gr-slider{grid-template-columns:5.2em minmax(0,1fr) 4.6em;gap:0 6px}
+  body.wide .slot .gr-slider label{grid-column:auto;line-height:1.15}
+  body.wide .grp.b4{display:grid;grid-template-columns:repeat(4,1fr);gap:3px}
+  body.wide .grp.b4 .btn{padding:0 2px} body.wide .grp.b4 .lw,body.wide .trow .lw{display:none}
+  body.wide .tline{flex:1;text-align:center}
+  body.wide[data-mode="match"] .p-clock{order:99;position:sticky;bottom:-14px;z-index:5;background:var(--head-bg)}
+  body.wide[data-mode="match"] .p-clock>h2{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+  body.wide[data-mode="match"] .p-match .msg{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+  body.wide[data-mode="match"] #mres2:not(:empty){display:block;margin:0 0 6px}
+}
 /* stack: the clock rides along under the graph, so Play and the graph are on screen together */
 body.stack .graphcol .p-clock{position:sticky;bottom:0;z-index:5;border:0;border-top:1px solid var(--line);border-radius:0;background:var(--head-bg);padding:6px 12px}
 body.stack .graphcol .p-clock>h2{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
@@ -274,8 +291,10 @@ body.stack .panel{border-left:0;border-top:1px solid var(--line)}
     unitCosine: 'The sideways distance is the cosine. Cosine squared plus sine squared is always one.',
     realWelcome: 'These are real wheels, drawn to scale. All four share the same axes, so you can compare them.',
     realPeriod: 'The big wheels take about half an hour to turn once. The first Ferris wheel, in 1893, took about nine minutes.',
-    matchWelcome: 'Here is a target graph. Change the wheel until your curve lands on top of it.',
+    matchWelcome: 'Here is a target graph. Change the wheel until your curve lands on top of it, then press Check.',
     matchYes: 'Matched. Your wheel draws that graph.',
+    matchNext: 'Press Next for a new target.',
+    matchNo: 'Not yet. The marker shows the biggest gap. Change the wheel and press Check again.',
     full: 'The graph is full. Press Restart to ride again.',
   };
   // the panel hints (Read speaks them, so they are recorded too)
@@ -283,13 +302,13 @@ body.stack .panel{border-left:0;border-top:1px solid var(--line)}
     ride: 'Press Play to ride. Drag the car around the wheel, or drag the dot along the graph. Then change the wheel and ride again.',
     unit: 'Radius 1. The height of the car is the sine of the angle. Press One radian to see how big a radian is.',
     real: 'Pick a wheel. All four use the same axes, so keep each graph to compare them.',
-    match: 'Change the wheel until your curve lands on the dashed one. Press Show my curve to see it all at once.',
+    match: 'Change the wheel until your curve lands on the dashed one, then press Check. Press Show my curve to see it all at once.',
     clear: 'Hub raised so the cars clear the ground.',
   };
   // Narration (docs/KIT.md "Voice"): one welcome per mode (L[mode + 'Welcome']); how-to and teaching lines once, then
   // silent; events every time. A line queued in one mode is dropped if the mode changes first (scope). The hint is the
   // tool's own (the mode's hint, or a note in state.hintMsg), so lines never write it, and Read speaks it.
-  // Event lines (spoken every time): matchYes. Everything else is a how-to or teaching line.
+  // Event lines (spoken every time): matchYes, matchNo. Everything else is a how-to or teaching line.
   const V = Curio.voice({lines: L, scope: () => state.mode, welcome: () => [state.mode + 'Welcome', {valid: () => !(state.mode === 'ride' && state.playing)}],
     hint: false, read: () => $('hint').textContent});   // the Ride welcome says Press Play, so not while it plays
 
@@ -962,16 +981,21 @@ body.stack .panel{border-left:0;border-top:1px solid var(--line)}
     for (let i = 0; i <= 240; i++) { const t = i * .5, d = Math.abs(hOf(t, fw) - hOf(t, ft)); if (d > worst + 1e-12) { worst = d; wt = t; } }
     if (worst <= .5 + 1e-9) {
       state.matched.add(state.target); state.gap = null; state.showFull = true; state.resultOk = true;
-      state.result = `Matched. Your wheel draws this graph. ${TARGETS[state.target].note}`;
-      const i = state.target;   // an event: spoken on every match, while this match is still on screen
-      Curio.yes(); V.say('matchYes', {valid: () => state.target === i && state.resultOk && !!state.result});
+      const i = state.target, last = i === TARGETS.length - 1;
+      state.result = `Matched. Your wheel draws this graph. ${TARGETS[i].note}` + (last ? '' : ' Press Next ▶ for a new target.');
+      const still = () => state.target === i && state.resultOk && !!state.result;   // this match is still on screen
+      Curio.yes(); V.say('matchYes', {valid: still});   // an event: spoken on every match
+      if (!last) V.how('matchNext', {valid: still, needs: '#nextT'});
     } else {
       state.resultOk = false;
       state.gap = {t: wt, a: hOf(wt, fw), b: hOf(wt, ft)};
       state.result = `Not yet. Biggest gap: ${fmt(worst, 1)} m near t = ${fmt(wt, 1)} s.`;
+      const i = state.target;   // an event too: a Check that says nothing reads as a button that did nothing
+      V.say('matchNo', {valid: () => state.target === i && !state.resultOk && !!state.result});
     }
     $('mres').textContent = $('mres2').textContent = state.result; $('mres').className = $('mres2').className = 'msg' + (state.resultOk ? ' ok' : '');
     build();
+    if (page === 'wide' && $('mres2').offsetParent) $('mres2').scrollIntoView({block: 'nearest'});   // short wide: the result under the wheel (in compact this would scroll Check away)
     return {matched: state.resultOk, worst, at: wt};
   }
   $('checkBtn').onclick = check;

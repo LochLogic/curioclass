@@ -235,3 +235,18 @@ Clips: no browser-voice fallback in any run; every line played from its recordin
 - Match: target 3 matched by Top clockwise (gap 0); target 8 matched by Right side clockwise (gap 0); target 2 with P 45 gives "Biggest gap: 42.5 m near t = 116.5 s", the same as my Python.
 - Sizes 680x425, 800x500, 1000x625, 1280x720, 1366x768, 1920x1080, 760x900 and 375x812 (iframe host): no horizontal scroll, no button under 44 px, hint 14 to 16 px, Check and Play on screen in Match at every compact size. No console errors or exceptions on the repaired copy (the only log line was the test host's own favicon 404).
 - No em dashes in src, notes, verify or lines; "Curio" alone appears only as the kit's JS name.
+
+## Fix round (after the cold verify)
+
+2026-10-27. Blocker 1 fixed in 81ce107, and `check_tools.py` now runs `node --check` on every inline script, so a tool that does not parse fails the check (proved on the broken build: "script 3 does not parse").
+
+- **2, Check named:** the Match welcome now ends "then press Check." and the Match hint says "..., then press Check. Press Show my curve ...".
+- **3, a miss is heard:** new event line matchNo, "Not yet. The marker shows the biggest gap. Change the wheel and press Check again.", on every miss while that miss is on screen.
+- **5, Matched points on:** the result adds "Press Next ▶ for a new target." (not on target 8), and a how-to line matchNext, "Press Next for a new target.", is spoken once after the first match, then silent.
+- **4, 1366x768:** in the wide panel the wheel now comes before the readouts. In Match the order is the target row and Check, then the wheel, then Show my curve and the clock. Below 900 px tall the wide panel takes the compact rows: one row per slider, Board at in one row, and target arrows without words. In Match the result moves under the wheel and the clock is held at the panel bottom, and after Check the panel scrolls just enough to show the whole result.
+  - Measured at 1366x768: the Ride Turn row ends at y 579. In Match, Check is at 237 to 281, the Turn row ends at 607, the result is at 639 to 702 and Play at 713 to 757.
+  - At 1280x720 with the longest note (target 5): Check is on screen, the result is at 556 to 640 and the clock at 654 to 720.
+  - At 1920x1080 the Match Turn row ends at 706. Compact (680x425, 1000x625) and stack are unchanged.
+- **7:** spec Done-when 9 now says the Ride welcome is dropped when the first tap is Play. The migration table above is left as the record of that run.
+- Voice run (1366x768, held clicks): matchWelcome; Check on a miss gave matchNo; a match gave matchYes, then matchNext; a second Check gave matchYes, with matchNext silent (heard); Next, then Check gave matchNo. The four new or changed lines were recorded locally, with no liveliness flag on them. `check_tools.py` reports ok, and there were no console errors at any size.
+- Left as notes: 6 (the Unit and Real welcomes name no action, but their hints do), 8 (a cut welcome is gone, which is the helper's rule), 9 (rideBoard has no on-screen echo), 10 (the hint is below the fold in the compact Ride and the stack layouts) and 11.
