@@ -3,7 +3,7 @@ math-k-counting-to-100|Hundred Hop|showdown|number-path|A frog hops along a gian
 math-k-how-many|Sheep Count|showdown||Sheep wander into a pen one at a time; kids touch-count along with the teacher, then guess how many are hiding when the barn door closes.
 math-k-more-less-same|Snack Scale|sandbox|balance|A seesaw takes piles of cartoon snacks; whichever side has more tips down, and kids predict which way before the teacher lets go.
 math-k-putting-together-and-taking-apart|Bus Stop|story||A school bus picks up and drops off riders at each stop; the class tells the addition or subtraction story out loud.
-math-k-teen-numbers|Ten Frame Factory|sandbox|ten-frame|Fill a ten frame, then spill the extras onto a second; the number name and "ten and some more" build as you go.
+math-k-teen-numbers|Ten Frame Spillover|sandbox|ten-frame|Fill a ten frame, then spill the extras onto a second; the number name and "ten and some more" build as you go.
 math-k-longer-heavier-bigger|Who Wins?|showdown||Two animals face off on length, weight or height; kids vote with thumbs, then the measuring tape or scale settles it.
 math-k-sort-and-count|Toy Box Sort|sort||Dump a toy box and sort by color, shape or size; the tool counts each pile and builds a tiny picture graph.
 math-k-shapes-all-around|Shape Spy|explorer||Photos of a playground, kitchen and street hide circles, squares and cubes; tap to reveal outlines and names.
@@ -12,13 +12,13 @@ math-1-addition-and-subtraction-stories|Story Problem Theater|story||Short anima
 math-1-fact-strategies|Make Ten Machine|puzzle||Pairs of numbers roll in on a conveyor; slide counters across to make a ten and watch the harder fact turn easy.
 math-1-the-equal-sign|Balance the Beam|puzzle|balance|A balance scale with numbers on both sides; find the missing weight so it levels. Kills the "equals means the answer comes next" myth.
 math-1-counting-to-120|Number Path Rescue|race|number-path|Missing tiles on a 120 chart; fill them before the river rises. Patterns in the chart make it faster.
-math-1-tens-and-ones|Bundle Bakery|tycoon|base-ten|Bake cookies, pack them in boxes of ten, and fill customer orders like "4 boxes and 7 loose."
+math-1-tens-and-ones|Crayon Boxes|tycoon|base-ten|Pack the class's loose crayons into boxes of ten for every table; say how many boxes and loose crayons, then compare two classrooms' supplies with >, = and <.
 math-1-adding-tens-and-ones|Elevator Hundred|simulator|number-path|An elevator moves up by tens and floors by ones in a hundred-chart building; ride it to solve sums.
 math-1-measuring-length|Paperclip Ruler|lab||Measure classroom objects with paperclips, cubes or shoes; compare results and discover why same-size units matter.
 math-1-telling-time-to-the-half-hour|Clock Shop|sandbox|clock|Drag the hands of a big friendly clock and watch the digital clock and the day's sky change with them.
 math-1-picture-graphs-and-tallies|Class Poll|data|class-poll|The class votes on favorite pets or snacks; tallies turn into a picture graph live on the board for discussion.
 math-1-halves-and-fourths|Pizza Party|builder|fraction-food|Cut pizzas and sandwiches so friends get fair shares; uneven cuts get a funny complaint from a guest.
-math-2-two-step-word-problems|Treasure Map Steps|mystery||Follow a pirate's two-part clues; each step's answer is a coordinate on the map to the next clue.
+math-2-two-step-word-problems|Lost and Found|mystery||Two-step clues about what came in and went out of the lost and found each day ('14 mittens, 6 picked up, 5 more found') point to the box that holds the missing toy.
 math-2-fluency-within-20|Fact Rally|arcade||Volley facts back and forth with a tennis bot; strategies (doubles, near doubles, make ten) unlock power shots.
 math-2-odd-even-and-arrays|Marching Band|builder||Line up band members in rows; can everyone have a partner? Arrays reveal odd and even and repeated addition.
 math-2-hundreds-tens-and-ones|Place Value Vault|escape|base-ten|Crack three-digit vault codes from clues like "7 tens, 2 hundreds, 0 ones." Teams race the alarm.
@@ -29,7 +29,7 @@ math-2-line-plots-and-bar-graphs|Lunch Line Data|data|class-poll|Real-feeling ca
 math-2-shapes-and-equal-shares|Garden Grid|builder||Partition a garden bed into equal rows and columns of plants; count the squares to plan the planting.
 math-3-meaning-of-multiplication-and-division|Equal Groups Zoo|sandbox|arrays|Feed zoo animals equal groups; the tool shows the same picture as an array, a skip-count and an equation.
 math-3-times-tables-fluency|Multiplication Dungeon|arcade||A retro dungeon crawl where each door is a fact; facts you miss come back as tougher monsters until mastered.
-math-3-patterns-and-two-step-problems|Pattern Detective|mystery||Odd number patterns in the multiplication table hide a culprit's alibi; explain the pattern to close the case.
+math-3-patterns-and-two-step-problems|Pattern Painter|mystery||Color the multiplication table to make patterns pop (every even product, every multiple of 5, the square numbers), predict the next colored square and explain the rule in one sentence, then use a pattern to crack a two-step word problem.
 math-3-rounding-and-multi-digit-operations|Roller Coaster Rounding|simulator|number-line|A coaster car rolls to the nearest ten or hundred hill; see why 45 rolls up.
 math-3-fractions-as-numbers|Fraction Trail|map|number-line|Hike a trail marked in fractions; place campsites at 3/4 or 2/2 and discover equivalent points.
 math-3-time-volume-and-mass|Kitchen Lab|lab||Measure liquids and weigh ingredients for recipes while a timer runs; plan elapsed time so dinner is ready at 6.
@@ -43,7 +43,7 @@ math-4-number-patterns|Rule Machine|puzzle|function-machine|Numbers go in, numbe
 math-4-place-value-to-a-million|Stadium Count|explorer||Zoom from one seat to a full stadium to a city; see thousands and hundred-thousands as real crowds.
 math-4-multi-digit-multiplication-and-division|Area Model Builder|sandbox|area|Split big multiplications into rectangles you can actually compute, then put them back together.
 math-4-equivalent-fractions-and-comparing|Fraction Wall Duel|cards|fraction-wall|A two-player card game on a fraction wall: play a fraction bigger than your opponent's, or an equal one to steal.
-math-4-adding-and-multiplying-fractions|Recipe Scaler|tycoon|fraction-food|Run a bakery; scale recipes up for big orders by multiplying fractions of cups.
+math-4-adding-and-multiplying-fractions|Recipe Scaler|tycoon|fraction-food|Scale a family recipe up for the whole class party: multiply each fraction of a cup by the number of batches and watch the measuring cups fill. No shop to run and no customers, so it no longer sits beside grocery-run and the pizza shop.
 math-4-decimals|Money and Meters|simulator||Tenths and hundredths shown three ways: dimes and pennies, meter sticks, and grids. Change one and the others follow.
 math-4-measurement-conversions|Unit Ladder|race||Climb a conversion ladder (feet to inches, kilograms to grams) against the clock with a conversion table that unlocks as you go.
 math-4-angles-and-line-plots|Skate Park Angles|builder||Design ramps and turns with a protractor; the skater can only land certain angles.
@@ -56,7 +56,7 @@ math-5-adding-unlike-fractions|Fraction Kitchen|puzzle|fraction-food|Combine mea
 math-5-multiplying-and-dividing-fractions|Shrink Ray|simulator||Multiply by a fraction and the shrink ray scales the picture; multiply by more than one and it grows.
 math-5-units-and-line-plots|Seed Sprout Data|data||Measure fractional heights of seedlings over days, plot them, and redistribute water evenly.
 math-5-volume|Box Packer|puzzle||Pack cubes into shipping boxes; find the volume formula by watching layers stack.
-math-5-the-coordinate-plane|Battleship Grid|cards|coordinate|Classic hide-and-seek ships on the first quadrant; call coordinates to find them.
+math-5-the-coordinate-plane|Sea Search Grid|cards|coordinate|Hide boats on the first quadrant and call coordinates to find a partner's; each miss tells you how far off you were.
 math-5-classifying-2d-figures|Shape Courtroom|roleplay||Put a shape on trial: is a square a rhombus? Present the evidence (sides and angles) to the jury.
 math-6-ratios-and-rates|Smoothie Lab|lab|ratio|Mix fruit in ratios and taste-test (the tool reacts); find recipes that taste the same at bigger sizes.
 math-6-dividing-fractions|How Many Fit?|sandbox|fraction-wall|Drag fraction bars into a container to see how many 3/4s fit in 2 1/2. Division as measuring.
@@ -73,7 +73,7 @@ math-7-operations-with-rational-numbers|Hot Air and Sandbags|simulator||Add hot 
 math-7-equivalent-expressions|Expression Match|cards|algebra-tiles|Memory-style card game: match expressions that are equivalent but written differently.
 math-7-multi-step-equations-and-inequalities|Phone Plan Showdown|roleplay||Compare two phone plans as a salesperson and a skeptical customer; equations prove which is cheaper and when.
 math-7-scale-drawings-and-constructions|Blueprint Studio|studio||Design a dream bedroom on a scale floor plan; the 3D preview shows whether the bed actually fits.
-math-7-circles-angles-area-and-volume|Pizza Physics|lab||Is one 16-inch pizza more than two 10-inch ones? Measure and compare circles to settle classic food debates.
+math-7-circles-angles-area-and-volume|Big Wheel, Small Wheel|lab||Settle classic round-object arguments (one big trampoline or two small ones? a 26-inch bike wheel or a 20-inch?) by measuring circumference and area.
 math-7-sampling-and-inference|Jellybean Jar|simulator|sampling|Draw random samples from a giant jar to estimate the color mix; bigger samples get closer to the truth.
 math-7-probability|Carnival Odds|simulator|probability|Spin wheels and roll dice thousands of times; compare theoretical odds to the experiment. Are the carnival games fair?
 math-8-irrational-numbers|Square Root Hunt|puzzle|number-line|Squeeze the square root of 2 between closer and closer decimals on a zooming number line.
@@ -84,12 +84,12 @@ math-8-defining-functions|Function Machine Factory|puzzle|function-machine|Build
 math-8-modeling-with-functions|Story Graphs|sort|graphing|Match stories ("I ran, then stopped for water") to the graphs that tell them, then draw your own.
 math-8-transformations|Dance Floor Moves|studio|transformations|Choreograph a shape through slides, flips, turns and dilations to music; replay the routine as a sequence of rules.
 math-8-the-pythagorean-theorem|Square Slicer|puzzle||Cut the two small squares and rearrange the pieces to fill the big one; then use it to find shortcuts across a park.
-math-8-volume-of-cylinders-cones-and-spheres|Ice Cream Shop|tycoon||Price cones, cups and pints by volume; customers notice when a cone is a rip-off.
+math-8-volume-of-cylinders-cones-and-spheres|Snow Globe Maker|tycoon||Design snow globes, cone-shaped tree ornaments and cylinder bases; volume decides how much water and glitter each needs and what each costs to make.
 math-8-bivariate-data|Data Detective|data|data-desk|Real data (shoe size vs height, study time vs score); fit a line, spot outliers, read a two-way table.
 math-9-rational-exponents-and-real-numbers|Exponent Rule Builder|puzzle||Unlock exponent rules by experimenting with patterns, then prove why a 1/2 power is a square root.
 math-9-units-and-quantities|Unit Detective|mystery||Real headlines with impossible numbers; use dimensional analysis to find which claims fall apart.
 math-9-structure-of-expressions|Algebra Tile Studio|sandbox|algebra-tiles|Factor and complete the square with algebra tiles; watch the rectangle and the expression change together.
-math-9-polynomial-arithmetic|Polynomial Garden|builder|algebra-tiles|Multiply polynomials as area models that grow into gardens; like terms bloom in the same color.
+math-9-polynomial-arithmetic|Polynomials as Numbers|builder||Set x = 10 and watch every polynomial become an ordinary number; multiplying polynomials turns into long multiplication without carrying, and like terms line up like place-value columns.
 math-9-creating-equations|Model My World|builder||Pick a real situation (phone data, gym fees, savings) and write the equation that predicts it; the tool checks it against data.
 math-9-solving-linear-equations-and-inequalities|Equation Golf|puzzle|balance|Solve equations in as few legal moves as possible; par scores reward elegant solutions.
 math-9-systems-of-equations|Intersection Quest|race|graphing|Find where two lines cross three ways (graph, substitution, elimination) and race your own best time.
@@ -97,7 +97,7 @@ math-9-function-notation-and-graphs|Graph Story Lab|explorer|graphing|Explore re
 math-9-linear-quadratic-and-exponential-models|Which Model Wins?|data|data-desk|Real data sets (viral videos, braking distance, savings): fit linear, quadratic and exponential models and pick the best.
 math-9-quadratic-equations|Launch Pad|simulator|graphing|Launch a projectile and see its quadratic; the roots are where it lands. Solve to aim for targets.
 math-9-data-in-one-and-two-variables|Correlation Guessing Game|arcade||Guess the correlation of a scatter plot; residual plots expose the trick ones.
-math-10-rigid-motions-and-congruence|Transformation Golf|puzzle|transformations|Move a shape onto its twin with the fewest transformations; prove congruence by mapping.
+math-10-rigid-motions-and-congruence|Rigid Motion Twins|puzzle|transformations|Each level shows a shape and its twin; map one onto the other with the fewest rigid motions, then write the sequence as the proof that they are congruent.
 math-10-proofs-and-constructions|Proof Blocks|puzzle||Drag statements and reasons into a proof that holds up; a compass-and-straightedge sandbox handles constructions.
 math-10-similarity|Shadow Measure|lab||Measure a flagpole with its shadow and a meter stick using similar triangles, then check with the real height.
 math-10-right-triangle-trigonometry|Ramp and Roof|builder||Design accessible ramps and roof pitches that meet code using sine, cosine and tangent.
@@ -122,7 +122,7 @@ math-12-polar-coordinates-and-complex-plane|Polar Rose Studio|studio||Draw roses
 math-12-conic-sections|Cone Slicer|explorer||Slice a double cone at different angles to get circles, ellipses, parabolas and hyperbolas; see real-world uses.
 math-12-limits-and-rates-of-change|Zoom to the Limit|explorer||Zoom into a curve until it looks straight; secant lines slide into a tangent.
 math-12-exploring-data|Data Desk: Distributions|data|data-desk|Real public data sets; describe shape, center, spread and unusual features with guided prompts.
-math-12-sampling-and-experiments|Design the Study|story||Plan a study on energy drinks; every design choice gets reviewed by a skeptical journal editor.
+math-12-sampling-and-experiments|Design the Study|story||Test whether energy drinks really speed up reaction times: choose random assignment, a control group, blinding and a placebo, and a skeptical journal editor shows how each missing piece lets a hidden variable fake the result. Surveys and sampling stay with poll-workshop.
 math-12-probability-and-random-variables|Game Show Strategist|simulator|probability|Simulate game show choices (Monty Hall and friends); expected value says when to switch.
 math-12-sampling-distributions|Sample Machine|simulator|sampling|Draw thousands of samples and watch a sampling distribution form; the Central Limit Theorem appears on its own.
 math-12-confidence-intervals-and-significance-tests|Courtroom Statistics|roleplay||Put a claim on trial: the null is innocent until data proves otherwise. P-values become evidence.

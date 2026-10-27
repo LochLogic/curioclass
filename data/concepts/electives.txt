@@ -26,7 +26,7 @@ arts-k-2-pretend-and-play|Story Dress-Up|showdown||The teacher picks a story; ki
 arts-3-5-characters-and-scenes|Character Voice Booth|lab||Record the same line in different voices and emotions; play them back and talk about character choices.
 arts-6-8-scripts-and-staging|Stage Blocker|builder|stage|Block a scene on a top-down stage: place actors, lights and set pieces; preview from the audience.
 arts-9-12-theater-history-and-directing|Director's Chair|story|stage|Direct a classic scene with different choices (tone, pacing, setting); see how interpretation changes meaning.
-arts-k-2-moving-bodies|Move Like Me|showdown|dance|An animated dancer models locomotor and nonlocomotor moves at different levels; the class copies along.
+arts-k-2-moving-bodies|Levels and Pathways|showdown|dance|An animated dancer stretches, twists and bends at high, middle and low levels, then travels straight, curved and zigzag pathways; the class copies each one, then invents a pathway for the dancer to follow.
 arts-3-5-patterns-in-dance|Dance Pattern Puzzle|puzzle|dance|Build a dance sequence from move cards to match a pattern (ABAB); perform it at different tempos.
 arts-6-8-choreography|Choreography Board|studio|dance|Arrange dancers on a stage and timeline; animate formations and transitions to music.
 arts-9-12-dance-styles-and-criticism|Dance Styles Explorer|explorer|dance|Explore dance styles (ballet, hip hop, folk, modern) and write critiques with a vocabulary guide.
@@ -44,7 +44,7 @@ health-pe-3-5-germs-and-disease-prevention|Germ Spread Sim|simulator||See how ge
 health-pe-3-5-growing-up|Growing Up Q&A|explorer||A respectful, age-appropriate guide to body changes with an anonymous question box (stored only locally). Teachers configure it to district policy.
 health-pe-6-8-substance-use-prevention|Pressure Point|story||Navigate realistic peer pressure situations around vaping and alcohol; practice refusal skills.
 health-pe-6-8-mental-and-emotional-health|Stress Toolkit|sandbox|feelings|Try coping strategies (breathing, grounding, journaling) and track which help; links to support resources.
-health-pe-6-8-healthy-relationships|Boundaries Builder|roleplay||Practice communication and boundary-setting scenarios with friends and family; learn red flags.
+health-pe-6-8-healthy-relationships|Relationship Spectrum|roleplay||Place short friendship and dating scenarios on a line from healthy to unhealthy; red-flag cards explain each placement, and a 'what you could say' card practices setting the boundary.
 health-pe-6-8-digital-wellness|Screen Time Detective|data||Track a week of pretend screen time; analyze patterns and design a healthier plan.
 health-pe-9-12-nutrition-and-fitness-planning|Meal and Move Planner|builder|food|Plan a week of meals and workouts that balance energy; the tool flags gaps and extremes.
 health-pe-9-12-first-aid-and-cpr|First Aid Responder|race||Respond to emergency scenarios in the right order; practice CPR rhythm with an audio metronome.
@@ -59,23 +59,23 @@ health-pe-6-8-personal-fitness-plans|Goal Tracker|creature|habit-hero|Set fitnes
 health-pe-9-12-lifetime-fitness|Fitness Program Designer|builder||Design a 6-week program using FITT principles; the tool checks for balance and progression.
 health-pe-9-12-sportsmanship-and-leadership|Captain's Choices|story||Lead a team through wins, losses and conflicts; your choices shape team culture.
 computer-science-k-step-by-step|Robot Dance|showdown|robot|The class gives a robot step-by-step commands to dance; a wrong step makes it trip and they debug together.
-computer-science-k-count-and-decide|Class Snack Vote|data|class-poll|Collect the class's votes on snack choices and decide what to order based on the data.
+computer-science-k-count-and-decide|Me vs the Counter|data||A ball bounces for ten seconds; half the class tallies the bounces by hand while the computer counts them too; compare the totals and the mistakes, then use the computer's counts to pick the bounciest ball.
 computer-science-k-public-or-private|Secret Keeper|sort||Sort information into "OK to share" and "keep private" with a friendly robot guide.
-computer-science-1-code-a-path|Bee Bot Garden|puzzle|robot|Program a bee to reach flowers with arrow commands; fix the code when it bumps into weeds.
-computer-science-1-what-is-ai|Pattern Finder|showdown||The class teaches a simple AI to sort pictures by pattern and sees how it gets things right and wrong.
+computer-science-1-code-a-path|Robot Mouse Mail|puzzle|robot|The class lays arrow cards to send a mail mouse across a snowy town grid; before it runs, kids trace the route with a finger and predict where it will stop, then run it and fix the card that sent it the wrong way.
+computer-science-1-what-is-ai|Spot the AI|showdown||Everyday scenes play out (a phone unlocking with a face, a map choosing a route, a toy that answers back); the class guesses which ones use AI, and the teacher reveals the pattern each one learned from.
 computer-science-1-parts-of-a-computer|Computer Builder|builder||Assemble a computer from parts (screen, keyboard, mouse, speakers) and see what each one does.
 computer-science-2-loops-and-events|Loop Garden|puzzle|robot|Plant flowers with repeat blocks; fewer blocks earn more stars.
 computer-science-2-teach-the-machine|Teach the Robot|lab|ml-lab|Train a robot to recognize cats vs dogs by giving examples; see how more examples improve it.
-computer-science-2-input-and-output|Input-Output Machine|sandbox||Press keys, click and speak; watch the computer turn input into output on screen and speaker.
+computer-science-2-input-and-output|Input or Output?|sandbox||A tablet, a game controller, a smart speaker and a microwave; the class sorts each part into 'takes in' or 'gives out', then predicts what the gadget does when one input is covered.
 computer-science-3-if-this-then-that|Traffic Light Coder|builder|robot|Program traffic lights with if-then rules so cars and walkers stay safe.
 computer-science-3-variables-in-programs|Score Keeper|lab||Build a simple game and watch variables like score and lives change in real time.
 computer-science-3-how-we-use-the-internet|Internet Journey|story|network|Follow a message from your device to a friend's across the internet; protect personal info along the way.
 computer-science-4-trace-the-code|Code Tracer|puzzle||Step through code line by line, predicting variable values before they appear.
 computer-science-4-tables-and-visualizations|Data Table Builder|data|data-desk|Collect class data, organize it into a table and make charts to answer a question.
 computer-science-4-training-data-matters|Biased Bot|lab|ml-lab|Train an AI with skewed examples and see it fail; fix it with better training data.
-computer-science-4-wired-wireless-and-login|Network Detective|mystery|network|Investigate why devices can't connect; learn wired vs wireless and authentication vs authorization.
+computer-science-4-wired-wireless-and-login|Network Help Desk|mystery|network|Families call the help desk because a device won't connect; ask the right questions (wired or wireless? signed in, or just not allowed?) and fix each one.
 computer-science-5-remix-a-program|Game Remix|studio||Remix a simple game by changing rules, sprites and variables; share it with classmates.
-computer-science-5-train-a-classifier|Fruit Sorter AI|lab|ml-lab|Train a classifier to sort fruit by features; test accuracy on new examples.
+computer-science-5-train-a-classifier|Leaf Sorter AI|lab|ml-lab|Choose which features (color, edge, shape, size) a classifier may use to sort leaves by tree; see which features separate them and which only add noise, then test it on leaves it has never seen.
 computer-science-5-the-cia-triad|Data Defenders|escape|security|Protect a school's data from attacks by securing confidentiality, integrity and availability.
 computer-science-5-human-centered-design|Design for a Friend|roleplay||Interview a user persona and design an app feature that meets their needs.
 computer-science-6-8-flowcharts-and-pseudocode|Flowchart Factory|builder||Build flowcharts for everyday tasks and convert them to pseudocode; test them with inputs.
@@ -122,7 +122,7 @@ cte-9-12-engineering-and-design-process|Prototype Lab|lab||Design, prototype and
 cte-9-12-healthcare-and-human-services-careers|Hospital Shift|story|careers|Spend a shift in a hospital in different roles; learn medical terms and career paths.
 cte-9-12-earning-income-and-paychecks|Paycheck Decoder|explorer|money|Decode a paycheck: gross pay, taxes, deductions and benefits.
 cte-9-12-budgeting-and-spending|First Apartment Budget|tycoon|money|Budget for your first apartment; balance rent, food, transport and fun.
-cte-9-12-saving-and-compound-interest|Compound Interest Garden|simulator|money|Plant savings and watch them grow with compound interest over decades.
+cte-9-12-saving-and-compound-interest|Compound Interest Head Start|simulator|money|Two savers put in the same $50 a month, one from age 16 and one from 26; a stacked bar splits each year into deposits, interest and interest on interest. Change the rate or how often it compounds, then find the rule of 72. A plain savings account at a fixed rate, so no market returns (market-time-machine) and no doubling-penny sequences (savings-plan).
 cte-9-12-credit-and-debt|The Credit Card Diaries|story|money|Live four years of a young adult's life making card, loan and phone-plan choices; the credit score and debt follow every decision.
 cte-9-12-investing-basics|Market Time Machine|simulator|money|Invest across asset types using historical index data; learn about risk, diversification and time. Educational only, no picks or advice.
 cte-9-12-insurance-and-protecting-yourself|Scam Shield|escape|money|Spot scams and identity theft tactics to escape traps; learn insurance basics.
