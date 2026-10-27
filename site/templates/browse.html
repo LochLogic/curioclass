@@ -48,7 +48,7 @@
           {% for m in s.mods %}
           {% set has_ready = m.tools | selectattr('built') | list | length > 0 %}
           <article class="module-card"{% if has_ready %} data-ready{% endif %}>
-            <h3>{{ m.title }}</h3>
+            <h3><a href="{{ m.url }}">{{ m.title }}</a></h3>
             <p class="desc">{% if show_grade %}{{ grade_label(m.grade) }} · {% endif %}{{ m.description }}</p>
             <div class="module-tools">{% for t in m.tools %}{{ chip(t) }}{% endfor %}</div>
           </article>

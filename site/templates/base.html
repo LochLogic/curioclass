@@ -20,7 +20,7 @@
       <img src="/assets/logo.webp" alt="" width="34" height="34">
       Curio Class
     </a>
-    {% set links = [('/grades/', 'Grades'), ('/subjects/', 'Subjects')] + ([('/library/', 'Reading Room')] if library_live else []) + [('/styles/', 'Play styles'), ('/bench/', 'On the bench'), ('/search/', 'Search'), ('/about/', 'About')] %}
+    {% set links = [('/grades/', 'Grades'), ('/subjects/', 'Subjects')] + ([('/closet/', 'Supply Closet')] if closet_live else []) + ([('/library/', 'Reading Room')] if library_live else []) + [('/styles/', 'Play styles'), ('/bench/', 'On the bench'), ('/search/', 'Search'), ('/about/', 'About')] %}
     <nav class="nav" aria-label="Main">
       {% for href, label in links %}<a href="{{ href }}"{% if path.startswith(href) %} aria-current="page"{% endif %}>{{ label }}</a>{% endfor %}
     </nav>
@@ -42,7 +42,7 @@
       <p>Hands-on lessons for every grade. Free forever. Content CC BY 4.0, code MIT.</p>
     </div>
     <div><h4>Browse</h4><a href="/grades/">Grades</a>{% if library_live %}<a href="/library/">Reading Room</a>{% endif %}<a href="/subjects/">Subjects</a><a href="/standards/">Standards</a><a href="/collections/">Collections</a><a href="/styles/">Play styles</a></div>
-    <div><h4>Teachers</h4><a href="/teachers/">Using Curio Class</a><a href="/tools/">Ready to use</a><a href="/bench/">On the bench</a></div>
+    <div><h4>Teachers</h4><a href="/teachers/">Using Curio Class</a>{% if closet_live %}<a href="/closet/">Supply Closet</a>{% endif %}<a href="/tools/">Ready to use</a><a href="/bench/">On the bench</a></div>
     <div><h4>About</h4><a href="/about/">About</a><a href="/about/#why-free">Why free</a><a href="/privacy/">Privacy</a><a href="/accessibility/">Accessibility</a><a href="/license/">License</a></div>
   </div>
 </footer>

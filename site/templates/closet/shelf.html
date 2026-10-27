@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% from "macros.html" import crumbs %}
+{% block title %}{{ label }}: Supply Closet · Curio Class{% endblock %}
+{% block description %}{{ what }}{% endblock %}
+{% block robots %}{% if not items %}<meta name="robots" content="noindex">{% endif %}{% endblock %}
+{% block main %}
+<div class="wrap">
+  {{ crumbs([('Supply Closet', '/closet/'), (label, None)]) }}
+  <div class="page-head"><h1>{{ label }}</h1><p>{{ what }}</p></div>
+  {% if not items %}
+  <p class="plan-link">This shelf is still being stocked. Until it is, every tool's <a href="/tools/">lesson plan</a> prints on one page.</p>
+  {% endif %}
+</div>
+{% endblock %}

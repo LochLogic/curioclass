@@ -73,6 +73,11 @@ It is organized like a real supply closet, as shelves:
 
 ## Phase A: Foundation (small, first)
 
+**DONE 2026-10-26.** Module pages (`module.html`, 74 in the sitemap), standards pages list modules first
+(`standard.html`), tool and bench crumbs and the grade/subject module cards link to module pages, a "More for
+{module}" line under the teacher notes, search indexes modules and widens a full code to its cluster, and the closet
+scaffold (`closet/home.html`, `closet/shelf.html`) builds only with `--closet` or `--preview`.
+
 1. **Module pages** at `/modules/<module-id>/` (template `module.html`), in the sitemap once the module has a
    built tool or any closet item, noindex otherwise. Fix the tool page crumb to link to it.
 2. **Standards pages point at modules.** `/standards/<code>/` lists the modules for the code first, then the tools.
@@ -407,3 +412,8 @@ A Foundation ──> B Sub Day ──> (ships with every new tool from here on)
   generic "do the worksheet instead" fallback.
 - Word Wall, Posters and Anchor Charts, and Family Game Night (2-3 per subject per grade): agreed as concepts.
 - The standard-to-tool visual map is the last piece, tied to unit sequencing.
+- Q1: English first; Spanish follows after a native-speaker review.
+- Q2: yes to the QR code, always printed with the written-out link beside it.
+- Q3: no approval needed for the poster list.
+- Q4: Game Night starts with the core four subjects.
+- Q5: research published progressions and pacing guides (and their licenses) before drafting `sequence.csv`.

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Supply Closet: free printables for teachers · Curio Class{% endblock %}
+{% block description %}Free printables that go with the Curio Class tools: sub plans, word walls, anchor charts and family games.{% endblock %}
+{% block main %}
+<div class="wrap">
+  <div class="page-head">
+    <h1>Supply Closet</h1>
+    <p>Printables that go with the tools: sub plans, word walls, anchor charts and games for home. Free, no sign-up. Pick a shelf.</p>
+  </div>
+  <div class="closet-shelves">
+    {% for sid, label, what in shelves %}
+    <a class="closet-shelf" href="/closet/{{ sid }}/">
+      <h2>{{ label }}</h2>
+      <p>{{ what }}</p>
+      <span class="tag">Coming soon</span>
+    </a>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

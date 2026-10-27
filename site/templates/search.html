@@ -19,14 +19,18 @@
   const q = document.getElementById('q'), out = document.getElementById('results'), count = document.getElementById('count');
   const data = await fetch('/search-index.json').then(r => r.json());
   const esc = s => s.replace(/[&<>"]/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c]));
+  data.forEach(d => { d.hay = [d.t, d.g, d.s, d.f, d.m, d.c, d.d].join(' ').toLowerCase(); });
+  // Some codes are stored by cluster (3.NF.A), so a full code (3.NF.A.1) that finds nothing falls back to its cluster.
+  const widen = t => {
+    while (/^[a-z0-9-]+(\.[a-z0-9-]+){2,}$/.test(t) && !data.some(d => d.hay.includes(t))) t = t.replace(/\.[a-z0-9-]+$/, '');
+    return t;
+  };
   const run = () => {
-    const terms = q.value.toLowerCase().split(/\s+/).filter(Boolean);
+    const terms = q.value.toLowerCase().split(/\s+/).filter(Boolean).map(widen);
     if (!terms.length) { out.innerHTML = ''; count.textContent = ''; return; }
-    const hits = data.filter(d => {
-      const hay = [d.t, d.g, d.s, d.f, d.m, d.c, d.d].join(' ').toLowerCase();
-      return terms.every(t => hay.includes(t));
-    }).sort((a, b) => b.b - a.b);
-    count.textContent = hits.length + (hits.length === 1 ? ' tool' : ' tools');
+    const hits = data.filter(d => terms.every(t => d.hay.includes(t)))
+      .sort((a, b) => b.b - a.b || (a.f === 'Module') - (b.f === 'Module'));
+    count.textContent = hits.length + (hits.length === 1 ? ' result' : ' results');
     out.innerHTML = hits.slice(0, 80).map(d =>
       '<a href="' + d.u + '"><b>' + esc(d.t) + '</b>' + (d.b ? ' <span class="tag built">Ready</span>' : '') +
       '<small>' + [d.g, d.s, d.f, d.m].map(esc).join(' · ') + '</small></a>').join('');

@@ -34,7 +34,9 @@ Needs Python with `jinja2` and `markdown`. `dist/` is generated and not committe
 | `/styles/`, `/styles/<format>/` | Play styles | yes |
 | `/collections/`, `/collections/<family>/` | Tool families across grades | yes |
 | `/standards/` | Standards index | yes |
-| `/standards/<code>/` | Tools for one code | no (noindex until more tools are built) |
+| `/standards/<code>/` | Modules, then tools, for one code | no (noindex until more tools are built) |
+| `/modules/<id>/` | Everything for one module: tools, lesson plans, Supply Closet shelves as they ship | yes once the module has a built tool |
+| `/closet/`, `/closet/<shelf>/` | Supply Closet (docs/SUPPLY-CLOSET-PLAN.md); built only with `--closet` or `--preview` until Sub Day ships | yes / noindex while a shelf is empty |
 | `/tools/` | Built tools | yes |
 | `/tools/<id>/` | Tool page (built) | yes |
 | `/tools/<id>/` | On the bench page (unbuilt) | no (noindex) |

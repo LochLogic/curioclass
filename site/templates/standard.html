@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% from "macros.html" import shelf, crumbs %}
+{% block title %}{{ code }} ({{ framework }}) · Curio Class{% endblock %}
+{% block robots %}<meta name="robots" content="noindex">{% endblock %}
+{% block main %}
+<div class="wrap">
+  {{ crumbs([('Standards', '/standards/'), (code, None)]) }}
+  <div class="page-head"><h1>{{ code }}</h1><p>Modules and tools aligned to {{ code }} ({{ framework }}).</p></div>
+
+  <section class="group">
+    <h2>Modules</h2>
+    <p>Each module page has its tools, lesson plans and printables in one place.</p>
+    <ul class="module-list">
+      {% for m in mods %}<li><a href="{{ m.url }}"><b>{{ m.title }}</b></a><span>{{ grade_label(m.grade) }} · {{ subjects[m.subject].short }} · {{ m.description }}</span></li>{% endfor %}
+    </ul>
+  </section>
+
+  <section class="group">
+    <h2>Tools</h2>
+    <p class="count">{{ items | length }} tool{{ 's' if items | length != 1 }}</p>
+    {{ shelf(items) }}
+  </section>
+</div>
+{% endblock %}

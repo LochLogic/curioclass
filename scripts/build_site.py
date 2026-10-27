@@ -73,7 +73,8 @@ bands = {b['band_id']: dict(b, grade_list=b['grades'].split(';')) for b in read(
 BAND_SLUG = {'k2': 'k-2', '35': '3-5', '68': '6-8', '912': '9-12'}
 formats = {f['format_id']: f for f in read('formats.csv')}
 courses = {c['course_id']: c for c in read('courses.csv')}
-modules = {m['module_id']: dict(m, grades=expand(m['grade']), codes=m['standards'].split(';')) for m in read('modules.csv')}
+modules = {m['module_id']: dict(m, grades=expand(m['grade']), codes=m['standards'].split(';'), url=f'/modules/{m["module_id"]}/')
+           for m in read('modules.csv')}
 
 tools = []
 for c in read('tools-concepts.csv'):
@@ -133,6 +134,9 @@ env.globals.update(subjects=subjects, formats=formats, grade_label=grade_label, 
 # --library builds it; --preview builds it plus the made-up fixture story.
 LIBRARY_LIVE = bool({'--library', '--preview'} & set(sys.argv))
 env.globals['library_live'] = LIBRARY_LIVE
+# The Supply Closet (docs/SUPPLY-CLOSET-PLAN.md) stays out of deploy builds until Sub Day ships; --closet builds it.
+CLOSET_LIVE = bool({'--closet', '--preview'} & set(sys.argv))
+env.globals['closet_live'] = CLOSET_LIVE
 pages, sitemap = 0, []
 
 
@@ -217,14 +221,25 @@ by_fw = defaultdict(list)
 for code in sorted(standards):
     by_fw[std_framework[code]].append(code)
 render('standards.html', '/standards/', by_fw=sorted(by_fw.items()))
+code_modules = defaultdict(list)
+for m in modules.values():
+    for code in m['codes']:
+        code_modules[code].append(m)
 for code, items in standards.items():
     seen, uniq = set(), []
     for t in items:
         if t['tool_id'] not in seen:
             seen.add(t['tool_id'])
             uniq.append(t)
-    render('list.html', f'/standards/{slug(code)}/', title=code, lede=f'Tools aligned to {code} ({std_framework[code]}).',
-           items=uniq, crumb=('Standards', '/standards/'), index=False)
+    render('standard.html', f'/standards/{slug(code)}/', code=code, framework=std_framework[code], items=uniq,
+           mods=sorted(code_modules[code], key=lambda m: GRADES.index(m['grades'][0])), index=False)
+
+# modules: the hub for everything one module has (tools now; Supply Closet shelves as they ship)
+for m in modules.values():
+    mt = by_module[m['module_id']]
+    plans = [t for t in mt if t['built'] and t['plan']]
+    render('module.html', m['url'], m=m, items=mt, plans=plans, subject=subjects[m['subject']],
+           course=courses.get(m['course_id']), index=any(t['built'] for t in mt))
 
 # tools
 render('list.html', '/tools/', title='Ready to use', lede='Every built tool. Each one is a single file that works offline.',
@@ -249,6 +264,20 @@ for t in tools:
                    sections=[(title, mins, markdown.markdown(text)) for title, mins, text in plan['sections']])
     else:
         render('bench.html', t['url'], t=t, related=related, collection=collection, index=False)
+
+# ---------- supply closet ----------
+# Shelves fill in phase by phase (docs/SUPPLY-CLOSET-PLAN.md). Until a shelf has items its page says what is coming.
+CLOSET = [  # slug, label, what it holds
+    ('sub-day', 'Sub Day', 'A print-ready packet for a substitute: cover page, lesson plan, teacher notes, exit tickets '
+     'and a backup sheet for when the tech fails.'),
+    ('word-wall', 'Word Wall', 'Vocabulary cards for every module, with pictures for the younger grades, plus a student glossary.'),
+    ('anchor-charts', 'Posters and Anchor Charts', 'The big idea of each module on one page, finished or fill-in, and posters '
+     'that stay up all year. Print on one page or tile them big.'),
+    ('game-night', 'Family Game Night', 'Games to play at home with paper, pencils, cards or dice. Nothing to buy.'),
+]
+render('closet/home.html', '/closet/', shelves=CLOSET)
+for sid, label, what in CLOSET:
+    render('closet/shelf.html', f'/closet/{sid}/', label=label, what=what, items=[], index=False)
 
 # ---------- reading room ----------
 # Rows come from data/library/*.csv (reserve rows stay off the site). A story is ready once library/<id>/text.md exists;
@@ -415,11 +444,17 @@ for s in stories + speeches + myth_own + sacred:
 if not LIBRARY_LIVE:
     shutil.rmtree(DIST / 'library')
     sitemap[:] = [p for p in sitemap if not p.startswith('/library/')]
+if not CLOSET_LIVE:
+    shutil.rmtree(DIST / 'closet')
+    sitemap[:] = [p for p in sitemap if not p.startswith('/closet/')]
 
 # search index and static pages
 index = [{'t': t['title'], 'u': t['url'], 'g': grade_label(t['module']['grade']), 's': t['subject_info']['short'],
           'f': t['format_info']['label'], 'm': t['module']['title'], 'c': ' '.join(t['module']['codes']),
           'd': t['concept'], 'b': t['built']} for t in tools]
+index += [{'t': m['title'], 'u': m['url'], 'g': grade_label(m['grade']), 's': subjects[m['subject']]['short'], 'f': 'Module',
+           'm': m['strand'], 'c': ' '.join(m['codes']), 'd': m['description'],
+           'b': any(t['built'] for t in by_module[m['module_id']])} for m in modules.values()]
 index += [{'t': s['title'], 'u': s['url'], 'g': grade_label(s['grades']), 's': 'Reading Room', 'f': s['kind'],
            'm': s.get('author', ''), 'c': '', 'd': s.get('summary', ''), 'b': s['ready']} for s in stories + speeches + myth_own + sacred if LIBRARY_LIVE]
 (DIST / 'search-index.json').write_text(json.dumps(index, separators=(',', ':')), encoding='utf-8')

@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% from "macros.html" import shelf, crumbs %}
+{% set ready = items | selectattr('built') | list %}
+{% block title %}{{ m.title }}: {{ grade_label(m.grade) | lower }} {{ subject.short | lower }} · Curio Class{% endblock %}
+{% block description %}{{ m.description }}. Free interactive tools and lesson plans for {{ grade_label(m.grade) | lower }} {{ subject.short | lower }}.{% endblock %}
+{% block robots %}{% if not ready %}<meta name="robots" content="noindex">{% endif %}{% endblock %}
+{% block main %}
+<div class="wrap">
+  {{ crumbs([(grade_label(m.grade), grade_href(m.grade)), (subject.short, '/subjects/' ~ m.subject ~ '/'), (m.title, None)]) }}
+  <div class="module-head">
+    <div class="page-head">
+      <p class="eyebrow">Module · {{ grade_label(m.grade) }} · {{ subject.short }}</p>
+      <h1><span class="title-dot" style="background:var(--{{ subject.color }})"></span>{{ m.title }}</h1>
+      <p>{{ m.description }}.</p>
+    </div>
+    <dl class="facts">
+      <dt>Grade</dt><dd>{% if grade_href(m.grade) %}<a href="{{ grade_href(m.grade) }}">{{ grade_label(m.grade) }}</a>{% else %}{{ grade_label(m.grade) }}{% endif %}</dd>
+      <dt>Subject</dt><dd><a href="/subjects/{{ m.subject }}/">{{ subject.short }}</a></dd>
+      {% if course and course.title != 'Grade-level ' ~ subject.label %}<dt>Course</dt><dd>{{ course.title }}</dd>{% endif %}
+      {% if m.strand %}<dt>Strand</dt><dd>{{ m.strand }}</dd>{% endif %}
+      <dt>Standards</dt><dd>{% for c in m.codes %}<a href="/standards/{{ slug(c) }}/"><code>{{ c }}</code></a>{% if not loop.last %} {% endif %}{% endfor %}<br><small>{{ m.frameworks.replace(';', ', ') }}</small></dd>
+    </dl>
+  </div>
+
+  <section class="group">
+    <h2>Tools</h2>
+    <p>{% if ready %}{{ ready | length }} ready to use{% if items | length > ready | length %}, {{ items | length - ready | length }} on the bench{% endif %}.{% else %}{{ items | length }} on the bench, not built yet.{% endif %}</p>
+    {{ shelf(items) }}
+  </section>
+
+  {% if plans %}
+  <section class="group">
+    <h2>Lesson plans</h2>
+    <p>One class period each, built around a tool. Print them, change them, share them.</p>
+    <ul class="module-list">
+      {% for t in plans %}<li><a href="{{ t.url }}plan/"><b>{{ t.title }}</b></a><span>{{ t.plan.meta.minutes }} minutes · {{ t.plan.meta.goal }}</span></li>{% endfor %}
+    </ul>
+  </section>
+  {% endif %}
+</div>
+{% endblock %}

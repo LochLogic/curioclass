@@ -5,7 +5,7 @@
 {% block robots %}<meta name="robots" content="noindex">{% endblock %}
 {% block main %}
 <div class="wrap">
-  {{ crumbs([(grade_label(m.grade), grade_href(m.grade)), (t.subject_info.short, '/subjects/' ~ m.subject ~ '/'), (m.title, None)]) }}
+  {{ crumbs([(grade_label(m.grade), grade_href(m.grade)), (t.subject_info.short, '/subjects/' ~ m.subject ~ '/'), (m.title, m.url)]) }}
   <div class="bench-hero">
     <p class="eyebrow" style="color:#9a8f78">On the bench · not built yet</p>
     <h1>{{ t.title }}</h1>
