@@ -1,5 +1,5 @@
 // Curio Class: static site served by Cloudflare Workers static assets (no Worker code).
-// Build first: python scripts/build_site.py ; then: npx wrangler deploy
+// Build first: python scripts/build_site.py --library --closet (both flags, or the live site loses those pages) ; then: npx wrangler deploy
 {
   "name": "curioclass",
   "compatibility_date": "2026-10-19",

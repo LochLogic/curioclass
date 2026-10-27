@@ -51,7 +51,7 @@ no blocker left, look at one frame yourself (the 680x425 preview is a good one) 
 1. Rename tool.draft.json to tool.json, drop `"stage"`, add the credits to `sources` (FLUX images, Qwen3-TTS narration,
    Gemini art if any).
 2. `python scripts/preview.py <id>` (card art; pass `--js=` to open a livelier screen, and look at it).
-3. `python scripts/build_site.py --library`, `python scripts/check_site.py`, `npx wrangler deploy`.
+3. `python scripts/build_site.py --library --closet` (both flags on every deploy: without them the Reading Room or the Supply Closet drops off the live site), `python scripts/check_site.py`, `npx wrangler deploy`.
 4. Review Desk (https://claude.ai/artifact/SVXBzgyS941dyqmEzQHgNC) with ArtifactData: set `items/<id>` to
    `{built, changed (what's new, what to check), order (next number), status: "ready", subject, title, url}`.
    Then refresh the desk's stats panel: `python scripts/desk_stats.py <scratch>/stats.json` and ArtifactData set

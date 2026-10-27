@@ -61,7 +61,7 @@ Needs Python with `jinja2` and `markdown`. `dist/` is generated and not committe
 Live at https://curioclass.org since 2026-10-23. Served by Cloudflare Workers static assets (Cloudflare has folded Pages into Workers). There is no Worker code, just `dist/`.
 
 ```
-python scripts/build_site.py && python scripts/check_site.py && npx wrangler deploy
+python scripts/build_site.py --library --closet && python scripts/check_site.py && npx wrangler deploy
 ```
 
 - Config: `wrangler.jsonc` (worker `curioclass`, custom domain `curioclass.org`, 404 page, auto trailing slash)
