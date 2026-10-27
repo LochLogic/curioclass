@@ -192,9 +192,11 @@ eight to a page, a "My words" glossary) and three languages (English, Español, 
 remembered, or set by link (`?format=mini&lang=both`). `/closet/word-wall/` lists the modules by grade; module pages
 get a Word Wall row. Checked in print preview (headless Chrome PDF) and at phone width.
 
-Still open: **pictures** (none drawn: the art quotas are shared with the tool work, so every card shows a dashed
-"Draw it" box until its picture lands in `closet/words/art/<module_id>/<word-slug>.webp`; prompts are already in the
-data, `svg:` ones are diagrams to draw in code; K-2 and K-12 cards need them, 6-12 cards may skip them), the **Spanish
+Pictures (2026-10-27): every card has one in `closet/words/art/<module_id>/<word-slug>.webp`. Paintings come
+from the local FLUX model through `scripts/wordart.py` (one flat house style, no text, never people; better prompts
+in `closet/words/art/prompts.json`; contact sheets reviewed and misses redrawn). `svg:` cards are diagrams drawn in
+code by `scripts/wordsvg.py` from specs in `data/closet/words/diagrams.py` (1,672 specs; a spec of
+`paint('prompt')` hands a card back to the painter). Still open: the **Spanish
 review** (neutral Latin American, first draft, the print page says so), a real-printer test, and Cory's review of the
 word lists. Signed languages (ASL) show hands and faces only as simple outlines, never photos of people. The finance
 cards (grades 9-12 careers) are general definitions, not advice. The minutes-per-module measure is for words only.
@@ -247,12 +249,18 @@ words in a module, no em dashes, the definition does not use the word itself).
 
 ## Phase D: Posters and Anchor Charts
 
-**Status (2026-10-27): LIVE.** 74 anchor charts (every module with a built tool and plan) and 35 posters (10 K-2,
-9 for 3-5, 9 for 6-8, 7 for 9-12), all in English and Spanish, finished and fill-in, one page or tiled 2x2 / 3x3
-(page counts checked in headless Chrome). Files: `data/closet/charts/`, `data/closet/posters/`; drawing in
-`scripts/charts.py`; shelf `/closet/anchor-charts/`. Posters with no layout of their own (maps, the periodic table,
-number lines, the full Bill of Rights) are not made yet: they need their own drawing code or data. A `grid` layout
-covers the hundred chart and the times table.
+**Status (2026-10-27): LIVE.** 74 anchor charts (every module with a built tool and plan) and 48 posters (13 K-2,
+13 for 3-5, 12 for 6-8, 10 for 9-12), all in English and Spanish, finished and fill-in (drawn posters: finished only),
+color or ink saver, one page or tiled 2x2 / 3x3 (page counts checked in headless Chrome). Files:
+`data/closet/charts/`, `data/closet/posters/`; drawing in `scripts/charts.py`; shelf `/closet/anchor-charts/`.
+
+Looks: three themes (classic, bold, soft) in the chart's color. Module charts take the subject color and a theme
+picked by id, so a wall of them varies; posters set `color:` and `theme:` in their header. Ink saver draws every chart
+with white boxes and dark lines. Layouts: steps, parts, cycle, compare, big-idea, list (6-12 numbered items in two
+columns), and `grid` for drawn posters: hundred chart, times table, number line (`range:`), fraction wall, coordinate
+plane, unit circle, coins, US map (shapes from Me on the Map), world map (Equal Earth land from Art Passport) and the
+periodic table (data from Elements Inspector). The two maps and the periodic table are landscape (`orient:
+landscape`, printed on a landscape page).
 
 ### Anchor charts (one per module)
 
