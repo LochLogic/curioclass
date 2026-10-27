@@ -49,6 +49,9 @@ no blocker left, look at one frame yourself (the 680x425 preview is a good one) 
 3. `python scripts/build_site.py --library`, `python scripts/check_site.py`, `npx wrangler deploy`.
 4. Review Desk (https://claude.ai/artifact/SVXBzgyS941dyqmEzQHgNC) with ArtifactData: set `items/<id>` to
    `{built, changed (what's new, what to check), order (next number), status: "ready", subject, title, url}`.
+   Then refresh the desk's stats panel: `python scripts/desk_stats.py <scratch>/stats.json` and ArtifactData set
+   `stats/board` from that file (pin the version you last saw). Do this too whenever a batch moves tools a stage
+   (specs written, builds done, verify passed, art or voice recorded).
 5. Commit and push (Cory's standing rule). Log it in the batch log.
 
 When Cory reviews: read `comments` where state is "new"; approvals set the item to `status: "ok"`; notes get acted on,
