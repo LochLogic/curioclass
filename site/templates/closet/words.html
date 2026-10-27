@@ -6,7 +6,7 @@
 {% block main %}
 <div class="wrap words-page" data-format="wall" data-lang="en" style="--band: var(--{{ subject.color }})">
   <div class="no-print">
-    {{ crumbs([(grade_label(m.grade), grade_href(m.grade)), (subject.short, '/subjects/' ~ m.subject ~ '/'), (m.title, m.url), ('Word Wall', None)]) }}
+    {{ crumbs([('Word Wall', '/closet/word-wall/'), (grade_label(m.grade), '/closet/word-wall/' ~ m.grade ~ '/'), (m.title, m.url), ('Cards', None)]) }}
     <div class="page-head">
       <p class="eyebrow">Word Wall · {{ grade_label(m.grade) }} · {{ subject.short }}</p>
       <h1>{{ m.title }}</h1>

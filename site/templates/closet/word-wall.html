@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% from "macros.html" import crumbs %}
+{% block title %}{{ label }}: Supply Closet · Curio Class{% endblock %}
+{% block description %}{{ what }}{% endblock %}
+{% block main %}
+<div class="wrap">
+  {{ crumbs([('Supply Closet', '/closet/'), (label, None)]) }}
+  <div class="page-head"><h1>{{ label }}</h1><p>{{ what }} Pick a grade to see its modules by subject, then print cards in English, Español or both.</p></div>
+  <div class="grades" style="margin-top:24px">
+    {% for b in wall_bands %}
+    <div class="band">
+      <h3>{{ b.label }}</h3>
+      <span class="who">{{ b.tally }}</span>
+      <div class="chips">{% for g in b.spans %}<a href="/closet/word-wall/{{ g }}/"{% if '-' in g %} class="span"{% endif %} aria-label="{{ grade_label(g) }}">{% if '-' in g %}All {% endif %}{{ g | upper }}</a>{% endfor %}</div>
+    </div>
+    {% endfor %}
+  </div>
+  <p class="plan-link">"All" pages hold modules written for a whole span, like electives for grades 9-12 or ASL for K-12.</p>
+</div>
+{% endblock %}

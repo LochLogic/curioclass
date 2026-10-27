@@ -118,6 +118,7 @@ section.block { padding: 56px 0 8px; }
 .band .chips { display: flex; flex-wrap: wrap; gap: 8px; }
 .band .chips a { display: grid; place-items: center; min-width: 46px; height: 46px; border-radius: 12px; background: var(--paper-2); text-decoration: none; font: 650 18px var(--serif); }
 .band .chips a:hover { background: var(--ink); color: #fff; }
+.band .chips a.span { padding: 0 12px; font-size: 15px; }
 
 /* Specimen cards (built tools) */
 .shelf { display: grid; gap: 20px; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }

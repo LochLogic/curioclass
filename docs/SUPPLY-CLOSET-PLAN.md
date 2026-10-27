@@ -225,8 +225,10 @@ over the English cap. Spanish is neutral Latin American.
 
 ### Pages
 
-The module page gets a **Word Wall** row; `/closet/word-wall/` browses by grade and subject. Print pages at
-`/modules/<id>/words/`.
+The module page gets a **Word Wall** row. `/closet/word-wall/` is a grade picker: a card per band with a chip for each
+grade and an "All" chip for the band, plus an "Across bands" card for K-12 and 6-12 modules. Each chip opens
+`/closet/word-wall/<grade or span>/` (19 pages), with modules grouped by subject and a subject sidebar (a jump menu on
+phones). Print pages at `/modules/<id>/words/`, whose breadcrumb leads back to their grade's list.
 
 ### Pilot
 

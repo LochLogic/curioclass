@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% from "macros.html" import crumbs %}
+{% block title %}Word Wall: {{ grade_label(g) }} · Curio Class{% endblock %}
+{% block description %}Printable vocabulary cards for {{ grade_label(g) | lower }}, every subject, in English and Spanish. {{ tally }}.{% endblock %}
+{% block main %}
+<div class="wrap">
+  {{ crumbs([('Supply Closet', '/closet/'), ('Word Wall', '/closet/word-wall/'), (grade_label(g), None)]) }}
+  <div class="page-head">
+    <h1>Word Wall: {{ grade_label(g) }}</h1>
+    <p>{{ tally }}. Pick a module to print its cards in English, Español or both.{% if also %} More for this grade: {% for x in also %}<a href="/closet/word-wall/{{ x }}/">{{ grade_label(x) }}</a>{{ ', ' if not loop.last }}{% endfor %}.{% endif %}</p>
+  </div>
+
+  <div class="browse">
+    <aside class="browse-nav" aria-label="Subjects">
+      <p class="eyebrow">Subjects</p>
+      <nav id="browse-links">
+        {% for s in sections %}
+        <a href="#{{ s.id }}" data-target="{{ s.id }}"><i style="background:var(--{{ s.color }})"></i><span>{{ s.label }}</span><b>{{ s.mods | length }}</b></a>
+        {% endfor %}
+      </nav>
+    </aside>
+
+    <div class="browse-main">
+      {% if sections | length > 1 %}
+      <label class="jump"><span class="sr-only">Subjects</span>
+        <select id="jump">
+          <option value="">Subjects…</option>
+          {% for s in sections %}<option value="{{ s.id }}">{{ s.label }} ({{ s.mods | length }})</option>{% endfor %}
+        </select>
+      </label>
+      {% endif %}
+      {% for s in sections %}
+      <section class="group browse-group" id="{{ s.id }}">
+        <div class="group-head"><h2><span class="title-dot" style="background:var(--{{ s.color }})"></span>{{ s.label }}</h2></div>
+        <div class="module-grid">
+          {% for m in s.mods %}
+          <article class="module-card">
+            <h3><a href="{{ m.url }}words/">{{ m.title }}</a></h3>
+            <p class="desc">{{ words[m.module_id] | map(attribute='word') | join(' · ') }}</p>
+          </article>
+          {% endfor %}
+        </div>
+      </section>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script>
+(() => {
+  const links = [...document.querySelectorAll('#browse-links a')];
+  const byId = Object.fromEntries(links.map(a => [a.dataset.target, a]));
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { links.forEach(a => a.removeAttribute('aria-current')); byId[e.target.id]?.setAttribute('aria-current', 'true'); } });
+  }, {rootMargin: '-90px 0px -70% 0px'});
+  document.querySelectorAll('.browse-group').forEach(g => io.observe(g));
+  document.getElementById('jump')?.addEventListener('change', e => {
+    if (e.target.value) document.getElementById(e.target.value).scrollIntoView({behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'});
+  });
+})();
+</script>
+{% endblock %}

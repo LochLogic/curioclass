@@ -294,19 +294,42 @@ CLOSET = [  # slug, label, what it holds
      'that stay up all year. Print on one page or tile them big.'),
     ('game-night', 'Family Game Night', 'Games to play at home with paper, pencils, cards or dice. Nothing to buy.'),
 ]
-# each shelf's items: [(group heading, [module])], grade by grade, subjects in site order
-word_groups = []
-for g in GRADES:
-    mods = sorted((modules[mid] for mid in words if modules[mid]['grades'][0] == g),
-                  key=lambda m: (list(subjects).index(m['subject']), m['title']))
-    if mods:
-        word_groups.append((grade_label(g), mods))
-stock = {'word-wall': word_groups}
-counts = {'word-wall': f'{len(words)} modules, {sum(len(c) for c in words.values())} words' if words else ''}
+# Word Wall: one page per grade span a module is written for (K to 12, and spans like 3-5 or K-12), grouped by subject.
+# The shelf page is a grade picker: a card per band with its grades and its whole-band span, then the cross-band spans.
+wall = defaultdict(list)
+for mid in words:
+    wall[modules[mid]['grade']].append(modules[mid])
+
+
+def wall_tally(spans):
+    mods = [m for g in spans for m in wall.get(g, [])]
+    return f'{len(mods)} modules, {sum(len(words[m["module_id"]]) for m in mods)} words'
+
+
+wall_bands = []
+for bid, b in bands.items():
+    spans = [g for g in b['grade_list'] + [BAND_SLUG[bid]] if g in wall]
+    wall_bands.append(dict(label=b['label'], who=b['who'], tally=wall_tally(spans), spans=spans))
+across = [g for g in wall if g not in GRADES and g not in BAND_SLUG.values()]
+if across:
+    wall_bands.append(dict(label='Across bands', who='More than one band', tally=wall_tally(across),
+                           spans=sorted(across, key=lambda g: (GRADES.index(g.split('-')[0]), -len(expand(g))))))
+for g, mods in wall.items():
+    by_sub = defaultdict(list)
+    for m in mods:
+        by_sub[m['subject']].append(m)
+    sections = [dict(id=sid, label=s['label'], color=s['color'], mods=sorted(by_sub[sid], key=lambda m: m['title']))
+                for sid, s in subjects.items() if sid in by_sub]
+    also = [x for x in wall if x != g and set(expand(x)) & set(expand(g)) and (len(expand(x)) > len(expand(g)))]
+    render('closet/word-grade.html', f'/closet/word-wall/{g}/', g=g, sections=sections, words=words, tally=wall_tally([g]),
+           also=sorted(also, key=lambda x: len(expand(x))))
+counts = {'word-wall': wall_tally(list(wall)) if words else ''}
 render('closet/home.html', '/closet/', shelves=CLOSET, counts=counts)
 for sid, label, what in CLOSET:
-    render('closet/shelf.html', f'/closet/{sid}/', label=label, what=what, groups=stock.get(sid, []), words=words,
-           index=bool(stock.get(sid)))
+    if sid == 'word-wall' and wall:
+        render('closet/word-wall.html', '/closet/word-wall/', label=label, what=what, wall_bands=wall_bands)
+    else:
+        render('closet/shelf.html', f'/closet/{sid}/', label=label, what=what, groups=[], index=False)
 
 # ---------- reading room ----------
 # Rows come from data/library/*.csv (reserve rows stay off the site). A story is ready once library/<id>/text.md exists;
