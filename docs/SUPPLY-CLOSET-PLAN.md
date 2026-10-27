@@ -1,7 +1,8 @@
 # Supply Closet: teacher resources (plan)
 
 Status: concepts AGREED by Cory 2026-10-26 (decisions at the bottom). This file is the implementation plan.
-Phase A is done and deployed with the next deploy; Phase C's pilot is built behind `--closet` (not deployed).
+Phase A is done and deployed with the next deploy; Phase C's word lists are written for all 586 modules and built
+behind `--closet` (not deployed).
 
 The Supply Closet is the teacher-resources side of Curio Class: things to print and put up that go with the tools.
 It is organized like a real supply closet, as shelves:
@@ -177,8 +178,11 @@ arrive with `exit.md`.
 
 ## Phase C: Word Wall
 
-**PILOT BUILT 2026-10-26, not deployed.** Grade 3, all five subjects that have grade 3 modules: 34 modules, 215 cards,
-English and Spanish (`data/closet/words/<subject>.txt`). `scripts/check_words.py` passes and the closet build runs it.
+**FULL COLLECTION WRITTEN 2026-10-27, not deployed.** The grade 3 pilot (2026-10-26: 34 modules, 215 cards) was
+followed by every other grade and subject: **all 586 modules, 3,533 cards, English and Spanish**, in 12 subject files
+(`data/closet/words/<subject>.txt`, about 880 KB). `scripts/check_words.py` reports 0 problems and the closet build
+runs it. A closet build makes 591 word pages (about 9.3 MB, roughly 16 KB each, before pictures); `check_site.py`
+passes at 11,373 files against the 20,000 limit.
 Print page per module at `/modules/<id>/words/` with three formats (wall cards two to a landscape page, mini cards
 eight to a page, a "My words" glossary) and three languages (English, Español, both), chosen on the page and
 remembered, or set by link (`?format=mini&lang=both`). `/closet/word-wall/` lists the modules by grade; module pages
@@ -186,8 +190,10 @@ get a Word Wall row. Checked in print preview (headless Chrome PDF) and at phone
 
 Still open: **pictures** (none drawn: the art quotas are shared with the tool work, so every card shows a dashed
 "Draw it" box until its picture lands in `closet/words/art/<module_id>/<word-slug>.webp`; prompts are already in the
-data, `svg:` ones are diagrams to draw in code), the **Spanish review**, a real-printer test, and Cory's review of the
-word lists. The minutes-per-module measure is for words only so far.
+data, `svg:` ones are diagrams to draw in code; K-2 and K-12 cards need them, 6-12 cards may skip them), the **Spanish
+review** (neutral Latin American, first draft, the print page says so), a real-printer test, and Cory's review of the
+word lists. Signed languages (ASL) show hands and faces only as simple outlines, never photos of people. The finance
+cards (grades 9-12 careers) are general definitions, not advice. The minutes-per-module measure is for words only.
 
 ### The card
 
@@ -403,7 +409,7 @@ A Foundation ──> B Sub Day ──> (ships with every new tool from here on)
 | Phase | Pilot | Measure before scaling |
 |---|---|---|
 | B | Sub Day for 10 tools across bands, then the backfill | print quality on a real printer, minutes per `exit.md`, Cory's send-back rate |
-| C | Grade 3 word wall, all subjects | minutes per module (words, pictures, review), picture reject rate |
+| C | Grade 3 word wall, all subjects (done; words now cover all 586 modules) | minutes per module for pictures and review, picture reject rate |
 | D | Anchor charts for the 72 modules with plans | which layouts cover which subjects, tile print alignment |
 | E | 10 games | play-test notes, how often a game needed a rewrite |
 | F | Grade 3 regions for the four core subjects | does the trail read right to a teacher, phone layout |
