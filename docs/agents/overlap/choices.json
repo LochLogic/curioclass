@@ -1,0 +1,828 @@
+[
+ {
+  "id": "bee-bot-garden",
+  "tier": "A",
+  "choice": "accept",
+  "how": "clicked",
+  "title": "Bee Bot Garden",
+  "new_title": "Robot Mouse Mail",
+  "fix": "reshape"
+ },
+ {
+  "id": "book-detectives",
+  "tier": "A",
+  "choice": "accept",
+  "how": "clicked",
+  "title": "Book Detectives",
+  "new_title": "Meet the Book Makers",
+  "fix": "reshape"
+ },
+ {
+  "id": "bundle-bakery",
+  "tier": "A",
+  "choice": "accept",
+  "how": "clicked",
+  "title": "Bundle Bakery",
+  "new_title": "Crayon Boxes",
+  "fix": "reshape"
+ },
+ {
+  "id": "input-output-machine",
+  "tier": "A",
+  "choice": "accept",
+  "how": "clicked",
+  "title": "Input-Output Machine",
+  "new_title": "Input or Output?",
+  "fix": "reshape"
+ },
+ {
+  "id": "market-day",
+  "tier": "A",
+  "choice": "accept",
+  "how": "clicked",
+  "title": "Market Day",
+  "new_title": "Market Day",
+  "fix": "reshape"
+ },
+ {
+  "id": "move-like-me",
+  "tier": "A",
+  "choice": "accept",
+  "how": "clicked",
+  "title": "Move Like Me",
+  "new_title": "Levels and Pathways",
+  "fix": "reshape"
+ },
+ {
+  "id": "text-feature-safari",
+  "tier": "A",
+  "choice": "accept",
+  "how": "clicked",
+  "title": "Text Feature Safari",
+  "new_title": "Text Feature Makeover",
+  "fix": "reshape"
+ },
+ {
+  "id": "network-detective",
+  "tier": "A",
+  "choice": "accept",
+  "how": "clicked",
+  "title": "Network Detective",
+  "new_title": "Network Help Desk",
+  "fix": "reshape"
+ },
+ {
+  "id": "pattern-detective",
+  "tier": "A",
+  "choice": "accept",
+  "how": "clicked",
+  "title": "Pattern Detective",
+  "new_title": "Pattern Painter",
+  "fix": "reshape"
+ },
+ {
+  "id": "boundaries-builder",
+  "tier": "A",
+  "choice": "accept",
+  "how": "option picked; a second Accept click cleared it (page bug, fixed)",
+  "title": "Boundaries Builder",
+  "new_title": "Relationship Spectrum",
+  "fix": "reshape",
+  "option": "Reshape to Relationship Spectrum (recommended)"
+ },
+ {
+  "id": "pizza-physics",
+  "tier": "A",
+  "choice": "accept",
+  "how": "clicked",
+  "title": "Pizza Physics",
+  "new_title": "Big Wheel, Small Wheel",
+  "fix": "reshape"
+ },
+ {
+  "id": "compound-interest-garden",
+  "tier": "A",
+  "choice": "accept",
+  "how": "clicked",
+  "title": "Compound Interest Garden",
+  "new_title": "Compound Interest Head Start",
+  "fix": "reshape"
+ },
+ {
+  "id": "design-the-study",
+  "tier": "A",
+  "choice": "accept",
+  "how": "clicked",
+  "title": "Design the Study",
+  "new_title": "Design the Study",
+  "fix": "reshape"
+ },
+ {
+  "id": "local-changemaker-planner",
+  "tier": "A",
+  "choice": "accept",
+  "how": "clicked",
+  "title": "Local Changemaker Planner",
+  "new_title": "Who Decides?",
+  "fix": "reshape"
+ },
+ {
+  "id": "power-grid-tycoon",
+  "tier": "A",
+  "choice": "accept",
+  "how": "clicked",
+  "title": "Power Grid Tycoon",
+  "new_title": "Grid Operator",
+  "fix": "reshape"
+ },
+ {
+  "id": "roller-coaster-physics",
+  "tier": "A",
+  "choice": "accept",
+  "how": "clicked",
+  "title": "Roller Coaster Physics",
+  "new_title": "Zipline Energy",
+  "fix": "reshape"
+ },
+ {
+  "id": "battleship-grid",
+  "tier": "A",
+  "choice": "accept",
+  "how": "clicked",
+  "title": "Battleship Grid",
+  "new_title": "Sea Search Grid",
+  "fix": "reshape"
+ },
+ {
+  "id": "food-web-jenga",
+  "tier": "A",
+  "choice": "accept",
+  "how": "clicked",
+  "title": "Food Web Jenga",
+  "new_title": "Food Web Wobble",
+  "fix": "rename"
+ },
+ {
+  "id": "mad-libs-machine",
+  "tier": "A",
+  "choice": "accept",
+  "how": "clicked",
+  "title": "Mad Libs Machine",
+  "new_title": "Story Blanks",
+  "fix": "rename"
+ },
+ {
+  "id": "rube-goldberg-workshop",
+  "tier": "A",
+  "choice": "accept",
+  "how": "clicked",
+  "title": "Rube Goldberg Workshop",
+  "new_title": "Contraption Workshop",
+  "fix": "rename"
+ },
+ {
+  "id": "lemonade-monopoly",
+  "tier": "A",
+  "choice": "accept",
+  "how": "clicked",
+  "title": "Lemonade Monopoly",
+  "new_title": "The Buyout",
+  "fix": "reshape"
+ },
+ {
+  "id": "festival-passport",
+  "tier": "A",
+  "choice": "accept",
+  "how": "clicked",
+  "title": "Festival Passport",
+  "new_title": "Festival Parade",
+  "fix": "reshape"
+ },
+ {
+  "id": "make-ten-machine",
+  "tier": "A",
+  "choice": "accept",
+  "how": "clicked",
+  "title": "Make Ten Machine",
+  "new_title": "Make Ten Machine",
+  "fix": "spec-note"
+ },
+ {
+  "id": "ten-frame-factory",
+  "tier": "A",
+  "choice": "accept",
+  "how": "clicked",
+  "title": "Ten Frame Factory",
+  "new_title": "Ten Frame Spillover",
+  "fix": "rename"
+ },
+ {
+  "id": "settle-the-valley",
+  "tier": "A",
+  "choice": "accept",
+  "how": "clicked",
+  "title": "Settle the Valley",
+  "new_title": "Settle the Valley",
+  "fix": "reshape"
+ },
+ {
+  "id": "town-planner-disaster-ready",
+  "tier": "A",
+  "choice": "accept",
+  "how": "clicked",
+  "title": "Town Planner: Disaster Ready",
+  "new_title": "Town Planner: Disaster Ready",
+  "fix": "spec-note"
+ },
+ {
+  "id": "energy-accountant",
+  "tier": "A",
+  "choice": "accept",
+  "how": "option picked; a second Accept click cleared it (page bug, fixed)",
+  "title": "Energy Accountant",
+  "new_title": "Energy Accountant",
+  "fix": "add-standard",
+  "option": "Add HS-LS2-5 (and optionally HS-LS2-3) to its module before the wave 1 spec (recommended)"
+ },
+ {
+  "id": "class-snack-vote",
+  "tier": "B",
+  "choice": "accept",
+  "how": "clicked",
+  "title": "Class Snack Vote",
+  "new_title": "Me vs the Counter",
+  "fix": "reshape"
+ },
+ {
+  "id": "retell-puppets",
+  "tier": "B",
+  "choice": "accept",
+  "how": "option picked; a second Accept click cleared it (page bug, fixed)",
+  "title": "Retell Puppets",
+  "new_title": "Bedtime Retell",
+  "fix": "reshape",
+  "option": "Reshape to Bedtime Retell (recommended)"
+ },
+ {
+  "id": "chain-reaction",
+  "tier": "B",
+  "choice": "accept",
+  "how": "clicked",
+  "title": "Chain Reaction",
+  "new_title": "Cause and Effect Rewind",
+  "fix": "reshape"
+ },
+ {
+  "id": "keyword-kitchen",
+  "tier": "B",
+  "choice": "accept",
+  "how": "clicked",
+  "title": "Keyword Kitchen",
+  "new_title": "Keyword Fishing",
+  "fix": "reshape"
+ },
+ {
+  "id": "pizza-shop-assembly-line",
+  "tier": "B",
+  "choice": "accept",
+  "how": "clicked",
+  "title": "Pizza Shop Assembly Line",
+  "new_title": "Paper Plane Assembly Line",
+  "fix": "reshape"
+ },
+ {
+  "id": "pattern-finder",
+  "tier": "B",
+  "choice": "accept",
+  "how": "clicked",
+  "title": "Pattern Finder",
+  "new_title": "Spot the AI",
+  "fix": "reshape"
+ },
+ {
+  "id": "treasure-map-steps",
+  "tier": "B",
+  "choice": "accept",
+  "how": "clicked",
+  "title": "Treasure Map Steps",
+  "new_title": "Lost and Found",
+  "fix": "reshape"
+ },
+ {
+  "id": "essay-architect",
+  "tier": "B",
+  "choice": "accept",
+  "how": "clicked",
+  "title": "Essay Architect",
+  "new_title": "Essay Train",
+  "fix": "reshape"
+ },
+ {
+  "id": "evidence-locker",
+  "tier": "B",
+  "choice": "accept",
+  "how": "clicked",
+  "title": "Evidence Locker",
+  "new_title": "Quote Picker",
+  "fix": "reshape"
+ },
+ {
+  "id": "fossil-dig",
+  "tier": "B",
+  "choice": "accept",
+  "how": "clicked",
+  "title": "Fossil Dig",
+  "new_title": "Fossil Clues",
+  "fix": "reshape"
+ },
+ {
+  "id": "fruit-sorter-ai",
+  "tier": "B",
+  "choice": "accept",
+  "how": "clicked",
+  "title": "Fruit Sorter AI",
+  "new_title": "Leaf Sorter AI",
+  "fix": "reshape"
+ },
+ {
+  "id": "recipe-scaler",
+  "tier": "B",
+  "choice": "accept",
+  "how": "clicked",
+  "title": "Recipe Scaler",
+  "new_title": "Recipe Scaler",
+  "fix": "reshape"
+ },
+ {
+  "id": "ice-cream-shop",
+  "tier": "B",
+  "choice": "accept",
+  "how": "clicked",
+  "title": "Ice Cream Shop",
+  "new_title": "Snow Globe Maker",
+  "fix": "reshape"
+ },
+ {
+  "id": "town-hall-debate",
+  "tier": "B",
+  "choice": "accept",
+  "how": "clicked",
+  "title": "Town Hall Debate",
+  "new_title": "Claim vs Claim",
+  "fix": "reshape"
+ },
+ {
+  "id": "inquiry-planner",
+  "tier": "B",
+  "choice": "accept",
+  "how": "clicked",
+  "title": "Inquiry Planner",
+  "new_title": "Question Sharpener",
+  "fix": "reshape"
+ },
+ {
+  "id": "polynomial-garden",
+  "tier": "B",
+  "choice": "accept",
+  "how": "clicked",
+  "title": "Polynomial Garden",
+  "new_title": "Polynomials as Numbers",
+  "fix": "reshape"
+ },
+ {
+  "id": "robber-baron-or-captain",
+  "tier": "B",
+  "choice": "accept",
+  "how": "clicked",
+  "title": "Robber Baron or Captain?",
+  "new_title": "Baron or Builder?",
+  "fix": "reshape"
+ },
+ {
+  "id": "space-cargo",
+  "tier": "B",
+  "choice": "accept",
+  "how": "clicked",
+  "title": "Space Cargo",
+  "new_title": "Curling Stones",
+  "fix": "reshape"
+ },
+ {
+  "id": "transformation-golf",
+  "tier": "B",
+  "choice": "accept",
+  "how": "clicked",
+  "title": "Transformation Golf",
+  "new_title": "Rigid Motion Twins",
+  "fix": "reshape"
+ },
+ {
+  "id": "elevator-hundred",
+  "tier": "C",
+  "choice": "later",
+  "how": "C default: not clicked, left for the spec",
+  "title": "Elevator Hundred",
+  "new_title": "Hundred Bead Slider",
+  "fix": "reshape"
+ },
+ {
+  "id": "pattern-block-pond",
+  "tier": "C",
+  "choice": "later",
+  "how": "C default: not clicked, left for the spec",
+  "title": "Pattern Block Pond",
+  "new_title": "Pattern Block Windows",
+  "fix": "reshape"
+ },
+ {
+  "id": "pizza-party",
+  "tier": "C",
+  "choice": "later",
+  "how": "C default: not clicked, left for the spec",
+  "title": "Pizza Party",
+  "new_title": "Pizza Party",
+  "fix": "reshape"
+ },
+ {
+  "id": "shape-spy",
+  "tier": "C",
+  "choice": "later",
+  "how": "C default: not clicked, left for the spec",
+  "title": "Shape Spy",
+  "new_title": "Hide and Seek Solids",
+  "fix": "reshape"
+ },
+ {
+  "id": "snack-scale",
+  "tier": "C",
+  "choice": "later",
+  "how": "C default: not clicked, left for the spec",
+  "title": "Snack Scale",
+  "new_title": "Snack Lineup",
+  "fix": "reshape"
+ },
+ {
+  "id": "story-dress-up",
+  "tier": "C",
+  "choice": "later",
+  "how": "C default: not clicked, left for the spec",
+  "title": "Story Dress-Up",
+  "new_title": "Act It Out",
+  "fix": "rename"
+ },
+ {
+  "id": "story-map-treasure",
+  "tier": "C",
+  "choice": "later",
+  "how": "C default: not clicked, left for the spec",
+  "title": "Story Map Treasure",
+  "new_title": "Story Map Quilt",
+  "fix": "reshape"
+ },
+ {
+  "id": "two-sides-theater",
+  "tier": "C",
+  "choice": "later",
+  "how": "C default: not clicked, left for the spec",
+  "title": "Two Sides Theater",
+  "new_title": "Bear's Side of the Story",
+  "fix": "reshape"
+ },
+ {
+  "id": "word-zoo",
+  "tier": "C",
+  "choice": "later",
+  "how": "C default: not clicked, left for the spec",
+  "title": "Word Zoo",
+  "new_title": "Word Habitats",
+  "fix": "rename"
+ },
+ {
+  "id": "blueprint-builder",
+  "tier": "C",
+  "choice": "later",
+  "how": "C default: not clicked, left for the spec",
+  "title": "Blueprint Builder",
+  "new_title": "Same Facts, New Structure",
+  "fix": "reshape"
+ },
+ {
+  "id": "depth-detective",
+  "tier": "C",
+  "choice": "later",
+  "how": "C default: not clicked, left for the spec",
+  "title": "Depth Detective",
+  "new_title": "Near and Far",
+  "fix": "rename"
+ },
+ {
+  "id": "particle-zoom",
+  "tier": "C",
+  "choice": "later",
+  "how": "C default: not clicked, left for the spec",
+  "title": "Particle Zoom",
+  "new_title": "Too Small to See",
+  "fix": "rename"
+ },
+ {
+  "id": "root-detective-cards",
+  "tier": "C",
+  "choice": "later",
+  "how": "C default: not clicked, left for the spec",
+  "title": "Root Detective Cards",
+  "new_title": "Root Cards",
+  "fix": "rename"
+ },
+ {
+  "id": "shape-courtroom",
+  "tier": "C",
+  "choice": "later",
+  "how": "C default: not clicked, left for the spec",
+  "title": "Shape Courtroom",
+  "new_title": "Shape Sieve",
+  "fix": "reshape"
+ },
+ {
+  "id": "data-detective",
+  "tier": "C",
+  "choice": "later",
+  "how": "C default: not clicked, left for the spec",
+  "title": "Data Detective",
+  "new_title": "Trend Line",
+  "fix": "rename"
+ },
+ {
+  "id": "debate-prep-desk",
+  "tier": "C",
+  "choice": "later",
+  "how": "C default: not clicked, left for the spec",
+  "title": "Debate Prep Desk",
+  "new_title": "Reason Builder",
+  "fix": "reshape"
+ },
+ {
+  "id": "flowchart-factory",
+  "tier": "C",
+  "choice": "later",
+  "how": "C default: not clicked, left for the spec",
+  "title": "Flowchart Factory",
+  "new_title": "Chore Flowcharts",
+  "fix": "rename"
+ },
+ {
+  "id": "screen-time-detective",
+  "tier": "C",
+  "choice": "later",
+  "how": "C default: not clicked, left for the spec",
+  "title": "Screen Time Detective",
+  "new_title": "My Screen Week",
+  "fix": "rename"
+ },
+ {
+  "id": "skate-park-energy",
+  "tier": "C",
+  "choice": "later",
+  "how": "C default: not clicked, left for the spec",
+  "title": "Skate Park Energy",
+  "new_title": "Swing Energy",
+  "fix": "reshape"
+ },
+ {
+  "id": "source-sorter",
+  "tier": "C",
+  "choice": "later",
+  "how": "C default: not clicked, left for the spec",
+  "title": "Source Sorter",
+  "new_title": "Source Sorter",
+  "fix": "reshape"
+ },
+ {
+  "id": "summary-scaffold",
+  "tier": "C",
+  "choice": "later",
+  "how": "C default: not clicked, left for the spec",
+  "title": "Summary Scaffold",
+  "new_title": "Say It Short",
+  "fix": "rename"
+ },
+ {
+  "id": "build-a-government",
+  "tier": "C",
+  "choice": "later",
+  "how": "C default: not clicked, left for the spec",
+  "title": "Build a Government",
+  "new_title": "Write the Charter",
+  "fix": "reshape"
+ },
+ {
+  "id": "cone-slicer",
+  "tier": "C",
+  "choice": "later",
+  "how": "C default: not clicked, left for the spec",
+  "title": "Cone Slicer",
+  "new_title": "Conic Focus Finder",
+  "fix": "reshape"
+ },
+ {
+  "id": "founding-words-explorer",
+  "tier": "C",
+  "choice": "later",
+  "how": "C default: not clicked, left for the spec",
+  "title": "Founding Words Explorer",
+  "new_title": "Founding Words Explorer",
+  "fix": "reshape"
+ },
+ {
+  "id": "meal-and-move-planner",
+  "tier": "C",
+  "choice": "later",
+  "how": "C default: not clicked, left for the spec",
+  "title": "Meal and Move Planner",
+  "new_title": "Game Day Fuel",
+  "fix": "reshape"
+ },
+ {
+  "id": "premise-inspector",
+  "tier": "C",
+  "choice": "later",
+  "how": "C default: not clicked, left for the spec",
+  "title": "Premise Inspector",
+  "new_title": "Premise Inspector",
+  "fix": "reshape"
+ },
+ {
+  "id": "unit-detective",
+  "tier": "C",
+  "choice": "later",
+  "how": "C default: not clicked, left for the spec",
+  "title": "Unit Detective",
+  "new_title": "Unit Sense",
+  "fix": "rename"
+ },
+ {
+  "id": "watershed-detective",
+  "tier": "C",
+  "choice": "later",
+  "how": "C default: not clicked, left for the spec",
+  "title": "Watershed Detective",
+  "new_title": "Upstream",
+  "fix": "rename"
+ },
+ {
+  "id": "choreography-board",
+  "tier": "C",
+  "choice": "later",
+  "how": "C default: not clicked, left for the spec",
+  "title": "Choreography Board",
+  "new_title": "Choreography Board",
+  "fix": "reshape"
+ },
+ {
+  "id": "dance-floor-moves",
+  "tier": "C",
+  "choice": "later",
+  "how": "C default: not clicked, left for the spec",
+  "title": "Dance Floor Moves",
+  "new_title": "Transformation Dock",
+  "fix": "reshape"
+ },
+ {
+  "id": "argument-frames-pro",
+  "tier": "C",
+  "choice": "later",
+  "how": "C default: not clicked, left for the spec",
+  "title": "Argument Frames Pro",
+  "new_title": "Counterpoint Frames",
+  "fix": "rename"
+ },
+ {
+  "id": "director-s-chair",
+  "tier": "C",
+  "choice": "later",
+  "how": "C default: not clicked, left for the spec",
+  "title": "Director's Chair",
+  "new_title": "Director's Chair",
+  "fix": "reshape"
+ },
+ {
+  "id": "fair-use-court",
+  "tier": "C",
+  "choice": "later",
+  "how": "C default: not clicked, left for the spec",
+  "title": "Fair Use Court",
+  "new_title": "Fair Use Review",
+  "fix": "reshape"
+ },
+ {
+  "id": "island-economy",
+  "tier": "C",
+  "choice": "later",
+  "how": "C default: not clicked, left for the spec",
+  "title": "Island Economy",
+  "new_title": "Lake Commons",
+  "fix": "reshape"
+ },
+ {
+  "id": "scam-shield",
+  "tier": "C",
+  "choice": "later",
+  "how": "C default: not clicked, left for the spec",
+  "title": "Scam Shield",
+  "new_title": "Covered",
+  "fix": "reshape"
+ },
+ {
+  "id": "ph-detective",
+  "tier": "C",
+  "choice": "now",
+  "how": "clicked; title keeps the topic word (rule 2): pH Mystery Liquids",
+  "title": "pH Detective",
+  "new_title": "pH Mystery Liquids",
+  "fix": "rename",
+  "option": "Rename to Mystery Liquids, concept unchanged (recommended)"
+ },
+ {
+  "id": "song-form-builder",
+  "tier": "N",
+  "choice": "accept",
+  "how": "clicked",
+  "title": "Song Form Builder",
+  "new_title": "Song Form Builder",
+  "fix": "spec-note"
+ },
+ {
+  "id": "counterclaim-ping-pong",
+  "tier": "N",
+  "choice": "accept",
+  "how": "clicked",
+  "title": "Counterclaim Ping-Pong",
+  "new_title": "Counterclaim Rally",
+  "fix": "keep",
+  "option": "Rename to Counterclaim Rally ('Ping-Pong' is a registered mark for table tennis gear)"
+ },
+ {
+  "id": "sentence-remixer",
+  "tier": "N",
+  "choice": "accept",
+  "how": "clicked",
+  "title": "Sentence Remixer",
+  "new_title": "Sentence Remixer",
+  "fix": "spec-note"
+ },
+ {
+  "id": "voice-switcher",
+  "tier": "N",
+  "choice": "accept",
+  "how": "clicked",
+  "title": "Voice Switcher",
+  "new_title": "Voice Switcher",
+  "fix": "keep",
+  "option": "Keep (recommended): news headlines that hide who is to blame are the strongest passive-voice hook in the catalog"
+ },
+ {
+  "id": "courtroom-statistics",
+  "tier": "N",
+  "choice": "accept",
+  "how": "clicked",
+  "title": "Courtroom Statistics",
+  "new_title": "Courtroom Statistics",
+  "fix": "keep"
+ },
+ {
+  "id": "inbox-simulator",
+  "tier": "N",
+  "choice": "accept",
+  "how": "clicked",
+  "title": "Inbox Simulator",
+  "new_title": "Inbox Simulator",
+  "fix": "spec-note"
+ },
+ {
+  "id": "population-dashboard",
+  "tier": "N",
+  "choice": "accept",
+  "how": "clicked",
+  "title": "Population Dashboard",
+  "new_title": "Population Dashboard",
+  "fix": "keep",
+  "option": "Keep as written (recommended once energy-accountant takes HS-LS2-5, W3)"
+ },
+ {
+  "id": "prototype-lab",
+  "tier": "N",
+  "choice": "accept",
+  "how": "clicked",
+  "title": "Prototype Lab",
+  "new_title": "Prototype Lab",
+  "fix": "spec-note"
+ },
+ {
+  "id": "speedometer",
+  "tier": "N",
+  "choice": "accept",
+  "how": "clicked",
+  "title": "Speedometer",
+  "new_title": "Speedometer",
+  "fix": "spec-note"
+ }
+]
