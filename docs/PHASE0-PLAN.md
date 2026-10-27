@@ -202,6 +202,10 @@ S:\CurioClass\
 - Phase 2: at least one tool concept per module (tools.csv rows with status = Concept)
 - Phase 3: build, tune, publish
 - Reading Room: public domain story library, plan in docs/LIBRARY-PLAN.md (agreed 2026-10-25; pilot = 10 stories, grades 3-5)
+- Supply Closet: teacher resources (Sub Day packets, Word Wall, Posters and Anchor Charts, Family Game Night, the
+  Map), plan in docs/SUPPLY-CLOSET-PLAN.md (concepts agreed 2026-10-26)
+- Late roadmap (parked 2026-10-26): Worksheet Generator. Click-only practice sheets per module, 3 levels x 2-3 types,
+  seed codes, checked answer keys. Design in docs/SUPPLY-CLOSET-PLAN.md; comes after the Supply Closet shelves.
 - Far back of the roadmap (parked 2026-10-25): instrument learning paths. One tool per instrument with about 10 to 12
   levels inside, beginner to early intermediate, on a shared engine (mic pitch detection, Web MIDI, Note Ninja staff).
   Recorder first, then keyboard, ukulele, guitar, voice; band instruments partly (a browser can't see the player's
