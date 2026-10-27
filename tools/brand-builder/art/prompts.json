@@ -1,0 +1,49 @@
+{
+  "house_style": "Clean realistic product mockup photograph for a high school design tool, front-on, flat even daylight, neutral colors, crisp detail, every surface plain and blank. No text, no letters, no numbers, no logos, no watermark, no border, no frame.",
+  "assets": [
+    {
+      "name": "bb-storefront",
+      "prompt": "A small brick shop front seen straight on, a wide blank painted sign band above the window, a plain wooden door, an empty sidewalk.",
+      "aspect": "16:9",
+      "cutout": false,
+      "width": 1200,
+      "quality": 74,
+      "local_note": "the sign band is the logo zone",
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "bb-van",
+      "prompt": "A plain white delivery van in side view on a quiet street, a large blank side panel, clean paint.",
+      "aspect": "16:9",
+      "cutout": false,
+      "width": 1200,
+      "quality": 74,
+      "local_note": "the side panel is the logo zone",
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "bb-shirt",
+      "prompt": "A plain charcoal t-shirt laid flat on a light wood table, seen from above, blank front.",
+      "aspect": "1:1",
+      "cutout": false,
+      "width": 1200,
+      "quality": 74,
+      "local_note": "the chest area is the logo zone",
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "bb-bag",
+      "prompt": "A plain brown kraft paper shopping bag standing on a counter, seen straight on, blank front.",
+      "aspect": "3:4",
+      "cutout": false,
+      "width": 900,
+      "quality": 74,
+      "local_note": "the bag front is the logo zone; long side 1200",
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    }
+  ]
+}

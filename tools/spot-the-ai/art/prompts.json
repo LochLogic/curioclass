@@ -1,0 +1,16 @@
+{
+  "assets": [
+    {
+      "name": "workshop",
+      "prompt": "A cozy cartoon workshop wall with a pegboard and empty shelves, a long clear wooden workbench across the bottom with a bare empty top, warm light, flat bright illustration.",
+      "aspect": "16:9",
+      "cutout": false,
+      "width": 1600,
+      "quality": 72,
+      "local_note": "stage backdrop; the machines are drawn in code on the bench",
+      "sd": "A cozy cartoon workshop seen straight on: a pegboard wall with a few hanging tools and wooden shelves with jars high up on the wall, and a long wide wooden workbench across the bottom of the picture whose clean bare top surface is completely clear, warm light, flat bright illustration.",
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "house_style": "Flat editorial illustration for a high school civics tool, like a modern magazine portrait: head and shoulders, clean shapes, soft shading, calm natural colors, plain warm grey background, natural and respectful. No text, no letters, no numbers, no logos, no watermark, no border, no frame.",
+  "style": "Six council member portraits in one shared style, head and shoulders, plain warm grey background.",
+  "assets": [
+    {
+      "name": "member-dana-ruiz",
+      "prompt": "Head and shoulders portrait of a Latina mother in her forties in a cardigan, warm and attentive.",
+      "aspect": "1:1",
+      "cutout": false,
+      "people": true,
+      "width": 320,
+      "quality": 82,
+      "source": "gpt-image-2 (Codex)",
+      "review": "pending"
+    },
+    {
+      "name": "member-malik-owens",
+      "prompt": "Head and shoulders portrait of a Black high school junior in a hoodie with a plain lanyard, thoughtful.",
+      "aspect": "1:1",
+      "cutout": false,
+      "people": true,
+      "width": 320,
+      "quality": 82,
+      "ref": "member-dana-ruiz",
+      "ref_mode": "style",
+      "source": "gpt-image-2 (Codex)",
+      "review": "pending"
+    },
+    {
+      "name": "member-priya-natarajan",
+      "prompt": "Head and shoulders portrait of a South Asian woman teacher in her thirties with glasses and a plain lanyard, lively.",
+      "aspect": "1:1",
+      "cutout": false,
+      "people": true,
+      "width": 320,
+      "quality": 82,
+      "ref": "member-dana-ruiz",
+      "ref_mode": "style",
+      "source": "gpt-image-2 (Codex)",
+      "review": "pending"
+    },
+    {
+      "name": "member-tom-becker",
+      "prompt": "Head and shoulders portrait of a white middle school principal in his fifties in a shirt and tie, calm.",
+      "aspect": "1:1",
+      "cutout": false,
+      "people": true,
+      "width": 320,
+      "quality": 82,
+      "ref": "member-dana-ruiz",
+      "ref_mode": "style",
+      "source": "gpt-image-2 (Codex)",
+      "review": "pending"
+    },
+    {
+      "name": "member-grace-lee",
+      "prompt": "Head and shoulders portrait of an East Asian woman in her forties in a blazer holding a plain folder, practical.",
+      "aspect": "1:1",
+      "cutout": false,
+      "people": true,
+      "width": 320,
+      "quality": 82,
+      "ref": "member-dana-ruiz",
+      "ref_mode": "style",
+      "source": "gpt-image-2 (Codex)",
+      "review": "pending"
+    },
+    {
+      "name": "member-ana-sorensen",
+      "prompt": "Head and shoulders portrait of a woman lawyer in her sixties with grey hair and a dark suit, serious and kind.",
+      "aspect": "1:1",
+      "cutout": false,
+      "people": true,
+      "width": 320,
+      "quality": 82,
+      "ref": "member-dana-ruiz",
+      "ref_mode": "style",
+      "source": "gpt-image-2 (Codex)",
+      "review": "pending"
+    }
+  ]
+}

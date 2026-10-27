@@ -1,0 +1,15 @@
+{
+  "assets": [
+    {
+      "name": "dd-night-hallway",
+      "prompt": "An empty elementary school hallway at night, plain blank lockers along the left wall, a long polished floor, soft blue moonlight from high windows, plain bare walls, painted storybook style.",
+      "aspect": "16:9",
+      "cutout": false,
+      "width": 1600,
+      "quality": 70,
+      "local_note": "darkened 40 percent behind the code-drawn doors",
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    }
+  ]
+}

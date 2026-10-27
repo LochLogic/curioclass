@@ -1,0 +1,35 @@
+{
+  "house_style": "Natural, true-to-life nature photograph for an elementary library lesson, soft light, gentle colors. No text, no letters, no numbers, no logos, no watermark, no border, no frame.",
+  "assets": [
+    {
+      "name": "cc-snowy-owl",
+      "prompt": "A snowy owl perched on a fence post in fresh snow at dawn, soft pink sky.",
+      "aspect": "4:3",
+      "cutout": false,
+      "width": 800,
+      "quality": 76,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "cc-honeybee-sunflower",
+      "prompt": "A honeybee on the center of a bright sunflower, close-up, a green garden blurred behind.",
+      "aspect": "4:3",
+      "cutout": false,
+      "width": 800,
+      "quality": 76,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "cc-moon-lake",
+      "prompt": "A full moon rising over a still lake with dark pine trees on the far shore, its reflection on the water, night.",
+      "aspect": "4:3",
+      "cutout": false,
+      "width": 800,
+      "quality": 76,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    }
+  ]
+}

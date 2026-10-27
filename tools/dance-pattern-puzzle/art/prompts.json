@@ -1,0 +1,15 @@
+{
+  "assets": [
+    {
+      "name": "festival-square",
+      "prompt": "An open-air town square at golden hour, a low wooden dance platform in the center foreground, strings of round paper lanterns and plain cloth bunting overhead, whitewashed walls with plain blank shutters, potted plants, warm light, flat painterly style with soft shapes, an empty square.",
+      "aspect": "16:9",
+      "cutout": false,
+      "width": 1600,
+      "quality": 72,
+      "local_note": "dimmed 20 percent behind the dancer",
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    }
+  ]
+}

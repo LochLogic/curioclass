@@ -1,0 +1,35 @@
+{
+  "house_style": "Flat painted comic-book background for a middle school health story, bold simple shapes, clean thick outlines, warm limited palette, an empty scene, every surface plain and blank. No text, no letters, no numbers, no logos, no watermark, no border, no frame.",
+  "assets": [
+    {
+      "name": "pp-bleachers",
+      "prompt": "An empty school gym after a basketball game at night, wooden bleachers in the foreground, a dark blank scoreboard, warm overhead lights, a few water bottles on the bench.",
+      "aspect": "16:9",
+      "cutout": false,
+      "width": 1280,
+      "quality": 70,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "pp-basement",
+      "prompt": "A cozy family basement at night, a big couch with blankets and pillows, string lights, a snack bowl, a blank dark TV.",
+      "aspect": "16:9",
+      "cutout": false,
+      "width": 1280,
+      "quality": 70,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "pp-hallway",
+      "prompt": "A middle school hallway in morning light, rows of plain blue lockers with blank doors, a bulletin board covered with blank colored paper.",
+      "aspect": "16:9",
+      "cutout": false,
+      "width": 1280,
+      "quality": 70,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "house_style": "Painted gallery-poster portrait for a high school art critique tool: confident painterly brushwork, rich but calm color, head and shoulders, natural and respectful. No text, no letters, no numbers, no logos, no watermark, no border, no frame.",
+  "style": "Three panelist portraits in one shared style, head and shoulders, shown small and round.",
+  "assets": [
+    {
+      "name": "panel-okafor",
+      "prompt": "Head and shoulders portrait of Ines Okafor, an art critic in her forties with short natural hair and a black blazer.",
+      "aspect": "1:1",
+      "cutout": true,
+      "people": true,
+      "key": "green",
+      "width": 256,
+      "quality": 82,
+      "source": "gpt-image-2 (Codex)",
+      "review": "pending",
+      "despill": true
+    },
+    {
+      "name": "panel-lindqvist",
+      "prompt": "Head and shoulders portrait of Paul Lindqvist, a museum curator in his sixties with a gray beard and round glasses, wearing a cardigan.",
+      "aspect": "1:1",
+      "cutout": true,
+      "people": true,
+      "key": "green",
+      "width": 256,
+      "quality": 82,
+      "ref": "panel-okafor",
+      "ref_mode": "style",
+      "despill": true,
+      "source": "gpt-image-2 (Codex)",
+      "review": "pending"
+    },
+    {
+      "name": "panel-santos",
+      "prompt": "Head and shoulders portrait of Rae Santos, a painter in her twenties with paint on her sleeves and a denim jacket.",
+      "aspect": "1:1",
+      "cutout": true,
+      "people": true,
+      "key": "green",
+      "width": 256,
+      "quality": 82,
+      "ref": "panel-okafor",
+      "ref_mode": "style",
+      "despill": true,
+      "source": "gpt-image-2 (Codex)",
+      "review": "pending"
+    }
+  ]
+}

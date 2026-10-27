@@ -1,0 +1,29 @@
+{
+  "house_style": "Realistic trail camera photograph for a middle school machine learning lab. Natural colors, documentary look, wide angle, a clean frame with plain edges. No text, no letters, no numbers, no logos, no watermark, no border, no frame.",
+  "style": "Dark workshop look with lime accents in the tool; the photos themselves are plain, believable trail camera frames.",
+  "assets": [
+    {
+      "name": "clearing-day",
+      "prompt": "A forest clearing with ferns, a fallen mossy log and a dirt path, seen from a trail camera strapped to a tree at knee height, daylight, photo style, wide angle, empty of animals.",
+      "aspect": "16:10",
+      "cutout": false,
+      "width": 1024,
+      "quality": 74,
+      "sd": "Wide angle photo of a sunny forest clearing taken from knee height: green ferns in the foreground, a fallen mossy log across the middle, a dirt path winding into the trees, soft daylight, natural colors, clean full-bleed photo.",
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "clearing-night",
+      "prompt": "The same kind of forest clearing with ferns, a fallen log and a dirt path at night, black and white infrared trail camera photo, soft glow in the center, empty of animals.",
+      "aspect": "16:10",
+      "cutout": false,
+      "width": 1024,
+      "quality": 74,
+      "local_note": "tinted green-gray in CSS",
+      "sd": "Black and white infrared night photo of a forest clearing taken from knee height: pale ferns in the foreground, a fallen log across the middle, a dirt path into dark trees, a soft white glow in the center fading to black at the edges, grainy monochrome, clean full-bleed photo.",
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "assets": [
+    {
+      "name": "cafeteria-counter",
+      "prompt": "A bright school cafeteria serving counter seen from the front, steel trays stacked on the counter, a glass sneeze guard, and a large blank green menu board on a pale tiled wall above it. The menu board is an empty plain green surface. Flat vector illustration, soft daylight.",
+      "aspect": "16:9",
+      "cutout": false,
+      "width": 1600,
+      "quality": 72,
+      "local_note": "used full-bleed behind the lunch line; menu text is drawn in code over the blank board",
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    }
+  ]
+}

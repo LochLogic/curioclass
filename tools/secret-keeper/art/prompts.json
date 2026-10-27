@@ -1,0 +1,99 @@
+{
+  "style": "Cheerful flat bright cartoon style for a kindergarten game, simple rounded shapes, friendly faces, the same drawing style for every character.",
+  "assets": [
+    {
+      "name": "pet-park",
+      "prompt": "A friendly cartoon park for a children's game, green grass, a curving sandy path along the front, round trees and flower beds, a blue sky with soft clouds, open space at left and right, flat bright illustration.",
+      "aspect": "16:9",
+      "cutout": false,
+      "width": 1600,
+      "quality": 72,
+      "skip_style": true,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "bunny",
+      "prompt": "A cheerful cartoon bunny game character standing, holding its paws up in front of its chest as if holding a card, flat bright style, full body, front view.",
+      "aspect": "3:4",
+      "cutout": true,
+      "people": true,
+      "key": "green",
+      "height": 400,
+      "quality": 82,
+      "note": "animal character (people: true per spec), the class player",
+      "source": "gpt-image-2 (Codex)",
+      "review": "pending"
+    },
+    {
+      "name": "fern-fox",
+      "prompt": "A friendly cartoon fox game character walking, side view facing right, flat bright style, full body.",
+      "aspect": "3:4",
+      "cutout": true,
+      "people": true,
+      "key": "green",
+      "height": 400,
+      "quality": 82,
+      "ref": "bunny",
+      "ref_mode": "style",
+      "source": "gpt-image-2 (Codex)",
+      "review": "pending"
+    },
+    {
+      "name": "ollie-owl",
+      "prompt": "A friendly cartoon owl game character walking, side view facing right, flat bright style, full body.",
+      "aspect": "3:4",
+      "cutout": true,
+      "people": true,
+      "key": "green",
+      "height": 400,
+      "quality": 82,
+      "ref": "bunny",
+      "ref_mode": "style",
+      "source": "gpt-image-2 (Codex)",
+      "review": "pending"
+    },
+    {
+      "name": "gus-goose",
+      "prompt": "A friendly cartoon goose game character walking, side view facing right, flat bright style, full body.",
+      "aspect": "3:4",
+      "cutout": true,
+      "people": true,
+      "key": "green",
+      "height": 400,
+      "quality": 82,
+      "ref": "bunny",
+      "ref_mode": "style",
+      "source": "gpt-image-2 (Codex)",
+      "review": "pending"
+    },
+    {
+      "name": "rascal-raccoon",
+      "prompt": "A friendly cartoon raccoon game character walking, side view facing right, with a cheeky grin and a little mask stripe, playful not scary, flat bright style, full body.",
+      "aspect": "3:4",
+      "cutout": true,
+      "people": true,
+      "key": "green",
+      "height": 400,
+      "quality": 82,
+      "ref": "bunny",
+      "ref_mode": "style",
+      "source": "gpt-image-2 (Codex)",
+      "review": "pending"
+    },
+    {
+      "name": "bear-grownup",
+      "prompt": "A kind grown-up cartoon bear game character in a cardigan, walking, side view facing right, flat bright style, full body.",
+      "aspect": "3:4",
+      "cutout": true,
+      "people": true,
+      "key": "green",
+      "height": 400,
+      "quality": 82,
+      "ref": "bunny",
+      "ref_mode": "style",
+      "source": "gpt-image-2 (Codex)",
+      "review": "pending"
+    }
+  ]
+}

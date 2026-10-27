@@ -1,0 +1,64 @@
+{
+  "house_style": "Flat editorial illustration for a middle school civics and computer science tool, like a modern magazine portrait: clean shapes, soft shading, muted warm palette with navy accents, natural and respectful. No text, no letters, no numbers, no logos, no watermark, no border, no frame.",
+  "style": "Four school board portraits in one shared style, chest up, plain warm background.",
+  "assets": [
+    {
+      "name": "board-rivera",
+      "prompt": "Portrait of a calm woman in her fifties with short gray hair and a navy blazer, seated at a meeting table, flat illustration, plain warm background, chest up.",
+      "aspect": "1:1",
+      "cutout": true,
+      "people": true,
+      "key": "green",
+      "width": 320,
+      "quality": 82,
+      "source": "gpt-image-2 (Codex)",
+      "review": "pending",
+      "despill": true
+    },
+    {
+      "name": "board-bell",
+      "prompt": "Portrait of a friendly man in his forties with glasses and a cardigan holding a calculator, flat illustration, plain warm background, chest up.",
+      "aspect": "1:1",
+      "cutout": true,
+      "people": true,
+      "key": "green",
+      "width": 320,
+      "quality": 82,
+      "ref": "board-rivera",
+      "ref_mode": "style",
+      "source": "gpt-image-2 (Codex)",
+      "review": "pending",
+      "despill": true
+    },
+    {
+      "name": "board-ortiz",
+      "prompt": "Portrait of an energetic teacher in her thirties in a plain teal t-shirt with a small gear shape on it, a small robot kit on the table in front of her, flat illustration, plain warm background, chest up.",
+      "aspect": "1:1",
+      "cutout": true,
+      "people": true,
+      "key": "green",
+      "width": 320,
+      "quality": 82,
+      "ref": "board-rivera",
+      "ref_mode": "style",
+      "source": "gpt-image-2 (Codex)",
+      "review": "pending",
+      "despill": true
+    },
+    {
+      "name": "parent-park",
+      "prompt": "Portrait of a parent in their forties in a rain jacket standing at a plain wooden podium, flat illustration, plain warm background, chest up.",
+      "aspect": "1:1",
+      "cutout": true,
+      "people": true,
+      "key": "green",
+      "width": 320,
+      "quality": 82,
+      "ref": "board-rivera",
+      "ref_mode": "style",
+      "source": "gpt-image-2 (Codex)",
+      "review": "pending",
+      "despill": true
+    }
+  ]
+}

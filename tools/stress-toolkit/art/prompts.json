@@ -1,0 +1,45 @@
+{
+  "house_style": "Soft painterly landscape illustration for a middle school calm-down tool, gentle light, quiet harmonious colors, loose brush texture, peaceful and empty, full frame. No text, no letters, no numbers, no logos, no watermark, no border, no frame.",
+  "assets": [
+    {
+      "name": "st-beach",
+      "prompt": "A quiet beach at sunset, gentle waves, warm orange and lilac sky, smooth sand.",
+      "aspect": "16:9",
+      "cutout": false,
+      "width": 1600,
+      "quality": 70,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "st-forest",
+      "prompt": "A forest path just after rain, tall trees, ferns, sunlight through mist, wet leaves shining.",
+      "aspect": "16:9",
+      "cutout": false,
+      "width": 1600,
+      "quality": 70,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "st-cabin",
+      "prompt": "Inside a snug wooden cabin, a window showing falling snow on pine trees, a glowing fireplace and a folded blanket on a chair.",
+      "aspect": "16:9",
+      "cutout": false,
+      "width": 1600,
+      "quality": 70,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "st-rooftop",
+      "prompt": "A city rooftop garden at night with potted plants and string lights, distant lit windows and a few stars.",
+      "aspect": "16:9",
+      "cutout": false,
+      "width": 1600,
+      "quality": 70,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "house_style": "Soft painterly illustration for a high school sports leadership story, atmospheric light, rich but calm color, loose brush texture, an empty scene. No text, no letters, no numbers, no logos, no watermark, no border, no frame.",
+  "assets": [
+    {
+      "name": "field-day",
+      "prompt": "An empty grass sports field with orange cones in a line, a metal team bench and a water cooler, golden late afternoon light.",
+      "aspect": "16:9",
+      "cutout": false,
+      "width": 1600,
+      "quality": 70,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "field-night",
+      "prompt": "An empty grass field under bright stadium lights at night, a sideline bench, dew sparkling on the grass.",
+      "aspect": "16:9",
+      "cutout": false,
+      "width": 1600,
+      "quality": 70,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "bus",
+      "prompt": "The inside of an empty yellow school bus, rows of green seats, warm evening light through the windows.",
+      "aspect": "16:9",
+      "cutout": false,
+      "width": 1600,
+      "quality": 70,
+      "sd": "The inside of a completely empty school bus seen from the back row looking toward the front, two rows of dark green seats with nobody in them, warm evening light through the side windows, a plain interior with no signs, deserted.",
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    }
+  ]
+}

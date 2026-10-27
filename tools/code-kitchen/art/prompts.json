@@ -1,0 +1,16 @@
+{
+  "house_style": "Warm painterly illustration for a middle school coding tool, a classic diner kitchen in cream tile and copper, soft morning light, gentle brush texture, simple clean shapes. No text, no letters, no numbers, no logos, no watermark, no border, no frame.",
+  "assets": [
+    {
+      "name": "diner-pass",
+      "prompt": "A warm diner kitchen pass-through window with a steel ticket rail holding blank plain paper tickets, a cream tile wall, copper pans hanging, soft morning light, an empty clean counter.",
+      "aspect": "16:9",
+      "cutout": false,
+      "width": 1280,
+      "quality": 66,
+      "local_note": "used faded (about 25 percent) behind the station and rail",
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    }
+  ]
+}

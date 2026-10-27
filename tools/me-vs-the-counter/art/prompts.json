@@ -1,0 +1,15 @@
+{
+  "assets": [
+    {
+      "name": "gym-wall",
+      "prompt": "An empty school gymnasium wall seen straight on, pale painted cinder blocks, a high row of windows with daylight, a folded basketball hoop at one side, plain bare walls, soft even light, flat illustration.",
+      "aspect": "16:9",
+      "cutout": false,
+      "width": 1600,
+      "quality": 72,
+      "local_note": "stage backdrop above the floor drawn in code",
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    }
+  ]
+}

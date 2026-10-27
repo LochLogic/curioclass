@@ -1,0 +1,16 @@
+{
+  "house_style": "Flat illustration for a middle school PE tool, clean shapes, soft even light, simple shading, muted colors, an empty room, every surface plain and blank. No text, no letters, no numbers, no logos, no watermark, no border, no frame.",
+  "assets": [
+    {
+      "name": "locker-room",
+      "prompt": "An empty school locker room, a long row of tall blue metal lockers with plain blank doors, a wooden bench in front, a plain grey door on the right, soft overhead light, flat illustration style.",
+      "aspect": "16:9",
+      "cutout": false,
+      "width": 1600,
+      "quality": 72,
+      "local_note": "Escape background; lockers, locks, whiteboard text and keypad are drawn in code over it",
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    }
+  ]
+}

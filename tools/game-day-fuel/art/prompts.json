@@ -1,0 +1,194 @@
+{
+  "house_style": "Soft flat illustration of food, appetizing and true to life, like a picture-book still life: gentle gouache texture, clean shapes, soft shading, top three-quarter view. No text, no letters, no numbers, no logos, no watermark, no border, no frame.",
+  "style": "Matches label-detective's food art: each food alone on a plain white plate or in its own simple container.",
+  "assets": [
+    {
+      "name": "gdf-strawberries",
+      "prompt": "A small white bowl of fresh strawberries.",
+      "aspect": "1:1",
+      "cutout": true,
+      "key": "magenta",
+      "width": 240,
+      "quality": 82,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "gdf-toast",
+      "prompt": "Two slices of whole-wheat toast on a plain white plate.",
+      "aspect": "1:1",
+      "cutout": true,
+      "key": "magenta",
+      "width": 240,
+      "quality": 82,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "gdf-eggs",
+      "prompt": "Scrambled eggs on a plain white plate.",
+      "aspect": "1:1",
+      "cutout": true,
+      "key": "magenta",
+      "width": 240,
+      "quality": 82,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "gdf-bagel-pb",
+      "prompt": "A sliced bagel spread with peanut butter on a plain white plate.",
+      "aspect": "1:1",
+      "cutout": true,
+      "key": "magenta",
+      "width": 240,
+      "quality": 82,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "gdf-turkey",
+      "prompt": "A turkey sandwich on whole-wheat bread with lettuce and tomato, on a plain white plate.",
+      "aspect": "1:1",
+      "cutout": true,
+      "key": "magenta",
+      "width": 240,
+      "quality": 82,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "gdf-pbj",
+      "prompt": "A peanut butter and strawberry jelly sandwich cut in half, on a plain white plate.",
+      "aspect": "1:1",
+      "cutout": true,
+      "key": "magenta",
+      "width": 240,
+      "quality": 82,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "gdf-pasta",
+      "prompt": "A white bowl of pasta with meat sauce.",
+      "aspect": "1:1",
+      "cutout": true,
+      "key": "magenta",
+      "width": 240,
+      "quality": 82,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "gdf-ricebowl",
+      "prompt": "A white bowl of rice topped with sliced chicken and vegetables.",
+      "aspect": "1:1",
+      "cutout": true,
+      "key": "magenta",
+      "width": 240,
+      "quality": 82,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "gdf-burrito",
+      "prompt": "A bean and cheese burrito cut in half, on a plain white plate.",
+      "aspect": "1:1",
+      "cutout": true,
+      "key": "magenta",
+      "width": 240,
+      "quality": 82,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "gdf-pizza",
+      "prompt": "One slice of cheese pizza on a plain white plate.",
+      "aspect": "1:1",
+      "cutout": true,
+      "key": "magenta",
+      "width": 240,
+      "quality": 82,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "gdf-salmon",
+      "prompt": "A baked salmon fillet with a lemon slice on a plain white plate.",
+      "aspect": "1:1",
+      "cutout": true,
+      "key": "magenta",
+      "width": 240,
+      "quality": 82,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "gdf-potato",
+      "prompt": "A baked potato split open on a plain white plate.",
+      "aspect": "1:1",
+      "cutout": true,
+      "key": "magenta",
+      "width": 240,
+      "quality": 82,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "gdf-salad",
+      "prompt": "A green salad in a white bowl.",
+      "aspect": "1:1",
+      "cutout": true,
+      "key": "magenta",
+      "width": 240,
+      "quality": 82,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "gdf-broccoli",
+      "prompt": "Steamed broccoli in a white bowl.",
+      "aspect": "1:1",
+      "cutout": true,
+      "key": "magenta",
+      "width": 240,
+      "quality": 82,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "gdf-chicken-sandwich",
+      "prompt": "A fried chicken sandwich in a plain blank paper wrapper.",
+      "aspect": "1:1",
+      "cutout": true,
+      "key": "magenta",
+      "width": 240,
+      "quality": 82,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "gdf-fries",
+      "prompt": "French fries in a plain blank red paper carton.",
+      "aspect": "1:1",
+      "cutout": true,
+      "key": "magenta",
+      "width": 240,
+      "quality": 82,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "gdf-smoothie",
+      "prompt": "A mango and peach fruit smoothie, warm orange, in a tall clear cup.",
+      "aspect": "1:1",
+      "cutout": true,
+      "key": "magenta",
+      "width": 240,
+      "quality": 82,
+      "source": "flux1-schnell (local)",
+      "review": "pending",
+      "despill": true
+    }
+  ]
+}

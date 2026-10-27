@@ -1,0 +1,15 @@
+{
+  "assets": [
+    {
+      "name": "kf-lake-dock",
+      "prompt": "A calm lake on a misty morning seen from the end of a wooden dock, reeds and lily pads at the edges, soft green hills far away, clear open water across the middle two thirds, storybook painted style.",
+      "aspect": "16:9",
+      "cutout": false,
+      "width": 1600,
+      "quality": 72,
+      "local_note": "stage background behind the code-drawn water, fish and bobber",
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    }
+  ]
+}

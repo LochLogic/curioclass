@@ -1,0 +1,47 @@
+{
+  "house_style": "Hand-drawn storybook illustration for a middle school research adventure, ink lines with soft watercolor wash, warm natural tones. No text, no letters, no numbers, no logos, no watermark, no border, no frame.",
+  "assets": [
+    {
+      "name": "rq-trail-map",
+      "prompt": "An illustrated parchment map of a small town and school grounds seen from above, a winding dotted trail with five empty round clearings along it, a library, a nature center in woods, a garden and a school building, blank banners.",
+      "aspect": "16:9",
+      "cutout": false,
+      "width": 1600,
+      "quality": 72,
+      "local_note": "stage map under the code-drawn stops, marker and Trail back lines",
+      "sd": "An illustrated parchment treasure map seen from above, a winding dotted trail crossing the whole map from left to right, five empty round grassy clearings spaced evenly along the trail, small drawings of a library building, a cabin in the woods, a flower garden and a school building beside the trail, pine trees, no words, no labels, no banners.",
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "rq-garden-bed",
+      "prompt": "An empty wooden raised garden bed of bare soil beside a brick school wall, late summer light.",
+      "aspect": "4:3",
+      "cutout": false,
+      "width": 800,
+      "quality": 76,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "rq-garden-bloom",
+      "prompt": "A wooden raised garden bed beside a brick school wall, full of pink milkweed flowers and purple asters, an orange monarch butterfly on a flower.",
+      "aspect": "4:3",
+      "cutout": false,
+      "width": 800,
+      "quality": 76,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "rq-caterpillar",
+      "prompt": "A striped yellow, black and white monarch caterpillar eating a broad milkweed leaf, close-up nature illustration.",
+      "aspect": "4:3",
+      "cutout": false,
+      "width": 800,
+      "quality": 76,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    }
+  ]
+}

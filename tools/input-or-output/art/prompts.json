@@ -1,0 +1,16 @@
+{
+  "assets": [
+    {
+      "name": "otter-call",
+      "prompt": "A friendly cartoon otter waving hello, head and shoulders, as if on a video call, plain soft blue background, flat bright style.",
+      "aspect": "1:1",
+      "cutout": false,
+      "people": true,
+      "width": 480,
+      "quality": 82,
+      "note": "animal character (people: true per spec), shown inside the tablet screen",
+      "source": "gpt-image-2 (Codex)",
+      "review": "pending"
+    }
+  ]
+}

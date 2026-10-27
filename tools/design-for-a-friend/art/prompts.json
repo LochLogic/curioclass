@@ -1,0 +1,49 @@
+{
+  "style": "Three friend portraits in one shared flat illustration style: clean shapes, soft shading, warm palette, chest up, plain cream background, friendly and natural.",
+  "assets": [
+    {
+      "name": "friend-lou",
+      "prompt": "Portrait of a friendly older man, about 72, with reading glasses pushed up on his head, a straw sun hat and a gardening apron, holding a tomato, warm natural light, flat illustration, plain cream background, chest up.",
+      "aspect": "1:1",
+      "cutout": true,
+      "people": true,
+      "key": "magenta",
+      "width": 320,
+      "quality": 82,
+      "source": "gpt-image-2 (Codex)",
+      "review": "pending",
+      "despill": true
+    },
+    {
+      "name": "friend-ana",
+      "prompt": "Portrait of a cheerful girl, about 9, in a yellow raincoat holding a small watering can, flat illustration, plain cream background, chest up.",
+      "aspect": "1:1",
+      "cutout": true,
+      "people": true,
+      "key": "green",
+      "width": 320,
+      "quality": 82,
+      "ref": "friend-lou",
+      "ref_mode": "style",
+      "source": "gpt-image-2 (Codex)",
+      "review": "pending",
+      "despill": true
+    },
+    {
+      "name": "friend-kofi",
+      "prompt": "Portrait of a relaxed Black teenage boy, about 15, with short dark hair, a backpack strap on one shoulder and a phone in his hand, wearing a plain work cap, flat illustration, plain cream background, chest up.",
+      "aspect": "1:1",
+      "cutout": true,
+      "people": true,
+      "key": "green",
+      "width": 320,
+      "quality": 82,
+      "ref": "friend-lou",
+      "ref_mode": "style",
+      "note": "redrawn so the three friends are not all alike (all three first came back white); spec gives no appearance",
+      "despill": true,
+      "source": "gpt-image-2 (Codex)",
+      "review": "pending"
+    }
+  ]
+}

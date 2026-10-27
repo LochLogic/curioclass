@@ -1,0 +1,66 @@
+{
+  "style": "Full-frame painted storybook backdrops, soft gouache, the lower third kept simple and open for puppets.",
+  "assets": [
+    {
+      "name": "meadow-bridge",
+      "prompt": "A small wooden footbridge over a clear stream between two grassy banks, a green hill with long grass beyond, morning light, the lower third of the picture is simple open ground, full-frame painted storybook scene, soft gouache style, plain blank surfaces.",
+      "aspect": "16:10",
+      "cutout": false,
+      "width": 1600,
+      "quality": 72,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "cottage-kitchen",
+      "prompt": "A cozy cottage kitchen with a big black iron oven, a wooden table with a rolling pin, a window with gingham curtains, warm light, the lower third of the picture is simple open ground, full-frame painted storybook scene, soft gouache style, plain blank surfaces.",
+      "aspect": "16:10",
+      "cutout": false,
+      "width": 1600,
+      "quality": 72,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "country-road",
+      "prompt": "A dirt country road between a fenced green field and a muddy pen, hills behind, the lower third of the picture is simple open ground, full-frame painted storybook scene, soft gouache style, plain blank surfaces.",
+      "aspect": "16:10",
+      "cutout": false,
+      "width": 1600,
+      "quality": 72,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "wide-river",
+      "prompt": "A wide blue river with reeds and a grassy bank in front, far trees across the water, the lower third of the picture is simple open ground, full-frame painted storybook scene, soft gouache style, plain blank surfaces.",
+      "aspect": "16:10",
+      "cutout": false,
+      "width": 1600,
+      "quality": 72,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "veggie-garden",
+      "prompt": "A cottage vegetable garden with neat rows of leafy plants, a wooden fence and a watering can, a wide empty patch of bare soil in the center, the lower third of the picture is simple open ground, full-frame painted storybook scene, soft gouache style, plain blank surfaces.",
+      "aspect": "16:10",
+      "cutout": false,
+      "width": 1600,
+      "quality": 72,
+      "local_note": "the turnip is drawn in code in the empty patch",
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "little-stage",
+      "prompt": "An empty small wooden theater stage with plum velvet curtains drawn open and warm footlights, the lower third of the picture is simple open ground, full-frame painted storybook scene, soft gouache style, plain blank surfaces.",
+      "aspect": "16:10",
+      "cutout": false,
+      "width": 1600,
+      "quality": 72,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "house_style": "Soft realistic painted illustration of an empty school place for a high school first aid tool, calm natural light, muted colors, clean simple shapes, every surface plain and blank. No text, no letters, no numbers, no logos, no watermark, no border, no frame.",
+  "assets": [
+    {
+      "name": "fa-gym",
+      "prompt": "An empty school gymnasium with wooden bleachers and a polished court, afternoon light.",
+      "aspect": "16:9",
+      "cutout": false,
+      "width": 1280,
+      "quality": 70,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "fa-cafeteria",
+      "prompt": "An empty school cafeteria with long tables and lunch trays on one table.",
+      "aspect": "16:9",
+      "cutout": false,
+      "width": 1280,
+      "quality": 70,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "fa-shop",
+      "prompt": "A tidy school wood shop with workbenches, clamps and wood pieces, power tools switched off.",
+      "aspect": "16:9",
+      "cutout": false,
+      "width": 1280,
+      "quality": 70,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "fa-kitchen",
+      "prompt": "A school teaching kitchen with a stove, a pan on a burner and plain blank cabinets.",
+      "aspect": "16:9",
+      "cutout": false,
+      "width": 1280,
+      "quality": 70,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "fa-field",
+      "prompt": "An empty high school practice field on a hot summer afternoon, bright sun, a water cooler on a bench.",
+      "aspect": "16:9",
+      "cutout": false,
+      "width": 1280,
+      "quality": 70,
+      "sd": "An empty grass practice field outdoors behind a high school on a hot summer afternoon, bright sun, open blue sky, trees at the far edge, a wooden bench in front with a big orange water cooler on it, plain grass with no painted numbers, deserted.",
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "pending"
+    },
+    {
+      "name": "fa-hallway",
+      "prompt": "An empty school hallway with plain blank lockers and a tiled floor.",
+      "aspect": "16:9",
+      "cutout": false,
+      "width": 1280,
+      "quality": 70,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    }
+  ]
+}

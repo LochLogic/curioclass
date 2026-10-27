@@ -1,0 +1,56 @@
+{
+  "house_style": "Detailed painterly architectural illustration for a high school theater history tool, realistic proportions, natural light, rich but quiet color, subtle brush texture, an empty venue. No text, no letters, no numbers, no logos, no watermark, no border, no frame.",
+  "assets": [
+    {
+      "name": "greek-theatre",
+      "prompt": "An ancient open-air stone theater on a hillside in Greece, semicircular stone seats around a round flat stone floor, a low stone stage building behind, olive-covered hills, late afternoon light.",
+      "aspect": "16:9",
+      "cutout": false,
+      "width": 1280,
+      "quality": 72,
+      "sd": "A completely empty ancient open-air stone theater in Greece seen from high in the seats, semicircular stone seat rows around a round flat stone dancing floor, a low stone stage building behind, olive-covered hills, late afternoon light, deserted, no figures, no statues, no animals.",
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "noh-stage",
+      "prompt": "A traditional Japanese Noh stage of pale cypress wood under its own roof, a large painted pine tree on the back wall, a roofed bridgeway leading off to the left, four square pillars, polished floor, soft even light.",
+      "aspect": "16:9",
+      "cutout": false,
+      "width": 1280,
+      "quality": 72,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "commedia-piazza",
+      "prompt": "A wooden trestle stage in an Italian town square, a painted cloth backdrop of a street of houses hung behind it, cobblestones, stone buildings and a church tower around, morning light.",
+      "aspect": "16:9",
+      "cutout": false,
+      "width": 1280,
+      "quality": 72,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "globe-playhouse",
+      "prompt": "Inside a round timber Elizabethan playhouse, three tiers of wooden galleries, open to the sky, a raised wooden stage jutting into an open yard, two painted pillars holding a canopy over the stage.",
+      "aspect": "16:9",
+      "cutout": false,
+      "width": 1280,
+      "quality": 72,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "box-set-study",
+      "prompt": "A realistic theater set of an 1890s study seen through a proscenium arch, three wallpapered walls, a desk with a green lamp, a door at the back, a curtained window at the side, a dark auditorium in front.",
+      "aspect": "16:9",
+      "cutout": false,
+      "width": 1280,
+      "quality": 72,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    }
+  ]
+}

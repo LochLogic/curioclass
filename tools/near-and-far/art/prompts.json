@@ -1,0 +1,133 @@
+{
+  "style": "Soft painted storybook look, flat light, gentle shading, for a grade 4 art lesson.",
+  "assets": [
+    {
+      "name": "pine",
+      "prompt": "A single tall green pine tree standing straight, the full tree from roots to tip.",
+      "aspect": "3:4",
+      "cutout": true,
+      "key": "magenta",
+      "height": 420,
+      "quality": 82,
+      "source": "flux1-schnell (local)",
+      "review": "pending",
+      "holes": true
+    },
+    {
+      "name": "oak",
+      "prompt": "A single round leafy green tree, the full tree with its trunk.",
+      "aspect": "1:1",
+      "cutout": true,
+      "key": "magenta",
+      "height": 380,
+      "quality": 82,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "barn",
+      "prompt": "A red wooden barn seen from the front at a slight angle, plain blank walls.",
+      "aspect": "4:3",
+      "cutout": true,
+      "key": "magenta",
+      "width": 420,
+      "quality": 82,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "mill",
+      "prompt": "A white farm windmill with four sails on a wooden tower.",
+      "aspect": "3:4",
+      "cutout": true,
+      "key": "green",
+      "height": 420,
+      "quality": 82,
+      "source": "flux1-schnell (local)",
+      "review": "pending",
+      "holes": true
+    },
+    {
+      "name": "hay",
+      "prompt": "One round golden haystack.",
+      "aspect": "1:1",
+      "cutout": true,
+      "key": "magenta",
+      "width": 320,
+      "quality": 82,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "cow",
+      "prompt": "One brown and white cow standing side-on, the whole cow.",
+      "aspect": "4:3",
+      "cutout": true,
+      "key": "green",
+      "width": 400,
+      "quality": 82,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "fox",
+      "prompt": "One red fox standing side-on, the whole fox.",
+      "aspect": "4:3",
+      "cutout": true,
+      "key": "magenta",
+      "width": 360,
+      "quality": 82,
+      "source": "flux1-schnell (local)",
+      "review": "pending",
+      "holes": true
+    },
+    {
+      "name": "post",
+      "prompt": "One wooden fence post with a short rail stub.",
+      "aspect": "3:4",
+      "cutout": true,
+      "key": "green",
+      "height": 360,
+      "quality": 82,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "boat",
+      "prompt": "One small white sailboat with a white sail, side view.",
+      "aspect": "3:4",
+      "cutout": true,
+      "key": "green",
+      "height": 380,
+      "quality": 82,
+      "holes": true,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "balloon",
+      "prompt": "One striped hot air balloon in red and yellow with a wicker basket.",
+      "aspect": "3:4",
+      "cutout": true,
+      "key": "magenta",
+      "height": 400,
+      "quality": 82,
+      "holes": true,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "hills",
+      "prompt": "A wide band of gentle rolling green hills seen from the side, spanning the whole width, with a flat straight bottom edge.",
+      "aspect": "4:1",
+      "cutout": true,
+      "key": "magenta",
+      "width": 1600,
+      "quality": 78,
+      "local_note": "laid along the horizon; the top edge of the hills is the cut line",
+      "source": "flux1-schnell (local)",
+      "review": "pending",
+      "despill": true
+    }
+  ]
+}

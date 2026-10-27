@@ -1,0 +1,150 @@
+{
+  "house_style": "A real high school student's artwork, photographed flat and evenly lit, the artwork filling the whole picture edge to edge. No text, no letters, no numbers, no logos, no watermark, no border, no frame.",
+  "assets": [
+    {
+      "name": "window",
+      "prompt": "A loose watercolor painting of a kitchen window at early morning, a mug and a plant on the sill, soft yellow light.",
+      "aspect": "4:3",
+      "cutout": false,
+      "width": 800,
+      "quality": 74,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "teapot",
+      "prompt": "A colored pencil still life drawing of a blue teapot on a checked cloth.",
+      "aspect": "4:3",
+      "cutout": false,
+      "width": 800,
+      "quality": 74,
+      "sd": "A colored pencil still life drawing of a round blue teapot sitting on a red and white checked cloth, soft pencil shading, the drawing fills the whole picture edge to edge with clean plain paper margins.",
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "creek",
+      "prompt": "An acrylic painting of a small creek after rain, wet rocks and bright green banks.",
+      "aspect": "4:3",
+      "cutout": false,
+      "width": 800,
+      "quality": 36,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "busstop",
+      "prompt": "An oil pastel drawing of an empty bus stop shelter at night under a streetlight, the shelter's panels plain and blank.",
+      "aspect": "3:4",
+      "cutout": false,
+      "width": 600,
+      "quality": 74,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "crows",
+      "prompt": "A black ink linocut print of crows sitting on a power line, on white paper.",
+      "aspect": "4:3",
+      "cutout": false,
+      "width": 800,
+      "quality": 74,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "laundromat",
+      "prompt": "An ink and gray wash drawing of washing machines in a row in a laundromat.",
+      "aspect": "4:3",
+      "cutout": false,
+      "width": 800,
+      "quality": 74,
+      "sd": "An ink and gray wash drawing of a long row of front-loading washing machines with round glass doors in a laundromat, tiled floor, the drawing fills the whole picture edge to edge with clean plain paper margins.",
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "tidepool",
+      "prompt": "A collage of torn painted papers showing a tide pool with starfish and shells.",
+      "aspect": "1:1",
+      "cutout": false,
+      "width": 800,
+      "quality": 74,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "seeds",
+      "prompt": "A gouache painting of plain blank seed packets and small pots of seedlings on a table.",
+      "aspect": "4:3",
+      "cutout": false,
+      "width": 800,
+      "quality": 74,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "bowl",
+      "prompt": "A glazed stoneware bowl with a blue wave pattern, studio photo, evenly lit.",
+      "aspect": "4:3",
+      "cutout": true,
+      "key": "magenta",
+      "width": 800,
+      "quality": 62,
+      "house_style": "A photograph of a real high school student's ceramic piece, evenly lit studio photo. No text, no letters, no numbers, no logos, no watermark, no border, no frame.",
+      "source": "gpt-image-2 (Codex)",
+      "review": "pending"
+    },
+    {
+      "name": "fireescape",
+      "prompt": "A photograph of potted plants and herbs on a city fire escape, afternoon light.",
+      "aspect": "3:4",
+      "cutout": false,
+      "width": 600,
+      "quality": 74,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "rainglass",
+      "prompt": "A photograph of rain drops on a window with blurred city lights behind.",
+      "aspect": "4:3",
+      "cutout": false,
+      "width": 800,
+      "quality": 74,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "blockmap",
+      "prompt": "A mixed-media collage map of a few city blocks, with paper roofs, painted streets and string paths.",
+      "aspect": "1:1",
+      "cutout": false,
+      "width": 800,
+      "quality": 64,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "tomatoes",
+      "prompt": "A charcoal drawing of tall tomato plants in a garden.",
+      "aspect": "3:4",
+      "cutout": false,
+      "width": 600,
+      "quality": 68,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "nightpool",
+      "prompt": "An acrylic painting of an empty outdoor swimming pool at night, glowing blue water.",
+      "aspect": "4:3",
+      "cutout": false,
+      "width": 800,
+      "quality": 74,
+      "sd": "An acrylic painting of a calm empty outdoor swimming pool at night, glowing turquoise water lit from below, a concrete deck, dark trees and a deep blue night sky, the painting fills the whole picture edge to edge.",
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    }
+  ]
+}

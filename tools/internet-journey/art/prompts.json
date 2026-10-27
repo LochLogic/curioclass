@@ -1,0 +1,26 @@
+{
+  "assets": [
+    {
+      "name": "ij-dusk-town",
+      "prompt": "A cozy small town at dusk seen from a hill, rolling hills, warm glowing windows, a wide sky with the first stars, painted picture-book style.",
+      "aspect": "16:9",
+      "cutout": false,
+      "width": 1280,
+      "quality": 72,
+      "local_note": "behind the left half of the map, dimmed 30 percent",
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "ij-server-hall",
+      "prompt": "A calm row of tall server cabinets with small blue and green lights in a clean data center, painted picture-book style, plain blank cabinet doors.",
+      "aspect": "4:3",
+      "cutout": false,
+      "width": 720,
+      "quality": 76,
+      "local_note": "chapter 5 story card",
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    }
+  ]
+}

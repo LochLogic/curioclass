@@ -1,0 +1,48 @@
+{
+  "house_style": "Realistic photograph for a middle school media literacy lab, natural colors, documentary news-photo look, every sign plain and blank. No text, no letters, no numbers, no logos, no watermark, no border, no frame.",
+  "assets": [
+    {
+      "name": "ff-shark-street",
+      "prompt": "A large gray shark fin breaking the surface of brown floodwater in a city street lined with parked cars and shop fronts with blank signs, overcast sky.",
+      "aspect": "4:3",
+      "cutout": false,
+      "width": 800,
+      "quality": 76,
+      "sd": "A large gray shark fin breaking the surface of brown floodwater in the middle of a flooded residential street, plain brick row houses with no shops and no signs, cars parked along the curb seen from the side, overcast sky, deserted, realistic news photo.",
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "pending"
+    },
+    {
+      "name": "ff-flooded-street",
+      "prompt": "A city street flooded with brown water up to the car doors, shop fronts with blank signs, overcast sky, realistic news photo.",
+      "aspect": "4:3",
+      "cutout": false,
+      "width": 800,
+      "quality": 76,
+      "sd": "A residential street flooded with brown water up to the car doors, plain brick row houses with no shops and no signs, cars seen from the side half under water, overcast sky, deserted, realistic news photo.",
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "pending"
+    },
+    {
+      "name": "ff-library-front",
+      "prompt": "A small red-brick town library with white columns and a blank sign board, autumn trees, daytime.",
+      "aspect": "4:3",
+      "cutout": false,
+      "width": 800,
+      "quality": 76,
+      "sd": "A small red-brick town library with white columns and one large blank white sign board above the door, plain brick walls with no plaques, autumn trees, daytime, deserted, realistic photo.",
+      "source": "flux2-klein-4b (Cloudflare)",
+      "review": "pending"
+    },
+    {
+      "name": "ff-wood-frog",
+      "prompt": "A brown wood frog with a dark eye mask sitting on frosty fallen leaves, close-up nature photo.",
+      "aspect": "4:3",
+      "cutout": false,
+      "width": 800,
+      "quality": 76,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    }
+  ]
+}

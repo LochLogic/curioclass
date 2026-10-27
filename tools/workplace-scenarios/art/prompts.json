@@ -1,0 +1,87 @@
+{
+  "house_style": "Painterly flat illustration for a middle school careers tool, soft summer daylight, bright summer-camp colors, simple clean shapes, gentle texture, an empty scene, every sign and board plain and blank. No text, no letters, no numbers, no logos, no watermark, no border, no frame.",
+  "assets": [
+    {
+      "name": "wp-car",
+      "prompt": "The inside of a car stopped in morning traffic, seen from the back seat, a phone lying on the seat.",
+      "aspect": "16:9",
+      "cutout": false,
+      "width": 1400,
+      "quality": 70,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "wp-craft",
+      "prompt": "A long craft table in a bright rec center room with bins of paper, glue sticks and a craft cart.",
+      "aspect": "16:9",
+      "cutout": false,
+      "width": 1400,
+      "quality": 70,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "wp-path",
+      "prompt": "A paved path through trees to an outdoor pool fence, a drinking fountain beside the path.",
+      "aspect": "16:9",
+      "cutout": false,
+      "width": 1400,
+      "quality": 70,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "wp-lunch",
+      "prompt": "Picnic tables under a wooden pavilion, lunch boxes on the tables.",
+      "aspect": "16:9",
+      "cutout": false,
+      "width": 1400,
+      "quality": 70,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "wp-field",
+      "prompt": "A wide grass field with a row of big shade trees and cones on the grass, hot midday sun.",
+      "aspect": "16:9",
+      "cutout": false,
+      "width": 1400,
+      "quality": 70,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "wp-gym",
+      "prompt": "A school gym with rain streaking the high windows, gray stormy light.",
+      "aspect": "16:9",
+      "cutout": false,
+      "width": 1400,
+      "quality": 70,
+      "sd": "An empty school gym seen from the floor on a rainy day, rain streaks running down the tall windows, dark gray storm clouds outside, dim gray light on the wooden floor, plain walls with no signs, no scoreboard, no posters.",
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "wp-pickup",
+      "prompt": "The front curb of a rec center in late afternoon, parked cars and a bench.",
+      "aspect": "16:9",
+      "cutout": false,
+      "width": 1400,
+      "quality": 70,
+      "sd": "The front curb of a plain one-story brick community building in late afternoon, two plain parked cars seen from the side, a wooden bench on the sidewalk, long warm shadows, no signs, no lettering.",
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    },
+    {
+      "name": "wp-staff",
+      "prompt": "A small staff room with a blank whiteboard, a table, mugs and clipboards.",
+      "aspect": "16:9",
+      "cutout": false,
+      "width": 1400,
+      "quality": 70,
+      "source": "flux1-schnell (local)",
+      "review": "pending"
+    }
+  ]
+}
