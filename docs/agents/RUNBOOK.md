@@ -59,6 +59,9 @@ then the item goes back to "ready" with a reply on the comment and the comment m
 
 ## Open items (update as they close)
 
+- **Scale plan (locked 2026-10-26, waiting):** `docs/agents/SCALE-PLAN.md`, covering the overlap pass, the shared narration
+  helper, spec waves, art and voice nights. Do not start it until the CS batch is fully done.
+
 - **Voice bank: done 2026-10-26.** All 25 recorded; Cory kept 23 (adventure-guide and calm-guide dropped).
   Listening page: `S:\AI\tts\.venv\Scripts\python.exe scripts/voicebank_sample.py` writes `shots/voice-bank.html`.
 - **Voice sweep:** a shared kit helper (narrate, hush, read, first tap, per STANDARDS.md) in `kit/curio.js`, then
