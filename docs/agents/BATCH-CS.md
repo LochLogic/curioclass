@@ -19,6 +19,9 @@ the first tool in its module, so it should be the one a teacher would open for t
   size in STANDARDS.md, held clicks with the voice log, keyboard only, console clean. Fix what it finds, then report.
   Polish counts: motion that shows cause and effect (a step runs, the robot moves, the variable box changes), not
   just a text result.
+- **Always say how to act (Cory, 2026-10-26).** Every time the tool waits for the student, the narration and the
+  hint name the next action and the control to use ("Tap the wrong card. Then tap the right move."), not only a
+  question ("Which card is wrong?"). Walk every waiting moment as a child who can't read.
 - **One idea each, no overlap.** loop-garden (grade 2, live) already does repeat blocks with a robot gardener;
   bee-bot-garden (grade 1, concept) will do arrow paths on a grid. robot-dance is about order of steps and finding
   the wrong step (debugging) as a class, not grid paths or loops. code-tracer predicts values line by line;

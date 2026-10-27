@@ -59,6 +59,9 @@ hush, readNow, firstTap):
 - Read always stops other speech and speaks the current hint; nothing queued may cut Read off; lines triggered during
   Read wait for it. `hush()` must also resolve the pending Read promise: a paused clip never fires `ended`, and the next
   line otherwise waits ~10 s (three tools had this bug).
+- Say how to act (Cory, 2026-10-26). Whenever the tool waits for the student, the line and the hint name the next
+  action and the control ("Tap the wrong card. Then tap the right move."), not only a question ("Which card is
+  wrong?"). VERIFY walks every waiting moment as a student who can't read the screen.
 - Sound off uses nothing up; turning Sound back on queues the mode's welcome if it was never said.
 - Test with held clicks (press, ~120 ms, release): instant scripted clicks hide pointerdown/click races. Log which clips
   actually start (`drive.py` "hold").
