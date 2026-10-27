@@ -254,7 +254,6 @@ body.stack .panel{border-left:0;border-top:1px solid var(--line)}
 <script>
 (() => {
   const $ = id => document.getElementById(id);
-  const {say, wait} = Curio;
   const fmt = Plane.fmt;
   const NS = 'http://www.w3.org/2000/svg';
   const mk = (tag, attrs = {}, parent) => { const e = document.createElementNS(NS, tag); for (const k in attrs) if (attrs[k] != null) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; };
@@ -288,6 +287,12 @@ body.stack .panel{border-left:0;border-top:1px solid var(--line)}
     clear: 'Hub raised so the cars clear the ground.',
   };
   const WELCOME = {ride: 'rideWelcome', unit: 'unitWelcome', real: 'realWelcome', match: 'matchWelcome'};
+  // Narration (docs/KIT.md "Voice"): one welcome per mode; how-to and teaching lines once, then silent; events every
+  // time. The hint is the tool's own (the mode's hint, or a note in state.hintMsg), so lines never write it.
+  // Event lines (spoken every time): matchYes. Everything else is a how-to or teaching line.
+  const V = Curio.voice({welcome: () => [WELCOME[state.mode], L[WELCOME[state.mode]]], hint: () => {}});
+  const inMode = m => () => state.mode === m;
+  const how = (k, o) => V.how(L[k], {key: k, ...o});
 
   // ======================================================================================
   // CONTENT (from spec.md; sources in the header comment and notes.md)
@@ -816,9 +821,8 @@ body.stack .panel{border-left:0;border-top:1px solid var(--line)}
     carG.addEventListener('keydown', e => { if (keyStep(e)) e.preventDefault(); });
   }
   const SPEED = () => ({ride: state.fast.ride ? 4 : 1, match: state.fast.match ? 4 : 1, real: state.fast.real ? 5 : 1, unit: TAU / 12})[state.mode];
-  let saidChange = false;
   function play() {
-    if (state.playing) { stopPlay(); narrate('rideDrag', 'ride'); return; }
+    if (state.playing) { stopPlay(); if (state.mode === 'ride') how('rideDrag', {valid: inMode('ride')}); return; }
     const m = state.mode;
     if (curT() >= END[m] - 1e-9) { state.t[m] = 0; state.unroll = state.unroll && null; }
     if (state.hintMsg === L.full) state.hintMsg = '';
@@ -839,17 +843,18 @@ body.stack .panel{border-left:0;border-top:1px solid var(--line)}
     const m = state.mode, w = W(), t0 = curT(), end = END[m], t1 = Math.min(end, t0 + d);
     // a soft tick each time the rider passes the top or the bottom
     const a0 = ang(t0, w), a1 = ang(t1, w), cross = c => Math.floor((a0 - c) / TAU) !== Math.floor((a1 - c) / TAU);
-    if (!tapped) {} else if (cross(PI / 2)) Curio.tone(880, .07, .03, 'triangle'); else if (cross(-PI / 2)) Curio.tone(440, .07, .03, 'triangle');
+    if (!V.tapped) {} else if (cross(PI / 2)) Curio.tone(880, .07, .03, 'triangle'); else if (cross(-PI / 2)) Curio.tone(440, .07, .03, 'triangle');
     state.t[m] = t1;
     if (t1 >= end - 1e-9) {
       stopPlay(); state.hintMsg = L.full;
-      narrate('full');
-      if (m === 'ride' && !saidChange) { saidChange = true; narrate('rideChange', 'ride'); }
+      // the graph is full (how-to, while it is still full), then in Ride what to try next, once the first has had its turn
+      const full = how('full', {valid: () => state.mode === m && state.hintMsg === L.full, needs: '#restart', wait: true});
+      if (m === 'ride') full.then(r => { if (r !== 'dropped') how('rideChange', {valid: inMode('ride'), needs: '#rRange'}); });
     }
     render();
   }
   function restart() {
-    stopPlay(); hush();
+    stopPlay(); V.hush();
     const m = state.mode; state.t[m] = 0; state.hintMsg = '';
     if (m === 'unit') { state.oneRad = null; state.unroll = null; $('radNote').textContent = ''; }
     render();
@@ -866,7 +871,7 @@ body.stack .panel{border-left:0;border-top:1px solid var(--line)}
     const hadGap = !!state.gap;
     state.gap = null; state.result = ''; $('mres').textContent = $('mres2').textContent = ''; $('wheelNote').textContent = '';
     if (hadGap) build(); else render();
-    if (wh().board === 'bottom') narrate('rideBoard', 'ride');
+    if (state.mode === 'ride' && wh().board === 'bottom') how('rideBoard', {valid: () => state.mode === 'ride' && wh().board === 'bottom', needs: '[data-board="right"]'});
   }
   const rSl = Plane.slider($('rSlot'), {label: 'Radius (m)', min: RANGE.r[0], max: RANGE.r[1], step: 1, value: DEF.r, id: 'rRange', format: v => fmt(v, 0),
     parse: s => { const v = parseFloat(String(s).replace('−', '-')); return isFinite(v) ? Math.round(v) : null; },
@@ -920,16 +925,16 @@ body.stack .panel{border-left:0;border-top:1px solid var(--line)}
     state.oneRad = {th: curT(), p: 0};
     $('radNote').textContent = 'The purple rod is as long as the radius. Bent onto the rim, it marks 1 radian, about 57.3 degrees. About 6.28 of these fit around: that is 2π.';
     animate('oneRad', 1500);
-    narrate('unitRadian', 'unit');
+    how('unitRadian', {valid: () => state.mode === 'unit' && !!state.oneRad});
   };
-  $('unrollBtn').onclick = () => { stopPlay(); state.unroll = {p: 0}; animate('unroll', 1500); narrate('unitUnroll', 'unit'); };
-  $('cosBtn').onclick = () => { state.cos = !state.cos; build(); if (state.cos) narrate('unitCosine', 'unit'); };
+  $('unrollBtn').onclick = () => { stopPlay(); state.unroll = {p: 0}; animate('unroll', 1500); how('unitUnroll', {valid: () => state.mode === 'unit' && !!state.unroll}); };
+  $('cosBtn').onclick = () => { state.cos = !state.cos; build(); if (state.cos) how('unitCosine', {valid: () => state.mode === 'unit' && state.cos}); };
 
   // ---------- Real Wheels ----------
   REAL.forEach((w, i) => { const b = document.createElement('button'); b.className = 'btn'; b.dataset.i = i; b.textContent = w.name; b.onclick = () => chooseReal(i); $('realBtns').appendChild(b); });
   function chooseReal(i) {
     stopPlay(); state.real = i; state.t.real = 0; state.hintMsg = '';
-    renderFact(); build(); narrate('realPeriod', 'real');
+    renderFact(); build(); how('realPeriod', {valid: inMode('real')});
   }
   function renderFact() {
     const w = REAL[state.real];
@@ -959,7 +964,8 @@ body.stack .panel{border-left:0;border-top:1px solid var(--line)}
     if (worst <= .5 + 1e-9) {
       state.matched.add(state.target); state.gap = null; state.showFull = true; state.resultOk = true;
       state.result = `Matched. Your wheel draws this graph. ${TARGETS[state.target].note}`;
-      Curio.yes(); narrate('matchYes', 'match');
+      const i = state.target;   // an event: spoken on every match, while this match is still on screen
+      Curio.yes(); V.say(L.matchYes, {key: 'matchYes', valid: () => state.mode === 'match' && state.target === i && state.resultOk && !!state.result});
     } else {
       state.resultOk = false;
       state.gap = {t: wt, a: hOf(wt, fw), b: hOf(wt, ft)};
@@ -984,36 +990,10 @@ body.stack .panel{border-left:0;border-top:1px solid var(--line)}
   $('nextT').onclick = () => goTarget(state.target + 1);
 
   // ======================================================================================
-  // Narration (each line once per session, after the first tap) and modes
+  // Modes (narration: Curio.voice, set up with the lines near the top)
   // ======================================================================================
-  const said = new Set();
-  let tapped = false, vq = Promise.resolve(), vgen = 0;
-  // the first tap only unlocks sound; the welcome waits until that tap's own click has run (a mode button
-  // switches mode first, so the welcome heard is the new mode's)
-  // A welcome is queued on entering a mode, and once after the first unlocking tap (after that tap's own click,
-  // so a mode button gives the new mode's welcome). The Sound button does not use up that one-off; a first tap on
-  // Read counts as hearing it. A line is marked said when it is queued, so Read, Restart or any other action that
-  // stops it never brings it back.
-  let welcomed = false;
-  for (const ev of ['pointerdown', 'keydown']) addEventListener(ev, () => { tapped = true; }, true);
-  for (const ev of ['click', 'keyup']) addEventListener(ev, e => {
-    if (welcomed || !tapped) return;
-    const b = e.target && e.target.closest ? e.target.closest('button') : null;
-    if (b && b.id === 'sound') return;
-    welcomed = true;
-    if (b && b.id === 'read') { said.add(WELCOME[state.mode]); return; }
-    narrate(WELCOME[state.mode]);
-  });
-  function narrate(key, onlyMode) {
-    if (!tapped || !Curio.sound || said.has(key) || (onlyMode && state.mode !== onlyMode)) return;
-    said.add(key);
-    const gen = vgen, line = L[key];
-    vq = vq.then(() => gen === vgen ? Promise.race([say(line), wait(2500 + 80 * line.length)]) : null);
-  }
-  function hush() { vgen++; vq = Promise.resolve(); Curio.stop(); }
-
   function setMode(m) {
-    hush(); stopPlay();
+    V.hush(); stopPlay();
     state.mode = m; state.hintMsg = '';
     for (const k of ['ride', 'unit', 'real', 'match']) $('m-' + k).setAttribute('aria-pressed', k === m);
     for (const el of document.querySelectorAll('[data-modes]')) el.hidden = !el.dataset.modes.split(' ').includes(m);
@@ -1022,7 +1002,7 @@ body.stack .panel{border-left:0;border-top:1px solid var(--line)}
     if (m === 'real') renderFact();
     if (m === 'match') { $('mres').textContent = $('mres2').textContent = state.result; showReveal(); }
     relayout(true);
-    narrate(WELCOME[m]);
+    V.welcome();
   }
   for (const k of ['ride', 'unit', 'real', 'match']) $('m-' + k).onclick = () => setMode(k);
 
@@ -1068,8 +1048,7 @@ body.stack .panel{border-left:0;border-top:1px solid var(--line)}
   new ResizeObserver(() => relayout()).observe($('stage'));
   addEventListener('resize', () => relayout());
 
-  Curio.init({clips: "voice:*", rate: .95, readFallback: () => $('hint').textContent});
-  $('read').onclick = () => { hush(); say($('hint').textContent, true); };
+  Curio.init({clips: "voice:*", rate: .95});   // Read speaks the hint (Curio.voice wires it)
 
   // for checking frames
   window.__tool = {state, setMode, allLines, W, hOf, xOf, ang, eqLines, play, stopPlay, restart, setT, check, goTarget, chooseReal, TARGETS, REAL,
@@ -1079,7 +1058,7 @@ body.stack .panel{border-left:0;border-top:1px solid var(--line)}
     board(b) { document.querySelector(`[data-board="${b}"]`).click(); }, turn(d) { document.querySelector(`[data-dir="${d}"]`).click(); },
     key(target, k, shift) { const el = target === 'car' ? carG : trace.point.el; el.focus(); el.dispatchEvent(new KeyboardEvent('keydown', {key: k, shiftKey: !!shift, bubbles: true, cancelable: true})); },
     click(id) { $(id).click(); }, readouts: () => [...$('ro').querySelectorAll('dt')].map(dt => dt.textContent + ': ' + dt.nextElementSibling.textContent),
-    said, curio: () => ({last: Curio.last, sound: Curio.sound, reduce: Curio.reduce}),
+    said: V.said, vlog: V.log, get vq() { return V.queue; }, curio: () => ({last: Curio.last, sound: Curio.sound, reduce: Curio.reduce}),
     eq: () => [1, 2, 3, 4].map(i => $('eq' + i).textContent).filter(Boolean), hint: () => $('hint').textContent, carEl: () => carG};
   setMode('ride');
 })();

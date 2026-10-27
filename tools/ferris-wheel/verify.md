@@ -119,3 +119,36 @@ Cold re-verify, 2026-10-25. Rebuilt with CURIO_DRAFT=1 (613 KB; the real art is 
 - **Art:** the bundle inlines one image/webp (art/river-night-sky.webp, 1600x914): a dark navy sky, faint stars, a distant lit shoreline, no people, no text. It sits behind the wheel pane in Ride and Match and doesn't get in the way of any labels at any size.
 - **Voice:** the bundle has 18 data:audio/mpeg clips, one per line in voice/lines.json (18). local.json lists the same 18. The bundler reported no missing recordings.
 - **Contract:** one file, no network URLs, no buttons under 44 px at any size checked, no em dashes, "Curio" appears alone only as the kit's JS name.
+
+## Voice helper migration
+
+2026-10-27. Narration moved from the tool's own queue onto the kit's `Curio.voice` (docs/KIT.md "Voice"). The spoken lines, the hints and `allLines()` are unchanged word for word (18 lines, still equal to voice/lines.json), so no clip needs recording again. The tool's queue, pump, hush, Read handler, `saidChange` flag and first-tap code are gone (31 lines of voice code down to 6 lines of setup).
+
+Line kinds: the four mode welcomes go through the `welcome` option. `matchYes` is the one event line (spoken on every match). `rideDrag`, `rideChange`, `rideBoard`, `unitRadian`, `unitUnroll`, `unitCosine`, `realPeriod` and `full` are how-to or teaching lines (spoken once, then silent). Each line is checked when its turn comes: `rideBoard` only while Ride boards at the bottom (needs Right side shown), `full` only while the graph is still full (needs Restart), `rideChange` after `full` has had its turn (needs the Radius slider), the Unit Circle lines only while their rod, unrolled arc or cosine is still on screen, and `matchYes` only while that target's match is still on screen. The hint stays the tool's own (the mode hint, or the "graph is full" and "hub raised" notes), so lines never write it.
+
+How it was checked: rebundled, then driven in muted headless Chrome (own profile, port 9671) with held clicks (press, 120 ms, release) through `scripts/drive.py`, once on the old build and once on the new one, in the same 26 fresh-page runs. A hook on the page logged every clip that really started, ended or was cut; on the new build V.log's spoken and read lines matched those clips exactly in all 26 runs. No console errors or exceptions. `python scripts/check_tools.py` passes; `python scripts/test_voice.py` passes 25 of 25.
+
+| Check | Old build | New build |
+|---|---|---|
+| Pause x5 (rideDrag, how) | 1 | 1, then 4 silent |
+| Bottom x5 (rideBoard, how) | 1 | 1, then 4 silent |
+| Graph full x5 (full, rideChange, how) | 1 each | 1 each, then 4 silent each |
+| One radian, Unroll, Show cosine, a wheel in Real Wheels x5 (how) | 1 each | 1 each, then 4 silent each |
+| Check with a matching wheel x5 (matchYes, event) | **1** | **5** |
+| Check with a wrong wheel x5, Step pi/6 x5 | nothing | nothing |
+| Play, Pause, Bottom, Right side, fast | rideBoard plays with Right side chosen | rideDrag dropped (newer), rideBoard dropped (stale) |
+| Graph full, then the car dragged back to t 30 s | full and rideChange play anyway | full dropped (stale), rideChange never queued |
+| Match, then the radius changed before "Matched" | "Matched" plays on a wheel that no longer matches | matchYes dropped (stale) |
+| Play, Pause, Bottom, Unit Circle, Restart, fast | the queued lines are marked said without playing | dropped by the hush, unmarked |
+| First tap: stage, Play, Tab key, mode button | welcome | welcome (mode button: the new mode's) |
+| First tap: Bottom (a control with its own line) | rideBoard, then the Ride welcome | rideBoard only; the welcome stays unsaid |
+| First tap: Read, then Sound off and on | hint read; the welcome is marked said and never plays | hint read; the Ride welcome plays on Sound on |
+| First tap: Sound off, Sound on | nothing until the next tap | the Ride welcome on Sound on |
+| Read during a welcome, then One radian | One radian's line cuts Read off after 1.3 s | Read plays to the end (9 s), then unitRadian |
+| Read, then a mode change right away | the new welcome starts at once | the same |
+| Read with Sound off | reads the hint | the same |
+| Sound off, Unit Circle, One radian, Sound on | nothing | unitRadian silent; Unit welcome plays on Sound on |
+
+Hint at the STANDARDS sizes (not changed by this migration, the layout is the same): 14 to 16 px everywhere, no horizontal scroll. It is on screen at 1000x625 and up in every mode. It is below the fold in the compact panel for Ride and Match at 680x425 (top 437 and 444) and for Match at 800x500, and below the stage in the stack layout (760x900 at y 1357, 375x812 at y 882). With how-to lines now silent after their first time, the hint is the only place they stay visible, so this matters a little more than before.
+
+Not changed, worth a later look: the welcomes in Unit Circle and Real Wheels, and "Matched", do not name the next action and control; a failed Check has no spoken line.
