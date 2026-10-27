@@ -76,10 +76,10 @@ Header: title, topic line, modes (`.seg`): `Quotes` (default), `Claims`, `Real o
 - Sizes: cards at real pixels; at 680x425 the chart shows one group at a time with `Quiet`, `Laptop`, `Fire` tabs; at 375 the phone and policy page stack, policy first.
 
 ## Look
-- Accent `--brand #45d0e6` (calm cyan: slider thumb, Pick this one, active mode), `--brand-ink #04262c`. Base `kit/theme-912.css`.
-- Quote cards on light sheets (`#f7f9fb`, ink `#18212b`, muted `#56606c`) so they read like paper quotes; Premium bars `#45d0e6`, You paid bars `#f2a65a` striped; the phone dark `#0b0f14` with message bubbles `#e9eef3`.
-- Contrast: accent on panel 9.41:1, on `--sec-bg` 8.92:1; brand-ink on accent 8.66:1; sheet ink 15.4:1, muted 6.3:1 on the sheet; bubble text `#18212b` on `#e9eef3` 13.9:1.
-- Differs from this group's other accents (yellow, spring green, raspberry, coral, violet, orange, trail green, periwinkle) and from capture-the-flag's pink and phishing-spotter's lime.
+- Accent `--brand #36d998` (calm jade: slider thumb, Pick this one, active mode), `--brand-ink #04262c`. Moved off cyan #45d0e6 in the joint review of waves 2 and 3 (dice-in-the-chatbot's #36d6e7 was too close). Base `kit/theme-912.css`.
+- Quote cards on light sheets (`#f7f9fb`, ink `#18212b`, muted `#56606c`) so they read like paper quotes; Premium bars `#36d998`, You paid bars `#f2a65a` striped; the phone dark `#0b0f14` with message bubbles `#e9eef3`.
+- Contrast: accent on panel 9.51:1, on `--sec-bg` 9.01:1; brand-ink on accent 8.75:1; sheet ink 15.4:1, muted 6.3:1 on the sheet; bubble text `#18212b` on `#e9eef3` 13.9:1.
+- Differs from this group's other accents (apricot, spring green, raspberry, coral, violet, orange, trail green, periwinkle) and from capture-the-flag's pink and phishing-spotter's lime.
 
 ## Art
 none: drawn in code (quote sheets, simple logo shapes from circles and leaves, chart, phone).

@@ -24,7 +24,7 @@ Header: title, topic line, mode buttons (`.seg`): `Stub` (default), `Change it`,
 Above the stage in every mode, a row of three stub tabs: `Jordan, cashier`, `Sam, warehouse`, `Avery, web developer` (Content). The chosen stub stays chosen across modes.
 
 **Stub.** Stage: a pay stub drawn in code at real pixel size on a dark desk, laid out like the real thing: employer block (made-up name and address), employee block (first name, pay period, pay date, check number), then four boxes: Earnings (rate, hours, this period, year to date), Pre-tax deductions, Taxes, After-tax and net pay; a strip at the bottom "Paid by your employer, not taken from you" (employer Social Security and Medicare match, employer 401(k) match, employer share of the health plan). Every line is a button (44 px tall). Tap a line:
-- It gets a highlighter-yellow band, and the panel opens its card: the line's plain name ("FICA SS" = "Social Security tax"), one sentence on what it is, where the money goes, and the math as numbered steps with the real numbers ("1. Pay this period $1,677.00. 2. Minus health premium $55.38 (health premiums are taken out before this tax) = $1,621.62. 3. Times 6.2% = $100.54.").
+- It gets a apricot highlighter band, and the panel opens its card: the line's plain name ("FICA SS" = "Social Security tax"), one sentence on what it is, where the money goes, and the math as numbered steps with the real numbers ("1. Pay this period $1,677.00. 2. Minus health premium $55.38 (health premiums are taken out before this tax) = $1,621.62. 3. Times 6.2% = $100.54.").
 - `Show me on the stub` lights every number the steps used (the health line and the gross line glow too).
 - Year to date: tapping a YTD number explains it as this check times the check number (pay date is the 6th check of the year for the biweekly stub, and so on), and says Social Security stops when year-to-date pay passes $184,500 (it never does here).
 Panel also holds: `Plain words` toggle (relabels every stub line from payroll shorthand to plain words, so students can flip between what a real stub says and what it means) and a short list "Lines not opened yet" with buttons to each.
@@ -71,9 +71,9 @@ Panel also holds: `Plain words` toggle (relabels every stub line from payroll sh
 - Sizes: the stub is laid out at real pixels per size; at 680x425 the boxes stack in two columns and the employer strip collapses to one line; at 375 wide the stub scrolls inside its own frame and line cards open as a bottom sheet.
 
 ## Look
-- Accent `--brand #ffe14d` (highlighter yellow: the band on a tapped line, the active mode, the Check button), `--brand-ink #2a2200`. Base `kit/theme-912.css`.
+- Accent `--brand #ffb48c` (apricot highlighter: the band on a tapped line, the active mode, the Check button), `--brand-ink #2a1404`. Moved off #ffe14d in the joint review of waves 2 and 3 (intersection-quest has the same yellow). Base `kit/theme-912.css`.
 - Scene: a dark walnut desk `#1a1410` under the stub; the stub paper `#fbfaf6` with ink `#1d2128`, muted `#5a6170`, box rules `#c9ccd3`, header band `#e8ebf0`. Delta tags: up `#0f6b3d` with "+", down `#a32020` with "-" (on the paper; sign always shown, never color alone).
-- Contrast: accent on panel `#141b25` 13.29:1, on `--sec-bg` 12.6:1; brand-ink on accent 12.15:1; stub ink on paper 15.6:1; muted on paper 6.1:1; up tag 6.9:1 and down tag 7.2:1 on paper.
+- Contrast: accent on panel `#141b25` 10.02:1, on `--sec-bg` 9.5:1; brand-ink on accent 10.13:1; stub ink on paper 15.6:1; muted on paper 6.1:1; up tag 6.9:1 and down tag 7.2:1 on paper.
 - Differs from first-apartment-budget (cream, navy, terra), market-time-machine (paper, brass, deep navy) and the rest of this group (coral office, violet, safety orange, trail green, periwinkle, spring green, raspberry journal, cyan).
 
 ## Art
