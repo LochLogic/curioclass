@@ -1,5 +1,5 @@
 """Check every built tool against docs/TOOL-CONTRACT.md. Exit 1 on any must-rule failure."""
-import json, re, sys
+import json, re, shutil, subprocess, sys, tempfile
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
@@ -45,7 +45,32 @@ def check(folder):
                       (r'<meta[^>]*name=["\']description', 'meta description')]:
         if not re.search(rx, text, re.I):
             problems.append(f'missing {label}')
+    problems += syntax(text)
     return problems
+
+
+NODE = shutil.which('node')
+
+
+def syntax(text):
+    """Each inline script must parse: a stray comment once cut off half a line and the tool never loaded (2026-10-27)."""
+    if not NODE:
+        return []
+    out = []
+    for i, m in enumerate(re.finditer(r'<script\b([^>]*)>(.*?)</script>', text, re.S | re.I)):
+        attrs, code = m.group(1), m.group(2)
+        kind = re.search(r'''type\s*=\s*["']?([^"'\s>]+)''', attrs, re.I)
+        kind = kind.group(1).lower() if kind else ''
+        if 'src=' in attrs.lower() or kind not in ('', 'text/javascript', 'module') or not code.strip():
+            continue
+        with tempfile.NamedTemporaryFile('w', suffix='.mjs' if kind == 'module' else '.js', delete=False, encoding='utf-8') as f:
+            f.write(code)
+        r = subprocess.run([NODE, '--check', f.name], capture_output=True, text=True)
+        Path(f.name).unlink()
+        if r.returncode:
+            err = next((l for l in r.stderr.splitlines() if 'Error' in l), r.stderr.strip()[:120])
+            out.append(f'script {i + 1} does not parse: {err}')
+    return out
 
 
 bundle_all()

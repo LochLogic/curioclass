@@ -290,7 +290,8 @@ body.stack .panel{border-left:0;border-top:1px solid var(--line)}
   // silent; events every time. A line queued in one mode is dropped if the mode changes first (scope). The hint is the
   // tool's own (the mode's hint, or a note in state.hintMsg), so lines never write it, and Read speaks it.
   // Event lines (spoken every time): matchYes. Everything else is a how-to or teaching line.
-  const V = Curio.voice({lines: L, scope: () => state.mode, welcome: () => [state.mode + 'Welcome', {valid: () => !(state.mode === 'ride' && state.playing)}],   // no 'Press Play' while it plays hint: false, read: () => $('hint').textContent});
+  const V = Curio.voice({lines: L, scope: () => state.mode, welcome: () => [state.mode + 'Welcome', {valid: () => !(state.mode === 'ride' && state.playing)}],
+    hint: false, read: () => $('hint').textContent});   // the Ride welcome says Press Play, so not while it plays
 
   // ======================================================================================
   // CONTENT (from spec.md; sources in the header comment and notes.md)

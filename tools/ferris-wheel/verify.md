@@ -170,3 +170,68 @@ How it was checked: the same 26 fresh-page runs as the migration (muted headless
 - V.log is shorter: repeated silent lines fold into one entry with a count (pause x5: 6 entries down to 3).
 
 Not changed, a choice for later: v2 can gate the Ride welcome on `!state.playing` (`welcome: () => [key, {valid}]`) and can bring back a welcome skipped by a first tap on Bottom or Right side (`welcomeAfter`). Both would change what is heard, so they were left off.
+
+## Cold verify (Curio.voice)
+
+**FAIL.** As committed (0b458b2), the tool does not run: a comment swallows the end of the `Curio.voice` call, so the whole script is a syntax error. Everything else below was checked on a scratch copy with only that one line repaired, and it passes, with the notes listed.
+
+2026-10-27. Rebundled with `python scripts/bundle_tool.py ferris-wheel` (628 KB). Driven with `scripts/drive.py` in muted headless Chrome (port 9691, own profile), held clicks (`hold` 0.12 s), Sound on, Motion on, one fresh page per run: 43 voice runs plus 33 size and math runs. A hook on the page logged every clip that was created, started, ended or cut, beside `V.log`. Scratch files: C:\Users\Cory\AppData\Local\Temp\claude\S--\98b8b046-f7f2-48d0-a719-c61ce01237be\scratchpad\ferris-cv (res\ holds every run's log, sz\ the size frames).
+
+### Blocker
+
+1. **The tool is dead on load.** src.html line 293:
+   `welcome: () => [state.mode + 'Welcome', {valid: ...}],   // no 'Press Play' while it plays hint: false, read: () => $('hint').textContent});`
+   The `//` comment runs to the end of the line, so `hint: false, read: ...` and the closing `});` are commented out. Chrome: `SyntaxError: Unexpected identifier 'REAL'`. No `__tool`, an empty hint, no graph; nothing works. Steps: rebundle, open tools/ferris-wheel/ferris-wheel.html, look at the console. The line came in with the "Ride welcome no longer says Press Play while playing" change in 0b458b2, after the 26-run check in "Helper v2" (that check could not have passed on this line). dist/tools/ferris-wheel is still the build from before this change, so the site copy is not affected yet; the next bundle and deploy would ship the broken tool. Fix: move the comment after `});`. `check_tools.py` does not parse the script, so nothing in the pipeline catches this; a drive.py smoke shot does.
+
+### Should fix (on the repaired copy)
+
+2. **Match never names Check.** The Match welcome ("Change the wheel until your curve lands on top of it."), the Match hint and so Read all leave it out. Check is the only way to get a result, so a student who lines the curves up is left waiting. Steps: open Match, press Read, listen; set r 15, D 20, P 60; nothing says to press Check. For grade 11 this is the one I'd fix first. The hint is text, so "Then press Check." can go on screen at once (Read then needs the new hint recorded).
+3. **A failed Check says nothing.** Five failed Checks: 0 lines; five matches: 5 "Matched." Silence after pressing a button reads as "nothing happened", and STANDARDS counts failures as event lines. Steps: Match, press Check with the default wheel; the screen says "Not yet. Biggest gap: 28 m near t = 60 s.", nothing is heard. One fixed recorded line ("Not yet. The marker shows the biggest gap. Change the wheel and press Check again.") would cover it and name the next action. Matters: yes, it is the same moment as finding 2.
+4. **1366x768: the wheel controls in Match are below the panel fold.** STANDARDS wants the main controls on screen at 1366x768. In Match only Radius shows: Hub height ends at y 796, Time at 857, Board at at 927, Turn at 1045 (viewport 768; the panel scrolls). In Ride the Turn buttons end at y 843 and "Left side" is cut at the bottom edge. Steps: 1366x768, Match (sz\S_1366x768_match.png). Not caused by Curio.voice; earlier verifies only measured the 16:10 sizes.
+
+### Notes (nits, or a choice for Cory)
+
+5. **"Matched" does not point to Next target.** The line and the hint stop at the match; the target note shows on screen. Steps: match target 1, listen. Matters a little: grade 11 students will find Next, but "Press Next for a new target." on screen would close the loop.
+6. **The Unit Circle and Real Wheels welcomes name no action.** "This is the unit circle..." and "These are real wheels..." describe; the hints do name the action ("Press One radian...", "Pick a wheel."). Matters little for grade 11 readers, because in these two modes the hint is on screen at every size (compact panel, y 280 to 343).
+7. **Play as the very first tap: the Ride welcome is dropped (stale) and comes back only at the next entry to Ride.** Steps: fresh page, press Play: silence; Pause brings rideDrag. This is what the new welcome gate means to do and is fine for the student, but the "First tap: Play" row of the migration table and spec Done-when 9 are now out of date.
+8. **A welcome cut early is gone for good.** A Restart, a mode switch or Sound off while a welcome plays cuts it (it was marked said when it started) and it never comes back. Seen: the Unit welcome cut after 0.33 s by Restart, the Ride welcome after 0.35 s by Restart, the Unit welcome after 1.6 s by Sound off and on. This is the helper's rule, not a tool bug; listed so Cory knows a fast clicker may never hear a mode's welcome.
+9. **How-to lines don't land in the hint.** With `hint: false` the hint is always the mode's fixed text (or the full and clearance notes). rideDrag and rideChange are covered by the Ride hint's own words; rideBoard ("Try boarding from the side") is never on screen after it is spoken once. Teaching lines (radian, unroll, cosine, real period) going quiet after once is right.
+10. **The hint sits below the fold at small sizes,** and it is now the only place a quieted how-to still shows. Ride at 680x425 (hint top 437, viewport 425); Match at 680x425 and 800x500 (y 444 to 505, the last 5 px cut at 800x500); the stack layouts, 760x900 at y 1357 and 375x812 at y 882. At 1000x625 and up it is on screen in every mode. In the compact Ride frame the student never sees the hint without scrolling the panel, so after the one spoken rideDrag the only reminder is out of sight (Read still speaks it).
+11. **First tap on a slider or a Board/Turn button** speaks rideBoard only, and the Ride welcome stays unsaid until a mode switch (no `welcomeAfter`). A first touch on Radius hearing "Try boarding from the side" is a little off-topic. A choice for later, as "Helper v2" says.
+
+### Voice counts (repaired copy, 1366x768, five in a row, gap longer than the line)
+
+| Action x5 | Line | Kind | Expected | Spoken |
+|---|---|---|---|---|
+| Pause | rideDrag | how | 1 | 1, then 4 silent |
+| Bottom | rideBoard | how | 1 | 1, then 4 silent |
+| Radius slider (a click, then 4 arrow keys) | rideBoard | how | 1 | 1, then 4 silent |
+| Graph full in Ride | full, rideChange | how | 1 each | 1 each, then 4 silent each |
+| Graph full in Unit, Real, Match | full | how | 1 | 1, then 4 silent |
+| One radian | unitRadian | how | 1 | 1, then 4 silent |
+| Unroll the arc | unitUnroll | how | 1 | 1, then 4 silent |
+| Show cosine (on 3 times) | unitCosine | how | 1 | 1, then 2 silent |
+| A wheel in Real Wheels | realPeriod | how | 1 | 1, then 4 silent |
+| Check, matching wheel | matchYes | event | 5 | 5, each clip to its end |
+| Check (wrong), Next, Previous, Step, Keep, Clear, Show, Reveal, Speed, Restart, arrow keys | none | | 0 | 0 |
+| Mode entry | its welcome | welcome | 1 | 1 |
+
+(For "graph full" the clock was jumped to just before the window end when Play was pressed; the trigger itself is the tool's own clock.)
+
+Stale lines: Play, Pause, Bottom, Right side, Unit Circle, Restart at 0.2 s: rideDrag dropped (newer), rideBoard dropped (hush), nothing played late. One radian, Unroll, Show cosine, Ride, Restart: two dropped (newer), one (hush). Match, then Radius before "Matched" had its turn: matchYes dropped (stale); the same with Next target. Real: a wheel, Play, Match: realPeriod dropped (hush). Graph full, then Restart: full dropped (hush), rideChange (chain). Graph full, then Right side: full and rideChange still play, which fits (the graph is still full). No line named a hidden control.
+
+First tap (fresh page each): stage 136 ms to the Ride welcome; Tab key 2 ms; Speed 125 ms; Motion 139 ms; a mode button 143 ms to that mode's welcome. Read: the hint only, then Sound off and on brings the Ride welcome once. Sound: nothing, then Sound on brings the welcome (124 ms). Sound off, Unit Circle, Sound on: the Unit welcome. Slider or Bottom: rideBoard only. Play: nothing (note 7). Nothing spoke before a tap.
+
+Read: Read during the Unit welcome cut it and read the hint to the end (9 s); One radian pressed 1 s into Read waited and played after it. Read with Sound off reads the hint; a second Read restarts it. Read, then a mode change 0.5 s later: the new welcome starts at once (130 ms). Mode switches mid-line cut the old welcome and start the new one within 10 ms. Sound off, One radian, Sound on: unitRadian silent (off), left unmarked, spoken on the next press.
+
+Clips: no browser-voice fallback in any run; every line played from its recording. `allLines()` equals voice/lines.json word for word and in order (18 lines), and the bundle carries 18 clips, one per line, none missing or extra.
+
+### Still correct (repaired copy)
+
+- Ride defaults: h = 3, 18, 33, 18, 3 m at t = 0, 10, 20, 30, 40 s; angle π/2, π, 3π/2, 2π; arc 23.6, 47.1, 70.7, 94.2 m; rim speed 2π·15/40 = 2.36 m/s; the equation and its "same as" line as in the spec.
+- r 22, D 30, P 55, Right side, clockwise, t 13: h = 30 + 22 sin(−2π·13/55) = 8.08, shown 8.1 m; angle 1.49 rad (85.1°); arc 32.7 m; 2.51 m/s; equation "h(t) = 30 + 22 sin(−2πt / 55)". r 7, D 50, P 35, Top, t 8: 50.94, shown 50.9. r 12, D 15, P 20, Left side, t 3: 5.29, shown 5.3. r 40, D 60, P 10, clockwise from the bottom, t 2.5: 60 m, 25.13 m/s. The period in every equation matches the slider.
+- Unit Circle θ = 2.5: 143.2°, sin 0.598, cos −0.801; θ = 5π/6: 150°, 0.500, −0.866.
+- Real Wheels: London at 10 min 105 m, 0.21 m/s = 0.75 km/h, top 135, lowest 15; Chicago at 4.5 min 80.4 m, 0.44 m/s = 1.6 km/h; High Roller lowest 9.1, top 167.6, 0.28 m/s.
+- Match: target 3 matched by Top clockwise (gap 0); target 8 matched by Right side clockwise (gap 0); target 2 with P 45 gives "Biggest gap: 42.5 m near t = 116.5 s", the same as my Python.
+- Sizes 680x425, 800x500, 1000x625, 1280x720, 1366x768, 1920x1080, 760x900 and 375x812 (iframe host): no horizontal scroll, no button under 44 px, hint 14 to 16 px, Check and Play on screen in Match at every compact size. No console errors or exceptions on the repaired copy (the only log line was the test host's own favicon 404).
+- No em dashes in src, notes, verify or lines; "Curio" alone appears only as the kit's JS name.
