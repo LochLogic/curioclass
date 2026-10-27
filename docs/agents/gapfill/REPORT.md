@@ -104,6 +104,15 @@ validator rejected D1, D3 and D4. It now checks C3 and ELA against the official 
 
 ## Questions for Cory
 
+**Answered 2026-10-27:**
+- Q1 sexual health past puberty: paused. Do not add a tool or plan one until Cory reopens it.
+- Q2 Weekend Substance Choices: naming cannabis edibles and underage drinking is fine.
+- Q4 tool count: keep all 176. A weak tool may be cut only if every code it carries stays covered by another
+  tool. A check of all 176 found one new tool whose codes are all held elsewhere (Safety Sweep House), and it fills
+  the home and medicine safety topic hole, so nothing was cut. The four named social studies candidates each hold
+  two codes no other tool claims.
+- Q3 and Q5 to Q11: the defaults below stand.
+
 None of these blocks the next spec wave. Each new tool's spec can settle its own, so the defaults below stand unless
 you say otherwise.
 
