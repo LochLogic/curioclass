@@ -18,6 +18,7 @@
         <a class="btn primary" href="{{ t.url }}{{ t.tool_id }}" target="_blank" rel="noopener">▶ Play full screen</a>
         <a class="btn" href="{{ t.url }}{{ t.tool_id }}" download="{{ t.file }}">Download</a>
         {% if t.plan %}<a class="btn" href="{{ t.url }}plan/">Lesson plan</a>{% endif %}
+        {% if t.exit and closet_live %}<a class="btn" href="{{ t.url }}sub/">Sub Day</a>{% endif %}
         <a class="btn" href="#p-embed" onclick="document.getElementById('t-embed').click()">Embed</a>
       </div>
       <dl class="facts">
@@ -41,6 +42,7 @@
     {% if t.plan %}<p class="plan-link">Planning a whole lesson? <a href="{{ t.url }}plan/">Here is a {{ t.plan.meta.minutes }}-minute lesson plan</a> that opens the standard and brings the class to this tool.</p>{% endif %}
     {% if t.notes_html %}{{ t.notes_html | safe }}{% else %}<p>Teacher notes coming soon.</p>{% endif %}
     <p class="plan-link">More for <a href="{{ m.url }}">{{ m.title }}</a>: every tool and lesson plan for this module in one place.</p>
+    {% if home %}<p class="plan-link">Play at home: {% for g in home %}<a href="{{ g.url }}">{{ g.title }}</a>{{ ', ' if not loop.last }}{% endfor %}, a printable family game{{ 's' if home | length > 1 }} on the same idea, in English and Spanish.</p>{% endif %}
   </div>
   <div class="panel" role="tabpanel" id="p-std" aria-labelledby="t-std" hidden>
     {% for c in m.codes %}<div class="std"><a href="/standards/{{ slug(c) }}/"><code>{{ c }}</code></a><span>{{ std_framework[c] }}</span></div>{% endfor %}

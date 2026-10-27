@@ -86,6 +86,79 @@ def problems(tid, module=None):
     return out
 
 
+EXIT_LABELS = ['Show me', 'Explain', 'Rate it']
+EXIT_ITEM = re.compile(r'^(\d+)\.\s+(.+)$')
+EXIT_WORDS = {'ticket': 45, 'checklist': 10}  # per item; checklist items are column headings
+STOP = {'about', 'after', 'again', 'because', 'before', 'cards', 'child', 'children', 'class', 'could', 'every', 'first',
+        'needs', 'other', 'partner', 'point', 'right', 'shows', 'their', 'there', 'these', 'thing', 'think', 'three',
+        'which', 'where', 'while', 'would', 'write', 'student', 'students'}
+
+
+def is_k2(module):
+    return all(g in ('k', '1', '2') for g in module['grade'].split('-'))
+
+
+def parse_exit(tid):
+    """{'kind', 'items': [(label or None, prompt, answer or None)]} from tools/<id>/exit.md, or None."""
+    p = TOOLS / tid / 'exit.md'
+    if not p.exists():
+        return None
+    head, _, body = p.read_text(encoding='utf-8').partition('\n---\n')
+    meta = {k.strip(): v.strip() for k, _, v in (line.partition(':') for line in head.strip().splitlines())}
+    items = []
+    for line in body.strip().splitlines():
+        m = EXIT_ITEM.match(line.strip())
+        if not m:
+            continue
+        text, _, answer = m[2].partition('|')
+        label, sep, prompt = text.partition(':')
+        if not sep or label.strip() not in EXIT_LABELS:
+            label, prompt = None, text
+        answer = answer.strip()
+        items.append((label and label.strip(), prompt.strip(), answer[1:-1].strip() if answer.startswith('(') and answer.endswith(')') else (answer or None)))
+    return {'kind': meta.get('kind'), 'items': items}
+
+
+def keywords(text):
+    return {w for w in re.findall(r'[a-z]{5,}', text.lower()) if w not in STOP}
+
+
+def exit_problems(tid, module=None):
+    """exit.md against docs/LESSON-PLANS.md, Sub Day: kind, 1 to 3 items, a key for tickets, and the same ask as the plan's Exit check."""
+    ex = parse_exit(tid)
+    if ex is None:
+        return []
+    out, kind, items = [], ex['kind'], ex['items']
+    if kind not in EXIT_WORDS:
+        out.append(f'exit.md kind {kind!r} must be ticket or checklist')
+    elif module and kind != ('checklist' if is_k2(module) else 'ticket'):
+        out.append(f"exit.md kind is {kind}, but grade {module['grade']} needs {'checklist' if is_k2(module) else 'ticket'}")
+    if not 1 <= len(items) <= 3:
+        out.append(f'exit.md has {len(items)} items, needs 1 to 3')
+    for i, (label, prompt, answer) in enumerate(items, 1):
+        if kind == 'ticket':
+            if not label:
+                out.append(f'exit.md item {i} needs a label: {", ".join(EXIT_LABELS)}')
+            elif label == 'Rate it' and answer:
+                out.append(f'exit.md item {i} is a self-rating and takes no answer')
+            elif label != 'Rate it' and not answer:
+                out.append(f'exit.md item {i} needs an answer for the teacher key: "| (answer)"')
+        if kind in EXIT_WORDS and len(prompt.split()) > EXIT_WORDS[kind]:
+            out.append(f'exit.md item {i} is {len(prompt.split())} words, the cap is {EXIT_WORDS[kind]}')
+    if kind == 'ticket' and items and items[-1][0] != 'Rate it':
+        out.append('exit.md tickets end with a "Rate it:" self-rating')
+    plan = parse(tid)
+    check = ' '.join(t for title, _, t in plan['sections'] if title == 'Exit check') if plan else ''
+    if check and not keywords(check) & keywords(' '.join(f'{p} {a or ""}' for _, p, a in items)):
+        out.append("exit.md shares no key word with the plan's Exit check; they must ask the same thing")
+    raw = (TOOLS / tid / 'exit.md').read_text(encoding='utf-8')
+    if '—' in raw:
+        out.append('exit.md: em dash')
+    if re.search(r'\bCurio\b(?! Class)', raw):
+        out.append('exit.md: "Curio" without "Class"')
+    return out
+
+
 def modules_by_tool():
     mods = {m['module_id']: m for m in csv.DictReader(open(ROOT / 'data' / 'modules.csv', encoding='utf-8'))}
     return {c['tool_id']: mods[c['module_id']] for c in csv.DictReader(open(ROOT / 'data' / 'tools-concepts.csv', encoding='utf-8'))}
@@ -96,7 +169,9 @@ def main():
     ids = sys.argv[1:] or sorted(p.parent.name for p in TOOLS.glob('*/plan.md'))
     bad = 0
     for tid in ids:
-        found = problems(tid, mods.get(tid))
+        found = problems(tid, mods.get(tid)) + exit_problems(tid, mods.get(tid))
+        if (TOOLS / tid / 'plan.md').exists() and not (TOOLS / tid / 'exit.md').exists():
+            found.append('no exit.md, so no Sub Day packet (docs/LESSON-PLANS.md, Sub Day)')
         bad += bool(found)
         print(f"{tid}: {'ok' if not found else ''}" + ''.join(f'\n  - {p}' for p in found))
     print(f'{len(ids)} plans, {bad} with problems')

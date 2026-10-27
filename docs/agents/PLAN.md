@@ -30,8 +30,14 @@ the default screen and each mode. You are writing about what is on the screen, s
 7. **The exit check** is one quick task that shows who got it. K-2: oral or physical.
 8. **Support and stretch** and **Short on time** as the format says.
 
+## Then write `tools/<tool-id>/exit.md`
+
+9. **The exit file** feeds the tool's Sub Day packet (`docs/LESSON-PLANS.md`, Sub Day). It asks the same thing as
+   the plan's Exit check, so a substitute can run it from paper. K-2 is a `checklist` (one to three short things the
+   teacher watches for); 3-12 is a `ticket` (Show me, Explain, then Rate it, each with the teacher key in parentheses).
+
 ## Check before you report
 
-`python scripts/check_plans.py <tool-id>` passes. Read the plan once as the teacher: is every step something you
+`python scripts/check_plans.py <tool-id>` passes (it checks plan.md and exit.md). Read the plan once as the teacher: is every step something you
 could do with only this page and the tool? Report: the arc and why, the focus standard, anything in the tool that
 made the plan awkward (that is a finding for the tool), and the check result. Do not commit.

@@ -36,6 +36,16 @@
   </section>
   {% endif %}
 
+  {% if games %}
+  <section class="group">
+    <h2>Family Game Night</h2>
+    <p>Games to send home: one printed page, 15 to 20 minutes, with paper, cards, dice or things around the house. English and Spanish.</p>
+    <ul class="module-list">
+      {% for g in games %}<li><a href="{{ g.url }}"><b>{{ g.title }}</b></a><span>{{ g.players }} players · {{ g.minutes }} minutes · {{ g.materials_list | join(', ') }}</span></li>{% endfor %}
+    </ul>
+  </section>
+  {% endif %}
+
   {% if plans %}
   <section class="group">
     <h2>Lesson plans</h2>

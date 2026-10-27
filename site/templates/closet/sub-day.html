@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% from "macros.html" import crumbs %}
+{% block title %}{{ label }}: Supply Closet · Curio Class{% endblock %}
+{% block description %}{{ what }} One packet for every tool that has a lesson plan.{% endblock %}
+{% block main %}
+<div class="wrap">
+  {{ crumbs([('Supply Closet', '/closet/'), (label, None)]) }}
+  <div class="page-head"><h1>{{ label }}</h1><p>{{ what }} Each packet is five printed pages: a cover page you fill in by hand (with a QR code to the tool), the lesson plan, the teacher notes, exit tickets (a checklist for K to 2), and a backup sheet in case the tool will not open. Fill in the cover, print, and leave it on the desk.</p></div>
+  <div class="browse">
+    <aside class="browse-nav" aria-label="Grades">
+      <p class="eyebrow">Grades</p>
+      <nav id="browse-links">
+        {% for s in sections %}<a href="#{{ s.id }}" data-target="{{ s.id }}"><i style="background:var(--ink)"></i><span>{{ s.label }}</span><b>{{ s.tools | length }}</b></a>{% endfor %}
+      </nav>
+    </aside>
+    <div class="browse-main">
+      <label class="jump"><span class="sr-only">Grades</span>
+        <select id="jump"><option value="">Grades…</option>{% for s in sections %}<option value="{{ s.id }}">{{ s.label }} ({{ s.tools | length }})</option>{% endfor %}</select>
+      </label>
+      {% for s in sections %}
+      <section class="group browse-group" id="{{ s.id }}">
+        <div class="group-head"><h2>{{ s.label }}</h2></div>
+        <div class="module-grid">
+          {% for t in s.tools %}
+          <article class="module-card">
+            <h3><a href="{{ t.url }}sub/">{{ t.title }}</a></h3>
+            <p class="desc"><span class="title-dot" style="background:var(--{{ t.subject_info.color }});margin-right:6px"></span>{{ t.subject_info.short }} · {{ t.meta.grades_label }} · {{ t.plan.meta.minutes }} minutes</p>
+            <p class="desc">{{ t.module.title }} · {{ 'exit checklist' if t.exit.kind == 'checklist' else 'exit tickets' }}</p>
+          </article>
+          {% endfor %}
+        </div>
+      </section>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script>
+(() => {
+  const links = [...document.querySelectorAll('#browse-links a')];
+  const byId = Object.fromEntries(links.map(a => [a.dataset.target, a]));
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { links.forEach(a => a.removeAttribute('aria-current')); byId[e.target.id]?.setAttribute('aria-current', 'true'); } });
+  }, {rootMargin: '-90px 0px -70% 0px'});
+  document.querySelectorAll('.browse-group').forEach(g => io.observe(g));
+  document.getElementById('jump').addEventListener('change', e => {
+    if (e.target.value) document.getElementById(e.target.value).scrollIntoView({behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'});
+  });
+})();
+</script>
+{% endblock %}

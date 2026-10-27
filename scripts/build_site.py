@@ -20,6 +20,8 @@ from standards import validate  # noqa: E402
 from bundle_tool import bundle_all  # noqa: E402
 import check_plans  # noqa: E402
 import check_words  # noqa: E402
+import check_games  # noqa: E402
+import qr  # noqa: E402
 
 bundle_all()  # tools with src.html get their art inlined first
 
@@ -92,7 +94,8 @@ for c in read('tools-concepts.csv'):
         t['notes_html'] = markdown.markdown(notes.read_text(encoding='utf-8')) if notes.exists() else ''
         t['preview'] = (folder / 'preview.svg').exists()
         t['plan'] = check_plans.parse(c['tool_id'])
-        bad = check_plans.problems(c['tool_id'], m)
+        bad = check_plans.problems(c['tool_id'], m) + check_plans.exit_problems(c['tool_id'], m)
+        t['exit'] = check_plans.parse_exit(c['tool_id']) if t['plan'] else None
         if bad:
             sys.exit(f"{c['tool_id']}/plan.md: " + '; '.join(bad) + ' (python scripts/check_plans.py)')
         span = re.search(r'(K|\d+)(?:-(\d+))?$', t['meta'].get('grades_label', ''))
@@ -242,13 +245,26 @@ for mid, cards in words.items():
     if bad:
         sys.exit('; '.join(bad) + ' (python scripts/check_words.py)')
 
+# Family Game Night (Phase E): each game links to its modules, and to their built tools as "Loved it at school?"
+games = check_games.load() if CLOSET_LIVE else {}
+games_by_module = defaultdict(list)
+for g in games.values():
+    bad = check_games.problems(g, modules)
+    if bad:
+        sys.exit('; '.join(bad) + ' (python scripts/check_games.py)')
+    g['mods'] = [modules[mid] for mid in g['module_ids']]
+    g['tools'] = [t for mid in g['module_ids'] for t in by_module[mid] if t['built']]
+    for mid in g['module_ids']:
+        games_by_module[mid].append(g)
+
 # modules: the hub for everything one module has (tools, then Supply Closet shelves as they ship)
 for m in modules.values():
     mt = by_module[m['module_id']]
     plans = [t for t in mt if t['built'] and t['plan']]
     cards = words.get(m['module_id'], [])
     render('module.html', m['url'], m=m, items=mt, plans=plans, words=cards, subject=subjects[m['subject']],
-           course=courses.get(m['course_id']), index=any(t['built'] for t in mt) or bool(cards))
+           games=games_by_module.get(m['module_id'], []), course=courses.get(m['course_id']),
+           index=any(t['built'] for t in mt) or bool(cards))
     if cards:
         dest = DIST / 'modules' / m['module_id'] / 'words'
         for c in cards:
@@ -276,11 +292,17 @@ for t in tools:
         shutil.copy2(TOOLS / t['tool_id'] / t['file'], dest / t['file'])
         if t['preview']:
             shutil.copy2(TOOLS / t['tool_id'] / 'preview.svg', dest / 'preview.svg')
-        render('tool.html', t['url'], t=t, related=related, collection=collection)
+        render('tool.html', t['url'], t=t, related=related, collection=collection,
+               home=games_by_module.get(t['module']['module_id'], []))
         if t['plan']:
             plan = t['plan']
             render('plan.html', t['url'] + 'plan/', t=t, meta=plan['meta'], arc=check_plans.ARCS[plan['meta']['arc']],
                    sections=[(title, mins, markdown.markdown(text)) for title, mins, text in plan['sections']])
+            if t['exit'] and CLOSET_LIVE:  # Sub Day packet (Phase B): cover, plan, notes, exit tickets, backup sheet
+                render('subday.html', t['url'] + 'sub/', index=False, t=t, ex=t['exit'],
+                       qr=qr.svg('https://curioclass.org' + t['url'], f'QR code for curioclass.org{t["url"]}'),
+                       sections=[(title, mins, markdown.markdown(text)) for title, mins, text in plan['sections']],
+                       band=check_words.band(t['module']['grade']), words=words.get(t['module']['module_id'], []))
     else:
         render('bench.html', t['url'], t=t, related=related, collection=collection, index=False)
 
@@ -323,11 +345,30 @@ for g, mods in wall.items():
     also = [x for x in wall if x != g and set(expand(x)) & set(expand(g)) and (len(expand(x)) > len(expand(g)))]
     render('closet/word-grade.html', f'/closet/word-wall/{g}/', g=g, sections=sections, words=words, tally=wall_tally([g]),
            also=sorted(also, key=lambda x: len(expand(x))))
-counts = {'word-wall': wall_tally(list(wall)) if words else ''}
+sub_tools = [t for t in built if t['exit']] if CLOSET_LIVE else []
+sub_sections = []
+for gr in GRADES:  # a tool sits under the first grade it is written for
+    ts = sorted((t for t in sub_tools if t['module']['grades'][0] == gr), key=lambda t: (list(subjects).index(t['module']['subject']), t['title']))
+    if ts:
+        sub_sections.append(dict(id=f'grade-{gr}', label=grade_label(gr), tools=ts))
+counts = {'sub-day': f'{len(sub_tools)} packets' if sub_tools else '', 'word-wall': wall_tally(list(wall)) if words else '', 'game-night': f'{len(games)} games' if games else ''}
+# Game Night: one shelf page with a section per grade (games in subject order), and a print page per game
+SUBJECT_ES = {'math': 'Matemáticas', 'ela': 'Lectura y escritura', 'science': 'Ciencias', 'social-studies': 'Estudios sociales'}
+game_sections = []
+for gr in GRADES:
+    gs = sorted((g for g in games.values() if g['grade'] == gr), key=lambda g: (list(subjects).index(g['subject']), g['title']))
+    if gs:
+        game_sections.append(dict(id=f'grade-{gr}', label=grade_label(gr), games=gs))
+for g in games.values():
+    render('closet/game.html', g['url'], g=g, subject=subjects[g['subject']], subject_es=SUBJECT_ES[g['subject']])
 render('closet/home.html', '/closet/', shelves=CLOSET, counts=counts)
 for sid, label, what in CLOSET:
     if sid == 'word-wall' and wall:
         render('closet/word-wall.html', '/closet/word-wall/', label=label, what=what, wall_bands=wall_bands)
+    elif sid == 'sub-day' and sub_tools:
+        render('closet/sub-day.html', '/closet/sub-day/', label=label, what=what, sections=sub_sections)
+    elif sid == 'game-night' and games:
+        render('closet/game-night.html', '/closet/game-night/', label=label, what=what, sections=game_sections)
     else:
         render('closet/shelf.html', f'/closet/{sid}/', label=label, what=what, groups=[], index=False)
 

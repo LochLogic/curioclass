@@ -1,0 +1,43 @@
+title: Grid Hide and Seek
+es_title: Escondidas en la cuadrícula
+grade: 5
+subject: math
+modules: the-coordinate-plane
+players: 2
+minutes: 20
+materials: paper; pencils; a ruler; a book to hide your paper behind
+es_materials: papel; lápices; una regla; un libro para esconder su papel
+
+## How to play
+1. Each player draws two grids from 0 to 8 across (x) and 0 to 8 up (y). One grid is for hiding, one for searching.
+2. Hide three treasure chests on your hiding grid. Each chest covers two points next to each other, like (3, 5) and (4, 5).
+3. Take turns calling a point: "(6, 2)." Always say the across number first, then the up number.
+4. Your partner says "hit" or "miss." Mark it on your searching grid.
+5. Partners must also say "warm" if your guess is one step from a chest.
+6. The first to find all of the other player's chests wins.
+
+## What your child is learning
+Locating points on a coordinate grid using ordered pairs. The first number tells how far across; the second tells how far up.
+
+## Make it easier
+Use a grid from 0 to 5 and chests that cover one point.
+
+## Make it harder
+Use all four quadrants with negative numbers, from −5 to 5.
+
+## Cómo jugar
+1. Cada jugador dibuja dos cuadrículas del 0 al 8 hacia la derecha (x) y del 0 al 8 hacia arriba (y). Una es para esconder y otra para buscar.
+2. Escondan tres cofres en su cuadrícula para esconder. Cada cofre ocupa dos puntos juntos, como (3, 5) y (4, 5).
+3. Por turnos, digan un punto: "(6, 2)". Siempre digan primero el número horizontal y luego el vertical.
+4. El compañero dice "tocado" o "agua". Márquenlo en su cuadrícula para buscar.
+5. El compañero también debe decir "caliente" si el punto está a un paso de un cofre.
+6. Gana el primero que encuentre todos los cofres del otro.
+
+## Qué está aprendiendo
+A ubicar puntos en un plano cartesiano con pares ordenados. El primer número dice qué tan lejos hacia la derecha; el segundo, qué tan lejos hacia arriba.
+
+## Más fácil
+Usen una cuadrícula del 0 al 5 y cofres de un solo punto.
+
+## Más difícil
+Usen los cuatro cuadrantes con números negativos, del −5 al 5.

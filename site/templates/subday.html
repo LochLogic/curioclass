@@ -1,0 +1,154 @@
+{% extends "base.html" %}
+{% from "macros.html" import crumbs %}
+{% set m = t.module %}
+{% set link = 'curioclass.org' ~ t.url %}
+{% macro foot(part) %}<p class="print-foot">Sub Day, {{ part }} · {{ t.title }} · Curio Class, {{ link }}sub/ · free under CC BY 4.0</p>{% endmacro %}
+{% macro lines(n) %}<span class="sub-lines">{% for _ in range(n) %}<i></i>{% endfor %}</span>{% endmacro %}
+{% macro rating() %}<span class="sub-rate">{% for i in range(1, 5) %}<i>{{ i }}</i>{% endfor %}</span>{% endmacro %}
+{% block title %}Sub Day packet: {{ t.title }} · Curio Class{% endblock %}
+{% block description %}A print-ready substitute packet for {{ t.title }}: cover page, lesson plan, teacher notes, exit tickets and a backup sheet.{% endblock %}
+{% block main %}
+<div class="wrap sub-page">
+  <div class="no-print">
+    {{ crumbs([(grade_label(m.grade), grade_href(m.grade)), (t.subject_info.short, '/subjects/' ~ m.subject ~ '/'), (t.title, t.url), ('Sub Day', None)]) }}
+    <p class="eyebrow">Supply Closet · Sub Day</p>
+    <h1>Sub Day packet: {{ t.title }}</h1>
+    <p class="lede">Five pages to print and leave on the desk: a cover page you fill in by hand, the lesson plan, the teacher notes, exit tickets, and a backup sheet in case the tool will not open. Nothing you write here is saved; print it, then write on the paper.</p>
+    <div class="actions">
+      <button class="btn primary" type="button" onclick="print()">Print the packet</button>
+      <a class="btn" href="{{ t.url }}">Back to the tool</a>
+      <a class="btn" href="/closet/sub-day/">All Sub Day packets</a>
+    </div>
+    <ol class="sub-toc">
+      <li><a href="#sub-cover">Cover page</a></li><li><a href="#sub-plan">Lesson plan</a></li><li><a href="#sub-notes">Teacher notes</a></li>
+      <li><a href="#sub-exit">{{ 'Exit checklist' if ex.kind == 'checklist' else 'Exit tickets' }}</a></li><li><a href="#sub-backup">Backup sheet</a></li>
+    </ol>
+  </div>
+
+  <section class="sub-part sub-cover" id="sub-cover">
+    <p class="eyebrow">Sub Day · {{ t.meta.grades_label }} · {{ t.subject_info.short }}</p>
+    <h2 class="sub-title">{{ t.title }}</h2>
+    <p class="sub-goal">{{ t.plan.meta.goal }}</p>
+    <div class="sub-open">
+      {{ qr | safe }}
+      <div>
+        <p class="sub-url"><b>{{ link }}</b></p>
+        <ol>
+          <li>Type the link above into the browser, or scan the code with a phone or tablet.</li>
+          <li>Press <b>▶ Play full screen</b>.{% if t.meta.driver == 'teacher' %} Show it on the projector or board.{% endif %}</li>
+          <li>If it asks, press <b>F11</b> (or the full screen button) so it fills the screen.</li>
+        </ol>
+      </div>
+    </div>
+    <ul class="sub-given">
+      <li>{{ {'teacher': 'You drive it on the big screen. Students watch and answer.', 'students': 'Students use it on their own devices.', 'students or teacher': 'Students on their own devices, or you drive it on the big screen.'}[t.meta.driver] }}</li>
+      <li>The lesson takes {{ t.plan.meta.minutes }} minutes. Page 2 has every step.</li>
+      <li>If the tool will not load, use page 5, the backup sheet.</li>
+    </ul>
+    <div class="sub-blanks">
+      {% for label, n in [('Date', 1), ('Class and period times', 2), ('Devices and the projector remote are', 1), ('Helpers', 1), ('Watch for', 2), ('Early finishers can', 2), ('Leave the exit tickets', 1)] %}
+      <div class="sub-blank"><b>{{ label }}</b>{{ lines(n) }}</div>
+      {% endfor %}
+      <div class="sub-blank wide"><b>Notes from your teacher</b>{{ lines(3) }}</div>
+    </div>
+    {{ foot('part 1 of 5') }}
+  </section>
+
+  <section class="sub-part plan-page sub-plan" id="sub-plan">
+    <div class="plan-head">
+      <div>
+        <p class="eyebrow">Lesson plan · {{ t.meta.grades_label }} · {{ t.plan.meta.minutes }} minutes</p>
+        <h2 class="sub-title">{{ t.title }}</h2>
+        <p class="plan-goal">{{ t.plan.meta.goal }}</p>
+      </div>
+      <dl class="facts">
+        <dt>Standard</dt><dd>{% for c in t.plan.meta.focus.split(';') | map('trim') %}<code>{{ c }}</code>{% if not loop.last %}, {% endif %}{% endfor %}</dd>
+        <dt>Grouping</dt><dd>{{ t.plan.meta.grouping }}</dd>
+        <dt>You need</dt><dd>{{ t.plan.meta.materials }}</dd>
+        <dt>Tool</dt><dd>{{ link }}</dd>
+      </dl>
+    </div>
+    <ol class="plan-flow" aria-label="The lesson at a glance">
+      {% for title, mins, _ in sections if mins %}<li style="flex-grow:{{ mins }}"><b>{{ title }}</b><span>{{ mins }} min</span></li>{% endfor %}
+    </ol>
+    <div class="plan-body">
+      {% for title, mins, html in sections %}
+      <div class="plan-part{% if not mins %} plan-aside{% endif %}">
+        <h3>{{ title }}{% if mins %} <span>{{ mins }} min</span>{% endif %}</h3>
+        {{ html | safe }}
+      </div>
+      {% endfor %}
+    </div>
+    {{ foot('part 2 of 5') }}
+  </section>
+
+  <section class="sub-part sub-notes" id="sub-notes">
+    <p class="eyebrow">Teacher notes · how {{ t.title }} works</p>
+    <h2 class="sub-title">{{ t.title }}</h2>
+    {% set nw = t.notes_html | striptags | wordcount %}<div class="sub-notes-body{% if nw > 1200 %} denser{% elif nw > 950 %} dense{% endif %}">{{ t.notes_html | safe }}</div>
+    {{ foot('part 3 of 5') }}
+  </section>
+
+  <section class="sub-part sub-exit" id="sub-exit">
+    {% if ex.kind == 'checklist' %}
+    <p class="eyebrow">Exit checklist · mark it while you call on children</p>
+    <h2 class="sub-title">{{ t.title }}</h2>
+    <p class="sub-how">Ask each child the check out loud. Mark <b>✓</b> got it, <b>~</b> almost, or <b>✗</b> not yet. Leave this page for the teacher.</p>
+    <table class="sub-check">
+      <thead><tr><th class="name">Name</th>{% for _, prompt, _ in ex['items'] %}<th colspan="3">{{ prompt }}</th>{% endfor %}</tr>
+      <tr class="marks"><th></th>{% for _ in ex['items'] %}<th>✓</th><th>~</th><th>✗</th>{% endfor %}</tr></thead>
+      <tbody>{% for _ in range(24) %}<tr><td class="name"></td>{% for _ in ex['items'] %}<td></td><td></td><td></td>{% endfor %}</tr>{% endfor %}</tbody>
+    </table>
+    {% else %}
+    <div class="sub-tickets">
+      {% for _ in range(4) %}
+      <div class="ticket">
+        <p class="ticket-head"><span>Exit ticket · {{ t.title }}</span><span class="ticket-name">Name</span></p>
+        {% for label, prompt, _ in ex['items'] %}
+        <div class="ticket-item">
+          <p><b>{{ loop.index }}. {{ label }}:</b> {{ prompt }}</p>
+          {% if label == 'Rate it' %}<p class="ticket-rate">Circle one: {{ rating() }} <small>1 not yet · 4 I could teach it</small></p>{% else %}{{ lines(3 if label == 'Explain' else 4) }}{% endif %}
+        </div>
+        {% endfor %}
+      </div>
+      {% endfor %}
+    </div>
+    <div class="sub-key"><b>Teacher key</b> (cut off before handing out):{% for label, prompt, answer in ex['items'] if answer %} <span>{{ loop.index }}. {{ answer }}</span>{% endfor %}</div>
+    {% endif %}
+    {{ foot('part 4 of 5') }}
+  </section>
+
+  <section class="sub-part sub-backup band-{{ band }}" id="sub-backup">
+    <p class="eyebrow">Backup sheet · use this if the tool will not open</p>
+    {% if band == 'k2' %}
+    <h2 class="sub-title">{{ m.title }}</h2>
+    <p class="sub-how">For the substitute: read each part out loud. Children draw and point; nobody needs to read.</p>
+    <div class="backup-box draw"><b>Draw it:</b> draw a picture about {{ m.title | lower }}.</div>
+    <div class="backup-say">
+      <b>Show me (read these out loud; children answer with fingers, faces or a word):</b>
+      <ol>{% for _, prompt, _ in ex['items'] %}<li>{{ prompt }}</li>{% endfor %}</ol>
+      {% if words %}<p><b>Words to say together:</b> {{ words | map(attribute='word') | join(', ') }}</p>{% endif %}
+    </div>
+    <div class="backup-faces"><b>How did you do? Color one face.</b>
+      <span>{% for mouth in ['M10 22 q8 7 16 0', 'M10 23 h16', 'M10 26 q8 -7 16 0'] %}<svg viewBox="0 0 36 36" aria-hidden="true"><circle cx="18" cy="18" r="16" fill="none" stroke="#000" stroke-width="1.6"/><circle cx="12" cy="14" r="2"/><circle cx="24" cy="14" r="2"/><path d="{{ mouth }}" fill="none" stroke="#000" stroke-width="1.8" stroke-linecap="round"/></svg>{% endfor %}</span>
+    </div>
+    {% else %}
+    <h2 class="sub-title">{{ m.title }}</h2>
+    <p class="backup-name">Name <span></span> Date <span></span></p>
+    {% if band == '912' %}
+    <div class="backup-box"><b>Today's goal:</b> {{ t.plan.meta.goal }} <b>Explain it in your own words, with one example.</b>{{ lines(5) }}</div>
+    {% else %}
+    <div class="backup-box"><b>What I know about {{ m.title | lower }}:</b>{{ lines(4) }}</div>
+    {% endif %}
+    <div class="backup-box"><b>Key words.</b> Pick two{% if words %} from this list{% endif %} and write what each one means in your own words.{% if words %}<span class="backup-words">{{ words | map(attribute='word') | join(' · ') }}</span>{% endif %}
+      <div class="backup-two"><div>Word: <span class="blank"></span>{{ lines(2) }}</div><div>Word: <span class="blank"></span>{{ lines(2) }}</div></div>
+    </div>
+    {% for label, prompt, _ in ex['items'] if label != 'Rate it' %}
+    <div class="backup-box"><b>{{ label }}:</b> {{ prompt }}{{ lines(3) }}</div>
+    {% endfor %}
+    <div class="backup-box"><b>One question I still have:</b>{{ lines(2) }}</div>
+    {% endif %}
+    {{ foot('part 5 of 5') }}
+  </section>
+</div>
+{% endblock %}

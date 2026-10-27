@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% from "macros.html" import crumbs %}
+{% macro card(lang) %}
+{% set es = lang == 'es' %}{% set p = 'es_' if es else '' %}
+<article class="gcard {{ lang }}"{% if es %} lang="es"{% endif %}>
+  <header class="gcard-head">
+    <p class="eyebrow">{{ 'Noche de juegos en familia' if es else 'Family Game Night' }} · {{ (('Kínder' if g.grade == 'k' else 'Grado ' ~ g.grade) if es else grade_label(g.grade)) }} · {{ subject_es if es else subject.short }}</p>
+    <h2>{{ g.es_title if es else g.title }}</h2>
+    <dl class="gfacts">
+      <div><dt>{{ 'Jugadores' if es else 'Players' }}</dt><dd>{{ g.players }}</dd></div>
+      <div><dt>{{ 'Tiempo' if es else 'Time' }}</dt><dd>{{ g.minutes }} {{ 'minutos' if es else 'minutes' }}</dd></div>
+      <div class="need"><dt>{{ 'Necesitan' if es else 'You need' }}</dt><dd>{{ (g.es_materials_list if es else g.materials_list) | join(', ') }}</dd></div>
+    </dl>
+  </header>
+  <section class="gplay">
+    <h3>{{ 'Cómo jugar' if es else 'How to play' }}</h3>
+    <ol>{% for s in g[p ~ 'steps'] %}<li>{{ s }}</li>{% endfor %}</ol>
+  </section>
+  <div class="gcols">
+    <section><h3>{{ 'Lo que aprende su hijo o hija' if es else 'What your child is learning' }}</h3><p>{{ g[p ~ 'learn'] }}</p></section>
+    <section><h3>{{ 'Más fácil' if es else 'Make it easier' }}</h3><p>{{ g[p ~ 'easier'] }}</p>
+      <h3>{{ 'Más difícil' if es else 'Make it harder' }}</h3><p>{{ g[p ~ 'harder'] }}</p></section>
+  </div>
+  {% if g.tools %}{% set t = g.tools[0] %}<p class="gschool"><b>{{ '¿Le gustó en la escuela?' if es else 'Loved it at school?' }}</b> {{ 'Jueguen' if es else 'Play' }} <a href="{{ t.url }}">{{ t.title }}</a> {{ 'en' if es else 'at' }} curioclass.org{{ t.url }}</p>{% endif %}
+  <p class="print-foot">{{ g.es_title if es else g.title }} · Curio Class, curioclass.org{{ g.url }} · {{ 'libre bajo' if es else 'free under' }} CC BY 4.0</p>
+</article>
+{% endmacro %}
+{% block title %}{{ g.title }}: a family game for {{ grade_label(g.grade) | lower }} {{ subject.short | lower }} · Curio Class{% endblock %}
+{% block description %}A {{ g.minutes }}-minute game to play at home with {{ g.materials_list | join(', ') }}. {{ g.learn }}{% endblock %}
+{% block main %}
+<div class="wrap game-page" data-lang="en" style="--band: var(--{{ subject.color }})">
+  <div class="no-print">
+    {{ crumbs([('Supply Closet', '/closet/'), ('Family Game Night', '/closet/game-night/'), (grade_label(g.grade), '/closet/game-night/#grade-' ~ g.grade), (g.title, None)]) }}
+    <form class="word-controls" onsubmit="return false">
+      <fieldset>
+        <legend>Language</legend>
+        <label><input type="radio" name="lang" value="en" checked> English</label>
+        <label><input type="radio" name="lang" value="es"> Español</label>
+        <label><input type="radio" name="lang" value="both"> Both</label>
+      </fieldset>
+      <button class="btn primary" type="button" onclick="print()">Print</button>
+    </form>
+    <p class="game-hint">One page. "Both" prints English on the first page and Spanish on the second, so it fits front and back.{% if g.mods %} Goes with {% for m in g.mods %}<a href="{{ m.url }}">{{ m.title }}</a>{{ ', ' if not loop.last }}{% endfor %}.{% endif %}</p>
+    <p class="word-note es-note">The Spanish is a first draft. A native speaker has not checked it yet, so read it over before you print.</p>
+  </div>
+  {{ card('en') }}
+  {{ card('es') }}
+</div>
+{% endblock %}
+{% block scripts %}
+<script>
+(function () {
+  var page = document.querySelector('.game-page'), ask = new URLSearchParams(location.search);
+  document.querySelectorAll('.word-controls input').forEach(function (input) {
+    var want = ask.get(input.name);
+    try { want = want || localStorage.getItem('cc-words-' + input.name); } catch (e) {}
+    if (want === input.value) input.checked = true;
+    input.addEventListener('change', function () {
+      page.dataset[input.name] = input.value;
+      try { localStorage.setItem('cc-words-' + input.name, input.value); } catch (e) {}
+    });
+  });
+  document.querySelectorAll('.word-controls input:checked').forEach(function (input) { page.dataset[input.name] = input.value; });
+})();
+</script>
+{% endblock %}
