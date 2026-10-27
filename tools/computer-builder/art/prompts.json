@@ -1,0 +1,72 @@
+{
+  "style": "Bright, friendly flat picture-book illustration for a grade 1 computer lesson on a classroom projector: soft rounded shapes, clean dark navy outlines, cheerful clear colors with cobalt blue and sunny yellow accents, soft daylight, easy to read from the back of the room.",
+  "assets": [
+    {
+      "name": "backdrop",
+      "prompt": "Empty background: a sunny classroom wall seen straight on. Pale blue-gray painted wall. On the left, a window with a bright blue sky, one small fluffy cloud, and a small green potted plant on the white windowsill. On the upper right, a light wooden pegboard holding a few colorful tools: a red screwdriver, a gray wrench, a green pliers, a yellow tape measure. The middle of the wall and the whole bottom third are plain and empty. Flat soft pastel illustration, clean shapes. No desk, no furniture, no posters, no writing, no letters, no numbers, no logos.",
+      "aspect": "16:9",
+      "width": 1600,
+      "quality": 72,
+      "source": "flux2-klein-4b (Cloudflare)",
+      "local_note": "cover-fit behind the code-drawn desk, top two thirds of the stage; the desk covers the bottom, the screen and parts stand over the middle, so keep the middle and bottom plain",
+      "review": "ok"
+    },
+    {
+      "name": "bubbles-bowl",
+      "prompt": "A cute cartoon orange goldfish with big friendly eyes and a small smile, swimming in a round clear glass fishbowl with a rim at the top, a layer of smooth colorful pebbles on the bottom and one small green water plant. Front view, the whole bowl in frame.",
+      "aspect": "1:1",
+      "height": 320,
+      "cutout": true,
+      "key": "magenta",
+      "source": "gpt-image-2 (Codex)",
+      "local_note": "sits on the left edge of the desk, about 130 px tall on a projector",
+      "review": "ok"
+    },
+    {
+      "name": "bubbles-photo",
+      "prompt": "The same cute cartoon orange goldfish, close up, smiling happily at the viewer, swimming among tall green water plants in clear blue water with a few bubbles, full frame like a cheerful photo.",
+      "aspect": "4:3",
+      "width": 640,
+      "quality": 76,
+      "ref": "bubbles-bowl",
+      "source": "gpt-image-2 (Codex)",
+      "local_note": "shown on the code-drawn screen as the camera's photo, about 300 x 225 px",
+      "review": "ok"
+    },
+    {
+      "name": "nibbles",
+      "prompt": "A small cute cartoon gray mouse with big round ears with pink insides, a pink nose, a long thin tail, standing up on its hind legs, grinning cheekily with a playful look, front paws held up near its chest. Full body.",
+      "aspect": "1:1",
+      "height": 300,
+      "cutout": true,
+      "ref": "bubbles-bowl",
+      "ref_mode": "style",
+      "source": "gpt-image-2 (Codex)",
+      "local_note": "scurries behind the desk in Missing, about 100 px tall",
+      "review": "ok"
+    },
+    {
+      "name": "nibbles-plug",
+      "prompt": "The same small cute cartoon gray mouse, standing up on its hind legs, smiling a little sheepishly, holding a black computer cable plug in both front paws in front of its chest, a short piece of black cable trailing down from the plug. Full body.",
+      "aspect": "1:1",
+      "height": 300,
+      "cutout": true,
+      "ref": "nibbles",
+      "source": "gpt-image-2 (Codex)",
+      "local_note": "pops up next to the unplugged part when the class finds it, about 100 px tall",
+      "review": "ok"
+    },
+    {
+      "name": "panda",
+      "prompt": "A cute cartoon giant panda sitting among green bamboo stalks, holding a bamboo stalk in one paw and waving happily with the other paw, looking at the viewer with a big friendly smile. Soft green bamboo forest behind. Full frame.",
+      "aspect": "4:3",
+      "width": 640,
+      "quality": 76,
+      "ref": "bubbles-bowl",
+      "ref_mode": "style",
+      "source": "gpt-image-2 (Codex)",
+      "local_note": "fills the code-drawn screen in the zoo video chat job; the tool tilts it gently back and forth so the panda seems to wave",
+      "review": "ok"
+    }
+  ]
+}

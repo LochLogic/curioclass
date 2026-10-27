@@ -127,12 +127,14 @@ appears on the screen, and it also has speakers, a microphone, a camera and a br
 Accent `--brand: #2049b8` (cobalt). Neighbors: loop-garden is garden green with blue, purple and orange blocks; this is
 a cobalt workbench with warm wood. `:root`: --paper #f4f6fd, --ink #1c2340, --muted #55607f, --line #cfd8f6,
 --focus #c2410c, --brand #2049b8, --btn #ffffff, --btn-line #cfd8f6, --head-ink #ffffff, --panel #ffffff.
-Scene: wall #e9eefb (behind art), desk wood #d9a86c with a #b8834a edge, glow #ffd23f, in dots #0e7c86, out stars
-#c2410c, ghost outlines #6b7594 dashed, Try it button #17703d. Parts are friendly rounded shapes: off-white plastic
+Scene: wall #e9eefb (behind art), desk wood #d9a86c with a #b8834a edge, glow #ffd23f, in dots #08606a, out stars
+#9a3209, ghost outlines #454e6e dashed, Try it button #17703d. Parts are friendly rounded shapes: off-white plastic
 #f7f7fb with #1c2340 outlines and cobalt details. Font: 'Trebuchet MS' bold for names, like the K-2 tools.
 Contrast: white on brand 7.76; brand on paper 7.19; ink on paper 14.26; muted on paper 5.78; ink on glow 10.66;
-ink on wood 7.16; white on Try it green 6.14; focus ring on paper 4.80; in dots on wall 4.26 and out stars on wall
-4.46 (graphics, need 3); ghost outline on paper 4.23. Color is never the only signal: dots and stars differ in shape
+ink on wood 7.16; white on Try it green 6.14; focus ring on paper 4.80. Graphics (need 3), on wood #d9a86c / light wood
+#e7bf89 / wood gradient ends #e4b77f and #d4a265 / wall #e9eefb / paper #f4f6fd: in dots #08606a 3.38 / 4.22 / 3.94 and
+3.17 / 6.26 / 6.73; out stars #9a3209 3.45 / 4.31 / 4.01 and 3.23 / 6.38 / 6.86; ghost outline #454e6e 3.80 / 4.76 / 4.43
+and 3.57 / 7.04 / 7.57 (5.0 on wood through its own #ffffff55 fill). Color is never the only signal: dots and stars differ in shape
 and direction, done jobs have a check, the unlocked button loses its lock.
 
 ## Art
@@ -157,8 +159,8 @@ Bank `bright-teacher` (Autonoe): "Say brightly and cheerfully, like an upbeat fi
 build-it lesson; neighbors use hero-coach (loop-garden) and lively-host (robot-dance). Every fixed line:
 
 Build
-- Let's build a computer! Tap a part to put it on the desk.
-- The computer box! It's the brain. It does the thinking.
+- Let's build a computer! Tap a part on the shelf to put it on the desk.
+- The computer box! The brain is inside. It does the thinking.
 - The screen! It shows us pictures and words.
 - The keyboard! Its keys send letters to the computer.
 - The mouse! It moves the arrow on the screen.
@@ -173,13 +175,13 @@ Build
 - Everyone, say hello!
 - Hello, class!
 - Smile, Bubbles! Click!
-- Nothing happened! The parts need the computer box. It's the brain.
+- Nothing happened! The parts need the computer box. The brain is inside it.
 - The computer got it, but there's no screen to show it!
 - The computer heard you, but it has no speakers to answer.
-- We built a whole computer! Tap each part to try it.
+- We built a whole computer! Tap each part on the desk to try it.
 - Some computers squeeze all the parts into one. Tap All in one!
-- A laptop has all the parts inside! Tap a part to find it.
-- A tablet has the parts inside too! Tap a part to find it.
+- A laptop has all the parts inside! Tap a circle to find a part.
+- A tablet has the parts inside too! Tap a circle to find a part.
 - Here's the screen.
 - Here's the keyboard.
 - This touchpad is the mouse. Slide your finger on it.
@@ -191,7 +193,7 @@ Build
 - The keyboard pops up on the screen.
 
 Jobs
-- Let's give our computer a job! Pick a job card.
+- Let's give our computer a job! Tap a job card.
 - Job: watch a cartoon! What parts do we need?
 - Job: write a word! What parts do we need?
 - Job: paint a picture! What parts do we need?
@@ -216,23 +218,42 @@ Jobs
 - Six jobs done! You're computer builders!
 
 Missing
-- Oh no! Nibbles the mouse likes to unplug things. Press Start, and we'll find what's wrong.
+- Oh no! Nibbles the mouse likes to unplug things. Tap Start to find what's wrong.
 - Close your eyes!
 - Open your eyes! Let's try a job.
-- Which part is unplugged? Tap it!
-- The computer box works! Try another part.
-- The screen works! Try another part.
-- The keyboard works! Try another part.
-- The mouse works! Try another part.
-- The speakers work! Try another part.
-- The microphone works! Try another part.
-- The camera works! Try another part.
+- Which part is unplugged? Tap that part on the desk.
+- The computer box works! Tap a different part on the desk.
+- The screen works! Tap a different part on the desk.
+- The keyboard works! Tap a different part on the desk.
+- The mouse works! Tap a different part on the desk.
+- The speakers work! Tap a different part on the desk.
+- The microphone works! Tap a different part on the desk.
+- The camera works! Tap a different part on the desk.
+- Nothing happened! This part needs the brain. Tap a different part on the desk.
 - You found it! Let's plug it back in.
 - You fixed every one! Nibbles is all out of tricks.
 
+How-to lines (every time the tool waits for the child, the next step and where to tap is said and stays in the hint)
+- Tap a part on the shelf.
+- Tap the computer box on the shelf.
+- Tap a part on the shelf, or tap a part on the desk to try it.
+- Tap a part on the desk to try it, or tap All in one.
+- Tap another circle, or tap Back to desk.
+- Tap a job card.
+- Tap the parts on the shelf. Then tap Try it.
+- Tap Next job, or tap any job card.
+- Tap Start.
+- Tap Next round.
+- Tap Start to play again.
+
 Missing rounds reuse the Jobs symptom and success lines. Order in a round: Open your eyes, symptom, Which part. Hint
-text shows the latest line; welcome per mode once after the first tap (collision-lab queue rules in STANDARDS.md).
-In round 7 (box unplugged) the computer box's wrong line can't happen; tapping any other part plays its wrong line.
+text shows the latest line, so it always ends on the how-to step. A line that only reports or asks (a part's name, its show,
+a no-box or no-screen line, a job, a symptom, a success, a spot) is followed by the how-to line for that moment (Build: shelf,
+box, build or full by what is on the desk; All in one: circle; Jobs: job card, parts then Try it, or Next job; Missing:
+Start, Next round or play again); a newer tap drops a how-to line that has not started. Lines that already name the step
+(the welcomes, All built, Tap All in one, the laptop and tablet lines, Which part, the works lines) need none. A first tap
+on the locked All in one counts as an ordinary tap, so the welcome plays; welcome per mode once after the first tap (collision-lab queue rules in STANDARDS.md).
+In round 7 (box unplugged) the computer box's wrong line can't happen; tapping any other part powers nothing on (dots stop at the box with a "?" puff) and plays "Nothing happened! This part needs the brain. Tap a different part on the desk."
 
 ## Family engine
 none

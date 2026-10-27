@@ -1,0 +1,31 @@
+{
+  "id": "computer-builder",
+  "status": "beta",
+  "hook": "Put computer parts on the desk and watch each one's power: the screen lights up, the keyboard types, the speakers sing. Then give the computer jobs, and find the part Nibbles the mouse unplugged.",
+  "outcome": "Name common computer parts and what each one does, match parts to jobs, and describe what goes wrong when a part is missing",
+  "driver": "teacher",
+  "minutes": "10-20",
+  "modes": [
+    "Build",
+    "Jobs",
+    "Missing"
+  ],
+  "grades_label": "Grade 1",
+  "sources": [
+    "CSTA K-12 Computer Science Standards, 2026 PK-12 identifier E1-SYS-HW-11: https://csteachers.org/k12standards/",
+    "CSTA K-12 Computer Science Standards (2017), 1A-CS-01, 1A-CS-02, 1A-CS-03: https://csteachers.org/k12standards/",
+    "GCFGlobal Computer Basics, Basic Parts of a Computer: https://edu.gcfglobal.org/en/computerbasics/basic-parts-of-a-computer/1/",
+    "GCFGlobal Computer Basics, Inside a Computer (the processor as the brain): https://edu.gcfglobal.org/en/computerbasics/inside-a-computer/1/",
+    "GCFGlobal Computer Basics, Laptop Computers: https://edu.gcfglobal.org/en/computerbasics/laptop-computers/1/",
+    "GCFGlobal Computer Basics, Mobile Devices (tablets): https://edu.gcfglobal.org/en/computerbasics/mobile-devices/1/",
+    "Code.org CS Fundamentals glossary (hardware, input, output): https://code.org/curriculum/docs/k-5/glossary",
+    "Giant pandas eat bamboo: Smithsonian's National Zoo, Giant panda: https://nationalzoo.si.edu/animals/giant-panda",
+    "Jobs and the seven Missing rounds are original to Curio Class",
+    "Parts, cables, desk, screens, job pictures, laptop and tablet drawn in code; sounds generated in the browser",
+    "Narration generated with Qwen3-TTS (Apache 2.0), cloning a Google Gemini text-to-speech voice",
+    "Classroom backdrop drawn with FLUX.2 [klein] 4B (Apache 2.0) on Cloudflare Workers AI; Bubbles the fish, Nibbles the mouse and the panda drawn with GPT Image (OpenAI) via Codex",
+    "Narration generated with Qwen3-TTS (Apache 2.0), cloning a Google Gemini text-to-speech voice"
+  ],
+  "third_party": [],
+  "updated": "2026-10-26"
+}

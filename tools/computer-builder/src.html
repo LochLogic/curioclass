@@ -1,0 +1,2025 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Computer Builder · Every part has a power · Curio Class</title>
+<meta name="description" content="Put computer parts on the desk and see each part's power: the screen lights up, the speakers sing. Give the computer jobs, then find the part Nibbles the mouse unplugged. Grade 1 computer science. Works offline.">
+<!--
+Computer Builder (Curio Class)
+Grade 1, computer science, module Parts of a Computer (Systems and Security). CSTA K-12 Computer Science Standards,
+2026 identifier E1-SYS-HW-11 (E1-SYS-SE-12, keeping accounts safe, is left to another tool); 2017 crosswalk 1A-CS-01,
+1A-CS-02, 1A-CS-03.
+Teacher led on a projector or smartboard; the class answers out loud. K-1 reads nothing: every control has a picture,
+every fixed line is spoken, targets are at least 60 px.
+Build: tap a part to put it on the desk, tap it there to see its power; seven parts unlock All in one (laptop, tablet).
+Jobs: pick a job, put the parts it needs on the desk, press Try it. Missing: Nibbles unplugs one part; the class
+works out which one from what the computer can't do.
+Facts: GCFGlobal Computer Basics (basic parts, inside a computer, laptops, mobile devices); Code.org CS Fundamentals
+glossary (hardware, input, output); Smithsonian's National Zoo (giant pandas eat bamboo). Sources in notes.md.
+Parts, cables, desk, screens, job pictures, laptop and tablet are drawn in code; sounds are made in the browser.
+One file, no network requests. Content CC BY 4.0, code MIT. curioclass.org
+-->
+<link rel="stylesheet" href="kit:curio">
+<style>
+:root{
+  --paper:#f4f6fd;--ink:#1c2340;--muted:#55607f;--line:#cfd8f6;--focus:#c2410c;
+  --brand:#2049b8;--btn:#ffffff;--btn-line:#cfd8f6;--head-ink:#ffffff;--panel:#ffffff;
+  --wall:#e9eefb;--wood:#d9a86c;--edge:#b8834a;--glow:#ffd23f;--in:#08606a;--out:#9a3209;--ghost:#454e6e;--go:#17703d;
+}
+/* Page layouts, picked in script (relayout()):
+   side    landscape boxes: stage left, panel right (360-400 px tall screens, 340 px under 900 px tall, a narrow
+           icon panel in the 16:10 preview, where the hint becomes a caption on the stage).
+   stack   narrow or portrait: stage on top, then the buttons, job cards and shelf; the page scrolls.
+   The panel comes first in the page so Tab reaches its buttons before the parts on the desk.
+   The stage SVG is drawn at its real pixel size and laid out again for every size. */
+:focus-visible{outline:4px solid var(--focus);outline-offset:3px;box-shadow:0 0 0 3px #fff}
+body{height:100%;overflow:hidden}
+body.stack{height:auto;overflow:auto}
+header{gap:10px}
+.i{width:26px;height:26px;flex:none;display:block}
+.seg button{display:inline-flex;align-items:center;gap:8px;min-height:60px;padding:0 18px;color:var(--ink)}
+.seg button+button{border-left:2px solid var(--btn-line)}
+.icon-btn{min-height:60px;color:var(--ink)}
+main{grid-template-columns:minmax(0,1fr) var(--pw,360px);grid-template-areas:"stage panel";min-height:0;overflow:hidden}
+.stage{grid-area:stage;min-height:0;background:var(--wall)}
+#sv{position:absolute;left:0;top:0;display:block;font-family:'Trebuchet MS','Segoe UI',sans-serif}
+#hits{position:absolute;inset:0;pointer-events:none;z-index:2}
+.hit{position:absolute;pointer-events:auto;background:transparent;border:0;border-radius:14px;padding:0;touch-action:none;cursor:pointer}
+.hit[hidden]{display:none}
+.hit:focus-visible{outline:4px solid var(--focus);outline-offset:0;box-shadow:0 0 0 3px #fff,inset 0 0 0 3px #fff}
+.spot{position:absolute;pointer-events:auto;border-radius:50%;border:4px solid #fff;background:#2049b830;box-shadow:0 0 0 3px var(--brand);padding:0;cursor:pointer;
+  animation:spot 1.8s ease-in-out infinite}
+.spot::after{content:"";position:absolute;left:50%;top:50%;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;background:#fff;box-shadow:0 0 0 3px var(--brand)}
+.spot[aria-pressed="true"]{background:#ffd23f80;box-shadow:0 0 0 4px var(--ink)}
+@keyframes spot{50%{transform:scale(1.1);box-shadow:0 0 0 7px #2049b855}}
+.panel{grid-area:panel;gap:10px;padding:12px 14px}
+body.stack main{grid-template-columns:minmax(0,1fr);grid-template-areas:"stage" "panel";grid-template-rows:auto auto;align-content:start;overflow:visible}
+body.stack .panel{border-left:0;border-top:3px solid var(--line);overflow:visible}
+.hint{margin:0;min-height:2.9em;font-weight:600}
+.stage .hint{position:absolute;left:8px;right:8px;top:6px;z-index:3;margin:0;min-height:0;padding:4px 10px;border-radius:10px;background:#1c2340e6;
+  color:#fff;font-size:15px;line-height:1.3;text-align:center;pointer-events:none}
+body.compact .stage .hint{font-size:13px;padding:3px 8px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* panel buttons */
+.row{display:flex;gap:8px}
+.bb{flex:1 1 0;min-width:0;display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:64px;border:0;border-radius:16px;padding:0 12px;
+  font:800 21px/1.05 'Trebuchet MS','Segoe UI',sans-serif;box-shadow:0 5px 0 #0003;text-align:center}
+.bb .i{width:30px;height:30px}
+.bb.light{background:#fff;color:var(--ink);border:3px solid var(--line);box-shadow:0 4px 0 #1c234022}
+.bb.light .i{color:var(--brand)}
+#try{background:var(--go);color:#fff;flex:1.4 1 0}
+#try:disabled{background:#cfe1d6;color:#4d6457;box-shadow:none;cursor:default}
+#start{background:var(--brand);color:#fff}
+#start:disabled{background:#d5dcf2;color:var(--muted);box-shadow:none;cursor:default}
+#aio{background:var(--brand);color:#fff;position:relative}
+#aio:disabled{background:#e3e8f6;color:var(--muted);box-shadow:none;cursor:default}
+#aio .lock{display:none}
+#aio:disabled .lock{display:block;position:absolute;right:6px;top:6px;width:20px;height:20px}
+#aio.unlock{animation:unl 1s ease 1}
+@keyframes unl{35%{transform:scale(1.08);box-shadow:0 0 0 8px var(--glow),0 5px 0 #0003}}
+.kind{display:flex;border:3px solid var(--line);border-radius:16px;overflow:hidden;flex:2 1 0}
+.kind button{flex:1 1 0;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:64px;border:0;background:#fff;
+  font:800 19px 'Trebuchet MS','Segoe UI',sans-serif;color:var(--ink);padding:0 8px}
+.kind button+button{border-left:3px solid var(--line)}
+.kind button .i{color:var(--brand)}
+.kind button[aria-pressed="true"]{background:var(--brand);color:#fff}
+.kind button[aria-pressed="true"] .i{color:#fff}
+#aioRow{flex-wrap:wrap}
+#aioRow .kind,#aioRow #back{flex:1 1 100%}
+
+/* the shelf */
+.shelf{display:grid;grid-template-columns:repeat(var(--sc,2),minmax(0,1fr));gap:8px}
+.tile{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;height:var(--th,100px);border:2px solid var(--line);
+  border-bottom:6px solid #b9c5ee;border-radius:14px;background:#fff;padding:5px 4px 3px;font:700 var(--tf,15px)/1.05 'Trebuchet MS','Segoe UI',sans-serif;color:var(--ink);min-width:0}
+.tile .pic{flex:1 1 0;min-height:0;width:100%;display:block}
+.tile .w{flex:none;white-space:nowrap}
+.tile .on{flex:none;font:700 12px/1 'Segoe UI',sans-serif;color:var(--go);display:none}
+.tile[aria-pressed="true"]{background:#eef7f1;border-color:#9fd0b2;border-bottom-color:var(--go)}
+.tile[aria-pressed="true"] .pic{opacity:.55}
+.tile[aria-pressed="true"] .on{display:block}
+.tile:disabled{cursor:default;opacity:.6}
+.chk{position:absolute;right:4px;top:4px;width:26px;height:26px;border-radius:50%;background:var(--go);color:#fff;display:none;align-items:center;justify-content:center;
+  box-shadow:0 0 0 2px #fff}
+.chk svg{width:18px;height:18px}
+.tile[aria-pressed="true"] .chk,.job.done .chk{display:flex}
+body.nonames .tile .w,body.nonames .tile .on{display:none}
+
+/* job cards */
+.jobs{display:grid;grid-template-columns:repeat(var(--cc,2),minmax(0,1fr));gap:8px}
+.job{position:relative;height:var(--ch,86px);border:3px solid var(--line);border-radius:14px;background:#fff;padding:4px;display:flex;align-items:center;justify-content:center;min-width:0}
+.job svg.pic{width:100%;height:100%;max-width:110px}
+.job[aria-pressed="true"]{border-color:var(--brand);background:#e7edfc;box-shadow:0 0 0 3px #2049b855}
+.job:disabled{cursor:default}
+
+/* Missing: the round marker */
+.plugs{display:flex;gap:6px;justify-content:center;align-items:center;flex-wrap:wrap}
+.plugs svg{width:32px;height:32px;color:#b5c0e3}
+.plugs svg.done{color:var(--brand)}
+.plugs svg.cur{background:#fff3c4;border-radius:50%;box-shadow:0 0 0 3px var(--glow)}
+
+/* stage overlays */
+.banner{position:absolute;left:50%;top:var(--bt,10px);transform:translateX(-50%);z-index:3;display:flex;align-items:center;gap:10px;background:#fff;
+  border:4px solid var(--brand);border-radius:18px;padding:3px 16px 3px 6px;font:800 var(--bf,22px)/1.1 'Trebuchet MS','Segoe UI',sans-serif;color:var(--ink);
+  box-shadow:0 6px 16px #1c234033;white-space:nowrap;pointer-events:none}
+.banner svg{height:var(--bh,50px);width:calc(var(--bh,50px)*1.333);flex:none}
+.banner.mini{left:6px;transform:none;padding:3px;border-radius:14px}
+.banner.mini span{display:none}
+.banner.pop{animation:grow .45s ease-out}
+.banner.mini.pop{animation:growm .45s ease-out}
+@keyframes grow{0%{transform:translateX(-50%) scale(.3);opacity:0}}
+@keyframes growm{0%{transform:scale(.3);opacity:0}}
+.flash{position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none;z-index:4}
+.ghost{fill:#ffffff55;stroke:var(--ghost);stroke-dasharray:9 7;stroke-width:3.2}
+.ghost.pulse{stroke:var(--brand);stroke-dasharray:none;stroke-width:6;fill:#2049b822;animation:gp .8s ease-in-out 3}
+@keyframes gp{50%{stroke-width:11;fill:#2049b855}}
+
+/* short side boxes (1280x720, 1366x768) and the 16:10 preview */
+body.compact header{padding:4px 8px;gap:5px;flex-wrap:nowrap;min-width:0}
+body.compact h1{font-size:17px;white-space:nowrap;min-width:0;overflow:hidden;text-overflow:ellipsis}
+body.compact h1 small{display:none}
+body.compact .seg{flex:none}
+body.compact .seg button,body.compact .icon-btn{min-height:44px;padding:0 9px;font-size:13.5px;white-space:nowrap;gap:5px}
+body.compact .seg .i{width:20px;height:20px}
+body.compact .icon-btn{flex:none}
+body.compact .panel{padding:6px 8px;gap:6px}
+body.compact .bb{min-height:46px;font-size:17px;border-radius:12px;gap:6px;padding:0 6px}
+body.compact .bb .i{width:24px;height:24px}
+body.compact .kind button{min-height:46px;font-size:15px}
+body.compact .plugs svg{width:24px;height:24px}
+body.compact .tile{border-bottom-width:4px;border-radius:10px;padding:3px}
+body.compact .chk{width:20px;height:20px;right:2px;top:2px}
+body.compact .chk svg{width:14px;height:14px}
+body.compact .job{border-radius:10px;padding:2px}
+/* stack: phones and portrait windows */
+@media (max-width:560px){
+  .seg{display:grid;grid-template-columns:repeat(3,1fr);border-radius:16px;width:100%}
+  .seg button{padding:0 6px;justify-content:center;font-size:16px}
+  .icon-btn{padding:0 12px;font-size:15px;flex:1 1 0}
+  .bb{font-size:19px}
+  .kind{flex:1 1 100%}
+}
+/* short phones (375 x 667): Motion, Sound and Read shrink to their icons beside the title, so the Jobs shelf fits */
+@media (max-width:560px) and (max-height:740px){
+  header{display:grid;grid-template-columns:1fr auto auto auto;gap:6px;padding:6px 8px}
+  h1{font-size:17px;align-self:center}
+  header .seg{grid-column:1/-1;grid-row:2}
+  header .icon-btn{width:48px;min-width:48px;flex:none;padding:0 0 0 13px;overflow:hidden;white-space:nowrap;text-align:left;font-size:18px;word-spacing:80px}
+  .panel{gap:6px;padding:8px 10px}
+  .bb{min-height:60px}
+}
+/* narrow tiles: a small check on the corner, so the part picture stays clear */
+body.stack .chk,body.nonames .chk{width:20px;height:20px;right:-6px;top:-6px;z-index:1}
+body.stack .chk svg,body.nonames .chk svg{width:13px;height:13px}
+body.stack .tile[aria-pressed="true"] .pic,body.nonames .tile[aria-pressed="true"] .pic{opacity:.8}
+</style>
+</head>
+<body>
+<svg id="defs" aria-hidden="true" focusable="false" style="position:absolute;width:0;height:0;overflow:hidden">
+  <defs>
+    <symbol id="i-wrench" viewBox="0 0 24 24"><path d="M14.6 2.4a5.6 5.6 0 0 0-5.5 7.4L2.7 16.2a2 2 0 0 0 0 2.9l2.2 2.2a2 2 0 0 0 2.9 0l6.4-6.4a5.6 5.6 0 0 0 7.4-5.5l-3.3 3.3-3.6-.9-.9-3.6z" fill="currentColor"/></symbol>
+    <symbol id="i-clip" viewBox="0 0 24 24"><rect x="4" y="3.5" width="16" height="19" rx="2.5" fill="none" stroke="currentColor" stroke-width="2.4"/><rect x="8" y="1.5" width="8" height="4.4" rx="1.4" fill="currentColor"/><path d="M12 8.6l1.6 3.3 3.6.4-2.7 2.5.8 3.6-3.3-1.9-3.3 1.9.8-3.6-2.7-2.5 3.6-.4z" fill="currentColor"/></symbol>
+    <symbol id="i-glass" viewBox="0 0 24 24"><circle cx="10" cy="10" r="6.6" fill="none" stroke="currentColor" stroke-width="2.8"/><path d="M15 15l6.4 6.4" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/></symbol>
+    <symbol id="i-broom" viewBox="0 0 24 24"><path d="M20.5 2 12.6 11.2" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/><path d="M10.4 9.6l4.4 3.5-1.6 2-4.4-3.5z" fill="currentColor"/><path d="M8.5 12.6 2.5 19l5 3.8 5.2-6.8z" fill="currentColor"/><path d="M5.4 19.6l2.6-3.4M8 21.4l2.4-3.2" stroke="#fff" stroke-width="1.2"/></symbol>
+    <symbol id="i-laptop" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="11" rx="1.6" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M1.5 18.5h21l-1.4 2H2.9z" fill="currentColor" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></symbol>
+    <symbol id="i-tablet" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2.6" fill="none" stroke="currentColor" stroke-width="2.4"/><circle cx="12" cy="18.4" r="1.4" fill="currentColor"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect x="4.5" y="10.5" width="15" height="11" rx="2.4" fill="currentColor"/><path d="M8 10.5V7.6a4 4 0 0 1 8 0v2.9" fill="none" stroke="currentColor" stroke-width="2.6"/></symbol>
+    <symbol id="i-back" viewBox="0 0 24 24"><path d="M20.5 12h-15M11.5 5.5 5 12l6.5 6.5" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-next" viewBox="0 0 24 24"><path d="M3.5 12h15M12.5 5.5 19 12l-6.5 6.5" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4.2v15.6l12.8-7.8z" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M4.5 12.5l5 5 10-11" fill="none" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-plug" viewBox="0 0 24 24"><path d="M8.5 2v5M15.5 2v5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/><path d="M5 7h14v4a7 7 0 0 1-14 0z" fill="currentColor"/><path d="M12 18v4.5" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></symbol>
+    <!-- job pictures (64 x 48) -->
+    <symbol id="j-tv" viewBox="0 0 64 48"><path d="M24 4l8 7 8-7" fill="none" stroke="#1c2340" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><rect x="6" y="11" width="52" height="33" rx="7" fill="#f7f7fb" stroke="#1c2340" stroke-width="3"/><rect x="11" y="16" width="34" height="23" rx="3" fill="#9bd3ff"/><path d="M11 33q9-8 17 0t17-2v8H11z" fill="#4caf50"/><circle cx="21" cy="23" r="4.2" fill="#ffd23f" stroke="#e0a800" stroke-width="1.2"/><circle cx="51" cy="21" r="2.6" fill="#2049b8"/><circle cx="51" cy="29" r="2.6" fill="#2049b8"/></symbol>
+    <symbol id="j-abc" viewBox="0 0 64 48"><rect x="4" y="8" width="38" height="24" rx="5" fill="#fff" stroke="#2049b8" stroke-width="3"/><text x="23" y="27" text-anchor="middle" font-family="'Trebuchet MS',sans-serif" font-weight="800" font-size="15" fill="#1c2340">ABC</text><g transform="rotate(35 50 28)"><rect x="45" y="6" width="10" height="34" rx="2" fill="#ffd23f" stroke="#1c2340" stroke-width="2.6"/><path d="M45 40l5 8 5-8z" fill="#f2c79a" stroke="#1c2340" stroke-width="2.4" stroke-linejoin="round"/><rect x="45" y="6" width="10" height="6" fill="#f08a9a" stroke="#1c2340" stroke-width="2.6"/></g></symbol>
+    <symbol id="j-brush" viewBox="0 0 64 48"><path d="M5 40c8-14 18-20 30-20" fill="none" stroke="#e53935" stroke-width="5" stroke-linecap="round"/><path d="M5 45c9-14 20-19 32-19" fill="none" stroke="#fdd835" stroke-width="5" stroke-linecap="round"/><path d="M8 34c7-12 16-18 27-19" fill="none" stroke="#1e88e5" stroke-width="5" stroke-linecap="round"/><g transform="rotate(40 46 20)"><rect x="42" y="-2" width="8" height="26" rx="3" fill="#2049b8" stroke="#1c2340" stroke-width="2.4"/><rect x="41" y="22" width="10" height="6" fill="#c3cbe2" stroke="#1c2340" stroke-width="2.4"/><path d="M41 28h10l-2 12q-3 4-6 0z" fill="#e53935" stroke="#1c2340" stroke-width="2.4" stroke-linejoin="round"/></g></symbol>
+    <symbol id="j-hand" viewBox="0 0 64 48"><path d="M24 44c-7 0-12-6-12-13V20a3 3 0 0 1 6 0v8V10a3 3 0 0 1 6 0v14V7a3 3 0 0 1 6 0v17V10a3 3 0 0 1 6 0v18l3-5a3 3 0 0 1 5 3l-6 11c-3 5-7 7-12 7z" fill="#ffcc80" stroke="#1c2340" stroke-width="2.6" stroke-linejoin="round"/><path d="M47 7q5 3 6 9M52 3q7 5 8 13" fill="none" stroke="#2049b8" stroke-width="2.6" stroke-linecap="round"/><path d="M9 8q-5 4-5 10" fill="none" stroke="#2049b8" stroke-width="2.6" stroke-linecap="round"/></symbol>
+    <symbol id="j-photo" viewBox="0 0 64 48"><rect x="3" y="12" width="40" height="28" rx="6" fill="#f7f7fb" stroke="#1c2340" stroke-width="3"/><rect x="12" y="7" width="12" height="7" rx="2" fill="#1c2340"/><circle cx="23" cy="26" r="9" fill="#1c2340" stroke="#2049b8" stroke-width="3.4"/><circle cx="20" cy="23" r="2.4" fill="#fff"/><g transform="translate(48 30)"><path d="M-2 0q8-9 14 0q-6 9-14 0z" fill="#ff8a2a" stroke="#c2410c" stroke-width="1.8"/><path d="M-2 0l-6-6v12z" fill="#ff8a2a" stroke="#c2410c" stroke-width="1.8" stroke-linejoin="round"/><circle cx="7" cy="-1.5" r="1.4" fill="#1c2340"/></g><path d="M44 12l3-4M50 14l4-3" stroke="#ffd23f" stroke-width="3" stroke-linecap="round"/></symbol>
+    <symbol id="j-panda" viewBox="0 0 64 48"><circle cx="18" cy="9" r="7" fill="#1c2340"/><circle cx="46" cy="9" r="7" fill="#1c2340"/><ellipse cx="32" cy="27" rx="21" ry="18" fill="#fff" stroke="#1c2340" stroke-width="3"/><ellipse cx="24" cy="25" rx="5.4" ry="7" transform="rotate(25 24 25)" fill="#1c2340"/><ellipse cx="40" cy="25" rx="5.4" ry="7" transform="rotate(-25 40 25)" fill="#1c2340"/><circle cx="25" cy="24" r="1.8" fill="#fff"/><circle cx="39" cy="24" r="1.8" fill="#fff"/><ellipse cx="32" cy="33" rx="3.4" ry="2.4" fill="#1c2340"/><path d="M28 37q4 3 8 0" fill="none" stroke="#1c2340" stroke-width="2" stroke-linecap="round"/></symbol>
+  </defs>
+</svg>
+<header id="hdr">
+  <h1>Computer Builder <small>Every part has a power</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-build" aria-pressed="true"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wrench"/></svg>Build</button>
+    <button id="m-jobs" aria-pressed="false"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-clip"/></svg>Jobs</button>
+    <button id="m-missing" aria-pressed="false"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-glass"/></svg>Missing</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true" title="Turn animation on or off">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+  <button class="icon-btn" id="read">🔊 Read</button>
+</header>
+<main id="main">
+  <aside class="panel" id="panel">
+    <p class="hint" id="hint" aria-live="polite"></p>
+    <div class="row" id="jobRow">
+      <button class="bb" id="try"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-play"/></svg><span>Try it!</span></button>
+      <button class="bb light" id="nextJob" hidden><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-next"/></svg><span>Next job</span></button>
+    </div>
+    <div id="misRow">
+      <div class="plugs" id="plugs" role="img" aria-label="Round 1 of 7"></div>
+      <div class="row" style="margin-top:8px">
+        <button class="bb" id="start"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><use id="startIco" href="#i-play"/></svg><span id="startW">Start</span></button>
+      </div>
+    </div>
+    <div class="row" id="aioRow">
+      <div class="kind" role="group" aria-label="Laptop or tablet">
+        <button id="k-laptop" aria-pressed="true"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-laptop"/></svg>Laptop</button>
+        <button id="k-tablet" aria-pressed="false"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-tablet"/></svg>Tablet</button>
+      </div>
+      <button class="bb light" id="back"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-back"/></svg><span>Back to desk</span></button>
+    </div>
+    <div class="jobs" id="jobs" role="group" aria-label="Jobs"></div>
+    <div class="shelf" id="shelf" role="group" aria-label="Parts shelf"></div>
+    <div class="row" id="buildRow">
+      <button class="bb light" id="clear"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-broom"/></svg><span>Clear desk</span></button>
+      <button class="bb" id="aio" disabled><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-laptop"/></svg><span>All in one</span><svg class="i lock" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-lock"/></svg></button>
+    </div>
+  </aside>
+  <div class="stage" id="stage">
+    <svg id="sv" aria-hidden="true"></svg>
+    <div id="hits"></div>
+    <div class="banner" id="banner" hidden><svg viewBox="0 0 64 48" aria-hidden="true"><use id="bannerIco" href="#j-tv"/></svg><span id="bannerW"></span></div>
+    <div class="flash" id="flash"></div>
+  </div>
+</main>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const {wait} = Curio;
+  const NS = 'http://www.w3.org/2000/svg';
+  const now = () => performance.now();
+  const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+  const lerp = (a, b, p) => a + (b - a) * p;
+  const ease = p => p < .5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
+  function mk(tag, a = {}, parent) {
+    const e = document.createElementNS(NS, tag);
+    for (const k in a) e.setAttribute(k, a[k]);
+    if (parent) parent.appendChild(e);
+    return e;
+  }
+  const C = {ink: '#1c2340', plastic: '#f7f7fb', brand: '#2049b8', wall: '#e9eefb', wood: '#d9a86c', edge: '#b8834a', glow: '#ffd23f',
+    in: '#08606a', out: '#9a3209', ghost: '#454e6e', go: '#17703d', dark: '#1f2742', soft: '#dde5fb', off: '#c3cbe2', key: '#e3e8f6'};
+
+  // art: painted images when they exist; until then (a draft build) everything below is drawn in code
+  const ART = {backdrop: 'art:backdrop', bowl: 'art:bubbles-bowl', photo: 'art:bubbles-photo', nibbles: 'art:nibbles', nibPlug: 'art:nibbles-plug', panda: 'art:panda'};
+  let noArt = false;   // previewSVG() draws everything in code
+  const hasArt = n => !noArt && /^data:image\/(webp|png|jpe?g)/.test(ART[n]);
+
+  // ======================================================================================
+  // Content: parts, jobs, rounds and every spoken line (spec "Content" and "Voice")
+  // ======================================================================================
+  const ORDER = ['box', 'screen', 'keyboard', 'mouse', 'speakers', 'microphone', 'camera'];   // shelf order
+  const NAMES = {box: 'Computer box', screen: 'Screen', keyboard: 'Keyboard', mouse: 'Mouse', speakers: 'Speakers', microphone: 'Microphone', camera: 'Camera'};
+  const DIR = {keyboard: 'in', mouse: 'in', microphone: 'in', camera: 'in', screen: 'out', speakers: 'out'};
+  // slot positions in desk units (the design is 930 units wide, 640 tall; base center of each part)
+  const SLOT = {camera: [[168, 392]], speakers: [[288, 392], [712, 392]], screen: [[500, 392]], box: [[850, 392]],
+    microphone: [[236, 548]], keyboard: [[500, 552]], mouse: [[738, 548]]};
+  const BOX = {box: [-55, -236, 55, 0], screen: [-150, -228, 150, 0], keyboard: [-150, -64, 150, 0], mouse: [-26, -72, 26, 0],
+    speakers: [-34, -130, 34, 0], microphone: [-30, -120, 30, 0], camera: [-38, -114, 38, 0]};
+  const PORT = {camera: [10, -4], speakers: [24, -6], screen: [44, -8], microphone: [20, -6], keyboard: [118, -60], mouse: [0, -72]};
+  const BOXPORT = [804, 380];
+  const DESK = {top: 372, front: 568, edge: 596};
+  const BOWL = [64, 476];
+  const HELLO = 'HELLO';
+
+  const L = {
+    w: {build: "Let's build a computer! Tap a part on the shelf to put it on the desk.", jobs: "Let's give our computer a job! Tap a job card.",
+      missing: "Oh no! Nibbles the mouse likes to unplug things. Tap Start to find what's wrong."},
+    name: {box: "The computer box! The brain is inside. It does the thinking.", screen: 'The screen! It shows us pictures and words.',
+      keyboard: 'The keyboard! Its keys send letters to the computer.', mouse: 'The mouse! It moves the arrow on the screen.',
+      speakers: 'The speakers! They make sounds and music.', microphone: 'The microphone! It listens to sounds.', camera: 'The camera! It takes pictures.'},
+    show: {box: 'Hum, hum! The brain is thinking.', screen: 'Hello, screen! Look at the pictures.', keyboard: 'Tap, tap! Look, a letter!',
+      mouse: 'Move and click! The arrow paints a rainbow.', speakers: 'La la la! Music from the speakers.'},
+    sayHello: 'Everyone, say hello!', helloClass: 'Hello, class!', smile: 'Smile, Bubbles! Click!',
+    noBox: "Nothing happened! The parts need the computer box. The brain is inside it.",
+    noScreen: "The computer got it, but there's no screen to show it!",
+    noSpeakers: 'The computer heard you, but it has no speakers to answer.',
+    allBuilt: 'We built a whole computer! Tap each part on the desk to try it.',
+    aioHint: 'Some computers squeeze all the parts into one. Tap All in one!',
+    laptop: 'A laptop has all the parts inside! Tap a circle to find a part.',
+    tablet: 'A tablet has the parts inside too! Tap a circle to find a part.',
+    spot: {screen: "Here's the screen.", keyboard: "Here's the keyboard.", touchpad: 'This touchpad is the mouse. Slide your finger on it.',
+      speakers: 'The speakers hide here.', microphone: 'These tiny holes are the microphone.', camera: 'This tiny dot is the camera.',
+      brain: 'The brain is hiding inside!', touchscreen: 'The touchscreen is the screen and the mouse. Your finger does the pointing!',
+      popkb: 'The keyboard pops up on the screen.'},
+    job: ['Job: watch a cartoon! What parts do we need?', 'Job: write a word! What parts do we need?', 'Job: paint a picture! What parts do we need?',
+      'Job: say hello to the computer! What parts do we need?', 'Job: take a picture of Bubbles the fish! What parts do we need?',
+      'Job: video chat with the panda at the zoo! What parts do we need?'],
+    empty: 'The desk is empty! Tap some parts first.',
+    sym: {box: 'Nothing works! Every computer needs a brain.', screen: 'Nothing to see! We need a part that shows pictures.',
+      speakers: 'No sound! We need a part that makes sound.', keyboard: 'No letters! We need a part with keys.',
+      mouse: "The arrow won't move! We need a part that moves the arrow.", microphone: "The computer can't hear us! We need a part that listens.",
+      camera: "The computer can't see! We need a part that takes pictures."},
+    ok: ['It works! We watched a cartoon with the box, the screen and the speakers.', 'It works! We wrote a word with the box, the keyboard and the screen.',
+      'It works! We painted with the box, the mouse and the screen.', 'It works! The microphone heard us and the speakers answered.',
+      'It works! The camera took a picture, and the screen shows it.', 'It works! We can see and hear the panda, and the panda can see and hear us!'],
+    rest: "Some parts got a rest. That's OK!",
+    six: "Six jobs done! You're computer builders!",
+    close: 'Close your eyes!', open: "Open your eyes! Let's try a job.", which: 'Which part is unplugged? Tap that part on the desk.',
+    works: {box: 'The computer box works! Tap a different part on the desk.', screen: 'The screen works! Tap a different part on the desk.', keyboard: 'The keyboard works! Tap a different part on the desk.',
+      mouse: 'The mouse works! Tap a different part on the desk.', speakers: 'The speakers work! Tap a different part on the desk.', microphone: 'The microphone works! Tap a different part on the desk.',
+      camera: 'The camera works! Tap a different part on the desk.'},
+    noBrain: 'Nothing happened! This part needs the brain. Tap a different part on the desk.',
+    found: "You found it! Let's plug it back in.",
+    allFixed: 'You fixed every one! Nibbles is all out of tricks.',
+    // how to do the next step: said (and left in the hint) every time the tool waits for the child
+    how: {shelf: 'Tap a part on the shelf.', box: 'Tap the computer box on the shelf.',
+      build: 'Tap a part on the shelf, or tap a part on the desk to try it.', full: 'Tap a part on the desk to try it, or tap All in one.',
+      spot: 'Tap another circle, or tap Back to desk.', pick: 'Tap a job card.', jobs: 'Tap the parts on the shelf. Then tap Try it.',
+      next: 'Tap Next job, or tap any job card.', start: 'Tap Start.', round: 'Tap Next round.', again: 'Tap Start to play again.'},
+  };
+  const JOBS = [
+    {id: 'cartoon', icon: 'j-tv', label: 'Watch a cartoon', parts: ['box', 'screen', 'speakers']},
+    {id: 'word', icon: 'j-abc', label: 'Write a word', parts: ['box', 'keyboard', 'screen']},
+    {id: 'paint', icon: 'j-brush', label: 'Paint a picture', parts: ['box', 'mouse', 'screen']},
+    {id: 'hello', icon: 'j-hand', label: 'Say hello to the computer', parts: ['box', 'microphone', 'speakers']},
+    {id: 'photo', icon: 'j-photo', label: 'Take a picture of Bubbles', parts: ['box', 'camera', 'screen']},
+    {id: 'chat', icon: 'j-panda', label: 'Video chat with the panda', parts: ['box', 'camera', 'microphone', 'screen', 'speakers']},
+  ];
+  const ROUNDS = [[0, 'speakers'], [1, 'screen'], [2, 'mouse'], [3, 'microphone'], [4, 'camera'], [0, 'screen'], [0, 'box']];
+  const SPOTS = {
+    laptop: [{id: 'camera', x: 465, y: 116}, {id: 'microphone', x: 615, y: 116}, {id: 'screen', x: 330, y: 255}, {id: 'speakers', x: 232, y: 466},
+      {id: 'keyboard', x: 318, y: 452}, {id: 'brain', x: 465, y: 444}, {id: 'touchpad', x: 465, y: 503}],
+    tablet: [{id: 'camera', x: 465, y: 158}, {id: 'microphone', x: 641, y: 158}, {id: 'touchscreen', x: 330, y: 245}, {id: 'speakers', x: 200, y: 320},
+      {id: 'brain', x: 465, y: 318}, {id: 'popkb', x: 610, y: 410}],
+  };
+
+  // every line the tool can say, so scripts/voice.py can record them (window.__tool.allLines())
+  const allLines = () => [...new Set([L.w.build, ...ORDER.map(p => L.name[p]), ...Object.values(L.show), L.sayHello, L.helloClass, L.smile,
+    L.noBox, L.noScreen, L.noSpeakers, L.allBuilt, L.aioHint, L.laptop, L.tablet, ...['screen', 'keyboard', 'touchpad', 'speakers', 'microphone', 'camera', 'brain', 'touchscreen', 'popkb'].map(s => L.spot[s]),
+    L.w.jobs, ...L.job, L.empty, ...['box', 'screen', 'speakers', 'keyboard', 'mouse', 'microphone', 'camera'].map(p => L.sym[p]), ...L.ok, L.rest, L.six,
+    L.w.missing, L.close, L.open, L.which, ...ORDER.map(p => L.works[p]), L.noBrain, L.found, L.allFixed, ...Object.values(L.how)])];
+
+  // ======================================================================================
+  // State
+  // ======================================================================================
+  const state = {
+    mode: 'build', placed: new Set(), flying: new Set(), aio: false, morph: null, kind: 'laptop', spot: null, xray: false, popkb: false,
+    job: null, jobsDone: new Set(), running: false, success: false, dim: new Set(), pulse: null,
+    mis: {round: 0, phase: 'idle', out: null, done: new Set(), finished: false},
+    scr: {kind: 'off'}, kb: {i: 0, text: '', real: false}, built: {allSaid: false}, jobsVisit: {sixSaid: false}, evt: 0,
+  };
+  const removedAt = {};
+
+  // ======================================================================================
+  // Narration: one line at a time, a welcome per mode after the first tap; Read always wins (STANDARDS.md)
+  // ======================================================================================
+  const said = new Set(), vq = [], vlog = [];
+  let tapped = false, nq = 0, vgen = 0, busy = false, readP = Promise.resolve(), cur = null;
+  const est = s => 600 + 62 * s.length;   // pacing when a line is not spoken (Sound off)
+  function setHint(t) { $('hint').textContent = t; }
+  // queue a line; o.once (said once), o.valid (drop it if its moment has passed), o.wait (resolve when it has been said)
+  function narrate(key, text, o = {}) {
+    if (o.once && (said.has(key) || vq.some(q => q.key === key))) return o.wait ? Promise.resolve() : false;
+    if (!tapped || !Curio.sound) {
+      if (!o.valid || o.valid()) setHint(text);
+      return o.wait ? wait(est(text)) : false;
+    }
+    let res;
+    const p = new Promise(r => { res = r; });
+    vq.push({key, text, once: o.once, valid: o.valid, res});
+    nq++;
+    pump();
+    return o.wait ? p : true;
+  }
+  const say = (key, text, o) => narrate(key, text, {...o, wait: true});
+  async function pump() {
+    if (busy) return;
+    busy = true;
+    const gen = vgen;
+    try {
+      while (vq.length) {
+        await readP;
+        if (gen !== vgen) return;
+        const it = vq.shift();
+        if (!it) continue;
+        if (it.valid && !it.valid()) { it.res(); continue; }   // its moment has passed
+        if (it.once) said.add(it.key);                          // said when it starts, never when queued
+        setHint(it.text);
+        vlog.push({t: Math.round(now()), text: it.text});
+        cur = it;
+        await Promise.race([Curio.say(it.text), wait(2500 + 80 * it.text.length)]);
+        if (cur === it) { cur = null; it.res(); }
+        if (gen !== vgen) return;
+      }
+    } finally { if (gen === vgen) busy = false; }
+  }
+  // drop every line that has not started (unmarked, so its trigger can queue it again); a stopped Read never ends, so
+  // nothing may keep waiting on it
+  function hush() {
+    vgen++;
+    for (const q of vq) q.res();
+    vq.length = 0;
+    if (cur) { cur.res(); cur = null; }
+    busy = false; readP = Promise.resolve(); Curio.stop();
+  }
+  function dropQueued() { for (const q of vq) q.res(); vq.length = 0; }
+  function readNow() {
+    hush();
+    const h = $('hint').textContent;
+    vlog.push({t: Math.round(now()), text: h, read: true});
+    readP = Promise.race([Curio.say([h], true), wait(2500 + 80 * h.length)]).catch(() => {});
+  }
+  function welcome() { const m = state.mode; narrate('w-' + m, L.w[m], {once: true, valid: () => state.mode === m}); }
+  // the how-to line for this moment (null while the tool is busy)
+  function howText() {
+    const m = state.mode, n = state.placed.size;
+    if (m === 'build') return state.aio ? L.how.spot : !n ? L.how.shelf : !state.placed.has('box') ? L.how.box : n === 7 ? L.how.full : L.how.build;
+    if (m === 'jobs') return state.running ? null : state.job == null ? L.how.pick : state.success ? L.how.next : L.how.jobs;
+    const mi = state.mis;
+    return mi.finished ? L.how.again : mi.phase === 'solved' ? L.how.round : mi.phase === 'idle' ? L.how.start : mi.phase === 'ask' ? L.which : null;
+  }
+  // after a line that reports or asks: queue the how-to line; a newer action drops it
+  let acts = 0;
+  function howLater() {
+    const a = ++acts, text = howText();
+    if (text) narrate('how#' + a, text, {valid: () => a === acts && howText() === text});
+  }
+  // the very first tap or key: decide after that tap's own click has run. If it was Read or Sound, or a control that
+  // speaks for itself, the welcome waits (unmarked) for the next mode entry or Sound on.
+  for (const ev of ['pointerdown', 'keydown']) addEventListener(ev, e => {
+    if (tapped) return;
+    tapped = true;
+    const b = e.target && e.target.closest ? e.target.closest('button') : null, n0 = nq;
+    let done = false;
+    const decide = () => {
+      if (done) return; done = true;
+      if (b && (b.id === 'read' || b.id === 'sound')) return;
+      // a tap that brings its own line (a part, a tile, a job, a hotspot, Try it, Start) skips the welcome, even when
+      // that line comes later in the show; the welcome waits for the next mode entry or Sound on
+      if (b && (b.matches('.tile, .hit, .spot, .job') || ['try', 'start', 'nextJob', 'aio', 'k-laptop', 'k-tablet'].includes(b.id)) && !b.disabled) return;
+      if (nq !== n0) return;
+      welcome();
+    };
+    const endEv = ev === 'pointerdown' ? 'click' : 'keyup';
+    const after = () => { removeEventListener(endEv, after, true); clearTimeout(fb); setTimeout(decide, 0); };
+    addEventListener(endEv, after, true);
+    const fb = setTimeout(after, 1500);
+  }, true);
+
+  // ======================================================================================
+  // Sounds (made in the browser)
+  // ======================================================================================
+  const T = Curio.tone;
+  const NOTES = [523.25, 659.25, 783.99, 659.25, 1046.5];   // C5 E5 G5 E5 C6
+  function tune(tok) { NOTES.forEach((f, i) => setTimeout(() => { if (tok == null || tok === run) T(f, .2, .06, 'triangle'); }, i * 180)); }
+  const hum = () => T(110, .4, .12, 'triangle');
+  const click = () => T(1400, .05, .04, 'square');
+  const whoosh = () => { T(620, .14, .04); setTimeout(() => T(390, .18, .04), 110); };
+  const shutter = () => { T(1900, .04, .05, 'square'); setTimeout(() => T(1250, .05, .05, 'square'), 90); };
+  const squeak = () => { T(1760, .09, .05, 'triangle'); setTimeout(() => T(2240, .1, .05, 'triangle'), 120); };
+  const placeTone = () => { T(440, .12, .05); setTimeout(() => T(660, .16, .05), 100); };
+
+  // ======================================================================================
+  // Effects: one animation loop; a new run stops the old show's effects (flights are kept)
+  // ======================================================================================
+  let run = 0;
+  const fxs = new Set();
+  const alive = t => t === run;
+  function frame() {
+    const t = now();
+    for (const e of [...fxs]) {
+      let more = false;
+      try { more = e.update(t); } catch (err) { more = false; }
+      if (!more) { fxs.delete(e); e.res(); }
+    }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+  // fn(p) for dur ms; with Motion off the end state is shown at once and the time is kept (o.fade: an opacity change, kept)
+  function tween(dur, fn, o = {}) {
+    const tok = run, t0 = now();
+    if (Curio.reduce && !o.fade) { try { fn(1, 1); } catch {} return wait(dur); }
+    return new Promise(res => fxs.add({keep: o.keep, res, update(t) {
+      if (!o.keep && tok !== run) return false;
+      const q = Math.min(1, (t - t0) / dur);
+      fn(o.lin ? q : ease(q), q);
+      return q < 1;
+    }}));
+  }
+  // fn(elapsed ms) every frame for dur ms, Motion on or off (blinking lights, flowing dots)
+  function every(dur, fn, o = {}) {
+    const tok = run, t0 = now();
+    return new Promise(res => fxs.add({keep: o.keep, res, update(t) {
+      if (!o.keep && tok !== run) return false;
+      const e = t - t0;
+      fn(Math.min(e, dur));
+      return e < dur;
+    }}));
+  }
+  function newRun() {
+    run++; acts++;
+    for (const e of [...fxs]) if (!e.keep) { fxs.delete(e); e.res(); }
+    $('flash').style.opacity = 0;
+    render();
+    return run;
+  }
+  function stopAll() {
+    hush();
+    run++;
+    for (const e of [...fxs]) { fxs.delete(e); e.res(); }
+    S.flyL && (S.flyL.innerHTML = '');
+    state.flying.clear(); state.running = false; state.morph = null;
+    $('flash').style.opacity = 0;
+    render();
+  }
+
+  // ======================================================================================
+  // Drawing the parts (desk units; origin at the base center of each part)
+  // ======================================================================================
+  function gearPath(R, r, n) {
+    let d = '';
+    for (let i = 0; i < n * 2; i++) {
+      const a0 = (i / (n * 2)) * Math.PI * 2, a1 = ((i + 1) / (n * 2)) * Math.PI * 2, rr = i % 2 ? r : R;
+      const p0 = [Math.cos(a0) * rr, Math.sin(a0) * rr], p1 = [Math.cos(a1) * rr, Math.sin(a1) * rr];
+      d += (i ? 'L' : 'M') + p0[0].toFixed(1) + ' ' + p0[1].toFixed(1) + 'L' + p1[0].toFixed(1) + ' ' + p1[1].toFixed(1);
+    }
+    return d + 'Z';
+  }
+  const KB_ROWS = ['QWERTYUIOP', 'ASDFGHJKL', 'ZXCVBNM'];
+  const MOUSE_D = 'M0 -72C22 -72 26 -50 26 -30C26 -10 14 0 0 0C-14 0 -26 -10 -26 -30C-26 -50 -22 -72 0 -72Z';
+  const KB_D = 'M-136 -64H136L150 -4Q150 0 146 0H-146Q-150 0 -150 -4Z';
+  // the outline shapes of each part: the dashed ghost in its slot, and the yellow glow ring
+  function outline(id) {
+    switch (id) {
+      case 'box': return [['rect', {x: -55, y: -236, width: 110, height: 230, rx: 16}]];
+      case 'screen': return [['rect', {x: -150, y: -228, width: 300, height: 182, rx: 16}], ['rect', {x: -14, y: -48, width: 28, height: 36}], ['rect', {x: -70, y: -14, width: 140, height: 14, rx: 7}]];
+      case 'keyboard': return [['path', {d: KB_D}]];
+      case 'mouse': return [['path', {d: MOUSE_D}]];
+      case 'speakers': return [['rect', {x: -34, y: -130, width: 68, height: 126, rx: 14}]];
+      case 'microphone': return [['rect', {x: -18, y: -120, width: 36, height: 56, rx: 18}], ['rect', {x: -4, y: -66, width: 8, height: 58}], ['ellipse', {cx: 0, cy: -6, rx: 30, ry: 7}]];
+      case 'camera': return [['rect', {x: -38, y: -114, width: 76, height: 52, rx: 24}], ['path', {d: 'M0 -60L-30 -2M0 -60L30 -2M0 -60V-4', fill: 'none'}]];
+    }
+    return [];
+  }
+  // refs: where a drawn part's moving bits are kept (keys, lights, gear, cone, light), so shows can find them
+  function drawPart(g, id, refs = {}) {
+    const P = (t, a, p = g) => mk(t, a, p), O = C.ink, PL = C.plastic, B = C.brand;
+    if (id === 'box') {
+      P('rect', {x: -46, y: -8, width: 24, height: 8, rx: 3, fill: O}); P('rect', {x: 22, y: -8, width: 24, height: 8, rx: 3, fill: O});
+      P('rect', {x: -55, y: -236, width: 110, height: 230, rx: 16, fill: PL, stroke: O, 'stroke-width': 4});
+      P('rect', {x: -42, y: -222, width: 84, height: 12, rx: 6, fill: B});
+      P('circle', {cx: -20, cy: -186, r: 13, fill: '#e6ebf8', stroke: O, 'stroke-width': 3});
+      P('path', {d: 'M-20 -195v8M-26.5 -189.5a8.5 8.5 0 1 0 13 0', fill: 'none', stroke: B, 'stroke-width': 3, 'stroke-linecap': 'round'});
+      refs.power = P('circle', {cx: 22, cy: -186, r: 6.5, fill: C.off, stroke: O, 'stroke-width': 2});
+      refs.lights = [-22, 0, 22].map(x => P('circle', {cx: x, cy: -152, r: 7, fill: C.off, stroke: O, 'stroke-width': 2}));
+      P('circle', {cx: 0, cy: -88, r: 37, fill: C.soft, stroke: O, 'stroke-width': 3.5});
+      const gw = P('g', {transform: 'translate(0 -88)'});
+      refs.gear = P('g', {}, gw);
+      P('path', {d: gearPath(26, 19, 8), fill: B, stroke: O, 'stroke-width': 2, 'stroke-linejoin': 'round'}, refs.gear);
+      P('circle', {r: 7, fill: C.soft, stroke: O, 'stroke-width': 2}, refs.gear);
+      for (let i = 0; i < 3; i++) P('path', {d: `M-28 ${-38 + i * 9}H28`, stroke: '#9aa6c8', 'stroke-width': 3.5, 'stroke-linecap': 'round'});
+    } else if (id === 'screen') {
+      P('rect', {x: -70, y: -14, width: 140, height: 14, rx: 7, fill: PL, stroke: O, 'stroke-width': 3});
+      P('rect', {x: -14, y: -50, width: 28, height: 38, fill: '#e3e8f6', stroke: O, 'stroke-width': 3});
+      P('rect', {x: -150, y: -228, width: 300, height: 182, rx: 16, fill: PL, stroke: O, 'stroke-width': 4});
+      P('rect', {x: -139, y: -217, width: 278, height: 158, rx: 7, fill: C.dark});
+      refs.scr = P('g', {transform: 'translate(-138 -216)', 'clip-path': 'url(#scrClip)'});
+      P('circle', {cx: 0, cy: -52.5, r: 3.5, fill: B});
+    } else if (id === 'keyboard') {
+      P('path', {d: KB_D, fill: PL, stroke: O, 'stroke-width': 4, 'stroke-linejoin': 'round'});
+      refs.keys = {};
+      KB_ROWS.forEach((row, r) => {
+        const w = 21 + r * .6, gap = 3.4, n = row.length, y = -55 + r * 14.5, x0 = -((10 * w + 9 * gap) / 2) + r * 9;
+        for (let i = 0; i < n; i++) refs.keys[row[i]] = P('rect', {x: (x0 + i * (w + gap)).toFixed(1), y, width: w.toFixed(1), height: 11, rx: 2.5, fill: C.key, stroke: O, 'stroke-width': 1.6});
+        if (r === 1) P('rect', {x: (x0 + n * (w + gap)).toFixed(1), y, width: 28, height: 11, rx: 2.5, fill: B, stroke: O, 'stroke-width': 1.6});
+      });
+      P('rect', {x: -64, y: -12.5, width: 128, height: 9, rx: 3, fill: C.key, stroke: O, 'stroke-width': 1.6});
+    } else if (id === 'mouse') {
+      P('path', {d: MOUSE_D, fill: PL, stroke: O, 'stroke-width': 4});
+      P('path', {d: 'M-25 -44H25M0 -72V-44', stroke: O, 'stroke-width': 2.5, fill: 'none'});
+      P('rect', {x: -4.5, y: -66, width: 9, height: 15, rx: 4.5, fill: B, stroke: O, 'stroke-width': 1.5});
+    } else if (id === 'speakers') {
+      P('rect', {x: -26, y: -6, width: 52, height: 6, rx: 2, fill: O});
+      P('rect', {x: -34, y: -130, width: 68, height: 126, rx: 14, fill: PL, stroke: O, 'stroke-width': 4});
+      P('circle', {cx: 0, cy: -101, r: 12, fill: '#2a335a', stroke: B, 'stroke-width': 4});
+      const cw = P('g', {transform: 'translate(0 -48)'});
+      const cone = P('g', {}, cw);
+      P('circle', {r: 27, fill: '#2a335a', stroke: B, 'stroke-width': 5}, cone);
+      P('circle', {r: 15, fill: 'none', stroke: '#46538a', 'stroke-width': 2.5}, cone);
+      P('circle', {r: 7, fill: '#56639c'}, cone);
+      (refs.cones = refs.cones || []).push(cone);
+    } else if (id === 'microphone') {
+      P('ellipse', {cx: 0, cy: -6, rx: 30, ry: 7, fill: '#e3e8f6', stroke: O, 'stroke-width': 3});
+      P('rect', {x: -4, y: -66, width: 8, height: 58, fill: '#9aa6c8', stroke: O, 'stroke-width': 2});
+      P('rect', {x: -18, y: -120, width: 36, height: 56, rx: 18, fill: C.soft, stroke: O, 'stroke-width': 4});
+      for (const y of [-108, -99, -90]) P('path', {d: `M-11 ${y}H11`, stroke: '#7d89b4', 'stroke-width': 2.6, 'stroke-linecap': 'round'});
+      P('rect', {x: -16, y: -80, width: 32, height: 8, fill: B});
+    } else if (id === 'camera') {
+      P('path', {d: 'M0 -60L-30 -2M0 -60L30 -2M0 -60V-6', stroke: O, 'stroke-width': 4.5, 'stroke-linecap': 'round', fill: 'none'});
+      P('circle', {cx: 0, cy: -60, r: 6, fill: B, stroke: O, 'stroke-width': 2});
+      P('rect', {x: -38, y: -114, width: 76, height: 52, rx: 24, fill: PL, stroke: O, 'stroke-width': 4});
+      P('circle', {cx: 0, cy: -88, r: 17, fill: O, stroke: B, 'stroke-width': 6});
+      P('circle', {cx: -5, cy: -93, r: 4.5, fill: '#fff', opacity: .85});
+      refs.light = P('circle', {cx: 27, cy: -104, r: 5, fill: C.off, stroke: O, 'stroke-width': 1.5});
+    }
+    return refs;
+  }
+  // Bubbles' bowl, drawn until the painted one is in (art "bubbles-bowl")
+  function drawBowl(g) {
+    if (hasArt('bowl')) { mk('image', {href: ART.bowl, x: -64, y: -126, width: 128, height: 128}, g); return; }
+    mk('ellipse', {cx: 0, cy: -2, rx: 40, ry: 7, fill: '#00000022'}, g);
+    mk('circle', {cx: 0, cy: -54, r: 50, fill: '#e6f3ff', 'fill-opacity': .7, stroke: '#7aa7d8', 'stroke-width': 3.5}, g);
+    mk('path', {d: 'M-46.5 -70A48 48 0 1 0 46.5 -70Z', fill: '#8fcaf2'}, g);
+    for (const [x, y, c] of [[-26, -14, '#c79a6b'], [-12, -10, '#9fb0c8'], [4, -9, '#e0b07a'], [18, -12, '#a6c9a0'], [30, -16, '#c79a6b'], [-36, -20, '#9fb0c8']]) mk('circle', {cx: x, cy: y, r: 6, fill: c}, g);
+    mk('path', {d: 'M-30 -14q-4-18 2-30M-24 -12q6-14 0-26', stroke: '#3c9d4a', 'stroke-width': 4, fill: 'none', 'stroke-linecap': 'round'}, g);
+    const f = mk('g', {transform: 'translate(6 -52)'}, g);
+    mk('path', {d: 'M14 0l14-11v22z', fill: '#ff8a2a', stroke: '#c2410c', 'stroke-width': 2.5, 'stroke-linejoin': 'round'}, f);
+    mk('ellipse', {cx: 0, cy: 0, rx: 19, ry: 13, fill: '#ff8a2a', stroke: '#c2410c', 'stroke-width': 2.5}, f);
+    mk('circle', {cx: -9, cy: -3, r: 3.2, fill: C.ink}, f);
+    mk('path', {d: 'M-14 4q3 3 7 1', stroke: C.ink, 'stroke-width': 2, fill: 'none', 'stroke-linecap': 'round'}, f);
+    mk('circle', {cx: -26, cy: -8, r: 3, fill: 'none', stroke: '#fff', 'stroke-width': 1.8}, g);
+    mk('circle', {cx: -30, cy: -18, r: 2, fill: 'none', stroke: '#fff', 'stroke-width': 1.6}, g);
+    mk('ellipse', {cx: 0, cy: -102, rx: 26, ry: 6, fill: '#f4faff', stroke: '#7aa7d8', 'stroke-width': 3}, g);
+    mk('path', {d: 'M-30 -86q-8 12-6 26', stroke: '#fff', 'stroke-width': 4, fill: 'none', 'stroke-linecap': 'round', opacity: .8}, g);
+  }
+  // Nibbles, drawn until the painted one is in (art "nibbles" and "nibbles-plug"); 110 units tall, base at 0
+  function drawNibbles(g, plug) {
+    const a = plug ? 'nibPlug' : 'nibbles';
+    if (hasArt(a)) { mk('image', {href: ART[a], x: -58, y: -116, width: 116, height: 116}, g); return; }
+    const gr = '#9aa0ab', dk = '#5f6573', pk = '#f6a5c0';
+    mk('path', {d: 'M18 -10q34 0 30-26q-2-12 8-14', stroke: dk, 'stroke-width': 4, fill: 'none', 'stroke-linecap': 'round'}, g);
+    mk('ellipse', {cx: -12, cy: -4, rx: 11, ry: 5, fill: pk, stroke: dk, 'stroke-width': 2}, g);
+    mk('ellipse', {cx: 12, cy: -4, rx: 11, ry: 5, fill: pk, stroke: dk, 'stroke-width': 2}, g);
+    mk('ellipse', {cx: 0, cy: -34, rx: 25, ry: 30, fill: gr, stroke: dk, 'stroke-width': 3}, g);
+    mk('ellipse', {cx: 0, cy: -30, rx: 14, ry: 19, fill: '#c9ced8'}, g);
+    for (const s of [-1, 1]) {
+      mk('circle', {cx: s * 22, cy: -98, r: 17, fill: gr, stroke: dk, 'stroke-width': 3}, g);
+      mk('circle', {cx: s * 22, cy: -98, r: 10, fill: pk}, g);
+    }
+    mk('circle', {cx: 0, cy: -76, r: 23, fill: gr, stroke: dk, 'stroke-width': 3}, g);
+    mk('circle', {cx: -8, cy: -80, r: 3.6, fill: C.ink}, g); mk('circle', {cx: 8, cy: -80, r: 3.6, fill: C.ink}, g);
+    mk('circle', {cx: -7, cy: -81.5, r: 1.2, fill: '#fff'}, g); mk('circle', {cx: 9, cy: -81.5, r: 1.2, fill: '#fff'}, g);
+    mk('circle', {cx: 0, cy: -70, r: 4.5, fill: '#f07aa0', stroke: dk, 'stroke-width': 1.5}, g);
+    mk('path', {d: 'M-8 -63q8 7 16 0', stroke: C.ink, 'stroke-width': 2.4, fill: '#fff', 'stroke-linecap': 'round'}, g);
+    mk('path', {d: 'M-6 -70l-18-4M-6 -68l-18 2M6 -70l18-4M6 -68l18 2', stroke: dk, 'stroke-width': 1.5}, g);
+    if (plug) {
+      mk('path', {d: 'M8 -38q30 6 40 26', stroke: '#2a3152', 'stroke-width': 5, fill: 'none', 'stroke-linecap': 'round'}, g);
+      mk('rect', {x: -14, y: -50, width: 24, height: 16, rx: 4, fill: '#2a3152', stroke: C.ink, 'stroke-width': 2}, g);
+      mk('path', {d: 'M-9 -50v-9M5 -50v-9', stroke: '#c9ced8', 'stroke-width': 3.5, 'stroke-linecap': 'round'}, g);
+      for (const s of [-1, 1]) mk('ellipse', {cx: s * 13, cy: -40, rx: 7, ry: 6, fill: gr, stroke: dk, 'stroke-width': 2}, g);
+    } else {
+      for (const s of [-1, 1]) mk('ellipse', {cx: s * 16, cy: -44, rx: 6, ry: 8, fill: gr, stroke: dk, 'stroke-width': 2}, g);
+    }
+  }
+
+  // ======================================================================================
+  // Screen contents (a 276 x 156 frame, drawn again whenever it changes)
+  // ======================================================================================
+  const RAINBOW = ['#e53935', '#fb8c00', '#fdd835', '#43a047', '#1e88e5', '#8e24aa'];
+  const STROKES = ['M24 118C80 18 168 22 252 96', 'M28 38C96 128 176 126 250 36', 'M22 84C88 24 156 144 254 66'];
+  const ARROW_D = 'M0 0L0 22L6 16.5L10.5 26L15 24L10.5 14.5L18 14.5Z';
+  function desktop(g) {
+    mk('rect', {width: 276, height: 156, fill: 'url(#gDesk)'}, g);
+    mk('ellipse', {cx: 60, cy: 34, rx: 34, ry: 11, fill: '#ffffffaa'}, g);
+    mk('ellipse', {cx: 206, cy: 26, rx: 28, ry: 9, fill: '#ffffff99'}, g);
+    mk('rect', {y: 136, width: 276, height: 20, fill: '#ffffffb0'}, g);
+    const icons = [['#f08a24', 'brush'], ['#8e44ad', 'note'], [C.in, 'cam'], [C.brand, 'abc']];
+    icons.forEach(([c, k], i) => {
+      const x = 54 + i * 56, y = 84, ig = mk('g', {transform: `translate(${x} ${y})`}, g);
+      mk('circle', {r: 23, fill: c, stroke: '#fff', 'stroke-width': 3}, ig);
+      if (k === 'brush') { mk('path', {d: 'M8 -12L-4 4', stroke: '#fff', 'stroke-width': 5, 'stroke-linecap': 'round'}, ig); mk('path', {d: 'M-5 3q-8 2-7 11q8 1 11-6z', fill: '#fff'}, ig); }
+      if (k === 'note') { mk('path', {d: 'M-4 8V-12l12-3v18', stroke: '#fff', 'stroke-width': 3.4, fill: 'none'}, ig); mk('circle', {cx: -8, cy: 9, r: 5, fill: '#fff'}, ig); mk('circle', {cx: 4, cy: 5, r: 5, fill: '#fff'}, ig); }
+      if (k === 'cam') { mk('rect', {x: -13, y: -8, width: 26, height: 18, rx: 4, fill: '#fff'}, ig); mk('rect', {x: -6, y: -12, width: 10, height: 5, rx: 1.5, fill: '#fff'}, ig); mk('circle', {cy: 1, r: 5.5, fill: c}, ig); }
+      if (k === 'abc') { mk('path', {d: 'M-9 11l2-8L7 -11l6 6L-1 9z', fill: '#fff'}, ig); mk('path', {d: 'M-9 11l2-8 6 6z', fill: '#ffd23f'}, ig); }
+    });
+  }
+  function rainbowPath(g, d, p, w = 5.5, step = 5.6) {
+    let mid = null;
+    RAINBOW.forEach((c, b) => {
+      const pth = mk('path', {d, fill: 'none', stroke: c, 'stroke-width': w, 'stroke-linecap': 'round', pathLength: 1, 'stroke-dasharray': 1,
+        'stroke-dashoffset': (1 - p).toFixed(3), transform: `translate(0 ${((b - 2.5) * step).toFixed(1)})`}, g);
+      if (b === 2) mid = pth;
+    });
+    return mid;
+  }
+  function arrowAt(g, path, p) {
+    const len = path.getTotalLength(), pt = path.getPointAtLength(len * p), dy = (2 - 2.5) * 5.6;
+    mk('path', {d: ARROW_D, fill: '#fff', stroke: C.ink, 'stroke-width': 2, 'stroke-linejoin': 'round', transform: `translate(${pt.x.toFixed(1)} ${(pt.y + dy).toFixed(1)})`}, g);
+  }
+  function screenContent(g, s) {
+    g.innerHTML = '';
+    const k = s.kind;
+    if (k === 'off') {
+      mk('rect', {width: 276, height: 156, fill: C.dark}, g);
+      mk('path', {d: 'M170 0h40L120 156H80z', fill: '#ffffff0d'}, g);
+      return;
+    }
+    if (k === 'desktop' || k === 'letters' || k === 'hello') desktop(g);
+    if (k === 'letters' && s.text) {
+      mk('rect', {x: 16, y: 26, width: 244, height: 92, rx: 14, fill: '#fff', stroke: C.brand, 'stroke-width': 4}, g);
+      const fs = Math.min(80, 228 / (s.text.length * .66));
+      const t = mk('text', {x: 138, y: 72 + fs * .36, 'text-anchor': 'middle', 'font-size': fs.toFixed(1), 'font-weight': 800, fill: C.ink, 'letter-spacing': 2}, g);
+      t.textContent = s.text;
+    }
+    if (k === 'hello') {
+      mk('path', {d: 'M58 18h160q14 0 14 14v52q0 14-14 14H128l-16 18-2-18H58q-14 0-14-14V32q0-14 14-14z', fill: '#fff', stroke: C.ink, 'stroke-width': 3.5, 'stroke-linejoin': 'round'}, g);
+      mk('use', {href: '#j-hand', x: 92, y: 22, width: 92, height: 69}, g);
+    }
+    if (k === 'paint') {
+      mk('rect', {width: 276, height: 156, fill: '#fff'}, g);
+      let last = null;
+      for (let i = 0; i < s.n; i++) last = rainbowPath(g, STROKES[i], i === s.n - 1 ? s.p : 1);
+      if (last && s.arrow) arrowAt(g, last, s.p);
+      if (!s.n && s.arrow) mk('path', {d: ARROW_D, fill: '#fff', stroke: C.ink, 'stroke-width': 2, transform: 'translate(130 70)'}, g);
+    }
+    if (k === 'jobpaint') {
+      mk('rect', {width: 276, height: 156, fill: '#fff'}, g);
+      const arc = rainbowPath(g, 'M40 146C56 26 220 26 236 146', s.p1, 6.5, 6.4);
+      if (s.p2 > 0) {
+        const sg = mk('g', {transform: 'translate(226 34)'}, g);
+        for (let i = 0; i < 8; i++) { const a = i * Math.PI / 4; mk('path', {d: `M${(Math.cos(a) * 20).toFixed(1)} ${(Math.sin(a) * 20).toFixed(1)}L${(Math.cos(a) * 27).toFixed(1)} ${(Math.sin(a) * 27).toFixed(1)}`, stroke: '#f2b600', 'stroke-width': 4, 'stroke-linecap': 'round', opacity: s.p2 >= 1 ? 1 : 0}, sg); }
+        mk('circle', {r: 15, fill: s.p2 >= 1 ? C.glow : 'none', stroke: '#e0a800', 'stroke-width': 4, pathLength: 1, 'stroke-dasharray': 1, 'stroke-dashoffset': (1 - s.p2).toFixed(3)}, sg);
+      }
+      if (s.arrow) {
+        if (s.p2 > 0 && s.p2 < 1) { const a = -Math.PI / 2 + s.p2 * Math.PI * 2; mk('path', {d: ARROW_D, fill: '#fff', stroke: C.ink, 'stroke-width': 2, transform: `translate(${(226 + Math.cos(a) * 15).toFixed(1)} ${(34 + Math.sin(a) * 15).toFixed(1)})`}, g); }
+        else if (s.p2 <= 0) arrowAt(g, arc, s.p1);
+      }
+    }
+    if (k === 'cartoon') {
+      mk('rect', {width: 276, height: 156, fill: 'url(#gToon)'}, g);
+      mk('ellipse', {cx: 200, cy: 30, rx: 26, ry: 9, fill: '#fff'}, g);
+      const [x, y] = s.sun || [70, 60];
+      const sg = mk('g', {transform: `translate(${x.toFixed(1)} ${y.toFixed(1)})`}, g);
+      for (let i = 0; i < 8; i++) { const a = i * Math.PI / 4; mk('path', {d: `M${(Math.cos(a) * 22).toFixed(1)} ${(Math.sin(a) * 22).toFixed(1)}L${(Math.cos(a) * 29).toFixed(1)} ${(Math.sin(a) * 29).toFixed(1)}`, stroke: '#f2b600', 'stroke-width': 4, 'stroke-linecap': 'round'}, sg); }
+      mk('circle', {r: 18, fill: C.glow, stroke: '#e0a800', 'stroke-width': 3}, sg);
+      mk('circle', {cx: -6, cy: -4, r: 2.4, fill: C.ink}, sg); mk('circle', {cx: 6, cy: -4, r: 2.4, fill: C.ink}, sg);
+      mk('path', {d: 'M-7 4q7 7 14 0', stroke: C.ink, 'stroke-width': 2.4, fill: 'none', 'stroke-linecap': 'round'}, sg);
+      mk('ellipse', {cx: 60, cy: 170, rx: 120, ry: 62, fill: '#5cb85c'}, g);
+      mk('ellipse', {cx: 226, cy: 176, rx: 130, ry: 58, fill: '#43a047'}, g);
+      if (s.mute) {
+        const m = mk('g', {transform: 'translate(244 26)'}, g);
+        mk('circle', {r: 20, fill: '#fff', stroke: C.ink, 'stroke-width': 3}, m);
+        mk('path', {d: 'M-11 -5h6l8-7v24l-8-7h-6z', fill: C.ink, transform: 'translate(-1 -1)'}, m);
+        mk('path', {d: 'M-14 -14L14 14', stroke: '#c0182f', 'stroke-width': 4.5, 'stroke-linecap': 'round'}, m);
+      }
+    }
+    if (k === 'photo') {
+      mk('rect', {width: 276, height: 156, fill: '#2a335a'}, g);
+      mk('rect', {x: 58, y: 8, width: 160, height: 140, rx: 4, fill: '#fff', stroke: '#c9d1e8', 'stroke-width': 2}, g);
+      photoPic(g, 66, 16, 144, 108);
+    }
+    if (k === 'panda') pandaPic(g, s.wave || 0);
+  }
+  function photoPic(g, x, y, w, h) {
+    if (hasArt('photo')) { mk('image', {href: ART.photo, x, y, width: w, height: h, preserveAspectRatio: 'xMidYMid slice'}, g); return; }
+    const p = mk('g', {transform: `translate(${x} ${y}) scale(${w / 144} ${h / 108})`}, g);
+    mk('rect', {width: 144, height: 108, fill: 'url(#gWater)'}, p);
+    for (const [px, c] of [[14, '#3c9d4a'], [30, '#58b368'], [118, '#3c9d4a'], [132, '#58b368']]) mk('path', {d: `M${px} 108q-10-30 2-58q10 26 0 58z`, fill: c}, p);
+    mk('path', {d: 'M98 54l26-20v40z', fill: '#ff8a2a', stroke: '#c2410c', 'stroke-width': 3, 'stroke-linejoin': 'round'}, p);
+    mk('ellipse', {cx: 70, cy: 54, rx: 34, ry: 24, fill: '#ff8a2a', stroke: '#c2410c', 'stroke-width': 3}, p);
+    mk('path', {d: 'M66 32q8-14 22-6', fill: '#ffb066', stroke: '#c2410c', 'stroke-width': 2.5}, p);
+    mk('circle', {cx: 52, cy: 48, r: 6, fill: '#fff'}, p); mk('circle', {cx: 53, cy: 48, r: 3.5, fill: C.ink}, p);
+    mk('path', {d: 'M42 62q8 8 17 2', stroke: C.ink, 'stroke-width': 3, fill: 'none', 'stroke-linecap': 'round'}, p);
+    for (const [bx, by, r] of [[30, 30, 4], [24, 18, 3], [34, 10, 2.4]]) mk('circle', {cx: bx, cy: by, r, fill: 'none', stroke: '#fff', 'stroke-width': 1.8}, p);
+  }
+  function pandaPic(g, wave) {
+    if (hasArt('panda')) {
+      mk('rect', {width: 276, height: 156, fill: '#cfe8c4'}, g);
+      mk('image', {href: ART.panda, x: -2, y: -26, width: 280, height: 210, preserveAspectRatio: 'xMidYMid slice', transform: `rotate(${(wave * 2).toFixed(2)} 138 156)`}, g);
+      return;
+    }
+    mk('rect', {width: 276, height: 156, fill: '#d9efcf'}, g);
+    for (const x of [16, 40, 236, 258]) { mk('rect', {x, y: 0, width: 10, height: 156, fill: '#6fbf5a'}, g); for (const y of [30, 70, 110]) mk('rect', {x: x - 1, y, width: 12, height: 3, fill: '#4f9d3d'}, g); }
+    const b = mk('g', {transform: `translate(138 ${(4 + Math.abs(wave) * 2).toFixed(1)})`}, g);
+    mk('ellipse', {cx: 0, cy: 132, rx: 52, ry: 44, fill: '#fff', stroke: C.ink, 'stroke-width': 3}, b);
+    mk('ellipse', {cx: -40, cy: 128, rx: 14, ry: 24, fill: C.ink, transform: 'rotate(20 -40 128)'}, b);
+    const arm = mk('g', {transform: `rotate(${(wave * 22).toFixed(1)} 40 114)`}, b);
+    mk('ellipse', {cx: 54, cy: 88, rx: 13, ry: 28, fill: C.ink, transform: 'rotate(-28 54 88)'}, arm);
+    for (const s of [-1, 1]) mk('circle', {cx: s * 34, cy: 26, r: 14, fill: C.ink}, b);
+    mk('ellipse', {cx: 0, cy: 60, rx: 44, ry: 38, fill: '#fff', stroke: C.ink, 'stroke-width': 3}, b);
+    for (const s of [-1, 1]) {
+      mk('ellipse', {cx: s * 16, cy: 56, rx: 10, ry: 13, fill: C.ink, transform: `rotate(${s * -25} ${s * 16} 56)`}, b);
+      mk('circle', {cx: s * 15, cy: 54, r: 3.2, fill: '#fff'}, b);
+    }
+    mk('ellipse', {cx: 0, cy: 72, rx: 6, ry: 4.4, fill: C.ink}, b);
+    mk('path', {d: 'M-8 80q8 7 16 0', stroke: C.ink, 'stroke-width': 2.6, fill: 'none', 'stroke-linecap': 'round'}, b);
+    mk('rect', {x: -66, y: 96, width: 8, height: 60, fill: '#6fbf5a', transform: 'rotate(-15 -62 126)'}, b);
+  }
+
+  // ======================================================================================
+  // The stage: drawn at its real pixel size (G.k = pixels per desk unit) and laid out again for every size
+  // ======================================================================================
+  const G = {W: 800, H: 500, k: .8, ox: 0, oy: 0};
+  const X = u => G.ox + u * G.k, Y = v => G.oy + v * G.k;
+  const S = {};
+  const sv = $('sv');
+  function buildStatic() {
+    sv.innerHTML = '';
+    sv.setAttribute('width', G.W); sv.setAttribute('height', G.H); sv.setAttribute('viewBox', `0 0 ${G.W} ${G.H}`);
+    const defs = mk('defs', {}, sv);
+    const grad = (id, stops, vert = true) => { const lg = mk('linearGradient', {id, x1: 0, y1: 0, x2: vert ? 0 : 1, y2: vert ? 1 : 0}, defs); stops.forEach(([o, c]) => mk('stop', {offset: o, 'stop-color': c}, lg)); };
+    grad('gDesk', [[0, '#5d9cf5'], [1, '#c6defc']]);
+    grad('gToon', [[0, '#8fcdff'], [1, '#e3f4ff']]);
+    grad('gWater', [[0, '#7cc4f2'], [1, '#2f7fc4']]);
+    grad('gWood', [[0, '#e4b77f'], [1, '#d4a265']]);
+    grad('gSky', [[0, '#8ec9ff'], [1, '#d9f0ff']]);
+    grad('gBlanket', [[0, '#2c3680'], [1, '#1b2258']]);
+    const cp = mk('clipPath', {id: 'scrClip'}, defs); mk('rect', {width: 276, height: 156, rx: 6}, cp);
+    const L_ = n => (S[n] = mk('g', {}, sv));
+    L_('wallL'); L_('deskL'); L_('partsWrap');
+    for (const n of ['ghostL', 'cableL', 'dotBackL', 'backL', 'bowlL', 'frontL', 'dotL']) S[n] = mk('g', {}, S.partsWrap);
+    S.bowlL = S.bowlL; L_('aioL'); L_('fxL'); L_('flyL'); L_('blanketL'); L_('nibL');
+    drawWall(); drawDesk();
+    render();
+  }
+  function drawWall() {
+    const g = S.wallL, W = G.W, top = Y(DESK.top) + 6, k = G.k;
+    mk('rect', {width: W, height: G.H, fill: C.wall}, g);
+    if (hasArt('backdrop')) { mk('image', {href: ART.backdrop, x: 0, y: 0, width: W, height: top, preserveAspectRatio: 'xMidYMin slice'}, g); return; }
+    // a sunny classroom wall: a window with a plant on the left, a pegboard of tools on the right
+    mk('rect', {x: 0, y: top - 26 * k, width: W, height: 26 * k, fill: '#dde4f7'}, g);
+    const wg = mk('g', {transform: `translate(${X(-6)} ${Y(96)}) scale(${k})`}, g);
+    mk('rect', {x: 0, y: 0, width: 170, height: 150, rx: 8, fill: '#fff', stroke: '#b9c5ee', 'stroke-width': 5}, wg);
+    mk('rect', {x: 10, y: 10, width: 150, height: 130, rx: 4, fill: 'url(#gSky)'}, wg);
+    mk('circle', {cx: 128, cy: 36, r: 15, fill: '#ffe680'}, wg);
+    mk('ellipse', {cx: 58, cy: 46, rx: 26, ry: 10, fill: '#fff'}, wg); mk('ellipse', {cx: 74, cy: 40, rx: 16, ry: 10, fill: '#fff'}, wg);
+    mk('path', {d: 'M10 112q40-20 80-4t70-6V140H10z', fill: '#bfe3b0'}, wg);
+    mk('path', {d: 'M85 10v130M10 75h150', stroke: '#fff', 'stroke-width': 6}, wg);
+    mk('rect', {x: -8, y: 146, width: 186, height: 12, rx: 4, fill: '#fff', stroke: '#b9c5ee', 'stroke-width': 3}, wg);
+    const pl = mk('g', {transform: 'translate(140 146)'}, wg);
+    for (const [r, c] of [[-28, '#4caf50'], [0, '#5cb85c'], [26, '#43a047'], [-55, '#66bb6a'], [50, '#4caf50']]) mk('ellipse', {cx: 0, cy: -34, rx: 8, ry: 22, fill: c, transform: `rotate(${r} 0 -10)`}, pl);
+    mk('path', {d: 'M-14 -16h28l-4 16h-20z', fill: '#e38b5b', stroke: '#b9643a', 'stroke-width': 2}, pl);
+    const pb = mk('g', {transform: `translate(${X(668)} ${Y(30)}) scale(${k})`}, g);
+    mk('rect', {width: 250, height: 112, rx: 10, fill: '#efd9b4', stroke: '#d4b78a', 'stroke-width': 4}, pb);
+    for (let r = 0; r < 5; r++) for (let c = 0; c < 12; c++) mk('circle', {cx: 16 + c * 20, cy: 14 + r * 21, r: 2.4, fill: '#cdb48a'}, pb);
+    mk('rect', {x: 22, y: 22, width: 12, height: 70, rx: 5, fill: '#e53935'}, pb); mk('rect', {x: 8, y: 14, width: 40, height: 16, rx: 4, fill: '#8a93a8'}, pb);
+    mk('path', {d: 'M84 20a12 12 0 1 0 12 18l14 50h10l-14-50a12 12 0 0 0-2-20l-4 10h-8z', fill: '#9aa3b8', stroke: '#6b7594', 'stroke-width': 2}, pb);
+    mk('rect', {x: 144, y: 18, width: 14, height: 34, rx: 6, fill: '#43a047'}, pb); mk('rect', {x: 149, y: 52, width: 4, height: 40, fill: '#8a93a8'}, pb);
+    mk('circle', {cx: 206, cy: 56, r: 22, fill: '#fdd835', stroke: '#c9a600', 'stroke-width': 3}, pb); mk('circle', {cx: 206, cy: 56, r: 8, fill: '#fff59d'}, pb);
+  }
+  function drawDesk() {
+    const g = S.deskL, W = G.W, y0 = Y(DESK.top), y1 = Y(DESK.front), y2 = Y(DESK.edge), k = G.k;
+    mk('rect', {x: 0, y: y0 - 12 * k, width: W, height: 12 * k, fill: '#1c234014'}, g);
+    mk('rect', {x: 0, y: y0, width: W, height: y1 - y0, fill: 'url(#gWood)'}, g);
+    for (const [v, a] of [[410, .5], [452, .35], [500, .45], [540, .3]]) mk('path', {d: `M0 ${Y(v)}Q${W * .3} ${Y(v) - 6 * k} ${W * .55} ${Y(v) + 3 * k}T${W} ${Y(v) - 2 * k}`, stroke: '#c4925a', 'stroke-width': 2, fill: 'none', opacity: a}, g);
+    mk('rect', {x: 0, y: y1, width: W, height: y2 - y1, fill: C.edge}, g);
+    mk('rect', {x: 0, y: y1, width: W, height: 3 * k, fill: '#e7bf89'}, g);
+    if (G.H > y2) mk('rect', {x: 0, y: y2, width: W, height: G.H - y2, fill: '#9c6c3a'}, g);
+  }
+  // the parts' screen-pixel boxes, for hit buttons and Nibbles
+  const tr = (x, y, s = G.k) => `translate(${x.toFixed(1)} ${y.toFixed(1)}) scale(${s.toFixed(4)})`;
+  function cablePath(id, i) {
+    const [sx, sy] = SLOT[id][i], [px, py] = PORT[id];
+    const a = [sx + px, sy + py];
+    let b;
+    if (state.placed.has('box')) b = BOXPORT;
+    else { const n = ORDER.indexOf(id) + i; b = [808 + n * 11, 386 + (n % 2) * 9]; }
+    const my = Math.max(a[1], b[1]) + 16;
+    const d = `M${X(a[0]).toFixed(1)} ${Y(a[1]).toFixed(1)}C${X(lerp(a[0], b[0], .3)).toFixed(1)} ${Y(my).toFixed(1)} ${X(lerp(a[0], b[0], .75)).toFixed(1)} ${Y(my - 4).toFixed(1)} ${X(b[0]).toFixed(1)} ${Y(b[1]).toFixed(1)}`;
+    return {d, end: b};
+  }
+  function render() {
+    if (!S.ghostL) return;
+    const k = G.k;
+    for (const n of ['ghostL', 'cableL', 'dotBackL', 'backL', 'bowlL', 'frontL', 'dotL', 'aioL', 'fxL', 'blanketL', 'nibL']) S[n].innerHTML = '';
+    S.pg = {}; S.cab = {}; S.glow = {}; S.refs = {}; S.ghosts = {};
+    const showDesk = !state.aio || state.morph != null, showAio = state.aio || state.morph != null;
+    S.partsWrap.style.display = showDesk ? '' : 'none';
+    S.partsWrap.removeAttribute('transform'); S.partsWrap.removeAttribute('opacity');
+    // ghosts in the empty slots
+    for (const id of ORDER) {
+      if (state.placed.has(id)) continue;
+      S.ghosts[id] = SLOT[id].map(([x, y]) => {
+        const g = mk('g', {class: 'ghost' + (state.pulse === id ? ' pulse' : ''), transform: tr(X(x), Y(y))}, S.ghostL);
+        for (const [t, a] of outline(id)) mk(t, {...a, 'vector-effect': 'non-scaling-stroke'}, g);
+        return g;
+      });
+    }
+    // cables, then the parts (back row, Bubbles, front row)
+    for (const id of ORDER) {
+      if (!state.placed.has(id) || id === 'box') continue;
+      S.cab[id] = SLOT[id].map((_, i) => {
+        const {d, end} = cablePath(id, i);
+        const cg = mk('g', {opacity: state.flying.has(id) ? 0 : 1}, S.cableL);
+        const p = mk('path', {d, fill: 'none', stroke: '#2a3152', 'stroke-width': Math.max(3, 6 * k).toFixed(1), 'stroke-linecap': 'round'}, cg);
+        if (!state.placed.has('box')) {
+          const pg = mk('g', {transform: tr(X(end[0]), Y(end[1]))}, cg);
+          mk('rect', {x: -4, y: -9, width: 20, height: 18, rx: 4, fill: '#2a3152', stroke: C.ink, 'stroke-width': 2}, pg);
+          mk('path', {d: 'M16 -4h9M16 4h9', stroke: '#9aa3b8', 'stroke-width': 4, 'stroke-linecap': 'round'}, pg);
+        }
+        p.wrap = cg;
+        return p;
+      });
+    }
+    for (const id of ['camera', 'speakers', 'screen', 'box', 'microphone', 'keyboard', 'mouse']) {
+      if (!state.placed.has(id)) continue;
+      const layer = SLOT[id][0][1] > 450 ? S.frontL : S.backL, refs = {};
+      S.glow[id] = []; S.pg[id] = [];
+      SLOT[id].forEach(([x, y]) => {
+        const g = mk('g', {transform: tr(X(x), Y(y))}, layer);
+        if (state.flying.has(id)) g.style.visibility = 'hidden';
+        if (state.dim.has(id)) g.setAttribute('opacity', .42);
+        const gl = mk('g', {opacity: 0, fill: 'none', stroke: C.glow, 'stroke-width': 16, 'stroke-linejoin': 'round'}, g);
+        for (const [t, a] of outline(id)) mk(t, {...a, fill: 'none'}, gl);
+        S.glow[id].push(gl);
+        drawPart(g, id, refs);
+        S.pg[id].push(g);
+      });
+      S.refs[id] = refs;
+      if (state.dim.has(id)) {
+        const [x, y] = SLOT[id][SLOT[id].length - 1], bx = BOX[id];
+        const t = mk('text', {x: X(x + bx[2] - 4).toFixed(1), y: Y(y + bx[1] + 6).toFixed(1), 'font-size': Math.max(14, 26 * k).toFixed(1), 'font-weight': 800, fill: C.ink,
+          stroke: '#fff', 'stroke-width': 4, 'paint-order': 'stroke', 'font-style': 'italic'}, S.fxL);
+        t.textContent = 'Zzz';
+      }
+    }
+    const bw = mk('g', {transform: tr(X(BOWL[0]), Y(BOWL[1]))}, S.bowlL);
+    drawBowl(bw);
+    // what the screen shows: dark unless the box is there
+    if (!state.placed.has('box') || !state.placed.has('screen')) state.scr = {kind: 'off'};
+    if (S.refs.screen) screenContent(S.refs.screen.scr, state.scr);
+    if (S.refs.box && state.placed.has('box')) S.refs.box.power.setAttribute('fill', state.mode === 'missing' && state.mis.out === 'box' ? C.off : '#3ddc84');
+    if (showAio) drawAio();
+    placeHits();
+    if (typeof rescueFocus === 'function') rescueFocus();
+  }
+
+  // ======================================================================================
+  // All in one: a laptop or a tablet with hotspots
+  // ======================================================================================
+  function drawAio() {
+    const g = mk('g', {transform: tr(G.ox, G.oy)}, S.aioL);
+    S.aioG = g; S.aio = {glow: {}};
+    const glowEl = (id, t, a) => { const e = mk(t, {...a, fill: 'none', stroke: C.glow, 'stroke-width': 14, opacity: state.spot === id ? 1 : 0, 'stroke-linejoin': 'round'}, g); (S.aio.glow[id] = S.aio.glow[id] || []).push(e); };
+    const O = C.ink;
+    if (state.kind === 'laptop') {
+      glowEl('screen', 'rect', {x: 214, y: 120, width: 502, height: 294, rx: 10});
+      mk('rect', {x: 205, y: 100, width: 520, height: 322, rx: 18, fill: '#eef1fa', stroke: O, 'stroke-width': 5}, g);
+      mk('rect', {x: 224, y: 131, width: 482, height: 273, rx: 6, fill: C.dark}, g);
+      S.aio.scr = mk('g', {transform: 'translate(225 132) scale(1.7391)', 'clip-path': 'url(#scrClip)'}, g);
+      screenContent(S.aio.scr, {kind: 'desktop'});
+      glowEl('camera', 'circle', {cx: 465, cy: 116, r: 14});
+      mk('circle', {cx: 465, cy: 116, r: 7, fill: O, stroke: C.brand, 'stroke-width': 3}, g);
+      glowEl('microphone', 'rect', {x: 596, y: 106, width: 38, height: 20, rx: 10});
+      for (const x of [604, 615, 626]) mk('circle', {cx: x, cy: 116, r: 2.8, fill: O}, g);
+      mk('rect', {x: 215, y: 418, width: 500, height: 9, rx: 3, fill: '#c9d1e8', stroke: O, 'stroke-width': 2}, g);
+      mk('path', {d: 'M162 516H768V528Q768 540 756 540H174Q162 540 162 528Z', fill: '#dfe5f5', stroke: O, 'stroke-width': 4}, g);
+      mk('path', {d: 'M196 424H734L768 516H162Z', fill: C.plastic, stroke: O, 'stroke-width': 5, 'stroke-linejoin': 'round'}, g);
+      glowEl('keyboard', 'path', {d: 'M296 430H634L644 482H286Z'});
+      for (let r = 0; r < 3; r++) {
+        const y = 434 + r * 14, n = 11 - (r === 2 ? 1 : 0), x0 = 300 - r * 3, w = (330 + r * 6 - (n - 1) * 3) / n;
+        for (let i = 0; i < n; i++) mk('rect', {x: (x0 + i * (w + 3)).toFixed(1), y, width: w.toFixed(1), height: 11, rx: 2.5, fill: C.key, stroke: O, 'stroke-width': 1.5}, g);
+      }
+      mk('rect', {x: 380, y: 476, width: 170, height: 9, rx: 3, fill: C.key, stroke: O, 'stroke-width': 1.5}, g);
+      glowEl('touchpad', 'rect', {x: 404, y: 486, width: 122, height: 30, rx: 8});
+      mk('rect', {x: 412, y: 490, width: 106, height: 22, rx: 6, fill: C.key, stroke: O, 'stroke-width': 3}, g);
+      for (const [x0, sk] of [[206, 1], [646, -1]]) {
+        glowEl('speakers', 'rect', {x: x0 - 6, y: 432, width: 88, height: 46, rx: 10});
+        for (let r = 0; r < 4; r++) for (let c = 0; c < 7; c++) mk('circle', {cx: x0 + 6 + c * 11 - r * 2 * sk, cy: 440 + r * 10, r: 2.3, fill: '#7c86a8'}, g);
+      }
+      glowEl('brain', 'rect', {x: 400, y: 428, width: 130, height: 34, rx: 8});
+      if (state.xray) xrayWindow(g, 465, 444, 1);
+      S.aio.xr = [465, 444];
+    } else {
+      // a tablet held in two hands: thin rounded bezel, no stand, a camera dot and three tiny microphone holes
+      mk('ellipse', {cx: 465, cy: 528, rx: 300, ry: 16, fill: '#1c234022'}, g);
+      glowEl('touchscreen', 'rect', {x: 206, y: 160, width: 518, height: 300, rx: 12});
+      mk('rect', {x: 185, y: 148, width: 560, height: 322, rx: 40, fill: '#2b3350', stroke: O, 'stroke-width': 5}, g);
+      mk('rect', {x: 191, y: 154, width: 548, height: 310, rx: 35, fill: 'none', stroke: '#4a5373', 'stroke-width': 2}, g);
+      mk('rect', {x: 214, y: 167, width: 502, height: 285, rx: 10, fill: C.dark}, g);
+      S.aio.scr = mk('g', {transform: 'translate(215 168) scale(1.8116)', 'clip-path': 'url(#scrClip)'}, g);
+      screenContent(S.aio.scr, {kind: 'desktop'});
+      if (state.popkb) popKeyboard(S.aio.scr, 1);
+      glowEl('camera', 'circle', {cx: 465, cy: 158, r: 12});
+      mk('circle', {cx: 465, cy: 158, r: 5.5, fill: '#0b0f1e', stroke: C.brand, 'stroke-width': 2.5}, g);
+      glowEl('microphone', 'rect', {x: 622, y: 150, width: 38, height: 16, rx: 8});
+      for (const x of [632, 641, 650]) mk('circle', {cx: x, cy: 158, r: 2.2, fill: '#c9d1e8'}, g);
+      for (const x of [199, 731]) {
+        glowEl('speakers', 'rect', {x: x - 10, y: 250, width: 20, height: 120, rx: 8});
+        for (let i = 0; i < 6; i++) mk('circle', {cx: x, cy: 262 + i * 19, r: 3, fill: '#9aa3c6'}, g);
+      }
+      glowEl('brain', 'rect', {x: 380, y: 270, width: 170, height: 96, rx: 12});
+      glowEl('popkb', 'rect', {x: 214, y: 331, width: 502, height: 123, rx: 8});
+      // hands holding the bottom corners
+      for (const sx of [-1, 1]) {
+        const hg = mk('g', {transform: `translate(${465 + sx * 262} 470) scale(${sx} 1)`}, g);
+        mk('path', {d: 'M-52 62C-58 30 -46 -2 -20 -10L18 -14C30 -14 34 0 24 6L4 12C16 18 18 40 6 62Z', fill: '#f2c29b', stroke: O, 'stroke-width': 4, 'stroke-linejoin': 'round'}, hg);
+        mk('path', {d: 'M-18 -10C-6 -34 22 -40 30 -26C34 -18 26 -12 14 -12', fill: '#f2c29b', stroke: O, 'stroke-width': 4, 'stroke-linecap': 'round', 'stroke-linejoin': 'round'}, hg);
+      }
+      if (state.xray) xrayWindow(g, 465, 318, 1);
+      S.aio.xr = [465, 318];
+    }
+  }
+  function xrayWindow(g, cx, cy, p) {
+    const w = 150, h = 84, xg = mk('g', {transform: `translate(${cx} ${cy}) scale(1 ${Math.max(.02, p).toFixed(3)})`}, g);
+    mk('rect', {x: -w / 2 - 6, y: -h / 2 - 6, width: w + 12, height: h + 12, rx: 14, fill: '#fff', stroke: C.brand, 'stroke-width': 5}, xg);
+    mk('rect', {x: -w / 2, y: -h / 2, width: w, height: h, rx: 9, fill: '#1e8a5a'}, xg);
+    for (let i = 0; i < 6; i++) mk('path', {d: `M${-w / 2 + 8} ${-h / 2 + 10 + i * 13}H${-38}M38 ${-h / 2 + 10 + i * 13}H${w / 2 - 8}`, stroke: '#9be3b8', 'stroke-width': 2}, xg);
+    mk('rect', {x: -30, y: -30, width: 60, height: 60, rx: 6, fill: '#2a2f45', stroke: '#c9ced8', 'stroke-width': 3}, xg);
+    for (let i = 0; i < 5; i++) for (const s of [-1, 1]) { mk('rect', {x: -24 + i * 11, y: s < 0 ? -38 : 30, width: 5, height: 8, fill: '#d9c27a'}, xg); mk('rect', {x: s < 0 ? -38 : 30, y: -24 + i * 11, width: 8, height: 5, fill: '#d9c27a'}, xg); }
+    mk('rect', {x: -18, y: -18, width: 36, height: 36, rx: 4, fill: C.brand}, xg);
+    mk('path', {d: 'M-10 -2l6 -8 4 6 4-6 6 8M-10 6h20', stroke: '#fff', 'stroke-width': 3, fill: 'none', 'stroke-linecap': 'round', 'stroke-linejoin': 'round'}, xg);
+  }
+  function popKeyboard(g, p) {
+    const kg = mk('g', {transform: `translate(0 ${((1 - p) * 70).toFixed(1)})`}, g);
+    mk('rect', {x: 0, y: 92, width: 276, height: 70, fill: '#e6e9f2', stroke: '#b5bdd6', 'stroke-width': 1.5}, kg);
+    for (let r = 0; r < 3; r++) for (let i = 0; i < 10 - r; i++) mk('rect', {x: 8 + r * 8 + i * 26, y: 98 + r * 15, width: 22, height: 12, rx: 2.5, fill: '#fff', stroke: '#9aa3b8', 'stroke-width': 1}, kg);
+    mk('rect', {x: 70, y: 144, width: 136, height: 10, rx: 3, fill: '#fff', stroke: '#9aa3b8', 'stroke-width': 1}, kg);
+  }
+
+  // ======================================================================================
+  // Hit buttons over the stage: placed parts (tab order left to right) and hotspots
+  // ======================================================================================
+  const HIT_ORDER = ['camera', 'microphone', 'speakers', 'screen', 'keyboard', 'mouse', 'box'];
+  const hitBtn = {}, spotBtn = {laptop: {}, tablet: {}};
+  let suppressClick = false;
+  function makeHits() {
+    const hits = $('hits');
+    for (const id of HIT_ORDER) {
+      const units = SLOT[id].length;
+      hitBtn[id] = [];
+      for (let i = 0; i < units; i++) {
+        const b = document.createElement('button');
+        b.className = 'hit'; b.hidden = true;
+        if (i === 0) b.setAttribute('aria-label', NAMES[id] + ' on the desk');
+        else { b.tabIndex = -1; b.setAttribute('aria-hidden', 'true'); }
+        b.addEventListener('pointerdown', e => partDown(e, id, b));
+        b.addEventListener('click', () => { if (suppressClick) { suppressClick = false; return; } deskTap(id); });
+        hits.appendChild(b);
+        hitBtn[id].push(b);
+      }
+    }
+    for (const kind of ['laptop', 'tablet']) for (const sp of SPOTS[kind]) {
+      const b = document.createElement('button');
+      b.className = 'spot'; b.hidden = true; b.setAttribute('aria-pressed', 'false');
+      b.setAttribute('aria-label', {camera: 'Camera', microphone: 'Microphone', screen: 'Screen', speakers: 'Speakers', keyboard: 'Keyboard', touchpad: 'Touchpad',
+        brain: 'The brain inside', touchscreen: 'Touchscreen', popkb: 'Keyboard on the screen'}[sp.id]);
+      b.onclick = () => spotTap(sp.id);
+      hits.appendChild(b);
+      spotBtn[kind][sp.id] = b;
+    }
+  }
+  function placeHits() {
+    const k = G.k, minS = lay.compact ? 48 : 60;
+    const rects = {};
+    for (const id of HIT_ORDER) {
+      const show = state.placed.has(id) && !state.aio && state.morph == null;
+      hitBtn[id].forEach((b, i) => {
+        b.hidden = !show;
+        if (!show) return;
+        const [x, y] = SLOT[id][i], bx = BOX[id];
+        let l = X(x + bx[0]), r = X(x + bx[2]), t = Y(y + bx[1]), bo = Y(y + bx[3]);
+        if (r - l < minS) { const c = (l + r) / 2; l = c - minS / 2; r = c + minS / 2; }
+        if (bo - t < minS) { const c = (t + bo) / 2; t = c - minS / 2; bo = c + minS / 2; }
+        rects[id + i] = {b, l, r, t, bo, row: y > 450 ? 1 : 0};
+      });
+    }
+    // neighbors in the same row share the gap between them, so no button covers another
+    const list = Object.values(rects);
+    for (const a of list) for (const c of list) {
+      if (a === c || a.row !== c.row || a.l >= c.l) continue;
+      if (a.r > c.l && a.t < c.bo && c.t < a.bo) { const m = (a.r + c.l) / 2; a.r = Math.min(a.r, m); c.l = Math.max(c.l, m); }
+    }
+    for (const a of list) Object.assign(a.b.style, {left: a.l + 'px', top: a.t + 'px', width: (a.r - a.l) + 'px', height: (a.bo - a.t) + 'px'});
+    const sz = lay.compact ? 48 : 64;
+    for (const kind of ['laptop', 'tablet']) {
+      // spot centers in pixels; on small screens close spots (the brain above the touchpad) push apart so none covers another
+      const c = SPOTS[kind].map(sp => ({sp, x: X(sp.x), y: Y(sp.y)}));
+      for (let pass = 0; pass < 6; pass++) for (const a of c) for (const o of c) {
+        if (a === o) continue;
+        const dx = o.x - a.x, dy = o.y - a.y;
+        if (Math.max(Math.abs(dx), Math.abs(dy)) >= sz + 10) continue;
+        if (Math.abs(dy) >= Math.abs(dx)) { const m = (sz + 10 - Math.abs(dy)) / 2, s = dy < 0 ? -1 : 1; a.y -= s * m; o.y += s * m; }
+        else { const m = (sz + 10 - Math.abs(dx)) / 2, s = dx < 0 ? -1 : 1; a.x -= s * m; o.x += s * m; }
+      }
+      for (const {sp, x, y} of c) {
+        const b = spotBtn[kind][sp.id], show = state.aio && state.morph == null && state.kind === kind;
+        b.hidden = !show;
+        b.setAttribute('aria-pressed', show && state.spot === sp.id ? 'true' : 'false');
+        if (show) Object.assign(b.style, {left: (x - sz / 2) + 'px', top: (y - sz / 2) + 'px', width: sz + 'px', height: sz + 'px'});
+      }
+    }
+    const off = state.running || (state.mode === 'missing' && state.mis.phase !== 'ask');
+    for (const id of HIT_ORDER) for (const b of hitBtn[id]) b.classList.toggle('off', off);
+  }
+
+  // ======================================================================================
+  // Show helpers
+  // ======================================================================================
+  function glow(id, on) { for (const g of S.glow[id] || []) g.setAttribute('opacity', on ? 1 : 0); }
+  function partPos(id, i = 0) { const [x, y] = SLOT[id][i]; return [X(x), Y(y)]; }
+  function setPartT(id, i, dx, dy, rot = 0) {
+    const g = (S.pg[id] || [])[i]; if (!g) return;
+    const [x, y] = partPos(id, i);
+    g.setAttribute('transform', tr(x + dx, y + dy) + (rot ? ` rotate(${rot.toFixed(2)})` : ''));
+  }
+  function wiggle(id, dur = 700) {
+    return tween(dur, (p, q) => { for (let i = 0; i < SLOT[id].length; i++) setPartT(id, i, 0, 0, Math.sin(q * Math.PI * 6) * 7 * (1 - q)); }, {lin: true});
+  }
+  function star(r) { let d = ''; for (let i = 0; i < 10; i++) { const a = -Math.PI / 2 + i * Math.PI / 5, rr = i % 2 ? r * .45 : r; d += (i ? 'L' : 'M') + (Math.cos(a) * rr).toFixed(1) + ' ' + (Math.sin(a) * rr).toFixed(1); } return d + 'Z'; }
+  function dotEl(dir) {
+    const k = G.k;
+    if (dir === 'in') return mk('circle', {r: Math.max(5, 8 * k).toFixed(1), fill: C.in, stroke: '#fff', 'stroke-width': 2}, S.dotL);
+    return mk('path', {d: star(Math.max(8, 12 * k)), fill: C.out, stroke: '#fff', 'stroke-width': 2, 'stroke-linejoin': 'round'}, S.dotL);
+  }
+  function puffAt(x, y) {
+    const k = G.k, s = Math.max(.6, k), g = mk('g', {transform: `translate(${x.toFixed(1)} ${(y - 18 * s).toFixed(1)})`}, S.fxL);
+    for (const [cx, cy, r] of [[-12, 4, 13], [10, 4, 14], [0, -8, 15]]) mk('circle', {cx: cx * s, cy: cy * s, r: r * s, fill: '#9aa3b8'}, g);
+    const t = mk('text', {y: (6 * s + 5).toFixed(1), 'text-anchor': 'middle', 'font-size': Math.max(14, 22 * s).toFixed(1), 'font-weight': 800, fill: '#fff'}, g);
+    t.textContent = '?';
+    tween(900, p => g.setAttribute('opacity', (1 - Math.max(0, p - .5) * 2).toFixed(2)), {fade: true}).then(() => g.remove());
+  }
+  // cable dots: teal circles flow IN to the box, orange stars flow OUT to the part; with Motion off, a steady arrow
+  function flow(id, dur, dir = DIR[id]) {
+    const paths = S.cab[id] || [];
+    if (!paths.length || dur <= 0) return wait(Math.max(0, dur));
+    const toPlug = !state.placed.has('box') || (state.mode === 'missing' && state.mis.out === 'box'), tok = run;
+    if (toPlug) dir = 'in';
+    const ends = () => { if (toPlug && alive(tok)) for (const p of paths) { const pt = p.getPointAtLength(p.getTotalLength()); puffAt(pt.x, pt.y); } };
+    if (Curio.reduce) {
+      const gs = paths.map(p => {
+        const len = p.getTotalLength(), a = p.getPointAtLength(len * .45), b = p.getPointAtLength(len * .55), m = p.getPointAtLength(len * .5);
+        let ang = Math.atan2(b.y - a.y, b.x - a.x) * 180 / Math.PI; if (dir === 'out') ang += 180;
+        const s = Math.max(.7, G.k), g = mk('g', {transform: `translate(${m.x.toFixed(1)} ${m.y.toFixed(1)}) rotate(${ang.toFixed(1)}) scale(${s.toFixed(3)})`}, S.dotL);
+        mk('path', {d: 'M-22 -7H2V-15L20 0L2 15V7H-22Z', fill: dir === 'in' ? C.in : C.out, stroke: '#fff', 'stroke-width': 2.5, 'stroke-linejoin': 'round'}, g);
+        if (dir === 'in') mk('circle', {cx: -30, r: 7, fill: C.in, stroke: '#fff', 'stroke-width': 2}, g);
+        else mk('path', {d: star(10), transform: 'translate(-31 0)', fill: C.out, stroke: '#fff', 'stroke-width': 2}, g);
+        return g;
+      });
+      return wait(dur).then(() => { gs.forEach(g => g.remove()); ends(); });
+    }
+    const dots = [], travel = 700;
+    let last = -1e9;
+    return every(dur, e => {
+      if (e < dur - travel && e - last > 210) { last = e; for (const p of paths) dots.push({el: dotEl(dir), p, t: e, len: p.getTotalLength()}); }
+      for (let i = dots.length - 1; i >= 0; i--) {
+        const d = dots[i], q = (e - d.t) / travel;
+        if (q >= 1 || e >= dur) { d.el.remove(); dots.splice(i, 1); continue; }
+        const pt = d.p.getPointAtLength((dir === 'in' ? q : 1 - q) * d.len);
+        d.el.setAttribute('transform', `translate(${pt.x.toFixed(1)} ${pt.y.toFixed(1)})`);
+      }
+    }).then(() => { dots.forEach(d => d.el.remove()); ends(); });
+  }
+  // the box blinks: power light, three lights in turn, the gear turns (the gear only with Motion on)
+  function boxBlink(dur) {
+    const r = S.refs.box; if (!r || (state.mode === 'missing' && state.mis.out === 'box')) return wait(dur);
+    return every(dur, e => {
+      const R = S.refs.box; if (!R) return;
+      const on = e < dur, n = Math.floor(e / 220) % 3;
+      R.lights.forEach((c, i) => c.setAttribute('fill', on && i === n ? C.glow : C.off));
+      R.power.setAttribute('fill', on && Math.floor(e / 330) % 2 ? '#b8f5d0' : '#3ddc84');
+      if (!Curio.reduce) R.gear.setAttribute('transform', `rotate(${(e * .25).toFixed(1)})`);
+      if (e >= dur) { R.lights.forEach(c => c.setAttribute('fill', C.off)); R.power.setAttribute('fill', '#3ddc84'); }
+    });
+  }
+  function keyPress(ch) {
+    const key = S.refs.keyboard && S.refs.keyboard.keys[ch]; if (!key) return;
+    click();
+    key.setAttribute('fill', C.glow); key.setAttribute('transform', 'translate(0 2)');
+    const tok = run;
+    setTimeout(() => { if (tok === run && key.isConnected) { key.setAttribute('fill', C.key); key.removeAttribute('transform'); } }, 260);
+  }
+  function setScreen(s) { state.scr = s; if (S.refs.screen) screenContent(S.refs.screen.scr, s); }
+  function cones(dur) {
+    return tween(dur, (p, q) => { const s = 1 + Math.abs(Math.sin(q * Math.PI * dur / 150)) * .14; for (const c of (S.refs.speakers || {}).cones || []) c.setAttribute('transform', `scale(${s.toFixed(3)})`); }, {lin: true})
+      .then(() => { for (const c of (S.refs.speakers || {}).cones || []) c.removeAttribute('transform'); });
+  }
+  const NOTE_D = 'M-3 6V-12l10-3V3';
+  function notes(dur) {
+    const k = Math.max(.6, G.k), made = [];
+    SLOT.speakers.forEach(([x, y], i) => {
+      for (let n = 0; n < 3; n++) {
+        const g = mk('g', {}, S.fxL), s = i ? 1 : -1;
+        mk('path', {d: NOTE_D, stroke: C.brand, 'stroke-width': 3, fill: 'none'}, g);
+        mk('ellipse', {cx: -6, cy: 7, rx: 4.5, ry: 3.6, fill: C.brand}, g); mk('ellipse', {cx: 4, cy: 4, rx: 4.5, ry: 3.6, fill: C.brand}, g);
+        made.push({g, x: X(x) + s * (30 + n * 16) * G.k, y: Y(y - 120) - n * 8 * G.k, d: n * 260, s});
+      }
+    });
+    const place = (g, x, y, o) => { g.setAttribute('transform', `translate(${x.toFixed(1)} ${y.toFixed(1)}) scale(${k.toFixed(3)})`); g.setAttribute('opacity', o.toFixed(2)); };
+    if (Curio.reduce) { made.forEach(m => place(m.g, m.x, m.y, 1)); return wait(dur).then(() => made.forEach(m => m.g.remove())); }
+    return every(dur, e => made.forEach(m => {
+      const q = ((e - m.d) % 900) / 900;
+      if (e < m.d) { m.g.setAttribute('opacity', 0); return; }
+      place(m.g, m.x + m.s * q * 26 * G.k + Math.sin(q * 6) * 4 * G.k, m.y - q * 60 * G.k, 1 - q);
+    })).then(() => made.forEach(m => m.g.remove()));
+  }
+  function micWave(dur) {
+    const [x, y] = SLOT.microphone[0], cx = X(x), cy = Y(y - 92), k = G.k, g = mk('g', {}, S.fxL), arcs = [];
+    for (const s of [-1, 1]) for (let i = 1; i <= 3; i++) {
+      const r = (16 + i * 14) * k;
+      arcs.push({e: mk('path', {d: `M${cx + s * r * .5} ${cy - r * .86}A${r} ${r} 0 0 ${s > 0 ? 1 : 0} ${cx + s * r * .5} ${cy + r * .86}`, fill: 'none', stroke: C.in, 'stroke-width': Math.max(3, 5 * k), 'stroke-linecap': 'round'}, g), i});
+    }
+    if (Curio.reduce) return wait(dur).then(() => g.remove());
+    return every(dur, e => arcs.forEach(a => {
+      const v = Math.sin(e / 140 - a.i * .9);
+      a.e.setAttribute('opacity', (.25 + .75 * Math.max(0, v)).toFixed(2));
+      a.e.setAttribute('transform', `translate(${cx} ${cy}) scale(${(1 + Math.max(0, v) * .12).toFixed(3)}) translate(${-cx} ${-cy})`);
+    })).then(() => g.remove());
+  }
+  function flash() {
+    shutter();
+    const f = $('flash');
+    if (Curio.reduce) { f.style.opacity = .85; return wait(160).then(() => { f.style.opacity = 0; }); }
+    return tween(420, p => { f.style.opacity = (.92 * (1 - p)).toFixed(3); }, {fade: true}).then(() => { f.style.opacity = 0; });
+  }
+  function camLight(on) { const r = S.refs.camera; if (r) r.light.setAttribute('fill', on ? C.glow : C.off); }
+  // a part slides on the desk (the mouse)
+  function slide(id, dur) {
+    return tween(dur, (p, q) => setPartT(id, 0, Math.sin(q * Math.PI * 2) * 22 * G.k, Math.sin(q * Math.PI * 4) * 6 * G.k), {lin: true}).then(() => setPartT(id, 0, 0, 0));
+  }
+  function cableIn(id, dur = 350) {
+    return tween(dur, p => {
+      for (const c of S.cab[id] || []) {
+        c.wrap.setAttribute('opacity', 1);
+        const len = c.getTotalLength();
+        c.setAttribute('stroke-dasharray', len.toFixed(1)); c.setAttribute('stroke-dashoffset', (len * (1 - p)).toFixed(1));
+      }
+    }, {keep: true}).then(() => { for (const c of S.cab[id] || []) { c.wrap.setAttribute('opacity', 1); c.removeAttribute('stroke-dasharray'); c.removeAttribute('stroke-dashoffset'); } });
+  }
+
+  // ======================================================================================
+  // Placing and removing parts
+  // ======================================================================================
+  function tileCenter(id) {
+    const t = tileEls[id], sr = $('stage').getBoundingClientRect();
+    if (!t || !t.offsetParent) return [G.W + 40, G.H * .6];
+    const r = t.getBoundingClientRect();
+    return [r.left + r.width / 2 - sr.left, r.top + r.height / 2 - sr.top];
+  }
+  // a copy of the part flies along an arc (400 ms); the real one waits hidden in its slot
+  function fly(id, from, toShelf) {
+    if (Curio.reduce) return wait(400);
+    const k = G.k, [tx, ty] = tileCenter(id), bx = BOX[id], s0 = k * .32, copies = [];
+    SLOT[id].forEach(([x, y], i) => {
+      const g = mk('g', {}, S.flyL);
+      drawPart(g, id);
+      const slot = [X(x), Y(y)], start = from ? [from[0] + (i ? (SLOT[id][1][0] - SLOT[id][0][0]) * k : 0), from[1]] : slot;
+      const tile = [tx + (i ? 18 : SLOT[id].length > 1 ? -18 : 0), ty - (bx[1] / 2) * s0];
+      copies.push({g, a: toShelf ? start : tile, b: toShelf ? tile : slot, sa: toShelf ? k : s0, sb: toShelf ? s0 : k});
+    });
+    const arc = Math.max(60, G.H * .18);
+    return tween(400, (p, q) => copies.forEach(c => {
+      const x = lerp(c.a[0], c.b[0], p), y = lerp(c.a[1], c.b[1], p) - arc * Math.sin(Math.PI * q);
+      c.g.setAttribute('transform', tr(x, y, lerp(c.sa, c.sb, p)));
+      if (toShelf) c.g.setAttribute('opacity', (1 - Math.max(0, q - .7) / .3).toFixed(2));
+    }), {keep: true, lin: false}).then(() => copies.forEach(c => c.g.remove()));
+  }
+  function deskChanged() {
+    state.dim.clear(); state.pulse = null; state.success = false;
+    if (!state.placed.has('box') || !state.placed.has('screen')) state.scr = {kind: 'off'};
+  }
+  function placePart(id) {
+    const m = state.mode, again = removedAt[id] && now() - removedAt[id] < 3000;
+    state.placed.add(id);
+    deskChanged();
+    if (!Curio.reduce) state.flying.add(id);
+    render(); sync();
+    placeTone();
+    fly(id, null, false).then(() => {
+      if (!state.placed.has(id)) return;
+      const was = state.flying.delete(id);
+      for (const g of S.pg[id] || []) g.style.visibility = '';
+      if (was) cableIn(id);
+      // its little power show: a quick glow
+      for (const g of S.glow[id] || []) g.setAttribute('opacity', 1);
+      setTimeout(() => { if (state.placed.has(id) && !state.running) for (const g of S.glow[id] || []) g.setAttribute('opacity', 0); }, 520);
+    });
+    // a part's name goes stale once a newer part lands or anything starts to run, so quick taps never lag the hint
+    const e = ++state.evt, r = run;
+    if (!again) narrate('name-' + id + '#' + e, L.name[id], {valid: () => state.placed.has(id) && state.mode === m && e === state.evt && r === run});
+    if (m === 'build' && state.placed.size === 7 && !state.built.allSaid) {
+      state.built.allSaid = true;
+      narrate('allbuilt#' + state.evt, L.allBuilt, {valid: () => state.mode === 'build' && state.placed.size === 7});
+      narrate('aiohint#' + state.evt, L.aioHint, {valid: () => state.mode === 'build' && state.placed.size === 7 && !state.aio});
+      const a = $('aio'); a.classList.remove('unlock'); void a.offsetWidth; a.classList.add('unlock');
+    } else howLater();
+  }
+  function removePart(id, from) {
+    if (!state.placed.has(id)) return;
+    removedAt[id] = now();
+    state.placed.delete(id); state.flying.delete(id);
+    if (id === 'keyboard') state.kb = {i: 0, text: '', real: false};
+    deskChanged();
+    whoosh();
+    render(); sync();
+    fly(id, from || partPos(id), true);
+    if (!state.running) howLater();
+  }
+  function tileTap(id) {
+    if (state.running) return;
+    if (state.placed.has(id)) removePart(id); else placePart(id);
+  }
+  function clearDesk() {
+    stopAll();
+    const ids = [...state.placed];
+    if (!ids.length) return;
+    ids.forEach(id => { removedAt[id] = now(); fly(id, partPos(id), true); });
+    state.placed.clear(); state.kb = {i: 0, text: '', real: false};
+    deskChanged();
+    whoosh();
+    render(); sync();
+    howLater();
+  }
+  // drag a part off the desk to put it back on the shelf
+  function partDown(e, id, b) {
+    if (state.mode === 'missing' || state.running || state.aio || e.button > 0) return;
+    const i = hitBtn[id].indexOf(b), sx = e.clientX, sy = e.clientY;
+    let drag = false;
+    try { b.setPointerCapture(e.pointerId); } catch {}
+    const move = ev => {
+      const dx = ev.clientX - sx, dy = ev.clientY - sy;
+      if (!drag && Math.hypot(dx, dy) > 12) { drag = true; newRun(); }
+      if (drag) SLOT[id].forEach((_, j) => setPartT(id, j, dx, dy));
+    };
+    const up = ev => {
+      b.removeEventListener('pointermove', move); b.removeEventListener('pointerup', up); b.removeEventListener('pointercancel', up);
+      if (!drag) return;
+      suppressClick = true; setTimeout(() => { suppressClick = false; }, 0);
+      const dx = ev.clientX - sx, dy = ev.clientY - sy, sr = $('stage').getBoundingClientRect();
+      const [px, py] = partPos(id, i);
+      const outside = ev.clientX < sr.left || ev.clientX > sr.right || ev.clientY < sr.top || ev.clientY > sr.bottom || py + dy < Y(DESK.top) - 40 * G.k || py + dy > Y(DESK.edge) + 30 * G.k;
+      if (outside) removePart(id, [partPos(id, 0)[0] + dx, partPos(id, 0)[1] + dy]);
+      else tween(200, p => SLOT[id].forEach((_, j) => setPartT(id, j, dx * (1 - p), dy * (1 - p))));
+    };
+    b.addEventListener('pointermove', move); b.addEventListener('pointerup', up); b.addEventListener('pointercancel', up);
+  }
+
+  // ======================================================================================
+  // Build: each part's power show
+  // ======================================================================================
+  function deskTap(id) {
+    if (state.aio || state.running) return;
+    if (state.mode === 'missing') return missingTap(id);
+    const p = tryPart(id), r = run;
+    p.then(() => { if (run === r) howLater(); });
+  }
+  async function tryPart(id) {
+    const t = newRun(), ok = () => alive(t);
+    const line = (k, text) => narrate(k + '#' + t, text, {valid: ok});
+    const has = p => state.placed.has(p);
+    if (id !== 'box' && !has('box')) {
+      wiggle(id); flow(id, 1300);
+      await wait(1500); if (!ok()) return;
+      line('nobox', L.noBox);
+      return;
+    }
+    glow(id, true);
+    if (id === 'box') {
+      line('show', L.show.box); hum(); setTimeout(() => ok() && hum(), 700);
+      await boxBlink(2200);
+    } else if (id === 'screen') {
+      line('show', L.show.screen);
+      flow('screen', 1400); boxBlink(1400);
+      await wait(500); if (!ok()) return;
+      setScreen({kind: 'desktop'});
+      await wait(1300);
+    } else if (id === 'keyboard') {
+      const kb = state.kb;
+      if (kb.real || kb.i >= HELLO.length) { kb.i = 0; kb.text = ''; kb.real = false; }
+      if (kb.i === 0) kb.text = '';
+      const ch = HELLO[kb.i++];
+      keyPress(ch); flow('keyboard', 1000); boxBlink(1000);
+      await wait(900); if (!ok()) return;
+      if (!has('screen')) { line('noscr', L.noScreen); if (kb.i >= HELLO.length) kb.i = 0; return glow(id, false); }
+      kb.text += ch;
+      setScreen({kind: 'letters', text: kb.text});
+      line('show', L.show.keyboard);
+      if (kb.i >= HELLO.length) {
+        glow(id, false);
+        await wait(2000); if (!ok()) return;
+        kb.i = 0; kb.text = '';
+        setScreen({kind: 'desktop'});
+        return;
+      }
+      await wait(600);
+    } else if (id === 'mouse') {
+      const n = state.scr.kind === 'paint' ? state.scr.n : 0;
+      slide('mouse', 1700); flow('mouse', 1700); boxBlink(1700);
+      if (!has('screen')) { await wait(1800); if (!ok()) return; line('noscr', L.noScreen); return glow(id, false); }
+      if (n >= 3) { whoosh(); setScreen({kind: 'paint', n: 0, p: 1, arrow: true}); await wait(1700); return ok() && glow(id, false); }
+      line('show', L.show.mouse);
+      await tween(1600, p => setScreen({kind: 'paint', n: n + 1, p, arrow: true}), {lin: true});
+      if (!ok()) return;
+      setScreen({kind: 'paint', n: n + 1, p: 1, arrow: true});
+      await wait(300);
+    } else if (id === 'speakers') {
+      flow('speakers', 1300); boxBlink(1300); cones(1100); notes(1300); tune(t);
+      await wait(1100); if (!ok()) return;
+      line('show', L.show.speakers);
+      await wait(400);
+    } else if (id === 'microphone') {
+      await say('hello#' + t, L.sayHello, {valid: ok}); if (!ok()) return;
+      micWave(2500); flow('microphone', 2500); boxBlink(2500);
+      await wait(2500); if (!ok()) return;
+      if (!has('speakers')) { line('nospk', L.noSpeakers); return glow(id, false); }
+      glow('speakers', true); flow('speakers', 1600); cones(1400);
+      if (has('screen')) setScreen({kind: 'hello'});
+      await say('hc#' + t, L.helloClass, {valid: ok}); if (!ok()) return;
+      glow('speakers', false);
+    } else if (id === 'camera') {
+      await say('smile#' + t, L.smile, {valid: ok}); if (!ok()) return;
+      camLight(true); flash(); flow('camera', 900); boxBlink(900);
+      await wait(800); if (!ok()) return;
+      camLight(false);
+      if (!has('screen')) { line('noscr', L.noScreen); return glow(id, false); }
+      setScreen({kind: 'photo'});
+      await wait(600);
+    }
+    if (ok()) glow(id, false);
+  }
+  // letters typed on the real keyboard show on the screen in Build (up to 10, then it starts again)
+  addEventListener('keydown', e => {
+    if (state.mode !== 'build' || state.aio || e.ctrlKey || e.metaKey || e.altKey || !/^[a-z]$/i.test(e.key)) return;
+    if (!state.placed.has('keyboard') || !state.placed.has('box')) return;
+    const ch = e.key.toUpperCase(), kb = state.kb;
+    keyPress(ch);
+    if (!state.placed.has('screen')) return;
+    if (!kb.real || kb.text.length >= 10) { kb.text = ''; kb.real = true; kb.i = 0; }
+    kb.text += ch;
+    setScreen({kind: 'letters', text: kb.text});
+  });
+
+  // ======================================================================================
+  // All in one
+  // ======================================================================================
+  async function enterAio() {
+    if (state.placed.size < 7) return;
+    stopAll();
+    state.kind = 'laptop'; state.spot = null; state.xray = false; state.popkb = false;
+    const t = run;
+    state.morph = 0; state.aio = true;
+    render(); sync(); relayout(true);
+    narrate('laptop#' + t, L.laptop, {valid: () => alive(t) && state.aio && state.kind === 'laptop'});
+    await morph(true);
+  }
+  async function morph(toAio) {
+    const cx = X(465), cy = Y(380);
+    const set = p => {   // p: 0 = desk, 1 = laptop
+      S.partsWrap.setAttribute('transform', `translate(${cx} ${cy}) scale(${(1 - .7 * p).toFixed(3)}) translate(${-cx} ${-cy})`);
+      S.partsWrap.setAttribute('opacity', (1 - p).toFixed(3));
+      if (S.aioG) { S.aioG.setAttribute('opacity', p.toFixed(3)); S.aioG.setAttribute('transform', `translate(${cx} ${cy}) scale(${(.35 + .65 * p).toFixed(3)}) translate(${-cx} ${-cy}) ` + tr(G.ox, G.oy)); }
+    };
+    set(toAio ? 0 : 1);
+    await tween(600, p => set(toAio ? p : 1 - p));
+    state.morph = null;
+    render();
+  }
+  async function backToDesk() {
+    stopAll();
+    state.morph = 1; state.spot = null; state.xray = false; state.popkb = false;
+    render();
+    state.aio = false;
+    sync(); relayout(true);
+    render();
+    state.morph = 1;
+    render();
+    await morph(false);
+    state.morph = null; render(); sync();
+    howLater();
+  }
+  function setKind(kind) {
+    if (state.kind === kind) return;
+    hush(); newRun();
+    state.kind = kind; state.spot = null; state.xray = false; state.popkb = false;
+    render(); sync();
+    const t = run;
+    narrate(kind + '#' + t, kind === 'laptop' ? L.laptop : L.tablet, {valid: () => alive(t) && state.kind === kind});
+  }
+  async function spotTap(id) {
+    dropQueued();
+    const t = newRun(), ok = () => alive(t);
+    setTimeout(() => ok() && howLater(), 0);
+    if (id !== 'brain') state.xray = false;
+    if (id !== 'popkb') state.popkb = false;
+    state.spot = id;
+    render();
+    const line = L.spot[id];
+    narrate('spot#' + t, line, {valid: ok});
+    const g = S.aioG, k = G.k;
+    if (id === 'brain') {
+      if (!state.xray) { state.xray = true; await tween(450, p => { g.querySelectorAll('.xr').forEach(e => e.remove()); const w = mk('g', {class: 'xr'}, g); xrayWindow(w, S.aio.xr[0], S.aio.xr[1], p); }); if (ok()) render(); }
+      hum();
+    } else if (id === 'popkb') {
+      state.popkb = true; click();
+      await tween(450, p => { screenContent(S.aio.scr, {kind: 'desktop'}); popKeyboard(S.aio.scr, p); });
+      if (ok()) render();
+    } else if (id === 'speakers') { tune(t); }
+    else if (id === 'camera') { flash(); }
+    else if (id === 'keyboard') { [0, 220, 440].forEach(d => setTimeout(() => ok() && click(), d)); }
+    else if (id === 'microphone') {
+      const [cx, cy] = state.kind === 'laptop' ? [615, 116] : [641, 158], wg = mk('g', {}, g);
+      const arcs = [1, 2, 3].map(i => mk('circle', {cx, cy, r: 10 + i * 12, fill: 'none', stroke: C.in, 'stroke-width': 4}, wg));
+      if (!Curio.reduce) await every(1800, e => arcs.forEach((a, i) => a.setAttribute('opacity', (.2 + .8 * Math.max(0, Math.sin(e / 140 - i))).toFixed(2))));
+      else await wait(1800);
+      wg.remove();
+    } else if (id === 'touchpad' || id === 'touchscreen') {
+      // an arrow (touchpad) or a fingertip ripple (touchscreen) moves on the screen
+      const sc = S.aio.scr;
+      await tween(1800, (p, q) => {
+        screenContent(sc, {kind: 'desktop'});
+        const x = 40 + q * 190, y = 110 - Math.sin(q * Math.PI) * 70;
+        if (id === 'touchpad') mk('path', {d: ARROW_D, fill: '#fff', stroke: C.ink, 'stroke-width': 2, transform: `translate(${x.toFixed(1)} ${y.toFixed(1)}) scale(1.3)`}, sc);
+        else { mk('circle', {cx: x, cy: y, r: 10 + (q * 30 % 10), fill: '#ffffff66', stroke: '#fff', 'stroke-width': 2}, sc); mk('circle', {cx: x, cy: y, r: 7, fill: '#fff'}, sc); }
+      }, {lin: true});
+      if (Curio.reduce) await wait(0);
+    }
+    void k;
+  }
+
+  // ======================================================================================
+  // Jobs
+  // ======================================================================================
+  // run a job with the parts in "has": every present part does its bit; returns the first missing part (or null)
+  async function runJob(j, has, t) {
+    const ok = () => alive(t), need = JOBS[j].parts;
+    const first = need.find(p => !has.has(p)) || null;
+    if (!has.has('box')) { await wait(900); return 'box'; }
+    need.forEach(p => has.has(p) && glow(p, true));
+    const scr = has.has('screen');
+    if (scr) setScreen({kind: 'desktop'});
+    const id = JOBS[j].id;
+    if (id === 'cartoon') {
+      const spk = has.has('speakers'), dur = 4000;
+      boxBlink(dur);
+      if (scr) flow('screen', dur);
+      if (spk) { flow('speakers', dur); cones(dur); notes(dur); tune(t); setTimeout(() => ok() && tune(t), 2000); }
+      if (scr) await tween(dur, (p, q) => {
+        const x = 34 + q * 208, y = 112 - Math.abs(Math.sin(q * Math.PI * 4)) * 70;
+        setScreen({kind: 'cartoon', sun: [x, y], mute: !spk});
+      }, {lin: true});
+      else await wait(dur);
+      if (scr && ok()) setScreen({kind: 'cartoon', sun: [138, 46], mute: !spk});
+    } else if (id === 'word') {
+      const kb = has.has('keyboard');
+      if (scr) setScreen({kind: 'letters', text: ''});
+      if (kb) {
+        boxBlink(2600);
+        for (let i = 0; i < 5; i++) {
+          keyPress(HELLO[i]); flow('keyboard', 450);
+          if (scr) setScreen({kind: 'letters', text: HELLO.slice(0, i + 1)});
+          await wait(500); if (!ok()) return first;
+        }
+      } else await wait(1200);
+      await wait(900);
+    } else if (id === 'paint') {
+      const ms = has.has('mouse');
+      if (scr) setScreen({kind: 'jobpaint', p1: 0, p2: 0, arrow: ms});
+      if (ms) {
+        slide('mouse', 3200); flow('mouse', 3200); boxBlink(3200);
+        await tween(1900, p => { if (scr) setScreen({kind: 'jobpaint', p1: p, p2: 0, arrow: true}); }, {lin: true}); if (!ok()) return first;
+        await tween(1300, p => { if (scr) setScreen({kind: 'jobpaint', p1: 1, p2: Math.max(.01, p), arrow: true}); }, {lin: true}); if (!ok()) return first;
+        if (scr) setScreen({kind: 'jobpaint', p1: 1, p2: 1, arrow: false});
+      } else await wait(1500);
+      await wait(400);
+    } else if (id === 'hello') {
+      if (has.has('microphone')) {
+        await say('hello#' + t, L.sayHello, {valid: ok}); if (!ok()) return first;
+        micWave(2500); flow('microphone', 2500); boxBlink(2500);
+        await wait(2500); if (!ok()) return first;
+        if (has.has('speakers')) {
+          flow('speakers', 1600); cones(1400);
+          await say('hc#' + t, L.helloClass, {valid: ok});
+        }
+      } else await wait(1500);
+    } else if (id === 'photo') {
+      if (has.has('camera')) {
+        await say('smile#' + t, L.smile, {valid: ok}); if (!ok()) return first;
+        camLight(true); flash(); flow('camera', 900); boxBlink(900);
+        await wait(800); if (!ok()) return first;
+        camLight(false);
+        if (scr) setScreen({kind: 'photo'});
+        await wait(1200);
+      } else await wait(1500);
+    } else if (id === 'chat') {
+      const dur = 4600;
+      boxBlink(dur);
+      if (scr) flow('screen', dur);
+      if (has.has('speakers')) { flow('speakers', dur); cones(dur); [400, 1900, 3400].forEach(d => setTimeout(() => ok() && squeak(), d)); }
+      if (has.has('camera')) { camLight(true); flow('camera', dur); }
+      if (has.has('microphone')) { micWave(dur); flow('microphone', dur); }
+      if (scr) await tween(dur, (p, q) => setScreen({kind: 'panda', wave: Math.sin(q * Math.PI * 8)}), {lin: true});
+      else await wait(dur);
+      if (ok()) { camLight(false); if (scr) setScreen({kind: 'panda', wave: 0}); }
+    }
+    if (ok()) need.forEach(p => glow(p, false));
+    return first;
+  }
+  async function pickJob(i) {
+    stopAll();
+    const ids = [...state.placed];
+    ids.forEach(id => { removedAt[id] = 0; fly(id, partPos(id), true); });
+    if (ids.length) whoosh();
+    state.placed.clear(); state.kb = {i: 0, text: '', real: false};
+    deskChanged();
+    state.job = i;
+    const bn = $('banner');
+    $('bannerIco').setAttribute('href', '#' + JOBS[i].icon); $('bannerW').textContent = JOBS[i].label;
+    bn.hidden = false; bn.classList.remove('pop'); void bn.offsetWidth; bn.classList.add('pop');
+    sync(); relayout(true);
+    const t = run;
+    narrate('job#' + t, L.job[i], {valid: () => alive(t) && state.job === i && state.mode === 'jobs'});
+    howLater();
+  }
+  async function tryIt() {
+    if (state.job == null || state.running) return;
+    const t = newRun(), ok = () => alive(t) && state.mode === 'jobs';
+    if (!state.placed.size) { narrate('empty#' + t, L.empty, {valid: ok}); howLater(); return; }
+    const j = state.job, has = new Set(state.placed);
+    state.running = true; state.dim.clear(); state.pulse = null; state.success = false;
+    render(); sync();
+    const miss = await runJob(j, has, t);
+    if (!ok()) return;
+    state.running = false;
+    if (miss) {
+      state.pulse = miss; render(); sync();
+      setTimeout(() => { if (alive(t) && state.pulse === miss) { state.pulse = null; render(); } }, 2500);
+      narrate('sym#' + t, L.sym[miss], {valid: ok});
+      howLater();
+      return;
+    }
+    const extras = [...state.placed].filter(p => !JOBS[j].parts.includes(p));
+    state.dim = new Set(extras); state.success = true; state.jobsDone.add(j);
+    render(); sync();
+    JOBS[j].parts.forEach(p => glow(p, true));
+    Curio.yes();
+    await say('ok#' + t, L.ok[j], {valid: ok});
+    if (!ok()) return;
+    if (extras.length) await say('rest#' + t, L.rest, {valid: ok});
+    if (!ok()) return;
+    JOBS[j].parts.forEach(p => glow(p, false));
+    if (state.jobsDone.size === 6 && !state.jobsVisit.sixSaid) { state.jobsVisit.sixSaid = true; Curio.yes(); narrate('six#' + t, L.six, {valid: () => state.mode === 'jobs'}); }
+    howLater();
+  }
+  function nextJob() {
+    const n = JOBS.length;
+    let i = (state.job + 1) % n;
+    for (let s = 0; s < n; s++) { const c = (state.job + 1 + s) % n; if (!state.jobsDone.has(c)) { i = c; break; } }
+    const kb = [$('nextJob'), document.body].includes(document.activeElement);
+    pickJob(i);
+    // Next job hides itself: keyboard focus moves to the new job's card (Try it waits for parts)
+    if (kb && (document.activeElement === document.body || $('nextJob').hidden)) jobEls[i].focus();
+  }
+
+  // ======================================================================================
+  // Missing: Nibbles unplugs a part; the class finds it from what the computer can't do
+  // ======================================================================================
+  function nibbles(plug, x, y, s, o = 1) {
+    S.nibL.innerHTML = '';
+    const g = mk('g', {transform: tr(x, y, s), opacity: o}, S.nibL);
+    drawNibbles(g, plug);
+    return g;
+  }
+  function blanket(p) {   // p: 0 = up and away, 1 = over the desk
+    S.blanketL.innerHTML = '';
+    if (p <= 0) return;
+    const top = Y(130), h = G.H - top, k = G.k;
+    const drop = Curio.reduce ? 0 : (1 - p) * -(h + top);
+    const g = mk('g', {transform: `translate(0 ${drop.toFixed(1)})`, opacity: Curio.reduce ? p.toFixed(3) : 1}, S.blanketL);
+    let d = `M0 ${top + 14 * k}`;
+    for (let x = 0; x <= G.W + 40; x += 40) d += `Q${x + 20} ${top - 8 * k} ${x + 40} ${top + 14 * k}`;
+    d += `V${G.H}H0Z`;
+    mk('path', {d, fill: 'url(#gBlanket)', stroke: '#141a46', 'stroke-width': 3}, g);
+    let seed = 7;
+    const rnd = () => (seed = (seed * 9301 + 49297) % 233280) / 233280;
+    const n = Math.round(G.W * h / 9000);
+    for (let i = 0; i < n; i++) mk('path', {d: star(Math.max(4, (5 + rnd() * 6) * k)), fill: rnd() > .3 ? '#ffd23f' : '#fff', transform: `translate(${(rnd() * G.W).toFixed(1)} ${(top + 24 * k + rnd() * (h - 30 * k)).toFixed(1)})`}, g);
+  }
+  async function startRound() {
+    const m = state.mis;
+    if (!['idle', 'solved'].includes(m.phase)) return;
+    if (m.finished) { m.done.clear(); m.round = 0; m.finished = false; }
+    else if (m.phase === 'solved') m.round = Math.min(6, m.round + 1);
+    stopAll();
+    const t = run, ok = () => alive(t) && state.mode === 'missing';
+    const [j, part] = ROUNDS[m.round];
+    m.phase = 'hiding'; m.out = null;
+    state.scr = {kind: 'off'};
+    render(); sync();
+    const dropT = tween(500, p => blanket(p), {fade: true});
+    await Promise.all([say('close#' + t, L.close, {valid: ok}), dropT]); if (!ok()) return;
+    // Nibbles scurries along behind the desk, giggling
+    const s = Math.max(G.k * .85, .9), y = Y(140);
+    squeak();
+    if (Curio.reduce) { nibbles(false, G.W / 2, y, s); await wait(2000); }
+    else await tween(2000, (p, q) => nibbles(false, lerp(-60, G.W + 60, q), y - Math.abs(Math.sin(q * Math.PI * 7)) * 12 * G.k, s), {lin: true});
+    if (!ok()) return;
+    setTimeout(() => ok() && squeak(), 0);
+    S.nibL.innerHTML = '';
+    m.out = part;
+    render();
+    blanket(1);
+    const liftT = tween(500, p => blanket(1 - p), {fade: true});
+    await Promise.all([say('open#' + t, L.open, {valid: ok}), liftT]); if (!ok()) return;
+    blanket(0);
+    m.phase = 'trying'; sync();
+    const has = new Set(state.placed); has.delete(part);
+    const miss = await runJob(j, has, t); if (!ok()) return;
+    m.phase = 'ask'; render(); sync();
+    narrate('sym#' + t, L.sym[miss || part], {valid: () => ok() && m.phase === 'ask'});
+    narrate('which#' + t, L.which, {valid: () => ok() && m.phase === 'ask'});
+  }
+  async function missingTap(id) {
+    const m = state.mis;
+    if (m.phase !== 'ask') return;
+    if (id === m.out) return found(id);
+    // the wrong part: it works
+    const t = newRun(), ok = () => alive(t) && m.phase === 'ask';
+    if (m.out === 'box') {   // the brain is unplugged: nothing powers on, the dots stop at the box
+      wiggle(id); flow(id, 1300);
+      await wait(1500); if (!ok()) return;
+      narrate('nobrain#' + t, L.noBrain, {valid: ok});
+      return;
+    }
+    glow(id, true);
+    if (id === 'box') { hum(); await boxBlink(1600); }
+    else {
+      const d = id === 'microphone' ? 1800 : 1400;
+      flow(id, d); boxBlink(d);
+      if (id === 'screen') setScreen({kind: 'desktop'});
+      if (id === 'keyboard') { keyPress('H'); setTimeout(() => ok() && keyPress('I'), 400); }
+      if (id === 'mouse') slide('mouse', d);
+      if (id === 'speakers') { cones(1100); notes(1300); tune(t); }
+      if (id === 'microphone') micWave(d);
+      if (id === 'camera') { camLight(true); flash(); }
+      await wait(d);
+    }
+    if (!ok()) return;
+    glow(id, false); camLight(false);
+    narrate('works#' + t, L.works[id], {valid: ok});
+  }
+  async function found(id) {
+    const m = state.mis;
+    m.phase = 'found';
+    dropQueued();
+    const t = newRun(), ok = () => alive(t) && state.mode === 'missing';
+    sync();
+    const [sx, sy] = SLOT[id][0], nx = X(Math.min(900, sx + (id === 'box' ? -96 : 74))), ny = Y(Math.max(470, Math.min(sy, 560))), s = Math.max(G.k * .9, .95);
+    if (Curio.reduce) nibbles(true, nx, ny, s);
+    else await tween(450, p => nibbles(true, nx, ny + (1 - p) * 40 * G.k, s * (.2 + .8 * p)));
+    squeak();
+    await wait(900); if (!ok()) return;
+    // plug it back: the plug slides from Nibbles' paws into its socket while the cable draws in behind it
+    m.out = null; render(); nibbles(true, nx, ny, s);
+    const cabs = S.cab[id] || [];
+    let end;
+    if (id === 'box' || !cabs.length) end = [X(SLOT.box[0][0] + 58), Y(SLOT.box[0][1] - 90)];
+    else { const q = cabs[0].getPointAtLength(cabs[0].getTotalLength()); end = [q.x, q.y]; }
+    cabs.forEach(c => c.wrap.setAttribute('opacity', 0));
+    const from = [nx + 2 * s, ny - 44 * s], ps = Math.max(.8, G.k), plug = mk('g', {}, S.fxL);
+    mk('rect', {x: -16, y: -9, width: 22, height: 18, rx: 4, fill: '#2a3152', stroke: C.ink, 'stroke-width': 2}, plug);
+    mk('path', {d: 'M6 -4h10M6 4h10', stroke: '#c9ced8', 'stroke-width': 4, 'stroke-linecap': 'round'}, plug);
+    const at = (x, y) => plug.setAttribute('transform', `translate(${x.toFixed(1)} ${y.toFixed(1)}) scale(${ps.toFixed(3)})`);
+    if (Curio.reduce) {
+      // Motion off: the plug is shown in its socket with a still arrow from Nibbles' paws
+      cabs.forEach(c => c.wrap.setAttribute('opacity', 1));
+      at(end[0] - 18 * ps, end[1]);
+      const ang = Math.atan2(end[1] - from[1], end[0] - from[0]), len = Math.hypot(end[0] - from[0], end[1] - from[1]) - 40 * ps;
+      const ag = mk('g', {transform: `translate(${from[0].toFixed(1)} ${from[1].toFixed(1)}) rotate(${(ang * 180 / Math.PI).toFixed(1)})`}, S.fxL);
+      mk('path', {d: `M0 0H${Math.max(10, len - 14).toFixed(1)}`, stroke: C.brand, 'stroke-width': 6, 'stroke-linecap': 'round', 'stroke-dasharray': '2 12'}, ag);
+      mk('path', {d: `M${(len - 18).toFixed(1)} -11L${len.toFixed(1)} 0L${(len - 18).toFixed(1)} 11Z`, fill: C.brand}, ag);
+      await wait(800); ag.remove();
+    } else {
+      if (id !== 'box') cableIn(id, 800);
+      await tween(800, (p, q) => at(lerp(from[0], end[0] - 18 * ps, p), lerp(from[1], end[1], p) - Math.sin(Math.PI * q) * 40 * G.k), {lin: false});
+    }
+    if (!ok()) return;
+    cabs.forEach(c => c.wrap.setAttribute('opacity', 1));
+    click(); setTimeout(() => plug.remove(), 250);
+    if (id === 'box') { hum(); await boxBlink(700); } else { boxBlink(700); await flow(id, 700); }
+    if (!ok()) return;
+    if (Curio.reduce) S.nibL.innerHTML = '';
+    else await tween(350, p => nibbles(true, nx, ny + p * 40 * G.k, s * (1 - .8 * p), 1 - p));
+    S.nibL.innerHTML = '';
+    Curio.yes();
+    await say('found#' + t, L.found, {valid: ok}); if (!ok()) return;
+    const j = ROUNDS[m.round][0];
+    await runJob(j, new Set(state.placed), t); if (!ok()) return;
+    JOBS[j].parts.forEach(p => glow(p, true));
+    await say('ok#' + t, L.ok[j], {valid: ok}); if (!ok()) return;
+    JOBS[j].parts.forEach(p => glow(p, false));
+    m.done.add(m.round); m.phase = 'solved';
+    if (m.round >= 6) { m.finished = true; Curio.yes(); narrate('fixed#' + t, L.allFixed, {valid: ok}); }
+    sync();
+    howLater();
+  }
+
+  // ======================================================================================
+  // The panel: shelf tiles, job cards, round marker
+  // ======================================================================================
+  const tileEls = {}, jobEls = [];
+  function partIcon(id) {
+    const vb = {box: '-64 -246 128 254', screen: '-158 -236 316 244', keyboard: '-156 -112 312 116', mouse: '-44 -82 88 88', speakers: '-84 -138 168 144',
+      microphone: '-44 -126 88 132', camera: '-46 -120 92 126'}[id];
+    const s = mk('svg', {class: 'pic', viewBox: vb, 'aria-hidden': 'true'});
+    if (id === 'speakers') { drawPart(mk('g', {transform: 'translate(-42 0)'}, s), id); drawPart(mk('g', {transform: 'translate(42 0)'}, s), id); }
+    else drawPart(mk('g', {}, s), id, {});
+    return s;
+  }
+  function buildPanel() {
+    const shelf = $('shelf');
+    for (const id of ORDER) {
+      const b = document.createElement('button');
+      b.className = 'tile'; b.setAttribute('aria-pressed', 'false'); b.setAttribute('aria-label', NAMES[id]);
+      b.appendChild(partIcon(id));
+      const w = document.createElement('span'); w.className = 'w'; w.textContent = NAMES[id]; w.setAttribute('aria-hidden', 'true'); b.appendChild(w);
+      const on = document.createElement('span'); on.className = 'on'; on.textContent = 'on desk'; on.setAttribute('aria-hidden', 'true'); b.appendChild(on);
+      const c = document.createElement('span'); c.className = 'chk'; c.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg>'; b.appendChild(c);
+      b.onclick = () => tileTap(id);
+      shelf.appendChild(b); tileEls[id] = b;
+    }
+    const jobs = $('jobs');
+    JOBS.forEach((j, i) => {
+      const b = document.createElement('button');
+      b.className = 'job'; b.setAttribute('aria-pressed', 'false'); b.setAttribute('aria-label', j.label);
+      b.innerHTML = `<svg class="pic" viewBox="0 0 64 48" aria-hidden="true"><use href="#${j.icon}"/></svg><span class="chk"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg></span>`;
+      b.onclick = () => pickJob(i);
+      jobs.appendChild(b); jobEls.push(b);
+    });
+    const pl = $('plugs');
+    for (let i = 0; i < 7; i++) pl.insertAdjacentHTML('beforeend', '<svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-plug"/></svg>');
+  }
+  function sync() {
+    const m = state.mode, aio = state.aio;
+    $('shelf').hidden = !((m === 'build' && !aio) || m === 'jobs');
+    $('buildRow').hidden = !(m === 'build' && !aio);
+    $('aioRow').hidden = !(m === 'build' && aio);
+    $('jobs').hidden = $('jobRow').hidden = m !== 'jobs';
+    $('misRow').hidden = m !== 'missing';
+    $('banner').hidden = !(m === 'jobs' && state.job != null);
+    for (const id of ORDER) {
+      const b = tileEls[id], on = state.placed.has(id);
+      b.setAttribute('aria-pressed', on); b.disabled = state.running;
+      b.setAttribute('aria-label', NAMES[id] + (on ? ', on the desk' : ''));
+    }
+    const a = $('aio'); a.disabled = state.placed.size < 7;
+    a.setAttribute('aria-label', 'All in one' + (a.disabled ? ', locked until all seven parts are on the desk' : ''));
+    $('try').disabled = state.job == null || state.running;
+    $('nextJob').hidden = !state.success;
+    jobEls.forEach((b, i) => {
+      b.setAttribute('aria-pressed', state.job === i); b.classList.toggle('done', state.jobsDone.has(i));
+      b.setAttribute('aria-label', JOBS[i].label + (state.jobsDone.has(i) ? ', done' : ''));
+    });
+    $('k-laptop').setAttribute('aria-pressed', state.kind === 'laptop'); $('k-tablet').setAttribute('aria-pressed', state.kind === 'tablet');
+    const mi = state.mis, solved = mi.phase === 'solved';
+    const label = solved && !mi.finished ? 'Next round' : 'Start';
+    $('startW').textContent = label; $('startIco').setAttribute('href', label === 'Start' ? '#i-play' : '#i-next');
+    $('start').disabled = !['idle', 'solved'].includes(mi.phase);
+    const curR = mi.finished ? -1 : solved ? Math.min(6, mi.round + 1) : mi.round;
+    [...$('plugs').children].forEach((s, i) => { s.classList.toggle('done', mi.done.has(i)); s.classList.toggle('cur', i === curR && !mi.done.has(i)); });
+    $('plugs').setAttribute('aria-label', `${mi.done.size} of 7 rounds fixed`);
+    if (S.ghostL) placeHits();
+    rescueFocus();
+  }
+  // a focused control that gets hidden or disabled hands focus to the next sensible live control, never to the page
+  let rescued = null;   // Try it, while its job runs
+  function rescueFocus() {
+    const a = document.activeElement, gone = el => !el || el.disabled || el.hidden || el.offsetParent === null, live = el => !gone(el);
+    const first = sel => [...document.querySelectorAll(sel)].find(live);
+    // a job run is over: Try it gets focus back from the job card (Next job when the job worked), once it is live again
+    if (rescued && !state.running) {
+      if (state.mode === 'jobs' && a === jobEls[state.job]) {
+        const r = state.success && live($('nextJob')) ? $('nextJob') : rescued;
+        if (live(r)) { rescued = null; r.focus(); return; }
+      } else rescued = null;
+    }
+    if (!a || a === document.body || !gone(a) || !a.closest || !a.closest('main')) return;
+    let t = null;
+    if (a.id === 'aio') t = $('k-' + state.kind);
+    else if (a.id === 'back') t = $('aio');
+    else if (a.id === 'try') { t = jobEls[state.job]; rescued = a; }
+    else if (a.classList.contains('tile') || a.classList.contains('job')) t = jobEls[state.job];
+    else if (a.id === 'nextJob') t = $('try');
+    else if (a.id === 'start') t = first('#hits .hit');
+    else if (a.classList.contains('spot')) t = first('#hits .spot');
+    else if (a.classList.contains('hit')) t = first('#shelf .tile') || first('#hits .hit');
+    if (!live(t)) t = first('#panel button') || first('#hits button') || $('m-' + state.mode);
+    if (live(t)) t.focus();
+  }
+
+  // ======================================================================================
+  // Modes and layout
+  // ======================================================================================
+  function setMode(m) {
+    stopAll();
+    state.mode = m; state.aio = false; state.morph = null; state.spot = null; state.xray = false; state.popkb = false;
+    state.success = false; state.dim.clear(); state.pulse = null;
+    for (const k of ['build', 'jobs', 'missing']) $('m-' + k).setAttribute('aria-pressed', k === m);
+    if (m === 'build') state.built.allSaid = false;
+    if (m === 'jobs') { state.placed.clear(); state.job = null; state.jobsVisit.sixSaid = false; }
+    if (m === 'missing') {
+      ORDER.forEach(p => state.placed.add(p));
+      const mi = state.mis; mi.out = null;
+      if (mi.phase !== 'solved') mi.phase = 'idle';
+      state.scr = {kind: 'off'};
+    }
+    state.kb = {i: 0, text: '', real: false};
+    document.body.dataset.mode = m;
+    setHint(L.w[m]);
+    sync(); relayout(true);
+    if (tapped) { if (said.has('w-' + m)) howLater(); else welcome(); }
+  }
+  for (const k of ['build', 'jobs', 'missing']) $('m-' + k).onclick = () => { if (state.mode !== k || state.aio) setMode(k); };
+
+  const lay = {};
+  let lastKey = '', capH = 0;
+  const CAPS = () => [...Object.values(L.w), L.aioHint, L.noBox, L.noScreen, L.noSpeakers, L.spot.touchscreen, L.ok[5], L.ok[0], L.sym.mouse, L.job[5], L.allFixed, ...Object.values(L.how)];
+  function captionHeight() {
+    const h = $('hint'), keep = h.textContent;
+    let mx = 0;
+    for (const t of CAPS()) { h.textContent = t; mx = Math.max(mx, h.offsetHeight); }
+    h.textContent = keep;
+    return mx;
+  }
+  function fitPanel() {
+    const P = $('panel'), stack = lay.stack;
+    const cands = stack ? [{sc: 4, th: 76, cc: 3, ch: 68}, {sc: 4, th: 68, cc: 3, ch: 62}, {sc: 4, th: 62, cc: 3, ch: 60}]
+      : [{sc: 2, th: 112, cc: 2, ch: 92}, {sc: 3, th: 100, cc: 3, ch: 84}, {sc: 3, th: 86, cc: 3, ch: 74}, {sc: 3, th: 72, cc: 3, ch: 64},
+        {sc: 4, th: 64, cc: 3, ch: 60}, {sc: 4, th: 56, cc: 3, ch: 54}, {sc: 4, th: 50, cc: 3, ch: 48}, {sc: 4, th: 44, cc: 3, ch: 44}];
+    for (const c of cands) {
+      P.style.setProperty('--sc', c.sc); P.style.setProperty('--th', c.th + 'px'); P.style.setProperty('--cc', c.cc); P.style.setProperty('--ch', c.ch + 'px');
+      const tw = tileEls.box.offsetWidth || 100;
+      document.body.classList.toggle('nonames', c.th < 64 || tw < 76);
+      P.style.setProperty('--tf', clamp(tw / 7.4, 11.5, 16).toFixed(1) + 'px');
+      if (stack) { if ($('hdr').offsetHeight + P.offsetHeight + (innerHeight < 740 ? 178 : 240) <= innerHeight) break; continue; }
+      if (P.scrollHeight <= P.clientHeight + 1) break;
+    }
+  }
+  function relayout(force) {
+    const w = innerWidth, h = innerHeight, ratio = w / h, b = document.body;
+    const side = (w >= 760 && ratio >= 1.1) || (w >= 600 && ratio >= 1.25);
+    const compact = side && h < 700 && !(w >= 1100 && h >= 560), short = side && !compact && h < 900;
+    Object.assign(lay, {side, stack: !side, compact, short});
+    b.classList.toggle('side', side); b.classList.toggle('stack', !side); b.classList.toggle('compact', compact); b.classList.toggle('short', short);
+    const pw = !side ? 0 : compact ? clamp(Math.round(w * .34), 236, 330) : short ? 340 : (w >= 1500 ? 400 : 360);
+    $('main').style.setProperty('--pw', pw + 'px');
+    // the hint: in the panel on roomy screens, a caption on the stage in the preview and on phones
+    const hint = $('hint'), panel = $('panel');
+    if (side && !compact) { if (hint.parentNode !== panel) panel.insertBefore(hint, panel.firstChild); }
+    else if (hint.parentNode !== $('stage')) $('stage').appendChild(hint);
+    const st = $('stage');
+    st.style.height = '';
+    fitPanel();
+    if (!side) {
+      const hdr = $('hdr').offsetHeight, need = panel.offsetHeight;
+      const smin = h < 740 ? 178 : 240;
+      st.style.height = Math.round(clamp(h - hdr - need, smin, Math.max(smin, w * .82))) + 'px';
+    }
+    const r = st.getBoundingClientRect(), W = Math.max(240, Math.round(r.width)), H = Math.max(180, Math.round(r.height));
+    capH = side && !compact ? 0 : captionHeight();
+    // the job banner: across the top on roomy screens, a small picture badge under the caption otherwise
+    const bn = $('banner'), mini = !side || compact;
+    bn.classList.toggle('mini', mini);
+    const bh = mini ? 40 : clamp(Math.round(H * .075), 40, 64);
+    bn.style.setProperty('--bh', bh + 'px'); bn.style.setProperty('--bf', Math.round(clamp(bh * .44, 16, 28)) + 'px');
+    bn.style.setProperty('--bt', (capH ? capH + 10 : 10) + 'px');
+    const jobsTop = state.mode === 'jobs' && state.job != null && !mini ? bh + 26 : 0;
+    const top = capH + 6 + jobsTop, dTop = state.aio ? 92 : 150;
+    // the laptop and tablet get their own, larger scale: they only need the middle of the desk
+    const k = state.aio ? Math.min(W / 660, (H - top - 10) / 460) : Math.min(W / 940, H / 640, (H - top) / (640 - dTop));
+    const key = [W, H, k.toFixed(4), state.mode, state.aio].join('x');
+    if (key === lastKey && !force) return;
+    lastKey = key;
+    Object.assign(G, {W, H, k, ox: state.aio ? W / 2 - 465 * k : (W - 930 * k) / 2, oy: state.aio ? H - 10 - 550 * k : H - 640 * k});
+    buildStatic();
+  }
+  buildPanel();
+  makeHits();
+  new ResizeObserver(() => relayout()).observe($('stage'));
+  addEventListener('resize', () => relayout());
+
+  // ======================================================================================
+  // Wiring
+  // ======================================================================================
+  $('try').onclick = tryIt;
+  $('nextJob').onclick = nextJob;
+  $('start').onclick = startRound;
+  $('clear').onclick = clearDesk;
+  $('aio').onclick = enterAio;
+  $('back').onclick = backToDesk;
+  $('k-laptop').onclick = () => setKind('laptop');
+  $('k-tablet').onclick = () => setKind('tablet');
+  Curio.onSound(on => { if (!on) hush(); else if (tapped) welcome(); });
+  Curio.onMotion(() => { relayout(true); });
+  Curio.init({clips: "voice:*", rate: .95, readFallback: () => $('hint').textContent});
+  $('read').onclick = readNow;
+
+  // preview.svg for the site card: the desk at 640 x 400 with a few parts placed and the keyboard's cable lit
+  function previewSVG() {
+    const keepG = {...G}, keepPlaced = [...state.placed], keepScr = state.scr, keepAio = state.aio;
+    noArt = true; state.aio = false; state.morph = null;
+    state.placed.clear(); ['box', 'screen', 'keyboard', 'mouse', 'speakers'].forEach(p => state.placed.add(p));
+    const W = 640, H = 400, k = Math.min(W / 940, H / 610);
+    Object.assign(G, {W, H, k, ox: (W - 930 * k) / 2, oy: H - 610 * k});
+    buildStatic();
+    setScreen({kind: 'letters', text: 'HI'});
+    glow('keyboard', true);
+    const c = S.cab.keyboard[0], len = c.getTotalLength();
+    for (const q of [.22, .5, .78]) { const pt = c.getPointAtLength(len * q), d = dotEl('in'); d.setAttribute('transform', `translate(${pt.x.toFixed(1)} ${pt.y.toFixed(1)})`); }
+    // the ghost outlines are styled by CSS: write the style onto them so the file stands alone
+    S.ghostL.querySelectorAll('.ghost').forEach(g => Object.entries({fill: '#ffffff55', stroke: C.ghost, 'stroke-dasharray': '9 7', 'stroke-width': 3.2}).forEach(([n, v]) => g.setAttribute(n, v)));
+    const out = sv.outerHTML.replace('<svg id="sv" aria-hidden="true"', '<svg xmlns="http://www.w3.org/2000/svg" font-family="Trebuchet MS, Segoe UI, sans-serif"');
+    noArt = false; state.aio = keepAio; state.placed.clear(); keepPlaced.forEach(p => state.placed.add(p)); state.scr = keepScr;
+    Object.assign(G, keepG); buildStatic();
+    return out;
+  }
+  window.__tool = {previewSVG, state, setMode, allLines, vlog, L, JOBS, ROUNDS, G, lay, relayout, tryPart, placePart, removePart, pickJob, tryIt, startRound,
+    enterAio, backToDesk, setKind, spotTap, missingTap, hush, get tapped() { return tapped; }, get vq() { return vq.map(q => q.text); }};
+  setMode('build');
+})();
+</script>
+</body>
+</html>
