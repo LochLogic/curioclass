@@ -13,7 +13,7 @@ A vendor says its pothole-spotting AI is 98 percent accurate; you are the city's
 ## Who and how
 - Grades 9 to 12, computer science. Module: Building and Evaluating AI (Algorithms and Programming). Topic line: "testing AI models for accuracy and bias".
 - Driver: students on laptops, alone or in pairs. 30 to 45 minutes (one class period).
-- Standards: HS-ALG-ML-06, HS-ALG-ML-07, HS-ALG-ML-08, HS-ALG-PS-05 (module codes). CSTA 2017 crosswalk: 3B-AP-08 (describe how AI drives software systems), 3A-IC-25 (test and refine computational artifacts to reduce bias and equity deficits), 3B-DA-07 (evaluate the ability of models to support claims), 3A-IC-24 (evaluate how computing impacts social and economic practices). References: Mitchell et al., "Model Cards for Model Reporting" (disaggregated evaluation); Google Machine Learning Crash Course (precision, recall, thresholds).
+- Standards: HS-ALG-ML-06, HS-ALG-ML-07, HS-ALG-ML-08, HS-ALG-PS-05, HS-SOC-HU-43, HS-ALG-IM-11 (module codes). CSTA 2017 crosswalk: 3B-AP-08 (describe how AI drives software systems), 3A-IC-25 (test and refine computational artifacts to reduce bias and equity deficits), 3B-DA-07 (evaluate the ability of models to support claims), 3A-IC-24 (evaluate how computing impacts social and economic practices). References: Mitchell et al., "Model Cards for Model Reporting" (disaggregated evaluation); Google Machine Learning Crash Course (precision, recall, thresholds).
 - tool.json: driver "students", minutes "30-45", modes [] (one guided workspace with steps; no score), grades_label "Grades 9-12".
 
 ## Screens and modes

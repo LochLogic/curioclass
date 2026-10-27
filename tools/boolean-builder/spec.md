@@ -15,7 +15,7 @@ Type a real database query and a live Venn diagram shades exactly the region it 
 - Grades 9 to 12, library. Module: Databases and Advanced Search (Research), "Academic databases, Boolean search and primary sources".
 - Topic line: "Boolean search with AND, OR, NOT and quotes".
 - Driver: students on their own laptops; a teacher can project the Sandbox for a five-minute demo. 15 to 30 minutes.
-- Standards: AASL.Curate (IV.A.2 identifying possible sources of information; IV.B.1 seeking a variety of sources). Math link: HSS-CP.A.1 (unions, intersections and complements of sets).
+- Standards: AASL.Curate (IV.A.2 identifying possible sources of information; IV.B.1 seeking a variety of sources). Math link: HSS-CP.A.1 (unions, intersections and complements of sets). CCSS ELA: W.9-10.8, W.11-12.8 (gather information from multiple sources, using advanced searches effectively).
 - tool.json: driver "students", minutes "15-30", modes ["Sandbox", "Briefs"], grades_label "Grades 9-12". Kit starter plus `kit:theme-912`.
 
 ## Screens and modes

@@ -2,11 +2,11 @@
 
     python scripts/overlap/wave_standards.py docs/agents/BATCH-W1.md [--apply]
 
-Reads the `- Standards` lines in each tools/<id>/spec.md, pulls out codes it recognises (CSTA 2026, NCAS, NGSS, CCSS,
-NHES, SHAPE, AASL, CASEL, CTE, NSPFE), coarsens fine codes to the level modules.csv uses (VA:Cr2.1.3a -> VA:Cr2) and
+Reads the `- Standards` lines in each tools/<id>/spec.md, pulls out codes it recognises (CSTA 2026, NCAS, NGSS, CCSS ELA,
+C3, NHES, SHAPE, AASL, CASEL, CTE, NSPFE), coarsens fine codes to the level modules.csv uses (VA:Cr2.1.3a -> VA:Cr2) and
 prints, per tool, codes the spec adds and module codes the spec leaves out. Fine NCAS codes the specs name are listed
-too, since modules.csv only carries anchors. --apply appends the codes a spec adds to its module's standards field in
-data/modules.csv (one field edited in place; codes a spec leaves out are never removed).
+too, since modules.csv only carries anchors. --apply adds the codes a spec names to its module in data/modules/*.txt (through
+scripts/add_codes.py) and rebuilds data/modules.csv; codes a spec leaves out are never removed.
 """
 import csv, io, os, re, sys
 from common import ROOT
@@ -18,6 +18,7 @@ PATTERNS = [
     r'\b(?:NHES|SHAPE)\.S\d\b',
     r'\bAASL\.[A-Z][a-z]+\b',
     r'\bD[1-4]\.(?:[A-Z][a-z]{2}\.)?\d+\.(?:K-2|3-5|6-8|9-12)\b',              # C3
+    r'\b(?:RL|RI|RF|W|SL|L)\.(?:K|[1-8]|9-10|11-12)\.\d{1,2}\b',               # CCSS ELA
 ]
 CASEL = ['Self-Awareness', 'Self-Management', 'Social Awareness', 'Relationship Skills', 'Responsible Decision-Making']
 NSPFE = ['Earning Income', 'Spending', 'Saving', 'Investing', 'Managing Credit', 'Managing Risk']
@@ -79,17 +80,13 @@ def main():
     print('\n'.join(rows))
     print(f'\nFine NCAS codes named in specs ({len(fine)}): {", ".join(sorted(fine))}')
     if '--apply' in sys.argv and adds:
-        path = os.path.join(ROOT, 'data', 'modules.csv')
-        lines = io.open(path, encoding='utf-8', newline='').read().splitlines(keepends=True)
-        for n, line in enumerate(lines):
-            mid = line.split(',', 1)[0]
-            if mid in adds:
-                field = next(csv.reader([line]))[7]
-                assert line.count(field) == 1, line
-                lines[n] = line.replace(field, ';'.join([field] + adds[mid]))
-        io.open(path, 'w', encoding='utf-8', newline='').write(''.join(lines))
-        print(f'added codes to {len(adds)} modules')
-
+        # modules.csv is generated: the codes go in data/modules/*.txt through add_codes.py, then build_db.py
+        import subprocess, tempfile
+        with tempfile.NamedTemporaryFile('w', suffix='.txt', delete=False, encoding='utf-8') as f:
+            f.write(''.join(f'{mid}: {";".join(codes)}\n' for mid, codes in adds.items()))
+        subprocess.run([sys.executable, os.path.join(ROOT, 'scripts', 'add_codes.py'), f.name], check=True)
+        subprocess.run([sys.executable, os.path.join(ROOT, 'scripts', 'build_db.py')], check=True, stdout=subprocess.DEVNULL)
+        os.unlink(f.name)
 
 if __name__ == '__main__':
     main()

@@ -16,7 +16,7 @@ You chair a dictionary's usage panel: hear five panelists argue over one contest
 ## Who and how
 - Grade 11, ELA (Language). Format: Role Play (council). Students drive on their own laptops, alone or in pairs; a teacher can also project it and let the class vote out loud.
 - 20 to 40 minutes for one case; each case stands alone.
-- Standards: L.11-12.1 (and its sub-point that usage is a matter of convention, can change over time, and is sometimes contested; L.11-12.1a). Supports SL.11-12.1 when used in pairs.
+- Standards: L.11-12.1 (and its sub-point that usage is a matter of convention, can change over time, and is sometimes contested; L.11-12.1a). SL.11-12.1 (collaborative discussion when used in pairs: weigh and synthesize the claims on all sides).
 - Look: 9-12 dark instrument theme. Link `kit:curio`, then `kit:theme-912`. Tool accent `--brand` a warm ink red (the copy editor's pencil), checked for AA contrast on the theme panel color. No confetti, no mascots.
 
 ## Screens and modes

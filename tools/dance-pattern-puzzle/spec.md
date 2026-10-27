@@ -16,7 +16,7 @@ A dance pattern can hide in more than the moves: the dancer may repeat one step 
 - Topic line: patterns, tempo and folk dances
 - Driver: students in pairs on laptops, or the teacher on a projector with the class dancing each solved pattern. Minutes: 15-30.
 - tool.json modes: ["Puzzles", "My dance"]; driver "students or teacher".
-- Standards (NCAS dance): DA:Cr2.1.3a to DA:Cr2.1.5a (structure a dance with a beginning, middle and end; patterns), DA:Pr5.1.3b (tempo, moving in time), DA:Cn11.1.3a to DA:Cn11.1.5a (dances from different cultures).
+- Standards (NCAS dance): DA:Cr2.1.3a to DA:Cr2.1.5a (structure a dance with a beginning, middle and end; patterns), DA:Pr5.1.3b (tempo, moving in time), DA:Cn11.1.3a to DA:Cn11.1.5a (dances from different cultures); also DA:Re7.1.3a (find a movement pattern that creates a phrase).
 
 ## Screens and modes
 Header: title "Dance Pattern Puzzle", small line "Patterns, tempo and folk dances", modes (`.seg`) **🧩 Puzzles** (default) and **💃 My dance**, then kit `motion`, `sound`, `read`. Stage left (dancer on top, card strip under it), panel right; under 1000 px wide the panel goes below with the card maker first.

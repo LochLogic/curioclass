@@ -16,7 +16,7 @@ You answer the help desk phone, and the parts of each caller's home network only
 - Topic line: "wired and wireless networks, logging in".
 - Driver: students or teacher. Pairs on laptops (one is the caller reading the clue cards aloud), or teacher-led on a projector with the class choosing which question to ask.
 - 20 to 30 minutes: four calls (12 min), the other four (12 min), House any time.
-- Standards (CSTA 2026, as listed): E4-SYS-NT-14, E4-SYS-SE-13. 2017 crosswalk: 1B-CS-03 (troubleshoot simple hardware and software problems), 1B-NI-05 (how personal information is protected, passwords).
+- Standards (CSTA 2026, as listed): E4-SYS-NT-14, E4-SYS-SE-13, E4-SYS-HW-12. 2017 crosswalk: 1B-CS-03 (troubleshoot simple hardware and software problems), 1B-NI-05 (how personal information is protected, passwords).
 - tool.json: driver "students or teacher", minutes "20-30", modes ["Calls", "House"], grades_label "Grade 4". Kit starter plus `kit:network`.
 
 ## Screens and modes

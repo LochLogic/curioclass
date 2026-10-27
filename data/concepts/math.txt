@@ -133,3 +133,6 @@ math-12-applications-of-derivatives|Optimization Workshop|builder||Fence the big
 math-12-the-integral|Rain Gauge|simulator||Rainfall rate over a day fills a tank; Riemann rectangles approximate the total as they get thinner.
 math-12-applications-of-integrals|Solid Spinner|explorer||Spin regions around an axis to make solids; stack disks and washers to find volume.
 math-12-differential-equations|Slope Field Garden|sandbox||Plant seeds in a slope field and watch solution curves grow; model population and cooling.
+
+# Gap fill 2026-10-27 (core): see docs/agents/gapfill/core/notes.md
+math-12-solving-any-triangle|Fire Lookout Triangles|map||Two fire lookouts spot the same smoke; use their bearings and the distance between towers to find the fire with the law of sines, then a third tower checks the answer with the law of cosines.

@@ -14,7 +14,7 @@ A logo is not done until it survives the real world: design a mark, name and col
 - Grade 9-12, media arts, module "Graphic Design (Media Arts)".
 - Topic line: logos, typography and color for a brand
 - Driver: students (laptops, alone, then pairs swap laptops for the critique). 25 to 45 minutes; brands are saved on this device.
-- Standards: NCAS Media Arts MA:Cr2.1.HSI (develop and refine a design to a brief), MA:Cr3.1.HSI (refine for intent and audience); also VA:Cr3.1.HSI (critique and revise).
+- Standards: NCAS Media Arts MA:Cr2.1.HSI (develop and refine a design to a brief), MA:Cr3.1.HSI (refine for intent and audience); also VA:Cr3.1.HSI (critique and revise); also MA:Re9.1.HSI (evaluate designs against the brief in the surface tests and critique swap).
 
 ## Screens and modes
 Header: title, topic line, `Read`, `Motion`, `Sound`. Modes (`.seg`): `Brief` (default on first load), `Design`, `Test`, `Sheet`. A small brand preview (current lockup) stays in the panel top in every mode.

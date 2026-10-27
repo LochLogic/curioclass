@@ -15,7 +15,7 @@ In every pressure moment you can tap any kid in the scene to hear what they are 
 - Grade 6-8, Health, module Substance Use Prevention (effects of tobacco, vaping, alcohol and drugs; refusal skills).
 - Driver: students on laptops, alone or in pairs (pairs read the character lines out loud). A teacher can project one scene for a class vote on the card.
 - Minutes: 15-30 (one scene is about 3 minutes).
-- Standards: NHES.S1 (health concepts: effects of nicotine and alcohol), NHES.S4 (interpersonal communication: refusal skills), NHES.S5 (decision making).
+- Standards: NHES.S1 (health concepts: effects of nicotine and alcohol), NHES.S4 (interpersonal communication: refusal skills), NHES.S5 (decision making); also CASEL.Relationship Skills (resisting negative social pressure), CASEL.Social Awareness (What's normal? and bystander thoughts read real social norms).
 - Topic line: "peer pressure and refusal skills: vaping and alcohol".
 - Modes (tool.json): ["Scenes", "What's normal?", "Your moves"].
 

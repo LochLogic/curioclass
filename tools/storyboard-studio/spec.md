@@ -14,7 +14,7 @@ Every panel is a camera you place on the floor plan: how far away sets the shot 
 - Grade 9-12, media arts, module "Film and Video Production (Media Arts)".
 - Topic line: shots, angles and continuity in film
 - Driver: students (laptops, alone or in pairs). 25 to 45 minutes; boards are saved on this device.
-- Standards: NCAS Media Arts MA:Cr1.1.HSI (generate ideas: plan a scene), MA:Cr2.1.HSI (develop and refine a plan: the board), MA:Cr3.1.HSI (refine for intent: fix continuity, retime).
+- Standards: NCAS Media Arts MA:Cr1.1.HSI (generate ideas: plan a scene), MA:Cr2.1.HSI (develop and refine a plan: the board), MA:Cr3.1.HSI (refine for intent: fix continuity, retime); also MA:Re7.1.HSI (continuity and shot order manage the audience experience).
 
 ## Screens and modes
 Header: title, topic line, `Read`, `Motion`, `Sound`. Kit `theme-912`. Scene picker in the panel top: `The Last Slice` / `Late Bus`. Modes (`.seg`): `Plan` (default), `Board`, `Animatic`.

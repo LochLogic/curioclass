@@ -14,7 +14,7 @@ Run a one-minute experiment on yourself: mark how wound up your body feels, real
 - Grade 6-8, Health, module Mental and Emotional Health (stress, coping and getting help).
 - Driver: students on laptops (headphones help for Calm place). A teacher can project one tool and run it with the whole class.
 - Minutes: 10-25 (each test is about 2 minutes).
-- Standards: NHES.S1 (stress and the body), NHES.S7 (practice health-enhancing behaviors: stress management), NHES.S8 (advocate for self: knowing where to get help).
+- Standards: NHES.S1 (stress and the body), NHES.S7 (practice health-enhancing behaviors: stress management), NHES.S8 (advocate for self: knowing where to get help); also CASEL.Self-Awareness (noticing how your body feels), CASEL.Self-Management (choosing and testing coping tools).
 - Topic line: "stress and coping strategies".
 - Modes (tool.json): ["Try a tool", "My notebook", "Why it works"].
 

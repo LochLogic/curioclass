@@ -16,7 +16,7 @@ Your party invite to a friend breaks into eight numbered pieces that hop through
 - Topic line: "how a message travels online, and keeping personal info private".
 - Driver: students or teacher. Pairs on laptops, or the teacher on a projector with the class voting on each choice by hands.
 - 15 to 20 minutes: Story once (10 min), a second run with different choices (5 min), Trip map (5 min).
-- Standards (CSTA 2026, as listed for the module): E3-SYS-NT-14, E3-SYS-SE-13. 2017 crosswalk: 1B-NI-04 (information is broken into packets, sent through many devices and reassembled), 1B-NI-05 (how personal information can be protected).
+- Standards (CSTA 2026, as listed for the module): E3-SYS-NT-14, E3-SYS-SE-13, E3-SYS-IM-15. 2017 crosswalk: 1B-NI-04 (information is broken into packets, sent through many devices and reassembled), 1B-NI-05 (how personal information can be protected).
 - tool.json: driver "students or teacher", minutes "15-20", modes [] (story and explore, no score), grades_label "Grade 3". Start from `kit/starter/src.html`, family engine `kit:network`.
 
 ## Screens and modes

@@ -14,7 +14,7 @@ In a panel debate about a real painting, every claim has to point at the picture
 ## Who and how
 - Grade 9-12, visual arts, module "Critique and Interpretation (Visual Arts)".
 - Driver: students (laptops, alone or in threes taking one role each in turn); a teacher can run one work on a projector and let the class vote on pins. 20 to 40 minutes.
-- Standards: NCAS VA:Re8 (interpret intent and meaning), VA:Re9 (apply criteria to evaluate artistic work).
+- Standards: NCAS VA:Re8 (interpret intent and meaning), VA:Re9 (apply criteria to evaluate artistic work); also VA:Re7 (perceive and analyze: the Describe and Analyze rounds).
 
 ## Screens and modes
 Header: title, `Read`, `Motion`, `Sound`. Kit theme `theme-912`. Two screens: `Choose` and `Panel`, plus the `Record`.

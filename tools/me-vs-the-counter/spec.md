@@ -20,7 +20,7 @@ bounces they missed, and then uses the computer's steady counts to pick the boun
   helper or the teacher taps the big hand button for each "bounce!". The other half watches the computer's count.
 - 10 to 20 minutes. tool.json: driver "teacher", minutes "10-20", modes ["Bounce Lab", "Bounciest Ball"],
   grades_label "Kindergarten".
-- Standards (CSTA 2026 ids from the module): EK-DAT-DC-08, EK-DAT-DI-09. 2017 crosswalk: 1A-DA-06 (collect and
+- Standards (CSTA 2026 ids from the module): EK-DAT-DC-08, EK-DAT-DI-09, EK-DAT-IM-10. 2017 crosswalk: 1A-DA-06 (collect and
   present the same data in different visual formats), 1A-DA-07 (identify patterns in data and make predictions).
 - Reads nothing: icons on every control, every fixed line voiced, 60 px targets.
 

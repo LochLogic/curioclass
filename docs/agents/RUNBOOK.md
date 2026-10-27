@@ -66,12 +66,18 @@ then the item goes back to "ready" with a reply on the comment and the comment m
 
 - **Spec wave 1: specced 2026-10-27, not built.** 75 tools outside the core subjects (CS, arts, media and careers,
   health, PE, library); note `docs/agents/BATCH-W1.md`, log and Cory's 54 open questions in
-  `docs/agents/BATCH-W1-LOG.md`. Before building: Cory picks Robot Mouse Mail or Snowy Mail Route
-  (`scripts/rename_tools.py` does any rename), and each new shared engine (ml-lab, network, security, robot, dance,
+  `docs/agents/BATCH-W1-LOG.md`. Robot Mouse Mail became Snowy Mail Route
+  (Cory's pick; `scripts/rename_tools.py` does any rename). Before building, each new shared engine (ml-lab, network, security, robot, dance,
   movement, stage, music-studio, fact-check, careers and others, listed in the log) is built with its first tool,
   which also writes `docs/families/<name>.md`. character-voice-booth records students (it needs the microphone allowed in the
   tool page's iframe; its Plan mode works without one). Standards coverage after the wave, with the suggested data-only
   code pass and later-wave modules: `docs/agents/overlap/wave1-gaps.md`.
+
+- **Gap fill: merged 2026-10-27, not specced.** 176 new planned tools (586 to 762) and 108 code adds so every
+  official standards list is claimed (ELA leaves 41 codes out by design). Report, coverage table and Cory's questions:
+  `docs/agents/gapfill/REPORT.md`. Spec the new tools in later waves like any planned tool. New standards edits go in
+  data/modules/*.txt (`scripts/add_codes.py`), never modules.csv, which build_db.py regenerates; new tools go through
+  a staging folder checked by `scripts/overlap/stage_check.py` and merged by `stage_merge.py`.
 
 - **Scale plan (unlocked 2026-10-27, the CS batch is done):** `docs/agents/SCALE-PLAN.md`, covering the overlap pass,
   the shared narration helper, spec waves, art and voice nights. Start it when Cory says go.

@@ -24,7 +24,7 @@ snow points straight at the wrong card.
   and votes on where Pip will stop.
 - 15 to 25 minutes. tool.json: driver "teacher", minutes "15-25", modes ["Snow Town", "Mail Route"],
   grades_label "Grade 1".
-- Standards (CSTA 2026 ids from the module): E1-ALG-PS-01, E1-PRO-PD-04, E1-PRO-TR-07. 2017 crosswalk for teachers:
+- Standards (CSTA 2026 ids from the module): E1-ALG-PS-01, E1-PRO-PD-04, E1-PRO-TR-07, E1-ALG-IM-03. 2017 crosswalk for teachers:
   1A-AP-08 (model daily processes by creating and following algorithms), 1A-AP-10 (programs with sequences),
   1A-AP-14 (debug errors in an algorithm or program).
 - Reads nothing: every control has an icon, every fixed line is spoken, targets at least 60 px at full screen.

@@ -93,7 +93,7 @@ group's tools differ from each other by design. Then the integrating session run
 |---|---|---|---|---|
 | me-vs-the-counter | Me vs the Counter | k | data | - |
 | secret-keeper | Secret Keeper | k | sort | - |
-| robot-mouse-mail | Robot Mouse Mail | 1 | puzzle | robot |
+| snowy-mail-route | Robot Mouse Mail | 1 | puzzle | robot |
 | spot-the-ai | Spot the AI | 1 | showdown | - |
 | input-or-output | Input or Output? | 2 | sandbox | - |
 | traffic-light-coder | Traffic Light Coder | 3 | builder | robot |

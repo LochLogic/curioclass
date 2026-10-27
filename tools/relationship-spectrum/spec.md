@@ -14,7 +14,7 @@ Every scenario card has one detail you can flip (asks or demands, once or every 
 - Grade 6-8, Health, module Healthy Relationships (communication, boundaries and conflict resolution).
 - Driver: students on laptops, alone or in pairs (pairs talk about where to place a card before the reveal). A teacher can project one card and take a class vote.
 - Minutes: 15-25.
-- Standards: NHES.S4 (interpersonal communication: setting boundaries, asking for help), with NHES.S1 (healthy and unhealthy relationship behaviors) as background.
+- Standards: NHES.S4 (interpersonal communication: setting boundaries, asking for help), with NHES.S1 (healthy and unhealthy relationship behaviors) as background; also CASEL.Relationship Skills (healthy relationships, boundaries and warning signs).
 - Topic line: "healthy relationships and boundaries".
 - Modes (tool.json): ["The line", "Flags"].
 

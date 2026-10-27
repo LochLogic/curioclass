@@ -17,11 +17,9 @@ yet. Next for these tools: art and voice nights, then build batches (SCALE-PLAN.
   - screen-time-detective to Screen Week (`screen-week`); the overlap note's "My Screen Week" was not taken because the
     weeks are pretend, not the student's
   - fair-use-court to Fair Use Review (`fair-use-review`)
-- **Held for Cory:** `robot-mouse-mail`. Cory accepted the title Robot Mouse Mail in the overlap review; the spec
-  agent titled it Snowy Mail Route (Pip the penguin) because Code & Go Robot Mouse is a well-known coding toy doing
-  this exact activity, and computer-builder already has a mouse. The folder and concept line stay `robot-mouse-mail`
-  until Cory picks; then run `python scripts/rename_tools.py robot-mouse-mail="Snowy Mail Route"` (or fix the spec
-  heading back).
+- **Renamed after Cory's pick (2026-10-27):** `robot-mouse-mail` to Snowy Mail Route (`snowy-mail-route`, Pip the
+  penguin). Code & Go Robot Mouse is a well-known coding toy doing this exact activity, and computer-builder already has
+  a mouse.
 - **Voices recast** where near neighbors (same band and subject) shared one: capture-the-flag wise-mentor to
   hs-narrator (ai-evaluator keeps wise-mentor); choreography-board easy-coach to casual-peer (band-practice keeps
   easy-coach); brand-builder knowing-guide to hs-narrator (dance-styles-explorer keeps knowing-guide). All 23 kept
@@ -44,7 +42,7 @@ number-line do), so the first build of each should write `docs/families/<name>.m
 | kit/ml-lab.js | teach-the-robot, biased-bot, leaf-sorter-ai, model-mechanic, ai-evaluator |
 | kit/network.js | internet-journey, network-help-desk, packet-race, network-architect |
 | kit/security.js | data-defenders, phishing-spotter, capture-the-flag |
-| kit/robot.js | robot-mouse-mail, traffic-light-coder (and live robot-dance) |
+| kit/robot.js | snowy-mail-route, traffic-light-coder (and live robot-dance) |
 | kit/dance.js | levels-and-pathways, dance-pattern-puzzle, choreography-board, dance-styles-explorer |
 | kit/movement.js | fitness-circuit, levels-and-pathways |
 | kit/stage.js | stage-blocker, director-s-chair |
@@ -84,8 +82,8 @@ Collected from each spec's Open questions section (54).
 - **Secret Keeper** (`secret-keeper`)
   - Who's Asking? says a grown-up at home may know the child's password (asker 6). Common, but some schools say "only share with a parent or teacher". Keep "your grown-up at home", or add "or your teacher"?
   - Birthday is on the keep-secret side (Common Sense and the Austin ISD lesson list it). Some K teachers celebrate birthdays openly in class; fine to keep as is?
-- **Snowy Mail Route** (`robot-mouse-mail`)
-  - Title: the overlap pass gave "Robot Mouse Mail", but "Code & Go Robot Mouse" is a well known coding toy that does this exact activity, and computer-builder already has a mouse. This spec renames it "Snowy Mail Route" with a penguin. Keep the rename, or prefer another title?
+- **Snowy Mail Route** (`snowy-mail-route`)
+  - Title: the overlap pass gave "Robot Mouse Mail", but "Code & Go Robot Mouse" is a well known coding toy that does this exact activity, and computer-builder already has a mouse. This spec renames it "Snowy Mail Route" with a penguin. Cory kept the rename (2026-10-27).
 
 ### Computer science: data and people, 4-12 (`cs-data`, 5)
 

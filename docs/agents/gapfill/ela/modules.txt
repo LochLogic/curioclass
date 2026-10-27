@@ -1,0 +1,48 @@
+# source.txt|grade|course|strand|title|description|standards
+# K-2
+ela.txt|k-2|ela-k12|Reading Literature|Pictures and Words Together|What illustrations, captions and text features add to the words; who made each part|RL.K.6;RL.K.7;RL.1.7;RI.1.6;RI.1.7;RL.2.7;RI.2.7;RI.2.5
+ela.txt|k-2|ela-k12|Reading Literature|Comparing Two Books|Alike and different: two books on one topic, two versions of one tale, a story and a fact book|RL.K.9;RI.K.9;RL.1.5;RI.1.9;RL.2.9;RI.2.9
+ela.txt|k-2|ela-k12|Reading Informational Text|Question Words and Key Details|Ask and answer who, what, where, when, why and how; retell key details and connections|RI.K.1;RI.1.1;RI.1.2;RI.1.3;RL.2.1;RI.2.1;RL.2.3
+ela.txt|k-2|ela-k12|Reading Informational Text|Reasons an Author Gives|Find the reasons that support an author's point; connect them with because|RI.K.8;RI.1.8;L.1.6;RI.2.8
+ela.txt|k-2|ela-k12|Reading Literature|Poems and Songs Aloud|Tell poems from stories; hear rhythm, rhyme and feeling words; read and record a poem|RL.K.5;RF.K.4;RL.1.4;RF.1.4;RL.2.4;RF.2.4;SL.2.5
+ela.txt|k-2|ela-k12|Language|New Words from Read-Alouds|Ask about unknown words in a text, work them out, and use them to describe|RL.K.4;RI.1.4;RI.2.4;L.2.6
+ela.txt|k-2|ela-k12|Writing|Class Research Projects|Answer a class question from books and experience; write it up together|W.K.7;W.K.8;W.1.7;W.1.8;W.2.7;W.2.8
+ela.txt|k-2|ela-k12|Writing|Adding Details and Fixing Sentences|Add details after questions from others; fix capitals and end marks|W.K.5;W.1.5;RF.1.1;W.2.5
+ela.txt|k-2|ela-k12|Speaking and Listening|Show and Tell|Describe or recount with details in complete sentences; add a drawing; talk to different listeners|SL.K.4;SL.1.4;SL.1.5;SL.1.6;SL.2.4;SL.2.6;L.2.3
+ela.txt|k-2|ela-k12|Speaking and Listening|Listening and Asking Questions|Talk in turns about what a speaker says; ask and answer questions about key details|SL.K.3;SL.1.1;SL.1.2;SL.1.3;SL.2.1;SL.2.2;SL.2.3
+added.txt|k-2|eld-k12|Language for Social Studies|Choosing and Giving Reasons|Pick between two options and say why with because; agree or disagree politely|WIDA.ELD-5;WIDA.Argue
+# 3-5
+ela.txt|3-5|ela-k12|Writing|Revising and Editing|Revise for purpose and audience; edit capitals, commas and spelling; choose words and sentences for effect|W.3.4;W.3.5;L.3.3;W.4.4;W.4.5;L.4.2;L.4.3;W.5.4;W.5.5;L.5.3
+ela.txt|3-5|ela-k12|Speaking and Listening|Listening for Main Points and Reasons|Summarize what is read aloud or presented; find a speaker's reasons and evidence|SL.3.2;SL.3.3;SL.4.2;SL.4.3;SL.5.2;SL.5.3
+ela.txt|3-5|ela-k12|Speaking and Listening|Presenting Clearly|Report or tell with facts and details at a clear pace; add recordings or visuals; fit speech to the audience|SL.3.4;SL.3.5;SL.3.6;SL.4.4;SL.4.5;SL.4.6;SL.5.4;SL.5.5;SL.5.6
+ela.txt|3-5|ela-k12|Foundational Skills|Readers Theater and Fluency|Read script parts with accuracy, expression and pace; decode long words by syllables and parts|RF.3.4;RF.4.3;RF.4.4;RF.5.3;RF.5.4
+ela.txt|3-5|ela-k12|Reading Informational Text|Main Idea with Text Evidence|Find the central message or main ideas, summarize, and quote the text that proves them|RL.3.1;RI.3.1;RL.3.2;RI.4.2;RI.4.8;RI.5.1;RI.5.2;W.5.9
+ela.txt|3-5|ela-k12|Language|Academic and Subject Words|Work out subject-area words from context and word parts; synonyms and opposites; linking words|RI.3.4;L.3.6;RI.4.4;L.4.5;L.4.6;RI.5.4;L.5.4;L.5.6
+ela.txt|3-5|ela-k12|Reading Literature|Pictures, Panels and Performances|How illustrations, comic panels and read-aloud versions add to a story|RL.3.7;RL.4.7;RL.5.7
+ela.txt|3-5|ela-k12|Reading Informational Text|Diagrams and How Things Happen|Use maps, diagrams and timelines with the words; explain steps, events and causes in science and history texts|RI.3.3;RI.3.7;RI.4.3;RI.4.7;RI.5.3
+ela.txt|3-5|ela-k12|Reading Literature|Narrators and Points of View|First and third person, how a teller shapes events, and your own view against the teller's|RL.3.6;RI.3.6;RL.4.6;RL.5.6
+ela.txt|3-5|ela-k12|Reading Literature|Comparing Texts Side by Side|Compare books in a series, two texts on one topic, and how texts are structured|RL.3.9;RI.3.9;RL.4.9;RI.4.9;RL.5.5;RI.5.5
+ela.txt|4|ela-k12|Writing|Showing Character Through Details|Describe a character in depth from thoughts, words and actions; write scenes that show it|RL.4.3;W.4.3
+ela.txt|3|ela-k12|Writing|Notes and Categories|Gather facts from sources, take brief notes and sort them into categories|W.3.7;W.3.8
+# 6-8
+ela.txt|6-8|ela-k12|Writing|Revising for Purpose and Audience|Revise, edit and rewrite for task, purpose and audience; cut wordiness|W.6.4;W.6.5;W.7.4;W.7.5;L.7.3;W.8.4;W.8.5
+ela.txt|6-8|ela-k12|Reading Literature|Theme and Textual Evidence|Determine a theme, compare it across genres, summarize, and cite the strongest evidence|RL.6.1;RL.6.2;RL.6.9;RL.7.1;RL.7.2;RL.8.1;RL.8.2
+ela.txt|6-8|ela-k12|Writing|Analysis with Evidence from Nonfiction|Cite textual evidence from informational texts and use it to support analysis in writing|RI.6.1;W.6.9;RI.7.1;W.7.9;RI.8.1;W.8.9
+ela.txt|6-8|ela-k12|Reading Literature|Text, Audio and Film Versions|Compare a text with its audio, film or staged version; weigh what each medium does well|RL.6.7;RI.6.7;RL.7.7;RI.7.7;RL.8.7;RI.8.7
+ela.txt|6-8|ela-k12|Speaking and Listening|Listening to Speakers and Discussing|Delineate a speaker's claims, interpret information in media, and discuss to build on ideas|SL.6.2;SL.6.3;SL.7.1;SL.7.2;SL.7.3;SL.8.1;SL.8.3
+ela.txt|6-8|ela-k12|Speaking and Listening|Presenting Claims and Findings|Present in a logical order with evidence and media; adapt speech to the context|SL.6.4;SL.6.5;SL.6.6;SL.7.4;SL.7.5;SL.7.6;SL.8.6
+ela.txt|6-8|ela-k12|Language|Academic Vocabulary Strategies|Context, Greek and Latin roots and the dictionary for unknown words; academic and subject words|L.6.6;L.7.4;L.7.6;L.8.4;L.8.6
+ela.txt|8|ela-k12|Language|Puns, Irony and Allusion|Interpret puns, verbal irony, analogies and allusions and how word choice shapes meaning and tone|RL.8.4;RI.8.4;L.8.5
+ela.txt|6-8|ela-k12|Language|Commas, Dashes and Ellipses|Punctuate extra information, coordinate adjectives, pauses and omissions; spell correctly|L.6.2;L.7.2;L.8.2
+ela.txt|6-8|ela-k12|Writing|Structure in Informative Writing|How sections build an informational text; write explanations with a clear structure|W.6.2;RI.6.5;RI.7.5;W.7.2;W.8.2
+ela.txt|6-8|ela-k12|Writing|Narrative Point of View and Structure|Write a scene from more than one point of view and in more than one order; compare what each choice does|W.6.3;W.7.3;RL.7.6;W.8.3;RL.8.5
+ela.txt|6-8|ela-k12|Reading Informational Text|How Authors Present People and Ideas|How a person or idea is introduced and developed; memoir against biography; the author's point of view|RI.6.3;RI.6.6;RI.6.9;RI.7.3;RI.8.3;RI.8.6
+added.txt|6-12|eld-k12|Language for Language Arts|Telling Stories and Experiences|Narrate events in order with time words and past-tense verbs|WIDA.ELD-2;WIDA.Narrate
+# 9-12
+ela.txt|9-12|ela-k12|Writing|Revising and Editing for Style|Revise for task, purpose and audience; vary syntax for effect; edit hyphens and spelling|W.9-10.4;W.9-10.5;W.11-12.5;L.11-12.2;L.11-12.3
+ela.txt|9-12|ela-k12|Reading Literature|Developing Themes with Evidence|Cite strong textual evidence, trace how themes develop and interact, and draw evidence into analysis|RL.9-10.1;RL.9-10.2;W.9-10.9;RL.11-12.1;RL.11-12.2;W.11-12.9
+ela.txt|9-12|ela-k12|Reading Informational Text|Central Ideas and Their Development|Cite evidence, determine central ideas, and analyze how ideas and claims unfold and build|RI.9-10.1;RI.9-10.2;RI.9-10.3;RI.9-10.5;RI.11-12.1;RI.11-12.2;RI.11-12.3
+ela.txt|10|ela-k12|Reading Informational Text|One Subject in Many Media|Compare accounts of a subject in print and multimedia; integrate and evaluate sources in different formats|RI.9-10.7;SL.9-10.2
+ela.txt|9|ela-k12|Speaking and Listening|Presenting Findings to an Audience|Present information and evidence clearly, use digital media strategically, adapt speech to the context|SL.9-10.4;SL.9-10.5;SL.9-10.6
+ela.txt|9-12|ela-k12|Language|Key Terms and Academic Vocabulary|Determine unknown words, track how an author defines a key term, and use academic words|L.9-10.4;L.9-10.6;RL.11-12.4;RI.11-12.4;L.11-12.6
+ela.txt|9-12|ela-k12|Writing|Narrative Scenes and Pacing|Write narrative scenes with pacing, description and reflection|W.9-10.3;W.11-12.3

@@ -1,0 +1,38 @@
+# social gap fill: codes for existing modules. Each line: module_id: CODE; CODE  # reason (tool, what it already does)
+# K-2
+library-k-2-asking-good-questions: D1.5.K-2  # wonder-wall (live): sorts each question by the kind of source that answers it (look it up, ask an expert, try it)
+social-studies-k-rules-and-responsibilities: D2.Civ.12.K-2; D4.1.K-2  # playground-rules: the class decides which rules would help a playground and says why (how rules work in a shared place; an argument with reasons)
+social-studies-2-community-helpers-and-government: D2.Civ.9.K-2; D2.Civ.10.K-2; D4.8.K-2  # town-council: the class weighs a park against a parking lot, hears other views, compromises and votes
+social-studies-1-families-and-communities: D2.Eco.12.K-2  # community-helpers-village: mail carriers, firefighters and other public services, and what happens when one is missing
+computer-science-k-public-or-private: AASL.Engage  # secret-keeper (spec): who can see what the class shares; safe sharing of information is the Engage foundation
+# 3-5
+social-studies-3-local-government-and-voting: D2.Civ.2.3-5; D2.Civ.7.3-5  # class-election: a real class election with speeches and a secret ballot (responsible participation, civic virtues in school)
+social-studies-4-state-government: D2.Civ.12.3-5  # bill-to-law-board-game: people move a bill into law, with committees and vetoes (how people change laws)
+social-studies-5-the-constitution-and-bill-of-rights: D2.Civ.3.3-5  # rights-match: what each Bill of Rights amendment protects (purposes of key constitutional provisions)
+social-studies-3-business-and-specialization: D2.Civ.6.3-5  # paper-plane-assembly-line: workers on a line depend on each other (benefits and challenges of working together in a workplace)
+social-studies-5-the-american-revolution: D2.His.5.3-5  # revolution-road: each event seen from Patriot, Loyalist and Native viewpoints (context and perspectives at the time)
+social-studies-3-local-history: D2.His.10.3-5  # then-and-now-overlay: old photos and old maps laid over today's town (comparing what different sources show)
+social-studies-4-human-environment-interaction: D2.Geo.8.3-5  # settle-the-valley: where farms, homes and roads go depends on land, water and forests
+social-studies-5-colonial-economies: D2.Geo.11.3-5  # colonial-trade-routes: trade with distant places reshapes what each colony produces
+science-3-weather-and-climate: D2.Geo.10.3-5  # climate-postcards: real weather data from cities worldwide, a postcard describing each climate (judgment call, see notes)
+math-5-operations-with-whole-numbers-and-decimals: NSPFE.Spending  # grocery-run: plan a party on a budget and check the receipt
+# 6-8
+math-6-dependent-and-independent-variables: NSPFE.Earning Income  # lemonade-stand: set price, watch sales and earnings respond (earning income from a small business)
+library-6-8-the-research-process: D1.5.6-8; D3.1.6-8  # research-quest (spec): choose four of six places to look for a garden question and keep what each source gives
+library-6-8-is-it-reliable: D3.2.6-8  # fake-or-fact-lab (spec): lateral reading to judge who is behind a page and what it is for
+social-studies-6-ancient-greece: D2.Civ.9.6-8  # agora-assembly: deliberate in Athens' assembly and compare it with Sparta's system
+social-studies-8-the-early-republic: D2.Civ.1.6-8  # two-parties: Hamilton and Jefferson's parties and their debates (the role of political parties)
+social-studies-8-road-to-revolution: D2.His.6.6-8  # colonial-newsroom: Patriot and Loyalist papers spin the same events (perspective shapes what a source records)
+social-studies-8-creating-the-constitution: D2.Civ.10.6-8  # constitutional-convention: big and small states bargain from their own interests to a compromise
+social-studies-8-reconstruction: D2.Civ.13.6-8  # reconstruction-amendments: what the amendments promised and how Jim Crow undermined them (purposes, implementation, consequences)
+social-studies-6-world-regions-today: D2.Geo.5.6-8  # region-compare: regions compared on population, income, language and climate (what makes places alike and different)
+ela-6-argument-writing: D3.4.6-8; D4.1.6-8  # debate-prep-desk: a claim with reasons and sources tested against counterarguments
+# 9-12
+social-studies-12-civic-action: D4.3.9-12; D4.7.9-12  # who-decides: weighs which office to reach and drafts testimony or a petition for it
+social-studies-11-civil-rights-movement: D2.Civ.5.9-12  # movement-strategy-room: plans a boycott, sit-in or march and sees how well real organizers' choices worked
+social-studies-11-the-progressive-era: D2.Civ.6.9-12  # muckraker-studio: journalism exposes business abuses and pushes government reform
+social-studies-12-market-structures-and-business: D2.Eco.7.9-12  # the-buyout: compares the market before and after a buyout, then what regulators can do
+social-studies-12-supply-and-demand: D2.Eco.8.9-12  # concert-ticket-market (live): the $75 price cap scenario shows the line and resale prices a ceiling creates
+social-studies-11-the-us-as-a-world-power: D2.His.16.9-12; D4.1.9-12  # empire-debate: argues annexation of the Philippines from primary sources on both sides
+social-studies-12-civil-rights-and-liberties: D3.4.9-12  # supreme-court-simulator: argues both sides of a case, then compares the ruling with the Court's
+ela-12-extended-research-project: AASL.Inquire  # question-sharpener: narrows an interest into a researchable question and maps what to find out

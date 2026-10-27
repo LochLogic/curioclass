@@ -5,7 +5,7 @@ k|math-k8|Counting and Cardinality|More, Less, Same|Compare groups and numerals 
 k|math-k8|Operations and Algebraic Thinking|Putting Together and Taking Apart|Add and subtract within 10 with objects and drawings|K.OA.A
 k|math-k8|Number and Operations in Base Ten|Teen Numbers|Compose and decompose 11-19 as ten ones and some more|K.NBT.A
 k|math-k8|Measurement and Data|Longer, Heavier, Bigger|Describe and compare measurable attributes|K.MD.A
-k|math-k8|Measurement and Data|Sort and Count|Classify objects into categories and count them|K.MD.B
+k|math-k8|Measurement and Data|Sort and Count|Classify objects into categories and count them|K.MD.B;EK-ALG-ML-02
 k|math-k8|Geometry|Shapes All Around|Identify and describe 2D and 3D shapes and positions|K.G.A
 k|math-k8|Geometry|Build a Shape|Analyze, compare, create and compose shapes|K.G.B
 1|math-k8|Operations and Algebraic Thinking|Addition and Subtraction Stories|Solve word problems within 20|1.OA.A
@@ -51,7 +51,7 @@ k|math-k8|Geometry|Build a Shape|Analyze, compare, create and compose shapes|K.G
 5|math-k8|Operations and Algebraic Thinking|Expressions and Order of Operations|Write and interpret numerical expressions with grouping symbols|5.OA.A
 5|math-k8|Operations and Algebraic Thinking|Patterns and Relationships|Generate two patterns and graph ordered pairs|5.OA.B
 5|math-k8|Number and Operations in Base Ten|Powers of Ten and Decimals|Place value system; read, compare and round decimals to thousandths|5.NBT.A
-5|math-k8|Number and Operations in Base Ten|Operations with Whole Numbers and Decimals|Fluent multi-digit multiplication; divide; decimal operations to hundredths|5.NBT.B
+5|math-k8|Number and Operations in Base Ten|Operations with Whole Numbers and Decimals|Fluent multi-digit multiplication; divide; decimal operations to hundredths|5.NBT.B;NSPFE.Spending
 5|math-k8|Number and Operations - Fractions|Adding Unlike Fractions|Add and subtract fractions with unlike denominators|5.NF.A
 5|math-k8|Number and Operations - Fractions|Multiplying and Dividing Fractions|Fraction multiplication as scaling; divide with unit fractions|5.NF.B
 5|math-k8|Measurement and Data|Units and Line Plots|Convert measurement units; line plots with fractional data|5.MD.A;5.MD.B
@@ -64,7 +64,7 @@ k|math-k8|Geometry|Build a Shape|Analyze, compare, create and compose shapes|K.G
 6|math-k8|The Number System|Negative Numbers|Rational numbers on the number line; absolute value; coordinate plane in four quadrants|6.NS.C
 6|math-k8|Expressions and Equations|Expressions and Exponents|Write, read, evaluate and simplify expressions|6.EE.A
 6|math-k8|Expressions and Equations|One-Step Equations and Inequalities|Solve and write one-variable equations and inequalities|6.EE.B
-6|math-k8|Expressions and Equations|Dependent and Independent Variables|Relationships between quantities in tables, graphs and equations|6.EE.C
+6|math-k8|Expressions and Equations|Dependent and Independent Variables|Relationships between quantities in tables, graphs and equations|6.EE.C;NSPFE.Earning Income
 6|math-k8|Geometry|Area, Surface Area and Volume|Area of polygons; nets; volume with fractional edges|6.G.A
 6|math-k8|Statistics and Probability|Statistical Variability|Statistical questions; center, spread and shape|6.SP.A
 6|math-k8|Statistics and Probability|Summarizing Data|Dot plots, histograms, box plots; mean, median, MAD|6.SP.B
@@ -94,7 +94,7 @@ k|math-k8|Geometry|Build a Shape|Analyze, compare, create and compose shapes|K.G
 9|algebra-1|Algebra|Solving Linear Equations and Inequalities|Solve equations and inequalities in one variable|A-REI.A;A-REI.B
 9|algebra-1|Algebra|Systems of Equations|Solve systems algebraically and graphically|A-REI.C;A-REI.D
 9|algebra-1|Functions|Function Notation and Graphs|Domain, range, key features and rate of change|F-IF.A;F-IF.B
-9|algebra-1|Functions|Linear, Quadratic and Exponential Models|Compare and build models; transformations of graphs|F-LE.A;F-BF.A;F-BF.B
+9|algebra-1|Functions|Linear, Quadratic and Exponential Models|Compare and build models; transformations of graphs|F-LE.A;F-BF.A;F-BF.B;F-LE.B
 9|algebra-1|Algebra|Quadratic Equations|Solve quadratics by factoring, completing the square and formula|A-REI.B.4
 9|algebra-1|Statistics and Probability|Data in One and Two Variables|Distributions, scatter plots, residuals and correlation|S-ID.A;S-ID.B;S-ID.C
 10|geometry|Geometry|Rigid Motions and Congruence|Transformations as functions; triangle congruence|G-CO.A;G-CO.B
@@ -114,16 +114,16 @@ k|math-k8|Geometry|Build a Shape|Analyze, compare, create and compose shapes|K.G
 11|algebra-2|Functions|Building and Inverting Functions|Combine functions; find inverses; transformations|F-BF.A;F-BF.B
 11|algebra-2|Algebra|Sequences and Series|Arithmetic and geometric sequences; finite geometric series|F-IF.A.3;A-SSE.B.4
 11|algebra-2|Statistics and Probability|Statistical Inference|Normal distributions, sampling, surveys, experiments and margin of error|S-ID.A.4;S-IC.A;S-IC.B
-12|precalculus|Functions|Functions and Their Graphs|Families of functions, composition, inverses and asymptotes|F-IF;F-BF;AP-PRECALC.U1;AP-PRECALC.U2
+12|precalculus|Functions|Functions and Their Graphs|Families of functions, composition, inverses and asymptotes|AP-PRECALC.U1;AP-PRECALC.U2;F-IF.C;F-BF.B
 12|precalculus|Functions|Trigonometric Identities and Equations|Identities, inverse trig and solving equations|F-TF.B;F-TF.C;AP-PRECALC.U3
 12|precalculus|Number and Quantity|Vectors|Vector quantities, operations and applications|N-VM.A;N-VM.B;AP-PRECALC.U4
 12|precalculus|Number and Quantity|Matrices|Matrix operations and solving systems|N-VM.C;A-REI.C.9;AP-PRECALC.U4
 12|precalculus|Number and Quantity|Polar Coordinates and Complex Plane|Polar form and graphs; complex numbers in the plane|N-CN.B;AP-PRECALC.U3
 12|precalculus|Geometry|Conic Sections|Parabolas, ellipses and hyperbolas|G-GPE.A.3;AP-PRECALC.U4
 12|precalculus|Functions|Limits and Rates of Change|Intuitive limits and average to instantaneous rate|AP-PRECALC.U1
-12|statistics|Statistics|Exploring Data|Describe distributions and relationships|S-ID;AP-STAT.U1;AP-STAT.U2
+12|statistics|Statistics|Exploring Data|Describe distributions and relationships|AP-STAT.U1;AP-STAT.U2;S-ID.A
 12|statistics|Statistics|Sampling and Experiments|Design studies; bias; random assignment|S-IC.B;AP-STAT.U3
-12|statistics|Statistics|Probability and Random Variables|Probability models, expected value, binomial and geometric|S-CP;S-MD;AP-STAT.U4
+12|statistics|Statistics|Probability and Random Variables|Probability models, expected value, binomial and geometric|AP-STAT.U4;S-CP.A;S-MD.A;S-MD.B
 12|statistics|Statistics|Sampling Distributions|Variation in statistics from sample to sample|S-IC.A;AP-STAT.U5
 12|statistics|Statistics|Confidence Intervals and Significance Tests|Inference for proportions and means|S-IC.B;AP-STAT.U6;AP-STAT.U7
 12|statistics|Statistics|Chi-Square and Regression Inference|Inference for categorical data and slopes|AP-STAT.U8;AP-STAT.U9
@@ -133,3 +133,6 @@ k|math-k8|Geometry|Build a Shape|Analyze, compare, create and compose shapes|K.G
 12|calculus|Calculus|The Integral|Riemann sums, accumulation and the Fundamental Theorem|AP-CALC.U6
 12|calculus|Calculus|Applications of Integrals|Area, volume and motion|AP-CALC.U8
 12|calculus|Calculus|Differential Equations|Slope fields and exponential models|AP-CALC.U7
+
+# Gap fill 2026-10-27 (core): see docs/agents/gapfill/core/notes.md
+12|precalculus|Trigonometry|Solving Any Triangle|Law of sines, law of cosines and the area of any triangle|G-SRT.D

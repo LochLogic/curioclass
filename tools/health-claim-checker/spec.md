@@ -15,7 +15,7 @@ Follow a viral health claim back up its chain of retellings (post, article, pres
 - Grade 9-12, Health, module Accessing Valid Health Information (evaluate sources, products and services).
 - Driver: students on laptops (alone or in pairs). A teacher can project one case and let the class vote on the verdict.
 - Minutes: 15-40 (one case is 6 to 8 minutes).
-- Standards: NHES.S3 (access valid health information, products and services).
+- Standards: NHES.S3 (access valid health information, products and services); also NHES.S2 (analyze how media and commercial interests shape a health claim).
 - Topic line: "evaluating health information and sources".
 - Modes (tool.json): ["Cases", "Toolkit"]. No points; a case ends with the case file, not a score.
 

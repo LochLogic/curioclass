@@ -1,0 +1,11 @@
+# Core subjects (main session): NGSS and CCSS math holes, malformed math codes
+science-k-sunlight-warms-the-earth: K-2-ETS1-1; K-2-ETS1-2; K-2-ETS1-3  # shade-builder: a shade over a sandbox is a design problem; concept now compares two designs
+science-4-energy-conversion-devices: 3-5-ETS1-1; 3-5-ETS1-2; 3-5-ETS1-3  # contraption-workshop: concept now has budget and time constraints and failure points
+science-6-gravity-and-the-solar-system: MS-PS2-4  # planet-builder: set masses, gravity decides the orbits
+science-8-reproduction-and-heredity: MS-LS4-5  # gene-pool: concept now includes choosing breeding pairs (artificial selection)
+science-9-photosynthesis-and-cellular-respiration: HS-LS2-3  # energy-accountant: concept now switches oxygen off (anaerobic)
+science-9-earth-s-systems-and-feedback: HS-ESS2-7  # feedback-loop-builder: concept now adds life changing the air (coevolution)
+math-9-linear-quadratic-and-exponential-models: F-LE.B  # which-model-wins: fitting real data means reading each parameter in context
+math-12-functions-and-their-graphs: -F-IF; -F-BF; F-IF.C; F-BF.B  # domain-only codes replaced: graph families (F-IF.C), transformations (F-BF.B)
+math-12-exploring-data: -S-ID; S-ID.A  # domain-only code replaced: shape, center, spread
+math-12-probability-and-random-variables: -S-CP; -S-MD; S-CP.A; S-MD.A; S-MD.B  # domain-only codes replaced: Monty Hall is conditional probability; expected value is S-MD

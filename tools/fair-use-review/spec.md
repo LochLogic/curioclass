@@ -15,7 +15,7 @@ You review uploads on a made-up student video site, and each upload has switches
 - Grades 9 to 12, library. Module: Citation, Copyright and Fair Use (Research), "Citation styles, plagiarism, copyright and Creative Commons".
 - Topic line: "copyright, fair use and Creative Commons".
 - Driver: students on their own laptops; works well as pairs who must agree before submitting. A teacher can project one case for a class vote on each factor. 25 to 40 minutes.
-- Standards: AASL.Engage (VI.A.2 understanding the ethical use of information, technology and media; VI.B.1 ethically using and reproducing others' work), AASL.Include (weighing the creator's and the remixer's perspectives).
+- Standards: AASL.Engage (VI.A.2 understanding the ethical use of information, technology and media; VI.B.1 ethically using and reproducing others' work), AASL.Include (weighing the creator's and the remixer's perspectives); also MA:Cn11 (media arts in ethical and legal contexts: fair use).
 - tool.json: driver "students", minutes "25-40", modes ["Review queue", "Your upload"], grades_label "Grades 9-12".
 
 ## Screens and modes

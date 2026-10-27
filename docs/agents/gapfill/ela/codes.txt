@@ -1,0 +1,37 @@
+# ELA gap fill: codes added to existing modules (add_codes.py format). Only where the tool already does the work.
+# K-2
+ela-k-all-about-books: RI.K.7  # meet-the-book-makers: the class decides which parts of the page the pictures made and what they show
+# 3-5
+ela-3-narrative-writing: L.3.2  # dialogue-director: turns speech bubbles into prose with commas and quotation marks in dialogue (L.3.2c)
+ela-3-literal-and-figurative-language: RL.3.4  # idiom-illustrator: literal versus nonliteral meaning of phrases, the core of RL.3.4
+ela-4-theme-and-summary: RL.4.1  # theme-tracker: students highlight the details that support a theme, referring to the text when inferring
+ela-4-writing-with-evidence: RI.4.1  # quote-picker: chooses the quotation from a text that backs each reason and explains it
+ela-4-short-research-projects: RI.4.9  # research-rover: notes from several articles on one topic combined into one outline
+ela-5-comparing-characters-and-themes: RL.5.2  # character-face-off: themes drawn from how characters respond to challenges
+ela-5-multiple-sources: W.5.7; W.5.8  # fact-fusion: a short report built from several sources, tracking which source said what
+# 6-8
+ela-6-plot-and-character-development: RL.6.5  # plot-rollercoaster: places each scene in the plot structure and shows what it does there
+ela-6-central-idea-and-summary: RL.6.2  # summary-squeeze: objective summary of a passage's central idea; stories work as well as articles
+ela-6-connotation-and-context: RL.6.4; RI.6.4  # word-thermometer: connotation and how a word choice changes tone
+ela-7-comparing-authors: RI.7.4; RI.7.6  # two-authors-one-event: word choice and emphasis show each author's point of view
+ela-8-conflicting-information: RI.8.8  # fact-check-desk: traces each claim to its evidence and judges which is better supported
+eld-6-8-summarizing-and-citing: RI.6.2; RI.7.2; RI.8.2  # summary-scaffold (6-8 span): turns a text into an objective summary
+library-6-8-the-research-process: W.6.7; W.7.7; W.8.7  # research-quest (6-8 span, spec): a short research project from question to findings
+library-6-8-is-it-reliable: W.6.8; W.7.8; W.8.8  # fake-or-fact-lab (6-8 span, spec): assesses the credibility and accuracy of sources
+# 9-12
+ela-9-complex-characters: RL.9-10.2  # character-web: how conflicting motivations develop the theme
+ela-9-seminal-us-documents: RI.9-10.4  # founding-words-explorer: plain-English layers for the meaning of words and phrases in the text
+ela-10-figurative-language-and-tone: L.9-10.5  # tone-dial: nuance in words with similar meanings changes the tone
+ela-10-literary-analysis: RL.9-10.1  # thesis-workshop: gathers textual evidence to prove a claim about a text
+ela-11-satire-irony-and-point-of-view: RL.11-12.1  # satire-decoder (spec): proves the real meaning with lines cited from the text
+ela-11-integrating-sources: W.11-12.8  # source-mixer: gathers and integrates several sources, tracking what each adds
+ela-11-synthesis-and-rhetorical-analysis: W.11-12.4; SL.11-12.6  # rhetorical-situation-simulator: fits a speech to speaker, audience and purpose
+ela-11-college-personal-essay: W.11-12.5  # personal-essay-studio: brainstorm, draft and revise
+ela-12-complex-structure-and-ambiguity: RL.11-12.3  # ambiguity-lab: an author's choices about order, ending and narrator change the story
+ela-11-usage-and-contested-language: SL.11-12.1  # usage-panel (spec): pairs weigh five panelists' views and rule; the spec already names SL.11-12.1
+library-9-12-databases-and-advanced-search: W.9-10.8; W.11-12.8  # boolean-builder (spec): advanced searches to gather sources
+# Speaking and listening 3-5
+eld-3-5-academic-conversations: SL.3.1; SL.4.1; SL.5.1  # talk-moves-trainer (3-5 span): agree, disagree and build on others' ideas in discussion
+# WIDA language uses
+eld-3-5-then-and-now-language: WIDA.Inform  # time-machine-talk: learners describe what they see in each past scene (Inform: describe)
+eld-9-12-college-and-career-language: WIDA.Inform  # inbox-simulator: replies to school and job emails give requested information

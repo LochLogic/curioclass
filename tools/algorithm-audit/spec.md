@@ -14,7 +14,7 @@ A school district picks who gets the 40 summer robotics camp seats with a point 
 ## Who and how
 - Grades 6 to 8, computer science. Module: Algorithms and Fairness (Computing and Society), "Bias and ethics in everyday algorithms". Topic line: "testing an algorithm for fairness".
 - Driver: students in pairs on laptops; the Hearing works well with a teacher on a projector and the class taking the board members' parts. 25 to 40 minutes.
-- Standards (CSTA 2026 ids from the module): MS-ALG-IM-10, MS-ALG-IM-11, MS-SOC-CE-45. 2017 crosswalk: 2-IC-20 (compare tradeoffs of computing technologies that affect people's everyday activities), 2-IC-21 (discuss issues of bias and accessibility in the design of existing technologies), 2-AP-17 (systematically test and refine programs using a range of test cases). References: paired testing ("audit studies"), as described in Sandvig et al., "Auditing Algorithms" (2014); proxies and disparate impact, as in Barocas and Selbst, "Big Data's Disparate Impact" (2016).
+- Standards (CSTA 2026 ids from the module): MS-ALG-IM-10, MS-ALG-IM-11, MS-SOC-CE-45, MS-SOC-HU-43. 2017 crosswalk: 2-IC-20 (compare tradeoffs of computing technologies that affect people's everyday activities), 2-IC-21 (discuss issues of bias and accessibility in the design of existing technologies), 2-AP-17 (systematically test and refine programs using a range of test cases). References: paired testing ("audit studies"), as described in Sandvig et al., "Auditing Algorithms" (2014); proxies and disparate impact, as in Barocas and Selbst, "Big Data's Disparate Impact" (2016).
 - tool.json: driver "students or teacher", minutes "25-40", modes ["Audit", "Hearing"], grades_label "Grades 6-8".
 
 ## Screens and modes

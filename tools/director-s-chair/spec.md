@@ -14,7 +14,7 @@ Direct the same short scene, the Guard's report from Sophocles' Antigone, as a g
 - Grade 9-12, theater, module "Theater History and Directing (Theater)": theatrical traditions; directing choices.
 - Topic line: theater traditions and directing
 - Driver: students on laptops, alone or in pairs; a teacher can project one house and let the class vote each choice. 40 to 50 minutes (one or two houses per sitting works too).
-- Standards: NCAS TH:Re8 (interpret intent and meaning), TH:Cn11 (relate theater to its cultural and historical context).
+- Standards: NCAS TH:Re8 (interpret intent and meaning), TH:Cn11 (relate theater to its cultural and historical context); also TH:Cr2 (a directing concept shaped by history and culture), TH:Re7 (respond to the choices in each version), TH:Re9 (justify the director's note with evidence).
 
 ## Screens and modes
 Header: title, topic line, `Read`, `Motion`, `Sound` (kit, theme-912). Mode buttons (`.seg`): `Tour` (default), `Compare`.

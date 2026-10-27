@@ -15,12 +15,12 @@ k-2|eld-k12|Language for Language Arts|Retelling Stories|Narrate a story's begin
 k-2|eld-k12|Language for Mathematics|Math Talk: Numbers and Shapes|Describe numbers, shapes and comparisons|WIDA.ELD-3;WIDA.Explain
 k-2|eld-k12|Language for Science|Describing What I See|Name and describe observations|WIDA.ELD-4;WIDA.Inform
 k-2|eld-k12|Language for Social Studies|My Community Words|Places, people and jobs in the community|WIDA.ELD-5;WIDA.Inform
-3-5|eld-k12|Social and Instructional Language|Academic Conversations|Agree, disagree and build on others' ideas|WIDA.ELD-1
+3-5|eld-k12|Social and Instructional Language|Academic Conversations|Agree, disagree and build on others' ideas|WIDA.ELD-1;SL.3.1;SL.4.1;SL.5.1
 3-5|eld-k12|Language for Language Arts|Opinions with Reasons|Give an opinion and support it with reasons|WIDA.ELD-2;WIDA.Argue
 3-5|eld-k12|Language for Mathematics|Explaining My Solution|Explain steps and strategies in word problems|WIDA.ELD-3;WIDA.Explain
 3-5|eld-k12|Language for Science|Cause and Effect Language|Because, so, as a result: explain how things happen|WIDA.ELD-4;WIDA.Explain
-3-5|eld-k12|Language for Social Studies|Then and Now Language|Past tense and sequence words for history|WIDA.ELD-5;WIDA.Narrate
-6-8|eld-k12|Language for Language Arts|Summarizing and Citing|Summarize texts and cite evidence|WIDA.ELD-2;WIDA.Inform
+3-5|eld-k12|Language for Social Studies|Then and Now Language|Past tense and sequence words for history|WIDA.ELD-5;WIDA.Narrate;WIDA.Inform
+6-8|eld-k12|Language for Language Arts|Summarizing and Citing|Summarize texts and cite evidence|WIDA.ELD-2;WIDA.Inform;RI.6.2;RI.7.2;RI.8.2
 6-8|eld-k12|Language for Mathematics|Word Problems Decoded|Unpack math vocabulary and problem language|WIDA.ELD-3;WIDA.Explain
 6-8|eld-k12|Language for Science|Lab Reports and Claims|Claim, evidence and reasoning language|WIDA.ELD-4;WIDA.Argue
 6-8|eld-k12|Language for Social Studies|Comparing Perspectives|Language to compare sources and viewpoints|WIDA.ELD-5;WIDA.Argue
@@ -29,13 +29,24 @@ k-2|eld-k12|Language for Social Studies|My Community Words|Places, people and jo
 9-12|eld-k12|Language for Mathematics|Precise Mathematical Language|Definitions, conditions and justification|WIDA.ELD-3;WIDA.Explain
 9-12|eld-k12|Language for Science|Explaining Models and Data|Describe models, graphs and trends|WIDA.ELD-4;WIDA.Explain
 9-12|eld-k12|Language for Social Studies|Analyzing Historical Arguments|Language of causation, evidence and evaluation|WIDA.ELD-5;WIDA.Argue
-9-12|eld-k12|Social and Instructional Language|College and Career Language|Emails, interviews and formal registers|WIDA.ELD-1
+9-12|eld-k12|Social and Instructional Language|College and Career Language|Emails, interviews and formal registers|WIDA.ELD-1;WIDA.Inform
 # Library and research skills (AASL National School Library Standards 2018: six Shared Foundations)
 k-2|library|Research|Finding a Book|How the library is organized; fiction and nonfiction|AASL.Explore;AASL.Curate
-k-2|library|Research|Asking Good Questions|Wonder, ask and look for answers|AASL.Inquire
+k-2|library|Research|Asking Good Questions|Wonder, ask and look for answers|AASL.Inquire;D1.5.K-2
 3-5|library|Research|Search Like a Pro|Keywords, catalogs and kid-safe search|AASL.Curate;AASL.Inquire
 3-5|library|Research|Giving Credit|Why and how to credit sources|AASL.Engage
-6-8|library|Research|Is It Reliable?|Evaluate websites, authors and evidence; spot misinformation|AASL.Curate;AASL.Engage
-6-8|library|Research|The Research Process|Plan, gather, organize and present research|AASL.Inquire;AASL.Collaborate
-9-12|library|Research|Databases and Advanced Search|Academic databases, Boolean search and primary sources|AASL.Curate
-9-12|library|Research|Citation, Copyright and Fair Use|Citation styles, plagiarism, copyright and Creative Commons|AASL.Engage;AASL.Include
+6-8|library|Research|Is It Reliable?|Evaluate websites, authors and evidence; spot misinformation|AASL.Curate;AASL.Engage;W.6.8;W.7.8;W.8.8;D3.2.6-8
+6-8|library|Research|The Research Process|Plan, gather, organize and present research|AASL.Inquire;AASL.Collaborate;AASL.Engage;W.6.7;W.7.7;W.8.7;D1.5.6-8;D3.1.6-8
+9-12|library|Research|Databases and Advanced Search|Academic databases, Boolean search and primary sources|AASL.Curate;W.9-10.8;W.11-12.8
+9-12|library|Research|Citation, Copyright and Fair Use|Citation styles, plagiarism, copyright and Creative Commons|AASL.Engage;AASL.Include;MA:Cn11
+
+# Gap fill 2026-10-27 (ela): see docs/agents/gapfill/ela/notes.md
+k-2|eld-k12|Language for Social Studies|Choosing and Giving Reasons|Pick between two options and say why with because; agree or disagree politely|WIDA.ELD-5;WIDA.Argue
+6-12|eld-k12|Language for Language Arts|Telling Stories and Experiences|Narrate events in order with time words and past-tense verbs|WIDA.ELD-2;WIDA.Narrate
+
+# Gap fill 2026-10-27 (social): see docs/agents/gapfill/social/notes.md
+k-2|library|Community|Many Voices Book|Make one class book together where everyone is in|AASL.Include;AASL.Collaborate
+3-5|library|Reading|Windows and Mirrors Shelf|Reading widely: books like my life and books about other lives|AASL.Include;AASL.Explore
+6-8|library|Research|Rabbit Hole Notebook|Following curiosity; how questions grow during research|AASL.Explore;D1.4.6-8
+9-12|library|Research|Enduring Questions|Turning curiosity into a question that reflects an enduring issue|AASL.Explore;D1.1.9-12;D1.2.9-12;D1.3.9-12
+9-12|library|Research|Source Portfolio|Gathering sources across views; judging authority and corroboration|AASL.Curate;D1.5.9-12;D3.1.9-12;D3.2.9-12

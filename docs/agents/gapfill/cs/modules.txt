@@ -1,0 +1,33 @@
+# CS gap fill: new modules (course cs-k12). Span modules carry each spanned grade's code; their tools have a grade switch.
+electives.txt|k-2|cs-k12|Computing and Society|Computing Then and Now|How everyday computing changed over time and the people who designed it|EK-SOC-HI-14;EK-SOC-HU-15;E1-SOC-HI-14;E2-SOC-HI-14;E2-SOC-HU-15
+electives.txt|k-2|cs-k12|Data and Analysis|Asking With Data|Questions data can answer, ways to collect numbers and words, and who a plan leaves out|EK-DAT-DI-09;EK-DAT-DC-08;E1-DAT-DI-09;E1-DAT-DC-08;E1-DAT-IM-10;E2-DAT-DI-09;E2-DAT-DC-08;E2-DAT-IM-10
+electives.txt|k-2|cs-k12|Computing and Society|Devices at Home, School and Work|How people use digital devices and tools, and jobs that match what you love|EK-SOC-CE-16;EK-SYS-HW-11;E1-SOC-CE-16;E2-SOC-CE-16
+electives.txt|k-2|cs-k12|Systems and Security|Using Tech Well|Responsible use of shared devices; benefits and harms of screen time|EK-SYS-IM-13;E1-SYS-IM-13;E2-SYS-IM-13
+electives.txt|k-2|cs-k12|Algorithms and Programming|Fair Rules for Turns|People make algorithms; changing a rule changes the outcome and who it is fair to|EK-ALG-IM-03;E1-ALG-IM-03;E2-ALG-IM-03
+electives.txt|k-2|cs-k12|Algorithms and Programming|Signs and Changing Values|Symbols that carry information; named values that change or stay the same|EK-PRO-VD-05;E1-PRO-VD-05;E2-PRO-VD-05
+electives.txt|k-2|cs-k12|Algorithms and Programming|What the Code Does|Explain the steps and events in a program, and how it was built|EK-PRO-RD-06;E1-PRO-RD-06;E2-PRO-RD-06
+electives.txt|3-5|cs-k12|Computing and Society|Computing Inventions and Inventors|How computing changed daily life, why people built it, and whose ideas were included|E3-SOC-HI-16;E3-SOC-HU-18;E4-SOC-HI-16;E4-SOC-ET-17;E5-SOC-HI-16
+electives.txt|3-5|cs-k12|Computing and Society|Computing on the Job|How people in many jobs use computing, learn new tools and work together|E3-SOC-CE-19;E4-SOC-CE-19;E5-SOC-CE-19;E5-SYS-IM-15
+electives.txt|3-5|cs-k12|Computing and Society|New Tech: Yes or No?|Benefits, risks, data and the planet when a family weighs a new gadget|E3-SOC-ET-17;E4-DAT-IM-11;E4-SYS-IM-15;E5-SOC-ET-17;E5-DAT-IM-11
+electives.txt|3-5|cs-k12|Data and Analysis|Fair Surveys|Plan a data collection that includes everyone; check and organize the answers|E3-DAT-IM-11;E3-DAT-DC-09;E4-DAT-DC-09;E5-DAT-DC-09
+electives.txt|3-5|cs-k12|Data and Analysis|Why Data Varies|Repeat measurements, spot outliers and relationships between attributes|E3-DAT-DI-10;E4-DAT-DI-10;E5-DAT-DI-10
+electives.txt|3-5|cs-k12|Algorithms and Programming|Code as a Team|Read, comment, compare and combine code with teammates|E3-PRO-PD-05;E3-PRO-RD-07;E4-PRO-PD-04;E4-PRO-PD-05;E5-PRO-PD-05;E5-PRO-RD-07
+electives.txt|3-5|cs-k12|Algorithms and Programming|Plan It Before You Code It|Write and draw algorithms with events, loops, choices and variables|E3-ALG-PS-01;E4-ALG-PS-01;E5-ALG-PS-01
+electives.txt|3-5|cs-k12|Computing and Society|Algorithms That Help Some More|Different algorithms for the same job help or hurt different people|E3-ALG-IM-03;E4-ALG-IM-03;E5-ALG-IM-03
+electives.txt|3-5|cs-k12|Systems and Security|Hardware and Software Together|What software does, how it works with hardware, and fixing a stuck step|E3-SYS-HW-12;E4-SYS-HW-12;E5-SYS-HW-12
+electives.txt|6-8|cs-k12|Data and Analysis|Data, Metadata and You|Precision, granularity and metadata in personal data, and who should hold it|MS-DAT-DC-21;MS-DAT-DC-22;MS-DAT-IM-28
+electives.txt|6-8|cs-k12|Data and Analysis|Cleaning Data Honestly|Choose how to fix data quality problems and report the biases and limits|MS-DAT-DC-24;MS-DAT-DI-27
+electives.txt|6-8|cs-k12|Computing and Society|Design for Every User|Find and fix accessibility gaps with user feedback and inclusive teamwork|MS-ALG-IM-09;MS-PRO-TR-20;MS-SYS-IM-36;MS-PRO-PD-15
+electives.txt|6-8|cs-k12|Systems and Security|Who Gets Connected|Match computing systems to needs; how access and design differ across communities|MS-SYS-HW-30;MS-SYS-IM-37;MS-SOC-ET-41
+electives.txt|6-8|cs-k12|Algorithms and Programming|Choosing AI or Not|Steps, rules or data: pick the approach, try an AI helper and judge when AI fits|MS-ALG-PS-04;MS-ALG-PS-05;MS-SOC-ET-40
+electives.txt|6-8|cs-k12|Algorithms and Programming|Code You Did Not Write|Check AI-written code against docs and tests, log changes and credit sources|MS-PRO-RD-18;MS-PRO-TR-19;MS-PRO-PD-13;MS-PRO-PD-14
+electives.txt|6-8|cs-k12|Computing and Society|Computing in Industry|Devices and computational thinking in real jobs|MS-SOC-CE-44;MS-SYS-HW-31
+electives.txt|6-8|cs-k12|Computing and Society|Computing History and Impact|Who shaped computing, what it changed, and debating a new technology locally|MS-SOC-HI-38;MS-SOC-HI-39;MS-SOC-ET-42
+electives.txt|9-12|cs-k12|Computing and Society|Emerging Technology Review|How an emerging technology differs, who it helps or harms, and a concept design|HS-SOC-ET-40;HS-SOC-ET-41;HS-SOC-ET-42
+electives.txt|9-12|cs-k12|Computing and Society|A Technology's Long Story|The history of one technology and the infrastructure, energy and labor behind it|HS-SOC-HI-38;HS-SYS-IM-37
+electives.txt|9-12|cs-k12|Computing and Society|Minds and Machines|Deterministic and probabilistic algorithms, and human versus machine intelligence|HS-ALG-PS-04;HS-SOC-HU-44
+electives.txt|9-12|cs-k12|Algorithms and Programming|Reviewing AI-Written Code|Evaluate AI-generated code against requirements and credit every source|HS-PRO-RD-18;HS-PRO-PD-14
+electives.txt|9-12|cs-k12|Computing and Society|Design, Test and Refine|Human-centered design with a team workflow, spec checks, user testing and refinement|HS-ALG-IM-09;HS-PRO-TR-19;HS-PRO-TR-20;HS-PRO-PD-15
+electives.txt|9-12|cs-k12|Data and Analysis|Data Dictionaries and Validation|Describe each attribute and check data against its types, values and ranges|HS-DAT-DC-22;HS-DAT-DC-24
+electives.txt|9-12|cs-k12|Computing and Society|Computing Teams and Careers|How diverse teams use computing, and where your goals meet computer science|HS-SOC-CE-45;HS-SOC-CE-46
+electives.txt|9-12|cs-k12|Systems and Security|Device Limits and Optimization|Capabilities and limits of a simulated device; optimize its algorithm with procedures|HS-SYS-HW-30;HS-ALG-PS-02

@@ -13,7 +13,7 @@ Bitsy, the cafeteria robot, reads the lunch number each student writes on a card
 ## Who and how
 - Grade 4, computer science. Module: Training Data Matters (Algorithms and Programming). Topic line: "how training data can make AI unfair".
 - Driver: students or teacher. Pairs on laptops, or a teacher on a projector asking the class to predict each room's score before a run. 15 to 25 minutes.
-- Standards: E4-ALG-ML-02, E4-SOC-HU-18 (module codes). CSTA 2017 crosswalk: 1B-DA-07 (use data to propose cause and effect and predict outcomes), 1B-IC-19 (improve technology for the diverse needs of users), 1B-IC-20 (seek diverse perspectives to improve computational artifacts). Reference: AI4K12 Big Idea 3 (learning) and Big Idea 5 (societal impact).
+- Standards: E4-ALG-ML-02, E4-SOC-HU-18, E4-DAT-IM-11, E3-ALG-ML-02 (module codes). CSTA 2017 crosswalk: 1B-DA-07 (use data to propose cause and effect and predict outcomes), 1B-IC-19 (improve technology for the diverse needs of users), 1B-IC-20 (seek diverse perspectives to improve computational artifacts). Reference: AI4K12 Big Idea 3 (learning) and Big Idea 5 (societal impact).
 - tool.json: driver "students or teacher", minutes "15-25", modes ["Lunch Line", "Try Your Writing"], grades_label "Grade 4".
 
 ## Screens and modes

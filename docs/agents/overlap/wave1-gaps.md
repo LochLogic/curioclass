@@ -1,5 +1,8 @@
 # Curio Class: standards coverage and overlap after spec wave 1
 
+**Superseded 2026-10-27:** the code pass and the new modules suggested here are done. Current numbers and what changed:
+`docs/agents/gapfill/REPORT.md`.
+
 Written 2026-10-27, after the 75 wave 1 specs (BATCH-W1.md, log in BATCH-W1-LOG.md). It updates gaps.md (the first
 overlap pass) with full official code lists, so every number below is "covered of the whole framework", not "covered
 of the codes we happened to use".
@@ -196,8 +199,8 @@ tool. None shares a skill; all 15 are action and setting matches only.
   - health-claim-checker with two 9-12 mysteries.
   - internet-journey with day-in-the-life.
   - flipbook-studio with vanishing-point-studio (both studios, different skills).
-- **Same skill, same band:** robot-mouse-mail and the live robot-dance (K-2, sequence and debug). Robot Dance
-  programs moves; robot-mouse-mail traces footprints back to the card that made them. Kept: the overlap review already
+- **Same skill, same band:** snowy-mail-route and the live robot-dance (K-2, sequence and debug). Robot Dance
+  programs moves; snowy-mail-route traces footprints back to the card that made them. Kept: the overlap review already
   reshaped this one.
 - **Crowded settings to avoid in later waves:**
   - 9-12: lab 11, business and money 10, council and debate 8.

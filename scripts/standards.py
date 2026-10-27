@@ -43,20 +43,15 @@ def ccss_math(code):
     return False
 
 
-# --- Common Core ELA: strand.grade.number
-ELA_MAX = {'RL': 10, 'RI': 10, 'W': 10, 'SL': 6, 'L': 6}
+# --- Common Core ELA: strand.grade.number, checked against the official list
+ELA_IDS = set(l.strip() for l in (DATA / 'ccss-ela-standards.txt').read_text(encoding='utf-8').splitlines()
+              if l.strip() and not l.startswith('#'))
 
 
 def ccss_ela(code):
-    m = re.fullmatch(r'(RL|RI|RF|W|SL|L)\.(K|[1-8]|9-10|11-12)\.(\d{1,2})', code)
-    if not m:
-        return False
-    s, g, n = m.group(1), m.group(2), int(m.group(3))
-    if s == 'RF':
-        return g in G[:6] and (1 <= n <= 4) and (n >= 3 or g in ('K', '1'))
-    if s == 'RL' and n == 8:
-        return False  # RL.8 is "not applicable to literature"
-    return 1 <= n <= ELA_MAX[s]
+    """A grade-level standard on the official list, optionally with its sub-letter (L.3.1a)."""
+    m = re.fullmatch(r'((?:RL|RI|RF|W|SL|L)\.(?:K|[1-8]|9-10|11-12)\.\d{1,2})[a-f]?', code)
+    return bool(m) and m.group(1) in ELA_IDS
 
 
 # --- NGSS performance expectations (nextgenscience.org): band-DCI -> highest number
@@ -79,17 +74,13 @@ def ngss(code):
     return bool(m) and m.group(1) in NGSS and 1 <= int(m.group(2)) <= NGSS[m.group(1)]
 
 
-# --- C3 Framework Dimension 2 indicators (socialstudies.org, rev 2017)
-C3_MAX = {'Civ': 14, 'Eco': 15, 'Geo': 12, 'His': 17}
-C3_NOT_K2 = {'Civ.4', 'Civ.13', 'Eco.8', 'Eco.11', 'His.5', 'His.7', 'His.8', 'His.13', 'His.15', 'His.17'}
+# --- C3 Framework indicators, all four dimensions (socialstudies.org, rev 2017): the official list
+C3_IDS = set(l.strip() for l in (DATA / 'c3-indicators.txt').read_text(encoding='utf-8').splitlines()
+             if l.strip() and not l.startswith('#'))
 
 
 def c3(code):
-    m = re.fullmatch(r'D2\.(Civ|Eco|Geo|His)\.(\d{1,2})\.(K-2|3-5|6-8|9-12)', code)
-    if not m:
-        return code in ('D4.7.9-12', 'D4.8.9-12')
-    d, n, b = m.group(1), int(m.group(2)), m.group(3)
-    return 1 <= n <= C3_MAX[d] and not (b == 'K-2' and f'{d}.{n}' in C3_NOT_K2)
+    return code in C3_IDS
 
 
 # --- CSTA 2026 PK-12 CS Standards (csteachers.org, released July 2026)

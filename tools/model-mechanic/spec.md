@@ -13,7 +13,7 @@ A nature preserve's trail-camera AI is misnaming animals, and every mistake land
 ## Who and how
 - Grades 6 to 8, computer science. Module: Machine Learning Models (Algorithms and Programming). Topic line: "confusion matrices and fixing a model".
 - Driver: students, alone or in pairs on laptops. 20 to 35 minutes; each work order takes about 5 to 10.
-- Standards: MS-ALG-ML-06, MS-ALG-ML-07, MS-ALG-ML-08 (module codes). CSTA 2017 crosswalk: 2-DA-08 (collect data and transform it to make it more useful and reliable), 2-DA-09 (refine computational models based on the data they generate), 2-IC-21 (discuss issues of bias in the design of existing technologies). Reference: Google Machine Learning Crash Course, "Classification" (confusion matrix, class imbalance).
+- Standards: MS-ALG-ML-06, MS-ALG-ML-07, MS-ALG-ML-08, MS-DAT-IM-29 (module codes). CSTA 2017 crosswalk: 2-DA-08 (collect data and transform it to make it more useful and reliable), 2-DA-09 (refine computational models based on the data they generate), 2-IC-21 (discuss issues of bias in the design of existing technologies). Reference: Google Machine Learning Crash Course, "Classification" (confusion matrix, class imbalance).
 - tool.json: driver "students", minutes "20-35", modes ["Garage", "Work Orders"], grades_label "Grades 6-8".
 
 ## Screens and modes

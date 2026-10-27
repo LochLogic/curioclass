@@ -15,7 +15,7 @@ Squint at a broken poster to see where the eye lands first and which way it tips
 - Grade 6-8, visual arts, module "Principles of Design (Visual Arts)".
 - Topic line: principles of design: balance, contrast and emphasis
 - Driver: students (laptops, alone or in pairs); a teacher can project the Squint view for a class "where did your eye go first?" 15 to 30 minutes.
-- Standards: NCAS VA:Cr1 (generate and conceptualize ideas), VA:Cr2 (organize and develop), VA:Re8 (interpret intent and meaning).
+- Standards: NCAS VA:Cr1 (generate and conceptualize ideas), VA:Cr2 (organize and develop), VA:Re8 (interpret intent and meaning); also VA:Cr3 (refine and revise until the intended emphasis reads).
 
 ## Screens and modes
 Header: title, topic line, `Read`, `Motion`, `Sound`. Modes (`.seg`): `Studio` (explore, the default), `Fix` (ten puzzles).

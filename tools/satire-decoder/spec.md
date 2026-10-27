@@ -13,7 +13,7 @@ Every satire runs two cases at once: the speaker's face-value case is already pi
 - usage-panel and ad-agency: role play and persuasion making; no detective board, no irony.
 
 ## Who and how
-Grade 11 (works 10-12), ELA. Driver: students, often alone on laptops; a teacher can project one case for the class. 15 to 40 minutes (one case is about 12 minutes). Standards: RL.11-12.6 (distinguish what is directly stated from what is really meant: satire, sarcasm, irony, understatement).
+Grade 11 (works 10-12), ELA. Driver: students, often alone on laptops; a teacher can project one case for the class. 15 to 40 minutes (one case is about 12 minutes). Standards: RL.11-12.6 (distinguish what is directly stated from what is really meant: satire, sarcasm, irony, understatement). Also RL.11-12.1 (cite strong and thorough textual evidence: each clue is a quoted line).
 
 Look: 9-12 band. Link `kit:curio` then `kit:theme-912`; set `--brand` to a muted oxblood (about #8a3b3b, keep AA contrast against the theme). A dark detective desk: the passage on an aged paper card at left, a corkboard-style "case board" at right drawn in code (two columns, pins, string lines). Minimal celebration: no confetti, no mascots.
 

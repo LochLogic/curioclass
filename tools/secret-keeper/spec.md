@@ -22,7 +22,7 @@ each thing they share, and what happens when a password lands where everyone can
   secret); the teacher taps the class's choice.
 - 10 to 15 minutes. tool.json: driver "teacher", minutes "10-15", modes ["Share or Secret", "Who's Asking?"],
   grades_label "Kindergarten".
-- Standards (CSTA 2026 ids from the module): EK-SYS-SE-12, EK-SYS-IM-13. 2017 crosswalk: 1A-NI-04 (what passwords are
+- Standards (CSTA 2026 ids from the module): EK-SYS-SE-12, EK-SYS-IM-13; library AASL.Engage (safe sharing of information). 2017 crosswalk: 1A-NI-04 (what passwords are
   and why we use them), 1A-IC-18 (keep login information private).
 - Reads nothing: icons on every control and card, every fixed line voiced, 60 px targets (the card and the two
   targets are much larger).

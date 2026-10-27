@@ -15,7 +15,7 @@ Block a scene from above, then sit in any seat in the house: the audience view s
 - Grade 6-8, theater, module "Scripts and Staging (Theater)": blocking, stage directions and design.
 - Topic line: blocking, stage directions and sightlines
 - Driver: students on laptops, alone or in pairs (a director and a stage manager); or a teacher on a projector blocking a scene with the class. 30 to 45 minutes.
-- Standards: NCAS TH:Cr1 (generate and conceptualize ideas: design and staging choices), TH:Pr5 (develop and refine work for presentation: blocking and technical elements).
+- Standards: NCAS TH:Cr1 (generate and conceptualize ideas: design and staging choices), TH:Pr5 (develop and refine work for presentation: blocking and technical elements); also TH:Cr3 (run the scene, read the director's notes, revise).
 
 ## Screens and modes
 Header: title, topic line, `Read`, `Motion`, `Sound` (kit). Mode buttons (`.seg`): `Block` (default), `House`, `Run`. Panel top: `Scene` picker (The Note, Bus Stop, The Trophy, Free stage).

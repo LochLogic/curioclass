@@ -1,0 +1,12 @@
+# CS gap fill: codes added to existing modules (wording checked against the CSTA 2026 PDF, see notes.md)
+computer-science-k-step-by-step: EK-PRO-RD-06  # robot-dance (live): the class says what Bolt will do as each card runs ("describe what happens when simple code runs")
+computer-science-k-count-and-decide: EK-DAT-IM-10  # me-vs-the-counter: the class uses the computer's bounce counts to decide which ball is bounciest
+math-k-sort-and-count: EK-ALG-ML-02  # toy-box-sort (planned): sort toys by color, shape or size; the boundary statement is grouping objects by an attribute
+computer-science-1-code-a-path: E1-ALG-IM-03  # snowy-mail-route: Mixed Up level swaps two cards and the class sees a different stop; predict, run, fix
+computer-science-3-how-we-use-the-internet: E3-SYS-IM-15  # internet-journey: the Where copies live board shows who a widely used message app affects (you, Juno, 12 phones) and the privacy cost
+computer-science-4-wired-wireless-and-login: E4-SYS-HW-12  # network-help-desk: ask, diagnose, send a fix, test ping; "no network access" is the boundary statement's own example
+computer-science-4-training-data-matters: E4-DAT-IM-11; E3-ALG-ML-02  # biased-bot: data collected only from Room 12 makes Room 9 get the wrong lunch; adding a few Room 9 cards fixes the model (E3 code on a grade 4 module, see notes)
+computer-science-6-8-algorithms-and-fairness: MS-SOC-HU-43  # algorithm-audit: the district's choices of what the formula counts give Riverbend 8 seats to Hillside's 32; students propose a fairer rule
+computer-science-6-8-machine-learning-models: MS-DAT-IM-29  # model-mechanic: choices in collecting and labeling (too few foxes, no night photos, mislabeled deer) compromise the model
+computer-science-9-12-ethics-law-and-data-policy: HS-SOC-HI-39; HS-DAT-IM-27  # data-policy-council: students revise the vendor's proposed policy past FERPA, COPPA and SOPIPA flags; the targeted-ads data clause is the boundary statement's own example
+computer-science-9-12-building-and-evaluating-ai: HS-SOC-HU-43; HS-ALG-IM-11  # ai-evaluator: test-set choice, threshold and deployment verdict decide who the pothole AI fails (Eastfield); the threshold trades missed potholes against wasted trips and explainability

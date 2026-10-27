@@ -17,7 +17,7 @@ The class is the cast: the board tells a folktale, hands each half of the room a
 - Grade K-2, theater, module "Pretend and Play (Theater)": creative drama and storytelling with movement.
 - Topic line: pretend play and acting out a story
 - Driver: teacher on a projector or smartboard; the class acts at their seats or in a cleared space. 15 to 25 minutes.
-- Standards: NCAS TH:Cr1 (generate and conceptualize ideas: invent and inhabit an imaginary place, imagine costumes and props), TH:Pr4 (select, analyze and interpret work: use body, face and voice for a character).
+- Standards: NCAS TH:Cr1 (generate and conceptualize ideas: invent and inhabit an imaginary place, imagine costumes and props), TH:Pr4 (select, analyze and interpret work: use body, face and voice for a character); also TH:Cr2 (the class shapes the story at Choose beats), TH:Pr5 (voice, sound, costumes and sound effects), TH:Pr6 (each side performs for the other).
 
 ## Screens and modes
 Header: title, topic line, `Read`, `Motion`, `Sound` (kit). Mode buttons (`.seg`, icon plus word): `Stories` (book icon, default), `Trunk` (trunk icon). Every control is at least 60 px with an icon and a word.

@@ -17,7 +17,7 @@ The dancer's feet paint the floor: every trip leaves a ribbon whose shape is the
 - Topic line: locomotor and nonlocomotor movement
 - Driver: teacher on a projector or smartboard. The class stands in their own "bubble space" and copies; pathways are followed in the room (gym, cleared space) or in place by marching the shape.
 - Minutes: 10-20. tool.json modes: ["Levels", "Pathways", "Mystery path", "Draw a path"]; driver "teacher"; grades_label "Grades K-2".
-- Standards (NCAS dance): DA:Cr1.1.Ka, DA:Cr1.1.1b (explore locomotor and nonlocomotor movement by changing an element of dance), DA:Pr4.1.Ka (change levels), DA:Pr4.1.1a (straight, curved and zigzag pathways), DA:Pr4.1.2a.
+- Standards (NCAS dance): DA:Cr1.1.Ka, DA:Cr1.1.1b (explore locomotor and nonlocomotor movement by changing an element of dance), DA:Pr4.1.Ka (change levels), DA:Pr4.1.1a (straight, curved and zigzag pathways), DA:Pr4.1.2a; also DA:Re7.1.Ka (Mystery path: find and describe the movement), DA:Cr3.1.Kb to DA:Cr3.1.2b (ribbon floor maps as symbols for pathways and levels), DA:Pr5.1.Kb (start and stop on cue), SHAPE.S2 (movement concepts: levels and pathways).
 - K-2 reads nothing: every control has an icon, every fixed line is voiced, targets are 60 px or more (72 px for answer buttons).
 
 ## Screens and modes

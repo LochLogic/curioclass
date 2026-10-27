@@ -15,7 +15,7 @@ Say one line as different characters, and the booth draws every take as a voicep
 - Grade 3-5, theater, module "Characters and Scenes (Theater)": voice, body and simple scripts.
 - Topic line: voice, character and feeling
 - Driver: students in pairs on laptops (one speaks, one listens), or a teacher on a projector with one volunteer at the mic. 20 to 30 minutes.
-- Standards: NCAS TH:Cr2 (organize and develop ideas: make and revise choices), TH:Pr4 (use voice and body to show a character).
+- Standards: NCAS TH:Cr2 (organize and develop ideas: make and revise choices), TH:Pr4 (use voice and body to show a character); also TH:Re7 (mystery listener and Compare respond to vocal choices), TH:Cr3 (try and refine voice choices), TH:Pr5 (vocal technique for a character).
 - Needs a microphone to record; everything except recording works without one (Plan mode is the no-mic path).
 
 ## Screens and modes

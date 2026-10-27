@@ -1,6 +1,6 @@
 # module_id|tool title|format|family|concept
 science-k-pushes-and-pulls|Push the Pumpkin|showdown||The class decides how hard to push a pumpkin, ball or wagon; the teacher taps and everyone watches how far it rolls and which way.
-science-k-sunlight-warms-the-earth|Shade Builder|builder||Build a shade over a sandbox using umbrellas, trees and tents; a heat camera view shows which spots stay cool.
+science-k-sunlight-warms-the-earth|Shade Builder|builder||Build a shade over a sandbox using umbrellas, trees and tents; a heat camera view shows which spots stay cool, and the class compares two shade designs to pick the one that keeps more of the sandbox cool.
 science-k-what-living-things-need|Terrarium Pal|creature|terrarium|A little terrarium with a plant and a snail; the class decides what to give it (water, light, food) and watches it thrive or droop.
 science-k-weather-watch|Weather Wardrobe|showdown|weather|Each day's weather appears on the board; the class dresses a character and logs the weather on a calendar to find patterns.
 science-k-living-things-change-their-environment|Beaver Builders|simulator||Help a beaver build a dam and watch the stream change into a pond; then help people reduce their own footprint.
@@ -23,7 +23,7 @@ science-3-traits-and-variation|Puppy Traits|explorer||Meet puppy litters and see
 science-3-fossils-and-changing-environments|Fossil Clues|lab|fossils|Match each fossil (a fish, a fern, a coral) to the place it lived, then piece together what this desert used to be and which animals could survive the change.
 science-3-weather-and-climate|Climate Postcards|data|weather|Compare real weather data from cities worldwide; build postcards describing each climate. Bonus: design for a weather hazard.
 science-4-energy-and-motion|Bowling Lab|lab||Roll balls of different speeds into pins; measure how speed and energy relate.
-science-4-energy-conversion-devices|Contraption Workshop|builder||Chain energy conversions (electric to motion to sound) into a ridiculous contraption that rings a bell.
+science-4-energy-conversion-devices|Contraption Workshop|builder||Chain energy conversions (electric to motion to sound) into a ridiculous contraption that rings a bell; a parts budget and a time limit set the rules, and test runs show which link in the chain fails.
 science-4-waves-and-information|Secret Code Signals|puzzle||Send messages across the room using light flashes, sound beeps and patterns; invent a code a friend can decode.
 science-4-structures-and-senses|How Animals See|explorer||See the world through the eyes of a bee, an owl and a snake; explore the structures that make it possible.
 science-4-rock-layers-and-earth-history|Canyon Reader|mystery|fossils|Read rock layers in a canyon wall to reconstruct what happened there, layer by layer.
@@ -37,7 +37,7 @@ science-5-sun-stars-and-shadows|Shadow Clock|lab|sky|Track a stick's shadow thro
 science-5-earth-s-spheres|Sphere Connections|cards||Card game connecting geosphere, hydrosphere, atmosphere and biosphere events (volcano to cloud to rain to plants).
 science-5-protecting-earth|Community Solutions|roleplay||Role-play a town meeting proposing solutions to local environmental problems, backed by data.
 science-6-earth-sun-moon-system|Moon Phase Model|simulator|sky|Orbit the Moon around Earth and watch phases and eclipses from both a space and a backyard view.
-science-6-gravity-and-the-solar-system|Planet Builder|sandbox||Place planets and moons and set their speed; gravity decides whether you get stable orbits or chaos.
+science-6-gravity-and-the-solar-system|Planet Builder|sandbox||Place planets and moons and set their mass and speed; gravity decides whether you get stable orbits or chaos.
 science-6-geologic-time|Earth's Calendar|timeline||Squash 4.6 billion years into one calendar year; humans show up at 11:59 pm on December 31.
 science-6-plate-tectonics|Plate Puzzle|puzzle||Fit continents back together using fossils, rocks and coastlines; then run the plates forward and backward in time.
 science-6-water-cycle-and-weather|Raindrop's Journey|story||Follow a water molecule through evaporation, clouds, rivers and glaciers; its choices are physics.
@@ -56,14 +56,14 @@ science-8-forces-and-motion|Crash Test Lab|lab|forces|Collide carts of different
 science-8-electric-and-magnetic-forces|Electromagnet Lab|lab||Wrap coils, add batteries, change distance; measure the pull of an electromagnet.
 science-8-kinetic-and-potential-energy|Skate Park Energy|simulator||A skater on a ramp you design; watch kinetic and potential energy trade places in a live bar chart.
 science-8-waves|Wave Tank|sandbox||Make waves in a tank, string and light; change amplitude and frequency and see what they do.
-science-8-reproduction-and-heredity|Gene Pool|simulator|genetics|Breed fantasy creatures and track how genes and mutations pass on; compare sexual and asexual reproduction.
+science-8-reproduction-and-heredity|Gene Pool|simulator|genetics|Breed fantasy creatures and track how genes and mutations pass on; compare sexual and asexual reproduction, then choose which pairs breed to bring out a trait the way farmers and breeders do.
 science-8-evolution-and-natural-selection|Bug Hunt|arcade||Be a bird hunting bugs on a background; the bugs you miss survive and breed, and camouflage evolves in front of you.
 science-8-natural-hazards-and-human-impact|Hazard Forecaster|data||Real earthquake, hurricane and wildfire data; spot patterns and plan where to put warning systems.
 science-8-engineering-design|Bridge Builder|builder||Design a bridge with a budget and constraints; test it with trucks, iterate and optimize.
 science-9-cell-structure-and-function|Membrane Gatekeeper|arcade|cells|Be the cell membrane: let in what the cell needs and block what it doesn't, as traffic speeds up.
 science-9-homeostasis|Body Thermostat|simulator||Keep a body at 37 C through exercise, cold and fever; feedback loops kick in automatically.
 science-9-cell-division-and-differentiation|Mitosis Mixer|sort|cells|Sort scrambled microscope images into the stages of mitosis; then see stem cells specialize.
-science-9-photosynthesis-and-cellular-respiration|Energy Accountant|data||Track carbon and energy through photosynthesis and respiration with a ledger; the books have to balance.
+science-9-photosynthesis-and-cellular-respiration|Energy Accountant|data||Track carbon and energy through photosynthesis and respiration with a ledger; the books have to balance, and switching the oxygen off shows how little energy fermentation pays.
 science-9-dna-and-protein-synthesis|Protein Factory|puzzle|genetics|Transcribe DNA to mRNA and translate codons into amino acids; a single mutation can break the protein.
 science-9-genetics-and-inheritance|Punnett Predictor|simulator|genetics|Cross parents and compare Punnett predictions to 1,000 simulated offspring; probability made visible.
 science-9-evolution|Tree of Life|explorer||Explore an interactive tree of life; compare anatomy, DNA and fossils to see shared ancestry.
@@ -71,7 +71,7 @@ science-9-ecology-and-populations|Carrying Capacity|simulator|ecosystem|Grow a d
 science-9-biodiversity-and-human-impact|Reserve Designer|builder||Design a nature reserve with a limited budget; balance habitat corridors, farms and towns.
 science-9-stars-and-the-big-bang|Star Life Story|timeline|astronomy|Follow stars of different masses from birth to death; see where elements are forged.
 science-9-orbits-and-earth-s-history|Orbit Lab|simulator|astronomy|Change mass and speed to explore Kepler's laws with real planet data.
-science-9-earth-s-systems-and-feedback|Feedback Loop Builder|builder||Connect ice, albedo, temperature and carbon in a causal loop; see which loops amplify and which stabilize.
+science-9-earth-s-systems-and-feedback|Feedback Loop Builder|builder||Connect ice, albedo, temperature and carbon in a causal loop; see which loops amplify and which stabilize, then add life: plankton and forests change the air, and the air changes what can live.
 science-9-water-and-earth-materials|Water Shapes Earth|lab||Freeze-thaw rocks, dissolve limestone and carve with rivers; water's properties explain the changes.
 science-9-climate-systems|Climate Dashboard|data||Real temperature, CO2 and ice data with filters; separate long-term trends from weather noise.
 science-9-resources-and-sustainability|Island Economy|tycoon||Manage an island's fish, forests and water over generations; sustainable use or collapse.
@@ -97,3 +97,7 @@ science-12-population-and-resources|Population Dashboard|data||Real population a
 science-12-energy-sources|Grid Operator|tycoon||Keep a city's lights on from the grid control room, mixing coal, gas, solar, wind and nuclear; balance cost, reliability and emissions through a heat wave and a still, cloudy week.
 science-12-pollution-and-solutions|Watershed Detective|mystery||Trace a river's pollution back to its sources with water tests; propose and test solutions.
 science-12-engineering-for-global-challenges|Design Challenge Studio|builder||Tackle a global challenge (clean water, cooling) by breaking it down, prototyping and weighing tradeoffs.
+
+# Gap fill 2026-10-27 (core): see docs/agents/gapfill/core/notes.md
+science-7-senses-and-the-brain|Nerve Signal Relay|race||The class races a signal from eye or ear to brain to finger: tap when the light flashes or the bell rings, watch the path light up, and find out why a practiced move gets faster than a new decision.
+science-11-heat-and-thermal-equilibrium|Hot Meets Cold|simulator||Drop a hot metal block into cold water and predict the final temperature; jiggling particles trade energy until both sides match, and no setting ever makes the heat flow back.

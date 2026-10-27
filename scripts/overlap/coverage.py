@@ -15,7 +15,7 @@ from common import ROOT
 BANDS = ['K-2', '3-5', '6-8', '9-12']
 GRADE_BAND = {'k': 'K-2', '1': 'K-2', '2': 'K-2', 'k-2': 'K-2', '3': '3-5', '4': '3-5', '5': '3-5', '3-5': '3-5',
               '6': '6-8', '7': '6-8', '8': '6-8', '6-8': '6-8', '9': '9-12', '10': '9-12', '11': '9-12', '12': '9-12',
-              '9-12': '9-12'}
+              '9-12': '9-12', '9-10': '9-12', '11-12': '9-12'}
 
 
 def grade_bands(g):
@@ -82,16 +82,21 @@ def read_list(name):
 
 
 def main():
-    show_missing = '--missing' in sys.argv
     concepts = list(csv.DictReader(io.open(os.path.join(ROOT, 'data', 'tools-concepts.csv'), encoding='utf-8')))
     mods = {m['module_id']: m for m in csv.DictReader(io.open(os.path.join(ROOT, 'data', 'modules.csv'), encoding='utf-8'))}
+    measure(concepts, mods, '--missing' in sys.argv)
+
+
+def measure(concepts, mods, show_missing=False):
+    """Print the coverage table. concepts: rows with tool_id and module_id; mods: module_id -> row with standards, grade.
+    A concept row may carry stage='planned' to skip the tools/ lookup (staged tools in stage_check.py)."""
     stage_rank = {'live': 0, 'spec': 1, 'planned': 2}
     # code -> best stage carrying it; for grids, (code, band) -> best stage
     best, best_grid, all_codes = {}, {}, set()
     for t in concepts:
         tid = t['tool_id']
-        st = 'live' if os.path.exists(os.path.join(ROOT, 'tools', tid, 'tool.json')) else \
-            'spec' if os.path.exists(os.path.join(ROOT, 'tools', tid, 'spec.md')) else 'planned'
+        st = t.get('stage') or ('live' if os.path.exists(os.path.join(ROOT, 'tools', tid, 'tool.json')) else
+                                'spec' if os.path.exists(os.path.join(ROOT, 'tools', tid, 'spec.md')) else 'planned')
         m = mods[t['module_id']]
         for code in (c.strip() for c in m['standards'].split(';') if c.strip()):
             all_codes.add(code)

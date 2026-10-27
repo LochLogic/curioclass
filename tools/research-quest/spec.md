@@ -13,7 +13,7 @@ Every shortcut you take while researching comes back as a question you can't ans
 ## Who and how
 - Grades 6 to 8, library. Module: The Research Process (Research), "Plan, gather, organize and present research".
 - Driver: students on laptops, alone or in pairs; a teacher can project it and take class votes at each choice. 20 to 30 minutes for one run; a second run (with different choices) takes about 10.
-- Standards: AASL.Inquire (I.A.1 formulating questions; I.B.2 devising and implementing a plan to fill knowledge gaps), AASL.Collaborate (presenting findings to a group and answering its questions). Link: AASL.Engage VI.B.1 (ethically using others' work: quoting and paraphrasing).
+- Standards: AASL.Inquire (I.A.1 formulating questions; I.B.2 devising and implementing a plan to fill knowledge gaps), AASL.Collaborate (presenting findings to a group and answering its questions); C3 D1.5.6-8 (choosing the kinds of sources that will help answer the question), D3.1.6-8 (gathering from several sources, guided by each one's origin and authority). Link: AASL.Engage VI.B.1 (ethically using others' work: quoting and paraphrasing). CCSS ELA: W.6.7, W.7.7, W.8.7 (short research projects to answer a question, drawing on several sources).
 - tool.json: driver "students or teacher", minutes "20-30", modes [], grades_label "Grades 6-8".
 
 ## Screens and modes

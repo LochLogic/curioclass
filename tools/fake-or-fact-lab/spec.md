@@ -15,7 +15,7 @@ Every made-up page or post is tested twice, the way a lab runs a control: first 
 ## Who and how
 - Grades 6 to 8, library. Module: Is It Reliable? (Research), "Evaluate websites, authors and evidence; spot misinformation".
 - Driver: students on laptops, alone or in pairs; a teacher can run specimen 1 on a projector with a class vote at each verdict. 25 to 40 minutes (six specimens at about 5 minutes, then the report).
-- Standards: AASL.Curate (IV.B.3 systematically questioning and assessing the validity and accuracy of information), AASL.Engage (VI.A.3 evaluating information for accuracy, validity, social and cultural context).
+- Standards: AASL.Curate (IV.B.3 systematically questioning and assessing the validity and accuracy of information), AASL.Engage (VI.A.3 evaluating information for accuracy, validity, social and cultural context); C3 D3.2.6-8 (judging a source's credibility from its relevance and intended use). CCSS ELA: W.6.8, W.7.8, W.8.8 (assess the credibility and accuracy of each source).
 - tool.json: driver "students or teacher", minutes "25-40", modes ["Lab", "Report"], grades_label "Grades 6-8". Kit starter plus `kit:fact-check`.
 
 ## Screens and modes
