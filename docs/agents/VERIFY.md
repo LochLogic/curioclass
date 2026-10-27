@@ -25,6 +25,29 @@ what is wrong before Cory does. Do not fix anything: report.
 8. **Guardrails:** K-2 teacher-led; hard history has no points, timers or win states; health topics are neutral.
 9. **Voice balance:** repeat each action five times with held clicks and count spoken lines in `vlog`: each how-to line
    once, each event line (praise, a result) every time. Check every spoken line against what the screen shows then.
+   Use the standard voice check below.
+
+## Standard voice check
+
+Drive it with `scripts/drive.py` and held clicks (`"hold": 0.12`, a `"gap"` longer than the lines), Sound on, Motion on.
+Read the log after each run: `__tool.vlog` (on `Curio.voice` it is `V.log`, with `as` = spoken, silent, dropped or read).
+
+1. **Repeats:** each action five times in a row. Count how often each line is spoken. How-to and teaching lines: once,
+   then `silent` (the hint still shows them). Event lines (praise, results, failures, "that code doesn't work"): five.
+   A result that goes quiet after the first time fails, and so does a how-to that comes back after every tap.
+2. **Stale lines:** tap fast (gap about 0.2 s) through two or three actions, then switch mode and Reset. No line may
+   play after its moment has passed: compare each spoken line with the frame at its time. A line naming a control that
+   is hidden or off must not play.
+3. **First-tap timing:** one fresh page per kind of first tap: the stage, a control that speaks for itself, a mode
+   button, Read, Sound, a key. Nothing speaks before the tap. A plain tap gets the welcome within about half a second; a
+   control with its own line gets only that line; Read speaks the hint only; Sound says nothing. Then Sound off and on,
+   or the next mode entry, must bring a skipped welcome, once.
+4. **Read:** Read during a line stops it and speaks the hint, with Sound off too; nothing cuts Read off; a mode change
+   right after Read lets the next line start at once.
+5. **Order:** spoken lines follow the order of the actions; no line from an older action plays after a newer one.
+
+Report the counts as a small table (line, kind, expected, spoken). On `Curio.voice`, the helper's own rules are covered
+by `python scripts/test_voice.py`; the tool's job is choosing the right kind, `valid` and `needs` for each line.
 
 ## Report
 

@@ -53,8 +53,10 @@ Check every one, early, not at the end:
 
 ## Voice behavior
 
-Every tool that narrates needs the same small queue. Copy the pattern from `tools/collision-lab/src.html` (narrate,
-hush, readNow, firstTap):
+New tools narrate with `Curio.voice` from the kit (docs/KIT.md "Voice"): it builds in every rule below, so a tool only
+says which lines are how-to (`V.how`) and which are events (`V.say`), and when each one stops fitting (`valid`, `needs`).
+Live tools move to it when they are next touched. Until then, a tool not yet moved keeps the copied queue: the pattern
+from `tools/collision-lab/src.html` (narrate, hush, readNow, firstTap) and these rules.
 
 - One welcome per mode, queued when the mode is entered. On the very first tap, decide only after that tap's own click
   handler has run: if the tap queued its own line, or was Read, skip the welcome without marking it said.

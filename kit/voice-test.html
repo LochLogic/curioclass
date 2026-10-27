@@ -1,0 +1,90 @@
+<!doctype html>
+<!-- Curio Class kit test page for Curio.voice. Not a tool: it lives in kit/, so bundle_tool, build_site and the checks
+     never see it. Run it with: python scripts/test_voice.py (headless, muted). Every line has a silent clip of a known
+     length, so timing is real and the same on every run. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Curio Class voice kit test</title>
+<style>
+  body { font: 16px/1.4 system-ui, sans-serif; margin: 16px; background: #fff; color: #111; }
+  button { min-width: 88px; min-height: 44px; margin: 4px; font: inherit; }
+  #stage { height: 160px; background: #e8eef5; border-radius: 8px; display: grid; place-items: center; margin: 8px 0; }
+  #hint { font-weight: 600; min-height: 1.4em; }
+</style>
+<script src="curio.js"></script>
+</head>
+<body>
+<header>
+  <button id="m-a" aria-pressed="true">Mode A</button><button id="m-b">Mode B</button><button id="m-c">Mode C</button>
+  <button id="motion">Motion</button><button id="sound" aria-pressed="true">Sound</button><button id="read">Read</button>
+</header>
+<div id="stage">stage (not a button)</div>
+<p id="hint"></p>
+<div>
+  <button id="act">Act</button><button id="solo">Solo</button><button id="fail">Fail</button>
+  <button id="slow">Slow</button><button id="fix">Fix</button>
+</div>
+<script>
+  const $ = id => document.getElementById(id);
+  const L = {
+    start: 'Tap Act to start.',
+    wa: 'Welcome to Mode A. Tap Act to start.', wb: 'Welcome to Mode B.', wb2: 'Tap Act here too.',
+    nice: 'Nice one!', howAct: 'Tap Act again, or tap Mode B.',
+    fail: "That code doesn't work.", howFix: 'Tap Fix to change the code.',
+    slow: 'Here it comes.', one: 'One.', two: 'Two.', three: 'Three.',
+    long: 'This is a long line that takes a while.', stale: 'Only while the light is on.',
+  };
+  const T = window.T = {L, plays: [], ends: [], pauses: [], state: {mode: 'a', light: true}, tapAt: null, atDecide: null};
+
+  // a silent WAV of ms milliseconds; extra samples make every clip's data URI unique
+  function wav(ms, extra) {
+    const rate = 8000, n = Math.round(rate * ms / 1000) + extra, buf = new ArrayBuffer(44 + n * 2), d = new DataView(buf);
+    const str = (o, s) => [...s].forEach((c, i) => d.setUint8(o + i, c.charCodeAt(0)));
+    str(0, 'RIFF'); d.setUint32(4, 36 + n * 2, true); str(8, 'WAVE'); str(12, 'fmt '); d.setUint32(16, 16, true);
+    d.setUint16(20, 1, true); d.setUint16(22, 1, true); d.setUint32(24, rate, true); d.setUint32(28, rate * 2, true);
+    d.setUint16(32, 2, true); d.setUint16(34, 16, true); str(36, 'data'); d.setUint32(40, n * 2, true);
+    let bin = ''; const u = new Uint8Array(buf); for (let i = 0; i < u.length; i++) bin += String.fromCharCode(u[i]);
+    return 'data:audio/wav;base64,' + btoa(bin);
+  }
+  const clips = {}, srcText = {};
+  Object.values(L).forEach((t, i) => { clips[t] = wav(t === L.long ? 2000 : 500, i); srcText[clips[t]] = t; });
+  // ground truth: which clips actually start, end, or are cut
+  const P = HTMLMediaElement.prototype, play0 = P.play, pause0 = P.pause;
+  const ms = () => Math.round(performance.now());
+  P.play = function () {
+    const text = srcText[this.src] || '?';
+    T.plays.push({t: ms(), text});
+    this.addEventListener('ended', () => T.ends.push({t: ms(), text}), {once: true});
+    return play0.call(this);
+  };
+  P.pause = function () { if (!this.ended) T.pauses.push({t: ms(), text: srcText[this.src] || '?'}); return pause0.call(this); };
+  addEventListener('pointerdown', () => { if (T.tapAt == null) T.tapAt = ms(); }, true);
+  addEventListener('keydown', () => { if (T.tapAt == null) T.tapAt = ms(); }, true);
+
+  // the tool, as a tool would write it on the helper
+  const V = T.V = Curio.voice({
+    welcome: () => T.state.mode === 'a' ? ['w-a', L.wa] : T.state.mode === 'b' ? [['w-b', L.wb], ['w-b2', L.wb2]] : null,
+    speaks: '#slow',
+  });
+  function setMode(m) {
+    V.hush();
+    T.state.mode = m;
+    for (const k of ['a', 'b', 'c']) $('m-' + k).setAttribute('aria-pressed', k === m);
+    $('hint').textContent = L.start;
+    V.welcome() || V.how(L.howAct);
+  }
+  for (const k of ['a', 'b', 'c']) $('m-' + k).onclick = () => setMode(k);
+  $('act').onclick = () => { V.dropQueued(); V.say(L.nice); V.how(L.howAct, {valid: () => T.state.mode !== 'c'}); };
+  $('solo').onclick = () => {
+    V.say(L.nice);
+    setTimeout(() => { if (!T.atDecide) T.atDecide = {queue: V.queue.length, playing: V.playing}; }, 0);
+  };
+  $('fail').onclick = () => { V.dropQueued(); V.say(L.fail); V.how(L.howFix, {needs: '#fix'}); };
+  $('slow').onclick = () => setTimeout(() => V.say(L.slow), 400);
+  V.how(L.start);   // before any tap: shown in the hint, never spoken
+  Curio.init({clips});
+</script>
+</body>
+</html>

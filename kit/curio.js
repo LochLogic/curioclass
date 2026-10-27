@@ -67,6 +67,134 @@ const Curio = (() => {
     for (const p of last) { if (me !== talk) return; await speakOne(p); await wait(150); }
   }
 
+  // ---------- narration: one queue for a tool's lines (Curio.voice, docs/KIT.md "Voice") ----------
+  // Two kinds of line: how-to and teaching lines ('how') are spoken the first time, then only shown in the hint;
+  // event lines ('event': praise, results, failures) are spoken every time. Every line is checked when its turn comes
+  // (valid, needs, maxAge) and dropped, unmarked, when its moment has passed. Welcomes: one per mode, once.
+  let voiceOne = null;
+  const say0 = say;
+  function voice(opts = {}) {
+    if (voiceOne) return voiceOne;
+    const now = () => Math.round(performance.now());
+    const said = new Set(), q = [], log = [];
+    let tapped = heard, gen = 0, busy = false, cur = null, readP = Promise.resolve(), readCut = null, nQ = 0, nS = 0;
+    const est = opts.est || (s => 600 + 62 * s.length);    // pacing when a line is not spoken (Sound off)
+    const cap = s => 2500 + 80 * s.length;                   // longest a line may hold the queue (a clip that never ends)
+    const hintEl = () => $(typeof opts.hint === 'string' ? opts.hint : 'hint');
+    const setHint = t => { if (typeof opts.hint === 'function') return opts.hint(t); const h = hintEl(); if (h && h.textContent !== t) h.textContent = t; };
+    const note = (it, as, why) => log.push({t: now(), key: it.key, kind: it.kind, text: it.text, as, why});
+    // a control a line names must be there, shown and enabled
+    const on = s => { const e = document.querySelector(s); return !!e && !e.disabled && e.getAttribute('aria-disabled') !== 'true' && e.getClientRects().length > 0; };
+    const ok = it => (!it.valid || it.valid()) && [].concat(it.needs || []).every(on) && (!it.maxAge || performance.now() - it.at <= it.maxAge);
+    const end = (it, as) => { if (it.res) { it.res(as); it.res = null; } };
+    function push(it) {
+      nQ++;
+      q.push(it);
+      pump();
+    }
+    // say(text, {kind, key, valid, needs, maxAge, hint, wait, now}); returns true when queued, or with wait a promise
+    // that resolves 'spoken', 'silent' or 'dropped' once the line has had its turn
+    function say(text, o = {}) {
+      const kind = o.kind === 'how' ? 'how' : 'event';
+      const it = {text, kind, key: o.key || text, valid: o.valid, needs: o.needs, maxAge: o.maxAge, hint: o.hint !== false, at: performance.now()};
+      const p = new Promise(r => { it.res = r; });
+      if (!tapped || !sound) {                                // before the first tap, or Sound off: the hint, no voice
+        if (ok(it)) { if (it.hint) setHint(text); note(it, 'silent', tapped ? 'off' : 'early'); }
+        else { note(it, 'dropped', 'stale'); end(it, 'dropped'); return o.wait ? p : false; }
+        if (o.wait) wait(est(text)).then(() => end(it, 'silent')); else end(it, 'silent');
+        return o.wait ? p : false;
+      }
+      // a newer copy of a line replaces a queued one; a newer how-to replaces older queued how-tos (one step at a time)
+      dropQueued(x => x.key === it.key || (kind === 'how' && x.kind === 'how'), 'newer');
+      if (o.now) { dropQueued(null, 'newer'); if (cur) { cur.cut(); stop(); } }   // speak now: cut in (Read still wins)
+      push(it);
+      return o.wait ? p : true;
+    }
+    async function pump() {
+      if (busy) return;
+      busy = true;
+      const g = gen;
+      try {
+        while (q.length) {
+          await readP;                                        // Read wins: lines wait for it, never cut it off
+          if (g !== gen) return;
+          const it = q.shift();
+          if (!it) continue;
+          if (!ok(it)) { note(it, 'dropped', 'stale'); end(it, 'dropped'); continue; }   // checked when it starts
+          if (it.hint) setHint(it.text);
+          if (it.kind === 'how' && said.has(it.key)) { note(it, 'silent', 'heard'); end(it, 'silent'); continue; }
+          if (it.kind !== 'event') said.add(it.key);          // marked when it plays, never when queued
+          nS++; note(it, 'spoken'); cur = it;
+          await Promise.race([say0(it.text), wait(cap(it.text)), new Promise(r => { it.cut = r; })]);
+          if (cur === it) cur = null;
+          end(it, 'spoken');
+          if (g !== gen) return;
+        }
+      } finally { if (g === gen) busy = false; }
+    }
+    // drop lines that have not started (all, or only those f(line) picks); they stay unmarked so their trigger can
+    // queue them again. The line in progress plays on.
+    function dropQueued(f, why = 'newer') {
+      for (let i = q.length - 1; i >= 0; i--) if (!f || f(q[i])) { const [it] = q.splice(i, 1); note(it, 'dropped', why); end(it, 'dropped'); }
+    }
+    // stop everything: the queue, the line in progress and Read (mode changes, resets, Sound off)
+    function hush() {
+      gen++;
+      dropQueued(null, 'hush');
+      if (cur) { cur.cut(); cur = null; }
+      if (readCut) { readCut(); readCut = null; }             // a stopped Read clip never ends: nothing may wait on it
+      busy = false; readP = Promise.resolve(); stop();
+    }
+    // Read: stop the queue, then speak the current hint, even with Sound off
+    function read() {
+      hush();
+      const h = opts.read ? opts.read() : (hintEl() || {}).textContent || '';
+      log.push({t: now(), key: 'read', kind: 'read', text: h, as: 'read'});
+      let cut; const c = new Promise(r => { cut = r; }); readCut = cut;
+      readP = Promise.race([say0([h], true), wait(cap(h)), c]).catch(() => {}).then(() => { if (readCut === cut) readCut = null; });
+    }
+    // the mode's welcome (opts.welcome() gives [key, text], a list of them, or null when it does not fit now);
+    // each key is said once; returns true when something was queued
+    const wl = () => { const w = opts.welcome && opts.welcome(); return !w ? [] : typeof w[0] === 'string' ? [w] : w; };
+    function welcome() {
+      if (!tapped || !sound) return false;
+      let any = false;
+      for (const [key, text] of wl()) {
+        if (said.has(key) || q.some(x => x.key === key)) continue;
+        push({text, kind: 'welcome', key, hint: true, at: performance.now(), valid: () => wl().some(w => w[0] === key)});
+        any = true;
+      }
+      return any;
+    }
+    // the very first tap or key: decide after that tap's own handler has run. Read, Sound, a control that speaks for
+    // itself later (opts.speaks), or a tap that queued or started a line skip the welcome, unmarked.
+    for (const ev of ['pointerdown', 'keydown']) addEventListener(ev, e => {
+      if (tapped) return;
+      tapped = true;
+      const b = e.target && e.target.closest ? e.target.closest('button') : null, q0 = nQ, s0 = nS;
+      let done = false;
+      const decide = () => {
+        if (done) return; done = true;
+        if (b && (b.id === 'read' || b.id === 'sound')) return;
+        if (b && opts.speaks && b.matches(opts.speaks) && !b.disabled) return;
+        if (nQ !== q0 || nS !== s0) return;
+        welcome();
+      };
+      const endEv = ev === 'pointerdown' ? 'click' : 'keyup';
+      const after = () => { removeEventListener(endEv, after, true); clearTimeout(fb); setTimeout(decide, 0); };
+      addEventListener(endEv, after, true);
+      const fb = setTimeout(after, 1500);
+    }, true);
+    soundFns.push(s => { if (!s) hush(); else welcome(); });   // Sound back on: the welcome, if it was never said
+    const r = $('read'); if (r) r.onclick = read;
+    voiceOne = {
+      say, how: (text, o) => say(text, {...o, kind: 'how'}), welcome, dropQueued, hush, read, log, said,
+      get queue() { return q.map(x => ({key: x.key, kind: x.kind, text: x.text})); },
+      get playing() { return cur ? cur.text : null; }, get tapped() { return tapped; },
+    };
+    return voiceOne;
+  }
+
   // ---------- chimes: a soft sine tone, through one shared audio context ----------
   let ctx = null;
   const audio = () => ctx || (ctx = new (window.AudioContext || window.webkitAudioContext)());
@@ -94,7 +222,7 @@ const Curio = (() => {
       soundFns.forEach(f => f(sound));
     };
     const r = $('read');
-    if (r) r.onclick = () => say(last.length ? last : [opts.readFallback ? opts.readFallback() : ($('hint') || {}).textContent || ''], true);
+    if (r) r.onclick = () => voiceOne ? voiceOne.read() : say(last.length ? last : [opts.readFallback ? opts.readFallback() : ($('hint') || {}).textContent || ''], true);
     showMotion();
   }
   // a stage of fixed design size, scaled to fit its box: fit('stage', 'scene', 1000, 620)
@@ -104,7 +232,7 @@ const Curio = (() => {
   }
 
   return {
-    init, say, stop, wait, tone, yes, audio, fit, bestVoice,
+    init, say, stop, wait, tone, yes, audio, fit, bestVoice, voice,
     get reduce() { return reduce; }, get sound() { return sound; }, get last() { return last; },
     onMotion: f => motionFns.push(f), onSound: f => soundFns.push(f),
   };
