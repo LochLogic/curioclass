@@ -42,3 +42,14 @@ is park, pumpkins and snow.
 - computer-builder: plan passes (explore-first, E1-SYS-HW-11). Plan findings fixed by the integrator: a part's name line now drops once a newer part lands or a run starts (the hint no longer lags quick taps; checked by drive), job card label "Say hello to the computer" matches the narration, notes quote the real box line. Live 2026-10-26, Review Desk order 51.
 - game-remix: verify PASS WITH FIXES (2 must: names outside the code-length guard, stale voice queue; 8 should; 12 nice); fix round 1 sent to the builder. All 13 images picked (backdrops via Codex, Cloudflare still out) and marked reviewed.
 - code-tracer: fix round 1 done (all 16), voice recorded (33 lines), re-verify running.
+
+## 2026-10-26: Cory's review (Score Keeper, Computer Builder)
+- Score Keeper approved (desk ok). Robot Dance was approved earlier.
+- Computer Builder: "Tap another circle, or tap Back to desk." repeated after every selection. Fixed: `howLater` keeps a
+  `howSaid` set, marked when a line actually plays, so a how-to line is spoken the first time and then only shown in the
+  hint. A drive run with four spot taps logged the line once. The item is back to ready.
+- Cory asked for this in every tool: STANDARDS.md "But don't nag" and BATCH-CS.md. Applied to Score Keeper (over1 and
+  result1 are now once) and Robot Dance (the card-pick hS line is once per page, not once per round). Both builders were told.
+- Deployed at version 1fbe025b.
+- game-remix: fix round 1 and the art are done. 49 lines (17 new, none recorded yet). A cold re-verify has started. The
+  bundle may reach 1.5 to 1.9 MB once voiced; use kbps 16 if it goes over.
