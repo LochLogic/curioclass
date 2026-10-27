@@ -76,7 +76,7 @@ then the item goes back to "ready" with a reply on the comment and the comment m
 - **Gap fill: merged 2026-10-27, not specced.** 176 new planned tools (586 to 762) and 108 code adds so every
   official standards list is claimed (ELA leaves 41 codes out by design). Report, coverage table and Cory's questions:
   `docs/agents/gapfill/REPORT.md` (answered 2026-10-27: keep all 176, cut a weak one only if its codes stay covered;
-  cannabis and drinking fine in Weekend Substance Choices; sexual health past puberty paused). Spec the new tools in later waves like any planned tool. New standards edits go in
+  cannabis and drinking fine in Weekend Substance Choices; sexual health past puberty paused; Q3 and Q5 to Q11 still open, Cory reviews them the evening of 2026-10-27). Spec the new tools in later waves like any planned tool. New standards edits go in
   data/modules/*.txt (`scripts/add_codes.py`), never modules.csv, which build_db.py regenerates; new tools go through
   a staging folder checked by `scripts/overlap/stage_check.py` and merged by `stage_merge.py`.
 

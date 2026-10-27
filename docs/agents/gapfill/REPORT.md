@@ -111,7 +111,8 @@ validator rejected D1, D3 and D4. It now checks C3 and ELA against the official 
   tool. A check of all 176 found one new tool whose codes are all held elsewhere (Safety Sweep House), and it fills
   the home and medicine safety topic hole, so nothing was cut. The four named social studies candidates each hold
   two codes no other tool claims.
-- Q3 and Q5 to Q11: the defaults below stand.
+- Q3 and Q5 to Q11: still open. Cory will go through them on the evening of 2026-10-27; until then the defaults below
+  are placeholders, not decisions.
 
 None of these blocks the next spec wave. Each new tool's spec can settle its own, so the defaults below stand unless
 you say otherwise.
