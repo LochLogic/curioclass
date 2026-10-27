@@ -105,3 +105,19 @@ Open questions:
   Lake City heat-deaths card?
 - [ad-agency] Letters certain at Risk 8, or add chance? Name the FTC in the letter, or keep the made-up Watchdog Desk
   citing the real rules?
+
+### ela-craft (9, done; finished by a second agent after the pause)
+
+- Tools: parallel-parking (9, clear-teacher, dark, lane-line yellow #f7e463), punctuation-power-ups (10, hero-coach,
+  dark, magenta #ff4fd8), personal-essay-studio (11, calm-professor, light, rose #9c2a55), editors-in-the-margin (9-12,
+  friendly-dad, light, red pencil #b3261e), pacing-strip (9-12, playful-friend, dark, mint #3fe0c5), word-family-tree
+  (12, gravel-ranger, dark, new-leaf green #a6d84a), key-term-tracker (9-12, curious-librarian, light, amber #7a4b00),
+  socratic-seminar-board (10, soft-breath, light, teal #0f6e78), speech-coach (12, easy-coach, dark, cue-light green
+  #5ee07a).
+- Family engine: word-lab (kit/wordlab.js) in full in word-family-tree; key-term-tracker feeds it.
+- The second agent fixed voice clashes the first had missed, content errors (wrong starting answers, miscounts, a
+  lumped root tree, Quarto-only Lear lines), and added activities so every module code is taught well (BASELINE
+  rule 2). speech-coach has no speech-to-text, so audio never leaves the device.
+- Public domain for speech-coach: Met 437878 (Vermeer, A Maid Asleep), Met 435809 (Bruegel, The Harvesters), AIC 57819
+  (Wall Clock).
+- Open questions for Cory: none (all settled by BASELINE.md).
