@@ -39,6 +39,21 @@ def plausible(text, wav):
     return len(text) * .03 < secs < len(text) * .11 + 2.5
 
 
+def liveliest(text, wavs):
+    """The take that sounds least bored: higher median pitch plus more rise and fall (Cory heard a flat batch, 2026-10-26)."""
+    import librosa
+    def score(w):
+        w = np.asarray(w, dtype=np.float32)
+        if not plausible(text, w):
+            return -1e9
+        f0, voiced, _ = librosa.pyin(w, fmin=60, fmax=400, sr=SR, frame_length=1024)
+        f0 = f0[voiced & ~np.isnan(f0)]
+        if len(f0) < 10:
+            return -1e9
+        return np.median(f0) / 10 + (12 * np.log2(f0 / np.median(f0))).std()
+    return max(wavs, key=score)
+
+
 def main():
     tool = sys.argv[1]
     cap = int(sys.argv[sys.argv.index('--n') + 1]) if '--n' in sys.argv else 10 ** 6
@@ -71,6 +86,12 @@ def main():
         ref = ref_pick() or (first if rawf(first).exists() else None)
         if not ref:
             sys.exit('could not get a reference clip (Gemini quota?); add one with scripts/voice.py first')
+    # --redo 1,4,9 --takes 5: re-record those lines (lines.json order), keeping the liveliest of N takes
+    redo = [lines[int(i)] for i in sys.argv[sys.argv.index('--redo') + 1].split(',')] if '--redo' in sys.argv else []
+    takes = int(sys.argv[sys.argv.index('--takes') + 1]) if '--takes' in sys.argv else 5
+    for t in redo:
+        rawf(t).unlink(missing_ok=True)
+        (folder / clip_name(t)).unlink(missing_ok=True)
     todo = [t for t in lines if not rawf(t).exists()][:cap]
     print(f'{tool}: {len(todo)} lines to make, copying the voice of: {ref[:60]}', flush=True)
     if not todo:
@@ -84,6 +105,9 @@ def main():
         wavs, sr = m.generate_voice_clone(text=batch, language=['English'] * len(batch), voice_clone_prompt=prompt)
         assert sr == SR, sr
         for text, w in zip(batch, wavs):
+            if text in redo:
+                w = liveliest(text, [w, *(m.generate_voice_clone(text=[text], language=['English'], voice_clone_prompt=prompt)[0][0]
+                                          for _ in range(takes - 1))])
             if not plausible(text, w):  # one retry for a take that rambles or cuts off
                 w = m.generate_voice_clone(text=[text], language=['English'], voice_clone_prompt=prompt)[0][0]
                 if not plausible(text, w):
