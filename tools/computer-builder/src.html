@@ -380,7 +380,7 @@ body.stack .tile[aria-pressed="true"] .pic,body.nonames .tile[aria-pressed="true
     }
     let res;
     const p = new Promise(r => { res = r; });
-    vq.push({key, text, once: o.once, valid: o.valid, res});
+    vq.push({key, text, once: o.once, valid: o.valid, how: o.how, res});
     nq++;
     pump();
     return o.wait ? p : true;
@@ -399,6 +399,8 @@ body.stack .tile[aria-pressed="true"] .pic,body.nonames .tile[aria-pressed="true
         if (it.valid && !it.valid()) { it.res(); continue; }   // its moment has passed
         if (it.once) said.add(it.key);                          // said when it starts, never when queued
         setHint(it.text);
+        if (it.how && howSaid.has(it.text)) { it.res(); continue; }   // a how-to already heard: shown, not spoken
+        if (it.how) howSaid.add(it.text);
         vlog.push({t: Math.round(now()), text: it.text});
         cur = it;
         await Promise.race([Curio.say(it.text), wait(2500 + 80 * it.text.length)]);
@@ -434,9 +436,12 @@ body.stack .tile[aria-pressed="true"] .pic,body.nonames .tile[aria-pressed="true
   }
   // after a line that reports or asks: queue the how-to line; a newer action drops it
   let acts = 0;
+  // each how-to is spoken the first time only; after that it lands in the hint silently (Cory: once the child knows
+  // the step, saying it after every tap is nagging)
+  const howSaid = new Set();
   function howLater() {
     const a = ++acts, text = howText();
-    if (text) narrate('how#' + a, text, {valid: () => a === acts && howText() === text});
+    if (text) narrate('how#' + a, text, {how: text !== L.which, valid: () => a === acts && howText() === text});
   }
   // the very first tap or key: decide after that tap's own click has run. If it was Read or Sound, or a control that
   // speaks for itself, the welcome waits (unmarked) for the next mode entry or Sound on.
