@@ -45,6 +45,11 @@ Check every one, early, not at the end:
 - Draw the stage at real pixel size and re-lay it out per size (as motion-graph-match and collision-lab do) rather
   than scaling one fixed design: a 1100 px scene scaled into the preview has 6 px text.
 - Tab order: panel controls before long lists of map items.
+- Moving focus on purpose uses `focus({preventScroll: true})`: on a phone a plain focus() scrolled game-remix by about
+  1000 px and pushed Play and the pad off screen.
+- Fit-to-width guards (shrink type when a table is too wide) re-measure from the loosest step every time and wait for
+  running animations to finish first. code-tracer's guard only ever tightened, and a value sliding into its cell
+  overflowed for 400 ms, so the table stayed at 12 px type even at 1920x1080.
 
 ## Voice behavior
 
@@ -66,6 +71,12 @@ hush, readNow, firstTap):
   updates the hint, silently, so the screen still shows it and Read still says it. Repeating "Tap another circle, or
   tap Back to desk." after every selection was annoying. Results, questions and new steps are still spoken. VERIFY
   counts how often each how-to line is spoken in a run of five actions in a row.
+- Two kinds of line, so "don't nag" doesn't go too far. How-to and teaching lines are spoken once per page load. Event
+  lines (praise, a challenge met, a failed load, a result with new numbers) are spoken every time their event happens,
+  and are still dropped when stale. game-remix first made every line once, and its second "You fixed it!" went silent.
+  Keep an explicit set of event line ids in the code.
+- The spoken line matches the state on screen. A welcome or how-to that assumes something (a remix to share, room to
+  change) must not play when the screen says otherwise, and must not be marked said when it was skipped.
 - Sound off uses nothing up; turning Sound back on queues the mode's welcome if it was never said.
 - Test with held clicks (press, ~120 ms, release): instant scripted clicks hide pointerdown/click races. Log which clips
   actually start (`drive.py` "hold").
@@ -88,6 +99,12 @@ hush, readNow, firstTap):
 - Say how the image is used (a texture clipped to a shape needs a full-frame texture, not a whole scene).
 - Aspects: 1:1, 16:9, 9:16, 3:4, 4:3, 16:10, 4:1, 5:1. Check two tools in the same batch don't ask for the same image.
 - The FLUX server holds about 17 GB of RAM even idle: start it for an art session, stop it after.
+
+## Scope
+
+- No features that ask students to move work between devices by hand. Cory removed game-remix's Share (a remix code to
+  copy and load, and a print card): "not feasible for a student to pass a code that long and it doesn't have that much
+  of a pull." Save on this device is enough; in class, pairs swap laptops.
 
 ## Facts
 

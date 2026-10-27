@@ -1,5 +1,8 @@
 # Batch note: Computer Science, first five (2026-10-26)
 
+**Complete 2026-10-27:** all five are live and approved by Cory (log in BATCH-CS-LOG.md, lessons in STANDARDS.md).
+game-remix shipped as "Remix a Program", without Share (Cory cut it).
+
 Cory asked for five computer science tools, with "good quality in the first draft". In build order:
 
 | Order | Id | Name | Grade | Format | Module | Voice |
@@ -34,8 +37,8 @@ the first tool in its module, so it should be the one a teacher would open for t
   step and pause controls.
 - **K-1 reads nothing.** robot-dance and computer-builder work for children who can't read: icons and pictures on
   every control, a narrator voicing every fixed line (K-2 band rules), 60 px targets, teacher on a projector.
-- **No network, no accounts.** game-remix "shares" through a short remix code the student can copy or a printed card;
-  no uploads, no links that leave the page. Nothing a student makes is stored unless they press Save
+- **No network, no accounts.** No uploads, no links that leave the page. (game-remix first shared through a remix code
+  and a printed card; Cory cut both, see STANDARDS "Scope".) Nothing a student makes is stored unless they press Save
   (localStorage, with a Clear button).
 - **Art.** Robots and computer parts may be drawn in code (SVG or canvas) or made with Codex (`scripts/gptart.py`:
   base first, then siblings with `"ref"` + `"ref_mode": "style"`); scenes and props with Cloudflare FLUX.2

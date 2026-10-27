@@ -1,7 +1,8 @@
-# Scale plan: the remaining ~505 tools (locked 2026-10-26, waiting)
+# Scale plan: the remaining ~505 tools (unlocked 2026-10-27)
 
-Agreed with Cory on 2026-10-26. **Do not start** until every tool in the current CS batch (robot-dance, computer-builder,
-score-keeper, game-remix, code-tracer) is fully done: live, voiced, planned and approved on the Review Desk.
+Agreed with Cory on 2026-10-26. It waited for the CS batch (robot-dance, computer-builder, score-keeper, game-remix,
+code-tracer), which was fully done on 2026-10-27: all five live, voiced, planned and approved. Start when Cory says go.
+The live count is now 76, not 74.
 
 ## Why
 
@@ -18,7 +19,7 @@ writing specs, and batch each step only after its inputs are final.
        and the setting or metaphor.
      - "Too alike" means two of those three match within the same grade band. The same skill in another band is
        usually a spiral, which is fine.
-     - The 74 live tools are fixed points: concepts move away from them, never the reverse.
+     - The 76 live tools are fixed points: concepts move away from them, never the reverse.
      - Report gaps (thin subjects or bands, skills with no tool) as well as clashes, since a clashing concept may
        best move into a gap.
      - One agent tags and clusters; a second, cold agent checks the clusters.
@@ -27,7 +28,9 @@ writing specs, and batch each step only after its inputs are final.
    - **Shared narration helper** in kit/curio.js (`Curio.voice`):
      - Covers the queue, valid-at-play-time checks, once keys, how-to lines spoken once then shown in the hint only,
        hush, Read, the first-tap welcome, Sound on and off with pacing, and one standard `log`.
-     - Build it from computer-builder's version, the most battle-tested one.
+     - Build it from computer-builder's version, the most battle-tested one. Two kinds of line from the start (CS
+       batch lesson): how-to and teaching lines spoken once, and event lines (praise, results, failures) spoken every
+       time and still dropped when stale. A skipped welcome stays unmarked, and the line must match the state.
      - Escape hatch: "speak now and wait", for timing-bound tools (music, Pause/Step).
      - Ship it with a small test page, then a pilot tool that goes through verify.
      - VERIFY gains a standard voice check: repeats, stale lines, first-tap timing.
@@ -42,7 +45,8 @@ writing specs, and batch each step only after its inputs are final.
    - Expect about 10 to 20 percent to be redone during builds.
 5. **Builds stream** on the new helper, one at a time, with verify running alongside. At most about 3 to 4 agents.
 6. **Voice nights per verified group**, only after the final verify:
-   - Narration lines change during fix rounds (game-remix went from 35 to 49 in one round).
+   - Narration lines change during fix rounds (game-remix went from 35 to 49 in one round, then to 42 when Cory cut Share).
+   - After each voice night, run `scripts/voice_liveliness.py` and redo the flat takes (`localvoice.py --redo`).
    - Local Qwen takes about 1 to 2 s per line, roughly 10 to 15 GPU hours for the whole catalog.
    - Voice and FLUX cannot share the 16 GB card, so art nights and voice nights alternate.
 7. **Reviews per wave** on the Review Desk instead of one at a time.

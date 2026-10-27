@@ -78,3 +78,10 @@ is park, pumpkins and snow.
   12 levels take more than one period, and the Workbench has nowhere to rewrite a note.
 - Live at deploy b783cab0. Stats: live 76. All five CS tools are live: robot-dance, computer-builder, score-keeper and
   game-remix are approved, and code-tracer awaits review.
+
+## 2026-10-27: batch closed
+- Cory approved code-tracer. All five tools are approved (desk status ok).
+- Lessons written up: STANDARDS.md (two kinds of voice line, the line matches the state, `focus({preventScroll:true})`,
+  fit guards re-measure from loose and wait for animations, Scope: no hand-carried sharing), VERIFY.md check 9 (voice
+  balance), RUNBOOK voice step (`scripts/voice_liveliness.py`, moved from scratch into the repo), SCALE-PLAN.md
+  unlocked with the voice-line split folded into the helper step.

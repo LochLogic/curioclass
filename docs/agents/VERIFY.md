@@ -23,6 +23,8 @@ what is wrong before Cory does. Do not fix anything: report.
 7. **Words:** no em dashes, "Curio Class" never "Curio" alone, plain grade-level language, nothing that gives an answer
    away in a predict or quiz mode.
 8. **Guardrails:** K-2 teacher-led; hard history has no points, timers or win states; health topics are neutral.
+9. **Voice balance:** repeat each action five times with held clicks and count spoken lines in `vlog`: each how-to line
+   once, each event line (praise, a result) every time. Check every spoken line against what the screen shows then.
 
 ## Report
 

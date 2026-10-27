@@ -39,7 +39,10 @@ no blocker left, look at one frame yourself (the 680x425 preview is a good one) 
   when done. People (hands included) go to Gemini: `python scripts/art.py <id> <names>`, Cory reviews them.
 - **Voice:** `S:\AI\tts\.venv\Scripts\python.exe scripts/localvoice.py <id>` clones the tool's bank voice
   (`"bank"` in voice/lines.json) for every line, then encodes. Listen for nothing (you can't); check the printed
-  lengths and flag any very short clip for Cory.
+  lengths and flag any very short clip for Cory. Then run `scripts/voice_liveliness.py <id>` (same venv). It lists
+  flat takes (pitch movement under 3 semitones), which Cory hears as bored. Redo them with
+  `localvoice.py <id> --redo i,j --takes 5`, which keeps the liveliest of five. When a fix round changes lines, record
+  only the new ones, and delete clips for removed lines (localvoice never removes them).
 
 ## Going live for review
 
@@ -59,22 +62,28 @@ then the item goes back to "ready" with a reply on the comment and the comment m
 
 ## Open items (update as they close)
 
-- **Scale plan (locked 2026-10-26, waiting):** `docs/agents/SCALE-PLAN.md`, covering the overlap pass, the shared narration
-  helper, spec waves, art and voice nights. Do not start it until the CS batch is fully done.
+- **Scale plan (unlocked 2026-10-27, the CS batch is done):** `docs/agents/SCALE-PLAN.md`, covering the overlap pass,
+  the shared narration helper, spec waves, art and voice nights. Start it when Cory says go.
 
 - **Voice bank: done 2026-10-26.** All 25 recorded; Cory kept 23 (adventure-guide and calm-guide dropped).
   Listening page: `S:\AI\tts\.venv\Scripts\python.exe scripts/voicebank_sample.py` writes `shots/voice-bank.html`.
-- **Voice sweep:** a shared kit helper (narrate, hush, read, first tap, per STANDARDS.md) in `kit/curio.js`, then
-  retrofit the 10 grade 11 tools and the K-2 tools onto it. The first four G11 tools (rollercoaster, island, outbreak,
+- **Voice sweep:** now step 1 of SCALE-PLAN.md (`Curio.voice`). No mass retrofit: tools move over when touched. The first four G11 tools (rollercoaster, island, outbreak,
   ferris) predate the held-click rule and may still have the first-tap race.
 - **Grade 11 batch: complete** (10 tools live 2026-10-26).
+- **CS batch: complete 2026-10-27.** robot-dance, computer-builder, score-keeper, game-remix and code-tracer are all
+  approved. Lessons are in STANDARDS.md (two kinds of voice line, the line matches the state, preventScroll, fit
+  guards, no hand-carried sharing). The plan agent is a good last check: it caught code-tracer's stuck table squeeze.
+  Tool follow-ups the plans worked around (not urgent): code-tracer has no undo in Trace (Restart wipes the tally),
+  the tally can't tell partners apart, and the Workbench has nowhere to rewrite a note. In game-remix, Kai's bug sits
+  under "Changes Kai made", not under "No changes yet".
 - **SEL batch (2026-10-26):** log in `docs/agents/BATCH-SEL-LOG.md`. Brain Gym was renamed Not Yet Gym ("Brain Gym"
   is a registered trademark), then renamed Comeback Club 2026-10-26 (id comeback-club); check every new tool name
   against trademarks at spec time.
 - **Renamed or moved tools:** add the old path to `data/redirects.csv` (old,new); `build_site.py` writes
   `dist/_redirects` (Workers static assets honor it, 301) and `check_site.py` fails if a target does not resolve.
 - **Voice size and level (voice.py):** lines.json `"kbps": 16` re-encodes a tool with many lines to fit the 2 MB
-  bundle limit (walk-in-their-shoes, 156 lines). `encode` now lifts a quiet take (speech RMS under 3500) toward 4500,
+  bundle limit (walk-in-their-shoes, 156 lines). Watch the bundle size after voicing: game-remix reached 1.84 MB.
+  `preview.py` replaces a builder's hand-drawn preview.svg with a screenshot; that is fine. `encode` now lifts a quiet take (speech RMS under 3500) toward 4500,
   capped at a 28000 peak; run `--reencode` on an older tool if a clip sounds faint.
 - **Agent Chrome hygiene:** every agent that drives Chrome gets its own scratch folder, `--user-data-dir`, and private
   ports, and kills only the pids it started. One builder killed Chromes by name pattern and broke two other agents;
