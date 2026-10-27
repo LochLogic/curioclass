@@ -250,7 +250,7 @@ career-match-quiz,Career Match Quiz,6-8,cte,y,sort,careers,career-interests,matc
 workplace-scenarios,Workplace Scenarios,6-8,cte,n,story,,workplace-skills,"teamwork, communication and professionalism",choose-path,school,summer day camp at a rec center
 path-planner,Path Planner,9-12,cte,n,builder,careers,education-paths,"college, apprenticeship, certificate, military paths",plan,generic,route map
 interview-simulator,Interview Simulator,9-12,cte,n,roleplay,,job-interview,answering job interview questions,converse,business-money,interview room
-startup-tycoon,Startup Tycoon,9-12,cte,n,tycoon,,entrepreneurship,"business plan, startup costs and pitch",manage,business-money,startup
+startup-booth,Startup Booth,9-12,cte,n,tycoon,,entrepreneurship,"business plan, startup costs and pitch",manage,business-money,startup
 prototype-lab,Prototype Lab,9-12,cte,n,lab,,engineering-design,"prototype, test and iterate",experiment,lab,workshop
 hospital-shift,Hospital Shift,9-12,cte,n,story,careers,healthcare-careers,medical terms and care careers,choose-path,body-medical,hospital shift
 paycheck-decoder,Paycheck Decoder,9-12,cte,n,explorer,money,paychecks,"gross vs net pay, taxes and benefits",explore,generic,paycheck
@@ -258,7 +258,7 @@ first-apartment-budget,First Apartment Budget,9-12,cte,y,tycoon,money,budgeting,
 compound-interest-head-start,Compound Interest Head Start,9-12,cte,n,simulator,money,savings-growth,compound interest over decades,simulate-tune,garden-farm,savings garden
 the-credit-card-diaries,The Credit Card Diaries,9-12,cte,n,story,money,credit-debt,"credit scores, loans and interest",choose-path,generic,young adult life
 market-time-machine,Market Time Machine,9-12,cte,y,simulator,money,investing,"stocks, bonds, index funds and risk",simulate-tune,time-travel,market history
-scam-shield,Scam Shield,9-12,cte,n,escape,money,scams-insurance,spotting scams; insurance basics,solve,cyber,scam traps
+covered-insurance-claims,Covered: Insurance Claims,9-12,cte,n,escape,money,scams-insurance,spotting scams; insurance basics,solve,cyber,scam traps
 feelings-weather-report,Feelings Weather Report,K-2,sel,y,showdown,feelings,naming-feelings,naming feelings as weather,discuss,weather,weather report
 calm-corner,Calm Corner,K-2,sel,y,sandbox,feelings,self-regulation,breathing and calm-down tools,manipulate,generic,calm tools
 walk-in-their-shoes,Walk in Their Shoes,3-5,sel,y,story,,perspective-taking,understanding others' feelings and views,choose-path,generic,story
@@ -355,7 +355,7 @@ square-slicer,Square Slicer,6-8,math,n,puzzle,,pythagorean-theorem,Pythagorean t
 snow-globe-maker,Snow Globe Maker,6-8,math,n,tycoon,,volume-cylinders-cones,"volume of cylinders, cones and spheres",manage,shop-food,ice cream shop
 data-detective,Data Detective,6-8,math,n,data,data-desk,bivariate-data,"scatter plots, lines of fit, two-way tables",analyze-data,generic,real data
 exponent-rule-builder,Exponent Rule Builder,9-12,math,n,puzzle,,rational-exponents,rational exponents and exponent rules,experiment,generic,patterns
-unit-detective,Unit Detective,9-12,math,n,mystery,,dimensional-analysis,dimensional analysis of claims,investigate,newsroom,headlines
+unit-sense,Unit Sense,9-12,math,n,mystery,,dimensional-analysis,dimensional analysis of claims,investigate,newsroom,headlines
 algebra-tile-studio,Algebra Tile Studio,9-12,math,n,sandbox,algebra-tiles,polynomial-area-model,factoring and completing the square with tiles,manipulate,generic,algebra tiles
 polynomials-as-numbers,Polynomials as Numbers,9-12,math,n,builder,algebra-tiles,polynomial-area-model,multiplying polynomials as area,build,garden-farm,polynomial garden
 model-my-world,Model My World,9-12,math,n,builder,,creating-equations,writing equations for real situations,build,generic,real situations
@@ -366,12 +366,12 @@ which-model-wins,Which Model Wins?,9-12,math,n,data,data-desk,model-comparison,l
 launch-pad,Launch Pad,9-12,math,n,simulator,graphing,quadratics,roots of quadratics as landing points,simulate-tune,space,projectile launch
 correlation-guessing-game,Correlation Guessing Game,9-12,math,n,arcade,,correlation,estimating correlation; residuals,drill,generic,guessing game
 rigid-motion-twins,Rigid Motion Twins,9-12,math,n,puzzle,transformations,rigid-motions,rigid motions and congruence,solve,sports,golf
-proof-blocks,Proof Blocks,9-12,math,n,puzzle,,geometric-proof,statements and reasons in a proof,build,generic,proof blocks
+proof-tower,Proof Tower,9-12,math,n,puzzle,,geometric-proof,statements and reasons in a proof,build,generic,proof blocks
 shadow-measure,Shadow Measure,9-12,math,n,lab,,similar-triangles,similar triangles for indirect measurement,experiment,generic,flagpole
 ramp-and-roof,Ramp and Roof,9-12,math,n,builder,,right-triangle-trig,"sine, cosine and tangent in design",build,construction,ramps and roofs
 circle-theorem-explorer,Circle Theorem Explorer,9-12,math,n,explorer,,circle-theorems,"angle, chord and tangent relationships",explore,generic,dynamic geometry
 coordinate-proof-lab,Coordinate Proof Lab,9-12,math,n,sandbox,coordinate,coordinate-proof,proving shape properties with coordinates,solve,generic,coordinate grid
-slice-it,Slice It,9-12,math,n,explorer,,cross-sections,cross sections and solids of rotation,explore,generic,3D solids
+slice-and-stack,Slice and Stack,9-12,math,n,explorer,,cross-sections,cross sections and solids of rotation,explore,generic,3D solids
 packaging-challenge,Packaging Challenge,9-12,math,n,builder,,geometric-modeling,minimizing material for a volume,build,shipping,packaging
 medical-test-paradox,Medical Test Paradox,9-12,math,n,simulator,probability,conditional-probability,conditional probability of test results,simulate-tune,body-medical,disease test
 imaginary-island,Imaginary Island,9-12,math,y,map,,complex-numbers,complex plane and multiplication by i,explore,island,complex island
@@ -387,7 +387,7 @@ identity-proof-race,Identity Proof Race,9-12,math,n,race,,trig-identities,provin
 flight-planner,Flight Planner,9-12,math,n,simulator,,vectors,adding velocity vectors,simulate-tune,vehicle,plane in crosswind
 image-transformer,Image Transformer,9-12,math,n,studio,,matrices,matrix transformations,experiment,studio,photo
 polar-rose-studio,Polar Rose Studio,9-12,math,n,studio,,polar-graphs,polar equations as art,compose,studio,art
-cone-slicer,Cone Slicer,9-12,math,n,explorer,,conic-sections,conic sections from a double cone,explore,generic,double cone
+conic-focus-finder,Conic Focus Finder,9-12,math,n,explorer,,conic-sections,conic sections from a double cone,explore,generic,double cone
 zoom-to-the-limit,Zoom to the Limit,9-12,math,n,explorer,,limits-rates,secant to tangent,explore,generic,zooming curve
 data-desk-distributions,Data Desk: Distributions,9-12,math,n,data,data-desk,describe-distributions,describing distributions,analyze-data,generic,public data
 design-the-study,Design the Study,9-12,math,n,story,,study-design,sampling and experiment design,plan,newsroom,journal editor
@@ -476,7 +476,7 @@ orbit-lab,Orbit Lab,9-12,science,n,simulator,astronomy,kepler-laws,Kepler's laws
 feedback-loop-builder,Feedback Loop Builder,9-12,science,n,builder,,earth-feedback,climate feedback loops,build,generic,causal loop diagram
 water-shapes-earth,Water Shapes Earth,9-12,science,n,lab,,water-properties,water's properties shape the surface,experiment,nature,rocks and rivers
 climate-dashboard,Climate Dashboard,9-12,science,n,data,,climate-trends,long-term climate trends vs noise,analyze-data,generic,climate data
-island-economy,Island Economy,9-12,science,n,tycoon,,sustainability,sustainable resource management,manage,island,island economy
+lake-commons,Lake Commons,9-12,science,n,tycoon,,sustainability,sustainable resource management,manage,island,island economy
 elements-inspector,Elements Inspector,9-12,science,y,explorer,elements,periodic-table,atomic structure and periodic patterns,explore,lab,periodic table
 bond-battle,Bond Battle,9-12,science,n,cards,molecules,chemical-bonding,ionic vs covalent bonds; intermolecular forces,match,generic,atom cards
 equation-balancer,Equation Balancer,9-12,science,n,puzzle,,balancing-equations,balancing chemical equations,solve,balance,atom scale
@@ -497,7 +497,7 @@ spectrum-explorer,Spectrum Explorer,9-12,science,n,explorer,,em-spectrum,the ele
 biome-atlas,Biome Atlas,9-12,science,n,map,,biomes,biomes from temperature and rainfall,predict-reveal,travel-map,world biomes
 population-dashboard,Population Dashboard,9-12,science,n,data,,population-resources,population and resource use,analyze-data,generic,country data
 grid-operator,Grid Operator,9-12,science,n,tycoon,,energy-sources,energy source tradeoffs,manage,town,city power grid
-watershed-detective,Watershed Detective,9-12,science,n,mystery,,pollution,tracing pollution sources,investigate,water,watershed
+up-the-watershed,Up the Watershed,9-12,science,n,mystery,,pollution,tracing pollution sources,investigate,water,watershed
 design-challenge-studio,Design Challenge Studio,9-12,science,n,builder,,engineering-design,breaking down global challenges and tradeoffs,plan,lab,design studio
 playground-rules,Playground Rules,K-2,social-studies,n,showdown,,rules-citizenship,why we have rules,discuss,town,playground
 me-on-the-map,Me on the Map,K-2,social-studies,y,map,me-map,my-place,nested places from room to planet,explore,travel-map,zoom map

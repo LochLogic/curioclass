@@ -151,10 +151,11 @@ Open questions:
   coordinate-proof-lab leaves to it) and F-IF.B.6 on zoom-to-the-limit (answers the math-pre question, reversible).
 - **Catalog checks:** check_codes 0 invalid, check_words 0 problems across 762 modules, check_concepts clean,
   coverage unchanged.
-- **Renames waiting:** eight proposed titles (wave 2: Unit Sense, Covered: Insurance Claims, Startup Booth, Conic
-  Focus Finder, Proof Tower, Slice and Stack; wave 3: Up the Watershed, Lake Commons). Each is also an open question
-  for Cory. They get applied with `scripts/rename_tools.py` in one pass after the wave 2 art agent finishes, since it
-  works in the old folders.
+- **Renames applied** with `scripts/rename_tools.py` once wave 2 art was done (2026-10-27): unit-sense,
+  covered-insurance-claims, startup-booth, conic-focus-finder, proof-tower, slice-and-stack (wave 2), up-the-watershed,
+  lake-commons (wave 3). Each is still an open question for Cory; a "keep the old title" answer reverses it with the
+  same script. The insurance tool's concept line now matches its spec (renters quotes and claim texts, not scam
+  escape). Spec sheet, standards and word checks rerun clean after the renames.
 - **Shared sources, by design:** energy-accountant (NOAA 2023 seasonal swing) and climate-dashboard (long-term
   Mauna Loa); carrying-capacity simulates what population-dashboard's Feed panel computes at world scale. Both are
   in the open questions.

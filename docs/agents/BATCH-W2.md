@@ -59,7 +59,7 @@ student data, 9-12 works like the real thing, facts with sources, plain words, n
 | Id | Title | Grade | Format | Family |
 |---|---|---|---|---|
 | exponent-rule-builder | Exponent Rule Builder | 9 | puzzle | - |
-| unit-detective | Unit Detective | 9 | mystery | - |
+| unit-sense | Unit Detective | 9 | mystery | - |
 | polynomials-as-numbers | Polynomials as Numbers | 9 | builder | - |
 | model-my-world | Model My World | 9 | builder | - |
 | correlation-guessing-game | Correlation Guessing Game | 9 | arcade | - |
@@ -79,11 +79,11 @@ student data, 9-12 works like the real thing, facts with sources, plain words, n
 
 | Id | Title | Grade | Format | Family |
 |---|---|---|---|---|
-| proof-blocks | Proof Blocks | 10 | puzzle | - |
+| proof-tower | Proof Blocks | 10 | puzzle | - |
 | shadow-measure | Shadow Measure | 10 | lab | - |
 | ramp-and-roof | Ramp and Roof | 10 | builder | - |
 | circle-theorem-explorer | Circle Theorem Explorer | 10 | explorer | - |
-| slice-it | Slice It | 10 | explorer | - |
+| slice-and-stack | Slice It | 10 | explorer | - |
 | packaging-challenge | Packaging Challenge | 10 | builder | - |
 | coordinate-proof-lab | Coordinate Proof Lab | 10 | sandbox | coordinate |
 | medical-test-paradox | Medical Test Paradox | 10 | simulator | probability |
@@ -99,7 +99,7 @@ student data, 9-12 works like the real thing, facts with sources, plain words, n
 | flight-planner | Flight Planner | 12 | simulator | - |
 | image-transformer | Image Transformer | 12 | studio | - |
 | polar-rose-studio | Polar Rose Studio | 12 | studio | - |
-| cone-slicer | Cone Slicer | 12 | explorer | - |
+| conic-focus-finder | Cone Slicer | 12 | explorer | - |
 | zoom-to-the-limit | Zoom to the Limit | 12 | explorer | - |
 | fire-lookout-triangles | Fire Lookout Triangles | 12 | map | - |
 | function-family-reunion | Function Family Reunion | 12 | explorer | graphing |
@@ -136,14 +136,14 @@ student data, 9-12 works like the real thing, facts with sources, plain words, n
 | Id | Title | Grade | Format | Family |
 |---|---|---|---|---|
 | interview-simulator | Interview Simulator | 9-12 | roleplay | - |
-| startup-tycoon | Startup Tycoon | 9-12 | tycoon | - |
+| startup-booth | Startup Tycoon | 9-12 | tycoon | - |
 | prototype-lab | Prototype Lab | 9-12 | lab | - |
 | path-planner | Path Planner | 9-12 | builder | careers |
 | hospital-shift | Hospital Shift | 9-12 | story | careers |
 | paycheck-decoder | Paycheck Decoder | 9-12 | explorer | money |
 | compound-interest-head-start | Compound Interest Head Start | 9-12 | simulator | money |
 | the-credit-card-diaries | The Credit Card Diaries | 9-12 | story | money |
-| scam-shield | Scam Shield | 9-12 | escape | money |
+| covered-insurance-claims | Scam Shield | 9-12 | escape | money |
 
 - **prototype-lab:** Spec note from the overlap pass: iterate one product; breaking down a global problem belongs to design-challenge-studio.
 

@@ -80,7 +80,7 @@ wave 2 additions on standards, exact math, real numbers, families and look and v
 | feedback-loop-builder | Feedback Loop Builder | 9 | builder | - |
 | water-shapes-earth | Water Shapes Earth | 9 | lab | - |
 | climate-dashboard | Climate Dashboard | 9 | data | - |
-| island-economy | Island Economy | 9 | tycoon | - |
+| lake-commons | Island Economy | 9 | tycoon | - |
 | star-life-story | Star Life Story | 9 | timeline | astronomy |
 | orbit-lab | Orbit Lab | 9 | simulator | astronomy |
 | zipline-energy | Zipline Energy | 11 | builder | - |
@@ -103,7 +103,7 @@ wave 2 additions on standards, exact math, real numbers, families and look and v
 | biome-atlas | Biome Atlas | 12 | map | - |
 | population-dashboard | Population Dashboard | 12 | data | - |
 | grid-operator | Grid Operator | 12 | tycoon | - |
-| watershed-detective | Watershed Detective | 12 | mystery | - |
+| up-the-watershed | Watershed Detective | 12 | mystery | - |
 | design-challenge-studio | Design Challenge Studio | 12 | builder | - |
 
 - **population-dashboard:** Kept as written in the overlap pass (One of 12 data-format tools in 9-12; its standards are also on island-economy and carrying-capacity).

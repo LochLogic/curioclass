@@ -298,7 +298,7 @@ career-match-quiz,Career Match Quiz,sort,careers,cte-6-8-interests-and-skills,ct
 workplace-scenarios,Workplace Scenarios,story,,cte-6-8-workplace-skills,cte,6-8,"Navigate workplace situations: teamwork, communication and professionalism.",Concept
 path-planner,Path Planner,builder,careers,cte-9-12-education-and-training-paths,cte,9-12,"Compare college, apprenticeships, certificates and military paths; plan a route to a goal.",Concept
 interview-simulator,Interview Simulator,roleplay,,cte-9-12-resumes-and-interviews,cte,9-12,Practice job interviews with common questions; get feedback on answers.,Concept
-startup-tycoon,Startup Tycoon,tycoon,,cte-9-12-entrepreneurship,cte,9-12,"Launch a business: plan, budget, market and pitch to investors.",Concept
+startup-booth,Startup Booth,tycoon,,cte-9-12-entrepreneurship,cte,9-12,"Launch a business: plan, budget, market and pitch to investors.",Concept
 prototype-lab,Prototype Lab,lab,,cte-9-12-engineering-and-design-process,cte,9-12,"Design, prototype and test a product; iterate based on test results.",Concept
 hospital-shift,Hospital Shift,story,careers,cte-9-12-healthcare-and-human-services-careers,cte,9-12,Spend a shift in a hospital in different roles; learn medical terms and career paths.,Concept
 paycheck-decoder,Paycheck Decoder,explorer,money,cte-9-12-earning-income-and-paychecks,cte,9-12,"Decode a paycheck: gross pay, taxes, deductions and benefits.",Concept
@@ -306,7 +306,7 @@ first-apartment-budget,First Apartment Budget,tycoon,money,cte-9-12-budgeting-an
 compound-interest-head-start,Compound Interest Head Start,simulator,money,cte-9-12-saving-and-compound-interest,cte,9-12,"Two savers put in the same $50 a month, one from age 16 and one from 26; a stacked bar splits each year into deposits, interest and interest on interest. Change the rate or how often it compounds, then find the rule of 72. A plain savings account at a fixed rate, so no market returns (market-time-machine) and no doubling-penny sequences (savings-plan).",Concept
 the-credit-card-diaries,The Credit Card Diaries,story,money,cte-9-12-credit-and-debt,cte,9-12,"Live four years of a young adult's life making card, loan and phone-plan choices; the credit score and debt follow every decision.",Concept
 market-time-machine,Market Time Machine,simulator,money,cte-9-12-investing-basics,cte,9-12,"Invest across asset types using historical index data; learn about risk, diversification and time. Educational only, no picks or advice.",Concept
-scam-shield,Scam Shield,escape,money,cte-9-12-insurance-and-protecting-yourself,cte,9-12,Spot scams and identity theft tactics to escape traps; learn insurance basics.,Concept
+covered-insurance-claims,Covered: Insurance Claims,escape,money,cte-9-12-insurance-and-protecting-yourself,cte,9-12,"Compare three renters quotes, trade the monthly premium against the deductible and see what each costs in a quiet, theft or fire year; then catch fake 'claim refund' texts using your own policy page.",Concept
 feelings-weather-report,Feelings Weather Report,showdown,feelings,sel-k-2-naming-feelings,sel,k-2,"Kids report their feelings as weather (sunny, stormy); the class learns feeling words together.",Concept
 calm-corner,Calm Corner,sandbox,feelings,sel-k-2-calm-down-strategies,sel,k-2,"Animated calm-down tools: breathing balloons, counting and stretching, led by the teacher.",Concept
 walk-in-their-shoes,Walk in Their Shoes,story,,sel-3-5-perspective-taking,sel,3-5,Experience a story from different characters' perspectives; discuss feelings and needs.,Concept
@@ -487,7 +487,7 @@ square-slicer,Square Slicer,puzzle,,math-8-the-pythagorean-theorem,math,8,Cut th
 snow-globe-maker,Snow Globe Maker,tycoon,,math-8-volume-of-cylinders-cones-and-spheres,math,8,"Design snow globes, cone-shaped tree ornaments and cylinder bases; volume decides how much water and glitter each needs and what each costs to make.",Concept
 data-detective,Data Detective,data,data-desk,math-8-bivariate-data,math,8,"Real data (shoe size vs height, study time vs score); fit a line, spot outliers, read a two-way table.",Concept
 exponent-rule-builder,Exponent Rule Builder,puzzle,,math-9-rational-exponents-and-real-numbers,math,9,"Unlock exponent rules by experimenting with patterns, then prove why a 1/2 power is a square root.",Concept
-unit-detective,Unit Detective,mystery,,math-9-units-and-quantities,math,9,Real headlines with impossible numbers; use dimensional analysis to find which claims fall apart.,Concept
+unit-sense,Unit Sense,mystery,,math-9-units-and-quantities,math,9,Real headlines with impossible numbers; use dimensional analysis to find which claims fall apart.,Concept
 algebra-tile-studio,Algebra Tile Studio,sandbox,algebra-tiles,math-9-structure-of-expressions,math,9,Factor and complete the square with algebra tiles; watch the rectangle and the expression change together.,Concept
 polynomials-as-numbers,Polynomials as Numbers,builder,,math-9-polynomial-arithmetic,math,9,"Set x = 10 and watch every polynomial become an ordinary number; multiplying polynomials turns into long multiplication without carrying, and like terms line up like place-value columns.",Concept
 model-my-world,Model My World,builder,,math-9-creating-equations,math,9,"Pick a real situation (phone data, gym fees, savings) and write the equation that predicts it; the tool checks it against data.",Concept
@@ -498,12 +498,12 @@ which-model-wins,Which Model Wins?,data,data-desk,math-9-linear-quadratic-and-ex
 launch-pad,Launch Pad,simulator,graphing,math-9-quadratic-equations,math,9,Launch a projectile and see its quadratic; the roots are where it lands. Solve to aim for targets.,Concept
 correlation-guessing-game,Correlation Guessing Game,arcade,,math-9-data-in-one-and-two-variables,math,9,Guess the correlation of a scatter plot; residual plots expose the trick ones.,Concept
 rigid-motion-twins,Rigid Motion Twins,puzzle,transformations,math-10-rigid-motions-and-congruence,math,10,"Each level shows a shape and its twin; map one onto the other with the fewest rigid motions, then write the sequence as the proof that they are congruent.",Concept
-proof-blocks,Proof Blocks,puzzle,,math-10-proofs-and-constructions,math,10,Drag statements and reasons into a proof that holds up; a compass-and-straightedge sandbox handles constructions.,Concept
+proof-tower,Proof Tower,puzzle,,math-10-proofs-and-constructions,math,10,Drag statements and reasons into a proof that holds up; a compass-and-straightedge sandbox handles constructions.,Concept
 shadow-measure,Shadow Measure,lab,,math-10-similarity,math,10,"Measure a flagpole with its shadow and a meter stick using similar triangles, then check with the real height.",Concept
 ramp-and-roof,Ramp and Roof,builder,,math-10-right-triangle-trigonometry,math,10,"Design accessible ramps and roof pitches that meet code using sine, cosine and tangent.",Concept
 circle-theorem-explorer,Circle Theorem Explorer,explorer,,math-10-circles,math,10,"Drag points around circles and watch inscribed angles, chords and tangents keep their relationships.",Concept
 coordinate-proof-lab,Coordinate Proof Lab,sandbox,coordinate,math-10-coordinate-geometry,math,10,Place shapes on the grid and prove they're parallelograms or rectangles with slopes and distances.,Concept
-slice-it,Slice It,explorer,,math-10-volume-and-cross-sections,math,10,Slice 3D solids with a moving plane and see the cross sections; spin shapes to make solids of rotation.,Concept
+slice-and-stack,Slice and Stack,explorer,,math-10-volume-and-cross-sections,math,10,Slice 3D solids with a moving plane and see the cross sections; spin shapes to make solids of rotation.,Concept
 packaging-challenge,Packaging Challenge,builder,,math-10-modeling-with-geometry,math,10,Design a can or box that holds a given volume with the least material; compare against real products.,Concept
 medical-test-paradox,Medical Test Paradox,simulator,probability,math-10-probability-rules,math,10,Run a population through a disease test; conditional probability shows why a positive result isn't the whole story.,Concept
 imaginary-island,Imaginary Island,map,,math-11-complex-numbers,math,11,Explore the complex plane as an island map; multiplication by i rotates you a quarter turn.,Concept
@@ -519,7 +519,7 @@ identity-proof-race,Identity Proof Race,race,,math-12-trigonometric-identities-a
 flight-planner,Flight Planner,simulator,,math-12-vectors,math,12,Fly a plane through crosswinds; add velocity vectors to land on the runway.,Concept
 image-transformer,Image Transformer,studio,,math-12-matrices,math,12,"Apply matrices to a photo to rotate, shear and stretch it; see why the order of multiplication matters.",Concept
 polar-rose-studio,Polar Rose Studio,studio,,math-12-polar-coordinates-and-complex-plane,math,12,"Draw roses, spirals and cardioids with polar equations; export your art.",Concept
-cone-slicer,Cone Slicer,explorer,,math-12-conic-sections,math,12,"Slice a double cone at different angles to get circles, ellipses, parabolas and hyperbolas; see real-world uses.",Concept
+conic-focus-finder,Conic Focus Finder,explorer,,math-12-conic-sections,math,12,"Slice a double cone at different angles to get circles, ellipses, parabolas and hyperbolas; see real-world uses.",Concept
 zoom-to-the-limit,Zoom to the Limit,explorer,,math-12-limits-and-rates-of-change,math,12,Zoom into a curve until it looks straight; secant lines slide into a tangent.,Concept
 data-desk-distributions,Data Desk: Distributions,data,data-desk,math-12-exploring-data,math,12,"Real public data sets; describe shape, center, spread and unusual features with guided prompts.",Concept
 design-the-study,Design the Study,story,,math-12-sampling-and-experiments,math,12,"Test whether energy drinks really speed up reaction times: choose random assignment, a control group, blinding and a placebo, and a skeptical journal editor shows how each missing piece lets a hidden variable fake the result. Surveys and sampling stay with poll-workshop.",Concept
@@ -609,7 +609,7 @@ orbit-lab,Orbit Lab,simulator,astronomy,science-9-orbits-and-earth-s-history,sci
 feedback-loop-builder,Feedback Loop Builder,builder,,science-9-earth-s-systems-and-feedback,science,9,"Connect ice, albedo, temperature and carbon in a causal loop; see which loops amplify and which stabilize, then add life: plankton and forests change the air, and the air changes what can live.",Concept
 water-shapes-earth,Water Shapes Earth,lab,,science-9-water-and-earth-materials,science,9,"Freeze-thaw rocks, dissolve limestone and carve with rivers; water's properties explain the changes.",Concept
 climate-dashboard,Climate Dashboard,data,,science-9-climate-systems,science,9,"Real temperature, CO2 and ice data with filters; separate long-term trends from weather noise.",Concept
-island-economy,Island Economy,tycoon,,science-9-resources-and-sustainability,science,9,"Manage an island's fish, forests and water over generations; sustainable use or collapse.",Concept
+lake-commons,Lake Commons,tycoon,,science-9-resources-and-sustainability,science,9,"Manage an island's fish, forests and water over generations; sustainable use or collapse.",Concept
 elements-inspector,Elements Inspector,explorer,elements,science-10-atomic-structure-and-the-periodic-table,science,10,"EXISTING TOOL (Beta). Explore every element: 3D atom model, family, properties and emission spectra.",Concept
 bond-battle,Bond Battle,cards,molecules,science-10-bonding-and-intermolecular-forces,science,10,Card game where atoms bond ionically or covalently; intermolecular forces decide which substances boil first.,Concept
 equation-balancer,Equation Balancer,puzzle,,science-10-chemical-reactions-and-equations,science,10,Balance equations by adding molecules on both sides; atoms on the scale must match.,Concept
@@ -630,7 +630,7 @@ spectrum-explorer,Spectrum Explorer,explorer,,science-11-light-and-the-electroma
 biome-atlas,Biome Atlas,map,,science-12-ecosystems-and-biomes,science,12,Explore world biomes with climate charts; predict which biome forms from temperature and rainfall.,Concept
 population-dashboard,Population Dashboard,data,,science-12-population-and-resources,science,12,Real population and resource-use data by country; compare footprints and project the future.,Concept
 grid-operator,Grid Operator,tycoon,,science-12-energy-sources,science,12,"Keep a city's lights on from the grid control room, mixing coal, gas, solar, wind and nuclear; balance cost, reliability and emissions through a heat wave and a still, cloudy week.",Concept
-watershed-detective,Watershed Detective,mystery,,science-12-pollution-and-solutions,science,12,Trace a river's pollution back to its sources with water tests; propose and test solutions.,Concept
+up-the-watershed,Up the Watershed,mystery,,science-12-pollution-and-solutions,science,12,Trace a river's pollution back to its sources with water tests; propose and test solutions.,Concept
 design-challenge-studio,Design Challenge Studio,builder,,science-12-engineering-for-global-challenges,science,12,"Tackle a global challenge (clean water, cooling) by breaking it down, prototyping and weighing tradeoffs.",Concept
 nerve-signal-relay,Nerve Signal Relay,race,,science-7-senses-and-the-brain,science,7,"The class races a signal from eye or ear to brain to finger: tap when the light flashes or the bell rings, watch the path light up, and find out why a practiced move gets faster than a new decision.",Concept
 hot-meets-cold,Hot Meets Cold,simulator,,science-11-heat-and-thermal-equilibrium,science,11,"Drop a hot metal block into cold water and predict the final temperature; jiggling particles trade energy until both sides match, and no setting ever makes the heat flow back.",Concept
