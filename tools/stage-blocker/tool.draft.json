@@ -1,0 +1,20 @@
+{
+  "id": "stage-blocker",
+  "status": "beta",
+  "stage": "built",
+  "hook": "Block a scene from above, then sit in any seat in the house: see who is hidden behind whom, who is upstaging whom and where the eye goes, and let the director's notes check your blocking from all sixteen seats.",
+  "outcome": "Place actors, set pieces and lights for a scripted scene, read it from any seat in the house, and revise the blocking until the director's notes are met",
+  "driver": "students",
+  "minutes": "30-45",
+  "modes": ["Block", "House", "Run"],
+  "grades_label": "Grades 6-8",
+  "sources": [
+    "NCAS Theatre TH:Cr1, TH:Pr5, TH:Cr3: https://www.nationalartsstandards.org/",
+    "Alexander Dean and Lawrence Carra, Fundamentals of Play Directing, 5th ed. (Waveland Press, 1989): stage areas from the actor's point of view, the five body positions, upstaging, emphasis by position, level, light and movement",
+    "Settings, not facts: stage, set and seat sizes, sightline thresholds and focus weights are this tool's own, shown as a rough guide",
+    "Scenes: original, written for this tool",
+    "Stage, seat view, figures and set drawn in code"
+  ],
+  "third_party": [],
+  "updated": "2026-10-28"
+}

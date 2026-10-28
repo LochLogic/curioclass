@@ -1,0 +1,1190 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stage Blocker · Blocking, stage directions and sightlines · Curio Class</title>
+<meta name="description" content="Block a scene from above, then sit in any seat in the house to see who is hidden, who is upstaged and where the eye goes. The director's notes check your blocking from all sixteen seats. Grades 6-8 theater. Works offline.">
+<!--
+Stage Blocker (Curio Class)
+Grades 6-8 theater, module "Scripts and Staging (Theater)". NCAS TH:Cr1 (staging and design choices: placing actors,
+set pieces and lights), TH:Pr5 (blocking and technical elements refined against director's notes), TH:Cr3 (run the
+scene, read the notes, revise).
+Students drive on laptops, alone or in pairs, or a teacher blocks a scene with the class on a projector.
+Block: the ground plan, top-down, with cast tokens, set pieces, lights and a live seat view; the director's notes for
+each beat are checked live. House: the view from any of the 16 seats, in perspective. Run: the whole scene from your
+seat, then every note checked from every seat.
+Engine: kit/stage.js (Stage), docs/families/stage.md. Stage areas named from the actor's point of view, the five body
+positions, upstaging and emphasis by position, level, light and movement: Alexander Dean and Lawrence Carra,
+Fundamentals of Play Directing, 5th ed. (Waveland Press, 1989). Stage, set and seat sizes, sightline thresholds and
+focus weights are this tool's own choices, shown on screen as a rough guide. Scenes are original, written for this
+tool. One file, no network requests. Free stage is saved in this browser only (localStorage "curio-stage-blocker")
+when you press Save. Content CC BY 4.0, code MIT. curioclass.org
+-->
+<link rel="stylesheet" href="kit:curio">
+<style>
+/* palette (spec "Look"): spike-tape orange accent, paper panel, a black stage.
+   Contrast (WCAG 2.1, checked 2026-10-28 in Python): white on --brand #9a4208 6.7:1; --brand on --paper 6.1:1;
+   --ink on --paper 14.8:1; --muted on --paper 6.2:1; --focus #0b5cad on --paper 6.4:1; spike #e07a2e on the floor
+   5.7:1; actor colors on the floor 7.4 to 12.4:1; initials #111114 on actor colors 8.1 to 13.6:1; plan labels
+   #c9c9d2 on the floor 10.9:1 and on set pieces #57505a 4.6:1. */
+:root{
+  --paper:#f7f4ef;--ink:#22201d;--muted:#5f5a52;--line:#ddd3c4;--focus:#0b5cad;
+  --brand:#9a4208;--btn:#7c3506;--btn-line:#d07a3a;--head-ink:#ffffff;--panel:#f7f4ef;
+  --st-floor:#1b1b1f;--st-lines:#3a3a42;--st-spike:#e07a2e;--st-house:#2a2a30;--st-seat:#8a8a94;--st-pool:#ffe7b0;
+  --st-wing:#222227;--st-label:#c9c9d2;--st-ink:#111114;--st-piece:#57505a;--st-piece-line:#a59ca8;--st-wall:#4a4650;
+  --st-sel:#ffffff;--st-bad:#ff6b6b;--st-ok:#cfd3dc;--st-part:#ffb347;--st-frame:#3b2a33;--st-back:#141418;--st-dark:#0c0c0f;
+}
+header :focus-visible{outline-color:#fff}
+/* layouts (relayout()): wide (1000 px or wider and 700 or taller): stage left, 360 px panel right; compact (short
+   landscape, such as the 16:10 preview): a 300 px panel and a one-row header; stack (narrow or portrait): stage on
+   top, panel under it. The panel comes first in the page, so its controls come before the plan in tab order. */
+main{grid-template-columns:minmax(0,1fr) 360px;min-height:0}
+.panel{grid-column:2;grid-row:1;padding:12px 14px;gap:10px}
+.stage{grid-column:1;grid-row:1;min-height:0;background:var(--st-house);touch-action:none}
+body.compact main{grid-template-columns:minmax(0,1fr) 300px}
+body.compact header{padding:4px 10px;gap:6px;flex-wrap:nowrap}
+body.compact header h1,body.stack.narrow header h1{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+body.compact header .seg{margin-right:auto}
+body.compact .seg button,body.compact .icon-btn{min-height:44px;padding:0 10px;font-size:14px;white-space:nowrap}
+body.compact .panel{padding:8px 10px;gap:8px}
+body.stack{height:auto}
+body.stack main{grid-template-columns:minmax(0,1fr)}
+body.stack .stage{grid-column:1;grid-row:1}
+body.stack .panel{grid-column:1;grid-row:2;border-left:0;border-top:3px solid var(--line);overflow:visible}
+/* in the stack the scene picker goes last, so the beat, the line, the toggles and the tabs come straight under the plan */
+body.stack #sceneRow,body.stack #ask{order:3}
+body.stack #p-block,body.stack #p-house,body.stack #p-run{order:2}
+@media (max-width:560px){
+  .seg{display:grid;grid-template-columns:repeat(3,1fr);border-radius:14px;width:100%}
+  .seg button{min-height:44px;font-size:15px;padding:0 8px}
+  .icon-btn{min-height:44px;padding:0 12px;font-size:15px}
+}
+.panel>#hint{min-height:calc(3 * 1.4em);margin:0;font-size:16px;line-height:1.4}
+body.compact .panel>#hint{font-size:14px}
+.btn{min-height:44px;min-width:44px;padding:0 10px;border-radius:10px;border:1.5px solid #b8a48c;background:#fff;color:var(--ink);font-weight:600;font-size:15px;line-height:1.15}
+.btn[aria-pressed="true"]{background:var(--brand);border-color:var(--brand);color:#fff}
+.btn:disabled{opacity:.42;cursor:not-allowed}
+.btn:hover:not(:disabled){border-color:var(--brand)}
+body.compact .btn{font-size:14px;padding:0 6px}
+.row{display:flex;align-items:center;gap:8px}
+.row>label{font-weight:700;font-size:15px}
+select,input[type=text]{min-height:44px;border-radius:10px;border:1.5px solid #b8a48c;background:#fff;color:var(--ink);font:15px 'Segoe UI',system-ui,sans-serif;padding:0 8px}
+select{flex:1;min-width:0}
+.beatbar{display:grid;grid-template-columns:auto 1fr auto;gap:6px;align-items:center}
+.beatbar .num{text-align:center;font-weight:700;font-size:15px}
+.line{margin:0;font-size:15px;line-height:1.35;background:#fff;border:1px solid var(--line);border-radius:10px;padding:6px 10px}
+.line .dir{display:block;font-style:italic;color:var(--muted);font-size:14px}
+/* the line box keeps room for a direction and two lines, so the controls under it hold still from beat to beat */
+#lineNow{min-height:5em}
+.pin{list-style:none;margin:0;padding:6px 8px;display:flex;flex-direction:column;gap:2px;font-size:14px;line-height:1.3;background:#fff;border:1px solid var(--line);border-radius:10px}
+.pin li{display:grid;grid-template-columns:20px 1fr;gap:2px}
+.seats5{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:4px}
+.seats5 .btn{padding:0 2px;font-size:14px}
+.seats5 .bal{grid-column:1/-1}
+.words{background:#fff;border:1px solid var(--line);border-radius:10px;padding:0 10px}
+.words summary{min-height:44px;display:flex;align-items:center;font-weight:700;font-size:15px;cursor:pointer}
+.words dl{margin:0 0 10px;font-size:14px;line-height:1.35}
+.words dt{font-weight:700;margin-top:6px}
+.words dd{margin:0}
+.bp{display:flex;gap:4px;flex-wrap:wrap;margin-top:4px}
+.bp figure{margin:0;display:flex;flex-direction:column;align-items:center;font-size:12px;width:58px;text-align:center;line-height:1.15}
+.apart{margin-top:6px;padding-top:10px;border-top:1px dashed #b8a48c}
+.fr{display:block;color:var(--muted);font-size:13px}
+body.compact .line{font-size:14px;padding:4px 8px}
+.toggles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px}
+.toggles .btn{padding:0 2px;font-size:14px}
+body.compact .toggles .btn{font-size:13px;padding:0 1px}
+.tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;border-bottom:3px solid var(--brand)}
+.tabs button{min-height:44px;border:0;border-radius:10px 10px 0 0;background:#ebe4d8;color:var(--ink);font-weight:700;font-size:15px}
+.tabs button[aria-selected="true"]{background:var(--brand);color:#fff}
+.tabp{display:flex;flex-direction:column;gap:8px}
+.tabp h3{margin:2px 0 0;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.notes{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+.notes li{display:grid;grid-template-columns:26px 1fr;gap:4px;font-size:15px;line-height:1.3;background:#fff;border:1px solid var(--line);border-radius:10px;padding:6px 8px}
+.notes .ic{font-weight:800;font-size:17px;line-height:1.2}
+.notes .why{grid-column:2;color:#7a2a12;font-size:14px}
+.notes .met .why{color:var(--muted)}
+.notes .none{background:none;border-style:dashed;color:var(--muted)}
+.ic.ok{color:#2d6a2f}.ic.no{color:#b3261e}.ic.dot{color:var(--muted)}
+.beats{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:4px}
+.beats button{width:100%;min-height:44px;display:grid;grid-template-columns:24px 1fr auto;align-items:center;gap:6px;text-align:left;border:1.5px solid var(--line);border-radius:10px;background:#fff;padding:4px 8px;font-size:14px;line-height:1.25}
+.beats button[aria-current="true"]{border-color:var(--brand);box-shadow:inset 0 0 0 1.5px var(--brand)}
+.beats .bn{font-weight:800;color:var(--brand)}
+.beats .bt{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.beats .bi{font-weight:800;letter-spacing:1px;white-space:nowrap}
+.beats .chg{color:var(--brand)}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px}
+.grid3 .btn{padding:0 4px}
+.cast .btn{display:flex;align-items:center;gap:6px;justify-content:flex-start;padding:0 6px}
+.disc{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;border:1.5px solid #111114;color:#111114;font-weight:800;font-size:12px;flex:none}
+.small{font-size:13px;color:var(--muted);margin:0;line-height:1.35}
+.status{font-size:14px;margin:0;line-height:1.35}
+.lights .btn{display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:13px;line-height:1.1;padding:2px}
+.lights .btn b{font-size:14px}
+.ask{background:#fff;border:2px solid var(--brand);border-radius:12px;padding:8px 10px;display:flex;flex-direction:column;gap:8px;font-size:15px}
+.ask p{margin:0}
+.two{display:flex;gap:8px;flex-wrap:wrap}
+.results{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+.results button{width:100%;text-align:left;display:grid;grid-template-columns:26px 1fr;gap:4px;border:1.5px solid var(--line);border-radius:10px;background:#fff;padding:6px 8px;font-size:14px;line-height:1.3;min-height:44px}
+.results .why{grid-column:2;color:#7a2a12}
+.seen{list-style:none;margin:0;padding:0;font-size:14px;display:flex;flex-direction:column;gap:4px}
+.seen li{display:flex;gap:6px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:8px;padding:4px 8px}
+/* the stage */
+#planWrap,#houseWrap{position:absolute;inset:0}
+#planWrap{outline:none}
+#planWrap:focus-visible::after{content:'';position:absolute;inset:2px;border:3px solid #fff;box-shadow:inset 0 0 0 3px var(--focus);border-radius:6px;pointer-events:none}
+.box{position:absolute;overflow:hidden;border-radius:8px}
+#inset{border:2px solid #55555e;background:var(--st-dark)}
+#insetLab,#miniLab{position:absolute;left:6px;top:4px;font:600 11px 'Segoe UI',system-ui,sans-serif;color:#f2f2f5;background:rgba(12,12,15,.8);padding:1px 6px;border-radius:5px;pointer-events:none;z-index:2}
+#mini{border:2px solid #55555e;background:var(--st-house)}
+#insetChip{position:absolute;z-index:4;min-height:44px;border-radius:10px;border:1.5px solid #8a8a94;background:rgba(12,12,15,.9);color:#f2f2f5;font-weight:700;font-size:13px;padding:0 10px}
+#cap{position:absolute;left:10px;bottom:10px;color:#f4f1ec;background:rgba(12,12,15,.86);border:1px solid #3a3a42;border-radius:10px;padding:8px 12px;font-size:17px;line-height:1.35;margin:0}
+#cap:empty{display:none}
+#cap b{color:#ffb98a}
+body.compact #cap{font-size:14px;padding:6px 9px}
+#cue{position:absolute;left:10px;top:10px;font:800 15px 'Segoe UI',system-ui,sans-serif;color:#111114;background:var(--st-spike);border-radius:8px;padding:4px 10px;z-index:3}
+#rough{position:absolute;left:8px;top:6px;margin:0;font-size:12px;color:#c9c9d2;background:rgba(12,12,15,.8);padding:2px 8px;border-radius:6px;pointer-events:none;z-index:3}
+body.m-house #rough,body.m-run #rough{left:auto;right:8px}
+#insetEye{position:absolute;left:6px;bottom:4px;font:600 11px 'Segoe UI',system-ui,sans-serif;color:#c9c9d2;background:rgba(12,12,15,.8);padding:1px 6px;border-radius:5px;pointer-events:none;z-index:2}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+</style>
+</head>
+<body>
+<header>
+  <h1>Stage Blocker <small>Blocking, stage directions and sightlines</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-block" aria-pressed="true">Block</button>
+    <button id="m-house" aria-pressed="false">House</button>
+    <button id="m-run" aria-pressed="false">Run</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true" title="Turn animation on or off">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+  <button class="icon-btn" id="read">🔊 Read</button>
+</header>
+<main>
+  <aside class="panel" id="panel">
+    <p class="hint" id="hint" aria-live="polite"></p>
+    <div class="row" id="sceneRow"><label for="scene">Scene</label><select id="scene"></select></div>
+    <div class="ask" id="ask" hidden><p>Leave this scene? Your blocking here is kept until you close the page.</p>
+      <div class="two"><button class="btn" id="askGo">Leave</button><button class="btn" id="askStay">Stay</button></div></div>
+    <div class="beatbar" id="beatbar">
+      <button class="btn" id="prev">◀ Prev beat</button><span class="num" id="beatN">Beat 1 of 7</span><button class="btn" id="next">Next beat ▶</button>
+    </div>
+    <p class="line" id="lineNow"></p>
+
+    <!-- Block -->
+    <div class="tabp" id="p-block">
+      <div class="toggles" role="group" aria-label="Show">
+        <button class="btn" id="tg-rays" aria-pressed="false">Sightlines</button>
+        <button class="btn" id="tg-focus" aria-pressed="false">Focus</button>
+        <button class="btn" id="tg-areas" aria-pressed="true">Areas</button>
+        <button class="btn" id="seatBtn" title="Sit in the next seat">Seat B3</button>
+      </div>
+      <div class="tabs" id="tabsRow" role="tablist" aria-label="Block tools">
+        <button role="tab" id="tab-beats" aria-selected="true" aria-controls="t-beats">Beats</button>
+        <button role="tab" id="tab-actor" aria-selected="false" aria-controls="t-actor">Actor</button>
+        <button role="tab" id="tab-set" aria-selected="false" aria-controls="t-set">Set</button>
+        <button role="tab" id="tab-lights" aria-selected="false" aria-controls="t-lights">Lights</button>
+      </div>
+      <ul class="pin" id="pin" hidden aria-label="This beat's notes"></ul>
+      <section class="tabp" id="t-beats" role="tabpanel" aria-labelledby="tab-beats">
+        <h3 id="notesH">Director's notes for this beat</h3>
+        <ul class="notes" id="notes"></ul>
+        <div class="tabp" id="script" hidden>
+          <div class="row"><label for="spk">Speaker</label><select id="spk"></select></div>
+          <div class="row"><label for="toSel">To</label><select id="toSel"></select></div>
+          <label for="lineIn" class="small">Line (up to 120 characters)</label>
+          <input type="text" id="lineIn" maxlength="120" autocomplete="off">
+          <div class="two"><button class="btn" id="addBeat">Add beat</button><button class="btn" id="delBeat">Delete beat</button></div>
+        </div>
+        <h3>All beats</h3>
+        <ul class="beats" id="beats"></ul>
+        <p class="small" id="legend">✓ met, ✗ not met, • not checked yet. A ● after the number marks a beat you changed.</p>
+        <div class="tabp" id="saveRow" hidden>
+          <div class="two"><button class="btn" id="save">Save on this device</button></div>
+          <p class="small" id="saveMsg">Free stage is saved in this browser on this device only. Nothing is sent anywhere.</p>
+          <div class="apart"><button class="btn" id="clear">Clear Free stage</button></div>
+          <div class="ask" id="clearAsk" hidden><p>Clear Free stage? Every beat, name and line goes, and so does the copy saved on this device.</p>
+            <div class="two"><button class="btn" id="clearYes">Yes, clear it</button><button class="btn" id="clearNo">No, keep it</button></div></div>
+        </div>
+      </section>
+      <section class="tabp" id="t-actor" role="tabpanel" aria-labelledby="tab-actor" hidden>
+        <div class="grid3 cast" id="castBtns" role="group" aria-label="Pick an actor"></div>
+        <p class="status" id="actorStatus"></p>
+        <div class="row" id="nameRow" hidden><label for="nameIn">Name</label><input type="text" id="nameIn" maxlength="12" autocomplete="off" style="flex:1;min-width:0"></div>
+        <div class="grid3">
+          <button class="btn" id="turnL">↶ Turn left</button><button class="btn" id="turnR">Turn right ↷</button><button class="btn" id="facePartner">Face partner</button>
+        </div>
+        <div class="grid3" role="group" aria-label="Pose">
+          <button class="btn" id="pose-stand" aria-pressed="false">Stand</button><button class="btn" id="pose-sit" aria-pressed="false">Sit</button><button class="btn" id="pose-kneel" aria-pressed="false">Kneel</button>
+        </div>
+        <button class="btn" id="offBtn">Off stage</button>
+        <p class="small">On the plan: drag an actor, or drag the white handle to turn. With the plan focused, arrow keys move 0.25 m, Q and E turn, [ and ] pick the next actor or piece, Delete sends off stage.</p>
+      </section>
+      <section class="tabp" id="t-set" role="tabpanel" aria-labelledby="tab-set" hidden>
+        <p class="small">Drag a piece onto the stage, or tap it to add it near center.</p>
+        <div class="grid3" id="shelf" role="group" aria-label="Set pieces"></div>
+        <p class="status" id="pieceStatus"></p>
+        <div class="two"><button class="btn" id="rotBtn">Rotate 90°</button><button class="btn" id="remBtn">Remove</button></div>
+      </section>
+      <section class="tabp" id="t-lights" role="tabpanel" aria-labelledby="tab-lights" hidden>
+        <p class="small">Tap an area to cycle its light: off, half, full. The grid is the stage seen from the house.</p>
+        <div class="grid3 lights" id="lightGrid" role="group" aria-label="Area lights"></div>
+        <button class="btn" id="spotBtn" aria-pressed="false">Spot</button>
+        <p class="small">With Spot on, drag the dashed circle on the plan.</p>
+      </section>
+      <details class="words" id="words">
+        <summary>Stage words</summary>
+        <dl>
+          <dt>Stage right (SR), stage left (SL)</dt><dd>The actor's right and left, facing the house. On the plan the house is at the bottom, so stage right is on the plan's left.</dd>
+          <dt>Downstage, upstage</dt><dd>Downstage is toward the house. Upstage is away from it, toward the back wall.</dd>
+          <dt>Areas</dt><dd>Row, then side: DSR is downstage right, CS is center stage, USL is upstage left.</dd>
+          <dt>Upstaged</dt><dd>Your partner stands farther upstage, so to talk to them you turn your back to the house.</dd>
+          <dt>Cheat out</dt><dd>Turn partly out to the house while still talking to your partner.</dd>
+          <dt>Body positions</dt><dd>How much of the face a seat sees. Seen from above, the house at the bottom:</dd>
+        </dl>
+        <div class="bp" id="bodyPos" aria-hidden="true"></div>
+        <p class="small" style="margin:6px 0 10px">A focus note and a "not upstaged" note need profile or better.</p>
+      </details>
+    </div>
+
+    <!-- House -->
+    <div class="tabp" id="p-house" hidden>
+      <p class="status" id="seatNow"></p>
+      <div class="seats5" id="seatGrid2" role="group" aria-label="Pick a seat. Row A is nearest the stage."></div>
+      <h3 class="small" style="margin:0">From this seat</h3>
+      <ul class="seen" id="seenList"></ul>
+      <p class="small">The eye marks where the eye goes first, by a rough guide (speaking, light, body position, level, movement, others looking).</p>
+    </div>
+
+    <!-- Run -->
+    <div class="tabp" id="p-run" hidden>
+      <div class="two"><button class="big-btn" id="runBtn">▶ Run</button><button class="btn" id="stopBtn" disabled>■ Stop</button></div>
+      <p class="status" id="seatNow3"></p>
+      <div class="seats5" id="seatGrid3" role="group" aria-label="Pick a seat. Row A is nearest the stage."></div>
+      <p class="status" id="runSum"></p>
+      <ul class="results" id="results"></ul>
+    </div>
+    <p class="sr" id="live" aria-live="polite"></p>
+  </aside>
+  <div class="stage" id="stage">
+    <div id="planWrap" tabindex="0" role="application" aria-roledescription="ground plan" aria-label="Ground plan. Arrow keys move the selected actor or piece 0.25 m, Q and E turn, [ and ] pick, Delete sends off stage."></div>
+    <div class="box" id="inset"><span id="insetLab">Seat B3</span><span id="insetEye">Eye: a rough guide</span></div>
+    <button id="insetChip" hidden aria-expanded="false">Seat view</button>
+    <div id="houseWrap" hidden></div>
+    <div class="box" id="mini" hidden><span id="miniLab">Tap a seat</span></div>
+    <p id="cap"></p>
+    <span id="cue" hidden></span>
+    <p id="rough" hidden>Focus: a rough guide</p>
+  </div>
+</main>
+<script src="kit:curio"></script>
+<script src="kit:stage"></script>
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+  const clone = Stage.clone;
+  const hyp = Math.hypot;
+
+  // ================= content (spec "Content") =================
+  // the set catalog (w by d by h, m)
+  Stage.addPieces({
+    table: {label: 'Table', w: 1.2, d: .8, h: .75, color: '#8a6a4a'},
+    chair: {label: 'Chair', w: .5, d: .5, h: .9, sit: true, color: '#7a5a3a'},
+    bench: {label: 'Bench', w: 1.6, d: .45, h: .45, sit: true, color: '#6f6f78'},
+    sofa: {label: 'Sofa', w: 2.0, d: .9, h: .85, sit: true, color: '#6a4f7a'},
+    door: {label: 'Door flat', short: 'door', w: 2.0, d: .1, h: 2.4, opening: .9, lintel: .3, entrance: 'Door', entranceLabel: 'Door', color: '#b8ae9c'},
+    platform: {label: 'Platform', w: 2.0, d: 1.5, h: .6, standable: true, color: '#5a5a68'},
+    tree: {label: 'Tree', w: 1.0, d: 1.0, h: 3.0, round: true, color: '#3f6b3a',
+      parts: [{w: .3, z0: 0, z1: 1.8, round: true, color: '#6b4a2e'}, {w: 1.0, z0: 1.8, z1: 3.0, round: true, color: '#3f6b3a'}]},
+    crate: {label: 'Crate', w: .6, d: .6, h: .6, color: '#9a7a4a'},
+    lamp: {label: 'Lamp post', short: 'lamp', w: .2, d: .2, h: 3.0, color: '#6a6a74'},
+  });
+  const SHELF = ['table', 'chair', 'bench', 'sofa', 'door', 'platform', 'tree', 'crate', 'lamp'];
+
+  // the proscenium house: opening 10 m, playing area 7 m deep (apron edge y 0 to the back wall), curtain line 1 m up
+  // from the apron edge, stage floor 0.9 m above the house floor
+  const COLS = [[-5, -5 / 3, 'R'], [-5 / 3, 5 / 3, 'C'], [5 / 3, 5, 'L']], ROWS = [[0, 7 / 3, 'D', 'down'], [7 / 3, 14 / 3, 'C', 'center'], [14 / 3, 7, 'U', 'up']];
+  const AREAS = [];
+  for (const [y0, y1, r, row] of ROWS) for (const [x0, x1, c] of COLS) {
+    const id = r === 'C' && c === 'C' ? 'CS' : r + 'S' + c;
+    AREAS.push({id, label: id, row, poly: [[x0, y0], [x1, y0], [x1, y1], [x0, y1]]});
+  }
+  // the rows are 3 m apart (A at 3 m from the apron edge); the ground plan draws them 0.85 m apart (planAt) so the
+  // stage gets more of the plan, and the seat map in House and Run draws them where they are
+  const ROWY = [-1, -1.85, -2.7];
+  const seatsFor = near => {
+    const out = [];
+    ['A', 'B', 'C'].forEach((r, ri) => [-6, -3, 0, 3, 6].forEach((x, i) => out.push({id: r + (i + 1), label: 'Seat ' + r + (i + 1), x, y: -3 * (ri + 1), eye: 1.1 + .3 * ri,
+      tag: i === 0 ? 'Row ' + r : null, tagSide: 'left', ...(near ? {planAt: [[x, ROWY[ri]]]} : {})})));
+    out.push({id: 'BAL', label: 'Balcony', x: 0, y: -12, eye: 5, planAt: [[0, near ? -3.85 : -10.1]], tag: 'Balcony (12 m back)'});
+    return out;
+  };
+  const houseDef = near => ({
+    id: 'proscenium', name: 'Proscenium', stageH: .9, frame: 'proscenium', light: 'areas', spotR: 1,
+    outline: [[-5, 0], [5, 0], [5, 7], [-5, 7]], opening: {x0: -5, x1: 5, y: 1, h: 5.5}, curtainY: 1,
+    // wing labels at the downstage end, clear of the Seat view chip and the rough-guide caption at the top corners
+    wings: [{id: 'SRw', label: 'SR wing', labelAt: [-6.8, 1.5], poly: [[-8.6, 1.1], [-5, 1.1], [-5, 7], [-8.6, 7]]}, {id: 'SLw', label: 'SL wing', labelAt: [6.8, 1.5], poly: [[5, 1.1], [8.6, 1.1], [8.6, 7], [5, 7]]}],
+    areas: AREAS, spots: {CS: [0, 3.5]},
+    // the wings are labeled, so the entrance arrows go without words (quiet)
+    entrances: [{id: 'SR', label: 'SR wing', quiet: true, at: [[-5, 1.3], [-5, 3.5], [-5, 6]]}, {id: 'SL', label: 'SL wing', quiet: true, at: [[5, 1.3], [5, 3.5], [5, 6]]}],
+    blockers: [{id: 'wall', poly: [[-8.6, .9], [-5, .9], [-5, 1.1], [-8.6, 1.1]], z0: -.9, h: 8}, {id: 'wall', poly: [[5, .9], [8.6, .9], [8.6, 1.1], [5, 1.1]], z0: -.9, h: 8},
+      {id: 'wall', poly: [[-5, .9], [5, .9], [5, 1.1], [-5, 1.1]], z0: 5.5, h: 8, hideInPlan: true}],
+    seats: seatsFor(near), focusSeats: ['A3', 'B3', 'C3'], upSeat: 'B3', look: [0, 3.5, 1.3],
+    // the seat view frames the playing area and about 3.4 m above it (not the full 5.5 m opening), so figures read larger
+    fitPts: [[-5.2, 0, -.35], [5.2, 0, -.35], [-5.2, 1, 3.4], [5.2, 1, 3.4], [-5, 7, 0], [5, 7, 0]],
+    backWall: {y: 7, x0: -8.6, x1: 8.6, h: 6.5}, planBox: {x0: -9.1, x1: 9.1, y0: near ? -4.4 : -10.75, y1: 8.05},
+  });
+  const HOUSE = Stage.house(houseDef(true)), HOUSE_MAP = Stage.house(houseDef(false));
+  const LIGHTS0 = {USR: 0, USC: 0, USL: 0, CSR: 1, CS: 1, CSL: 1, DSR: 2, DSC: 2, DSL: 2};
+  const COLORS = ['#ff8a5c', '#5ec8ff', '#ffd84d', '#7ee08a', '#d9a3ff', '#ff8fc6'];
+  const DS = ['DSR', 'DSC', 'DSL'], CS = ['CSR', 'CS', 'CSL'];
+
+  // scenes: original, written for this tool. notes: {t, a, b, ids, m, areas, entrance, seat, level, piece, text}
+  const SCENES = [
+    {id: 'note', name: 'The Note', cast: [['ava', 'Ava', 'SR'], ['ben', 'Ben', 'Door'], ['gran', 'Gran', 'SL']],
+      pieces: [{id: 'table', type: 'table', x: 0, y: 3, rot: 0}, {id: 'chair1', type: 'chair', x: -.95, y: 3, rot: 0}, {id: 'chair2', type: 'chair', x: .95, y: 3, rot: 0}, {id: 'door', type: 'door', x: 0, y: 6.85, rot: 0}],
+      start: {ava: {x: -.95, y: 3, facing: 0, pose: 'sit', sitOn: 'chair1'}},
+      // the default start: Ben is dropped straight upstage of Ava, and Ava turns to him (a common first instinct)
+      preset: [{beat: 1, cast: {ben: {x: -.95, y: 4.3, facing: 0, off: false}, ava: {facing: 180}}}],
+      beats: [
+        {s: 'ava', dir: 'Ava reads the note aloud, then looks up.', line: 'Meet me at the old oak at midnight. Who wrote this?', notes: [{t: 'see', a: 'ava', text: 'Ava can be seen from every seat'}, {t: 'lit', a: 'ava', text: 'Ava is lit'}]},
+        {s: 'ben', to: 'ava', dir: 'Ben enters by the Door.', line: 'Have you seen my notebook?', notes: [{t: 'enters', a: 'ben', entrance: 'Door', text: 'Ben enters by the Door'}, {t: 'notHiding', a: 'ben', b: 'ava', text: 'Ben does not hide Ava from any seat'}]},
+        {s: 'ava', to: 'ben', line: 'What notebook?', notes: [{t: 'notUpstaged', a: 'ava', text: 'Ava is not upstaged'}]},
+        {s: 'ben', to: 'ava', line: 'The blue one. I left a page in it.', notes: [{t: 'crosses', a: 'ben', m: 1.5, text: 'Ben crosses at least 1.5 m'}]},
+        {s: 'gran', to: 'ava', dir: 'Gran enters SL.', line: 'Ben. Ava. Who left the back door open?', notes: [{t: 'focus', a: 'gran', text: 'Gran has the focus'}]},
+        {s: 'ava', to: 'gran', line: 'It was the wind, Gran.', notes: [{t: 'apart', a: 'ava', b: 'ben', m: 2, text: 'Ava and Ben at least 2 m apart'}]},
+        {s: 'ava', dir: 'Ben exits SR.', line: 'The old oak. Tonight.', notes: [{t: 'exits', a: 'ben', entrance: 'SR', text: 'Ben exits SR'}, {t: 'focus', a: 'ava', text: 'Ava has the focus'}, {t: 'at', a: 'ava', areas: DS, text: 'Ava is in a downstage area'}]},
+      ]},
+    {id: 'bus', name: 'Bus Stop', cast: [['maya', 'Maya', 'SR'], ['leo', 'Leo', 'SR'], ['sam', 'Sam', 'SL']],
+      pieces: [{id: 'bench', type: 'bench', x: 0, y: 3.2, rot: 0}, {id: 'lamp', type: 'lamp', x: 2.2, y: 3.6, rot: 0}],
+      start: {maya: {x: -.45, y: 3.2, facing: 0, pose: 'sit', sitOn: 'bench'}},
+      beats: [
+        {s: 'maya', line: 'Twenty minutes late. Again.', notes: [{t: 'at', a: 'maya', areas: [...DS, ...CS], text: 'Maya is in a downstage or center area'}, {t: 'lit', a: 'maya', text: 'Maya is lit'}]},
+        {s: 'leo', to: 'maya', dir: 'Leo enters SR.', line: 'Is this the stop for Elm Street?', notes: [{t: 'enters', a: 'leo', entrance: 'SR', text: 'Leo enters SR'}, {t: 'focus', a: 'leo', text: 'Leo has the focus'}]},
+        {s: 'maya', to: 'leo', line: 'If the bus ever comes.', notes: [{t: 'notUpstaged', a: 'maya', text: 'Maya is not upstaged'}]},
+        {s: 'sam', to: 'leo', dir: 'Sam enters SL.', line: 'You can share my umbrella.', notes: [{t: 'lit', a: 'sam', text: 'Sam is lit'}, {t: 'apart', a: 'sam', b: ['maya', 'leo'], m: 2, text: 'Sam is at least 2 m from Maya and from Leo'}]},
+        {s: 'leo', to: 'maya', line: 'Do you know her?', notes: [{t: 'near', a: 'leo', b: 'maya', m: 1.2, text: 'Leo and Maya within 1.2 m'}, {t: 'notHiding', a: 'sam', b: ['leo', 'maya'], text: 'Sam hides neither from any seat'}]},
+        {s: 'maya', to: 'sam', line: 'Fine. Just until the bus comes.', notes: [{t: 'group', ids: ['maya', 'leo', 'sam'], m: 1.5, text: 'All three within 1.5 m of each other'}, {t: 'see', ids: ['maya', 'leo', 'sam'], text: 'All three seen from every seat'}, {t: 'group', ids: ['maya', 'leo', 'sam'], m: 99, areas: CS, text: 'The group in a center area'}]},
+      ]},
+    {id: 'trophy', name: 'The Trophy', cast: [['coach', 'Coach', 'SL'], ['jordan', 'Jordan', 'SR'], ['riley', 'Riley', 'SR'], ['priya', 'Priya', 'SL']],
+      pieces: [{id: 'platform', type: 'platform', x: 0, y: 5.6, rot: 0}, {id: 'crate', type: 'crate', x: -3.2, y: 2.2, rot: 0}],
+      start: {coach: {x: 0, y: 5.6, facing: 0, on: 'platform'}, jordan: {x: -2, y: 3.2, facing: 180}, riley: {x: .6, y: 2.8, facing: 180}, priya: {x: 2.2, y: 3.2, facing: 180}},
+      beats: [
+        {s: 'coach', to: 'all', line: "This year's most improved player is...", notes: [{t: 'onLevel', a: 'coach', level: 'platform', text: 'Coach is on the platform'}, {t: 'focus', a: 'coach', text: 'Coach has the focus'}]},
+        {s: 'riley', to: 'jordan', line: "It's going to be you.", notes: [{t: 'see', ids: ['jordan', 'riley', 'priya'], text: 'Jordan, Riley and Priya are seen from every seat'}, {t: 'notFullBack', ids: ['jordan', 'riley', 'priya'], seat: 'A3', text: 'None of them is full back from seat A3'}]},
+        {s: 'coach', to: 'riley', line: '...Riley!', notes: [{t: 'focus', a: 'riley', text: 'Riley has the focus'}]},
+        {s: 'riley', to: 'coach', dir: 'Riley crosses toward the platform.', line: 'Me? Really?', notes: [{t: 'crosses', a: 'riley', m: 2, text: 'Riley crosses at least 2 m'}, {t: 'notUpstaged', a: 'riley', text: 'Riley is not upstaged'}]},
+        {s: 'jordan', to: 'priya', line: 'I thought it would be me.', notes: [{t: 'near', a: 'jordan', b: 'priya', m: 1.2, text: 'Jordan and Priya within 1.2 m'}, {t: 'at', a: 'jordan', areas: DS, text: 'Jordan is in a downstage area'}, {t: 'focus', a: 'jordan', text: 'Jordan has the focus'}]},
+        {s: 'riley', to: 'all', line: 'This is for all of us.', notes: [{t: 'focus', a: 'riley', text: 'Riley has the focus'}, {t: 'seeProp', piece: 'crate', text: 'The crate is seen from every seat'}]},
+      ]},
+    {id: 'free', name: 'Free stage', free: true, cast: [['kai', 'Kai', 'SR'], ['noor', 'Noor', 'SL'], ['eli', 'Eli', 'SR'], ['rosa', 'Rosa', 'SL'], ['tam', 'Tam', 'SR'], ['zoe', 'Zoe', 'SL']],
+      pieces: [], start: {}, beats: [{s: 'kai', line: ''}]},
+  ];
+  const SCENE = Object.fromEntries(SCENES.map(s => [s.id, s]));
+  const KEY = 'curio-stage-blocker';
+  const MAXBEATS = 12;
+
+  // ================= building a scene's beats =================
+  function homeXY(home) { return home === 'SL' ? [5.6, 3.5] : home === 'Door' ? [0, 7.4] : [-5.6, 3.5]; }
+  function actorBase(c) { const [x, y] = homeXY(c.home); return {id: c.id, name: c.name, initials: Stage.initials(c.name), color: c.color, mask: null, x, y, facing: 0, pose: 'stand', on: null, off: true, wing: c.home, sitOn: null}; }
+  function buildScene(def) {
+    const cast = def.cast.map(([id, name, home], i) => ({id, name, home, color: COLORS[i % COLORS.length]}));
+    const snap0 = {cast: cast.map(c => { const s = def.start[c.id]; return s ? {...actorBase(c), off: false, wing: null, ...s} : actorBase(c); }),
+      pieces: clone(def.pieces), lights: {...LIGHTS0}, spot: null};
+    const beats = def.beats.map((b, i) => ({speaker: b.s, to: b.to || null, line: b.line, dir: b.dir || '', notes: (b.notes || []).map(n => ({...n, beat: i})), snap: null, changed: i === 0}));
+    beats[0].snap = snap0; Stage.carry(beats, 0);
+    // a preset beat is the script's own layout: no "changed" dot until the student edits it
+    for (const p of def.preset || []) { Stage.edit(beats, p.beat, s => { for (const [id, v] of Object.entries(p.cast)) { const a = s.cast.find(c => c.id === id); Object.assign(a, v); if (!a.off) a.wing = null; } }); beats[p.beat].preset = true; }
+    return {id: def.id, def, cast, beats, edited: false, visited: new Set([0]), results: {}, metOnce: new Set(), touched: new Set(), beat: 0};
+  }
+  const work = {};
+  const sc = () => work[state.scene] || (work[state.scene] = buildScene(SCENE[state.scene]));
+
+  // ================= state =================
+  const state = {mode: 'block', scene: 'note', seat: 'B3', sel: null, tab: 'beats', rays: false, focus: false, areas: true,
+    inset: 'side', insetOpen: false, running: false, ran: false, placedOnce: false, runResults: null, jump: null};
+  // placedOnce: the student has done something in Block (any edit or a beat change), so the welcome gives way
+  const beats = () => sc().beats;
+  const cur = () => sc().beat;
+  const beatNow = () => beats()[cur()];
+  const snapNow = () => beatNow().snap;
+  const prevSnap = () => cur() > 0 ? beats()[cur() - 1].snap : null;
+  const actor = id => snapNow().cast.find(a => a.id === id);
+  const piece = id => snapNow().pieces.find(p => p.id === id);
+  const nameOf = id => { const a = sc().cast.find(c => c.id === id); return a ? a.name : id; };
+  const names = () => Object.fromEntries(sc().cast.map(c => [c.id, c.name]));
+
+  // ================= voice (firm-captain, Alnilam): the stage manager =================
+  const L = {
+    welBlock: 'Read the line and its notes. When the script says someone enters, drag them in from their wing.',
+    welFree: 'Drag an actor from a wing onto the stage. Then pick the speaker and type their line under Beats.',
+    placed: 'Tap Next beat to block the next line.',
+    upstaged: 'Someone is upstaged. Bring the partner down, or turn the speaker out to the house.',
+    hidden: 'Someone is hidden from a seat. Move them, or move whoever is in the way.',
+    welHouse: 'This is what one seat sees. Tap another seat to sit somewhere else.',
+    welRun: 'Tap Run to watch the whole scene from your seat.',
+    runStart: 'Places, please. House to half. Go.',
+    runGood: "Every note is met. That's a show.",
+    runSome: "That's the run. Some notes need work. Tap a note to jump to its beat.",
+    runFree: "That's your scene. Tap a beat in Block to change it, or Run again.",
+    beatMet: 'Notes met on this beat.',
+    lastBeat: 'This is the last beat. Tap Run at the top to watch the whole scene from your seat.',
+    lastFree: 'Tap Add beat under Beats for another line, or tap Run at the top to watch your scene.',
+    running: 'The scene is running. Watch from your seat, or tap Stop.',
+  };
+  const EVENTS = new Set(['runStart', 'runGood', 'runSome', 'runFree', 'beatMet']);
+  const V = Curio.voice({
+    lines: L, scope: () => state.mode + ':' + state.scene,
+    welcome: () => state.mode === 'block' ? [[welKey(), {valid: () => hintKey() === welKey()}]] : state.mode === 'house' ? 'welHouse' : [['welRun', {valid: () => !state.running}]],
+    hint: false, read: () => readNow(),
+  });
+  function readNow() {
+    if (state.mode === 'run' && state.runResults) {
+      const bad = state.runResults.filter(r => !r.met);
+      return [hintText(), ...bad.slice(0, 6).map(r => 'Beat ' + (r.beat + 1) + '. ' + r.text + '. ' + r.why)];
+    }
+    if (state.mode === 'run' && state.running) return [hintText(), $('cap').textContent];
+    return [hintText()];
+  }
+
+  // ================= analysis for the current beat =================
+  let flagsNow = {up: null, hidden: false};
+  function analyse() {
+    const sn = snapNow(), b = beatNow();
+    const up = Stage.upstaged(sn, b, 'B3', HOUSE);
+    const sg = Stage.sight(sn, HOUSE, state.seat);
+    flagsNow = {up, hidden: Object.values(sg.cast).some(s => s.status === 'hidden'), sight: sg};
+    // live notes: every beat that has been looked at
+    const S = sc();
+    for (const i of S.visited) if (i < beats().length && beats()[i].notes.length) S.results[i] = Stage.check(beats()[i].notes, beats(), HOUSE, {names: names()});
+  }
+  function hintKey() {
+    if (state.mode === 'house') return 'welHouse';
+    if (state.mode === 'run') {
+      if (state.running) return 'running';
+      if (state.runResults) return !state.runResults.length ? 'runFree' : state.runResults.every(r => r.met) ? 'runGood' : 'runSome';
+      return 'welRun';
+    }
+    if (jumpOpen()) return 'jump';
+    if (flagsNow.up) return 'upstaged';
+    if (flagsNow.hidden) return 'hidden';
+    if (!state.placedOnce) return welKey();
+    if (cur() === beats().length - 1) return sc().def.free && beats().length < MAXBEATS ? 'lastFree' : 'lastBeat';
+    return 'placed';
+  }
+  const welKey = () => sc().def.free ? 'welFree' : 'welBlock';
+  // after a jump from a Run result, the hint carries that note's fix until it is met or the student leaves the beat
+  function jumpOpen() {
+    const j = state.jump; if (!j || state.mode !== 'block' || j.scene !== state.scene || j.beat !== cur()) return false;
+    const r = (sc().results[j.beat] || [])[j.j]; return !!r && !r.met;
+  }
+  const hintText = () => { const k = hintKey(); if (k !== 'jump') return L[k]; const j = state.jump, r = sc().results[j.beat][j.j]; return 'Beat ' + (j.beat + 1) + ' note: ' + j.text + '. ' + r.why; };
+  let shownHint = null;
+  function setHint() {
+    const k = hintKey(), t = hintText();
+    if ($('hint').textContent !== t) $('hint').textContent = t;
+    if (k !== shownHint) {
+      shownHint = k;
+      // a how-to line is spoken the first time its step comes up; afterwards it only shows (and Read says it)
+      if (!EVENTS.has(k) && !['welBlock', 'welFree', 'welHouse', 'welRun', 'running', 'jump'].includes(k)) V.how(k, {valid: () => hintKey() === k});
+    }
+  }
+
+  // ================= views =================
+  const planWrap = $('planWrap'), inset = $('inset'), mini = $('mini'), houseWrap = $('houseWrap');
+  function slots(a, sn) {
+    if (a.wing === 'Door') { const d = sn.pieces.find(p => (Stage.catalog[p.type] || {}).entrance === 'Door'); if (d) return [d.x, d.y + .6]; }
+    const side = a.wing === 'SL' ? 'SL' : 'SR';
+    const offs = sn.cast.filter(b => b.off && !b.dragging && (b.wing === 'SL' ? 'SL' : (b.wing === 'Door' && sn.pieces.some(p => p.type === 'door')) ? 'D' : 'SR') === side);
+    const i = Math.max(0, offs.findIndex(b => b.id === a.id));
+    const x = 6.9 + 1.0 * (i % 2), y = 2.4 + 1.3 * Math.floor(i / 2);
+    return [side === 'SL' ? x : -x, y];
+  }
+  const planOpts = {house: HOUSE, slots, label: 'Ground plan', seatR: .2,
+    onPick: (sel, dragging) => pick(sel, dragging), onDrag: (sel, x, y) => dragTo(sel, x, y), onDrop: (sel, x, y) => dropAt(sel, x, y),
+    onSeat: id => setSeat(id), onTurn: (id, f) => turnTo(id, f)};
+  const plan = Stage.view.plan(planWrap, null, planOpts);
+  const miniPlan = Stage.view.plan(mini, null, {house: HOUSE_MAP, mini: true, slots, onSeat: id => setSeat(id), hitR: 18, label: 'Seat map'});
+  const insetView = Stage.view.house(inset, null, 'B3', {house: HOUSE, mini: true, margin: .04});
+  const houseView = Stage.view.house(houseWrap, null, 'B3', {house: HOUSE});
+  mini.querySelector('svg').setAttribute('role', 'group');
+
+  function planState(snap) {
+    const sn = snap || snapNow();
+    return {snap: sn, prev: prevSnap(), beat: beatNow(), seat: state.seat, sel: state.sel, areas: state.areas, rays: state.rays, focus: state.focus, flags: true};
+  }
+  function drawViews(snap) {
+    const st = planState(snap);
+    if (state.mode === 'block') {
+      plan.update(st);
+      if (!inset.hidden) insetView.update({...st, focus: true}, state.seat);
+    } else {
+      houseView.update({...st, focus: true, fit: sceneFit()}, state.seat);
+      miniPlan.update({...st, rays: false, focus: false, flags: false, sel: null});
+    }
+  }
+  // the House and Run view frame the actors and pieces of the whole scene (every beat), so the figures fill the view
+  // and the frame holds still from beat to beat; at least 5 m wide, never wider than the playing area
+  function sceneFit() {
+    const pts = [];
+    let x0 = Infinity, x1 = -Infinity, y0 = Infinity;
+    const add = (x, y, z) => { pts.push([x, y, z]); x0 = Math.min(x0, x); x1 = Math.max(x1, x); y0 = Math.min(y0, y); };
+    for (const b of beats()) {
+      for (const a of b.snap.cast) if (!a.off) { const hz = Stage.headZ(a, b.snap, HOUSE); add(a.x - .5, a.y, -.1); add(a.x + .5, a.y, -.1); add(a.x, a.y, hz + .55); }
+      for (const p of b.snap.pieces) { const c = Stage.catalog[p.type] || {}; for (const [x, y] of Stage.footprint(p)) { add(x, y, 0); add(x, y, Math.min(c.h || 1, 3.4)); } }
+    }
+    if (!pts.length) return null;
+    const cx = (x0 + x1) / 2, half = Math.max(2.5, (x1 - x0) / 2);
+    pts.push([clamp(cx - half, -5.2, 5.2), y0, 0], [clamp(cx + half, -5.2, 5.2), y0, 2.2]);
+    return pts;
+  }
+
+  // ================= panel =================
+  function buildSceneSelect() { $('scene').innerHTML = SCENES.map(s => `<option value="${s.id}">${s.name}</option>`).join(''); $('scene').value = state.scene; }
+  const icon = r => !r ? ['•', 'dot', 'not checked'] : r.met ? ['✓', 'ok', 'met'] : ['✗', 'no', 'not met'];
+  function lineHTML(b, i, n) {
+    const esc = s => String(s).replace(/[&<>]/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;'}[c]));
+    const to = b.to === 'all' ? ' (to all)' : b.to ? ' (to ' + esc(nameOf(b.to)) + ')' : '';
+    return (b.dir ? `<span class="dir">${esc(b.dir)}</span>` : '') + `<b>${esc(nameOf(b.speaker))}</b>${to}: ${b.line ? '"' + esc(b.line) + '"' : '<i>(no line yet)</i>'}`;
+  }
+  let beatsBuilt = '';
+  function renderBeats() {
+    const S = sc(), B = beats(), sig = state.scene + ':' + B.length + ':' + B.map(b => b.speaker + b.line).join('|');
+    if (sig !== beatsBuilt) {
+      beatsBuilt = sig;
+      $('beats').innerHTML = B.map((b, i) => `<li><button data-i="${i}"><span class="bn">${i + 1}<span class="chg" hidden>●</span></span><span class="bt"></span><span class="bi"></span></button></li>`).join('');
+      $('beats').querySelectorAll('button').forEach(btn => btn.onclick = () => goBeat(+btn.dataset.i));
+    }
+    $('beats').querySelectorAll('button').forEach((btn, i) => {
+      const b = B[i], rs = S.results[i] || [], ic = b.notes.map((n, j) => icon(S.visited.has(i) ? rs[j] : null));
+      btn.setAttribute('aria-current', i === cur());
+      const mine = b.changed && i > 0 && !(b.preset && !S.touched.has(i));
+      btn.querySelector('.chg').hidden = !mine;
+      const t = nameOf(b.speaker) + ': ' + (b.line || '(no line yet)');
+      if (btn.querySelector('.bt').textContent !== t) btn.querySelector('.bt').textContent = t;
+      const it = ic.map(x => x[0]).join(''); if (btn.querySelector('.bi').textContent !== it) btn.querySelector('.bi').textContent = it;
+      btn.setAttribute('aria-label', 'Beat ' + (i + 1) + (mine ? ', changed' : b.preset && !S.touched.has(i) ? ', set by the script' : '') + '. ' + t + (b.notes.length ? '. Notes: ' + ic.map(x => x[2]).join(', ') : ''));
+    });
+    $('legend').textContent = sc().def.free ? 'A ● after the number marks a beat you changed.' : '✓ met, ✗ not met, • not checked yet. A ● after the number marks a beat you changed.';
+    // this beat's notes
+    const b = beatNow(), rs = S.results[cur()] || [];
+    // the notes list keeps one height across the scene's beats, so All beats below it never moves under the pointer
+    const anyNotes = beats().some(x => x.notes.length);
+    $('notesH').hidden = $('notes').hidden = !anyNotes;
+    const noteLi = (n, r) => { const [g, cls, w] = icon(r); return `<li class="${r && r.met ? 'met' : ''}"><span class="ic ${cls}" aria-label="${w}">${g}</span><span>${n.text}</span>${r && !r.met ? `<span class="why">${r.why}</span>` : ''}</li>`; };
+    if (anyNotes) reserveNotes(noteLi);
+    $('notes').innerHTML = b.notes.length ? b.notes.map((n, j) => noteLi(n, rs[j])).join('') : '<li class="none"><span></span><span>No notes on this beat.</span></li>';
+    if (anyNotes) { const h = $('notes').offsetHeight; if (h > notesRes.h) { notesRes.h = h; $('notes').style.minHeight = h + 'px'; } }
+    // the notes stay in view in the other tabs: a short pinned list (the whys are in Beats)
+    $('pin').hidden = state.tab === 'beats' || !b.notes.length;
+    if (!$('pin').hidden) $('pin').innerHTML = b.notes.map((n, j) => { const [g, cls, w] = icon(rs[j]); return `<li><span class="ic ${cls}" aria-label="${w}">${g}</span><span>${n.text}</span></li>`; }).join('');
+  }
+  // the tallest the notes list gets in this scene: every beat's notes with their whys showing (measured once per scene
+  // and panel width, then it only grows if a real why runs longer)
+  let notesRes = {key: '', h: 0};
+  function reserveNotes(noteLi) {
+    const ul = $('notes'), w = ul.clientWidth; if (!w) return;
+    const key = state.scene + ':' + beats().length + ':' + w;
+    // re-measured after every edit (never mid-drag), grow-only within a scene, so a carried change that lengthens a
+    // later beat's why is reserved before the student taps that beat
+    if (snapNow().cast.some(a => a.dragging)) return;
+    const sig = JSON.stringify(beats().map(x => x.snap));
+    if (notesRes.key === key && notesRes.sig === sig) return;
+    const keep = notesRes.key === key ? notesRes.h : 0;
+    ul.style.minHeight = ''; let h = keep;
+    for (const x of beats()) {
+      if (!x.notes.length) continue;
+      // each note with its why showing, met or not (a met note's why is as long as a failing one's, near enough)
+      const rs = Stage.check(x.notes, beats(), HOUSE, {names: names()});
+      ul.innerHTML = x.notes.map((n, j) => noteLi(n, {met: false, why: (rs[j] && rs[j].why) || 'x'})).join(''); h = Math.max(h, ul.offsetHeight);
+    }
+    notesRes = {key, sig, h}; ul.style.minHeight = h + 'px';
+  }
+  function renderBar() {
+    const B = beats(), i = cur();
+    $('beatN').textContent = 'Beat ' + (i + 1) + ' of ' + B.length;
+    $('prev').disabled = i === 0; $('next').disabled = i === B.length - 1;
+    $('lineNow').innerHTML = lineHTML(B[i], i, B.length);
+    $('seatBtn').textContent = 'Seat ' + state.seat;
+    $('insetLab').textContent = 'Seat ' + state.seat;
+    $('seatNow').textContent = 'Sitting in ' + seatName(state.seat) + '. Tap a seat to move:';
+    $('seatNow3').textContent = 'Watching from ' + seatName(state.seat) + '.';
+    for (const g of ['seatGrid2', 'seatGrid3']) $(g).querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', b.dataset.s === state.seat));
+  }
+  function seatGrid(el) {
+    el.innerHTML = HOUSE.seats.map(s => `<button class="btn${s.id === 'BAL' ? ' bal' : ''}" data-s="${s.id}" aria-pressed="false">${s.id === 'BAL' ? 'Balcony' : s.id}</button>`).join('');
+    el.querySelectorAll('button').forEach(b => b.onclick = () => setSeat(b.dataset.s));
+  }
+  const seatName = id => id === 'BAL' ? 'the balcony' : 'seat ' + id;
+  let castBuilt = '';
+  function renderActor() {
+    const sn = snapNow(), sig = state.scene + sc().cast.map(c => c.name).join();
+    if (sig !== castBuilt) {
+      castBuilt = sig;
+      $('castBtns').innerHTML = sc().cast.map(c => `<button class="btn" data-id="${c.id}" aria-pressed="false"><span class="disc" style="background:${c.color}">${Stage.initials(c.name)}</span><span class="nm">${c.name}</span></button>`).join('');
+      $('castBtns').querySelectorAll('button').forEach(b => b.onclick = () => pick({kind: 'actor', id: b.dataset.id}, false, true));
+    }
+    $('castBtns').querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', !!state.sel && state.sel.kind === 'actor' && state.sel.id === b.dataset.id));
+    const a = state.sel && state.sel.kind === 'actor' ? actor(state.sel.id) : null;
+    const dis = !a, offA = a && a.off;
+    for (const id of ['turnL', 'turnR', 'pose-stand', 'pose-sit', 'pose-kneel']) $(id).disabled = dis || offA;
+    $('offBtn').disabled = dis;
+    $('offBtn').textContent = offA ? 'Bring on stage' : 'Off stage';
+    const partner = a ? partnerOf(a.id) : null;
+    $('facePartner').disabled = dis || offA || !partner;
+    for (const p of ['stand', 'sit', 'kneel']) $('pose-' + p).setAttribute('aria-pressed', !!a && !offA && a.pose === p);
+    if (!a) $('actorStatus').textContent = 'Tap an actor above or on the plan.';
+    else if (offA) $('actorStatus').textContent = a.name + ' is off stage, in the ' + (a.wing === 'Door' ? 'space behind the Door' : a.wing + ' wing') + '. Drag ' + a.name + ' onto the stage, or tap Bring on stage.';
+    else {
+      const ar = Stage.areaOf(HOUSE, a.x, a.y), pos = Stage.bodyPos(a, HOUSE.seatById[state.seat]);
+      const fo = Stage.focus(sn, beatNow(), HOUSE, state.seat, null, prevSnap())[a.id];
+      $('actorStatus').textContent = a.name + ': ' + (a.pose === 'stand' ? 'standing' : a.pose === 'sit' ? 'sitting' : 'kneeling') + (a.on ? ' on the platform' : '') + ' in ' + (ar ? ar.label : 'the wings') + ', ' + pos + ' from ' + state.seat + (partner ? '. Partner: ' + nameOf(partner) : '') + '. ' +
+        (fo.score === null ? 'Hidden from ' + state.seat + ', so no focus score.' : 'Focus from ' + state.seat + ': ' + fo.score + (fo.reasons.length ? ' (' + fo.reasons.join(', ') + ')' : '') + '.');
+    }
+    $('nameRow').hidden = !sc().def.free || !a;
+    if (a && document.activeElement !== $('nameIn')) $('nameIn').value = a.name;
+  }
+  function partnerOf(id) {
+    const b = beatNow(); if (!b.to || b.to === 'all') return null;
+    const p = id === b.speaker ? b.to : id === b.to ? b.speaker : null;
+    const pa = p && actor(p); return pa && !pa.off && p !== id ? p : null;
+  }
+  function renderSet() {
+    if (!$('shelf').children.length) {
+      $('shelf').innerHTML = SHELF.map(t => `<button class="btn" data-t="${t}">${Stage.catalog[t].label}</button>`).join('');
+      $('shelf').querySelectorAll('button').forEach(b => shelfButton(b));
+    }
+    const p = state.sel && state.sel.kind === 'piece' ? piece(state.sel.id) : null;
+    $('rotBtn').disabled = $('remBtn').disabled = !p;
+    $('pieceStatus').textContent = p ? Stage.catalog[p.type].label + ' selected. Drag it on the plan, or rotate or remove it.' : 'Tap a piece on the plan to rotate or remove it.';
+  }
+  const LV = ['off', 'half', 'full'], LI = ['○', '◐', '●'];
+  function renderLights() {
+    const sn = snapNow();
+    if (!$('lightGrid').children.length) {
+      const order = ['USR', 'USC', 'USL', 'CSR', 'CS', 'CSL', 'DSR', 'DSC', 'DSL'];
+      $('lightGrid').innerHTML = order.map(id => `<button class="btn" data-a="${id}"><b>${id}</b><span></span></button>`).join('');
+      $('lightGrid').querySelectorAll('button').forEach(b => b.onclick = () => cycleLight(b.dataset.a));
+    }
+    $('lightGrid').querySelectorAll('button').forEach(b => {
+      const v = +(sn.lights[b.dataset.a] || 0), t = LI[v] + ' ' + LV[v];
+      if (b.lastChild.textContent !== t) b.lastChild.textContent = t;
+      b.setAttribute('aria-label', b.dataset.a + ' light ' + LV[v]);
+    });
+    $('spotBtn').setAttribute('aria-pressed', !!sn.spot);
+  }
+  function renderHouse() {
+    const sn = snapNow(), s = HOUSE.seatById[state.seat], sg = Stage.sight(sn, HOUSE, s), fo = Stage.focus(sn, beatNow(), HOUSE, s, null, prevSnap()), lead = Stage.leader(fo);
+    const on = sn.cast.filter(a => !a.off);
+    $('seenList').innerHTML = on.length ? on.map(a => {
+      const st = sg.cast[a.id], pos = Stage.bodyPos(a, s);
+      const parts = [st.status === 'hidden' ? 'hidden' : pos, st.status === 'partly' ? 'partly hidden' : '', st.status !== 'hidden' && !Stage.lit(sn, HOUSE, a) ? 'in the dark' : ''].filter(Boolean);
+      const sc2 = fo[a.id].score === null ? '' : ', focus ' + fo[a.id].score, why = fo[a.id].score === null ? '' : `<span class="fr">${fo[a.id].reasons.join(', ')}</span>`;
+      return `<li><span class="disc" style="background:${a.color}">${a.initials}</span><span>${a.name}: ${parts.join(', ')}${sc2}${lead.id === a.id ? ' <b>(the eye goes here)</b>' : ''}${why}</span></li>`;
+    }).join('') : '<li>Nobody is on stage in this beat.</li>';
+  }
+  function renderRun() {
+    $('runBtn').textContent = state.ran ? '▶ Run again' : '▶ Run';
+    $('runBtn').disabled = state.running; $('stopBtn').disabled = !state.running;
+  }
+  function renderResults() {
+    const R = state.runResults;
+    if (!R) { $('results').innerHTML = ''; $('runSum').textContent = sc().def.free ? 'Free stage has no director\'s notes. Run it to watch your scene.' : ''; return; }
+    const bad = R.filter(r => !r.met).length;
+    $('runSum').textContent = R.length ? (bad ? (R.length - bad) + ' of ' + R.length + ' notes met. The ones to fix come first. Tap a note to jump to its beat.' : 'All ' + R.length + ' notes met.') : sc().def.free ? 'Free stage has no director\'s notes. Tap a beat in Block to change it.' : 'No director\'s notes in this scene.';
+    const order = R.map((r, k) => k).sort((a, b) => R[a].met - R[b].met || a - b);
+    $('results').innerHTML = order.map(k => R[k]).map((r, k) => `<li><button data-k="${k}"><span class="ic ${r.met ? 'ok' : 'no'}" aria-label="${r.met ? 'met' : 'not met'}">${r.met ? '✓' : '✗'}</span><span>Beat ${r.beat + 1}: ${r.text}</span>${r.met ? '' : `<span class="why">${r.why}</span>`}</button></li>`).join('');
+    $('results').querySelectorAll('button').forEach(b => b.onclick = () => jumpTo(R[order[+b.dataset.k]]));
+  }
+  function renderScript() {
+    const free = !!sc().def.free;
+    $('script').hidden = !free; $('saveRow').hidden = !free;
+    if (!free) return;
+    const b = beatNow(), opts = sc().cast.map(c => `<option value="${c.id}">${c.name}</option>`).join('');
+    if ($('spk').dataset.sig !== castBuilt) { $('spk').innerHTML = opts; $('toSel').innerHTML = '<option value="">nobody</option><option value="all">all</option>' + opts; $('spk').dataset.sig = castBuilt; }
+    $('spk').value = b.speaker; $('toSel').value = b.to || '';
+    if (document.activeElement !== $('lineIn')) $('lineIn').value = b.line;
+    $('addBeat').disabled = beats().length >= MAXBEATS; $('delBeat').disabled = beats().length <= 1;
+  }
+
+  let raf = 0;
+  function render() { if (!raf) raf = requestAnimationFrame(() => { raf = 0; renderNow(); }); }
+  function renderNow() {
+    analyse();
+    renderBar();
+    if (state.mode === 'block') { renderBeats(); renderActor(); renderSet(); renderLights(); renderScript(); }
+    if (state.mode === 'house') renderHouse();
+    if (state.mode === 'run') { renderRun(); }
+    for (const [id, k] of [['tg-rays', 'rays'], ['tg-focus', 'focus'], ['tg-areas', 'areas']]) $(id).setAttribute('aria-pressed', state[k]);
+    $('rough').hidden = !(state.mode === 'block' ? state.focus : true);
+    $('rough').textContent = state.mode === 'block' ? 'Focus: a rough guide' : 'Eye: a rough guide';
+    if (!state.running) drawViews();
+    setCaption();
+    beatMetCheck();   // the praise first, then the next how-to
+    setHint();
+  }
+  function setCaption() {
+    if (state.mode === 'block') { $('cap').textContent = ''; return; }
+    const b = beatNow();
+    const h = lineHTML(b).replace('<span class="dir">', '<span class="dir" style="display:block;font-style:italic;color:#c9c9d2;font-size:.85em">'), i = h.indexOf('<b>');
+    $('cap').innerHTML = h.slice(0, i) + `<b>${cur() + 1}.</b> ` + h.slice(i);
+  }
+  function beatMetCheck() {
+    if (state.mode !== 'block') return;
+    const S = sc(), i = cur(), rs = S.results[i];
+    // praise only a beat the student has worked on (a beat that starts out met is not their doing)
+    if (!rs || !rs.length || !rs.every(r => r.met) || S.metOnce.has(i) || !S.touched.has(i)) return;
+    S.metOnce.add(i); Curio.yes(); V.say('beatMet', {valid: () => state.mode === 'block' && cur() === i && (S.results[i] || []).every(r => r.met), hint: false});
+  }
+
+  // ================= editing =================
+  function editNow(fn) { Stage.edit(beats(), cur(), fn); sc().edited = true; sc().touched.add(cur()); state.placedOnce = true; render(); }
+  // a tap on the plan opens the Actor or Set tab; a drag leaves the tab alone, so the notes stay in view
+  let dragFrom = null;
+  function pick(sel, dragging, fromPanel) {
+    state.sel = sel;
+    if (sel && !dragging && !fromPanel) setTab(sel.kind === 'piece' ? 'set' : sel.kind === 'actor' ? 'actor' : state.tab, false);
+    if (sel && dragging && sel.kind === 'actor') { const a = actor(sel.id); dragFrom = {id: a.id, x: a.x, y: a.y, off: a.off, wing: a.wing}; }
+    render();
+  }
+  function dragTo(sel, x, y) {
+    const sn = snapNow(), b = HOUSE.planBox;
+    x = clamp(x, b.x0, b.x1); y = clamp(y, b.y0, b.y1);
+    if (sel.kind === 'actor') { const a = actor(sel.id); a.dragging = true; a.x = x; a.y = y; a.off = !Stage.onStage(HOUSE, x, y); }
+    else if (sel.kind === 'piece') { const p = piece(sel.id); p.x = clamp(x, -4.8, 4.8); p.y = clamp(y, .2, 6.95); }
+    else if (sel.kind === 'spot' && sn.spot) { sn.spot.x = clamp(x, -5, 5); sn.spot.y = clamp(y, 0, 7); }
+    drawViews(); live('');
+  }
+  // the sit and stand rule, for drags, arrow keys and pieces moving: onto a chair sits, off a chair stands
+  function settle(a, f) {
+    const was = a.sitOn;
+    Object.assign(a, {x: f.x, y: f.y, on: f.on, sitOn: f.sitOn});
+    if (f.sitOn) { if (a.pose === 'stand') a.pose = 'sit'; }
+    else if (was && a.pose === 'sit') a.pose = 'stand';
+  }
+  function placeActor(s, id, x, y) {
+    const a = s.cast.find(c => c.id === id);
+    delete a.dragging;
+    if (!Stage.onStage(HOUSE, x, y)) { a.off = true; a.on = null; a.sitOn = null; a.wing = y > 7 && s.pieces.some(p => p.type === 'door') ? 'Door' : x < 0 ? 'SR' : 'SL'; return a; }
+    settle(a, Stage.free(s, HOUSE, id, x, y));
+    a.off = false; a.wing = null;
+    return a;
+  }
+  function dropAt(sel, x, y) {
+    const b = HOUSE.planBox; x = clamp(x, b.x0, b.x1); y = clamp(y, b.y0, b.y1);
+    if (sel.kind === 'actor' && y < 0) {
+      // the house is not a way off: the actor goes back where the drag began
+      const a = actor(sel.id); delete a.dragging;
+      if (dragFrom && dragFrom.id === sel.id) Object.assign(a, {x: dragFrom.x, y: dragFrom.y, off: dragFrom.off, wing: dragFrom.wing});
+      dragFrom = null;
+      live(a.name + ' went back. The house is for the audience: to exit, drag ' + a.name + ' into a wing.'); render(); return;
+    }
+    dragFrom = null;
+    if (sel.kind === 'actor') {
+      editNow(s => { const a = placeActor(s, sel.id, x, y); live(a.off ? a.name + ' is off stage.' : a.name + ' placed in ' + ((Stage.areaOf(HOUSE, a.x, a.y) || {}).label || 'the stage') + '.'); });
+      if (!actor(sel.id).off) firstPlaced();
+    } else if (sel.kind === 'piece') {
+      editNow(s => { const p = s.pieces.find(q => q.id === sel.id); p.x = Math.round(clamp(x, -4.8, 4.8) * 20) / 20; p.y = Math.round(clamp(y, .2, 6.95) * 20) / 20; resettle(s); });
+    } else if (sel.kind === 'spot') editNow(s => { if (s.spot) { s.spot.x = Math.round(clamp(x, -5, 5) * 20) / 20; s.spot.y = Math.round(clamp(y, 0, 7) * 20) / 20; } });
+  }
+  // after a piece moves, actors standing inside it slide out, and platform and chair links are refreshed
+  function resettle(s) { for (const a of s.cast) if (!a.off) settle(a, Stage.free(s, HOUSE, a.id, a.x, a.y)); }
+  function firstPlaced() { if (!state.placedOnce) { state.placedOnce = true; render(); } }
+  function turnTo(id, f) { const a = actor(id); if (!a || a.off || a.facing === f) return; editNow(s => { s.cast.find(c => c.id === id).facing = f; }); live(a.name + ' turned, now ' + Stage.bodyPos({...a, facing: f}, HOUSE.seatById[state.seat]) + ' from ' + state.seat + '.'); }
+  function turnBy(d) { const a = state.sel && state.sel.kind === 'actor' && actor(state.sel.id); if (a && !a.off) turnTo(a.id, ((a.facing + d) % 360 + 360) % 360); }
+  function setPose(p) { const a = state.sel && actor(state.sel.id); if (!a || a.off) return; editNow(s => { s.cast.find(c => c.id === a.id).pose = p; }); }
+  function facePartner() {
+    const a = state.sel && actor(state.sel.id), p = a && partnerOf(a.id); if (!p) return;
+    const q = actor(p), ang = Math.atan2(q.x - a.x, -(q.y - a.y)) * 180 / Math.PI;
+    turnTo(a.id, ((Math.round(ang / 45) * 45) % 360 + 360) % 360);
+  }
+  function entryPoint(a, s) {
+    if (a.wing === 'Door') { const d = s.pieces.find(p => p.type === 'door'); if (d) return [d.x, d.y - .7]; }
+    return a.wing === 'SL' ? [4.3, 3.5] : [-4.3, 3.5];
+  }
+  function toggleOff() {
+    const a = state.sel && actor(state.sel.id); if (!a) return;
+    if (a.off) { editNow(s => { const b = s.cast.find(c => c.id === a.id), [x, y] = entryPoint(b, s); placeActor(s, a.id, x, y); }); firstPlaced(); live(a.name + ' is on stage.'); }
+    else editNow(s => { const b = s.cast.find(c => c.id === a.id), e = Stage.nearestEntrance(s, HOUSE, b.x, b.y); b.off = true; b.on = null; b.sitOn = null; b.wing = e ? e.id : 'SR'; live(b.name + ' exits by the ' + (e ? e.label : 'wings') + '.'); });
+  }
+  function freeSpotFor(type, s, x0 = 0, y0 = 3.5) {
+    const c = Stage.catalog[type];
+    const clash = (x, y) => s.pieces.some(p => { const q = Stage.catalog[p.type]; return Math.abs(p.x - x) < (q.w + c.w) / 2 + .1 && Math.abs(p.y - y) < (q.d + c.d) / 2 + .1; }) ||
+      s.cast.some(a => !a.off && Math.abs(a.x - x) < c.w / 2 + .35 && Math.abs(a.y - y) < c.d / 2 + .35);
+    for (let r = 0; r <= 4; r += .25) for (let k = 0; k < 16; k++) {
+      const x = clamp(x0 + r * Math.cos(k / 16 * 2 * Math.PI), -5 + c.w / 2, 5 - c.w / 2), y = clamp(y0 + r * Math.sin(k / 16 * 2 * Math.PI), c.d / 2 + .05, 7 - c.d / 2);
+      if (!clash(x, y)) return [Math.round(x * 20) / 20, Math.round(y * 20) / 20];
+    }
+    return [x0, y0];
+  }
+  let pieceN = 1;
+  function addPiece(type, at) {
+    let id; do { id = type + '-' + (pieceN++); } while (snapNow().pieces.some(p => p.id === id));
+    editNow(s => { const [x, y] = at || freeSpotFor(type, s, 0, type === 'door' ? 6.85 : 3.5); s.pieces.push({id, type, x, y, rot: 0}); resettle(s); });
+    state.sel = {kind: 'piece', id}; live(Stage.catalog[type].label + ' added.'); render();
+  }
+  function shelfButton(b) {
+    let d = null;
+    b.addEventListener('pointerdown', e => { if (e.button > 0) return; d = {x: e.clientX, y: e.clientY, id: e.pointerId, moved: false}; });
+    b.addEventListener('pointermove', e => {
+      if (!d || e.pointerId !== d.id) return;
+      if (!d.moved && hyp(e.clientX - d.x, e.clientY - d.y) > 10) { d.moved = true; try { b.setPointerCapture(e.pointerId); } catch {} b.style.opacity = .6; }
+    });
+    const up = e => {
+      if (!d || e.pointerId !== d.id) return;
+      const was = d; d = null; b.style.opacity = '';
+      if (!was.moved) return;   // a tap: the click adds it near center
+      b.dataset.skip = '1';
+      const r = planWrap.getBoundingClientRect();
+      if (state.mode !== 'block' || e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) return;
+      const [x, y] = plan.toWorld(e.clientX - r.left, e.clientY - r.top);
+      if (!Stage.onStage(HOUSE, x, y)) return;
+      addPiece(b.dataset.t, [Math.round(clamp(x, -4.8, 4.8) * 20) / 20, Math.round(clamp(y, .2, 6.95) * 20) / 20]);
+    };
+    b.addEventListener('pointerup', up); b.addEventListener('pointercancel', up);
+    b.onclick = () => { if (b.dataset.skip) { delete b.dataset.skip; return; } addPiece(b.dataset.t); };
+  }
+  function rotatePiece() { const p = state.sel && piece(state.sel.id); if (!p) return; editNow(s => { const q = s.pieces.find(x => x.id === p.id); q.rot = (q.rot + 90) % 360; resettle(s); }); }
+  function removePiece() {
+    const p = state.sel && piece(state.sel.id); if (!p) return;
+    editNow(s => { s.pieces = s.pieces.filter(x => x.id !== p.id); for (const a of s.cast) { if (a.sitOn === p.id) { a.sitOn = null; if (a.pose === 'sit') a.pose = 'stand'; } if (a.on === p.id) a.on = null; } });
+    state.sel = null; live(Stage.catalog[p.type].label + ' removed.'); render();
+  }
+  function cycleLight(id) { editNow(s => { s.lights[id] = ((+s.lights[id] || 0) + 1) % 3; }); live(id + ' light ' + LV[snapNow().lights[id]] + '.'); }
+  function toggleSpot() { editNow(s => { s.spot = s.spot ? null : {x: 0, y: 3.5}; }); state.sel = snapNow().spot ? {kind: 'spot', id: 'spot'} : null; render(); }
+
+  // ================= beats, seats, tabs, modes =================
+  function goBeat(i) {
+    const B = beats(); i = clamp(i, 0, B.length - 1);
+    if (i === cur()) return;
+    sc().beat = i; sc().visited.add(i); state.placedOnce = true;
+    if (state.sel && state.sel.kind === 'spot' && !snapNow().spot) state.sel = null;
+    if (state.sel && state.sel.kind === 'piece' && !piece(state.sel.id)) state.sel = null;
+    render();   // queued lines carry their own checks (beatMet: still this beat; how lines: still the hint)
+  }
+  // from a Run result: Block, that beat, the hint carrying the note; focus lands on the beat in the list
+  function jumpTo(r) {
+    setMode('block'); setTab('beats', false);
+    const i = clamp(r.beat, 0, beats().length - 1);
+    sc().beat = i; sc().visited.add(i);
+    state.jump = r.met ? null : {scene: state.scene, beat: i, j: r.j, text: r.text};
+    renderNow();
+    const btn = $('beats').querySelector('[aria-current="true"]'); if (btn) btn.focus({preventScroll: false});
+  }
+  function setSeat(id) { if (!HOUSE.seatById[id]) return; state.seat = id; live('Sitting in ' + seatName(id) + '.'); render(); }
+  function nextSeat() { const ids = HOUSE.seats.map(s => s.id), i = ids.indexOf(state.seat); setSeat(ids[(i + 1) % ids.length]); }
+  function setTab(t, focusIt) {
+    state.tab = t;
+    for (const k of ['beats', 'actor', 'set', 'lights']) { $('tab-' + k).setAttribute('aria-selected', k === t); $('tab-' + k).tabIndex = k === t ? 0 : -1; $('t-' + k).hidden = k !== t; }
+    if (focusIt) $('tab-' + t).focus({preventScroll: true});
+  }
+  function setMode(m) {
+    if (state.running && m !== 'run') stopRun();
+    V.hush();
+    state.mode = m;
+    for (const k of ['block', 'house', 'run']) { $('m-' + k).setAttribute('aria-pressed', k === m); $('p-' + k).hidden = k !== m; document.body.classList.toggle('m-' + k, k === m); }
+    $('beatbar').hidden = m === 'run';
+    $('lineNow').hidden = m === 'run';
+    planWrap.hidden = m !== 'block'; houseWrap.hidden = m === 'block'; mini.hidden = m === 'block';
+    if (m !== 'block') { inset.hidden = true; $('insetChip').hidden = true; }
+    $('cue').hidden = true;
+    if (m === 'run') { renderRun(); renderResults(); }
+    relayout(true);
+    renderNow();   // the hint changes at once
+    V.welcome();
+  }
+  function changeScene(id) {
+    stopRun();
+    state.scene = id; state.sel = null; state.runResults = null; state.ran = false; state.jump = null;
+    $('scene').value = id; castBuilt = beatsBuilt = ''; $('ask').hidden = true;
+    V.hush();
+    renderResults(); render(); V.welcome();
+  }
+
+  // ================= Run =================
+  let player = null, runFrom = 0;
+  async function run() {
+    if (state.running) return;
+    state.running = true; state.runResults = null;
+    V.hush(); renderRun(); renderResults(); setHint();
+    $('stopBtn').focus({preventScroll: true});
+    const S = sc(), B = beats(), from = S.beat; runFrom = from;
+    const fit = sceneFit();
+    $('cue').hidden = false; $('cue').textContent = 'Places';
+    const show = (snap, info) => {
+      sc().beat = info.beat;
+      houseView.update({...planState(snap), focus: true, fit}, state.seat);
+      miniPlan.update({...planState(snap), rays: false, focus: false, flags: false, sel: null});
+    };
+    houseView.update({...planState(B[0].snap), focus: true, fit}, state.seat);
+    S.beat = 0; setCaption();
+    await V.say('runStart', {wait: true, hint: false, valid: () => state.running});
+    if (!state.running) return;
+    player = Stage.play(B, show, {cross: 1200, fade: 400});
+    for (let i = 0; i < B.length; i++) {
+      if (!state.running) return;
+      S.beat = i; $('cue').textContent = 'Cue ' + (i + 1) + ': GO'; setCaption();
+      const r = await player.beat(i);
+      if (r === 'stopped' || !state.running) return;
+      const words = (B[i].line + ' ' + B[i].dir).length;
+      await Curio.wait(Math.max(2200, 1400 + 75 * words));
+    }
+    if (!state.running) return;
+    finishRun(from);
+  }
+  function finishRun(from) {
+    const S = sc(), B = beats(), all = [];
+    B.forEach((b, i) => { S.visited.add(i); if (b.notes.length) { const rs = Stage.check(b.notes, B, HOUSE, {names: names()}); S.results[i] = rs; rs.forEach((r, j) => all.push({...r, beat: i, j, text: b.notes[j].text})); } });
+    state.running = false; player = null; state.runResults = all; state.ran = true;
+    $('cue').hidden = true; S.beat = from;
+    renderRun(); renderResults(); renderNow();
+    if (state.mode === 'run') $('runBtn').focus({preventScroll: true});
+    if (all.length) { if (all.every(r => r.met)) Curio.yes(); V.say(all.every(r => r.met) ? 'runGood' : 'runSome'); }
+    else V.say('runFree');
+  }
+  // Stop goes back to the beat the run started from, as the end of a run does
+  function stopRun() {
+    if (!state.running) return;
+    state.running = false; if (player) player.stop(); player = null;
+    sc().beat = clamp(runFrom, 0, beats().length - 1);
+    $('cue').hidden = true; V.hush(); renderRun(); render();
+  }
+
+  // ================= Free stage: script, names, save =================
+  function freeEdit(fn) { fn(); sc().edited = true; beatsBuilt = ''; render(); }
+  $('spk').onchange = () => freeEdit(() => { beatNow().speaker = $('spk').value; if (beatNow().to === beatNow().speaker) beatNow().to = null; });
+  $('toSel').onchange = () => freeEdit(() => { const v = $('toSel').value; beatNow().to = v && v !== beatNow().speaker ? v : null; });
+  $('lineIn').oninput = () => freeEdit(() => { beatNow().line = $('lineIn').value.slice(0, 120); });
+  $('addBeat').onclick = () => {
+    if (beats().length >= MAXBEATS) return;
+    freeEdit(() => { const i = cur(), b = beatNow(); beats().splice(i + 1, 0, {speaker: b.to && b.to !== 'all' ? b.to : b.speaker, to: b.to && b.to !== 'all' ? b.speaker : null, line: '', dir: '', notes: [], snap: clone(b.snap), changed: false}); sc().beat = i + 1; sc().visited.add(i + 1); });
+    $('lineIn').focus({preventScroll: true});
+  };
+  $('delBeat').onclick = () => {
+    if (beats().length <= 1) return;
+    freeEdit(() => {
+      const S = sc(), i = cur(); beats().splice(i, 1);
+      // every per-beat record moves down with the beats after the one deleted
+      const shift = set => new Set([...set].filter(k => k !== i).map(k => k > i ? k - 1 : k));
+      S.visited = shift(S.visited); S.metOnce = shift(S.metOnce); S.touched = shift(S.touched);
+      const R = {}; for (const [k, v] of Object.entries(S.results)) { const n = +k; if (n !== i) R[n > i ? n - 1 : n] = v; } S.results = R;
+      if (i === 0) beats()[0].changed = true; Stage.carry(beats(), Math.max(0, i - 1));
+      S.beat = Math.min(i, beats().length - 1); S.visited.add(S.beat); state.runResults = null; state.jump = null;
+    });
+    if (beats().length <= 1) $('addBeat').focus({preventScroll: true});
+  };
+  $('nameIn').oninput = () => {
+    const a = state.sel && actor(state.sel.id); if (!a) return;
+    const raw = $('nameIn').value, v0 = cleanName(raw);
+    if (v0 !== raw) $('nameIn').value = v0;
+    const v = v0.trim(); if (!v) return;
+    const c = sc().cast.find(x => x.id === a.id); c.name = v;
+    for (const b of beats()) { const x = b.snap.cast.find(y => y.id === a.id); x.name = v; x.initials = Stage.initials(v); }
+    sc().edited = true; castBuilt = ''; beatsBuilt = ''; render();
+  };
+  // a name: letters of any language, spaces, hyphens and apostrophes, 1 to 12 characters ("José", "Maria Lopez")
+  const cleanName = v => String(v).replace(/[^\p{L}\p{M} '\-]/gu, '').replace(/^[\s'\-]+/, '').replace(/\s{2,}/g, ' ').slice(0, 12);
+  const numIn = (v, a, b, d) => Number.isFinite(+v) && v !== null && v !== '' ? clamp(+v, a, b) : d;
+  // a saved snapshot is rebuilt from known fields only: names and colors from the cast, numbers clamped to the stage
+  function cleanSnap(sn, cast) {
+    sn = sn && typeof sn === 'object' ? sn : {};
+    const src = Array.isArray(sn.cast) ? sn.cast : [], seen = new Set();
+    const pieces = (Array.isArray(sn.pieces) ? sn.pieces : []).filter(p => p && SHELF.includes(p.type)).slice(0, 30).map((p, i) => {
+      let id = String(p.id || '').replace(/[^\w-]/g, '').slice(0, 24) || p.type + '-s' + i; while (seen.has(id)) id += 'x'; seen.add(id);
+      return {id, type: p.type, x: numIn(p.x, -4.8, 4.8, 0), y: numIn(p.y, .2, 6.95, 3.5), rot: [0, 90, 180, 270].includes(+p.rot) ? +p.rot : 0};
+    });
+    return {
+      cast: cast.map(c => {
+        const a = src.find(x => x && x.id === c.id) || {}, base = actorBase(c);
+        if (a.off !== false) return {...base, wing: ['SR', 'SL', 'Door'].includes(a.wing) ? a.wing : c.home};
+        return {...base, off: false, wing: null, x: numIn(a.x, -5, 5, 0), y: numIn(a.y, 0, 7, 3.5), facing: ((Math.round(numIn(a.facing, -720, 720, 0) / 45) * 45) % 360 + 360) % 360,
+          pose: ['stand', 'sit', 'kneel'].includes(a.pose) ? a.pose : 'stand', on: seen.has(a.on) ? a.on : null, sitOn: seen.has(a.sitOn) ? a.sitOn : null};
+      }),
+      pieces, lights: Object.fromEntries(Object.keys(LIGHTS0).map(k => { const v = +((sn.lights || {})[k]); return [k, [0, 1, 2].includes(v) ? v : LIGHTS0[k]]; })),
+      spot: sn.spot && Number.isFinite(+sn.spot.x) ? {x: numIn(sn.spot.x, -5, 5, 0), y: numIn(sn.spot.y, 0, 7, 3.5)} : null,
+    };
+  }
+  function saveFree() {
+    const S = work.free; if (!S) return;
+    try { localStorage.setItem(KEY, JSON.stringify({v: 1, cast: S.cast, beats: S.beats.map(b => ({speaker: b.speaker, to: b.to, line: b.line, snap: b.snap, changed: b.changed}))})); $('saveMsg').textContent = 'Saved in this browser on this device only. Nothing is sent anywhere.'; }
+    catch { $('saveMsg').textContent = 'This browser would not save. Your scene stays until you close the page.'; }
+  }
+  function loadFree() {
+    try {
+      const d = JSON.parse(localStorage.getItem(KEY) || 'null'); if (!d || d.v !== 1 || !Array.isArray(d.beats) || !d.beats.length) return null;
+      const S = buildScene(SCENE.free);
+      const dc = Array.isArray(d.cast) ? d.cast : [];
+      S.cast = S.cast.map((c0, i) => { const c = dc[i] || {}, nm = cleanName(c.name || '').trim(); return {id: c0.id, name: nm || c0.name, home: c0.home, color: COLORS[i]}; });
+      for (const c of S.cast) c.initials = Stage.initials(c.name);
+      const ids = S.cast.map(c => c.id);
+      S.beats = d.beats.slice(0, MAXBEATS).map(b => { b = b || {}; const sp = ids.includes(b.speaker) ? b.speaker : ids[0];
+        return {speaker: sp, to: (ids.includes(b.to) && b.to !== sp) || b.to === 'all' ? b.to : null, line: String(b.line || '').slice(0, 120), dir: '', notes: [], snap: cleanSnap(b.snap, S.cast), changed: !!b.changed}; });
+      S.beats[0].changed = true; S.edited = true;
+      return S;
+    } catch { return null; }
+  }
+  $('save').onclick = saveFree;
+  $('clear').onclick = () => { $('clearAsk').hidden = false; $('clearNo').focus({preventScroll: true}); };
+  $('clearNo').onclick = () => { $('clearAsk').hidden = true; $('clear').focus({preventScroll: true}); };
+  $('clearYes').onclick = () => {
+    try { localStorage.removeItem(KEY); } catch {}
+    work.free = buildScene(SCENE.free); state.sel = null; castBuilt = beatsBuilt = ''; $('clearAsk').hidden = true;
+    $('saveMsg').textContent = 'Cleared. Nothing of Free stage is saved on this device now.'; render();
+    $('clear').focus({preventScroll: true});
+  };
+
+  // ================= wiring =================
+  $('m-block').onclick = () => setMode('block');
+  $('m-house').onclick = () => setMode('house');
+  $('m-run').onclick = () => setMode('run');
+  // at the first or last beat the button goes disabled: focus moves to the other one (index checks, before the render)
+  $('prev').onclick = () => { goBeat(cur() - 1); if (cur() === 0 && beats().length > 1) $('next').focus({preventScroll: true}); };
+  $('next').onclick = () => { goBeat(cur() + 1); if (cur() === beats().length - 1 && beats().length > 1) $('prev').focus({preventScroll: true}); };
+  $('tg-rays').onclick = () => { state.rays = !state.rays; render(); };
+  $('tg-focus').onclick = () => { state.focus = !state.focus; render(); };
+  $('tg-areas').onclick = () => { state.areas = !state.areas; render(); };
+  $('seatBtn').onclick = nextSeat;
+  seatGrid($('seatGrid2')); seatGrid($('seatGrid3'));
+  for (const k of ['beats', 'actor', 'set', 'lights']) $('tab-' + k).onclick = () => { setTab(k, false); render(); };
+  document.querySelector('.tabs').addEventListener('keydown', e => {
+    const ks = ['beats', 'actor', 'set', 'lights'], i = ks.indexOf(state.tab);
+    if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { e.preventDefault(); setTab(ks[(i + (e.key === 'ArrowRight' ? 1 : 3)) % 4], true); render(); }
+  });
+  $('turnL').onclick = () => turnBy(45); $('turnR').onclick = () => turnBy(-45);
+  $('facePartner').onclick = facePartner;
+  for (const p of ['stand', 'sit', 'kneel']) $('pose-' + p).onclick = () => setPose(p);
+  $('offBtn').onclick = toggleOff;
+  $('rotBtn').onclick = rotatePiece;
+  $('remBtn').onclick = () => { removePiece(); $('shelf').firstChild.focus({preventScroll: true}); };
+  $('spotBtn').onclick = toggleSpot;
+  $('runBtn').onclick = () => run();
+  $('stopBtn').onclick = () => { stopRun(); $('runBtn').focus({preventScroll: true}); };
+  $('scene').onchange = () => {
+    const want = $('scene').value; if (want === state.scene) return;
+    if (!sc().edited) return changeScene(want);
+    $('scene').value = state.scene; $('ask').hidden = false; $('ask').dataset.want = want; $('askGo').focus({preventScroll: true});
+  };
+  $('askGo').onclick = () => { changeScene($('ask').dataset.want); $('scene').focus({preventScroll: true}); };
+  $('askStay').onclick = () => { $('ask').hidden = true; $('scene').focus({preventScroll: true}); };
+  $('insetChip').onclick = () => { state.insetOpen = !state.insetOpen; relayout(true); render(); };
+  function live(t) { if (t && $('live').textContent !== t) $('live').textContent = t; }
+
+  // keyboard on the plan
+  planWrap.addEventListener('keydown', e => {
+    if (state.mode !== 'block') return;
+    const k = e.key, items = () => [...snapNow().cast.map(a => ({kind: 'actor', id: a.id})), ...snapNow().pieces.map(p => ({kind: 'piece', id: p.id})), ...(snapNow().spot ? [{kind: 'spot', id: 'spot'}] : [])];
+    if (k === '[' || k === ']') {
+      e.preventDefault();
+      const L2 = items(), i = state.sel ? L2.findIndex(x => x.kind === state.sel.kind && x.id === state.sel.id) : -1;
+      const n = L2[((i + (k === ']' ? 1 : -1)) % L2.length + L2.length) % L2.length];
+      pick(n); const nm = n.kind === 'actor' ? actor(n.id).name : n.kind === 'piece' ? Stage.catalog[piece(n.id).type].label : 'Spot';
+      live(nm + ' selected.'); return;
+    }
+    const dir = {ArrowLeft: [-1, 0], ArrowRight: [1, 0], ArrowUp: [0, 1], ArrowDown: [0, -1]}[k];
+    if (dir) {
+      e.preventDefault();
+      if (!state.sel) { pick({kind: 'actor', id: snapNow().cast[0].id}); live(snapNow().cast[0].name + ' selected.'); return; }
+      const st = .25, sel = state.sel;
+      if (sel.kind === 'actor') {
+        const a = actor(sel.id);
+        if (a.off) { toggleOff(); return; }
+        const tx = a.x + dir[0] * st, ty = a.y + dir[1] * st;
+        if (!Stage.onStage(HOUSE, tx, ty)) { live(a.name + ' is at the edge. Tap Off stage to exit.'); return; }
+        editNow(s => { const b = s.cast.find(c => c.id === a.id), f = Stage.free(s, HOUSE, a.id, tx, ty); if (hyp(f.x - tx, f.y - ty) < .3) settle(b, f); else live('Something is in the way.'); });
+        firstPlaced();
+        const b = actor(sel.id); live(b.name + ' in ' + ((Stage.areaOf(HOUSE, b.x, b.y) || {}).label || 'the stage') + ', x ' + b.x.toFixed(2) + ' m, y ' + b.y.toFixed(2) + ' m.');
+      } else if (sel.kind === 'piece') {
+        const p = piece(sel.id); dropAt(sel, p.x + dir[0] * st, p.y + dir[1] * st);
+      } else if (sel.kind === 'spot' && snapNow().spot) { const s = snapNow().spot; dropAt(sel, s.x + dir[0] * st, s.y + dir[1] * st); }
+      return;
+    }
+    if ((k === 'q' || k === 'Q') && state.sel && state.sel.kind === 'actor') { e.preventDefault(); turnBy(45); return; }
+    if ((k === 'e' || k === 'E') && state.sel && state.sel.kind === 'actor') { e.preventDefault(); turnBy(-45); return; }
+    if (k === 'Delete' || k === 'Backspace') {
+      if (!state.sel) return; e.preventDefault();
+      if (state.sel.kind === 'actor' && !actor(state.sel.id).off) toggleOff();
+      else if (state.sel.kind === 'piece') removePiece();
+      else if (state.sel.kind === 'spot') toggleSpot();
+    }
+  });
+
+  // ================= layout =================
+  let page = '';
+  function pageLayout() { const w = innerWidth, h = innerHeight; return w >= 1000 && h >= 700 ? 'wide' : w >= 600 && w / h >= 1.25 ? 'compact' : 'stack'; }
+  function relayout(force) {
+    const p = pageLayout();
+    if (p !== page || force) {
+      page = p;
+      for (const c of ['wide', 'compact', 'stack']) document.body.classList.toggle(c, c === p);
+      document.body.classList.toggle('narrow', p === 'stack' && innerWidth < 900);
+    }
+    const st = $('stage'), pb = HOUSE.planBox, bw = pb.x1 - pb.x0, bh = pb.y1 - pb.y0;
+    if (page === 'stack') {
+      // the stage leaves room for the header, the hint, the beat bar, the line, and in Block the toggles and tabs
+      const head = document.querySelector('header').offsetHeight, pt = $('panel').getBoundingClientRect().top;
+      const panelTop = state.mode === 'block' ? $('tabsRow').getBoundingClientRect().bottom - pt + 8 : $('lineNow').hidden ? $('runBtn').getBoundingClientRect().bottom - pt + 60 : $('lineNow').getBoundingClientRect().bottom - pt + 8;
+      const want = state.mode === 'block' ? st.clientWidth * bh / bw : st.clientWidth * .9;
+      const hh = Math.round(clamp(Math.min(want, innerHeight - head - panelTop), 240, innerHeight * .8)) + 'px';
+      if (st.style.height !== hh) st.style.height = hh;
+    } else if (st.style.height) st.style.height = '';
+    const W = st.clientWidth, H = st.clientHeight;
+    if (state.mode === 'block') {
+      const kC = Math.min(W / bw, H / bh), iw = Math.round(clamp(W * .26, 150, 440)), ih = Math.round(iw * .56);
+      const kA = Math.min((W - iw - 14) / bw, H / bh), kB = Math.min(W / bw, (H - ih - 14) / bh);
+      let mode = kA >= kB ? 'side' : 'top';
+      if (Math.max(kA, kB) < .74 * kC) mode = 'chip';   // the seat view stays beside or above the plan unless the plan would lose over a quarter
+      state.inset = mode;
+      plan.pad = mode === 'side' ? {right: iw + 14} : mode === 'top' ? {top: ih + 14} : {};
+      $('insetChip').hidden = mode !== 'chip';
+      const open = mode !== 'chip' || state.insetOpen;
+      inset.hidden = !open;
+      $('insetChip').setAttribute('aria-expanded', open);
+      $('insetChip').textContent = open ? 'Hide seat view' : 'Seat view';
+      const w2 = mode === 'chip' ? Math.round(clamp(W * .62, 180, 300)) : iw, h2 = Math.round(w2 * .56);
+      Object.assign(inset.style, {width: w2 + 'px', height: h2 + 'px', right: '8px', top: (mode === 'chip' ? 56 : 8) + 'px', left: '', bottom: ''});
+      Object.assign($('insetChip').style, {right: '8px', top: '6px'});
+      plan.layout(); insetView.layout();
+    } else {
+      const mb = HOUSE_MAP.planBox, band = Math.round(clamp(H * .36, 110, 300)), mw = Math.round(band * (mb.x1 - mb.x0) / (mb.y1 - mb.y0));
+      Object.assign(houseWrap.style, {left: '0', top: '0', right: '0', bottom: (band + 8) + 'px', inset: ''});
+      houseWrap.style.cssText = `position:absolute;left:0;top:0;width:${W}px;height:${H - band - 8}px`;
+      Object.assign(mini.style, {width: mw + 'px', height: band + 'px', right: '6px', bottom: '6px', left: '', top: ''});
+      $('cap').style.right = (mw + 18) + 'px';
+      houseView.layout(); miniPlan.layout();
+    }
+    if (state.mode === 'block') $('cap').style.right = '';
+  }
+  new ResizeObserver(() => relayout()).observe($('stage'));
+  addEventListener('resize', () => relayout());
+
+  // the five body positions, seen from above with the house at the bottom (as on the plan)
+  $('bodyPos').innerHTML = Stage.POS.map((nm, i) => {
+    const f = i * 45 * Math.PI / 180, fx = Math.sin(f), fy = Math.cos(f), cx = 20, cy = 18, r = 9;
+    const tip = [cx + fx * (r + 7), cy + fy * (r + 7)], b1 = [cx + fx * r * .7 - fy * r * .55, cy + fy * r * .7 + fx * r * .55], b2 = [cx + fx * r * .7 + fy * r * .55, cy + fy * r * .7 - fx * r * .55];
+    return `<figure><svg width="40" height="44" viewBox="0 0 40 44"><rect x="0" y="0" width="40" height="34" rx="4" fill="#1b1b1f"/><polygon points="${tip.join(',')} ${b1.join(',')} ${b2.join(',')}" fill="#ff8a5c" stroke="#111114"/><circle cx="${cx}" cy="${cy}" r="${r}" fill="#ff8a5c" stroke="#111114" stroke-width="1.5"/><rect x="4" y="38" width="32" height="5" rx="2" fill="#8a8a94"/></svg>${nm}</figure>`;
+  }).join('');
+
+  // ================= start =================
+  Curio.onMotion(() => render());
+  Curio.init({clips: "voice:*", rate: .95});
+  const allLines = () => [...new Set(V.allLines())];
+  buildSceneSelect();
+  const saved = loadFree(); if (saved) work.free = saved;
+  setTab('beats', false);
+
+  // for checking frames
+  window.__tool = {state, setMode, allLines, L, HOUSE, Stage, work, sc, beats, snapNow, actor, piece, goBeat, setSeat, changeScene,
+    select: (kind, id) => pick({kind, id}), place: (id, x, y) => { editNow(s => placeActor(s, id, x, y)); firstPlaced(); return actor(id); },
+    turn: (id, f) => turnTo(id, f), pose: (id, p) => { state.sel = {kind: 'actor', id}; setPose(p); }, off: id => { state.sel = {kind: 'actor', id}; toggleOff(); },
+    light: (id, v) => editNow(s => { s.lights[id] = v; }), movePiece: (id, x, y) => dropAt({kind: 'piece', id}, x, y), addPiece,
+    check: i => Stage.check(beats()[i].notes, beats(), HOUSE, {names: names()}), run, stopRun, finishRun, results: () => state.runResults,
+    plan: () => plan.last(), planView: plan, house: () => houseView.last(), insetLast: () => insetView.last(), mini: () => miniPlan.last(), relayout, renderNow,
+    hint: () => $('hint').textContent, read: readNow, vlog: V.log, get vq() { return V.queue; }, heard: V.heard, layout: () => ({page, inset: state.inset})};
+  setMode('block');
+})();
+</script>
+</body>
+</html>

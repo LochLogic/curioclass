@@ -24,7 +24,8 @@ Family engines today (read the family doc before using one):
 | `kit/perspective.js` | docs/families/perspective.md | city-skyline-studio |
 | `kit/robot.js` | docs/families/robot.md | snowy-mail-route |
 | `kit/data-desk.js` | docs/families/data-desk.md | simulation-studio |
-| `kit/music-studio.js` | docs/families/music-studio.md | song-form-builder (BR2, in Refine) |
+| `kit/music-studio.js` | docs/families/music-studio.md | song-form-builder (BR2) |
+| `kit/stage.js` | docs/families/stage.md | stage-blocker (BR2; director-s-chair will reuse it) |
 
 Rule of thumb: if two tools in different families need it, it belongs in the kit. If only siblings need it, it is
 the family engine. Everything that makes a tool feel like itself stays in the tool.
