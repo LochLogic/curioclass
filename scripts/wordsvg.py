@@ -151,15 +151,27 @@ def T(s, size=72, color=DARK, bold=True, hl=None, circle=None, box=None, strike=
     return Item(w + 2 * pad_, h + pad_, txt + marks)
 
 
+OPS = set('=+−-×÷·<>≤≥≠≈→')
+
+
 def M(s, size=72, **k):
-    """Math text in a math font."""
-    return T(s, size, font=MATHF, **k)
+    """Math text in a math font. An operator at either end gets room on that side, so it never runs into a fraction bar,
+    a boxed term or a word next to it (the math font draws = + x wider than the measured width)."""
+    t = T(s, size, font=MATHF, **k)
+    s = str(s).strip()
+    if not s:
+        return t
+    lead, trail = s[0] in OPS, s[-1] in OPS
+    if not (lead or trail):
+        return t
+    pl, pr = (size * 0.26 if lead else 0), (size * 0.26 if trail else 0)
+    return Item(t.w + pl + pr, t.h, g(t, pl, 0))
 
 
 def F(n, d, size=64, color=DARK, hn=None, hd=None):
     """A stacked fraction; hn / hd recolor the numerator / denominator."""
     n, d = str(n), str(d)
-    w = max(tw(n, size, True), tw(d, size, True)) + size * 0.3
+    w = max(tw(n, size, True), tw(d, size, True)) * 1.08 + size * 0.3
     num = T(n, size, hn or color, font=MATHF)
     den = T(d, size, hd or color, font=MATHF)
     h = num.h + den.h + 8
@@ -168,8 +180,8 @@ def F(n, d, size=64, color=DARK, hn=None, hd=None):
 
 
 def eq(*parts, size=64, gap=16):
-    """A row of math: strings become math text, tuples (n, d) become fractions."""
-    return row(*[F(p[0], p[1], size) if isinstance(p, tuple) else (p if isinstance(p, Item) else M(p, size)) for p in parts], gap=gap)
+    """A row of math: strings become math text (operators padded by M), tuples (n, d) become fractions."""
+    return row(*[F(p[0], p[1], size) if isinstance(p, tuple) else (p if isinstance(p, Item) else M(p, size)) for p in parts], gap=max(gap, size * 0.22))
 
 
 def mark(item, kind='circle', color=RED):
@@ -685,30 +697,76 @@ def eye(size=120, pupil=0.32, color=BLUE, look=0):
                  f'<circle cx="{60 + look}" cy="35" r="22" fill="{color}" stroke="{DARK}" stroke-width="4"/><circle cx="{60 + look}" cy="35" r="{22 * pupil * 1.9:.1f}" fill="{DARK}"/><circle cx="{66 + look}" cy="29" r="4" fill="#fff"/>', size)
 
 
-def hand(size=150, kind='open', color='#fff', hl=False):
-    """A plain hand outline: open (palm, fingers up), fist, flat (fingers together), point."""
-    fill = soft(YELLOW) if hl else color
+SKIN = '#f9d77e'  # a neutral cartoon hand color (no one skin tone)
+
+
+def _fingers(spec, st, fill):
+    """Fingers as separate rounded rods: spec = [(x, top, bottom, width)]; each joins the palm with no seam."""
+    out = ''.join(f'<rect x="{x:.1f}" y="{t:.1f}" width="{w:.1f}" height="{b - t:.1f}" rx="{w / 2:.1f}" {st}/>' for x, t, b, w in spec)
+    return out
+
+
+def hand(size=150, kind='open', color=None, hl=False):
+    """A cartoon hand with separate fingers and a thumb, palm toward the viewer.
+    kind: open (fingers spread), flat (fingers together, thumb across the palm: ASL B), fist (thumb across the fingers: ASL S),
+    a (fist, thumb up the side: ASL A), point (index up), l (index up, thumb out: ASL L), c (curved hand: ASL C)."""
+    fill = soft(YELLOW) if hl else (color or SKIN)
     st = f'fill="{fill}" stroke="{DARK}" stroke-width="5" stroke-linejoin="round"'
-    if kind == 'fist':
-        svg = (f'<rect x="20" y="40" width="64" height="62" rx="18" {st}/>' + ''.join(f'<rect x="{22 + i * 15}" y="30" width="16" height="30" rx="8" {st}/>' for i in range(4))
-               + f'<path d="M22 66 C10 60 8 46 20 44 C30 44 40 54 50 56" {st}/>')
-        return _icon(100, 110, svg, size)
+    pf = f'fill="{fill}"'
+    crease = lambda x1, y1, x2, y2: f'<path d="M{x1} {y1} Q{(x1 + x2) / 2} {max(y1, y2) + 3} {x2} {y2}" fill="none" stroke="{DARK}" stroke-width="2.5" stroke-linecap="round"/>'
+    palm = f'<path d="M24 56 H80 V92 C80 104 72 112 64 116 V124 H40 V116 C30 112 24 104 24 92 Z" {st}/>'
+    if kind == 'c':
+        tube = lambda d, w, c: f'<path d="{d}" fill="none" stroke="{c}" stroke-width="{w}" stroke-linecap="round"/>'
+        top, low = 'M70 34 C50 6 14 14 14 48', 'M70 90 C52 104 28 98 24 80'
+        svg = (tube(top, 27, DARK) + tube(low, 25, DARK)
+               + f'<path d="M62 26 H84 C92 26 94 34 94 42 V96 C94 104 90 110 84 112 V124 H58 V108 C56 100 56 92 58 84 Z" {st}/>'
+               + tube(top, 17, fill) + tube(low, 15, fill)
+               + ''.join(f'<path d="M{x} {y} l9 -5" stroke="{DARK}" stroke-width="2.5" stroke-linecap="round"/>' for x, y in ((14, 40), (20, 28))))
+        return _icon(100, 128, svg, size)
+    if kind in ('fist', 'a'):
+        knuckles = _fingers([(24 + i * 14, 40, 70, 14) for i in range(4)], st, fill)
+        cover = f'<rect x="26.5" y="62.5" width="51" height="10" {pf}/>'
+        if kind == 'fist':
+            thumb = f'<rect x="20" y="64" width="50" height="16" rx="8" {st}/>'
+        else:
+            thumb = f'<rect x="12" y="40" width="16" height="44" rx="8" {st}/>'
+        svg = palm.replace('M24 56', 'M24 60') + knuckles + cover + thumb
+        return _icon(100, 128, svg, size)
+    if kind == '3':
+        curled = _fingers([(52 + i * 14, 46, 68, 14) for i in range(2)], st, fill)
+        up = _fingers([(24, 6, 68, 14), (38, 2, 68, 14)], st, fill)
+        cover = f'<rect x="26.5" y="58.5" width="51" height="12" {pf}/>'
+        thumb = f'<g transform="rotate(-50 26 86)"><rect x="18" y="44" width="16" height="44" rx="8" {st}/></g>'
+        return _icon(100, 128, thumb + palm + curled + up + cover, size)
+    if kind in ('point', 'l'):
+        curled = _fingers([(38 + i * 14, 46, 68, 14) for i in range(3)], st, fill)
+        index = _fingers([(24, 6, 68, 14)], st, fill)
+        cover = f'<rect x="26.5" y="58.5" width="51" height="12" {pf}/>'
+        thumb = (f'<rect x="-14" y="62" width="44" height="16" rx="8" {st}/>' if kind == 'l'
+                 else f'<rect x="30" y="66" width="44" height="15" rx="7.5" {st}/>')
+        svg = (thumb if kind == 'l' else '') + palm + curled + index + cover + (thumb if kind != 'l' else '')
+        if kind == 'l':
+            return _icon(118, 128, f'<g transform="translate(18 0)">{svg}</g>', size)
+        return _icon(100, 128, svg, size)
     if kind == 'flat':
-        svg = (f'<path d="M24 104 V40 C24 30 30 8 48 8 C66 8 72 30 72 40 V104 Z" {st}/><line x1="36" y1="18" x2="36" y2="60" stroke="{DARK}" stroke-width="2.5"/><line x1="48" y1="12" x2="48" y2="60" stroke="{DARK}" stroke-width="2.5"/>'
-               f'<line x1="60" y1="18" x2="60" y2="60" stroke="{DARK}" stroke-width="2.5"/><path d="M24 66 C12 60 8 50 14 46 C20 42 28 52 30 60" {st}/>')
-        return _icon(90, 110, svg, size)
-    if kind == 'point':
-        svg = (f'<rect x="22" y="50" width="56" height="54" rx="16" {st}/><rect x="40" y="6" width="16" height="60" rx="8" {st}/>'
-               + ''.join(f'<rect x="{50 + i * 10}" y="44" width="14" height="22" rx="7" {st}/>' for i in range(2)) + f'<path d="M24 74 C10 66 10 54 20 52 C30 52 34 62 38 66" {st}/>')
-        return _icon(100, 110, svg, size)
-    svg = (f'<path d="M30 112 C22 100 20 90 20 80 L8 58 C2 48 14 40 22 48 L30 60 V24 C30 14 44 14 44 24 V50 V14 C44 4 58 4 58 14 V50 V18 C58 8 72 8 72 18 V52 V30 '
-           f'C72 20 86 20 86 30 V78 C86 96 78 106 72 112 Z" {st}/>')
-    return _icon(96, 114, svg, size)
+        fing = _fingers([(24 + i * 14, t, 66, 14) for i, t in enumerate((16, 8, 12, 22))], st, fill)
+        cover = f'<rect x="26.5" y="58.5" width="51" height="10" {pf}/>'
+        thumb = f'<g transform="rotate(-24 34 92)"><rect x="18" y="80" width="46" height="16" rx="8" {st}/></g>'
+        svg = palm + fing + cover + thumb
+        return _icon(100, 128, svg, size)
+    # open: fingers spread, thumb out to the side
+    spec = [(19, 18, 66, 14), (35.5, 8, 66, 14), (52, 12, 66, 14), (68, 26, 68, 13)]
+    fing = ''.join(f'<g transform="rotate({r} {x + w / 2:.1f} 66)"><rect x="{x:.1f}" y="{t}" width="{w}" height="{b - t}" rx="{w / 2}" {st}/></g>'
+                   for (x, t, b, w), r in zip(spec, (-10, -3, 4, 12)))
+    thumb = f'<g transform="rotate(-48 26 86)"><rect x="18" y="44" width="16" height="44" rx="8" {st}/></g>'
+    cover = f'<rect x="26.5" y="58.5" width="51" height="12" {pf}/>'
+    svg = thumb + palm + fing + cover
+    return _icon(100, 128, svg, size)
 
 
 def wave_hand(size=150):
     h = hand(size)
-    k = size / 114
+    k = h.h / 128
     lines = ''.join(f'<path d="M{x * k:.1f} {y * k:.1f} q{-8 * k:.1f} {14 * k:.1f} 0 {28 * k:.1f}" fill="none" stroke="{BLUE}" stroke-width="5" stroke-linecap="round"/>' for x, y in ((-4, 20), (-16, 14)))
     lines += ''.join(f'<path d="M{x * k:.1f} {y * k:.1f} q{8 * k:.1f} {14 * k:.1f} 0 {28 * k:.1f}" fill="none" stroke="{BLUE}" stroke-width="5" stroke-linecap="round"/>' for x, y in ((102, 20), (114, 14)))
     return Item(h.w, h.h, f'<g transform="rotate(-12 {h.w / 2:.1f} {h.h / 2:.1f})">{h.svg}</g>' + lines)
@@ -899,23 +957,27 @@ def calendar(size=170, circled=None, checks=(), cross_=None, cells=28, cols=7, h
 
 
 def clock(size=180, h=3, m=0, sweep=None, numbers=True, hl=None):
-    """An analog clock at h:m; sweep shades the minutes from m to sweep; hl: 'hour' or 'minute' hand in color."""
+    """An analog clock at h:m; sweep shades the minutes from m to sweep; hl: 'hour'/'h' or 'minute'/'m' hand in color
+    (hour orange, minute blue). Both hands stop inside the numeral ring so no number is covered."""
+    hl = {'h': 'hour', 'm': 'minute'}.get(hl, hl)
     out = [f'<circle cx="60" cy="60" r="54" fill="#fff" stroke="{DARK}" stroke-width="6"/>']
     if sweep is not None:
         a0, a1 = math.radians(m * 6 - 90), math.radians(sweep * 6 - 90)
         out.append(f'<path d="M60 60 L{60 + 50 * math.cos(a0):.1f} {60 + 50 * math.sin(a0):.1f} A50 50 0 {1 if (sweep - m) % 60 > 30 else 0} 1 {60 + 50 * math.cos(a1):.1f} {60 + 50 * math.sin(a1):.1f} Z" fill="{soft(ORANGE)}"/>')
     for k in range(60):
         a = math.radians(k * 6)
-        r0 = 44 if k % 5 == 0 else 48
+        r0 = 45 if k % 5 == 0 else 48
         out.append(f'<line x1="{60 + r0 * math.sin(a):.1f}" y1="{60 - r0 * math.cos(a):.1f}" x2="{60 + 51 * math.sin(a):.1f}" y2="{60 - 51 * math.cos(a):.1f}" stroke="{DARK}" stroke-width="{2.5 if k % 5 == 0 else 1}"/>')
     if numbers:
         for n in range(1, 13):
             a = math.radians(n * 30)
-            out.append(f'<text x="{60 + 35 * math.sin(a):.1f}" y="{60 - 35 * math.cos(a) + 5:.1f}" font-family="{SANS}" font-size="13" font-weight="700" text-anchor="middle" fill="{DARK}">{n}</text>')
+            out.append(f'<text x="{60 + 37 * math.sin(a):.1f}" y="{60 - 37 * math.cos(a) + 4.5:.1f}" font-family="{SANS}" font-size="12.5" font-weight="700" text-anchor="middle" fill="{DARK}">{n}</text>')
     ha = math.radians((h % 12) * 30 + m * 0.5)
     ma = math.radians(m * 6)
-    out.append(f'<line x1="60" y1="60" x2="{60 + 26 * math.sin(ha):.1f}" y2="{60 - 26 * math.cos(ha):.1f}" stroke="{RED if hl == "hour" else DARK}" stroke-width="7" stroke-linecap="round"/>')
-    out.append(f'<line x1="60" y1="60" x2="{60 + 40 * math.sin(ma):.1f}" y2="{60 - 40 * math.cos(ma):.1f}" stroke="{BLUE if hl == "minute" else DARK}" stroke-width="4.5" stroke-linecap="round"/>')
+    hr, mr = (17, 28) if numbers else (26, 42)
+    hc, mc = (ORANGE if hl == 'hour' else DARK), (BLUE if hl == 'minute' else DARK)
+    out.append(f'<line x1="60" y1="60" x2="{60 + mr * math.sin(ma):.1f}" y2="{60 - mr * math.cos(ma):.1f}" stroke="{mc}" stroke-width="{5 if hl == "minute" else 4}" stroke-linecap="round"/>')
+    out.append(f'<line x1="60" y1="60" x2="{60 + hr * math.sin(ha):.1f}" y2="{60 - hr * math.cos(ha):.1f}" stroke="{hc}" stroke-width="7.5" stroke-linecap="round"/>')
     out.append(f'<circle cx="60" cy="60" r="4.5" fill="{DARK}"/>')
     return _icon(120, 120, ''.join(out), size)
 
@@ -1151,7 +1213,7 @@ def water(size=120):
     return molecule(size)
 
 
-def cell(size=180, nucleus_=True, color=GREEN, membrane_hl=False, plant=False, parts=(), labels=None, organelles=True, rod=False):
+def cell(size=180, nucleus_=True, color=GREEN, membrane_hl=False, plant=False, parts=(), labels=None, organelles=True, rod=False, focus=None):
     if rod:
         svg = f'<rect x="8" y="30" width="184" height="80" rx="40" fill="{soft(color)}" stroke="{DARK}" stroke-width="5"/><path d="M50 70 C70 50 90 90 110 70 C130 50 150 90 160 70" fill="none" stroke="{PURPLE}" stroke-width="4"/>'
         return _icon(200, 140, svg, size)
@@ -1169,10 +1231,10 @@ def cell(size=180, nucleus_=True, color=GREEN, membrane_hl=False, plant=False, p
         svg += ''.join(f'<circle cx="{x}" cy="{y}" r="3" fill="{DARK}"/>' for x, y in ((130, 40), (140, 52), (60, 100), (150, 90), (120, 120)))
     if nucleus_:
         svg += f'<circle cx="{cx}" cy="{cy}" r="{26 if nucleus_ != "dark" else 30}" fill="{PURPLE if nucleus_ != "dark" else "#4a2d6e"}" stroke="{DARK}" stroke-width="4"/>'
-    c = _icon(200, 160, svg, size)
-    if labels:
-        return c
-    return c
+    if focus == 'chloroplast' and plant:
+        svg = (f'<g opacity="0.35">{svg}</g><ellipse cx="70" cy="132" rx="15" ry="10" fill="{GREEN}" stroke="{DARK}" stroke-width="3"/>'
+               f'<circle cx="70" cy="132" r="25" fill="none" stroke="{RED}" stroke-width="5"/>')
+    return _icon(200, 160, svg, size)
 
 
 def dna(size=200, hl=None, changed=None, horizontal=True, rungs=10):
@@ -1204,7 +1266,13 @@ def neuron(size=220):
     return _icon(240, 120, svg, size)
 
 
-def brain(size=180, hl=False, color=PINK):
+def brain(size=180, hl=False, color=PINK, cortex=False):
+    if cortex:
+        d = 'M30 90 C6 86 4 56 20 46 C16 22 44 8 64 18 C80 2 112 4 122 20 C146 14 166 34 156 56 C172 70 160 98 136 96 C126 112 96 112 86 100 C70 112 40 108 30 90 Z'
+        svg = (f'<path d="{d}" fill="{PURPLE}" stroke="{DARK}" stroke-width="5"/>'
+               f'<path d="{d}" fill="#fbeef3" stroke="none" transform="translate(85 58) scale(0.8) translate(-85 -58)"/>'
+               + ''.join(f'<path d="{p}" fill="none" stroke="#d9b8c6" stroke-width="3" stroke-linecap="round"/>' for p in ('M60 60 C70 54 80 66 92 60', 'M96 44 C104 54 114 48 120 56', 'M70 80 C80 74 96 86 106 78')))
+        return _icon(170, 116, svg, size)
     svg = f'<path d="M30 90 C6 86 4 56 20 46 C16 22 44 8 64 18 C80 2 112 4 122 20 C146 14 166 34 156 56 C172 70 160 98 136 96 C126 112 96 112 86 100 C70 112 40 108 30 90 Z" fill="{color}" stroke="{DARK}" stroke-width="5"/>'
     svg += ''.join(f'<path d="{d}" fill="none" stroke="{DARK}" stroke-width="3.5" stroke-linecap="round"/>' for d in ('M40 50 C56 44 60 62 76 56', 'M84 28 C92 44 110 34 118 48', 'M60 80 C70 70 90 86 100 74', 'M120 66 C132 60 140 74 150 66', 'M90 54 C96 60 104 58 108 64'))
     if hl:
@@ -1222,7 +1290,12 @@ def heart_organ(size=150, vessels=False):
     svg = f'<path d="M60 112 C30 92 8 70 12 44 C16 20 42 14 58 30 C66 10 96 6 106 30 C114 52 96 84 60 112 Z" fill="{RED}" stroke="{DARK}" stroke-width="5"/>'
     svg += f'<path d="M50 30 V4 M70 26 C72 12 84 6 96 8" fill="none" stroke="{DARK}" stroke-width="8" stroke-linecap="round"/>'
     if vessels:
-        svg = (f'<path d="M58 60 C30 70 20 100 8 118 M64 60 C90 72 100 100 112 118" fill="none" stroke="{RED}" stroke-width="7"/><path d="M58 64 C34 50 20 30 8 10 M66 64 C90 50 104 30 116 10" fill="none" stroke="{BLUE}" stroke-width="7"/>' + svg)
+        art = (f'<path d="M70 26 C76 2 104 -4 122 4 M96 8 C112 10 124 24 132 40 M104 2 C118 -14 130 -16 140 -14" fill="none" stroke="{RED}" stroke-width="7" stroke-linecap="round"/>'
+               f'<path d="M50 30 C46 4 22 -6 -2 2 M38 10 C22 14 8 30 0 46 M24 2 C14 -14 2 -18 -8 -16" fill="none" stroke="{BLUE}" stroke-width="7" stroke-linecap="round"/>')
+        heart_ = svg.replace(f'<path d="M50 30 V4 M70 26 C72 12 84 6 96 8" fill="none" stroke="{DARK}" stroke-width="8" stroke-linecap="round"/>', '')
+        svg = art + heart_ + (f'<text x="128" y="64" font-family="{SANS}" font-size="15" font-weight="700" fill="{RED}">arteries</text>'
+                              f'<text x="-10" y="70" font-family="{SANS}" font-size="15" font-weight="700" text-anchor="end" fill="{BLUE}">veins</text>')
+        return _icon(280, 136, f'<g transform="translate(90 20)">{svg}</g>', size)
     return _icon(120, 120, svg, size)
 
 
@@ -1433,24 +1506,32 @@ def table(rows=3, cols=3, cells=None, size=260, hl_row=None, hl_col=None, header
     return sized(Item(cols * cw + 4, rows * ch + 4, ''.join(out)), size)
 
 
-def place_chart(labels, digits=None, size=320, hl=None, colors=(GREEN, BLUE, ORANGE, PURPLE, RED, TEAL)):
-    cw = 120
+def place_chart(labels, digits=None, size=320, hl=None, colors=(GREEN, BLUE, ORANGE, PURPLE, RED, TEAL), point=None):
+    """A place value chart. hl: a column picked out (the other digits fade); point: a decimal point after that column."""
+    cw = 130
     out = []
     for i, l in enumerate(labels):
         c = colors[i % len(colors)]
-        fs = min(24, (cw - 10) / measure(l, 1, True))
-        out.append(f'<rect x="{2 + i * cw}" y="2" width="{cw}" height="44" fill="{c if hl in (None, i) else soft(c)}" stroke="{DARK}" stroke-width="3"/>'
-                   f'<text x="{2 + i * cw + cw / 2}" y="{30}" font-family="{SANS}" font-size="{fs:.1f}" font-weight="700" text-anchor="middle" fill="#fff">{escape(l)}</text>'
-                   f'<rect x="{2 + i * cw}" y="46" width="{cw}" height="90" fill="#fff" stroke="{DARK}" stroke-width="3"/>')
+        fs = min(23, (cw - 22) / measure(l, 1, True))
+        on = hl in (None, i)
+        pick = hl is not None and on
+        out.append(f'<rect x="{2 + i * cw}" y="2" width="{cw}" height="44" fill="{c}" stroke="{DARK}" stroke-width="3"/>'
+                   f'<text x="{2 + i * cw + cw / 2}" y="{31}" font-family="{SANS}" font-size="{fs:.1f}" font-weight="700" text-anchor="middle" fill="#fff">{escape(l)}</text>'
+                   f'<rect x="{2 + i * cw}" y="46" width="{cw}" height="90" fill="{soft(c) if pick else "#fff"}" stroke="{DARK}" stroke-width="3"/>')
         if digits:
-            out.append(f'<text x="{2 + i * cw + cw / 2}" y="112" font-family="{SANS}" font-size="64" font-weight="700" text-anchor="middle" fill="{DARK}">{escape(str(digits[i]))}</text>')
+            out.append(f'<text x="{2 + i * cw + cw / 2}" y="112" font-family="{SANS}" font-size="64" font-weight="700" text-anchor="middle" fill="{DARK if on else "#b4b8c2"}">{escape(str(digits[i]))}</text>')
+    if hl is not None:
+        out.append(f'<rect x="{3.5 + hl * cw}" y="3.5" width="{cw - 3}" height="131" fill="none" stroke="{RED}" stroke-width="6"/>')
+    if point is not None:
+        out.append(f'<circle cx="{2 + (point + 1) * cw}" cy="118" r="10" fill="{DARK}" stroke="#fff" stroke-width="3"/>')
     return sized(Item(len(labels) * cw + 4, 140, ''.join(out)), size)
 
 
 def numberline(a=0, b=10, size=420, step=1, labels=None, marks=None, hops=None, open_=None, closed=None, ray=None, seg=None,
-               hl=None, bracket=None, color=BLUE, every=1, fracs=None, hop_label=None, bold=None, arrow_ends=True, dots_=None, xs=None):
+               hl=None, bracket=None, color=BLUE, every=1, fracs=None, hop_label=None, bold=None, arrow_ends=True, dots_=None, xs=None, to=None):
     """A number line. marks: {value: color} dots; hops: [(from, to)] arcs; open_/closed: a ray start (ray='right'/'left');
-    seg: (from, to) shaded; bracket: (from, to, text); fracs: denominator for fraction labels; dots_: {value: count} stacks."""
+    seg: (from, to) shaded; bracket: (from, to, text); fracs: denominator for fraction labels; dots_: {value: count} stacks
+    (xs=True stacks X marks, as a line plot does); hl: a value whose label is circled; to: (from, to) a red arrow, as in rounding."""
     W = 500
     x0, x1 = 30, W - 30
     vals = []
@@ -1482,6 +1563,13 @@ def numberline(a=0, b=10, size=420, step=1, labels=None, marks=None, hops=None, 
                 s = (labels[i] if labels else (str(int(v)) if float(v).is_integer() else str(v))).replace('-', '−')
                 big = (bold and v in bold)
                 out.append(f'<text x="{X(v):.1f}" y="{y + 44}" font-family="{SANS}" font-size="{fs * (1.3 if big else 1):.1f}" font-weight="700" text-anchor="middle" fill="{RED if big else DARK}">{escape(s)}</text>')
+                if hl is not None and abs(v - hl) < 1e-9:
+                    out.append(f'<ellipse cx="{X(v):.1f}" cy="{y + 35}" rx="{max(fs * 0.4 * len(s), fs * 0.8) + 8:.1f}" ry="{fs * 0.75 + 4:.1f}" fill="none" stroke="{RED}" stroke-width="5"/>')
+    if to:
+        xa, xb = X(to[0]), X(to[1])
+        hgt = min(60, abs(xb - xa) * 0.5 + 24)
+        out.append(f'<path d="M{xa:.1f} {y - 16} Q{(xa + xb) / 2:.1f} {y - 16 - hgt * 1.5:.1f} {xb + (8 if xb < xa else -8):.1f} {y - 20}" fill="none" stroke="{RED}" stroke-width="6" stroke-linecap="round"/>'
+                   f'<path d="M{xb:.1f} {y - 12} l{12 if xb < xa else -12} -20 l{10 if xb < xa else -10} 10 z" fill="{RED}" stroke="{RED}" stroke-width="3" stroke-linejoin="round"/>')
     for v, c in (marks or {}).items():
         out.append(f'<circle cx="{X(v):.1f}" cy="{y}" r="11" fill="{c}" stroke="{DARK}" stroke-width="3"/>')
     if open_ is not None:
@@ -1495,18 +1583,36 @@ def numberline(a=0, b=10, size=420, step=1, labels=None, marks=None, hops=None, 
                    f'<path d="M{xb:.1f} {y - 8} l{-12 if xb > xa else 12} -8 l{2 if xb > xa else -2} 12 z" fill="{ORANGE}"/>')
         if hop_label:
             out.append(f'<text x="{(xa + xb) / 2:.1f}" y="{y - hgt * 0.75 - 18:.1f}" font-family="{SANS}" font-size="20" font-weight="700" text-anchor="middle" fill="{ORANGE}">{escape(hop_label)}</text>')
+    lift = 0
     if bracket:
         p, q, s = bracket
-        out.append(f'<path d="M{X(p):.1f} {y - 26} v-14 H{X(q):.1f} v14" fill="none" stroke="{RED}" stroke-width="4"/>'
-                   f'<text x="{(X(p) + X(q)) / 2:.1f}" y="{y - 50}" font-family="{SANS}" font-size="26" font-weight="700" text-anchor="middle" fill="{RED}">{escape(s)}</text>')
+        tall = max((dots_ or {0: 0}).values())
+        bot = y - 26 if not tall else y - 24 - (tall - 1) * (26 if xs else 22) - 18
+        lift = max(0, 30 - (bot - 38))
+        out.append(f'<path d="M{X(p):.1f} {bot} v-14 H{X(q):.1f} v14" fill="none" stroke="{RED}" stroke-width="4"/>'
+                   f'<text x="{(X(p) + X(q)) / 2:.1f}" y="{bot - 24}" font-family="{SANS}" font-size="26" font-weight="700" text-anchor="middle" fill="{RED}">{escape(s)}</text>')
     for v, cnt in (dots_ or {}).items():
         for k in range(cnt):
-            out.append(f'<text x="{X(v):.1f}" y="{y - 18 - k * 26}" font-family="{SANS}" font-size="26" font-weight="700" text-anchor="middle" fill="{BLUE}">×</text>' if xs else f'<circle cx="{X(v):.1f}" cy="{y - 24 - k * 22}" r="9" fill="{color}"/>')
+            if xs:
+                cx_, cy_ = X(v), y - 30 - k * 26
+                out.append(f'<path d="M{cx_ - 9:.1f} {cy_ - 9:.1f} L{cx_ + 9:.1f} {cy_ + 9:.1f} M{cx_ + 9:.1f} {cy_ - 9:.1f} L{cx_ - 9:.1f} {cy_ + 9:.1f}" stroke="{color}" stroke-width="5" stroke-linecap="round"/>')
+            else:
+                out.append(f'<circle cx="{X(v):.1f}" cy="{y - 24 - k * 22}" r="9" fill="{color}"/>')
+    if lift:
+        return sized(Item(W, 180 + lift, f'<g transform="translate(0 {lift:.1f})">' + ''.join(out) + '</g>'), size)
     return sized(Item(W, 180, ''.join(out)), size)
 
 
-def staff(notes=(), size=420, clef=True, bars_=(), time=None, sharps=0, rest=False, chord=False, kinds=None, labels=None, colors=None, bracket=None, w=None):
-    """A five-line staff. notes: staff steps (0 = bottom line, 1 = first space, ...); a tuple is a chord."""
+def _sharp(x, y, k=1.0):
+    """A sharp sign drawn centered on (x, y) (a line or a space of the staff)."""
+    return (f'<g transform="translate({x:.1f} {y:.1f}) scale({k})" stroke="{DARK}" stroke-linecap="round">'
+            f'<line x1="-4" y1="-17" x2="-4" y2="15" stroke-width="3"/><line x1="4" y1="-15" x2="4" y2="17" stroke-width="3"/>'
+            f'<line x1="-10" y1="-3" x2="10" y2="-8" stroke-width="5.5"/><line x1="-10" y1="8" x2="10" y2="3" stroke-width="5.5"/></g>')
+
+
+def staff(notes=(), size=420, clef=True, bars_=(), time=None, sharps=0, rest=False, chord=False, kinds=None, labels=None, colors=None, bracket=None, w=None, shade=None):
+    """A five-line staff. notes: staff steps (0 = bottom line, 1 = first space, ...); a tuple is a chord.
+    sharps: a treble-clef key signature (F#, C#, G#, D#); shade: (a, b) the space between two bar positions shaded (one measure)."""
     W = w or 440
     out = [''.join(f'<line x1="10" y1="{40 + i * 20}" x2="{W - 10}" y2="{40 + i * 20}" stroke="{DARK}" stroke-width="3"/>' for i in range(5))]
     x = 30
@@ -1514,9 +1620,8 @@ def staff(notes=(), size=420, clef=True, bars_=(), time=None, sharps=0, rest=Fal
         out.append(f'<text x="{x - 6}" y="{126}" font-family="\'Segoe UI Symbol\', \'Cambria Math\', serif" font-size="118" fill="{DARK}">𝄞</text>')
         x += 70
     for s in range(sharps):
-        sy = [0, 3, -1, 2][s]
-        out.append(f'<text x="{x + s * 22}" y="{120 - (sy + 4) * 10 + 14}" font-family="\'Segoe UI Symbol\', serif" font-size="44" font-weight="700" fill="{DARK}">♯</text>')
-    x += sharps * 22 + (10 if sharps else 0)
+        out.append(_sharp(x + 10 + s * 22, 120 - [8, 5, 9, 6][s] * 10))
+    x += sharps * 22 + (14 if sharps else 0)
     if time:
         out.append(f'<text x="{x}" y="78" font-family="{MATHF}" font-size="46" font-weight="700" fill="{DARK}">{time[0]}</text><text x="{x}" y="118" font-family="{MATHF}" font-size="46" font-weight="700" fill="{DARK}">{time[1]}</text>')
         x += 50
@@ -1524,6 +1629,8 @@ def staff(notes=(), size=420, clef=True, bars_=(), time=None, sharps=0, rest=Fal
         out.append(f'<text x="{x + 30}" y="104" font-family="\'Segoe UI Symbol\', serif" font-size="70" fill="{DARK}">𝄽</text>')
     n = len(notes)
     span = (W - x - 30) / max(1, n)
+    if shade:
+        out.insert(0, f'<rect x="{x + span * shade[0]:.1f}" y="40" width="{span * (shade[1] - shade[0]):.1f}" height="80" fill="{soft(BLUE)}"/>')
     for i, nt in enumerate(notes):
         nx = x + span * (i + 0.5)
         steps = nt if isinstance(nt, tuple) else (nt,)
@@ -1543,7 +1650,7 @@ def staff(notes=(), size=420, clef=True, bars_=(), time=None, sharps=0, rest=Fal
         if labels:
             out.append(f'<text x="{nx:.1f}" y="200" font-family="{SANS}" font-size="24" font-weight="700" text-anchor="middle" fill="{c}">{escape(str(labels[i]))}</text>')
     for bx in bars_:
-        out.append(f'<line x1="{x + span * bx:.1f}" y1="40" x2="{x + span * bx:.1f}" y2="120" stroke="{DARK}" stroke-width="6"/>')
+        out.append(f'<line x1="{x + span * bx:.1f}" y1="40" x2="{x + span * bx:.1f}" y2="120" stroke="{DARK}" stroke-width="{8 if shade else 6}"/>')
     if bracket:
         i0, i1 = bracket
         out.append(f'<path d="M{x + span * (i0 + 0.5):.1f} 12 v-8 H{x + span * (i1 + 0.5):.1f} v8" fill="none" stroke="{RED}" stroke-width="4"/>')
@@ -1568,7 +1675,7 @@ def quarter_rest(size=120):
 
 def plot(*fns, size=320, xr=(-5, 5), yr=(-5, 5), axes=True, grid_=False, colors=(BLUE, ORANGE, GREEN, PURPLE, RED), shade=None, points=(),
          open_points=(), hlines=(), vlines=(), dashed=(), segs=(), labels=None, arrows_=(), scatter=(), axis_hl=None, tri=None, box_=False,
-         ticks=False, fill_between=None, rects=None, sw=6, curves=(), texts=()):
+         ticks=False, fill_between=None, rects=None, sw=6, curves=(), texts=(), regions=()):
     """Graphs on a square plane. fns: callables y = f(x) (or None). shade: (f, a, b) area under f; fill_between: (f, g, a, b);
     points/open_points: (x, y); hlines/vlines: values drawn dashed; segs: ((x1, y1), (x2, y2), color, dashed);
     scatter: list of (x, y); tri: ((x1, y1), (x2, y2)) slope triangle; rects: (f, a, b, n) Riemann rectangles; curves: (xs, ys) param lists."""
@@ -1616,6 +1723,8 @@ def plot(*fns, size=320, xr=(-5, 5), yr=(-5, 5), axes=True, grid_=False, colors=
         top = [(X(a + (b - a) * i / 80), Y(f(a + (b - a) * i / 80))) for i in range(81)]
         bot = [(X(a + (b - a) * i / 80), Y(f2(a + (b - a) * i / 80))) for i in range(80, -1, -1)]
         out.append('<path d="M' + ' L'.join(f'{x:.1f} {y:.1f}' for x, y in top + bot) + f' Z" fill="{soft(ORANGE)}" clip-path="url(#pc)"/>')
+    for pts_, c_, op_ in regions:
+        out.append('<path d="M' + ' L'.join(f'{X(x):.1f} {Y(y):.1f}' for x, y in pts_) + f' Z" fill="{c_}" opacity="{op_}" clip-path="url(#pc)"/>')
     if rects:
         f, a, b, n = rects
         for i in range(n):
@@ -1679,11 +1788,13 @@ def bell(mu=0, s=1):
     return lambda x: 4.2 * math.exp(-((x - mu) / s) ** 2 / 2)
 
 
-def coord(size=320, points=(), quad=None, star_at=None, n=5, first=False, hl_axis=None, origin=False, labels=True):
-    """A coordinate grid (first quadrant with first=True); points: (x, y) dots; quad: quadrant to shade."""
+def coord(size=320, points=(), quad=None, star_at=None, n=5, first=False, hl_axis=None, origin=False, labels=True, guides=False):
+    """A coordinate grid (first quadrant with first=True); points: (x, y) dots; quad: quadrant to shade;
+    guides: dashed lines from each point (and the star) to both axes, with its (x, y) written beside it;
+    hl_axis: 'x' or 'y' drawn thick red and named at its end."""
     xr = (0, n + 1) if first else (-n - 1, n + 1)
     p = plot(size=size, xr=xr, yr=xr, grid_=True, points=[(x, y, RED) for x, y in points], axis_hl=hl_axis, ticks=True)
-    if quad or star_at or origin or (first and labels):
+    if quad or star_at or origin or (first and labels) or guides or hl_axis in ('x', 'y'):
         W = 300
         X = lambda x: 10 + (x - xr[0]) / (xr[1] - xr[0]) * (W - 20)
         Y = lambda y: 10 + (xr[1] - y) / (xr[1] - xr[0]) * (W - 20)
@@ -1696,6 +1807,15 @@ def coord(size=320, points=(), quad=None, star_at=None, n=5, first=False, hl_axi
             extra += g(st, X(star_at[0]) - 18, Y(star_at[1]) - 18)
         if origin:
             extra += f'<circle cx="{X(0):.1f}" cy="{Y(0):.1f}" r="12" fill="{RED}" stroke="{DARK}" stroke-width="3"/>'
+        if guides:
+            for (px, py) in list(points) + ([star_at] if star_at else []):
+                extra = f'<path d="M{X(px):.1f} {Y(0):.1f} V{Y(py):.1f} H{X(0):.1f}" fill="none" stroke="{ORANGE}" stroke-width="4" stroke-dasharray="9 6"/>' + extra
+                extra += (f'<rect x="{X(px) + 14:.1f}" y="{Y(py) - 44:.1f}" width="78" height="32" rx="6" fill="#fff" stroke="{RED}" stroke-width="2"/>'
+                          f'<text x="{X(px) + 53:.1f}" y="{Y(py) - 20:.1f}" font-family="{MATHF}" font-size="24" font-weight="700" text-anchor="middle" fill="{RED}">({px}, {py})</text>')
+        if hl_axis == 'x':
+            extra += f'<text x="{W - 14:.1f}" y="{Y(0) - 12:.1f}" font-family="{MATHF}" font-size="36" font-style="italic" font-weight="700" text-anchor="end" fill="{RED}">x</text>'
+        if hl_axis == 'y':
+            extra += f'<text x="{X(0) + 14:.1f}" y="40" font-family="{MATHF}" font-size="36" font-style="italic" font-weight="700" fill="{RED}">y</text>'
         if first and labels:
             extra += ''.join(f'<text x="{X(v):.1f}" y="{Y(0) + 24:.1f}" font-family="{SANS}" font-size="16" font-weight="700" text-anchor="middle" fill="{DARK}">{v}</text>' for v in range(1, n + 1))
             extra += ''.join(f'<text x="{X(0) - 10:.1f}" y="{Y(v) + 6:.1f}" font-family="{SANS}" font-size="16" font-weight="700" text-anchor="end" fill="{DARK}">{v}</text>' for v in range(1, n + 1))
@@ -1751,8 +1871,9 @@ def shape(kind, size=150, color=BLUE, fill=None, **kw):
     return poly(n, size, color, fill, rot=22.5 if n == 8 else 0)
 
 
-def triangle(size=200, pts=((10, 150), (190, 150), (70, 20)), color=BLUE, sides=None, angles=(), ticks=None, right_at=None, height=False, labels=None, hl_side=None, base_lab=None, fill=None):
-    """A triangle; sides: labels per side (side k joins point k and k+1); angles: corners to arc; ticks: tick count per side."""
+def triangle(size=200, pts=((10, 150), (190, 150), (70, 20)), color=BLUE, sides=None, angles=(), ticks=None, right_at=None, height=False, labels=None, hl_side=None, base_lab=None, fill=None, theta=None):
+    """A triangle; sides: labels per side (side k joins point k and k+1); angles: corners to arc; ticks: tick count per side;
+    theta: a corner marked as the reference angle (arc and the letter theta)."""
     svg = f'<polygon points="{" ".join(f"{x},{y}" for x, y in pts)}" fill="{fill or soft(color)}" stroke="{DARK}" stroke-width="5" stroke-linejoin="round"/>'
     for k in range(3):
         (xa, ya), (xb, yb) = pts[k], pts[(k + 1) % 3]
@@ -1761,9 +1882,16 @@ def triangle(size=200, pts=((10, 150), (190, 150), (70, 20)), color=BLUE, sides=
         mx, my = (xa + xb) / 2, (ya + yb) / 2
         cx, cy = sum(p[0] for p in pts) / 3, sum(p[1] for p in pts) / 3
         if sides and sides[k]:
-            ox, oy = mx - cx, my - cy
-            n = math.hypot(ox, oy) or 1
-            svg += f'<text x="{mx + ox / n * 26:.1f}" y="{my + oy / n * 26 + 9:.1f}" font-family="{MATHF}" font-size="28" font-weight="700" text-anchor="middle" fill="{RED}">{escape(str(sides[k]))}</text>'
+            ux_, uy_ = -(yb - ya), xb - xa  # the side's normal, turned away from the middle of the triangle
+            n = math.hypot(ux_, uy_) or 1
+            ux_, uy_ = ux_ / n, uy_ / n
+            if ux_ * (mx - cx) + uy_ * (my - cy) < 0:
+                ux_, uy_ = -ux_, -uy_
+            anc = 'start' if ux_ > 0.55 else 'end' if ux_ < -0.55 else 'middle'
+            d_ = 12 if anc != 'middle' else 18
+            if anc == 'middle' and uy_ < 0:
+                d_ = 14
+            svg += f'<text x="{mx + ux_ * d_:.1f}" y="{my + uy_ * d_ + 9:.1f}" font-family="{MATHF}" font-size="28" font-weight="700" text-anchor="{anc}" fill="{RED}">{escape(str(sides[k]))}</text>'
         if ticks and ticks[k]:
             dx, dy = xb - xa, yb - ya
             n = math.hypot(dx, dy)
@@ -1772,7 +1900,7 @@ def triangle(size=200, pts=((10, 150), (190, 150), (70, 20)), color=BLUE, sides=
                 off = (t - (ticks[k] - 1) / 2) * 8
                 px, py = mx + ux * off, my + uy * off
                 svg += f'<line x1="{px - uy * 10:.1f}" y1="{py + ux * 10:.1f}" x2="{px + uy * 10:.1f}" y2="{py - ux * 10:.1f}" stroke="{DARK}" stroke-width="3.5"/>'
-    for k in angles:
+    for k in tuple(angles) + ((theta,) if theta is not None and theta not in angles else ()):
         (x, y) = pts[k]
         a1 = math.atan2(pts[(k + 1) % 3][1] - y, pts[(k + 1) % 3][0] - x)
         a2 = math.atan2(pts[(k + 2) % 3][1] - y, pts[(k + 2) % 3][0] - x)
@@ -1780,6 +1908,9 @@ def triangle(size=200, pts=((10, 150), (190, 150), (70, 20)), color=BLUE, sides=
         da = (a2 - a1) % (2 * math.pi)
         sweep = 1 if da < math.pi else 0
         svg += f'<path d="M{x + r * math.cos(a1):.1f} {y + r * math.sin(a1):.1f} A{r} {r} 0 0 {sweep} {x + r * math.cos(a2):.1f} {y + r * math.sin(a2):.1f}" fill="none" stroke="{ORANGE}" stroke-width="5"/>'
+        if k == theta:
+            am = a1 + (da / 2 if sweep else -((2 * math.pi - da) / 2))
+            svg += f'<text x="{x + 46 * math.cos(am):.1f}" y="{y + 46 * math.sin(am) + 9:.1f}" font-family="{MATHF}" font-size="28" font-weight="700" text-anchor="middle" fill="{ORANGE}">θ</text>'
     if right_at is not None:
         (x, y) = pts[right_at]
         p1, p2 = pts[(right_at + 1) % 3], pts[(right_at + 2) % 3]
@@ -1921,9 +2052,11 @@ def solid(kind='cube', size=180, color=BLUE, labels=None, hl_face=False, units=N
         if slice_:
             svg += f'<ellipse cx="70" cy="80" rx="60" ry="18" fill="{ORANGE}" stroke="{DARK}" stroke-width="4" opacity="0.9"/>'
         if labels:
-            svg += f'<line x1="70" y1="30" x2="130" y2="30" stroke="{RED}" stroke-width="4"/><text x="100" y="24" font-family="{MATHF}" font-size="26" font-weight="700" text-anchor="middle" fill="{RED}">{labels[0]}</text>'
+            svg += (f'<line x1="70" y1="30" x2="130" y2="30" stroke="{RED}" stroke-width="4"/><circle cx="70" cy="30" r="4" fill="{RED}"/>'
+                    f'<path d="M100 26 V2" stroke="{RED}" stroke-width="2.5"/><text x="100" y="-4" font-family="{MATHF}" font-size="26" font-weight="700" text-anchor="middle" fill="{RED}">{labels[0]}</text>')
             svg += f'<text x="146" y="90" font-family="{MATHF}" font-size="26" font-weight="700" fill="{RED}">{labels[1]}</text>'
-        return _icon(170 if labels else 140, 160, svg, size)
+            return _icon(170, 190, f'<g transform="translate(0 30)">{svg}</g>', size)
+        return _icon(140, 160, svg, size)
     if kind == 'cone':
         svg = f'<path d="M10 130 L70 10 L130 130" fill="{c2}" {st}/><ellipse cx="70" cy="130" rx="60" ry="18" fill="{c1}" {st}/>'
         if slice_:
@@ -2006,9 +2139,12 @@ def us_map(size=420, shade=(), color=BLUE, line=None, split=False, arrows_=(), l
 _WORLD = None
 
 
-def world_map(size=440, color=GREEN, shade=None, arrows_=(), pins=(), sea='#e3eff6', continents=False, lines=False):
+def world_map(size=440, color=GREEN, shade=None, arrows_=(), pins=(), sea='#e3eff6', continents=False, lines=False, view=None, polys=(),
+              flows=(), borders=(), land=None, labels=()):
     """The world in Equal Earth (land from tools/art-passport). shade: [(lon0, lat0, lon1, lat1)] boxes colored over the land;
-    arrows_: [(lon1, lat1, lon2, lat2)]; pins: [(lon, lat)]."""
+    arrows_: [(lon1, lat1, lon2, lat2)]; pins: [(lon, lat)]. view: (lon0, lat0, lon1, lat1) zooms to that part of the world;
+    polys: [([(lon, lat), ...], color)] areas colored over the land; flows: [([(lon, lat), ...], color, width)] thick arrows
+    along a path (winds, currents, trade routes); borders: [[(lon, lat), ...]] lines drawn over the land; land: land color."""
     global _WORLD
     if _WORLD is None:
         _WORLD = json.loads((ROOT / 'tools' / 'art-passport' / 'world.json').read_text(encoding='utf-8'))
@@ -2019,7 +2155,17 @@ def world_map(size=440, color=GREEN, shade=None, arrows_=(), pins=(), sea='#e3ef
     edge = [P(-180, lat) for lat in range(-90, 91, 5)] + [P(180, lat) for lat in range(90, -91, -5)]
     out = [f'<path d="M' + ' L'.join(f'{x:.1f} {y:.1f}' for x, y in edge) + f' Z" fill="{sea}" stroke="{DARK}" stroke-width="3"/>']
     out.append(f'<defs><clipPath id="land"><path d="{w["d"]}"/></clipPath></defs>')
-    out.append(f'<path d="{w["d"]}" fill="{soft(color) if (shade or continents) else color}" stroke="{DARK}" stroke-width="1.2"/>')
+    out.append(f'<path d="{w["d"]}" fill="{land or (soft(color) if (shade or continents or polys) else color)}" stroke="{DARK}" stroke-width="1.2"/>')
+    zk = 1.0
+    if view:
+        vx = [P(view[0] + (view[2] - view[0]) * t / 8, view[1] + (view[3] - view[1]) * u / 8) for t in range(9) for u in range(9)]
+        bx0, bx1 = min(x for x, _ in vx), max(x for x, _ in vx)
+        by0, by1 = min(y for _, y in vx), max(y for _, y in vx)
+        zk = (bx1 - bx0) / w['w']
+    for pts_, col_ in polys:
+        out.append(f'<path d="M' + ' L'.join(f'{x:.1f} {y:.1f}' for x, y in (P(lo, la) for lo, la in pts_)) + f' Z" fill="{col_}" clip-path="url(#land)"/>')
+    for pts_ in borders:
+        out.append(f'<path d="M' + ' L'.join(f'{x:.1f} {y:.1f}' for x, y in (P(lo, la) for lo, la in pts_)) + f'" fill="none" stroke="{DARK}" stroke-width="{2.2 * zk:.2f}" stroke-linejoin="round" clip-path="url(#land)"/>')
     if continents:
         boxes = [((-170, 10, -50, 80), ORANGE), ((-90, -60, -30, 12), YELLOW), ((-20, -40, 55, 37), BROWN), ((-12, 36, 40, 72), BLUE), ((40, 0, 180, 80), RED), ((110, -45, 160, -10), PURPLE), ((26, 36, 45, 75), BLUE)]
         for (a, b, c, d), col_ in boxes:
@@ -2043,9 +2189,27 @@ def world_map(size=440, color=GREEN, shade=None, arrows_=(), pins=(), sea='#e3ef
         ux, uy = ux / n, uy / n
         out.append(f'<path d="M{x1:.1f} {y1:.1f} Q{mx:.1f} {my:.1f} {x2 - ux * 14:.1f} {y2 - uy * 14:.1f}" fill="none" stroke="{RED}" stroke-width="7" stroke-linecap="round"/>'
                    f'<path d="M{x2:.1f} {y2:.1f} L{x2 - ux * 26 - uy * 15:.1f} {y2 - uy * 26 + ux * 15:.1f} L{x2 - ux * 26 + uy * 15:.1f} {y2 - uy * 26 - ux * 15:.1f} Z" fill="{RED}"/>')
+    for pts_, col_, sw_ in flows:
+        xy = [P(lo, la) for lo, la in pts_]
+        sw_ = sw_ * zk
+        (xa, ya), (xb, yb) = xy[-2], xy[-1]
+        n = math.hypot(xb - xa, yb - ya) or 1
+        ux, uy = (xb - xa) / n, (yb - ya) / n
+        hl_, hw = sw_ * 2.6, sw_ * 1.7
+        body = xy[:-1] + [(xb - ux * hl_ * 0.8, yb - uy * hl_ * 0.8)]
+        out.append(f'<path d="M' + ' L'.join(f'{x:.1f} {y:.1f}' for x, y in body) + f'" fill="none" stroke="{col_}" stroke-width="{sw_:.1f}" stroke-linecap="round" stroke-linejoin="round"/>'
+                   f'<path d="M{xb:.1f} {yb:.1f} L{xb - ux * hl_ - uy * hw:.1f} {yb - uy * hl_ + ux * hw:.1f} L{xb - ux * hl_ + uy * hw:.1f} {yb - uy * hl_ - ux * hw:.1f} Z" fill="{col_}"/>')
     for (lo, la) in pins:
         x, y = P(lo, la)
-        out.append(g(pin(50), x - 15, y - 46))
+        out.append(g(pin(50 * zk), x - 15 * zk, y - 46 * zk))
+    for (lo, la, txt, col_, fs) in labels:  # fs: the text size in pixels of the finished picture
+        x, y = P(lo, la)
+        fs = fs * zk * w['w'] / size
+        out.append(f'<text x="{x:.1f}" y="{y + fs * 0.35:.1f}" font-family="{SANS}" font-size="{fs:.1f}" font-weight="700" text-anchor="middle" fill="{col_}" '
+                   f'stroke="#fff" stroke-width="{fs * 0.22:.1f}" paint-order="stroke" stroke-linejoin="round">{escape(txt)}</text>')
+    if view:
+        vw, vh = bx1 - bx0, by1 - by0
+        return sized(Item(vw, vh, f'<svg x="0" y="0" width="{vw:.1f}" height="{vh:.1f}" viewBox="{bx0:.1f} {by0:.1f} {vw:.1f} {vh:.1f}" overflow="hidden">' + ''.join(out) + '</svg>'), size)
     return sized(Item(w['w'], mh, ''.join(out)), size)
 
 
@@ -2374,8 +2538,55 @@ def spectrum(size=420, labels=('radio', 'micro', 'IR', 'visible', 'UV', 'X-ray',
     return sized(Item(W, 134, ''.join(out)), size)
 
 
-def handshake(size=180):
-    return row(hand(size * 0.6, 'flat'), hand(size * 0.6, 'flat'), gap=-10)
+def handshake(size=180, left=BLUE, right=ORANGE):
+    """Two hands clasped in a handshake, each coming in from its own sleeve."""
+    st = f'stroke="{DARK}" stroke-width="5" stroke-linejoin="round"'
+    svg = (f'<rect x="4" y="58" width="56" height="58" rx="6" fill="{left}" {st}/>'
+           f'<rect x="216" y="44" width="56" height="58" rx="6" fill="{right}" {st}/>'
+           # the right hand, underneath: palm coming in from the right, fingers curling under on the left
+           f'<path d="M218 50 L152 46 C128 44 104 54 98 70 C94 84 104 96 122 98 L218 96 Z" fill="{SKIN}" {st}/>'
+           # the left hand, on top: fingers wrap down over the back of the right hand
+           f'<path d="M58 64 L118 60 C136 58 158 62 172 70 C186 78 188 96 176 106 C164 114 142 112 120 110 L58 110 Z" fill="{SKIN}" {st}/>'
+           + ''.join(f'<path d="M{x} {y0} C{x + 8} {y0 + 10} {x + 10} {y0 + 24} {x + 6} {y0 + 38}" fill="none" stroke="{DARK}" stroke-width="3.5" stroke-linecap="round"/>' for x, y0 in ((134, 66), (150, 68), (164, 74)))
+           # the right thumb lies over the top of the left hand
+           + f'<path d="M150 47 C132 40 112 42 104 54 C100 62 110 66 118 62 C126 58 138 56 150 58 Z" fill="{SKIN}" {st}/>')
+    return _icon(276, 124, svg, size)
+
+
+def web(nodes, edges, size=400, w=420, h=340, fs=26):
+    """A food web: nodes {name: (x, y, color)} as labeled boxes; edges [(food, eater)] arrows that point from the food
+    to the eater (the way the energy goes)."""
+    bw = {n: measure(n, fs, True) + 28 for n in nodes}
+    out = []
+    for a, b in edges:
+        (x1, y1, _), (x2, y2, _) = nodes[a], nodes[b]
+        dx, dy = x2 - x1, y2 - y1
+        L = math.hypot(dx, dy) or 1
+        ux, uy = dx / L, dy / L
+
+        def cut(n):
+            hw, hh = bw[n] / 2 + 6, 26
+            return min(hw / abs(ux) if ux else 1e9, hh / abs(uy) if uy else 1e9)
+        sx, sy = x1 + ux * cut(a), y1 + uy * cut(a)
+        ex, ey = x2 - ux * cut(b), y2 - uy * cut(b)
+        out.append(f'<line x1="{sx:.1f}" y1="{sy:.1f}" x2="{ex - ux * 14:.1f}" y2="{ey - uy * 14:.1f}" stroke="{DARK}" stroke-width="5"/>'
+                   f'<path d="M{ex:.1f} {ey:.1f} L{ex - ux * 20 - uy * 11:.1f} {ey - uy * 20 + ux * 11:.1f} L{ex - ux * 20 + uy * 11:.1f} {ey - uy * 20 - ux * 11:.1f} Z" fill="{DARK}"/>')
+    for n, (x, y, c) in nodes.items():
+        out.append(f'<rect x="{x - bw[n] / 2:.1f}" y="{y - 21}" width="{bw[n]:.1f}" height="42" rx="10" fill="{soft(c)}" stroke="{c}" stroke-width="4"/>'
+                   f'<text x="{x}" y="{y + fs * 0.36:.1f}" font-family="{SANS}" font-size="{fs}" font-weight="700" text-anchor="middle" fill="{DARK}">{escape(n)}</text>')
+    return sized(Item(w, h, ''.join(out)), size)
+
+
+def bug(size=80, color=RED):
+    """A small beetle (a bug in code)."""
+    legs = ''.join(f'<path d="M{50 + sx * 14} {y} l{sx * 20} {dy}" stroke="{DARK}" stroke-width="5" stroke-linecap="round"/>' for sx in (-1, 1) for y, dy in ((44, -10), (58, 0), (72, 10)))
+    return _icon(100, 100, legs + f'<ellipse cx="50" cy="60" rx="24" ry="30" fill="{color}" stroke="{DARK}" stroke-width="5"/><circle cx="50" cy="26" r="13" fill="{DARK}"/>'
+                 f'<line x1="50" y1="34" x2="50" y2="88" stroke="{DARK}" stroke-width="4"/><path d="M44 16 l-8 -12 M56 16 l8 -12" stroke="{DARK}" stroke-width="4" stroke-linecap="round"/>', size)
+
+
+def person(size=120, color=BLUE):
+    """A simple standing figure (head and body), no face."""
+    return _icon(80, 120, f'<circle cx="40" cy="24" r="20" fill="{SKIN}" stroke="{DARK}" stroke-width="5"/><path d="M8 116 V78 C8 56 22 48 40 48 C58 48 72 56 72 78 V116 Z" fill="{color}" stroke="{DARK}" stroke-width="5" stroke-linejoin="round"/>', size)
 
 
 def server(size=150, light=GREEN):
@@ -2491,18 +2702,27 @@ def coin(size=90, label=None, color='#c9ccd1'):
     return over(c, T(label, size * 0.32)) if label else c
 
 
-def ruler(size=420, units=10, label='cm', every=1, inches=False):
+def ruler(size=420, units=10, label='cm', every=1, inches=False, first=None):
+    """A ruler; the unit name sits past the last tick; first: a label for the first unit, which is shaded and bracketed."""
     W = 460
     out = [f'<rect x="5" y="20" width="450" height="70" rx="6" fill="{YELLOW}" stroke="{DARK}" stroke-width="5"/>']
     sub = (4 if inches else 2) if units <= 20 else 1
     n = units * sub
+    x0, x1 = 25, 400
+    if first:
+        out.append(f'<rect x="{x0}" y="23" width="{(x1 - x0) / units:.1f}" height="64" fill="{soft(BLUE)}"/>')
     for i in range(n + 1):
-        x = 25 + i * 410 / n
+        x = x0 + i * (x1 - x0) / n
         full = i % sub == 0
         out.append(f'<line x1="{x:.1f}" y1="20" x2="{x:.1f}" y2="{20 + (32 if full else 16)}" stroke="{DARK}" stroke-width="{3 if full else 2}"/>')
         if full and (i // sub) % every == 0:
             out.append(f'<text x="{x:.1f}" y="76" font-family="{SANS}" font-size="20" font-weight="700" text-anchor="middle" fill="{DARK}">{i // sub}</text>')
-    out.append(f'<text x="440" y="48" font-family="{SANS}" font-size="16" font-weight="700" text-anchor="end" fill="{DARK}">{label}</text>')
+    out.append(f'<text x="448" y="62" font-family="{SANS}" font-size="20" font-weight="700" text-anchor="end" fill="{GRAY}">{label}</text>')
+    if first:
+        xa, xb = x0, x0 + (x1 - x0) / units
+        out.append(f'<path d="M{xa} 12 v-10 H{xb:.1f} v10" fill="none" stroke="{RED}" stroke-width="4"/>'
+                   f'<text x="{(xa + xb) / 2 + 8:.1f}" y="-12" font-family="{SANS}" font-size="28" font-weight="700" text-anchor="middle" fill="{RED}">{escape(first)}</text>')
+        return sized(Item(W, 150, '<g transform="translate(0 50)">' + ''.join(out) + '</g>'), size)
     return sized(Item(W, 100, ''.join(out)), size)
 
 
@@ -2530,7 +2750,7 @@ def slider(size=260, pos=0.7):
                  f'<circle cx="{20 + 220 * pos:.1f}" cy="30" r="20" fill="#fff" stroke="{DARK}" stroke-width="5"/>', size)
 
 
-def browser(size=260, inner=None, tabs=1, search=False, check_=False, warn=False):
+def browser(size=260, inner=None, tabs=1, search=False, check_=False, warn=False, query=None):
     W, Hh = 220, 160
     out = [f'<rect x="3" y="3" width="{W - 6}" height="{Hh - 6}" rx="10" fill="#fff" stroke="{DARK}" stroke-width="5"/><rect x="3" y="3" width="{W - 6}" height="34" rx="10" fill="{LIGHT}" stroke="{DARK}" stroke-width="5"/>']
     for i in range(tabs):
@@ -2538,6 +2758,9 @@ def browser(size=260, inner=None, tabs=1, search=False, check_=False, warn=False
     if search:
         out.append(f'<rect x="30" y="66" width="160" height="34" rx="17" fill="#fff" stroke="{DARK}" stroke-width="4"/>')
         out.append(g(magnifier(30), 154, 68))
+        if query:
+            qt = T(query, 24, DARK)
+            out.append(f'<rect x="42" y="70" width="{qt.w + 10:.1f}" height="26" rx="5" fill="#fde97a"/>' + g(qt, 47, 68))
     b = Item(W, Hh, ''.join(out))
     if inner is not None:
         c = sized(inner, 120, 90)
@@ -2560,20 +2783,31 @@ def code_blocks(n=3, size=220, colors=(BLUE, ORANGE, GREEN, PURPLE), widths=None
     return sized(col(*bs, gap=0, align='l'), size)
 
 
-def code_lines(n=5, size=240, indent=(), hl=None, comment=None, arrow_at=None):
+def code_lines(n=5, size=240, indent=(), hl=None, comment=None, arrow_at=None, hl_color='#5a5020', skip=False):
+    """Lines of code on a dark editor. hl: a line index with a highlight band (hl_color); comment: a line index drawn as a
+    gray "#" comment; skip: a curved arrow jumping past the comment line; arrow_at: a step arrow at the left of a line."""
     out = [f'<rect x="3" y="3" width="234" height="{30 + n * 26}" rx="10" fill="#22262f" stroke="{DARK}" stroke-width="4"/>']
     cols_ = ['#7fb4ff', '#ffb86b', '#9be29b', '#f2a2d6', '#e6e6e6']
     for i in range(n):
         y = 22 + i * 26
         x0 = 20 + (22 if i in indent else 0)
         if hl == i:
-            out.append(f'<rect x="8" y="{y - 10}" width="224" height="22" rx="4" fill="#5a5020"/>')
-        out.append(f'<rect x="{x0}" y="{y - 4}" width="{40 + (i * 37) % 60}" height="9" rx="4" fill="{cols_[i % 5]}"/><rect x="{x0 + 50 + (i * 37) % 60}" y="{y - 4}" width="{30 + (i * 23) % 50}" height="9" rx="4" fill="#cfd3dc"/>')
+            out.append(f'<rect x="8" y="{y - 10}" width="224" height="22" rx="4" fill="{hl_color}"/>')
         if comment == i:
-            out.append(f'<rect x="{x0 + 100}" y="{y - 4}" width="70" height="9" rx="4" fill="#7d8494"/>')
+            out.append(f'<text x="{x0}" y="{y + 7}" font-family="Consolas, monospace" font-size="21" font-weight="700" fill="#8d94a5">#</text>'
+                       f'<rect x="{x0 + 18}" y="{y - 4}" width="130" height="9" rx="4" fill="#6b7180"/>')
+            continue
+        out.append(f'<rect x="{x0}" y="{y - 4}" width="{40 + (i * 37) % 60}" height="9" rx="4" fill="{cols_[i % 5]}"/><rect x="{x0 + 50 + (i * 37) % 60}" y="{y - 4}" width="{30 + (i * 23) % 50}" height="9" rx="4" fill="#cfd3dc"/>')
+    right = 0
+    if skip and comment is not None:
+        y1, y2 = 22 + (comment - 1) * 26, 22 + (comment + 1) * 26
+        out.append(f'<path d="M240 {y1} C278 {y1} 278 {y2} 248 {y2}" fill="none" stroke="{ORANGE}" stroke-width="6" stroke-linecap="round"/>'
+                   f'<path d="M240 {y2} l14 -10 l0 20 z" fill="{ORANGE}"/>')
+        right = 40
     if arrow_at is not None:
         out.append(f'<path d="M-30 {22 + arrow_at * 26} h22 m0 0 l-10 -8 m10 8 l-10 8" fill="none" stroke="{ORANGE}" stroke-width="6" stroke-linecap="round"/>')
-    return sized(Item(240, 40 + n * 26, f'<g transform="translate({34 if arrow_at is not None else 0} 0)">' + ''.join(out) + '</g>'), size)
+    left = 34 if arrow_at is not None else 0
+    return sized(Item(240 + left + right, 40 + n * 26, f'<g transform="translate({left} 0)">' + ''.join(out) + '</g>'), size)
 
 
 def paint(prompt):

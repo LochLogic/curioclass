@@ -295,3 +295,214 @@ Numbers in the first column are contact-sheet numbers (sheets sorted by subject 
 | 1726 | world-languages-k-12-numbers-colors-and-time/day | day | FIX | the same month calendar as month (1722), so a single day is not singled out | circle one square as in today (1724) |
 | 1732 | world-languages-k-12-school-and-daily-routine/o-clock | o'clock | FIX | the hour hand sits on the 12 numeral | shorten the hands or pick 3:00 so no numeral is covered |
 | 1736 | world-languages-k-12-the-five-parameters-of-a-sign/movement | movement | FIX | two oven mitts with motion lines | draw clear open hands with a curved movement arrow |
+
+## Fixed
+
+Done 2026-10-27. All 186 FIX rows are fixed and re-rendered: 168 cards have a new drawing spec in data/closet/words/diagrams.py, and 18 were fixed by the shared helper changes alone. The 12 PAINT rows were left untouched for painting. Every changed card was viewed after rendering, and a 52-card sample of unchanged cards that use the changed helpers was re-sheeted. No regressions were found.
+
+Shared helper changes in scripts/wordsvg.py:
+
+- eq(), M() and F(): wider spacing around =, + and minus, so signs no longer touch fractions or terms.
+- hand(): the oven mitt is replaced by drawn fingers in several shapes (open, flat, fist, A, point, L, C, 3), plus new wave_hand() and handshake().
+- clock(): numerals moved in and the hands shortened, so no numeral is covered. The minute hand is drawn under the hour hand, and either hand can be colored.
+- numberline(): xs=True stacks X marks for line plots. Other additions: arrows to a target (to=), a circled target label, and a bracket lifted above the tallest stack.
+- triangle(): side labels sit outside each side, and theta= draws the angle arc with a theta label.
+- place_chart(), ruler(), coord(): wider columns with faded or highlighted digits and an optional decimal point; a shaded and bracketed first unit; dashed guides with an (x, y) label and a named axis.
+- world_map(): view zoom, polygons, flows, borders and labels. Label size now follows the size of the finished picture.
+- heart_organ(vessels), cell(focus), brain(cortex), plot(regions), browser(query), staff() sharps and shading, and code_lines() highlight color: all extended for the cards below.
+- New helpers: web() (food webs with arrows from food to eater), bug() and person().
+
+Extra fix not in the table: the manual-alphabet letter card (world-languages-k-12-fingerspelling-and-the-manual-alphabet/letter) used a closed fist, which is the ASL letter S. It now shows the ASL A handshape.
+
+The seven K-2 movement cards (health-pe-k-2-locomotor-skills hop, skip, space; arts-k-2-moving-bodies locomotor, nonlocomotor, level, freeze) now show people pictures drawn by the coordinator. Their old diagram specs were deleted.
+
+PAINT rows left for painting, not drawn: 3 projection, 288 problem, 539 muscles, 542 skeletal system, 569 balanced meal, 1272 build, 1315 soft, 1479 homologous structures, 1577 stretch, 1697 mother, 1698 brother, 1702 sister.
+
+| # | word | result |
+|---|---|---|
+| 32 | measure | Fixed, new drawing: thicken the bar lines and shade the space between two of them (one measure) in light blue |
+| 43 | timing | Fixed, new drawing: keep the path on or above the ground line, put each dot on the path, bunch dots near the top of each arc to show more frames there |
+| 44 | dynamics | Fixed, new drawing: add a "p" at the narrow end and an "f" at the open end (dynamic letters) |
+| 47 | context | Fixed, new drawing: put a framed-picture icon in the middle of the timeline with a clock, a map pin and a small house/flag icon around it |
+| 49 | motif | Fixed, new drawing: keep the spiral but vary it: same spiral, then bigger, then rotated or recolored (spiral is a little small in the frame) |
+| 65 | minor | Fixed, new drawing: staff([(3, 5, 7)], ...): A, C, E are the second space, third space and top space |
+| 69 | spacing | Fixed, new drawing: two or three dancer dots seen from above with a double-headed arrow measuring the gap between two of them |
+| 77 | downstage | Fixed, new drawing: add a row of audience seat dots below the front edge (or an "audience" label) so "closest to the audience" reads |
+| 78 | upstage | Fixed, new drawing: same as downstage: add the audience seat dots below the front edge |
+| 82 | modulation | Fixed, new drawing: draw the two staffs larger, stacked or with a bigger arrow, one sharp then two sharps, no extra signs |
+| 90 | dynamics | Fixed, new drawing: add "p" at the point and "f" at the open end |
+| 106 | short sound | Fixed, new drawing: show the short bar beside a long one (long then short), with the short one highlighted |
+| 108 | debug | Fixed, new drawing: code_lines with one line highlighted red under the magnifier, and a small bug or check icon |
+| 129 | timeline | Fixed, new drawing: use evenly spaced years (1950, 1970, 1990, 2010) or space the dots by the real gaps |
+| 130 | organize | Fixed, new drawing: a jumble of mixed shapes on the left, an arrow, the same shapes sorted into rows by kind on the right |
+| 145 | sort | Fixed, new drawing: draw them at least twice as large (stack them, or use size=420 with fewer bars) |
+| 148 | comment | Fixed, new drawing: code_lines(..., comment=k) with the comment line grayed and a "#" mark, and a skip arrow jumping past it |
+| 150 | trace | Fixed by the shared helper change, re-rendered: shrink code_lines or shift it left so the whole panel and the arrow fit inside the card |
+| 164 | attribution | Fixed, new drawing: show a remixed block with an arrow pointing back to the original block and a small tag reading "by" (or a credit line under it) |
+| 176 | algorithmic bias | Fixed, new drawing: enlarge, tilt the scale clearly to one side, and put the flowchart feeding into the low pan |
+| 191 | sort | Fixed, new drawing: draw them at least twice as large |
+| 195 | decision | Fixed, new drawing: add the incoming arrow and two labeled branches, yes and no, as in the conditional card |
+| 200 | accuracy | Fixed, new drawing: reuse the accuracy grid: 10 circles, 9 green checks and 1 red X, with "9 of 10" under it |
+| 220 | program | Fixed, new drawing: a stack of code blocks under a green flag (or a play button) with a check beside it |
+| 222 | chart | Fixed, new drawing: line them up in a picture graph: one row per fruit, a small fruit icon label at the left of each row, on light grid boxes |
+| 227 | public | Fixed, new drawing: a post or picture in a browser window with several eyes around it, or an open (unlocked) padlock beside a globe |
+| 234 | rate | Fixed, new drawing: label the wedge with its percent (for example 10%) and show "10 out of 100" under the circle |
+| 235 | compound interest | Fixed, new drawing: stacked bars: a constant savings base in one color and a growing interest layer in another on top |
+| 239 | equilibrium price | Fixed, new drawing: label the lines "supply" and "demand", the axes "price" and "quantity", and the crossing point |
+| 261 | icon | Fixed, new drawing: a toolbar row of three familiar icons (house, trash can, magnifier), each in a small rounded square |
+| 270 | explain | Fixed, new drawing: cause and effect chain: cloud with rain, arrow, puddle, with a small "why?" bubble over the arrow |
+| 275 | apostrophe | Fixed, new drawing: show it in a word, as the contraction card does: "can't" or "Sam's" with the apostrophe in red, raised above the baseline |
+| 279 | pronoun | Fixed, new drawing: show a name box "Sam" with an arrow to "he" (or the words he, she, they in three colored boxes) |
+| 291 | shades of meaning | Fixed, new drawing: a word ladder: warm, hot, boiling in boxes shaded light to dark orange |
+| 293 | prefix | Fixed, new drawing: fill them: "re-" + "do" (or "pre-" + "view"), like the other prefix cards |
+| 299 | syllable | Fixed, new drawing: split a word into syllables: "but" "ter" "fly" in three colored boxes, with clap marks or dots under each |
+| 313 | linking word | Fixed, new drawing: keep the two pieces but write a short idea on each ("It rained" / "we stayed in") with "because" on the joint |
+| 317 | keyword | Fixed, new drawing: type one word into the search box (for example "volcano") and highlight it |
+| 342 | linking words | Fixed, new drawing: put the linking word itself between them: "rain" "so" "puddle" (or "because"), with the linking word highlighted |
+| 368 | statistic | Fixed, new drawing: label the wedge "1 in 3" (or 33%) in large text |
+| 392 | nuance | Fixed, new drawing: three word boxes with close meanings shaded light to dark: "slim", "thin", "skinny" |
+| 418 | purpose | Fixed, new drawing: three small icons in a row for inform, persuade, entertain (lightbulb, megaphone, smiling face) or the target used on the other purpose card |
+| 425 | sufficient | Fixed, new drawing: add a dashed "needed" line; the short bar stops below it (red X) and the tall bar reaches it (green check) |
+| 427 | alter | Fixed, new drawing: a shape changing into another: a square, an arrow, the same square with its color and corners changed |
+| 481 | capital | Fixed, new drawing: draw the sentence as one text run with the T colored (a tspan), no gap |
+| 493 | solution | Fixed, new drawing: write it on one line, "8 + 5 = 13", with the 13 boxed in red (or a proper vertical sum with the + at the left) |
+| 494 | strategy | Fixed, new drawing: a short numbered plan card: 1, 2, 3 with check marks, next to a puzzle piece or a question mark |
+| 512 | help | Fixed, new drawing: a raised hand icon next to a speech bubble with a question mark (or "help?") |
+| 517 | turn | Fixed, new drawing: two seats or tokens with a curved arrow passing from one to the other, the second one highlighted |
+| 530 | germ | Fixed, new drawing: replace the bag with a magnifier showing small germ blobs on a hand or a doorknob outline |
+| 538 | circulatory system | Fixed by the shared helper change, re-rendered: draw the vessels leaving the top of the heart and branching up and out (red arteries, blue veins), never crossing behind it |
+| 550 | conflict resolution | Fixed by the shared helper change, re-rendered: use handshake() under the two arrows meeting |
+| 552 | respect | Fixed, new drawing: handshake() between two speech bubbles, or a heart between two equal figures |
+| 557 | sportsmanship | Fixed, new drawing: use handshake() with a small trophy or ball beside it |
+| 588 | lateral reading | Fixed, new drawing: draw them larger: one window in front with arrows out to two others, each with a check or magnifier |
+| 607 | subtract | Fixed, new drawing: 9 balloons in one color with 3 of them drifting up and away (faded or crossed), and "9 - 3 = 6" under them |
+| 639 | hour hand | Fixed by the shared helper change, re-rendered: color the short hand (for example orange) and leave the long hand dark; keep 7 o'clock |
+| 640 | minute hand | Fixed, new drawing: set a time like 3:00 or 9:00 and color the long hand |
+| 641 | o'clock | Fixed, new drawing: use 3 o'clock (or 7 o'clock) so both hands show, minute hand on 12 highlighted |
+| 670 | optimization | Fixed, new drawing: add a dashed size limit line and a star on the one container that fits it best |
+| 684 | cosine | Fixed, new drawing: add an angle arc with a theta at the bottom-left vertex (angles=(0,) in triangle()) |
+| 686 | sine | Fixed, new drawing: mark the angle theta at the bottom-left vertex and move the "opp" label clear of the red side |
+| 688 | tangent | Fixed, new drawing: move "opp" right of the side, add the theta arc at the bottom-left vertex |
+| 693 | rigid motion | Fixed, new drawing: draw both triangles at the same scale (rotate a copy of the same triangle() item instead of a raw polygon at another size) |
+| 698 | proportion | Fixed by the shared helper change, re-rendered: add a gap on both sides of "=" in eq() (or space the fractions apart) |
+| 722 | logarithmic scale | Fixed, new drawing: draw it two to three times larger, fewer minor ticks, and add "x10" hop arcs between 1, 10, 100, 1000 |
+| 727 | remainder theorem | Fixed, new drawing: add a second line: "remainder = f(2)", with the 2 colored in both places |
+| 734 | least common denominator | Fixed, new drawing: add spacing around operators in eq(); use 1/4 + 1/6 with a "12" highlighted as the least common denominator |
+| 752 | phase shift | Fixed, new drawing: shift the orange wave by about a quarter period and add a short horizontal arrow between matching peaks |
+| 753 | unit circle | Fixed, new drawing: move the 180 degree label outside the circle (left of it), like the 0 degree label |
+| 760 | displacement | Fixed, new drawing: end the path away from the start and draw a solid straight arrow from start to end labeled as the displacement |
+| 793 | interval of increase | Fixed, new drawing: draw the green interval on the x-axis from the vertex x-value to the right edge, with an arrowhead, and color the rising part of the curve green |
+| 797 | discontinuity | Fixed, new drawing: remove the vertical connector; leave the open dot at the end of one piece and the closed dot at the start of the other |
+| 801 | squeeze theorem | Fixed, new drawing: scale the blue curve (for example x^2 sin(1/x)) so it stays between the two gray curves everywhere on the window |
+| 814 | De Moivre's theorem | Fixed, new drawing: show the whole identity: [r(cos theta + i sin theta)]^n = r^n(cos n theta + i sin n theta), on two lines if needed |
+| 825 | response bias | Fixed, new drawing: a survey card with a leading question mark and answer boxes, most tick marks piled in one box, a red tilt arrow beside it |
+| 829 | sampling variability | Fixed, new drawing: three small dot plots stacked, each with its own mean marker at a slightly different spot, a dashed line for the true value through all three |
+| 835 | differentiable | Fixed, new drawing: show a smooth curve with a tangent line at the marked point; if the corner is kept, label it with a red X as the counterexample |
+| 838 | quotient rule | Fixed by the shared helper change, re-rendered: add space between "=" and the fraction in eq() |
+| 851 | dot product | Fixed, new drawing: write "a · b = 0" and label the two perpendicular arrows a and b |
+| 867 | expanded form | Fixed, new drawing: color the 3 green and the 4 blue in 345 to match 300 and 40 |
+| 877 | line plot | Fixed, new drawing: draw X marks stacked above the numbers |
+| 878 | title | Fixed, new drawing: write a short title in it, for example "Our Pets", in white text |
+| 884 | centimeter | Fixed, new drawing: draw the ruler larger, shade the space from 0 to 1 and label it "1 cm", move "cm" clear of the ticks |
+| 891 | quarter past | Fixed by the shared helper change, re-rendered: in clock(): stop the minute hand short of the numerals (or move the numerals out toward the rim); applies to every clock card |
+| 896 | tape diagram | Fixed, new drawing: add a bracket over the whole bar labeled 30 (or "?") |
+| 923 | side | Fixed, new drawing: draw the triangle dark and only one side thick red (hl_side=0) |
+| 924 | width | Fixed, new drawing: put a horizontal double arrow along the top or bottom edge |
+| 930 | nearest ten | Fixed, new drawing: add an arrow from the dot to 80 and circle 80 |
+| 933 | round | Fixed, new drawing: add an arrow from 47 to 50 and circle 50 |
+| 938 | line plot | Fixed, new drawing: draw X marks stacked above the numbers |
+| 948 | decompose | Fixed, new drawing: split the 5-bar into a 3-part and a 2-part group below it |
+| 949 | improper fraction | Fixed, new drawing: draw quarters inside circle outlines (two full circles plus one quarter) with 9/4 beside them |
+| 955 | degree | Fixed, new drawing: move the label below the circle or shrink the arc marker |
+| 956 | line plot | Fixed, new drawing: draw X marks stacked above the numbers |
+| 963 | place value | Fixed, new drawing: widen the columns or shrink the header font |
+| 981 | convert | Fixed, new drawing: label them 1 ft = 12 in and 1 yd = 36 in, or show 1 ft = 12 in with an equals sign |
+| 988 | partial products | Fixed, new drawing: label the sides 20 + 3 and 4 and add 80 + 12 = 92 below |
+| 999 | rule | Fixed, new drawing: show 3, 7, 11, 15 with +4 hops between them (hop labels on the line are small; readable at card size) |
+| 1005 | round | Fixed, new drawing: add an arrow from the dot to 5000 and circle 5000 |
+| 1012 | simplify | Fixed by the shared helper change, re-rendered: add spacing around the = in eq() |
+| 1036 | reasonable | Fixed, new drawing: show 4.9 x 3 = 14.7 next to the estimate 15 with a check |
+| 1039 | ordered pair | Fixed, new drawing: label the point (3, 5) and add dashed guides to each axis |
+| 1045 | place value chart | Fixed, new drawing: put digits in the cells (for example 3.142) and widen columns or shrink header text |
+| 1047 | round | Fixed, new drawing: add an arrow from the dot to 2.6 and circle it |
+| 1048 | thousandths | Fixed, new drawing: use the strong header colors as in 963 and fade the cells instead |
+| 1049 | axis | Fixed, new drawing: draw one axis thick red and label it x |
+| 1051 | coordinates | Fixed, new drawing: label the star (4, 2) with dashed guides to each axis |
+| 1055 | convert | Fixed, new drawing: show 1 m = 100 cm or a cm ruler beside an inch ruler with an equals sign |
+| 1056 | line plot | Fixed, new drawing: draw X marks stacked above the numbers |
+| 1062 | area | Fixed, new drawing: fill the triangle or a rectangle with square units and label the count |
+| 1068 | dependent variable | Fixed, new drawing: show x -> rule box -> y with y highlighted, or hours worked -> pay |
+| 1071 | independent variable | Fixed, new drawing: show x -> rule box -> y with x highlighted |
+| 1075 | how many groups | Fixed, new drawing: show a 3/4 bar with 1/8 pieces marked off and count 6 groups |
+| 1077 | quotient | Fixed, new drawing: show 12 / 3 = 4 with the 4 highlighted, or 12 dots in 3 groups of 4 |
+| 1093 | integer | Fixed, new drawing: put dots on every integer, or circle a positive and a negative one |
+| 1111 | range | Fixed, new drawing: raise the bracket above the tallest stack |
+| 1112 | statistical question | Fixed, new drawing: show one question mark fanning out to several different answer bars, or pair it with a dot plot of varied answers |
+| 1127 | combine like terms | Fixed by the shared helper change, re-rendered: add spacing around the operators |
+| 1148 | proportion | Fixed by the shared helper change, re-rendered: add spacing around the = in eq() |
+| 1169 | cube root | Fixed, new drawing: label one edge 3 and add 27 cubes, cube root of 27 = 3 |
+| 1197 | converse | Fixed, new drawing: show P -> Q above Q -> P with the swapped parts colored, or keep the triangle and add the two arrows |
+| 1205 | rotation | Fixed, new drawing: rotate the same flag 90 degrees about a marked dot with a curved arrow |
+| 1210 | volume | Fixed by the shared helper change, re-rendered: move r above the top ellipse |
+| 1212 | define a variable | Fixed by the shared helper change, re-rendered: add spacing around the = |
+| 1233 | binomial | Fixed by the shared helper change, re-rendered: add spacing around the operator |
+| 1238 | trinomial | Fixed by the shared helper change, re-rendered: add spacing around the operators |
+| 1241 | root | Fixed, new drawing: draw a parabola crossing the x-axis at the two dots |
+| 1245 | closure | Fixed, new drawing: label the circle whole numbers and show 2 + 3 = 5 landing inside it |
+| 1249 | rational exponent | Fixed by the shared helper change, re-rendered: add spacing around the = |
+| 1259 | equivalent form | Fixed by the shared helper change, re-rendered: add spacing around the = |
+| 1265 | feasible region | Fixed, new drawing: give the overlap a strong fill or outline and fade the rest |
+| 1271 | unit conversion | Fixed by the shared helper change, re-rendered: add spacing around the operators in eq() |
+| 1277 | count | Fixed, new drawing: put 1 to 10 under the dots, or show a count arrow moving along them |
+| 1291 | less | Fixed, new drawing: circle or highlight the group of 2 |
+| 1293 | more | Fixed, new drawing: circle or highlight the group of 5 |
+| 1330 | chemical equation | Fixed, new drawing: scale the equation up and wrap it onto two lines, or add molecule pictures under each formula |
+| 1332 | decomposition reaction | Fixed, new drawing: start with two water molecules (2H2O -> 2H2 + O2) |
+| 1341 | beta particle | Fixed, new drawing: add a nucleus on the left with the electron (labeled e-) flying out of it |
+| 1362 | work | Fixed, new drawing: show the box lifted to a second position with a dashed distance arrow beside the force arrow |
+| 1364 | Coulomb's law | Fixed, new drawing: show two charge pairs, close with long arrows and far with short arrows |
+| 1384 | biome | Fixed, new drawing: color by biome bands (green forest, yellow desert, white tundra) or show three small landscape tiles |
+| 1390 | tradeoff | Fixed, new drawing: put a different item on each pan, one side rising, with an arrow swapping them |
+| 1408 | reflect | Fixed, new drawing: draw a mirror with an incoming ray and a bounced ray at equal angles |
+| 1413 | system | Fixed, new drawing: draw three or four parts linked by arrows in a loop, or meshing gears |
+| 1415 | food web | Fixed, new drawing: add arrowheads pointing from food to eater (grass -> rabbit -> fox) |
+| 1420 | conservation of mass | Fixed, new drawing: put reactant blocks on one scale and the same blocks rearranged on the other, both level |
+| 1429 | organelle | Fixed, new drawing: add leader lines from each label to its part |
+| 1434 | ocean current | Fixed, new drawing: use fewer, thicker arrows following one or two big gyres |
+| 1435 | prevailing winds | Fixed, new drawing: make the tropics arrows point west and the middle latitudes east |
+| 1455 | front | Fixed, new drawing: add a cold blue mass on one side and a warm red mass on the other |
+| 1463 | carbon cycle | Fixed, new drawing: reverse the loop to air -> tree -> soil -> air |
+| 1465 | food web | Fixed, new drawing: add arrowheads from food to eater (plants -> mouse -> owl) |
+| 1468 | chloroplast | Fixed, new drawing: highlight one green chloroplast with a ring and fade the rest |
+| 1480 | acceleration | Fixed, new drawing: show the car at several positions with the gaps between them growing |
+| 1494 | cell cycle | Fixed, new drawing: add a circular arrow around it and short stage labels (grow, copy DNA, divide) |
+| 1526 | dominant | Fixed, new drawing: show the pair Bb with the trait it produces (for example a brown eye) and the b faded |
+| 1534 | stimulus | Fixed, new drawing: show a bright sun -> eye with a big pupil -> the same eye with a small pupil |
+| 1541 | Calvin cycle | Fixed, new drawing: add CO2 entering the loop and a glucose hexagon leaving it |
+| 1562 | respect | Fixed, new drawing: use handshake() or a different symbol |
+| 1576 | count | Fixed, new drawing: put 1 to 5 under the dots |
+| 1591 | year | Fixed, new drawing: show 12 small month blocks in a 3x4 grid |
+| 1593 | cerebral cortex | Fixed, new drawing: outline the outer wrinkled rim in a strong color and fade the inside |
+| 1618 | enslaved | Fixed, new drawing: use an unbroken heavy chain (or a closed shackle), no break |
+| 1619 | triangular trade | Fixed, new drawing: draw three thick arrows forming a clear triangle between Europe, Africa and the Americas |
+| 1622 | rights | Fixed, new drawing: use a distinct symbol, such as a scroll or a raised open hand |
+| 1623 | empire | Fixed, new drawing: zoom the map to the Mediterranean and shade the full empire (shaded outline is approximate (empire near its height, about 117 CE)) |
+| 1624 | absolute location | Fixed, new drawing: put a pin where one latitude and one longitude line cross |
+| 1637 | Mongol Empire | Fixed, new drawing: use the real outline shape or a zoomed map of Asia with the empire shaded (shaded outline is approximate (empire near its height, about 1279)) |
+| 1643 | second | Fixed, new drawing: show a motion card with one check, then a second check added beside it |
+| 1647 | Monroe Doctrine | Fixed, new drawing: use a clear stop-sign hand or an octagon stop sign beside the map |
+| 1653 | Scramble for Africa | Fixed, new drawing: use the real Africa outline with the colonial borders drawn on it (colonial borders are simplified) |
+| 1655 | separation of powers | Fixed, new drawing: draw three separate small buildings or three linked boxes |
+| 1657 | map | Fixed, new drawing: draw a simple top-down map with a road, river, trees and houses |
+| 1666 | fingerspelling | Fixed, new drawing: draw clearer handshapes for a short word, or reuse a proper hand glyph |
+| 1672 | classifier | Fixed, new drawing: use a flat-hand classifier glyph that reads as a hand (car or vehicle shape) |
+| 1677 | dialect | Fixed, new drawing: show two bubbles with regional variants for the same thing (for example soda and pop) |
+| 1705 | fingerspell | Fixed, new drawing: draw clearer handshapes, or reuse a proper hand glyph |
+| 1706 | handshape | Fixed, new drawing: draw a clear open-hand shape with separate fingers |
+| 1708 | manual alphabet | Fixed, new drawing: show a few distinct letter handshapes, each with its letter beneath (A, B, C) |
+| 1713 | hello | Fixed by the shared helper change, re-rendered: draw a clear waving open hand |
+| 1715 | nice to meet you | Fixed, new drawing: use handshake() or two clear open hands facing each other |
+| 1720 | please | Fixed, new drawing: draw a clear flat hand on the chest with a circular arrow |
+| 1726 | day | Fixed, new drawing: circle one square as in today (1724) |
+| 1732 | o'clock | Fixed, new drawing: shorten the hands or pick 3:00 so no numeral is covered |
+| 1736 | movement | Fixed, new drawing: draw clear open hands with a curved movement arrow |

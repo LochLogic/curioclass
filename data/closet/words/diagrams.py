@@ -63,26 +63,26 @@ arts-3-5-reading-music/half-note = note('h', 240)
 arts-3-5-reading-music/rest = quarter_rest(240)
 # time signature: a 4 over 4 on a staff
 arts-3-5-reading-music/time-signature = staff([], size=440, time=(4, 4), w=300)
-# measure: a staff divided by bar lines
-arts-3-5-reading-music/measure = staff([2, 4, 3, 4, 5, 2, 4, 1], size=440, bars_=(2, 4, 6))
+# measure: a staff divided by bar lines, one measure shaded
+arts-3-5-reading-music/measure = staff([2, 4, 3, 4, 5, 2, 4, 1], size=440, bars_=(2, 4, 6), shade=(2, 4))
 # frame: a filmstrip with a ball in each box
 arts-6-8-animation-basics/frame = row(*[box(ball(50, RED), w=100, h=100, color=DARK, fill='#fff', rx=4) for _ in range(3)], gap=0)
 # frame rate: a stopwatch beside a filmstrip
 arts-6-8-animation-basics/frame-rate = row(clock(130, 12, 10, numbers=False), row(*[box(dot(30, RED), w=70, h=70, color=DARK, fill='#fff', rx=2) for _ in range(3)], gap=0), gap=20)
-# timing: a bouncing ball arc with spaced dots
-arts-6-8-animation-basics/timing = raw(420, 240, '<line x1="10" y1="220" x2="410" y2="220" stroke="#1f2430" stroke-width="5"/><path d="M20 30 Q110 400 200 60 Q290 380 400 140" fill="none" stroke="#8a8f9c" stroke-width="3" stroke-dasharray="8 7"/>' + ''.join(f'<circle cx="{x}" cy="{y}" r="16" fill="#e04848" stroke="#1f2430" stroke-width="3"/>' for x, y in ((20, 30), (60, 130), (100, 195), (140, 160), (175, 90), (200, 62), (230, 100), (270, 190), (320, 180), (360, 148), (400, 140))))
+# timing: a ball bouncing: dots at equal time steps, close together at the top of each bounce
+arts-6-8-animation-basics/timing = raw(420, 240, '<line x1="10" y1="222" x2="410" y2="222" stroke="#1f2430" stroke-width="5"/>' + ''.join(f'<circle cx="{30 + i * 19:.0f}" cy="{208 - h * (1 - (2 * u - 1) ** 2):.0f}" r="8" fill="#e04848" stroke="#1f2430" stroke-width="3"/>' for i, (h, u) in enumerate([(h, j / 7) for h in (180, 110, 60) for j in range(7)])))
 # storyboard: six empty panels in a grid
 arts-6-8-animation-basics/storyboard = grid([box(w=140, h=100, color=DARK, fill='#fff', rx=6) for _ in range(6)], 3, gap=14)
 # squash and stretch: a ball flattening and stretching
 arts-6-8-animation-basics/squash-and-stretch = row(shape('circle', 110, RED), raw(170, 70, '<ellipse cx="85" cy="40" rx="80" ry="30" fill="#e04848" stroke="#1f2430" stroke-width="5"/>'), raw(70, 170, '<ellipse cx="35" cy="85" rx="28" ry="78" fill="#e04848" stroke="#1f2430" stroke-width="5"/>'), gap=24)
 # Cubism: a guitar made of overlapping angular shapes
 arts-6-8-art-history-timeline/cubism = paint('a guitar made of overlapping flat angular shapes in brown and tan, in the style of cubist art')
-# context: a frame inside a larger timeline
-arts-6-8-art-history-timeline/context = timeline(5, 440, segment=(1, 3), pics=[None, None, sized(box(w=70, h=56, color=BROWN, fill=YELLOW, rx=2), 50), None, None])
+# context: a framed artwork with its time, place and events around it
+arts-6-8-art-history-timeline/context = col(row(col(clock(80), T('time', 26), gap=2), col(globe(80), T('place', 26), gap=2), col(calendar(80), T('events', 26), gap=2), gap=26), arrow(40, ORANGE, dir='down'), box(box(star(70), w=150, h=110, color=BROWN, fill=YELLOW, rx=2, sw=4), color=BROWN, fill=BROWN, rx=4, p=12), gap=8)
 # movement phrase: a sequence of arrows in a line
 arts-6-8-choreography/movement-phrase = row(*[arrow(70, color=c, dir=d) for c, d in ((BLUE, 'right'), (ORANGE, 'ur'), (GREEN, 'right'), (PURPLE, 'dr'), (RED, 'right'))], gap=4)
-# motif: a spiral repeated three times
-arts-6-8-choreography/motif = row(*[raw(110, 110, '<path d="M55 55 m0 0 a6 6 0 0 1 12 0 a12 12 0 0 1 -24 0 a18 18 0 0 1 36 0 a24 24 0 0 1 -48 0 a30 30 0 0 1 60 0 a36 36 0 0 1 -72 0" fill="none" stroke="#8e5bc4" stroke-width="6"/>') for _ in range(3)], gap=20)
+# motif: a spiral, a bigger spiral, then a turned and recolored spiral: one idea repeated and changed
+arts-6-8-choreography/motif = row(*[raw(150, 150, f'<g transform="translate(75 75) rotate({r}) scale({k})"><path d="M0 0 a6 6 0 0 1 12 0 a12 12 0 0 1 -24 0 a18 18 0 0 1 36 0 a24 24 0 0 1 -48 0 a30 30 0 0 1 60 0" fill="none" stroke="{c}" stroke-width="{7 / k:.1f}" stroke-linecap="round"/></g>') for r, k, c in ((0, 1.2, BLUE), (0, 1.9, BLUE), (120, 1.2, ORANGE))], gap=18)
 # canon: three staggered rows of the same shapes
 arts-6-8-choreography/canon = col(*[row(Item(i * 60, 10, ''), shape('circle', 46, BLUE), shape('square', 46, ORANGE), shape('triangle', 46, GREEN), gap=8) for i in range(3)], gap=14, align='l')
 # unison: identical shapes in a row
@@ -113,8 +113,8 @@ arts-6-8-harmony-and-chords/interval = staff([0, 4], size=360, bracket=(0, 1))
 arts-6-8-harmony-and-chords/triad = staff([(-2, 0, 2)], size=320, labels=['C E G'], w=300)
 # chord progression: four chord symbols with arrows
 arts-6-8-harmony-and-chords/chord-progression = row(T('C', 64, BLUE), arrow(46), T('F', 64, ORANGE), arrow(46), T('G', 64, GREEN), arrow(46), T('C', 64, BLUE), gap=8)
-# minor: a minor chord on a staff
-arts-6-8-harmony-and-chords/minor = staff([(-1, 1, 3)], size=320, labels=['A C E'], w=300)
+# minor: an A minor chord stacked on a staff: A C E
+arts-6-8-harmony-and-chords/minor = staff([(3, 5, 7)], size=320, labels=['A C E'], w=300)
 # call and response: two speech bubbles taking turns
 arts-6-8-music-around-the-world/call-and-response = col(bubble(dots(3, size=26, color=BLUE), color=BLUE, w=220, h=100), row(Item(80, 10, ''), bubble(dots(3, size=26, color=ORANGE), color=ORANGE, tail='right', w=220, h=100)), gap=0, align='l')
 # composition: a frame with a winding path
@@ -129,14 +129,14 @@ arts-6-8-principles-of-design/contrast = box(shape('star', 170, '#fff', fill='#f
 arts-6-8-principles-of-design/unity = grid([shape(k, 90, c) for k, c in (('circle', BLUE), ('square', '#1d5fa8'), ('triangle', '#7ab0ef'), ('star', '#3a7bd5'), ('rhombus', '#5d93db'), ('hexagon', '#2a5d9e'))], 3)
 # blocking: a stage map with arrows
 arts-6-8-scripts-and-staging/blocking = raw(320, 240, '<path d="M5 5 H315 L295 235 H25 Z" fill="#efdccb" stroke="#1f2430" stroke-width="5" stroke-linejoin="round"/><circle cx="80" cy="180" r="16" fill="#3a7bd5"/><circle cx="240" cy="70" r="16" fill="#f08a24"/>' + '<path d="M96 172 Q160 120 220 80" fill="none" stroke="#e04848" stroke-width="6"/><path d="M226 76 l-20 2 l8 16 z" fill="#e04848"/><path d="M240 86 Q250 140 200 190" fill="none" stroke="#2f9e5b" stroke-width="6"/><path d="M194 196 l4 -20 l14 12 z" fill="#2f9e5b"/>')
-# upstage: a stage map with the back half shaded
-arts-6-8-scripts-and-staging/upstage = raw(320, 260, '<path d="M5 5 H315 L295 235 H25 Z" fill="#fff" stroke="#1f2430" stroke-width="5" stroke-linejoin="round"/><path d="M5 5 H315 L305 120 H15 Z" fill="#f08a24" opacity="0.65"/><path d="M5 5 H315 L295 235 H25 Z" fill="none" stroke="#1f2430" stroke-width="5" stroke-linejoin="round"/><rect x="40" y="235" width="240" height="20" fill="#a0673a"/>')
-# downstage: a stage map with the front half shaded
-arts-6-8-scripts-and-staging/downstage = raw(320, 260, '<path d="M5 5 H315 L295 235 H25 Z" fill="#fff" stroke="#1f2430" stroke-width="5" stroke-linejoin="round"/><path d="M15 120 H305 L295 235 H25 Z" fill="#f08a24" opacity="0.65"/><path d="M5 5 H315 L295 235 H25 Z" fill="none" stroke="#1f2430" stroke-width="5" stroke-linejoin="round"/><rect x="40" y="235" width="240" height="20" fill="#a0673a"/>')
+# upstage: a stage seen from above; the part farthest from the audience is shaded
+arts-6-8-scripts-and-staging/upstage = raw(320, 340, '<path d="M5 5 H315 L295 235 H25 Z" fill="#fff" stroke="#1f2430" stroke-width="5" stroke-linejoin="round"/><path d="M5 5 H315 L305 120 H15 Z" fill="#f08a24" opacity="0.65"/><path d="M5 5 H315 L295 235 H25 Z" fill="none" stroke="#1f2430" stroke-width="5" stroke-linejoin="round"/><rect x="40" y="235" width="240" height="20" fill="#a0673a"/>' + ''.join(f'<circle cx="{40 + i * 30}" cy="{276 + r * 22}" r="9" fill="#8a8f9c"/>' for i in range(9) for r in range(2)) + '<text x="160" y="336" font-family="Segoe UI, Arial, sans-serif" font-size="26" font-weight="700" text-anchor="middle" fill="#5a5f6c">audience</text>')
+# downstage: a stage seen from above; the part nearest the audience is shaded
+arts-6-8-scripts-and-staging/downstage = raw(320, 340, '<path d="M5 5 H315 L295 235 H25 Z" fill="#fff" stroke="#1f2430" stroke-width="5" stroke-linejoin="round"/><path d="M15 120 H305 L295 235 H25 Z" fill="#f08a24" opacity="0.65"/><path d="M5 5 H315 L295 235 H25 Z" fill="none" stroke="#1f2430" stroke-width="5" stroke-linejoin="round"/><rect x="40" y="235" width="240" height="20" fill="#a0673a"/>' + ''.join(f'<circle cx="{40 + i * 30}" cy="{276 + r * 22}" r="9" fill="#8a8f9c"/>' for i in range(9) for r in range(2)) + '<text x="160" y="336" font-family="Segoe UI, Arial, sans-serif" font-size="26" font-weight="700" text-anchor="middle" fill="#5a5f6c">audience</text>')
 # key signature: a staff with two sharp signs
 arts-9-12-music-theory/key-signature = staff([], size=440, sharps=2, w=300)
-# modulation: two key signatures with an arrow
-arts-9-12-music-theory/modulation = row(staff([], size=170, sharps=1, w=200), arrow(60), staff([], size=170, sharps=3, w=240), gap=8)
+# modulation: a key signature of one sharp, then an arrow to a key of two sharps
+arts-9-12-music-theory/modulation = col(staff([], size=300, sharps=1, w=220), arrow(50, ORANGE, dir='down'), staff([], size=300, sharps=2, w=220), gap=6)
 # cadence: two chord symbols V → I
 arts-9-12-music-theory/cadence = row(T('V', 100, ORANGE, font=MATHF), arrow(90), T('I', 100, BLUE, font=MATHF), gap=20)
 # scale degree: a scale with numbered notes
@@ -157,8 +157,8 @@ arts-9-12-two-point-perspective-and-composition/focal-point = raw(330, 250, '<re
 arts-9-12-two-point-perspective-and-composition/negative-space = raw(300, 280, '<rect x="5" y="5" width="290" height="270" fill="#1f2430"/><path d="M110 20 C70 20 120 70 90 90 C60 110 130 130 100 150 C70 170 60 230 110 262 H190 C240 230 230 170 200 150 C170 130 240 110 210 90 C180 70 230 20 190 20 Z" fill="#fff"/>')
 # high: a music note at the top of a staff
 arts-k-2-high-and-low-loud-and-soft/high = staff([8], size=380, w=300)
-# dynamics: a wedge shape growing wider
-arts-k-2-high-and-low-loud-and-soft/dynamics = raw(380, 200, '<path d="M20 100 L360 30 M20 100 L360 170" fill="none" stroke="#1f2430" stroke-width="10" stroke-linecap="round"/>')
+# dynamics: a hairpin growing from p (soft) to f (loud)
+arts-k-2-high-and-low-loud-and-soft/dynamics = raw(460, 250, '<path d="M70 100 L390 30 M70 100 L390 170" fill="none" stroke="#1f2430" stroke-width="12" stroke-linecap="round"/><text x="10" y="122" font-family="Georgia, serif" font-size="70" font-style="italic" font-weight="700" fill="#3a7bd5">p</text><text x="404" y="122" font-family="Georgia, serif" font-size="70" font-style="italic" font-weight="700" fill="#e04848">f</text><text x="30" y="236" font-family="Segoe UI, Arial, sans-serif" font-size="36" font-weight="700" text-anchor="middle" fill="#3a7bd5">soft</text><text x="420" y="236" font-family="Segoe UI, Arial, sans-serif" font-size="36" font-weight="700" text-anchor="middle" fill="#e04848">loud</text>')
 # line: a straight, a wavy and a zigzag line
 arts-k-2-lines-shapes-and-colors/line = col(raw(360, 20, '<line x1="10" y1="10" x2="350" y2="10" stroke="#3a7bd5" stroke-width="10" stroke-linecap="round"/>'), raw(360, 50, '<path d="M10 25 ' + ' '.join(f'Q{10 + i * 85 + 42} {(-5 if i % 2 == 0 else 55)} {10 + (i + 1) * 85} 25' for i in range(4)) + '" fill="none" stroke="#f08a24" stroke-width="10" stroke-linecap="round"/>'), raw(360, 60, '<path d="M10 55 ' + ' '.join(f'L{10 + (i + 1) * 42.5} {5 if i % 2 == 0 else 55}' for i in range(8)) + '" fill="none" stroke="#2f9e5b" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"/>'), gap=40)
 # shape: a heart, a star and a circle
@@ -169,28 +169,20 @@ arts-k-2-lines-shapes-and-colors/primary-colors = row(*[raw(100, 90, f'<path d="
 arts-k-2-lines-shapes-and-colors/secondary-colors = row(*[raw(100, 90, f'<path d="M50 6 C78 4 96 26 92 50 C88 76 66 88 44 84 C20 80 4 62 8 40 C12 18 26 8 50 6 Z" fill="{c}" stroke="#1f2430" stroke-width="5"/>') for c in (ORANGE, GREEN, PURPLE)], gap=20)
 # pattern: a row of dots and lines repeating
 arts-k-2-lines-shapes-and-colors/pattern = row(*[(dot(40, BLUE) if i % 2 == 0 else raw(14, 70, '<line x1="7" y1="5" x2="7" y2="65" stroke="#f08a24" stroke-width="10" stroke-linecap="round"/>')) for i in range(9)], gap=18)
-# locomotor: footprints moving across the floor
-arts-k-2-moving-bodies/locomotor = col(footprints(4, 90), raw(420, 14, '<line x1="0" y1="7" x2="420" y2="7" stroke="#a0673a" stroke-width="8"/>'), gap=10)
-# nonlocomotor: a spot on the floor with arrows pointing out
-arts-k-2-moving-bodies/nonlocomotor = over(raw(300, 300, ''.join(f'<line x1="{150 + 50 * math.cos(a):.1f}" y1="{150 + 50 * math.sin(a):.1f}" x2="{150 + 130 * math.cos(a):.1f}" y2="{150 + 130 * math.sin(a):.1f}" stroke="#f08a24" stroke-width="8" stroke-linecap="round"/><path d="M{150 + 145 * math.cos(a):.1f} {150 + 145 * math.sin(a):.1f} L{150 + 120 * math.cos(a) - 12 * math.sin(a):.1f} {150 + 120 * math.sin(a) + 12 * math.cos(a):.1f} L{150 + 120 * math.cos(a) + 12 * math.sin(a):.1f} {150 + 120 * math.sin(a) - 12 * math.cos(a):.1f} Z" fill="#f08a24"/>' for a in [k * math.pi / 4 for k in range(8)])), raw(90, 90, '<circle cx="45" cy="45" r="40" fill="#3a7bd5" stroke="#1f2430" stroke-width="5"/>'))
-# level: three lines marked high, middle and low
-arts-k-2-moving-bodies/level = col(*[row(T(w, 40, c), raw(260, 20, f'<line x1="0" y1="10" x2="260" y2="10" stroke="{c}" stroke-width="12" stroke-linecap="round"/>'), gap=16) for w, c in (('high', BLUE), ('middle', GREEN), ('low', ORANGE))], gap=40, align='l')
-# freeze: a pause sign with a snowflake
-arts-k-2-moving-bodies/freeze = row(raw(140, 140, '<circle cx="70" cy="70" r="64" fill="#3a7bd5" stroke="#1f2430" stroke-width="5"/><rect x="44" y="38" width="18" height="64" rx="4" fill="#fff"/><rect x="78" y="38" width="18" height="64" rx="4" fill="#fff"/>'), raw(150, 150, ''.join(f'<g transform="rotate({a} 75 75)"><line x1="75" y1="10" x2="75" y2="140" stroke="#1d9a9a" stroke-width="9" stroke-linecap="round"/><path d="M60 26 L75 40 L90 26 M60 124 L75 110 L90 124" fill="none" stroke="#1d9a9a" stroke-width="7" stroke-linecap="round"/></g>' for a in (0, 60, 120))), gap=30)
 # beat: a row of evenly spaced hearts
 arts-k-2-steady-beat-and-rhythm/beat = row(*[heart(70) for _ in range(5)], gap=22)
 # rhythm: long and short bars in a pattern
 arts-k-2-steady-beat-and-rhythm/rhythm = row(*[raw(w, 50, f'<rect x="2" y="5" width="{w - 4}" height="40" rx="10" fill="{c}" stroke="#1f2430" stroke-width="4"/>') for w, c in ((140, BLUE), (60, ORANGE), (60, ORANGE), (140, BLUE), (60, ORANGE))], gap=10)
-# short sound: a single short bar
-arts-k-2-steady-beat-and-rhythm/short-sound = raw(120, 60, '<rect x="5" y="5" width="110" height="50" rx="12" fill="#f08a24" stroke="#1f2430" stroke-width="5"/>')
+# short sound: a long bar above a short bar; the short one is circled
+arts-k-2-steady-beat-and-rhythm/short-sound = col(raw(320, 60, '<rect x="5" y="5" width="310" height="50" rx="12" fill="#c9ced8" stroke="#1f2430" stroke-width="5"/>'), mark(raw(80, 60, '<rect x="5" y="5" width="70" height="50" rx="12" fill="#f08a24" stroke="#1f2430" stroke-width="5"/>')), gap=20, align='l')
 # rest: a quarter rest music symbol
 arts-k-2-steady-beat-and-rhythm/rest = quarter_rest(240)
 # arrow: four direction arrows
 computer-science-1-code-a-path/arrow = grid([arrow(90, BLUE, 'up'), arrow(90, ORANGE, 'right'), arrow(90, GREEN, 'down'), arrow(90, PURPLE, 'left')], 2, gap=40)
 # path: a dotted path weaving around rocks on a grid
 computer-science-1-code-a-path/path = raw(300, 300, ''.join(f'<rect x="{10 + c * 56}" y="{10 + r * 56}" width="56" height="56" fill="#fff" stroke="#c4c8d0" stroke-width="2"/>' for r in range(5) for c in range(5)) + ''.join(f'<path d="M{10 + c * 56 + 8} {10 + r * 56 + 48} L{10 + c * 56 + 20} {10 + r * 56 + 14} L{10 + c * 56 + 36} {10 + r * 56 + 10} L{10 + c * 56 + 50} {10 + r * 56 + 44} Z" fill="#9aa5b8" stroke="#1f2430" stroke-width="3"/>' for r, c in ((0, 2), (1, 0), (2, 2), (3, 4), (4, 1))) + '<path d="M38 38 H94 V150 H150 V94 H262 V206 H206 V262 H262" fill="none" stroke="#f08a24" stroke-width="8" stroke-dasharray="4 12" stroke-linecap="round"/><circle cx="38" cy="38" r="14" fill="#2f9e5b"/>' + g(star(36), 244, 244))
-# debug: a magnifying glass over an arrow card
-computer-science-1-code-a-path/debug = over(card(arrow(80, BLUE), 160, 200), magnifier(150), dx=50, dy=40)
+# debug: code with a red bug line found by a magnifier, then the fixed code with a check
+computer-science-1-code-a-path/debug = row(over(code_lines(4, 200, hl=1, hl_color=RED), magnifier(80, inner=bug(40)), dx=130, dy=60), arrow(50), code_lines(4, 200, hl=1, hl_color=GREEN), check(60), gap=10)
 # turn: a curved arrow turning left
 computer-science-1-code-a-path/turn = curve_arrow(90, BLUE, start=40, end=-180, cw=False)
 # log in: a login box with a key
@@ -247,8 +239,8 @@ computer-science-4-tables-and-visualizations/column = table(4, 3, size=320, hl_c
 computer-science-4-tables-and-visualizations/visualization = bars([3, 5, 2, 4], size=320, colors=[BLUE, ORANGE, GREEN, PURPLE], axis=True)
 # chart: a line chart with sun icons
 computer-science-4-tables-and-visualizations/chart = over(plot(lambda x: 1.5 + 0.9 * x - 0.06 * x * x, size=320, xr=(0, 10), yr=(0, 7), axes=True, points=[(x, 1.5 + 0.9 * x - 0.06 * x * x, ORANGE) for x in (1, 3, 5, 7, 9)]), sun(70), dx=100, dy=-110)
-# sort: bars rearranging from short to tall
-computer-science-4-tables-and-visualizations/sort = row(bars([4, 2, 5, 1, 3], size=200, color=GRAY), arrow(60), bars([1, 2, 3, 4, 5], size=200, color=BLUE), gap=10)
+# sort: bars out of order, then the same bars sorted shortest to tallest
+computer-science-4-tables-and-visualizations/sort = col(bars([4, 2, 5, 1, 3], size=300, color=GRAY), arrow(50, dir='down'), bars([1, 2, 3, 4, 5], size=300, color=BLUE), gap=6)
 # trace: an arrow moving down lines of code
 computer-science-4-trace-the-code/trace = code_lines(6, 300, arrow_at=3)
 # variable: a box labeled score holding 0
@@ -257,8 +249,8 @@ computer-science-4-trace-the-code/variable = col(box(T('0', 110, BLUE), w=170, h
 computer-science-4-trace-the-code/value = box(T('5', 130, BLUE), w=190, h=170, color=ORANGE, fill='#fff')
 # update: a box with 4 crossed out and 5 written
 computer-science-4-trace-the-code/update = box(row(T('4', 110, GRAY, strike='4'), T('5', 110, BLUE), gap=30), w=280, h=170, color=ORANGE, fill='#fff')
-# comment: a line of code with a gray note beside it
-computer-science-4-trace-the-code/comment = row(code_lines(1, 240), bubble(page(70, lines=2, w_ratio=1.4), size=150, color=GRAY, tail='left'), gap=10)
+# comment: code with a gray # comment line that the computer skips
+computer-science-4-trace-the-code/comment = code_lines(5, 300, comment=2, skip=True)
 # output: a screen showing a star
 computer-science-4-trace-the-code/output = screen(280, inner=star(120))
 # bias: a tilted balance scale
@@ -289,8 +281,8 @@ computer-science-5-remix-a-program/modify = col(slider(320, 0.7), arrow(80, BLUE
 computer-science-5-remix-a-program/debug = magnifier(260, inner=raw(80, 80, '<ellipse cx="40" cy="46" rx="30" ry="28" fill="#e04848" stroke="#1f2430" stroke-width="4"/><circle cx="40" cy="20" r="12" fill="#1f2430"/><line x1="40" y1="20" x2="40" y2="74" stroke="#1f2430" stroke-width="3"/><circle cx="28" cy="40" r="5" fill="#1f2430"/><circle cx="52" cy="40" r="5" fill="#1f2430"/><circle cx="30" cy="60" r="5" fill="#1f2430"/><circle cx="50" cy="60" r="5" fill="#1f2430"/>'))
 # test: a play button with a check
 computer-science-5-remix-a-program/test = row(raw(150, 150, '<circle cx="75" cy="75" r="70" fill="#3a7bd5" stroke="#1f2430" stroke-width="5"/><path d="M58 44 L112 75 L58 106 Z" fill="#fff"/>'), check(130), gap=20)
-# attribution: a star badge on a code block
-computer-science-5-remix-a-program/attribution = over(code_blocks(1, 320, colors=(BLUE,)), star(90), dx=150, dy=-30)
+# attribution: a block program, a remix of it, and a credit tag pointing back to the first coder
+computer-science-5-remix-a-program/attribution = row(col(code_blocks(3, 140), T('Ana', 30, BLUE), gap=6), arrow(60, ORANGE, 'left'), col(code_blocks(4, 160, colors=(BLUE, ORANGE, GREEN, RED)), tile('by Ana', ORANGE, 46), gap=6), gap=10)
 # integrity: a document with a seal
 computer-science-5-the-cia-triad/integrity = row(page(220, lines=7), raw(110, 110, '<circle cx="55" cy="55" r="44" fill="#e04848" stroke="#1f2430" stroke-width="5"/><circle cx="55" cy="55" r="30" fill="none" stroke="#fff" stroke-width="4"/><path d="M35 96 L28 120 L44 112 L55 124 L55 98 Z M75 96 L82 120 L66 112 L55 124 L55 98 Z" fill="#e04848" stroke="#1f2430" stroke-width="3"/>'), gap=-50, align='b')
 # availability: a server with a green light
@@ -305,8 +297,8 @@ computer-science-5-train-a-classifier/label = row(card(sun(80), 150, 180), raw(1
 computer-science-5-train-a-classifier/confidence = meter(320, 0.9, '90%')
 # algorithm: a flowchart
 computer-science-6-8-algorithms-and-fairness/algorithm = flowchart(330, ('Start', '?', 'Yes', 'No'))
-# algorithmic bias: a tilted scale beside a flowchart
-computer-science-6-8-algorithms-and-fairness/algorithmic-bias = row(scale_icon(200, None, None, tilt=18), flowchart(200), gap=20)
+# algorithmic bias: a computer flowchart feeding a scale that comes out uneven
+computer-science-6-8-algorithms-and-fairness/algorithmic-bias = row(flowchart(200), arrow(50), scale_icon(230, dots(3, 3, 22, ORANGE, gap=4), dot(22, BLUE), tilt=18), gap=10)
 # ethics: a balance with a question mark
 computer-science-6-8-algorithms-and-fairness/ethics = scale_icon(300, qmark(60), qmark(60, ORANGE))
 # transparency: a glass box with gears inside
@@ -325,8 +317,8 @@ computer-science-6-8-cyber-attacks-and-defense/encryption = row(bubble(T('hi!', 
 computer-science-6-8-cyber-attacks-and-defense/cia-triad = raw(320, 290, '<path d="M160 40 L295 260 H25 Z" fill="#d6e6fb" stroke="#1f2430" stroke-width="6" stroke-linejoin="round"/>' + ''.join(f'<circle cx="{x}" cy="{y}" r="34" fill="{c}" stroke="#1f2430" stroke-width="5"/><text x="{x}" y="{y + 16}" font-family="Segoe UI" font-size="46" font-weight="700" text-anchor="middle" fill="#fff">{t}</text>' for x, y, t, c in ((160, 40, 'C', BLUE), (36, 252, 'I', ORANGE), (284, 252, 'A', GREEN))))
 # filter: a funnel over table rows
 computer-science-6-8-data-detectives/filter = col(funnel(130), table(4, 3, size=240), gap=-8)
-# sort: bars rearranged by height
-computer-science-6-8-data-detectives/sort = row(bars([4, 2, 5, 1, 3], size=200, color=GRAY), arrow(60), bars([1, 2, 3, 4, 5], size=200, color=BLUE), gap=10)
+# sort: bars out of order, then the same bars sorted tallest to shortest
+computer-science-6-8-data-detectives/sort = col(bars([4, 2, 5, 1, 3], size=300, color=GRAY), arrow(50, dir='down'), bars([5, 4, 3, 2, 1], size=300, color=BLUE), gap=6)
 # misleading: a bar chart with a cut-off axis
 computer-science-6-8-data-detectives/misleading = bars([92, 95, 98, 100], size=320, colors=[BLUE, BLUE, BLUE, ORANGE], cut=True, maxv=100)
 # outlier: a scatter plot with one far dot
@@ -345,12 +337,12 @@ computer-science-6-8-flowcharts-and-pseudocode/conditional = diamond(320, '?', y
 computer-science-6-8-flowcharts-and-pseudocode/loop = curve_arrow(110, BLUE, inner=box(w=90, h=90, color=ORANGE))
 # procedure: a labeled box with a reuse arrow
 computer-science-6-8-flowcharts-and-pseudocode/procedure = row(box(T('draw()', 44), color=PURPLE, p=20), curve_arrow(50, ORANGE), gap=10)
-# decision: a diamond shape
-computer-science-6-8-flowcharts-and-pseudocode/decision = diamond(300, '?')
+# decision: an arrow into a decision diamond that splits into yes and no
+computer-science-6-8-flowcharts-and-pseudocode/decision = col(arrow(50, dir='down'), diamond(300, '?', yes_no=True), gap=0)
 # feature: a bird outline with the wing highlighted
 computer-science-6-8-machine-learning-models/feature = raw(300, 220, '<ellipse cx="150" cy="130" rx="100" ry="60" fill="#fff" stroke="#1f2430" stroke-width="6"/><circle cx="240" cy="80" r="40" fill="#fff" stroke="#1f2430" stroke-width="6"/><path d="M278 76 L300 84 L278 92" fill="#f08a24" stroke="#1f2430" stroke-width="4"/><circle cx="250" cy="72" r="5" fill="#1f2430"/><path d="M80 120 C120 40 190 50 200 110 C170 140 120 150 80 120 Z" fill="#f08a24" stroke="#1f2430" stroke-width="6"/><path d="M50 130 L10 110 L20 150 Z" fill="#fff" stroke="#1f2430" stroke-width="5" stroke-linejoin="round"/>')
-# accuracy: a bar rising
-computer-science-6-8-machine-learning-models/accuracy = row(bars([1, 2, 3, 4, 5], size=300, color=GREEN), arrow(70, GREEN, 'ur'), gap=0)
+# accuracy: ten answers: nine checks and one X, 9 of 10 right
+computer-science-6-8-machine-learning-models/accuracy = col(grid([check(52) for _ in range(9)] + [cross(52)], 5, gap=10), T('9 of 10 right', 40, GREEN), gap=16)
 # bias: a tilted scale
 computer-science-6-8-machine-learning-models/bias = scale_icon(300, None, None, tilt=18)
 # training set: a stack of photo cards
@@ -381,14 +373,14 @@ computer-science-6-8-variables-data-types-and-procedures/function = machine(380,
 computer-science-k-count-and-decide/data = table(cells=[['cat', 'IIII'], ['dog', 'II'], ['bird', 'III']], size=320, header=False)
 # tally mark: tally marks in a group of five
 computer-science-k-count-and-decide/tally-mark = tally(5, 200)
-# chart: a simple picture chart of apples and bananas
-computer-science-k-count-and-decide/chart = col(row(*[apple(50) for _ in range(4)], gap=8), row(*[banana(50) for _ in range(2)], gap=8), gap=20, align='l')
+# chart: a picture graph: apples and bananas, one picture per box
+computer-science-k-count-and-decide/chart = col(row(T('apples', 30, RED), *[box(apple(42), w=60, h=60, color=GRAY, fill='#fff', rx=2, sw=3) for _ in range(4)], gap=0), row(T('bananas', 30, ORANGE), *[box(banana(42), w=60, h=60, color=GRAY, fill='#fff', rx=2, sw=3) for _ in range(2)], *[box(w=60, h=60, color=GRAY, fill='#fff', rx=2, sw=3) for _ in range(2)], gap=0), gap=0, align='r')
 # most: three stacks of blocks with the tallest one starred
 computer-science-k-count-and-decide/most = blocks_stack((3, 5, 2), 300, star_=1, colors=[BLUE, ORANGE, GREEN])
 # least: three stacks of blocks with the shortest one starred
 computer-science-k-count-and-decide/least = blocks_stack((3, 5, 2), 300, star_=2, colors=[BLUE, ORANGE, GREEN])
-# public: a paint palette with an open eye above it
-computer-science-k-public-or-private/public = col(eye(140), raw(220, 160, '<path d="M110 10 C40 10 6 60 10 100 C14 140 60 150 80 130 C96 114 110 130 120 140 C140 160 200 150 210 100 C220 40 170 10 110 10 Z" fill="#efdccb" stroke="#1f2430" stroke-width="5"/>' + ''.join(f'<circle cx="{x}" cy="{y}" r="15" fill="{c}" stroke="#1f2430" stroke-width="3"/>' for x, y, c in ((60, 60, RED), (110, 45, YELLOW), (160, 60, BLUE), (175, 105, GREEN)))), gap=10)
+# public: an open web page with eyes all around it and an open lock
+computer-science-k-public-or-private/public = row(col(eye(70), eye(70), gap=20), browser(220, inner=globe(90)), col(eye(70), lock(64, open_=True), gap=20), gap=14)
 # share: two tablets with an arrow between them
 computer-science-k-public-or-private/share = row(phone(180, inner=star(50)), harrows(BLUE, 90), phone(180), gap=14)
 # trusted adult: a shield with a heart
@@ -449,8 +441,8 @@ ela-1-text-features/table-of-contents = box(col(raw(160, 16, '<rect x="0" y="0" 
 ela-1-text-features/glossary = book(280, hl=[1])
 # caption: a photo frame with a line of text under it
 ela-1-text-features/caption = col(box(row(sun(60), mountain(120), gap=-10), w=240, h=170, color=BROWN, fill='#e9f3fb', sw=10), raw(220, 12, '<rect x="0" y="0" width="220" height="12" rx="6" fill="#8a8f9c"/>'), gap=12)
-# icon: a small star icon next to a line of text
-ela-1-text-features/icon = row(star(70), raw(260, 16, '<rect x="0" y="0" width="260" height="16" rx="8" fill="#8a8f9c"/>'), gap=12)
+# icon: a toolbar of small pictures: home, trash, search
+ela-1-text-features/icon = box(row(house(66, BLUE), raw(60, 70, '<path d="M8 16 H52 M24 16 V6 H36 V16" fill="none" stroke="#1f2430" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 22 L17 66 H43 L47 22 Z" fill="#8a8f9c" stroke="#1f2430" stroke-width="5" stroke-linejoin="round"/>'), magnifier(66), gap=30), color=GRAY, fill='#f2f3f6', p=18)
 # bold: a line of text with one word in thick letters
 ela-1-text-features/bold = row(T('a', 60, GRAY, bold=False), T('big', 80, DARK), T('dog', 60, GRAY, bold=False), gap=18)
 # I and me: a speech bubble with the words I and me
@@ -469,8 +461,8 @@ ela-1-word-meanings/ending = row(tile('jump', BLUE, 100), T('+', 70), tile('-ed'
 ela-1-writing-sentences-and-stories/first = stairs(3, 300, labels=['1', '2', '3'], hl=0)
 # purpose: a target with an arrow in the center
 ela-2-author-s-purpose/purpose = target(260)
-# explain: a cloud with arrows and rain drops
-ela-2-author-s-purpose/explain = raw(320, 260, g(cloud(180), 60, 0) + ''.join(f'<path d="M{x} 130 l-8 22" stroke="#3a7bd5" stroke-width="7" stroke-linecap="round"/>' for x in (100, 140, 180, 220)) + '<path d="M60 180 C110 220 210 220 260 180" fill="none" stroke="#f08a24" stroke-width="6"/><path d="M262 172 l2 22 l-20 -6 z" fill="#f08a24"/>' + g(sun(70), 250, 10))
+# explain: rain, then a puddle, with a why? bubble over the arrow between them
+ela-2-author-s-purpose/explain = col(bubble(T('why?', 40), 140, color=ORANGE, tail='left'), row(raincloud(140), arrow(70, ORANGE), raw(140, 60, '<ellipse cx="70" cy="34" rx="64" ry="22" fill="#3a7bd5" stroke="#1f2430" stroke-width="5"/>'), gap=10), gap=6)
 # moral: a lightbulb over a tortoise
 ela-2-fables-and-folktales/moral = col(lightbulb_on(110), raw(240, 140, '<ellipse cx="110" cy="80" rx="80" ry="50" fill="#2f9e5b" stroke="#1f2430" stroke-width="5"/>' + ''.join(f'<path d="M{70 + i * 26} 54 l18 0 l9 14 l-9 14 l-18 0 l-9 -14 z" fill="none" stroke="#1d6b3c" stroke-width="3"/>' for i in range(3)) + '<circle cx="210" cy="78" r="22" fill="#a8c83a" stroke="#1f2430" stroke-width="5"/><circle cx="216" cy="72" r="4" fill="#1f2430"/>' + ''.join(f'<rect x="{x}" y="118" width="20" height="20" rx="6" fill="#a8c83a" stroke="#1f2430" stroke-width="4"/>' for x in (50, 150))), gap=4)
 # lesson: an open book with a star
@@ -481,12 +473,12 @@ ela-2-fables-and-folktales/recount = flow(*[card(T(n, 50), 80, 100, c) for n, c 
 ela-2-grammar-and-spelling/irregular-verb = row(T('go', 100, BLUE), arrow(90), T('went', 100, ORANGE), gap=16)
 # contraction: can + not squeezing into can't
 ela-2-grammar-and-spelling/contraction = col(row(tile('can', BLUE, 90), T('+', 60), tile('not', ORANGE, 90), gap=10), arrow(50, dir='down'), T("can't", 110, hl={"'": RED}), gap=6)
-# apostrophe: a large apostrophe mark
-ela-2-grammar-and-spelling/apostrophe = raw(120, 220, '<path d="M60 10 C96 10 110 40 104 80 C98 130 70 170 30 200 L20 186 C50 160 62 130 60 112 C30 112 16 90 16 62 C16 32 34 10 60 10 Z" fill="#e04848" stroke="#1f2430" stroke-width="5"/>')
+# apostrophe: two words with a red apostrophe: can't and Sam's
+ela-2-grammar-and-spelling/apostrophe = col(T("can't", 100, hl={"'": RED}), T("Sam's", 100, hl={"'": RED}), gap=6)
 # past tense: a timeline with an arrow pointing back
 ela-2-grammar-and-spelling/past-tense = timeline(4, 420, now=3, back=True, labels=['', '', '', 'now'])
-# pronoun: three plain circles grouped together
-ela-2-grammar-and-spelling/pronoun = row(*[shape('circle', 90, '#fff', fill='#fff') for _ in range(3)], gap=14)
+# pronoun: a name tile, Mia, with an arrow to the pronoun she; below, he, she and they
+ela-2-grammar-and-spelling/pronoun = col(row(tile('Mia', ORANGE, 90), arrow(60), tile('she', BLUE, 90, fill='#fde97a'), gap=10), tiles('he', 'she', 'they', color=BLUE, size=64), gap=26)
 # prefix: a re- tile joining the word play
 ela-2-long-vowels-and-two-syllable-words/prefix = row(tile('re-', ORANGE, 110), T('+', 70), tile('play', BLUE, 110), gap=12)
 # suffix: the word care joining a -ful tile
@@ -509,8 +501,8 @@ ela-2-story-structure-and-point-of-view/problem = raw(240, 300, '<path d="M120 1
 ela-2-word-building/prefix = row(tile('un-', ORANGE, 110), T('+', 70), tile('happy', BLUE, 110), gap=12)
 # root word: the word kindness with kind highlighted
 ela-2-word-building/root-word = T('kindness', 100, hl={'kind': ORANGE})
-# shades of meaning: three arrows of growing length
-ela-2-word-building/shades-of-meaning = col(arrow(120, BLUE, sw=10), arrow(220, PURPLE, sw=10), arrow(320, RED, sw=10), gap=14, align='l')
+# shades of meaning: warm, hot, boiling: tiles shaded from light to dark
+ela-2-word-building/shades-of-meaning = col(row(tile('warm', ORANGE, 76, fill='#fde3c8'), tile('hot', ORANGE, 76, fill='#f5a65b'), tile('boiling', RED, 76, fill=RED, text='#fff'), gap=10), arrow(380, RED, sw=10), gap=10)
 # synonym: two equal word tiles with an equal sign
 ela-2-word-building/synonym = row(tile('big', BLUE, 110), T('=', 80), tile('large', ORANGE, 110), gap=14)
 # stanza: a poem shape made of three blocks of four lines
@@ -537,14 +529,14 @@ ela-3-multisyllable-decoding/base-word = T('replaying', 96, hl={'play': ORANGE})
 ela-3-multisyllable-decoding/irregular-spelling = col(row(Item(64, 10, ''), T('?', 70, RED), gap=0, align='l'), T('said', 130, hl={'ai': ORANGE}), gap=-20, align='l')
 # plot: a story mountain line with dots for the beginning, middle and end
 ela-3-narrative-writing/plot = raw(380, 240, '<path d="M10 220 L150 220 L240 50 L330 220 L370 220" fill="none" stroke="#1f2430" stroke-width="8" stroke-linejoin="round"/>' + ''.join(f'<circle cx="{x}" cy="{y}" r="18" fill="{c}" stroke="#1f2430" stroke-width="4"/>' for x, y, c in ((60, 220, BLUE), (240, 50, ORANGE), (350, 220, GREEN))))
-# linking word: two puzzle pieces fitting together
-ela-3-opinion-and-informative-writing/linking-word = puzzle(300, BLUE, ORANGE)
+# linking word: two sentence parts joined by the linking word because
+ela-3-opinion-and-informative-writing/linking-word = col(tile('We stayed in', BLUE, 70), tile('because', ORANGE, 70, fill='#fde97a'), tile('it rained.', BLUE, 70), gap=8)
 # pronoun: the name Maria with an arrow pointing to the word she
 ela-3-parts-of-speech/pronoun = row(T('Maria', 80, BLUE), arrow(80), T('she', 80, ORANGE), gap=12)
 # verb tense: a timeline marked yesterday, today and tomorrow
 ela-3-parts-of-speech/verb-tense = timeline(3, 440, labels=['yesterday', 'today', 'tomorrow'], hl=1)
-# keyword: a search box with a magnifying glass icon
-ela-3-text-structure-and-search-tools/keyword = browser(300, search=True)
+# keyword: a search box with the keyword volcano typed in
+ela-3-text-structure-and-search-tools/keyword = browser(300, search=True, query='volcano')
 # heading: a page with bold heading bars above blocks of text
 ela-3-text-structure-and-search-tools/heading = para_page(240, paras=(3, 3), title=True)
 # focus: a spotlight on a heart
@@ -595,8 +587,8 @@ ela-4-theme-and-summary/character-trait = raw(300, 220, '<rect x="10" y="10" wid
 ela-4-writing-with-evidence/evidence = page(240, lines=8, hl=(2, 5))
 # quotation: large quotation marks
 ela-4-writing-with-evidence/quotation = T('“ ”', 300, BLUE)
-# linking words: two word blocks joined by a chain link
-ela-4-writing-with-evidence/linking-words = row(tile('rain', BLUE, 100), chain(1, 70), tile('puddle', ORANGE, 100), gap=-4)
+# linking words: It rained, so we got wet: so links the two parts
+ela-4-writing-with-evidence/linking-words = col(tile('It rained', BLUE, 70), tile('so', ORANGE, 70, fill='#fde97a'), tile('we got wet.', BLUE, 70), gap=8)
 # conclusion: a page with its last paragraph boxed
 ela-4-writing-with-evidence/conclusion = para_page(240, paras=(3, 3, 3), box_para=(2,))
 # compare: a Venn diagram
@@ -647,8 +639,8 @@ ela-5-quoting-and-inferring/text-evidence = para_page(240, paras=(3, 3, 3), hl_p
 ela-5-quoting-and-inferring/accurate = target(260)
 # support: a roof held up by three pillars
 ela-5-reasons-and-evidence/support = pillars(3, 320)
-# statistic: a pie chart with a third shaded
-ela-5-reasons-and-evidence/statistic = pie(1 / 3, 260, ORANGE)
+# statistic: a pie with one third shaded: 1 in 3
+ela-5-reasons-and-evidence/statistic = row(pie(1 / 3, 230, ORANGE), M('1 in 3', 70, color=ORANGE), gap=20)
 # convincing: a balance tipped far to one side
 ela-5-reasons-and-evidence/convincing = scale_icon(300, ball(50, BLUE), None, tilt=26)
 # thesis statement: a paragraph with its last line highlighted
@@ -677,8 +669,8 @@ ela-6-collaborative-discussions/elaborate = row(box(w=70, h=70, color=BLUE), arr
 ela-6-collaborative-discussions/paraphrase = row(bubble(star(60), color=BLUE), T('=', 60), bubble(star(60), color=ORANGE, tail='right'), gap=10)
 # connotation: a frowning face beside a word tile
 ela-6-connotation-and-context/connotation = row(face(140, 'sad'), tile('cheap', ORANGE, 100), gap=20)
-# nuance: two nearly matching color swatches
-ela-6-connotation-and-context/nuance = row(box(w=150, h=150, color=DARK, fill='#3a7bd5', rx=20), box(w=150, h=150, color=DARK, fill='#4686dc', rx=20), gap=24)
+# nuance: slim, thin, skinny: close words in lighter and darker shades
+ela-6-connotation-and-context/nuance = row(tile('slim', BLUE, 76, fill='#d6e6fb'), tile('thin', BLUE, 76, fill='#8fb6ea'), tile('skinny', BLUE, 76, fill=BLUE, text='#fff'), gap=10)
 # dynamic character: a seed growing into a flower
 ela-6-plot-and-character-development/dynamic-character = row(raw(80, 80, '<ellipse cx="40" cy="50" rx="20" ry="28" fill="#a0673a" stroke="#1f2430" stroke-width="5"/>'), arrow(60), raw(100, 160, '<path d="M50 160 V60" stroke="#2f9e5b" stroke-width="8"/><path d="M50 110 C30 100 20 80 30 76 C44 80 52 96 50 110 Z" fill="#2f9e5b" stroke="#1f2430" stroke-width="3"/>'), arrow(60), raw(140, 220, '<path d="M70 220 V90" stroke="#2f9e5b" stroke-width="9"/><path d="M70 170 C46 160 34 136 44 130 C60 134 72 154 70 170 Z" fill="#2f9e5b" stroke="#1f2430" stroke-width="3"/>' + ''.join(f'<ellipse cx="{70 + 30 * math.cos(a):.1f}" cy="{60 + 30 * math.sin(a):.1f}" rx="22" ry="14" transform="rotate({math.degrees(a):.0f} {70 + 30 * math.cos(a):.1f} {60 + 30 * math.sin(a):.1f})" fill="#f28bb3" stroke="#1f2430" stroke-width="4"/>' for a in [k * 2 * math.pi / 6 for k in range(6)]) + '<circle cx="70" cy="60" r="18" fill="#f5c33b" stroke="#1f2430" stroke-width="4"/>'), gap=6, align='b')
 # first person: a speech bubble with the word I
@@ -727,8 +719,8 @@ ela-7-argument-with-counterclaims/however = fork(300)
 ela-7-comparing-authors/emphasis = T('really', 120, under='really')
 # interpretation: two different arrows from one dot
 ela-7-comparing-authors/interpretation = raw(340, 260, '<circle cx="40" cy="130" r="20" fill="#1f2430"/><path d="M60 120 L280 40" stroke="#3a7bd5" stroke-width="10" stroke-linecap="round"/><path d="M300 33 l-30 -6 l10 28 z" fill="#3a7bd5"/><path d="M60 140 L280 220" stroke="#f08a24" stroke-width="10" stroke-linecap="round"/><path d="M300 227 l-30 6 l10 -28 z" fill="#f08a24"/>')
-# purpose: a warning sign
-ela-7-comparing-authors/purpose = warning(260)
+# purpose: a light bulb, a megaphone and a smiling face: inform, persuade, entertain
+ela-7-comparing-authors/purpose = row(col(bulb(90), T('inform', 28), gap=4), col(raw(100, 80, '<path d="M10 28 H32 L84 6 V74 L32 52 H10 Z" fill="#f08a24" stroke="#1f2430" stroke-width="5" stroke-linejoin="round"/><path d="M20 52 L28 74 H40 L36 54" fill="#f08a24" stroke="#1f2430" stroke-width="4" stroke-linejoin="round"/>'), T('persuade', 28), gap=10), col(face(90), T('entertain', 28), gap=4), gap=34, align='b')
 # shape: clay being formed by an arrow
 ela-7-comparing-authors/shape = row(arrow(90, ORANGE, sw=10), raw(200, 160, '<path d="M20 150 C10 100 40 60 60 70 C80 40 120 30 140 60 C170 50 190 90 180 150 Z" fill="#c98b4f" stroke="#1f2430" stroke-width="6" stroke-linejoin="round"/>'), arrow(90, ORANGE, 'left', sw=10), gap=0)
 # omit: a list with one line crossed out
@@ -737,8 +729,8 @@ ela-7-comparing-authors/omit = box(col(*[raw(220, 14, f'<rect x="0" y="0" width=
 ela-7-evaluating-arguments/evaluate = scale_icon(300, ball(50, BLUE), ball(50, ORANGE))
 # sound reasoning: a chain with all links closed
 ela-7-evaluating-arguments/sound-reasoning = chain(4, 340)
-# sufficient: a single bar beside a tall bar
-ela-7-evaluating-arguments/sufficient = bars([2, 9], size=280, colors=[ORANGE, BLUE])
+# sufficient: a dashed line for what is needed; a short bar falls short (X), a tall bar reaches it (check)
+ela-7-evaluating-arguments/sufficient = raw(300, 290, '<rect x="40" y="190" width="80" height="80" fill="#f08a24" stroke="#1f2430" stroke-width="5"/><rect x="170" y="70" width="80" height="200" fill="#3a7bd5" stroke="#1f2430" stroke-width="5"/><line x1="10" y1="90" x2="290" y2="90" stroke="#e04848" stroke-width="5" stroke-dasharray="12 8"/><text x="60" y="80" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="700" text-anchor="middle" fill="#e04848">needed</text><line x1="10" y1="270" x2="290" y2="270" stroke="#1f2430" stroke-width="5"/>' + g(cross(46), 57, 132) + g(check(56), 182, 6))
 # fallacy: a cracked chain link
 ela-7-evaluating-arguments/fallacy = chain(3, 340, broken=1)
 # irrelevant: a puzzle piece that does not fit
@@ -747,8 +739,8 @@ ela-7-evaluating-arguments/irrelevant = puzzle(300, BLUE, ORANGE, fits=False)
 ela-7-evaluating-arguments/delineate = box(col(*[row(T(i, 40, BLUE), raw(200 - (i % 2) * 40, 14, '<rect width="200" height="14" rx="7" fill="#8a8f9c"/>'), gap=12) for i in (1, 2, 3)], row(Item(40, 10, ''), raw(160, 14, '<rect width="160" height="14" rx="7" fill="#c4c8d0"/>'), gap=12), gap=16, align='l'), color=DARK, fill='#fff')
 # accuracy: a target with an arrow
 ela-7-fiction-vs-history/accuracy = target(260)
-# alter: a calendar page with a date crossed out
-ela-7-fiction-vs-history/alter = calendar(280, cross_=10)
+# alter: a square, then the same square changed: new color, rounded corners
+ela-7-fiction-vs-history/alter = row(box(w=130, h=130, color=BLUE, rx=4), arrow(70, ORANGE), box(w=130, h=130, color=PURPLE, rx=44), gap=12)
 # classification: three labeled bins
 ela-7-informative-writing/classification = row(*[col(T(w, 30, c), raw(120, 120, f'<path d="M6 10 H114 L102 116 H18 Z" fill="{soft(c)}" stroke="{c}" stroke-width="6" stroke-linejoin="round"/>'), gap=6) for w, c in (('A', BLUE), ('B', ORANGE), ('C', GREEN))], gap=16)
 # heading: a page with bold section titles
@@ -849,8 +841,8 @@ ela-k-talk-it-over/take-turns = col(row(bubble(dots(3, size=22), 150, BLUE), bub
 ela-k-talk-it-over/speak = row(raw(90, 200, '<rect x="20" y="10" width="50" height="90" rx="25" fill="#8a8f9c" stroke="#1f2430" stroke-width="6"/><path d="M10 80 C10 130 80 130 80 80" fill="none" stroke="#1f2430" stroke-width="6"/><line x1="45" y1="122" x2="45" y2="170" stroke="#1f2430" stroke-width="7"/><rect x="20" y="168" width="50" height="10" rx="4" fill="#1f2430"/>'), bubble(dots(3, size=26), 180, BLUE), gap=0, align='t')
 # sentence: a row of word blocks ending with a period
 ela-k-words-and-sentences/sentence = row(tile('I', BLUE, 90), tile('see', ORANGE, 90), tile('a', GREEN, 90), tile('dog', PURPLE, 90), dot(34, RED), gap=8, align='b')
-# capital: a sentence with its first letter big and circled
-ela-k-words-and-sentences/capital = row(T('T', 130, RED), T('he cat ran.', 80), gap=2, align='b')
+# capital: The cat ran. with a red capital T
+ela-k-words-and-sentences/capital = T('The cat ran.', 90, hl={'T': RED})
 # period: a big dot at the end of a line of words
 ela-k-words-and-sentences/period = row(raw(260, 20, '<rect x="0" y="4" width="260" height="14" rx="7" fill="#8a8f9c"/>'), raw(60, 60, '<circle cx="30" cy="38" r="20" fill="#e04848"/>'), gap=6, align='b')
 # agree: two speech bubbles with matching check marks
@@ -863,16 +855,16 @@ eld-3-5-academic-conversations/build-on = col(box(w=150, h=90, color=ORANGE), bo
 eld-3-5-academic-conversations/clarify = row(raw(120, 120, '<defs><filter id="bl"><feGaussianBlur stdDeviation="7"/></filter></defs><circle cx="60" cy="60" r="44" fill="#3a7bd5" filter="url(#bl)"/>'), arrow(70), shape('circle', 110, BLUE), gap=10)
 # respond: two speech bubbles with an arrow between them
 eld-3-5-academic-conversations/respond = row(bubble(dots(3, size=24), 150, BLUE), arrow(60), bubble(dots(3, size=24, color=ORANGE), 150, ORANGE, tail='right'), gap=6)
-# strategy: a pencil drawing a bar model
-eld-3-5-explaining-my-solution/strategy = row(raw(260, 110, '<rect x="5" y="20" width="250" height="70" fill="#fff" stroke="#1f2430" stroke-width="5"/>' + ''.join(f'<rect x="{5 + i * 50}" y="20" width="50" height="70" fill="{c}" stroke="#1f2430" stroke-width="4"/>' for i, c in enumerate((BLUE, BLUE, BLUE, ORANGE)))), pencil(130), gap=-30)
+# strategy: a question mark, then a plan card with three numbered checked steps
+eld-3-5-explaining-my-solution/strategy = row(qmark(110), arrow(50), box(col(*[row(tile(str(i), BLUE, 44), raw(90, 14, '<rect width="90" height="14" rx="7" fill="#c9ced8"/>'), check(36), gap=8) for i in (1, 2, 3)], gap=10), color=GRAY, fill='#fff', p=14), gap=10)
 # first: a numbered step 1
 eld-3-5-explaining-my-solution/first = box(T('1', 160, BLUE), w=220, h=220, color=BLUE)
 # next: an arrow from step 1 to step 2
 eld-3-5-explaining-my-solution/next = row(box(T('1', 90, BLUE), w=130, h=130, color=BLUE), arrow(80), box(T('2', 90, ORANGE), w=130, h=130, color=ORANGE), gap=10)
 # finally: a last step with a check mark
 eld-3-5-explaining-my-solution/finally = row(box(T('3', 110, GREEN), w=160, h=160, color=GREEN), check(120), gap=10)
-# solution: a worked problem with a box around the answer
-eld-3-5-explaining-my-solution/solution = col(M('8 + 5', 80), raw(260, 8, '<rect width="260" height="8" fill="#1f2430"/>'), mark(M('13', 90), 'box', RED), gap=10)
+# solution: 8 + 5 = 13 with the answer boxed
+eld-3-5-explaining-my-solution/solution = row(M('8 + 5 =', 90), mark(M('13', 90), 'box', RED), gap=10)
 # explain: a speech bubble with a question mark and an arrow
 eld-3-5-explaining-my-solution/explain = row(bubble(T('?', 90, BLUE), 170, BLUE), arrow(80), lightbulb_on(120), gap=10)
 # reason: a lightbulb next to a "because" arrow
@@ -911,10 +903,10 @@ eld-6-8-word-problems-decoded/at-least = numberline(0, 10, 440, closed=5, ray='r
 eld-k-2-classroom-language/line-up = row(footprints(4, 70), door(170), gap=20, align='b')
 # raise your hand: a hand raised high
 eld-k-2-classroom-language/raise-your-hand = col(raw(60, 60, '<path d="M30 50 V10 M14 24 L30 8 L46 24" fill="none" stroke="#3a7bd5" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>'), hand(230), gap=0)
-# help: two hands reaching toward each other
-eld-k-2-classroom-language/help = row(hand(150, 'flat'), Item(30, 10, ''), raw(90, 114, f'<g transform="translate(90 0) scale(-1 1)">{hand(150, "flat").svg}</g>'), gap=0) if 0 else row(raw(130, 140, f'<g transform="rotate(70 65 70)">{hand(130, "flat").svg}</g>'), raw(130, 140, f'<g transform="translate(130 0) scale(-1 1) rotate(70 65 70)">{hand(130, "flat").svg}</g>'), gap=20)
-# turn: a speech bubble with a star
-eld-k-2-classroom-language/turn = bubble(star(110), size=240, color=BLUE)
+# help: an open hand raised beside a help? bubble
+eld-k-2-classroom-language/help = row(hand(170, 'open'), bubble(T('help?', 44), 170, tail='left'), gap=6, align='t')
+# turn: two faces with a curved arrow passing to the second, now circled
+eld-k-2-classroom-language/turn = row(face(100), curve_arrow(40, ORANGE), mark(face(100), 'circle', ORANGE), gap=10)
 # repeat: a speech bubble with a circular arrow
 eld-k-2-classroom-language/repeat = bubble(curve_arrow(50, ORANGE), size=240, color=BLUE)
 # partner: two chairs side by side at a small table
@@ -941,8 +933,8 @@ health-pe-3-5-game-strategies/open-space = raw(360, 260, '<rect x="5" y="5" widt
 health-pe-3-5-game-strategies/strategy = raw(340, 240, '<rect x="5" y="5" width="330" height="230" rx="10" fill="#fff" stroke="#1f2430" stroke-width="7"/>' + ''.join(f'<path d="M{x - 18} {y - 18} L{x + 18} {y + 18} M{x + 18} {y - 18} L{x - 18} {y + 18}" stroke="#3a7bd5" stroke-width="7" stroke-linecap="round"/>' for x, y in ((60, 60), (90, 170), (180, 100))) + ''.join(f'<circle cx="{x}" cy="{y}" r="20" fill="none" stroke="#e04848" stroke-width="7"/>' for x, y in ((260, 60), (280, 170))) + '<path d="M80 80 Q140 40 240 70" fill="none" stroke="#2f9e5b" stroke-width="5" stroke-dasharray="10 7"/><path d="M246 72 l-18 -10 l2 18 z" fill="#2f9e5b"/>')
 # teamwork: four arrows meeting at a star
 health-pe-3-5-game-strategies/teamwork = over(raw(320, 320, ''.join(f'<line x1="{160 + 150 * math.cos(a):.1f}" y1="{160 + 150 * math.sin(a):.1f}" x2="{160 + 64 * math.cos(a):.1f}" y2="{160 + 64 * math.sin(a):.1f}" stroke="{c}" stroke-width="12" stroke-linecap="round"/><path d="M{160 + 44 * math.cos(a):.1f} {160 + 44 * math.sin(a):.1f} L{160 + 76 * math.cos(a) - 18 * math.sin(a):.1f} {160 + 76 * math.sin(a) + 18 * math.cos(a):.1f} L{160 + 76 * math.cos(a) + 18 * math.sin(a):.1f} {160 + 76 * math.sin(a) - 18 * math.cos(a):.1f} Z" fill="{c}"/>' for a, c in zip([math.pi / 4 + k * math.pi / 2 for k in range(4)], (BLUE, ORANGE, GREEN, PURPLE)))), star(90))
-# germ: tiny dots spraying from a tissue
-health-pe-3-5-germs-and-disease-prevention/germ = raw(320, 240, '<path d="M20 200 L40 90 C60 70 90 70 110 90 L130 200 Z" fill="#fff" stroke="#1f2430" stroke-width="6" stroke-linejoin="round"/><path d="M50 92 C60 60 90 60 100 90" fill="none" stroke="#1f2430" stroke-width="5"/>' + ''.join(f'<circle cx="{150 + d * math.cos(a):.1f}" cy="{110 + d * math.sin(a):.1f}" r="{5 if i % 3 else 7}" fill="#2f9e5b"/>' for i, (d, a) in enumerate([(20 + (k * 37) % 150, -0.7 + ((k * 0.37) % 1.4)) for k in range(26)])))
+# germ: a hand with a magnifier showing tiny germs on it
+health-pe-3-5-germs-and-disease-prevention/germ = over(hand(220, 'open'), magnifier(120, inner=raw(70, 70, ''.join(f'<circle cx="{x}" cy="{y}" r="9" fill="#2f9e5b" stroke="#1f2430" stroke-width="3"/>' for x, y in ((18, 20), (48, 16), (30, 46), (56, 50))))), dx=60, dy=50)
 # bacteria: rod-shaped cells under a microscope circle
 health-pe-3-5-germs-and-disease-prevention/bacteria = raw(300, 300, '<circle cx="150" cy="150" r="140" fill="#fbfff4" stroke="#1f2430" stroke-width="10"/>' + ''.join(f'<rect x="{x}" y="{y}" width="60" height="22" rx="11" fill="#2f9e5b" stroke="#1f2430" stroke-width="3" transform="rotate({r} {x + 30} {y + 11})"/>' for x, y, r in ((60, 90, 20), (160, 70, -30), (110, 150, 70), (180, 170, 10), (70, 200, -15), (150, 230, 40), (200, 120, 80))))
 # virus: a round virus particle with spikes
@@ -979,8 +971,8 @@ health-pe-6-8-healthy-relationships/boundary = row(raw(30, 300, '<line x1="15" y
 health-pe-6-8-healthy-relationships/communication = row(bubble(dots(3, size=24), 150, BLUE), chain(2, 90), bubble(dots(3, size=24, color=ORANGE), 150, ORANGE, tail='right'), gap=0)
 # I-statement: a speech bubble beginning with I
 health-pe-6-8-healthy-relationships/i-statement = bubble(row(T('I', 110, BLUE), raw(150, 60, '<rect y="10" width="150" height="14" rx="7" fill="#8a8f9c"/><rect y="40" width="100" height="14" rx="7" fill="#8a8f9c"/>'), gap=20), w=340, h=200, color=BLUE)
-# respect: two hands meeting
-health-pe-6-8-healthy-relationships/respect = handshake(300)
+# respect: a handshake between two kind speech bubbles
+health-pe-6-8-healthy-relationships/respect = col(row(bubble(T('please', 30), 140, tail='left'), bubble(T('thanks', 30), 140, color=ORANGE, tail='right'), gap=40), handshake(280), gap=4)
 # conflict resolution: two arrows turning into a handshake shape
 health-pe-6-8-healthy-relationships/conflict-resolution = col(row(arrow(110, BLUE, sw=10), arrow(110, ORANGE, 'left', sw=10), gap=10), arrow(60, dir='down'), handshake(200), gap=6)
 # anxiety: a wavy line calming into a straight line
@@ -991,8 +983,8 @@ health-pe-6-8-personal-fitness-plans/fitt = row(*[box(T(c, 70, '#fff'), w=100, h
 health-pe-6-8-personal-fitness-plans/frequency = calendar(300, checks=(1, 3, 5, 8))
 # target heart rate: a heart rate gauge with a green zone
 health-pe-6-8-personal-fitness-plans/target-heart-rate = meter(300, 0.62, zone=(0.5, 0.75))
-# sportsmanship: two hand outlines meeting
-health-pe-6-8-sport-skills-and-rules/sportsmanship = row(raw(130, 140, f'<g transform="rotate(70 65 70)">{hand(130, "flat").svg}</g>'), raw(130, 140, f'<g transform="translate(130 0) scale(-1 1) rotate(70 65 70)">{hand(130, "flat").svg}</g>'), gap=0)
+# sportsmanship: a handshake beside a trophy: good play win or lose
+health-pe-6-8-sport-skills-and-rules/sportsmanship = row(handshake(250), trophy(110), gap=14)
 # transition: arrows reversing direction on a court
 health-pe-6-8-sport-skills-and-rules/transition = raw(400, 260, '<rect x="5" y="5" width="390" height="250" rx="10" fill="#f6dfbd" stroke="#1f2430" stroke-width="6"/><line x1="200" y1="5" x2="200" y2="255" stroke="#1f2430" stroke-width="5"/><circle cx="200" cy="130" r="40" fill="none" stroke="#1f2430" stroke-width="5"/><path d="M60 90 H300" stroke="#3a7bd5" stroke-width="12" stroke-linecap="round"/><path d="M330 90 l-34 -20 v40 z" fill="#3a7bd5"/><path d="M340 175 H100" stroke="#f08a24" stroke-width="12" stroke-linecap="round"/><path d="M70 175 l34 -20 v40 z" fill="#f08a24"/>')
 # nicotine: a vape pen with a warning sign
@@ -1019,12 +1011,6 @@ health-pe-k-2-feelings-and-friends/sorry = bubble(raw(140, 70, '<g transform="ro
 health-pe-k-2-food-groups/balanced-meal = pie(None, 300, parts=[0.25, 0.25, 0.25, 0.25], colors=[RED, GREEN, ORANGE, BLUE])
 # germs: tiny cartoon dots being washed away by bubbles
 health-pe-k-2-healthy-habits/germs = raw(360, 260, ''.join(f'<circle cx="{x}" cy="{y}" r="{r}" fill="#d6f0fb" stroke="#3a7bd5" stroke-width="4"/><path d="M{x - r * 0.5:.0f} {y - r * 0.4:.0f} a{r * 0.5:.0f} {r * 0.5:.0f} 0 0 1 {r * 0.5:.0f} -{r * 0.25:.0f}" fill="none" stroke="#fff" stroke-width="4"/>' for x, y, r in ((60, 180, 50), (140, 100, 40), (120, 210, 30), (210, 160, 44), (40, 80, 26))) + ''.join(f'<g><circle cx="{x}" cy="{y}" r="14" fill="#2f9e5b" stroke="#1f2430" stroke-width="3"/><circle cx="{x - 4}" cy="{y - 3}" r="2.5" fill="#1f2430"/><circle cx="{x + 4}" cy="{y - 3}" r="2.5" fill="#1f2430"/></g>' for x, y in ((290, 60), (330, 120), (280, 200), (320, 230))) + '<path d="M240 110 l30 -14 M246 160 l34 0 M240 210 l30 14" stroke="#8a8f9c" stroke-width="5" stroke-linecap="round"/>')
-# hop: one footprint with three arcs above it
-health-pe-k-2-locomotor-skills/hop = col(raw(220, 120, '<path d="M20 110 Q110 -20 200 110" fill="none" stroke="#3a7bd5" stroke-width="7" stroke-dasharray="14 9"/><path d="M50 110 Q110 20 170 110" fill="none" stroke="#3a7bd5" stroke-width="7" stroke-dasharray="14 9"/><path d="M80 110 Q110 60 140 110" fill="none" stroke="#3a7bd5" stroke-width="7" stroke-dasharray="14 9"/>'), footprint(150), gap=4)
-# skip: a circle of alternating footprints
-health-pe-k-2-locomotor-skills/skip = raw(340, 340, ''.join(f'<g transform="translate({170 + 130 * math.cos(a) - 20:.1f} {170 + 130 * math.sin(a) - 30:.1f}) rotate({math.degrees(a) + 180:.0f} 20 30)">{footprint(60, BLUE if k % 2 else ORANGE).svg}</g>' for k, a in enumerate([k * 2 * math.pi / 10 for k in range(10)])))
-# space: dots spread out on a gym floor
-health-pe-k-2-locomotor-skills/space = raw(400, 280, '<rect x="5" y="5" width="390" height="270" rx="12" fill="#f6dfbd" stroke="#1f2430" stroke-width="6"/>' + ''.join(f'<circle cx="{60 + c * 95 + (r % 2) * 40}" cy="{60 + r * 80}" r="18" fill="{(BLUE, ORANGE, GREEN, PURPLE)[(r + c) % 4]}" stroke="#1f2430" stroke-width="4"/>' for r in range(3) for c in range(4) if 60 + c * 95 + (r % 2) * 40 < 380))
 # stranger: a closed gate with a stop hand
 health-pe-k-2-safety/stranger = row(raw(240, 240, '<rect x="10" y="40" width="16" height="200" fill="#8a8f9c" stroke="#1f2430" stroke-width="4"/><rect x="214" y="40" width="16" height="200" fill="#8a8f9c" stroke="#1f2430" stroke-width="4"/>' + ''.join(f'<rect x="{34 + i * 30}" y="70" width="12" height="160" fill="#a0673a" stroke="#1f2430" stroke-width="3"/>' for i in range(6)) + '<rect x="26" y="90" width="188" height="14" fill="#a0673a" stroke="#1f2430" stroke-width="3"/><rect x="26" y="190" width="188" height="14" fill="#a0673a" stroke="#1f2430" stroke-width="3"/>'), stop_hand(150), gap=10)
 # underhand: an arc arrow starting low
@@ -1055,8 +1041,8 @@ library-6-8-is-it-reliable/reliable = browser(320, check_=True)
 library-6-8-is-it-reliable/misinformation = phone(260, inner=warning(110))
 # bias: a tilted scale
 library-6-8-is-it-reliable/bias = scale_icon(300, tilt=26)
-# lateral reading: several browser tabs side by side
-library-6-8-is-it-reliable/lateral-reading = row(*[browser(150, tabs=1) for _ in range(3)], gap=10)
+# lateral reading: one page with arrows out to two other pages to check it
+library-6-8-is-it-reliable/lateral-reading = row(browser(220), col(arrow(60, ORANGE, 'ur'), arrow(60, ORANGE, 'dr'), gap=30), col(browser(140, check_=True), browser(140, search=True), gap=16), gap=8)
 # fact-check: a magnifying glass over a check mark
 library-6-8-is-it-reliable/fact-check = row(magnifier(170), check(120), gap=-30)
 # research process: a loop of four arrows
@@ -1089,8 +1075,8 @@ math-1-adding-tens-and-ones/mental-math = cloud(320, inner=M('40 + 30', 64))
 math-1-addition-and-subtraction-stories/word-problem = card(col(raw(150, 60, '<rect y="0" width="150" height="12" rx="6" fill="#8a8f9c"/><rect y="24" width="130" height="12" rx="6" fill="#8a8f9c"/><rect y="48" width="100" height="12" rx="6" fill="#8a8f9c"/>'), T('?', 100, ORANGE), gap=10), 230, 280, BLUE)
 # add: 8 ducks and 5 ducks joining
 math-1-addition-and-subtraction-stories/add = row(objects(8, duck, cols=4, size=50), M('+', 70), objects(5, duck, cols=3, size=50), gap=14)
-# subtract: 15 balloons with 6 floating away
-math-1-addition-and-subtraction-stories/subtract = col(row(*[balloon(50, RED) for _ in range(9)], gap=4), row(Item(260, 10, ''), *[balloon(44, RED) for _ in range(3)], gap=4), row(Item(200, 10, ''), *[balloon(44, RED) for _ in range(3)], gap=4), gap=4) if 0 else row(objects(9, balloon, cols=3, size=56, color=RED, gap=6), col(arrow(60, dir='up'), objects(6, balloon, cols=3, size=50, color=ORANGE, gap=6), gap=6), gap=24)
+# subtract: nine balloons, three float away, six are left: 9 − 3 = 6
+math-1-addition-and-subtraction-stories/subtract = col(row(Item(230, 10, ''), *[raw(b.w, b.h, f'<g opacity="0.35">{b.svg}</g>') for b in [balloon(46, RED)] * 3], arrow(40, GRAY, 'up'), gap=8), row(*[balloon(54, RED) for _ in range(6)], gap=8), M('9 − 3 = 6', 70), gap=12)
 # sum: 9 + 4 = 13 with 13 circled
 math-1-addition-and-subtraction-stories/sum = row(M('9 + 4 =', 80), mark(M('13', 80), 'circle', RED), gap=14)
 # difference: 12 − 5 = 7 with 7 circled
@@ -1153,10 +1139,10 @@ math-1-picture-graphs-and-tallies/fewest = bars([5, 2, 4], size=300, colors=[BLU
 math-1-telling-time-to-the-half-hour/clock = clock(300, 3, 0)
 # hour hand: a clock with the short hand on 7
 math-1-telling-time-to-the-half-hour/hour-hand = clock(300, 7, 0, hl='h')
-# minute hand: a clock with the long hand on 12
-math-1-telling-time-to-the-half-hour/minute-hand = clock(300, 12, 0, hl='m')
-# o'clock: a clock face showing 12 o'clock
-math-1-telling-time-to-the-half-hour/o-clock = clock(300, 12, 0)
+# minute hand: a clock at 9:00 with the long minute hand picked out
+math-1-telling-time-to-the-half-hour/minute-hand = clock(300, 9, 0, hl='m')
+# o'clock: a clock at 4:00: the minute hand points straight up to 12
+math-1-telling-time-to-the-half-hour/o-clock = clock(300, 4, 0, hl='m')
 # half past: a clock showing 8:30
 math-1-telling-time-to-the-half-hour/half-past = clock(300, 8, 30)
 # digital clock: a digital clock reading 4:30
@@ -1211,8 +1197,8 @@ math-10-coordinate-geometry/slope-criteria = plot(lambda x: 0.8 * x, lambda x: -
 math-10-coordinate-geometry/coordinate-proof = plot(size=320, xr=(0, 8), yr=(0, 8), grid_=True, segs=[((1, 1), (5, 1), BLUE, False), ((5, 1), (7, 5), BLUE, False), ((7, 5), (3, 5), BLUE, False), ((3, 5), (1, 1), BLUE, False)], points=[(1, 1, RED), (5, 1, RED), (7, 5, RED), (3, 5, RED)])
 # density: a square full of dots
 math-10-modeling-with-geometry/density = raw(300, 300, '<rect x="10" y="10" width="280" height="280" rx="10" fill="#fff" stroke="#1f2430" stroke-width="6"/>' + ''.join(f'<circle cx="{24 + c * 21 + (r % 2) * 10}" cy="{24 + r * 21}" r="7" fill="#3a7bd5"/>' for r in range(13) for c in range(12)))
-# optimization: several boxes of different shapes
-math-10-modeling-with-geometry/optimization = row(solid('cube', 110, BLUE), solid('box', 140, ORANGE), solid('cylinder', 110, GREEN), gap=14, align='b')
+# optimization: three cans that hold the same amount; the one that uses the least metal gets a star
+math-10-modeling-with-geometry/optimization = col(T('same amount inside', 32, GRAY), raw(420, 250, ''.join(f'<rect x="{cx - w / 2}" y="{232 - h}" width="{w}" height="{h}" fill="{c}" stroke="#1f2430" stroke-width="5"/><path d="M{cx - w / 2} 232 A{w / 2} {w / 6:.1f} 0 0 0 {cx + w / 2} 232" fill="{c}" stroke="#1f2430" stroke-width="5"/><ellipse cx="{cx}" cy="{232 - h}" rx="{w / 2}" ry="{w / 6:.1f}" fill="#fff" stroke="#1f2430" stroke-width="5"/>' for cx, w, h, c in ((60, 44, 200, '#c9ced8'), (210, 96, 96, '#d3f0de'), (350, 130, 46, '#c9ced8'))) + g(star(64), 178, 40)), T('least metal', 32, GREEN), gap=6)
 # blueprint: a floor plan with a scale bar
 math-10-modeling-with-geometry/blueprint = raw(400, 300, '<rect x="5" y="5" width="390" height="290" fill="#2c5ea8"/>' + '<path d="M40 30 H360 V220 H40 Z M200 30 V130 M40 130 H250 M300 130 V220" fill="none" stroke="#fff" stroke-width="6"/><path d="M200 100 A30 30 0 0 1 230 130" fill="none" stroke="#fff" stroke-width="3"/><line x1="40" y1="260" x2="200" y2="260" stroke="#fff" stroke-width="5"/>' + ''.join(f'<line x1="{x}" y1="250" x2="{x}" y2="270" stroke="#fff" stroke-width="4"/>' for x in (40, 120, 200)) + '<text x="260" y="270" font-family="Segoe UI" font-size="24" fill="#fff">1 m</text>')
 # approximate: a tree trunk beside a cylinder
@@ -1243,20 +1229,20 @@ math-10-proofs-and-constructions/perpendicular-bisector = raw(380, 320, '<line x
 math-10-proofs-and-constructions/alternate-interior-angles = raw(380, 300, '<path d="M228.6 90 L188.6 90 A40 40 0 0 0 207 123.6 Z" fill="#f08a24"/><path d="M151.4 210 L191.4 210 A40 40 0 0 0 173 176.4 Z" fill="#f08a24"/><line x1="10" y1="90" x2="370" y2="90" stroke="#1f2430" stroke-width="7"/><line x1="10" y1="210" x2="370" y2="210" stroke="#1f2430" stroke-width="7"/><line x1="100" y1="290" x2="280" y2="10" stroke="#3a7bd5" stroke-width="7"/>')
 # parallelogram: a parallelogram with diagonals
 math-10-proofs-and-constructions/parallelogram = raw(380, 240, '<path d="M90 20 H370 L290 220 H10 Z" fill="#d6e6fb" stroke="#1f2430" stroke-width="6" stroke-linejoin="round"/><line x1="90" y1="20" x2="290" y2="220" stroke="#f08a24" stroke-width="5" stroke-dasharray="14 8"/><line x1="370" y1="20" x2="10" y2="220" stroke="#f08a24" stroke-width="5" stroke-dasharray="14 8"/><circle cx="190" cy="120" r="9" fill="#e04848"/>')
-# sine: a right triangle with the opposite side and hypotenuse marked
-math-10-right-triangle-trigonometry/sine = triangle(320, pts=((10, 150), (150, 150), (150, 20)), right_at=1, hl_side=[1, 2], sides=['', 'opp', 'hyp'])
-# cosine: a ramp triangle with the adjacent side marked
-math-10-right-triangle-trigonometry/cosine = triangle(320, pts=((10, 150), (150, 150), (150, 20)), right_at=1, hl_side=[0, 2], sides=['adj', '', 'hyp'])
-# tangent: a right triangle with legs marked
-math-10-right-triangle-trigonometry/tangent = triangle(320, pts=((10, 150), (150, 150), (150, 20)), right_at=1, hl_side=[0, 1], sides=['adj', 'opp', ''])
+# sine: a right triangle with angle θ marked; the opposite side and hypotenuse highlighted
+math-10-right-triangle-trigonometry/sine = triangle(320, pts=((10, 150), (150, 150), (150, 20)), right_at=1, hl_side=[1, 2], sides=['', 'opp', 'hyp'], theta=0)
+# cosine: a right triangle with angle θ marked; the adjacent side and hypotenuse highlighted
+math-10-right-triangle-trigonometry/cosine = triangle(320, pts=((10, 150), (150, 150), (150, 20)), right_at=1, hl_side=[0, 2], sides=['adj', '', 'hyp'], theta=0)
+# tangent: a right triangle with angle θ marked; the opposite and adjacent sides highlighted
+math-10-right-triangle-trigonometry/tangent = triangle(320, pts=((10, 150), (150, 150), (150, 20)), right_at=1, hl_side=[0, 1], sides=['adj', 'opp', ''], theta=0)
 # angle of elevation: a line up to a kite with an angle marked
 math-10-right-triangle-trigonometry/angle-of-elevation = raw(400, 300, '<line x1="10" y1="280" x2="390" y2="280" stroke="#1f2430" stroke-width="6"/><line x1="40" y1="280" x2="320" y2="70" stroke="#3a7bd5" stroke-width="5" stroke-dasharray="14 8"/><path d="M120 280 A80 80 0 0 0 104 232" fill="none" stroke="#e04848" stroke-width="6"/><path d="M320 30 L350 70 L320 110 L290 70 Z" fill="#e04848" stroke="#1f2430" stroke-width="5"/><path d="M320 30 V110 M290 70 H350" stroke="#1f2430" stroke-width="3"/><path d="M320 110 C310 140 330 160 316 190" fill="none" stroke="#1f2430" stroke-width="3"/>')
 # SOH CAH TOA: the letters SOH CAH TOA
 math-10-right-triangle-trigonometry/soh-cah-toa = col(T('SOH', 100, BLUE), T('CAH', 100, ORANGE), T('TOA', 100, GREEN), gap=0)
 # inverse trig function: sin⁻¹(0.5) = 30°
 math-10-right-triangle-trigonometry/inverse-trig-function = M('sin⁻¹(0.5) = 30°', 60)
-# rigid motion: a triangle and its rotated copy
-math-10-rigid-motions-and-congruence/rigid-motion = row(triangle(150, pts=((10, 140), (140, 140), (50, 20)), color=BLUE), curve_arrow(40, ORANGE), raw(150, 150, '<g transform="rotate(90 75 75)"><polygon points="10,140 140,140 50,20" fill="#fde3c8" stroke="#1f2430" stroke-width="5" stroke-linejoin="round"/></g>'), gap=10)
+# rigid motion: a triangle and the same triangle turned, same size and shape
+math-10-rigid-motions-and-congruence/rigid-motion = [row(t, curve_arrow(40, ORANGE), raw(t.w, t.h, f'<g transform="rotate(90 {t.w / 2:.1f} {t.h / 2:.1f})">{t.svg}</g>'), gap=24) for t in [triangle(150, pts=((10, 140), (140, 140), (50, 20)), color=BLUE)]][0]
 # congruent: two matching triangles with tick marks
 math-10-rigid-motions-and-congruence/congruent = row(triangle(170, pts=((10, 150), (160, 150), (60, 20)), ticks=[1, 2, 3]), triangle(170, pts=((10, 150), (160, 150), (60, 20)), ticks=[1, 2, 3], color=ORANGE), gap=20)
 # SAS: two triangles with two sides and an angle marked
@@ -1323,10 +1309,10 @@ math-11-exponential-and-logarithmic-functions/e = M('e ≈ 2.718', 100, hl={'e':
 math-11-exponential-and-logarithmic-functions/compound-interest = plot(lambda x: 1.5 * 1.25 ** x, size=320, xr=(0, 10), yr=(0, 15), colors=(GREEN,), points=[(x, 1.5 * 1.25 ** x, GREEN) for x in (0, 2, 4, 6, 8, 10)])
 # half-life: a curve halving every step
 math-11-exponential-and-logarithmic-functions/half-life = plot(lambda x: 8 * 0.5 ** x, size=320, xr=(0, 5), yr=(0, 9), colors=(PURPLE,), points=[(x, 8 * 0.5 ** x, RED) for x in range(5)], hlines=[4, 2, 1])
-# logarithmic scale: an axis labeled 1, 10, 100, 1000
-math-11-exponential-and-logarithmic-functions/logarithmic-scale = raw(420, 100, '<line x1="10" y1="40" x2="410" y2="40" stroke="#1f2430" stroke-width="6"/>' + ''.join(f'<line x1="{30 + i * 120}" y1="24" x2="{30 + i * 120}" y2="56" stroke="#1f2430" stroke-width="5"/><text x="{30 + i * 120}" y="92" font-family="Cambria Math" font-size="32" font-weight="700" text-anchor="middle" fill="#1f2430">{v}</text>' for i, v in enumerate(('1', '10', '100', '1000'))) + ''.join(f'<line x1="{30 + i * 120 + 120 * math.log10(k):.1f}" y1="32" x2="{30 + i * 120 + 120 * math.log10(k):.1f}" y2="48" stroke="#8a8f9c" stroke-width="3"/>' for i in range(3) for k in range(2, 10)))
-# remainder theorem: f(x) ÷ (x − 2)
-math-11-polynomial-functions/remainder-theorem = M('f(x) ÷ (x − 2)', 76)
+# logarithmic scale: a log scale: 1, 10, 100, 1000 equally spaced, each step ×10
+math-11-exponential-and-logarithmic-functions/logarithmic-scale = raw(440, 170, '<line x1="10" y1="110" x2="430" y2="110" stroke="#1f2430" stroke-width="6"/>' + ''.join(f'<line x1="{40 + i * 120}" y1="94" x2="{40 + i * 120}" y2="126" stroke="#1f2430" stroke-width="5"/><text x="{40 + i * 120}" y="162" font-family="Cambria Math" font-size="32" font-weight="700" text-anchor="middle" fill="#1f2430">{v}</text>' for i, v in enumerate(('1', '10', '100', '1000'))) + ''.join(f'<path d="M{48 + i * 120} 90 Q{100 + i * 120} 34 {150 + i * 120} 86" fill="none" stroke="#f08a24" stroke-width="5"/><path d="M{154 + i * 120} 92 l-4 -18 l-12 10 z" fill="#f08a24"/><text x="{100 + i * 120}" y="40" font-family="Cambria Math" font-size="28" font-weight="700" text-anchor="middle" fill="#f08a24">×10</text>' for i in range(3)))
+# remainder theorem: divide f(x) by (x − 2); the remainder equals f(2)
+math-11-polynomial-functions/remainder-theorem = col(M('f(x) ÷ (x − 2)', 60, hl={'2': RED}), M('remainder = f(2)', 60, hl={'2': RED}), gap=10)
 # end behavior: a curve with both ends rising
 math-11-polynomial-functions/end-behavior = plot(lambda x: 0.12 * x ** 4 - 0.9 * x * x + 0.5, size=320, xr=(-4, 4), yr=(-3, 6), colors=(BLUE,))
 # multiplicity: a curve bouncing off the x-axis
@@ -1343,8 +1329,8 @@ math-11-rational-expressions-and-equations/rational-expression = eq(('x + 1', 'x
 math-11-rational-expressions-and-equations/asymptote = plot(lambda x: 1 / (x - 1) + 1 if abs(x - 1) > 0.12 else None, size=320, xr=(-4, 5), yr=(-4, 5), vlines=[1], hlines=[1])
 # excluded value: x ≠ 2
 math-11-rational-expressions-and-equations/excluded-value = M('x ≠ 2', 120, hl={'≠': RED})
-# least common denominator: fractions with matching bottoms
-math-11-rational-expressions-and-equations/least-common-denominator = eq(('1', '4'), '+', ('3', '4'), size=90) if 0 else row(F('1', '4', 100, hd=ORANGE), M('+', 80), F('3', '4', 100, hd=ORANGE), gap=20)
+# least common denominator: 1/4 + 1/6: list multiples of 4 and 6; the first shared one, 12, is the LCD
+math-11-rational-expressions-and-equations/least-common-denominator = col(row(F('1', '4', 80, hd=ORANGE), M('+', 64), F('1', '6', 80, hd=BLUE), gap=16), M('4: 4, 8, 12', 44, hl={'12': RED}), M('6: 6, 12', 44, hl={'12': RED}), T('LCD = 12', 44, RED), gap=8)
 # extraneous solution: a crossed-out value
 math-11-rational-expressions-and-equations/extraneous-solution = M('x = 5', 120, strike='x = 5')
 # hole: a line with an open circle
@@ -1373,8 +1359,8 @@ math-11-statistical-inference/observational-study = col(eye(150), grid([dot(30, 
 math-11-statistical-inference/z-score = plot(bell(), size=320, xr=(-4, 4), yr=(-0.3, 5), axes=False, vlines=[0], segs=[((2, 0), (2, 3.2), RED, False)], texts=[(2, 3.9, '+2', RED)])
 # sampling distribution: a tall narrow bell curve
 math-11-statistical-inference/sampling-distribution = plot(bell(0, 0.45), bell(0, 1.2), size=320, xr=(-4, 4), yr=(-0.3, 5), axes=False, colors=(BLUE, GRAY))
-# unit circle: a circle with radius 1 and labeled angles
-math-11-trigonometric-functions/unit-circle = raw(320, 320, '<line x1="10" y1="160" x2="310" y2="160" stroke="#1f2430" stroke-width="4"/><line x1="160" y1="10" x2="160" y2="310" stroke="#1f2430" stroke-width="4"/><circle cx="160" cy="160" r="120" fill="none" stroke="#3a7bd5" stroke-width="7"/><line x1="160" y1="160" x2="264" y2="100" stroke="#f08a24" stroke-width="6"/><circle cx="264" cy="100" r="9" fill="#e04848"/><path d="M200 160 A40 40 0 0 0 195 140" fill="none" stroke="#e04848" stroke-width="5"/><text x="205" y="120" font-family="Cambria Math" font-size="30" font-weight="700" fill="#f08a24">1</text>' + ''.join(f'<text x="{x}" y="{y}" font-family="Cambria Math" font-size="26" font-weight="700" text-anchor="middle" fill="#1f2430">{t}</text>' for x, y, t in ((300, 190, '0°'), (190, 30, '90°'), (26, 150, '180°'), (196, 306, '270°'))))
+# unit circle: a unit circle with radius 1 and the angles 0°, 90°, 180°, 270° outside it
+math-11-trigonometric-functions/unit-circle = raw(380, 320, g(raw(320, 320, '<line x1="10" y1="160" x2="310" y2="160" stroke="#1f2430" stroke-width="4"/><line x1="160" y1="10" x2="160" y2="310" stroke="#1f2430" stroke-width="4"/><circle cx="160" cy="160" r="120" fill="none" stroke="#3a7bd5" stroke-width="7"/><line x1="160" y1="160" x2="264" y2="100" stroke="#f08a24" stroke-width="6"/><circle cx="264" cy="100" r="9" fill="#e04848"/><path d="M200 160 A40 40 0 0 0 195 140" fill="none" stroke="#e04848" stroke-width="5"/><text x="205" y="120" font-family="Cambria Math" font-size="30" font-weight="700" fill="#f08a24">1</text>' + ''.join(f'<text x="{x}" y="{y}" font-family="Cambria Math" font-size="26" font-weight="700" text-anchor="middle" fill="#1f2430">{t}</text>' for x, y, t in ((300, 190, '0°'), (190, 30, '90°'), (196, 306, '270°')))), 60, 0) + '<text x="94" y="192" font-family="Cambria Math" font-size="26" font-weight="700" text-anchor="end" fill="#1f2430">180°</text>')
 # period: one wave cycle bracketed
 math-11-trigonometric-functions/period = wave(380, 2, marks='period')
 # amplitude: a sine wave with its height marked
@@ -1383,8 +1369,8 @@ math-11-trigonometric-functions/amplitude = wave(380, 2, marks='amplitude')
 math-11-trigonometric-functions/midline = wave(380, 2, midline=True)
 # periodic function: a repeating wave
 math-11-trigonometric-functions/periodic-function = wave(380, 3)
-# phase shift: two waves offset horizontally
-math-11-trigonometric-functions/phase-shift = wave(380, 2, second=(1.0, 0.25, ORANGE))
+# phase shift: two waves, one slid sideways; an arrow shows the shift between their peaks
+math-11-trigonometric-functions/phase-shift = over(wave(400, 2, second=(1.0, -math.pi / 2, ORANGE)), raw(400, 200, '<path d="M52 14 H86" stroke="#e04848" stroke-width="5"/><path d="M100 14 l-16 -9 v18 z" fill="#e04848"/>'))
 # critical point: a curve with flat points marked
 math-12-applications-of-derivatives/critical-point = plot(lambda x: 0.15 * x ** 3 - 1.4 * x, size=320, xr=(-5, 5), yr=(-5, 5), points=[(-math.sqrt(1.4 / 0.45), 0.15 * (-math.sqrt(1.4 / 0.45)) ** 3 + 1.4 * math.sqrt(1.4 / 0.45), RED), (math.sqrt(1.4 / 0.45), 0.15 * math.sqrt(1.4 / 0.45) ** 3 - 1.4 * math.sqrt(1.4 / 0.45), RED)], segs=[((-2.8, 2.9), (-0.7, 2.9), RED, True), ((0.7, -2.9), (2.8, -2.9), RED, True)])
 # concavity: a cup-up and a cup-down curve
@@ -1401,8 +1387,8 @@ math-12-applications-of-integrals/disc-method = raw(380, 260, '<line x1="10" y1=
 math-12-applications-of-integrals/washer-method = raw(300, 300, '<circle cx="150" cy="150" r="130" fill="#d6e6fb" stroke="#3a7bd5" stroke-width="7"/><circle cx="150" cy="150" r="60" fill="#fff" stroke="#3a7bd5" stroke-width="7"/><line x1="150" y1="150" x2="280" y2="150" stroke="#f08a24" stroke-width="5"/><line x1="150" y1="150" x2="150" y2="90" stroke="#2f9e5b" stroke-width="5"/><text x="226" y="140" font-family="Cambria Math" font-size="30" font-weight="700" fill="#f08a24">R</text><text x="156" y="128" font-family="Cambria Math" font-size="30" font-weight="700" fill="#2f9e5b">r</text>')
 # net change: area above and below an axis
 math-12-applications-of-integrals/net-change = plot(lambda x: 2.5 * math.sin(x * 0.9), size=320, xr=(0, 7), yr=(-4, 4), fill_between=(lambda x: 2.5 * math.sin(x * 0.9), lambda x: 0, 0, 7))
-# displacement: a path that returns to start
-math-12-applications-of-integrals/displacement = raw(360, 270, '<path d="M60 210 C40 60 200 20 300 80 C360 120 300 220 200 200 C150 190 110 200 80 206" fill="none" stroke="#3a7bd5" stroke-width="7" stroke-dasharray="14 8"/><path d="M76 207 l24 -14 l2 24 z" fill="#3a7bd5"/><circle cx="60" cy="210" r="18" fill="#e04848" stroke="#1f2430" stroke-width="4"/><text x="60" y="262" font-family="Segoe UI" font-size="30" font-weight="700" text-anchor="middle" fill="#e04848">start</text>')
+# displacement: a curvy path from start to end; a straight red arrow is the displacement
+math-12-applications-of-integrals/displacement = raw(360, 270, '<path d="M60 210 C40 60 200 20 300 80 C340 110 330 170 290 200" fill="none" stroke="#3a7bd5" stroke-width="7" stroke-dasharray="14 8" stroke-linecap="round"/><line x1="60" y1="210" x2="266" y2="203" stroke="#e04848" stroke-width="8"/><path d="M290 202 l-26 -12 v24 z" fill="#e04848"/><circle cx="60" cy="210" r="10" fill="#1f2430"/><text x="175" y="250" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="700" text-anchor="middle" fill="#e04848">displacement</text><text x="170" y="34" font-family="Segoe UI, Arial, sans-serif" font-size="26" font-weight="700" text-anchor="middle" fill="#3a7bd5">path</text>')
 # chi-square test: χ² with bar pairs
 math-12-chi-square-and-regression-inference/chi-square-test = col(M('χ²', 110), bars([5, 4, 3, 6, 4, 2], size=280, colors=[BLUE, ORANGE] * 3), gap=0)
 # expected count: a table with expected values
@@ -1465,22 +1451,22 @@ math-12-functions-and-their-graphs/horizontal-asymptote = plot(lambda x: 2 - 3 *
 math-12-functions-and-their-graphs/even-function = plot(lambda x: 0.25 * x ** 4 - 1.5 * x * x + 1, size=320, xr=(-3, 3), yr=(-3, 4), vlines=[0])
 # odd function: a graph symmetric about the origin
 math-12-functions-and-their-graphs/odd-function = plot(lambda x: 0.15 * x ** 3 - 1.2 * x, size=320, xr=(-5, 5), yr=(-5, 5), points=[(0, 0, RED)])
-# interval of increase: a curve rising after a low point
-math-12-functions-and-their-graphs/interval-of-increase = plot(lambda x: 0.4 * (x + 1) ** 2 - 3, size=320, xr=(-5, 4), yr=(-4, 6), points=[(-1, -3, RED)], segs=[((-1, -3.6), (3.2, -3.6), GREEN, False)])
+# interval of increase: a curve going down then up; the x-values where it rises are marked by a green arrow
+math-12-functions-and-their-graphs/interval-of-increase = plot((lambda x: 0.4 * (x + 1) ** 2 - 3, -5, -1), (lambda x: 0.4 * (x + 1) ** 2 - 3, -1, 4), size=320, xr=(-5, 4), yr=(-4, 6), colors=(GRAY, GREEN), points=[(-1, -3, RED)], vlines=(-1,), arrows_=[(-1, 0, 3.9, 0, GREEN)])
 # transformation: a curve and its stretched copy
 math-12-functions-and-their-graphs/transformation = plot(lambda x: 0.3 * x * x, lambda x: 0.9 * x * x, size=320, xr=(-4, 4), yr=(-1, 6), colors=(BLUE, ORANGE))
 # continuous: an unbroken curve
 math-12-limits-and-continuity/continuous = plot(lambda x: 1.6 * math.sin(0.9 * x) + 0.2 * x, size=320, xr=(-5, 5), yr=(-4, 4), colors=(GREEN,), sw=8)
-# discontinuity: a graph with a jump
-math-12-limits-and-continuity/discontinuity = plot(lambda x: (0.5 * x + 2) if x < 1 else (0.5 * x - 1.5), size=320, xr=(-5, 5), yr=(-4, 5), points=[(1, -1, BLUE)], open_points=[(1, 2.5)])
+# discontinuity: a graph that jumps at x = 1: an open dot on the left piece, a closed dot on the right piece
+math-12-limits-and-continuity/discontinuity = plot((lambda x: 0.5 * x + 2, -5, 1), (lambda x: 0.5 * x - 1.5, 1, 5), size=320, xr=(-5, 5), yr=(-4, 5), colors=(BLUE, BLUE), points=[(1, -1, BLUE)], open_points=[(1, 2.5)])
 # one-sided limit: an arrow approaching from the left
 math-12-limits-and-continuity/one-sided-limit = plot(lambda x: 0.4 * x * x - 1 if x < 2 else None, size=320, xr=(-3, 4), yr=(-2, 4), open_points=[(2, 0.6)], arrows_=[(0.4, -1.5, 1.7, -1.5, RED)])
 # intermediate value theorem: a curve crossing a horizontal line
 math-12-limits-and-continuity/intermediate-value-theorem = plot(lambda x: 0.12 * x ** 3 - 0.5 * x + 0.4, size=320, xr=(-4, 4), yr=(-5, 5), hlines=[1.2], points=[(-3, 0.12 * -27 + 1.5 + 0.4, BLUE), (3, 0.12 * 27 - 1.5 + 0.4, BLUE)])
 # infinite limit: a curve shooting upward near an asymptote
 math-12-limits-and-continuity/infinite-limit = plot(lambda x: 1 / (x - 1) ** 2 if abs(x - 1) > 0.2 else None, size=320, xr=(-3, 5), yr=(-1, 8), vlines=[1])
-# squeeze theorem: a curve between two others meeting at a point
-math-12-limits-and-continuity/squeeze-theorem = plot(lambda x: x * x * 0.5, lambda x: -x * x * 0.5, lambda x: x * x * 0.5 * math.sin(3 * x), size=320, xr=(-3, 3), yr=(-4, 4), colors=(GRAY, GRAY, BLUE), points=[(0, 0, RED)])
+# squeeze theorem: a wiggly curve trapped between two curves that meet at the same point
+math-12-limits-and-continuity/squeeze-theorem = plot(lambda x: 0.5 * x * x, lambda x: -0.5 * x * x, lambda x: 0.5 * x * x * math.sin(2.5 / x) if x else 0, size=320, xr=(-2.5, 2.5), yr=(-3.5, 3.5), colors=(GRAY, GRAY, BLUE), points=[(0, 0, RED)])
 # limit: a curve with an arrow to a point
 math-12-limits-and-rates-of-change/limit = plot(lambda x: 0.3 * x * x + 0.5 if abs(x - 2) > 0.01 else None, size=320, xr=(-1, 5), yr=(-1, 6), points=[(2, 1.7, RED)], arrows_=[(0.2, -0.4, 1.6, -0.4, ORANGE), (3.8, -0.4, 2.4, -0.4, ORANGE)], vlines=[2])
 # secant line: a curve with a line through two points
@@ -1513,8 +1499,8 @@ math-12-polar-coordinates-and-complex-plane/modulus = raw(320, 320, '<line x1="1
 math-12-polar-coordinates-and-complex-plane/argument = raw(320, 320, '<line x1="10" y1="200" x2="310" y2="200" stroke="#1f2430" stroke-width="4"/><line x1="80" y1="10" x2="80" y2="310" stroke="#1f2430" stroke-width="4"/><line x1="80" y1="200" x2="250" y2="60" stroke="#8a8f9c" stroke-width="6"/><path d="M80 200 L180 200 A100 100 0 0 0 157 136 Z" fill="#f08a24" fill-opacity="0.5" stroke="#f08a24" stroke-width="6"/><text x="190" y="176" font-family="Cambria Math" font-size="40" font-weight="700" fill="#f08a24">θ</text>')
 # rose curve: a three-petal curve
 math-12-polar-coordinates-and-complex-plane/rose-curve = raw(320, 320, '<path d="' + ' '.join(f'{"M" if i == 0 else "L"}{160 + 140 * math.cos(3 * t) * math.cos(t):.1f} {160 - 140 * math.cos(3 * t) * math.sin(t):.1f}' for i, t in enumerate([k * math.pi / 180 for k in range(181)])) + ' Z" fill="#f6c6dc" stroke="#e05a9a" stroke-width="6" stroke-linejoin="round"/>')
-# De Moivre's theorem: rⁿ(cos nθ + i sin nθ)
-math-12-polar-coordinates-and-complex-plane/de-moivre-s-theorem = M('rⁿ(cos nθ + i sin nθ)', 56)
+# De Moivre's theorem: De Moivre's theorem on two lines
+math-12-polar-coordinates-and-complex-plane/de-moivre-s-theorem = col(M('[r(cos θ + i sin θ)]ⁿ', 46), M('= rⁿ(cos nθ + i sin nθ)', 46), gap=10, align='l')
 # random variable: X = number of heads
 math-12-probability-and-random-variables/random-variable = row(coin(110, 'H'), coin(110, 'T'), coin(110, 'H'), M('X = 2', 70, color=BLUE), gap=16)
 # expected value: E(X) = Σ x·p
@@ -1529,8 +1515,8 @@ math-12-sampling-and-experiments/control-group = row(box(dots(6, 3, 28, BLUE), c
 math-12-sampling-and-experiments/confounding-variable = raw(380, 280, '<rect x="130" y="10" width="120" height="70" rx="12" fill="#fde97a" stroke="#1f2430" stroke-width="5"/><text x="190" y="58" font-family="Segoe UI" font-size="40" font-weight="700" text-anchor="middle" fill="#1f2430">?</text><rect x="10" y="190" width="120" height="70" rx="12" fill="#d6e6fb" stroke="#3a7bd5" stroke-width="5"/><rect x="250" y="190" width="120" height="70" rx="12" fill="#fde3c8" stroke="#f08a24" stroke-width="5"/><path d="M160 80 L90 180 M220 80 L290 180" stroke="#1f2430" stroke-width="6"/><path d="M84 190 l2 -26 l20 12 z M296 190 l-2 -26 l-20 12 z" fill="#1f2430"/><path d="M130 225 H250" stroke="#8a8f9c" stroke-width="5" stroke-dasharray="10 8"/>')
 # stratified random sample: layers with dots picked from each
 math-12-sampling-and-experiments/stratified-random-sample = col(*[box(row(*[dot(28, c if i == k else soft(c)) for i in range(6)], gap=10), color=c, fill=soft(c), p=12) for k, c in ((2, BLUE), (4, ORANGE), (1, GREEN))], gap=8)
-# response bias: a speech bubble with a slanted arrow
-math-12-sampling-and-experiments/response-bias = bubble(raw(120, 120, '<path d="M10 110 L110 20" stroke="#e04848" stroke-width="10" stroke-linecap="round"/><path d="M118 12 l-30 6 l20 22 z" fill="#e04848"/>'), size=240, color=BLUE)
+# response bias: a leading question gets lopsided answers: 9 yes, 1 no
+math-12-sampling-and-experiments/response-bias = col(bubble(T("You love it, right?", 30), 300, tail='left'), bars([9, 1], labels=['yes', 'no'], size=260, colors=[GREEN, RED]), gap=10)
 # statistic: x̄
 math-12-sampling-distributions/statistic = M('x̄', 240, color=BLUE)
 # parameter: μ
@@ -1541,8 +1527,8 @@ math-12-sampling-distributions/central-limit-theorem = row(bars([7, 5, 3, 2, 1, 
 math-12-sampling-distributions/standard-error = plot(bell(0, 0.5), size=320, xr=(-4, 4), yr=(-0.3, 5), axes=False, shade=(bell(0, 0.5), -4, 4))
 # unbiased estimator: a bell centered on a target line
 math-12-sampling-distributions/unbiased-estimator = plot(bell(), size=320, xr=(-4, 4), yr=(-0.3, 5), axes=False, vlines=[0], shade=(bell(), -4, 4))
-# sampling variability: several dots scattered around a line
-math-12-sampling-distributions/sampling-variability = raw(340, 300, '<line x1="170" y1="10" x2="170" y2="290" stroke="#e04848" stroke-width="7" stroke-dasharray="14 9"/>' + ''.join(f'<circle cx="{170 + dx}" cy="{36 + i * 38}" r="17" fill="#3a7bd5" stroke="#1f2430" stroke-width="3"/>' for i, dx in enumerate((-60, 40, -20, 90, -110, 14, 60))))
+# sampling variability: three samples from the same group give three different means (red lines)
+math-12-sampling-distributions/sampling-variability = col(dotplot((2, 3, 4, 4, 5, 6), 340, a=0, b=10, center=4), dotplot((4, 5, 5, 6, 6, 7), 340, a=0, b=10, center=5.5), dotplot((3, 4, 5, 5, 6, 7), 340, a=0, b=10, center=5), gap=4)
 # derivative: a tangent line on a curve
 math-12-the-derivative/derivative = plot(lambda x: 0.25 * x * x, lambda x: 0.5 * 2 * (x - 2) + 1, size=320, xr=(-4, 5), yr=(-2, 6), colors=(BLUE, ORANGE), points=[(2, 1, RED)])
 # power rule: d/dx xⁿ = nxⁿ⁻¹
@@ -1551,8 +1537,8 @@ math-12-the-derivative/power-rule = M('d/dx xⁿ = nxⁿ⁻¹', 70)
 math-12-the-derivative/chain-rule = M("f(g(x))′ = f′(g(x))·g′(x)", 44)
 # product rule: (uv)′ = u′v + uv′
 math-12-the-derivative/product-rule = M("(uv)′ = u′v + uv′", 64)
-# differentiable: a V-shaped graph
-math-12-the-derivative/differentiable = plot(lambda x: abs(x), size=320, xr=(-4, 4), yr=(-1, 5), points=[(0, 0, RED)])
+# differentiable: a smooth curve with a tangent line touching it at one point
+math-12-the-derivative/differentiable = plot(lambda x: 0.25 * x * x + 0.5, lambda x: x - 0.5, size=320, xr=(-4, 4), yr=(-1, 5), colors=(BLUE, ORANGE), points=[(2, 1.5, RED)])
 # quotient rule: (u/v)′ = (u′v − uv′)/v²
 math-12-the-derivative/quotient-rule = eq("(u/v)′ =", ("u′v − uv′", "v²"), size=60)
 # integral: shaded area under a curve
@@ -1585,8 +1571,8 @@ math-12-vectors/magnitude = raw(360, 260, '<line x1="20" y1="230" x2="300" y2="5
 math-12-vectors/component = raw(340, 280, '<line x1="20" y1="260" x2="290" y2="60" stroke="#3a7bd5" stroke-width="9"/><path d="M310 45 l-38 6 l18 26 z" fill="#3a7bd5"/><line x1="20" y1="260" x2="296" y2="260" stroke="#f08a24" stroke-width="7" stroke-dasharray="14 8"/><line x1="310" y1="260" x2="310" y2="60" stroke="#2f9e5b" stroke-width="7" stroke-dasharray="14 8"/>')
 # resultant: two arrows tip to tail and their sum
 math-12-vectors/resultant = raw(360, 280, '<line x1="20" y1="260" x2="200" y2="200" stroke="#3a7bd5" stroke-width="9"/><path d="M220 193 l-34 -6 l8 28 z" fill="#3a7bd5"/><line x1="214" y1="196" x2="300" y2="50" stroke="#f08a24" stroke-width="9"/><path d="M310 32 l-26 22 l26 12 z" fill="#f08a24"/><line x1="20" y1="260" x2="290" y2="50" stroke="#2f9e5b" stroke-width="8" stroke-dasharray="16 10"/><path d="M306 38 l-34 6 l16 24 z" fill="#2f9e5b"/>')
-# dot product: two arrows at a right angle
-math-12-vectors/dot-product = raw(300, 300, '<line x1="40" y1="260" x2="260" y2="260" stroke="#3a7bd5" stroke-width="9"/><path d="M286 260 l-32 -16 v32 z" fill="#3a7bd5"/><line x1="40" y1="260" x2="40" y2="40" stroke="#f08a24" stroke-width="9"/><path d="M40 14 l-16 32 h32 z" fill="#f08a24"/><path d="M40 230 h30 v30" fill="none" stroke="#1f2430" stroke-width="5"/><text x="150" y="160" font-family="Cambria Math" font-size="44" font-weight="700" text-anchor="middle" fill="#1f2430">· = 0</text>')
+# dot product: two arrows at a right angle: a · b = 0
+math-12-vectors/dot-product = raw(300, 300, '<line x1="40" y1="260" x2="260" y2="260" stroke="#3a7bd5" stroke-width="9"/><path d="M286 260 l-32 -16 v32 z" fill="#3a7bd5"/><line x1="40" y1="260" x2="40" y2="40" stroke="#f08a24" stroke-width="9"/><path d="M40 14 l-16 32 h32 z" fill="#f08a24"/><path d="M40 230 h30 v30" fill="none" stroke="#1f2430" stroke-width="5"/><text x="246" y="246" font-family="Cambria Math" font-size="40" font-weight="700" font-style="italic" fill="#3a7bd5">b</text><text x="56" y="56" font-family="Cambria Math" font-size="40" font-weight="700" font-style="italic" fill="#f08a24">a</text><text x="170" y="160" font-family="Cambria Math" font-size="44" font-weight="700" text-anchor="middle" fill="#1f2430"><tspan fill="#f08a24" font-style="italic">a</tspan> · <tspan fill="#3a7bd5" font-style="italic">b</tspan> = 0</text>')
 # unit vector: a short arrow labeled 1
 math-12-vectors/unit-vector = raw(300, 200, '<line x1="30" y1="140" x2="220" y2="140" stroke="#3a7bd5" stroke-width="10"/><path d="M250 140 l-36 -20 v40 z" fill="#3a7bd5"/><text x="130" y="110" font-family="Cambria Math" font-size="60" font-weight="700" text-anchor="middle" fill="#f08a24">1</text>')
 # regroup: ten rods snapping into a hundred flat
@@ -1619,18 +1605,18 @@ math-2-hundreds-tens-and-ones/tens = row(*[rod(10, 26) for _ in range(4)], gap=1
 math-2-hundreds-tens-and-ones/ones = row(*[cube_icon(66, GREEN) for _ in range(5)], gap=16)
 # place value: a hundreds, tens and ones chart with 3, 4, 5
 math-2-hundreds-tens-and-ones/place-value = place_chart(['hundreds', 'tens', 'ones'], ['3', '4', '5'], 340)
-# expanded form: 345 = 300 + 40 + 5
-math-2-hundreds-tens-and-ones/expanded-form = M('345 = 300 + 40 + 5', 56, hl={'300': GREEN, '40': BLUE, '5': ORANGE})
+# expanded form: 345 = 300 + 40 + 5, each digit colored to match its part
+math-2-hundreds-tens-and-ones/expanded-form = M('345 = 300 + 40 + 5', 56, hl={'300': GREEN, '40': BLUE, '5': ORANGE, '3': GREEN, '4': BLUE})
 # skip count: a number line with hops of 5
 math-2-hundreds-tens-and-ones/skip-count = numberline(0, 20, 460, hops=[(0, 5), (5, 10), (10, 15), (15, 20)], every=5, marks={5: ORANGE, 10: ORANGE, 15: ORANGE, 20: ORANGE}, color=BLUE)
 # bar graph: a bar graph with four bars
 math-2-line-plots-and-bar-graphs/bar-graph = bars([3, 5, 2, 4], size=300, colors=[BLUE, ORANGE, GREEN, PURPLE], ticks=True)
-# line plot: a line plot with stacks of Xs
-math-2-line-plots-and-bar-graphs/line-plot = numberline(1, 5, 420, dots_={1: 2, 2: 4, 3: 3, 4: 1, 5: 2}, color=BLUE)
+# line plot: a line plot: X marks stacked over each value
+math-2-line-plots-and-bar-graphs/line-plot = numberline(1, 5, 420, dots_={1: 2, 2: 4, 3: 3, 4: 1, 5: 2}, color=BLUE, xs=True)
 # data: a clipboard with tally marks
 math-2-line-plots-and-bar-graphs/data = clipboard(280, inner=col(tally(5, 70), tally(3, 70), tally(4, 70), gap=10, align='l'))
-# title: a graph with a bold title bar
-math-2-line-plots-and-bar-graphs/title = col(raw(300, 44, '<rect width="300" height="44" rx="10" fill="#1f2430"/><rect x="40" y="14" width="220" height="16" rx="8" fill="#fff"/>'), bars([3, 5, 2, 4], size=280, colors=[BLUE, ORANGE, GREEN, PURPLE]), gap=10)
+# title: a bar graph with its title, Our Pets, on top
+math-2-line-plots-and-bar-graphs/title = col(T('Our Pets', 48), bars([3, 5, 2, 4], labels=['cat', 'dog', 'fish', 'bird'], size=300, colors=[BLUE, ORANGE, GREEN, PURPLE]), gap=10)
 # label: a bar graph with words under each bar
 math-2-line-plots-and-bar-graphs/label = bars([3, 5, 2], labels=['cats', 'dogs', 'fish'], size=300, colors=[ORANGE, BROWN, BLUE])
 # compare: two bars of different heights
@@ -1645,8 +1631,8 @@ math-2-odd-even-and-arrays/array = dots(12, 4, 50, BLUE)
 math-2-odd-even-and-arrays/row = row(*[star(90) for _ in range(5)], gap=8)
 # column: a column of 3 stars
 math-2-odd-even-and-arrays/column = col(*[star(80) for _ in range(3)], gap=10)
-# centimeter: a ruler marked in centimeters
-math-2-rulers-and-units/centimeter = ruler(420, 10, 'cm')
+# centimeter: a centimeter ruler with the first centimeter shaded
+math-2-rulers-and-units/centimeter = ruler(420, 10, 'cm', first='1 cm')
 # angle: a triangle with its angles marked
 math-2-shapes-and-equal-shares/angle = triangle(300, angles=[0, 1, 2])
 # face: a cube with one face shaded
@@ -1669,8 +1655,8 @@ math-2-two-step-word-problems/step = stairs(1, 240, labels=['1'], color=BLUE)
 math-2-two-step-word-problems/add = box(M('25 + 13', 80), color=BLUE, p=24)
 # subtract: 50 − 18 in a box
 math-2-two-step-word-problems/subtract = box(M('50 − 18', 80), color=ORANGE, p=24)
-# tape diagram: a long bar split into two parts labeled 20 and 10
-math-2-two-step-word-problems/tape-diagram = raw(420, 140, '<rect x="10" y="30" width="267" height="80" fill="#d6e6fb" stroke="#1f2430" stroke-width="5"/><rect x="277" y="30" width="133" height="80" fill="#fde3c8" stroke="#1f2430" stroke-width="5"/><text x="143" y="86" font-family="Cambria Math" font-size="48" font-weight="700" text-anchor="middle" fill="#1f2430">20</text><text x="343" y="86" font-family="Cambria Math" font-size="48" font-weight="700" text-anchor="middle" fill="#1f2430">10</text>')
+# tape diagram: a tape diagram: parts 20 and 10 under a bracket for the whole, 30
+math-2-two-step-word-problems/tape-diagram = col(T('30', 48, RED), raw(420, 24, '<path d="M10 22 V6 H410 V22" fill="none" stroke="#e04848" stroke-width="5"/>'), raw(420, 120, '<rect x="10" y="10" width="267" height="80" fill="#d6e6fb" stroke="#1f2430" stroke-width="5"/><rect x="277" y="10" width="133" height="80" fill="#fde3c8" stroke="#1f2430" stroke-width="5"/><text x="143" y="66" font-family="Cambria Math" font-size="48" font-weight="700" text-anchor="middle" fill="#1f2430">20</text><text x="343" y="66" font-family="Cambria Math" font-size="48" font-weight="700" text-anchor="middle" fill="#1f2430">10</text>'), gap=0)
 # check: a check mark next to an equation
 math-2-two-step-word-problems/check = row(M('4 + 3 = 7', 72), check(90), gap=20)
 # area: a 3 by 4 rectangle filled with unit squares
@@ -1721,10 +1707,10 @@ math-3-patterns-and-two-step-problems/equation = col(row(box(M('3 × 4', 50), co
 math-3-patterns-and-two-step-problems/unknown = row(M('5 ×', 80), box(T('?', 70, ORANGE), w=90, h=90, color=ORANGE, dashed=True), M('= 20', 80), gap=12)
 # perimeter: a rectangular garden with arrows tracing its edge
 math-3-perimeter/perimeter = raw(400, 280, '<rect x="40" y="40" width="320" height="200" rx="6" fill="#bfe3b0" stroke="#7a4a24" stroke-width="10"/>' + ''.join(f'<circle cx="{95 + c * 70}" cy="{90 + r * 50}" r="15" fill="#2f9e5b"/>' for r in range(3) for c in range(4)) + '<path d="M40 20 H340" stroke="#e04848" stroke-width="7"/><path d="M360 20 l-24 -12 v24 z" fill="#e04848"/><path d="M380 40 V220" stroke="#e04848" stroke-width="7"/><path d="M380 240 l-12 -24 h24 z" fill="#e04848"/><path d="M360 260 H60" stroke="#e04848" stroke-width="7"/><path d="M40 260 l24 -12 v24 z" fill="#e04848"/><path d="M20 240 V60" stroke="#e04848" stroke-width="7"/><path d="M20 40 l-12 24 h24 z" fill="#e04848"/>')
-# side: a triangle with its 3 edges highlighted
-math-3-perimeter/side = triangle(300, hl_side=[0, 1, 2])
-# width: a rectangle with an arrow across its short side
-math-3-perimeter/width = rect_dims(5, 3, 320, units=False, labels=['', ''], arrow_w=False) if 0 else raw(360, 240, '<rect x="20" y="20" width="320" height="160" fill="#d6e6fb" stroke="#1f2430" stroke-width="6"/><path d="M360 34 V166" stroke="#e04848" stroke-width="7"/><path d="M360 20 l-12 22 h24 z M360 180 l-12 -22 h24 z" fill="#e04848"/>')
+# side: a triangle with one side highlighted
+math-3-perimeter/side = triangle(300, hl_side=0)
+# width: a rectangle with a red arrow across it from side to side
+math-3-perimeter/width = raw(360, 240, '<rect x="20" y="20" width="320" height="160" fill="#d6e6fb" stroke="#1f2430" stroke-width="6"/><path d="M34 210 H326" stroke="#e04848" stroke-width="7"/><path d="M20 210 l22 -12 v24 z M340 210 l-22 -12 v24 z" fill="#e04848"/>')
 # polygon: a plain red octagon
 math-3-perimeter/polygon = poly(8, 280, RED, fill=RED, rot=22.5)
 # quadrilateral: four different four-sided shapes
@@ -1733,10 +1719,10 @@ math-3-quadrilaterals/quadrilateral = grid([shape('square', 110, BLUE), shape('r
 math-3-quadrilaterals/right-angle = raw(280, 280, '<path d="M40 20 V240 H260" fill="none" stroke="#1f2430" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/><path d="M40 190 H90 V240" fill="none" stroke="#e04848" stroke-width="7"/>')
 # attribute: a rectangle with its sides numbered 1 to 4
 math-3-quadrilaterals/attribute = raw(360, 260, '<rect x="40" y="40" width="280" height="170" fill="#d6e6fb" stroke="#1f2430" stroke-width="6"/>' + ''.join(f'<circle cx="{x}" cy="{y}" r="22" fill="#fff" stroke="#f08a24" stroke-width="5"/><text x="{x}" y="{y + 11}" font-family="Segoe UI" font-size="30" font-weight="700" text-anchor="middle" fill="#1f2430">{t}</text>' for x, y, t in ((180, 40, 1), (320, 125, 2), (180, 210, 3), (40, 125, 4))))
-# round: a number line from 40 to 50 with 47 marked closer to 50
-math-3-rounding-and-multi-digit-operations/round = numberline(40, 50, 460, marks={47: RED}, hl=50, every=5, color=BLUE)
-# nearest ten: a number line from 80 to 90 with 82 marked close to 80
-math-3-rounding-and-multi-digit-operations/nearest-ten = numberline(80, 90, 460, marks={82: RED}, hl=80, every=5, color=BLUE)
+# round: 47 on a number line with a red arrow to 50, circled
+math-3-rounding-and-multi-digit-operations/round = numberline(40, 50, 460, marks={47: RED}, hl=50, every=5, color=BLUE, to=(47, 50))
+# nearest ten: 82 on a number line with a red arrow to the nearest ten, 80, circled
+math-3-rounding-and-multi-digit-operations/nearest-ten = numberline(80, 90, 460, marks={82: RED}, hl=80, every=5, color=BLUE, to=(82, 80))
 # place value: a hundreds, tens and ones chart holding 3, 5 and 2
 math-3-rounding-and-multi-digit-operations/place-value = place_chart(['hundreds', 'tens', 'ones'], ['3', '5', '2'], 340)
 # digit: the digits 0 to 9 on tiles
@@ -1755,8 +1741,8 @@ math-3-scaled-graphs/picture-graph = col(*[row(*[apple(56) for _ in range(n)], g
 math-3-scaled-graphs/scale = raw(200, 320, '<line x1="80" y1="10" x2="80" y2="300" stroke="#1f2430" stroke-width="7"/>' + ''.join(f'<line x1="66" y1="{300 - i * 70}" x2="94" y2="{300 - i * 70}" stroke="#1f2430" stroke-width="6"/><text x="56" y="{312 - i * 70}" font-family="Segoe UI" font-size="34" font-weight="700" text-anchor="end" fill="#1f2430">{i * 5}</text>' for i in range(5)))
 # key: a box showing one star = 10
 math-3-scaled-graphs/key = box(row(star(90), M('= 10', 80), gap=14), color=DARK, p=20)
-# line plot: a line plot with stacks of X marks over pencil lengths
-math-3-scaled-graphs/line-plot = numberline(3, 7, 420, dots_={3: 1, 4: 3, 5: 4, 6: 2, 7: 1}, color=BLUE)
+# line plot: a line plot: X marks stacked over each value
+math-3-scaled-graphs/line-plot = numberline(3, 7, 420, dots_={3: 1, 4: 3, 5: 4, 6: 2, 7: 1}, color=BLUE, xs=True)
 # data: a tally chart with three rows of tally marks
 math-3-scaled-graphs/data = table(cells=[['', ''], ['A', ''], ['B', ''], ['C', '']], size=300) if 0 else col(*[row(T(c, 50, k), tally(n, 80), gap=20) for c, k, n in (('A', BLUE, 4), ('B', ORANGE, 5), ('C', GREEN, 2))], gap=14, align='l')
 # elapsed time: two clocks showing 2:00 and 2:45 joined by an arrow
@@ -1777,24 +1763,24 @@ math-3-times-tables-fluency/commutative-property = row(dots(24, 6, 24, BLUE, gap
 math-4-adding-and-multiplying-fractions/unit-fraction = frac_bar(6, 1, 400, 90, BLUE)
 # mixed number: two whole circles and a quarter circle
 math-4-adding-and-multiplying-fractions/mixed-number = row(frac_circle(4, 4, 140, BLUE), frac_circle(4, 4, 140, BLUE), frac_circle(4, 1, 140, BLUE), gap=14)
-# improper fraction: nine quarter pieces
-math-4-adding-and-multiplying-fractions/improper-fraction = grid([raw(90, 90, '<path d="M8 82 V8 A74 74 0 0 1 82 82 Z" fill="#3a7bd5" stroke="#1f2430" stroke-width="5" stroke-linejoin="round"/>') for _ in range(9)], 5, gap=10)
-# decompose: a bar of three fifths split into single fifths
-math-4-adding-and-multiplying-fractions/decompose = col(frac_bar(5, 3, 360, 70, ORANGE), arrow(40, dir='down'), row(frac_bar(1, 1, 72, 70, ORANGE), frac_bar(1, 1, 72, 70, ORANGE), frac_bar(1, 1, 72, 70, ORANGE), gap=16), gap=8)
+# improper fraction: two whole circles of fourths plus one more fourth: 9/4
+math-4-adding-and-multiplying-fractions/improper-fraction = row(frac_circle(4, 4, 120, BLUE), frac_circle(4, 4, 120, BLUE), frac_circle(4, 1, 120, BLUE), M('=', 60), F('9', '4', 70), gap=12)
+# decompose: five parts broken into three parts and two parts: 5 = 3 + 2
+math-4-adding-and-multiplying-fractions/decompose = col(frac_bar(5, 5, 360, 70, ORANGE), arrow(40, dir='down'), row(frac_bar(3, 3, 216, 70, ORANGE), frac_bar(2, 2, 144, 70, BLUE), gap=20), M('5 = 3 + 2', 60), gap=8)
 # like denominators: 2/8 + 3/8 = 5/8
 math-4-adding-and-multiplying-fractions/like-denominators = eq(('2', '8'), '+', ('3', '8'), '=', ('5', '8'), size=80)
 # whole: a circle cut into four shaded fourths
 math-4-adding-and-multiplying-fractions/whole = frac_circle(4, 4, 280, BLUE)
 # angle: two rays meeting at a point
 math-4-angles-and-line-plots/angle = angle(300, 50)
-# degree: a circle with 360° marked
-math-4-angles-and-line-plots/degree = raw(300, 300, '<circle cx="150" cy="150" r="120" fill="#d6e6fb" stroke="#1f2430" stroke-width="7"/><path d="M150 150 L270 150" stroke="#1f2430" stroke-width="5"/><circle cx="150" cy="150" r="7" fill="#1f2430"/><path d="M200 150 A50 50 0 1 1 199.6 143.7" fill="none" stroke="#e04848" stroke-width="6"/><path d="M200 140 l-10 14 l18 2 z" fill="#e04848"/><text x="150" y="250" font-family="Cambria Math" font-size="52" font-weight="700" text-anchor="middle" fill="#e04848">360°</text>')
+# degree: a full turn around a circle is 360 degrees
+math-4-angles-and-line-plots/degree = raw(300, 340, '<circle cx="150" cy="150" r="120" fill="#d6e6fb" stroke="#1f2430" stroke-width="7"/><path d="M150 150 L270 150" stroke="#1f2430" stroke-width="5"/><circle cx="150" cy="150" r="7" fill="#1f2430"/><path d="M200 150 A50 50 0 1 1 199.6 143.7" fill="none" stroke="#e04848" stroke-width="6"/><path d="M200 140 l-10 14 l18 2 z" fill="#e04848"/><text x="150" y="330" font-family="Cambria Math" font-size="52" font-weight="700" text-anchor="middle" fill="#e04848">360°</text>')
 # vertex: an angle with its corner dotted
 math-4-angles-and-line-plots/vertex = angle(300, 50, vertex_dot=True)
 # ray: a dot with an arrow going right
 math-4-angles-and-line-plots/ray = raw(400, 100, '<circle cx="30" cy="50" r="16" fill="#1f2430"/><line x1="30" y1="50" x2="360" y2="50" stroke="#1f2430" stroke-width="8"/><path d="M390 50 l-36 -20 v40 z" fill="#1f2430"/>')
-# line plot: a line plot with Xs over fractions
-math-4-angles-and-line-plots/line-plot = numberline(0, 4, 440, labels=['0', '1/4', '1/2', '3/4', '1'], dots_={0: 1, 1: 3, 2: 4, 3: 2, 4: 1}, color=BLUE)
+# line plot: a line plot of fractions: X marks stacked over each value
+math-4-angles-and-line-plots/line-plot = numberline(0, 4, 440, labels=['0', '1/4', '1/2', '3/4', '1'], dots_={0: 1, 1: 3, 2: 4, 3: 2, 4: 1}, color=BLUE, xs=True)
 # decimal: 0.5 next to a half-shaded square
 math-4-decimals/decimal = row(M('0.5', 110), grid_shade(10, 10, 50, 220, BLUE), gap=24)
 # decimal point: $3.25 with the point circled
@@ -1803,8 +1789,8 @@ math-4-decimals/decimal-point = row(M('$3', 120), mark(M('.', 120), 'circle', RE
 math-4-decimals/tenths = frac_bar(10, 3, 420, 80, GREEN)
 # hundredths: a 10 by 10 grid with 25 squares shaded
 math-4-decimals/hundredths = grid_shade(10, 10, 25, 300, ORANGE)
-# place value: a chart with ones, tenths, hundredths
-math-4-decimals/place-value = place_chart(['ones', 'tenths', 'hundredths'], ['0', '4', '5'], 360)
+# place value: a place value chart for 0.45 with the decimal point after the ones
+math-4-decimals/place-value = place_chart(['ones', 'tenths', 'hundredths'], ['0', '4', '5'], 360, point=0)
 # compare: 0.6 > 0.45 with shaded grids
 math-4-decimals/compare = row(col(grid_shade(10, 10, 60, 150, BLUE), M('0.6', 50), gap=6), M('>', 80, color=RED), col(grid_shade(10, 10, 45, 150, ORANGE), M('0.45', 50), gap=6), gap=14)
 # equivalent fractions: two bars, one cut in halves, one in fourths
@@ -1837,8 +1823,8 @@ math-4-lines-angles-and-symmetry/parallel = lines_pair('parallel', 300)
 math-4-lines-angles-and-symmetry/perpendicular = lines_pair('perpendicular', 300)
 # right angle: an angle with a small square at the corner
 math-4-lines-angles-and-symmetry/right-angle = angle(300, 90, right=True)
-# convert: a ruler and a yardstick
-math-4-measurement-conversions/convert = col(ruler(300, 12, 'in', inches=True), ruler(440, 36, 'yd', inches=True, every=12), gap=16)
+# convert: a 12-inch ruler: 1 foot = 12 inches
+math-4-measurement-conversions/convert = col(ruler(420, 12, 'in', inches=True), T('1 foot = 12 inches', 40), gap=12)
 # unit: a ruler marked in inches
 math-4-measurement-conversions/unit = ruler(420, 6, 'in', inches=True)
 # perimeter: a rectangle with its edges traced
@@ -1849,8 +1835,8 @@ math-4-measurement-conversions/area = rect_dims(5, 3, 320)
 math-4-measurement-conversions/formula = M('A = l × w', 110)
 # product: 23 × 4 = 92
 math-4-multi-digit-multiplication-and-division/product = M('23 × 4 = 92', 90)
-# partial products: an area model split into 80 and 12
-math-4-multi-digit-multiplication-and-division/partial-products = raw(400, 200, '<rect x="10" y="20" width="290" height="160" fill="#d6e6fb" stroke="#1f2430" stroke-width="5"/><rect x="300" y="20" width="90" height="160" fill="#fde3c8" stroke="#1f2430" stroke-width="5"/><text x="155" y="118" font-family="Cambria Math" font-size="56" font-weight="700" text-anchor="middle" fill="#1f2430">80</text><text x="345" y="118" font-family="Cambria Math" font-size="50" font-weight="700" text-anchor="middle" fill="#1f2430">12</text>')
+# partial products: 23 × 4 as an area model: 20 × 4 = 80 and 3 × 4 = 12, then 80 + 12 = 92
+math-4-multi-digit-multiplication-and-division/partial-products = raw(420, 290, '<text x="165" y="40" font-family="Cambria Math" font-size="40" font-weight="700" text-anchor="middle" fill="#3a7bd5">20</text><text x="345" y="40" font-family="Cambria Math" font-size="40" font-weight="700" text-anchor="middle" fill="#f08a24">3</text><text x="20" y="140" font-family="Cambria Math" font-size="40" font-weight="700" text-anchor="middle" fill="#1f2430">4</text><rect x="40" y="56" width="250" height="140" fill="#d6e6fb" stroke="#1f2430" stroke-width="5"/><rect x="290" y="56" width="110" height="140" fill="#fde3c8" stroke="#1f2430" stroke-width="5"/><text x="165" y="142" font-family="Cambria Math" font-size="52" font-weight="700" text-anchor="middle" fill="#1f2430">80</text><text x="345" y="142" font-family="Cambria Math" font-size="48" font-weight="700" text-anchor="middle" fill="#1f2430">12</text><text x="220" y="262" font-family="Cambria Math" font-size="46" font-weight="700" text-anchor="middle" fill="#e04848">80 + 12 = 92</text>')
 # area model: a rectangle split into four boxes
 math-4-multi-digit-multiplication-and-division/area-model = raw(340, 260, '<rect x="10" y="10" width="220" height="150" fill="#d6e6fb" stroke="#1f2430" stroke-width="5"/><rect x="230" y="10" width="100" height="150" fill="#fde3c8" stroke="#1f2430" stroke-width="5"/><rect x="10" y="160" width="220" height="90" fill="#fde3c8" stroke="#1f2430" stroke-width="5"/><rect x="230" y="160" width="100" height="90" fill="#d3f0de" stroke="#1f2430" stroke-width="5"/>')
 # quotient: 84 ÷ 4 = 21
@@ -1871,8 +1857,8 @@ math-4-multiplicative-comparison/equation = M('5 × 3 = 15', 100)
 math-4-multiplicative-comparison/unknown = row(M('4 ×', 90), box(w=80, h=90, color=ORANGE, dashed=True), M('= 28', 90), gap=12)
 # pattern: four boxes holding 3, 6, 9, 12
 math-4-number-patterns/pattern = row(*[box(M(str(v), 60), color=BLUE, w=100, h=100) for v in (3, 6, 9, 12)], gap=14)
-# rule: an arrow labeled +4
-math-4-number-patterns/rule = arrow(300, ORANGE, sw=14, text='+4')
+# rule: 3, 7, 11, 15: the rule is add 4 each time
+math-4-number-patterns/rule = numberline(3, 15, 460, step=4, hops=[(3, 7), (7, 11), (11, 15)], hop_label='+4', marks={3: RED, 7: RED, 11: RED, 15: RED})
 # term: a row of numbers with the fifth one circled
 math-4-number-patterns/term = row(*[mark(T(str(v), 64), 'circle', RED) if i == 4 else T(str(v), 64) for i, v in enumerate((3, 6, 9, 12, 15, 18))], gap=20)
 # sequence: 2, 4, 8, 16 in a row
@@ -1887,8 +1873,8 @@ math-4-place-value-to-a-million/million = M('1,000,000', 110, hl={',': RED})
 math-4-place-value-to-a-million/period = row(col(box(M('452', 90), color=ORANGE, p=10), T('thousands', 30, ORANGE), gap=6), col(M(',', 90), T(' ', 30), gap=6), col(box(M('310', 90), color=BLUE, p=10), T('ones', 30, BLUE), gap=6), gap=4, align='b')
 # digit: the digits 0 to 9
 math-4-place-value-to-a-million/digit = grid([tile(str(i), (BLUE, ORANGE, GREEN, PURPLE, RED)[i % 5], 70) for i in range(10)], 5, gap=10)
-# round: a number line from 4,000 to 5,000 with a dot near 5,000
-math-4-place-value-to-a-million/round = numberline(4000, 5000, 460, step=500, marks={4800: RED}, color=BLUE)
+# round: 4,800 on a number line with a red arrow to 5,000, circled
+math-4-place-value-to-a-million/round = numberline(4000, 5000, 460, step=500, marks={4800: RED}, hl=5000, color=BLUE, to=(4800, 5000))
 # standard form: 305,120 in bold
 math-4-place-value-to-a-million/standard-form = M('305,120', 130)
 # word form: 1,200 next to a written word line
@@ -1949,10 +1935,10 @@ math-5-operations-with-whole-numbers-and-decimals/long-division = raw(320, 160, 
 math-5-operations-with-whole-numbers-and-decimals/decimal = col(M('  2.50', 80), M('+ 1.25', 80), raw(230, 8, '<rect width="230" height="8" fill="#1f2430"/>'), M('  3.75', 80, color=BLUE), gap=0, align='r')
 # line up: two decimals stacked with points aligned
 math-5-operations-with-whole-numbers-and-decimals/line-up = raw(340, 220, '<text x="190" y="90" font-family="Cambria Math" font-size="80" font-weight="700" text-anchor="end" fill="#1f2430">12</text><text x="190" y="90" font-family="Cambria Math" font-size="80" font-weight="700" fill="#1f2430">.50</text><text x="190" y="190" font-family="Cambria Math" font-size="80" font-weight="700" text-anchor="end" fill="#1f2430">3</text><text x="190" y="190" font-family="Cambria Math" font-size="80" font-weight="700" fill="#1f2430">.25</text><line x1="195" y1="10" x2="195" y2="210" stroke="#e04848" stroke-width="5" stroke-dasharray="10 8"/>')
-# reasonable: a question mark beside a check
-math-5-operations-with-whole-numbers-and-decimals/reasonable = row(qmark(160), check(130), gap=20)
-# ordered pair: a grid with a dot at (3, 5)
-math-5-patterns-and-relationships/ordered-pair = coord(320, points=[(3, 5)], first=True, n=6)
+# reasonable: 4.9 × 3 = 14.7 is close to 5 × 3 = 15, so the answer makes sense
+math-5-operations-with-whole-numbers-and-decimals/reasonable = col(M('4.9 × 3 = 14.7', 64), M('≈ 5 × 3 = 15', 64, color=GRAY), check(70), gap=8)
+# ordered pair: a point on a grid with dashed lines to each axis and its (x, y) label
+math-5-patterns-and-relationships/ordered-pair = coord(320, points=[(3, 5)], first=True, n=6, guides=True)
 # relationship: two rows, 1 2 3 and 2 4 6, joined by arrows
 math-5-patterns-and-relationships/relationship = col(row(*[tile(str(v), BLUE, 80) for v in (1, 2, 3)], gap=40), row(*[arrow(50, ORANGE, 'down') for _ in range(3)], gap=70), row(*[tile(str(v), ORANGE, 80) for v in (2, 4, 6)], gap=40), gap=6)
 # x-axis: a graph with the horizontal axis highlighted
@@ -1967,30 +1953,30 @@ math-5-patterns-and-relationships/graph = plot(size=320, xr=(0, 7), yr=(0, 7), g
 math-5-powers-of-ten-and-decimals/power-of-ten = row(box(M('10', 40), color=BLUE, w=80, h=80), box(M('100', 50), color=ORANGE, w=120, h=120), box(M('1,000', 56), color=GREEN, w=180, h=180), gap=14, align='b')
 # exponent: 10³ with the 3 highlighted
 math-5-powers-of-ten-and-decimals/exponent = row(M('10', 150), M('3', 90, color=RED), gap=0, align='t')
-# thousandths: a place value chart with the thousandths column
-math-5-powers-of-ten-and-decimals/thousandths = place_chart(['ones', 'tenths', 'hundredths', 'thousandths'], ['0', '1', '2', '5'], 420, hl=3)
+# thousandths: 0.125 in a place value chart with the thousandths column picked out
+math-5-powers-of-ten-and-decimals/thousandths = place_chart(['ones', 'tenths', 'hundredths', 'thousandths'], ['0', '1', '2', '5'], 420, hl=3, point=0)
 # expanded form: 3.25 = 3 + 0.2 + 0.05
 math-5-powers-of-ten-and-decimals/expanded-form = M('3.25 = 3 + 0.2 + 0.05', 54)
-# round: a number line from 2.6 to 2.7
-math-5-powers-of-ten-and-decimals/round = numberline(0, 10, 460, labels=['2.6', '', '', '', '', '2.65', '', '', '', '', '2.7'], marks={3: RED}, color=BLUE)
-# place value chart: a chart with ones, tenths, hundredths, thousandths
-math-5-powers-of-ten-and-decimals/place-value-chart = place_chart(['ones', 'tenths', 'hundredths', 'thousandths'], None, 420)
+# round: 2.63 on a number line with a red arrow to 2.6, circled
+math-5-powers-of-ten-and-decimals/round = numberline(0, 10, 460, labels=['2.6', '', '', '', '', '2.65', '', '', '', '', '2.7'], marks={3: RED}, hl=0, color=BLUE, to=(3, 0))
+# place value chart: a place value chart for 3.142 with the decimal point after the ones
+math-5-powers-of-ten-and-decimals/place-value-chart = place_chart(['ones', 'tenths', 'hundredths', 'thousandths'], ['3', '1', '4', '2'], 420, point=0)
 # coordinate plane: a first-quadrant grid with a star
 math-5-the-coordinate-plane/coordinate-plane = coord(320, first=True, star_at=(4, 3), n=6)
 # origin: a grid with a dot at the corner
 math-5-the-coordinate-plane/origin = coord(320, first=True, origin=True, n=6)
-# coordinates: a grid with a star at (4, 2)
-math-5-the-coordinate-plane/coordinates = coord(320, first=True, star_at=(4, 2), n=6)
+# coordinates: a star on a grid at (4, 2), with dashed lines to each axis
+math-5-the-coordinate-plane/coordinates = coord(320, first=True, star_at=(4, 2), n=6, guides=True)
 # plot: a pencil tip on a grid dot
 math-5-the-coordinate-plane/plot = over(coord(320, first=True, points=[(3, 4)], n=6), pencil(180, angle=-35), dx=60, dy=-50)
 # quadrant: a plane with the top-right quarter shaded
 math-5-the-coordinate-plane/quadrant = coord(320, quad=1)
-# axis: a grid with both axes bold
-math-5-the-coordinate-plane/axis = coord(320, hl_axis='both')
-# convert: a meter stick with centimeter marks
-math-5-units-and-line-plots/convert = ruler(440, 10, 'cm')
-# line plot: a line plot with fractions
-math-5-units-and-line-plots/line-plot = numberline(0, 4, 440, labels=['0', '1/4', '1/2', '3/4', '1'], dots_={1: 2, 2: 3, 3: 1}, color=BLUE)
+# axis: a coordinate grid with the x-axis drawn thick and named
+math-5-the-coordinate-plane/axis = coord(320, hl_axis='x')
+# convert: a meter stick marked in centimeters: 1 m = 100 cm
+math-5-units-and-line-plots/convert = col(ruler(440, 100, 'cm', every=10), T('1 m = 100 cm', 40), gap=12)
+# line plot: a line plot of fractions: X marks stacked over each value
+math-5-units-and-line-plots/line-plot = numberline(0, 4, 440, labels=['0', '1/4', '1/2', '3/4', '1'], dots_={1: 2, 2: 3, 3: 1}, color=BLUE, xs=True)
 # volume: a box built from unit cubes
 math-5-volume/volume = solid('box', 300, BLUE, units=(4, 2, 3))
 # cubic unit: a single unit cube
@@ -2001,8 +1987,8 @@ math-5-volume/length-width-height = solid('box', 300, BLUE, labels=('l', 'w', 'h
 math-5-volume/base = raw(340, 290, '<path d="M40 250 L100 190 H300 L240 250 Z" fill="#f08a24" stroke="#1f2430" stroke-width="4" stroke-dasharray="10 7"/><rect x="40" y="90" width="200" height="160" fill="#d6e6fb" fill-opacity="0.35" stroke="#1f2430" stroke-width="6"/><path d="M40 90 L100 30 H300 L240 90 M240 250 L300 190 V30" fill="none" stroke="#1f2430" stroke-width="6" stroke-linejoin="round"/><path d="M40 250 H240" stroke="#f08a24" stroke-width="10"/>')
 # layer: a box split into two cube layers
 math-5-volume/layer = solid('box', 300, ORANGE, units=(4, 2, 2))
-# area: a triangle with base and height marked
-math-6-area-surface-area-and-volume/area = triangle(320, pts=((10, 150), (190, 150), (70, 20)), height=True, base_lab='b')
+# area: a 5 by 3 rectangle of unit squares: area 15 square units
+math-6-area-surface-area-and-volume/area = col(rect_dims(5, 3, 320, labels=['5', '3']), T('15 square units', 40), gap=8)
 # net: a cross-shaped cube net
 math-6-area-surface-area-and-volume/net = raw(300, 380, ''.join(f'<rect x="{x}" y="{y}" width="90" height="90" fill="{c}" stroke="#1f2430" stroke-width="5"/>' for x, y, c in ((105, 10, '#d6e6fb'), (15, 100, '#fde3c8'), (105, 100, '#d6e6fb'), (195, 100, '#fde3c8'), (105, 190, '#d6e6fb'), (105, 280, '#d3f0de'))))
 # surface area: an unfolded box with faces labeled
@@ -2013,10 +1999,10 @@ math-6-area-surface-area-and-volume/volume = solid('box', 300, PURPLE, labels=('
 math-6-area-surface-area-and-volume/base = raw(380, 240, '<path d="M90 20 H370 L290 220 H10 Z" fill="#d6e6fb" stroke="#1f2430" stroke-width="6" stroke-linejoin="round"/><line x1="10" y1="220" x2="290" y2="220" stroke="#e04848" stroke-width="12"/><text x="150" y="200" font-family="Cambria Math" font-size="44" font-weight="700" text-anchor="middle" fill="#e04848">b</text>')
 # height: a triangle with a dashed height
 math-6-area-surface-area-and-volume/height = triangle(320, pts=((10, 150), (190, 150), (70, 20)), height=True)
-# independent variable: a clock beside an input arrow
-math-6-dependent-and-independent-variables/independent-variable = row(clock(160, 3, 0), arrow(110, BLUE, sw=10, text='x'), gap=10)
-# dependent variable: a dollar sign beside an output arrow
-math-6-dependent-and-independent-variables/dependent-variable = row(arrow(110, ORANGE, sw=10, text='y'), T('$', 160, GREEN), gap=10)
+# independent variable: hours go in, times $10, pay comes out: hours is the independent variable (x)
+math-6-dependent-and-independent-variables/independent-variable = row(mark(col(clock(100, 3, 0), T('hours (x)', 30, BLUE), gap=4), 'box', RED), arrow(50), box(M('× $10', 44), color=PURPLE, p=12), arrow(50), col(T('$', 100, GREEN), T('pay (y)', 30, GREEN), gap=0), gap=8)
+# dependent variable: hours go in, times $10, pay comes out: pay is the dependent variable (y)
+math-6-dependent-and-independent-variables/dependent-variable = row(col(clock(100, 3, 0), T('hours (x)', 30, BLUE), gap=4), arrow(50), box(M('× $10', 44), color=PURPLE, p=12), arrow(50), mark(col(T('$', 100, GREEN), T('pay (y)', 30, GREEN), gap=0), 'box', RED), gap=8)
 # relationship: a straight line graph
 math-6-dependent-and-independent-variables/relationship = plot(lambda x: 0.8 * x + 0.5, size=320, xr=(0, 8), yr=(0, 8))
 # table of values: a two-column table
@@ -2027,12 +2013,12 @@ math-6-dependent-and-independent-variables/graph = plot(lambda x: 0.8 * x + 0.5,
 math-6-dependent-and-independent-variables/equation = M('y = 3x', 140)
 # reciprocal: 3/4 flipping into 4/3
 math-6-dividing-fractions/reciprocal = row(F('3', '4', 110), curve_arrow(40, ORANGE), F('4', '3', 110), gap=14)
-# quotient: a half bar split into two quarters
-math-6-dividing-fractions/quotient = col(frac_bar(2, 1, 360, 70, BLUE), frac_bar(4, 2, 360, 70, ORANGE), gap=16)
+# quotient: 12 split into 3 equal groups of 4: 12 ÷ 3 = 4, the quotient boxed
+math-6-dividing-fractions/quotient = col(groups(3, 4, size=34), row(M('12 ÷ 3 =', 70), mark(M('4', 70), 'box', RED), gap=10), gap=16)
 # divisor: 3/4 ÷ 1/8 with 1/8 highlighted
 math-6-dividing-fractions/divisor = row(F('3', '4', 90), M('÷', 80), mark(F('1', '8', 90), 'circle', RED), gap=16)
-# how many groups: two bars cut into thirds
-math-6-dividing-fractions/how-many-groups = col(frac_bar(3, 3, 360, 70, BLUE), frac_bar(3, 3, 360, 70, ORANGE), gap=16)
+# how many groups: 3/4 measured in eighths: six eighths fit, so 3/4 ÷ 1/8 = 6
+math-6-dividing-fractions/how-many-groups = col(frac_bar(4, 3, 360, 60, BLUE), frac_bar(8, 6, 360, 60, ORANGE), raw(365, 34, ''.join(f'<text x="{2.5 + (i + 0.5) * 45:.1f}" y="28" font-family="Cambria Math" font-size="28" font-weight="700" text-anchor="middle" fill="#f08a24">{i + 1}</text>' for i in range(6))), eq(('3', '4'), '÷', ('1', '8'), '= 6', size=50), gap=8)
 # multiply by the reciprocal: ÷ 2/5 turning into × 5/2
 math-6-dividing-fractions/multiply-by-the-reciprocal = row(M('÷', 80), F('2', '5', 100), arrow(70, ORANGE), M('×', 80, color=ORANGE), F('5', '2', 100, color=ORANGE), gap=12)
 # tape diagram: a bar with three quarters shaded and split
@@ -2063,8 +2049,8 @@ math-6-multi-digit-and-decimal-fluency/decimal = M('2.5 × 1.2 = 3.0', 84)
 math-6-multi-digit-and-decimal-fluency/dividend = row(M('7,452', 100, color=RED), M('÷ 23', 100), gap=16)
 # negative number: a number line with −5 marked
 math-6-negative-numbers/negative-number = numberline(-6, 6, 460, marks={-5: RED}, every=1, color=BLUE)
-# integer: a number line with integer ticks
-math-6-negative-numbers/integer = numberline(-5, 5, 460, color=BLUE)
+# integer: a number line with a dot on every whole number, negative and positive
+math-6-negative-numbers/integer = numberline(-5, 5, 460, color=BLUE, marks={v: RED for v in range(-5, 6)})
 # opposite: 4 and −4 mirrored around 0
 math-6-negative-numbers/opposite = numberline(-5, 5, 460, marks={-4: ORANGE, 4: ORANGE}, hl=0, color=BLUE)
 # absolute value: a bracket from −8 to 0 labeled 8
@@ -2093,16 +2079,16 @@ math-6-ratios-and-rates/percent = grid_shade(10, 10, 40, 300, GREEN)
 math-6-ratios-and-rates/double-number-line = col(numberline(0, 4, 440, labels=['0', '3', '6', '9', '12'], color=BLUE), numberline(0, 4, 440, labels=['0', '$2', '$4', '$6', '$8'], color=ORANGE), gap=10)
 # equivalent ratios: a ratio table with 2:3, 4:6, 6:9
 math-6-ratios-and-rates/equivalent-ratios = table(cells=[['A', 'B'], ['2', '3'], ['4', '6'], ['6', '9']], size=280)
-# statistical question: bars of varying height
-math-6-statistical-variability/statistical-question = bars([3, 6, 2, 5, 4], size=300, colors=[BLUE, ORANGE, GREEN, PURPLE, RED])
+# statistical question: a question with many different answers, shown as a dot plot
+math-6-statistical-variability/statistical-question = col(bubble(T('How tall are we?', 32), 300, tail='left'), dotplot((48, 50, 51, 51, 52, 53, 53, 53, 55), 380), gap=8)
 # variability: scattered dots on a number line
 math-6-statistical-variability/variability = numberline(0, 10, 460, dots_={1: 1, 3: 2, 4: 1, 6: 1, 8: 2, 9: 1}, color=BLUE)
 # distribution: a histogram with a long right tail
 math-6-statistical-variability/distribution = histogram((3, 8, 6, 4, 2, 1, 1), 320)
 # measure of center: a number line with a center arrow
 math-6-statistical-variability/measure-of-center = numberline(0, 10, 460, dots_={3: 1, 4: 2, 5: 3, 6: 2, 7: 1}, hl=5, color=BLUE) if 0 else col(arrow(60, RED, 'down', sw=10), numberline(0, 10, 460, dots_={3: 1, 4: 2, 5: 3, 6: 2, 7: 1}, color=BLUE), gap=-10)
-# range: a bracket from lowest to highest dot
-math-6-statistical-variability/range = dotplot((2, 3, 3, 4, 4, 4, 5, 6, 8), 400, bracket=True)
+# range: a dot plot with a bracket from the least to the greatest value: range = 8 − 2 = 6
+math-6-statistical-variability/range = col(dotplot((2, 3, 3, 4, 4, 4, 5, 6, 8), 400, bracket=True), M('range = 8 − 2 = 6', 50), gap=10)
 # cluster: dots bunched on a number line
 math-6-statistical-variability/cluster = dotplot((1, 5, 5, 5, 6, 6, 6, 6, 7, 7, 10), 400)
 # mean: three bars leveled to equal height
@@ -2217,8 +2203,8 @@ math-8-defining-functions/nonlinear-function = plot(lambda x: 0.4 * x * x - 3, s
 math-8-defining-functions/vertical-line-test = plot(size=320, curves=[([3 * math.cos(t / 20 * math.pi) for t in range(41)], [3 * math.sin(t / 20 * math.pi) for t in range(41)])], vlines=[1.5], points=[(1.5, 2.6, RED), (1.5, -2.6, RED)])
 # scientific notation: 3 × 10⁶
 math-8-exponents-roots-and-scientific-notation/scientific-notation = M('3 × 10⁶', 140)
-# cube root: a 3 by 3 by 3 cube
-math-8-exponents-roots-and-scientific-notation/cube-root = solid('cube', 300, BLUE, units=(3, 3, 3))
+# cube root: a 3 by 3 by 3 cube of 27 blocks: the cube root of 27 is 3
+math-8-exponents-roots-and-scientific-notation/cube-root = col(solid('cube', 260, BLUE, units=(3, 3, 3)), M('∛27 = 3', 64), gap=8)
 # negative exponent: 10⁻² = 1/100
 math-8-exponents-roots-and-scientific-notation/negative-exponent = row(M('10⁻² =', 90), F('1', '100', 90), gap=16)
 # zero exponent: 5⁰ = 1
@@ -2277,8 +2263,8 @@ math-8-the-pythagorean-theorem/hypotenuse = triangle(320, pts=((30, 150), (190, 
 math-8-the-pythagorean-theorem/leg = triangle(320, pts=((30, 150), (190, 150), (30, 20)), right_at=0, hl_side=[0, 2])
 # right triangle: a right triangle
 math-8-the-pythagorean-theorem/right-triangle = triangle(320, pts=((10, 150), (190, 150), (10, 20)), right_at=0, fill=soft(BLUE))
-# converse: a triangle with sides 5, 12, 13
-math-8-the-pythagorean-theorem/converse = triangle(320, pts=((40, 150), (190, 150), (40, 20)), sides=['12', '13', '5'], fill=soft(GREEN))
+# converse: a 5-12-13 triangle: since 5² + 12² = 13², it must be a right triangle
+math-8-the-pythagorean-theorem/converse = col(triangle(300, pts=((10, 150), (190, 150), (10, 75)), sides=['12', '13', '5'], fill=soft(GREEN), right_at=0), Item(10, 14, ''), M('5² + 12² = 13²', 44), T('so it is a right triangle', 30, GREEN), gap=6)
 # distance: two points with a slanted segment
 math-8-the-pythagorean-theorem/distance = plot(size=320, xr=(0, 8), yr=(0, 8), grid_=True, segs=[((1, 1), (7, 6), RED, False)], points=[(1, 1, BLUE), (7, 6, BLUE)])
 # transformation: a shape and its moved copy
@@ -2287,8 +2273,8 @@ math-8-transformations/transformation = plot(size=320, xr=(0, 10), yr=(0, 10), g
 math-8-transformations/translation = plot(size=320, xr=(0, 10), yr=(0, 10), grid_=True, curves=[([1, 4, 1, 1], [3, 3, 6, 3]), ([6, 9, 6, 6], [3, 3, 6, 3])], arrows_=[(3.5, 4.5, 6, 4.5, ORANGE)])
 # reflection: a shape mirrored across a line
 math-8-transformations/reflection = plot(size=320, xr=(-5, 5), yr=(-5, 5), grid_=True, curves=[([-4, -1, -4, -4], [-2, -2, 3, -2]), ([4, 1, 4, 4], [-2, -2, 3, -2])], vlines=[0])
-# rotation: a flag turned 90 degrees
-math-8-transformations/rotation = row(flag(130, RED), curve_arrow(40, ORANGE), raw(150, 130, '<g transform="rotate(90 75 65)">' + '<line x1="20" y1="10" x2="20" y2="125" stroke="#1f2430" stroke-width="7" stroke-linecap="round"/><path d="M24 14 H120 L100 42 L120 70 H24 Z" fill="#e04848" stroke="#1f2430" stroke-width="5" stroke-linejoin="round"/></g>'), gap=10)
+# rotation: a flag turned 90 degrees around a fixed point
+math-8-transformations/rotation = raw(300, 290, '<g opacity="0.35"><line x1="110" y1="200" x2="110" y2="90" stroke="#1f2430" stroke-width="7" stroke-linecap="round"/><path d="M113 94 H170 L156 112 L170 130 H113 Z" fill="#e04848" stroke="#1f2430" stroke-width="5" stroke-linejoin="round"/></g><g transform="rotate(90 110 200)"><line x1="110" y1="200" x2="110" y2="90" stroke="#1f2430" stroke-width="7" stroke-linecap="round"/><path d="M113 94 H170 L156 112 L170 130 H113 Z" fill="#e04848" stroke="#1f2430" stroke-width="5" stroke-linejoin="round"/></g><path d="M110 64 A136 136 0 0 1 240 186" fill="none" stroke="#f08a24" stroke-width="6"/><path d="M246 204 l-16 -18 h22 z" fill="#f08a24"/><text x="226" y="84" font-family="Cambria Math" font-size="34" font-weight="700" fill="#f08a24">90°</text><circle cx="110" cy="200" r="10" fill="#1f2430"/>')
 # dilation: a small and a large square
 math-8-transformations/dilation = row(shape('square', 90, ORANGE), arrow(60), shape('square', 210, ORANGE), gap=10, align='b')
 # congruent: two identical triangles
@@ -2361,8 +2347,8 @@ math-9-quadratic-equations/quadratic-formula = raw(460, 200, '<text x="10" y="12
 math-9-quadratic-equations/discriminant = box(M('b² − 4ac', 110), color=RED, p=20)
 # zero: a parabola crossing at −2 and 2
 math-9-quadratic-equations/zero = plot(lambda x: 0.5 * x * x - 2, size=320, points=[(-2, 0, RED), (2, 0, RED)])
-# root: two dots on the x-axis
-math-9-quadratic-equations/root = plot(size=320, points=[(-3, 0, RED), (2, 0, RED)])
+# root: a parabola crossing the x-axis at its two roots
+math-9-quadratic-equations/root = plot(lambda x: 0.5 * (x + 3) * (x - 2), size=320, points=[(-3, 0, RED), (2, 0, RED)])
 # zero product property: (x − 2)(x + 5) = 0
 math-9-quadratic-equations/zero-product-property = M('(x − 2)(x + 5) = 0', 70)
 # vertex: a parabola with its lowest point marked
@@ -2373,8 +2359,8 @@ math-9-rational-exponents-and-real-numbers/rational-exponent = row(M('x', 120), 
 math-9-rational-exponents-and-real-numbers/radical = raw(300, 200, '<path d="M20 110 L50 100 L80 180 L120 20 H290" fill="none" stroke="#1f2430" stroke-width="10" stroke-linejoin="round"/><text x="205" y="160" font-family="Cambria Math" font-size="110" font-weight="700" text-anchor="middle" fill="#1f2430">18</text>')
 # index: a cube root with 3 highlighted
 math-9-rational-exponents-and-real-numbers/index = raw(300, 200, '<text x="30" y="90" font-family="Cambria Math" font-size="60" font-weight="700" fill="#e04848">3</text><path d="M20 110 L50 100 L80 180 L120 20 H290" fill="none" stroke="#1f2430" stroke-width="10" stroke-linejoin="round"/><text x="205" y="160" font-family="Cambria Math" font-size="110" font-weight="700" text-anchor="middle" fill="#1f2430">27</text>')
-# closure: a loop arrow inside a circle
-math-9-rational-exponents-and-real-numbers/closure = raw(300, 300, '<circle cx="150" cy="150" r="130" fill="#d6e6fb" stroke="#3a7bd5" stroke-width="8"/><path d="M110 120 A50 50 0 1 1 112 180" fill="none" stroke="#f08a24" stroke-width="10" stroke-linecap="round"/><path d="M96 168 l18 22 l10 -26 z" fill="#f08a24"/>')
+# closure: adding two whole numbers always gives a whole number: 2 + 3 = 5 stays inside
+math-9-rational-exponents-and-real-numbers/closure = over(raw(300, 300, '<circle cx="150" cy="150" r="130" fill="#d6e6fb" stroke="#3a7bd5" stroke-width="8"/><text x="150" y="82" font-family="Segoe UI, Arial, sans-serif" font-size="26" font-weight="700" text-anchor="middle" fill="#3a7bd5">whole numbers</text>'), M('2 + 3 = 5', 56))
 # simplify: √50 = 5√2
 math-9-rational-exponents-and-real-numbers/simplify = M('√50 = 5√2', 120)
 # irrational: √3 on a number line
@@ -2411,8 +2397,8 @@ math-9-systems-of-equations/substitution = col(M('y = 2x', 70), row(M('x + ', 70
 math-9-systems-of-equations/elimination = col(M(' 2x + y = 7', 70), M('+ x − y = 2', 70), raw(380, 8, '<rect width="380" height="8" fill="#1f2430"/>'), M('3x       = 9', 70, color=BLUE), gap=4, align='r')
 # infinitely many solutions: two lines drawn on top of each other
 math-9-systems-of-equations/infinitely-many-solutions = plot(lambda x: 0.7 * x + 1, lambda x: 0.7 * x + 1, size=320, grid_=True, colors=(BLUE, ORANGE), sw=10) if 0 else plot(lambda x: 0.7 * x + 1, size=320, grid_=True, colors=(BLUE,), sw=16, segs=[((-5, -2.5), (5, 4.5), ORANGE, True)])
-# feasible region: two overlapping shaded half-planes
-math-9-systems-of-equations/feasible-region = plot(size=320, grid_=True, fill_between=(lambda x: -5, lambda x: 0.8 * x + 1, -5, 5), shade=(lambda x: -0.7 * x + 2, -5, 5))
+# feasible region: two boundary lines; the region that meets both rules is shaded
+math-9-systems-of-equations/feasible-region = plot(lambda x: -0.7 * x + 2, lambda x: 0.8 * x - 2, size=320, grid_=True, colors=(BLUE, ORANGE), regions=[([(-5, 5.5), (2.667, 0.133), (-5, -6)], GREEN, 0.3)], points=[(2.667, 0.133, RED)])
 # consistent: two lines crossing
 math-9-systems-of-equations/consistent = plot(lambda x: 0.8 * x + 1, lambda x: -x + 2, size=320, grid_=True, points=[(0.56, 1.44, RED)])
 # unit conversion: a fraction chain canceling units
@@ -2431,8 +2417,8 @@ math-k-build-a-shape/flat = raw(320, 280, '<path d="M30 30 H260 L290 60 V250 H30
 math-k-build-a-shape/build = raw(260, 300, '<path d="M30 130 L130 20 L230 130 Z" fill="#e04848" stroke="#1f2430" stroke-width="7" stroke-linejoin="round"/><rect x="50" y="130" width="160" height="160" fill="#3a7bd5" stroke="#1f2430" stroke-width="7"/>')
 # curve: a curved line
 math-k-build-a-shape/curve = raw(360, 200, '<path d="M20 150 C 100 -20, 200 260, 340 50" fill="none" stroke="#9b59d0" stroke-width="16" stroke-linecap="round"/>')
-# count: ten dots in a row
-math-k-counting-to-100/count = dots(10, 10, 36, BLUE, gap=8)
+# count: ten dots counted 1 to 10
+math-k-counting-to-100/count = row(*[col(dot(36, BLUE), T(str(i), 26), gap=4) for i in range(1, 11)], gap=6)
 # number: the number 5 next to five stars
 math-k-counting-to-100/number = row(M('5', 160), col(row(*[star(60) for _ in range(3)], gap=6), row(*[star(60) for _ in range(2)], gap=6), gap=6), gap=24)
 # ones: single cubes in a row
@@ -2455,10 +2441,10 @@ math-k-how-many/last-number = col(row(Item(330, 10, ''), T('5', 70, RED), gap=0)
 math-k-how-many/ten-frame = tenframe(7, 340)
 # measure: a shoe with a row of cubes beside it
 math-k-longer-heavier-bigger/measure = row(raw(220, 110, '<path d="M14 80 C14 40 50 30 80 34 C110 38 120 56 160 60 C200 64 210 74 210 90 V100 H14 Z" fill="#a0522d" stroke="#1f2430" stroke-width="6" stroke-linejoin="round"/>'), gap=0) if 0 else col(raw(260, 110, '<path d="M14 80 C14 40 50 30 80 34 C110 38 140 56 190 60 C230 64 240 74 240 90 V100 H14 Z" fill="#a0522d" stroke="#1f2430" stroke-width="6" stroke-linejoin="round"/>'), objects(6, cube_icon, cols=6, size=38, gap=2, color=GREEN), gap=8, align='l')
-# more: a group of 5 dots next to a group of 3 dots
-math-k-more-less-same/more = row(dots(5, 3, 44, BLUE, gap=10), Item(30, 10, ''), dots(3, 2, 44, ORANGE, gap=10), gap=10)
-# less: a group of 2 dots next to a group of 4 dots
-math-k-more-less-same/less = row(dots(2, 2, 44, BLUE, gap=10), Item(30, 10, ''), dots(4, 2, 44, ORANGE, gap=10), gap=10)
+# more: 5 dots and 3 dots; the bigger group of 5 is circled
+math-k-more-less-same/more = row(mark(dots(5, 3, 44, BLUE, gap=10)), Item(30, 10, ''), dots(3, 2, 44, ORANGE, gap=10), gap=10)
+# less: 2 dots and 4 dots; the smaller group of 2 is circled
+math-k-more-less-same/less = row(mark(dots(2, 2, 44, BLUE, gap=10)), Item(30, 10, ''), dots(4, 2, 44, ORANGE, gap=10), gap=10)
 # same: two plates with 3 grapes each
 math-k-more-less-same/same = row(plate(170, objects(3, grape, cols=3, size=40, gap=4)), plate(170, objects(3, grape, cols=3, size=40, gap=4)), gap=20)
 # compare: a tall block tower and a short block tower
@@ -2537,12 +2523,12 @@ science-10-bonding-and-intermolecular-forces/hydrogen-bond = row(water(140), raw
 science-10-bonding-and-intermolecular-forces/intermolecular-force = raw(400, 300, ''.join(f'<ellipse cx="{x}" cy="{y}" rx="44" ry="30" fill="#fde3c8" stroke="#f08a24" stroke-width="5"/>' for x, y in ((90, 80), (300, 90), (110, 230), (300, 230))) + ''.join(f'<line x1="{a}" y1="{b}" x2="{c}" y2="{d}" stroke="#3a7bd5" stroke-width="5" stroke-dasharray="9 8"/>' for a, b, c, d in ((140, 80, 250, 90), (90, 115, 105, 195), (300, 125, 300, 195), (155, 230, 250, 230))))
 # Lewis structure: O=C=O with dots
 science-10-bonding-and-intermolecular-forces/lewis-structure = raw(440, 180, '<text x="70" y="115" font-family="Segoe UI" font-size="64" font-weight="700" text-anchor="middle" fill="#e04848">O</text><text x="220" y="115" font-family="Segoe UI" font-size="64" font-weight="700" text-anchor="middle" fill="#1f2430">C</text><text x="370" y="115" font-family="Segoe UI" font-size="64" font-weight="700" text-anchor="middle" fill="#e04848">O</text><path d="M110 82 H180 M110 102 H180 M260 82 H330 M260 102 H330" stroke="#1f2430" stroke-width="6"/>' + ''.join(f'<circle cx="{x}" cy="{y}" r="6" fill="#3a7bd5"/>' for x, y in ((56, 30), (82, 30), (56, 150), (82, 150), (12, 78), (12, 102), (356, 30), (382, 30), (356, 150), (382, 150), (428, 78), (428, 102))))
-# chemical equation: CH₄ + 2O₂ → CO₂ + 2H₂O
-science-10-chemical-reactions-and-equations/chemical-equation = M('CH₄ + 2O₂ → CO₂ + 2H₂O', 50)
+# chemical equation: CH₄ + 2O₂ → CO₂ + 2H₂O with the reactants and products named
+science-10-chemical-reactions-and-equations/chemical-equation = row(col(M('CH₄ + 2O₂', 48), T('reactants', 28, BLUE), gap=4), M('→', 48), col(M('CO₂ + 2H₂O', 48), T('products', 28, GREEN), gap=4), gap=20, align='t')
 # coefficient: 2H₂O with 2 highlighted
 science-10-chemical-reactions-and-equations/coefficient = M('2H₂O', 160, hl={'2H': RED}) if 0 else row(M('2', 160, color=RED), M('H₂O', 160), gap=6)
-# decomposition reaction: H₂O splitting into H₂ and O₂
-science-10-chemical-reactions-and-equations/decomposition-reaction = row(molecule(130), arrow(70), col(molecule(80, atoms=(('H', '#fff', -18, 0, 20), ('H', '#fff', 18, 0, 20)), bonds=((0, 1),)), molecule(100, atoms=(('O', RED, -22, 0, 28), ('O', RED, 22, 0, 28)), bonds=((0, 1),)), gap=10), gap=14)
+# decomposition reaction: two water molecules break apart into two hydrogen molecules and one oxygen molecule
+science-10-chemical-reactions-and-equations/decomposition-reaction = col(M('2H₂O → 2H₂ + O₂', 54), row(col(molecule(100), molecule(100), gap=6), arrow(60), col(molecule(70, atoms=(('H', '#fff', -18, 0, 20), ('H', '#fff', 18, 0, 20)), bonds=((0, 1),)), molecule(70, atoms=(('H', '#fff', -18, 0, 20), ('H', '#fff', 18, 0, 20)), bonds=((0, 1),)), gap=10), molecule(100, atoms=(('O', RED, -26, 0, 30), ('O', RED, 26, 0, 30)), bonds=((0, 1),)), gap=16), gap=12)
 # bond energy: a bond being snapped
 science-10-energy-in-reactions/bond-energy = raw(400, 160, '<circle cx="80" cy="80" r="50" fill="#d6e6fb" stroke="#3a7bd5" stroke-width="6"/><circle cx="320" cy="80" r="50" fill="#d3f0de" stroke="#2f9e5b" stroke-width="6"/><path d="M130 80 H180 M220 80 H270" stroke="#1f2430" stroke-width="10"/><path d="M180 60 L196 80 L180 100 M220 60 L204 80 L220 100" fill="none" stroke="#e04848" stroke-width="6" stroke-linejoin="round"/><path d="M200 20 l-6 18 l10 -2 l-6 18" fill="none" stroke="#f5c524" stroke-width="6"/>')
 # activation energy: an energy hill with a peak
@@ -2561,8 +2547,8 @@ science-10-gases-and-kinetic-theory/absolute-zero = thermometer(300, 0.02, label
 science-10-nuclear-chemistry/fission = row(nucleus(5, 5, 150), arrow(60, RED), col(nucleus(3, 2, 100), nucleus(2, 3, 100), gap=20), gap=10)
 # alpha particle: a cluster of four balls
 science-10-nuclear-chemistry/alpha-particle = nucleus(2, 2, 240)
-# beta particle: a small fast dot
-science-10-nuclear-chemistry/beta-particle = row(raw(220, 60, '<path d="M10 20 H150 M30 40 H150" stroke="#8a8f9c" stroke-width="5" stroke-linecap="round"/>'), dot(50, BLUE), gap=4)
+# beta particle: a nucleus shooting out a fast electron (e⁻), the beta particle
+science-10-nuclear-chemistry/beta-particle = row(nucleus(5, 6, 160), arrow(110, BLUE, sw=8), over(dot(76, BLUE), M('e⁻', 34, color='#fff')), gap=8)
 # gamma ray: a wavy line through a lead block
 science-10-nuclear-chemistry/gamma-ray = raw(440, 200, '<rect x="190" y="20" width="80" height="160" fill="#8a8f9c" stroke="#1f2430" stroke-width="6"/><text x="230" y="110" font-family="Segoe UI" font-size="30" font-weight="700" text-anchor="middle" fill="#fff">Pb</text><path d="' + 'M10 100 ' + ' '.join(f'Q{20 + i * 40} {60 if i % 2 == 0 else 140} {40 + i * 40} 100' for i in range(4)) + '" fill="none" stroke="#9b59d0" stroke-width="7"/><path d="' + 'M280 100 ' + ' '.join(f'Q{290 + i * 40} {60 if i % 2 == 0 else 140} {310 + i * 40} 100' for i in range(3)) + '" fill="none" stroke="#9b59d0" stroke-width="7" opacity="0.6"/>')
 # radioactive decay: a decay curve
@@ -2599,14 +2585,14 @@ science-11-electricity-and-magnetism/ohm-s-law = M('V = IR', 160)
 science-11-electricity-and-magnetism/series-circuit = circuit(320, bulbs=2, series=True)
 # electromagnetic induction: a magnet moving in a coil
 science-11-electricity-and-magnetism/electromagnetic-induction = raw(420, 200, '<path d="' + ''.join(f'M{170 + i * 30} 40 a30 60 0 0 1 0 120 ' for i in range(6)) + '" fill="none" stroke="#b87333" stroke-width="8"/><rect x="10" y="78" width="70" height="44" fill="#e04848" stroke="#1f2430" stroke-width="5"/><rect x="80" y="78" width="70" height="44" fill="#3a7bd5" stroke="#1f2430" stroke-width="5"/><path d="M90 60 H140" stroke="#f08a24" stroke-width="6"/><path d="M156 60 l-16 -10 v20 z" fill="#f08a24"/>')
-# work: a box raised with an arrow
-science-11-energy-and-work/work = col(arrow(80, RED, 'up', sw=12), crate(140), raw(260, 20, '<rect width="260" height="12" fill="#8a8f9c"/>'), gap=6)
+# work: a crate lifted up: a force upward and the distance it moved
+science-11-energy-and-work/work = raw(320, 320, '<g opacity="0.3">' + g(crate(90), 50, 210) + '</g>' + g(crate(90), 50, 60) + '<line x1="20" y1="302" x2="300" y2="302" stroke="#8a8f9c" stroke-width="10"/><line x1="95" y1="54" x2="95" y2="24" stroke="#e04848" stroke-width="10"/><path d="M95 4 l-14 24 h28 z" fill="#e04848"/><text x="122" y="34" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="700" fill="#e04848">force</text><line x1="180" y1="122" x2="180" y2="256" stroke="#3a7bd5" stroke-width="6"/><path d="M180 104 l-12 22 h24 z M180 272 l-12 -22 h24 z" fill="#3a7bd5"/><text x="196" y="198" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="700" fill="#3a7bd5">distance</text>')
 # conservation of energy: a swinging pendulum
 science-11-energy-and-work/conservation-of-energy = raw(380, 300, '<line x1="80" y1="20" x2="300" y2="20" stroke="#1f2430" stroke-width="8"/><line x1="190" y1="20" x2="90" y2="200" stroke="#8a8f9c" stroke-width="4" stroke-dasharray="8 7"/><line x1="190" y1="20" x2="290" y2="200" stroke="#8a8f9c" stroke-width="4" stroke-dasharray="8 7"/><line x1="190" y1="20" x2="190" y2="240" stroke="#1f2430" stroke-width="5"/><circle cx="90" cy="200" r="24" fill="#f5c524" stroke="#1f2430" stroke-width="4" opacity="0.6"/><circle cx="290" cy="200" r="24" fill="#f5c524" stroke="#1f2430" stroke-width="4" opacity="0.6"/><circle cx="190" cy="240" r="28" fill="#f5c524" stroke="#1f2430" stroke-width="5"/><path d="M110 250 Q190 300 270 250" fill="none" stroke="#f08a24" stroke-width="6"/><path d="M272 250 l-4 18 l-14 -12 z" fill="#f08a24"/>')
 # law of universal gravitation: two spheres with arrows toward each other
 science-11-gravity-and-electrostatics/law-of-universal-gravitation = raw(440, 200, '<circle cx="90" cy="100" r="70" fill="#3a7bd5" stroke="#1f2430" stroke-width="6"/><circle cx="370" cy="100" r="44" fill="#a0724a" stroke="#1f2430" stroke-width="6"/><path d="M170 100 H210 M330 100 H290" stroke="#e04848" stroke-width="8"/><path d="M232 100 l-24 -14 v28 z M268 100 l24 -14 v28 z" fill="#e04848"/>')
-# Coulomb's law: two charges with force arrows
-science-11-gravity-and-electrostatics/coulomb-s-law = row(arrow(70, RED, 'left', sw=10), charge('+', 100), Item(60, 10, ''), charge('+', 100), arrow(70, RED, sw=10), gap=6)
+# Coulomb's law: two charges close together push hard (long arrows); far apart they push weakly (short arrows)
+science-11-gravity-and-electrostatics/coulomb-s-law = col(row(arrow(90, RED, 'left', sw=10), charge('+', 80), charge('+', 80), arrow(90, RED, sw=10), gap=4), row(arrow(34, RED, 'left', sw=8), charge('+', 80), Item(150, 10, ''), charge('+', 80), arrow(34, RED, sw=8), gap=4), gap=36)
 # inverse square law: spreading lines through larger squares
 science-11-gravity-and-electrostatics/inverse-square-law = raw(440, 260, '<circle cx="30" cy="130" r="16" fill="#f5c524" stroke="#1f2430" stroke-width="4"/><path d="M30 130 L430 20 M30 130 L430 240 M30 130 L430 130" stroke="#8a8f9c" stroke-width="3" stroke-dasharray="8 6"/>' + ''.join(f'<rect x="{x}" y="{130 - h / 2}" width="10" height="{h}" fill="{c}" stroke="#1f2430" stroke-width="3"/>' for x, h, c in ((120, 50, '#3a7bd5'), (230, 110, '#f08a24'), (340, 170, '#2f9e5b'))))
 # field: field lines around a sphere
@@ -2645,14 +2631,14 @@ science-11-waves-and-sound/transverse-wave = wave(380, 2, arrows_=True)
 science-11-waves-and-sound/longitudinal-wave = spring(400)
 # wave speed: v = fλ
 science-11-waves-and-sound/wave-speed = M('v = fλ', 160)
-# biome: a world map shaded by biome
-science-12-ecosystems-and-biomes/biome = world_map(440, continents=True)
+# biome: three biomes side by side: forest, desert, tundra
+science-12-ecosystems-and-biomes/biome = row(col(box(row(pine(60), pine(76), gap=0, align='b'), w=130, h=130, color=GREEN, rx=10), T('forest', 28, GREEN), gap=6), col(box(raw(90, 100, '<circle cx="70" cy="20" r="16" fill="#f5c524"/><path d="M36 96 V40 a9 9 0 0 1 18 0 V96 Z M36 70 H22 V52 a7 7 0 0 1 14 0 M54 62 H68 V46 a7 7 0 0 0 -14 0" fill="#2f9e5b" stroke="#1f2430" stroke-width="4" stroke-linejoin="round"/>'), w=130, h=130, color=ORANGE, fill='#fbe7b5', rx=10), T('desert', 28, ORANGE), gap=6), col(box(raw(100, 90, '<path d="M4 80 L36 30 L56 56 L70 40 L96 80 Z" fill="#fff" stroke="#1f2430" stroke-width="4" stroke-linejoin="round"/>' + ''.join(f'<circle cx="{x}" cy="{y}" r="4" fill="#8fb6ea"/>' for x, y in ((10, 10), (40, 6), (70, 16), (90, 6), (24, 26)))), w=130, h=130, color=BLUE, fill='#eef3f8', rx=10), T('tundra', 28, BLUE), gap=6), gap=14)
 # energy return on investment: a small arrow in, big arrow out
 science-12-energy-sources/energy-return-on-investment = row(arrow(80, RED, sw=8), box(T('energy', 34), color=GRAY, p=16), arrow(180, GREEN, sw=24), gap=6)
 # systems thinking: a web of connected boxes
 science-12-engineering-for-global-challenges/systems-thinking = raw(380, 300, ''.join(f'<path d="M{a} {b} L{c} {d}" stroke="#8a8f9c" stroke-width="5"/>' for a, b, c, d in ((80, 60, 300, 60), (80, 60, 190, 150), (300, 60, 190, 150), (190, 150, 80, 240), (190, 150, 300, 240), (80, 240, 300, 240), (80, 60, 80, 240))) + ''.join(f'<rect x="{x - 40}" y="{y - 28}" width="80" height="56" rx="10" fill="{c}" stroke="#1f2430" stroke-width="4"/>' for x, y, c in ((80, 60, '#d6e6fb'), (300, 60, '#fde3c8'), (190, 150, '#d3f0de'), (80, 240, '#ead7f7'), (300, 240, '#fde97a'))))
-# tradeoff: a balance scale
-science-12-engineering-for-global-challenges/tradeoff = scale_icon(320, tilt=0)
+# tradeoff: a scale with cost on one side and safety on the other: gaining one means giving up some of the other
+science-12-engineering-for-global-challenges/tradeoff = col(arrow(170, ORANGE, double=True), scale_icon(320, coin(70), shield(70), tilt=0), gap=4)
 # life cycle assessment: a loop from raw material to landfill
 science-12-engineering-for-global-challenges/life-cycle-assessment = cycle(['raw', 'make', 'use', 'waste'], r=140)
 # subproblem: one big box splitting into small boxes
@@ -2691,8 +2677,8 @@ science-3-weather-and-climate/forecast = map_tile(340, roads=False, pins=()) if 
 science-4-energy-conversion-devices/circuit = circuit(320, bulbs=1)
 # internal: a body outline with a heart inside
 science-4-structures-and-senses/internal = raw(220, 340, '<circle cx="110" cy="50" r="38" fill="none" stroke="#1f2430" stroke-width="6"/><path d="M60 100 Q110 88 160 100 L180 240 H40 Z" fill="none" stroke="#1f2430" stroke-width="6" stroke-linejoin="round"/><path d="M60 120 L30 230 M160 120 L190 230 M80 240 L75 330 M140 240 L145 330" stroke="#1f2430" stroke-width="6" stroke-linecap="round"/><path d="M122 140 c-6 -14 -26 -10 -24 6 c2 14 24 26 24 26 s22 -12 24 -26 c2 -16 -18 -20 -24 -6 z" fill="#e04848" stroke="#1f2430" stroke-width="4"/>')
-# reflect: light rays bouncing off an apple to an eye
-science-4-structures-and-senses/reflect = raw(440, 240, '<circle cx="60" cy="50" r="34" fill="#f5c524" stroke="#1f2430" stroke-width="5"/><path d="M90 70 L200 160" stroke="#f5c524" stroke-width="7"/><path d="M212 168 l-12 -22 l-10 14 z" fill="#f5c524"/><path d="M240 160 L340 110" stroke="#f5c524" stroke-width="7"/><path d="M352 104 l-24 0 l8 16 z" fill="#f5c524"/>') if 0 else row(sun(90), arrow(80, YELLOW, sw=8), apple(100), arrow(80, YELLOW, sw=8), eye(110), gap=6)
+# reflect: light bouncing off a mirror: the angle in equals the angle out
+science-4-structures-and-senses/reflect = raw(440, 270, '<line x1="40" y1="226" x2="400" y2="226" stroke="#8a8f9c" stroke-width="12"/><line x1="220" y1="218" x2="220" y2="80" stroke="#1f2430" stroke-width="3" stroke-dasharray="8 6"/><circle cx="60" cy="56" r="30" fill="#f5c524" stroke="#1f2430" stroke-width="5"/><path d="M84 74 L220 218 L360 72" fill="none" stroke="#f08a24" stroke-width="7" stroke-linejoin="round"/><path d="M150 144 L126.9 135.6 L142.9 120.4 Z M362 70 L352.9 93.6 L336.9 78.4 Z" fill="#f08a24"/><path d="M220 168 A50 50 0 0 0 185.7 181.6" fill="none" stroke="#e04848" stroke-width="5"/><path d="M220 168 A50 50 0 0 1 254.3 181.6" fill="none" stroke="#e04848" stroke-width="5"/><text x="220" y="40" font-family="Segoe UI, Arial, sans-serif" font-size="26" font-weight="700" text-anchor="middle" fill="#e04848">equal angles</text><text x="400" y="262" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="700" text-anchor="end" fill="#5a5f6c">mirror</text>')
 # pupil: an eye with a large pupil
 science-4-structures-and-senses/pupil = eye(300, pupil=0.55)
 # amplitude: two waves, one tall and one short
@@ -2703,10 +2689,10 @@ science-4-waves-and-information/wavelength = wave(400, 2, marks='wavelength')
 science-4-waves-and-information/code = raw(440, 80, ''.join(f'<circle cx="{x}" cy="40" r="14" fill="#1f2430"/>' if k == '.' else f'<rect x="{x - 24}" y="30" width="48" height="20" rx="10" fill="#1f2430"/>' for x, k in zip(range(30, 440, 56), '.-..--.-')))
 # pattern: a regular wave pattern
 science-4-waves-and-information/pattern = wave(400, 3)
-# system: four overlapping circles
-science-5-earth-s-spheres/system = raw(340, 340, ''.join(f'<circle cx="{x}" cy="{y}" r="100" fill="{c}" fill-opacity="0.45" stroke="{s}" stroke-width="5"/>' for x, y, c, s in ((120, 120, '#a8d4f5', '#3a7bd5'), (220, 120, '#d3f0de', '#2f9e5b'), (120, 220, '#e8c27a', '#a0724a'), (220, 220, '#fde3c8', '#f08a24'))))
-# food web: arrows linking grass, rabbit, fox and hawk
-science-5-food-webs-and-matter-cycles/food-web = raw(400, 320, '<rect x="20" y="250" width="120" height="50" rx="10" fill="#d3f0de" stroke="#2f9e5b" stroke-width="5"/><rect x="210" y="190" width="120" height="50" rx="10" fill="#f4f5f7" stroke="#8a8f9c" stroke-width="5"/><rect x="40" y="110" width="120" height="50" rx="10" fill="#fde3c8" stroke="#f08a24" stroke-width="5"/><rect x="230" y="20" width="120" height="50" rx="10" fill="#d6e6fb" stroke="#3a7bd5" stroke-width="5"/>' + '<text x="80" y="285" font-family="Segoe UI" font-size="28" font-weight="700" text-anchor="middle" fill="#1f2430">grass</text><text x="270" y="225" font-family="Segoe UI" font-size="28" font-weight="700" text-anchor="middle" fill="#1f2430">rabbit</text><text x="100" y="145" font-family="Segoe UI" font-size="28" font-weight="700" text-anchor="middle" fill="#1f2430">fox</text><text x="290" y="55" font-family="Segoe UI" font-size="28" font-weight="700" text-anchor="middle" fill="#1f2430">hawk</text>' + ''.join(f'<line x1="{a}" y1="{b}" x2="{c}" y2="{d}" stroke="#1f2430" stroke-width="5"/><circle cx="{c}" cy="{d}" r="7" fill="#1f2430"/>' for a, b, c, d in ((140, 265, 210, 225), (230, 190, 150, 160), (270, 190, 285, 72), (160, 115, 230, 60))))
+# system: air, water, land and life linked in a cycle
+science-5-earth-s-spheres/system = cycle(['air', 'water', 'land', 'life'], r=140, colors=[BLUE, TEAL, BROWN, GREEN])
+# food web: a food web: arrows point from each food to the animal that eats it
+science-5-food-webs-and-matter-cycles/food-web = web({'grass': (210, 305, GREEN), 'rabbit': (95, 205, ORANGE), 'mouse': (325, 205, ORANGE), 'fox': (95, 50, RED), 'hawk': (325, 50, PURPLE)}, [('grass', 'rabbit'), ('grass', 'mouse'), ('rabbit', 'fox'), ('mouse', 'fox'), ('mouse', 'hawk'), ('rabbit', 'hawk')], 400)
 # carbon dioxide: a leaf with an arrow of CO₂ going in
 science-5-food-webs-and-matter-cycles/carbon-dioxide = row(col(T('CO₂', 48, GRAY), arrow(80, GRAY, sw=8), gap=0), raw(200, 140, '<path d="M10 70 C40 10 150 0 190 70 C150 140 40 130 10 70 Z" fill="#2f9e5b" stroke="#1f2430" stroke-width="5"/><path d="M10 70 H170" stroke="#1f2430" stroke-width="4"/>'), gap=6)
 # force: an arrow pointing down at a ball
@@ -2719,8 +2705,8 @@ science-5-gravity/downward = col(row(*[arrow(110, RED, 'down', sw=10) for _ in r
 science-5-gravity/earth-s-center = raw(320, 320, '<circle cx="160" cy="160" r="110" fill="#3a7bd5" stroke="#1f2430" stroke-width="6"/><path d="M110 120 c20 -30 50 -10 60 10 c10 20 -20 40 -40 30 z M190 200 c20 -10 40 10 30 30 c-10 10 -30 0 -30 -30 z" fill="#2f9e5b"/>' + ''.join(f'<line x1="{160 + 150 * math.cos(a):.0f}" y1="{160 + 150 * math.sin(a):.0f}" x2="{160 + 122 * math.cos(a):.0f}" y2="{160 + 122 * math.sin(a):.0f}" stroke="#e04848" stroke-width="7"/><path d="M{160 + 116 * math.cos(a):.0f} {160 + 116 * math.sin(a):.0f} l{12 * math.cos(a) - 9 * math.sin(a):.0f} {12 * math.sin(a) + 9 * math.cos(a):.0f} l{18 * math.sin(a):.0f} {-18 * math.cos(a):.0f} z" fill="#e04848"/>' for a in [k * math.pi / 4 for k in range(8)]) + '<circle cx="160" cy="160" r="8" fill="#e04848"/>')
 # particle: a sugar cube breaking into dots
 science-5-matter-is-made-of-particles/particle = row(raw(130, 130, '<path d="M20 50 L60 20 H120 V90 L80 120 H20 Z M20 50 H80 L120 20 M80 50 V120" fill="#fff" stroke="#1f2430" stroke-width="5" stroke-linejoin="round"/>'), arrow(60), raw(140, 130, ''.join(f'<circle cx="{x}" cy="{y}" r="7" fill="#fff" stroke="#1f2430" stroke-width="3"/>' for x, y in ((20, 30), (60, 20), (100, 40), (130, 70), (40, 70), (80, 90), (110, 110), (30, 110), (70, 120), (120, 20)))), gap=10)
-# conservation of mass: a balance level before and after mixing
-science-5-matter-is-made-of-particles/conservation-of-mass = row(scale_icon(200, tilt=0), arrow(50, ORANGE), scale_icon(200, tilt=0), gap=10)
+# conservation of mass: four blocks balance 100 g; rearranged, they still balance 100 g
+science-5-matter-is-made-of-particles/conservation-of-mass = row(scale_icon(220, row(*[cube_icon(26, c) for c in (BLUE, ORANGE, GREEN, PURPLE)], gap=0), tile('100 g', GRAY, 44)), arrow(50, ORANGE), scale_icon(220, grid([cube_icon(26, c) for c in (BLUE, ORANGE, GREEN, PURPLE)], 2, gap=0), tile('100 g', GRAY, 44)), gap=10)
 # rotate: Earth with a curved arrow around its axis
 science-5-sun-stars-and-shadows/rotate = raw(320, 320, '<line x1="120" y1="30" x2="200" y2="290" stroke="#1f2430" stroke-width="5" stroke-dasharray="10 8"/><circle cx="160" cy="160" r="100" fill="#3a7bd5" stroke="#1f2430" stroke-width="6"/><path d="M110 120 c20 -30 50 -10 60 10 c10 20 -20 40 -40 30 z M190 200 c20 -10 40 10 30 30 c-10 10 -30 0 -30 -30 z" fill="#2f9e5b"/><path d="M60 250 Q160 320 270 240" fill="none" stroke="#f08a24" stroke-width="9"/><path d="M285 228 l-26 2 l12 22 z" fill="#f08a24"/>')
 # revolve: Earth on a path around the Sun
@@ -2729,8 +2715,8 @@ science-5-sun-stars-and-shadows/revolve = orbit(360, center=sun(110), body=earth
 science-5-sun-stars-and-shadows/constellation = raw(420, 260, ''.join(f'<line x1="{a}" y1="{b}" x2="{c}" y2="{d}" stroke="#8a8f9c" stroke-width="4"/>' for a, b, c, d in ((30, 70, 110, 60), (110, 60, 180, 90), (180, 90, 250, 120), (250, 120, 270, 200), (270, 200, 380, 210), (380, 210, 390, 130), (390, 130, 250, 120))) + ''.join(f'<path d="M{x} {y - 16} l5 11 l12 1 l-9 8 l3 12 l-11 -6 l-11 6 l3 -12 l-9 -8 l12 -1 z" fill="#f5c524" stroke="#1f2430" stroke-width="2"/>' for x, y in ((30, 70), (110, 60), (180, 90), (250, 120), (270, 200), (380, 210), (390, 130))))
 # cell: a round cell with a nucleus
 science-6-cells-and-body-systems/cell = cell(300)
-# organelle: a cell with labeled parts
-science-6-cells-and-body-systems/organelle = row(cell(260), col(T('nucleus', 30, PURPLE), T('mitochondria', 30, ORANGE), T('membrane', 30, GREEN), gap=20, align='l'), gap=16)
+# organelle: a cell with leader lines to three organelles: nucleus, mitochondria, membrane
+science-6-cells-and-body-systems/organelle = raw(480, 220, g(cell(260), 0, 6) + ''.join(f'<line x1="{x}" y1="{y}" x2="282" y2="{ty - 9}" stroke="#1f2430" stroke-width="3"/><circle cx="{x}" cy="{y}" r="5" fill="#1f2430"/><text x="288" y="{ty}" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="700" fill="{c}">{t}</text>' for x, y, ty, t, c in ((130, 110, 50, 'nucleus', PURPLE), (195, 172, 120, 'mitochondria', ORANGE), (252, 110, 196, 'membrane', GREEN))))
 # nucleus: a cell with a dark center
 science-6-cells-and-body-systems/nucleus = cell(300, organelles=False, nucleus_='dark')
 # cell membrane: a cell with a highlighted outer edge
@@ -2739,16 +2725,16 @@ science-6-cells-and-body-systems/cell-membrane = cell(300, membrane_hl=True)
 science-6-cells-and-body-systems/tissue = grid([cell(110, organelles=False) for _ in range(9)], 3, gap=0)
 # organ system: a torso outline with the stomach and intestines
 science-6-cells-and-body-systems/organ-system = torso(300, inner=stomach(120))
-# ocean current: a world map with curving arrows
-science-6-climate-and-ocean-circulation/ocean-current = world_map(440, arrows_=[(-75, 30, -20, 48), (-15, 15, -65, 12), (140, 35, -140, 45), (-125, 20, 165, 12), (60, -15, 100, -38)])
+# ocean current: the North Atlantic: currents circle clockwise, warm water north, cold water south
+science-6-climate-and-ocean-circulation/ocean-current = world_map(440, view=(-100, -5, 10, 65), flows=[([(-80, 25), (-75, 35), (-58, 41), (-38, 46), (-18, 50)], RED, 14), ([(-14, 44), (-18, 32), (-22, 20)], BLUE, 14), ([(-26, 14), (-48, 13), (-68, 18)], ORANGE, 14)], labels=[(-62, 46.5, 'Gulf Stream', RED, 24)])
 # Coriolis effect: a globe with curved wind arrows
 science-6-climate-and-ocean-circulation/coriolis-effect = raw(320, 320, '<circle cx="160" cy="160" r="130" fill="#3a7bd5" stroke="#1f2430" stroke-width="6"/><line x1="30" y1="160" x2="290" y2="160" stroke="#fff" stroke-width="3" stroke-dasharray="8 6"/><path d="M110 70 Q150 110 200 100" fill="none" stroke="#f5c524" stroke-width="8"/><path d="M214 96 l-22 -10 l2 22 z" fill="#f5c524"/><path d="M110 250 Q150 210 200 220" fill="none" stroke="#f5c524" stroke-width="8"/><path d="M214 224 l-22 10 l2 -22 z" fill="#f5c524"/>')
 # convection: a loop of red and blue arrows
 science-6-climate-and-ocean-circulation/convection = raw(320, 300, '<rect x="10" y="10" width="300" height="280" rx="12" fill="#f4f5f7" stroke="#1f2430" stroke-width="5"/><path d="M110 230 V80" stroke="#e04848" stroke-width="10"/><path d="M110 64 l-16 24 h32 z" fill="#e04848"/><path d="M130 60 H190" stroke="#e04848" stroke-width="10"/><path d="M210 80 V230" stroke="#3a7bd5" stroke-width="10"/><path d="M210 246 l-16 -24 h32 z" fill="#3a7bd5"/><path d="M190 260 H130" stroke="#3a7bd5" stroke-width="10"/><path d="M80 270 l10 -20 l10 20 l10 -20 l10 20" fill="none" stroke="#f08a24" stroke-width="5"/>')
 # latitude: a globe with horizontal lines
 science-6-climate-and-ocean-circulation/latitude = globe(300, lat=True)
-# prevailing winds: a map with repeated arrows pointing east
-science-6-climate-and-ocean-circulation/prevailing-winds = over(world_map(440), raw(440, 220, ''.join(f'<path d="M{x} {y} h50" stroke="#f08a24" stroke-width="7"/><path d="M{x + 64} {y} l-16 -10 v20 z" fill="#f08a24"/>' for x in (40, 160, 280) for y in (50, 110, 170))), dx=0, dy=0)
+# prevailing winds: prevailing winds: trade winds blow west near the equator, westerlies east farther out
+science-6-climate-and-ocean-circulation/prevailing-winds = col(world_map(440, flows=[([(lo + 40, la), (lo, la)], c, 10) for la, c in ((15, ORANGE), (-15, ORANGE), (70, PURPLE), (-70, PURPLE)) for lo in (-150, -60, 30, 120)] + [([(lo, la), (lo + 40, la)], BLUE, 10) for la in (45, -45) for lo in (-150, -60, 30, 120)]), row(T('trade winds', 26, ORANGE), T('westerlies', 26, BLUE), T('polar easterlies', 26, PURPLE), gap=20), gap=8)
 # moon phase: eight Moon shapes from new to full
 science-6-earth-sun-moon-system/moon-phase = grid([moon(80, p) for p in (0, 1, 2, 3, 4, 5, 6, 7)], 4, gap=14)
 # eclipse: Sun, Moon and Earth in a line with a shadow
@@ -2787,8 +2773,8 @@ science-6-plate-tectonics/continental-drift = raw(420, 300, '<path d="M60 40 C12
 science-6-thermal-energy/radiation = row(sun(130), raw(170, 120, ''.join(f'<path d="M10 {y} q20 -16 40 0 t40 0 t40 0" fill="none" stroke="#e04848" stroke-width="6"/><path d="M146 {y} l-16 -10 v20 z" fill="#e04848"/>' for y in (30, 60, 90))), raw(130, 130, '<circle cx="65" cy="65" r="58" fill="#3a7bd5" stroke="#1f2430" stroke-width="5"/><path d="M40 45 c15 -20 40 -5 40 10 c0 15 -20 25 -35 15 z" fill="#2f9e5b"/>'), gap=6)
 # air mass: a big blue arrow over a map
 science-6-water-cycle-and-weather/air-mass = over(us_map(420, color=GREEN), raw(420, 260, '<path d="M60 70 H300" stroke="#3a7bd5" stroke-width="40" stroke-linecap="round" opacity="0.8"/><path d="M360 70 l-60 -40 v80 z" fill="#3a7bd5" opacity="0.8"/>'), dx=0, dy=0)
-# front: a weather map line with blue triangles
-science-6-water-cycle-and-weather/front = raw(440, 160, '<path d="M20 70 H420" stroke="#3a7bd5" stroke-width="8"/>' + ''.join(f'<path d="M{x - 22} 70 L{x} 110 L{x + 22} 70 Z" fill="#3a7bd5"/>' for x in (70, 160, 250, 340)))
+# front: cold air pushing into warm air; the blue line with triangles is the cold front
+science-6-water-cycle-and-weather/front = raw(440, 230, '<rect x="5" y="5" width="215" height="220" fill="#d6e6fb"/><rect x="220" y="5" width="215" height="220" fill="#fbdada"/><line x1="220" y1="5" x2="220" y2="225" stroke="#3a7bd5" stroke-width="8"/>' + ''.join(f'<path d="M220 {y - 22} L256 {y} L220 {y + 22} Z" fill="#3a7bd5"/>' for y in (45, 115, 185)) + '<text x="110" y="122" font-family="Segoe UI, Arial, sans-serif" font-size="32" font-weight="700" text-anchor="middle" fill="#3a7bd5">cold air</text><text x="340" y="122" font-family="Segoe UI, Arial, sans-serif" font-size="32" font-weight="700" text-anchor="middle" fill="#e04848">warm air</text><line x1="70" y1="170" x2="150" y2="170" stroke="#3a7bd5" stroke-width="7"/><path d="M170 170 l-22 -12 v24 z" fill="#3a7bd5"/>')
 # atom: a nucleus with orbiting dots
 science-7-atoms-and-molecules/atom = atom(300, shells=(2, 3))
 # molecule: one big ball with two small balls attached
@@ -2803,16 +2789,16 @@ science-7-chemical-reactions/conservation-of-mass = col(raw(150, 150, '<path d="
 science-7-earth-s-resources/groundwater = layers(4, 320, water_=True)
 # succession: bare ground, grass, shrubs, then trees
 science-7-ecosystem-change-and-biodiversity/succession = row(raw(90, 90, '<rect x="5" y="60" width="80" height="25" fill="#a0724a"/>'), arrow(30), raw(90, 90, '<rect x="5" y="60" width="80" height="25" fill="#a0724a"/><path d="M15 60 l5 -20 l5 20 M35 60 l5 -24 l5 24 M55 60 l5 -18 l5 18" stroke="#2f9e5b" stroke-width="5" fill="none"/>'), arrow(30), raw(90, 90, '<rect x="5" y="60" width="80" height="25" fill="#a0724a"/><circle cx="30" cy="44" r="18" fill="#2f9e5b" stroke="#1f2430" stroke-width="3"/><circle cx="60" cy="40" r="22" fill="#2f9e5b" stroke="#1f2430" stroke-width="3"/>'), arrow(30), tree(110), gap=4, align='b')
-# food web: animal icons linked by arrows
-science-7-matter-and-energy-in-ecosystems/food-web = raw(420, 320, ''.join(f'<path d="M{a} {b} L{c} {d}" stroke="#1f2430" stroke-width="5"/><circle cx="{c}" cy="{d}" r="8" fill="#1f2430"/>' for a, b, c, d in ((110, 260, 150, 175), (140, 260, 250, 215), (190, 140, 255, 85), (290, 190, 300, 92), (200, 140, 210, 152)))) + raw(1, 1, '') if 0 else raw(420, 320, ''.join(f'<path d="M{a} {b} L{c} {d}" stroke="#1f2430" stroke-width="5"/><circle cx="{c}" cy="{d}" r="9" fill="#1f2430"/>' for a, b, c, d in ((150, 268, 120, 182), (200, 268, 290, 192), (120, 152, 200, 72), (290, 162, 230, 72), (180, 168, 260, 168))) + ''.join(f'<rect x="{x - 60}" y="{y - 24}" width="120" height="48" rx="10" fill="{f}" stroke="{s}" stroke-width="5"/><text x="{x}" y="{y + 10}" font-family="Segoe UI" font-size="28" font-weight="700" text-anchor="middle" fill="#1f2430">{t}</text>' for x, y, t, f, s in ((175, 290, 'plants', '#d3f0de', '#2f9e5b'), (110, 160, 'mouse', '#f4f5f7', '#8a8f9c'), (310, 170, 'rabbit', '#f4f5f7', '#8a8f9c'), (215, 48, 'owl', '#d6e6fb', '#3a7bd5'))))
+# food web: a food web: arrows point from each food to the animal that eats it
+science-7-matter-and-energy-in-ecosystems/food-web = web({'plants': (210, 305, GREEN), 'mouse': (95, 205, ORANGE), 'rabbit': (325, 205, ORANGE), 'snake': (95, 50, BROWN), 'owl': (325, 50, PURPLE)}, [('plants', 'mouse'), ('plants', 'rabbit'), ('mouse', 'snake'), ('mouse', 'owl'), ('rabbit', 'owl'), ('snake', 'owl')], 400)
 # energy pyramid: a stacked triangle with four levels
 science-7-matter-and-energy-in-ecosystems/energy-pyramid = pyramid_levels(4, 320)
-# carbon cycle: a loop of arrows through a tree, air and soil
-science-7-matter-and-energy-in-ecosystems/carbon-cycle = cycle(['tree', 'air', 'soil'], r=140, colors=[GREEN, BLUE, BROWN])
+# carbon cycle: carbon moves from the air into a tree, into the soil and back to the air
+science-7-matter-and-energy-in-ecosystems/carbon-cycle = cycle(['air', 'tree', 'soil'], r=140, colors=[BLUE, GREEN, BROWN])
 # cellular respiration: sugar and oxygen arrows into a cell
 science-7-photosynthesis-and-respiration/cellular-respiration = row(col(T('sugar', 34, ORANGE), arrow(80, ORANGE, sw=8), T('O₂', 34, BLUE), arrow(80, BLUE, sw=8), gap=2), cell(220, color=PURPLE), gap=8)
-# chloroplast: a green oval inside a plant cell
-science-7-photosynthesis-and-respiration/chloroplast = cell(320, plant=True)
+# chloroplast: a plant cell with one chloroplast circled
+science-7-photosynthesis-and-respiration/chloroplast = col(cell(320, plant=True, focus='chloroplast'), T('chloroplast', 34, GREEN), gap=6)
 # glucose: a hexagon ring molecule
 science-7-photosynthesis-and-respiration/glucose = raw(260, 260, '<polygon points="130,30 216,80 216,180 130,230 44,180 44,80" fill="#fde97a" stroke="#1f2430" stroke-width="7"/><text x="130" y="145" font-family="Segoe UI" font-size="42" font-weight="700" text-anchor="middle" fill="#1f2430">O</text>')
 # carbon dioxide: CO₂ bubbles entering a leaf
@@ -2841,8 +2827,8 @@ science-8-evolution-and-natural-selection/homologous-structures = row(raw(270, 3
 science-8-forces-and-motion/force = row(arrow(140, RED, sw=16), crate(150), gap=4)
 # net force: two equal arrows pushing opposite ways
 science-8-forces-and-motion/net-force = row(arrow(110, RED, sw=14), crate(130), arrow(110, RED, 'left', sw=14), gap=4)
-# acceleration: a car with stretching speed lines
-science-8-forces-and-motion/acceleration = row(raw(120, 100, '<path d="M10 30 H110 M30 55 H110 M10 80 H110" stroke="#8a8f9c" stroke-width="6" stroke-linecap="round"/>'), car(200, RED), gap=0)
+# acceleration: a car moving faster and faster: the gaps between its places grow
+science-8-forces-and-motion/acceleration = row(*sum(([Item(gp, 10, ''), raw(c.w, c.h, f'<g opacity="{op}">{c.svg}</g>')] for gp, op, c in ((0, 0.25, car(110, RED)), (12, 0.45, car(110, RED)), (40, 0.7, car(110, RED)), (84, 1, car(110, RED)))), []), gap=0, align='b')
 # speed: a speedometer
 science-8-kinetic-and-potential-energy/speed = meter(320, 0.75)
 # greenhouse gas: heat arrows bouncing under a layer
@@ -2865,8 +2851,8 @@ science-8-waves/reflection = raw(400, 240, '<rect x="340" y="10" width="50" heig
 science-8-waves/digital-signal = wave(400, cycles=3, square=True, color=BLUE)
 # mitosis: one cell splitting into two
 science-9-cell-division-and-differentiation/mitosis = flow(cell(150, color=PINK), row(cell(110, color=PINK), cell(110, color=PINK), gap=10))
-# cell cycle: a circle split into phases
-science-9-cell-division-and-differentiation/cell-cycle = pie(size=280, parts=(0.5, 0.2, 0.2, 0.1), colors=(BLUE, GREEN, ORANGE, PURPLE))
+# cell cycle: the cell cycle: grow, copy DNA, grow more, divide, then around again
+science-9-cell-division-and-differentiation/cell-cycle = cycle(['grow', 'copy DNA', 'grow more', 'divide'], r=150, colors=[GREEN, BLUE, ORANGE, PURPLE])
 # chromosome: an X-shaped chromosome
 science-9-cell-division-and-differentiation/chromosome = chromosome(220)
 # differentiation: one cell branching into several types
@@ -2931,8 +2917,8 @@ science-9-evolution/genetic-drift = row(raw(160, 220, '<path d="M30 30 V190 Q30 
 science-9-genetics-and-inheritance/meiosis = row(cell(150, color=PINK), arrow(60), grid([cell(80, color=PINK, organelles=False) for _ in range(4)], 2, gap=10), gap=16)
 # genotype: two letters B and b
 science-9-genetics-and-inheritance/genotype = tiles('B', 'b', colors=(BLUE, ORANGE), size=130)
-# dominant: capital B
-science-9-genetics-and-inheritance/dominant = tile('B', BLUE, 200)
+# dominant: Bb: the dominant B shows, the faded b is hidden, so the eye is brown
+science-9-genetics-and-inheritance/dominant = row(T('Bb', 150, hl={'b': '#c9ced8'}), arrow(60), eye(160, color=BROWN), gap=12)
 # recessive: lowercase b b
 science-9-genetics-and-inheritance/recessive = tiles('b', 'b', colors=(ORANGE, ORANGE), size=130)
 # crossing over: two chromosomes exchanging segments
@@ -2945,8 +2931,8 @@ science-9-homeostasis/negative-feedback = curve_arrow(110, color=BLUE, start=-80
 science-9-homeostasis/positive-feedback = curve_arrow(110, color=RED, start=-80, end=240, inner=T('+', 110, color=RED))
 # insulin: a key unlocking a cell
 science-9-homeostasis/insulin = row(key(140), arrow(60), cell(170, color=PINK), gap=16)
-# stimulus: an eye with a narrowing pupil
-science-9-homeostasis/stimulus = row(eye(140, pupil=0.4), arrow(60), eye(140, pupil=0.15), gap=16)
+# stimulus: bright light (the stimulus) makes the pupil shrink
+science-9-homeostasis/stimulus = col(sun(100), row(eye(150, pupil=0.4), arrow(60), eye(150, pupil=0.15), gap=12), gap=10)
 # Kepler's laws: an ellipse with the Sun at one focus
 science-9-orbits-and-earth-s-history/kepler-s-laws = orbit(360, center=sun(70), body=earth(40), ellipse_=True, foci=True)
 # ellipse: an ellipse with two dots inside
@@ -2965,8 +2951,8 @@ science-9-photosynthesis-and-cellular-respiration/macromolecule = raw(440, 120, 
 science-9-photosynthesis-and-cellular-respiration/enzyme = puzzle(240, fits=True)
 # light-dependent reactions: sunlight hitting a stack of discs
 science-9-photosynthesis-and-cellular-respiration/light-dependent-reactions = row(sun(110), col(arrow(70, color=YELLOW, sw=10), gap=0), raw(140, 200, ''.join(f'<ellipse cx="70" cy="{30 + i * 34}" rx="60" ry="15" fill="#2f9e5b" stroke="#1f2430" stroke-width="4"/>' for i in range(5))), gap=14)
-# Calvin cycle: a loop of arrows inside a chloroplast
-science-9-photosynthesis-and-cellular-respiration/calvin-cycle = box(curve_arrow(80, color=DARK, start=-80, end=240), color=GREEN, fill=soft(GREEN), rx=120, p=40)
+# Calvin cycle: CO₂ goes into a loop that builds sugar
+science-9-photosynthesis-and-cellular-respiration/calvin-cycle = row(M('CO₂', 60), arrow(46), box(curve_arrow(60, color=DARK, start=-80, end=240), color=GREEN, rx=100, p=24), arrow(46), col(poly(6, 90, ORANGE), T('sugar', 28), gap=4), gap=8)
 # aquifer: an underground layer filled with water
 science-9-resources-and-sustainability/aquifer = layers(4, 340, colors=('#7bc96f', '#c98b4f', '#9cc3e8', '#8f6a4f'), water_=True)
 # cost-benefit analysis: a scale with coins and a leaf
@@ -3001,8 +2987,8 @@ sel-3-5-perspective-taking/empathy = row(heart(140, RED), chain(2, 100), heart(1
 sel-3-5-perspective-taking/body-language = raw(220, 280, '<circle cx="110" cy="50" r="38" fill="#fff" stroke="#1f2430" stroke-width="5"/><path d="M50 270 V140 C50 110 70 96 110 96 C150 96 170 110 170 140 V270" fill="#fff" stroke="#1f2430" stroke-width="5"/><path d="M40 150 L180 200 M180 150 L40 200" stroke="#1f2430" stroke-width="22" stroke-linecap="round"/><path d="M40 150 L180 200 M180 150 L40 200" stroke="#fff" stroke-width="12" stroke-linecap="round"/>')
 # listen: an ear with sound waves
 sel-3-5-perspective-taking/listen = ear(260)
-# respect: two hands shaking outline
-sel-3-5-perspective-taking/respect = handshake(280)
+# respect: a heart between two people of equal size
+sel-3-5-perspective-taking/respect = row(person(150, BLUE), heart(80), person(150, ORANGE), gap=16)
 # compromise: two arrows meeting in the middle
 sel-6-8-conflict-resolution/compromise = row(arrow(140, color=BLUE), raw(30, 60, '<circle cx="15" cy="30" r="12" fill="#2f9e5b"/>'), arrow(140, color=ORANGE, dir='left'), gap=4)
 # active listening: an ear with a check mark
@@ -3029,8 +3015,8 @@ sel-6-8-responsible-decisions/ethical = scale_icon(300)
 sel-k-2-calm-down-strategies/breathe = row(balloon(90), arrow(50, double=True), balloon(170), gap=16)
 # calm down: the numbers 1 to 5 on soft clouds
 sel-k-2-calm-down-strategies/calm-down = grid([over(cloud(150), T(str(i), 54)) for i in range(1, 6)], 3, gap=10)
-# count: five dots in a row
-sel-k-2-calm-down-strategies/count = dots(5, 5, 60, ORANGE, gap=16)
+# count: five dots counted 1 to 5
+sel-k-2-calm-down-strategies/count = row(*[col(dot(60, ORANGE), T(str(i), 36), gap=4) for i in range(1, 6)], gap=16)
 # stretch: two arrows pointing up
 sel-k-2-calm-down-strategies/stretch = row(arrow(160, dir='up', color=GREEN, sw=12), arrow(160, dir='up', color=GREEN, sw=12), gap=60)
 # feelings: a row of simple faces
@@ -3053,8 +3039,8 @@ social-studies-1-maps-and-globes/east-and-west = compass(300, hl='EW')
 social-studies-1-maps-and-globes/continent = world_map(440, continents=True)
 # timeline: a line with dots and small pictures
 social-studies-1-timelines-and-me/timeline = timeline(4, 420, pics=(house(1), star(1), heart(1), tree(1)))
-# year: a calendar page
-social-studies-1-timelines-and-me/year = calendar(280)
+# year: twelve small calendars: one for each month of a year
+social-studies-1-timelines-and-me/year = col(grid([calendar(70) for _ in range(12)], 4, gap=8), T('12 months', 36), gap=8)
 # before: two dots on a line with the left one circled
 social-studies-1-timelines-and-me/before = timeline(2, 380, hl=0)
 # after: two dots on a line with the right one circled
@@ -3065,8 +3051,8 @@ social-studies-12-brain-and-behavior/neuron = neuron(400)
 social-studies-12-brain-and-behavior/neurotransmitter = raw(400, 200, '<path d="M0 60 H140 C170 60 180 70 180 100 C180 130 170 140 140 140 H0" fill="#f6c3d0" stroke="#1f2430" stroke-width="5"/><path d="M400 50 H260 C230 50 220 70 220 100 C220 130 230 150 260 150 H400" fill="#d6e6fb" stroke="#1f2430" stroke-width="5"/>' + ''.join(f'<circle cx="{x}" cy="{y}" r="7" fill="#f08a24"/>' for x, y in ((190, 80), (200, 105), (196, 125), (208, 90), (212, 116))) + '<path d="M150 30 H240" stroke="#e04848" stroke-width="5"/><path d="M252 30 l-14 -9 v18 z" fill="#e04848"/>')
 # synapse: a narrow gap between nerve endings
 social-studies-12-brain-and-behavior/synapse = raw(400, 200, '<path d="M0 60 H140 C170 60 180 70 180 100 C180 130 170 140 140 140 H0" fill="#f6c3d0" stroke="#1f2430" stroke-width="5"/><path d="M400 50 H260 C230 50 220 70 220 100 C220 130 230 150 260 150 H400" fill="#d6e6fb" stroke="#1f2430" stroke-width="5"/><path d="M186 100 H214" stroke="#e04848" stroke-width="4" stroke-dasharray="4 4"/><path d="M186 70 V130 M214 70 V130" stroke="#e04848" stroke-width="4"/>')
-# cerebral cortex: a brain outline with folds
-social-studies-12-brain-and-behavior/cerebral-cortex = brain(360)
+# cerebral cortex: a brain with its thin wrinkled outer layer colored
+social-studies-12-brain-and-behavior/cerebral-cortex = col(brain(340, cortex=True), T('outer layer', 30, PURPLE), gap=6)
 # amygdala: a brain with a small region highlighted
 social-studies-12-brain-and-behavior/amygdala = brain(360, hl=True)
 # neuroplasticity: new links forming between dots
@@ -3109,24 +3095,24 @@ social-studies-4-state-government/bill = col(page(200) if 0 else raw(200, 240, '
 social-studies-4-us-regions-and-states/border = raw(360, 260, '<rect x="5" y="5" width="350" height="250" rx="10" fill="#d6e6fb" stroke="#1f2430" stroke-width="5"/><path d="M5 5 H170 C150 80 210 150 180 255 H5 Z" fill="#fde3c8" stroke="#1f2430" stroke-width="3"/><path d="M170 5 C150 80 210 150 180 255" fill="none" stroke="#3a7bd5" stroke-width="14"/>' if 0 else '<rect x="5" y="5" width="350" height="250" rx="10" fill="#d3f0de" stroke="#1f2430" stroke-width="5"/><path d="M5 5 H170 C150 80 210 150 180 255 H5 Z" fill="#fde3c8"/><path d="M170 5 C150 80 210 150 180 255" fill="none" stroke="#3a7bd5" stroke-width="14"/><rect x="5" y="5" width="350" height="250" rx="10" fill="none" stroke="#1f2430" stroke-width="5"/>')
 # compass rose: a compass rose with N, S, E, W
 social-studies-4-us-regions-and-states/compass-rose = compass(300)
-# enslaved: a broken chain link
-social-studies-5-colonial-economies/enslaved = chain(3, 340, broken=1)
-# triangular trade: a map with three arrows forming a triangle
-social-studies-5-colonial-economies/triangular-trade = world_map(440, arrows_=[(-2, 51, 8, 6), (8, 6, -75, 20), (-75, 20, -2, 51)])
+# enslaved: an iron shackle and a heavy unbroken chain
+social-studies-5-colonial-economies/enslaved = row(raw(120, 120, '<circle cx="60" cy="66" r="42" fill="none" stroke="#5a5f6c" stroke-width="18"/><rect x="46" y="4" width="28" height="30" rx="4" fill="#5a5f6c" stroke="#1f2430" stroke-width="3"/>'), chain(4, 320, color=DARK), gap=4)
+# triangular trade: the triangular trade: ships carried goods to Africa, enslaved Africans to the Americas, and crops back to Europe
+social-studies-5-colonial-economies/triangular-trade = world_map(440, view=(-100, -30, 35, 62), flows=[([(-5, 46), (-14, 30), (-12, 12)], BLUE, 14), ([(-16, 9), (-40, 10), (-62, 15)], RED, 14), ([(-72, 28), (-55, 36), (-30, 44), (-10, 48)], GREEN, 14)], labels=[(18, 52, 'Europe', DARK, 24), (20, 6, 'Africa', DARK, 24), (-88, 36, 'Americas', DARK, 24), (-22, 23, 'goods', BLUE, 22), (-38, 4, 'enslaved Africans', RED, 22), (-40, 47, 'sugar, cotton', GREEN, 22)])
 # thirteen colonies: a map of the east coast with thirteen shaded areas
 social-studies-5-exploration-and-colonization/thirteen-colonies = us_map(420, shade=('NH', 'MA', 'RI', 'CT', 'NY', 'NJ', 'PA', 'DE', 'MD', 'VA', 'NC', 'SC', 'GA'))
-# rights: a shield with a star
-social-studies-5-the-constitution-and-bill-of-rights/rights = shield(260, inner=star(110))
+# rights: a written list of rights and the people it protects
+social-studies-5-the-constitution-and-bill-of-rights/rights = row(page(170, lines=6, title=True), row(person(80, BLUE), person(80, ORANGE), person(80, GREEN), gap=6), gap=20)
 # checks and balances: a balance scale with three weights
 social-studies-5-the-constitution-and-bill-of-rights/checks-and-balances = scale_icon(320, left=row(tile('', BLUE, 30), tile('', ORANGE, 30), gap=4), right=tile('', GREEN, 34))
-# empire: a map shading lands around the Mediterranean
-social-studies-6-ancient-rome/empire = world_map(440, shade=[(-10, 30, 40, 50, RED)])
+# empire: the Roman Empire at its largest, around the Mediterranean Sea
+social-studies-6-ancient-rome/empire = world_map(440, view=(-15, 20, 50, 58), land='#efe6d2', polys=[([(-10, 44), (-5, 48.5), (2, 51.5), (6, 52), (7, 50), (8, 47.5), (13, 48), (17, 48), (20, 46), (22, 48.5), (27, 48.5), (29, 45), (30, 44), (28, 42), (30, 41.5), (34, 42), (40, 41), (42, 40), (44, 38), (40, 36), (38, 33), (35, 30), (35, 28), (33, 24), (31, 23), (29, 30), (25, 31), (20, 30), (15, 31), (10, 33), (9, 30), (5, 34), (-2, 34), (-6, 33), (-10, 35)], RED), ([(-6, 50), (2, 51), (1, 53), (-2, 55.5), (-6, 55.5), (-5, 52)], RED)])
 # location: a map pin on a grid
 social-studies-6-five-themes-of-geography/location = map_tile(320, grid_=True, roads=False, pins=((150, 120),))
 # movement: arrows between cities on a map
 social-studies-6-five-themes-of-geography/movement = map_tile(320, roads=False, pins=((60, 60), (240, 190))) if 0 else world_map(440, arrows_=[(-74, 40, -0, 51), (2, 48, 77, 28), (139, 35, -122, 37)], pins=())
-# absolute location: crossing latitude and longitude lines
-social-studies-6-five-themes-of-geography/absolute-location = globe(300, lat=True, grid_=True)
+# absolute location: a globe with lines of latitude and longitude; a pin marks where two lines cross
+social-studies-6-five-themes-of-geography/absolute-location = [raw(gl.w, gl.h, gl.svg + g(pin(70), 240.3 - 24.3, 105 - 70)) for gl in [globe(300, lat=True, grid_=True)]][0]
 # population density: a square crowded with dots
 social-studies-6-world-regions-today/population-density = raw(260, 260, '<rect x="5" y="5" width="250" height="250" rx="10" fill="#fff" stroke="#1f2430" stroke-width="5"/>' + ''.join(f'<circle cx="{20 + 220 * ((math.sin(i * 12.9898) * 43758.5453) % 1):.1f}" cy="{20 + 220 * ((math.sin(i * 78.233) * 24634.6345) % 1):.1f}" r="7" fill="#e04848"/>' for i in range(130)))
 # GDP: a bar chart of countries
@@ -3147,8 +3133,8 @@ social-studies-7-fall-of-rome-and-the-byzantine-empire/continuity = timeline(5, 
 social-studies-7-islamic-civilizations/caliphate = raw(300, 300, '<circle cx="150" cy="150" r="130" fill="#f4e3b4" stroke="#1f2430" stroke-width="6"/><circle cx="150" cy="150" r="90" fill="none" stroke="#c9a26b" stroke-width="5"/><circle cx="150" cy="150" r="34" fill="#2f9e5b" stroke="#1f2430" stroke-width="5"/>' + ''.join(f'<line x1="{150 + 34 * math.cos(a):.1f}" y1="{150 + 34 * math.sin(a):.1f}" x2="{150 + 130 * math.cos(a):.1f}" y2="{150 + 130 * math.sin(a):.1f}" stroke="#c9a26b" stroke-width="7"/>' for a in [math.pi / 4 + k * math.pi / 2 for k in range(4)]))
 # algebra: x + 3 = 7
 social-studies-7-islamic-civilizations/algebra = M('x + 3 = 7', 80)
-# Mongol Empire: a map shading Asia and eastern Europe
-social-studies-7-medieval-asia/mongol-empire = world_map(440, shade=[(25, 30, 135, 55, ORANGE)])
+# Mongol Empire: the Mongol Empire across Asia
+social-studies-7-medieval-asia/mongol-empire = world_map(440, view=(10, 5, 150, 70), land='#efe6d2', polys=[([(25, 50), (40, 57), (60, 58), (80, 55), (100, 55), (120, 53), (135, 48), (130, 40), (122, 30), (120, 22), (110, 20), (100, 22), (97, 28), (90, 28), (80, 32), (70, 35), (60, 28), (50, 30), (45, 33), (38, 36), (36, 40), (40, 44), (30, 46)], ORANGE)])
 # Black Death: a map shading Europe by year
 social-studies-7-medieval-europe/black-death = world_map(440, shade=[(-10, 36, 10, 45, RED), (0, 45, 20, 52, ORANGE), (10, 52, 40, 70, YELLOW)])
 # Great Compromise: two chambers side by side
@@ -3161,8 +3147,8 @@ social-studies-8-slavery-and-sectionalism/sectionalism = us_map(420, split=True)
 social-studies-8-slavery-and-sectionalism/missouri-compromise = us_map(420, shade=('MO',), color=ORANGE, line='M380 395 H700')
 # secession: a state breaking away from a map
 social-studies-8-the-civil-war/secession = row(us_map(330, shade=()) if 0 else us_map(330), arrow(50, color=RED), raw(80, 80, '<path d="M5 20 L60 5 L75 60 L20 75 Z" fill="#3a7bd5" stroke="#1f2430" stroke-width="4"/>'), gap=8)
-# Monroe Doctrine: a hand blocking arrows toward the Americas
-social-studies-8-the-early-republic/monroe-doctrine = row(hand(150, kind='flat'), world_map(320, shade=[(-170, -55, -35, 75, BLUE)], arrows_=[(15, 50, -35, 35)]), gap=10)
+# Monroe Doctrine: a stop hand beside the Americas: Europe, keep out
+social-studies-8-the-early-republic/monroe-doctrine = row(stop_hand(130), world_map(320, shade=[(-170, -55, -35, 75, BLUE)], arrows_=[(15, 50, -35, 35)]), gap=10)
 # Louisiana Purchase: a U.S. map with the middle shaded
 social-studies-8-westward-expansion/louisiana-purchase = us_map(420, shade=('LA', 'AR', 'MO', 'IA', 'MN', 'ND', 'SD', 'NE', 'KS', 'OK', 'MT', 'WY', 'CO'))
 # Indian Removal Act: a map with arrows pointing west
@@ -3171,18 +3157,18 @@ social-studies-8-westward-expansion/indian-removal-act = us_map(420, arrows_=[(7
 social-studies-8-westward-expansion/trail-of-tears = us_map(420, shade=('GA', 'OK'), color=ORANGE, arrows_=[(760, 400, 500, 380)])
 # imperialism: a map of Africa with drawn borders
 social-studies-9-imperialism/imperialism = world_map(440, shade=[(-18, -35, 52, 37, ORANGE)])
-# Scramble for Africa: a map of Africa with straight-line borders
-social-studies-9-imperialism/scramble-for-africa = raw(300, 320, '<path d="M120 10 C170 10 220 20 250 60 C280 90 290 120 270 150 C250 190 230 230 200 270 C180 300 150 310 140 290 C120 250 110 200 80 170 C40 160 10 130 20 90 C30 50 70 10 120 10 Z" fill="#fde3c8" stroke="#1f2430" stroke-width="5"/><path d="M60 40 L240 50 M30 110 L280 120 M90 170 L260 180 M120 30 V160 M200 50 V280" stroke="#e04848" stroke-width="5"/>')
+# Scramble for Africa: Africa in 1914 colored by the European country that ruled each part; Ethiopia and Liberia stayed free
+social-studies-9-imperialism/scramble-for-africa = col(world_map(420, view=(-20, -36, 55, 38), land='#f4f1ea', polys=[([(-17, 28), (-9, 36), (8, 37), (9, 30), (12, 23), (15, 23), (24, 20), (24, 10), (19, 3), (18, -4), (12, -5), (9, 1), (10, 6), (3, 6), (2, 10), (-3, 5), (-8, 5), (-13, 8), (-17, 14)], BLUE), ([(25, 31.5), (34, 31), (37, 22), (38, 18), (36, 12), (34, 4), (30, 4), (24, 9), (24, 22)], RED), ([(34, 4), (41, 4), (41, -2), (39, -5), (33, -1), (30, -1), (30, 2)], RED), ([(16, -29), (18, -35), (28, -34), (33, -27), (32, -22), (33, -17), (30, -15), (33, -9), (28, -9), (24, -12), (22, -17), (20, -22), (20, -25)], RED), ([(3, 6), (3, 13), (10, 13), (14, 13), (14, 10), (9, 4)], RED), ([(-3, 5), (-3, 11), (0, 11), (1, 6)], RED), ([(43, 11), (48, 8), (51, 11), (44, 11.5)], RED), ([(9, 2), (9, 4), (14, 11), (15, 10), (16, 2), (13, 2)], PURPLE), ([(0, 6), (0, 11), (1.5, 11), (1.5, 6)], PURPLE), ([(12, -17), (20, -17), (20, -22), (20, -28), (16, -29), (14, -23)], PURPLE), ([(30, -1), (39, -5), (40, -11), (34, -11), (30, -8)], PURPLE), ([(12, -5), (18, -4), (19, 3), (24, 5), (30, 4), (30, -1), (30, -8), (28, -9), (24, -12), (22, -11), (17, -7), (12, -6)], ORANGE), ([(12, -6), (17, -7), (22, -11), (24, -12), (22, -17), (12, -17)], GREEN), ([(30, -15), (33, -17), (32, -22), (33, -27), (36, -24), (35, -20), (40, -16), (40, -11), (34, -11)], GREEN), ([(9, 30), (12, 33), (20, 31), (25, 31.5), (25, 20), (24, 20), (15, 23), (12, 23)], TEAL), ([(37, 15), (39, 18), (43, 13), (40, 14)], TEAL), ([(41, -1), (41, 4), (46, 5), (49, 8), (51, 11), (48, 4), (42, -1)], TEAL), ([(-17, 21), (-12, 28), (-8.7, 27.7), (-8.7, 26), (-12, 26), (-12, 21)], YELLOW)]), grid([row(raw(30, 30, f'<rect x="2" y="2" width="26" height="26" fill="{c}" stroke="#1f2430" stroke-width="2"/>'), T(n, 28), gap=6) for n, c in (('France', BLUE), ('Britain', RED), ('Germany', PURPLE), ('Belgium', ORANGE), ('Portugal', GREEN), ('Italy', TEAL), ('Spain', YELLOW), ('free', '#f4f1ea'))], 4, gap=10), gap=8)
 # sphere of influence: a shaded zone on a coast
 social-studies-9-imperialism/sphere-of-influence = raw(340, 260, '<rect x="0" y="0" width="340" height="260" rx="10" fill="#8fb8f0" stroke="#1f2430" stroke-width="5"/><path d="M0 0 H240 C230 60 260 120 240 180 C230 220 260 240 250 260 H0 Z" fill="#e9f3dc" stroke="#1f2430" stroke-width="4"/><path d="M120 60 H236 C226 100 248 130 238 160 H120 Z" fill="#e04848" opacity="0.6"/>')
 # colonialism: arrows carrying goods to a distant country
 social-studies-9-imperialism/colonialism = world_map(440, arrows_=[(20, 0, 0, 50), (80, 20, -2, 52)])
-# separation of powers: three pillars
-social-studies-9-revolutions-and-enlightenment/separation-of-powers = pillars(3, 320)
+# separation of powers: three branches of government: one makes laws, one carries them out, one judges them
+social-studies-9-revolutions-and-enlightenment/separation-of-powers = row(*[col(pillars(3, 150, color=c), T(a, 30, c), T(b, 24, GRAY), gap=2) for a, b, c in (('legislative', 'makes laws', BLUE), ('executive', 'carries out laws', ORANGE), ('judicial', 'judges laws', PURPLE))], gap=14, align='t')
 # alliance: linked chain rings
 social-studies-9-world-war-i/alliance = chain(3, 340)
-# map: a simple map of a classroom with desks
-social-studies-k-my-place-in-the-world/map = raw(320, 260, '<rect x="5" y="5" width="310" height="250" rx="8" fill="#fff" stroke="#1f2430" stroke-width="5"/><rect x="110" y="20" width="100" height="24" fill="#2f9e5b" stroke="#1f2430" stroke-width="3"/>' + ''.join(f'<rect x="{40 + c * 90}" y="{80 + r * 60}" width="60" height="36" rx="4" fill="#f5c524" stroke="#1f2430" stroke-width="3"/>' for r in range(3) for c in range(3)) + '<rect x="270" y="210" width="40" height="45" fill="#c98b4f" stroke="#1f2430" stroke-width="3"/>')
+# map: a simple map of a place: a river, roads and houses from above
+social-studies-k-my-place-in-the-world/map = map_tile(320, roads=True, river=True, houses=[(30, 30), (222, 36), (40, 150), (232, 160)])
 # water: a map with blue lakes and a river
 social-studies-k-my-place-in-the-world/water = map_tile(340, roads=False, river=True, lakes=True)
 # near: a house and a school close together on a map
@@ -3207,12 +3193,12 @@ world-languages-6-12-asl-grammar-and-facial-expression/non-manual-markers = head
 world-languages-6-12-asl-grammar-and-facial-expression/wh-question = head_outline(280, brows='down')
 # yes/no question: a face outline with raised eyebrows and a tilted head
 world-languages-6-12-asl-grammar-and-facial-expression/yes-no-question = head_outline(280, brows='up', tilt=-12)
-# fingerspelling: a row of simple handshape outlines
-world-languages-6-12-asl-grammar-and-facial-expression/fingerspelling = row(hand(110, 'fist'), hand(110, 'open'), hand(110, 'point'), hand(110, 'flat'), gap=14)
+# fingerspelling: the hand shapes for C, A and B spell CAB
+world-languages-6-12-asl-grammar-and-facial-expression/fingerspelling = row(*[col(hand(120, k), T(l, 44), gap=4) for k, l in (('c', 'C'), ('a', 'A'), ('flat', 'B'))], gap=16, align='b')
 # gloss: the words ME GO STORE in capitals
 world-languages-6-12-asl-grammar-and-facial-expression/gloss = T('ME GO STORE', 64)
-# classifier: a flat hand shape moving along a curved path
-world-languages-6-12-classifiers-and-space/classifier = row(hand(110, 'flat'), raw(240, 140, '<path d="M10 120 C80 0 160 0 220 100" fill="none" stroke="#3a7bd5" stroke-width="8" stroke-dasharray="14 8"/><path d="M228 116 l-4 -28 l-22 14 z" fill="#3a7bd5"/>'), gap=0)
+# classifier: the CL:3 hand stands for a car and moves along its path
+world-languages-6-12-classifiers-and-space/classifier = row(col(hand(130, '3'), T('CL:3', 30, BLUE), gap=4), raw(240, 140, '<path d="M10 120 C80 0 160 0 220 100" fill="none" stroke="#3a7bd5" stroke-width="8" stroke-dasharray="14 8"/><path d="M228 116 l-4 -28 l-22 14 z" fill="#3a7bd5"/>'), car(120), gap=4)
 # signing space: a box in front of a simple torso outline
 world-languages-6-12-classifiers-and-space/signing-space = torso(280, inner=None) if 0 else over(torso(280), raw(200, 120, '<rect x="5" y="5" width="190" height="110" rx="8" fill="#3a7bd5" fill-opacity="0.15" stroke="#3a7bd5" stroke-width="5" stroke-dasharray="12 8"/>'), dy=40)
 # referent: a dot in space with an arrow pointing to it
@@ -3223,8 +3209,8 @@ world-languages-6-12-classifiers-and-space/location = raw(300, 220, '<rect x="5"
 world-languages-6-12-classifiers-and-space/role-shift = row(curve_arrow(60, color=BLUE, start=200, end=330, cw=True), curve_arrow(60, color=ORANGE, start=-150, end=-30, cw=True), gap=20) if 0 else row(arrow(130, dir='left', color=BLUE, sw=10), head_outline(130), arrow(130, color=ORANGE, sw=10), gap=10)
 # Spanish-speaking world: a world map with many countries shaded
 world-languages-6-12-cultures-of-the-spanish-speaking-world/spanish-speaking-world = world_map(440, shade=[(-118, -55, -35, 32, ORANGE), (-10, 36, 3, 44, ORANGE)])
-# dialect: a speech bubble with regional accent marks
-world-languages-6-12-cultures-of-the-spanish-speaking-world/dialect = bubble(T('¡Hola!', 56), 300)
+# dialect: one car, two words: coche in Spain, carro in Mexico
+world-languages-6-12-cultures-of-the-spanish-speaking-world/dialect = col(car(130), row(col(bubble(T('coche', 38), 160, tail='left'), T('España', 26, GRAY), gap=2), col(bubble(T('carro', 38), 160, color=ORANGE, tail='right'), T('México', 26, GRAY), gap=2), gap=24), gap=8)
 # Deaf culture: a hand outline in a spotlight
 world-languages-6-12-deaf-culture-and-community/deaf-culture = raw(300, 300, '<path d="M150 0 L40 290 H260 Z" fill="#fff4b0" opacity="0.8"/><ellipse cx="150" cy="290" rx="110" ry="12" fill="#f5c524" opacity="0.6"/>') if 0 else over(raw(300, 320, '<path d="M150 0 L30 320 H270 Z" fill="#fff4b0"/>'), hand(180), dy=50)
 # capital-D Deaf: a large capital D
@@ -3275,24 +3261,24 @@ world-languages-k-12-family-home-and-school/teacher = raw(360, 260, '<rect x="10
 world-languages-k-12-family-home-and-school/brother = row(hand(140), hand(120, color=soft(BLUE)), gap=16)
 # sister: two hand outlines side by side
 world-languages-k-12-family-home-and-school/sister = row(hand(140), hand(120, color=soft(PINK)), gap=16)
-# manual alphabet: a grid of simple handshape outlines
-world-languages-k-12-fingerspelling-and-the-manual-alphabet/manual-alphabet = grid([hand(70, k) for k in ('fist', 'open', 'point', 'flat') * 3], 4, gap=12)
-# fingerspell: three handshape outlines in a row
-world-languages-k-12-fingerspelling-and-the-manual-alphabet/fingerspell = row(hand(110, 'point'), hand(110, 'fist'), hand(110, 'flat'), gap=14)
-# handshape: a flat hand outline
-world-languages-k-12-fingerspelling-and-the-manual-alphabet/handshape = hand(260, 'flat')
+# manual alphabet: four letters of the manual alphabet: A, B, C and L
+world-languages-k-12-fingerspelling-and-the-manual-alphabet/manual-alphabet = row(*[col(hand(100, k), T(l, 40), gap=4) for k, l in (('a', 'A'), ('flat', 'B'), ('c', 'C'), ('l', 'L'))], gap=12, align='b')
+# fingerspell: the hand shapes for L, A and B spell LAB
+world-languages-k-12-fingerspelling-and-the-manual-alphabet/fingerspell = row(*[col(hand(120, k), T(l, 44), gap=4) for k, l in (('l', 'L'), ('a', 'A'), ('flat', 'B'))], gap=16, align='b')
+# handshape: one hand shape: an open hand with the fingers spread
+world-languages-k-12-fingerspelling-and-the-manual-alphabet/handshape = hand(260, 'open')
 # dominant hand: one hand outline highlighted
 world-languages-k-12-fingerspelling-and-the-manual-alphabet/dominant-hand = row(hand(150), hand(150, hl=True), gap=16)
 # name sign: a gift box with a hand outline
 world-languages-k-12-fingerspelling-and-the-manual-alphabet/name-sign = row(raw(200, 200, '<rect x="20" y="80" width="160" height="110" fill="#e04848" stroke="#1f2430" stroke-width="5"/><rect x="10" y="56" width="180" height="34" fill="#e04848" stroke="#1f2430" stroke-width="5"/><rect x="88" y="56" width="24" height="134" fill="#f5c524" stroke="#1f2430" stroke-width="4"/><path d="M100 56 C70 20 50 40 70 56 M100 56 C130 20 150 40 130 56" fill="none" stroke="#f5c524" stroke-width="8"/>'), hand(150), gap=16)
 # letter: the letter A beside a fist outline
-world-languages-k-12-fingerspelling-and-the-manual-alphabet/letter = row(T('A', 160, color=BLUE), hand(160, 'fist'), gap=30)
+world-languages-k-12-fingerspelling-and-the-manual-alphabet/letter = row(T('A', 160, color=BLUE), hand(160, 'a'), gap=30)
 # hello: a waving hand outline
 world-languages-k-12-greetings-and-introductions/hello = wave_hand(260)
 # goodbye: a door with an arrow out
 world-languages-k-12-greetings-and-introductions/goodbye = row(door(200), arrow(90, color=BLUE), gap=10)
-# please: two hands pressed together
-world-languages-k-12-greetings-and-introductions/please = raw(160, 240, '<path d="M80 230 C40 200 30 150 40 90 L56 20 C60 6 76 6 78 20 L80 120 L82 20 C84 6 100 6 104 20 L120 90 C130 150 120 200 80 230 Z" fill="#fff" stroke="#1f2430" stroke-width="5" stroke-linejoin="round"/><line x1="80" y1="40" x2="80" y2="220" stroke="#1f2430" stroke-width="4"/>')
+# please: a flat hand circling on the chest
+world-languages-k-12-greetings-and-introductions/please = torso(280, inner=over(hand(110, 'flat'), curve_arrow(70, ORANGE, sw=6)))
 # thank you: a heart
 world-languages-k-12-greetings-and-introductions/thank-you = heart(260)
 # my name is: a name tag
@@ -3303,8 +3289,8 @@ world-languages-k-12-greetings-and-introductions/how-are-you = bubble(qmark(100)
 world-languages-k-12-greetings-and-introductions-in-asl/hello = row(head_outline(170, dot='forehead'), raw(120, 60, '<path d="M10 30 H90" stroke="#3a7bd5" stroke-width="8"/><path d="M110 30 l-24 -14 v28 z" fill="#3a7bd5"/>'), hand(110, 'flat'), gap=0)
 # name: a name tag
 world-languages-k-12-greetings-and-introductions-in-asl/name = raw(340, 220, '<rect x="10" y="10" width="320" height="200" rx="18" fill="#fff" stroke="#3a7bd5" stroke-width="8"/><rect x="10" y="10" width="320" height="70" rx="18" fill="#3a7bd5"/><rect x="10" y="56" width="320" height="24" fill="#3a7bd5"/><text x="170" y="58" font-family="Segoe UI" font-size="36" font-weight="700" text-anchor="middle" fill="#fff">NAME</text><rect x="50" y="130" width="240" height="10" rx="5" fill="#b8bcc6"/>')
-# nice to meet you: two hand outlines meeting
-world-languages-k-12-greetings-and-introductions-in-asl/nice-to-meet-you = row(hand(130, 'flat'), arrow(50, double=True), hand(130, 'flat'), gap=4)
+# nice to meet you: two index fingers moving together to meet
+world-languages-k-12-greetings-and-introductions-in-asl/nice-to-meet-you = [row(h, arrow(40, ORANGE), arrow(40, ORANGE, 'left'), raw(h.w, h.h, f'<g transform="translate({h.w:.1f} 0) scale(-1 1)">{h.svg}</g>'), gap=4) for h in [hand(140, 'point')]][0]
 # Deaf: a hand outline beside a heart
 world-languages-k-12-greetings-and-introductions-in-asl/deaf = row(hand(160), heart(110), gap=20)
 # get attention: a waving hand outline
@@ -3321,24 +3307,24 @@ world-languages-k-12-numbers-colors-and-calendar/today = calendar(280, circled=9
 world-languages-k-12-numbers-colors-and-time/number = hand(260)
 # color: crayons in a row
 world-languages-k-12-numbers-colors-and-time/color = raw(400, 220, ''.join(f'<path d="M{20 + i * 62} 60 L{37 + i * 62} 20 L{54 + i * 62} 60 V200 H{20 + i * 62} Z" fill="{c}" stroke="#1f2430" stroke-width="4" stroke-linejoin="round"/>' for i, c in enumerate(('#e04848', '#f08a24', '#f5c524', '#2f9e5b', '#3a7bd5', '#9b5de5'))))
-# day: a calendar page
-world-languages-k-12-numbers-colors-and-time/day = calendar(280)
+# day: a week: one day picked out
+world-languages-k-12-numbers-colors-and-time/day = col(row(*[tile(d, ORANGE if i == 3 else BLUE, 58, fill='#fde97a' if i == 3 else None) for i, d in enumerate('SMTWTFS')], gap=6), T('1 day', 36, ORANGE), gap=10)
 # time: a wristwatch
 world-languages-k-12-numbers-colors-and-time/time = raw(160, 300, '<rect x="45" y="0" width="70" height="300" rx="16" fill="#8f6a4f" stroke="#1f2430" stroke-width="5"/><circle cx="80" cy="150" r="66" fill="#fff" stroke="#1f2430" stroke-width="8"/><line x1="80" y1="150" x2="80" y2="104" stroke="#1f2430" stroke-width="7" stroke-linecap="round"/><line x1="80" y1="150" x2="112" y2="150" stroke="#1f2430" stroke-width="7" stroke-linecap="round"/>')
 # palm orientation: a hand outline with an arrow showing palm direction
 world-languages-k-12-numbers-colors-and-time/palm-orientation = row(hand(200), curve_arrow(50, color=ORANGE, start=-90, end=150), gap=10)
 # week: seven boxes in a row
 world-languages-k-12-numbers-colors-and-time/week = raw(440, 80, ''.join(f'<rect x="{5 + i * 62}" y="10" width="56" height="60" rx="6" fill="{"#d6e6fb" if i not in (0, 6) else "#fde3c8"}" stroke="#1f2430" stroke-width="4"/>' for i in range(7)))
-# o'clock: a clock at 8:00
-world-languages-k-12-school-and-daily-routine/o-clock = clock(300, 8, 0)
+# o'clock: a clock at 8:00 with the minute hand pointing at 12
+world-languages-k-12-school-and-daily-routine/o-clock = clock(300, 8, 0, hl='m')
 # every day: a week with all days checked
 world-languages-k-12-school-and-daily-routine/every-day = raw(440, 80, ''.join(f'<rect x="{5 + i * 62}" y="10" width="56" height="60" rx="6" fill="#d3f0de" stroke="#1f2430" stroke-width="4"/><path d="M{17 + i * 62} 40 l10 12 l20 -24" fill="none" stroke="#2f9e5b" stroke-width="6" stroke-linecap="round"/>' for i in range(7)))
 # parameter: five labeled boxes
 world-languages-k-12-the-five-parameters-of-a-sign/parameter = grid([tile(s, c, 64) for s, c in (('hand', BLUE), ('place', ORANGE), ('move', GREEN), ('palm', PURPLE), ('face', RED))], 2, gap=12)
 # location: a head outline with a dot at the chin
 world-languages-k-12-the-five-parameters-of-a-sign/location = head_outline(280, dot='chin')
-# movement: two hands with tap marks
-world-languages-k-12-the-five-parameters-of-a-sign/movement = raw(320, 200, '<line x1="120" y1="50" x2="200" y2="50" stroke="#e04848" stroke-width="5"/><line x1="130" y1="30" x2="140" y2="10" stroke="#e04848" stroke-width="5"/><line x1="160" y1="26" x2="160" y2="4" stroke="#e04848" stroke-width="5"/><line x1="190" y1="30" x2="180" y2="10" stroke="#e04848" stroke-width="5"/>') if 0 else col(raw(200, 50, '<path d="M60 40 L46 10 M100 36 V4 M140 40 L154 10" stroke="#e04848" stroke-width="6" stroke-linecap="round"/>'), row(hand(130, 'flat'), hand(130, 'flat'), gap=-20), gap=0)
+# movement: a hand moving from one place to another along an arc
+world-languages-k-12-the-five-parameters-of-a-sign/movement = [row(raw(h.w, h.h, f'<g opacity="0.3">{h.svg}</g>'), curve_arrow(46, ORANGE, start=200, end=340), h, gap=0, align='b') for h in [hand(130, 'flat')]][0]
 # handshape: a fist outline
 world-languages-k-12-the-five-parameters-of-a-sign/handshape = hand(260, 'fist')
 # non-manual marker: a face outline with motion lines
@@ -3363,16 +3349,16 @@ arts-3-5-stop-motion-animation/storyboard = grid([box(T(str(i), 40, GRAY), w=120
 arts-6-8-arranging-a-song/melody = staff([2, 4, 5, 4, 6, 5, 3, 2], size=440)
 # harmony: notes stacked as chords on a staff
 arts-6-8-arranging-a-song/harmony = staff([(0, 2, 4), (1, 3, 5), (2, 4, 6), (0, 2, 4)], size=440)
-# dynamics: a crescendo hairpin opening from thin to wide
-arts-6-8-arranging-a-song/dynamics = raw(440, 200, '<path d="M30 100 L410 30 M30 100 L410 170" fill="none" stroke="#1f2430" stroke-width="12" stroke-linecap="round"/><circle cx="30" cy="100" r="9" fill="#3a7bd5"/>')
+# dynamics: a crescendo hairpin from p (soft) to f (loud)
+arts-6-8-arranging-a-song/dynamics = raw(460, 200, '<path d="M70 100 L390 30 M70 100 L390 170" fill="none" stroke="#1f2430" stroke-width="12" stroke-linecap="round"/><text x="10" y="122" font-family="Georgia, serif" font-size="70" font-style="italic" font-weight="700" fill="#3a7bd5">p</text><text x="404" y="122" font-family="Georgia, serif" font-size="70" font-style="italic" font-weight="700" fill="#e04848">f</text>')
 # phrasing: notes on a staff grouped by curved slurs
 arts-6-8-listening-and-reviewing/phrasing = col(raw(440, 50, '<path d="M120 44 Q200 0 270 44" fill="none" stroke="#e04848" stroke-width="7" stroke-linecap="round"/><path d="M300 44 Q350 8 420 44" fill="none" stroke="#e04848" stroke-width="7" stroke-linecap="round"/>'), staff([4, 5, 6, 5, 3, 4, 2], size=440), gap=0)
 # staging: a stage floor plan with two X marks far apart
 arts-6-8-comparing-productions/staging = over(raw(440, 280, '<path d="M20 260 L80 20 H360 L420 260 Z" fill="#efdccb" stroke="#1f2430" stroke-width="6" stroke-linejoin="round"/><path d="M20 260 Q220 290 420 260" fill="none" stroke="#a0673a" stroke-width="6"/>'), row(cross(70, RED), raw(170, 10, ''), cross(70, BLUE), gap=0), dy=10)
 # blocking: a stage floor plan with X marks joined by arrows
 arts-6-8-devising-a-scene/blocking = raw(440, 280, '<path d="M20 260 L80 20 H360 L420 260 Z" fill="#efdccb" stroke="#1f2430" stroke-width="6" stroke-linejoin="round"/><g stroke="#e04848" stroke-width="9" stroke-linecap="round"><path d="M95 195 l30 30 M125 195 l-30 30"/><path d="M205 75 l30 30 M235 75 l-30 30"/><path d="M315 195 l30 30 M345 195 l-30 30"/></g><g fill="none" stroke="#3a7bd5" stroke-width="6" stroke-dasharray="14 10"><path d="M130 190 L200 115"/><path d="M240 115 L310 190"/></g><path d="M208 106 l-18 4 l8 -16 z M318 196 l-2 -18 l14 10 z" fill="#3a7bd5"/>')
-# spacing: four evenly spaced footprints
-arts-6-8-performing-in-different-spaces/spacing = footprints(4, 100)
+# spacing: two dancers with a double arrow showing the space between them
+arts-6-8-performing-in-different-spaces/spacing = row(person(140, BLUE), arrow(130, ORANGE, double=True), person(140, PURPLE), gap=10, align='b')
 # scale: a small gridded sketch, an arrow, a big gridded wall
 arts-6-8-public-art-and-murals/scale = row(grid_shade(3, 3, shaded=0, size=90, cells=[(0, 0), (1, 1), (2, 2)]), arrow(70), grid_shade(3, 3, shaded=0, size=260, cells=[(0, 0), (1, 1), (2, 2)]), gap=18)
 # variable: a box holding the number 0
@@ -3397,16 +3383,16 @@ health-pe-3-5-juggling-and-practice-habits/practice = calendar(300, checks=tuple
 health-pe-3-5-juggling-and-practice-habits/progress = over(stairs(3, 320, color=GREEN), star(80), dx=110, dy=-110)
 # common ground: two overlapping circles with the middle shaded
 social-studies-7-panel-of-experts/common-ground = venn(2, shade='both')
-# second: two voting cards, the second one highlighted
-social-studies-8-motion-on-the-floor/second = row(card(T('1', 70), w=130, h=170, color=GRAY), card(T('2', 70), w=130, h=170, color=GREEN, fill=soft(GREEN)), gap=30)
+# second: one person moves an idea and another says I second it
+social-studies-8-motion-on-the-floor/second = col(bubble(T('I move that...', 34), 300, tail='left'), bubble(T('I second it!', 34), 300, color=GREEN, tail='right'), gap=16)
 # pattern: a repeating row of clap, clap, stomp icons
 arts-k-2-making-up-songs/pattern = col(*[row(hand(110), hand(110), footprint(100), gap=14) for _ in range(2)], gap=30)
 # order: three boxes with arrows between them
 arts-k-2-picture-and-sound-stories/order = boxes('1', '2', '3', colors=[GREEN, BLUE, ORANGE], size=60, w=110, h=110, arrows=True)
-# timeline: a horizontal line with four dated dots
-computer-science-3-5-computing-inventions-and-inventors/timeline = timeline(4, 440, labels=['1940', '1970', '1990', '2010'])
-# organize: a table with three columns and tally marks
-computer-science-3-5-fair-surveys/organize = table(cells=[['', 'A', 'B', 'C'], ['1', 'III', 'I', 'IIII'], ['2', 'II', 'IIII', 'I']], size=340)
+# timeline: a timeline of computing years
+computer-science-3-5-computing-inventions-and-inventors/timeline = timeline(4, 440, labels=['1950', '1970', '1990', '2010'])
+# organize: mixed-up shapes, then the same shapes sorted into rows
+computer-science-3-5-fair-surveys/organize = row(raw(170, 170, g(shape('circle', 44, BLUE), 8, 10) + g(shape('triangle', 48, ORANGE), 70, 4) + g(shape('square', 40, GREEN), 124, 30) + g(shape('square', 40, GREEN), 20, 72) + g(shape('circle', 44, BLUE), 84, 62) + g(shape('triangle', 48, ORANGE), 116, 116) + g(shape('circle', 44, BLUE), 34, 122) + g(shape('square', 40, GREEN), 78, 124)), arrow(50), col(*[row(*[shape(k, 40, c) for _ in range(3)], gap=8) for k, c in (('circle', BLUE), ('square', GREEN), ('triangle', ORANGE))], gap=10, align='l'), gap=14)
 # flowchart: a flowchart with an oval, two boxes, a diamond and arrows
 computer-science-3-5-plan-it-before-you-code-it/flowchart = col(box(w=150, h=56, color=BLUE, rx=28), arrow(34, dir='down'), box(w=170, h=56, color=GREEN, rx=8), arrow(34, dir='down'), diamond(150, '?'), arrow(34, dir='down'), box(w=170, h=56, color=GREEN, rx=8), gap=2)
 # loop: a circular arrow around a step box
@@ -3425,18 +3411,18 @@ computer-science-k-2-asking-with-data/count = col(row(*[car(100) for _ in range(
 computer-science-k-2-asking-with-data/tally = tally(12, 380)
 # steps: three numbered footprints in a row
 computer-science-k-2-fair-rules-for-turns/steps = footprints(3, 100, numbered=True)
-# program: a square drawn by four arrows
-computer-science-k-2-what-the-code-does/program = raw(300, 300, '<g stroke="#3a7bd5" stroke-width="12" stroke-linecap="round" fill="none"><path d="M40 40 H240"/><path d="M260 40 V240"/><path d="M260 260 H60"/><path d="M40 260 V60"/></g><g fill="#3a7bd5"><path d="M262 40 l-30 -16 v32 z"/><path d="M260 262 l-16 -30 h32 z"/><path d="M38 260 l30 -16 v32 z"/><path d="M40 38 l-16 30 h32 z"/></g>')
+# program: a green flag starting a stack of labeled code blocks, with a check
+computer-science-k-2-what-the-code-does/program = col(flag(80, GREEN), code_blocks(3, 230, labels=('move 10', 'turn right', 'say Hi')), check(60), gap=8)
 # step: one arrow pointing right
 computer-science-k-2-what-the-code-does/step = arrow(300, BLUE, sw=18)
-# rate: a pie chart with a small slice shaded
-cte-6-8-economy-checkup/rate = pie(0.08, 280, ORANGE)
-# compound interest: a bar chart with bars growing faster each year
-cte-6-8-interest-rate-dial/compound-interest = bars([10, 12, 15, 19, 25, 33], size=340, color=GREEN)
-# equilibrium price: two crossing lines on a price graph with the crossing point circled
-cte-6-8-snow-season-prices/equilibrium-price = plot(lambda x: x, lambda x: 8 - x, size=320, xr=(0, 8), yr=(0, 8), points=[(4, 4)])
-# prefix: a word split into a small front block and a big block
-ela-3-5-academic-and-subject-words/prefix = row(box(w=90, h=90, color=ORANGE, fill=soft(ORANGE), rx=10), T('+', 70), box(w=240, h=90, color=BLUE, fill=soft(BLUE), rx=10), gap=10)
+# rate: a pie with 10 percent shaded: 10 out of 100
+cte-6-8-economy-checkup/rate = row(pie(0.1, 240, ORANGE), col(M('10%', 80, color=ORANGE), T('10 out of 100', 30), gap=4), gap=20)
+# compound interest: bars that grow faster each year: the start plus interest that earns interest
+cte-6-8-interest-rate-dial/compound-interest = raw(420, 330, ''.join(f'<rect x="{24 + i * 66}" y="120" width="50" height="150" fill="#3a7bd5" stroke="#1f2430" stroke-width="3"/><rect x="{24 + i * 66}" y="{120 - v * 1.5:.0f}" width="50" height="{v * 1.5:.0f}" fill="#2f9e5b" stroke="#1f2430" stroke-width="3"/><text x="{49 + i * 66}" y="300" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="700" text-anchor="middle" fill="#1f2430">{i}</text>' for i, v in enumerate((0, 10, 21, 33, 46, 61))) + '<line x1="10" y1="270" x2="410" y2="270" stroke="#1f2430" stroke-width="4"/><text x="210" y="328" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700" text-anchor="middle" fill="#5a5f6c">years</text><rect x="20" y="10" width="22" height="22" fill="#3a7bd5"/><text x="50" y="29" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700" fill="#1f2430">start</text><rect x="130" y="10" width="22" height="22" fill="#2f9e5b"/><text x="160" y="29" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700" fill="#1f2430">interest</text>')
+# equilibrium price: supply and demand lines crossing at the equilibrium price
+cte-6-8-snow-season-prices/equilibrium-price = col(T('price', 26, GRAY), plot(lambda x: x, lambda x: 8 - x, size=320, xr=(0, 8), yr=(0, 8), points=[(4, 4)], hlines=(4,), texts=[(5.6, 7.4, 'supply', BLUE), (1.4, 4.4, 'demand', ORANGE)]), row(Item(170, 1, ''), T('quantity', 26, GRAY), gap=0), gap=2, align='l')
+# prefix: pre- plus view makes preview
+ela-3-5-academic-and-subject-words/prefix = col(row(tile('pre-', ORANGE, 100), M('+', 60), tile('view', BLUE, 100), gap=12), arrow(50, dir='down'), T('preview', 90, hl={'pre': ORANGE, 'view': BLUE}), gap=8)
 # structure: two boxes with an arrow from problem to solution icons
 ela-3-5-comparing-texts-side-by-side/structure = row(box(warning(110), color=RED, fill=soft(RED)), arrow(80), box(bulb(110), color=GREEN, fill=soft(GREEN)), gap=14)
 # Venn diagram: two overlapping circles
@@ -3447,8 +3433,8 @@ ela-3-5-diagrams-and-how-things-happen/timeline = timeline(4, 440)
 ela-3-5-diagrams-and-how-things-happen/process = cycle(['1', '2', '3', '4'], size=44)
 # panel: a comic page with three panels in a row
 ela-3-5-pictures-panels-and-performances/panel = row(box(sun(70), w=130, h=150, color=DARK, fill='#fff', rx=4), box(bubble(None, 80), w=130, h=150, color=DARK, fill='#fff', rx=4), box(star(70), w=130, h=150, color=DARK, fill='#fff', rx=4), gap=10)
-# syllable: a word split into four colored blocks
-ela-3-5-readers-theater-and-fluency/syllable = tiles('', '', '', '', colors=[BLUE, ORANGE, GREEN, PURPLE], size=90)
+# syllable: butterfly split into three syllable tiles, one clap dot each
+ela-3-5-readers-theater-and-fluency/syllable = row(*[col(tile(s, c, 100), dot(30, DARK), gap=14) for s, c in (('but', BLUE), ('ter', ORANGE), ('fly', GREEN))], gap=14)
 # comma: a large comma mark
 ela-3-5-revising-and-editing/comma = raw(200, 300, '<circle cx="100" cy="110" r="62" fill="#1f2430"/><path d="M158 120 Q156 225 66 278 L54 260 Q108 214 104 160 Z" fill="#1f2430"/>')
 # dash: a long horizontal punctuation line between two word blocks
