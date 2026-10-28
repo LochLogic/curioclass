@@ -1,0 +1,1147 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Simulation Studio · Old Faithful, August 1985 · Curio Class</title>
+<meta name="description" content="Clean the real 1985 Old Faithful eruption log with a recipe of steps, build a simulated geyser from the clean numbers, test it against the real one, then write and test the ranger's prediction sign. Grades 9-12 computer science. Works offline.">
+<!--
+Simulation Studio (Curio Class)
+Grades 9-12, computer science, Simulation and Data Science: "Simulate, clean and visualize multivariate data".
+Standards: CSTA 2026 HS-DAT-DC-21, HS-DAT-DC-23, HS-DAT-DI-25, HS-DAT-DI-26 (2017 crosswalk 3A-DA-11, 3A-DA-12,
+3B-DA-05, 3B-DA-07). Students drive, alone or in pairs on laptops. One studio, four benches joined as a pipeline:
+Raw log (the file as published), Clean (a recipe of cleaning steps whose order matters), Model (a two-state simulated
+geyser fitted from the clean log, checked against the real one) and Answer (the ranger's sign, tested against what
+really happened).
+Data: MASS geyser (Azzalini, A. and Bowman, A. W. (1990), "A look at some data on the Old Faithful geyser", Applied
+Statistics 39, 357-365), as distributed in R package MASS (Venables and Ripley, Modern Applied Statistics with S, 4th
+ed., Springer 2002), including the night codes note and the waiting time correction in MASS 7.3-30. Copied from the
+Rdatasets CSV https://vincentarelbundock.github.io/Rdatasets/csv/MASS/geyser.csv on 2026-10-28 (299 rows).
+Park numbers: National Park Service, "Predict Old Faithful" worksheet (YELL 003), and the Old Faithful Visitor
+Education Center exhibit "Prediction". Cleaning as repeatable steps: Wickham, "Tidy Data", JSS 59(10), 2014.
+Every number on screen was recomputed in Python from the CSV and the stated simulation on 2026-10-28.
+Everything is drawn in code. One file, no network requests. Content CC BY 4.0, code MIT. curioclass.org
+-->
+<link rel="stylesheet" href="kit:curio">
+<link rel="stylesheet" href="kit:theme-912">
+<style>
+:root{--brand:#ff7f32;--brand-ink:#1c0d02;--real:#5aa9ff;--sim:#ffd166;--night:#a6b3c4;--wood:#3b2a1e;--cream:#f3ead8;
+  --dd-1:#5aa9ff;--dd-2:#ffd166;--dd-ring:#ff7f32;--dd-text:#a6b3c4;--dd-axis:#c9d3df;--dd-grid:rgba(255,255,255,.08);--dd-bg-solid:#0e1520;
+  --chart-bg:#0e1520}
+body{grid-template-rows:auto auto 1fr;grid-template-columns:minmax(0,1fr);height:100vh;overflow:hidden}
+main{grid-template-columns:minmax(0,1fr) 360px;min-height:0}
+.stage{min-height:0;background:var(--paper);overflow:hidden}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* the pipeline strip: four tabs joined by arrows */
+#pipe{display:flex;align-items:stretch;gap:0;padding:8px 12px;background:var(--head-bg);border-bottom:1px solid var(--line)}
+.node{flex:1 1 0;min-width:0;min-height:52px;border:1px solid var(--btn-line);background:var(--btn);border-radius:10px;padding:4px 10px;
+  text-align:left;display:flex;flex-direction:column;justify-content:center;gap:1px;color:var(--ink)}
+.node b{font-size:15px;line-height:1.15;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.node span{font:13px/1.2 var(--readout-font);color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.node[aria-selected="true"]{background:var(--brand);border-color:var(--brand);color:var(--brand-ink)}
+.node[aria-selected="true"] span{color:var(--brand-ink)}
+.node:hover:not([aria-selected="true"]){border-color:var(--muted)}
+.arrow{flex:none;width:30px;display:flex;align-items:center;justify-content:center;color:var(--muted)}
+.arrow svg{display:block}
+.arrow.pulse svg{animation:pulse .9s ease-out 1}
+@keyframes pulse{0%{transform:scale(1);color:var(--brand)}40%{transform:scale(1.45);color:var(--brand)}100%{transform:scale(1)}}
+.arrow.pulse{color:var(--brand)}
+
+/* benches (stage) */
+.bench{position:absolute;inset:0;overflow:auto;padding:12px 14px}
+.bench h3{margin:0;font:600 14px 'Segoe UI',system-ui,sans-serif;color:var(--ink)}
+.box{background:var(--chart-bg);border:1px solid var(--line);border-radius:10px;padding:6px 8px;min-width:0}
+.box svg{display:block}
+.trow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;min-height:22px;margin-bottom:2px}
+.trow .grow{flex:1 1 auto}
+.ro{font:13.5px/1.45 var(--readout-font);color:var(--ink);margin:4px 2px 0}
+.ro .warn::before{content:'⚠ '}
+.legend{display:inline-flex;gap:12px;align-items:center;font-size:13px;color:var(--muted)}
+.legend svg{display:inline-block;vertical-align:-3px;margin-right:4px}
+.chip{min-height:44px;font-size:13.5px}
+.chip[hidden]{display:none}
+
+/* Raw log */
+.rawgrid{display:flex;gap:14px;align-items:flex-start}
+#rawTbl table.inst{font-size:var(--tf,14px)}
+#rawTbl table.inst th,#rawTbl table.inst td{padding:0 10px;height:var(--rh,24px)}
+#rawTbl thead th{height:auto;padding:4px 10px;white-space:nowrap}
+#rawTbl tbody th{color:var(--muted);font-weight:400;white-space:nowrap}
+#rawTbl tr.mk td,#rawTbl tr.mk th{background:rgba(255,127,50,.2)}
+#rawTbl tr.mk th::before{content:'▶ ';color:var(--brand)}
+#rawTbl td.ng{color:var(--night)}
+#rawTbl td.ng::after{content:'\00a0☾' / '';color:var(--night)}
+.ngkey{font-size:12.5px;color:var(--muted);margin:4px 2px 0}
+#rawTbl.tight table.inst th,#rawTbl.tight table.inst td{padding:0 5px}
+#rawTbl.tight thead th{white-space:normal;padding:2px 5px;line-height:1.15}
+.dd-pager .dd-pageno{font:14px var(--readout-font)}
+.markbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:13.5px;margin-top:6px}
+.markbar.off{visibility:hidden}
+body.stack .markbar.off{display:none}
+
+/* Clean */
+.recipe{margin:0 0 10px;padding:0;list-style:none;display:flex;flex-direction:column;gap:4px}
+.recipe li{display:flex;align-items:center;gap:6px;min-height:44px;background:var(--chart-bg);border:1px solid var(--line);border-radius:8px;padding:0 4px 0 10px}
+.recipe li.empty{border-style:dashed;color:var(--muted);font-size:13.5px}
+.recipe li .n{font:13px var(--readout-font);color:var(--muted);flex:none;width:1.6em}
+.recipe li code{flex:1 1 auto;min-width:0;font:14px/1.3 var(--readout-font);color:var(--ink);overflow-wrap:anywhere}
+.recipe li code .kw{color:var(--brand)}
+.recipe li .btn{flex:none;padding:0;width:44px}
+.recipe li .btn[aria-disabled="true"]{opacity:.35;cursor:not-allowed}
+.recipe li.moved{animation:flash .5s ease-out 1}
+@keyframes flash{from{background:rgba(255,127,50,.35)}to{background:var(--chart-bg)}}
+.rcp-h{display:flex;justify-content:space-between;align-items:baseline;margin:0 0 4px}
+.rcp-h small{color:var(--muted);font-size:12.5px}
+.cgrid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:10px}
+.cgrid.one{grid-template-columns:minmax(0,1fr)}
+.ctable{margin-top:6px}
+.rowbtns{display:grid;gap:4px}
+.rowbtns .hd,.rowbtns button{display:grid;grid-template-columns:minmax(0,1fr) 3.4em 4.2em 5.4em;gap:6px;align-items:center;text-align:right}
+.rowbtns .hd{font-size:12.5px;color:var(--muted);padding:0 10px}
+.rowbtns .hd :first-child,.rowbtns button :first-child{text-align:left}
+.rowbtns button{min-height:44px;border:1px solid var(--line);background:var(--chart-bg);border-radius:8px;padding:0 10px;font:14px var(--readout-font);color:var(--ink)}
+.rowbtns button span:first-child{font-family:'Segoe UI',system-ui,sans-serif;font-size:14px}
+.rowbtns button[aria-pressed="true"]{border-color:var(--brand);box-shadow:inset 0 0 0 1px var(--brand)}
+.rowbtns button:hover{border-color:var(--muted)}
+.rowbtns.pairs .hd,.rowbtns.pairs button{grid-template-columns:minmax(0,1fr) 5.5em 5.5em}
+
+/* Model */
+.mgrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr);gap:10px;margin-top:10px}
+.match{font:700 17px var(--readout-font);color:var(--ink);white-space:nowrap}
+.match.stale{opacity:.5;font-weight:400}
+.binrow{margin-top:4px;gap:8px}
+.binrow .seg{display:inline-flex;gap:4px}
+.binrow .seg .btn{min-height:44px;min-width:56px;padding:0 10px}
+.binrow .seg .btn[aria-pressed="true"]{background:var(--brand);border-color:var(--brand);color:var(--brand-ink)}
+#yard{flex:1 1 14em}
+#bwL{flex:none}
+.histwrap{position:relative}
+.veil{position:absolute;left:50%;top:42%;transform:translate(-50%,-50%);background:#0b1017ee;border:1px solid var(--btn-line);border-radius:8px;
+  padding:6px 12px;font-size:14px;color:var(--ink);pointer-events:none;white-space:nowrap}
+.veil.warn{border-color:var(--warn);color:var(--warn)}
+
+/* Answer */
+.results{display:grid;gap:8px;margin-top:10px}
+.res{background:var(--chart-bg);border:1px solid var(--line);border-radius:10px;padding:8px 10px}
+.res p{margin:0 0 6px;font-size:14.5px;line-height:1.3}
+.res p small{color:var(--muted);font-size:12.5px}
+.bar{position:relative;height:16px;border-radius:4px;background:#1c2532;overflow:visible}
+.bar i{position:absolute;left:0;top:0;bottom:0;border-radius:4px;transition:width .3s ease-out}
+.bar i[hidden]{display:none}
+.bar.oos i{background:rgba(90,169,255,.55);border:2px solid var(--real)}
+.bar.real i{background:rgba(90,169,255,.28);border:2px solid var(--real)}
+.bar.sim i{background:var(--sim)}
+.bar .goal{position:absolute;top:-4px;bottom:-4px;width:0;border-left:2px dashed var(--ink)}
+.stepper{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:6px;font-size:13.5px;color:var(--muted)}
+.stepper span{order:3;flex:1 1 100%}
+.cmp{font-size:13.5px;line-height:1.4;color:var(--muted);margin:10px 2px 0}
+.cmp:empty{display:none}
+
+/* panel */
+.panel{gap:10px}
+.hint{min-height:var(--hint-h,0px)}
+.card{background:#0b1017;border:1px solid var(--line);border-left:3px solid var(--muted);border-radius:6px;padding:7px 10px;font-size:14px;line-height:1.4;margin:0 0 6px}
+.card:last-child{margin-bottom:0}
+.card .f{display:block;font:12px var(--readout-font);color:var(--muted);margin-bottom:2px}
+.card.rule{border-left-color:var(--brand)}
+.steps{display:grid;gap:6px}
+.stepbtn{text-align:left;min-height:52px;padding:4px 10px;line-height:1.25;width:100%}
+.stepbtn small{display:block;font:12px var(--readout-font);color:var(--muted);font-weight:400;overflow-wrap:anywhere}
+.stepbtn[aria-disabled="true"]{opacity:.4;cursor:not-allowed}
+.chk{display:flex;align-items:center;gap:8px;min-height:44px;font-size:14px;cursor:pointer}
+.chk input{width:20px;height:20px;margin:0;accent-color:var(--brand)}
+.row{display:flex;gap:6px;flex-wrap:wrap}
+.row .btn{flex:1 1 auto}
+.runrow .big-btn{flex:2 1 auto;width:auto;margin:0}
+.small{font-size:13px;color:var(--muted);margin:0;line-height:1.35}
+.small:empty{display:none}
+.rule1{margin-bottom:8px}
+.rule1:last-child{margin-bottom:0}
+.rule1 .rl{font-size:13.5px;font-weight:600;color:var(--ink);line-height:1.25;margin-bottom:2px}
+.sn{display:grid;grid-template-columns:auto minmax(0,1fr) 5.2em;gap:8px;align-items:center}
+.sn span{font-size:13px;color:var(--muted);min-width:3.6em}
+.sn input.num{width:100%;padding:0 6px}
+.sentence{font-size:15px;line-height:2.5;margin:0}
+.sentence input.num{width:4.4em;padding:0 6px;margin:0 2px;vertical-align:middle}
+
+/* layouts (picked in script, as collision-lab): wide, compact (short landscape such as the 16:10 embed), stack */
+body.compact header{padding:4px 8px;gap:4px;flex-wrap:nowrap;min-width:0}
+body.compact h1{font-size:16px;white-space:nowrap;min-width:0;overflow:hidden;text-overflow:ellipsis}
+body.compact h1 small{display:none}
+body.compact .icon-btn{min-height:44px;padding:0 8px;font-size:13.5px;flex:none;white-space:nowrap}
+body.compact #pipe{padding:4px 8px}
+body.compact .node{min-height:44px;padding:2px 8px;align-items:center}
+body.compact .node b{font-size:14px}
+body.compact .node span{display:none}
+body.compact .arrow{width:20px}
+body.compact main{grid-template-columns:minmax(0,1fr) 290px}
+@media (min-width:900px){body.compact main{grid-template-columns:minmax(0,1fr) 320px}}
+body.compact .panel{padding:6px 8px;gap:6px}
+body.compact .sec{padding:6px 8px}
+body.compact .sec>h2{margin-bottom:4px}
+body.compact .hint{font-size:13.5px;line-height:1.35}
+body.compact .bench{padding:6px 8px}
+body.compact .card{font-size:12.5px;padding:4px 8px}
+body.compact .stepbtn{min-height:44px;font-size:13.5px}
+body.compact .rule1 .rl{font-size:12.5px}
+body.compact .sentence{font-size:13.5px;line-height:2.4}
+body.compact .ro{font-size:12px}
+body.compact .bench h3{font-size:12.5px}
+body.compact #rcpKeys{display:none}
+body.compact .recipe li code{font-size:11.5px}
+body.compact .rowbtns button,body.compact .rowbtns button span:first-child{font-size:12.5px}
+body.compact .res p{font-size:13px}
+body.compact .res{padding:5px 8px}
+body.compact .results{gap:5px;margin-top:6px}
+@media (max-height:800px){body.wide #p-model .rule1{margin-bottom:4px}body.wide #p-model .sec{padding-top:8px;padding-bottom:8px}body.wide .panel{gap:8px}}
+body.compact .match{font-size:14px}
+body.compact .legend{font-size:11.5px;gap:8px}
+body.stack{height:auto;overflow:auto;grid-template-columns:minmax(0,1fr)}
+body.stack main{grid-template-columns:minmax(0,1fr);align-content:start}
+body.stack .stage{overflow:visible}
+body.stack .bench{position:static;overflow:visible}
+body.stack .panel{border-left:0;border-top:1px solid var(--line);overflow:visible}
+body.stack main{gap:8px;padding:8px 0 12px}
+body.stack .panel,body.stack .pp:not([hidden]){display:contents}
+body.stack .panel>*,body.stack .pp>*{margin-left:12px;margin-right:12px}
+body.stack .hint{order:1;margin-top:0;margin-bottom:0}
+body.stack .pp .lead{order:2}
+body.stack .stage{order:3}
+body.stack .pp>*:not(.lead){order:4}
+body.stack .rawgrid.col,body.ns .rawgrid.col{flex-direction:column}
+.rawgrid.col #rawBox{order:-1}
+body.ns .mgrid{grid-template-columns:minmax(0,1fr)}
+body.stack .cgrid,body.stack .mgrid{grid-template-columns:minmax(0,1fr)}
+@media (max-width:560px){
+  header{gap:6px}
+  .icon-btn{min-height:44px;padding:0 10px;font-size:14px}
+  #pipe{padding:6px}
+  .node{padding:2px 6px;min-height:48px}
+  .node b{font-size:13.5px}
+  .node span{font-size:11.5px}
+  .arrow{width:14px}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Simulation Studio <small>Old Faithful, August 1985</small></h1>
+  <button class="icon-btn" id="motion" aria-pressed="true" title="Turn animation on or off">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+  <button class="icon-btn" id="read" title="Read the hint aloud">🔊 Read</button>
+</header>
+<nav id="pipe" role="tablist" aria-label="Pipeline">
+  <button class="node" role="tab" id="n-raw" aria-controls="b-raw" aria-selected="true" tabindex="0"><b>Raw log</b><span id="s-raw">299 rows</span></button>
+  <div class="arrow" id="a1" aria-hidden="true"><svg width="22" height="16" viewBox="0 0 22 16"><path d="M1 8h17M12 2l7 6-7 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  <button class="node" role="tab" id="n-clean" aria-controls="b-clean" aria-selected="false" tabindex="-1"><b>Clean</b><span id="s-clean">No steps</span></button>
+  <div class="arrow" id="a2" aria-hidden="true"><svg width="22" height="16" viewBox="0 0 22 16"><path d="M1 8h17M12 2l7 6-7 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  <button class="node" role="tab" id="n-model" aria-controls="b-model" aria-selected="false" tabindex="-1"><b>Model</b><span id="s-model">Not run</span></button>
+  <div class="arrow" id="a3" aria-hidden="true"><svg width="22" height="16" viewBox="0 0 22 16"><path d="M1 8h17M12 2l7 6-7 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  <button class="node" role="tab" id="n-answer" aria-controls="b-answer" aria-selected="false" tabindex="-1"><b>Answer</b><span id="s-answer">Not tested</span></button>
+</nav>
+<main>
+  <div class="stage" id="stage">
+    <!-- Raw log bench -->
+    <section class="bench" id="b-raw" role="tabpanel" aria-labelledby="n-raw">
+      <div class="rawgrid">
+        <div id="rawL"><div id="rawTbl"></div><p class="ngkey" aria-hidden="true">☾ night code (a duration written as 2, 3 or 4)</p></div>
+        <div class="box" id="rawBox">
+          <div class="trow"><h3 class="grow">Duration and waiting, same row</h3></div>
+          <svg id="svRaw" aria-label="Scatter plot of the raw log"></svg>
+          <p class="ro" id="roRaw"></p>
+          <div class="markbar off" id="markbar"><span id="markTxt"></span><button class="btn" id="markNext">Next marked</button><button class="btn" id="markClear">Clear marks</button></div>
+        </div>
+      </div>
+    </section>
+    <!-- Clean bench -->
+    <section class="bench" id="b-clean" role="tabpanel" aria-labelledby="n-clean" hidden>
+      <div class="rcp-h"><h3 id="rcpL">Recipe</h3><small id="rcpKeys">Alt plus arrow keys move a step</small></div>
+      <ol class="recipe" id="recipe" aria-labelledby="rcpL"></ol>
+      <div class="cgrid">
+        <div class="box">
+          <div class="trow"><h3 class="grow" id="scatT">Duration and waiting, same row</h3><button class="btn chip" id="chipC" hidden></button></div>
+          <svg id="svScat"></svg>
+          <p class="ro" id="roClean"></p>
+        </div>
+        <div class="box">
+          <div class="trow"><h3 class="grow" id="histT">Waits</h3></div>
+          <svg id="svHist"></svg>
+          <svg id="svBox"></svg>
+        <div class="ctable">
+          <div class="rowbtns" id="classRows">
+            <div class="hd" aria-hidden="true"><span>Class</span><span>n</span><span>mean</span><span>spread (SD)</span></div>
+            <button id="cr-short" aria-pressed="false"><span>After short (under 3 min)</span><span id="cs-n"></span><span id="cs-m"></span><span id="cs-s"></span></button>
+            <button id="cr-long" aria-pressed="false"><span>After long</span><span id="cl-n"></span><span id="cl-m"></span><span id="cl-s"></span></button>
+          </div>
+        </div>
+        </div>
+      </div>
+    </section>
+    <!-- Model bench -->
+    <section class="bench" id="b-model" role="tabpanel" aria-labelledby="n-model" hidden>
+      <div class="box">
+        <div class="trow"><h3>Waits after each eruption</h3>
+          <span class="legend"><span><svg width="16" height="14"><rect x="1.5" y="3" width="13" height="10" style="fill:none;stroke:var(--real);stroke-width:2"/><circle cx="8" cy="3" r="3" style="fill:var(--chart-bg);stroke:var(--real);stroke-width:1.6"/></svg><span id="legReal">Real, raw log</span></span>
+          <span><svg width="16" height="14"><rect x="1.5" y="3" width="13" height="10" style="fill:var(--sim)"/><path d="M8 0L11.5 5.5H4.5Z" style="fill:var(--sim);stroke:var(--chart-bg);stroke-width:.6"/></svg>Simulated</span></span>
+          <span class="grow"></span><button class="btn chip" id="chipM" hidden></button><span class="match" id="matchTxt">Match: not run</span></div>
+        <div class="histwrap"><svg id="svOver"></svg><div class="veil" id="veil"></div></div>
+        <div class="trow binrow"><span class="small" id="bwL">Bin width</span><span class="seg" role="group" aria-labelledby="bwL">
+          <button class="btn" id="bw2" data-w="2" aria-pressed="false">2 min</button><button class="btn" id="bw5" data-w="5" aria-pressed="true">5 min</button><button class="btn" id="bw10" data-w="10" aria-pressed="false">10 min</button></span>
+          <span class="small" id="yard"></span></div>
+      </div>
+      <div class="mgrid">
+        <div class="box">
+          <div class="rowbtns pairs" id="pairRows">
+            <div class="hd" aria-hidden="true"><span>Pair</span><span>Real</span><span>Simulated</span></div>
+          </div>
+        </div>
+        <div class="box">
+          <div class="trow"><h3 class="grow">First 40 simulated eruptions</h3><span class="legend">tall = long, short = short; the wait after under each</span></div>
+          <svg id="svStrip" role="img" aria-label="First 40 simulated eruptions"></svg>
+        </div>
+      </div>
+    </section>
+    <!-- Answer bench -->
+    <section class="bench" id="b-answer" role="tabpanel" aria-labelledby="n-answer" hidden>
+      <svg id="svSign" role="img"></svg>
+      <div class="stepper"><button class="btn" id="exPrev">Previous eruption</button><span id="exTxt" aria-live="polite"></span><button class="btn" id="exNext">Next eruption</button></div>
+      <div class="results">
+        <div class="res"><p id="r1t">On the real log: not tested yet</p><div class="bar real"><i id="r1b" hidden></i><span class="goal" style="left:90%" title="The park: about 90 percent"></span></div></div>
+        <div class="res"><p id="r3t">On later eruptions: not tested yet</p><div class="bar oos"><i id="r3b" hidden></i><span class="goal" style="left:90%"></span></div></div>
+        <div class="res"><p id="r2t">On a simulated summer: not tested yet</p><div class="bar sim"><i id="r2b" hidden></i><span class="goal" style="left:90%"></span></div></div>
+      </div>
+      <p class="cmp" id="cmpLine"></p>
+    </section>
+  </div>
+  <aside class="panel" id="panel">
+    <p class="hint" id="hint" aria-live="polite"></p>
+    <!-- Raw log -->
+    <div id="p-raw" class="pp">
+      <section class="sec" aria-labelledby="dnL"><h2 id="dnL">Data notes</h2>
+        <p class="card"><span class="f">geyser.Rd, original files</span>Original files: waiting = the time until the next eruption.</p>
+        <p class="card"><span class="f">geyser.Rd, MASS 7.3-30</span>Corrected in a later version of the package (MASS 7.3-30): waiting = the waiting time for this eruption, so the time since the eruption before.</p>
+        <p class="card"><span class="f">geyser.Rd, description</span>Some night durations were written down as short, medium or long and coded as 2, 3 or 4 minutes.</p>
+      </section>
+      <section class="sec" aria-labelledby="rrL"><h2 id="rrL">Ranger's rule</h2>
+        <p class="card rule">Rangers predict the next eruption from the one that just ended: a longer eruption means a longer wait.</p>
+      </section>
+    </div>
+    <!-- Clean -->
+    <div id="p-clean" class="pp" hidden>
+      <section class="sec lead" aria-labelledby="asL"><h2 id="asL">Add a step</h2>
+        <div class="steps">
+          <button class="btn stepbtn" id="add-pair" aria-disabled="false">Pair each eruption with the wait after it<small>log["wait_after"] = log["waiting"].shift(-1)</small></button>
+          <button class="btn stepbtn" id="add-flag" aria-disabled="false">Flag night codes<small>log["night"] = log["duration"].isin([2, 3, 4])</small></button>
+          <button class="btn stepbtn" id="add-drop" aria-disabled="false">Drop night-coded rows<small>log = log[~log["duration"].isin([2, 3, 4])]</small></button>
+        </div>
+        <label class="chk"><input type="checkbox" id="showNight"> Show night codes</label>
+      </section>
+    </div>
+    <!-- Model -->
+    <div id="p-model" class="pp" hidden>
+      <div class="row runrow lead"><button class="big-btn" id="run">▶ Run 299 eruptions</button><button class="btn" id="newRun">New run</button></div>
+      <div class="row lead"><button class="btn" id="fillM">Fill from my clean log</button><button class="btn" id="resetM">Reset model</button></div>
+      <p class="small" id="mInfo"></p>
+      <section class="sec" aria-labelledby="ygL"><h2 id="ygL">Your geyser</h2>
+        <div class="rule1"><div class="rl" id="l-pS">After a short eruption, chance the next is long</div>
+          <div class="sn"><span>chance</span><input type="range" id="pS" min="0" max="1" step="0.01" aria-labelledby="l-pS"><input class="num" type="number" id="pSn" min="0" max="1" step="0.01" aria-labelledby="l-pS"></div></div>
+        <div class="rule1"><div class="rl" id="l-pL">After a long eruption, chance the next is long</div>
+          <div class="sn"><span>chance</span><input type="range" id="pL" min="0" max="1" step="0.01" aria-labelledby="l-pL"><input class="num" type="number" id="pLn" min="0" max="1" step="0.01" aria-labelledby="l-pL"></div></div>
+        <div class="rule1"><div class="rl">Wait after a short eruption</div>
+          <div class="sn"><span id="l-mS">mean</span><input type="range" id="mS" min="30" max="120" step="0.1" aria-label="Wait after a short eruption, mean in minutes"><input class="num" type="number" id="mSn" min="30" max="120" step="0.1" aria-label="Wait after a short eruption, mean in minutes"></div>
+          <div class="sn"><span id="l-sS">spread</span><input type="range" id="sS" min="1" max="20" step="0.1" aria-label="Wait after a short eruption, spread in minutes"><input class="num" type="number" id="sSn" min="1" max="20" step="0.1" aria-label="Wait after a short eruption, spread in minutes"></div></div>
+        <div class="rule1"><div class="rl">Wait after a long eruption</div>
+          <div class="sn"><span>mean</span><input type="range" id="mL" min="30" max="120" step="0.1" aria-label="Wait after a long eruption, mean in minutes"><input class="num" type="number" id="mLn" min="30" max="120" step="0.1" aria-label="Wait after a long eruption, mean in minutes"></div>
+          <div class="sn"><span>spread</span><input type="range" id="sL" min="1" max="20" step="0.1" aria-label="Wait after a long eruption, spread in minutes"><input class="num" type="number" id="sLn" min="1" max="20" step="0.1" aria-label="Wait after a long eruption, spread in minutes"></div></div>
+      </section>
+    </div>
+    <!-- Answer -->
+    <div id="p-answer" class="pp" hidden>
+      <button class="big-btn lead" id="test">✓ Test the sign</button>
+      <section class="sec lead" aria-labelledby="rsL"><h2 id="rsL">Ranger's sign</h2>
+        <p class="sentence">If the last eruption was under <input class="num" type="number" id="cut" min="1.5" max="5.5" step="0.1" aria-label="Cut, in minutes of eruption"> minutes, next in
+          <input class="num" type="number" id="sgS" min="30" max="130" step="1" aria-label="Minutes to the next eruption after a short one"> minutes; otherwise next in
+          <input class="num" type="number" id="sgL" min="30" max="130" step="1" aria-label="Minutes to the next eruption after a long one"> minutes. Window: give or take
+          <input class="num" type="number" id="sgWn" min="1" max="20" step="1" aria-label="Window, give or take minutes">.</p>
+        <input type="range" id="sgW" min="1" max="20" step="1" aria-label="Window, give or take minutes">
+        <div class="row"><button class="btn" id="fillA">Fill from my clean log</button></div>
+        <p class="small" id="aInfo"></p>
+        <p class="small">On the real log, each sign is checked against when the next eruption really started.</p>
+      </section>
+    </div>
+  </aside>
+</main>
+<script src="kit:curio"></script>
+<script src="kit:data-desk"></script>
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const {fmt, mk} = DataDesk;
+  const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+
+  // ---------- the data: MASS geyser, 299 eruptions, 1 to 15 August 1985 (file order). waiting = minutes since the
+  // eruption before (MASS 7.3-30 meaning), duration = minutes; night durations coded 2, 3 or 4 ----------
+  const DATA = {w:[80,71,57,80,75,77,60,86,77,56,81,50,89,54,90,73,60,83,65,82,84,54,85,58,79,57,88,68,76,78,74,85,75,65,76,58,91,50,87,48,93,54,86,53,78,52,83,60,87,49,80,60,92,43,89,60,84,69,74,71,108,50,77,57,80,61,82,48,81,73,62,79,54,80,73,81,62,81,71,79,81,74,59,81,66,87,53,80,50,87,51,82,58,81,49,92,50,88,62,93,56,89,51,79,58,82,52,88,52,78,69,75,77,53,80,55,87,53,85,61,93,54,76,80,81,59,86,78,71,77,76,94,75,50,83,82,72,77,75,65,79,72,78,77,79,75,78,64,80,49,88,54,85,51,96,50,80,78,81,72,75,78,87,69,55,83,49,82,57,84,57,84,73,78,57,79,57,90,62,87,78,52,98,48,78,79,65,84,50,83,60,80,50,88,50,84,74,76,65,89,49,88,51,78,85,65,75,77,69,92,68,87,61,81,55,93,53,84,70,73,93,50,87,77,74,72,82,74,80,49,91,53,86,49,79,89,87,76,59,80,89,45,93,72,71,54,79,74,65,78,57,87,72,84,47,84,57,87,68,86,75,73,53,82,93,77,54,96,48,89,63,84,76,62,83,50,85,78,78,81,78,76,74,81,66,84,48,93,47,87,51,78,54,87,52,85,58,88,79],
+    d:[4.0166667,2.15,4,4,4,2,4.3833333,4.2833333,2.0333333,4.8333333,1.8333333,5.45,1.6166667,4.8666667,4.3833333,1.7666667,4.6666667,2,4.7333333,4.2166667,1.9,4.9666667,2,4,2,4,2.8333333,4.5,4.0666667,3.7166667,3.5166667,4.4666667,2.2166667,4.8833333,2.6,4.15,2.2,4.7666667,1.8333333,4.6,2.2666667,4.1333333,2,4,2,4,1.8833333,4.2666667,2.0833333,4.4666667,2.5,4,1.7666667,4.3333333,2.1833333,4.4833333,3.8833333,3.3333333,3.7333333,4,1.95,5.2666667,2,4,2,4,2,4,3.5333333,2.1666667,4.5,2.0166667,4.15,4.2,4.3333333,1.9333333,4.65,3.8166667,4.0333333,4.1666667,4.6666667,1.8166667,4,3,4,2,4.45,2.05,4.25,1.9166667,4.6666667,1.7333333,4.3833333,1.7666667,4.6,1.8666667,4.45,1.6333333,5.0333333,1.8166667,5.1,1.6333333,4.2833333,2,4,2,4.5333333,2,4,2.9333333,4.7333333,3.9,1.95,4.1166667,1.8,4.6666667,1.8333333,4.7,2.1166667,4.7833333,1.8166667,4.1,4.65,4,2,4,4,4.2166667,4.1333333,3.9333333,3.75,4.4166667,2.4666667,4.1666667,3.8,4.3166667,3.8666667,4.6833333,1.7,4.9666667,4.2666667,4.5833333,4,4,4,4,1.9833333,4.6,0.8333333,4.9166667,1.7333333,4.5833333,1.7,4.75,1.8333333,4.5,1.8666667,4.45,4.45,4,4.8,4,4,2,4,1.9333333,4.5833333,2,3.7,2.8666667,4.8333333,3.45,4.3833333,1.8,4.4,2.4833333,4.5166667,2.1,4.35,4.3666667,1.7833333,4.9166667,1.8166667,4,4,4,3.8666667,1.85,4.7,2.0166667,4.4666667,1.8666667,4.1666667,1.9,4.25,3.25,4.2166667,1.8833333,4.9833333,1.85,4,1.9666667,4.7666667,4,2,4,4,2.3833333,4.4166667,4.2166667,4.3666667,2,4.45,1.75,4.5,1.6166667,4.7,2.5666667,3.7,4.2333333,1.9333333,4.35,4,4,4,4.2166667,4,4.1333333,1.8833333,4.4666667,1.95,4.2166667,1.7166667,4.45,4.25,3.9666667,4.3833333,1.9666667,4.45,4.2666667,1.9166667,4.4166667,3,4,2,4,3.2833333,1.8333333,4.6166667,1.8333333,4.6166667,4.6,4.25,1.9333333,4.9833333,1.9666667,4.3,4.2,4.5333333,4.4,4.6166667,2,4,4,3.9166667,2,4.5,1.8,4,2.75,4.7333333,3.9666667,1.95,4.9666667,1.85,4.8,4,4,4,4,4,4,4,2,4,1.9333333,4.3333333,1.6666667,4.7666667,1.95,4.6833333,1.9333333,4.4166667,2.1333333,4.0833333,2.0666667,4,4,2]};
+  const W = DATA.w, D = DATA.d, N = W.length;
+  const NIGHT = d => d === 2 || d === 3 || d === 4;
+  const CUT = 3;                                   // the rangers' cut: short means under 3 minutes
+  const STEPS = {
+    // real pandas: each line runs as written on a DataFrame named log with columns duration and waiting
+    pair: {name: 'Pair', code: 'log[<span class="kw">"wait_after"</span>] = log["waiting"].shift(-1)', text: 'log["wait_after"] = log["waiting"].shift(-1)', label: 'Pair each eruption with the wait after it'},
+    flag: {name: 'Flag', code: 'log[<span class="kw">"night"</span>] = log["duration"].isin([2, 3, 4])', text: 'log["night"] = log["duration"].isin([2, 3, 4])', label: 'Flag night codes'},
+    drop: {name: 'Drop', code: '<span class="kw">log</span> = log[~log["duration"].isin([2, 3, 4])]', text: 'log = log[~log["duration"].isin([2, 3, 4])]', label: 'Drop night-coded rows'},
+  };
+  const START = {pS: .5, pL: .5, mS: 70, sS: 10, mL: 70, sL: 10};
+  const SUMMER = 1830;                             // about 92 days of eruptions
+  const HALF = 150;                                // out of sample: fill from file rows 0 to 149, test on rows 150 to 297
+  // Match yardstick per bin width (Python, seeds 1 to 200): two runs of the clean-fill geyser against each other
+  // (5th to 95th percentile), and the bar a run must clear (5th percentile of the clean fill against the real log)
+  const YARD = {2: [79, 87], 5: [86, 94], 10: [89, 97]}, PASS = {2: .79, 5: .85, 10: .90};
+
+  // ---------- lines (voice/lines.json lists every one) ----------
+  const L = {
+    welcome: 'This is the real eruption log from August 1985. Rangers say a long eruption means a long wait after it. Is that what this log shows? Tap Clean when you think you know why.',
+    notes: 'Read the data notes. One of them changes what a column means.',
+    thenClean: 'Then tap Clean to fix the log.',
+    marked: 'The marked rows are the ones you picked. Tap Next marked to step through them, or Clear marks.',
+    cleanStart: 'Tap a step under Add a step to put it in the recipe.',
+    recipe: 'Each step is a line of the recipe. Order matters. Try moving one.',
+    pairDone: 'Now a long eruption comes before a long wait. That matches what rangers see.',
+    dropFirst: "Careful. Dropping rows first joins eruptions that weren't next to each other.",
+    fixOrder: 'Move Pair above Drop with its up arrow.',
+    stillOff: 'This scatter still shows the wait before each eruption. Add another step from Add a step.',
+    nextFlag: 'Add Flag night codes next, or tap Model.',
+    cleanDone: 'Your log is clean. Tap Model to build a geyser from it.',
+    modelHow: "Set your geyser's rules, or fill them from your clean log. Then run it.",
+    runHow: 'Tap Run 299 eruptions when your rules are set.',
+    changed: 'Your rules changed. Tap Run 299 eruptions to see the new geyser.',
+    humps: 'The humps match. Now check the pairs table.',
+    pairsHow: 'Compare Short then short in both columns. Change a chance, then run again.',
+    never: "That's a geyser that never follows a short one with a short one. Just like the real thing.",
+    toAnswer: "Tap Answer to write the ranger's sign.",
+    noMatch: "The humps don't match yet. Change a rule or tap Fill from my clean log, then run again.",
+    rawModel: 'Your geyser copies the raw log, which pairs each eruption with the wait before it. Tap Clean and fix the log first.',
+    orderModel: "Your clean log still joins eruptions that weren't next to each other. Tap Clean and fix the order first.",
+    bins: 'Wider bins hide detail and raise the match. Narrow bins show more and lower it. The geyser did not change.',
+    answerHow: 'Write the sign. Then test it against what really happened.',
+    testHow: 'Type the minutes in the boxes, then tap Test the sign.',
+    testAgain: 'Change a number and test again, or tap Fill from my clean log.',
+    signChanged: 'Your sign changed. Tap Test the sign to check it.',
+    onTime: Array.from({length: 299}, (_, n) => `On time for ${n} of 298 eruptions.`),
+  };
+
+  const state = {
+    bench: 'raw', page: '', steps: [], showNight: false, turned: false,
+    marks: new Set(), markSrc: null,              // file rows marked from a bin or a table row, and which control did it
+    model: {...START}, seed: 1, run: null, dirty: false, runN: 0, mFill: '', bw: 5,
+    sign: {cut: 3, s: 72, l: 72, w: 10}, test: null, testN: 0, aFill: '', ex: 0,
+    res: null, hintParts: [],
+  };
+
+  // ---------- cleaning: the recipe runs in the order shown ----------
+  function cleanRun(steps) {
+    let rows = W.map((w, i) => ({i, d: D[i], w, wait: w, src: i, night: false}));
+    let paired = false, flagged = false;
+    for (const s of steps) {
+      if (s === 'pair') { rows.forEach((r, k) => { const nx = rows[k + 1]; r.wait = nx ? nx.w : null; r.src = nx ? nx.i : null; }); paired = true; }
+      else if (s === 'flag') { rows.forEach(r => { if (NIGHT(r.d)) r.night = true; }); flagged = true; }
+      else if (s === 'drop') rows = rows.filter(r => !NIGHT(r.d));
+    }
+    const out = rows.map(r => ({i: r.i, duration: r.d, wait: r.wait, src: r.src, night: r.night,
+      wrong: paired && r.src != null && r.src !== r.i + 1, cls: r.d < CUT ? 'short' : 'long'}));
+    const ip = steps.indexOf('pair'), id = steps.indexOf('drop');
+    return {rows: out, paired, flagged, dropped: id >= 0, wrongOrder: ip >= 0 && id >= 0 && id < ip, nWrong: out.filter(r => r.wrong).length};
+  }
+  const onScatter = r => r.wait != null && !(state.res.flagged && r.night);
+  function classStats(res) {
+    const by = c => DataDesk.stats(res.rows.filter(r => r.wait != null && r.cls === c).map(r => r.wait));
+    return {short: by('short'), long: by('long')};
+  }
+  // pairs of eruptions by class (SS, SL, LS, LL) on the true timeline: a pair counts only when the two eruptions were
+  // next to each other in the file (rows i and i + 1) and both survive cleaning; lists the file row of each first one
+  function pairsOf(rows) {
+    const by = new Map(rows.map(r => [r.i, r.cls === 'short' ? 'S' : 'L'])), P = {SS: [], SL: [], LS: [], LL: []};
+    for (let i = 0; i + 1 < N; i++) if (by.has(i) && by.has(i + 1)) P[by.get(i) + by.get(i + 1)].push(i);
+    return P;
+  }
+
+  // ---------- the simulated geyser (exact, so runs reproduce: the spec's mulberry32 and Box-Muller) ----------
+  function mulberry32(a) {
+    return () => { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; };
+  }
+  function simulate(m, seed, n) {
+    const rnd = mulberry32(seed), out = [];
+    let c = 'L';                                   // the first eruption is long
+    for (let i = 0; i < n; i++) {
+      const u1 = rnd(), u2 = rnd(), z = Math.sqrt(-2 * Math.log(1 - u1)) * Math.cos(2 * Math.PI * u2);
+      const mu = c === 'S' ? m.mS : m.mL, sd = c === 'S' ? m.sS : m.sL;
+      out.push({cls: c === 'S' ? 'short' : 'long', wait: clamp(Math.round(mu + sd * z), 30, 130)});
+      c = rnd() < (c === 'S' ? m.pS : m.pL) ? 'L' : 'S';
+    }
+    return out;
+  }
+  // Match: overlap of the two histograms' shares, on the bins the student picks (2, 5 or 10 minutes from 30; simulated
+  // waits run 30 to 130, so the last bin holds 130)
+  const BIN0 = 30, nbOf = bw => Math.floor(100 / bw) + 1;
+  function shares(ws, bw) { const nb = nbOf(bw), h = new Array(nb).fill(0); ws.forEach(w => { h[clamp(Math.floor((w - BIN0) / bw), 0, nb - 1)]++; }); return h.map(c => ws.length ? c / ws.length : 0); }
+  function matchOf(realW, simW, bw = state.bw) { const a = shares(realW, bw), b = shares(simW, bw); return a.reduce((s, x, k) => s + Math.min(x, b[k]), 0); }
+  const realWaits = () => state.res.rows.filter(r => r.wait != null).map(r => r.wait);
+  const simPairs = sim => { const P = {SS: 0, SL: 0, LS: 0, LL: 0}; for (let k = 0; k + 1 < sim.length; k++) P[sim[k].cls[0].toUpperCase() + sim[k + 1].cls[0].toUpperCase()]++; return P; };
+
+  // ---------- the sign test: always against the true timeline (the next row's waiting is when it really started) ----------
+  const predict = (sg, d) => d < sg.cut ? sg.s : sg.l;
+  function signTest(sg) { let n = 0; for (let i = 0; i + 1 < N; i++) if (Math.abs(predict(sg, D[i]) - W[i + 1]) <= sg.w) n++; return n; }
+  // out of sample: the sign's two times filled from the first 150 eruptions of the clean log (rounded means, as Fill
+  // does), with the student's cut and window, tested on the other 148 against the true timeline
+  function oosTest(sg, res = state.res) {
+    const fit = res.rows.filter(r => r.wait != null && r.i < HALF);
+    const mean = c => { const v = fit.filter(r => r.cls === c).map(r => r.wait); return v.length ? Math.round(v.reduce((a, b) => a + b, 0) / v.length) : 72; };
+    const s = clamp(mean('short'), 30, 130), l = clamp(mean('long'), 30, 130), sg2 = {...sg, s, l};
+    let n = 0; for (let i = HALF; i + 1 < N; i++) if (Math.abs(predict(sg2, D[i]) - W[i + 1]) <= sg.w) n++;
+    return {n, total: N - 1 - HALF, s, l};
+  }
+  function summer(sg, m, seed) {
+    const sim = simulate(m, seed, SUMMER);
+    let n = 0; for (const e of sim) if (Math.abs((e.cls === 'short' ? sg.s : sg.l) - e.wait) <= sg.w) n++;
+    return {n, total: SUMMER, days: sim.reduce((s, e) => s + e.wait, 0) / 1440};
+  }
+
+  // ---------- tables and charts (kit/data-desk.js) ----------
+  const cols = {duration: {label: 'duration', unit: 'min'}, waiting: {label: 'waiting', unit: 'min'}, wait: {label: 'wait', unit: 'min'}};
+  const rawT = DataTable(W.map((w, i) => ({duration: D[i], waiting: w})), {columns: {duration: cols.duration, waiting: cols.waiting}});
+  const cleanT = DataTable([], {columns: cols});
+  const simT = DataTable([], {columns: cols});
+  const charts = {};
+  let rawPager = null;
+
+  // ---------- voice ----------
+  const V = Curio.voice({
+    lines: L, scope: () => state.bench, hint: false, read: () => state.hintParts,
+    welcome: () => ({
+      raw: ['welcome', {valid: () => !state.steps.length && !state.marks.size}],
+      clean: ['cleanStart', {valid: () => !state.steps.length}],
+      model: ['modelHow', {valid: () => !state.run}],
+      answer: ['answerHow', {valid: () => !state.test}],
+    })[state.bench],
+  });
+  const txt = p => Array.isArray(p) ? p[1] : L[p];
+  function setHint(parts) {
+    state.hintParts = parts.map(txt);
+    const s = state.hintParts.join(' ');
+    if ($('hint').textContent !== s) $('hint').textContent = s;
+  }
+  function hintFor(b) {
+    const res = state.res;
+    if (b === 'raw') return state.marks.size ? ['marked'] : state.turned ? ['notes', 'thenClean'] : ['welcome'];
+    if (b === 'clean') {
+      if (!state.steps.length) return ['cleanStart'];
+      if (res.wrongOrder) return ['dropFirst', 'fixOrder'];
+      if (!res.paired) return ['stillOff'];
+      if (!res.flagged && !res.dropped) return ['pairDone', 'nextFlag'];
+      return ['cleanDone'];
+    }
+    if (b === 'model') {
+      if (!state.run) return state.touched ? ['runHow'] : ['modelHow'];
+      if (state.dirty) return ['changed'];
+      const k = resultKey();
+      return k === 'raw' ? ['rawModel'] : k === 'order' ? ['orderModel'] : k === 'never' ? ['never', 'toAnswer'] : k === 'humps' ? ['humps', 'pairsHow'] : ['noMatch'];
+    }
+    if (!state.test) return ['answerHow', 'testHow'];
+    if (state.test.stale) return ['signChanged'];
+    return [['onTime', L.onTime[state.test.n]], 'testAgain'];
+  }
+  const refreshHint = () => setHint(hintFor(state.bench));
+  // every hint a bench can show, so the hint box keeps one height (it never jumps or clips)
+  function hintVariants(b) {
+    const V2 = {raw: [['marked'], ['notes', 'thenClean'], ['welcome']],
+      clean: [['cleanStart'], ['dropFirst', 'fixOrder'], ['stillOff'], ['pairDone', 'nextFlag'], ['cleanDone']],
+      model: [['runHow'], ['modelHow'], ['changed'], ['never', 'toAnswer'], ['humps', 'pairsHow'], ['noMatch'], ['rawModel'], ['orderModel']],
+      answer: [['answerHow', 'testHow'], ['signChanged'], [['x', L.onTime[298]], 'testAgain']]}[b];
+    return V2.map(p => p.map(txt).join(' '));
+  }
+  let meas = null;
+  function fitHint() {
+    const h = $('hint'), w = h.clientWidth;
+    if (!w) return;
+    if (!meas) { meas = document.createElement('p'); meas.className = 'hint'; meas.setAttribute('aria-hidden', 'true'); meas.style.cssText = 'position:absolute;visibility:hidden;left:-9999px;top:0;margin:0'; document.body.appendChild(meas); }
+    const cs = getComputedStyle(h);
+    meas.style.width = w + 'px'; meas.style.font = cs.font; meas.style.lineHeight = cs.lineHeight; meas.style.minHeight = '0';
+    let mx = 0;
+    for (const s of hintVariants(state.bench)) { meas.textContent = s; mx = Math.max(mx, meas.getBoundingClientRect().height); }
+    document.body.style.setProperty('--hint-h', Math.ceil(mx) + 'px');
+  }
+
+  // ---------- pipeline ----------
+  const BENCHES = ['raw', 'clean', 'model', 'answer'];
+  function setBench(b, opts = {}) {
+    if (b === state.bench && !opts.force) return;
+    V.hush();
+    state.bench = b;
+    for (const k of BENCHES) {
+      const n = $('n-' + k), on = k === b;
+      n.setAttribute('aria-selected', on); n.tabIndex = on ? 0 : -1;
+      $('b-' + k).hidden = !on; $('p-' + k).hidden = !on;
+    }
+    document.body.dataset.bench = b;
+    refreshHint();
+    lastKey = '';
+    relayout();
+    if (b === 'raw' && state.marks.size) showFirstMark();
+    V.welcome();
+  }
+  BENCHES.forEach((k, j) => {
+    const n = $('n-' + k);
+    n.onclick = () => setBench(k);
+    n.onkeydown = e => {
+      const d = e.key === 'ArrowRight' || e.key === 'ArrowDown' ? 1 : e.key === 'ArrowLeft' || e.key === 'ArrowUp' ? -1 : 0;
+      let to = -1;
+      if (d) to = (j + d + 4) % 4; else if (e.key === 'Home') to = 0; else if (e.key === 'End') to = 3;
+      if (to < 0) return;
+      e.preventDefault();
+      setBench(BENCHES[to]); $('n-' + BENCHES[to]).focus({preventScroll: true});
+    };
+  });
+  function pulse(from) {
+    if (Curio.reduce) return;
+    for (let a = from; a <= 3; a++) { const e = $('a' + a); e.classList.remove('pulse'); void e.offsetWidth; e.classList.add('pulse'); }
+  }
+  function statuses() {
+    $('s-raw').textContent = state.marks.size ? `299 rows, ${state.marks.size} marked` : '299 rows';
+    const n = state.steps.length;
+    $('s-clean').textContent = !n ? 'No steps' : `${n} step${n > 1 ? 's' : ''}` + (state.res.wrongOrder ? ', check order' : '');
+    $('s-model').textContent = !state.run ? 'Not run' : state.dirty ? 'Run again' : `Match ${Math.round(curMatch() * 100)}%`;
+    $('s-answer').textContent = !state.test ? 'Not tested' : state.test.stale ? 'Test again' : `${Math.round(state.test.n / 298 * 100)}% on time`;
+  }
+
+  // ---------- Raw log bench ----------
+  function rawSetup() {
+    rawPager = rawT.renderTable($('rawTbl'), {page: 15, caption: 'The eruption log as published',
+      rowClass: (r, i) => state.marks.has(i) ? 'mk' : '', cellClass: (r, i, k) => k === 'duration' && NIGHT(r.duration) ? 'ng' : ''});
+    // the notes line plays only on a page turn by the student (Previous or Next), not on a jump to marked rows
+    rawPager.onPage((p, info) => {
+      if (!info || !info.user || state.turned) return;
+      state.turned = true; if (state.bench === 'raw' && !state.marks.size) refreshHint();
+      V.how('notes', {valid: () => state.bench === 'raw' && !state.steps.length});
+    });
+    charts.raw = Chart($('svRaw'), rawT, {type: 'scatter', x: 'duration', y: 'waiting', xDomain: [.5, 5.5], yDomain: [40, 110],
+      xLabel: 'duration (min)', yLabel: 'waiting (min)', title: 'The raw log: duration against waiting in the same row', live: false});
+    const f = charts.raw.fit('linear');
+    $('roRaw').textContent = `r = ${fmt(f.r, 2)} · waiting = ${fmt(f.params.a, 2)} ${f.params.b < 0 ? '−' : '+'} ${fmt(Math.abs(f.params.b), 2)} × duration · ${f.n} rows`;
+    $('markNext').onclick = () => {
+      const pg = rawPager.page, per = 15, list = [...state.marks].sort((a, b) => a - b);
+      const nx = list.find(i => Math.floor(i / per) > pg) ?? list[0];
+      rawPager.show(nx);
+    };
+    $('markClear').onclick = () => { setMarks(null); $('markClear').blur(); const t = $('n-clean'); if (document.activeElement === document.body) t.focus({preventScroll: true}); };
+  }
+  function showFirstMark() { const list = [...state.marks].sort((a, b) => a - b); if (list.length) rawPager.show(list[0]); }
+  // marks: file rows picked from a histogram bin or a class or pairs row; shown on the Raw log bench
+  function setMarks(rows, src) {
+    const same = src && state.markSrc === src;
+    state.marks = new Set(rows && !same ? rows : []);
+    state.markSrc = state.marks.size ? src : null;
+    rawPager.update();
+    charts.raw.highlight(state.marks);
+    const idx = new Set(); cleanT.rows.forEach((r, k) => { if (state.marks.has(r.i)) idx.add(k); });
+    charts.scat.highlight(idx);
+    for (const b of document.querySelectorAll('#classRows button, #pairRows button')) b.setAttribute('aria-pressed', b.dataset.src === state.markSrc);
+    if (!state.marks.size) { charts.hist.pick(null); charts.over.pick(null); }
+    const n = state.marks.size;
+    $('markbar').classList.toggle('off', !n);
+    $('markTxt').textContent = n ? `${n} marked row${n > 1 ? 's' : ''} (${markName()})` : '';
+    for (const c of ['chipC', 'chipM']) { $(c).hidden = !n; $(c).textContent = `${n} marked: see on Raw log`; }
+    statuses();
+    if (state.bench === 'raw') refreshHint();
+  }
+  const markName = () => {
+    const s = state.markSrc || '';
+    if (s.startsWith('bin')) return `waits of ${s.split(':')[1]} to ${+s.split(':')[1] + 4} min`;
+    return {cshort: 'after a short eruption', clong: 'after a long one', SS: 'short then short', SL: 'short then long', LS: 'long then short', LL: 'long then long'}[s] || '';
+  };
+  $('chipC').onclick = $('chipM').onclick = () => { setBench('raw'); $('n-raw').focus({preventScroll: true}); };
+
+  // ---------- Clean bench ----------
+  function cleanSetup() {
+    const common = {xDomain: [.5, 5.5], yDomain: [40, 110]};             // the shortest eruption is 0.83 minutes
+    charts.scat = Chart($('svScat'), cleanT, {type: 'scatter', x: 'duration', y: 'wait', ...common, xLabel: 'duration (min)', yLabel: 'wait (min)',
+      title: 'The cleaned log: duration against the wait',
+      filter: r => r.wait != null && (!(state.res.flagged && r.night) || state.showNight),
+      point: r => ({faint: state.res.flagged && r.night, ring: r.wrong ? 'var(--warn)' : (!state.res.flagged && state.showNight && r.night) ? 'var(--night)' : null})});
+    charts.hist = Chart($('svHist'), cleanT, {type: 'histogram', x: 'wait', bins: {width: 5, start: 40}, xDomain: [40, 110], filter: r => r.wait != null,
+      style: 'outline', series: 1, label: 'Cleaned log', yLabel: 'eruptions', xLabel: 'wait (min)', title: 'Waits in the cleaned log', margin: {l: 78}});
+    charts.box = Chart($('svBox'), cleanT, {type: 'box', x: 'wait', groupBy: 'cls', groups: ['short', 'long'], groupLabels: {short: 'after short', long: 'after long'},
+      xDomain: [40, 110], filter: r => r.wait != null, xLabel: '', title: 'Waits by class', margin: {l: 78, t: 2}});
+    charts.hist.onPoint(info => {
+      if (!info) return setMarks(null);
+      const rows = info.rows.map(k => { const r = cleanT.rows[k]; return state.res.paired ? r.src : r.i; }).filter(i => i != null);
+      setMarks(rows, 'bin:' + info.lo);
+    });
+    for (const c of ['short', 'long']) {
+      const b = $('cr-' + c); b.dataset.src = 'c' + c;
+      b.onclick = () => setMarks(state.res.rows.filter(r => r.wait != null && r.cls === c).map(r => r.i), 'c' + c);
+    }
+    for (const s of ['pair', 'flag', 'drop']) $('add-' + s).onclick = () => addStep(s);
+    $('showNight').onchange = e => { state.showNight = e.target.checked; recompute({quiet: true}); };
+  }
+  function addStep(s) {
+    if (state.steps.includes(s)) return;               // its button is aria-disabled: focus stays on it
+    const was = state.res;
+    state.steps.push(s);
+    recompute();
+    afterRecipe(was, s);
+  }
+  function moveStep(k, d) {
+    const j = k + d;
+    if (j < 0 || j >= state.steps.length) return false;
+    const was = state.res, a = state.steps;
+    [a[k], a[j]] = [a[j], a[k]];
+    recompute({moved: a[j]});
+    afterRecipe(was, null);
+    return true;
+  }
+  function removeStep(k) {
+    state.steps.splice(k, 1);
+    recompute();
+  }
+  // what to say after a recipe change: the event (Pair takes effect, or the order joins wrong pairs), then the
+  // recipe how-to the first time
+  function afterRecipe(was, added) {
+    const r = state.res;                          // queued lines stay while still true (their valid checks)
+    // the recipe line (once) only when a step can move, then what the step did
+    if (added && state.steps.length > 1) V.how('recipe', {valid: () => state.steps.length > 1});
+    if (r.wrongOrder && !was.wrongOrder) V.say('dropFirst', {valid: () => state.res.wrongOrder});
+    else if (r.paired && !r.wrongOrder && (!was.paired || was.wrongOrder)) V.say('pairDone', {valid: () => state.res.paired && !state.res.wrongOrder});
+  }
+  // the recipe list: rebuilt on every change, with focus put back on the same control of the same step
+  function drawRecipe(moved) {
+    const ol = $('recipe'), a = document.activeElement;
+    let keep = null;
+    if (a && ol.contains(a) && a.dataset.step) keep = {step: a.dataset.step, role: a.dataset.role, at: [...ol.children].indexOf(a.closest('li'))};
+    ol.textContent = '';
+    const slots = Math.max(1, state.steps.length);
+    state.steps.forEach((s, k) => {
+      const li = document.createElement('li');
+      li.dataset.step = s;
+      if (moved === s && !Curio.reduce) li.className = 'moved';
+      const St = STEPS[s];
+      li.innerHTML = `<span class="n">${k + 1}</span><code>${St.code}</code>`;
+      li.setAttribute('aria-label', `Step ${k + 1}: ${St.label}`);
+      const btn = (role, label, glyph, dis, fn) => {
+        const b = document.createElement('button');
+        b.className = 'btn'; b.dataset.step = s; b.dataset.role = role; b.textContent = glyph;
+        b.setAttribute('aria-label', label); b.setAttribute('aria-disabled', dis); b.title = label;
+        b.onclick = () => { if (b.getAttribute('aria-disabled') !== 'true') fn(); };
+        li.appendChild(b);
+      };
+      btn('up', `Move ${St.name} up`, '▲', k === 0, () => moveStep(state.steps.indexOf(s), -1));
+      btn('down', `Move ${St.name} down`, '▼', k === state.steps.length - 1, () => moveStep(state.steps.indexOf(s), 1));
+      btn('x', `Remove ${St.name}`, '✕', false, () => removeStep(state.steps.indexOf(s)));
+      li.onkeydown = e => {
+        if (!e.altKey || (e.key !== 'ArrowUp' && e.key !== 'ArrowDown')) return;
+        e.preventDefault(); moveStep(state.steps.indexOf(s), e.key === 'ArrowUp' ? -1 : 1);
+      };
+      ol.appendChild(li);
+    });
+    for (let k = state.steps.length; k < slots; k++) {
+      const li = document.createElement('li'); li.className = 'empty';
+      li.textContent = k === 0 ? 'No steps yet: the log as published. Add a step from the panel.' : `Step ${k + 1}`;
+      if (k > 0) li.setAttribute('aria-hidden', 'true');
+      ol.appendChild(li);
+    }
+    if (keep) {
+      let el = ol.querySelector(`button[data-step="${keep.step}"][data-role="${keep.role}"]`);
+      if (!el && keep.role === 'x') {                    // the step went: the next step's remove, else the one before, else its Add button
+        const rest = state.steps;
+        const s2 = rest[Math.min(keep.at, rest.length - 1)];
+        el = s2 ? ol.querySelector(`button[data-step="${s2}"][data-role="x"]`) : $('add-' + keep.step);
+        if (!rest.length) el = $('add-' + keep.step);
+      }
+      if (el) el.focus({preventScroll: true});
+    }
+  }
+  function drawClean() {
+    const r = state.res, f = charts.scat.fit('linear'), cs = classStats(r);
+    $('scatT').textContent = r.paired ? 'Duration and the wait after it' : 'Duration and waiting, same row';
+    $('histT').textContent = r.paired ? 'Waits after each eruption (wait_after)' : 'Waits (the waiting column)';
+    const used = cleanT.rows.filter(onScatter).length;
+    let ro = `Rows used: ${used}${r.flagged && !r.dropped ? ' on the duration axis' : ''} · r = ${fmt(f.r, 2)}<br>${r.paired ? 'wait_after' : 'waiting'} = ${fmt(f.params.a, 2)} ${f.params.b < 0 ? '−' : '+'} ${fmt(Math.abs(f.params.b), 2)} × duration`;
+    // what Drop and Flag cost: Drop removes the night-coded eruptions; Flag keeps them (their waits and timeline are real)
+    if (r.wrongOrder) ro += `<br><span class="warn">${r.nWrong} pairs now join eruptions that were not next to each other.</span>`;
+    else if (r.dropped) {
+      const was = classStats(cleanRun(state.steps.filter(s => s !== 'drop')));
+      ro += `<br>${N - r.rows.length} eruptions dropped (${Math.round((N - r.rows.length) / N * 100)} percent of the log, all night-coded): classes ${cs.short.n} and ${cs.long.n}, were ${was.short.n} and ${was.long.n}.`;
+    } else if (r.flagged) ro += `<br>${D.filter(NIGHT).length} night-coded eruptions flagged: kept in the classes, left off the scatter.`;
+    else ro += '<br>&nbsp;';
+    $('roClean').innerHTML = ro;
+    for (const [c, k] of [['short', 'cs'], ['long', 'cl']]) {
+      $(k + '-n').textContent = cs[c].n; $(k + '-m').textContent = cs[c].n ? fmt(cs[c].mean, 1) : ''; $(k + '-s').textContent = cs[c].n > 1 ? fmt(cs[c].sd, 1) : '';
+      $('cr-' + c).setAttribute('aria-label', `${c === 'short' ? 'After a short eruption, under 3 minutes' : 'After a long one'}: ${cs[c].n} eruptions, mean wait ${fmt(cs[c].mean, 1)} minutes, spread ${fmt(cs[c].sd, 1)}. Marks these rows on the Raw log.`);
+    }
+    for (const s of ['pair', 'flag', 'drop']) $('add-' + s).setAttribute('aria-disabled', state.steps.includes(s));
+  }
+
+  // ---------- Model bench ----------
+  const MK = ['pS', 'pL', 'mS', 'sS', 'mL', 'sL'];
+  const DIG = {pS: 2, pL: 2, mS: 1, sS: 1, mL: 1, sL: 1};
+  function modelSetup() {
+    charts.over = Chart($('svOver'), cleanT, {type: 'histogram', x: 'wait', filter: r => r.wait != null, bins: {width: state.bw, start: BIN0}, xDomain: [BIN0, BIN0 + state.bw * nbOf(state.bw)],
+      share: true, style: 'outline', series: 1, label: 'Real, raw log', tops: true, xLabel: 'wait after an eruption (min)', yLabel: 'share of eruptions',
+      title: 'Waits after each eruption, real and simulated', overlay: {table: simT, x: 'wait', style: 'fill', series: 2, label: 'Simulated'}});
+    charts.over.onPoint(info => {
+      if (!info) return setMarks(null);
+      const rows = info.rows.map(k => { const r = cleanT.rows[k]; return state.res.paired ? r.src : r.i; }).filter(i => i != null);
+      setMarks(rows, 'bin:' + info.lo);
+    });
+    // the bin width: a chart choice that changes what the chart shows and the Match it reports
+    for (const bw of [2, 5, 10]) $('bw' + bw).onclick = () => setBins(bw);
+    const pr = $('pairRows');
+    for (const [k, name] of [['SS', 'Short then short'], ['SL', 'Short then long'], ['LS', 'Long then short'], ['LL', 'Long then long']]) {
+      const b = document.createElement('button'); b.id = 'pr-' + k; b.dataset.src = k; b.setAttribute('aria-pressed', 'false');
+      b.innerHTML = `<span>${name}</span><span id="pr-${k}-r"></span><span id="pr-${k}-s"></span>`;
+      b.onclick = () => setMarks(pairsOf(state.res.rows)[k], k);
+      pr.appendChild(b);
+    }
+    for (const k of MK) {
+      const sl = $(k), nb = $(k + 'n');
+      const set = (v, from) => {
+        v = clamp(isFinite(v) ? v : state.model[k], +sl.min, +sl.max);
+        v = +v.toFixed(DIG[k]);
+        if (v === state.model[k] && from !== 'force') { if (from !== 'num') nb.value = v.toFixed(DIG[k]); return; }
+        state.model[k] = v;
+        if (from !== 'slider') sl.value = v;
+        if (from !== 'num') nb.value = v.toFixed(DIG[k]);
+        modelChanged();
+      };
+      sl.oninput = () => set(+sl.value, 'slider');
+      nb.onchange = () => { const v = parseFloat(nb.value); set(v, 'num'); nb.value = state.model[k].toFixed(DIG[k]); };
+    }
+    $('run').onclick = () => runModel();
+    $('newRun').onclick = () => { state.seed++; runModel(); };
+    $('resetM').onclick = () => {
+      V.dropQueued(); state.model = {...START}; state.seed = 1; state.run = null; state.dirty = false; state.touched = false; state.mFill = '';
+      showModel(); simT.replace([]); drawModel(); statuses(); refreshHint(); pulse(3);
+    };
+    $('fillM').onclick = () => {
+      const r = state.res, P = pairsOf(r.rows), cs = classStats(r);
+      const ch = (a, b) => a.length + b.length ? a.length / (a.length + b.length) : .5;
+      state.model = {pS: +ch(P.SL, P.SS).toFixed(2), pL: +ch(P.LL, P.LS).toFixed(2),
+        mS: +clamp(cs.short.n ? cs.short.mean : 70, 30, 120).toFixed(1), sS: +clamp(cs.short.n > 1 ? cs.short.sd : 10, 1, 20).toFixed(1),
+        mL: +clamp(cs.long.n ? cs.long.mean : 70, 30, 120).toFixed(1), sL: +clamp(cs.long.n > 1 ? cs.long.sd : 10, 1, 20).toFixed(1)};
+      state.mFill = fromName();
+      showModel(); modelChanged();
+    };
+  }
+  function setBins(bw) {
+    if (bw === state.bw) return;
+    const k0 = resultKey();
+    state.bw = bw;
+    for (const k of [2, 5, 10]) $('bw' + k).setAttribute('aria-pressed', k === bw);
+    charts.over.update({bins: {width: bw, start: BIN0}, xDomain: [BIN0, BIN0 + bw * nbOf(bw)]});
+    drawModel(); statuses(); refreshHint();
+    if (state.run && !state.dirty) {
+      const id = state.run.n, k = resultKey(), still = () => state.run && state.run.n === id && !state.dirty && resultKey() === k;
+      V.dropQueued(x => x.kind === 'event');
+      V.how('bins', {valid: () => !!state.run});
+      if (k !== k0 && (k === 'never' || k === 'humps' || k === 'no')) V.say(k === 'never' ? 'never' : k === 'humps' ? 'humps' : 'noMatch', {valid: still});
+    }
+  }
+  const fromName = () => state.steps.length ? `your clean log (${state.steps.map(s => STEPS[s].name).join(', then ')})` : 'raw log';
+  function showModel() { for (const k of MK) { $(k).value = state.model[k]; $(k + 'n').value = state.model[k].toFixed(DIG[k]); } }
+  function modelChanged() {
+    state.touched = true;
+    if (state.run) { state.dirty = MK.some(k => state.model[k] !== state.run.m[k]); charts.over.update({overlay: {...charts.over.options.overlay, faded: state.dirty}}); }
+    V.dropQueued(x => x.kind === 'event');
+    drawModel(); statuses(); refreshHint();
+  }
+  function curMatch() { return state.run ? matchOf(realWaits(), state.run.sim.map(e => e.wait)) : 0; }
+  function resultKey() {
+    if (!state.run) return '';
+    const m = curMatch(), sp = simPairs(state.run.sim), rp = pairsOf(state.res.rows);
+    // a geyser judged against an uncleaned log is never praised: name the fix instead
+    if (!state.res.paired) return 'raw';
+    if (state.res.wrongOrder) return 'order';
+    const pass = PASS[state.bw];
+    if (m >= pass && sp.SS === 0 && rp.SS.length === 0) return 'never';
+    if (m >= pass) return 'humps';
+    return 'no';
+  }
+  function runModel() {
+    const sim = simulate(state.model, state.seed, 299);
+    state.run = {m: {...state.model}, seed: state.seed, sim, n: ++state.runN};
+    state.dirty = false;
+    simT.replace(sim);
+    charts.over.update({overlay: {...charts.over.options.overlay, faded: false}});
+    drawModel(); statuses(); refreshHint(); pulse(3);
+    if (state.test) { state.test.stale = state.test.stale || 'model'; drawAnswer(); }
+    const id = state.run.n, k = resultKey(), still = () => state.run && state.run.n === id && !state.dirty && resultKey() === k;
+    V.dropQueued();
+    V.say({never: 'never', humps: 'humps', raw: 'rawModel', order: 'orderModel'}[k] || 'noMatch', {valid: still});
+  }
+  function drawModel() {
+    const run = state.run, rp = pairsOf(state.res.rows), sp = run ? simPairs(run.sim) : null;
+    $('matchTxt').textContent = run ? `Match: ${Math.round(curMatch() * 100)}%` + (state.dirty ? ' (last run)' : '') : 'Match: not run';
+    $('matchTxt').classList.toggle('stale', !!run && state.dirty);
+    const real = state.steps.length ? 'Real, cleaned log' : 'Real, raw log';
+    $('legReal').textContent = real;
+    if (charts.over.options.label !== real) charts.over.update({label: real});
+    const y = YARD[state.bw];
+    $('yard').textContent = `Two runs of one geyser match about ${y[0]} to ${y[1]}% at ${state.bw} minute bins: New run shows the wobble.`;
+    const veil = $('veil');
+    veil.hidden = !!run && !state.dirty;
+    veil.className = 'veil' + (state.dirty ? ' warn' : '');
+    veil.textContent = !run ? 'Run your geyser to see its waits here' : 'Changed: run again';
+    for (const k of ['SS', 'SL', 'LS', 'LL']) {
+      $(`pr-${k}-r`).textContent = rp[k].length; $(`pr-${k}-s`).textContent = sp ? (state.dirty ? `(${sp[k]})` : sp[k]) : '';
+      $('pr-' + k).setAttribute('aria-label', `${$('pr-' + k).firstChild.textContent}: real ${rp[k].length}` + (sp ? `, simulated ${sp[k]}` : ', not run') + '. Marks these rows on the Raw log.');
+    }
+    $('mInfo').textContent = (state.mFill ? `Filled from: ${state.mFill}. ` : '') + (run ? `Seed ${state.seed}.` : '');
+    drawStrip();
+  }
+  function drawStrip() {
+    const sv = $('svStrip'), w = +sv.getAttribute('width') || 300, h = +sv.getAttribute('height') || 100;
+    sv.textContent = '';
+    const run = state.run;
+    if (!run) { const t = mk('text', {x: 8, y: 22, 'font-size': 13, fill: 'var(--muted)'}, sv); t.textContent = 'Not run yet.'; sv.setAttribute('aria-label', 'First 40 simulated eruptions: not run yet'); return; }
+    const per = Math.max(10, Math.min(40, Math.floor(w / 24))), rows = Math.ceil(40 / per), cw = w / per, rh = h / rows;
+    const g = mk('g', {opacity: state.dirty ? .45 : 1}, sv);
+    run.sim.slice(0, 40).forEach((e, k) => {
+      const c = k % per, rr = Math.floor(k / per), x = c * cw + cw / 2, base = rr * rh + rh - 16, tall = rh - 22, bh = e.cls === 'long' ? tall : tall * .42;
+      mk('rect', {x: x - Math.min(7, cw * .32), y: base - bh, width: Math.min(14, cw * .64), height: bh, rx: 2, fill: 'var(--sim)'}, g);
+      const t = mk('text', {x, y: base + 13, 'font-size': 11, 'text-anchor': 'middle', fill: 'var(--ink)', 'font-family': 'var(--readout-font)'}, g); t.textContent = e.wait;
+    });
+    sv.setAttribute('aria-label', 'First 40 simulated eruptions: ' + run.sim.slice(0, 40).map(e => `${e.cls}, wait ${e.wait}`).join('; '));
+  }
+
+  // ---------- Answer bench ----------
+  const SG = {cut: 'cut', s: 'sgS', l: 'sgL'};
+  function answerSetup() {
+    const lim = {cut: [1.5, 5.5, 1], s: [30, 130, 0], l: [30, 130, 0]};
+    for (const k in SG) {
+      const nb = $(SG[k]);
+      nb.onchange = () => { let v = parseFloat(nb.value); if (!isFinite(v)) v = state.sign[k]; v = +clamp(v, lim[k][0], lim[k][1]).toFixed(lim[k][2]); nb.value = lim[k][2] ? v.toFixed(1) : v; signChanged(k, v); };
+    }
+    $('sgW').oninput = () => { $('sgWn').value = $('sgW').value; signChanged('w', +$('sgW').value); };
+    $('sgWn').onchange = () => { let v = Math.round(parseFloat($('sgWn').value)); if (!isFinite(v)) v = state.sign.w; v = clamp(v, 1, 20); $('sgWn').value = v; $('sgW').value = v; signChanged('w', v); };
+    $('fillA').onclick = () => {
+      const cs = classStats(state.res);
+      state.sign.s = clamp(Math.round(cs.short.n ? cs.short.mean : 72), 30, 130); state.sign.l = clamp(Math.round(cs.long.n ? cs.long.mean : 72), 30, 130);
+      state.aFill = fromName(); showSign(); signChanged(null);
+    };
+    $('test').onclick = () => testSign();
+    $('exPrev').onclick = () => { state.ex = (state.ex + 297) % 298; drawSign(); };
+    $('exNext').onclick = () => { state.ex = (state.ex + 1) % 298; drawSign(); };
+  }
+  function showSign() { $('cut').value = state.sign.cut.toFixed(1); $('sgS').value = state.sign.s; $('sgL').value = state.sign.l; $('sgW').value = state.sign.w; $('sgWn').value = state.sign.w; }
+  function signChanged(k, v) {
+    if (k) { if (state.sign[k] === v) return; state.sign[k] = v; }
+    if (state.test) state.test.stale = 'sign';
+    V.dropQueued(x => x.kind === 'event');
+    drawAnswer(); statuses(); refreshHint();
+  }
+  function testSign() {
+    const sg = {...state.sign}, n = signTest(sg);
+    const m = state.run ? state.run.m : state.model, seed = state.run ? state.run.seed : state.seed;
+    state.test = {sg, n, oos: oosTest(sg), sum: summer(sg, m, seed), ran: !!state.run, seed, id: ++state.testN, stale: false};
+    drawAnswer(); statuses(); refreshHint();
+    lastKey = ''; relayout();                       // the results grew: the sign takes what is left
+    const id = state.test.id;
+    V.dropQueued();
+    V.say(L.onTime[n], {key: 'onTime', valid: () => state.test && state.test.id === id && !state.test.stale});
+  }
+  const clock = (m0, add) => { const t = m0 + add, h = Math.floor(t / 60) % 12 || 12, mm = ((t % 60) + 60) % 60; return `${h}:${String(mm).padStart(2, '0')}`; };
+  function drawAnswer() {
+    const T = state.test;
+    if (!T) {
+      $('r1t').textContent = 'On the real log: not tested yet';
+      $('r3t').textContent = 'On later eruptions: not tested yet';
+      $('r2t').textContent = 'On a simulated summer: not tested yet';
+      for (const b of ['r1b', 'r2b', 'r3b']) $(b).hidden = true;
+      $('cmpLine').textContent = '';
+    } else {
+      const st = T.stale ? ' (old result: test again)' : '', O = T.oos;
+      $('r1t').innerHTML = `On the real log: ${T.n} of 298 on time${st}<br><small>In sample: the same eruptions the clean log was built from.</small>`;
+      $('r1b').style.width = (T.n / 298 * 100).toFixed(1) + '%';
+      $('r3t').innerHTML = `On later eruptions: ${O.n} of ${O.total} on time (${Math.round(O.n / O.total * 100)}%)${st}<br><small>Out of sample: ${O.s} and ${O.l} minutes from the first ${HALF} eruptions of your clean log, your cut and window, tested on the other ${O.total}.</small>`;
+      $('r3b').style.width = (O.n / O.total * 100).toFixed(1) + '%';
+      const pct = Math.round(T.sum.n / T.sum.total * 100);
+      $('r2t').innerHTML = `On a simulated summer: about ${fmt(T.sum.total)} eruptions, ${pct}% on time${st}<br><small>${T.ran ? `Your geyser, seed ${T.seed}` : 'Your geyser\'s rules (not run yet)'}, ${Math.round(T.sum.days)} days. Built from the same 1985 numbers: it shows how the on-time rate wobbles from summer to summer, not whether the geyser still acts this way.</small>`;
+      $('r2b').style.width = (T.sum.n / T.sum.total * 100).toFixed(1) + '%';
+      for (const b of ['r1b', 'r2b', 'r3b']) $(b).hidden = false;
+      $('cmpLine').textContent = "The park says about 90 percent of its predictions land within 10 minutes. The park's 2018 worksheet uses 68 minutes after a short eruption and 94 after a long one, longer than in 1985, so the 1985 sign would not work now.";
+    }
+    $('aInfo').textContent = state.aFill ? `Filled from: ${state.aFill}.` : '';
+    drawSign();
+  }
+  // the park sign: wood with cream lettering, a clock with the window, and one real eruption from the log as the example
+  function drawSign() {
+    const sv = $('svSign'), w = +sv.getAttribute('width') || 600, h = +sv.getAttribute('height') || 260;
+    sv.textContent = '';
+    const sg = state.sign, i = state.ex, d = D[i], pred = predict(sg, d), m0 = 10 * 60;
+    const compact = state.page === 'compact' || w < 520;
+    const fs = compact ? 0.8 : 1;
+    const postW = Math.max(10, w * .025), bx = 4, by = 4, bw = w - 8, bh = h - 8 - (compact ? 10 : 18);
+    for (const px of [bx + bw * .18, bx + bw * .82 - postW]) mk('rect', {x: px, y: by + bh - 4, width: postW, height: h - bh - by, fill: '#2a1d14'}, sv);
+    mk('rect', {x: bx, y: by, width: bw, height: bh, rx: 14, fill: 'var(--wood)', stroke: '#5a432f', 'stroke-width': 3}, sv);
+    for (let k = 1; k < 4; k++) mk('line', {x1: bx + 10, x2: bx + bw - 10, y1: by + bh * k / 4, y2: by + bh * k / 4, stroke: '#4a3626', 'stroke-width': 1}, sv);
+    const cr = Math.min(bh * .36, bw * .17), cx = bx + bw - cr - Math.max(16, bw * .04), cy = by + bh / 2;
+    const tx = bx + Math.max(16, bw * .04), tw = cx - cr - tx - 12;
+    const t = (x, y, s, sz, a = {}) => { const e = mk('text', {x, y, 'font-size': sz, fill: 'var(--cream)', 'font-family': "'Trebuchet MS','Segoe UI',sans-serif", ...a}, sv); e.textContent = s; return e; };
+    const big = clamp(Math.min(bh * .26, tw / 5.2), 18, 64);
+    t(tx, by + bh * .17, 'OLD FAITHFUL', clamp(bh * .085, 11, 22) * fs + 2, {'font-weight': 700, 'letter-spacing': 2});
+    t(tx, by + bh * .34, 'Next eruption', clamp(bh * .08, 11, 20), {});
+    t(tx, by + bh * .34 + big, clock(m0, pred), big, {'font-weight': 700, 'font-family': 'var(--readout-font)'});
+    t(tx, by + bh * .34 + big + clamp(bh * .1, 13, 24), `give or take ${sg.w} minutes`, clamp(bh * .08, 11, 20));
+    t(tx, by + bh * .92, `Last eruption: 10:00, ${fmt(d, 1)} minutes long (${d < sg.cut ? 'short' : 'long'})`, clamp(bh * .065, 11, 16), {opacity: .9});
+    // clock: face, the window as an arc on the minute ring, hands at the predicted time
+    mk('circle', {cx, cy, r: cr, fill: 'var(--cream)', stroke: '#2a1d14', 'stroke-width': 3}, sv);
+    const ang = mins => (mins / 60) * 2 * Math.PI - Math.PI / 2, P = (a, r) => [cx + r * Math.cos(a), cy + r * Math.sin(a)];
+    const a0 = ang(m0 + pred - sg.w), a1 = ang(m0 + pred + sg.w), rr = cr * .86;
+    const [x0, y0] = P(a0, rr), [x1, y1] = P(a1, rr);
+    mk('path', {d: `M${cx} ${cy}L${x0} ${y0}A${rr} ${rr} 0 ${2 * sg.w > 30 ? 1 : 0} 1 ${x1} ${y1}Z`, fill: 'rgba(255,127,50,.45)', stroke: '#c95a1a', 'stroke-width': 1.5}, sv);
+    for (let k = 0; k < 60; k++) { const [a, b] = P(ang(k), cr * (k % 5 ? .92 : .84)), [c, e] = P(ang(k), cr * .97); mk('line', {x1: a, y1: b, x2: c, y2: e, stroke: '#3b2a1e', 'stroke-width': k % 5 ? 1 : 2.4}, sv); }
+    const tm = m0 + pred, hA = ((tm / 60) % 12) / 12 * 2 * Math.PI - Math.PI / 2, mA = ang(tm);
+    const [hx, hy] = P(hA, cr * .5), [mx, my] = P(mA, cr * .78);
+    mk('line', {x1: cx, y1: cy, x2: hx, y2: hy, stroke: '#1c140e', 'stroke-width': 5, 'stroke-linecap': 'round'}, sv);
+    mk('line', {x1: cx, y1: cy, x2: mx, y2: my, stroke: '#1c140e', 'stroke-width': 3, 'stroke-linecap': 'round'}, sv);
+    mk('circle', {cx, cy, r: 4, fill: '#1c140e'}, sv);
+    // after a test of this sign: when that eruption really started, a blue ring on the minute ring
+    const T = state.test, real = W[i + 1];
+    let tested = '';
+    if (T && !T.stale) {
+      const [qx, qy] = P(ang(m0 + real), cr * .97);
+      mk('circle', {cx: qx, cy: qy, r: Math.max(6, cr * .09), fill: 'none', stroke: '#1f6fbf', 'stroke-width': 3.5}, sv);
+      const ok = Math.abs(pred - real) <= sg.w;
+      tested = `Really ${clock(m0, real)}: ${ok ? 'on time' : `off by ${Math.abs(pred - real)} minutes`}.`;
+    }
+    sv.setAttribute('aria-label', `Park sign: next eruption ${clock(m0, pred)}, give or take ${sg.w} minutes. Last eruption 10:00, ${fmt(d, 1)} minutes long. ${tested}`);
+    $('exTxt').textContent = `Example from the log: eruption ${i + 1} of 298 (10:00 is an example time).` + (tested ? ' ' + tested : '');
+  }
+
+  // ---------- recompute everything downstream of the recipe ----------
+  function recompute(o = {}) {
+    state.res = cleanRun(state.steps);
+    const yl = state.res.paired ? 'wait_after (min)' : 'waiting (min)';
+    charts.scat.options.yLabel = yl; charts.hist.options.xLabel = yl;
+    charts.over.options.xLabel = state.res.paired ? 'wait after an eruption (min)' : 'waiting, the wait before an eruption (min)';
+    cleanT.replace(state.res.rows);
+    if (state.marks.size) { const idx = new Set(); cleanT.rows.forEach((r, k) => { if (state.marks.has(r.i)) idx.add(k); }); charts.scat.highlight(idx); }
+    drawRecipe(o.moved);
+    drawClean();
+    drawModel();
+    statuses();
+    if (!o.quiet && !o.init) pulse(2);
+    refreshHint();
+    if (!o.init) { lastKey = ''; relayout(); }      // the recipe and readouts change height: fit the charts again
+  }
+
+  // ---------- layout: real pixel sizes per box (wide, compact, stack) ----------
+  let lastKey = '';
+  function pageLayout() { const w = innerWidth, h = innerHeight; return w >= 1000 && h >= 700 ? 'wide' : w >= 600 && w / h >= 1.25 ? 'compact' : 'stack'; }
+  const size = (sv, w, h) => { sv.setAttribute('width', Math.max(10, Math.floor(w))); sv.setAttribute('height', Math.max(10, Math.floor(h))); sv.setAttribute('viewBox', `0 0 ${Math.max(10, Math.floor(w))} ${Math.max(10, Math.floor(h))}`); };
+  function relayout() {
+    const p = pageLayout();
+    if (p !== state.page) {
+      state.page = p;
+      for (const c of ['wide', 'compact', 'stack']) document.body.classList.toggle(c, c === p);
+      drawRecipe();
+    }
+    const st = $('stage'), bench = $('b-' + state.bench);
+    const sw = st.clientWidth || innerWidth, sh = p === 'stack' ? 0 : st.clientHeight;
+    const key = state.bench + p + sw + 'x' + sh;
+    fitHint();
+    if (key === lastKey) return;
+    lastKey = key;
+    document.body.classList.toggle('ns', sw < 600);
+    const cs = getComputedStyle(bench), padX = parseFloat(cs.paddingLeft) + parseFloat(cs.paddingRight), padY = parseFloat(cs.paddingTop) + parseFloat(cs.paddingBottom);
+    const BW = sw - padX - (p === 'stack' ? 0 : 2), BH = p === 'stack' ? Infinity : sh - padY;
+    const font = p === 'compact' ? 11 : 12.5, small = p !== 'wide';
+    const lay = bh => state.bench === 'raw' ? layoutRaw(BW, bh, p, font) : state.bench === 'clean' ? layoutClean(BW, bh, p, font)
+      : state.bench === 'model' ? layoutModel(BW, bh, p, font) : layoutAnswer(BW, bh, p, small);
+    lay(BH);
+    // second pass: whatever still spills (wrapped readouts, the class table) comes off the charts, down to their floors
+    const over = p === 'stack' ? 0 : bench.scrollHeight - bench.clientHeight;
+    if (over > 1) lay(BH - over);
+  }
+  function layoutRaw(BW, BH, p, font) {
+    const tbl = $('rawTbl');
+    // the table and the scatter side by side; when the bench is too narrow for both, the scatter goes above the table,
+    // so the r = -0.64 hook is on the first screen at every size
+    const col = BW < 440, tight = BW < 600 && !col;
+    tbl.classList.toggle('tight', tight);
+    document.querySelector('.rawgrid').classList.toggle('col', col);
+    const tf = tight ? 11 : p === 'compact' ? 11.5 : p === 'stack' ? 13 : 14;
+    let rh = p === 'compact' ? Math.floor(clamp((BH - 44 - 20 - 8) / 15, 14, 22)) : p === 'stack' ? 24 : Math.floor(clamp((BH - 52 - 30) / 15, 20, 30));
+    tbl.style.setProperty('--tf', tf + 'px'); tbl.style.setProperty('--rh', rh + 'px');
+    const tw = $('rawL').getBoundingClientRect().width || 260;
+    const box = $('rawBox');
+    const cw = col ? BW - 18 : BW - tw - 14 - 18;
+    const roH = p === 'compact' ? 64 : 76;
+    const chh = p === 'stack' ? clamp(cw * (col ? .7 : .8), 200, 420) : col ? clamp(Math.min(BH - 30 - roH - 12, cw * .7), 150, 420) : clamp(Math.min(BH - 30 - roH - 12, cw * .95), 150, 560);
+    box.style.width = (col ? BW : BW - tw - 14) + 'px';
+    charts.raw.options.font = font; charts.raw.options.pointSize = p === 'compact' ? 2.6 : 3.4; charts.raw.resize(Math.floor(cw), Math.floor(chh));
+  }
+  function layoutClean(BW, BH, p, font) {
+    const two = BW > 560;
+    document.querySelector('.cgrid').classList.toggle('one', !two);
+    const colW = two ? (BW - 10) / 2.15 : BW;
+    const sw = (two ? (BW - 10) * 1.15 / 2.15 : BW) - 18, hw = (two ? colW : BW) - 18;
+    const rec = $('recipe').getBoundingClientRect().height + 30, ro = p === 'compact' ? 56 : 66;
+    let ch = p === 'stack' ? clamp(sw * .75, 200, 360) : clamp(BH - rec - ro - 34, 140, two ? 560 : sw * .8);
+    const ctH = $('classRows').getBoundingClientRect().height + 6;
+    const boxH = clamp(ch * .32, 70, 120);
+    charts.scat.options.font = font; charts.scat.options.pointSize = p === 'compact' ? 2.6 : 3.4; charts.scat.resize(Math.floor(sw), Math.floor(ch));
+    charts.hist.options.font = font; charts.hist.resize(Math.floor(hw), Math.floor(p === 'stack' || !two ? clamp(hw * .45, 130, 260) : Math.max(90, ch + ro + 22 - boxH - ctH)));
+    charts.box.options.font = font; charts.box.resize(Math.floor(hw), Math.floor(boxH));
+    drawClean();
+  }
+  function layoutModel(BW, BH, p, font) {
+    const w = BW - 18;
+    const hh = p === 'stack' ? clamp(w * .55, 200, 340) : p === 'compact' ? clamp((BH - 100) * .6, 140, 300) : clamp((BH - 100) * .56, 200, 460);
+    charts.over.options.font = font; charts.over.resize(Math.floor(w), Math.floor(hh));
+    const two = BW > 560;
+    const sw = (two ? (BW - 10) * 1.5 / 2.5 : BW) - 18;
+    const rows = Math.ceil(40 / Math.max(10, Math.min(40, Math.floor(sw / 24))));
+    size($('svStrip'), sw, rows * clamp(p === 'wide' ? (BH - hh - 110) / rows : 60, 52, 110));
+    drawModel();
+  }
+  function layoutAnswer(BW, BH, p, small) {
+    // the sign takes the height the stepper and the three results leave (measured), within its floor and ceiling
+    const b = $('b-answer'), sv = $('svSign'), top = b.getBoundingClientRect().top;
+    const bottom = Math.max(...[...b.children].map(e => e.getBoundingClientRect().bottom));
+    const rest = bottom - top + parseFloat(getComputedStyle(b).paddingBottom) - (sv.getBoundingClientRect().height || 0);
+    const w = BW, h = p === 'stack' ? clamp(w * .55, 200, 300) : p === 'compact' ? clamp(BH - rest - 4, 150, 260) : clamp(BH - rest - 4, 170, 380);
+    size($('svSign'), w, h);
+    drawAnswer();
+  }
+  new ResizeObserver(() => relayout()).observe($('stage'));
+  addEventListener('resize', () => relayout());
+  Curio.onMotion(() => { lastKey = ''; relayout(); });
+
+  // ---------- start ----------
+  rawSetup(); cleanSetup(); modelSetup(); answerSetup();
+  showModel(); showSign();
+  recompute({init: true});
+  drawAnswer();
+  Curio.init({clips: "voice:*", rate: .92});
+  setBench('raw', {force: true});
+
+  // ---------- for checking frames ----------
+  function readout() {
+    const f = charts.scat.lastFit, cs = classStats(state.res), rp = pairsOf(state.res.rows), run = state.run;
+    return {bench: state.bench, steps: state.steps.slice(), rawR: charts.raw.lastFit.r, rows: cleanT.rows.filter(onScatter).length, r: f && f.r, a: f && f.params.a, b: f && f.params.b,
+      short: [cs.short.n, cs.short.mean, cs.short.sd], long: [cs.long.n, cs.long.mean, cs.long.sd], nWrong: state.res.nWrong, wrongOrder: state.res.wrongOrder,
+      realPairs: Object.fromEntries(Object.entries(rp).map(([k, v]) => [k, v.length])), model: {...state.model}, seed: state.seed,
+      match: run ? curMatch() : null, bw: state.bw, key: resultKey(), oos: state.test && state.test.oos, simPairs: run ? simPairs(run.sim) : null, sign: {...state.sign}, test: state.test && {n: state.test.n, sum: state.test.sum, stale: state.test.stale},
+      hint: $('hint').textContent, rawPage: rawPager.page, rawPages: rawPager.pages, marks: state.marks.size};
+  }
+  window.__tool = {state, setBench, allLines: V.allLines, get vlog() { return V.log; }, get vq() { return V.queue; }, V,
+    addStep, moveStep, removeStep, runModel, testSign, readout, charts, tables: {rawT, cleanT, simT},
+    setModel(o) { Object.assign(state.model, o); showModel(); modelChanged(); },
+    setSign(o) { Object.assign(state.sign, o); showSign(); signChanged(null); },
+    fillModel: () => $('fillM').click(), fillSign: () => $('fillA').click(), simulate, signTest, matchOf, summer, cleanRun, setMarks, setBins, pairsOf, oosTest};
+})();
+</script>
+</body>
+</html>

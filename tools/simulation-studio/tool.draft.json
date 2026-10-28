@@ -1,0 +1,23 @@
+{
+  "id": "simulation-studio",
+  "status": "beta",
+  "stage": "built",
+  "hook": "The real 1985 Old Faithful log has a column that means the opposite of what it looks like. Clean it with a recipe of steps whose order matters, build a simulated geyser from the clean numbers, check it against the real one, then write the ranger's prediction sign and test it.",
+  "outcome": "Clean a real data set with ordered, repeatable steps, fit a two-state simulation to the clean data and check it against the real distribution and pair counts, and use the model to make and test a prediction",
+  "driver": "students",
+  "minutes": "30-45",
+  "modes": [],
+  "grades_label": "Grades 9-12",
+  "sources": [
+    "CSTA K-12 CS Standards 2026, HS-DAT-DC-21, HS-DAT-DC-23, HS-DAT-DI-25, HS-DAT-DI-26 (2017 crosswalk 3A-DA-11, 3A-DA-12, 3B-DA-05, 3B-DA-07): https://csteachers.org/k12standards/",
+    "Azzalini, A. and Bowman, A. W. (1990), A look at some data on the Old Faithful geyser, Applied Statistics 39, 357-365",
+    "MASS geyser data set (Venables and Ripley, Modern Applied Statistics with S, 4th ed., Springer 2002), with the waiting time correction in MASS 7.3-30; CSV from Rdatasets: https://vincentarelbundock.github.io/Rdatasets/csv/MASS/geyser.csv (copied 2026-10-28)",
+    "National Park Service, Yellowstone, Predict Old Faithful worksheet (YELL 003, 2018): https://www.nps.gov/common/uploads/teachers/lessonplans/YELL_003-PredictOldFaithful.pdf",
+    "National Park Service, Old Faithful Virtual Visitor Center, Prediction: https://home.nps.gov/features/yell/ofvec/exhibits/eruption/prediction/predict7.htm and predict8.htm",
+    "Hadley Wickham (2014), Tidy Data, Journal of Statistical Software 59(10)",
+    "Settings, not facts: the 3 minute cut, the two-state simulation, seed 1, waits clamped to 30-130 minutes, 2, 5 or 10 minute bins (5 to start), the first 150 eruptions as the out-of-sample fill, 10:00 as the example time, about 1,830 eruptions in a summer",
+    "Tables, charts, sign and clock drawn in code"
+  ],
+  "third_party": [],
+  "updated": "2026-10-28"
+}

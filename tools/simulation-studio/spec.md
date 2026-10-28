@@ -27,13 +27,13 @@ Stage: the file as published, `table.inst` with 15 rows per page and "Previous" 
 - "Original files: waiting = the time until the next eruption."
 - "Corrected in a later version of the package (MASS 7.3-30): waiting = the waiting time for this eruption, so the time since the eruption before."
 - "Some night durations were written down as short, medium or long and coded as 2, 3 or 4 minutes."
-Plus a "Ranger's rule" card: "Rangers predict the next eruption from the one that just ended: a longer eruption means a longer wait." The raw scatter says the reverse (r = -0.65), which is the hook.
+Plus a "Ranger's rule" card: "Rangers predict the next eruption from the one that just ended: a longer eruption means a longer wait." The raw scatter says the reverse (r = -0.64), which is the hook. That r is real, not an error: it is the wait before each eruption against its length, and a short eruption is always followed by a long one. Reading "the wait before" as "the wait after" is the mistake.
 
 ### Clean
 Stage: the recipe, shown as code lines in the readout font, one per step, with up and down buttons and a remove "x" on each; below it the result: the scatter and a histogram of waits, live. Panel: "Add a step" with three step buttons:
-- "Pair each eruption with the wait after it" (code: `log.wait_after = log.waiting.shift(-1)`; the last row gets no wait and is dropped from charts).
-- "Flag night codes" (code: `log.night = log.duration in [2, 3, 4]`; flagged rows keep their short or long class but leave the duration axis of every chart; they still count in wait charts and in the pairs table).
-- "Drop night-coded rows" (code: `log = log.drop(log.duration in [2, 3, 4])`).
+- "Pair each eruption with the wait after it" (code: `log["wait_after"] = log["waiting"].shift(-1)`; the last row gets no wait and is dropped from charts).
+- "Flag night codes" (code: `log["night"] = log["duration"].isin([2, 3, 4])`; flagged rows keep their short or long class but leave the duration axis of every chart; they still count in wait charts and in the pairs table).
+- "Drop night-coded rows" (code: `log = log[~log["duration"].isin([2, 3, 4])]`). Every line is real pandas.
 Readouts under the charts: rows used, r, line "wait = a + b times duration", and the class table: "After a short eruption (under 3 min): n, mean, spread" and "After a long one". When "Drop" comes before "Pair", a warning row: "26 pairs now join eruptions that were not next to each other." and those points get a ring.
 
 ### Model
@@ -76,7 +76,7 @@ Sign test on the real log (sign checked against the true next start):
 | 56 after short, 81 after long | 163 | 269 | 294 |
 | 72 always (the mean) | 60 | 136 | 205 |
 | 83 after short, 66 after long (from the raw log) | | 49 | |
-Simulated summer (92 days, 1,830 eruptions, filled from clean log, 56 and 81, window 10): 87 to 90 percent on time over seeds 1 to 50.
+Simulated summer (92 days, 1,830 eruptions, filled from clean log, 56 and 81, window 10): 86.6 to 90.7 percent on time over seeds 1 to 200 (seed 1: 1,616 of 1,830, 88.3 percent).
 Comparison line on the Answer bench: "The park says about 90 percent of its predictions land within 10 minutes. The park's worksheet today uses 68 minutes after a short eruption and 94 after a long one, longer than in 1985, so the 1985 sign would not work now."
 
 ## Interactions in detail
@@ -102,9 +102,9 @@ none: drawn in code (pipeline, tables, charts, the park sign, preview.svg: two o
 
 ## Voice
 Bank voice `gravel-ranger` (Algenib), "Say warmly with a gravelly voice, like an old park ranger telling stories": the ranger who needs the sign. Not used by a group sibling or a 9-12 CS neighbor (ai-evaluator wise-mentor, network-architect calm-professor, capture-the-flag wise-mentor); leaf-sorter-ai (5) uses it with a different look. Numbers stay on screen; Read speaks the hint.
-1. how, welcome: "This is the real eruption log from August 1985. Something in it is backwards. Tap Clean when you think you know what."
-2. how, first Raw log page turn: "Read the data notes. One of them changes what a column means."
-3. how, first recipe step added: "Each step is a line of the recipe. Order matters. Try moving one."
+1. how, welcome: "This is the real eruption log from August 1985. Rangers say a long eruption means a long wait after it. Is that what this log shows? Tap Clean when you think you know why."
+2. how, first Raw log page turn with Previous or Next: "Read the data notes. One of them changes what a column means."
+3. how, the recipe reaches two steps: "Each step is a line of the recipe. Order matters. Try moving one."
 4. event, the Pair step is added: "Now a long eruption comes before a long wait. That matches what rangers see."
 5. event, Drop placed before Pair: "Careful. Dropping rows first joins eruptions that weren't next to each other."
 6. how, first Model visit: "Set your geyser's rules, or fill them from your clean log. Then run it."
@@ -126,16 +126,35 @@ Dataset claim for the family table: Old Faithful 1985 (MASS geyser); no other si
 - All other numbers above were computed from the data file and the stated simulation.
 
 ## Done when
-1. Raw log shows 299 rows over 20 pages and a scatter with r = -0.65.
+1. Raw log shows 299 rows over 20 pages and a scatter with r = -0.64.
 2. Adding "Pair each eruption with the wait after it" turns r to 0.89 and the class means to 55.6 and 81.2; adding "Flag night codes" gives r = 0.90 on 221 points.
 3. Putting "Drop night-coded rows" before the Pair step shows the 26 wrong pairs warning and r = 0.82; after it, r = 0.90.
 4. Model with seed 1 filled from the clean log gives Match 89 percent and pairs 0, 100, 100, 98; setting both chances to 0.65 keeps Match at 85 percent or more but short then short above 0.
 5. Answer with 56, 81, window 10 shows 269 of 298; 72 for both shows 136; the raw-log fill (83 and 66) shows 49.
-6. The simulated summer result is between 87 and 90 percent for the clean fill.
+6. The simulated summer result is between 87 and 91 percent for the clean fill (86.6 to 90.7 percent over seeds 1 to 200; seed 1: 88.3 percent).
 7. Lines 2, 3, 6 and 9 are each spoken once in a run of five actions; line 10 after every test.
 8. Pipeline, main chart and main button visible without scrolling at 1366x768 and 680x425; real and simulated series told apart by outline versus fill and by marker shape.
 
-## Open questions
-- The data-desk rule asks for public data such as government statistics. This log is a published research data set (Azzalini and Bowman 1990, measured at Yellowstone and distributed in the R package MASS). Its real flaws (the night codes and the corrected column meaning) are the point of the tool. Is that source acceptable?
-- The log has 299 rows, over the family's "under about 200 rows on screen"; the table pages 15 rows at a time. Fine, or trim to the first 10 days (about 200 eruptions; the numbers above would be recomputed)?
+## Refine changes
+Round 1 (2026-10-28). Where this section and the text above disagree, this section wins.
+- Pairs (blocker): the pairs table, Fill and the result line count a pair only when the two eruptions were next to each other in the file and both survive cleaning. Rechecked in Python for all 16 recipe orders: without Drop, real pairs 0, 104, 105, 89; with Drop in any order, 0, 75, 71, 48. Fill with Pair then Drop: 1.00, 0.40, 55.3 / 6.7, 81.8 / 6.7 (seed 1 Match 88 percent, short then short 0); with Drop before Pair: 1.00, 0.40, 56.8 / 9.3, 81.0 / 8.3.
+- Real pandas (changes the teaching): the three recipe lines are now valid pandas: `log["wait_after"] = log["waiting"].shift(-1)`, `log["night"] = log["duration"].isin([2, 3, 4])`, `log = log[~log["duration"].isin([2, 3, 4])]`. The Clean axis and readout name the columns as the code does: "waiting" before Pair, "wait_after" after.
+- Drop's cost: with Drop in the recipe, a readout line "78 eruptions dropped (26 percent of the log, all night-coded): classes 82 and 139, were 104 and 194." With Flag: "78 night-coded eruptions flagged: kept in the classes, left off the scatter." The notes say why Flag fits this log.
+- Out of sample (changes the teaching): the Answer bench has three results. "On the real log" is marked in sample. New: "On later eruptions": the sign's two times filled from the first 150 eruptions of the clean log (rounded class means), with the student's cut and window, tested on the other 148 against the true timeline: 131 of 148 (89 percent) for the clean fill; 25 of 148 for the raw fill. The simulated summer carries the line "Built from the same 1985 numbers: it shows how the on-time rate wobbles from summer to summer, not whether the geyser still acts this way." The comparison line now says "The park's 2018 worksheet".
+- Chart choice, 3A-DA-11 stays (changes the teaching): the Model histogram has a bin width choice, 2, 5 or 10 minutes (5 to start). Match is computed on the chosen bins (51, 21 or 11 bins from 30 minutes). The bar a run must clear and the yardstick by Match change with it (Python, seeds 1 to 200, 5th to 95th percentile):
+
+| Bins | Clean fill vs real | Two runs of one geyser | Pass at | Seed 1, clean fill |
+|---|---|---|---|---|
+| 2 min | 79 to 86 percent | 79 to 87 percent | 0.79 | 86 percent |
+| 5 min | 85 to 93 percent | 86 to 94 percent | 0.85 | 89 percent |
+| 10 min | 91 to 97 percent | 89 to 97 percent | 0.90 | 95 percent |
+
+  A how line plays the first time the width changes after a run: "Wider bins hide detail and raise the match. Narrow bins show more and lower it. The geyser did not change."
+- No praise for a model judged against an uncleaned log: with no Pair step the result line and hint are "Your geyser copies the raw log, which pairs each eruption with the wait before it. Tap Clean and fix the log first."; with Drop before Pair, "Your clean log still joins eruptions that weren't next to each other. Tap Clean and fix the order first." The "never" and "humps" lines need a correctly paired log.
+- Voice: line 1 is now "This is the real eruption log from August 1985. Rangers say a long eruption means a long wait after it. Is that what this log shows? Tap Clean when you think you know why." Line 2 plays only on a Previous or Next press. Line 3 plays when the recipe has two steps. "stillOff" reads "This scatter still shows the wait before each eruption. Add another step from Add a step."
+- Layout: Raw log keeps the scatter beside the table (or above it when the bench is under 440 px); in the stack layout the hint and the bench's main controls come above the stage. The Model buttons sit in two rows (Run and New run; Fill and Reset). The class table header says "spread (SD)". Night-code cells carry a ☾ with a key under the table. The real-log result bar is hidden until a test. A stale Match dims and says "(last run)". The Model legend says "Real, raw log" until a step exists.
+
+## Settled (were open questions)
+- A published research data set (Azzalini and Bowman 1990, MASS) tied to the real NPS prediction is an acceptable public source: its real flaws are the lesson.
+- 299 rows with paging stays: trimming would remove the flaws the tool teaches. The family doc notes the exception.
 - Old Faithful is a classic for data-desk-distributions (grade 12) too. This spec claims it for simulation-studio; say if you would rather keep it for distributions.
