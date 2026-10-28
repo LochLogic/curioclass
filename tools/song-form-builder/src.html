@@ -1,0 +1,1220 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Song Form Builder · Musical form: AB, ABA and rondo · Curio Class</title>
+<meta name="description" content="Build a song from section blocks A, B, C and D and hear it play. Change one note in A and every A changes, so AB, ABA and rondo become shapes you can see and hear. Then label six well-known songs by ear. Grades 3-5 music. Works offline.">
+<!--
+Song Form Builder (Curio Class)
+Grades 3-5, music, Form and Composition. NCAS MU:Cr2 (organize and develop musical ideas), MU:Cr3 (refine and
+complete), MU:Re7 (how structure shapes a response, in Listen).
+Students drive (pairs on laptops), or a teacher on a projector with the class calling "same" or "new" in Listen.
+Build: section blocks A to D (8 beats on a pentatonic grid) placed in an 8-slot song strip; every copy of a letter is
+linked, twins (A prime) share the first 6 beats; the Form card names the form (strophic, binary, ternary, AABA, rondo,
+through-composed). Listen: label each phrase of a song as same, almost the same or new.
+Sources: National Core Arts Standards (nationalartsstandards.org); Britannica, "Musical form" and "Rondo"; Open Music
+Theory, "AABA (32-bar song form)"; Beethoven, Symphony No. 9 finale (1824, IMSLP); Twinkle Twinkle ("Ah! vous dirai-je,
+maman", 1761), Mary Had a Little Lamb (words by Sarah Josepha Hale, 1830; traditional tune), Row Row Row Your Boat (1881), Hot Cross Buns and
+Frere Jacques (traditional): public domain melodies as sung in US classrooms (Library of Congress, Songs of America).
+Starter songs written for Curio Class. Sounds are made in the browser (kit/music-studio.js, from melody-maker).
+One file, no network requests. Content CC BY 4.0, code MIT. curioclass.org
+-->
+<link rel="stylesheet" href="kit:curio">
+<style>
+:root{
+  --paper:#f4f7f2;--ink:#1c2430;--muted:#556070;--line:#d7e2df;--focus:#9d174d;
+  --brand:#0e7490;--btn:#0b5f73;--btn-line:#4ea3b6;--head-ink:#fff;--panel:#fbfdfb;
+  --card:#fff;--soft:#66717f;
+  --bh:96px;--lf:30px;--cw:56px;--ch:48px;--gap:8px;--pad:12px;
+}
+body{overflow:hidden}
+main{grid-template-columns:minmax(0,1fr) 360px;min-height:0}
+/* the panel comes first in the page (Tab: panel, shelf, strip, editor); the grid puts the stage on the left */
+.panel{grid-column:2;grid-row:1;gap:10px}
+.stage{grid-column:1;grid-row:1;min-height:0;background:linear-gradient(#eaf3f1,#dfece9)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+/* three page layouts, picked in script (relayout):
+   wide    (1000 px or wider and 700 px or taller): stage left, 360 px panel right;
+   compact (a short landscape box such as the 16:10 embed, 680x425 to 1000x625): a 260 to 300 px panel, a one-row header;
+   stack   (narrow or portrait): panel top (hint, Play, Form card), then the stage, then the settings; the page scrolls. */
+body.compact main{grid-template-columns:minmax(0,1fr) 260px}
+@media (min-width:900px){body.compact main{grid-template-columns:minmax(0,1fr) 300px}}
+body.compact header{padding:4px 8px;gap:4px;flex-wrap:nowrap;min-width:0}
+body.compact h1{font-size:16px;white-space:nowrap;min-width:0;overflow:hidden;text-overflow:ellipsis}
+body.compact h1 small{display:none}
+body.compact .seg{flex:none}
+body.compact .seg button,body.compact .icon-btn{min-height:44px;padding:0 8px;font-size:13.5px;white-space:nowrap}
+body.compact .icon-btn{flex:none}
+body.compact .panel{padding:6px 8px;gap:6px}
+body.compact .hint{font-size:13.5px;line-height:1.35}
+body.compact .big-btn{min-height:46px;font-size:17px}
+body.compact .fc{padding:6px 8px}
+body.compact .fc h2{display:none}
+body.compact .fc .fc-let{font-size:17px}
+body.compact .fc p{font-size:13px}
+body.compact .lab{font-size:12.5px}
+body.compact .btn{font-size:14px}
+body.stack{overflow:auto;height:auto}
+body.stack main{display:flex;flex-direction:column}
+body.stack .panel{display:contents}
+body.stack #pmain{order:1;padding:10px 12px;display:flex;flex-direction:column;gap:8px;background:var(--panel)}
+body.stack .stage{order:2;overflow:visible}
+body.stack #pmore{order:3;padding:10px 12px 24px;background:var(--panel);border-top:2px solid var(--line)}
+@media (max-width:560px){
+  .seg{display:grid;grid-template-columns:1fr 1fr;border-radius:14px;width:100%}
+  .seg button{min-height:44px;font-size:15px;padding:0 6px}
+  .icon-btn{min-height:44px;padding:0 12px;font-size:15px}
+}
+#pmain,#pmore{display:flex;flex-direction:column;gap:inherit}
+.hint{margin:0}
+.big-btn{width:100%}
+.big-btn[aria-disabled="true"]{opacity:.45;cursor:default}
+.btn{min-height:44px;min-width:44px;border-radius:10px;border:2px solid var(--line);background:var(--card);color:var(--ink);
+  font-weight:700;font-size:15px;padding:0 10px;line-height:1.15}
+.btn:hover{border-color:var(--brand)}
+.btn[aria-pressed="true"]{background:var(--brand);border-color:var(--brand);color:#fff}
+.btn[aria-disabled="true"]{opacity:.4;cursor:default}
+.btn.warn{border-color:#c9b9b9}
+.row{display:flex;gap:6px;flex-wrap:wrap}
+.row>.btn{flex:1 1 auto}
+.lab{display:block;font-size:13.5px;font-weight:700;color:var(--muted);margin:0 0 3px}
+select.sel{min-height:44px;width:100%;border-radius:10px;border:2px solid var(--line);background:var(--card);color:var(--ink);
+  font:600 15px 'Segoe UI',system-ui,sans-serif;padding:0 8px}
+.note{font-size:13px;color:var(--muted);margin:0;line-height:1.35}
+/* the Form card */
+.fc{background:var(--card);border:2px solid var(--line);border-radius:14px;padding:8px 12px}
+.fc h2{margin:0 0 2px;font:800 12.5px 'Segoe UI',sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.fc .fc-let{font:800 22px 'Trebuchet MS','Segoe UI',sans-serif;letter-spacing:.06em;margin:0;min-height:1.2em;color:var(--ink)}
+.fc p{margin:3px 0 0;font-size:14.5px;line-height:1.35}
+.fc p:empty{display:none}
+.fc .nm{font-weight:700;color:var(--brand)}
+.fc .end{color:var(--muted)}
+.fc .cp{color:var(--muted);font-style:italic}
+/* the stage: build */
+#sb,#sl{position:absolute;inset:0;display:flex;flex-direction:column;gap:var(--gap);padding:var(--pad)}
+body.stack #sb,body.stack #sl{position:static}
+#sb>*{width:100%;max-width:var(--sbw,none);margin-inline:auto}
+#strip,#lstrip{order:1;display:grid;gap:var(--gap);grid-template-columns:repeat(var(--cols,8),minmax(0,1fr));flex:none}
+#bar{order:2;flex:none;display:flex;align-items:center;gap:6px;min-height:44px}
+#barlab{flex:1 1 auto;font-size:14px;color:var(--muted);line-height:1.25;min-width:0}
+#barlab b{color:var(--ink)}
+#shelfwrap,#editor{order:3;flex:1 1 auto;min-height:0;overflow:auto}
+body.stack #shelfwrap,body.stack #editor{overflow:visible}
+.shelf{display:grid;grid-template-columns:repeat(auto-fill,minmax(var(--sw,112px),1fr));gap:var(--gap);align-content:start}
+.shelf.flash{outline:4px solid var(--brand);outline-offset:3px;border-radius:12px}
+.shtitle{font-size:13.5px;font-weight:800;color:var(--muted);margin:0 0 4px;letter-spacing:.04em}
+/* a slot in the strip, and a block (strip, shelf, listen) */
+.slot{position:relative;display:grid;place-items:center;height:var(--bh);border-radius:12px;border:2px dashed #9fb3b0;background:#f8fbfa;padding:0;color:var(--soft);
+  font:700 calc(var(--lf) * .6) 'Trebuchet MS',sans-serif;touch-action:manipulation}
+.slot>*{pointer-events:none}
+.slot.full{border:0;background:none}
+.slot.sel{outline:4px solid var(--ink);outline-offset:2px}
+.slot.drop{outline:4px dashed var(--brand);outline-offset:2px}
+.slot.cur{border-color:var(--brand);border-style:solid;border-width:3px}
+.slot .ph{position:absolute;left:6%;right:6%;top:-7px;height:6px;border-radius:3px;background:var(--ink);opacity:0;z-index:2}
+.slot.now .ph{opacity:1}
+.slot.now{outline:5px solid var(--ink);outline-offset:3px;z-index:1}
+.slot.home{outline:4px solid var(--brand);outline-offset:3px}
+.slot.home .blk{transform:translateY(-4px);box-shadow:inset 0 -4px 0 #0002,0 6px 0 #0002}
+.calm .slot.home .blk{transform:none}
+.fc.fin{border-color:var(--brand);box-shadow:0 0 0 3px var(--brand)}
+body.big .fc .fc-let{font-size:34px}
+body.big .fc p{font-size:19px}
+body.big .fc h2{font-size:15px}
+.blk{position:absolute;inset:0;border-radius:12px;background:var(--c);color:var(--k);display:flex;flex-direction:column;align-items:center;
+  justify-content:center;gap:2px;overflow:hidden;box-shadow:inset 0 -4px 0 #0002;transition:transform .2s}
+.calm .blk{transition:none}
+.blk.twin{background:repeating-linear-gradient(135deg,var(--c) 0 8px,var(--d) 8px 13px)}
+.mark{position:relative;width:calc(var(--lf) * 1.55);height:calc(var(--lf) * 1.55);display:grid;place-items:center;flex:none}
+.mark svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.mark b{position:relative;font:900 var(--lf)/1 'Trebuchet MS','Segoe UI',sans-serif;white-space:nowrap}
+.skw{position:relative;width:86%;height:calc(var(--bh) * .26);flex:none;display:block}
+.sk{position:absolute;inset:0;width:100%;height:100%;display:block}
+.rest{position:absolute;inset:0;display:grid;place-items:center;font:700 max(11px,calc(var(--bh) * .13))/1 'Segoe UI',sans-serif;letter-spacing:.04em}
+.slot .num{font-size:max(13px,calc(var(--lf) * .6))}
+.slot.ripple .blk{animation:rip .3s ease-out}
+@keyframes rip{0%{transform:scale(1)}40%{transform:scale(1.07)}100%{transform:scale(1)}}
+.calm .slot.ripple .blk{animation:none}
+.calm .slot.ripple{outline:4px solid var(--ink);outline-offset:2px}
+.slot.sel.ripple{outline-style:dashed}
+.small .skw{display:none}
+/* shelf cards */
+.sec{display:flex;flex-direction:column;gap:4px;min-width:0}
+.pick{position:relative;height:calc(var(--bh) * .9);min-height:56px;border:0;border-radius:12px;padding:0;background:none;touch-action:none}
+.pick>*{pointer-events:none}
+.pick[aria-pressed="true"]{outline:4px solid var(--ink);outline-offset:3px}
+.pick[aria-pressed="true"] .blk{transform:translateY(-3px)}
+.pick .tag{position:absolute;right:4px;top:4px;background:var(--ink);color:#fff;border-radius:999px;font:700 11px 'Segoe UI',sans-serif;padding:2px 6px;opacity:0}
+.pick[aria-pressed="true"] .tag{opacity:1}
+.sec .row{gap:4px;flex-wrap:nowrap}
+.sec .row .btn{flex:1 1 0;padding:0 4px;display:flex;align-items:center;justify-content:center;gap:4px;font-size:14px}
+.btn svg{width:18px;height:18px;flex:none}
+#newsec{min-height:56px;border-style:dashed;align-self:start;height:calc(var(--bh) * .9 + 48px)}
+.ghost{position:fixed;z-index:50;pointer-events:none;width:72px;height:72px;margin:-36px 0 0 -36px;border-radius:12px;opacity:.9;box-shadow:0 8px 20px #0004}
+/* editor */
+#editor{display:flex;flex-direction:column;gap:6px}
+/* tight: the short preview box. No beat numbers or tip line, no label words, 1 px between cells, so 6 rows of 44 px fit */
+#sb.editing #strip .slot{pointer-events:none;cursor:default}
+#sb.tight #editor{gap:4px}
+#sb.tight .beats,#sb.tight .edtip,#sb.tight .edlab-w,#sb.tight #edmini{display:none}
+#sb.tight .grid,#sb.narrow .grid,#sb.narrow .beats{gap:1px}
+#sb.tight .edbar{flex-wrap:nowrap;gap:6px}
+#sb.tight .edname{font-size:15px}
+#editor[hidden]{display:none}
+.edbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.edname{display:flex;align-items:center;gap:8px;font-weight:800;font-size:16px;margin-right:auto}
+.edname .mini{position:relative;width:44px;height:44px;flex:none}
+.edbar label{display:flex;align-items:center;gap:6px;font-size:14px;font-weight:700;color:var(--muted)}
+.edbar select.sel{width:auto}
+.beats,.grid{display:grid;grid-template-columns:repeat(8,var(--cw));gap:2px;justify-content:start}
+.beats div{text-align:center;font:700 12px 'Segoe UI',sans-serif;color:var(--muted);height:18px;line-height:18px}
+.beats div.lk{color:var(--ink)}
+.grid{grid-auto-rows:var(--ch)}
+.cell{border:1px solid #c8d6d3;background:#fff;border-radius:6px;padding:0;font:600 12.5px 'Segoe UI',sans-serif;color:var(--soft);min-width:0}
+.cell.on{background:var(--c);color:var(--k);font-weight:800;font-size:14px;border-color:transparent}
+.cell.lock{background:repeating-linear-gradient(135deg,#eef2f1 0 6px,#e1e8e6 6px 10px);cursor:not-allowed}
+.cell.lock.on{background:repeating-linear-gradient(135deg,var(--c) 0 6px,var(--d) 6px 10px)}
+.cell:focus-visible{outline-offset:-4px;position:relative;z-index:1}
+.cell.colnow{box-shadow:inset 0 0 0 3px var(--ink)}
+.edtip{font-size:13px;color:var(--muted);margin:0;min-height:1.35em}
+/* listen */
+#lstrip{margin-inline:auto;width:100%}
+.ask{order:2;display:flex;flex-direction:column;gap:6px;max-width:640px;width:100%;margin-inline:auto}
+.askq{font-weight:800;font-size:15.5px;margin:0;line-height:1.3}
+.arow{display:grid;grid-template-columns:1fr 1fr minmax(44px,.7fr);gap:6px}
+.arow .btn,.alast .btn{display:flex;align-items:center;justify-content:center;gap:6px}
+.alast{display:grid;grid-template-columns:1fr;gap:6px}
+.lfoot{order:3;align-items:flex-start}
+.lfoot #confirm{width:100%}
+.arow.tw{grid-template-columns:2fr minmax(44px,.7fr)}
+.chip{display:inline-block;width:1.2em;height:1.2em;border-radius:4px;vertical-align:-.2em;margin-right:4px}
+</style>
+</head>
+<body>
+<header>
+  <h1>Song Form Builder <small>Musical form: AB, ABA and rondo</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-build" aria-pressed="true">Build</button>
+    <button id="m-listen" aria-pressed="false">Listen</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true" title="Turn animation on or off">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+  <button class="icon-btn" id="read">🔊 Read</button>
+</header>
+<main>
+  <aside class="panel" id="panel">
+    <div id="pmain">
+      <p class="hint" id="hint"></p>
+      <button class="big-btn" id="play">▶ Play song</button>
+      <button class="big-btn" id="listen" hidden>▶ Listen</button>
+      <section class="fc" id="fc" aria-live="polite" aria-label="Form card">
+        <h2>Form</h2>
+        <p class="fc-let" id="fc-let"></p>
+        <p class="nm" id="fc-name"></p>
+        <p id="fc-note"></p>
+        <p class="end" id="fc-end"></p>
+        <p class="cp" id="fc-copies"></p>
+      </section>
+    </div>
+    <div id="pmore">
+      <div id="pl-top" hidden>
+        <label class="lab" for="lsong">Song</label>
+        <select class="sel" id="lsong"></select>
+      </div>
+      <div id="confirm" hidden>
+        <p class="note" id="cfq" style="color:var(--ink);font-weight:700;margin:6px 0"></p>
+        <div class="row"><button class="btn" id="yes">Yes</button><button class="btn" id="no">No</button></div>
+      </div>
+      <div id="pb-more">
+        <span class="lab" id="speedlab">Speed</span>
+        <div class="row" role="group" aria-labelledby="speedlab" id="speeds"></div>
+        <label class="lab" for="starter" style="margin-top:8px">Starter songs</label>
+        <select class="sel" id="starter"></select>
+        <div class="row" style="margin-top:8px" id="clearrow"><button class="btn warn" id="clear">Clear song</button></div>
+        <p class="note" style="margin-top:8px">Your song is saved on this device only. Nothing leaves it.</p>
+      </div>
+    </div>
+  </aside>
+  <div class="stage" id="stage">
+    <div id="sb">
+      <div id="shelfwrap">
+        <p class="shtitle" id="shtitle">SHELF</p>
+        <div class="shelf" id="shelf" role="group" aria-labelledby="shtitle"><button class="btn" id="newsec">＋ New section</button></div>
+      </div>
+      <div id="strip" role="group" aria-label="Song strip, 8 spaces"></div>
+      <div id="bar">
+        <span id="barlab"></span>
+        <button class="btn" id="b-hear" hidden></button>
+        <button class="btn" id="b-twin" hidden></button>
+        <button class="btn" id="b-rm" hidden>✕ Remove</button>
+      </div>
+      <div id="editor" hidden>
+        <div class="edbar">
+          <div class="edname"><span class="mini" id="edmini"></span><span id="edlab"></span></div>
+          <label><span class="edlab-w">Instrument</span> <select class="sel" id="instr" aria-label="Instrument"></select></label>
+          <button class="btn" id="done">✓ Done</button>
+        </div>
+        <div class="beats" id="beats" aria-hidden="true"></div>
+        <div class="grid" id="grid" role="group" aria-label="Notes: 8 beats across, 6 notes from low do to high do"></div>
+        <p class="edtip" id="edtip"></p>
+      </div>
+    </div>
+    <div id="sl" hidden>
+      <div id="lstrip" role="group" aria-label="Song parts"></div>
+      <div class="ask" id="ask">
+        <p class="askq" id="askq" aria-live="polite"></p>
+        <div id="arows"></div>
+        <div class="alast"><button class="btn" id="a-new">✦ New</button></div>
+      </div>
+      <div class="ask lfoot" id="restartrow"><button class="btn warn" id="lrestart">↺ Start over</button></div>
+    </div>
+  </div>
+</main>
+<script src="kit:curio"></script>
+<script src="kit:music-studio"></script>
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+  const wait = ms => new Promise(r => setTimeout(r, ms));
+
+  // ---------- content (spec: Content) ----------
+  // sections: A to D; a twin is "Ap" (A prime, shown A′): its first 6 beats follow its parent, beats 7 and 8 are its own
+  const SEC = {
+    A: {color: '#c2410c', ink: '#fff', shape: 'circle', dark: '#8f300a'},
+    B: {color: '#3b5bdb', ink: '#fff', shape: 'square', dark: '#2a43a8'},
+    C: {color: '#f2b10a', ink: '#1c2430', shape: 'triangle', dark: '#c98f00'},
+    D: {color: '#237032', ink: '#fff', shape: 'diamond', dark: '#17501f'},
+  };
+  const SHAPE_NAME = {circle: 'circle', square: 'square', triangle: 'triangle', diamond: 'diamond'};
+  const SYL = ['do', 're', 'mi', 'sol', 'la', 'do′'];
+  const INSTRS = {marimba: 'Marimba', flute: 'Flute', piano: 'Piano', box: 'Music box'};
+  const SPEEDS = [['Slow', 84], ['Medium', 100], ['Quick', 120]];
+  const _ = null;
+  const STARTERS = {
+    sunny: {name: 'Sunny Day', sections: {A: {notes: [0, 1, 2, 2, 3, 2, 1, 0], instr: 'marimba'}, B: {notes: [4, 4, 3, 3, 2, 2, 1, _], instr: 'flute'}}, strip: ['A', 'B', 'A']},
+    rondo: {name: 'Rondo for Recess', sections: {A: {notes: [0, 2, 3, 5, 3, 2, 0, _], instr: 'marimba'}, B: {notes: [1, 1, 2, 1, 1, 1, 2, 3], instr: 'flute'},
+      C: {notes: [5, 4, 3, 4, 5, _, 5, _], instr: 'box'}}, strip: ['A', 'B', 'A', 'C', 'A']},
+    blank: {name: 'Blank', sections: {A: {notes: [_, _, _, _, _, _, _, _], instr: 'marimba'}, B: {notes: [_, _, _, _, _, _, _, _], instr: 'flute'}}, strip: []},
+  };
+  const NEW_INSTR = {C: 'box', D: 'piano'};
+  // Listen songs (spec: Content, Listen songs): note names in C, lengths in beats (MS.parse), phrase ids by first appearance
+  const SONGS = [
+    {id: 'hcb', name: 'Hot Cross Buns', end: 'hcb', ph: {A: 'E D C:h', B: 'C:e C:e C:e C:e D:e D:e D:e D:e'}, form: ['A', 'A', 'B', 'A']},
+    {id: 'mary', name: 'Mary Had a Little Lamb', end: 'mary', ph: {A: 'E D C D | E E E:h | D D D:h | E G G:h', Ap: 'E D C D | E E E E | D D E D | C:w'}, form: ['A', 'Ap']},
+    {id: 'twinkle', name: 'Twinkle Twinkle', end: 'twinkle', ph: {A: 'C C G G | A A G:h | F F E E | D D C:h', B: 'G G F F | E E D:h | G G F F | E E D:h'}, form: ['A', 'B', 'A']},
+    {id: 'ode', name: 'Ode to Joy', end: 'ode', ph: {A: 'E E F G | G F E D | C C D E | E:dq D:e D:h', Ap: 'E E F G | G F E D | C C D E | D:dq C:e C:h',
+      B: 'D D E C | D E:e F:e E C | D E:e F:e E D | C D G3:h'}, form: ['A', 'Ap', 'B', 'Ap']},
+    // 6/8 with the eighth note as 1 in the spec: halved here, so a dotted quarter is 1.5 beats
+    {id: 'row', name: 'Row Row Row Your Boat', end: 'row', scale: .5, ph: {A: 'C:3 C:3 | C:2 D:1 E:3', B: 'E:2 D:1 E:2 F:1 | G:6',
+      C: 'C5 C5 C5 G G G | E E E C C C', D: 'G:2 F:1 E:2 D:1 | C:6'}, form: ['A', 'B', 'C', 'D']},
+    {id: 'frere', name: 'Frere Jacques', end: 'frere', ph: {A: 'C D E C', B: 'E F G:h', C: 'G:e A:e G:e F:e E C', D: 'C G3 C:h'},
+      form: ['A', 'A', 'B', 'B', 'C', 'C', 'D', 'D']},
+  ];
+  for (const s of SONGS) for (const k in s.ph) s.ph[k] = MS.parse(s.ph[k], {scale: s.scale || 1});
+
+  // ---------- voice (spec: Voice). Lines are the spoken forms; A′ is said "A prime" ----------
+  const L = {
+    welcomeBuild: 'Tap a block on the shelf, then tap a space in the song strip. Then press Play song.',
+    playHow: 'Press Play song to hear your form.',
+    editHow: 'Tap the grid to change the notes. Every copy of this section changes too.',
+    editTwinHow: 'Tap beats 7 and 8 to give the twin its own ending. Beats 1 to 6 follow its parent.',
+    linked: {
+      A: 'You changed A, so every A changed. Same letter, same music.',
+      B: 'You changed B, so every B changed. Same letter, same music.',
+      C: 'You changed C, so every C changed. Same letter, same music.',
+      D: 'You changed D, so every D changed. Same letter, same music.',
+    },
+    twin: {
+      A: 'A prime starts as a copy. Change its last two beats to make a twin.',
+      B: 'B prime starts as a copy. Change its last two beats to make a twin.',
+      C: 'C prime starts as a copy. Change its last two beats to make a twin.',
+    },
+    form: {
+      strophic: 'The same music every time. That\'s how verses work.',
+      twin: 'A and its twin. Same start, new ending.',
+      through: 'Nothing came back. Every part was new.',
+      binary: 'A B. Two parts.',
+      binaryRepeat: 'A A B B. Each part says itself twice.',
+      ternary: 'A B A. You went away and came back home.',
+      aaba: 'A A B A. Lots of songs use this shape.',
+      rondo: 'A rondo! A keeps coming back between other parts.',
+      other: 'That shape has no special name, and that\'s okay.',
+    },
+    sameNotes: 'Two of your sections have the same notes. Change one so it sounds new.',
+    emptyStrip: 'Put a block in the song strip first.',
+    welcomeListen: 'Press Listen. Then tap Same, Almost the same, or New for each part.',
+    listenWrong: 'Listen again. Is it exactly the same, a little different, or new?',
+    reveal: {same: 'Exactly the same music: the same letter again.', twin: 'Same start, different ending: a twin.', new: 'New music: a new letter.'},
+    right: {same: 'Yes! The same music again.', twin: 'Yes! Same start, new ending.', new: 'Yes! New music.'},
+    end: {
+      hcb: 'Hot Cross Buns is A A B A. B is a quick trip away, and A brings you home.',
+      mary: 'Mary Had a Little Lamb is A A prime. Its new ending is what makes it sound finished.',
+      twinkle: 'Twinkle Twinkle is A B A. The tune comes home at the end, so it feels finished.',
+      ode: 'Ode to Joy is A A prime B A prime. B is the trip away, and A prime brings you back.',
+      row: 'Row Row Row Your Boat is A B C D. Nothing comes back, so it feels like a trip down the river.',
+      frere: 'Frere Jacques is A A B B C C D D. Every part says itself twice, so it is easy to remember.',
+    },
+  };
+  // the hint for every waiting moment: it names the next control (shown with A′; Read says "A prime")
+  const H = {
+    start: L.welcomeBuild,
+    place: 'Now tap a space in the song strip to put your block there.',
+    placeFull: 'Now tap a block in the song strip to swap in your block.',
+    slot: 'Tap Hear or Remove under the strip. Or tap a shelf block, then this space, to swap it.',
+    slotA: 'Tap Hear, Make it A′, or Remove under the strip. Or tap a shelf block, then this space, to swap it.',
+    slotB: 'Tap Hear, Make it B′, or Remove under the strip. Or tap a shelf block, then this space, to swap it.',
+    slotC: 'Tap Hear, Make it C′, or Remove under the strip. Or tap a shelf block, then this space, to swap it.',
+    twinSame: 'Your twin is still a copy. Tap Edit on its shelf block and change beats 7 and 8.',
+    play: 'Press Play song to hear your form. Or tap a shelf block to add more.',
+    after: 'Tap Edit on a shelf block to change its notes. Then press Play song again.',
+    full: 'The strip is full. Press Play song, or tap a block in the strip to remove it.',
+    playing: 'Listen for the parts that come back. Press Stop to stop.',
+    hearing: 'Listen to this section. Press Stop to stop.',
+    edit: 'Tap the grid to change the notes. Every copy changes too. Press Done when you are finished.',
+    editTwin: 'Tap the grid in beats 7 and 8 to give the twin its own ending. Press Done when you are finished.',
+    confirmClear: 'Clear your whole song, notes and all? Tap Yes or No.',
+    confirmLoad: 'Load this starter song in place of yours? Tap Yes or No.',
+    lStart: L.welcomeListen,
+    lPlaying: 'Listen to the music. Press Stop to stop.',
+    lReveal: 'Here is the answer. Then the next part plays. Press Stop to pause.',
+    lCompare: 'Listen to the two parts, one after the other. Then tap Same, Almost, or New.',
+    confirmRestart: 'Start this song over? Your labels go away. Tap Yes or No.',
+    lAnswer: 'Is this part the same, almost the same, or new? Tap a Same, Almost, or New button, or Hear it again.',
+    lWrong: 'Listen again. Is it exactly the same, a little different, or new? Tap Same, Almost, or New.',
+    lDone: 'Press Play whole song to hear the form. Or pick another song.',
+  };
+  const spoken = t => t.replace(/([A-D])′/g, '$1 prime');
+  L.hints = Object.fromEntries(Object.entries(H).map(([k, v]) => [k, spoken(v)]));
+
+  // ---------- state ----------
+  const state = {
+    mode: 'build', sections: {}, order: [], strip: [], speed: 1, starter: '',
+    sel: null, slot: null, focusSlot: 0, editing: null, cur: {r: 0, c: 0}, confirm: null,
+    ver: 0, playedVer: -1, play: null,          // play: {kind: 'song' | 'sec' | 'phrase' | 'whole', id, player}
+    ed: null,                                   // the open editor's session: {seq, linkedDone, copies}
+    l: {song: 0, labels: [], k: 0, phase: 'idle', miss: 0, wrong: false, tok: 0, msg: ''},
+  };
+  const isTwin = id => id && id.length > 1;
+  const base = id => id[0];
+  const shown = id => id[0] + (isTwin(id) ? '′' : '');
+  const notesOf = id => { const s = state.sections[id]; if (!s) return []; return isTwin(id) ? state.sections[s.parent].notes.slice(0, 6).concat(s.own) : s.notes; };
+  const sameArr = (a, b) => a.length === b.length && a.every((x, i) => x === b[i]);
+  const twinSame = id => isTwin(id) && sameArr(notesOf(id), notesOf(base(id)));
+  const canTwin = id => id && !isTwin(id) && 'ABC'.includes(id);
+
+  // ---------- form rules (spec: Form card rules) ----------
+  function analyze(ids) {
+    const map = {}; let next = 0;
+    const toks = ids.map(id => { const b = base(id); if (!(b in map)) map[b] = 'ABCD'[next++]; return {L: map[b], twin: isTwin(id), id}; });
+    const b = toks.map(t => t.L).join(''), n = b.length, twins = toks.some(t => t.twin), distinct = new Set(b).size;
+    const letters = toks.map(t => t.L + (t.twin ? '′' : '')).join(' ');
+    const renamed = Object.entries(map).filter(([o, r]) => o !== r).map(([o, r]) => `Your ${o} plays the ${r} part.`);
+    let key, name;
+    if (!n) { key = null; name = ''; }
+    else if (n === 1) { key = 'one'; name = 'Just one block so far. Add more blocks to make a form.'; }
+    else if (distinct === 1 && !twins) { key = 'strophic'; name = 'Strophic: the same music every time, like verses of a song.'; }
+    else if (distinct === 1) { key = 'twin'; name = 'A and its twin: the same start with a new ending.'; }
+    else if (distinct === n && n >= 3) { key = 'through'; name = 'Through-composed: nothing comes back.'; }
+    else if (b === 'AB') { key = 'binary'; name = 'Binary form: two parts.'; }
+    else if (b === 'AABB') { key = 'binaryRepeat'; name = 'Binary form with each part repeated.'; }
+    else if (b === 'ABA') { key = 'ternary'; name = 'Ternary form: away and back home.'; }
+    else if (b === 'AABA') { key = 'aaba'; name = 'AABA: a shape used in many popular songs.'; }
+    else if (b[0] === 'A' && b[n - 1] === 'A' && b.split('A').length - 1 >= 3 && !b.includes('AA')) { key = 'rondo'; name = 'Rondo: A keeps coming back between other parts.'; }
+    else { key = 'other'; name = 'This form has no special name, and that\'s fine.'; }
+    return {key, name, letters, renamed, map, toks};
+  }
+  // notes checks for the Build card: two letters with the same notes, a twin still the same as its parent, the ending
+  function checks(ids, map) {
+    const out = {same: null, twinSame: null, end: ''};
+    const bases = [...new Set(ids.filter(id => !isTwin(id)))];
+    for (let i = 0; i < bases.length && !out.same; i++) for (let j = i + 1; j < bases.length; j++)
+      if (sameArr(notesOf(bases[i]), notesOf(bases[j]))) { const a = map[bases[i]], b = map[bases[j]], [x, y] = a < b ? [a, b] : [b, a]; out.same = `${x} and ${y} have the same notes, so they sound like ${x} ${x}.`; break; }
+    const tw = ids.find(id => twinSame(id));
+    if (tw) { const r = map[base(tw)]; out.twinSame = `${r}′ is still the same as ${r}. Change its last two beats.`; }
+    if (ids.length) {
+      const last = notesOf(ids[ids.length - 1]).filter(r => r !== null);
+      if (last.length) out.end = last[last.length - 1] % 5 === 0 ? 'Ends on do: sounds finished.' : 'Ends away from do: sounds like it wants more.';
+    }
+    return out;
+  }
+
+  // ---------- drawing ----------
+  function shapeSVG(shape, sw = 2.6) {
+    const a = `fill="none" stroke="currentColor" stroke-width="${sw}" stroke-linejoin="round" vector-effect="non-scaling-stroke"`;
+    const s = shape === 'circle' ? `<circle cx="50" cy="50" r="46" ${a}/>` : shape === 'square' ? `<rect x="6" y="6" width="88" height="88" rx="10" ${a}/>`
+      : shape === 'triangle' ? `<path d="M50 2 L97 90 L3 90 Z" ${a}/>` : `<path d="M50 1 L99 50 L50 99 L1 50 Z" ${a}/>`;
+    return `<svg viewBox="0 0 100 100" aria-hidden="true">${s}</svg>`;
+  }
+  // a tiny sketch of notes: pts [{beat, dur, y (0 low to 1 high)}] over `len` beats; a ring marks the playhead beat
+  function sketchSVG(pts, len, label = 'rest') {
+    const W = 80, Hh = 26, sx = W / len;
+    let s = `<span class="skw">${pts.length ? '' : `<span class="rest">${label}</span>`}<svg class="sk" viewBox="0 0 ${W} ${Hh}" preserveAspectRatio="none" aria-hidden="true">`;
+    for (const p of pts) s += `<rect x="${(p.beat * sx + .8).toFixed(1)}" y="${(Hh - 5 - p.y * (Hh - 7)).toFixed(1)}" width="${Math.max(1.6, p.dur * sx - 1.6).toFixed(1)}" height="4" rx="1.5" fill="currentColor"/>`;
+    s += `<rect class="pd" x="0" y="0" width="${Math.max(3, sx - .4).toFixed(1)}" height="${Hh}" rx="2" fill="currentColor" opacity="0"/></svg></span>`;
+    return s;
+  }
+  const secPts = id => notesOf(id).map((r, i) => r === null ? null : {beat: i, dur: 1, y: r / 5}).filter(Boolean);
+  const phrasePts = ph => ph.events.map(e => ({beat: e.beat, dur: e.dur, y: clamp((e.semi + 5) / 17, 0, 1)}));
+  function blockHTML(id, pts, len) {
+    const S = SEC[base(id)];
+    return `<span class="blk${isTwin(id) ? ' twin' : ''}" style="--c:${S.color};--k:${S.ink};--d:${S.dark}"><span class="mark">${shapeSVG(S.shape)}<b>${shown(id)}</b></span>${sketchSVG(pts, len)}</span>`;
+  }
+  const secBlock = id => blockHTML(id, secPts(id), 8);
+  const desc = id => `${shown(id).replace('′', ' prime')}, ${SHAPE_NAME[SEC[base(id)].shape]}`;
+
+  // ---------- the song strip (8 slots, built once, updated in place) ----------
+  const slots = [];
+  for (let i = 0; i < 8; i++) {
+    const b = document.createElement('button');
+    b.className = 'slot'; b.dataset.i = i; b.tabIndex = i ? -1 : 0;
+    $('strip').append(b); slots.push(b);
+  }
+  function drawStrip() {
+    slots.forEach((b, i) => {
+      const id = state.strip[i], key = id ? id + ':' + notesOf(id).join(',') : 'e';
+      if (b.dataset.k !== key) {
+        b.dataset.k = key;
+        b.innerHTML = '<span class="ph"></span>' + (id ? secBlock(id) : `<span class="num">${i + 1}</span>`);
+      }
+      b.classList.toggle('full', !!id);
+      b.classList.toggle('sel', state.slot === i);
+      b.setAttribute('aria-label', id ? `Space ${i + 1}: ${desc(id)}` : `Space ${i + 1}: empty`);
+      b.setAttribute('aria-pressed', state.slot === i);
+      // while the editor is open the strip only shows the copies changing: not a control then
+      b.tabIndex = !state.editing && i === state.focusSlot ? 0 : -1;
+      if (state.editing) b.setAttribute('aria-disabled', 'true'); else b.removeAttribute('aria-disabled');
+    });
+  }
+  function slotClick(i) {
+    if (state.mode !== 'build' || state.editing) return;
+    state.focusSlot = i;
+    if (state.sel) { place(state.sel, i); return; }
+    if (i >= state.strip.length) { state.slot = null; refresh(); return; }
+    state.slot = state.slot === i ? null : i;
+    refresh();
+  }
+  slots.forEach((b, i) => {
+    b.onclick = () => slotClick(i);
+    b.onfocus = () => { state.focusSlot = i; slots.forEach((x, j) => x.tabIndex = j === i ? 0 : -1); };
+    b.onkeydown = e => {
+      if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+      e.preventDefault();
+      const j = clamp(i + (e.key === 'ArrowRight' ? 1 : -1), 0, 7);
+      slots[j].focus({preventScroll: false});
+    };
+  });
+
+  // ---------- the shelf ----------
+  const ICON = {
+    edit: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20 L5 15 L15 5 L19 9 L9 19 Z M13.5 6.5 L17.5 10.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/></svg>',
+    hear: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4 L20 12 L7 20 Z" fill="currentColor"/></svg>',
+    stop: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="1.5" fill="currentColor"/></svg>',
+    chain: '<svg viewBox="0 0 24 24" aria-hidden="true" width="14" height="14" style="vertical-align:-2px"><path d="M9 15 L15 9 M10 7 L12 5 a4 4 0 0 1 6 6 L16 13 M14 17 L12 19 a4 4 0 0 1 -6 -6 L8 11" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>',
+  };
+  const cards = {};
+  function ensureCard(id) {
+    if (cards[id]) return cards[id];
+    const d = document.createElement('div');
+    d.className = 'sec'; d.dataset.id = id;
+    d.innerHTML = `<button class="pick" id="pk-${id}" aria-pressed="false"></button>
+      <div class="row"><button class="btn edit" id="ed-${id}" aria-label="Edit ${shown(id).replace('′', ' prime')}">${ICON.edit}Edit</button><button class="btn hear" id="hr-${id}" aria-label="Hear ${shown(id).replace('′', ' prime')}">${ICON.hear}Hear</button></div>`;
+    cards[id] = d;
+    const pk = d.querySelector('.pick');
+    pk.onclick = () => { if (drag.suppress) return; pickShelf(id); };
+    pk.onpointerdown = e => dragStart(e, id);
+    d.querySelector('.edit').onclick = () => openEditor(id);
+    d.querySelector('.hear').onclick = () => hearSection(id, $('hr-' + id));
+    return d;
+  }
+  function drawShelf() {
+    const sh = $('shelf'), want = state.order.map(ensureCard);
+    for (const id in cards) if (!state.order.includes(id)) { cards[id].remove(); delete cards[id]; }
+    want.forEach((d, i) => { if (sh.children[i] !== d) sh.insertBefore(d, sh.children[i] || $('newsec')); });
+    for (const id of state.order) {
+      const pk = $('pk-' + id), key = notesOf(id).join(',');
+      if (pk.dataset.k !== key) { pk.dataset.k = key; pk.innerHTML = secBlock(id) + '<span class="tag">picked</span>'; }
+      pk.setAttribute('aria-pressed', state.sel === id);
+      pk.setAttribute('aria-label', `Block ${desc(id)}. Tap it, then tap a space in the song strip.`);
+    }
+    const n = state.order.filter(id => !isTwin(id)).length;
+    $('newsec').textContent = n < 4 ? `＋ New section ${'ABCD'[n]}` : '';
+    $('newsec').hidden = n >= 4;
+  }
+  function pickShelf(id) {
+    if (state.mode !== 'build' || state.editing) return;
+    state.sel = state.sel === id ? null : id;
+    state.slot = null;
+    refresh();
+  }
+  $('newsec').onclick = () => {
+    const n = state.order.filter(id => !isTwin(id)).length;
+    if (n >= 4) return;
+    const id = 'ABCD'[n];
+    state.sections[id] = {notes: [3, 3, 3, 3, 3, 3, 3, 3], instr: NEW_INSTR[id] || 'piano'};
+    state.order.push(id);
+    changed(false);
+    if (n === 3) $('pk-' + id).focus({preventScroll: true});   // the button hides after D: keep focus on the new block
+  };
+
+  // ---------- drag a shelf block onto a slot ----------
+  const drag = {id: null, x: 0, y: 0, on: false, ghost: null, over: -1, suppress: false};
+  function dragStart(e, id) {
+    if (state.mode !== 'build' || state.editing || e.button > 0) return;
+    Object.assign(drag, {id, x: e.clientX, y: e.clientY, on: false, over: -1, pid: e.pointerId});
+  }
+  addEventListener('pointermove', e => {
+    if (!drag.id || e.pointerId !== drag.pid) return;
+    if (!drag.on && Math.hypot(e.clientX - drag.x, e.clientY - drag.y) > 10) {
+      drag.on = true;
+      const g = document.createElement('div'); g.className = 'ghost'; g.style.setProperty('--bh', '72px'); g.style.setProperty('--lf', '22px');
+      g.innerHTML = secBlock(drag.id); document.body.append(g); drag.ghost = g;
+    }
+    if (!drag.on) return;
+    drag.ghost.style.left = e.clientX + 'px'; drag.ghost.style.top = e.clientY + 'px';
+    const el = document.elementFromPoint(e.clientX, e.clientY), s = el && el.closest && el.closest('.slot');
+    const i = s && s.parentElement === $('strip') ? +s.dataset.i : -1;
+    if (i !== drag.over) { slots.forEach((b, j) => b.classList.toggle('drop', j === i)); drag.over = i; }
+  });
+  function dragEnd() {
+    if (!drag.id) return;
+    const {on, over, id} = drag;
+    if (drag.ghost) drag.ghost.remove();
+    slots.forEach(b => b.classList.remove('drop'));
+    Object.assign(drag, {id: null, on: false, ghost: null, over: -1});
+    if (on) { drag.suppress = true; setTimeout(() => { drag.suppress = false; }, 0); if (over >= 0) place(id, over); }
+  }
+  addEventListener('pointerup', dragEnd);
+  addEventListener('pointercancel', dragEnd);
+
+  // ---------- placing, removing, twins ----------
+  function place(id, i) {
+    if (i >= state.strip.length) { if (state.strip.length >= 8) return; state.strip.push(id); i = state.strip.length - 1; }   // no gaps
+    else state.strip[i] = id;
+    stopPlay();
+    state.sel = null; state.slot = null; state.focusSlot = i;
+    changed();
+    V.dropQueued();
+    if (!V.heard('playHow')) V.how('playHow', {valid: () => state.mode === 'build' && state.strip.length > 0 && !state.play && !state.editing && !state.confirm && !state.sel && state.slot == null, needs: '#play'});
+  }
+  $('b-rm').onclick = () => {
+    const i = state.slot; if (i == null || i >= state.strip.length) return;
+    stopPlay();
+    state.strip.splice(i, 1);
+    state.slot = i < state.strip.length ? i : null;
+    state.focusSlot = Math.min(i, 7);
+    changed();
+    if (state.slot == null) slots[state.focusSlot].focus({preventScroll: true});   // Remove hides: keep focus on that space
+  };
+  $('b-hear').onclick = () => { const id = state.strip[state.slot]; if (id) hearSection(id, $('b-hear')); };
+  $('b-twin').onclick = () => {
+    const i = state.slot, id = state.strip[i]; if (!canTwin(id)) return;
+    stopPlay();
+    const tid = id + 'p';
+    if (!state.sections[tid]) {
+      const p = state.sections[id];
+      state.sections[tid] = {parent: id, own: p.notes.slice(6, 8), instr: p.instr};
+      state.order.splice(state.order.indexOf(id) + 1, 0, tid);
+    }
+    state.strip[i] = tid; state.slot = null;
+    changed();
+    $('ed-' + tid).focus({preventScroll: true});                // the next step: Edit on the twin's shelf block
+    V.dropQueued();
+    V.how(L.twin[id], {key: 'twinHow', valid: () => state.mode === 'build' && !state.play && state.strip.includes(tid)});
+  };
+
+  // ---------- the editor ----------
+  const cells = [];
+  for (let c = 0; c < 8; c++) { const d = document.createElement('div'); d.textContent = c + 1; $('beats').append(d); }
+  for (let r = 5; r >= 0; r--) for (let c = 0; c < 8; c++) {
+    const b = document.createElement('button');
+    b.className = 'cell'; b.dataset.r = r; b.dataset.c = c; b.tabIndex = -1;
+    b.onclick = () => setCell(r, c);
+    b.onfocus = () => { state.cur = {r, c}; drawEditor(); };
+    $('grid').append(b); cells.push(b);
+  }
+  const cellAt = (r, c) => cells[(5 - r) * 8 + c];
+  $('grid').onkeydown = e => {
+    const {r, c} = state.cur;
+    const mv = {ArrowUp: [1, 0], ArrowDown: [-1, 0], ArrowLeft: [0, -1], ArrowRight: [0, 1]}[e.key];
+    if (mv) { e.preventDefault(); cellAt(clamp(r + mv[0], 0, 5), clamp(c + mv[1], 0, 7)).focus(); return; }
+    if (e.key === 'Delete' || e.key === 'Backspace') { e.preventDefault(); setCell(null, c); }
+  };
+  Object.entries(INSTRS).forEach(([k, v]) => $('instr').add(new Option(v, k)));
+  $('instr').onchange = () => {
+    const s = state.sections[state.editing]; if (!s) return;
+    s.instr = $('instr').value; save();
+    const n = notesOf(state.editing).find(r => r !== null);
+    MS.note(s.instr, 'C', MS.rowSemi('penta', n == null ? 0 : n), 0, .5);
+  };
+  function openEditor(id) {
+    if (state.mode !== 'build') return;
+    stopPlay();
+    state.editing = id; state.sel = null; state.slot = null; state.confirm = null;
+    state.ed = {seq: 0, linkedDone: false, copies: null};
+    const n = notesOf(id), c0 = isTwin(id) ? 6 : 0;
+    state.cur = {r: n[c0] == null ? 0 : n[c0], c: c0};
+    $('instr').value = state.sections[id].instr;
+    refresh();
+    cellAt(state.cur.r, state.cur.c).focus({preventScroll: true});   // Edit is hidden now: focus goes to the grid
+    V.dropQueued();
+    V.how(isTwin(id) ? 'editTwinHow' : 'editHow', {valid: () => state.editing === id && !state.play, needs: '#grid'});
+  }
+  $('done').onclick = () => {
+    const id = state.editing; if (!id) return;
+    state.editing = null; state.ed = null;
+    refresh();
+    $('ed-' + id).focus({preventScroll: true});
+  };
+  function setCell(r, c) {
+    const id = state.editing; if (!id) return;
+    const tw = isTwin(id);
+    if (tw && c < 6) { $('edtip').innerHTML = `${ICON.chain} Beats 1 to 6 follow ${base(id)}. Edit ${base(id)} on the shelf to change them.`; return; }
+    stopPlay();
+    const s = state.sections[id], arr = tw ? s.own : s.notes, k = tw ? c - 6 : c;
+    arr[k] = r === null || arr[k] === r ? null : r;
+    if (arr[k] !== null) MS.note(s.instr, 'C', MS.rowSemi('penta', arr[k]), 0, .45);
+    // every copy that changed: this letter, and its twin when beats 1 to 6 change
+    const touched = state.strip.map((x, i) => (x === id || (!tw && c < 6 && x === id + 'p')) ? i : -1).filter(i => i >= 0);
+    state.ed.seq++; state.ed.copies = touched.length;
+    changed();
+    ripple(touched);
+    if (!tw && touched.length >= 2 && !state.ed.linkedDone) {
+      const ed = state.ed;
+      // once per editor session: marked when it starts (valid is checked right then), so later taps don't queue it again
+      // it belongs to the strip, not the editor: still true after Done, until another editor opens or the copies go
+      V.say(L.linked[id], {key: 'linked', valid: () => {
+        const ok = (state.ed === ed || !state.editing) && !state.play && state.mode === 'build' && state.strip.filter(x => x === id).length >= 2;
+        if (ok) ed.linkedDone = true; return ok; }});
+    }
+  }
+  function ripple(list) {
+    for (const i of list) {
+      const b = slots[i]; b.classList.remove('ripple'); void b.offsetWidth; b.classList.add('ripple');
+      clearTimeout(b._rt); b._rt = setTimeout(() => b.classList.remove('ripple'), 320);
+    }
+  }
+  function drawEditor() {
+    const id = state.editing; if (!id) return;
+    const S = SEC[base(id)], n = notesOf(id), tw = isTwin(id);
+    $('edmini').innerHTML = `<span class="blk${tw ? ' twin' : ''}" style="--c:${S.color};--k:${S.ink};--d:${S.dark};--lf:16px"><span class="mark">${shapeSVG(S.shape, 2)}<b>${shown(id)}</b></span></span>`;
+    $('edlab').textContent = `Editing ${shown(id)}`;
+    [...$('beats').children].forEach((d, c) => { d.innerHTML = tw && c < 6 ? ICON.chain : c + 1; d.className = tw && c < 6 ? 'lk' : ''; });
+    $('grid').style.cssText = `--c:${S.color};--k:${S.ink};--d:${S.dark}`;
+    for (let r = 0; r < 6; r++) for (let c = 0; c < 8; c++) {
+      const b = cellAt(r, c), on = n[c] === r, lock = tw && c < 6;
+      b.classList.toggle('on', on); b.classList.toggle('lock', lock);
+      b.textContent = SYL[r];
+      b.setAttribute('aria-label', `Beat ${c + 1}, ${SYL[r].replace('′', ' high')}${on ? ', on' : ''}${lock ? `, linked to ${base(id)}` : ''}`);
+      b.setAttribute('aria-pressed', on);
+      if (lock) b.setAttribute('aria-disabled', 'true'); else b.removeAttribute('aria-disabled');
+      b.tabIndex = r === state.cur.r && c === state.cur.c ? 0 : -1;
+    }
+    if (!tw) $('edtip').textContent = 'Tap a lit note again to make that beat a rest.';
+    else if (!$('edtip').innerHTML.includes('follow')) $('edtip').innerHTML = `${ICON.chain} Beats 1 to 6 follow ${base(id)}. Beats 7 and 8 are the twin's own.`;
+  }
+
+  // ---------- sound: play the song, a section, a phrase ----------
+  const bpm = () => SPEEDS[state.speed][1];
+  function clearMarks() {
+    for (const b of [...slots, ...lslots]) { b.classList.remove('now'); const pd = b.querySelector('.pd'); if (pd) pd.setAttribute('opacity', 0); }
+    document.querySelectorAll('.pick .pd').forEach(pd => pd.setAttribute('opacity', 0));
+  }
+  function mark(el, beat, len) {
+    if (!el) return;
+    const pd = el.querySelector('.pd'); if (!pd) return;
+    pd.setAttribute('x', (beat * 80 / len).toFixed(1)); pd.setAttribute('opacity', .35);
+  }
+  function stopPlay() {
+    const p = state.play; if (!p) return;
+    state.play = null; p.player.stop(); clearMarks(); refresh();
+  }
+  function startPlay(kind, events, o) {
+    stopPlay(); clearFinish();
+    V.hush();                                   // never a line over the music; lines come after it ends
+    const play = {kind, id: o.id};
+    play.player = MS.play(events, {bpm: o.bpm || bpm(), lead: o.lead || 0, beats: o.beats, onStep: o.onStep,
+      onEnd: why => { if (state.play === play) { state.play = null; clearMarks(); refresh(); } if (o.onEnd) o.onEnd(why); }});
+    state.play = play;
+    refresh();
+    return play;
+  }
+  function songEvents(ids) {
+    const ev = [];
+    ids.forEach((id, i) => ev.push(...MS.rows(notesOf(id), {scale: 'penta', start: i * 8, instr: state.sections[id].instr})));
+    return ev;
+  }
+  $('play').onclick = () => {
+    if (state.mode !== 'build') return;
+    if (state.play) { stopPlay(); return; }
+    if (state.editing) { state.editing = null; state.ed = null; }
+    if (!state.strip.length) {
+      V.dropQueued();
+      V.say('emptyStrip', {valid: () => !state.strip.length && state.mode === 'build'});
+      const sh = $('shelf'); sh.classList.add('flash'); setTimeout(() => sh.classList.remove('flash'), 900);
+      refresh(); return;
+    }
+    const ids = state.strip.slice(), v = state.ver;
+    startPlay('song', songEvents(ids), {lead: 1, beats: ids.length * 8,
+      onStep: i => { clearMarks(); if (i < 0) return; const k = Math.floor(i / 8); slots[k].classList.add('now'); mark(slots[k], i % 8, 8); },
+      onEnd: why => {
+        if (why !== 'end' || state.ver !== v) return;
+        state.playedVer = v; refresh();
+        const f = analyze(ids), ck = checks(ids, f.map);
+        finish(f);
+        if (!f.key || f.key === 'one') return;
+        const ok = () => state.ver === v && !state.play && state.mode === 'build';
+        V.say(ck.same ? [L.form[f.key], L.sameNotes] : L.form[f.key], {key: 'form', valid: ok});
+      }});
+  };
+  // the end of a Play: the parts that come back lift for a moment and the Form card lights, so the shape is seen too
+  let finT = 0;
+  function finish(f) {
+    clearFinish();
+    const home = f.toks.filter(t => t.L === 'A').length >= 2;
+    f.toks.forEach((t, i) => { if (home && t.L === 'A') slots[i].classList.add('home'); });
+    $('fc').classList.add('fin');
+    finT = setTimeout(clearFinish, 1800);
+  }
+  function clearFinish() { clearTimeout(finT); slots.forEach(b => b.classList.remove('home')); $('fc').classList.remove('fin'); }
+  function hearSection(id, btn) {
+    if (state.play && state.play.kind === 'sec' && state.play.id === id) { stopPlay(); return; }
+    const pk = $('pk-' + id), copies = state.strip.map((x, i) => x === id ? slots[i] : null).filter(Boolean);
+    startPlay('sec', MS.rows(notesOf(id), {scale: 'penta', instr: state.sections[id].instr}), {id, beats: 8,
+      onStep: i => { clearMarks(); mark(pk, i, 8); copies.forEach(b => mark(b, i, 8)); },
+      onEnd: () => V.welcome()});                // a first tap on Hear put the welcome off: it gets its turn now (said once)
+  }
+
+  // ---------- speed, starters, clear ----------
+  SPEEDS.forEach(([n, v], i) => {
+    const b = document.createElement('button'); b.className = 'btn'; b.textContent = n; b.title = v + ' beats a minute';
+    b.setAttribute('aria-label', `${n}, ${v} beats a minute`);
+    b.onclick = () => { state.speed = i; if (state.play && state.play.kind !== 'phrase') state.play.player.bpm = bpm(); save(); refresh(); };
+    $('speeds').append(b);
+  });
+  $('starter').add(new Option('Choose a starter song', ''));
+  for (const k in STARTERS) $('starter').add(new Option(STARTERS[k].name, k));
+  function loadStarter(k) {
+    const st = STARTERS[k];
+    state.sections = JSON.parse(JSON.stringify(st.sections));
+    state.order = Object.keys(st.sections); state.strip = st.strip.slice(); state.starter = k;
+    state.sel = null; state.slot = null; state.editing = null; state.focusSlot = 0;
+  }
+  const untouched = () => !state.strip.length;
+  $('starter').onchange = () => {
+    const k = $('starter').value; if (!k) return;
+    stopPlay();
+    if (untouched()) { loadStarter(k); changed(); return; }
+    ask('load', k);
+  };
+  $('clear').onclick = () => { stopPlay(); ask('clear'); };
+  function ask(kind, arg) {
+    state.confirm = {kind, arg};
+    if (kind === 'restart') $('restartrow').append($('confirm')); else $('clearrow').after($('confirm'));   // the question sits where its button was
+    $('cfq').textContent = kind === 'clear' ? 'Clear your whole song, notes and all?' : kind === 'restart' ? 'Start this song over?' : `Load ${STARTERS[arg].name} in place of your song?`;
+    refresh();
+    $('no').focus({preventScroll: true});
+  }
+  $('yes').onclick = () => {
+    const c = state.confirm; if (!c) return;
+    state.confirm = null;
+    if (c.kind === 'clear') {
+      // back to the first screen (the first sections, an empty strip), and nothing saved until the next change
+      loadStarter('sunny'); state.strip = []; state.starter = '';
+      try { localStorage.removeItem(SAVE); } catch {}
+      changed(false, false);
+    } else if (c.kind === 'restart') { lReset(); }
+    else { loadStarter(c.arg); changed(); }
+    $(c.kind === 'clear' ? 'clear' : c.kind === 'restart' ? 'listen' : 'starter').focus({preventScroll: true});
+  };
+  $('no').onclick = () => {
+    const c = state.confirm; state.confirm = null;
+    if (c && c.kind === 'load') $('starter').value = state.starter || '';
+    refresh();
+    $(c && c.kind === 'load' ? 'starter' : c && c.kind === 'restart' ? (state.l.phase === 'idle' ? 'listen' : 'lrestart') : 'clear').focus({preventScroll: true});
+  };
+
+  // ---------- save on this device ----------
+  const SAVE = 'curio-song-form-builder';
+  function save() {
+    try { localStorage.setItem(SAVE, JSON.stringify({v: 1, sections: state.sections, order: state.order, strip: state.strip, speed: state.speed, starter: state.starter})); } catch {}
+  }
+  function restore() {
+    try {
+      const d = JSON.parse(localStorage.getItem(SAVE) || 'null');
+      if (!d || d.v !== 1 || !d.sections || !d.sections.A || !Array.isArray(d.strip)) return false;
+      const okId = id => typeof id === 'string' && /^[A-D]p?$/.test(id) && d.sections[id];
+      if (!d.order.every(okId) || !d.strip.every(okId) || d.strip.length > 8) return false;
+      Object.assign(state, {sections: d.sections, order: d.order, strip: d.strip, speed: clamp(d.speed | 0, 0, 2), starter: d.starter || ''});
+      return true;
+    } catch { return false; }
+  }
+
+  // ---------- Listen ----------
+  SONGS.forEach((s, i) => $('lsong').add(new Option(s.name, i)));
+  const song = () => SONGS[state.l.song];
+  const lslots = [];
+  function buildLStrip() {
+    $('lstrip').textContent = ''; lslots.length = 0;
+    song().form.forEach((_, i) => {
+      const b = document.createElement('div'); b.className = 'slot'; b.setAttribute('role', 'img');
+      $('lstrip').append(b); lslots.push(b);
+    });
+    relayout(true);
+  }
+  // persistent answer buttons: per letter Same, Almost, Hear; per labeled twin Same and Hear; plus New.
+  // The big panel button is Listen, Stop, Hear it again (while a part waits for its label) or Play whole song (at the end).
+  const AB = {}, AIDS = ['A', 'Ap', 'B', 'Bp', 'C', 'Cp', 'D', 'Dp'];
+  for (const x of AIDS) {
+    const r = document.createElement('div'); r.className = 'arow' + (isTwin(x) ? ' tw' : ''); r.hidden = true;
+    const S = SEC[base(x)], sx = shown(x), say = sx.replace('′', ' prime');
+    const chip = `<span class="chip" style="background:${isTwin(x) ? `repeating-linear-gradient(135deg,${S.color} 0 4px,${S.dark} 4px 7px)` : S.color}"></span>`;
+    r.innerHTML = `<button class="btn" id="a-same-${x}" aria-label="Same as ${say}">${chip}Same as ${sx}</button>`
+      + (isTwin(x) ? '' : `<button class="btn" id="a-almost-${x}" aria-label="Almost the same as ${x}">${chip}Almost ${x}</button>`)
+      + `<button class="btn" id="a-hear-${x}" aria-label="Hear ${say}">${ICON.hear}${sx}</button>`;
+    $('arows').append(r); AB[x] = r;
+    r.querySelector('#a-same-' + x).onclick = () => answer(x);
+    if (!isTwin(x)) r.querySelector('#a-almost-' + x).onclick = () => answer(x + 'p');
+    r.querySelector('#a-hear-' + x).onclick = () => hearLetter(x);
+  }
+  $('a-new').onclick = () => answer('new');
+  const usedLetters = () => [...new Set(state.l.labels.filter(Boolean).map(base))];
+  function lReset() {
+    stopPlay();
+    const l = state.l; l.labels = []; l.k = 0; l.phase = 'idle'; l.miss = 0; l.wrong = false; l.tok++;
+    state.l.msg = '';
+    buildLStrip(); refresh();
+  }
+  $('lsong').onchange = () => { state.l.song = +$('lsong').value; state.confirm = null; lReset(); V.dropQueued(); };
+  $('lrestart').onclick = () => { if (state.l.phase === 'idle') return; V.hush(); lHalt(); ask('restart'); };
+  function playPhrase(k, onEnd) {
+    const s = song(), ph = s.ph[s.form[k]];
+    return startPlay('phrase', ph.events.map(e => ({...e, instr: 'piano'})), {id: k, bpm: 100, beats: ph.beats,
+      onStep: i => { clearMarks(); lslots[k].classList.add('now'); if (state.l.labels[k]) mark(lslots[k], i, ph.beats); },
+      onEnd});
+  }
+  function hearLetter(x) {
+    const l = state.l, k = l.labels.indexOf(x);
+    if (k < 0 || l.phase !== 'answer') return;
+    l.tok++;
+    refresh();
+    playPhrase(k);
+  }
+  // Listen: phrase 1 is placed as A, then each next phrase plays and waits for a label
+  const BUSY = ['playing', 'reveal', 'compare'];
+  const lBusy = () => !!state.play || BUSY.includes(state.l.phase);
+  // stop whatever Listen is doing and settle on a waiting step: the next part to label, or the start
+  function lHalt() {
+    const l = state.l, n = song().form.length;
+    l.tok++; stopPlay();
+    if (!BUSY.includes(l.phase)) return;
+    if (l.labels[l.k]) { if (l.k + 1 < n) { l.k++; l.miss = 0; l.wrong = false; l.phase = 'answer'; } else l.phase = 'done'; }
+    else l.phase = l.k === 0 ? 'idle' : 'answer';
+    if (l.phase === 'idle') l.labels = [];
+    state.l.msg = '';
+  }
+  $('listen').onclick = async () => {
+    const l = state.l;
+    if (state.confirm) return;
+    if (lBusy()) { V.hush(); lHalt(); refresh(); return; }
+    if (l.phase === 'answer') { l.tok++; playPhrase(l.k); return; }            // Hear it again
+    if (l.phase === 'done') { playWhole(); return; }
+    const tok = ++l.tok;
+    l.phase = 'playing'; refresh();
+    if (await phraseDone(0) !== 'end' || tok !== l.tok) return;
+    l.labels[0] = 'A'; drawLStrip();
+    await wait(450); if (tok !== l.tok) return;
+    nextPhrase(1, tok);
+  };
+  const phraseDone = k => playPhrase(k).player.done;
+  async function nextPhrase(k, tok) {
+    const l = state.l;
+    l.k = k; l.miss = 0; l.wrong = false; l.phase = 'playing'; state.l.msg = ''; refresh();
+    await phraseDone(k);
+    if (tok !== l.tok) return;
+    l.phase = 'answer'; refresh();
+  }
+  async function answer(a) {
+    const l = state.l, s = song();
+    if (l.phase !== 'answer' || state.confirm) return;
+    const truth = s.form[l.k], used = usedLetters();
+    const pick = a === 'new' ? 'ABCD'[used.length] : a;
+    const tok = ++l.tok;
+    stopPlay(); V.hush();                        // an answer makes any line about the last one stale
+    const why = l.labels.includes(truth) ? 'same' : isTwin(truth) ? 'twin' : 'new';
+    if (pick === truth) {
+      MS.chime(true);
+      l.msg = why === 'same' ? `Yes! ${shown(truth)} again: the same music.` : why === 'twin' ? `Yes! ${shown(truth)}: same start, new ending.` : `Yes! New music: ${truth}.`;
+      return place1(truth, tok, L.right[why], false);
+    }
+    l.miss++;
+    if (l.miss >= 2) {
+      l.msg = why === 'same' ? `It's ${shown(truth)} again: exactly the same music.` : why === 'twin' ? `It's ${shown(truth)}: same start, different ending.` : `It's ${truth}: new music.`;
+      return place1(truth, tok, L.reveal[why], true);
+    }
+    // a wrong label: play the part it was compared with, then this part again, at once and with the answers locked;
+    // then ask again
+    l.wrong = true;
+    const cmp = a === 'new' ? (l.labels.includes(truth) ? truth : base(truth)) : (l.labels.includes(a) ? a : base(a));
+    const ck = l.labels.indexOf(cmp);
+    l.msg = ck >= 0 ? `Not quite. Listen to part ${ck + 1}, then part ${l.k + 1} again.` : `Not quite. Listen to part ${l.k + 1} again.`;
+    l.phase = 'compare'; refresh();
+    if (ck >= 0) { if (await phraseDone(ck) !== 'end' || tok !== l.tok) return; await wait(350); if (tok !== l.tok) return; }
+    if (await phraseDone(l.k) !== 'end' || tok !== l.tok) return;
+    l.phase = 'answer'; refresh();
+    V.say('listenWrong', {valid: () => l.tok === tok && l.phase === 'answer' && !state.play && state.mode === 'listen'});
+  }
+  async function place1(id, tok, line, reveal) {
+    const l = state.l, s = song();
+    l.labels[l.k] = id; l.wrong = false; l.phase = reveal ? 'reveal' : 'playing'; refresh();   // no second answer while the next part comes
+    // the line, and at least a moment to read the Yes or the answer on screen (with Sound off too)
+    await Promise.all([V.say(line, {valid: () => l.tok === tok && state.mode === 'listen', wait: true}), wait(reveal ? 600 : 1100)]);
+    if (tok !== l.tok) return;
+    if (l.k + 1 < s.form.length) { await wait(reveal ? 300 : 450); if (tok !== l.tok) return; nextPhrase(l.k + 1, tok); return; }
+    l.phase = 'done'; state.l.msg = ''; refresh();
+    V.say(L.end[s.end], {valid: () => l.tok === tok && state.mode === 'listen' && !state.play});
+  }
+  function playWhole() {
+    const s = song();
+    const ev = [], starts = []; let t = 0;
+    s.form.forEach(id => { starts.push(t); ev.push(...s.ph[id].events.map(e => ({...e, beat: e.beat + t, instr: 'piano'}))); t += s.ph[id].beats; });
+    startPlay('whole', ev, {bpm: 100, beats: t, id: 'whole',
+      onStep: i => { clearMarks(); let k = starts.length - 1; while (k > 0 && starts[k] > i) k--; lslots[k].classList.add('now'); mark(lslots[k], i - starts[k], s.ph[s.form[k]].beats); }});
+  }
+  function drawLStrip() {
+    const s = song(), l = state.l;
+    lslots.forEach((b, i) => {
+      const id = l.labels[i], key = id ? id : (i === l.k && l.phase !== 'idle' && l.phase !== 'done' ? 'q' : 'e');
+      if (b.dataset.k !== key) {
+        b.dataset.k = key;
+        b.innerHTML = '<span class="ph"></span>' + (id ? blockHTML(id, phrasePts(s.ph[s.form[i]]), s.ph[s.form[i]].beats) : `<span class="num">${key === 'q' ? '?' : i + 1}</span>`);
+      }
+      b.classList.toggle('full', !!id);
+      b.classList.toggle('cur', key === 'q');
+      b.setAttribute('aria-label', id ? `Part ${i + 1}: ${desc(id)}` : `Part ${i + 1}: ${key === 'q' ? 'listening now' : 'not labeled yet'}`);
+    });
+  }
+
+  // ---------- the hint (the tool owns it: it always names the next control) ----------
+  function hintKey() {
+    if (state.mode === 'build') {
+      if (state.confirm) return state.confirm.kind === 'clear' ? 'confirmClear' : 'confirmLoad';
+      if (state.play) return state.play.kind === 'sec' ? 'hearing' : 'playing';
+      if (state.editing) return isTwin(state.editing) ? 'editTwin' : 'edit';
+      if (state.sel) return state.strip.length >= 8 ? 'placeFull' : 'place';
+      if (state.slot != null) { const id = state.strip[state.slot]; return canTwin(id) ? 'slot' + id : 'slot'; }
+      if (!state.strip.length) return 'start';
+      if (state.strip.some(twinSame)) return 'twinSame';
+      if (state.strip.length >= 8) return 'full';
+      return state.playedVer === state.ver ? 'after' : 'play';
+    }
+    const l = state.l;
+    if (state.confirm) return 'confirmRestart';
+    if (l.phase === 'reveal' && !state.play) return 'lReveal';
+    if (l.phase === 'compare') return 'lCompare';
+    if (state.play || l.phase === 'playing' || l.phase === 'reveal') return 'lPlaying';
+    if (l.phase === 'idle') return 'lStart';
+    if (l.phase === 'done') return 'lDone';
+    return l.wrong ? 'lWrong' : 'lAnswer';
+  }
+  const hintText = () => H[hintKey()];
+
+  // ---------- one redraw for everything that is not the stage layout ----------
+  function changed(resetSlot = true, keep = true) {
+    state.ver++;
+    if (resetSlot && state.slot != null && state.slot >= state.strip.length) state.slot = null;
+    if (keep) save();
+    clearFinish();
+    refresh();
+  }
+  function setBtn(b, on) { if (on) b.removeAttribute('aria-disabled'); else b.setAttribute('aria-disabled', 'true'); }
+  function refresh() {
+    const build = state.mode === 'build', l = state.l;
+    $('m-build').setAttribute('aria-pressed', build); $('m-listen').setAttribute('aria-pressed', !build);
+    $('sb').hidden = !build; $('sl').hidden = build;
+    $('play').hidden = !build; $('pb-more').hidden = !build;
+    $('pl-top').hidden = build; $('listen').hidden = build;
+    const h = hintText(); if ($('hint').textContent !== h) $('hint').textContent = h;
+    // build
+    const playingSong = state.play && (state.play.kind === 'song' || state.play.kind === 'sec');
+    $('play').innerHTML = playingSong ? '■ Stop' : '▶ Play song';
+    drawShelf(); drawStrip();
+    $('shelfwrap').hidden = !!state.editing; $('bar').hidden = !!state.editing; $('editor').hidden = !state.editing;
+    if (state.editing) drawEditor();
+    for (const id of state.order) {
+      const hb = $('hr-' + id), on = state.play && state.play.kind === 'sec' && state.play.id === id;
+      hb.innerHTML = (on ? ICON.stop + 'Stop' : ICON.hear + 'Hear');
+    }
+    // the bar under the strip: actions for the chosen block (buttons stay in place; focus moves only if one hides)
+    const sid = state.slot != null ? state.strip[state.slot] : null, fe = document.activeElement;
+    $('barlab').innerHTML = sid ? `<b>Space ${state.slot + 1}: ${shown(sid)}</b>` : !state.strip.length ? 'Your song strip: 8 spaces.' : state.sel ? '' : 'Tap a block in the song strip to hear it, twin it or remove it.';
+    const hearOn = state.play && state.play.kind === 'sec' && state.play.id === sid;
+    $('b-hear').innerHTML = hearOn ? ICON.stop + 'Stop' : ICON.hear + 'Hear';
+    $('b-twin').textContent = sid && canTwin(sid) ? `Make it ${sid}′` : '';
+    $('b-twin').setAttribute('aria-label', sid && canTwin(sid) ? `Make it ${sid} prime` : '');
+    $('b-hear').hidden = !sid; $('b-rm').hidden = !sid; $('b-twin').hidden = !(sid && canTwin(sid));
+    if (fe && fe.hidden) (sid ? $('b-hear') : slots[state.focusSlot]).focus({preventScroll: true});
+    [...$('speeds').children].forEach((b, i) => b.setAttribute('aria-pressed', i === state.speed));
+    if ($('starter').value !== (state.starter || '') && !state.confirm) $('starter').value = state.starter || '';
+    $('clearrow').hidden = !!state.confirm && state.confirm.kind !== 'restart'; $('confirm').hidden = !state.confirm;
+    // the Form card
+    if (build) {
+      const f = analyze(state.strip), ck = checks(state.strip, f.map);
+      $('fc-let').textContent = f.letters;
+      $('fc-name').textContent = f.key ? f.name : 'Put blocks in the song strip to see its form.';
+      const notes = [...f.renamed]; if (ck.same) notes.push(ck.same); if (ck.twinSame) notes.push(ck.twinSame);
+      if (f.key === 'rondo' && new Set(f.toks.map(t => t.L)).size === 2) notes.push('Most rondos bring a new part each time (A B A C A).');
+      $('fc-note').textContent = notes.join(' ');
+      $('fc-end').textContent = ck.end;
+      $('fc-copies').textContent = state.editing && state.ed && state.ed.copies != null ? (state.ed.copies === 1 ? '1 copy changed' : state.ed.copies ? `${state.ed.copies} copies changed` : 'Not in the song strip yet') : '';
+    } else {
+      const s = song(), done = l.phase === 'done', f = analyze(l.labels.filter(Boolean));
+      $('fc-let').textContent = f.letters;
+      $('fc-name').textContent = done ? f.name : `Label every part to see the form. ${l.labels.filter(Boolean).length} of ${s.form.length} done.`;
+      $('fc-note').textContent = done ? f.renamed.join(' ') : '';
+      $('fc-end').textContent = done ? L.end[s.end].replace(/ A prime/g, ' A′') : '';
+      $('fc-copies').textContent = '';
+      $('listen').innerHTML = lBusy() ? '■ Stop' : l.phase === 'idle' ? '▶ Listen' : l.phase === 'done' ? '▶ Play whole song' : '↻ Hear it again';
+      setBtn($('listen'), !state.confirm);
+      $('restartrow').hidden = l.phase === 'idle' && !state.confirm; $('lrestart').hidden = !!state.confirm;
+      // answer buttons: shown for the letters (and labeled twins) so far; usable only while waiting for a label;
+      // hidden at the end so Play whole song stands out
+      const used = usedLetters(), canAns = l.phase === 'answer' && !state.confirm, done2 = l.phase === 'done';
+      for (const x of AIDS) {
+        AB[x].hidden = done2 || (isTwin(x) ? !l.labels.includes(x) : !used.includes(x));
+        setBtn($('a-same-' + x), canAns); if (!isTwin(x)) setBtn($('a-almost-' + x), canAns);
+        setBtn($('a-hear-' + x), canAns);
+      }
+      $('a-new').hidden = used.length >= 4 || done2;
+      setBtn($('a-new'), canAns);
+      $('ask').hidden = l.phase === 'idle';
+      $('askq').textContent = l.phase === 'done' ? `All ${s.form.length} parts labeled.` : l.msg || (l.labels.length ? `Part ${l.k + 1} of ${s.form.length}` : `Part 1 of ${s.form.length}`);
+      if (fe && fe.closest && fe.closest('#ask') && fe.closest('[hidden]')) $('listen').focus({preventScroll: true});
+      drawLStrip();
+    }
+    relayout();
+  }
+
+  // ---------- modes ----------
+  function setMode(m) {
+    if (m === state.mode) return;
+    stopPlay(); V.hush();
+    if (state.mode === 'listen') lHalt();
+    state.mode = m; state.sel = null; state.confirm = null;
+    refresh(); relayout(true);
+    V.welcome();
+  }
+  addEventListener('keydown', e => { if (e.key === 'Escape' && (state.sel || state.slot != null)) { state.sel = null; state.slot = null; refresh(); } });
+  $('m-build').onclick = () => setMode('build');
+  $('m-listen').onclick = () => setMode('listen');
+
+  const V = Curio.voice({
+    lines: L, scope: () => state.mode, hint: false, read: () => spoken(hintText()),
+    welcome: () => state.mode === 'build'
+      ? ['welcomeBuild', {valid: () => !state.strip.length && !state.play && !state.editing && !state.confirm}]
+      : ['welcomeListen', {valid: () => state.l.phase === 'idle' && !state.play}],
+  });
+
+  // ---------- layout: real pixels per stage size ----------
+  let page = '', lastKey = '';
+  function pageLayout() { const w = innerWidth, h = innerHeight; return w >= 1000 && h >= 700 ? 'wide' : w >= 600 && w / h >= 1.25 ? 'compact' : 'stack'; }
+  function relayout(force) {
+    const p = pageLayout();
+    if (p !== page) { page = p; for (const c of ['wide', 'compact', 'stack']) document.body.classList.toggle(c, c === p); }
+    document.body.classList.toggle('big', page === 'wide' && innerWidth >= 1600 && innerHeight >= 900);   // a projector or big screen
+    const st = $('stage'), r = st.getBoundingClientRect();
+    const key = [page, state.mode, !!state.editing, Math.round(r.width), Math.round(r.height), lslots.length].join(':');
+    if (key === lastKey && !force) return;
+    lastKey = key;
+    const W = Math.max(280, r.width), H = page === 'stack' ? 9999 : Math.max(240, r.height);
+    const pad = W < 520 ? 8 : 12, gap = W < 520 ? 6 : 8, inner = W - 2 * pad;
+    const sv = (k, v) => st.style.setProperty(k, v);
+    sv('--pad', pad + 'px'); sv('--gap', gap + 'px');
+    // the strip: one row of 8, or 2 rows of 4 when a block would be narrower than 50 px
+    const n = state.mode === 'build' ? 8 : Math.max(1, lslots.length);
+    let cols = n, bw = (inner - (cols - 1) * gap) / cols;
+    // build slots are targets (44 px at least); listen parts only show, so they stay in one row down to 36 px
+    const minW = state.mode === 'listen' ? 36 : state.editing && page === 'compact' ? 44 : 50;
+    if (bw < minW && n > 4) { cols = Math.ceil(n / 2); bw = (inner - (cols - 1) * gap) / cols; }
+    const maxBw = 150;
+    if (bw > maxBw) bw = maxBw;
+    const rows = Math.ceil(n / cols);
+    let bh;
+    if (page === 'stack') bh = clamp(bw * .82, 64, 104);
+    else bh = clamp(Math.min(bw * 1.05, (H - 2 * pad) * (state.mode === 'build' ? .2 : .22)), 56, 130);
+    let cw = 0, ch = 0, tight = false, narrow = false;
+    if (state.mode === 'build' && state.editing) {
+      cw = clamp((inner - 7 * 2) / 8, 44, 76);
+      if (page !== 'stack') {
+        // the editor's rows below the strip: toolbar 50, beat numbers 18 + 6, grid, tip 18 + 6 (3 gaps between the parts)
+        let room = H - 2 * pad - 3 * gap - 50 - 24 - 24;
+        if (room - rows * 56 - (rows - 1) * gap - 6 * 44 - 10 < 0) {
+          tight = true;                          // a short box: drop the beat numbers and tip, 1 px cell gaps
+          room = H - 2 * 6 - 2 * 4 - 44;
+          bh = Math.min(bh, Math.max(40, (room - 6 * 44 - 5 - (rows - 1) * 4) / rows));
+          ch = clamp((room - rows * bh - (rows - 1) * 4 - 5) / 6, 44, 60);
+          sv('--pad', '6px'); sv('--gap', '4px');
+        } else {
+          ch = clamp((room - rows * bh - (rows - 1) * gap - 5 * 2) / 6, 44, 60);
+          const over = rows * bh + (rows - 1) * gap + 6 * ch + 5 * 2 - room;
+          if (over > 0) bh = Math.max(44, bh - over / rows);
+        }
+      } else {
+        if ((inner - 14) / 8 < 44) {               // a phone: 1 px between cells and a 4 px edge so 8 columns of 44 px fit
+          sv('--pad', '4px'); narrow = true;
+          cw = Math.max(44, Math.floor((W - 8 - 7) / 8));
+        }
+        ch = clamp(cw * .8, 44, 56);
+      }
+    }
+    $('sb').classList.toggle('narrow', narrow);
+    $('sb').classList.toggle('tight', tight);
+    $('sb').classList.toggle('editing', !!state.editing);
+    const lf = clamp(Math.min(bh * .3, bw * .36), 14, 34);
+    sv('--cols', cols); sv('--bh', Math.round(bh) + 'px'); sv('--lf', Math.round(lf) + 'px');
+    sv('--cw', Math.floor(cw) + 'px'); sv('--ch', Math.floor(ch) + 'px');
+    sv('--sw', Math.round(clamp(bw * 1.05, 124, 160)) + 'px');
+    $('strip').style.maxWidth = $('lstrip').style.maxWidth = Math.round(cols * bw + (cols - 1) * gap) + 'px';
+    sv('--sbw', Math.max(Math.round(cols * bw + (cols - 1) * gap), Math.min(inner, 640)) + 'px');   // shelf, bar and editor line up under the strip
+    for (const s of ['strip', 'lstrip']) $(s).classList.toggle('small', bh < 56);
+    reserve();
+  }
+  // reserve the hint's and Form card's height for their longest text, so the panel never jumps
+  function reserve() {
+    const hint = $('hint'), w = hint.clientWidth; if (!w) return;
+    const m = hint.cloneNode(); m.removeAttribute('id'); Object.assign(m.style, {position: 'absolute', visibility: 'hidden', width: w + 'px', minHeight: '0'});
+    hint.parentElement.append(m);
+    let mx = 0; for (const t of Object.values(H)) { m.textContent = t; mx = Math.max(mx, m.offsetHeight); }
+    m.remove(); hint.style.minHeight = mx + 'px';
+    const fc = $('fc'), c = fc.cloneNode(true); c.removeAttribute('id'); c.querySelectorAll('[id]').forEach(e => e.removeAttribute('id'));
+    Object.assign(c.style, {position: 'absolute', visibility: 'hidden', width: fc.offsetWidth + 'px', minHeight: '0'});
+    const ps = c.querySelectorAll('p');
+    ps[0].textContent = 'A B A C A B A′ D'; ps[1].textContent = 'Through-composed: nothing comes back.';
+    // on a phone the card reserves less (one note line, no copies line), so the shelf stays near the top
+    ps[2].textContent = page === 'stack' ? 'Your B plays the A part.' : 'Your B plays the A part. A and B have the same notes, so they sound like A A.';
+    ps[3].textContent = 'Ends away from do: sounds like it wants more.'; ps[4].textContent = page === 'stack' ? '' : '3 copies changed';
+    fc.parentElement.append(c); const fh = c.offsetHeight; c.remove();
+    fc.style.minHeight = fh + 'px';
+  }
+  new ResizeObserver(() => relayout()).observe($('stage'));
+  addEventListener('resize', () => relayout());
+
+  // ---------- start ----------
+  if (!restore()) { loadStarter('sunny'); state.strip = []; state.starter = ''; }
+  Curio.init({clips: "voice:*", rate: .95});
+  $('read').onclick = () => { if (state.mode === 'listen') lHalt(); else stopPlay(); refresh(); V.read(); };   // Read stops the music first
+  buildLStrip();
+  refresh(); relayout(true);
+
+  // for checking frames
+  window.__tool = {
+    state, setMode, allLines: V.allLines, vlog: V.log, get vq() { return V.queue; }, V, analyze, checks, hintText, notesOf, MS,
+    place, openEditor, setCell, relayout,
+    layout: () => ({page, bh: getComputedStyle($('stage')).getPropertyValue('--bh'), lf: getComputedStyle($('stage')).getPropertyValue('--lf'),
+      cw: getComputedStyle($('stage')).getPropertyValue('--cw'), ch: getComputedStyle($('stage')).getPropertyValue('--ch')}),
+  };
+})();
+</script>
+</body>
+</html>
