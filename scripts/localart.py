@@ -9,7 +9,8 @@ picked, so look at every candidate first. --pick copies the candidate to art/raw
 so the cutout, trim and sizing options work exactly as they do for Gemini art.
 
 Model: FLUX.1-schnell Q6_K GGUF (Apache 2.0) with the T5-XXL fp8 and CLIP-L encoders and the FLUX VAE, in
-S:\AI\models\flux, served by S:\AI\Start-FluxModel.bat on port 5002 (CURIO_SD_URL overrides). Schnell is distilled:
+S:\AI\models\flux, served by S:\AI\Start-FluxModel.bat on port 5002 (CURIO_SD_URL overrides). For many pictures at once,
+scripts/fluxbatch.py draws from the same files without KoboldCpp, about twice as fast. Schnell is distilled:
 4 steps, guidance 1, no negative prompt. Assets marked "people": true or "skip_local": true are never drawn here
 (the first local model tried, a Pony SDXL merge, drew a 13-year-old in underwear; people get Gemini and a review).
 Color codes are left out of the prompt: FLUX paints "#00FF00" into the picture as text.

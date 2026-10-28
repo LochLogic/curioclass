@@ -51,7 +51,9 @@ Generated art is credited in each tool's `tool.json` sources as "Illustrations g
 
 ## Local art (no API)
 
-When Gemini is unavailable (no credits) or for large batches, `scripts/localart.py` draws on this PC with FLUX.1-schnell (Apache 2.0) in KoboldCpp. Start `S:\AI\Start-FluxModel.bat` first (port 5002, about 10 s an image on the RTX 5080; `--sdoffloadcpu` is what makes the 16 GB card fast enough).
+When Gemini is unavailable (no credits) or for large batches, `scripts/localart.py` draws on this PC with FLUX.1-schnell (Apache 2.0) in KoboldCpp. Start `S:\AI\Start-FluxModel.bat` first (port 5002, about 7 s an image on the RTX 5080; `--sdoffloadcpu` swaps the text encoder and the image model in and out of the 16 GB card for every image).
+
+- **Batches: `scripts/fluxbatch.py`** draws from the same model files in Python (diffusers), without KoboldCpp, in two phases: it encodes every prompt with T5-XXL and CLIP-L, frees them, then keeps the FLUX transformer and VAE on the card and draws the lot back to back. About 37 s to set up, then 3.6 s an image at 768 px (20 Word Wall cards: 108 s against 144 s; a few hundred: about half the time). Peak 14.6 GB of 16 GB, so stop KoboldCpp first and keep one image per call (four at once spill into shared memory and slow to 9 s each). `txt2img_many([(prompt, w, h, seed, out_path), ...])`; `scripts/wordart.py` uses it for draw runs and `--redo` when it is available (`--kobold` falls back to the server). Same never-people rule.
 
 - `python scripts/localart.py <tool-id> [names] [--n 3]` draws candidates to `art/raw/<name>.c<k>.png` plus a contact sheet `_sheet-<name>.jpg`. Look at every candidate.
 - `python scripts/localart.py <tool-id> --pick name:2 ...` keys the backdrop flat (FLUX paints shaded backdrops and cast shadows), then runs `art.py --rekey` for the cutout and sizing.
