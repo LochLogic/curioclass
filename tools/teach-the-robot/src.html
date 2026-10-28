@@ -1,0 +1,1154 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Teach the Robot · Show Kip examples · Curio Class</title>
+<meta name="description" content="The class shows Kip the robot one pet at a time and says cat or dog. Kip remembers every example and guesses new pets from the one it remembers that looks most alike, so its guesses get better as the class teaches it more. Grade 2 computer science. Works offline.">
+<!--
+Teach the Robot (Curio Class)
+Grade 2, computer science, module Teach the Machine (Algorithms and Programming). Standard E2-ALG-ML-02; CSTA 2017
+crosswalk 1A-DA-07 (identify and describe patterns in data to make predictions); AI4K12 Big Idea 3 (computers can
+learn from data). The teacher drives on a projector or smartboard; the class names each pet out loud.
+Teach: show Kip 16 example pets one at a time, label each Cat or Dog, and try Mystery pets. Pet Parade: ten new pets
+walk past, Kip guesses each, and Kip's Chart keeps one bar per run with the number of pets Kip remembered.
+Kip guesses with the nearest-neighbor rule (k = 1) over six clues the class can see on every pet: ears, snout,
+whiskers, size, dark coat and fluffy. Engine: kit/ml-lab.js (docs/families/ml-lab.md). Nearest neighbors: scikit-learn
+user guide, "Nearest Neighbors". The pets and their clue values are made up for this tool; the parade scores were
+computed with the engine. Everything is drawn in code; sounds are made in the browser. One file, no network requests.
+Content CC BY 4.0, code MIT. curioclass.org
+-->
+<link rel="stylesheet" href="kit:curio">
+<style>
+:root{
+  --paper:#fbf7ef;--ink:#2b2238;--muted:#66597a;--line:#e6dccb;--brand:#16679a;--focus:#c2410c;
+  --btn:#0f5580;--btn-line:#5d95bd;--head-ink:#fff;--panel:#fffdf8;
+  --cat:#0f7c7a;--dog:#b5531a;--ok:#1f7a3f;--bad:#b42318;--wall:#f6e3c8;--floor:#c98f5a;--door:#8a5a3c;
+}
+:focus-visible{outline:4px solid var(--focus);outline-offset:3px;box-shadow:0 0 0 3px #fff}
+/* three page layouts, picked in script (relayout()), as in collision-lab:
+   wide    (1000 px or wider and 700 px or taller): stage on the left, 360 px panel on the right;
+   compact (a short landscape box such as the 16:10 embed): a narrower panel and a one-row header;
+   stack   (narrow or portrait): the stage above the panel, the page scrolls.
+   The panel comes first in the page so Tab reaches its buttons before the wall cards (spec: tab order). */
+main{grid-template-columns:minmax(0,1fr) 360px;min-height:0}
+.stage{grid-column:1;grid-row:1;min-height:0;background:var(--wall)}
+.panel{grid-column:2;grid-row:1}
+#sv{position:absolute;left:0;top:0;display:block;touch-action:manipulation}
+body.compact main{grid-template-columns:minmax(0,1fr) 290px}
+@media (min-width:900px){body.compact main{grid-template-columns:minmax(0,1fr) 320px}}
+body.compact header{padding:4px 8px;gap:6px;flex-wrap:nowrap;min-width:0}
+body.compact h1{font-size:17px;white-space:nowrap;min-width:0;overflow:hidden;text-overflow:ellipsis}
+body.compact h1 small{display:none}
+body.compact .seg{flex:none}
+body.compact .seg button,body.compact .icon-btn{min-height:60px;padding:0 9px;font-size:14px;white-space:nowrap}
+body.compact .icon-btn{flex:none}
+body.compact .panel{padding:8px;gap:7px}
+body.compact .hint{font-size:14px;line-height:1.35;min-height:4.05em}   /* three lines at 14 px, in both modes */
+/* the parade panel gives the hint its three lines by letting Kip's Chart take what is left (not less than 72 px) */
+body.compact .ctl[data-modes="parade"]{flex:1 1 auto;min-height:0}
+body.compact .ctl[data-modes="parade"] .sec:last-child{flex:1 1 auto;min-height:0;display:flex;flex-direction:column}
+body.compact #chart{height:auto;flex:1 1 auto;min-height:72px}
+body.compact .big-btn{font-size:17px;padding:0 8px}
+body.stack{height:auto}
+body.stack main{grid-template-columns:minmax(0,1fr);align-content:start}
+body.stack .panel{grid-column:1;grid-row:2;border-left:0;border-top:3px solid var(--line);overflow:visible;padding:8px 12px;gap:8px}
+body.stack .hint{min-height:0}
+@media (max-width:560px){
+  .seg{display:grid;grid-template-columns:1fr 1fr;border-radius:14px;width:100%}
+  .seg button{min-height:60px;font-size:15px;padding:0 6px}
+  .icon-btn{min-height:60px;padding:0 12px;font-size:15px}
+}
+/* K-2 targets: header buttons 60 px tall too (this tool's CSS, as robot-dance and computer-builder do) */
+.seg button,.icon-btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:60px}
+.ico{width:1.35em;height:1.35em;flex:none;display:block}
+/* panel */
+.hint{margin:0;min-height:2.9em;flex:none}
+.ctl{display:flex;flex-direction:column;gap:8px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.big-btn{display:flex;align-items:center;justify-content:center;gap:10px;min-height:60px;font-size:19px;line-height:1.1;text-align:left}
+.big-btn .ico{width:34px;height:34px}
+.big-btn.cat{background:var(--cat);--ib:var(--cat)}
+.big-btn.dog{background:var(--dog);--ib:var(--dog)}
+.big-btn.act{--ib:var(--brand)}
+.big-btn.soft{background:#fff;color:var(--ink);border:3px solid var(--line);box-shadow:0 4px 0 #0000001a;--ib:#fff}
+.big-btn.soft .ico{color:var(--brand)}
+.big-btn.forget{background:#fff;color:var(--bad);border:3px solid var(--bad);box-shadow:0 4px 0 #0000001a}
+.big-btn.stop{background:var(--ink)}
+/* busy buttons stay focusable (aria-disabled) so a keyboard user keeps their place */
+.big-btn:disabled,.big-btn[aria-disabled="true"]{opacity:.4;filter:saturate(.5);cursor:default}
+.big-btn:not(:disabled):not([aria-disabled="true"]):active{transform:translateY(2px);box-shadow:0 2px 0 #0003}
+.pulse{animation:pulse .5s ease-in-out 2;box-shadow:0 0 0 6px #ffd34d,0 5px 0 #0003!important}
+/* the mode switcher clips outside shadows, so its pulse is drawn inside the button */
+.seg button.pulse{animation:segpulse .5s ease-in-out 2;box-shadow:inset 0 0 0 6px #ffd34d!important}
+@keyframes segpulse{0%,100%{background:#ffd34d;color:#2b2238}50%{background:#fff3c4;color:#2b2238}}
+@keyframes pulse{50%{transform:scale(1.05)}}
+.mem{display:flex;align-items:center;flex-wrap:wrap;gap:4px 8px;font-weight:700;font-size:16px;color:var(--ink)}
+.mem b{font:800 34px 'Trebuchet MS',sans-serif;color:var(--brand);line-height:1}
+.mem{font-size:18px}
+.paws{display:flex;flex-wrap:wrap;gap:3px;color:var(--brand)}
+.paws .ico{width:24px;height:24px}
+body.compact .mem{font-size:15px}
+body.compact .mem b{font-size:24px}
+body.compact .paws{display:none}
+body.stack .paws .ico{width:18px;height:18px}
+.sec{background:#fff;border:2px solid var(--line);border-radius:14px;padding:8px 10px}
+.sec h2{margin:0 0 4px;font:800 16px 'Trebuchet MS',sans-serif;display:flex;align-items:center;gap:6px}
+.slots{display:grid;grid-template-columns:repeat(10,1fr);gap:4px}
+.slot{aspect-ratio:1;border-radius:50%;border:2px dashed #b9ab95;display:grid;place-items:center;font:700 14px 'Segoe UI',sans-serif;color:var(--muted);min-width:0}
+.slot.cur{border:3px solid var(--brand);color:var(--brand)}
+.slot.ok{background:var(--ok);border:2px solid var(--ok);color:#fff}
+.slot.bad{background:var(--bad);border:2px solid var(--bad);color:#fff}
+.slot .ico{width:72%;height:72%}
+.tally{margin:6px 0 0;font:800 24px 'Trebuchet MS',sans-serif;text-align:center}
+.tally:empty{display:none}
+#chart{height:190px;position:relative}
+body.compact .sec{padding:6px 8px}
+body.compact .sec h2{font-size:14px;margin-bottom:2px}
+body.compact .tally{display:none}   /* the stage shows the same "7 of 10" large; its room goes to Kip's Chart */
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+/* stage pieces drawn in SVG */
+.spin{animation:spin 1.1s linear infinite;transform-box:fill-box;transform-origin:center}
+@keyframes spin{to{transform:rotate(360deg)}}
+.glow{animation:glow 1s ease-in-out infinite alternate}
+@keyframes glow{from{opacity:.55}to{opacity:1}}
+.card{cursor:pointer;outline:none}
+.card .ring{display:none}
+.card:focus-visible .ring{display:inline}
+</style>
+</head>
+<body>
+<header>
+  <h1>Teach the Robot <small>Show Kip examples</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-teach" aria-pressed="true"><span data-ico="book"></span>Teach</button>
+    <button id="m-parade" aria-pressed="false"><span data-ico="flag"></span>Pet Parade</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true" title="Turn animation on or off">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+  <button class="icon-btn" id="read">🔊 Read</button>
+</header>
+<main>
+  <aside class="panel" id="panel">
+    <p class="hint" id="hint" aria-live="polite"></p>
+    <div class="ctl" data-modes="teach">
+      <button class="big-btn act" id="next"><span data-ico="paw"></span>Next pet</button>
+      <button class="big-btn act" id="go-parade" hidden><span data-ico="flag"></span>Pet Parade</button>
+      <div class="row2">
+        <button class="big-btn cat" id="cat" disabled><span data-ico="cat"></span>Cat</button>
+        <button class="big-btn dog" id="dog" disabled><span data-ico="dog"></span>Dog</button>
+      </div>
+      <div class="row2">
+        <button class="big-btn soft" id="mystery"><span data-ico="ask"></span>Mystery pet</button>
+        <button class="big-btn soft" id="over"><span data-ico="redo"></span>Start over</button>
+      </div>
+      <button class="big-btn forget" id="forget" hidden><span data-ico="trash"></span>Forget</button>
+      <div class="mem" id="mem"><span>Kip remembers: <b id="memN">0</b></span><span class="paws" id="paws" aria-hidden="true"></span></div>
+    </div>
+    <div class="ctl" data-modes="parade" hidden>
+      <button class="big-btn act" id="start"><span data-ico="play"></span>Start parade</button>
+      <button class="big-btn stop" id="stop" hidden><span data-ico="stop"></span>Stop</button>
+      <div class="sec">
+        <h2>Kip's guesses</h2>
+        <div class="slots" id="slots" role="list" aria-label="Parade score"></div>
+        <p class="tally" id="tally"></p>
+      </div>
+      <div class="sec">
+        <h2>Kip's Chart</h2>
+        <div id="chart"></div>
+      </div>
+    </div>
+    <p class="sr" id="live" aria-live="polite"></p>
+  </aside>
+  <div class="stage" id="stage"><svg id="sv" xmlns="http://www.w3.org/2000/svg" role="group" aria-label="Kip the robot in the pet hotel lobby, with Kip's memory wall"></svg></div>
+</main>
+<script src="kit:curio"></script>
+<script src="kit:ml-lab"></script>
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const {wait} = Curio;
+  const NS = 'http://www.w3.org/2000/svg';
+  const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+  const lerp = (a, b, t) => a + (b - a) * t;
+  const ease = t => t < .5 ? 2 * t * t : 1 - (-2 * t + 2) ** 2 / 2;
+
+  // ======================================================================================
+  // Pets: six clues (0 to 1) that Kip compares, and the same values draw every pet
+  // ======================================================================================
+  const F = ['ears', 'snout', 'whiskers', 'size', 'dark', 'fluffy'];
+  // name, is a, coat, pattern, ears, snout, whiskers, size, dark, fluffy (spec tables, in order)
+  const pet = ([id, label, coat, pat, ...v]) => ({id, name: id, label, coat, pat, v: Object.fromEntries(F.map((f, i) => [f, v[i]]))});
+  const DECK = [
+    ['Marmalade', 'cat', '#e8913a', 'tabby', .75, .30, .70, .20, .30, .20],
+    ['Bear', 'dog', '#4a2f1f', '', .50, .55, .50, .90, .85, .85],
+    ['Inky', 'cat', '#1f1f24', '', .85, .25, .75, .30, .95, .20],
+    ['Pebble', 'dog', '#f4f1ea', '', .30, .50, .40, .20, .05, .90],
+    ['Snowball', 'cat', '#f7f5f0', '', .80, .20, .85, .35, .05, .85],
+    ['Rocket', 'dog', '#8c8f96', 'white', .85, .65, .45, .70, .50, .70],
+    ['Tiger', 'cat', '#7d7f86', 'stripes', .90, .30, .80, .60, .60, .30],
+    ['Biscuit', 'dog', '#d9a441', '', .20, .65, .35, .60, .30, .40],
+    ['Coco', 'cat', '#6e4a2e', '', .80, .25, .70, .30, .70, .20],
+    ['Pudding', 'dog', '#c49a6c', '', .35, .15, .50, .30, .45, .10],
+    ['Smoky', 'cat', '#8a8d94', '', .85, .20, .80, .50, .55, .95],
+    ['Ziggy', 'dog', '#c8642c', 'white', .85, .55, .40, .35, .35, .30],
+    ['Duchess', 'cat', '#efe1c2', '', .75, .30, .85, .65, .15, .70],
+    ['Moose', 'dog', '#222226', '', .25, .75, .35, .95, .90, .30],
+    ['Pepper', 'cat', '#26262b', 'white', .90, .20, .75, .20, .75, .15],
+    ['Scout', 'dog', '#f4f1ea', 'spots', .55, .60, .40, .45, .60, .20],   // white with dark spots #3a3a3a
+  ].map(pet);
+  const PARADE = [
+    ['Maple', 'cat', '#e39a4c', '', .85, .25, .80, .30, .35, .35],
+    ['Nutmeg', 'cat', '#b08a68', 'tabby', .92, .27, .64, .28, .37, .30],
+    ['Luna', 'cat', '#232327', '', .85, .20, .80, .40, .90, .80],
+    ['Noodle', 'dog', '#f2efe8', '', .27, .65, .38, .44, .09, .78],
+    ['Ghost', 'cat', '#f5f3ee', '', .80, .25, .85, .30, .10, .50],
+    ['Shadow', 'dog', '#1e1e22', '', .20, .75, .35, .85, .90, .30],
+    ['Pippin', 'dog', '#c0612e', '', .85, .55, .45, .30, .40, .30],
+    ['Waffles', 'dog', '#b8905f', '', .30, .20, .50, .25, .50, .15],
+    ['Bramble', 'cat', '#85888f', '', .85, .25, .90, .60, .55, .75],
+    ['Juniper', 'dog', '#7a7d84', '', .80, .65, .40, .60, .60, .60],
+  ].map(pet);
+  const WORD = {cat: 'Cat', dog: 'Dog'};
+
+  // ======================================================================================
+  // Voice: every fixed line (spec "Voice"); how = once, then hint only; event = every time
+  // ======================================================================================
+  const NUM = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'];
+  const L = {
+    teachWelcome: 'This is Kip. Kip is a robot that learns from examples. Tap Next pet to show Kip a pet.',
+    catOrDog: 'Is it a cat or a dog? Say it out loud. Then tap Cat or Dog.',
+    remCat: 'Kip remembers: that one is a cat!',
+    remDog: 'Kip remembers: that one is a dog!',
+    tryMystery: 'Now tap Mystery pet. Kip will guess!',
+    predict: 'What will Kip guess? Say it out loud!',
+    looks: 'Kip looks for the pet it remembers that looks the most alike.',
+    thinkCat: "Kip thinks it's a cat!",
+    thinkDog: "Kip thinks it's a dog!",
+    right: 'Yes! Kip got it right!',
+    wrong: 'Oops! Kip guessed wrong. Kip needs more examples.',
+    wrongLabel: 'Oops! Kip remembered that pet wrong.',
+    afterMystery: 'Tap Mystery pet again, or Next pet to teach Kip more.',
+    afterMysteryAll: 'Tap Mystery pet again, or Pet Parade to count.',
+    empty: "Kip doesn't remember any pets yet. Tap Next pet first!",
+    emptyParade: "Kip doesn't remember any pets yet. Tap Teach first!",
+    allCards: "That's every example card! Tap Pet Parade to see how Kip does.",
+    forgetHow: 'Tap Forget to make Kip forget this pet. Tap the card again to keep it.',
+    forgot: 'Kip forgot that one.',
+    forgotHow: 'Tap Next pet to show it to Kip again.',
+    over: "Starting over! Kip's memory is empty.",
+    nextHow: 'Tap Next pet to show Kip a pet.',
+    paradeWelcome: 'Welcome to the Pet Parade! Ten new pets will walk by. Count how many Kip gets right.',
+    startHow: 'Tap Start parade.',
+    score: NUM.map((w, i) => `Kip got ${w} out of ten right${i === 10 ? '!' : '.'}`),
+    more: "That's more than last time!",
+    same: "That's the same as last time.",
+    fewer: "That's fewer than last time. Did Kip learn something wrong?",
+    againHow: 'Tap Teach and show Kip more pets. Then run the parade again.',
+    againAllHow: 'Kip has seen every pet! Tap Teach to try Mystery pets, or Start over to teach Kip again.',
+    better: 'The more different pets Kip saw, the better Kip guessed!',
+  };
+
+  // ======================================================================================
+  // State
+  // ======================================================================================
+  const state = {
+    mode: 'teach',
+    wall: [],            // what Kip remembers, in the order it was taught: {key, pet, idx, label, arriving}
+    deck: DECK.map((_, i) => i),   // example cards still to show, in order
+    mi: 0,               // next Mystery pet (cycles through the parade list)
+    busy: false,         // a pet walking, Kip thinking, a card flying: panel buttons wait
+    sel: null,           // the selected wall card's key
+    arrivals: 0,         // counts pets walking in (a "Kip remembers" line is stale once another pet arrives)
+    teach: {spot: null}, parade: {spot: null},   // the pet in the spotlight, per mode
+    running: false,      // the parade
+    slots: [],           // this parade's results, 'ok' or 'bad'
+    runs: [],            // Kip's Chart: {right, mem}
+    tally: null,         // the big "7 of 10" on the stage
+    saidBetter: false,   // line 33 plays once per page load (or Start over)
+    mysteries: 0,        // Mystery pets so far (the first one speaks the prediction and look-alike lines)
+    tk: 0,               // a mode change, Stop or Start over cancels running sequences
+    speed: 1,            // tests only: timing scale (1 = real)
+  };
+  let uid = 0;
+  const spotOf = (m = state.mode) => state[m].spot;
+  const waiting = () => { const s = state.teach.spot; return !!s && s.kind === 'example' && s.phase === 'wait'; };
+  const W8 = ms => wait(ms * state.speed);
+
+  // ======================================================================================
+  // Icons (buttons, shelf headers, Kip's screen): 100 x 100, drawn in currentColor; details in var(--ib)
+  // ======================================================================================
+  const IB = 'style="fill:var(--ib,#fff)"', IBS = w => `style="fill:none;stroke:var(--ib,#fff);stroke-width:${w};stroke-linecap:round;stroke-linejoin:round"`;
+  const ICON = {
+    cat: `<path d="M17 50 L20 9 L45 31 Z M83 50 L80 9 L55 31 Z" fill="currentColor"/><circle cx="50" cy="58" r="33" fill="currentColor"/>
+      <ellipse cx="37" cy="53" rx="5" ry="7" ${IB}/><ellipse cx="63" cy="53" rx="5" ry="7" ${IB}/><path d="M44 66 L56 66 L50 73 Z" ${IB}/>
+      <path d="M33 70 L10 66 M33 75 L11 79 M67 70 L90 66 M67 75 L89 79" ${IBS(3.5)}/>`,
+    dog: `<ellipse cx="20" cy="48" rx="12" ry="27" transform="rotate(18 20 48)" fill="currentColor"/><ellipse cx="80" cy="48" rx="12" ry="27" transform="rotate(-18 80 48)" fill="currentColor"/>
+      <circle cx="50" cy="52" r="31" fill="currentColor"/><ellipse cx="50" cy="74" rx="20" ry="15" fill="currentColor"/>
+      <circle cx="38" cy="47" r="5.5" ${IB}/><circle cx="62" cy="47" r="5.5" ${IB}/><ellipse cx="50" cy="66" rx="9" ry="6.5" ${IB}/>
+      <path d="M50 72 V80 M42 80 Q50 86 58 80" ${IBS(3.5)}/>`,
+    paw: `<ellipse cx="50" cy="66" rx="22" ry="19" fill="currentColor"/><ellipse cx="23" cy="44" rx="9" ry="12" fill="currentColor"/><ellipse cx="40" cy="27" rx="9" ry="12" fill="currentColor"/>
+      <ellipse cx="60" cy="27" rx="9" ry="12" fill="currentColor"/><ellipse cx="77" cy="44" rx="9" ry="12" fill="currentColor"/>`,
+    ask: `<circle cx="50" cy="50" r="44" fill="currentColor"/><path d="M36 38 Q36 22 50 22 Q65 22 65 36 Q65 46 54 50 Q50 52 50 60" ${IBS(9)}/><circle cx="50" cy="76" r="6" ${IB}/>`,
+    redo: `<path d="M78 50 A28 28 0 1 1 64 26" style="fill:none;stroke:currentColor;stroke-width:11;stroke-linecap:round"/><path d="M54 10 L82 22 L60 42 Z" fill="currentColor"/>`,
+    trash: `<rect x="20" y="22" width="60" height="10" rx="4" fill="currentColor"/><rect x="40" y="12" width="20" height="12" rx="3" fill="currentColor"/>
+      <path d="M26 36 H74 L69 88 Q68 92 64 92 H36 Q32 92 31 88 Z" fill="currentColor"/><path d="M42 46 V80 M58 46 V80" ${IBS(5)}/>`,
+    play: `<path d="M28 16 L84 50 L28 84 Z" fill="currentColor" stroke="currentColor" stroke-width="8" stroke-linejoin="round"/>`,
+    stop: `<rect x="20" y="20" width="60" height="60" rx="8" fill="currentColor"/>`,
+    book: `<path d="M50 26 Q32 14 8 18 V80 Q32 76 50 88 Q68 76 92 80 V18 Q68 14 50 26 Z" fill="currentColor"/><path d="M50 28 V84" ${IBS(5)}/>`,
+    flag: `<path d="M20 10 V92" style="stroke:currentColor;stroke-width:9;stroke-linecap:round"/><path d="M24 14 Q50 4 62 16 Q74 26 90 18 V56 Q74 64 62 54 Q50 42 24 52 Z" fill="currentColor"/>`,
+    check: `<path d="M20 52 L42 74 L82 28" style="fill:none;stroke:currentColor;stroke-width:15;stroke-linecap:round;stroke-linejoin:round"/>`,
+    xmark: `<path d="M26 26 L74 74 M74 26 L26 74" style="fill:none;stroke:currentColor;stroke-width:15;stroke-linecap:round"/>`,
+  };
+  const iconSVG = (k, cls = 'ico') => `<svg class="${cls}" viewBox="0 0 100 100" aria-hidden="true">${ICON[k]}</svg>`;
+  document.querySelectorAll('[data-ico]').forEach(s => { s.outerHTML = iconSVG(s.dataset.ico); });
+  $('m-teach').style.setProperty('--ib', 'var(--btn)'); $('m-parade').style.setProperty('--ib', 'var(--btn)');
+
+  // ======================================================================================
+  // SVG helpers
+  // ======================================================================================
+  const sv = $('sv');
+  function el(tag, attrs, parent) {
+    const e = document.createElementNS(NS, tag);
+    for (const k in attrs) if (attrs[k] != null) e.setAttribute(k, attrs[k]);
+    if (parent) parent.appendChild(e);
+    return e;
+  }
+  function text(parent, x, y, s, o = {}) {
+    const t = el('text', {x, y, 'text-anchor': o.anchor || 'middle', 'dominant-baseline': 'central', fill: o.fill || '#2b2238',
+      'font-size': o.size || 14, 'font-weight': o.weight || 700, 'font-family': o.font || "'Trebuchet MS','Segoe UI',sans-serif"}, parent);
+    if (o.stroke) { t.setAttribute('stroke', o.stroke); t.setAttribute('stroke-width', o.sw || 4); t.setAttribute('paint-order', 'stroke'); t.setAttribute('stroke-linejoin', 'round'); }
+    t.textContent = s; return t;
+  }
+  // an icon placed in the scene: centre (x, y), size s, color c, detail color ib
+  function icon(parent, k, x, y, s, c, ib) {
+    const g = el('g', {transform: `translate(${x - s / 2} ${y - s / 2}) scale(${s / 100})`, color: c}, parent);
+    g.style.setProperty('--ib', ib || '#fff');
+    g.innerHTML = ICON[k];
+    return g;
+  }
+  function mix(hex, to, t) {
+    const a = parseInt(hex.slice(1), 16), b = parseInt(to.slice(1), 16);
+    const c = [16, 8, 0].map(s => Math.round(lerp(a >> s & 255, b >> s & 255, t)));
+    return '#' + c.map(v => v.toString(16).padStart(2, '0')).join('');
+  }
+  const lum = hex => { const a = parseInt(hex.slice(1), 16); return (.299 * (a >> 16 & 255) + .587 * (a >> 8 & 255) + .114 * (a & 255)) / 255; };
+
+  // ======================================================================================
+  // The pet: one parametric drawing for cats and dogs, so the class sees the clues Kip compares.
+  // Origin: on the ground, under the middle of the body; facing right (toward Kip). Nominal size: about 380 x 240.
+  // ======================================================================================
+  const INK = '#2b2238';
+  function petGeom(p) {
+    const v = p.v, bw = 140 + 120 * v.size, bh = bw * .42, lh = 26 + 18 * v.size, by = -(lh + bh * .5) + bh * .16;
+    const r = 30 + 20 * v.size, hx = bw * .42, hy = by - bh * .45 - r * .2;
+    return {bw, bh, lh, by, r, hx, hy};
+  }
+  function drawHead(g, p, cx, cy, r) {
+    const v = p.v, coat = p.coat, sw = Math.max(2, r * .07), darkCoat = lum(coat) < .35, dog = p.label === 'dog';
+    const fur = v.fluffy > .25;
+    // ears: floppy flap (0) to upright point (1), by the ears clue. Dog ears get a contrasting fill so they show on
+    // any coat (lighter on dark coats); cat ears have a pink inner ear.
+    const earFill = dog ? (darkCoat ? mix(coat, '#ffffff', .3) : mix(coat, '#000000', .22)) : coat;
+    const ear = sgn => {
+      const e = v.ears, th = -Math.PI / 2 + sgn * (dog ? .82 : .7), half = dog ? .3 : .32;
+      const b1 = [cx + Math.cos(th - sgn * half) * r * .92, cy + Math.sin(th - sgn * half) * r * .92];
+      const b2 = [cx + Math.cos(th + sgn * half) * r * .92, cy + Math.sin(th + sgn * half) * r * .92];
+      const up = [cx + Math.cos(th - sgn * .08) * r * 1.78, cy + Math.sin(th - sgn * .08) * r * 1.78];
+      const flop = dog ? [cx + sgn * r * 1.12, cy + r * .82] : [cx + sgn * r * 1.22, cy + r * .62];
+      const tip = [lerp(flop[0], up[0], e), lerp(flop[1], up[1], e)];
+      const bulge = (1 - e) * r * (dog ? .3 : .6) + r * (dog ? .14 : .06);
+      const ctl = (a, b, s2) => { const mx = (a[0] + b[0]) / 2, my = (a[1] + b[1]) / 2, dx = b[0] - a[0], dy = b[1] - a[1], n = Math.hypot(dx, dy) || 1; return [mx + s2 * dy / n * bulge, my - s2 * dx / n * bulge]; };
+      const c1 = ctl(b1, tip, sgn), c2 = ctl(tip, b2, sgn);
+      const d = `M${b1} Q${c1} ${tip} Q${c2} ${b2} Z`.replace(/,/g, ' ');
+      el('path', {d, fill: earFill, stroke: darkCoat && dog ? '#f1ece4' : INK, 'stroke-width': sw, 'stroke-linejoin': 'round'}, g);
+      if (e > .6) {   // inner ear on upright ears
+        const ib1 = [lerp(b1[0], b2[0], .25), lerp(b1[1], b2[1], .25)], ib2 = [lerp(b1[0], b2[0], .75), lerp(b1[1], b2[1], .75)], it = [lerp(tip[0], cx, .22), lerp(tip[1], cy, .22)];
+        el('path', {d: `M${ib1} L${it} L${ib2} Z`.replace(/,/g, ' '), fill: dog ? mix(coat, '#ffffff', .45) : darkCoat ? '#8a5a6a' : '#f2a8a8'}, g);
+      }
+    };
+    // dogs: upright ears go behind the head, floppy and half ears hang in front of it (so a ruff never hides them)
+    const earsBehind = dog ? v.ears >= .7 : v.ears >= .5;
+    if (fur) {   // a scalloped ruff around the head
+      const n = 16, fr = r * (.1 + .17 * v.fluffy);
+      for (let i = 0; i < n; i++) { const a = i / n * Math.PI * 2; el('circle', {cx: cx + Math.cos(a) * r * .98, cy: cy + Math.sin(a) * r * .98, r: fr, fill: coat, stroke: INK, 'stroke-width': sw}, g); }
+    }
+    if (earsBehind) { ear(-1); ear(1); }
+    el('circle', {cx, cy, r, fill: coat, stroke: fur ? 'none' : INK, 'stroke-width': sw}, g);
+    if (p.pat === 'tabby' || p.pat === 'stripes') {
+      const sc = p.pat === 'tabby' ? mix(coat, '#5a2a00', .45) : mix(coat, '#000000', .45);
+      for (const dx of [-.28, 0, .28]) el('path', {d: `M${cx + dx * r} ${cy - r * .92} Q${cx + dx * r * 1.15} ${cy - r * .7} ${cx + dx * r} ${cy - r * .5}`, fill: 'none', stroke: sc, 'stroke-width': r * .1, 'stroke-linecap': 'round'}, g);
+    }
+    if (p.pat === 'spots') el('ellipse', {cx: cx - r * .42, cy: cy - r * .3, rx: r * .32, ry: r * .38, fill: '#3a3a3a'}, g);
+    if (dog) {   // a collar with a tag (not a clue Kip uses; people notice more than Kip does)
+      const cd = `M${cx - r * .74} ${cy + r * .66} Q${cx} ${cy + r * 1.08} ${cx + r * .74} ${cy + r * .66}`;
+      el('path', {d: cd, fill: 'none', stroke: INK, 'stroke-width': r * .26, 'stroke-linecap': 'round'}, g);
+      el('path', {d: cd, fill: 'none', stroke: '#d23c3c', 'stroke-width': r * .16, 'stroke-linecap': 'round'}, g);
+      el('circle', {cx: cx - r * .05, cy: cy + r * 1.02, r: r * .14, fill: '#f2c230', stroke: INK, 'stroke-width': sw * .6}, g);
+    }
+    const ms = v.snout, muzzle = p.pat === 'white' ? '#f7f4ee' : mix(coat, '#ffffff', darkCoat ? .22 : .38);
+    const wc = darkCoat ? '#f1ece4' : INK, line = darkCoat ? '#f1ece4' : INK;
+    let nx, ny, mcx, mcy, mrx, mry;
+    if (dog) {
+      // a dog snout: reaches out toward Kip, its length set by the snout clue; a big nose pad at the tip and a tongue
+      mcx = cx + r * (.3 + .8 * ms); mcy = cy + r * .34; mrx = r * (.4 + .55 * ms); mry = r * (.36 + .06 * (1 - ms));
+      const tg = `M${mcx - mrx * .1} ${mcy + mry * .55} q${r * .02} ${r * .42} ${r * .2} ${r * .4} q${r * .18} ${-r * .02} ${r * .14} ${-r * .42} Z`;
+      el('path', {d: tg, fill: '#ef7f95', stroke: INK, 'stroke-width': sw * .7, 'stroke-linejoin': 'round'}, g);
+      el('ellipse', {cx: mcx, cy: mcy, rx: mrx, ry: mry, fill: muzzle, stroke: INK, 'stroke-width': sw}, g);
+      nx = mcx + mrx * .78; ny = mcy - mry * .38;
+      el('ellipse', {cx: nx, cy: ny, rx: r * .2, ry: r * .15, fill: '#16121a', stroke: darkCoat ? '#bdb6c4' : 'none', 'stroke-width': sw * .5}, g);
+      el('ellipse', {cx: nx - r * .05, cy: ny - r * .05, rx: r * .06, ry: r * .035, fill: '#ffffff', opacity: .7}, g);
+      el('path', {d: `M${nx - r * .02} ${ny + r * .13} L${nx - r * .02} ${mcy + mry * .35} M${mcx - mrx * .55} ${mcy + mry * .35} Q${nx - r * .02} ${mcy + mry * .75} ${nx + r * .14} ${mcy + mry * .3}`, fill: 'none', stroke: line, 'stroke-width': sw * .7, 'stroke-linecap': 'round'}, g);
+      // whisker spots only (the whiskers clue): dots on the snout, more dots for longer whiskers
+      const nd = 2 + Math.round(v.whiskers * 3);
+      for (let i = 0; i < nd; i++) el('circle', {cx: mcx - mrx * .35 + i * r * .1, cy: mcy + (i % 2 ? r * .05 : -r * .03), r: r * .035, fill: wc, opacity: .75}, g);
+    } else {
+      // a cat muzzle: small whisker pads, a pink triangle nose, a w mouth
+      mcx = cx + r * (.1 + .5 * ms); mcy = cy + r * .36; mrx = r * (.3 + .3 * ms); mry = r * .26;
+      for (const k of [-1, 1]) el('ellipse', {cx: mcx + k * mrx * .45, cy: mcy + mry * .2, rx: mrx * .58, ry: mry * .8, fill: muzzle, stroke: INK, 'stroke-width': sw * .7}, g);
+      nx = mcx; ny = mcy - mry * .35;
+      el('path', {d: `M${nx - r * .12} ${ny - r * .06} L${nx + r * .12} ${ny - r * .06} L${nx} ${ny + r * .08} Z`, fill: '#f08ca0', stroke: INK, 'stroke-width': sw * .5, 'stroke-linejoin': 'round'}, g);
+      el('path', {d: `M${nx} ${ny + r * .08} q${-r * .04} ${r * .14} ${-r * .14} ${r * .1} M${nx} ${ny + r * .08} q${r * .04} ${r * .14} ${r * .14} ${r * .1}`, fill: 'none', stroke: line, 'stroke-width': sw * .6, 'stroke-linecap': 'round'}, g);
+    }
+    // eyes, looking at the class: cats have green-gold eyes with slit pupils, dogs round dark eyes
+    for (const ex of [cx - r * .36, cx + r * .2]) {
+      if (dog) {
+        el('ellipse', {cx: ex, cy: cy - r * .12, rx: r * .16, ry: r * .18, fill: '#fffdf6', stroke: INK, 'stroke-width': sw * .6}, g);
+        el('circle', {cx: ex + r * .03, cy: cy - r * .1, r: r * .11, fill: '#3a2414'}, g);
+        el('circle', {cx: ex + r * .06, cy: cy - r * .15, r: r * .04, fill: '#fff'}, g);
+      } else {
+        el('ellipse', {cx: ex, cy: cy - r * .12, rx: r * .17, ry: r * .19, fill: '#d6dc6a', stroke: INK, 'stroke-width': sw * .6}, g);
+        el('ellipse', {cx: ex + r * .02, cy: cy - r * .12, rx: r * .045, ry: r * .15, fill: INK}, g);
+        el('circle', {cx: ex + r * .07, cy: cy - r * .19, r: r * .035, fill: '#fff'}, g);
+      }
+    }
+    if (!dog) {   // whiskers: length by the whiskers clue (cats only)
+      const wl = r * (.25 + 1.05 * v.whiskers), wsw = Math.max(1.4, r * .035);
+      for (const k of [-1, 0, 1]) {
+        el('path', {d: `M${mcx + mrx * .6} ${mcy + r * .02} l${wl} ${k * wl * .26 - wl * .04}`, fill: 'none', stroke: wc, 'stroke-width': wsw, 'stroke-linecap': 'round'}, g);
+        el('path', {d: `M${mcx - mrx * .6} ${mcy + r * .02} l${-wl * .85} ${k * wl * .26 - wl * .04}`, fill: 'none', stroke: wc, 'stroke-width': wsw, 'stroke-linecap': 'round'}, g);
+      }
+    }
+    if (!earsBehind) { ear(-1); ear(1); }
+  }
+  function drawPet(parent, p, x, y, s, o = {}) {
+    const g = el('g', {transform: `translate(${x} ${y}) scale(${s})`}, parent);
+    if (o.opacity != null) g.setAttribute('opacity', o.opacity);
+    const v = p.v, G = petGeom(p), {bw, bh, lh, by, r, hx, hy} = G, coat = p.coat, sw = 3.4, fur = v.fluffy > .25;
+    const leg = (lx, back) => {
+      const w = bw * .1;
+      el('rect', {x: lx - w / 2, y: by, width: w, height: -by - 2 + (o.step ? (back ? 1 : -1) * o.step * 4 : 0), rx: w * .45, fill: back ? mix(coat, '#000000', .12) : coat, stroke: INK, 'stroke-width': sw}, g);
+      el('ellipse', {cx: lx + w * .12, cy: -3, rx: w * .62, ry: w * .32, fill: p.pat === 'white' && !back ? '#f7f4ee' : mix(coat, '#ffffff', .15), stroke: INK, 'stroke-width': sw}, g);
+    };
+    // tail: a cat's is long, upright and curled at the tip; a dog's is shorter and wags up and back (both thicker when fluffy)
+    const dogT = p.label === 'dog';
+    const tw = dogT ? 12 + 18 * v.fluffy : 8 + 12 * v.fluffy, wag = o.step ? o.step * bh * .08 : 0;
+    const td = dogT
+      ? `M${-bw * .44} ${by - bh * .12} Q${-bw * .62} ${by - bh * .28} ${-bw * .66 + wag} ${by - bh * .78}`
+      : `M${-bw * .44} ${by - bh * .05} C${-bw * .68} ${by - bh * .45} ${-bw * .62} ${by - bh * 1.2} ${-bw * .52} ${by - bh * 1.42} C${-bw * .47} ${by - bh * 1.55} ${-bw * .37} ${by - bh * 1.52} ${-bw * .4} ${by - bh * 1.36}`;
+    el('path', {d: td, fill: 'none', stroke: INK, 'stroke-width': tw + 7, 'stroke-linecap': 'round'}, g);
+    el('path', {d: td, fill: 'none', stroke: coat, 'stroke-width': tw, 'stroke-linecap': 'round'}, g);
+    leg(-bw * .3, true); leg(bw * .24, true);
+    if (fur) {   // scalloped fur outline, bigger scallops for fluffier coats
+      const fr = 5 + 13 * v.fluffy, per = Math.PI * (bw + bh) / 2, n = Math.round(per / (fr * 1.25));
+      for (let i = 0; i < n; i++) { const a = i / n * Math.PI * 2; el('circle', {cx: Math.cos(a) * bw * .49, cy: by + Math.sin(a) * bh * .48, r: fr, fill: coat, stroke: INK, 'stroke-width': sw}, g); }
+    }
+    el('ellipse', {cx: 0, cy: by, rx: bw / 2, ry: bh / 2, fill: coat, stroke: fur ? 'none' : INK, 'stroke-width': sw}, g);
+    if (p.pat === 'tabby' || p.pat === 'stripes') {
+      const sc = p.pat === 'tabby' ? mix(coat, '#5a2a00', .45) : mix(coat, '#000000', .45);
+      for (let i = 0; i < 5; i++) {
+        const sx = -bw * .32 + i * bw * .15, top = by - bh * .46 * Math.sqrt(Math.max(0, 1 - (sx / (bw * .5)) ** 2));
+        el('path', {d: `M${sx} ${top + 3} Q${sx + 9} ${by - bh * .1} ${sx - 3} ${by + bh * .16}`, fill: 'none', stroke: sc, 'stroke-width': 7, 'stroke-linecap': 'round'}, g);
+      }
+    }
+    if (p.pat === 'spots') for (const [sx, sy, rx] of [[-.25, -.1, .1], [.02, .12, .08], [.18, -.18, .07], [-.05, -.28, .05]])
+      el('ellipse', {cx: sx * bw, cy: by + sy * bh, rx: rx * bw, ry: rx * bw * .8, fill: '#3a3a3a'}, g);
+    if (p.pat === 'white') el('ellipse', {cx: bw * .3, cy: by + bh * .12, rx: bw * .17, ry: bh * .32, fill: '#f7f4ee'}, g);
+    leg(-bw * .16, false); leg(bw * .36, false);
+    drawHead(g, p, hx, hy, r);
+    return g;
+  }
+  // a portrait card's picture: the head only, sized by the size clue
+  function drawPortrait(parent, p, cx, cy, card) {
+    const r = card * .23 * (.82 + .3 * p.v.size);
+    const g = el('g', {}, parent);
+    drawHead(g, p, cx - r * .12, cy + card * .06, r);
+    return g;
+  }
+
+  // ======================================================================================
+  // Kip: a round-cornered box robot. Origin on the ground, centred. Nominal 180 x 300.
+  // ======================================================================================
+  function drawKip(parent, x, y, s, face, badge) {
+    const g = el('g', {transform: `translate(${x} ${y}) scale(${s})`}, parent), body = '#8fb3d9', sw = 5;
+    el('ellipse', {cx: 0, cy: 0, rx: 86, ry: 10, fill: '#00000022'}, g);
+    for (const wx of [-42, 42]) { el('rect', {x: wx - 24, y: -30, width: 48, height: 30, rx: 14, fill: '#5d7fa6', stroke: INK, 'stroke-width': sw}, g); }
+    for (const ax of [-1, 1]) el('rect', {x: ax * 78 - 13, y: -128, width: 26, height: 76, rx: 13, fill: body, stroke: INK, 'stroke-width': sw}, g);
+    el('rect', {x: -66, y: -140, width: 132, height: 112, rx: 26, fill: body, stroke: INK, 'stroke-width': sw}, g);
+    el('rect', {x: -36, y: -116, width: 72, height: 46, rx: 10, fill: '#dbe8f5', stroke: INK, 'stroke-width': 3}, g);
+    [['#16679a', -18], ['#ffd34d', 0], ['#0f7c7a', 18]].forEach(([c, dx]) => el('circle', {cx: dx, cy: -93, r: 6.5, fill: c, stroke: INK, 'stroke-width': 2}, g));
+    el('rect', {x: -16, y: -156, width: 32, height: 20, fill: '#6f93ba', stroke: INK, 'stroke-width': sw}, g);
+    el('path', {d: 'M0 -282 V-310', stroke: INK, 'stroke-width': 6, 'stroke-linecap': 'round'}, g);
+    el('circle', {cx: 0, cy: -318, r: 15, fill: face === 'happy' ? '#ffd34d' : '#16679a', opacity: face === 'happy' ? .8 : .35, class: face === 'think' || face === 'happy' ? 'glow' : null}, g);
+    el('circle', {cx: 0, cy: -318, r: 10, fill: '#16679a', stroke: INK, 'stroke-width': 3}, g);
+    el('rect', {x: -92, y: -284, width: 184, height: 132, rx: 32, fill: body, stroke: INK, 'stroke-width': sw}, g);
+    for (const ex of [-1, 1]) el('rect', {x: ex * 92 - (ex > 0 ? 0 : 12), y: -236, width: 12, height: 36, rx: 6, fill: '#6f93ba', stroke: INK, 'stroke-width': 3}, g);
+    el('rect', {x: -74, y: -268, width: 148, height: 100, rx: 18, fill: '#1f2a3a', stroke: INK, 'stroke-width': 4}, g);
+    const sc = el('g', {}, g), cy = -218;
+    if (face === 'think') {   // the thinking swirl
+      const sp = el('g', {class: 'spin'}, sc);
+      let d = ''; for (let i = 0; i <= 60; i++) { const a = i / 60 * Math.PI * 4.2, rr = 3 + i * .62; d += (i ? 'L' : 'M') + (Math.cos(a) * rr).toFixed(1) + ' ' + (cy + Math.sin(a) * rr).toFixed(1); }
+      el('path', {d, fill: 'none', stroke: '#8fd3ff', 'stroke-width': 6, 'stroke-linecap': 'round'}, sp);
+    } else if (face === 'cat' || face === 'dog') {
+      icon(sc, face, 0, cy, 82, '#ffffff', '#1f2a3a');
+    } else if (face === 'happy') {   // a high parade score: smiling eyes and a big open smile
+      for (const ex of [-30, 30]) el('path', {d: `M${ex - 15} ${cy - 4} Q${ex} ${cy - 30} ${ex + 15} ${cy - 4}`, fill: 'none', stroke: '#8fd3ff', 'stroke-width': 8, 'stroke-linecap': 'round'}, sc);
+      el('path', {d: `M-34 ${cy + 8} Q0 ${cy + 52} 34 ${cy + 8} Z`, fill: '#8fd3ff', stroke: '#8fd3ff', 'stroke-width': 4, 'stroke-linejoin': 'round'}, sc);
+    } else if (face === 'hmm') {   // a low parade score: a puzzled face (Kip needs better examples)
+      el('rect', {x: -40, y: cy - 16, width: 22, height: 10, rx: 5, fill: '#8fd3ff'}, sc);
+      el('rect', {x: 18, y: cy - 24, width: 22, height: 22, rx: 11, fill: '#8fd3ff'}, sc);
+      el('path', {d: `M-26 ${cy + 26} q13 -10 26 0 q13 10 26 0`, fill: 'none', stroke: '#8fd3ff', 'stroke-width': 6, 'stroke-linecap': 'round'}, sc);
+    } else {   // idle: friendly eyes
+      for (const ex of [-28, 28]) el('rect', {x: ex - 9, y: cy - 22, width: 18, height: 30, rx: 9, fill: '#8fd3ff'}, sc);
+      el('path', {d: `M-22 ${cy + 18} Q0 ${cy + 34} 22 ${cy + 18}`, fill: 'none', stroke: '#8fd3ff', 'stroke-width': 6, 'stroke-linecap': 'round'}, sc);
+    }
+    if (badge) {   // right or wrong, by glyph and color
+      el('circle', {cx: 74, cy: -268, r: 30, fill: badge === 'ok' ? '#1f7a3f' : '#b42318', stroke: '#fff', 'stroke-width': 5}, g);
+      icon(g, badge === 'ok' ? 'check' : 'xmark', 74, -268, 40, '#fff');
+    }
+    return g;
+  }
+
+  // ======================================================================================
+  // Stage layout, re-done per size (real pixels, so text keeps its size)
+  // ======================================================================================
+  let Lyt = null, S = {};
+  function layoutFor(W, H) {
+    const pad = clamp(Math.round(W * .02), 8, 18);
+    const bw = W - 2 * pad, gap = W < 560 || H < 440 ? 4 : 6;
+    const headH = W < 560 || H < 440 ? 20 : 26, plank = 7;
+    // the wall takes at most about 56 percent of the height (the pets and Kip need the floor), but cards stay 40 px or
+    // more; one row of 16 per shelf when it fits, else two rows of 8
+    // with 8 to a row, a shelf gets its second row only when it needs one (the floor keeps the room until then)
+    const boardFor = (c, n) => 2 * (headH + rowsFor(n) * (c + (c >= 52 ? 15 : 0) + gap) + plank + 4) + 10;
+    const fit = n => { let c = Math.min(88, Math.floor((bw - (n - 1) * gap) / n)); while (c > 40 && boardFor(c, n) > H * .56) c--; return c; };
+    const c16 = fit(16), c8 = fit(8);
+    const cols = c16 >= 44 || c16 >= c8 ? 16 : 8, card = cols === 16 ? c16 : c8;
+    const names = card >= 52, rows = rowsFor(cols), cellH = card + (names ? 15 : 0) + gap;
+    const shelfH = headH + rows * cellH + plank + 4;
+    const by0 = pad, shelves = [0, 1].map(i => ({y: by0 + i * (shelfH + 4)})), boardH = 2 * shelfH + 4 + 6;
+    const by1 = by0 + boardH;
+    const band = H - by1;
+    const groundY = H - Math.max(10, band * .1);
+    const floorTop = Math.max(by1 + band * .45, groundY - Math.max(26, band * .3));
+    const doorW = clamp(Math.round(W * .085), 40, 100);
+    const doorH = Math.max(24, Math.min(floorTop - by1 - 8, doorW * 2.1));
+    const doorX = pad;
+    const ks = clamp((groundY - by1 - 14) / 360, .3, 1.3);
+    const kipX = W - pad - 100 * ks;
+    const avail = kipX - 92 * ks - (doorX + doorW) - 16;
+    const ps = clamp(Math.min((groundY - by1 - 14) / 260, avail / 400), .26, 1.4);
+    const spotX = (doorX + doorW + 8) + avail * .5 - 20 * ps;
+    const gridW = cols * card + (cols - 1) * gap, gx = pad + (bw - gridW) / 2;
+    return {W, H, pad, bw, gap, cols, card, names, rows, cellH, headH, plank, shelfH, shelves, by0, by1, band, groundY, floorTop, doorW, doorH, doorX, ks, kipX, ps, spotX, gx, gridW};
+  }
+  // rows per shelf: the fuller shelf's cards, plus a free slot while example cards are left
+  function rowsFor(cols) {
+    if (cols >= 16) return 1;
+    const need = Math.max(...['cat', 'dog'].map(l => state.wall.filter(c => c.label === l).length)) + (state.deck.length ? 1 : 0);
+    return need > cols ? 2 : 1;
+  }
+  // where wall card n (0-based on its shelf) sits
+  function slotXY(shelf, n) {
+    const L = Lyt, c = n % L.cols, r = Math.floor(n / L.cols), sh = L.shelves[shelf];
+    return {x: L.gx + c * (L.card + L.gap), y: sh.y + L.headH + r * L.cellH, s: L.card};
+  }
+  function cardPos(key) {
+    const w = state.wall.find(c => c.key === key); if (!w) return null;
+    const shelf = w.label === 'cat' ? 0 : 1, n = state.wall.filter(c => c.label === w.label).indexOf(w);
+    return slotXY(shelf, n);
+  }
+
+  // a wall card that has the keyboard keeps it when the wall is redrawn (Enter, Delete, Escape, arrows keep working)
+  let refocus = null;
+  const cardFocus = () => { const a = document.activeElement; return a && a.closest && a.closest('#sv .card') ? a.dataset.key : null; };
+  function build() {
+    const L = Lyt, fk = cardFocus(); if (fk != null) refocus = fk;
+    sv.textContent = ''; S = {};
+    // back wall, baseboard, floor with planks
+    el('rect', {x: 0, y: 0, width: L.W, height: L.H, fill: '#f6e3c8'}, sv);
+    el('rect', {x: 0, y: L.floorTop - 10, width: L.W, height: 10, fill: '#e3c49c'}, sv);
+    el('rect', {x: 0, y: L.floorTop, width: L.W, height: L.H - L.floorTop, fill: '#c98f5a'}, sv);
+    const fh = L.H - L.floorTop;
+    for (let i = 1; i < 4; i++) el('line', {x1: 0, x2: L.W, y1: L.floorTop + fh * i / 4, y2: L.floorTop + fh * i / 4, stroke: '#a8703f', 'stroke-width': 2}, sv);
+    for (let i = 0; i < 4; i++) for (let x = (i % 2 ? 60 : 0) - 20; x < L.W; x += 160) {
+      const y1 = L.floorTop + fh * i / 4; el('line', {x1: x, x2: x, y1, y2: y1 + fh / 4, stroke: '#a8703f', 'stroke-width': 2}, sv);
+    }
+    // the door where pets walk in, under a cerulean awning
+    const dx = L.doorX, dy = L.floorTop - L.doorH;
+    el('rect', {x: dx - 5, y: dy - 5, width: L.doorW + 10, height: L.doorH + 5, rx: 6, fill: '#6e4630'}, sv);
+    el('rect', {x: dx, y: dy, width: L.doorW, height: L.doorH, rx: 4, fill: '#8a5a3c', stroke: '#5a3a26', 'stroke-width': 2}, sv);
+    for (const f of [[.15, .1, .7, .35], [.15, .55, .7, .35]]) el('rect', {x: dx + L.doorW * f[0], y: dy + L.doorH * f[1], width: L.doorW * f[2], height: L.doorH * f[3], rx: 3, fill: 'none', stroke: '#6e4630', 'stroke-width': 2}, sv);
+    el('circle', {cx: dx + L.doorW * .8, cy: dy + L.doorH * .52, r: Math.max(3, L.doorW * .05), fill: '#e8c25a', stroke: '#5a3a26', 'stroke-width': 1.5}, sv);
+    const aw = el('g', {}, sv), ah = Math.max(10, L.doorW * .16);
+    for (let i = 0; i < 5; i++) el('path', {d: `M${dx - 8 + i * (L.doorW + 16) / 5} ${dy - 8} h${(L.doorW + 16) / 5} v${ah} q${-(L.doorW + 16) / 10} ${ah * .6} ${-(L.doorW + 16) / 5} 0 Z`, fill: i % 2 ? '#fbf7ef' : '#16679a', stroke: '#0f4f77', 'stroke-width': 1.5}, aw);
+    // the memory wall: Cat shelf on top, Dog shelf below
+    S.cards = el('g', {}, sv);
+    drawShelves();
+    // spotlight on the floor
+    el('ellipse', {cx: L.spotX + 30 * L.ps, cy: L.groundY - 2, rx: 190 * L.ps + 20, ry: Math.max(8, 22 * L.ps), fill: '#fff4d6', opacity: .55}, sv);
+    S.kip = el('g', {}, sv);
+    S.dyn = el('g', {}, sv);
+    paintKip(); paintDyn();
+  }
+  function drawShelves() {
+    const fk = cardFocus(); if (fk != null) refocus = fk;
+    if (rowsFor(Lyt.cols) !== Lyt.rows) { lastSize = ''; relayout(); return; }   // a shelf needs a row more or less
+    const L = Lyt, g = S.cards;
+    g.textContent = '';
+    [['cat', 0], ['dog', 1]].forEach(([lab, i]) => {
+      const sh = L.shelves[i], x0 = L.gx - 6, w = L.gridW + 12, color = lab === 'cat' ? '#0f7c7a' : '#b5531a';
+      el('rect', {x: x0, y: sh.y, width: w, height: L.shelfH, rx: 10, fill: '#fbefdc', stroke: '#d8bf98', 'stroke-width': 2}, g);
+      // header chip: icon and word (never color alone)
+      const hh = L.headH - 4, cw = hh * 2.9;
+      el('rect', {x: x0 + 6, y: sh.y + 3, width: cw, height: hh, rx: hh / 2, fill: color}, g);
+      icon(g, lab, x0 + 6 + hh * .62, sh.y + 3 + hh / 2, hh * .86, '#fff', color);
+      text(g, x0 + 6 + hh * 1.22, sh.y + 3 + hh / 2 + .5, WORD[lab], {size: Math.round(hh * .62), fill: '#fff', anchor: 'start', weight: 800});
+      const n = state.wall.filter(c => c.label === lab).length;
+      text(g, x0 + w - 8, sh.y + 3 + hh / 2, `${n} ${n === 1 ? 'pet' : 'pets'}`, {size: Math.max(12, Math.round(hh * .58)), fill: '#5a4d6e', anchor: 'end', weight: 700});
+      // planks under each row
+      for (let r = 0; r < L.rows; r++) {
+        const py = sh.y + L.headH + r * L.cellH + L.card + (L.names ? 15 : 0) - 1;
+        el('rect', {x: x0 + 2, y: py, width: w - 4, height: L.plank, rx: 2, fill: '#b07b4f'}, g);
+      }
+      // empty slots only while example cards are left to show
+      if (state.deck.length) for (let k = n; k < L.rows * L.cols; k++) {
+        const p = slotXY(i, k);
+        el('rect', {x: p.x + 2, y: p.y + 2, width: p.s - 4, height: p.s - 4, rx: 6, fill: 'none', stroke: '#d8bf98', 'stroke-width': 1.5, 'stroke-dasharray': '4 4'}, g);
+      }
+    });
+    const parade = state.mode === 'parade';
+    state.wall.forEach(c => {
+      if (c.arriving) return;
+      const p = cardPos(c.key), sel = state.sel === c.key, sp = spotOf(), hit = sp && sp.match === c.key && sp.phase !== 'think' && sp.phase !== 'walk';
+      const cg = el('g', {class: 'card', tabindex: parade ? -1 : 0, role: 'button', 'aria-pressed': sel, 'aria-label': `${c.pet.name}, on the ${WORD[c.label]} shelf`, 'data-key': c.key}, g);
+      // the whole cell takes the tap (card, name and the gap around it)
+      el('rect', {x: p.x - L.gap / 2, y: p.y - 2, width: p.s + L.gap, height: L.cellH, fill: 'transparent'}, cg);
+      // the glow stays on the shelf: never over the shelf header above or the name below
+      if (hit) el('rect', {x: p.x - 6, y: p.y - 2, width: p.s + 12, height: p.s + 4, rx: 10, fill: '#ffd34d', class: 'glow'}, cg);
+      el('rect', {x: p.x, y: p.y, width: p.s, height: p.s, rx: 8, fill: '#fffaf0', stroke: sel ? INK : '#c9b28f', 'stroke-width': sel ? 5 : 2}, cg);
+      const clip = 'cl' + c.key;
+      const cp = el('clipPath', {id: clip}, cg); el('rect', {x: p.x + 2, y: p.y + 2, width: p.s - 4, height: p.s - 4, rx: 6}, cp);
+      const pg = el('g', {'clip-path': `url(#${clip})`}, cg);
+      drawPortrait(pg, c.pet, p.x + p.s / 2, p.y + p.s / 2, p.s);
+      if (L_names()) text(cg, p.x + p.s / 2, p.y + p.s + 8, c.pet.name, {size: 11, fill: '#4b3f5c', weight: 700, font: "'Segoe UI',sans-serif"});
+      el('rect', {class: 'ring', x: p.x - 4, y: p.y - 4, width: p.s + 8, height: p.s + 8, rx: 11, fill: 'none', stroke: '#c2410c', 'stroke-width': 4}, cg);
+      el('rect', {class: 'ring', x: p.x - 1, y: p.y - 1, width: p.s + 2, height: p.s + 2, rx: 9, fill: 'none', stroke: '#fff', 'stroke-width': 2.5}, cg);
+    });
+    if (refocus != null) { const c = g.querySelector(`[data-key="${refocus}"]`); refocus = null; if (c) c.focus({preventScroll: true}); }
+  }
+  const L_names = () => Lyt.names;
+
+  function paintKip() {
+    const L = Lyt, sp = spotOf();
+    let face = 'idle', badge = null;
+    if (sp && sp.phase === 'think') face = 'think';
+    if (sp && (sp.phase === 'guess' || sp.phase === 'truth')) face = sp.guess;
+    if (sp && sp.phase === 'truth') badge = sp.ok ? 'ok' : 'bad';
+    if (!sp && state.mode === 'parade' && !state.running && state.tally != null) face = state.tally >= 8 ? 'happy' : state.tally <= 4 ? 'hmm' : 'idle';
+    S.kip.textContent = '';
+    drawKip(S.kip, L.kipX, L.groundY, L.ks, face, badge);
+  }
+  // the moving layer: the pet, the look-alike line, the truth, the tally
+  function paintDyn() {
+    const L = Lyt, sp = spotOf(), g = S.dyn;
+    g.textContent = '';
+    const leave = state.leaving;
+    if (leave && leave.mode === state.mode) drawPet(g, leave.pet, L.spotX + leave.t * 60 * L.ps, L.groundY, L.ps, {opacity: 1 - leave.t});
+    if (sp) {
+      const t = sp.walk == null ? 1 : sp.walk, sx = lerp(L.doorX + L.doorW * .5, L.spotX, ease(t));
+      const bob = t < 1 && !Curio.reduce ? Math.abs(Math.sin(t * Math.PI * 5)) * 6 * L.ps : 0;
+      if (sp.phase === 'fly') {   // shrink into a portrait card and fly to the shelf
+        const c = cardPos(sp.flyKey), f = ease(sp.fly || 0);
+        if (c) {
+          const G = petGeom(sp.pet), hs = L.ps;
+          const hx = L.spotX + G.hx * hs, hy = L.groundY + G.hy * hs;
+          const tx = lerp(hx, c.x + c.s / 2, f), ty = lerp(hy, c.y + c.s / 2, f), sc = lerp(hs, c.s / (G.r * 4.2), f);
+          const pg = el('g', {transform: `translate(${tx - G.hx * sc} ${ty - G.hy * sc})`}, g);
+          drawPet(pg, sp.pet, 0, 0, sc, {opacity: 1 - f * .3});
+        }
+      } else {
+        drawPet(g, sp.pet, sx, L.groundY - bob, L.ps, {step: t < 1 && !Curio.reduce ? Math.sin(t * Math.PI * 10) : 0});
+      }
+      // the look-alike line, from the pet's head to the card that decided
+      if (sp.match != null && sp.line > 0 && sp.phase !== 'fly') {
+        const c = cardPos(sp.match);
+        if (c) {
+          const G = petGeom(sp.pet), x1 = L.spotX + G.hx * L.ps, y1 = L.groundY + (G.hy - G.r * .95) * L.ps;
+          // it ends on the card's lower corner that faces the pet, so it leaves between the names, not across one
+          const x2 = x1 > c.x + c.s / 2 ? c.x + c.s - 6 : c.x + 6, y2 = c.y + c.s - 6, f = sp.line;
+          const xe = lerp(x1, x2, f), ye = lerp(y1, y2, f);
+          el('line', {x1, y1, x2: xe, y2: ye, stroke: '#fff', 'stroke-width': 9, 'stroke-linecap': 'round', opacity: .85}, g);
+          el('line', {x1, y1, x2: xe, y2: ye, stroke: '#16679a', 'stroke-width': 5, 'stroke-linecap': 'round', 'stroke-dasharray': '0.1 11'}, g);
+          el('circle', {cx: x1, cy: y1, r: 7, fill: '#16679a', stroke: '#fff', 'stroke-width': 2.5}, g);
+          if (f >= 1) el('circle', {cx: x2, cy: y2, r: 5, fill: '#16679a', stroke: '#fff', 'stroke-width': 2}, g);
+        }
+      }
+      // the truth: a big cat or dog icon over the pet, with the word
+      if (sp.phase === 'truth') {
+        // above the pet when there is room, else beside it on the left, else over its body (never over its face)
+        const G = petGeom(sp.pet), d = clamp(80 * L.ps + 20, 46, 110), fs0 = clamp(d * .26, 13, 24), need = d + fs0 * 1.45;
+        const top = L.groundY + Math.min(G.hy - G.r * 1.8, G.by - G.bh * 1.3) * L.ps, leftEdge = L.spotX - G.bw * .62 * L.ps;
+        let cx = L.spotX - G.bw * .05 * L.ps, cy = top - 6 - need + d / 2;
+        sp.low = false;
+        if (cy - d / 2 < L.by1 + 4) {
+          if (leftEdge - (L.doorX + L.doorW) > d + 8) { cx = leftEdge - d / 2 - 4; cy = L.groundY - need + d / 2 - 6; }
+          else { cy = L.groundY + G.by * L.ps; sp.low = true; }
+        }
+        const col = sp.pet.label === 'cat' ? '#0f7c7a' : '#b5531a';
+        el('circle', {cx, cy, r: d / 2, fill: '#fff', stroke: col, 'stroke-width': Math.max(4, d * .07)}, g);
+        icon(g, sp.pet.label, cx, cy - d * .02, d * .72, col, '#fff');
+        const fs = Math.round(clamp(d * .26, 13, 24));
+        el('rect', {x: cx - fs * 1.7, y: cy + d / 2 - 2, width: fs * 3.4, height: fs * 1.45, rx: fs * .7, fill: col}, g);
+        text(g, cx, cy + d / 2 - 2 + fs * .74, WORD[sp.pet.label], {size: fs, fill: '#fff', weight: 800});
+      }
+      // a mystery or parade pet's name, small, for the teacher
+      if ((sp.kind !== 'example' || sp.phase === 'wait') && !(sp.phase === 'truth' && sp.low)) {
+        const fs = Lyt.W < 560 ? 12 : 14;
+        text(g, L.spotX + 30 * L.ps, Math.min(L.H - fs * .7, L.groundY + 12), sp.pet.name, {size: fs, fill: '#3b2a1c', stroke: '#e9c9a3', sw: 4});
+      }
+    }
+    if (state.tally != null && state.mode === 'parade') {
+      const w = clamp(L.W * .42, 170, 300), h = w * .42, cx = L.spotX + 20 * L.ps, cy = L.by1 + Math.max(h * .6, (L.groundY - L.by1) * .4);
+      el('rect', {x: cx - w / 2, y: cy - h / 2, width: w, height: h, rx: 18, fill: '#fffdf8', stroke: '#16679a', 'stroke-width': 5}, g);
+      text(g, cx, cy, `${state.tally} of 10`, {size: Math.round(h * .5), fill: '#16679a', weight: 800});
+    }
+  }
+
+  // ======================================================================================
+  // Animation: progress 0..1 over ms; Motion off jumps to the end but keeps the time
+  // ======================================================================================
+  function anim(ms, step, alive) {
+    ms *= state.speed;
+    return new Promise(res => {
+      if (Curio.reduce || ms <= 0) { step(1); (ms > 0 ? wait(ms) : Promise.resolve()).then(res); return; }
+      const t0 = performance.now();
+      const fr = () => {
+        if (!alive()) return res();
+        const t = Math.min(1, (performance.now() - t0) / ms);
+        step(t);
+        t < 1 ? requestAnimationFrame(fr) : res();
+      };
+      requestAnimationFrame(fr);
+    });
+  }
+  const repaint = () => { if (Lyt) { paintKip(); paintDyn(); } };
+  function aliveFor(mode) { const tk = state.tk; return () => tk === state.tk && state.mode === mode; }
+  function petLeaves(mode) {   // the pet in the spotlight fades out as the next comes in
+    const sp = state[mode].spot; state[mode].spot = null;
+    if (!sp || sp.phase === 'fly') return;
+    const lv = state.leaving = {pet: sp.pet, t: 0, mode};
+    anim(450, t => { lv.t = t; if (state.leaving === lv) paintDyn(); }, () => state.leaving === lv).then(() => { if (state.leaving === lv) { state.leaving = null; paintDyn(); } });
+  }
+
+  // ======================================================================================
+  // Narration (Curio.voice): welcomes once per mode, how-to lines once, events every time
+  // ======================================================================================
+  const V = Curio.voice({
+    lines: L, scope: () => state.mode,
+    welcome: () => state.mode === 'teach'
+      ? ['teachWelcome', {valid: () => !state.busy && !waiting() && state.deck.length > 0 && state.sel == null, needs: '#next'}]
+      : state.wall.length ? ['paradeWelcome', {valid: () => !state.running && !state.runs.length}] : null,
+  });
+  const setHint = t => { if ($('hint').textContent !== t) $('hint').textContent = t; };
+  function teachHow() {
+    if (waiting()) return 'catOrDog';
+    if (state.sel != null) return 'forgetHow';
+    if (!state.deck.length) return 'allCards';
+    if (state.wall.length >= 2) return 'tryMystery';
+    return state.wall.length ? 'nextHow' : 'teachWelcome';
+  }
+  const NEEDS = {catOrDog: '#cat', forgetHow: '#forget', tryMystery: '#mystery', nextHow: '#next', allCards: '#go-parade',
+    startHow: '#start', againHow: '#m-teach', againAllHow: '#m-teach', emptyParade: '#m-teach'};
+  const paradeHow = () => state.running ? 'paradeWelcome' : !state.wall.length ? 'emptyParade'
+    : state.runs.length ? (state.deck.length ? 'againHow' : 'againAllHow') : 'startHow';
+  // an event line, then the how line that names the next control; the hint shows both
+  const both = (ev, how) => ({hint: L[ev] + ' ' + L[how]});
+  // keep the keyboard on a live control: when focus sits on a control that just went away (or on the page), move it
+  function steer(from, to) {
+    const a = document.activeElement, t = $(to);
+    if (!t || t.hidden) return;
+    if (!a || a === document.body || from.includes(a.id)) t.focus({preventScroll: true});
+  }
+
+  // ======================================================================================
+  // Panel
+  // ======================================================================================
+  function updateButtons() {
+    const b = state.busy, w = waiting(), sp = state.teach.spot;
+    // busy controls stay focusable (aria-disabled); the handlers check the state themselves
+    const dis = (id, d) => { const e = $(id); e.disabled = false; e.setAttribute('aria-disabled', d ? 'true' : 'false'); };
+    const done = !state.deck.length && !w && !(sp && sp.phase === 'fly');   // every example card shown
+    $('next').hidden = done; $('go-parade').hidden = !done;
+    dis('next', b || w);
+    dis('cat', b || !w); dis('dog', b || !w);
+    dis('mystery', b || w);
+    dis('over', b);
+    $('forget').hidden = state.sel == null; $('forget').disabled = b;
+    dis('start', state.running); $('start').hidden = state.running; $('stop').hidden = !state.running;
+    const n = state.wall.length;
+    $('memN').textContent = n;
+    $('paws').innerHTML = iconSVG('paw').repeat(n);
+    $('mem').setAttribute('aria-label', `Kip remembers ${n} pets`);
+  }
+  function renderSlots() {
+    const box = $('slots'); box.textContent = '';
+    for (let i = 0; i < 10; i++) {
+      const r = state.slots[i], d = document.createElement('div');
+      d.setAttribute('role', 'listitem');
+      d.className = 'slot' + (r ? ' ' + r : state.running && i === state.slots.length ? ' cur' : '');
+      if (r) { d.innerHTML = iconSVG(r === 'ok' ? 'check' : 'xmark'); d.setAttribute('aria-label', `Pet ${i + 1}: ${r === 'ok' ? 'right' : 'wrong'}`); }
+      else { d.textContent = i + 1; d.setAttribute('aria-label', `Pet ${i + 1}: not yet`); }
+      box.appendChild(d);
+    }
+    const done = !state.running && state.slots.length === 10;
+    $('tally').textContent = done ? `${state.slots.filter(s => s === 'ok').length} of 10` : '';
+  }
+  // Kip's Chart: one bar per parade run (pets right, 0 to 10), with the number of pets Kip remembered under it
+  function renderChart(grow) {
+    const box = $('chart'), r = box.getBoundingClientRect(), W = Math.max(160, Math.round(r.width)), H = Math.max(72, Math.round(r.height));
+    const max = W >= 300 ? 8 : 4;   // 4 bars in the small embed
+    const runs = state.runs.slice(-max);
+    box.innerHTML = '';
+    const s = el('svg', {width: W, height: H, viewBox: `0 0 ${W} ${H}`, role: 'img'}, box);
+    s.setAttribute('aria-label', runs.length ? 'Kip\'s Chart: ' + runs.map(u => `${u.right} of 10 right with ${u.mem} pets remembered`).join('; ') : 'Kip\'s Chart: no parades yet');
+    const left = 26, bot = 30, top = 22, ph = H - top - bot, pw = W - left - 4;
+    for (const v of ph < 56 ? [0, 10] : [0, 5, 10]) {   // a short chart keeps only 0 and 10
+      const y = top + ph * (1 - v / 10);
+      el('line', {x1: left, x2: W - 2, y1: y, y2: y, stroke: '#e6dccb', 'stroke-width': v ? 1 : 2}, s);
+      text(s, left - 5, y, String(v), {size: 14, fill: '#5a4d6e', anchor: 'end', font: "'Segoe UI',sans-serif"});
+    }
+    if (!runs.length) { text(s, left + pw / 2, top + ph / 2, 'No parades yet', {size: 15, fill: '#5a4d6e', weight: 600, font: "'Segoe UI',sans-serif"}); return; }
+    const slot = pw / max, bw = Math.min(40, slot * .62);
+    runs.forEach((u, i) => {
+      const cx = left + slot * (i + .5), last = i === runs.length - 1, hgt = ph * u.right / 10;
+      const bar = el('rect', {x: cx - bw / 2, y: top + ph - hgt, width: bw, height: hgt, rx: 4, fill: last ? '#16679a' : '#7fb0d0', stroke: '#0f4f77', 'stroke-width': 1.5}, s);
+      const lab = text(s, cx, top + ph - hgt - 10, String(u.right), {size: 16, fill: '#2b2238', weight: 800, font: "'Segoe UI',sans-serif"});
+      icon(s, 'paw', cx - 10, H - bot / 2 + 1, 15, '#16679a');
+      text(s, cx, H - bot / 2 + 1, String(u.mem), {size: 16, fill: '#2b2238', anchor: 'start', weight: 800, font: "'Segoe UI',sans-serif"});
+      if (last && grow && !Curio.reduce) {
+        anim(600, t => { const h2 = hgt * ease(t); bar.setAttribute('y', top + ph - h2); bar.setAttribute('height', h2); lab.setAttribute('y', top + ph - h2 - 10); }, () => bar.isConnected);
+      }
+    });
+  }
+  function pulse(id) { const b = $(id); b.classList.remove('pulse'); void b.offsetWidth; b.classList.add('pulse'); setTimeout(() => b.classList.remove('pulse'), 1100); }
+  const live = s => { $('live').textContent = s; };
+
+  // ======================================================================================
+  // Teach
+  // ======================================================================================
+  const trainSet = () => state.wall.map(c => ({id: c.pet.id, label: c.label, v: c.pet.v, key: c.key}));
+  function guessFor(p) {
+    const r = MLLab.knn(trainSet(), p, {features: F, k: 1});
+    return {label: r.label, match: r.neighbors[0].item.key};
+  }
+  async function nextPet() {
+    if (state.busy || waiting()) return;
+    if (!state.deck.length) { V.hush(); V.say('allCards', {needs: '#go-parade'}); return; }
+    V.hush();   // a line still playing never runs into the next pet
+    petLeaves('teach');
+    const idx = state.deck.shift(), alive = aliveFor('teach');
+    const sp = state.teach.spot = {pet: DECK[idx], idx, kind: 'example', phase: 'walk', walk: 0};
+    state.arrivals++; state.sel = null; state.busy = true; updateButtons(); drawShelves(); repaint();
+    live(`A pet walks in: ${sp.pet.name}`);
+    await anim(800, t => { sp.walk = t; paintDyn(); }, alive);
+    if (!alive()) return;
+    sp.walk = 1; sp.phase = 'wait'; state.busy = false; updateButtons(); repaint();
+    steer(['next'], 'cat');
+    Curio.tone(440, .18, .04, 'triangle');
+    V.how('catOrDog', {valid: () => state.teach.spot === sp && sp.phase === 'wait', needs: '#cat'});
+  }
+  async function teachLabel(lab) {
+    if (state.busy || !waiting()) return;
+    const sp = state.teach.spot, key = ++uid, a0 = state.arrivals, alive = aliveFor('teach');
+    state.wall.push({key, pet: sp.pet, idx: sp.idx, label: lab, arriving: true});
+    sp.phase = 'fly'; sp.flyKey = key; sp.fly = 0; state.busy = true; updateButtons(); drawShelves(); repaint();
+    V.dropQueued();
+    // the hint changes at once (Cat and Dog are dimmed now) and names the next control
+    const rem = lab === 'cat' ? 'remCat' : 'remDog', nx = !state.deck.length ? 'allCards' : state.wall.length >= 2 ? 'tryMystery' : 'nextHow';
+    setHint(both(rem, nx).hint);
+    V.say(rem, {valid: () => state.arrivals === a0, ...both(rem, nx)});
+    live(`${sp.pet.name} goes on the ${WORD[lab]} shelf`);
+    await anim(750, t => { sp.fly = t; paintDyn(); }, alive);
+    if (!alive()) return;
+    finishFly();
+    steer(['cat', 'dog'], state.deck.length ? 'next' : 'go-parade');
+    Curio.tone(660, .16, .05); setTimeout(() => Curio.tone(880, .2, .04), 90);
+    V.welcome();
+    if (nx !== 'nextHow') V.how(nx, {needs: NEEDS[nx], valid: () => !state.busy && !waiting()});
+  }
+  function finishFly() {   // the card lands on its shelf (also when a mode change cuts the flight short)
+    const sp = state.teach.spot;
+    if (!sp || sp.phase !== 'fly') return;
+    const c = state.wall.find(w => w.key === sp.flyKey); if (c) c.arriving = false;
+    state.teach.spot = null; state.busy = false;
+    updateButtons(); drawShelves(); repaint();
+  }
+  async function mystery() {
+    if (state.busy || waiting()) return;
+    if (!state.wall.length) { V.hush(); V.say('empty', {needs: '#next'}); pulse('next'); return; }
+    V.hush();   // a line still playing never runs into the next pet
+    petLeaves('teach');
+    const p = PARADE[state.mi], alive = aliveFor('teach'), first = !state.mysteries++;
+    state.mi = (state.mi + 1) % PARADE.length;
+    const sp = state.teach.spot = {pet: p, kind: 'mystery', phase: 'walk', walk: 0, line: 0};
+    state.arrivals++; state.sel = null; state.busy = true; updateButtons(); drawShelves(); repaint();
+    live(`A mystery pet walks in: ${p.name}`);
+    await anim(800, t => { sp.walk = t; paintDyn(); }, alive);
+    if (!alive()) return;
+    sp.walk = 1; sp.phase = 'think'; repaint();
+    const thinking = () => sp.phase === 'think' && state.teach.spot === sp, cap = ms => wait(ms * state.speed);
+    // the prediction beat: the class says its guess before Kip's (spoken the first time, then the hint)
+    let t0 = performance.now();
+    setHint(L.predict);
+    const pr = V.how('predict', {valid: thinking, wait: true});
+    if (first) await Promise.race([pr, cap(4000)]);
+    const hold = 1800 * state.speed - (performance.now() - t0); if (hold > 0) await wait(hold);
+    if (!alive()) return;
+    // how Kip guesses (a teaching line: the first Mystery pet only, then the hint); the swirl holds until it ends
+    if (first) { const lk = V.how('looks', {valid: thinking, wait: true}); await Promise.all([Promise.race([lk, cap(5000)]), cap(600)]); }
+    if (!alive()) return;
+    const g = guessFor(p);
+    sp.guess = g.label; sp.match = g.match; sp.phase = 'guess'; drawShelves(); repaint();
+    t0 = performance.now();
+    live(`Kip guesses ${WORD[g.label]}`);
+    const th = V.say(g.label === 'cat' ? 'thinkCat' : 'thinkDog', {valid: () => sp.phase === 'guess' && state.teach.spot === sp, wait: true});
+    await anim(450, t => { sp.line = t; paintDyn(); }, alive);
+    if (!alive()) return;
+    sp.line = 1; paintDyn();
+    await Promise.race([th, cap(3500)]);
+    // Kip's guess stays up at least 2 s, so the class can call it out before the truth
+    const left = 2000 * state.speed - (performance.now() - t0); if (left > 0) await wait(left);
+    if (!alive()) return;
+    sp.phase = 'truth'; sp.ok = g.label === p.label; state.busy = false; updateButtons(); repaint();
+    live(`It is a ${p.label}. Kip was ${sp.ok ? 'right' : 'wrong'}.`);
+    if (sp.ok) Curio.yes(); else { Curio.tone(262, .25, .05, 'triangle'); setTimeout(() => Curio.tone(196, .35, .05, 'triangle'), 160); }
+    // a wrong guess from a card taught with the wrong label says so; the hint names what to tap next
+    const m = state.wall.find(c => c.key === g.match), key = sp.ok ? 'right' : m && m.label !== m.pet.label ? 'wrongLabel' : 'wrong';
+    const nx = state.deck.length ? 'afterMystery' : 'afterMysteryAll', h = both(key, nx);
+    setHint(h.hint);
+    V.say([[key, h], [nx, {kind: 'how', ...h, needs: '#mystery'}]], {valid: () => state.teach.spot === sp});
+  }
+  function selectCard(key) {
+    if (state.mode !== 'teach' || state.busy) return;
+    state.sel = state.sel === key ? null : key;
+    updateButtons(); drawShelves();
+    const k = state.sel;
+    if (k != null) {
+      V.how('forgetHow', {valid: () => state.sel != null, needs: '#forget'});
+    } else setHint(L[teachHow()]);
+  }
+  function forget() {
+    if (state.busy || state.sel == null) return;
+    const i = state.wall.findIndex(c => c.key === state.sel); if (i < 0) return;
+    const [c] = state.wall.splice(i, 1);
+    state.deck.unshift(c.idx);   // the card goes back to the front of the deck, so Next pet brings it again
+    const sp = state.teach.spot; if (sp && sp.match === c.key) { sp.match = null; sp.line = 0; }
+    state.sel = null; updateButtons(); drawShelves(); repaint();
+    V.dropQueued();
+    const h = both('forgot', 'forgotHow'); setHint(h.hint);
+    V.say([['forgot', h], ['forgotHow', {kind: 'how', ...h, needs: '#next'}]]);
+    live(`Kip forgot ${c.pet.name}`);
+  }
+  function startOver() {
+    if (state.busy) return;
+    state.tk++; V.hush();
+    state.wall = []; state.deck = DECK.map((_, i) => i); state.mi = 0; state.sel = null;
+    state.teach.spot = null; state.parade.spot = null; state.leaving = null;
+    state.runs = []; state.slots = []; state.tally = null; state.saidBetter = false;
+    updateButtons(); renderSlots(); renderChart(); drawShelves(); repaint();
+    const h = both('over', 'nextHow'); setHint(h.hint);
+    V.say([['over', h], ['nextHow', {kind: 'how', ...h, needs: '#next'}]]);
+  }
+
+  // ======================================================================================
+  // Pet Parade: 10 pets, 3.5 s each (walk in 0.6 s, think 0.25 s, Kip's guess 2.0 s, truth 0.65 s)
+  // ======================================================================================
+  async function startParade() {
+    if (state.running) return;
+    if (!state.wall.length) { V.hush(); setHint(L.emptyParade); V.say('emptyParade', {needs: '#m-teach'}); pulse('m-teach'); return; }
+    V.hush();
+    const alive = aliveFor('parade'), mem = state.wall.length;
+    state.running = true; state.slots = []; state.tally = null; state.busy = true;
+    updateButtons(); renderSlots(); setHint(L.paradeWelcome);
+    steer(['start'], 'stop');
+    for (let i = 0; i < PARADE.length; i++) {
+      const p = PARADE[i];
+      petLeaves('parade');
+      const sp = state.parade.spot = {pet: p, kind: 'parade', phase: 'walk', walk: 0, line: 0};
+      repaint(); renderSlots();
+      await anim(600, t => { sp.walk = t; paintDyn(); }, alive); if (!alive()) return;
+      sp.walk = 1; sp.phase = 'think'; repaint();
+      await W8(250); if (!alive()) return;
+      const g = guessFor(p);
+      sp.guess = g.label; sp.match = g.match; sp.phase = 'guess'; drawShelves(); repaint();
+      await anim(400, t => { sp.line = t; paintDyn(); }, alive); if (!alive()) return;
+      sp.line = 1; paintDyn();
+      await W8(1600); if (!alive()) return;   // Kip's guess shows 2 s in all, so the class can call it out
+      sp.phase = 'truth'; sp.ok = g.label === p.label; repaint();
+      state.slots.push(sp.ok ? 'ok' : 'bad'); renderSlots();
+      Curio.tone(sp.ok ? 784 : 262, .18, .045, sp.ok ? 'sine' : 'triangle');
+      await W8(650); if (!alive()) return;
+    }
+    // the end: the tally, a new bar, the result lines
+    const right = state.slots.filter(s => s === 'ok').length, prev = state.runs[state.runs.length - 1];
+    const lessBefore = state.runs.some(u => u.right < 10);
+    state.runs.push({right, mem});
+    state.running = false; state.busy = false; state.tally = right;
+    petLeaves('parade');
+    updateButtons(); renderSlots(); renderChart(true); drawShelves(); repaint();
+    live(`Kip got ${right} of 10 right`);
+    if (right === 10) Curio.yes();
+    const parts = [L.score[right]];
+    if (prev) parts.push(right > prev.right ? 'more' : right === prev.right ? 'same' : 'fewer');
+    if (right === 10 && lessBefore && !state.saidBetter) { state.saidBetter = true; parts.push('better'); }
+    const nx = paradeHow(), hint = L.score[right] + ' ' + L[nx];
+    setHint(hint);
+    steer(['stop'], 'start');
+    V.say(parts, {valid: () => !state.running, hint});
+    V.how(nx, {valid: () => !state.running, needs: NEEDS[nx], hint});
+  }
+  function stopParade() {
+    if (!state.running) return;
+    state.tk++; V.hush();
+    state.running = false; state.busy = false; state.slots = []; state.parade.spot = null; state.leaving = null;
+    updateButtons(); renderSlots(); drawShelves(); repaint();
+    setHint(L[paradeHow()]);
+  }
+
+  // ======================================================================================
+  // Modes and layout
+  // ======================================================================================
+  function settle() {   // a mode change: finish or drop what was moving, keep each mode's state
+    if (state.mode === 'teach') {
+      const sp = state.teach.spot;
+      if (sp && sp.phase === 'fly') finishFly();
+      else if (sp && sp.kind === 'example' && sp.phase === 'walk') { sp.walk = 1; sp.phase = 'wait'; }
+      else if (sp && sp.kind === 'mystery' && sp.phase !== 'truth') state.teach.spot = null;
+    } else if (state.running) {
+      state.running = false; state.slots = []; state.parade.spot = null;
+    }
+    state.busy = false; state.leaving = null;
+  }
+  function setMode(m) {
+    V.hush();
+    state.tk++; settle();
+    if (m !== state.mode) state.sel = null;
+    state.mode = m;
+    document.body.dataset.mode = m;
+    for (const k of ['teach', 'parade']) $('m-' + k).setAttribute('aria-pressed', k === m);
+    for (const e of document.querySelectorAll('[data-modes]')) e.hidden = e.dataset.modes !== m;
+    updateButtons(); renderSlots();
+    lastSize = ''; relayout();
+    if (m === 'parade') renderChart();
+    if (m === 'teach') {
+      setHint(L[teachHow()]);
+      if (!V.welcome()) { const h = teachHow(); if (h !== 'teachWelcome') V.how(h, {needs: NEEDS[h]}); }
+    } else {
+      const h = paradeHow();
+      setHint(L[h]);
+      if (h === 'emptyParade') { V.say('emptyParade', {needs: '#m-teach', valid: () => !state.wall.length}); pulse('m-teach'); }
+      else { V.welcome(); V.how(h, {needs: NEEDS[h], valid: () => !state.running}); }
+    }
+  }
+  for (const k of ['teach', 'parade']) $('m-' + k).onclick = () => { if (state.mode !== k) setMode(k); };
+
+  let page = null, lastSize = '';
+  function pageLayout() { const w = innerWidth, h = innerHeight; return w >= 1000 && h >= 700 ? 'wide' : w >= 600 && w / h >= 1.25 ? 'compact' : 'stack'; }
+  function relayout() {
+    const p = pageLayout();
+    if (p !== page) { page = p; for (const c of ['wide', 'compact', 'stack']) document.body.classList.toggle(c, c === p); lastSize = ''; }
+    const st = $('stage');
+    if (page === 'stack') {
+      const w = st.getBoundingClientRect().width || innerWidth, L0 = layoutFor(w, 400);
+      st.style.height = Math.round(L0.by1 + clamp(w * .34, 124, 250)) + 'px';
+    } else st.style.height = '';
+    const r = st.getBoundingClientRect(), key = Math.round(r.width) + 'x' + Math.round(r.height);
+    if (key !== lastSize) {
+      lastSize = key;
+      const W = Math.max(280, Math.round(r.width)), H = Math.max(260, Math.round(r.height));
+      sv.setAttribute('width', W); sv.setAttribute('height', H); sv.setAttribute('viewBox', `0 0 ${W} ${H}`);
+      Lyt = layoutFor(W, H); build();
+    }
+    if (state.mode === 'parade') renderChart();
+  }
+  new ResizeObserver(() => relayout()).observe($('stage'));
+  new ResizeObserver(() => { if (state.mode === 'parade') renderChart(); }).observe($('chart'));
+  addEventListener('resize', () => relayout());
+
+  // ======================================================================================
+  // Input
+  // ======================================================================================
+  $('next').onclick = nextPet;
+  $('cat').onclick = () => teachLabel('cat');
+  $('dog').onclick = () => teachLabel('dog');
+  $('mystery').onclick = mystery;
+  $('forget').onclick = () => { forget(); steer(['forget'], 'next'); };
+  $('go-parade').onclick = () => { setMode('parade'); $('start').focus({preventScroll: true}); };
+  $('over').onclick = startOver;
+  $('start').onclick = startParade;
+  $('stop').onclick = () => { stopParade(); $('start').focus({preventScroll: true}); };
+  sv.addEventListener('click', e => { const c = e.target.closest && e.target.closest('.card'); if (c) selectCard(+c.dataset.key); });
+  sv.addEventListener('keydown', e => {
+    const c = e.target.closest && e.target.closest('.card'); if (!c) return;
+    const key = +c.dataset.key;
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); selectCard(key); }
+    else if ((e.key === 'Delete' || e.key === 'Backspace') && state.sel === key) { e.preventDefault(); forget(); $('next').focus({preventScroll: true}); }
+    else if (e.key === 'Escape' && state.sel != null) { e.preventDefault(); selectCard(state.sel); }
+    else if (/^Arrow/.test(e.key)) {
+      const cards = [...S.cards.querySelectorAll('.card')], i = cards.indexOf(c), d = e.key === 'ArrowLeft' || e.key === 'ArrowUp' ? -1 : 1;
+      const n = cards[(i + d + cards.length) % cards.length]; if (n) { e.preventDefault(); n.focus({preventScroll: true}); }
+    }
+  });
+  Curio.onMotion(() => repaint());
+
+  Curio.init({clips: "voice:*", rate: .95});   // Read speaks the hint (Curio.voice wires it)
+
+  // ======================================================================================
+  // For checking frames and tests
+  // ======================================================================================
+  // teach(n, labels): put deck cards 1..n on the wall at once (labels: optional list of 'cat'/'dog' overrides)
+  function teachNow(n, labels = {}) {
+    state.tk++; settle();
+    state.wall = []; state.deck = DECK.map((_, i) => i); state.sel = null; state.teach.spot = null;
+    for (let i = 0; i < n; i++) { const idx = state.deck.shift(); state.wall.push({key: ++uid, pet: DECK[idx], idx, label: labels[i] || DECK[idx].label}); }
+    updateButtons(); drawShelves(); repaint();
+    if (state.mode === 'teach') setHint(L[teachHow()]);
+  }
+  // the scene as a standalone SVG (for preview.svg): Maple in the spotlight with the look-alike line to Marmalade
+  function previewSVG(W = 800, H = 500) {
+    const keep = {Lyt, S, wall: state.wall, deck: state.deck, spot: state.teach.spot, mode: state.mode};
+    const host = document.createElementNS(NS, 'svg');
+    teachNow(6);
+    state.mode = 'teach';
+    const sp = state.teach.spot = {pet: PARADE[0], kind: 'mystery', phase: 'guess', walk: 1, line: 1};
+    const g = guessFor(PARADE[0]); sp.guess = g.label; sp.match = g.match;
+    host.setAttribute('xmlns', NS); host.setAttribute('viewBox', `0 0 ${W} ${H}`); host.setAttribute('width', W); host.setAttribute('height', H);
+    const real = sv;
+    Lyt = layoutFor(W, H);
+    const svgSave = real.innerHTML;
+    build(); host.innerHTML = real.innerHTML;
+    for (const e of host.querySelectorAll('[tabindex],[role],[aria-label],[aria-pressed],[data-key]')) ['tabindex', 'role', 'aria-label', 'aria-pressed', 'data-key', 'class'].forEach(a => e.removeAttribute(a));
+    for (const e of host.querySelectorAll('.ring')) e.remove();
+    const match = state.wall.find(c => c.key === sp.match);
+    Object.assign(state, {wall: keep.wall, deck: keep.deck, mode: keep.mode}); state.teach.spot = keep.spot; Lyt = keep.Lyt; real.innerHTML = svgSave; lastSize = ''; relayout();
+    return {svg: '<?xml version="1.0" encoding="UTF-8"?>\n' + host.outerHTML.replace(/ class="[^"]*"/g, ''), match: match && match.pet.name};
+  }
+  window.__tool = {state, setMode, allLines: V.allLines, get vlog() { return V.log; }, get vq() { return V.queue; }, V, DECK, PARADE, L,
+    teachNow, guessFor, previewSVG, drawPet, drawPortrait, nextPet, teachLabel, mystery, startParade, stopParade, forget, selectCard, startOver,
+    hint: () => $('hint').textContent, layout: () => ({page, ...Lyt}), curio: () => ({sound: Curio.sound, reduce: Curio.reduce})};
+  setMode('teach');
+})();
+</script>
+</body>
+</html>

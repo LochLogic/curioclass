@@ -1,0 +1,23 @@
+{
+  "id": "teach-the-robot",
+  "status": "beta",
+  "hook": "Show Kip the robot one pet at a time and tell it cat or dog. Kip remembers every example and guesses new pets from the one that looks most alike, so the class watches its guesses get better as it learns.",
+  "outcome": "Explain that a computer can learn from examples: more, and more varied, labeled examples make its guesses better, and wrong labels make them worse",
+  "driver": "teacher",
+  "minutes": "15-25",
+  "modes": [
+    "Teach",
+    "Pet Parade"
+  ],
+  "grades_label": "Grade 2",
+  "sources": [
+    "AI4K12, Five Big Ideas in AI, Big Idea 3 \"Learning\" and the K-2 grade band guidelines (Touretzky, Gardner-McCune, Martin, Seehorn, AAAI 2019): https://ai4k12.org",
+    "CSTA K-12 Computer Science Standards (2017), 1A-DA-07: https://csteachers.org/k12standards/",
+    "How Kip guesses (nearest-neighbor classification, k = 1): scikit-learn user guide, \"Nearest Neighbors\": https://scikit-learn.org/stable/modules/neighbors.html",
+    "The pets and their clue values are made up for this tool; the parade scores were computed with the Curio Class ml-lab engine",
+    "Kip, the pets, the lobby and the chart are drawn in code; sounds generated in the browser"
+  ],
+  "third_party": [],
+  "updated": "2026-10-27",
+  "stage": "built"
+}

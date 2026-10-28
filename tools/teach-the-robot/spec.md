@@ -14,7 +14,7 @@ The class shows Kip the robot one pet at a time and says out loud "cat" or "dog"
 ## Who and how
 - Grade 2, computer science. Module: Teach the Machine (Algorithms and Programming). Topic line: "how a computer learns from examples".
 - Driver: teacher, on a projector or smartboard. The class names each pet out loud, predicts Kip's guesses, and counts the parade score together. 15 to 25 minutes.
-- Standards: E2-ALG-ML-02 (module code). CSTA 2017 crosswalk: 1A-DA-07 (identify and describe patterns in data to make predictions). Reference: AI4K12 Big Idea 3, "Computers can learn from data".
+- Standards: E2-ALG-ML-02 (module code). CSTA 2017 crosswalk: 1A-DA-07 (identify and describe patterns in data visualizations, such as charts or graphs, to make predictions: Kip's Chart). Reference: AI4K12 Big Idea 3, "Computers can learn from data".
 - tool.json: driver "teacher", minutes "15-25", modes ["Teach", "Pet Parade"], grades_label "Grade 2".
 - No reading needed: every control has an icon, every fixed line is spoken.
 
@@ -62,9 +62,9 @@ Parade (and Mystery pet, cycling in this order):
 | # | Name | Is a | Coat | ears | snout | whiskers | size | dark | fluffy |
 |---|---|---|---|---|---|---|---|---|---|
 | 1 | Maple | cat | orange #e39a4c | .85 | .25 | .80 | .30 | .35 | .35 |
-| 2 | Rusty | dog | golden #c98a3a | .20 | .70 | .40 | .55 | .35 | .30 |
+| 2 | Nutmeg | cat | brown tabby #b08a68 | .92 | .27 | .64 | .28 | .37 | .30 |
 | 3 | Luna | cat | black #232327 | .85 | .20 | .80 | .40 | .90 | .80 |
-| 4 | Noodle | dog | white #f2efe8 | .25 | .55 | .40 | .25 | .10 | .30 |
+| 4 | Noodle | dog | white #f2efe8 | .27 | .65 | .38 | .44 | .09 | .78 |
 | 5 | Ghost | cat | white #f5f3ee | .80 | .25 | .85 | .30 | .10 | .50 |
 | 6 | Shadow | dog | black #1e1e22 | .20 | .75 | .35 | .85 | .90 | .30 |
 | 7 | Pippin | dog | red #c0612e | .85 | .55 | .45 | .30 | .40 | .30 |
@@ -73,17 +73,26 @@ Parade (and Mystery pet, cycling in this order):
 | 10 | Juniper | dog | gray #7a7d84 | .80 | .65 | .40 | .60 | .60 | .60 |
 
 Parade score after teaching the first N deck cards with the right labels (checked with the engine, k = 1):
-N = 1: 4, 2: 4, 3: 5, 4: 7, 5 to 9: 8, 10 and 11: 9, 12 to 16: 10. With 2 cards Kip misses Rusty, Noodle, Pippin and Waffles (all look most like Marmalade) and Luna and Bramble (most like Bear). Pippin, a pointy-eared dog, is fixed only by Ziggy (card 12); Waffles, a short-nosed dog, only by Pudding (card 10). That is the talk point: Kip needed an example like the new pet.
+Refine changes (round 1): the parade is 5 cats and 5 dogs (Nutmeg replaces Rusty; Noodle is a fluffy white dog), so a wrong label never raises the score. New table:
+
+| Cards taught (N) | 1 | 2 | 3 | 4 | 5 to 9 | 10 and 11 | 12 to 16 |
+|---|---|---|---|---|---|---|---|
+| Right labels | 5 | 6 | 7 | 7 | 8 | 9 | 10 |
+| Marmalade labeled dog | 5 | 5 | 6 | 6 | 8 | 8 | 8 |
+
+Checked in Node with the engine for every N from 1 to 16 and every single wrong label of any taught card: no wrong label raises the score at any N (most lower it, a few hold it). With 2 cards Kip misses Pippin and Waffles (both look most like Marmalade) and Luna and Bramble (most like Bear). Pippin, a pointy-eared dog, is fixed only by Ziggy (card 12); Waffles, a short-nosed dog, is fixed first by Pudding (card 10). That is the talk point: Kip needed an example like the new pet.
 
 Drawing: one parametric pet, side view facing the class. Body ellipse width 140 to 260 px by size; head circle; ears drawn from floppy (rounded drooping flap) to pointy (upright triangle) by ears; muzzle length by snout; whisker strokes length by whiskers; fill = coat color; fluffy adds a scalloped fur outline; tabby, stripes and spots are simple overlay strokes. Cats and dogs share the drawing, so the class sees the same clues Kip uses.
 
 ## Interactions in detail
 - Next pet with the deck used up: nothing walks in; "every card" line. Start over restores the deck, empties the wall, clears the chart.
 - Labels are never checked. A wrong label teaches Kip wrong, and its later guesses show it. The wall card keeps the label the teacher chose.
-- Mystery pet or Start parade with an empty wall: nothing walks; the "doesn't remember" line plays and Next pet pulses once.
+- Mystery pet or Start parade with an empty wall: nothing walks; the "doesn't remember" line plays and Next pet pulses once (in Pet Parade, its own line names Teach and the Teach button pulses; the parade welcome waits until the wall has a card).
+- Refine changes (round 1): once every example card is shown, Pet Parade replaces Next pet as the main Teach button, the shelves stop showing empty slots, and the counts say what is taught ("8 pets"). Shelves at 8 cards per row show a second row only when a shelf needs one.
 - Guessing: engine `knn` with k = 1 over all six features. Distance ties go to the card taught first. The look-alike line always ends on the card that decided.
-- While a pet is walking or Kip is thinking, every button but Stop and the header is disabled (dimmed, not hidden). A tap on a disabled button does nothing.
-- Parade timing: 2.6 s per pet (walk in 0.8 s, think 1.0 s, truth 0.8 s). Motion off: pets appear in place and the line draws at once; timing stays the same.
+- While a pet is walking or Kip is thinking, every button but Stop and the header is disabled (dimmed, not hidden). A tap on a disabled button does nothing. Refine changes (round 1): busy buttons are aria-disabled, so they keep keyboard focus; when the next control changes, focus moves to it (Next pet to Cat, Cat or Dog to Next pet or Pet Parade, Start parade to Stop and back).
+- Refine changes (round 1), Mystery pet: walk in 0.8 s; the prediction beat ("What will Kip guess? Say it out loud!", at least 1.8 s); on the first Mystery pet line 6 plays while Kip thinks; then the look-alike line and Kip's guess together, held at least 2 s; then the truth.
+- Parade timing: 3.5 s per pet (walk in 0.6 s, think 0.25 s, Kip's guess 2.0 s with the line drawing in its first 0.4 s, truth 0.65 s; refine round 1, was 2.6 s). At the end Kip's screen shows the result: a big smile for 8 or more, a puzzled face for 4 or less. Motion off: pets appear in place and the line draws at once; timing stays the same.
 - Stop ends the parade; a part run adds no bar. Mode switch stops and hushes. Each mode keeps its state for the page load. Nothing is saved.
 - Keyboard: Tab order is mode buttons, header buttons, panel buttons, then wall cards. Enter or Space activates; on a selected wall card, Delete forgets it. Visible focus.
 - Sizes: Next pet, Cat, Dog, Mystery pet and Start parade are visible without scrolling at every size in STANDARDS.md. Targets 60 px. At 680x425 the wall shrinks to 8 cards per row (cards at least 40 px) and the chart to its last 4 bars. Stage text at least 10 px in the preview.
@@ -125,6 +134,14 @@ Pet Parade:
 32. how (after the first full parade): "Tap Teach and show Kip more pets. Then run the parade again."
 33. event, the first time a run scores 10 after an earlier run scored less: "The more examples Kip saw, the better Kip guessed!"
 
+Refine changes (round 1):
+- Line 6 is now how (spoken on the first Mystery pet only, then hint only); the guess line (7 or 8) plays when the guess shows.
+- New how line before line 6, the prediction beat: "What will Kip guess? Say it out loud!"
+- Line 10 has a variant when the deciding card was taught with the wrong label: "Oops! Kip remembered that pet wrong."
+- Line 13 is now "Tap Forget to make Kip forget this pet. Tap the card again to keep it." (said when a card is already selected).
+- Line 33 is now "The more different pets Kip saw, the better Kip guessed!"
+- New how lines that name the next control: after a Mystery result "Tap Mystery pet again, or Next pet to teach Kip more." (or "Tap Mystery pet again, or Pet Parade to count." once the deck is used up); after Forget "Tap Next pet to show it to Kip again."; after Start over and after the first card "Tap Next pet to show Kip a pet."; Pet Parade with an empty wall "Kip doesn't remember any pets yet. Tap Teach first!"; after a parade with the deck used up "Kip has seen every pet! Tap Teach to try Mystery pets, or Start over to teach Kip again." The hint shows the event line and the next step together, and Read speaks it.
+
 Read speaks the hint. During a parade, guesses are shown, not spoken (lines 7 and 8 are Teach only), so the class can call them out.
 
 ## Family engine
@@ -146,10 +163,10 @@ Read speaks the hint. During a parade, guesses are shown, not spoken (lines 7 an
 
 ## Done when
 1. Teach opens with the welcome on the first tap; Next pet brings Marmalade, and Cat files it on the Cat shelf with line 3.
-2. Teaching cards 1 and 2 correctly, then a parade, scores 4 of 10, with misses on Rusty, Luna, Noodle, Pippin, Waffles and Bramble.
+2. Teaching cards 1 and 2 correctly, then a parade, scores 6 of 10, with misses on Luna, Pippin, Waffles and Bramble (refine round 1; was 4).
 3. After all 16 cards taught correctly, the parade scores 10 of 10, and the chart shows both bars with their memory counts.
 4. Teaching cards 1 to 11 scores 9 (Pippin missed); adding Ziggy makes the next parade 10, and line 29 plays.
-5. Labeling Marmalade as a dog and running the parade gives a different score than the right label; Forget on that card restores it.
+5. Labeling Marmalade as a dog and running the parade gives a lower score than the right label (5 instead of 6 with 2 cards, 8 instead of 10 with 12 or more); Forget on that card restores it.
 6. Every Mystery pet shows one look-alike line ending on the card that decided, and the truth always matches the table.
 7. Lines 2, 5 and 17 are each spoken once in a run of five actions; result lines (9, 10, 18 to 31) every time.
 8. Next pet, Cat, Dog and Start parade are visible without scrolling at 680x425, 1366x768 and 375 wide; targets are 60 px.
