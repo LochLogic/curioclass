@@ -147,17 +147,18 @@ Welcomes and how-to (how: spoken once per page load, then hint only):
 1. how, welcome Snow Town: "Welcome to Snow Town! Pip the penguin carries the mail. Pip walks exactly what the arrows say."
 2. how: "Tap a house to choose where the letter goes. Then tap the arrows to make Pip's path."
 3. how: "Before you press Go, trace the path with your finger. Where will Pip stop? Tap Guess, then tap that square."
-4. how, welcome Mail Route: "Time to deliver the mail! Look at the letter in Pip's bag. Find the house with that picture."
-5. how: "Tap a card to change it. Use the arrows under the cards to move it, or the trash can to take it away."
+4. how, welcome Mail Route: "Time to deliver the mail! Look at the letter up in the corner. Find the house with that picture."
+5. how: "Tap a card to change it. Use the buttons under the cards to move it, or the trash can to take it away."
 6. how: "Press Step to walk one card at a time."
 7. how: "Tap a footprint to find the card that made it."
 Level lines (how, once per level per page load, on opening the level):
 8. "Level one: First Delivery. Take the letter to the Star house." 9. "Level two: Down the Lane. Take the letter to the
-Heart house." 10. "Level three: The Snowbank. Pip can't walk through snow. Find a way around." 11. "Level four: Wrong
-Way. Another mail carrier made these cards. One card is wrong. Press Go, then find it." 12. "Level five: Long Lane.
+Heart house." 10. "Level three: The Snowbank. Pip can't walk through a snowbank. Find a way around." 11. "Level four: Wrong
+Way. Another mail carrier made these cards. One card is wrong. A mistake in the cards is called a bug.
+Press Go, then find it." 12. "Level five: Long Lane.
 Take the letter to the Tree house." 13. "Level six: One Too Many. These cards have an extra step. Find it and take it
 away." 14. "Level seven: Mixed Up. Two cards are in the wrong order. Swap them." 15. "Level eight: Big Town. This is a
-long one. Go slowly, one arrow at a time."
+long one. Press Step to walk one arrow at a time."
 Events (spoken every time; stale when Pip moves again, the strip is edited, or the mode or level changes):
 16. "Add an arrow card first!" 17. "That's twelve cards! Press Go to see where Pip walks." 18. "Delivered! Pip followed
 every arrow." 19. "Oh! That's the wrong house. Tap the footprints to see where Pip turned." 20. "Pip stopped in the
@@ -166,9 +167,14 @@ That's the edge of town. Which card sent Pip that way?" 23. "All clear. Make a n
 Pip stopped right on your flag." 25. "Pip stopped somewhere else. Look at the footprints." 26. "That's every level!
 Pip's mail bag is empty. Thank you, mail carriers!"
 Arrow names (events, latest only): 27. "Up!" 28. "Down!" 29. "Left!" 30. "Right!"
-Which line when: Snow Town entry 1 then 2; first Go without a flag in a page load: 3 (how, before Pip walks, the walk
-waits for it). Mail Route entry 4 then the level line; level 4 also queues 5. The first bump or wrong stop of the page
-load adds 7, the second adds 6. Read speaks `#hint`.
+Which line when: Snow Town entry 1 then 2. Mail Route entry 4 then the level line; level 4 also queues 5. Go always
+walks at once: a queued 3 or flag line is hushed, never waited for. After a run that did not deliver, the hint is 7 the
+first time (after a bump, the last-footprint line instead), then 6; once every other how line is heard, 3 follows a
+result. Lines are chosen by what has been heard (`V.heard`), not by a counter. Read speaks `#hint`.
+Added in Refine round 1 (handoff.md): the last-footprint and first-card lines after a bump, the level picker line,
+"Delivered! You fixed the bug. Finding and fixing a bug is called debugging." on a fix-it delivery, "Pip walked back to
+the Post Office! Look at the footprints." when a path ends at the Post Office (not line 20), and the fix-it hints for
+levels 6 and 7. The full list is voice/lines.json.
 
 ## Family engine
 Robot family engine, `kit/robot.js` (new in this wave; this is the full description, traffic-light-coder feeds it the

@@ -1,0 +1,24 @@
+{
+  "id": "snowy-mail-route",
+  "status": "beta",
+  "hook": "Pip the mail penguin walks exactly the arrow cards the class lays down and leaves numbered footprints in the snow. Guess where Pip will stop, press Go, then tap any footprint to find the card that made it.",
+  "outcome": "Build a short sequence of arrow steps that takes Pip to a house, predict where it ends, and find and fix the wrong, extra or swapped card when Pip goes astray",
+  "driver": "teacher",
+  "minutes": "15-25",
+  "modes": [
+    "Snow Town",
+    "Mail Route"
+  ],
+  "grades_label": "Grade 1",
+  "sources": [
+    "CSTA K-12 Computer Science Standards, 2026 PK-12 identifiers E1-ALG-PS-01, E1-PRO-PD-04, E1-PRO-TR-07, E1-ALG-IM-03: https://csteachers.org/k12standards/",
+    "CSTA K-12 Computer Science Standards (2017), 1A-AP-08, 1A-AP-10, 1A-AP-14: https://csteachers.org/k12standards/",
+    "Code.org CS Fundamentals glossary (algorithm, bug, debugging, program): https://code.org/curriculum/docs/k-5/glossary",
+    "Arrow paths on a grid as a first sequencing activity: Code.org unplugged lesson \"Graph Paper Programming\": https://code.org/curriculum/unplugged",
+    "Maps, levels and bugs are original to Curio Class",
+    "Pip, the town, footprints and the flag drawn in code; sounds generated in the browser"
+  ],
+  "third_party": [],
+  "updated": "2026-10-28",
+  "stage": "built"
+}
