@@ -2113,8 +2113,9 @@ def spring(size=380, bands=True):
     return _icon(400, 120, ''.join(out), size)
 
 
-def us_map(size=420, shade=(), color=BLUE, line=None, split=False, arrows_=(), labels=False):
-    """US states (from tools/me-on-the-map). shade: postal codes to fill; split: shade north and south apart."""
+def us_map(size=420, shade=(), color=BLUE, line=None, split=False, arrows_=(), labels=False, fills=None):
+    """US states (from tools/me-on-the-map). shade: postal codes to fill; split: shade north and south apart;
+    fills: {postal code: color} for states colored one by one (any state not named keeps the pale color)."""
     states = json.loads((ROOT / 'tools' / 'me-on-the-map' / 'states.json').read_text(encoding='utf-8'))
     SOUTH = set('TX OK AR LA MS AL GA FL SC NC TN KY VA WV MD DE'.split())
     out = []
@@ -2122,6 +2123,8 @@ def us_map(size=420, shade=(), color=BLUE, line=None, split=False, arrows_=(), l
         f = soft(color)
         if st['a'] in shade:
             f = color
+        if fills and st['a'] in fills:
+            f = fills[st['a']]
         if split:
             f = ORANGE if st['a'] in SOUTH else BLUE
         out.append(f'<path d="{st["d"]}" fill="{f}" stroke="#fff" stroke-width="1.5"/>')
@@ -3019,6 +3022,99 @@ def grid2x2(cols, rows_, cells, hl=None, size=420, title=('', '')):
         i, j = divmod(hl, 2)
         out.append(f'<rect x="{lx + j * cw - 3}" y="{ty + i * ch - 3}" width="{cw + 6}" height="{ch + 6}" fill="none" stroke="{RED}" stroke-width="7"/>')
     return sized(Item(lx + 2 * cw + 10, ty + 2 * ch + 10, ''.join(out)), size)
+
+
+def wrap(s, w=320, size=32, color=DARK, bold=True, align='c'):
+    """Text broken into lines no wider than w."""
+    lines, cur = [], ''
+    for word in str(s).split():
+        t = (cur + ' ' + word).strip()
+        if cur and tw(t, size, bold) > w:
+            lines.append(cur)
+            cur = word
+        else:
+            cur = t
+    lines.append(cur)
+    return col(*[T(ln, size, color, bold) for ln in lines], gap=0, align=align)
+
+
+def memo(s, w=320, size=32, color=BLUE, head=None, fill=None, dashed=False, text=DARK):
+    """A box of wrapped text, w wide; head: a small colored heading over the text (like "purpose:")."""
+    body = wrap(s, w - 40, size, text)
+    if head:
+        body = col(T(head, size * 0.8, color), body, gap=0)
+    return box(body, w=w, h=body.h + 32, color=color, fill=fill, dashed=dashed)
+
+
+def because(a, b, top='opinion', bottom='reason', link='because', pic=None, w=420, colors=(BLUE, GREEN)):
+    """An opinion (or choice, or cause) joined by a "because" arrow to the reason under it; pic: a small picture beside the reason."""
+    rb = memo(b, w - (130 if pic is not None else 0), 36, colors[1])
+    if pic is not None:
+        rb = row(rb, sized(pic, 110, 110), gap=20)
+    return col(T(top, 28, colors[0]) if top else None, memo(a, w, 36, colors[0]), row(arrow(60, ORANGE, 'down', sw=9), T(link, 42, ORANGE), gap=14),
+               T(bottom, 28, colors[1]) if bottom else None, rb, gap=6)
+
+
+def idiom(saying, literal, meaning, mtext):
+    """An idiom: the saying in a bubble; under it, what the words say (crossed out) and what the saying really means (checked)."""
+    lit = col(T('the words say', 28, GRAY), over(card(literal, 190, 170, GRAY), cross(130)), gap=4)
+    real = col(T('it means', 28, GREEN), over(card(meaning, 190, 170, GREEN), check(60), dx=70, dy=-62), T(mtext, 32, GREEN), gap=4)
+    return col(bubble(T(saying, 44), color=BLUE, tail='left'), row(lit, real, gap=30, align='t'), gap=6)
+
+
+def swap(sentence, out=None, into=None, label=None, size=40, color=GREEN):
+    """A revision: out (a part of the sentence, or all of it) struck through in red, into written above it with a caret;
+    label: a word over the whole thing."""
+    out = out or sentence
+    line = T(sentence, size, DARK, strike=out)
+    if into:
+        i = sentence.find(out)
+        x0, sw = tw(sentence[:i], size, True), tw(out, size, True)
+        new = T(into, size, color)
+        cx = x0 + sw / 2
+        nx = min(max(0, cx - new.w / 2), max(0, line.w - new.w))
+        W = max(line.w, nx + new.w)
+        caret = f'<path d="M{cx - 16:.1f} {new.h + 26:.1f} L{cx:.1f} {new.h + 4:.1f} L{cx + 16:.1f} {new.h + 26:.1f}" fill="none" stroke="{color}" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>'
+        line = Item(W, new.h + 22 + line.h, g(new, nx, 0) + caret + g(line, 0, new.h + 22))
+    return col(T(label, size * 0.8, color), line, gap=10) if label else line
+
+
+def views(center, left, right, size=470):
+    """One thing in the middle and two onlookers, each with a thought bubble: left/right = (who, thought, color)."""
+    def side(who, thought, c, tail):
+        return col(bubble(wrap(thought, 150, 30, c), color=c, tail=tail, think=True, w=190), sized(who, 100, 100), gap=2)
+    return sized(row(side(*left, 'right'), sized(center, 150, 150), side(*right, 'left'), gap=12, align='b'), size)
+
+
+def qmap(big, smalls, hl=None, links=False):
+    """A question map: one big question with small questions under it, each joined to it by a line.
+    hl: the small question picked out; links: the joining lines picked out instead."""
+    bigb = memo(big, 400, 36, BLUE)
+    sm = [memo(s, 146, 24, ORANGE if hl == i else (GRAY if hl is not None else GREEN)) for i, s in enumerate(smalls)]
+    W = 470
+    gx = (W - sum(b.w for b in sm)) / max(1, len(sm) - 1)
+    y1 = bigb.h + 80
+    lines, bx, x = [], [], 0
+    for b in sm:
+        cx = x + b.w / 2
+        lines.append(f'<line x1="{cx:.1f}" y1="{y1:.1f}" x2="{W / 2 + (cx - W / 2) * 0.45:.1f}" y2="{bigb.h - 4:.1f}" stroke="{ORANGE if links else GRAY}" stroke-width="{10 if links else 6}" stroke-linecap="round"/>')
+        bx.append(g(b, x, y1))
+        x += b.w + gx
+    return Item(W, y1 + max(b.h for b in sm), ''.join(lines) + g(bigb, (W - bigb.w) / 2, 0) + ''.join(bx))
+
+
+def levee(held=True, size=240):
+    """A river beside a town, seen from the side. held: a levee holds the high water back and the town stays dry;
+    otherwise the high water spreads over the town."""
+    ground = f'<path d="M0 200 V150 Q45 180 90 150 V140 H260 V200 Z" fill="{BROWN}" stroke="{DARK}" stroke-width="4" stroke-linejoin="round"/>'
+    houses = ''.join(g(house(56, c), x, 86) for x, c in ((150, RED), (200, ORANGE)))
+    river = f'<text x="40" y="196" font-family="{SANS}" font-size="20" font-weight="700" text-anchor="middle" fill="#fff">river</text>'
+    if held:
+        out = [f'<path d="M0 50 H112 L96 140 L90 150 Q45 180 0 150 Z" fill="#5b93d1"/>', ground,
+               f'<path d="M88 140 L108 44 H128 L144 140 Z" fill="#8a6a4a" stroke="{DARK}" stroke-width="4" stroke-linejoin="round"/>', houses, river]
+    else:
+        out = [ground, houses, f'<path d="M0 50 H50 Q150 58 260 72 V140 H90 V150 Q45 180 0 150 Z" fill="#5b93d1" opacity="0.88"/>', river]
+    return sized(Item(260, 200, ''.join(out)), size)
 
 
 def paint(prompt):

@@ -1174,3 +1174,298 @@ Redraws worse than the old picture: cubism, motive, used to (the old candle coul
 | social-studies-8-shaping-our-week/nonprofit | nonprofit | REDO | A store aisle reads as a business, not a cause | food bank shelves with donated cans in open cardboard boxes and a heart painted on a crate |
 | social-studies-8-voices-on-the-vote/property-requirement | property requirement | CODE | Real lettering ("Deed"); the rule is not shown | a deed with a key leading to a ballot box (allowed), and a renter with no deed stopped at the ballot box |
 | social-studies-8-voices-on-the-vote/viewpoint | viewpoint | PEOPLE | Fake masthead on the newspaper; viewpoints need speakers | two speakers at podiums, one with a thumbs-up and one with a thumbs-down |
+
+## Converted, batch 2
+
+All 180 CODE rows from the batch 2 review are now code diagrams: each card's picture field reads `svg: ...`, its spec sits at the end of data/closet/words/diagrams.py (under "converted from paintings, batch 2"), and its webp was drawn with `scripts/wordsvg.py --only`. None was kept painted: each one turned on words, labels, numbers, a map, a table or a before-and-after that a painting would garble. Each picture was checked against the card's definition and example for its grade, and `scripts/check_words.py` reports 0 problems.
+
+New helpers in scripts/wordsvg.py: memo (a box of wrapped text with an optional small heading, 29 cards), wrap (wrapped text, 17), because (opinion or choice joined by "because" to a reason, 5), idiom (the saying, what the words say crossed out, what it means checked, 3), swap (a revision: words struck out and the new words written above with a caret, 3), views (one thing and two onlookers with thought bubbles, 3), qmap (a big question with small questions joined to it, 3), levee (a river town with or without a levee, 2). us_map gained a `fills` option ({postal code: color}, 2 cards). The new box helper is named memo because note() already draws music notes.
+
+Notes for review:
+
+- Fresh sensitivity review needed (cultural, Native or hard-history content), not judged here:
+  - social-studies-4-state-history/native-nations: Colorado before statehood, Ute in the western mountains, Cheyenne and Arapaho on the eastern plains.
+  - social-studies-5-indigenous-peoples-of-north-america/nation: a hand-drawn New York outline with the six Haudenosaunee nations placed at their homelands (Seneca, Cayuga, Onondaga, Oneida, Mohawk, Tuscarora) and the caption that the Tuscarora joined about 1722.
+  - social-studies-8-the-civil-war/union and /confederacy: US maps with the Union (including the border states and West Virginia) and the 11 Confederate states, Richmond starred as the Confederate capital.
+  - social-studies-9-imperialism/resistance: Africa in 1914, nearly all ruled by European powers, with Ethiopia and Liberia independent and Adwa (1896) pinned.
+  - world-languages-6-12-cultures-of-the-spanish-speaking-world/perspective: an ofrenda for Día de Muertos with the perspective "we remember and honor our loved ones."
+  - social-studies-8-voices-on-the-vote/property-requirement: a landowner with a deed lets into the ballot box, a renter without one is stopped, captioned "until states dropped it, by the 1850s." Voting history (who else was shut out) should be checked.
+  - social-studies-4-made-for-whom/purpose: a generic old "LAND FOR SALE" ad; land sales in a state-history module can touch on Native land, so worth a look.
+- Facts used: the 19th Amendment (1920); the transcontinental telegraph and the end of the Pony Express both in October 1861; the 1880 census recorded name, age and occupation; Adwa in 1896; the swing era drawn as about 1935 to 1945. The data-quality table averages 12, 250 and 13 to "92?" (91.7) to show how a bad value skews it.
+- Story, ad and survey content (names, prices, captions) is invented for the example and kept plain.
+
+| key | word | result | picture now |
+|---|---|---|---|
+| arts-6-8-photography-and-framing/exposure | exposure | converted | the same tree photo too dark, just right and washed out, under a lens opening that is small, medium and wide |
+| arts-6-8-photography-and-framing/angle | angle | converted | a tall tree with one camera near the ground aiming up (low angle) and one high above aiming down (high angle) |
+| computer-science-k-step-by-step/command | command | converted | a toy robot on a grid moves one square forward when it gets the command card "go" |
+| computer-science-5-train-a-classifier/predict | predict | converted | five days of weather, then tomorrow's weather is a guess: rain |
+| ela-3-opinion-and-informative-writing/reason | reason | converted | the opinion "Recess should be longer" joined by "because" to the reason "Kids need time to move" |
+| ela-3-literal-and-figurative-language/idiom | idiom | converted | "break a leg" does not mean a broken leg; it means good luck |
+| ela-k-story-time-characters-and-setting/end | end | converted | three story panels, the last one (the bear eats honey) picked out |
+| ela-1-writing-sentences-and-stories/reason | reason | converted | the opinion "Summer is best" joined by "because" to the reason "I can swim", with a pool |
+| ela-2-story-structure-and-point-of-view/point-of-view | point of view | converted | one barking dog, and two thoughts about it: the cat thinks "So noisy!", the boy thinks "He wants to play!" |
+| ela-4-myths-and-allusions/allusion | allusion | converted | "Herculean" points back to Hercules, the strong hero of Greek myths |
+| ela-5-figurative-language/idiom | idiom | converted | "break a leg" does not mean a broken leg; it means good luck |
+| ela-5-multiple-sources/credible | credible | converted | a science journal (credible, checked) beside a gossip flyer (not credible, question mark) |
+| ela-7-figurative-language-and-allusions/allusion | allusion | converted | a teammate lifts a heavy bench and a friend says "She's a Hercules!", pointing back to the strong Greek hero |
+| ela-8-presentations-and-media/motive | motive | converted | a sneaker ad ("New shoes! Buy now!") and the reason it was made: to sell shoes |
+| eld-6-8-summarizing-and-citing/according-to | according to | converted | a book's words in a bubble, "According to the author, bees are in danger," with "According to" pointing back to where they came from |
+| eld-6-8-idioms-and-everyday-expressions/idiom | idiom | converted | "hit the books" does not mean hitting books; it means studying |
+| health-pe-3-5-growing-up/puberty | puberty | converted | height by age; the steep climb, when a child's body grows into an adult's, usually starts between 8 and 14 |
+| math-2-time-and-money/p-m | p.m. | converted | a day from midnight to midnight; the half from noon to midnight is p.m. (dinner at 6 p.m., moon at midnight) |
+| math-5-units-and-line-plots/customary-units | customary units | converted | a ruler in inches, a one-gallon jug and a one-pound weight |
+| science-1-sound-and-vibration/vibrate | vibrate | converted | a plucked guitar string moves back and forth very fast |
+| science-4-natural-resources-and-hazards/reduce | reduce | converted | high water floods a town with no levee; a levee holds it back, so there is less damage |
+| science-6-plate-tectonics/magma | magma | converted | melted rock in a chamber deep under a volcano is magma; when it comes out on top it is lava |
+| science-8-forces-and-motion/inertia | inertia | converted | the bus stops, but a ball on its floor keeps rolling forward |
+| science-8-natural-hazards-and-human-impact/mitigation | mitigation | converted | a levee is flood mitigation, the town behind it stays dry; without one, the town floods |
+| science-11-momentum-and-collisions/elastic-collision | elastic collision | converted | a moving pool ball hits one at rest; it stops and the other moves off just as fast, so the kinetic energy is kept |
+| sel-3-5-perspective-taking/point-of-view | point of view | converted | one board game, two thoughts about it: the winner thinks "Fair!", the loser thinks "Unfair!" |
+| social-studies-3-map-skills-and-regions/region | region | converted | the Great Plains, one wide flat region of the United States |
+| social-studies-2-community-helpers-and-government/decision | decision | converted | a path splits; one way goes to an empty lot, the other to a park, and the town picks the park |
+| social-studies-4-state-history/native-nations | Native nations | converted | Colorado, where the Ute lived in the mountains and the Cheyenne and Arapaho on the eastern plains, long before statehood |
+| social-studies-5-indigenous-peoples-of-north-america/nation | nation | converted | the homelands of the six Haudenosaunee nations across what is now New York, west to east |
+| social-studies-5-the-constitution-and-bill-of-rights/amendment | amendment | converted | a new page added to the end of the Constitution, Amendment 19 (1920): women have the right to vote |
+| social-studies-8-the-civil-war/union | Union | converted | a map of the states during the Civil War, the Union (Northern) states in blue and the Confederate states in gray |
+| social-studies-8-the-civil-war/confederacy | Confederacy | converted | a map of the states during the Civil War, the 11 Confederate states picked out, with the capital at Richmond |
+| social-studies-9-imperialism/resistance | resistance | converted | Africa in 1914, almost all ruled by European powers; Ethiopia stayed independent after beating Italy at Adwa in 1896 |
+| world-languages-6-12-cultures-of-the-spanish-speaking-world/perspective | perspective | converted | the practice is an ofrenda (altar) with photos, candles and marigolds; the perspective behind it is remembering loved ones |
+| arts-3-5-dance-ideas-from-art-and-words/revise | revise | converted | a plain ending crossed out and a stronger one written above it |
+| arts-3-5-ensemble-rehearsal-and-concert/criteria | criteria | converted | our criteria for judging the concert, tempo, balance and blend, each with a check box |
+| arts-3-5-performing-and-watching-dance/main-idea | main idea | converted | the main idea of the dance, friendship, held up by three moves that show it |
+| arts-3-5-reading-media/message | message | converted | a cereal ad and its message, "buy this cereal" |
+| arts-3-5-reading-media/purpose | purpose | converted | a movie trailer on a screen and its purpose, to make you want to watch the movie |
+| arts-3-5-reading-media/target-audience | target audience | converted | a cartoon ad on a screen made for young kids, its target audience |
+| arts-3-5-sound-and-picture-together/cue | cue | converted | a door slams, and that is the cue for the drum to play |
+| arts-6-8-analyzing-viral-media/meme | meme | converted | the same frog picture three times, each with a new caption as it spreads |
+| arts-6-8-dance-in-culture-and-history/era | era | converted | a timeline from 1900 to 2000 with the swing era, about 1935 to 1945, marked |
+| arts-6-8-devising-a-scene/viewpoint | viewpoint | converted | the same diner scene from the cook's eyes (a long line waiting) and from a diner's seat (the cook at the stove) |
+| arts-6-8-listening-and-reviewing/timbre | timbre | converted | the same note drawn as three wave shapes, oboe, flute and trumpet |
+| arts-6-8-media-production-and-distribution/target-audience | target audience | converted | a poster made for sixth graders, its target audience |
+| arts-6-8-performing-in-different-spaces/adapt | adapt | converted | a dance in one wide line on a big stage, rearranged into two rows to fit a smaller stage |
+| arts-6-8-public-art-and-murals/proposal | proposal | converted | a mural sketch with its cost and a box for approval |
+| arts-k-2-media-messages/message | message | converted | a "be safe" sign by a crosswalk, and what it wants you to know |
+| arts-k-2-showing-our-art/title | title | converted | a painting of a sunny day with its name, "Sunny Day," on a card under it |
+| arts-3-5-responding-to-plays/version | version | converted | the same giant two ways, mean with a club in version 1 and kind with flowers in version 2 |
+| arts-3-5-responding-to-plays/evaluate | evaluate | converted | a checklist that rates each scene with stars |
+| arts-3-5-responding-to-plays/justify | justify | converted | the choice "I picked the red kite" joined by "because" to the detail that explains it |
+| computer-science-3-5-algorithms-that-help-some-more/algorithm | algorithm | converted | the lunch line algorithm, step by step, smallest grade first |
+| computer-science-3-5-algorithms-that-help-some-more/outcome | outcome | converted | the rule "line up by grade, smallest first" leads to the outcome: the third graders eat last |
+| computer-science-3-5-code-as-a-team/comment | comment | converted | a note beside the loop in block code that tells people what it does |
+| computer-science-3-5-code-as-a-team/credit | credit | converted | a game's end credits saying who made each part |
+| computer-science-3-5-fair-surveys/response | response | converted | the survey question "Favorite lunch?" and a tally of 40 answers, 40 responses |
+| computer-science-3-5-fair-surveys/sample | sample | converted | a whole school grouped by grade, with a few kids from every grade circled as the sample |
+| computer-science-3-5-why-data-varies/attribute | attribute | converted | a table of three plants; height is one attribute of each plant |
+| computer-science-6-8-choosing-ai-or-not/artificial-intelligence | artificial intelligence | converted | a phone suggests the next word for "I want to eat" |
+| computer-science-6-8-choosing-ai-or-not/rule-based | rule-based | converted | a mail sorter that follows a rule a person wrote: if the zip code starts with 8, bin A; otherwise, bin B |
+| computer-science-6-8-choosing-ai-or-not/appropriate | appropriate | converted | an AI helper fits brainstorming story ideas (check) but not a math test that needs exact answers (X) |
+| computer-science-6-8-cleaning-data-honestly/data-quality | data quality | converted | a table with a blank cell and an impossible age (250), which makes the average wrong |
+| computer-science-6-8-cleaning-data-honestly/duplicate | duplicate | converted | a survey list with "Ana Lopez" twice; the extra copy is crossed out |
+| computer-science-6-8-cleaning-data-honestly/bias | bias | converted | a school of many kinds of students, but only the athletes were asked |
+| computer-science-6-8-cleaning-data-honestly/limitation | limitation | converted | a town where only one school's area was surveyed; the rest has no data |
+| computer-science-6-8-code-you-did-not-write/change-log | change log | converted | a record of each change and why it was made |
+| computer-science-6-8-code-you-did-not-write/attribution | attribution | converted | a comment above borrowed code naming where it came from |
+| computer-science-6-8-computing-history-and-impact/stakeholder | stakeholder | converted | a decision about smart streetlights in the middle, with arrows to everyone it affects |
+| computer-science-6-8-data-metadata-and-you/consent | consent | converted | a phone asks "Allow this app to use your location?" with Allow and Don't allow buttons |
+| computer-science-6-8-design-for-every-user/accessibility | accessibility | converted | a video with captions across the bottom and the CC button picked out |
+| computer-science-6-8-design-for-every-user/alt-text | alt text | converted | a bar chart of rain by month and its alt text, "Bar chart: rain was highest in May" |
+| computer-science-6-8-who-gets-connected/digital-divide | digital divide | converted | one home with a laptop and strong wifi, one with no signal, and the gap between them |
+| computer-science-k-2-fair-rules-for-turns/rule | rule | converted | a rule card, "Wait your turn," beside children lined up at a slide |
+| computer-science-k-2-fair-rules-for-turns/outcome | outcome | converted | the same game with an old rule (the red team wins) and a new rule (the blue team wins) |
+| computer-science-k-2-signs-and-changing-values/name | name | converted | a box named "score" holding the number 3 |
+| computer-science-k-2-what-the-code-does/code | code | converted | three code blocks (forward, forward, turn) and the bug on a grid that follows them |
+| cte-6-8-economy-checkup/inflation | inflation | converted | the same bag of groceries costs $20 one year and $25 the next |
+| cte-6-8-economy-checkup/purchasing-power | purchasing power | converted | $20 bought a full basket before; today $20 buys only half a basket |
+| cte-6-8-economy-checkup/indicator | indicator | converted | a line chart of jobs added each month, rising; job growth is one indicator of the economy |
+| cte-6-8-interest-rate-dial/interest | interest | converted | $100 in savings becomes $105 after one year; the extra $5 is interest |
+| cte-6-8-interest-rate-dial/interest-rate | interest rate | converted | the same $1,000 loan at 5% and at 10% for one year; the higher rate costs more |
+| cte-6-8-interest-rate-dial/borrow | borrow | converted | money from the bank now buys a car; payments go back to the bank month after month |
+| cte-6-8-interest-rate-dial/principal | principal | converted | a $1,000 loan; the $1,000 is the principal and the interest sits on top |
+| cte-6-8-snow-season-prices/demand | demand | converted | how many sleds buyers want before the first snow and after it |
+| cte-6-8-snow-season-prices/wage | wage | converted | a pay stub, 20 hours at $15 an hour is $300 |
+| cte-6-8-startup-shares/share | share | converted | a company drawn as a circle of 20 equal slices; one slice is her one share |
+| ela-3-5-academic-and-subject-words/context-clue | context clue | converted | the sentence "The arid land was very dry and cracked," with arid picked out and "very dry" marked as the clue |
+| ela-3-5-academic-and-subject-words/synonym | synonym | converted | the words big and huge joined by an equals sign, an elephant under each |
+| ela-3-5-academic-and-subject-words/antonym | antonym | converted | the words hot and cold with a two-headed arrow between them, a sun and a snowflake under them |
+| ela-3-5-academic-and-subject-words/linking-word | linking word | converted | two sentences joined by "However," with However picked out |
+| ela-3-5-comparing-texts-side-by-side/contrast | contrast | converted | two story endings side by side, the dog comes home (happy) and the dog runs away (sad) |
+| ela-3-5-listening-for-main-points-and-reasons/main-point | main point | converted | a main point box "Save water" with three smaller supporting points under it |
+| ela-3-5-listening-for-main-points-and-reasons/reason | reason | converted | the opinion "We should save water" joined by "because" to the reason "Lakes are drying up," with a small dried-up lake |
+| ela-3-5-listening-for-main-points-and-reasons/summarize | summarize | converted | a long talk drawn as many lines going into two short sentences, labeled summary |
+| ela-3-5-main-idea-with-text-evidence/quote | quote | converted | a passage with one line picked out and copied exactly inside big quotation marks |
+| ela-3-5-narrators-and-points-of-view/first-person | first person | converted | a diary entry "I found a shell and kept it with me," with I and me picked out |
+| ela-3-5-narrators-and-points-of-view/third-person | third person | converted | a fairy tale line "She climbed the tower. They waited below," with She and They picked out |
+| ela-3-5-narrators-and-points-of-view/point-of-view | point of view | converted | the same moment of the three pigs' story seen two ways, the pig's view and the wolf's view |
+| ela-3-5-readers-theater-and-fluency/accuracy | accuracy | converted | a sentence with one hard word picked out and a check mark under each word read right |
+| ela-3-5-revising-and-editing/revise | revise | converted | a story ending with a plain sentence crossed out and a surprising sentence written above it, labeled revise |
+| ela-3-5-revising-and-editing/edit | edit | converted | the sentence "my dog ran home" with editing marks fixing the capital M and adding a period |
+| ela-3-5-revising-and-editing/purpose | purpose | converted | a letter to the principal with an arrow to a note "purpose: to persuade" |
+| ela-3-5-revising-and-editing/word-choice | word choice | converted | the sentence "The giant walked into town" with walked crossed out and stomped chosen |
+| ela-4-showing-character-through-details/show-don-t-tell | show, don't tell | converted | "She was nervous." crossed out beside "Her knees shook," labeled show, don't tell |
+| ela-4-showing-character-through-details/thoughts | thoughts | converted | a thought bubble "What if I'm late?" above a worried girl, labeled her thoughts |
+| ela-6-8-academic-vocabulary-strategies/root | root | converted | biology split into bio + logy, with bio picked out and labeled root: life |
+| ela-6-8-academic-vocabulary-strategies/greek | Greek | converted | graph picked out in photograph and autograph, labeled Greek root: write |
+| ela-6-8-academic-vocabulary-strategies/latin | Latin | converted | aqua picked out in aquarium and aqueduct, labeled Latin root: water |
+| ela-6-8-academic-vocabulary-strategies/academic-word | academic word | converted | the word analyze in the middle with arrows to science, math and history |
+| ela-6-8-analysis-with-evidence-from-nonfiction/claim | claim | converted | a claim box "The dam helped farmers" with two reasons pointing up to it |
+| ela-6-8-how-authors-present-people-and-ideas/anecdote | anecdote | converted | a short story bubble about a storm with an arrow to the author's point, labeled anecdote |
+| ela-6-8-how-authors-present-people-and-ideas/author-s-point-of-view | author's point of view | converted | a short passage about a scientist with the admiring words picked out |
+| ela-6-8-how-authors-present-people-and-ideas/develop | develop | converted | three letters in a row, each adding a detail to one idea, labeled develop |
+| ela-6-8-listening-to-speakers-and-discussing/discussion-norm | discussion norm | converted | a rule card "One voice at a time" above a group of desks where one person speaks |
+| ela-6-8-narrative-point-of-view-and-structure/flashback | flashback | converted | a story timeline with now on the right and a curved arrow jumping back to last summer, labeled flashback |
+| ela-6-8-narrative-point-of-view-and-structure/omniscient | omniscient | converted | a narrator above three characters, with an arrow into each character's thought bubble |
+| ela-6-8-presenting-claims-and-findings/context | context | converted | the same message said two ways, a casual bubble to friends and a formal bubble to the city council |
+| ela-6-8-revising-for-purpose-and-audience/wordiness | wordiness | converted | the sentence "We came in order to help." with "in order" crossed out |
+| ela-6-8-revising-for-purpose-and-audience/concise | concise | converted | a long wordy sentence beside a short sentence that says the same thing, the short one checked |
+| ela-6-8-revising-for-purpose-and-audience/rewrite | rewrite | converted | the opening "It was a cold day." rewritten as a question |
+| ela-6-8-revising-for-purpose-and-audience/task | task | converted | a task card "Write a letter asking the city for a crosswalk" with a crosswalk sketch |
+| ela-6-8-structure-in-informative-writing/conclusion | conclusion | converted | an essay outline of five boxes with the last box picked out, labeled conclusion: restate the main idea |
+| ela-6-8-text-audio-and-film-versions/staging | staging | converted | a stage plan from above with the ghost on a raised platform behind the crowd of actors |
+| ela-6-8-text-audio-and-film-versions/faithful | faithful | converted | a book's last page and a film's last frame showing the same ending, joined by an equals sign |
+| ela-6-8-theme-and-textual-evidence/theme | theme | converted | a short story summary with an arrow to its message "courage can be quiet" |
+| ela-6-8-theme-and-textual-evidence/summary | summary | converted | a long story turned into three short main-point bullets, labeled summary |
+| ela-8-puns-irony-and-allusion/verbal-irony | verbal irony | converted | a man in a storm saying "Lovely weather!", labeled verbal irony |
+| ela-k-2-class-research-projects/answer | answer | converted | the question "What do frogs eat?" with an arrow to the answer, a frog catching a bug |
+| ela-k-2-class-research-projects/chart | chart | converted | a chart of frog facts in rows and boxes, each row with a small picture |
+| ela-k-2-comparing-two-books/version | version | converted | two versions of the three pigs side by side, in one the wolf wins and in this one the pig wins |
+| ela-k-2-new-words-from-read-alouds/word | word | converted | the word enormous with its letters spaced out and a big elephant beside it |
+| ela-k-2-new-words-from-read-alouds/describe | describe | converted | a forest picture with describing words around it, tall, dark and quiet |
+| ela-k-2-pictures-and-words-together/caption | caption | converted | a photo of a frog on a log with the caption under it, "A frog sits on a log." |
+| ela-k-2-pictures-and-words-together/label | label | converted | a bird drawing with label lines and words, wing, beak and tail |
+| ela-k-2-poems-and-songs-aloud/poem | poem | converted | a short four-line poem about rain with its rhyming words picked out |
+| ela-k-2-question-words-and-key-details/who | who | converted | the question "Who is in the story?" with an arrow to the story's characters |
+| ela-k-2-question-words-and-key-details/why | why | converted | the question "Why did the bird fly away?" with an arrow to the reason, a cat climbing the tree |
+| ela-k-2-reasons-an-author-gives/point | point | converted | a point box "Trees help us" with small pictures under it, shade, clean air and homes for birds |
+| ela-k-2-reasons-an-author-gives/because | because | converted | the sentence "Trees help because they clean the air" with because picked out |
+| ela-k-2-reasons-an-author-gives/support | support | converted | a point box "Trees help us" held up by two facts, labeled support |
+| eld-6-12-telling-stories-and-experiences/past-tense | past tense | converted | walk becomes walked and run becomes ran, with yesterday on a short timeline |
+| eld-6-12-telling-stories-and-experiences/time-word | time word | converted | a timeline with time words in order, first, next, then and later |
+| eld-k-2-choosing-and-giving-reasons/because | because | converted | the sentence "I like cats because they are soft" with because picked out |
+| eld-k-2-choosing-and-giving-reasons/reason | reason | converted | the choice "I pick tag" joined by a because arrow to the reason "It is fun" |
+| health-pe-3-5-juggling-and-practice-habits/cue | cue | converted | a cue card "toss high, catch low" with a ball arcing up high and a hand waiting low |
+| health-pe-k-2-cooperative-games/rule | rule | converted | a rule card "Hold on with both hands" with two hands gripping a parachute edge |
+| library-6-8-rabbit-hole-notebook/curiosity | curiosity | converted | a chain of questions, from sharks to the ocean to where trash goes |
+| library-6-8-rabbit-hole-notebook/keyword | keyword | converted | a search box holding the word pollinator with search results below |
+| science-7-senses-and-the-brain/sensory-receptor | sensory receptor | converted | a nose in cross section with receptor cells at the top and smell particles drifting up to them |
+| science-7-senses-and-the-brain/stimulus | stimulus | converted | stimulus, arrow, response: a loud bang makes an eye blink shut |
+| social-studies-1-wonder-kite/big-question | big question | converted | the big question "How did our town grow?" with small questions branching from it |
+| social-studies-1-wonder-kite/small-question | small question | converted | the same question map with one small question, "When was the school built?", picked out |
+| social-studies-1-wonder-kite/connect | connect | converted | small question boxes joined by lines into one big question box |
+| social-studies-2-the-last-carousel-ride/reason | reason | converted | one event remembered two ways, each joined by a because arrow to its reason (age) |
+| social-studies-3-pool-repair-vote/policy | policy | converted | a pool sign changed from open until 6 pm to open until 8 pm, a town seal beside it |
+| social-studies-3-ripple-street/cost | cost | converted | a trade, the new road gained and the park lost |
+| social-studies-3-ripple-street/incentive | incentive | converted | a price tag of $10 crossed out to $5 before 9 am, with a morning sun |
+| social-studies-3-school-fix-it-meeting/compromise | compromise | converted | each side gives a little and they meet in the middle, "fix one fountain now" |
+| social-studies-4-made-for-whom/purpose | purpose | converted | an old ad poster joined by an arrow to its purpose, "sell land" |
+| social-studies-5-history-article-review/summarize | summarize | converted | a long article shrinking by an arrow into three short lines |
+| social-studies-5-interest-seesaw/credit | credit | converted | borrow now (coins out), pay later (coins back), and a good-credit star on the record |
+| social-studies-5-source-scout/relevant | relevant | converted | a question box with three sources, two joined to it and one crossed out as not connected |
+| social-studies-5-source-scout/trust | trust | converted | two web pages side by side, one with an author name and a check, one with no author and a question mark |
+| social-studies-5-why-the-pony-express-ended/claim | claim | converted | the claim box "The telegraph ended the Pony Express" with two evidence boxes pointing up to it |
+| social-studies-5-why-the-pony-express-ended/evidence | evidence | converted | the claim box with two dated evidence cards (telegraph opens, Pony Express ends) pointing up to it |
+| social-studies-6-border-trade-post/tariff | tariff | converted | steel crossing a border line with a tax added, the price rising from $10 to $12 |
+| social-studies-6-smoke-and-honey/regulation | regulation | converted | a chimney with a smoke meter, a line marking the allowed limit, a town seal beside it |
+| social-studies-6-smoke-and-honey/third-party | third party | converted | buyer and seller joined by a sale arrow, a neighbor to the side bothered by noise from the sale |
+| social-studies-7-historians-disagree/interpretation | interpretation | converted | evidence cards (dry fields, low lake) joined by an arrow to an interpretation box, "the drought caused it" |
+| social-studies-7-historians-disagree/emphasis | emphasis | converted | a text with trade in large bold type and war in small faint type |
+| social-studies-7-panel-of-experts/discipline | discipline | converted | one river at the center with three fields around it, geography, economics and history, each with its own question |
+| social-studies-7-unlabeled-archive/date | date | converted | an old photo with its date spot empty and a question mark, beside one dated 1863 |
+| social-studies-8-evidence-corkboard/argument | argument | converted | a claim box held up by three pieces of evidence |
+| social-studies-8-evidence-corkboard/gap | gap | converted | an evidence board of what workers did, with an empty dashed slot for what workers thought |
+| social-studies-8-evidence-corkboard/limitation | limitation | converted | a census table with columns for name, age and job, and a missing column for feelings |
+| social-studies-8-motion-on-the-floor/quorum | quorum | converted | twelve seats with eight filled and a check mark, labeled quorum met |
+| social-studies-8-voices-on-the-vote/property-requirement | property requirement | converted | a landowner with a deed is let into the ballot box, a renter with no deed is stopped |
+
+## Batch 3 review (fluxbatch redraws)
+
+Reviewed 131 local FLUX redraws: the 123 keys in wordwall-redo-prompts-2.json and the 9 cards whose diagrams.py spec is `paint(...)` (cubism is in both, so 131 cards). Each picture was checked beside the picture it replaced (_raw/replaced2) on labeled contact sheets in closet/words/art/_raw/batch3 (sheet-000 to sheet-021; index.tsv maps each card to its sheet), against the card's word, definition, example and grade. Same method and bar as Batch 2.
+
+| Set | Reviewed | OK | REDO | CODE | PEOPLE |
+|---|---|---|---|---|---|
+| redo list (wordwall-redo-prompts-2.json) | 123 | 66 | 36 | 18 | 3 |
+| paint() specs not in the redo list | 8 | 4 | 0 | 2 | 2 |
+| all | 131 | 70 | 36 | 20 | 5 |
+
+| Subject | Reviewed | OK | REDO | CODE | PEOPLE |
+|---|---|---|---|---|---|
+| arts | 28 | 17 | 7 | 2 | 2 |
+| computer-science | 9 | 4 | 5 | 0 | 0 |
+| cte | 4 | 3 | 0 | 1 | 0 |
+| ela | 18 | 10 | 6 | 2 | 0 |
+| eld | 3 | 3 | 0 | 0 | 0 |
+| health-pe | 5 | 5 | 0 | 0 | 0 |
+| library | 3 | 1 | 2 | 0 | 0 |
+| math | 2 | 0 | 0 | 2 | 0 |
+| science | 21 | 9 | 6 | 5 | 1 |
+| social-studies | 35 | 18 | 9 | 6 | 2 |
+| world-languages | 3 | 0 | 1 | 2 | 0 |
+| all | 131 | 70 | 36 | 20 | 5 |
+
+REDO prompts are in wordwall-redo-prompts-3.json, ready for scripts/wordart.py --redo.
+
+Redraws worse than the old picture: thorn (the stem lost its thorns), shadow (no sun and no shadow at all), Stamp Act (a whole page of fake text), build (the old square-plus-triangle house matched the example; restore it), homologous structures (a cartoon bat and cat with wrong bones). Lettering and made-up numbers or symbols remain FLUX's main failure: 26 of the 61 non-OK rows, most the same flaw as the old picture. Where FLUX has now failed the same idea twice (cubism, halves, shadow, calendar, script, barter, chart numbers), the row moves to CODE.
+
+| Card | Word | Verdict | Why | New prompt or picture |
+|---|---|---|---|---|
+| arts-3-5-famous-artists-and-movements/movement | movement | REDO | Three identical sunflower paintings read as one picture copied, not a group of artists sharing a style; the dots did not come out | three small gold-framed paintings of different subjects hung side by side, a sunflower, a sailboat and a tree, all three painted entirely in small round colored dots |
+| arts-3-5-famous-artists-and-movements/style | style | REDO | Three nearly identical apples; still no visible difference in style | the same red apple painted twice side by side in two gold frames: the left one smooth and lifelike with soft shading, the right one in thick black outlines with flat bright colors like a comic |
+| arts-6-8-art-history-timeline/cubism | Cubism | CODE | One ordinary guitar with two stray lines; FLUX has now failed cubism twice (better than the old pile of guitars, still not cubist) | a guitar drawn as flat overlapping angular planes in brown, tan and gray, some planes seen from the front and some from the side, beside a small normal guitar for comparison |
+| computer-science-5-human-centered-design/accessible | accessible | REDO | Steps still lead up to the door, the opposite of accessible | side view of a long gentle concrete ramp with handrails sloping up to a front door landing, no steps anywhere, an empty wheelchair at the bottom of the ramp |
+| ela-4-myths-and-allusions/origin | origin | REDO | A waterfall from floating rocks into a pool; nothing shows a beginning or source | a tiny trickle of water flowing out of a small hole in a mossy rock on a hillside, seen from above, the trickle winding downhill and growing into a wide river in the distance |
+| math-1-halves-and-fourths/halves | halves | CODE | Still only one orange half; FLUX has failed "two equal parts" twice | an orange drawn as a circle cut into two equal halves pulled slightly apart, each labeled 1/2 |
+| science-3-life-cycles/seed | seed | REDO | The seeds look like gold coins, and the sprout stage is missing | a small heap of gray and white striped teardrop-shaped sunflower seeds on a wooden table, beside it a tall sunflower growing in a clay pot |
+| science-3-living-in-groups/survive | survive | REDO | The shark is inside the ball of fish, which undercuts "schools to survive" | a big round ball of hundreds of small silver fish swimming tightly together in blue water, one large gray shark far away on the left outside the ball, open water between them |
+| science-1-plant-and-animal-parts/thorn | thorn | REDO | No thorns on the stem at all; worse than the old rose, which had small thorns | close-up of a green rose stem with three large sharp red-brown thorns hooking out of it, the thorns big and clear, a small red rose bud at the top |
+| science-5-sun-stars-and-shadows/shadow | shadow | CODE | No sun and no shadow at all; worse than the old one, whose shadow pointed the wrong way (toward the sun) | a tree on flat ground with a low sun on the far left and the tree's long dark shadow stretching away to the right, labeled morning |
+| science-6-water-cycle-and-weather/condensation | condensation | REDO | Bubbles are inside the water, no ice and no droplets on the outside, same flaw as the old one | a frosty glass full of ice cubes on a wooden table, its outside wall covered in many clear water droplets, one drop running down the outside, a small wet ring on the table |
+| science-7-chemical-reactions/exothermic | exothermic | CODE | Half the arrows point inward, so heat looks absorbed, not released (same flaw as the old fire) | a hand warmer pouch glowing orange with red heat arrows pointing only outward on every side, labeled heat released |
+| science-9-water-and-earth-materials/deposition | deposition | CODE | Two blobs of blue and tan; no river and no delta, same as the old one | a river seen from above running into the sea, splitting into channels across a fan-shaped sandy delta, small arrows showing sediment dropped where the water slows |
+| science-10-acids-bases-and-solutions/acid | acid | REDO | Real lettering ("lemon"), same flaw as the old one | a halved yellow citrus fruit dripping juice onto a thin paper strip lying on a white dish; where the drops land the strip has turned bright red, plain background, no text anywhere |
+| science-12-population-and-resources/resource-depletion | resource depletion | CODE | A well full of water does not show groundwater being used up | a ground cross-section with a well reaching down to a water layer, the water level line dropping from "then" to "now" below the bottom of the well, dry fields on top |
+| science-12-pollution-and-solutions/eutrophication | eutrophication | REDO | Fish swim happily under the algae; nothing shows harm or dead fish | a small pond completely covered edge to edge by thick bright green algae scum, three dead gray fish floating on their sides at the muddy shore, no living fish |
+| social-studies-3-local-government-and-voting/public-service | public service | REDO | Fake lettering ("FIRE SATION"), same flaw as the old one | a public library building with tall arched windows, shelves of books visible through the glass and a book return box at the curb, the wall above the door plain brick with nothing on it |
+| social-studies-3-business-and-specialization/business | business | REDO | Real lettering ("BIKE SHOP"), same flaw as the old one | a small shop with a big front window full of bicycles and one bike parked outside with a price tag on its handlebar, the awning plain solid red with nothing written on it |
+| social-studies-k-then-and-now/then | then | REDO | Real lettering ("SCHOOL") over the door, same flaw as the old one | a one-room wooden schoolhouse with a bell tower, a hitching post and a horse outside, dirt road in front, the wall above the door plain boards with nothing on it |
+| social-studies-k-then-and-now/now | now | REDO | Real lettering ("SCHOOL"), same flaw as the old one | a large modern school with many windows and a playground with swings in front, a school bus parked at the curb, the walls plain with no sign anywhere |
+| social-studies-5-the-constitution-and-bill-of-rights/citizen | citizen | PEOPLE | Fake lettering on the passport ("PASKET"); the word is a member of a country | a young adult dropping a ballot into a ballot box, a small flag on the table beside it |
+| social-studies-7-age-of-exploration/conquistador | conquistador | PEOPLE | A knight's closed visor helmet with a plume, not a Spanish morion (wrong history, same as the old one); the word is a person | a Spanish conquistador of the 1500s in a curved morion helmet and steel breastplate, stepping onto a beach from a rowboat |
+| social-studies-8-road-to-revolution/stamp-act | Stamp Act | CODE | A whole page of fake text plus "TAX"; worse than the old stamp | an old colonial newspaper with a red crown tax stamp in the corner, labeled "Stamp Act, 1765: a tax on printed paper" |
+| social-studies-9-world-war-i/armistice | armistice | CODE | Fake lettering ("TREE TEXT FIREE TREATY"), same flaw as the old "PEACE" page | a signed agreement sheet labeled "Armistice, 11 November 1918" beside a white flag |
+| world-languages-k-12-numbers-colors-and-calendar/calendar | calendar | CODE | Fake day names along the top, same flaw as the old one | a month grid with real weekday names and numbers, one date circled in red |
+| world-languages-k-12-food-and-ordering/menu | menu | REDO | Real lettering ("Menu"), same flaw as the old one | a tall folded card standing on a restaurant table, inside it small pictures of a bowl of soup, a salad and fruit in a column, each followed by a row of dots, the top of the card blank |
+| world-languages-k-12-food-and-ordering/the-bill | the bill | CODE | A strange machine with a coin and a card, not a bill | a small restaurant receipt listing soup, salad and juice with prices and a total line, on a tray beside two coins |
+| arts-3-5-plays-about-our-community/script | script | CODE | Fake lettering ("Lay stript"); FLUX writes a title on every script | a play script page with character names in capitals and their lines, a few lines highlighted in yellow |
+| arts-3-5-reading-media/persuade | persuade | REDO | A rainbow arch on a drawer shelf, not a toy box standing out | a toy store shelf with five plain gray cardboard boxes in a row and in the middle one bright rainbow-striped toy box covered in sparkles with a toy robot showing through its window |
+| arts-6-8-media-production-and-distribution/transmedia | transmedia | REDO | Real lettering ("COMIC"), same flaw as the old one | a comic book whose cover is only a big drawing of a small yellow dragon, a podcast microphone and a phone showing the same dragon, no title or words anywhere |
+| arts-k-2-art-about-my-life/choice | choice | REDO | The blue crayon is only a little taller; no choice shows | an open box of crayons with every crayon inside, and one blue crayon lying alone on the table in front of the box |
+| arts-k-2-drama-in-role/pretend | pretend | PEOPLE | A broom on a rug does not read as a boat; pretending needs a child doing it | a child sitting on a striped rug rowing with a broom like an oar, a paper sail taped to a chair behind them |
+| arts-k-2-puppets-and-feelings/puppet | puppet | REDO | A cartoon dragon, not a sock puppet, same flaw as the old one | a green sock with two big button eyes and a red felt tongue sewn on the toe, lying flat on a table, clearly a sock |
+| arts-k-2-showing-our-art/choose | choose | REDO | Loose crayons and a star; no drawings to choose from | three sheets of paper side by side on a table, each with a simple child's crayon picture (a house, a cat, a tree), a big gold star sticker stuck on the middle sheet |
+| computer-science-3-5-computing-on-the-job/software | software | REDO | Wrong numbers under the bars (7, 15, 23, 35, 44, 14 do not match the heights) | a laptop showing a simple app with six blue bars and a rain cloud icon, no numbers or marks under the bars, a farm field outside the window behind it |
+| computer-science-3-5-new-tech-yes-or-no/decide | decide | REDO | Two signs face the viewer on one path; no fork, nothing to choose between | a dirt path in a forest splitting into two paths like the letter Y, one going left and one going right, a wooden signpost at the split with two blank arrow-shaped boards pointing left and right |
+| computer-science-k-2-devices-at-home-school-and-work/school | school | REDO | Fake lettering ("SCHOL"), same flaw as the old one | a school playground with swings and a slide in front, a red-roofed school building with a flagpole behind it, a school bus at the curb, the building walls plain with no sign |
+| computer-science-k-2-using-tech-well/helpful | helpful | REDO | A speaker icon on a tablet; the reading app and the story are missing | a tablet screen showing an open picture book page with a cartoon bear, a big round speaker button in the corner with sound waves coming out |
+| cte-6-8-snow-season-prices/competition | competition | CODE | Two identical stands side by side with a fake "5%" tag; no price fight shows | two lemonade stands side by side with price signs 75¢ and 50¢, arrows showing buyers heading to the cheaper one |
+| ela-3-5-diagrams-and-how-things-happen/effect | effect | REDO | The brown flood reads as a sandy road, so the flood is lost | a street flooded with muddy brown water up to the car wheels, rippling, a red and white striped barrier across the road and a car stopped before it |
+| ela-3-5-readers-theater-and-fluency/script | script | CODE | Real lettering ("Play Script"), same as the arts script card | a play script page with character names in capitals and their lines, one part highlighted in yellow |
+| ela-6-8-analysis-with-evidence-from-nonfiction/informational-text | informational text | REDO | Real lettering ("a Germ") under the drawing | an open book, on one page a big drawing of a round green germ with spikes, on the other page a small vaccine bottle, gray bars instead of text, no words or captions |
+| ela-6-8-presenting-claims-and-findings/findings | findings | CODE | Fake numbers on the axis (0, 5, 5, 7, 0), same flaw as the old one | a clipboard with a bar chart of real values on a labeled axis, one bar picked out, a magnifying glass beside it |
+| ela-6-8-theme-and-textual-evidence/genre | genre | REDO | Fake lettering on the spines ("MYTCH BRAGON") | three books standing on a shelf with plain solid-color covers and no titles: one with a feather quill drawn on it, one with a dragon, one with a microscope |
+| ela-k-2-listening-and-asking-questions/key-detail | key detail | REDO | Real lettering ("Honey") on the jar, same flaw as the old one | a glass jar of golden honey with a plain lid and no label, beside a dripping piece of honeycomb with a bee on it |
+| ela-k-2-poems-and-songs-aloud/record | record | REDO | Real lettering ("Poem") on the screen | a tablet showing a big red record button and a sound wave, a sheet of paper with gray lines beside it, no words anywhere |
+| library-k-2-many-voices-book/class-book | class book | REDO | Only two pages, and a letter "A" drawn on one; "a page from everyone" does not show | a thick homemade book of colored construction paper held with three staples, fanned open so many pages show at once, each page a different child's crayon drawing (a cat, a house, a sun, a tree) |
+| library-k-2-many-voices-book/cover | cover | REDO | An open book with the sun inside the pages, not the outside cover | a closed picture book lying flat, seen straight from the front, its front cover painted bright blue with a yellow sun, nothing else on it |
+| social-studies-1-old-objects-as-sources/clue | clue | REDO | A mallet made of logs; the worn handle that is the clue does not show | an old wooden-handled hammer lying on a workbench, its handle worn smooth and dark in the middle where hands gripped it, a magnifying glass held over that worn spot |
+| social-studies-2-pen-pal-parcels/change | change | CODE | Fake lettering ("Beforre", "After") | two panels labeled Before and After: a dirt path through a field, then the same spot as a paved road lined with houses |
+| social-studies-2-storm-helpers/storm | storm | REDO | The tree stands upright in light rain again; no strong wind and nothing knocked down | a tall tree bent far over sideways by a strong wind, branches streaming to the right, rain slanting hard to the right under dark clouds, a second tree fallen on the ground with roots in the air |
+| social-studies-4-barter-bay/barter | barter | CODE | Real lettering ("Fish") again, same flaw as the old one | a fish on the left and an ear of corn on the right with two curved swap arrows between them, labeled "no money" |
+| social-studies-4-barter-bay/unemployment | unemployment | REDO | A house with a smoking chimney, not a closed mill | an old brick factory with a tall chimney and no smoke, its windows covered by wooden boards nailed in an X, a chain and padlock on the front gate, weeds growing in front |
+| social-studies-4-bike-fund-chances/risk | risk | REDO | A Bitcoin coin again, and no gap under the rope | a plain gold coin with a star stamped on it balanced on a thin tightrope stretched between two rocky cliffs over a deep canyon |
+| social-studies-5-history-article-review/article | article | CODE | Real lettering ("NEWS NEWS") and a pot, not a gold pan | a newspaper page with the headline "Gold Found in California!", a picture of a gold pan with nuggets and short columns of text |
+| social-studies-6-border-trade-post/currency | currency | CODE | A made-up "£3" note and a French-flag bill; not the real money of real countries | a few banknotes and coins side by side labeled peso (Mexico), dollar (United States) and euro (Europe) |
+| social-studies-8-shaping-our-week/government | government | REDO | Fake caption under the building ("Sany Caction"), same flaw as the old one | a domed capitol building seen from far away across a wide green lawn, the building small in the frame, trees on both sides, nothing written beneath it |
+| arts-6-8-ensemble-skills/cue | cue | PEOPLE | A baton lying on sheet music shows no signal; a cue needs the conductor giving it | a conductor raising a baton and nodding at a trumpet player who lifts the trumpet to play |
+| math-k-build-a-shape/build | build | CODE | A plain block tower drops the example; worse than the old picture, which showed the house from a square and a triangle (restore it) | a house built from a blue square and a red triangle roof, the two shapes slightly apart with an arrow joining them |
+| science-1-sound-and-vibration/soft | soft | PEOPLE | A cat and a sleeping puppy on a rug do not show a quiet sound; the example is a whisper | a child whispering into a friend's ear with a hand cupped around their mouth |
+| science-8-evolution-and-natural-selection/homologous-structures | homologous structures | CODE | A bat wing and a cat with wrong bones, no whale and no human arm; worse than the old colored-bone diagram | a human arm, a bat wing and a whale flipper side by side, matching bones (upper arm, forearm, wrist, fingers) colored the same in each |
