@@ -4,7 +4,7 @@
 
 Reads the `- Standards` lines in each tools/<id>/spec.md (with their wrapped continuation lines, or an inline
 "Standards:" sentence up to the end of its paragraph), pulls out codes it recognises (CSTA 2026, NCAS, NGSS, CCSS ELA,
-CCSS math, AP units, C3, NHES, SHAPE, AASL, CASEL, CTE, NSPFE), coarsens fine codes to the level modules.csv uses (VA:Cr2.1.3a -> VA:Cr2) and
+CCSS math, AP units, WIDA, C3, NHES, SHAPE, AASL, CASEL, CTE, NSPFE), coarsens fine codes to the level modules.csv uses (VA:Cr2.1.3a -> VA:Cr2) and
 prints, per tool, codes the spec adds and module codes the spec leaves out. Fine NCAS codes the specs name are listed
 too, since modules.csv only carries anchors. --apply adds the codes a spec names to its module in data/modules/*.txt (through
 scripts/add_codes.py) and rebuilds data/modules.csv; codes a spec leaves out are never removed.
@@ -22,6 +22,7 @@ PATTERNS = [
     r'\b(?:RL|RI|RF|W|SL|L)\.(?:K|[1-8]|9-10|11-12)\.\d{1,2}\b',               # CCSS ELA
     r'\b[NAFGS]-[A-Z]{1,3}\.[A-D](?:\.\d{1,2}[a-e]?)?\b',                      # CCSS math (cluster or standard)
     r'\bAP-(?:CALC|PRECALC|STAT)\.U\d+\b',                                     # AP course units
+    r'\bWIDA\.(?:ELD-\d|Narrate|Inform|Explain|Argue)\b',                      # WIDA ELD standards and key uses
 ]
 CASEL = ['Self-Awareness', 'Self-Management', 'Social Awareness', 'Relationship Skills', 'Responsible Decision-Making']
 NSPFE = ['Earning Income', 'Spending', 'Saving', 'Investing', 'Managing Credit', 'Managing Risk']
@@ -47,7 +48,7 @@ def claimed(text):
             take = False
     s = ' '.join(lines)
     # cut the CSTA 2017 crosswalk and teacher-only links: they are notes, not claims
-    s = re.split(r'2017 crosswalk|crosswalk for teachers|Math link for the teacher|References?:', s)[0]
+    s = re.split(r'2017 crosswalk|crosswalk for teachers|Math link for the teacher|The math content follows|References?:', s)[0]
     out = set()
     for p in PATTERNS:
         out |= set(re.findall(p, s))

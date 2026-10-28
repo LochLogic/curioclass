@@ -121,3 +121,32 @@ Open questions:
 - Public domain for speech-coach: Met 437878 (Vermeer, A Maid Asleep), Met 435809 (Bruegel, The Harvesters), AIC 57819
   (Wall Clock).
 - Open questions for Cory: none (all settled by BASELINE.md).
+
+### eld-hs (6, done)
+
+- Renames applied: historian-s-toolkit to "Is the Historian Right?" (is-the-historian-right; the old title is used by
+  a Flip Education unit and several courses), argument-frames-pro to "Counterpoint Frames" (counterpoint-frames; too
+  close to argument-builder-pro).
+- Tools: then-what-happened (6-12, casual-peer, light, #c2185b), definition-duel (9-12, calm-professor, light,
+  #4a2c5e), chart-narrator (9-12, clear-teacher, dark, #4dd2ff), is-the-historian-right (9-12, smooth-narrator, light,
+  #6e2c00; AIC 59281), inbox-simulator (9-12, easy-coach, light, #8c1c13), counterpoint-frames (9-12, firm-captain,
+  dark, #ff6b6b).
+- Family engine: eld-talk (kit/eld-talk.js), in full in counterpoint-frames, built from the live
+  classroom-phrases-game; copy it to docs/families/eld-talk.md at build. chart-narrator uses data-desk only as a library.
+- Solo by default (made-up partners), Help setting Lots/Some/Little mapped to WIDA levels, no microphone, writing kept
+  on the device with Clear. Codex people art in then-what-happened and counterpoint-frames.
+- Open question for Cory (the one wave 4 item past BASELINE): sourced, reviewed home-language glossaries for key frames
+  and words (Spanish, Arabic, Vietnamese first)? Needs a translator or a reviewed bilingual dictionary.
+
+## Joint review of wave 4
+
+- spec_sheet.py: no voice, accent or art flags (its accent column reads the page background on light themes; the
+  agents checked the real accents against the catalog for AA contrast).
+- wave_standards.py now reads WIDA codes and skips teacher-note math references: 42 of 42 specs claim exactly their
+  module codes (W1 75/75, W2 58/58, W3 32/32 unchanged).
+- check_codes 0 invalid, check_words 0 problems, check_concepts rewritten after the renames.
+- Voices repeat across the five groups (news-reader, firm-captain, calm-professor and others, two to three times);
+  accepted as in waves 2 and 3, since every repeat sits in a different subject or grade.
+- Public-domain art fetched: speech-coach (Met 437878, Met 435809, AIC 57819), is-the-historian-right (AIC 59281, a
+  1400x197 panorama strip). Specs that name Met works (portrait-in-four-media, source-mixer) fetch them at build.
+- Board questions from ela-research, ela-lit and ela-argument are settled by docs/agents/decisions/BASELINE.md.

@@ -130,9 +130,9 @@ On top of them:
 | then-what-happened | Then What Happened? | 6-12 | builder | - |
 | definition-duel | Definition Duel | 9-12 | cards | - |
 | chart-narrator | Chart Narrator | 9-12 | data | - |
-| historian-s-toolkit | Historian's Toolkit | 9-12 | mystery | - |
+| is-the-historian-right | Historian's Toolkit | 9-12 | mystery | - |
 | inbox-simulator | Inbox Simulator | 9-12 | simulator | - |
-| argument-frames-pro | Argument Frames Pro | 9-12 | roleplay | eld-talk |
+| counterpoint-frames | Argument Frames Pro | 9-12 | roleplay | eld-talk |
 
 - **then-what-happened:** New in the gap fill (docs/agents/gapfill/ela/notes.md).
 
