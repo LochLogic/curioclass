@@ -7,11 +7,12 @@
   - First screen: the board with three wings (legislature, governor, courts) and a starting card: "Ms. Ortiz's fourth graders want a law. Pick their bill."
   - Core loop: roll or draw to move; each space is a real step (a sponsor files it, committee hearing, amendments, House vote, Senate vote, governor signs or vetoes, override). Chance cards bring real-world turns (testimony from a bike shop, a cost estimate). Role cards say what each office can and can't do.
   - Constitution card: the state constitution sets the board's rules; tapping it explains where the constitution came from, what the three branches do, and that one state (Nebraska) has only one chamber.
+  - Federal-vs-state card (core): a split board sets the U.S. Constitution beside the state constitution and has the student sort powers (printing money, making treaties, running schools, issuing driver's licenses) to the level that holds them, so they see how the two constitutions divide the work.
   - The aha or the end state: the law passes or dies; an "after" screen shows how the law changes daily life and how people (including kids) pushed for it.
   - Class mode or extras (optional): teams carry rival bills.
 - Standards, one line per code:
   - D2.Civ.1.3-5: role cards and spaces distinguish the powers of legislators, the governor and courts.
-  - D2.Civ.5.3-5: the constitution card covers the origin, functions and structure of state government.
+  - D2.Civ.5.3-5: the constitution card covers the origin, functions and structure of state government, and the federal-vs-state card contrasts it with the U.S. Constitution (taken in from rights-match).
   - D2.Civ.12.3-5: the after screen and the kid-started bill show how people change laws and how laws change society.
 - Not like: checks-and-balances (sibling engine, federal branches, grade 12); pool-repair-vote (town policy).
 - Art: generated scenes (capitol board) and people (illustrated) legislators, because the board must feel like a real place.

@@ -47,17 +47,19 @@ ela-k-print-concepts-and-the-alphabet,ela,k,ela-k12,Foundational Skills,Print Co
 ela-k-rhymes-and-sounds,ela,k,ela-k12,Foundational Skills,Rhymes and Sounds,"Rhyme, syllables, and beginning, middle and ending sounds",RF.K.2,CCSS-ELA,ela.txt
 ela-k-letter-sounds-and-sight-words,ela,k,ela-k12,Foundational Skills,Letter Sounds and Sight Words,Letter-sound correspondence and high-frequency words,RF.K.3,CCSS-ELA,ela.txt
 ela-k-story-time-characters-and-setting,ela,k,ela-k12,Reading Literature,Story Time: Characters and Setting,"Retell stories; identify characters, setting and events",RL.K.1;RL.K.2;RL.K.3,CCSS-ELA,ela.txt
-ela-k-all-about-books,ela,k,ela-k12,Reading Informational Text,All About Books,"Main topic, key details, author and illustrator",RI.K.1;RI.K.2;RI.K.3;RI.K.4;RI.K.5;RI.K.6;RI.K.7,CCSS-ELA,ela.txt
+ela-k-all-about-books,ela,k,ela-k12,Reading Informational Text,All About Books,"Main topic, key details, author and illustrator",RI.K.2;RI.K.3;RI.K.5;RI.K.6;RI.K.7,CCSS-ELA,ela.txt
 ela-k-draw-tell-and-write,ela,k,ela-k12,Writing,"Draw, Tell and Write","Opinion, informative and narrative pieces with drawing and words",W.K.1;W.K.2;W.K.3,CCSS-ELA,ela.txt
-ela-k-talk-it-over,ela,k,ela-k12,Speaking and Listening,Talk It Over,"Conversations, questions and describing",SL.K.1;SL.K.2;SL.K.3;SL.K.4;SL.K.5;SL.K.6,CCSS-ELA,ela.txt
-ela-k-words-and-sentences,ela,k,ela-k12,Language,Words and Sentences,"Nouns, verbs, plurals, capitals and word sorting",L.K.1;L.K.2;L.K.4;L.K.5;L.K.6,CCSS-ELA,ela.txt
+ela-k-talk-it-over,ela,k,ela-k12,Speaking and Listening,Talk It Over,"Conversations, questions and describing",SL.K.1;SL.K.2;SL.K.6,CCSS-ELA,ela.txt
+ela-k-words-and-sentences,ela,k,ela-k12,Language,Words and Sentences,"Nouns, verbs, plurals, capitals and word sorting",L.K.1;L.K.2,CCSS-ELA,ela.txt
+ela-k-word-meanings-and-word-play,ela,k,ela-k12,Language,Word Meanings and Word Play,"Multiple-meaning words, endings and prefixes, sorting, opposites and shades of verbs",L.K.4;L.K.5,CCSS-ELA,ela.txt
 ela-1-phonics-blends-and-digraphs,ela,1,ela-k12,Foundational Skills,Phonics: Blends and Digraphs,"Decode one-syllable words, digraphs and final-e",RF.1.2;RF.1.3,CCSS-ELA,ela.txt
 ela-1-reading-fluency,ela,1,ela-k12,Foundational Skills,Reading Fluency,Read grade-level text with accuracy and expression,RF.1.4,CCSS-ELA,ela.txt
 ela-1-story-elements-and-lessons,ela,1,ela-k12,Reading Literature,Story Elements and Lessons,Retell with key details; central message; characters' feelings,RL.1.1;RL.1.2;RL.1.3,CCSS-ELA,ela.txt
-ela-1-who-is-telling-the-story,ela,1,ela-k12,Reading Literature,Who Is Telling the Story?,Identify narrator; compare characters' adventures,RL.1.6;RL.1.9,CCSS-ELA,ela.txt
-ela-1-text-features,ela,1,ela-k12,Reading Informational Text,Text Features,"Headings, tables of contents, glossaries and icons",RI.1.5,CCSS-ELA,ela.txt
+ela-1-who-is-telling-the-story,ela,1,ela-k12,Reading Literature,Who Is Telling the Story?,Identify narrator; compare characters' adventures,RL.1.6,CCSS-ELA,ela.txt
+ela-1-text-features,ela,1,ela-k12,Reading Informational Text,Text Features,"Headings, tables of contents, glossaries and icons",RI.1.5;RI.2.5,CCSS-ELA,ela.txt
 ela-1-writing-sentences-and-stories,ela,1,ela-k12,Writing,Writing Sentences and Stories,"Opinion, informative and narrative writing with sequence words",W.1.1;W.1.2;W.1.3,CCSS-ELA,ela.txt
-ela-1-grammar-basics,ela,1,ela-k12,Language,Grammar Basics,"Nouns, verbs, adjectives, conjunctions and punctuation",L.1.1;L.1.2,CCSS-ELA,ela.txt
+ela-1-grammar-basics,ela,1,ela-k12,Language,Grammar Basics,"Nouns, verbs, adjectives, conjunctions and punctuation",L.1.1,CCSS-ELA,ela.txt
+ela-1-capitals-punctuation-and-spelling,ela,1,ela-k12,Language,"Capitals, Punctuation and Spelling","Capital dates and names, end marks, commas in dates and lists, spelling patterns",L.1.2,CCSS-ELA,ela.txt
 ela-1-word-meanings,ela,1,ela-k12,Language,Word Meanings,"Context clues, root words and categories",L.1.4;L.1.5,CCSS-ELA,ela.txt
 ela-2-long-vowels-and-two-syllable-words,ela,2,ela-k12,Foundational Skills,Long Vowels and Two-Syllable Words,"Vowel teams, prefixes and suffixes",RF.2.3,CCSS-ELA,ela.txt
 ela-2-fables-and-folktales,ela,2,ela-k12,Reading Literature,Fables and Folktales,Recount stories and determine the lesson or moral,RL.2.2,CCSS-ELA,ela.txt
@@ -67,7 +69,7 @@ ela-2-author-s-purpose,ela,2,ela-k12,Reading Informational Text,Author's Purpose
 ela-2-paragraph-writing,ela,2,ela-k12,Writing,Paragraph Writing,"Opinions with reasons, informative facts, narratives with details",W.2.1;W.2.2;W.2.3,CCSS-ELA,ela.txt
 ela-2-grammar-and-spelling,ela,2,ela-k12,Language,Grammar and Spelling,"Collective nouns, irregular verbs, contractions and apostrophes",L.2.1;L.2.2,CCSS-ELA,ela.txt
 ela-2-word-building,ela,2,ela-k12,Language,Word Building,"Prefixes, compound words and shades of meaning",L.2.4;L.2.5,CCSS-ELA,ela.txt
-ela-3-multisyllable-decoding,ela,3,ela-k12,Foundational Skills,Multisyllable Decoding,Latin suffixes and irregular spelling,RF.3.3,CCSS-ELA,ela.txt
+ela-3-multisyllable-decoding,ela,3,ela-k12,Foundational Skills,Multisyllable Decoding,Latin suffixes and irregular spelling,RF.3.3;L.3.4,CCSS-ELA,ela.txt
 ela-3-characters-and-their-choices,ela,3,ela-k12,Reading Literature,Characters and Their Choices,"Describe characters' traits, motivations and actions",RL.3.3,CCSS-ELA,ela.txt
 ela-3-chapters-scenes-and-stanzas,ela,3,ela-k12,Reading Literature,"Chapters, Scenes and Stanzas",How parts of a text build on each other,RL.3.5,CCSS-ELA,ela.txt
 ela-3-main-idea-and-key-details,ela,3,ela-k12,Reading Informational Text,Main Idea and Key Details,Determine main idea and supporting details,RI.3.2,CCSS-ELA,ela.txt
@@ -75,7 +77,7 @@ ela-3-text-structure-and-search-tools,ela,3,ela-k12,Reading Informational Text,T
 ela-3-opinion-and-informative-writing,ela,3,ela-k12,Writing,Opinion and Informative Writing,"Organized writing with reasons, facts and linking words",W.3.1;W.3.2,CCSS-ELA,ela.txt
 ela-3-narrative-writing,ela,3,ela-k12,Writing,Narrative Writing,"Stories with dialogue, sequence and closure",W.3.3;L.3.2,CCSS-ELA,ela.txt
 ela-3-parts-of-speech,ela,3,ela-k12,Language,Parts of Speech,"Nouns, pronouns, verbs, adjectives and adverbs; verb tense",L.3.1,CCSS-ELA,ela.txt
-ela-3-literal-and-figurative-language,ela,3,ela-k12,Language,Literal and Figurative Language,"Nonliteral phrases, word relationships and root words",L.3.4;L.3.5;RL.3.4,CCSS-ELA,ela.txt
+ela-3-literal-and-figurative-language,ela,3,ela-k12,Language,Literal and Figurative Language,"Nonliteral phrases, word relationships and root words",L.3.4;L.3.5;RL.3.4;L.4.5,CCSS-ELA,ela.txt
 ela-4-theme-and-summary,ela,4,ela-k12,Reading Literature,Theme and Summary,Determine theme and summarize,RL.4.2;RL.4.1,CCSS-ELA,ela.txt
 ela-4-poetry-drama-and-prose,ela,4,ela-k12,Reading Literature,"Poetry, Drama and Prose",Structural differences across genres,RL.4.5,CCSS-ELA,ela.txt
 ela-4-myths-and-allusions,ela,4,ela-k12,Reading Literature,Myths and Allusions,Words and phrases that allude to mythology,RL.4.4;RL.4.9,CCSS-ELA,ela.txt
@@ -92,7 +94,8 @@ ela-5-multiple-sources,ela,5,ela-k12,Reading Informational Text,Multiple Sources
 ela-5-reasons-and-evidence,ela,5,ela-k12,Reading Informational Text,Reasons and Evidence,How authors use reasons and evidence to support points,RI.5.8,CCSS-ELA,ela.txt
 ela-5-organized-essays,ela,5,ela-k12,Writing,Organized Essays,Logically ordered opinion and informative writing,W.5.1;W.5.2,CCSS-ELA,ela.txt
 ela-5-narrative-craft,ela,5,ela-k12,Writing,Narrative Craft,"Pacing, dialogue and sensory details",W.5.3,CCSS-ELA,ela.txt
-ela-5-conjunctions-tense-and-commas,ela,5,ela-k12,Language,"Conjunctions, Tense and Commas","Perfect tenses, correlative conjunctions, commas",L.5.1;L.5.2,CCSS-ELA,ela.txt
+ela-5-conjunctions-tense-and-commas,ela,5,ela-k12,Language,"Conjunctions, Tense and Commas","Commas in series, after introductions, with yes, no and direct address; marking titles",L.5.2,CCSS-ELA,ela.txt
+ela-5-verb-tense-and-conjunctions,ela,5,ela-k12,Language,Verb Tense and Conjunctions,"Perfect tenses, tense shifts, correlative conjunctions, prepositions and interjections",L.5.1,CCSS-ELA,ela.txt
 ela-6-plot-and-character-development,ela,6,ela-k12,Reading Literature,Plot and Character Development,How plot unfolds and characters respond and change,RL.6.3;RL.6.5,CCSS-ELA,ela.txt
 ela-6-point-of-view,ela,6,ela-k12,Reading Literature,Point of View,How an author develops narrator or speaker point of view,RL.6.6,CCSS-ELA,ela.txt
 ela-6-central-idea-and-summary,ela,6,ela-k12,Reading Informational Text,Central Idea and Summary,"Central idea, supporting details, objective summary",RI.6.2;RL.6.2,CCSS-ELA,ela.txt
@@ -101,7 +104,7 @@ ela-6-argument-writing,ela,6,ela-k12,Writing,Argument Writing,Claims with clear 
 ela-6-research-and-citing-sources,ela,6,ela-k12,Writing,Research and Citing Sources,Gather from multiple sources; quote and paraphrase; credit,W.6.7;W.6.8,CCSS-ELA,ela.txt
 ela-6-collaborative-discussions,ela,6,ela-k12,Speaking and Listening,Collaborative Discussions,"Prepared discussion, follow rules, pose questions",SL.6.1,CCSS-ELA,ela.txt
 ela-6-pronouns-and-sentence-variety,ela,6,ela-k12,Language,Pronouns and Sentence Variety,Pronoun case and agreement; varied sentence patterns,L.6.1;L.6.3,CCSS-ELA,ela.txt
-ela-6-connotation-and-context,ela,6,ela-k12,Language,Connotation and Context,"Word nuance, context clues and reference materials",L.6.4;L.6.5;RL.6.4;RI.6.4,CCSS-ELA,ela.txt
+ela-6-connotation-and-context,ela,6,ela-k12,Language,Connotation and Context,"Word nuance, context clues and reference materials",L.6.5;RL.6.4;RI.6.4,CCSS-ELA,ela.txt
 ela-7-setting-plot-and-character-interplay,ela,7,ela-k12,Reading Literature,"Setting, Plot and Character Interplay",How elements of a story interact,RL.7.3,CCSS-ELA,ela.txt
 ela-7-fiction-vs-history,ela,7,ela-k12,Reading Literature,Fiction vs History,Compare fictional and historical accounts of a time and place,RL.7.9,CCSS-ELA,ela.txt
 ela-7-sound-and-form-in-poetry,ela,7,ela-k12,Reading Literature,Sound and Form in Poetry,"Rhyme, repetition and form in poems and drama",RL.7.4;RL.7.5,CCSS-ELA,ela.txt
@@ -148,20 +151,20 @@ ela-12-extended-research-project,ela,12,ela-k12,Writing,Extended Research Projec
 ela-12-formal-presentations,ela,12,ela-k12,Speaking and Listening,Formal Presentations,Present a perspective with strategic use of media,SL.11-12.4;SL.11-12.5,CCSS-ELA,ela.txt
 ela-12-media-literacy,ela,12,ela-k12,Speaking and Listening,Media Literacy,"Evaluate sources, bias and persuasion in media",SL.11-12.2;SL.11-12.3,CCSS-ELA,ela.txt
 ela-12-advanced-vocabulary-and-etymology,ela,12,ela-k12,Language,Advanced Vocabulary and Etymology,"Etymology, nuance and academic vocabulary",L.11-12.4;L.11-12.5,CCSS-ELA,ela.txt
-ela-k-2-pictures-and-words-together,ela,k-2,ela-k12,Reading Literature,Pictures and Words Together,"What illustrations, captions and text features add to the words; who made each part",RL.K.6;RL.K.7;RL.1.7;RI.1.6;RI.1.7;RL.2.7;RI.2.7;RI.2.5,CCSS-ELA,ela.txt
-ela-k-2-comparing-two-books,ela,k-2,ela-k12,Reading Literature,Comparing Two Books,"Alike and different: two books on one topic, two versions of one tale, a story and a fact book",RL.K.9;RI.K.9;RL.1.5;RI.1.9;RL.2.9;RI.2.9,CCSS-ELA,ela.txt
+ela-k-2-pictures-and-words-together,ela,k-2,ela-k12,Reading Literature,Pictures and Words Together,"What illustrations, captions and text features add to the words; who made each part",RL.K.6;RL.K.7;RL.1.7;RI.1.6;RI.1.7;RL.2.7;RI.2.7,CCSS-ELA,ela.txt
+ela-k-2-comparing-two-books,ela,k-2,ela-k12,Reading Literature,Comparing Two Books,"Alike and different: two books on one topic, two versions of one tale, a story and a fact book",RL.K.9;RI.K.9;RL.1.5;RI.1.9;RL.2.9;RI.2.9;RL.1.9,CCSS-ELA,ela.txt
 ela-k-2-question-words-and-key-details,ela,k-2,ela-k12,Reading Informational Text,Question Words and Key Details,"Ask and answer who, what, where, when, why and how; retell key details and connections",RI.K.1;RI.1.1;RI.1.2;RI.1.3;RL.2.1;RI.2.1;RL.2.3,CCSS-ELA,ela.txt
 ela-k-2-reasons-an-author-gives,ela,k-2,ela-k12,Reading Informational Text,Reasons an Author Gives,Find the reasons that support an author's point; connect them with because,RI.K.8;RI.1.8;L.1.6;RI.2.8,CCSS-ELA,ela.txt
 ela-k-2-poems-and-songs-aloud,ela,k-2,ela-k12,Reading Literature,Poems and Songs Aloud,"Tell poems from stories; hear rhythm, rhyme and feeling words; read and record a poem",RL.K.5;RF.K.4;RL.1.4;RF.1.4;RL.2.4;RF.2.4;SL.2.5,CCSS-ELA,ela.txt
-ela-k-2-new-words-from-read-alouds,ela,k-2,ela-k12,Language,New Words from Read-Alouds,"Ask about unknown words in a text, work them out, and use them to describe",RL.K.4;RI.1.4;RI.2.4;L.2.6,CCSS-ELA,ela.txt
+ela-k-2-new-words-from-read-alouds,ela,k-2,ela-k12,Language,New Words from Read-Alouds,"Ask about unknown words in a text, work them out, and use them to describe",RL.K.4;RI.1.4;RI.2.4;L.2.6;RI.K.4;L.K.6,CCSS-ELA,ela.txt
 ela-k-2-class-research-projects,ela,k-2,ela-k12,Writing,Class Research Projects,Answer a class question from books and experience; write it up together,W.K.7;W.K.8;W.1.7;W.1.8;W.2.7;W.2.8,CCSS-ELA,ela.txt
 ela-k-2-adding-details-and-fixing-sentences,ela,k-2,ela-k12,Writing,Adding Details and Fixing Sentences,Add details after questions from others; fix capitals and end marks,W.K.5;W.1.5;RF.1.1;W.2.5,CCSS-ELA,ela.txt
-ela-k-2-show-and-tell,ela,k-2,ela-k12,Speaking and Listening,Show and Tell,Describe or recount with details in complete sentences; add a drawing; talk to different listeners,SL.K.4;SL.1.4;SL.1.5;SL.1.6;SL.2.4;SL.2.6;L.2.3,CCSS-ELA,ela.txt
+ela-k-2-show-and-tell,ela,k-2,ela-k12,Speaking and Listening,Show and Tell,Describe or recount with details in complete sentences; add a drawing; talk to different listeners,SL.K.4;SL.1.4;SL.1.5;SL.1.6;SL.2.4;SL.2.6;L.2.3;SL.K.5,CCSS-ELA,ela.txt
 ela-k-2-listening-and-asking-questions,ela,k-2,ela-k12,Speaking and Listening,Listening and Asking Questions,Talk in turns about what a speaker says; ask and answer questions about key details,SL.K.3;SL.1.1;SL.1.2;SL.1.3;SL.2.1;SL.2.2;SL.2.3,CCSS-ELA,ela.txt
-ela-3-5-revising-and-editing,ela,3-5,ela-k12,Writing,Revising and Editing,"Revise for purpose and audience; edit capitals, commas and spelling; choose words and sentences for effect",W.3.4;W.3.5;L.3.3;W.4.4;W.4.5;L.4.2;L.4.3;W.5.4;W.5.5;L.5.3,CCSS-ELA,ela.txt
+ela-3-5-revising-and-editing,ela,3-5,ela-k12,Writing,Revising and Editing,"Revise for purpose and audience; edit capitals, commas and spelling; choose words and sentences for effect",W.3.4;W.3.5;L.3.3;W.4.4;W.4.5;L.4.2;L.4.3;W.5.4;W.5.5;L.5.3;L.5.2;L.3.2,CCSS-ELA,ela.txt
 ela-3-5-listening-for-main-points-and-reasons,ela,3-5,ela-k12,Speaking and Listening,Listening for Main Points and Reasons,Summarize what is read aloud or presented; find a speaker's reasons and evidence,SL.3.2;SL.3.3;SL.4.2;SL.4.3;SL.5.2;SL.5.3,CCSS-ELA,ela.txt
 ela-3-5-presenting-clearly,ela,3-5,ela-k12,Speaking and Listening,Presenting Clearly,Report or tell with facts and details at a clear pace; add recordings or visuals; fit speech to the audience,SL.3.4;SL.3.5;SL.3.6;SL.4.4;SL.4.5;SL.4.6;SL.5.4;SL.5.5;SL.5.6,CCSS-ELA,ela.txt
-ela-3-5-readers-theater-and-fluency,ela,3-5,ela-k12,Foundational Skills,Readers Theater and Fluency,"Read script parts with accuracy, expression and pace; decode long words by syllables and parts",RF.3.4;RF.4.3;RF.4.4;RF.5.3;RF.5.4,CCSS-ELA,ela.txt
+ela-3-5-readers-theater-and-fluency,ela,3-5,ela-k12,Foundational Skills,Readers Theater and Fluency,"Read script parts with accuracy, expression and pace; decode long words by syllables and parts",RF.3.4;RF.4.3;RF.4.4;RF.5.3;RF.5.4;L.5.3,CCSS-ELA,ela.txt
 ela-3-5-main-idea-with-text-evidence,ela,3-5,ela-k12,Reading Informational Text,Main Idea with Text Evidence,"Find the central message or main ideas, summarize, and quote the text that proves them",RL.3.1;RI.3.1;RL.3.2;RI.4.2;RI.4.8;RI.5.1;RI.5.2;W.5.9,CCSS-ELA,ela.txt
 ela-3-5-academic-and-subject-words,ela,3-5,ela-k12,Language,Academic and Subject Words,Work out subject-area words from context and word parts; synonyms and opposites; linking words,RI.3.4;L.3.6;RI.4.4;L.4.5;L.4.6;RI.5.4;L.5.4;L.5.6,CCSS-ELA,ela.txt
 ela-3-5-pictures-panels-and-performances,ela,3-5,ela-k12,Reading Literature,"Pictures, Panels and Performances","How illustrations, comic panels and read-aloud versions add to a story",RL.3.7;RL.4.7;RL.5.7,CCSS-ELA,ela.txt
@@ -176,9 +179,10 @@ ela-6-8-analysis-with-evidence-from-nonfiction,ela,6-8,ela-k12,Writing,Analysis 
 ela-6-8-text-audio-and-film-versions,ela,6-8,ela-k12,Reading Literature,"Text, Audio and Film Versions","Compare a text with its audio, film or staged version; weigh what each medium does well",RL.6.7;RI.6.7;RL.7.7;RI.7.7;RL.8.7;RI.8.7,CCSS-ELA,ela.txt
 ela-6-8-listening-to-speakers-and-discussing,ela,6-8,ela-k12,Speaking and Listening,Listening to Speakers and Discussing,"Delineate a speaker's claims, interpret information in media, and discuss to build on ideas",SL.6.2;SL.6.3;SL.7.1;SL.7.2;SL.7.3;SL.8.1;SL.8.3,CCSS-ELA,ela.txt
 ela-6-8-presenting-claims-and-findings,ela,6-8,ela-k12,Speaking and Listening,Presenting Claims and Findings,Present in a logical order with evidence and media; adapt speech to the context,SL.6.4;SL.6.5;SL.6.6;SL.7.4;SL.7.5;SL.7.6;SL.8.6,CCSS-ELA,ela.txt
-ela-6-8-academic-vocabulary-strategies,ela,6-8,ela-k12,Language,Academic Vocabulary Strategies,"Context, Greek and Latin roots and the dictionary for unknown words; academic and subject words",L.6.6;L.7.4;L.7.6;L.8.4;L.8.6,CCSS-ELA,ela.txt
+ela-6-8-academic-vocabulary-strategies,ela,6-8,ela-k12,Language,Academic Vocabulary Strategies,"Context, Greek and Latin roots and the dictionary for unknown words; academic and subject words",L.6.6;L.7.4;L.7.6;L.8.4;L.8.6;L.6.4,CCSS-ELA,ela.txt
 ela-8-puns-irony-and-allusion,ela,8,ela-k12,Language,"Puns, Irony and Allusion","Interpret puns, verbal irony, analogies and allusions and how word choice shapes meaning and tone",RL.8.4;RI.8.4;L.8.5,CCSS-ELA,ela.txt
 ela-6-8-commas-dashes-and-ellipses,ela,6-8,ela-k12,Language,"Commas, Dashes and Ellipses","Punctuate extra information, coordinate adjectives, pauses and omissions; spell correctly",L.6.2;L.7.2;L.8.2,CCSS-ELA,ela.txt
+ela-6-8-spelling-through-word-families,ela,6-8,ela-k12,Language,Spelling Through Word Families,"Spell correctly using roots, word families and patterns",L.6.2;L.7.2;L.8.2,CCSS-ELA,ela.txt
 ela-6-8-structure-in-informative-writing,ela,6-8,ela-k12,Writing,Structure in Informative Writing,How sections build an informational text; write explanations with a clear structure,W.6.2;RI.6.5;RI.7.5;W.7.2;W.8.2,CCSS-ELA,ela.txt
 ela-6-8-narrative-point-of-view-and-structure,ela,6-8,ela-k12,Writing,Narrative Point of View and Structure,Write a scene from more than one point of view and in more than one order; compare what each choice does,W.6.3;W.7.3;RL.7.6;W.8.3;RL.8.5,CCSS-ELA,ela.txt
 ela-6-8-how-authors-present-people-and-ideas,ela,6-8,ela-k12,Reading Informational Text,How Authors Present People and Ideas,How a person or idea is introduced and developed; memoir against biography; the author's point of view,RI.6.3;RI.6.6;RI.6.9;RI.7.3;RI.8.3;RI.8.6,CCSS-ELA,ela.txt
@@ -189,6 +193,14 @@ ela-10-one-subject-in-many-media,ela,10,ela-k12,Reading Informational Text,One S
 ela-9-presenting-findings-to-an-audience,ela,9,ela-k12,Speaking and Listening,Presenting Findings to an Audience,"Present information and evidence clearly, use digital media strategically, adapt speech to the context",SL.9-10.4;SL.9-10.5;SL.9-10.6,CCSS-ELA,ela.txt
 ela-9-12-key-terms-and-academic-vocabulary,ela,9-12,ela-k12,Language,Key Terms and Academic Vocabulary,"Determine unknown words, track how an author defines a key term, and use academic words",L.9-10.4;L.9-10.6;RL.11-12.4;RI.11-12.4;L.11-12.6,CCSS-ELA,ela.txt
 ela-9-12-narrative-scenes-and-pacing,ela,9-12,ela-k12,Writing,Narrative Scenes and Pacing,"Write narrative scenes with pacing, description and reflection",W.9-10.3;W.11-12.3,CCSS-ELA,ela.txt
+ela-k-2-publishing-with-digital-tools,ela,k-2,ela-k12,Writing,Publishing with Digital Tools,"Explore digital tools to produce and publish writing, alone and with a partner",W.K.6;W.1.6;W.2.6,CCSS-ELA,ela.txt
+ela-3-5-typing-publishing-and-writing-routines,ela,3-5,ela-k12,Writing,"Typing, Publishing and Writing Routines","Keyboarding, producing and publishing with technology; writing over short and extended time frames",W.3.6;W.4.6;W.5.6;W.3.10;W.4.10;W.5.10,CCSS-ELA,ela.txt
+ela-6-8-writing-and-publishing-online,ela,6-8,ela-k12,Writing,Writing and Publishing Online,Produce and publish with links and citations; collaborate; write routinely,W.6.6;W.7.6;W.8.6;W.6.10;W.7.10;W.8.10,CCSS-ELA,ela.txt
+ela-9-12-publishing-and-updating-writing,ela,9-12,ela-k12,Writing,Publishing and Updating Writing,"Produce, publish and update writing in response to feedback and new information; write routinely",W.9-10.6;W.11-12.6;W.9-10.10;W.11-12.10,CCSS-ELA,ela.txt
+ela-k-2-reading-range-and-text-complexity,ela,k-2,ela-k12,Reading Literature,Reading Range and Text Complexity,"Read stories, poems and fact books at grade level with fading support",RL.K.10;RL.1.10;RL.2.10;RI.K.10;RI.1.10;RI.2.10,CCSS-ELA,ela.txt
+ela-3-5-reading-range-and-text-complexity,ela,3-5,ela-k12,Reading Literature,Reading Range and Text Complexity,"Read literature and informational texts at the top of the grade band, with fading scaffolds",RL.3.10;RL.4.10;RL.5.10;RI.3.10;RI.4.10;RI.5.10,CCSS-ELA,ela.txt
+ela-6-8-reading-range-and-text-complexity,ela,6-8,ela-k12,Reading Literature,Reading Range and Text Complexity,"Read literature and literary nonfiction at the grade band, independently at the top",RL.6.10;RL.7.10;RL.8.10;RI.6.10;RI.7.10;RI.8.10,CCSS-ELA,ela.txt
+ela-9-12-reading-range-and-text-complexity,ela,9-12,ela-k12,Reading Literature,Reading Range and Text Complexity,Read complex literature and informational texts independently and proficiently,RL.9-10.10;RL.11-12.10;RI.9-10.10;RI.11-12.10,CCSS-ELA,ela.txt
 arts-k-2-lines-shapes-and-colors,arts,k-2,visual-arts,Visual Arts,"Lines, Shapes and Colors",Elements of art; primary and secondary colors,VA:Cr1;VA:Cr2,NCAS,electives.txt
 arts-k-2-art-from-many-places,arts,k-2,visual-arts,Visual Arts,Art from Many Places,Look at and talk about art from different cultures,VA:Re7;VA:Cn11;VA:Re8,NCAS,electives.txt
 arts-3-5-color-theory-and-mixing,arts,3-5,visual-arts,Visual Arts,Color Theory and Mixing,"Color wheel, warm and cool, tints and shades",VA:Cr2,NCAS,electives.txt
@@ -292,7 +304,7 @@ world-languages-6-12-travel-and-directions,world-languages,6-12,spanish,Intermed
 world-languages-6-12-past-tenses,world-languages,6-12,spanish,Intermediate,Past Tenses,Preterite and imperfect storytelling,ACTFL.Intermediate Mid,ACTFL,electives.txt
 world-languages-6-12-cultures-of-the-spanish-speaking-world,world-languages,6-12,spanish,Intermediate,Cultures of the Spanish-Speaking World,"Countries, traditions and perspectives",WRS.Cultures;ACTFL.Intermediate Mid,World-Readiness;ACTFL,electives.txt
 world-languages-9-12-subjunctive-and-opinions,world-languages,9-12,spanish,Advanced,Subjunctive and Opinions,"Express wishes, doubts and recommendations",ACTFL.Intermediate High,ACTFL,electives.txt
-world-languages-9-12-current-events-and-debate,world-languages,9-12,spanish,Advanced,Current Events and Debate,Discuss and defend positions on issues,ACTFL.Advanced Low;WRS.Communities,ACTFL;World-Readiness,electives.txt
+world-languages-9-12-current-events-and-debate,world-languages,9-12,spanish,Advanced,Current Events and Debate,Discuss and defend positions on issues,ACTFL.Advanced Low;WRS.Communities;WRS.Connections,ACTFL;World-Readiness,electives.txt
 cte-6-8-career-clusters,cte,6-8,cte-explore,Career Exploration,Career Clusters,The 14 career clusters (2024 framework) and the jobs inside them,CTE.Career Clusters,Career Clusters 2024,electives.txt
 cte-6-8-interests-and-skills,cte,6-8,cte-explore,Career Exploration,Interests and Skills,Match interests and strengths to careers,CTE.Career Clusters,Career Clusters 2024,electives.txt
 cte-6-8-workplace-skills,cte,6-8,cte-explore,Career Exploration,Workplace Skills,"Communication, teamwork and professionalism",CTE.Career Ready Practices,Career Clusters 2024,electives.txt
@@ -418,6 +430,7 @@ math-1-measuring-length,math,1,math-k8,Measurement and Data,Measuring Length,Ord
 math-1-telling-time-to-the-half-hour,math,1,math-k8,Measurement and Data,Telling Time to the Half Hour,Read analog and digital clocks,1.MD.B,CCSS-Math,math.txt
 math-1-picture-graphs-and-tallies,math,1,math-k8,Measurement and Data,Picture Graphs and Tallies,"Organize, represent and interpret data with up to three categories",1.MD.C,CCSS-Math,math.txt
 math-1-halves-and-fourths,math,1,math-k8,Geometry,Halves and Fourths,Compose shapes and partition into equal shares,1.G.A,CCSS-Math,math.txt
+math-1-shapes-and-their-attributes,math,1,math-k8,Geometry,Shapes and Their Attributes,Defining and non-defining attributes; composing flat and solid shapes,1.G.A,CCSS-Math,math.txt
 math-2-two-step-word-problems,math,2,math-k8,Operations and Algebraic Thinking,Two-Step Word Problems,Add and subtract within 100 in one- and two-step problems,2.OA.A,CCSS-Math,math.txt
 math-2-fluency-within-20,math,2,math-k8,Operations and Algebraic Thinking,Fluency Within 20,Mental strategies for addition and subtraction facts,2.OA.B,CCSS-Math,math.txt
 math-2-odd-even-and-arrays,math,2,math-k8,Operations and Algebraic Thinking,"Odd, Even and Arrays",Equal groups as a foundation for multiplication,2.OA.C,CCSS-Math,math.txt
@@ -434,7 +447,7 @@ math-3-rounding-and-multi-digit-operations,math,3,math-k8,Number and Operations 
 math-3-fractions-as-numbers,math,3,math-k8,Number and Operations - Fractions,Fractions as Numbers,"Unit fractions, fractions on a number line, equivalent fractions",3.NF.A,CCSS-Math,math.txt
 math-3-time-volume-and-mass,math,3,math-k8,Measurement and Data,"Time, Volume and Mass",Elapsed time; liquid volume and mass,3.MD.A,CCSS-Math,math.txt
 math-3-scaled-graphs,math,3,math-k8,Measurement and Data,Scaled Graphs,Scaled picture and bar graphs; line plots with fractions,3.MD.B,CCSS-Math,math.txt
-math-3-area,math,3,math-k8,Measurement and Data,Area,Understand area; relate area to multiplication,3.MD.C,CCSS-Math,math.txt
+math-3-area,math,3,math-k8,Measurement and Data,Area,Understand area; relate area to multiplication,3.MD.C;3.G.A,CCSS-Math,math.txt
 math-3-perimeter,math,3,math-k8,Measurement and Data,Perimeter,Solve perimeter problems; distinguish from area,3.MD.D,CCSS-Math,math.txt
 math-3-quadrilaterals,math,3,math-k8,Geometry,Quadrilaterals,Classify shapes by attributes; partition into equal areas,3.G.A,CCSS-Math,math.txt
 math-4-multiplicative-comparison,math,4,math-k8,Operations and Algebraic Thinking,Multiplicative Comparison,Word problems with multiplication as comparison; remainders,4.OA.A,CCSS-Math,math.txt
@@ -442,10 +455,12 @@ math-4-factors-and-multiples,math,4,math-k8,Operations and Algebraic Thinking,Fa
 math-4-number-patterns,math,4,math-k8,Operations and Algebraic Thinking,Number Patterns,Generate and analyze patterns that follow a rule,4.OA.C,CCSS-Math,math.txt
 math-4-place-value-to-a-million,math,4,math-k8,Number and Operations in Base Ten,Place Value to a Million,"Read, write, compare and round multi-digit numbers",4.NBT.A,CCSS-Math,math.txt
 math-4-multi-digit-multiplication-and-division,math,4,math-k8,Number and Operations in Base Ten,Multi-Digit Multiplication and Division,Multiply up to 4 by 1 and 2 by 2 digits; divide by 1 digit,4.NBT.B,CCSS-Math,math.txt
+math-4-adding-and-subtracting-multi-digit-numbers,math,4,math-k8,Number and Operations in Base Ten,Adding and Subtracting Multi-Digit Numbers,Fluently add and subtract with the standard algorithm,4.NBT.B,CCSS-Math,math.txt
 math-4-equivalent-fractions-and-comparing,math,4,math-k8,Number and Operations - Fractions,Equivalent Fractions and Comparing,Generate equivalent fractions; compare unlike fractions,4.NF.A,CCSS-Math,math.txt
 math-4-adding-and-multiplying-fractions,math,4,math-k8,Number and Operations - Fractions,Adding and Multiplying Fractions,Build fractions from unit fractions; whole number times fraction,4.NF.B,CCSS-Math,math.txt
 math-4-decimals,math,4,math-k8,Number and Operations - Fractions,Decimals,Decimal notation for tenths and hundredths,4.NF.C,CCSS-Math,math.txt
 math-4-measurement-conversions,math,4,math-k8,Measurement and Data,Measurement Conversions,Convert units within one system; area and perimeter formulas,4.MD.A,CCSS-Math,math.txt
+math-4-area-and-perimeter-formulas,math,4,math-k8,Measurement and Data,Area and Perimeter Formulas,Apply area and perimeter formulas for rectangles in real problems,4.MD.A,CCSS-Math,math.txt
 math-4-angles-and-line-plots,math,4,math-k8,Measurement and Data,Angles and Line Plots,Angle concepts and protractors; line plots of fractional measurements,4.MD.B;4.MD.C,CCSS-Math,math.txt
 math-4-lines-angles-and-symmetry,math,4,math-k8,Geometry,"Lines, Angles and Symmetry",Classify figures by lines and angles; lines of symmetry,4.G.A,CCSS-Math,math.txt
 math-5-expressions-and-order-of-operations,math,5,math-k8,Operations and Algebraic Thinking,Expressions and Order of Operations,Write and interpret numerical expressions with grouping symbols,5.OA.A,CCSS-Math,math.txt
@@ -453,7 +468,8 @@ math-5-patterns-and-relationships,math,5,math-k8,Operations and Algebraic Thinki
 math-5-powers-of-ten-and-decimals,math,5,math-k8,Number and Operations in Base Ten,Powers of Ten and Decimals,"Place value system; read, compare and round decimals to thousandths",5.NBT.A,CCSS-Math,math.txt
 math-5-operations-with-whole-numbers-and-decimals,math,5,math-k8,Number and Operations in Base Ten,Operations with Whole Numbers and Decimals,Fluent multi-digit multiplication; divide; decimal operations to hundredths,5.NBT.B;NSPFE.Spending,CCSS-Math;NSPFE-2021,math.txt
 math-5-adding-unlike-fractions,math,5,math-k8,Number and Operations - Fractions,Adding Unlike Fractions,Add and subtract fractions with unlike denominators,5.NF.A,CCSS-Math,math.txt
-math-5-multiplying-and-dividing-fractions,math,5,math-k8,Number and Operations - Fractions,Multiplying and Dividing Fractions,Fraction multiplication as scaling; divide with unit fractions,5.NF.B,CCSS-Math,math.txt
+math-5-multiplying-and-dividing-fractions,math,5,math-k8,Number and Operations - Fractions,Multiplying and Dividing Fractions,Fraction multiplication as scaling,5.NF.B,CCSS-Math,math.txt
+math-5-fractions-as-division,math,5,math-k8,Number and Operations - Fractions,Fractions as Division,A fraction as division; dividing unit fractions and whole numbers,5.NF.B,CCSS-Math,math.txt
 math-5-units-and-line-plots,math,5,math-k8,Measurement and Data,Units and Line Plots,Convert measurement units; line plots with fractional data,5.MD.A;5.MD.B,CCSS-Math,math.txt
 math-5-volume,math,5,math-k8,Measurement and Data,Volume,Understand volume; volume of rectangular prisms,5.MD.C,CCSS-Math,math.txt
 math-5-the-coordinate-plane,math,5,math-k8,Geometry,The Coordinate Plane,Graph points in the first quadrant to solve problems,5.G.A,CCSS-Math,math.txt
@@ -465,15 +481,20 @@ math-6-negative-numbers,math,6,math-k8,The Number System,Negative Numbers,Ration
 math-6-expressions-and-exponents,math,6,math-k8,Expressions and Equations,Expressions and Exponents,"Write, read, evaluate and simplify expressions",6.EE.A,CCSS-Math,math.txt
 math-6-one-step-equations-and-inequalities,math,6,math-k8,Expressions and Equations,One-Step Equations and Inequalities,Solve and write one-variable equations and inequalities,6.EE.B,CCSS-Math,math.txt
 math-6-dependent-and-independent-variables,math,6,math-k8,Expressions and Equations,Dependent and Independent Variables,"Relationships between quantities in tables, graphs and equations",6.EE.C;NSPFE.Earning Income,CCSS-Math;NSPFE-2021,math.txt
-math-6-area-surface-area-and-volume,math,6,math-k8,Geometry,"Area, Surface Area and Volume",Area of polygons; nets; volume with fractional edges,6.G.A,CCSS-Math,math.txt
+math-6-area-surface-area-and-volume,math,6,math-k8,Geometry,"Area, Surface Area and Volume",Nets; volume with fractional edges,6.G.A,CCSS-Math,math.txt
+math-6-area-of-polygons,math,6,math-k8,Geometry,Area of Polygons,"Area of triangles, parallelograms, trapezoids and composite polygons by composing and decomposing",6.G.A,CCSS-Math,math.txt
 math-6-statistical-variability,math,6,math-k8,Statistics and Probability,Statistical Variability,"Statistical questions; center, spread and shape",6.SP.A,CCSS-Math,math.txt
 math-6-summarizing-data,math,6,math-k8,Statistics and Probability,Summarizing Data,"Dot plots, histograms, box plots; mean, median, MAD",6.SP.B,CCSS-Math,math.txt
 math-7-proportional-relationships,math,7,math-k8,Ratios and Proportional Relationships,Proportional Relationships,Unit rates with fractions; constant of proportionality; percent problems,7.RP.A,CCSS-Math,math.txt
 math-7-operations-with-rational-numbers,math,7,math-k8,The Number System,Operations with Rational Numbers,"Add, subtract, multiply and divide signed numbers",7.NS.A,CCSS-Math,math.txt
+math-7-terminating-and-repeating-decimals,math,7,math-k8,The Number System,Terminating and Repeating Decimals,Long division shows a rational number's decimal ends or repeats,7.NS.A,CCSS-Math,math.txt
 math-7-equivalent-expressions,math,7,math-k8,Expressions and Equations,Equivalent Expressions,Use properties to rewrite linear expressions,7.EE.A,CCSS-Math,math.txt
 math-7-multi-step-equations-and-inequalities,math,7,math-k8,Expressions and Equations,Multi-Step Equations and Inequalities,Real-world problems with equations and inequalities,7.EE.B,CCSS-Math,math.txt
 math-7-scale-drawings-and-constructions,math,7,math-k8,Geometry,Scale Drawings and Constructions,Scale drawings; draw geometric figures; cross sections,7.G.A,CCSS-Math,math.txt
-math-7-circles-angles-area-and-volume,math,7,math-k8,Geometry,"Circles, Angles, Area and Volume",Circumference and area of circles; angle relationships; surface area and volume,7.G.B,CCSS-Math,math.txt
+math-7-cross-sections-of-solids,math,7,math-k8,Geometry,Cross Sections of Solids,Plane sections of right rectangular prisms and pyramids,7.G.A,CCSS-Math,math.txt
+math-7-circles-angles-area-and-volume,math,7,math-k8,Geometry,"Circles, Angles, Area and Volume",Circumference and area of circles,7.G.B,CCSS-Math,math.txt
+math-7-angle-relationships,math,7,math-k8,Geometry,Angle Relationships,"Supplementary, complementary, vertical and adjacent angles in equations",7.G.B,CCSS-Math,math.txt
+math-7-surface-area-and-volume-of-prisms,math,7,math-k8,Geometry,Surface Area and Volume of Prisms,"Area, volume and surface area of composite figures of polygons, cubes and right prisms",7.G.B,CCSS-Math,math.txt
 math-7-sampling-and-inference,math,7,math-k8,Statistics and Probability,Sampling and Inference,Random samples; compare two populations,7.SP.A;7.SP.B,CCSS-Math,math.txt
 math-7-probability,math,7,math-k8,Statistics and Probability,Probability,"Chance events, simulations and compound probability",7.SP.C,CCSS-Math,math.txt
 math-8-irrational-numbers,math,8,math-k8,The Number System,Irrational Numbers,Rational approximations of irrational numbers,8.NS.A,CCSS-Math,math.txt
@@ -557,29 +578,34 @@ science-3-living-in-groups,science,3,science-k5,Life Science,Living in Groups,So
 science-3-traits-and-variation,science,3,science-k5,Life Science,Traits and Variation,Inherited traits and traits influenced by environment,3-LS3-1;3-LS3-2;3-LS4-2,NGSS,science.txt
 science-3-fossils-and-changing-environments,science,3,science-k5,Life Science,Fossils and Changing Environments,Fossils show past environments; survival when habitats change,3-LS4-1;3-LS4-3;3-LS4-4,NGSS,science.txt
 science-3-weather-and-climate,science,3,science-k5,Earth and Space Science,Weather and Climate,Weather data and climates around the world; weather hazards,3-ESS2-1;3-ESS2-2;3-ESS3-1;D2.Geo.10.3-5,NGSS;C3,science.txt
-science-4-energy-and-motion,science,4,science-k5,Physical Science,Energy and Motion,Speed and energy; energy transfer in collisions,4-PS3-1;4-PS3-2;4-PS3-3,NGSS,science.txt
-science-4-energy-conversion-devices,science,4,science-k5,Physical Science,Energy Conversion Devices,Design devices that convert energy,4-PS3-4;3-5-ETS1-1;3-5-ETS1-2;3-5-ETS1-3,NGSS,science.txt
+science-4-energy-and-motion,science,4,science-k5,Physical Science,Energy and Motion,Speed and energy; energy transfer in collisions,4-PS3-1;4-PS3-3,NGSS,science.txt
+science-4-energy-conversion-devices,science,4,science-k5,Physical Science,Energy Conversion Devices,Design devices that convert energy,4-PS3-4;3-5-ETS1-1;3-5-ETS1-2;3-5-ETS1-3;4-PS3-2,NGSS,science.txt
 science-4-waves-and-information,science,4,science-k5,Physical Science,Waves and Information,Wave patterns; using patterns to transfer information,4-PS4-1;4-PS4-3,NGSS,science.txt
 science-4-structures-and-senses,science,4,science-k5,Life Science,Structures and Senses,Internal and external structures; how eyes see light,4-LS1-1;4-LS1-2;4-PS4-2,NGSS,science.txt
 science-4-rock-layers-and-earth-history,science,4,science-k5,Earth and Space Science,Rock Layers and Earth History,Rock formations and fossils show change over time,4-ESS1-1,NGSS,science.txt
-science-4-weathering-and-erosion,science,4,science-k5,Earth and Space Science,Weathering and Erosion,"Effects of water, ice, wind and plants on land",4-ESS2-1;4-ESS2-2,NGSS,science.txt
+science-4-weathering-and-erosion,science,4,science-k5,Earth and Space Science,Weathering and Erosion,"Effects of water, ice, wind and plants on land",4-ESS2-1,NGSS,science.txt
+science-4-earth-s-features-on-maps,science,4,science-k5,Earth and Space Science,Earth's Features on Maps,"Patterns of mountains, trenches, volcanoes and earthquakes from maps",4-ESS2-2,NGSS,science.txt
 science-4-natural-resources-and-hazards,science,4,science-k5,Earth and Space Science,Natural Resources and Hazards,Energy resources and reducing hazard impacts,4-ESS3-1;4-ESS3-2,NGSS,science.txt
 science-5-matter-is-made-of-particles,science,5,science-k5,Physical Science,Matter Is Made of Particles,Particles too small to see; conservation of mass,5-PS1-1;5-PS1-2,NGSS,science.txt
 science-5-properties-and-mixtures,science,5,science-k5,Physical Science,Properties and Mixtures,Identify materials; mixing creates new substances,5-PS1-3;5-PS1-4,NGSS,science.txt
 science-5-gravity,science,5,science-k5,Physical Science,Gravity,Earth's gravity pulls objects down,5-PS2-1,NGSS,science.txt
 science-5-food-webs-and-matter-cycles,science,5,science-k5,Life Science,Food Webs and Matter Cycles,Plants get materials from air and water; matter moves through ecosystems,5-LS1-1;5-LS2-1;5-PS3-1,NGSS,science.txt
-science-5-sun-stars-and-shadows,science,5,science-k5,Earth and Space Science,"Sun, Stars and Shadows",Star brightness; daily and seasonal sky patterns,5-ESS1-1;5-ESS1-2,NGSS,science.txt
+science-5-sun-stars-and-shadows,science,5,science-k5,Earth and Space Science,"Sun, Stars and Shadows","Daily and seasonal patterns of shadows, day and night, and the sky",5-ESS1-2,NGSS,science.txt
+science-5-star-brightness,science,5,science-k5,Earth and Space Science,Star Brightness,The sun's apparent brightness compared with other stars depends on distance,5-ESS1-1,NGSS,science.txt
 science-5-earth-s-spheres,science,5,science-k5,Earth and Space Science,Earth's Spheres,"Geosphere, hydrosphere, atmosphere and biosphere interact",5-ESS2-1;5-ESS2-2,NGSS,science.txt
 science-5-protecting-earth,science,5,science-k5,Earth and Space Science,Protecting Earth,Communities protect resources and environments,5-ESS3-1,NGSS,science.txt
 science-6-earth-sun-moon-system,science,6,science-ms,Earth and Space Science,Earth-Sun-Moon System,"Moon phases, eclipses and seasons",MS-ESS1-1,NGSS,science.txt
 science-6-gravity-and-the-solar-system,science,6,science-ms,Earth and Space Science,Gravity and the Solar System,Gravity's role in the solar system and galaxies; scale,MS-ESS1-2;MS-ESS1-3;MS-PS2-4,NGSS,science.txt
 science-6-geologic-time,science,6,science-ms,Earth and Space Science,Geologic Time,Rock strata and the history of Earth,MS-ESS1-4,NGSS,science.txt
-science-6-plate-tectonics,science,6,science-ms,Earth and Space Science,Plate Tectonics,"Rock cycle, plate motions and evidence",MS-ESS2-1;MS-ESS2-2;MS-ESS2-3,NGSS,science.txt
-science-6-water-cycle-and-weather,science,6,science-ms,Earth and Space Science,Water Cycle and Weather,Water cycle; air masses and weather prediction,MS-ESS2-4;MS-ESS2-5,NGSS,science.txt
+science-6-plate-tectonics,science,6,science-ms,Earth and Space Science,Plate Tectonics,"Rock cycle, plate motions and evidence",MS-ESS2-3,NGSS,science.txt
+science-6-rock-cycle-and-earth-s-changing-surface,science,6,science-ms,Earth and Space Science,Rock Cycle and Earth's Changing Surface,Cycling of Earth's materials; geoscience processes at many time and space scales,MS-ESS2-1;MS-ESS2-2,NGSS,science.txt
+science-6-water-cycle-and-weather,science,6,science-ms,Earth and Space Science,Water Cycle and Weather,Water cycling through Earth's systems,MS-ESS2-4,NGSS,science.txt
+science-6-air-masses-and-weather,science,6,science-ms,Earth and Space Science,Air Masses and Weather,How moving and interacting air masses change the weather,MS-ESS2-5,NGSS,science.txt
 science-6-climate-and-ocean-circulation,science,6,science-ms,Earth and Space Science,Climate and Ocean Circulation,Heating and rotation drive atmospheric and ocean circulation,MS-ESS2-6,NGSS,science.txt
-science-6-thermal-energy,science,6,science-ms,Physical Science,Thermal Energy,"Temperature, heat transfer and design to control it",MS-PS3-3;MS-PS3-4;MS-PS3-5,NGSS,science.txt
+science-6-thermal-energy,science,6,science-ms,Physical Science,Thermal Energy,"Temperature, heat transfer and design to control it",MS-PS3-3;MS-PS3-4,NGSS,science.txt
 science-6-cells-and-body-systems,science,6,science-ms,Life Science,Cells and Body Systems,Cells as the unit of life; organelles; systems of interacting subsystems,MS-LS1-1;MS-LS1-2;MS-LS1-3,NGSS,science.txt
-science-7-atoms-and-molecules,science,7,science-ms,Physical Science,Atoms and Molecules,Atomic composition of substances; synthetic materials,MS-PS1-1;MS-PS1-3,NGSS,science.txt
+science-7-atoms-and-molecules,science,7,science-ms,Physical Science,Atoms and Molecules,Atomic composition of substances; synthetic materials,MS-PS1-1,NGSS,science.txt
+science-7-synthetic-materials,science,7,science-ms,Physical Science,Synthetic Materials,Synthetic materials come from natural resources and affect society,MS-PS1-3,NGSS,science.txt
 science-7-states-of-matter,science,7,science-ms,Physical Science,States of Matter,"Particle motion, temperature and state changes",MS-PS1-4,NGSS,science.txt
 science-7-chemical-reactions,science,7,science-ms,Physical Science,Chemical Reactions,Reactions rearrange atoms; mass is conserved; thermal reactions,MS-PS1-2;MS-PS1-5;MS-PS1-6,NGSS,science.txt
 science-7-photosynthesis-and-respiration,science,7,science-ms,Life Science,Photosynthesis and Respiration,Cycling of matter and flow of energy in organisms,MS-LS1-6;MS-LS1-7,NGSS,science.txt
@@ -589,11 +615,16 @@ science-7-ecosystem-change-and-biodiversity,science,7,science-ms,Life Science,Ec
 science-7-earth-s-resources,science,7,science-ms,Earth and Space Science,Earth's Resources,"Uneven distribution of mineral, energy and groundwater resources",MS-ESS3-1,NGSS,science.txt
 science-8-forces-and-motion,science,8,science-ms,Physical Science,Forces and Motion,Newton's third law; motion depends on forces and mass,MS-PS2-1;MS-PS2-2,NGSS,science.txt
 science-8-electric-and-magnetic-forces,science,8,science-ms,Physical Science,Electric and Magnetic Forces,Factors that affect electromagnetic forces; fields,MS-PS2-3;MS-PS2-5,NGSS,science.txt
-science-8-kinetic-and-potential-energy,science,8,science-ms,Physical Science,Kinetic and Potential Energy,Energy of motion and position; energy transfer,MS-PS3-1;MS-PS3-2,NGSS,science.txt
-science-8-waves,science,8,science-ms,Physical Science,Waves,Wave properties; light and sound; digital vs analog signals,MS-PS4-1;MS-PS4-2;MS-PS4-3,NGSS,science.txt
-science-8-reproduction-and-heredity,science,8,science-ms,Life Science,Reproduction and Heredity,"Genes, mutations and sexual vs asexual reproduction",MS-LS1-4;MS-LS1-5;MS-LS3-1;MS-LS3-2;MS-LS4-5,NGSS,science.txt
-science-8-evolution-and-natural-selection,science,8,science-ms,Life Science,Evolution and Natural Selection,"Fossil record, anatomical similarity and natural selection",MS-LS4-1;MS-LS4-2;MS-LS4-3;MS-LS4-4;MS-LS4-6,NGSS,science.txt
-science-8-natural-hazards-and-human-impact,science,8,science-ms,Earth and Space Science,Natural Hazards and Human Impact,Forecasting hazards; human impact; climate change,MS-ESS3-2;MS-ESS3-3;MS-ESS3-4;MS-ESS3-5,NGSS,science.txt
+science-8-kinetic-and-potential-energy,science,8,science-ms,Physical Science,Kinetic and Potential Energy,Energy of motion and position; energy transfer,MS-PS3-1;MS-PS3-2;MS-PS3-5,NGSS,science.txt
+science-8-waves,science,8,science-ms,Physical Science,Waves,Wave properties; light and sound; digital vs analog signals,MS-PS4-1;MS-PS4-2,NGSS,science.txt
+science-8-analog-and-digital-signals,science,8,science-ms,Physical Science,Analog and Digital Signals,Digitized signals are a more reliable way to send information,MS-PS4-3,NGSS,science.txt
+science-8-reproduction-and-heredity,science,8,science-ms,Life Science,Reproduction and Heredity,"Genes, mutations and sexual vs asexual reproduction",MS-LS1-5;MS-LS3-1;MS-LS3-2;MS-LS4-5,NGSS,science.txt
+science-8-behaviors-and-structures-for-reproduction,science,8,science-ms,Life Science,Behaviors and Structures for Reproduction,Animal behaviors and plant structures that raise the odds of reproducing,MS-LS1-4,NGSS,science.txt
+science-8-evolution-and-natural-selection,science,8,science-ms,Life Science,Evolution and Natural Selection,"Fossil record, anatomical similarity and natural selection",MS-LS4-4;MS-LS4-6,NGSS,science.txt
+science-8-evidence-of-common-ancestry,science,8,science-ms,Life Science,Evidence of Common Ancestry,"Fossil record, anatomical similarities and embryo development",MS-LS4-1;MS-LS4-2;MS-LS4-3,NGSS,science.txt
+science-8-natural-hazards-and-human-impact,science,8,science-ms,Earth and Space Science,Natural Hazards and Human Impact,Forecasting hazards and reducing their effects,MS-ESS3-2,NGSS,science.txt
+science-8-human-impact-on-earth,science,8,science-ms,Earth and Space Science,Human Impact on Earth,Growth in population and consumption raises impacts; designing ways to monitor and reduce them,MS-ESS3-3;MS-ESS3-4,NGSS,science.txt
+science-8-evidence-of-rising-temperatures,science,8,science-ms,Earth and Space Science,Evidence of Rising Temperatures,Factors behind the rise in global temperature over the past century,MS-ESS3-5,NGSS,science.txt
 science-8-engineering-design,science,8,science-ms,Engineering,Engineering Design,"Define problems, test solutions and optimize designs",MS-ETS1-1;MS-ETS1-2;MS-ETS1-3;MS-ETS1-4,NGSS,science.txt
 science-9-cell-structure-and-function,science,9,biology,Life Science,Cell Structure and Function,"Organelles, membranes and specialized cells",HS-LS1-1;HS-LS1-2,NGSS,science.txt
 science-9-homeostasis,science,9,biology,Life Science,Homeostasis,Feedback mechanisms maintain stability,HS-LS1-3,NGSS,science.txt
@@ -634,20 +665,20 @@ science-12-pollution-and-solutions,science,12,environmental,Earth and Space Scie
 science-12-engineering-for-global-challenges,science,12,environmental,Engineering,Engineering for Global Challenges,Break down complex problems; evaluate solutions with tradeoffs,HS-ETS1-1;HS-ETS1-2;HS-ETS1-3;HS-ETS1-4,NGSS,science.txt
 science-7-senses-and-the-brain,science,7,science-ms,Life Science,Senses and the Brain,Sensory receptors send signals to the brain for quick reactions and memories,MS-LS1-8,NGSS,science.txt
 science-11-heat-and-thermal-equilibrium,science,11,physics,Energy,Heat and Thermal Equilibrium,Energy flows from hot to cold until temperatures match,HS-PS3-4,NGSS,science.txt
-social-studies-k-rules-and-responsibilities,social-studies,k,ss-k5,Civics,Rules and Responsibilities,Why we have rules at home and school; being a good citizen,D2.Civ.3.K-2;D2.Civ.7.K-2;D2.Civ.12.K-2;D4.1.K-2,C3,social-studies.txt
+social-studies-k-rules-and-responsibilities,social-studies,k,ss-k5,Civics,Rules and Responsibilities,Why we have rules at home and school; being a good citizen,D2.Civ.3.K-2;D2.Civ.7.K-2;D2.Civ.12.K-2;D4.1.K-2;D2.Civ.11.K-2;D4.8.K-2,C3,social-studies.txt
 social-studies-k-my-place-in-the-world,social-studies,k,ss-k5,Geography,My Place in the World,Maps of the classroom and neighborhood; land and water,D2.Geo.1.K-2;D2.Geo.2.K-2,C3,social-studies.txt
 social-studies-k-then-and-now,social-studies,k,ss-k5,History,Then and Now,"Past, present and future; how families and schools change",D2.His.1.K-2;D2.His.2.K-2,C3,social-studies.txt
-social-studies-k-needs-and-wants,social-studies,k,ss-k5,Economics,Needs and Wants,Basic needs; jobs people do,D2.Eco.1.K-2;D2.Eco.6.K-2,C3,social-studies.txt
+social-studies-k-needs-and-wants,social-studies,k,ss-k5,Economics,Needs and Wants,Needs and wants; choosing what to keep,D2.Eco.1.K-2,C3,social-studies.txt
 social-studies-k-symbols-and-holidays,social-studies,k,ss-k5,Civics,Symbols and Holidays,National symbols and why we celebrate holidays,D2.Civ.8.K-2;D2.His.3.K-2,C3,social-studies.txt
-social-studies-1-families-and-communities,social-studies,1,ss-k5,Civics,Families and Communities,"Roles in families, schools and communities",D2.Civ.2.K-2;D2.Civ.6.K-2;D2.Eco.12.K-2,C3,social-studies.txt
+social-studies-1-families-and-communities,social-studies,1,ss-k5,Civics,Families and Communities,"Roles in families, schools and communities",D2.Civ.2.K-2;D2.Civ.6.K-2;D2.Eco.12.K-2;D2.Eco.6.K-2,C3,social-studies.txt
 social-studies-1-maps-and-globes,social-studies,1,ss-k5,Geography,Maps and Globes,"Map keys, cardinal directions, continents and oceans",D2.Geo.1.K-2;D2.Geo.3.K-2,C3,social-studies.txt
 social-studies-1-timelines-and-me,social-studies,1,ss-k5,History,Timelines and Me,Sequence events in personal and family history,D2.His.1.K-2;D2.His.9.K-2,C3,social-studies.txt
 social-studies-1-goods-and-services,social-studies,1,ss-k5,Economics,Goods and Services,"Producers, consumers and making choices",D2.Eco.2.K-2;D2.Eco.3.K-2;D2.Eco.4.K-2,C3,social-studies.txt
 social-studies-1-cultures-around-the-world,social-studies,1,ss-k5,Geography,Cultures Around the World,"Traditions, food and celebrations of different cultures",D2.Geo.6.K-2;D2.Geo.7.K-2,C3,social-studies.txt
-social-studies-2-community-helpers-and-government,social-studies,2,ss-k5,Civics,Community Helpers and Government,Local leaders and how communities make decisions,D2.Civ.1.K-2;D2.Civ.5.K-2;D2.Civ.11.K-2;D2.Civ.9.K-2;D2.Civ.10.K-2;D4.8.K-2,C3,social-studies.txt
+social-studies-2-community-helpers-and-government,social-studies,2,ss-k5,Civics,Community Helpers and Government,Local leaders and how communities make decisions,D2.Civ.1.K-2;D2.Civ.5.K-2;D2.Civ.9.K-2;D2.Civ.10.K-2,C3,social-studies.txt
 social-studies-2-urban-suburban-and-rural,social-studies,2,ss-k5,Geography,"Urban, Suburban and Rural",Types of communities and how geography shapes them,D2.Geo.8.K-2;D2.Geo.9.K-2,C3,social-studies.txt
 social-studies-2-heroes-and-changemakers,social-studies,2,ss-k5,History,Heroes and Changemakers,People who made a difference in history,D2.His.3.K-2;D2.Civ.14.K-2,C3,social-studies.txt
-social-studies-2-money-saving-and-trade,social-studies,2,ss-k5,Economics,"Money, Saving and Trade","Spending, saving, scarcity and trade",D2.Eco.5.K-2;D2.Eco.9.K-2;D2.Eco.10.K-2;D2.Eco.14.K-2,C3,social-studies.txt
+social-studies-2-money-saving-and-trade,social-studies,2,ss-k5,Economics,"Money, Saving and Trade","Spending, saving, scarcity and trade",D2.Eco.5.K-2;D2.Eco.9.K-2;D2.Eco.10.K-2,C3,social-studies.txt
 social-studies-2-natural-resources,social-studies,2,ss-k5,Geography,Natural Resources,How people use land and resources,D2.Geo.4.K-2;D2.Geo.5.K-2,C3,social-studies.txt
 social-studies-3-map-skills-and-regions,social-studies,3,ss-k5,Geography,Map Skills and Regions,"Scale, grids, landforms and regions",D2.Geo.1.3-5;D2.Geo.2.3-5,C3,social-studies.txt
 social-studies-3-local-history,social-studies,3,ss-k5,History,Local History,How our community and state began and changed,D2.His.1.3-5;D2.His.2.3-5;D2.His.9.3-5;D2.His.10.3-5,C3,social-studies.txt
@@ -657,18 +688,18 @@ social-studies-3-communities-around-the-world,social-studies,3,ss-k5,Geography,C
 social-studies-4-state-history,social-studies,4,ss-k5,History,State History,"Native nations, settlement and statehood",D2.His.2.3-5;D2.His.3.3-5;D2.His.14.3-5,C3,social-studies.txt
 social-studies-4-us-regions-and-states,social-studies,4,ss-k5,Geography,US Regions and States,"Regions, states, capitals and landforms of the US",D2.Geo.2.3-5;D2.Geo.3.3-5,C3,social-studies.txt
 social-studies-4-state-government,social-studies,4,ss-k5,Civics,State Government,State constitution and three branches,D2.Civ.1.3-5;D2.Civ.5.3-5;D2.Civ.12.3-5,C3,social-studies.txt
-social-studies-4-state-economy-and-resources,social-studies,4,ss-k5,Economics,State Economy and Resources,"Industries, resources and trade in our state",D2.Eco.4.3-5;D2.Geo.9.3-5,C3,social-studies.txt
-social-studies-4-human-environment-interaction,social-studies,4,ss-k5,Geography,Human-Environment Interaction,How people adapt to and change environments,D2.Geo.4.3-5;D2.Geo.5.3-5;D2.Geo.8.3-5,C3,social-studies.txt
+social-studies-4-state-economy-and-resources,social-studies,4,ss-k5,Economics,State Economy and Resources,"Industries, resources and trade in our state",D2.Eco.4.3-5;D2.Geo.11.3-5,C3,social-studies.txt
+social-studies-4-human-environment-interaction,social-studies,4,ss-k5,Geography,Human-Environment Interaction,How people adapt to and change environments,D2.Geo.4.3-5;D2.Geo.5.3-5;D2.Geo.8.3-5;D2.Geo.9.3-5,C3,social-studies.txt
 social-studies-5-indigenous-peoples-of-north-america,social-studies,5,ss-k5,History,Indigenous Peoples of North America,Cultures and nations before European contact,D2.His.2.3-5;D2.Geo.6.3-5,C3,social-studies.txt
 social-studies-5-exploration-and-colonization,social-studies,5,ss-k5,History,Exploration and Colonization,European exploration and the thirteen colonies,D2.His.14.3-5;D2.Geo.7.3-5,C3,social-studies.txt
 social-studies-5-the-american-revolution,social-studies,5,ss-k5,History,The American Revolution,"Causes, key events and people of the Revolution",D2.His.1.3-5;D2.His.4.3-5;D2.His.14.3-5;D2.His.5.3-5,C3,social-studies.txt
-social-studies-5-the-constitution-and-bill-of-rights,social-studies,5,ss-k5,Civics,The Constitution and Bill of Rights,Founding documents and rights of citizens,D2.Civ.4.3-5;D2.Civ.5.3-5;D2.Civ.8.3-5;D2.Civ.3.3-5,C3,social-studies.txt
-social-studies-5-colonial-economies,social-studies,5,ss-k5,Economics,Colonial Economies,"Trade, regions and labor in the colonies, including slavery",D2.Eco.3.3-5;D2.Geo.9.3-5;D2.His.2.3-5;D2.Geo.11.3-5,C3,social-studies.txt
+social-studies-5-the-constitution-and-bill-of-rights,social-studies,5,ss-k5,Civics,The Constitution and Bill of Rights,Founding documents and rights of citizens,D2.Civ.4.3-5;D2.Civ.8.3-5;D2.Civ.3.3-5,C3,social-studies.txt
+social-studies-5-colonial-economies,social-studies,5,ss-k5,Economics,Colonial Economies,"Trade, regions and labor in the colonies, including slavery",D2.Eco.3.3-5;D2.His.2.3-5;D2.Geo.11.3-5,C3,social-studies.txt
 social-studies-6-five-themes-of-geography,social-studies,6,world-geo-6,Geography,Five Themes of Geography,"Location, place, region, movement and human-environment interaction",D2.Geo.1.6-8;D2.Geo.2.6-8;D2.Geo.3.6-8,C3,social-studies.txt
 social-studies-6-early-humans-and-the-neolithic-revolution,social-studies,6,world-geo-6,History,Early Humans and the Neolithic Revolution,Hunter-gatherers to farming and settlements,D2.His.1.6-8;D2.Geo.6.6-8,C3,social-studies.txt
 social-studies-6-mesopotamia-and-egypt,social-studies,6,world-geo-6,History,Mesopotamia and Egypt,"River valley civilizations, writing and law",D2.His.1.6-8;D2.Geo.4.6-8;D2.Civ.5.6-8,C3,social-studies.txt
 social-studies-6-ancient-india-and-china,social-studies,6,world-geo-6,History,Ancient India and China,"Dynasties, belief systems and innovations",D2.His.2.6-8;D2.Geo.7.6-8,C3,social-studies.txt
-social-studies-6-ancient-greece,social-studies,6,world-geo-6,History,Ancient Greece,"City-states, democracy and philosophy",D2.His.3.6-8;D2.Civ.8.6-8;D2.Civ.9.6-8,C3,social-studies.txt
+social-studies-6-ancient-greece,social-studies,6,world-geo-6,History,Ancient Greece,"City-states, democracy and philosophy",D2.His.3.6-8;D2.Civ.9.6-8,C3,social-studies.txt
 social-studies-6-ancient-rome,social-studies,6,world-geo-6,History,Ancient Rome,"Republic, empire and legacy",D2.His.2.6-8;D2.Civ.5.6-8;D2.His.14.6-8,C3,social-studies.txt
 social-studies-6-world-regions-today,social-studies,6,world-geo-6,Geography,World Regions Today,"Population, culture and economies of world regions",D2.Geo.3.6-8;D2.Geo.8.6-8;D2.Geo.10.6-8;D2.Geo.5.6-8,C3,social-studies.txt
 social-studies-7-fall-of-rome-and-the-byzantine-empire,social-studies,7,world-hist-7,History,Fall of Rome and the Byzantine Empire,Continuity and change after Rome,D2.His.2.6-8;D2.His.14.6-8,C3,social-studies.txt
@@ -680,7 +711,7 @@ social-studies-7-civilizations-of-the-americas,social-studies,7,world-hist-7,His
 social-studies-7-renaissance-and-reformation,social-studies,7,world-hist-7,History,Renaissance and Reformation,"Art, science and religious change",D2.His.2.6-8;D2.His.3.6-8,C3,social-studies.txt
 social-studies-7-age-of-exploration,social-studies,7,world-hist-7,History,Age of Exploration,Global exchange and its consequences,D2.His.14.6-8;D2.Geo.7.6-8;D2.Geo.11.6-8,C3,social-studies.txt
 social-studies-8-road-to-revolution,social-studies,8,us-hist-8,History,Road to Revolution,Colonial grievances and independence,D2.His.14.6-8;D2.His.4.6-8;D2.His.10.6-8;D2.His.6.6-8,C3,social-studies.txt
-social-studies-8-creating-the-constitution,social-studies,8,us-hist-8,Civics,Creating the Constitution,"Articles of Confederation, Convention and ratification",D2.Civ.3.6-8;D2.Civ.4.6-8;D2.Civ.5.6-8;D2.Civ.10.6-8,C3,social-studies.txt
+social-studies-8-creating-the-constitution,social-studies,8,us-hist-8,Civics,Creating the Constitution,"Articles of Confederation, Convention and ratification",D2.Civ.3.6-8;D2.Civ.4.6-8;D2.Civ.5.6-8;D2.Civ.10.6-8;D2.Civ.8.6-8,C3,social-studies.txt
 social-studies-8-the-early-republic,social-studies,8,us-hist-8,History,The Early Republic,Washington to Jackson; parties and the courts,D2.His.1.6-8;D2.Civ.12.6-8;D2.Civ.1.6-8,C3,social-studies.txt
 social-studies-8-westward-expansion,social-studies,8,us-hist-8,History,Westward Expansion,"Louisiana Purchase, Manifest Destiny and removal of Native nations",D2.His.4.6-8;D2.Geo.7.6-8;D2.His.14.6-8,C3,social-studies.txt
 social-studies-8-reform-and-the-industrial-north,social-studies,8,us-hist-8,History,Reform and the Industrial North,"Industrialization, immigration and reform movements",D2.His.2.6-8;D2.Civ.14.6-8;D2.Eco.13.6-8,C3,social-studies.txt
@@ -714,17 +745,21 @@ social-studies-12-scarcity-and-choice,social-studies,12,economics,Economics,Scar
 social-studies-12-supply-and-demand,social-studies,12,economics,Economics,Supply and Demand,"Markets, prices and equilibrium",D2.Eco.3.9-12;D2.Eco.4.9-12;D2.Eco.8.9-12,C3,social-studies.txt
 social-studies-12-market-structures-and-business,social-studies,12,economics,Economics,Market Structures and Business,"Competition, monopolies and firms",D2.Eco.4.9-12;D2.Eco.5.9-12;D2.Eco.6.9-12;D2.Eco.7.9-12,C3,social-studies.txt
 social-studies-12-macroeconomics,social-studies,12,economics,Economics,Macroeconomics,"GDP, inflation, unemployment and the business cycle",D2.Eco.10.9-12;D2.Eco.11.9-12,C3,social-studies.txt
-social-studies-12-money-and-the-federal-reserve,social-studies,12,economics,Economics,Money and the Federal Reserve,"Banking, monetary and fiscal policy",D2.Eco.9.9-12;D2.Eco.12.9-12,C3,social-studies.txt
+social-studies-12-money-and-the-federal-reserve,social-studies,12,economics,Economics,Money and the Federal Reserve,"Banking, monetary and fiscal policy",D2.Eco.12.9-12,C3,social-studies.txt
+social-studies-12-property-rights-and-the-rule-of-law,social-studies,12,economics,Economics,Property Rights and the Rule of Law,How institutions such as property rights and the rule of law shape a market economy,D2.Eco.9.9-12,C3,social-studies.txt
 social-studies-12-global-trade,social-studies,12,economics,Economics,Global Trade,"Comparative advantage, exchange rates and trade policy",D2.Eco.14.9-12;D2.Eco.15.9-12,C3,social-studies.txt
 social-studies-12-brain-and-behavior,social-studies,12,psychology,Psychology,Brain and Behavior,"Neurons, brain structures and the nervous system",APA.Biological,APA-HS-Psych,social-studies.txt
 social-studies-12-sensation-perception-and-memory,social-studies,12,psychology,Psychology,"Sensation, Perception and Memory","How we sense, perceive and remember",APA.Biological;APA.Cognition,APA-HS-Psych,social-studies.txt
-social-studies-12-learning-and-development,social-studies,12,psychology,Psychology,Learning and Development,Conditioning and lifespan development,APA.Development and Learning,APA-HS-Psych,social-studies.txt
-social-studies-12-social-psychology-and-mental-health,social-studies,12,psychology,Psychology,Social Psychology and Mental Health,"Group behavior, personality and psychological disorders",APA.Sociocultural;APA.Individual Variations;APA.Mental and Physical Health,APA-HS-Psych,social-studies.txt
+social-studies-12-learning-and-development,social-studies,12,psychology,Psychology,Learning and Development,"Classical, operant and observational learning",APA.Development and Learning,APA-HS-Psych,social-studies.txt
+social-studies-12-lifespan-development,social-studies,12,psychology,Psychology,Lifespan Development,"Physical, cognitive and social development from infancy to old age",APA.Development and Learning,APA-HS-Psych,social-studies.txt
+social-studies-12-social-psychology-and-mental-health,social-studies,12,psychology,Psychology,Social Psychology and Mental Health,"Conformity, obedience, bystanders and research ethics",APA.Sociocultural,APA-HS-Psych,social-studies.txt
+social-studies-12-personality-intelligence-and-motivation,social-studies,12,psychology,Psychology,"Personality, Intelligence and Motivation","Theories and measures of personality, intelligence and motivation, and their limits",APA.Individual Variations,APA-HS-Psych,social-studies.txt
+social-studies-12-psychological-disorders-and-treatment,social-studies,12,psychology,Psychology,Psychological Disorders and Treatment,"Perspectives on disorders, classification, treatment approaches, stress and health",APA.Mental and Physical Health,APA-HS-Psych,social-studies.txt
 social-studies-1-wonder-kite,social-studies,1,ss-k5,Inquiry,Wonder Kite,"Big questions, small questions and how they connect",D1.1.K-2;D1.2.K-2;D1.3.K-2;D1.4.K-2,C3,social-studies.txt
 social-studies-2-how-do-you-know,social-studies,2,ss-k5,Inquiry,How Do You Know?,Fact and opinion in sources; asking how someone knows,D3.1.K-2;D3.2.K-2;D4.4.K-2,C3,social-studies.txt
 social-studies-1-teddy-bear-makers,social-studies,1,ss-k5,Economics,Teddy Bear Makers,"Steps, tools, skills and costs of making a product",D2.Eco.7.K-2;D2.Eco.13.K-2;D4.2.K-2;D4.5.K-2,C3,social-studies.txt
 social-studies-2-storm-helpers,social-studies,2,ss-k5,Geography,Storm Helpers,How a disaster affects a place and how people help,D2.Geo.12.K-2;D4.6.K-2;D4.7.K-2;D4.3.K-2,C3,social-studies.txt
-social-studies-2-pen-pal-parcels,social-studies,2,ss-k5,Geography,Pen Pal Parcels,Products that connect us to faraway places; how places change,D2.Geo.10.K-2;D2.Geo.11.K-2;D2.Eco.15.K-2,C3,social-studies.txt
+social-studies-2-pen-pal-parcels,social-studies,2,ss-k5,Geography,Pen Pal Parcels,Products that connect us to faraway places; how places change,D2.Geo.10.K-2;D2.Geo.11.K-2;D2.Eco.15.K-2;D2.Eco.14.K-2,C3,social-studies.txt
 social-studies-1-old-objects-as-sources,social-studies,1,ss-k5,History,Old Objects as Sources,Old objects and papers as sources about the past,D2.His.4.K-2;D2.His.10.K-2;D2.His.11.K-2;D2.His.12.K-2,C3,social-studies.txt
 social-studies-2-the-last-carousel-ride,social-studies,2,ss-k5,History,The Last Carousel Ride,Different accounts of one event and the likely reasons,D2.His.6.K-2;D2.His.14.K-2;D2.His.16.K-2,C3,social-studies.txt
 social-studies-4-inquiry-ladder,social-studies,4,ss-k5,Inquiry,Inquiry Ladder,Supporting questions that build toward a big question,D1.2.3-5;D1.3.3-5;D1.4.3-5;D2.His.12.3-5,C3,social-studies.txt

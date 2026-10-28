@@ -1,6 +1,6 @@
 # Playground Rules (idea card)
 
-- Module: social-studies-k-rules-and-responsibilities, grade k. Codes: D2.Civ.3.K-2, D2.Civ.7.K-2, D2.Civ.12.K-2, D4.1.K-2 (plus D2.Civ.11.K-2 and D4.8.K-2 if moved here from town-council)
+- Module: social-studies-k-rules-and-responsibilities, grade k. Codes: D2.Civ.3.K-2, D2.Civ.7.K-2, D2.Civ.12.K-2, D4.1.K-2, D2.Civ.11.K-2, D4.8.K-2
 - Format / family: showdown / none. Fit: change to builder, because a K student alone must be able to hang a rule and see what it changes; the class vote becomes the class-mode extra.
 - One idea: Hang rule signs on a busy playground with no rules and watch the scene replay calmer or messier, so a kindergartner sees that a rule exists to fix a real problem, then decide a new rule with illustrated classmates by listening and voting.
 - How it plays (solo student by default):
@@ -14,7 +14,7 @@
   - D2.Civ.7.K-2: virtue moments: taking turns, helping a kid who fell, accepting a lost vote.
   - D2.Civ.12.K-2: the replay shows how a rule works in a shared space and what happens when one kid breaks it.
   - D4.1.K-2: the student argues for a rule with reason cards.
-  - (incoming) D2.Civ.11.K-2 and D4.8.K-2: the classmates decide the swing rule by listening, finding agreement, and voting.
+  - D2.Civ.11.K-2 and D4.8.K-2 (from town-council): the classmates decide the swing rule by listening, finding agreement, and voting.
 - Not like: town-council (town government deciding, not classroom rules); school-fix-it-meeting (grade 3 survey and deliberation).
 - Art: generated scenes (one playground in many states) plus illustrated kids, because the replay must read instantly for a five-year-old.
 - Proposed title: keep

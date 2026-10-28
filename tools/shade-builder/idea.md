@@ -18,5 +18,5 @@
 - Not like: push-the-pumpkin (design for motion, not warming); beaver-builders (an animal's structure changing a place).
 - Art: generated scenes for the playground and people (illustrated) for Mila; the heat camera overlay is drawn in code.
 - Proposed title: keep
-- Proposed concept line: Feel which playground spots the sun warmed, then build a shade over the sandbox from umbrellas, trees and tents; a heat camera shows which spots stay cool, and two designs are compared to pick the better one.
+- Proposed concept line (applied in the 2026-10-27 audit, docs/agents/audit/clashes-k8.md K03; it replaces the One idea above where they differ): Feel which backyard spots the sun warmed, then shade the sandbox with umbrellas, a tree, a tent or a sail; a heat camera shows which spots stay cool, and two designs are compared to pick the better one.
 - Flags: none

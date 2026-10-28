@@ -1,6 +1,6 @@
 # Pen Pal Parcels (idea card)
 
-- Module: social-studies-2-pen-pal-parcels, grade 2. Codes: D2.Geo.10.K-2, D2.Geo.11.K-2, D2.Eco.15.K-2 (plus D2.Eco.14.K-2 if moved here from piggy-bank-planner)
+- Module: social-studies-2-pen-pal-parcels, grade 2. Codes: D2.Geo.10.K-2, D2.Geo.11.K-2, D2.Eco.15.K-2, D2.Eco.14.K-2
 - Format / family: explorer / none. Fit: good
 - One idea: Parcels arrive from pen pals in Ghana, Chile and Japan, each holding something made there that families here buy and a letter about how their place is changing; open them, pin each on the globe, and send back something made here, learning why countries trade at all.
 - How it plays (solo student by default):
@@ -13,7 +13,7 @@
   - D2.Geo.10.K-2: each letter describes a change in the physical or cultural characteristics of that region.
   - D2.Geo.11.K-2: products in the parcels connect the student to distant places on the globe.
   - D2.Eco.15.K-2: products made abroad and sold here, and products made here and sold abroad, travel both ways.
-  - (incoming) D2.Eco.14.K-2: pen pals explain why people in one country trade with people in another.
+  - D2.Eco.14.K-2 (from piggy-bank-planner): pen pals explain why people in one country trade with people in another.
 - Not like: cocoa-chain (grade 5 supply chain from Ghana; avoid cocoa here); festival-parade (celebrations); day-in-the-life (daily life comparison).
 - Art: people (illustrated) pen pals and generated scenes, because each pen pal needs a real, specific place.
 - Proposed title: keep

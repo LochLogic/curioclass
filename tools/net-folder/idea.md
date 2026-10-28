@@ -17,5 +17,5 @@
 - Not like: box-packer (grade 5 whole cubes), snow-globe-maker (grade 8 curved solids), packaging-challenge (grade 10 optimizing material).
 - Art: generated scenes (the craft fair and workshop); people (illustrated) for Jun; nets, folds and cubes drawn in code in 3D so measures stay exact.
 - Proposed title: keep
-- Proposed concept line: Design craft-fair gift boxes and pyramids: draw nets from coordinates, find each face's area and the total paper, fold them up, and fill them with half-inch cubes to see why l x w x h still works with fractions.
+- Proposed concept line (applied in the 2026-10-27 audit, docs/agents/audit/clashes-k8.md K13; it replaces the One idea above where they differ): Design a board game's box and pyramid pieces: draw nets from coordinates, find each face's area and the total cardboard, fold them, and fill the box with half-inch cubes to see why l x w x h still works with fractions.
 - Flags: too thin for the whole 6.G.A cluster (needs the MOVE above)

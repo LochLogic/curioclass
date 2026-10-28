@@ -15,5 +15,5 @@
 - Not like: act-it-out (the class performs a folktale); feelings-faces (SEL emotion naming, not theater choices); character-voice-booth (grade 3-5 voice recording).
 - Art: generated scenes for the theater; puppets as illustrated rigged characters, with a real puppeteer's hand backstage.
 - Proposed title: keep
-- Proposed concept line: Pause a sock-puppet show to say how each puppet feels and how you can tell, peek backstage at how the puppeteer made that feeling, then pick the ending you like and find a time you felt the same.
+- Proposed concept line (applied in the 2026-10-27 audit, docs/agents/audit/clashes-k8.md K05; it replaces the One idea above where they differ): Watch a sock-puppet show, then go backstage and change one thing at a time (head tilt, voice speed, bounce) to see the audience read a new feeling; pick the ending you like and say how a puppet is like you.
 - Flags: overlap risk (feelings-faces; keep this one about how performers show feelings)

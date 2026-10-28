@@ -15,5 +15,5 @@
 - Not like: constitutional-convention (grade 8 delegates bargaining); checks-and-balances (the US branches as a card game); federal-or-state (sorting US powers).
 - Art: generated scenes (the island, a new capitol) and people (illustrated) citizens affected by each crisis, because the human stakes make the tests matter.
 - Proposed title: keep
-- Proposed concept line: Write a constitution for a new island nation from real countries' options, test it against crises from a contested election to a border treaty, and see which real nation's results yours resembles.
+- Proposed concept line (applied in the 2026-10-27 audit, docs/agents/audit/clashes-9-12.md K06; it replaces the One idea above where they differ): Write the constitution for a newly independent country with three regions, two languages and a river shared with a neighbor; test it against crises from a contested election to a water treaty, and see which real nation's results yours resembles.
 - Flags: none

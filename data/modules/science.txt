@@ -22,29 +22,34 @@ k|science-k5|Earth and Space Science|Living Things Change Their Environment|Anim
 3|science-k5|Life Science|Traits and Variation|Inherited traits and traits influenced by environment|3-LS3-1;3-LS3-2;3-LS4-2
 3|science-k5|Life Science|Fossils and Changing Environments|Fossils show past environments; survival when habitats change|3-LS4-1;3-LS4-3;3-LS4-4
 3|science-k5|Earth and Space Science|Weather and Climate|Weather data and climates around the world; weather hazards|3-ESS2-1;3-ESS2-2;3-ESS3-1;D2.Geo.10.3-5
-4|science-k5|Physical Science|Energy and Motion|Speed and energy; energy transfer in collisions|4-PS3-1;4-PS3-2;4-PS3-3
-4|science-k5|Physical Science|Energy Conversion Devices|Design devices that convert energy|4-PS3-4;3-5-ETS1-1;3-5-ETS1-2;3-5-ETS1-3
+4|science-k5|Physical Science|Energy and Motion|Speed and energy; energy transfer in collisions|4-PS3-1;4-PS3-3
+4|science-k5|Physical Science|Energy Conversion Devices|Design devices that convert energy|4-PS3-4;3-5-ETS1-1;3-5-ETS1-2;3-5-ETS1-3;4-PS3-2
 4|science-k5|Physical Science|Waves and Information|Wave patterns; using patterns to transfer information|4-PS4-1;4-PS4-3
 4|science-k5|Life Science|Structures and Senses|Internal and external structures; how eyes see light|4-LS1-1;4-LS1-2;4-PS4-2
 4|science-k5|Earth and Space Science|Rock Layers and Earth History|Rock formations and fossils show change over time|4-ESS1-1
-4|science-k5|Earth and Space Science|Weathering and Erosion|Effects of water, ice, wind and plants on land|4-ESS2-1;4-ESS2-2
+4|science-k5|Earth and Space Science|Weathering and Erosion|Effects of water, ice, wind and plants on land|4-ESS2-1
+4|science-k5|Earth and Space Science|Earth's Features on Maps|Patterns of mountains, trenches, volcanoes and earthquakes from maps|4-ESS2-2
 4|science-k5|Earth and Space Science|Natural Resources and Hazards|Energy resources and reducing hazard impacts|4-ESS3-1;4-ESS3-2
 5|science-k5|Physical Science|Matter Is Made of Particles|Particles too small to see; conservation of mass|5-PS1-1;5-PS1-2
 5|science-k5|Physical Science|Properties and Mixtures|Identify materials; mixing creates new substances|5-PS1-3;5-PS1-4
 5|science-k5|Physical Science|Gravity|Earth's gravity pulls objects down|5-PS2-1
 5|science-k5|Life Science|Food Webs and Matter Cycles|Plants get materials from air and water; matter moves through ecosystems|5-LS1-1;5-LS2-1;5-PS3-1
-5|science-k5|Earth and Space Science|Sun, Stars and Shadows|Star brightness; daily and seasonal sky patterns|5-ESS1-1;5-ESS1-2
+5|science-k5|Earth and Space Science|Sun, Stars and Shadows|Daily and seasonal patterns of shadows, day and night, and the sky|5-ESS1-2
+5|science-k5|Earth and Space Science|Star Brightness|The sun's apparent brightness compared with other stars depends on distance|5-ESS1-1
 5|science-k5|Earth and Space Science|Earth's Spheres|Geosphere, hydrosphere, atmosphere and biosphere interact|5-ESS2-1;5-ESS2-2
 5|science-k5|Earth and Space Science|Protecting Earth|Communities protect resources and environments|5-ESS3-1
 6|science-ms|Earth and Space Science|Earth-Sun-Moon System|Moon phases, eclipses and seasons|MS-ESS1-1
 6|science-ms|Earth and Space Science|Gravity and the Solar System|Gravity's role in the solar system and galaxies; scale|MS-ESS1-2;MS-ESS1-3;MS-PS2-4
 6|science-ms|Earth and Space Science|Geologic Time|Rock strata and the history of Earth|MS-ESS1-4
-6|science-ms|Earth and Space Science|Plate Tectonics|Rock cycle, plate motions and evidence|MS-ESS2-1;MS-ESS2-2;MS-ESS2-3
-6|science-ms|Earth and Space Science|Water Cycle and Weather|Water cycle; air masses and weather prediction|MS-ESS2-4;MS-ESS2-5
+6|science-ms|Earth and Space Science|Plate Tectonics|Rock cycle, plate motions and evidence|MS-ESS2-3
+6|science-ms|Earth and Space Science|Rock Cycle and Earth's Changing Surface|Cycling of Earth's materials; geoscience processes at many time and space scales|MS-ESS2-1;MS-ESS2-2
+6|science-ms|Earth and Space Science|Water Cycle and Weather|Water cycling through Earth's systems|MS-ESS2-4
+6|science-ms|Earth and Space Science|Air Masses and Weather|How moving and interacting air masses change the weather|MS-ESS2-5
 6|science-ms|Earth and Space Science|Climate and Ocean Circulation|Heating and rotation drive atmospheric and ocean circulation|MS-ESS2-6
-6|science-ms|Physical Science|Thermal Energy|Temperature, heat transfer and design to control it|MS-PS3-3;MS-PS3-4;MS-PS3-5
+6|science-ms|Physical Science|Thermal Energy|Temperature, heat transfer and design to control it|MS-PS3-3;MS-PS3-4
 6|science-ms|Life Science|Cells and Body Systems|Cells as the unit of life; organelles; systems of interacting subsystems|MS-LS1-1;MS-LS1-2;MS-LS1-3
-7|science-ms|Physical Science|Atoms and Molecules|Atomic composition of substances; synthetic materials|MS-PS1-1;MS-PS1-3
+7|science-ms|Physical Science|Atoms and Molecules|Atomic composition of substances; synthetic materials|MS-PS1-1
+7|science-ms|Physical Science|Synthetic Materials|Synthetic materials come from natural resources and affect society|MS-PS1-3
 7|science-ms|Physical Science|States of Matter|Particle motion, temperature and state changes|MS-PS1-4
 7|science-ms|Physical Science|Chemical Reactions|Reactions rearrange atoms; mass is conserved; thermal reactions|MS-PS1-2;MS-PS1-5;MS-PS1-6
 7|science-ms|Life Science|Photosynthesis and Respiration|Cycling of matter and flow of energy in organisms|MS-LS1-6;MS-LS1-7
@@ -54,11 +59,16 @@ k|science-k5|Earth and Space Science|Living Things Change Their Environment|Anim
 7|science-ms|Earth and Space Science|Earth's Resources|Uneven distribution of mineral, energy and groundwater resources|MS-ESS3-1
 8|science-ms|Physical Science|Forces and Motion|Newton's third law; motion depends on forces and mass|MS-PS2-1;MS-PS2-2
 8|science-ms|Physical Science|Electric and Magnetic Forces|Factors that affect electromagnetic forces; fields|MS-PS2-3;MS-PS2-5
-8|science-ms|Physical Science|Kinetic and Potential Energy|Energy of motion and position; energy transfer|MS-PS3-1;MS-PS3-2
-8|science-ms|Physical Science|Waves|Wave properties; light and sound; digital vs analog signals|MS-PS4-1;MS-PS4-2;MS-PS4-3
-8|science-ms|Life Science|Reproduction and Heredity|Genes, mutations and sexual vs asexual reproduction|MS-LS1-4;MS-LS1-5;MS-LS3-1;MS-LS3-2;MS-LS4-5
-8|science-ms|Life Science|Evolution and Natural Selection|Fossil record, anatomical similarity and natural selection|MS-LS4-1;MS-LS4-2;MS-LS4-3;MS-LS4-4;MS-LS4-6
-8|science-ms|Earth and Space Science|Natural Hazards and Human Impact|Forecasting hazards; human impact; climate change|MS-ESS3-2;MS-ESS3-3;MS-ESS3-4;MS-ESS3-5
+8|science-ms|Physical Science|Kinetic and Potential Energy|Energy of motion and position; energy transfer|MS-PS3-1;MS-PS3-2;MS-PS3-5
+8|science-ms|Physical Science|Waves|Wave properties; light and sound; digital vs analog signals|MS-PS4-1;MS-PS4-2
+8|science-ms|Physical Science|Analog and Digital Signals|Digitized signals are a more reliable way to send information|MS-PS4-3
+8|science-ms|Life Science|Reproduction and Heredity|Genes, mutations and sexual vs asexual reproduction|MS-LS1-5;MS-LS3-1;MS-LS3-2;MS-LS4-5
+8|science-ms|Life Science|Behaviors and Structures for Reproduction|Animal behaviors and plant structures that raise the odds of reproducing|MS-LS1-4
+8|science-ms|Life Science|Evolution and Natural Selection|Fossil record, anatomical similarity and natural selection|MS-LS4-4;MS-LS4-6
+8|science-ms|Life Science|Evidence of Common Ancestry|Fossil record, anatomical similarities and embryo development|MS-LS4-1;MS-LS4-2;MS-LS4-3
+8|science-ms|Earth and Space Science|Natural Hazards and Human Impact|Forecasting hazards and reducing their effects|MS-ESS3-2
+8|science-ms|Earth and Space Science|Human Impact on Earth|Growth in population and consumption raises impacts; designing ways to monitor and reduce them|MS-ESS3-3;MS-ESS3-4
+8|science-ms|Earth and Space Science|Evidence of Rising Temperatures|Factors behind the rise in global temperature over the past century|MS-ESS3-5
 8|science-ms|Engineering|Engineering Design|Define problems, test solutions and optimize designs|MS-ETS1-1;MS-ETS1-2;MS-ETS1-3;MS-ETS1-4
 9|biology|Life Science|Cell Structure and Function|Organelles, membranes and specialized cells|HS-LS1-1;HS-LS1-2
 9|biology|Life Science|Homeostasis|Feedback mechanisms maintain stability|HS-LS1-3

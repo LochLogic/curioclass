@@ -15,5 +15,5 @@
 - Not like: festival-parade (world cultural festivals, not national civic symbols); changemaker-cards (grade 2 community changemakers on cards).
 - Art: people (illustrated) and generated scenes, because portraits of real people must be respectful and consistent.
 - Proposed title: keep
-- Proposed concept line: Find national symbols hidden in a parade-day town and hear the idea each stands for (freedom, fairness, welcome), then open holidays that honor people who changed the country and ask your own questions about them.
+- Proposed concept line (applied in the 2026-10-27 audit, docs/agents/audit/clashes-k8.md K02; it replaces the One idea above where they differ): Find national symbols on everyday things (a coin, a stamp, a flag, a postcard), hear the idea each stands for (freedom, fairness, welcome), then open holidays that honor people who changed the country and ask your own questions.
 - Flags: sensitive (holiday choice and the people honored; fresh review agent per rule 5)

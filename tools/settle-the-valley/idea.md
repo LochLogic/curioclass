@@ -1,6 +1,6 @@
 # Settle the Valley (idea card)
 
-- Module: social-studies-4-human-environment-interaction, grade 4. Codes: D2.Geo.4.3-5, D2.Geo.5.3-5, D2.Geo.8.3-5 (plus D2.Geo.9.3-5 if moved here from state-economy-map and colonial-trade-routes)
+- Module: social-studies-4-human-environment-interaction, grade 4. Codes: D2.Geo.4.3-5, D2.Geo.5.3-5, D2.Geo.8.3-5, D2.Geo.9.3-5
 - Format / family: simulator / none. Fit: good
 - One idea: Over fifty years, choose where farms, homes, mills and roads go in a river valley, and watch the land and the people change each other: forests cleared, soil worn out, a mill town growing by the falls, and one flood year that forces families to move or rebuild.
 - How it plays (solo student by default):
@@ -14,7 +14,7 @@
   - D2.Geo.4.3-5: the two groups' different land use shows culture shaping adaptation and change.
   - D2.Geo.5.3-5: the decade redraws show the valley's environment and culture changing.
   - D2.Geo.8.3-5: settlements follow water power, soil and timber.
-  - (incoming) D2.Geo.9.3-5: the flood year shows a catastrophic event changing settlement and forcing migration.
+  - D2.Geo.9.3-5 (from state-economy-map and colonial-trade-routes): the flood year shows a catastrophic event changing settlement and forcing migration.
 - Not like: hunter-to-farmer (grade 6 foraging vs farming); state-story-timeline (real state events).
 - Art: generated scenes (one valley across decades), because the changes must read at a glance.
 - Proposed title: keep

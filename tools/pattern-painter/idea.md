@@ -14,5 +14,5 @@
 - Not like: lost-and-found (grade 2, add and subtract only), rule-machine (grade 4 patterns from a given rule), multiplication-dungeon (fluency).
 - Art: generated scenes (a colorful town square mural), people (illustrated) for Detective Rue and witnesses.
 - Proposed title: keep
-- Proposed concept line: Someone paints squares on the town's multiplication-table mural; find their rule, predict the next square and say why it always works. Then catch witnesses' wrong two-step answers by estimating first.
+- Proposed concept line (applied in the 2026-10-27 audit, docs/agents/audit/clashes-k8.md K10; it replaces the One idea above where they differ): Color the town's multiplication-table mural to make patterns pop (even products, multiples of 5, square numbers); predict the next square and say why the rule always works, then estimate first to check whether a two-step answer can be right.
 - Flags: none
