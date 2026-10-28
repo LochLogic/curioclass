@@ -278,6 +278,15 @@ section.block { padding: 56px 0 8px; }
 .tool-chip .tag.built { font-size: 11px; padding: 3px 7px; }
 .ready-only .module-card:not([data-ready]), .ready-only .browse-group:not([data-ready]), .ready-only .browse-nav a[data-empty] { display: none; }
 .none-ready { color: var(--muted); font-style: italic; }
+.lang-pick { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 0 0 14px; padding: 0; border: 0; }
+.lang-pick legend { float: left; margin-right: 4px; font-size: 14px; font-weight: 600; color: var(--muted); }
+.lang-pick label { position: relative; }
+.lang-pick input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+.lang-pick label { padding: 8px 14px; border: 1.5px solid var(--line); border-radius: 999px; background: var(--card); font-size: 15px; font-weight: 600; cursor: pointer; }
+.lang-pick label:has(input:checked) { border-color: var(--ink); background: var(--ink); color: var(--card); }
+.lang-pick label:has(input:focus-visible) { outline: 3px solid var(--accent); outline-offset: 2px; }
+.ready-now .lang-item { display: contents; }
+.lang-item.lang-off, .ready-now .lang-item.lang-off, .ready-now.lang-off, .browse-group.lang-off, .browse-nav a.lang-off { display: none; }
 
 /* About: the maker's museum label */
 .about .maker { display: grid; gap: 24px; align-items: start; margin: 8px 0 28px; }

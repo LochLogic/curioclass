@@ -208,8 +208,12 @@ for sid, s in subjects.items():
     order = sorted(by_grade, key=lambda g: (GRADES.index(g.split('-')[0]), -len(expand(g))))
     sections = [dict(id=f'grade-{g}', label=grade_label(g), color=s['color'], href=grade_href(g), note='', mods=by_grade[g])
                 for g in order]
+    # World languages: one course per language (ASL, Spanish, ...), so the page gets a language picker
+    used = {m['course_id'] for ms in by_grade.values() for m in ms}
+    langs = [(c, courses[c]['title'].split(' (')[0]) for c in courses if c in used] if sid == 'world-languages' else []
     browse_page(f'/subjects/{sid}/', s['label'], s['covers'] + '. Aligned to ' + s['primary_standards'] + '. {count} tools.',
-                [('Subjects', '/subjects/'), (s['label'], None)], sections, 'Grades', subtitle='K-12', color=s['color'])
+                [('Subjects', '/subjects/'), (s['label'], None)], sections, 'Grades', subtitle='K-12', color=s['color'],
+                langs=langs if len(langs) > 1 else [])
 
 # play styles and collections
 render('styles.html', '/styles/', counts={f: sum(1 for t in tools if t['format'] == f) for f in formats})
