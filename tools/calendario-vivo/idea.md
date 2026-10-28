@@ -10,7 +10,7 @@
   - Class mode or extras (optional): a projector morning calendar routine in Spanish for the class.
 - Standards, one line per code:
   - ACTFL.Novice Low: memorized words and phrases for numbers to 31, colors, days, months, the date and weather, used in short answers to the pen pal.
-- Not like: asl-number-bingo (ASL numbers and time by video); mi-día (daily routine and clock time); hola-hallway (greetings by time of day).
+- Not like: asl-number-bingo (ASL numbers and time in Sign Strip panels); mi-día (daily routine and clock time); hola-hallway (greetings by time of day).
 - Art: generated scenes for the two city windows and weather; illustrated pen pal (people, illustrated).
 - Proposed title: keep
 - Proposed concept line: Keep a Spanish wall calendar with a pen pal in Buenos Aires; tap anything to hear it, color in plans, set the date and weather, and answer the pen pal's questions, finding that your summer is their winter.

@@ -90,7 +90,7 @@
 ## lang (29 cards)
 - 28 new concept lines; 2 titles: asl-number-bingo -> "ASL Bingo Night", ciudad-perdida -> "¿Por Dónde?".
 - No MOVEs, no new tools. Widened: asl-family-tree (home, school), i-choose-because (community, ELD-5), cause-and-effect-rewind (science, ELD-4), debate-en-español (WRS.Communities).
-- ASL video by fluent Deaf signers needed for 6 ASL tools + deaf-culture-explorer. OPEN QUESTION FOR CORY (money/outside people): licensed collection (ASL-LEX, ASL Signbank, Spread the Sign; licenses unchecked) vs paid Deaf signers vs hold. Built fingerspell-flash and classifier-scenes could upgrade from the same source.
+- ASL: Cory decided graphics only (2026-10-27); design path in docs/agents/ASL-GRAPHICS.md (Sign Strip). Built fingerspell-flash and classifier-scenes upgrade from the same kit later.
 - Fresh review: all ASL tools, deaf-culture-explorer, mundo-hispano, perspective-frames; lighter: mi-casa, el-restaurante, time-machine-talk, debate-en-español.
 - deaf-culture-explorer false claim ("developed with Deaf educators") removed.
 - Spanish: native voices from several regions for 10 tools. mundo-hispano too big: all countries over time.
