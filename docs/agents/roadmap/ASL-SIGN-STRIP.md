@@ -1,5 +1,9 @@
 # ASL graphics: the design path
 
+**Roadmap status (2026-10-27):** Cory likes the plan as written. It is not approved for building: the next step is the
+three-sign sample (THANK-YOU, NAME, WHERE), and Cory will say when they are ready to see it. Until then no ASL tool is
+specced or built against Sign Strip.
+
 Cory's call (2026-10-27, BASELINE.md): ASL tools are graphics only. No video, no photos of people. Do not re-pitch
 video. Every ASL spec, build and review agent follows this file. It settles the "needs signing video" question in
 IDEA-PASS-LOG.md (lang). The template is locked only after Cory sees the proof (last section).

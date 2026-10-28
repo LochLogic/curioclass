@@ -11,7 +11,7 @@
 - Standards, one line per code:
   - ACTFL.Novice High: understanding and building simple signed sentences about family members, home and school, with descriptions (tall, funny, likes).
 - Not like: mi-casa (Spanish house explorer, spoken); asl-number-bingo (receptive drill); classifier-scenes (classifiers for objects in space, not describing people).
-- Art: graphics only, per docs/agents/ASL-GRAPHICS.md: the teen is the shared illustrated signer (rendered body and face plates, people review) with vector Sign Strip hands, arrows, insets and space map; illustrated families, rooms and school places (people, illustrated). No video, no photos of people.
+- Art: graphics only, per docs/agents/roadmap/ASL-SIGN-STRIP.md: the teen is the shared illustrated signer (rendered body and face plates, people review) with vector Sign Strip hands, arrows, insets and space map; illustrated families, rooms and school places (people, illustrated). No video, no photos of people.
 - Proposed title: keep
 - Proposed concept line: Help a Deaf teen build a signed project board about family, home and school; read each signed sentence in illustrated panels, place the tile, then build sentences for a second family and check them against the teen's signing.
-- Flags: sign entries checked by the fresh blind review (ASL-GRAPHICS.md); sensitive (family structures and Deaf characters: fresh review, rule 5); privacy line on "make your own" (rule 7); the on-screen practice note (one common form; practice with a fluent Deaf signer or your ASL teacher when you can); K-12 span check (gf-04).
+- Flags: sign entries checked by the fresh blind review (roadmap/ASL-SIGN-STRIP.md); sensitive (family structures and Deaf characters: fresh review, rule 5); privacy line on "make your own" (rule 7); the on-screen practice note (one common form; practice with a fluent Deaf signer or your ASL teacher when you can); K-12 span check (gf-04).

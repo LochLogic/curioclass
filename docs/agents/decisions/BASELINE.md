@@ -59,7 +59,7 @@ brought to Cory together with that review, not before (w1-29 to w1-32).
   target and keeps score; students throw soft balls at the wall target. A setup card shows this (w1-49).
 - ASL tools are graphics only: no video, no photos of people (Cory, 2026-10-27). The ASL collection may change its
   format to fit: storyboard panels per sign (start, movement, end, face), high-quality renderings, labeled sign
-  parameters. Design path in docs/agents/ASL-GRAPHICS.md. Do not re-pitch video.
+  parameters. Design path (roadmap, awaiting a sample build when Cory asks) in docs/agents/roadmap/ASL-SIGN-STRIP.md. Do not re-pitch video.
 - Native and hard-history review requests in waves 2 to 4 (computing-team-stories, lake-commons, source-portfolio,
   rhetorical-situation-simulator, premise-inspector) follow rule 5: a fresh review agent, then live.
 - Parent-preview requests (wave 4 ELA) follow rule 4: a "Content notes" line on the tool page and in teacher notes; no

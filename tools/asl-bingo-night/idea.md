@@ -11,7 +11,7 @@
 - Standards, one line per code:
   - ACTFL.Novice Mid: recognizing and producing lists of numbers, colors, days and times in memorized signs and short phrases (AGE 7, 3 O'CLOCK, MONDAY).
 - Not like: fingerspell-flash (letters, not numbers); calendario-vivo (Spanish calendar and weather, spoken); asl-hello-booth (conversation openers).
-- Art: graphics only, per docs/agents/ASL-GRAPHICS.md: the caller is the shared illustrated signer (rendered body and face plates, people review) with vector Sign Strip hands, arrows and insets; illustrated bingo hall and rival players (people, illustrated). No video, no photos of people.
+- Art: graphics only, per docs/agents/roadmap/ASL-SIGN-STRIP.md: the caller is the shared illustrated signer (rendered body and face plates, people review) with vector Sign Strip hands, arrows and insets; illustrated bingo hall and rival players (people, illustrated). No video, no photos of people.
 - Proposed title: ASL Bingo Night (the module covers colors, days and time, not only numbers)
 - Proposed concept line: Play bingo against three rivals while an illustrated Deaf caller signs numbers, colors, days and times; read each sign as it plays to mark your card, then copy the signs and collect the patterns behind them.
-- Flags: sign entries for every number, color, day and time checked by the fresh blind review (ASL-GRAPHICS.md), number-sign rules on the pattern cards too; camera mirror shows the on-device line (rule 7); the on-screen practice note (one common form; practice with a fluent Deaf signer or your ASL teacher when you can); K-12 span check (gf-04).
+- Flags: sign entries for every number, color, day and time checked by the fresh blind review (roadmap/ASL-SIGN-STRIP.md), number-sign rules on the pattern cards too; camera mirror shows the on-device line (rule 7); the on-screen practice note (one common form; practice with a fluent Deaf signer or your ASL teacher when you can); K-12 span check (gf-04).
