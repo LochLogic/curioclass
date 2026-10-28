@@ -43,8 +43,9 @@ writing specs, and batch each step only after its inputs are final.
 4. **Art overnight per wave**, right after the spec check:
    - Cloudflare FLUX (free daily allowance), Codex `gptart.py` (usage cap), or local FLUX (about 17 GB of RAM).
    - Expect about 10 to 20 percent to be redone during builds.
-5. **Builds stream** on the new helper, one at a time, with verify running alongside. At most about 3 to 4 agents.
-6. **Voice nights per verified group**, only after the final verify:
+5. **Builds stream** on the new helper in small mixed Build and Refine waves (RUNBOOK, Wave cadence; REFINE.md), then
+   big build-only waves per family once its Refine counts fall. At most about 3 to 4 agents.
+6. **Voice nights per refined group**, only after Refine passes:
    - Narration lines change during fix rounds (game-remix went from 35 to 49 in one round, then to 42 when Cory cut Share).
    - After each voice night, run `scripts/voice_liveliness.py` and redo only clearly flat takes (`localvoice.py --redo`);
      the check is gentle on purpose, and a flag or two per tool can stay.

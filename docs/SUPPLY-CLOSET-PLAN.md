@@ -194,7 +194,8 @@ get a Word Wall row. Checked in print preview (headless Chrome PDF) and at phone
 
 Pictures (2026-10-27): every card has one in `closet/words/art/<module_id>/<word-slug>.webp`. Paintings come
 from the local FLUX model through `scripts/wordart.py` (one flat house style, no text, never people; better prompts
-in `closet/words/art/prompts.json`; contact sheets reviewed and misses redrawn). Cards showing a child doing an action (`people:` pictures, the K-2 movement words) are drawn by Codex gpt-image-2 through `scripts/wordpeople.py`, each image reviewed. `svg:` cards are diagrams drawn in
+in `closet/words/art/prompts.json`; contact sheets reviewed and misses redrawn). Cards showing a child doing an action (`people:` pictures, the K-2 movement words) are drawn by Codex gpt-image-2 through `scripts/wordpeople.py`, each image reviewed; so are `gpt:` cards, pictures the
+local painter failed twice (Gemini after Codex if needed). `svg:` cards are diagrams drawn in
 code by `scripts/wordsvg.py` from specs in `data/closet/words/diagrams.py` (1,672 specs; a spec of
 `paint('prompt')` hands a card back to the painter). Still open: the **Spanish
 review** (neutral Latin American, first draft, the print page says so), a real-printer test, and Cory's review of the

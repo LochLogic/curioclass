@@ -68,11 +68,11 @@ from `tools/collision-lab/src.html` (narrate, hush, readNow, firstTap) and these
   line otherwise waits ~10 s (three tools had this bug).
 - Say how to act (Cory, 2026-10-26). Whenever the tool waits for the student, the line and the hint name the next
   action and the control ("Tap the wrong card. Then tap the right move."), not only a question ("Which card is
-  wrong?"). VERIFY walks every waiting moment as a student who can't read the screen.
+  wrong?"). Refine's Play lens walks every waiting moment as a student who can't read the screen.
 - But don't nag (Cory, 2026-10-26). A how-to line is spoken the first time its step comes up; after that it only
   updates the hint, silently, so the screen still shows it and Read still says it. Repeating "Tap another circle, or
-  tap Back to desk." after every selection was annoying. Results, questions and new steps are still spoken. VERIFY
-  counts how often each how-to line is spoken in a run of five actions in a row.
+  tap Back to desk." after every selection was annoying. Results, questions and new steps are still spoken. Refine's
+  Craft lens counts how often each how-to line is spoken in a run of five actions in a row.
 - Two kinds of line, so "don't nag" doesn't go too far. How-to and teaching lines are spoken once per page load. Event
   lines (praise, a challenge met, a failed load, a result with new numbers) are spoken every time their event happens,
   and are still dropped when stale. game-remix first made every line once, and its second "You fixed it!" went silent.

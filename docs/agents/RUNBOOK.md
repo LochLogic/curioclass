@@ -87,6 +87,17 @@ then the item goes back to "ready" with a reply on the comment and the comment m
 
 ## Open items (update as they close)
 
+- **Word Wall art (state 2026-10-27, live with the 2026-10-27 deploy):** 4413 cards, 3634 with pictures
+  (`python scripts/check_words.py`). Picture kinds: plain text = local FLUX painting (`scripts/wordart.py`, batches through
+  `scripts/fluxbatch.py`); `svg:` = drawn in code from data/closet/words/diagrams.py; `people:` and `gpt:` = Codex through
+  `scripts/wordpeople.py` (ART.md). Reviews and redo prompts: docs/agents/audit/WORDWALL-PAINTINGS.md and
+  wordwall-redo-prompts-3.json (36 REDO cards for the next FLUX pass; 30 failed cards stay undrawn until then). Every
+  new people or `gpt:` card with cultural, Native or hard-history content gets a fresh sensitivity agent before commit
+  (rule 5). Still open: pictures for the 35 new audit modules' cards; the shared card bank Cory approved (one card per
+  word per band, modules reference cards, check_words fails a module with none); the audit follow-ups (Camp Cook
+  reshape, pinned module ids, the coordinate-proof-lab trapezoid default, tags for the 35 new tools).
+- **Deploys:** Content Signals (`search=yes, ai-input=yes, ai-train=yes`, Cory 2026-10-28) are in robots.txt and the
+  sitemap Link header is in `_headers`, both written by build_site.py.
 - **Wave cadence locked 2026-10-27** (see Wave cadence above): small mixed Build and Refine waves until a family's
   Refine counts fall, then big build-only waves for that family. Next: the first small wave (engine-first tools from
   BATCH-W1.md), on Cory's go.

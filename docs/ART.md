@@ -73,6 +73,11 @@ When Gemini is unavailable (no credits) or for large batches, `scripts/localart.
 - Image turns use the plan's Codex allowance 3-5x faster than plain turns, so keep it for the hard cases; the script stops cleanly at the usage limit.
 - Credit: "Illustrations generated with OpenAI gpt-image, edited for Curio Class".
 - Word Wall cards that need a person doing the action (hop, skip, stretch) have a picture starting `people:` and are drawn by `scripts/wordpeople.py` the same way (candidates in closet/words/art/_raw/people/, `--pick key:k` keeps one). Give each card its own child so the set is varied.
+- A Word Wall picture FLUX has failed twice (usually lettering, real numbers or a precise idea) starts `gpt:` and goes to
+  `scripts/wordpeople.py` too, without the child wording (Cory, 2026-10-27): Codex first, then Gemini (`art.py`, a few
+  cents an image) if Codex misses twice. Don't drop it to a code diagram to save effort; `svg:` is for cards whose
+  picture *is* a diagram (a number line, a map, a table), where code is the more exact picture. Always pass explicit
+  keys to wordpeople.py: with none it draws every undrawn `people:` and `gpt:` card.
 
 ## Daily art rhythm
 
