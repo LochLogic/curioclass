@@ -45,7 +45,8 @@ the account's session usage limit stopped 4 parallel agents once (they resume wi
 | Merge | you | Merge the lens files into tools/<id>/refine.md: one ranked list (blockers, should fix, accepted polish). Polish that would change the spec goes to the spec's open questions (REFINE.md, Merge). |
 | Polish | the SAME build agent (SendMessage to it) | Paste refine.md's list, blockers first: "Fix every blocker and should-fix and the accepted polish items. Re-shoot your frames. Report what changed." |
 | Exit check | fresh, cold | "You are the exit check for ONE Curio Class tool: `<id>`. Follow the Exit check in docs/agents/REFINE.md exactly, cold. Re-check every item in tools/<id>/refine.md and the gate. Write the verdict (PASS or ROUND 2) as refine.md's first line. Do not fix anything, do not commit." |
-| Plan | fresh, after the final PASS | "You are the plan agent for ONE Curio Class tool: `<id>`. ... Follow docs/agents/PLAN.md exactly, plus docs/LESSON-PLANS.md and STANDARDS.md. Only write tools/<id>/plan.md. `python scripts/check_plans.py <id>` must pass. Do not commit." Read the plan yourself once: would a sub manage with it? |
+| Final look | fresh, cold, after art and voice (+ sensitivity agent when rule 5 applies or pictures show people) | "You are the Final look agent for ONE Curio Class tool: `<id>`. Repo: S:\CurioClass (Windows; use the Bash tool with Unix syntax, python is on PATH). Follow the Final look section of docs/agents/REFINE.md exactly, cold, plus STANDARDS.md and BASELINE.md. Use your own scratch folder, Chrome profile and port. Write only tools/<id>/final.md. Do not fix anything, do not commit." Then a fix agent, then the same Final look agent re-checks and writes PASS or ROUND 2. |
+| Plan | fresh, after the Final look PASS | "You are the plan agent for ONE Curio Class tool: `<id>`. ... Follow docs/agents/PLAN.md exactly, plus docs/LESSON-PLANS.md and STANDARDS.md. Only write tools/<id>/plan.md. `python scripts/check_plans.py <id>` must pass. Do not commit." Read the plan yourself once: would a sub manage with it? |
 
 At most two Refine rounds (REFINE.md, Rounds); round 2 runs only the lenses that had open items. Three lenses and one
 build agent is four agents, the top of the limit: while a tool is in Look, don't start another build. Before 2026-10-27
@@ -70,6 +71,8 @@ counts either file.
 
 ## Going live for review
 
+0. Final look passed: `tools/<id>/final.md` starts with PASS (REFINE.md, Final look). Tools that went live before
+   2026-10-27 have none.
 1. Rename tool.draft.json to tool.json, drop `"stage"`, add the credits to `sources` (FLUX images, Qwen3-TTS narration,
    Gemini art if any).
 2. `python scripts/preview.py <id>` (card art; pass `--js=` to open a livelier screen, and look at it).

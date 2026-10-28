@@ -115,3 +115,35 @@ At most two rounds (look, polish, exit check). Round 2 runs only the lenses that
 fails the gate, the tool does not go on: the integrator either fixes one narrow item itself (with an "Integrator
 fix" note, as today) or brings it to Cory with the open list. Polish items left over never block; they go in the
 Review Desk "changed" note as "known, not done".
+
+## Final look (after art and voice, before the plan) (Cory, 2026-10-27)
+
+Refine runs on placeholder art and the browser voice. Real pictures and recorded clips can break what passed: text
+over a busy picture, a bad crop, a style that misses the spec, a clip longer than the browser read so a line runs into
+the next moment or gets cut. Final look checks the finished tool as a student and a teacher will meet it. It is not
+light: it is the last check before Cory sees the tool.
+
+**Look (one fresh cold agent, plus the sensitivity agent again when rule 5 applies or any picture shows people).**
+Read refine.md and handoff.md first, so you know what was already settled; then check the tool with real assets:
+1. **Frames, all of them again:** the default screen, every mode, the extremes, the end of a round, a narrow window
+   and 1366x768, Motion on and off. Look at every frame for text over art, cropping, art at the wrong size or
+   resolution, placeholders left anywhere, contrast of words on pictures (AA).
+2. **Art against the spec:** every `art:` token shows its .webp; each picture matches its spec entry and the tool's
+   look (palette, style, one artist feel across the set); facts in pictures are right for the subject (era, objects,
+   counts, labels); no garbled lettering; people pictures have a varied cast and Cory's review where required.
+3. **Voice with the real clips:** the full standard voice check (above) again with the recorded clips, plus timing:
+   no clip runs past its moment or into the next line, nothing is cut off, waiting lines leave room for the action,
+   K-2 every fixed line has its clip. Every clip says exactly its line (listen through the log: each played clip's
+   text matches `voice/lines.json`); flag a take that sounds wrong for the moment from the liveliness reading.
+4. **A full run as a solo student and as a teacher projecting it** (the Play lens, step 2 and 4), start to finish.
+   Where does the finished tool feel flat, slow or confusing now that it looks and sounds real?
+5. **Contract again:** bundle under 2 MB with the art and clips in, no console errors, no network requests.
+Write `tools/<id>/final.md`: findings with the same levels and tags as the lenses, frames named.
+
+**Fix (a fresh fix agent, or the builder if it is still around).** It reads handoff.md, refine.md and final.md and
+fixes every blocker and should-fix and the accepted polish items. A picture that misses goes back to art (redraw with
+a better prompt, never a weaker route); a bad take goes back to voice (`localvoice.py --redo`).
+
+**Re-check (the same Final look agent, by message).** Re-shoot the frames tied to each fix, re-run the voice check if
+any clip or line changed, and write `PASS` or `ROUND 2` as final.md's first line. At most two rounds, as above. The
+plan agent and the Review Desk come only after a Final look PASS.
