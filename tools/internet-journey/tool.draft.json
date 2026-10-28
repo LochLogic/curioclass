@@ -1,0 +1,26 @@
+{
+  "id": "internet-journey",
+  "status": "beta",
+  "stage": "built",
+  "hook": "Your party invite breaks into eight numbered pieces and hops through Wi-Fi, your internet provider, routers and a message app's server to Juno's tablet. Make one choice at each stop, then see every place a copy now lives.",
+  "outcome": "Explain that a message is cut into numbered pieces that travel through many devices and are put back in order, and decide which personal details are safe to share online",
+  "driver": "students or teacher",
+  "minutes": "15-20",
+  "modes": [],
+  "grades_label": "Grade 3",
+  "sources": [
+    "CSTA K-12 Computer Science Standards, 2026 identifiers E3-SYS-NT-14, E3-SYS-SE-13, E3-SYS-IM-15; 2017 standards 1B-NI-04 and 1B-NI-05: https://csteachers.org/k12standards/",
+    "Khan Academy, Computers and the Internet, \"The Internet: Packets, routing and reliability\": https://www.khanacademy.org/computing/computers-and-internet",
+    "Cloudflare Learning Center, \"What is routing?\": https://www.cloudflare.com/learning/network-layer/what-is-routing/",
+    "Cloudflare Learning Center, \"What is HTTPS?\": https://www.cloudflare.com/learning/ssl/what-is-https/",
+    "FTC Consumer Advice, \"Are Public Wi-Fi Networks Safe? What You Need to Know\": https://consumer.ftc.gov/articles/are-public-wi-fi-networks-safe-what-you-need-know",
+    "FTC Consumer Advice, \"Kids and Socializing Online\": https://consumer.ftc.gov/articles/kids-and-socializing-online",
+    "Common Sense Education, Digital Citizenship, \"Private and Personal Information\": https://www.commonsense.org/education/digital-citizenship",
+    "North American Numbering Plan Administrator: 555-0100 to 555-0199 are reserved for fictional use: https://nationalnanpa.com",
+    "Story, names and places are original to Curio Class",
+    "Map, icons, envelopes and invite photos drawn in code",
+    "Illustrations (dusk town, server hall) drawn with FLUX.1 [schnell] (Apache 2.0) run locally, edited for Curio Class"
+  ],
+  "third_party": [],
+  "updated": "2026-10-27"
+}

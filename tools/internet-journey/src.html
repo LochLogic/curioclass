@@ -1,0 +1,1326 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Internet Journey · Where does a message go? · Curio Class</title>
+<meta name="description" content="Follow a party invite as it breaks into eight numbered pieces, hops from your tablet through Wi-Fi, an internet provider, routers and a message app's server to a friend's tablet, and see where every copy, and every private detail you added, ends up. Grade 3 computer science. Works offline.">
+<!--
+Internet Journey (Curio Class)
+Grade 3, computer science, How We Use the Internet (Systems and Security). Standards: CSTA 2026 E3-SYS-NT-14,
+E3-SYS-SE-13, E3-SYS-IM-15; CSTA 2017 1B-NI-04 (packets sent through many devices and reassembled) and 1B-NI-05
+(protecting personal information).
+Students or the teacher drive. Story: seven chapters ride along with an invite to Juno, one choice at each stop, and an
+ending board showing where copies live. Trip map: tap any stop, send a test message, close a road and watch it reroute.
+Facts: Khan Academy, "The Internet: Packets, routing and reliability"; Cloudflare Learning Center, "What is routing?" and
+"What is HTTPS?"; FTC Consumer Advice, "Are Public Wi-Fi Networks Safe?" and "Kids and Socializing Online"; Common Sense
+Education, "Private and Personal Information"; NANPA (555-0100 to 555-0199 are for fiction). Story, names and places are
+original to Curio Class. The map, icons, envelopes and invite photos are drawn in code (kit/network.js).
+One file, no network requests, nothing stored. Content CC BY 4.0, code MIT. curioclass.org
+-->
+<link rel="stylesheet" href="kit:curio">
+<style>
+:root{
+  --paper:#f5f1fa;--panel:#ffffff;--ink:#241b33;--muted:#5e5470;--line:#e3dbef;--focus:#c2410c;
+  --brand:#6a3d9a;--btn:#6a3d9a;--btn-line:#8d64b8;--head-ink:#ffffff;
+  --sky1:#2b2550;--sky2:#5b4a8a;--cream:#fff8e1;--gold:#f2c14e;--priv:#b3261e;--skytext:#e8e2f5;--night:#1f1b3a;
+}
+/* Layout (picked in script, relayout(), as in collision-lab):
+   wide    (1000 px or wider and 700 px or taller): stage on the left, 360 px panel on the right;
+   compact (a short landscape box such as the 16:10 embed): a 300 px panel and a one-row header;
+   stack   (narrow or portrait): the stage on top, the panel under it, choice cards first.
+   The panel comes first in the page so Tab reaches the choices before the map's stops. The stage SVG is drawn at
+   its real pixel size, so labels keep their size in every box. */
+main{grid-template-columns:minmax(0,1fr) 360px;min-height:0}
+main>.panel{grid-column:2;grid-row:1}
+main>.stage{grid-column:1;grid-row:1}
+.stage{min-height:0;background:linear-gradient(var(--sky1),var(--sky2))}
+#town{position:absolute;left:0;top:0;width:56%;height:100%;object-fit:cover;object-position:30% 60%;opacity:.7;pointer-events:none;
+  -webkit-mask-image:linear-gradient(90deg,#000 60%,transparent);mask-image:linear-gradient(90deg,#000 60%,transparent)}
+#sv{position:absolute;left:0;top:0;display:block;touch-action:manipulation}
+.fade{position:absolute;top:0;bottom:0;width:44px;pointer-events:none;z-index:2}
+.fade.l{left:0;background:linear-gradient(90deg,rgba(43,37,80,.95),transparent)}
+.fade.r{right:0;background:linear-gradient(-90deg,rgba(76,62,120,.95),transparent)}
+body.compact main{grid-template-columns:minmax(0,1fr) 300px}
+@media (min-width:900px){body.compact main{grid-template-columns:minmax(0,1fr) 320px}}
+body.compact header{padding:4px 8px;gap:4px;flex-wrap:nowrap;min-width:0}
+body.compact h1{font-size:17px;white-space:nowrap;min-width:0;overflow:hidden;text-overflow:ellipsis}
+body.compact h1 small{display:none}
+@media (max-width:999px){h1 small{display:none}}
+/* a narrow stacked page (a 760 tablet) keeps the header on one row, like the compact page */
+@media (min-width:561px) and (max-width:999px){
+  body.stack header{flex-wrap:nowrap;gap:6px;min-width:0}
+  body.stack h1{white-space:nowrap;min-width:0;overflow:hidden;text-overflow:ellipsis}
+  body.stack .seg,body.stack .icon-btn{flex:none}
+  body.stack .seg button,body.stack .icon-btn{min-height:44px;padding:0 10px;font-size:15px;white-space:nowrap}
+}
+body.compact .seg{flex:none}
+body.compact .seg button,body.compact .icon-btn{min-height:44px;padding:0 9px;font-size:14px;white-space:nowrap}
+body.compact .icon-btn{flex:none}
+body.compact .panel{padding:8px 10px;gap:7px}
+body.stack{height:auto}
+body.stack main{grid-template-columns:minmax(0,1fr);align-content:start}
+body.stack main>.stage{grid-column:1;grid-row:1}
+body.stack #send,body.stack #next,body.stack #endBtns{scroll-margin-bottom:16px}
+body.stack main>.panel{grid-column:1;grid-row:2;border-left:0;border-top:3px solid var(--line);overflow:visible}
+@media (max-width:560px){
+  header{gap:6px}
+  h1{flex:1 1 100%}
+  .seg{flex:1 1 auto}
+  .seg button{min-height:44px;font-size:15px;padding:0 10px;flex:1}
+  /* the three kit buttons show their icon only (their name stays their accessible name) */
+  .icon-btn{min-height:44px;width:46px;padding:0;overflow:hidden;white-space:nowrap;text-align:left;text-indent:11px;font-size:17px;flex:none;word-spacing:60px}
+}
+/* panel */
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.sec{display:flex;flex-direction:column;gap:10px;min-height:0}
+body.compact .sec{gap:6px}
+.chap{margin:0;font:800 14px/1.2 'Trebuchet MS','Segoe UI',sans-serif;color:var(--brand);letter-spacing:.02em}
+.chap b{display:block;font-size:21px;color:var(--ink);margin-top:2px}
+body.compact .chap{font-size:12.5px}
+body.compact .chap b{font-size:17px}
+.story{margin:0;font-size:17px;line-height:1.42}
+body.compact .story{font-size:14.5px;line-height:1.35}
+.artcard{margin:0;border-radius:12px;overflow:hidden;border:2px solid var(--line);aspect-ratio:16/7;background:#2b2550}
+.artcard img{display:block;width:100%;height:100%;object-fit:cover}
+body.compact .artcard{aspect-ratio:16/4.2}
+.pairs{display:flex;flex-direction:column;gap:8px}
+body.compact .pairs{gap:5px}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+body.compact .pair{gap:5px}
+.pairlab{grid-column:1/-1;margin:0 0 -3px;font:700 13px 'Segoe UI',system-ui,sans-serif;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.card{position:relative;display:flex;align-items:center;gap:8px;min-height:64px;text-align:left;border:2px solid var(--line);border-radius:14px;
+  background:#fff;padding:7px 9px;font:600 15px/1.25 'Segoe UI',system-ui,sans-serif;color:var(--ink);box-shadow:0 3px 0 #0000000f;transition:opacity .2s}
+.card:hover{border-color:#b9a3d6}
+.card svg.ic{flex:none;width:34px;height:34px}
+.card .tx{display:flex;flex-direction:column;gap:3px;min-width:0}
+.card[aria-pressed="true"] .tx{padding-right:10px}
+.card .tx small{font-weight:500;font-size:13px;color:var(--muted)}
+.card[aria-pressed="true"]{border:3px solid var(--brand);padding:6px 8px;background:#f6f0fd}
+.card .chk{position:absolute;top:-9px;right:-7px;width:26px;height:26px;border-radius:50%;background:var(--brand);color:#fff;display:none;
+  align-items:center;justify-content:center;font-weight:900;font-size:15px;border:2px solid #fff}
+.card[aria-pressed="true"] .chk{display:flex}
+.card.faded{opacity:.5}
+.card:disabled{cursor:default}
+.card:disabled:hover{border-color:var(--line)}
+.card[aria-pressed="true"]:disabled:hover{border-color:var(--brand)}
+body.compact .card{min-height:64px;font-size:13.5px;padding:5px 7px;gap:6px}
+body.compact .card[aria-pressed="true"]{padding:4px 6px}
+body.compact .card svg.ic{width:28px;height:28px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:4px}
+.steps button{min-height:44px;border:2px solid var(--line);border-radius:10px;background:#fff;font:700 14px 'Segoe UI',sans-serif;color:var(--muted)}
+.steps button[aria-current="step"]{border-color:var(--brand);color:var(--brand)}
+.steps button.done::after{content:' ✓';color:var(--brand)}
+.result{margin:0;font-size:16px;line-height:1.4;background:#f6f0fd;border-left:5px solid var(--brand);border-radius:8px;padding:8px 10px}
+.result:empty{display:none}
+body.compact .result{font-size:13.5px;padding:5px 8px;line-height:1.32}
+.row{display:flex;gap:8px;flex-wrap:wrap}
+.row>button{flex:1 1 auto}
+.big-btn{min-height:56px;font-size:19px}
+body.compact .big-btn{min-height:48px;font-size:17px;border-radius:12px}
+.btn{min-height:48px;border:2px solid var(--brand);border-radius:12px;background:#fff;color:var(--brand);font:700 16px 'Segoe UI',system-ui,sans-serif;padding:0 12px}
+.btn[aria-pressed="true"]{background:var(--brand);color:#fff}
+body.compact .btn{min-height:44px;font-size:14.5px}
+.restart{align-self:flex-start;min-height:44px;border:0;background:none;color:var(--brand);font:700 15px 'Segoe UI',system-ui,sans-serif;padding:0 6px;text-decoration:underline}
+.hint{margin:0;font-size:16px;color:var(--ink)}
+body.compact .hint{font-size:13.5px;line-height:1.35}
+#storyP .hint{color:var(--muted);font-size:15px}
+body.compact #storyP .hint{font-size:13px}
+.speed{display:flex;align-items:center;gap:8px;font:700 15px 'Segoe UI',sans-serif;color:var(--muted)}
+.speed .seg2{display:inline-flex;border:2px solid var(--brand);border-radius:999px;overflow:hidden}
+.speed .seg2 button{border:0;background:#fff;color:var(--brand);min-height:44px;padding:0 14px;font:700 15px 'Segoe UI',sans-serif}
+.speed .seg2 button[aria-pressed="true"]{background:var(--brand);color:#fff}
+.stopcard{background:#fbf9fe;border:2px solid var(--line);border-radius:14px;padding:10px 12px;display:grid;grid-template-columns:auto 1fr;gap:4px 12px;align-items:center}
+.stopcard h2{margin:0;font:800 18px 'Trebuchet MS','Segoe UI',sans-serif}
+.stopcard p{grid-column:1/-1;margin:2px 0 0;font-size:16px;line-height:1.4}
+.stopcard .ico{width:56px;height:56px;border-radius:12px;background:var(--cream);border:2px solid var(--ink);display:flex;align-items:center;justify-content:center;color:var(--ink)}
+.stopcard.empty{display:block;color:var(--muted);font-size:15px}
+body.compact .stopcard{padding:6px 8px}
+body.compact .stopcard h2{font-size:15px}
+body.compact .stopcard p{font-size:13.5px}
+body.compact .stopcard .ico{width:44px;height:44px}
+.env{display:grid;grid-template-columns:1fr auto;gap:2px 10px;font-size:15px}
+.env b{font-weight:700}
+/* stage overlays */
+.ov{position:absolute;z-index:3}
+#invite{left:10px;top:10px;width:min(330px,calc(100% - 20px));background:var(--cream);color:var(--ink);border-radius:14px;padding:9px 11px;
+  box-shadow:0 6px 18px #0005;font-size:15px;line-height:1.35}
+#invite h3{margin:0 0 4px;font:800 13px 'Segoe UI',sans-serif;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+#invite .msg{margin:0}
+#invite .blank{color:var(--muted);border-bottom:2px dotted var(--muted)}
+#invite .pv{display:flex;gap:8px;align-items:center;margin-top:5px;font-size:13px;color:var(--muted)}
+#invite .pieces{display:flex;flex-wrap:wrap;gap:4px;margin:2px 0 0}
+#invite .pc{display:inline-flex;align-items:center;gap:4px;border:2px solid var(--ink);border-radius:7px;padding:1px 6px 1px 2px;background:#fff;font-size:13.5px;line-height:1.3}
+#invite .pc i{font-style:normal;font-weight:800;background:var(--ink);color:var(--cream);border-radius:4px;padding:0 5px;font-size:12px}
+#invite .note{margin:5px 0 0;font-size:12.5px;color:var(--muted)}
+body.compact #invite.cut{left:8px;top:6px;width:calc(100% - 16px);padding:6px 9px}
+body.compact #invite.cut h3{margin:0 0 2px}
+body.compact #invite.cut .note{margin-top:3px;font-size:12px}
+body.stack #invite{position:static;width:auto;box-shadow:none;border:2px solid var(--line)}
+#popup{left:10px;top:10px;width:min(250px,calc(100% - 20px));background:#fff;color:var(--ink);border:3px solid var(--ink);border-radius:12px;overflow:hidden;
+  box-shadow:0 8px 20px #0006;font-size:14px}
+#popup .bar{background:#e9e4f1;padding:0 0 0 8px;font:700 12px 'Segoe UI',sans-serif;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+#popup .x{min-width:44px;min-height:44px;border:0;background:none;font:700 18px 'Segoe UI',sans-serif;color:var(--ink);cursor:pointer}
+#popup .x:disabled{cursor:default;color:var(--muted)}
+#popup .body{padding:8px 10px}
+#popup .big{font:800 17px 'Trebuchet MS',sans-serif;margin:0 0 4px}
+#popup .fld{border:2px solid #cfc6dd;border-radius:6px;height:22px;margin-top:5px;font-size:12px;color:var(--muted);padding:1px 6px}
+#popup.sent .fld{color:var(--ink);font-weight:600}
+#popup .stamp{margin:6px 0 0;font-weight:700;color:var(--priv)}
+#board{right:0;top:0;bottom:0;width:50%;background:#1f1b3a;color:var(--skytext);padding:14px 16px;overflow:auto;border-left:3px solid var(--gold)}
+#board.full{width:100%;border-left:0}
+#board h3{margin:0 0 8px;font:800 20px 'Trebuchet MS','Segoe UI',sans-serif;color:#fff}
+#board .rows{display:flex;flex-direction:column;gap:7px;margin:0;padding:0;list-style:none}
+#board .rows li{display:grid;grid-template-columns:44px 1fr;gap:2px 10px;align-items:center;background:rgba(255,255,255,.08);border-radius:12px;padding:6px 8px;
+  opacity:0;transform:translateX(30px);transition:opacity .45s,transform .45s}
+#board .rows li.in{opacity:1;transform:none}
+#board .rows li .bi{grid-row:span 2;width:44px;height:44px;border-radius:10px;background:var(--cream);color:var(--ink);display:flex;align-items:center;justify-content:center}
+#board .rows li .pl{font-weight:700;font-size:16px;color:#fff}
+#board .rows li .ch{display:flex;flex-wrap:wrap;gap:4px;font-size:13.5px}
+#board .rows li.extra{outline:2px solid var(--gold)}
+#board .count{margin:0 0 8px;font:700 17px 'Segoe UI',sans-serif;color:var(--gold);opacity:0;transition:opacity .45s}
+#board .who{margin:10px 0 0;padding:8px 10px;border-radius:12px;border:2px solid rgba(255,255,255,.18);opacity:0;transition:opacity .45s}
+#board .who.in{opacity:1}
+#board .who h4{margin:0 0 4px;font:800 15px 'Trebuchet MS','Segoe UI',sans-serif;color:#fff}
+#board .who ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:3px;font-size:14.5px;line-height:1.35}
+#board .who b{color:#fff}
+#board .who .good{color:#b8f0c8}
+#board .count.in{opacity:1}
+.chip{display:inline-flex;align-items:center;gap:3px;background:var(--priv);color:#fff;border-radius:999px;padding:1px 8px 1px 6px;font:700 12.5px/1.45 'Segoe UI',sans-serif}
+.chip svg{width:12px;height:12px}
+.whole{color:var(--skytext)}
+body.stack #board{position:static;width:auto;border:0;border-radius:14px}
+body.compact #board{padding:8px 10px}
+body.compact #board h3{font-size:16px;margin-bottom:5px}
+body.compact #board .rows li{grid-template-columns:34px 1fr;padding:4px 6px;gap:1px 8px}
+body.compact #board .rows li .bi{width:34px;height:34px}
+body.compact #board .rows li .pl{font-size:13.5px}
+body.compact #board .count{font-size:14px;margin-bottom:5px}
+body.compact #board .who{padding:5px 8px;margin-top:6px}
+body.compact #board .who ul{font-size:12.5px}
+body.compact #board .who h4{font-size:13px}
+.calm #board .rows li{transform:none}
+.btn:disabled{opacity:.4}
+#gives{background:var(--cream);border-radius:10px;padding:7px 10px;font-size:15px;line-height:1.35}
+#gives b{display:block;margin-bottom:4px}
+#gives ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:4px}
+#gives li{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+body.compact #gives{font-size:13px;padding:5px 8px}
+.sees{margin:0;background:var(--cream);color:var(--ink);border:2px solid var(--gold);border-radius:10px;padding:6px 9px;font:600 14.5px/1.35 'Segoe UI',sans-serif}
+.sees svg{vertical-align:-4px}
+@media (min-width:1600px){body.wide .story{font-size:19.5px} body.wide .chap b{font-size:24px} body.wide .result{font-size:18px} body.wide .card{font-size:16.5px}}
+.tag{position:absolute;z-index:4;background:var(--priv);color:#fff;font:700 14px 'Segoe UI',sans-serif;padding:3px 10px;border-radius:999px;pointer-events:none}
+</style>
+</head>
+<body>
+<header>
+  <h1>Internet Journey <small>Where does a message go?</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-story" aria-pressed="true">Story</button>
+    <button id="m-map" aria-pressed="false">Trip map</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true" title="Turn animation on or off">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true" title="Turn sound and narration on or off">🔔 Sound</button>
+  <button class="icon-btn" id="read" title="Read aloud">🔊 Read</button>
+</header>
+<main>
+  <aside class="panel" id="panel">
+    <section class="sec" id="storyP" data-modes="story">
+      <p class="chap" id="chap"></p>
+      <figure class="artcard" id="artcard" hidden><img src="art:ij-server-hall" alt="A calm row of server cabinets with small lights in a data center"></figure>
+      <p class="story" id="storyText"></p>
+      <div class="steps" id="steps" role="group" aria-label="Parts of the invite" hidden></div>
+      <div class="pairs" id="pairs"></div>
+      <div id="inviteSlot"></div>
+      <p class="result" id="result" aria-live="polite"></p>
+      <div id="seesSlotS"></div>
+      <button class="big-btn gold" id="send" hidden>✉ Send</button>
+      <button class="big-btn" id="next" hidden>Next ➜</button>
+      <div class="row" id="endBtns" hidden>
+        <button class="big-btn gold" id="again">↻ Try other choices</button>
+        <button class="btn" id="toMap">See the trip map</button>
+      </div>
+      <div class="gives" id="gives" hidden></div>
+      <div id="boardSlot"></div>
+      <div id="hintSlotS"></div>
+      <button class="restart" id="restart">↻ Start over</button>
+    </section>
+    <section class="sec" id="mapP" data-modes="map" hidden>
+      <div id="hintSlotM"><p class="hint" id="hint"></p></div>
+      <div id="seesSlotM"><p class="sees" id="sees" hidden></p></div>
+      <button class="big-btn gold" id="test">✈ Send a test</button>
+      <div class="row">
+        <button class="btn" id="road" aria-pressed="false">⛔ Close a road</button>
+      </div>
+      <div class="speed"><span id="speedLab">Speed</span>
+        <span class="seg2" role="group" aria-labelledby="speedLab"><button id="sp-slow" aria-pressed="true">Slow</button><button id="sp-quick" aria-pressed="false">Quick</button></span>
+      </div>
+      <div class="row" id="panRow" hidden><button class="btn" id="panL" aria-label="Show more of the map to the left">◀ Left</button><button class="btn" id="panR" aria-label="Show more of the map to the right">Right ▶</button></div>
+      <div class="stopcard empty" id="stopcard" aria-live="polite">Tap a stop on the map to see what it does.</div>
+    </section>
+  </aside>
+  <div class="stage" id="stage">
+    <img id="town" src="art:ij-dusk-town" alt="">
+    <svg id="sv" role="group" aria-label="The network map" tabindex="-1" focusable="false"></svg>
+    <div class="fade l" id="fadeL" hidden></div><div class="fade r" id="fadeR" hidden></div>
+    <div class="ov" id="invite" hidden></div>
+    <div class="ov" id="popup" hidden></div>
+    <div class="ov" id="board" hidden></div>
+  </div>
+</main>
+<div id="live" class="sr" aria-live="polite"></div>
+<script src="kit:curio"></script>
+<script src="kit:network"></script>
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const wait = Curio.wait;
+  const net = Net;
+  const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'})[c]);
+
+  // ======================================================================================
+  // Content (spec: Content). Design units 1000 x 600.
+  // ======================================================================================
+  const STOPS = [
+    {id: 'you', label: 'Your tablet', kind: 'tablet', x: 50, y: 300},
+    {id: 'home', label: 'Your Wi-Fi router', kind: 'wifi-router', x: 150, y: 300},
+    {id: 'ispA', label: 'Your internet provider', kind: 'isp', x: 270, y: 300},
+    {id: 'rA', label: 'Router A', kind: 'router', x: 390, y: 150},
+    {id: 'rB', label: 'Router B', kind: 'router', x: 390, y: 450},
+    {id: 'srv', label: "The message app's server", kind: 'server', x: 500, y: 300},
+    {id: 'rC', label: 'Router C', kind: 'router', x: 610, y: 150},
+    {id: 'rD', label: 'Router D', kind: 'router', x: 610, y: 450},
+    {id: 'ispB', label: "Juno's internet provider", kind: 'isp', x: 730, y: 300},
+    {id: 'home2', label: "Juno's Wi-Fi router", kind: 'wifi-router', x: 840, y: 300},
+    {id: 'juno', label: "Juno's tablet", kind: 'tablet', x: 950, y: 300},
+  ];
+  // Story only: the public hotspot of chapter 2 and the map website Juno asks in chapter 6 (hidden until then)
+  const STORY_STOPS = [
+    {id: 'hot', label: 'Free_Fast_WiFi', kind: 'access-point', x: 150, y: 470, hidden: true},
+    {id: 'maps', label: 'A map website', kind: 'server', x: 950, y: 500, hidden: true},
+  ];
+  // ms per hop at Quick; Slow doubles
+  const LINKS = [['you', 'home', 'wifi', 400], ['home', 'ispA', 'wire', 400], ['ispA', 'rA', 'fiber', 400], ['ispA', 'rB', 'fiber', 700],
+    ['rA', 'srv', 'fiber', 400], ['rB', 'srv', 'fiber', 700], ['srv', 'rC', 'fiber', 400], ['srv', 'rD', 'fiber', 900],
+    ['rC', 'ispB', 'fiber', 400], ['rD', 'ispB', 'fiber', 900], ['ispB', 'home2', 'wire', 400], ['home2', 'juno', 'wifi', 400]];
+  const STORY_LINKS = [['you', 'hot', 'wifi', 400], ['hot', 'ispA', 'wire', 400], ['ispB', 'maps', 'fiber', 400]];
+  const newGraph = extra => net.graph({nodes: [...STOPS, ...(extra ? STORY_STOPS : [])].map(s => ({...s})),
+    links: [...LINKS, ...(extra ? STORY_LINKS : [])].map(([a, b, medium, ms]) => ({a, b, medium, ms}))});
+  const STOPCARD = {
+    you: 'Your tablet turns your words into data and cuts it into numbered pieces. People use the internet to look things up and to talk to each other.',
+    home: "Your Wi-Fi router sends the pieces from the air into a wire. Your family's Wi-Fi password keeps strangers off it.",
+    ispA: 'Your internet provider is the company that connects your home to the rest of the internet.',
+    rA: 'A router reads the address on each piece and sends it one step closer to where it is going.',
+    srv: 'The message app keeps a copy on its server, so Juno can read it later.',
+    ispB: "Juno's internet provider brings the pieces to Juno's home.",
+    home2: "Juno's Wi-Fi router sends the pieces through the air to her tablet.",
+    juno: "Juno's tablet puts the pieces back in number order and shows the message.",
+  };
+  STOPCARD.rB = STOPCARD.rC = STOPCARD.rD = STOPCARD.rA;
+
+  // the lines (voice/lines.json lists every one): chapter texts and results are events, spoken each time
+  const L = {
+    wStory: "Welcome to Internet Journey. Follow your message from your tablet to your friend's. At each stop, tap a card to choose.",
+    next: 'Press Next to send the pieces on to the next stop.',
+    wMap: 'This is the whole trip. Tap any stop to see what it does, or press Send a test.',
+    closed: 'Router A is closed. Press Send a test and watch the pieces find another road.',
+    landed: 'All 8 pieces arrived, and the numbers put them back in order.',
+    again: 'Press Try other choices to see how a different trip ends.',
+    ch: {
+      1: 'You are inviting your friend Juno to your party. Pick what goes in the message. Your tablet will cut it into 8 numbered pieces.',
+      2: 'Your tablet looks for Wi-Fi to send the pieces through the air. Two networks show up.',
+      3: 'While your pieces travel, a pop-up appears on your tablet: You won a free game! Type your name and address.',
+      4: 'Routers pass the pieces along like a relay team. Oh no, Router A just closed for repairs! What will the routers do with pieces 5 to 8?',
+      5: 'The app keeps a copy of your invite so Juno can read it later. Then it asks: who can see your profile?',
+      6: 'The pieces arrive out of order: 1, 3, 5, 7, then 2, 4, 6, 8. The numbers let Juno\'s tablet put them back in order.',
+    },
+    look: 'Juno looks up the way to your party. Her tablet asks a map website, and the answer comes back in seconds. People use the internet to look things up and to talk to each other.',
+    ask6: 'Juno loves the invite. She asks: can I share it with my soccer group?',
+    res: {
+      1: "Your tablet cut the invite into 8 pieces. Each one has Juno's address on the outside.",
+      '2A': 'Good pick. Home Wi-Fi locks the pieces in the air, and the app locks the words too. Two locks.',
+      '2B': "Your pieces made it. On an open network only the app's lock protected your words. A known network adds a second lock.",
+      '3A': 'Smart. Pop-ups that ask for personal info are often tricks. A grown-up can help you check.',
+      '3B': "Your name and address went to a website you don't know. That is a copy you can't take back.",
+      '4A': "Routers don't wait. Pieces 5 to 8 bounced off the closed router, then went another way, through Router B. They got there, just later.",
+      '4B': "Yes! Routers found another way, through Router B. The internet has many roads, so one closed road doesn't stop a message.",
+      '5A': 'Now only people you know can see your profile.',
+      '5B': 'Now anyone on the app can see your name and photo.',
+      '6A': 'Juno will ask before she shares. Good friends ask first.',
+      '6B': "Juno shared it with 12 phones of kids you don't know.",
+    },
+    end: {
+      E1: "Your invite reached Juno, and your private details stayed private. Copies of a message can't be taken back, so you shared only what was safe.",
+      E2: "Your invite reached Juno, but private details went further than you planned. Copies can't be taken back. Next time, share private details only with people you know, and ask a grown-up first.",
+      E3: "Your invite reached Juno. Some private details went along, but only to Juno and the app's server. Before you share private details, ask a grown-up.",
+      E4: "Your invite reached Juno, and then 12 phones of kids you don't know. No private details went along this time, but copies can't be taken back. Ask before a message is shared.",
+    },
+    // panel hints, shown (and read by Read) but not spoken on their own
+    h: {
+      send: 'Pick a card for Place, Extra and Photo. Then press Send.',
+      choose: 'Tap a card to choose.',
+      watch: 'Watch the pieces travel.',
+      peek: 'Press Send a test again, and tap a moving piece to look inside it.',
+      road: 'Close a road, then press Send a test again.',
+    },
+  };
+  const TITLES = {1: 'Your tablet', 2: 'Two Wi-Fi networks', 3: 'Your internet provider', 4: 'Routers', 5: "The message app's server", 6: "Juno's tablet", 7: 'Where copies live'};
+  const CH_STOP = {1: ['you'], 2: ['home', 'hot'], 3: ['ispA'], 4: ['rA', 'rB'], 5: ['srv'], 6: ['juno'], 7: []};
+
+  // card icons: small ink drawings in a 34 x 34 box
+  const IC = {
+    tree: '<circle cx="17" cy="12" r="8"/><circle cx="11" cy="16" r="5"/><circle cx="23" cy="16" r="5"/><path d="M17 20v11M13 31h8"/>',
+    house: '<path d="M5 16L17 6l12 10"/><path d="M8 14v16h18V14"/><path d="M14 30v-8h6v8"/>',
+    smile: '<circle cx="17" cy="17" r="12"/><circle cx="13" cy="14" r="1.6" class="f"/><circle cx="21" cy="14" r="1.6" class="f"/><path d="M11.5 20a6.5 6.5 0 0 0 11 0"/>',
+    phone: '<rect x="10" y="4" width="14" height="26" rx="3"/><path d="M15 8h4"/><circle cx="17" cy="26" r="1.4" class="f"/>',
+    cake: '<path d="M6 30h22M8 30V19h18v11M8 24c3 2 6-2 9 0s6 2 9 0"/><path d="M12 19v-5M17 19v-5M22 19v-5"/><path d="M12 11.5v-1M17 11.5v-1M22 11.5v-1" stroke-width="3"/>',
+    shirt: '<path d="M17 5a2 2 0 1 1 2 2l-2 2.5"/><path d="M5 15l12-5.5L29 15"/><path d="M11 13l-5 5 3 3 2-2v11h12V19l2 2 3-3-5-5"/><path d="M19.5 21.5l2.5-1 2.5 1v2.5c0 1.5-1.2 2.5-2.5 3-1.3-.5-2.5-1.5-2.5-3z" stroke-width="1.6"/>',
+    wifiLock: '<path d="M4 13a18 18 0 0 1 26 0M8 17.5a12 12 0 0 1 18 0M12.5 22a6 6 0 0 1 9 0"/><rect x="20" y="22" width="11" height="9" rx="2" class="f"/><path d="M22.5 22v-2.5a3 3 0 0 1 6 0V22" stroke-width="2"/>',
+    wifiOpen: '<path d="M4 13a18 18 0 0 1 26 0M8 17.5a12 12 0 0 1 18 0M12.5 22a6 6 0 0 1 9 0"/><circle cx="17" cy="27" r="2" class="f"/>',
+    closeWin: '<rect x="4" y="6" width="26" height="22" rx="3"/><path d="M4 12h26"/><path d="M12 17l10 8M22 17l-10 8" stroke-width="3"/>',
+    keys: '<rect x="3" y="10" width="28" height="16" rx="3"/><path d="M8 15h2M13 15h2M18 15h2M23 15h2M8 20h2M12 21h10M24 20h2" stroke-width="2.4"/>',
+    block: '<path d="M4 14h26v8H4z"/><path d="M8 14l6 8M16 14l6 8M24 14l5 7" stroke-width="2.4"/><path d="M8 22v8M26 22v8"/>',
+    road: '<path d="M9 31L14 4M25 31L20 4"/><path d="M17 8v3M17 15v3M17 22v3" stroke-width="2.4"/><path d="M26 12l5 4-5 4" stroke-width="2.4"/>',
+    friends: '<circle cx="12" cy="11" r="4.5"/><circle cx="23" cy="11" r="4.5"/><path d="M4 28c0-5 3.5-8 8-8s8 3 8 8M17 21c1.5-1 3.5-1.5 6-1.5 4.5 0 8 3 8 8"/>',
+    globe: '<circle cx="17" cy="17" r="13"/><path d="M4 17h26M17 4c-5 5-5 21 0 26M17 4c5 5 5 21 0 26"/>',
+    ask: '<path d="M5 7h24v15H14l-6 6v-6H5z"/><path d="M14 12a3 3 0 1 1 4 3c-1 .5-1 1-1 2" stroke-width="2.2"/><circle cx="17" cy="19.5" r="1.3" class="f"/>',
+    share: '<circle cx="9" cy="17" r="4"/><circle cx="25" cy="8" r="4"/><circle cx="25" cy="26" r="4"/><path d="M12.5 15l9-5M12.5 19l9 5"/>',
+    lockOpen: '<rect x="2" y="6" width="9" height="7" rx="1.5" class="f"/><path d="M4.2 6V3.8a2.4 2.4 0 0 1 4.6-1" stroke-width="1.6"/>',
+    web: '<circle cx="17" cy="17" r="13"/><path d="M4 17h26M17 4c-5 5-5 21 0 26M17 4c5 5 5 21 0 26"/><path d="M14 13.5a3 3 0 1 1 4 3c-.8.4-1 .9-1 1.8" stroke-width="2"/>',
+    person: '<circle cx="17" cy="11" r="5.5"/><path d="M7 30c0-6 4.5-10 10-10s10 4 10 10"/>',
+    phones: '<rect x="5" y="5" width="15" height="25" rx="3"/><path d="M10 9h5"/><circle cx="12.5" cy="26" r="1.4" class="f"/><circle cx="24" cy="12" r="8.5" class="f"/><text x="24" y="15.6" text-anchor="middle" font-size="10.5" font-weight="800" fill="#fff" stroke="none" font-family="Segoe UI,sans-serif">12</text>',
+  };
+  const ico = (k, cls = 'ic', size = 34) => `<svg class="${cls}" viewBox="0 0 34 34" width="${size}" height="${size}" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">${(IC[k] || '').replace(/class="f"/g, 'fill="currentColor" stroke="none"')}</svg>`;
+  const LOCKOPEN = '<svg viewBox="0 0 13 14" aria-hidden="true"><rect x="2" y="6" width="9" height="7" rx="1.5" fill="currentColor"/><path d="M4.2 6V3.8a2.4 2.4 0 0 1 4.6-1" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>';
+  const chip = what => `<span class="chip">${LOCKOPEN}${esc(what)}</span>`;
+
+  // the choices: ch1 has three pairs; the others one pair each
+  const PAIRS1 = [
+    {k: 'place', lab: 'Place', A: {t: 'at Maple Park', i: 'tree'}, B: {t: 'at my house, 14 Birch Lane', i: 'house', priv: 'home address'}},
+    {k: 'extra', lab: 'Extra', A: {t: "Can't wait to see you!", i: 'smile'}, B: {t: 'Call me at 555-0142', i: 'phone', priv: 'phone number'}},
+    {k: 'photo', lab: 'Photo', A: {t: 'a photo of my cake', i: 'cake'}, B: {t: 'a photo of me in my school shirt', i: 'shirt', priv: 'your school'}},
+  ];
+  const PAIRS = {
+    2: {A: {t: 'Home Wi‑Fi', s: 'Your family set its password.', i: 'wifiLock'}, B: {t: 'Free_Fast_WiFi', s: 'Nobody knows whose it is.', i: 'wifiOpen'}},
+    3: {A: {t: 'Close it and tell a grown-up.', i: 'closeWin'}, B: {t: 'Type my name and address.', i: 'keys'}},
+    4: {A: {t: 'Wait for Router A to open again.', i: 'block'}, B: {t: 'Find another road.', i: 'road'}},
+    5: {A: {t: 'Only friends I know.', i: 'friends'}, B: {t: 'Everyone on the app.', i: 'globe'}},
+    6: {A: {t: 'Ask me first, please.', i: 'ask'}, B: {t: 'Sure, share it.', i: 'share'}},
+  };
+  // which card shows first: A is the safe pick in the data, but it is not always on the left (fixed, so notes stay right)
+  const ORDER = {place: 'AB', extra: 'BA', photo: 'AB', 2: 'BA', 3: 'AB', 4: 'BA', 5: 'AB', 6: 'BA'};
+  // what each private card gives away, shown on the invite after Send (not before: the student judges first)
+  const GIVES = {place: 'This tells people where you live.', extra: 'This lets people call you.', photo: 'This shows which school you go to.'};
+
+  // ======================================================================================
+  // State
+  // ======================================================================================
+  const state = {
+    mode: 'story',
+    ch: 1, phase: 'choose',            // phase: 'intro' (opening animation), 'choose', 'moving', 'next', 'end'
+    choices: {},                        // {place, extra, photo: 'A'|'B', 2..6: 'A'|'B'}
+    step1: 0,                           // narrow screens: which ch1 pair is showing
+    pieces: [],                         // [{seq, of, data, at, slot}] once the invite is cut
+    flying: new Set(),                  // seqs drawn by the mover, not in a stack
+    trail: new Set(),                   // link keys the pieces have lit
+    look: false,                        // chapter 6: Juno has looked up the way (the map website shows)
+    resOut: 0,                          // the chapter whose result line is out (shown and spoken)
+    map: {sel: null, closed: false, speed: 'slow', testing: false, testId: 0, pieces: [], route: null, routeEven: null, landed: [], env: null},
+    ui: {page: null, windowed: false, pan: 0, s: 1},
+  };
+  const gStory = newGraph(true), gMap = newGraph(false);
+  const G = () => state.mode === 'story' ? gStory : gMap;
+  const story = () => state.mode === 'story';
+  let run = 0;                          // bumps on every mode change or restart: a story animation checks it after each wait
+  const alive = r => r === run && story();
+  const speedStory = .5;                // Story runs at Slow (the spec's ms are Quick; Slow doubles)
+  let T = 1;                            // test hook: a time scale (1 = real time)
+  const pause = ms => wait(ms * T);
+
+  // ======================================================================================
+  // Voice (Curio.voice): welcomes, chapter texts and results (events), how-to lines (once)
+  // ======================================================================================
+  const V = Curio.voice({
+    lines: L, scope: () => state.mode,
+    // Story: the welcome, then stop 1's own text (it was silent at load); neither writes the hint
+    welcome: () => state.mode === 'story' ? [['wStory', {hint: false}], ...(state.ch === 1 ? [['ch1', L.ch[1], {hint: false, valid: () => state.ch === 1 && state.phase === 'choose'}]] : [])] : 'wMap',
+    speaks: '#test',
+    read: () => readText(),
+  });
+  const hint = t => { if ($('hint').textContent !== t) $('hint').textContent = t; };
+  const live = t => { $('live').textContent = t; };
+  function readText() {
+    if (!story()) return $('hint').textContent;
+    const out = [];
+    if (state.ch === 7) out.push(endLine());
+    else out.push(storyText());
+    if ($('result').textContent) out.push($('result').textContent);
+    if ($('hint').textContent) out.push($('hint').textContent);
+    return out;
+  }
+
+  // ======================================================================================
+  // The invite and its pieces
+  // ======================================================================================
+  function inviteParts(c = state.choices) {
+    const pick = (k, ab) => ab ? PAIRS1.find(p => p.k === k)[ab].t : null;
+    return {place: pick('place', c.place), extra: pick('extra', c.extra), photo: pick('photo', c.photo)};
+  }
+  function inviteText(c = state.choices) {
+    const p = inviteParts(c);
+    return `Come to my party! Saturday at 2, ${p.place}. ${p.extra}${/[.!?]$/.test(p.extra || '') ? '' : '.'}`;
+  }
+  function cutInvite() {
+    const words = net.split(inviteText(), 7, {src: 'you', dst: 'juno'});
+    const photo = {seq: 8, of: 8, src: 'you', dst: 'juno', data: state.choices.photo === 'B' ? '[photo: me in my school shirt]' : '[photo: my cake]', photo: true};
+    for (const p of words) p.of = 8;
+    state.pieces = [...words, photo].map(p => ({...p, at: 'you', slot: false}));
+  }
+
+  // ======================================================================================
+  // Ending (spec: chapter 7)
+  // ======================================================================================
+  function ending(c = state.choices) {
+    const chips = [];
+    if (c.place === 'B') chips.push('home address');
+    if (c.extra === 'B') chips.push('phone number');
+    if (c.photo === 'B') chips.push('your school');
+    const rows = [
+      {id: 'you', place: 'Your tablet', icon: 'tablet', what: 'the whole invite', chips},
+      {id: 'srv', place: "The message app's server", icon: 'server', what: 'the whole invite', chips},
+      {id: 'juno', place: "Juno's tablet", icon: 'tablet', what: 'the whole invite', chips},
+    ];
+    if (c[6] === 'B') rows.push({id: 'soccer', place: "Juno's soccer group, 12 phones", icon: 'phones', what: 'the whole invite', chips, extra: true});
+    if (c[3] === 'B') rows.push({id: 'popup', place: "A pop-up's website you don't know", icon: 'web', chips: ['name', 'home address'], extra: true});
+    if (c[5] === 'B') rows.push({id: 'profile', place: 'Your profile, seen by everyone on the app', icon: 'person', chips: ['name', 'photo'], extra: true});
+    const N = 3 + (c[6] === 'B' ? 12 : 0);
+    const count = `Your invite is on ${N} devices${c[3] === 'B' ? " and one website you don't know" : ''}.`;
+    // E1 nothing private and nothing shared on; E2 private details reached people you don't know (the soccer
+    // group's 12 phones, everyone on the app, or the pop-up's website); E3 private details only on Juno's tablet and
+    // the app's server; E4 nothing private, but the invite went on to 12 phones of kids you don't know
+    let id;
+    if ((chips.length && c[6] === 'B') || c[3] === 'B' || c[5] === 'B') id = 'E2';
+    else if (c[6] === 'B') id = 'E4';
+    else if (chips.length) id = 'E3';
+    else id = 'E1';
+    // who the choices touched, with the good things too (spec, Refine changes: E3-SYS-IM-15)
+    const who = [
+      {who: 'You', t: 'Your invite reached Juno in seconds, without leaving home.', good: true},
+      {who: 'Juno', t: 'She can read it now or later, and come to your party.', good: true},
+      {who: 'Your family', t: c.place === 'B' ? 'Your home address is on every copy.' : c[3] === 'B' ? 'Your home address went to the pop-up.' : 'Your home address stayed out of it.'},
+    ];
+    if (c[6] === 'B') who.push({who: 'The soccer kids', t: "12 kids you don't know now have your invite."});
+    return {rows, chips, N, count, id, line: L.end[id], who};
+  }
+  const endLine = () => ending().line;
+
+  // ======================================================================================
+  // Layout and the map
+  // ======================================================================================
+  const sv = $('sv');
+  let view = null, W = 0, H = 0, lastSize = '';
+  function pageLayout() { const w = innerWidth, h = innerHeight; return w >= 1000 && h >= 700 ? 'wide' : w >= 600 && w / h >= 1.25 ? 'compact' : 'stack'; }
+  function relayout(force) {
+    const p = pageLayout();
+    if (p !== state.ui.page) { state.ui.page = p; for (const c of ['wide', 'compact', 'stack']) document.body.classList.toggle(c, c === p); placeOverlays(); }
+    const st = $('stage');
+    if (p === 'stack') { const w = st.getBoundingClientRect().width || innerWidth; st.style.height = Math.round(clamp(w * .72, 270, 380)) + 'px'; }
+    else st.style.height = '';
+    const r = st.getBoundingClientRect(), k = state.mode + ':' + Math.round(r.width) + 'x' + Math.round(r.height);
+    if (k === lastSize && !force) return;
+    lastSize = k;
+    W = Math.max(280, Math.round(r.width)); H = Math.max(240, Math.round(r.height));
+    sv.setAttribute('width', W); sv.setAttribute('height', H); sv.setAttribute('viewBox', `0 0 ${W} ${H}`);
+    drawMap();
+    fitPanel();
+  }
+  // the panel's elements move between slots: the hint sits under the cards in Story and on top in Trip map;
+  // on a narrow screen the invite card and the ending board go into the panel instead of over the map
+  function placeOverlays() {
+    const stack = state.ui.page === 'stack';
+    (stack ? $('inviteSlot') : $('stage')).appendChild($('invite'));
+    (stack ? $('boardSlot') : $('stage')).appendChild($('board'));
+  }
+  function placeHint() { (story() ? $('hintSlotS') : $('hintSlotM')).appendChild($('hint')); (story() ? $('seesSlotS') : $('seesSlotM')).appendChild($('sees')); }
+
+  const PAD = 62;                      // half a tile plus room for a label
+  let hotUp = false;
+  function drawMap() {
+    const g = G();
+    const fitS = (W - 2 * PAD) / 900;  // stops run from x 50 to 950
+    const windowed = fitS < .72, s = windowed ? (W < 520 ? .8 : .86) : fitS;
+    state.ui.windowed = windowed; state.ui.s = s;
+    const stack = state.ui.page === 'stack';
+    const top = stack ? 52 : state.ui.page === 'compact' ? 96 : 74, bottom = stack ? 52 : 62, R = 32;
+    const rowGap = clamp((H - 2 * R - top - bottom) / 2, 54, 170);
+    const cy = Math.max(top + R + rowGap, Math.min(H / 2 + 6, H - bottom - R - rowGap));
+    const box = {x: PAD - 50 * s, y: cy - 2 * rowGap, w: 1000 * s, h: 4 * rowGap};
+    // the map website hangs under Juno's tablet: low enough that its tile clears the tablet's name on a short stage
+    const big0 = W >= 1400 && H >= 640, tileR = (big0 ? 54 : 44) / 2 + 8, labS = big0 ? 17 : W < 520 ? 13 : 14;
+    gStory.node('maps').y = 300 + Math.max(200, (2 * tileR + 13 + labS + 8) / rowGap * 150);
+    // the open hotspot: under your Wi-Fi router on a tall stage; on a short one (rows closer than 100 px) the router's
+    // two-line name leaves no room below, so it goes above the row with its name on its right and its badge on its left
+    hotUp = rowGap < 100;
+    gStory.node('hot').y = hotUp ? 300 - (2 * tileR + 28) / rowGap * 150 : 470;
+    sv.textContent = '';
+    stars();
+    const sky = getComputedStyle(document.documentElement);
+    const big = W >= 1400 && H >= 640;   // a projector: icons and labels a step larger
+    view = net.draw(sv, g, {
+      box, icon: big ? 54 : 44, tile: 'round',
+      // the map website sits low under Juno's tablet, so its name goes on its left, clear of the tablet's own name
+      label: n => n.id === 'maps' ? {dx: -(big ? 54 : 44) / 2 - 16, dy: 5, anchor: 'end'}
+        : n.id === 'hot' && hotUp ? {dx: (big ? 54 : 44) / 2 + 16, dy: 5, anchor: 'start'} : 'below', labelSize: big ? 17 : W < 520 ? 13 : 14, labelGap: 13, labelHaloWidth: 7,
+      labelWidth: big ? 150 : Math.min(116, 100 * s + 4), labelLines: 3,
+      colors: {tile: '#fff8e1', tileLine: '#241b33', ink: '#241b33', label: '#e8e2f5', labelHalo: '#2b2550', wire: '#b6a9d6', wifi: '#b6a9d6',
+        fiber: '#9d8fc6', fiberCore: '#d9d1ee', down: '#8d84a0', downLabel: '#d4cde6', downTile: '#cfc9d9', bad: '#b3261e', ring: '#f2c14e'},
+      pickable: !story(), onPick: n => pickStop(n.id),
+      nodeAria: n => n.label + (n.up ? '' : ', closed'),
+    });
+    state.ui.mapW = 900 * s + 2 * PAD;
+    if (!windowed) state.ui.pan = 0;
+    renderStage(true);
+  }
+  // a few drawn stars in the upper sky (a fixed pattern, so a resize does not reshuffle them)
+  function stars() {
+    const NS = 'http://www.w3.org/2000/svg', gS = document.createElementNS(NS, 'g');
+    gS.setAttribute('aria-hidden', 'true');
+    let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+    const n = Math.round(W * H / 16000);
+    for (let i = 0; i < n; i++) {
+      const c = document.createElementNS(NS, 'circle'), x = rnd() * W, y = Math.pow(rnd(), 1.6) * H * .55, r = rnd() < .15 ? 1.8 : rnd() * .9 + .5;
+      c.setAttribute('cx', x.toFixed(1)); c.setAttribute('cy', y.toFixed(1)); c.setAttribute('r', r.toFixed(2));
+      c.setAttribute('fill', '#fff8e1'); c.setAttribute('opacity', (.45 + rnd() * .5).toFixed(2));
+      gS.appendChild(c);
+    }
+    sv.appendChild(gS);
+  }
+
+  // pan (windowed maps only): the stop in the middle, clamped to the map's ends
+  let panAnim = 0;
+  function panFor(ids) {
+    if (!state.ui.windowed || !ids || !ids.length) return 0;
+    const xs = ids.map(id => PAD + (G().node(id).x - 50) * state.ui.s), cx = (Math.min(...xs) + Math.max(...xs)) / 2;
+    return clamp(cx - W / 2, 0, Math.max(0, state.ui.mapW - W));
+  }
+  function setPan(x) {
+    state.ui.pan = x;
+    if (view) view.root.setAttribute('transform', `translate(${(-x).toFixed(1)},0)`);
+    $('fadeL').hidden = !state.ui.windowed || x < 4;
+    $('fadeR').hidden = !state.ui.windowed || x > state.ui.mapW - W - 4;
+    $('panRow').hidden = !state.ui.windowed;
+    $('panL').disabled = x < 4; $('panR').disabled = x > state.ui.mapW - W - 4;
+  }
+  function panTo(ids, animate = true) {
+    const to = panFor(ids), from = state.ui.pan, me = ++panAnim;
+    if (!animate || Curio.reduce || Math.abs(to - from) < 2) { setPan(to); return pause(0); }
+    const t0 = performance.now(), dur = 650;
+    return new Promise(res => {
+      const step = () => {
+        if (me !== panAnim) return res();
+        const f = Math.min(1, (performance.now() - t0) / dur), e = f < .5 ? 2 * f * f : 1 - Math.pow(-2 * f + 2, 2) / 2;
+        setPan(from + (to - from) * e);
+        if (f < 1) requestAnimationFrame(step); else res();
+      };
+      step();
+    });
+  }
+
+  // looking around a windowed map: the arrow buttons, a drag, or a stop getting keyboard focus
+  function panBy(dx) {
+    const to = clamp(state.ui.pan + dx, 0, Math.max(0, state.ui.mapW - W)), from = state.ui.pan, me = ++panAnim;
+    if (Curio.reduce) return setPan(to);
+    const t0 = performance.now();
+    const step = () => { if (me !== panAnim) return; const f = Math.min(1, (performance.now() - t0) / 400); setPan(from + (to - from) * (1 - Math.pow(1 - f, 2))); if (f < 1) requestAnimationFrame(step); };
+    step();
+  }
+  $('panL').onclick = () => panBy(-W * .6);
+  $('panR').onclick = () => panBy(W * .6);
+  let drag = null;
+  sv.addEventListener('pointerdown', e => { if (state.ui.windowed && e.button === 0) drag = {x: e.clientX, pan: state.ui.pan, moved: false, id: e.pointerId}; });
+  addEventListener('pointermove', e => {
+    if (!drag || e.pointerId !== drag.id) return;
+    const dx = e.clientX - drag.x;
+    if (Math.abs(dx) > 6) drag.moved = true;
+    if (drag.moved) { panAnim++; setPan(clamp(drag.pan - dx, 0, Math.max(0, state.ui.mapW - W))); }
+  });
+  addEventListener('pointerup', () => { if (drag && drag.moved) { const d = drag; setTimeout(() => { if (drag === d) drag = null; }, 0); } else drag = null; });
+  sv.addEventListener('click', e => { if (drag && drag.moved) { e.stopPropagation(); drag = null; } }, true);
+  sv.addEventListener('focusin', e => {
+    const n = e.target.closest && e.target.closest('.net-node'); if (!n || !state.ui.windowed) return;
+    const x = PAD + (G().node(n.dataset.id).x - 50) * state.ui.s - state.ui.pan;
+    if (x < 60 || x > W - 60) panTo([n.dataset.id]);
+  });
+
+  // ======================================================================================
+  // Stage drawing: rings, badges, stacks of pieces, the trail, Juno's slots, phones
+  // ======================================================================================
+  const NS = 'http://www.w3.org/2000/svg';
+  const mk = (tag, attrs, parent) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; };
+  let deco = null, slotG = null;
+  function renderStage(redrawn) {
+    if (!view) return;
+    const g = G();
+    // badges and the ring
+    if (story()) {
+      const c = state.choices;
+      view.badge('home', c[2] === 'A' ? {icon: 'lock', fill: '#f2c14e', ink: '#241b33', line: '#241b33'} : null);
+      view.badge('hot', c[2] === 'B' ? {icon: 'open', text: 'open', fill: '#b3261e', side: hotUp ? 'left' : 'right'} : null);
+      // the server keeps a copy (stop 5 on); the profile choice shows on it too
+      const prof = state.ch > 5 || (state.ch === 5 && state.resOut === 5) ? c[5] : null;
+      view.badge('srv', !state.copy || state.ch === 7 ? null : prof === 'B' ? {icon: 'open', text: 'copy, everyone', fill: '#b3261e', side: 'left'}
+        : prof === 'A' ? {icon: 'lock', text: 'copy, friends', fill: '#f2c14e', ink: '#241b33', line: '#241b33', side: 'left'}
+        : {text: 'copy', fill: '#f2c14e', ink: '#241b33', line: '#241b33', side: 'left'});
+      view.ring(state.ch < 7 ? CH_STOP[state.ch] : null);
+    } else {
+      view.badge('home', null); view.badge('srv', null);
+      view.ring(state.map.sel ? [state.map.sel] : null);
+    }
+    // the trail: gold dots on links pieces have used, drawn with the links (under the tiles)
+    const oldTrail = view.layers.links.querySelector('.trail'); if (oldTrail) oldTrail.remove();
+    const trailG = mk('g', {class: 'trail', 'aria-hidden': 'true'}, view.layers.links);
+    for (const k of state.trail) {
+      const [a, b] = k.split('|'), l = g.link(a, b); if (!l) continue;
+      const pts = view.linkPoints(l);
+      mk('path', {d: 'M' + pts.map(p => p[0].toFixed(1) + ' ' + p[1].toFixed(1)).join('L'), fill: 'none', stroke: '#f2c14e', 'stroke-width': 4.5, 'stroke-linecap': 'round', 'stroke-dasharray': '0.1 11'}, trailG);
+    }
+    // stacks: pieces waiting at a stop
+    if (deco) deco.remove();
+    deco = mk('g', {class: 'deco'}, view.layers.under);
+    const pieces = story() ? state.pieces : state.map.pieces;
+    const at = {};
+    for (const p of pieces) if (!state.flying.has(p.seq) && !p.slot && p.at) (at[p.at] = at[p.at] || []).push(p);
+    for (const id in at) {
+      // top left of the tile; the server's badge is there, so its stack sits top right
+      const pos = view.pos(id), x = id === 'srv' ? pos.x + view.R - 8 : pos.x - view.R + 4, y = pos.y - view.R - 10, n = at[id].length;
+      const sg = mk('g', {transform: `translate(${x},${y})`, class: 'stack', 'aria-hidden': 'true'}, deco);
+      for (let i = Math.min(2, n - 1); i >= 0; i--) {
+        mk('rect', {x: -17 + i * 3, y: -12 - i * 3, width: 34, height: 24, rx: 3, fill: '#fff8e1', stroke: '#241b33', 'stroke-width': 2}, sg);
+        mk('path', {d: `M${-17 + i * 3} ${-11 - i * 3}L${i * 3} ${2 - i * 3}L${17 + i * 3} ${-11 - i * 3}`, fill: 'none', stroke: '#241b33', 'stroke-width': 1.6}, sg);
+      }
+      mk('circle', {cx: 20, cy: -16, r: 11, fill: '#6a3d9a', stroke: '#fff', 'stroke-width': 2}, sg);
+      const t = mk('text', {x: 20, y: -11.5, 'text-anchor': 'middle', 'font-size': 13, 'font-weight': 800, fill: '#fff', 'font-family': 'Segoe UI,sans-serif'}, sg);
+      t.textContent = n;
+    }
+    // Juno's slot strip
+    drawSlots(pieces);
+    // phones (6B) and the bounced tag position are drawn on demand
+    if (story() && state.choices[6] === 'B' && state.ch >= 6) drawPhones();
+    if (redrawn) setPan(story() ? panFor(CH_STOP[Math.min(state.ch, 6)]) : state.ui.pan);
+    // overlays over the map
+    renderInvite(); renderPopup(); renderBoard();
+  }
+  function slotPos(i) {
+    const p = view.pos('juno'), cols = 4, sz = 30, gap = 4;
+    const x0 = p.x + view.R - cols * (sz + gap) + gap + 2, y0 = p.y - view.R - 14 - 2 * (sz + gap);
+    return {x: x0 + (i % cols) * (sz + gap), y: y0 + Math.floor(i / cols) * (sz + gap), sz};
+  }
+  function drawSlots(pieces) {
+    if (slotG) slotG.remove();
+    slotG = mk('g', {class: 'slots'}, view.layers.under);
+    const filled = new Map(pieces.filter(p => p.slot).map(p => [p.seq, p]));
+    const head = slotPos(0);
+    const lab = mk('text', {x: head.x, y: head.y - 6, 'font-size': 12.5, 'font-weight': 700, fill: '#e8e2f5', 'font-family': 'Segoe UI,sans-serif',
+      'paint-order': 'stroke', stroke: '#2b2550', 'stroke-width': 4}, slotG);
+    lab.textContent = 'Pieces in order';
+    for (let i = 0; i < 8; i++) {
+      const s = slotPos(i), f = filled.get(i + 1);
+      mk('rect', {x: s.x, y: s.y, width: s.sz, height: s.sz, rx: 6, fill: f ? '#fff8e1' : 'rgba(255,255,255,.08)', stroke: f ? '#f2c14e' : '#e8e2f5',
+        'stroke-width': f ? 2.5 : 1.5, 'stroke-dasharray': f ? '' : '3 3'}, slotG);
+      const t = mk('text', {x: s.x + s.sz / 2, y: s.y + s.sz / 2 + 5, 'text-anchor': 'middle', 'font-size': 14, 'font-weight': 800,
+        fill: f ? '#241b33' : '#e8e2f5', 'font-family': 'Segoe UI,sans-serif'}, slotG);
+      t.textContent = i + 1;
+    }
+    // the whole message, once every piece is in
+    const all = pieces.length && pieces.every(p => p.slot);
+    const onStage = state.ui.page === 'wide';
+    const seesHTML = () => story() ? `<b>Juno sees:</b> ${esc(net.join(state.pieces.filter(p => !p.photo).map(p => ({...p, of: 7}))).text)} <span style="white-space:nowrap">${ico(state.choices.photo === 'B' ? 'shirt' : 'cake', 'ic', 18)} photo</span>`
+      : `<b>Juno sees:</b> ${esc(state.map.word)}`;
+    const se = $('sees'), panelSees = all && !onStage && !(story() && state.ch === 7);
+    se.hidden = !panelSees;
+    if (panelSees) { const h = seesHTML(); if (se.innerHTML !== h) se.innerHTML = h; }
+    if (all && onStage) {
+      // the message goes above the slot strip when there is room, else under Juno's label
+      const p = view.pos('juno'), w = Math.min(story() ? 250 : 150, W - 16);
+      const right = Math.min(p.x + view.R + 4, W + state.ui.pan - 8), x = right - w;
+      const fo = mk('foreignObject', {x, y: 0, width: w, height: 300}, slotG);
+      const div = document.createElement('div');
+      div.setAttribute('style', `background:#fff8e1;color:#241b33;border:2px solid #f2c14e;border-radius:10px;padding:5px 8px;font:600 ${W < 520 ? 12.5 : 13.5}px/1.3 Segoe UI,sans-serif`);
+      div.innerHTML = seesHTML();
+      fo.appendChild(div);
+      const h = div.offsetHeight + 2, above = head.y - 22 - h;
+      fo.setAttribute('height', h);
+      fo.setAttribute('y', above >= 4 ? above : Math.min(p.y + view.R + 46, H - h - 4));
+    }
+  }
+  // 6B: twelve phones of the soccer group, in two rows left of Juno's slot strip
+  function drawPhones() {
+    if (deco.querySelector('.phones')) return;
+    const s0 = slotPos(0), gP = mk('g', {class: 'phones'}, deco);
+    gP.setAttribute('role', 'img'); gP.setAttribute('aria-label', "Juno's soccer group: 12 phones");
+    const right = s0.x - 14;
+    for (let i = 0; i < 12; i++) {
+      const x = right - 13 - (i % 6) * 17, y = s0.y + Math.floor(i / 6) * 32;
+      mk('rect', {x, y, width: 13, height: 24, rx: 3, fill: '#e8e2f5', stroke: '#241b33', 'stroke-width': 1.5}, gP);
+      mk('rect', {x: x + 2.5, y: y + 3, width: 8, height: 14, rx: 1, fill: '#f2c14e'}, gP);
+    }
+    const t = mk('text', {x: right - 6 * 17 + 4, y: s0.y - 6, 'font-size': 12.5, 'font-weight': 700, fill: '#e8e2f5', 'font-family': 'Segoe UI,sans-serif',
+      'paint-order': 'stroke', stroke: '#2b2550', 'stroke-width': 4}, gP);
+    t.textContent = '12 phones';
+  }
+
+  // ======================================================================================
+  // Overlays: the invite card (ch1), the pop-up (ch3), the ending board (ch7)
+  // ======================================================================================
+  function renderInvite() {
+    const el = $('invite');
+    const show = story() && state.ch === 1;
+    el.hidden = !show;
+    if (!show) return;
+    const c = state.choices, p = inviteParts();
+    if (!state.pieces.length) {
+      el.classList.remove('cut');
+      const b = (t, what) => t ? esc(t) : `<span class="blank">${what}</span>`;
+      el.innerHTML = `<h3>Your message to Juno</h3><p class="msg">Come to my party! Saturday at 2, ${b(p.place, 'place')}. ${b(p.extra, 'extra')}</p>` +
+        `<div class="pv">${c.photo ? ico(c.photo === 'B' ? 'shirt' : 'cake', 'ic', 30) + esc(p.photo) : '<span class="blank">photo</span>'}</div>`;
+    } else {
+      el.classList.add('cut');
+      el.innerHTML = `<h3>Cut into 8 numbered pieces</h3><div class="pieces">` +
+        state.pieces.map(q => `<span class="pc"><i>${q.seq}</i>${q.photo ? ico(c.photo === 'B' ? 'shirt' : 'cake', 'ic', 18) + 'photo' : esc(q.data)}</span>`).join('') +
+        `</div><p class="note">Piece 8 is the photo. A real photo would be hundreds of pieces.</p>`;
+    }
+  }
+  function givesHTML() {
+    const c = state.choices, list = PAIRS1.filter(p => c[p.k] === 'B');
+    return `<b>What this message gives away</b>` + (list.length
+      ? `<ul>${list.map(p => `<li>${chip(p.B.priv)}<span>${esc(GIVES[p.k])}</span></li>`).join('')}</ul>`
+      : `<span>Nothing private: no address, no phone number, no school.</span>`);
+  }
+  function renderPopup() {
+    const el = $('popup');
+    const show = story() && state.ch === 3 && state.choices[3] !== 'A';
+    el.hidden = !show;
+    if (!show) return;
+    const sent = state.choices[3] === 'B';
+    el.className = 'ov' + (sent ? ' sent' : '');
+    const canClose = state.ch === 3 && state.phase === 'choose';
+    el.innerHTML = `<div class="bar"><span>On your tablet</span><button class="x" id="popX" aria-label="Close the pop-up and tell a grown-up"${canClose ? '' : ' disabled'}>✕</button></div><div class="body"><p class="big">You won a free game!</p>` +
+      `Type your name and address.<div class="fld">${sent ? 'Name: (your name)' : 'Name'}</div><div class="fld">${sent ? 'Address: 14 Birch Lane' : 'Address'}</div>` +
+      (sent ? '<p class="stamp">Sent to a website you don\'t know.</p>' : '') + '</div>';
+    $('popX').onclick = () => choose(3, 'A');
+  }
+  let boardShown = -1;
+  function renderBoard() {
+    const el = $('board');
+    const show = story() && state.ch === 7;
+    el.hidden = !show;
+    if (!show) { boardShown = -1; return; }
+    // the board covers the map from just left of the server, so the stops it leaves are whole
+    const left = view ? Math.round((view.pos('rA').x + view.pos('srv').x) / 2 + 8 - state.ui.pan) : W / 2;
+    const full = W < 820 || W - left < 340 || state.ui.page === 'stack';
+    el.classList.toggle('full', full);
+    el.style.width = full ? '' : (W - left) + 'px';
+    const e = ending();
+    const key = JSON.stringify(state.choices);
+    if (boardShown === key) return;
+    const fresh = boardShown === -1 && state.phase === 'end' && !state.boardDone;
+    boardShown = key;
+    el.innerHTML = `<h3>Where copies live</h3><p class="count">${esc(e.count)}</p><ul class="rows">` + e.rows.map(r => `<li class="${r.extra ? 'extra' : ''}"><span class="bi">${r.icon === 'tablet' || r.icon === 'server' ? net.icon(r.icon, 32, '#241b33') : ico(r.icon, 'ic', 30)}</span>` +
+      `<span class="pl">${esc(r.place)}</span><span class="ch">${r.what ? `<span class="whole">${esc(r.what)}</span>` : ''}${r.chips.map(chip).join('')}</span></li>`).join('') +
+      `</ul><div class="who"><h4>Who it touched</h4><ul>${e.who.map(w => `<li><b>${esc(w.who)}:</b> <span class="${w.good ? 'good' : ''}">${esc(w.t)}</span></li>`).join('')}</ul></div>`;
+    const items = [el.querySelector('.count'), ...el.querySelectorAll('.rows li'), el.querySelector('.who')];
+    if (!fresh) { items.forEach(i => i.classList.add('in')); return; }
+    state.boardDone = true;
+    items.forEach((it, i) => setTimeout(() => it.classList.add('in'), (250 + i * 420) * T));
+  }
+
+  // ======================================================================================
+  // The Story panel
+  // ======================================================================================
+  function card(ch, ab, d, picked) {
+    const b = document.createElement('button');
+    b.className = 'card';
+    b.dataset.ch = ch; b.dataset.pick = ab;
+    b.setAttribute('aria-pressed', picked === ab);
+    if (picked && picked !== ab) b.classList.add('faded');
+    b.innerHTML = `${ico(d.i)}<span class="tx"><span>${esc(d.t)}</span>${d.s ? `<small>${esc(d.s)}</small>` : ''}</span><span class="chk" aria-hidden="true">✓</span>`;
+    return b;
+  }
+  function narrowCh1() { return state.ui.page === 'stack' && innerWidth < 560 || (state.ui.page === 'compact' && innerHeight < 450); }
+  function renderPanel() {
+    $('storyP').hidden = !story(); $('mapP').hidden = story();
+    placeHint();
+    if (!story()) return;
+    const ch = state.ch, ph = state.phase, c = state.choices;
+    const af = document.activeElement, keep = af && af.classList && af.classList.contains('card') ? [af.dataset.ch, af.dataset.pick] : null;
+    $('chap').innerHTML = `Stop ${ch} of 7<b>${esc(TITLES[ch])}</b>`;
+    $('artcard').hidden = ch !== 5;
+    $('storyText').textContent = ch === 7 ? endLine() : shownText();
+    const pairs = $('pairs'); pairs.textContent = '';
+    $('steps').hidden = true;
+    if (ch === 1) {
+      const locked = ph !== 'choose';
+      const narrow = narrowCh1() && !locked;
+      const list = narrow ? [PAIRS1[state.step1]] : PAIRS1;
+      if (narrow) {
+        const st = $('steps'); st.hidden = false; st.textContent = '';
+        PAIRS1.forEach((p, i) => {
+          const b = document.createElement('button'); b.textContent = p.lab; b.className = c[p.k] ? 'done' : '';
+          if (i === state.step1) b.setAttribute('aria-current', 'step');
+          b.onclick = () => { state.step1 = i; renderPanel(); focusFirstCard(); };
+          st.appendChild(b);
+        });
+      }
+      // after Send the invite card shows every pick, so the cards go and Next stays in view
+      for (const p of locked ? [] : list) {
+        const row = document.createElement('div'); row.className = 'pair'; row.setAttribute('role', 'group'); row.setAttribute('aria-label', p.lab);
+        if (!narrow && state.ui.page === 'wide') { const lab = document.createElement('p'); lab.className = 'pairlab'; lab.textContent = p.lab; row.appendChild(lab); }
+        for (const ab of ORDER[p.k]) { const b = card(p.k, ab, p[ab], c[p.k]); b.disabled = locked; row.appendChild(b); }
+        pairs.appendChild(row);
+      }
+      $('send').hidden = locked;
+      $('send').disabled = !(c.place && c.extra && c.photo);
+    } else if (ch <= 6) {
+      $('send').hidden = true;
+      const showCards = ph !== 'intro';
+      if (showCards) {
+        const row = document.createElement('div'); row.className = 'pair'; row.setAttribute('role', 'group'); row.setAttribute('aria-label', 'Choices');
+        for (const ab of ORDER[ch]) { const b = card(ch, ab, PAIRS[ch][ab], c[ch]); b.disabled = ph !== 'choose'; row.appendChild(b); }
+        pairs.appendChild(row);
+      }
+    } else $('send').hidden = true;
+    $('result').textContent = ch < 7 && state.resOut === ch && (ph === 'moving' || ph === 'next') ? resultLine(ch) : '';
+    $('next').hidden = !(ph === 'next' && ch < 7);
+    const g = $('gives'), showG = ch === 1 && state.resOut === 1 && state.pieces.length > 0;
+    g.hidden = !showG; if (showG) { const h = givesHTML(); if (g.innerHTML !== h) g.innerHTML = h; }
+    $('endBtns').hidden = ch !== 7;
+    $('boardSlot').hidden = ch !== 7;
+    if (keep) { const b = $('pairs').querySelector(`.card[data-ch="${keep[0]}"][data-pick="${keep[1]}"]`); if (b && !b.disabled) b.focus({preventScroll: true}); }
+    hint(ch === 7 ? L.again : ph === 'next' ? L.next : ph === 'choose' ? (ch === 1 ? L.h.send : L.h.choose) : L.h.watch);
+    fitPanel();
+    // stacked page: when the next control appears below the fold, bring it into view once
+    if (state.ui.page === 'stack') {
+      const sendReady = !$('send').hidden && !$('send').disabled;
+      const now = sendReady ? 'send' : !$('next').hidden ? 'next' : !$('endBtns').hidden ? 'endBtns' : '';
+      if (now && now !== state.ui.shown) {
+        const el = $(now), r = el.getBoundingClientRect();
+        if (r.bottom > innerHeight - 8) el.scrollIntoView({block: 'nearest', behavior: Curio.reduce ? 'auto' : 'smooth'});
+      }
+      state.ui.shown = now;
+    }
+  }
+  const resultLine = ch => ch === 1 ? L.res[1] : L.res[ch + state.choices[ch]];
+  // the chapter's story text: chapter 6 grows with its look-up beat and Juno's question
+  const storyText = () => state.ch === 6 && state.look ? [L.ch[6], L.look, L.ask6].join(' ') : L.ch[state.ch];
+  // on a short panel, chapter 6 shows only Juno's question once the look-up is done (all of it was spoken and shown)
+  const shownText = () => state.ch === 6 && state.look && state.ui.page !== 'wide' ? L.ask6 : storyText();
+  // stack layout, one ch1 pair at a time on a phone: the cards are the first thing under the map
+  function fitPanel() {
+    const narrowNow = narrowCh1();
+    if (fitPanel.was !== undefined && fitPanel.was !== narrowNow && story() && state.ch === 1) { fitPanel.was = narrowNow; renderPanel(); return; }
+    fitPanel.was = narrowNow;
+  }
+  function focusFirstCard() { const b = $('pairs').querySelector('.card:not(:disabled)'); if (b) b.focus({preventScroll: true}); }
+
+  $('pairs').addEventListener('click', e => {
+    const b = e.target.closest('.card'); if (!b || b.disabled) return;
+    const ch = b.dataset.ch, ab = b.dataset.pick;
+    choose(/^\d$/.test(ch) ? +ch : ch, ab);
+  });
+
+  // choose(ch, pick): ch 1 takes a part name ('place', 'extra', 'photo') or 1 with {place, extra, photo}; others 'A' or 'B'
+  function choose(ch, pick) {
+    if (!story()) return false;
+    if (ch === 1 || PAIRS1.some(p => p.k === ch)) {
+      if (state.ch !== 1 || state.phase !== 'choose') return false;
+      if (ch === 1 && typeof pick === 'object') Object.assign(state.choices, pick);
+      else if (ch === 1) { state.choices.place = state.choices.extra = state.choices.photo = pick; }
+      else {
+        state.choices[ch] = pick;
+        const i = PAIRS1.findIndex(p => p.k === ch);
+        if (narrowCh1()) { const nx = PAIRS1.findIndex(p => !state.choices[p.k]); if (nx >= 0) state.step1 = nx; else state.step1 = i; }
+      }
+      Curio.tone(520, .12, .03);
+      renderPanel(); renderInvite();
+      if (narrowCh1()) focusFirstCard();
+      if (state.choices.place && state.choices.extra && state.choices.photo)
+        V.how(L.h.send, {key: 'send', needs: '#send', hint: false, valid: () => state.ch === 1 && state.phase === 'choose'});
+      return true;
+    }
+    if (state.ch !== ch || state.phase !== 'choose') return false;
+    state.choices[ch] = pick;
+    afterChoice(ch);
+    return true;
+  }
+
+  // ======================================================================================
+  // The story's beats
+  // ======================================================================================
+  const posFor = (ch, ph) => {
+    const all = v => Array(8).fill(v), half = (a, b) => [a, a, a, a, b, b, b, b];
+    const moved = ph === 'moving' || ph === 'next';
+    if (ch === 1) return all('you');
+    if (ch === 2) return moved ? all('ispA') : all('you');
+    if (ch === 3) return moved ? half('srv', 'ispA') : all('ispA');
+    if (ch === 4) return moved ? all('srv') : half('srv', 'ispA');
+    if (ch === 5 || (ch === 6 && ph === 'intro')) return all('srv');
+    return all('slot');
+  };
+  // put every piece where this chapter and phase leave it (after an interruption, or on a redraw)
+  function settle() {
+    const pos = posFor(state.ch, state.phase);
+    gStory.node('rA').up = state.ch < 4;
+    state.copy = state.ch >= 5;
+    state.look = state.ch > 6 || (state.ch === 6 && state.phase !== 'intro');
+    gStory.node('hot').hidden = state.ch < 2;
+    gStory.node('maps').hidden = !state.look;
+    state.trail = new Set(trailFor(state.ch, state.phase));
+    state.flying.clear();
+    state.pieces.forEach((p, i) => { if (pos[i] === 'slot') { p.slot = true; p.at = 'juno'; } else { p.slot = false; p.at = pos[i]; } });
+  }
+  function trailFor(ch, ph) {
+    const t = [];
+    const moved = ph === 'moving' || ph === 'next';
+    const add = (...ids) => { for (let i = 1; i < ids.length; i++) t.push(net.key(ids[i - 1], ids[i])); };
+    if (ch > 2 || (ch === 2 && moved)) add('you', state.choices[2] === 'B' ? 'hot' : 'home', 'ispA');
+    if (ch > 3 || (ch === 3 && moved)) add('ispA', 'rA', 'srv');
+    if (ch > 4 || (ch === 4 && moved)) add('ispA', 'rB', 'srv');
+    if (ch > 6 || (ch === 6 && ph !== 'intro')) add('srv', 'rC', 'ispB', 'home2', 'juno'), add('srv', 'rD', 'ispB'), add('ispB', 'maps');
+    return t;
+  }
+
+  async function openChapter(n, opts = {}) {
+    const r = ++run;
+    state.ch = n; state.phase = n === 7 ? 'end' : 'intro'; state.resOut = 0;
+    if (n === 7) state.boardDone = false;
+    settle();
+    if (n === 4) gStory.node('rA').up = true;   // it closes in the opening beat
+    renderPanel(); refresh();
+    // a waiting how-to ("Press Next") has had its moment; story lines still queued (a result, Juno's question) are
+    // never cut, so the chapter line waits its turn behind them
+    V.dropQueued(x => x.kind === 'how');
+    const cutHow = V.playing === L.next && !V.queue.length;   // "Press Next" still playing: it has had its moment
+    if (n < 7) V.say(L.ch[n], {key: 'ch' + n, valid: () => state.ch === n && story(), hint: false, now: cutHow});
+    await panTo(CH_STOP[Math.min(n, 6)], !opts.instant);
+    if (!alive(r)) return;
+    if (n === 4) {   // pieces 1 to 4 have passed; now Router A closes
+      await pause(600); if (!alive(r)) return;
+      gStory.node('rA').up = false; view.update(); renderStage();
+      Curio.tone(330, .25, .04, 'triangle');
+      live('Router A is closed.');
+      await pause(500); if (!alive(r)) return;
+    }
+    if (n === 6) {   // the pieces cross the second half: odd by Router C, even by Router D; then Juno looks up the way
+      await travel6(r); if (!alive(r)) return;
+      await lookUp(r); if (!alive(r)) return;
+    }
+    if (n === 7) {
+      renderStage();
+      const e = ending();
+      await pause(250 + (e.rows.length + 1) * 420); if (!alive(r)) return;
+      V.say(e.line, {key: 'end', valid: () => state.ch === 7 && story(), hint: false});
+      V.how('again', {needs: '#again', valid: () => state.ch === 7});
+      if (lostFocus()) $('again').focus({preventScroll: true});
+      return;
+    }
+    state.phase = 'choose';
+    renderPanel(); renderStage();
+    if (lostFocus()) focusFirstCard();
+  }
+  // a panel button that had focus went away (Next hid, a card was disabled): keyboard users keep their place. Nothing
+  // moves focus on load, or when focus was somewhere else (the header, the map, the host page around an embed)
+  let panelFocus = false;
+  document.addEventListener('focusin', e => { panelFocus = !!(e.target.closest && e.target.closest('#panel')); });
+  const lostFocus = () => panelFocus && (!document.activeElement || document.activeElement === document.body);
+  // chapter 6: Juno asks a map website the way; a question goes out and the answer comes back (E3-SYS-NT-14)
+  async function lookUp(r) {
+    state.look = true;
+    gStory.node('maps').hidden = false; view.update();
+    renderPanel(); renderStage();
+    V.say(L.look, {key: 'look', valid: () => state.ch === 6 && story(), hint: false});
+    live(L.look);
+    await pause(500); if (!alive(r)) return;
+    const hops = ['juno', 'home2', 'ispB', 'maps'];
+    await net.send(sv, gStory, {seq: '?', at: 'juno', dst: 'maps'}, hops, {speed: speedStory / T, token: 'numbered', onHop: id => { state.trail.add(net.key(prevOf(hops, id), id)); renderStage(); }});
+    if (!alive(r)) return;
+    Curio.tone(660, .12, .03);
+    await net.send(sv, gStory, {seq: 'map', at: 'maps', dst: 'juno'}, [...hops].reverse(), {speed: speedStory / T, token: 'envelope'});
+    if (!alive(r)) return;
+    Curio.tone(780, .15, .03);
+    live('The answer came back: the way to the party.');
+    V.say(L.ask6, {key: 'ask6', valid: () => state.ch === 6 && story(), hint: false});
+    await pause(300);
+  }
+
+  async function afterChoice(ch) {
+    const r = run;
+    state.phase = 'moving';
+    if (ch === 1) cutInvite();
+    Curio.tone(ch === 1 ? 600 : 560, .15, .035);
+    let resP = null, isOut = false;
+    const out = () => { if (isOut || !alive(r)) return; isOut = true; state.resOut = ch; resP = sayResult(ch); renderPanel(); renderStage(); };
+    if (!(ch === 4 && state.choices[4] === 'A')) out();   // 4A: said when the pieces bounce
+    renderPanel(); renderStage();
+    await pause(ch === 1 ? 900 : 600); if (!alive(r)) return;
+    if (ch === 2) await moveAll(r, [1, 2, 3, 4, 5, 6, 7, 8], ['you', state.choices[2] === 'B' ? 'hot' : 'home', 'ispA']);
+    else if (ch === 3) await moveAll(r, [1, 2, 3, 4], ['ispA', 'rA', 'srv']);
+    else if (ch === 4) {
+      if (state.choices[4] === 'A') {
+        // each piece goes on by Router B as soon as it bounces back, so A lands about one bounce (2 s) after B
+        await Promise.all([5, 6, 7, 8].map((s, i) => (async () => {
+          await fly(r, s, ['ispA', 'rA'], i * 250, {onDown: 'bounce', onBounce: () => { bouncedTag(); out(); }});
+          if (alive(r)) await fly(r, s, ['ispA', 'rB', 'srv'], 0);
+        })()));
+        if (!alive(r)) return;
+        out();
+      } else await moveAll(r, [5, 6, 7, 8], ['ispA', 'rB', 'srv']);
+    } else if (ch === 5) {
+      await pause(400); if (!alive(r)) return;
+      Curio.tone(700, .2, .03);
+      await pause(700);
+    } else if (ch === 6) {
+      await pause(300);
+      if (state.choices[6] === 'B') { drawPhones(); Curio.tone(440, .2, .03); }
+      await pause(700);
+    }
+    if (!alive(r)) return;
+    out();
+    // Next shows once the result has been heard (Sound on), so a quick Next never drops it; at most 30 s of real time
+    if (resP) { await Promise.race([resP, wait(30000)]); if (!alive(r)) return; }
+    state.phase = 'next';
+    renderPanel(); renderStage();
+    if (lostFocus()) $('next').focus({preventScroll: true});
+    V.how('next', {needs: '#next', valid: () => state.ch === ch && state.phase === 'next'});
+  }
+  // the result line: it waits behind the chapter's own line (or the welcome) and cuts in on anything else, so
+  // neither the chapter line nor the result is lost. Returns a promise for its end when it will be spoken.
+  function sayResult(ch) {
+    const mine = new Set([L.wStory, L.ch[1], L.ch[ch], L.look, L.ask6]);
+    const busy = (V.playing && mine.has(V.playing)) || V.queue.some(x => mine.has(x.text));
+    V.dropQueued(x => !mine.has(x.text));
+    live(resultLine(ch));
+    const p = V.say(resultLine(ch), {key: 'res', valid: () => state.ch === ch && story(), hint: false, now: !busy, wait: true});
+    return Curio.sound && V.tapped ? p : null;
+  }
+  // move a group of pieces along hops, 250 ms apart
+  async function moveAll(r, seqs, hops) {
+    await Promise.all(seqs.map((s, i) => fly(r, s, hops, i * 250)));
+  }
+  async function fly(r, seq, hops, delay, o = {}) {
+    if (delay) { await pause(delay); if (!alive(r)) return 'stopped'; }
+    const p = state.pieces[seq - 1];
+    state.flying.add(seq); renderStage();
+    const res = await net.send(sv, gStory, {seq, at: hops[0], dst: hops[hops.length - 1]}, hops,
+      {speed: speedStory / T, token: 'envelope', onHop: (id, pk) => { state.trail.add(net.key(prevOf(hops, id), id)); p.at = id; renderStage(); }, ...o});
+    if (!alive(r)) return 'stopped';
+    state.flying.delete(seq);
+    p.at = res === 'bounced' ? hops[0] : hops[hops.length - 1];
+    renderStage();
+    return res;
+  }
+  const prevOf = (hops, id) => hops[hops.indexOf(id) - 1];
+  function bouncedTag() {
+    // with Motion off there is no shake: a "bounced" tag shows for 1 s instead
+    if (!Curio.reduce || $('bounced')) return;
+    const p = view.pos('rA'), t = document.createElement('div');
+    t.className = 'tag'; t.id = 'bounced'; t.textContent = 'bounced';
+    t.style.left = Math.round(p.x - state.ui.pan + view.R + 4) + 'px'; t.style.top = Math.round(p.y - view.R - 4) + 'px';
+    $('stage').appendChild(t);
+    setTimeout(() => t.remove(), 1000);
+  }
+  // chapter 6: odd pieces by Router C, even by Router D; they land 1, 3, 5, 7, 2, 4, 6, 8 and slide into slots
+  async function travel6(r) {
+    state.pieces.forEach(p => { p.slot = false; p.at = 'srv'; });
+    state.landOrder = [];
+    renderStage();
+    await Promise.all(state.pieces.map((p, i) => (async () => {
+      const hops = p.seq % 2 ? ['srv', 'rC', 'ispB', 'home2', 'juno'] : ['srv', 'rD', 'ispB', 'home2', 'juno'];
+      const res = await fly(r, p.seq, hops, i * 250);
+      if (res !== 'arrived' || !alive(r)) return;
+      state.landOrder.push(p.seq);
+      await slide(r, p, state.pieces);
+    })()));
+    if (!alive(r)) return;
+    Curio.yes();
+    live('All 8 pieces are in order. The invite reads whole on Juno\'s tablet.');
+    renderStage();
+    await pause(600);
+  }
+  // a landed piece slides from the tablet into its numbered slot (Motion off: it jumps, same time)
+  async function slide(r, p, list) {
+    state.flying.add(p.seq);
+    const tok = net.token(view, 'envelope', String(p.seq));
+    const from = view.pos('juno'), s = slotPos(p.seq - 1), to = {x: s.x + s.sz / 2, y: s.y + s.sz / 2};
+    net.place(tok, from.x, from.y);
+    Curio.tone(620 + p.seq * 40, .14, .03);
+    const dur = 320 * T, t0 = performance.now();
+    if (Curio.reduce) await wait(dur);
+    else await new Promise(res => { const st = () => { const f = Math.min(1, (performance.now() - t0) / dur); net.place(tok, from.x + (to.x - from.x) * f, from.y + (to.y - from.y) * f); f < 1 ? requestAnimationFrame(st) : res(); }; st(); });
+    tok.remove();
+    state.flying.delete(p.seq);
+    if (r !== null && !alive(r)) return;
+    p.slot = true; p.at = 'juno';
+    renderStage();
+  }
+
+  function startOver() {
+    run++; V.hush(); net.stop(sv);
+    state.choices = {}; state.pieces = []; state.flying.clear(); state.trail.clear(); state.step1 = 0; state.boardDone = false;
+    gStory.node('rA').up = true;
+    view && view.update();
+    openChapter(1);
+    if (panelFocus) focusFirstCard();
+  }
+  $('send').onclick = () => { if (state.ch === 1 && state.phase === 'choose' && !$('send').disabled) afterChoice(1); };
+  $('next').onclick = () => { if (state.phase === 'next' && state.ch < 7) openChapter(state.ch + 1); };
+  $('restart').onclick = startOver;
+  $('again').onclick = startOver;
+  $('toMap').onclick = () => setMode('map');
+
+  // ======================================================================================
+  // Trip map
+  // ======================================================================================
+  function pickStop(id) {
+    if (story()) return;
+    state.map.sel = id; state.map.env = null;
+    const n = gMap.node(id);
+    const card = $('stopcard');
+    card.className = 'stopcard';
+    card.innerHTML = `<span class="ico">${net.icon(n.kind, 40, '#241b33')}</span><h2>${esc(n.label)}${n.up ? '' : ' (closed)'}</h2><p>${esc(STOPCARD[id])}</p>`;
+    Curio.tone(600, .1, .025);
+    renderStage();
+  }
+  function showEnvelope(pk) {
+    state.map.env = pk.seq;
+    const card = $('stopcard');
+    card.className = 'stopcard';
+    card.innerHTML = `<span class="ico" aria-hidden="true"><svg viewBox="0 0 40 30" width="40" height="30"><rect x="1" y="1" width="38" height="28" rx="3" fill="#fff8e1" stroke="#241b33" stroke-width="2"/><path d="M1 2l19 14L39 2" fill="none" stroke="#241b33" stroke-width="2"/></svg></span>` +
+      `<h2>Piece ${pk.seq} of ${pk.of}</h2><div class="env" style="grid-column:1/-1"><span><b>To:</b> Juno, through the message app</span><span></span><span><b>From:</b> Your tablet</span><span></span></div>` +
+      `<p style="display:flex;gap:8px;align-items:center"><svg viewBox="0 0 24 26" width="26" height="28" aria-hidden="true"><rect x="2" y="11" width="20" height="14" rx="3" fill="#f2c14e" stroke="#241b33" stroke-width="2"/><path d="M6 11V7a6 6 0 0 1 12 0v4" fill="none" stroke="#241b33" stroke-width="2.4"/></svg>` +
+      `<span>The words inside are locked. Routers read only the outside.</span></p>`;
+  }
+  // "Hello Juno!" in 8 letter groups (2, 2, 2, 1, 1, 1, 1, 1 letters)
+  function helloPieces() {
+    const s = 'Hello Juno!', sizes = [2, 2, 2, 1, 1, 1, 1, 1], out = []; let i = 0;
+    sizes.forEach((n, k) => { out.push({seq: k + 1, of: 8, src: 'you', dst: 'juno', data: s.slice(i, i + n)}); i += n; });
+    return out;
+  }
+  async function sendTest() {
+    if (story()) return;
+    const id = ++state.map.testId, m = state.map;
+    net.stop(sv); V.dropQueued(x => x.key === 'landed');
+    state.flying.clear();
+    m.word = 'Hello Juno!';
+    m.pieces = helloPieces().map(p => ({...p, at: 'you', slot: false}));
+    state.trail.clear();
+    m.route = net.path(gMap, 'you', 'juno', {by: 'ms'});
+    const toSrv = net.path(gMap, 'you', 'srv', {by: 'ms'});
+    const fromSrvEven = net.path(gMap, 'srv', 'juno', {by: 'ms', avoid: n => n.id === 'rC'});
+    m.routeEven = toSrv && fromSrvEven ? [...toSrv, ...fromSrvEven.slice(1)] : null;
+    m.testing = true; m.landed = [];
+    renderStage();
+    Curio.tone(560, .12, .03);
+    const speed = (m.speed === 'slow' ? .5 : 1) / T;
+    const ok = () => state.map.testId === id && !story();
+    await Promise.all(m.pieces.map((p, i) => (async () => {
+      await pause(i * 250); if (!ok()) return;
+      const hops = p.seq % 2 ? m.route : m.routeEven;
+      state.flying.add(p.seq); renderStage();
+      const pk = {seq: p.seq, of: 8, at: 'you', dst: 'juno'};
+      const tok = net.token(view, 'envelope', String(p.seq), {aria: `Piece ${p.seq} of 8: look inside`, onPick: t => { if (t.__pkt) { Curio.tone(640, .1, .025); showEnvelope(t.__pkt); } }}); tok.__pkt = pk;
+      const res = await net.send(sv, gMap, pk, hops, {speed, token: tok, onHop: (nid) => {
+        state.trail.add(net.key(prevOf(hops, nid), nid)); p.at = nid; renderStage();
+        if (p.seq === 1 && state.ui.windowed && !drag) panTo([nid]);   // a narrow map follows the first piece
+      }});
+      if (!ok()) return;
+      state.flying.delete(p.seq);
+      if (res !== 'arrived') { p.at = pk.at; renderStage(); return; }
+      m.landed.push(p.seq);
+      await slide(null, p, m.pieces);
+    })()));
+    if (!ok()) return;
+    m.testing = false;
+    renderStage();
+    Curio.yes();
+    m.tests = (m.tests || 0) + 1;
+    V.say('landed', {valid: () => state.map.testId === id && !story(), hint: false});
+    // then the next thing to try: look inside a moving piece (said once), or close a road
+    if (!V.said.has('peek')) V.how(L.h.peek, {key: 'peek', needs: '#test', valid: () => !story()});
+    else hint(m.closed ? L.h.peek : L.h.road);
+  }
+  $('test').onclick = sendTest;
+  $('road').onclick = () => {
+    const m = state.map;
+    m.closed = !m.closed;
+    gMap.node('rA').up = !m.closed;
+    $('road').setAttribute('aria-pressed', m.closed);
+    $('road').textContent = m.closed ? '⛔ Open the road' : '⛔ Close a road';
+    view.update(); renderStage();
+    if (m.sel === 'rA') pickStop('rA');
+    Curio.tone(m.closed ? 330 : 520, .2, .035, 'triangle');
+    if (m.closed) V.how('closed', {needs: '#test', valid: () => state.map.closed});
+    else hint(L.wMap);
+  };
+  for (const sp of ['slow', 'quick']) $('sp-' + sp).onclick = () => {
+    state.map.speed = sp;
+    for (const k of ['slow', 'quick']) $('sp-' + k).setAttribute('aria-pressed', k === sp);
+  };
+
+  // ======================================================================================
+  // Modes
+  // ======================================================================================
+  function refresh() { relayout(true); }
+  function setMode(m) {
+    if (m === state.mode && view) return;
+    V.hush();
+    run++; net.stop(sv);
+    state.flying.clear();
+    if (state.mode === 'story') {   // leaving Story: finish the beat in progress, so coming back shows the chapter as it ends
+      if (state.phase === 'intro') state.phase = 'choose';
+      if (state.phase === 'moving') { state.phase = 'next'; state.resOut = state.ch; }
+      settle();
+    } else {
+      state.map.testing = false; state.map.testId++;
+      state.map.pieces.forEach(p => { if (!p.slot) p.at = null; });
+    }
+    state.mode = m;
+    document.body.dataset.mode = m;
+    for (const k of ['story', 'map']) $('m-' + k).setAttribute('aria-pressed', k === m);
+    if (m === 'story') { state.trail = new Set(trailFor(state.ch, state.phase)); }
+    else { state.trail.clear(); state.map.pieces = []; }
+    renderPanel();
+    lastSize = ''; relayout(true);
+    if (m === 'map') { hint(V.said.has('peek') ? (state.map.closed ? L.h.peek : L.h.road) : L.wMap); V.welcome(); }
+    else {
+      V.welcome();
+      // the chapter line the switch cut off, told again (stop 1's comes with the welcome on a first visit)
+      if (state.ch < 7 && state.phase === 'choose' && !(state.ch === 1 && !V.said.has('ch1')))
+        V.say(state.ch === 6 ? L.ask6 : L.ch[state.ch], {key: state.ch === 6 ? 'ask6' : 'ch' + state.ch, valid: () => story(), hint: false});
+    }
+  }
+  $('m-story').onclick = () => setMode('story');
+  $('m-map').onclick = () => setMode('map');
+
+  new ResizeObserver(() => relayout()).observe($('stage'));
+  addEventListener('resize', () => { relayout(); if (story()) renderPanel(); });
+
+  Curio.init({clips: "voice:*", rate: .95});
+  Curio.onMotion(() => renderStage());
+
+  // tests and frames: the state, the engine, the story's moves
+  window.__tool = {
+    state, net, setMode, choose, ending, allLines: V.allLines, vlog: V.log, get vq() { return V.queue; },
+    gStory, gMap, L, openChapter, startOver, sendTest, pickStop,
+    next: () => $('next').click(), send: () => $('send').click(),
+    timeScale: k => { T = k; }, layout: () => ({...state.ui}), hint: () => $('hint').textContent,
+  };
+  state.mode = 'story';
+  document.body.dataset.mode = 'story';
+  relayout(true);
+  renderPanel();
+  openChapter(1, {instant: true});
+})();
+</script>
+</body>
+</html>
