@@ -33,5 +33,12 @@ wave, is `docs/agents/BATCH-BR-LOG.md`.
 | BR1 | city-skyline-studio | 9-12 | perspective | new |
 | BR1 | snowy-mail-route | 1 | robot | new file, lifted from live robot-dance |
 | BR1 | simulation-studio | 9-12 | data-desk | returning |
+| BR2 | song-form-builder | 3-5 | music-studio | new |
+| BR2 | stage-blocker | 6-8 | stage | new |
+| BR2 | fake-or-fact-lab | 6-8 | fact-check | new |
+| BR2 | career-cluster-explorer | 6-8 | careers | new |
+| BR2 | target-toss | 1 | none (PE) | none |
+| BR2 | biased-bot | 2 | ml-lab | returning |
+| BR2 | capture-the-flag | 9-12 | security | returning |
 
 BR2 to BR4 are picked after each wave closes, so a family's second tool can test the last wave's lesson.
