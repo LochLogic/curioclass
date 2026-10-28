@@ -26,6 +26,7 @@ Family engines today (read the family doc before using one):
 | `kit/data-desk.js` | docs/families/data-desk.md | simulation-studio |
 | `kit/music-studio.js` | docs/families/music-studio.md | song-form-builder (BR2) |
 | `kit/stage.js` | docs/families/stage.md | stage-blocker (BR2; director-s-chair will reuse it) |
+| `kit/fact-check.js` | docs/families/fact-check.md | fake-or-fact-lab (BR2) |
 
 Rule of thumb: if two tools in different families need it, it belongs in the kit. If only siblings need it, it is
 the family engine. Everything that makes a tool feel like itself stays in the tool.

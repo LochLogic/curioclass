@@ -3,12 +3,12 @@
   "assets": [
     {
       "name": "ff-shark-street",
-      "prompt": "A large gray shark fin breaking the surface of brown floodwater in a city street lined with parked cars and shop fronts with blank signs, overcast sky.",
+      "prompt": "A tall curved gray shark dorsal fin with a dark trailing edge, swept back like a real shark's, breaking the surface of brown floodwater in a city street lined with parked cars and shop fronts with blank signs, overcast sky.",
       "aspect": "4:3",
       "cutout": false,
       "width": 800,
       "quality": 76,
-      "sd": "A large gray shark fin breaking the surface of brown floodwater in the middle of a flooded residential street, plain brick row houses with no shops and no signs, cars parked along the curb seen from the side, overcast sky, deserted, realistic news photo.",
+      "sd": "A tall curved gray shark dorsal fin with a dark trailing edge, swept back like a real shark's, breaking the surface of brown floodwater in the middle of a flooded residential street, plain brick row houses with no shops and no signs, cars parked along the curb seen from the side, overcast sky, deserted, realistic news photo.",
       "source": "flux2-klein-4b (Cloudflare)",
       "review": "pending"
     },
@@ -25,12 +25,12 @@
     },
     {
       "name": "ff-library-front",
-      "prompt": "A small red-brick town library with white columns and a blank sign board, autumn trees, daytime.",
+      "prompt": "A small red-brick town library with white columns and a blank sign board, green leafy trees, daytime.",
       "aspect": "4:3",
       "cutout": false,
       "width": 800,
       "quality": 76,
-      "sd": "A small red-brick town library with white columns and one large blank white sign board above the door, plain brick walls with no plaques, autumn trees, daytime, deserted, realistic photo.",
+      "sd": "A small red-brick town library with white columns and one large blank white sign board above the door, plain brick walls with no plaques, green leafy trees, daytime, deserted, realistic photo.",
       "source": "flux2-klein-4b (Cloudflare)",
       "review": "pending"
     },

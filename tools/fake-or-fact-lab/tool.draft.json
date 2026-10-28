@@ -1,0 +1,24 @@
+{
+  "id": "fake-or-fact-lab",
+  "status": "beta",
+  "stage": "built",
+  "hook": "Test six made-up pages twice: call each one from the page alone, then leave it and see what the rest of the web says.",
+  "outcome": "Judge a source by reading laterally: ask who is behind it, what the evidence is and what other sources say, and see in your own data how often the page alone fooled you",
+  "driver": "students or teacher",
+  "minutes": "25-40",
+  "modes": ["Lab", "Report"],
+  "grades_label": "Grades 6-8",
+  "sources": [
+    "AASL, National School Library Standards (2018), Standards Framework for Learners: Curate IV.B.3, Engage VI.A.3: https://standards.aasl.org/framework/",
+    "Wineburg, S. and McGrew, S. (2019). Lateral Reading and the Nature of Expertise: Reading Less and Learning More When Evaluating Digital Information. Teachers College Record 121(11)",
+    "Digital Inquiry Group (formerly Stanford History Education Group), Civic Online Reasoning: Who's behind the information? What's the evidence? What do other sources say? https://cor.inquirygroup.org/",
+    "Caulfield, M. SIFT (The Four Moves), 2019: https://hapgood.us/2019/06/19/sift-the-four-moves/",
+    "ICANN Registration Data Lookup (what a domain lookup shows): https://lookup.icann.org/",
+    "National Park Service, Denali National Park, Amphibians (wood frogs freeze solid in winter and thaw in spring): https://www.nps.gov/dena/learn/nature/amphibians.htm",
+    "Reserved example domains, RFC 2606 and RFC 6761: https://www.rfc-editor.org/rfc/rfc2606",
+    "All specimens, sites, people, studies and organizations are made up for Curio Class; the verdict match rule and the three-verdict scale are the tool's own",
+    "Photos generated with FLUX (no people); browser, pages, logos, avatars, jars and the table drawn in code"
+  ],
+  "third_party": [],
+  "updated": "2026-10-28"
+}

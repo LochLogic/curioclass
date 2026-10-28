@@ -1,0 +1,1064 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fake or Fact Lab · Read inside, then read outside · Curio Class</title>
+<meta name="description" content="Test six made-up pages and posts twice: first call each one from the page alone, then leave it and search what the rest of a made-up web says. Your lab table shows which read matched the fact-checkers. Grades 6-8 library and research. Works offline.">
+<!--
+Fake or Fact Lab (Curio Class)
+Grades 6-8, library and research, module Is It Reliable? (Research). Standards: AASL Curate IV.B.3, AASL Engage VI.A.3,
+C3 D3.2.6-8, CCSS W.6.8, W.7.8, W.8.8.
+Students on laptops (alone or in pairs), or a teacher on a projector with a class vote at each verdict. Modes: Lab
+(six specimens, each tested twice: an inside read of the page alone, then an outside read in new tabs) and Report
+(the lab table, the two match counts and the Stanford lateral reading finding).
+Facts: Wineburg and McGrew (2019), Teachers College Record 121(11) (fact-checkers read laterally and judged more
+accurately); Digital Inquiry Group, Civic Online Reasoning (the three questions); Caulfield, SIFT (2019); ICANN
+Registration Data Lookup (what a domain lookup shows); National Park Service, Denali, "Amphibians" (wood frogs freeze
+solid and thaw in spring). Every site, person, post, study and organization is made up for Curio Class; every address
+is a reserved name (.example, example.org). The verdict match rule and the three-verdict scale are the tool's own.
+Uses the fact-check family engine (kit:fact-check, docs/families/fact-check.md).
+Photos generated with FLUX (no people). Browser, pages, logos, avatars, jars and the table are drawn in code.
+One file, no network requests. Content CC BY 4.0, code MIT. curioclass.org
+-->
+<link rel="stylesheet" href="kit:curio">
+<style>
+:root{
+  --paper:#f4f6fb;--panel:#ffffff;--ink:#161b2e;--muted:#545b70;--line:#d9deea;--focus:#b45309;
+  --brand:#6d28d9;--btn:#6d28d9;--btn-line:#9b6cf0;--head-ink:#ffffff;
+  --inside:#ede9fe;--outside:#fef3c7;
+  --v-trust:#15803d;--v-partly:#a16207;--v-dont:#b91c1c;
+  --bench:#e7eaf3;
+}
+/* Three page layouts, picked in script (relayout()):
+   wide    (1000 px or wider and 650 px or taller): stage on the left, a 360 px panel on the right;
+   compact (a short landscape box such as the 16:10 embed): a 270 to 300 px panel, one-row header, the notebook as a chip;
+   stack   (narrow or portrait): the tray and browser, then the panel. The panel is first in the DOM (Tab goes header,
+           panel, tray, browser). */
+body.wide,body.compact{height:100vh;overflow:hidden}
+main{min-height:0}
+body.wide main{grid-template-columns:minmax(0,1fr) 360px}
+body.compact main{grid-template-columns:minmax(0,1fr) 270px}
+body.compact.c300 main{grid-template-columns:minmax(0,1fr) 300px}
+body.wide .stage,body.compact .stage{grid-column:1;grid-row:1}
+body.wide .panel,body.compact .panel{grid-column:2;grid-row:1}
+body.stack{height:auto}
+body.stack main{grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto;align-content:start}
+body.stack .stage{grid-row:1}
+body.stack .panel{grid-row:2;border-left:0;border-top:3px solid var(--line);overflow:visible}
+body.compact header{padding:4px 8px;gap:4px;flex-wrap:nowrap;min-width:0}
+body.compact header h1{font-size:17px;white-space:nowrap;min-width:0;overflow:hidden;text-overflow:ellipsis}
+body.compact header h1 small{display:none}
+body.compact .seg button,body.compact .icon-btn{min-height:44px;padding:0 9px;font-size:13.5px;white-space:nowrap}
+body.compact .icon-btn,body.compact .seg{flex:none}
+body.stack header{padding:6px 10px;gap:6px}
+body.stack header h1{flex:1 0 100%;font-size:19px}
+body.stack.hx header{flex-wrap:nowrap;padding:4px;gap:3px}
+body.stack.hx header h1{flex:1 1 auto;min-width:0;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+body.stack.hx header h1 small{display:none}
+body.stack.hx .seg{flex:none}
+body.stack.hx .seg button{padding:0 6px;min-width:44px;font-size:13.5px}
+body.stack.hx .seg button svg{display:none}
+body.stack.hx .icon-btn{flex:none;width:44px;min-width:44px;padding:0 0 0 11px;overflow:hidden;white-space:nowrap;text-align:left;font-size:17px}
+body.stack.hx .tray{padding:4px 6px;gap:4px}
+body.stack.hx .jar{flex:0 0 96px;min-height:44px;padding:2px 6px;gap:4px}
+body.stack.hx .jar svg{width:14px;height:20px}
+body.stack.hx .jar b{font-size:13.5px}
+body.stack.hx .jar span{font-size:11.5px}
+body.stack.hx .hint{font-size:14.5px;line-height:1.35;min-height:calc(2 * 1.35em)}
+body.stack.hx .panel{padding:6px 10px;gap:6px}
+body.stack.hx .pass{min-height:36px;padding:3px 8px;font-size:14px}
+body.stack.hx .pass small{display:none}
+body.stack.hx .vlbl{display:none}
+body.stack.hx .bwrap{padding:0 6px 4px}
+body.stack.hx .fc-bar{padding:4px 6px;gap:4px;flex-wrap:nowrap}
+body.tinyb .fc-addr{font-size:12.5px;padding:0 8px;flex-basis:100px}
+body.compact .rv-v{font-size:15px;flex-wrap:wrap;gap:6px}
+body.stack .seg button,body.stack .icon-btn{min-height:44px;padding:0 9px;font-size:13.5px;white-space:nowrap}
+.seg button svg{vertical-align:-3px;margin-right:4px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ---------- panel ---------- */
+.panel{gap:10px}
+.hint{margin:0;min-height:calc(3 * 1.45em)}
+body.compact .panel{padding:8px 10px;gap:7px}
+body.compact .hint{font-size:13.5px;line-height:1.32;min-height:calc(3 * 1.32em)}
+body.stack .panel{padding:10px 12px;gap:8px}
+body.stack .hint{font-size:15.5px;min-height:calc(3 * 1.45em)}
+.passrow{display:flex;gap:6px;align-items:stretch;flex-wrap:wrap}
+.pass{display:flex;align-items:center;gap:8px;border-radius:10px;padding:6px 10px;font-weight:800;font-size:15px;border:2px solid #0000;flex:1 1 auto;min-height:40px}
+.pass.p1{background:var(--inside);border-color:#c4b5fd}
+.pass.p2{background:var(--outside);border-color:#f6d77a}
+.pass.p3{background:#eef1f7;border-color:var(--line)}
+.pass small{font-weight:700;font-size:12.5px;color:var(--muted);margin-left:auto}
+.pass svg{flex:none}
+body.compact .pass{font-size:13px;padding:4px 8px;min-height:36px}
+body.compact .pass small{display:none}
+body.compact .passrow{flex-wrap:nowrap}
+body.compact .pass{flex:1 1 auto;min-width:0}
+body.compact .nbchip{flex:none;padding:0 8px;font-size:13.5px}
+body.midb .fc-lookup.fc-locked>span:not(.fc-pad){display:none}
+.nbchip{display:none;border:2px solid var(--brand);background:#fff;color:var(--brand);border-radius:12px;min-height:44px;padding:0 10px;font-weight:800;font-size:14px;align-items:center;gap:6px}
+.nbchip[aria-expanded="true"]{background:var(--brand);color:#fff}
+body.nbc .nbchip{display:inline-flex}
+body.nbc .nbbox{display:none}
+.nbbox{flex:1 1 auto;min-height:90px;overflow:auto;background:#f7f8fc;border:1px solid var(--line);border-radius:12px;padding:8px}
+.nbbox h2,.nbpop h2{margin:0 0 6px;font:800 15px 'Trebuchet MS','Segoe UI',sans-serif;display:flex;align-items:center;gap:6px}
+.nbbox h2 span,.nbpop h2 span{font-weight:700;color:var(--muted);font-size:13px}
+.vgroup{display:flex;flex-direction:column;gap:6px;flex:none}
+body.nbc .vgroup{margin-top:auto}
+.vlbl{margin:0;font-weight:800;font-size:14px;color:var(--muted)}
+body.compact .vlbl{display:none}
+.verdict{display:flex;align-items:center;gap:10px;border:2px solid var(--line);background:#fff;border-radius:12px;min-height:48px;padding:4px 12px;font-weight:700;font-size:16px;text-align:left;line-height:1.2}
+.verdict .vw{display:flex;flex-direction:column;gap:1px;min-width:0}
+.verdict .vd{font-weight:500;font-size:12.5px;color:var(--muted);line-height:1.25}
+body.compact .verdict .vd{font-size:11.5px;line-height:1.2}
+body.stack .verdict .vd{font-size:11.5px;line-height:1.2}
+.verdict .vs{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;color:#fff;font-weight:900;font-size:17px;flex:none}
+.verdict kbd{margin-left:auto;font:700 12px ui-monospace,Consolas,monospace;color:var(--muted);border:1px solid var(--line);border-radius:5px;padding:1px 6px;background:#f7f8fc}
+.verdict[aria-pressed="true"]{border-color:var(--brand);box-shadow:0 0 0 3px var(--brand);background:#f5f0ff}
+.verdict:disabled{opacity:.5;cursor:default}
+.verdict.v-trust .vs{background:var(--v-trust)}.verdict.v-partly .vs{background:var(--v-partly)}.verdict.v-dont .vs{background:var(--v-dont)}
+body.compact .verdict{min-height:44px;font-size:14px;padding:2px 8px;gap:8px}
+body.compact .verdict .vs{width:24px;height:24px;font-size:15px}
+body.compact .verdict kbd{display:none}
+body.stack .vrow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+body.stack .verdict{flex-direction:column;justify-content:flex-start;gap:3px;text-align:center;padding:5px 4px;font-size:14px;min-height:62px}
+body.stack .verdict .vs{width:24px;height:24px;font-size:15px}
+body.stack .verdict kbd{display:none}
+.vrow{display:flex;flex-direction:column;gap:6px}
+#lock,#next{display:flex;align-items:center;justify-content:center;gap:10px;flex:none}
+#lock:disabled{opacity:.55;cursor:default}
+.subrow{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+#lock svg{flex:none}
+body.compact #lock,body.compact #next{min-height:48px;font-size:17px}
+.btn{border:2px solid var(--brand);background:#fff;color:var(--brand);border-radius:12px;min-height:44px;padding:0 14px;font-weight:700;font-size:15.5px;display:inline-flex;align-items:center;justify-content:center;gap:6px}
+.btn.go{background:var(--brand);color:#fff}
+.btn:disabled{opacity:.45;cursor:default}
+.row{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.small{font-size:13px;color:var(--muted);margin:0;line-height:1.35}
+.confirm{background:#fff7ed;border:2px solid #fdba74;border-radius:12px;padding:8px 10px;display:flex;flex-direction:column;gap:6px}
+.confirm p{margin:0;font-weight:700}
+
+/* ---------- stage ---------- */
+.stage{background:var(--bench);min-height:0;display:flex;flex-direction:column}
+body.stack .stage{overflow:visible}
+#lab{display:flex;flex-direction:column;min-height:0;flex:1;position:relative}
+.tray{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px;padding:8px 10px 6px;flex:none}
+.jar{display:flex;align-items:center;gap:8px;border:2px solid var(--line);background:#fff;border-radius:12px;min-height:52px;padding:4px 8px;text-align:left;line-height:1.15;min-width:0}
+.jar svg{flex:none}
+.jar b{font-size:15px;display:block}
+.jar span{display:block;font-size:12.5px;line-height:1.3;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.jar .st{font-weight:700}
+.jar.st-inside .st{color:#5b21b6}
+.jar.st-tested .st{color:#14532d}
+.jar[aria-current="true"]{border-color:var(--brand);box-shadow:0 0 0 2px var(--brand);background:#f8f5ff}
+body.compact .tray{padding:5px 6px 4px;gap:4px}
+body.compact .jar{min-height:44px;padding:2px 5px;gap:4px}
+body.compact .jar svg{width:16px;height:22px}
+body.compact .jar b{font-size:13px}
+body.compact .jar span{font-size:11.5px}
+body.tight .jar svg{display:none}
+body.stack .tray{display:flex;overflow-x:auto;padding:6px 8px}
+body.stack .jar{flex:0 0 112px}
+.madeup{margin:0;padding:0 12px 5px;font-size:13px;font-weight:700;color:var(--muted);flex:none;display:flex;align-items:center;gap:6px;line-height:1.3}
+.madeup svg{flex:none}
+body.compact .madeup{padding:0 8px 3px;font-size:12px}
+body.compact .madeup .sv,body.stack .madeup .sv{display:none}
+.bwrap{flex:1;min-height:0;padding:0 10px 10px;display:flex;flex-direction:column}
+body.compact .bwrap{padding:0 6px 6px}
+body.stack .bwrap{flex:none}
+.bwrap .fc-browser{flex:1}
+body.compact .fc-bar{padding:4px 6px;gap:4px}
+body.compact .fc-sbox{flex-basis:150px}
+body.compact .fc-lookup span{font-size:13px}
+body.compact .fc-addr{font-size:12.5px;min-width:90px}
+body.compact .fc-tab{flex-basis:150px;min-width:84px}
+body.compact .fc-pg{font-size:15px}
+body.compact .fc-pg h1{font-size:22px}
+body.compact .fc-body{padding:10px 14px 20px}
+body.narrowb .fc-sbox{display:none}
+body.narrowb .fc-lookup{padding:0 8px}
+body.narrowb .fc-lookup>span:not(.fc-pad){display:none}
+body.narrowb .fc-addr{min-width:0;flex-basis:120px;padding:0 10px}
+body.narrowb .fc-pg h1{font-size:21px}
+body.narrowb .fc-pghead{padding:4px 10px;gap:8px}
+body.narrowb .fc-pghead b{font-size:16px!important}
+body.narrowb .fc-pghead small{display:none}
+body.narrowb .fc-pghead svg{width:26px;height:26px}
+body.narrowb .fc-nav a.fc-a{min-height:44px;padding:0 6px;font-size:13.5px}
+body.narrowb .fc-body{padding:6px 12px 20px}
+body.narrowb .fc-tab{flex-basis:130px;min-width:78px}
+body.compact .fc-pghead{padding:4px 12px}
+body.compact .fc-pghead small{display:none}
+body.compact .fc-body{padding:6px 14px 20px}
+/* projected (1600 px and wider): larger page, jar and reveal type */
+body.big .fc-pg{font-size:19px}
+body.big .fc-browser .fc-pg h1{font-size:32px}
+body.big .jar b{font-size:18px}
+body.big .jar span{font-size:15px}
+body.big .rv-why{font-size:19px}
+body.big .rvt{font-size:17px}
+body.big .rk li{font-size:16.5px}
+body.big .madeup{font-size:15px}
+
+/* the expert check: slides up over the bottom of the stage */
+.reveal{position:absolute;left:10px;right:10px;bottom:10px;max-height:72%;overflow:auto;background:#fff;border:3px solid var(--brand);border-radius:16px;
+  box-shadow:0 -6px 28px #0003;padding:12px 16px;transform:translateY(0);transition:transform .45s ease-out,opacity .45s;z-index:5}
+.reveal.enter{transform:translateY(105%);opacity:0}
+.reveal.min{max-height:none}
+.reveal.min .rv-body{display:none}
+.reveal h2{margin:0;font:800 19px 'Trebuchet MS','Segoe UI',sans-serif;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.reveal h2 .sp{margin-left:auto}
+.rv-v{display:flex;align-items:center;gap:10px;font-size:18px;font-weight:800;margin:8px 0 4px}
+.rv-why{margin:4px 0 8px;font-size:16px;line-height:1.45}
+.rvt{border-collapse:collapse;font-size:14.5px;margin:6px 0;width:100%}
+.rvt th,.rvt td{border:1px solid var(--line);padding:5px 8px;text-align:left;vertical-align:top}
+.rvt th{background:#f3f4f8;font-size:13px}
+.rv-acts{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.rk{list-style:none;margin:6px 0;padding:0;display:flex;flex-direction:column;gap:5px}
+.rk li{border:1px solid var(--line);border-left:5px solid var(--kc);border-radius:10px;padding:5px 10px;font-size:14.5px;line-height:1.35;background:#fbfbfd}
+.rk .kt{display:flex;align-items:center;gap:5px;font-weight:800;font-size:12.5px;color:var(--kc)}
+.rk .kf{margin-left:auto;font-weight:800;font-size:12px;border-radius:999px;padding:0 8px;white-space:nowrap}
+.rk .kf.y{background:#ecfdf3;color:#14532d;border:1.5px solid #15803d}
+.rk .kf.n{background:#f3f4f6;color:#4b5263;border:1.5px solid #c3c8d3}
+.rv-h3{margin:8px 0 2px;font:800 15px 'Trebuchet MS','Segoe UI',sans-serif}
+body.compact .rk li{font-size:13px;padding:4px 8px}
+body.compact .rvt .xc{display:none}
+body.compact .reveal{left:6px;right:6px;bottom:6px;padding:8px 10px;max-height:80%}
+body.compact .reveal h2{font-size:16px}
+body.compact .rv-why{font-size:14.5px}
+body.compact .rvt{font-size:13px}
+body.stack .reveal{max-height:85%}
+.vchip{display:inline-flex;align-items:center;gap:6px;font-weight:800;white-space:nowrap}
+.vchip i{font-style:normal;display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;color:#fff;font-size:14px}
+.vchip.trust{color:var(--v-trust)}.vchip.trust i{background:var(--v-trust)}
+.vchip.partly{color:var(--v-partly)}.vchip.partly i{background:var(--v-partly)}
+.vchip.dont{color:var(--v-dont)}.vchip.dont i{background:var(--v-dont)}
+.mt{display:inline-block;font-size:12.5px;font-weight:800;border-radius:999px;padding:1px 8px;margin-left:4px;white-space:nowrap;border:1.5px solid}
+.mt.yes{color:#14532d;border-color:#15803d;background:#ecfdf3}
+.mt.no{color:#7f1d1d;border-color:#b91c1c;background:#fef2f2}
+
+/* ---------- report ---------- */
+#report{flex:1;min-height:0;overflow:auto;padding:14px 18px 24px}
+body.compact #report{padding:8px 10px 16px}
+.rep{max-width:980px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
+.rep h2{margin:0;font:800 22px 'Trebuchet MS','Segoe UI',sans-serif}
+.tbl-wrap{overflow-x:auto;background:#fff;border:1px solid var(--line);border-radius:12px}
+.rtab{border-collapse:collapse;width:100%;font-size:15px;min-width:640px}
+.rtab th,.rtab td{padding:7px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+.rtab th{background:#f3f4f8;font-size:13.5px}
+.rtab td.n{text-align:right;font-variant-numeric:tabular-nums}
+.rtab .vchip{white-space:normal}
+.counts{display:flex;gap:10px;flex-wrap:wrap}
+.count{flex:1 1 240px;margin:0;border-radius:12px;padding:10px 14px;font-size:17px;font-weight:700;border:2px solid}
+.count.in{background:var(--inside);border-color:#c4b5fd}
+.count.out{background:var(--outside);border-color:#f6d77a}
+.count b{font-size:24px}
+.react{margin:0;font-size:16.5px;font-weight:700;background:#fff;border:2px solid var(--brand);border-radius:12px;padding:8px 14px}
+body.compact .react{font-size:14px;padding:6px 10px}
+.rtag{display:inline-block;font-size:12px;font-weight:800;color:#7c2d12;background:#ffedd5;border:1.5px solid #fdba74;border-radius:999px;padding:0 7px;margin-left:4px;white-space:nowrap}
+.concl{background:#fff;border:1px solid var(--line);border-left:6px solid var(--brand);border-radius:12px;padding:10px 14px;font-size:16px;line-height:1.5;margin:0}
+.concl small{display:block;color:var(--muted);font-size:13px;margin-top:4px}
+.qs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.q{background:#fff;border:1px solid var(--line);border-top:5px solid var(--qc);border-radius:12px;padding:8px 12px;font-weight:800;font-size:16px;display:flex;gap:8px;align-items:center;color:var(--ink)}
+.q svg{color:var(--qc)}
+.empty{background:#fff;border:2px dashed var(--line);border-radius:12px;padding:16px;font-size:16px}
+body.compact .rep h2{font-size:17px}
+body.compact .rtab{font-size:13px}
+body.compact .count{font-size:14.5px;padding:6px 10px}
+body.compact .count b{font-size:19px}
+@media (max-width:560px){
+  .rvt{font-size:12.5px}.rvt th{font-size:12px}.rvt th,.rvt td{padding:4px 5px}.rvt .vchip{white-space:normal;gap:4px}
+  .rtab{min-width:0}.rtab tr:first-child{display:none}
+  .rtab,.rtab tbody,.rtab tr,.rtab td{display:block}
+  .rtab tr{padding:8px 10px;border-bottom:1px solid var(--line)}
+  .rtab td{border:0;padding:3px 0;text-align:left}.rtab td.n{text-align:left}
+  .rtab td[data-l]::before{content:attr(data-l) ": ";font-weight:700;color:var(--muted,#555)}
+}
+body.compact .concl{font-size:14px}
+body.compact .q{font-size:13.5px}
+@media (max-width:600px){.qs{grid-template-columns:1fr}}
+
+/* notebook pop-up (compact and stack) */
+.nbpop{position:fixed;z-index:20;background:#fff;border:2px solid var(--brand);border-radius:14px;box-shadow:0 10px 30px #0004;padding:10px;display:flex;flex-direction:column;gap:6px}
+.nbpop .nbl{overflow:auto;min-height:0;flex:1}
+.nbpop .row{justify-content:space-between}
+</style>
+</head>
+<body>
+<header>
+  <h1>Fake or Fact Lab <small>Read inside. Then read outside.</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-lab" aria-pressed="true"><svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><path d="M7 2h6M8 2v6L3 17h14L12 8V2" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M5.5 13h9" stroke="currentColor" stroke-width="2"/></svg>Lab</button>
+    <button id="m-report" aria-pressed="false"><svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><rect x="2" y="3" width="16" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M2 8h16M2 12.5h16M8 3v14" stroke="currentColor" stroke-width="1.8"/></svg>Report</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true" title="Turn animation on or off">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+  <button class="icon-btn" id="read">🔊 Read</button>
+</header>
+<main>
+  <aside class="panel" id="panel" aria-label="Your lab notes and call">
+    <p class="hint" id="hint" aria-live="polite"></p>
+    <div id="labPanel" style="display:contents">
+      <div class="passrow">
+        <div class="pass p1" id="pass"></div>
+        <button class="nbchip" id="nbChip" type="button" aria-expanded="false" aria-controls="nbPop"></button>
+      </div>
+      <section class="nbbox" id="nbBox" aria-label="Notebook">
+        <h2 id="nbHead"></h2>
+        <div id="nb"></div>
+      </section>
+      <div class="vgroup">
+        <p class="vlbl" id="vlbl">Your call</p>
+        <div class="vrow" role="group" aria-labelledby="vlbl">
+          <button class="verdict v-trust" id="v-trust" type="button" aria-pressed="false"><span class="vs" aria-hidden="true">✓</span><span class="vw"><span>Trust it</span><span class="vd">The main claim holds, and the source is who it says.</span></span><kbd>1</kbd></button>
+          <button class="verdict v-partly" id="v-partly" type="button" aria-pressed="false"><span class="vs" aria-hidden="true">~</span><span class="vw"><span>Partly true, stretched</span><span class="vd">A real fact is under it, but the claim goes further than the evidence.</span></span><kbd>2</kbd></button>
+          <button class="verdict v-dont" id="v-dont" type="button" aria-pressed="false"><span class="vs" aria-hidden="true">✗</span><span class="vw"><span>Don't trust it</span><span class="vd">The main claim is false, or the source hides who is behind it.</span></span><kbd>3</kbd></button>
+        </div>
+      </div>
+      <button class="big-btn" id="lock" type="button" disabled><svg width="22" height="22" viewBox="0 0 20 20" aria-hidden="true"><rect x="3" y="8" width="14" height="10" rx="2" fill="currentColor"/><path d="M6 8V6a4 4 0 0 1 8 0v2" fill="none" stroke="currentColor" stroke-width="2.2"/></svg>Lock my call</button>
+      <button class="big-btn" id="next" type="button" hidden>Next specimen</button>
+      <div class="subrow" id="retestRow" hidden><button class="btn" id="retest" type="button">Retest</button><span class="small">Your first try stays in the lab table.</span></div>
+    </div>
+    <div id="repPanel" hidden style="display:none">
+      <button class="btn" id="clear" type="button">Clear lab</button>
+      <div class="confirm" id="confirm" hidden>
+        <p>Empty the whole lab table?</p>
+        <div class="row"><button class="btn go" id="yes" type="button">Yes</button><button class="btn" id="no" type="button">No</button></div>
+      </div>
+      <p class="small">The lab table is saved on this device only. It never leaves this device.</p>
+    </div>
+  </aside>
+  <div class="stage" id="stage">
+    <div id="lab">
+      <div class="tray" id="tray" role="group" aria-label="Specimens"></div>
+      <p class="madeup" id="madeup"><svg width="16" height="16" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="8.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10 9v5M10 5.5v.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg><span>Every page in this lab is made up for practice.<span class="sv"> Your calls are saved on this device only.</span></span></p>
+      <div class="bwrap" id="bwrap"></div>
+      <section class="reveal" id="reveal" hidden aria-label="What a fact-checker would find"></section>
+    </div>
+    <div id="report" hidden></div>
+  </div>
+</main>
+<div class="nbpop" id="nbPop" role="dialog" aria-label="Notebook" hidden>
+  <div class="row"><h2 id="nbPopHead"></h2><button class="btn" id="nbClose" type="button">Close</button></div>
+  <div class="nbl" id="nbPopList"></div>
+</div>
+<script src="kit:curio"></script>
+<script src="kit:fact-check"></script>
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const {h} = FC;
+
+  // ======================================================================================
+  // CONTENT: the made-up web (every name, site and study is made up; addresses are reserved .example names)
+  // ======================================================================================
+  const U = (d, p = '/') => `https://${d}${p}`;
+  // every display name below was web-searched before use and has no real match (the list is in handoff.md)
+  const D = {s1: 'gloverlystudy.example.org', tb: 'tweedlebeak.example', gz: 'portaldergazette.example', zn: 'zaplinenow.example',
+    pp: 'pixelpuddleparent.example', pond: 'parkpondnotes.example', tr: 'glimmerlaketribune.example', tl: 'truthlamp.example',
+    town: 'portalder.example', rl: 'rhealind.example', qj: 'quellmontjournal.example', bs: 'brambleskipnature.example', pw: 'puddlewickms.example'};
+  // a notebook finding that belongs to one specimen
+  const N = (spec, id, tag, text, on) => ({id, tag, text, for: spec, ...(on ? {on} : {})});
+  const WIKI = id => U('openpedia.example', '/wiki/' + id);
+  // one index entry per way of asking (each list of terms must all be in the query), all with the same results.
+  // The engine folds plurals and number words, so "sharks" and "4-day" need no twins here.
+  const ASK = (termSets, results, note) => termSets.map(terms => ({terms, results, ...(note ? {note} : {})}));
+
+  // kind is what the page looks like, the same word for look-alikes (it never hints at the answer).
+  // key: the two or three findings that decide the fact-check (shown in the reveal, marked when in the notebook)
+  const SPEC = {
+    S1: {kind: 'site', url: U(D.s1, '/'), expert: 'dont', key: ['s1-wiki', 's1-tribune', 's1-survey'],
+      why: 'A study-app company runs this site to sell study apps. The 40% came from asking its own customers.',
+      chips: ['Gloverly Study Institute', 'study apps raise grades']},
+    S2: {kind: 'post', url: U(D.tb, '/@SquallnookAlerts/status/1'), expert: 'dont', key: ['s2-collage', 's2-truthlamp', 's2-account'],
+      why: "The flood was real, but the post's news is the shark, and that photo is a 2019 art collage. The account names no source.",
+      chips: ['SquallnookAlerts', 'Port Alder flooding', 'shark Main Street']},
+    S3: {kind: 'news story', url: U(D.gz, '/library-sunday-hours'), expert: 'trust', key: ['s3-vega', 's3-minutes', 's3-tribune'],
+      why: "A long-running local paper that reports town news, a named reporter and the council's own minutes agree. A plain design says nothing either way.",
+      chips: ['Port Alder Gazette', 'Marisol Vega', 'Port Alder library Sunday hours']},
+    S4: {kind: 'news story', url: U(D.zn, '/four-day-week'), expert: 'dont', key: ['s4-lookup', 's4-carter', 's4-nobody'],
+      why: 'A new site with a hidden owner, built to get shares. The author has no other work, and nobody else reports it.',
+      chips: ['Zapline Now', 'J. Carter education reporter', 'four-day school week next fall']},
+    S5: {kind: 'blog', url: U(D.pp, '/games-smarter'), expert: 'partly', key: ['s5-study', 's5-tribune'],
+      why: 'A fan blog cheering for games. There is a real study under it, but the study found a small link in one skill, not proof that games make kids smarter.',
+      chips: ['Pixelpuddle Parent', 'video games make kids smarter']},
+    S6: {kind: 'blog', url: U(D.pond, '/'), expert: 'trust', key: ['s6-staff', 's6-nature', 's6-wiki'],
+      why: "Strange but true. Other sources agree, and her school's staff page shows she teaches science there, as her page says.",
+      chips: ["Ms. Park's Pond Notes", 'Puddlewick Middle School', 'wood frogs freeze']},
+  };
+  const IDS = Object.keys(SPEC);
+  // the scale, defined on screen under each verdict
+  const VERDICT = {
+    trust: {word: 'Trust it', sym: '✓', def: 'The main claim holds, and the source is who it says.'},
+    partly: {word: 'Partly true, stretched', sym: '~', def: 'A real fact is under it, but the claim goes further than the evidence.'},
+    dont: {word: "Don't trust it", sym: '✗', def: 'The main claim is false, or the source hides who is behind it.'}};
+  const VKEYS = ['trust', 'partly', 'dont'];
+
+  // Marisol Vega's other Gazette articles, 2020 to 2026
+  const VEGA = [['/2020/elm-street-crosswalk', 'New crosswalk opens on Elm Street', 'May 4, 2020'], ['/2021/harbor-festival', 'Harbor festival returns', 'July 9, 2021'],
+    ['/2022/school-lunch-menu', 'School board picks a new lunch menu', 'August 22, 2022'], ['/2023/town-pool', 'Town pool reopens after repairs', 'June 2, 2023'],
+    ['/2025/ferry-winter', 'Ferry schedule changes for winter', 'November 14, 2025']];
+  const GZ_LOOK = {font: 'news', bg: '#fbf8f1', ink: '#1b1b1b', muted: '#555', accent: '#1b3f8b', band: '#fbf8f1', bandInk: '#111', line: '#d8d2c4',
+    logo: {shape: 'square', color: '#1b1b1b', text: 'PA'}, headStyle: 'border-bottom:3px double #333', nameStyle: 'font-size:26px;letter-spacing:.5px'};
+  const TR_LOOK = {font: 'serif', bg: '#ffffff', ink: '#14213d', muted: '#4a5568', accent: '#1d4ed8', band: '#14213d', bandInk: '#fff', logo: {shape: 'drop', color: '#60a5fa', text: 'GT'}};
+  const SA = {handle: '@SquallnookAlerts', name: 'Squallnook Alerts', initials: 'SA', color: '#0369a1'};
+
+  const WORLD = {
+    sites: [
+      {domain: D.s1, name: 'Gloverly Study Institute', look: {font: 'sans', bg: '#f7fbfc', ink: '#0f2a3a', muted: '#4a6070', accent: '#0e7490', band: '#0f3d5e', bandInk: '#fff', logo: {shape: 'leaf', color: '#2dd4bf', text: 'GS', ink: '#0f3d5e'}},
+        nav: [{text: 'Home', path: '/'}, {text: 'About us', path: '/about'}],
+        lookup: {registered: '2024', owner: 'Quillbop Apps, Inc.', note: N('S1', 's1-lookup', 'who', 'Site lookup: registered in 2024 to Quillbop Apps, Inc.')},
+        pages: [
+          {path: '/', kind: 'article', title: 'Study apps raise grades', blocks: [
+            {t: 'badge', text: 'Independent. Nonpartisan. Research for families.', note: N('S1', 's1-banner', 'inside', 'The site calls itself "Independent. Nonpartisan. Research for families."')},
+            {t: 'h1', text: 'Study apps raise grades by 40%, research shows', note: N('S1', 's1-40', 'inside', 'The headline says study apps raise grades by 40%.')},
+            {t: 'meta', text: 'Research team, Gloverly Study Institute'},
+            {t: 'p', text: 'Families want to know what really works. Students who use a study app every night raise their grades by 40%, our research shows.'},
+            {t: 'p', text: ['The finding comes from ', {link: 'our 2025 family survey', href: U(D.s1, '/survey'), cite: '412 Gradewhistle customers'}, '. Apps like Gradewhistle help make every homework minute count.'],
+              note: N('S1', 's1-cite', 'inside', 'It says the 40% comes from "our 2025 family survey".')},
+          ]},
+          {path: '/about', kind: 'about', title: 'About us', blocks: [
+            {t: 'h1', text: 'About us'},
+            {t: 'p', text: 'A nonprofit research center helping families make smart choices about learning.', note: N('S1', 's1-about', 'inside', 'About page: "A nonprofit research center helping families make smart choices about learning."')},
+          ]},
+          {path: '/survey', kind: 'document', title: '2025 family survey', blocks: [
+            {t: 'h1', text: 'Our 2025 family survey'},
+            {t: 'p', text: '412 Gradewhistle customers asked if their grades went up.'},
+          ], note: N('S1', 's1-survey', 'evidence', 'The survey behind the 40%: 412 Gradewhistle customers were asked if their grades went up.')},
+        ]},
+      {domain: D.tb, name: 'Tweedlebeak', look: {font: 'round', bg: '#f5f8fa', ink: '#0f1419', muted: '#536471', accent: '#0b6e99', band: '#ffffff', bandInk: '#0b6e99', line: '#e1e8ed', logo: {shape: 'bubble', color: '#0b6e99', text: ''}, headStyle: 'border-bottom:1px solid #e1e8ed'},
+        pages: [
+          {path: '/@SquallnookAlerts/status/1', kind: 'post', title: '@SquallnookAlerts on Tweedlebeak', blocks: [
+            {t: 'post', id: 'storm1'},
+            {t: 'link', text: 'See all posts from @SquallnookAlerts', href: U(D.tb, '/@SquallnookAlerts')},
+          ]},
+          {path: '/@SquallnookAlerts', kind: 'profile', title: '@SquallnookAlerts', blocks: [
+            {t: 'profile', ...SA, followers: 12400, bio: 'Weather alerts, fast.'},
+            {t: 'h2', text: 'Posts'},
+            {t: 'posts', ids: ['storm1', 'storm2', 'storm3', 'storm4'], note: N('S2', 's2-other', 'inside', "The account's other posts are all weather alerts.")},
+          ]},
+        ]},
+      {domain: D.gz, name: 'Port Alder Gazette', look: GZ_LOOK,
+        pages: [
+          {path: '/library-sunday-hours', kind: 'article', title: 'Library to cut Sunday hours', date: 'February 12, 2026', blocks: [
+            {t: 'h1', text: 'Library to cut Sunday hours', style: {fontWeight: '700'}},
+            {t: 'byline', text: 'By Marisol Vega, staff reporter. February 12, 2026', note: N('S3', 's3-byline', 'inside', 'Byline: Marisol Vega, staff reporter, with a date.')},
+            {t: 'img', image: 'ff-library-front', small: true, caption: 'Port Alder Public Library (file photo)', alt: 'A small red-brick library with white columns'},
+            {t: 'p', text: 'The Port Alder Public Library will close on Sundays starting March 1.', note: N('S3', 's3-claim', 'inside', 'The article says the library will close on Sundays starting March 1.')},
+            {t: 'p', text: 'The town council voted 4 to 1 on Monday night. The minutes of the meeting are posted on the town website.'},
+            {t: 'ad', title: 'Dockfiddle Hardware', text: 'Paint, nails and snow shovels. Dock Street.', note: N('S3', 's3-look', 'inside', 'A plain, old-fashioned page: a hardware store ad and no share buttons.')},
+          ]},
+          {path: '/rain-floods-harbor', kind: 'article', title: 'Rain floods streets near the harbor', date: 'March 18, 2026', blocks: [
+            {t: 'h1', text: 'Rain floods streets near the harbor', style: {fontWeight: '700'}},
+            {t: 'byline', text: 'By Gazette staff. March 18, 2026'},
+            {t: 'img', image: 'ff-flooded-street', caption: 'Brown water covers a street near the harbor.', alt: 'A flooded street with cars in brown water'},
+            {t: 'p', text: 'Heavy rain flooded streets near the harbor on Tuesday. Town crews asked drivers to stay away until the water went down.'},
+          ], note: N('S2', 's2-gazette', 'others', 'Port Alder Gazette: rain did flood streets near the harbor. Its photo shows no shark.')},
+          {path: '/staff/marisol-vega', kind: 'about', title: 'Marisol Vega', blocks: [
+            {t: 'h1', text: 'Marisol Vega'},
+            {t: 'p', text: 'Staff reporter. Her articles for the Gazette:'},
+            {t: 'works', person: 'Marisol Vega'},
+          ], note: N('S3', 's3-vega', 'who', 'Marisol Vega has written for the Gazette for six years, 2020 to 2026.')},
+          ...VEGA.map(([p, title, date]) => ({path: p, kind: 'article', title, date, blocks: [
+            {t: 'h1', text: title, style: {fontWeight: '700'}}, {t: 'byline', text: 'By Marisol Vega, staff reporter. ' + date},
+            {t: 'p', text: 'A Gazette story from the ' + date.slice(-4) + ' archive.'}]})),
+        ]},
+      {domain: D.zn, name: 'Zapline Now', look: {font: 'condensed', bg: '#ffffff', ink: '#111111', muted: '#555', accent: '#d90429', band: '#111111', bandInk: '#fff', logo: {shape: 'bolt', color: '#d90429'}, nameStyle: 'font-size:22px;text-transform:uppercase;letter-spacing:1px'},
+        nav: [{text: 'Top stories', path: '/four-day-week'}, {text: 'Authors', path: '/author/j-carter'}],
+        lookup: {registered: '3 weeks ago', owner: 'hidden', note: N('S4', 's4-lookup', 'who', 'Site lookup: registered 3 weeks ago, owner hidden.')},
+        pages: [
+          {path: '/four-day-week', kind: 'article', title: 'Four-day week next fall', blocks: [
+            {t: 'banner', text: 'Breaking', note: N('S4', 's4-breaking', 'inside', 'A red "Breaking" banner.')},
+            {t: 'h1', text: 'BREAKING: Every school will switch to a four-day week next fall', style: {fontWeight: '800'}},
+            {t: 'byline', text: ['By ', {link: 'J. Carter', href: U(D.zn, '/author/j-carter')}]},
+            {t: 'badge', text: 'Trusted by millions', icon: 'star', note: N('S4', 's4-trusted', 'inside', 'A badge says "Trusted by millions".')},
+            {t: 'p', text: 'Starting next fall, every school in the country will move to a four-day week, Zapline Now has learned.'},
+            {t: 'p', text: 'Parents and students are already talking about what they will do with the extra day.'},
+            {t: 'meta', text: '31,000 shares', style: {fontWeight: '700', fontSize: '15px'}, note: N('S4', 's4-shares', 'inside', '31,000 shares.')},
+          ]},
+          {path: '/author/j-carter', kind: 'about', title: 'J. Carter', blocks: [
+            {t: 'h1', text: 'J. Carter'},
+            {t: 'p', text: 'J. Carter covers education.', note: N('S4', 's4-bio', 'inside', 'Author bio: "J. Carter covers education."')},
+          ]},
+        ]},
+      {domain: D.pp, name: 'Pixelpuddle Parent', look: {font: 'round', bg: '#fff7fb', ink: '#3b1f33', muted: '#6b4a60', accent: '#be185d', band: '#fbcfe8', bandInk: '#3b1f33', line: '#f5d0e6', logo: {shape: 'star', color: '#db2777', text: ''}, tagline: 'Games, kids and family life'},
+        pages: [
+          {path: '/games-smarter', kind: 'article', title: 'Games make kids smarter', blocks: [
+            {t: 'h1', text: 'Scientists PROVE video games make kids smarter', note: N('S5', 's5-prove', 'inside', 'The headline says scientists "PROVE" video games make kids smarter.')},
+            {t: 'byline', text: 'Posted by the Pixelpuddle dad'},
+            {t: 'p', text: ['Great news, gamers! ', {link: 'A new study', href: U(D.qj, '/2024/puzzle-games'), cite: 'Children who played puzzle games more had slightly higher spatial test scores.'}, ' shows that video games make kids smarter. Time to level up!'],
+              note: N('S5', 's5-link', 'inside', 'It links to "a new study".')},
+            {t: 'card', title: 'About the author', lines: ['Dad of three, gamer.'], note: N('S5', 's5-bio', 'inside', 'Author bio: "dad of three, gamer".')},
+          ]},
+        ]},
+      {domain: D.pond, name: "Ms. Park's Pond Notes", look: {font: 'comic', bg: '#fffbe6', ink: '#2b2b2b', muted: '#5a5a5a', accent: '#0a7d32', band: '#bbf7d0', bandInk: '#14532d', logo: {shape: 'circle', color: '#16a34a', text: ':)'},
+        border: '10px dashed #f59e0b', tagline: 'Welcome to my pond page!!!'},
+        pages: [
+          {path: '/', kind: 'article', title: 'Wood frogs freeze!', blocks: [
+            {t: 'h1', text: 'Wood frogs freeze in winter and come back in spring!', style: {color: '#7c2d12'}, note: N('S6', 's6-claim', 'inside', 'The post says wood frogs freeze in winter and come back in spring.')},
+            {t: 'img', image: 'ff-wood-frog', caption: 'Look at this little guy!!', alt: 'A brown wood frog on frosty leaves'},
+            {t: 'p', text: 'Every winter the wood frogs near our pond freeze solid! Then in spring they thaw out and hop away! Amazing!!'},
+            {t: 'counter', label: 'Visitors:', text: '004127', note: N('S6', 's6-design', 'inside', 'A homemade page: a hit counter, a clip-art border and lots of exclamation marks.')},
+            {t: 'card', title: 'About me', lines: ['Hi! I teach science at Puddlewick Middle School. I love frogs!'],
+              note: N('S6', 's6-name', 'inside', 'Signed "Ms. Park", who says she teaches science at Puddlewick Middle School. There are no sources on the page.')},
+          ]},
+        ]},
+      // ---- the rest of the made-up web ----
+      {domain: D.tr, name: 'Glimmerlake Tribune', look: TR_LOOK,
+        pages: [
+          {path: '/study-app-group-funding', kind: 'article', title: 'Group praising study apps is funded by an app maker', blocks: [
+            {t: 'h1', text: 'Group praising study apps is funded by an app maker'}, {t: 'byline', text: 'Glimmerlake Tribune'},
+            {t: 'p', text: 'The Gloverly Study Institute, which says study apps raise grades, was started by Quillbop Apps, the company that makes the Gradewhistle homework app.'},
+          ], note: N('S1', 's1-tribune', 'others', 'Glimmerlake Tribune: the group praising study apps is funded by an app maker.')},
+          {path: '/port-alder-library-sundays', kind: 'article', title: 'Port Alder library to close Sundays', blocks: [
+            {t: 'h1', text: 'Port Alder library to close Sundays'}, {t: 'byline', text: 'Glimmerlake Tribune, news in brief'},
+            {t: 'p', text: 'The Port Alder town council voted 4 to 1 to close the town library on Sundays starting March 1.'},
+          ], note: N('S3', 's3-tribune', 'others', 'Glimmerlake Tribune reports the same: the library closes Sundays starting March 1.')},
+          {path: '/four-day-weeks', kind: 'article', title: 'Some districts have tried four-day weeks', blocks: [
+            {t: 'h1', text: 'Some districts have tried four-day weeks; there is no national plan'}, {t: 'byline', text: 'Glimmerlake Tribune'},
+            {t: 'p', text: 'A few school districts have tried a four-day week. There is no national plan to switch every school.'},
+          ], note: N('S4', 's4-tribune', 'others', 'Glimmerlake Tribune: some districts have tried four-day weeks, and there is no national plan.')},
+          {path: '/puzzle-games-study', kind: 'article', title: 'Small study finds link between puzzle games and spatial skills', blocks: [
+            {t: 'h1', text: 'Small study finds link between puzzle games and spatial skills'}, {t: 'byline', text: 'Glimmerlake Tribune'},
+            {t: 'p', text: 'A study of 200 children found that kids who played more puzzle games scored slightly higher on spatial tests. The study cannot show that the games caused the difference.'},
+          ], note: N('S5', 's5-tribune', 'others', 'Glimmerlake Tribune: a small study found a link between puzzle games and spatial skills.')},
+        ]},
+      {domain: D.tl, name: 'Truthlamp Fact Desk', look: {font: 'sans', bg: '#f6fbf7', ink: '#10261a', muted: '#4b5e52', accent: '#15803d', band: '#14532d', bandInk: '#fff', logo: {shape: 'shield', color: '#22c55e', text: '✓'}, tagline: 'Checking viral posts'},
+        pages: [
+          {path: '/shark-main-street', kind: 'article', title: 'No, a shark did not swim down Main Street', blocks: [
+            {t: 'h1', text: 'No, a shark did not swim down Main Street'},
+            {t: 'p', text: 'A photo shared by @SquallnookAlerts shows a shark fin in a flooded Port Alder street. The flooding was real. The shark photo is a 2019 digital collage by the artist Rhea Lind.'},
+          ], note: N('S2', 's2-truthlamp', 'others', 'Truthlamp Fact Desk: no, a shark did not swim down Main Street. The photo is a 2019 collage.')},
+        ]},
+      {domain: D.town, name: 'Town of Port Alder', look: {font: 'sans', bg: '#ffffff', ink: '#1f2937', muted: '#4b5563', accent: '#1e40af', band: '#1e3a8a', bandInk: '#fff', logo: {shape: 'shield', color: '#93c5fd', text: 'PA', ink: '#1e3a8a'}},
+        pages: [
+          {path: '/council/minutes', kind: 'document', title: 'Town council minutes', blocks: [
+            {t: 'h1', text: 'Town council minutes'},
+            {t: 'p', text: 'Item 4. Library hours.'},
+            {t: 'p', text: 'Vote 4 to 1 to close the library on Sundays starting March 1.'},
+          ], note: N('S3', 's3-minutes', 'evidence', "Town council minutes: vote 4 to 1 to close the library on Sundays starting March 1.")},
+        ]},
+      {domain: D.rl, name: 'Rhea Lind, digital art', look: {font: 'sans', bg: '#111827', ink: '#f3f4f6', muted: '#c7cbd3', accent: '#f9a8d4', band: '#111827', bandInk: '#f9a8d4', line: '#374151', logo: {shape: 'square', color: '#f472b6', text: 'RL'}},
+        pages: [
+          {path: '/street-shark', kind: 'article', title: 'Street Shark', blocks: [
+            {t: 'h1', text: 'Street Shark'},
+            {t: 'img', image: 'ff-shark-street', search: false, caption: 'Street Shark, digital collage, 2019. Edited image.', alt: 'A shark fin in a flooded street'},
+            {t: 'p', text: 'A shark fin added to a photo of a flooded street.'},
+          ], note: N('S2', 's2-collage', 'evidence', 'The earliest copy of the photo is "Street Shark, digital collage, 2019" by the artist Rhea Lind. It is an edited image.')},
+        ]},
+      {domain: D.qj, name: 'Quellmont Journal of Child Learning', look: {font: 'serif', bg: '#ffffff', ink: '#1a1a1a', muted: '#555', accent: '#7c2d12', band: '#f3efe6', bandInk: '#3b2a1a', logo: {shape: 'book', color: '#7c2d12', text: 'Q'}},
+        pages: [
+          {path: '/2024/puzzle-games', kind: 'document', title: 'Puzzle games and spatial skills', blocks: [
+            {t: 'meta', text: 'Quellmont Journal of Child Learning, 2024'},
+            {t: 'h1', text: 'Puzzle games and spatial skills in 200 children'},
+            {t: 'p', text: 'Children who played puzzle games more had slightly higher spatial test scores.'},
+            {t: 'p', text: 'This study cannot show that the games caused the difference.'},
+          ], note: N('S5', 's5-study', 'evidence', 'The study: in 200 children, those who played puzzle games more had slightly higher spatial test scores. It cannot show that the games caused it.')},
+        ]},
+      {domain: D.bs, name: 'Brambleskip Nature Center', look: {font: 'sans', bg: '#f7faf5', ink: '#1c2a17', muted: '#4b5a44', accent: '#3f6212', band: '#365314', bandInk: '#fff', logo: {shape: 'leaf', color: '#84cc16', text: 'B', ink: '#1c2a17'}},
+        pages: [
+          {path: '/wood-frog', kind: 'article', title: 'Wood frogs in winter', blocks: [
+            {t: 'h1', text: 'Wood frogs in winter'},
+            {t: 'p', text: 'In cold winters, wood frogs freeze solid. Their hearts stop beating. In spring they thaw, their hearts start beating again, and they hop away.'},
+          ], note: N('S6', 's6-nature', 'others', 'Brambleskip Nature Center says the same: wood frogs freeze solid in cold winters and thaw in spring.')},
+        ]},
+      {domain: D.pw, name: 'Puddlewick Middle School', look: {font: 'sans', bg: '#ffffff', ink: '#1f2937', muted: '#4b5563', accent: '#7c3aed', band: '#4c1d95', bandInk: '#fff', logo: {shape: 'shield', color: '#a78bfa', text: 'PW', ink: '#2e1065'}},
+        pages: [
+          {path: '/staff', kind: 'about', title: 'Our staff', blocks: [
+            {t: 'h1', text: 'Our staff'},
+            {t: 'table', head: ['Name', 'Job'], rows: [['Ms. Park', 'Science teacher'], ['Mr. Okafor', 'Math teacher'], ['Ms. Reyes', 'Librarian']]},
+          ], note: N('S6', 's6-staff', 'who', 'Puddlewick Middle School staff page: Ms. Park is a science teacher there, as her page says.')},
+        ]},
+    ],
+    people: [{name: 'Marisol Vega', works: [...VEGA.map(v => U(D.gz, v[0])), U(D.gz, '/library-sunday-hours')]}, {name: 'J. Carter', works: [U(D.zn, '/four-day-week')]}],
+    posts: {
+      storm1: {...SA, followers: 12400, shares: 8900, time: '2:14 PM',
+        text: 'Port Alder flooding RIGHT NOW. A shark swam down Main Street!! Share!!', image: 'ff-shark-street', alt: 'A shark fin in a flooded street',
+        notes: {shares: N('S2', 's2-shares', 'inside', 'The post has 8,900 shares.'), followers: N('S2', 's2-followers', 'inside', '@SquallnookAlerts has 12,400 followers.'),
+          image: N('S2', 's2-photo', 'inside', 'The photo shows a shark fin in a flooded street.')}},
+      storm2: {...SA, text: 'Heavy rain warning for the coast tonight. Stay safe!', time: 'Yesterday'},
+      storm3: {...SA, text: 'Thunderstorms this afternoon. Bring pets inside.', time: '3 days ago'},
+      storm4: {...SA, text: 'Flood watch for the harbor until Friday.', time: '5 days ago'},
+    },
+    images: {
+      'ff-shark-street': {alt: 'A shark fin in a flooded street', copies: [
+        {url: U(D.rl, '/street-shark'), date: '2019', label: 'Street Shark, digital collage, 2019 (edited image), Rhea Lind'},
+        {url: U(D.tb, '/@SquallnookAlerts/status/1'), date: '2026', label: 'Tweedlebeak post by @SquallnookAlerts'}],
+        note: N('S2', 's2-collage', 'evidence', 'The earliest copy of the photo is "Street Shark, digital collage, 2019" by the artist Rhea Lind. It is an edited image.')},
+      'ff-flooded-street': {copies: [{url: U(D.gz, '/rain-floods-harbor'), date: '2026', label: 'Port Alder Gazette'}]},
+      'ff-library-front': {copies: [{url: U(D.gz, '/library-sunday-hours'), date: '2026', label: 'Port Alder Gazette'}]},
+      'ff-wood-frog': {copies: [{url: U(D.pond, '/'), date: '2026', label: "Ms. Park's Pond Notes"}]},
+    },
+    entries: [
+      {id: 'gloverly-study-institute', title: 'Gloverly Study Institute', text: ['The Gloverly Study Institute is an advocacy group founded in 2024 by Quillbop Apps, maker of the Gradewhistle homework app.'],
+        note: N('S1', 's1-wiki', 'who', 'Openpedia: an advocacy group founded in 2024 by Quillbop Apps, maker of the Gradewhistle homework app.')},
+      {id: 'port-alder-gazette', title: 'Port Alder Gazette', text: ['The Port Alder Gazette is a local newspaper in the town of Port Alder, founded in 1921.'],
+        note: N('S3', 's3-wiki', 'who', 'Openpedia: the Port Alder Gazette is a local newspaper, founded in 1921.')},
+      {id: 'wood-frog', title: 'Wood frog', text: ['In cold winters, the wood frog freezes solid. Its heart stops beating. In spring it thaws, and its heart starts beating again.'],
+        note: N('S6', 's6-wiki', 'evidence', 'Openpedia: in cold winters a wood frog freezes solid and its heart stops. In spring it thaws, and its heart starts beating again.')},
+    ],
+    index: [
+      // S1
+      ...ASK([['gloverly'], ['study', 'institute']], [
+        {title: 'Gloverly Study Institute - Openpedia', url: WIKI('gloverly-study-institute'), snippet: 'An advocacy group founded in 2024 by...'},
+        {title: 'Group praising study apps is funded by an app maker', url: U(D.tr, '/study-app-group-funding'), snippet: 'Glimmerlake Tribune. The Gloverly Study Institute, which says...'},
+        {title: 'Gloverly Study Institute', url: U(D.s1, '/'), snippet: 'Independent. Nonpartisan. Research for families.'}]),
+      ...ASK([['study', 'app'], ['study', 'grade'], ['homework', 'app']], [
+        {title: 'Group praising study apps is funded by an app maker', url: U(D.tr, '/study-app-group-funding'), snippet: 'Glimmerlake Tribune. The Gloverly Study Institute, which says...'},
+        {title: 'Study apps raise grades by 40%, research shows', url: U(D.s1, '/'), snippet: 'Gloverly Study Institute.'}]),
+      ...ASK([['quillbop']], [{title: 'Gloverly Study Institute - Openpedia', url: WIKI('gloverly-study-institute'), snippet: '...founded in 2024 by Quillbop Apps...'}]),
+      ...ASK([['gradewhistle']], [{title: 'Gloverly Study Institute - Openpedia', url: WIKI('gloverly-study-institute'), snippet: '...maker of the Gradewhistle homework app.'},
+        {title: 'Group praising study apps is funded by an app maker', url: U(D.tr, '/study-app-group-funding'), snippet: 'Glimmerlake Tribune.'}]),
+      // S2
+      ...ASK([['squallnook'], ['squallnookalerts']], [
+        {title: 'Squallnook Alerts (@SquallnookAlerts) on Tweedlebeak', url: U(D.tb, '/@SquallnookAlerts'), snippet: 'Weather alerts, fast.'},
+        {title: '@SquallnookAlerts: Port Alder flooding RIGHT NOW...', url: U(D.tb, '/@SquallnookAlerts/status/1'), snippet: 'Tweedlebeak post.'}],
+        N('S2', 's2-account', 'who', 'Searching for Squallnook Alerts finds only its own posts. Nothing ties the account to any weather service.')),
+      ...ASK([['flood'], ['flooding']], [
+        {title: 'Rain floods streets near the harbor', url: U(D.gz, '/rain-floods-harbor'), snippet: 'Port Alder Gazette. Heavy rain flooded streets near the harbor...'},
+        {title: 'No, a shark did not swim down Main Street', url: U(D.tl, '/shark-main-street'), snippet: 'Truthlamp Fact Desk.'}]),
+      ...ASK([['shark']], [
+        {title: 'No, a shark did not swim down Main Street', url: U(D.tl, '/shark-main-street'), snippet: 'Truthlamp Fact Desk.'},
+        {title: 'Street Shark', url: U(D.rl, '/street-shark'), snippet: 'Rhea Lind, digital art.'}]),
+      ...ASK([['rhea'], ['lind'], ['collage']], [{title: 'Street Shark', url: U(D.rl, '/street-shark'), snippet: 'Rhea Lind, digital art.'}]),
+      ...ASK([['tweedlebeak']], [{title: '@SquallnookAlerts: Port Alder flooding RIGHT NOW...', url: U(D.tb, '/@SquallnookAlerts/status/1'), snippet: 'Tweedlebeak post.'}]),
+      ...ASK([['truthlamp']], [{title: 'No, a shark did not swim down Main Street', url: U(D.tl, '/shark-main-street'), snippet: 'Truthlamp Fact Desk.'}]),
+      ...ASK([['glimmerlake']], [['/study-app-group-funding', 'Group praising study apps is funded by an app maker'], ['/port-alder-library-sundays', 'Port Alder library to close Sundays'], ['/four-day-weeks', 'Some districts have tried four-day weeks'], ['/puzzle-games-study', 'Small study finds link between puzzle games and spatial skills']].map(([p, title]) => ({title, url: U(D.tr, p), snippet: 'Glimmerlake Tribune.'}))),
+      // S3
+      ...ASK([['gazette']], [
+        {title: 'Port Alder Gazette - Openpedia', url: WIKI('port-alder-gazette'), snippet: 'A local newspaper in the town of Port Alder...'},
+        {title: 'Library to cut Sunday hours', url: U(D.gz, '/library-sunday-hours'), snippet: 'Port Alder Gazette.'}]),
+      ...ASK([['marisol'], ['vega']], [
+        {title: 'Marisol Vega, staff reporter - Port Alder Gazette', url: U(D.gz, '/staff/marisol-vega'), snippet: 'Her articles for the Gazette, 2020 to 2026.'},
+        ...VEGA.slice().reverse().map(([p, title, date]) => ({title, url: U(D.gz, p), snippet: 'Port Alder Gazette, ' + date + '. By Marisol Vega.'}))],
+        N('S3', 's3-vega', 'who', 'Marisol Vega has written for the Gazette for six years, 2020 to 2026.')),
+      ...ASK([['library', 'sunday'], ['library', 'close'], ['library', 'closing'], ['library', 'hour']], [
+        {title: 'Town council minutes', url: U(D.town, '/council/minutes'), snippet: 'Town of Port Alder. Item 4. Library hours.'},
+        {title: 'Port Alder library to close Sundays', url: U(D.tr, '/port-alder-library-sundays'), snippet: 'Glimmerlake Tribune, news in brief.'},
+        {title: 'Library to cut Sunday hours', url: U(D.gz, '/library-sunday-hours'), snippet: 'Port Alder Gazette.'}]),
+      ...ASK([['council', 'minutes']], [{title: 'Town council minutes', url: U(D.town, '/council/minutes'), snippet: 'Town of Port Alder. Item 4. Library hours.'}]),
+      // S4
+      ...ASK([['carter']], [
+        {title: 'J. Carter - Zapline Now', url: U(D.zn, '/author/j-carter'), snippet: 'J. Carter covers education.'},
+        {title: 'BREAKING: Every school will switch to a four-day week next fall', url: U(D.zn, '/four-day-week'), snippet: 'Zapline Now.'}],
+        N('S4', 's4-carter', 'who', 'Searching for J. Carter finds no articles anywhere except this one site.')),
+      ...ASK([['zapline']], [{title: 'BREAKING: Every school will switch to a four-day week next fall', url: U(D.zn, '/four-day-week'), snippet: 'Zapline Now.'}]),
+      ...ASK([['four', 'day', 'week'], ['four', 'day', 'school']], [
+        {title: 'Some districts have tried four-day weeks; there is no national plan', url: U(D.tr, '/four-day-weeks'), snippet: 'Glimmerlake Tribune.'},
+        {title: 'BREAKING: Every school will switch to a four-day week next fall', url: U(D.zn, '/four-day-week'), snippet: 'Zapline Now.'}],
+        N('S4', 's4-nobody', 'others', 'No other news site and no school district reports a four-day week for every school next fall.')),
+      // S5
+      ...ASK([['puzzle'], ['spatial'], ['game', 'study'], ['game', 'smarter'], ['game', 'smart']], [
+        {title: 'Small study finds link between puzzle games and spatial skills', url: U(D.tr, '/puzzle-games-study'), snippet: 'Glimmerlake Tribune.'},
+        {title: 'Puzzle games and spatial skills in 200 children', url: U(D.qj, '/2024/puzzle-games'), snippet: 'Quellmont Journal of Child Learning, 2024.'},
+        {title: 'Scientists PROVE video games make kids smarter', url: U(D.pp, '/games-smarter'), snippet: 'Pixelpuddle Parent.'}]),
+      ...ASK([['quellmont'], ['journal', 'child']], [{title: 'Puzzle games and spatial skills in 200 children', url: U(D.qj, '/2024/puzzle-games'), snippet: 'Quellmont Journal of Child Learning, 2024.'}]),
+      ...ASK([['pixelpuddle'], ['pixel', 'puddle']], [{title: 'Scientists PROVE video games make kids smarter', url: U(D.pp, '/games-smarter'), snippet: 'Pixelpuddle Parent.'}]),
+      // S6
+      ...ASK([['frog']], [
+        {title: 'Wood frog - Openpedia', url: WIKI('wood-frog'), snippet: 'In cold winters, the wood frog freezes solid...'},
+        {title: 'Wood frogs in winter', url: U(D.bs, '/wood-frog'), snippet: 'Brambleskip Nature Center.'},
+        {title: 'Wood frogs freeze in winter and come back in spring!', url: U(D.pond, '/'), snippet: "Ms. Park's Pond Notes."}]),
+      ...ASK([['brambleskip']], [{title: 'Wood frogs in winter', url: U(D.bs, '/wood-frog'), snippet: 'Brambleskip Nature Center.'}]),
+      ...ASK([['puddlewick'], ['park', 'teacher'], ['park', 'science']], [
+        {title: 'Our staff - Puddlewick Middle School', url: U(D.pw, '/staff'), snippet: 'Ms. Park, Science teacher...'}]),
+      ...ASK([['park']], [
+        {title: 'Our staff - Puddlewick Middle School', url: U(D.pw, '/staff'), snippet: 'Ms. Park, Science teacher...'},
+        {title: "Ms. Park's Pond Notes", url: U(D.pond, '/'), snippet: 'Welcome to my pond page!!!'}]),
+    ],
+  };
+  const ART = {'ff-shark-street': 'art:ff-shark-street', 'ff-flooded-street': 'art:ff-flooded-street', 'ff-library-front': 'art:ff-library-front', 'ff-wood-frog': 'art:ff-wood-frog'};
+  // every finding by id (for the reveal's key findings)
+  const FIND = {};
+  (function walk(v) { if (Array.isArray(v)) v.forEach(walk); else if (v && typeof v === 'object') { if (v.id && v.tag && v.for && v.text) FIND[v.id] = v; Object.values(v).forEach(walk); } })(WORLD);
+
+  // ======================================================================================
+  // LINES (Curio.voice). How lines: wLab, outside, tools, image, locked, wReport, wReportMore (spoken once). Event
+  // line: expert. The h* lines are hints only (on screen; Read speaks them).
+  // ======================================================================================
+  const L = {
+    wLab: 'Read this page. Tap lines to save them in your notebook. Then pick a verdict, and lock your call. Tap a jar for another specimen.',
+    outside: 'Now leave the page. Press the plus to open a new tab and search the site, the author or the claim.',
+    tools: 'You can also tap Who runs this site.',
+    image: 'This photo has a Search this image button. Tap it to find where the photo came from.',
+    locked: "That's for the outside read. Pick a verdict, then press Lock my call.",
+    expert: "Here's what a fact-checker would find. Compare it with your two calls.",
+    wReport: 'This is your lab table. Compare your inside reads with your outside reads.',
+    wReportMore: 'This is your lab table. Compare your inside reads with your outside reads. Press Lab to test the next specimen.',
+    h1: 'Read this page, and tap lines to save them. Then pick a verdict, and lock your call.',
+    h1v: 'Press Lock my call to record your inside call.',
+    h2: 'Press the plus for a new tab. Search the site, the author or the claim. Then pick a verdict.',
+    h2b: 'Tap a suggestion or a result to read it. Then pick a verdict.',
+    h2need: 'Your outside call needs an outside look first. Press the plus for a new tab.',
+    h2v: 'Press Lock my call to record your outside call.',
+    hReveal: 'Compare the fact-check with your two calls. Then press Next specimen.',
+    hAll: 'All six specimens are tested. Press See the report.',
+    hTested: 'This specimen is tested. Press Next specimen, or Retest to try it again.',
+    hEmpty: 'No specimens tested yet. Press Lab and test one.',
+    hConfirm: 'Press Yes to empty the lab table, or No to keep it.',
+    noResults: "No good results. Try the site's name, the author's name, or the claim's key words.",
+  };
+
+  // ======================================================================================
+  // STATE
+  // ======================================================================================
+  // first: a retested specimen's first try ({c1, c2}), kept for the lab table: the table shows the real first read
+  const state = {mode: 'lab', spec: 'S1', verdict: null, sessions: {}, revealMin: false, confirm: false, nbOpen: false, layout: '', first: {}};
+  const fc = FC.create(WORLD);
+  try { const d = JSON.parse(localStorage.getItem('fofl-table') || 'null'); if (d) { fc.restore(d); state.first = d.first && typeof d.first === 'object' ? d.first : {}; } } catch {}
+  const save = () => { try { localStorage.setItem('fofl-table', JSON.stringify({...fc.dump(), first: state.first})); } catch {} };
+  const passOf = s => fc.callOf(s, 2) ? 3 : fc.callOf(s, 1) ? 2 : 1;      // 1 inside, 2 outside, 3 tested
+  const curPass = () => passOf(state.spec);
+  const tested = () => IDS.filter(s => passOf(s) === 3);
+  // the lab table's row for a specimen: its first try when it was retested, else its calls once both are locked
+  const rowOf = s => state.first[s] ? {...state.first[s], retested: true} : passOf(s) === 3 ? {c1: fc.callOf(s, 1), c2: fc.callOf(s, 2)} : null;
+  const rowIds = () => IDS.filter(rowOf);
+  const remaining = () => IDS.some(s => passOf(s) !== 3);
+  // an outside move in Pass 2: a new tab (search, lookup, image search) or an outside finding (a Trace)
+  const outsideDone = s => fc.tabs(s, 2) > 0 || fc.notes(s).some(n => n.tag !== 'inside');
+
+  const V = Curio.voice({
+    lines: L, scope: () => state.mode, hint: false, welcomeAfter: true, read: () => $('hint').textContent,
+    welcome: () => state.mode === 'lab' ? ['wLab', {valid: () => state.mode === 'lab' && curPass() === 1}]
+      : rowIds().length ? [remaining() ? 'wReportMore' : 'wReport', {valid: () => state.mode === 'report' && rowIds().length > 0}] : null,
+  });
+  const setHint = t => { if ($('hint').textContent !== t) $('hint').textContent = t; };
+
+  // ======================================================================================
+  // BROWSER + NOTEBOOK
+  // ======================================================================================
+  const browser = fc.browser($('bwrap'), {
+    art: ART, lockLabel: 'Pass 2', noResults: L.noResults, maxTabs: 8,
+    chips: () => SPEC[state.spec].chips,
+    onLocked: () => { setHint(L.locked); V.how('locked', {valid: () => state.mode === 'lab' && curPass() === 1}); Curio.tone(330, .18, .035, 'triangle'); },
+    onNote: (n, added) => { if (added) { drawNotebook(true); Curio.tone(660, .12, .03); if (state.mode === 'lab' && curPass() === 2) drawPanel(); } },
+    onOpen: () => {
+      if (state.mode !== 'lab' || curPass() !== 2) return;
+      drawPanel();
+      // a new tab is open: a queued "press the plus" line is out of date, so the coaching moves on to the next step
+      if (browser && browser.tabs > 1 && V.queue.some(q => q.key === 'outside')) coachOutside(state.spec);
+    },
+  });
+  const nb = fc.notebook($('nb'), {empty: 'Tap things on the page to add notes. Outside finds land here too.'});
+  const nbPop = fc.notebook($('nbPopList'), {empty: 'Tap things on the page to add notes. Outside finds land here too.'});
+  function drawNotebook(fresh) {
+    const n = nb.refresh(fresh); nbPop.refresh(fresh);
+    $('nbHead').replaceChildren('Notebook ', h('span', {}, n === 1 ? '1 card' : n + ' cards'));
+    $('nbPopHead').replaceChildren('Notebook ', h('span', {}, n === 1 ? '1 card' : n + ' cards'));
+    $('nbChip').replaceChildren(FC.icon('evidence', 16), (state.layout === 'compact' ? 'Notes: ' : 'Notebook: ') + n);
+    $('nbChip').setAttribute('aria-label', 'Notebook: ' + (n === 1 ? '1 card' : n + ' cards'));
+  }
+
+  // ======================================================================================
+  // TRAY
+  // ======================================================================================
+  const jarSvg = () => { const s = document.createElementNS('http://www.w3.org/2000/svg', 'svg'); s.setAttribute('viewBox', '0 0 22 30'); s.setAttribute('width', 22); s.setAttribute('height', 30); s.setAttribute('aria-hidden', 'true');
+    s.innerHTML = '<rect x="5" y="1" width="12" height="5" rx="1.5" fill="#6d28d9"/><path d="M4 7h14v18a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4z" fill="#ede9fe" stroke="#6d28d9" stroke-width="1.6"/><path d="M6 16h10" stroke="#a78bfa" stroke-width="1.4"/>'; return s; };
+  const ST_WORD = {1: 'New', 2: 'Inside done', 3: 'Tested'};
+  const stWord = p => p === 2 && state.layout !== 'wide' ? 'Inside' : ST_WORD[p];
+  IDS.forEach(s => {
+    const b = h('button', {class: 'jar', id: 'jar-' + s, type: 'button'}, jarSvg(), h('div', {style: 'min-width:0'}, h('b', {}, s), h('span', {class: 'kd'}, SPEC[s].kind), h('span', {class: 'st'})));
+    b.onclick = () => openSpec(s);
+    $('tray').append(b);
+  });
+  function drawTray() {
+    IDS.forEach(s => {
+      const b = $('jar-' + s), p = passOf(s);
+      b.className = 'jar st-' + (p === 1 ? 'new' : p === 2 ? 'inside' : 'tested');
+      b.querySelector('.st').textContent = stWord(p);
+      b.querySelector('.kd').textContent = state.layout === 'wide' ? SPEC[s].kind : SPEC[s].kind.split(' ')[0];   // "news" when narrow
+      b.setAttribute('aria-current', s === state.spec ? 'true' : 'false');
+      b.setAttribute('aria-label', `${s}, ${SPEC[s].kind}, ${ST_WORD[p]}`);
+    });
+  }
+
+  // ======================================================================================
+  // LAB
+  // ======================================================================================
+  function newSession(s) { return {tabs: [], active: 0}; }
+  // open a specimen: Pass 1 if it has no calls, Pass 2 after the inside call, read-only with its reveal when tested
+  function openSpec(s, quiet) {
+    const changed = s !== state.spec;
+    state.spec = s; state.verdict = null;
+    V.dropQueued();
+    if (state.mode !== 'lab') { setMode('lab', true); }
+    const p = passOf(s);
+    if (p === 1) fc.lock(['newTab', 'search', 'image', 'lookup', 'leave', 'trace']); else fc.unlock();
+    if (p < 3) fc.begin(s, p); else fc.focus(s);
+    let ses = state.sessions[s];
+    if (!ses) {
+      ses = state.sessions[s] = newSession(s);
+      browser.use(ses);
+      // the specimen's own tab counts as Pass 1's one tab, once (not again after a reload)
+      browser.open(SPEC[s].url, {newTab: true, count: p === 1 && !fc.tabs(s, 1)});
+    } else browser.use(ses);
+    save();
+    if (changed) state.revealMin = false;
+    drawAll();
+    if (p === 2 && !(V.heard('tools') && V.heard('image'))) coachOutside(s);
+    if (!quiet) Curio.tone(520, .1, .025);
+  }
+  function pick(v) {
+    if (state.mode !== 'lab' || curPass() === 3) return;
+    state.verdict = v;
+    drawPanel();
+    Curio.tone(600, .08, .025);
+  }
+  // the Pass 2 how lines: queued on the first lock, and offered again when a student comes back to a specimen in
+  // Pass 2 before hearing them (Read or a mode switch can cut them); how lines already heard stay silent
+  function coachOutside(s) {
+    const valid = () => state.mode === 'lab' && state.spec === s && curPass() === 2;
+    // "press the plus" only while just the specimen's tab is open; once a tab is open the chain starts at tools.
+    // image is named only when a photo's Search this image button is on screen (S2); otherwise it waits, unheard
+    const first = browser.tabs === 1 ? [['outside', {valid: () => browser.tabs === 1, needs: '.fc-newtab'}]] : [];
+    V.how([...first, ['tools', {needs: '.fc-lookup'}], ['image', {needs: '.fc-imgbtn'}]], {valid});
+  }
+  function lockCall() {
+    const s = state.spec, p = curPass();
+    if (!state.verdict || p === 3 || state.mode !== 'lab') return;
+    if (p === 2 && !outsideDone(s)) { setHint(L.h2need); return; }
+    fc.call(s, p, state.verdict);
+    state.verdict = null;
+    save();
+    if (p === 1) {
+      fc.unlock(); fc.begin(s, 2);
+      browser.paintLocks();
+      drawAll();
+      coachOutside(s);
+      Curio.tone(523, .2, .04);
+      const plus = browser.el.querySelector('.fc-newtab'); if (plus) plus.focus({preventScroll: true});   // the next step
+    } else {
+      fc.pause();
+      state.revealMin = false;
+      drawAll(true);
+      Curio.yes();
+      V.dropQueued();          // the Pass 2 how lines no longer apply; the result the student just earned plays next
+      V.say('expert', {valid: () => state.mode === 'lab' && state.spec === s && curPass() === 3});
+      $('next').focus({preventScroll: true});
+    }
+  }
+  function retest() {
+    const s = state.spec;
+    if (!state.first[s] && passOf(s) === 3) state.first[s] = {c1: fc.callOf(s, 1), c2: fc.callOf(s, 2)};   // keep the first try
+    fc.clear(s);
+    state.sessions[s] = null;
+    save();
+    openSpec(s, true);
+    V.welcome();
+  }
+  function nextSpec() {
+    const i = IDS.indexOf(state.spec);
+    const nx = [...IDS.slice(i + 1), ...IDS.slice(0, i)].find(s => passOf(s) !== 3);
+    if (!nx) { setMode('report'); $('m-report').focus({preventScroll: true}); return; }
+    openSpec(nx);
+    const b = $('jar-' + nx); if (b) b.focus({preventScroll: true});
+  }
+
+  const vchip = v => h('span', {class: 'vchip ' + v}, h('i', {'aria-hidden': 'true'}, VERDICT[v].sym), VERDICT[v].word);
+  const match = (v, e) => v === e ? h('span', {class: 'mt yes'}, 'Matches') : h('span', {class: 'mt no'}, "Doesn't match");
+  const secs = n => n + ' s';
+  const tabsW = n => n === 1 ? '1 tab' : n + ' tabs';
+
+  function drawPass() {
+    const p = curPass(), el = $('pass');
+    el.className = 'pass p' + p;
+    const ic = FC.icon(p === 1 ? 'inside' : p === 2 ? 'search' : 'evidence', 18);
+    const short = state.layout === 'compact';
+    if (p === 3) { el.replaceChildren(ic, short ? 'Tested' : 'Tested: both passes'); return; }
+    if (p === 1) el.replaceChildren(ic, short ? 'Pass 1: Inside' : 'Pass 1: Inside read', h('small', {}, 'Inside'));
+    else if (p === 2) el.replaceChildren(ic, short ? 'Pass 2: Outside' : 'Pass 2: Outside read', h('small', {}, 'Outside'));
+    else el.replaceChildren(ic, 'Tested: both passes');
+  }
+  function drawPanel() {
+    const lab = state.mode === 'lab';
+    $('labPanel').style.display = lab ? 'contents' : 'none';
+    $('repPanel').hidden = lab; $('repPanel').style.display = lab ? 'none' : 'flex';
+    $('repPanel').style.flexDirection = 'column'; $('repPanel').style.gap = '8px';
+    if (!lab) {
+      setHint(state.confirm ? L.hConfirm : rowIds().length ? (remaining() ? L.wReportMore : L.wReport) : L.hEmpty);
+      $('confirm').hidden = !state.confirm; $('clear').hidden = state.confirm; $('clear').disabled = !rowIds().length && !fc.calls.length; return;
+    }
+    const p = curPass();
+    drawPass();
+    document.querySelector('.vgroup').hidden = p === 3;
+    for (const v of VKEYS) { const b = $('v-' + v); b.setAttribute('aria-pressed', state.verdict === v ? 'true' : 'false'); b.disabled = p === 3; }
+    const out = p !== 2 || outsideDone(state.spec);
+    $('lock').disabled = !state.verdict || p === 3 || !out;
+    $('lock').hidden = p === 3; $('next').hidden = p !== 3; $('retestRow').hidden = p !== 3;
+    $('next').textContent = tested().length === IDS.length ? 'See the report' : 'Next specimen';
+    if (p === 1) setHint(state.verdict ? L.h1v : L.h1);
+    else if (p === 2) setHint(!out ? (state.verdict ? L.h2need : L.h2) : state.verdict ? L.h2v : browser.tabs > 1 ? L.h2b : L.h2);
+    else setHint(tested().length === IDS.length ? L.hAll : !state.revealMin ? L.hReveal : L.hTested);
+  }
+  function drawReveal(animate) {
+    const r = $('reveal'), s = state.spec, p = curPass();
+    if (state.mode !== 'lab' || p !== 3) { r.hidden = true; return; }
+    const c1 = fc.callOf(s, 1), c2 = fc.callOf(s, 2), E = SPEC[s].expert;
+    const tog = h('button', {class: 'btn tog', type: 'button', 'aria-expanded': state.revealMin ? 'false' : 'true'}, state.revealMin ? 'Show' : 'Hide');
+    tog.onclick = () => { state.revealMin = !state.revealMin; drawReveal(); drawPanel(); r.querySelector('.tog').focus({preventScroll: true}); };
+    // the findings that decide it, each marked when the student's notebook has it
+    const mine = new Set(fc.notes(s).map(n => n.id));
+    const keys = SPEC[s].key.map(id => FIND[id]).filter(Boolean), got = keys.filter(n => mine.has(n.id)).length;
+    const kl = h('ul', {class: 'rk'}, keys.map(n => { const T = FC.TAGS[n.tag] || FC.TAGS.inside, y = mine.has(n.id);
+      return h('li', {style: '--kc:' + T.color}, h('div', {class: 'kt'}, FC.icon(T.icon, 14), T.word, h('span', {class: 'kf ' + (y ? 'y' : 'n')}, y ? 'You found this' : 'Not in your notebook')), h('div', {}, n.text)); }));
+    r.replaceChildren(
+      h('h2', {}, FC.icon('evidence', 20), 'What a fact-checker would find: ' + s, h('span', {class: 'sp'}), tog),
+      h('div', {class: 'rv-body'},
+        h('div', {class: 'rv-v'}, 'A fact-checker would say: ', vchip(E)),
+        h('p', {class: 'rv-why'}, SPEC[s].why),
+        h('p', {class: 'rv-h3'}, `What decides it (your notebook has ${got} of ${keys.length})`),
+        kl,
+        h('table', {class: 'rvt'},
+          h('tr', {}, h('th', {}, 'Your inside call'), h('th', {}, 'Your outside call'), h('th', {class: 'xc'}, 'Fact-checker')),
+          h('tr', {}, h('td', {}, vchip(c1.verdict), ' ', match(c1.verdict, E)), h('td', {}, vchip(c2.verdict), ' ', match(c2.verdict, E)), h('td', {class: 'xc'}, vchip(E))),
+          h('tr', {}, h('td', {}, secs(c1.seconds) + ', ' + tabsW(c1.tabs)), h('td', {}, secs(c2.seconds) + ', ' + tabsW(c2.tabs)), h('td', {class: 'xc'}, ''))),
+        h('p', {class: 'small'}, 'Every page in this lab is made up for practice. Added to your lab table, saved on this device only.')));
+    r.classList.toggle('min', state.revealMin);
+    r.hidden = false;
+    if (animate && !Curio.reduce) { r.classList.add('enter'); void r.offsetWidth; requestAnimationFrame(() => r.classList.remove('enter')); }
+  }
+  function drawAll(animateReveal) { drawTray(); drawNotebook(false); drawPanel(); drawReveal(animateReveal); relayout(); }
+
+  // ======================================================================================
+  // REPORT
+  // ======================================================================================
+  const QS = [['who', "Who's behind it?", '#1d4ed8'], ['evidence', "What's the evidence?", '#0f766e'], ['others', 'What do other sources say?', '#9a3412']];
+  function counts() {
+    const rows = rowIds().map(s => ({s, ...rowOf(s), e: SPEC[s].expert}));
+    return {rows, n: rows.length, a: rows.filter(r => r.c1.verdict === r.e).length, b: rows.filter(r => r.c2.verdict === r.e).length};
+  }
+  function drawReport() {
+    const {rows, n, a, b} = counts(), el = $('report');
+    const rep = h('div', {class: 'rep'}, h('h2', {}, 'Lab table'));
+    if (!n) rep.append(h('p', {class: 'empty'}, 'No specimens tested yet. Each specimen you finish in the Lab adds a row here.'));
+    else {
+      rep.append(h('div', {class: 'tbl-wrap'}, h('table', {class: 'rtab'},
+        h('tr', {}, ['Specimen', 'Inside call', 'Outside call', 'Fact-checker', 'Seconds inside', 'Seconds outside', 'Tabs opened outside'].map(t => h('th', {scope: 'col'}, t))),
+        rows.map(r => h('tr', {}, h('td', {}, h('b', {}, r.s), ' ', SPEC[r.s].kind, r.retested ? h('span', {class: 'rtag', title: 'First try shown'}, 'retested') : null),
+          h('td', {'data-l': 'Inside'}, vchip(r.c1.verdict), ' ', match(r.c1.verdict, r.e)),
+          h('td', {'data-l': 'Outside'}, vchip(r.c2.verdict), ' ', match(r.c2.verdict, r.e)), h('td', {'data-l': 'Fact-checker'}, vchip(r.e)),
+          h('td', {class: 'n', 'data-l': 'Seconds inside'}, r.c1.seconds), h('td', {class: 'n', 'data-l': 'Seconds outside'}, r.c2.seconds), h('td', {class: 'n', 'data-l': 'Tabs opened outside'}, r.c2.tabs))))));
+      rep.append(h('div', {class: 'counts'},
+        h('p', {class: 'count in', id: 'countIn'}, 'Inside read matched the fact-checker on ', h('b', {}, a), ' of ', h('b', {}, n), '.'),
+        h('p', {class: 'count out', id: 'countOut'}, 'Outside read matched on ', h('b', {}, b), ' of ', h('b', {}, n), '.')));
+      // one line on the student's own two reads
+      const d = b - a, t = d === 1 ? '1 more time' : d + ' more times';
+      rep.append(h('p', {class: 'react', id: 'react'}, d > 0 ? `Your outside read matched ${t} than your inside read. Which specimen fooled your inside read?`
+        : d === 0 ? 'Your two reads matched the same number of times. Look for a row where they differ, or test another specimen.'
+        : 'Your inside read matched more often this time. Which outside find led you away?'));
+      if (rows.some(r => r.retested)) rep.append(h('p', {class: 'small'}, 'A retested row shows your first try.'));
+    }
+    rep.append(h('p', {class: 'concl'}, 'In a Stanford study, professional fact-checkers left an unfamiliar site quickly to see what others said about it, and judged sites more accurately than historians and college students who read the site closely.',
+      h('small', {}, 'Wineburg and McGrew, 2019. Matches means your call was the same as the fact-checker\'s call in this lab.')));
+    rep.append(h('div', {class: 'qs', role: 'list', 'aria-label': 'Three questions to ask'}, QS.map(([ic, t, c]) => h('div', {class: 'q', role: 'listitem', style: '--qc:' + c}, FC.icon(ic, 22), t))));
+    el.replaceChildren(rep);
+  }
+
+  // ======================================================================================
+  // MODES
+  // ======================================================================================
+  function setMode(m, fromOpen) {
+    if (m === state.mode && !fromOpen) return;
+    V.hush();
+    state.mode = m; state.confirm = false; closeNb(false);
+    $('m-lab').setAttribute('aria-pressed', m === 'lab'); $('m-report').setAttribute('aria-pressed', m === 'report');
+    $('lab').hidden = m !== 'lab'; $('lab').style.display = m === 'lab' ? '' : 'none';
+    $('report').hidden = m !== 'report';
+    if (m === 'report') { fc.pause(); drawReport(); drawPanel(); drawReveal(); relayout(); V.welcome(); return; }
+    if (!fromOpen) { openSpec(state.spec, true); V.welcome(); }
+  }
+  $('m-lab').onclick = () => setMode('lab');
+  $('m-report').onclick = () => setMode('report');
+  VKEYS.forEach(v => { $('v-' + v).onclick = () => pick(v); });
+  $('lock').onclick = () => lockCall();
+  $('retest').onclick = () => { retest(); $('v-trust').focus({preventScroll: true}); };
+  $('next').onclick = () => nextSpec();
+  $('clear').onclick = () => { state.confirm = true; drawPanel(); $('no').focus({preventScroll: true}); };
+  // save the open pass's seconds and tabs when the page is hidden or closed
+  addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') save(); });
+  addEventListener('pagehide', () => save());
+  $('no').onclick = () => { state.confirm = false; drawPanel(); $('clear').focus({preventScroll: true}); };
+  $('yes').onclick = () => {
+    fc.clear(); state.sessions = {}; state.first = {}; state.confirm = false; save();
+    drawReport(); drawPanel(); drawTray(); $('m-lab').focus({preventScroll: true});
+    Curio.tone(392, .2, .035);
+  };
+
+  // notebook pop-up (compact and stack)
+  function placeNb() {
+    const p = $('nbPop'), c = $('nbChip').getBoundingClientRect();
+    const w = Math.min(340, innerWidth - 16);
+    p.style.width = w + 'px';
+    p.style.left = Math.max(8, Math.min(innerWidth - w - 8, c.right - w)) + 'px';
+    if (c.top > innerHeight / 2) { p.style.top = ''; p.style.bottom = (innerHeight - c.top + 6) + 'px'; p.style.maxHeight = Math.max(160, c.top - 14) + 'px'; }
+    else { p.style.bottom = ''; p.style.top = (c.bottom + 6) + 'px'; p.style.maxHeight = Math.max(160, innerHeight - c.bottom - 14) + 'px'; }
+  }
+  function openNb() { state.nbOpen = true; $('nbPop').hidden = false; $('nbChip').setAttribute('aria-expanded', 'true'); placeNb(); $('nbClose').focus({preventScroll: true}); }
+  function closeNb(back = true) { if (!state.nbOpen) return; state.nbOpen = false; $('nbPop').hidden = true; $('nbChip').setAttribute('aria-expanded', 'false'); if (back) $('nbChip').focus({preventScroll: true}); }
+  $('nbChip').onclick = () => state.nbOpen ? closeNb() : openNb();
+  $('nbClose').onclick = () => closeNb();
+
+  // keys: 1, 2, 3 pick a verdict; Enter locks (unless typing or on another control); Escape closes the notebook
+  addEventListener('keydown', e => {
+    if (e.altKey || e.ctrlKey || e.metaKey) return;
+    const t = e.target, typing = t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable);
+    if (e.key === 'Escape' && state.nbOpen) { closeNb(); return; }
+    if (typing || state.mode !== 'lab') return;
+    if (['1', '2', '3'].includes(e.key) && curPass() !== 3) { e.preventDefault(); pick(VKEYS[+e.key - 1]); return; }
+    // Enter on a verdict that isn't the picked one picks it (the button's own click); it locks only from the body,
+    // Lock my call or the picked verdict
+    const onPicked = t.classList && t.classList.contains('verdict') && t.getAttribute('aria-pressed') === 'true';
+    if (e.key === 'Enter' && state.verdict && (t === document.body || onPicked || t.id === 'lock')) { e.preventDefault(); lockCall(); }
+  });
+
+  // ======================================================================================
+  // LAYOUT
+  // ======================================================================================
+  function pageLayout() { const w = innerWidth, hh = innerHeight; return w >= 1000 && hh >= 650 ? 'wide' : w >= 640 && w / hh >= 1.25 ? 'compact' : 'stack'; }
+  function relayout() {
+    const p = pageLayout();
+    if (p !== state.layout) {
+      state.layout = p; for (const c of ['wide', 'compact', 'stack']) document.body.classList.toggle(c, c === p);
+      drawTray(); drawNotebook(false); if (state.mode === 'lab') drawPass();   // their words depend on the layout
+    }
+    document.body.classList.toggle('c300', innerWidth >= 800);
+    document.body.classList.toggle('hx', p === 'stack' && innerWidth < 480);
+    document.body.classList.toggle('big', p === 'wide' && innerWidth >= 1600);
+    document.body.classList.toggle('nbc', p === 'stack' || (p === 'compact' && innerHeight < 600));
+    if (!document.body.classList.contains('nbc')) closeNb(false);
+    const bw = $('bwrap').getBoundingClientRect().width;
+    document.body.classList.toggle('narrowb', bw > 0 && bw < 600);
+    document.body.classList.toggle('tinyb', bw > 0 && bw < 390);
+    document.body.classList.toggle('midb', bw > 0 && bw < 820);
+    document.body.classList.toggle('tight', p !== 'stack' && innerWidth < 760);
+    if (p === 'stack') {
+      // the browser takes the height left after the header, the tray and the panel, so the page, the verdicts and
+      // Lock my call are all on screen
+      const head = document.querySelector('header').getBoundingClientRect().height, tray = state.mode === 'lab' ? $('tray').getBoundingClientRect().height : 0;
+      const panel = $('panel').getBoundingClientRect().height, mu = state.mode === 'lab' ? $('madeup').getBoundingClientRect().height : 0;
+      const left = innerHeight - head - tray - mu - panel - 4;
+      $('bwrap').style.height = Math.max(innerWidth < 480 ? 170 : 300, left) + 'px';
+      $('report').style.maxHeight = '';
+    } else $('bwrap').style.height = '';
+    if (state.nbOpen) placeNb();
+  }
+  new ResizeObserver(() => relayout()).observe(document.body);
+  addEventListener('resize', () => relayout());
+
+  // ======================================================================================
+  // START
+  // ======================================================================================
+  Curio.init({clips: "voice:*", rate: .92});
+  relayout();
+  openSpec(IDS.find(s => passOf(s) !== 3) || 'S1', true);
+  setMode('lab', true);
+  drawAll();
+
+  window.__tool = {state, fc, browser, setMode, openSpec, pick, lockCall, retest, nextSpec, counts, relayout, SPEC, WORLD, L, rowOf, FIND,
+    allLines: V.allLines, vlog: V.log, get vq() { return V.queue; }, V};
+})();
+</script>
+</body>
+</html>
