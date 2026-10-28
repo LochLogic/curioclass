@@ -54,6 +54,9 @@ the check), and a level:
 - **polish**: not wrong, but a clear step up (a flat moment, a confusing word, a tighter layout). Say what better
   looks like;
 - **nit**: small and optional.
+
+Tag each finding **general** (any tool could have it) or **family:<name>** (it comes from this tool's engine or
+format). The tags decide where the lesson is written down after the wave (RUNBOOK, Wave cadence).
 Don't pad a short list. A lens with nothing to say writes "Nothing found" and the frames it looked at.
 
 ## Standard voice check
@@ -83,7 +86,9 @@ by `python scripts/test_voice.py`; the tool's job is choosing the right kind, `v
 Read the three lens files. Merge duplicates, settle any lens disagreement with BASELINE, and write
 `tools/<id>/refine.md`: one ranked list (blockers, should fix, then the polish items you accept). Accept a polish
 item when it improves what the student sees or hears and stays inside the spec. A polish item that would change the
-spec (what the tool teaches, a new mode) goes to the spec's open questions, not to the builder.
+spec (what the tool teaches, a new mode) goes to the spec's open questions, not to the builder. Keep each finding's
+tag. Under the verdict line, write a counts line for round 1: `Counts: blockers N (general N, family N), should fix N
+(general N, family N), polish accepted N`. The batch log's wave table is built from these lines.
 
 ## Polish (the same build agent)
 

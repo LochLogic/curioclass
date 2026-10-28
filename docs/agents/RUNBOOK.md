@@ -11,6 +11,25 @@ batch (2026-10-25, 10 tools; log in `docs/agents/BATCH-G11-LOG.md`). Read `docs/
 3. Ask Cory which tools (or pick from `data/waves.csv`). Write a short batch note, `docs/agents/BATCH-<name>.md`: the
    tools in build order, the band, anything batch-specific. Keep the standing rules in STANDARDS.md, not here.
 
+## Wave cadence (Cory, 2026-10-27)
+
+Small Build and Refine waves first, so Refine's findings improve the builds; big build-only waves only once a family's
+builds come out clean.
+
+1. **Small waves, about 7 tools, Build and Refine together.** Mix each wave: 4 or 5 new engines or formats, 1 or 2
+   returning engines (their second tool tests the last wave's lesson), and at least one K-2 and one 9-12 tool. The
+   first wave is the first tools of wave 1's new shared engines, spread across bands.
+2. **After each wave, write the lessons down.** The reviewers start cold every time; the documents are what learn.
+   Findings tagged general go into STANDARDS.md or BUILD.md, findings tagged with a family go into
+   docs/families/<family>.md, and anything a reviewer keeps missing goes into REFINE.md.
+3. **Count.** In the batch log, a table per wave: each tool's round 1 blockers and should-fixes (from refine.md's counts
+   line; polish not counted), the wave average, and the average per family.
+4. **Switch rule.** A family moves to big build-only waves, followed by big Refine waves, after two waves in a row where
+   its tools average 0 blockers and under 1 should-fix. New families stay on small waves. A new shared engine's first
+   tool is always refined right away, before its siblings are built.
+5. **Cross-check.** If Cory sends a tool back from the Review Desk after Refine passed it, Refine missed something:
+   fix REFINE.md, and don't count that wave toward a switch.
+
 ## The pipeline, per tool
 
 Fresh agents (Agent tool, general-purpose), one tool each. Spec agents can run in parallel. Builds run one at a time
@@ -68,6 +87,9 @@ then the item goes back to "ready" with a reply on the comment and the comment m
 
 ## Open items (update as they close)
 
+- **Wave cadence locked 2026-10-27** (see Wave cadence above): small mixed Build and Refine waves until a family's
+  Refine counts fall, then big build-only waves for that family. Next: the first small wave (engine-first tools from
+  BATCH-W1.md), on Cory's go.
 - **Refine replaced Verify on 2026-10-27** (Cory's call): Build is the first solid draft; Refine is three cold lens
   agents (Teaching, Play, Craft), polish by the builder, and a cold exit check against a fixed gate
   (docs/agents/REFINE.md). It costs about 5 to 6 agent runs a tool instead of about 2. Watch the first batch: are the
