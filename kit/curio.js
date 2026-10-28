@@ -147,7 +147,7 @@ const Curio = (() => {
       // a newer copy of a line replaces a queued one; a newer how-to replaces older queued how-tos (one step at a time)
       const keys = new Set(its.map(i => i.key)), how = its.some(i => i.kind === 'how');
       dropQueued(x => keys.has(x.key) || (how && x.kind === 'how'), 'newer');
-      if (o.now) { dropQueued(null, 'newer'); if (cur) { cur.cut(); stop(); } }   // speak now: cut in (Read still wins)
+      if (o.now) { dropQueued(null, 'newer'); if (cur) { mark(cur, 'now'); cur.cut(); stop(); } }   // speak now: cut in (Read still wins)
       for (const it of its) { nQ++; q.push(it); }
       pump();
       return o.wait ? p : true;
@@ -169,7 +169,7 @@ const Curio = (() => {
           if (it.kind === 'how' && said.has(it.key)) { note(it, 'silent', 'heard'); end(it, 'silent', 'heard'); continue; }
           if (it.kind !== 'event') said.add(it.key);          // marked when it plays, never when queued
           heardSet.add(it.key); heardSet.add(it.text);
-          nS++; note(it, 'spoken'); cur = it;
+          nS++; note(it, 'spoken'); it.entry = log[log.length - 1]; cur = it;
           await Promise.race([say0(it.text), wait(cap(it.text)), new Promise(r => { it.cut = r; })]);
           if (cur === it) cur = null;
           end(it, 'spoken');
@@ -192,16 +192,18 @@ const Curio = (() => {
       for (const [x, w] of gone) { note(x, 'dropped', w); end(x, 'dropped', w); }
     }
     // stop everything: the queue, the line in progress and Read (mode changes, resets, Sound off)
-    function hush() {
+    // a line cut off while it was playing: its spoken log entry gets cut = why (hush, read, sound, now), for tests
+    const mark = (it, why) => { if (it.entry) it.entry.cut = typeof why === 'string' ? why : 'hush'; };
+    function hush(why = 'hush') {
       gen++; later = false;
       dropQueued(null, 'hush');
-      if (cur) { cur.cut(); cur = null; }
+      if (cur) { mark(cur, why); cur.cut(); cur = null; }
       if (readCut) { readCut(); readCut = null; }             // a stopped Read clip never ends: nothing may wait on it
       busy = false; readP = Promise.resolve(); stop();
     }
     // Read: stop the queue, then speak opts.read() (a line or a list), else the hint, even with Sound off
     function read() {
-      hush();
+      hush('read');
       const parts = [].concat(opts.read ? opts.read() : (hintEl() || {}).textContent || ''), h = parts.join(' ');
       log.push({t: now(), key: 'read', kind: 'read', text: h, as: 'read'});
       let cut; const c = new Promise(r => { cut = r; }); readCut = cut;
@@ -248,7 +250,7 @@ const Curio = (() => {
       addEventListener(endEv, after, true);
       const fb = setTimeout(after, 1500);
     }, true);
-    soundFns.push(s => { if (!s) hush(); else welcome(); });   // Sound back on: the welcome, if it was never said
+    soundFns.push(s => { if (!s) hush('sound'); else welcome(); });   // Sound back on: the welcome, if it was never said
     const r = $('read'); if (r) r.onclick = read;
     // every string in opts.lines (nested objects and lists too), once each: for allLines() and voice/lines.json
     const allLines = () => {
