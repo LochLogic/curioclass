@@ -1,0 +1,1379 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Capture the Flag · Find the flag, then patch the hole · Curio Class</title>
+<meta name="description" content="Twelve small security challenges inside a made-up freight company: decode notes, audit passwords, read logs and catch a pretext call to find each flag, then pick the patch that fixes the hole. Grades 9-12 computer science. Works offline.">
+<!--
+Capture the Flag (Curio Class)
+Grades 9-12, computer science, Cybersecurity (Systems and Security): security measures, breaches, social engineering
+and fixes. Standards: CSTA 2026 HS-SYS-SE-31, HS-SYS-SE-32, HS-SYS-SE-33 (2017 crosswalk 3A-NI-05 to 3A-NI-08, 3B-NI-04).
+Students drive, one laptop each or pairs. Two modes: Board (a 4 by 3 board of challenges in Larkspur Freight, a made-up
+company: find each flag by careful reading, then choose the patch for the hole it came from) and Toolbox (the four
+tools on their own: Shift, Keyword, Base64, Strength).
+Facts: NIST SP 800-63B-4 section 3.1.1.2 (block common and breached passwords, allow 64+ characters and spaces, no
+composition rules, no forced changes, salted hashes); UK NCSC "Most hacked passwords revealed" (2019); EFF dice word
+list (7,776 words, 12.9 bits per word); CISA multi-factor and phishing-resistant MFA; RFC 4648 (Base64 has no key);
+NIST FIPS 197 (AES); NIST SP 800-57 Part 1 (keep keys apart from data); Khan Academy Cryptography (Caesar, Vigenere);
+CISA social engineering and FBI IC3 business email compromise; NIST CSRC least privilege. Bits and times computed
+(bits = length x log2 pool, time = 2^bits / 10 billion a second). Every address is a reserved name (larkspur.example,
+birchline.example, birchline-billing.example). Larkspur Freight, its people, logs and messages are made up.
+Uses the security family engine (kit:security, docs/families/security.md). Everything is drawn in code.
+Progress is kept on this device only (localStorage curio-capture-the-flag: tile states, hint use, patch results;
+never anything typed). One file, no network requests. Content CC BY 4.0, code MIT. curioclass.org
+-->
+<link rel="stylesheet" href="kit:curio">
+<link rel="stylesheet" href="kit:theme-912">
+<style>
+:root{
+  --brand:#ff7ac8;--brand-ink:#2a0a1c;
+  --amber:#f2a93b;--term:#0a0f14;--term-ink:#d6e2ee;--term-muted:#a6b3c4;
+  --sec-glow:#ff7ac8;--sec-term:#0a0f14;--sec-term-ink:#d6e2ee;--sec-term-muted:#a6b3c4;--sec-term-line:#253140;
+  --sec-mono:'Cascadia Mono',Consolas,ui-monospace,'SFMono-Regular',Menlo,monospace;
+  --mono:'Cascadia Mono',Consolas,ui-monospace,'SFMono-Regular',Menlo,monospace;
+}
+/* Three page layouts, picked in script (relayout()), as in collision-lab and data-defenders:
+   wide    (1000 px or wider and 700 px or taller): stage on the left, 360 px panel on the right;
+   compact (a short landscape box such as the 16:10 embed): a 250 to 320 px panel and a one-row header;
+   stack   (narrow or portrait): the stage, then the panel (hint and Flag first). In a challenge the stage is cut to
+           the window so Flag and Submit stay in view; the artifact scrolls inside its own card.
+   The stage comes first in the DOM, so Tab goes header, tiles (or artifact spots), then Flag, Submit, Hint, Toolbox, Patch. */
+body.wide,body.compact{height:100vh;overflow:hidden}
+main{min-height:0}
+body.wide main{grid-template-columns:minmax(0,1fr) clamp(360px,30vw,560px)}
+body.compact main{grid-template-columns:minmax(0,1fr) 250px}
+@media (min-width:760px){body.compact main{grid-template-columns:minmax(0,1fr) 290px}}
+@media (min-width:900px){body.compact main{grid-template-columns:minmax(0,1fr) 320px}}
+body.stack{height:auto}
+body.stack main{grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto;align-content:start}
+body.stack .panel{border-left:0;border-top:2px solid var(--line);overflow:visible}
+body.compact header{padding:4px 8px;gap:4px;flex-wrap:nowrap;min-width:0}
+body.compact h1{font-size:17px;white-space:nowrap;min-width:0;overflow:hidden;text-overflow:ellipsis}
+body.compact h1 small{display:none}
+body.compact .seg button,body.compact .icon-btn{min-height:44px;padding:0 9px;font-size:13.5px;white-space:nowrap}
+body.compact .icon-btn,body.compact .seg{flex:none}
+body.wide header{padding:8px 16px}
+body.wide .seg button,body.wide .icon-btn{min-height:46px}
+@media (min-width:561px) and (max-width:999px){
+  body.stack header{flex-wrap:nowrap;gap:6px}
+  body.stack h1{white-space:nowrap;min-width:0;overflow:hidden;text-overflow:ellipsis}
+  body.stack h1 small{display:none}
+  body.stack .seg button,body.stack .icon-btn{white-space:nowrap;flex:none}
+}
+@media (max-width:560px){
+  header{gap:6px}
+  .seg button{min-height:44px;font-size:15px;padding:0 12px}
+  .icon-btn{min-height:44px;padding:0 11px;font-size:15px}
+}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.ico{display:inline-block;vertical-align:-4px;flex:none}
+.mono{font-family:var(--mono)}
+
+/* ---------- panel ---------- */
+.panel{display:flex;flex-direction:column;gap:0;padding:0;min-height:0}
+.pfix{padding:12px 14px 8px;display:flex;flex-direction:column;gap:8px;border-bottom:1px solid var(--line)}
+.pscroll{flex:1;min-height:0;overflow:auto;padding:10px 14px 14px;display:flex;flex-direction:column;gap:12px}
+body.stack .pscroll{overflow:visible}
+.hint{font-size:16px;line-height:1.4;min-height:calc(3 * 1.4em)}
+body.compact .pfix{padding:8px 10px 6px;gap:6px}
+body.compact .pscroll{padding:8px 10px 10px;gap:10px}
+body.compact .hint{font-size:14px;line-height:1.35;min-height:calc(4 * 1.35em)}
+.flagrow{display:flex;gap:6px;align-items:stretch}
+.flagrow label{display:flex;flex-direction:column;gap:2px;flex:1;min-width:0;font:700 12px 'Segoe UI',sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+#flag{min-height:44px;width:100%;min-width:0;padding:0 10px;border-radius:8px;border:1px solid var(--btn-line);background:#0b1017;color:var(--ink);font:16px var(--mono)}
+#flag::placeholder{color:#7f8da0}
+#submit{align-self:flex-end;min-height:44px;padding:0 14px;border-radius:8px;border:0;background:var(--brand);color:var(--brand-ink);font-weight:700;font-size:15px}
+.fres{margin:0;font-size:14.5px;line-height:1.35;min-height:1.35em}
+.fres.bad{color:var(--warn)}
+.fres.note{color:var(--muted);font-size:13.5px}
+.found{display:flex;gap:8px;align-items:center;padding:8px 10px;border-radius:10px;border:2px solid var(--amber);background:#2a1e0b;color:#ffe2b0;font-size:14.5px;min-height:44px;flex-wrap:wrap}
+.found.done{border-color:var(--ok);background:#0f2a1f;color:#c9f3dd}
+.found code{font:600 14.5px var(--mono);overflow-wrap:anywhere}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px}
+.btn[aria-disabled="true"]{opacity:.6;cursor:default}
+#hintBtn.pulse{animation:pulse 1.2s ease-in-out infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 4px var(--amber);border-color:var(--amber)}}
+.calm #hintBtn.pulse{animation:none;box-shadow:0 0 0 3px var(--amber);border-color:var(--amber)}
+.hinttext{margin:6px 0 0;font-size:14.5px;line-height:1.4;background:var(--tip-bg);border-left:3px solid var(--amber);border-radius:8px;padding:6px 10px}
+.hinttext:empty{display:none}
+.drawer>.btn{width:100%;justify-content:space-between}
+.drawer>.btn .chev{transition:transform .2s}
+.drawer>.btn[aria-expanded="true"] .chev{transform:rotate(180deg)}
+#tbSlot{margin-top:8px}
+#tbSlot:empty{display:none}
+.patch h2{margin:0 0 6px;font:700 15px/1.3 'Segoe UI',sans-serif;color:var(--ink);text-transform:none;letter-spacing:0}
+.patch .lbl{margin:0 0 4px;font:700 12px 'Segoe UI',sans-serif;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+.choices{display:flex;flex-direction:column;gap:6px}
+.choice{all:unset;box-sizing:border-box;cursor:pointer;display:block;min-height:48px;padding:8px 12px;border-radius:10px;border:1px solid var(--btn-line);background:var(--btn);color:var(--ink);font-size:15px;line-height:1.35}
+.choice:hover:not([aria-disabled="true"]){border-color:var(--muted)}
+.choice:focus-visible{outline:4px solid var(--focus);outline-offset:2px}
+.choice .why{display:block;margin-top:5px;font-size:13.5px;color:var(--muted)}
+.choice .why:empty{display:none}
+.choice .mk{font-weight:700}
+.choice.nope{border:2px dashed var(--warn)}
+.choice.nope .mk{color:var(--warn)}
+.choice.right{border:2px solid var(--ok);background:#0f2a1f}
+.choice.right .mk{color:var(--ok)}
+.choice[aria-disabled="true"]{cursor:default}
+.after{margin:8px 0 0;font-size:14px;line-height:1.4;color:var(--ink);background:var(--tip-bg);border-left:3px solid var(--ok);border-radius:8px;padding:6px 10px}
+body.compact .choice{font-size:13.5px;min-height:44px;padding:6px 9px}
+body.compact .choice .why{font-size:12.5px}
+.howto{margin:0;padding-left:20px;font-size:15px;line-height:1.45}
+.howto code{font-family:var(--mono);color:var(--brand)}
+.small{font-size:13px;color:var(--muted);margin:0;line-height:1.4}
+.ask{display:flex;gap:6px;align-items:center;flex-wrap:wrap;font-weight:700}
+.score-note{font-size:14px;margin:0;color:var(--muted);line-height:1.4}
+body.compact .howto{font-size:13.5px}
+
+/* ---------- stage ---------- */
+.stage{background:radial-gradient(ellipse at 30% 0%,#1a2330,#0d1219 70%);min-height:0}
+body.stack .stage{min-height:0;overflow:hidden}
+.view{position:absolute;inset:0;display:flex;flex-direction:column;min-height:0}
+body.stack .view{position:relative;inset:auto}
+body.stack.v-chal .stage{display:flex;flex-direction:column}
+body.stack.v-chal #chal{flex:1}
+
+/* board */
+#board{padding:12px 16px 14px;gap:10px;overflow:auto}
+.narrowstage #board,#board.narrow{padding:10px 10px 12px}
+.scorebar{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.pill{display:inline-flex;gap:6px;align-items:center;padding:4px 12px;border-radius:999px;background:var(--sec-bg);border:1px solid var(--line);font-size:14.5px;font-weight:600;white-space:nowrap}
+.pill b{font:700 16px var(--mono);color:var(--brand)}
+.alldone{margin:0;font-weight:700;color:var(--ok);font-size:15px}
+.grid{flex:1;min-height:0;display:grid;gap:8px;align-content:center;justify-content:stretch}
+.colh{align-self:end;text-align:center;font:700 13px 'Segoe UI',sans-serif;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);padding-bottom:2px;display:flex;gap:6px;align-items:center;justify-content:center;white-space:nowrap;min-width:0}
+.grid.tight .colh{font-size:12px;letter-spacing:.03em}
+.grid.tight .colh .ico{display:none}
+.colh .ico{color:var(--brand)}
+.rowh{align-self:center;justify-self:end;font:700 14px var(--mono);color:var(--muted)}
+.tile{all:unset;box-sizing:border-box;cursor:pointer;position:relative;min-width:84px;min-height:64px;border-radius:12px;border:2px solid var(--btn-line);background:var(--sec-bg);color:var(--ink);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:6px 6px;text-align:center;transition:border-color .2s,background .2s}
+.tile:hover{border-color:var(--brand)}
+.tile:focus-visible{outline:4px solid var(--focus);outline-offset:3px}
+.tile .tv{font:800 24px var(--mono);line-height:1.05;color:var(--brand)}
+.tile .tt{font-size:13.5px;line-height:1.2;color:var(--muted);max-width:100%}
+.tile .ts{display:inline-flex;gap:4px;align-items:center;font:700 12.5px 'Segoe UI',sans-serif;letter-spacing:.04em;color:var(--muted);margin-top:2px}
+.tile .ts{flex-wrap:wrap;justify-content:center}
+.tile .htag{font:700 12px/16px 'Segoe UI',sans-serif;padding:0 6px;border-radius:999px;background:#2a1e0b;color:#ffe2b0;border:1px solid var(--amber)}
+.tile.st-flag{border:3px solid var(--amber);background:#221a0e}
+.tile.st-flag .ts{color:var(--amber)}
+.tile.st-patched{background:var(--ok);border-color:var(--ok);color:#0d1219}
+.tile.st-patched .tv,.tile.st-patched .tt,.tile.st-patched .ts{color:#0d1219}
+.tile.st-patched .htag{background:#0d1219;color:#ffe2b0}
+.grid.short .tile .tt{display:none}
+.grid.short .tile .tv{font-size:20px}
+.tile.flip{animation:flip .5s ease-out}
+@keyframes flip{0%{transform:perspective(500px) rotateY(90deg)}100%{transform:perspective(500px) rotateY(0)}}
+.calm .tile.flip{animation:none}
+
+/* challenge */
+#chal{min-height:0}
+.ctop{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;padding:8px 12px;background:var(--head-bg);border-bottom:1px solid var(--line);min-width:0}
+.back{min-height:44px;padding:0 12px;border-radius:8px;border:1px solid var(--btn-line);background:var(--btn);color:var(--ink);font-weight:700;font-size:15px;display:inline-flex;gap:6px;align-items:center;flex:none}
+.ctop h2{margin:0;font:700 17px/1.2 'Segoe UI',sans-serif;min-width:min(150px,100%);overflow-wrap:break-word;flex:1}
+.ctop h2 .cat{color:var(--brand)}
+.cstate{flex:none;display:inline-flex;gap:5px;align-items:center;font:700 13px 'Segoe UI',sans-serif;padding:3px 10px;border-radius:999px;border:1px solid var(--line);color:var(--muted);white-space:nowrap}
+.cstate.st-flag{border-color:var(--amber);color:var(--amber)}
+.cstate.st-patched{border-color:var(--ok);color:var(--ok)}
+.brief{margin:0;padding:10px 14px 4px;font-size:16px;line-height:1.45;max-width:72ch}
+.artwrap{flex:1;min-height:0;overflow:auto;padding:8px 14px 14px;display:flex;flex-direction:column;gap:10px}
+body.stack .artwrap{min-height:180px}
+.arts{display:grid;gap:10px;align-content:start}
+.arts.two{grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));align-items:start}
+.copynote{margin:0;font-size:13.5px;color:var(--muted)}
+.copyrow{display:flex;flex-wrap:wrap;gap:2px 12px;align-items:baseline}
+.copynote.copied{color:var(--ok);font-weight:700}
+.copynote.copied:empty{display:none}
+.act{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.act .res{margin:0;font-size:14.5px;line-height:1.35}
+.act .res.bad{color:var(--warn)}
+.act .res code,.printed code{font:700 15px var(--mono);color:#ffe2b0;background:#2a1e0b;border:1px solid var(--amber);border-radius:6px;padding:1px 6px;overflow-wrap:anywhere}
+body.compact .ctop{padding:4px 8px;gap:6px}
+body.compact .ctop h2{font-size:15px}
+body.compact .brief{font-size:14px;padding:6px 10px 2px}
+body.compact .artwrap{padding:6px 10px 10px;gap:8px}
+.narrowstage .cstate .cw{display:none}
+
+/* artifacts: monospace 14 px (13 px in the small preview, 16 px on a big stage); the terminal look comes from the engine (dark: true) */
+.arts .sec-card{font-size:14px}
+.arts .sec-dark .sec-table,.arts .sec-dark .sec-call,.arts .sec-dark .sec-note,.arts .sec-dark .sec-file pre{font-family:var(--mono);font-size:14px}
+.arts .sec-table th{font-family:'Segoe UI',sans-serif}
+.arts .sec-dark .sec-table td small{font-size:12.5px}
+.arts .sec-note.lines{white-space:normal;padding:8px 10px}
+.arts .sec-note.lines>.sec-spot,.arts .sec-note.lines>.ln{display:flex;align-items:center;min-height:44px;padding:2px 8px;overflow-wrap:anywhere}
+.arts .sec-note.lines>.ln{min-height:0;padding:2px 8px 6px;color:var(--c-muted)}
+.arts .sec-sticky .sec-note.lines>.ln{color:#5b5320}
+.arts .sec-sticky{max-width:420px;transform:rotate(-1deg)}
+.calm .arts .sec-sticky{transform:none}
+.arts .sec-sticky .sec-note{font-size:16px}
+.arts .sec-file .sec-file{min-height:44px}
+.arts .sec-call .sec-line{min-height:44px;align-items:center;grid-template-columns:5.6em 1fr}
+.arts .sec-email{max-width:620px}
+.arts .sec-table td{word-break:normal;overflow-wrap:normal}
+.compactui .arts .sec-card,.compactui .arts .sec-dark .sec-table,.compactui .arts .sec-dark .sec-call,.compactui .arts .sec-dark .sec-note,.compactui .arts .sec-dark .sec-file pre{font-size:13px}
+.compactui .arts .sec-table th,.compactui .arts .sec-table td{padding:4px 6px}
+.bigui .arts .sec-card,.bigui .arts .sec-dark .sec-table,.bigui .arts .sec-dark .sec-call,.bigui .arts .sec-dark .sec-note,.bigui .arts .sec-dark .sec-file pre{font-size:16px}
+.bigui .arts .sec-table th{font-size:14px}
+.bigui .arts .sec-dark .sec-table td small{font-size:13.5px}
+.bigui .brief{font-size:17.5px}
+.bigui .arts .sec-sticky .sec-note{font-size:18px}
+.bigui .arts .sec-email{max-width:700px}
+/* a log's column names stay in view: its own box scrolls inside the stage (height set in relayout) */
+.arts .sec-log .sec-scroll{max-height:var(--logmax,none)}
+.compactui .arts .sec-call .sec-line{grid-template-columns:4.8em 1fr;gap:6px}
+.compactui .arts .sec-sticky .sec-note{font-size:14px}
+/* L300: event cards and the order they were put in */
+.l300top{display:flex;flex-direction:column;gap:6px}
+.order{display:flex;flex-wrap:wrap;gap:6px}
+.order .slot{display:inline-flex;gap:6px;align-items:center;min-height:32px;padding:2px 10px;border-radius:8px;border:1px dashed var(--line);font:14px var(--mono);color:var(--term-ink);background:var(--term)}
+.order .slot.full{border-style:solid;border-color:#3b4a5e}
+.order .slot .n{color:var(--term-muted);font-weight:700}
+.order .slot .lt{font:800 18px var(--mono);color:var(--brand)}
+.order .slot.empty .tx{color:#7f8da0}
+.spell{margin:0;font-size:15px}
+.spell.bad{color:var(--warn)}
+.spell b{font:800 18px var(--mono);letter-spacing:.3em;color:var(--brand)}
+.arts .sec-tag{font-weight:800}
+
+/* ---------- toolbox (one instance: in the stage in Toolbox mode, in the panel drawer in a challenge) ---------- */
+#tbox{padding:12px 16px;overflow:auto}
+body.stack #tbox{overflow:visible}
+.tb{container-type:inline-size;display:flex;flex-direction:column;gap:8px;width:100%;max-width:820px;margin:0 auto}
+.tbtabs{display:flex;gap:4px}
+.tbtab{all:unset;box-sizing:border-box;cursor:pointer;flex:1 1 0;min-width:0;min-height:44px;display:flex;align-items:center;justify-content:center;gap:5px;padding:0 6px;border-radius:8px;
+  border:1px solid var(--btn-line);background:var(--btn);color:var(--ink);font-weight:700;font-size:14.5px;white-space:nowrap}
+.tbtab[aria-selected="true"]{background:var(--brand);color:var(--brand-ink);border-color:var(--brand)}
+.tbtab:focus-visible{outline:4px solid var(--focus);outline-offset:2px}
+.tbpane{display:flex;flex-direction:column;gap:8px;background:var(--sec-bg);border:1px solid var(--line);border-radius:10px;padding:10px}
+.tbpane label,.tbpane .lab{display:flex;flex-direction:column;gap:3px;font:700 12px 'Segoe UI',sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.tbpane textarea,.tbpane input[type=text]{min-height:44px;width:100%;padding:8px 10px;border-radius:8px;border:1px solid var(--btn-line);background:#0b1017;color:var(--ink);font:15px/1.35 var(--mono);resize:vertical;text-transform:none;letter-spacing:0}
+.tbpane textarea{height:64px}
+/* short windows: Text out stays in view under the Shift wheel */
+@media (max-height:520px){.tbpane textarea{height:48px}}
+.tbpane textarea[readonly]{background:var(--term);border-style:dashed}
+.tbrow{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.tbrow .btn{flex:1 1 auto}
+.shmid{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.wheel{width:200px;height:200px;flex:none}
+.wheel .inner{transition:transform .35s ease-out;transform-origin:100px 100px}
+.calm .wheel .inner{transition:none}
+.shctl{display:flex;flex-direction:column;gap:8px;min-width:0;flex:1}
+.stepper{display:grid;grid-template-columns:48px minmax(60px,1fr) 48px;gap:6px;align-items:center}
+.stepper output{text-align:center;font:800 22px var(--mono)}
+.stepper output small{display:block;font:600 12px 'Segoe UI',sans-serif;color:var(--muted)}
+.dirs{display:flex;gap:4px}
+.dirs .btn{flex:1}
+.readouts2{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;margin:0;font-size:14.5px}
+.readouts2 dt{color:var(--muted)}
+.readouts2 dd{margin:0;font-family:var(--mono);font-variant-numeric:tabular-nums}
+.readouts2 .full{grid-column:1/-1}
+.readouts2 dd.used{color:var(--brand);font-weight:700}
+.readouts2 dd.warnline{font-family:inherit;color:var(--warn)}
+.readouts2 dd small,.readouts2 dd.assume{font:13px/1.35 'Segoe UI',sans-serif;color:var(--muted)}
+.bitbar{position:relative;height:14px;border-radius:7px;background:var(--line);overflow:visible;margin:4px 0 18px}
+.bitbar i{display:block;height:100%;border-radius:7px;background:var(--brand);max-width:100%}
+.bitbar .mark{position:absolute;top:-3px;bottom:-3px;width:2px;background:var(--ink)}
+.bitbar .mark span{position:absolute;top:18px;left:-22px;font:12px var(--mono);color:var(--muted);white-space:nowrap}
+.bitbar .end{position:absolute;top:18px;right:0;font:12px var(--mono);color:var(--muted)}
+.printed{margin:0;font-size:14.5px}
+.printed:empty{display:none}
+.tbnote{margin:0;font-size:13px;color:var(--muted);line-height:1.4}
+@container (max-width:420px){
+  .tbtab{font-size:13px;padding:0 6px}
+  .tbtab .ico{display:none}
+  .wheel{width:124px;height:124px}
+  .shmid{gap:8px}
+  .readouts2{font-size:13px;gap:3px 8px}
+  .tbpane{padding:8px}
+  .tbpane textarea,.tbpane input[type=text]{font-size:14px}
+}
+/* a phone: each Strength name sits over its value, so the values get the whole width */
+@container (max-width:380px){
+  .readouts2{grid-template-columns:1fr;gap:0}
+  .readouts2 dt{font-size:12.5px;margin-top:6px}
+  .readouts2 dt:first-child{margin-top:0}
+}
+@container (max-width:300px){
+  .readouts2{grid-template-columns:1fr}
+  .readouts2 dd{margin-bottom:3px}
+  .shmid{flex-direction:column;align-items:stretch}
+  .wheel{align-self:center}
+}
+</style>
+</head>
+<body class="v-board">
+<header>
+  <h1>Capture the Flag <small>Larkspur Freight, a made-up company</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-board" aria-pressed="true">Board</button>
+    <button id="m-toolbox" aria-pressed="false">Toolbox</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true" title="Turn animation on or off">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+  <button class="icon-btn" id="read">🔊 Read</button>
+</header>
+<main>
+  <div class="stage" id="stage">
+    <section class="view" id="board" aria-label="Challenge board">
+      <div class="scorebar">
+        <span class="pill">Score <b id="score">0</b></span>
+        <span class="pill" id="flags">Flags 0 of 12</span>
+        <span class="pill" id="patchedN">Patched 0 of 12</span>
+      </div>
+      <p class="alldone" id="allDone" hidden>Every hole is patched.</p>
+      <div class="grid" id="grid"></div>
+    </section>
+    <section class="view" id="chal" hidden aria-labelledby="ctitle">
+      <div class="ctop">
+        <button class="back" id="back"></button>
+        <h2 id="ctitle"></h2>
+        <span class="cstate" id="cstate"></span>
+      </div>
+      <p class="brief" id="brief"></p>
+      <div class="artwrap" id="artwrap"></div>
+    </section>
+    <section class="view" id="tbox" hidden aria-label="Toolbox"></section>
+  </div>
+  <aside class="panel" id="panel">
+    <div class="pfix">
+      <p class="hint" id="hint" aria-live="polite"></p>
+      <div id="flagBox" hidden>
+        <div class="flagrow" id="flagRow">
+          <label for="flag">Flag<input id="flag" type="text" placeholder="flag{...}" autocomplete="off" spellcheck="false" autocapitalize="off"></label>
+          <button id="submit">Submit</button>
+        </div>
+        <div class="found" id="found" hidden></div>
+        <p class="fres" id="fres" aria-live="polite"></p>
+      </div>
+    </div>
+    <div class="pscroll" id="pscroll">
+      <div class="patch sec" id="patch" hidden></div>
+      <div id="hintBox" hidden><button class="btn" id="hintBtn"></button><p class="hinttext" id="hintText" aria-live="polite"></p></div>
+      <div class="drawer" id="drawer" hidden><button class="btn" id="tbBtn" aria-expanded="false" aria-controls="tbSlot"></button><div id="tbSlot"></div></div>
+      <div id="boardInfo">
+        <ol class="howto">
+          <li>Find the flag. It looks like <code>flag{...}</code></li>
+          <li>Type it in the Flag box and press Submit.</li>
+          <li>Then patch the hole it came from.</li>
+        </ol>
+        <p class="score-note">Flags score 100, 200 or 300. A hint takes half, and each wrong flag or check takes a quarter, never below a quarter. A patch right on the first try adds 50.</p>
+        <div id="clearBox"></div>
+        <p class="small">Larkspur Freight and everyone in it are made up, so you can practice here. Only ever test a real system you own or have written permission to test.</p>
+        <p class="small">Progress is saved on this device only: which tiles are done, never what you type.</p>
+      </div>
+      <div id="toolInfo" hidden>
+        <p class="score-note"><b>Shift</b> moves every letter the same number of places. <b>Keyword</b> shifts each letter by a letter of a key. <b>Base64</b> is an encoding: it has no key. <b>Strength</b> estimates how long guessing would take.</p>
+        <p class="small">Nothing you type here is saved or sent.</p>
+      </div>
+    </div>
+  </aside>
+</main>
+<script src="kit:curio"></script>
+<script src="kit:security"></script>
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const sec = Sec.pure;
+  const h = Sec.h;
+
+  // ======================================================================================
+  // ICONS (24 x 24, stroked; drawn in code)
+  // ======================================================================================
+  const P = {
+    flag: '<path d="M5 21V4"/><path d="M5 4h11l-2 4 2 4H5"/>',
+    shield: '<path d="M12 2.5l8 3v6c0 4.8-3.4 8.6-8 10.5-4.6-1.9-8-5.7-8-10.5v-6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/>',
+    open: '<circle cx="12" cy="12" r="8"/>',
+    key: '<circle cx="7.5" cy="12" r="4"/><path d="M11.5 12H22M18.5 12v4M21.5 12v3"/>',
+    code: '<path d="M8 7l-5 5 5 5M16 7l5 5-5 5"/>',
+    people: '<circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.6 2.7-6 6-6s6 2.4 6 6"/><circle cx="17" cy="9" r="2.6"/><path d="M15.5 14.2c3 .2 5.5 2.4 5.5 5.8"/>',
+    logs: '<rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/>',
+    back: '<path d="M15 5l-7 7 7 7"/>',
+    bulb: '<path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.3 1 2.1h5c0-.8.4-1.6 1-2.1A6 6 0 0 0 12 3z"/>',
+    tools: '<path d="M14.5 6.5a4 4 0 0 0-5.3 5.3L3.5 17.5l3 3 5.7-5.7a4 4 0 0 0 5.3-5.3l-2.5 2.5-2.5-.5-.5-2.5z"/>',
+    chev: '<path d="M6 9l6 6 6-6"/>',
+    minus: '<path d="M5 12h14"/>', plus: '<path d="M5 12h14M12 5v14"/>',
+    wheel: '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/>',
+    lock: '<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/>',
+    b64: '<path d="M4 7h16M4 12h16M4 17h10"/>',
+    meter: '<path d="M4 17a8 8 0 0 1 16 0"/><path d="M12 17l4-6"/>',
+    check: '<path d="M4 12.5l5 5L20 6.5"/>', x: '<path d="M6 6l12 12M18 6 6 18"/>',
+  };
+  const ico = (name, size = 20, cls = '') => `<svg class="ico ${cls}" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${P[name]}</svg>`;
+  const html = s => { const t = document.createElement('template'); t.innerHTML = s.trim(); return t.content.firstChild; };
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c]));
+
+  // ======================================================================================
+  // CONTENT (spec.md "Content"; sources in the header comment and notes.md)
+  // ======================================================================================
+  const WORLD = Sec.world({name: 'Larkspur Freight', domains: ['larkspur.example', 'birchline.example', 'birchline-billing.example'],
+    people: [{id: 'dana', name: 'Dana', role: 'front desk'}, {id: 'cdiaz', name: 'C. Diaz', role: 'dispatch'}, {id: 'jlam', name: 'J. Lam', role: 'accounts'}],
+    accounts: {amaya: 'amaya.r', bkoh: 'bkoh', cdiaz: 'cdiaz', dfinch: 'dfinch', evance: 'evance', fgrant: 'fgrant', gnair: 'gnair', hwu: 'hwu', jlam: 'jlam',
+      mail: 'accounts@larkspur.example', supplier: 'billing@birchline.example', fake: 'billing@birchline-billing.example'}});
+
+  const CATS = [
+    {id: 'P', name: 'Passwords', icon: 'key'}, {id: 'C', name: 'Codes', icon: 'code'},
+    {id: 'S', name: 'People', icon: 'people'}, {id: 'L', name: 'Logs', icon: 'logs'},
+  ];
+  const TOOLNAME = {shift: 'Shift', keyword: 'Keyword', base64: 'Base64', strength: 'Strength'};
+
+  // every line the tool can say or show as a hint (Read speaks the hint; voice/lines.json lists them all)
+  const L = {
+    'w-board': 'Pick any tile. Find the flag, then patch the hole it came from.',
+    'w-toolbox': 'These are the tools from the challenges. Try them on any text.',
+    'w-chal': 'Find the flag in the artifact. Type it in Flag, then press Submit.',
+    flag: 'Flag found. Now read the patch question and tap the choice that fits best.',
+    patched: 'Patched. Tap Back to board for another tile.',
+    notyet: 'Not this one. Read the artifact again, or open the Toolbox.',
+    all: "Every hole is patched. That's the job: finding is only half of it.",
+    // hints shown in the panel (Read speaks them)
+    hBoard: 'Tap any tile to open its challenge. Find the flag, then patch the hole.',
+    hBoardAll: 'Every hole is patched. Tap a tile to look back, or press Clear progress to start over.',
+    hClear: 'Press Yes to clear every tile, or No to keep your progress.',
+    hMiss3: 'Not this one. Press Hint for a clue (half points), or read the artifact again.',
+    hPatch: 'Pick the patch: read what Larkspur needs, then tap the choice that fits best.',
+    hPatchNo: 'Not that one. Read what it costs, then tap another choice.',
+    hPatched: 'Patched. Tap Back to board for another tile.',
+    hDone: 'This tile is patched. Tap Back to board for another tile.',
+    tool: {
+      shift: 'Type or paste text in Text in. Press minus or plus to change the shift; Text out changes as you go.',
+      keyword: 'Type a key in Key and text in Text in. Then press Encode or Decode.',
+      base64: 'Type or paste text in Text in. Then press Encode or Decode.',
+      strength: 'Type a made-up password in the box. The readouts change as you type.',
+    },
+    // each challenge's first waiting moment
+    find: {
+      P100: 'Tap a row to copy its password into the Strength tool. Type the account name in Flag, then press Submit.',
+      P200: 'Tap a password to copy it into the Strength tool and read the meter. Type the flag it prints in Flag, then press Submit.',
+      P300: 'Tap a row to open its details. Type the flag you find in Flag, then press Submit.',
+      C100: 'Tap the message to copy it into the open tool, then try the tools. Type the flag in Flag, then press Submit.',
+      C200: 'Tap the note to copy it into the Shift tool, then press minus or plus. Type the flag in Flag, then press Submit.',
+      C300: 'Tap a file to copy it into the Keyword tool, type the key, then press Decode. Type the flag in Flag, then press Submit.',
+      S100: 'Tap the two lines that should have stopped Dana, then press Check lines. Type the flag in Flag, then press Submit.',
+      S200: 'Read the log; a column name sorts it. Type the time in Flag, then press Submit.',
+      S300: 'Compare the two emails. Type the fake domain in Flag, then press Submit.',
+      L100: 'Read the log; a column name sorts it, and Show filters it. Type the account name in Flag, then press Submit.',
+      L200: 'Read the log; a column name sorts it, and Show filters it. Type the account name in Flag, then press Submit.',
+      L300: 'Tap the cards in the order they happened. When all five are right, the letters spell the flag: type it in Flag and press Submit.',
+    },
+    // the paid hints (spec), shown under Hint and read after the panel hint
+    hint: {
+      P100: 'Run each one through the Strength tool and look at the common list line.',
+      P200: 'Look at the bits by words or pattern line.',
+      P300: 'The password was right. What else does the log check?',
+      C100: 'Text that ends in = and mixes capitals, small letters and digits is often Base64.',
+      C200: 'Try shifts until the first word reads flag.',
+      C300: 'Read every file in the folder.',
+      S100: 'One line makes you hurry. One asks for something you never share.',
+      S200: 'One badge should let in one person.',
+      S300: 'Compare the two sender addresses letter by letter.',
+      L100: 'One typo is normal. Five in a row from a new device is not.',
+      L200: 'Sort by files read.',
+      L300: 'The password had to be stolen before it was used, and used before anything was done inside the mailbox.',
+    },
+  };
+
+  // the twelve tiles. flag: the inner text (accepted with or without flag{ }, any case, spaces trimmed). Flags name
+  // what was found, never the fix. patch.q states what Larkspur needs (the constraint the right pick depends on);
+  // patch.c: three defensible choices, each with its cost and gain, the right one first in the data; patch.order: the
+  // order they are shown in (the right one sits first, second or third, and is not always the longest);
+  // patch.after: what was traded, shown once patched.
+  const TILES = [
+    {id: 'P100', cat: 'P', v: 100, title: 'On the list', tool: 'strength', flag: ['bkoh'],
+      brief: 'An old sign-up form saved passwords in plain text. Which account uses a password from the common list?',
+      patch: {q: 'Drivers sign up on a shared tablet, often in gloves, and the help desk is one person. What stops this at sign-up?', order: [1, 0, 2], c: [
+        {t: 'Refuse passwords found on a breached list, and say why', why: 'Cost: a few people pick a second password. Gain: no list password gets in, with no extra rules to type around (NIST advice).'},
+        {t: 'Require 12 characters with a capital, a digit and a symbol', why: 'Cost: slow to type on a tablet in gloves, so people write them down. Gain: little, since Password123! still passes.'},
+        {t: 'Make everyone choose a new password every 30 days', why: 'Cost: the one-person help desk drowns in resets, and people step Winter2026! to Spring2026!. NIST advises against forced changes.'}],
+        after: 'Traded: a second try for a few people at sign-up, for no common passwords at all. Also: never store passwords in plain text. Systems store salted hashes.'}},
+    {id: 'P200', cat: 'P', v: 200, title: 'Length wins', tool: 'strength', flag: ['77_bits'],
+      brief: 'Four choices for the new admin password, typed from memory at the warehouse console, where no password manager runs. The guesser knows people use words. Find one the meter rates at 70 bits or more.',
+      patch: {q: 'Admins type this password from memory at the console. What should its rule be?', order: [1, 2, 0], c: [
+        {t: 'Let passphrases run to 64 characters or more, with spaces', why: 'Cost: a few more seconds to type. Gain: length slows guessing, and random words can be remembered. NIST: allow 64 or more, and at least 15 for a password used alone.'},
+        {t: 'Require 8 characters with a capital, a digit and a symbol', why: 'Cost: hard to remember. Gain: little, since people make Gr4v1ty#7, and guessers try those swaps early.'},
+        {t: 'Use a random 20-character string from a password generator', why: 'Strong, but nobody types 20 random characters from memory: it ends up on a note taped to the console.'}],
+        after: "Traded: a little typing time, for a password that is strong and still fits in someone's head."}},
+    {id: 'P300', cat: 'P', v: 300, title: 'Second step', tool: null, flag: ['code_denied'],
+      brief: "Someone had cdiaz's password at 3 a.m. Why didn't they get in? Open the row that explains it.",
+      patch: {q: 'Every account needs a second step. Staff carry company phones, and this year has no money for new hardware. Which kind?', order: [0, 2, 1], c: [
+        {t: 'An app prompt on the company phone that shows a number to match', why: 'Cost: a tap at each new sign-in, and nothing to buy. Gain: a stolen password alone gets nowhere, and matching a number stops approving out of habit.'},
+        {t: 'A USB security key for every account, plugged in at each sign-in', why: "The strongest choice: it won't work on a fake page. Cost: a key per person plus spares for lost ones, which this year's budget can't cover."},
+        {t: "A six-digit code sent by text message to each person's phone", why: 'Cost: nothing new. Gain: blocks a password alone, but a text can be redirected if someone takes over the number, and a fake page can ask for the code.'}],
+        after: 'Traded: a tap at each new sign-in, at no cost. When the budget allows, security keys would also stop fake sign-in pages.'}},
+    {id: 'C100', cat: 'C', v: 100, title: 'Not a lock', tool: 'base64', drawerTab: 'shift', flag: ['dock_door_2580'],
+      brief: 'A note for the night guard looks scrambled. Is it locked?',
+      patch: {q: 'The night guard needs the door code each evening, and nobody else should have it. What is the better way?', order: [1, 0, 2], c: [
+        {t: 'Share it in a password manager entry only the guard can open', why: 'Cost: the guard needs the app and a sign-in. Gain: only the guard can read the code, and the note goes.'},
+        {t: 'Change the code every night and keep leaving it on a note', why: "Cost: daily work. Gain: an old note is useless, but anyone who walks by tonight reads tonight's code."},
+        {t: 'Encode the note in Base64 twice so it looks even more scrambled', why: 'No cost and no gain: Base64 has no key, so anyone can decode it twice.'}],
+        after: 'Traded: a sign-in for the guard, for a code nobody else can read. Base64 is encoding, not encryption: it hides nothing.'}},
+    {id: 'C200', cat: 'C', v: 200, title: 'Only 25 keys', tool: 'shift', flag: ['dispatch_password'],
+      brief: 'A sticky note on the dispatch monitor: every letter is shifted the same amount.',
+      patch: {q: 'C. Diaz finds the dispatch password hard to remember, so it went on a shifted note. What is the better fix?', order: [1, 2, 0], c: [
+        {t: 'Keep it in a password manager, behind one strong passphrase', why: 'Cost: one passphrase to learn and an app to set up. Gain: no note at all.'},
+        {t: 'Keep the note, but shift by 13 and put it in a desk drawer', why: 'Cost: little. Gain: little: a shift cipher has only 25 real keys, and anyone at the desk can try them all in a minute.'},
+        {t: 'Change the password every week so an old note is useless', why: 'Cost: a new password to remember each week, so a new note each week. Gain: only old notes go stale.'}],
+        after: 'Traded: one passphrase to learn, for a password that is never written down. A shift cipher is a puzzle, not a lock: it has only 25 real keys.'}},
+    {id: 'C300', cat: 'C', v: 300, title: 'Key on the doormat', tool: 'keyword', flag: ['key_in_readme'],
+      brief: 'A shared folder holds a locked plan. Can you open it?',
+      patch: {q: 'The plan must open for the three project leads, and only for them. What fixes this?', order: [0, 2, 1], c: [
+        {t: 'Encrypt it with AES; give the leads the key in a key manager', why: 'Cost: a key manager to set up, and a sign-in for each lead. Gain: the folder alone opens nothing, and AES has far too many keys to try.'},
+        {t: 'Keep the keyword cipher, but tell the leads the key in person', why: 'Gain: the key leaves the folder. Cost: the cipher stays weak: the known start flag{ already gives away four letters of the key.'},
+        {t: 'Limit the folder to the three leads, and leave the readme in it', why: 'Cost: an admin to keep the list. Gain: outsiders lose access, but any copy of the folder still carries the key beside the plan.'}],
+        after: 'Traded: a little setup for the leads, for a plan only they can open. Keep keys apart from the data they lock.'}},
+    {id: 'S100', cat: 'S', v: 100, title: 'The urgent caller', tool: null, flag: ['rush_and_code'],
+      brief: 'Dana at the front desk got this call. Tap the two lines that should have stopped her.',
+      patch: {q: 'Dana is often alone at the desk, and real IT does call sometimes. What should she do?', order: [1, 2, 0], c: [
+        {t: 'Hang up and call IT back at the number in the company directory', why: 'Cost: a few minutes of waiting when IT really did call. Gain: a number you already trust shows who is really asking.'},
+        {t: 'Ask the caller for an employee ID before reading out any code', why: 'Cost: none. Gain: almost none: anyone can make up an ID, and a sign-in code is never read out at all.'},
+        {t: 'Never deal with IT by phone; ask for every request in writing', why: "Cost: real IT can't reach Dana in an emergency. Gain: some, but a fake email is as easy to send as a fake call."}],
+        after: 'Traded: a short delay on real calls, for proof of who is asking. And a sign-in code is never read to anyone.'}},
+    {id: 'S200', cat: 'S', v: 200, title: 'One badge, two people', tool: null, flag: ['0752'],
+      brief: 'The door counter and the badge reader disagree once this morning. When?',
+      patch: {q: 'Freight moves through the dock door all morning, and there is no money for new staff. What fixes this?', order: [2, 0, 1], c: [
+        {t: 'Ask anyone following you to badge in, and alert on count gaps', why: 'Cost: an awkward moment at the door, and someone to check alerts. Gain: each person badges in, and a gap like this one is seen the same morning.'},
+        {t: 'Fit a one-person turnstile at the dock door before rush hour', why: "Gain: it stops tailgating. Cost: freight can't pass a turnstile, and it slows every driver at rush hour."},
+        {t: 'Post a guard at the dock door to check every badge, every shift', why: "Gain: strong. Cost: a guard's pay on every shift, and there is no money for new staff."}],
+        after: 'Traded: a moment of awkwardness at the door, for a door count that matches the badges.'}},
+    {id: 'S300', cat: 'S', v: 300, title: 'New bank details', tool: null, flag: ['birchline-billing.example'],
+      brief: 'A supplier says it changed banks. Compare with last month.',
+      patch: {q: 'Accounts pays dozens of suppliers, and this payment is due today. What should Larkspur do?', order: [0, 1, 2], c: [
+        {t: 'Call the supplier at the number already on file before paying', why: 'Cost: a call, and maybe a day late. Gain: a number you already have reaches the real supplier, not the sender.'},
+        {t: 'Reply to the email and ask them to confirm the new account', why: 'Cost: none. Gain: none: the reply goes to the fake sender, who will happily confirm.'},
+        {t: 'Keep paying the old account and ignore every change request', why: 'Gain: no money goes to the fake. Cost: when a supplier really does change banks, payments bounce and bills go unpaid.'}],
+        after: 'Traded: one phone call and maybe a day of delay, for money that reaches the real supplier.'}},
+    {id: 'L100', cat: 'L', v: 100, title: 'Too many tries', tool: null, flag: ['gnair'],
+      brief: 'Which account was guessed into overnight?',
+      patch: {q: 'Drivers often mistype on cold mornings, and the one-person help desk opens at 8. What fixes this?', order: [1, 0, 2], c: [
+        {t: 'Slow sign-ins after a few failures, and add a second step', why: 'Cost: a few seconds of waiting after a typo. Gain: guessing becomes far too slow, and a guessed password still cannot sign in alone.'},
+        {t: 'Lock the account after 5 failures until the help desk unlocks it', why: 'Gain: it stops guessing. Cost: anyone can lock a driver out on purpose, and a locked driver waits until 8.'},
+        {t: 'Email the security team whenever 5 sign-ins fail in a row', why: 'Cost: little. Gain: someone hears about it, but at 2 a.m. nobody reads it before the guess works.'}],
+        after: 'Traded: a short wait after a typo, for guessing that takes far too long.'}},
+    {id: 'L200', cat: 'L', v: 200, title: 'Midnight download', tool: null, flag: ['hwu'],
+      brief: 'Which account read far more files than usual?',
+      patch: {q: 'hwu works in Shipping and needs one Finance report a month. What fixes this?', order: [2, 1, 0], c: [
+        {t: "Remove hwu's Finance access; Finance sends the monthly report", why: "Cost: hwu waits for the report each month. Gain: a break-in on hwu's account can't reach Finance (least privilege)."},
+        {t: 'Keep the access, and alert when an account reads 50 files an hour', why: 'Gain: it would have flagged 01:47. Cost: the alert comes after the files are gone, and someone must answer it at 2 a.m.'},
+        {t: "Review every account's share access once a year, in January", why: "Cost: low. Gain: slow: hwu's Finance access stays open for months between reviews."}],
+        after: "Traded: a short wait for one report, for an account that can't reach Finance at all. Alerts on unusual volume still help."}},
+    {id: 'L300', cat: 'L', v: 300, title: 'Put it in order', tool: null, flag: ['trace'],
+      brief: 'Five events from one break-in, shuffled. Put them in order; the letters spell the flag.',
+      patch: {q: 'jlam moves money for Larkspur. Which single fix would most reliably have stopped this chain, and where?', order: [0, 2, 1], c: [
+        {t: 'A security key for each person who moves money, at every sign-in', why: 'Cost: a key per person, plus spares for lost keys. Gain: the stolen password cannot sign in without the key, so the chain stops at A (a passkey, with no password at all, would stop R too).'},
+        {t: 'Phishing training for every staff member, every three months', why: 'Gain: fewer people type into fake pages, at R. Cost: staff time, and one slip on a busy day still lets the chain run.'},
+        {t: 'An alert whenever a new mail forwarding rule is created', why: 'Cost: someone must answer alerts. Gain: it catches C within minutes, but the sign-in at A already happened.'}],
+        after: 'Traded: the cost of keys for a few people, for a stolen password that is useless. Training still helps people spot step T.'}},
+  ];
+  const T = Object.fromEntries(TILES.map(t => [t.id, t]));
+  const catName = c => CATS.find(x => x.id === c).name;
+  const MAX = TILES.reduce((s, t) => s + t.v + 50, 0);   // 3,000
+
+  // artifact data
+  const P100_ROWS = [['amaya.r', 'Tidepool-Lantern-88'], ['bkoh', 'password1'], ['cdiaz', 'Orchard9Comet!'], ['dfinch', 'violet harbor bicycle'],
+    ['evance', 'Winter2026!'], ['fgrant', 'm0nkeyB@rs']];
+  const P200_PWS = ['Gr4v1ty#7', 'bluemoon', 'kettle orbit maple', 'kettle orbit maple fog lantern drum'];
+  const P200_FLAG_PW = P200_PWS[3], P200_FLAG = '77_bits';
+  const P300_ROWS = [
+    {time: 'Mon 08:02', dev: {text: 'Laptop L-114', sub: 'known, office'}, pw: 'correct', two: {text: 'not asked', sub: 'known device'}, res: 'signed in',
+      details: 'Known laptop at the office, so no second step was asked.'},
+    {time: 'Mon 12:40', dev: {text: 'Phone P-22', sub: 'known, office'}, pw: 'correct', two: 'not asked', res: 'signed in',
+      details: 'Known phone at the office, so no second step was asked.'},
+    {time: 'Tue 03:02', dev: {text: 'new device', sub: 'new place'}, pw: 'correct', two: {text: 'code sent', sub: "to cdiaz's phone: denied"}, res: 'blocked',
+      details: 'Second step denied by the account owner. flag{code_denied}'},
+    {time: 'Tue 03:04', dev: {text: 'new device', sub: 'new place'}, pw: 'correct', two: {text: 'code sent', sub: 'no answer'}, res: 'blocked',
+      details: 'Code sent again. No answer came, so the sign-in was blocked.'},
+    {time: 'Tue 08:05', dev: {text: 'Laptop L-114', sub: 'office'}, pw: 'correct', two: 'not asked', res: 'signed in',
+      details: 'Known laptop at the office, so no second step was asked.'},
+    {time: 'Tue 08:06', dev: {text: 'Laptop L-114', sub: 'office'}, pw: {text: 'changed', sub: 'by cdiaz'}, two: 'none', res: 'done',
+      details: 'cdiaz changed the password from the known laptop.'},
+  ];
+  const S100_LINES = [['Caller', 'Hi Dana, this is Sam from IT.'], ['Caller', 'We have an urgent security upgrade, and your account will be locked in ten minutes.'],
+    ['Dana', 'Oh no. What do I need to do?'], ['Caller', "I'm sending a code to your phone right now."],
+    ['Caller', "Read me the six-digit code and I'll finish the upgrade for you."], ['Dana', 'Okay, it says...'],
+    ['Caller', 'Quick, the timer is running.']];
+  const S200_ROWS = [['07:41', 'Front', 'b-1021', 1], ['07:44', 'Front', 'b-1033', 1], ['07:46', 'Dock', 'b-2007', 1], ['07:49', 'Front', 'b-1040', 1],
+    ['07:52', 'Dock', 'b-2011', 2], ['07:55', 'Front', 'b-1002', 1], ['07:58', 'Front', 'b-1019', 1], ['08:01', 'Dock', 'b-2007', 1],
+    ['08:03', 'Front', 'b-1044', 1], ['08:06', 'Front', 'b-1050', 1]];
+  const L100_ROWS = [['01:58', 'amaya.r', 'L-102', 'success'], ['02:10', 'gnair', 'new device', 'failed'], ['02:10', 'gnair', 'new device', 'failed'],
+    ['02:11', 'gnair', 'new device', 'failed'], ['02:11', 'gnair', 'new device', 'failed'], ['02:12', 'gnair', 'new device', 'failed'],
+    ['02:13', 'gnair', 'new device', 'success'], ['02:20', 'hwu', 'L-131', 'success'], ['07:55', 'bkoh', 'L-108', 'success'],
+    ['08:01', 'cdiaz', 'L-114', 'success'], ['08:03', 'evance', 'D-009', 'failed'], ['08:03', 'evance', 'D-009', 'success']];
+  const L200_ROWS = [['Mon 09:12', 'hwu', 'Shipping', 6], ['Mon 11:40', 'bkoh', 'Finance', 3], ['Mon 14:05', 'hwu', 'Shipping', 9], ['Mon 16:30', 'amaya.r', 'HR', 2],
+    ['Tue 01:47', 'hwu', 'Shipping', 312], ['Tue 01:49', 'hwu', 'Finance', 140], ['Tue 08:15', 'cdiaz', 'Shipping', 4], ['Tue 09:02', 'hwu', 'Shipping', 7],
+    ['Tue 10:20', 'bkoh', 'Finance', 5], ['Tue 13:44', 'evance', 'HR', 1]];
+  // L300: the cards (letters hidden until all five are in the right order), shown in this shuffled order; two carry
+  // no time, so the order has to be reasoned out (stolen before used, signed in before acting inside the mailbox)
+  const L300_CARDS = {
+    R: {time: 'no time', text: 'Password typed into a fake sign-in page'},
+    T: {time: '09:14', text: 'Phishing email opened by jlam'},
+    A: {time: 'no time', text: 'Sign-in as jlam from a new device; a new phone added for sign-in codes (jlam had none set up)'},
+    C: {time: '09:40', text: 'Mail rule created: forward all invoices outside'},
+    E: {time: '10:02', text: '312 files downloaded from Shipping'},
+  };
+  const L300_SHOWN = ['C', 'T', 'E', 'R', 'A'];
+  const L300_RIGHT = 'TRACE';
+
+  // ======================================================================================
+  // STATE and saving (only tile states, hint use and patch results; never anything typed)
+  // ======================================================================================
+  const KEY = 'curio-capture-the-flag';
+  const blank = () => ({st: 'open', hint: false, wrong: 0, tried: [], first: null});
+  const state = {mode: 'board', tile: null, tiles: {}, confirm: false, allPending: false, drawer: true,
+    s100: new Set(), l300: [], justPatched: null};
+  for (const t of TILES) state.tiles[t.id] = blank();
+  function load() {
+    try {
+      const d = JSON.parse(localStorage.getItem(KEY) || 'null');
+      if (!d || !d.tiles) return;
+      for (const t of TILES) {
+        const s = d.tiles[t.id]; if (!s) continue;
+        const st = ['open', 'flag', 'patched'].includes(s.st) ? s.st : 'open';
+        state.tiles[t.id] = {st, hint: !!s.hint, wrong: Math.max(0, Math.min(9, s.wrong | 0)),
+          tried: Array.isArray(s.tried) ? s.tried.filter(i => [0, 1, 2].includes(i)) : [], first: s.first === true ? true : s.first === false ? false : null};
+      }
+    } catch {}
+  }
+  function save() {
+    // only each tile's state, hint use, wrong tries and patch tries
+    const tiles = {};
+    for (const t of TILES) { const x = state.tiles[t.id]; tiles[t.id] = {st: x.st, hint: x.hint, wrong: x.wrong, tried: x.tried, first: x.first}; }
+    try { localStorage.setItem(KEY, JSON.stringify({v: 1, tiles})); } catch {}
+  }
+  const norm = s => {
+    let x = String(s == null ? '' : s).trim().toLowerCase();
+    const m = x.match(/^flag\s*\{([\s\S]*)\}$/); if (m) x = m[1].trim();
+    return x;
+  };
+  // one lock per tile: it opens only for its own flag
+  const LK = {};
+  function makeLocks() {
+    for (const t of TILES) {
+      LK[t.id] = sec.lock({normalize: norm, check: a => {
+        let x = a;
+        if (t.id === 'S200') x = x.replace(/:/g, '');
+        if (t.id === 'S300' && x.includes('@')) x = sec.hostOf(x);
+        return t.flag.includes(x);
+      }});
+      if (state.tiles[t.id].st !== 'open') LK[t.id].force();
+    }
+  }
+  // a tile's flag is worth its value, half after a hint, and a quarter less for each wrong flag or check, never
+  // below a quarter
+  const worth = t => { const s = state.tiles[t.id]; return Math.max(t.v / 4, (s.hint ? t.v / 2 : t.v) - s.wrong * t.v / 4); };
+  const flagPts = t => state.tiles[t.id].st === 'open' ? 0 : worth(t);
+  const costNote = id => `This tile is now worth ${worth(T[id])}.`;
+  function miss(id) { const s = state.tiles[id]; s.wrong++; save(); }
+  const patchPts = t => state.tiles[t.id].first === true ? 50 : 0;
+  const score = () => TILES.reduce((s, t) => s + flagPts(t) + patchPts(t), 0);
+  const nFlags = () => TILES.filter(t => state.tiles[t.id].st !== 'open').length;
+  const nPatched = () => TILES.filter(t => state.tiles[t.id].st === 'patched').length;
+  const allPatched = () => nPatched() === TILES.length;
+
+  // ======================================================================================
+  // VOICE (Curio.voice). The tool owns the hint (setHint, at once); lines never write it. Read speaks the hint and a
+  // shown paid hint. A line belongs to its view (mode, and the open tile): it is dropped when the view changes.
+  // Event lines (spoken every time): flag, patched, all. How lines (once): w-board, w-toolbox, notyet.
+  // ======================================================================================
+  const V = Curio.voice({
+    lines: L, hint: false, scope: () => state.mode + '/' + (state.tile || ''),
+    welcome: () => state.mode === 'board' && !state.tile ? ['w-board', {valid: () => state.mode === 'board' && !state.tile}]
+      : state.mode === 'toolbox' ? ['w-toolbox', {valid: () => state.mode === 'toolbox'}] : null,
+    read: () => [$('hint').textContent, state.tile && state.tiles[state.tile].hint && state.tiles[state.tile].st === 'open' ? $('hintText').textContent : ''].filter(Boolean),
+  });
+  const setHint = t => { const e = $('hint'); if (e.textContent !== t) e.textContent = t; };
+  // 'all' is heard once per completion: if Back drops it, it comes again on the board
+  function sayAll() {
+    state.allPending = true;
+    const p = V.say('all', {now: true, wait: true});
+    p.then(as => { if (as !== 'dropped') state.allPending = false; });
+  }
+
+  // ======================================================================================
+  // TOOLBOX: one instance, moved between the Toolbox stage and the challenge drawer
+  // ======================================================================================
+  const TB = (() => {
+    const tabs = ['shift', 'keyword', 'base64', 'strength'];
+    const tico = {shift: 'wheel', keyword: 'key', base64: 'b64', strength: 'meter'};
+    const el = h('div', {class: 'tb'});
+    const bar = h('div', {class: 'tbtabs', role: 'tablist', 'aria-label': 'Tools'});
+    const panes = {};
+    let cur = 'shift', k = 0, dir = -1, kwDir = 0, bDir = 0;
+    for (const t of tabs) {
+      const b = html(`<button class="tbtab" role="tab" id="tbt-${t}" aria-selected="false" aria-controls="tbp-${t}">${ico(tico[t], 18)}<span>${TOOLNAME[t]}</span></button>`);
+      b.onclick = () => setTab(t, true);
+      b.addEventListener('keydown', e => {
+        if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+        e.preventDefault();
+        const n = tabs[(tabs.indexOf(t) + (e.key === 'ArrowRight' ? 1 : 3)) % 4];
+        setTab(n, true); bar.querySelector('#tbt-' + n).focus({preventScroll: true});
+      });
+      bar.append(b);
+    }
+    el.append(bar);
+    // Shift (Caesar): a two-ring wheel, a stepper 0 to 25 that wraps, back or forward; text out is live
+    const sh = html(`<div class="tbpane" role="tabpanel" id="tbp-shift" aria-labelledby="tbt-shift">
+      <label>Text in<textarea id="shIn" spellcheck="false" autocomplete="off"></textarea></label>
+      <div class="shmid"><svg class="wheel" viewBox="0 0 200 200" aria-hidden="true"></svg>
+        <div class="shctl"><div class="lab" id="shDirL">Move each letter</div>
+          <div class="dirs" role="group" aria-labelledby="shDirL"><button class="btn" id="shBack" aria-pressed="true">Back</button><button class="btn" id="shFwd" aria-pressed="false">Forward</button></div>
+          <div class="stepper" role="group" aria-label="Shift"><button class="btn" id="shMinus" aria-label="Shift one less">${ico('minus', 20)}</button>
+            <output id="shK" aria-live="polite">0<small>places</small></output><button class="btn" id="shPlus" aria-label="Shift one more">${ico('plus', 20)}</button></div></div></div>
+      <label>Text out<textarea id="shOut" readonly spellcheck="false"></textarea></label>
+      <p class="tbnote">Outer ring: the letter in. Inner ring: the letter out. Only letters move; A to Z wraps around.</p></div>`);
+    const wheel = sh.querySelector('.wheel');
+    const ring = (r, fs, cls, fill) => { let s = `<g class="${cls}">`; for (let i = 0; i < 26; i++) { const a = (i / 26) * 2 * Math.PI - Math.PI / 2;
+      s += `<text x="${(100 + r * Math.cos(a)).toFixed(1)}" y="${(100 + r * Math.sin(a)).toFixed(1)}" text-anchor="middle" dominant-baseline="central" font-family="Cascadia Mono,Consolas,monospace" font-size="${fs}" font-weight="700" fill="${fill}" transform="rotate(${(i * 360 / 26).toFixed(2)} ${(100 + r * Math.cos(a)).toFixed(1)} ${(100 + r * Math.sin(a)).toFixed(1)})">${String.fromCharCode(97 + i)}</text>`; }
+      return s + '</g>'; };
+    wheel.innerHTML = `<circle cx="100" cy="100" r="97" fill="#18202b" stroke="#62789a" stroke-width="2"/>${ring(83, 15, 'outer', '#e8edf3')}
+      <circle cx="100" cy="100" r="70" fill="#0a0f14" stroke="#3b4a5e" stroke-width="1.5"/><g class="inner">${ring(57, 15, 'in', '#ff7ac8').replace('<g class="in">', '<g>')}</g>
+      <circle cx="100" cy="100" r="42" fill="#18202b"/><path d="M100 3 L94 13 L106 13 Z" fill="#8fe3ff"/>
+      <text class="wk" x="100" y="100" text-anchor="middle" dominant-baseline="central" font-family="Cascadia Mono,Consolas,monospace" font-size="24" font-weight="800" fill="#e8edf3">0</text>`;
+    let rot = 0;
+    function shRun() {
+      const kk = dir * k;
+      // the inner ring turns so that under each outer (in) letter sits the letter it becomes
+      const want = -kk * 360 / 26;
+      let d = ((want - rot) % 360 + 540) % 360 - 180; rot += d;   // turn the short way round
+      wheel.querySelector('.inner').style.transform = `rotate(${rot.toFixed(2)}deg)`;
+      wheel.querySelector('.wk').textContent = (dir < 0 && k ? '-' : '') + k;
+      sh.querySelector('#shK').innerHTML = `${k}<small>${k === 1 ? 'place' : 'places'} ${dir < 0 ? 'back' : 'forward'}</small>`;
+      sh.querySelector('#shOut').value = sec.caesar(sh.querySelector('#shIn').value, kk);
+      sh.querySelector('#shBack').setAttribute('aria-pressed', dir < 0); sh.querySelector('#shFwd').setAttribute('aria-pressed', dir > 0);
+    }
+    sh.querySelector('#shIn').addEventListener('input', shRun);
+    sh.querySelector('#shMinus').onclick = () => { k = (k + 25) % 26; shRun(); };
+    sh.querySelector('#shPlus').onclick = () => { k = (k + 1) % 26; shRun(); };
+    sh.querySelector('#shBack').onclick = () => { dir = -1; shRun(); };
+    sh.querySelector('#shFwd').onclick = () => { dir = 1; shRun(); };
+    panes.shift = sh;
+    // Keyword (Vigenere)
+    const kw = html(`<div class="tbpane" role="tabpanel" id="tbp-keyword" aria-labelledby="tbt-keyword">
+      <label>Key<input type="text" id="kwKey" spellcheck="false" autocomplete="off"></label>
+      <label>Text in<textarea id="kwIn" spellcheck="false" autocomplete="off"></textarea></label>
+      <div class="tbrow"><button class="btn" id="kwEnc">Encode</button><button class="btn" id="kwDec">Decode</button></div>
+      <label>Text out<textarea id="kwOut" readonly spellcheck="false"></textarea></label>
+      <p class="tbnote">Each letter shifts by the matching letter of the key (A is 0, B is 1, and so on). The key moves on only at letters.</p></div>`);
+    function kwRun(d) {
+      if (d) kwDir = d; if (!kwDir) return;
+      const key = kw.querySelector('#kwKey').value, txt = kw.querySelector('#kwIn').value;
+      kw.querySelector('#kwOut').value = /[a-z]/i.test(key) ? sec.vigenere(txt, key, kwDir) : 'Type a key with at least one letter.';
+      kw.querySelector('#kwEnc').setAttribute('aria-pressed', kwDir > 0); kw.querySelector('#kwDec').setAttribute('aria-pressed', kwDir < 0);
+    }
+    kw.querySelector('#kwEnc').onclick = () => kwRun(1);
+    kw.querySelector('#kwDec').onclick = () => kwRun(-1);
+    kw.querySelector('#kwKey').addEventListener('input', () => kwRun());
+    kw.querySelector('#kwIn').addEventListener('input', () => kwRun());
+    panes.keyword = kw;
+    // Base64
+    const bb = html(`<div class="tbpane" role="tabpanel" id="tbp-base64" aria-labelledby="tbt-base64">
+      <label>Text in<textarea id="bIn" spellcheck="false" autocomplete="off"></textarea></label>
+      <div class="tbrow"><button class="btn" id="bEnc">Encode</button><button class="btn" id="bDec">Decode</button></div>
+      <label>Text out<textarea id="bOut" readonly spellcheck="false"></textarea></label>
+      <p class="tbnote">Base64 writes any bytes with 64 safe characters. There is no key: anyone can decode it.</p></div>`);
+    function bRun(d) {
+      if (d) bDir = d; if (!bDir) return;
+      const r = sec.b64(bb.querySelector('#bIn').value, bDir);
+      bb.querySelector('#bOut').value = r == null ? 'That is not Base64.' : r;
+      bb.querySelector('#bEnc').setAttribute('aria-pressed', bDir > 0); bb.querySelector('#bDec').setAttribute('aria-pressed', bDir < 0);
+    }
+    bb.querySelector('#bEnc').onclick = () => bRun(1);
+    bb.querySelector('#bDec').onclick = () => bRun(-1);
+    bb.querySelector('#bIn').addEventListener('input', () => bRun());
+    panes.base64 = bb;
+    // Strength
+    const st = html(`<div class="tbpane" role="tabpanel" id="tbp-strength" aria-labelledby="tbt-strength">
+      <label>Password<input type="text" id="pwIn" spellcheck="false" autocomplete="off" autocapitalize="off"></label>
+      <dl class="readouts2" id="pwOut"></dl>
+      <div class="bitbar" aria-hidden="true"><i id="pwBar" style="width:0"></i><span class="mark" style="left:${70 / 128 * 100}%"><span>70 bits</span></span><span class="end">128</span></div>
+      <p class="printed" id="pwFlag" aria-live="polite"></p>
+      <p class="tbnote">Don't type a password you really use. Nothing here is saved or sent.</p></div>`);
+    const fmtBits = b => b.toFixed(1);
+    function fmtTime(s) {
+      if (s < 1) return 'less than a second';
+      const U = [['second', 1], ['minute', 60], ['hour', 3600], ['day', 86400], ['year', 31557600]];
+      let u = U[0]; for (const x of U) if (s >= x[1] * (x[0] === 'year' ? 1 : 1.5)) u = x;
+      let v = s / u[1];
+      const sig = n => { const p = Math.pow(10, Math.floor(Math.log10(n)) - 1); return Math.round(n / p) * p; };
+      // big times in words, never a long row of zeros
+      if (u[0] === 'year' && v >= 1e15) return 'more than a thousand trillion years';
+      if (u[0] === 'year' && v >= 1e12) return 'about ' + sig(v / 1e12) + ' trillion years';
+      if (u[0] === 'year' && v >= 1e9) return 'about ' + sig(v / 1e9) + ' billion years';
+      if (u[0] === 'year' && v >= 1e6) return 'about ' + sig(v / 1e6) + ' million years';
+      v = v < 10 ? Math.round(v * 10) / 10 : sig(v);
+      if (v < 10 && Math.abs(v - Math.round(v)) < .05) v = Math.round(v);
+      return 'about ' + v.toLocaleString('en-US') + ' ' + u[0] + (v === 1 ? '' : 's');
+    }
+    // a pattern's parts in words: "Winter (word, capital) + 2026 (year) + ! (symbol)"
+    const KIND = {word: 'word', run: 'keyboard run', year: 'year', digits: 'digits', symbols: 'symbol', separator: 'between words', letters: 'letters', chars: 'random characters'};
+    const partText = p => p.kind === 'times' ? `typed ${p.times} times`
+      : p.kind === 'repeat' ? `${esc(p.text)} (typed ${p.times} times in a row)`
+      : `${p.text === ' ' ? 'space' : esc(p.text)} (${KIND[p.kind]}${p.kind === 'word' && p.text !== p.text.toLowerCase() ? ', capital' : ''})`;
+    function stRun() {
+      const pw = st.querySelector('#pwIn').value, out = st.querySelector('#pwOut');
+      const r = sec.strength(pw);
+      const pools = Object.keys(sec.POOLS).filter(x => r.pools[x]);
+      const used = r.used, t = sec.guessSeconds(used);
+      const pat = r.pattern && r.patternBits < r.bits;
+      const second = r.wordBits != null ? fmtBits(r.wordBits) + ` (${r.words} random words from a list of 7,776)`
+        : r.pattern ? fmtBits(r.patternBits) + ' (pattern: ' + r.pattern.parts.map(partText).join(' + ') + (r.pattern.swaps ? `, ${r.pattern.swaps} letter ${r.pattern.swaps === 1 ? 'swap' : 'swaps'} undone` : '') + ')'
+        : 'no pattern this meter knows (it has no dictionary, so names and phrases can still be guessed sooner)';
+      out.innerHTML = !pw ? '<dt>Length</dt><dd>0</dd>' : `
+        <dt>Length</dt><dd>${r.length} characters</dd>
+        <dt>Pools</dt><dd>${pools.map(x => (x === 'symbol' ? 'symbol (and space)' : x) + ' ' + sec.POOLS[x]).join(' + ')} = ${r.poolSize}</dd>
+        <dt>Bits by characters</dt><dd>${fmtBits(r.bits)} <small>(if every character were picked at random)</small></dd>
+        <dt>Bits by words or pattern</dt><dd>${second}</dd>
+        <dt>Bits used</dt><dd class="used">${fmtBits(used)}${r.wordBits != null || r.pattern ? ' (the lowest)' : ''}</dd>
+        <dt class="full">Time to try every possibility at 10 billion guesses a second</dt><dd class="full">${fmtTime(t)}</dd>
+        <dd class="full assume">That rate models a fast offline attack on stolen password hashes. A sign-in page that slows tries is far slower.</dd>
+        <dt>On a list of 20 very common passwords</dt><dd>${r.onList ? 'yes' : 'no'}</dd>${r.onList ? '<dd class="full warnline">Guessers try very common passwords first, so this one falls almost at once, whatever the time above says.</dd>'
+          : pat && r.wordBits == null ? '<dd class="full warnline">Guessers try words dressed up with a capital, a year, digits or a symbol, and swaps like 4 for a, long before random strings. So this is rated by its parts, not its characters.</dd>' : ''}`;
+      st.querySelector('#pwBar').style.width = Math.min(100, used / 128 * 100) + '%';
+      // P200: the meter prints the flag only for the six-word candidate (70 bits or more), only in that challenge
+      const f = st.querySelector('#pwFlag');
+      if (state.tile === 'P200' && pw === P200_FLAG_PW && used >= 70) f.innerHTML = `Rated ${fmtBits(used)} bits: <code>flag{${P200_FLAG}}</code>`;
+      else if (state.tile === 'P200' && used >= 70) f.textContent = 'That rates 70 bits or more, but it is not one of the four choices.';
+      else f.textContent = '';
+    }
+    st.querySelector('#pwIn').addEventListener('input', stRun);
+    panes.strength = st;
+    for (const t of tabs) { panes[t].hidden = true; el.append(panes[t]); }
+    function setTab(t, user) {
+      cur = t;
+      for (const x of tabs) { panes[x].hidden = x !== t; bar.querySelector('#tbt-' + x).setAttribute('aria-selected', x === t); bar.querySelector('#tbt-' + x).tabIndex = x === t ? 0 : -1; }
+      if (user && state.mode === 'toolbox') setHint(L.tool[t]);   // the hint changes at once with the tab
+      // text copied from an artifact follows to another tool whose box is still empty
+      const i = mainIn[t] && panes[t].querySelector(mainIn[t]);
+      if (user && copied && i && !i.value) { i.value = copied; i.dispatchEvent(new Event('input')); }
+    }
+    let copied = '';
+    // put text into the open tool's main box
+    const mainIn = {shift: '#shIn', keyword: '#kwIn', base64: '#bIn', strength: '#pwIn'};
+    function put(text, tab) {
+      if (tab) setTab(tab);
+      const i = panes[cur].querySelector(mainIn[cur]); i.value = text; copied = text;
+      i.dispatchEvent(new Event('input'));
+    }
+    function clear() {
+      for (const t of tabs) for (const f of panes[t].querySelectorAll('textarea,input')) f.value = '';
+      k = 0; dir = -1; kwDir = 0; bDir = 0; copied = '';
+      for (const b of el.querySelectorAll('[aria-pressed]')) if (!b.id.startsWith('sh')) b.removeAttribute('aria-pressed');
+      shRun(); stRun();
+    }
+    shRun(); stRun(); setTab('shift');
+    return {el, setTab, put, clear, refresh: stRun, get tab() { return cur; }, shift: (n, d) => { k = ((n % 26) + 26) % 26; if (d) dir = d; shRun(); },
+      kw: (key, d) => { kw.querySelector('#kwKey').value = key; kwRun(d); }, b64: d => bRun(d), out: () => {
+        const o = {shift: '#shOut', keyword: '#kwOut', base64: '#bOut', strength: '#pwOut'}[cur]; const e = panes[cur].querySelector(o); return e.value != null ? e.value : e.textContent; },
+      printed: () => st.querySelector('#pwFlag').textContent,
+      // what to bring into view after a copy: the printed flag, else the readouts, else Text out
+      target: () => cur === 'strength' ? (st.querySelector('#pwFlag').textContent ? st.querySelector('#pwFlag') : st.querySelector('.bitbar'))
+        : panes[cur].querySelector({shift: '#shOut', keyword: '#kwOut', base64: '#bOut'}[cur])};
+  })();
+
+  // ======================================================================================
+  // BOARD
+  // ======================================================================================
+  let boardCols = 4, phoneRow = 110;
+  const shown = {};   // the state each tile last showed (a changed tile flips once, with Motion on)
+  function stWord(s) { return s.st === 'patched' ? ['shield', 'patched'] : s.st === 'flag' ? ['flag', 'patch it'] : ['open', 'open']; }
+  function renderBoard() {
+    const g = $('grid');
+    const focusId = document.activeElement && document.activeElement.dataset ? document.activeElement.dataset.tile : null;
+    g.textContent = '';
+    const two = boardCols === 2, labels = !g.classList.contains('nolabels');
+    g.style.gridTemplateColumns = (labels ? 'auto ' : '') + `repeat(${two ? 2 : 4}, minmax(84px, 1fr))`;
+    const bands = two ? 2 : 1, per = two ? 2 : 4;
+    const rowsT = [];
+    for (let b = 0; b < bands; b++) { rowsT.push('auto'); for (let r = 0; r < 3; r++) rowsT.push(two ? `minmax(64px, ${phoneRow}px)` : 'minmax(64px, 150px)'); }
+    g.style.gridTemplateRows = rowsT.join(' ');
+    const off = labels ? 1 : 0;
+    for (let b = 0; b < bands; b++) {
+      const base = b * 4;
+      for (let c = 0; c < per; c++) {
+        const cat = CATS[b * per + c];
+        const e = html(`<div class="colh" aria-hidden="true">${ico(cat.icon, 16)}${cat.name}</div>`);
+        e.style.gridRow = base + 1; e.style.gridColumn = off + c + 1; g.append(e);
+      }
+      if (labels) for (let r = 0; r < 3; r++) { const e = html(`<div class="rowh" aria-hidden="true">${(r + 1) * 100}</div>`); e.style.gridRow = base + r + 2; e.style.gridColumn = 1; g.append(e); }
+      for (let c = 0; c < per; c++) {
+        const cat = CATS[b * per + c];
+        for (let r = 0; r < 3; r++) {
+          const t = TILES.find(x => x.cat === cat.id && x.v === (r + 1) * 100), s = state.tiles[t.id];
+          const [ic, word] = stWord(s);
+          const b2 = html(`<button class="tile st-${s.st}" data-tile="${t.id}" data-vr="${b * 3 + r}" data-vc="${c}"
+            aria-label="${cat.name} ${t.v}: ${esc(t.title)}. ${word === 'open' ? 'Open' : word === 'patch it' ? 'Flag found, patch it' : 'Patched'}${s.hint ? '. Hint used' : ''}.">
+            <span class="tv">${t.v}</span><span class="tt">${esc(t.title)}</span><span class="ts">${ico(ic, 14)}${word}${s.hint ? ' <span class="htag">hint</span>' : ''}</span></button>`);
+          b2.style.gridRow = base + r + 2; b2.style.gridColumn = off + c + 1;
+          if (shown[t.id] && shown[t.id] !== s.st && !Curio.reduce) b2.classList.add('flip');
+          shown[t.id] = s.st;
+          b2.onclick = () => openTile(t.id);
+          b2.addEventListener('keydown', tileKey);
+          g.append(b2);
+        }
+      }
+    }
+    $('score').textContent = score().toLocaleString('en-US');
+    $('flags').textContent = `Flags ${nFlags()} of 12`;
+    $('patchedN').textContent = `Patched ${nPatched()} of 12`;
+    $('allDone').hidden = !allPatched();
+    if (focusId) { const f = g.querySelector(`[data-tile="${focusId}"]`); if (f) f.focus({preventScroll: true}); }
+    fitBoard();
+  }
+  // arrow keys move between tiles by where they sit on screen
+  function tileKey(e) {
+    const d = {ArrowRight: [0, 1], ArrowLeft: [0, -1], ArrowDown: [1, 0], ArrowUp: [-1, 0]}[e.key];
+    if (!d) return;
+    e.preventDefault();
+    const r = +e.currentTarget.dataset.vr + d[0], c = +e.currentTarget.dataset.vc + d[1];
+    const n = $('grid').querySelector(`[data-vr="${r}"][data-vc="${c}"]`);
+    if (n) n.focus({preventScroll: true});
+  }
+  // titles show when tiles are tall enough
+  function fitBoard() {
+    const t = $('grid').querySelector('.tile'); if (!t) return;
+    const r = t.getBoundingClientRect();
+    // titles show only when every tile has room for them
+    const g = $('grid'); g.classList.remove('short');
+    g.classList.toggle('short', r.height < 84 || [...g.querySelectorAll('.tile')].some(x => x.scrollHeight > x.clientHeight + 1));
+    g.classList.toggle('tight', r.width < 118);
+  }
+  function renderClear() {
+    const box = $('clearBox');
+    if (state.confirm) {
+      box.innerHTML = '<div class="ask">Clear progress? <button class="btn" id="clrYes">Yes</button><button class="btn" id="clrNo">No</button></div>';
+      $('clrYes').onclick = () => { clearProgress(); };
+      $('clrNo').onclick = () => { state.confirm = false; renderClear(); setHint(boardHint()); $('clear').focus({preventScroll: true}); };
+    } else {
+      box.innerHTML = '<button class="btn" id="clear">Clear progress</button>';
+      $('clear').onclick = () => { state.confirm = true; renderClear(); setHint(L.hClear); $('clrNo').focus({preventScroll: true}); };
+    }
+  }
+  const boardHint = () => allPatched() ? L.hBoardAll : L.hBoard;
+  function clearProgress() {
+    V.hush();
+    for (const t of TILES) { state.tiles[t.id] = blank(); LK[t.id].reset(); }
+    state.confirm = false; state.allPending = false; state.justPatched = null; state.s100 = new Set(); state.l300 = [];
+    save(); renderBoard(); renderClear(); setHint(L.hBoard);
+    $('clear').focus({preventScroll: true});
+  }
+
+  // ======================================================================================
+  // CHALLENGE VIEW
+  // ======================================================================================
+  let art = [];   // the artifact handles of the open tile
+  function openTile(id, opts = {}) {
+    V.hush();
+    const t = T[id], s = state.tiles[id];
+    state.tile = id; state.confirm = false;
+    document.body.classList.remove('v-board', 'v-tool'); document.body.classList.add('v-chal');
+    $('board').hidden = true; $('tbox').hidden = true; $('chal').hidden = false;
+    $('boardInfo').hidden = true; $('toolInfo').hidden = true;
+    $('back').innerHTML = `${ico('back', 18)}<span>Back to board</span>`;
+    $('back').setAttribute('aria-label', 'Back to board');
+    $('ctitle').innerHTML = `<span class="cat">${catName(t.cat)} ${t.v}</span> · ${esc(t.title)}`;
+    $('brief').textContent = t.brief;
+    $('flag').value = ''; $('fres').textContent = ''; $('fres').className = 'fres';
+    // the toolbox moves into the drawer, opened on this challenge's tool (C100 opens on the first tab: naming Base64
+    // would give away its paid hint)
+    TB.clear();
+    $('tbSlot').append(TB.el);
+    TB.setTab(t.drawerTab || t.tool || 'shift');
+    state.drawer = !!t.tool;
+    buildArt(t);
+    renderChal();
+    relayout(true);
+    fitLog();
+    if (document.body.classList.contains('stack')) scrollTo(0, 0);
+    if (!opts.noFocus) $('back').focus({preventScroll: true});
+    if (s.st === 'open') V.how('w-chal', {valid: () => state.tile === id && state.tiles[id].st === 'open'});
+  }
+  function toBoard() {
+    V.hush();
+    const from = state.tile;
+    state.tile = null;
+    document.body.classList.remove('v-chal', 'v-tool'); document.body.classList.add('v-board');
+    $('chal').hidden = true; $('board').hidden = false; $('tbox').hidden = true;
+    for (const id of ['flagBox', 'hintBox', 'drawer', 'patch', 'toolInfo']) $(id).hidden = true;
+    $('boardInfo').hidden = false;
+    $('artwrap').textContent = ''; art = [];
+    relayout(true);   // draws the board once (a second draw would drop a changed tile's flip)
+    renderClear();
+    setHint(boardHint());
+    if (from) { const f = $('grid').querySelector(`[data-tile="${from}"]`); if (f) f.focus({preventScroll: true}); }
+    if (allPatched() && state.allPending) sayAll();
+    else V.welcome();
+  }
+  $('back').onclick = toBoard;
+
+  // the panel for the open tile: the flag box or the found flag, the paid hint, the drawer and the patch
+  function renderChal() {
+    const t = T[state.tile], s = state.tiles[t.id];
+    const cs = $('cstate'), [ic, word] = stWord(s);
+    const pts = s.st === 'open' ? `${worth(t)} points` + (s.hint ? ' (hint)' : '') : `${flagPts(t) + patchPts(t)} points`;
+    cs.className = 'cstate st-' + s.st;
+    cs.innerHTML = `${ico(ic, 14)}<span class="cw">${word}, </span>${pts}`;
+    $('flagBox').hidden = false;
+    $('flagRow').hidden = s.st !== 'open';
+    const f = $('found');
+    f.hidden = s.st === 'open';
+    if (s.st !== 'open') { f.className = 'found' + (s.st === 'patched' ? ' done' : ''); f.innerHTML = `${ico('flag', 18)} Flag <code>flag{${esc(t.flag[0] === 'trace' ? 'TRACE' : t.flag[0])}}</code>`; }
+    // the cost of a wrong flag is said before the first try
+    const fr = $('fres');
+    if (s.st === 'open' && !fr.classList.contains('bad')) { fr.textContent = s.wrong ? costNote(t.id) : `A wrong flag takes ${t.v / 4} points off this tile.`; fr.className = 'fres note'; }
+    // Hint (half points): only while the flag is still to find
+    $('hintBox').hidden = s.st !== 'open';
+    const hb = $('hintBtn');
+    hb.innerHTML = s.hint ? `${ico('bulb', 18)} Hint shown (half points)` : `${ico('bulb', 18)} Hint (half points)`;
+    hb.setAttribute('aria-disabled', s.hint ? 'true' : 'false');
+    hb.classList.toggle('pulse', !s.hint && s.wrong >= 3);
+    $('hintText').textContent = s.hint ? 'Hint: ' + L.hint[t.id] : '';
+    // the drawer
+    $('drawer').hidden = false;
+    const tb = $('tbBtn');
+    tb.setAttribute('aria-expanded', String(state.drawer));
+    tb.innerHTML = `<span>${ico('tools', 18)} Toolbox</span>${ico('chev', 18, 'chev')}`;
+    $('tbSlot').hidden = !state.drawer;
+    renderPatch();
+    // the hint for this moment
+    setHint(s.st === 'patched' ? (state.justPatched === t.id ? L.hPatched : L.hDone) : s.st === 'flag' ? (s.tried.length ? L.hPatchNo : L.hPatch) : findHint(t));
+  }
+  const findHint = t => { const m = state.tiles[t.id].wrong; return m >= 3 && !state.tiles[t.id].hint ? L.hMiss3 : m >= 1 ? L.notyet : L.find[t.id]; };
+  $('hintBtn').onclick = () => {
+    const t = T[state.tile], s = state.tiles[t.id];
+    if (s.hint || s.st !== 'open') return;
+    s.hint = true; save();
+    renderChal();
+    setHint(L.find[t.id]);
+  };
+  $('tbBtn').onclick = () => { state.drawer = !state.drawer; renderChal(); };
+
+  // the patch card: built once per tile view; a pick updates the buttons in place (focus stays on the one tapped)
+  function renderPatch() {
+    const t = T[state.tile], s = state.tiles[t.id], box = $('patch');
+    box.hidden = s.st === 'open';
+    if (s.st === 'open') { box.textContent = ''; delete box.dataset.tile; return; }
+    if (!box.dataset.tile || box.dataset.tile !== t.id) {
+      box.dataset.tile = t.id;
+      box.innerHTML = `<p class="lbl">Patch</p><h2 id="pq">${esc(t.patch.q)}</h2><div class="choices" role="group" aria-labelledby="pq"></div><p class="after" hidden></p>`;
+      const cl = box.querySelector('.choices');
+      for (const i of t.patch.order) {
+        const c = t.patch.c[i];
+        const b = html(`<button class="choice" data-i="${i}"><span class="mk"></span><span class="ct">${esc(c.t)}</span><span class="why"></span></button>`);
+        b.onclick = () => patch(t.id, i);
+        cl.append(b);
+      }
+    }
+    const done = s.st === 'patched';
+    for (const b of box.querySelectorAll('.choice')) {
+      const i = +b.dataset.i, c = t.patch.c[i], right = i === 0, tried = s.tried.includes(i) || (done && right);
+      // a patched tile shows every reason; before that only the tried ones
+      const show = tried || done;
+      b.classList.toggle('right', right && (tried || done));
+      b.classList.toggle('nope', !right && s.tried.includes(i));
+      b.querySelector('.mk').innerHTML = right && show ? ico('check', 16) + ' ' : !right && s.tried.includes(i) ? ico('x', 16) + ' ' : '';
+      b.querySelector('.why').textContent = show ? c.why : '';
+      b.setAttribute('aria-disabled', done ? 'true' : 'false');
+      b.setAttribute('aria-label', c.t + (show ? (right ? '. Right: ' : '. Not this one: ') + c.why : ''));
+    }
+    const af = box.querySelector('.after');
+    af.hidden = !(done && t.patch.after); af.textContent = t.patch.after || '';
+  }
+
+  // ---------- flags ----------
+  function submit(id, text) {
+    const t = T[id], s = state.tiles[id];
+    if (s.st !== 'open') return {open: true};
+    const r = LK[id].try(text);
+    if (r.open) {
+      s.st = 'flag'; save();
+      Curio.yes();
+      $('fres').textContent = ''; $('fres').className = 'fres';
+      state.drawer = false; state.justPatched = null;
+      renderChal();
+      setHint(L.hPatch);
+      V.say('flag', {valid: () => state.tiles[id].st === 'flag'});
+      // the Flag box is gone: focus moves to the first patch choice (it would be lost otherwise)
+      const first = $('patch').querySelector('.choice');
+      relayout(true);
+      if (first) { first.focus({preventScroll: true}); if (document.body.classList.contains('stack')) requestAnimationFrame(() => $('patch').scrollIntoView({block: 'start'})); else $('pscroll').scrollTop = 0; }
+      return {open: true};
+    }
+    const typed = !!String(text).trim();
+    if (typed) miss(id);
+    Curio.tone(220, .2, .04, 'triangle');
+    $('fres').textContent = typed ? 'Not this one. ' + costNote(id) : 'Type a flag first.';
+    $('fres').className = 'fres bad';
+    renderChal();
+    if (String(text).trim()) V.how('notyet', {valid: () => state.tiles[id].st === 'open'});
+    return {open: false, wrong: s.wrong, worth: worth(t)};
+  }
+  $('submit').onclick = () => submit(state.tile, $('flag').value);
+  $('flag').addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); submit(state.tile, $('flag').value); } });
+
+  // ---------- patches ----------
+  function patch(id, i) {
+    const t = T[id], s = state.tiles[id];
+    if (s.st !== 'flag') return {done: s.st === 'patched'};
+    if (s.tried.includes(i)) return {done: false};
+    s.tried.push(i);
+    if (s.first == null) s.first = i === 0;
+    if (i === 0) {
+      s.st = 'patched'; state.justPatched = id; save();
+      Curio.yes();
+      renderChal();
+      if (allPatched()) sayAll(); else V.say('patched', {now: true});
+    } else {
+      save();
+      Curio.tone(220, .2, .04, 'triangle');
+      renderChal();
+    }
+    return {done: s.st === 'patched', first: s.first};
+  }
+
+  // ---------- the artifacts ----------
+  function sendToTool(text, tab) {
+    if (!state.drawer) { state.drawer = true; renderChal(); }
+    TB.put(text, tab);
+    const n = $('copied'); if (n) n.textContent = `Copied into ${TOOLNAME[TB.tab]}.`;
+    // bring the tool's answer into view inside the panel (in the stacked layout, the page moves down to it)
+    const tgt = TB.target();
+    requestAnimationFrame(() => tgt.scrollIntoView({block: 'nearest', behavior: Curio.reduce ? 'auto' : 'smooth'}));
+  }
+  const copyNote = t => h('div', {class: 'copyrow'}, h('p', {class: 'copynote'}, t), h('p', {class: 'copynote copied', id: 'copied', 'aria-live': 'polite'}));
+  function noteLines(lines, opts) {
+    // a note whose lines are rows (44 px spots); plain strings are muted label lines
+    const a = Sec.artifact('note', {style: opts.sticky ? 'sticky' : 'text', lines: []}, {dark: !opts.sticky, title: opts.title, onSpot: opts.onSpot});
+    const body = a.el.querySelector('.sec-note'); body.classList.add('lines'); body.textContent = '';
+    // rebuild the lines as blocks, through the engine's spot handling (a second artifact gives the spots)
+    const b = Sec.artifact('note', {style: 'text', lines: lines.map(l => typeof l === 'string' ? l : {text: l.text, spot: l.spot})}, {onSpot: opts.onSpot});
+    for (const n of [...b.el.querySelector('.sec-note').childNodes]) {
+      if (n.nodeType === 3) { const s = n.textContent.replace(/^\n/, ''); if (s) body.append(h('div', {class: 'ln'}, s)); }
+      else body.append(n);
+    }
+    a.spotEl = id => body.querySelector(`[data-spot="${id}"]`);
+    return a;
+  }
+  function buildArt(t) {
+    const W = $('artwrap'); W.textContent = ''; art = [];
+    const arts = h('div', {class: 'arts'});
+    W.append(arts);
+    const id = t.id;
+    if (id === 'P100') {
+      const a = Sec.artifact('log', {columns: [{key: 'u', label: 'username', mono: true}, {key: 'p', label: 'password', mono: true}],
+        rows: P100_ROWS.map(([u, p]) => ({u, p, spot: {id: u, tell: p}, label: `${u}, password ${p}`}))},
+        {dark: true, title: {text: 'signup-export.csv', small: 'plain text, 6 rows'}, onSpot: (sid, el, tell) => sendToTool(tell, 'strength')});
+      arts.append(a.el); art.push(a);
+      W.prepend(copyNote('Tap a row to copy its password into the Strength tool.'));
+    } else if (id === 'P200') {
+      const a = noteLines(['Shortlist for the new admin password:', ...P200_PWS.map((p, i) => ({text: p, spot: {id: 'pw' + i, tell: p}}))],
+        {title: {text: 'admin-shortlist.txt'}, onSpot: (sid, el, tell) => sendToTool(tell, 'strength')});
+      arts.append(a.el); art.push(a);
+      W.prepend(copyNote('Tap a password to copy it into the Strength tool.'));
+    } else if (id === 'P300') {
+      const a = Sec.artifact('log', {columns: [{key: 'time', label: 'time', nowrap: true}, {key: 'dev', label: 'device'},
+        {key: 'pw', label: 'password'}, {key: 'two', label: 'second step'}, {key: 'res', label: 'result'}],
+        rows: P300_ROWS.map(r => ({...r})), sort: true}, {dark: true, title: {text: 'Sign-in record: cdiaz', small: 'larkspur.example'}});
+      arts.append(a.el); art.push(a);
+      W.prepend(copyNote('Tap a row to open its details. Tap a column name to sort.' + ($('chal').classList.contains('narrowstage') ? ' Swipe the table sideways to see every column.' : '')));
+    } else if (id === 'C100') {
+      const a = noteLines(['Message for the night guard:', {text: 'ZmxhZ3tkb2NrX2Rvb3JfMjU4MH0=', spot: {id: 'msg', tell: 'ZmxhZ3tkb2NrX2Rvb3JfMjU4MH0='}}],
+        {sticky: true, onSpot: (sid, el, tell) => sendToTool(tell)});
+      arts.append(a.el); art.push(a);
+      W.prepend(copyNote('Tap the message to copy it into the open tool.'));
+    } else if (id === 'C200') {
+      const a = noteLines([{text: 'mshn{kpzwhajo_whzzdvyk}', spot: {id: 'note', tell: 'mshn{kpzwhajo_whzzdvyk}'}}],
+        {sticky: true, onSpot: (sid, el, tell) => sendToTool(tell)});
+      arts.append(a.el); art.push(a);
+      W.prepend(copyNote('Tap the note to copy it into the open tool.'));
+    } else if (id === 'C300') {
+      const files = [{name: 'plan.txt', body: 'qlnz{ovl_tn_exeuzp}'}, {name: 'readme.txt', body: 'The plan is locked with the keyword LANTERN. Do not lose it!'}];
+      const a = Sec.artifact('file', {files: files.map(f => ({...f, spot: {id: f.name, tell: f.body}}))},
+        {dark: true, title: {text: 'Shared/Projects', small: '2 files'}, onSpot: (sid, el, tell) => sendToTool(tell)});
+      arts.append(a.el); art.push(a);
+      W.prepend(copyNote('Tap a file to copy its text into the open tool.'));
+    } else if (id === 'S100') {
+      const a = Sec.artifact('call', {numbered: true, lines: S100_LINES.map(([sp, tx], i) => ({speaker: sp, text: tx, spot: 'l' + (i + 1)}))},
+        {dark: true, title: {text: 'Call recording, front desk', small: 'transcript'}, onSpot: sid => s100Tap(sid)});
+      arts.append(a.el); art.push(a);
+      const done = state.tiles[id].st !== 'open';
+      const act = h('div', {class: 'act'});
+      const btn = h('button', {class: 'btn', id: 's100check'}, 'Check lines');
+      btn.onclick = s100Check;
+      act.append(btn, h('p', {class: 'res', id: 's100res', 'aria-live': 'polite'}));
+      W.append(act);
+      if (done) { a.mark('l2', 'right'); a.mark('l5', 'right'); $('s100res').innerHTML = 'Lines 2 and 5: <code>flag{rush_and_code}</code>'; }
+      else for (const l of state.s100) a.mark(l, 'marked');
+    } else if (id === 'S200') {
+      const a = Sec.artifact('log', {columns: [{key: 'time', label: 'time', mono: true}, {key: 'door', label: 'door'}, {key: 'badge', label: 'badge', mono: true},
+        {key: 'n', label: 'people through', mono: true}], rows: S200_ROWS.map(([time, door, badge, n]) => ({time, door, badge, n})), sort: true, filter: 'door'},
+        {dark: true, title: {text: 'Doors this morning', small: 'badge reader and door counter'}});
+      arts.append(a.el); art.push(a);
+    } else if (id === 'S300') {
+      arts.classList.add('two');
+      const e1 = Sec.artifact('email', {fromName: 'Birchline Paper', from: 'billing@birchline.example', to: 'accounts@larkspur.example', time: 'Sep 30, 9:12',
+        subject: 'Invoice 4471', body: ['Hello Larkspur accounts team,', 'Invoice 4471 attached. Same bank as always.', 'Birchline Paper, billing'],
+        attachments: [{name: 'invoice-4471.pdf'}]}, {title: {text: 'Last month', small: 'inbox'}});
+      const e2 = Sec.artifact('email', {fromName: 'Birchline Paper', from: 'billing@birchline-billing.example', to: 'accounts@larkspur.example', time: 'Oct 28, 7:48',
+        subject: 'Invoice 4502: new bank details', body: ['Hello Larkspur accounts team,', "We changed banks. Please send this month's payment to the new account below. Our finance team needs it today.",
+          'New account details are in the attached form.', 'Birchline Paper, billing'], attachments: [{name: 'new-bank-details.pdf'}]}, {title: {text: 'This month', small: 'inbox'}});
+      arts.append(e1.el, e2.el); art.push(e1, e2);
+    } else if (id === 'L100') {
+      const a = Sec.artifact('log', {columns: [{key: 'time', label: 'time', mono: true}, {key: 'acct', label: 'account', mono: true}, {key: 'dev', label: 'device'},
+        {key: 'res', label: 'result'}], rows: L100_ROWS.map(([time, acct, dev, res]) => ({time, acct, dev, res})), sort: true, filter: 'acct'},
+        {dark: true, title: {text: 'Sign-in log, overnight and morning', small: 'larkspur.example'}});
+      arts.append(a.el); art.push(a);
+    } else if (id === 'L200') {
+      const a = Sec.artifact('log', {columns: [{key: 'time', label: 'time', nowrap: true}, {key: 'acct', label: 'account', mono: true}, {key: 'share', label: 'share'},
+        {key: 'n', label: 'files read', mono: true}], rows: L200_ROWS.map(([time, acct, share, n]) => ({time, acct, share, n})), sort: true, filter: 'acct'},
+        {dark: true, title: {text: 'File share access log', small: 'Monday and Tuesday'}});
+      arts.append(a.el); art.push(a);
+    } else if (id === 'L300') {
+      const a = Sec.artifact('file', {files: L300_SHOWN.map(k => ({name: L300_CARDS[k].time, body: L300_CARDS[k].text, spot: {id: k}}))},
+        {dark: true, title: {text: 'Incident notes: jlam', small: '5 events, shuffled'}, onSpot: sid => l300Tap(sid)});
+      // the order so far and the word sit above the cards, so the payoff is in view when the fifth card lands
+      const ord = h('div', {class: 'order', id: 'l300order', 'aria-live': 'polite'});
+      W.insertBefore(h('div', {class: 'l300top'}, h('p', {class: 'copynote'}, 'Tap a card to put it next in line; tap it again to take it out.'), ord, h('p', {class: 'spell', id: 'l300spell'})), arts);
+      arts.append(a.el); art.push(a);
+      if (state.tiles[id].st !== 'open') state.l300 = L300_RIGHT.split('');
+      l300Render();
+    }
+    // every address an email shows passes the engine's guard (reserved names only); Sec.world checks the rest
+  }
+  // S100: mark lines, then check
+  function s100Tap(sid) {
+    if (state.tiles.S100.st !== 'open') return;
+    const a = art[0];
+    if (state.s100.has(sid)) { state.s100.delete(sid); a.mark(sid, null); } else { state.s100.add(sid); a.mark(sid, 'marked'); }
+    $('s100res').textContent = ''; $('s100res').className = 'res';
+  }
+  function s100Check() {
+    const r = $('s100res');
+    if (state.tiles.S100.st !== 'open') return;
+    const m = [...state.s100].sort();
+    r.className = 'res';
+    if (m.length !== 2) { r.textContent = `Tap exactly two lines first (${m.length} tapped).`; r.className = 'res bad'; Curio.tone(220, .2, .04, 'triangle'); return false; }
+    const ok = m.includes('l5') && (m.includes('l2') || m.includes('l7'));
+    if (ok) { for (const l of m) art[0].mark(l, 'right'); r.innerHTML = `Lines ${m.map(x => x.slice(1)).join(' and ')}: <code>flag{rush_and_code}</code>`; Curio.tone(660, .15, .04); return true; }
+    miss('S100');
+    r.textContent = 'Not these two. ' + costNote('S100'); r.className = 'res bad'; Curio.tone(220, .2, .04, 'triangle');
+    renderChal();
+    return false;
+  }
+  // L300: order the cards; the letters show only when all five are in the right order (a wrong order would hand
+  // over the five letters to unscramble)
+  function l300Tap(k) {
+    if (state.tiles.L300.st !== 'open') return;
+    const i = state.l300.indexOf(k);
+    if (i >= 0) state.l300.splice(i, 1); else state.l300.push(k);
+    // a full order that is wrong costs like a wrong flag
+    const wrongFull = state.l300.length === 5 && state.l300.join('') !== L300_RIGHT;
+    if (wrongFull) { miss('L300'); Curio.tone(220, .2, .04, 'triangle'); renderChal(); }
+    l300Render();
+  }
+  function l300Render() {
+    const a = art[0], ord = $('l300order'); if (!a || !ord) return;
+    const full = state.l300.length === 5, right = full && state.l300.join('') === L300_RIGHT;
+    // each placed card shows its place; once the order is right, its letter too
+    for (const k of L300_SHOWN) { const p = state.l300.indexOf(k); a.mark(k, p >= 0 ? (right ? 'right' : 'dim') : null); a.tag(k, p >= 0 ? (right ? `${p + 1}: ${k}` : String(p + 1)) : null); }
+    ord.textContent = '';
+    for (let i = 0; i < 5; i++) {
+      const k = state.l300[i], c = k ? L300_CARDS[k] : null;
+      ord.append(h('span', {class: 'slot ' + (k ? 'full' : 'empty'), 'aria-label': `Place ${i + 1}: ${c ? c.time + (right ? ', letter ' + k : '') : 'empty'}`},
+        h('span', {class: 'n'}, String(i + 1)), right ? h('b', {class: 'lt'}, k) : h('span', {class: 'tx'}, c ? c.time : '...')));
+    }
+    const sp = $('l300spell');
+    if (!full) sp.textContent = `${5 - state.l300.length} left to place. The letters show when all five are in the right order.`;
+    else if (right) sp.innerHTML = 'The letters spell <b>TRACE</b>: <code class="mono">flag{TRACE}</code>';
+    else { sp.textContent = 'That is not the order it happened. ' + costNote('L300') + ' Tap a card to take it out.'; sp.className = 'spell bad'; return; }
+    sp.className = 'spell';
+  }
+
+  // ======================================================================================
+  // MODES
+  // ======================================================================================
+  function setMode(m) {
+    if (state.mode === m && !state.tile) return;
+    V.hush();
+    state.mode = m; state.tile = null; state.confirm = false;
+    for (const k of ['board', 'toolbox']) $('m-' + k).setAttribute('aria-pressed', k === m);
+    if (m === 'board') { state.mode = 'board'; toBoard(); return; }
+    document.body.classList.remove('v-board', 'v-chal'); document.body.classList.add('v-tool');
+    $('board').hidden = true; $('chal').hidden = true; $('tbox').hidden = false;
+    for (const id of ['flagBox', 'hintBox', 'drawer', 'patch', 'boardInfo']) $(id).hidden = true;
+    $('toolInfo').hidden = false;
+    $('artwrap').textContent = ''; art = [];
+    $('tbox').append(TB.el);
+    TB.refresh();
+    setHint(L.tool[TB.tab]);
+    relayout(true);
+    V.welcome();
+  }
+  $('m-board').onclick = () => setMode('board');
+  $('m-toolbox').onclick = () => setMode('toolbox');
+
+  // ======================================================================================
+  // LAYOUT
+  // ======================================================================================
+  let page = '';
+  function pageLayout() { const w = innerWidth, hh = innerHeight; return w >= 1000 && hh >= 700 ? 'wide' : w >= 600 && w / hh >= 1.25 ? 'compact' : 'stack'; }
+  let lastKey = '';
+  function relayout(force) {
+    const p = pageLayout();
+    if (p !== page) { page = p; for (const c of ['wide', 'compact', 'stack']) document.body.classList.toggle(c, c === p); }
+    const stage = $('stage');
+    // stack + challenge: the stage takes what the window leaves after the header and the hint and Flag rows
+    if (p === 'stack' && state.tile) {
+      const hd = document.querySelector('header').offsetHeight, pf = document.querySelector('.pfix').offsetHeight;
+      stage.style.height = Math.max(300, innerHeight - hd - pf - 2) + 'px';
+    } else stage.style.height = '';
+    const st = stage.getBoundingClientRect();
+    const key = p + Math.round(st.width) + 'x' + Math.round(st.height) + (state.tile || state.mode);
+    if (key === lastKey && !force) return;
+    lastKey = key;
+    const W = st.width;
+    document.body.classList.toggle('compactui', p === 'compact' || W < 560);
+    document.body.classList.toggle('bigui', p === 'wide' && W >= 1200 && st.height >= 820);
+    fitLog();
+    $('chal').classList.toggle('narrowstage', W < 520);
+    // the board: 4 columns, or 2 columns by category on a narrow stage; row labels when there is room
+    const cols = W < 400 ? 2 : 4;
+    // two bands on a phone: six rows of tiles share what the window leaves under the header and the score
+    if (cols === 2) { const top = document.querySelector('header').offsetHeight + 60, room = innerHeight - top - 2 * 24 - 8 * 8 - 24;
+      const r = Math.max(64, Math.min(110, Math.floor(room / 6))); if (r !== phoneRow) { phoneRow = r; force = true; } }
+    const g = $('grid');
+    const labels = cols === 2 || W - 32 >= 4 * 96 + 5 * 8 + 44;
+    const changed = cols !== boardCols || labels === g.classList.contains('nolabels');
+    boardCols = cols; g.classList.toggle('nolabels', !labels);
+    if (!state.tile && state.mode === 'board' && (changed || force)) renderBoard(); else fitBoard();
+  }
+  // a long log scrolls inside its own card, so its sticky column names stay in view
+  function fitLog() {
+    const w = $('artwrap'), sc = w.querySelector('.sec-log .sec-scroll');
+    if (!sc || !state.tile) return;
+    const top = sc.getBoundingClientRect().top - w.getBoundingClientRect().top + w.scrollTop;
+    const room = w.clientHeight - top - 22;
+    w.style.setProperty('--logmax', room >= 150 ? room + 'px' : 'none');
+  }
+  new ResizeObserver(() => relayout()).observe($('stage'));
+  addEventListener('resize', () => relayout());
+
+  // ======================================================================================
+  // START
+  // ======================================================================================
+  load();
+  makeLocks();
+  for (const t of TILES) shown[t.id] = state.tiles[t.id].st;
+  Curio.init({clips: "voice:*", rate: .95});
+  relayout(true);
+  renderBoard(); renderClear();
+  setHint(boardHint());
+
+  // for checking frames and tests
+  window.__tool = {state, sec, Sec, world: WORLD, tiles: TILES, locks: LK, TB, setMode, open: openTile, toBoard,
+    submit: (id, text) => { if (state.tile !== id) openTile(id, {noFocus: true}); return submit(id, text); },
+    patch: (id, choice) => { if (state.tile !== id) openTile(id, {noFocus: true}); return patch(id, choice); },
+    score, max: MAX, s100: ids => { for (const l of ids) s100Tap(l); return s100Check(); }, l300: ks => { state.l300 = []; for (const k of ks) l300Tap(k); return $('l300spell').textContent; },
+    clearProgress, allLines: V.allLines, vlog: V.log, get vq() { return V.queue; }, relayout, art: () => art};
+})();
+</script>
+</body>
+</html>

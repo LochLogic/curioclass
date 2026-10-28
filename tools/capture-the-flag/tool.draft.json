@@ -1,0 +1,30 @@
+{
+  "id": "capture-the-flag",
+  "status": "beta",
+  "stage": "built",
+  "hook": "Twelve small security challenges inside a made-up freight company. Decode notes, audit passwords, read logs and catch a pretext call to find each flag, then pick the patch that fixes the hole it came from.",
+  "outcome": "Find weaknesses in passwords, encodings, people and logs by careful reading, then recommend the fix and explain its tradeoff",
+  "driver": "students",
+  "minutes": "30-50",
+  "modes": ["Board", "Toolbox"],
+  "grades_label": "Grades 9-12",
+  "sources": [
+    "CSTA K-12 Computer Science Standards (2026 ids HS-SYS-SE-31, HS-SYS-SE-32, HS-SYS-SE-33; 2017 3A-NI-05 to 3A-NI-08, 3B-NI-04): https://csteachers.org/k12standards/",
+    "NIST SP 800-63B-4, section 3.1.1.2 (block common and breached passwords, allow 64+ characters and spaces, no composition rules, no forced changes, salted hashes, limit failed attempts): https://pages.nist.gov/800-63-4/sp800-63b.html",
+    "UK National Cyber Security Centre, Most hacked passwords revealed (2019): https://www.ncsc.gov.uk/news/most-hacked-passwords-revealed",
+    "EFF, Dice-Generated Passphrases (7,776 words, 12.9 bits per word): https://www.eff.org/dice",
+    "CISA, More than a Password and Implementing Phishing-Resistant MFA (2022): https://www.cisa.gov/MFA",
+    "RFC 4648, Base64 (an encoding with no key): https://www.rfc-editor.org/rfc/rfc4648",
+    "NIST FIPS 197, AES: https://csrc.nist.gov/pubs/fips/197/final",
+    "NIST SP 800-57 Part 1 (key management: keep keys apart from data): https://csrc.nist.gov/pubs/sp/800/57/pt1/r5/final",
+    "Khan Academy, Cryptography (Caesar and Vigenere ciphers): https://www.khanacademy.org/computing/computer-science/cryptography",
+    "CISA, Avoiding Social Engineering and Phishing Attacks: https://www.cisa.gov/news-events/news/avoiding-social-engineering-and-phishing-attacks",
+    "FBI IC3, Business Email Compromise: https://www.ic3.gov",
+    "NIST CSRC Glossary, least privilege: https://csrc.nist.gov/glossary/term/least_privilege",
+    "Reserved example domains, RFC 2606 and RFC 6761: https://www.rfc-editor.org/rfc/rfc2606",
+    "Bits, guessing times and encrypted strings computed in Python (bits = length x log2 pool; time = 2 to the power of bits / 10 billion a second, a model rate stated on screen)",
+    "Larkspur Freight, its people, logs and messages are made up for Curio Class; everything is drawn in code"
+  ],
+  "third_party": [],
+  "updated": "2026-10-28"
+}
