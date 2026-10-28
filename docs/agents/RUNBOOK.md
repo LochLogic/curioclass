@@ -14,7 +14,7 @@ batch (2026-10-25, 10 tools; log in `docs/agents/BATCH-G11-LOG.md`). Read `docs/
 ## The pipeline, per tool
 
 Fresh agents (Agent tool, general-purpose), one tool each. Spec agents can run in parallel. Builds run one at a time
-(they may touch kit files); a verify of tool N can run while tool N+1 builds. Keep at most about 3 to 4 agents running:
+(they may touch kit files); the polish or exit check of tool N can run while tool N+1 builds. Keep at most about 3 to 4 agents running:
 the account's session usage limit stopped 4 parallel agents once (they resume with SendMessage after the reset).
 
 | Step | Agent | Prompt (fill in the id) |
@@ -22,13 +22,16 @@ the account's session usage limit stopped 4 parallel agents once (they resume wi
 | Spec | fresh | "You are the spec agent for ONE Curio Class tool: `<id>`. Repo: S:\CurioClass (Windows; use the Bash tool with Unix syntax, python is on PATH). Follow docs/agents/SPEC.md exactly, plus docs/agents/STANDARDS.md and the batch note docs/agents/BATCH-<name>.md. Start with `python scripts/neighbors.py <id>`. Write only tools/<id>/spec.md. No em dashes. Report: the one idea, the not-like list, voice and accent chosen, art list, open questions." |
 | Spec check | you | Read all the batch's specs together: overlapping ideas, repeated images (four were caught in G11), same voice or accent as a neighbor. Fix the spec files directly. Log decisions on open questions. |
 | Build | fresh | "You are the build agent for ONE Curio Class tool: `<id>`. ... Follow docs/agents/BUILD.md exactly, plus STANDARDS.md and the batch note. The spec is tools/<id>/spec.md. Quality bar: tools/collision-lab/src.html (voice queue, real-pixel stage). Do not change kit files unless truly needed (backward compatible, documented, other kit tools re-checked). Only write in tools/<id>/. Do not commit." |
-| Verify | fresh, cold | "You are the verify agent for ONE Curio Class tool: `<id>`. ... Follow docs/agents/VERIFY.md exactly, cold, plus STANDARDS.md. Recompute every number yourself. Write tools/<id>/verify.md (verdict line first). Do not fix anything, do not commit." |
-| Fix | the SAME build agent (SendMessage to it) | Paste the findings, should-fix first, with the verifier's suggested causes. |
-| Re-verify | fresh, cold | "An earlier verify found ...; the builder says all are fixed. Re-check each yourself, cold, and check nothing regressed. Append '## Re-verify' to verify.md." |
+| Look | 3 fresh, cold, at once (+1 sensitivity agent when rule 5 applies) | "You are the `<lens>` lens (Teaching, Play or Craft) for ONE Curio Class tool: `<id>`. Repo: S:\CurioClass (Windows; use the Bash tool with Unix syntax, python is on PATH). Follow the `<lens>` section of docs/agents/REFINE.md exactly, cold, plus STANDARDS.md and docs/agents/decisions/BASELINE.md. Recompute every number yourself. Use your own scratch folder, Chrome profile and port. Write only tools/<id>/refine/<lens>.md. Do not fix anything, do not commit." |
+| Merge | you | Merge the lens files into tools/<id>/refine.md: one ranked list (blockers, should fix, accepted polish). Polish that would change the spec goes to the spec's open questions (REFINE.md, Merge). |
+| Polish | the SAME build agent (SendMessage to it) | Paste refine.md's list, blockers first: "Fix every blocker and should-fix and the accepted polish items. Re-shoot your frames. Report what changed." |
+| Exit check | fresh, cold | "You are the exit check for ONE Curio Class tool: `<id>`. Follow the Exit check in docs/agents/REFINE.md exactly, cold. Re-check every item in tools/<id>/refine.md and the gate. Write the verdict (PASS or ROUND 2) as refine.md's first line. Do not fix anything, do not commit." |
 | Plan | fresh, after the final PASS | "You are the plan agent for ONE Curio Class tool: `<id>`. ... Follow docs/agents/PLAN.md exactly, plus docs/LESSON-PLANS.md and STANDARDS.md. Only write tools/<id>/plan.md. `python scripts/check_plans.py <id>` must pass. Do not commit." Read the plan yourself once: would a sub manage with it? |
 
-At most 2 fix rounds; a third only for a narrow, well-diagnosed problem in the tool's core. After the last round with
-no blocker left, look at one frame yourself (the 680x425 preview is a good one) instead of another full re-verify.
+At most two Refine rounds (REFINE.md, Rounds); round 2 runs only the lenses that had open items. Three lenses and one
+build agent is four agents, the top of the limit: while a tool is in Look, don't start another build. Before 2026-10-27
+the step was a single verify agent (docs/agents/archive/VERIFY.md); those tools keep their verify.md, and the board
+counts either file.
 
 ## Art and voice (you, while builds run)
 
@@ -53,16 +56,22 @@ no blocker left, look at one frame yourself (the 680x425 preview is a good one) 
 2. `python scripts/preview.py <id>` (card art; pass `--js=` to open a livelier screen, and look at it).
 3. `python scripts/build_site.py --library --closet` (both flags on every deploy: without them the Reading Room or the Supply Closet drops off the live site), `python scripts/check_site.py`, `npx wrangler deploy`.
 4. Review Desk (https://claude.ai/artifact/SVXBzgyS941dyqmEzQHgNC) with ArtifactData: set `items/<id>` to
-   `{built, changed (what's new, what to check), order (next number), status: "ready", subject, title, url}`.
+   `{built, changed (what's new, what to check, what Refine polished, any "known, not done" items), order (next
+   number), status: "ready", subject, title, url}`.
    Then refresh the desk's stats panel: `python scripts/desk_stats.py <scratch>/stats.json` and ArtifactData set
    `stats/board` from that file (pin the version you last saw). Do this too whenever a batch moves tools a stage
-   (specs written, builds done, verify passed, art or voice recorded).
+   (specs written, builds done, Refine passed, art or voice recorded).
 5. Commit and push (Cory's standing rule). Log it in the batch log.
 
 When Cory reviews: read `comments` where state is "new"; approvals set the item to `status: "ok"`; notes get acted on,
 then the item goes back to "ready" with a reply on the comment and the comment marked "done".
 
 ## Open items (update as they close)
+
+- **Refine replaced Verify on 2026-10-27** (Cory's call): Build is the first solid draft; Refine is three cold lens
+  agents (Teaching, Play, Craft), polish by the builder, and a cold exit check against a fixed gate
+  (docs/agents/REFINE.md). It costs about 5 to 6 agent runs a tool instead of about 2. Watch the first batch: are the
+  lenses finding different things, and does the Review Desk see fewer rounds?
 
 - RESUMED 2026-10-27. Cory answered the decision board (172 of 208). Their standing rules are in
   docs/agents/decisions/BASELINE.md (answers.json beside it): every agent reads it and settles routine calls with it.
@@ -141,7 +150,8 @@ then the item goes back to "ready" with a reply on the comment and the comment m
   Write "the voice token" in comments. When a tool is still over 2 MB: `"kbps": 16`, re-save backgrounds about 1024
   wide at quality 45-55, then a small `"tempo"` (1.05) as a last step.
 - **Integrator fixes:** when both fix rounds are used and one narrow should-fix remains, fixing it yourself and
-  appending an "Integrator fix" note to verify.md (with what you rechecked) has worked four times.
+  appending an "Integrator fix" note to verify.md (with what you rechecked) has worked four times. Under Refine, the
+  note goes in refine.md.
 - **Paused (specs done, not built):** circuit-builder, sound-studio, satire-decoder, usage-panel, stock-market-1929.
   Their specs predate STANDARDS.md (one voice, no Look section): update voice and accent before building.
 - **Lesson plans (2026-10-25):** every tool gets `plan.md` (docs/LESSON-PLANS.md). Cory approved the three grade-2

@@ -7,7 +7,8 @@ Stages, in order (docs/BUILD-PLAN.md):
   concept   only the catalog line
   spec      tools/<id>/spec.md (spec agent, docs/agents/SPEC.md)
   built     tool.draft.json and src.html (build agent, docs/agents/BUILD.md)
-  verified  verify.md whose first line says PASS (verify agent, docs/agents/VERIFY.md)
+  verified  Refine passed: refine.md whose first line says PASS (docs/agents/REFINE.md), or for tools checked before
+            2026-10-27, verify.md (docs/agents/archive/VERIFY.md). The key stays 'verified'; the desk labels it Refine.
   art       every asset in art/prompts.json has its .webp
   voice     every line in voice/lines.json has its recording (or the tool has no voice)
   live      tool.json (on the site)
@@ -44,7 +45,7 @@ def voice(f):
 def row(tid):
     f = TOOLS / tid
     a, an = art(f); v, vn = voice(f)
-    verify = f / 'verify.md'
+    verify = f / 'refine.md' if (f / 'refine.md').exists() else f / 'verify.md'
     verdict = verify.read_text(encoding='utf-8').split('\n', 1)[0].upper() if verify.exists() else ''
     if (f / 'tool.json').exists():
         st = 'live'

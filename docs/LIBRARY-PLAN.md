@@ -155,7 +155,7 @@ One HTML file per story, offline, under the tool size cap:
 - **Original illustrations,** cleaned up, with credits. This needs no AI art. When an edition had no pictures, one
   plain plate (an ornament or title card) is fine.
 - **Word help:** old-fashioned or hard words are underlined and a tap gives a short meaning. Written by an agent,
-  checked by the verify agent.
+  checked by the Refine lenses.
 - **Read-aloud for K-2 stories** (once the voice bank exists): sentence highlighting while the narration plays.
   Read-aloud for grades 3-12 is at the end of the roadmap; those stories put their effort into text, word help and
   questions.

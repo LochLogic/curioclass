@@ -1,6 +1,6 @@
 # Standards for every tool agent
 
-Read this with your brief (SPEC.md, BUILD.md or VERIFY.md). It holds what the grade 11 test batch (2026-10-25,
+Read this with your brief (SPEC.md, BUILD.md or REFINE.md). It holds what the grade 11 test batch (2026-10-25,
 `docs/agents/BATCH-G11-LOG.md`) learned the hard way. Every tool in that batch failed its first verify on something
 below, never on the math. Where this file and your brief differ, this file wins.
 

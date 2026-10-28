@@ -1,3 +1,6 @@
+> Archived 2026-10-27: replaced by docs/agents/REFINE.md (three lens agents, polish, exit check). Kept for tools
+> verified before then.
+
 # Verify agent brief
 
 You check ONE freshly built Curio Class tool, cold. You did not build it and you owe it nothing. Your job is to find

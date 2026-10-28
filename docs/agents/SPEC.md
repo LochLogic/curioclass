@@ -56,7 +56,7 @@ must stand on its own: anything not in the spec will not be in the tool.
 ## Sources
 <one line per fact source, with a URL or citation>
 ## Done when
-<5 to 10 checks the verify agent can test by playing it>
+<5 to 10 checks the Refine lenses can test by playing it>
 ```
 
 Keep it under about 250 lines. Then stop and report: the one idea, the "not like" list, and any open question

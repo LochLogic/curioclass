@@ -16,8 +16,8 @@ the concept catalog, the neighbors script, the kit, the family specs and the bri
 | 1. Spec | fresh spec agent | `docs/agents/SPEC.md` | `tools/<id>/spec.md` (one idea, not-like list, content, art, voice, sources, done-when) |
 | 2. Spec check | the integrating session (Claude) | this file | a batch read of the wave's specs for overlap and fit; Cory may skim |
 | 3. Build | fresh build agent | `docs/agents/BUILD.md` | draft tool: src.html, tool.draft.json, notes.md, art/prompts.json, voice/lines.json |
-| 4. Verify | fresh verify agent, cold | `docs/agents/VERIFY.md` | `tools/<id>/verify.md`, PASS or FIX with findings |
-| 5. Fix | the build agent again (at most 2 rounds) | its verify.md | then a re-verify |
+| 4. Refine | three fresh lens agents, cold, then the build agent polishes, then a fresh exit check | `docs/agents/REFINE.md` | `tools/<id>/refine/<lens>.md`, then `tools/<id>/refine.md` with PASS or ROUND 2 first |
+| 5. Round 2 | only if the exit check fails (at most 2 rounds) | refine.md | then another exit check |
 | 5b. Lesson plan | fresh plan agent, after a PASS | `docs/agents/PLAN.md` | `tools/<id>/plan.md`, checked by `scripts/check_plans.py` (docs/LESSON-PLANS.md) |
 | 6. Integrate | the integrating session | this file | commit, board, art and voice queues |
 | 7. Art | daily rhythm (docs/ART.md) | | Cloudflare, local FLUX, Codex, Gemini for people |
@@ -55,7 +55,7 @@ native-speaker review), and hard history (needs extra care and teacher guidance)
 ## Review tiers
 
 Cory reviews every K-2 tool and every sensitive one (hard history, health, mental health) in full. For other tools
-the verify agent does the deep check and Cory spot-checks about one in four, plus anything the verifier flagged.
+the Refine lenses do the deep check and Cory spot-checks about one in four, plus anything the verifier flagged.
 
 ## Voice
 
@@ -68,6 +68,6 @@ children's tools and are not used. See docs/POLISH.md (Sound and voice) and docs
 
 1. `python scripts/board.py --wave N` for the list.
 2. Spec agents in parallel (they only write spec.md). Read all the specs together; send back overlaps.
-3. Build agents, then verify agents, then plan agents for each PASS, one tool each. Builds only touch their own tool folder, so they can run in
+3. Build agents, then Refine (lenses, polish, exit check), then plan agents for each PASS, one tool each. Builds only touch their own tool folder, so they can run in
    parallel; a family's first tool runs before its siblings (it writes the engine).
 4. Integrate: check_tools, commit, board, queue art and voice, add to the Review Desk when art and voice are in.
