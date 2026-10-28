@@ -1,0 +1,1390 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Target Toss · Underhand and overhand throwing · Curio Class</title>
+<meta name="description" content="The class throws soft balls at a paper target on the wall, taps the screen where each ball hit, and runs a fair test: one way, then another way, stacked in ten-frames. Bo the bear cub shows the throwing cues. Grades K-2 physical education. Works offline.">
+<!--
+Target Toss (Curio Class)
+Grades K-2, Physical Education, module Throwing and Catching (manipulative skill basics). SHAPE America S1 (underhand
+and overhand throwing; outcomes S1.E13 and S1.E14).
+Teacher led on a projector. The class throws soft balls at a paper target taped on the wall beside the screen
+(BASELINE w1-49); the teacher or a helper taps the screen target where each ball hit.
+Form: Bo, a bear cub drawn in code, shows the five cues for an underhand or overhand throw.
+Test it: a fair test. Pick a question, guess, throw Way A, throw Way B, then compare two columns of ten-frames.
+Free throw: every tap leaves a ball dot; a coach line after every fifth throw.
+Sources (see notes.md): SHAPE America National PE Standards (2024) and Grade-Level Outcomes (2014), PE Metrics 3rd ed.
+(2019), Appropriate Instructional Practice Guidelines K-12 (2009); NGSS SEP 3 (fair test).
+Everything is drawn in code; sounds are made in the browser.
+One file, no network requests. Content CC BY 4.0, code MIT. curioclass.org
+-->
+<link rel="stylesheet" href="kit:curio">
+<style>
+:root{
+  --paper:#f7f4fc;--ink:#22203a;--muted:#5a5670;--line:#ddd6ee;--focus:#e0662a;
+  --brand:#6b3fa0;--btn:#5a3a8a;--btn-line:#9b7cc6;--head-ink:#fff;--panel:#fdfbff;
+  --wall:#ece6f6;--gold:#ffd34d;--gold-ink:#3a2c00;--ctl:60px;--fs:17px;
+}
+:focus-visible{outline:4px solid var(--focus);outline-offset:3px;box-shadow:0 0 0 3px #fff}
+/* page layouts, picked in script (relayout()):
+   side  (760 px or wider, or any short landscape box): stage on the left, panel on the right (360 px, 300 px when narrow);
+   stack (under 760 px wide, or portrait): the stage above the panel; the page scrolls.
+   body.short (under 640 px tall): tighter text and gaps; controls stay 60 px (K-2 targets at every size). The panel comes first
+   in the page so Tab reaches it first. */
+main{grid-template-columns:minmax(0,1fr) 360px;min-height:0}
+body.narrow main{grid-template-columns:minmax(0,1fr) 300px}
+.stage{grid-column:1;grid-row:1;min-height:0;background:var(--wall)}
+.panel{grid-column:2;grid-row:1;gap:10px}
+body.stack{height:auto}
+body.stack main{grid-template-columns:minmax(0,1fr);align-content:start}
+body.stack .panel{grid-column:1;grid-row:2;border-left:0;border-top:3px solid var(--line);overflow:visible;padding:10px 12px}
+/* header: every button 60 px tall */
+.seg button,.icon-btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:var(--ctl)}
+.seg .mi{font-size:1.2em;line-height:1}
+body.narrowhead h1 small{display:none}
+body.tighthead header{padding:6px 10px;gap:6px;flex-wrap:nowrap}
+body.tighthead h1{font-size:18px;white-space:nowrap}
+body.tighthead .seg button .ml{display:none}
+body.tighthead .seg button{min-width:var(--ctl);font-size:20px;padding:0 10px}
+body.tighthead .icon-btn{padding:0 10px;font-size:14px;white-space:nowrap}
+@media (max-width:560px){
+  header{flex-wrap:wrap!important}
+  h1{width:100%}
+  .seg{display:grid!important;grid-template-columns:repeat(3,1fr);border-radius:14px;width:100%}
+  .seg button .ml{display:inline!important}
+  .seg button{font-size:15px!important;padding:0 6px!important;min-width:0!important}
+  .icon-btn{flex:1;padding:0 6px!important;font-size:14px}
+}
+/* panel */
+.hint{margin:0;min-height:4.4em;font-size:var(--fs);line-height:1.45}
+body.short .hint{min-height:2.9em;font-size:15px;line-height:1.35}
+.ctl{display:flex;flex-direction:column;gap:8px}
+.row{display:grid;gap:8px}
+.r2{grid-template-columns:1fr 1fr}.r3{grid-template-columns:repeat(3,minmax(0,1fr))}.r4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.btn{position:relative;min-height:var(--ctl);border-radius:14px;border:3px solid var(--line);background:#fff;color:var(--ink);display:flex;align-items:center;justify-content:center;
+  gap:7px;padding:2px 8px;font:700 17px/1.15 'Segoe UI',system-ui,sans-serif;box-shadow:0 4px 0 #0000001a;min-width:0;text-align:center}
+.btn .e{font-size:1.25em;line-height:1;flex:none}
+.btn.gold{background:var(--gold);color:var(--gold-ink);border-color:#d9a400}
+.btn.brand{background:var(--brand);color:#fff;border-color:var(--brand)}
+.btn[aria-pressed="true"]{border-color:var(--brand);background:#efe7fa;box-shadow:0 0 0 3px var(--brand),0 4px 0 #0000001a}
+.btn[aria-pressed="true"]::after{content:'✓';position:absolute;top:1px;right:5px;font:900 14px 'Segoe UI',sans-serif;color:var(--brand)}
+.btn[aria-disabled="true"]{opacity:.4;filter:saturate(.3);cursor:default}
+.btn.quiet{background:transparent;border-style:dashed;border-color:#b9aed0;box-shadow:none;color:var(--muted);font-weight:700}
+#tg-round .btn.quiet,#c-free .btn.quiet{margin-top:10px}
+body.short #tg-round .btn.quiet,body.short #c-free .btn.quiet{margin-top:4px}
+body.short #tg-guess{gap:6px}body.short #tg-guess .lbl{margin:0 0 -4px}
+.btn:not([aria-disabled="true"]):active{transform:translateY(2px)}
+body.short .btn,body.narrow .btn{font-size:15px;gap:5px;padding:2px 5px}
+.tog .btn{font-size:16px}
+.tog-all{display:flex;flex-direction:column;gap:8px}
+body.short .tog-all,body.stack .tog-all{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+body.short .tog .lg,body.stack .tog .lg{display:none}
+/* stacked: the hint, then the mode's buttons, then the settings (spec: buttons stay in view at 375 wide) */
+body.stack .panel>.ctl{order:1}body.stack .tog-all{order:2}body.stack .foot{order:3}
+body.stack .hint{min-height:2.9em}
+body.short .tog-all .row{gap:4px}
+body.short .tog .btn{font-size:13.5px;flex-direction:column;gap:0;line-height:1.15}
+body.short .tog .btn .e{font-size:17px}
+/* very narrow: four setting buttons share one row, so the icon sits above the word (keeps "Under" clear of the selected border) */
+@media (max-width:480px){
+  body.stack .tog-all .row{gap:4px}
+  body.stack .tog .btn{flex-direction:column;gap:0;line-height:1.15;padding-left:4px;padding-right:4px}
+}
+.lbl{font:700 14px 'Segoe UI',sans-serif;color:var(--muted);margin:2px 0 -2px}
+.count{display:flex;justify-content:space-between;align-items:baseline;font:800 19px 'Trebuchet MS',sans-serif}
+.count .h{font:700 16px 'Segoe UI',sans-serif;color:var(--muted)}
+#t-frame{display:block;width:100%;height:auto}
+.coach{background:#fff;border:3px solid var(--line);border-radius:14px;padding:8px 12px;font-size:16px;line-height:1.35;min-height:5.4em}
+.coach b{display:block;color:var(--brand);font:800 15px 'Trebuchet MS',sans-serif}
+body.short .coach{min-height:4em;font-size:14px;padding:6px 10px}
+.foot{display:flex;flex-direction:column;gap:8px;margin-top:auto}
+.tip{margin:0;font-size:14.5px;line-height:1.38;border:2px solid var(--line)}
+body.short .tip{font-size:13px;padding:6px 9px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+/* stage */
+#sv{position:absolute;left:0;top:0;display:block;touch-action:manipulation;user-select:none;-webkit-user-select:none}
+#sv.aim{cursor:crosshair}
+#sv:focus{outline:none}
+#sv:focus-visible{outline:4px solid var(--focus);outline-offset:-4px}
+.ov{position:absolute;font-family:'Segoe UI',system-ui,sans-serif}
+#strip{left:8px;right:8px;top:8px;display:flex;gap:6px;pointer-events:none}
+.st{flex:1;min-width:0;display:flex;align-items:center;justify-content:center;gap:5px;height:var(--strip,44px);border-radius:999px;border:2px solid #cbbfe0;background:#fff;
+  color:var(--muted);font:700 var(--sfs,15px) 'Segoe UI',sans-serif;white-space:nowrap;overflow:hidden}
+.st .n{display:inline-grid;place-items:center;width:1.5em;height:1.5em;border-radius:50%;background:var(--line);color:var(--ink);font-weight:800;flex:none}
+.st.done{color:var(--ink)}
+.st.done .n{background:var(--brand);color:#fff}
+.st.now{border:4px solid var(--ink);background:var(--gold);color:var(--gold-ink);font-weight:800}
+.st.now .n{background:var(--gold-ink);color:var(--gold)}
+.qgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.qcard{border:3px solid #cbbfe0;border-radius:18px;background:#fff;color:var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:6px;
+  font:800 var(--qfs,24px)/1.1 'Trebuchet MS',sans-serif;box-shadow:0 5px 0 #0000001f;min-height:60px;min-width:60px}
+.qcard .e{font-size:1.7em;line-height:1}
+.qcard:active{transform:translateY(2px)}
+#guess{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:minmax(0,1fr) auto;gap:12px}
+.way{background:#fff;border:3px solid #cbbfe0;border-radius:18px;padding:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;text-align:center;
+  font:700 var(--wfs,20px)/1.2 'Segoe UI',sans-serif}
+.way .t{font:900 1.15em 'Trebuchet MS',sans-serif;color:var(--brand)}
+.way .e{font-size:2.2em;line-height:1}
+.way .thumb{font-size:1.2em}
+#gnote{grid-column:1 / span 2;background:#fff8dd;border:3px dashed #c9a227;border-radius:14px;padding:6px 12px;text-align:center;font:700 var(--wfs,20px)/1.25 'Segoe UI',sans-serif}
+#cues{left:8px;right:8px;display:flex;gap:8px}
+.cue{flex:1;min-width:0;min-height:60px;border-radius:14px;border:3px solid #cbbfe0;background:#fff;color:var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:4px 2px;
+  font:800 var(--cfs,16px)/1.1 'Trebuchet MS',sans-serif;box-shadow:0 4px 0 #0000001a;transition:transform .25s}
+.cue .e{font-size:1.6em;line-height:1}
+.cue .k{font:800 .8em 'Segoe UI',sans-serif;color:var(--muted)}
+.cue .w{max-width:100%;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;text-align:center;overflow-wrap:anywhere}
+#cues.tight .cue .k{display:none}
+#cues.tight .cue .e{font-size:1.25em}
+#cues.tight .cue{gap:0;padding:2px 1px}
+.cue.now{transform:translateY(-10px);border:4px solid var(--ink);background:var(--gold);color:var(--gold-ink);box-shadow:0 8px 0 #0000002a}
+.cue.now .k{color:var(--gold-ink)}
+#answer{left:10px;right:10px;bottom:10px;background:#fff;border:3px solid var(--line);border-radius:16px;padding:8px 14px;font:600 var(--afs,17px)/1.3 'Segoe UI',sans-serif;
+  display:flex;flex-direction:column;gap:3px}
+#answer .r{font:800 1.2em 'Trebuchet MS',sans-serif;color:var(--brand)}
+/* modal cards (How to set up, Yes / No): over the whole page under the header; the page behind is inert */
+.modal{position:fixed;left:0;right:0;bottom:0;top:var(--headH,60px);z-index:40;background:#f7f4fcf2;display:flex;align-items:center;justify-content:center;padding:10px;font-family:'Segoe UI',system-ui,sans-serif}
+.modal[hidden]{display:none}
+body.modal-open{overflow:hidden}
+.scard{background:#fff;border:3px solid var(--brand);border-radius:18px;padding:12px 16px;max-width:980px;width:100%;max-height:100%;overflow:auto;display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:8px 16px;align-items:center}
+.shead{grid-column:1 / span 2;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.scard h2{margin:0;font:800 var(--suh,24px) 'Trebuchet MS',sans-serif;color:var(--brand)}
+.scard ol{margin:0;padding-left:1.4em;font:600 var(--sufs,18px)/1.3 'Segoe UI',sans-serif;display:flex;flex-direction:column;gap:3px;color:var(--ink)}
+.scard svg{width:100%;height:auto;max-height:var(--supic,300px);display:block}
+.scard .btn{min-width:120px}
+.scard.tall{grid-template-columns:1fr}
+.scard.tall .shead{grid-column:1}
+.ccard{background:#fff;border:4px solid var(--ink);border-radius:18px;padding:16px 18px;max-width:520px;width:100%;display:flex;flex-direction:column;gap:14px;box-shadow:0 8px 0 #0002}
+.ccard p{margin:0;font:800 var(--cqfs,22px)/1.3 'Trebuchet MS',sans-serif;color:var(--ink)}
+/* motion: one-shot pops only (no infinite loops) */
+.pop{animation:pop .35s ease-out both;transform-box:fill-box;transform-origin:center}
+@keyframes pop{from{transform:scale(.2);opacity:.2}to{transform:scale(1);opacity:1}}
+.calm .cue{transition:none}
+</style>
+</head>
+<body data-mode="form">
+<header>
+  <h1>Target Toss <small>Underhand and overhand throwing</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-form" aria-label="Form" aria-pressed="true" title="Form (key 1)"><span class="mi" aria-hidden="true">🙆</span><span class="ml">Form</span></button>
+    <button id="m-test" aria-label="Test it" aria-pressed="false" title="Test it (key 2)"><span class="mi" aria-hidden="true">🧪</span><span class="ml">Test it</span></button>
+    <button id="m-free" aria-label="Free throw" aria-pressed="false" title="Free throw (key 3)"><span class="mi" aria-hidden="true">🎯</span><span class="ml">Free throw</span></button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true" title="Turn animation on or off">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+  <button class="icon-btn" id="read">🔊 Read</button>
+</header>
+<main>
+  <aside class="panel" id="panel">
+    <p class="hint" id="hint" aria-live="polite"></p>
+    <div class="tog-all" id="settings">
+      <div class="row r2 tog" role="group" aria-label="Throw">
+        <button class="btn" id="s-under" aria-pressed="true" aria-label="Underhand"><span class="e" aria-hidden="true">🫳</span><span class="w">Under<span class="lg">hand</span></span></button>
+        <button class="btn" id="s-over" aria-pressed="false" aria-label="Overhand"><span class="e" aria-hidden="true">💪</span><span class="w">Over<span class="lg">hand</span></span></button>
+      </div>
+      <div class="row r2 tog" role="group" aria-label="Hand">
+        <button class="btn" id="s-right" aria-pressed="true" aria-label="Right hand"><span class="e" aria-hidden="true">✋</span><span class="w">Right<span class="lg"> hand</span></span></button>
+        <button class="btn" id="s-left" aria-pressed="false" aria-label="Left hand"><span class="e" aria-hidden="true">🤚</span><span class="w">Left<span class="lg"> hand</span></span></button>
+      </div>
+    </div>
+    <div class="ctl" id="c-form">
+      <button class="btn gold" id="f-show"><span class="e" aria-hidden="true">▶</span><span class="w">Show me</span></button>
+      <div class="row r2">
+        <button class="btn" id="f-next"><span class="e" aria-hidden="true">⏭</span><span class="w">Next cue</span></button>
+        <button class="btn" id="f-bo"><span class="e" aria-hidden="true">🙋</span><span class="w">Throw with Bo</span></button>
+      </div>
+    </div>
+    <div class="ctl" id="c-test" hidden>
+      <div class="ctl" id="tg-guess" hidden>
+        <p class="lbl" id="n-lbl">Throws each way:</p>
+        <div class="row r3" role="group" aria-labelledby="n-lbl">
+          <button class="btn" id="n-5" aria-pressed="false" aria-label="5 throws"><span class="e" aria-hidden="true">🧶</span>5</button>
+          <button class="btn" id="n-10" aria-pressed="true" aria-label="10 throws"><span class="e" aria-hidden="true">🧶</span>10</button>
+          <button class="btn" id="n-20" aria-pressed="false" aria-label="20 throws"><span class="e" aria-hidden="true">🧶</span>20</button>
+        </div>
+        <div class="row r2">
+          <button class="btn gold" id="g-a"><span class="e" aria-hidden="true">☝️</span><span class="w">Way A</span></button>
+          <button class="btn gold" id="g-b"><span class="e" aria-hidden="true">✌️</span><span class="w">Way B</span></button>
+        </div>
+        <div class="row r2">
+          <button class="btn" id="g-skip"><span class="e" aria-hidden="true">🤷</span><span class="w">Skip the guess</span></button>
+          <button class="btn quiet" id="g-back"><span class="e" aria-hidden="true">↩</span><span class="w">Other question</span></button>
+        </div>
+      </div>
+      <div class="ctl" id="tg-round" hidden>
+        <div class="count"><span id="t-count">Throw 0 of 10</span><span class="h" id="t-hits">Hits: 0</span></div>
+        <svg id="t-frame" role="img" aria-label="Ten-frame"></svg>
+        <div class="row r2">
+          <button class="btn" id="t-short"><span class="e" aria-hidden="true">⬇</span><span class="w">Too short</span></button>
+          <button class="btn gold" id="t-startb" hidden><span class="e" aria-hidden="true">▶</span><span class="w">Start Way B</span></button>
+          <button class="btn" id="t-undo"><span class="e" aria-hidden="true">↶</span><span class="w">Undo</span></button>
+        </div>
+        <button class="btn quiet" id="t-stop"><span class="e" aria-hidden="true">■</span><span class="w">Stop test</span></button>
+      </div>
+      <div class="ctl" id="tg-look" hidden>
+        <button class="btn gold" id="t-answer"><span class="e" aria-hidden="true">👀</span><span class="w">Show the answer</span></button>
+        <button class="btn" id="t-back"><span class="e" aria-hidden="true">↶</span><span class="w">Undo last throw</span></button>
+        <div class="row r2">
+          <button class="btn" id="t-again"><span class="e" aria-hidden="true">🔁</span><span class="w">Test again</span></button>
+          <button class="btn" id="t-new"><span class="e" aria-hidden="true">🃏</span><span class="w">New question</span></button>
+        </div>
+      </div>
+    </div>
+    <div class="ctl" id="c-free" hidden>
+      <div class="row r2">
+        <button class="btn" id="r-short"><span class="e" aria-hidden="true">⬇</span><span class="w">Too short</span></button>
+        <button class="btn" id="r-undo"><span class="e" aria-hidden="true">↶</span><span class="w">Undo</span></button>
+      </div>
+      <div class="coach" id="coach" aria-live="polite"><b>🧢 Coach says</b><span id="coach-t">Throw five balls. Then look here.</span></div>
+      <button class="btn quiet" id="r-clear"><span class="e" aria-hidden="true">🧽</span><span class="w">Clear the wall</span></button>
+    </div>
+    <div class="foot">
+      <button class="btn" id="setup-btn"><span class="e" aria-hidden="true">📋</span><span class="w">How to set up</span></button>
+      <p class="tip" id="safety"><span aria-hidden="true">🛡</span> Soft balls or beanbags only. Throw at the paper target on the wall, never at the screen, a TV, a touch panel or the laptop. Wait behind the line for your turn.</p>
+    </div>
+  </aside>
+  <div class="stage" id="stage">
+    <svg id="sv" role="img" aria-labelledby="svdesc"><desc id="svdesc">Bo the bear cub and a target on the wall.</desc></svg>
+    <div class="ov" id="strip" hidden aria-label="Test steps"></div>
+    <div class="ov qgrid" id="ask" hidden role="group" aria-label="Question cards"></div>
+    <div class="ov" id="guess" hidden></div>
+    <div class="ov" id="cues" role="group" aria-label="Cue cards"></div>
+    <div class="ov" id="answer" hidden aria-live="polite"></div>
+  </div>
+</main>
+<div class="modal" id="setup" hidden>
+  <div class="scard" role="dialog" aria-modal="true" aria-labelledby="setup-h">
+    <div class="shead"><h2 id="setup-h">📋 How to set up</h2><button class="btn gold" id="setup-close"><span class="e" aria-hidden="true">✖</span><span class="w">Close</span></button></div>
+    <svg viewBox="0 0 360 230" aria-hidden="true">
+      <rect width="360" height="230" fill="#ece6f6"/>
+      <g stroke="#ddd3ec" stroke-width="2"><path d="M0 40H360M0 80H360M0 120H360M0 160H360"/><path d="M60 0V40M180 0V40M300 0V40M120 40V80M240 40V80M60 80V120M180 80V120M300 80V120M120 120V160M240 120V160"/></g>
+      <rect x="0" y="178" width="360" height="52" fill="#ddd2ea"/>
+      <!-- the screen, showing the target -->
+      <text x="68" y="22" text-anchor="middle" font-size="15" font-weight="700" fill="#22203a" font-family="Segoe UI,sans-serif">Screen: tap here</text>
+      <rect x="8" y="30" width="120" height="88" rx="6" fill="#fff" stroke="#22203a" stroke-width="4"/>
+      <circle cx="68" cy="74" r="32" fill="#2f5fd0" stroke="#172f6b" stroke-width="3" stroke-dasharray="6 4"/>
+      <circle cx="68" cy="74" r="21" fill="#d62f3a" stroke="#6e1118" stroke-width="3"/>
+      <circle cx="68" cy="74" r="10.5" fill="#f2c230" stroke="#3a2c00" stroke-width="1.5"/>
+      <circle cx="81" cy="67" r="5.5" fill="#6b3fa0" stroke="#fff" stroke-width="2"/>
+      <!-- space between the screen and the paper target -->
+      <path d="M140 92H212M140 92l8-6M140 92l8 6M212 92l-8-6M212 92l-8 6" fill="none" stroke="#22203a" stroke-width="2.5" stroke-linecap="round"/>
+      <text x="176" y="80" text-anchor="middle" font-size="13" font-weight="700" fill="#22203a" font-family="Segoe UI,sans-serif">2 big steps</text>
+      <!-- the paper target on the wall, with tape: three rings like the screen -->
+      <text x="352" y="16" text-anchor="end" font-size="14" font-weight="700" fill="#22203a" font-family="Segoe UI,sans-serif">Paper target: throw here</text>
+      <rect x="224" y="30" width="112" height="112" rx="4" fill="#fffdf6" stroke="#b9ad8f" stroke-width="2"/>
+      <circle cx="280" cy="86" r="46" fill="#2f5fd0" stroke="#172f6b" stroke-width="3" stroke-dasharray="7 5"/>
+      <circle cx="280" cy="86" r="30" fill="#d62f3a" stroke="#6e1118" stroke-width="3"/>
+      <circle cx="280" cy="86" r="15" fill="#f2c230" stroke="#3a2c00" stroke-width="1.5"/>
+      <g fill="#f3e3a3" opacity=".95"><rect x="214" y="24" width="26" height="10" transform="rotate(-30 227 29)"/><rect x="320" y="24" width="26" height="10" transform="rotate(30 333 29)"/><rect x="214" y="136" width="26" height="10" transform="rotate(30 227 141)"/><rect x="320" y="136" width="26" height="10" transform="rotate(-30 333 141)"/></g>
+      <!-- a ball flying from the line to the paper target -->
+      <path d="M306 212 Q338 160 296 104" fill="none" stroke="#6b3fa0" stroke-width="3" stroke-dasharray="6 6"/>
+      <circle cx="296" cy="104" r="8" fill="#f08a24" stroke="#8a4a0e" stroke-width="2"/>
+      <rect x="200" y="208" width="150" height="8" fill="#f2c230" stroke="#3a2c00" stroke-width="1"/>
+      <text x="190" y="216" text-anchor="end" font-size="14" font-weight="700" fill="#22203a" font-family="Segoe UI,sans-serif">Tape line</text>
+    </svg>
+    <ol>
+      <li>Tape a paper target on the wall, two big steps away from the screen.</li>
+      <li>Draw three rings on it like the screen: gold in the middle, then red, then blue. (A poster-size sheet works well.)</li>
+      <li>Put a tape line on the floor.</li>
+      <li>Pick your throwers. They throw soft balls at the paper target, one at a time.</li>
+      <li>Tap the screen where each ball hit.</li>
+      <li>Pick up the balls only when the teacher says, after everyone has thrown.</li>
+    </ol>
+  </div>
+</div>
+<div class="modal" id="confirm" hidden>
+  <div class="ccard" role="alertdialog" aria-modal="true" aria-labelledby="confirm-t">
+    <p id="confirm-t"></p>
+    <div class="row r2">
+      <button class="btn" id="confirm-yes"><span class="e" aria-hidden="true">✔</span><span class="w" id="confirm-yw">Yes</span></button>
+      <button class="btn gold" id="confirm-no"><span class="e" aria-hidden="true">↩</span><span class="w">No, keep them</span></button>
+    </div>
+  </div>
+</div>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const NS = 'http://www.w3.org/2000/svg';
+  const mk = (tag, at, parent) => { const e = document.createElementNS(NS, tag); if (at) for (const k in at) e.setAttribute(k, at[k]); if (parent) parent.appendChild(e); return e; };
+  const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+  const isDis = b => b.getAttribute('aria-disabled') === 'true';
+  const setDis = (b, d) => { if (d) b.setAttribute('aria-disabled', 'true'); else b.removeAttribute('aria-disabled'); };
+
+  // ------------------------------------------------------------ the narrator's lines (spec, Voice; setup and safety per BASELINE w1-49)
+  const NUM = ['No', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Eleven', 'Twelve', 'Thirteen', 'Fourteen',
+    'Fifteen', 'Sixteen', 'Seventeen', 'Eighteen', 'Nineteen', 'Twenty'];
+  const L = {
+    safety: 'Soft balls only. Throw at the paper target on the wall, never at the screen, a TV or the laptop.',
+    setup: 'Tape a paper target on the wall, two big steps away from the screen. Draw three rings on it like the screen: gold in the middle, then red, then blue. Put a tape line on the floor. Pick your throwers. They throw soft balls at the paper target, one at a time. Tap the screen where each ball hit. Pick up the balls only when the teacher says, after everyone has thrown.',
+    setupGo: 'Follow the steps on the card. Then press Close.',
+    wForm: "Let's learn to throw like Bo. Press Show me, then try it with Bo.",
+    wTest: "Let's do a throwing test! Tap a question card.",
+    wFree: 'Throw at the paper target! Then tap the screen where each ball hit.',
+    cueU1: 'Face the target.', cueU2: 'Swing your arm back.',
+    cueU4: 'Let go between your knee and your waist.', cueU5: 'Follow through to the target.',
+    cueO1: 'Turn your side to the target.', cueO2: 'Bring your arm way back, elbow up.',
+    cueO4: 'Turn your hips and shoulders.', cueO5: 'Follow through across your body, toward the target.',
+    // cue 3 names the foot: the Hand setting picks the line (the foot opposite the throwing hand)
+    stepR: 'Step with your left foot, the opposite foot.', stepL: 'Step with your right foot, the opposite foot.',
+    // the Hand setting, said when it is tapped (Bo's two tags: the throwing hand and the stepping foot)
+    handR: 'Throw with your right hand. Step with your left foot.', handL: 'Throw with your left hand. Step with your right foot.',
+    tryBo: 'Now you try! Press Throw with Bo to throw together.',
+    ready: 'Ready, aim...',
+    boDone: 'Great throwing! Press Throw with Bo to go again.',
+    guess: 'Make a guess! Hold up one finger for Way A, or two fingers for Way B.',
+    setupLines: 'Make two tape lines: three giant steps from the wall and six giant steps from the wall.',
+    startA: 'Pick your throwers. Each one throws once, one at a time. Tap where each ball hits.',
+    // Way B says what stays the same and the one thing that changes, per question (a fair test)
+    startBstep: 'Same throwers, same order, same line. Only the feet change. Tap where each ball hits.',
+    startBlook: 'Same throwers, same order, same line. Only the eyes change. Tap where each ball hits.',
+    startBfar: 'Same throwers, same order, same target. Only the line changes. Tap where each ball hits.',
+    startBsize: 'Same throwers, same order, same line. Only the target changes. Tap where each ball hits.',
+    doneA: 'Way A is done! Press Start Way B.',
+    look: 'Which way got more hits? Tell a friend. Then press Show the answer.',
+    again: 'Press Test again to throw again, or New question for a new test.',
+    wayA: 'Way A:', wayB: 'Way B:',
+    hits: NUM.map((w, i) => i === 0 ? 'No hits.' : i === 1 ? 'One hit.' : w + ' hits.'),
+    winA: 'Way A got more hits!', winB: 'Way B got more hits!', tie: "It's a tie! Try more throws.",
+    match: 'That matches our guess!', differ: "That's different from our guess. That's why we test!",
+    tipDiff: 'Our test came out different this time. Try more throws, then test again.',
+    tip: {
+      step: 'Coaches teach the step because it helps your whole body push the ball and aim it.',
+      look: 'Good throwers look at the target the whole time.',
+      far: 'Closer is easier to hit. Step back to the far line when you are ready for a challenge.',
+      size: 'Bigger targets are easier to hit. Practice small targets to get even better.',
+    },
+    coach: {
+      great: 'Great aiming! Take one giant step back for a new challenge.',
+      highU: 'Too high. Let go lower, between your knee and your waist.',
+      highO: 'Too high. Follow through down across your body.',
+      low: 'Too short. Take a bigger step and swing all the way through.',
+      sideU: 'Face the target, and point your hand at it when you let go.',
+      sideO: 'Turn your side to the target, then point your hand at it after you throw.',
+      keep: 'Keep going. Step, swing and follow through.',
+    },
+    coach0: 'Throw five balls. Then look here.',
+    askStop: 'Stop the test? All the throws will be gone. Press Yes or No.',
+    askClear: 'Clear the wall? All the throws will be gone. Press Yes or No.',
+    q: {step: 'Step or stay?', look: 'Where do you look?', far: 'Close or far?', size: 'Big or small?'},
+    way: {
+      stepA: 'Step with the opposite foot.', stepB: 'Keep your feet still.',
+      lookA: 'Eyes on your feet.', lookB: 'Eyes on the target.',
+      farA: 'Throw from the close line.', farB: 'Throw from the far line.',
+      sizeA: 'Small target: only the gold counts.', sizeB: 'Big target: all rings count.',
+    },
+  };
+  // the coached way (exp) is Way A on some cards and Way B on others, so its place gives nothing away; small: the round
+  // where only the gold counts
+  const QS = [
+    {id: 'step', icon: '👣', exp: 'A', a: {icon: '👣', key: 'stepA'}, b: {icon: '🧍', key: 'stepB'}},
+    {id: 'look', icon: '👀', exp: 'B', a: {icon: '👟', key: 'lookA'}, b: {icon: '🎯', key: 'lookB'}},
+    {id: 'far', icon: '📏', exp: 'A', a: {icon: '3️⃣', key: 'farA'}, b: {icon: '6️⃣', key: 'farB'}},
+    {id: 'size', icon: '🎯', exp: 'B', small: 'A', a: {icon: '⭐', key: 'sizeA'}, b: {icon: '🎯', key: 'sizeB'}},
+  ];
+  const QBY = Object.fromEntries(QS.map(q => [q.id, q]));
+  const wayText = k => L.way[k].replace(/\.$/, '');
+  const CUES = {
+    under: [['👀', 'Face it'], ['🔙', 'Arm back'], ['👣', 'Step'], ['⬇', 'Let go low'], ['👉', 'Follow through']],
+    over: [['↔', 'Side to it'], ['🔙', 'Elbow up'], ['👣', 'Step'], ['🔄', 'Turn'], ['↘', 'Follow through']],
+  };
+  const cueKey = i => i === 2 ? (state.hand === 'right' ? 'stepR' : 'stepL') : (state.throwType === 'under' ? 'cueU' : 'cueO') + (i + 1);
+  const smallNow = () => state.mode === 'test' && !!T.q && QBY[T.q].small === T.step;
+
+  // ------------------------------------------------------------ state
+  const state = {mode: 'form', throwType: 'under', hand: 'right', setup: false, confirm: null,
+    form: {cue: -1, run: null, tok: 0, ball: null, boDone: false},
+    test: {step: 'ask', q: null, n: 10, guess: null, A: [], B: [], answer: false, gen: 0, barT0: 0, lookTimer: 0},
+    free: {throws: [], coach: null, log: []}};
+  const T = state.test, F = state.free;
+  let popId = 0, nextId = 1;
+
+  // ------------------------------------------------------------ voice
+  const V = Curio.voice({
+    lines: L, scope: () => state.mode,
+    welcome: () => state.confirm ? null : [['safety', {hint: false}], ...({
+      form: [['wForm', {valid: () => !state.form.run && !state.setup, needs: '#f-show'}]],
+      test: [['wTest', {valid: () => T.step === 'ask' && !state.setup, needs: '.qcard'}]],
+      free: [['wFree', {valid: () => !state.setup}], ['coach0', {hint: false, valid: () => !state.setup && !F.log.length}]],
+    })[state.mode]],
+    read: () => state.confirm ? $('confirm-t').textContent : state.setup ? [L.setup, L.setupGo] : $('hint').textContent,
+  });
+  // the safety line plays whole: a cut-in line waits behind it (the queue after it is still cleared), and when a reset
+  // (mode switch, Yes / No card) cuts it, it is said again in front of the next line that is not a Yes / No question
+  const safetyLive = () => V.playing === L.safety || V.queue.some(x => x.text === L.safety);
+  let safetyAgain = false;
+  { const say0 = V.say, hush0 = V.hush, welcome0 = V.welcome;
+    const isSafety = p => [L.safety, 'safety'].includes(Array.isArray(p) ? p[0] : p);
+    const again = parts => { safetyAgain = false; return parts.some(isSafety) ? parts : [[L.safety, {key: 'safety', kind: 'event', hint: false}], ...parts]; };
+    V.say = (x, o = {}) => {
+      if (o.now && safetyLive()) { V.dropQueued(it => it.text !== L.safety, 'newer'); o = {...o}; delete o.now; }
+      if (safetyAgain && !state.confirm && !state.setup) x = again(Array.isArray(x) ? x : [x]);
+      return say0(x, o);
+    };
+    V.hush = () => { if (safetyLive()) safetyAgain = true; hush0(); };
+    V.how = (x, o) => V.say(x, {...o, kind: 'how'});
+    V.welcome = () => { if (safetyAgain && !state.confirm) say0(again([])); return welcome0(); };
+  }
+  // the safety line, once: in front of a line that only talks, or after an action that runs (the action never waits)
+  const withSafety = parts => V.heard('safety') ? parts : [['safety', {kind: 'how', hint: false}], ...parts];
+  const withSafetyAfter = parts => V.heard('safety') ? parts : [...parts, ['safety', {kind: 'how', hint: false}]];
+  /* short boxes: the hint has two lines of room, so a long line steps its font down (15 px to 12.5 px) instead of spilling */
+  const fitHint = () => { const h = $('hint'); h.style.fontSize = '';
+    if (!document.body.classList.contains('short')) return;
+    for (let f = 15; f > 12.5 && h.scrollHeight > h.clientHeight + 1; f -= .5) h.style.fontSize = (f - .5) + 'px'; };
+  const setHint = t => { $('hint').textContent = t; fitHint(); };
+
+  // ------------------------------------------------------------ sounds (kit tones, plus a short noise whoosh on the kit's audio context)
+  function sHit(gold) {
+    Curio.tone(110, .2, .12); Curio.tone(70, .16, .08, 'triangle');
+    const notes = gold ? [660, 880, 1175] : [660, 880];
+    notes.forEach((f, i) => setTimeout(() => Curio.tone(f, .28, .05), 90 + i * 110));
+  }
+  function sMiss() {
+    if (!Curio.sound || !V.tapped) return;
+    try {
+      const a = Curio.audio(), t = a.currentTime, n = Math.floor(a.sampleRate * .4), buf = a.createBuffer(1, n, a.sampleRate), d = buf.getChannelData(0);
+      for (let i = 0; i < n; i++) d[i] = Math.random() * 2 - 1;
+      const src = a.createBufferSource(), bp = a.createBiquadFilter(), g = a.createGain();
+      src.buffer = buf; bp.type = 'bandpass'; bp.Q.value = 1.4;
+      bp.frequency.setValueAtTime(1800, t); bp.frequency.exponentialRampToValueAtTime(350, t + .35);
+      g.gain.setValueAtTime(.0001, t); g.gain.exponentialRampToValueAtTime(.09, t + .08); g.gain.exponentialRampToValueAtTime(.0001, t + .38);
+      src.connect(bp).connect(g).connect(a.destination); src.start(t); src.stop(t + .4);
+    } catch {}
+  }
+  function sShort() { Curio.tone(150, .22, .1, 'triangle'); setTimeout(() => Curio.tone(105, .3, .09, 'triangle'), 90); }
+
+  // ------------------------------------------------------------ Bo, a bear cub in layered SVG (a small 3D skeleton, drawn side on)
+  // Model units: feet at y 0, up is +y; x toward the target; z toward the class. Bo throws with his right paw; the Left
+  // hand setting mirrors the whole scene (Bo and the target swap sides), so the far foot is always the stepping foot.
+  const FUR = '#8b5a3c', FUR_D = '#5a3826', CREAM = '#f3dfc1', BAND = '#6b3fa0';
+  const POSES = {
+    under: [
+      {yaw: 0, tU: [.25, -1, .1], tF: [1, .35, 0], oU: [.1, -1, .1], oF: [.15, -1, 0], ft: [2, 9], fo: [-2, -9], ball: 'paw'},
+      {yaw: 0, tU: [-.6, -1, .05], tF: [-.6, -1, 0], oU: [.5, -1, .1], oF: [.6, -.8, 0], ft: [2, 9], fo: [-2, -9], ball: 'paw'},
+      {yaw: 0, tU: [-.75, -.9, .05], tF: [-.75, -.9, 0], oU: [.6, -1, .1], oF: [.7, -.6, 0], ft: [-10, 9], fo: [40, -9], ball: 'paw'},
+      {yaw: 0, tU: [.45, -1, 0], tF: [.6, -.85, 0], oU: [-.35, -1, .1], oF: [-.3, -1, 0], ft: [-10, 9], fo: [40, -9], ball: 'release'},
+      {yaw: 0, tU: [1, .25, 0], tF: [1, .3, 0], oU: [-.4, -1, .1], oF: [-.35, -1, 0], ft: [-6, 9], fo: [40, -9], ball: 'none'},
+    ],
+    over: [
+      {yaw: 90, tU: [0, -1, .3], tF: [.35, -.55, .25], oU: [0, .08, 1], oF: [0, .1, 1], ft: [-15, 0], fo: [15, 0], ball: 'paw'},
+      {yaw: 90, tU: [0, 0, 1], tF: [0, 1, .12], oU: [0, .08, 1], oF: [0, .1, 1], ft: [-15, 0], fo: [15, 0], ball: 'paw'},
+      {yaw: 90, tU: [0, 0, 1], tF: [0, 1, .12], oU: [0, .1, 1], oF: [0, .12, 1], ft: [-15, 0], fo: [46, 0], ball: 'paw'},
+      {yaw: 25, tU: [.6, .55, .35], tF: [1, .3, 0], oU: [.2, -1, .3], oF: [.6, -.4, .2], ft: [-15, 0], fo: [46, 0], ball: 'release'},
+      {yaw: 10, tU: [.6, -.55, -.55], tF: [.15, -.9, -.6], oU: [-.25, -1, .3], oF: [0, -1, 0], ft: [-8, 4], fo: [46, 0], ball: 'none'},
+    ],
+  };
+  const norm = v => { const l = Math.hypot(...v) || 1; return v.map(x => x / l); };
+  function lerpPose(a, b, k) {
+    const out = {};
+    for (const key in a) {
+      if (Array.isArray(a[key])) out[key] = a[key].map((x, i) => x + (b[key][i] - x) * k);
+      else if (typeof a[key] === 'number') out[key] = a[key] + (b[key] - a[key]) * k;
+      else out[key] = k < .5 ? a[key] : b[key];
+    }
+    return out;
+  }
+  // world (x, y, z) to the drawing (x right, y down)
+  function skeleton(p) {
+    const ph = p.yaw * Math.PI / 180, f = [Math.cos(ph), 0, Math.sin(ph)], r = [-Math.sin(ph), 0, Math.cos(ph)], up = [0, 1, 0];
+    const P = (a, b, c) => [f[0] * a + up[0] * b + r[0] * c, f[1] * a + up[1] * b + r[1] * c, f[2] * a + up[2] * b + r[2] * c];
+    const add = (a, b, k = 1) => [a[0] + b[0] * k, a[1] + b[1] * k, a[2] + b[2] * k];
+    const arm = (sh, U, Fo, side) => {
+      const u = norm(P(U[0], U[1], U[2] * side)), fo = norm(P(Fo[0], Fo[1], Fo[2] * side));
+      const el = add(sh, u, 34), paw = add(el, fo, 30);
+      return {sh, el, paw, fo};
+    };
+    const shT = P(0, 140, 28), shO = P(0, 140, -28), hipT = P(0, 70, 15), hipO = P(0, 70, -15);
+    return {f, r, P, add,
+      T: arm(shT, p.tU, p.tF, 1), O: arm(shO, p.oU, p.oF, -1),
+      legT: {hip: hipT, foot: [p.ft[0], 0, p.ft[1]]}, legO: {hip: hipO, foot: [p.fo[0], 0, p.fo[1]]},
+      head: [0, 178, 0]};
+  }
+  const S2 = v => [v[0], -v[1]];
+  function drawBo(g, pose, glow) {
+    const k = skeleton(pose), {f, r, add} = k;
+    const line = (a, b, w, col, extra) => mk('line', {x1: S2(a)[0], y1: S2(a)[1], x2: S2(b)[0], y2: S2(b)[1], stroke: col, 'stroke-width': w, 'stroke-linecap': 'round', ...(extra || {})}, g);
+    const limb = (pts, w, glowIt) => {
+      if (glowIt) for (let i = 0; i < pts.length - 1; i++) line(pts[i], pts[i + 1], w + 16, '#f2c230', {opacity: .85});
+      for (let i = 0; i < pts.length - 1; i++) line(pts[i], pts[i + 1], w + 6, FUR_D);
+      for (let i = 0; i < pts.length - 1; i++) line(pts[i], pts[i + 1], w, FUR);
+    };
+    const drawLeg = (L, glowIt) => {
+      const knee = [(L.hip[0] + L.foot[0]) / 2 + f[0] * 4, 36, (L.hip[2] + L.foot[2]) / 2];
+      limb([L.hip, knee, L.foot], 20, glowIt);
+      const ft = S2(L.foot);
+      if (glowIt) mk('ellipse', {cx: ft[0] + 5, cy: ft[1] - 3, rx: 23, ry: 14, fill: '#f2c230', opacity: .85}, g);
+      mk('ellipse', {cx: ft[0] + 5, cy: ft[1] - 3, rx: 16, ry: 8, fill: FUR, stroke: FUR_D, 'stroke-width': 3}, g);
+    };
+    const drawArm = (A, glowIt, band) => {
+      limb([A.sh, A.el, A.paw], 15, glowIt);
+      if (band) { const a = add(A.el, A.fo, 19), b = add(A.el, A.fo, 26); line(a, b, 19, BAND); }
+      const pw = S2(A.paw);
+      mk('circle', {cx: pw[0], cy: pw[1], r: 11, fill: FUR, stroke: FUR_D, 'stroke-width': 3}, g);
+    };
+    const head = S2(k.head);
+    // ears (behind the head)
+    for (const s of [-1, 1]) { const e = S2(k.P(-5, 178 + 25, 21 * s)); mk('circle', {cx: e[0], cy: e[1], r: 12, fill: FUR, stroke: FUR_D, 'stroke-width': 3}, g); mk('circle', {cx: e[0], cy: e[1], r: 6, fill: CREAM}, g); }
+    const armFront = A => A.sh[2] > -6;
+    if (!armFront(k.T)) drawArm(k.T, glow, true);
+    if (!armFront(k.O)) drawArm(k.O, false, false);
+    // legs: the far one first; the stepping (other) foot glows
+    const legs = [[k.legT, false], [k.legO, glow]].sort((a, b) => a[0].hip[2] - b[0].hip[2]);
+    for (const [Lg, gl] of legs) drawLeg(Lg, gl);
+    // torso and belly
+    mk('ellipse', {cx: 0, cy: -106, rx: 37, ry: 50, fill: FUR, stroke: FUR_D, 'stroke-width': 3}, g);
+    if (f[2] > -.3) mk('ellipse', {cx: f[0] * 15, cy: -100, rx: 15 + 9 * Math.max(0, f[2]), ry: 33, fill: CREAM}, g);
+    // head, muzzle, nose, eyes
+    mk('circle', {cx: head[0], cy: head[1], r: 34, fill: FUR, stroke: FUR_D, 'stroke-width': 3}, g);
+    const mz = S2(k.P(21, 168, 0));
+    mk('ellipse', {cx: mz[0], cy: mz[1], rx: 15 + 3 * f[2], ry: 12, fill: CREAM, stroke: FUR_D, 'stroke-width': 2}, g);
+    const ns = S2(k.P(31, 173, 0));
+    mk('ellipse', {cx: ns[0], cy: ns[1], rx: 7, ry: 5, fill: '#2b1a10'}, g);
+    mk('path', {d: `M ${mz[0] - 6 + f[0] * 4} ${mz[1] + 4} Q ${mz[0] + f[0] * 4} ${mz[1] + 9} ${mz[0] + 6 + f[0] * 4} ${mz[1] + 4}`, fill: 'none', stroke: '#2b1a10', 'stroke-width': 2, 'stroke-linecap': 'round'}, g);
+    for (const s of [-1, 1]) {
+      const e3 = k.P(14, 186, 14 * s);
+      if (e3[2] > 1) { const e = S2(e3); mk('circle', {cx: e[0], cy: e[1], r: 4.5, fill: '#2b1a10'}, g); mk('circle', {cx: e[0] + 1.5, cy: e[1] - 1.5, r: 1.4, fill: '#fff'}, g); }
+    }
+    if (armFront(k.O)) drawArm(k.O, false, false);
+    if (armFront(k.T)) drawArm(k.T, glow, true);
+    // the ball in the paw, or just leaving it
+    if (pose.ball !== 'none') {
+      const at = pose.ball === 'release' ? add(k.T.paw, k.T.fo, 22) : add(k.T.paw, [0, 0, 1], 2);
+      drawYarn(g, S2(at)[0], S2(at)[1], 10);
+    }
+    return k;
+  }
+  function drawYarn(g, x, y, r) {
+    mk('circle', {cx: x, cy: y, r, fill: '#f08a24', stroke: '#8a4a0e', 'stroke-width': Math.max(1.5, r * .2)}, g);
+    mk('path', {d: `M ${x - r * .7} ${y - r * .2} Q ${x} ${y - r * .9} ${x + r * .7} ${y - r * .1} M ${x - r * .6} ${y + r * .4} Q ${x} ${y - r * .1} ${x + r * .6} ${y + r * .5}`, fill: 'none', stroke: '#8a4a0e', 'stroke-width': Math.max(1, r * .14)}, g);
+  }
+
+  // Bo's pose and its tween (Motion off: a jump, same timing)
+  const bo = {from: null, to: null, t0: 0, dur: 420, now: POSES.under[0]};
+  function poseTo(p) {
+    if (Curio.reduce || !bo.now) { bo.now = p; bo.to = null; draw(); return; }
+    bo.from = bo.now; bo.to = p; bo.t0 = performance.now();
+    tick();
+  }
+  let raf = 0;
+  function tick() {
+    if (raf) return;
+    raf = requestAnimationFrame(() => {
+      raf = 0;
+      let more = false;
+      if (bo.to) {
+        const k = clamp((performance.now() - bo.t0) / bo.dur, 0, 1), e = k < .5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2;
+        bo.now = lerpPose(bo.from, bo.to, e);
+        if (k >= 1) { bo.now = bo.to; bo.to = null; } else more = true;
+      }
+      const B = state.form.ball;
+      if (B && !B.done) { if (performance.now() - B.t0 >= B.dur) B.done = true; else more = true; }
+      if (state.mode === 'test' && T.step === 'look' && performance.now() - T.barT0 < 600 && !Curio.reduce) more = true;
+      draw();
+      if (more) tick();
+    });
+  }
+
+  // ------------------------------------------------------------ layout (real pixels per size)
+  let W = 800, H = 500, LAY = {};
+  const sv = $('sv');
+  function pageLayout() {
+    const w = innerWidth, h = innerHeight;
+    if (h < 640 && w >= 520 && w > h * 1.1) return 'side';   // short landscape: side by side, compact controls
+    if (w < 760 || (h > w * 1.15 && w < 1000)) return 'stack';
+    return 'side';
+  }
+  let page = '';
+  function relayout() {
+    const p = pageLayout(), b = document.body;
+    if (p !== page) { page = p; b.classList.toggle('stack', p === 'stack'); b.classList.toggle('side', p === 'side'); }
+    b.classList.toggle('short', innerHeight < 640);
+    b.classList.toggle('narrow', p === 'side' && innerWidth < 1100);
+    b.classList.toggle('narrowhead', innerWidth < 1100);
+    b.classList.toggle('tighthead', innerWidth < 900 && innerWidth > 560);
+    const st = $('stage');
+    if (p === 'stack') {
+      const w = st.getBoundingClientRect().width || innerWidth, look = state.mode === 'test' && T.step === 'look';
+      st.style.height = Math.round(look ? clamp(Math.min(w * 1.1, innerHeight * .55), 260, 640) : clamp(Math.min(w * .82, innerHeight * .46), 260, 560)) + 'px';
+    }
+    else st.style.height = '';
+    const r = st.getBoundingClientRect();
+    W = Math.max(260, Math.round(r.width)); H = Math.max(220, Math.round(r.height));
+    sv.setAttribute('width', W); sv.setAttribute('height', H); sv.setAttribute('viewBox', `0 0 ${W} ${H}`);
+    const u = clamp(Math.min(W / 52, H / 34), 10, 27);   // a type unit from the stage size (grows on a projector)
+    const s = st.style;
+    s.setProperty('--strip', Math.round(clamp(H * .075, 34, 50)) + 'px');
+    s.setProperty('--sfs', clamp(u * .82, 11, 17).toFixed(1) + 'px');
+    s.setProperty('--bfs', clamp(u * 1.05, 14, 24).toFixed(1) + 'px');
+    s.setProperty('--qfs', clamp(u * 1.25, 15, 34).toFixed(1) + 'px');
+    s.setProperty('--wfs', clamp(u * .95, 13, 27).toFixed(1) + 'px');
+    s.setProperty('--cfs', clamp(u * .8, 11, 18).toFixed(1) + 'px');
+    s.setProperty('--afs', clamp(u * .82, 12, 24).toFixed(1) + 'px');
+    // the modals cover the page under the header: sized from the window, so every setup step shows without scrolling
+    const hd = document.querySelector('header').getBoundingClientRect();
+    const mh = innerHeight - Math.max(0, hd.bottom), mw = innerWidth, de = document.documentElement.style;
+    de.setProperty('--headH', Math.max(0, Math.round(hd.bottom)) + 'px');
+    const tall = mw < 560 || mw < mh * .9;
+    $('setup').querySelector('.scard').classList.toggle('tall', tall);
+    const su = tall ? clamp(Math.min(mw / 26, mh / 46), 11, 19) : clamp(Math.min(mw / 52, mh / 25), 11.5, 24);
+    de.setProperty('--sufs', su.toFixed(1) + 'px');
+    de.setProperty('--suh', clamp(su * 1.25, 16, 30).toFixed(1) + 'px');
+    de.setProperty('--supic', Math.round(tall ? clamp(mh * .3, 110, 300) : clamp(mh * .75, 150, 520)) + 'px');
+    de.setProperty('--cqfs', clamp(Math.min(mw / 26, mh / 16), 17, 30).toFixed(1) + 'px');
+    fitHint(); draw(); placeOverlays();
+    if (state.mode === 'test' && T.step === 'look' && T.answer) draw();   // the answer card's height is measured
+  }
+
+  // ------------------------------------------------------------ the target
+  const RING = {blue: '#2f5fd0', red: '#d62f3a', gold: '#f2c230'};
+  function starPath(cx, cy, R, r = R * .45) {
+    let d = '';
+    for (let i = 0; i < 10; i++) { const a = -Math.PI / 2 + i * Math.PI / 5, rr = i % 2 ? r : R; d += (i ? 'L' : 'M') + (cx + rr * Math.cos(a)).toFixed(1) + ' ' + (cy + rr * Math.sin(a)).toFixed(1); }
+    return d + 'Z';
+  }
+  function drawTarget(g, cx, cy, R, small) {
+    const w = Math.max(2.5, R * .028);
+    mk('circle', {cx, cy, r: R + w * 1.6, fill: '#fff'}, g);
+    mk('circle', {cx, cy, r: R, fill: small ? '#cfcbd8' : RING.blue}, g);
+    mk('circle', {cx, cy, r: R - w / 2, fill: 'none', stroke: small ? '#77738a' : '#172f6b', 'stroke-width': w, 'stroke-dasharray': `${(R * .09).toFixed(1)} ${(R * .055).toFixed(1)}`}, g);
+    mk('circle', {cx, cy, r: R * 2 / 3, fill: small ? '#e2dfe9' : RING.red, stroke: small ? '#77738a' : '#6e1118', 'stroke-width': w}, g);
+    mk('circle', {cx, cy, r: R / 3, fill: RING.gold}, g);
+    mk('circle', {cx, cy, r: R / 3 - w * .4, fill: 'none', stroke: '#3a2c00', 'stroke-width': w * .55}, g);
+    mk('circle', {cx, cy, r: R / 3 - w * 1.6, fill: 'none', stroke: '#3a2c00', 'stroke-width': w * .55}, g);
+    mk('path', {d: starPath(cx, cy, R * .17), fill: '#3a2c00'}, g);
+    if (small) {
+      const fs = clamp(R * .13, 13, 26);
+      const t = mk('text', {x: cx, y: cy - R * .5, 'text-anchor': 'middle', 'dominant-baseline': 'middle', 'font-size': fs, 'font-weight': 800, fill: '#22203a', 'font-family': 'Trebuchet MS,sans-serif', 'paint-order': 'stroke', stroke: '#fff', 'stroke-width': 5}, g);
+      t.textContent = 'Only the gold counts';
+    }
+  }
+  function wall(g) {
+    mk('rect', {width: W, height: H, fill: '#ece6f6'}, g);
+    const bh = clamp(H / 11, 28, 64), bw = bh * 2.6;
+    let d = '';
+    for (let y = bh, row = 0; y < H; y += bh, row++) {
+      d += `M0 ${y.toFixed(1)}H${W}`;
+      for (let x = (row % 2 ? bw / 2 : 0); x < W; x += bw) d += `M${x.toFixed(1)} ${(y - bh).toFixed(1)}V${y.toFixed(1)}`;
+    }
+    mk('path', {d, stroke: '#ddd3ec', 'stroke-width': 1.5, fill: 'none'}, g);
+  }
+  function floorStrip(g, y) {
+    mk('rect', {x: 0, y, width: W, height: H - y, fill: '#ddd2ea'}, g);
+    mk('line', {x1: 0, y1: y, x2: W, y2: y, stroke: '#c9bcdf', 'stroke-width': 2}, g);
+  }
+  // a thrown ball: hit = filled ball (accent) with a white star for gold; miss = empty ball with a small x
+  function ballMark(g, x, y, r, t, cls) {
+    const grp = mk('g', cls ? {class: cls} : null, g);
+    if (t.hit) {
+      mk('circle', {cx: x, cy: y, r, fill: 'var(--brand)', stroke: '#fff', 'stroke-width': Math.max(2, r * .22)}, grp);
+      if (t.ring === 'gold') mk('path', {d: starPath(x, y, r * .62), fill: '#fff'}, grp);
+    } else {
+      mk('circle', {cx: x, cy: y, r, fill: '#fff', stroke: 'var(--brand)', 'stroke-width': Math.max(2, r * .2)}, grp);
+      const k = r * .38;
+      mk('path', {d: `M${x - k} ${y - k}L${x + k} ${y + k}M${x + k} ${y - k}L${x - k} ${y + k}`, stroke: '#22203a', 'stroke-width': Math.max(1.6, r * .16), 'stroke-linecap': 'round'}, grp);
+    }
+    return grp;
+  }
+  // ten-frames: 5 per row, top row first; frames of ten with a gap between them
+  function tenFrames(g, x, y, c, n, throws) {
+    const rows = Math.ceil(n / 5), gap = c * .35;
+    for (let i = 0; i < rows * 5 && i < Math.max(n, 5); i++) {
+      const row = Math.floor(i / 5), col = i % 5, fy = y + row * c + Math.floor(row / 2) * gap;
+      mk('rect', {x: x + col * c, y: fy, width: c, height: c, fill: '#fff', stroke: '#bdb3d3', 'stroke-width': 1.5}, g);
+      if (throws[i]) ballMark(g, x + col * c + c / 2, fy + c / 2, c * .36, throws[i]);
+    }
+    for (let f = 0; f < Math.ceil(n / 10); f++) {
+      const fr = Math.min(2, rows - f * 2), fy = y + f * (2 * c + gap);
+      mk('rect', {x, y: fy, width: 5 * c, height: fr * c, fill: 'none', stroke: '#22203a', 'stroke-width': 2.5, rx: 3}, g);
+    }
+    return rows * c + Math.floor((rows - 1) / 2) * gap;
+  }
+
+  // ------------------------------------------------------------ drawing the stage
+  const floorHt = () => Math.round(clamp(H * .085, 30, 84));
+  function targetBox() {
+    const m = state.mode;
+    const floorH = floorHt();
+    let top = 8;
+    if (m === 'test') top = 8 + parseFloat(getComputedStyle($('stage')).getPropertyValue('--strip')) + 8 + bannerH() + 8;
+    const avail = H - top - floorH - 10;
+    const R = Math.max(40, Math.min(H * .35, avail / 2, W * .44));
+    return {cx: W / 2, cy: top + avail / 2, R, floorY: H - floorH, floorH};
+  }
+  const bannerH = () => Math.round(clamp(H * .085, 38, 58));
+  function draw() {
+    sv.textContent = '';
+    const desc = mk('desc', {id: 'svdesc'}, sv);
+    const g = mk('g', null, sv);
+    wall(g);
+    const m = state.mode;
+    if (m === 'form') drawForm(g, desc);
+    else if (m === 'free') drawThrows(g, desc, F.throws, false);
+    else if (T.step === 'A' || T.step === 'B') drawThrows(g, desc, T[T.step], smallNow());
+    else if (T.step === 'look') drawLook(g, desc);
+    else { floorStrip(g, H - floorHt()); desc.textContent = T.step === 'ask' ? 'Four question cards.' : 'Way A and Way B, side by side.'; }
+    if (aim.on && (m === 'free' || T.step === 'A' || T.step === 'B')) {
+      const b = targetBox(), x = b.cx + aim.nx * b.R, y = b.cy + aim.ny * b.R, s = 16;
+      mk('path', {d: `M${x - s} ${y}H${x + s}M${x} ${y - s}V${y + s}`, stroke: '#22203a', 'stroke-width': 4, 'stroke-linecap': 'round'}, g);
+      mk('circle', {cx: x, cy: y, r: s * .7, fill: 'none', stroke: '#e0662a', 'stroke-width': 3}, g);
+    }
+  }
+  function drawThrows(g, desc, list, small) {
+    const b = targetBox();
+    LAY.target = b;
+    floorStrip(g, b.floorY);
+    if (state.mode === 'test') drawBanner(g);   // under the ball dots, so a miss above the target always shows
+    drawTarget(g, b.cx, b.cy, b.R, small);
+    const r = clamp(b.R * .065, 9, 18);
+    const shorts = [];
+    // a dot never hides under the step strip (Test it): the highest misses sit just below it, over the banner
+    const yMin = state.mode === 'test' ? 8 + parseFloat(getComputedStyle($('stage')).getPropertyValue('--strip')) + 2 + r : r;
+    for (const t of list) {
+      if (t.short) { shorts.push(t); continue; }
+      const x = clamp(b.cx + t.nx * b.R, r, W - r), y = clamp(b.cy + t.ny * b.R, yMin, b.floorY - r);
+      ballMark(g, x, y, r, t, t.id === popId && !Curio.reduce ? 'pop' : '');
+    }
+    const hits = list.filter(t => t.hit).length;
+    LAY.tally = null;
+    {
+      // the tally sits in the floor strip's right corner, clear of the wall where balls land (big enough for the back row)
+      const bh = b.floorH - 8, fs = clamp(bh * .52, 12, 38);
+      const txt = state.mode === 'free' ? `🎯 Hits ${hits} · Throws ${list.length}` : `🎯 Hits ${hits} · Throw ${list.length} of ${T.n}`;
+      const box = mk('rect', {y: b.floorY + 4, height: bh, rx: bh / 2, fill: '#fff', stroke: '#cbbfe0', 'stroke-width': 2}, g);
+      const t = mk('text', {y: b.floorY + 4 + bh / 2, 'text-anchor': 'middle', 'dominant-baseline': 'middle', 'font-size': fs, 'font-weight': 800, fill: '#22203a', 'font-family': 'Trebuchet MS,sans-serif'}, g);
+      t.textContent = txt;
+      const w = textW(t, fs * 9) + fs * 1.2;
+      box.setAttribute('x', W - w - 8); box.setAttribute('width', w); t.setAttribute('x', W - w / 2 - 8);
+      LAY.tally = {x: W - w - 8, w};
+    }
+    // too short balls rest on the floor (a count when there are more than fit)
+    if (shorts.length) {
+      const fs = clamp(b.floorH * .42, 12, 19), y = b.floorY + b.floorH / 2;
+      const lab = mk('text', {x: 10, y, 'dominant-baseline': 'middle', 'font-size': fs, 'font-weight': 700, fill: '#22203a', 'font-family': 'Segoe UI,sans-serif'}, g);
+      lab.textContent = '⬇ Too short';
+      const x0 = 10 + textW(lab, fs * 6) + fs * 1.1, rr = Math.min(r, b.floorH * .34), step = rr * 2.4;
+      const room = (LAY.tally ? LAY.tally.x : W) - 10 - x0;
+      const fit = Math.max(1, Math.floor(room / step));
+      const show = shorts.length > fit ? shorts.slice(-(fit - 1)) : shorts;
+      show.forEach((t, i) => ballMark(g, x0 + rr + i * step, y, rr, t, t.id === popId && !Curio.reduce ? 'pop' : ''));
+      if (show.length < shorts.length) {
+        const more = mk('text', {x: x0 + show.length * step + 4, y, 'dominant-baseline': 'middle', 'font-size': fs, 'font-weight': 800, fill: '#22203a', 'font-family': 'Segoe UI,sans-serif'}, g);
+        more.textContent = `+${shorts.length - show.length}`;
+      }
+    }
+    desc.textContent = `A target with three rings. ${hits} ${hits === 1 ? 'hit' : 'hits'} in ${list.length} ${list.length === 1 ? 'throw' : 'throws'}.`;
+  }
+  // the Way banner (Test it rounds): drawn in the SVG under the dots
+  function drawBanner(g) {
+    const q = QBY[T.q], side = T.step === 'A' ? q.a : q.b;
+    const strip = parseFloat(getComputedStyle($('stage')).getPropertyValue('--strip')), y = 8 + strip + 8, h = bannerH();
+    const fs = clamp(h * .44, 14, 30), txt = `${side.icon} Way ${T.step}: ${wayText(side.key)}`;
+    const box = mk('rect', {y, height: h, rx: 16, fill: 'var(--brand)', opacity: .92}, g);
+    const t = mk('text', {x: W / 2, y: y + h / 2, 'text-anchor': 'middle', 'dominant-baseline': 'middle', 'font-size': fs, 'font-weight': 800, fill: '#fff', 'font-family': 'Trebuchet MS,sans-serif'}, g);
+    t.textContent = txt;
+    fitText(t, W - 48);
+    const w = Math.min(W - 16, textW(t, fs * txt.length * .55) + fs * 1.6);
+    box.setAttribute('x', (W - w) / 2); box.setAttribute('width', w);
+  }
+  function drawForm(g, desc) {
+    const cueH = cueStripH(), floorY = H - cueH - 22;
+    const left = state.hand === 'left';
+    mk('rect', {x: 0, y: floorY, width: W, height: H - floorY, fill: '#ddd2ea'}, g);
+    mk('line', {x1: 0, y1: floorY, x2: W, y2: floorY, stroke: '#c9bcdf', 'stroke-width': 2}, g);
+    const boH = Math.max(80, Math.min((floorY - 54) * .92, H * .62)), s = boH / 218;
+    const boX = left ? W * .7 : W * .3;
+    const tR = Math.max(24, Math.min(W * .14, (floorY - 30) * .26));
+    const tx = left ? Math.max(tR + 12, W * .16) : Math.min(W - tR - 12, W * .84), ty = floorY - boH * .62;
+    LAY.form = {boX, floorY, s, tx, ty, tR, left};
+    drawTarget(g, tx, ty, tR, false);
+    // tags at the top: the throwing hand and the stepping foot (gold dots match the glow)
+    const fs = clamp(H * .038, 12, 21), tags = [`✋ Throw: ${left ? 'LEFT' : 'RIGHT'} hand`, `👣 Step: ${left ? 'RIGHT' : 'LEFT'} foot`];
+    const tagH = fs * 1.9, gap = 10, els = tags.map(t => {
+      const r = mk('rect', {y: 10, height: tagH, rx: tagH / 2, fill: '#fff8dd', stroke: '#d9a400', 'stroke-width': 3}, g);
+      const tt = mk('text', {y: 10 + tagH / 2, 'text-anchor': 'middle', 'dominant-baseline': 'middle', 'font-size': fs, 'font-weight': 800, fill: '#22203a', 'font-family': 'Segoe UI,sans-serif'}, g);
+      tt.textContent = t;
+      return [r, tt, textW(tt, fs * t.length * .6) + fs * 1.4];
+    });
+    let tot = els.reduce((a, e) => a + e[2], 0) + gap;
+    if (tot > W - 16) { const k = (W - 16 - gap) / (tot - gap); els.forEach(e => { e[2] *= k; e[1].setAttribute('font-size', (fs * k).toFixed(1)); }); tot = W - 16; }
+    let x = W / 2 - tot / 2;
+    for (const [r, tt, w] of els) { r.setAttribute('x', x); r.setAttribute('width', w); tt.setAttribute('x', x + w / 2); x += w + gap; }
+    // tape line under Bo's feet
+    mk('rect', {x: boX - 70 * s, y: floorY + 4, width: 140 * s, height: Math.max(5, 9 * s), fill: '#f2c230', stroke: '#3a2c00', 'stroke-width': 1}, g);
+    const bg = mk('g', {transform: `translate(${boX.toFixed(1)} ${floorY.toFixed(1)}) scale(${(left ? -s : s).toFixed(4)} ${s.toFixed(4)})`}, g);
+    drawBo(bg, bo.now, true);
+    // Bo's ball flying into the bullseye (Show me)
+    const B = state.form.ball;
+    if (B) {
+      const k = B.done || Curio.reduce ? (B.done ? 1 : 0) : clamp((performance.now() - B.t0) / B.dur, 0, 1);
+      if (k > 0) {
+        const x0b = boX + (left ? -1 : 1) * B.from[0] * s, y0b = floorY + B.from[1] * s;
+        const x = x0b + (tx - x0b) * k, y = y0b + (ty - y0b) * k - Math.sin(k * Math.PI) * boH * .25;
+        drawYarn(g, x, y, clamp(10 * s, 6, 14));
+      }
+    }
+    const i = state.form.cue;
+    desc.textContent = `Bo the bear cub, ${left ? 'left' : 'right'} handed, ${i < 0 ? 'ready to throw' : 'showing cue ' + (i + 1) + ': ' + CUES[state.throwType][i][1]}. A target on the wall.`;
+  }
+  const cueStripH = () => Math.round(clamp(H * .19, 64, 112));
+  function drawLook(g, desc) {
+    const strip = parseFloat(getComputedStyle($('stage')).getPropertyValue('--strip'));
+    const crown = clamp(H * .035, 12, 22), top = 8 + strip + 10 + crown, ansH = answerH(), bottom = H - ansH - 20;
+    const q = QBY[T.q], n = T.n, rows = Math.ceil(n / 5);
+    const colW = Math.min(W * .42, 560), hdr = clamp(H * .1, 34, 70);
+    const numFs = clamp(H * .075, 20, 54), barH = clamp(H * .04, 12, 26);
+    const availF = bottom - top - hdr - numFs * 1.2 - barH - 22;
+    const c = Math.max(10, Math.min(colW / 5.4, availF / (rows + Math.floor((rows - 1) / 2) * .35)));
+    const k = Curio.reduce ? 1 : clamp((performance.now() - T.barT0) / 600, 0, 1);
+    const winner = winnerOf();
+    const hits = {A: T.A.filter(t => t.hit).length, B: T.B.filter(t => t.hit).length};
+    for (const w of ['A', 'B']) {
+      const cx = w === 'A' ? W * .27 : W * .73, x0 = cx - 2.5 * c;
+      const shown = T.answer && (winner === w || winner === 'tie');
+      const box = shown ? mk('g', {}, g) : null;   // the winner box, sized once the column is drawn
+      const fs = clamp(hdr * .42, 13, 26);
+      const t1 = mk('text', {x: cx, y: top + hdr * .32, 'text-anchor': 'middle', 'dominant-baseline': 'middle', 'font-size': fs, 'font-weight': 900, fill: '#6b3fa0', 'font-family': 'Trebuchet MS,sans-serif'}, g);
+      t1.textContent = `${q[w.toLowerCase()].icon} Way ${w}`;
+      const t2 = mk('text', {x: cx, y: top + hdr * .78, 'text-anchor': 'middle', 'dominant-baseline': 'middle', 'font-size': clamp(fs * .62, 11, 17), 'font-weight': 700, fill: '#22203a', 'font-family': 'Segoe UI,sans-serif'}, g);
+      t2.textContent = wayText(q[w.toLowerCase()].key);
+      fitText(t2, colW - 16);
+      // the picture graph fills hits first, then misses, so a count reads at a glance (the round panel keeps throw order)
+      const fh = tenFrames(g, x0, top + hdr, c, n, [...T[w].filter(t => t.hit), ...T[w].filter(t => !t.hit)]);
+      const ny = top + hdr + fh + numFs * .7 + 6;
+      const num = mk('text', {x: cx, y: ny, 'text-anchor': 'middle', 'dominant-baseline': 'middle', 'font-size': numFs, 'font-weight': 900, fill: '#22203a', 'font-family': 'Trebuchet MS,sans-serif'}, g);
+      num.textContent = `${hits[w]} ${hits[w] === 1 ? 'hit' : 'hits'}`;
+      const by = ny + numFs * .6 + 4, bw = 5 * c;
+      mk('rect', {x: x0, y: by, width: bw, height: barH, rx: 4, fill: '#fff', stroke: '#22203a', 'stroke-width': 2}, g);
+      mk('rect', {x: x0, y: by, width: bw * hits[w] / n * k, height: barH, rx: 4, fill: 'var(--brand)'}, g);
+      for (let i = 1; i < n; i++) mk('line', {x1: x0 + bw * i / n, y1: by, x2: x0 + bw * i / n, y2: by + barH, stroke: '#ffffff99', 'stroke-width': 1}, g);
+      if (box) {
+        const bw2 = Math.min(colW, Math.max(5 * c + 48, textW(t1, 0) + 32, textW(t2, 0) + 32)), bh = Math.min(bottom, by + barH + 16) - top + 4;
+        mk('rect', {x: cx - bw2 / 2, y: top - 4, width: bw2, height: bh + 4, rx: 16, fill: '#fff8dd', stroke: '#d9a400', 'stroke-width': 6}, box);
+        mk('rect', {x: cx - bw2 / 2 + 7, y: top + 3, width: bw2 - 14, height: bh - 10, rx: 11, fill: 'none', stroke: '#3a2c00', 'stroke-width': 1.5}, box);
+        const sr = crown * .62;
+        [-1, 0, 1].forEach(j => mk('path', {d: starPath(cx + j * sr * 2.5, top - 6 - sr * (j ? .8 : 1.1), sr * (j ? 1 : 1.3)), fill: '#f2c230', stroke: '#3a2c00', 'stroke-width': 1.5}, box));
+      }
+    }
+    desc.textContent = `Picture graph. Way A: ${hits.A} hits. Way B: ${hits.B} hits, out of ${n} throws each.`;
+  }
+  function textW(t, fallback) { try { return t.getComputedTextLength() || fallback; } catch { return fallback; } }
+  function fitText(t, max) { try { const w = t.getComputedTextLength(); if (w > max) t.setAttribute('font-size', (parseFloat(t.getAttribute('font-size')) * max / w).toFixed(1)); } catch {} }
+  // the answer card: its measured height once it shows (so it is never clipped), else room kept for it
+  const answerH = () => {
+    const a = $('answer');
+    if (state.mode === 'test' && T.step === 'look' && T.answer && !a.hidden && a.offsetHeight) return Math.min(a.offsetHeight, H * .5);
+    return Math.round(clamp(H * .22, 74, 160));
+  };
+
+  // ------------------------------------------------------------ stage overlays (HTML: cards and banners)
+  function buildCues() {
+    const box = $('cues'), keep = document.activeElement && box.contains(document.activeElement) ? document.activeElement.dataset.i : null;
+    const set = CUES[state.throwType];
+    if (box.children.length !== 5) { box.textContent = ''; for (let i = 0; i < 5; i++) { const b = document.createElement('button'); b.className = 'cue'; b.dataset.i = i; b.onclick = () => tapCue(i); box.appendChild(b); } }
+    [...box.children].forEach((b, i) => {
+      b.innerHTML = `<span class="e" aria-hidden="true">${set[i][0]}</span><span class="w">${set[i][1]}</span><span class="k" aria-hidden="true">${i + 1}</span>`;
+      b.setAttribute('aria-label', `Cue ${i + 1}: ${set[i][1]}`);
+      b.classList.toggle('now', i === state.form.cue);
+      b.setAttribute('aria-current', i === state.form.cue ? 'step' : 'false');
+    });
+    if (keep != null) box.children[keep].focus({preventScroll: true});
+  }
+  function buildAsk() {
+    const box = $('ask');
+    if (box.children.length) return;
+    for (const q of QS) {
+      const b = document.createElement('button');
+      b.className = 'qcard'; b.dataset.q = q.id;
+      b.innerHTML = `<span class="e" aria-hidden="true">${q.icon}</span><span>${L.q[q.id]}</span>`;
+      b.onclick = () => pickQuestion(q.id);
+      box.appendChild(b);
+    }
+  }
+  function buildStrip() {
+    const names = [['1', 'Ask'], ['2', 'Guess'], ['3', 'Way A'], ['4', 'Way B'], ['5', 'Look']], order = ['ask', 'guess', 'A', 'B', 'look'];
+    const cur = order.indexOf(T.step);
+    $('strip').innerHTML = names.map(([n, w], i) => `<div class="st${i === cur ? ' now' : i < cur ? ' done' : ''}"${i === cur ? ' aria-current="step"' : ''}><span class="n">${i < cur ? '✓' : n}</span><span>${w}</span></div>`).join('');
+  }
+  function buildGuess() {
+    const q = QBY[T.q];
+    const way = (w, side, sign) => `<div class="way"><span class="t">Way ${w} <span class="thumb" aria-hidden="true">${sign}</span></span><span class="e" aria-hidden="true">${side.icon}</span><span>${wayText(side.key)}</span></div>`;
+    $('guess').innerHTML = way('A', q.a, '☝️') + way('B', q.b, '✌️') + (T.q === 'far' ? `<div id="gnote">📏 ${L.setupLines}</div>` : '');
+  }
+  function placeOverlays() {
+    const m = state.mode, strip = parseFloat(getComputedStyle($('stage')).getPropertyValue('--strip'));
+    const test = m === 'test';
+    $('strip').hidden = !test;
+    $('ask').hidden = !(test && T.step === 'ask');
+    $('guess').hidden = !(test && T.step === 'guess');
+    $('answer').hidden = !(test && T.step === 'look' && T.answer);
+    $('cues').hidden = m !== 'form';
+    const below = 8 + strip + 10, pad = 10;
+    if (test) buildStrip();
+    if (!$('ask').hidden) Object.assign($('ask').style, {left: pad + 'px', right: pad + 'px', top: below + 'px', bottom: pad + 'px'});
+    if (!$('guess').hidden) Object.assign($('guess').style, {left: pad + 'px', right: pad + 'px', top: below + 'px', bottom: floorHt() + 10 + 'px'});
+    if (m === 'form') { const h = cueStripH(); Object.assign($('cues').style, {bottom: '10px', height: (h - 14) + 'px'}); $('cues').classList.toggle('tight', h - 14 < 84 || W < 560); }
+  }
+
+  // ------------------------------------------------------------ Form
+  const live = tok => state.form.run && state.form.tok === tok && state.mode === 'form';
+  function setCue(i) { state.form.cue = i; buildCues(); poseTo(i < 0 ? POSES[state.throwType][0] : POSES[state.throwType][i]); }
+  function stopForm() {
+    const f = state.form;
+    if (!f.run) return false;
+    f.run = null; f.tok++;
+    syncForm();
+    return true;
+  }
+  function syncForm() {
+    const f = state.form;
+    $('f-show').innerHTML = f.run === 'show' ? '<span class="e" aria-hidden="true">■</span><span class="w">Stop</span>' : '<span class="e" aria-hidden="true">▶</span><span class="w">Show me</span>';
+    $('f-bo').innerHTML = f.run === 'bo' ? '<span class="e" aria-hidden="true">■</span><span class="w">Stop</span>' : '<span class="e" aria-hidden="true">🙋</span><span class="w">Throw with Bo</span>';
+  }
+  const beat = ms => new Promise(r => setTimeout(r, ms));
+  async function showMe() {
+    if (stopForm()) { V.hush(); setHint(L.wForm); return; }
+    const f = state.form, tok = ++f.tok; f.run = 'show'; f.ball = null; syncForm();
+    for (let i = 0; i < 5; i++) {
+      if (!live(tok)) return;
+      const t0 = performance.now();
+      setCue(i);
+      setHint(L[cueKey(i)]);
+      await V.say(cueKey(i), {now: true, wait: true, valid: () => live(tok)});
+      const rest = 1600 - (performance.now() - t0);
+      if (rest > 0) await beat(rest);
+    }
+    if (!live(tok)) return;
+    // Bo throws: the ball flies from the paw into the bullseye (Motion off: it lands after the same time)
+    const k = skeleton(bo.now), paw = S2(k.add(k.T.paw, k.T.fo, 22));
+    f.ball = {from: paw, t0: performance.now(), dur: 750, done: false};
+    tick();
+    await beat(760);
+    if (!live(tok)) return;
+    f.ball.done = true; draw();
+    sHit(true);
+    f.run = null; syncForm();
+    setHint(L.tryBo);
+    V.say(withSafety([['tryBo', {kind: 'how'}]]), {needs: '#f-bo', valid: () => state.mode === 'form' && !state.form.run});
+  }
+  async function throwWithBo() {
+    if (stopForm()) { V.hush(); setHint(L.wForm); return; }
+    const f = state.form, tok = ++f.tok; f.run = 'bo'; f.ball = null; syncForm();
+    setCue(-1);
+    setHint(L.ready);
+    const t0 = performance.now();
+    await V.say('ready', {now: true, wait: true, valid: () => live(tok)});
+    if (performance.now() - t0 < 1400) await beat(1400 - (performance.now() - t0));
+    for (let i = 0; i < 5; i++) {
+      if (!live(tok)) return;
+      const t1 = performance.now();
+      setCue(i); setHint(L[cueKey(i)]);
+      await V.say(cueKey(i), {now: true, wait: true, valid: () => live(tok)});
+      // a slow beat: time to do the move after hearing it (at least a second, never under 2.2 s a cue)
+      await beat(Math.max(1000, 2200 - (performance.now() - t1)));
+    }
+    if (!live(tok)) return;
+    f.run = null; syncForm();
+    setHint(L.boDone);
+    V.say(withSafetyAfter([['boDone', {needs: '#f-bo'}]]), {valid: () => state.mode === 'form' && !state.form.run});
+  }
+  function nextCue() {
+    if (stopForm()) V.hush();
+    const i = (state.form.cue + 1) % 5;
+    state.form.ball = null;
+    setCue(i);
+    if (i === 4) {
+      setHint(L.tryBo);
+      V.say([[cueKey(i), {hint: false}], ['tryBo', {kind: 'how', needs: '#f-bo'}]], {now: true});
+    } else { setHint(L[cueKey(i)]); V.say(cueKey(i), {now: true}); }
+  }
+  function tapCue(i) {
+    if (stopForm()) V.hush();
+    state.form.ball = null;
+    setCue(i); setHint(L[cueKey(i)]);
+    V.say(cueKey(i), {now: true});
+  }
+
+  // ------------------------------------------------------------ Test it
+  const winnerOf = () => { const a = T.A.filter(t => t.hit).length, b = T.B.filter(t => t.hit).length; return a > b ? 'A' : b > a ? 'B' : 'tie'; };
+  const testHint = () => ({ask: L.wTest, guess: L.guess, A: T.A.length >= T.n ? L.doneA : L.startA, B: L['startB' + T.q], look: T.answer ? L.again : L.look})[T.step];
+  const focusTo = el => { if (el && !state.confirm && !state.setup) el.focus({preventScroll: true}); };
+  function setStep(step) {
+    clearTimeout(T.lookTimer); T.lookTimer = 0;
+    const wasLook = T.step === 'look';
+    T.step = step; T.gen++;
+    syncTest();
+    if (document.body.classList.contains('stack') && wasLook !== (step === 'look')) relayout(); else { draw(); placeOverlays(); }
+    setHint(testHint());
+  }
+  function syncTest() {
+    $('tg-guess').hidden = T.step !== 'guess';
+    $('tg-round').hidden = !(T.step === 'A' || T.step === 'B');
+    $('tg-look').hidden = T.step !== 'look';
+    for (const n of [5, 10, 20]) $('n-' + n).setAttribute('aria-pressed', T.n === n);
+    if (T.step === 'A' || T.step === 'B') {
+      const list = T[T.step], done = list.length >= T.n, hits = list.filter(t => t.hit).length;
+      $('t-count').textContent = `Throw ${list.length} of ${T.n}`;
+      $('t-hits').textContent = `Hits: ${hits}`;
+      // at the end of Way A, Start Way B takes Too short's place; Undo never moves
+      $('t-startb').hidden = !(T.step === 'A' && done);
+      $('t-short').hidden = T.step === 'A' && done;
+      setDis($('t-short'), done);
+      setDis($('t-undo'), !list.length && T.step !== 'B');   // in an empty Way B, Undo goes back into Way A
+      drawFrame(list);
+    }
+    if (T.step === 'look') { setDis($('t-answer'), T.answer); $('t-back').hidden = T.answer; }
+    syncAim();
+  }
+  function drawFrame(list) {
+    const svg = $('t-frame'), w = Math.max(200, Math.round(svg.getBoundingClientRect().width || 300));
+    const rows = Math.ceil(T.n / 5), short = document.body.classList.contains('short');
+    const c = Math.min((w - 4) / 5, short ? (T.n > 10 ? 20 : 28) : (T.n > 10 ? 34 : 46)), gap = c * .35;
+    const h = rows * c + Math.floor((rows - 1) / 2) * gap + 4, x = (w - 5 * c) / 2;
+    svg.setAttribute('viewBox', `0 0 ${w} ${h}`); svg.setAttribute('width', w); svg.setAttribute('height', h);
+    svg.textContent = '';
+    tenFrames(svg, x, 2, c, T.n, list);
+    const hits = list.filter(t => t.hit).length;
+    svg.setAttribute('aria-label', `Ten-frame: ${hits} ${hits === 1 ? 'hit' : 'hits'} and ${list.length - hits} ${list.length - hits === 1 ? 'miss' : 'misses'} in ${list.length} throws.`);
+  }
+  function pickQuestion(id) {
+    T.q = id; T.guess = null; T.A = []; T.B = []; T.answer = false;
+    buildGuess();
+    setStep('guess');
+    const q = QBY[id], gen = T.gen;
+    // the guess how-to comes right after the title, so it is heard before a fast teacher taps a guess
+    const parts = [[L.q[id], {hint: false}], ['guess', {kind: 'how'}], ['wayA', {hint: false}], [L.way[q.a.key], {hint: false}], ['wayB', {hint: false}], [L.way[q.b.key], {hint: false}]];
+    if (id === 'far') parts.push(['setupLines', {kind: 'how', hint: false}]);
+    V.say(withSafety(parts), {now: true, valid: () => T.step === 'guess' && T.gen === gen});
+    focusTo($('g-a'));
+  }
+  function makeGuess(g) { T.guess = g; startRound('A'); }
+  function startRound(w) {
+    T[w] = []; popId = 0;
+    setStep(w);
+    const q = QBY[T.q], gen = T.gen, side = w === 'A' ? q.a : q.b;
+    // the way's name first (non-readers need it before the first throw), then the how-to
+    V.say([['way' + w, {hint: false}], [L.way[side.key], {hint: false}], [w === 'A' ? 'startA' : 'startB' + T.q, {kind: 'how'}]], {now: true, valid: () => T.step === w && T.gen === gen});
+    focusTo(sv);
+  }
+  function roundThrow(t) {
+    const w = T.step, list = T[w];
+    if (list.length >= T.n) return;
+    list.push(t); popId = t.id;
+    if (t.short) sShort(); else if (t.hit) sHit(t.ring === 'gold'); else sMiss();
+    syncTest(); draw();
+    if (list.length >= T.n) {
+      const gen = T.gen, n = list.length, hits = list.filter(x => x.hit).length;
+      if (w === 'A') {
+        setHint(L.doneA);
+        V.say([['wayA', {hint: false}], [L.hits[hits], {hint: false}], ['doneA', {needs: '#t-startb'}]], {valid: () => T.step === 'A' && T.gen === gen && T.A.length === n});
+        $('t-startb').focus({preventScroll: true});
+      } else {
+        // Way B is done: the picture graph comes up after a short beat (Undo in that beat cancels it)
+        T.lookTimer = setTimeout(() => { if (T.step === 'B' && T.gen === gen && T.B.length >= T.n) goLook(); }, 1300);
+      }
+    }
+  }
+  function roundUndo() {
+    const w = T.step, list = T[w];
+    if (w === 'B' && !list.length) {   // nothing thrown in Way B yet: back into Way A, taking back its last throw
+      V.hush();
+      setStep('A');
+      T.A.pop(); popId = 0;
+      syncTest(); draw(); setHint(testHint());
+      return;
+    }
+    if (!list.length) return;
+    clearTimeout(T.lookTimer); T.lookTimer = 0;
+    list.pop(); popId = 0;
+    V.dropQueued(x => x.key === 'doneA');
+    syncTest(); draw(); setHint(testHint());
+  }
+  // Look, before the answer: take back Way B's last throw and go back to Way B
+  function lookBack() {
+    if (T.step !== 'look' || T.answer) return;
+    V.hush();
+    T.B.pop(); popId = 0;
+    setStep('B');
+    focusTo(sv);
+  }
+  function goLook() {
+    T.answer = false; T.barT0 = performance.now();
+    setStep('look');
+    tick();
+    const gen = T.gen, a = T.A.filter(t => t.hit).length, b = T.B.filter(t => t.hit).length;
+    V.say([['wayA', {hint: false}], [L.hits[a], {hint: false}], ['wayB', {hint: false}], [L.hits[b], {hint: false}], ['look', {needs: '#t-answer'}]],
+      {now: true, valid: () => T.step === 'look' && T.gen === gen && !T.answer});
+    $('t-answer').focus({preventScroll: true});
+  }
+  function showAnswer() {
+    if (T.answer) return;
+    T.answer = true;
+    const win = winnerOf(), gen = T.gen;
+    const res = {A: 'winA', B: 'winB', tie: 'tie'}[win];
+    const guessLine = T.guess ? (T.guess === win ? 'match' : 'differ') : null;
+    // the tip never overrules the class's own count without saying so
+    const diff = win !== 'tie' && win !== QBY[T.q].exp;
+    $('answer').innerHTML = `<span class="r">${win === 'tie' ? '🤝' : '👑'} ${L[res]}</span>` + (guessLine ? `<span>${L[guessLine]}</span>` : '') +
+      `<span>💡 ${diff ? L.tipDiff + ' ' : ''}${L.tip[T.q]}</span>`;
+    syncTest(); placeOverlays(); draw();
+    setHint(L.again);
+    const parts = [[res, {hint: false}]];
+    if (guessLine) parts.push([guessLine, {hint: false}]);
+    if (diff) parts.push(['tipDiff', {hint: false}]);
+    parts.push([L.tip[T.q], {hint: false}], ['again', {kind: 'how', needs: '#t-again'}]);
+    V.say(parts, {now: true, valid: () => T.step === 'look' && T.gen === gen && T.answer});
+    $('t-again').focus({preventScroll: true});
+  }
+  function stopTest() {
+    V.hush();
+    T.q = null; T.guess = null; T.A = []; T.B = []; T.answer = false;
+    setStep('ask');
+    V.how('wTest', {needs: '.qcard'});
+    focusTo($('ask').querySelector('.qcard'));
+  }
+  // throws that a tap would lose: any Test it step that still holds throws (a round, Look before or after the answer)
+  const testAtRisk = () => state.mode === 'test' && T.step !== 'ask' && (T.A.length + T.B.length) > 0;
+
+  // ------------------------------------------------------------ Yes / No card (built in the page), before throws are lost
+  let confirmBack = null;
+  function askConfirm(key, yesWord, onYes, back) {
+    stopForm(); V.hush();
+    clearTimeout(T.lookTimer); T.lookTimer = 0;   // Way B's last throw: Look waits for the answer
+    state.confirm = {onYes};
+    confirmBack = back || document.activeElement;
+    $('confirm-t').textContent = L[key];
+    $('confirm-yw').textContent = yesWord;
+    modalOn('confirm');
+    V.say(key, {now: true, hint: false, valid: () => !!state.confirm});
+    $('confirm-no').focus({preventScroll: true});
+  }
+  function closeConfirm(yes) {
+    const c = state.confirm;
+    if (!c) return;
+    state.confirm = null;
+    modalOff('confirm');
+    V.hush();
+    if (yes) c.onYes();
+    else {
+      if (T.step === 'B' && T.B.length >= T.n) { goLook(); return; }   // No: the Look that was put off comes now
+      if (confirmBack && confirmBack.isConnected && !confirmBack.closest('[hidden]')) confirmBack.focus({preventScroll: true});
+    }
+  }
+  // a modal card: the page behind it is inert (the header too for a Yes / No)
+  function modalOn(id) {
+    $(id).hidden = false;
+    document.body.classList.add('modal-open');
+    if (document.body.classList.contains('stack')) scrollTo(0, 0);
+    relayout();
+    document.querySelector('main').inert = true;
+    if (id === 'confirm') document.querySelector('header').inert = true;
+    syncAim();
+  }
+  function modalOff(id) {
+    $(id).hidden = true;
+    if ($('setup').hidden && $('confirm').hidden) { document.body.classList.remove('modal-open'); document.querySelector('main').inert = false; }
+    if (id === 'confirm') document.querySelector('header').inert = false;
+    syncAim();
+  }
+
+  // ------------------------------------------------------------ Free throw and the coach
+  function coachKey(last) {
+    const hits = last.filter(t => t.hit).length;
+    const above = last.filter(t => !t.hit && !t.short && t.ny < -1).length;
+    const low = last.filter(t => t.short || (!t.hit && t.ny > 1)).length;
+    const side = last.filter(t => !t.hit && !t.short && t.ny >= -1 && t.ny <= 1).length;
+    const u = state.throwType === 'under';
+    if (hits >= 3) return 'great';
+    if (above >= 3) return u ? 'highU' : 'highO';
+    if (low >= 3) return 'low';
+    if (side >= 3) return u ? 'sideU' : 'sideO';
+    return 'keep';
+  }
+  function freeThrow(t) {
+    F.throws.push(t); popId = t.id;
+    if (t.short) sShort(); else if (t.hit) sHit(t.ring === 'gold'); else sMiss();
+    draw(); syncFree();
+    const n = F.throws.length;
+    if (n % 5 === 0) {
+      const key = coachKey(F.throws.slice(-5));
+      F.coach = key;
+      F.log.push({n, text: L.coach[key]});   // the tip stays as given (a later Throw switch is advice for the next five)
+      $('coach-t').textContent = L.coach[key];
+      // cuts in (a welcome never holds it up), and stays good until the next five or an Undo past it
+      V.say(L.coach[key], {key: 'coach', hint: false, now: true, valid: () => state.mode === 'free' && F.throws.length >= n && F.throws.length < n + 5 && F.log.length && F.log[F.log.length - 1].n === n});
+    }
+  }
+  function syncFree() { setDis($('r-undo'), !F.throws.length); setDis($('r-clear'), !F.throws.length); syncAim(); }
+  function coachCard() {
+    while (F.log.length && F.log[F.log.length - 1].n > F.throws.length) F.log.pop();
+    const last = F.log[F.log.length - 1];
+    $('coach-t').textContent = last ? last.text : L.coach0;
+  }
+  function freeUndo() { if (!F.throws.length) return; F.throws.pop(); popId = 0; coachCard(); draw(); syncFree(); }
+  function freeClear() {
+    if (!F.throws.length) return;
+    F.throws = []; F.coach = null; F.log = []; popId = 0;
+    $('coach-t').textContent = L.coach0;
+    V.dropQueued(x => x.key === 'coach');
+    draw(); syncFree();
+    $('r-short').focus({preventScroll: true});
+  }
+
+  // ------------------------------------------------------------ throws: a tap (or Enter) on the stage
+  const throwable = () => !state.setup && !state.confirm && (state.mode === 'free' || ((T.step === 'A' || T.step === 'B') && T[T.step].length < T.n));
+  function classify(nx, ny) {
+    const d = Math.hypot(nx, ny);
+    const ring = d <= 1 / 3 ? 'gold' : d <= 2 / 3 ? 'red' : d <= 1 ? 'blue' : null;
+    const hit = smallNow() ? ring === 'gold' : !!ring;
+    return {id: nextId++, nx, ny, ring, hit, short: false};
+  }
+  function throwAt(nx, ny) {
+    if (!throwable()) return;
+    const t = classify(nx, ny);
+    if (state.mode === 'free') freeThrow(t); else roundThrow(t);
+  }
+  function tooShort() {
+    if (!throwable()) return;
+    const t = {id: nextId++, nx: 0, ny: 1.5, ring: null, hit: false, short: true};
+    if (state.mode === 'free') freeThrow(t); else roundThrow(t);
+  }
+  sv.addEventListener('click', e => {
+    if (!throwable()) return;
+    const b = LAY.target || targetBox(), r = sv.getBoundingClientRect();
+    throwAt((e.clientX - r.left - b.cx) / b.R, (e.clientY - r.top - b.cy) / b.R);
+  });
+  // keyboard: Tab to the target, arrows aim, Enter or Space marks a throw at the aim
+  const aim = {on: false, nx: 0, ny: 0};
+  function syncAim() {
+    const t = throwable();
+    if (t) { sv.setAttribute('tabindex', '0'); sv.setAttribute('role', 'application'); sv.setAttribute('aria-label', 'Target. Tap where each ball hit, or aim with the arrow keys and press Enter.'); sv.classList.add('aim'); }
+    else { sv.removeAttribute('tabindex'); sv.setAttribute('role', 'img'); sv.removeAttribute('aria-label'); sv.classList.remove('aim'); }
+  }
+  sv.addEventListener('focus', () => { if (sv.matches(':focus-visible')) { aim.on = true; draw(); } });
+  sv.addEventListener('blur', () => { if (aim.on) { aim.on = false; draw(); } });
+  sv.addEventListener('keydown', e => {
+    if (!throwable()) return;
+    const step = .12, mv = {ArrowLeft: [-step, 0], ArrowRight: [step, 0], ArrowUp: [0, -step], ArrowDown: [0, step]}[e.key];
+    if (mv) { e.preventDefault(); aim.on = true; aim.nx = clamp(aim.nx + mv[0], -1.6, 1.6); aim.ny = clamp(aim.ny + mv[1], -1.3, 1.3); draw(); }
+    else if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); aim.on = true; throwAt(aim.nx, aim.ny); }
+  });
+
+  // ------------------------------------------------------------ setup card (BASELINE w1-49: the target is on the wall beside the screen)
+  let hintBeforeSetup = '';
+  function openSetup() {
+    if (state.setup) return;
+    if (stopForm()) { V.hush(); setHint(L.wForm); }
+    hintBeforeSetup = $('hint').textContent;
+    state.setup = true;
+    modalOn('setup');
+    setHint(L.setupGo);
+    // the card opens at once; its steps are read first and the safety line (if not yet heard) comes after
+    V.say(withSafetyAfter([['setup', {kind: 'how', hint: false}], ['setupGo', {kind: 'how'}]]), {now: true, valid: () => state.setup});
+    $('setup-close').focus({preventScroll: true});
+  }
+  function closeSetup(focusBack = true) {
+    if (!state.setup) return;
+    state.setup = false;
+    modalOff('setup');
+    V.dropQueued(x => x.key === 'setup' || x.key === 'setupGo' || x.key === 'safety');
+    setHint(hintBeforeSetup);
+    if (focusBack) $('setup-btn').focus({preventScroll: true});
+  }
+
+  // ------------------------------------------------------------ settings
+  function setThrow(tt) {
+    if (state.throwType === tt) return;
+    state.throwType = tt;
+    $('s-under').setAttribute('aria-pressed', tt === 'under'); $('s-over').setAttribute('aria-pressed', tt === 'over');
+    if (state.mode === 'form') {
+      if (stopForm()) { V.hush(); setHint(L.wForm); }
+      buildCues();
+      const i = state.form.cue;
+      poseTo(POSES[tt][Math.max(0, i)]);
+    } else buildCues();
+  }
+  function setHand(h) {
+    if (state.hand === h) return;
+    state.hand = h;
+    $('s-right').setAttribute('aria-pressed', h === 'right'); $('s-left').setAttribute('aria-pressed', h === 'left');
+    if (state.mode === 'form' && state.form.cue === 2 && !state.form.run) setHint(L[cueKey(2)]);   // the foot in the hint follows the Hand
+    draw();
+    const key = h === 'left' ? 'handL' : 'handR';
+    // never cuts a Show me cue; on the very first tap the safety line comes first (the tap's own line skips the welcome)
+    V.say(withSafety([[key, {valid: () => state.hand === h}]]), {hint: false, now: !state.form.run});
+  }
+
+  // ------------------------------------------------------------ modes
+  const MODES = ['form', 'test', 'free'];
+  function pickMode(m) {
+    if (state.confirm) return;
+    if (testAtRisk()) { askConfirm('askStop', 'Yes, stop', () => { setMode(m); focusTo(firstCtl(m)); }, $('m-' + m)); return; }
+    setMode(m);
+  }
+  const firstCtl = m => m === 'test' ? $('ask').querySelector('.qcard') : $({form: 'f-show', free: 'r-short'}[m]);
+  function setMode(m) {
+    stopForm(); V.hush();
+    if (state.setup) closeSetup(false);
+    state.mode = m; document.body.dataset.mode = m;
+    for (const k of MODES) { $('m-' + k).setAttribute('aria-pressed', k === m); $('c-' + k).hidden = k !== m; }
+    // Test it always starts at Ask; Free throw dots stay until Clear
+    clearTimeout(T.lookTimer); T.lookTimer = 0;
+    T.step = 'ask'; T.q = null; T.guess = null; T.A = []; T.B = []; T.answer = false; T.gen++;
+    state.form.ball = null; popId = 0;
+    if (m === 'form') { buildCues(); bo.now = POSES[state.throwType][Math.max(0, state.form.cue)]; bo.to = null; }
+    if (m === 'test') { buildAsk(); syncTest(); }
+    if (m === 'free') syncFree();
+    syncAim();
+    if (document.body.classList.contains('stack')) relayout(); else { draw(); placeOverlays(); }
+    const how = {form: 'wForm', test: 'wTest', free: 'wFree'}[m];
+    setHint(L[how]);
+    if (m === 'free') coachCard();
+    if (!V.welcome()) V.say([[how, {needs: {form: '#f-show', test: '.qcard', free: '#r-short'}[m]}], ...(m === 'free' && !F.log.length ? [['coach0', {hint: false}]] : [])], {kind: 'how'});
+  }
+  for (const k of MODES) $('m-' + k).onclick = () => pickMode(k);
+  $('s-under').onclick = () => setThrow('under'); $('s-over').onclick = () => setThrow('over');
+  $('s-right').onclick = () => setHand('right'); $('s-left').onclick = () => setHand('left');
+  $('f-show').onclick = () => showMe();
+  $('f-next').onclick = () => nextCue();
+  $('f-bo').onclick = () => throwWithBo();
+  for (const n of [5, 10, 20]) $('n-' + n).onclick = () => { T.n = n; syncTest(); };
+  $('g-a').onclick = () => makeGuess('A'); $('g-b').onclick = () => makeGuess('B'); $('g-skip').onclick = () => makeGuess(null);
+  $('t-short').onclick = () => { if (!isDis($('t-short'))) tooShort(); };
+  $('t-undo').onclick = () => { if (!isDis($('t-undo'))) roundUndo(); };
+  $('t-stop').onclick = () => { if (testAtRisk()) askConfirm('askStop', 'Yes, stop', stopTest, $('t-stop')); else stopTest(); };
+  $('g-back').onclick = () => stopTest();
+  $('t-back').onclick = () => lookBack();
+  $('t-startb').onclick = () => startRound('B');
+  $('t-answer').onclick = () => { if (!isDis($('t-answer'))) showAnswer(); };
+  $('t-again').onclick = () => pickQuestion(T.q);
+  $('confirm-yes').onclick = () => closeConfirm(true);
+  $('confirm-no').onclick = () => closeConfirm(false);
+  $('t-new').onclick = () => stopTest();
+  $('r-short').onclick = () => tooShort();
+  $('r-undo').onclick = () => { if (!isDis($('r-undo'))) freeUndo(); };
+  $('r-clear').onclick = () => { if (!isDis($('r-clear'))) askConfirm('askClear', 'Yes, clear', freeClear, $('r-clear')); };
+  $('setup-btn').onclick = () => openSetup();
+  $('setup-close').onclick = () => closeSetup();
+  addEventListener('keydown', e => {
+    if (e.ctrlKey || e.metaKey || e.altKey) return;
+    if (e.key === 'Escape' && state.confirm) { closeConfirm(false); return; }
+    if (e.key === 'Escape' && state.setup) { closeSetup(); return; }
+    if (state.confirm) return;
+    const i = '123'.indexOf(e.key);
+    if (i >= 0 && e.key.length === 1) { e.preventDefault(); pickMode(MODES[i]); }
+  });
+  Curio.onMotion(() => { bo.to = null; draw(); placeOverlays(); });
+  new ResizeObserver(() => relayout()).observe($('stage'));
+  addEventListener('resize', () => relayout());
+
+  Curio.init({clips: "voice:*", rate: .9});
+  window.__tool = {state, setMode, allLines: V.allLines, V, vlog: V.log, get vq() { return V.queue; }, L, POSES, CUES, QS,
+    throwAt, tooShort, classify, coachKey, targetBox, showMe, throwWithBo, nextCue, tapCue, pickQuestion, makeGuess, startRound, goLook, showAnswer,
+    roundUndo, lookBack, stopTest, openSetup, closeSetup, askConfirm, closeConfirm, pickMode,
+    get lay() { return LAY; }};
+  relayout();
+  setMode('form');
+})();
+</script>
+</body>
+</html>

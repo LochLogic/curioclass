@@ -1,0 +1,24 @@
+{
+  "id": "target-toss",
+  "status": "beta",
+  "hook": "Bo the bear cub shows the five cues of an underhand or overhand throw, then the class runs a real throwing test: soft balls at a paper target taped on the wall beside the screen, one way and then another, while the board stacks every hit in ten-frames and the class sees which way hits more.",
+  "outcome": "Throw underhand and overhand with the key cues (face the target, arm back, step with the opposite foot, release, follow through), and run a fair test that compares two ways of throwing by counting hits",
+  "driver": "teacher",
+  "minutes": "15-30",
+  "modes": [
+    "Form",
+    "Test it",
+    "Free throw"
+  ],
+  "grades_label": "Grades K-2",
+  "sources": [
+    "SHAPE America, National Physical Education Standards (2024), Standard 1: https://www.shapeamerica.org/standards/pe/",
+    "Underhand and overhand throw critical elements: SHAPE America, National Standards & Grade-Level Outcomes for K-12 Physical Education (Human Kinetics, 2014), outcomes S1.E13 and S1.E14, and the matching rubrics in PE Metrics, 3rd ed. (SHAPE America, Human Kinetics, 2019)",
+    "Soft equipment and safe spacing: SHAPE America, Appropriate Instructional Practice Guidelines, K-12 (2009): https://www.shapeamerica.org/standards/guidelines/",
+    "Fair test (change one thing, keep the rest the same): NGSS Science and Engineering Practice 3, Planning and Carrying Out Investigations (K-2 grade band)",
+    "Bo, the target, the ten-frames and the icons are drawn in code; the sounds are generated in the browser"
+  ],
+  "third_party": [],
+  "updated": "2026-10-28",
+  "stage": "built"
+}
