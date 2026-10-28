@@ -1,0 +1,21 @@
+# Cartoon Soundtrack Mixer (idea card)
+
+- Module: arts-3-5-sound-and-picture-together, grade 3-5. Codes: MA:Pr4, MA:Cn10, MU:Re8, MU:Cn10, MU:Cn11
+- Format / family: studio / none. Fit: good
+- One idea: Score a short silent cartoon on a timeline under the picture (music cues, sound effects, tempo, loudness, instrument), then press Mood Swap and the same pictures play under your opposite score, so you see that the music decides whether a cat on a fence is funny, scary or sad.
+- How it plays (solo student by default):
+  - First screen: a theater piano beside a small screen and a card about the real pianists who played live under silent films, making up music to fit each scene.
+  - Core loop: watch the silent cartoon (a cat, a fence, a storm, a lost kitten). Drag cues and sound effects onto the timeline, then shape them: speed, loudness, instrument (piano, tuba, strings, xylophone). Play it back with the picture and fix what does not match.
+  - The aha or the end state: Mood Swap plays your score and a contrasting one on the same frames, side by side. The student writes which version fits their idea for the cartoon and why, naming the tempo, dynamics and timbre that did it.
+  - Class mode or extras (optional): scores play for the class and others guess the intended mood.
+- Standards, one line per code:
+  - MA:Pr4: combining music, sound effects and moving pictures into one media work.
+  - MA:Cn10: choosing a score from the student's own idea of the story, and saying why.
+  - MU:Re8: naming how tempo, dynamics and timbre carry the intended mood.
+  - MU:Cn10: the student's own choices and reasons as the composer of the scene.
+  - MU:Cn11: music's job in another art form, and the silent-film pianists who did it live.
+- Not like: sound-and-picture-book (K-2 story with recorded sounds); beat-lab (grade 9-12 production); music-history-radio (eras).
+- Art: generated scenes for the cartoon frames, made as a real short hand-drawn animation; music cues original to Curio Class.
+- Proposed title: keep
+- Proposed concept line: Score a silent cartoon on a timeline (music cues, sound effects, tempo, loudness, instruments), then press Mood Swap and see the same pictures turn funny, scary or sad under a different score.
+- Flags: needs a data source (silent-film accompaniment facts, checked); too big (five codes in one module; each is taught, but the spec must keep the scope tight)

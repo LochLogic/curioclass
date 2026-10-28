@@ -1,0 +1,20 @@
+# Bill to Law Board Game (idea card)
+
+- Module: social-studies-4-state-government, grade 4. Codes: D2.Civ.1.3-5, D2.Civ.5.3-5, D2.Civ.12.3-5
+- Format / family: cards / bill-to-law. Fit: good
+- One idea: Carry a bill that kids proposed (a state snack, safer bike lanes) around a board shaped like the state capitol, where committee hearings, floor votes in both chambers, a governor's veto and an override can push it ahead or send it back, and see what changes for real people if it becomes law.
+- How it plays (solo student by default):
+  - First screen: the board with three wings (legislature, governor, courts) and a starting card: "Ms. Ortiz's fourth graders want a law. Pick their bill."
+  - Core loop: roll or draw to move; each space is a real step (a sponsor files it, committee hearing, amendments, House vote, Senate vote, governor signs or vetoes, override). Chance cards bring real-world turns (testimony from a bike shop, a cost estimate). Role cards say what each office can and can't do.
+  - Constitution card: the state constitution sets the board's rules; tapping it explains where the constitution came from, what the three branches do, and that one state (Nebraska) has only one chamber.
+  - The aha or the end state: the law passes or dies; an "after" screen shows how the law changes daily life and how people (including kids) pushed for it.
+  - Class mode or extras (optional): teams carry rival bills.
+- Standards, one line per code:
+  - D2.Civ.1.3-5: role cards and spaces distinguish the powers of legislators, the governor and courts.
+  - D2.Civ.5.3-5: the constitution card covers the origin, functions and structure of state government.
+  - D2.Civ.12.3-5: the after screen and the kid-started bill show how people change laws and how laws change society.
+- Not like: checks-and-balances (sibling engine, federal branches, grade 12); pool-repair-vote (town policy).
+- Art: generated scenes (capitol board) and people (illustrated) legislators, because the board must feel like a real place.
+- Proposed title: keep
+- Proposed concept line: Carry a kid-proposed bill around a state capitol board through committees, both chambers, a veto and an override; learn what each office can do and where the rules come from, then see what the law changes.
+- Flags: needs a data source (real kid-started state bills, checked)

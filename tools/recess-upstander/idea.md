@@ -1,0 +1,21 @@
+# Recess Upstander (idea card)
+
+- Module: health-pe-3-5-bullying-and-upstanders, grade 3-5. Codes: NHES.S4, NHES.S8, CASEL.Relationship Skills
+- Format / family: roleplay / none. Fit: good, because the student plays a bystander and practices what to say and do.
+- One idea: Live one recess scene across a whole school week as a bystander; a single shove over the ball on Monday is a conflict, but when the same kid is left out and teased every day it becomes bullying, and each upstander move you choose (say stop, walk the target away, get the recess aide) changes what the other bystanders do the next day.
+- How it plays (solo student by default):
+  - First screen: a playground from above with a week strip, Monday to Friday. "Watch recess. You are standing by the four-square court."
+  - Monday: two kids argue and one shoves over a ball, then they make up; the student decides "conflict or bullying?" with the three signs (on purpose, again and again, one side has more power) shown as checkboxes.
+  - Tuesday to Friday: Jada is left out of four-square, then teased about her shoes, then her lunch is taken. Each day the student picks one move, says it in words, and sees the result: other bystanders join in, stay silent, or step up with them. No move involves hitting back.
+  - Get adult help: telling the recess aide is shown as a strong move, not tattling; the aide's response is shown.
+  - Speak up (Friday): the student writes one change to ask the principal for (a buddy bench, a game rotation rule) and sees the next week's recess with it.
+  - The aha or the end state: one upstander makes it easier for others to step up, and bullying needs adults to know.
+- Standards, one line per code:
+  - NHES.S4: practice words to say stop, include someone, and ask an adult for help.
+  - NHES.S8: ask for a school change that helps everyone at recess.
+  - CASEL.Relationship Skills: stand up for a classmate's rights and support them in safe ways.
+- Not like: friend-moves-practice (K-2 friend moves); conflict-coach (grade 6-8 conflict talk); pressure-point (grade 6-8 tap-to-hear thoughts).
+- Art: people (illustrated) kids with readable faces; no realistic injuries.
+- Proposed title: keep
+- Proposed concept line: Watch one recess across a school week: a shove on Monday is a conflict, but teasing the same kid every day is bullying; pick an upstander move each day (say stop, walk them away, tell the aide) and see the other bystanders follow.
+- Flags: sensitive (bullying and pushing; teacher notes name it, rule 8, and say what to do if a student discloses)

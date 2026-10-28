@@ -1,0 +1,21 @@
+# Because Bridge (idea card)
+
+- Module: ela-k-2-reasons-an-author-gives, grade k-2. Codes: RI.K.8, RI.1.8, L.1.6, RI.2.8
+- Format / family: builder / evidence. Fit: good.
+- One idea: An author's point stands on one riverbank and a traveler waits on the other; the child lays reasons from the text as planks and reads the bridge aloud with "because", and a true fact that does not support the point makes the bridge wobble, so the child learns a reason has to hold up the point, not just be true.
+- How it plays (solo student by default):
+  - First screen: a short fact text (Cats make good pets) and a gap over a river. "The author says cats make good pets. Find the reasons."
+  - Core loop: drag sentences from the text as planks; each plank must be a reason for this point. A true but unrelated fact (cats have whiskers) wobbles and the traveler will not step on it. The child reads the finished bridge with a connector (because, so, and).
+  - The aha or the end state: the traveler crosses reading the point and every reason; on grade 2 texts the child also says which reason holds the most weight.
+  - Class mode or extras (optional): the class reads the bridge aloud together.
+  - Grade levels: K (two reasons, picked with picture help), 1 (finding reasons in text and joining with because), 2 (several reasons, explaining how each supports the point).
+- Standards, one line per code:
+  - RI.K.8: picking the reasons with picture help.
+  - RI.1.8: finding the reasons in a short text.
+  - L.1.6: joining point and reason with because and other connectors.
+  - RI.2.8: explaining how each reason supports the point (the wobble test and the weight question).
+- Not like: Quote Picker (grade 4 sibling, quotes in an opinion paragraph). Claim Court (grade 5, strong and weak evidence). Question Cube (answers with proof, not reasons for a point).
+- Art: generated scenes (a storybook river and an illustrated traveler), because the bridge is the whole metaphor and should look sturdy and fun.
+- Proposed title: keep
+- Proposed concept line: keep
+- Flags: none

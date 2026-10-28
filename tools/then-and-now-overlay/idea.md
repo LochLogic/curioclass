@@ -1,0 +1,21 @@
+# Then-and-Now Overlay (idea card)
+
+- Module: social-studies-3-local-history, grade 3. Codes: D2.His.1.3-5, D2.His.2.3-5, D2.His.9.3-5, D2.His.10.3-5
+- Format / family: explorer / history-overlay. Fit: good, but a teacher template alone fails a solo student; it needs one full built-in town.
+- One idea: Slide a fade bar over one real American Main Street to see it in the 1890s, the 1940s and today, built from public-domain fire insurance maps, old photos and a city directory, and compare what each kind of source tells you that the others don't.
+- How it plays (solo student by default):
+  - First screen: today's Main Street, a fade slider and three dated tabs. "Drag the slider to go back in time."
+  - Core loop: at each period, tap a building to see what it was in the photo, the insurance map (brick or wood, a livery stable) and the directory (who ran it). A "sources disagree" moment: the map shows a store the directory lists under a different owner.
+  - Same-time strip: a timeline lines up what happened on the street with what was happening in the country at the same time (the railroad arrives, cars replace horses).
+  - The aha or the end state: the student compares a kid's life on that street then and now, and sees that each source answers a different question.
+  - Class mode or extras (optional): teacher template to add their own town's photos and maps (the original concept, now the extra).
+- Standards, one line per code:
+  - D2.His.1.3-5: the same-time strip sequences street events next to national developments.
+  - D2.His.2.3-5: compare a kid's life on the street in each period with today.
+  - D2.His.9.3-5: photos, maps and directories each explain something different about the past.
+  - D2.His.10.3-5: compare what the three sources say about the same building, including where they disagree.
+- Not like: then-and-now-flip (K objects); state-story-timeline (statewide events).
+- Art: public domain (Library of Congress Sanborn maps and photos, specific items to be chosen and checked at spec), with illustrated "today" scenes.
+- Proposed title: keep
+- Proposed concept line: Slide back through one real Main Street in the 1890s, 1940s and today using public-domain insurance maps, photos and a directory; compare what each source tells you, and add your own town as an extra.
+- Flags: needs a data source (one town with Library of Congress Sanborn maps and matching public-domain photos)

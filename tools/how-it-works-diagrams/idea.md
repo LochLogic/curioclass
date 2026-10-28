@@ -1,0 +1,21 @@
+# How It Works Diagrams (idea card)
+
+- Module: ela-3-5-diagrams-and-how-things-happen, grade 3-5. Codes: RI.3.3, RI.3.7, RI.4.3, RI.4.7, RI.5.3
+- Format / family: puzzle / text-features. Fit: good.
+- One idea: A short text explains how something happens, and the student drags each sentence onto the matching part of a diagram, map or timeline; the animation only runs when every step and cause is in place, so they learn that words and pictures explain a process together and that a missing "because" stops the machine.
+- How it plays (solo student by default):
+  - First screen: a still diagram of a canal lock with a boat waiting and a short text beside it. "Put each sentence where it happens. Then open the gates."
+  - Core loop: drag sentences to hotspots on the diagram; for each cause sentence, also drag a "because" link between two steps. Press Run: the animation plays up to the first gap and stops there with the water halfway. Levels move from steps (grade 3: how a seed sprouts, a volcano erupting) to what happened and why (grade 4: the canal lock, a dam spillway) to how people, events and ideas connect (grade 5: how a bill becomes a law, how a vaccine was tested).
+  - The aha or the end state: a "picture-only" question the words never answer (how high does the water rise?) that the student reads off the diagram, and a "words-only" question the picture can't show (why did the town want a canal?).
+  - Class mode or extras (optional): a timeline level with a chart of dates.
+- Standards, one line per code:
+  - RI.3.3: sentence-to-step placing, with time and cause words, for steps and science ideas.
+  - RI.3.7: the picture-only questions answered from the diagram and map.
+  - RI.4.3: grade 4 levels explain what happened and why, with cause links required.
+  - RI.4.7: reading charts, timelines and diagrams and saying what each adds to the text.
+  - RI.5.3: grade 5 levels link two or more people, events or ideas (a senator, a committee, a vote).
+- Not like: structure-spotter (grade 3, sorting paragraphs by build); text-feature-makeover (grade 1); bill-to-law-board-game (civics, the process itself, not reading about it).
+- Art: drawn in code for diagrams that animate (locks, layers of a volcano), with generated scenes for the setting, because the animation is the reward.
+- Proposed title: keep
+- Proposed concept line: keep
+- Flags: none (science and civics facts need checking at spec time)

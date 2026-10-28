@@ -1,0 +1,21 @@
+# Job Shadow Day (idea card)
+
+- Module: computer-science-3-5-computing-on-the-job, grade 3-5. Codes: E3-SOC-CE-19, E4-SOC-CE-19, E5-SOC-CE-19, E5-SYS-IM-15
+- Format / family: story / none. Fit: good, because each worker's day is a branching story with choices that matter.
+- One idea: Shadow four workers through one day each (a large-animal vet, a farmer, an animator, a bus dispatcher), choose how they use a computer at key moments, watch them learn a new tool when the old way fails, and see how sharing work with a teammate solves the day's problem.
+- How it plays (solo student by default):
+  - First screen: four doors with name badges. "Pick who you will shadow today."
+  - Core loop: each day has four moments. The vet's portable X-ray shows a horse's leg; the farmer's soil map says which field needs water; the animator's software tweens a jump; the dispatcher's map shows a bus stuck in snow. At each, the student picks what the worker does next and sees the result.
+  - New tool moment: something new arrives (a drone for the farmer, a new routing app for the dispatcher); the student picks how to learn it (the help guide, trial and error, ask a coworker) and sees what each costs in time and mistakes.
+  - Teamwork moment: the day's problem needs two people's work combined (the dispatcher shares the map with a driver; the animator hands frames to the sound designer).
+  - The aha or the end state: a badge wall shows each worker's computer moments, the way they learned, and who they worked with.
+- Standards, one line per code:
+  - E3-SOC-CE-19: see and choose how each worker uses a computer in their job.
+  - E4-SOC-CE-19: pick how a worker learns a new tool and compare the ways.
+  - E5-SOC-CE-19: explain how sharing work with a teammate solved the day's problem.
+  - E5-SYS-IM-15: when the new tool breaks or changes the routine (the routing app sends a bus down a closed road), the student traces how one system change ripples through the day and who catches it.
+- Not like: who-uses-this-device (K-2, tap a worker's device); industry-device-tour (grade 6-8, inside industry machines); hospital-shift (grade 9-12 medical careers).
+- Art: people (illustrated), varied workers in real settings (barn, field, studio, dispatch room).
+- Proposed title: keep
+- Proposed concept line: keep
+- Flags: none (E5-SYS-IM-15 activity matched to the module line; confirm against the CSTA 2026 text when the spec is written)

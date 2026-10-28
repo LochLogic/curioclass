@@ -1,0 +1,23 @@
+# Podcast Listening Club (idea card)
+
+- Module: ela-6-8-listening-to-speakers-and-discussing, grades 6-8. Codes: SL.6.2, SL.6.3, SL.7.1, SL.7.2, SL.7.3, SL.8.1, SL.8.3
+- Format / family: sort / none. Fit: good: tagging each spoken claim is a real sort; the discussion part runs with illustrated club members, so it works alone.
+- One idea: The student listens to a short student podcast where two hosts argue about a cashless cafeteria, tags each claim as supported, unsupported or off topic as it goes by, then three illustrated club members share their own tags and the student must build on, question or challenge each one, so they learn to follow a speaker's argument by ear and to discuss it with people who heard it differently.
+- How it plays (solo student by default):
+  - First screen: a podcast player with a waveform; episode notes include a chart the hosts mention (lunch line times before and after card readers).
+  - Core loop: as the episode plays, claims appear as cards on the waveform; the student drags each into Supported, Unsupported or Off topic and can scrub back to re-hear it. Later episodes ask for more: whether the evidence is enough (grade 7) and spotting a fact that is true but irrelevant (grade 8). The chart in the notes must be read to judge one host's claim.
+  - The aha or the end state: the club meeting: Jae, Rosa and Dev each disagree with one of the student's tags. For each, the student picks a move (build on, ask a question, challenge with evidence, or change their own mind) and writes one line. The final card is the student's summary of each host's argument and which one held up better.
+  - Class mode or extras (optional): students compare their own tags in pairs using the same discussion cards.
+- Standards, one line per code:
+  - SL.6.2: reading the episode's chart and explaining how it adds to the topic.
+  - SL.6.3: tracing each host's claims and telling supported from unsupported.
+  - SL.7.1: the club discussion, building on others' ideas and responding with evidence.
+  - SL.7.2: the main ideas and details from audio and chart, and how they clarify the topic.
+  - SL.7.3: judging whether the reasoning is sound and the evidence relevant and enough.
+  - SL.8.1: qualifying or justifying one's own view in the club when others' evidence calls for it.
+  - SL.8.3: spotting irrelevant evidence introduced by a host.
+- Not like: discussion-dashboard (grade 6, a book-group discussion of a story); logic-gym (grade 7, written arguments in quick rounds); argument-x-ray (grade 6, op-ed on the page).
+- Art: people (illustrated) for the two hosts and three club members; drawn in code for the player and chart.
+- Proposed title: keep
+- Proposed concept line: keep
+- Flags: needs voice production (a recorded or produced two-voice episode with transcript); three episodes at rising difficulty

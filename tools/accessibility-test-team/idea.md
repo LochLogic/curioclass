@@ -1,0 +1,23 @@
+# Accessibility Test Team (idea card)
+
+- Module: computer-science-6-8-design-for-every-user, grade 6-8. Codes: MS-ALG-IM-09, MS-PRO-TR-20, MS-SYS-IM-36, MS-PRO-PD-15
+- Format / family: builder / none. Fit: good, because the student tests an app, fixes it and retests.
+- One idea: Test a club sign-up app through three users' eyes and hands (a screen reader user, a student new to English, someone with a shaky hand), log every failure, agree on fixes with three teammates who each speak for one user, and retest to see who the app now serves.
+- How it plays (solo student by default):
+  - First screen: the club sign-up app on a phone frame and three tester cards. "Pick a tester and try to sign up for robotics club."
+  - Test as each user: screen reader mode reads the page aloud in its real order ("image, image, button, button"); new-to-English mode shows the idioms and tiny print the way they read ("Hop on board, it's a no-brainer!"); shaky-hand mode adds a tremor to the pointer and the tiny Submit button keeps being missed.
+  - Log: each failure goes on a bug card with the user, the step and what happened.
+  - Agree on fixes: three illustrated teammates each speak for one user and there is time for four fixes; the student runs a fair round where every voice gets a fix, then makes them (alt text, labels, plain words, bigger buttons).
+  - Retest: all three testers try again; a scoreboard shows who can now sign up.
+  - The aha or the end state: the app worked for the person who built it and failed three other people; testing with them is how you find out.
+  - Class mode or extras (optional): a real team of three, each taking one tester role.
+- Standards, one line per code:
+  - MS-ALG-IM-09: see how one design choice helps some users and blocks others.
+  - MS-PRO-TR-20: test as each user, log the failures and retest after fixing.
+  - MS-SYS-IM-36: compare how each user reaches the same app through different tools (screen reader, pointer, translation).
+  - MS-PRO-PD-15: agree on fixes in a team where every voice counts.
+- Not like: design-for-a-friend (grade 5 user interviews); sprint-board (grade 9-12 team sprints with user testers); three-route-rules (grade 3-5 rules and travelers).
+- Art: people (illustrated) testers and teammates; the app drawn in code so it can really break and be fixed.
+- Proposed title: keep
+- Proposed concept line: Test a club sign-up app as a screen reader user, a student new to English and someone with a shaky hand, log what fails, agree on fixes with teammates who speak for each user, and retest to see who it now serves.
+- Flags: sensitive (disability portrayal: fresh review agent per rule 5); uses speech synthesis only, no speech recognition

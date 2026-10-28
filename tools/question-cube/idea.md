@@ -1,0 +1,23 @@
+# Question Cube (idea card)
+
+- Module: ela-k-2-question-words-and-key-details, grade k-2. Codes: RI.K.1, RI.1.1, RI.1.2, RI.1.3, RL.2.1, RI.2.1, RL.2.3
+- Format / family: showdown / none. Fit: good, with a solo default: the child rolls and answers alone, and team play is the projector extra.
+- One idea: After a short read-aloud, a giant cube rolls a question word, and the child must not only answer but tap the exact sentence or picture that proves it, so they learn that answers live in the text.
+- How it plays (solo student by default):
+  - First screen: a short illustrated text (how a beaver builds a dam) and a big cube. "Roll the cube."
+  - Core loop: the cube lands on who, what, where, when, why or how; the child picks an answer, then taps the proof. Wrong proof gets "Does that sentence say so? Look again." Bonus faces unlock with grade: "mostly about" (main topic and retell), "connect" (how two facts or two people link), and "how did they handle it" (how a character met a big problem, in stories).
+  - The aha or the end state: a proof board lists every answer with its highlighted sentence, and the child reads back a short retell made from them.
+  - Class mode or extras (optional): two teams roll in turn on the projector.
+  - Grade levels: K (who, what, where with picture proof), 1 (all six words, main topic, connections), 2 (stories and fact texts, why and how, characters meeting challenges).
+- Standards, one line per code:
+  - RI.K.1: picture-proof questions for kindergarten.
+  - RI.1.1: answering question words with tapped proof.
+  - RI.1.2: the "mostly about" face and the proof-board retell.
+  - RI.1.3: the "connect" face.
+  - RL.2.1 and RI.2.1: all six question words for stories and fact texts.
+  - RL.2.3: the "how did they handle it" face for story characters.
+- Not like: Class Phone Call (asking a speaker, listening). Main Idea Umbrella (grade 2 main topic). Story Map Treasure (grade 1 retell).
+- Art: generated scenes (illustrated short texts), because the proofs are often in the pictures for younger readers.
+- Proposed title: keep
+- Proposed concept line: After a short read-aloud, a giant cube rolls who, what, where, when, why or how; answer, then tap the sentence or picture that proves it. Bonus faces ask what it is mostly about and how a character met a problem.
+- Flags: none

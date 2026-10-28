@@ -1,0 +1,22 @@
+# AI Code Inspector (idea card)
+
+- Module: computer-science-6-8-code-you-did-not-write, grade 6-8. Codes: MS-PRO-RD-18, MS-PRO-TR-19, MS-PRO-PD-13, MS-PRO-PD-14
+- Format / family: puzzle / none. Fit: good, because each level hides problems to find, and they get subtler.
+- One idea: An AI helper writes a quiz program that looks right; check each function it calls against the language's reference page (two of them do not exist), run test inputs until the bugs show, log every change in a fix log, and add credits for the AI help and a borrowed sound before you share it.
+- How it plays (solo student by default):
+  - First screen: a code editor with the AI's program, a reference docs panel, a test runner and an empty fix log. "Your friend asked an AI for a quiz game. Make sure it works before you share it."
+  - Level 1, look it up: hover each function; `shuffle()` is in the docs; `randomQuestion()` and `scoreAll()` are not, and the program fails when they run. Replace them with real functions from the docs.
+  - Level 2, test it: run planned inputs (all right, all wrong, a blank answer, an answer in capitals); the score is off by one and "Paris" fails against "paris".
+  - Level 3, log it: each fix goes into the fix log (what, why, how tested).
+  - Level 4, credit it: the AI help and a sound effect from a CC BY library need credits; choose the right credit line format.
+  - The aha or the end state: code you did not write is yours once you share it, so you check it against the docs, test it, log changes and give credit.
+- Standards, one line per code:
+  - MS-PRO-RD-18: read code you did not write and check each call against the reference docs.
+  - MS-PRO-TR-19: plan test inputs that find the bugs and confirm the fixes.
+  - MS-PRO-PD-13: keep a fix log of every change and why.
+  - MS-PRO-PD-14: credit the AI help and the borrowed sound under their terms.
+- Not like: code-tracer (grade 4 tracing values); game-remix (grade 5 remix and attribution); code-kitchen (grade 6-8 procedures).
+- Art: drawn in code (editor, docs panel, test runner), with an illustrated quiz-game screen.
+- Proposed title: keep
+- Proposed concept line: keep
+- Flags: none

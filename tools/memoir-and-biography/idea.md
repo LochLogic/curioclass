@@ -1,0 +1,22 @@
+# Memoir and Biography (idea card)
+
+- Module: ela-6-8-how-authors-present-people-and-ideas, grades 6-8. Codes: RI.6.3, RI.6.6, RI.6.9, RI.7.3, RI.8.3, RI.8.6
+- Format / family: explorer / none. Fit: good: three tellings of one life, each with layers to tag and compare.
+- One idea: The student reads Helen Keller's own account of the day at the water pump (her memoir, 1903), Anne Sullivan's letter written that same week, and a short biography written for Curio Class, tags how each introduces Helen, which anecdotes it picks and what it wants readers to think, and lines up where the three disagree, so they learn that how a person is presented depends on who is telling and why.
+- How it plays (solo student by default):
+  - First screen: three documents on a reading desk: the memoir chapter (public domain), Sullivan's letters (printed in the same 1903 book), and the biography; a portrait of Keller and Sullivan.
+  - Core loop: the student tags passages with highlight types: how Helen is introduced, anecdotes used, the author's point of view showing, and links between people, events and ideas (Sullivan's method, the pump, the word "water"). A comparison table fills as they tag: what only the memoir tells (what it felt like), what only the letters tell (what the teacher did and tried first), what the biography adds (what happened later). One timeline row shows a detail the sources tell differently (the order of events that day).
+  - The aha or the end state: the student answers the biography author's question: "Two eyewitnesses disagree on one detail. How should I write it?" They choose how the biography should handle the conflict and write the two sentences, then see how real biographers acknowledge such gaps.
+  - Class mode or extras (optional): a second pair on another life (a memoir and biography to be chosen at spec, public domain).
+- Standards, one line per code:
+  - RI.6.3: how Helen is introduced, illustrated and elaborated through anecdotes in each text.
+  - RI.6.6: each author's point of view and how it shows.
+  - RI.6.9: comparing memoir and biography on the same events.
+  - RI.7.3: the interactions between Helen, Sullivan, the method and the event.
+  - RI.8.3: the connections and distinctions each author draws (comparisons, analogies).
+  - RI.8.6: how the biography acknowledges and handles the sources' conflicting details.
+- Not like: portrait-in-four-media (grade 10, four media on one scientist); two-authors-one-event (grade 7, two articles' spin on one event); fact-check-desk (grade 8, conflicting facts in arguments).
+- Art: public domain photographs of Keller and Sullivan (Library of Congress or museum ids, to be checked at spec); generated scene for the pump.
+- Proposed title: keep
+- Proposed concept line: Read Helen Keller's own account of the day at the water pump, her teacher's letter from that week and a short biography; tag how each introduces her and what each wants readers to think, then decide how the biography should handle where they disagree.
+- Flags: sensitive (disability: Keller presented as a full person, not an inspiration story; fresh review per rule 5); needs a data source (confirm the 1903 edition text and letters, and the exact detail where accounts differ)

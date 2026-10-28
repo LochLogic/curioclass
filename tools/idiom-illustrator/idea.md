@@ -1,0 +1,22 @@
+# Idiom Illustrator (idea card)
+
+- Module: ela-3-literal-and-figurative-language, grade 3. Codes: L.3.4, L.3.5, RL.3.4
+- Format / family: studio / none. Fit: good.
+- One idea: The student meets an idiom inside a short story, guesses its meaning from the scene, then builds the silly literal picture from illustrated stickers and flips the card to see the real meaning, so they see the gap between what words say and what people mean.
+- How it plays (solo student by default):
+  - First screen: a short story panel: "Grandpa said Mia was in hot water." A question: "What do you think it means here?" with three choices.
+  - Core loop: read the idiom in its story, pick a meaning from context, then open the sticker studio to build the literal scene (a girl sitting in a steaming pot) and flip the card to see the real meaning beside it, checked in the studio's mini glossary. A "where would you hear this" step ties each idiom to a real moment. A word-shades shelf follows some cards: put related words in order (guessed, thought, believed, knew).
+  - The aha or the end state: a gallery of the student's literal pictures with meanings underneath, and a final story where the student marks which phrases are literal and which are not.
+  - Grade 4 deck: similes, metaphors, adages and proverbs (busy as a bee, look before you leap), each read in context and pictured literally, taking L.4.5 a-b over from glossary-makers. The module span then becomes grade 3-4 (orchestrator to confirm).
+  - Class mode or extras (optional): a class gallery of literal pictures.
+- Standards, one line per code:
+  - L.3.4: meaning from context before the flip, then a check in the glossary.
+  - L.3.5: literal and nonliteral meaning in context, real-life connections, and the shades-of-certainty shelf.
+  - RL.3.4: every idiom is read in a story and judged literal or nonliteral there.
+  - Takes in L.4.5 (a-b) from glossary-makers: the grade 4 deck.
+  - MOVE L.3.4 (prefixes, suffixes and root words): to syllable-surgeon, which already snips prefixes and suffixes and can add what each part means.
+- Not like: simile-slam (grade 5 arcade, fresh comparisons); myth-museum (allusions); context-clue-hunt (grade 1, made-up words).
+- Art: illustrated sticker sets (animals, weather, people, objects) and story panels, because the joke lives in the picture.
+- Proposed title: keep
+- Proposed concept line: Meet an idiom in a short story, guess its meaning from the scene, then build its silly literal picture from stickers and flip the card to compare; a word-shades shelf orders words from guessing to knowing.
+- Flags: none

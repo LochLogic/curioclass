@@ -1,0 +1,21 @@
+# Empire Debate (idea card)
+
+- Module: social-studies-11-the-us-as-a-world-power, grade 11. Codes: D2.His.14.9-12, D2.His.5.9-12, D2.His.16.9-12, D4.1.9-12
+- Format / family: roleplay / none. Fit: good
+- One idea: Join the 1899 Senate fight over annexing the Philippines, argue one side from real primary sources against illustrated opponents, then hear the Filipino voices left out of that chamber and build a final argument about the decision and its effects.
+- How it plays (solo student by default):
+  - First screen: the Senate gallery, February 1899, and two benches of sources: imperialist (Beveridge, business and naval strategists) and anti-imperialist (Twain, the Anti-Imperialist League, Carnegie).
+  - Core loop: pick a side; each round an opponent makes a claim, and the student answers with a source and a counterclaim; the debate meter rewards precise evidence and acknowledged weaknesses, not volume.
+  - Third bench: Aguinaldo's declaration, Filipino newspapers and soldiers' letters from the war that followed, showing what both US sides mostly ignored.
+  - The aha or the end state: the vote and its effects (the Philippine-American War, the road to 1946 independence, empire in Hawaii and Puerto Rico), then the student writes a closing argument that uses all three benches and names its own weak spot.
+  - Class mode or extras (optional): a live class debate with the same benches.
+- Standards, one line per code:
+  - D2.His.14.9-12: the effects timeline links causes of annexation (markets, naval bases, racial ideas, rivalry) to its effects.
+  - D2.His.5.9-12: each source card shows how context shaped its writer's view, then and in Philippine memory today.
+  - D2.His.16.9-12: the closing argument integrates sources from all three benches.
+  - D4.1.9-12: the debate rounds and closing argument require precise claims, evidence from several sources and counterclaims.
+- Not like: scramble-for-africa (European empire explorer); supreme-court-simulator (legal argument); claim-repair-shop (repairing others' claims).
+- Art: public domain political cartoons and photos (Library of Congress, checked) and people (illustrated) senators and Filipino figures, because the period cartoons are themselves evidence.
+- Proposed title: keep
+- Proposed concept line: Argue the 1899 Senate fight over annexing the Philippines from real primary sources, then hear the Filipino voices that chamber left out and build a closing argument about the decision and its effects.
+- Flags: sensitive (racist period rhetoric and wartime atrocities; fresh review agent per rule 5)

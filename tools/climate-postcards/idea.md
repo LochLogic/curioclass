@@ -1,0 +1,21 @@
+# Climate Postcards (idea card)
+
+- Module: science-3-weather-and-climate, grade 3. Codes: 3-ESS2-1, 3-ESS2-2, 3-ESS3-1, D2.Geo.10.3-5
+- Format / family: data / weather. Fit: good
+- One idea: Travel to real cities around the world (Phoenix, Seattle, Singapore, Anchorage, Nairobi, Buenos Aires), graph their monthly temperature and rain to find each one's typical seasons, write a postcard that names the climate and why it is that way, then judge ways a city protects people from its biggest weather hazard.
+- How it plays (solo student by default):
+  - First screen: a world map with pins and a blank postcard. "Pick a city. What should you pack for July?"
+  - Core loop: open a city's real monthly averages; build a bar graph of rain and a line graph of temperature; read the typical weather for a season off the graph, then pack the suitcase for that month. A comparison view lays two cities side by side.
+  - Why step: map layers (distance from the equator, height, nearness to the ocean, mountains) help explain why the cities differ; the student picks the reason for each.
+  - Hazard step: each city has a real hazard (heat in Phoenix, flooding in a monsoon city, hurricanes on a coast, blizzards). The student compares design solutions (cooling centers and shade trees, levees and rain gardens, storm shutters, snow fences) and makes a claim about which reduces harm most and what it costs.
+  - The aha or the end state: a stack of postcards, each with a graph, the climate description, the reason and the hazard claim.
+- Standards, one line per code:
+  - 3-ESS2-1: building tables and graphs of real data to describe the typical weather in a season.
+  - 3-ESS2-2: combining graphs, photos and short readings to describe climates in different regions.
+  - 3-ESS3-1: the hazard step, making a claim about the merit of a design that reduces a weather hazard's impact.
+  - D2.Geo.10.3-5: the why step, explaining how latitude, elevation, ocean and mountains make regions' climates differ.
+- Not like: weather-wardrobe (kindergarten daily weather, same engine); ocean-conveyor (grade 6 currents and climate).
+- Art: generated scenes for each city's postcard; graphs and map layers drawn in code.
+- Proposed title: keep
+- Proposed concept line: Graph real monthly temperature and rain for cities around the world, describe each climate on a postcard and why it differs, then judge which designs best protect each city from its weather hazard.
+- Flags: needs a data source (climate normals, for example NOAA 1991 to 2020 normals and WMO normals for cities outside the US)

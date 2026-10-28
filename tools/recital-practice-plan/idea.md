@@ -1,0 +1,21 @@
+# Recital Practice Plan (idea card)
+
+- Module: arts-9-12-preparing-a-recital, grade 9-12. Codes: MU:Pr4, MU:Pr5, MU:Pr6, MU:Re9, MU:Cn10
+- Format / family: tycoon / none. Fit: good
+- One idea: Four weeks before a ten-minute recital, choose a set that suits the venue and audience, then spend limited practice minutes on the hardest passages; a realistic practice model (short daily sessions beat one long cram, slow then fast beats fast and sloppy) shows the plan working or failing, and you judge recorded takes on a rubric you built.
+- How it plays (solo student by default):
+  - First screen: the venue and audience (a senior center lunch, a library afternoon, a school evening), a repertoire shelf of public-domain pieces with difficulty and length, and a four-week calendar.
+  - Core loop: pick pieces that fit ten minutes and the audience. Mark the hard passages and plan each week's minutes. The practice model advances a performer's readiness per passage; weekly takes play back (Coach mode follows Ana, an illustrated cellist). Score each take on the student's own rubric (accuracy, tone, phrasing, steady tempo, communication).
+  - The aha or the end state: recital night: the program plays with every passage at the readiness the plan earned. The student writes a program note on why the set means something to them. In My recital mode, the student records their own instrument or voice takes on the device and runs the same plan for real.
+  - Class mode or extras (optional): a teacher shares a rubric; peers score each other's takes.
+- Standards, one line per code:
+  - MU:Pr4: selecting repertoire for the venue and audience and analyzing where it is hard.
+  - MU:Pr5: planning and refining practice with feedback from takes.
+  - MU:Pr6: the student performs at least one short piece themselves on recital night (voice counts, so no instrument is needed); Coach mode alone would not teach this code.
+  - MU:Re9: building and applying a rubric to evaluate takes.
+  - MU:Cn10: the program note on why the set matters to the student.
+- Not like: recorder-concert-rehearsal (grade 3-5 ensemble feedback); band-practice (grade 6-8 timing); beat-lab (production).
+- Art: generated scenes for the venues; people (illustrated) for Ana and the audiences; public domain repertoire recorded for Curio Class.
+- Proposed title: keep
+- Proposed concept line: Plan a ten-minute recital four weeks out: choose a set for the venue and audience, budget practice on the hardest passages, judge takes on a rubric you build, and write why the set matters to you.
+- Flags: records audio in My recital mode (on-screen line that recordings never leave the device); needs a data source (practice research behind the model, checked)

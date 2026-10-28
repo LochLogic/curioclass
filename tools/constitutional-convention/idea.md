@@ -1,0 +1,21 @@
+# Constitutional Convention (idea card)
+
+- Module: social-studies-8-creating-the-constitution, grade 8. Codes: D2.Civ.3.6-8, D2.Civ.4.6-8, D2.Civ.5.6-8, D2.Civ.10.6-8 (plus D2.Civ.8.6-8, moved here from agora-assembly)
+- Format / family: roleplay / founding-docs. Fit: good
+- One idea: Play a delegate from a small state (Delaware) or a large one (Virginia) in Philadelphia in 1787: start from the Articles of Confederation's failures, bargain over representation, the three branches and slavery's compromises, weigh your state's interests against shared principles, and see how the plan you ratify still shapes government today.
+- How it plays (solo student by default):
+  - First screen: the Assembly Room with closed windows, the Articles on the table and a list of what is broken (no power to tax, no way to settle disputes between states).
+  - Core loop: each session raises an issue; the student reads two plans, hears illustrated delegates, and votes or proposes a deal. An interests meter (your state's) and a principles meter (from the Declaration) both move. Issues include the Virginia and New Jersey plans, the Connecticut Compromise, the presidency, the courts, and the three-fifths and slave-trade clauses, told plainly.
+  - The aha or the end state: the finished plan as a diagram of branches with their powers and limits, a ratification round, and a "still here today" card for each principle (popular sovereignty, separation of powers, federalism).
+  - Class mode or extras (optional): the class splits into state delegations.
+- Standards, one line per code:
+  - D2.Civ.3.6-8: why the Articles failed and what the Constitution was written to do.
+  - D2.Civ.4.6-8: deciding each branch's powers and limits, shown on the final diagram.
+  - D2.Civ.5.6-8: the finished structure, compared with the Articles.
+  - D2.Civ.10.6-8: the interests and principles meters on every vote.
+  - D2.Civ.8.6-8: the "still here today" cards trace the founding principles into today's system.
+- Not like: agora-assembly (direct democracy); motion-on-the-floor (meeting procedure); founding-words-explorer (grade 9, reading the text). Shares the founding-docs engine.
+- Art: people (illustrated) for the delegates, and those absent from the room named on a side card.
+- Proposed title: keep
+- Proposed concept line: Play a delegate from a small or large state at the 1787 Convention: bargain over representation, the three branches and slavery's compromises, weigh your state's interests against shared principles, and see how the plan still shapes government today.
+- Flags: sensitive (slavery compromises told plainly with care; fresh review); module change (add D2.Civ.8.6-8)

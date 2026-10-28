@@ -1,0 +1,22 @@
+# The Buyout (idea card)
+
+- Module: social-studies-12-market-structures-and-business, grade 12. Codes: D2.Eco.4.9-12, D2.Eco.5.9-12, D2.Eco.6.9-12, D2.Eco.7.9-12
+- Format / family: tycoon / market. Fit: good
+- One idea: Run one of four phone-charger makers in a competitive market, then run the same market after one firm buys out the rest; compare prices, choice, quality and innovation side by side, then act as the regulator and weigh the costs and benefits of each remedy.
+- How it plays (solo student by default):
+  - First screen: four charger brands on a store shelf, with prices, sales and a buyer stream.
+  - Core loop, run one: as one maker, set price, quality and research spending each quarter against three rivals; buyers switch when you overcharge.
+  - Run two: the same market after the buyout; as the only maker, you can raise prices, cut quality or skip new models; buyers can't switch. Split screens show both runs together.
+  - Regulator round: pick a remedy (block the merger, break it up, cap prices, require a common charger standard, do nothing) and see its benefits and costs, including side effects.
+  - The aha or the end state: a measure of competition in each run (number of sellers, market share) and the student's case for a remedy using real cases (Standard Oil, the AT&T breakup, the EU common-charger rule).
+  - Class mode or extras (optional): students play the four makers live.
+- Standards, one line per code:
+  - D2.Eco.4.9-12: the market-share gauges evaluate how much competition exists in each run.
+  - D2.Eco.5.9-12: the split screen shows the consequences of competition and its loss.
+  - D2.Eco.6.9-12: the regulator round asks why government steps in when the market fails buyers.
+  - D2.Eco.7.9-12: each remedy is scored by its benefits and costs.
+- Not like: concert-ticket-market (family sibling, supply and demand); snow-season-prices (family sibling, price shifts in a ski town); baron-or-builder (Gilded Age judgments).
+- Art: generated scenes (a store shelf, factories) and designed product art, because the shelf should look like a real store.
+- Proposed title: keep
+- Proposed concept line: keep
+- Flags: none

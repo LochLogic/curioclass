@@ -1,0 +1,21 @@
+# Pen Pal Parcels (idea card)
+
+- Module: social-studies-2-pen-pal-parcels, grade 2. Codes: D2.Geo.10.K-2, D2.Geo.11.K-2, D2.Eco.15.K-2 (plus D2.Eco.14.K-2 if moved here from piggy-bank-planner)
+- Format / family: explorer / none. Fit: good
+- One idea: Parcels arrive from pen pals in Ghana, Chile and Japan, each holding something made there that families here buy and a letter about how their place is changing; open them, pin each on the globe, and send back something made here, learning why countries trade at all.
+- How it plays (solo student by default):
+  - First screen: a mailbox with three stamped parcels. "A parcel came from far away. Tap it to open."
+  - Core loop: each parcel holds a product (for example shea butter from Ghana, grapes from Chile in our winter, a bike part from Japan) and a letter from a kid there. The letter says why their country sells it (the climate grows it, the factory there makes it well) and what they buy from us, and one real change in their place (a new bridge or road, a city growing, a glacier shrinking).
+  - Send back: the student picks something made in the U.S. that those countries buy and packs a reply.
+  - The aha or the end state: the globe fills with lines both ways; the student sees that things in their kitchen connect them to faraway people, and that trade helps both sides get what they can't make as well.
+  - Class mode or extras (optional): a "check your kitchen" hunt for labels from other countries.
+- Standards, one line per code:
+  - D2.Geo.10.K-2: each letter describes a change in the physical or cultural characteristics of that region.
+  - D2.Geo.11.K-2: products in the parcels connect the student to distant places on the globe.
+  - D2.Eco.15.K-2: products made abroad and sold here, and products made here and sold abroad, travel both ways.
+  - (incoming) D2.Eco.14.K-2: pen pals explain why people in one country trade with people in another.
+- Not like: cocoa-chain (grade 5 supply chain from Ghana; avoid cocoa here); festival-parade (celebrations); day-in-the-life (daily life comparison).
+- Art: people (illustrated) pen pals and generated scenes, because each pen pal needs a real, specific place.
+- Proposed title: keep
+- Proposed concept line: Parcels arrive from pen pals in Ghana, Chile and Japan, each with something made there that we buy and a letter on why they trade and how their place is changing; send back something made here and pin both ways on the globe.
+- Flags: needs a data source (real export products and verified changes per country); sensitive (portraying real countries; fresh review agent per rule 5); overlap risk (cocoa-chain uses Ghana)

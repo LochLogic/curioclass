@@ -1,0 +1,21 @@
+# Box Packer (idea card)
+
+- Module: math-5-volume, grade 5. Codes: 5.MD.C
+- Format / family: puzzle / none. Fit: good.
+- One idea: Pack unit cubes into the boxes at a community food bank, first one by one, then a layer at a time, until the formula (length x width x height, or base x height) falls out; then pack L-shaped crates as two boxes added together.
+- How it plays (solo student by default):
+  - First screen: a food-bank back room with empty crates, a pile of 1-inch cubes and a volunteer, Grace. "How many cubes fill this crate? Guess, then pack."
+  - Level 1 (what volume is): fill small boxes cube by cube, with gaps counted honestly; a box filled with no gaps and no overlaps holds n cubic units.
+  - Level 2 (layers): drop one full layer at a time; the counter shows 4 x 3 = 12 per layer, 5 layers, 60 cubes. The student predicts the next box before packing.
+  - Level 3 (units): the same crate measured in cubic inches, then cubic centimeters, then cubic feet for a pallet; improvised units (a juice box) for fun.
+  - Level 4 (formula and order): rotate the box; 4 x 3 x 5, 5 x 4 x 3 and base 20 x height 3 all give 60, which shows multiplication can be grouped any way.
+  - Level 5 (composite): an L-shaped shelf; split it into two boxes, pack each, add. Two different splits give the same total.
+  - The aha or the end state: volume is counting cubes, and the formula is a shortcut for counting layers.
+  - Class mode or extras (optional): a real-box challenge: measure a cereal box at home and predict its cube count.
+- Standards, one line per code:
+  - 5.MD.C: volume as cubes with no gaps or overlaps (5.MD.3); counting unit cubes in cubic cm, in, ft and improvised units (5.MD.4); V = l x w x h and V = B x h from layers, the associative property by rotating, and composite figures as the sum of two prisms (5.MD.5).
+- Not like: net-folder (grade 6 nets and fractional edges), snow-globe-maker (grade 8 curved solids), tile-the-floor (grade 3 area).
+- Art: generated scenes (the food-bank back room); people (illustrated) for Grace and volunteers; cubes and boxes drawn in code in isometric 3D so counts stay exact.
+- Proposed title: keep
+- Proposed concept line: Pack unit cubes into food-bank crates one at a time, then a layer at a time, until length x width x height falls out; rotate boxes to see the order does not matter, and split L-shaped crates into two boxes.
+- Flags: none

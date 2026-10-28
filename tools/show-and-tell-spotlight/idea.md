@@ -1,0 +1,21 @@
+# Show and Tell Spotlight (idea card)
+
+- Module: ela-k-2-show-and-tell, grade k-2. Codes: SL.K.4, SL.1.4, SL.1.5, SL.1.6, SL.2.4, SL.2.6, L.2.3 (plus SL.K.5 if the turn-and-talk-wheel MOVE is applied)
+- Format / family: showdown / none. Fit: good, with a solo default: the child records, then listens back and checks their own details.
+- One idea: The child picks an object card, makes a quick drawing, and tells about it in full sentences into the microphone, then listens back and lights a star for each detail they hear themselves say (color, size, what it does), and a switch changes the listener from a best friend to the principal so they hear how talk changes.
+- How it plays (solo student by default):
+  - First screen: a spotlight on a little stage and a row of object cards (a shell, a kite, grandma's quilt). "Pick something to tell about."
+  - Core loop: draw it (stamps and brush), record a telling, play it back and tap a star for each detail heard. Empty stars become questions for a second take ("How big is it?"). At grade 2 the child can tell about something that happened (recount) in order.
+  - The aha or the end state: the listener switch: the same object told to a best friend ("It's super cool") and to the principal ("This is a shell I found at the beach"); the child picks which telling fits each listener and records one.
+  - Class mode or extras (optional): show-and-tell in class with the spotlight. On screen: recordings never leave this device. No speech recognition (browser speech services send audio away), so the child checks their own details.
+- Standards, one line per code:
+  - SL.K.4 and SL.1.4: describing people, places, things and events with details (the stars).
+  - SL.1.5 (and SL.K.5 if moved here): adding a drawing to the description.
+  - SL.1.6 and SL.2.6: speaking in complete sentences for the listener and situation.
+  - SL.2.4: telling an experience in order with facts and details.
+  - L.2.3: formal and informal English (the listener switch).
+- Not like: Turn and Talk Wheel (conversation turns). Class Phone Call (listening and asking). My Story Strip (writing a strip).
+- Art: generated scenes (object cards and stage) and people (illustrated) for the two listeners, because the listener has to feel real for the switch to work.
+- Proposed title: keep
+- Proposed concept line: Pick an object, draw it, and tell about it in full sentences; listen back and light a star for each detail you said, then tell it again for a new listener, from a best friend to the principal.
+- Flags: none (microphone: privacy line required; no speech recognition)

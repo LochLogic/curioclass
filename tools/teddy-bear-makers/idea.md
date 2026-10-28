@@ -1,0 +1,21 @@
+# Teddy Bear Makers (idea card)
+
+- Module: social-studies-1-teddy-bear-makers, grade 1. Codes: D2.Eco.7.K-2, D2.Eco.13.K-2, D4.2.K-2, D4.5.K-2
+- Format / family: builder / none. Fit: good
+- One idea: Put the steps of making a teddy bear in order, give each step its machine or tool and the worker whose skill it needs, add up what one bear costs, then explain the whole process to a curious visitor who asks questions you must answer.
+- How it plays (solo student by default):
+  - First screen: Mrs. Okafor's small bear workshop, a pile of step cards and an empty line. "Which step comes first?"
+  - Core loop: order the steps (cut the fur, sew, stuff, add eyes, check, box); for each, drag in its tool or machine (scissors, sewing machine, stuffing machine) and the worker with the right skill. A bear moves down the line; a wrong step order makes a funny result (stuffing before sewing). Each step adds its cost (fur, thread, pay, power) to a price tag.
+  - Ask and answer: the student first picks questions to ask Mrs. Okafor ("Why do you need a machine for stuffing?") and hears answers; then a visiting kid asks the student questions about their own line and the student answers from their build.
+  - The aha or the end state: the cost tag shows what one bear costs to make, and a better machine or a trained worker makes bears faster.
+  - Class mode or extras (optional): class plays the visiting kid.
+- Standards, one line per code:
+  - D2.Eco.7.K-2: the price tag builds from costs of production (materials, pay, machines, power).
+  - D2.Eco.13.K-2: machines (capital goods) and trained workers (human capital) are named and matched.
+  - D4.2.K-2: the student's ordered line is their explanation, told back in sequence.
+  - D4.5.K-2: ask the maker questions, then answer a visitor's questions about the explanation.
+- Not like: paper-plane-assembly-line (grade 3 specialization and productivity); market-day (buying, not making).
+- Art: people (illustrated) and generated scenes, because the workers and machines should look real and friendly.
+- Proposed title: keep
+- Proposed concept line: Put the steps of making a teddy bear in order, give each step its tool or machine and the worker with the right skill, and add up what one bear costs; then ask the bear maker questions and answer a visitor's.
+- Flags: none (use a fictional workshop, not a real bear brand)

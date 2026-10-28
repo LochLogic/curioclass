@@ -1,0 +1,21 @@
+# School Fix-It Meeting (idea card)
+
+- Module: social-studies-3-school-fix-it-meeting, grade 3. Codes: D1.1.3-5, D2.Civ.9.3-5, D4.8.3-5, AASL.Collaborate
+- Format / family: showdown / none. Fit: change to roleplay, because a solo student needs illustrated classmates and adults to survey and deliberate with; the whole-class meeting becomes the extra.
+- One idea: Pick a school problem (a long lunch line, a crowded hallway), survey classmates and adults to learn why it matters to each of them, then run a fix-it meeting with turn-taking rules where proposals get combined and improved, and vote on one plan to take to the principal.
+- How it plays (solo student by default):
+  - First screen: three problem cards on a hallway bulletin board. "Which problem should we fix first? Tap one."
+  - Survey: the student asks a first grader, a fifth grader, a lunch worker and a custodian "Why does this matter to you?" and sorts the answers. Some reasons surprise (the lunch worker's line is long because trays are washed by hand).
+  - Meeting: the student chairs; illustrated classmates bring proposals. The student calls on people in turn, asks someone to build on an idea, and merges two half-plans into a better one; a shout-out-of-turn moment shows why the rules exist.
+  - The aha or the end state: a vote picks one plan, and the student writes it up for the principal with who it helps and who said so.
+  - Class mode or extras (optional): run a real meeting with printed survey cards.
+- Standards, one line per code:
+  - D1.1.3-5: the survey shows why the question matters to peers and adults.
+  - D2.Civ.9.3-5: the meeting weighs proposals and reaches a group judgment through deliberation.
+  - D4.8.3-5: turn-taking, combining proposals and voting decide and act on a school problem.
+  - AASL.Collaborate: the student builds on others' ideas and merges proposals to deepen the plan.
+- Not like: town-council (grade 2 town government); pool-repair-vote (town policy and paying for it); playground-rules (K rules).
+- Art: people (illustrated), because the surveyed voices are the content.
+- Proposed title: keep
+- Proposed concept line: keep
+- Flags: none

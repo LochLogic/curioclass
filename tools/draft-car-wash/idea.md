@@ -1,0 +1,24 @@
+# Draft Car Wash (idea card)
+
+- Module: ela-3-5-revising-and-editing, grade 3-5. Codes: W.3.4, W.3.5, L.3.3, W.4.4, W.4.5, L.4.2, L.4.3, W.5.4, W.5.5, L.5.3
+- Format / family: builder / none. Fit: good.
+- One idea: A rough draft rolls through a car wash with a named reader and job on its ticket (a how-to for a six-year-old cousin, a thank-you note to a firefighter), and at each station the student adds, cuts, moves or polishes, so the clean draft that rolls out shows that revising for a reader is different from fixing mistakes.
+- How it plays (solo student by default):
+  - First screen: a muddy car with a draft painted on its side and a ticket: "Reader: your cousin, age 6. Job: teach how to plant a seed."
+  - Core loop: Add station (a missing step or detail the reader needs), Cut station (a sentence that wanders off), Move station (drag sentences into a clearer order), Word Shine (pick the more exact word or a phrase for effect), Sentence Buff (combine choppy sentences, expand a thin one, trim a long one), and the Polish station (capitals, commas, quotation marks, spelling). Each choice shows its reason on a sign.
+  - The aha or the end state: before and after drafts side by side; then the same draft goes through again for a different reader (the principal), and the student sees that the right changes depend on who reads it.
+  - Class mode or extras (optional): paste your own draft and use the stations as a checklist; the on-screen line says it never leaves the device.
+- Standards, one line per code:
+  - W.3.4, W.4.4, W.5.4: every draft has a reader and a job on its ticket, and the reader swap shows how fit changes.
+  - W.3.5, W.4.5, W.5.5: the add, cut and move stations, then the Polish station.
+  - L.3.3: Word Shine picks words for effect, and a talk-or-write card spots spoken versus written phrasing.
+  - L.4.2: Polish at grade 4: capitals, commas and quotation marks in speech, a comma before and or but, spelling.
+  - L.4.3: precise words, punctuation for effect, and formal versus informal for the reader.
+  - L.5.3: Sentence Buff expands, combines and reduces sentences for meaning and style.
+  - MOVE L.5.3 (comparing varieties of English in stories and plays): to script-read-through, whose cast can speak in different registers.
+  - Takes in from dialogue-director: L.3.2 address commas and spelling patterns at the grade 3 Polish station; from comma-chameleon: L.5.2 spelling at the grade 5 Polish station.
+- Not like: owl-wants-more (k-2, adding details for a curious owl); editors-in-the-margin (high school margin comments); hamburger-paragraph (grade 2 paragraph parts).
+- Art: illustrated car wash stations and readers, because the stations carry the steps.
+- Proposed title: keep
+- Proposed concept line: keep
+- Flags: none

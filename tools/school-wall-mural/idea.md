@@ -1,0 +1,21 @@
+# School Wall Mural (idea card)
+
+- Module: arts-6-8-public-art-and-murals, grade 6-8. Codes: VA:Pr4, VA:Pr5, VA:Pr6, VA:Re9, VA:Cn10
+- Format / family: builder / none. Fit: good
+- One idea: The school's street-facing wall gets a mural; gather what the neighborhood cares about, judge four student sketches against criteria you set, test the winner where people really see it (walking past, from a bus window, from across the street, and after five summers of sun), and argue for it at the school board meeting.
+- How it plays (solo student by default):
+  - First screen: the blank wall in its street, a community board of voices (a shop owner, a grandmother on the bench, the bus driver, kids, the custodian) and a stack of four sketches by illustrated student artists.
+  - Core loop: collect ideas from the voices and set criteria (says something true about us, reads from a distance, welcomes everyone). Score the sketches, combine or revise one, then test it: the walk-by view blurs detail at walking speed, the bus view gives three seconds, the five-summer view fades cheap paint on the sunny side. Choose paint and sealant and lay out the wall.
+  - The aha or the end state: the board meeting: the student builds a short argument from the criteria and the tests, answers two objections, and sees the mural go up. A side panel shows public domain murals painted for post offices in the 1930s and the towns they were made for.
+  - Class mode or extras (optional): the class scores the sketches together and compares personal and agreed criteria.
+- Standards, one line per code:
+  - VA:Pr4: choosing paint, sealant and placement to preserve a work outdoors, compared with art indoors.
+  - VA:Pr5: the visual plan for the wall based on the space and the viewers.
+  - VA:Pr6: how public art reflects and shapes a community's values (the voices, the 1930s murals).
+  - VA:Re9: setting criteria, scoring the sketches and defending the evaluation with a logical argument.
+  - VA:Cn10: collecting ideas from current community concerns and the student's own interests.
+- Not like: virtual-gallery (grade 9-12 indoor show); design-fixer (poster layout); traveling-art-show (grade 3-5).
+- Art: generated scenes for the street and wall; people (illustrated) for the voices; public domain (1930s federal murals, Library of Congress or Smithsonian images, to check at spec).
+- Proposed title: keep
+- Proposed concept line: Plan a mural for the school's street-facing wall: gather what neighbors care about, judge four sketches against your criteria, test the winner from the sidewalk, a bus window and five summers of sun, and argue for it at the board meeting.
+- Flags: needs a data source (1930s mural images and history; outdoor paint fading facts)

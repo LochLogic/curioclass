@@ -1,0 +1,21 @@
+# Big Wheel, Small Wheel (idea card)
+
+- Module: math-7-circles-angles-area-and-volume, grade 7. Codes: 7.G.B
+- Format / family: lab / none. Fit: good for circles; see MOVE for angle relationships and surface area and volume of prisms.
+- One idea: Settle round-object arguments (one 18-inch pizza or two 12-inch ones, one big trampoline or two small ones, a 26-inch bike wheel or a 20-inch over the same ride) by measuring circumference with a rolling wheel and area by cutting a circle into wedges.
+- How it plays (solo student by default):
+  - First screen: a backyard with two siblings, Maya and Kip, arguing over pizza. "Two 12-inch pizzas is more. Obviously." A lab bench with string, a ruler and a wheel.
+  - Circumference lab: roll wheels of different sizes one full turn and measure the track; record circumference and diameter in a table, and see the ratio is always a bit more than 3 (pi). C = pi x d.
+  - Area lab: cut a circle into 8, then 16, then 64 wedges and line them up; they form a near-rectangle with height r and length half the circumference, so A = pi x r x r. The student derives the link between the two formulas.
+  - Argument rounds: the pizza (one 18-inch has more than two 12-inch: about 254 vs 226 square inches), the trampolines, the bike wheels (how many turns over 1 mile), a running track's curve.
+  - The aha or the end state: area grows with the square of the radius, so a bigger circle beats two smaller ones more often than people expect.
+  - Class mode or extras (optional): measure real round things at home and add them to the table (stays on the device).
+- Standards, one line per code:
+  - 7.G.B (7.G.4): circumference and area formulas used to settle real arguments, with the informal wedge derivation of how area relates to circumference.
+  - MOVE 7.G.B (7.G.5, supplementary, complementary, vertical and adjacent angles in equations): new tool: a grade 7 angle detective at a busy intersection where crossing streets, rail crossings and scissors-style gates give vertical and supplementary angles to solve.
+  - MOVE 7.G.B (7.G.6, area, volume and surface area of composite figures made of polygons, cubes and right prisms): new tool: a grade 7 aquarium or planter-box builder where the student plans glass (surface area) and water (volume) for composite prism tanks.
+- Not like: snow-globe-maker (grade 8 volume of curved solids), blueprint-studio (grade 7 scale), fence-builder (grade 3 area vs perimeter).
+- Art: generated scenes (backyard, pizzas, trampolines, bikes); people (illustrated) for Maya and Kip; wheels, wedges and measurements drawn in code.
+- Proposed title: keep
+- Proposed concept line: Settle round-object arguments (one 18-inch pizza or two 12-inch ones?) by rolling wheels to find pi and cutting circles into wedges to see why A = pi r squared grows faster than you expect.
+- Flags: too thin for the whole 7.G.B cluster (needs the two MOVEs above)

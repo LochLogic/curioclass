@@ -1,0 +1,23 @@
+# Theme Evidence Ladder (idea card)
+
+- Module: ela-6-8-theme-and-textual-evidence, grades 6-8. Codes: RL.6.1, RL.6.2, RL.6.9, RL.7.1, RL.7.2, RL.8.1, RL.8.2
+- Format / family: puzzle / evidence. Fit: good: ranking passages so the ladder holds is a real logic puzzle with a right-ish answer and an aha.
+- One idea: The student states a theme for a short public-domain story and builds a ladder of quoted passages, strongest support at the top, and the ladder tests every rung: a passage that also holds up a rival theme bends, a passage that only retells plot snaps, so they learn that a theme is proved by the passages that point to it alone, and that the strongest evidence is the one nothing else explains.
+- How it plays (solo student by default):
+  - First screen: a short story (Aesop retold, or a short tale by Kate Chopin or O. Henry chosen at spec) and three theme cards to choose from or rewrite.
+  - Core loop: the student picks or writes a theme as a full sentence (not one word), then pulls passages from the story and ranks them on the ladder. The tool tests each rung against two rival themes; a rung that supports a rival equally wobbles and asks the student to explain why it belongs to theirs. At grade 7 the ladder is laid along the story's timeline, so the student sees where the theme first appears and how it grows; at grade 8 each rung must say whether it works through a character, the setting or a plot turn.
+  - The aha or the end state: the climb: a poem on the same subject is added, and the student checks whether their theme holds across genres, rewriting it if the poem treats the subject differently. They finish with a short objective summary of the story (no opinion words) and a paragraph using their top two rungs.
+  - Class mode or extras (optional): compare ladders for the same story and see which top rung appears most.
+- Standards, one line per code:
+  - RL.6.1: quoting passages that support the theme, both what the text says and what it implies.
+  - RL.6.2: naming the theme, the details that convey it, and a summary without opinions.
+  - RL.6.9: testing the theme against a poem on the same subject.
+  - RL.7.1: several pieces of evidence per theme, on the ladder.
+  - RL.7.2: the timeline view of how the theme develops, and the objective summary.
+  - RL.8.1: ranking to find the strongest evidence, the one no rival theme explains.
+  - RL.8.2: each rung tied to character, setting or plot, and the objective summary.
+- Not like: theme-ledger (9-12, two themes as a ledger and chart); summary-squeeze (grade 6, compressing to a theme); main-idea-pinboard (3-5, pinning details to a main idea).
+- Art: public domain illustrations for the story (Met or AIC object ids to be checked at spec), drawn in code for the ladder.
+- Proposed title: keep
+- Proposed concept line: State a theme for a short public-domain story and rank quoted passages on a ladder; rungs that also hold up a rival theme wobble, and a poem on the same subject tests whether your theme holds across genres.
+- Flags: needs a data source (public-domain story and poem pairs, checked at spec)

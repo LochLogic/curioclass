@@ -1,0 +1,22 @@
+# Settle the Valley (idea card)
+
+- Module: social-studies-4-human-environment-interaction, grade 4. Codes: D2.Geo.4.3-5, D2.Geo.5.3-5, D2.Geo.8.3-5 (plus D2.Geo.9.3-5 if moved here from state-economy-map and colonial-trade-routes)
+- Format / family: simulator / none. Fit: good
+- One idea: Over fifty years, choose where farms, homes, mills and roads go in a river valley, and watch the land and the people change each other: forests cleared, soil worn out, a mill town growing by the falls, and one flood year that forces families to move or rebuild.
+- How it plays (solo student by default):
+  - First screen: the valley from a hilltop: river, falls, forest, flat bottomland, and a village of the people already living there. "Two newcomer families arrive. Where should they build?"
+  - Core loop: each decade the student places homes, fields, a mill and roads; resources show on hover (water power at the falls, rich soil by the river, timber on the slopes). Two groups with different ways of life use the valley differently (the people already there move with the seasons, hunt and plant in river clearings; the newcomers clear land for plowed fields), and the student sees how culture shapes how each changes the land.
+  - Change over time: the valley redraws each decade: fewer trees, eroded slopes, new trails and a trading post where routes meet.
+  - Flood year: a big flood hits the bottomland; the student decides to rebuild or move uphill, and sees who could leave and who couldn't.
+  - The aha or the end state: a then/now slider shows the valley's land and people at the start and end, with where settlements went and why.
+  - Class mode or extras (optional): compare two class runs.
+- Standards, one line per code:
+  - D2.Geo.4.3-5: the two groups' different land use shows culture shaping adaptation and change.
+  - D2.Geo.5.3-5: the decade redraws show the valley's environment and culture changing.
+  - D2.Geo.8.3-5: settlements follow water power, soil and timber.
+  - (incoming) D2.Geo.9.3-5: the flood year shows a catastrophic event changing settlement and forcing migration.
+- Not like: hunter-to-farmer (grade 6 foraging vs farming); state-story-timeline (real state events).
+- Art: generated scenes (one valley across decades), because the changes must read at a glance.
+- Proposed title: keep
+- Proposed concept line: Over fifty years, place farms, homes, a mill and roads in a river valley where people already live, and watch land and people change each other, from cleared forests and worn soil to a flood that forces families to move.
+- Flags: sensitive (the valley must not read as empty land; the people already there need accurate, respectful portrayal; fresh review agent per rule 5)

@@ -1,0 +1,21 @@
+# Paper Plane Assembly Line (idea card)
+
+- Module: social-studies-3-business-and-specialization, grade 3. Codes: D2.Eco.3.3-5, D2.Eco.7.3-5, D2.Eco.13.3-5, D2.Civ.6.3-5
+- Format / family: tycoon / none. Fit: good
+- One idea: Run a paper plane shop for a school flying contest: first one worker makes every plane alone, then you split the work into folding, creasing and decorating stations, buy a better tool, and watch output and profit change, along with what happens when one worker is out sick.
+- How it plays (solo student by default):
+  - First screen: a shop table, one worker, a stack of paper, an order board ("40 planes by Friday"). "Press Start and count how many planes she makes."
+  - Core loop: each round the student sets stations, assigns workers, and chooses spending: more paper, a crease roller (capital), or a training session (human capital). Output, costs and profit are counted every round.
+  - Profit pull: when the contest pays more for decorated planes, profit pulls the shop toward making those, and the student sees how profit guides sellers.
+  - The aha or the end state: the line beats the solo worker by a lot, but a sick-day round stalls everything, showing the benefit and the challenge of depending on each other. A resource card lists what went in: paper (natural), the roller (physical capital), skills (human capital).
+  - Class mode or extras (optional): a real folding race with printed station cards.
+- Standards, one line per code:
+  - D2.Eco.3.3-5: the resource card names natural, physical and human resources in each plane.
+  - D2.Eco.7.3-5: the contest price shift shows how profit changes what the shop makes.
+  - D2.Eco.13.3-5: the crease roller and training raise productivity.
+  - D2.Civ.6.3-5: the line shows benefits of working together and the sick-day challenge.
+- Not like: teddy-bear-makers (grade 1 steps and costs); learn-and-earn (one person's skills and income); barter-bay (money and prices).
+- Art: people (illustrated) workers and generated scenes, because the workers' faces show the sick-day effect.
+- Proposed title: keep
+- Proposed concept line: Run a paper plane shop for a school flying contest: split one worker's job into stations, buy a tool or train the crew, and watch output and profit grow until a sick day shows how much everyone depends on each other.
+- Flags: overlap risk (learn-and-earn also covers productivity; keep this one about teams and capital, that one about one person's income)

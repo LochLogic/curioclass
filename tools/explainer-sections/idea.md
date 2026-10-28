@@ -1,0 +1,21 @@
+# Explainer Sections (idea card)
+
+- Module: ela-6-8-structure-in-informative-writing, grades 6-8. Codes: W.6.2, RI.6.5, RI.7.5, W.7.2, W.8.2
+- Format / family: builder / none. Fit: good: take a structure apart, then build one, and test that each section does a job.
+- One idea: The student takes apart a short explainer section by section, labeling what each one does for the reader (hooks, defines, shows steps, compares, explains a cause, answers a worry), then builds their own explainer by choosing an organizing pattern and writing headings and transitions that fit it, and a "lost reader" test shows where a missing or misplaced section leaves the reader stuck, so they learn that structure is how an explainer carries a reader from not knowing to knowing.
+- How it plays (solo student by default):
+  - First screen: an explainer cut into section blocks ("How does a vaccine trial work?", or "How do bridge inspectors find cracks?"), shuffled, with a reader avatar at the start of the page.
+  - Core loop: the student orders the blocks and tags each block's job; the reader walks down the page and stops with a question bubble where a section arrives too early ("What's a placebo?") or is missing. Then the build: the student picks a topic from a shelf (how a seed bank works, how lightning forms), chooses a pattern (sequence, cause and effect, compare, problem and solution), writes headings that name the job, and adds transitions between sections; the reader walks their draft too. Grade 7 asks for a definition section and a comparison chart; grade 8 asks for a section that addresses a likely misunderstanding and a conclusion that follows from the whole.
+  - The aha or the end state: the reader reaches the end of the student's explainer with no question bubbles left, and the student writes one line on why their pattern fit the topic.
+  - Class mode or extras (optional): swap explainers with a partner and walk each other's reader.
+- Standards, one line per code:
+  - W.6.2: writing the explainer with headings, a clear pattern, transitions and a conclusion.
+  - RI.6.5: tagging how each section fits the whole and develops the ideas.
+  - RI.7.5: analyzing the explainer's overall structure and how the major sections build it.
+  - W.7.2: the grade 7 build with definition and comparison sections and a chart.
+  - W.8.2: the grade 8 build with a misunderstanding section and a conclusion that follows.
+- Not like: explainer-studio (grade 7, developing content inside sections: precise words, examples, formal style and the magazine page); essay-train (grade 5, transitions between paragraphs); portrait-in-four-media (grade 10).
+- Art: drawn in code for the reader avatar and section blocks; generated scenes for the topics.
+- Proposed title: keep
+- Proposed concept line: Take apart a short explainer section by section to see what each one does for the reader, then build your own with a chosen pattern, headings and transitions while a walking reader stops wherever your structure leaves them lost.
+- Flags: overlap risk (explainer-studio also carries W.7.2; split by structure here and section content there); sensitive (light: the vaccine trial topic is told plainly with sourced facts)

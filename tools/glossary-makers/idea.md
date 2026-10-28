@@ -1,0 +1,23 @@
+# Glossary Makers (idea card)
+
+- Module: ela-3-5-academic-and-subject-words, grade 3-5. Codes: RI.3.4, L.3.6, RI.4.4, L.4.5, L.4.6, RI.5.4, L.5.4, L.5.6
+- Format / family: builder / word-lab. Fit: good.
+- One idea: The student builds the glossary page for a short science or history passage, working out each bold word from the sentence, its parts and a picture, then writing a kid definition with a synonym and an opposite, so they learn that subject words can be worked out, not just looked up.
+- How it plays (solo student by default):
+  - First screen: a passage about beavers building a dam (or the Erie Canal) with five bold words and an empty glossary page. "The book needs a glossary. Start with the first bold word."
+  - Core loop: for each word, gather clues from three trays (the sentence around it, its word parts, a picture), write a definition in kid words, pick a synonym and an opposite, and test the entry: the passage is read with the definition swapped in and must still make sense. Later rounds add precise action and feeling words (gnawed, not ate) and time and place phrases (after dusk, upstream of the lodge). A link round joins two glossary facts with however, similarly, in addition or although.
+  - The aha or the end state: the finished glossary page, and a "new passage" check where the student meets their words again in a different text and still knows them.
+  - Class mode or extras (optional): a reference shelf (print dictionary page) for checking.
+- Standards, one line per code:
+  - RI.3.4, RI.4.4, RI.5.4: working out subject words in the passage from clues, tested by swapping in the definition.
+  - L.3.6: using the new words and the time and place phrases in the link round.
+  - L.4.5: synonym and opposite for each entry.
+  - L.4.6: precise action, feeling and subject words chosen over plain ones.
+  - L.5.4: context, Greek and Latin parts, and the reference shelf.
+  - L.5.6: joining facts with words that show contrast and addition.
+  - MOVE L.4.5 (similes, metaphors, idioms, adages and proverbs): to idiom-illustrator as a grade 4 deck (literal pictures of similes, metaphors, adages and proverbs, each read in context).
+- Not like: word-lab (grade 2 word parts in beakers); root-detective-cards (grade 4 root card game); context-roots-dictionary (grade 6-8).
+- Art: generated scenes for the passages (beaver dam, canal lock) and illustrated clue pictures, because the picture is one of the three clue trays.
+- Proposed title: keep
+- Proposed concept line: keep
+- Flags: none

@@ -1,0 +1,21 @@
+# Community Helpers Village (idea card)
+
+- Module: social-studies-1-families-and-communities, grade 1. Codes: D2.Civ.2.K-2, D2.Civ.6.K-2, D2.Eco.12.K-2 (plus D2.Eco.6.K-2 if moved here from backpack-pack)
+- Format / family: sandbox / none. Fit: good
+- One idea: Place helpers (baker, mail carrier, firefighter, librarian, crossing guard, a neighbor who shovels walks) around a village and take one away to see what breaks, so the student sees that everyone, not just the mayor, keeps a community running.
+- How it plays (solo student by default):
+  - First screen: a quiet village with empty spots. "Drag a helper to a place in town."
+  - Core loop: place helpers and the village comes alive (bread in the window, mail in boxes). Tap Remove on any helper and the day replays without them (letters pile up, the library is dark). Tags show who the town pays (firefighter, librarian, road crew) and who runs a shop or helps for free.
+  - Jobs and pay: tap a helper to see their work, how they earn money for it (the baker sells bread, the town pays the firefighter), and one thing that pay buys at home.
+  - The aha or the end state: snow day. The student assigns who does what (plow, shovel, check on an older neighbor) and sees a community share tasks, with the mayor as one helper among many.
+  - Class mode or extras (optional): the class picks which helper to remove next.
+- Standards, one line per code:
+  - D2.Civ.2.K-2: removing any helper, paid or volunteer, shows each one matters.
+  - D2.Civ.6.K-2: on snow day the community splits tasks, sets who is responsible, and sees who is in charge.
+  - D2.Eco.12.K-2: "the town pays" tags show goods and services government provides.
+  - (incoming) D2.Eco.6.K-2: each helper's card shows how they earn income.
+- Not like: town-council (deciding as a government); storm-helpers (one disaster and how kids can help); teddy-bear-makers (making one product).
+- Art: people (illustrated) and generated scenes, because helpers must look varied and real.
+- Proposed title: keep
+- Proposed concept line: Place helpers around a village (baker, mail carrier, firefighter, librarian, a snow-shoveling neighbor) and remove one to see what breaks; learn which the town pays for, how each earns a living, and how everyone shares a snow day.
+- Flags: none

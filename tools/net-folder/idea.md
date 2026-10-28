@@ -1,0 +1,21 @@
+# Net Folder (idea card)
+
+- Module: math-6-area-surface-area-and-volume, grade 6. Codes: 6.G.A
+- Format / family: sandbox / none. Fit: good for nets, surface area, fractional-edge volume and polygons on the grid; see MOVE for general polygon area.
+- One idea: Design gift boxes and tent-shaped pyramids for a craft fair by drawing their nets on a coordinate grid, finding each face's area, folding them up, and filling them with half-inch cubes to see why volume still equals length x width x height.
+- How it plays (solo student by default):
+  - First screen: a cutting mat with a coordinate grid, a finished box, and a craft maker, Jun. "Unfold it. How much paper did it take?"
+  - Unfold and refold: the student unfolds boxes, triangular prisms and square pyramids into nets, and folds them back; some nets fail to close and show why.
+  - Area of faces: each face shows its area; triangle faces are found as half of a rectangle drawn around them. Surface area is the sum, with a running total.
+  - Grid rounds: Jun gives vertices like (1, 1), (1, 4), (6, 4), (6, 1); the student draws the face on the grid and reads side lengths from coordinates that share an x or a y.
+  - Fill rounds: a box 2 1/2 by 1 by 1 1/2 inches is filled with 1/2-inch cubes (5 x 2 x 3 = 30 cubes, each 1/8 cubic inch), giving 3 3/4 cubic inches, the same as l x w x h.
+  - The aha or the end state: the paper outside a box (surface area) and the space inside (volume) are different measures, and both come from the same edges.
+  - Class mode or extras (optional): print a net and fold a real box.
+- Standards, one line per code:
+  - 6.G.A (6.G.2, 6.G.3, 6.G.4, and triangles from 6.G.1): volume of boxes with fractional edges by packing unit-fraction cubes and by formula (6.G.2); drawing faces from given vertices and finding side lengths on the grid (6.G.3); nets of prisms and pyramids and surface area (6.G.4); area of right and other triangles as half a rectangle (part of 6.G.1).
+  - MOVE 6.G.A (the rest of 6.G.1: parallelograms, trapezoids and composite polygons by composing and decomposing): new tool: a grade 6 sign-shop where the student cuts and slides pieces of odd-shaped signs (a parallelogram becomes a rectangle, a trapezoid becomes two triangles and a rectangle) to price the paint.
+- Not like: box-packer (grade 5 whole cubes), snow-globe-maker (grade 8 curved solids), packaging-challenge (grade 10 optimizing material).
+- Art: generated scenes (the craft fair and workshop); people (illustrated) for Jun; nets, folds and cubes drawn in code in 3D so measures stay exact.
+- Proposed title: keep
+- Proposed concept line: Design craft-fair gift boxes and pyramids: draw nets from coordinates, find each face's area and the total paper, fold them up, and fill them with half-inch cubes to see why l x w x h still works with fractions.
+- Flags: too thin for the whole 6.G.A cluster (needs the MOVE above)

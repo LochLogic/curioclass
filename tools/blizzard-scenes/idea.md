@@ -1,0 +1,21 @@
+# Blizzard Scenes (idea card)
+
+- Module: ela-6-8-narrative-point-of-view-and-structure, grades 6-8. Codes: W.6.3, W.7.3, RL.7.6, W.8.3, RL.8.5
+- Format / family: studio / none. Fit: good: the student writes, then rewrites, and the versions sit side by side.
+- One idea: The student writes a short scene about a class trip bus stranded by a blizzard at a closed gas station, then retells it from another person on the bus and in a different order, and the versions sit side by side with questions about what each choice reveals or hides, so they learn that point of view and order are decisions that change what a reader knows and feels.
+- How it plays (solo student by default):
+  - First screen: a snowed-in bus at night, a seating chart of five people (the student's narrator, the driver, a nervous chaperone, a quiet new kid, the class clown), and a short model scene by Curio Class told by the driver.
+  - Core loop: read the model two ways: told by the driver, then by the new kid; the student marks what each narrator knows, notices and hides (grade 7 reading). Then they write their own scene with a narrator they pick, with prompts for dialogue, description and a slow moment. Rewrite one: the same events from another seat; the tool lays both versions in columns and lights facts that only one narrator could know. Rewrite two: the same scene in a new order (start at the moment the headlights appear, then go back).
+  - The aha or the end state: three versions side by side and four questions: what does the reader know first in each, which version has the most suspense, whose feelings are hidden, which ending lands. At grade 8, two model texts with different structures (one in order, one starting at the end) are compared before the student restructures their own.
+  - Class mode or extras (optional): students trade scenes and rewrite a classmate's from a third seat.
+- Standards, one line per code:
+  - W.6.3: writing the scene with a narrator, dialogue, description and a clear sequence.
+  - W.7.3: rewriting with a second narrator's point of view and transitions for the new order.
+  - RL.7.6: analyzing how the model contrasts the driver's and the new kid's points of view.
+  - W.8.3: the reordered version, with transitions that signal time shifts and a reflective ending.
+  - RL.8.5: comparing the two model texts' structures and how each shapes meaning and style.
+- Not like: flashback-editor (grade 8, rearranging a finished story's scenes into a flashback and writing the time-shift transitions); perspective-camera (grade 6, first, second and third person on one scene); tension-meter (grade 9, graphing suspense).
+- Art: generated scenes (bus in the snow, gas station lights), people (illustrated) for the five passengers.
+- Proposed title: keep
+- Proposed concept line: keep
+- Flags: overlap risk (flashback-editor also carries W.8.3; keep this one on point of view and writing new versions, that one on flashback structure)

@@ -1,0 +1,21 @@
+# Many Voices Book (idea card)
+
+- Module: library-k-2-many-voices-book, grade k-2. Codes: AASL.Include, AASL.Collaborate
+- Format / family: studio / none. Fit: good, because the student makes a real book page with real tools.
+- One idea: Read a picture book whose pages were made by twelve classmates (a greeting from home, a favorite food, a game they play), make your own page for it, link your page to each of theirs with "same" or "different", and decide together with the book's characters where your page goes so no one is left at the back.
+- How it plays (solo student by default):
+  - First screen: a big open class book on a rug, "Our Many Voices Book", and an empty page with your name tag. "Read the book, then make your page."
+  - Read: each page is spoken by its maker: "Salaam! My family eats mansaf on Fridays. I play hopscotch." Greetings come in the family's own language, with the sound.
+  - Make: draw or stamp your favorite food and game, pick or record your own greeting. A line on screen says the drawing and any recording stay on this device and never leave it.
+  - Link: drag a "same" string from your page to every page that shares something with yours (we both play tag) and a "different" star to a page you want to learn about.
+  - Collaborate: three characters each want a different page order (by greeting, by food, by birthday); the student finds an order every character agrees with, and every page gets a turn on the cover.
+  - The aha or the end state: every page has a "same" with someone and a "different" worth asking about; the book is better with all of them in it.
+  - Class mode or extras (optional): on one shared device, each child adds a page to one class book, and the class picks the order together. First names only, no photos of faces.
+- Standards, one line per code:
+  - AASL.Include: hear other families' greetings, foods and games, and find a same and a different with each.
+  - AASL.Collaborate: agree on a page order with the book's characters (solo) or the class (class mode) so everyone is in.
+- Not like: wonder-wall (sorting questions); library-adventure (finding books in a library); windows-and-mirrors-shelf (grade 3-5 book choices).
+- Art: people (illustrated) for the twelve page makers, drawn by many hands in a crayon-and-collage style.
+- Proposed title: keep
+- Proposed concept line: Read a picture book whose pages twelve classmates made (a greeting from home, a favorite food, a game), add your own page, link it to theirs with a same or a different, and choose an order where everyone is in.
+- Flags: sensitive (greetings and foods in many languages and cultures: a fresh review agent checks each page, rule 5); records drawings and voice on the device only (rule 7 line)

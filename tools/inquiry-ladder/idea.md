@@ -1,0 +1,21 @@
+# Inquiry Ladder (idea card)
+
+- Module: social-studies-4-inquiry-ladder, grade 4. Codes: D1.2.3-5, D1.3.3-5, D1.4.3-5, D2.His.12.3-5
+- Format / family: builder / none. Fit: good
+- One idea: A big question about the past (Was the railroad good for our town?) sits at the top of a ladder; climb by writing supporting questions from old photos, timetables and letters, mark the words people disagree about (like "good" and "our town"), and see each rung help answer the big question.
+- How it plays (solo student by default):
+  - First screen: a tall ladder against a water tower, the big question on a sign at the top. "Tap a word in the question that people might not agree on."
+  - Core loop: the student marks contested words ("good" for whom? does "our town" include the farmers outside it?). Then source cards open (a depot photo, a timetable, a letter from a farmer, a merchant's ad); from each, the student builds a supporting question and fits it on a rung. A rung only holds if it connects to the big question.
+  - Linking sources: a "these two go together" tool asks the student to write a question that uses two sources at once (the timetable and the farmer's letter: did faster trains help farmers sell crops?).
+  - The aha or the end state: at the top, the finished ladder shows how the supporting questions together answer the big one, and that the answer depends on who "good" is for.
+  - Class mode or extras (optional): teacher can enter a new big question and sources.
+- Standards, one line per code:
+  - D1.2.3-5: marking contested words shows the big question is open to different readings.
+  - D1.3.3-5: each supporting question's key idea is marked when it can be read more than one way.
+  - D1.4.3-5: only rungs that help answer the big question hold.
+  - D2.His.12.3-5: questions built from several sources and their link to the railroad's arrival.
+- Not like: wonder-kite (grade 1 version without sources); made-for-whom (audience and purpose of sources).
+- Art: public domain (Library of Congress railroad photos and timetables, items chosen and checked at spec), with an illustrated ladder.
+- Proposed title: keep
+- Proposed concept line: keep
+- Flags: needs a data source (one real town's public-domain railroad sources)

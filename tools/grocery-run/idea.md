@@ -1,0 +1,21 @@
+# Grocery Run (idea card)
+
+- Module: math-5-operations-with-whole-numbers-and-decimals, grade 5. Codes: 5.NBT.B, NSPFE.Spending
+- Format / family: tycoon / money. Fit: change to builder, because the student builds one shopping plan and tests it against a budget and a guest list; nothing runs over time.
+- One idea: Plan the food for a 28-student field day on a $120 budget: multiply packs and prices, divide bulk packs into servings, compare unit prices, and catch the mistake on the receipt.
+- How it plays (solo student by default):
+  - First screen: a store with plain store-brand shelves, a guest list (28 students, 4 adults, 2 who need gluten-free) and a budget card. Coach Reyes: "Everyone gets two drinks, a sandwich and fruit."
+  - Core loop: the student fills a cart. Each choice is a calculation shown on a scratch pad in columns: 32 people x 2 drinks = 64; drinks come in 12-packs, 64 / 12 = 5 r4, so buy 6 (and say what the remainder means). Price lines like 6 x $4.79 are done with the standard algorithm, the pad checking place by place.
+  - Compare rounds: a 24-pack at $9.60 or a 6-pack at $2.70? Unit price $0.40 vs $0.45. Decimal division by models first, then numbers.
+  - Receipt check: the register prints a receipt with one error (a doubled item or a wrong total); the student finds it by adding the decimals.
+  - Choices: wants vs needs when the budget is tight, and what to do with $6.35 left over.
+  - The aha or the end state: the same four operations decide what you can afford, and checking the receipt is part of shopping.
+  - Class mode or extras (optional): class compares plans that meet the same budget in different ways.
+- Standards, one line per code:
+  - 5.NBT.B: multiplying multi-digit whole numbers with the standard algorithm (5.NBT.5); dividing up to four digits by two-digit numbers with area models and equations, remainders interpreted (5.NBT.6); adding, subtracting, multiplying and dividing decimals to hundredths with models, then numbers (5.NBT.7).
+  - NSPFE.Spending: comparing unit prices and options, staying within a budget, weighing needs and wants, and checking a receipt for errors.
+- Not like: corner-store (grade 2 coins and change while running a stand), piggy-bank-planner (grade 2 saving for a goal), tax-and-tip (grade 7 percents at a register).
+- Art: generated scenes (store aisles, cart, receipt); people (illustrated) for Coach Reyes and the class; scratch pad drawn in code. No real brand names.
+- Proposed title: keep
+- Proposed concept line: Plan the food for a 28-student field day on a $120 budget: multiply packs and prices, divide bulk packs into servings, compare unit prices, and catch the error on the receipt.
+- Flags: needs a data source (realistic grocery prices, dated, from a public price index or survey)

@@ -1,0 +1,22 @@
+# Context, Roots, Dictionary (idea card)
+
+- Module: ela-6-8-academic-vocabulary-strategies, grades 6-8. Codes: L.6.6, L.7.4, L.7.6, L.8.4, L.8.6 (and L.6.4, proposed to move here from word-thermometer)
+- Format / family: puzzle / word-lab. Fit: good: each word is a lock with three keys, and choosing the cheapest key that works is the puzzle.
+- One idea: The student cracks unknown academic words inside short science, history and math passages with three keys in order (context first, then a Greek or Latin root, then the dictionary), checks each guess against the dictionary at the end, and a strategy log shows which key cracked each word, so they learn to solve words on their own and to verify before trusting a guess.
+- How it plays (solo student by default):
+  - First screen: a passage from a made-up science article about a volcano study with three locked words (hypothesis, magnitude, subsequent) and a key ring: Context, Roots, Dictionary.
+  - Core loop: for each locked word the student first reads the sentence and the ones around it and writes a guess; the context key glows if the passage gives a clue type (definition, example, contrast, cause). If the guess is shaky, the roots key splits the word (sub + sequ + ent, "follows after") and the student refines. The dictionary key opens a real-style entry with several senses and parts of speech; the student picks the sense that fits and compares it with their guess. Every word they crack goes into their personal glossary with a sentence they write using it.
+  - The aha or the end state: the strategy log for the session: how often context alone was enough, where roots saved them, and one guess the dictionary proved wrong. A final passage uses the glossary words in a new subject, and the student must read it without the keys.
+  - Class mode or extras (optional): a "word of the week" passage set for each subject class.
+- Standards, one line per code:
+  - L.6.4 (if moved here): grade 6 level with context, grade 6 affixes and roots (audience, auditory, audible), the dictionary for pronunciation and part of speech, and verifying a guess.
+  - L.6.6: the personal glossary: using grade 6 academic and subject words in their own sentences.
+  - L.7.4: grade 7 passages, roots like belligerent and bellicose, and checking a guess in the dictionary.
+  - L.7.6: grade 7 glossary words used in new sentences.
+  - L.8.4: grade 8 passages, roots like precede and recede, and verifying meanings.
+  - L.8.6: grade 8 academic words used in the final passage and in writing.
+- Not like: word-family-tree (grade 12, the history of words through languages); key-term-tracker (9-12, one loaded word through a long text); glossary-makers (3-5, building a passage's glossary).
+- Art: generated scenes for each subject passage (volcano lab, a river map for history, a geometry workshop); drawn in code for the keys and glossary.
+- Proposed title: keep
+- Proposed concept line: keep
+- Flags: none

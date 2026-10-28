@@ -1,0 +1,21 @@
+# Estimation Station (idea card)
+
+- Module: math-2-rulers-and-units, grade 2. Codes: 2.MD.A, 2.MD.B
+- Format / family: race / none. Fit: good; the race is against your own last score, and closeness earns points.
+- One idea: Freight arrives at a train station; estimate each item's length, measure it with the right tool (ruler, yardstick, meter stick, tape), and the ruler turns into a number line you can add and subtract on.
+- How it plays (solo student by default):
+  - First screen: a little train pulling in with crates. "Guess how long this pencil is. Then measure it."
+  - Core loop: the child types an estimate in inches or centimeters, picks a tool, lines it up and reads the length. Points for closeness; the estimate gets better as the child learns benchmark sizes (a paperclip is about 1 inch).
+  - Two-unit crates: measure a rug in feet, then in inches; the bigger unit gives the smaller number.
+  - How-much-longer crates: two ribbons side by side; the difference is shown on the ruler as a jump.
+  - Word problems: "A rope is 52 inches, the snake is 34 inches. How much longer is the rope?" solved on the ruler as a number line.
+  - The aha or the end state: the ruler is a number line, so measuring and subtracting are the same move.
+  - Class mode or extras (optional): a printable card to estimate and measure real objects.
+- Standards, one line per code:
+  - 2.MD.A: measuring with the right tool (2.MD.1), measuring twice with two units (2.MD.2), estimating in inches, feet, centimeters and meters (2.MD.3), and how much longer (2.MD.4).
+  - 2.MD.B: length word problems within 100 (2.MD.5) and sums and differences shown on a number line made from the ruler (2.MD.6).
+- Not like: paperclip-ruler (grade 1 non-standard units), kitchen-lab (grade 3 volume and mass), lunch-line-data (measuring for a line plot).
+- Art: generated scenes (a small-town station, crates with real objects), so the items look their real size.
+- Proposed title: keep
+- Proposed concept line: Freight arrives at the station: estimate each item's length, measure it with a ruler, yardstick, meter stick or tape, compare units, and use the ruler as a number line to solve how-much-longer problems.
+- Flags: none

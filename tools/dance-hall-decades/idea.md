@@ -1,0 +1,21 @@
+# Dance Hall Decades (idea card)
+
+- Module: arts-6-8-dance-in-culture-and-history, grade 6-8. Codes: DA:Re7, DA:Re8, DA:Re9, DA:Cn10, DA:Cn11
+- Format / family: timeline / none. Fit: good
+- One idea: Walk through the doors of social dance halls across a century (a 1920s ballroom, a 1930s Harlem swing hall, a 1950s school sock hop, a 1970s roller rink, a 1980s block party, a present-day community hall), learn one pattern in each, and see who danced, who was kept out, and what the moves said about their time.
+- How it plays (solo student by default):
+  - First screen: a long hallway of doors, each with a year and a place.
+  - Core loop: in each hall, illustrated dancers show the core pattern (the swing-out, the twist, a line dance, an early hip hop party dance); the student marks its patterns (partnered or solo, counts, where the weight goes, improvised or set) and tries a basic step. A wall of people and facts tells who made the dance, where, and what was happening around it (segregated halls, radio, youth culture).
+  - The aha or the end state: a compare board of the halls by pattern; the student evaluates two dances with criteria and writes which one feels most like their own way of moving, and why.
+  - Class mode or extras (optional): a social dance from the student's own family or community added as the last door.
+- Standards, one line per code:
+  - DA:Re7: comparing movement patterns and partner relationships across the dances.
+  - DA:Re8: interpreting what each dance's moves communicate about its people and time.
+  - DA:Re9: evaluating two dances with stated criteria.
+  - DA:Cn10: relating one dance to the student's own movement preferences.
+  - DA:Cn11: how each dance grew from its community and era, told with the people who made it.
+- Not like: dance-styles-explorer (grade 9-12 concert and studio styles, critique); music-history-radio (music eras); family-dance-night (K-2).
+- Art: people (illustrated) animated from real dance reference; public domain photographs where available (Library of Congress, to check); music original to Curio Class, written in each era's style.
+- Proposed title: keep
+- Proposed concept line: Walk through social dance halls across a century, learn one pattern in each, see who made the dance and who was kept out, and judge two dances against your own way of moving.
+- Flags: sensitive (Black American and other community dance histories, segregation: a fresh review agent checks every hall, rule 5); needs a data source (dance histories, checked); too big (five codes; spec should cap the halls at six)

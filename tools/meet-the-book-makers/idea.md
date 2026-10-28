@@ -1,0 +1,23 @@
+# Meet the Book Makers (idea card)
+
+- Module: ela-k-all-about-books, grade k. Codes: RI.K.1, RI.K.2, RI.K.3, RI.K.4, RI.K.5, RI.K.6, RI.K.7
+- Format / family: mystery / none. Fit: good: each page is a small case (who made this part), and the big case is what the book is about.
+- One idea: Two book makers, an author with a pencil and an illustrator with a brush, have mixed up their work on a fact book about bees; the child sends each part to the maker who made it, tours the cover, title page and back cover, and solves the big case: what is this book mostly about, and which two details prove it.
+- How it plays (solo student by default):
+  - First screen: the two makers at a messy desk. "We made a book about bees, but who made what? Help us."
+  - Core loop: on each page the child taps a part (a sentence, a picture, a label) and sends it to the author or the illustrator, who say what their job is as they receive it. A tour finds the front cover, back cover and title page. Some pictures show more than the words; the child taps what the picture adds. One page links two ideas (bees visit flowers, flowers make seeds) and the child ties them with a string.
+  - The aha or the end state: the child picks the main topic from three possible covers and pins two details; the makers sign the finished book together.
+  - Class mode or extras (optional): a second book (a fact book about snow).
+- Standards, one line per code:
+  - RI.K.2: main topic and two key details (the big case).
+  - RI.K.3: tying two ideas together with a string.
+  - RI.K.5: the cover, back cover and title page tour.
+  - RI.K.6: sending parts to the author or illustrator and hearing their jobs.
+  - RI.K.7: tapping what the picture shows that the words do not.
+  - MOVE RI.K.1: question-cube already teaches asking and answering key-detail questions for kindergarten; drop it here.
+  - MOVE RI.K.4: vocabulary-jar (add RI.K.4 to its module; it already teaches asking about unknown words in read-alouds, and fact books can join).
+- Not like: Windblown Pages (pictures and words across story and fact books, grades k-2). Question Cube (question words). Big Question Chart (class research).
+- Art: people (illustrated) for the two makers; generated scenes for the bee book pages, because the book must look real.
+- Proposed title: keep
+- Proposed concept line: An author and an illustrator mixed up their bee book; send each part to the maker who made it, tour the cover and title page, tie two ideas together, and name the main topic with two details.
+- Flags: overlap risk (windblown-pages on author and illustrator roles; this one stays informational)

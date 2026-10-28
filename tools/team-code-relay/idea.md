@@ -1,0 +1,26 @@
+# Team Code Relay (idea card)
+
+- Module: computer-science-3-5-code-as-a-team, grade 3-5. Codes: E3-PRO-PD-05, E3-PRO-RD-07, E4-PRO-PD-04, E4-PRO-PD-05, E5-PRO-PD-05, E5-PRO-RD-07
+- Format / family: builder / none. Fit: good, because the team builds a game, joins it and tests it.
+- One idea: Build one part of a small catch-the-apple game (movement, score or sound) while two illustrated teammates build the others, snap the three parts together, and when the joined game breaks (two parts both use the arrow keys, one counts "points" and the other "score"), read each part, leave comments, choose between two fixes and give each teammate kind, useful feedback.
+- How it plays (solo student by default):
+  - First screen: a screen split into three lanes with name tags: Ana (movement), Theo (score), and You. "Build the sound part."
+  - Build: the student writes the sound blocks (play a pop when an apple is caught, a buzz when one is missed).
+  - Snap: press Join; the game runs and breaks in a way that shows on screen (the basket moves twice as fast, the score stays at 0).
+  - Read and comment: open each teammate's code, add a comment where you think the clash is; Ana and Theo reply in comments.
+  - Compare fixes: Ana and Theo each propose a fix; run both; pick one and say why.
+  - Feedback: choose kind, specific feedback from sentence starters ("I like how... Could you...?") and hear how each teammate takes it.
+  - The aha or the end state: the joined game works only after reading each other's code, agreeing on names, and talking it through.
+  - Class mode or extras (optional): two or three real students, each on their own lane, passing one device.
+- Standards, one line per code:
+  - E3-PRO-PD-05: build one part while teammates build theirs, then join the work.
+  - E3-PRO-RD-07: add comments that say what a block does and where the clash is.
+  - E4-PRO-PD-04: fold a teammate's part into your game and adjust it so it fits, with credit kept in the code.
+  - E4-PRO-PD-05: compare two teammates' fixes and agree on one.
+  - E5-PRO-PD-05: give and take feedback on teammates' code in a respectful, specific way.
+  - E5-PRO-RD-07: read uncommented code from a teammate, explain it in a comment, and check the explanation by running it.
+- Not like: game-remix (grade 5 remixing a whole game); code-tracer (grade 4 tracing values); sprint-board (grade 9-12 team sprints).
+- Art: people (illustrated) teammates; the game and blocks drawn in code.
+- Proposed title: keep
+- Proposed concept line: Build one part of a small game (movement, score or sound) while two teammates build the others, snap the parts together, and when the joined game breaks, read each part, leave comments, compare two fixes and trade feedback.
+- Flags: none

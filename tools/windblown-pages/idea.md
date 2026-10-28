@@ -1,0 +1,25 @@
+# Windblown Pages (idea card)
+
+- Module: ela-k-2-pictures-and-words-together, grade k-2. Codes: RL.K.6, RL.K.7, RL.1.7, RI.1.6, RI.1.7, RL.2.7, RI.2.7, RI.2.5
+- Format / family: showdown / text-features. Fit: good, with a solo default (the child matches alone; class teams are the extra).
+- One idea: A gust blows the pictures, captions and diagrams off the pages of a storybook and a fact book; putting each one back makes the child read both words and picture, and the last question on every page is what the picture told you that the words never said.
+- How it plays (solo student by default):
+  - First screen: a windy reading nook; pages flutter and the pictures land in a pile. "Help put the pictures back where they belong."
+  - Core loop: read (or hear) a page, drag the picture or diagram that fits, then tap one of two answers: who made this part (author or illustrator), and what the picture shows that the words do not (the character's face, the time of day, how the machine moves).
+  - The aha or the end state: one page in each book can be filled by two pictures; the child sees that each changes what the reader understands, and picks the one the words need.
+  - Class mode or extras (optional): team matching on the projector.
+  - Grade levels: K (author and illustrator jobs, picture and story), 1 (pictures that show characters, setting and key ideas; picture facts versus word facts), 2 (a diagram that explains how a machine or a frog's life cycle works; using pictures and words together to show understanding of a plot).
+- Standards, one line per code:
+  - RL.K.6: author or illustrator for each part, with their jobs explained.
+  - RL.K.7: how the picture and the story go together.
+  - RL.1.7: using the picture to describe characters, setting and events.
+  - RI.1.6: sorting facts learned from the picture from facts learned from the words.
+  - RI.1.7: using pictures and details to describe key ideas.
+  - RL.2.7: picking which picture the plot needs and saying why.
+  - RI.2.7: diagrams that clarify how something works.
+  - MOVE RI.2.5: text-feature-makeover (add a grade 2 level with bold words, subheadings, an index and an on-screen menu; this tool covers captions only).
+- Not like: Text Feature Makeover (headings, glossary, menus). Meet the Book Makers (kindergarten fact book, main topic). Alike and Different Books (comparing two books).
+- Art: generated scenes (two original books, story and fact, with diagrams), because the pictures are the content.
+- Proposed title: keep
+- Proposed concept line: A gust blows the pictures, captions and diagrams off a storybook and a fact book; put each back, say whether the author or illustrator made it, and name what the picture shows that the words do not.
+- Flags: none

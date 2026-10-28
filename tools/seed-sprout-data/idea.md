@@ -1,0 +1,21 @@
+# Seed Sprout Data (idea card)
+
+- Module: math-5-units-and-line-plots, grade 5. Codes: 5.MD.A, 5.MD.B
+- Format / family: data / none. Fit: change to lab, because the student measures, records and concludes from their own windowsill experiment rather than browsing a public data set.
+- One idea: Run a windowsill bean experiment: measure each seedling to the nearest 1/8 inch, stack the heights on a line plot, share the water fairly so every pot gets the same amount, and convert units to plan a month of care.
+- How it plays (solo student by default):
+  - First screen: a classroom windowsill with twelve pots, a ruler and a watering can. Mr. Tran: "Day 10. Measure every bean."
+  - Measuring: the student drags the ruler to each seedling and reads its height to the nearest 1/8 inch; each reading drops a dot on a line plot. The plants are simulated, and the tool says so.
+  - Line plot questions: what is the difference between the tallest and shortest? How much taller, in total, are all the 2 3/4 in seedlings than the 1 1/2 in ones?
+  - Fair water: the pots got uneven water (1/4, 1/2, 3/4 cup) recorded on a second line plot. If all that water were shared out equally, how much would each pot get? The student pours the total into one jug and splits it, using grade 5 fraction operations.
+  - Planning with units: 12 pots x 3/4 cup a day for a week, in cups, then quarts; the tallest bean in inches, then feet; the seed packet's spacing in centimeters and meters. Multi-step problems close the month.
+  - The aha or the end state: a line plot of fractions can be added, compared and shared out like any numbers, and units convert by the same tens or twelves every time.
+  - Class mode or extras (optional): grow real beans and enter the class's real heights (stays on the device).
+- Standards, one line per code:
+  - 5.MD.A (5.MD.1): converting among units within one system (cups, pints, quarts; inches and feet; cm and m) in multi-step watering and spacing problems.
+  - 5.MD.B (5.MD.2): line plots of measurements in halves, quarters and eighths, with fraction operations to compare heights and to share the water equally among pots.
+- Not like: unit-ladder (grade 4 conversion tables), skate-park-angles (grade 4 line plot of jump heights), box-plot-builder (grade 6 summary statistics).
+- Art: generated scenes (the windowsill, pots, seedlings at several heights); people (illustrated) for Mr. Tran; ruler and plots drawn in code for exact eighths.
+- Proposed title: keep
+- Proposed concept line: Run a windowsill bean experiment: measure seedlings to the nearest 1/8 inch, stack them on a line plot, share uneven water equally among pots, and convert cups to quarts and inches to feet to plan a month of care.
+- Flags: none

@@ -1,0 +1,21 @@
+# Storm Helpers (idea card)
+
+- Module: social-studies-2-storm-helpers, grade 2. Codes: D2.Geo.12.K-2, D4.6.K-2, D4.7.K-2, D4.3.K-2
+- Format / family: story / none. Fit: good
+- One idea: The morning after a big storm, walk one street to see who is affected and how (no power, a flooded road, a closed school), meet the people already helping near and far, then choose a way kids can help and make a poster that says why.
+- How it plays (solo student by default):
+  - First screen: a calm, sunny morning after the storm on Maple Street, branches down. "Let's walk the street. Tap the first house."
+  - Core loop: at each stop a neighbor tells what the storm did to them (Mr. Diaz's fridge is warm with no power, the bus can't cross the flooded road, the school is closed). Then the student meets helpers at three scales: neighbors with chainsaws (local), line crews from the next state (regional), and a donation truck sent from far away (global).
+  - Choose how to help: kid-sized actions (a card for a neighbor, a coin jar for a food bank, helping carry water, checking on an older neighbor with a grown-up). The student picks one and sees what it does.
+  - The aha or the end state: a poster maker where the student argues for their chosen help with a picture, a reason and a "you can help too" line; it can be printed.
+  - Class mode or extras (optional): class picks one action to really do.
+- Standards, one line per code:
+  - D2.Geo.12.K-2: each stop shows a different way the disaster affects people living there.
+  - D4.6.K-2: the walk names the problems and the people already working on them, local, regional and from far away.
+  - D4.7.K-2: the student identifies kid-sized actions and picks one.
+  - D4.3.K-2: the poster presents a short argument for the chosen help.
+- Not like: community-helpers-village (everyday roles, not a disaster); changemaker-cards (people across history).
+- Art: people (illustrated) and generated scenes, because care for the neighbors is the point.
+- Proposed title: keep
+- Proposed concept line: keep
+- Flags: sensitive (children who have lived through storms; calm tone, no scary visuals; teacher note per rule 8)

@@ -1,0 +1,22 @@
+# Class Election (idea card)
+
+- Module: social-studies-3-local-government-and-voting, grade 3. Codes: D2.Civ.1.3-5, D2.Civ.11.3-5, D2.Civ.2.3-5, D2.Civ.7.3-5
+- Format / family: showdown / election. Fit: change to roleplay, because a real class election needs a class; a solo student needs simulated candidates, and a class election alone can't teach the powers of government officials.
+- One idea: Two elections run side by side, one for class president and one for town mayor; check each candidate's promises against what that office can really do ("I'll make summer longer" is not a mayor's power), cast a secret ballot, and compare how each place makes decisions.
+- How it plays (solo student by default):
+  - First screen: two ballot boxes, one in a classroom and one in the town hall, each with candidate posters. "Read a promise. Can that job really do it?"
+  - Core loop: tap each promise and sort it: this office can do it, a different office does it (governor, school board, Congress), or nobody can. Each sort shows who really holds that power.
+  - Campaign moment: in the class race the student helps a candidate write a fair, honest speech (no put-downs, keep promises you can keep) and sees why that matters.
+  - Vote: secret ballot in both; results show turnout, and a "what if only half voted" replay shows how participation changes the outcome.
+  - The aha or the end state: a comparison card: how the class, the school, and the town each make decisions (vote, principal decides, council votes).
+  - Class mode or extras (optional): run a real class election with the projector ballot (the original idea).
+- Standards, one line per code:
+  - D2.Civ.1.3-5: promise sorting distinguishes the powers of officials at different levels.
+  - D2.Civ.11.3-5: the comparison card sets decision procedures in classroom, school and town side by side.
+  - D2.Civ.2.3-5: the turnout replay shows democracy depends on people taking part.
+  - D2.Civ.7.3-5: the class campaign applies civic virtues (honesty, respect) in a school setting.
+- Not like: campaign-manager (grade 12 strategy); town-council (grade 2 one decision); school-fix-it-meeting (deliberation, not elections).
+- Art: people (illustrated) candidates, because voters judge real-seeming people.
+- Proposed title: Promise Check (the tool is now two elections and their promises, not only a class vote)
+- Proposed concept line: A class president race and a town mayor race run side by side; check each promise against what that office can really do, help write an honest speech, vote by secret ballot, and compare how each place decides.
+- Flags: none

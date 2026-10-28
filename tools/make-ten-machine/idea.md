@@ -1,0 +1,23 @@
+# Make Ten Machine (idea card)
+
+- Module: math-1-fact-strategies, grade 1. Codes: 1.OA.B, 1.OA.C
+- Format / family: puzzle / none. Fit: good.
+- One idea: Facts roll in on a conveyor as counter trays, and each machine attachment (flip, make ten, double, think addition) reshapes a hard fact into an easy one you already know.
+- How it plays (solo student by default):
+  - First screen: a toy factory with a conveyor and one lever. "A fact is coming. Make it easy, then tap the answer."
+  - Core loop: 8 + 5 rolls in as two ten frames. The child slides 2 counters across to fill the 8 to ten; the tray now reads 10 + 3 and the answer 13 is easy. Each level unlocks one attachment:
+    - Flipper: turns 3 + 9 into 9 + 3 so you count on from the bigger number.
+    - Grouper: picks which two of three addends to add first (4 + 6 + 3: make the 10 first).
+    - Make ten and break ten: 13 - 4 becomes 13 - 3 - 1.
+    - Doubles mirror: 6 + 7 is 6 + 6 + 1.
+    - Think addition: 12 - 8 turns into 8 + ? = 12; the fact family card shows all four facts.
+  - The aha or the end state: the same fact solved three ways gives one answer; the machine shows the fastest route the child found.
+  - Class mode or extras (optional): a fluency lane with facts within 10 only, for quick practice.
+- Standards, one line per code:
+  - 1.OA.B: the flipper (commutative property), the grouper (associative property), and think addition (subtraction as an unknown-addend problem).
+  - 1.OA.C: counting on, make ten, break ten, doubles and fact families within 20, plus the fluency lane within 10.
+- Not like: fact-rally (grade 2 speed recall; here strategies are built step by step with counters), balance-the-beam (equal sign meaning), bus-stop (kindergarten stories).
+- Art: generated scenes (a bright toy factory) with counters and frames drawn in code, so the counters move exactly.
+- Proposed title: keep
+- Proposed concept line: Facts roll in on a conveyor as counter trays; use the machine's tools (make ten, flip, double, think addition) to turn a hard fact into an easy one, and see the fact family it belongs to.
+- Flags: overlap risk (fact-rally names the same strategies; keep this one about building them, that one about speed)

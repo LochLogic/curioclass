@@ -1,0 +1,25 @@
+# Question Jar (idea card)
+
+- Module: computer-science-k-2-asking-with-data, grade k-2. Codes: EK-DAT-DI-09, EK-DAT-DC-08, E1-DAT-DI-09, E1-DAT-DC-08, E1-DAT-IM-10, E2-DAT-DI-09, E2-DAT-DC-08, E2-DAT-IM-10
+- Format / family: sort / none. Fit: good, because sorting questions by how you find out is the core move.
+- One idea: Pull a question from the jar and sort it by how you could find out (count it, measure it, ask people) or as one no count can settle, then reword an opinion question so asking people can answer it, and see who a collecting plan forgets.
+- How it plays (solo student by default):
+  - First screen: a big glass jar of folded paper slips on a classroom shelf. "Tap the jar to pull a question."
+  - Core loop: the slip is read aloud ("How many windows are in our room?", "How tall is the bean plant?", "What snack do most of us like?", "Which color is the best?"); the student drags it to a bin with a picture: tally marks, a ruler, a speech bubble, or a heart for "just what I think".
+  - Reword rounds: "Which color is the best?" becomes "Which color do most of us like?" and moves from the heart to the speech bubble.
+  - Plan rounds (grades 1 and 2): choose number answers or word answers, and when and where to ask. The plan runs on a cartoon class of 20, and the result shows who was missed (asked only at recess, so the 3 kids at the reading table never answered).
+  - The aha or the end state: the same topic can be an opinion or a question data can answer, depending on the words, and a plan that skips people gets a wrong count.
+- Standards, one line per code:
+  - EK-DAT-DI-09: sort questions into ones data can answer and ones it can't.
+  - EK-DAT-DC-08: pick count, measure or ask for each question.
+  - E1-DAT-DI-09: reword opinion questions into data questions.
+  - E1-DAT-DC-08: choose number answers or word answers for a question.
+  - E1-DAT-IM-10: see the child the plan leaves out, and fix the plan.
+  - E2-DAT-DI-09: say what the finished count can and can't tell us.
+  - E2-DAT-DC-08: plan when, where and whom to ask before collecting.
+  - E2-DAT-IM-10: compare two plans and see whose answers each one loses.
+- Not like: wonder-wall (library K-2: look it up, ask an expert or try it); me-vs-the-counter (K, hand counts vs computer counts); data-table-builder (grade 4 tables and charts).
+- Art: generated scenes (jar, classroom, cartoon class of 20), bin icons drawn in code.
+- Proposed title: keep
+- Proposed concept line: keep
+- Flags: overlap risk (wonder-wall also sorts questions; this one sorts by how data is collected and who it misses)

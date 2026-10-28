@@ -1,0 +1,22 @@
+# Claim, Quote, Comment (idea card)
+
+- Module: ela-6-8-analysis-with-evidence-from-nonfiction, grades 6-8. Codes: RI.6.1, W.6.9, RI.7.1, W.7.9, RI.8.1, W.8.9
+- Format / family: builder / evidence. Fit: good; the product is an analysis paragraph and each part is tested as it is built.
+- One idea: The student builds an analysis paragraph about a nonfiction article in three blocks, a claim about the article, a quote or paraphrase that backs it, and a comment that explains how the evidence proves the claim, and a checker stops any quote dropped in with no comment or any comment that just repeats the quote, so they learn that evidence only proves something once you say how.
+- How it plays (solo student by default):
+  - First screen: a short article (how a city replaced its streetlights with LED lamps and what happened to insects and sleep) and three empty blocks: Claim, Quote, Comment.
+  - Core loop: the student writes a claim about the article (what the author shows or implies, not just a fact from it), highlights a line to quote or paraphrase, writes a lead-in ("According to the city engineer,"), and writes the comment. The checker flags: a quote that doesn't support the claim, a quote with no lead-in, a comment that restates the quote, a paraphrase that copies too closely, and a missing citation. Grade 7 asks for two pieces of evidence; grade 8 offers four possible quotes and asks the student to defend which is strongest.
+  - The aha or the end state: the paragraph is read back with each block in its color; the student sees the ratio of quote to comment and a model paragraph with the same claim.
+  - Class mode or extras (optional): a second article with an opposing view, to write about.
+- Standards, one line per code:
+  - RI.6.1: citing what the article says outright and what it implies.
+  - W.6.9: using that evidence to support a written analysis.
+  - RI.7.1: citing several pieces of evidence.
+  - W.7.9: writing the analysis with two pieces of evidence and comments.
+  - RI.8.1: choosing the strongest of four possible quotes and defending the choice.
+  - W.8.9: writing the analysis around the strongest evidence.
+- Not like: quote-picker (grade 4, choosing a quote for one's own opinion paragraph); theme-evidence-ladder (6-8, ranking evidence for a theme in fiction); cer-builder (6-8, claim-evidence-reasoning for a science experiment).
+- Art: generated scenes for each article topic (a street at night under old and new lamps, moths), drawn in code for the blocks.
+- Proposed title: keep
+- Proposed concept line: keep
+- Flags: needs a data source (LED streetlight effects, checked at spec); overlap risk (cer-builder in science uses the same three-part shape; keep this one on nonfiction texts and quoting)

@@ -1,0 +1,21 @@
+# Big Question Chart (idea card)
+
+- Module: ela-k-2-class-research-projects, grade k-2. Codes: W.K.7, W.K.8, W.1.7, W.1.8, W.2.7, W.2.8
+- Format / family: showdown / research. Fit: good, with a solo default: the child runs their own small research project with a guide (Rosa, a librarian); a shared class chart is the extra.
+- One idea: The child picks a big question (How do frogs grow?), reads three short picture-book pages and adds what they have seen themselves, and pins each fact under the part of the answer it helps, until the chart becomes a short report they read back.
+- How it plays (solo student by default):
+  - First screen: Rosa beside an empty chart with three questions (frogs, how bread is made, where rain goes). "Pick one. We'll answer it together."
+  - Core loop: the chart has parts (eggs, tadpole, froglet, frog). The child reads a page, picks a fact card, and pins it where it helps; a "Have you seen it?" card lets the child add their own observation (I saw tadpoles at the pond). A part with no facts stays gray and Rosa suggests which page to read again.
+  - The aha or the end state: the chart turns into a short report, one sentence per part, which the child reads aloud; Rosa shows where each sentence came from (a book or the child's own eyes).
+  - Class mode or extras (optional): a class chart where many children pin facts; a grade 2 observation log (watch a time-lapse of a bean sprouting and record what you see each day).
+  - Grade levels: K (picture facts, with help), 1 (short texts, a short shared report), 2 (several pages on one topic plus science observations).
+- Standards, one line per code:
+  - W.K.7 and W.1.7: taking part in a shared project and producing the report.
+  - W.K.8 and W.1.8: recalling experience ("Have you seen it?") and gathering facts from pages to answer the question.
+  - W.2.7: reading several books on one topic for a report, plus the observation log.
+  - W.2.8: recalling and gathering information to answer the question, sorted under parts.
+- Not like: Note Card Shuffle (grade 3 sibling, notes in own words). Question Cube (questions about one text). Meet the Book Makers (one book).
+- Art: generated scenes (three small picture-book sets) and people (illustrated) for Rosa, because young researchers need real-looking books.
+- Proposed title: keep
+- Proposed concept line: Pick a big question (How do frogs grow?), read short picture pages, add what you have seen yourself, and pin each fact under the part of the answer it helps; the chart becomes a short report you read back.
+- Flags: none (facts in the picture pages must be sourced)

@@ -1,0 +1,23 @@
+# Town Council (idea card)
+
+- Module: social-studies-2-community-helpers-and-government, grade 2. Codes: D2.Civ.1.K-2, D2.Civ.5.K-2, D2.Civ.11.K-2, D2.Civ.9.K-2, D2.Civ.10.K-2, D4.8.K-2
+- Format / family: roleplay / none. Fit: good for town government; the two "in the classroom" codes fit a classroom tool better.
+- One idea: Sit on the town council as the empty lot by the school becomes either a park or a parking lot; hear neighbors who see it differently, take your turn to speak at the meeting, and find out what the mayor, the council and the town staff each are allowed to decide.
+- How it plays (solo student by default):
+  - First screen: the council table, a name plate with the student's chosen name, and the empty lot on a big screen. "The mayor is opening the meeting. Tap the mayor to hear what the council does."
+  - Core loop: residents speak (a grandparent who wants benches, a shop owner who needs parking, a kid who wants a soccer field). After each, the student picks a reply that actually responds to what was said, waits for the gavel to speak, and notes how their own view compares with that speaker's.
+  - Who decides what: role cards show what the mayor, the council and the town staff (parks crew, traffic engineer) are responsible for, and what government is for (things we can't do alone).
+  - The aha or the end state: the vote. A compromise (a small park with ten parking spots) can win when nobody gets everything; the student hears who is glad and who is disappointed, and why.
+  - Class mode or extras (optional): class plays the residents.
+- Standards, one line per code:
+  - D2.Civ.1.K-2: role cards and the meeting show what people in authority are responsible for.
+  - D2.Civ.5.K-2: the mayor's opening and the lot problem explain what a town government is and does.
+  - D2.Civ.9.K-2: speaking in turn and choosing replies that respond to the last speaker.
+  - D2.Civ.10.K-2: after each resident, compare the student's view with theirs.
+  - MOVE D2.Civ.11.K-2: to playground-rules, where illustrated classmates make a classroom decision together.
+  - MOVE D4.8.K-2: to playground-rules, where the class listens, builds agreement and votes on a swing rule.
+- Not like: pool-repair-vote (grade 3 policy and paying for it); school-fix-it-meeting (school problem with surveys); community-helpers-village (roles, not decisions).
+- Art: people (illustrated), because the residents' faces carry their points of view.
+- Proposed title: keep
+- Proposed concept line: Sit on the town council as the empty lot becomes a park or a parking lot; hear neighbors who disagree, speak in turn, learn what the mayor and council each decide, and vote on a compromise.
+- Flags: none

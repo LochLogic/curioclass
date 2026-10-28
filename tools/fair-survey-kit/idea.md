@@ -1,0 +1,21 @@
+# Fair Survey Kit (idea card)
+
+- Module: computer-science-3-5-fair-surveys, grade 3-5. Codes: E3-DAT-IM-11, E3-DAT-DC-09, E4-DAT-DC-09, E5-DAT-DC-09
+- Format / family: data / none. Fit: good, because the student plans a collection, then checks and organizes the rows that come back.
+- One idea: Plan a survey for the student council about a new playground (who to ask, number or word answers, a "skip this" box), see the plan's answers arrive with blanks, misspellings and impossible values, then check, fix and sort them in a table before counting, and compare the count to what a fairer plan would have found.
+- How it plays (solo student by default):
+  - First screen: the student council's request: "Which playground should we build: a climbing dome, a swing circle or a garden path?"
+  - Plan: pick who to ask (only 5th graders at lunch, one class, or every grade), the answer type for each question (a pick from a list, a number, words), and whether there is a "skip this" choice.
+  - Answers arrive: the tool fills a 60-row table from the plan, with typical mistakes ("swngs", a blank, "grade 40", the same name twice).
+  - Check and sort: flag each problem, choose a fix, then sort by grade or choice; the bar chart updates as rows change.
+  - The aha or the end state: asking only 5th graders made the climbing dome win; with every grade asked, the swing circle wins, and the kindergartners who were never asked change the answer.
+- Standards, one line per code:
+  - E3-DAT-IM-11: see whose voice the first plan left out and how adding them changes the result.
+  - E3-DAT-DC-09: choose the answer type for each question and see how pick-lists prevent spelling mix-ups.
+  - E4-DAT-DC-09: find and fix the blanks, misspellings and impossible values before counting.
+  - E5-DAT-DC-09: sort and organize the cleaned table by grade and choice to answer the council's question.
+- Not like: lunch-survey-cleanup (grade 6-8 cleaning trade-offs and a written report); data-table-builder (grade 4 tables and charts from class data); catalog-column-rules (grade 9-12 data dictionaries).
+- Art: generated scenes (playground options, student council table); table and charts drawn in code.
+- Proposed title: keep
+- Proposed concept line: Plan a playground survey for the student council (who to ask, number or word answers, a skip box), then the answers arrive with blanks, misspellings and a "grade 40"; check, fix and sort them, and see whose voices changed the result.
+- Flags: overlap risk (lunch-survey-cleanup and catalog-column-rules also fix messy rows; this one is planning first, grade 3-5 depth)

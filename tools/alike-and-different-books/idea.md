@@ -1,0 +1,24 @@
+# Alike and Different Books (idea card)
+
+- Module: ela-k-2-comparing-two-books, grade k-2. Codes: RL.K.9, RI.K.9, RL.1.5, RI.1.9, RL.2.9, RI.2.9
+- Format / family: sort / none. Fit: good: the overlapping hoops are a sort, and the child must say why each card goes where it goes.
+- One idea: Two books open side by side and the child drops picture cards into two overlapping hoops (only this book, both, only that book), so they see how two books on one topic, or two tellings of one tale, are alike and different.
+- How it plays (solo student by default):
+  - First screen: two books on a table, a bear storybook and a bear fact book. "Are these the same kind of book? Let's find out."
+  - Core loop: read or hear both books, then sort cards into the hoops. Each pairing asks a different question: story or fact book (which one tells a story, which one teaches); two stories (what happened to each main character); two fact books on one topic (which important points they share); two versions of one tale (what changes, what stays).
+  - The aha or the end state: the middle of the hoops shows what makes a tale the same tale (Cinderella is always kind, always loses something, is always found), and the outer parts show what each teller made their own.
+  - Class mode or extras (optional): teacher picks pairings by grade.
+  - Grade levels: K (two stories, two fact books), 1 (story versus fact book; two fact books; two characters' adventures), 2 (two versions of one tale from different places; most important points of two fact books).
+- Standards, one line per code:
+  - RL.K.9: two familiar stories, what happened to each main character.
+  - RI.K.9: two fact books on one topic, alike and different.
+  - RL.1.5: the story-or-teaching-book round.
+  - RI.1.9: two fact books on one topic, with pictures and details.
+  - RL.2.9: two or three tellings of Cinderella (Perrault's France, the Grimms' Germany, Ye Xian from Tang China), same and different.
+  - RI.2.9: the most important points two fact books share and where they differ.
+  - Also takes RL.1.9 from who-said-that (comparing characters' adventures in two stories, grade 1).
+- Not like: Windblown Pages (pictures and words on one page). Moral of the Story (lessons of fables). Who Said That? (narrator).
+- Art: generated scenes (each book pair drawn in its own style; tale versions drawn with care for their setting), because the books must look different to be compared.
+- Proposed title: keep
+- Proposed concept line: Two books open side by side: a storybook and a fact book, two fact books on one topic, or one tale told in different lands. Drop picture cards into overlapping hoops to show what is alike and different.
+- Flags: sensitive (versions of a tale from other cultures: fresh review agent for accuracy and respect, rule 5)

@@ -1,0 +1,21 @@
+# Class Phone Call (idea card)
+
+- Module: ela-k-2-listening-and-asking-questions, grade k-2. Codes: SL.K.3, SL.1.1, SL.1.2, SL.1.3, SL.2.1, SL.2.2, SL.2.3
+- Format / family: roleplay / none. Fit: good: the child is on the phone with a caller character.
+- One idea: A friendly caller phones with news (a lost kite, a new baby goat) but leaves gaps; the child asks questions to fill them, answers the caller's quiz about the key details, and learns that good listeners ask, wait and build on what they heard.
+- How it plays (solo student by default):
+  - First screen: a ringing phone. "Answer it!" Farmer Abe: "Guess what happened at the farm today?"
+  - Core loop: the caller tells part of the news in a recorded voice, then pauses. The child picks a question to ask (built from a question word plus a topic, or from three choices), and only a question that fits gets a new detail. Some callers mumble a word, and the child asks them to repeat or explain it. Turn-taking: interrupting (tapping during the caller's turn) makes the caller stop and say "Let me finish."
+  - The aha or the end state: the caller quizzes the child on the key details; a call log shows which questions unlocked which facts, and which part the child still does not know.
+  - Class mode or extras (optional): the class takes turns asking; teacher picks callers.
+  - Grade levels: K (ask for help or a repeat), 1 (ask and answer about key details, build on the caller's words), 2 (recount the call, ask why and how to go deeper).
+- Standards, one line per code:
+  - SL.K.3: asking to repeat or explain a word.
+  - SL.1.1 and SL.2.1: taking turns, not interrupting, building on what the caller said.
+  - SL.1.2 and SL.2.2: answering the caller's quiz and recounting the key details.
+  - SL.1.3 and SL.2.3: asking questions to get information or to understand more deeply.
+- Not like: Turn and Talk Wheel (talk moves with a buddy). Question Cube (questions about a printed text). Show and Tell Spotlight (speaking, not listening).
+- Art: people (illustrated) for four or five callers, varied in age and background, because the caller's face makes the call feel real.
+- Proposed title: keep
+- Proposed concept line: keep
+- Flags: needs a data source (recorded voices for the callers)

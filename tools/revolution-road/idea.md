@@ -1,0 +1,21 @@
+# Revolution Road (idea card)
+
+- Module: social-studies-5-the-american-revolution, grade 5. Codes: D2.His.1.3-5, D2.His.4.3-5, D2.His.5.3-5, D2.His.14.3-5
+- Format / family: timeline / none. Fit: good
+- One idea: Walk the road from the end of the French and Indian War to the Treaty of Paris on four parallel lanes, Patriot, Loyalist, Native nations, and enslaved and free Black Americans, so the same event shows up differently in each lane, and see why people living at the same time chose different sides.
+- How it plays (solo student by default):
+  - First screen: a road with four lanes and a milestone: 1763. "Tap the milestone to see what each lane hears about it."
+  - Core loop: milestones (the Proclamation Line, the Stamp Act, the Boston Massacre, Lexington and Concord, Lord Dunmore's offer of freedom, the Declaration, Saratoga, Yorktown, the treaty). At each, the four lanes show what was happening to those people at the same time, and the student links causes to effects across milestones.
+  - Why that side?: at four points the student reads a real person's situation (a Boston printer, a Loyalist farmer, an Oneida leader, a man escaping slavery to join the British) and explains their choice from their context.
+  - The aha or the end state: the treaty milestone shows what each lane gained or lost, so independence meant different things to different people.
+  - Class mode or extras (optional): assign lanes to groups.
+- Standards, one line per code:
+  - D2.His.1.3-5: parallel lanes sequence events and compare what happened at the same time.
+  - D2.His.4.3-5: the four lanes show why groups in the same period disagreed.
+  - D2.His.5.3-5: "Why that side?" ties each person's choice to their context.
+  - D2.His.14.3-5: causes linked to effects across milestones.
+- Not like: history-article-review (reviewing articles about the Revolution); rights-match (Bill of Rights).
+- Art: public domain (period prints and maps, items chosen and checked at spec) and people (illustrated) for individuals.
+- Proposed title: keep
+- Proposed concept line: Walk from 1763 to the Treaty of Paris on four parallel lanes (Patriot, Loyalist, Native nations, enslaved and free Black Americans), link causes to effects, and explain why people living at the same time chose different sides.
+- Flags: sensitive (slavery and Native nations; fresh review agent per rule 5); overlap risk (history-article-review, also grade 5 Revolution)

@@ -1,0 +1,22 @@
+# Family Tech Vote (idea card)
+
+- Module: computer-science-3-5-new-tech-yes-or-no, grade 3-5. Codes: E3-SOC-ET-17, E4-DAT-IM-11, E4-SYS-IM-15, E5-SOC-ET-17, E5-DAT-IM-11
+- Format / family: roleplay / none. Fit: good, because the student takes each family member's seat at a kitchen-table vote.
+- One idea: A family votes on one new gadget (a smart speaker, a fitness watch or a doorbell camera); sit in each family member's seat and the next-door neighbor's, flip cards for what it helps, what data it collects and where that data goes, what it costs the planet and who it leaves out, then cast and explain the deciding vote.
+- How it plays (solo student by default):
+  - First screen: a kitchen table with five chairs and a gadget box in the middle. "Pick the gadget the family is voting on."
+  - Core loop: tap a chair to sit as Grandpa (lives alone, likes the camera for safety), the teen (doesn't want the watch tracking her), a parent who works nights, the little brother, and the neighbor whose sidewalk the camera also films. Each seat flips four cards: helps, data, planet, left out.
+  - Data card: shows what the gadget records, how often, and that it is stored on the company's computers, not just at home.
+  - The vote: each seat's lean appears on a tally; the student casts the deciding vote with a reason built from cards they flipped.
+  - The aha or the end state: the same gadget is a yes for one person and a no for another, and the data reaches people who never voted.
+- Standards, one line per code:
+  - E3-SOC-ET-17: weigh benefits and harms of a new device for different family members.
+  - E4-DAT-IM-11: read the data card and say who could see or use the data.
+  - E4-SYS-IM-15: see how the device changes the home's daily routine and the planet (power always on, a short life before it is replaced).
+  - E5-SOC-ET-17: explain the deciding vote with at least one benefit and one harm.
+  - E5-DAT-IM-11: decide one setting (record less, keep it on the device) and see how it changes the data card.
+- Not like: data-policy-council (grade 9-12 privacy law); design-for-a-friend (grade 5 user interviews); algorithm-audit (grade 6-8 bias).
+- Art: people (illustrated) for a multigenerational family and the neighbor, generic devices with no brand marks.
+- Proposed title: keep
+- Proposed concept line: keep
+- Flags: none

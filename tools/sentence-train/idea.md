@@ -1,0 +1,21 @@
+# Sentence Train (idea card)
+
+- Module: ela-k-words-and-sentences, grade k. Codes: L.K.1, L.K.2, L.K.4, L.K.5, L.K.6
+- Format / family: builder / sentence-train. Fit: good for sentence building; not for the word-meaning codes (see MOVE lines).
+- One idea: The child couples word cars into a train (a naming car, an action car, cargo cars), puts a capital engine on the front and an end-mark caboose on the back, and the train only leaves when the sentence works, so they learn what a sentence needs.
+- How it plays (solo student by default):
+  - First screen: an empty track and a station voice: "This train needs a who and a what-they-do. Couple two cars."
+  - Core loop: build a sentence from picture-backed word cars; the engine checks the capital (and the word I), the spaces between cars and the caboose (period or question mark). Then grow it: add a plural car (one dog, two dogs; one box, two boxes), a where car (on, under, by) that moves the cargo in the picture, and question cars (who, what, where) that turn the caboose into a question mark. Spelling yard: spell a cargo word by sound, one letter car per sound.
+  - The aha or the end state: the child builds a long sentence from a short one ("Dogs run." becomes "Two dogs run under the bridge.") and the train carries the whole picture across the screen.
+  - Class mode or extras (optional): teacher word sets; read-aloud of every finished train.
+- Standards, one line per code:
+  - L.K.1: noun and verb cars, plural -s and -es, question words, where words (prepositions), growing a sentence; printing letters (1a) belongs on letter-lanterns as a tracing step.
+  - L.K.2: capital engine and the word I, end-mark caboose, one letter per sound in the spelling yard, simple phonetic spelling.
+  - MOVE L.K.4: new tool idea: a kindergarten word-meaning yard (multiple-meaning words like duck, endings like -ed and -s, re- and un-) together with L.K.5.
+  - MOVE L.K.5: same new tool: sort pictures into categories, pair opposites, connect words to real life, act out shades of verbs (walk, march, strut).
+  - MOVE L.K.6: vocabulary-jar (add L.K.6 to its module; it already has children reuse words gathered from read-alouds).
+- Not like: First, Next, Last (grade 1 sibling, ordering sentences into a piece). Big Book Pointer (reading print). Owl Wants More (adding details to a story).
+- Art: generated scenes (a storybook rail yard and picture cargo), because the cargo pictures carry the meaning of each word.
+- Proposed title: keep
+- Proposed concept line: Couple word cars into a sentence train with a capital engine and an end-mark caboose; add plural cars, where cars and question cars, and spell cargo by sound. The train only leaves when the sentence works.
+- Flags: too big as listed (resolved by the three MOVE lines); new tool needed for L.K.4 and L.K.5

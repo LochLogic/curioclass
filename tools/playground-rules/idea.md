@@ -1,0 +1,22 @@
+# Playground Rules (idea card)
+
+- Module: social-studies-k-rules-and-responsibilities, grade k. Codes: D2.Civ.3.K-2, D2.Civ.7.K-2, D2.Civ.12.K-2, D4.1.K-2 (plus D2.Civ.11.K-2 and D4.8.K-2 if moved here from town-council)
+- Format / family: showdown / none. Fit: change to builder, because a K student alone must be able to hang a rule and see what it changes; the class vote becomes the class-mode extra.
+- One idea: Hang rule signs on a busy playground with no rules and watch the scene replay calmer or messier, so a kindergartner sees that a rule exists to fix a real problem, then decide a new rule with illustrated classmates by listening and voting.
+- How it plays (solo student by default):
+  - First screen: a lively playground plays with no rules: kids bump on the slide, the swing line is a crowd, a ball rolls toward the street. Narration names the next action: "Tap a problem you see."
+  - Core loop: tap a problem, pick one of three rule signs (one helps, one is silly, one fixes a different spot), hang it, and the scene replays. The student hears what changed and why the rule helps everyone, not just one kid.
+  - Deciding together: four illustrated classmates each want a different swing rule; the student listens to each, picks the one most kids can live with, and the group votes. A short moment asks what a good friend does when their rule loses.
+  - The aha or the end state: tap any hung sign and finish "We need this rule because ..." with picture-reason cards, building a one-sentence argument.
+  - Class mode or extras (optional): projector vote with real hands; teacher can rename rules to match the school.
+- Standards, one line per code:
+  - D2.Civ.3.K-2: each rule is tied to the problem it solves, inside school (slide) and outside (ball near the street).
+  - D2.Civ.7.K-2: virtue moments: taking turns, helping a kid who fell, accepting a lost vote.
+  - D2.Civ.12.K-2: the replay shows how a rule works in a shared space and what happens when one kid breaks it.
+  - D4.1.K-2: the student argues for a rule with reason cards.
+  - (incoming) D2.Civ.11.K-2 and D4.8.K-2: the classmates decide the swing rule by listening, finding agreement, and voting.
+- Not like: town-council (town government deciding, not classroom rules); school-fix-it-meeting (grade 3 survey and deliberation).
+- Art: generated scenes (one playground in many states) plus illustrated kids, because the replay must read instantly for a five-year-old.
+- Proposed title: keep
+- Proposed concept line: Hang rule signs on a busy playground with no rules and watch the scene replay calmer; give each rule its reason, then decide a new swing rule with illustrated classmates by listening and voting.
+- Flags: none

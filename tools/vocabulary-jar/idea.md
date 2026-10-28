@@ -1,0 +1,22 @@
+# Vocabulary Jar (idea card)
+
+- Module: ela-k-2-new-words-from-read-alouds, grade k-2. Codes: RL.K.4, RI.1.4, RI.2.4, L.2.6 (plus RI.K.4 and L.K.6 if the MOVEs on meet-the-book-makers and sentence-train are applied)
+- Format / family: showdown / none. Fit: good, with a solo default: one child and their own jar; a shared class jar is the extra.
+- One idea: During a read-aloud the child taps any word they wonder about, works it out from the picture and nearby words, and drops it in a jar; later, describing new pictures, the jar sparkles each time the child chooses one of their own jar words, so new words become words they use.
+- How it plays (solo student by default):
+  - First screen: an empty glass jar and a storybook. "If you hear a word you don't know, tap it. Let's catch it."
+  - Core loop: tap a word (gigantic); clue buttons light the picture and the nearby words; the child picks a meaning from three pictures, then hears the word in a new sentence. The word drops into the jar as a glowing marble. Fact books (a fact page about volcanoes) mix in for science and history words.
+  - The aha or the end state: a "Describe it" round shows new pictures and offers word choices; when the child picks a jar word, the marble sparkles and the jar fills, and the child sees which words they now own.
+  - Class mode or extras (optional): class jar on the projector; jar saved on this device only, with a note saying so.
+  - Grade levels: K (picture clues, stories and fact books), 1 (clues in text), 2 (topic words in science and history texts, describing words including adjectives and adverbs).
+- Standards, one line per code:
+  - RL.K.4: tapping and asking about unknown words in stories.
+  - RI.1.4: working out word meanings in a fact text.
+  - RI.2.4: topic words in grade 2 science and history texts.
+  - L.2.6: the "Describe it" round with adjectives and adverbs from the jar.
+  - If moved here: RI.K.4 (asking about words in kindergarten fact books) and L.K.6 (using words gained from reading in the Describe it round).
+- Not like: Context Clue Hunt (grade 1 silly-word mysteries with affixes and categories). Word Lab (grade 2 prefixes and compound words). Owl Wants More (adding details to writing).
+- Art: generated scenes (read-aloud pages and describe-it pictures), because picture clues must be real clues.
+- Proposed title: keep
+- Proposed concept line: During a read-aloud, tap any word you wonder about, work it out from the picture and nearby words, and drop it in your jar; later the jar sparkles each time you choose that word to describe a new picture.
+- Flags: none

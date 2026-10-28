@@ -1,0 +1,22 @@
+# Page, Audio, Screen (idea card)
+
+- Module: ela-6-8-text-audio-and-film-versions, grades 6-8. Codes: RL.6.7, RI.6.7, RL.7.7, RI.7.7, RL.8.7, RI.8.7
+- Format / family: explorer / none. Fit: good; three versions of one piece side by side, each with layers to inspect.
+- One idea: A book club has to recommend one version of a story scene and one version of a news explainer (the page, an audio reading, or a film storyboard), and the student marks what each version adds, cuts or changes and what only that medium can do (a pause, a close-up, a sound), so they learn that each medium makes its audience notice different things.
+- How it plays (solo student by default):
+  - First screen: the club's request card: "Recommend the best version of this scene for a listener on a long car ride" (or "for someone who has never seen a lighthouse"). Three tabs: Page, Audio, Screen.
+  - Core loop: the student reads a short public-domain story scene, listens to two produced readings with different delivery (one slow and hushed, one brisk), and steps through a storyboard of the same scene. They pin marks: added (the music under the reading), cut (a paragraph of description the film drops), changed (the storyboard shows a face the text only hints at), and unique (a camera close-up, a pause in the reading). For the informational side, the same topic (how a lighthouse lens works) comes as article, narrated audio and diagram animation.
+  - The aha or the end state: each request card has a different purpose (build suspense, explain a process, set a mood), and the student's recommendation must cite their marks; at grade 8 they judge whether the storyboard stays faithful to the story or departs from it, and whether the director's change was worth it.
+  - Class mode or extras (optional): a class tally of recommendations per purpose.
+- Standards, one line per code:
+  - RL.6.7: comparing reading the scene to listening and viewing, and what each lets the audience see or hear.
+  - RI.6.7: building one understanding of the lighthouse from article, audio and diagram.
+  - RL.7.7: marking techniques unique to each medium (sound, lighting, camera focus) and their effect.
+  - RI.7.7: how the narrated version's delivery changes the impact of the same words.
+  - RL.8.7: judging where the storyboard stays faithful or departs, and the choices behind it.
+  - RI.8.7: weighing the advantages and limits of each medium for explaining the lighthouse.
+- Not like: page-to-screen (grade 10, shooting a story shot by shot); docent-tour-talk (6-8, presenting); podcast-listening-club (6-8, a speaker's claims).
+- Art: generated scenes for the storyboard frames, drawn in code for the lighthouse lens animation.
+- Proposed title: keep
+- Proposed concept line: A book club must recommend one version of a story scene and of a news explainer (page, audio reading or film storyboard); mark what each adds, cuts or changes and what only that medium can do, then match a version to each purpose.
+- Flags: needs voice production (two recorded or carefully produced readings with different delivery); needs a data source (public-domain scene)

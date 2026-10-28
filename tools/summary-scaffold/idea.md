@@ -1,0 +1,21 @@
+# Summary Scaffold (idea card)
+
+- Module: eld-6-8-summarizing-and-citing, grade 6-8. Codes: WIDA.ELD-2, WIDA.Inform, RI.6.2, RI.7.2, RI.8.2
+- Format / family: builder / research. Fit: good: the student builds a summary and tests it against the text; the research family's source-linking engine fits, though summarizing is the focus.
+- One idea: Summarize a short informational article for a classmate who has not read it: pick the central idea (two at grade 7), link each supporting idea to the lines that develop it, and write the summary with citation frames (According to..., The author explains...), while the tool flags opinion words, copied strings and missing key ideas.
+- How it plays (solo student by default):
+  - First screen: a short article (read-aloud on, key words glossed in English) and a note: "I missed this one. What's it about?"
+  - Core loop: step 1, the student marks the central idea and supporting ideas in the text (Help shows candidate sentences at Lots). Step 2, an organizer: central idea in the middle, supporting ideas around it, each linked to its lines. Step 3, the summary from frames and word banks. Checks: a word like "amazing" or "I think" is flagged as not objective; a string of five or more words copied from the text is flagged for paraphrase or quote marks; a supporting idea left out shows as an empty branch.
+  - The aha or the end state: the summary next to the article, every sentence threaded to its source lines, and the classmate's reply tells the student what they now know.
+  - Class mode or extras (optional): grade setting: 6 (one central idea, objective summary), 7 (two central ideas and how they develop), 8 (how supporting ideas relate to the central idea).
+- Standards, one line per code:
+  - WIDA.ELD-2: the language of language arts: reporting what an author says with academic verbs and citation frames.
+  - WIDA.Inform: informing a reader concisely and objectively.
+  - RI.6.2: finding the central idea, how details convey it, and writing a summary free of personal opinion.
+  - RI.7.2: finding two central ideas and analyzing their development, then summarizing objectively.
+  - RI.8.2: finding the central idea, its relationship to supporting ideas, and summarizing objectively.
+- Not like: research-notebook (grade 9 synthesis of many sources); fact-fusion (combining three sources); main-idea-pinboard (grade 3-5 main idea).
+- Art: drawn in code for the organizer; illustrated classmate (people, illustrated).
+- Proposed title: keep
+- Proposed concept line: Summarize a short article for a classmate who missed it; mark the central idea and supporting ideas, link each to its lines, and write with citation frames while the tool flags opinion words, copied strings and missing ideas.
+- Flags: home-language glossary matters for newcomer readers (open question, not decided); overlap risk with ELA grade 6-8 RI.x.2 summary tools (audit).

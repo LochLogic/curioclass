@@ -1,0 +1,22 @@
+# Turn and Talk Wheel (idea card)
+
+- Module: ela-k-talk-it-over, grade k. Codes: SL.K.1, SL.K.2, SL.K.3, SL.K.4, SL.K.5, SL.K.6
+- Format / family: showdown / none. Fit: good, with a solo default: an illustrated talk buddy takes the partner turn, and partner pairs in a class are the extra.
+- One idea: A wheel spins a picture and a talk move, and the child holds a short back-and-forth with a talk buddy who listens, takes a turn and waits, so the child practices the rules of a conversation: take turns, stay on the topic, ask to hear more, and speak up so you can be heard.
+- How it plays (solo student by default):
+  - First screen: the talk buddy (Pip) beside a big wheel. "Spin, and we'll talk about it. You go first."
+  - Core loop: the wheel lands on a picture (a muddy dog) and a move (tell more, ask a question, say what you think). Pip says something and stops; the child answers aloud while a voice meter shows "loud enough for Pip". Then the child taps which move they used, and Pip answers back on the same topic. Read-aloud spins: Pip reads a tiny story, then asks the child a question about it, and the child asks Pip one back.
+  - The aha or the end state: a talk chain shows each turn as a link (you, Pip, you, Pip); a chain that stays on the picture's topic for four links earns a long chain.
+  - Class mode or extras (optional): partner mode with a turn timer; teacher picture sets. On screen: the microphone is used only for the volume meter, nothing is recorded or sent.
+- Standards, one line per code:
+  - SL.K.1: turn-taking with Pip, listening, and staying on topic for several turns (the talk chain).
+  - SL.K.2: read-aloud spins where the child answers and asks about a story read aloud.
+  - SL.K.6: speaking audibly (volume meter) and saying a whole thought.
+  - MOVE SL.K.3: class-phone-call already teaches asking questions to get help, information or clarity; drop it here.
+  - MOVE SL.K.4: show-and-tell-spotlight already teaches describing familiar things with details; drop it here.
+  - MOVE SL.K.5: show-and-tell-spotlight (add SL.K.5 to its module; it already adds a drawing to a description).
+- Not like: Show and Tell Spotlight (describing an object). Class Phone Call (questioning a speaker). Socratic Seminar Board (grade 10 talk map).
+- Art: people (illustrated) for Pip, generated scenes for the wheel pictures, because a young child talks more easily to a friendly face.
+- Proposed title: keep
+- Proposed concept line: Spin a picture and a talk move, then hold a short back-and-forth with Pip the talk buddy: take turns, stay on topic, ask to hear more, and speak loud enough to be heard.
+- Flags: none (microphone used for a volume meter only; privacy line required)

@@ -1,0 +1,21 @@
+# Adventure Outline Cards (idea card)
+
+- Module: computer-science-3-5-plan-it-before-you-code-it, grade 3-5. Codes: E3-ALG-PS-01, E4-ALG-PS-01, E5-ALG-PS-01
+- Format / family: story / none. Fit: change to builder, because the student builds an algorithm outline and tests it with a reader token; the story is the content, not the play.
+- One idea: Plan a choose-your-own-adventure as an algorithm on index cards (numbered steps, an event that starts it, a repeat, an if-then fork, and at grade 5 a coin counter), then send a reader token down every path to find dead ends, endless loops and coins that never add up.
+- How it plays (solo student by default):
+  - First screen: a corkboard, a stack of blank index cards and a story starter: "A fox wants to cross the river before dark."
+  - Grade 3: write numbered steps in words with one event ("when the sun sets...") and test that the token reaches the end.
+  - Grade 4: add a repeat ("knock on the door until someone answers") and an if-then fork ("if the bridge is out, go to card 7"); the token walks each branch.
+  - Grade 5: redraw the outline as a card diagram with arrows and a coin counter that changes along the way ("if coins are 3 or more, buy the boat ride").
+  - Test: the token runs every path; cards light red where it gets stuck (a fork with no card 7, a repeat that never stops, a counter that can never reach 3).
+  - The aha or the end state: the outline is an algorithm; testing every path before writing a single line of code catches the bugs.
+- Standards, one line per code:
+  - E3-ALG-PS-01: write a plan as ordered steps with an event and test it with the token.
+  - E4-ALG-PS-01: add a loop and a decision to the plan and test every branch.
+  - E5-ALG-PS-01: draw the plan as a diagram with a variable (the coin counter) and fix any path the token cannot finish.
+- Not like: chore-flowcharts (grade 6-8 flowcharts into pseudocode); traffic-light-coder (grade 3 if-then rules in code); internet-journey (a story about packets).
+- Art: generated scenes for the corkboard and story art; cards, arrows and token drawn in code.
+- Proposed title: keep
+- Proposed concept line: Plan a choose-your-own-adventure as index-card steps with an event, a repeat, an if-then fork and (grade 5) a coin counter, then send a reader token down every path to find dead ends and loops that never stop.
+- Flags: none (format change from story to builder)

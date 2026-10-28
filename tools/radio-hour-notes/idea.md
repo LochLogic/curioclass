@@ -1,0 +1,22 @@
+# Radio Hour Notes (idea card)
+
+- Module: ela-3-5-listening-for-main-points-and-reasons, grade 3-5. Codes: SL.3.2, SL.3.3, SL.4.2, SL.4.3, SL.5.2, SL.5.3
+- Format / family: sort / none. Fit: good.
+- One idea: The student is the note-taker at a kids' radio station: they listen to segments, pause to jot the main points, call in with a question, then sort a guest's claims by what holds them up (a reason, evidence, or nothing at all), so they learn that listening well means catching both what a speaker says and how they back it up.
+- How it plays (solo student by default):
+  - First screen: a studio with an ON AIR light and a notepad. "Today on Radio Hour: a field trip report and a guest who wants a longer recess. Press play, and pause when you hear something important."
+  - Core loop: Segment 1 (field trip report): pause and pick or write the main points, then check against the host's recap. Call-in break: choose the best follow-up question for the reporter from four (one already answered, one off topic, one that asks for more) and hear the answer. Segment 2 (the guest): drop each of the guest's claims into bins: backed by a reason, backed by evidence, not backed. The show's web page adds a picture and a small chart the guest mentions, so the student puts the numbers into their own words.
+  - The aha or the end state: the host reads the guest's summary from the student's sorted notes; an unbacked claim the student believed is played again so they hear how little held it up.
+  - Class mode or extras (optional): transcript toggle for students who need it, off by default to keep it a listening task.
+- Standards, one line per code:
+  - SL.3.2: main ideas and details of the field trip segment, checked against the host's recap.
+  - SL.3.3: the call-in break: choosing and hearing answers to questions that ask for more.
+  - SL.4.2: paraphrasing a segment and the show page's picture and chart in the student's own words.
+  - SL.4.3: naming the reasons and evidence the guest gives for each point.
+  - SL.5.2: a summary of each segment built from the notes.
+  - SL.5.3: summarizing the guest's points and explaining which reasons and evidence support each.
+- Not like: claim-court (grade 5, an author's written claims on trial); class-phone-call (k-2 questions on a call); main-idea-pinboard (main idea in written text).
+- Art: people (illustrated) for the host, reporter and guest; recorded voices for the show, because the tool is a listening task.
+- Proposed title: keep
+- Proposed concept line: Be the note-taker at a kids' radio show: pause to jot main points from a field trip report, call in with a question, then sort a recess guest's claims into backed by reasons, backed by evidence, or not backed.
+- Flags: needs a data source (voiced audio for every segment, with grade-band versions)

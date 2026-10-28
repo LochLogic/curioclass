@@ -1,0 +1,21 @@
+# Gene Pool (idea card)
+
+- Module: science-8-reproduction-and-heredity, grade 8. Codes: MS-LS1-4, MS-LS1-5, MS-LS3-1, MS-LS3-2, MS-LS4-5
+- Format / family: simulator / genetics. Fit: good for four of the five codes; real plants instead of fantasy creatures (rule 9)
+- One idea: Grow strawberries, which make copies of themselves by runners and new mixes by seeds, to see that clones share genes while seedlings vary, that sun and water change how big a plant grows, that a mutation can change a protein and a trait, and that breeders choose parents to bring out the fruit they want.
+- How it plays (solo student by default):
+  - First screen: a garden bed with one mother plant and rows with their own sun and water settings.
+  - Core loop: plant runner babies in sunny and shady rows; they have identical genes but grow to different sizes, so the environment shows. Let flowers be pollinated and plant the seeds: every seedling's gene view shows a new mix of the two parents' copies. A mutation event changes one letter in a pigment gene; the protein view shows its shape change and the fruit turns pale, and the student judges whether that is harmful, helpful or neutral in this garden.
+  - Breeding rounds: choose which plants to cross over several generations to get bigger, sweeter berries; an info card explains how genetic engineering differs from choosing parents.
+  - The aha or the end state: genes and environment together make the plant; seeds mix, runners copy; people have steered traits for thousands of years.
+- Standards, one line per code:
+  - MS-LS1-5: identical runner clones in different rows show environmental and genetic factors in growth.
+  - MS-LS3-1: the mutation event links a gene change to a protein change to a trait that may be harmful, helpful or neutral.
+  - MS-LS3-2: runners against seeds, with the gene view, show identical copies from asexual reproduction and variation from sexual reproduction.
+  - MS-LS4-5: breeding rounds and the engineering card cover technologies that change inherited traits.
+  - MOVE MS-LS1-4: new tool: "Flower Lure" (grade 8), design a flower's color, scent, shape and nectar to win visits from a chosen pollinator, then compare animal behaviors (songs, nest building, guarding young) that raise the odds of reproducing.
+- Not like: punnett-predictor (grade 9 probability); protein-factory (grade 9 codons); bug-hunt (natural selection).
+- Art: generated scenes of the garden and real-looking berries; gene and protein views drawn in code.
+- Proposed title: keep
+- Proposed concept line: Grow strawberries by runners and by seeds: clones match while seedlings vary, sun and water change growth, a mutation changes a protein and a trait, then cross plants like a breeder to bring out bigger, sweeter fruit.
+- Flags: needs a data source (strawberry genetics and the pigment gene example, checked)

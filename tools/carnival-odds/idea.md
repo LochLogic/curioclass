@@ -1,0 +1,21 @@
+# Carnival Odds (idea card)
+
+- Module: math-7-probability, grade 7. Codes: 7.SP.C
+- Format / family: simulator / probability. Fit: good.
+- One idea: Inspect the games at a school carnival for fairness: predict each game's chance of winning, run it ten times and then ten thousand, and watch the experiment drift toward the model, until the student can catch a rigged wheel and design a fair game of their own.
+- How it plays (solo student by default):
+  - First screen: a carnival midway with five booths (a spinner, a dice toss, a duck pond, a two-coin flip, a ring toss) and a fairness inspector badge. The organizer, Ms. Adeyemi: "Parents say the dice game never pays. Check it."
+  - Likelihood rounds: place each booth's chance on a 0 to 1 line (impossible, unlikely, even, likely, certain) before playing.
+  - Run rounds: play 10 times, then 100, then 10,000 at the press of a button; a relative-frequency line settles near the model. The student predicts about how many wins in 300 plays.
+  - Model rounds: build a probability model (equal chances for a fair spinner, unequal for the duck pond with more blue ducks), compare to the runs, and explain a mismatch (the bent spinner is rigged).
+  - Compound rounds: two dice summing to 7, two coins both heads, a spinner then a coin; the student makes an organized list, a table or a tree, and checks with a simulation.
+  - Design round: the student designs a simulation for a question (if 40% of people have type O blood, how often do 4 of 10 donors?) and a fair booth for next year.
+  - The aha or the end state: a few plays can fool you, many plays settle near the model, and a model can catch a cheat.
+  - Class mode or extras (optional): class pools runs on the projector.
+- Standards, one line per code:
+  - 7.SP.C: probability from 0 to 1 as likelihood (7.SP.5); long-run relative frequency from running booths, used to predict (7.SP.6); uniform and non-uniform models compared with results and discrepancies explained (7.SP.7); compound events with lists, tables, trees and designed simulations (7.SP.8).
+- Not like: jellybean-jar (grade 7 sampling a population), game-show-strategist (grade 12 expected value), medical-test-paradox (grade 10 conditional probability).
+- Art: generated scenes (the school carnival midway); people (illustrated) for Ms. Adeyemi and visitors; spinners, dice and charts drawn in code.
+- Proposed title: keep
+- Proposed concept line: Inspect a school carnival's games for fairness: place each chance from 0 to 1, run booths ten and ten thousand times, compare results to the model to catch a rigged wheel, and use trees and simulations for two-step games.
+- Flags: none (prizes are tickets, never money; no betting framing)

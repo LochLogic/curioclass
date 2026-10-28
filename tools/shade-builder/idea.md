@@ -1,0 +1,22 @@
+# Shade Builder (idea card)
+
+- Module: science-k-sunlight-warms-the-earth, grade k. Codes: K-PS3-1, K-PS3-2, K-2-ETS1-1, K-2-ETS1-2, K-2-ETS1-3
+- Format / family: builder / none. Fit: good
+- One idea: On a hot summer day at the playground, tap the sand, the slide and the grass in sun and in shade to feel which got warm, then build a shade over the sandbox from umbrellas, a tree, a tent or a sail, and test two designs to see which keeps more of the sandbox cool.
+- How it plays (solo student by default):
+  - First screen: a sunny playground in the morning; a child, Mila, says the sandbox gets too hot to play in by lunch. "Tap the sand to feel it."
+  - Observe: tap spots in sun and in shade; a hand shows a face (cool, warm, ouch) and a heat camera view colors the ground as time runs from morning to noon.
+  - Core loop: ask Mila questions to set the problem (when is it hot, where do kids sit), sketch a plan, then place parts; run the sun from morning to afternoon and watch the shade move while the heat camera counts the sandbox squares that stayed cool.
+  - The aha or the end state: a second design runs beside the first, a picture chart compares them (cool squares, whether the shade slid off in the afternoon), and the student picks the better one and says why.
+  - Class mode or extras (optional): a class gallery of shade plans.
+- Standards, one line per code:
+  - K-PS3-1: tapping and the heat camera show sunlit sand, slide and blacktop warm up while shaded spots stay cooler.
+  - K-PS3-2: the student builds a structure from parts that reduces the sun's warming of the sandbox.
+  - K-2-ETS1-1: questions to Mila define the problem before building.
+  - K-2-ETS1-2: the sketch is the simple model that turns into the build.
+  - K-2-ETS1-3: two designs tested side by side, strengths and weaknesses compared on the picture chart.
+- Not like: push-the-pumpkin (design for motion, not warming); beaver-builders (an animal's structure changing a place).
+- Art: generated scenes for the playground and people (illustrated) for Mila; the heat camera overlay is drawn in code.
+- Proposed title: keep
+- Proposed concept line: Feel which playground spots the sun warmed, then build a shade over the sandbox from umbrellas, trees and tents; a heat camera shows which spots stay cool, and two designs are compared to pick the better one.
+- Flags: none

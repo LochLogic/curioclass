@@ -1,0 +1,23 @@
+# Docent Tour Talk (idea card)
+
+- Module: ela-6-8-presenting-claims-and-findings, grades 6-8. Codes: SL.6.4, SL.6.5, SL.6.6, SL.7.4, SL.7.5, SL.7.6, SL.8.6
+- Format / family: studio / none. Fit: good: the student makes a short spoken tour and rehearses it.
+- One idea: The student prepares a two-minute museum tour of one real public-domain object: they order their points, pick one detail image or sound per stop, rehearse by recording themselves with a stop timer and a fading script, then redo the opening for a curator, a family and a group of second graders, so they learn that a talk is built in a logical order with media that clarify, and changes with its audience.
+- How it plays (solo student by default):
+  - First screen: a gallery with four objects to choose from (for example a Japanese woodblock print, an ancient Egyptian toy, a Civil War era quilt, a medieval astrolabe; public-domain ids from the Met or AIC chosen and checked at spec). The on-screen line: "Your recordings stay on this device. Nothing is uploaded."
+  - Core loop: the student reads three short facts cards, picks a claim ("This toy shows children 3,000 years ago played like us"), and orders three stops. For each stop they choose one zoomed detail or one sound to show, and the tool asks what it clarifies. Rehearsal: they record each stop; a timer per stop and a volume meter show pace and loudness (no speech recognition). The script card fades a little each take, so they look up instead of reading. Playback lets them check against a short rubric they mark themselves: clear order, salient point first, eye contact (looked up?), volume, pronunciation of the hard name.
+  - The aha or the end state: three audience cards. The curator wants precise words; the family wants a story; the second graders need short sentences and a question. The student rewrites and re-records only the opening for each, and the three openings play back side by side.
+  - Class mode or extras (optional): a "gallery day" setup card for live tours in class.
+- Standards, one line per code:
+  - SL.6.4: presenting a claim with ordered points, pertinent facts, eye contact, volume and pronunciation.
+  - SL.6.5: choosing one detail image or sound per stop to clarify the point.
+  - SL.6.6: adapting the opening to three audiences, formal for the curator.
+  - SL.7.4: putting the salient point first at each stop, with pertinent details.
+  - SL.7.5: media choices that emphasize the salient point.
+  - SL.7.6: the three openings, with formal English when the audience calls for it.
+  - SL.8.6: the same, judged on grade 8 command of formal English.
+- Not like: pitch-deck-studio (grade 8, persuasive slides and media motives); audience-shift-briefing (grade 9, a research briefing for three rooms); page-audio-screen (comparing media versions).
+- Art: public domain museum objects (Met or AIC object ids, to be checked at spec); people (illustrated) for the three audiences.
+- Proposed title: keep
+- Proposed concept line: keep
+- Flags: needs a data source (Met or AIC open-access objects with facts); records audio (on-screen line that nothing leaves the device; no speech recognition); sensitive (light: objects from living cultures get a fresh review per rule 5)

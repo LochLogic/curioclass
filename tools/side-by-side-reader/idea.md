@@ -1,0 +1,22 @@
+# Side by Side Reader (idea card)
+
+- Module: ela-3-5-comparing-texts-side-by-side, grade 3-5. Codes: RL.3.9, RI.3.9, RL.4.9, RI.4.9, RL.5.5, RI.5.5
+- Format / family: sort / none. Fit: good.
+- One idea: Two texts open side by side and the student pulls details into a shared middle lane or keeps them on their own side, then names what each text's build does, so they learn that comparing texts means seeing what they share, where they part, and why the shape of each one matters.
+- How it plays (solo student by default):
+  - First screen: two open books on a reading table and a middle lane labeled "Both." Three shelves to pick from: Same Characters (two short stories from one series), Same Tale, Many Places (two traditional tales with one pattern from different cultures, for example two public-domain versions of the clever-small-animal tale), Same Topic (two articles on honeybees, one a diary of a beekeeper's year and one a question-and-answer page).
+  - Core loop: drag details to the middle or a side; each drag asks for a tag (character, setting, plot, theme, fact, structure). Grade 3 shelves compare plots and themes across a series and facts across two articles; grade 4 compares patterns of events and themes across cultures and combines two articles to answer a question; grade 5 compares how the two texts are built (chronology against question-and-answer, chapters against letters) and how one chapter, scene or stanza fits its whole.
+  - The aha or the end state: the student writes a two-sentence answer that uses both texts, and a "rebuild" button retells one text in the other's structure so the student sees what the structure did.
+  - Class mode or extras (optional): a printable two-column chart.
+- Standards, one line per code:
+  - RL.3.9: the Same Characters shelf: themes, settings and plots across a series.
+  - RI.3.9: the Same Topic shelf: key points and details across two articles.
+  - RL.4.9: the Same Tale shelf: themes and patterns of events across cultures.
+  - RI.4.9: the two-sentence answer that combines both articles.
+  - RL.5.5: how a chapter, scene or stanza fits the whole, and the rebuild button.
+  - RI.5.5: comparing the overall structure of the two articles.
+- Not like: alike-and-different-books (k-2 hoops); myth-museum (grade 4 allusions); structure-spotter (grade 3, one paragraph at a time).
+- Art: generated scenes and illustrated covers for each pair; public domain illustrations for the traditional tales where available (ids to be checked at spec).
+- Proposed title: keep
+- Proposed concept line: Two texts open side by side (two stories in a series, two tellings of one tale from different cultures, two articles on one topic); drag shared details to the middle and differences to each side, then name what each structure does.
+- Flags: sensitive (traditional tales from other cultures get a fresh review per rule 5); too big (six codes in three shelves: the spec should check each shelf gets full depth)

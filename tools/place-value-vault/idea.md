@@ -1,0 +1,21 @@
+# Place Value Vault (idea card)
+
+- Module: math-2-hundreds-tens-and-ones, grade 2. Codes: 2.NBT.A
+- Format / family: escape / base-ten. Fit: good, with the alarm as a soft, optional timer so a solo child is not rushed; team racing is class mode.
+- One idea: Each vault lock takes a three-digit code given as a place-value clue (7 tens, 2 hundreds, 0 ones; "four hundred six"; 300 + 50 + 8), so cracking the vault means reading numbers every way they can be written.
+- How it plays (solo student by default):
+  - First screen: a bank vault with five locks and a raccoon guard, Penny. "Each lock needs a three-digit code. Read the clue, then set the dials."
+  - Core loop: the child reads a clue and sets three dials (hundreds, tens, ones); a base-ten block tray shows what the dials say. Lock types:
+    - Bundle lock: ten tens snap into a flat; how many hundreds now?
+    - Word lock: a number name or expanded form to turn into digits.
+    - Skip-count lock: the dial clicks by 5s, 10s or 100s to a target (count by 10s from 340 to 400).
+    - Compare lock: pick the bigger code (608 or 680) and the right sign.
+  - The aha or the end state: the scrambled clue (7 tens, 2 hundreds, 0 ones) is 270, not 720; the dials make the order visible. The vault opens on a prize room.
+  - Class mode or extras (optional): teams race the alarm on the projector.
+- Standards, one line per code:
+  - 2.NBT.A: hundreds, tens and ones and 100 as ten tens (2.NBT.1), counting within 1000 and skip-counting by 5s, 10s and 100s (2.NBT.2), numerals, number names and expanded form (2.NBT.3), and comparing three-digit numbers with >, = and < (2.NBT.4).
+- Not like: crayon-boxes (grade 1 tens and ones), stadium-count (grade 4 to a million), jump-line (adding and subtracting).
+- Art: generated scenes (a storybook vault and a raccoon guard); dials and base-ten blocks drawn in code.
+- Proposed title: keep
+- Proposed concept line: Crack three-digit vault codes from clues like "7 tens, 2 hundreds, 0 ones," number names and expanded form; skip-count the dials by 5s, 10s and 100s and compare codes with >, = and <.
+- Flags: none

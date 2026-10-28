@@ -1,0 +1,21 @@
+# Rights Match (idea card)
+
+- Module: social-studies-5-the-constitution-and-bill-of-rights, grade 5. Codes: D2.Civ.4.3-5, D2.Civ.5.3-5, D2.Civ.8.3-5, D2.Civ.3.3-5
+- Format / family: sort / founding-docs. Fit: good for the Bill of Rights; a scenario sort can't teach the structure of government well.
+- One idea: Hear why people in 1787 and 1788 refused to ratify the Constitution without a list of rights, then sort real-life scenarios into the amendment that protects them, and see the principle each right stands on.
+- How it plays (solo student by default):
+  - First screen: a 1788 town meeting. A farmer stands: "No rights written down, no vote from me." "Why did people want a Bill of Rights? Tap to find out."
+  - Origins: a short scene shows the debate and the promise to add amendments, so the student sees a group of people making rules to protect freedoms.
+  - Core loop: scenario cards (a student newspaper, a police search, a trial without a lawyer, a protest march) sort into amendment slots. Each correct sort shows the purpose of that right and the principle under it (free speech, fair treatment, equal justice, limited government).
+  - The aha or the end state: a "rights have limits and duties" round where two people's rights meet (a protest march that blocks a hospital entrance), and the student weighs both.
+  - Class mode or extras (optional): class votes on each scenario.
+- Standards, one line per code:
+  - D2.Civ.4.3-5: the ratification scene shows people making rules to create responsibilities and protect freedoms.
+  - D2.Civ.8.3-5: each sorted right names the principle and civic virtue it rests on.
+  - D2.Civ.3.3-5: the origins scene and each right's purpose examine where these provisions came from and why.
+  - MOVE D2.Civ.5.3-5: to bill-to-law-board-game, which already teaches the structure of state government and can add a federal-vs-state contrast card.
+- Not like: constitutional-convention (grade 8 representation deal); reconstruction-amendments (13th to 15th); founding-words-explorer (reading the words).
+- Art: people (illustrated) and generated scenes, because modern scenarios need relatable kids and adults.
+- Proposed title: keep
+- Proposed concept line: Hear why people refused to ratify the Constitution without a list of rights, then sort real-life scenarios into the amendment that protects them and name the principle each right stands on.
+- Flags: none

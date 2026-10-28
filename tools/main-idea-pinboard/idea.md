@@ -1,0 +1,23 @@
+# Main Idea Pinboard (idea card)
+
+- Module: ela-3-5-main-idea-with-text-evidence, grade 3-5. Codes: RL.3.1, RI.3.1, RL.3.2, RI.4.2, RI.4.8, RI.5.1, RI.5.2, W.5.9
+- Format / family: explorer / evidence. Fit: change to builder, because the student builds a board (a main idea card plus pinned proof) and tests it against a meter, rather than browsing a collection.
+- One idea: The student writes the main idea of a short text on a card, then pins the exact sentences that prove it, and a coverage meter shows whether the card is big enough to cover the key details and whether a pin really proves it or only repeats it, so they learn that a main idea is something the text has to back up.
+- How it plays (solo student by default):
+  - First screen: a corkboard, a short text on the left, an empty card in the middle. "What is this mostly about? Write it on the card, then pin the lines that prove it."
+  - Core loop: write or choose the card, pin sentences with string to it, answer two who-what-why questions by pinning the line that answers them, and watch the meter: covered key details glow, pins that only say the idea again turn gray. Grade 3 texts are fables (central message) and short articles; grade 4 adds articles where the author makes a point with reasons and evidence; grade 5 texts have two main ideas, so the board needs two cards and exact quotes.
+  - The aha or the end state: the pinned lines collapse into a three-sentence summary the student edits, and a too-small card (about one detail) or too-big card (about everything) is shown failing the meter.
+  - Class mode or extras (optional): compare boards made from the same text.
+- Standards, one line per code:
+  - RL.3.1, RI.3.1: the who-what-why questions answered by pinning the line in the text.
+  - RL.3.2: fables: recount the events and pin the lines that carry the central message.
+  - RI.4.2: one main idea card, its supporting pins and the summary.
+  - RI.4.8: grade 4 articles: pin which reasons and evidence hold up the author's point.
+  - RI.5.1: grade 5 pins must be exact quotes, used to explain both stated facts and inferences.
+  - RI.5.2: two main idea cards for one text, each with its details, then a summary.
+  - W.5.9: the summary paragraph drawn from the pinned evidence.
+- Not like: main-idea-umbrella (grade 2 umbrella over raindrops); quote-picker (choosing quotes for the student's own paragraph); claim-court (sorting evidence quality).
+- Art: drawn in code for the corkboard and strings; illustrated spot art for each text.
+- Proposed title: keep
+- Proposed concept line: keep
+- Flags: overlap risk (RI.4.8 also sits near claim-court and quote-picker; this tool keeps it to pinning an author's support)

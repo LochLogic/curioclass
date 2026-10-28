@@ -1,0 +1,22 @@
+# Inventors Hall (idea card)
+
+- Module: computer-science-3-5-computing-inventions-and-inventors, grade 3-5. Codes: E3-SOC-HI-16, E3-SOC-HU-18, E4-SOC-HI-16, E4-SOC-ET-17, E5-SOC-HI-16
+- Format / family: timeline / none. Fit: good, because placing exhibits in order and reading the before and after is the play.
+- One idea: Walk a museum hall of computing inventions (a punch-card loom, an early compiler, a talking calculator, a swappable game cartridge), place each exhibit on the timeline, open its "before and after" drawer to see what daily life could not do before, and find the person whose idea was left off the label.
+- How it plays (solo student by default):
+  - First screen: a museum hallway with empty plinths along a timeline floor and a crate of exhibits. "Unpack an exhibit and find its year."
+  - Core loop: each exhibit has three clue cards (the problem, the people, the year range); the student places it on the floor timeline, then opens the drawer: before (weavers set patterns by hand; programmers wrote raw machine code) and after.
+  - Missing label: each exhibit's plaque names one person; a "who else?" button reveals people whose work was left off or forgotten (for example, the women who first programmed ENIAC), and the student adds them to the plaque.
+  - Trade-offs (grade 4): each invention has a cost card too (the loom put some hand weavers out of work), and the student weighs who gained and who lost.
+  - The aha or the end state: the finished hall shows that each invention answered a real need, came from many people, and changed some lives for the worse as well as the better.
+- Standards, one line per code:
+  - E3-SOC-HI-16: place inventions in order and say how each changed daily life.
+  - E3-SOC-HU-18: read why people built each one and which people's needs it served (the talking calculator for blind users).
+  - E4-SOC-HI-16: compare two exhibits' before and after and explain the change.
+  - E4-SOC-ET-17: weigh each invention's cost card against its benefits for different groups.
+  - E5-SOC-HI-16: trace one thread across three exhibits (punch cards to programs to games) and explain how each built on the last.
+- Not like: attic-gadget-box (K-2, old gadget to new device); eras-of-computing (grade 6-8 impact and a local debate); cloud-through-time (grade 9-12 data centers).
+- Art: public domain photos of real objects where a museum source is checked (Met, AIC or Smithsonian open access), otherwise generated museum scenes.
+- Proposed title: keep
+- Proposed concept line: keep
+- Flags: needs a data source (dates, names and object images checked for every exhibit); sensitive (people left out of history, rule 5 review)

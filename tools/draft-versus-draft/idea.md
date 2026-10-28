@@ -1,0 +1,23 @@
+# Draft Versus Draft (idea card)
+
+- Module: ela-6-8-revising-for-purpose-and-audience, grades 6-8. Codes: W.6.4, W.6.5, W.7.4, W.7.5, L.7.3, W.8.4, W.8.5
+- Format / family: showdown / none. Fit: change to studio, because the end state must be the student's own revision; judging two revisions is the warm-up. The class vote becomes class mode (rule 4).
+- One idea: Two revisions of the same draft face off for a named reader and purpose; the student picks the winner, the tool marks every change as a cut, add, move or reword so they can name what made it stronger, and then they revise the same draft themselves for a different reader, so they learn that revision is choosing changes for someone, not polishing at random.
+- How it plays (solo student by default):
+  - First screen: a reader card ("Your principal, who has two minutes, deciding whether to fund a school garden") above Draft A and Draft B of the same student letter.
+  - Core loop: the student votes, then the change marks appear: cuts in red, adds in green, moves as arrows, rewords as swaps. For each mark they say whether it helped this reader and why. A panel of three illustrated readers (the principal, a garden club parent, a fifth grader) reacts to each draft, so the same change can help one reader and lose another.
+  - The aha or the end state: the student gets the original draft and a new reader card and makes their own revision with the four change tools; the tool shows their change map beside Draft A and B. At grade 7 a wordiness meter counts redundant phrases ("in my opinion I think"); at grade 8 one round asks for a new approach (turn the letter into a one-page flyer) instead of line edits.
+  - Class mode or extras (optional): the original projector showdown: the class votes A or B, then the change marks reveal.
+- Standards, one line per code:
+  - W.6.4: matching a draft's development and style to the reader card.
+  - W.6.5: revising the original with cut, add, move and reword, with feedback from the reader panel.
+  - W.7.4: same, with grade 7 drafts that need tighter organization for the task.
+  - W.7.5: revising and editing with the reader panel's guidance, focused on purpose and audience.
+  - L.7.3: the wordiness meter: cutting redundancy and choosing precise, concise language.
+  - W.8.4: grade 8 drafts with a harder audience shift (a city council letter).
+  - W.8.5: the "new approach" round, rewriting in a new form when line edits are not enough.
+- Not like: editors-in-the-margin (9-12, answering three editors' margin notes); draft-car-wash (3-5, stations for add, cut, move and polish); audience-shift-briefing (grade 9, spoken briefings).
+- Art: people (illustrated) for the reader panel; drawn in code for the change marks.
+- Proposed title: keep
+- Proposed concept line: Two revisions of one draft face off for a named reader; pick the winner, name each cut, add, move and reword that made the difference, then revise the draft yourself for a different reader.
+- Flags: overlap risk (light, draft-car-wash in 3-5 uses the same four change types; keep this one on comparing whole revisions)

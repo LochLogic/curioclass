@@ -1,0 +1,23 @@
+# Contraption Workshop (idea card)
+
+- Module: science-4-energy-conversion-devices, grade 4. Codes: 4-PS3-4, 3-5-ETS1-1, 3-5-ETS1-2, 3-5-ETS1-3, plus 4-PS3-2 if moved here from bowling-lab
+- Format / family: builder / none. Fit: good
+- One idea: Build a ridiculous chain machine that rings a bell across the room, linking parts that change energy from one form to another (a battery runs a motor, a lamp shines on a solar cell, a falling weight pulls a string, a buzzer shakes a cup), with a parts budget and a time limit; test runs light up each transfer and show which link failed.
+- How it plays (solo student by default):
+  - First screen: a workshop wall, a bell on the far side, a parts shelf with prices, and a job card from a neighbor who wants a wake-up machine. "Read the job: what must it do, and what are the limits?"
+  - Define: the student sets criteria (rings the bell, under 10 seconds) and constraints (budget, space) from the job card.
+  - Core loop: place parts and connect them; run the machine in slow motion. An energy view tags each link (stored, motion, electric, light, sound, heat) and shows energy traveling along wires, as light across a gap and as sound to a cup. A failed link glows red.
+  - Improve: run a fair test on one link at a time (change only the ramp angle), compare two full designs on cost, time and reliability, and refine the better one.
+  - The aha or the end state: the finished machine replays with a labeled energy path from start to bell, plus the student's test log.
+  - Class mode or extras (optional): share a machine code so a friend can load and beat it.
+- Standards, one line per code:
+  - 4-PS3-4: designing, testing and refining a device that converts energy from one form to another.
+  - 4-PS3-2 (moved from bowling-lab): the energy view shows energy carried from place to place by electric current, light, sound and heat between links.
+  - 3-5-ETS1-1: defining the job with criteria and constraints from the job card.
+  - 3-5-ETS1-2: comparing two full designs against the criteria.
+  - 3-5-ETS1-3: fair tests on one link at a time to find the failure point and improve it.
+- Not like: bowling-lab (energy and speed in collisions); magnet-maze (magnetic forces).
+- Art: generated scenes for the workshop and parts with a hand-made look; the energy view is drawn in code.
+- Proposed title: keep
+- Proposed concept line: Build a chain machine that rings a bell by linking parts that change energy from one form to another; an energy view shows energy traveling by current, light and sound, and fair tests find the weak link.
+- Flags: none

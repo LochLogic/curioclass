@@ -1,0 +1,21 @@
+# Who Uses This Device? (idea card)
+
+- Module: computer-science-k-2-devices-at-home-school-and-work, grade k-2. Codes: EK-SOC-CE-16, EK-SYS-HW-11, E1-SOC-CE-16, E2-SOC-CE-16
+- Format / family: explorer / none. Fit: good, because the street fair is a scene to browse, tap and open.
+- One idea: Walk a street fair of grown-ups at work (a baker, a vet, a bus driver, an artist, a coach), tap each one to see the device they use, open it to its parts and hear what job it helps with; second graders then match a kid's hobby to a computing job.
+- How it plays (solo student by default):
+  - First screen: a sunny street lined with booths and a bus stop. "Tap a person to see their helper."
+  - Core loop: tap the vet and her scanner reads a puppy's microchip and shows the family's name; tap the bus driver and the fare reader beeps a card; tap the artist and her drawing tablet turns a pen line into color; tap the coach and the stopwatch catches a runner's time; tap the baker and the oven timer rings.
+  - Look inside (kindergarten): each device opens into big labeled parts (screen, buttons, camera, speaker), and the student taps a part to hear what it does for this job.
+  - Hobby match (grade 2): a kid character loves animals, drawing, buses or sports; the student matches each to a computing job seen at the fair.
+  - The aha or the end state: a "helpers" page fills with every device, its parts and its job, and the student sees that computers are inside lots of jobs, not only at desks.
+- Standards, one line per code:
+  - EK-SOC-CE-16: tap each worker to see how a device helps their job.
+  - EK-SYS-HW-11: open each device to name its parts and what each part does.
+  - E1-SOC-CE-16: sort the devices into "at home", "at school" and "at work" (some go in more than one).
+  - E2-SOC-CE-16: match a hobby to a computing job and say how the device fits it.
+- Not like: computer-builder (grade 1, build a computer from parts); job-shadow-day (grade 3-5, a day of choices at work); industry-device-tour (grade 6-8, input to output in industry machines).
+- Art: people (illustrated), a varied cast of workers in many skin tones, ages and abilities, because the people are the point.
+- Proposed title: keep
+- Proposed concept line: keep
+- Flags: none

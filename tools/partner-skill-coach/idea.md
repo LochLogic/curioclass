@@ -1,0 +1,21 @@
+# Partner Skill Coach (idea card)
+
+- Module: health-pe-6-12-peer-skill-coaching, grade 6-12. Codes: SHAPE.S1, SHAPE.S3
+- Format / family: cards / none. Fit: change to puzzle, because the core is spotting the missed cue in a performance, level by level, with harder clips each time; the cue cards are a tool, not a game.
+- One idea: Watch slowed-down clips of players throwing, kicking and shooting, check each against the skill's cue cards to find the one cue they missed, then choose (or write) one helpful tip in a kind way and see how the player responds and what changes on the next try.
+- How it plays (solo student by default):
+  - First screen: a gym with three stations (overhand throw, instep kick, set shot) and a stack of cue cards for each.
+  - Core loop: a clip plays at full speed, then slowed with a scrubber; the student flips the cue cards (step with the opposite foot, plant foot beside the ball, elbow under the ball) and taps the cue that was missed and the moment it happened.
+  - Coach it: pick a tip from three (a vague "do better", a harsh one, a specific kind one) or write one; the player's next clip shows the change, and a harsh tip gets a slumped reaction.
+  - Levels: early clips miss one obvious cue; later clips miss a subtle one, or do everything right.
+  - Then try it yourself: a cue checklist for the student's own attempts.
+  - Class mode or extras (optional): partner mode, where two students take turns performing and coaching with the same cue cards, then switch roles.
+  - The aha or the end state: seeing a skill means breaking it into cues; coaching works when the tip names one cue and is said with respect.
+- Standards, one line per code:
+  - SHAPE.S1: analyze throwing, kicking and shooting against their critical cues.
+  - SHAPE.S3: give specific, respectful feedback and take turns as coach and performer.
+- Not like: scarf-juggling-ladder (grade 3-5 self-practice log); target-toss (K-2 throwing experiment); playbook (grade 3-5 team tactics).
+- Art: people (illustrated) players, animated in slow motion with clear joints; varied bodies and abilities.
+- Proposed title: keep
+- Proposed concept line: Watch slow-motion clips of a player throwing, kicking or shooting, check them against cue cards to find the missed cue, then give one kind, specific tip and see the next try change; partner mode is for real pairs.
+- Flags: none (format change from cards to puzzle)

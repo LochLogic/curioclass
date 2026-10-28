@@ -1,0 +1,21 @@
+# Attic Gadget Box (idea card)
+
+- Module: computer-science-k-2-computing-then-and-now, grade k-2. Codes: EK-SOC-HI-14, EK-SOC-HU-15, E1-SOC-HI-14, E2-SOC-HI-14, E2-SOC-HU-15
+- Format / family: timeline / none. Fit: good, because each gadget slides along a then-to-now track.
+- One idea: Lift each old gadget out of a grandparent's attic box (a rotary phone, a paper map, a cassette player, a film camera) and slide it along a track until it lands on the device that does the same job today, then meet the real person or team who changed that job to fix a problem people had.
+- How it plays (solo student by default):
+  - First screen: a dusty attic, a closed cardboard box and a grandparent figure. "Tap the box to open it."
+  - Core loop: pull out one gadget; a short spoken line says what job it did ("This phone called Grandma's sister. You had to dial every number."); drag it along the track through one or two in-between versions to today's device; the job stays the same while the device changes.
+  - Then a "who made it better" card: a short illustrated story of the people behind a change and the problem they saw (for example, captions on videos so people who are deaf or hard of hearing can follow; a phone that reads the screen aloud for people who are blind).
+  - The aha or the end state: the shelf shows every job twice, then and now, and the student sees that people changed each device on purpose, for real people's needs.
+- Standards, one line per code:
+  - EK-SOC-HI-14: match each old gadget to today's device that does the same job.
+  - EK-SOC-HU-15: "who made it better" cards show a person who saw a need and designed for it.
+  - E1-SOC-HI-14: grade 1 rounds add one in-between version, so the student orders three devices for one job.
+  - E2-SOC-HI-14: grade 2 rounds ask "what changed for the family?" (faster, smaller, cheaper, new problems like losing it) at each move.
+  - E2-SOC-HU-15: grade 2 picks which person's need a change served, from two or three choices, before the story card.
+- Not like: inventors-hall (grade 3-5, inventors and whose ideas were left out); who-uses-this-device (devices at work now); cloud-through-time (grade 9-12 data centers).
+- Art: generated scenes (attic, gadgets, a warm grandparent) and people (illustrated) for the designer cards, because old objects must read clearly to five-year-olds.
+- Proposed title: keep
+- Proposed concept line: Open a grandparent's attic box and slide each old gadget (a rotary phone, a paper map, a cassette player) along a then-to-now track to the device that does its job today, then meet the people who changed it for a real need.
+- Flags: needs a data source (sourced facts for each designer card; keep only confirmed names and dates)

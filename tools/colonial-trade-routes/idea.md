@@ -1,0 +1,22 @@
+# Colonial Trade Routes (idea card)
+
+- Module: social-studies-5-colonial-economies, grade 5. Codes: D2.Eco.3.3-5, D2.Geo.9.3-5, D2.His.2.3-5, D2.Geo.11.3-5
+- Format / family: map / none. Fit: good, but D2.Geo.9.3-5 (catastrophic events on settlement and migration) has no honest place here.
+- One idea: Follow real cargoes across a 1700s Atlantic map (fish and lumber from New England, grain from the Middle Colonies, tobacco and rice from the South, molasses from the Caribbean, cloth from Britain) and see who made each, including the enslaved Africans whose stolen labor and lives the trade depended on, and how the routes changed the colonies over time.
+- How it plays (solo student by default):
+  - First screen: an Atlantic map with ports lit. "A ship is loading in Boston. Tap it to see the cargo."
+  - Core loop: each cargo card names its resources and its workers (natural resources, tools and ships, and the people who did the work: farmers, sailors, indentured servants, enslaved people). Following routes shows that the "triangle" was really a web of many routes.
+  - Change over time: a decade slider shows ports, plantations and shipyards growing because of links to far places, and Southern colonies' economies coming to depend on slavery.
+  - Lives then and now: three people's working days (a ship's boy in Boston, an enslaved woman on a rice plantation, a Philadelphia baker) are compared with work and goods today; the enslaved woman's story is told plainly, with her name and her resistance where sources allow.
+  - The aha or the end state: the student explains which resources made each region rich, and at whose cost.
+  - Class mode or extras (optional): teacher notes on the Middle Passage for deeper study.
+- Standards, one line per code:
+  - D2.Eco.3.3-5: cargo cards identify natural, physical and human resources, including forced labor.
+  - D2.His.2.3-5: three working days compared with life today.
+  - D2.Geo.11.3-5: the decade slider shows regional economies changing through ties with near and far places.
+  - MOVE D2.Geo.9.3-5: to settle-the-valley, where a flood year changes settlement and forces families to move.
+- Not like: ship-s-log (one voyage); state-economy-map (modern state economy); silk-road-traders (grade 6 cards).
+- Art: public domain (18th-century Atlantic maps, items chosen and checked at spec) and people (illustrated) for the three workers.
+- Proposed title: keep
+- Proposed concept line: Follow real cargoes across the 1700s Atlantic from New England, the Middle Colonies, the South, the Caribbean and Britain; see who made each, including enslaved Africans, and how the trade changed the colonies over time.
+- Flags: sensitive (slavery; fresh review agent per rule 5); needs a data source (colonial trade goods and routes, sourced)

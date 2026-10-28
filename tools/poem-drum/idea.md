@@ -1,0 +1,24 @@
+# Poem Drum (idea card)
+
+- Module: ela-k-2-poems-and-songs-aloud, grade k-2. Codes: RL.K.5, RF.K.4, RL.1.4, RF.1.4, RL.2.4, RF.2.4, SL.2.5
+- Format / family: studio / poetry. Fit: good.
+- One idea: A drum keeps the beat of a short public-domain poem while the child claps along, taps the rhymes, repeated lines and feeling words, then records their own reading in time with the drum, so they hear that a poem's sound is built on purpose.
+- How it plays (solo student by default):
+  - First screen: two pages side by side. "One is a poem and one is a story. Which one has a beat?" The child taps, and the drum plays under each to show it.
+  - Core loop: the poem scrolls with a bouncing marker while the drum taps; the child claps along (tap or space bar), then tapping rounds: rhyme pairs, a repeated line, a word that makes you feel something or see, hear, smell it. Each tapped part lights in its own color.
+  - The aha or the end state: the child records a reading over the drum, adds a drawing for the poem, and hears it back; a second take at a steadier pace sounds better, and the child can compare.
+  - Class mode or extras (optional): class choral reading with the drum. On screen: recordings never leave this device.
+  - Poems: Mother Goose rhymes (K), Christina Rossetti's "Who Has Seen the Wind?" and Robert Louis Stevenson's "My Shadow" (grades 1 and 2), all public domain.
+- Standards, one line per code:
+  - RL.K.5: the poem-or-story opening.
+  - RF.K.4: reading a short emergent poem along with the drum, with a "what was it about" picture check.
+  - RL.1.4: tapping feeling and sense words.
+  - RF.1.4: reading along and rereading for accuracy and pace.
+  - RL.2.4: tapping beat, rhyme, alliteration and repeated lines and hearing what they add.
+  - RF.2.4: fluent reading in time with the drum, second take.
+  - SL.2.5: recording the poem and adding a drawing.
+- Not like: Echo Reader (grade 1 prose fluency against a model reading). Rhyme Time Rumble (rhyme as single words, kindergarten). Poetry Soundboard (grade 7 sibling, meter remix).
+- Art: generated scenes (one illustration per poem, matched to its mood), because poems for young readers live in their pictures.
+- Proposed title: keep
+- Proposed concept line: keep
+- Flags: none (microphone: privacy line required)

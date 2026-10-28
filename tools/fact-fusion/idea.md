@@ -1,0 +1,21 @@
+# Fact Fusion (idea card)
+
+- Module: ela-5-multiple-sources, grade 5. Codes: RI.5.6, RI.5.7, RI.5.9, W.5.7, W.5.8
+- Format / family: data / research. Fit: good, as a fact table: every fact is a row with a column for each source, so the student can filter for what all agree on, what only one says, and where they clash.
+- One idea: Three short sources on one topic (an encyclopedia page, a first-person account and a museum web page with a map) pour facts into one table, and the student filters, settles the clashes and writes a report where every sentence carries its source, so they learn that combining sources means tracking who said what and noticing why accounts differ.
+- How it plays (solo student by default):
+  - First screen: three source cards on the topic of the Transcontinental Railroad's last spike in 1869 (or the first Wright brothers flight) and an empty fact table with columns A, B and C.
+  - Core loop: highlight a fact in a source and drop it in the table; a matching fact from another source joins its row. Filters show all agree, only one source says, or sources disagree. For each clash the student checks who was there and who wrote later, and says why they differ. A timed "quick find" card asks a question to answer from whichever source is fastest (the map, the date line, the index).
+  - The aha or the end state: the report builder: each sentence is made from table rows and shows source tags, and a sentence with no source turns red; the source list writes itself from the tags.
+  - Class mode or extras (optional): a second topic the student picks from a shelf.
+- Standards, one line per code:
+  - RI.5.6: the clash rows: how each source's point of view shapes its account.
+  - RI.5.7: the quick find cards, answered fast from print and digital features.
+  - RI.5.9: the report combines all three sources.
+  - W.5.7: a short research report from several sources.
+  - W.5.8: notes summarized and paraphrased into the table, and the source list.
+- Not like: research-rover (grade 4, investigating and outlining); eyewitness-vs-reporter (grade 4, two accounts); source-mixer (grade 11).
+- Art: public domain photographs and maps for the chosen event (Library of Congress or museum ids to be checked at spec), drawn in code for the table.
+- Proposed title: keep
+- Proposed concept line: Three sources on one event pour their facts into a single table; filter for what all agree on, what only one says and where they clash, then build a report where every sentence shows which source it came from.
+- Flags: needs a data source (public-domain accounts and images); sensitive (if the railroad is chosen, the workers' and Native nations' side is told plainly, with fresh review per rule 5)

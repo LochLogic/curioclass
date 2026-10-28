@@ -1,0 +1,21 @@
+# Marble Ramp Trials (idea card)
+
+- Module: computer-science-3-5-why-data-varies, grade 3-5. Codes: E3-DAT-DI-10, E4-DAT-DI-10, E5-DAT-DI-10
+- Format / family: lab / none. Fit: good, because repeated trials, a data table and a conclusion are the whole lab.
+- One idea: Time a marble down a cardboard ramp with your own stopwatch taps, again and again; the times never match, so you hunt for why (your late tap, a bump, a typo in the table), mark the outliers, then change the ramp's height and surface to see how the two work together.
+- How it plays (solo student by default):
+  - First screen: a cardboard ramp on a kitchen floor, a marble at the top, a big stopwatch button and an empty table. "Tap Start when the marble goes, Stop when it hits the book."
+  - Core loop: the student's own taps time each run, so real human reaction time is in the data; the table fills with 1.42, 1.38, 1.51... One run gets a hidden bump (2.80) and one row a typo (14.0).
+  - Cause hunt: tap any odd row to see the replay and pick a cause; mark it as an outlier and see the middle value barely move.
+  - Two attributes: raise the ramp in three steps and switch the surface (bare cardboard, felt, foil), five runs each; a dot chart shows taller ramps are faster on every surface, and felt slows every height.
+  - The aha or the end state: measurements always vary a little; repeat, find the middle, and explain the outliers before trusting a pattern.
+  - Class mode or extras (optional): a card for building the real ramp at home or school and entering your own times.
+- Standards, one line per code:
+  - E3-DAT-DI-10: repeat the same run and describe how the times spread.
+  - E4-DAT-DI-10: spot outliers, find their cause and decide whether to keep them.
+  - E5-DAT-DI-10: change two attributes (height, surface) and describe how they work together on the time.
+- Not like: score-keeper (grade 3 variables); leaf-sorter-ai (grade 5 features); data-table-builder (grade 4 class data).
+- Art: generated scenes (kitchen-floor ramp, books, marble); table and dot chart drawn in code.
+- Proposed title: keep
+- Proposed concept line: keep
+- Flags: none (physics of the ramp times must be realistic; check against a simple rolling-ball model)

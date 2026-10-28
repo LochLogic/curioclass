@@ -1,0 +1,22 @@
+# Who Decides? (idea card)
+
+- Module: social-studies-12-civic-action, grade 12. Codes: D2.Civ.13.9-12, D2.Civ.14.9-12, D4.8.9-12, D4.3.9-12, D4.7.9-12
+- Format / family: builder / none. Fit: good
+- One idea: Pick a local problem (a dangerous crosswalk, a closed library branch), trace who really decides it in your state (which office, which meeting, when public comment opens), weigh the options for acting alone or together, then build the testimony, petition and letter that reach the right people.
+- How it plays (solo student by default):
+  - First screen: choose your state and a problem card; a "decision path" board shows city, county, special district, state agency and school board offices.
+  - Core loop: follow the path for your state using its written guide (who owns which roads, how library and school boards are chosen, the state's open-meetings rules for public comment); a checklist shows how to confirm the details for your own town. Evaluate past policies on the problem (a speed camera, a lowered limit) for intended and unintended results.
+  - Action options: compare individual and group actions (comment, petition, coalition, a meeting with staff, media, a vote) by cost, reach and likely effect, and choose a plan.
+  - The aha or the end state: the student drafts a two-minute testimony, a petition and a short letter to a local paper, each adapted for its audience; drafts stay on the device (stated on screen). An optional rehearsal recorder plays the testimony back locally, with the on-screen line that nothing leaves the device, and no speech recognition.
+  - Class mode or extras (optional): a mock public hearing run with a meeting agenda.
+- Standards, one line per code:
+  - D2.Civ.13.9-12: the past-policies step evaluates intended and unintended outcomes.
+  - D2.Civ.14.9-12: the action options compare historical and current means of change.
+  - D4.8.9-12: the mock hearing and the decision-path steps apply deliberative and democratic procedures to a real civic context.
+  - D4.3.9-12: the three drafts adapt one argument for different audiences and venues outside school.
+  - D4.7.9-12: the action options step assesses individual and collective action with reflection and causal reasoning.
+- Not like: causes-web (explaining a problem's causes); movement-strategy-room (historical campaigns); jury-room (deliberation).
+- Art: generated scenes (a crosswalk, a library, a council chamber) and people (illustrated) residents, because the problem should feel local.
+- Proposed title: keep
+- Proposed concept line: keep
+- Flags: needs a data source (a written guide for each of the 50 states and DC on local responsibilities and public-comment rules, checked); too big (five codes; spec may split the action-planning step)

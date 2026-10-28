@@ -1,0 +1,21 @@
+# Jellybean Jar (idea card)
+
+- Module: math-7-sampling-and-inference, grade 7. Codes: 7.SP.A, 7.SP.B
+- Format / family: simulator / sampling. Fit: good.
+- One idea: Estimate the color mix of a giant candy-shop jar from scoops: a scoop off the unstirred top is biased, a random scoop is fair, many scoops show how much estimates wobble, and two jars from two candy makers can be compared by bean weight.
+- How it plays (solo student by default):
+  - First screen: a candy shop window with a jar of 10,000 beans and a contest card: "Guess the share of red beans." The shopkeeper, Mr. Ito, hands over a small scoop.
+  - Bias round: the jar was filled in layers, and a scoop off the top is almost all green. The student stirs (random sampling) and sees the difference, and explains when a sample stands for the jar.
+  - Estimate rounds: take a scoop of 20, record the share of red, predict the jar. Take 50 scoops and stack their estimates on a dot plot; bigger scoops make a tighter pile. The student states an estimate and how far off it might be.
+  - Two-jar rounds: a second maker's jar sits beside the first. The student samples bean weights from each, builds two dot plots on the same scale, and judges the overlap: the difference in medians as a multiple of the spread (about 2 MADs apart, or hardly apart).
+  - Reveal: the shop counts the jar; the student sees how close the sampled estimate came.
+  - The aha or the end state: a fair random sample can stand for a huge jar, and the spread of many samples tells you how much to trust one.
+  - Class mode or extras (optional): class pools its scoops into one dot plot.
+- Standards, one line per code:
+  - 7.SP.A: when a sample represents its population and why random sampling helps, shown with the layered jar (7.SP.1); estimating a population share from samples and gauging variation across many samples (7.SP.2).
+  - 7.SP.B: judging the overlap of two distributions with similar spread, as the difference of centers measured in MADs (7.SP.3); comparing two populations with medians, means, IQR and MAD from random samples (7.SP.4).
+- Not like: carnival-odds (grade 7 probability of chance events), poll-workshop (same sampling family, grade 11 polls and margin of error), box-plot-builder (grade 6 summarizing one set).
+- Art: generated scenes (the candy shop window, jars); people (illustrated) for Mr. Ito; beans, scoops and plots drawn in code so counts are exact.
+- Proposed title: keep
+- Proposed concept line: Estimate a giant jar's color mix from scoops: an unstirred top scoop is biased, random scoops are fair, many scoops show how much estimates wobble, and two candy makers' jars are compared by bean weight.
+- Flags: none

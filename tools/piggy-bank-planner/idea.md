@@ -1,0 +1,21 @@
+# Piggy Bank Planner (idea card)
+
+- Module: social-studies-2-money-saving-and-trade, grade 2. Codes: D2.Eco.5.K-2, D2.Eco.9.K-2, D2.Eco.10.K-2, D2.Eco.14.K-2
+- Format / family: tycoon / money. Fit: good for saving, prices and banks; trading with classmates does not teach trade between countries.
+- One idea: Save for a kite you saw at the corner shop, reading real-looking price tags, choosing each week between the piggy bank at home and a bank that keeps money safe and adds a little, and see why saving gets you something bigger than spending now.
+- How it plays (solo student by default):
+  - First screen: the shop window: a kite at $12, a candy bar at $1, a ball at $4. "Which do you want most? Tap it to set your goal."
+  - Core loop: each week the student earns $2 for chores and chooses: spend now (the candy tempts), put it in the piggy bank, or carry it to the bank. Prices on the shop shelves stay visible to compare.
+  - The bank: tap the bank to see what it does: keeps money safe, lends it to people who need it (the baker borrows to buy a new oven), and pays savers a small extra.
+  - The aha or the end state: the goal bar fills; spending every week means no kite, saving gets it, and a surprise (a rainy-day broken shoe) shows another reason people save.
+  - Class mode or extras (optional): set your own goal and allowance.
+- Standards, one line per code:
+  - D2.Eco.5.K-2: the student reads and compares prices in the local shop.
+  - D2.Eco.9.K-2: the bank screen shows what a bank does in a town.
+  - D2.Eco.10.K-2: the goal and the surprise show why people save.
+  - MOVE D2.Eco.14.K-2: to pen-pal-parcels, where goods really travel between countries and the pen pals explain why each country trades.
+- Not like: corner-store (making change at a stand); market-day (choosing goods and services); interest-seesaw (grade 5 interest).
+- Art: generated scenes (shop window, piggy bank, bank lobby), because the goal object must look worth saving for.
+- Proposed title: keep
+- Proposed concept line: Save for a kite in the shop window: each week choose to spend, fill the piggy bank or visit the bank that keeps money safe and lends it out, and see why saving gets you more.
+- Flags: none

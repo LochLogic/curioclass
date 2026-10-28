@@ -1,0 +1,21 @@
+# Hot Air and Sandbags (idea card)
+
+- Module: math-7-operations-with-rational-numbers, grade 7. Codes: 7.NS.A
+- Format / family: simulator / none. Fit: good for the four operations as a model; see MOVE for decimal expansions.
+- One idea: Fly a balloon where hot-air puffs are +1 and sandbags are -1: adding or removing either changes the height, so removing a sandbag (subtracting a negative) lifts you, and removing three groups of two sandbags shows why -3 x -2 = +6.
+- How it plays (solo student by default):
+  - First screen: a balloon at a height of 0 over a valley, a basket with puffs and sandbags, and the pilot, Captain Bea. "Add 5 puffs and 5 sandbags. Where are we?" (Still at 0: opposites make zero.)
+  - Add and subtract rounds: each move shows the height on a vertical number line; p + q is a trip of |q| from p, up or down. Removing a sandbag goes up, so p - q is p + (-q). Distance between two heights is the absolute value of the difference.
+  - Multiply rounds: add 3 groups of 2 sandbags (3 x -2 = -6); remove 3 groups of 2 sandbags (-3 x -2 = +6). The student predicts sign rules and tests them; the distributive property checks why (-1)(-1) = 1.
+  - Divide rounds: the balloon dropped 12 m in 4 minutes, so -12 / 4 = -3 m per minute; -(p/q) = (-p)/q = p/(-q) shown with matching flights.
+  - Mission rounds: mixed problems with fractions and decimals (a valley floor at -45.5 m, a ridge at 120.25 m; how far to climb?).
+  - The aha or the end state: the sign rules are not tricks; they are what adding and removing puffs and sandbags has to do.
+  - Class mode or extras (optional): flight-plan puzzles to trade with a partner.
+- Standards, one line per code:
+  - 7.NS.A (7.NS.1, 7.NS.2a to 2c, 7.NS.3): adding and subtracting rationals on a vertical number line, opposites making zero, subtraction as adding the opposite and distance as absolute value (7.NS.1); multiplying and dividing signed numbers with the distributive property and sign placement (7.NS.2a to 2c); real-world problems with all four operations (7.NS.3).
+  - MOVE 7.NS.A (7.NS.2d, a fraction's decimal ends or repeats): new tool: a grade 7 long-division "remainder loop" where the student divides 1/7 and sees the remainders cycle, so every fraction's decimal must end or repeat. Its engine could later serve square-root-hunt's repeating-decimal part.
+- Not like: deep-sea-dive (grade 6 signed numbers as positions), balance-puzzle (grade 6 equations), square-root-hunt (grade 8 irrationals).
+- Art: generated scenes (valley, sky, balloon); people (illustrated) for Captain Bea; number line and counters drawn in code.
+- Proposed title: keep
+- Proposed concept line: Fly a balloon where hot-air puffs are +1 and sandbags are -1: removing a sandbag lifts you, removing three groups of two sandbags shows -3 x -2 = +6, and missions mix fractions and decimals.
+- Flags: too thin for the whole 7.NS.A cluster (needs the MOVE above)

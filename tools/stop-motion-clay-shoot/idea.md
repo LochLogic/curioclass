@@ -1,0 +1,21 @@
+# Stop-Motion Clay Shoot (idea card)
+
+- Module: arts-3-5-stop-motion-animation, grade 3-5. Codes: MA:Cr1, MA:Cr2, MA:Cr3, MA:Pr5, MA:Pr6
+- Format / family: studio / none. Fit: good
+- One idea: Plan a six-panel storyboard, pose clay figures frame by frame on a little set, then hunt down why your animation jumps (the camera got bumped, the light flickered, a hand is in the shot, the figure moved too far) and fix it before the premiere.
+- How it plays (solo student by default):
+  - First screen: a tabletop set with a lamp, a phone-on-a-stand camera and two soft clay figures, plus a storyboard strip.
+  - Core loop: pick a story idea and draw or choose six panels. Pose the on-screen clay figures (they squash and stretch like real clay) and take frames with onion skin showing the last pose. The continuity checker flags frames with problems; the student finds and fixes the cause.
+  - The aha or the end state: before and after play side by side at 12 frames per second. Then the premiere: choose a title card, play it for an audience of illustrated classmates, and note one thing to try next time.
+  - Class mode or extras (optional): webcam mode for real clay on a real table (frames stay on the device); the class premiere on the projector.
+- Standards, one line per code:
+  - MA:Cr1: generating the story idea.
+  - MA:Cr2: planning it on a storyboard.
+  - MA:Cr3: testing and fixing jumps and timing until the motion reads.
+  - MA:Pr5: the shooting skills (steady camera, steady light, small moves, onion skin).
+  - MA:Pr6: the premiere and the reflection after it.
+- Not like: flipbook-studio (grade 6-8 drawn frames and timing charts); storyboard-studio (grade 9-12 camera placement); sound-and-picture-book (K-2).
+- Art: generated scenes for the tabletop set; clay figures modeled to look like real clay with fingerprints and all.
+- Proposed title: keep
+- Proposed concept line: Plan a stop-motion scene on a storyboard, pose clay figures frame by frame, track down why it jumps (a bumped camera, flicker, a hand in the shot, too big a move), fix it, and premiere it.
+- Flags: camera in webcam mode (on-screen line that frames never leave the device); too big (five codes; each is taught, but the spec must keep the shoot short)
