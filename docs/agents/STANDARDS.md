@@ -80,6 +80,10 @@ from `tools/collision-lab/src.html` (narrate, hush, readNow, firstTap) and these
 - The spoken line matches the state on screen. A welcome or how-to that assumes something (a remix to share, room to
   change) must not play when the screen says otherwise, and must not be marked said when it was skipped.
 - Sound off uses nothing up; turning Sound back on queues the mode's welcome if it was never said.
+- The hint changes when the state changes (BR1, 2026-10-28). On a tab, panel or mode switch, set the hint at once,
+  then queue the line with a `valid` check; a hint that waits for its line is lost when Read or a wrong answer drops
+  it. Pick how lines by `V.heard`, never by a counter. The first action never waits behind a line, no line names a
+  disabled control, and at a 2 s tap pace no line is lost.
 - Test with held clicks (press, ~120 ms, release): instant scripted clicks hide pointerdown/click races. Log which clips
   actually start (`drive.py` "hold").
 

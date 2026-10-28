@@ -39,6 +39,25 @@ If the spec is wrong or impossible, stop and report it rather than improvising.
 2. `python scripts/drive.py <tool-id> shots.json <out>` (or shoot.py for quick frames) for the default screen, every mode, and the extremes.
    Look at every PNG. Fix overlaps, clipping, unreadable text and anything the spec's "Done when" fails.
 3. No console errors (shoot.py prints them).
+4. The wave lessons below, each one checked. Every BR1 tool needed a second Refine round, and these were the
+   repeat findings.
+
+### Wave lessons (BR1, 2026-10-28)
+
+- **Hint and voice.** The hint names the next control, and Read speaks it. On a tab or panel switch the hint
+  changes at once, not when a queued line starts. How lines are chosen by `V.heard`, not counters. The first
+  action never waits behind a line, no line names a disabled control, and no line is lost at a 2 s tap pace.
+- **Focus and layout.** Focus is kept when controls rebuild, and nothing takes focus on load. Nothing rebuilds
+  under the pointer. Reserve the hint's height so panels don't jump. Labels and badges never overlap.
+- **Sizes.** 44 px targets (60 px for K-2) and an unclipped hint at every STANDARDS size, including 680x425 and
+  375 wide through `drive.py --host`.
+- **No giveaways.** Badges, meters, flag names, ids and the length or position of the right option reveal nothing.
+  No meter or puzzle can be solved by sweeping a slider or trying every option for free.
+- **Honest numbers.** A meter or estimate says on screen what it assumes (capture-the-flag's strength meter
+  rated "Winter2026!" as safe).
+- **Standards.** Every code on the module is taught by something a solo student does, not only a teacher
+  question. The family doc matches the engine.
+- **Motion off.** No infinite animations (the kit's `.calm` loops them at 0.01 ms). Placeholder art is legible.
 
 Report: what you built, each "Done when" check with pass or fail, the frames you looked at, and anything left open.
 Do not commit.

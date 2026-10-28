@@ -16,7 +16,7 @@ Dance disappears as it happens, so this explorer makes it hold still: each style
 - Topic line: analyzing and critiquing dance styles
 - Driver: students on laptops (alone or in pairs); a teacher can project Styles for a class discussion. Minutes: 20-45.
 - tool.json modes: ["Styles", "Compare", "Critique"]; driver "students or teacher".
-- Standards (NCAS dance): DA:Re7.1.HSI (analyze movement and patterns, style), DA:Re8.1.HSI (interpret with context and vocabulary), DA:Re9.1.HSI (evaluate with criteria); DA:Cn11.1.HSI (cultural and historical context).
+- Standards (NCAS dance): DA:Re7.1.HSI (analyze movement and patterns, style); moved here from levels-and-pathways (integrator, BR1, 2026-10-28): DA:Re7.1.1b and DA:Re7.1.2b (movements and characteristics of different dance styles), which the next Spec pass teaches with a K-2 entry or moves again (rule 2), DA:Re8.1.HSI (interpret with context and vocabulary), DA:Re9.1.HSI (evaluate with criteria); DA:Cn11.1.HSI (cultural and historical context).
 
 ## Screens and modes
 Kit frame with `kit/theme-912.css`. Header: title "Dance Styles Explorer", small line "Analyzing and critiquing dance styles", modes (`.seg`, keys 1 to 3) **Styles** (default), **Compare**, **Critique**, then `motion`, `sound`, `read`. Stage left, panel right (panel below under 1000 px wide, transport first).

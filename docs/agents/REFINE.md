@@ -111,7 +111,14 @@ check below the merged list.
 
 ## Rounds
 
-At most two rounds (look, polish, exit check). Round 2 runs only the lenses that had open items. If round 2 still
+At most two rounds (look, polish, exit check). Round 2 runs only the lenses that had open items. A round 2 exit
+check re-checks the open items plus a short no-regression look at the frames and voice they touch, not the whole
+tool again (BR1, 2026-10-28: a scoped re-check cost about 100k tokens against 150k or more for a full one). When
+one or two narrow items are left, the integrator may fix them and send the same exit agent back to re-check.
+
+Lenses also check the BUILD.md wave lessons: any lesson missed is at least a should-fix. Teaching and Play both
+try to solve each puzzle the cheap way: sweep every slider, try every option, read the badges, flag names and
+option lengths. A meter or estimate that misleads when its assumption doesn't hold is a blocker. If round 2 still
 fails the gate, the tool does not go on: the integrator either fixes one narrow item itself (with an "Integrator
 fix" note, as today) or brings it to Cory with the open list. Polish items left over never block; they go in the
 Review Desk "changed" note as "known, not done".

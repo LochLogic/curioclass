@@ -160,3 +160,5 @@ the family doc in the same change, existing calls kept working):
 - [data-desk-distributions] AP-STAT.U2 is covered only by desk 4 (form, direction, strength, a log transform); r, residuals and two-way tables live in correlation-guessing-game and data-detective. Enough, or add a two-way table desk?
 - [data-desk-distributions] Desk 1 includes recent presidents (Trump 70, Biden 78). Fine for classrooms, or stop at an earlier president?
 - [data-desk-distributions] The light graph-paper theme overrides the dark 9-12 theme. OK?
+
+Data note (integrator, BR1, 2026-10-28): the Old Faithful geyser data is used by simulation-studio; don't add it here.

@@ -12,6 +12,20 @@ move one onto the kit when it is next reworked.
 | Family engine | `kit/<family>.js`, spec in `docs/families/<family>.md` | a mechanic shared by a collection | the number line, data table and charts, coordinate plane |
 | Tool | `tools/<id>/src.html` | the one idea, its world and content | the coaster car, the diver, the ski hill |
 
+Family engines today (read the family doc before using one):
+
+| Engine | Doc | First tool |
+|---|---|---|
+| `kit/graphing.js` | docs/families/graphing.md | live graphing tools |
+| `kit/network.js` | docs/families/network.md | internet-journey |
+| `kit/security.js` | docs/families/security.md | data-defenders (capture-the-flag extends it, BR2) |
+| `kit/ml-lab.js` | docs/families/ml-lab.md | teach-the-robot |
+| `kit/dance.js` | docs/families/dance.md | levels-and-pathways |
+| `kit/perspective.js` | docs/families/perspective.md | city-skyline-studio |
+| `kit/robot.js` | docs/families/robot.md | snowy-mail-route |
+| `kit/data-desk.js` | docs/families/data-desk.md | simulation-studio |
+| `kit/music-studio.js` | docs/families/music-studio.md | song-form-builder (BR2, in Refine) |
+
 Rule of thumb: if two tools in different families need it, it belongs in the kit. If only siblings need it, it is
 the family engine. Everything that makes a tool feel like itself stays in the tool.
 

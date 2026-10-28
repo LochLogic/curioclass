@@ -112,7 +112,7 @@ none: drawn in code (pose figure with keyframes A and B per station, tiles, ring
 Fact cards are read on screen (Read speaks them).
 
 ## Family engine
-**movement** (siblings: animal-moves, built; fitness-circuit is the first spec in the family, so it holds the full description). The builder extracts the engine into `kit/movement.js`; animal-moves keeps its own copy until it is next touched.
+**movement** (siblings: animal-moves, built; fitness-circuit is the first spec in the family, so it holds the full description). The builder extracts the engine into `kit/movement.js`; animal-moves keeps its own copy until it is next touched. It is the PE figure only: dance has its own figure in `kit/dance.js` (BASELINE w1-21), so nothing is shared with the dance family (integrator note, BR1, 2026-10-28).
 - `Move.card(el, {title, tag, cues, color})`: the move card (title, tag chip with icon, up to three cues).
 - `Move.figure(el, {poses: [A, B], beat, mirror})`: the jointed pose figure in SVG. A pose is a set of joint angles (shoulders, elbows, hips, knees, trunk lean, body angle for floor moves). Loops A to B to A on the beat (two beats per cycle), or holds A with a slow breathing rise for "hold". Motion off: shows A with an arrow toward B. animal-moves passes an image instead of poses; the card works the same.
 - `Move.ring(el, secs, {beepLast: 3})`: the countdown ring; returns a promise; pause and resume aware.

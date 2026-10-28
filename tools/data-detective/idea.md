@@ -18,3 +18,5 @@
 - Proposed title: keep
 - Proposed concept line: Solve cases with real paired data (foot length vs height, geyser wait vs eruption): read the scatter's pattern, fit a line by eye, use its slope and intercept to predict, and crack a two-way table.
 - Flags: needs a data source (openly licensed paired data sets, for example published body-measurement samples and the public Old Faithful eruption records)
+
+- Data note (integrator, BR1, 2026-10-28): the Old Faithful geyser data is used by simulation-studio; pick a different paired data set here.
