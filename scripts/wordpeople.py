@@ -4,7 +4,8 @@ r"""Draw the Word Wall cards that need a person (an action like hop or skip) wit
     python scripts/wordpeople.py --pick module_id/slug:k                  keep candidate k as the card's picture
 
 A card whose picture starts "people:" is drawn here, never by the local painter (scripts/wordart.py skips it, since
-the local models never draw people) and never in code. Same flat flashcard style as wordart.py, drawn by
+the local models never draw people) and never in code. So is a card whose picture starts "gpt:": a picture FLUX has
+failed twice (usually lettering, numbers or a precise idea), which goes to gpt-image-2 before Gemini, not down to code. Same flat flashcard style as wordart.py, drawn by
 scripts/gptart.py's Codex call on the ChatGPT plan. Every candidate is looked at before it is picked (docs/ART.md).
 """
 import shutil, sys
@@ -24,7 +25,7 @@ PEOPLE = (' Each child is cheerful, about 7, in a plain t-shirt, shorts and snea
 
 def cards():
     return {f"{mid}/{c['slug']}": c for mid, cs in check_words.load().items() for c in cs
-            if c['picture'].startswith('people:')}
+            if c['picture'].startswith(('people:', 'gpt:'))}
 
 
 def main():
@@ -50,7 +51,8 @@ def main():
             continue
         if (check_words.ART / f'{key}.webp').exists() and not wanted and '--force' not in args:
             continue
-        prompt = STYLE.format(p=c['picture'][7:].strip()) + PEOPLE
+        kind, _, p = c['picture'].partition(':')
+        prompt = STYLE.format(p=p.strip()) + (PEOPLE if kind == 'people' else '')
         have = len(list(RAW.glob(f"{key.replace('/', '__')}.c*.png")))
         for k in range(have + 1, have + 1 + n):
             src = draw(prompt, 'square', [], work)

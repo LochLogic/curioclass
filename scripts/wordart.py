@@ -52,7 +52,7 @@ def cards(bands=None, subjects=None):
             key = f"{mid}/{c['slug']}"
             if key in pd:
                 out.append(dict(c, picture=pd[key], band=b, key=key))
-            elif c['picture'] and not c['picture'].startswith(('svg:', 'people:')):
+            elif c['picture'] and not c['picture'].startswith(('svg:', 'people:', 'gpt:')):
                 out.append(dict(c, band=b, key=key))
     return out
 
