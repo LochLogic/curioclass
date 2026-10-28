@@ -47,10 +47,7 @@ BR2 to BR4 are picked after each wave closes, so a family's second tool can test
 
 BR1 is closed: all 7 tools PASS and are committed (teach-the-robot round 2, internet-journey 2, data-defenders 2, city-skyline-studio 2, snowy-mail-route 2, simulation-studio 2, levels-and-pathways 3). Counts are on line 2 of each refine.md.
 
-BR2 state, to resume from:
-- song-form-builder: built (kit/music-studio.js new). refine/teaching.md done (0 blockers, 1 should fix, 2 polish). Play and Craft lenses were stopped mid-run; rerun both, then merge, polish, exit check.
-- capture-the-flag: built (kit/security.js extended, data-defenders checked pixel-identical). refine/teaching.md done (2 blockers: strength meter rewards patterns, tradeoff codes untaught; 5 should fix). Play and Craft lenses stopped; rerun both. Integrator accepted the common-list line under Strength (checked accurate by Teaching).
-- stage-blocker, fake-or-fact-lab, career-cluster-explorer, target-toss, biased-bot: not started.
-- Neither BR2 tool is committed; their folders and engine edits are uncommitted in the working tree.
+BR2 closed 2026-10-28: all 7 PASS, committed and deployed (counts in BATCH-BR-LOG.md). BR3 is next, picked
+from the BR2 lessons.
 
 Wave-close work still owed from BR1: the counts table in BATCH-BR-LOG.md, the BR1 lessons into BUILD.md, STANDARDS.md and REFINE.md (Cory was asked whether to do this before more BR2 builds), KIT.md engine lines, and the integrator moves (Re7 codes to dance-pattern-puzzle and dance-styles-explorer, Cr3.1.1b off levels-and-pathways, fitness-circuit spec note, non-Old Faithful data notes for data-desk-distributions and data-detective).
