@@ -89,6 +89,7 @@ from `tools/collision-lab/src.html` (narrate, hush, readNow, firstTap) and these
 
 ## Testing tools
 
+- `python scripts/audit_tool.py <id> <out>`: the mechanical audit (every size, Motion off, one click per control, voice at a 2 s pace) as one audit.md of leads. Builders and lenses run it first (REFINE.md, pilot).
 - `python scripts/drive.py <id> shots.json <out>`: muted headless Chrome over CDP with real clicks (held), drags,
   keys, console errors and exceptions. `scripts/shoot.py` makes quick frames but does not report console errors.
 - Every Chrome you start uses `--mute-audio` (Cory hears test audio otherwise). Close every Chrome and server you start.

@@ -39,7 +39,9 @@ If the spec is wrong or impossible, stop and report it rather than improvising.
 2. `python scripts/drive.py <tool-id> shots.json <out>` (or shoot.py for quick frames) for the default screen, every mode, and the extremes.
    Look at every PNG. Fix overlaps, clipping, unreadable text and anything the spec's "Done when" fails.
 3. No console errors (shoot.py prints them).
-4. The wave lessons below, each one checked. Every BR1 tool needed a second Refine round, and these were the
+4. `python scripts/audit_tool.py <tool-id> <scratch>/audit --port <your port> --profile <absolute dir>`: fix or
+   answer every lead in its audit.md (it is mechanical; a clean audit is not a clean tool).
+5. The wave lessons below, each one checked. Every BR1 tool needed a second Refine round, and these were the
    repeat findings.
 
 ### Wave lessons (BR1, 2026-10-28)
