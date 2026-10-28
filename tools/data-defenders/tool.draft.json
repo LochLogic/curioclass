@@ -1,0 +1,25 @@
+{
+  "id": "data-defenders",
+  "status": "beta",
+  "stage": "built",
+  "hook": "Three locked rooms in a made-up school each guard one promise about data. Fix the real weak spot inside to open each door, then sort six problems into C, I and A to escape.",
+  "outcome": "Name confidentiality, integrity and availability by what broke, and fix each with least privilege, strong passwords, checksums, logs, enough servers and backups kept apart",
+  "driver": "students or teacher",
+  "minutes": "25-35",
+  "modes": ["Escape"],
+  "grades_label": "Grade 5",
+  "sources": [
+    "CSTA K-12 Computer Science Standards (2026 ids E5-SYS-SE-13, E5-SYS-NT-14; 2017 1B-NI-05): https://csteachers.org/k12standards/",
+    "NIST CSRC Glossary: confidentiality, integrity, availability (from 44 U.S.C. 3552), least privilege, checksum: https://csrc.nist.gov/glossary",
+    "NIST SP 800-63B-4, section 3.1.1.2 (length matters most; block common, expected and context-specific passwords): https://pages.nist.gov/800-63-4/sp800-63b.html",
+    "UK National Cyber Security Centre, Most hacked passwords revealed (2019), and its 100,000 list: https://www.ncsc.gov.uk/news/most-hacked-passwords-revealed",
+    "CISA, Logging Made Easy and Cybersecurity Best Practices (review logs for unusual activity): https://www.cisa.gov/topics/cybersecurity-best-practices",
+    "CISA (US-CERT), Data Backup Options (2012): back up often and keep a copy apart from the original system",
+    "CISA, Understanding Denial-of-Service Attacks: https://www.cisa.gov/news-events/news/understanding-denial-service-attacks",
+    "Reserved example domains, RFC 2606 and RFC 6761: https://www.rfc-editor.org/rfc/rfc2606",
+    "Cedar Hollow, its people, scores, visits and the 500 visits per server are made up for Curio Class; sums computed",
+    "Hallway background generated on this PC with FLUX (no people); doors, locks, puzzles, charts and logs drawn in code"
+  ],
+  "third_party": [],
+  "updated": "2026-10-27"
+}

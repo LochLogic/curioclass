@@ -1,0 +1,1621 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Data Defenders · Keeping data private, correct and available · Curio Class</title>
+<meta name="description" content="An escape room in a made-up school after dark: fix the real weak spot in three locked rooms to learn confidentiality, integrity and availability, then sort six problems into C, I and A to open the exit. Grade 5 computer science. Works offline.">
+<!--
+Data Defenders (Curio Class)
+Grade 5, computer science, The CIA Triad (Systems and Security). Standards: CSTA 2026 E5-SYS-SE-13, E5-SYS-NT-14
+(2017 crosswalk 1B-NI-05). Teams of 2 or 3 on one laptop, or a teacher on a projector with table groups calling answers.
+One mode, Escape: three locked rooms (Records Room = confidentiality, Grade Book Room = integrity, Server Closet =
+availability), two puzzles in each of the first two and three in the Server Closet (the Network closet: wired and
+wireless parts, then which devices stay online when the Wi-Fi access point fails), then the exit door where six
+problems are sorted into C, I and A.
+Facts: NIST CSRC Glossary (confidentiality, integrity, availability, least privilege, checksum); NIST SP 800-63B-4
+section 3.1.1.2 (length, blocking common and context-specific passwords); UK NCSC "Most hacked passwords revealed"
+(2019) for the common list; CISA (logs, backups kept apart from the original, denial of service); RFC 2606 and RFC 6761
+(reserved example domains). Cedar Hollow, its people, scores, visits and the 500 visits per server are made up for
+Curio Class; sums computed. Every address is a reserved name (cedarhollow.example). Nothing is stored or sent.
+Uses the security family engine (kit:security, docs/families/security.md) and the network engine's map (kit:network,
+docs/families/network.md) for the Network closet.
+Background painting generated on this PC with FLUX (no people); doors, locks, puzzles, charts and logs drawn in code.
+One file, no network requests. Content CC BY 4.0, code MIT. curioclass.org
+-->
+<link rel="stylesheet" href="kit:curio">
+<style>
+:root{
+  --paper:#f7f2e7;--panel:#ffffff;--ink:#2a2116;--muted:#64584a;--line:#e6dccb;--focus:#1d4ed8;
+  --brand:#875a00;--btn:#875a00;--btn-line:#b88a2e;--head-ink:#ffffff;
+  --night:#1e2a3a;--night-ink:#e6eef7;--gold:#ffd27a;--brass:#c99a3c;--brass-dk:#7a5410;
+  --rC:#2f5ea8;--rI:#2e7d4f;--rA:#b0461f;--rX:#875a00;
+  --ok:#1f7a46;--bad:#b42318;
+  --sec-glow:#ffd27a;--sec-seal:#9a3412;
+}
+/* Three page layouts, picked in script (relayout()), as in collision-lab:
+   wide    (1000 px or wider and 700 px or taller): stage on the left, 360 px panel on the right;
+   compact (a short landscape box such as the 16:10 embed): a 290 to 320 px panel and a one-row header;
+   stack   (narrow or portrait): the stage, then the panel; the hint and the puzzle's check controls move into the
+           stage so they sit right by the puzzle. The panel comes first in the DOM so Tab goes header, panel, puzzle.
+   Doors and stations are laid out at their real pixel size in every box (no scaled design). */
+body.wide,body.compact{height:100vh;overflow:hidden}
+main{min-height:0}
+body.wide main{grid-template-columns:minmax(0,1fr) 360px}
+body.compact main{grid-template-columns:minmax(0,1fr) 290px}
+@media (min-width:900px){body.compact main{grid-template-columns:minmax(0,1fr) 320px}}
+body.wide .stage,body.compact .stage{grid-column:1;grid-row:1}
+body.wide .panel,body.compact .panel{grid-column:2;grid-row:1}
+body.stack main{grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto;height:auto;flex:none}
+body.stack{height:auto}
+body.stack main{align-content:start}
+body.stack .stage{grid-row:1}
+body.stack .panel{grid-row:2;border-left:0;border-top:3px solid var(--line)}
+body.compact header{padding:4px 8px;gap:4px;flex-wrap:nowrap;min-width:0}
+body.compact h1{font-size:17px;white-space:nowrap;min-width:0;overflow:hidden;text-overflow:ellipsis}
+body.compact h1 small{display:none}
+body.compact .seg button,body.compact .icon-btn{min-height:44px;padding:0 9px;font-size:13.5px;white-space:nowrap}
+body.compact .icon-btn,body.compact .seg{flex:none}
+body.compact .panel{padding:8px 10px;gap:8px}
+body.compact .hint{font-size:14.5px;line-height:1.35}
+@media (max-width:560px){
+  .seg button{min-height:44px;font-size:15px}
+  .icon-btn{min-height:44px;padding:0 12px;font-size:15px}
+}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.ico{display:inline-block;vertical-align:-4px;flex:none}
+
+/* ---------- panel ---------- */
+.btn{border:2px solid var(--brand);background:#fff;color:var(--brand);border-radius:12px;min-height:44px;padding:0 14px;font-weight:700;font-size:15.5px;
+  display:inline-flex;align-items:center;justify-content:center;gap:6px}
+.btn.go{background:var(--brand);color:#fff}
+.btn[aria-pressed="true"]{background:var(--brand);color:#fff}
+.btn:disabled{opacity:.45;cursor:default}
+.row{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.row>.btn{flex:1 1 auto}
+.ctl{display:flex;flex-direction:column;gap:8px}
+.ctl:empty{display:none}
+.ctl .big{min-height:52px;font-size:17px}
+.res{margin:0;font-size:15px;line-height:1.4;border-left:4px solid var(--muted);padding:2px 0 2px 10px}
+.res:empty{display:none}
+.res.bad{border-color:var(--bad)}
+.res.good{border-color:var(--ok)}
+.res b{font-weight:700}
+.stepper{display:grid;grid-template-columns:52px 1fr 52px;gap:6px;align-items:center}
+.stepper output{text-align:center;font-weight:800;font-size:20px}
+.stepper output small{display:block;font-size:12.5px;font-weight:600;color:var(--muted)}
+.fixes{display:flex;flex-direction:column;gap:6px}
+.fixes .btn{justify-content:flex-start;text-align:left;padding:6px 12px;line-height:1.3;min-height:48px;font-weight:600}
+.fixes .btn.nope{border-style:dashed;border-color:var(--bad);color:var(--bad);background:#fdf3f2}
+.lbl{margin:0;font-weight:700;font-size:14.5px}
+.story{background:#fbf6ea;border:1px solid var(--line);border-radius:12px;padding:10px 12px;font-size:15px;line-height:1.45}
+.story h2{margin:0 0 4px;font:800 16px 'Trebuchet MS','Segoe UI',sans-serif;display:flex;gap:6px;align-items:center}
+.story p{margin:0}
+.story ul{margin:4px 0 0;padding-left:18px}
+.clue{font-size:15px;line-height:1.4;background:#fff8e1;border:1px solid #f0d58a;border-radius:12px;padding:8px 12px;margin:0}
+.clue:empty{display:none}
+.timer{display:flex;flex-direction:column;gap:6px}
+.timer .seg2{display:flex;gap:4px}
+.timer .seg2 .btn{flex:1;padding:0 6px;font-size:14.5px}
+.timer output{font:700 15px ui-monospace,Consolas,monospace}
+.small{font-size:13px;color:var(--muted);margin:0;line-height:1.35}
+.ask{display:flex;gap:6px;align-items:center;flex-wrap:wrap;font-weight:700}
+body.compact .story{padding:6px 10px;font-size:13.5px}
+body.compact .story h2{font-size:14.5px}
+body.compact .btn{font-size:14px;padding:0 10px}
+body.compact .ctl .big{min-height:46px;font-size:15.5px}
+body.compact .res{font-size:13.5px}
+body.compact .fixes .btn{font-size:13px;min-height:44px;padding:3px 8px}
+
+/* ---------- stage ---------- */
+.stage{background:var(--night);min-height:0}
+body.stack .stage{overflow:visible;min-height:0}
+#topSlot:empty{display:none}
+#topSlot{padding:10px 14px;background:var(--paper);border-bottom:1px solid var(--line)}
+#topSlot .hint{margin:0}
+#ctlDock:empty{display:none}
+#ctlDock:not(:has(#ctl > *)){display:none}
+#ctlDock{padding:10px 12px;background:#fff;border-top:1px solid var(--line)}
+
+/* hallway */
+.hall{position:absolute;inset:0;overflow:hidden;color:var(--night-ink)}
+body.stack .hall{position:relative;inset:auto}
+.hall .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 60%}
+.hall .shade{position:absolute;inset:0;background:linear-gradient(rgba(20,30,44,.55),rgba(20,30,44,.40) 45%,rgba(14,20,30,.62))}
+.hall-in{position:relative;height:100%;display:flex;flex-direction:column}
+.hall-top{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;padding:10px 14px}
+.hall-top b{font:800 17px 'Trebuchet MS','Segoe UI',sans-serif;text-shadow:0 1px 3px #000a}
+.compacthall .hall-top b{display:none}
+.compacthall .hall-top{padding:6px 10px}
+.chip{background:rgba(14,20,30,.78);border:1px solid #ffffff33;border-radius:999px;padding:4px 12px;font-size:14px;font-weight:700}
+.doors{margin-top:auto;display:grid;justify-content:center;align-items:stretch;padding:0 var(--gap) var(--gap);gap:var(--gap)}
+.door{all:unset;box-sizing:border-box;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:6px;width:var(--dw);border-radius:10px;padding:4px}
+.door:focus-visible{outline:4px solid var(--gold);outline-offset:3px}
+.door .frame{position:relative;width:var(--dw);height:var(--dh);border:6px solid #2b2218;border-bottom:0;border-radius:6px 6px 0 0;
+  background:radial-gradient(ellipse at 50% 60%,#fff2c8,#ffd27a 45%,#c98a24);perspective:700px;box-shadow:0 10px 24px #0008}
+.door .leaf{position:absolute;inset:0;background:var(--dc);transform-origin:0 50%;transition:transform .45s ease-in;border-radius:2px;
+  box-shadow:inset 0 0 0 3px #0003,inset 6px 0 0 #ffffff1a;display:flex;flex-direction:column;align-items:center}
+.door:hover .leaf{filter:brightness(1.08)}
+.door.opening .leaf{transform:rotateY(-78deg)}
+.calm .door.opening .leaf{transform:none}
+.calm .door.opening .frame{animation:flash .45s linear}
+@keyframes flash{0%,100%{outline:0 solid var(--gold)}30%,70%{outline:5px solid var(--gold);outline-offset:2px}}
+.leaf .win{margin-top:8%;width:56%;height:17%;border-radius:4px;background:linear-gradient(160deg,#9cc3e8,#2f4b6b 60%);border:3px solid #0004}
+.leaf .emblem{margin-top:9%;width:calc(var(--du)*.42);height:calc(var(--du)*.42);border-radius:50%;background:#fff;color:var(--dc);display:grid;place-items:center;box-shadow:0 2px 0 #0003}
+.leaf .emblem svg{width:62%;height:62%}
+.leaf .shield{margin-top:7%;width:calc(var(--du)*.36);height:calc(var(--du)*.4)}
+.leaf .lockplate{position:absolute;right:7%;top:55%;display:flex;flex-direction:column;align-items:center;gap:3px;padding:4px 3px;border-radius:8px;
+  background:linear-gradient(#e8c26a,#a87a1c);box-shadow:0 2px 0 #0005}
+.lockplate .ls{width:calc(var(--du)*.17);height:calc(var(--du)*.17);min-width:18px;min-height:18px;border-radius:50%;display:grid;place-items:center;background:#3a2c10;color:#8a7350;border:2px dashed #c9a35a}
+.lockplate .ls svg{width:70%;height:70%}
+.lockplate .ls.lit{background:var(--gold);color:#3a2c00;border:2px solid #fff3c4;box-shadow:0 0 8px var(--gold)}
+.lockplate .kh{width:8px;height:12px;border-radius:4px 4px 2px 2px;background:#2b2218}
+.exitleaf{background:linear-gradient(#a8802f,#7a5410)!important}
+.exitsign{margin-top:7%;background:#14532d;color:#fff;font:800 calc(var(--du)*.12) 'Trebuchet MS',sans-serif;padding:1px 8px;border-radius:4px;letter-spacing:.06em}
+.exitslots{margin-top:9%;display:flex;gap:4%;justify-content:center;width:100%}
+.exitslots svg{width:calc(var(--du)*.25);height:calc(var(--du)*.28)}
+.bigpad{margin-top:10%;width:calc(var(--du)*.3);height:calc(var(--du)*.3);color:#2b2218}
+.doors.squat .leaf .win,.doors.squat .leaf .shield,.doors.squat .bigpad{display:none}
+.doors.squat .leaf{justify-content:center}
+.doors.squat .leaf .emblem{margin:0}
+.doors.squat .exitsign{margin-top:0}
+.doors.squat .exitslots{margin-top:6%}
+.door .lab{text-align:center;line-height:1.2;max-width:calc(var(--dw) + 40px)}
+.door .lab b{display:block;font:800 16px 'Trebuchet MS','Segoe UI',sans-serif;color:var(--night-ink);text-shadow:0 1px 3px #000}
+.door .lab span{display:inline-block;margin-top:2px;font-size:13px;font-weight:700;color:var(--night-ink);background:rgba(14,20,30,.8);border-radius:999px;padding:1px 9px}
+.door .lab span.done{color:#2a2116;background:var(--gold)}
+.door.ready .frame{box-shadow:0 0 0 4px var(--gold),0 0 26px 8px var(--gold);animation:glow 1.8s ease-in-out infinite}
+@keyframes glow{50%{box-shadow:0 0 0 4px var(--gold),0 0 44px 18px var(--gold)}}
+.calm .door.ready .frame{animation:flash 1s linear 3}
+.lockplate.n3{top:46%}
+
+/* room */
+.room{position:absolute;inset:0;display:flex;flex-direction:column;background:var(--paper)}
+body.stack .room{position:relative;inset:auto}
+.rtop{display:flex;align-items:center;gap:10px;padding:6px 10px;background:var(--rc);color:#fff;flex-wrap:wrap}
+.rtop h2{margin:0;font:800 18px 'Trebuchet MS','Segoe UI',sans-serif;display:flex;gap:6px;align-items:center;margin-right:auto}
+.back{all:unset;box-sizing:border-box;cursor:pointer;display:inline-flex;gap:6px;align-items:center;min-height:44px;padding:0 12px;border-radius:10px;background:#fff;color:var(--ink);font-weight:700;font-size:15px}
+.back:focus-visible{outline:4px solid var(--gold);outline-offset:2px}
+.rlock{display:flex;gap:6px;align-items:center;padding:4px 8px;border-radius:12px;background:linear-gradient(#e8c26a,#a87a1c);box-shadow:0 2px 0 #0004}
+.rlock .ls{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:#3a2c10;color:#9c8460;border:2px dashed #d8b46a}
+.rlock .ls svg{width:22px;height:22px}
+.rlock .ls.lit{background:var(--gold);color:#3a2c00;border:2px solid #fff3c4;box-shadow:0 0 12px var(--gold)}
+.rlock .cnt{font:800 13px 'Segoe UI',sans-serif;color:#2b1d00;padding:0 2px}
+.rlock .ls.pop{animation:pop .6s ease-out}
+.calm .rlock .ls.pop{animation:flash .6s linear}
+@keyframes pop{0%{transform:scale(.6)}60%{transform:scale(1.25)}100%{transform:scale(1)}}
+.tabs{display:flex;gap:6px;padding:8px 10px 0}
+.tabs:empty{display:none}
+.tab{all:unset;box-sizing:border-box;cursor:pointer;flex:1;min-height:44px;display:flex;gap:6px;align-items:center;justify-content:center;padding:0 10px;border-radius:10px 10px 0 0;
+  background:#ece3d2;color:var(--muted);font-weight:700;font-size:15px;border:2px solid transparent;border-bottom:0}
+.tab[aria-selected="true"]{background:#fff;color:var(--ink);border-color:var(--rc)}
+.tab:focus-visible{outline:4px solid var(--focus);outline-offset:-2px}
+.compactui .rtop .tab:focus-visible{outline:3px solid #fff;outline-offset:2px}
+.tab .tick{color:var(--ok)}
+.stations{flex:1;min-height:0;display:grid;gap:10px;padding:10px;overflow:auto;align-content:start}
+.stations.split{grid-template-columns:1fr 1fr;align-items:stretch;align-content:stretch}
+.stations.tabbed{padding-top:0}
+body.stack .stations{overflow:visible}
+.station{background:#fff;border:2px solid var(--line);border-radius:14px;display:flex;flex-direction:column;min-height:0;min-width:0}
+.stations.split .station.active{border-color:var(--rc)}
+.stations.tabbed .station{border-color:var(--rc);border-top-left-radius:0;border-top-right-radius:0}
+.st-head{display:flex;gap:8px;align-items:center;padding:8px 12px;border-bottom:1px solid var(--line);font:800 16px 'Trebuchet MS','Segoe UI',sans-serif;color:var(--ink)}
+.st-head .ico{color:var(--rc)}
+.st-head .state{margin-left:auto;font:700 13px 'Segoe UI',sans-serif;color:var(--muted)}
+.st-head .state.done{color:var(--ok)}
+.stations.tabbed .st-head{display:none}
+.st-body{padding:10px 12px;overflow:auto;flex:1;min-height:0}
+body.stack .st-body{overflow:visible}
+.prompt{margin:0 0 8px;font-size:15px;line-height:1.4;color:var(--muted)}
+.donebar{display:flex;gap:8px;align-items:center;margin:0 0 8px;padding:6px 10px;border-radius:10px;background:#e7f4ec;color:#14532d;font-weight:700;font-size:14.5px}
+.compactui .prompt{font-size:13.5px;margin-bottom:6px}
+.compactui .prompt.opt{display:none}
+.back .short{display:none}
+.compactui .back .full{display:none}
+.compactui .back .short{display:inline}
+.compactui .rtop{flex-wrap:nowrap;padding:4px 8px;gap:6px}
+.compactui .rtop h2{font-size:15.5px;min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.compactui .back{padding:0 10px;font-size:14px}
+.compactui .rlock{padding:3px 6px;gap:4px}
+.compactui .rlock .ls{width:30px;height:30px}
+.compactui .rlock .ls svg{width:18px;height:18px}
+.compactui .rlock .cnt{display:none}
+.compactui .tabs{padding:6px 8px 0}
+.compactui .rtop .tabs{padding:0;flex:1;min-width:0;gap:4px}
+.compactui .rtop .tab{border-radius:10px;background:#ffffff2e;color:#fff;border:2px solid #ffffff55;font-size:13px;min-width:0;flex:1 1 0}
+.compactui .rtop .tab .tt{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.compactui .rtop .tab[aria-selected="true"]{background:#fff;color:var(--ink);border-color:#fff}
+.compactui .rtop .tab .tick{color:inherit}
+.tab .ts{display:none}
+.compactui .rtop .tab .tl{display:none}
+.compactui .rtop .tab .ts{display:inline}
+.compactui.n3 .rtop .tab{padding:0 4px;gap:3px}
+.compactui.n3 .rtop .tab>.ico{display:none}   /* three tabs in a short bar: the name says enough */
+.tiny.n3 .rtop .tab{font-size:12px;padding:0 2px}
+.tiny.n3 .rlock{gap:2px;padding:3px 4px}
+.tiny.n3 .rlock .ls{width:24px;height:24px}
+.tiny.n3 .rlock .ls svg{width:15px;height:15px}
+.tabtop .back>span{display:none}
+.tabtop .back{min-width:44px;padding:0;justify-content:center}
+.doors.squat .leaf{flex-direction:row;justify-content:space-evenly;align-items:center}
+.doors.squat .leaf .lockplate{position:static}
+.compacthall .door .lab span{font-size:12px;white-space:nowrap}
+.compacthall .door .lab b{font-size:15px}
+.compactui .stations.tabbed{padding-top:8px}
+.compactui .stations.tabbed .station{border-radius:14px}
+.compactui .pws{grid-template-columns:1fr;gap:5px}
+.compactui .pw{flex-direction:row;align-items:stretch;padding:4px}
+.compactui .pw .test{flex:1;min-width:0}
+.compactui .pw .btn.mini{flex:none;width:92px;white-space:normal;line-height:1.15;font-size:13px;padding:0 6px}
+.compactui .plans{grid-template-columns:1fr 1fr;gap:5px}
+.compactui .plan{padding:5px 6px;gap:4px}
+.compactui .plan .pt{font-size:12.5px}
+.compactui .day{font-size:12px}
+.compactui .pool{grid-template-columns:1fr 1fr;padding:4px;gap:4px}
+.compactui .slots{gap:4px;margin-top:6px}
+.compactui .slotlist{padding:3px;gap:3px}
+.compactui .sec-rowbody{gap:4px 6px;flex-wrap:nowrap}
+.compactui .sec-rowname{min-width:0;font-size:14.5px;flex:none}
+.tiny .sec-rowbody{flex-wrap:wrap}
+.tiny .sec-slot{margin-left:0}
+.tiny .sec-rowname{width:2.4em}
+.compactui .card-x .sec-rowbody{padding:3px 6px}
+.compactui .added{min-width:0;font-size:12px}
+.added .ls{display:none}
+.compactui .added .lf{display:none}
+.compactui .added .ls{display:inline}
+.compactui .i1btn .full{display:none}
+.i1btn .short{display:none}
+.compactui .i1btn .short{display:inline}
+.compactui .sec-slot{gap:4px;flex-wrap:nowrap}
+.pshort{display:none}
+.compactui .pfull{display:none}
+.compactui .pshort{display:inline}
+.compactui .tab{font-size:14px;padding:0 6px}
+.compactui .stations{padding:8px}
+.compactui .st-body{padding:8px}
+.compactui .st-head{padding:6px 10px;font-size:15px}
+
+/* C1 grid */
+.grid{display:grid;grid-template-columns:minmax(96px,1.4fr) repeat(4,minmax(52px,1fr));gap:4px;align-items:stretch}
+.grid .colh{display:flex;flex-direction:column;align-items:center;justify-content:end;gap:1px;font-size:12.5px;font-weight:700;color:var(--muted);text-align:center;line-height:1.1;padding-bottom:2px}
+.grid .who{display:flex;flex-direction:column;justify-content:center;font-size:14.5px;font-weight:700;line-height:1.2;position:relative;padding-right:4px}
+.grid .who small{font-weight:400;font-size:12.5px;color:var(--muted);font-style:italic}
+.badge{display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;background:var(--bad);color:#fff;font:800 13px sans-serif;margin-left:4px;vertical-align:1px}
+.cell{all:unset;box-sizing:border-box;cursor:pointer;min-height:48px;border-radius:10px;border:2px solid var(--line);display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:11.5px;font-weight:700;color:var(--muted);background:#faf7f0}
+.cell[aria-checked="true"]{background:#e8f0fb;border-color:var(--rC);color:var(--rC)}
+.room:not(.compactui) .cell{min-height:56px}
+.cell:focus-visible{outline:4px solid var(--focus);outline-offset:1px}
+.cell.pub{cursor:default;background:#f2efe6;border-style:dashed;color:var(--muted)}
+.cell .ico{vertical-align:0}
+.compactui .grid{grid-template-columns:minmax(84px,1.3fr) repeat(4,minmax(44px,1fr));gap:3px}
+.compactui .cell{min-height:44px}
+.compactui .grid .who{font-size:13px}
+.compactui .grid .who small{font-size:11.5px}
+
+/* C2 passwords */
+.pws{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr));gap:8px}
+.pw{border:2px solid var(--line);border-radius:12px;padding:8px;display:flex;flex-direction:column;gap:6px;background:#fff}
+.pw.picked{border-color:var(--ok)}
+.pw .test{all:unset;box-sizing:border-box;cursor:pointer;min-height:44px;border-radius:8px;background:#f4efe4;padding:4px 10px;font:700 17px ui-monospace,Consolas,monospace;color:var(--ink);overflow-wrap:anywhere}
+.pw .test:focus-visible{outline:4px solid var(--focus)}
+.pw .test small{display:block;font:600 12px 'Segoe UI',sans-serif;color:var(--muted)}
+.meter{display:grid;grid-template-columns:auto 1fr;gap:2px 8px;align-items:center;font:13px 'Segoe UI',sans-serif;margin-bottom:2px}
+.pw .test .why{font-size:12.5px;color:var(--muted);margin-top:2px;line-height:1.25}
+.pwt{display:block}
+.meter .bar{height:12px;border-radius:6px;background:#eee6d6;overflow:hidden;border:1px solid #d9cdb6}
+.meter .bar i{display:block;height:100%}
+.meter .w{font-weight:800}
+.meter .why{grid-column:1/-1;color:var(--muted);line-height:1.3}
+.b-Weak .bar i{width:33%;background:repeating-linear-gradient(45deg,#b42318 0 6px,#d9544a 6px 12px)}
+.b-OK .bar i{width:66%;background:#b07a00}
+.b-Strong .bar i{width:100%;background:#1f7a46}
+.compactui .pw{padding:6px;gap:4px}
+.compactui .pw .test{font-size:15px;min-height:44px}
+
+/* I1 cards */
+.cards{display:flex;flex-direction:column;gap:6px}
+.card-x .sec-rowbody{padding:5px 8px}
+.card-x.changed{border-color:var(--bad);border-width:2px}
+.added{font-size:13.5px;color:var(--muted);min-width:7.5em}
+.added b{color:var(--ink);font:700 15px ui-monospace,Consolas,monospace}
+.mini{min-height:44px;font-size:14px;padding:0 10px}
+
+/* I2 log */
+.logwrap .sec-table td,.logwrap .sec-table th{padding:5px 7px}
+.compactui .logwrap .sec-table{font-size:12.5px}
+.compactui .logwrap .sec-table td small,.logwrap.narrow .sec-table td small{display:none}
+
+/* A1 chart */
+.chart{display:block}
+.chart text{font:12.5px 'Segoe UI',system-ui,sans-serif;fill:var(--muted)}
+.chart .val{fill:var(--ink);font-weight:700}
+.chart .cap{font-weight:700;fill:#7a2e10}
+.chart .over{fill:var(--bad);font-weight:800}
+
+/* A2 plans */
+.plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr));gap:8px}
+.plan{all:unset;box-sizing:border-box;cursor:pointer;border:2px solid var(--line);border-radius:12px;padding:8px 10px;display:flex;flex-direction:column;gap:6px;background:#fff;min-height:44px}
+.plan:hover{border-color:var(--rA)}
+.plan:focus-visible{outline:4px solid var(--focus);outline-offset:1px}
+.plan.picked{border-color:var(--ok);background:#f1f9f4}
+.plan.nope{border-color:var(--bad);border-style:dashed}
+.plan .pt{font-size:14.5px;line-height:1.3;color:var(--ink)}
+.plan .pt b{font-size:16px;margin-right:4px}
+.days{display:flex;gap:3px}
+.day{flex:1;min-width:0;border-radius:6px;padding:2px 0;text-align:center;font-size:13px;font-weight:700;line-height:1.15;border:1px solid}
+.day.kept{background:#e7f4ec;border-color:#9fd1b2;color:#14532d}
+.day.lost{background:#fdecea;border-color:#f1a9a1;color:#8a1c12;text-decoration:line-through}
+.day .ico{display:block;margin:0 auto}
+body.wide .room:not(.compactui) .day{font-size:14px}
+.plan .pwhy{font-size:13.5px;line-height:1.3;color:var(--ink);border-left:3px solid var(--bad);padding-left:7px}
+.plan.picked .pwhy{border-color:var(--ok)}
+.compactui .plan .pwhy{font-size:12.5px}
+
+/* A3 network closet */
+.parts{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,230px),1fr));gap:6px}
+.part{border:2px solid var(--line);border-radius:12px;padding:6px 8px;display:grid;grid-template-columns:38px 1fr;gap:2px 8px;align-items:center;background:#fff;position:relative}
+.part .pi{grid-row:1/3;color:#3b4252;display:grid;place-items:center}
+.part .pn{font-weight:700;font-size:14.5px;line-height:1.2}
+.part .pn small{display:block;font-weight:400;font-size:12.5px;color:var(--muted)}
+.part .pn .ty{display:inline-block;font-size:11.5px;font-weight:700;color:#3b4252;background:#eef0f4;border-radius:999px;padding:0 7px;margin-top:2px}
+.part .wb{grid-column:1/-1;display:flex;gap:4px;margin-top:4px}
+.part .wb button{all:unset;box-sizing:border-box;cursor:pointer;flex:1;min-height:44px;border-radius:9px;border:2px solid #c9bfae;display:flex;gap:5px;align-items:center;justify-content:center;font-weight:700;font-size:14px;color:var(--muted);background:#faf7f0}
+.part .wb button[aria-pressed="true"]{background:var(--rA);border-color:var(--rA);color:#fff}
+.part .wb button:focus-visible{outline:4px solid var(--focus);outline-offset:1px}
+.part.bad{border-color:var(--bad)}
+.part .badge{position:absolute;top:4px;right:4px;margin:0}
+.part.ok{border-color:var(--ok)}
+.compactui .parts{grid-template-columns:1fr 1fr;gap:4px}
+.compactui .part{padding:4px 6px;grid-template-columns:30px 1fr;gap:0 6px}
+.compactui .part .pn{font-size:13px}
+.compactui .part .pn small{font-size:12px;line-height:1.2}
+.prompt.a3p{display:block}
+.compactui .prompt.a3p{font-size:13px;margin:0 0 4px}
+.compactui .part .wb button{font-size:12.5px;min-height:44px}
+.tiny .part{grid-template-columns:1fr;padding:4px 5px}
+.tiny .part .pi{display:none}
+.tiny .part .wb{gap:3px}
+.tiny .part .wb button{font-size:12px;padding:0 2px}
+.tiny .part .wb button svg{display:none}
+.netbox svg .a3pill{pointer-events:none}
+.netbox svg{display:block;max-width:100%}
+.netkey{font-size:13px;color:var(--muted);margin:4px 0 0;display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+.netkey i{display:inline-block;width:28px;height:0;border-top:3px solid #8a8a8a;vertical-align:middle;margin-right:5px}
+.netkey i.wf{border-top-style:dashed}
+.legend{font-size:12.5px;color:var(--muted);margin:6px 0 0}
+
+/* exit */
+.pool{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,180px),1fr));gap:6px;min-height:52px;padding:6px;border-radius:12px;background:#f2ead9;border:2px dashed #d8c9a8}
+.pool:empty::before{content:attr(data-empty);color:var(--muted);font-size:14px;align-self:center}
+.ecard{all:unset;box-sizing:border-box;cursor:grab;touch-action:none;background:#fff;border:2px solid #d8c9a8;border-radius:10px;padding:6px 9px;font-size:14px;line-height:1.3;color:var(--ink);min-height:44px;position:relative;box-shadow:0 2px 0 #0001}
+.ecard:focus-visible{outline:4px solid var(--focus);outline-offset:1px}
+.ecard[aria-pressed="true"]{border-color:var(--brand);box-shadow:0 0 0 3px var(--gold)}
+.ecard.right{border-color:var(--ok);cursor:default;background:#f1f9f4;padding-right:28px}
+.ecard.right::after{content:'✓';position:absolute;right:8px;top:5px;color:var(--ok);font-weight:900}
+.ecard.drag{opacity:.9;z-index:20;cursor:grabbing;box-shadow:0 8px 20px #0004}
+.ecard.shake{animation:shake .5s}
+.calm .ecard.shake{animation:flashbad .5s linear}
+@keyframes shake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-7px)}40%,80%{transform:translateX(7px)}}
+@keyframes flashbad{0%,100%{outline:0 solid var(--bad)}30%,70%{outline:4px solid var(--bad)}}
+.slots{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin-top:8px}
+.slotbox{border-radius:12px;border:2px solid var(--sc);background:#fff;display:flex;flex-direction:column;min-width:0}
+.slotbox.over{box-shadow:0 0 0 4px var(--gold)}
+.slothead{all:unset;box-sizing:border-box;cursor:pointer;display:flex;gap:6px;align-items:center;padding:4px 8px;min-height:48px;background:var(--sc);color:#fff;border-radius:9px 9px 0 0}
+.slothead:focus-visible{outline:4px solid var(--focus);outline-offset:2px}
+.slothead .L{font:900 24px 'Trebuchet MS',sans-serif;width:30px;text-align:center}
+.slothead span{font-size:12.5px;line-height:1.15;font-weight:600}
+.slothead span b{display:block;font-size:14px}
+.slotlist{display:flex;flex-direction:column;gap:4px;padding:5px;min-height:40px}
+.room:not(.compactui) .ecard{font-size:15px;padding:8px 11px}
+.compactui .ecard{font-size:12.5px;padding:4px 7px}
+.compactui .slothead span:not(.L){font-size:0;min-width:0}
+.compactui .slothead span b{font-size:12.5px;line-height:1.1;hyphens:manual;overflow-wrap:normal}
+.compactui .slothead{padding:4px 6px;gap:4px;min-height:44px}
+.compactui .slothead .L{width:auto;font-size:20px}
+
+/* escape card */
+.escape{position:absolute;inset:0;display:grid;place-items:center;background:rgba(14,20,30,.78);z-index:30;padding:12px;overflow:auto}
+body.stack .escape{position:fixed}
+.ecardbig{background:var(--paper);border:6px solid var(--brass);border-radius:18px;padding:18px 22px;max-width:520px;width:100%;text-align:center;box-shadow:0 20px 50px #000a}
+.ecardbig h2{margin:0;font:900 28px 'Trebuchet MS',sans-serif;color:var(--brand)}
+.ecardbig p{margin:6px 0}
+.shields{display:flex;justify-content:center;gap:12px;margin:12px 0}
+.shields div{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:13px;font-weight:700;max-width:120px;line-height:1.2}
+.shields svg{width:56px;height:62px}
+</style>
+</head>
+<body>
+<header>
+  <h1>Data Defenders <small>Cedar Hollow Elementary</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-escape" aria-pressed="true">Escape</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true" title="Turn animation on or off">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+  <button class="icon-btn" id="read" title="Read the hint aloud">🔊 Read</button>
+</header>
+<main>
+  <aside class="panel" id="panel">
+    <div id="hintHome"><p class="hint" id="hint" aria-live="polite"></p></div>
+    <div id="ctlHome"><div class="ctl" id="ctl"></div></div>
+    <div class="row" id="clueRow"><button class="btn" id="clue"></button></div>
+    <p class="clue" id="clueText" aria-live="polite"></p>
+    <div class="story" id="story"></div>
+    <div class="timer">
+      <p class="lbl" id="timerL">Team timer <output id="tleft"></output></p>
+      <div class="seg2" role="group" aria-labelledby="timerL">
+        <button class="btn" data-min="0" aria-pressed="true">Off</button>
+        <button class="btn" data-min="20" aria-pressed="false">20 min</button>
+        <button class="btn" data-min="30" aria-pressed="false">30 min</button>
+      </div>
+    </div>
+    <div id="overBox"><button class="btn" id="over">↺ Start over</button></div>
+    <p class="small">Cedar Hollow and everyone in it are made up. Nothing you do here is saved or sent anywhere.</p>
+  </aside>
+  <div class="stage" id="stage">
+    <div id="topSlot"></div>
+    <div class="hall" id="hall">
+      <img class="bg" src="art:dd-night-hallway" alt="">
+      <div class="shade"></div>
+      <div class="hall-in">
+        <div class="hall-top"><b>Cedar Hollow Elementary, after dark</b><span class="chip" id="progress"></span></div>
+        <div class="doors" id="doors"></div>
+      </div>
+    </div>
+    <div class="room" id="room" hidden>
+      <div class="rtop">
+        <button class="back" id="back"></button>
+        <h2 id="rtitle"></h2>
+        <div class="rlock" id="rlock" role="img"></div>
+      </div>
+      <div class="tabs" id="tabs" role="tablist"></div>
+      <div class="stations" id="stations"></div>
+    </div>
+    <div id="ctlDock"></div>
+    <div class="escape" id="escape" hidden></div>
+  </div>
+</main>
+<script src="kit:curio"></script>
+<script src="kit:network"></script>
+<script src="kit:security"></script>
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const sec = Sec.pure;
+  const h = Sec.h;
+  const wait = ms => new Promise(r => setTimeout(r, ms));
+
+  // ======================================================================================
+  // ICONS (24 x 24, stroked; drawn in code)
+  // ======================================================================================
+  const P = {
+    eye: '<path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>',
+    closedEye: '<path d="M2.5 9.5c3 4 6.3 6 9.5 6s6.5-2 9.5-6"/><path d="M5.5 13.2 4 15.8M9.3 15.2l-.7 3M14.7 15.2l.7 3M18.5 13.2l1.5 2.6"/>',
+    key: '<circle cx="7.5" cy="12" r="4"/><path d="M11.5 12H22M18.5 12v4M21.5 12v3"/>',
+    seal: '<circle cx="12" cy="9.5" r="6.5"/><path d="M8.6 15 7 22l5-2.6 5 2.6-1.6-7"/><path d="M9.3 9.6l1.9 1.9 3.6-3.6"/>',
+    magnifier: '<circle cx="10" cy="10" r="6.5"/><path d="M15 15l6.5 6.5"/>',
+    lightning: '<path d="M13 2 4.5 13.5H11L10 22l8.5-11.5H12z"/>',
+    copies: '<rect x="3" y="10.5" width="13" height="10.5" rx="1.5"/><path d="M6.5 7.5h11.5a1.5 1.5 0 0 1 1.5 1.5v8"/><path d="M10 4.5h10.5A1.5 1.5 0 0 1 22 6v8"/>',
+    door: '<path d="M5 21V4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v17"/><path d="M3 21h18"/><circle cx="15" cy="12.5" r=".9" fill="currentColor"/>',
+    bulb: '<path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.3 1 2.1h5c0-.8.4-1.6 1-2.1A6 6 0 0 0 12 3z"/>',
+    padlock: '<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/>',
+    padOpen: '<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 7.6-1.8"/>',
+    check: '<path d="M4 12.5l5 5L20 6.5"/>',
+    x: '<path d="M6 6l12 12M18 6 6 18"/>',
+    grades: '<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h3"/>',
+    health: '<path d="M12 20s-7.5-4.6-7.5-10.2A4.2 4.2 0 0 1 12 7.2a4.2 4.2 0 0 1 7.5 2.6C19.5 15.4 12 20 12 20z"/><path d="M12 10.5v5M9.5 13h5"/>',
+    bus: '<rect x="4" y="3" width="16" height="15" rx="2"/><path d="M4 11h16M8 18v3M16 18v3"/><circle cx="8" cy="14.5" r=".8" fill="currentColor"/><circle cx="16" cy="14.5" r=".8" fill="currentColor"/>',
+    lunch: '<path d="M12 7.5c-3-2-8-1-8 4.8 0 5 3.5 8.7 6 8.7 1 0 1.3-.5 2-.5s1 .5 2 .5c2.5 0 6-3.7 6-8.7 0-5.8-5-6.8-8-4.8z"/><path d="M12 7.5c0-2 1-3.8 3-4.5"/>',
+    shield: '<path d="M12 2.5l8 3v6c0 4.8-3.4 8.6-8 10.5-4.6-1.9-8-5.7-8-10.5v-6z"/>',
+    clock: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+    minus: '<path d="M5 12h14"/>', plus: '<path d="M5 12h14M12 5v14"/>',
+    wifi: '<path d="M2.5 9a14 14 0 0 1 19 0M5.8 12.6a9.2 9.2 0 0 1 12.4 0M9.1 16.1a4.5 4.5 0 0 1 5.8 0"/><circle cx="12" cy="19.6" r="1.1" fill="currentColor"/>',
+    cable: '<path d="M3 21c5 0 4-6 8-9s6-3 6-6"/><rect x="13.5" y="2" width="7" height="5" rx="1"/><path d="M15.5 2V.8M18.5 2V.8"/>',
+    server: '<rect x="4" y="3" width="16" height="7" rx="1.5"/><rect x="4" y="14" width="16" height="7" rx="1.5"/><circle cx="8" cy="6.5" r=".9" fill="currentColor"/><circle cx="8" cy="17.5" r=".9" fill="currentColor"/>',
+  };
+  const ico = (name, size = 20, cls = '') => `<svg class="ico ${cls}" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${P[name]}</svg>`;
+  const html = s => { const t = document.createElement('template'); t.innerHTML = s.trim(); return t.content.firstChild; };
+  // a shield with a letter (secured) or an empty outline with a question mark (not yet)
+  const shieldSvg = (letter, fill, w = 56, hgt = 62) => `<svg width="${w}" height="${hgt}" viewBox="0 0 56 62" aria-hidden="true">
+    <path d="M28 3 51 11v16c0 15-10 26-23 32C15 53 5 42 5 27V11z" fill="${letter ? fill : 'rgba(0,0,0,.25)'}" stroke="${letter ? '#ffd27a' : '#e6eef7'}" stroke-width="3" ${letter ? '' : 'stroke-dasharray="6 4"'}/>
+    <text x="28" y="40" text-anchor="middle" font-family="Trebuchet MS,Segoe UI,sans-serif" font-weight="900" font-size="${letter ? 28 : 24}" fill="#fff">${letter || '?'}</text></svg>`;
+
+  // ======================================================================================
+  // CONTENT (spec.md "Content"; sources in the header comment and notes.md)
+  // ======================================================================================
+  const WORLD = Sec.world({name: 'Cedar Hollow Elementary', domains: ['cedarhollow.example'],
+    people: [{id: 'ortiz', name: 'Ms. Ortiz', role: 'teacher, Room 12'}, {id: 'kim', name: 'Nurse Kim', role: 'school nurse'},
+      {id: 'bell', name: 'Mr. Bell', role: 'bus driver'}, {id: 'dad', name: "Jordan's dad", role: 'a parent'}, {id: 'lee', name: 'Mr. Lee', role: 'office'}],
+    accounts: {ortiz: 'ms.ortiz', kim: 'nurse.kim', lee: 'mr.lee'}});
+  const ROOMS = {
+    C: {id: 'C', name: 'Records Room', word: 'Confidentiality', promise: 'only the right people can see it', color: 'var(--rC)', hex: '#2f5ea8', icon: 'eye', puz: ['c1', 'c2']},
+    I: {id: 'I', name: 'Grade Book Room', word: 'Integrity', promise: 'it stays correct, and changes can be checked', color: 'var(--rI)', hex: '#2e7d4f', icon: 'seal', puz: ['i1', 'i2']},
+    A: {id: 'A', name: 'Server Closet', word: 'Availability', promise: 'it is there when people need it', color: 'var(--rA)', hex: '#b0461f', icon: 'lightning', puz: ['a1', 'a2', 'a3']},
+    X: {id: 'X', name: 'Exit', word: '', promise: '', color: 'var(--rX)', hex: '#875a00', icon: 'door', puz: ['exit']},
+  };
+  const PUZ = {
+    c1: {room: 'C', title: 'Who needs what', short: 'Access', sym: 'key'},
+    c2: {room: 'C', title: 'Pick the password', short: 'Password', sym: 'closedEye'},
+    i1: {room: 'I', title: 'Seal check', short: 'Seals', sym: 'seal'},
+    i2: {room: 'I', title: 'Who changed it?', short: 'The log', sym: 'magnifier'},
+    a1: {room: 'A', title: 'Report card night', short: 'Servers', sym: 'lightning'},
+    a2: {room: 'A', title: 'Backup plan', short: 'Backups', sym: 'copies'},
+    a3: {room: 'A', title: 'Network closet', short: 'Network', sym: 'wifi'},
+    exit: {room: 'X', title: 'The CIA lock', sym: 'padlock'},
+  };
+  // every line the tool can say or show as a hint (voice/lines.json lists them all)
+  const L = {
+    welcome: "Welcome, Data Defenders. Three rooms guard Cedar Hollow's data. Tap a door to go in. Solve every puzzle in a room to secure it.",
+    storyC: 'Right now, everyone at Cedar Hollow can open every folder. Lock it down so each person sees only what their job needs, then protect the records account.',
+    storyI: 'Someone changed a grade overnight. Find the changed card, then find out how it happened.',
+    storyA: "On report card night the school website went down, the server's disk broke, and then the Wi-Fi stopped working. Keep the site up, the work safe and the network running.",
+    c1: 'Tap a box to take a folder away. Then press Check lock.',
+    c2: 'Press Use this one on the strongest password. The meter checks your pick.',
+    i1: "Add up each card and compare it with its seal. Tap This one was changed on the card that doesn't match.",
+    i2: "Tap the row in the log that doesn't fit.",
+    i2b: 'Now pick the first fix.',
+    a1: 'Change the number of servers, then press Set servers.',
+    a2: 'Pick the plan that loses the least work.',
+    a3: 'Sort each part: wired or wireless. Then press Check sort.',
+    a3b: 'The Wi-Fi access point broke. Tap each device that stays online. Then press Check.',
+    a3left: 'Sort every part first. Some parts are not sorted yet.',
+    exit: 'Tap a card, then tap C, I or A. Then press Open the exit.',
+    wrong: 'Not yet. Look again, or press Clue.',
+    symbol: 'Lock symbol found!',
+    secC: 'Room C is secured. Confidentiality means only the right people can see the data.',
+    secI: 'Room I is secured. Integrity means data stays correct, and changes can be checked.',
+    secA: 'Room A is secured. Availability means data and systems are there when people need them.',
+    back: 'Tap Back to hallway and pick another door.',
+    exitOpen: 'All three rooms are secured. Tap the Exit door to open it.',
+    escaped: "You escaped! Confidentiality, integrity and availability: Cedar Hollow's data is safe.",
+    time: 'Time! Keep going to finish.',
+    // the puzzles' own wrong texts
+    rShortName: "Too short, and it uses the school's name.",
+    rName: "It uses the school's name, so it is easy to guess.",
+    rList: 'It is on the common passwords list.',
+    rShort: 'Too short.',
+    i1wrong: 'Add that card up. Does it match its seal?',
+    a1four: 'That works, but one server would sit idle. Try fewer.',
+    a2A: 'The copy was on the same server, so it broke too. All the work is lost.',
+    a2B: 'The copy is safe in another building, but it is from last Friday. Monday to Thursday are lost.',
+    a2C: 'The copy is in another building, and it was made last night. Only Thursday is lost.',
+    a2D: 'With no copy at all, all the work is lost.',
+    fix1: 'The log is how you found the change. Deleting it hides what happened.',
+    fix2: 'Then anyone could change a grade in secret.',
+    // hints shown on screen (Read speaks them)
+    hHall: 'Tap a door to go in. Secure all three rooms to open the exit.',
+    hExitLocked: 'The exit opens when all three rooms are secured. Tap a room door first.',
+    hDone: 'This puzzle is done. Tap another puzzle, or Back to hallway.',
+    hRoomDone: 'This room is secured. Tap Back to hallway and pick another door.',
+    hPlace: 'Put all six cards in a slot first. Then press Open the exit.',
+    hKeepGoing: 'Keep going to finish.',
+    hEscaped: 'You escaped! Press Play again to start a new game.',
+    // clues (shown under Clue; Read speaks them after the hint)
+    clue: {
+      c1: ['Read each job card. Give a folder only if the job needs it.', 'Some people need only the public folder.'],
+      c2: ['Longer is stronger.', 'Stay away from names and common passwords.'],
+      i1: ["Add each card's four scores.", 'One card adds up to 79.'],
+      i2: ['Look at the times and the devices.', 'Which change came at night, from a laptop the school does not know?'],
+      a1: ['Find the busiest hour.', 'Each server handles 500. How many cover 1,400?'],
+      a2: ['A backup on the same machine breaks with it.', 'More often means less lost.'],
+      a3: ['A cable is wired. A signal through the air is wireless.', 'When the access point breaks, only the devices on Wi-Fi lose their link.'],
+      exit: ['Ask what went wrong: someone saw it, it was changed, or people could not get to it.', 'Seen by the wrong people is C. Changed is I. Not there when needed is A.'],
+    },
+  };
+
+  // C1: who needs what
+  const C1P = [
+    {id: 'ortiz', name: 'Ms. Ortiz', job: 'I enter grades for my class.', need: 'grades'},
+    {id: 'kim', name: 'Nurse Kim', job: 'I keep the health notes.', need: 'health'},
+    {id: 'bell', name: 'Mr. Bell', job: 'I drive Bus 4.', need: 'bus'},
+    {id: 'dad', name: "Jordan's dad", job: "I check what's for lunch and when the bus comes.", need: null},
+  ];
+  const C1F = [{id: 'grades', name: 'Class grades', short: 'Grades', icon: 'grades'}, {id: 'health', name: 'Health notes', short: 'Health', icon: 'health'},
+    {id: 'bus', name: 'Bus routes', short: 'Bus', icon: 'bus'}, {id: 'lunch', name: 'Public: lunch menu and bus times', short: 'Public', icon: 'lunch', pub: true}];
+  // C2: the four passwords for the records account
+  const PWS = ['cedar', 'Cedar2026', 'password1', 'purple tiger skates home'];
+  const NAMES = ['cedar', 'hollow'];
+  // I1: quiz cards (four scores, then the seal stored when Ms. Ortiz saved them)
+  const STU = [{n: 'Ari', s: [18, 15, 20, 17], seal: 70}, {n: 'Bea', s: [16, 19, 14, 18], seal: 67},
+    {n: 'Cy', s: [20, 20, 19, 20], seal: 59}, {n: 'Dot', s: [13, 17, 16, 19], seal: 65}];
+  // I2: the change log
+  const HOST = {room12: 'room12-laptop.cedarhollow.example', office: 'office-desk.cedarhollow.example', nurse: 'nurse-desk.cedarhollow.example'};
+  const LOG = [
+    ['Mon 8:05 a.m.', 'ms.ortiz', 'Room 12 laptop', 'room12', 'opened Grade Book'],
+    ['Mon 8:10 a.m.', 'ms.ortiz', 'Room 12 laptop', 'room12', 'entered quiz scores'],
+    ['Mon 8:12 a.m.', 'ms.ortiz', 'Room 12 laptop', 'room12', 'changed quiz scores'],
+    ['Mon 3:30 p.m.', 'ms.ortiz', 'Room 12 laptop', 'room12', 'closed Grade Book'],
+    ['Tue 2:14 a.m.', 'ms.ortiz', 'unknown laptop', null, 'changed quiz scores'],
+    ['Tue 7:55 a.m.', 'mr.lee', 'Office desktop', 'office', 'printed the lunch list'],
+    ['Tue 8:02 a.m.', 'ms.ortiz', 'Room 12 laptop', 'room12', 'opened Grade Book'],
+    ['Tue 9:40 a.m.', 'nurse.kim', 'Nurse desktop', 'nurse', 'updated a health note'],
+  ];
+  const BAD_ROW = 5;   // the 2:14 a.m. change from an unknown laptop (row 3 is the same change in daytime, from her own laptop)
+  const FIXES = [
+    {t: "Put the real scores back from Monday's backup, and change Ms. Ortiz's password", ok: true},
+    {t: 'Delete the log so nobody sees it', why: L.fix1},
+    {t: 'Let everyone edit the grade book', why: L.fix2},
+  ];
+  // A1: website visits per hour on report card night; one server handles 500 an hour (made up for this school)
+  const HOURS = ['3 p.m.', '4 p.m.', '5 p.m.', '6 p.m.', '7 p.m.', '8 p.m.', '9 p.m.'];
+  const VISITS = [200, 450, 900, 1400, 1100, 600, 300];
+  const PER = 500;
+  // A2: backup plans; the disk broke Thursday afternoon. Days run from last Friday to this Thursday.
+  const DAYS = ['last Fri', 'Mon', 'Tue', 'Wed', 'Thu'];
+  const PLANS = [
+    {id: 'A', t: 'Back up every Friday onto the same server.', lost: [0, 1, 2, 3, 4]},
+    {id: 'B', t: 'Back up every Friday to a server in another building.', lost: [1, 2, 3, 4]},
+    {id: 'C', t: 'Back up every night to a server in another building.', lost: [4]},
+    {id: 'D', t: 'No backups.', lost: [0, 1, 2, 3, 4]},
+  ];
+  // A3: the network closet. Step 1 sorts its parts into wired and wireless (shown in this fixed mixed order); step 2
+  // is the school network drawn by the network engine with the Wi-Fi access point down: which devices stay online?
+  const PARTS = [
+    {id: 'cable', name: 'Network cable', type: 'connecting hardware', note: 'plugs a computer into the switch', icon: 'cable', a: 'wired'},
+    {id: 'ap', name: 'Wi-Fi access point', type: 'connecting hardware', note: 'plugs into the switch and sends out Wi-Fi', kind: 'access-point', a: 'wireless'},
+    {id: 'office', name: 'Office desktop', type: 'device', note: 'a cable runs to the switch', kind: 'desktop', a: 'wired'},
+    {id: 'signal', name: 'Wi-Fi signal', type: 'signal', note: 'travels through the air', icon: 'wifi', a: 'wireless'},
+    {id: 'switch', name: 'Switch', type: 'connecting hardware', note: 'joins the cables together', kind: 'switch', a: 'wired'},
+    {id: 'laptop', name: 'Room 12 laptop', type: 'device', note: 'joins the school Wi-Fi', kind: 'laptop', a: 'wireless'},
+    {id: 'printer', name: 'Printer', type: 'device', note: 'a cable runs to the switch', kind: 'printer', a: 'wired'},
+    {id: 'tablet', name: 'Library tablet', type: 'device', note: 'no network cable port; uses Wi-Fi', kind: 'tablet', a: 'wireless'},
+  ];
+  const NETDEV = ['office', 'nurse', 'printer', 'laptop', 'tablet'];   // the devices the student can mark
+  const net = () => Net.graph({
+    nodes: [{id: 'router', kind: 'router', label: 'Router', x: 500, y: 40}, {id: 'sw', kind: 'switch', label: 'Switch', x: 300, y: 270},
+      {id: 'ap', kind: 'access-point', label: 'Wi-Fi access point', x: 800, y: 270, up: false},
+      {id: 'office', kind: 'desktop', label: 'Office desktop', x: 70, y: 520}, {id: 'nurse', kind: 'desktop', label: 'Nurse desktop', x: 265, y: 520},
+      {id: 'printer', kind: 'printer', label: 'Printer', x: 460, y: 520}, {id: 'laptop', kind: 'laptop', label: 'Room 12 laptop', x: 710, y: 520},
+      {id: 'tablet', kind: 'tablet', label: 'Library tablet', x: 925, y: 520}],
+    links: [{a: 'router', b: 'sw'}, {a: 'sw', b: 'ap'}, {a: 'sw', b: 'office'}, {a: 'sw', b: 'nurse'}, {a: 'sw', b: 'printer'},
+      {a: 'ap', b: 'laptop', medium: 'wifi'}, {a: 'ap', b: 'tablet', medium: 'wifi'}]});
+  // the truth comes from the engine: what the router can still reach with the access point down
+  const ONLINE = (() => { const r = Net.reach(net(), 'router'); return NETDEV.filter(id => r.has(id)); })();
+  // Exit: six problems to sort into C, I and A (shown in this fixed mixed order)
+  const EXITC = [
+    {t: 'Someone read the health notes over the nurse’s shoulder.', a: 'C'},
+    {t: 'A virus changed the numbers in the lunch money file.', a: 'I'},
+    {t: 'A storm knocked out power, and the website went dark.', a: 'A'},
+    {t: 'A stolen password was used to copy the grade book.', a: 'C'},
+    {t: 'A typo changed a bus time, and nobody checked it.', a: 'I'},
+    {t: 'So many people visited at once that the site stopped loading.', a: 'A'},
+  ];
+  const EXIT_ORDER = [1, 0, 5, 4, 2, 3];
+
+  // ======================================================================================
+  // STATE
+  // ======================================================================================
+  const state = {};
+  const LK = {};
+  function fresh() {
+    Object.assign(state, {
+      room: 'hall', from: null, anyEntered: false, entered: {}, solved: {}, active: {C: 'c1', I: 'i1', A: 'a1', X: 'exit'}, tap: 0,
+      c1: {grid: Object.fromEntries(C1P.map(p => [p.id, {grades: true, health: true, bus: true, lunch: true}])), res: '', bad: false, badges: false},
+      c2: {tested: [false, false, false, false], picked: null, nope: null},
+      i1: {on: Object.fromEntries(STU.map(s => [s.n, []])), changed: null, nope: null},
+      i2: {row: null, wrongRow: null, step: 1, res: '', fixNope: null},
+      a1: {servers: 1, set: null, res: ''},
+      a2: {pick: null, nope: null, seen: [], res: ''},
+      a3: {step: 1, sort: {}, sortRes: '', marks: false, picks: [], res: '', badges: false},
+      exit: {place: EXITC.map(() => null), right: EXITC.map(() => false), sel: null, res: ''},
+      clue: {}, escaped: false, timerMin: 0, timeUp: false, confirm: false,
+    });
+    LK.c1 = sec.lock({check: g => c1Errors(g).ok});
+    LK.c2 = sec.lock({check: i => i === 3});
+    LK.i1 = sec.lock({check: n => n === 'cy'});
+    LK.i2 = sec.lock({check: a => a[0] === BAD_ROW && FIXES[a[1]] && FIXES[a[1]].ok});
+    LK.a1 = sec.lock({check: n => n * PER >= Math.max(...VISITS) && (n - 1) * PER < Math.max(...VISITS)});
+    LK.a2 = sec.lock({check: id => id === 'c'});
+    LK.a3s = sec.lock({check: m => PARTS.every(x => m[x.id] === x.a)});
+    LK.a3 = sec.lock({check: ids => ids.length === ONLINE.length && ONLINE.every(id => ids.includes(id))});
+    LK.exit = sec.lock({check: place => place.every((p, i) => p === EXITC[i].a)});
+  }
+  const roomOf = p => PUZ[p].room;
+  const secured = r => ROOMS[r].puz.every(p => state.solved[p]);
+  const nSecured = () => ['C', 'I', 'A'].filter(secured).length;
+  const allSecured = () => nSecured() === 3;
+  const symCount = r => ROOMS[r].puz.filter(p => state.solved[p]).length;
+  const symOf = r => `${symCount(r)} of ${ROOMS[r].puz.length}`;
+
+  // ======================================================================================
+  // VOICE (Curio.voice: how lines once, events every time, a line queued in one room is dropped in another)
+  // Event lines (spoken every time): wrong, symbol, secC, secI, secA, escaped, time, and the puzzles' wrong texts.
+  // ======================================================================================
+  const V = Curio.voice({
+    lines: L, scope: () => state.room, welcomeAfter: true, speaks: '.door',
+    // the welcome leaves the hint alone (it may hold the locked Exit's line)
+    welcome: () => state.room === 'hall' && !state.anyEntered ? ['welcome', {valid: () => state.room === 'hall' && !state.anyEntered, hint: false}] : null,
+    read: () => [$('hint').textContent, $('clueText').textContent].filter(Boolean),
+  });
+  const setHint = t => { $('hint').textContent = t; };
+  // the how line for what the student should do now in this room
+  function howKey() {
+    const r = state.room;
+    if (r === 'hall') return allSecured() ? 'exitOpen' : 'hHall';
+    if (r === 'X') return state.escaped ? 'hEscaped' : 'exit';
+    const p = state.active[r];
+    if (state.solved[p]) return secured(r) ? (allSecured() ? 'exitOpen' : 'hRoomDone') : 'hDone';
+    if (p === 'i2' && state.i2.step === 2) return 'i2b';
+    if (p === 'a3' && state.a3.step === 2) return 'a3b';
+    return p;
+  }
+  // a wrong check: the puzzle's own reason (when it has one), then "Not yet". It cuts in (a room story or how-to
+  // still waiting is dropped, to be queued again by its trigger); stale on the next tap
+  function sayWrong(reasonKey) {
+    const t0 = state.tap;
+    V.say(reasonKey ? [reasonKey, 'wrong'] : 'wrong', {valid: () => state.tap === t0, now: true});
+    Curio.tone(220, .25, .04, 'triangle');
+  }
+  addEventListener('pointerdown', () => { state.tap++; }, true);
+  addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') state.tap++; }, true);
+
+  // ======================================================================================
+  // HALLWAY
+  // ======================================================================================
+  function renderHall() {
+    const box = $('doors');
+    const focused = document.activeElement && document.activeElement.dataset ? document.activeElement.dataset.room : null;
+    box.textContent = '';
+    for (const r of ['C', 'I', 'A', 'X']) {
+      const R = ROOMS[r];
+      let leaf, label, status, aria;
+      if (r === 'X') {
+        const open = allSecured();
+        leaf = `<div class="leaf exitleaf" style="--dc:#9a6d1e"><div class="exitsign">EXIT</div>
+          <div class="exitslots">${['C', 'I', 'A'].map(x => shieldSvg(secured(x) ? x : '', ROOMS[x].hex)).join('')}</div>
+          <div class="bigpad">${ico(open ? 'padOpen' : 'padlock', 40).replace('width="40" height="40"', 'width="100%" height="100%"')}</div></div>`;
+        status = open ? 'Unlocked' : `Locked: ${nSecured()} of 3 shields`;
+        aria = open ? 'Exit door. Unlocked. Tap to open it.' : `Exit door. Locked until all three rooms are secured. ${nSecured()} of 3 shields.`;
+      } else {
+        const s = secured(r), n = symCount(r);
+        leaf = `<div class="leaf" style="--dc:${R.color}"><div class="win"></div>
+          <div class="emblem">${ico(R.icon, 40).replace('width="40" height="40"', '')}</div>
+          <div class="shield">${shieldSvg(s ? r : '', 'rgba(0,0,0,.35)').replace('width="56" height="62"', 'width="100%" height="100%"')}</div>
+          <div class="lockplate n${R.puz.length}">${R.puz.map(p => `<div class="ls ${state.solved[p] ? 'lit' : ''}">${ico(PUZ[p].sym, 16).replace('width="16" height="16"', '')}</div>`).join('')}<div class="kh"></div></div></div>`;
+        status = s ? `Secured: ${r} for ${R.word}` : `Locked: ${symOf(r)} symbols`;
+        aria = `${R.name}. ${status}.`;
+      }
+      const b = html(`<button class="door" data-room="${r}" aria-label="${aria}"><div class="frame">${leaf}</div>
+        <div class="lab"><b>${R.name}</b><span class="${(r === 'X' ? allSecured() : secured(r)) ? 'done' : ''}">${status}</span></div></button>`);
+      if (r === 'X' && !allSecured()) b.setAttribute('aria-disabled', 'true');
+      if (r === 'X' && allSecured() && !state.escaped) b.classList.add('ready');   // glows (an outline flash with Motion off)
+      b.onclick = () => doorTap(r, b);
+      box.append(b);
+    }
+    $('progress').textContent = `Rooms secured: ${nSecured()} of 3`;
+    if (focused) { const d = box.querySelector(`[data-room="${focused}"]`); if (d) d.focus({preventScroll: true}); }
+    layoutDoors();
+  }
+  // doors at real size: 4 in a row when each can be at least 120 px wide, else 2 by 2
+  function layoutDoors() {
+    const hall = $('hall'), box = $('doors');
+    const W = hall.clientWidth || innerWidth, stack = document.body.classList.contains('stack');
+    hall.classList.toggle('compacthall', document.body.classList.contains('compact') && W < 600);
+    const gap = W < 500 ? 10 : 18, labelH = 50, topH = hall.querySelector('.hall-top').offsetHeight || 44;
+    const cols = W >= 4 * 128 + 5 * gap ? 4 : 2, rows = 4 / cols;
+    const cellW = (W - (cols + 1) * gap) / cols;
+    let leafH;
+    if (stack) leafH = Math.min(cellW * 1.25, 230);
+    else { const H = hall.clientHeight; leafH = (H - topH - (rows + 1) * gap) / rows - labelH - 14; }
+    let dw = Math.max(120, Math.min(cellW - 8, leafH * .62, 190));
+    let dh = Math.max(76, Math.min(leafH, dw * 1.9));
+    const squat = dh < dw * 1.35;   // a short box: a squat door shows the emblem and lock only
+    box.classList.toggle('squat', squat);
+    box.style.setProperty('--du', Math.round(Math.min(dw, squat ? dh * 1.1 : dh / 1.6)) + 'px');
+    box.style.setProperty('--gap', gap + 'px');
+    box.style.gridTemplateColumns = `repeat(${cols}, ${Math.floor(dw + 8)}px)`;
+    box.style.setProperty('--dw', Math.round(dw) + 'px'); box.style.setProperty('--dh', Math.round(dh) + 'px');
+    box.style.columnGap = Math.max(gap, Math.min(60, (W - cols * (dw + 8)) / (cols + 1))) + 'px';
+    if (stack) hall.style.minHeight = (topH + rows * (dh + labelH + 20) + (rows + 1) * gap) + 'px'; else hall.style.minHeight = '';
+  }
+  function doorTap(r, b) {
+    if (r === 'X' && !allSecured()) {
+      // said every time it is tapped, and kept in the hint (the welcome does not overwrite it)
+      setHint(L.hExitLocked); V.say('hExitLocked', {now: true}); Curio.tone(220, .2, .04, 'triangle');
+      return;
+    }
+    b.classList.add('opening'); Curio.tone(330, .2, .035);
+    setTimeout(() => enter(r), 450);   // the door swing (an outline flash with Motion off): same timing either way
+  }
+
+  // ======================================================================================
+  // ROOMS
+  // ======================================================================================
+  function enter(r) {
+    V.hush();
+    state.room = r; state.anyEntered = true; state.confirm = false;
+    const first = !state.entered[r]; state.entered[r] = true;
+    if (r !== 'X' && state.solved[state.active[r]]) { const u = ROOMS[r].puz.find(p => !state.solved[p]); if (u) state.active[r] = u; }
+    $('hall').hidden = true; $('room').hidden = false;
+    renderAll();
+    const k = howKey();
+    setHint(L[k]);
+    if (r === 'X') V.how(k);
+    else if (first) V.how([[`story${r}`, {hint: false}], k], {valid: () => howKey() === k});
+    else V.how(k, {valid: () => howKey() === k});
+    // focus the active puzzle's first control: in its station, else in the panel (A1's stepper), else Back
+    const f = $('stations').querySelector('.station.active [data-k]') || $('ctl').querySelector('button:not(:disabled)') || $('stations').querySelector('[data-k]') || $('back');
+    f.focus({preventScroll: true});
+  }
+  function toHall() {
+    V.hush();
+    const from = state.room;
+    state.room = 'hall'; state.confirm = false;
+    $('room').hidden = true; $('hall').hidden = false;
+    renderAll();
+    if (allSecured()) V.how('exitOpen'); else setHint(L.hHall);
+    const d = $('doors').querySelector(`[data-room="${from}"]`); if (d) d.focus({preventScroll: true});
+  }
+  $('back').innerHTML = ico('door', 20) + ' <span><span class="full">Back to hallway</span><span class="short">Hallway</span></span>';
+  $('back').onclick = toHall;
+  $('back').setAttribute('aria-label', 'Back to hallway');
+
+  function setActive(p, speak = true) {
+    const r = roomOf(p);
+    if (state.active[r] === p) return;
+    state.active[r] = p;
+    // split: both stations are on screen, so only the highlight and the panel change. Rebuilding here would replace
+    // the control under the pointer and the tap would be lost (Refine round 1, blocker 1)
+    const st = state.room === r && lastStationMode === 'split' ? $('stations').querySelectorAll('.station') : null;
+    if (st && st.length) { for (const s of st) s.classList.toggle('active', s.dataset.p === p); renderPanel(); }
+    else { renderRoom(); renderPanel(); }
+    // the hint changes now, not when the queued how line starts: Read or a wrong line can drop it (exit check round 2)
+    const k = howKey(); setHint(L[k]);
+    if (speak) V.how(k, {valid: () => howKey() === k});
+  }
+
+  // solved: light the slot, chime, and say what it means
+  function solved(p) {
+    state.solved[p] = true;
+    if (p === 'exit') state.escaped = true;
+    const r = roomOf(p);
+    Curio.yes();
+    renderAll(p);
+    if (p === 'exit') return escaped();
+    V.dropQueued();
+    if (secured(r)) {
+      V.say(['symbol', 'sec' + r]);
+      V.how(allSecured() ? 'exitOpen' : 'back');
+    } else {
+      V.say('symbol');
+      const other = ROOMS[r].puz.find(x => !state.solved[x]);
+      // let the Done state show for a moment, then move to the next puzzle (same timing with Motion off)
+      setTimeout(() => { if (state.room === r && !state.solved[other]) setActive(other); }, 1600);
+    }
+  }
+
+  function renderAll(lit) {
+    if (state.room === 'hall') renderHall(); else renderRoom(lit);
+    renderPanel();
+  }
+
+  let lastStationMode = '';
+  function stationMode() {
+    const w = $('stage').clientWidth || innerWidth;
+    // side by side only for a two-puzzle room on a wide stage; the Server Closet's three puzzles use tabs
+    return state.room === 'X' ? 'single' : w >= 880 && ROOMS[state.room].puz.length === 2 ? 'split' : 'tabbed';
+  }
+  function renderRoom(lit) {
+    const r = state.room, R = ROOMS[r];
+    if (r === 'hall') return;
+    const room = $('room');
+    room.style.setProperty('--rc', R.color);
+    $('rtitle').innerHTML = (r === 'X' ? ico('door', 22) + ' The exit door' : ico(R.icon, 22) + ' ' + R.name);
+    // the room's lock: one slot per puzzle (the exit: three shields)
+    const lk = $('rlock');
+    if (r === 'X') {
+      lk.innerHTML = ['C', 'I', 'A'].map(x => `<div class="ls lit" title="${x}">${shieldSvg(x, ROOMS[x].hex, 26, 28)}</div>`).join('');
+      lk.setAttribute('aria-label', 'Three shields: C, I and A');
+    } else {
+      lk.innerHTML = R.puz.map(p => `<div class="ls ${state.solved[p] ? 'lit' : ''} ${lit === p ? 'pop' : ''}" title="${PUZ[p].title}: ${state.solved[p] ? 'found' : 'not yet'}">${ico(PUZ[p].sym, 22)}</div>`).join('') + `<span class="cnt" aria-hidden="true">${symOf(r)}</span>`;
+      lk.setAttribute('aria-label', `Room lock: ${symOf(r)} symbols found`);
+    }
+    // remember focus and scroll across the rebuild
+    const ae = document.activeElement, fk = ae && ae.closest && ae.closest('#room') ? ae.dataset.k : null;
+    const scrolls = {}; for (const b of room.querySelectorAll('.st-body')) scrolls[b.dataset.p] = b.scrollTop;
+    const mode = stationMode(); lastStationMode = mode;
+    const st = $('stations'); st.className = 'stations ' + mode; st.textContent = '';
+    const tabs = $('tabs'); tabs.textContent = '';
+    const list = R.puz;
+    const cui = document.body.classList.contains('compact') || ($('stage').clientWidth || 999) < 560;
+    room.classList.toggle('compactui', cui);
+    room.classList.toggle('tiny', ($('stage').clientWidth || 999) < 440);
+    room.classList.toggle('n3', R.puz.length > 2);
+    // short boxes: the puzzle tabs sit in the top bar in place of the room name (the panel's story card names it)
+    if (cui && mode === 'tabbed' && list.length > 1) $('rtitle').after(tabs); else $('room').querySelector('.rtop').after(tabs);
+    $('rtitle').hidden = cui && mode === 'tabbed' && list.length > 1;
+    room.classList.toggle('tabtop', $('rtitle').hidden);
+    if (mode === 'tabbed' && list.length > 1) {
+      for (const p of list) {
+        const t = html(`<button class="tab" role="tab" data-k="tab-${p}" aria-selected="${state.active[r] === p}">${ico(PUZ[p].sym, 18)} <span class="tt"><span class="tl">${PUZ[p].title}</span><span class="ts">${PUZ[p].short}</span></span>${state.solved[p] ? ` <span class="tick">${ico('check', 18)}<span class="sr">done</span></span>` : ''}</button>`);
+        t.onclick = () => setActive(p);
+        tabs.append(t);
+      }
+    }
+    for (const p of list) {
+      if (mode === 'tabbed' && state.active[r] !== p) continue;
+      const s = h('section', {class: 'station' + (state.active[r] === p ? ' active' : ''), 'aria-label': PUZ[p].title, 'data-p': p});
+      const tag = state.solved[p] ? 'Done' : p === 'exit' ? '' : `Puzzle ${list.indexOf(p) + 1} of ${list.length}`;
+      s.append(html(`<div class="st-head">${ico(PUZ[p].sym, 20)} ${PUZ[p].title}<span class="state ${state.solved[p] ? 'done' : ''}">${tag}</span></div>`));
+      const body = h('div', {class: 'st-body', 'data-p': p});
+      BUILD[p](body);
+      s.append(body);
+      s.addEventListener('pointerdown', () => { if (state.active[r] !== p) setActive(p); });
+      s.addEventListener('focusin', () => { if (state.active[r] !== p && mode === 'split') setActive(p); });
+      st.append(s);
+      if (scrolls[p]) body.scrollTop = scrolls[p];
+    }
+    for (const p of list) if (AFTER[p]) AFTER[p]();
+    // focus comes back to the same control, never into a station that is not the active one
+    if (fk) { const f = room.querySelector(`[data-k="${CSS.escape(fk)}"]`); const fs = f && f.closest('.station'); if (f && (!fs || fs.classList.contains('active'))) f.focus({preventScroll: true}); }
+  }
+  const doneBar = text => html(`<p class="donebar">${ico('check', 18)} <span>Done. ${text}</span></p>`);
+
+  // ---------- C1: who needs what ----------
+  function c1Errors(g) {
+    let much = 0, miss = 0; const rows = new Set();
+    for (const p of C1P) {
+      for (const f of ['grades', 'health', 'bus']) if (g[p.id][f] && f !== p.need) { much++; rows.add(p.id); }
+      if (p.need && !g[p.id][p.need]) { miss++; rows.add(p.id); }
+    }
+    return {much, miss, rows, ok: !much && !miss};
+  }
+  const BUILD = {}, AFTER = {};
+  BUILD.c1 = body => {
+    const S = state.c1, done = state.solved.c1;
+    if (done) body.append(doneBar("Each person sees only the folder their job needs. Jordan's dad needs only the public folder, so no family's bus stop is shown to him."));
+    else body.append(h('p', {class: 'prompt opt'}, 'Everyone can open every folder. Take away the folders each job does not need. The public folder (lunch menu and bus times) stays open to all.'));
+    const g = h('div', {class: 'grid', role: 'group', 'aria-label': 'Who can open which folder'});
+    g.append(h('div'));
+    for (const f of C1F) g.append(html(`<div class="colh">${ico(f.icon, 18)}<span>${f.short}</span></div>`));
+    const errs = c1Errors(S.grid);
+    for (const p of C1P) {
+      const who = html(`<div class="who"><span>${p.name}${S.badges && errs.rows.has(p.id) && !done ? '<span class="badge" aria-label="needs a fix" title="needs a fix">!</span>' : ''}</span><small>“${p.job}”</small></div>`);
+      g.append(who);
+      for (const f of C1F) {
+        const on = S.grid[p.id][f.id];
+        if (f.pub) { g.append(html(`<div class="cell pub" aria-label="${p.name}, ${f.name}: open to everyone (public)">${ico('padOpen', 18)}<span>public</span></div>`)); continue; }
+        const c = html(`<button class="cell" role="checkbox" data-k="c1-${p.id}-${f.id}" aria-checked="${on}" aria-label="${p.name} can open ${f.name}">${ico(on ? 'check' : 'x', 18)}<span>${on ? 'can open' : 'no'}</span></button>`);
+        if (done) c.disabled = true;
+        c.onclick = () => { S.grid[p.id][f.id] = !S.grid[p.id][f.id]; S.res = ''; renderRoom(); renderPanel(); };
+        g.append(c);
+      }
+    }
+    body.append(g);
+  };
+  function c1Check() {
+    const r = LK.c1.try(state.c1.grid), e = c1Errors(state.c1.grid), S = state.c1;
+    if (r.open) { S.res = ''; return solved('c1'); }
+    const parts = [];
+    if (e.much) parts.push(`${e.much} ${e.much === 1 ? 'box gives' : 'boxes give'} too much access.`);
+    if (e.miss) parts.push(`${e.miss} ${e.miss === 1 ? "person can't" : "people can't"} do their job.`);
+    S.res = parts.join(' '); S.bad = true;
+    if (r.misses >= 2) S.badges = true;
+    renderRoom(); renderPanel();
+    sayWrong();
+  }
+
+  // ---------- C2: pick the password ----------
+  const meterKey = pw => {
+    const r = sec.strength(pw, NAMES);
+    if (r.onList) return 'rList';
+    if (r.length < 8 && r.hasName) return 'rShortName';
+    if (r.hasName) return 'rName';
+    if (r.length < 8) return 'rShort';
+    return null;
+  };
+  BUILD.c2 = body => {
+    const S = state.c2, done = state.solved.c2;
+    if (done) body.append(doneBar('"purple tiger skates home" is long and has no names or common words in it.'));
+    else body.append(h('p', {class: 'prompt opt'}, LK.c2.misses ? 'Not that one. Tap a password to test it on the meter, then pick again.' : 'Which password keeps the records account safest? Think it through, then press Use this one. The meter checks your pick.'));
+    const box = h('div', {class: 'pws'});
+    const open = done || LK.c2.misses > 0;   // testing opens after the first pick, so the meter checks a choice
+    PWS.forEach((pw, i) => {
+      const r = sec.strength(pw, NAMES), b = sec.band(r), k = meterKey(pw);
+      const card = h('div', {class: 'pw' + (done && i === 3 ? ' picked' : '')});
+      const tested = S.tested[i] || done, why = k ? L[k] : r.length + ' characters long.';
+      const esc = pw.replace(/&/g, '&amp;').replace(/</g, '&lt;');
+      if (!open) card.append(html(`<div class="test" style="cursor:default"><span class="pwt">${esc}</span></div>`));
+      else {
+        const t = html(`<button class="test" data-k="c2-t${i}">${tested ? `<span class="meter b-${b}"><span class="w">${b}</span><span class="bar"><i></i></span></span>` : '<small>Tap to test</small>'}<span class="pwt">${esc}</span>${tested ? `<small class="why">${why}</small>` : ''}</button>`);
+        t.setAttribute('aria-label', tested ? `${pw}. Meter: ${b}. ${why}` : `Test the password ${pw}`);
+        t.onclick = () => { S.tested[i] = true; renderRoom(); };
+        card.append(t);
+      }
+      if (!done) {
+        const u = html(`<button class="btn mini" data-k="c2-u${i}">${ico('check', 16)} Use this one</button>`);
+        u.setAttribute('aria-label', 'Use ' + pw);
+        u.onclick = () => c2Use(i);
+        card.append(u);
+      }
+      box.append(card);
+    });
+    body.append(box);
+  };
+  function c2Use(i) {
+    const S = state.c2; S.tested[i] = true;
+    const r = LK.c2.try(i);
+    if (r.open) return solved('c2');
+    renderRoom();
+    sayWrong(meterKey(PWS[i]));
+  }
+
+  // ---------- I1: seal check ----------
+  BUILD.i1 = body => {
+    const S = state.i1, done = state.solved.i1;
+    if (done) body.append(doneBar("Cy's scores add up to 79, but the seal says 59. Someone changed them after they were saved."));
+    else body.append(html('<p class="prompt"><span class="pfull">When Ms. Ortiz saves scores, the grade book adds them up and stores the total as a seal. Tap the scores to add them up.</span><span class="pshort">The seal is the total saved with the scores. Tap scores to add them.</span></p>'));
+    const box = h('div', {class: 'cards'});
+    for (const s of STU) {
+      const on = done && s.n === 'Cy' ? [0, 1, 2, 3] : S.on[s.n];
+      const a = Sec.artifact('file', {layout: 'row', name: s.n, fields: s.s.map((v, q) => ({label: 'Q' + (q + 1), value: v, spot: `${s.n}:${q}`})),
+        seal: {label: 'Seal', value: s.seal, icon: ico('seal', 15)}}, {className: 'card-x' + ((done && s.n === 'Cy') ? ' changed' : ''),
+        onSpot: id => { const q = +id.split(':')[1]; const k = on.indexOf(q); k < 0 ? on.push(q) : on.splice(k, 1); renderRoom(); }});
+      on.forEach(q => a.mark(`${s.n}:${q}`, 'marked'));
+      for (const q of [0, 1, 2, 3]) { const e = a.spot(`${s.n}:${q}`); e.dataset.k = `i1-${s.n}-${q}`; }
+      const sum = on.reduce((t, q) => t + s.s[q], 0);
+      a.slot.append(html(`<span class="added" aria-live="polite"><span class="lab lf">Added: </span><span class="lab ls">Sum </span><b>${on.length ? (on.length > 1 ? `<span class="pfull">${on.map(q => s.s[q]).join(' + ')} </span>= ` : '') + sum : 0}</b></span>`));
+      if (!done) {
+        const b = html(`<button class="btn mini i1btn" data-k="i1-c-${s.n}"><span class="full">This one was changed</span><span class="short">Changed</span></button>`);
+        b.setAttribute('aria-label', `${s.n}'s card: this one was changed`);
+        b.onclick = () => i1Pick(s.n);
+        a.slot.append(b);
+      }
+      box.append(a.el);
+    }
+    body.append(box);
+  };
+  function i1Pick(n) {
+    const r = LK.i1.try(n);
+    if (r.open) return solved('i1');
+    sayWrong('i1wrong');
+  }
+
+  // ---------- I2: who changed it? ----------
+  let logArt = null;
+  BUILD.i2 = body => {
+    const S = state.i2, done = state.solved.i2;
+    if (done) body.append(doneBar(`Row ${BAD_ROW}: Ms. Ortiz's account on an unknown laptop at 2:14 a.m. Row 3 made the same kind of change in the daytime from her own laptop. Her password was stolen: restore from the backup and change the password.`));
+    else body.append(h('p', {class: 'prompt opt'}, S.step === 1 ? "The grade book keeps a change log. Tap the row that doesn't fit." : 'You found the row. Now pick the first fix.'));
+    logArt = Sec.artifact('log', {title: {text: 'Grade Book change log', small: 'gradebook.cedarhollow.example'},
+      columns: [{key: 'n', label: '#'}, {key: 'when', label: 'Day and time', nowrap: true}, {key: 'acct', label: 'Account', mono: true}, {key: 'dev', label: 'Device'}, {key: 'act', label: 'Action'}],
+      rows: LOG.map((x, i) => ({n: i + 1, when: x[0], acct: x[1], dev: {text: x[2], sub: x[3] ? HOST[x[3]] : ''}, act: x[4], spot: 'row' + (i + 1),
+        label: `Row ${i + 1}: ${x[0]}, ${x[1]}, ${x[2]}, ${x[4]}`}))},
+      {className: 'logwrap' + (lastStationMode === 'split' && ($('stage').clientWidth || 0) < 1300 ? ' narrow' : ''), onSpot: id => i2Row(+id.slice(3))});
+    LOG.forEach((x, i) => { const e = logArt.spot('row' + (i + 1)); if (e) e.dataset.k = 'i2-row' + (i + 1); });
+    if (S.row) logArt.mark('row' + S.row, 'right');
+    if (S.wrongRow) logArt.mark('row' + S.wrongRow, 'wrong');
+    body.append(logArt.el);
+  };
+  function i2Row(n) {
+    const S = state.i2;
+    if (state.solved.i2 || S.step === 2) return;
+    if (n === BAD_ROW) {
+      S.row = n; S.step = 2; S.wrongRow = null; renderRoom(); renderPanel();
+      Curio.tone(660, .2, .04);
+      V.dropQueued(); V.how('i2b', {valid: () => howKey() === 'i2b'});
+      showNext($('fix0'));
+      return;
+    }
+    S.wrongRow = n; renderRoom();
+    LK.i2.try([n, -1]);   // a wrong row counts as a miss
+    sayWrong();
+  }
+  // the next control: focus it, and scroll it into view when it is off screen (a phone, with the fixes under the log)
+  function showNext(el, focus = true) {
+    if (!el) return;
+    if (focus) el.focus({preventScroll: true});
+    const r = el.getBoundingClientRect();
+    if (r.top < 0 || r.bottom > innerHeight) el.scrollIntoView({block: 'center', behavior: document.body.classList.contains('calm') ? 'auto' : 'smooth'});
+  }
+  function i2Fix(i) {
+    const S = state.i2;
+    const r = LK.i2.try([BAD_ROW, i]);
+    if (r.open) { S.res = ''; return solved('i2'); }
+    S.fixNope = i; S.res = FIXES[i].why;
+    renderPanel(); sayWrong('fix' + i);
+  }
+
+  // ---------- A1: report card night ----------
+  BUILD.a1 = body => {
+    const done = state.solved.a1;
+    if (done) body.append(doneBar('3 servers handle 1,500 visits an hour, enough for the busiest hour (1,400 at 6 p.m.).'));
+    else body.append(h('p', {class: 'prompt'}, 'Find the fewest servers that keep the site up all evening. One server handles 500 visits an hour.'));
+    body.append(h('div', {id: 'chartBox'}));
+  };
+  AFTER.a1 = () => {
+    const box = $('chartBox'); if (!box) return;
+    const S = state.a1, n = state.solved.a1 ? 3 : S.servers, judged = state.solved.a1 ? 3 : S.set;
+    const W = Math.max(280, box.clientWidth), body = box.closest('.st-body');
+    const room = body ? body.clientHeight - (box.offsetTop - body.offsetTop) - 14 : 260;
+    const H = Math.round(Math.max(190, Math.min(420, room)));
+    const m = {l: 46, r: 8, t: 40, b: 26}, pw = W - m.l - m.r, ph = H - m.t - m.b, top = 2000;
+    const y = v => m.t + ph * (1 - v / top), bw = pw / HOURS.length;
+    const cap = n * PER;
+    let s = `<svg class="chart" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" role="img" aria-label="Website visits per hour: ${HOURS.map((t, i) => t + ' ' + VISITS[i].toLocaleString('en-US')).join(', ')}. Capacity line at ${cap.toLocaleString('en-US')} for ${n} server${n > 1 ? 's' : ''}.">
+      <defs><pattern id="stripe" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="8" height="8" fill="#f4b4a8"/><rect width="4" height="8" fill="#b42318"/></pattern></defs>`;
+    for (let v = 0; v <= top; v += 500) s += `<line x1="${m.l}" x2="${W - m.r}" y1="${y(v)}" y2="${y(v)}" stroke="#e6dccb"/><text x="${m.l - 6}" y="${y(v) + 4}" text-anchor="end">${v.toLocaleString('en-US')}</text>`;
+    HOURS.forEach((t, i) => {
+      const v = VISITS[i], x = m.l + i * bw + bw * .16, w = bw * .68, over = judged != null && v > judged * PER;
+      s += `<rect x="${x}" y="${y(v)}" width="${w}" height="${y(0) - y(v)}" rx="3" fill="${over ? 'url(#stripe)' : '#6d8fbf'}" stroke="${over ? '#b42318' : '#3f5f8c'}"/>`;
+      // a value label that would sit on the dashed capacity line goes just above it
+      let ly = y(v) - 5; if (ly > y(cap) - 2 && ly - 12 < y(cap) + 2) ly = y(cap) - 6;
+      s += `<text x="${x + w / 2}" y="${ly}" text-anchor="middle" class="${over ? 'over' : 'val'}">${over && bw > 50 ? 'too many' : v.toLocaleString('en-US')}</text>`;
+      s += `<text x="${x + w / 2}" y="${H - m.b + 16}" text-anchor="middle">${bw < 46 ? t.replace(' p.m.', '') : t}</text>`;
+    });
+    s += `<text x="${W - m.r}" y="${W < 420 ? 30 : 13}" text-anchor="end">visits per hour${bw < 46 ? ' (p.m.)' : ''}</text>`;   // narrow: a second line under the legend
+    s += `<line x1="${m.l}" x2="${W - m.r}" y1="${y(cap)}" y2="${y(cap)}" stroke="#7a2e10" stroke-width="3" stroke-dasharray="9 5"/>`;
+    s += `<line x1="${m.l}" x2="${m.l + 30}" y1="9" y2="9" stroke="#7a2e10" stroke-width="3" stroke-dasharray="9 5"/>`;
+    s += `<text x="${m.l + 36}" y="13" class="cap">${n} server${n > 1 ? 's' : ''}: ${cap.toLocaleString('en-US')} an hour</text></svg>`;
+    box.innerHTML = s;
+  };
+  function a1Set() {
+    const S = state.a1, n = S.servers;
+    S.set = n;
+    const over = HOURS.filter((t, i) => VISITS[i] > n * PER);
+    const r = LK.a1.try(n);
+    if (r.open) { S.res = ''; return solved('a1'); }
+    if (n === 4) { S.res = L.a1four; renderRoom(); renderPanel(); return sayWrong('a1four'); }
+    const list = over.length > 2 ? `${over[0]} to ${over[over.length - 1]}` : over.join(' and ');
+    S.res = `${n} server${n > 1 ? 's' : ''}: ${list} ${over.length > 1 ? 'have' : 'has'} too many visits. The striped bars are over the line.`;
+    renderRoom(); renderPanel(); sayWrong();
+  }
+
+  // ---------- A2: backup plan ----------
+  BUILD.a2 = body => {
+    const S = state.a2, done = state.solved.a2;
+    if (done) body.append(doneBar('Plan C backs up every night to another building, so only Thursday is lost.'));
+    else body.append(h('p', {class: 'prompt'}, 'The disk broke Thursday afternoon. Think about where each copy lives and how often it is made. Which plan loses the least work? Tap a plan.'));
+    const box = h('div', {class: 'plans'});
+    for (const pl of PLANS) {
+      const picked = (done && pl.id === 'C'), nope = S.nope === pl.id, shown = done || S.seen.includes(pl.id);
+      const b = html(`<button class="plan ${picked ? 'picked' : ''} ${nope ? 'nope' : ''}" data-k="a2-${pl.id}">
+        <span class="pt"><b>${pl.id}</b>${pl.t}</span>
+        ${shown ? `<span class="days">${DAYS.map((d, i) => { const lost = pl.lost.includes(i); return `<span class="day ${lost ? 'lost' : 'kept'}">${ico(lost ? 'x' : 'check', 14)}${d}</span>`; }).join('')}</span>
+        <span class="pwhy">${L['a2' + pl.id]}</span>` : ''}</button>`);
+      b.setAttribute('aria-label', `Plan ${pl.id}: ${pl.t}` + (shown ? ` ${L['a2' + pl.id]}` : ''));
+      if (done) b.disabled = true;
+      b.onclick = () => a2Pick(pl.id);
+      box.append(b);
+    }
+    body.append(box);
+    if (done || S.seen.length) body.append(html(`<p class="legend">${ico('check', 14)} kept &nbsp; ${ico('x', 14)} lost (crossed out) &nbsp; Days run from last Friday to Thursday.</p>`));
+  };
+  function a2Pick(id) {
+    const S = state.a2, r = LK.a2.try(id);
+    if (!S.seen.includes(id)) S.seen.push(id);
+    if (r.open) { S.nope = null; return solved('a2'); }
+    S.nope = id; renderRoom(); sayWrong('a2' + id);
+  }
+
+  // ---------- A3: network closet ----------
+  const partIcon = x => x.kind ? Net.icon(x.kind, 32, '#3b4252') : ico(x.icon, 30);
+  BUILD.a3 = body => {
+    const S = state.a3, done = state.solved.a3;
+    if (S.step === 1 && !done) {
+      body.append(h('p', {class: 'prompt a3p'}, h('b', {}, 'Wired'), ' uses cables. ', h('b', {}, 'Wireless'), ' uses Wi-Fi signals through the air. Sort each part.'));
+      const box = h('div', {class: 'parts', role: 'group', 'aria-label': 'Network parts'});
+      for (const x of PARTS) {
+        const v = S.sort[x.id], bad = S.marks && v && v !== x.a;
+        const c = html(`<div class="part ${bad ? 'bad' : ''}"><span class="pi">${partIcon(x)}</span>
+          <span class="pn">${x.name}${bad ? '<span class="badge" aria-label="in the wrong group" title="in the wrong group">!</span>' : ''}<small>${x.note}</small><span class="ty">${x.type}</span></span>
+          <span class="wb" role="group" aria-label="${x.name}"></span></div>`);
+        for (const [w, lab] of [['wired', 'Wired'], ['wireless', 'Wireless']]) {
+          const b = html(`<button data-k="a3-${x.id}-${w}" aria-pressed="${v === w}">${w === 'wired' ? ico('cable', 16) : ico('wifi', 16)} ${lab}</button>`);
+          b.setAttribute('aria-label', `${x.name}: ${lab}`);
+          b.onclick = () => {
+            const before = PARTS.filter(y => S.sort[y.id]).length;
+            S.sort[x.id] = S.sort[x.id] === w ? null : w; S.sortRes = ''; renderRoom(); renderPanel();
+            if (before < PARTS.length && PARTS.every(y => S.sort[y.id])) showNext($('checkSort'), false);   // all sorted: the check comes into view
+          };
+          c.querySelector('.wb').append(b);
+        }
+        box.append(c);
+      }
+      body.append(box);
+      return;
+    }
+    if (!done) body.append(h('p', {class: 'prompt opt'}, 'Here is the school network. The Wi-Fi access point broke (grey, with an X). Tap each device that stays online.'));
+    body.append(h('div', {class: 'netbox', id: 'netBox'}));
+    body.append(html(`<p class="netkey"><span><i></i>cable (wired)</span><span>${ico('wifi', 16)} Wi-Fi (wireless, no cable)</span></p>`));
+    // when done the finished map comes first, so it stays in view on short screens
+    if (done) body.append(doneBar('The desktops and the printer use cables to the switch, so they stay online. The laptop and the tablet use Wi-Fi, so they went offline with the access point. A second access point would keep them available.'));
+  };
+  AFTER.a3 = () => {
+    const box = $('netBox'); if (!box) return;
+    const S = state.a3, done = state.solved.a3;
+    const W = Math.max(280, box.clientWidth), small = W < 560, bodyEl = box.closest('.st-body');
+    const room = bodyEl ? bodyEl.clientHeight - (box.offsetTop - bodyEl.offsetTop) - 40 : 300;
+    const H = Math.round(Math.max(small ? 300 : 280, Math.min(460, room)));
+    box.innerHTML = `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" role="group" aria-label="The school network"></svg>`;
+    const svg = box.firstChild, g = net(), icon = small ? 30 : 44, lab = small ? 11.5 : 13.5;
+    const pad = icon / 2 + 12;
+    const view = Net.draw(svg, g, {
+      box: {x: pad + (small ? 4 : 30), y: pad, w: W - 2 * pad - (small ? 8 : 60), h: H - 2 * pad - (small ? 34 : 28)},
+      icon, labelSize: lab, labelWidth: small ? 66 : 120, labelLines: 3, labelGap: 12,   // the gap clears the pick ring
+      drawIcon: (gEl, n, o) => {
+        const gi = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+        gi.setAttribute('transform', `translate(${-o.size / 2},${-o.size / 2})`);
+        // the access point is drawn as a plain Wi-Fi symbol (its signal goes through the air, no cable to the devices)
+        gi.innerHTML = n.id === 'ap'
+          ? `<svg width="${o.size}" height="${o.size}" viewBox="0 0 24 24" fill="none" stroke="${o.ink}" stroke-width="2.4" stroke-linecap="round"><path d="M2.5 9a14 14 0 0 1 19 0M5.8 12.6a9.2 9.2 0 0 1 12.4 0M9.1 16.1a4.5 4.5 0 0 1 5.8 0"/><circle cx="12" cy="19.6" r="1.6" fill="${o.ink}" stroke="none"/></svg>`
+          : Net.icon(n.kind, o.size, o.ink);
+        gEl.append(gi);
+      },
+      label: n => n.id === 'router' ? 'right' : n.id === 'sw' ? {dx: -(icon / 2 + 14), dy: 5, anchor: 'end'} : n.id === 'ap' ? 'above' : 'below',
+      pickable: !done, canPick: n => NETDEV.includes(n.id),
+      onPick: n => { if (done) return; const k = S.picks.indexOf(n.id); k < 0 ? S.picks.push(n.id) : S.picks.splice(k, 1); S.res = ''; marks(); renderPanel(); view.focus(n.id); },
+      nodeAria: n => `${n.label}${n.up ? '' : ', broken'}${done ? (ONLINE.includes(n.id) ? ', online' : NETDEV.includes(n.id) ? ', offline' : '') : S.picks.includes(n.id) ? ', marked online' : NETDEV.includes(n.id) ? ', not marked' : ''}`,
+    });
+    // Wi-Fi links: hide the dashed line and its break mark, keep the radio arcs at the access point
+    const airOnly = () => { for (const id of ['laptop', 'tablet']) { const el = view.linkEl('ap', id); if (el) for (const pa of el.querySelectorAll('path')) if (!/A/.test(pa.getAttribute('d'))) pa.style.display = 'none'; } };
+    // our own overlay (the engine's x badge draws over its text): result pills and "!" marks centered on each tile's
+    // bottom edge, sized to fit between neighbours, and a small Wi-Fi mark on the devices that use Wi-Fi
+    const NS = 'http://www.w3.org/2000/svg', R = view.R;
+    const mkS = (tag, a, par) => { const e = document.createElementNS(NS, tag); for (const k in a) e.setAttribute(k, a[k]); par.append(e); return e; };
+    const xs = NETDEV.map(id => view.pos(id).x).sort((a, b) => a - b);
+    const gapMin = Math.min(...xs.slice(1).map((x, i) => x - xs[i]));
+    let over = null;
+    function pill(id, text, fill, icon) {
+      const p = view.pos(id), gp = mkS('g', {class: 'a3pill', transform: `translate(${p.x},${p.y + R})`, 'aria-hidden': 'true'}, over);
+      const rect = mkS('rect', {y: -11, height: 22, rx: 11, fill, stroke: '#fff', 'stroke-width': 2}, gp);
+      let fs = small ? 11.5 : 13;
+      const t = mkS('text', {y: 4.5, 'font-size': fs, 'font-weight': 700, 'font-family': "'Segoe UI',system-ui,sans-serif", fill: '#fff', 'text-anchor': 'middle'}, gp);
+      t.textContent = text;
+      const room = gapMin - 6, ic = icon && !small ? 14 : 0;
+      let tw = t.getComputedTextLength();
+      while (tw + ic + 14 > room && fs > 9) { fs -= .5; t.setAttribute('font-size', fs); tw = t.getComputedTextLength(); }
+      const w = Math.max(22, tw + ic + 14);
+      rect.setAttribute('x', -w / 2); rect.setAttribute('width', w);
+      if (ic) {
+        t.setAttribute('x', ic / 2);
+        const x0 = -w / 2 + 13;
+        mkS('path', {d: icon === 'x' ? `M${x0 - 4} -4L${x0 + 4} 4M${x0 + 4} -4L${x0 - 4} 4` : `M${x0 - 5} 0l3.5 3.5 6.5-7`, fill: 'none', stroke: '#fff', 'stroke-width': 2.6, 'stroke-linecap': 'round', 'stroke-linejoin': 'round'}, gp);
+      }
+    }
+    function marks() {
+      const errs = a3Errors();
+      view.ring(done ? null : S.picks, {color: '#1d4ed8', width: 3});
+      if (over) over.remove();
+      over = mkS('g', {class: 'a3over'}, view.root);
+      for (const id of ['laptop', 'tablet']) {   // these devices join over the air
+        const p = view.pos(id), q = small ? 13 : 18, gw = mkS('g', {transform: `translate(${p.x - R + q / 2},${p.y - R + q / 2})`, 'aria-hidden': 'true', class: 'a3pill'}, over);
+        mkS('circle', {r: q / 2 + 3, fill: '#fff', stroke: '#8a8a8a', 'stroke-width': 1.5}, gw);
+        mkS('path', {d: `M${-q * .4} ${-q * .1}a${q * .55} ${q * .55} 0 0 1 ${q * .8} 0M${-q * .22} ${q * .1}a${q * .3} ${q * .3} 0 0 1 ${q * .44} 0`, fill: 'none', stroke: '#3b4252', 'stroke-width': 1.8, 'stroke-linecap': 'round'}, gw);
+        mkS('circle', {cy: q * .3, r: 1.5, fill: '#3b4252'}, gw);
+      }
+      // a pick: a blue check on the tile's top right corner, kept inside the gap to the next tile
+      if (!done) for (const id of S.picks) {
+        const p = view.pos(id), r = small ? 9 : 12, gc = mkS('g', {transform: `translate(${p.x + R - r + 4},${p.y - R + r - 4})`, 'aria-hidden': 'true', class: 'a3pill'}, over);
+        mkS('circle', {r, fill: '#1d4ed8', stroke: '#fff', 'stroke-width': 2}, gc);
+        mkS('path', {d: `M${-r * .45} 0l${r * .3} ${r * .3} ${r * .55}-${r * .55}`, fill: 'none', stroke: '#fff', 'stroke-width': small ? 2.2 : 2.8, 'stroke-linecap': 'round', 'stroke-linejoin': 'round'}, gc);
+      }
+      if (done) for (const id of NETDEV) ONLINE.includes(id) ? pill(id, 'online', '#1f7a46', 'check') : pill(id, 'offline', '#b42318', 'x');
+      else if (S.badges) for (const id of [...errs.wrongOn, ...errs.missed]) pill(id, '!', '#b42318');
+      airOnly();
+    }
+    view.update();
+    marks();
+  };
+  function a3Errors() {
+    const S = state.a3;
+    return {wrongOn: S.picks.filter(id => !ONLINE.includes(id)), missed: ONLINE.filter(id => !S.picks.includes(id))};
+  }
+  function a3Sort() {
+    const S = state.a3, left = PARTS.filter(x => !S.sort[x.id]).length;
+    if (left) {
+      S.sortRes = `Sort every part first: ${left} left.`; renderPanel(); Curio.tone(220, .2, .04, 'triangle');
+      const t0 = state.tap; V.say('a3left', {valid: () => state.tap === t0, now: true});
+      return;
+    }
+    const r = LK.a3s.try(S.sort);
+    if (r.open) {
+      S.step = 2; S.sortRes = ''; S.marks = false; renderRoom(); renderPanel();
+      Curio.tone(660, .2, .04);
+      V.dropQueued(); V.how('a3b', {valid: () => howKey() === 'a3b'});
+      showNext($('netBox'), false);
+      return;
+    }
+    const n = PARTS.filter(x => S.sort[x.id] !== x.a).length;
+    S.sortRes = `${n} ${n === 1 ? 'part is' : 'parts are'} in the wrong group.`;
+    if (r.misses >= 2) S.marks = true;
+    renderRoom(); renderPanel(); sayWrong();
+  }
+  function a3Check() {
+    const S = state.a3;
+    const r = LK.a3.try(S.picks.slice());
+    if (r.open) { S.res = ''; return solved('a3'); }
+    const e = a3Errors(), parts = [];
+    if (e.wrongOn.length) parts.push(`${e.wrongOn.length} ${e.wrongOn.length === 1 ? 'device you marked loses its link' : 'devices you marked lose their link'}.`);
+    if (e.missed.length) parts.push(`${e.missed.length} ${e.missed.length === 1 ? 'device that stays online is' : 'devices that stay online are'} not marked.`);
+    S.res = parts.join(' ');
+    if (r.misses >= 2) S.badges = true;
+    renderRoom(); renderPanel(); sayWrong();
+  }
+
+  // ---------- Exit: the CIA lock ----------
+  BUILD.exit = body => {
+    const S = state.exit;
+    body.append(h('p', {class: 'prompt opt'}, 'Each card tells about a problem with data. Which promise did it break? Sort all six, then open the exit.'));
+    const pool = h('div', {class: 'pool', 'aria-label': 'Cards to sort', 'data-empty': state.escaped ? 'All six cards are sorted.' : 'All six cards are in slots. Press Open the exit.'});
+    const mk = i => {
+      const c = EXITC[i], right = S.right[i];
+      const b = html(`<button class="ecard ${right ? 'right' : ''}" data-k="ex-${i}" data-i="${i}" aria-pressed="${S.sel === i}">${c.t}</button>`);
+      if (right) { b.setAttribute('aria-disabled', 'true'); b.setAttribute('aria-label', c.t + ' Right: ' + c.a + '.'); }
+      b.onclick = e => { if (b._dragged) { b._dragged = false; return; } if (right) return; S.sel = S.sel === i ? null : i; renderRoom(); };
+      if (!right) dragify(b, i);
+      return b;
+    };
+    for (const i of EXIT_ORDER) if (!S.place[i]) pool.append(mk(i));
+    body.append(pool);
+    const slots = h('div', {class: 'slots'});
+    for (const x of ['C', 'I', 'A']) {
+      const R = ROOMS[x];
+      const box = h('div', {class: 'slotbox', 'data-slot': x, style: `--sc:${R.color}`});
+      const head = html(`<button class="slothead" data-k="slot-${x}"><span class="L">${x}</span><span><b>${R.word.replace(/(Confiden|Integ|Avail)/, '$1&shy;')}</b>${R.promise}</span></button>`);
+      head.setAttribute('aria-label', `Put the card in ${x}, ${R.word}: ${R.promise}`);
+      head.onclick = () => placeSel(x);
+      box.append(head);
+      const list = h('div', {class: 'slotlist'});
+      for (const i of EXIT_ORDER) if (S.place[i] === x) list.append(mk(i));
+      box.append(list);
+      slots.append(box);
+    }
+    body.append(slots);
+  };
+  function placeSel(x) {
+    const S = state.exit;
+    if (S.sel == null) { setHint(L.exit); return; }
+    move(S.sel, x);
+  }
+  // move a card to a slot (or back to the pool with null), sliding from where it was (an outline flash with Motion off)
+  function move(i, x, shake) {
+    const S = state.exit;
+    const old = document.querySelector(`.ecard[data-i="${i}"]`), r0 = old ? old.getBoundingClientRect() : null;
+    S.place[i] = x; S.sel = null; S.res = '';
+    renderRoom(); renderPanel();
+    const now = document.querySelector(`.ecard[data-i="${i}"]`);
+    if (!now || !r0) return;
+    if (document.body.classList.contains('calm')) { if (shake) now.classList.add('shake'); return; }
+    const r1 = now.getBoundingClientRect();
+    now.animate([{transform: `translate(${r0.left - r1.left}px,${r0.top - r1.top}px)`}, {transform: 'none'}], {duration: 350, easing: 'ease-out'})
+      .onfinish = () => { if (shake) now.classList.add('shake'); };
+  }
+  // drag a card onto a slot (pointer); a short press is a tap (select)
+  function dragify(b, i) {
+    let start = null, drag = false;
+    b.addEventListener('pointerdown', e => { if (e.button) return; start = {x: e.clientX, y: e.clientY}; drag = false; b.setPointerCapture(e.pointerId); });
+    b.addEventListener('pointermove', e => {
+      if (!start) return;
+      const dx = e.clientX - start.x, dy = e.clientY - start.y;
+      if (!drag && Math.hypot(dx, dy) > 8) { drag = true; b.classList.add('drag'); }
+      if (drag) {
+        b.style.transform = `translate(${dx}px,${dy}px)`;
+        for (const s of document.querySelectorAll('.slotbox')) s.classList.toggle('over', hit(s, e));
+      }
+    });
+    const hit = (s, e) => { const r = s.getBoundingClientRect(); return e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom; };
+    const end = e => {
+      if (!start) return;
+      start = null;
+      if (!drag) return;
+      b._dragged = true; setTimeout(() => { b._dragged = false; }, 50);
+      const s = [...document.querySelectorAll('.slotbox')].find(z => hit(z, e));
+      document.querySelectorAll('.slotbox.over').forEach(z => z.classList.remove('over'));
+      b.style.transform = ''; b.classList.remove('drag');
+      if (s) move(i, s.dataset.slot);
+      else if (e.target.closest && hitPool(e)) move(i, null);
+    };
+    const hitPool = e => { const p = document.querySelector('.pool'); if (!p) return false; const r = p.getBoundingClientRect(); return e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom; };
+    b.addEventListener('pointerup', end); b.addEventListener('pointercancel', end);
+  }
+  function exitOpen() {
+    const S = state.exit;
+    if (S.place.some(p => !p)) { V.dropQueued(); V.how('hPlace'); setHint(L.hPlace); return; }
+    const r = LK.exit.try(S.place);
+    EXITC.forEach((c, i) => { if (S.place[i] === c.a) S.right[i] = true; });
+    if (r.open) return solved('exit');
+    const wrong = EXITC.map((c, i) => i).filter(i => S.place[i] !== EXITC[i].a);
+    const rects = new Map(wrong.map(i => [i, document.querySelector(`.ecard[data-i="${i}"]`).getBoundingClientRect()]));
+    wrong.forEach(i => { S.place[i] = null; });
+    S.res = `${6 - wrong.length} of 6 are right and stay put. ${wrong.length} slid back to try again.`;
+    renderRoom(); renderPanel();
+    for (const i of wrong) {
+      const now = document.querySelector(`.ecard[data-i="${i}"]`), r0 = rects.get(i);
+      if (!now) continue;
+      if (document.body.classList.contains('calm')) { now.classList.add('shake'); continue; }
+      const r1 = now.getBoundingClientRect();
+      now.animate([{transform: `translate(${r0.left - r1.left}px,${r0.top - r1.top}px)`}, {transform: 'none'}], {duration: 420, easing: 'ease-out'})
+        .onfinish = () => now.classList.add('shake');
+    }
+    sayWrong();
+  }
+  function escaped() {
+    state.escaped = true;
+    const used = state.timerMin ? clock.elapsed : null;
+    clock.pause();
+    const e = $('escape');
+    e.innerHTML = `<div class="ecardbig" role="dialog" aria-modal="true" aria-labelledby="escT"><h2 id="escT">You escaped!</h2><p><b>Cedar Hollow's data is safe.</b></p>
+      <div class="shields">${['C', 'I', 'A'].map(x => `<div>${shieldSvg(x, ROOMS[x].hex)}<span>${ROOMS[x].word}</span><span style="font-weight:400;color:var(--muted)">${ROOMS[x].promise}</span></div>`).join('')}</div>
+      ${used != null ? `<p>Time used: ${Math.floor(used / 60000)} min ${Math.floor(used / 1000) % 60} s</p>` : ''}
+      <button class="btn go big" id="again" style="min-height:52px;font-size:18px;margin-top:6px">↺ Play again</button></div>`;
+    e.hidden = false;
+    // a modal: the rest of the page is inert until Play again (Read in the header still works)
+    for (const el of [$('panel'), $('room'), $('hall')]) el.inert = true;
+    $('again').onclick = () => restart();
+    $('again').focus({preventScroll: true});
+    V.dropQueued(); V.say('escaped');
+    setHint(L.hEscaped);
+  }
+
+  // ======================================================================================
+  // PANEL: hint, the puzzle's check controls, Clue, the story, Team timer, Start over
+  // ======================================================================================
+  function visibleHere(p) { return state.room === roomOf(p) && (lastStationMode === 'split' || state.active[state.room] === p); }
+  function renderPanel() {
+    const ctl = $('ctl'); ctl.textContent = '';
+    const r = state.room;
+    if (r === 'C' && !state.solved.c1 && visibleHere('c1')) {
+      const b = html(`<button class="btn go big" id="check">${ico('padlock', 20)} Check lock</button>`);
+      b.onclick = c1Check; ctl.append(b);
+      ctl.append(h('p', {class: 'res' + (state.c1.res ? ' bad' : ''), 'aria-live': 'polite'}, state.c1.res));
+    }
+    if (r === 'I' && !state.solved.i2 && state.i2.step === 2 && visibleHere('i2')) {
+      ctl.append(h('p', {class: 'lbl'}, 'Pick the first fix:'));
+      const f = h('div', {class: 'fixes'});
+      FIXES.forEach((x, i) => { const no = state.i2.fixNope === i; const b = h('button', {class: 'btn' + (no ? ' nope' : ''), id: 'fix' + i, 'aria-label': no ? x.t + '. Not this one.' : null}, x.t); b.onclick = () => i2Fix(i); f.append(b); });
+      ctl.append(f);
+      ctl.append(h('p', {class: 'res' + (state.i2.res ? ' bad' : ''), 'aria-live': 'polite'}, state.i2.res));
+    }
+    if (r === 'A' && !state.solved.a1 && visibleHere('a1')) {
+      const S = state.a1;
+      const st = html(`<div class="stepper" role="group" aria-label="Servers"><button class="btn" id="srvMinus" aria-label="One server fewer">${ico('minus', 20)}</button>
+        <output id="srv" aria-live="polite">${S.servers}<small>server${S.servers > 1 ? 's' : ''}</small></output><button class="btn" id="srvPlus" aria-label="One server more">${ico('plus', 20)}</button></div>`);
+      ctl.append(st);
+      const set = html(`<button class="btn go big" id="setSrv">${ico('server', 20)} Set servers</button>`);
+      set.onclick = a1Set; ctl.append(set);
+      ctl.append(h('p', {class: 'res' + (S.res ? ' bad' : ''), 'aria-live': 'polite'}, S.res));
+      const step = d => { S.servers = Math.max(1, Math.min(4, S.servers + d)); S.set = null; S.res = ''; renderRoom(); renderPanel(); $(d < 0 ? 'srvMinus' : 'srvPlus').focus({preventScroll: true}); };
+      st.querySelector('#srvMinus').onclick = () => step(-1);
+      st.querySelector('#srvPlus').onclick = () => step(1);
+      st.querySelector('#srvMinus').disabled = S.servers <= 1;
+      st.querySelector('#srvPlus').disabled = S.servers >= 4;
+    }
+    if (r === 'A' && !state.solved.a3 && visibleHere('a3')) {
+      const S = state.a3, one = S.step === 1;
+      const b = html(`<button class="btn go big" id="${one ? 'checkSort' : 'checkNet'}">${ico(one ? 'cable' : 'wifi', 20)} ${one ? 'Check sort' : 'Check'}</button>`);
+      b.onclick = one ? a3Sort : a3Check; ctl.append(b);
+      const res = one ? S.sortRes : S.res;
+      ctl.append(h('p', {class: 'res' + (res ? ' bad' : ''), 'aria-live': 'polite'}, res));
+    }
+    if (r === 'X' && !state.escaped) {
+      const b = html(`<button class="btn go big" id="openExit">${ico('padOpen', 20)} Open the exit</button>`);
+      b.onclick = exitOpen; ctl.append(b);
+      ctl.append(h('p', {class: 'res' + (state.exit.res ? ' bad' : ''), 'aria-live': 'polite'}, state.exit.res));
+    }
+    // Clue: the active puzzle's two clues (first press clue 1, second press clue 2)
+    const p = r === 'hall' ? null : state.active[r];
+    const cb = $('clue'), ct = $('clueText');
+    $('clueRow').hidden = !p || state.solved[p];
+    if (p && !state.solved[p]) {
+      const n = state.clue[p] || 0;
+      cb.innerHTML = ico('bulb', 20) + (n === 0 ? ' Clue' : n === 1 ? ' Clue 2' : ' Clues shown');
+      cb.disabled = n >= 2;
+      ct.textContent = n ? L.clue[p].slice(0, n).map((c, i) => `Clue ${i + 1}: ${c}`).join(' ') : '';
+    } else ct.textContent = '';
+    // the story card
+    const sc = $('story');
+    if (r === 'hall' || r === 'X') {
+      sc.innerHTML = `<h2>${ico('shield', 18)} ${r === 'X' ? 'The CIA lock' : 'Three rooms, three promises'}</h2><ul>${['C', 'I', 'A'].map(x => `<li>${ROOMS[x].name}: ${secured(x) ? `<b>${x}, ${ROOMS[x].word}</b>, ${ROOMS[x].promise}` : `${symOf(x)} symbols`}</li>`).join('')}</ul>`;
+    } else {
+      sc.innerHTML = `<h2>${ico(ROOMS[r].icon, 18)} ${ROOMS[r].name}</h2><p>${L['story' + r]}</p>`;
+    }
+    // Start over (with Yes/No)
+    const ob = $('overBox');
+    if (state.confirm) {
+      ob.innerHTML = '<div class="ask">Start over? <button class="btn" id="overYes">Yes</button><button class="btn" id="overNo">No</button></div>';
+      $('overYes').onclick = () => restart();
+      $('overNo').onclick = () => { state.confirm = false; renderPanel(); $('over').focus({preventScroll: true}); };
+    } else {
+      ob.innerHTML = '<button class="btn" id="over">↺ Start over</button>';
+      $('over').onclick = () => { state.confirm = true; renderPanel(); $('overNo').focus({preventScroll: true}); };
+    }
+  }
+  $('clue').onclick = () => {
+    const p = state.active[state.room]; if (!p) return;
+    state.clue[p] = Math.min(2, (state.clue[p] || 0) + 1);
+    renderPanel();
+  };
+
+  // ---------- Team timer (Off by default; nothing locks at 0) ----------
+  const clock = sec.clock({mode: 'down', ms: 20 * 60000, onTick: c => showTime(), onEnd: () => {
+    state.timeUp = true; showTime();
+    V.say('time', {valid: () => !state.escaped});
+    if (!state.escaped) setHint(L.time);
+  }});
+  function showTime() {
+    const o = $('tleft');
+    if (!state.timerMin) { o.textContent = ''; return; }
+    o.textContent = state.timeUp ? ' Time!' : ' ' + sec.mmss(clock.left) + ' left';
+  }
+  function setTimer(min) {
+    state.timerMin = min; state.timeUp = false;
+    clock.reset(min * 60000);
+    if (min && !state.escaped) clock.start();
+    for (const b of document.querySelectorAll('.timer [data-min]')) b.setAttribute('aria-pressed', +b.dataset.min === min);
+    showTime();
+  }
+  for (const b of document.querySelectorAll('.timer [data-min]')) b.onclick = () => setTimer(+b.dataset.min);
+
+  function restart() {
+    V.hush();
+    fresh();
+    $('escape').hidden = true;
+    for (const el of [$('panel'), $('room'), $('hall')]) el.inert = false;
+    setTimer(state.timerMin = +document.querySelector('.timer [aria-pressed="true"]').dataset.min);
+    $('room').hidden = true; $('hall').hidden = false;
+    renderAll(); setHint(L.hHall);
+    const d = $('doors').querySelector('.door'); if (d) d.focus({preventScroll: true});
+  }
+
+  // ======================================================================================
+  // LAYOUT
+  // ======================================================================================
+  let page = '';
+  function pageLayout() { const w = innerWidth, hh = innerHeight; return w >= 1000 && hh >= 700 ? 'wide' : w >= 600 && w / hh >= 1.25 ? 'compact' : 'stack'; }
+  let lastKey = '';
+  function relayout() {
+    const p = pageLayout();
+    if (p !== page) {
+      page = p; for (const c of ['wide', 'compact', 'stack']) document.body.classList.toggle(c, c === p);
+      // in stack the hint and the check controls sit in the stage, beside the puzzle
+      (p === 'stack' ? $('topSlot') : $('hintHome')).append($('hint'));
+      (p === 'stack' ? $('ctlDock') : $('ctlHome')).append($('ctl'));
+    }
+    const st = $('stage').getBoundingClientRect();
+    const key = p + Math.round(st.width) + 'x' + (p === 'stack' ? '' : Math.round(st.height)) + state.room;
+    if (key === lastKey) return;
+    lastKey = key;
+    if (state.room === 'hall') layoutDoors(); else { renderRoom(); renderPanel(); }
+  }
+  new ResizeObserver(() => relayout()).observe($('stage'));
+  addEventListener('resize', () => relayout());
+  $('m-escape').onclick = () => {};
+  Curio.onMotion(() => {});
+
+  // ======================================================================================
+  // START
+  // ======================================================================================
+  fresh();
+  Curio.init({clips: "voice:*", rate: .95});
+  relayout();
+  renderAll();
+  setHint(L.hHall);
+
+  // for checking frames and tests
+  function solve(p, answer) {
+    if (roomOf(p) !== state.room) enter(roomOf(p));
+    if (state.active[roomOf(p)] !== p) setActive(p, false);
+    const A = answer;
+    if (p === 'c1') { if (A) state.c1.grid = A; else C1P.forEach(x => C1F.forEach(f => { state.c1.grid[x.id][f.id] = f.pub || f.id === x.need; })); renderRoom(); c1Check(); }
+    else if (p === 'c2') c2Use(A == null ? 3 : A);
+    else if (p === 'i1') i1Pick(A || 'Cy');
+    else if (p === 'i2') { const [row, fix] = A || [BAD_ROW, 0]; i2Row(row); if (state.i2.step === 2 && fix != null) i2Fix(fix); }
+    else if (p === 'a1') { state.a1.servers = A || 3; renderPanel(); a1Set(); }
+    else if (p === 'a2') a2Pick(A || 'C');
+    else if (p === 'a3') {
+      const S = state.a3;
+      if (S.step === 1) { const m = A && A.sort || Object.fromEntries(PARTS.map(x => [x.id, x.a])); Object.assign(S.sort, m); a3Sort(); }
+      if (S.step === 2 && !(A && A.sort && !A.picks)) { S.picks = (A && A.picks || ONLINE).slice(); a3Check(); }
+    }
+    else if (p === 'exit') { state.exit.place = (A || EXITC.map(c => c.a)).slice(); renderRoom(); exitOpen(); }
+    return {solved: !!state.solved[p], misses: LK[p].misses};
+  }
+  window.__tool = {state, sec, Sec, Net, online: ONLINE, parts: PARTS, world: WORLD, enter, toHall, solve, setActive, setTimer, clock, locks: LK,
+    cards: () => EXITC.map((c, i) => ({text: c.t, answer: c.a, place: state.exit.place[i], right: state.exit.right[i]})),
+    c1Errors, allLines: V.allLines, vlog: V.log, get vq() { return V.queue; }, restart, relayout};
+})();
+</script>
+</body>
+</html>
