@@ -26,12 +26,12 @@ Panel:
 - Training jars: three jars, one per room, each with its badge, its name and "N cards". Under each: "Fewer" (minus) and "More" (plus), 3 cards per step (one each of 1, 4, 7), from 0 to 30. Tapping a jar opens the card viewer (below).
 - "Train Bitsy" (gear icon): retrains on what is in the jars. Enabled only when the jars changed since the last training.
 - "Run the lunch line" (play icon, `.big-btn.gold`); "Stop" in its place while running.
-- Results: one bar per room (engine `groupBars`): "Room 12: 10 of 10 right lunches". A small "Mix-ups" list under it: "Room 9: wrote 1, got tacos (4)" with a count.
+- Results: one bar per room (engine `groupBars`): "Room 12: 10 of 10 right lunches". A small "Mix-ups" list under it: "Room 9: 4 cards wrote 1 (pasta), got tacos." A visible score strip on the stage puts Room 9 first after a run, including in compact windows.
 - "Start over" (circular arrow): jars back to the start, results cleared.
-Card viewer (overlay on the stage, closes with Close or Escape): every card in that jar in a grid, grouped 1, 4, 7, so students can see how each room writes.
+Card viewer (overlay on the stage, closes with Close or Escape): each room's ten lunch cards are always shown for handwriting comparison, even if the training jar is empty. The actual jar cards appear in a separate section when present. Both sections are grouped 1, 4, 7.
 
 ### Mode 2: Try Your Writing
-Stage: a big drawing pad (an index card, 300 to 420 px square) on the left; on the right "What Bitsy sees": the 8 by 8 grid of the drawing, each cell shaded by its ink; under it "Bitsy reads: 4" and the three training cards it found most alike, each with its room badge and number.
+Stage: a big drawing pad (an index card, 300 to 420 px square on large screens, smaller in short or narrow boxes so the drawing and ink grid remain side by side) on the left; on the right "What Bitsy sees": the 8 by 8 grid of the drawing, each cell shaded by its ink; under it "Bitsy reads: 4" and the three training cards it found most alike, each with its room badge and number.
 Panel: `#hint`; "Clear pad" (eraser); "Bitsy, read it!" (eye icon); "Teach Bitsy my way" with three buttons "It's a 1", "It's a 4", "It's a 7": adds the drawing to a fourth jar "My cards" (pencil badge) and retrains. "My cards" exists for this page load only, is never saved, and shows its count in both modes.
 
 ## Content
@@ -63,7 +63,7 @@ Checked results (lunch line, per room, right lunches of 10):
 | 15 / 15 / 15 | 10 | 10 | 10 |
 | 0 / 15 / 0 | 6 (1s read as 7) | 6 (1s read as 7) | 10 |
 | 3 / 0 / 0 | 10 | 10 | 5 |
-Talk points the table supports: messy writing (Room 3) was never the problem; a style Bitsy never saw was. One Room 9 card of each number is not enough (k = 3 needs two look-alikes); two are. Training only on Room 9 flips the harm onto everyone else.
+Talk points the table supports: messy writing (Room 3) was never the problem; a style Bitsy never saw was. With Room 12 at 15 and Room 3 empty, one Room 9 card of each number is not enough for the three-neighbor vote; two are. This is conditional on these jar settings. Training only on Room 9 flips the harm onto everyone else.
 
 ## Interactions in detail
 - Run: each card slides into Bitsy's slot (0.9 s per card, 30 cards, about 27 s), Bitsy's screen shows the number it read, and a tray slides out with that food icon. A mix-up shows the tray plus a sticker "Wanted pasta" with the food the card asked for. The room bars fill as cards finish. Stop halts; the bars show the cards done so far, marked "stopped".
@@ -71,8 +71,8 @@ Talk points the table supports: messy writing (Room 3) was never the problem; a 
 - Changing a jar marks the results "old" (greyed, with "Train Bitsy, then run again"); Run is disabled until Train Bitsy is pressed. Train Bitsy shows a 0.6 s gear spin.
 - A jar at 0 disables Fewer; at 30, More. All jars at 0: Train Bitsy is disabled and the hint says to add cards.
 - Pad: pointer draws a 9 px pencil line; up to 6 strokes; a 7th stroke clears the pad first. An empty pad disables "Bitsy, read it!". Reading shows the grid, the guess and the three look-alikes. Nothing is kept after the page closes.
-- "Teach Bitsy my way" adds the current drawing to My cards with the chosen label and retrains; the lunch line results go "old". My cards counts in training like any jar.
-- Mode switch hushes and keeps each mode's state. Start over also empties My cards.
+- "Teach Bitsy my way" adds the current drawing to My cards with the chosen label and retrains; the lunch line results go "old". My cards counts in training like any jar. Teaching keeps the last trained room jars, leaving pending jar changes untrained. Show which jar received the card, update the three look-alikes immediately, and explain a one-of-three vote when it cannot change the guess.
+- A different mode hushes and keeps each mode's state. Re-tapping the current mode does nothing. Start over also empties My cards.
 - Keyboard: Tab order is mode buttons, header, panel controls (jars in order), then stage cards. The pad also accepts arrow keys to draw (a keyboard pen: arrows move, Space lifts and lowers the pen) so the mode works without a mouse.
 - Sizes: Run, Train Bitsy and the jar buttons visible without scrolling at every STANDARDS.md size; in short windows the lunch line shows 10 cards at a time and scrolls itself. Scene text at least 10 px in the preview.
 
@@ -89,30 +89,32 @@ Everything else (Bitsy, cards, trays, foods, jars, grid, preview.svg) is drawn i
 
 ## Voice
 Bank voice `news-reader`, style "Say clearly and steadily, like a trusted radio news reader", framed as the school's morning announcements reporting on the lunch line. Not used by a neighbor (code-tracer clear-teacher, score-keeper friendly-dad, game-remix big-sister) or by a group sibling.
-1. how, welcome Lunch Line: "Good morning. Room 12 trained Bitsy to read lunch cards with their own handwriting. Press Run the lunch line to see how it does."
-2. event, after a run (one per room result, numbers filled from fixed clips): "Room 12 got 10 right lunches out of 10." The tool records the eleven totals per room as fixed lines ("Room 9 got 6 right lunches out of 10.") and plays the three in room order.
+1. how, welcome Lunch Line: the story first, then "Press Run the lunch line to see how Bitsy does." A first tap on Run still speaks the story, then "Watch the lunch cards, or press Stop or Skip to results."
+2. event, after a run (one per room result, numbers filled from fixed clips): "Room 12 got 10 right lunches out of 10." The tool records the eleven totals per room as fixed lines ("Room 9 got 6 right lunches out of 10.") and plays the three in room order. Use "1 right lunch" for a total of one. A relevant same/flip/all teaching event may lead the totals.
 3. event, when any room is under 8: "Some students got the wrong lunch. Tap a room's jar to see how its students write."
-4. how, first jar change: "Press Train Bitsy, then run the lunch line again."
+4. how, first jar change: "Pick the cards, then press Train Bitsy."
 5. event, when Room 9 stays at 6 after only Room 12 or Room 3 cards were added: "More cards from the same rooms did not help Room 9."
-6. event, the first time all three rooms reach 10: "Every room got the right lunch. Bitsy learned from everyone."
+6. event, the first time all three rooms reach 10: "Every room got the right lunch this time." Only when every room has training cards, add "Every room has cards in the training jars. Bitsy learned from all three rooms."
 7. event, when a room drops below 10 that was at 10 before: "Now a different room is getting the wrong lunch."
-8. how, welcome Try Your Writing: "Write a 1, a 4 or a 7 on the card, the way you always do. Then press Bitsy, read it."
+8. how, welcome Try Your Writing: "Write a 1, a 4 or a 7 on the card, the way you always do. Use arrows and Space for the keyboard pen." After ink exists, prompt the enabled Bitsy, read it! control.
 9. event: "Bitsy read a 1." "Bitsy read a 4." "Bitsy read a 7." (three lines; stale once the pad changes)
 10. how, after the first read: "If Bitsy got it wrong, teach it your way with the buttons below."
-11. event: "Bitsy learned your card." (stale on the next pad change)
-Read speaks the hint. Narration never names a real place or group of people.
+11. event: "Your card went into My cards." (stale on the next pad change)
+Read speaks the hint. Event feedback cuts an instructional line already playing, while preserving other event feedback and Read's priority. The instruction remains available in the current hint. Narration never names a real place or group of people.
+
+After a run, when Room 9 has training cards but still scores below 10, the hint says "Room 9 still got wrong lunches. Press More under Room 9 again, then Train Bitsy." When only Room 9 is trained (0 / 15 / 0), the other-room experiment says "Try examples from the other rooms. Use More under Room 12 or Room 3, then Train Bitsy."
 
 ## Family engine
 ml-lab (`kit/ml-lab.js`, full description in tools/teach-the-robot/spec.md). Uses `rng` and `uni` for the cards, `knn` (k = 3, features = the 64 grid cells, items tagged `room`), `evaluate` with `groupBy: item => item.tags.room`, and the `groupBars` view for the room results. The grid rasterizer and stroke templates stay in this tool.
 
 ## Sources
 - Numeral styles (a 1 with a long upstroke and a 7 with a crossbar are common in much of Europe and Latin America): "Regional handwriting variation", Wikipedia, section "Arabic numerals": https://en.wikipedia.org/wiki/Regional_handwriting_variation
-- How unrepresentative training data makes a model fail for some groups: AI4K12 Big Idea 5 "Societal Impact", https://ai4k12.org ; Buolamwini and Gebru, "Gender Shades", Proceedings of Machine Learning Research 81 (2018), for the teacher notes only.
+- Training-data representation and societal impact: AI4K12 Big Idea 5 "Societal Impact", https://ai4k12.org ; Buolamwini and Gebru, "Gender Shades", Proceedings of Machine Learning Research 81 (2018), https://proceedings.mlr.press/v81/buolamwini18a.html, for the teacher notes only: measured accuracy gaps by skin type and gender in commercial classifiers, without access to the companies' training data.
 - CSTA K-12 Computer Science Standards (2017): https://csteachers.org/k12standards/
 - Rooms, cards and all results are made up for this tool; the results table was computed with the engine and the rules above.
 
 ## Done when
-1. From the start (Room 12 jar 15), a run gives Room 12 10, Room 3 10, Room 9 6, and the mix-ups list shows "wrote 1, got tacos" four times for Room 9.
+1. From the start (Room 12 jar 15), a run gives Room 12 10, Room 3 10, Room 9 6, and the mix-ups list counts four Room 9 cards that wrote 1 (pasta) and got tacos.
 2. Raising Room 12 to 30 and retraining still gives Room 9 6, and line 5 plays.
 3. Room 9 at 3 still gives 6; at 6 gives 10 for every room, and line 6 plays.
 4. Room 12 and Room 3 at 0, Room 9 at 15: Room 12 and Room 3 drop to 6 with 1s read as 7, and line 7 plays.
