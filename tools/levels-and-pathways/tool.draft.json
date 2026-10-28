@@ -1,0 +1,25 @@
+{
+  "id": "levels-and-pathways",
+  "status": "beta",
+  "hook": "A dancer in a studio stretches, twists and curls at high, middle and low levels, then travels straight, curved and zigzag pathways that paint a ribbon on the floor. The class copies, guesses hidden pathways by drawing them in the air, and draws new pathways for the dancer.",
+  "outcome": "Move at high, middle and low levels and travel in straight, curved and zigzag pathways, and read a pathway and its level from a floor map",
+  "driver": "teacher",
+  "minutes": "10-20",
+  "modes": [
+    "Levels",
+    "Pathways",
+    "Mystery path",
+    "Draw a path"
+  ],
+  "grades_label": "Grades K-2",
+  "sources": [
+    "National Core Arts Standards, Dance (2014), grade K to 2 performance standards for DA:Cr1.1 and DA:Pr4.1 (levels; straight, curved and zigzag pathways; locomotor and nonlocomotor movement): https://www.nationalartsstandards.org/",
+    "Levels, pathways, personal space, locomotor and nonlocomotor movement as dance concepts: Anne Green Gilbert, Creative Dance for All Ages, 2nd ed. (Human Kinetics, 2015); Perpich Center for Arts Education, \"The Elements of Dance\" (Body, Action, Space, Time, Energy)",
+    "Walk, skip, gallop and slide as K-2 locomotor skills: SHAPE America, National Standards and Grade-Level Outcomes for K-12 Physical Education (2014), S1.E1: https://www.shapeamerica.org/standards/pe/",
+    "The six energy qualities in the dance engine (smooth, sharp, swing, suspend, collapse, shake): Perpich Center, \"The Elements of Dance\", Energy section",
+    "The studio, the dancer, the ribbons and the icons are drawn in code; the tune and sounds are generated in the browser"
+  ],
+  "third_party": [],
+  "updated": "2026-10-28",
+  "stage": "built"
+}

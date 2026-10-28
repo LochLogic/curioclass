@@ -17,7 +17,7 @@ The dancer's feet paint the floor: every trip leaves a ribbon whose shape is the
 - Topic line: locomotor and nonlocomotor movement
 - Driver: teacher on a projector or smartboard. The class stands in their own "bubble space" and copies; pathways are followed in the room (gym, cleared space) or in place by marching the shape.
 - Minutes: 10-20. tool.json modes: ["Levels", "Pathways", "Mystery path", "Draw a path"]; driver "teacher"; grades_label "Grades K-2".
-- Standards (NCAS dance): DA:Cr1.1.Ka, DA:Cr1.1.1b (explore locomotor and nonlocomotor movement by changing an element of dance), DA:Pr4.1.Ka (change levels), DA:Pr4.1.1a (straight, curved and zigzag pathways), DA:Pr4.1.2a; also DA:Re7.1.Ka (Mystery path: find and describe the movement), DA:Cr3.1.Kb to DA:Cr3.1.2b (ribbon floor maps as symbols for pathways and levels), DA:Pr5.1.Kb (start and stop on cue), SHAPE.S2 (movement concepts: levels and pathways).
+- Standards (NCAS dance): DA:Cr1.1.Ka (respond in movement to a cue: the narrator and the music), DA:Cr1.1.Kb (explore different ways to do basic locomotor and nonlocomotor movements by changing at least one element of dance: level, pathway, way of moving), DA:Pr4.1.Ka (change levels), DA:Pr4.1.1a (straight, curved and zigzag pathways), DA:Pr4.1.2a, DA:Cr1.1.2b (explore locomotor and nonlocomotor movement by changing the elements of dance: Draw a path, one drawn dance changing level part by part); also DA:Re7.1.Kb (Mystery path: describe observed dance movement, its pathway and level), DA:Cr3.1.Kb and DA:Cr3.1.2b (ribbon floor maps as symbols for pathways and levels), DA:Pr5.1.Kb (start and stop on cue), SHAPE.S2 (movement concepts: levels and pathways).
 - K-2 reads nothing: every control has an icon, every fixed line is voiced, targets are 60 px or more (72 px for answer buttons).
 
 ## Screens and modes
@@ -44,7 +44,7 @@ Stage (all modes, drawn in code at real pixel size per layout): a dance studio i
 ### Draw a path
 - Stage: empty floor with the star. A pencil cursor over the floor.
 - Panel: **Level** row, **Way to move** row, **▶ Dance it**, **🎲 Surprise path**, **🧽 Clear**.
-- Drag from the star across the floor (pointer, touch or pen): a dashed line follows the finger. On release the line is split into parts (Interactions), each part redrawn smooth with its pathway icon floating over it, and the narrator names the parts in order ("First, straight. Then zigzag."). **Dance it**: the dancer dances the path at the chosen level and way, painting the ribbon. **Surprise path** builds a random path of 2 or 3 parts (this is also the keyboard path).
+- Drag from the star across the floor (pointer, touch or pen): a dashed line follows the finger. On release the line is split into parts (Interactions), each part redrawn smooth with its pathway icon floating over it, and the narrator names the parts in order ("First, straight. Then zigzag."). Each part's badge is a button: tapping it gives that part the next level, so one drawn dance can change level part by part (Refine changes). **Dance it**: the dancer dances the path part by part, each at its own level, in the chosen way, painting the ribbon. **Surprise path** builds a random path of 2 or 3 parts (this is also the keyboard path).
 
 ## Content
 Nonlocomotor moves (8 counts each, a 2-count A to B loop four times; the level changes the shape):
@@ -119,12 +119,14 @@ none: drawn in code (studio, dancer, ribbons, icons). The dancer is simple shape
 | askPath | how | Which pathway was it? Draw it in the air, then tap straight, curved or zigzag. | round changed |
 | askLevel | how | Which level was the dancer? Tap high, middle or low. | round changed |
 | rightPath | event | Yes! Here's the ribbon. | round changed |
-| rightLevel | event | Yes! That's the level. Tap Next for a new mystery. | round changed |
+| rightLevel | event | Yes! That's the level. | round changed |
+| nextHow | how | Tap Next for a new mystery. | round changed |
 | wrong | event | Hmm, let's watch it again. | replay ended |
 | allDone | event | Eight mysteries solved! Look at all our ribbons. | mode left |
 | firstStraight, firstCurved, firstZigzag | event | First, straight. / First, curved. / First, zigzag. | path redrawn |
 | thenStraight, thenCurved, thenZigzag | event | Then straight. / Then curved. / Then zigzag. | path redrawn |
 | tooShort | event | Draw a longer pathway, from the star across the floor. | path redrawn |
+| tapPart | how | Tap a number to change that part's level. | path redrawn |
 | danceIt | how | Now tap Dance it, and follow the dancer! | path cleared |
 | surprise | event | Here's a surprise pathway! | path redrawn |
 | doneDraw | event | Great dancing! Draw a new one, or dance it again. | path redrawn |
@@ -164,6 +166,22 @@ Levels and Pathways feeds it: the `'studio'` view, ribbon trails, 6 nonlocomotor
 7. How-to lines are spoken once per load; move, level, pathway and answer lines speak every time.
 8. At 1366x768 and 1920x1080 the floor, the dancer and the main row of buttons are visible together; at 1000x625 the preview reads (button icons clear, no text under 10 px); at 375 wide the buttons stay 60 px.
 9. Motion off and Sound off keep the same timing; nothing is stored.
+
+## Refine changes (round 1)
+- Reading a drawn line moved into the kit (`Dance.readPath`, rules in docs/families/dance.md): two or more sharp corners that turn left and right in turn make a zigzag at any leg length up to about 60 floor units; a smooth arch or an S is one curved part; a straight, zigzag, arch line names three parts. Test table with real drags in handoff.md.
+- Draw a path, levels part by part: after drawing, each part's badge shows its number, pathway icon and level icon, and the class taps the badge (a 64 px button on the floor) to give that part the next level (high, middle, low). The panel Level row sets every part at once (it shows pressed only when all parts match). Dance it performs each part at its own level, the ribbon changing pattern and color part by part and the level guide following. Surprise path gives its parts mixed levels and never crosses itself. New how line `tapPart`, said once after the first part names.
+- Every Low keyframe is on the floor (sitting, kneeling back on the heels or lying), clearly under every Middle one from the front; Stretch at Low is a straddle sit and reach, Bend at Low a side bend kneeling on the heels.
+- Move buttons have one fixed icon per move with a motion mark; Mystery round dots sit beside the mirror (or on the back edge of the floor); the gallery puts each ribbon in its own cell with its badge on top and the dancer bows at the side.
+- Voice: `rightLevel` is the event "Yes! That's the level." and `nextHow` the how-to "Tap Next for a new mystery." (said once); Mystery's welcome is the line for the round's step; round 8 goes to the gallery at once with its line after the Yes; the hint names the next action after a freeze or a trip.
+- Mystery path cites DA:Re7.1.Kb (describe observed movement), not Ka. The grade 1 and 2 Re7.1 codes leave this module (see handoff.md).
+
+## Refine changes (round 2)
+- A drawn line is read as it looks on screen (`Dance.readPath` with the floor), so a straight, curved or zigzag shape reads the same drawn side to side, front to back or on a slant; a corner needs a real tip, so the top of a wave or an S is never a corner. Real-drag table in handoff.md.
+- Low Curl is a seated tuck that opens into a seated star: no in-between of any Low move lifts the head over 0.62 of standing, and changing from one Low move to another passes through the seated tuck.
+- A level answered while the right pathway is still painting counts exactly as a slow answer (full badge, round 8 gallery badge, Next line).
+- Part badges in Draw a path take the first clear spot on the stage, off the dancer and the level guide.
+- The gallery bow is a hip fold turned toward the ribbons, so it reads as a bow from the front.
+- Standards: DA:Cr1.1.2b is cited (one drawn dance that changes level part by part). DA:Cr3.1.1b (several types of movement shown by picture or symbol) moves off this module: the way of moving stays one choice per path, because a way icon on every part badge would crowd the badges on a K-2 projector and at 375. Recorded in handoff.md for the integrator.
 
 ## Open questions
 - The pose figure is shared with the PE movement family (fitness-circuit). This spec puts it in `kit/movement.js` and has `kit/dance.js` build on it, so the site has one dancer model. OK, or should dance keep its own figure?
