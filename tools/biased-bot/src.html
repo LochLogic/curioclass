@@ -13,11 +13,20 @@ main{grid-template-columns:minmax(0,1fr) 350px;min-height:0}.panel{grid-column:2
 @media(max-width:1100px){header{padding:6px;gap:5px}h1{font-size:20px}h1 small{display:none}.seg button,.icon-btn{padding:0 8px;font-size:13px}main{grid-template-columns:minmax(0,1fr) 316px}.panel{padding:8px;gap:7px}.hint{font-size:14px;min-height:60px}.essential{gap:6px}#writing{align-content:start}#pad-wrap{width:300px}#sight{width:100%;display:grid;grid-template-columns:140px 1fr;column-gap:12px}#sight h2{grid-column:1/-1}#grid{width:140px;height:140px;grid-row:2/5}#guess{font-size:18px;margin:4px 0}#neighbors{grid-column:1/-1;max-width:none}#sight .explain{grid-column:1/-1}}
 @media(max-height:600px) and (min-width:601px){header{padding:4px 6px}h1{font-size:17px}h1 small{display:none}.seg button,.icon-btn{padding:0 7px;font-size:12px}main{grid-template-columns:minmax(0,1fr) 316px}.panel{padding:7px;gap:6px}.hint{min-height:57px;font-size:13px;line-height:1.4}.jar-open{min-height:67px}.essential{gap:6px}.explain{font-size:12px}}
 @media(max-width:600px){body{height:auto;min-height:100dvh;display:block}header{display:grid;grid-template-columns:repeat(3,1fr);padding:6px;gap:5px}h1{grid-column:1/-1;font-size:21px}.seg{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr}.seg button{font-size:14px}.icon-btn{font-size:13px;min-width:0;padding:0 6px}main{display:flex;flex-direction:column}.panel{order:0;border-left:0;border-bottom:2px solid var(--line);overflow:auto;height:350px;flex:none;padding:8px 12px}.stage{order:1;height:300px;flex:none}.hint{min-height:57px}.jar-open{min-height:64px}.footrow{min-height:44px}#writing{padding:10px;align-content:start;gap:16px}body.write-mode .stage{height:610px}body.write-mode .panel{height:275px}#pad-wrap{width:300px}#sight{width:100%;grid-template-columns:140px 1fr}#viewer{position:fixed;inset:12px;max-height:calc(100dvh - 24px)}#bars{height:144px}}
-#bars text{font-size:11px!important}body.write-mode #results{position:absolute;top:-10000px;width:326px;visibility:hidden}.viewer-empty{grid-column:1/-1;font-size:14px;line-height:1.4;margin:6px 0}#gear{display:inline-block}.essential>.row:first-child>button{height:54px}
+.viewer-empty{grid-column:1/-1;font-size:14px;line-height:1.4;margin:6px 0}#gear{display:inline-block}.essential>.row:first-child>button{height:54px}
+
+/* Polish: results stay visible and short boxes compare the drawing and ink side by side. */
+.stage{display:flex;flex-direction:column}#lunch-svg{height:0;min-height:0;flex:1 1 0}#score-strip{flex:none;min-height:90px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;padding:8px;background:var(--paper);border-top:2px solid #c7b99d}.room-score{border:1px solid var(--line);border-radius:9px;padding:5px;background:white;min-width:0}.room-score strong{display:block;font-size:22px;line-height:1.2}.room-score span{font-size:12px}.room-score .badge{width:16px;height:16px}.room-score.old{filter:grayscale(1)}.jar .row button{white-space:nowrap}.viewer-section{grid-column:1/-1;font-size:15px;font-weight:800;padding-top:8px}.writing-privacy{grid-column:1/-1;max-width:650px;margin:0}.panel #writing-controls>.privacy{display:none}#my-writing{padding:3px 6px;border-radius:7px}.just-taught{animation:receipt .7s ease-out 1}@keyframes receipt{from{box-shadow:0 0 0 4px #ffd34d}to{box-shadow:0 0 0 0 transparent}}
+#writing{display:grid;grid-template-columns:minmax(300px,420px) minmax(220px,310px);grid-template-rows:auto auto auto;align-content:center;align-items:start;gap:12px 20px;padding:18px;overflow:hidden}#pad-wrap{width:auto;grid-column:1;grid-row:1/3}#pad{width:100%;max-width:420px;margin:auto}#sight{width:auto;grid-column:2;grid-row:1;display:block;position:relative}#grid{width:160px;height:160px}#sight h2{padding-right:50px}#writing-bitsy{position:absolute;right:0;top:22px;width:64px;height:78px}#lookalikes{grid-column:2;grid-row:2;min-width:0}#neighbors{width:100%;max-width:none;grid-column:auto}.neighbor{display:flex;flex-direction:column;gap:3px}.neighbor svg{height:66px;flex:none}.neighbor-name{font-size:12px}.neighbor b{font-size:13px}.neighbor.personal{border:2px solid var(--brand)}#vote-note{min-height:2.8em}#teaching-receipt:empty{display:none}#teaching-receipt{font-size:12px;min-height:18px}#pen-help{font-size:12px;line-height:1.3}#bars{height:174px}#mixups{font-size:14px}body.write-mode main{grid-template-columns:minmax(0,1fr) 320px}
+@media(min-width:1600px){#score-strip{min-height:112px;padding:12px;gap:12px}.room-score strong{font-size:34px}.room-score span{font-size:18px}#bars{height:225px}#mixups{font-size:17px}}
+@media(max-width:1100px), (max-height:600px){body.write-mode main{grid-template-columns:minmax(0,1fr) 280px}#writing{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);grid-template-rows:auto auto auto;gap:6px 10px;padding:12px;align-content:start}#pad-wrap{grid-column:1;grid-row:1;width:auto}#pad{width:min(100%,200px)}#sight{grid-column:2;grid-row:1;width:auto;display:block}#sight h2{padding-right:0;font-size:14px}#grid{width:112px;height:112px;grid-row:auto}#guess{font-size:18px;margin:5px 0}#writing-bitsy{width:43px;height:53px;right:0;top:24px}#sight .explain{font-size:11px;margin:3px 0}#lookalikes{grid-column:1/-1;grid-row:2}#neighbors{grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}.neighbor{display:grid;grid-template-columns:34px minmax(0,1fr);align-items:center;gap:2px;padding:3px}.neighbor svg{width:34px;height:46px;grid-row:1/3}.neighbor-name{font-size:11px}.neighbor-name .badge{width:12px;height:12px}.neighbor b{font-size:12px}#alike-label{font-size:11px;margin:0 0 3px}#vote-note{font-size:11px;line-height:1.3;min-height:2.6em;margin:3px 0}#teaching-receipt{font-size:11px;min-height:14px}.writing-privacy{font-size:11px;line-height:1.25}#pen-help{font-size:11px;margin:3px 0}#writing h2{font-size:14px}#score-strip{min-height:84px;padding:6px;gap:4px}.room-score{padding:4px}.room-score strong{font-size:19px}.room-score span{font-size:11px}}
+@media(max-height:480px) and (min-width:601px){#pad{width:min(100%,174px)}#writing{padding:7px;gap:5px 9px}#grid{width:102px;height:102px}#writing-bitsy{width:36px;height:45px}#sight .explain{max-width:155px}#pen-help{font-size:10px}#teaching-receipt{display:none}.writing-privacy{font-size:10px}}
+@media(max-width:600px){body{height:100dvh;min-height:0;display:grid;grid-template-rows:auto minmax(0,1fr)}main{display:flex;flex-direction:column;min-height:0}.panel{height:316px;flex:none;padding:7px 12px}.stage{height:0;min-height:0;flex:1 1 0}.jar-open{min-height:64px}.hint{min-height:54px;font-size:13px;line-height:1.35}body.write-mode .panel{height:218px}body.write-mode .stage{height:0}#writing-controls{display:grid;grid-template-columns:minmax(0,1fr);gap:5px}#writing-controls>.row{min-height:44px}#teach-label{font-size:13px;padding-right:105px;line-height:20px}#my-writing{position:absolute;right:12px;top:112px;margin:0;font-size:12px}body.write-mode .panel{position:relative}#writing{height:auto;padding:10px;gap:8px;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);align-content:start}#pad{width:100%;max-width:182px}#sight{grid-template-columns:none}#grid{width:100px;height:100px}#writing-bitsy{width:36px;height:45px;top:25px}#lookalikes{grid-column:1/-1}#neighbors{width:100%}#score-strip{min-height:80px}.room-score strong{font-size:18px}.room-score span{font-size:11px}#viewer{position:fixed;inset:10px;max-height:calc(100dvh - 20px)}}
+
 </style></head><body>
 <header><h1>Biased Bot <small>Who did the robot learn from?</small></h1><div class="seg" role="group" aria-label="Mode"><button id="m-lunch" aria-pressed="true">▤ Lunch Line</button><button id="m-writing" aria-pressed="false">✎ Try Your Writing</button></div><button class="icon-btn" id="motion" aria-pressed="true">Motion</button><button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button><button class="icon-btn" id="read">🔊 Read</button></header>
-<main><aside class="panel" id="panel"><p id="hint" class="hint" aria-live="polite"></p><div id="lunch-controls" class="essential"><div class="row"><button id="train" class="big-btn"><span id="gear">⚙</span> Train Bitsy</button><button id="run" class="big-btn gold">▶ Run the lunch line</button></div><div class="jars" id="jars"></div><div class="row footrow"><p class="my" id="my-lunch"></p><button id="reset">↻ Start over</button><button id="skip" hidden>⏩ Skip to results</button></div></div><div id="writing-controls" hidden><div class="row"><button id="clear">Clear pad</button><button id="read-pad" class="big-btn gold" disabled>Bitsy, read it!</button></div><p id="teach-label">Teach Bitsy my way</p><div class="row teach"><button id="teach-1" disabled>It's a 1</button><button id="teach-4" disabled>It's a 4</button><button id="teach-7" disabled>It's a 7</button></div><p class="my" id="my-writing"></p><p class="privacy">Your drawing stays on this device. Drawings and My cards are gone when this page closes.</p></div><section id="results" class="result-box"><h2>Right lunches, by room</h2><p id="result-label">No run yet.</p><div id="bars"></div><ul id="mixups"></ul><p class="explain">Right lunch = Bitsy reads the written number correctly. Each full run uses the same 10 cards per room.</p><p class="explain">Bitsy only sees an 8 by 8 grid of ink, not room badges.</p><p class="privacy">My cards and drawings stay on this device and are gone when the page closes.</p></section></aside>
-<div class="stage" id="stage"><svg id="lunch-svg" role="img" aria-label="Bitsy at a cafeteria counter with lunch cards and a menu"></svg><div id="writing" hidden><div id="pad-wrap"><h2>Your lunch card</h2><canvas id="pad" tabindex="0" role="img" aria-label="Drawing pad. Arrow keys move the pen. Space lowers or lifts it."></canvas><p id="pen-help">Keyboard pen: arrows move. Space lowers or lifts. Up to 6 strokes.</p></div><div id="sight"><h2>What Bitsy sees</h2><svg id="grid" role="img" aria-label="8 by 8 ink grid"></svg><p id="guess">Bitsy reads: ?</p><p class="explain" id="alike-label">Read a card to see its three look-alikes.</p><div id="neighbors"></div><p class="explain">Only these 64 ink cells are compared. Room badges are not clues.</p></div></div><div id="viewer" role="dialog" aria-modal="true" aria-labelledby="viewer-title" hidden><div id="viewer-head"><h2 id="viewer-title"></h2><button id="close-viewer">Close</button></div><p id="viewer-info"></p><div id="viewer-cards" tabindex="0" role="region" aria-label="Training card grid. Use arrow keys to scroll."></div></div></div></main>
+<main><aside class="panel" id="panel"><p id="hint" class="hint" aria-live="polite"></p><div id="lunch-controls" class="essential"><div class="row"><button id="train" class="big-btn"><span id="gear">⚙</span> Train Bitsy</button><button id="run" class="big-btn gold">▶ Run the lunch line</button></div><div class="jars" id="jars"></div><div class="row footrow"><p class="my" id="my-lunch"></p><button id="reset">↻ Start over</button><button id="skip" hidden>⏩ Skip to results</button></div></div><div id="writing-controls" hidden><div class="row"><button id="clear">Clear pad</button><button id="read-pad" class="big-btn gold" disabled>Bitsy, read it!</button></div><p id="teach-label">Teach Bitsy my way</p><div class="row teach"><button id="teach-1" disabled>It's a 1</button><button id="teach-4" disabled>It's a 4</button><button id="teach-7" disabled>It's a 7</button></div><p class="my" id="my-writing" aria-live="polite"></p><p class="privacy">Your drawing stays on this device. Drawings and My cards are gone when this page closes.</p></div><section id="results" class="result-box"><h2>Right lunches, by room</h2><p id="result-label">No run yet.</p><div id="bars"></div><ul id="mixups"></ul><p class="explain">Right lunch = Bitsy reads the written number correctly. Each full run uses the same 10 cards per room.</p><p class="explain">Bitsy only sees an 8 by 8 grid of ink, not room badges.</p><p class="privacy">My cards and drawings stay on this device and are gone when the page closes.</p></section></aside>
+<div class="stage" id="stage"><svg id="lunch-svg" role="img" aria-label="Bitsy at a cafeteria counter with lunch cards and a menu"></svg><section id="score-strip" hidden aria-label="Right lunches, Room 9 first"></section><div id="writing" hidden><div id="pad-wrap"><h2>Your lunch card</h2><canvas id="pad" tabindex="0" role="application" aria-label="Drawing pad. Arrow keys move the pen. Space lowers or lifts it."></canvas><p id="pen-help">Arrows move. Space: pen down or up.</p></div><div id="sight"><h2>What Bitsy sees</h2><svg id="grid" role="img" aria-label="8 by 8 ink grid"></svg><p id="guess" aria-live="polite" aria-atomic="true">Bitsy reads: ?</p><p class="explain">Bitsy compares only the 64 ink cells.</p></div><div id="lookalikes"><p class="explain" id="alike-label">Read a card to see its three look-alikes.</p><div id="neighbors"></div><p id="vote-note" class="explain"></p><p id="teaching-receipt" class="my" aria-live="polite"></p></div><p class="privacy writing-privacy">Your drawing stays on this device. Drawings and My cards are gone when the page closes.</p></div><div id="viewer" role="dialog" aria-modal="true" aria-labelledby="viewer-title" hidden><div id="viewer-head"><h2 id="viewer-title"></h2><button id="close-viewer">Close</button></div><p id="viewer-info"></p><div id="viewer-cards" tabindex="0" role="region" aria-label="Training card grid. Use arrow keys to scroll."></div></div></div></main>
 <script src="kit:curio"></script><script src="kit:ml-lab"></script><script>
 (() => {
 'use strict';
@@ -39,129 +48,244 @@ const TABLE=[[15,0,0],[30,0,0],[15,0,30],[15,3,0],[15,6,0],[15,15,15],[0,15,0],[
 function checkTable(){return TABLE.map(([a,b,c])=>{const e=evaluateCounts({12:a,9:b,3:c});return {jars:[a,b,c],scores:ROOMS.map(r=>e.byGroup[r].ok),misses:e.mistakes.map(r=>({room:r.item.tags.room,wrote:r.item.label,read:r.pred}))};});}
 const GLYPHS={'12':{shape:'circle',color:'#2f6db5'},'3':{shape:'square',color:'#26774d'},'9':{shape:'triangle',color:'#b23a6e'},my:{shape:'diamond',color:'#6b5f48'}};
 const NAMES={'12':'Room 12','3':'Room 3','9':'Room 9',my:'My cards'}, FOOD={'1':'pasta','4':'tacos','7':'salad'};
-const state={mode:'lunch',counts:{12:15,3:0,9:0},trained:{12:15,3:0,9:0},dirty:false,training:false,running:false,old:false,stopped:false,done:0,results:null,previous:null,runCounts:null,token:0,runId:0,allRight:false,my:[],strokes:[],padVersion:0,padResult:null,pen:{x:50,y:15,down:false},viewer:null,times:[]};
+const state={mode:'lunch',counts:{12:15,3:0,9:0},trained:{12:15,3:0,9:0},dirty:false,training:false,running:false,old:false,stopped:false,done:0,results:null,previous:null,runCounts:null,token:0,runId:0,allRight:false,my:[],strokes:[],padVersion:0,padResult:null,pen:{x:50,y:15,down:false},viewer:null,times:[],inspected:false,sameTestDone:false,represented:false,keyPen:false,taughtLabel:null};
 let model=MLLab.train('knn',training(state.counts),{features:FEATURES,k:3}), trainItems=training(state.counts), returnJar=null;
 const L={
- lunchWelcome:'Good morning. Room 12 trained Bitsy to read lunch cards with their own handwriting. Press Run the lunch line to see how it does.',
+ lunchWelcome:'Press Run the lunch line to see how Bitsy does.',
  story:'Room 12 built Bitsy to read lunch cards, and they trained it with their own handwriting. Now the whole school uses it.',
- writingWelcome:'Write a 1, a 4 or a 7 on the card, the way you always do. Then press Bitsy, read it.',
- results:ROOMS.flatMap(r=>Array.from({length:11},(_,n)=>`Room ${r} got ${n} right lunches out of 10.`)),
+ writingWelcome:'Write a 1, a 4 or a 7 on the card, the way you always do. Use arrows and Space for the keyboard pen.',
+ results:ROOMS.flatMap(r=>Array.from({length:11},(_,n)=>`Room ${r} got ${n} right ${n===1?'lunch':'lunches'} out of 10.`)),
  under:'Some students got the wrong lunch. Tap a room\'s jar to see how its students write.',
- change:'Press Train Bitsy, then run the lunch line again.',
+ change:'Pick the cards, then press Train Bitsy.',
  same:'More cards from the same rooms did not help Room 9.',
- all:'Every room got the right lunch. Bitsy learned from everyone.',
+ all:'Every room got the right lunch this time.',
+ represented:'Every room has cards in the training jars. Bitsy learned from all three rooms.',
  flip:'Now a different room is getting the wrong lunch.',
  read1:'Bitsy read a 1.',read4:'Bitsy read a 4.',read7:'Bitsy read a 7.',
  teachHow:'If Bitsy got it wrong, teach it your way with the buttons below.',
- learned:'Bitsy learned your card.',
+ learned:'Your card went into My cards.',
  ready:'Press Run the lunch line. Predict how many right lunches each room will get.',
  running:'Watch the lunch cards, or press Stop or Skip to results.',
- empty:'The jars are empty. Press More under a room to add cards, then press Train Bitsy.',
- trainWait:'Bitsy is learning. Then press Run the lunch line.',
+ empty:'The jars are empty. Press More under a room to add cards.',
+ trainWait:'Bitsy is learning from the chosen cards.',
  write:'Write a 1, a 4 or a 7 on the card. Use arrows and Space for the keyboard pen.',
  readHow:'Press Bitsy, read it! Compare its guess with your number.',
- taught:'Bitsy learned your card. Press Clear pad to try another, or Bitsy, read it! to compare.',
+ taught:'Your card is in My cards. Compare the three votes, or press Clear pad to try another.',
  afterRead:'Compare the three look-alikes. If Bitsy got it wrong, press It\'s a 1, It\'s a 4 or It\'s a 7 to teach your way.',
  inspect:'Look at the handwriting. Press Close to return to the jars.',
- inspectEmpty:'This jar is empty. Press Close, then More to add cards.',
+ lookHow:"Room 9 got wrong lunches. Tap the Room 9 jar to compare its students' writing.",
+ moreSame:'Try more of the same writing. Press More under Room 12 until it has 30 cards.',
+ moreMissing:'More of the same did not help. Try More under Room 9, then Train Bitsy.',
+ moreRoom9:'Room 9 still got wrong lunches. Press More under Room 9 again, then Train Bitsy.',
+ includeHow:'Try examples from the other rooms. Use More under Room 12 or Room 3, then Train Bitsy.',
+ allHow:'Every room got the right lunch. Use Fewer and More to try training on just one room.',
+ voteAgain1:"Bitsy looks at the 3 closest cards. Yours is 1 of 3 votes. Press It's a 1 once more.",
+ voteAgain4:"Bitsy looks at the 3 closest cards. Yours is 1 of 3 votes. Press It's a 4 once more.",
+ voteAgain7:"Bitsy looks at the 3 closest cards. Yours is 1 of 3 votes. Press It's a 7 once more.",
+ voteTie1:"Bitsy goes with the most votes. Your card has not outvoted its look-alikes. Press It's a 1 again.",
+ voteTie4:"Bitsy goes with the most votes. Your card has not outvoted its look-alikes. Press It's a 4 again.",
+ voteTie7:"Bitsy goes with the most votes. Your card has not outvoted its look-alikes. Press It's a 7 again.",
  stopped:'The line is stopped. Press Run the lunch line to start a full comparison.',
  myReady:'My cards trained Bitsy too. Press Run the lunch line to check every room again.'
 };
-const EVENT_IDS=new Set(['under','same','all','flip','read1','read4','read7','learned',...L.results]);
-const V=Curio.voice({lines:L,scope:()=>state.mode,hint:false,read:()=>$('hint').textContent,speaks:'#run,#read-pad',welcome:()=>state.mode==='lunch'&&!state.running&&!state.dirty&&!state.training?[['lunchWelcome',{needs:'#run',valid:()=>!state.results}],['story',{valid:()=>!state.results}]]:state.mode==='writing'&&!state.strokes.length?[['writingWelcome',{valid:()=>!state.strokes.length}]]:null});
-function nextHint(){if(state.viewer)return state.counts[state.viewer]?'inspect':'inspectEmpty';if(state.mode==='writing')return !state.strokes.length?'write':state.padResult?(state.padResult.taught?'taught':'afterRead'):'readHow';if(state.training)return 'trainWait';if(state.running)return 'running';if(state.dirty)return training(state.counts,state.my).length?'change':'empty';if(state.stopped)return 'stopped';return state.my.length?'myReady':'ready';}
-function hint(speak=false){const k=nextHint();$('hint').textContent=L[k];if(speak){const needs={inspect:'#close-viewer',inspectEmpty:'#close-viewer',write:'#pad',readHow:'#read-pad',afterRead:['#teach-1','#teach-4','#teach-7'],taught:'#clear',running:['#run','#skip'],change:'#train',empty:'#more-12',ready:'#run',stopped:'#run',myReady:'#run'}[k];if(!V.heard(k))V.how(k,{valid:()=>nextHint()===k,needs:needs||[]});}}
+const EVENT_IDS=new Set(['under','same','all','represented','flip','read1','read4','read7','learned',...L.results]);
+const WELCOME_IDS=new Set(['story','lunchWelcome','writingWelcome']);   // welcomes are never cut: they are said once
+const HOW_LINES=new Set(Object.entries(L).filter(([key,line])=>typeof line==='string'&&!EVENT_IDS.has(key)&&!WELCOME_IDS.has(key)).map(([,line])=>line));
+const V=Curio.voice({lines:L,scope:()=>state.mode,hint:false,read:()=>$('hint').textContent,speaks:'#run,#read-pad',welcomeAfter:true,
+ welcome:()=>state.mode==='lunch'&&!state.dirty&&!state.training&&!state.viewer?[
+  ['story',{valid:()=>state.mode==='lunch'}],
+  state.running?['running',{needs:['#run','#skip'],valid:()=>state.running}]:['lunchWelcome',{needs:'#run',valid:()=>!state.running}]
+ ]:state.mode==='writing'&&!state.strokes.length?[['writingWelcome',{needs:'#pad',valid:()=>!state.strokes.length}]]:null});
+function nextHint(){
+ if(state.viewer)return 'inspect';
+ if(state.mode==='writing'){
+  if(!state.strokes.length)return 'write';
+  if(state.padResult?.taught && state.padResult.label!==String(state.taughtLabel)){
+   const own=state.padResult.neighbors.filter(n=>n.item.tags.room==='my').length;
+   return (own===1?'voteAgain':'voteTie')+state.taughtLabel;
+  }
+  return state.padResult?(state.padResult.taught?'taught':'afterRead'):'readHow';
+ }
+ if(state.training)return 'trainWait';if(state.running)return 'running';
+ if(state.dirty)return training(state.counts,state.my).length?'change':'empty';
+ if(state.stopped)return 'stopped';
+ if(state.results&&!state.old){
+  if(ROOMS.every(r=>state.results.byGroup[r]?.ok===10))return 'allHow';
+  if(state.results.byGroup['9']?.ok<10&&state.trained['9']>0&&state.counts['9']<30)return 'moreRoom9';
+  if(state.results.byGroup['9']?.ok<8){
+   if(!state.sameTestDone&&!state.inspected&&!V.heard('lookHow'))return 'lookHow';
+   if(!state.sameTestDone&&state.counts['12']<30)return 'moreSame';
+   return 'moreMissing';
+  }
+  return 'includeHow';
+ }
+ return state.my.length?'myReady':'ready';
+}
+function hint(speak=false){
+ const k=nextHint();$('hint').textContent=L[k];
+ if(speak){const needs={inspect:'#close-viewer',write:'#pad',readHow:'#read-pad',afterRead:['#teach-1','#teach-4','#teach-7'],taught:'#clear',running:['#run','#skip'],change:'#train',empty:'#more-12',ready:'#run',stopped:'#run',myReady:'#run',lookHow:'#jar-9',moreSame:'#more-12',moreMissing:'#more-9',moreRoom9:'#more-9'}[k]||(/^vote/.test(k)?'#teach-'+state.taughtLabel:[]);
+  if(!V.heard(k))V.how(k,{valid:()=>nextHint()===k,needs});
+ }
+}
 let eventSerial=0;
-function event(key,opts={}){if(!EVENT_IDS.has(key))throw Error('Unlisted event');return V.say(key,{key:key+'-'+(++eventSerial),...opts});}
+// Preserve queued events when several arrive before the interrupted how line yields.
+function cutHow(){return HOW_LINES.has(V.playing)&&!V.queue.some(line=>line.kind==='event');}
+function event(key,opts={}){if(!EVENT_IDS.has(key))throw Error('Unlisted event');return V.say(key,{key:key+'-'+(++eventSerial),...opts,now:cutHow()});}
 function badge(r){const d=GLYPHS[r],sh=d.shape==='circle'?'<circle cx="10" cy="10" r="8"/>':d.shape==='square'?'<rect x="2" y="2" width="16" height="16"/>':d.shape==='triangle'?'<path d="M10 1L19 18H1Z"/>':'<path d="M5 17L3 13L13 3L17 7Z M3 17L5 17L3 13Z"/>';return `<svg class="badge" viewBox="0 0 20 20" aria-hidden="true" fill="${d.color}" stroke="#2a2418" stroke-width="1">${sh}</svg>`;}
 function mk(tag,attrs,parent){const e=document.createElementNS(NS,tag);Object.entries(attrs||{}).forEach(([k,v])=>e.setAttribute(k,v));if(parent)parent.appendChild(e);return e;}
 function text(parent,x,y,s,size=14,attrs={}){const e=mk('text',{x,y,fill:'#2a2418','font-size':size,'font-family':'Segoe UI, sans-serif','font-weight':600,...attrs},parent);e.textContent=s;return e;}
 function strokeSVG(strokes){return strokes.map(st=>`<polyline points="${st.map(p=>p.join(',')).join(' ')}" fill="none" stroke="#3b3b3b" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>`).join('');}
 function cardSVG(it,room=true){return `<svg viewBox="0 0 100 120" aria-label="Handwritten ${it.label}, ${NAMES[it.tags.room]}"><rect x="2" y="2" width="96" height="116" rx="7" fill="#fffdf8" stroke="#b7ac96"/>${strokeSVG(it.strokes)}${room?`<g transform="translate(75 5)">${badge(it.tags.room).replace('class="badge"','width="18" height="18"')}</g>`:''}</svg>`;}
-for(const r of ROOMS){const el=document.createElement('div');el.className='jar';el.innerHTML=`<button class="jar-open" id="jar-${r}" aria-label="View Room ${r} training cards">${badge(r)}<span>Room ${r}</span><span class="count" id="count-${r}"></span></button><div class="row"><button id="fewer-${r}" aria-label="Fewer Room ${r} cards">− Fewer</button><button id="more-${r}" aria-label="More Room ${r} cards">+ More</button></div>`;$('jars').appendChild(el);$('jar-'+r).onclick=()=>openViewer(r);$('fewer-'+r).onclick=()=>changeJar(r,-3);$('more-'+r).onclick=()=>changeJar(r,3);}
-const bars=MLLab.view.groupBars($('bars'),{}, {order:ROOMS,names:NAMES,glyphs:GLYPHS,unit:'right lunches'});
+for(const r of ROOMS){const el=document.createElement('div');el.className='jar';el.innerHTML=`<button class="jar-open" id="jar-${r}" aria-label="View Room ${r} handwriting and training cards">${badge(r)}<span>Room ${r}</span><span class="count" id="count-${r}"></span></button><div class="row"><button id="fewer-${r}" aria-label="Fewer Room ${r} cards">Fewer</button><button id="more-${r}" aria-label="More Room ${r} cards">More</button></div>`;$('jars').appendChild(el);$('jar-'+r).onclick=()=>openViewer(r);$('fewer-'+r).onclick=()=>changeJar(r,-3);$('more-'+r).onclick=()=>changeJar(r,3);}
+const bars=MLLab.view.groupBars($('bars'),{}, {order:['9','12','3'],names:NAMES,glyphs:GLYPHS,unit:'right lunches',empty:'Room scores appear here.',size:14});
 function disabled(id,value,keep=false){const el=$(id);if(keep){el.setAttribute('aria-disabled',String(value));}else el.disabled=value;}
 function update(){
  const busy=state.running||state.training;
- for(const r of ROOMS){$('count-'+r).textContent=state.counts[r]+' '+(state.counts[r]===1?'card':'cards');disabled('fewer-'+r,busy||state.counts[r]===0);disabled('more-'+r,busy||state.counts[r]===30);}
+ for(const r of ROOMS){$('count-'+r).textContent=state.counts[r]+' '+(state.counts[r]===1?'card':'cards');disabled('fewer-'+r,busy||state.counts[r]===0,true);disabled('more-'+r,busy||state.counts[r]===30,true);}
  disabled('train',busy||!state.dirty||!training(state.counts,state.my).length,true);disabled('run',state.training||state.dirty||!trainItems.length,true);
  $('run').textContent=state.running?'■ Stop':'▶ Run the lunch line';$('skip').hidden=!state.running;$('reset').hidden=state.running;
  for(const id of ['my-lunch','my-writing'])$(id).innerHTML=badge('my')+' My cards: '+state.my.length;
  disabled('read-pad',!state.strokes.length);for(const d of [1,4,7])disabled('teach-'+d,!state.strokes.length);
- $('lunch-controls').hidden=state.mode!=='lunch';$('writing-controls').hidden=state.mode!=='writing';$('results').hidden=false;
+ $('lunch-controls').hidden=state.mode!=='lunch';$('writing-controls').hidden=state.mode!=='writing';$('results').hidden=state.mode!=='lunch';
  $('results').classList.toggle('old',state.old);
- $('result-label').textContent=state.old?'Old results. Train Bitsy, then run again.':state.running?`${state.done} of 30 cards finished.`:state.stopped?`Stopped: ${state.done} of 30 cards finished.`:state.results?'Full run: 10 cards per room.':'No run yet.';
- if(state.mode==='lunch')bars.update(state.results?state.results.byGroup:{});
- const mix={};for(const m of state.results?.mistakes||[]){const k=`Room ${m.item.tags.room}: wrote ${m.item.label}, got ${FOOD[m.pred]} (${m.pred})`;mix[k]=(mix[k]||0)+1;}
- $('mixups').innerHTML=state.results?'<li><b>Mix-ups</b></li>'+ (Object.keys(mix).length?Object.entries(mix).map(([k,n])=>`<li>${k}, ${n} ${n===1?'card':'cards'}</li>`).join(''):'<li>None in this run.</li>'):'';
+ $('result-label').textContent=state.old?(state.dirty?'Old results. Pick cards and press Train Bitsy.':'Old results. Press Run the lunch line.'):state.running?`${state.done} of 30 cards finished.`:state.stopped?`Stopped: ${state.done} of 30 cards finished.`:state.results?'Full run: 10 cards per room.':'No run yet.';
+ if(state.mode==='lunch')bars.update(state.results?state.results.byGroup:{},{size:innerWidth>=1600?18:14});
+ paintScores();
+ const mix={};for(const m of state.results?.mistakes||[]){const key=m.item.tags.room+'|'+m.item.label+'|'+m.pred;mix[key]=(mix[key]||0)+1;}
+ $('mixups').innerHTML=state.results?'<li><b>Mix-ups</b></li>'+(Object.keys(mix).length?Object.entries(mix).map(([k,n])=>{const [r,d,p]=k.split('|');return `<li>${NAMES[r]}: ${n} ${n===1?'card wrote':'cards wrote'} ${d} (${FOOD[d]}), got ${FOOD[p]}.</li>`;}).join(''):'<li>None in this run.</li>'):'';
  hint();
 }
-function changeJar(r,delta){if(state.running||state.training)return;V.hush();state.counts[r]=Math.max(0,Math.min(30,state.counts[r]+delta));state.dirty=ROOMS.some(k=>state.counts[k]!==state.trained[k]);state.old=!!state.results&&state.dirty;update();hint(true);}
+function changeJar(r,delta){if(state.running||state.training||$(''+(delta>0?'more-':'fewer-')+r).getAttribute('aria-disabled')==='true')return;V.hush();state.counts[r]=Math.max(0,Math.min(30,state.counts[r]+delta));state.dirty=ROOMS.some(k=>state.counts[k]!==state.trained[k]);state.old=!!state.results&&state.dirty;update();hint(true);}
 async function trainBitsy(){if($('train').getAttribute('aria-disabled')==='true')return;V.hush();state.training=true;const token=++state.token;update();$('gear').classList.add('gear-spin');await Curio.wait(600);if(token!==state.token)return;trainItems=training(state.counts,state.my);model=MLLab.train('knn',trainItems,{features:FEATURES,k:3});state.trained={...state.counts};state.dirty=false;state.training=false;$('gear').classList.remove('gear-spin');update();hint(true);}
 function score(items){return MLLab.evaluate(model,items,{groupBy:it=>it.tags.room});}
-function finish(){if(!state.running)return;const skipped=document.activeElement===$('skip');state.running=false;state.done=30;state.results=score(LINE);state.stopped=false;state.times.push(performance.now());const prev=state.previous, ev=state.results, id=state.runId;update();if(skipped)$('run').focus({preventScroll:true});paintScene();
- const valid=()=>state.runId===id&&!state.old&&!state.running&&state.mode==='lunch';
- const entries=ROOMS.map(r=>`Room ${r} got ${ev.byGroup[r].ok} right lunches out of 10.`);
- if(ROOMS.some(r=>ev.byGroup[r].ok<8))entries.push('under');
- if(prev&&ev.byGroup['9'].ok===6&&prev.byGroup['9'].ok===6&&state.runCounts['9']===0&&(state.runCounts['12']>prev.counts['12']||state.runCounts['3']>prev.counts['3']))entries.push('same');
- if(!state.allRight&&ROOMS.every(r=>ev.byGroup[r].ok===10)){state.allRight=true;entries.push('all');Curio.yes();}
+function finish(){
+ if(!state.running)return;const skipped=document.activeElement===$('skip');state.running=false;state.done=30;state.results=score(LINE);state.stopped=false;state.times.push(performance.now());
+ const prev=state.previous,ev=state.results,id=state.runId;
+ const same=!!(prev&&ev.byGroup['9'].ok===6&&prev.byGroup['9'].ok===6&&state.runCounts['9']===0&&(state.runCounts['12']>prev.counts['12']||state.runCounts['3']>prev.counts['3']));
+ if(state.runCounts['12']>=30&&state.runCounts['9']===0&&ev.byGroup['9'].ok===6)state.sameTestDone=true;
+ update();if(skipped)$('run').focus({preventScroll:true});paintScene();
+ const valid=()=>state.runId===id&&!state.old&&!state.running&&state.mode==='lunch';const entries=[];
+ if(same)entries.push('same');
  if(prev&&ROOMS.some(r=>prev.byGroup[r].ok===10&&ev.byGroup[r].ok<10))entries.push('flip');
- V.say(entries,{valid,needs:entries.includes('under')?'#jar-9':[],hint:false});
+ if(!state.allRight&&ROOMS.every(r=>ev.byGroup[r].ok===10)){state.allRight=true;entries.push('all');Curio.yes();}
+ if(!state.represented&&ROOMS.every(r=>ev.byGroup[r].ok===10&&state.runCounts[r]>0)){state.represented=true;entries.push('represented');}
+ entries.push(...ROOMS.map(r=>`Room ${r} got ${ev.byGroup[r].ok} right ${ev.byGroup[r].ok===1?'lunch':'lunches'} out of 10.`));
+ if(ROOMS.some(r=>ev.byGroup[r].ok<8))entries.push('under');
+ V.say(entries,{valid,hint:false,now:cutHow()});hint(true);
  state.previous={byGroup:structuredClone(ev.byGroup),counts:{...state.runCounts}};
 }
-async function run(){if(state.running){stop();return;}if($('run').getAttribute('aria-disabled')==='true')return;V.hush();state.running=true;state.old=false;state.stopped=false;state.done=0;state.runCounts={...state.trained};state.results=score([]);state.times=[performance.now()];const token=++state.token;++state.runId;update();paintScene();
- for(let i=0;i<30;i++){await Curio.wait(900);if(token!==state.token||!state.running)return;state.done=i+1;state.results=score(LINE.slice(0,state.done));state.times.push(performance.now());update();paintScene();}finish();}
+async function run(){if(state.running){stop();return;}if($('run').getAttribute('aria-disabled')==='true')return;V.hush();state.running=true;state.old=false;state.stopped=false;state.done=0;state.runCounts={...state.trained};state.results=score([]);state.times=[performance.now()];const token=++state.token;++state.runId;update();paintScene();V.welcome()||hint(true);
+ for(let i=0;i<30;i++){await Curio.wait(900);if(token!==state.token||!state.running)return;state.done=i+1;state.results=score(LINE.slice(0,state.done));state.times.push(performance.now());if(!state.results.results[i].ok)Curio.tone(220,.12,.025);update();paintScene();}finish();}
 function stop(){if(!state.running)return;++state.token;state.running=false;state.stopped=true;update();paintScene();hint(true);}
-function reset(){V.hush();++state.token;Object.assign(state,{counts:{12:15,3:0,9:0},trained:{12:15,3:0,9:0},dirty:false,training:false,running:false,old:false,stopped:false,done:0,results:null,previous:null,runCounts:null,my:[],allRight:false});++state.runId;trainItems=training(state.counts);model=MLLab.train('knn',trainItems,{features:FEATURES,k:3});clearPad();$('gear').classList.remove('gear-spin');update();paintScene();hint(true);}
-function setMode(m){if(!['lunch','writing'].includes(m))return;V.hush();if(state.running)stop();state.mode=m;document.body.classList.toggle('write-mode',m==='writing');$('m-lunch').setAttribute('aria-pressed',m==='lunch');$('m-writing').setAttribute('aria-pressed',m==='writing');$('lunch-svg').style.display=m==='lunch'?'block':'none';$('writing').hidden=m!=='writing';if(state.viewer)closeViewer(false);update();if(m==='writing'){resizePad();paintGrid();}else paintScene();if(!V.welcome())hint(true);}
-function openViewer(r){returnJar=$('jar-'+r);state.viewer=r;$('viewer-title').innerHTML=badge(r)+' '+NAMES[r]+' training cards';$('viewer-info').textContent=r==='9'?'Lots of people learn to write 1 with a long flag and 7 with a line through it.':'Compare the shapes of 1, 4 and 7 in this jar.';const items=training({12:0,3:0,9:0,...{[r]:state.counts[r]}});$('viewer-cards').innerHTML=items.length?[1,4,7].map(d=>`<div class="digit-heading">${d}</div>`+items.filter(it=>it.label===String(d)).map(it=>'<div class="view-card">'+cardSVG(it)+`<span>${NAMES[r]}</span></div>`).join('')).join(''):'<p class="viewer-empty">This jar is empty. Press Close, then More to add cards.</p>';if(!items.length)$('viewer-info').textContent='This jar has no training cards yet.';$('viewer').hidden=false;$('lunch-controls').inert=true;hint(true);$('close-viewer').focus({preventScroll:true});}
-function closeViewer(focus=true){state.viewer=null;$('viewer').hidden=true;$('lunch-controls').inert=false;hint();if(focus&&returnJar)returnJar.focus({preventScroll:true});}
+function reset(){V.hush();++state.token;Object.assign(state,{counts:{12:15,3:0,9:0},trained:{12:15,3:0,9:0},dirty:false,training:false,running:false,old:false,stopped:false,done:0,results:null,previous:null,runCounts:null,my:[],allRight:false,represented:false,inspected:false,sameTestDone:false,taughtLabel:null,keyPen:false});++state.runId;trainItems=training(state.counts);model=MLLab.train('knn',trainItems,{features:FEATURES,k:3});clearPad();$('gear').classList.remove('gear-spin');update();paintScene();hint(true);}
+function setMode(m){if(!['lunch','writing'].includes(m)||m===state.mode)return;V.hush();if(state.running)stop();state.mode=m;document.body.classList.toggle('write-mode',m==='writing');$('m-lunch').setAttribute('aria-pressed',m==='lunch');$('m-writing').setAttribute('aria-pressed',m==='writing');$('lunch-svg').style.display=m==='lunch'?'block':'none';$('writing').hidden=m!=='writing';if(state.viewer)closeViewer(false);update();if(m==='writing'){resizePad();paintGrid();}else paintScene();if(!V.welcome())hint(true);}
+function openViewer(r){
+ returnJar=$('jar-'+r);state.viewer=r;state.inspected=true;
+ $('viewer-title').innerHTML=badge(r)+' '+NAMES[r]+' handwriting';
+ $('viewer-info').textContent=(r==='9'?'Lots of people learn to write 1 with a long flag and 7 with a line through it. ':'')+"Lunch cards show this room's writing. The jar has "+state.counts[r]+' training cards.';
+ const samples=LUNCHES[r],items=training({12:0,3:0,9:0,[r]:state.counts[r]});
+ const group=(deck,heading)=>`<div class="viewer-section">${heading}</div>`+[1,4,7].map(d=>`<div class="digit-heading">${d}</div>`+deck.filter(it=>it.label===String(d)).map(it=>'<div class="view-card">'+cardSVG(it)+`<span>${NAMES[r]}</span></div>`).join('')).join('');
+ $('viewer-cards').innerHTML=group(samples,`${NAMES[r]}'s lunch cards, for comparison`)+(items.length?group(items,'Cards currently in this training jar'):'<p class="viewer-empty">Close this view and use More to add training cards.</p>');
+ $('viewer').hidden=false;$('lunch-controls').inert=true;hint(true);$('close-viewer').focus({preventScroll:true});
+}
+function closeViewer(focus=true){state.viewer=null;$('viewer').hidden=true;$('lunch-controls').inert=false;hint(true);if(focus&&returnJar)returnJar.focus({preventScroll:true});}
 $('viewer').addEventListener('keydown',e=>{if(e.key==='Escape'){e.preventDefault();closeViewer();}if(e.key==='Tab'){e.preventDefault();(document.activeElement===$('close-viewer')?$('viewer-cards'):$('close-viewer')).focus({preventScroll:true});}});
 $('close-viewer').onclick=()=>closeViewer();
 function food(parent,d,x,y,size){const g=mk('g',{transform:`translate(${x} ${y}) scale(${size/50})`},parent);mk('ellipse',{cx:25,cy:32,rx:24,ry:15,fill:'#fff9e6',stroke:'#8d805f','stroke-width':2},g);if(String(d)==='1'){for(let i=0;i<5;i++)mk('path',{d:`M${10+i*7} 20q-8 5 0 10t-2 9`,fill:'none',stroke:'#c58a09','stroke-width':4},g);}else if(String(d)==='4'){mk('path',{d:'M4 35Q25 -3 46 35Z',fill:'#e7b53c',stroke:'#a95024','stroke-width':2},g);mk('path',{d:'M8 32Q25 10 42 32',fill:'none',stroke:'#4f9a3a','stroke-width':5},g);mk('path',{d:'M11 33Q25 20 39 33',fill:'none',stroke:'#d9662b','stroke-width':5},g);}else{for(const [cx,cy]of [[15,25],[27,19],[36,27],[23,33]])mk('ellipse',{cx,cy,rx:10,ry:7,fill:'#4f9a3a',stroke:'#26774d'},g);mk('circle',{cx:29,cy:27,r:4,fill:'#d9662b'},g);}return g;}
-function paintScene(){if(state.mode!=='lunch')return;const host=$('stage').getBoundingClientRect(),W=Math.round(host.width),H=Math.round(host.height);if(W<1||H<1)return;const sv=$('lunch-svg');sv.textContent='';sv.setAttribute('viewBox',`0 0 ${W} ${H}`);
- // The painted wall is fitted independently. Text uses actual stage pixels.
- mk('image',{href:'art:cafeteria-counter',x:0,y:0,width:W,height:H,preserveAspectRatio:'none'},sv);
- const bx=W*.333,by=H*.156,bw=W*.425,bh=H*.348;
+function paintScene(){
+ if(state.mode!=='lunch')return;const host=$('lunch-svg').getBoundingClientRect(),W=Math.round(host.width),H=Math.round(host.height);if(W<1||H<1)return;
+ const sv=$('lunch-svg');sv.textContent='';sv.setAttribute('viewBox',`0 0 ${W} ${H}`);
+ // Preserve the illustration's aspect ratio. Derive its board from the same cover transform.
+ mk('image',{href:'art:cafeteria-counter',x:0,y:0,width:W,height:H,preserveAspectRatio:'xMidYMax slice'},sv);
+ const cover=Math.max(W/1600,H/914),ix=(W-1600*cover)/2,iy=H-914*cover;
+ const bx=ix+532*cover,by=iy+144*cover,bw=688*cover,bh=322*cover;
  mk('rect',{x:bx,y:by,width:bw,height:bh,rx:3,fill:'#244e39'},sv);
- const menuSize=Math.max(10,Math.min(24,bw/11)), mx=bx+9;
- text(sv,bx+bw/2,by+menuSize+14,'LUNCH MENU',menuSize,{'text-anchor':'middle',fill:'#fff9dd'});
- [1,4,7].forEach((d,i)=>{const y=by+7+menuSize*1.5+(i+.65)*(bh-menuSize*1.7)/3;text(sv,mx,y,`${d}  ${FOOD[d][0].toUpperCase()+FOOD[d].slice(1)}`,menuSize,{fill:'#fff9dd'});food(sv,d,bx+bw-menuSize*2.1,y-menuSize,menuSize*1.45);});
- const compact=W<600||H<460,cw=Math.max(32,Math.min(65,W*.095)),ch=cw*1.12,qx=8,qy=compact?H*.29:H*.27,cols=compact?2:3,limit=compact?10:30,start=state.running?Math.min(20,Math.floor(state.done/10)*10):0;
+ const ml=Math.max(8,bx+8),mr=Math.min(W-8,bx+bw-8),menuW=mr-ml;
+ const menuTop=Math.max(by+6,state.results?0:(W>700?88:68));
+ const menuSize=Math.max(10,Math.min(24,menuW/12,(by+bh-menuTop)/5));
+ text(sv,(ml+mr)/2,menuTop+menuSize,'LUNCH MENU',menuSize,{'text-anchor':'middle',fill:'#fff9dd'});
+ [1,4,7].forEach((d,i)=>{const y=menuTop+menuSize*1.6+(i+.7)*(by+bh-menuTop-menuSize*1.6)/3;text(sv,ml+3,y,`${d} ${FOOD[d][0].toUpperCase()+FOOD[d].slice(1)}`,menuSize,{fill:'#fff9dd'});food(sv,d,mr-menuSize*1.7,y-menuSize,menuSize*1.4);});
+ const compact=W<600||H<460,cw=Math.max(32,Math.min(65,W*.095)),ch=cw*1.25,qx=8,qy=compact?Math.max(90,H*.29):H*.27,cols=compact?2:3,limit=compact?10:30,start=compact&&state.running?Math.min(20,Math.floor(state.done/10)*10):0;
  text(sv,8,Math.max(18,qy-9),state.running?`${state.done} of 30 served`:'30 lunch cards',Math.max(11,Math.min(17,W/40)),{'paint-order':'stroke',stroke:'#fffaf0','stroke-width':4});
- const avail=H-qy-9,rowH=Math.min(ch+5,avail/Math.ceil(limit/cols));
- for(let j=0;j<limit;j++){const i=start+j;if(i>=30)break;const it=LINE[i],x=qx+(j%cols)*(cw+5),y=qy+Math.floor(j/cols)*rowH;const g=mk('g',{transform:`translate(${x} ${y})`},sv);mk('rect',{width:cw,height:Math.min(ch,rowH-3),rx:4,fill:i<state.done?'#e4e5dc':'#fffdf8',stroke:'#9b8e73'},g);const hh=Math.min(ch,rowH-3), dg=mk('g',{transform:`translate(1 2) scale(${(cw-4)/100} ${(hh-4)/100})`},g);dg.innerHTML=strokeSVG(it.strokes);MLLab.glyph(GLYPHS[it.tags.room].shape,cw-7,8,4,g,{fill:GLYPHS[it.tags.room].color,stroke:'#2a2418'});}
- const rx=W*.72,ry=H*.67,rs=Math.max(.65,Math.min(1.7,W/650,H/380));
- const robot=mk('g',{transform:`translate(${rx} ${ry}) scale(${rs})`},sv);
+ const avail=H-qy-7,rowH=Math.min(ch+5,avail/Math.ceil(limit/cols));
+ for(let j=0;j<limit;j++){
+  const i=start+j;if(i>=30)break;const it=LINE[i],x=qx+j%cols*(cw+5),y=qy+Math.floor(j/cols)*rowH,hh=Math.max(18,Math.min(ch,rowH-3));
+  const g=mk('g',{transform:`translate(${x} ${y})`,class:'queue-card','data-line':i},sv);
+  mk('rect',{width:cw,height:hh,rx:4,fill:i<state.done?'#f1f0e8':'#fffdf8',stroke:'#9b8e73'},g);
+  const dg=mk('g',{transform:`translate(1 14) scale(${(cw-4)/100} ${Math.max(4,hh-16)/100})`},g);dg.innerHTML=strokeSVG(it.strokes);
+  MLLab.glyph(GLYPHS[it.tags.room].shape,cw-9,8,7,g,{fill:GLYPHS[it.tags.room].color,stroke:'#2a2418'});
+  const result=state.results?.results[i];if(result)text(g,3,12,result.ok?'✓':'×',14,{fill:result.ok?'#26774d':'#9a2418','font-weight':900,class:result.ok?'served-right':'served-wrong'});
+ }
+ const rs=Math.max(.55,Math.min(1.7,W/650,H/380)),rx=W*(compact?.56:.70),ry=H*.68;
+ const robot=mk('g',{transform:`translate(${rx} ${ry}) scale(${rs})`,'data-bitsy':'true'},sv);
  mk('path',{d:'M-48 10L-72 55M48 10L69 54',stroke:'#4c605b','stroke-width':15,'stroke-linecap':'round'},robot);
  mk('rect',{x:-49,y:-63,width:98,height:114,rx:23,fill:'#c3d6ce',stroke:'#344940','stroke-width':4},robot);mk('rect',{x:-36,y:-47,width:72,height:49,rx:8,fill:'#243d35'},robot);
  const last=state.done?state.results?.results[state.done-1]:null;
  text(robot,0,-12,last?last.pred:'• •',32,{'text-anchor':'middle',fill:'#fff9dc'});mk('rect',{x:-30,y:13,width:60,height:9,rx:4,fill:'#243d35'},robot);text(robot,0,42,'BITSY',Math.max(13,10/rs),{'text-anchor':'middle'});mk('circle',{cx:-25,cy:59,r:12,fill:'#344940'},robot);mk('circle',{cx:25,cy:59,r:12,fill:'#344940'},robot);
- if(last){const x=Math.max(cols*(cw+5)+8,Math.min(rx-130*rs,rx-49*rs-72)),y=Math.min(H-110,H*.59);const cg=mk('g',{class:state.running?'slide-card':'',style:`--feed:${rx-x-32}px`},sv);mk('rect',{x,y,width:64,height:78,rx:5,fill:'#fffdf8',stroke:'#9b8e73'},cg);const ink=mk('g',{transform:`translate(${x+3} ${y+7}) scale(.58 .60)`},cg);ink.innerHTML=strokeSVG(last.item.strokes);MLLab.glyph(GLYPHS[last.item.tags.room].shape,x+53,y+10,6,cg,{fill:GLYPHS[last.item.tags.room].color,stroke:'#2a2418'});text(sv,x,y-7,NAMES[last.item.tags.room],12,{'paint-order':'stroke',stroke:'#fffaf0','stroke-width':4});
- const tray=mk('g',{class:state.running?'slide-tray':''},sv),tx=rx-30,ty=Math.min(H-48,ry+70*rs);mk('rect',{x:tx-7,y:ty-6,width:88,height:45,rx:8,fill:'#c8d0ca',stroke:'#4c605b','stroke-width':2},tray);food(tray,last.pred,tx+12,ty-9,50);if(!last.ok){const st=`Wanted ${FOOD[last.item.label]}`;const ww=st.length*6.4+40,xx=Math.min(W-ww-5,Math.max(5,tx-10));mk('rect',{x:xx,y:ty-32,width:ww,height:23,rx:6,fill:'#fff3bf',stroke:'#8a5a00'},sv);text(sv,xx+6,ty-16,st,11);food(sv,last.item.label,xx+ww-27,ty-33,23);}}
- if(!state.results){const y=H>450?H*.035:4;const lines=W>700?['Room 12 built Bitsy to read lunch cards,','and they trained it with their own handwriting.','Now the whole school uses it.']:['Room 12 built Bitsy to read lunch cards,','and they trained it with their own handwriting.','Now the whole school uses it.'];const boxW=Math.min(W-16,440),fs=W>700?16:11;mk('rect',{x:8,y,width:boxW,height:lines.length*(fs+4)+10,rx:8,fill:'#fffaf0',stroke:'#c9b78e'},sv);lines.forEach((s,i)=>text(sv,17,y+fs+5+i*(fs+4),s,fs));}
+ if(last){
+  const cardW=compact?48:64,cardH=compact?60:78,x=rx-49*rs-cardW-12,y=compact?ry-25*rs:Math.min(H-cardH-8,H*.59);
+  const cg=mk('g',{class:state.running?'slide-card':'',style:`--feed:${rx-x-cardW/2}px`},sv);
+  mk('rect',{x,y,width:cardW,height:cardH,rx:5,fill:'#fffdf8',stroke:'#9b8e73'},cg);const ink=mk('g',{transform:`translate(${x+3} ${y+7}) scale(${(cardW-6)/100} ${(cardH-12)/100})`},cg);ink.innerHTML=strokeSVG(last.item.strokes);
+  MLLab.glyph(GLYPHS[last.item.tags.room].shape,x+cardW-10,y+9,6,cg,{fill:GLYPHS[last.item.tags.room].color,stroke:'#2a2418'});text(cg,x,y-7,NAMES[last.item.tags.room],12,{'paint-order':'stroke',stroke:'#fffaf0','stroke-width':4});
+  const tx=rx+82*rs+14,ty=Math.min(H-42,ry+28*rs),tray=mk('g',{class:state.running?'slide-tray':'','data-tray':'true'},sv);
+  mk('rect',{x:tx-7,y:ty-6,width:88,height:45,rx:8,fill:'#c8d0ca',stroke:'#4c605b','stroke-width':2},tray);food(tray,last.pred,tx+12,ty-9,50);
+  if(!last.ok){const st=`Wanted ${FOOD[last.item.label]}`,fs=compact?12:16,ww=Math.min(W-tx+4,st.length*fs*.52+34),xx=tx-8;mk('rect',{x:xx,y:ty-34,width:ww,height:25,rx:6,fill:'#fff3bf',stroke:'#8a5a00','data-wanted':'true'},sv);text(sv,xx+5,ty-17,st,fs);food(sv,last.item.label,xx+ww-24,ty-35,22);}
+ }
+ if(!state.results){const y=6,lines=['Room 12 built Bitsy to read lunch cards,','and they trained it with their own handwriting.','Now the whole school uses it.'],boxW=Math.min(W-16,440),fs=W>700?16:11;mk('rect',{x:8,y,width:boxW,height:lines.length*(fs+4)+10,rx:8,fill:'#fffaf0',stroke:'#c9b78e'},sv);lines.forEach((line,i)=>text(sv,17,y+fs+5+i*(fs+4),line,fs));}
 }
+function paintScores(){
+ const show=state.mode==='lunch'&&!!state.results&&state.done>0;$('score-strip').hidden=!show;
+ if(!show)return;
+ $('score-strip').innerHTML=['9','12','3'].map(r=>{const g=state.results.byGroup[r]||{ok:0,n:0};return `<div class="room-score ${state.old?'old':''}"><span>${badge(r)} ${NAMES[r]}${state.old?' (old)':''}</span><strong>${g.n?g.ok+' of '+g.n:'Waiting'}</strong><span>${g.n?'right lunches':''}${state.stopped?' (stopped)':''}</span></div>`;}).join('');
+}
+function paintWritingBot(guess='?'){
+ let b=$('writing-bitsy');if(!b){b=mk('svg',{id:'writing-bitsy',viewBox:'0 0 64 78',role:'img','aria-label':'Bitsy reads '+guess},$('sight'));}
+ b.setAttribute('aria-label','Bitsy reads '+guess);b.innerHTML=`<rect x="6" y="4" width="52" height="64" rx="13" fill="#c3d6ce" stroke="#344940" stroke-width="3"/><rect x="13" y="15" width="38" height="32" rx="5" fill="#243d35"/><text x="32" y="40" text-anchor="middle" font-size="26" font-family="Segoe UI" fill="#fff9dc">${guess}</text><path d="M19 57H45" stroke="#243d35" stroke-width="5"/><circle cx="18" cy="71" r="6" fill="#344940"/><circle cx="46" cy="71" r="6" fill="#344940"/>`;
+}
+
 function resizePad(){const el=$('pad'),size=Math.round(el.getBoundingClientRect().width);if(!size)return;el.width=size;el.height=size;paintPad();}
-function paintPad(){const canvas=$('pad'),c=canvas.getContext('2d'),s=canvas.width/100;c.clearRect(0,0,canvas.width,canvas.height);c.strokeStyle='#3b3b3b';c.lineWidth=9;c.lineCap='round';c.lineJoin='round';for(const st of state.strokes){if(!st.length)continue;c.beginPath();c.moveTo(st[0][0]*s,st[0][1]*s);for(const p of st.slice(1))c.lineTo(p[0]*s,p[1]*s);if(st.length===1)c.lineTo(st[0][0]*s+.01,st[0][1]*s+.01);c.stroke();}if(document.activeElement===canvas){c.strokeStyle=state.pen.down?'#8a5a00':'#1d5fd1';c.lineWidth=2;c.beginPath();c.arc(state.pen.x*s,state.pen.y*s,7,0,Math.PI*2);c.stroke();}}
+function paintPad(){const canvas=$('pad'),c=canvas.getContext('2d'),s=canvas.width/100;c.clearRect(0,0,canvas.width,canvas.height);c.strokeStyle='#3b3b3b';c.lineWidth=9;c.lineCap='round';c.lineJoin='round';for(const st of state.strokes){if(!st.length)continue;c.beginPath();c.moveTo(st[0][0]*s,st[0][1]*s);for(const p of st.slice(1))c.lineTo(p[0]*s,p[1]*s);if(st.length===1)c.lineTo(st[0][0]*s+.01,st[0][1]*s+.01);c.stroke();}if(document.activeElement===canvas&&state.keyPen){c.strokeStyle=state.pen.down?'#8a5a00':'#1d5fd1';c.lineWidth=2;c.beginPath();c.arc(state.pen.x*s,state.pen.y*s,7,0,Math.PI*2);c.stroke();}}
 function paintGrid(){const svg=$('grid');svg.innerHTML='';svg.setAttribute('viewBox','0 0 160 160');const v=raster(state.strokes);FEATURES.forEach((f,i)=>mk('rect',{x:i%8*20+.5,y:Math.floor(i/8)*20+.5,width:19,height:19,fill:`rgb(${255-Math.round(v[f]*210)},${255-Math.round(v[f]*210)},${255-Math.round(v[f]*210)})`,stroke:'#b6ad9b','stroke-width':1},svg));svg.setAttribute('aria-label','8 by 8 grid. '+Object.values(v).filter(v=>v>0).length+' cells contain ink.');}
-function padChanged(){++state.padVersion;state.padResult=null;$('guess').textContent='Bitsy reads: ?';$('neighbors').textContent='';$('alike-label').textContent='Read a card to see its three look-alikes.';paintPad();paintGrid();update();hint();}
+function padChanged(){++state.padVersion;state.padResult=null;state.taughtLabel=null;$('teaching-receipt').textContent='';$('vote-note').textContent='';paintWritingBot('?');$('guess').textContent='Bitsy reads: ?';$('neighbors').textContent='';$('alike-label').textContent='Read a card to see its three look-alikes.';paintPad();paintGrid();update();hint();}
 function clearPad(){$('writing').scrollTop=0;state.strokes=[];state.pen.down=false;padChanged();}
 function beginStroke(p){if(state.strokes.length>=6)state.strokes=[];state.strokes.push([p]);padChanged();}
 let drawing=false;
 const point=e=>{const r=$('pad').getBoundingClientRect();return [Math.max(0,Math.min(100,(e.clientX-r.left)*100/r.width)),Math.max(0,Math.min(100,(e.clientY-r.top)*100/r.height))];};
-$('pad').addEventListener('pointerdown',e=>{if(e.button!==0)return;e.preventDefault();$('pad').focus({preventScroll:true});$('pad').setPointerCapture(e.pointerId);drawing=true;state.pen.down=false;beginStroke(point(e));});
+$('pad').addEventListener('pointerdown',e=>{if(e.button!==0)return;e.preventDefault();$('pad').focus({preventScroll:true});$('pad').setPointerCapture(e.pointerId);drawing=true;state.pen.down=false;state.keyPen=false;beginStroke(point(e));});
 $('pad').addEventListener('pointermove',e=>{if(!drawing)return;state.strokes[state.strokes.length-1].push(point(e));padChanged();});
 $('pad').addEventListener('pointerup',()=>{drawing=false;hint(true);});$('pad').addEventListener('pointercancel',()=>drawing=false);
-$('pad').addEventListener('keydown',e=>{if(e.key===' '){e.preventDefault();state.pen.down=!state.pen.down;if(state.pen.down)beginStroke([state.pen.x,state.pen.y]);paintPad();return;}const d={ArrowLeft:[-3,0],ArrowRight:[3,0],ArrowUp:[0,-3],ArrowDown:[0,3]}[e.key];if(!d)return;e.preventDefault();state.pen.x=Math.max(3,Math.min(97,state.pen.x+d[0]));state.pen.y=Math.max(3,Math.min(97,state.pen.y+d[1]));if(state.pen.down){state.strokes[state.strokes.length-1].push([state.pen.x,state.pen.y]);padChanged();}paintPad();});$('pad').onfocus=paintPad;$('pad').onblur=paintPad;
-function readPad(){if(!state.strokes.length||!trainItems.length)return;const out=MLLab.knn(trainItems,{v:raster(state.strokes)},{features:FEATURES,k:3});state.padResult=out;const version=state.padVersion;$('guess').textContent='Bitsy reads: '+out.label;$('alike-label').textContent='The three training cards most alike:';$('neighbors').innerHTML=out.neighbors.map(n=>`<div class="neighbor">${cardSVG(n.item,false)}${badge(n.item.tags.room)} ${NAMES[n.item.tags.room]}<br>Label: ${n.item.label}</div>`).join('');hint();event('read'+out.label,{valid:()=>state.padVersion===version&&state.padResult?.label===out.label,needs:'#read-pad'});const wr=$('writing').getBoundingClientRect(),sr=$('sight').getBoundingClientRect();if(sr.top<wr.top||sr.bottom>wr.bottom)$('writing').scrollTop+=sr.top-wr.top-16;if(!V.heard('teachHow'))V.how('teachHow',{valid:()=>state.padVersion===version&&!!state.padResult,needs:['#teach-1','#teach-4','#teach-7']});}
-function teach(d){if(!state.strokes.length)return;const it={id:'my-'+state.my.length,label:String(d),tags:{room:'my'},strokes:structuredClone(state.strokes),v:raster(state.strokes)};state.my.push(it);trainItems=training(state.counts,state.my);model=MLLab.train('knn',trainItems,{features:FEATURES,k:3});state.trained={...state.counts};state.dirty=false;state.old=!!state.results;state.padResult={...(state.padResult||{}),taught:true};const version=state.padVersion;update();hint();event('learned',{valid:()=>state.padVersion===version});}
+$('pad').addEventListener('keydown',e=>{state.keyPen=true;if(e.key===' '){e.preventDefault();state.pen.down=!state.pen.down;if(state.pen.down)beginStroke([state.pen.x,state.pen.y]);else hint(true);paintPad();return;}const d={ArrowLeft:[-3,0],ArrowRight:[3,0],ArrowUp:[0,-3],ArrowDown:[0,3]}[e.key];if(!d)return;e.preventDefault();state.pen.x=Math.max(3,Math.min(97,state.pen.x+d[0]));state.pen.y=Math.max(3,Math.min(97,state.pen.y+d[1]));if(state.pen.down){state.strokes[state.strokes.length-1].push([state.pen.x,state.pen.y]);padChanged();}paintPad();});$('pad').onfocus=paintPad;$('pad').onblur=paintPad;
+function showRead(out,taught=false){
+ state.padResult={...out,taught};$('guess').textContent='Bitsy reads: '+out.label;
+ $('alike-label').textContent='The three closest cards, one vote each:';
+ $('neighbors').innerHTML=out.neighbors.map(n=>`<div class="neighbor ${n.item.tags.room==='my'?'personal':''}">${cardSVG(n.item,false)}<span class="neighbor-name">${badge(n.item.tags.room)} ${NAMES[n.item.tags.room]}</span><b>Vote: ${n.item.label}</b></div>`).join('');
+ const own=out.neighbors.filter(n=>n.item.tags.room==='my').length;
+ $('vote-note').textContent=taught&&out.label!==String(state.taughtLabel)&&own===1?'Bitsy looks at the 3 closest cards. Yours is 1 of 3 votes. The other two votes still win.':'Bitsy chooses the number with the most votes. Room badges are not clues.';
+ paintWritingBot(out.label);hint();
+}
+function readPad(){
+ if(!state.strokes.length||!trainItems.length)return;
+ const out=MLLab.knn(trainItems,{v:raster(state.strokes)},{features:FEATURES,k:3}),version=state.padVersion;
+ showRead(out,state.taughtLabel!=null);event('read'+out.label,{valid:()=>state.padVersion===version&&state.padResult?.label===out.label,needs:'#read-pad'});
+ if(!state.padResult.taught&&!V.heard('teachHow'))V.how('teachHow',{valid:()=>state.padVersion===version&&!!state.padResult,needs:['#teach-1','#teach-4','#teach-7']});
+ if(state.padResult.taught)hint(true);
+}
+function teach(d){
+ if(!state.strokes.length)return;
+ const it={id:'my-'+state.my.length,label:String(d),tags:{room:'my'},strokes:structuredClone(state.strokes),v:raster(state.strokes)};
+ state.my.push(it);state.taughtLabel=d;trainItems=training(state.trained,state.my);model=MLLab.train('knn',trainItems,{features:FEATURES,k:3});state.old=!!state.results;
+ const version=state.padVersion;update();showRead(MLLab.knn(trainItems,it,{features:FEATURES,k:3}),true);
+ $('teaching-receipt').innerHTML=badge('my')+` Added to My cards: ${state.my.length}. Label: ${d}.`;
+ $('my-writing').classList.remove('just-taught');void $('my-writing').offsetWidth;$('my-writing').classList.add('just-taught');
+ event('learned',{valid:()=>state.padVersion===version});hint(true);
+}
 $('m-lunch').onclick=()=>setMode('lunch');$('m-writing').onclick=()=>setMode('writing');$('train').onclick=trainBitsy;$('run').onclick=run;$('skip').onclick=()=>{++state.token;finish();};$('reset').onclick=reset;$('clear').onclick=()=>{clearPad();hint(true);};$('read-pad').onclick=readPad;for(const d of [1,4,7])$('teach-'+d).onclick=()=>teach(d);
 new ResizeObserver(()=>{paintScene();if(state.mode==='writing')resizePad();}).observe($('stage'));
 Curio.init({clips: "voice:*",rate:.95});
-window.__tool={state,setMode,allLines:V.allLines,vlog:V.log,get vq(){return V.queue;},checkTable,training,raster,normalize,LINE,JARS,readPad,teach,clearPad,changeJar,trainBitsy,run,stop,finish,reset,openViewer,closeViewer,paintScene,get model(){return model;},get grid(){return raster(state.strokes);},get trainItems(){return trainItems;},EVENT_IDS,
+window.__tool={state,setMode,allLines:V.allLines,vlog:V.log,get vq(){return V.queue;},checkTable,training,raster,normalize,LINE,JARS,readPad,teach,clearPad,changeJar,trainBitsy,run,stop,finish,reset,openViewer,closeViewer,paintScene,get model(){return model;},get grid(){return raster(state.strokes);},get trainItems(){return trainItems;},EVENT_IDS,paintScores,paintWritingBot,
  setJars:async counts=>{if(state.running)stop();for(const r of ROOMS)state.counts[r]=counts[r]||0;state.dirty=true;state.old=!!state.results;update();await trainBitsy();},
  draw:strokes=>{state.strokes=structuredClone(strokes);padChanged();},
  snapshot:()=>({counts:state.counts,done:state.done,old:state.old,dirty:state.dirty,scores:state.results?ROOMS.map(r=>state.results.byGroup[r]?.ok||0):null,mistakes:state.results?.mistakes.map(r=>({room:r.item.tags.room,wrote:r.item.label,read:r.pred})),my:state.my.length,hint:$('hint').textContent,focus:document.activeElement.id})};
-update();paintScene();paintGrid();
+update();paintScene();paintGrid();paintWritingBot('?');
 })();
 </script></body></html>

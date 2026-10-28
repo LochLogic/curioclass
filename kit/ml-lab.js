@@ -247,7 +247,9 @@ const MLLab = (() => {
     let W = 0, H = 0, dead = false;
     const go = () => {
       if (dead) return;
-      const r = el.getBoundingClientRect(), w = Math.max(60, Math.round(r.width)), h = Math.max(60, Math.round(r.height));
+      const r = el.getBoundingClientRect();
+      if (r.width <= 0 || r.height <= 0) { W = H = 0; return; }
+      const w = Math.max(60, Math.round(r.width)), h = Math.max(60, Math.round(r.height));
       W = w; H = h; svg.setAttribute('viewBox', `0 0 ${w} ${h}`); svg.setAttribute('width', w); svg.setAttribute('height', h);
       svg.textContent = ''; draw(svg, w, h);
     };
@@ -365,20 +367,28 @@ const MLLab = (() => {
     return {svg: h.svg, redraw: h.redraw, destroy: h.destroy, update(it2, o2) { if (it2) I = it2; if (o2) O = {...O, ...o2}; h.redraw(); }};
   }
 
-  // groupBars(el, byGroup, {names, glyphs, order, unit}): one bar per group, length = share right, with "n of m right"
+  // groupBars(el, byGroup, {names, glyphs, order, unit, empty, size}): one bar per group, length = share right, with "n of m right"
   function groupBars(el, byGroup, o = {}) {
     let G = byGroup, O = o;
     const h = host(el, draw);
     function draw(svg, W, H) {
       const keys = O.order || Object.keys(G), nm = k => (O.names && O.names[k]) || k, unit = O.unit || 'right';
-      const rowH = Math.max(30, Math.min(52, H / Math.max(1, keys.length))), lab = Math.min(150, Math.max(80, W * .3)), bw = W - lab - 12;
+      const size = Number.isFinite(O.size) ? Math.max(10, O.size) : 13, factor = size / 13;
+      if (O.empty != null && !keys.some(k => G[k] && G[k].n > 0)) {
+        txt(svg, W / 2, Math.min(H / 2, 24 * factor), O.empty, {size, fill: C.muted});
+        svg.setAttribute('aria-label', O.empty); return;
+      }
+      const rowH = Math.max(30 * factor, Math.min(52 * factor, H / Math.max(1, keys.length)));
+      const baseLab = Math.min(150, Math.max(80, W * .3));
+      const lab = O.size == null ? baseLab : Math.min(Math.max(0, W - 12), Math.max(baseLab, 42 * factor + Math.max(0, ...keys.map(k => String(nm(k)).length * size * .64))));
+      const bw = Math.max(0, W - lab - 12);
       keys.forEach((k, i) => {
-        const g = G[k] || {n: 0, ok: 0}, y = i * rowH, r = Math.min(9, rowH * .22), share = g.n ? g.ok / g.n : 0;
+        const g = G[k] || {n: 0, ok: 0}, y = i * rowH, r = Math.min(9 * factor, rowH * .22), share = g.n ? g.ok / g.n : 0;
         drawGlyph(svg, O.glyphs, k, i, r + 2, y + rowH * .38, r);
-        txt(svg, r * 2 + 8, y + rowH * .38, nm(k), {size: 13, weight: 700, anchor: 'start'});
+        txt(svg, r * 2 + 8, y + rowH * .38, nm(k), {size, weight: 700, anchor: 'start'});
         mk('rect', {x: lab, y: y + 4, width: bw, height: rowH * .5, rx: 5}, svg, {fill: C.cell, stroke: C.line});
-        if (share) mk('rect', {x: lab, y: y + 4, width: bw * share, height: rowH * .5, rx: 5}, svg, {fill: gOf(O.glyphs, k, i).color, stroke: C.ink, strokeWidth: 1});
-        txt(svg, lab, y + rowH * .5 + 14, `${g.ok} of ${g.n} ${unit}`, {size: 12, anchor: 'start', fill: C.ink});
+        if (share) mk('rect', {x: lab, y: y + 4, width: bw * Math.max(0, Math.min(1, share)), height: rowH * .5, rx: 5}, svg, {fill: gOf(O.glyphs, k, i).color, stroke: C.ink, strokeWidth: 1});
+        txt(svg, lab, y + rowH * .5 + 14 * factor, `${g.ok} of ${g.n} ${unit}`, {size: O.size == null ? 12 : Math.max(10, size - 1), anchor: 'start', fill: C.ink});
       });
       svg.setAttribute('aria-label', keys.map(k => `${nm(k)}: ${(G[k] || {}).ok || 0} of ${(G[k] || {}).n || 0} ${unit}`).join('. '));
     }

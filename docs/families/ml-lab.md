@@ -56,8 +56,11 @@ MLLab.view.scatter(el, items, {fx, fy, glyphs, names, labels: {x, y}, query: {it
   // two features as axes 0 to 1 (fy null: a one-axis strip). The query item is a "?" ring with dashed lines to its
   // neighbors, which get a ring. Pass the same item objects as the knn neighbors (matched by reference).
   // With onPick, points are focusable buttons.
-MLLab.view.groupBars(el, byGroup, {names, glyphs, order, unit: 'right'})
+MLLab.view.groupBars(el, byGroup, {names, glyphs, order, unit: 'right', empty, size})
   // one bar per group, length = share right, "n of m right" under it
+  // optional empty: text shown instead of zero-denominator rows when no group has tested items
+  // optional size: label text size in pixels (minimum 10), scales captions and row spacing
+  // omitted options preserve the original 13 px labels, 12 px captions and layout
 // every view: {svg, update(data, opts), redraw(), destroy()}, re-laid out by a ResizeObserver on el (give el a
 // size), and an aria-label on the svg listing its numbers.
 
@@ -89,7 +92,7 @@ The engine has no stylesheet of its own; the views draw on the tool's panel.
 | Tool | Grade | Engine parts | Its one idea (not shared) |
 |---|---|---|---|
 | teach-the-robot | 2 | `knn` (k = 1, six features) | the class labels examples; more and different examples make better guesses. Draws its own wall and chart, no views |
-| biased-bot | 4 | `rng`, `uni`, `knn` (k = 3, 64 grid cells), `evaluate` with `groupBy` room, `groupBars` | training data from one room fails other rooms' handwriting |
+| biased-bot | 4 | `rng`, `uni`, `MLLab.glyph`, `train('knn')`, `knn` (k = 3, 64 grid cells), `evaluate` with `groupBy` room, `groupBars` | training data from one room fails other rooms' handwriting |
 | leaf-sorter-ai | 5 | `rng`, `uni`, `knn` (k = 3, switched-on clues), `evaluate`, `scatter` (strip with one clue) | which clues count |
 | model-mechanic | 6-8 | `rng`, `uni`, `knn` (k from the panel), `evaluate` with classes and `groupBy` time, `confusion` with `onCell` | reading a confusion matrix, day vs night |
 | ai-evaluator | 9-12 | `rng`, `uni`, `knn` (k = 5), `train('tree')`, `train('linear')`, `evaluate` with `positive`, `threshold`, `groupBy`, `confusion` | disaggregated evaluation, recall vs precision, thresholds |
@@ -120,3 +123,9 @@ The engine has no stylesheet of its own; the views draw on the tool's panel.
 - 2026-10-28: confusion cells without `onCell` lost their tabindex (they were focus stops that did nothing). View
   code only; the teach-the-robot and ai-evaluator tables above were re-run in Node and are unchanged.
 - biased-bot, leaf-sorter-ai and model-mechanic tables were not checked here; each builder checks its own.
+
+## Biased Bot polish, 2026-10-28
+
+- Shared view hosts skip zero-width or zero-height boxes, reset their measured size, and draw on the next real size. groupBars clamps available widths at zero. Its optional `empty` and numeric `size` options reserve label space for the larger glyphs and are backward compatible; defaults retain the prior visible layout. Models, features, seeds and tie-breaking are unchanged.
+- A k greater than one needs an understandable vote explanation when one example cannot win. Biased Bot shows the actual three nearest cards after teaching, each label as a vote, and explains a one-of-three vote. This is tool UI around the existing knn output, not a new engine view.
+- Sibling before/after checks are recorded in `tools/biased-bot/polish.md`. The available teach-the-robot page is compared at fixed sizes and states. leaf-sorter-ai currently has only spec.md in this checkout, so its page comparison cannot be performed.
