@@ -1,0 +1,24 @@
+{
+  "id": "biased-bot",
+  "status": "beta",
+  "hook": "Bitsy learned one room's handwriting. Can you help it serve the right lunch to everyone?",
+  "outcome": "Explain how missing kinds of training examples can make AI unfair, and improve a model by including those examples",
+  "driver": "students or teacher",
+  "minutes": "15-25",
+  "modes": [
+    "Lunch Line",
+    "Try Your Writing"
+  ],
+  "grades_label": "Grade 4",
+  "sources": [
+    "Regional handwriting variation, Arabic numerals: https://en.wikipedia.org/wiki/Regional_handwriting_variation",
+    "AI4K12 Big Ideas 3 and 5: https://ai4k12.org",
+    "Buolamwini and Gebru, Gender Shades, PMLR 81 (2018), teacher notes only",
+    "CSTA K-12 Computer Science Standards (2017): https://csteachers.org/k12standards/",
+    "Fictional rooms and seeded cards; results computed with the Curio Class ml-lab engine",
+    "Supplied cafeteria art: flux1-schnell (local), review pending; other graphics drawn in code"
+  ],
+  "third_party": [],
+  "updated": "2026-10-28",
+  "stage": "built"
+}
