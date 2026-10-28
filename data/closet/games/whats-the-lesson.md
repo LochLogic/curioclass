@@ -8,6 +8,9 @@ minutes: 20
 materials: paper; a pencil
 es_materials: papel; un lápiz
 
+## Before you start
+Pick a fable you can tell from memory, like the tortoise and the hare. Practice it once in your head. It only needs to be a minute long.
+
 ## How to play
 1. A grown-up tells a short fable everyone knows, like the tortoise and the hare or the boy who cried wolf.
 2. Each player says the lesson in one sentence: "Slow and steady wins the race."
@@ -15,6 +18,12 @@ es_materials: papel; un lápiz
 4. Take turns adding one sentence each until the story has a beginning, middle and end.
 5. The last player says the lesson out loud. Did the story teach it?
 6. Write the lesson at the top of the paper and draw the two animals.
+
+## Sample round
+You tell the boy who cried wolf. Ana says, "Don't tell lies, or people won't believe you." Then Leo starts a new fable: "A squirrel had too many nuts..."
+
+## It went well when
+Your child said a lesson in their own words and helped make a story that taught it.
 
 ## What your child is learning
 Fables are short stories that teach a lesson, often with animals as characters. Children learn to find the central message of a story.
@@ -25,6 +34,9 @@ The grown-up gives three lessons to choose from after the story.
 ## Make it harder
 Tell the fable from the other animal's point of view. Does the lesson change?
 
+## Antes de empezar
+Escojan una fábula que puedan contar de memoria, como la liebre y la tortuga. Repásenla una vez en su mente. Basta con que dure un minuto.
+
 ## Cómo jugar
 1. Un adulto cuenta una fábula que todos conozcan, como la liebre y la tortuga o el pastorcito mentiroso.
 2. Cada jugador dice la moraleja en una oración: "Poco a poco se llega lejos".
@@ -32,6 +44,12 @@ Tell the fable from the other animal's point of view. Does the lesson change?
 4. Por turnos, agreguen una oración cada uno hasta que el cuento tenga principio, desarrollo y final.
 5. El último jugador dice la moraleja en voz alta. ¿El cuento la enseñó?
 6. Escriban la moraleja arriba del papel y dibujen a los dos animales.
+
+## Ronda de ejemplo
+Usted cuenta la del pastorcito mentiroso. Ana dice: "No digas mentiras, o nadie te va a creer". Luego Leo empieza una fábula nueva: "Una ardilla tenía demasiadas nueces...".
+
+## Salió bien si
+Su hijo o hija dijo una lección con sus propias palabras y ayudó a crear un cuento que la enseñaba.
 
 ## Qué está aprendiendo
 Las fábulas son cuentos cortos que enseñan algo, muchas veces con animales como personajes. Aprende a encontrar el mensaje principal de un cuento.

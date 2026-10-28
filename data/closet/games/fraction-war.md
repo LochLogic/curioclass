@@ -8,6 +8,9 @@ minutes: 15
 materials: a deck of cards, aces through 8 only; paper; a pencil; a timer
 es_materials: una baraja, solo del as al 8; papel; un lápiz; un reloj o temporizador
 
+## Before you start
+Take out the 9s, 10s, jacks, queens, kings and jokers. Sit across from each other. Keep paper and a pencil close for quick drawings.
+
 ## How to play
 1. Shuffle and split the cards into two face-down piles.
 2. Each player flips two cards and makes a fraction with them.
@@ -15,6 +18,12 @@ es_materials: una baraja, solo del as al 8; papel; un lápiz; un reloj o tempori
 4. Compare your fractions. Draw a quick picture of each if you need to. The bigger fraction takes all four cards.
 5. If they are equal, like 1/2 and 2/4, say "equal!" and flip again for the pile.
 6. Play until the timer rings. The most cards wins.
+
+## Sample round
+Ana flips a 3 and a 4: 3/4. Leo flips a 2 and a 6: 2/6. They draw both. 3/4 covers more of the whole, so Ana takes all four cards.
+
+## It went well when
+Your child put the bigger card on the bottom, named the fraction and could show with a drawing which one was bigger.
 
 ## What your child is learning
 A fraction names equal parts of a whole. The bottom number tells how many parts the whole is cut into; the top tells how many parts you have.
@@ -25,6 +34,9 @@ Use only fractions with the same bottom number, like fourths: always put a 4 on 
 ## Make it harder
 Place each fraction on a number line from 0 to 1 drawn on paper before comparing.
 
+## Antes de empezar
+Saquen los 9, los 10, las jotas, reinas, reyes y comodines. Siéntense frente a frente. Tengan papel y lápiz cerca para hacer dibujos rápidos.
+
 ## Cómo jugar
 1. Barajen y repartan las cartas en dos montones boca abajo.
 2. Cada jugador voltea dos cartas y forma una fracción con ellas.
@@ -32,6 +44,12 @@ Place each fraction on a number line from 0 to 1 drawn on paper before comparing
 4. Comparen sus fracciones. Hagan un dibujo rápido de cada una si les ayuda. La fracción mayor se lleva las cuatro cartas.
 5. Si son iguales, como 1/2 y 2/4, digan "¡iguales!" y volteen otra vez para llevarse todo.
 6. Jueguen hasta que suene el reloj. Gana quien tenga más cartas.
+
+## Ronda de ejemplo
+Ana voltea un 3 y un 4: 3/4. Leo voltea un 2 y un 6: 2/6. Dibujan las dos. 3/4 cubre más del entero, así que Ana se lleva las cuatro cartas.
+
+## Salió bien si
+Su hijo o hija puso la carta mayor abajo, dijo el nombre de la fracción y pudo mostrar con un dibujo cuál era mayor.
 
 ## Qué está aprendiendo
 Una fracción nombra partes iguales de un entero. El número de abajo dice en cuántas partes se cortó el entero; el de arriba, cuántas partes tienes.

@@ -8,6 +8,9 @@ minutes: 20
 materials: a recipe from a box, a book or a family card; paper; pencils; a die
 es_materials: una receta de una caja, un libro o una tarjeta de la familia; papel; lápices; un dado
 
+## Before you start
+Pick a simple recipe, like pancakes. Write the ingredients and how many it serves at the top of a paper. Keep a measuring cup nearby to look at real amounts.
+
 ## How to play
 1. Pick a recipe with at least four ingredients. Write the ingredients and amounts on paper.
 2. Roll the die to set how many people are coming. The recipe as written serves its listed number; you must feed the rolled number times 2.
@@ -15,6 +18,12 @@ es_materials: una receta de una caja, un libro o una tarjeta de la familia; pape
 4. Compare answers. Where they differ, talk it through until everyone agrees.
 5. Score a point for every ingredient you got right.
 6. Bonus round: the store sells flour at 5 pounds for $4. What does the flour for your new recipe cost?
+
+## Sample round
+The recipe serves 4 and uses 2 cups of flour. Leo rolls a 3, so you must feed 6. That is one and a half times the recipe. 2 cups of flour becomes 3 cups.
+
+## It went well when
+Your child used the same multiplier for every ingredient and could explain how they found it.
 
 ## What your child is learning
 A ratio compares two amounts, like 2 cups of flour for every 1 egg. Scaling a recipe keeps every ratio the same, and unit rates like cost per pound make shopping math easy.
@@ -25,6 +34,9 @@ Only double or halve the recipe.
 ## Make it harder
 Scale to an awkward number, like 7 people from a recipe for 4, and round to amounts you can really measure.
 
+## Antes de empezar
+Escojan una receta sencilla, como hot cakes. Escriban los ingredientes y para cuántos rinde arriba de una hoja. Tengan una taza de medir cerca para ver las cantidades reales.
+
 ## Cómo jugar
 1. Escojan una receta con al menos cuatro ingredientes. Escriban los ingredientes y las cantidades en un papel.
 2. Tiren el dado para saber cuántas personas vienen. La receta sirve para el número que dice; ustedes deben alimentar al número del dado por 2.
@@ -32,6 +44,12 @@ Scale to an awkward number, like 7 people from a recipe for 4, and round to amou
 4. Comparen respuestas. Donde no coincidan, platíquenlo hasta que todos estén de acuerdo.
 5. Ganen un punto por cada ingrediente correcto.
 6. Ronda extra: la tienda vende harina a 5 libras por $4. ¿Cuánto cuesta la harina de su nueva receta?
+
+## Ronda de ejemplo
+La receta rinde para 4 y usa 2 tazas de harina. Leo saca un 3, así que hay que alimentar a 6. Es una vez y media la receta. Las 2 tazas de harina se vuelven 3.
+
+## Salió bien si
+Su hijo o hija usó el mismo multiplicador para cada ingrediente y pudo explicar cómo lo encontró.
 
 ## Qué está aprendiendo
 Una razón compara dos cantidades, como 2 tazas de harina por cada huevo. Ajustar una receta mantiene todas las razones iguales, y las tasas unitarias, como el precio por libra, facilitan las compras.

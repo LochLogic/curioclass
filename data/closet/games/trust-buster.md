@@ -8,6 +8,9 @@ minutes: 20
 materials: a die; 40 coins or paper squares as money; paper; a pencil
 es_materials: un dado; 40 monedas o cuadritos de papel como dinero; papel; un lápiz
 
+## Before you start
+Give each player 10 coins and keep the rest as the bank. Draw six towns on paper and write each owner's name by their town. Set a timer for 15 minutes.
+
 ## How to play
 1. Each player runs a railroad company and starts with 10 coins. Draw a market of six towns on paper.
 2. On your turn, roll. Odd: earn coins equal to the roll. Even: you may buy another player's town route for 4 coins if they agree, or force it if you have twice their coins.
@@ -15,6 +18,12 @@ es_materials: un dado; 40 monedas o cuadritos de papel como dinero; papel; un l�
 4. Play until one player controls most of the market, or 15 minutes pass.
 5. Then the grown-up plays the government and passes a trust-busting law: the monopoly splits into smaller companies.
 6. Talk about it: was the game fair before the law? Why did Progressive Era reformers want to break up trusts?
+
+## Sample round
+Ana rolls a 3, odd, and earns 3 coins. Leo rolls a 4, even, and offers 4 coins for Ana's river town. She agrees. Leo now owns two towns. One more makes a monopoly.
+
+## It went well when
+Your teen saw how one company could take over the market and could explain why reformers wanted to break up trusts.
 
 ## What your child is learning
 In the Gilded Age, a few companies grew into huge trusts that controlled whole industries. Progressive Era laws tried to restore competition and protect workers and customers.
@@ -25,6 +34,9 @@ Skip forced buying; trades must always be agreed.
 ## Make it harder
 Add a "workers strike" rule on a roll of 1. How do strikes change the game?
 
+## Antes de empezar
+Denle a cada jugador 10 monedas; el resto es el banco. Dibujen seis pueblos en papel y escriban el nombre del dueño junto a su pueblo. Pongan el reloj en 15 minutos.
+
 ## Cómo jugar
 1. Cada jugador dirige una compañía de trenes y empieza con 10 monedas. Dibujen en un papel un mercado de seis pueblos.
 2. En su turno, tiren el dado. Impar: ganan monedas igual al tiro. Par: pueden comprarle a otro jugador la ruta de un pueblo por 4 monedas si acepta, o a la fuerza si tienen el doble de monedas.
@@ -32,6 +44,12 @@ Add a "workers strike" rule on a roll of 1. How do strikes change the game?
 4. Jueguen hasta que un jugador controle la mayor parte del mercado o pasen 15 minutos.
 5. Luego el adulto hace de gobierno y aprueba una ley contra los monopolios: el monopolio se divide en compañías más pequeñas.
 6. Platiquen: ¿el juego era justo antes de la ley? ¿Por qué los reformistas de la Era Progresista querían romper los monopolios?
+
+## Ronda de ejemplo
+Ana saca un 3, impar, y gana 3 monedas. Leo saca un 4, par, y ofrece 4 monedas por el pueblo del río de Ana. Ella acepta. Ahora Leo tiene dos pueblos. Uno más y es un monopolio.
+
+## Salió bien si
+Su hijo o hija vio cómo una empresa podía quedarse con el mercado y pudo explicar por qué los reformistas querían romper los trusts.
 
 ## Qué está aprendiendo
 En la Edad Dorada, unas pocas compañías crecieron hasta formar grandes monopolios que controlaban industrias completas. Las leyes de la Era Progresista buscaron recuperar la competencia y proteger a trabajadores y clientes.

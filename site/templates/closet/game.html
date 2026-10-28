@@ -13,10 +13,16 @@
       <div class="need"><dt>{{ 'Necesitan' if es else 'You need' }}</dt><dd>{{ (g.es_materials_list if es else g.materials_list) | join(', ') }}</dd></div>
     </dl>
   </header>
+  <p class="gtips"><b>{{ 'Para el adulto:' if es else 'For the grown-up:' }}</b> {{ 'Lean toda la tarjeta una vez. Jueguen una ronda de práctica. No hace falta saber las respuestas antes: revísenlas juntos. Paren mientras todavía sea divertido.' if es else 'Read the whole card once. Play one practice round. You do not need to know the answers ahead of time: check them together. Stop while it is still fun.' }}</p>
+  <section class="gsetup"><h3>{{ 'Antes de empezar' if es else 'Before you start' }}</h3><p>{{ g[p ~ 'setup'] }}</p></section>
   <section class="gplay">
     <h3>{{ 'Cómo jugar' if es else 'How to play' }}</h3>
     <ol>{% for s in g[p ~ 'steps'] %}<li>{{ s }}</li>{% endfor %}</ol>
   </section>
+  <div class="gsample">
+    <section><h3>{{ 'Una ronda de ejemplo' if es else 'A sample round' }}</h3><p>{{ g[p ~ 'sample'] }}</p></section>
+    <section><h3>{{ 'Sabrán que salió bien si' if es else 'You will know it went well when' }}</h3><p>{{ g[p ~ 'well'] }}</p></section>
+  </div>
   <div class="gcols">
     <section><h3>{{ 'Lo que aprende su hijo o hija' if es else 'What your child is learning' }}</h3><p>{{ g[p ~ 'learn'] }}</p></section>
     <section><h3>{{ 'Más fácil' if es else 'Make it easier' }}</h3><p>{{ g[p ~ 'easier'] }}</p>

@@ -249,8 +249,9 @@ words in a module, no em dashes, the definition does not use the word itself).
 
 ## Phase D: Posters and Anchor Charts
 
-**Status (2026-10-27): LIVE.** 74 anchor charts (every module with a built tool and plan) and 48 posters (13 K-2,
-13 for 3-5, 12 for 6-8, 10 for 9-12), all in English and Spanish, finished and fill-in (drawn posters: finished only),
+**Status (2026-10-27): LIVE.** 74 anchor charts (every module with a built tool and plan) and 54 posters (13 K-2,
+13 for 3-5, 12 for 6-8, 16 for 9-12, including the US Constitution, checks and balances, how a bill becomes law,
+supply and demand, the cell cycle and Newton's laws), all in English and Spanish, finished and fill-in (drawn posters: finished only),
 color or ink saver, one page or tiled 2x2 / 3x3 (page counts checked in headless Chrome). Files:
 `data/closet/charts/`, `data/closet/posters/`; drawing in `scripts/charts.py`; shelf `/closet/anchor-charts/`.
 
@@ -317,7 +318,10 @@ subject-grade pairs means about 100 to 150 games. Electives later, only where a 
 ### The game card (one page; Spanish on the back once reviewed)
 
 - **Header:** title, grade, subject, players, minutes (15 to 20), what you need.
+- **Before you start:** setup in two or three short sentences.
 - **How to play:** numbered steps a parent can follow without knowing the subject.
+- **Sample round** (with Ana and Leo) and **It went well when:** what one round looks like and how to tell it worked.
+- **For the grown-up:** one shared tip line from the template (read once, practice round, check answers together).
 - **What your child is learning:** one or two sentences, plain words, no standard codes.
 - **Make it easier / Make it harder:** one line each.
 - **Loved it at school?** a link to the matching tool when one is built (shown on both the card and the tool page as
@@ -339,8 +343,8 @@ Header: `grade, subject, module_ids, players, minutes, materials, tool_id (optio
 10 games: one per core subject at K, 3 and 7, plus one wildcard. Cory (and a family or two) play-tests them. Then fill
 in by band.
 
-Checker: `scripts/check_games.py` (materials from the allowed list, minutes and players in range, section order,
-words cap, no em dashes, K-1 games have no reading step).
+Checker: `scripts/check_games.py` (materials from the allowed list, minutes and players in range, section order (14 sections, English then Spanish),
+words caps per section, no teacher jargon, no em dashes, K-1 games have no reading step).
 
 ---
 

@@ -8,6 +8,9 @@ minutes: 20
 materials: a tape measure or ruler; string; paper; a pencil; household objects with corners, like a table, a book and a door frame
 es_materials: una cinta métrica o regla; un cordón; papel; un lápiz; objetos de la casa con esquinas, como una mesa, un libro y el marco de una puerta
 
+## Before you start
+Find a tape measure or ruler and a pencil. List five corners in the house to test. Practice the 3-4-5 check once together on a book.
+
 ## How to play
 1. Builders check square corners with the 3-4-5 rule. Mark 3 units along one edge from a corner and 4 units along the other edge.
 2. If the corner is a true right angle, the straight distance between the two marks is exactly 5 units.
@@ -15,6 +18,12 @@ es_materials: una cinta métrica o regla; un cordón; papel; un lápiz; objetos 
 4. Test each one with the tape measure. Use inches, centimeters or any unit you like.
 5. Score a point for each correct prediction.
 6. Bonus: measure a rectangle's two sides, compute its diagonal with a² + b² = c², then measure it. How close were you?
+
+## Sample round
+Ana marks 3 inches along one edge of the table and 4 along the other. The distance between the marks is exactly 5 inches: a square corner. On a rug, it measures 5 and a half: not square.
+
+## It went well when
+Your child used 3-4-5 to test corners and could say why it works: 3² + 4² = 5².
 
 ## What your child is learning
 The Pythagorean theorem: in a right triangle, the two short sides squared add up to the longest side squared. Builders use it every day to make sure corners are square.
@@ -25,6 +34,9 @@ Use only the 3-4-5 check, with no calculating.
 ## Make it harder
 Find another set of whole numbers that works, like 5-12-13, and test a corner with it.
 
+## Antes de empezar
+Busquen una cinta de medir o una regla y un lápiz. Hagan una lista de cinco esquinas de la casa para probar. Practiquen juntos una vez la prueba 3-4-5 en un libro.
+
 ## Cómo jugar
 1. Los constructores revisan las esquinas con la regla 3-4-5. Marquen 3 unidades en un borde desde la esquina y 4 unidades en el otro borde.
 2. Si la esquina es un ángulo recto, la distancia en línea recta entre las dos marcas es exactamente 5 unidades.
@@ -32,6 +44,12 @@ Find another set of whole numbers that works, like 5-12-13, and test a corner wi
 4. Pruébenlas con la cinta métrica. Usen pulgadas, centímetros o la unidad que quieran.
 5. Ganen un punto por cada predicción correcta.
 6. Extra: midan los dos lados de un rectángulo, calculen su diagonal con a² + b² = c² y luego mídanla. ¿Qué tan cerca estuvieron?
+
+## Ronda de ejemplo
+Ana marca 3 pulgadas en un borde de la mesa y 4 en el otro. La distancia entre las marcas es justo 5 pulgadas: una esquina recta. En un tapete mide 5 y media: no es recta.
+
+## Salió bien si
+Su hijo o hija usó 3-4-5 para probar esquinas y pudo decir por qué funciona: 3² + 4² = 5².
 
 ## Qué está aprendiendo
 El teorema de Pitágoras: en un triángulo rectángulo, los cuadrados de los dos lados cortos suman el cuadrado del lado más largo. Los constructores lo usan a diario para asegurar que las esquinas sean rectas.

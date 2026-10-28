@@ -8,6 +8,9 @@ minutes: 20
 materials: paper cut into 12 cards; pencils; a coin
 es_materials: papel cortado en 12 tarjetas; lápices; una moneda
 
+## Before you start
+Cut paper into 12 cards and write the check cards. Give each branch a sign with its name. Think up two silly bills ahead of time in case Congress gets stuck.
+
 ## How to play
 1. Players take the branches: Congress, the President and the Court. With two players, the grown-up is the Court.
 2. Write check cards: veto, override (needs a coin flip of heads twice in a row, like a two-thirds vote), judicial review, appoint judges, confirm judges, impeach, and others you know.
@@ -15,6 +18,12 @@ es_materials: papel cortado en 12 tarjetas; lápices; una moneda
 4. The President may sign or veto. Congress may try an override. Then the Court decides whether the law is constitutional and explains why.
 5. Each time a branch uses a check correctly and names it, it scores a point.
 6. Play three bills. Talk about it: why did the framers make it hard for any one branch to act alone?
+
+## Sample round
+Congress passes "Every Friday is pajama day." The President vetoes it. Congress tries an override and flips heads twice: it passes. Then the Court decides if it is allowed under the Constitution and explains why.
+
+## It went well when
+Your teen used checks by name and could explain why the framers split power among three branches.
 
 ## What your child is learning
 The Constitution splits power among Congress, the President and the courts, and gives each ways to check the others. That balance makes change slower but guards against abuse of power.
@@ -25,6 +34,9 @@ Use only the veto, override and judicial review cards.
 ## Make it harder
 Add a real Supreme Court case and argue how the checks played out in it.
 
+## Antes de empezar
+Corten papel en 12 tarjetas y escriban las tarjetas de control. Denle a cada poder un letrero con su nombre. Piensen antes en dos leyes chistosas por si el Congreso se atora.
+
 ## Cómo jugar
 1. Los jugadores se reparten los poderes: el Congreso, el Presidente y la Corte. Si son dos, el adulto es la Corte.
 2. Escriban tarjetas de control: veto, anular el veto (requiere dos caras seguidas en la moneda, como un voto de dos tercios), revisión judicial, nombrar jueces, confirmar jueces, juicio político, y otras que conozcan.
@@ -32,6 +44,12 @@ Add a real Supreme Court case and argue how the checks played out in it.
 4. El Presidente puede firmarla o vetarla. El Congreso puede intentar anular el veto. Luego la Corte decide si la ley es constitucional y explica por qué.
 5. Cada vez que un poder use bien un control y lo nombre, gana un punto.
 6. Jueguen tres leyes. Platiquen: ¿por qué los fundadores hicieron difícil que un solo poder actuara solo?
+
+## Ronda de ejemplo
+El Congreso aprueba "Todos los viernes son día de pijama". El presidente la veta. El Congreso intenta anular el veto y saca cara dos veces: se aprueba. Luego la Corte decide si la Constitución lo permite y explica por qué.
+
+## Salió bien si
+Su hijo o hija usó los controles por su nombre y pudo explicar por qué los fundadores dividieron el poder en tres poderes.
 
 ## Qué está aprendiendo
 La Constitución divide el poder entre el Congreso, el Presidente y las cortes, y le da a cada uno formas de controlar a los otros. Ese equilibrio hace más lento el cambio pero protege contra el abuso de poder.

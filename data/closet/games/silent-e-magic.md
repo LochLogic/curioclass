@@ -8,6 +8,9 @@ minutes: 15
 materials: paper cut into small cards; a pencil; a timer
 es_materials: papel cortado en tarjetas pequeñas; un lápiz; un reloj o temporizador
 
+## Before you start
+Cut a sheet of paper into 11 small cards. Write the ten short words and the magic E card before you start. Say each short word together once.
+
 ## How to play
 1. Write short words on cards: cap, kit, hop, cub, tap, pin, not, man, rid, tub.
 2. Write one card with a big letter E. This is the magic E.
@@ -15,6 +18,12 @@ es_materials: papel cortado en tarjetas pequeñas; un lápiz; un reloj o tempori
 4. Put the magic E at the end and read the new word: cap becomes cape. The vowel now says its name.
 5. If you read both words right, keep the card. If the new word is not a real word, it goes back.
 6. When the cards are gone, the player with the most wins.
+
+## Sample round
+Leo draws "kit" and reads it. He adds the E: "kite." The i now says its name. Both words are right, so he keeps the card.
+
+## It went well when
+Your child read the short word, added the E and read the new word with the long vowel sound.
 
 ## What your child is learning
 A silent e at the end of a word usually makes the vowel before it say its name, like in "cape" and "kite." This pattern unlocks many new words.
@@ -25,6 +34,9 @@ Use only words with a, like cap, tap, man and can.
 ## Make it harder
 Race the timer: read ten pairs in one minute.
 
+## Antes de empezar
+Corten una hoja en 11 tarjetitas. Escriban las diez sílabas y la tarjeta de la sílaba mágica SA antes de empezar. Lean juntos cada sílaba una vez.
+
 ## Cómo jugar
 1. Escriban sílabas en tarjetas: ma, pa, sa, lo, me, ca, to, pe, la, so.
 2. Escriban en otra tarjeta una sílaba grande: SA. Es la sílaba mágica.
@@ -32,6 +44,12 @@ Race the timer: read ten pairs in one minute.
 4. Junten la sílaba mágica al final y lean la palabra nueva: ca y sa forman casa; me y sa forman mesa.
 5. Si forman una palabra real y la leen bien, se quedan la tarjeta. Si no es una palabra real, se regresa.
 6. Cuando se acaben las tarjetas, gana quien tenga más.
+
+## Ronda de ejemplo
+Leo saca "me" y la lee. Le junta la SA: "me-sa, mesa". Es una palabra real y la leyó bien, así que se queda la tarjeta.
+
+## Salió bien si
+Su hijo o hija leyó la sílaba, le juntó la SA y leyó completa la palabra nueva.
 
 ## Qué está aprendiendo
 A juntar sílabas para leer palabras de dos sílabas. En inglés practica la e muda; en español, unir sílabas abre muchas palabras nuevas.

@@ -8,6 +8,9 @@ minutes: 15
 materials: paper cut into 12 slips; a pencil; a timer
 es_materials: papel cortado en 12 tiras; un lápiz; un reloj o temporizador
 
+## Before you start
+Cut paper into 12 slips and write the function types. A phone search for each graph helps everyone picture the shapes first. Set the timer for 30 seconds.
+
 ## How to play
 1. Write function types on slips: linear, quadratic, cubic, absolute value, square root, exponential growth, exponential decay, logarithm, sine, 1/x, a step function, a constant.
 2. On your turn, draw a slip and act out the graph's shape with your arms or body for 30 seconds. No words.
@@ -15,6 +18,12 @@ es_materials: papel cortado en 12 tiras; un lápiz; un reloj o temporizador
 4. The guesser then names one feature: where it is increasing, its asymptote, its intercepts, or its end behavior.
 5. A correct feature earns a bonus point.
 6. Play until the slips run out.
+
+## Sample round
+Leo draws "exponential growth." He holds an arm nearly flat, then sweeps it up steeply. Ana guesses right. Her feature: "It is always increasing and gets close to zero on the left." Bonus point.
+
+## It went well when
+Your teen showed graph shapes with their body and named a true feature of each one.
 
 ## What your child is learning
 Each family of functions has a recognizable shape and features, like intercepts, asymptotes and where it rises or falls. Knowing the shapes makes graphs and equations easier to connect.
@@ -25,6 +34,9 @@ Use only linear, quadratic, absolute value and exponential.
 ## Make it harder
 Act out a transformed function, like a quadratic shifted up and flipped, and guess the equation.
 
+## Antes de empezar
+Corten papel en 12 tiras y escriban los tipos de función. Buscar cada gráfica en el teléfono ayuda a que todos imaginen las formas primero. Pongan el reloj en 30 segundos.
+
 ## Cómo jugar
 1. Escriban tipos de funciones en tiras: lineal, cuadrática, cúbica, valor absoluto, raíz cuadrada, crecimiento exponencial, decaimiento exponencial, logaritmo, seno, 1/x, función escalón, constante.
 2. En su turno, saquen una tira y actúen la forma de la gráfica con los brazos o el cuerpo durante 30 segundos. Sin palabras.
@@ -32,6 +44,12 @@ Act out a transformed function, like a quadratic shifted up and flipped, and gue
 4. Quien adivinó nombra una característica: dónde crece, su asíntota, sus intersecciones o su comportamiento en los extremos.
 5. Una característica correcta gana un punto extra.
 6. Jueguen hasta que se acaben las tiras.
+
+## Ronda de ejemplo
+Leo saca "crecimiento exponencial". Pone un brazo casi plano y luego lo sube con fuerza. Ana adivina. Su característica: "Siempre crece y se acerca a cero por la izquierda". Punto extra.
+
+## Salió bien si
+Su hijo o hija mostró las formas de las gráficas con el cuerpo y nombró una característica cierta de cada una.
 
 ## Qué está aprendiendo
 Cada familia de funciones tiene una forma y características reconocibles, como intersecciones, asíntotas y dónde sube o baja. Conocer las formas facilita conectar gráficas y ecuaciones.

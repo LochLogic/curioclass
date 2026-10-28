@@ -3,8 +3,9 @@ r"""Check Family Game Night (data/closet/games/<game-id>.md) against docs/SUPPLY
     python scripts/check_games.py            check every game, exit 1 on any problem
     python scripts/check_games.py rhyme-time check some games
 
-A game file is "key: value" header lines, a blank line, then eight "## " sections: the four English ones, then the
-four Spanish ones, in this order. modules lists module slugs for the game's grade and subject (math-3-area is
+A game file is "key: value" header lines, a blank line, then fourteen "## " sections: the seven English ones (Before
+you start, How to play, Sample round, It went well when, What your child is learning, Make it easier, Make it harder),
+then the seven Spanish ones, in this order. modules lists module slugs for the game's grade and subject (math-3-area is
 written "area"). materials and es_materials are ";"-separated. build_site.py uses load() for /closet/game-night/
 and runs problems() so a bad game stops a closet build.
 """
@@ -15,12 +16,19 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 GAMES = ROOT / 'data' / 'closet' / 'games'
 HEADER = ['title', 'es_title', 'grade', 'subject', 'modules', 'players', 'minutes', 'materials', 'es_materials']
-SECTIONS = ['How to play', 'What your child is learning', 'Make it easier', 'Make it harder',
-            'Cómo jugar', 'Qué está aprendiendo', 'Más fácil', 'Más difícil']
+SECTIONS = ['Before you start', 'How to play', 'Sample round', 'It went well when', 'What your child is learning',
+            'Make it easier', 'Make it harder',
+            'Antes de empezar', 'Cómo jugar', 'Ronda de ejemplo', 'Salió bien si', 'Qué está aprendiendo',
+            'Más fácil', 'Más difícil']
+KEYS = ['setup', 'steps', 'sample', 'well', 'learn', 'easier', 'harder']  # one per section, English then Spanish
 CORE = ['math', 'ela', 'science', 'social-studies']
 PER_PAIR = (2, 3)
 STEPS = (3, 8)
 STEP_CAP, LEARN_CAP, TWEAK_CAP = 35, 45, 30  # words; Spanish gets 40% more
+CAPS = {'setup': 35, 'sample': 40, 'well': 30, 'learn': LEARN_CAP, 'easier': TWEAK_CAP, 'harder': TWEAK_CAP}
+# The card is for any grown-up at home, so no teacher talk (Cory, 2026-10-27: "not always led by educated individuals").
+JARGON = re.compile(r'\b(scaffold\w*|formative|summative|standards?-aligned|differentiat\w*|pedagog\w*|learning objectives?|'
+                    r'assessment|rubric|manipulatives?)\b', re.I)
 # Materials: paper, pencils, crayons, a deck of cards, dice, coins, a timer and ordinary household objects (the plan's
 # list). Each item must name one of these; anything else is a problem until it is added here on purpose.
 ALLOWED = re.compile(r'\b(paper|pencils?|pens?|crayons?|markers?|cards?|dice|die|coins?|pennies|timer|clock|phone|'
@@ -51,8 +59,8 @@ def load(names=None):
         g['sections'] = [(m.group(1).strip(), m.group(2).strip())
                          for m in re.finditer(r'^## ([^\n]+)\n(.*?)(?=^## |\Z)', body, re.M | re.S)]
         sec = dict(g['sections'])
-        for i, (key, name) in enumerate(zip(['steps', 'learn', 'easier', 'harder'] * 2, SECTIONS)):
-            k = key if i < 4 else 'es_' + key
+        for i, (key, name) in enumerate(zip(KEYS * 2, SECTIONS)):
+            k = key if i < len(KEYS) else 'es_' + key
             v = sec.get(name, '')
             g[k] = [re.sub(r'^\d+\.\s*', '', s).strip() for s in v.splitlines() if s.strip()] if key == 'steps' else ' '.join(v.split())
         g['module_slugs'] = [s.strip() for s in g.get('modules', '').split(',') if s.strip()]
@@ -100,7 +108,7 @@ def problems(g, modules):
         for i, s in enumerate(steps, 1):
             if words(s) > STEP_CAP * mult:
                 out.append(f'{where}: {lang} step {i} is {words(s)} words, the cap is {int(STEP_CAP * mult)}')
-        for k, cap in (('learn', LEARN_CAP), ('easier', TWEAK_CAP), ('harder', TWEAK_CAP)):
+        for k, cap in CAPS.items():
             if not g[pre + k]:
                 out.append(f'{where}: {lang} {k} is empty')
             elif words(g[pre + k]) > cap * mult:

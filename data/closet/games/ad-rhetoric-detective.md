@@ -8,6 +8,9 @@ minutes: 20
 materials: magazines, flyers, ads from mail, or a phone with video ads; paper; pencils
 es_materials: revistas, folletos, publicidad del correo o un teléfono con anuncios en video; papel; lápices
 
+## Before you start
+Collect five ads from mail, magazines or a phone. Each player draws three columns on paper. Read the three appeals out loud: trust the speaker, feelings, facts.
+
 ## How to play
 1. Collect five ads. Make three columns on paper: ethos (trust the speaker), pathos (feelings), logos (facts and logic).
 2. Look at one ad together for one minute.
@@ -15,6 +18,12 @@ es_materials: revistas, folletos, publicidad del correo o un teléfono con anunc
 4. Reveal at the same time. Matching answers score a point each; a convincing argument for a different answer scores two.
 5. Also name the ad's audience and purpose: who is it for, and what does it want them to do?
 6. Final round: each player sketches an ad for a boring object, like a sponge, using all three appeals.
+
+## Sample round
+A shoe ad shows a famous runner. Ana writes "ethos: a star wears them." Leo writes "pathos: the music makes you feel pumped." Leo makes a good case, so he scores two.
+
+## It went well when
+Your teen named the appeal an ad leans on, pointed to proof in the ad, and said who the ad is for.
 
 ## What your child is learning
 Writers and advertisers persuade through credibility, emotion and logic. Naming the appeal and the audience helps readers see how a text is trying to move them.
@@ -25,6 +34,9 @@ Look only for pathos: how does the ad try to make you feel?
 ## Make it harder
 Find a weakness in one ad's logic, like a missing comparison or a vague claim.
 
+## Antes de empezar
+Junten cinco anuncios del correo, de revistas o de un teléfono. Cada jugador dibuja tres columnas en un papel. Lean en voz alta los tres recursos: confiar en quien habla, sentimientos, datos.
+
 ## Cómo jugar
 1. Junten cinco anuncios. Hagan tres columnas en un papel: ethos (confiar en quien habla), pathos (sentimientos), logos (datos y lógica).
 2. Miren un anuncio juntos durante un minuto.
@@ -32,6 +44,12 @@ Find a weakness in one ad's logic, like a missing comparison or a vague claim.
 4. Revelen al mismo tiempo. Las respuestas iguales ganan un punto cada una; un argumento convincente para otra respuesta gana dos.
 5. También digan el público y el propósito del anuncio: ¿para quién es y qué quiere que hagan?
 6. Ronda final: cada jugador dibuja un anuncio para un objeto aburrido, como una esponja, usando los tres recursos.
+
+## Ronda de ejemplo
+Un anuncio de tenis muestra a un corredor famoso. Ana escribe "ethos: una estrella los usa". Leo escribe "pathos: la música te emociona". Leo lo defiende bien, así que gana dos.
+
+## Salió bien si
+Su hijo o hija nombró el recurso en que se apoya un anuncio, señaló la prueba en el anuncio y dijo para quién es.
 
 ## Qué está aprendiendo
 Quienes escriben y anuncian persuaden con credibilidad, emoción y lógica. Nombrar el recurso y el público ayuda a ver cómo un texto intenta convencer.

@@ -8,6 +8,9 @@ minutes: 15
 materials: paper cut into 12 cards; pencils; a timer
 es_materials: papel cortado en 12 tarjetas; lápices; un reloj o temporizador
 
+## Before you start
+Cut paper into 12 cards and write one root and its meaning on each. Give each player a paper and pencil. A dictionary or phone nearby helps settle arguments.
+
 ## How to play
 1. Write one root and its meaning on each card: tele (far), graph (write), port (carry), spect (look), aqua (water), bio (life), photo (light), micro (small), scope (see), struct (build), rupt (break), dict (say).
 2. Shuffle the cards face down.
@@ -15,6 +18,12 @@ es_materials: papel cortado en 12 tarjetas; lápices; un reloj o temporizador
 4. Read lists aloud and explain how the root's meaning fits each word.
 5. Score one point per word. Cross out words that are not real.
 6. After six cards, the highest score wins.
+
+## Sample round
+The card is "spect (look)." Ana writes inspect, spectator and spectacles. She explains, "A spectator looks at a game." She scores 3 points.
+
+## It went well when
+Your child found real words with the root and could explain how the root's meaning fits each one.
 
 ## What your child is learning
 Many English words are built from Greek and Latin roots. Knowing a root's meaning helps children figure out new words, like "telescope" (see far).
@@ -25,6 +34,9 @@ Flip a card and name just one word together.
 ## Make it harder
 Invent a new word from two roots and define it, like "aquascope."
 
+## Antes de empezar
+Corten papel en 12 tarjetas y escriban una raíz y su significado en cada una. Denle a cada jugador una hoja y un lápiz. Un diccionario o un teléfono cerca ayuda a resolver dudas.
+
 ## Cómo jugar
 1. Escriban en cada tarjeta una raíz y su significado: tele (lejos), grafía (escribir), port (llevar), spect (mirar), acua (agua), bio (vida), foto (luz), micro (pequeño), scopio (ver), struct (construir), rupt (romper), dict (decir).
 2. Revuelvan las tarjetas boca abajo.
@@ -32,6 +44,12 @@ Invent a new word from two roots and define it, like "aquascope."
 4. Lean las listas en voz alta y expliquen cómo el significado de la raíz encaja en cada palabra.
 5. Ganen un punto por palabra. Tachen las palabras que no existen.
 6. Después de seis tarjetas, gana el puntaje más alto.
+
+## Ronda de ejemplo
+La tarjeta es "spect (mirar)". Ana escribe espectador, inspección y espectáculo. Explica: "Un espectador mira un partido". Gana 3 puntos.
+
+## Salió bien si
+Su hijo o hija encontró palabras reales con la raíz y pudo explicar cómo el significado de la raíz encaja en cada una.
 
 ## Qué está aprendiendo
 Muchas palabras en inglés y en español vienen de raíces griegas y latinas. Saber lo que significa una raíz ayuda a entender palabras nuevas, como "telescopio" (ver lejos).

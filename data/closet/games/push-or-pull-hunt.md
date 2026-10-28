@@ -8,6 +8,9 @@ minutes: 15
 materials: paper; crayons; things around the house like doors, drawers and toy cars
 es_materials: papel; crayones; cosas de la casa como puertas, cajones y carritos de juguete
 
+## Before you start
+Draw the push hand and the pull hand on the paper before you start. Pick a room with a door, a drawer and a few toys.
+
 ## How to play
 1. The grown-up draws a big line down a paper and draws a hand pushing on one side and a hand pulling on the other.
 2. Walk around the house together. Take turns picking something to move: a door, a drawer, a chair, a toy.
@@ -15,6 +18,12 @@ es_materials: papel; crayones; cosas de la casa como puertas, cajones y carritos
 4. Draw the thing on the push side or the pull side of the paper.
 5. Find something you can both push and pull, like a door. Draw it on the line.
 6. Count the drawings. Which side has more?
+
+## Sample round
+Ana points to a drawer. She guesses "pull." She pulls it open: right! She draws the drawer on the pull side. Then she pushes it shut and you both laugh: it is both.
+
+## It went well when
+Your child guessed push or pull before trying, and could show you with their arms which way a thing moved.
 
 ## What your child is learning
 A push or a pull makes things start moving, stop or change direction. Pushing moves things away from you; pulling brings them toward you.
@@ -25,6 +34,9 @@ The grown-up names one thing at a time and the child shows push or pull with the
 ## Make it harder
 Try a small push and a big push on a toy car. Which goes farther?
 
+## Antes de empezar
+Dibujen la mano que empuja y la mano que jala en la hoja antes de empezar. Escojan un cuarto con una puerta, un cajón y unos juguetes.
+
 ## Cómo jugar
 1. El adulto dibuja una línea en medio de un papel; de un lado dibuja una mano que empuja y del otro una que jala.
 2. Recorran la casa juntos. Por turnos, escojan algo que mover: una puerta, un cajón, una silla, un juguete.
@@ -32,6 +44,12 @@ Try a small push and a big push on a toy car. Which goes farther?
 4. Dibujen la cosa del lado de empujar o del lado de jalar.
 5. Busquen algo que se pueda empujar y jalar, como una puerta. Dibújenlo sobre la línea.
 6. Cuenten los dibujos. ¿Qué lado tiene más?
+
+## Ronda de ejemplo
+Ana señala un cajón. Adivina "jalar". Lo jala y se abre: ¡acertó! Dibuja el cajón del lado de jalar. Luego lo empuja para cerrarlo y se ríen: es las dos cosas.
+
+## Salió bien si
+Su hijo o hija adivinó empujar o jalar antes de probar y pudo mostrar con los brazos hacia dónde se movió cada cosa.
 
 ## Qué está aprendiendo
 Empujar o jalar hace que las cosas empiecen a moverse, se detengan o cambien de dirección. Empujar aleja las cosas; jalar las acerca.

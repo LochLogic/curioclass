@@ -8,6 +8,9 @@ minutes: 20
 materials: paper; crayons; a timer
 es_materials: papel; crayones; un reloj o temporizador
 
+## Before you start
+Cut or tear paper into small sheets, about ten per player. Put crayons in the middle. Draw one sample card so everyone knows what a finished card looks like.
+
 ## How to play
 1. Your product is a simple paper card with a house drawn on it: fold the paper, draw a square, a roof, a door and a sun.
 2. Round 1: each player makes whole cards alone for three minutes. Count the finished cards.
@@ -15,6 +18,12 @@ es_materials: papel; crayones; un reloj o temporizador
 4. Count the finished cards again. Check the quality: is every card complete?
 5. Compare the rounds. Which made more? Which was more fun? Which cards looked best?
 6. Talk about why businesses give workers special jobs.
+
+## Sample round
+In round 1, Ana and Leo each make 2 cards alone: 4 in all. In round 2, Ana folds and draws the square, and Leo adds the roof, door and sun. They make 6.
+
+## It went well when
+Your child compared the two rounds and could say why splitting jobs made more cards, or why it did not.
 
 ## What your child is learning
 Specialization means each worker does one part of a job. It often makes more goods faster, which is why businesses divide up work.
@@ -25,6 +34,9 @@ Play with two jobs: one folds and draws the house, one adds the sun.
 ## Make it harder
 Pretend each card sells for 5 cents. Figure out how much each round earned.
 
+## Antes de empezar
+Corten o rompan papel en hojitas, unas diez por jugador. Pongan los crayones en medio. Dibujen una tarjeta de muestra para que todos sepan cómo se ve terminada.
+
 ## Cómo jugar
 1. Su producto es una tarjeta de papel con una casa dibujada: doblen el papel, dibujen un cuadrado, un techo, una puerta y un sol.
 2. Ronda 1: cada jugador hace tarjetas completas solo durante tres minutos. Cuenten las tarjetas terminadas.
@@ -32,6 +44,12 @@ Pretend each card sells for 5 cents. Figure out how much each round earned.
 4. Cuenten otra vez las tarjetas terminadas. Revisen la calidad: ¿todas están completas?
 5. Comparen las rondas. ¿Cuál produjo más? ¿Cuál fue más divertida? ¿Qué tarjetas quedaron mejor?
 6. Platiquen por qué las empresas les dan trabajos especiales a sus trabajadores.
+
+## Ronda de ejemplo
+En la ronda 1, Ana y Leo hacen 2 tarjetas cada uno solos: 4 en total. En la ronda 2, Ana dobla y dibuja el cuadrado, y Leo pone el techo, la puerta y el sol. Hacen 6.
+
+## Salió bien si
+Su hijo o hija comparó las dos rondas y pudo decir por qué dividir el trabajo hizo más tarjetas, o por qué no.
 
 ## Qué está aprendiendo
 La especialización es cuando cada trabajador hace una parte del trabajo. Muchas veces produce más y más rápido, por eso las empresas dividen el trabajo.

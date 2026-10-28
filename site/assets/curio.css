@@ -555,19 +555,27 @@ section.block { padding: 56px 0 8px; }
 @media (min-width: 700px) { .gcols { grid-template-columns: 1fr 1fr; } }
 .gcols p { margin: 0; color: var(--ink); line-height: 1.45; }
 .gschool { margin: 16px 0 0; padding-top: 10px; border-top: 1px dashed var(--line); }
+.gtips { margin: 12px 0 0; font-size: 15px; line-height: 1.45; color: var(--muted); }
+.gtips b { color: var(--ink); }
+.gsetup p { margin: 0; line-height: 1.45; }
+.gsample { display: grid; gap: 4px 28px; margin-top: 12px; padding: 4px 16px 12px; background: var(--paper-2); border-radius: 12px; }
+@media (min-width: 700px) { .gsample { grid-template-columns: 1fr 1fr; } }
+.gsample p { margin: 0; line-height: 1.45; }
 @media (max-width: 600px) { .gfacts { grid-template-columns: 1fr 1fr; } .gfacts .need { grid-column: 1 / -1; } }
 @media print {
   .game-page { max-width: none; padding: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   .gcard { border: 0; border-top: 0.16in solid var(--band); border-radius: 0; padding: 0.15in 0 0; margin: 0; max-width: none; font-size: 12pt; }
   .gcard + .gcard { break-before: page; }
-  .gcard h2 { font-size: 30pt; }
-  .gcard h3 { font-size: 16pt; margin: 16pt 0 5pt; }
-  .gplay li { font-size: 14pt; margin: 6pt 0; line-height: 1.4; }
-  .gcols { grid-template-columns: 1fr 1fr; }
-  .gcols p { font-size: 13pt; line-height: 1.4; }
+  .gcard h2 { font-size: 26pt; margin: 2pt 0 8pt; }
+  .gcard h3 { font-size: 13pt; margin: 9pt 0 3pt; }
+  .gplay li { font-size: 12pt; margin: 3pt 0; line-height: 1.3; }
+  .gcols, .gsample { grid-template-columns: 1fr 1fr; }
+  .gcols p, .gsample p, .gsetup p { font-size: 11pt; line-height: 1.3; }
+  .gtips { font-size: 10pt; margin-top: 6pt; color: #333; }
+  .gsample { border: 1px solid #999; padding: 0 10pt 8pt; margin-top: 8pt; }
   .gfacts { border: 1px solid #999; }
   .gschool { font-size: 12pt; }
-  .gcard .print-foot { margin-top: 14pt; }
+  .gcard .print-foot { margin-top: 10pt; }
 }
 
 /* Sub Day packet (/tools/<id>/sub/): five parts, each its own printed page */
