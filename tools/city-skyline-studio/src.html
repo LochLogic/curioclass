@@ -1,0 +1,1691 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>City Skyline Studio · Two-point perspective · Curio Class</title>
+<meta name="description" content="Build a city block and move a real camera: eye height sets the horizon, your turn sets the two vanishing points, the lens sets how far apart they are, and tilt makes three-point perspective. Then ink your own drawing over guides that obey the same rules. Grades 9-12 visual arts. Works offline.">
+<!--
+City Skyline Studio (Curio Class)
+Grades 9-12 visual arts, module "Two-Point Perspective and Composition". NCAS VA:Cr2 (organize and develop artistic
+ideas and work: the student sets up a construction with a real camera and composes a block) and VA:Cr3 (refine and
+complete: the Ink stage, where the student draws, hatches, fills, revises with Undo and saves a finished picture).
+Students drive, on their own laptops. Build: a city block at dusk from a camera you move (eye height, turn, lens,
+horizon on page, tilt), buildings you add and drag, overlays for guides, a plan view, windows and the sun. Ink: the same
+camera frozen, the render faded to 20%, a pen that snaps to the vanishing points. Find the Camera: six outlines drawn
+from hidden cameras; match each one.
+Camera model (spec "Content"): f = lens / 36 x W px (a 36 mm wide sensor), field of view 2 atan(18 / lens); the
+projection is kit/perspective.js (Persp). Sources: Joseph D'Amelio, Perspective Drawing Handbook (Dover, 2004);
+"Perspective (graphical)", Wikipedia; Richard Szeliski, Computer Vision: Algorithms and Applications, 2nd ed. (2022),
+section 2.1; "Angle of view (photography)", Wikipedia; NCAS Visual Arts. Settings, not facts: 3.5 m per floor; the
+eye stands back 0.6 m for each meter it rises and Auto keeps the block low on the page (see handoff.md); the lot
+sizes, the street grid and the example city.
+The city, sky, guides and plan are drawn in code. One file, no network requests. The drawing and the city are kept
+in this browser only (localStorage "city-skyline-studio"). Content CC BY 4.0, code MIT. curioclass.org
+-->
+<link rel="stylesheet" href="kit:curio">
+<link rel="stylesheet" href="kit:theme-912">
+<style>
+/* palette: blueprint cyan accent on the 9-12 theme. Contrast (WCAG 2.1, computed 2026-10-28): --brand #6fd6e8 on
+   --panel #141b25 10.3:1, on --sec-bg #18202b 9.7:1; --brand-ink #06262c on --brand 9.4:1; scene label ink #f3f6fa on
+   the top of the sky #1b2440 13.0:1; VP labels white on their #11161f chip 17:1. */
+:root{--brand:#6fd6e8;--brand-ink:#06262c;--vp:#ff6b5a;--halo:#0b1017}
+/* page layouts, picked in script (relayout()), as in collision-lab:
+   wide    (1000 px or wider and 700 px or taller): stage on the left, 360 px panel on the right (under 900 px tall the
+           rows tighten: .short);
+   compact (a short landscape box such as the 16:10 embed, 680x425 to 1000x625): a 300 px panel with Camera first, a
+           one-row header, the hint on the stage (#hintDock) so it is never cut off;
+   stack   (narrow or portrait): the stage on top, the panel under it with Camera first, the page scrolls.
+   The stage canvas is drawn at its real pixel size in every layout. */
+main{grid-template-columns:minmax(0,1fr) 360px;min-height:0}
+.stage{min-height:0;background:#0d1219;touch-action:none}
+#cv{position:absolute;left:0;top:0;display:block;touch-action:none;outline:none}
+#cv:focus-visible{outline:none}
+.stage.kfocus::after{content:'';position:absolute;inset:2px;border:3px solid #0b1017;box-shadow:inset 0 0 0 3px var(--focus);border-radius:6px;pointer-events:none}
+/* the ring is dark outside and light inside, so one of the two is at least 3:1 on the dark city and on the cream Ink paper */
+body.compact main{grid-template-columns:minmax(0,1fr) 300px}
+body.compact header{padding:4px 10px;gap:6px;flex-wrap:nowrap}
+body.compact header h1,body.stack.narrow header h1{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+body.compact header .seg{margin-right:auto}
+body.compact .seg button,body.compact .icon-btn{min-height:44px;min-width:46px;padding:0 9px;font-size:14px;white-space:nowrap}
+body.compact .panel{padding:8px 10px;gap:8px}
+body.compact .sec{padding:6px 9px}
+body.compact .sec.p-cam>h2{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+body.compact dl.readouts{font-size:13px}
+body.stack{height:auto}
+body.stack main{grid-template-columns:minmax(0,1fr)}
+body.stack .panel{border-left:0;border-top:1px solid var(--line);overflow:visible}
+@media (max-width:560px){
+  .seg{display:grid;grid-template-columns:1fr 1fr 1.6fr;border-radius:14px;width:100%}
+  .seg button{min-height:44px;font-size:15px;padding:0 8px}
+  .icon-btn{min-height:44px;padding:0 12px;font-size:15px}
+}
+/* the hint: in the panel, or (compact) on the stage */
+#hintDock{position:absolute;left:0;right:0;top:0;padding:6px 10px;background:rgba(11,16,23,.86);border-bottom:1px solid var(--line);
+  font-size:13px;line-height:1.35;z-index:3;pointer-events:none}
+#hintDock:empty{display:none}
+#hintDock .hint{font-size:13px;line-height:1.35}
+/* panel */
+.sec>h2{display:flex;justify-content:space-between;align-items:center}
+.row{display:grid;grid-template-columns:7.6em minmax(0,1fr);align-items:center;gap:0 8px;min-height:44px}
+.row>label,.row>.lab{font-size:14px;color:var(--muted);line-height:1.15}
+.row output,.row .val{display:block;color:var(--ink);font:600 14px var(--readout-font)}
+.row .note{display:block;font-size:12px;color:var(--muted);margin-top:1px}
+.rng{position:relative}
+.rng .tick{position:absolute;left:calc(12px + (100% - 24px) * .5);bottom:1px;transform:translateX(-50%);font:12px var(--readout-font);color:var(--muted);pointer-events:none}
+.rng .tick::before{content:'';display:block;width:2px;height:5px;background:var(--muted);margin:0 auto 0}
+.grp{display:flex;flex-wrap:wrap;gap:4px}
+.grp4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px}
+.grp4 .btn,.grp5 .btn{padding:0 2px;font-size:14px}
+.grp5{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:3px}
+.grp3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px}
+.grp3>.btn{padding:0 4px;font-size:14px;line-height:1.1;white-space:normal}
+.stops{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px}
+.stops .btn{display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.1;font-size:13px;font-weight:600;min-height:44px;padding:2px 1px}
+.stops .btn span{font:600 12px var(--readout-font);color:var(--muted)}
+.stops .btn[aria-pressed="true"] span{color:var(--brand-ink)}
+.pal .btn{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;font-size:12px;line-height:1.05;padding:3px 1px}
+.pal svg{width:22px;height:20px}
+.btnrow{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.btn[aria-disabled="true"]{opacity:.4;cursor:not-allowed}
+input:disabled{opacity:.35;cursor:not-allowed}
+.horc{display:flex;align-items:center;gap:6px}
+.horc input{flex:1;min-width:0}
+.horc .btn{min-width:56px;padding:0 6px;font-size:13px}
+/* the hint keeps four lines of room in the panel, so the controls under it never jump */
+.panel>#hint{min-height:calc(4 * 1.45em)}
+dl.readouts .rnote{display:block;font-size:12px;color:var(--muted);font-family:'Segoe UI',system-ui,sans-serif;font-weight:400}
+#note{width:100%;box-sizing:border-box;min-height:66px;border-radius:8px;border:1px solid var(--btn-line);background:#0b1017;color:var(--ink);font:15px 'Segoe UI',system-ui,sans-serif;padding:6px 8px;margin-top:4px}
+#reflect label{font-size:14px;color:var(--ink)}
+.bad{color:#ffb4a8}
+select.sel{min-height:44px;width:100%;border-radius:8px;border:1px solid var(--btn-line);background:#0b1017;color:var(--ink);font-size:14px;padding:0 6px}
+.small{font-size:13px;color:var(--muted);margin:6px 0 0;line-height:1.35}
+.msg{margin:6px 0 0;font-size:15px;line-height:1.4}
+.msg:empty{display:none}
+.camline{display:flex;flex-wrap:wrap;align-items:center;gap:4px 10px;font:600 14px var(--readout-font)}
+.camline .btn{font-family:'Segoe UI',system-ui,sans-serif;margin-left:auto}
+.sw{display:inline-block;width:14px;height:14px;border-radius:3px;border:1px solid #0008;vertical-align:-2px;margin-right:4px}
+.trow{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.tline{font:700 15px 'Segoe UI',system-ui,sans-serif;flex:1;text-align:center}
+.tline .tsub{display:block;font:400 12px 'Segoe UI',system-ui,sans-serif;color:var(--muted)}
+.meter{display:flex;align-items:center;gap:8px;margin-top:8px}
+.meter .bar{flex:1;height:12px;border-radius:6px;background:var(--line);overflow:hidden;position:relative}
+.meter .bar i{position:absolute;left:0;top:0;bottom:0;background:var(--brand);width:0}
+.meter .bar b{position:absolute;top:-2px;bottom:-2px;left:95%;width:2px;background:var(--ink)}
+.meter span{font:700 14px var(--readout-font);min-width:6.5em;text-align:right}
+#checkCam{width:100%;margin-top:8px}
+.meter.stale{opacity:.5}
+.parts{list-style:none;margin:6px 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:2px 12px;font-size:13px}
+.parts li{display:flex;justify-content:space-between}
+.parts li.ok b{color:var(--brand)}
+.parts li.off b{color:#ffb4a8}
+#sunRow{display:flex;align-items:center;gap:10px;margin-top:8px}
+#sundial{width:64px;height:64px;border-radius:50%;flex:none;touch-action:none;cursor:grab}
+#sundial:focus-visible{outline:4px solid var(--focus);outline-offset:2px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+/* compact: tighter rows and Camera first */
+body.compact .row,body.short .row{grid-template-columns:6.4em minmax(0,1fr)}
+body.compact .row>label,body.compact .row>.lab{font-size:13px}
+body.compact .row output,body.compact .row .val{font-size:13px}
+body.compact .stops .btn{font-size:12px}
+body.compact .stops .btn span{font-size:12px}
+body.compact .grp4 .btn{font-size:13px}
+/* stage overlays */
+.chip{position:absolute;z-index:4;background:rgba(11,16,23,.9);border:1px solid var(--line);border-radius:10px;padding:6px 10px;
+  font:600 14px var(--readout-font);display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+#fchip{left:10px;top:10px}
+/* smaller stages: target and match stack beside the button, so the chip stays one button tall */
+body:not(.wide) #fchip{display:grid;grid-template-columns:auto auto;column-gap:10px;row-gap:0;padding:4px 8px;font-size:13px}
+body:not(.wide) #fchip>span{grid-column:1}
+body:not(.wide) #fchip>.btn{grid-column:2;grid-row:1 / span 2}
+#ask{left:50%;bottom:12px;transform:translateX(-50%);width:min(440px,calc(100% - 20px));font:600 15px 'Segoe UI',system-ui,sans-serif;flex-direction:column;text-align:center;gap:8px}
+#ask p{margin:0}
+#ask .two{display:flex;gap:8px;justify-content:center}
+</style>
+</head>
+<body>
+<header>
+  <h1>City Skyline Studio <small>Two-point perspective</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-build" aria-pressed="true">Build</button>
+    <button id="m-ink" aria-pressed="false">Ink</button>
+    <button id="m-find" aria-pressed="false">Find the Camera</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true" title="Turn animation on or off">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+  <button class="icon-btn" id="read">🔊 Read</button>
+</header>
+<main>
+  <div class="stage" id="stage">
+    <canvas id="cv" tabindex="0" role="application" aria-roledescription="city view" aria-label="City view"></canvas>
+    <div id="hintDock"></div>
+    <div class="chip" id="fchip" hidden><span id="fchipT">Target 1 of 6</span><span id="fchipM">Not checked</span>
+      <button class="btn" id="checkCam2">Check camera</button><button class="btn" id="nextT2" hidden>Next target ▶</button></div>
+    <div class="chip" id="ask" role="group" aria-label="Your ink" hidden><p>Your Ink drawing (shown faintly) was made for the old camera. Keep it, or clear it?</p>
+      <div class="two"><button class="btn" id="keepInk">Keep it</button><button class="btn" id="clearInk2">Clear it</button></div></div>
+    <p class="sr" id="live" aria-live="polite"></p>
+  </div>
+  <aside class="panel" id="panel">
+    <p class="hint" id="hint"></p>
+    <section class="sec p-cam" id="camSec" data-modes="build find" aria-label="Camera">
+      <h2>Camera</h2>
+      <div class="row"><label for="eye">Eye height <output id="eyeV">1.6 m</output></label>
+        <input type="range" id="eye" min="0" max="1000" step="1" value="0"></div>
+      <div class="stops" role="group" aria-label="Eye height stops"></div>
+      <div class="row"><label for="turn">Turn <output id="turnV">30°</output></label>
+        <div class="rng"><input type="range" id="turn" min="0" max="90" step="1" value="30"><span class="tick" aria-hidden="true">45</span></div></div>
+      <div class="row"><span class="lab" id="lensLab">Lens <span class="val" id="lensV">24 mm</span></span>
+        <div class="grp4" role="group" aria-labelledby="lensLab" id="lenses"></div></div>
+      <div class="row"><label for="hor">Horizon on page <output id="horV">80%</output></label>
+        <div class="horc"><input type="range" id="hor" min="-600" max="80" step="1" value="80"><button class="btn" id="horAuto" aria-pressed="true" title="Keep the block on the page as the eye moves">Auto</button></div></div>
+      <div class="row"><label for="tilt">Tilt <output id="tiltV">0°</output><span class="note">Tilt makes it three-point</span></label>
+        <input type="range" id="tilt" min="-25" max="25" step="1" value="0"></div>
+    </section>
+    <section class="sec p-find" data-modes="find" aria-label="Find the Camera">
+      <h2>Find the Camera</h2>
+      <div class="trow">
+        <button class="btn" id="prevT" aria-label="Previous target">◀</button>
+        <span class="tline" id="tgtLine">Target 1 of 6</span>
+        <button class="btn" id="nextT">Next target ▶</button>
+      </div>
+      <button class="big-btn" id="checkCam">Check camera</button>
+      <div class="meter" id="fmeter"><div class="bar" aria-hidden="true"><i id="mbar"></i><b></b></div>
+        <span id="mpct" role="meter" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="Match at the last check">Not checked</span></div>
+      <ul class="parts" id="parts" aria-label="Each setting at the last check" hidden></ul>
+      <p class="small" id="staleNote" hidden>You changed the camera since this check. Press Check camera again.</p>
+      <p class="msg ok" id="findMsg" aria-live="polite"></p>
+      <div class="btnrow"><button class="btn" id="extend" aria-pressed="false" hidden>Extend outline edges</button></div>
+      <p class="small">Your place in Find is saved in this browser on this device only.</p>
+    </section>
+    <section class="sec p-ov" data-modes="build find" aria-label="Overlays">
+      <h2>Overlays</h2>
+      <div class="grp4" role="group" aria-label="Overlays" id="ovs"></div>
+      <div id="sunRow" hidden>
+        <div id="sundial" role="slider" tabindex="0" aria-label="Sun direction" aria-valuemin="0" aria-valuemax="359"></div>
+        <p class="small" style="margin:0">Drag the sun around the dial, or use the arrow keys. Faces toward it are light, faces away are dark.</p>
+      </div>
+    </section>
+    <section class="sec p-camline" data-modes="ink" aria-label="Camera">
+      <div class="camline"><span id="camLine"></span><button class="btn" id="editCam">Edit camera</button></div>
+    </section>
+    <section class="sec p-ink" data-modes="ink" aria-label="Ink">
+      <h2>Ink</h2>
+      <div class="grp4" role="group" aria-label="Pen" id="pens"></div>
+      <div class="row" id="hatchRow"><label for="hatchSp">Hatch spacing <output id="hatchV">8 px</output></label>
+        <input type="range" id="hatchSp" min="4" max="24" step="1" value="8" aria-valuetext="8 pixels"></div>
+      <div class="grp4" role="group" aria-label="Fill value" id="fills"></div>
+      <div class="btnrow">
+        <button class="btn" id="snap" aria-pressed="true">Snap</button>
+        <button class="btn" id="undo">↶ Undo</button><button class="btn" id="redo">↷ Redo</button>
+      </div>
+      <div class="btnrow">
+        <button class="btn" id="showRender" aria-pressed="true">Show render</button>
+        <button class="btn" id="hideGuides" aria-pressed="false">Hide guides</button>
+      </div>
+      <div class="btnrow">
+        <button class="btn" id="savePic">⬇ Save picture</button><button class="btn" id="clearInk">Clear drawing</button>
+      </div>
+      <div class="btnrow"><button class="btn" id="check" aria-pressed="false">Check my drawing</button></div>
+      <p class="msg" id="checkMsg" aria-live="polite"></p>
+      <div id="reflect" hidden>
+        <label for="note">What did you change to make your lines hit their vanishing points?</label>
+        <textarea id="note" rows="3"></textarea>
+        <div class="btnrow"><button class="btn" id="checkDone">Done</button></div>
+      </div>
+      <p class="small" id="inkStatus"></p>
+      <p class="small">Your drawing and your city are saved in this browser on this device only. Nothing is sent anywhere.</p>
+    </section>
+    <section class="sec p-ro" aria-label="Readouts">
+      <h2>Readouts</h2>
+      <dl class="readouts" id="ro"></dl>
+    </section>
+    <section class="sec p-bld" data-modes="build" aria-label="Buildings">
+      <h2>Buildings</h2>
+      <div class="grp5 pal" role="group" aria-label="Add a building" id="pal"></div>
+      <div class="row" style="margin-top:6px"><label for="bsel">Selected</label><select class="sel" id="bsel"></select></div>
+      <div class="row"><label for="floors">Floors <output id="floorsV">40</output></label>
+        <input type="range" id="floors" min="1" max="80" step="1" value="40"></div>
+      <div class="row"><label for="bw">Width <output id="bwV">20 m</output></label>
+        <input type="range" id="bw" min="10" max="80" step="5" value="20"></div>
+      <div class="row"><label for="bd">Depth <output id="bdV">20 m</output></label>
+        <input type="range" id="bd" min="10" max="80" step="5" value="20"></div>
+      <div class="grp3" style="margin-top:6px">
+        <button class="btn" id="bremove">Remove</button>
+        <button class="btn" id="example">Example city</button>
+        <button class="btn" id="clearCity">Clear city</button>
+      </div>
+      <p class="small">Drag a building on the view or on the Plan to move it. Arrow keys move the selected one when the view has focus.</p>
+      <p class="small">Your city is saved in this browser on this device only. Nothing is sent anywhere.</p>
+    </section>
+    <p class="tip" id="tip"></p>
+  </aside>
+</main>
+<script src="kit:curio"></script>
+<script src="kit:perspective"></script>
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const clamp = (x, a, b) => Math.max(a, Math.min(b, x));
+  const DEG = Math.PI / 180;
+
+  // ======================================================================================
+  // CONTENT (spec "Content")
+  // ======================================================================================
+  const FLOOR = 3.5;                                   // m per floor: this tool's setting for a typical office floor
+  const STOPS = [[1.6, 'Sidewalk'], [10, '3rd floor'], [60, 'Rooftop'], [150, 'Drone'], [400, 'Helicopter']];
+  const LENSES = [24, 35, 50, 85];
+  const EMIN = 1.6, EMAX = 400, HMIN = -600;   // Horizon on page runs from 600% above the page to 80% down it
+  // The eye stands back a little as it rises (a drone pulls up and back): 120 m in front of the eye on the sidewalk,
+  // plus 0.6 m for every meter of height, so a high eye really looks down (21 degrees at Rooftop, 36 at Drone, 48 at
+  // Helicopter) and the block stays big. A setting, not a fact (handoff.md, "Eye distance").
+  const standoff = e => 120 + .6 * (e - 1.6);
+  // the street grid drawn on the ground: blocks out to 18 lots each way (about 800 m); the streets are the gaps
+  const GRID = 18;
+  // lots: 7 by 5 of 30 m with 15 m streets, centered on the block center (city frame: X along VP R, Z along VP L)
+  const LOT = 30, PITCH = 45, NX = 7, NZ = 5;
+  const LOTS = [];
+  for (let j = 0; j < NZ; j++) for (let i = 0; i < NX; i++) LOTS.push({X: (i - 3) * PITCH, Z: (j - 2) * PITCH});
+  const TYPES = {
+    tower: {n: 'Tower', w: 20, d: 20, fl: 40},
+    block: {n: 'Block', w: 40, d: 30, fl: 8},
+    slab: {n: 'Slab', w: 60, d: 15, fl: 20},
+    stepped: {n: 'Stepped', w: 30, d: 30, fl: 30},
+    water: {n: 'Water tower', w: 8, d: 8, fl: 6},
+  };
+  const ICON = {
+    tower: '<path d="M8 2h6v16H8z" fill="none" stroke="currentColor" stroke-width="1.8"/>',
+    block: '<path d="M2 9h18v9H2z" fill="none" stroke="currentColor" stroke-width="1.8"/>',
+    slab: '<path d="M4 4h14v14H4zM4 4l3-2h14l-3 2" fill="none" stroke="currentColor" stroke-width="1.6"/>',
+    stepped: '<path d="M3 18V11h4V6h3V2h2v4h3v5h4v7z" fill="none" stroke="currentColor" stroke-width="1.6"/>',
+    water: '<path d="M6 3h10v7H6zM7 10l-2 8M15 10l2 8M8 14h6" fill="none" stroke="currentColor" stroke-width="1.6"/><ellipse cx="11" cy="3" rx="5" ry="1.5" fill="none" stroke="currentColor" stroke-width="1.4"/>',
+  };
+  // Example city: nine buildings on the central lots, 6 to 52 floors, all five types
+  const EXAMPLE = [
+    ['slab', -45, 45, 30, 15, 34], ['tower', 0, 45, 20, 20, 52], ['stepped', 45, 45, 30, 30, 40],
+    ['tower', -45, 0, 20, 20, 28], ['block', 0, 0, 30, 30, 12], ['slab', 45, 0, 15, 30, 22],
+    ['block', -45, -45, 30, 25, 8], ['water', 0, -45, 8, 8, 6], ['block', 45, -45, 30, 30, 6],
+  ];
+  // Find the Camera targets (eye height m, turn degrees, lens mm, tilt degrees), each with the Example city. The eye
+  // heights sit between the stops, so they are read from the picture, not picked from five buttons.
+  const TARGETS = [[40, 30, 24, 0], [3, 45, 35, 0], [100, 20, 24, 0], [20, 55, 35, 0], [300, 40, 35, 0], [2.5, 15, 24, 15]];
+  // The match is the mean of one score per setting, each rising straight toward the answer (no false peaks):
+  // eye 1 - |ln(e / e*)| / ln 10 (a tenfold miss scores 0), turn 1 - |difference| / 40 degrees, lens by steps (right 1,
+  // one step off .5, two .2, three 0), tilt 1 - |difference| / 30 degrees (counted when either camera tilts).
+  // Matched: every setting at .95 or better (eye within about 12%, turn within 2 degrees, the right lens, tilt within
+  // 1.5 degrees).
+  const MATCH = .95, LENSPTS = [1, .5, .2, 0];
+  function scores(c, t) {
+    const [e, turn, lens, tilt] = t, out = {};
+    out.eye = clamp(1 - Math.abs(Math.log(c.eye / e)) / Math.log(10), 0, 1);
+    out.turn = clamp(1 - Math.abs(c.turn - turn) / 40, 0, 1);
+    out.lens = LENSPTS[Math.abs(LENSES.indexOf(c.lens) - LENSES.indexOf(lens))] ?? 0;
+    if (tilt || c.tilt) out.tilt = clamp(1 - Math.abs(c.tilt - tilt) / 30, 0, 1);
+    return out;
+  }
+  const FACTS = {
+    eye: 'The horizon is always at your eye height.',
+    cross: 'Every building is crossed by the horizon at the same real height: your eye height.',
+    tops: 'Buildings shorter than your eye show their roofs; taller ones hide theirs.',
+    bottoms: 'Tiers above your eye show their undersides: above the horizon you see bottoms.',
+    turn: 'From the eye, the two vanishing points are 90 degrees apart.',
+    lens: 'A wider lens puts the vanishing points closer together and stretches the edges.',
+    one: 'Nearly one-point perspective: see Vanishing Point Studio.',
+  };
+
+  // ======================================================================================
+  // VOICE (casual-peer) and hints. Read speaks the hint (as recorded lines), and lines never write the hint.
+  // How-to lines: spoken once, then only shown. Events (every time): offPage (first time per session only, by design),
+  // matched and the target's settings.
+  // ======================================================================================
+  const spokenE = e => (e < 10 ? String(e) : String(Math.round(e))) + ' meters';
+  const L = {
+    welcomeBuild: 'Drag the eye height slider and watch the horizon stay with your eyes.',
+    turnHow: 'Now try Turn. The red dots are your two vanishing points. An arrow at the edge points to one off the page.',
+    guidesNext: 'Turn on Guides under Overlays to see where every edge runs.',
+    guidesHow: "Every edge runs to one of the two dots. That's two-point perspective.",
+    guidesHow3: "Every edge runs to one of the three dots. The up-and-down edges meet at the third. That's three-point perspective.",
+    buildNext: 'Drag a building to move it, or add one from Buildings. Then press Ink to draw over your city.',
+    composeGoal: 'Now compose. Make the tallest tower feel huge: a low eye, a wide lens, the horizon low. Then press Ink.',
+    addFirst: 'Your city is empty. Tap Tower, Block, Slab, Stepped or Water tower under Buildings to add one.',
+    winSmall: 'Windows show on faces big enough to hold them. Try a longer lens or a lower eye.',
+    offPage: 'One vanishing point just went off the page. The lines still aim at it.',
+    tiltHow: "Tilting makes the up-and-down edges meet too. That's a third vanishing point.",
+    inkAsk: 'Your ink was drawn for the old camera. Press Keep it, or Clear it.',
+    welcomeInk: 'Drag to draw. Your lines snap to the vanishing points.',
+    inkLine: 'Drag on the drawing to make a line. It snaps to a vanishing point, an upright or a level line. Hold Shift for a free line.',
+    inkLineFree: 'Drag on the drawing to make a line. Snap is off, so aim each line at its vanishing point yourself.',
+    inkHatch: "Drag over a face of a building to hatch it. The lines aim at that face's vanishing point.",
+    inkFill: 'Pick Light, Mid, Dark or Dusk, then tap a face to fill it.',
+    inkErase: 'Drag across a line, a hatch or a fill to erase it.',
+    inkMore: 'Keep drawing, or try Hatch and Fill. Then press Check my drawing to test lines drawn by eye.',
+    checkHow: 'Snap is off now. Draw building edges by eye. Any line that misses its vanishing point turns red.',
+    checkFix: 'Fix the red lines. Erase one, then draw it again toward its vanishing point.',
+    checkReflect: 'Every line hits its point now. Write what you changed, then press Done.',
+    welcomeFind: 'Set the eye height, turn and lens to match the outline, then press Check camera.',
+    findCheck: 'When you think your camera matches, press Check camera. It tells you which setting to read next.',
+    findTilt: 'This outline looks up, so use Tilt too.',
+    findNext: 'Press Next target for a new outline.',
+    findLast: 'That was the last one. Press Start over to go back to target 1, level again.',
+    findEye: "Read the eye height: the outline's horizon crosses every building at the camera's eye height, and more roof means a higher eye. Press Extend outline edges.",
+    findTurn: "Read the turn: press Extend outline edges, then turn until your red dots sit under the outline's amber ones.",
+    findLens: "Read the lens: the farther apart the outline's vanishing points, the longer the lens. Close together means a wide lens.",
+    findTiltRead: "Read the tilt: the outline's up-and-down edges lean together. Tilt until yours lean the same.",
+    offCity: 'Your city is off the page. Move Horizon on page, or pick a wider lens.',
+    matched: 'Matched.',
+    matchedSet: TARGETS.map(([e, t, mm, p]) => `The hidden camera: eye height ${spokenE(e)}, turn ${t} degrees, ${mm} millimeter lens${p ? `, tilted up ${p} degrees` : ''}.`),
+  };
+  const shownSet = TARGETS.map(([e, t, mm, p]) => `The hidden camera: eye height ${e} m, turn ${t} degrees, ${mm} mm${p ? `, tilt ${p} degrees` : ''}.`);
+
+  // ======================================================================================
+  // STATE (saved in this browser: localStorage "city-skyline-studio")
+  // ======================================================================================
+  const KEY = 'city-skyline-studio';
+  const S = {
+    mode: 'build',
+    cam: {eye: 1.6, turn: 30, lens: 24, hor: 80, tilt: 0, auto: true},
+    findCam: {eye: 1.6, turn: 0, lens: 50, hor: 80, tilt: 0, auto: true, find: true},
+    city: [], sel: null, nextId: 1,
+    ov: {guides: false, plan: false, windows: true, sun: false}, sunA: 135,
+    ink: {strokes: [], cam: null, keep: false, note: ''},
+    pen: 'line', snap: true, hatchSp: 8, fill: 'mid', showRender: true, hideGuides: false,
+    check: false, checkHadRed: false, snapBefore: true,
+    target: 0, match: 0, parts: {}, matchedNow: false, armed: true, touched: false, found: [], tries: 0, extend: false,
+    eyeMoved: false, turnMoved: false, guidesSeen: false, moved: false, lastFact: 'eye',
+  };
+  const DEFAULTS = JSON.stringify({cam: S.cam, findCam: S.findCam, ov: S.ov, sunA: S.sunA, ink: S.ink, pen: S.pen, snap: S.snap, hatchSp: S.hatchSp,
+    fill: S.fill, showRender: S.showRender, hideGuides: S.hideGuides, target: 0, eyeMoved: false, turnMoved: false, guidesSeen: false,
+    moved: false, check: false, checkHadRed: false, snapBefore: true, found: [], tries: 0, extend: false});
+  const make = (k, X, Z, w, d, fl) => ({id: S.nextId++, k, X, Z, w, d, fl});
+  function loadExample() { S.nextId = 1; S.city = EXAMPLE.map(a => make(...a)); S.sel = null; }
+  try {
+    const s = JSON.parse(localStorage.getItem(KEY) || 'null');
+    if (s && Array.isArray(s.city)) {
+      for (const k of ['cam', 'findCam', 'ov']) if (s[k]) Object.assign(S[k], s[k]);
+      S.city = s.city.filter(b => TYPES[b.k]).map(b => ({...b}));
+      S.nextId = Math.max(1, ...S.city.map(b => b.id + 1));
+      S.sel = S.city.some(b => b.id === s.sel) ? s.sel : (S.city[0] || {}).id || null;
+      if (s.ink && Array.isArray(s.ink.strokes)) S.ink = {strokes: s.ink.strokes, cam: s.ink.cam || null, keep: !!s.ink.keep, note: String(s.ink.note || '')};
+      if (Array.isArray(s.found)) S.found = s.found.filter(i => Number.isInteger(i) && i >= 0 && i < TARGETS.length);
+      if (Number.isInteger(s.target)) S.target = clamp(s.target, 0, TARGETS.length - 1);
+      for (const c of [S.cam, S.findCam]) { if (typeof c.auto !== 'boolean') c.auto = true; c.hor = clamp(+c.hor || 80, HMIN, 80); }
+      S.findCam.find = true;
+      if (typeof s.sunA === 'number') S.sunA = s.sunA;
+      for (const k of ['pen', 'snap', 'hatchSp', 'fill', 'showRender', 'hideGuides']) if (k in s) S[k] = s[k];
+    } else loadExample();
+  } catch { loadExample(); }
+  let saveT = 0;
+  function save() {
+    clearTimeout(saveT);
+    saveT = setTimeout(() => {
+      try {
+        localStorage.setItem(KEY, JSON.stringify({city: S.city, sel: S.sel, cam: S.cam, findCam: S.findCam, ov: S.ov, sunA: S.sunA,
+          ink: S.ink, pen: S.pen, snap: S.check ? S.snapBefore : S.snap, hatchSp: S.hatchSp, fill: S.fill, showRender: S.showRender,
+          hideGuides: S.hideGuides, found: S.found, target: S.target}));
+      } catch {}
+    }, 250);
+  }
+  const camOf = () => S.mode === 'find' ? S.findCam : S.cam;
+  // what is drawn eases toward the settings with Motion on; with Motion off it jumps (nothing else changes)
+  const view = {...S.cam};
+
+  // ======================================================================================
+  // GEOMETRY: the city in the camera's level frame
+  // ======================================================================================
+  const toLevel = (X, Z, c) => { const t = c.turn * DEG, D = standoff(c.eye); return [X * Math.cos(t) - Z * Math.sin(t), X * Math.sin(t) + Z * Math.cos(t) + D]; };
+  const toCity = (x, z, c) => { const t = c.turn * DEG, D = standoff(c.eye); return [x * Math.cos(t) + (z - D) * Math.sin(t), -x * Math.sin(t) + (z - D) * Math.cos(t)]; };
+  // Horizon on page (percent of the page height from the top; below 0 is above the page). Auto puts the near corner of
+  // the central block 90% down the page, so as the eye rises the horizon climbs off the top and the camera looks down
+  // on the city (at most 80%: the sidewalk view keeps a strip of street).
+  function autoHor(c, W, H) {
+    const f = c.lens / 36 * W;
+    let m = 0;
+    for (const [i, j] of [[-1, -1], [1, -1], [1, 1], [-1, 1]]) {
+      const z = toLevel(i * 60, j * 60, c)[1];
+      if (z < 1) return 80;
+      m = Math.max(m, f * c.eye / z);
+    }
+    return clamp(Math.round((.9 * H - m) / H * 100), HMIN, 80);
+  }
+  // Find: every target outline shows whole at every stage size. The picture is shrunk by one uniform scale per target
+  // (the same as a shorter focal length for both cameras, so every angle, VP direction and match stays the same; the
+  // lens setting is still compared in mm), then Auto centers the outline in the room under the target chip. The
+  // student's camera uses the same scale, so a match overlays exactly.
+  const fitCache = new Map();
+  // the room under the target chip (its Check camera button makes it taller)
+  const findRoom = (H) => { const fc = $('fchip'); const top = fc.hidden ? band() + 50 : fc.offsetTop + fc.offsetHeight + 8; return {top, bot: H - 10}; };
+  function outlineBox(c, W, lensMm) {
+    const cam = Persp.camera({W, H: 100, lensMm, eye: c.eye, horizonRow: 0, pitch: c.tilt});
+    let lo = Infinity, hi = -Infinity, du = 0;
+    for (const f of cityFaces(cam, c, cityFor('find'))) for (const p of f.pts) { lo = Math.min(lo, p.v); hi = Math.max(hi, p.v); du = Math.max(du, Math.abs(p.u - W / 2)); }
+    return {lo, hi, du};
+  }
+  function findScale(W, H) {   // 0 < s <= 1: the scale that fits the current target's outline in the room
+    const key = ['s', S.target, W, H, findRoom(H).top].join();
+    if (fitCache.has(key)) return fitCache.get(key);
+    const t = tcam(S.target), b = outlineBox(t, W, t.lens), R = findRoom(H);
+    const sc = Math.min(1, (R.bot - R.top) * .96 / Math.max(1, b.hi - b.lo), W * .47 / Math.max(1, b.du));
+    fitCache.set(key, sc);
+    return sc;
+  }
+  const findLens = (c, W, H) => c.lens * findScale(W, H);
+  function fitHor(c, W, H) {
+    const sc = findScale(W, H), key = [c.eye, c.turn, c.lens, c.tilt, W, H, sc, findRoom(H).top].join();
+    if (fitCache.has(key)) return fitCache.get(key);
+    const b = outlineBox(c, W, c.lens * sc), R = findRoom(H);
+    const hz = (R.top + R.bot) / 2 - (b.lo + b.hi) / 2;   // the outline's middle at the room's middle
+    const r = clamp(Math.round(hz / H * 1000) / 10, HMIN, 400);
+    if (fitCache.size > 400) fitCache.clear();
+    fitCache.set(key, r);
+    return r;
+  }
+  const horOf = (c, w = W, h = H) => !c.auto ? c.hor : c.find ? fitHor(c, w, h) : autoHor(c, w, h);
+  // the horizon stays on its row when the camera tilts (horizonRow): Tilt adds VP 3 and moves the picture's center.
+  // In Find the lens is shrunk by the target's fit scale (see findScale)
+  function cameraFor(c, W, H) { return Persp.camera({W, H, lensMm: c.find ? findLens(c, W, H) : c.lens, eye: c.eye, horizonRow: H * horOf(c, W, H) / 100, pitch: c.tilt}); }
+  // the boxes a building is made of (level frame), each tagged with its building id
+  function boxes(b, c) {
+    const [x, z] = toLevel(b.X, b.Z, c), h = b.fl * FLOOR, base = {x, z, turn: c.turn, id: b.id};
+    if (b.k === 'stepped') {
+      const h1 = h * .5, h2 = h * .3, h3 = h - h1 - h2;
+      return [{...base, w: b.w, d: b.d, h: h1, fl: Math.max(1, Math.round(b.fl * .5))},
+        {...base, w: b.w * .72, d: b.d * .72, h: h2, y0: h1, fl: Math.max(1, Math.round(b.fl * .3))},
+        {...base, w: b.w * .44, d: b.d * .44, h: h3, y0: h1 + h2, fl: Math.max(1, b.fl - Math.round(b.fl * .5) - Math.round(b.fl * .3))}];
+    }
+    if (b.k === 'water') {   // a cylinder on legs, drawn as a box frame (legs and a tank) with an ellipse top
+      const tank = Math.min(8, h * .45), legH = h - tank, t = c.turn * DEG, a = [Math.cos(t), Math.sin(t)], cc = [-Math.sin(t), Math.cos(t)];
+      const out = [];
+      for (const [i, j] of [[-1, -1], [1, -1], [1, 1], [-1, 1]]) {
+        const lx = x + a[0] * (b.w / 2 - .5) * i + cc[0] * (b.d / 2 - .5) * j, lz = z + a[1] * (b.w / 2 - .5) * i + cc[1] * (b.d / 2 - .5) * j;
+        out.push({...base, x: lx, z: lz, w: .8, d: .8, h: legH, leg: true});
+      }
+      out.push({...base, w: b.w, d: b.d, h: tank, y0: legH, tank: true, round: true});
+      return out;
+    }
+    return [{...base, w: b.w, d: b.d, h, fl: b.fl}];
+  }
+  // every visible face of the city, far to near
+  function cityFaces(cam, c, city) {
+    const all = [];
+    for (const b of city) for (const bx of boxes(b, c)) for (const f of Persp.box(cam, bx)) { f.bx = bx; all.push(f); }
+    return Persp.order(all);
+  }
+
+  // ======================================================================================
+  // DRAWING (canvas at real pixels)
+  // ======================================================================================
+  const cv = $('cv');
+  let ctx = cv.getContext('2d');
+  let W = 800, H = 500, dpr = 1, last = null;   // last: what the latest frame drew (faces, cam, vps) for hit tests
+  const VAL = {light: '#9fb3c8', mid: '#6b7f96', dark: '#3c4a5c'};
+  const WARM = '#f0a36b';
+  const mix = (a, b, k) => { const p = s => [1, 3, 5].map(i => parseInt(s.slice(i, i + 2), 16)); const x = p(a), y = p(b); return `rgb(${x.map((v, i) => Math.round(v + (y[i] - v) * k)).join(',')})`; };
+  const FILLC = {light: VAL.light, mid: VAL.mid, dark: VAL.dark, dusk: WARM};
+  const faceColor = (f, c) => {
+    const v = Persp.shade(f.normal, S.sunA + c.turn);
+    if (!S.ov.sun) return VAL[v];
+    return v === 'light' ? mix(VAL.light, WARM, .26) : v === 'mid' ? mix(VAL.mid, WARM, .1) : mix(VAL.dark, '#1b2440', .3);
+  };
+  const hash = (a, b, c2) => { let h = (a * 374761393 + b * 668265263 + c2 * 2147483647) | 0; h = (h ^ (h >>> 13)) * 1274126177 | 0; return ((h ^ (h >>> 16)) >>> 0) / 4294967296; };
+  const path = (pts) => { ctx.beginPath(); pts.forEach((p, i) => i ? ctx.lineTo(p.u, p.v) : ctx.moveTo(p.u, p.v)); ctx.closePath(); };
+  const seg = (a, b) => { ctx.moveTo(a.u, a.v); ctx.lineTo(b.u, b.v); };
+  const FONT = (px, w = 600) => `${w} ${px}px 'Segoe UI',system-ui,sans-serif`;
+  // the ground: lot outlines, and street edges running far off toward the vanishing points
+  function groundLines(cam, c) {
+    const out = [], far = 6000, lv = (X, Z) => { const [x, z] = toLevel(X, Z, c); return [x, 0, z]; };
+    const xs = [], zs = [];
+    for (let i = 0; i < NX; i++) xs.push((i - 3) * PITCH - LOT / 2, (i - 3) * PITCH + LOT / 2);
+    for (let j = 0; j < NZ; j++) zs.push((j - 2) * PITCH - LOT / 2, (j - 2) * PITCH + LOT / 2);
+    for (const X of xs) { const s = Persp.line(cam, lv(X, -far), lv(X, far)); if (s) out.push(s); }
+    for (const Z of zs) { const s = Persp.line(cam, lv(-far, Z), lv(far, Z)); if (s) out.push(s); }
+    return out.map(s => Persp.clipRect(s, -2 * W, -2 * H, 3 * W, 3 * H)).filter(Boolean);
+  }
+  function drawWorld(cam, c, city, faces, o = {}) {
+    const hz = cam.horizon;
+    // sky: #1b2440 at the top to #f0a36b at the horizon; the ground below it
+    const top = Math.min(0, hz - 1), g = ctx.createLinearGradient(0, top, 0, Math.max(hz, top + 1));
+    g.addColorStop(0, '#1b2440'); g.addColorStop(.62, '#4b3f5e'); g.addColorStop(1, '#f0a36b');
+    ctx.fillStyle = g; ctx.fillRect(0, 0, W, clamp(hz, 0, H));
+    if (hz < H) { ctx.fillStyle = '#1a1f2b'; ctx.fillRect(0, clamp(hz, 0, H), W, H - clamp(hz, 0, H)); }
+    // the street grid: city blocks (lighter) out to GRID lots each way, the streets are the dark gaps between them; the
+    // lots you can build on are a little lighter still
+    const blockPath = (from, to, skipInner) => {
+      ctx.beginPath();
+      for (let j = -to; j <= to; j++) for (let i = -to; i <= to; i++) {
+        const inner = Math.abs(i) <= 3 && Math.abs(j) <= 2;
+        if (inner === skipInner) continue;
+        const X = i * PITCH, Z = j * PITCH;
+        const q = [[-1, -1], [1, -1], [1, 1], [-1, 1]].map(([a, b]) => { const [x, z] = toLevel(X + a * LOT / 2, Z + b * LOT / 2, c); return [x, 0, z]; });
+        const p = Persp.poly(cam, q);
+        if (p.length > 2 && p.some(t => t.u > -W && t.u < 2 * W && t.v > -H && t.v < 2 * H)) { p.forEach((t, k) => k ? ctx.lineTo(t.u, t.v) : ctx.moveTo(t.u, t.v)); ctx.closePath(); }
+      }
+    };
+    blockPath(0, GRID, true); ctx.fillStyle = '#272e3c'; ctx.fill();
+    blockPath(0, 3, false); ctx.fillStyle = '#2f3747'; ctx.fill();
+    ctx.strokeStyle = 'rgba(255,255,255,.1)'; ctx.lineWidth = 1; ctx.beginPath();
+    for (const s of groundLines(cam, c)) seg(s[0], s[1]);
+    ctx.stroke();
+    // buildings, far to near
+    ctx.lineJoin = 'round';
+    for (const f of faces) {
+      ctx.fillStyle = faceColor(f, c); path(f.pts); ctx.fill();
+      ctx.strokeStyle = 'rgba(8,11,18,.6)'; ctx.lineWidth = 1; ctx.stroke();
+      if (f.bx.round && f.kind === 'top') drawEllipseTop(cam, f);
+      if (o.windows && f.kind === 'wall' && !f.bx.leg && !f.bx.round && drawWindows(f)) o.winN = (o.winN || 0) + 1;
+    }
+  }
+  function drawEllipseTop(cam, f) {
+    const b = f.bx, y = (b.y0 || 0) + b.h, r = Math.min(b.w, b.d) / 2 - .3, pts = [];
+    for (let k = 0; k < 28; k++) { const a = k / 28 * 2 * Math.PI; const p = Persp.project(cam, [b.x + Math.cos(a) * r, y, b.z + Math.sin(a) * r]); if (!p) return; pts.push(p); }
+    ctx.fillStyle = 'rgba(255,255,255,.12)'; path(pts); ctx.fill();
+    ctx.strokeStyle = 'rgba(8,11,18,.7)'; ctx.stroke();
+  }
+  function drawWindows(f) {
+    const xs = f.pts.map(p => p.u), wpx = Math.max(...xs) - Math.min(...xs);
+    if (wpx < 40) return false;                         // off when a face is under 40 px wide
+    const rows = Math.max(1, f.bx.fl || Math.round(f.heightM / FLOOR)), cols = Math.max(1, Math.round(f.widthM / 5));
+    const dv = f.divide || Persp.divide(f, rows, cols);
+    const ys = f.pts.map(p => p.v), cellH = (Math.max(...ys) - Math.min(...ys)) / rows;
+    if (cellH < 3.2) {                                  // too small for panes: the floor lines only
+      ctx.strokeStyle = 'rgba(255,214,140,.22)'; ctx.lineWidth = 1; ctx.beginPath();
+      for (const s of dv.rows) seg(s[0], s[1]);
+      ctx.stroke(); return true;
+    }
+    const sideN = {'-L': 1, '+R': 2, '+L': 3, '-R': 4}[f.side] || 0, lit = [], dark = [];
+    for (let i = 0; i < rows; i++) for (let j = 0; j < cols; j++) {
+      const q = dv.cell(i, j, .24, .28); if (!q) continue;
+      (hash(f.id * 7 + sideN, i, j) < .36 ? lit : dark).push(q);
+    }
+    ctx.fillStyle = 'rgba(12,16,26,.5)'; ctx.beginPath(); for (const q of dark) { ctx.moveTo(q[0].u, q[0].v); for (let k = 1; k < 4; k++) ctx.lineTo(q[k].u, q[k].v); ctx.closePath(); } ctx.fill();
+    ctx.fillStyle = 'rgba(255,214,140,.85)'; ctx.beginPath(); for (const q of lit) { ctx.moveTo(q[0].u, q[0].v); for (let k = 1; k < 4; k++) ctx.lineTo(q[k].u, q[k].v); ctx.closePath(); } ctx.fill();
+    return true;
+  }
+  // a label on a dark chip (scene text never under 11 px)
+  function chipText(text, x, y, o = {}) {
+    ctx.font = FONT(o.size || 12, o.weight || 700);
+    const w = ctx.measureText(text).width + 12, h = (o.size || 12) + 9;
+    let x0 = o.align === 'right' ? x - w : o.align === 'center' ? x - w / 2 : x;
+    x0 = clamp(x0, 2, W - w - 2); const y0 = clamp(y, 2, H - h - 2);
+    ctx.fillStyle = o.bg || 'rgba(17,22,31,.92)'; ctx.beginPath(); ctx.roundRect(x0, y0, w, h, 5); ctx.fill();
+    if (o.line) { ctx.strokeStyle = o.line; ctx.lineWidth = 1; ctx.stroke(); }
+    ctx.fillStyle = o.ink || '#f3f6fa'; ctx.textBaseline = 'middle'; ctx.fillText(text, x0 + 6, y0 + h / 2 + .5);
+    return {x: x0, y: y0, w, h};
+  }
+  // guides: from every visible corner to each of its vanishing points (cyan at 60%, dashed, as in vanishing-point-studio)
+  function drawGuides(cam, faces, v, color) {
+    const cs = Persp.corners(faces).filter(p => p.u > -W && p.u < 2 * W && p.v > -H && p.v < 2 * H);
+    ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = 1; ctx.setLineDash([5, 5]); ctx.beginPath();
+    for (const p of cs) for (const t of [v.L, v.R, v.V3]) {
+      if (!t) continue;
+      if (t.inf) { const k = 3 * (W + H); ctx.moveTo(p.u, p.v); ctx.lineTo(p.u + Math.cos(t.angle) * k, p.v + Math.sin(t.angle) * k); ctx.moveTo(p.u, p.v); ctx.lineTo(p.u - Math.cos(t.angle) * k, p.v - Math.sin(t.angle) * k); }
+      else { const s = Persp.clipRect([p, t], -10, -10, W + 10, H + 10); if (s) seg(s[0], s[1]); }
+    }
+    ctx.stroke(); ctx.restore();
+  }
+  // the horizon line and its label, and the vanishing points (an arrow at the edge when one is off the page)
+  function drawHorizon(cam, c, ink) {
+    const y = cam.horizon; horChip = null;
+    if (y >= 0 && y <= H) {
+      ctx.save(); ctx.strokeStyle = ink ? 'rgba(31,120,140,.85)' : 'rgba(243,246,250,.75)'; ctx.lineWidth = 1.5; ctx.setLineDash([10, 6]);
+      ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke(); ctx.restore();
+      chipText(`horizon = eye level, ${fmtE(c.eye)}`, 34, y - 28);
+    } else {
+      const ly = y < 0 ? (S.mode === 'find' ? findRoom(H).top + 34 : band() + 50) : H - 30;
+      chipText(`horizon = eye level, ${fmtE(c.eye)} (${y < 0 ? 'above' : 'below'} the page)`, W / 2, ly, {align: 'center'});
+      horChip = {x: W / 2, ly};   // the VP chips keep clear of it
+    }
+  }
+  let horChip = null;
+  // A vanishing point on the page is a red dot. One off the page is a red dot with an arrow at the edge where its
+  // direction leaves the page: along the line from the page's middle (from the horizon's row for one infinitely far
+  // along the horizon), so a VP above the page points up from the top edge near its own u. Labels keep clear of each other.
+  let vpMarks = [];
+  function vpEdge(p, name) {
+    const top = S.mode === 'find' ? findRoom(H).top + 8 : band() + 16, x0 = 16, x1 = W - 16, y1 = H - 16;
+    const hz = last ? last.cam.horizon : H / 2;
+    let ox = W / 2, oy = (top + y1) / 2, dx, dy;
+    if (p.inf) {
+      dx = Math.cos(p.angle); dy = Math.sin(p.angle);
+      if (name !== 'VP 3') oy = clamp(hz, top, y1);
+    } else { dx = p.u - ox; dy = p.v - oy; }
+    const n = Math.hypot(dx, dy) || 1; dx /= n; dy /= n;
+    let t = Infinity;
+    if (dx > 1e-9) t = Math.min(t, (x1 - ox) / dx); else if (dx < -1e-9) t = Math.min(t, (x0 - ox) / dx);
+    if (dy > 1e-9) t = Math.min(t, (y1 - oy) / dy); else if (dy < -1e-9) t = Math.min(t, (top - oy) / dy);
+    return {x: ox + dx * t, y: oy + dy * t, dir: Math.atan2(dy, dx)};
+  }
+  function drawVP(p, name) {
+    if (!p) return;
+    const off = p.inf || p.u < 0 || p.u > W || p.v < band() || p.v > H;   // under the compact hint band counts as off
+    const {x, y, dir} = off ? vpEdge(p, name) : {x: p.u, y: p.v, dir: 0};
+    ctx.save();
+    if (off) {   // an arrow pointing off the page
+      ctx.translate(x, y); ctx.rotate(dir); ctx.fillStyle = '#ff6b5a'; ctx.strokeStyle = '#11161f'; ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.moveTo(12, 0); ctx.lineTo(0, -8); ctx.lineTo(0, 8); ctx.closePath(); ctx.stroke(); ctx.fill();
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    ctx.beginPath(); ctx.arc(x, y, 7, 0, 2 * Math.PI); ctx.fillStyle = '#ff6b5a'; ctx.fill(); ctx.lineWidth = 2.5; ctx.strokeStyle = '#11161f'; ctx.stroke();
+    ctx.restore();
+    const lab = off ? (p.inf ? `${name}: infinitely far` : `${name} (off the page)`) : name;
+    const align = x < W * .25 ? 'left' : x > W * .75 ? 'right' : 'center';
+    let ly = y > H - 60 ? y - 36 : y + 12;
+    // keep the chip clear of an earlier VP's chip (two VPs can leave by the same corner)
+    for (let k = 0; k < 4 && vpMarks.some(m => Math.abs(m.x - x) < 170 && Math.abs(m.ly - ly) < 26); k++) ly += y > H - 60 ? -26 : 26;
+    vpMarks.push({x, ly});
+    chipText(lab, align === 'left' ? Math.max(x - 8, 4) : align === 'right' ? Math.min(x + 8, W - 4) : x, ly, {align, line: '#ff6b5a'});
+  }
+  // all the vanishing points; at turn 0 or 90 the one that is not infinitely far is the one-point "VP"
+  function drawVPs(v) {
+    vpMarks = horChip ? [horChip] : [];
+    const one = v.L.inf !== v.R.inf;
+    drawVP(v.L, one && !v.L.inf ? 'VP' : 'VP L'); drawVP(v.R, one && !v.R.inf ? 'VP' : 'VP R');
+    if (v.V3) drawVP(v.V3, 'VP 3');
+  }
+  const band = () => page === 'compact' ? $('hintDock').offsetHeight : 0;
+  // the Plan inset: the block from above, the eye, the picture plane, the two sight lines and the right angle
+  function planBox() { const pw = clamp(Math.round(W * .3), 150, 270), ph = Math.round(pw * .86); return {x: 10, y: H - ph - 10, w: pw, h: ph}; }
+  function planMap(c) {
+    const B = planBox(), R = 190, s = Math.min((B.w - 24) / (2 * R), (B.h * .66) / (2 * R));
+    const cx = B.x + B.w / 2, cy = B.y + 14 + R * s, D = standoff(c.eye);
+    let ey = cy + D * s, broken = false;
+    if (ey > B.y + B.h - 18) { ey = B.y + B.h - 18; broken = true; }
+    // level frame (x, z) -> plan px: the view looks up the inset; z = D is the block center
+    const P = (x, z) => ({u: cx + x * s, v: cy - (z - D) * s});
+    const inv = (u, v) => [(u - cx) / s, D - (v - cy) / s];
+    return {B, s, cx, cy, ey, broken, D, P, inv};
+  }
+  function drawPlan(c, cam, city) {
+    const m = planMap(c), {B, P} = m, t = c.turn * DEG;
+    ctx.save();
+    ctx.fillStyle = 'rgba(11,16,23,.9)'; ctx.strokeStyle = '#2b3646'; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.roundRect(B.x, B.y, B.w, B.h, 8); ctx.fill(); ctx.stroke();
+    ctx.beginPath(); ctx.roundRect(B.x, B.y, B.w, B.h, 8); ctx.clip();
+    const lv = (X, Z) => { const [x, z] = toLevel(X, Z, c); return P(x, z); };
+    ctx.fillStyle = 'rgba(255,255,255,.07)';
+    for (const l of LOTS) { path([[-1, -1], [1, -1], [1, 1], [-1, 1]].map(([i, j]) => lv(l.X + i * LOT / 2, l.Z + j * LOT / 2))); ctx.fill(); }
+    for (const b of city) {
+      path([[-1, -1], [1, -1], [1, 1], [-1, 1]].map(([i, j]) => lv(b.X + i * b.w / 2, b.Z + j * b.d / 2)));
+      ctx.fillStyle = b.id === S.sel && S.mode === 'build' ? '#6fd6e8' : '#9fb3c8'; ctx.fill();
+    }
+    // the eye, the field of view, the picture plane and the sight lines to the two vanishing points
+    const ex = m.cx, ey = m.ey, half = cam.fov / 2 * DEG, Lr = B.h * 1.4;
+    ctx.strokeStyle = 'rgba(243,246,250,.35)'; ctx.setLineDash([3, 3]); ctx.beginPath();
+    for (const sgn of [-1, 1]) { ctx.moveTo(ex, ey); ctx.lineTo(ex + Math.sin(half) * sgn * Lr, ey - Math.cos(half) * Lr); }
+    ctx.stroke(); ctx.setLineDash([]);
+    const pp = 16, hw = pp * Math.tan(half);
+    ctx.strokeStyle = '#f3f6fa'; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(ex - hw, ey - pp); ctx.lineTo(ex + hw, ey - pp); ctx.stroke();
+    const dR = [Math.cos(t), -Math.sin(t)], dL = [-Math.sin(t), -Math.cos(t)];
+    ctx.strokeStyle = '#ff6b5a'; ctx.lineWidth = 1.6; ctx.beginPath();
+    ctx.moveTo(ex, ey); ctx.lineTo(ex + dR[0] * Lr, ey + dR[1] * Lr); ctx.moveTo(ex, ey); ctx.lineTo(ex + dL[0] * Lr, ey + dL[1] * Lr); ctx.stroke();
+    const k = 9;   // the right angle between the sight lines
+    ctx.strokeStyle = '#f3f6fa'; ctx.lineWidth = 1.2; ctx.beginPath();
+    ctx.moveTo(ex + dR[0] * k, ey + dR[1] * k); ctx.lineTo(ex + (dR[0] + dL[0]) * k, ey + (dR[1] + dL[1]) * k); ctx.lineTo(ex + dL[0] * k, ey + dL[1] * k); ctx.stroke();
+    ctx.beginPath(); ctx.arc(ex, ey, 4.5, 0, 2 * Math.PI); ctx.fillStyle = '#6fd6e8'; ctx.fill();
+    if (m.broken) {   // the eye is farther than the inset: a break in the line of sight
+      ctx.strokeStyle = '#a6b3c4'; ctx.lineWidth = 1.2; ctx.beginPath();
+      ctx.moveTo(ex - 7, ey - 26); ctx.lineTo(ex + 7, ey - 30); ctx.moveTo(ex - 7, ey - 31); ctx.lineTo(ex + 7, ey - 35); ctx.stroke();
+    }
+    if (S.ov.sun) {   // the sun's direction
+      const a = (S.sunA + c.turn) * DEG, sx = m.cx + Math.cos(a) * (B.w * .4), sy = m.cy - Math.sin(a) * (B.h * .36);
+      ctx.beginPath(); ctx.arc(clamp(sx, B.x + 10, B.x + B.w - 10), clamp(sy, B.y + 10, B.y + B.h - 10), 6, 0, 2 * Math.PI); ctx.fillStyle = '#ffcf5a'; ctx.fill();
+    }
+    ctx.restore();
+    ctx.font = FONT(11, 700); ctx.textBaseline = 'alphabetic'; ctx.fillStyle = '#e8edf3';
+    ctx.fillText('Plan', B.x + 8, B.y + 15);
+    ctx.fillStyle = '#ff9b8f'; ctx.font = FONT(11, 700);
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.fillText('90°', ex + (dR[0] + dL[0]) * 20, ey + (dR[1] + dL[1]) * 20); ctx.textBaseline = 'alphabetic';
+    ctx.fillStyle = '#a6b3c4'; ctx.font = FONT(11, 600);
+    const eyeLab = m.broken ? `eye, ${fmtDist(m.D)} away` : 'eye';
+    ctx.textAlign = 'center'; ctx.fillText(eyeLab, clamp(ex, B.x + 50, B.x + B.w - 50), B.y + B.h - 3); ctx.textAlign = 'left';
+    return m;
+  }
+  // the ink layer (stored relative to the image center in units of the picture width, so it fits any stage size)
+  let cyK = '', cyV = 0;
+  const cyOf = c => { const k = [c.eye, c.turn, c.lens, c.hor, c.tilt, c.auto, c.find, W, H].join(); if (k !== cyK) { cyK = k; cyV = cameraFor(c, W, H).cy; } return cyV; };
+  const den = (n, c) => ({u: W / 2 + n[0] * W, v: cyOf(c) + n[1] * W});
+  const nor = (p, c) => [(p.u - W / 2) / W, (p.v - cyOf(c)) / W];
+  // Check my drawing: a line misses when it points more than CHECK degrees away from every vanishing point (from its
+  // middle) and from the level and upright directions the snap uses
+  const CHECK = 2.5;
+  function misses(c, strokes) {
+    const cam = cameraFor(c, W, H), tg = Persp.targets(cam, c.turn), out = new Set();
+    const diff = (x, y) => { let d = Math.abs(x - y) % Math.PI; return Math.min(d, Math.PI - d); };
+    for (const s of strokes) {
+      if (s.t !== 'line') continue;
+      const a = den(s.a, c), b = den(s.b, c), m = {u: (a.u + b.u) / 2, v: (a.v + b.v) / 2}, ang = Math.atan2(b.v - a.v, b.u - a.u);
+      let best = Infinity;
+      for (const t of tg) best = Math.min(best, diff(ang, t.angle != null ? t.angle : Math.atan2(t.v - m.v, t.u - m.u)));
+      if (best / DEG > CHECK) out.add(s);
+    }
+    return out;
+  }
+  function drawInk(c, strokes, preview, o = {}) {
+    const all = preview ? [...strokes, preview] : strokes;
+    for (const s of all) if (s.t === 'fill') { ctx.fillStyle = FILLC[s.c] || VAL.mid; path(s.poly.map(n => den(n, c))); ctx.fill(); }
+    ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+    for (const s of all) {
+      if (s.t === 'line') {
+        const bad = o.bad && o.bad.has(s);
+        ctx.strokeStyle = bad ? '#c62828' : '#1d2433'; ctx.lineWidth = bad ? 3.2 : 2.2; ctx.beginPath(); seg(den(s.a, c), den(s.b, c)); ctx.stroke();
+      }
+      if (s.t === 'hatch') { ctx.strokeStyle = 'rgba(29,36,51,.75)'; ctx.lineWidth = 1.1; ctx.beginPath(); for (const [a, b] of s.segs) seg(den(a, c), den(b, c)); ctx.stroke(); }
+    }
+  }
+
+  // ======================================================================================
+  // FRAME: one draw per animation frame, only when something changed
+  // ======================================================================================
+  let dirty = true, rafOn = false, offCity = false, winNone = false;
+  function invalidate() { dirty = true; if (!rafOn) { rafOn = true; requestAnimationFrame(frame); } }
+  function frame() {
+    rafOn = false;
+    const c = camOf(), moving = ease(c);
+    if (dirty || moving) { dirty = false; draw(); }
+    if (moving) invalidate();
+  }
+  function ease(c) {   // view eases toward c (eye in log space); returns true while still moving
+    if (Curio.reduce || drag) { Object.assign(view, c); return false; }
+    let moving = false;
+    const k = .3, near = (a, b, e) => Math.abs(a - b) < e;
+    view.auto = false;   // the view eases its own horizon toward the camera's (Auto or not)
+    const goal = {...c, hor: horOf(c)};
+    for (const key of ['turn', 'hor', 'tilt', 'lens']) {
+      if (near(view[key], goal[key], .02)) view[key] = goal[key]; else { view[key] += (goal[key] - view[key]) * k; moving = true; }
+    }
+    const le = Math.log(view.eye), lt = Math.log(c.eye);
+    if (near(le, lt, .002)) view.eye = c.eye; else { view.eye = Math.exp(le + (lt - le) * k); moving = true; }
+    return moving;
+  }
+  function cityFor(mode) { return mode === 'find' ? EXAMPLE.map((a, i) => ({id: 1000 + i, k: a[0], X: a[1], Z: a[2], w: a[3], d: a[4], fl: a[5]})) : S.city; }
+  function draw(target) {
+    const ink = S.mode === 'ink', c = ink ? S.cam : view;
+    const cam = cameraFor(c, W, H), city = cityFor(S.mode), faces = cityFaces(cam, c, city), v = Persp.vps(cam, c.turn);
+    last = {cam, c, faces, v, city};
+    if (target === 'picture') return;
+    // most of the city off the page (a high eye with a long lens and the horizon low on the page): fewer than a third
+    // of the buildings show any part of themselves on the page (looking up with Tilt still counts as seeing them)
+    let off = false, below = false;
+    if (!ink && city.length) {
+      const seen = new Set(), low = new Map();
+      for (const f of faces) for (const p of f.pts) {
+        if (p.u >= 0 && p.u <= W && p.v >= 0 && p.v <= H) seen.add(f.id);
+        low.set(f.id, (low.get(f.id) ?? true) && p.v > H);
+      }
+      off = seen.size < city.length / 3;
+      below = [...low.values()].filter(Boolean).length > city.length / 2;
+    }
+    last.below = below;
+    if (off !== offCity) {
+      offCity = off; setHint();
+      if (off) { const m = S.mode; how('offCity', {valid: () => S.mode === m && offCity, needs: '#hor'}); }
+    }
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, W, H);
+    if (ink) {
+      ctx.fillStyle = '#f4f1ea'; ctx.fillRect(0, 0, W, H);
+      if (S.showRender) { ctx.save(); ctx.globalAlpha = .2; drawWorld(cam, c, city, faces, {windows: S.ov.windows}); ctx.restore(); }
+      if (!S.hideGuides) drawGuides(cam, faces, v, 'rgba(31,143,166,.6)');
+      const bad = S.check ? misses(c, S.ink.strokes) : null;
+      drawInk(c, S.ink.strokes, inkPreview, {bad});
+      if (S.check) checkCount(bad.size);
+      if (!S.hideGuides) { drawHorizon(cam, c, true); drawVPs(v); }
+      if (snapTag) chipText(snapTag.text, snapTag.u + 12, snapTag.v - 30, {line: '#1f8fa6'});
+      if (kcur) drawCursor();
+    } else {
+      const o = {windows: S.ov.windows};
+      drawWorld(cam, c, city, faces, o);
+      const noWin = S.mode === 'build' && S.ov.windows && city.length > 0 && !o.winN;
+      if (noWin !== winNone) { winNone = noWin; setHint(); }
+      if (S.mode === 'build' && askOn() && S.ink.strokes.length) {   // the ink the question is about, faintly
+        ctx.save(); ctx.globalAlpha = .55; drawInk(S.cam, S.ink.strokes, null); ctx.restore();
+      }
+      if (S.mode === 'build') drawSelection(faces);
+      if (S.ov.guides) drawGuides(cam, faces, v, 'rgba(111,214,232,.6)');
+      if (S.mode === 'find') drawTarget();
+      drawHorizon(cam, c, false);
+      drawVPs(v);
+      if (offCity) {
+        chipText(below ? '▼ your city is below the page' : '▲ your city is above the page', W / 2, below ? H - 34 : band() + (S.mode === 'find' ? 100 : 54), {align: 'center', line: '#6fd6e8'});
+      }
+      if (S.ov.plan) last.plan = drawPlan(c, cam, city);
+    }
+    checkOff(v);
+  }
+  function drawSelection(faces) {
+    const mine = faces.filter(f => f.id === S.sel);
+    if (!mine.length) return;
+    ctx.save(); ctx.strokeStyle = '#ffd166'; ctx.lineWidth = 2.5;   // solid gold: never mistaken for a dashed guide
+    for (const f of mine) { path(f.pts); ctx.stroke(); }
+    ctx.restore();
+  }
+
+  // ======================================================================================
+  // FIND THE CAMERA: an amber outline from a hidden camera; the match scores each setting against the hidden one
+  // ======================================================================================
+  const tcam = i => { const [eye, turn, lens, tilt] = TARGETS[i]; return {eye, turn, lens, tilt, hor: 80, auto: true, find: true}; };
+  function targetFaces(i, w, h) { const c = tcam(i), cam = cameraFor(c, w, h); return cityFaces(cam, c, cityFor('find')); }
+  const AMBER = '#ffb547';
+  function drawTarget() {
+    const c = tcam(S.target), cam = cameraFor(c, W, H), faces = cityFaces(cam, c, cityFor('find'));
+    ctx.save();
+    if (S.extend) {   // the outline's edges run on to its own vanishing points, on its own horizon
+      const v = Persp.vps(cam, c.turn);
+      drawGuides(cam, faces, v, 'rgba(255,181,71,.55)');
+      const y = cam.horizon;
+      if (y >= 0 && y <= H) {
+        ctx.strokeStyle = AMBER; ctx.lineWidth = 1.5; ctx.setLineDash([4, 6]); ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke(); ctx.setLineDash([]);
+        chipText("the outline's horizon", W - 10, y + 6, {align: 'right', line: AMBER});
+      } else chipText(`the outline's horizon: ${y < 0 ? 'above' : 'below'} the page`, W - 10, y < 0 ? findRoom(H).top + 60 : H - 64, {align: 'right', line: AMBER});
+      for (const p of [v.L, v.R, v.V3]) if (p && !p.inf && p.u >= 0 && p.u <= W && p.v >= 0 && p.v <= H) {
+        ctx.beginPath(); ctx.arc(p.u, p.v, 6, 0, 2 * Math.PI); ctx.fillStyle = AMBER; ctx.fill(); ctx.lineWidth = 2; ctx.strokeStyle = '#11161f'; ctx.stroke();
+      }
+    }
+    // a dark halo under an amber dashed line: readable over the city, the guides and the windows
+    ctx.lineJoin = 'round'; ctx.fillStyle = 'rgba(255,181,71,.08)';
+    for (const f of faces) { path(f.pts); ctx.fill(); }
+    ctx.strokeStyle = 'rgba(11,16,23,.85)'; ctx.lineWidth = 4.5; ctx.setLineDash([]);
+    for (const f of faces) { path(f.pts); ctx.stroke(); }
+    ctx.strokeStyle = AMBER; ctx.lineWidth = 1.8; ctx.setLineDash([8, 4]);
+    for (const f of faces) { path(f.pts); ctx.stroke(); }
+    ctx.restore();
+  }
+  // the match (0 to 1) of camera c with target i: the mean of the per-setting scores
+  function matchOf(c, i) { const p = scores(c, TARGETS[i]), v = Object.values(p); return {parts: p, m: v.reduce((a, b) => a + b, 0) / v.length}; }
+  const READ = [['eye', 'findEye'], ['turn', 'findTurn'], ['lens', 'findLens'], ['tilt', 'findTiltRead']];
+  const NAMES = {eye: 'Eye height', turn: 'Turn', lens: 'Lens', tilt: 'Tilt'};
+  // The meter is not live (sweeping a slider while watching it would find the camera without reading the picture).
+  // The student sets the camera and presses Check camera: each Check is one try, the meter and the per-setting scores
+  // show for the camera as checked, and the first setting that misses names what to read in the picture next.
+  const readKey = () => S.matchedNow ? null : S.readNow;
+  function syncFind() {
+    const i = S.target, n = S.found.length, last6 = i === TARGETS.length - 1, tick = S.found.includes(i) ? ' ✓' : '';
+    $('tgtLine').innerHTML = `Target ${i + 1} of ${TARGETS.length}${tick}<span class="tsub">Found ${n} of ${TARGETS.length}</span>`;
+    $('fchipT').textContent = `Target ${i + 1} of ${TARGETS.length}${tick}`;
+    $('nextT').textContent = $('nextT2').textContent = last6 ? 'Start over ▶' : 'Next target ▶';
+    $('nextT').setAttribute('aria-label', last6 ? 'Start over at target 1' : 'Next target');
+    $('extend').hidden = !S.extendOffered; $('extend').setAttribute('aria-pressed', S.extend);
+  }
+  function showScores() {
+    const has = S.checkedOnce, stale = has && !S.checked, pct = Math.floor(S.match * 100);
+    $('mbar').style.width = (has ? clamp(pct, 0, 100) : 0) + '%';
+    $('mpct').textContent = has ? `Match ${pct}%` : 'Not checked'; $('mpct').setAttribute('aria-valuenow', has ? pct : 0);
+    $('fchipM').textContent = !has ? 'Not checked' : stale ? `Last check ${pct}%` : `Match ${pct}%`;
+    $('fmeter').classList.toggle('stale', stale);
+    const html = has ? READ.filter(([k]) => S.parts[k] != null).map(([k]) => {
+      const ok = S.parts[k] >= MATCH;
+      return `<li class="${ok ? 'ok' : 'off'}">${NAMES[k]} <b>${ok ? '✓ ' : ''}${Math.floor(S.parts[k] * 100)}%</b></li>`;
+    }).join('') : '';
+    if ($('parts').innerHTML !== html) $('parts').innerHTML = html;
+    $('parts').hidden = !has; $('staleNote').hidden = !stale; $('checkCam2').hidden = !!S.matchedNow;
+  }
+  // a camera change in Find: the last check no longer describes this camera (a match is undone until checked again)
+  function updateMatch(fromStudent) {
+    if (S.mode !== 'find') return;
+    if (fromStudent) {
+      S.touched = true;
+      if (!S.checkHowed) { S.checkHowed = true; how('findCheck', {valid: () => S.mode === 'find' && !S.checkedOnce, needs: '#checkCam'}); }
+      if (S.checked) { S.checked = false; if (S.matchedNow) { S.matchedNow = false; $('findMsg').textContent = ''; } }
+      $('nextT2').hidden = true;
+    }
+    showScores(); syncFind(); setHint();
+  }
+  function checkCamera() {
+    if (S.mode !== 'find') return;
+    const i = S.target, r = matchOf(S.findCam, i);
+    S.tries++; S.touched = true; S.checked = S.checkedOnce = true;
+    S.match = r.m; S.parts = r.parts;
+    S.matchedNow = Object.values(r.parts).every(x => x >= MATCH);
+    $('nextT2').hidden = !S.matchedNow; $('checkCam2').hidden = S.matchedNow;
+    if (S.matchedNow) {   // an event, every time a check matches
+      S.shown = i; S.readNow = null;
+      if (!S.found.includes(i)) { S.found.push(i); save(); }
+      $('findMsg').textContent = 'Matched. ' + shownSet[i];
+      syncFind(); showScores(); setHint();
+      Curio.yes();
+      V.say(['matched', L.matchedSet[i]], {now: playingHow(), valid: () => S.mode === 'find' && S.target === i && S.matchedNow});
+      V.how(i === TARGETS.length - 1 ? 'findLast' : 'findNext', {valid: () => S.mode === 'find' && S.target === i && S.matchedNow, needs: '#nextT2'});
+      return;
+    }
+    const miss = READ.find(([k]) => r.parts[k] != null && r.parts[k] < MATCH), n = Object.values(r.parts).filter(x => x < MATCH).length;
+    $('findMsg').textContent = `Not yet: ${n} setting${n === 1 ? ' is' : 's are'} off. Read the ${NAMES[miss[0]].toLowerCase()} next.`;
+    S.extendOffered = true; S.readNow = miss[1];
+    syncFind(); showScores(); setHint();
+    how(miss[1], {valid: () => S.mode === 'find' && S.target === i && readKey() === miss[1], needs: miss[0] === 'eye' || miss[0] === 'turn' ? '#extend' : '#checkCam'});
+  }
+  function goTarget(i, startOver) {
+    S.target = (i + TARGETS.length) % TARGETS.length; S.touched = false; S.shown = -1; S.matchedNow = false;
+    S.tries = 0; S.readNow = null; S.checked = S.checkedOnce = false; S.match = 0; S.parts = {};
+    V.dropQueued();
+    $('findMsg').textContent = startOver ? 'Back to target 1. Tilt is level again.' : ''; $('nextT2').hidden = true;
+    if (startOver && S.findCam.tilt) { S.findCam.tilt = 0; syncCam(); readouts(); }
+    syncFind(); showScores(); setHint(); invalidate(); save();
+    if (S.target === 5) how('findTilt', {valid: () => S.mode === 'find' && S.target === 5, needs: '#tilt'});
+  }
+  const nextTarget = () => goTarget(S.target + 1, S.target === TARGETS.length - 1);
+  $('prevT').onclick = () => goTarget(S.target - 1);
+  $('nextT').onclick = nextTarget;
+  $('nextT2').onclick = () => { nextTarget(); $('nextT').focus({preventScroll: true}); };
+  $('checkCam').onclick = $('checkCam2').onclick = checkCamera;
+  $('extend').onclick = () => { S.extend = !S.extend; syncFind(); invalidate(); };
+
+  // ======================================================================================
+  // VOICE
+  // ======================================================================================
+  const V = Curio.voice({lines: L, scope: () => S.mode,
+    welcome: () => S.mode === 'build' ? [['welcomeBuild', {valid: () => !S.eyeMoved}]] : S.mode === 'ink' ? [[inkWelcome(), {valid: () => !S.ink.strokes.length || S.check}]]
+      : [['welcomeFind', {valid: () => !S.matchedNow}]],
+    hint: false, read: () => hintNow().say});
+  // Ink's welcome follows the pen and Snap (and the check step)
+  const inkWelcome = () => S.check ? 'checkHow' : S.pen === 'line' ? (S.snap ? 'welcomeInk' : 'inkLineFree') : {hatch: 'inkHatch', fill: 'inkFill', erase: 'inkErase'}[S.pen];
+  // a newer step's how-to cuts in on an older how-to that is still playing (its step is done), never on an event or Read
+  const EVENTS = new Set([L.offPage, L.matched, ...L.matchedSet]);
+  const playingHow = () => { const p = V.playing; return !!p && !EVENTS.has(p); };
+  let offValid = null;
+  function how(x, o) {
+    const keys = [].concat(x), p = V.playing, now = playingHow() && !keys.some(k => L[k] === p);
+    const hadOff = now && V.queue.some(q => q.key === 'offPage');
+    const r = V.how(x, {...o, now});
+    // cutting in drops the queue: a queued offPage (an event) goes back in line after the how-to
+    if (hadOff && offValid && !V.queue.some(q => q.key === 'offPage') && !V.heard('offPage')) V.say('offPage', {valid: offValid});
+    return r;
+  }
+  const askOn = () => !$('ask').hidden;
+  function hintNow() {   // the hint for this moment: what it shows and what Read says (recorded lines)
+    const k = (...keys) => ({show: keys.map(x => L[x]).join(' '), say: keys.map(x => L[x])});
+    if (S.mode === 'build') {
+      if (askOn()) return k('inkAsk');
+      if (!S.city.length) return k('addFirst');
+      if (offCity) return k('offCity');
+      if (!S.eyeMoved) return k('welcomeBuild');
+      if (!S.turnMoved) return k('turnHow');
+      if (!S.ov.guides) return k('guidesNext');
+      if (winNone) return k('winSmall');
+      return S.moved ? k('composeGoal') : k('buildNext');
+    }
+    if (S.mode === 'ink') {
+      if (S.check) return !$('reflect').hidden ? k('checkReflect') : checkBad > 0 || checkMissing > 0 ? k('checkFix') : k('checkHow');
+      if (S.pen === 'hatch') return k('inkHatch');
+      if (S.pen === 'fill') return k('inkFill');
+      if (S.pen === 'erase') return k('inkErase');
+      return S.ink.strokes.length ? k('inkMore') : S.snap ? k('inkLine') : k('inkLineFree');
+    }
+    const nk = S.target === TARGETS.length - 1 ? 'findLast' : 'findNext';
+    if (S.matchedNow && S.touched && S.shown === S.target) return {show: 'Matched. ' + shownSet[S.target] + ' ' + L[nk], say: [L.matched, L.matchedSet[S.target], L[nk]]};
+    if (offCity) return k('offCity');
+    const rk = readKey();
+    if (rk) return k(rk);
+    if (S.touched && !S.checkedOnce) return k('findCheck');
+    return S.target === 5 ? k('welcomeFind', 'findTilt') : k('welcomeFind');
+  }
+  function setHint() { const t = hintNow().show; if ($('hint').textContent !== t) $('hint').textContent = t; }
+  // the first time in a session a vanishing point goes off the page (stale if it comes back before it plays)
+  let prevOff = null;
+  function checkOff(v) {
+    if (S.mode === 'ink') { prevOff = null; return; }
+    const now = v.off;
+    if (prevOff && !V.heard('offPage') && !V.queue.some(x => x.key === 'offPage')) {
+      for (const k of ['L', 'R']) if (now[k] && !prevOff[k] && !(k === 'L' ? v.L : v.R).inf) {
+        const which = k, m = S.mode;
+        offValid = () => S.mode === m && last && last.v.off[which];
+        V.say('offPage', {valid: offValid});
+        break;
+      }
+    }
+    prevOff = {...now};
+  }
+
+  // ======================================================================================
+  // PANEL: camera controls
+  // ======================================================================================
+  const LN = Math.log(EMAX / EMIN);
+  const eToV = e => Math.round(1000 * Math.log(e / EMIN) / LN), vToE = v => EMIN * Math.exp(v / 1000 * LN);
+  const fmtE = e => (e < 9.95 ? e.toFixed(1) : String(Math.round(e))) + ' m';
+  const fmtDist = m => m >= 1000 ? (m / 1000).toFixed(1) + ' km' : Math.round(m) + ' m';
+  const stopsEl = document.querySelector('.stops');
+  stopsEl.replaceChildren(...STOPS.map(([e, n]) => {
+    const b = document.createElement('button'); b.className = 'btn stop'; b.dataset.e = e;
+    b.innerHTML = `${n}<span>${fmtE(e)}</span>`; b.setAttribute('aria-label', `${n}, ${fmtE(e)}`);
+    b.onclick = () => setCam({eye: e, auto: true}, 'eye'); return b;
+  }));
+  $('lenses').replaceChildren(...LENSES.map(mm => {
+    const b = document.createElement('button'); b.className = 'btn'; b.dataset.mm = mm; b.textContent = mm + ' mm';
+    b.onclick = () => setCam({lens: mm}, 'lens'); return b;
+  }));
+  function syncCam() {
+    const c = camOf(), hor = Math.round(horOf(c));
+    $('eye').value = eToV(c.eye); $('eyeV').textContent = fmtE(c.eye); $('eye').setAttribute('aria-valuetext', fmtE(c.eye).replace(' m', ' meters'));
+    for (const b of stopsEl.children) b.setAttribute('aria-pressed', Math.abs(+b.dataset.e - c.eye) < 1e-6);
+    $('turn').value = c.turn; $('turnV').textContent = c.turn + '°'; $('turn').setAttribute('aria-valuetext', c.turn + ' degrees');
+    for (const b of $('lenses').children) b.setAttribute('aria-pressed', +b.dataset.mm === c.lens);
+    $('lensV').textContent = c.lens + ' mm';
+    $('hor').value = hor; $('horV').textContent = hor < 0 ? `${-hor}% above` : hor > 100 ? `${hor - 100}% below` : hor + '%';
+    $('hor').setAttribute('aria-valuetext', hor < 0 ? `${-hor} percent above the top of the page` : hor > 100 ? `${hor - 100} percent below the bottom of the page` : hor + ' percent of the page height' + (c.auto ? ', automatic' : ''));
+    $('horAuto').setAttribute('aria-pressed', !!c.auto);
+    $('tilt').value = c.tilt; $('tiltV').textContent = c.tilt + '°';
+    $('tilt').setAttribute('aria-valuetext', c.tilt ? `${Math.abs(c.tilt)} degrees ${c.tilt > 0 ? 'up' : 'down'}` : 'level');
+    $('camLine').textContent = `Eye ${fmtE(S.cam.eye)} · Turn ${S.cam.turn}° · ${S.cam.lens} mm · Tilt ${S.cam.tilt}°`;
+  }
+  const sameCam = (a, b) => !!a && !!b && ['eye', 'turn', 'lens', 'tilt'].every(k => Math.abs(a[k] - b[k]) < 1e-6)
+    && horOf(a) === horOf(b);
+  // a Build action after the guides step: say the bridge to Ink again if it was never heard (it can be cut)
+  function bridge() {
+    if (S.mode !== 'build' || !S.guidesSeen || V.heard('buildNext') || V.queue.some(q => q.key === 'buildNext')) return;
+    how('buildNext', {valid: () => S.mode === 'build' && !S.moved});
+  }
+  // the first building moved or added after the guides step: one composition goal (VA:Cr2)
+  function movedOne() {
+    if (S.moved) return;
+    S.moved = true;
+    if (S.guidesSeen) how('composeGoal', {valid: () => S.mode === 'build'});
+    setHint();
+  }
+  // a camera change from a control (what: 'eye' | 'turn' | 'lens' | 'hor' | 'tilt')
+  function setCam(o, what) {
+    const c = camOf(), before = {...c};
+    Object.assign(c, o);
+    c.eye = clamp(c.eye, EMIN, EMAX); c.turn = clamp(Math.round(c.turn), 0, 90); c.hor = clamp(Math.round(c.hor), HMIN, 95); c.tilt = clamp(Math.round(c.tilt), -25, 25);
+    syncCam(); readouts(); save(); invalidate();
+    if (S.mode === 'find') { updateMatch(true); return; }
+    if (S.mode !== 'build') return;
+    if (what === 'eye') {
+      if (!S.eyeMoved) { S.eyeMoved = true; how('turnHow', {valid: () => S.mode === 'build' && !S.turnMoved, needs: '#turn'}); }
+      S.lastFact = 'eye';
+    }
+    if (what === 'turn' && !S.turnMoved) {
+      S.turnMoved = true;
+      if (!S.ov.guides) how('guidesNext', {valid: () => S.mode === 'build' && !S.ov.guides, needs: '#ov-guides'});
+    }
+    if (what === 'turn') S.lastFact = 'turn';
+    if (what === 'lens') S.lastFact = 'lens';
+    if (what === 'tilt' && c.tilt !== 0 && before.tilt === 0) how('tiltHow', {valid: () => S.mode === 'build' && S.cam.tilt !== 0});
+    bridge();
+    inkAsk();
+    setHint(); facts();
+  }
+  // the eye height slider: log scale. In Build it settles on a labeled stop when close (never in Find, where the eye
+  // height is read from the picture); arrows step, Page Up and Down jump stops
+  const settleStop = (e, v, d) => { if (S.mode !== 'find') for (const [s] of STOPS) if (Math.abs(eToV(s) - v) <= d) e = s; return e; };
+  $('eye').addEventListener('input', () => { const v = +$('eye').value; setCam({eye: settleStop(vToE(v), v, 8)}, 'eye'); });
+  $('eye').addEventListener('keydown', ev => {
+    const c = camOf(), v = eToV(c.eye);
+    let e = null;
+    if (ev.key === 'PageUp') e = (STOPS.find(([s]) => s > c.eye + 1e-6) || STOPS[STOPS.length - 1])[0];
+    else if (ev.key === 'PageDown') e = ([...STOPS].reverse().find(([s]) => s < c.eye - 1e-6) || STOPS[0])[0];
+    else if (ev.key === 'ArrowRight' || ev.key === 'ArrowUp') e = vToE(Math.min(1000, v + 10));
+    else if (ev.key === 'ArrowLeft' || ev.key === 'ArrowDown') e = vToE(Math.max(0, v - 10));
+    else if (ev.key === 'Home') e = EMIN; else if (ev.key === 'End') e = EMAX;
+    if (e == null) return;
+    ev.preventDefault();
+    if (/Arrow/.test(ev.key)) e = settleStop(e, eToV(e), 4);
+    setCam({eye: e}, 'eye');
+  });
+  $('turn').addEventListener('input', () => setCam({turn: +$('turn').value}, 'turn'));
+  // Horizon on page: dragging it takes over from Auto; Auto (or an eye height stop) hands it back
+  $('hor').addEventListener('input', () => setCam({hor: +$('hor').value, auto: false}, 'hor'));
+  $('horAuto').onclick = () => { const c = camOf(); setCam(c.auto ? {auto: false, hor: horOf(c)} : {auto: true}, 'hor'); };
+  $('tilt').addEventListener('input', () => setCam({tilt: +$('tilt').value}, 'tilt'));
+
+  // ======================================================================================
+  // READOUTS and the fact line
+  // ======================================================================================
+  function crossings(c, city) { const n = city.filter(b => b.fl * FLOOR > c.eye).length; return n; }
+  function readouts() {
+    const c = camOf(), cam = cameraFor(c, W, H), v = Persp.vps(cam, c.turn), city = cityFor(S.mode);
+    const down = Math.atan2(c.eye, standoff(c.eye)) / DEG;
+    const rows = [['Eye height', `${fmtE(c.eye)}, ${fmtDist(standoff(c.eye))} back from the block${down >= 5 ? `, looking ${Math.round(down)}° down to it` : ''}`],
+      ['Turn', `${c.turn}°`],
+      ['Lens', `${c.lens} mm, ${Persp.fov(c.lens).toFixed(1)}° wide`],
+      ['VPs apart', (v.apart == null ? 'one is infinitely far' : `${Math.round(v.apart)} px = ${(v.apart / cam.f).toFixed(2)} focal lengths`)
+        + (c.find && cam.f < c.lens / 36 * W - .5 ? `<span class="rnote">1 focal length = lens ÷ 36 × page width × ${Math.round(cam.f / (c.lens / 36 * W) * 100)}% (Find shrinks the picture so the whole outline fits) = ${Math.round(cam.f)} px now</span>`
+          : `<span class="rnote">1 focal length = lens ÷ 36 × page width = ${Math.round(cam.f)} px now</span>`)],
+      ['Horizon crosses', `${crossings(c, city)} of ${city.length} building${city.length === 1 ? '' : 's'}`]];
+    if (v.V3) {
+      const d = cam.cy - v.V3.v, sh = cam.horizon - cam.cy;
+      rows.push(['VP 3', `${Math.round(Math.abs(d))} px ${d > 0 ? 'above' : 'below'} the picture center`]);
+      rows.push(['Tilt shift', `picture center ${Math.round(Math.abs(sh))} px ${sh > 0 ? 'above' : 'below'} the horizon (f × tan tilt)`]);
+    }
+    const html = rows.map(([a, b]) => `<dt>${a}</dt><dd>${b}</dd>`).join('');
+    if ($('ro').innerHTML !== html) $('ro').innerHTML = html;
+  }
+  // bottoms are on the page only when a face looks down from above the eye (the stepped tiers, the water tank)
+  const bottomsShown = () => !!last && last.faces.some(f => f.kind === 'bottom' && f.pts.some(p => p.u >= 0 && p.u <= W && p.v >= 0 && p.v <= H));
+  function facts() {
+    const c = camOf();
+    let t = FACTS[S.lastFact] || FACTS.eye;
+    if (S.lastFact === 'eye') {
+      const tall = cityFor(S.mode).filter(b => b.fl * FLOOR > c.eye).length, n = cityFor(S.mode).length;
+      t = tall && tall < n ? FACTS.tops : tall ? FACTS.cross : FACTS.eye;
+      S.eyeFactN = (S.eyeFactN || 0) + 1;
+      if (S.eyeFactN % 3 === 1 && tall) t = FACTS.cross;
+      else if (S.eyeFactN % 3 === 2 && bottomsShown()) t = FACTS.bottoms;
+    }
+    if (S.lastFact === 'turn' && (c.turn <= 3 || c.turn >= 87)) t = FACTS.one;
+    if ($('tip').textContent !== t) $('tip').textContent = t;
+  }
+
+  // ======================================================================================
+  // BUILDINGS
+  // ======================================================================================
+  $('pal').replaceChildren(...Object.entries(TYPES).map(([k, t]) => {
+    const b = document.createElement('button'); b.className = 'btn'; b.dataset.k = k;
+    b.innerHTML = `<svg viewBox="0 0 22 20" aria-hidden="true">${ICON[k]}</svg>${t.n}`;
+    b.setAttribute('aria-label', `Add a ${t.n.toLowerCase()}`);
+    b.onclick = () => addBuilding(k); return b;
+  }));
+  const fp = b => ({x0: b.X - b.w / 2, x1: b.X + b.w / 2, z0: b.Z - b.d / 2, z1: b.Z + b.d / 2});
+  const hits = (a, b) => { const p = fp(a), q = fp(b); return p.x0 < q.x1 - 1e-6 && q.x0 < p.x1 - 1e-6 && p.z0 < q.z1 - 1e-6 && q.z0 < p.z1 - 1e-6; };
+  // a building may not stand closer than 15 m to the eye, and stays within the street grid
+  function nearOk(b, c = S.cam) {
+    for (const [i, j] of [[-1, -1], [1, -1], [1, 1], [-1, 1]]) { const [x, z] = toLevel(b.X + i * b.w / 2, b.Z + j * b.d / 2, c); if (Math.hypot(x, z) < 15 || z < 15) return false; }
+    return true;
+  }
+  const inGrid = b => Math.abs(b.X) + b.w / 2 <= 170 && Math.abs(b.Z) + b.d / 2 <= 125;
+  const free = (b, ignore) => inGrid(b) && nearOk(b) && !S.city.some(o => o.id !== ignore && hits(b, o));
+  const snap10 = x => Math.round(x / 5) * 5;
+  // the nearest free spot to (X, Z), searching outward: other buildings push it aside
+  function settle(b, X, Z) {
+    const t = {...b};
+    for (let r = 0; r <= 40; r++) for (let dx = -r; dx <= r; dx++) for (const dz of r ? [-(r - Math.abs(dx)), r - Math.abs(dx)] : [0]) {
+      t.X = snap10(X) + dx * 5; t.Z = snap10(Z) + dz * 5;
+      if (free(t, b.id)) return [t.X, t.Z];
+    }
+    return null;
+  }
+  function addBuilding(k) {
+    const T = TYPES[k], b = make(k, 0, 0, T.w, T.d, T.fl);
+    // a free lot the camera can see: its roof center on the page and not behind a nearer face (nearest the middle
+    // first); else any free lot on the page; else any free spot
+    const lots = [...LOTS].sort((p, q) => Math.hypot(p.X, p.Z * 1.2) - Math.hypot(q.X, q.Z * 1.2));
+    const c = S.cam, cam = cameraFor(c, W, H), faces = cityFaces(cam, c, S.city);
+    const seeOf = l => {
+      const [x, z] = toLevel(l.X, l.Z, c), h = T.fl * FLOOR, top = Persp.project(cam, [x, h * .9, z]), dist = Math.hypot(x, h * .9 - c.eye, z);
+      if (!top || top.u < 0 || top.u > W || top.v < 0 || top.v > H) return 0;
+      return faces.some(f => f.depth < dist && Persp.inside(f.pts, top.u, top.v)) ? 1 : 2;
+    };
+    let spot = null, best = -1;
+    for (const l of lots) {
+      b.X = l.X; b.Z = l.Z;
+      if (!free(b)) continue;
+      const v = seeOf(l);
+      if (v > best) { best = v; spot = [l.X, l.Z]; if (v === 2) break; }
+    }
+    if (!spot) spot = settle(b, 0, 0);
+    if (!spot) { S.nextId--; say(`No room left for a ${T.n.toLowerCase()}.`); return; }
+    [b.X, b.Z] = spot; S.city.push(b); S.sel = b.id;
+    cityChanged(); say(`${T.n} added. ${S.city.length} buildings.`); movedOne(); bridge();
+  }
+  const say = t => { $('live').textContent = t; };
+  const selB = () => S.city.find(b => b.id === S.sel) || null;
+  function syncBuild() {
+    const sel = $('bsel'), opts = S.city.map((b, i) => [b.id, `${i + 1}. ${TYPES[b.k].n}, ${b.fl} floor${b.fl === 1 ? '' : 's'}`]);
+    const sig = JSON.stringify(opts);
+    if (sel.dataset.sig !== sig) {
+      sel.dataset.sig = sig;
+      sel.replaceChildren(...(opts.length ? [['', 'Pick a building'], ...opts] : [['', 'No buildings']]).map(([v, t]) => { const o = document.createElement('option'); o.value = v; o.textContent = t; return o; }));
+    }
+    sel.value = S.sel == null ? '' : S.sel;
+    const b = selB();
+    for (const [id, key, unit] of [['floors', 'fl', ''], ['bw', 'w', ' m'], ['bd', 'd', ' m']]) {
+      const el = $(id); el.disabled = !b;
+      if (b) { el.value = b[key]; $(id + 'V').textContent = b[key] + unit; el.setAttribute('aria-valuetext', b[key] + (unit ? ' meters' : ' floors')); }
+      else $(id + 'V').textContent = '';
+    }
+    $('bremove').setAttribute('aria-disabled', !b);
+  }
+  function cityChanged() { syncBuild(); readouts(); facts(); save(); invalidate(); }
+  $('bsel').onchange = () => { S.sel = +$('bsel').value || null; syncBuild(); invalidate(); save(); };
+  function resize(key, val) {
+    const b = selB(); if (!b) return;
+    const old = b[key]; b[key] = val;
+    if (key !== 'fl' && !free(b, b.id)) { const s = settle(b, b.X, b.Z); if (s) [b.X, b.Z] = s; else b[key] = old; }
+    cityChanged();
+  }
+  $('floors').addEventListener('input', () => resize('fl', +$('floors').value));
+  $('bw').addEventListener('input', () => resize('w', +$('bw').value));
+  $('bd').addEventListener('input', () => resize('d', +$('bd').value));
+  $('bremove').onclick = () => {
+    const b = selB(); if (!b) return;
+    const i = S.city.indexOf(b); S.city.splice(i, 1);
+    S.sel = (S.city[Math.max(0, i - 1)] || {}).id || null;
+    cityChanged(); say(`${TYPES[b.k].n} removed.`); setHint();
+  };
+  $('example').onclick = () => { loadExample(); cityChanged(); say('Example city: nine buildings.'); setHint(); };
+  let clearArm = 0;
+  $('clearCity').onclick = () => {
+    // two presses; the button keeps its place and width (a grid cell), so the second press lands where the first did
+    if (!clearArm) { clearArm = setTimeout(() => { clearArm = 0; $('clearCity').textContent = 'Clear city'; }, 3000); $('clearCity').textContent = 'Really clear?'; return; }
+    clearTimeout(clearArm); clearArm = 0; $('clearCity').textContent = 'Clear city';
+    S.city = []; S.sel = null; cityChanged(); say('City cleared.'); setHint();
+  };
+
+  // ======================================================================================
+  // OVERLAYS and the sun dial
+  // ======================================================================================
+  const OVS = [['guides', 'Guides'], ['plan', 'Plan'], ['windows', 'Windows'], ['sun', 'Sun']];
+  $('ovs').replaceChildren(...OVS.map(([k, n]) => {
+    const b = document.createElement('button'); b.className = 'btn'; b.id = 'ov-' + k; b.textContent = n;
+    b.onclick = () => {
+      S.ov[k] = !S.ov[k]; syncOv(); save(); invalidate();
+      if (k === 'guides' && S.ov.guides && S.mode === 'build' && !S.guidesSeen) {
+        S.guidesSeen = true;
+        how([S.cam.tilt ? 'guidesHow3' : 'guidesHow', 'buildNext'], {valid: () => S.mode === 'build' && S.ov.guides});
+      }
+      setHint();
+    };
+    return b;
+  }));
+  function syncOv() {
+    for (const [k] of OVS) $('ov-' + k).setAttribute('aria-pressed', S.ov[k]);
+    $('sunRow').hidden = !S.ov.sun; drawDial();
+  }
+  function drawDial() {
+    const a = S.sunA, r = 26, x = 32 + Math.cos(a * DEG) * r, y = 32 - Math.sin(a * DEG) * r;
+    $('sundial').innerHTML = `<svg viewBox="0 0 64 64" width="64" height="64" aria-hidden="true"><circle cx="32" cy="32" r="29" fill="#0b1017" stroke="#62789a" stroke-width="2"/>
+      <path d="M26 40h12v-12h-12z" fill="#6b7f96" stroke="#a6b3c4" stroke-width="1.2"/><line x1="32" y1="32" x2="${x}" y2="${y}" stroke="#ffcf5a" stroke-width="1.5" stroke-dasharray="3 2"/>
+      <circle cx="${x}" cy="${y}" r="7" fill="#ffcf5a" stroke="#11161f" stroke-width="2"/></svg>`;
+    $('sundial').setAttribute('aria-valuenow', Math.round(a));
+    $('sundial').setAttribute('aria-valuetext', `sun at ${Math.round(a)} degrees around the block`);
+  }
+  function setSun(a) { S.sunA = ((Math.round(a) % 360) + 360) % 360; drawDial(); save(); invalidate(); }
+  $('sundial').addEventListener('keydown', e => {
+    const d = {ArrowRight: -15, ArrowDown: -15, ArrowLeft: 15, ArrowUp: 15}[e.key];
+    if (d == null) return; e.preventDefault(); setSun(S.sunA + d);
+  });
+  let dialDrag = false;
+  const dialAt = e => { const r = $('sundial').getBoundingClientRect(); setSun(Math.atan2(-(e.clientY - r.top - r.height / 2), e.clientX - r.left - r.width / 2) / DEG); };
+  $('sundial').addEventListener('pointerdown', e => { dialDrag = true; $('sundial').setPointerCapture(e.pointerId); dialAt(e); });
+  $('sundial').addEventListener('pointermove', e => { if (dialDrag) dialAt(e); });
+  $('sundial').addEventListener('pointerup', () => { dialDrag = false; });
+
+  // ======================================================================================
+  // THE STAGE: drag buildings (Build), draw (Ink)
+  // ======================================================================================
+  let drag = null, inkPreview = null, snapTag = null, kcur = null;
+  const pt = e => { const r = cv.getBoundingClientRect(); return {u: e.clientX - r.left, v: e.clientY - r.top}; };
+  const faceAt = (p) => { if (!last) return null; for (let i = last.faces.length - 1; i >= 0; i--) if (Persp.inside(last.faces[i].pts, p.u, p.v)) return last.faces[i]; return null; };
+  cv.addEventListener('pointerdown', e => {
+    if (e.button > 0) return;
+    const p = pt(e); kcur = null;
+    if (S.mode === 'build') buildDown(e, p);
+    else if (S.mode === 'ink') inkDown(e, p);
+  });
+  cv.addEventListener('pointermove', e => {
+    if (!drag) return;
+    const p = pt(e);
+    if (drag.kind === 'move' || drag.kind === 'plan') buildMove(p);
+    else inkMove(p, e.shiftKey);
+  });
+  const up = e => {
+    if (!drag) return;
+    const d = drag;
+    if (d.kind === 'move' || d.kind === 'plan') { drag = null; cityChanged(); if (d.X0 !== (selB() || {}).X || d.Z0 !== (selB() || {}).Z) { movedOne(); bridge(); } return; }
+    inkUp(pt(e), e.shiftKey);
+  };
+  cv.addEventListener('pointerup', up);
+  cv.addEventListener('pointercancel', () => { drag = null; inkPreview = null; snapTag = null; invalidate(); });
+  // Build: pick a building (on the view or on the Plan) and drag it over the ground
+  function buildDown(e, p) {
+    const c = S.cam;
+    if (S.ov.plan && last && last.plan) {
+      const m = last.plan, B = m.B;
+      if (p.u >= B.x && p.u <= B.x + B.w && p.v >= B.y && p.v <= B.y + B.h) {
+        const [x, z] = m.inv(p.u, p.v), [X, Z] = toCity(x, z, c);
+        const b = S.city.find(o => { const q = fp(o); return X >= q.x0 - 3 && X <= q.x1 + 3 && Z >= q.z0 - 3 && Z <= q.z1 + 3; });
+        if (!b) return;
+        S.sel = b.id; syncBuild();
+        drag = {kind: 'plan', id: b.id, X0: b.X, Z0: b.Z, gx: X, gz: Z};
+        cv.setPointerCapture(e.pointerId); invalidate(); return;
+      }
+    }
+    const f = faceAt(p);
+    if (!f) return;
+    const b = S.city.find(o => o.id === f.id); if (!b) return;
+    S.sel = b.id; syncBuild();
+    // drag in a level plane through the point that was grabbed (kept clear of eye height, where it would be edge-on)
+    const cam = last.cam, P = hitOnFace(cam, f, p);
+    let y = P ? P[1] : 0;
+    if (Math.abs(y - c.eye) < Math.max(2, c.eye * .2)) y = c.eye > 3 ? c.eye * .5 : (y > c.eye ? c.eye + 3 : 0);
+    const g = Persp.ground(cam, p.u, p.v, y);
+    if (!g) return;
+    const [gx, gz] = toCity(g[0], g[2], c);
+    drag = {kind: 'move', id: b.id, X0: b.X, Z0: b.Z, gx, gz, y};
+    cv.setPointerCapture(e.pointerId); invalidate();
+  }
+  function hitOnFace(cam, f, p) {   // the world point under p on face f's plane
+    const n = f.normal, P0 = f.world[0];
+    const dl = Persp.ray(cam, p.u, p.v), o = [0, cam.eye, 0], den = n[0] * dl[0] + n[1] * dl[1] + n[2] * dl[2];
+    if (Math.abs(den) < 1e-9) return null;
+    const t = (n[0] * (P0[0] - o[0]) + n[1] * (P0[1] - o[1]) + n[2] * (P0[2] - o[2])) / den;
+    return t > 0 ? [o[0] + dl[0] * t, o[1] + dl[1] * t, o[2] + dl[2] * t] : null;
+  }
+  function buildMove(p) {
+    const d = drag, b = S.city.find(o => o.id === d.id), c = S.cam;
+    if (!b) return;
+    let X, Z;
+    if (d.kind === 'plan') { const [x, z] = last.plan.inv(p.u, p.v); [X, Z] = toCity(x, z, c); }
+    else { const g = Persp.ground(last.cam, p.u, p.v, d.y); if (!g) return; [X, Z] = toCity(g[0], g[2], c); }
+    const s = settle(b, d.X0 + X - d.gx, d.Z0 + Z - d.gz);
+    if (s && (s[0] !== b.X || s[1] !== b.Z)) { [b.X, b.Z] = s; readouts(); invalidate(); }
+  }
+  // keyboard on the view: Build moves the selected building 10 m; Ink moves a cursor, Enter draws or taps
+  cv.addEventListener('keydown', e => {
+    const d = {ArrowRight: [1, 0], ArrowLeft: [-1, 0], ArrowUp: [0, 1], ArrowDown: [0, -1]}[e.key];
+    if (S.mode === 'build') {
+      const b = selB(); if (!d || !b) return;
+      e.preventDefault();
+      const s = settle(b, b.X + d[0] * 10, b.Z + d[1] * 10);
+      if (s) { [b.X, b.Z] = s; cityChanged(); say(`${TYPES[b.k].n} moved.`); movedOne(); bridge(); }
+      return;
+    }
+    if (S.mode !== 'ink') return;
+    if (d) {
+      e.preventDefault(); kcur = kcur || {u: W / 2, v: H / 2};
+      const step = e.shiftKey ? 2 : 12; kcur.u = clamp(kcur.u + d[0] * step, 0, W); kcur.v = clamp(kcur.v - d[1] * step, 0, H);
+      if (drag && drag.kind === 'line') inkMove(kcur, false);
+      invalidate(); return;
+    }
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault(); kcur = kcur || {u: W / 2, v: H / 2};
+      if (S.pen === 'line' && drag && drag.kind === 'line') { inkUp(kcur, false); say('Line drawn.'); }
+      else { inkDown(null, {...kcur}); if (S.pen !== 'line') inkUp(kcur, false); else say('Line started. Move with the arrow keys, then press Enter.'); }
+      invalidate();
+    }
+    if (e.key === 'Escape' && drag) { drag = null; inkPreview = null; snapTag = null; invalidate(); }
+  });
+  function drawCursor() {
+    ctx.save(); ctx.strokeStyle = '#c0392b'; ctx.lineWidth = 1.5; ctx.beginPath();
+    ctx.moveTo(kcur.u - 10, kcur.v); ctx.lineTo(kcur.u + 10, kcur.v); ctx.moveTo(kcur.u, kcur.v - 10); ctx.lineTo(kcur.u, kcur.v + 10); ctx.stroke(); ctx.restore();
+  }
+  cv.addEventListener('focus', () => { if (cv.matches(':focus-visible')) $('stage').classList.add('kfocus'); });
+  cv.addEventListener('blur', () => $('stage').classList.remove('kfocus'));
+
+  // ======================================================================================
+  // INK
+  // ======================================================================================
+  const undoStack = [], redoStack = [];
+  function commit(strokes) {
+    undoStack.push(S.ink.strokes); if (undoStack.length > 100) undoStack.shift();
+    redoStack.length = 0;
+    const wasEmpty = !S.ink.strokes.length;
+    S.ink.strokes = strokes; S.ink.cam = {...S.cam}; S.ink.keep = false;
+    inkChanged();
+    if (wasEmpty && strokes.length && S.pen === 'line') how('inkMore', {valid: () => S.mode === 'ink' && S.pen === 'line'});
+  }
+  function inkChanged() {
+    $('undo').setAttribute('aria-disabled', !undoStack.length); $('redo').setAttribute('aria-disabled', !redoStack.length);
+    save(); setHint(); invalidate();
+  }
+  $('undo').onclick = () => { if (!undoStack.length) return; redoStack.push(S.ink.strokes); S.ink.strokes = undoStack.pop(); inkChanged(); };
+  $('redo').onclick = () => { if (!redoStack.length) return; undoStack.push(S.ink.strokes); S.ink.strokes = redoStack.pop(); inkChanged(); };
+  const PENS = [['line', 'Line'], ['hatch', 'Hatch'], ['fill', 'Fill'], ['erase', 'Erase']];
+  $('pens').replaceChildren(...PENS.map(([k, n]) => {
+    const b = document.createElement('button'); b.className = 'btn'; b.dataset.k = k; b.textContent = n;
+    b.onclick = () => {
+      S.pen = k; syncInk(); save();
+      const key = {hatch: 'inkHatch', fill: 'inkFill', erase: 'inkErase'}[k];
+      if (key) how(key, {valid: () => S.mode === 'ink' && S.pen === k});
+    };
+    return b;
+  }));
+  const FILLS = [['light', 'Light'], ['mid', 'Mid'], ['dark', 'Dark'], ['dusk', 'Dusk']];
+  $('fills').replaceChildren(...FILLS.map(([k, n]) => {
+    const b = document.createElement('button'); b.className = 'btn'; b.dataset.k = k;
+    b.innerHTML = `<span class="sw" style="background:${FILLC[k]}"></span>${n}`;
+    b.onclick = () => { S.fill = k; if (S.pen !== 'fill') S.pen = 'fill'; syncInk(); save(); };
+    return b;
+  }));
+  function syncInk() {
+    for (const b of $('pens').children) b.setAttribute('aria-pressed', b.dataset.k === S.pen);
+    for (const b of $('fills').children) b.setAttribute('aria-pressed', b.dataset.k === S.fill);
+    $('snap').setAttribute('aria-pressed', S.snap); $('snap').setAttribute('aria-disabled', S.check); $('showRender').setAttribute('aria-pressed', S.showRender);
+    $('check').setAttribute('aria-pressed', S.check); $('check').textContent = S.check ? 'Stop checking' : 'Check my drawing';
+    if (!S.check) { $('checkMsg').textContent = ''; $('reflect').hidden = true; }
+    $('hideGuides').setAttribute('aria-pressed', S.hideGuides);
+    $('hatchSp').value = S.hatchSp; $('hatchV').textContent = S.hatchSp + ' px';
+    $('undo').setAttribute('aria-disabled', !undoStack.length); $('redo').setAttribute('aria-disabled', !redoStack.length);
+    setHint(); invalidate();
+  }
+  $('snap').onclick = () => {
+    if (S.check) { $('checkMsg').textContent = 'Snap stays off while you check your drawing.'; return; }
+    S.snap = !S.snap; syncInk(); save();
+    if (!S.snap && S.pen === 'line') how('inkLineFree', {valid: () => S.mode === 'ink' && !S.snap && S.pen === 'line'});
+  };
+  // Check my drawing (VA:Cr3): Snap goes off, lines drawn by eye that miss their vanishing point turn red, the student
+  // fixes them, and one reflection closes the step (kept with the drawing, in this browser only)
+  // The count runs on every check (not only when the number of misses changes), so lines that all hit open the
+  // reflection too. A line erased without being drawn again is missing: the check asks for it back.
+  let checkBad = -1, checkMissing = 0, checkKey = '';
+  function checkCount(n) {
+    const lines = S.ink.strokes.filter(s => s.t === 'line').length;
+    S.checkPeak = Math.max(S.checkPeak || 0, lines);
+    const key = [n, lines, S.checkPeak, S.checkLines || 0].join();
+    if (key === checkKey) return;
+    checkKey = key; checkBad = n;
+    if (n > 0) S.checkHadRed = true;
+    checkMissing = n > 0 ? 0 : S.checkPeak - lines;
+    $('checkMsg').textContent = n > 0 ? `${n} line${n === 1 ? ' misses its' : 's miss their'} vanishing point.`
+      : checkMissing ? `${checkMissing === 1 ? 'A line is' : checkMissing + ' lines are'} missing. Draw ${checkMissing === 1 ? 'it' : 'them'} again toward ${checkMissing === 1 ? 'its vanishing point' : 'their vanishing points'}.`
+      : lines ? `All ${lines} line${lines === 1 ? ' hits a' : 's hit their'} vanishing point${lines === 1 ? '' : 's'}.`
+      : 'Draw a few building edges by eye.';
+    $('checkMsg').classList.toggle('bad', n > 0 || checkMissing > 0);
+    const ready = n === 0 && !checkMissing && lines > 0 && (S.checkHadRed || (S.checkLines || 0) >= 3);
+    if (ready && $('reflect').hidden) {
+      $('reflect').hidden = false; $('note').value = S.ink.note || '';
+      // bring the note and Done into view (the panel scrolls; the drawing stays where it is)
+      requestAnimationFrame(() => $('checkDone').scrollIntoView({block: 'nearest'}));
+      how('checkReflect', {valid: () => S.mode === 'ink' && S.check && !$('reflect').hidden, needs: '#note'});
+    } else if (!ready && !$('reflect').hidden) $('reflect').hidden = true;
+    setTimeout(setHint);
+  }
+  function setCheck(on) {
+    if (on === S.check) return;
+    S.check = on;
+    checkKey = ''; checkMissing = 0; $('checkMsg').textContent = ''; $('checkMsg').classList.remove('bad');
+    if (on) { S.snapBefore = S.snap; S.snap = false; S.checkHadRed = false; S.checkLines = 0; S.checkPeak = S.ink.strokes.filter(s => s.t === 'line').length; checkBad = -1; S.pen = 'line'; }
+    else S.snap = S.snapBefore;
+    syncInk(); save();
+    if (on) how('checkHow', {valid: () => S.mode === 'ink' && S.check});
+  }
+  $('check').onclick = () => setCheck(!S.check);
+  $('note').addEventListener('input', () => { S.ink.note = $('note').value.slice(0, 600); save(); });
+  $('checkDone').onclick = () => { S.ink.note = $('note').value.slice(0, 600); setCheck(false); $('inkStatus').textContent = 'Checked. Your note is kept with the drawing.'; say('Check done.'); $('check').focus({preventScroll: true}); };
+  $('showRender').onclick = () => { S.showRender = !S.showRender; syncInk(); save(); };
+  $('hideGuides').onclick = () => { S.hideGuides = !S.hideGuides; syncInk(); save(); };
+  $('hatchSp').addEventListener('input', () => { S.hatchSp = +$('hatchSp').value; $('hatchV').textContent = S.hatchSp + ' px'; save(); });
+  $('clearInk').onclick = () => { if (!S.ink.strokes.length) return; commit([]); S.ink.cam = null; $('inkStatus').textContent = 'Drawing cleared. Undo brings it back.'; };
+  const vpOf = (f, v) => f.vp === 'R' ? v.R : v.L;
+  function hatchFace(f) {
+    const segs = Persp.hatch(f.pts, vpOf(f, last.v), S.hatchSp);
+    return segs.map(([a, b]) => [nor(a, S.cam), nor(b, S.cam)]);
+  }
+  function inkDown(e, p) {
+    if (!last) return;
+    if (e) cv.setPointerCapture(e.pointerId);
+    if (S.pen === 'line') { drag = {kind: 'line', a: p}; inkPreview = null; return; }
+    if (S.pen === 'hatch') { drag = {kind: 'hatch', done: new Set(), segs: []}; hatchAt(p); return; }
+    if (S.pen === 'fill') { drag = {kind: 'fill'}; return; }
+    if (S.pen === 'erase') { drag = {kind: 'erase', base: S.ink.strokes, keep: S.ink.strokes.slice(), gone: 0, prev: p}; eraseAt(p); }
+  }
+  function lineEnd(a, p, free) {
+    if (free || !S.snap) return {end: p, label: ''};
+    const r = Persp.snap(last.cam, a, p, Persp.targets(last.cam, S.cam.turn), 6);
+    return {end: r.end, label: r.target ? (r.target === 'vertical' || r.target === 'horizontal' ? r.label : 'to ' + r.label) : ''};
+  }
+  function hatchAt(p) {
+    const f = faceAt(p);
+    if (!f) return;
+    const k = f.id + f.side + (f.bx.y0 || 0);
+    if (drag.done.has(k)) return;
+    drag.done.add(k); drag.segs.push(...hatchFace(f));
+    inkPreview = {t: 'hatch', segs: drag.segs}; invalidate();
+  }
+  function near(s, p) {
+    const d = (a, b) => { const A = den(a, S.cam), B = den(b, S.cam), dx = B.u - A.u, dy = B.v - A.v, L2 = dx * dx + dy * dy;
+      const t = L2 ? clamp(((p.u - A.u) * dx + (p.v - A.v) * dy) / L2, 0, 1) : 0; return Math.hypot(A.u + dx * t - p.u, A.v + dy * t - p.v); };
+    if (s.t === 'line') return d(s.a, s.b) < 9;
+    if (s.t === 'hatch') return s.segs.some(([a, b]) => d(a, b) < 7);
+    if (s.t === 'fill') return Persp.inside(s.poly.map(n => den(n, S.cam)), p.u, p.v);
+    return false;
+  }
+  function eraseAt(p) {   // erases along the whole swipe: points every 4 px between the last sample and this one
+    const before = drag.keep.length, a = drag.prev || p, n = Math.max(1, Math.ceil(Math.hypot(p.u - a.u, p.v - a.v) / 4)), pts = [];
+    for (let i = 1; i <= n; i++) pts.push({u: a.u + (p.u - a.u) * i / n, v: a.v + (p.v - a.v) * i / n});
+    drag.prev = p;
+    drag.keep = drag.keep.filter(s => !pts.some(q => near(s, q)));
+    if (drag.keep.length !== before) { drag.gone += before - drag.keep.length; S.ink.strokes = drag.keep; invalidate(); }
+  }
+  function inkMove(p, free) {
+    const d = drag;
+    if (d.kind === 'line') {
+      const r = lineEnd(d.a, p, free);
+      inkPreview = {t: 'line', a: nor(d.a, S.cam), b: nor(r.end, S.cam)};
+      snapTag = r.label ? {text: r.label, u: r.end.u, v: r.end.v} : null;
+      invalidate();
+    } else if (d.kind === 'hatch') hatchAt(p);
+    else if (d.kind === 'erase') eraseAt(p);
+  }
+  function inkUp(p, free) {
+    const d = drag; drag = null;
+    if (d.kind === 'line') {
+      const r = lineEnd(d.a, p, free);
+      inkPreview = null; snapTag = null;
+      if (Math.hypot(r.end.u - d.a.u, r.end.v - d.a.v) >= 4) {
+        if (S.check) S.checkLines = (S.checkLines || 0) + 1;
+        commit([...S.ink.strokes, {t: 'line', a: nor(d.a, S.cam), b: nor(r.end, S.cam), to: r.label}]);
+        $('inkStatus').textContent = r.label ? `Last line: ${r.label}.` : 'Last line: free.';
+      } else invalidate();
+    } else if (d.kind === 'hatch') {
+      inkPreview = null;
+      if (d.segs.length) commit([...S.ink.strokes, {t: 'hatch', segs: d.segs}]); else invalidate();
+    } else if (d.kind === 'fill') {
+      const f = faceAt(p);
+      if (f) commit([...S.ink.strokes, {t: 'fill', c: S.fill, poly: f.pts.map(q => nor(q, S.cam))}]);
+    } else if (d.kind === 'erase') {
+      if (d.gone) { S.ink.strokes = d.base; commit(d.keep); }
+    }
+  }
+  // ask about ink drawn for an older camera (Build only)
+  function inkAsk() {
+    const show = S.mode === 'build' && S.ink.strokes.length > 0 && !S.ink.keep && !!S.ink.cam && !sameCam(S.ink.cam, S.cam);
+    if ($('ask').hidden === !show) return;
+    $('ask').hidden = !show;
+    if (show) how('inkAsk', {valid: () => askOn(), needs: '#keepInk'});
+    setHint();
+  }
+  $('keepInk').onclick = () => { S.ink.keep = true; save(); inkAsk(); setHint(); say('Ink kept.'); cv.focus({preventScroll: true}); };
+  $('clearInk2').onclick = () => { undoStack.push(S.ink.strokes); redoStack.length = 0; S.ink.strokes = []; S.ink.cam = null; inkChanged(); inkAsk(); say('Ink cleared.'); cv.focus({preventScroll: true}); };
+  // Save picture: a PNG at the stage size, without guides
+  function picture() {
+    draw('picture');
+    const c = S.cam, cam = last.cam, k = document.createElement('canvas'); k.width = Math.round(W); k.height = Math.round(H);
+    const g = k.getContext('2d'), old = ctx;
+    g.fillStyle = '#f4f1ea'; g.fillRect(0, 0, W, H);
+    ctx = g;
+    try {
+      if (S.showRender) { g.save(); g.globalAlpha = .2; drawWorld(cam, c, last.city, last.faces, {windows: S.ov.windows}); g.restore(); }
+      drawInk(c, S.ink.strokes, null);
+    } finally { ctx = old; }
+    return k.toDataURL('image/png');
+  }
+  $('savePic').onclick = () => {
+    const url = picture(), a = document.createElement('a');
+    a.download = 'my-city-skyline.png'; a.href = url; document.body.append(a); a.click(); a.remove();
+    $('inkStatus').textContent = 'Saved as my-city-skyline.png in your downloads.';
+  };
+
+  // ======================================================================================
+  // MODES
+  // ======================================================================================
+  function setMode(m) {
+    V.hush(); drag = null; inkPreview = null; snapTag = null; kcur = null;
+    if (m !== 'ink' && S.check) { S.check = false; S.snap = S.snapBefore; }
+    checkBad = -1;
+    S.mode = m;
+    for (const k of ['build', 'ink', 'find']) $('m-' + k).setAttribute('aria-pressed', k === m);
+    document.body.dataset.mode = m;
+    for (const el of document.querySelectorAll('[data-modes]')) el.hidden = !el.dataset.modes.split(' ').includes(m);
+    $('fchip').hidden = m !== 'find';
+    Object.assign(view, camOf());
+    if (m !== 'build') $('ask').hidden = true;
+    prevOff = null;
+    syncCam(); syncBuild(); syncOv(); syncInk(); readouts(); facts();
+    if (m === 'find') goTarget(S.target);
+    if (m === 'build') inkAsk();
+    cv.setAttribute('aria-label', m === 'build' ? 'City view. Drag a building to move it; with the view focused, arrow keys move the selected building 10 m.'
+      : m === 'ink' ? 'Drawing. Drag to draw. With the view focused, arrow keys move a cursor and Enter draws.' : 'City view with the target outline.');
+    setHint(); relayout(true); invalidate();
+    V.welcome();
+  }
+  for (const k of ['build', 'ink', 'find']) $('m-' + k).onclick = () => { if (S.mode !== k) setMode(k); };
+  $('editCam').onclick = () => { setMode('build'); $('m-build').focus({preventScroll: true}); };
+
+  // ======================================================================================
+  // LAYOUT (see the CSS note)
+  // ======================================================================================
+  let page = '';
+  function pageLayout() { const w = innerWidth, h = innerHeight; return w >= 1000 && h >= 700 ? 'wide' : w >= 600 && w / h >= 1.25 ? 'compact' : 'stack'; }
+  function relayout(force) {
+    const p = pageLayout();
+    if (p !== page || force) {
+      page = p;
+      for (const c of ['wide', 'compact', 'stack']) document.body.classList.toggle(c, c === p);
+      document.body.classList.toggle('short', p === 'wide' && innerHeight < 900);
+      document.body.classList.toggle('narrow', p === 'stack' && innerWidth < 900);
+      const h = $('hint');
+      if (p === 'compact' && h.parentNode !== $('hintDock')) $('hintDock').append(h);
+      if (p !== 'compact' && h.parentNode !== $('panel')) $('panel').prepend(h);
+    }
+    const st = $('stage');
+    // stack: the stage leaves room for the header, the hint and the whole Camera section (in Ink: the camera line and
+    // the pens) without scrolling
+    if (page === 'stack') {
+      const pens = () => $('pens').getBoundingClientRect().bottom - document.querySelector('.p-ink').getBoundingClientRect().top;
+      const head = document.querySelector('header').offsetHeight, hint = $('hint').offsetHeight,
+        cam = S.mode === 'ink' ? document.querySelector('.p-camline').offsetHeight + pens() : $('camSec').offsetHeight;
+      const hh = Math.round(clamp(Math.min(st.clientWidth * .75, innerHeight - head - hint - cam - 40), 200, innerHeight * .7)) + 'px';
+      if (st.style.height !== hh) st.style.height = hh;
+    }
+    else if (st.style.height) st.style.height = '';
+    const r = st.getBoundingClientRect(), w = Math.max(10, Math.floor(r.width)), h = Math.max(10, Math.floor(r.height));
+    dpr = Math.min(2, devicePixelRatio || 1);
+    if (w !== W || h !== H || cv.width !== Math.round(w * dpr)) {
+      W = w; H = h; cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr); cv.style.width = w + 'px'; cv.style.height = h + 'px';
+      readouts(); updateMatch(false);
+    }
+    // in compact, the hint band covers the top of the stage: chips sit under it
+    const band = page === 'compact' ? $('hintDock').offsetHeight : 0;
+    $('fchip').style.top = (10 + band) + 'px';
+    invalidate();
+  }
+  new ResizeObserver(() => relayout()).observe($('stage'));
+  addEventListener('resize', () => relayout());
+  new ResizeObserver(() => { if (page === 'compact') relayout(); }).observe($('hintDock'));
+
+  Curio.onMotion(() => invalidate());
+  Curio.init({clips: "voice:*", rate: .95});   // Read speaks the hint (Curio.voice wires it)
+  const allLines = () => [...new Set(V.allLines())];
+
+  // for checking frames
+  window.__tool = {S, setMode, allLines, L, TARGETS, EXAMPLE, standoff, Persp, setCheck, misses: () => misses(S.cam, S.ink.strokes).size,
+    get last() { return last; }, get layout() { return {page, W, H, dpr}; },
+    cam: (o, what) => setCam(o, what || Object.keys(o)[0]), camera: () => cameraFor(camOf(), W, H),
+    vps: () => { const c = camOf(), cam = cameraFor(c, W, H); return Persp.vps(cam, c.turn); },
+    matchOf: (c, i) => matchOf(c, i), scores, goTarget, checkCam: checkCamera, tfaces: () => targetFaces(S.target, W, H), match: () => S.match, parts: () => S.parts, autoHor: c => autoHor(c, W, H), picture, hint: () => $('hint').textContent, read: () => hintNow().say,
+    add: addBuilding, ov: k => $('ov-' + k).click(), relayout, draw: () => { draw(); return last; },
+    perf(n = 20, frames = 30) {
+      const keep = S.city; S.city = []; S.nextId = 1;
+      for (let i = 0; i < n; i++) { const l = LOTS[(i * 3) % LOTS.length]; S.city.push(make(['tower', 'block', 'slab', 'stepped', 'water'][i % 5], l.X, l.Z, 20, 20, 10 + (i * 7) % 60)); }
+      const t0 = performance.now(); for (let i = 0; i < frames; i++) { view.turn = 20 + i; draw(); } const ms = (performance.now() - t0) / frames;
+      S.city = keep; Object.assign(view, camOf()); invalidate(); return ms;
+    },
+    reset() {   // for checks: back to a first visit (nothing saved)
+      try { localStorage.removeItem(KEY); } catch {}
+      Object.assign(S, JSON.parse(DEFAULTS)); loadExample(); undoStack.length = redoStack.length = 0; setMode('build');
+    },
+    vlog: V.log, get vq() { return V.queue; }, said: V.said, heard: V.heard,
+    ink: () => S.ink.strokes, undoN: () => undoStack.length};
+  setMode('build');
+})();
+</script>
+</body>
+</html>

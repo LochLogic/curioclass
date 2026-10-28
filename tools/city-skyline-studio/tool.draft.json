@@ -1,0 +1,22 @@
+{
+  "id": "city-skyline-studio",
+  "status": "beta",
+  "stage": "built",
+  "hook": "Move a real camera over a city block: lift your eye from the sidewalk to a helicopter, turn, change lenses and tilt, and watch the horizon and the two vanishing points follow. Then ink your own skyline over guides that obey the same rules.",
+  "outcome": "Set up two- and three-point perspective from eye height, viewing angle and lens, and draw, hatch, fill and refine a city drawing that follows it",
+  "driver": "students",
+  "minutes": "20-45",
+  "modes": ["Build", "Ink", "Find the Camera"],
+  "grades_label": "Grades 9-12",
+  "sources": [
+    "NCAS Visual Arts VA:Cr2, VA:Cr3: https://www.nationalartsstandards.org/",
+    "Joseph D'Amelio, Perspective Drawing Handbook (Dover, 2004): horizon at eye level, two-point construction, the 90 degree angle between the sight lines, three-point when the picture plane tilts",
+    "Perspective (graphical), Wikipedia: https://en.wikipedia.org/wiki/Perspective_(graphical)",
+    "Richard Szeliski, Computer Vision: Algorithms and Applications, 2nd ed. (2022), section 2.1: https://szeliski.org/Book/",
+    "Angle of view (photography), Wikipedia: https://en.wikipedia.org/wiki/Angle_of_view_(photography)",
+    "Settings, not facts: 3.5 m per floor, the lot grid, the example city and the eye standing back 6 m per meter of height",
+    "City, sky, guides and plan drawn in code"
+  ],
+  "third_party": [],
+  "updated": "2026-10-28"
+}

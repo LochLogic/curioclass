@@ -103,3 +103,30 @@ vanishing-point-studio feeds: one VP (turn 0, fronts on the picture plane). This
 6. Find the Camera: each of the six targets can be matched to 92% or more with its listed settings.
 7. Camera sliders and the stage are visible without scrolling at every STANDARDS.md size; 60 fps with 20 buildings at 1920x1080.
 8. How lines once in five slider moves in a row; matched every time.
+
+## Refine changes
+Round 1 (2026-10-28), from refine.md. These replace the matching lines above where they differ.
+- **Check my drawing** (Ink, VA:Cr3 revise step). A `Check my drawing` button turns Snap off and puts the Line pen on. The student draws building edges by eye; any line whose direction misses every vanishing point it could aim at (VP L, VP R, VP 3 with Tilt, the upright when level, a level line) by more than 2.5 degrees, measured from the line's midpoint, turns red, and a count shows ("2 lines miss their vanishing point."). The student fixes them (erase and redraw, or Undo). When every line hits (after at least one red line, or after three lines drawn), one reflection opens: "What did you change to make your lines hit their vanishing points?" with a short text box and `Done`. Done keeps the note with the drawing (this browser only), turns the check off and gives Snap back as it was. The how line plays once ("Snap is off now..."), then "Fix the red lines..." and "Every line hits its point now...".
+- **Stand-back and horizon.** The eye stands back 120 m + 0.6 m per meter above 1.6 m (120 m at the sidewalk, 209 m at Drone, 359 m at Helicopter), so Drone looks about 36 degrees down and Helicopter about 48 degrees down. `Horizon on page` runs from 600% above the page to 80% down it and has an `Auto` button (on by default): Auto keeps the block's near ground low on the stage, so at Drone and Helicopter the horizon goes above the page and the city with its street grid fills the stage. Dragging the slider turns Auto off; an eye height stop turns it back on. The ground is a street grid (outer blocks and 7 by 5 lots).
+- **Find the Camera.** Targets (eye, turn, lens, tilt): 40 m, 30, 24 mm; 3 m, 45, 35 mm; 100 m, 20, 24 mm; 20 m, 55, 35 mm; 300 m, 40, 35 mm; 2.5 m, 15, 24 mm, tilt 15. None is an eye height stop, and stops do not snap in Find. The match is per setting: eye 1 - |ln(e/e*)| / ln 10, turn 1 - |difference| / 40 degrees, lens 1, 0.5, 0.2, 0 by stops apart, tilt 1 - |difference| / 30 (only when either tilts); the meter shows their mean and rises toward the answer one setting at a time. Matched means every setting at 95% or more. After each missed Check camera (round 2; the meter is not live) a reading hint names the setting furthest off (eye height, turn, lens, tilt) and offers `Extend outline edges`, which draws the outline's edges out to its own horizon and vanishing points. The outline is amber over a dark halo, on top of Guides and Windows (framing: see round 2). Found targets are marked; after target 6, Next says `Start over` and sets Tilt back to level.
+- **Other.** The readouts explain "1 focal length = lens / 36 x page width" and, with Tilt, the horizon shift. The "you see bottoms" fact shows only when undersides are on screen. With Tilt, upright strokes snap to VP 3 (no screen vertical). Build gives one composition goal after the first building is moved or added. New buildings go to a free lot that the camera can see. "Saved on this device only" shows in every mode. Done when 6 now reads: each target can be matched (every setting at 95% or more) with its listed settings, and no eye height stop matches any target.
+
+Round 2 (2026-10-28), from the exit check.
+- **Check camera** (Find). The meter is no longer live. The student reads the outline, sets the camera and presses
+  `Check camera` (in the panel and on the stage chip beside the target number). Each press is one try. Only then do the
+  meter and a score for each setting show (Eye height, Turn, Lens, Tilt, a check mark at 95% or more); any later camera
+  change marks them "Last check" and asks for a new check. Matched still needs every setting at 95% or more. A check
+  that misses says how many settings are off and names the first one in reading order; the hint becomes that setting's
+  reading hint (where the outline's horizon crosses the buildings, where its edges meet, how far apart its VPs are, how
+  its uprights lean) and `Extend outline edges` is offered. The Check step is voiced once ("When you think your camera
+  matches, press Check camera..."), on the first camera change in Find; the Find welcome names it too.
+- **Outlines whole at every size.** Find shrinks the picture by one uniform scale per target (the same as a shorter
+  focal length for both cameras, so every angle, VP and match is unchanged and the lens is still compared in mm) so the
+  outline fits under the target chip, then centers it. The focal-length readout says when the picture is shrunk. Every
+  target fits whole at every STANDARDS size and at 375 wide; no target was made shorter.
+- **Off-page VPs.** An off-page VP's dot and arrow sit at the page edge where its direction leaves the page (above the
+  page: the top edge near its own u), with labels kept clear of each other and of the horizon chip. turnHow now reads
+  "Now try Turn. The red dots are your two vanishing points. An arrow at the edge points to one off the page."
+- **Check my drawing** runs its count on every check: lines that all hit open the reflection after three lines, a line
+  erased without being drawn again is reported as missing (and closes the reflection), stale messages clear, and the
+  reflection's note and Done scroll into view when they open.
