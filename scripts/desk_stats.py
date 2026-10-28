@@ -3,8 +3,9 @@ r"""Tool counts for the Review Desk's stats panel: every catalog tool by subject
     python scripts/desk_stats.py <out.json>     write the stats document (then ArtifactData set stats/board)
 
 Stages come from board.py (worked out from each tool's files), so the panel and docs/BUILD-BOARD.md always agree.
-Planned is every row in data/tools-concepts.csv; each stage column counts the tools that are at that stage now.
-`where` maps each tool to its subject and band, so the page can add its own "waiting on you" column from the desk items.
+Planned is every row in data/tools-concepts.csv; each stage column counts the tools that are at that stage now, so a
+row adds up to Planned. `where` maps each tool to its subject, band and stage, so the page can move the tools waiting
+on Cory (desk items marked ready) out of their stage into its own "Your review" column, and the row still adds up.
 """
 import csv, json, sys
 from datetime import datetime, timezone
@@ -39,7 +40,7 @@ def main():
     band = table(rows, lambda r: BANDS.get(r['grade'], 'Across bands'), BAND_ORDER)
     total = {'name': 'All tools', 'planned': len(rows), **{s: sum(r['stage'] == s for r in rows) for s in ORDER}}
     # where each tool sits, so the page can count the desk's own items (waiting on Cory) under the same rows
-    where = {r['tool_id']: [labels.get(r['subject'], r['subject']), BANDS.get(r['grade'], 'Across bands')] for r in rows}
+    where = {r['tool_id']: [labels.get(r['subject'], r['subject']), BANDS.get(r['grade'], 'Across bands'), r['stage']] for r in rows}
     doc = {'stages': ORDER, 'subjects': subj, 'bands': band, 'total': total, 'where': where,
            'at': datetime.now(timezone.utc).isoformat(timespec='seconds')}
     Path(sys.argv[1]).write_text(json.dumps(doc, indent=1), encoding='utf-8')

@@ -50,7 +50,9 @@ def row(tid):
     if (f / 'tool.json').exists():
         st = 'live'
     elif (f / 'tool.draft.json').exists():
-        st = 'voice' if 'PASS' in verdict and a == an and v == vn and vn else 'art' if 'PASS' in verdict and a == an else 'verified' if 'PASS' in verdict else 'built'
+        final = f / 'final.md'  # the Final look after art and voice (REFINE.md): the review before Cory's
+        looked = final.exists() and 'PASS' in final.read_text(encoding='utf-8').split('\n', 1)[0].upper()
+        st = ('final' if looked else 'voice') if 'PASS' in verdict and a == an and v == vn and vn else 'art' if 'PASS' in verdict and a == an else 'verified' if 'PASS' in verdict else 'built'
     elif (f / 'spec.md').exists():
         st = 'spec'
     else:
@@ -60,7 +62,7 @@ def row(tid):
             'sub': 'yes' if (f / 'exit.md').exists() else ''}
 
 
-ORDER = ['concept', 'spec', 'built', 'verified', 'art', 'voice', 'live']
+ORDER = ['concept', 'spec', 'built', 'verified', 'art', 'voice', 'final', 'live']
 
 
 def main():
