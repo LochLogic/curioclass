@@ -696,10 +696,11 @@ render('404.html', '/404.html', index=False)
     + ''.join(f'  <url><loc>{BASE_URL}{p}</loc></url>\n' for p in sitemap) + '</urlset>\n', encoding='utf-8')
 # Cloudflare Pages headers. No X-Frame-Options: embedding tools in an LMS is a feature.
 (DIST / '_headers').write_text(
-    '/*\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n'
+    '/*\n  Link: </sitemap.xml>; rel="sitemap"\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n'
     '  Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=()\n'
     '/assets/fonts/*\n  Cache-Control: public, max-age=31536000, immutable\n', encoding='utf-8')
 # Renamed or moved pages (data/redirects.csv: old,new) become permanent redirects; Workers static assets read _redirects.
 (DIST / '_redirects').write_text(''.join(f"{r['old']} {r['new']} 301\n" for r in read('redirects.csv')), encoding='utf-8')
-(DIST / 'robots.txt').write_text(f'User-agent: *\nAllow: /\nSitemap: {BASE_URL}/sitemap.xml\n', encoding='utf-8')
+# Content Signals (contentsignals.org): Cory allows search, AI answers and AI training (2026-10-28).
+(DIST / 'robots.txt').write_text(f'User-agent: *\nContent-Signal: search=yes, ai-input=yes, ai-train=yes\nAllow: /\nSitemap: {BASE_URL}/sitemap.xml\n', encoding='utf-8')
 print(f'{pages} pages, {len(built)} built tools, {len(bench)} on the bench, {len(sitemap)} in sitemap -> dist/')
