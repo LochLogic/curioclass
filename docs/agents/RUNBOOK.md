@@ -68,9 +68,9 @@ then the item goes back to "ready" with a reply on the comment and the comment m
   docs/agents/decisions/BASELINE.md (answers.json beside it): every agent reads it and settles routine calls with it.
   Bring Cory only the important questions, each with full context. The board (https://claude.ai/artifact/3K6SQRTyc3VdAfbVg9ERis)
   is no longer the main channel.
-  - Running: ela-craft finish (8 specs checked, speech-coach written), eld-hs (6 specs), wave 3 art (FLUX).
-  - Next: log both groups in BATCH-W4-LOG.md, run the wave 4 joint review, pd_art for Met/AIC works in wave 4 specs,
-    then the wave 1 builds (answers are in; growing-up-q-a goes to Cory before any live push).
+  - Waves 2, 3 and 4 are specced and reviewed (W4: 42 specs, log BATCH-W4-LOG.md); wave 3 art done (ART-W3-LOG.md).
+    One question for Cory is open: home-language glossaries for the ELD tools.
+  - Next: the wave 1 builds, using answers.json and BASELINE.md. growing-up-q-a goes to Cory before any live push.
 
 - **Spec wave 1: specced 2026-10-27, not built.** 75 tools outside the core subjects (CS, arts, media and careers,
   health, PE, library); note `docs/agents/BATCH-W1.md`, log and Cory's 54 open questions in
