@@ -74,8 +74,6 @@ arts-6-8-animation-basics/timing = raw(420, 240, '<line x1="10" y1="222" x2="410
 arts-6-8-animation-basics/storyboard = grid([box(w=140, h=100, color=DARK, fill='#fff', rx=6) for _ in range(6)], 3, gap=14)
 # squash and stretch: a ball flattening and stretching
 arts-6-8-animation-basics/squash-and-stretch = row(shape('circle', 110, RED), raw(170, 70, '<ellipse cx="85" cy="40" rx="80" ry="30" fill="#e04848" stroke="#1f2430" stroke-width="5"/>'), raw(70, 170, '<ellipse cx="35" cy="85" rx="28" ry="78" fill="#e04848" stroke="#1f2430" stroke-width="5"/>'), gap=24)
-# Cubism: a guitar made of overlapping angular shapes
-arts-6-8-art-history-timeline/cubism = paint('a guitar made of overlapping flat angular shapes in brown and tan, in the style of cubist art')
 # context: a framed artwork with its time, place and events around it
 arts-6-8-art-history-timeline/context = col(row(col(clock(80), T('time', 26), gap=2), col(globe(80), T('place', 26), gap=2), col(calendar(80), T('events', 26), gap=2), gap=26), arrow(40, ORANGE, dir='down'), box(box(star(70), w=150, h=110, color=BROWN, fill=YELLOW, rx=2, sw=4), color=BROWN, fill=BROWN, rx=4, p=12), gap=8)
 # movement phrase: a sequence of arrows in a line
@@ -102,8 +100,6 @@ arts-6-8-drawing-and-one-point-perspective/cross-hatching = raw(240, 240, '<clip
 arts-6-8-ensemble-skills/blend = raw(420, 220, ''.join(f'<path d="M10 {40 + i * 40} ' + ' '.join(f'L{10 + t * 4:.0f} {40 + i * 40 + (110 - 40 - i * 40) * min(1, t / 60) + 22 * math.sin(t / 7 + i) * (1 - min(1, t / 60)):.1f}' for t in range(101)) + f'" fill="none" stroke="{c}" stroke-width="6" stroke-linecap="round"/>' for i, c in enumerate((BLUE, ORANGE, GREEN, PURPLE))))
 # balance: a level scale
 arts-6-8-ensemble-skills/balance = scale_icon(300, ball(50, BLUE), ball(50, BLUE))
-# cue: a raised baton
-arts-6-8-ensemble-skills/cue = paint('a conductor baton raised in a hand, simple')
 # harmony: stacked notes on a staff
 arts-6-8-harmony-and-chords/harmony = staff([(0, 2, 4), (1, 3, 5), (2, 4, 6)], size=420)
 # interval: two notes on a staff with a bracket
@@ -2412,8 +2408,6 @@ math-k-build-a-shape/side = triangle(300, hl_side=[0, 1, 2])
 math-k-build-a-shape/corner = raw(280, 280, '<rect x="40" y="40" width="200" height="200" fill="#d6e6fb" stroke="#1f2430" stroke-width="7"/>' + ''.join(f'<circle cx="{x}" cy="{y}" r="18" fill="#e04848"/>' for x in (40, 240) for y in (40, 240)))
 # flat: a circle drawn on a sheet of paper
 math-k-build-a-shape/flat = raw(320, 280, '<path d="M30 30 H260 L290 60 V250 H30 Z" fill="#fff" stroke="#1f2430" stroke-width="6" stroke-linejoin="round"/><circle cx="160" cy="145" r="80" fill="#3a7bd5"/>')
-# build: a square with a triangle on top making a house
-math-k-build-a-shape/build = paint('colorful building blocks being stacked into a small tower, one block mid-air about to land')
 # curve: a curved line
 math-k-build-a-shape/curve = raw(360, 200, '<path d="M20 150 C 100 -20, 200 260, 340 50" fill="none" stroke="#9b59d0" stroke-width="16" stroke-linecap="round"/>')
 # count: ten dots counted 1 to 10
@@ -2492,8 +2486,6 @@ math-k-teen-numbers/group = box(objects(10, cube_icon, cols=5, size=50, gap=8, c
 math-k-teen-numbers/break-apart = col(raw(450, 40, ''.join(f'<rect x="{5 + i * 29}" y="5" width="27" height="30" fill="{"#2f9e5b" if i < 10 else "#f08a24"}" stroke="#1f2430" stroke-width="3"/>' for i in range(15))), arrow(40, dir='down'), raw(470, 40, ''.join(f'<rect x="{5 + i * 29 + (30 if i >= 10 else 0)}" y="5" width="27" height="30" fill="{"#2f9e5b" if i < 10 else "#f08a24"}" stroke="#1f2430" stroke-width="3"/>' for i in range(15))), gap=10)
 # root: a plant with its roots in soil highlighted
 science-1-plant-and-animal-parts/root = raw(300, 340, '<rect x="0" y="150" width="300" height="190" fill="#a0724a"/><path d="M150 150 V40" stroke="#2f9e5b" stroke-width="10"/><path d="M150 90 C110 60 90 70 80 50 C110 40 140 60 150 90 M150 70 C190 40 210 50 220 30 C190 20 160 40 150 70" fill="#2f9e5b" stroke="#1f2430" stroke-width="4"/><path d="M150 150 V240 M150 180 L100 230 M150 180 L200 225 M150 210 L115 290 M150 210 L190 285 M150 240 L150 310" stroke="#fde97a" stroke-width="9" stroke-linecap="round"/>')
-# soft: a speech bubble with tiny dots
-science-1-sound-and-vibration/soft = paint('a small cat tiptoeing on a soft rug past a sleeping puppy')
 # pH: a color scale from 0 to 14
 science-10-acids-bases-and-solutions/ph = raw(500, 130, ''.join(f'<rect x="{5 + i * 32}" y="10" width="32" height="70" fill="{c}"/>' for i, c in enumerate(('#e0302a', '#e8502a', '#f07a2a', '#f5a524', '#f5c524', '#e8df2a', '#b8d83a', '#5fbf4a', '#2f9e7b', '#2a8fb0', '#2a6fc0', '#3a4fc0', '#5a3fb0', '#6a2f9a', '#5a2080'))) + '<rect x="5" y="10" width="480" height="70" fill="none" stroke="#1f2430" stroke-width="4"/>' + ''.join(f'<text x="{21 + i * 32}" y="115" font-family="Segoe UI" font-size="24" font-weight="700" text-anchor="middle" fill="#1f2430">{i}</text>' for i in (0, 7, 14)))
 # molarity: a flask labeled 0.5 M
@@ -2820,8 +2812,6 @@ science-8-engineering-design/optimize = plot(lambda x: -0.3 * (x - 5) ** 2 + 7, 
 science-8-engineering-design/iterate = cycle(['plan', 'build', 'test', 'improve'], r=140)
 # fossil record: rock layers with fossils at different depths
 science-8-evolution-and-natural-selection/fossil-record = layers(5, 320, fossils=((0, 90), (2, 200), (4, 140)))
-# homologous structures: a bat wing and an arm skeleton side by side
-science-8-evolution-and-natural-selection/homologous-structures = paint('a bat wing, a whale flipper and a cat front leg side by side, matching bones colored the same in each')
 # force: an arrow pushing a box
 science-8-forces-and-motion/force = row(arrow(140, RED, sw=16), crate(150), gap=4)
 # net force: two equal arrows pushing opposite ways

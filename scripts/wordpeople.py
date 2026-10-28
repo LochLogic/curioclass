@@ -53,6 +53,8 @@ def main():
             continue
         kind, _, p = c['picture'].partition(':')
         prompt = STYLE.format(p=p.strip()) + (PEOPLE if kind == 'people' else '')
+        if kind == 'gpt':  # gpt: cards may ask for labels; the shared style's "no text" fought them
+            prompt = prompt.replace('no text.', 'no text except any words or labels the description asks for, spelled exactly.')
         have = len(list(RAW.glob(f"{key.replace('/', '__')}.c*.png")))
         for k in range(have + 1, have + 1 + n):
             src = draw(prompt, 'square', [], work)
