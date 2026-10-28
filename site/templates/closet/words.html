@@ -42,7 +42,7 @@
 
   <section class="fmt fmt-wall">
     {% for c in cards %}
-    <article class="wcard">
+    <article class="wcard" id="w-{{ c.slug }}">
       <div class="pic">{{ draw(c) }}</div>
       <div class="txt">
         <p class="w en">{{ c.word }}</p>
@@ -168,6 +168,13 @@
     });
   });
   document.querySelectorAll('.word-controls input:checked').forEach(function (input) { page.dataset[input.name] = input.value; });
+  // A link to one card (#w-word, from a lesson plan) shows the wall cards so the card is there to land on
+  var card = location.hash.indexOf('#w-') === 0 && document.getElementById(location.hash.slice(1));
+  if (card) {
+    document.querySelector('.word-controls input[value="wall"]').checked = true;
+    page.dataset.format = 'wall';
+    card.scrollIntoView();
+  }
 })();
 </script>
 {% endblock %}

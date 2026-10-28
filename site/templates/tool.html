@@ -42,6 +42,7 @@
     {% if t.plan %}<p class="plan-link">Planning a whole lesson? <a href="{{ t.url }}plan/">Here is a {{ t.plan.meta.minutes }}-minute lesson plan</a> that opens the standard and brings the class to this tool.</p>{% endif %}
     {% if t.notes_html %}{{ t.notes_html | safe }}{% else %}<p>Teacher notes coming soon.</p>{% endif %}
     <p class="plan-link">More for <a href="{{ m.url }}">{{ m.title }}</a>: every tool and lesson plan for this module in one place.</p>
+    {% if cards %}<p class="plan-link wall-link">The {{ cards | length }} key words for {{ m.title }}, ready to print or study, in English and Spanish. <a class="btn" href="{{ m.url }}words/">Open Word Wall</a></p>{% endif %}
     {% if home %}<p class="plan-link">Play at home: {% for g in home %}<a href="{{ g.url }}">{{ g.title }}</a>{{ ', ' if not loop.last }}{% endfor %}, a printable family game{{ 's' if home | length > 1 }} on the same idea, in English and Spanish.</p>{% endif %}
   </div>
   <div class="panel" role="tabpanel" id="p-std" aria-labelledby="t-std" hidden>

@@ -11,10 +11,10 @@
     <div class="band">
       <h3>{{ b.label }}</h3>
       <span class="who">{{ b.tally }}</span>
-      <div class="chips">{% for g in b.spans %}<a href="/closet/word-wall/{{ g }}/"{% if '-' in g %} class="span"{% endif %} aria-label="{{ grade_label(g) }}">{% if '-' in g %}All {% endif %}{{ g | upper }}</a>{% endfor %}</div>
+      <div class="chips">{% for c in b.chips %}<a href="{{ c.href }}"{% if c.span %} class="span"{% endif %} aria-label="{{ c.aria }}">{{ c.text }}</a>{% endfor %}</div>
     </div>
     {% endfor %}
   </div>
-  <p class="plan-link">"All" pages hold modules written for a whole span, like electives for grades 9-12 or ASL for K-12.</p>
+  <p class="plan-link">"All" pages hold modules written for a whole span, like electives for grades 9-12. World Languages go by language, since each one runs from beginner to advanced at any grade.</p>
 </div>
 {% endblock %}

@@ -11,7 +11,7 @@
     <h2>Modules</h2>
     <p>Each module page has its tools, lesson plans and printables in one place.</p>
     <ul class="module-list">
-      {% for m in mods %}<li><a href="{{ m.url }}"><b>{{ m.title }}</b></a><span>{{ grade_label(m.grade) }} · {{ subjects[m.subject].short }} · {{ m.description }}</span></li>{% endfor %}
+      {% for m in mods %}<li><a href="{{ m.url }}"><b>{{ m.title }}</b></a><span>{{ grade_label(m.grade) }} · {{ subjects[m.subject].short }} · {{ m.description }}</span>{% if m.module_id in walls %}<a class="wall-link" href="{{ m.url }}words/">Word Wall</a>{% endif %}</li>{% endfor %}
     </ul>
   </section>
 

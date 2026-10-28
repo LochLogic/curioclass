@@ -1,18 +1,18 @@
 {% extends "base.html" %}
 {% from "macros.html" import crumbs %}
-{% block title %}Word Wall: {{ grade_label(g) }} · Curio Class{% endblock %}
-{% block description %}Printable vocabulary cards for {{ grade_label(g) | lower }}, every subject, in English and Spanish. {{ tally }}.{% endblock %}
+{% block title %}Word Wall: {{ title }} · Curio Class{% endblock %}
+{% block description %}{% if nav_label %}Printable vocabulary cards for {{ title }} at every level, with meanings in English and Spanish{% else %}Printable vocabulary cards for {{ grade_label(g) | lower }}, every subject, in English and Spanish{% endif %}. {{ tally }}.{% endblock %}
 {% block main %}
 <div class="wrap">
-  {{ crumbs([('Supply Closet', '/closet/'), ('Word Wall', '/closet/word-wall/'), (grade_label(g), None)]) }}
+  {{ crumbs([('Supply Closet', '/closet/'), ('Word Wall', '/closet/word-wall/'), (title, None)]) }}
   <div class="page-head">
-    <h1>Word Wall: {{ grade_label(g) }}</h1>
+    <h1>Word Wall: {{ title }}</h1>
     <p>{{ tally }}. Pick a module to print its cards in English, Español or both.{% if also %} More for this grade: {% for x in also %}<a href="/closet/word-wall/{{ x }}/">{{ grade_label(x) }}</a>{{ ', ' if not loop.last }}{% endfor %}.{% endif %}</p>
   </div>
 
   <div class="browse">
-    <aside class="browse-nav" aria-label="Subjects">
-      <p class="eyebrow">Subjects</p>
+    <aside class="browse-nav" aria-label="{{ nav_label or 'Subjects' }}">
+      <p class="eyebrow">{{ nav_label or 'Subjects' }}</p>
       <nav id="browse-links">
         {% for s in sections %}
         <a href="#{{ s.id }}" data-target="{{ s.id }}"><i style="background:var(--{{ s.color }})"></i><span>{{ s.label }}</span><b>{{ s.mods | length }}</b></a>
@@ -22,9 +22,9 @@
 
     <div class="browse-main">
       {% if sections | length > 1 %}
-      <label class="jump"><span class="sr-only">Subjects</span>
+      <label class="jump"><span class="sr-only">{{ nav_label or 'Subjects' }}</span>
         <select id="jump">
-          <option value="">Subjects…</option>
+          <option value="">{{ nav_label or 'Subjects' }}…</option>
           {% for s in sections %}<option value="{{ s.id }}">{{ s.label }} ({{ s.mods | length }})</option>{% endfor %}
         </select>
       </label>
@@ -36,7 +36,7 @@
           {% for m in s.mods %}
           <article class="module-card">
             <h3><a href="{{ m.url }}words/">{{ m.title }}</a></h3>
-            <p class="desc">{{ words[m.module_id] | map(attribute='word') | join(' · ') }}</p>
+            <p class="desc">{% if m.wall_note %}<b>{{ m.wall_note }}:</b> {% endif %}{{ words[m.module_id] | map(attribute='word') | join(' · ') }}</p>
           </article>
           {% endfor %}
         </div>

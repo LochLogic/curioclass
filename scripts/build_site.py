@@ -226,6 +226,14 @@ for fam, items in families.items():
            lede='A family of tools that share one engine and grow with students across grades.',
            items=items, crumb=('Collections', '/collections/'))
 
+# Word Wall cards (docs/SUPPLY-CLOSET-PLAN.md, Phase C); a bad word list stops a closet build.
+# Loaded before the standard pages, which link each module to its cards
+words = check_words.load() if CLOSET_LIVE else {}
+for mid, cards in words.items():
+    bad = check_words.problems(mid, cards, modules)
+    if bad:
+        sys.exit('; '.join(bad) + ' (python scripts/check_words.py)')
+
 # standards
 by_fw = defaultdict(list)
 for code in sorted(standards):
@@ -242,14 +250,7 @@ for code, items in standards.items():
             seen.add(t['tool_id'])
             uniq.append(t)
     render('standard.html', f'/standards/{slug(code)}/', code=code, framework=std_framework[code], items=uniq,
-           mods=sorted(code_modules[code], key=lambda m: GRADES.index(m['grades'][0])), index=False)
-
-# Word Wall cards (docs/SUPPLY-CLOSET-PLAN.md, Phase C); a bad word list stops a closet build
-words = check_words.load() if CLOSET_LIVE else {}
-for mid, cards in words.items():
-    bad = check_words.problems(mid, cards, modules)
-    if bad:
-        sys.exit('; '.join(bad) + ' (python scripts/check_words.py)')
+           mods=sorted(code_modules[code], key=lambda m: GRADES.index(m['grades'][0])), walls=words, index=False)
 
 # Family Game Night (Phase E): each game links to its modules, and to their built tools as "Loved it at school?"
 games = check_games.load() if CLOSET_LIVE else {}
@@ -364,10 +365,11 @@ for t in tools:
         if t['preview']:
             shutil.copy2(TOOLS / t['tool_id'] / 'preview.svg', dest / 'preview.svg')
         render('tool.html', t['url'], t=t, related=related, collection=collection,
-               home=games_by_module.get(t['module']['module_id'], []))
+               home=games_by_module.get(t['module']['module_id'], []), cards=words.get(t['module']['module_id'], []))
         if t['plan']:
             plan = t['plan']
             render('plan.html', t['url'] + 'plan/', t=t, meta=plan['meta'], arc=check_plans.ARCS[plan['meta']['arc']],
+                   cards=words.get(t['module']['module_id'], []),
                    sections=[(title, mins, markdown.markdown(text)) for title, mins, text in plan['sections']])
             if t['exit'] and CLOSET_LIVE:  # Sub Day packet (Phase B): cover, plan, notes, exit tickets, backup sheet
                 render('subday.html', t['url'] + 'sub/', index=False, t=t, ex=t['exit'],
@@ -388,34 +390,70 @@ CLOSET = [  # slug, label, what it holds
     ('game-night', 'Family Game Night', 'Games to play at home with paper, pencils, cards or dice. Nothing to buy.'),
 ]
 # Word Wall: one page per grade span a module is written for (K to 12, and spans like 3-5 or K-12), grouped by subject.
-# The shelf page is a grade picker: a card per band with its grades and its whole-band span, then the cross-band spans.
+# The shelf page is a grade picker: a card per band with its grades and its whole-band span, then a card for World Languages.
 wall = defaultdict(list)
 for mid in words:
     wall[modules[mid]['grade']].append(modules[mid])
 
 
-def wall_tally(spans):
-    mods = [m for g in spans for m in wall.get(g, [])]
+def mods_tally(mods):
     return f'{len(mods)} modules, {sum(len(words[m["module_id"]]) for m in mods)} words'
 
 
-wall_bands = []
-for bid, b in bands.items():
-    spans = [g for g in b['grade_list'] + [BAND_SLUG[bid]] if g in wall]
-    wall_bands.append(dict(label=b['label'], who=b['who'], tally=wall_tally(spans), spans=spans))
-across = [g for g in wall if g not in GRADES and g not in BAND_SLUG.values()]
-if across:
-    wall_bands.append(dict(label='Across bands', who='More than one band', tally=wall_tally(across),
-                           spans=sorted(across, key=lambda g: (GRADES.index(g.split('-')[0]), -len(expand(g))))))
+# A module written across bands (like ELD for 6-12) also sits on the whole-band page of every band it reaches, so a
+# teacher finds it under their grade. World languages run by level, not grade: they get one page per language instead.
+fold = defaultdict(list)
 for g, mods in wall.items():
+    if g in GRADES or g in BAND_SLUG.values():
+        continue
+    for m in mods:
+        if m['subject'] != 'world-languages':
+            for bid, b in bands.items():
+                if set(m['grades']) & set(b['grade_list']):
+                    fold[BAND_SLUG[bid]].append(dict(m, wall_note=grade_label(m['grade'])))
+wall_langs = defaultdict(list)  # course_id -> modules, like the language picker on /subjects/world-languages/
+for mods in wall.values():
+    for m in mods:
+        if m['subject'] == 'world-languages':
+            wall_langs[m['course_id']].append(m)
+LANG_CHIP = {'asl': 'ASL'}  # chip text when the language's full name is too long for a chip
+wall_bands, reached = [], set()
+for bid, b in bands.items():
+    spans = [g for g in b['grade_list'] + [BAND_SLUG[bid]] if g in wall or g in fold]
+    mods = [m for g in spans for m in wall.get(g, []) + fold.get(g, [])]
+    reached |= {m['module_id'] for m in mods}
+    wall_bands.append(dict(label=b['label'], tally=mods_tally({m['module_id']: m for m in mods}.values()),
+                           chips=[dict(href=f'/closet/word-wall/{g}/', text=('All ' if '-' in g else '') + g.upper(),
+                                       aria=grade_label(g), span='-' in g) for g in spans]))
+lang_list = [(c, courses[c]['title'].split(' (')[0]) for c in courses if c in wall_langs]
+if lang_list:
+    mods = [m for c, _ in lang_list for m in wall_langs[c]]
+    reached |= {m['module_id'] for m in mods}
+    wall_bands.append(dict(label='World Languages', tally=mods_tally(mods),
+                           chips=[dict(href=f'/closet/word-wall/{c}/', text=LANG_CHIP.get(c, name), aria=name, span=True)
+                                  for c, name in lang_list]))
+lost = [mid for mid in words if mid not in reached]
+if lost:
+    sys.exit(f'Word Wall index misses {len(lost)} modules, like {lost[0]}')
+for g, mods in wall.items():
+    mods = mods + fold.get(g, [])
     by_sub = defaultdict(list)
     for m in mods:
         by_sub[m['subject']].append(m)
     sections = [dict(id=sid, label=s['label'], color=s['color'], mods=sorted(by_sub[sid], key=lambda m: m['title']))
                 for sid, s in subjects.items() if sid in by_sub]
     also = [x for x in wall if x != g and set(expand(x)) & set(expand(g)) and (len(expand(x)) > len(expand(g)))]
-    render('closet/word-grade.html', f'/closet/word-wall/{g}/', g=g, sections=sections, words=words, tally=wall_tally([g]),
-           also=sorted(also, key=lambda x: len(expand(x))))
+    render('closet/word-grade.html', f'/closet/word-wall/{g}/', g=g, title=grade_label(g), sections=sections, words=words,
+           tally=mods_tally(mods), also=sorted(also, key=lambda x: len(expand(x))))
+for c, name in lang_list:  # a page per language, its modules by grade span
+    by_span = defaultdict(list)
+    for m in wall_langs[c]:
+        by_span[m['grade']].append(m)
+    sections = [dict(id=f'grade-{g}', label=grade_label(g), color=subjects['world-languages']['color'],
+                     mods=sorted(by_span[g], key=lambda m: m['title']))
+                for g in sorted(by_span, key=lambda g: (GRADES.index(g.split('-')[0]), -len(expand(g))))]
+    render('closet/word-grade.html', f'/closet/word-wall/{c}/', g=c, title=name, sections=sections, words=words,
+           tally=mods_tally(wall_langs[c]), also=[], nav_label='Grades')
 sub_tools = [t for t in built if t['exit']] if CLOSET_LIVE else []
 sub_sections = []
 for gr in GRADES:  # a tool sits under the first grade it is written for
@@ -431,7 +469,7 @@ for gr in GRADES:  # a chart sits under the first grade its module is written fo
                 key=lambda c: (list(subjects).index(modules[c['id']]['subject']), c['title'][0]))
     chart_sections.append(dict(id=f'grade-{gr}', label=grade_label(gr), items=cs))
 chart_sections = [s for s in chart_sections if s['items']]
-counts = {'anchor-charts': f'{len(charts)} charts, {len(posters)} posters' if charts else '', 'sub-day': f'{len(sub_tools)} packets' if sub_tools else '', 'word-wall': wall_tally(list(wall)) if words else '', 'game-night': f'{len(games)} games' if games else ''}
+counts = {'anchor-charts': f'{len(charts)} charts, {len(posters)} posters' if charts else '', 'sub-day': f'{len(sub_tools)} packets' if sub_tools else '', 'word-wall': mods_tally([m for ms in wall.values() for m in ms]) if words else '', 'game-night': f'{len(games)} games' if games else ''}
 # Game Night: one shelf page with a section per grade (games in subject order), and a print page per game
 SUBJECT_ES = {'math': 'Matemáticas', 'ela': 'Lectura y escritura', 'science': 'Ciencias', 'social-studies': 'Estudios sociales'}
 game_sections = []

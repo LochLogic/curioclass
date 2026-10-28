@@ -11,10 +11,12 @@
       <p class="eyebrow">Lesson plan · {{ t.meta.grades_label }} · {{ meta.minutes }} minutes</p>
       <h1>{{ t.title }}</h1>
       <p class="plan-goal">{{ meta.goal }}</p>
+      {% if cards %}<p class="plan-words">Key words: {% for c in cards %}<a href="{{ m.url }}words/#w-{{ c.slug }}">{{ c.word }}</a>{{ ', ' if not loop.last }}{% endfor %}</p>{% endif %}
       <div class="actions no-print">
         <a class="btn primary" href="{{ t.url }}{{ t.tool_id }}" target="_blank" rel="noopener">▶ Open the tool</a>
         <button class="btn" type="button" onclick="print()">Print the plan</button>
         <a class="btn" href="{{ t.url }}{{ t.tool_id }}" download="{{ t.file }}">Download the tool</a>
+        {% if cards %}<a class="btn" href="{{ m.url }}words/">Open Word Wall</a>{% endif %}
       </div>
     </div>
     <dl class="facts">
