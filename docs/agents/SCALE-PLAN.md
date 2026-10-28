@@ -49,6 +49,9 @@ writing specs, and batch each step only after its inputs are final.
    - Narration lines change during fix rounds (game-remix went from 35 to 49 in one round, then to 42 when Cory cut Share).
    - After each voice night, run `scripts/voice_liveliness.py` and redo only clearly flat takes (`localvoice.py --redo`);
      the check is gentle on purpose, and a flag or two per tool can stay.
-   - Local Qwen takes about 1 to 2 s per line, roughly 10 to 15 GPU hours for the whole catalog.
-   - Voice and FLUX cannot share the 16 GB card, so art nights and voice nights alternate.
+   - Voice runs on the Forge (`localvoice.py <id> --forge`, Cory, 2026-10-28): about 5.4 s a line on its RTX 2080,
+     roughly 40 to 55 Forge hours for the whole catalog, queued behind or between challenge jobs. A pilot matched the
+     5080 takes (word errors 1.9 vs 1.1 percent, same pitch, movement and timbre).
+   - So art (FLUX on the 5080) and voice (the Forge) run the same nights instead of alternating. The 5080 path
+     (1 to 2 s a line) stays for a rush when FLUX is not loaded.
 7. **Reviews per wave** on the Review Desk instead of one at a time.

@@ -60,8 +60,12 @@ counts either file.
   background), wait for port 5002, then `python scripts/localart.py <id> --n 3`, look at
   `art/raw/_sheet-<name>.jpg`, and `--pick name:k`. Re-prompt with an `"sd"` field when it misfires. Stop the server
   when done. People (hands included) go to Gemini: `python scripts/art.py <id> <names>`, Cory reviews them.
-- **Voice:** `S:\AI\tts\.venv\Scripts\python.exe scripts/localvoice.py <id>` clones the tool's bank voice
-  (`"bank"` in voice/lines.json) for every line, then encodes. Listen for nothing (you can't); check the printed
+- **Voice:** `S:\AI\tts\.venv\Scripts\python.exe scripts/localvoice.py <id> --forge` clones the tool's bank voice
+  (`"bank"` in voice/lines.json) for every line on the Forge (lab119), then brings the clips back and encodes them
+  here, so this PC's card stays free for art (Cory, 2026-10-28). It joins the Forge queue (one GPU job at a time,
+  shared with challenge work) and waits: about 5.4 s a line once it starts, so run it in the background. If the wait
+  is cut off, `localvoice.py --forge-collect <job>` (the name it printed) finishes the job. Without `--forge` it runs on
+  the 5080 (1 to 2 s a line) when FLUX is not loaded. Listen for nothing (you can't); check the printed
   lengths and flag any very short clip for Cory. Then run `scripts/voice_liveliness.py <id>` (same venv), a reading,
   not a gate: it flags only clearly flat takes (pitch movement under 3 semitones, half that for short lines), which
   Cory heard as bored. Keep the fix gentle (Cory, 2026-10-27): redo a flagged line with
