@@ -70,6 +70,7 @@ When Gemini is unavailable (no credits) or for large batches, `scripts/localart.
 - Same prompt as art.py, hex codes included (gpt-image keeps them out of the picture). People are allowed here, with a review of every image.
 - Image turns use the plan's Codex allowance 3-5x faster than plain turns, so keep it for the hard cases; the script stops cleanly at the usage limit.
 - Credit: "Illustrations generated with OpenAI gpt-image, edited for Curio Class".
+- Word Wall cards that need a person doing the action (hop, skip, stretch) have a picture starting `people:` and are drawn by `scripts/wordpeople.py` the same way (candidates in closet/words/art/_raw/people/, `--pick key:k` keeps one). Give each card its own child so the set is varied.
 
 ## Daily art rhythm
 
