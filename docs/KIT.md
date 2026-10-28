@@ -139,7 +139,9 @@ releases a stopped Read, so nothing waits on it. A line is marked said when it s
 `V.log` holds one entry per line: `{t, key, kind, text, as, why}`, where `as` is `spoken`, `silent` (why: `heard`,
 `off`, `early`), `dropped` (why: `stale`, `newer`, `chain`, `hush`) or `read`. Repeats of the same silent or dropped
 line in a row fold into one entry with a count `n` (and `t2`, the time of the last one), so a slider that re-queues its
-how-to on every input leaves one entry, not hundreds. `V.queue` lists the lines waiting.
+how-to on every input leaves one entry, not hundreds. A spoken line cut off while it was playing gets `cut` on its
+entry (`hush`, `read`, `sound` or `now`), so tests can find a welcome or line that was cut and never came back
+(`scripts/audit_tool.py` does). `V.queue` lists the lines waiting.
 
 A tool on the helper (about 20 lines in place of the 60 to 100 line copies):
 

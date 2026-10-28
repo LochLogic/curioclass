@@ -21,6 +21,10 @@ If the spec is wrong or impossible, stop and report it rather than improvising.
 - `notes.md`: teacher notes (a 5-minute start, the modes, talk questions, good to know). Look at `tools/shape-talk/notes.md`.
 - `art/prompts.json`: the spec's art list in the format of `tools/calm-corner/art/prompts.json`. Do not draw art.
 - `voice/lines.json`: voice, style and every line `allLines()` returns. Do not record.
+- `audit-states.json`: the states a student reaches beyond the first screen (after a run, every stepper at its
+  limits, each mode with work in it, an overlay open), as real clicks, keys and drags, with the regions that must stay
+  in view (`keep`, such as the results after a run). `scripts/audit_tool.py` re-checks every size in each state; the
+  format is in its header.
 - `handoff.md`: a short note for whoever fixes this tool later: how src.html is laid out, the tricky parts, and what
   you would do next. Refine's polish may run after you are gone.
 
