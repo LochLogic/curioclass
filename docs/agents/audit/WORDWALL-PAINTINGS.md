@@ -533,3 +533,192 @@ Reviewed 1264 painted Word Wall pictures (every card with a painted picture, inc
 ## Not yet drawn
 
 632 more cards have a painted picture in data/closet/words but no picture file yet in closet/words/art, so there was nothing to review. They are the rest of the 1,896 painted cards (1,894 painting pictures plus 2 diagrams.py paint() specs). Run scripts/wordart.py when the image model is up, then review the new sheets. By subject: arts 134, computer 101, cte 22, ela 149, eld 9, health 32, library 15, science 5, sel 5, social 160.
+
+## Converted
+
+All 173 CODE rows are now code diagrams: each card's picture field reads `svg: ...`, its spec sits at the end of data/closet/words/diagrams.py (under "converted from paintings"), and its webp was drawn with `scripts/wordsvg.py --only`. None was kept painted: every one needed labels, counts, scales, graphs, maps or letters that a painting gets wrong. Each picture was checked against the card's definition and example.
+
+New helpers in scripts/wordsvg.py (each used by several cards): plot_arc (plot mountain, 5 cards), parts3 (beginning, middle, end panels, 6), argue (claim, reasons, evidence, 7), tagged (sentences with labeled words, 11), dnl (double number line, 3), us_coins (3), family_tree (2), nutrition_label (2), grid2x2 (2).
+
+Notes for review:
+
+- science-10-nuclear-chemistry/fusion reuses the nuclear fusion diagram (two hydrogen nuclei join into helium, plus energy and a neutron).
+- world-languages-6-12-cultures-of-the-spanish-speaking-world/indigenous-languages pins six languages at places where they are spoken today (Nahuatl, Maya, Quechua, Aymara, Guaraní, Mapudungun). It is cultural content, so it should get a fresh sensitivity review.
+- science-8-natural-hazards-and-human-impact/climate-change plots approximate NASA GISTEMP decade values (about -0.2 °C in 1880 to +1.0 °C in 2020, against the 1951-1980 average).
+- science-12-pollution-and-solutions/bioaccumulation shows one tuna building up mercury over its life (the card's definition), not biomagnification up a food chain.
+
+| key | word | result | picture now |
+|---|---|---|---|
+| arts-k-2-steady-beat-and-rhythm/steady | steady | converted | an even row of beats beside a row that bunches up |
+| arts-k-2-steady-beat-and-rhythm/long-sound | long sound | converted | a long held bar ("mooooo") above a short one ("pop") |
+| arts-k-2-high-and-low-loud-and-soft/pitch | pitch | converted | notes climbing stairs from low (a bear) to high (a bird) |
+| arts-6-8-harmony-and-chords/chord | chord | converted | three notes (G, B, D) stacked on a staff, played together |
+| arts-6-8-music-around-the-world/polyrhythm | polyrhythm | converted | 3 even beats against 2 even beats in the same span, starting together |
+| arts-6-8-music-around-the-world/timbre | timbre | converted | the same note as three wave shapes for three instruments |
+| computer-science-3-if-this-then-that/if-then | if-then | converted | a diamond asks "Is it dark?"; yes turns the light on, no leaves it off |
+| computer-science-1-code-a-path/algorithm | algorithm | converted | four numbered steps that move a robot along a grid to the cheese |
+| computer-science-6-8-machine-learning-models/model | model | converted | labeled photos (training data) go into the model |
+| computer-science-6-8-machine-learning-models/false-positive | false positive | converted | predicted yes, actually no (the model says "dog" but it is a cat) |
+| ela-3-main-idea-and-key-details/main-idea | main idea | converted | the table top (main idea) held up by three legs (details) |
+| ela-3-main-idea-and-key-details/key-detail | key detail | converted | the main idea held up by details, one key detail picked out |
+| ela-3-opinion-and-informative-writing/topic-sentence | topic sentence | converted | a paragraph of bars with the first bar highlighted |
+| ela-3-narrative-writing/narrative | narrative | converted | a camping trip told in order, beginning, middle and end |
+| ela-k-rhymes-and-sounds/beginning-sound | beginning sound | converted | a dog beside sound boxes d-o-g, the first box picked out |
+| ela-k-rhymes-and-sounds/ending-sound | ending sound | converted | a bus beside sound boxes b-u-s, the last box picked out |
+| ela-1-phonics-blends-and-digraphs/blend | blend | converted | s and t slide together in "stop", and you hear both sounds |
+| ela-1-writing-sentences-and-stories/next | next | converted | three steps in a morning (wake up, breakfast, school), the second picked out |
+| ela-1-writing-sentences-and-stories/last | last | converted | the same three steps, the final one picked out |
+| ela-1-word-meanings/meaning | meaning | converted | the word card "tiny" points to what it tells you, very small |
+| ela-2-long-vowels-and-two-syllable-words/vowel-team | vowel team | converted | e and a share one tile in "seat" and make one sound |
+| ela-2-long-vowels-and-two-syllable-words/syllable | syllable | converted | rab and bit, one clap each |
+| ela-2-paragraph-writing/paragraph | paragraph | converted | sentence bars that all point to one idea, my dog |
+| ela-2-paragraph-writing/topic-sentence | topic sentence | converted | a paragraph of bars with the first bar highlighted |
+| ela-4-text-structures/compare-and-contrast | compare and contrast | converted | a Venn diagram of frogs and toads, shared traits in the middle |
+| ela-4-firsthand-and-secondhand-accounts/firsthand-account | firsthand account | converted | someone who was in the storm writes it in a diary |
+| ela-4-firsthand-and-secondhand-accounts/secondhand-account | secondhand account | converted | someone who was not there writes about the storm later, in a textbook |
+| ela-4-writing-with-evidence/claim | claim | converted | the claim on top, held up by reasons resting on evidence |
+| ela-4-grammar-in-use/adjective-order | adjective order | converted | describing words in the usual order, opinion, size, age, color, then the noun |
+| ela-5-reasons-and-evidence/reason | reason | converted | a point held up by reasons, the reasons picked out |
+| ela-5-reasons-and-evidence/point | point | converted | the main idea the author wants you to accept, held up by reasons |
+| ela-5-organized-essays/thesis | thesis | converted | an essay outline, the last sentence of the introduction is the thesis |
+| ela-6-plot-and-character-development/exposition | exposition | converted | the plot mountain with the opening picked out |
+| ela-6-plot-and-character-development/rising-action | rising action | converted | the plot mountain with the climb picked out |
+| ela-6-plot-and-character-development/climax | climax | converted | the plot mountain with the peak picked out |
+| ela-6-plot-and-character-development/falling-action | falling action | converted | the plot mountain with the way down picked out |
+| ela-6-plot-and-character-development/resolution | resolution | converted | the plot mountain with the ending picked out |
+| ela-6-central-idea-and-summary/central-idea | central idea | converted | the central idea in the middle, supporting details all around it |
+| ela-6-tracing-an-argument/argument | argument | converted | a claim held up by reasons, each resting on evidence |
+| ela-6-tracing-an-argument/reason | reason | converted | the claim-reason-evidence diagram with the reasons picked out |
+| ela-6-pronouns-and-sentence-variety/antecedent | antecedent | converted | "Maria lost her pen." with an arrow from her back to Maria |
+| ela-6-pronouns-and-sentence-variety/agreement | agreement | converted | a plural noun matched with a plural pronoun |
+| ela-6-connotation-and-context/context-clues | context clues | converted | the clue words around "arid" tell what it means |
+| ela-7-sound-and-form-in-poetry/alliteration | alliteration | converted | "Silent snow sleeps," every word starting with the same s sound |
+| ela-7-sound-and-form-in-poetry/sonnet | sonnet | converted | fourteen lines in four groups, rhyme letters ABAB CDCD EFEF GG down the side |
+| ela-7-argument-with-counterclaims/counterclaim | counterclaim | converted | my claim and the opposing claim pushing against each other |
+| ela-7-argument-with-counterclaims/position | position | converted | a line between two sides of an issue with a pin placed toward one side |
+| ela-7-informative-writing/domain-specific-vocabulary | domain-specific vocabulary | converted | three subjects, each with its own words |
+| ela-7-phrases-clauses-and-sentence-types/clause | clause | converted | "When the bell rang" has a subject and a verb |
+| ela-7-phrases-clauses-and-sentence-types/phrase | phrase | converted | "After lunch" is a group of words with no subject and verb |
+| ela-7-phrases-clauses-and-sentence-types/independent-clause | independent clause | converted | "I ran home." has a subject and a verb and stands alone |
+| ela-7-phrases-clauses-and-sentence-types/dependent-clause | dependent clause | converted | "Because it rained" cannot stand alone; it leans on a clause that can |
+| ela-8-conflicting-information/discrepancy | discrepancy | converted | two sources give different dates for the same event, the mismatch circled |
+| ela-8-narrative-techniques/transition | transition | converted | two scenes joined by "Years later," a small tree, then a tall one |
+| ela-8-verbals-and-voice/gerund | gerund | converted | swim + ing becomes a noun, "Swimming is fun." |
+| ela-8-verbals-and-voice/infinitive | infinitive | converted | to + win, "I want to win." |
+| ela-8-verbals-and-voice/active-voice | active voice | converted | the subject (the dog) does the chasing |
+| ela-8-verbals-and-voice/passive-voice | passive voice | converted | the subject (the cat) receives the chasing |
+| eld-k-2-retelling-stories/beginning | beginning | converted | three story panels, the first (the frog is lost) picked out |
+| eld-k-2-retelling-stories/middle | middle | converted | three story panels, the middle one (the frog finds a map) picked out |
+| eld-k-2-retelling-stories/end | end | converted | three story panels, the last one (the frog gets home) picked out |
+| eld-3-5-opinions-with-reasons/because | because | converted | an opinion joined to its reason by "because" |
+| eld-3-5-opinions-with-reasons/for-example | for example | converted | a point joined to a detail that supports it |
+| eld-3-5-cause-and-effect-language/so | so | converted | a cause joined to its result by "so" |
+| eld-3-5-cause-and-effect-language/therefore | therefore | converted | a reason joined to what follows from it |
+| eld-3-5-then-and-now-language/century | century | converted | a timeline from 1900 to 2000, ten decades, 100 years |
+| eld-6-8-word-problems-decoded/per | per | converted | three bags with 4 apples in each, 4 apples per bag |
+| eld-6-8-word-problems-decoded/total | total | converted | 5 counters and 3 counters joined into one group of 8 |
+| eld-6-8-word-problems-decoded/difference | difference | converted | a $70 bar and a $50 bar, the $20 gap marked |
+| eld-6-8-word-problems-decoded/at-most | at most | converted | a number line with a closed dot at 10 and everything below it shaded |
+| eld-6-8-word-problems-decoded/how-many-more | how many more | converted | Ana's row of 7 lined up with Luis's row of 4, the 3 extra picked out |
+| eld-6-8-lab-reports-and-claims/claim | claim | converted | a question and the claim that answers it |
+| health-pe-3-5-nutrition-labels-and-choices/nutrition-label | nutrition label | converted | a cereal's Nutrition Facts label with the sugar line picked out |
+| health-pe-3-5-nutrition-labels-and-choices/serving-size | serving size | converted | the label's serving size line picked out beside one cup of cereal |
+| health-pe-3-5-growing-up/growth-spurt | growth spurt | converted | a height-by-age graph with the steep climb picked out |
+| health-pe-3-5-game-strategies/pass | pass | converted | a field from above, the ball sent to an open teammate |
+| health-pe-6-8-personal-fitness-plans/intensity | intensity | converted | a dial from light to moderate to vigorous, the needle in vigorous |
+| math-3-area/square-foot | square foot | converted | a square 1 foot on each side, shaded |
+| math-3-perimeter/measure | measure | converted | a pencil laid along a ruler from 0, reaching the 6 |
+| math-3-quadrilaterals/square | square | converted | four equal sides (tick marks) and four right angles (corner boxes) |
+| math-3-quadrilaterals/rhombus | rhombus | converted | a tilted rhombus with four equal sides marked |
+| math-k-longer-heavier-bigger/shorter | shorter | converted | a pencil and a ruler from the same starting line, the pencil picked out |
+| math-k-longer-heavier-bigger/heavier | heavier | converted | a balance that tips down on the watermelon side, a grape up high |
+| math-k-longer-heavier-bigger/lighter | lighter | converted | a balance with a rock down low and a feather up high |
+| math-1-measuring-length/longest | longest | converted | three ribbons from the same start line, the red one longest |
+| math-2-rulers-and-units/inch | inch | converted | a ruler with its first inch marked beside a paper clip |
+| math-2-rulers-and-units/foot | foot | converted | a 12-inch ruler, 1 foot = 12 inches |
+| math-2-time-and-money/penny | penny | converted | the penny, worth 1 cent, beside the other coins at their real sizes |
+| math-2-time-and-money/dime | dime | converted | the dime, worth 10 cents, smaller than the penny |
+| math-2-time-and-money/quarter | quarter | converted | the quarter, worth 25 cents, beside the other coins |
+| math-2-time-and-money/dollar | dollar | converted | a one-dollar bill is worth 100 cents (100 pennies) |
+| math-4-multiplicative-comparison/divide | divide | converted | 20 apples split into 4 equal groups of 5 |
+| math-4-angles-and-line-plots/protractor | protractor | converted | a half-circle protractor centered on the vertex, measuring a 60 degree angle |
+| math-4-lines-angles-and-symmetry/acute-angle | acute angle | converted | an angle smaller than a right angle, shown beside a right angle |
+| math-4-lines-angles-and-symmetry/obtuse-angle | obtuse angle | converted | an angle bigger than a right angle, shown beside a right angle |
+| math-4-lines-angles-and-symmetry/line-of-symmetry | line of symmetry | converted | a butterfly with a dashed fold line down the middle, two matching halves |
+| math-5-units-and-line-plots/metric-system | metric system | converted | a ladder of metric length units, each step 10 times smaller |
+| math-5-volume/rectangular-prism | rectangular prism | converted | a box shape, hidden edges dashed, six rectangle faces |
+| math-5-classifying-2d-figures/quadrilateral | quadrilateral | converted | six shapes with four sides each, grouped under "4 sides" |
+| math-6-ratios-and-rates/rate | rate | converted | a double number line, 60 miles for every 1 hour |
+| math-6-ratios-and-rates/unit-rate | unit rate | converted | a double number line, $2 for each 1 pound |
+| math-7-proportional-relationships/markup | markup | converted | the store's cost plus a 30% markup makes the selling price |
+| math-7-proportional-relationships/tax | tax | converted | a price plus 8% sales tax makes the total |
+| math-7-sampling-and-inference/inference | inference | converted | a random sample of students points to a conclusion about all students |
+| math-7-sampling-and-inference/biased-sample | biased sample | converted | the sample only catches one group, the soccer team |
+| math-7-probability/probability | probability | converted | a 0 to 1 line from impossible to certain, a coin landing heads at 1/2 |
+| math-7-probability/outcome | outcome | converted | the six faces of a die, rolling a 4 is one of the six possible outcomes |
+| math-8-modeling-with-functions/model | model | converted | a rule and its graph stand for the ride cost, and predict the cost of 10 rides |
+| math-8-modeling-with-functions/initial-value | initial value | converted | a line graph with the starting amount (where x is 0) picked out |
+| math-8-the-pythagorean-theorem/pythagorean-theorem | Pythagorean theorem | converted | a 3-4-5 right triangle with a square on each side, 9 + 16 = 25 |
+| math-8-bivariate-data/bivariate-data | bivariate data | converted | a scatter plot of height and shoe size, one dot for each person |
+| math-9-units-and-quantities/precision | precision | converted | the same pencil on two rulers, one read to whole centimeters, one to tenths |
+| math-9-units-and-quantities/accuracy | accuracy | converted | darts near the center (accurate) and off to one side |
+| math-9-units-and-quantities/rate | rate | converted | a double number line, 3 liters for every 1 minute |
+| math-9-creating-equations/viable | viable | converted | a cost graph where only 0 or more tickets make sense |
+| math-9-creating-equations/model | model | converted | the taxi fare rule C = 15 + 2m drawn as a line, a $15 base fee plus $2 a mile |
+| math-10-volume-and-cross-sections/cavalieri-s-principle | Cavalieri's principle | converted | a straight and a slanted stack of the same coins, same height, same volume |
+| math-10-modeling-with-geometry/surface-area | surface area | converted | a box unfolded into its net, the six face areas added up |
+| math-12-conic-sections/focus | focus | converted | a parabola with its focus, directrix and a point P |
+| math-12-limits-and-rates-of-change/instantaneous-rate-of-change | instantaneous rate of change | converted | a curve with a tangent line touching it at one point |
+| math-12-exploring-data/quantitative-variable | quantitative variable | converted | a table where height is numbers (quantitative) and eye color is categories |
+| math-12-probability-and-random-variables/binomial-distribution | binomial distribution | converted | the chances of making 0 to 10 free throws out of 10 (70% shooter) |
+| math-12-probability-and-random-variables/geometric-distribution | geometric distribution | converted | the chance that the first 6 comes on roll 1, 2, 3 ..., each bar smaller |
+| math-12-probability-and-random-variables/law-of-large-numbers | law of large numbers | converted | the share of heads wobbles at first, then settles near 1/2 as flips pile up |
+| math-12-confidence-intervals-and-significance-tests/type-i-error | Type I error | converted | a table of truth against decision, rejecting a null hypothesis that is true |
+| math-12-applications-of-derivatives/related-rates | related rates | converted | a sliding ladder, the top moving down as the bottom moves out |
+| math-12-applications-of-derivatives/optimization | optimization | converted | metal needed for a can of fixed volume, plotted against its radius |
+| math-12-the-integral/accumulation-function | accumulation function | converted | the area under a rate curve from a fixed start a up to x, the total so far |
+| math-12-applications-of-integrals/average-value | average value | converted | a curve and a rectangle of the same area over the same interval |
+| science-3-life-cycles/metamorphosis | metamorphosis | converted | a frog life cycle, eggs, tadpole, froglet, adult frog |
+| science-6-gravity-and-the-solar-system/scale-model | scale model | converted | Earth and the Moon drawn at true scale for both size and distance |
+| science-6-water-cycle-and-weather/air-pressure | air pressure | converted | a tall column of air pressing down at sea level, a shorter one on a mountaintop |
+| science-6-thermal-energy/thermal-energy | thermal energy | converted | slow particles (cold) and fast particles (hot) |
+| science-7-chemical-reactions/reactant | reactant | converted | baking soda and vinegar (reactants, picked out) go in; new substances come out |
+| science-7-photosynthesis-and-respiration/photosynthesis | photosynthesis | converted | a leaf takes in light, water and carbon dioxide and gives out sugar and oxygen |
+| science-8-kinetic-and-potential-energy/joule | joule | converted | lifting a small apple (about 100 g) up 1 meter takes about 1 joule |
+| science-8-waves/wave | wave | converted | a wave with its crest, trough, wavelength and amplitude marked |
+| science-8-reproduction-and-heredity/allele | allele | converted | a matching pair of chromosomes with the same gene spot in two forms |
+| science-8-natural-hazards-and-human-impact/climate-change | climate change | converted | global average temperature from 1880 to 2020, rising about 1 °C |
+| science-8-engineering-design/constraints | constraints | converted | our straw tower design, boxed in by its limits |
+| science-8-engineering-design/trade-off | trade-off | converted | a seesaw, lighter up on one side and stronger down on the other |
+| science-9-homeostasis/set-point | set point | converted | body temperature wobbles above and below a dashed 37 °C target |
+| science-9-evolution/speciation | speciation | converted | one species split by a river; over time the two groups become two species |
+| science-9-stars-and-the-big-bang/nuclear-fusion | nuclear fusion | converted | two light hydrogen nuclei join into one heavier helium nucleus |
+| science-9-earth-s-systems-and-feedback/albedo | albedo | converted | snow reflects most sunlight back up; a dark forest soaks most of it up |
+| science-10-chemical-reactions-and-equations/synthesis-reaction | synthesis reaction | converted | A + B snap together into one new substance, AB (iron + oxygen makes rust) |
+| science-10-reaction-rates-and-equilibrium/catalyst | catalyst | converted | an energy hill; with a catalyst the hump is lower, so the reaction goes faster |
+| science-10-gases-and-kinetic-theory/pressure | pressure | converted | the same push on a small area and on a large area |
+| science-10-gases-and-kinetic-theory/boyle-s-law | Boyle's law | converted | a graph where volume falls as pressure rises |
+| science-10-gases-and-kinetic-theory/charles-s-law | Charles's law | converted | a volume-temperature line with a small cold balloon and a big warm one |
+| science-10-acids-bases-and-solutions/neutralization | neutralization | converted | an acid plus a base makes water plus a salt, and the pH moves to 7 |
+| science-11-newton-s-laws/newton | newton | converted | a small apple hanging from a spring scale that reads 1 newton |
+| science-11-energy-and-work/efficiency | efficiency | converted | energy in split into useful light and wasted heat, LED vs old bulb |
+| science-11-energy-and-work/watt | watt | converted | 1 watt is 1 joule of energy every second |
+| science-11-waves-and-sound/doppler-effect | Doppler effect | converted | sound rings bunched in front of a moving siren |
+| science-11-waves-and-sound/interference | interference | converted | two waves in step add into a bigger wave; two waves out of step cancel out |
+| science-11-light-and-the-electromagnetic-spectrum/photoelectric-effect | photoelectric effect | converted | light shines on a metal plate and knocks electrons off it |
+| science-12-pollution-and-solutions/bioaccumulation | bioaccumulation | converted | a tuna keeps taking in a little mercury, which stays in its body |
+| science-12-engineering-for-global-challenges/stakeholder | stakeholder | converted | a water plan in the middle with arrows to the groups it affects |
+| social-studies-3-business-and-specialization/interdependence | interdependence | converted | the farmer sells wheat to the baker, the baker sells bread to the farmer |
+| social-studies-4-state-history/statehood | statehood | converted | a US map with Colorado shaded, the 38th state, admitted in 1876 |
+| social-studies-5-exploration-and-colonization/colony | colony | converted | Virginia, a colony across the ocean, ruled by faraway England |
+| social-studies-6-ancient-india-and-china/dynasty | dynasty | converted | a line of rulers from the same family, the crown passing from parent to child |
+| social-studies-7-medieval-europe/feudalism | feudalism | converted | a pyramid of king, lords, knights, peasants; land down, loyalty up |
+| social-studies-8-road-to-revolution/taxation-without-representation | taxation without representation | converted | Parliament taxes the colonies, but the colonies have no vote in Parliament |
+| social-studies-8-the-early-republic/precedent | precedent | converted | Washington served two terms, and the next presidents followed his example |
+| social-studies-9-revolutions-and-enlightenment/natural-rights | natural rights | converted | life, liberty and property, rights a person has from birth |
+| social-studies-9-revolutions-and-enlightenment/social-contract | social contract | converted | the people give some freedom and get protection back |
+| social-studies-12-supply-and-demand/elasticity | elasticity | converted | a steep demand curve and a flat one under the same price rise |
+| world-languages-6-12-cultures-of-the-spanish-speaking-world/indigenous-languages | Indigenous languages | converted | a map of Latin America with six Indigenous languages pinned |
+| world-languages-k-12-family-and-home/father | father | converted | a family tree with the father picked out |
+| world-languages-k-12-family-and-home/grandmother | grandmother | converted | a family tree with the grandmother (a parent's mother) picked out |
+| science-10-nuclear-chemistry/fusion | fusion | converted | two light hydrogen nuclei join into one heavier helium nucleus |

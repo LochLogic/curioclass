@@ -2810,6 +2810,217 @@ def code_lines(n=5, size=240, indent=(), hl=None, comment=None, arrow_at=None, h
     return sized(Item(240 + left + right, 40 + n * 26, f'<g transform="translate({left} 0)">' + ''.join(out) + '</g>'), size)
 
 
+# ---------- reading and writing structures ----------
+
+def plot_arc(hl=None, size=440):
+    """The plot mountain (exposition, rising action, climax, falling action, resolution); hl: the part picked out (0 to 4)."""
+    pts = [(20, 230), (120, 230), (270, 60), (380, 200), (470, 200)]
+    out = []
+    for k, ((xa, ya), (xb, yb)) in enumerate(zip(pts, pts[1:])):
+        part = {0: 0, 1: 1, 2: 3, 3: 4}[k]
+        on = hl == part
+        out.append(f'<line x1="{xa}" y1="{ya}" x2="{xb}" y2="{yb}" stroke="{ORANGE if on else "#b4b8c2"}" stroke-width="{16 if on else 9}" stroke-linecap="round"/>')
+    on = hl == 2
+    out.append(f'<circle cx="270" cy="60" r="{20 if on else 13}" fill="{ORANGE if on else "#b4b8c2"}" stroke="{DARK}" stroke-width="4"/>')
+    labs = [(('exposition',), 70, 272, 'middle'), (('rising', 'action'), 182, 120, 'end'), (('climax',), 270, 30, 'middle'),
+            (('falling', 'action'), 340, 108, 'start'), (('resolution',), 425, 242, 'middle')]
+    for k, (lines, x, y, anc) in enumerate(labs):
+        on = hl == k
+        for j, s in enumerate(lines):
+            out.append(f'<text x="{x}" y="{y + j * 30}" font-family="{SANS}" font-size="{32 if on else 26}" font-weight="700" text-anchor="{anc}" fill="{ORANGE if on else GRAY}">{s}</text>')
+    return sized(Item(490, 290, ''.join(out)), size)
+
+
+def parts3(pics, labels=('beginning', 'middle', 'end'), hl=None, size=440, numbers=False):
+    """Three picture panels in order, top to bottom, joined by arrows, a label beside each; hl: the panel picked out."""
+    rows_ = []
+    for k, (p, l) in enumerate(zip(pics, labels)):
+        on = hl is None or hl == k
+        c = (ORANGE if hl == k else BLUE) if on else GRAY
+        pan = card(p, 170, 150, c, '#fff' if on else '#f3f4f7')
+        if not on:
+            pan = Item(pan.w, pan.h, f'<g opacity="0.45">{pan.svg}</g>')
+        if hl == k:
+            pan = Item(pan.w, pan.h, f'<rect x="-7" y="-7" width="{pan.w + 14}" height="{pan.h + 14}" rx="22" fill="{soft(ORANGE)}"/>' + pan.svg)
+        lab = T(f'{k + 1}. {l}' if numbers else l, 44 if hl == k else 36, ORANGE if hl == k else (DARK if on else '#9aa0ad'))
+        rows_.append(row(pan, lab, gap=22))
+    out = []
+    for k, r in enumerate(rows_):
+        if k:
+            out.append(row(Item(70, 10, ''), arrow(26, DARK, 'down', sw=7), gap=0))
+        out.append(r)
+    stack = col(*out, gap=4, align='l')
+    return sized(Item(stack.w, stack.h, stack.svg), size)
+
+
+def argue(top='claim', mid='reason', bottom='evidence', n=2, hl=None, size=440, texts=None, pick=None):
+    """An argument built like a house: the claim on top, held up by reasons, each resting on evidence.
+    hl: 'top', 'mid' or 'bottom' (that row in orange, the rest gray); texts: {'top': ..., 'mid': [...], 'bottom': [...]} words in the boxes."""
+    texts = texts or {}
+    W = 460
+
+    def lvl(name):
+        return ORANGE if hl == name else (BLUE if hl is None else '#9aa0ad')
+    bw = (W - 20 * (n - 1)) / n
+    out = []
+    y = 0
+    th = 90
+    tc = lvl('top')
+    tt = T(texts.get('top', top), 34 if 'top' in texts else 40, DARK if hl in (None, 'top') else GRAY)
+    tt = sized(tt, W - 40) if tt.w > W - 40 else tt
+    out.append(g(box(tt, w=W, h=th, color=tc, fill=soft(tc) if hl in (None, 'top') else '#f1f2f5', sw=6 if hl == 'top' else 5), 0, y))
+    y += th
+    mh = 74
+    rows_ = [('mid', mid)] + ([('bottom', bottom)] if bottom else [])
+    for name, word in rows_:
+        c = lvl(name)
+        on = hl in (None, name)
+        for i in range(n):
+            x = i * (bw + 20)
+            out.append(f'<line x1="{x + bw / 2:.1f}" y1="{y + 4}" x2="{x + bw / 2:.1f}" y2="{y + 40}" stroke="{DARK}" stroke-width="6"/><path d="M{x + bw / 2:.1f} {y + 2} l-11 16 h22 z" fill="{DARK}"/>')
+            s = texts.get(name, [word] * n)[i]
+            if pick is not None and name == hl and i != pick:
+                c, on = '#9aa0ad', False
+            else:
+                c, on = lvl(name), hl in (None, name)
+            t = T(s, 30 if name in texts else 34, DARK if on else GRAY)
+            if t.w > bw - 20:
+                t = sized(t, bw - 20)
+            out.append(g(box(t, w=bw, h=mh, color=c, fill=soft(c) if on else '#f1f2f5', sw=6 if hl == name else 5), x, y + 44))
+        y += 44 + mh
+    return sized(Item(W, y, ''.join(out)), size)
+
+
+def tagged(*parts, size=44, top=None, gap=None, links=(), ts=0.56):
+    """A sentence as words. A tuple (text, color, tag) gets a color band and its tag under it; top: (text, color), a bracket
+    over the whole sentence with that label; links: [(from part, to part, color)] curved arrows over the words."""
+    items = []
+    for p in parts:
+        if isinstance(p, tuple):
+            txt, c, tag = (tuple(p) + (None, None))[:3]
+            w = T(txt, size, DARK)
+            bw = w.w * 1.07 + 22
+            band = Item(bw, w.h, f'<rect x="0" y="{w.h * 0.06:.1f}" width="{bw:.1f}" height="{w.h * 0.86:.1f}" rx="9" fill="{soft(c)}" stroke="{c}" stroke-width="4"/>' + g(w, 11, 0))
+            items.append(col(band, T(tag, size * ts, c), gap=4) if tag else band)
+        else:
+            items.append(T(p, size, DARK, bold=False))
+    gp = gap if gap is not None else size * 0.28
+    r = row(*items, gap=gp, align='t')
+    if links:
+        xs, x = [], 0
+        for i_ in items:
+            xs.append(x + i_.w / 2)
+            x += i_.w + gp
+        lift = size * 1.3
+        arcs = ''
+        for a, b, c in links:
+            xa, xb = xs[a], xs[b]
+            arcs += (f'<path d="M{xa:.1f} {lift - 4:.1f} C{xa:.1f} {lift * 0.15:.1f} {xb:.1f} {lift * 0.15:.1f} {xb:.1f} {lift - 14:.1f}" fill="none" stroke="{c}" stroke-width="5" stroke-linecap="round"/>'
+                     f'<path d="M{xb:.1f} {lift:.1f} l-10 -18 h20 z" fill="{c}"/>')
+        r = Item(r.w, r.h + lift, arcs + g(r, 0, lift))
+    if top:
+        txt, c = top
+        br = Item(r.w, 24, f'<path d="M4 22 V6 H{r.w - 4:.1f} V22" fill="none" stroke="{c}" stroke-width="5" stroke-linejoin="round"/>')
+        r = col(T(txt, size * 0.62, c), br, r, gap=4)
+    return r
+
+
+def family_tree(hl=None, size=420):
+    """Grandmother and grandfather, then mother and father, then me; hl: the person picked out by name."""
+    people = {'grandmother': (50, 10, PURPLE, 96), 'grandfather': (250, 10, TEAL, 96), 'mother': (150, 170, RED, 96),
+              'father': (310, 170, BLUE, 96), 'me': (230, 330, ORANGE, 78)}
+    out = ['<path d="M114 60 H250 M182 60 V170 M214 220 H310 M262 220 V330" fill="none" stroke="#8a8f9c" stroke-width="6"/>']
+    for name, (x, y, c, s) in people.items():
+        on = hl == name
+        if on:
+            bw = max(s * 0.67 + 52, len(name) * 17 + 16)
+            out.append(f'<rect x="{x + s * 0.67 / 2 - bw / 2:.0f}" y="{y - 8}" width="{bw:.0f}" height="{s + 52}" rx="16" fill="#fde97a" stroke="{ORANGE}" stroke-width="6"/>')
+        out.append(g(person(s, c), x, y))
+    for name, (x, y, c, s) in people.items():
+        on = hl == name
+        cx = x + s * 0.67 / 2
+        out.append(f'<text x="{cx:.0f}" y="{y + s + 34}" font-family="{SANS}" font-size="{28 if on else 23}" font-weight="700" text-anchor="middle" fill="{RED if on else GRAY}">{name}</text>')
+    return sized(Item(400, 470, ''.join(out)), size)
+
+
+def nutrition_label(hl=None, size=320):
+    """A cereal's Nutrition Facts label; hl: 'serving', 'calories' or 'sugars' gets a highlighter band."""
+    rows_ = [('serving', 'Serving size', '1 cup', 30, 4), ('calories', 'Calories', '150', 40, 8), ('fat', 'Total Fat', '2g', 26, 2),
+             ('sodium', 'Sodium', '190mg', 26, 2), ('sugars', 'Total Sugars', '9g', 26, 2), ('protein', 'Protein', '4g', 26, 2)]
+    out = [f'<rect x="4" y="4" width="312" height="{80 + sum(r[3] + 22 for r in rows_)}" fill="#fff" stroke="{DARK}" stroke-width="6"/>',
+           f'<text x="18" y="56" font-family="{SANS}" font-size="40" font-weight="900" fill="{DARK}">Nutrition Facts</text>']
+    y = 76
+    for key_, name, val, fs, bar in rows_:
+        out.append(f'<rect x="16" y="{y - 4}" width="288" height="{bar}" fill="{DARK}"/>')
+        y += bar
+        if hl == key_:
+            out.append(f'<rect x="12" y="{y + 2}" width="296" height="{fs + 14}" rx="6" fill="#fde97a" stroke="{ORANGE}" stroke-width="4"/>')
+        out.append(f'<text x="18" y="{y + fs + 4}" font-family="{SANS}" font-size="{fs}" font-weight="700" fill="{DARK}">{name}</text>'
+                   f'<text x="302" y="{y + fs + 4}" font-family="{SANS}" font-size="{fs}" font-weight="700" text-anchor="end" fill="{DARK}">{val}</text>')
+        y += fs + 18
+    return sized(Item(320, y + 14, ''.join(out)), size)
+
+
+def dnl(top, bottom, names=('', ''), hl=None, size=440, colors=(BLUE, ORANGE)):
+    """A double number line: top and bottom values lined up tick by tick; names label each line; hl: a tick index boxed."""
+    n = len(top)
+    x0, x1 = 120, 470
+    X = lambda i: x0 + i * (x1 - x0) / (n - 1)
+    out = []
+    for y, vals, nm, c in ((60, top, names[0], colors[0]), (170, bottom, names[1], colors[1])):
+        out.append(f'<line x1="{x0 - 14}" y1="{y}" x2="{x1 + 22}" y2="{y}" stroke="{DARK}" stroke-width="5"/><path d="M{x1 + 32} {y} l-16 -9 v18 z" fill="{DARK}"/>'
+                   f'<text x="{x0 - 26}" y="{y + 10}" font-family="{SANS}" font-size="28" font-weight="700" text-anchor="end" fill="{c}">{escape(nm)}</text>')
+        for i, v in enumerate(vals):
+            out.append(f'<line x1="{X(i):.1f}" y1="{y - 12}" x2="{X(i):.1f}" y2="{y + 12}" stroke="{DARK}" stroke-width="4"/>'
+                       f'<text x="{X(i):.1f}" y="{y + (-22 if y == 60 else 46)}" font-family="{SANS}" font-size="30" font-weight="700" text-anchor="middle" fill="{c}">{escape(str(v))}</text>')
+    if hl is not None:
+        out.insert(0, f'<rect x="{X(hl) - 46:.1f}" y="2" width="92" height="230" rx="14" fill="#fde97a" stroke="{ORANGE}" stroke-width="5"/>')
+    return sized(Item(510, 236, ''.join(out)), size)
+
+
+def us_coins(hl='penny', size=440):
+    """A penny, nickel, dime and quarter at their true sizes; hl: the coin picked out, named with its value under it."""
+    info = [('penny', 19.05, '#c97a42', '1¢', '1 cent'), ('nickel', 21.21, '#c9ccd1', '5¢', '5 cents'),
+            ('dime', 17.91, '#c9ccd1', '10¢', '10 cents'), ('quarter', 24.26, '#c9ccd1', '25¢', '25 cents')]
+    cells = []
+    for name, mm, c, short, value in info:
+        on = name == hl
+        r = mm * 4.2
+        svg = (f'<circle cx="{r / 2 + 6:.1f}" cy="{r / 2 + 6:.1f}" r="{r / 2:.1f}" fill="{c if on else "#eef0f4"}" stroke="{DARK if on else "#b4b8c2"}" stroke-width="{5 if on else 4}"/>'
+               f'<circle cx="{r / 2 + 6:.1f}" cy="{r / 2 + 6:.1f}" r="{r / 2 - 9:.1f}" fill="none" stroke="{DARK if on else "#c4c8d0"}" stroke-width="2" opacity="0.45"/>')
+        coin_ = Item(r + 12, r + 12, svg)
+        if on:
+            coin_ = over(coin_, T(short, r * 0.34, DARK))
+        lab = T(name, 30 if on else 24, DARK if on else '#9aa0ad')
+        parts = [coin_, lab] + ([T(value, 36, RED)] if on else [Item(10, 45, '')])
+        cells.append(col(*parts, gap=6))
+    return sized(row(*cells, gap=18, align='t'), size)
+
+
+def grid2x2(cols, rows_, cells, hl=None, size=420, title=('', '')):
+    """A 2 by 2 table (a confusion matrix, a decision table): cols/rows_ name the columns and rows; cells: 4 strings
+    read across; hl: the cell picked out (0 to 3); title: (column heading, row heading)."""
+    cw, ch, lx, ty = 170, 110, 200, 96
+    out = [f'<text x="{lx + cw:.0f}" y="28" font-family="{SANS}" font-size="26" font-weight="700" text-anchor="middle" fill="{GRAY}">{escape(title[0])}</text>',
+           f'<text x="24" y="{ty + ch:.0f}" font-family="{SANS}" font-size="26" font-weight="700" text-anchor="middle" fill="{GRAY}" transform="rotate(-90 24 {ty + ch:.0f})">{escape(title[1])}</text>']
+    for j, s in enumerate(cols):
+        out.append(f'<text x="{lx + j * cw + cw / 2:.0f}" y="{ty - 18}" font-family="{SANS}" font-size="28" font-weight="700" text-anchor="middle" fill="{DARK}">{escape(s)}</text>')
+    for i, s in enumerate(rows_):
+        out.append(f'<text x="{lx - 14}" y="{ty + i * ch + ch / 2 + 10:.0f}" font-family="{SANS}" font-size="28" font-weight="700" text-anchor="end" fill="{DARK}">{escape(s)}</text>')
+    for k, s in enumerate(cells):
+        i, j = divmod(k, 2)
+        on = hl == k
+        x, y = lx + j * cw, ty + i * ch
+        out.append(f'<rect x="{x}" y="{y}" width="{cw}" height="{ch}" fill="{"#fde97a" if on else "#fff"}" stroke="{DARK}" stroke-width="4"/>')
+        lines = s.split('\n')
+        for m, ln in enumerate(lines):
+            out.append(f'<text x="{x + cw / 2:.0f}" y="{y + ch / 2 + 9 + (m - (len(lines) - 1) / 2) * 30:.0f}" font-family="{SANS}" font-size="{26 if on else 22}" font-weight="700" text-anchor="middle" fill="{RED if on else GRAY}">{escape(ln)}</text>')
+    if hl is not None:
+        i, j = divmod(hl, 2)
+        out.append(f'<rect x="{lx + j * cw - 3}" y="{ty + i * ch - 3}" width="{cw + 6}" height="{ch + 6}" fill="none" stroke="{RED}" stroke-width="7"/>')
+    return sized(Item(lx + 2 * cw + 10, ty + 2 * ch + 10, ''.join(out)), size)
+
+
 def paint(prompt):
     """Not drawn here: the image model paints this card (scripts/wordart.py reads these)."""
     return ('paint', prompt)
