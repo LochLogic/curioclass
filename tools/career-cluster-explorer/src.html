@@ -1,0 +1,1214 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Career Cluster Explorer · 14 clusters at one town festival · Curio Class</title>
+<meta name="description" content="Tap anything at a small town's harvest festival night to meet the people whose work made it happen, and light a lantern for each of the 14 career clusters. Grades 6-8 career and technical education. Works offline.">
+<!--
+Career Cluster Explorer (Curio Class)
+Grades 6-8, career and technical education, module Career Clusters (Career Exploration). Standard: CTE.Career Clusters
+(Advance CTE Career Clusters framework, 2024: the 14 clusters and the occupations in them).
+Students on laptops or tablets (alone or in pairs), or the teacher on a projector for a "who made this?" warm-up.
+Modes: Festival (tap 37 things at Maple Bend Harvest Night, meet 83 careers, light 14 cluster lanterns), Trails (five
+chains of jobs behind one thing) and Clusters (each cluster's ways in by entry-level education).
+Facts: Advance CTE, Career Clusters Framework (2024); U.S. Bureau of Labor Statistics, Occupational Outlook Handbook,
+2025-35 edition (typical entry-level education, job outlook, one profile per career; tools/career-cluster-explorer/
+sources.md); BLS Occupational Employment and Wage Statistics, May 2025, national (median pay, jobs). Career
+descriptions, paths and Try it now: written for grades 6-8 (scripts/careers_data.py). The town, hotspots and trails
+are made up for this tool. Uses the careers family engine (kit:careers, docs/families/careers.md).
+Everything is drawn in code. One file, no network requests. Content CC BY 4.0, code MIT. curioclass.org
+-->
+<link rel="stylesheet" href="kit:curio">
+<style>
+:root{
+  --paper:#17123a;--ink:#f3f0ff;--muted:#b9b2dd;--line:#3a3166;--focus:#ffd36e;
+  --brand:#2dd4bf;--brand-ink:#062a26;--btn:#5eead4;--btn-line:#0f766e;--head-ink:#062a26;--panel:#1e1840;
+  --sky0:#120e2a;--sky1:#3b2a63;--lamp:#ffd36e;--b1:#2b2450;--b2:#3a3166;--b3:#4b417c;
+  --c-mfg:#fb923c;--c-ag:#a3e635;--c-arts:#e879f9;--c-build:#fbbf24;--c-digital:#22d3ee;--c-edu:#f87171;--c-energy:#4ade80;
+  --c-fin:#d9b98a;--c-health:#fecdd3;--c-hosp:#c4b5fd;--c-mgmt:#e2e8f0;--c-mkt:#f472b6;--c-public:#60a5fa;--c-trans:#fef08a;
+}
+/* Three page layouts, picked in script (relayout()):
+   wide    (1000 px or wider and 650 px or taller): stage on the left, a 340 px panel on the right;
+   compact (a short landscape box such as the 16:10 embed): a 250 px panel, one-row header, lanterns as dots;
+   stack   (narrow or portrait): the stage, then the panel. The panel is first in the DOM (Tab: header, panel, stage). */
+body{background:var(--paper)}
+body.wide,body.compact{height:100vh;overflow:hidden}
+main{min-height:0}
+body.wide main{grid-template-columns:minmax(0,1fr) 340px}
+body.compact main{grid-template-columns:minmax(0,1fr) 270px}
+body.wide .stage,body.compact .stage{grid-column:1;grid-row:1}
+body.wide .panel,body.compact .panel{grid-column:2;grid-row:1}
+body.stack main{grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto;align-content:start}
+body.stack .stage{grid-row:1}
+body.stack .panel{grid-row:2;border-left:0;border-top:3px solid var(--line);overflow:visible}
+header{gap:10px}
+h1 small{opacity:1}
+body.compact header{padding:4px 8px;gap:4px;flex-wrap:nowrap;min-width:0}
+body.compact h1{font-size:17px;white-space:nowrap;min-width:0;overflow:hidden;text-overflow:ellipsis}
+body.compact h1 small{display:none}
+body.compact .seg button,body.compact .icon-btn{min-height:44px;padding:0 9px;font-size:13.5px;white-space:nowrap}
+body.compact .icon-btn,body.compact .seg{flex:none}
+body.stack header{padding:6px 10px;gap:6px}
+body.stack h1{flex:1 0 100%;font-size:19px}
+body.stack .seg button,body.stack .icon-btn{min-height:44px;padding:0 10px;font-size:14px;white-space:nowrap}
+.seg button[aria-pressed="false"]{color:var(--brand-ink)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ---------- panel ---------- */
+.panel{gap:10px;color:var(--ink)}
+.hint{margin:0;min-height:calc(4 * 1.45em)}
+body.compact .panel{padding:8px 10px;gap:7px}
+body.compact .hint{font-size:13.5px;line-height:1.32;min-height:calc(4 * 1.32em)}
+body.stack .panel{padding:10px 12px;gap:8px}
+body.stack .hint{font-size:15.5px;min-height:calc(3 * 1.45em)}
+.panel section{display:flex;flex-direction:column;gap:10px}
+body.compact .panel section{gap:7px}
+.count{font-size:16px;font-weight:700}
+.count b{color:var(--lamp);font-size:20px}
+body.compact .count{font-size:14px}
+.row{display:flex;gap:8px;flex-wrap:wrap}
+.pbtn{border:2px solid var(--b3);background:var(--b1);color:var(--ink);border-radius:12px;min-height:44px;padding:0 12px;font-weight:700;font-size:15px}
+.pbtn[aria-pressed="true"]{background:var(--brand);color:var(--brand-ink);border-color:var(--brand)}
+.pbtn:disabled{opacity:.45;cursor:default}
+.pbtn.go{background:var(--brand);color:var(--brand-ink);border-color:var(--brand)}
+body.compact .pbtn{font-size:13.5px;padding:0 9px}
+.confirm{background:var(--b1);border:2px solid var(--lamp);border-radius:12px;padding:8px 10px;display:flex;flex-direction:column;gap:8px}
+.confirm p{margin:0;font-weight:700}
+h3.ph{margin:0;font:800 12.5px/1.2 'Segoe UI',sans-serif;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+.where{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.where button{display:flex;align-items:center;gap:7px;min-width:0;text-align:left;line-height:1.15;border:2px solid var(--b3);background:var(--b1);color:var(--ink);border-radius:999px;min-height:44px;padding:0 12px 0 9px;font-weight:700;font-size:14px}
+.where button i,.dot{display:inline-block;width:12px;height:12px;border-radius:50%;flex:none;border:2px solid #0006}
+.where button em{font-style:normal;color:var(--muted);font-weight:600}
+.privacy{margin:0;color:var(--muted);font-size:13px;line-height:1.4}
+.list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:4px}
+.list button{width:100%;text-align:left;border:1px solid var(--b2);background:var(--b1);color:var(--ink);border-radius:10px;min-height:44px;padding:6px 10px;font-size:14.5px;display:flex;gap:8px;align-items:center}
+.list button .st{margin-left:auto;font-size:12.5px;color:var(--muted);white-space:nowrap}
+.list button.seen .st{color:var(--brand)}
+.trails{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.trails button{text-align:left;border:2px solid var(--b3);background:var(--b1);color:var(--ink);border-radius:12px;min-height:44px;padding:6px 12px;font-weight:700;font-size:15px}
+.trails button[aria-pressed="true"]{border-color:var(--lamp);background:#3a3166}
+body.compact .trails button{font-size:13.5px;padding:4px 9px}
+.trsel{display:none}
+.trsel select{width:100%;min-height:44px;border:2px solid var(--lamp);background:var(--b1);color:var(--ink);border-radius:12px;padding:0 10px;font:700 14.5px 'Segoe UI',sans-serif}
+body.compact #trHead,body.compact .trails,body.narrow #trHead,body.narrow .trails{display:none}body.compact .trsel,body.narrow .trsel{display:block}
+body.compact #pt .stopbox,body.compact #pt .row,body.compact #pt .endrow,body.stack #pt .stopbox,body.stack #pt .row,body.stack #pt .endrow{order:-1}
+body.compact #pt .row{gap:6px;flex-wrap:nowrap}body.compact #pt .row .pbtn{padding:0 8px}
+body.compact[data-mode=trails] .hint{min-height:calc(3 * 1.32em)}
+body.compact .stopbox{gap:3px}body.compact .stopbox .sn{font-size:11px}body.compact .stopbox .who{font-size:15px}body.compact .stopbox .who .em{font-size:24px}
+body.compact .endrow{padding:6px 8px}body.compact .endrow p{font-size:13.5px;margin-bottom:4px}body.compact .chip{font-size:12px;padding:2px 8px 2px 5px}
+.stopbox .ts{display:none}body.compact .stopbox .tn{display:none}body.compact .stopbox .ts{display:inline}
+.stopbox{background:var(--b1);border-radius:14px;padding:10px 12px;display:flex;flex-direction:column;gap:6px;min-height:118px}
+.stopbox .sn{font-size:12.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.stopbox .who{display:flex;gap:10px;align-items:center;font-weight:800;font-size:17px}
+.stopbox .who .em{font-size:30px;line-height:1}
+.stopbox .who small{display:flex;gap:6px;align-items:center;font-weight:600;font-size:13px;color:var(--muted)}
+.stopbox p{margin:0;font-size:15.5px;line-height:1.4}
+body.compact .stopbox{padding:7px 9px;min-height:0}
+body.compact .stopbox p{font-size:13.5px}
+.endrow{background:#2b2450;border:2px solid var(--lamp);border-radius:14px;padding:8px 10px}
+.endrow p{margin:0 0 6px;font-weight:800}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{display:inline-flex;gap:6px;align-items:center;background:var(--b2);border-radius:999px;padding:3px 10px 3px 6px;font-size:13.5px;font-weight:700}
+.keybox{background:var(--b1);border-radius:12px;padding:10px 12px;font-size:14px;line-height:1.45}
+.keybox p{margin:0 0 6px}
+.keybox ol{margin:0;padding-left:20px}
+
+/* ---------- stage ---------- */
+.stage{display:flex;flex-direction:column;background:var(--sky0);min-height:0}
+body.stack .stage{min-height:0}
+.lanterns{position:relative;flex:none;height:64px;background:var(--sky0);display:flex;align-items:flex-start;justify-content:space-around;padding:0 6px;z-index:3}
+.lanterns svg.string{position:absolute;left:0;top:0;width:100%;height:16px;pointer-events:none}
+.ln{position:relative;flex:1 1 0;min-width:0;padding-left:2px;padding-right:2px;display:flex;flex-direction:column;align-items:center;padding-top:6px}
+.ln .lamp{width:18px;height:24px;border-radius:7px 7px 9px 9px;border:2px dashed var(--lc);background:#1a1438;position:relative}
+.ln .lamp::before{content:"";position:absolute;left:5px;top:-6px;width:4px;height:5px;background:var(--muted);border-radius:1px}
+.ln.lit .lamp{border-style:solid;background:var(--lc);box-shadow:0 0 12px var(--lc),0 0 3px #fff8 inset}
+.ln.lit .lamp::after{content:"✓";position:absolute;inset:0;display:grid;place-items:center;font:900 12px/1 'Segoe UI',sans-serif;color:#1a1438}
+.ln span{font:700 11px/1.12 'Segoe UI',sans-serif;color:var(--muted);text-align:center;margin-top:3px;max-width:100%;hyphens:manual}
+.ln.lit span{color:var(--ink)}
+.ln.dim{opacity:.35}
+.lanterns.big{height:88px}
+.lanterns.big .ln .lamp{width:26px;height:34px;border-radius:9px 9px 12px 12px}
+.lanterns.big .ln .lamp::before{left:8px;width:6px}
+.lanterns.big .ln.lit .lamp::after{font-size:16px}
+.lanterns.big .ln span{font-size:14.5px}
+.lanterns.two{height:auto;flex-wrap:wrap;row-gap:2px;padding-bottom:4px}
+.lanterns.two .ln{flex:0 0 calc(100% / 7)}
+.lanterns.dots{height:28px;align-items:center;justify-content:flex-start;gap:5px;padding:0 10px}
+.lanterns.dots .ln{flex:none;padding:0}
+.lanterns.dots .ln .lamp{width:12px;height:14px;border-radius:4px 4px 6px 6px;border-width:2px}
+.lanterns.dots .ln .lamp::before,.lanterns.dots .ln.lit .lamp::after{display:none}
+.lanterns.dots .ln span{display:none}
+.lanterns .lncount{display:none;margin-left:auto;font:800 13px 'Segoe UI',sans-serif;color:var(--ink);white-space:nowrap}
+.lanterns.dots .lncount{display:block}
+.lanterns .cap{position:absolute;left:8px;bottom:2px;font:700 10.5px 'Segoe UI',sans-serif;color:var(--muted);display:none}
+.ln.pop .lamp{animation:pop .6s ease-out 1}
+.lanterns.shimmer .ln.lit .lamp{animation:shim 1.4s ease-in-out 1}
+@keyframes pop{0%{transform:scale(1)}40%{transform:scale(1.5)}100%{transform:scale(1)}}
+@keyframes shim{0%,100%{filter:none;transform:none}50%{filter:brightness(1.6) drop-shadow(0 0 10px #fff);transform:translateY(-3px)}}
+
+#town{position:relative;flex:1 1 auto;min-height:0;overflow:hidden;touch-action:pan-y;cursor:grab;outline:none}
+#town.dragging{cursor:grabbing}
+#pan{position:absolute;left:0;top:0;will-change:transform}
+#pan>svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+#trailsvg{pointer-events:none}
+.mk{position:absolute;width:44px;height:44px;margin:-22px 0 0 -22px;border-radius:50%;border:0;background:transparent;padding:0;display:grid;place-items:center;z-index:2}
+.mk::before{content:"";width:20px;height:20px;border-radius:50%;background:var(--lamp);box-shadow:0 0 0 4px #ffd36e40,0 0 16px 4px #ffd36eaa;border:2px solid #fff6}
+.mk.seen::before{content:"✓";display:grid;place-items:center;background:var(--brand);color:var(--brand-ink);font:900 13px/1 'Segoe UI',sans-serif;box-shadow:0 0 0 4px #2dd4bf40,0 0 12px 2px #2dd4bf99}
+.mk:hover::before,.mk:focus-visible::before{transform:scale(1.2)}
+.mk .lab{position:absolute;left:50%;bottom:44px;transform:translateX(-50%);background:#0d0a22ee;color:var(--ink);font:700 13px/1.25 'Segoe UI',sans-serif;padding:4px 8px;border-radius:8px;white-space:nowrap;display:none;pointer-events:none}
+.mk:hover .lab,.mk:focus-visible .lab{display:block}
+.mk.target{z-index:3}
+.mk.target::after{content:"";position:absolute;inset:-6px;border-radius:50%;border:3px solid var(--lamp);animation:ring 1s ease-out 3}
+@keyframes ring{0%{transform:scale(1.5);opacity:0}100%{transform:scale(1);opacity:1}}
+.mk.stop::before{content:attr(data-n);display:grid;place-items:center;width:30px;height:30px;font:900 13px/1 'Segoe UI',sans-serif;color:#1a1438;background:var(--lamp)}
+.mk.stop.cur::before{background:#fff;box-shadow:0 0 0 5px var(--lamp),0 0 22px 6px #ffd36ecc}
+.mk.off{display:none}
+.pan-btn{position:absolute;top:50%;transform:translateY(-50%);z-index:4;width:44px;height:64px;border:2px solid #ffffff55;background:#0d0a22cc;color:var(--ink);font-size:20px;border-radius:12px}
+#panL{left:6px}#panR{right:6px}
+#mini{position:relative;flex:none;height:16px;background:#0d0a22;cursor:pointer}
+#mini svg{position:absolute;inset:0;width:100%;height:100%}
+#miniView{position:absolute;top:1px;bottom:1px;border:2px solid var(--lamp);border-radius:3px;pointer-events:none}
+body.compact #mini{height:12px}
+
+/* hotspot card */
+.card{position:absolute;z-index:6;width:310px;max-width:calc(100% - 16px);max-height:calc(100% - 16px);overflow:auto;background:var(--panel);color:var(--ink);border:2px solid var(--lamp);border-radius:16px;box-shadow:0 18px 50px #000a;padding:12px 12px 12px;cursor:auto}
+.card h2{margin:0 0 4px;font:800 17px/1.25 'Segoe UI',sans-serif}
+.card .line{margin:0 0 8px;color:var(--muted);font-size:14.5px;line-height:1.4;font-style:italic}
+.card .x{float:right;margin:-4px -4px 4px 8px;min-width:44px;height:44px;padding:0 12px;border-radius:999px;border:1px solid var(--b3);background:var(--b1);color:var(--ink);font-size:14.5px;font-weight:700;white-space:nowrap}
+.card .jobs{clear:both}
+.card .jobs{display:flex;flex-direction:column;gap:6px}
+.job{display:flex;align-items:center;gap:10px;text-align:left;border:2px solid var(--b3);background:var(--b1);color:var(--ink);border-radius:12px;min-height:52px;padding:5px 10px;width:100%}
+.job .em{font-size:26px;line-height:1;flex:none}
+.job b{display:block;font-size:15.5px}
+.job small{display:flex;align-items:center;gap:6px;color:var(--muted);font-size:13px;font-weight:600}
+.job .op{margin-left:auto;font-size:12px;color:var(--brand);font-weight:800;white-space:nowrap}
+body.compact .card{width:270px;padding:9px}
+body.compact .card .x{font-size:13.5px;padding:0 10px}
+body.compact .card h2{font-size:15px}
+body.compact .card .line{font-size:13px;margin-bottom:6px}
+body.compact .job{min-height:46px}
+body.narrow .card{position:fixed;left:0!important;right:0;top:auto!important;bottom:0;width:100%;max-width:none;max-height:62vh;border-radius:18px 18px 0 0;border-width:2px 0 0}
+
+/* clusters board */
+#board{flex:1 1 auto;min-height:0;overflow:auto;padding:12px;background:linear-gradient(var(--sky0),#241a4a)}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.cl{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:4px;text-align:left;border:2px solid var(--b3);background:var(--b1);color:var(--ink);border-radius:14px;min-height:88px;padding:10px 12px 10px 18px;overflow:hidden}
+.cl::before{content:"";position:absolute;left:0;top:0;bottom:0;width:8px;background:var(--cc)}
+.cl b{font-size:16px;line-height:1.2;hyphens:manual;max-width:100%}
+.cl .sh{display:none}
+body.compact .cl .full,body.narrow .cl .full{display:none}body.compact .cl .sh,body.narrow .cl .sh{display:inline}
+.cl small{color:var(--muted);font-size:13px;font-weight:600}
+.cl .lt{font-size:12px;font-weight:800;color:var(--lamp)}
+.keycell{grid-column:span 2;background:#241d4a;border:2px dashed var(--b3);border-radius:14px;padding:10px 12px;font-size:13.5px;line-height:1.4;color:var(--muted)}
+.keycell b{color:var(--ink)}
+body.compact .grid{gap:6px}
+body.compact .cl{min-height:60px;padding:6px 8px 6px 14px}
+body.compact .cl b{font-size:13px}
+body.compact .cl small,body.compact .cl .lt{font-size:11px}
+body.compact .keycell{font-size:11.5px;padding:6px 8px}
+body.narrow .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+body.compact .grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+body.compact .keycell{grid-column:span 2}
+body.stack[data-mode=clusters] #board{overflow:visible}body.stack[data-mode=clusters] .stage{overflow:visible;min-height:auto}
+.ladhead{display:flex;align-items:flex-start;gap:10px;margin:0 0 8px}
+.ladhead h2{margin:0;font:800 22px/1.2 'Segoe UI',sans-serif}
+.ladhead .def{margin:3px 0 0;color:var(--muted);font-size:14.5px;line-height:1.4}
+body.compact .ladhead h2{font-size:17px}body.compact .ladhead .def{font-size:12.5px}body.compact .ladhead .sw{height:22px}
+.ladhead .sw{width:16px;height:30px;border-radius:5px;flex:none}
+.ladder{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;align-items:start}
+.col{background:#1a1438cc;border:1px solid var(--b2);border-radius:12px;padding:8px;display:flex;flex-direction:column;gap:6px;min-height:120px}
+.col h3{margin:0 0 2px;font:800 13px/1.25 'Segoe UI',sans-serif;color:var(--ink)}
+.col h3 small{display:block;font-weight:600;color:var(--muted);font-size:11.5px}
+.col .none{color:var(--muted);font-size:13px;font-style:italic;margin:0}
+.lj{background:var(--b1);border:1px solid var(--b3);border-radius:10px;padding:4px 6px 6px;display:flex;flex-direction:column;gap:3px}
+.lj .ttl{min-width:0;overflow-wrap:break-word;display:flex;gap:6px;align-items:center;text-align:left;border:0;background:none;color:var(--ink);min-height:44px;padding:0 2px;font-weight:800;font-size:14px;line-height:1.2}
+.lj .ttl .em{font-size:20px}
+.lj .pay{display:flex;align-items:center;gap:6px;font-size:12.5px;color:var(--muted);font-variant-numeric:tabular-nums}
+.lj .bar{flex:1 1 auto;height:8px;border-radius:99px;background:#0d0a22;position:relative;overflow:hidden;min-width:30px}
+.lj .bar i{position:absolute;left:0;top:0;bottom:0;background:var(--brand);border-radius:99px}
+.lj .ol{font-size:12.5px;font-weight:700}
+.lj .olrow{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:6px}
+.lj .nrow{display:flex;align-items:center;gap:6px}
+.lj .nrow .ttl{flex:1 1 0}
+body.compact[data-mode=clusters] .lanterns{display:none}
+.lj .see{flex:none;border:1px solid var(--b3);background:#241d4a;color:var(--ink);border-radius:999px;min-height:44px;padding:0 10px;font-size:13px;font-weight:700}
+.waysin{margin:10px 0 4px;font-weight:700;font-size:15px;line-height:1.4}
+.scale{margin:0 0 8px;color:var(--muted);font-size:13px}
+body.compact .lj{padding:2px 6px 4px}body.compact .lj .ttl{font-size:13px}body.compact .col{min-height:0;padding:6px}
+body.compact .waysin{font-size:13px}body.compact .scale{font-size:12px}
+body.compact .col h3 small{display:none}body.compact .ladder.rows .col .ljs{grid-template-columns:1fr}
+body.compact .ladder.rows .lj{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;column-gap:10px}body.compact .ladder.rows .lj .nrow{grid-column:1/-1}
+body.compact .lj .see{padding:0 8px;font-size:12.5px}body.compact .ladder{gap:6px}
+.ladder.rows{grid-template-columns:1fr}
+.ladder.rows .col{min-height:0}
+.ladder.rows .col .ljs{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:6px}
+.col .ljs{display:flex;flex-direction:column;gap:6px}
+
+/* the career sheet (kit:careers), in the night palette */
+.cr-sheet.night{--cr-backdrop:#05031399;--cr-bg:#1e1840;--cr-ink:#f3f0ff;--cr-muted:#b9b2dd;--cr-line:#4b417c;--cr-fact:#2b2450;
+  --cr-try:#2d2648;--cr-try-line:#ffd36e;--cr-chip:#2b2450;--cr-link:#5eead4;--cr-target:44px}
+.cr-f-outlook .cr-arrow{font-size:16px}
+.cr-path{margin:0;font-size:15px;line-height:1.45}
+.cr-see{border:2px solid var(--brand);background:var(--brand);color:var(--brand-ink);border-radius:12px;min-height:44px;padding:0 14px;font-weight:800;font-size:15px;justify-self:start}
+.cr-lit{margin:0;font-size:14.5px;line-height:1.45;display:flex;gap:8px;align-items:flex-start}
+.cr-lit .lamp{flex:none;display:inline-block;width:14px;height:18px;margin-top:2px;border-radius:5px 5px 7px 7px;box-shadow:0 0 10px var(--lc);background:var(--lc)}
+.cr-lit.off .lamp{background:transparent;border:2px dashed var(--lc);box-shadow:none}
+.calm .mk.target::after{animation:none}
+</style>
+</head>
+<body>
+<header>
+  <h1>Career Cluster Explorer <small>The 14 career clusters, found at one town festival</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-festival" aria-pressed="true">Festival</button>
+    <button id="m-trails" aria-pressed="false">Trails</button>
+    <button id="m-clusters" aria-pressed="false">Clusters</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true" title="Turn animation on or off">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+  <button class="icon-btn" id="read">🔊 Read</button>
+</header>
+<main>
+  <aside class="panel" id="panel">
+    <p class="hint" id="hint" role="status"></p>
+    <section id="pf">
+      <div class="count" id="count">Lanterns lit: <b>0</b> of 14</div>
+      <div class="row">
+        <button class="pbtn" id="listBtn" aria-pressed="false">☰ List</button>
+        <button class="pbtn" id="whereNext" hidden>📍 Where?</button>
+        <button class="pbtn" id="startOver">↺ Start over</button>
+      </div>
+      <div class="confirm" id="confirm" hidden>
+        <p>Clear all your lanterns on this device?</p>
+        <div class="row"><button class="pbtn go" id="yesClear">Yes, start over</button><button class="pbtn" id="noClear">No</button></div>
+      </div>
+      <div id="whereBox">
+        <h3 class="ph" id="darkHead">Still dark</h3>
+        <div class="where" id="where" style="margin-top:6px"></div>
+      </div>
+      <div id="listBox" hidden>
+        <div class="row" role="group" aria-label="Show" style="margin-bottom:6px">
+          <button class="pbtn" id="fAll" aria-pressed="true">All</button>
+          <button class="pbtn" id="fNew" aria-pressed="false">Not opened yet</button>
+        </div>
+        <ul class="list" id="list"></ul>
+      </div>
+      <p class="privacy">Your lanterns and the careers and places you opened are saved in this browser on this device only. Nothing leaves it.</p>
+    </section>
+    <section id="pt" hidden>
+      <h3 class="ph" id="trHead">Pick a trail: what is behind...</h3>
+      <div class="trails" id="trails"></div>
+      <label class="trsel"><span class="sr">Pick a trail</span><select id="trSel"><option value="">Pick a trail...</option></select></label>
+      <div class="stopbox" id="stopbox"></div>
+      <div class="row">
+        <button class="pbtn" id="back">◀ Back</button>
+        <button class="pbtn go" id="next">Next ▶</button>
+        <button class="pbtn" id="openCareer">Open career</button>
+      </div>
+      <div class="endrow" id="endrow" hidden></div>
+    </section>
+    <section id="pc" hidden>
+      <div class="count" id="waysCount" hidden></div>
+      <button class="pbtn" id="allClusters" hidden>◀ All clusters</button>
+      <div class="keybox" id="keybox"></div>
+    </section>
+  </aside>
+  <div class="stage" id="stage">
+    <div class="lanterns" id="lanterns" role="list" aria-label="Cluster lanterns"></div>
+    <div id="town">
+      <div id="pan">
+        <svg id="scene" viewBox="0 0 2400 900" preserveAspectRatio="none" aria-hidden="true"></svg>
+        <svg id="trailsvg" viewBox="0 0 2400 900" preserveAspectRatio="none" aria-hidden="true"></svg>
+        <div id="marks"></div>
+      </div>
+      <button class="pan-btn" id="panL" aria-label="Pan left">◀</button>
+      <button class="pan-btn" id="panR" aria-label="Pan right">▶</button>
+      <div class="card" id="card" hidden role="dialog" aria-labelledby="cardTitle"></div>
+    </div>
+    <div id="mini" aria-hidden="true"><svg viewBox="0 0 2400 100" preserveAspectRatio="none" id="miniSvg"></svg><div id="miniView"></div></div>
+    <div id="board" hidden></div>
+  </div>
+</main>
+<script src="kit:curio"></script>
+<script src="kit:careers"></script>
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const esc = Careers.esc;
+  const DATA = "json:careers";
+  const C = Object.fromEntries(DATA.careers.map(c => [c.id, c]));
+  const CL = DATA.clusters;
+  const KEYS = Object.keys(CL);
+  const SOFT = {mfg: 'Manufac­turing', ag: 'Agri­culture', build: 'Construc­tion', hosp: 'Hospi­tality', mgmt: 'Manage­ment', mkt: 'Market­ing'};
+  const SHORT = {mfg: 'Manufacturing', ag: 'Agriculture', arts: 'Arts', build: 'Construction', digital: 'Digital Tech', edu: 'Education',
+    energy: 'Energy', fin: 'Finance', health: 'Health', hosp: 'Hospitality', mgmt: 'Management', mkt: 'Marketing', public: 'Public Service', trans: 'Supply Chain'};
+  // one plain line per cluster, from Advance CTE's "The Cluster Defined" pages (careertech.org, 2024 framework)
+  const DEF = {
+    mfg: 'Designing and making products, with engineering, machines, robots and quality checks.',
+    ag: 'Growing food, caring for plants and animals, and processing what farms produce.',
+    arts: 'Making art, music, film, news, fashion and designs that entertain, inform and inspire.',
+    build: 'Designing, planning and building homes, roads and bridges, from architects to skilled trades.',
+    digital: 'Building and protecting computer systems, software, networks and data, including AI.',
+    edu: 'Helping people learn, from early childhood to adulthood: teaching, counseling and leading schools.',
+    energy: 'Making and delivering power, and protecting land, water and other natural resources.',
+    fin: 'Managing money: banking, lending, accounting, insurance, investing and real estate.',
+    health: 'Keeping people well: medical care, mental health, social services and personal care.',
+    hosp: 'Food, places to stay, travel and events, with great service for guests.',
+    mgmt: 'Running a business or a team in any industry: planning, operations, people and starting your own.',
+    mkt: 'Learning what customers need, then promoting and selling products and services.',
+    public: 'Government, law and courts, emergency response, public safety and the military.',
+    trans: 'Moving goods and people by air, road, rail and water, and keeping vehicles running.',
+  };
+  const col = k => `var(--c-${k})`;
+  const NUM = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fourteen'];
+
+  // ======================================================================================
+  // CONTENT: 37 hotspots (scene units, 2400 x 900, left to right) and 5 trails (spec "Content")
+  // ======================================================================================
+  const HOT = [
+    ['ridge', 120, 470, 'Wind turbine and power lines on the ridge', "Tonight's lights start up here.", 'the wind turbine', ['wind-tech', 'lineworker']],
+    ['barn', 330, 620, 'The farm, with solar panels on the barn roof', 'The corn for the kettle corn grew here.', 'the barn', ['farmer', 'solar']],
+    ['river', 520, 810, 'The river below the bridge', 'Herons nest here; the water gets tested every month.', 'the river', ['env-sci', 'wildlife', 'env-tech']],
+    ['bridge', 600, 650, 'The new bridge into town, roadwork beside it', 'Built to carry the whole town to the fair.', 'the bridge', ['civil-eng', 'equip-op', 'drafter']],
+    ['weather', 730, 480, 'The forecast board by the gate', 'Clear skies until 11. Someone had to know that.', 'the forecast board', ['meteorologist']],
+    ['fire', 760, 790, "The fire truck parked by the gate, and the dispatch center's lit window", '', 'the fire truck', ['firefighter', 'dispatcher']],
+    ['gate', 840, 630, 'The gate: the ticket app on a phone and the scanner on its Wi-Fi', '', 'the gate', ['software-dev', 'web-dev', 'it-support', 'cyber']],
+    ['petting', 900, 820, 'The petting pen with goats and a calf', 'Every animal was checked before the gates opened.', 'the petting pen', ['vet', 'vet-tech']],
+    ['kettle', 975, 670, 'The kettle corn stand', 'Sweet, salty, and crunchy for weeks in the bag.', 'the kettle corn stand', ['food-sci', 'bookkeeper']],
+    ['ferris', 1000, 420, 'The Ferris wheel', 'Tons of steel, bolted and welded, checked every day of the fair.', 'the Ferris wheel', ['welder', 'machinist', 'robotics-tech', 'ind-eng']],
+    ['office', 1040, 810, 'The festival office tent, with the crowd counter screen', '', 'the festival office tent', ['event-planner', 'project-mgr', 'data-sci', 'cs-research']],
+    ['stage', 1120, 560, 'The main stage, with its lights and scaffold', 'A band, a show plan, and a lot of wire.', 'the main stage', ['musician', 'director', 'electrician', 'carpenter']],
+    ['kids', 1170, 850, "The kids' craft corner", '', "the kids' craft corner", ['teacher', 'preschool', 'teacher-asst', 'childcare']],
+    ['theater', 1190, 710, 'The theater tent with a short play', 'Ten minutes of story, written and performed tonight.', 'the theater tent', ['actor', 'writer']],
+    ['screen', 1236, 345, 'The big screen beside the stage, showing a game tournament', 'Edited clips, animated scores, a game someone designed.', 'the big screen', ['film-editor', 'animator', 'game-design']],
+    ['artrow', 1290, 530, 'Art row: the festival poster, a photo booth and the costume parade float', '', 'art row', ['graphic-design', 'photographer', 'fashion']],
+    ['help', 1310, 830, 'The community help booth', 'Someone to talk to, and help finding help.', 'the community help booth', ['counselor', 'social-worker', 'psychologist', 'home-aide']],
+    ['food', 1330, 680, 'The food trucks and the ice cream freezer', '', 'the food trucks', ['chef', 'cook', 'hvac']],
+    ['field', 1420, 420, 'The youth soccer game under the lights', '', 'the soccer game', ['coach', 'athletic-trainer']],
+    ['restrooms', 1440, 800, 'Restrooms and the water fountain', 'Clean water in, wastewater out.', 'the restrooms', ['plumber']],
+    ['firstaid', 1450, 600, 'The first aid tent', '', 'the first aid tent', ['nurse', 'paramedic']],
+    ['radio', 1560, 470, 'The local radio booth broadcasting from the fair', '', 'the radio booth', ['pr']],
+    ['braids', 1560, 720, 'The braids and face paint booth', '', 'the braids booth', ['stylist']],
+    ['sponsor', 1590, 860, 'The sponsor tent with a "Which snack wins?" survey', '', 'the sponsor tent', ['marketing-mgr', 'market-research']],
+    ['library', 1700, 600, 'The new library on Main Street, open late', '', 'the library', ['architect', 'librarian']],
+    ['police', 1730, 820, 'A police officer at the crosswalk', 'Back at the lab, someone tests evidence from a stolen bike case.', 'the crosswalk', ['police', 'forensic']],
+    ['upstairs', 1800, 400, "Lit windows above the clinic: a dentist's office and a physical therapy gym", '', 'the windows above the clinic', ['hygienist', 'pt']],
+    ['clinic', 1840, 610, 'The evening clinic and pharmacy on Main Street', '', 'the clinic', ['doctor', 'pa', 'med-assist', 'pharmacist']],
+    ['forsale', 1870, 820, 'A "For sale" sign on a house by the park', '', 'the For sale sign', ['realtor']],
+    ['bank', 1960, 520, 'The bank and its ATM, plus an insurance office next door', '', 'the bank', ['accountant', 'fin-advisor', 'actuary']],
+    ['hardware', 2000, 700, 'The hardware store, the fair\'s main sponsor, with a "Now hiring" sign', '', 'the hardware store', ['ops-mgr', 'hr', 'retail']],
+    ['truck', 2010, 850, 'A delivery truck at the loading zone', 'Paper cups, ice, 600 pounds of corn.', 'the delivery truck', ['trucker', 'logistician', 'mover']],
+    ['hotel', 2080, 420, 'The hotel lobby across the street', 'Full of out-of-town visitors this weekend.', 'the hotel', ['hotel-mgr', 'interior']],
+    ['townhall', 2160, 590, 'Town hall: festival permits, contracts and the new park plan', '', 'town hall', ['lawyer', 'paralegal', 'planner', 'admin-asst']],
+    ['autoshop', 2170, 780, 'The auto shop with a tow truck ready', '', 'the auto shop', ['auto-tech']],
+    ['plane', 2230, 270, 'A plane passing overhead, blinking', '', 'the plane', ['pilot', 'flight-attendant', 'aerospace']],
+    ['airport', 2310, 500, 'The airport beacon on the far hill', 'Someone is watching that plane on radar.', 'the airport beacon', ['atc', 'aircraft-mech']],
+  ].map(([id, x, y, name, line, short, careers]) => ({id, x, y, name, line, short, careers}));
+  const H = Object.fromEntries(HOT.map(h => [h.id, h]));
+  const HOME = {};   // career id -> hotspot id
+  HOT.forEach(h => h.careers.forEach(id => { HOME[id] = h.id; }));
+
+  const TRAILS = [
+    {id: 'kettle', short: 'Kettle corn', name: 'Behind the kettle corn', end: 'This bag of kettle corn took', stops: [
+      ['farmer', 'A farmer grows and harvests the corn.'], ['food-sci', 'A food scientist works out how it stays crunchy in the bag.'],
+      ['trucker', 'A truck driver hauls it to the fair.'], ['cook', 'A cook pops it in a huge kettle.'], ['accountant', 'An accountant tracks what the stand spent and earned.']]},
+    {id: 'lights', short: 'Stage lights', name: 'Behind the stage lights', end: 'These stage lights took', stops: [
+      ['wind-tech', 'A technician keeps the wind turbine spinning.'], ['lineworker', 'A line worker keeps power flowing into town.'],
+      ['electrician', 'An electrician wires the stage.'], ['director', 'A producer plans the show, minute by minute.'], ['musician', 'The band plays.'],
+      ['graphic-design', 'A designer made the poster that brought the crowd.']]},
+    {id: 'ticket', short: 'Your ticket', name: 'Behind your ticket', end: 'Your ticket took', stops: [
+      ['web-dev', 'A web developer built the page that sells tickets.'], ['software-dev', 'A software developer built the phone app.'],
+      ['cyber', 'A cybersecurity analyst keeps card numbers safe.'], ['it-support', 'An IT specialist keeps the gate scanners online.'],
+      ['data-sci', 'A data scientist counts the crowd by the hour.'], ['event-planner', 'An event planner uses those counts to plan next year.']]},
+    {id: 'ankle', short: 'Twisted ankle', name: 'Behind a twisted ankle', end: 'Fixing this ankle took', stops: [
+      ['coach', 'A coach sees a player go down.'], ['athletic-trainer', 'An athletic trainer checks the ankle on the field.'],
+      ['paramedic', 'A paramedic decides it needs an X-ray.'], ['doctor', 'A doctor at the clinic reads the X-ray.'],
+      ['pt', 'A physical therapist plans six weeks of exercises.']]},
+    {id: 'bridge', short: 'The bridge', name: 'Behind the bridge', end: 'This bridge took', stops: [
+      ['planner', 'An urban planner chose where the bridge should go.'], ['lawyer', 'A lawyer wrote the contracts.'],
+      ['civil-eng', 'A civil engineer designed it to carry the load.'], ['welder', 'A welder joined its steel.'],
+      ['equip-op', 'An equipment operator moved the earth for the road.']]},
+  ];
+  const trailClusters = t => [...new Set(t.stops.map(([id]) => C[id].cluster))];
+
+  // ======================================================================================
+  // LINES (Curio.voice). How lines: welcomes, panHow, lanternHow (spoken once). Event lines: allLit, trailEnd2-4.
+  // The hint is the tool's own (hint: false); Read speaks it.
+  // ======================================================================================
+  const L = {
+    welcomeFestival: 'Tap anything glowing at the fair. Then tap a job to meet the person who does it.',
+    panHow: 'Drag the town sideways, or tap the arrows, to see more.',
+    lanternHow: 'That lantern is a career cluster. Find all fourteen.',
+    allLit: 'All fourteen lanterns are lit. One night at the fair took every cluster.',
+    welcomeTrails: 'Pick a trail, then tap Next to follow it across the fair.',
+    trailEnd2: 'That took two clusters working together.',
+    trailEnd3: 'That took three clusters working together.',
+    trailEnd4: 'That took four clusters working together.',
+    welcomeClusters: 'Tap a cluster to see its ways in, from no degree to grad school.',
+  };
+  const EVENTS = new Set(['allLit', 'trailEnd2', 'trailEnd3', 'trailEnd4']);   // spoken every time they happen
+
+  // ======================================================================================
+  // STATE (lanterns, opened careers and opened places are saved on this device)
+  // ======================================================================================
+  const KEY = 'career-cluster-explorer-lit';
+  const state = {mode: 'festival', lit: new Set(), opened: new Set(), seen: new Set(), allDone: false,
+    card: null, cardFrom: null, pops: new Set(), shimmer: false, list: false, filter: 'all', confirm: false, target: null, lastWhere: null, whereIdx: {},
+    trail: null, stop: 0, cluster: null, layout: '', pan: 0, s: 1, W: 0, Hh: 0};
+  try {
+    const d = JSON.parse(localStorage.getItem(KEY) || 'null');
+    if (d) {
+      (d.lit || []).filter(k => CL[k]).forEach(k => state.lit.add(k));
+      (d.opened || []).filter(id => C[id]).forEach(id => state.opened.add(id));
+      (d.seen || []).filter(id => H[id]).forEach(id => state.seen.add(id));
+      state.allDone = !!d.allDone && state.lit.size === 14;
+    }
+  } catch {}
+  const save = () => { try { localStorage.setItem(KEY, JSON.stringify({lit: [...state.lit], opened: [...state.opened], seen: [...state.seen], allDone: state.allDone})); } catch {} };
+
+  const V = Curio.voice({
+    lines: L, scope: () => state.mode, hint: false, read: () => $('hint').textContent,
+    welcome: () => ({festival: 'welcomeFestival', trails: 'welcomeTrails', clusters: 'welcomeClusters'})[state.mode],
+  });
+
+  // ======================================================================================
+  // THE CAREER SHEET (kit:careers): pay with its year, entry-level education, outlook 2025-35, the Handbook link
+  // ======================================================================================
+  const sheet = Careers.sheet({
+    data: DATA, theme: 'night', closeLabel: 'Close', payLabel: `Median pay for this job, ${DATA.year}`, factCols: 2,
+    facts: ['pay', 'edu', 'outlook', 'jobs'],
+    blocks: {
+      // honest for each route: only a career met at the festival (a card, the List, a trail stop) lights a lantern
+      afterDoes: (c, ctx) => {
+        const on = state.lit.has(c.cluster) || lights(ctx);
+        return `<p class="cr-lit${on ? '' : ' off'}" style="--lc:${col(c.cluster)}"><i class="lamp" aria-hidden="true"></i><span><b>${esc(CL[c.cluster])} lantern: ${on ? 'lit' : 'not lit yet'}.</b> ${on ? '' : 'Meet this job at the festival to light it. '}${esc(DEF[c.cluster])}</span></p>`;
+      },
+      afterFacts: c => `<p class="cr-path"><b>How people get there:</b> ${esc(c.path)}</p>`,
+      beforeSimilar: (c, ctx) => state.mode === 'festival' && state.card === HOME[c.id] ? '' :
+        `<button type="button" class="cr-see" id="crSee" data-id="${c.id}">📍 See it at the festival</button>`,
+    },
+    source: c => `Median pay for this job: BLS Occupational Employment and Wage Statistics, May ${DATA.year}, national. ` +
+      (c.ooh ? `Entry-level education, job outlook and number of jobs: <a href="${esc(c.ooh)}" target="_blank" rel="noopener">Handbook profile: ${esc(c.oohTitle)}</a> (BLS Occupational Outlook Handbook, 2025-35).`
+        : 'Not in the Handbook, so it has no outlook here.') + ` Similar careers: O*NET ${esc(c.onet)} interests.`,
+    afterDraw: box => { const b = box.querySelector('#crSee'); if (b) b.onclick = () => seeAtFestival(b.dataset.id); },
+    onOpen: (c, ctx) => careerOpened(c, ctx),
+    onClose: () => { drawHint(); popLater(); },
+  });
+
+  // ======================================================================================
+  // LANTERNS
+  // ======================================================================================
+  function drawLanterns() {
+    const box = $('lanterns'), trail = state.mode === 'trails' && state.trail !== null ? TRAILS[state.trail] : null;
+    let litSet = state.lit, cap = 'Your lanterns';
+    if (state.mode === 'trails') {
+      cap = 'This trail';
+      litSet = new Set(trail ? trail.stops.slice(0, state.stop + 1).map(([id]) => C[id].cluster) : []);
+    }
+    const tcl = trail ? new Set(trailClusters(trail)) : null;
+    if (!box.firstChild) {
+      box.innerHTML = '<svg class="string" viewBox="0 0 100 16" preserveAspectRatio="none"><path d="M0 4 Q25 13 50 6 T100 4" fill="none" stroke="#ffd36e88" stroke-width=".6" vector-effect="non-scaling-stroke"/></svg>' +
+        KEYS.map(k => `<div class="ln" role="listitem" id="ln-${k}" style="--lc:${col(k)}"><i class="lamp" aria-hidden="true"></i><span>${SOFT[k] || SHORT[k]}</span></div>`).join('') +
+        '<span class="lncount" id="lncount"></span><span class="cap" id="lncap"></span>';
+    }
+    KEYS.forEach(k => {
+      const el = $('ln-' + k), on = litSet.has(k);
+      el.classList.toggle('lit', on);
+      el.classList.toggle('dim', !!tcl && !tcl.has(k));
+      el.setAttribute('aria-label', `${CL[k]}: ${on ? 'lit' : 'not lit'}`);
+    });
+    $('lncount').textContent = state.mode === 'trails' ? (trail ? `Trail: ${litSet.size} of ${tcl.size}` : 'Trail: pick one') : `${state.lit.size} of 14 lit`;
+    box.setAttribute('aria-label', state.mode === 'trails' ? 'Clusters on this trail' : `Cluster lanterns, ${state.lit.size} of 14 lit`);
+  }
+  function light(k) {
+    if (state.lit.has(k)) return false;
+    state.lit.add(k);
+    state.pops.add(k);   // the sheet covers the lanterns: the pop plays when it closes (popLater)
+    return true;
+  }
+  // the lantern pop and the all-lit shimmer the sheet covered, played once the stage shows again
+  function popLater() {
+    if (Curio.reduce || state.mode === 'trails') { state.pops.clear(); state.shimmer = false; return; }
+    state.pops.forEach(k => { const el = $('ln-' + k); if (el) { el.classList.remove('pop'); void el.offsetWidth; el.classList.add('pop'); setTimeout(() => el.classList.remove('pop'), 700); } });
+    state.pops.clear();
+    if (state.shimmer) { state.shimmer = false; const b = $('lanterns'); b.classList.remove('shimmer'); void b.offsetWidth; b.classList.add('shimmer'); setTimeout(() => b.classList.remove('shimmer'), 1500); }
+  }
+  // only a career met at the festival lights its lantern: from a card (a marker or the List) or a trail stop.
+  // The ladder and Similar careers show the sheet without lighting it, and the sheet says so.
+  const lights = ctx => !!ctx && (ctx.from === 'card' || ctx.from === 'trail');
+  const lanternValid = () => state.mode === 'festival' && state.lit.size > 0 && state.lit.size < 14;
+  function careerOpened(c, ctx) {
+    state.opened.add(c.id);
+    const fresh = lights(ctx) && light(c.cluster);
+    const all = state.lit.size === 14;
+    save(); drawLanterns(); drawPanel(); drawMarkers(); drawHint(); cardMet();
+    if (fresh) Curio.tone(660 + 30 * KEYS.indexOf(c.cluster), .22, .04);
+    // allLit waits its turn behind a line already playing (the first-tap welcome); if it is dropped anyway, allDone
+    // is cleared so it comes back the next time a job is met at the festival
+    if (all && !state.allDone && lights(ctx)) {
+      state.allDone = true; save();
+      if (fresh) { Curio.yes(); state.shimmer = true; }
+      const r = V.say('allLit', {valid: () => state.lit.size === 14, wait: true});
+      if (r && r.then) r.then(x => { if (x === 'dropped' && state.lit.size === 14) { state.allDone = false; save(); } });
+    } else if (fresh && state.mode === 'festival' && !V.heard('lanternHow')) {
+      V.how('lanternHow', {valid: lanternValid});
+    }
+  }
+  // the open card's "✓ met" marks, added in place (no rebuild, so focus stays on its job)
+  function cardMet() {
+    if (!state.card) return;
+    $('card').querySelectorAll('.job').forEach(b => { if (state.opened.has(b.dataset.id) && !b.querySelector('.op')) b.insertAdjacentHTML('beforeend', '<span class="op">✓ met</span>'); });
+  }
+  function openCareer(id, ctx) { sheet.open(id, ctx); }
+
+  // ======================================================================================
+  // THE SCENE: Maple Bend Harvest Night, flat layered shapes, 2400 x 900
+  // ======================================================================================
+  function drawScene() {
+    const P = [];
+    const r = (x, y, w, h, f, extra = '') => P.push(`<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="${f}" ${extra}/>`);
+    const poly = (pts, f, extra = '') => P.push(`<polygon points="${pts}" fill="${f}" ${extra}/>`);
+    const circ = (x, y, rr, f, extra = '') => P.push(`<circle cx="${x}" cy="${y}" r="${rr}" fill="${f}" ${extra}/>`);
+    const path = (d, f, extra = '') => P.push(`<path d="${d}" fill="${f}" ${extra}/>`);
+    const text = (x, y, s, size, f, extra = '') => P.push(`<text x="${x}" y="${y}" font-size="${size}" fill="${f}" font-family="Trebuchet MS,Segoe UI,sans-serif" font-weight="800" text-anchor="middle" ${extra}>${s}</text>`);
+    const win = (x, y, w, h, cols, rows, lit = .7, seed = 1) => { let n = seed; for (let i = 0; i < cols; i++) for (let j = 0; j < rows; j++) { n = (n * 9301 + 49297) % 233280; r(x + i * w / cols + 4, y + j * h / rows + 4, w / cols - 8, h / rows - 8, n / 233280 < lit ? '#ffd36e' : '#1a1438', 'rx="2"'); } };
+    P.push('<defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#120e2a"/><stop offset=".66" stop-color="#3b2a63"/></linearGradient>' +
+      '<radialGradient id="glow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#ffd36e" stop-opacity=".55"/><stop offset="1" stop-color="#ffd36e" stop-opacity="0"/></radialGradient></defs>');
+    r(0, 0, 2400, 900, 'url(#sky)');
+    // stars
+    let n = 7; for (let i = 0; i < 90; i++) { n = (n * 9301 + 49297) % 233280; const x = n / 233280 * 2400; n = (n * 9301 + 49297) % 233280; const y = 30 + n / 233280 * 330; circ(x.toFixed(0), y.toFixed(0), i % 5 ? 1.6 : 2.6, '#f3f0ff', `opacity="${i % 3 ? .5 : .85}"`); }
+    circ(1560, 170, 40, '#f3f0ff', 'opacity=".9"'); circ(1575, 160, 36, '#3b2a63', 'opacity=".55"');
+    // far hills
+    path('M0 600 Q200 520 420 575 T900 560 T1400 575 T1900 550 T2400 560 V900 H0Z', '#2b2450');
+    // the ridge, the turbine, the power lines
+    path('M0 640 L0 520 Q120 470 240 540 Q300 580 360 600 L360 640Z', '#3a3166');
+    r(116, 300, 9, 225, '#cfc8f0'); poly('120,300 120,300 128,296', '#fff');
+    r(108, 290, 30, 16, '#e7e2fb', 'rx="6"');
+    [[0, -150], [130, 75], [-130, 75]].forEach(([dx, dy]) => P.push(`<path d="M122 298 L${122 + dx} ${298 + dy}" stroke="#e7e2fb" stroke-width="9" stroke-linecap="round"/>`));
+    circ(122, 298, 8, '#fff');
+    const poles = [[220, 520], [470, 545], [700, 520], [1660, 500]];
+    poles.forEach(([x, y]) => { r(x - 4, y, 8, 110, '#4b417c'); r(x - 22, y + 6, 44, 6, '#4b417c'); });
+    for (let i = 0; i < poles.length - 1; i++) { const [a, b] = poles[i], [c, d] = poles[i + 1]; [-18, 18].forEach(o => P.push(`<path d="M${a + o} ${b + 8} Q${(a + c) / 2} ${(b + d) / 2 + 50} ${c + o} ${d + 8}" stroke="#7d73b0" stroke-width="2" fill="none"/>`)); }
+    P.push('<path d="M140 520 Q180 540 216 528" stroke="#7d73b0" stroke-width="2" fill="none"/>');
+    // ground
+    path('M0 640 Q600 610 1200 625 T2400 630 V900 H0Z', '#221b46');
+    // farm: corn rows, barn, solar panels
+    for (let i = 0; i < 7; i++) P.push(`<path d="M${170 + i * 18} 720 L${200 + i * 26} 640" stroke="#4a5a2c" stroke-width="7" stroke-linecap="round"/>`);
+    poly('270,570 330,520 390,570 390,680 270,680', '#5a2f4f'); poly('260,575 330,515 400,575', '#3a3166');
+    r(312, 625, 36, 55, '#2b2450'); P.push('<path d="M312 625 L348 680 M348 625 L312 680" stroke="#7a4a6a" stroke-width="3"/>');
+    P.push('<polygon points="335,528 392,575 380,583 323,536" fill="#2b4a8a" stroke="#7fa4e8" stroke-width="2"/><path d="M345 537 L384 571 M357 547 L372 560" stroke="#7fa4e8" stroke-width="1.5"/>');
+    r(400, 600, 30, 80, '#4b417c', 'rx="14"'); circ(415, 600, 15, '#4b417c');
+    // river, heron, bridge, roadwork
+    path('M430 900 Q470 760 520 720 Q560 690 640 700 Q700 712 700 760 Q690 840 640 900Z', '#1d2f5a');
+    [[480, 820], [560, 760], [600, 860]].forEach(([x, y]) => P.push(`<path d="M${x} ${y} q12 -6 24 0 t24 0" stroke="#5b7fc4" stroke-width="3" fill="none"/>`));
+    P.push('<path d="M470 790 l0 -36 M470 754 q6 -14 16 -10 l8 2" stroke="#c9c3ea" stroke-width="3" fill="none"/>');
+    r(470, 655, 260, 18, '#6b5fa0'); P.push('<path d="M490 673 Q600 600 710 673" stroke="#6b5fa0" stroke-width="12" fill="none"/>');
+    for (let x = 500; x < 720; x += 30) r(x, 630, 4, 25, '#8d82c4');
+    r(470, 628, 260, 4, '#8d82c4');
+    poly('640,760 652,730 664,760', '#fb923c'); poly('680,770 692,740 704,770', '#fb923c');
+    r(560, 725, 70, 30, '#d9a53a', 'rx="4"'); r(600, 705, 26, 22, '#d9a53a'); P.push('<path d="M565 725 l-30 -30 l-18 18" stroke="#d9a53a" stroke-width="7" fill="none"/>');
+    circ(575, 760, 9, '#2b2450'); circ(615, 760, 9, '#2b2450');
+    // fair: fence, string lights
+    r(740, 700, 900, 6, '#4b417c'); for (let x = 740; x <= 1640; x += 45) r(x, 690, 5, 26, '#4b417c');
+    const sl = [[760, 330], [900, 360], [1060, 330], [1240, 345], [1420, 335], [1640, 345]];
+    for (let i = 0; i < sl.length - 1; i++) {
+      const [a, b] = sl[i], [c, d] = sl[i + 1], mx = (a + c) / 2, my = (b + d) / 2 + 40;
+      P.push(`<path d="M${a} ${b} Q${mx} ${my} ${c} ${d}" stroke="#7d73b0" stroke-width="1.5" fill="none"/>`);
+      for (let t = .1; t < 1; t += .1) { const x = (1 - t) ** 2 * a + 2 * (1 - t) * t * mx + t * t * c, y = (1 - t) ** 2 * b + 2 * (1 - t) * t * my + t * t * d; circ(x.toFixed(0), (y + 4).toFixed(0), 4, '#ffd36e'); }
+    }
+    sl.forEach(([x, y]) => r(x - 3, y, 6, 360, '#3a3166'));
+    // weather board
+    r(726, 440, 8, 200, '#4b417c'); r(670, 360, 120, 90, '#1a1438', 'rx="8" stroke="#ffd36e" stroke-width="3"');
+    circ(700, 390, 14, '#ffd36e'); text(745, 398, '72°', 26, '#f3f0ff'); text(730, 434, 'CLEAR', 22, '#a3e635');
+    // gate
+    r(790, 560, 16, 140, '#6b5fa0'); r(890, 560, 16, 140, '#6b5fa0');
+    path('M780 570 Q848 500 916 570 L916 590 Q848 525 780 590Z', '#e8604c');
+    text(848, 548, 'FAIR', 24, '#fff7e0');
+    r(826, 640, 24, 40, '#1a1438', 'rx="4"'); r(830, 646, 16, 22, '#22d3ee', 'rx="2"');
+    // fire truck and the dispatch window
+    r(700, 760, 130, 50, '#c2414b', 'rx="6"'); r(800, 740, 40, 70, '#c2414b', 'rx="6"'); r(808, 748, 24, 20, '#9ad5f5', 'rx="3"');
+    P.push('<path d="M705 752 L800 740 M705 752 l0 6 M730 749 l0 8 M755 746 l0 8 M780 743 l0 8" stroke="#e7e2fb" stroke-width="4"/>');
+    circ(725, 815, 14, '#1a1438'); circ(810, 815, 14, '#1a1438'); r(812, 736, 16, 6, '#60a5fa', 'rx="2"');
+    // petting pen
+    r(848, 800, 130, 70, 'none', 'stroke="#8d6e4a" stroke-width="5"'); for (let x = 848; x <= 978; x += 26) r(x - 2, 795, 5, 75, '#8d6e4a');
+    const goat = (x, y, f) => { path(`M${x} ${y} q20 -14 40 0 l0 16 l-40 0z`, f); r(x + 4, y + 14, 4, 14, f); r(x + 32, y + 14, 4, 14, f); circ(x + 44, y - 6, 9, f); };
+    goat(866, 828, '#e7e2fb'); goat(920, 838, '#d9c4a8');
+    // kettle corn stand
+    r(930, 640, 95, 70, '#4b417c'); for (let i = 0; i < 5; i++) poly(`${928 + i * 20},640 ${948 + i * 20},640 ${938 + i * 20},620`, i % 2 ? '#fde68a' : '#e8604c');
+    r(926, 612, 103, 10, '#e8604c'); circ(978, 675, 22, '#2b2450', 'stroke="#c9c3ea" stroke-width="4"'); circ(970, 668, 4, '#fff7e0'); circ(984, 674, 4, '#fff7e0'); circ(976, 680, 4, '#fff7e0');
+    // Ferris wheel
+    P.push('<path d="M1000 420 L940 640 M1000 420 L1060 640" stroke="#8d82c4" stroke-width="10"/>');
+    circ(1000, 420, 175, 'none', 'stroke="#c9c3ea" stroke-width="7"'); circ(1000, 420, 150, 'none', 'stroke="#8d82c4" stroke-width="3"');
+    for (let i = 0; i < 12; i++) { const a = i * Math.PI / 6, x = 1000 + 175 * Math.cos(a), y = 420 + 175 * Math.sin(a); P.push(`<path d="M1000 420 L${x.toFixed(0)} ${y.toFixed(0)}" stroke="#8d82c4" stroke-width="3"/>`); r((x - 13).toFixed(0), (y + 4).toFixed(0), 26, 20, ['#f472b6', '#22d3ee', '#fbbf24', '#a3e635'][i % 4], 'rx="5"'); circ(x.toFixed(0), y.toFixed(0), 4, '#ffd36e'); }
+    circ(1000, 420, 18, '#ffd36e');
+    // office tent and crowd counter
+    poly('985,780 1040,740 1095,780', '#e7e2fb'); r(990, 780, 100, 60, '#c9c3ea'); r(1010, 790, 60, 36, '#1a1438', 'rx="4"');
+    [6, 12, 18, 26, 20].forEach((h, i) => r(1016 + i * 10, 820 - h, 7, h, '#22d3ee'));
+    // stage, scaffold, lights, the band's gear
+    r(1050, 600, 160, 50, '#4b417c'); r(1050, 480, 8, 120, '#8d82c4'); r(1202, 480, 8, 120, '#8d82c4'); r(1050, 476, 160, 10, '#8d82c4');
+    for (let x = 1058; x < 1200; x += 20) P.push(`<path d="M${x} 486 l20 20 m0 -20 l-20 20" stroke="#6b5fa0" stroke-width="1.5"/>`);
+    ['#f472b6', '#22d3ee', '#fbbf24', '#a3e635', '#c4b5fd'].forEach((f, i) => { poly(`${1068 + i * 30},486 ${1082 + i * 30},486 ${1086 + i * 30},500 ${1064 + i * 30},500`, '#2b2450'); P.push(`<path d="M${1065 + i * 30} 500 L${1040 + i * 34} 600 L${1110 + i * 26} 600Z" fill="${f}" opacity=".18"/>`); });
+    circ(1100, 585, 16, '#2b2450', 'stroke="#c9c3ea" stroke-width="3"'); r(1150, 555, 3, 45, '#c9c3ea'); circ(1151, 553, 6, '#2b2450');
+    // big screen
+    r(1120, 320, 130, 84, '#0d0a22', 'rx="6" stroke="#8d82c4" stroke-width="5"'); r(1182, 404, 6, 70, '#8d82c4');
+    r(1134, 336, 44, 14, '#f472b6', 'rx="3"'); r(1192, 336, 44, 14, '#22d3ee', 'rx="3"'); text(1185, 390, '2 : 1', 30, '#f3f0ff');
+    // theater tent
+    poly('1130,700 1190,650 1250,700', '#a14f8a'); r(1135, 700, 110, 50, '#7d3d6c'); P.push('<path d="M1190 700 L1190 750" stroke="#2b2450" stroke-width="6"/>'); for (let x = 1145; x < 1240; x += 22) r(x, 700, 8, 50, '#a14f8a');
+    // kids corner
+    r(1125, 845, 90, 10, '#c4b5fd', 'rx="3"'); r(1130, 855, 6, 25, '#c4b5fd'); r(1205, 855, 6, 25, '#c4b5fd');
+    circ(1145, 838, 8, '#f87171'); r(1160, 830, 16, 14, '#fbbf24'); circ(1192, 838, 8, '#22d3ee');
+    // art row: poster, photo booth, float
+    r(1240, 470, 60, 84, '#fef3c7', 'rx="4"'); circ(1270, 500, 16, '#e879f9'); r(1252, 525, 36, 8, '#fb923c');
+    r(1310, 490, 44, 70, '#2b2450', 'stroke="#e879f9" stroke-width="3"'); r(1318, 500, 28, 22, '#1a1438'); circ(1332, 511, 7, '#c9c3ea');
+    r(1240, 570, 110, 26, '#e879f9', 'rx="10"'); circ(1260, 600, 9, '#1a1438'); circ(1330, 600, 9, '#1a1438');
+    // help booth
+    r(1270, 800, 80, 60, '#3a3166'); r(1264, 790, 92, 12, '#22d3ee'); path('M1310 832 q-14 -14 -6 -22 q6 -6 6 2 q0 -8 6 -2 q8 8 -6 22z', '#f87171');
+    // food trucks and the freezer
+    r(1270, 650, 70, 50, '#d9a53a', 'rx="6"'); r(1280, 660, 40, 18, '#ffd36e'); circ(1285, 702, 9, '#1a1438'); circ(1325, 702, 9, '#1a1438');
+    r(1345, 655, 70, 45, '#5eead4', 'rx="6"'); r(1355, 663, 40, 16, '#ffd36e'); circ(1358, 702, 9, '#1a1438'); circ(1400, 702, 9, '#1a1438');
+    r(1352, 640, 20, 15, '#e7e2fb', 'rx="3"');
+    // soccer field under lights
+    path('M1360 690 L1520 690 L1500 640 L1380 640Z', '#2f6b3f'); P.push('<path d="M1440 640 L1440 690" stroke="#e7e2fb" stroke-width="2"/>');
+    [1370, 1510].forEach(x => { r(x - 3, 400, 6, 240, '#6b5fa0'); r(x - 18, 392, 36, 14, '#ffd36e', 'rx="3"'); circ(x, 420, 60, 'url(#glow)'); });
+    r(1385, 650, 4, 22, '#e7e2fb'); r(1385, 650, 20, 4, '#e7e2fb');
+    // restrooms and fountain
+    r(1400, 770, 80, 70, '#4b417c'); r(1410, 790, 24, 50, '#2b2450'); r(1446, 790, 24, 50, '#2b2450'); r(1490, 800, 14, 40, '#8d82c4'); P.push('<path d="M1497 798 q8 -12 16 0" stroke="#7fd3f5" stroke-width="3" fill="none"/>');
+    // first aid tent
+    poly('1400,600 1450,560 1500,600', '#f3f0ff'); r(1405, 600, 90, 50, '#e7e2fb'); r(1443, 608, 14, 34, '#e8604c'); r(1433, 618, 34, 14, '#e8604c');
+    // radio booth with mast
+    r(1525, 520, 70, 60, '#3a3166'); r(1557, 410, 6, 110, '#8d82c4'); circ(1560, 410, 8, '#f87171');
+    P.push('<path d="M1540 420 q20 -20 40 0 M1532 412 q28 -30 56 0" stroke="#f87171" stroke-width="3" fill="none"/>'); r(1532, 535, 56, 16, '#f472b6', 'rx="4"');
+    // braids booth
+    r(1520, 700, 80, 50, '#4b417c'); for (let i = 0; i < 4; i++) poly(`${1518 + i * 21},700 ${1539 + i * 21},700 ${1528 + i * 21},684`, i % 2 ? '#e879f9' : '#22d3ee');
+    // sponsor tent
+    poly('1540,850 1590,815 1640,850', '#fbbf24'); r(1545, 850, 90, 40, '#d9a53a'); r(1570, 856, 40, 22, '#1a1438', 'rx="3"'); r(1576, 868, 8, 6, '#a3e635'); r(1588, 862, 8, 12, '#f472b6');
+    // Main Street road and crosswalk
+    r(1640, 760, 760, 120, '#1a1438'); for (let x = 1690; x < 1790; x += 22) r(x, 800, 12, 50, '#e7e2fb', 'opacity=".7"');
+    for (let x = 1820; x < 2400; x += 70) r(x, 818, 34, 5, '#ffd36e', 'opacity=".6"');
+    // library
+    r(1650, 540, 110, 150, '#4b417c'); poly('1640,545 1705,500 1770,545', '#3a3166'); for (let x = 1662; x < 1760; x += 22) r(x, 560, 9, 120, '#8d82c4');
+    r(1690, 630, 30, 60, '#ffd36e'); text(1705, 532, 'LIBRARY', 18, '#f3f0ff');
+    // police officer at the crosswalk (a figure in flat shapes)
+    circ(1732, 778, 10, '#c9c3ea'); r(1724, 788, 17, 32, '#60a5fa', 'rx="5"'); r(1723, 768, 19, 6, '#1e3a8a', 'rx="2"');
+    // clinic with the lit windows above
+    r(1770, 340, 120, 350, '#3a3166'); win(1776, 360, 108, 90, 3, 2, .95, 3); r(1775, 470, 110, 6, '#2b2450');
+    r(1778, 560, 104, 100, '#2b2450'); r(1800, 600, 60, 60, '#9ad5f5'); r(1823, 570, 14, 26, '#e8604c'); r(1817, 576, 26, 14, '#e8604c');
+    // house with For sale sign
+    poly('1880,790 1910,770 1940,790', '#4b417c'); r(1885, 790, 50, 30, '#3a3166'); r(1902, 800, 14, 20, '#ffd36e');
+    r(1862, 810, 4, 34, '#c9c3ea'); r(1840, 800, 48, 22, '#f87171', 'rx="3"'); text(1864, 817, 'SALE', 14, '#fff7e0');
+    // bank and insurance office
+    r(1905, 470, 100, 220, '#4b417c'); poly('1898,476 1955,440 2012,476', '#3a3166'); for (let x = 1915; x < 2000; x += 24) r(x, 495, 10, 130, '#8d82c4');
+    r(1940, 640, 30, 50, '#2b2450'); r(1977, 650, 20, 28, '#22d3ee', 'rx="3"'); text(1955, 465, '$', 26, '#ffd36e');
+    // hardware store
+    r(1960, 650, 100, 110, '#5a4a8c'); r(1955, 640, 110, 22, '#fb923c'); text(2010, 658, 'HARDWARE', 16, '#1a1438');
+    r(1975, 680, 70, 40, '#ffd36e'); r(1985, 726, 50, 18, '#f3f0ff'); text(2010, 740, 'HIRING', 13, '#1a1438');
+    // hotel
+    r(2030, 330, 85, 370, '#3a3166'); win(2034, 350, 78, 260, 3, 6, .7, 11); r(2050, 640, 45, 60, '#ffd36e'); text(2072, 324, 'HOTEL', 18, '#f3f0ff');
+    // town hall
+    r(2120, 520, 100, 170, '#4b417c'); path('M2140 520 Q2170 470 2200 520Z', '#6b5fa0'); r(2167, 455, 6, 25, '#8d82c4'); poly('2173,455 2195,462 2173,469', '#f87171');
+    for (let x = 2130; x < 2215; x += 20) r(x, 540, 8, 120, '#8d82c4'); r(2155, 640, 30, 50, '#ffd36e');
+    // delivery truck
+    r(1945, 830, 85, 45, '#e7e2fb', 'rx="4"'); r(2030, 845, 30, 30, '#60a5fa', 'rx="4"'); r(2036, 850, 16, 12, '#9ad5f5'); circ(1965, 878, 10, '#0d0a22'); circ(2040, 878, 10, '#0d0a22');
+    // auto shop and tow truck
+    r(2130, 720, 120, 70, '#3a3166'); r(2140, 735, 60, 50, '#ffd36e'); r(2126, 712, 128, 12, '#22d3ee');
+    r(2205, 760, 60, 30, '#fbbf24', 'rx="4"'); P.push('<path d="M2210 760 l-25 -20 l0 25" stroke="#c9c3ea" stroke-width="4" fill="none"/>'); circ(2220, 792, 9, '#0d0a22'); circ(2255, 792, 9, '#0d0a22');
+    // airport hill and beacon
+    path('M2230 700 Q2310 560 2400 580 V700Z', '#3a3166'); r(2304, 500, 12, 110, '#8d82c4'); circ(2310, 498, 14, '#22d3ee'); circ(2310, 498, 46, 'url(#glow)');
+    P.push('<path d="M2310 498 L2400 470 L2400 520Z" fill="#a5f3fc" opacity=".2"/>');
+    // the plane and its trail
+    P.push('<path d="M2060 300 Q2150 282 2205 274" stroke="#c9c3ea" stroke-width="3" stroke-dasharray="10 10" fill="none" opacity=".6"/>');
+    path('M2200 272 L2268 262 Q2280 262 2276 270 L2210 282Z', '#e7e2fb'); poly('2232,268 2250,244 2258,246 2246,268', '#c9c3ea'); poly('2232,278 2246,296 2254,294 2246,276', '#c9c3ea');
+    circ(2272, 264, 4, '#f87171'); circ(2214, 276, 3, '#4ade80');
+    // a little foreground grass
+    path('M0 900 L0 860 Q300 840 600 870 T1200 860 T1640 870 L1640 900Z', '#1a1438');
+    $('scene').innerHTML = P.join('');
+    // the minimap: the skyline in silhouette
+    $('miniSvg').innerHTML = '<rect width="2400" height="100" fill="#1a1438"/>' +
+      '<path d="M0 100 L0 70 Q120 40 240 70 L260 70 L270 45 L390 45 L400 70 L740 70 L740 60 L840 40 L916 60 L1000 10 L1060 60 L1250 60 L1250 50 L1640 55 L1650 40 L1770 40 L1770 5 L1890 5 L1890 30 L2030 30 L2030 0 L2115 0 L2115 30 L2220 30 L2310 55 L2400 50 V100Z" fill="#4b417c"/>';
+  }
+
+  // ======================================================================================
+  // MARKERS, PANNING, THE CARD
+  // ======================================================================================
+  HOT.forEach(h => {
+    const b = document.createElement('button');
+    b.className = 'mk'; b.id = 'mk-' + h.id; b.type = 'button';
+    b.innerHTML = `<span class="lab">${esc(h.name.split(':')[0])}</span>`;
+    b.onclick = () => { if (drag.moved) return; markerTap(h.id); };
+    // keyboard focus pans the marker into view; a pointer press never does (the marker would slide out from under the
+    // pointer before release); openHot pans once the card is open
+    b.addEventListener('focus', () => { if (b.matches(':focus-visible')) ensureVisible(h, true); });
+    $('marks').append(b);
+  });
+  function markerName(h) { return h.name + (state.seen.has(h.id) ? ', opened' : ''); }
+  function drawMarkers() {
+    const t = state.mode === 'trails' && state.trail !== null ? TRAILS[state.trail] : null;
+    HOT.forEach(h => {
+      const b = $('mk-' + h.id);
+      b.style.left = (h.x * state.s) + 'px'; b.style.top = (h.y * state.s) + 'px';
+      if (state.mode === 'trails') {
+        const nums = t ? t.stops.map(([id], i) => HOME[id] === h.id ? i + 1 : 0).filter(Boolean) : [];
+        b.classList.toggle('off', !nums.length); b.classList.toggle('stop', !!nums.length); b.classList.remove('seen', 'target');
+        b.classList.toggle('cur', !!nums.length && nums.includes(state.stop + 1));
+        b.dataset.n = nums.length > 1 ? nums[0] + '-' + nums[nums.length - 1] : nums[0] || '';
+        b.setAttribute('aria-label', nums.length ? `Stop ${b.dataset.n}: ${h.name}` : h.name);
+        b.tabIndex = nums.length ? 0 : -1;
+      } else {
+        b.classList.remove('off', 'stop', 'cur');
+        b.classList.toggle('seen', state.seen.has(h.id));
+        b.classList.toggle('target', state.target === h.id);
+        b.setAttribute('aria-label', markerName(h));
+        b.tabIndex = 0;
+      }
+    });
+  }
+  function markerTap(id) {
+    if (state.mode === 'trails') {
+      const t = TRAILS[state.trail]; if (!t) return;
+      const idx = t.stops.map(([c], i) => HOME[c] === id ? i : -1).filter(i => i >= 0);
+      if (!idx.length) return;
+      goStop(idx.find(i => i > state.stop) ?? idx[0]);
+      return;
+    }
+    openHot(id);
+  }
+
+  // panning: the pan container is 2400 * s wide; state.pan is its left offset in pixels
+  // PADX: the pan range runs a little past both ends, so the end markers can clear the ◀ ▶ buttons
+  const PADX = 56, minPan = () => -PADX, maxPan = () => Math.max(0, 2400 * state.s - state.W) + PADX;
+  let panAnim = 0;
+  function setPan(p) {
+    state.pan = Math.max(minPan(), Math.min(maxPan(), p));
+    $('pan').style.transform = `translateX(${-state.pan}px)`;
+    const k = state.W / 2400;
+    $('miniView').style.left = Math.max(0, state.pan / state.s * k) + 'px';
+    $('miniView').style.width = Math.min(state.W, state.W / state.s * k) + 'px';
+    if (state.card) placeCard();
+  }
+  function panTo(p, animate = true) {
+    cancelAnimationFrame(panAnim);
+    const to = Math.max(minPan(), Math.min(maxPan(), p));
+    if (!animate || Curio.reduce) { setPan(to); return; }
+    const from = state.pan, t0 = performance.now(), d = 420;
+    const step = now => { const t = Math.min(1, (now - t0) / d), e = 1 - (1 - t) ** 3; setPan(from + (to - from) * e); if (t < 1) panAnim = requestAnimationFrame(step); };
+    panAnim = requestAnimationFrame(step);
+  }
+  const centerOn = (h, animate = true) => panTo(h.x * state.s - state.W / 2, animate);
+  function ensureVisible(h, animate) {
+    const x = h.x * state.s - state.pan, m = Math.min(90, state.W / 4);
+    if (x < m || x > state.W - m) centerOn(h, animate);
+  }
+  // drag (and inertia with Motion on), wheel, arrow buttons and keys
+  const drag = {on: false, moved: false, x0: 0, p0: 0, vx: 0, t: 0, lx: 0, id: null};
+  $('town').addEventListener('pointerdown', e => {
+    if (e.button !== 0 || e.target.closest('.card,.pan-btn')) return;
+    cancelAnimationFrame(panAnim);
+    Object.assign(drag, {on: true, moved: false, x0: e.clientX, p0: state.pan, vx: 0, t: performance.now(), lx: e.clientX, id: e.pointerId});
+  });
+  addEventListener('pointermove', e => {
+    if (!drag.on || e.pointerId !== drag.id) return;
+    const dx = e.clientX - drag.x0;
+    if (!drag.moved && Math.abs(dx) > 6) { drag.moved = true; $('town').classList.add('dragging'); }
+    if (drag.moved) {
+      const now = performance.now(), dt = Math.max(1, now - drag.t);
+      drag.vx = .7 * drag.vx + .3 * ((e.clientX - drag.lx) / dt); drag.t = now; drag.lx = e.clientX;
+      setPan(drag.p0 - dx);
+    }
+  });
+  addEventListener('pointerup', e => {
+    if (!drag.on || e.pointerId !== drag.id) return;
+    drag.on = false; $('town').classList.remove('dragging');
+    if (drag.moved) {
+      if (!Curio.reduce && Math.abs(drag.vx) > .05) {   // inertia: off with Motion off
+        let v = drag.vx * 16;
+        const glide = () => { v *= .92; setPan(state.pan - v); if (Math.abs(v) > .4) panAnim = requestAnimationFrame(glide); };
+        panAnim = requestAnimationFrame(glide);
+      }
+      setTimeout(() => { drag.moved = false; }, 0);
+    }
+  });
+  addEventListener('pointercancel', () => { drag.on = false; drag.moved = false; $('town').classList.remove('dragging'); });
+  $('town').addEventListener('wheel', e => {
+    if (e.target.closest('.card')) return;
+    const d = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+    if (!d) return;
+    e.preventDefault(); cancelAnimationFrame(panAnim); setPan(state.pan + d);
+  }, {passive: false});
+  // something scrolled the clipped town (scrollIntoView, a screen reader): turn that into a pan instead
+  $('town').addEventListener('scroll', () => { const t = $('town'), dx = t.scrollLeft; t.scrollLeft = 0; t.scrollTop = 0; if (dx) setPan(state.pan + dx); });
+  const step = dir => panTo(state.pan + dir * state.W * .6);
+  $('panL').onclick = () => step(-1);
+  $('panR').onclick = () => step(1);
+  $('mini').addEventListener('pointerdown', e => {
+    const r = $('mini').getBoundingClientRect();
+    panTo((e.clientX - r.left) / r.width * 2400 * state.s - state.W / 2);
+  });
+  addEventListener('keydown', e => {
+    if (e.altKey || e.ctrlKey || e.metaKey) return;
+    if (e.key === 'Escape') {
+      if (sheet.isOpen()) return;
+      if (state.card) { e.preventDefault(); closeCard(true); return; }
+      if (state.confirm) { state.confirm = false; drawPanel(); drawHint(); $('startOver').focus({preventScroll: true}); }
+      return;
+    }
+    if ((e.key === 'ArrowLeft' || e.key === 'ArrowRight') && state.mode !== 'clusters' && !sheet.isOpen()) {
+      const t = e.target;
+      if (t === document.body || t.closest('#town')) { if (t.closest && t.closest('.card')) return; e.preventDefault(); step(e.key === 'ArrowLeft' ? -1 : 1); }
+    }
+  });
+
+  // the card beside a hotspot
+  function openHot(id, focusFirst = true, from = 'stage') {
+    const h = H[id];
+    state.card = id; state.cardFrom = from; state.target = null;
+    const fresh = !state.seen.has(id);
+    state.seen.add(id); save();
+    ensureVisible(h, true);
+    const c = $('card');
+    c.innerHTML = `<button class="x" type="button" id="cardX"><span aria-hidden="true">✕ </span>Close</button>
+      <h2 id="cardTitle">${esc(h.name)}</h2>${h.line ? `<p class="line">"${esc(h.line)}"</p>` : ''}
+      <div class="jobs">${h.careers.map(id => { const k = C[id]; return `<button type="button" class="job" data-id="${id}"><span class="em" aria-hidden="true">${k.emoji}</span><span><b>${esc(k.name)}</b><small><i class="dot" style="background:${col(k.cluster)}"></i>${esc(CL[k.cluster])}</small></span>${state.opened.has(id) ? '<span class="op">✓ met</span>' : ''}</button>`; }).join('')}</div>`;
+    c.hidden = false;
+    $('cardX').onclick = () => closeCard(true);
+    c.querySelectorAll('.job').forEach(b => b.onclick = () => openCareer(b.dataset.id, {from: 'card'}));
+    placeCard();
+    if (focusFirst) c.querySelector('.job').focus({preventScroll: true});
+    if (fresh) Curio.tone(520, .1, .03);
+    drawMarkers(); drawPanel(); drawHint();
+  }
+  function placeCard() {
+    const c = $('card'), h = H[state.card]; if (!h || c.hidden) return;
+    if (document.body.classList.contains('narrow')) return;   // a bottom sheet (CSS)
+    const W = state.W, Hh = state.Hh, cw = c.offsetWidth, ch = c.offsetHeight;
+    const x = h.x * state.s - state.pan, y = h.y * state.s;
+    let left = x + 34; if (left + cw > W - 8) left = x - 34 - cw;       // flip side near the edge
+    left = Math.max(8, Math.min(W - cw - 8, left));
+    const top = Math.max(8, Math.min(Hh - ch - 8, y - ch / 2));
+    c.style.left = left + 'px'; c.style.top = top + 'px';
+  }
+  function closeCard(refocus) {
+    const id = state.card; if (!id) return;
+    state.card = null; $('card').hidden = true;
+    drawMarkers(); drawPanel(); drawHint();
+    if (refocus) {   // back where the student came from: the place in the List, or its marker
+      const li = state.cardFrom === 'list' && state.list ? $('list').querySelector(`[data-id="${id}"]`) : null;
+      (li || $('mk-' + id)).focus({preventScroll: true});
+    }
+    // the lantern line first while it has not had its turn (one sequence, so panHow can't replace it)
+    const pan = ['panHow', {valid: () => state.mode === 'festival' && !state.card}];
+    V.how(!V.heard('lanternHow') && lanternValid() ? [['lanternHow', {valid: lanternValid}], pan] : [pan]);
+  }
+
+  // ======================================================================================
+  // WHERE? (an unlit cluster: a hotspot with one of its careers not opened, never the same hotspot twice running)
+  // ======================================================================================
+  function where(k, kb) {
+    let cands = HOT.filter(h => h.careers.some(id => C[id].cluster === k && !state.opened.has(id)));
+    if (!cands.length) cands = HOT.filter(h => h.careers.some(id => C[id].cluster === k));
+    const others = cands.filter(h => h.id !== state.lastWhere);
+    const pool = others.length ? others : cands;
+    const i = (state.whereIdx[k] = (state.whereIdx[k] ?? -1) + 1) % pool.length;
+    const h = pool[i];
+    const again = h.id === state.lastWhere;
+    state.lastWhere = h.id; state.target = h.id; state.whereNote = {k, h: h.id, again};
+    if (state.card) closeCard(false);
+    centerOn(h);
+    drawMarkers(); drawHint();
+    if (kb) $('mk-' + h.id).focus({preventScroll: true});   // by keyboard: Enter now opens the circled place
+    return h.id;
+  }
+  // the compact panel's one Where? button: the next unlit cluster in turn
+  let whereTurn = -1;
+  function whereNext(e) {
+    const dark = KEYS.filter(k => !state.lit.has(k)); if (!dark.length) return;
+    whereTurn = (whereTurn + 1) % dark.length;
+    where(dark[whereTurn], !!e && e.detail === 0);
+  }
+  function seeAtFestival(id) {
+    sheet.close();
+    if (state.mode !== 'festival') setMode('festival', true);
+    const h = H[HOME[id]];
+    centerOn(h, false);
+    openHot(h.id);
+  }
+
+  // ======================================================================================
+  // TRAILS
+  // ======================================================================================
+  $('trSel').innerHTML += TRAILS.map((t, i) => `<option value="${i}">${esc(t.name)}</option>`).join('');
+  $('trSel').onchange = e => { if (e.target.value !== '') pickTrail(+e.target.value); };
+  TRAILS.forEach((t, i) => {
+    const b = document.createElement('button');
+    b.type = 'button'; b.id = 'tr-' + t.id; b.textContent = t.short; b.setAttribute('aria-label', t.name); b.setAttribute('aria-pressed', 'false');
+    b.onclick = () => pickTrail(i);
+    $('trails').append(b);
+  });
+  function pickTrail(i) {
+    state.trail = i; state.stop = 0;
+    V.dropQueued(l => /^trailEnd/.test(l.key || ''));
+    goStop(0, true);
+  }
+  function goStop(i) {
+    const t = TRAILS[state.trail]; if (!t) return;
+    state.stop = Math.max(0, Math.min(t.stops.length - 1, i));
+    const h = H[HOME[t.stops[state.stop][0]]];
+    centerOn(h);
+    drawTrail(); drawLanterns(); drawMarkers(); drawPanel(); drawHint();
+    // a button that just disabled itself hands focus on: Next at the end to Open career, Back at the start to Next
+    const a = document.activeElement;
+    if (a === $('next') && a.disabled) $('openCareer').focus({preventScroll: true});
+    if (a === $('back') && a.disabled) $('next').focus({preventScroll: true});
+    // stacked: the trail's result sits under the stage, so bring it into view
+    if (state.stop === t.stops.length - 1 && document.body.classList.contains('stack')) {
+      const er = $('endrow').getBoundingClientRect();
+      if (er.bottom > innerHeight) scrollBy({top: er.bottom - innerHeight + 12, behavior: Curio.reduce ? 'auto' : 'smooth'});
+    }
+    if (state.stop === t.stops.length - 1) {
+      const n = trailClusters(t).length, tr = state.trail;
+      Curio.tone(784, .2, .04);
+      V.say('trailEnd' + n, {valid: () => state.mode === 'trails' && state.trail === tr && state.stop === TRAILS[tr].stops.length - 1});
+    } else Curio.tone(560 + 40 * state.stop, .08, .025);
+  }
+  function drawTrail() {
+    const svg = $('trailsvg');
+    if (state.mode !== 'trails') { svg.innerHTML = ''; return; }
+    const t = TRAILS[state.trail];
+    let s = '<rect width="2400" height="900" fill="#07051a" opacity=".6"/>';
+    if (t) {
+      const pts = []; t.stops.forEach(([id]) => { const h = H[HOME[id]]; const last = pts[pts.length - 1]; if (!last || last.id !== h.id) pts.push(h); });
+      if (pts.length > 1) s += `<path d="M${pts.map(h => h.x + ' ' + h.y).join(' L')}" fill="none" stroke="#ffd36e" stroke-width="6" stroke-dasharray="4 16" stroke-linecap="round" vector-effect="non-scaling-stroke"/>`;
+      pts.forEach(h => { s += `<circle cx="${h.x}" cy="${h.y}" r="70" fill="url(#glow)"/>`; });
+    }
+    svg.innerHTML = '<defs><radialGradient id="glow2" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#ffd36e" stop-opacity=".5"/><stop offset="1" stop-color="#ffd36e" stop-opacity="0"/></radialGradient></defs>' + s.replace(/url\(#glow\)/g, 'url(#glow2)');
+  }
+
+  // ======================================================================================
+  // CLUSTERS
+  // ======================================================================================
+  const inCluster = k => DATA.careers.filter(c => c.cluster === k);
+  function drawBoard() {
+    const b = $('board');
+    if (state.cluster === null) {
+      b.innerHTML = `<div class="grid">${KEYS.map(k => `<button type="button" class="cl" data-k="${k}" style="--cc:${col(k)}" aria-label="${esc(CL[k])}, ${inCluster(k).length} careers${state.lit.has(k) ? ', lantern lit' : ''}"><b class="full">${esc(CL[k])}</b><b class="sh">${SOFT[k] || SHORT[k]}</b><small>${inCluster(k).length} careers<span class="full"> in this tool</span></small>${state.lit.has(k) ? '<span class="lt">✓ Lantern lit</span>' : ''}</button>`).join('')}
+        <div class="keycell"><b>Ways in.</b> Tap a cluster to see its careers by the training most people start with, from no degree to grad school.</div></div>`;
+      b.querySelectorAll('.cl').forEach(x => x.onclick = () => openCluster(x.dataset.k));
+      return;
+    }
+    const k = state.cluster, list = inCluster(k), rows = document.body.classList.contains('narrow') || b.getBoundingClientRect().width < 900;
+    const levels = Careers.LEVELS.map((lv, i) => list.filter(c => Careers.level(c) === i));
+    b.innerHTML = `<div class="ladhead"><span class="sw" style="background:${col(k)}"></span><div><h2>${esc(CL[k])}: ways in</h2><p class="def">${esc(DEF[k])}</p></div></div>
+      <p class="scale">Bars show median yearly pay (BLS, May ${DATA.year}) on one scale for every cluster: $0 to $250,000. Arrows show the Handbook's job outlook, 2025-35.</p>
+      <div class="ladder${rows ? ' rows' : ''}">${Careers.LEVELS.map((lv, i) => `<div class="col"><h3>${esc(lv.name)}<small>${esc(lv.means)}</small></h3><div class="ljs">${levels[i].length ? levels[i].map(c => ljHTML(c, rows)).join('') : '<p class="none">None in this tool (the real cluster may have some)</p>'}</div></div>`).join('')}</div>
+      <p class="waysin">${waysText(k)}</p>`;
+    b.querySelectorAll('.ttl').forEach(x => x.onclick = () => openCareer(x.dataset.id, {from: 'ladder'}));
+    b.querySelectorAll('.see').forEach(x => x.onclick = () => seeAtFestival(x.dataset.id));
+  }
+  // the count covers this tool's careers, never the whole cluster
+  const usedLevels = k => Careers.LEVELS.filter((l, i) => inCluster(k).some(c => Careers.level(c) === i)).length;
+  const waysText = k => usedLevels(k) === 5 ? `Careers in this tool: ways in at all 5 levels.`
+    : `Careers in this tool: ways in at ${usedLevels(k)} of 5 levels. This tool shows ${inCluster(k).length} of this cluster's careers; the real cluster has many more, so an empty column means none here, not none anywhere.`;
+  // rows (narrow boards): See it on the name row, so each chip is two short lines; columns: See it beside the outlook
+  function ljHTML(c, rows) {
+    const o = Careers.outlook(c);
+    const pay = c.pay ? `<span class="bar" aria-hidden="true"><i style="width:${Math.min(100, c.pay / 2500).toFixed(1)}%"></i></span>${Careers.money(c.pay)}`
+      : `$${c.hourly.toFixed(2)} an hour (no yearly median)`;
+    const ttl = `<button type="button" class="ttl" data-id="${c.id}"><span class="em" aria-hidden="true">${c.emoji}</span>${esc(c.name)}</button>`;
+    const see = `<button type="button" class="see" data-id="${c.id}" aria-label="See ${esc(c.name)} at the festival">📍 See it</button>`;
+    const ol = `<span class="ol">${o ? `<span aria-hidden="true">${o.arrow}</span> ${o.pct}% ${esc(o.word)}` : 'Not in the Handbook'}</span>`;
+    return rows ? `<div class="lj"><span class="nrow">${ttl}${see}</span><span class="pay">${pay}</span>${ol}</div>`
+      : `<div class="lj">${ttl}<span class="pay">${pay}</span><span class="olrow">${ol}${see}</span></div>`;
+  }
+  function openCluster(k) {
+    state.cluster = k;
+    drawBoard(); drawPanel(); drawHint();
+    $('board').scrollTop = 0;
+    const f = $('board').querySelector('.ttl'); if (f) f.focus({preventScroll: true});
+  }
+
+  // ======================================================================================
+  // PANEL AND HINT
+  // ======================================================================================
+  function drawPanel() {
+    const m = state.mode, compact = document.body.classList.contains('compact');
+    $('pf').hidden = m !== 'festival'; $('pt').hidden = m !== 'trails'; $('pc').hidden = m !== 'clusters';
+    if (m === 'festival') {
+      $('count').innerHTML = `Lanterns lit: <b>${state.lit.size}</b> of 14`;
+      $('listBtn').setAttribute('aria-pressed', state.list);
+      $('confirm').hidden = !state.confirm;
+      $('startOver').disabled = !state.lit.size && !state.seen.size;
+      // compact: one cycling Where? button, unless the panel is tall enough for the Still dark list
+      const tall = compact && innerHeight >= 600;
+      $('whereNext').hidden = !compact || tall || state.lit.size === 14;
+      $('whereBox').hidden = state.list || (compact && !tall);
+      $('listBox').hidden = !state.list;
+      // Where? buttons (rebuilt only when the dark set changes, so focus and the pointer stay put)
+      const dark = KEYS.filter(k => !state.lit.has(k)), sig = dark.join();
+      if ($('where').dataset.sig !== sig) {
+        const had = document.activeElement && document.activeElement.closest('#where') ? document.activeElement.dataset.k : null;
+        $('where').dataset.sig = sig;
+        $('where').innerHTML = dark.map(k => `<button type="button" data-k="${k}" aria-label="Where? ${esc(CL[k])}"><i style="background:${col(k)}"></i>${SHORT[k]}</button>`).join('');
+        $('where').querySelectorAll('button').forEach(b => b.onclick = e => where(b.dataset.k, e.detail === 0));
+        if (had) { const nb = $('where').querySelector(`[data-k="${had}"]`) || $('where').querySelector('button'); if (nb) nb.focus({preventScroll: true}); else $('listBtn').focus({preventScroll: true}); }
+      }
+      $('darkHead').textContent = dark.length ? `Still dark: ${dark.length}. Where? Tap one.` : 'Every lantern is lit';
+      if (state.list) {
+        $('fAll').setAttribute('aria-pressed', state.filter === 'all'); $('fNew').setAttribute('aria-pressed', state.filter === 'new');
+        const show = HOT.filter(h => state.filter === 'all' || !state.seen.has(h.id)), sig2 = state.filter + show.map(h => h.id + state.seen.has(h.id)).join();
+        if ($('list').dataset.sig !== sig2) {
+          const had = document.activeElement && document.activeElement.closest('#list') ? document.activeElement.dataset.id : null;
+          $('list').dataset.sig = sig2;
+          $('list').innerHTML = show.length ? show.map(h => `<li><button type="button" class="${state.seen.has(h.id) ? 'seen' : ''}" data-id="${h.id}">${esc(h.name)}<span class="st">${state.seen.has(h.id) ? '✓ opened' : 'not yet'}</span></button></li>`).join('')
+            : '<li class="privacy">Every place is opened. Tap All to see them again.</li>';
+          $('list').querySelectorAll('button').forEach(b => b.onclick = () => { const h = H[b.dataset.id]; centerOn(h, false); openHot(h.id, true, 'list'); });
+          if (had) { const nb = $('list').querySelector(`[data-id="${had}"]`); if (nb) nb.focus({preventScroll: true}); }
+        }
+      }
+    }
+    if (m === 'trails') {
+      TRAILS.forEach((t, i) => $('tr-' + t.id).setAttribute('aria-pressed', state.trail === i));
+      $('trSel').value = state.trail === null ? '' : String(state.trail);
+      const t = TRAILS[state.trail];
+      if (!t) {
+        $('stopbox').innerHTML = '<span class="sn">No trail yet</span><p>Each trail follows one thing at the fair back through the people who made it.</p>';
+        $('endrow').hidden = true;
+      } else {
+        const [id, line] = t.stops[state.stop], c = C[id];
+        $('stopbox').innerHTML = `<span class="sn"><span class="tn">${esc(t.name)}: s</span><span class="ts">S</span>top\u00a0${state.stop + 1}\u00a0of\u00a0${t.stops.length}</span>
+          <div class="who"><span class="em" aria-hidden="true">${c.emoji}</span><div>${esc(c.name)}<small><i class="dot" style="background:${col(c.cluster)}"></i>${esc(CL[c.cluster])}</small></div></div><p>${esc(line)}</p>`;
+        const last = state.stop === t.stops.length - 1, cls = trailClusters(t);
+        $('endrow').hidden = !last;
+        if (last) $('endrow').innerHTML = `<p>${esc(t.end)} ${cls.length} clusters</p><div class="chips">${cls.map(k => `<span class="chip" title="${esc(CL[k])}"><i class="dot" style="background:${col(k)}"></i>${SHORT[k]}</span>`).join('')}</div>`;
+      }
+      $('back').disabled = !t || state.stop === 0;
+      $('next').disabled = !!t && state.stop === t.stops.length - 1;
+      $('openCareer').disabled = !t;
+    }
+    if (m === 'clusters') {
+      $('allClusters').hidden = state.cluster === null;
+      $('waysCount').hidden = state.cluster === null;
+      if (state.cluster !== null) { const k = state.cluster; $('waysCount').innerHTML = `${esc(SHORT[k])}, careers in this tool: ways in at <b>${usedLevels(k)}</b> of 5 levels`; }
+      $('keybox').innerHTML = `<p><b>The five ways in</b> (the Handbook's typical entry-level education, merged):</p><ol>${Careers.LEVELS.map(l => `<li><b>${esc(l.name)}</b>: ${esc(l.means.charAt(0).toLowerCase() + l.means.slice(1))}</li>`).join('')}</ol>
+        <p style="margin-top:6px">Clusters: Advance CTE, 2024. Each career sits in the column for the education most people start with; many also have other ways in.</p>`;
+    }
+  }
+  function hintText() {
+    const m = state.mode;
+    if (m === 'festival') {
+      if (sheet.isOpen()) return `You're meeting the ${sheet.current.name}. Press Close, or Esc, to go back to the fair.`;
+      if (state.confirm) return 'Tap Yes, start over to clear your lanterns, or No to keep them.';
+      if (state.card) return 'Tap a job on the card to meet the person who does it. Tap Close, or press Esc, to close the card.';
+      if (state.target && state.whereNote) {
+        const n = state.whereNote, h = H[n.h];
+        return n.again ? `Still ${h.short}: it's the only place at this fair with ${SHORT[n.k]} jobs. Tap its circled marker.`
+          : `${SHORT[n.k]} jobs are at ${h.short}. Tap its circled marker.`;
+      }
+      if (state.list) return 'Tap a place in the list to go there and open it.';
+      if (state.lit.size === 14) return 'All fourteen lanterns are lit. Keep exploring, or tap Start over.';
+      if (!state.lit.size && !state.seen.size) return L.welcomeFestival;
+      const stuck = $('whereBox').hidden ? 'Tap Where?' : 'Tap a dark cluster under Still dark.';
+      return `Tap anything glowing, then tap a job to light its lantern. Stuck? ${stuck}`;
+    }
+    if (m === 'trails') {
+      const t = TRAILS[state.trail];
+      if (sheet.isOpen()) return `You're meeting the ${sheet.current.name}. Press Close, or Esc, to go back to the trail.`;
+      if (!t) return L.welcomeTrails;
+      if (state.stop === t.stops.length - 1) return "That's the end of the trail. Pick another trail, or tap Open career to meet this person.";
+      return `Tap Next for stop ${state.stop + 2}, or tap Open career to meet the ${C[t.stops[state.stop][0]].name}.`;
+    }
+    if (sheet.isOpen()) return `You're meeting the ${sheet.current.name}. Press Close, or Esc, to go back to the ladder.`;
+    if (state.cluster === null) return L.welcomeClusters;
+    return 'Tap a job to read about it, or tap See it to find it at the festival. Tap All clusters to go back.';
+  }
+  const drawHint = () => { const t = hintText(); if ($('hint').textContent !== t) $('hint').textContent = t; };
+
+  // ======================================================================================
+  // MODES AND CONTROLS
+  // ======================================================================================
+  function setMode(m, quiet) {
+    V.hush();
+    if (state.card) closeCard(false);
+    if (sheet.isOpen()) sheet.close();
+    state.mode = m; state.target = null; state.confirm = false; document.body.dataset.mode = m;
+    for (const k of ['festival', 'trails', 'clusters']) $('m-' + k).setAttribute('aria-pressed', k === m);
+    const town = m !== 'clusters';
+    $('town').hidden = !town; $('mini').hidden = !town; $('board').hidden = town;
+    if (m === 'clusters') drawBoard();
+    relayout();
+    drawTrail(); drawLanterns(); drawMarkers(); drawPanel(); drawHint();
+    if (m === 'trails' && state.trail !== null) centerOn(H[HOME[TRAILS[state.trail].stops[state.stop][0]]], false);
+    if (!quiet) V.welcome();
+  }
+  for (const k of ['festival', 'trails', 'clusters']) $('m-' + k).onclick = () => { if (state.mode !== k) setMode(k); };
+  $('listBtn').onclick = () => { state.list = !state.list; state.target = null; drawPanel(); drawMarkers(); drawHint(); };
+  $('fAll').onclick = () => { state.filter = 'all'; drawPanel(); };
+  $('fNew').onclick = () => { state.filter = 'new'; drawPanel(); };
+  $('whereNext').onclick = e => whereNext(e);
+  $('startOver').onclick = () => { state.confirm = true; drawPanel(); drawHint(); $('noClear').focus({preventScroll: true}); };
+  $('noClear').onclick = () => { state.confirm = false; drawPanel(); drawHint(); $('startOver').focus({preventScroll: true}); };
+  function reset() {
+    state.lit.clear(); state.opened.clear(); state.seen.clear(); state.pops.clear(); state.shimmer = false; state.allDone = false; state.confirm = false; state.target = null; state.lastWhere = null; state.whereIdx = {};
+    save(); if (state.card) closeCard(false);
+    drawLanterns(); drawMarkers(); drawPanel(); drawHint();
+  }
+  $('yesClear').onclick = () => { reset(); $('listBtn').focus({preventScroll: true}); };
+  $('back').onclick = () => goStop(state.stop - 1);
+  $('next').onclick = () => { if (state.trail === null) pickTrail(0); else goStop(state.stop + 1); };
+  $('openCareer').onclick = () => { const t = TRAILS[state.trail]; if (t) openCareer(t.stops[state.stop][0], {from: 'trail'}); };
+  $('allClusters').onclick = () => { const k = state.cluster; state.cluster = null; drawBoard(); drawPanel(); drawHint(); const b = $('board').querySelector(`[data-k="${k}"]`); if (b) b.focus({preventScroll: true}); };
+
+  // ======================================================================================
+  // LAYOUT
+  // ======================================================================================
+  function pageLayout() { const w = innerWidth, hh = innerHeight; return w >= 1000 && hh >= 650 ? 'wide' : w >= 640 && w / hh >= 1.25 ? 'compact' : 'stack'; }
+  function relayout() {
+    const p = pageLayout(), body = document.body;
+    if (p !== state.layout) { state.layout = p; for (const c of ['wide', 'compact', 'stack']) body.classList.toggle(c, c === p); }
+    body.classList.toggle('narrow', innerWidth < 560);
+    if (p === 'stack' && state.mode === 'clusters') $('stage').style.height = '';   // the page scrolls, not a small box
+    else if (p === 'stack') {
+      const head = document.querySelector('header').getBoundingClientRect().height;
+      $('stage').style.height = Math.max(300, Math.min(innerHeight - head - 330, Math.round(innerWidth * 1.15))) + 'px';
+    } else $('stage').style.height = '';
+    // lanterns: one row with names when each gets 64 px, two rows of seven in a narrow tall stage, else dots and a count
+    const sw = $('stage').getBoundingClientRect().width, ln = $('lanterns');
+    const mode = p === 'compact' ? 'dots' : sw / 14 >= 64 ? 'one' : sw / 7 >= 64 && p === 'stack' && sw >= 440 ? 'two' : 'dots';
+    ln.classList.toggle('two', mode === 'two'); ln.classList.toggle('dots', mode === 'dots');
+    ln.classList.toggle('big', mode === 'one' && sw / 14 >= 100 && innerHeight >= 900);   // a projector: bigger lanterns
+    const tr = $('town').getBoundingClientRect();
+    state.W = tr.width; state.Hh = tr.height;
+    if (tr.height > 0) {
+      const ratio = state.s ? (state.pan + state.W / 2) / (2400 * state.s) : 0;
+      state.s = tr.height / 900;
+      $('pan').style.width = (2400 * state.s) + 'px'; $('pan').style.height = tr.height + 'px';
+      drawMarkers(); setPan(ratio * 2400 * state.s - state.W / 2);
+    }
+    if (state.mode === 'clusters' && state.cluster !== null) {
+      const want = body.classList.contains('narrow') || $('board').getBoundingClientRect().width < 900;
+      if (want !== $('board').querySelector('.ladder')?.classList.contains('rows')) drawBoard();
+    }
+    placeCard(); drawPanel(); drawHint();
+  }
+  new ResizeObserver(() => relayout()).observe(document.body);
+  addEventListener('resize', () => relayout());
+
+  // ======================================================================================
+  // START
+  // ======================================================================================
+  drawScene();
+  Curio.init({clips: "voice:*", rate: .92});
+  setMode('festival', true);
+  setPan(minPan());
+
+  // checks for frames and tests
+  const check = () => {
+    const ids = HOT.flatMap(h => h.careers), dup = ids.filter((x, i) => ids.indexOf(x) !== i), miss = DATA.careers.filter(c => !ids.includes(c.id)).map(c => c.id);
+    let md = 1e9; for (let i = 0; i < HOT.length; i++) for (let j = i + 1; j < HOT.length; j++) md = Math.min(md, Math.hypot(HOT[i].x - HOT[j].x, HOT[i].y - HOT[j].y));
+    return {hotspots: HOT.length, careers: ids.length, dup, miss, unknown: ids.filter(x => !C[x]), minGapPx: +(md * state.s).toFixed(1), trailCounts: TRAILS.map(t => trailClusters(t).length)};
+  };
+  window.__tool = {state, setMode, reset, openHot, closeCard, openCareer, where, whereNext, pickTrail, goStop, openCluster, sheet, setPan, panTo, relayout,
+    HOT, TRAILS, DATA, L, EVENTS, check, hintText, allLines: V.allLines, vlog: V.log, get vq() { return V.queue; }, V};
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+{
+  "id": "career-cluster-explorer",
+  "status": "beta",
+  "stage": "built",
+  "hook": "Tap anything at a small town's harvest festival night, from the Ferris wheel to the plane overhead, to meet the 93 people whose work made it happen, and light a lantern for each of the 14 career clusters.",
+  "outcome": "Name the 14 career clusters and give examples of occupations in each, see how several clusters work together behind one everyday thing, and compare each cluster's ways in by entry-level education, pay and job outlook",
+  "driver": "students or teacher",
+  "minutes": "15-30",
+  "modes": [
+    "Festival",
+    "Trails",
+    "Clusters"
+  ],
+  "grades_label": "Grades 6-8",
+  "sources": [
+    "Career clusters and their one-line definitions: Advance CTE, Career Clusters Framework (2024), The Cluster Defined: https://careertech.org/career-clusters/",
+    "Typical entry-level education, job outlook 2025-35 and number of jobs 2025: U.S. Bureau of Labor Statistics, Occupational Outlook Handbook, 2025-35 edition, one profile per career (listed in sources.md): https://www.bls.gov/ooh/",
+    "Median pay for each job: U.S. Bureau of Labor Statistics, Occupational Employment and Wage Statistics, May 2025 (national)",
+    "Interest profiles (for Similar careers): O*NET 30.2 Database and O*NET OnLine, U.S. Department of Labor, Employment and Training Administration (USDOL/ETA), CC BY 4.0. Modified by Curio Class; USDOL/ETA has not approved, endorsed or tested these modifications. O*NET is a trademark of USDOL/ETA.",
+    "Career descriptions, paths and Try it now: written for Curio Class",
+    "Maple Bend, its festival, hotspots and trails are made up for Curio Class; everything is drawn in code"
+  ],
+  "third_party": [],
+  "updated": "2026-10-28"
+}
