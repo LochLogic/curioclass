@@ -177,6 +177,6 @@ and the stage family's "Lit for the eye" rule. Every plan passes check_plans; th
 sub would and checked its paths, numbers and button names against the tool. Every Sub Day packet builds, with the
 module's six Word Wall words on the backup sheet.
 
-Deploy: built and checked (5261 pages, 81 built tools, 0 broken links), but `npx wrangler deploy` was blocked by the
-session's permission check, so the five are pushed and not yet live. After the deploy: Review Desk items set to ready
-and the stats refreshed.
+Deploy: built and checked (5261 pages, 81 built tools, 0 broken links). The first `npx wrangler deploy` was blocked by
+the session's permission check; Cory said go and it deployed (version 6f87e8bf). Review Desk items 55 to 59 set to
+ready, stats board refreshed (live 81, voice 11 drafts left).
