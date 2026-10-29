@@ -54,13 +54,49 @@ check (none did in BR1); four needed a narrow integrator fix after their last ex
 Codex builder pilot (biased-bot): built and polished by Codex in S:/CurioClass-codex, branch codex/biased-bot,
 reviewed blind by the usual lenses. Round 1 was the best of the wave (0 blockers, 9 should fix), but exit round 2
 failed and one of its round 2 fixes caused a regression (story welcome cut by cutHow), closed by an integrator fix.
-Codex tokens: 62.3M in (60.9M cached), 0.30M out over two rounds. It also changed kit/ml-lab.js (zero-size host skip,
+Codex tokens: build 14.0M in (13.8M cached), 73k out, 37 minutes; polish 62.3M in (60.9M cached), 0.30M out over
+two rounds (a Claude build is 125k to 235k tokens, mostly uncached). The pilot flow (Codex builds, the audit, then the
+usual blind lenses, exit checks and integrator) worked, but Codex's polish needed the same integrator close as ours:
+it is a builder option, not a replacement for any later step. Not adopted as the default; Cory decides. It also changed kit/ml-lab.js (zero-size host skip,
 groupBars empty and size options) and left scratch files in the tool folder that its sandbox could not delete.
 
-Audit pilot (scripts/audit_tool.py) on BR2: its clean rows hold, but its overlap and focus-lost leads are false where
-markers are clipped by a stage or scroll panel, it misses anything past one click, and its 44 px target rule conflicts
-with K-2's 60 px. Tuning owed before it gates anything.
+Audit pilot (scripts/audit_tool.py) on BR2: its clean rows held, but its overlap and focus-lost leads were false where
+markers are clipped by a stage or scroll panel, it missed anything past one click, and its 44 px target rule conflicted
+with K-2's 60 px.
+
+### Audit tuned after BR2 (2026-10-28)
+
+Two passes, merged together:
+- **States** (codex-pilot session): every header mode at every size, builder-written `audit-states.json` (real clicks,
+  keys, drags; keep regions), voice-cut checks from a log-only `cut` field in kit/curio.js (`V.log`; test_voice 42/42),
+  the hint or last line naming a disabled control. On Codex's first biased-bot build (72734765) it catches 5 of the 8
+  mechanical findings (old audit: 0 of 11). Best case: that states file was written by someone who knew the findings.
+- **BR2 lens notes** (this session), each a class of wrong lead seen in two or more tools, nothing tool-specific: every
+  box clipped by its overflow ancestors first (no overlap or fold lead for what a stage or scroll panel hides); controls
+  inside a scroll panel not "below the fold"; designed ellipses with a title or aria-label and screen-reader-only text
+  not "clipped"; the walk skips a control when something else is drawn at its centre, flags a click that changes
+  nothing, checks focus once the narration settles and after Enter twice, and walks every mode, not just the first;
+  SVG shapes with a pointer cursor count as targets; K-2 targets 60 px at every size (BUILD.md), with an optional
+  `target` in audit-states.json for a spec that allows less.
+
+Re-run on three BR2 tools: career-cluster-explorer 93 leads to 24 (the ~60 clipped-marker overlaps and 4 false focus
+losses gone; left: the marker under Pan right, Where? and Trails below the fold at 760 and 375, the Clusters hint out of
+view at 375, all real); biased-bot 11 false 375 overlaps to 0, plus a real one no lens caught (the card stack over the
+menu's first line at 760x900) and the Fewer/More double-tap cutting "Pick the cards, then press Train Bitsy";
+target-toss clean at 60 px, and its per-mode walk (Test it, Free throw) adds no false leads once a re-tap on the option already chosen is not called a dead click. A run is about 15 minutes. Still blind to: whether a hint or line is the right one,
+timing (a line waiting behind another), teaching, feel, and any state no one listed. BR3 lenses keep the
+`## Audit pilot` notes so its cold catch rate can be measured before it gates anything.
+
+Open for Cory: the audit flags "welcome not heard whole after a first tap" (biased-bot 7 controls, target-toss 10,
+teach-the-robot 4). The kit allows it unless a tool sets `welcomeAfter`; biased-bot's lenses called it a should fix.
+Make it a rule (every tool sets `welcomeAfter` or equivalent), or tell the audit to stop flagging it?
+
+Left behind: `S:\CurioClass-audit` (no longer a worktree; delete by hand), `S:\CurioClass-codex-scratch` (Codex's
+evidence), worktree `S:\CurioClass-codex` (merged, can be removed).
 
 Left open (in each refine.md): target-toss P5 to P7 and N4; career-cluster-explorer Hospitality, Management and
 Marketing at 2 of 5 levels, trail header wrap at 1366; biased-bot Run then Skip within 4 s, headless speech stall.
+Found by the tuned audit after close (not fixed): biased-bot card stack over the menu at 760x900, Fewer/More double tap
+cuts the how line, `#viewer-cards` focusable at 32 px; career-cluster-explorer Trails buttons below the fold at 760x900
+and the Clusters hint out of view at 375.
 Board items: career-match-quiz onto kit/careers.js; scripts/careers_data.py default --out.

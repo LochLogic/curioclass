@@ -47,7 +47,26 @@ BR2 to BR4 are picked after each wave closes, so a family's second tool can test
 
 BR1 is closed: all 7 tools PASS and are committed (teach-the-robot round 2, internet-journey 2, data-defenders 2, city-skyline-studio 2, snowy-mail-route 2, simulation-studio 2, levels-and-pathways 3). Counts are on line 2 of each refine.md.
 
-BR2 closed 2026-10-28: all 7 PASS, committed and deployed (counts in BATCH-BR-LOG.md). BR3 is next, picked
-from the BR2 lessons.
+BR2 closed 2026-10-28: all 7 PASS, committed and deployed (counts in BATCH-BR-LOG.md). The BR1 wave-close work is
+done (counts table, lessons in BUILD.md, KIT.md engine lines, the integrator spec moves).
 
-Wave-close work still owed from BR1: the counts table in BATCH-BR-LOG.md, the BR1 lessons into BUILD.md, STANDARDS.md and REFINE.md (Cory was asked whether to do this before more BR2 builds), KIT.md engine lines, and the integrator moves (Re7 codes to dance-pattern-puzzle and dance-styles-explorer, Cr3.1.1b off levels-and-pathways, fitness-circuit spec note, non-Old Faithful data notes for data-desk-distributions and data-detective).
+## Resume here (new thread, after 2026-10-28)
+
+1. Read BATCH-BR-LOG.md, BR2 and "Audit tuned after BR2": the counts, the Codex pilot verdict, the audit's state.
+2. Cory's open question there: "welcome not heard after a first tap", a rule or not.
+3. BR3 starts with ONE tool as a whole-process test (Cory, 2026-10-28), then the rest of the wave. Pick one with two
+   or three modes and a state past the first click (so the per-mode walk and audit-states.json are exercised), ideally
+   a family's second tool. Build under BUILD.md and REFINE.md: the builder writes `audit-states.json`; lenses run the
+   tuned audit first and keep `## Audit pilot` notes (its first cold catch rate).
+   **Next in line: network-help-desk** (grade 4 CS, spec ready, not built). Second tool of the network family (engine
+   kit/network.js from BR1's internet-journey, never reused yet, so it tests the "engine matches the full family
+   description" lesson); two modes (Calls, House); its key states sit past the first click (questions reveal parts of
+   the house network, then a cause card); not K-2, no Rule 5 content.
+   **Builder: Codex** (Cory, 2026-10-28), steps 1 and 5 only: follow `docs/agents/CODEX.md` (worktree, brief modeled
+   on tools/biased-bot/CODEX-BRIEF.md, run and resume commands, polish prompt, what to record). Everything else as REFINE.md: three blind Claude lenses running the tuned audit first,
+   the integrator merge, cold exit checks, integrator close, then commit, push and a clean-worktree deploy.
+   **Stop after step 7 (deploy) and review with Cory how it went**: counts against BR1 and BR2, exit rounds, the
+   audit's cold catch rate from the lenses' `## Audit pilot` notes, Codex tokens and time. Art and voice wait for
+   that review. Start from a new chat.
+4. Small fixes found after close, not yet done: see BR2 "Found by the tuned audit after close" in the log.
+5. Board items: career-match-quiz onto kit/careers.js; scripts/careers_data.py writes the quiz path without --out.

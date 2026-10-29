@@ -6,7 +6,9 @@ batch (2026-10-25, 10 tools; log in `docs/agents/BATCH-G11-LOG.md`). Read `docs/
 
 ## Start of session
 
-1. `git pull`; `python scripts/board.py` for where every tool stands.
+1. `git pull`; `python scripts/board.py` for where every tool stands. **Current work (2026-10-28): the build and refine
+   waves. Start at `docs/agents/BATCH-BR.md`, "Resume here"** (next: a single-tool test, network-help-desk with Codex
+   as builder per `docs/agents/CODEX.md`).
 2. Read the open items at the bottom of this file and the newest batch log.
 3. Ask Cory which tools (or pick from `data/waves.csv`). Write a short batch note, `docs/agents/BATCH-<name>.md`: the
    tools in build order, the band, anything batch-specific. Keep the standing rules in STANDARDS.md, not here.

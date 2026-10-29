@@ -5,20 +5,24 @@ r"""Mechanical audit of a bundled tool: the checks every Refine lens used to rep
 
 Bundle first (CURIO_DRAFT=1 python scripts/bundle_tool.py <id>). Writes <outdir>/audit.md and frames. Checks:
   sizes   every STANDARDS size, 375 through an iframe host served from <outdir> (the tool folder is not touched):
-          sideways scroll, targets under 44 px (60 px for K-2), controls below the fold, controls with no name,
-          overlapping controls and labels (text hidden under another box or a scroll edge is listed apart), clipped
-          text, the hint in view and not clipped, the hint naming a disabled control, keep regions out of view,
-          text under 10 px, focus taken on load, console errors
+          sideways scroll, targets under 44 px (60 px for K-2 at every size; SVG shapes with a pointer cursor count),
+          controls below the fold (not those inside a scroll panel), controls with no name, overlapping controls and
+          labels (text hidden under another box is listed apart), clipped text (not a designed ellipsis with a title
+          or aria-label, not screen-reader-only text), the hint in view and not clipped, the hint naming a disabled
+          control, keep regions out of view, text under 10 px, focus taken on load, console errors. Every box is
+          first clipped by its overflow ancestors: what a stage or scroll panel hides is not drawn, so it is not a lead
   states  the same checks at every size after each mode button (automatic) and after each state the builder lists
           in tools/<id>/audit-states.json, plus focus lost after any step's click (a control disabled under focus)
   calm    Motion off: animations still running forever
-  walk    at 1366x768, a fresh page per control, one held click each: errors, focus lost or the control rebuilt
-          under the pointer, other controls jumping, what was spoken, and whether the mode's welcome was heard
-          after that first tap; then the controls that spoke get five held clicks 2 s apart (a how-to line spoken
+  walk    at 1366x768, in the first mode and then in each other mode, a fresh page per control (skipped when something else is drawn at its centre), one held
+          click each: errors, focus lost or the control rebuilt under the pointer, a click that changed nothing,
+          other controls jumping, what was spoken, whether the mode's welcome was heard after that first tap, focus
+          once the narration settles, and Enter twice on what holds focus (the keyboard path); then the controls that spoke get five held clicks 2 s apart (a how-to line spoken
           twice, an event line lost) and two quick taps 0.7 s apart (a line cut mid-speech that never came back)
 
 audit-states.json (written by the builder; every step is real input, so states cost what a student would do):
-  {"keep": ["#results"],                       regions that must be in view and uncovered in every state
+  {"target": 48,                               optional: a smaller target size the spec allows, with its reason
+   "keep": ["#results"],                       regions that must be in view and uncovered in every state
    "states": [{"name": "after-run",            frames are state-<name>-<size>.png
                "steps": [{"click": "#run"}, {"click": "#skip"}, {"until": "__tool.state.done", "max": 30000}],
                "keep": ["#bars"], "sizes": ["680x425", "1366x768"]}]}      sizes: default every size and 375
@@ -42,32 +46,42 @@ SIZES = [(680, 425), (800, 500), (1000, 625), (1280, 720), (1366, 768), (1920, 1
 
 PAGE_JS = r"""
 (() => {
-const W = innerWidth, H = innerHeight, K2 = %K2%, T = K2 && W >= 1100 ? 60 : 44, KIT = new Set(['motion', 'sound', 'read']);
+const W = innerWidth, H = innerHeight, T = %T%, KIT = new Set(['motion', 'sound', 'read']);
 const vis = el => { const r = el.getBoundingClientRect(), s = getComputedStyle(el);
   return r.width > 0 && r.height > 0 && s.visibility !== 'hidden' && s.display !== 'none' && +s.opacity > 0.05 && !el.closest('[hidden],[aria-hidden="true"],[inert]'); };
 const name = el => (el.getAttribute('aria-label') || el.textContent || el.title || el.value || el.getAttribute('alt') || '').replace(/\s+/g, ' ').trim().slice(0, 40);
 const tag = el => { const n = name(el); return (el.id ? '#' + el.id : el.tagName.toLowerCase() + (el.className && typeof el.className === 'string' ? '.' + el.className.trim().split(/\s+/)[0] : '')) + (n ? ' "' + n + '"' : ''); };
+// the part of a box its overflow ancestors leave drawn, and whether one of them scrolls (a scroll panel: being past
+// its edge is not "below the fold", the student scrolls the panel)
+const clipOf = el => { const r = el.getBoundingClientRect(); let L = r.left, T = r.top, R = r.right, B = r.bottom, scroller = false;
+  for (let p = el.parentElement; p && p !== document.body && p !== document.documentElement; p = p.parentElement) {
+    const s = getComputedStyle(p); if (!/hidden|auto|scroll|clip/.test(s.overflowX + s.overflowY)) continue;
+    if (/auto|scroll/.test(s.overflowX + s.overflowY) && (p.scrollHeight > p.clientHeight + 1 || p.scrollWidth > p.clientWidth + 1)) scroller = true;
+    const q = p.getBoundingClientRect(); L = Math.max(L, q.left); T = Math.max(T, q.top); R = Math.min(R, q.right); B = Math.min(B, q.bottom); }
+  const w = Math.max(0, R - L), h = Math.max(0, B - T);
+  return {r: {left: L, top: T, right: L + w, bottom: T + h, width: w, height: h}, share: w * h / Math.max(1, r.width * r.height), scroller}; };
+// screen-reader-only text (the visually-hidden pattern) is meant to be invisible
+const srOnly = el => { const r = el.getBoundingClientRect(), s = getComputedStyle(el); return r.width <= 2 || r.height <= 2 || /rect\(0/.test(s.clip) || /inset\(50%/.test(s.clipPath); };
 const ctl = [...document.querySelectorAll('button, [role=button], a[href], input:not([type=hidden]), select, textarea, summary, [tabindex]:not([tabindex="-1"])')].filter(vis);
-const out = {hscroll: Math.max(0, document.documentElement.scrollWidth - W), small: [], below: [], noname: [], overlap: [], hidden: [], clipped: [], tiny: [], focus: null, hint: null, keep: [], disabledNamed: [], count: ctl.length};
+// SVG shapes a student taps (pointer cursor, not inside a control already counted) are targets too
+const svgT = [...document.querySelectorAll('svg *')].filter(el => vis(el) && getComputedStyle(el).cursor === 'pointer' && !(el.parentElement && getComputedStyle(el.parentElement).cursor === 'pointer') && !el.closest('button, [role=button], a[href]'));
+const out = {hscroll: Math.max(0, document.documentElement.scrollWidth - W), small: [], below: [], noname: [], overlap: [], hidden: [], clipped: [], tiny: [], focus: null, hint: null, keep: [], disabledNamed: [], count: ctl.length, svg: svgT.length};
 const inWin = (x, y) => x >= 0 && y >= 0 && x < W && y < H;
 for (const el of ctl) {
-  const r = el.getBoundingClientRect();
+  const r = el.getBoundingClientRect(), c = clipOf(el);
+  if (!name(el) && !el.getAttribute('aria-labelledby')) out.noname.push(tag(el));
+  if (c.share < .05 && !c.scroller) continue;  // clipped out of its stage: not drawn, not tappable
   if (el.type === 'range') { if (r.height < T * 0.5 && r.width < T) out.small.push(tag(el) + ` ${Math.round(r.width)}x${Math.round(r.height)} (slider)`); }
   else if (Math.min(r.width, r.height) < (KIT.has(el.id) ? 44 : T) - 0.5) out.small.push(tag(el) + ` ${Math.round(r.width)}x${Math.round(r.height)}`);
-  if (r.top >= H - 2) out.below.push(tag(el) + ` top ${Math.round(r.top)}`);
-  if (!name(el) && !el.getAttribute('aria-labelledby')) out.noname.push(tag(el));
+  if (r.top >= H - 2 && !c.scroller) out.below.push(tag(el) + ` top ${Math.round(r.top)}`);
 }
+for (const el of svgT) { const r = el.getBoundingClientRect(), c = clipOf(el);
+  if (c.share >= .05 && Math.min(r.width, r.height) < T - 0.5 && out.small.length < 30) out.small.push(tag(el) + ` ${Math.round(r.width)}x${Math.round(r.height)} (svg)`); }
 // labels: elements with their own text, small enough to be a label or badge
 const own = el => [...el.childNodes].some(n => n.nodeType === 3 && n.textContent.trim());
-const texts = [...document.querySelectorAll('body *')].filter(el => own(el) && vis(el)).filter(el => { const r = el.getBoundingClientRect(); return r.width < 500 && r.height < 160; });
-const boxes = [...new Set([...ctl, ...texts])].slice(0, 700).map(el => ({el, r: el.getBoundingClientRect()}));
+const texts = [...document.querySelectorAll('body *')].filter(el => own(el) && vis(el) && !srOnly(el)).filter(el => { const r = el.getBoundingClientRect(); return r.width < 500 && r.height < 160; });
+const boxes = [...new Set([...ctl, ...texts])].slice(0, 700).map(el => { const c = clipOf(el); return {el, r: c.r, cut: c.share < .5}; }).filter(b => !b.cut);
 const hid = new Set();
-// share of an element's box that its scrolling or clipping ancestors leave visible
-const shown = (el, r) => { let L = r.left, T = r.top, R = r.right, B = r.bottom;
-  for (let p = el.parentElement; p && p !== document.body; p = p.parentElement) {
-    const s = getComputedStyle(p); if (!/hidden|auto|scroll|clip/.test(s.overflowX + s.overflowY)) continue;
-    const q = p.getBoundingClientRect(); L = Math.max(L, q.left); T = Math.max(T, q.top); R = Math.min(R, q.right); B = Math.min(B, q.bottom); }
-  return Math.max(0, R - L) * Math.max(0, B - T) / Math.max(1, r.width * r.height); };
 for (let i = 0; i < boxes.length; i++) for (let j = i + 1; j < boxes.length; j++) {
   const a = boxes[i], b = boxes[j];
   if (a.el.contains(b.el) || b.el.contains(a.el)) continue;
@@ -75,11 +89,6 @@ for (let i = 0; i < boxes.length; i++) for (let j = i + 1; j < boxes.length; j++
   if (!(ix > 3 && iy > 3)) continue;
   const dlg = el => el.closest('[role=dialog], [aria-modal=true], dialog[open]');
   if (dlg(a.el) !== dlg(b.el)) continue;  // an open dialog covering the page is meant to
-  for (const x of [a, b]) if (x.cut === undefined) x.cut = shown(x.el, x.r) < .5;
-  if (a.cut || b.cut) {  // one of them is mostly past a scroll box's edge: not drawn there, so not an overlap
-    for (const x of [a, b]) if (x.cut && !hid.has(x.el) && hid.size < 12) { hid.add(x.el); out.hidden.push(tag(x.el) + ' (cut by a scroll box)'); }
-    continue;
-  }
   // what is drawn at the middle of the overlap: one of the two is a real overlap; neither means both are hidden
   // (under another box or past a scroll box's edge), which is a different lead
   const cx = Math.max(a.r.left, b.r.left) + ix / 2, cy = Math.max(a.r.top, b.r.top) + iy / 2, e = inWin(cx, cy) ? document.elementFromPoint(cx, cy) : null;
@@ -90,8 +99,10 @@ for (let i = 0; i < boxes.length; i++) for (let j = i + 1; j < boxes.length; j++
 for (const el of texts) {
   const s = getComputedStyle(el), r = el.getBoundingClientRect();
   const hidesX = /hidden|clip/.test(s.overflowX) || s.textOverflow === 'ellipsis', hidesY = /hidden|clip/.test(s.overflowY);
-  if ((hidesX && el.scrollWidth > el.clientWidth + 1) || (hidesY && el.scrollHeight > el.clientHeight + 1)) out.clipped.push(tag(el) + ' (cut by its box)');
-  else if (r.right > W + 1 || r.left < -1) out.clipped.push(tag(el) + ' (past the window edge)');
+  // a designed ellipsis whose full text is one step away (title or aria-label) is fine
+  const full = s.textOverflow === 'ellipsis' && (el.title || el.closest('[title], [aria-label]'));
+  if ((hidesX && el.scrollWidth > el.clientWidth + 1) || (hidesY && el.scrollHeight > el.clientHeight + 1)) { if (!full) out.clipped.push(tag(el) + ' (cut by its box' + (s.textOverflow === 'ellipsis' ? ', ellipsis with no title or aria-label' : '') + ')'); }
+  else if ((r.right > W + 1 || r.left < -1) && !clipOf(el).scroller) out.clipped.push(tag(el) + ' (past the window edge)');
   const fs = parseFloat(s.fontSize) * (el.closest('svg') ? 1 : 1);
   if (fs < 10 && out.tiny.length < 8) out.tiny.push(tag(el) + ` ${fs.toFixed(1)}px`);
 }
@@ -134,7 +145,10 @@ CALM_JS = r"""(() => (document.getAnimations ? document.getAnimations() : []).fi
 TAG_JS = r"""(() => { const vis = el => { const r = el.getBoundingClientRect(), s = getComputedStyle(el); return r.width > 0 && r.height > 0 && s.visibility !== 'hidden' && s.display !== 'none' && +s.opacity > 0.05 && !el.closest('[hidden],[aria-hidden="true"],[inert]'); };
   const c = [...document.querySelectorAll('button, [role=button], a[href], summary, [tabindex]:not([tabindex="-1"])')].filter(vis).filter(el => !el.disabled && el.getAttribute('aria-disabled') !== 'true');
   return c.map((el, i) => { el.dataset.audit = i; const r = el.getBoundingClientRect();
-    return [i, (el.id ? '#' + el.id + ' ' : '') + (el.getAttribute('aria-label') || el.textContent || el.title || '').replace(/\s+/g, ' ').trim().slice(0, 30), r.x + r.width / 2, r.y + r.height / 2, r.top < innerHeight && r.bottom > 0 && r.left < innerWidth && r.right > 0]; }); })()"""
+    return [i, (el.id ? '#' + el.id + ' ' : '') + (el.getAttribute('aria-label') || el.textContent || el.title || '').replace(/\s+/g, ' ').trim().slice(0, 30), r.x + r.width / 2, r.y + r.height / 2, r.top < innerHeight && r.bottom > 0 && r.left < innerWidth && r.right > 0,
+    (() => { const x = r.x + r.width / 2, y = r.y + r.height / 2; if (x < 0 || y < 0 || x >= innerWidth || y >= innerHeight) return true; const e = document.elementFromPoint(x, y); return !!e && (el.contains(e) || e.contains(el)); })(),
+    ['aria-pressed', 'aria-selected', 'aria-checked', 'aria-current'].some(a => el.getAttribute(a) === 'true')]; }); })()"""
+SIG_JS = r"""(() => { const t = window.__tool, v = t && (t.vlog || (t.V && t.V.log)); let h = 0; const s = document.body.innerHTML; for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) | 0; return h + ':' + (v ? v.length : 0); })()"""
 SNAP_JS = r"""(() => { const m = {}; document.querySelectorAll('[data-audit]').forEach(el => { const r = el.getBoundingClientRect(); if (r.width) m[el.dataset.audit] = [r.x, r.y]; }); return m; })()"""
 VLOG_JS = r"""(() => { const t = window.__tool; const v = t && (t.vlog || (t.V && t.V.log)); return v ? v.map(e => ({kind: e.kind, key: e.key, text: (e.text || '').slice(0, 70), as: e.as, why: e.why, n: e.n || 1, t: e.t, cut: e.cut || null})) : null; })()"""
 # the narration is quiet: nothing queued and the last line has had its longest time (the kit's cap) to finish
@@ -229,7 +243,7 @@ class Audit:
                 r = {'audit_error': 'iframe context not found'}; await self.close(t); return label, r
             ctx = cs[-1]['id']
         lost, missing = await self.steps(t, ctx, steps)
-        r = await self.ev(t, PAGE_JS.replace('%K2%', 'true' if self.k2 else 'false').replace('%KEEP%', json.dumps(list(keep))), ctx)
+        r = await self.ev(t, PAGE_JS.replace('%T%', str(self.target)).replace('%KEEP%', json.dumps(list(keep))), ctx)
         r = r if isinstance(r, dict) else {'audit_error': str(r)}
         r['errors'] = self.errs(t)
         r['focus_lost'], r['missing'] = lost, missing
@@ -251,9 +265,7 @@ class Audit:
                     if await self.ev(t, FOCUS_JS, ctx) == 'body':
                         lost.append(f'{s["click"]} (click {n + 1})')
             elif 'key' in s:
-                kk = s['key']; code, cname, text = drive_keys()[kk]
-                await t.send('Input.dispatchKeyEvent', type='keyDown' if text else 'rawKeyDown', key=kk, code=cname, windowsVirtualKeyCode=code, **({'text': text} if text else {}))
-                await t.send('Input.dispatchKeyEvent', type='keyUp', key=kk, code=cname, windowsVirtualKeyCode=code)
+                await self.key(t, s['key'])
                 await asyncio.sleep(.15)
             elif 'js' in s:
                 await self.ev(t, f'(async () => {{ {s["js"]} }})()', ctx)
@@ -291,24 +303,53 @@ class Audit:
         await self.close(t, 'calm-1366x768')
         return r or []
 
+    async def key(self, t, kk):
+        code, cname, text = drive_keys()[kk]
+        await t.send('Input.dispatchKeyEvent', type='keyDown' if text else 'rawKeyDown', key=kk, code=cname, windowsVirtualKeyCode=code, **({'text': text} if text else {}))
+        await t.send('Input.dispatchKeyEvent', type='keyUp', key=kk, code=cname, windowsVirtualKeyCode=code)
+
     async def press(self, t, x, y):
         await t.send('Input.dispatchMouseEvent', type='mouseMoved', x=x, y=y)
         await t.send('Input.dispatchMouseEvent', type='mousePressed', x=x, y=y, button='left', buttons=1, clickCount=1)
         await asyncio.sleep(.12)
         await t.send('Input.dispatchMouseEvent', type='mouseReleased', x=x, y=y, button='left', clickCount=1)
 
-    async def walk(self):
+    async def opened(self, mode):
+        """A fresh 1366x768 page, switched to `mode` (a mode button id) with a real click and left to go quiet."""
         t = await self.tab(1366, 768)
-        ctls = await self.ev(t, TAG_JS) or []
-        await self.close(t)
+        if mode:
+            p = await self.ev(t, f'({CLICK_JS})({json.dumps("#" + mode)})')
+            if p:
+                await self.press(t, *p)
+                await asyncio.sleep(.6)
+                await self.quiet(t)
+        return t
+
+    async def walk(self):
         rows, speakers = [], []
-        for i, label, x, y, onscreen in ctls[:45]:
+        skip = KIT_IDS | {m[0] for m in self.modes}
+        for mode in [None] + [m[0] for m in self.modes if not m[2]]:
+            t = await self.opened(mode)
+            ctls = await self.ev(t, TAG_JS) or []
+            await self.close(t)
+            ml = next((m[1] for m in self.modes if m[0] == mode), mode)
+            if mode:
+                ctls = [c for c in ctls if not (c[1].startswith('#') and c[1].split(' ')[0][1:] in skip)]
+                rows.append({'mode': ml})
+            await self.walk_mode(mode, ctls, rows, speakers)
+        return await self.repeats(rows, speakers)
+
+    async def walk_mode(self, mode, ctls, rows, speakers):
+        for i, label, x, y, onscreen, hit, on in ctls[:45]:
             if not onscreen:
                 rows.append({'i': i, 'label': label, 'skip': 'off screen at load'}); continue
-            t = await self.tab(1366, 768)
+            if not hit:
+                rows.append({'i': i, 'label': label, 'skip': 'covered or clipped at its centre (a click there reaches something else)'}); continue
+            t = await self.opened(mode)
             await self.ev(t, TAG_JS)
             before = await self.ev(t, SNAP_JS) or {}
             n0 = len(await self.ev(t, VLOG_JS) or [])
+            sig0 = await self.ev(t, SIG_JS)
             await self.press(t, x, y)
             await asyncio.sleep(2.5)
             after = await self.ev(t, f'({AFTER_JS})({i})') or {}
@@ -317,17 +358,34 @@ class Audit:
             jumps = [k for k, p in now.items() if k in before and k != str(i) and max(abs(p[0] - before[k][0]), abs(p[1] - before[k][1])) > 12]
             spoke = [e for e in (vlog or [])[n0:] if e['as'] in ('spoken', 'read')]
             # the welcome after this first tap: wait for the narration to finish, then look for a welcome spoken whole
+            changed = await self.ev(t, SIG_JS) != sig0
             await self.quiet(t)
+            # focus checked again once things settle (a control disabled when a run ends), then the keyboard path:
+            # Enter twice on whatever holds focus, 1.2 s apart (a control that disables itself at a limit)
+            later = await self.ev(t, FOCUS_JS)
+            keys = []
+            if later != 'body' and not after.get('gone'):
+                for n in range(2):
+                    await self.key(t, 'Enter'); await asyncio.sleep(1.2)
+                    if await self.ev(t, FOCUS_JS) == 'body':
+                        keys.append(f'Enter {n + 1}'); break
+                if not keys:
+                    await self.quiet(t)
+                    if await self.ev(t, FOCUS_JS) == 'body':
+                        keys.append('after the Enter presses settled')
             full = await self.ev(t, VLOG_JS) or []
             wl = [e for e in full if e['kind'] == 'welcome' and e['as'] == 'spoken']
-            welcome = 'heard' if any(not e['cut'] for e in wl) else f'cut ({wl[0]["cut"]})' if wl else 'not heard'
+            welcome = 'n/a' if mode else 'heard' if any(not e['cut'] for e in wl) else f'cut ({wl[0]["cut"]})' if wl else 'not heard'
             row = {'i': i, 'label': label, 'errors': self.errs(t), 'gone': after.get('gone'), 'focus': after.get('focus'),
                    'jumped': len(jumps), 'of': len(now), 'spoke': [e['text'] for e in spoke], 'hint': after.get('hint', '')[:100], 'voice': vlog is not None,
-                   'welcome': welcome, 'id': label.split(' ')[0][1:] if label.startswith('#') else ''}
+                   'welcome': welcome, 'id': label.split(' ')[0][1:] if label.startswith('#') else '',
+                   'changed': changed, 'later': later, 'keys': keys, 'on': on}
             rows.append(row)
-            if spoke and not after.get('gone'):
+            if spoke and not after.get('gone') and not mode:
                 speakers.append((i, label, x, y))
             await self.close(t)
+
+    async def repeats(self, rows, speakers):
         reps = []
         for i, label, x, y in speakers[:10]:
             t = await self.tab(1366, 768)
@@ -419,7 +477,7 @@ def size_items(r, onload=True):
 def report(a, sizes, calm, rows, reps, quick, states):
     L = [f'# Audit: {a.tool}', '',
          f'Mechanical checks only (scripts/audit_tool.py). Each row is a lead to confirm on your own frames, not a verdict.',
-         f'It does not judge teaching, giveaways, feel, art or the words of a line. Targets: ' + ('60 px full screen (1100 px wide and up), 44 px in the preview sizes and at 375 (K-2)' if a.k2 else '44 px') + '; the kit header buttons are 44 px everywhere.', '']
+         f'It does not judge teaching, giveaways, feel, art or the words of a line. Targets: ' + (f'{a.target} px at every size (K-2)' if a.k2 else f'{a.target} px') + '; the kit header buttons are 44 px everywhere.', '']
     flags = 0
     L += ['## Sizes', '']
     for label, r in sizes:
@@ -446,21 +504,31 @@ def report(a, sizes, calm, rows, reps, quick, states):
     flags += len(calm)
     if rows is not None:
         L += ['## One held click per control (1366x768, fresh page each)', '',
-              '| # | control | errors | after the click | others moved | spoken | welcome after this first tap |', '|---|---|---|---|---|---|---|']
+              '| # | control | errors | after the click | others moved | spoken | welcome after this first tap | settled, then Enter twice |', '|---|---|---|---|---|---|---|---|']
         # a tool with no welcome at all is not flagged for each control; Read and Sound skip the welcome by design
         has_welcome = any(r.get('welcome', '').startswith(('heard', 'cut')) for r in rows)
         lost_welcome = []
         for r in rows:
+            if r.get('mode'):
+                L.append(f'| | **after a click on {r["mode"]}** (fresh page each, the mode opened first) | | | | | | |'); continue
             if r.get('skip'):
-                L.append(f'| {r["i"]} | {r["label"]} | | {r["skip"]} | | | |'); continue
+                L.append(f'| {r["i"]} | {r["label"]} | | {r["skip"]} | | | | |'); continue
             after = 'rebuilt, focus lost' if r['gone'] and r['focus'] == 'body' else 'rebuilt, focus kept' if r['gone'] else ('focus lost' if r['focus'] == 'body' else 'ok')
             if after.endswith('lost'): flags += 1
+            # re-tapping the option already chosen (aria-pressed and the like) rightly changes nothing
+            if not r['changed'] and not r['spoke'] and not r.get('on') and r['id'] not in ('read', 'sound', 'motion'):
+                after = '**nothing changed**'; flags += 1
+            later = '**focus lost once settled**' if r['focus'] != 'body' and r['later'] == 'body' else '**focus lost: ' + r['keys'][0] + '**' if r['keys'] else 'ok'
+            if later != 'ok': flags += 1
             if r['errors']: flags += 1
             w = r.get('welcome', '')
-            if has_welcome and w != 'heard' and r['id'] not in ('read', 'sound'):
+            if has_welcome and w not in ('heard', 'n/a') and r['id'] not in ('read', 'sound'):
                 flags += 1; lost_welcome.append(r['label']); w = '**' + w + '**'
-            L.append(f'| {r["i"]} | {r["label"]} | {"; ".join(r["errors"])[:120]} | {after} | {r["jumped"]} of {r["of"]} | {" / ".join(r["spoke"])[:140] if r["voice"] else "(no __tool.vlog)"} | {w} |')
-        L += ['', '"others moved" counts controls that shifted more than 12 px: expected on a mode change, a panel jump otherwise.']
+            L.append(f'| {r["i"]} | {r["label"]} | {"; ".join(r["errors"])[:120]} | {after} | {r["jumped"]} of {r["of"]} | {" / ".join(r["spoke"])[:140] if r["voice"] else "(no __tool.vlog)"} | {w} | {later} |')
+        L += ['', '"others moved" counts controls that shifted more than 12 px: expected on a mode change, a panel jump otherwise.',
+              '"nothing changed": the page and the narration log are identical after the click (a dead control, or one whose',
+              'effect is only on a canvas: confirm on the frame). "settled, then Enter twice": focus once the narration is quiet,',
+              'then the keyboard path on whatever holds focus; losing it there is a control disabled or rebuilt under focus.']
         if lost_welcome:
             L += [f'Welcome not heard whole after a first tap on: {", ".join(lost_welcome)}. A student who starts there never hears the',
                   'premise (unless the tool brings it back later): a lead for welcomeAfter or for the welcome waiting on that tap\'s own line.']
@@ -492,6 +560,8 @@ async def run(tool, out, walk, states_file=None, tool_file=None):
     sf = Path(states_file) if states_file else ROOT / 'tools' / tool / 'audit-states.json'
     spec = json.loads(sf.read_text(encoding='utf-8')) if sf.exists() else {}
     keep = spec.get('keep', [])
+    if spec.get('target'):  # a spec that allows smaller targets (e.g. 48 px in short boxes) says so here, with its reason
+        a.target = int(spec['target'])
     host = out / 'host'; host.mkdir(parents=True, exist_ok=True)
     (host / 'tool.html').write_bytes(a.file.read_bytes()); (host / 'host.html').write_text(HOST, encoding='utf-8')
     hp = drive.PORT + 1

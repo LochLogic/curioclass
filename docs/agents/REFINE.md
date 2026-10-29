@@ -12,14 +12,17 @@ reads `tools/<id>/spec.md`, then `src.html`, `notes.md`, `art/prompts.json` and 
 `CURIO_DRAFT=1 python scripts/bundle_tool.py <id>`, and works in its own scratch folder with its own Chrome profile
 and port (RUNBOOK, Agent Chrome hygiene). Write `tools/<id>/refine/<lens>.md` only.
 
-**Audit first (pilot, Cory 2026-10-28).** Before looking, each lens runs
+**Audit first (pilot, Cory 2026-10-28; tuned after BR2).** Before looking, each lens runs
 `python scripts/audit_tool.py <id> <scratch>/audit --port <your first port> --profile <absolute dir>` (it uses that
-port and the next one; about 4 minutes; add `--no-walk` for the sizes only). It checks every size's first screen
-(targets, fold, overlaps, clipped text, the hint, focus on load, console errors), Motion off, one held click per
-control at 1366x768 and five clicks 2 s apart on the controls that speak. During the pilot it adds to the lens and
-replaces nothing: do your full lens as written. It can't see screens past one click, teaching, giveaways, feel or
-art. At the end of your lens file add `## Audit pilot`: the leads you confirmed, the leads that were wrong, and what
-you found that it missed. Those notes decide what lenses may later leave to the script.
+port and the next one; about 15 minutes; add `--no-walk` for the sizes and states only). It checks every size's first
+screen (targets, fold, overlaps, clipped text, the hint, focus on load, console errors), the same at every size after
+each mode button and each state in the builder's `audit-states.json`, Motion off, one held click per control at
+1366x768 (with focus once things settle and Enter twice after), five clicks 2 s apart and two quick taps on the
+controls that speak. Boxes are clipped by their stage and scroll panels first, so what those hide is no longer a lead.
+BR2 showed its clean rows hold (sizes, Motion off, focus on load, console errors, the voice repeats): a lens may cite
+them instead of re-shooting. It adds to the lens and replaces nothing else: do your full lens as written. It can't see
+teaching, giveaways, feel, art, whether a line or hint is the right one, or states nobody listed. At the end of your
+lens file add `## Audit pilot`: the leads you confirmed, the leads that were wrong, and what you found that it missed.
 
 **Teaching lens: does it teach what it claims, to this grade?**
 1. Every standard code on the tool's module is really taught by something the student does (BASELINE rule 2). A
