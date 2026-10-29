@@ -27,7 +27,10 @@ already listening on the port, it is used and left running (it is not this scrip
 """
 import asyncio, json, os, sys, subprocess, base64, time, urllib.request
 from pathlib import Path
-import websockets
+try:
+    import websockets
+except ImportError:  # a sandboxed Python without the package: the standard-library client
+    sys.path.insert(0, str(Path(__file__).resolve().parent)); import cdp_ws as websockets
 
 PORT = 9383
 ROOT = Path(__file__).resolve().parent.parent
@@ -42,14 +45,18 @@ def ensure_chrome(prof):
         urllib.request.urlopen(f'http://127.0.0.1:{PORT}/json/version', timeout=1); return
     except Exception:
         pass
-    CHROME_PROC = subprocess.Popen([CHROME, '--headless=new', '--mute-audio', '--disable-gpu', '--hide-scrollbars', f'--remote-debugging-port={PORT}',
-                      f'--user-data-dir={prof}', '--no-first-run', '--autoplay-policy=no-user-gesture-required', 'about:blank'],
-                     stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-    for _ in range(50):
-        try:
-            urllib.request.urlopen(f'http://127.0.0.1:{PORT}/json/version', timeout=1); return
-        except Exception:
-            time.sleep(.2)
+    # the second try adds the flags a sandboxed builder's Chrome needs (Codex, 2026-10-28: GPU process and sandbox
+    # could not start there); a normal desktop starts on the first
+    for extra in ([], ['--in-process-gpu', '--no-sandbox']):
+        CHROME_PROC = subprocess.Popen([CHROME, '--headless=new', '--mute-audio', '--disable-gpu', '--hide-scrollbars', f'--remote-debugging-port={PORT}',
+                          f'--user-data-dir={prof}', '--no-first-run', '--autoplay-policy=no-user-gesture-required', *extra, 'about:blank'],
+                         stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        for _ in range(50):
+            try:
+                urllib.request.urlopen(f'http://127.0.0.1:{PORT}/json/version', timeout=1); return
+            except Exception:
+                time.sleep(.2)
+        CHROME_PROC.kill()
     sys.exit('chrome did not start')
 
 

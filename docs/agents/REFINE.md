@@ -12,17 +12,21 @@ reads `tools/<id>/spec.md`, then `src.html`, `notes.md`, `art/prompts.json` and 
 `CURIO_DRAFT=1 python scripts/bundle_tool.py <id>`, and works in its own scratch folder with its own Chrome profile
 and port (RUNBOOK, Agent Chrome hygiene). Write `tools/<id>/refine/<lens>.md` only.
 
-**Audit first (pilot, Cory 2026-10-28; tuned after BR2).** Before looking, each lens runs
-`python scripts/audit_tool.py <id> <scratch>/audit --port <your first port> --profile <absolute dir>` (it uses that
-port and the next one; about 15 minutes; add `--no-walk` for the sizes and states only). It checks every size's first
-screen (targets, fold, overlaps, clipped text, the hint, focus on load, console errors), the same at every size after
-each mode button and each state in the builder's `audit-states.json`, Motion off, one held click per control at
-1366x768 (with focus once things settle and Enter twice after), five clicks 2 s apart and two quick taps on the
-controls that speak. Boxes are clipped by their stage and scroll panels first, so what those hide is no longer a lead.
-BR2 showed its clean rows hold (sizes, Motion off, focus on load, console errors, the voice repeats): a lens may cite
-them instead of re-shooting. It adds to the lens and replaces nothing else: do your full lens as written. It can't see
-teaching, giveaways, feel, art, whether a line or hint is the right one, or states nobody listed. At the end of your
-lens file add `## Audit pilot`: the leads you confirmed, the leads that were wrong, and what you found that it missed.
+**Audit once, shared (Cory 2026-10-28; tuned after BR2 and the network-help-desk test).** Before the lenses start,
+the integrator runs `python scripts/audit_tool.py <id> <scratch>/audit-r<round> --port <port> --profile <absolute dir>`
+once on the bundle the lenses will look at (about 20 minutes; it uses that port and the next one) and gives each lens
+the path to its `audit.md` and frames. The lenses do not re-run it. It checks every size's first screen (targets, fold,
+overlaps, clipped text, the hint, focus on load, console errors, short choice sets cut by a scroll panel, "1 bars",
+lines drawn across labels and tiles), the same at every size after each mode button and each state in the builder's
+`audit-states.json`, Motion off, one held click per control at 1366x768 (welcome heard, and not late in a two-mode
+tool; how lines dropped with no input; focus once things settle and after Enter twice), five clicks 2 s apart and two
+quick taps on the controls that speak, and every state and walked control again with the window resized mid-action
+(exceptions, controls left disabled). Its clean rows have held on every tool so far: a lens may cite them instead of
+re-shooting. It adds to the lens and replaces nothing else: do your full lens as written, and confirm a lead on your
+own frames before you report it. It can't see teaching, giveaways, feel, art, whether a line or hint is the right one,
+what one look means (a broken link styled like a Guest one), or states nobody listed. At the end of your lens file add
+`## Audit pilot`: the leads you confirmed, the leads that were wrong, and what you found that it missed. The exit
+check gets a fresh run on the polished bundle the same way.
 
 **Teaching lens: does it teach what it claims, to this grade?**
 1. Every standard code on the tool's module is really taught by something the student does (BASELINE rule 2). A
@@ -109,7 +113,8 @@ should-fix and the accepted polish items, re-shoots its own frames, and reports 
 
 ## Exit check (one fresh cold agent)
 
-Re-check each item on the merged list yourself and look for regressions (re-shoot the default screen, every mode
+Read the integrator's fresh audit of the polished bundle first (see Audit once, shared). Re-check each item on the
+merged list yourself and look for regressions (re-shoot the default screen, every mode
 and the frames tied to each fix). Then check the gate. **All must hold:**
 1. every "Done when" passes;
 2. every code on the module is taught, or its move is written down (rule 2);

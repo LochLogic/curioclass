@@ -1,7 +1,7 @@
 r"""Mechanical audit of a bundled tool: the checks every Refine lens used to repeat by hand, as one report.
 
     python scripts/audit_tool.py <tool-id> <outdir> [--port 9383] [--profile <absolute dir>] [--no-walk]
-                                 [--states <file>] [--tool-file <bundled html>]
+                                 [--states <file>] [--tool-file <bundled html>] [--host-port <n>]
 
 Bundle first (CURIO_DRAFT=1 python scripts/bundle_tool.py <id>). Writes <outdir>/audit.md and frames. Checks:
   sizes   every STANDARDS size, 375 through an iframe host served from <outdir> (the tool folder is not touched):
@@ -10,13 +10,21 @@ Bundle first (CURIO_DRAFT=1 python scripts/bundle_tool.py <id>). Writes <outdir>
           labels (text hidden under another box is listed apart), clipped text (not a designed ellipsis with a title
           or aria-label, not screen-reader-only text), the hint in view and not clipped, the hint naming a disabled
           control, keep regions out of view, text under 10 px, focus taken on load, console errors. Every box is
-          first clipped by its overflow ancestors: what a stage or scroll panel hides is not drawn, so it is not a lead
+          first clipped by its overflow ancestors: what a stage or scroll panel hides is not drawn, so it is not a lead,
+          except a short set of choices cut short by a scroll panel (12 controls or fewer, sideways, focus on a hidden
+          one, or the hint naming one). Also: "1 bars" (a count and its word disagree), SVG lines drawn across a label
+          or a tappable tile they don't end at
   states  the same checks at every size after each mode button (automatic) and after each state the builder lists
-          in tools/<id>/audit-states.json, plus focus lost after any step's click (a control disabled under focus)
+          in tools/<id>/audit-states.json, plus focus lost after any step's click (a control disabled under focus);
+          at 1366x768, once the state settles, a how line dropped with no input after it and never spoken
+  resize  each audit-states.json state again with the window flipped to 760x900 and back after every input, and each
+          walk control that did something with a flip 0.25 s after its tap: exceptions, and controls the plain run
+          leaves enabled that stay disabled (a ping or run that never finished)
   calm    Motion off: animations still running forever
   walk    at 1366x768, in the first mode and then in each other mode, a fresh page per control (skipped when something else is drawn at its centre), one held
           click each: errors, focus lost or the control rebuilt under the pointer, a click that changed nothing,
-          other controls jumping, what was spoken, whether the mode's welcome was heard after that first tap, focus
+          other controls jumping, what was spoken, whether the mode's welcome was heard after that first tap (and not
+          late, after the tap's own line, in a tool with two or more modes), a how line dropped with no input, focus
           once the narration settles, and Enter twice on what holds focus (the keyboard path); then the controls that spoke get five held clicks 2 s apart (a how-to line spoken
           twice, an event line lost) and two quick taps 0.7 s apart (a line cut mid-speech that never came back)
 
@@ -36,12 +44,16 @@ teaching, giveaways, feel, art or whether a line is right, and a clean report do
 """
 import asyncio, base64, functools, http.server, json, re, sys, threading, urllib.request
 from pathlib import Path
-import websockets
+try:
+    import websockets
+except ImportError:  # a sandboxed Python without the package: the standard-library client
+    sys.path.insert(0, str(Path(__file__).resolve().parent)); import cdp_ws as websockets
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import drive  # Tab, ensure_chrome, close_chrome: one Chrome, closed at the end
 
 ROOT = Path(__file__).resolve().parent.parent
+HOST_PORT = None  # --host-port: the iframe host's port (default: the debug port + 1)
 SIZES = [(680, 425), (800, 500), (1000, 625), (1280, 720), (1366, 768), (1920, 1080), (760, 900)]
 
 PAGE_JS = r"""
@@ -53,23 +65,26 @@ const name = el => (el.getAttribute('aria-label') || el.textContent || el.title 
 const tag = el => { const n = name(el); return (el.id ? '#' + el.id : el.tagName.toLowerCase() + (el.className && typeof el.className === 'string' ? '.' + el.className.trim().split(/\s+/)[0] : '')) + (n ? ' "' + n + '"' : ''); };
 // the part of a box its overflow ancestors leave drawn, and whether one of them scrolls (a scroll panel: being past
 // its edge is not "below the fold", the student scrolls the panel)
-const clipOf = el => { const r = el.getBoundingClientRect(); let L = r.left, T = r.top, R = r.right, B = r.bottom, scroller = false;
+const clipOf = el => { const r = el.getBoundingClientRect(); let L = r.left, T = r.top, R = r.right, B = r.bottom, scroller = false, sc = null;
   for (let p = el.parentElement; p && p !== document.body && p !== document.documentElement; p = p.parentElement) {
     const s = getComputedStyle(p); if (!/hidden|auto|scroll|clip/.test(s.overflowX + s.overflowY)) continue;
-    if (/auto|scroll/.test(s.overflowX + s.overflowY) && (p.scrollHeight > p.clientHeight + 1 || p.scrollWidth > p.clientWidth + 1)) scroller = true;
+    if (/auto|scroll/.test(s.overflowX + s.overflowY) && (p.scrollHeight > p.clientHeight + 1 || p.scrollWidth > p.clientWidth + 1)) { scroller = true; sc = sc || p; }
     const q = p.getBoundingClientRect(); L = Math.max(L, q.left); T = Math.max(T, q.top); R = Math.min(R, q.right); B = Math.min(B, q.bottom); }
   const w = Math.max(0, R - L), h = Math.max(0, B - T);
-  return {r: {left: L, top: T, right: L + w, bottom: T + h, width: w, height: h}, share: w * h / Math.max(1, r.width * r.height), scroller}; };
+  return {r: {left: L, top: T, right: L + w, bottom: T + h, width: w, height: h}, share: w * h / Math.max(1, r.width * r.height), scroller, sc}; };
 // screen-reader-only text (the visually-hidden pattern) is meant to be invisible
 const srOnly = el => { const r = el.getBoundingClientRect(), s = getComputedStyle(el); return r.width <= 2 || r.height <= 2 || /rect\(0/.test(s.clip) || /inset\(50%/.test(s.clipPath); };
 const ctl = [...document.querySelectorAll('button, [role=button], a[href], input:not([type=hidden]), select, textarea, summary, [tabindex]:not([tabindex="-1"])')].filter(vis);
 // SVG shapes a student taps (pointer cursor, not inside a control already counted) are targets too
 const svgT = [...document.querySelectorAll('svg *')].filter(el => vis(el) && getComputedStyle(el).cursor === 'pointer' && !(el.parentElement && getComputedStyle(el.parentElement).cursor === 'pointer') && !el.closest('button, [role=button], a[href]'));
-const out = {hscroll: Math.max(0, document.documentElement.scrollWidth - W), small: [], below: [], noname: [], overlap: [], hidden: [], clipped: [], tiny: [], focus: null, hint: null, keep: [], disabledNamed: [], count: ctl.length, svg: svgT.length};
+const out = {hscroll: Math.max(0, document.documentElement.scrollWidth - W), small: [], below: [], noname: [], overlap: [], hidden: [], clipped: [], tiny: [], focus: null, hint: null, keep: [], disabledNamed: [], panelHidden: [], plural: [], crosses: [], count: ctl.length, svg: svgT.length};
 const inWin = (x, y) => x >= 0 && y >= 0 && x < W && y < H;
+const panels = new Map();  // scroll panel -> controls it hides past its edge (mostly out of the panel's view)
 for (const el of ctl) {
   const r = el.getBoundingClientRect(), c = clipOf(el);
   if (!name(el) && !el.getAttribute('aria-labelledby')) out.noname.push(tag(el));
+  if (c.sc && c.share < .5) { const p = c.sc.getBoundingClientRect(); if (!panels.has(c.sc)) panels.set(c.sc, []);
+    panels.get(c.sc).push({el, side: r.left < p.left - 1 || r.right > p.right + 1}); }
   if (c.share < .05 && !c.scroller) continue;  // clipped out of its stage: not drawn, not tappable
   if (el.type === 'range') { if (r.height < T * 0.5 && r.width < T) out.small.push(tag(el) + ` ${Math.round(r.width)}x${Math.round(r.height)} (slider)`); }
   else if (Math.min(r.width, r.height) < (KIT.has(el.id) ? 44 : T) - 0.5) out.small.push(tag(el) + ` ${Math.round(r.width)}x${Math.round(r.height)}`);
@@ -110,6 +125,42 @@ const h = document.getElementById('hint');
 if (h) { const r = h.getBoundingClientRect();
   out.hint = {text: h.textContent.replace(/\s+/g, ' ').trim().slice(0, 160), inView: r.top >= -1 && r.bottom <= H + 1 && vis(h), cut: h.scrollHeight > h.clientHeight + 1 && /hidden|clip/.test(getComputedStyle(h).overflowY)}; }
 const a = document.activeElement; if (a && a !== document.body && a !== document.documentElement) out.focus = tag(a);
+// a scroll panel is fine for a long list, not for a short set of choices cut short: a lead when the panel holds 12
+// controls or fewer, hides them sideways, holds focus on a hidden one, or the hint names a hidden one
+const nm = s => (s || '').toLowerCase().replace(/[^a-z0-9 ]+/g, ' ').replace(/\s+/g, ' ').trim();
+const hintN = ' ' + nm(h && h.textContent) + ' ';
+for (const [p, hid] of panels) {
+  const n = ctl.filter(el => p.contains(el)).length, why = [];
+  if (n <= 12) why.push(`${hid.length} of ${n} controls out of view`);
+  if (hid.some(x => x.side)) why.push('sideways');
+  if (hid.some(x => x.el === a || x.el.contains(a))) why.push('focus is on a hidden one');
+  const named = hid.filter(x => { const t = nm(name(x.el)); return t.length >= 4 && hintN.includes(' ' + t + ' '); });
+  if (named.length) why.push('the hint names ' + named.map(x => '"' + name(x.el) + '"').join(', '));
+  if (why.length && out.panelHidden.length < 8) out.panelHidden.push(`${tag(p)} (${why.join('; ')}): ` + hid.slice(0, 6).map(x => tag(x.el)).join(', ') + (hid.length > 6 ? ', ...' : ''));
+}
+// words match the count: "1 bars", "1 cards" (in visible text and the hint)
+const seenP = new Set();
+for (const s of [...texts.map(el => el.textContent), h ? h.textContent : '']) for (const m of (s || '').matchAll(/\b1 ([a-z]{2,}[^s\W])s\b/gi))
+  if (!seenP.has(m[0].toLowerCase()) && out.plural.length < 8) { seenP.add(m[0].toLowerCase()); out.plural.push(`"${m[0]}"`); }
+// SVG strokes (links, cables, walls) drawn across a label or a tappable tile they don't end at
+const svgTiles = [...ctl.filter(el => el.closest('svg')), ...svgT, ...texts.filter(el => el.closest('svg'))];
+const strokes = [...document.querySelectorAll('svg line, svg path, svg polyline')].filter(el => { if (!vis(el) || !el.getTotalLength) return false;
+  const s = getComputedStyle(el); return s.stroke && s.stroke !== 'none' && parseFloat(s.strokeWidth) >= 1.5 && +s.strokeOpacity > .3 && !el.closest('button, [role=button], [tabindex]'); }).slice(0, 200);
+const crossed = new Set();
+for (const st of strokes) {
+  let len = 0; try { len = st.getTotalLength(); } catch (e) { continue; }
+  const M = st.getScreenCTM(); if (!M || len < 40) continue;
+  const n = Math.min(150, Math.ceil(len / 6)), pts = [];
+  for (let i = 0; i <= n; i++) { const q = st.getPointAtLength(i * len / n); pts.push(new DOMPoint(q.x, q.y).matrixTransform(M)); }
+  const ends = [pts[0], pts[pts.length - 1]];
+  for (const t of svgTiles) {
+    if (crossed.has(t) || t.contains(st) || st.parentElement === t.parentElement) continue;
+    const r = t.getBoundingClientRect(); if (r.width < 6 || r.height < 6) continue;
+    const L = r.left + 3, R = r.right - 3, T = r.top + 3, B = r.bottom - 3;
+    if (ends.some(e => e.x > L - 24 && e.x < R + 24 && e.y > T - 24 && e.y < B + 24)) continue;  // a link ending at this tile
+    if (pts.some(e => e.x > L && e.x < R && e.y > T && e.y < B) && out.crosses.length < 12) { crossed.add(t); out.crosses.push(`${tag(st)} across ${tag(t)}`); }
+  }
+}
 // keep regions: listed selectors and [data-audit-keep], fully in the window and drawn (not covered, not cut by a scroll box)
 const keeps = [...%KEEP%.map(s => [s, document.querySelector(s)]), ...[...document.querySelectorAll('[data-audit-keep]')].map(el => [tag(el), el])];
 for (const [s, el] of keeps) {
@@ -162,6 +213,10 @@ FOCUS_JS = r"""(() => { const a = document.activeElement; return !a || a === doc
 MODES_JS = r"""(() => [...document.querySelectorAll('header .seg button, header [role=group] button, header [role=tablist] [role=tab]')].filter(b => b.id)
   .map(b => [b.id, (b.textContent || '').replace(/\s+/g, ' ').trim().slice(0, 30), b.getAttribute('aria-pressed') === 'true' || b.getAttribute('aria-selected') === 'true']))()"""
 KIT_IDS = {'motion', 'sound', 'read'}
+ENABLED_JS = r"""(() => { const vis = el => { const r = el.getBoundingClientRect(), s = getComputedStyle(el); return r.width > 0 && r.height > 0 && s.visibility !== 'hidden' && s.display !== 'none' && !el.closest('[hidden],[aria-hidden="true"],[inert]'); };
+  return [...document.querySelectorAll('button, [role=button]')].filter(el => vis(el) && !el.disabled && el.getAttribute('aria-disabled') !== 'true' && !el.closest('header'))
+    .map(el => el.id ? '#' + el.id : (el.getAttribute('aria-label') || el.textContent || '').replace(/\s+/g, ' ').trim().slice(0, 30)).sort(); })()"""
+NOW_JS = 'performance.now()'
 AFTER_JS = r"""(i => { const el = document.querySelector(`[data-audit="${i}"]`); const a = document.activeElement;
   return {gone: !el, focus: a && a !== document.body ? (a.id || a.tagName.toLowerCase()) : 'body', hint: (document.getElementById('hint') || {}).textContent || ''}; })"""
 
@@ -184,6 +239,7 @@ class Audit:
         self.target = 60 if self.k2 else 44
         self.errors = []
         self.modes = []  # [[id, label, pressed]] from the header's mode buttons
+        self.last_input = None  # performance.now() of the last input a state's steps sent
 
     async def tab(self, w, h, calm=False, url=None):
         req = urllib.request.Request(f'http://127.0.0.1:{drive.PORT}/json/new?about:blank', method='PUT')
@@ -247,13 +303,53 @@ class Audit:
         r = r if isinstance(r, dict) else {'audit_error': str(r)}
         r['errors'] = self.errs(t)
         r['focus_lost'], r['missing'] = lost, missing
+        if steps and label == '1366x768':
+            # once the state settles: a how line dropped after the last input (nothing the student did made it stale),
+            # and the controls left enabled (the baseline for the resize check)
+            shot = shot or f'size-{label}'
+            png = await t.send('Page.captureScreenshot', format='png')
+            (self.out / f'{shot}.png').write_bytes(base64.b64decode(png['data']))
+            await self.quiet(t, ctx=ctx)
+            r['dropped'] = await self.dropped(t, self.last_input, ctx)
+            r['enabled'] = await self.ev(t, ENABLED_JS, ctx) or []
+            await self.close(t)
+            return label, r
         await self.close(t, shot or f'size-{label}')
         return label, r
 
-    async def steps(self, t, ctx, steps):
+    async def dropped(self, t, since, ctx=None):
+        """How lines dropped more than 0.3 s after the last input and never spoken after: lost with no action to blame."""
+        v = await self.ev(t, VLOG_JS, ctx) or []
+        heard = {e['key'] for e in v if e['as'] == 'spoken'}
+        return sorted({e['text'] for e in v if e['kind'] == 'how' and e['as'] == 'dropped' and since is not None
+                       and (e['t'] or 0) > since + 300 and e['key'] not in heard})
+
+    async def resized(self, t, ctx=None):
+        """Flip the window to 760x900 and back, as a teacher dragging a projector window would."""
+        await t.send('Emulation.setDeviceMetricsOverride', width=760, height=900, deviceScaleFactor=1, mobile=False)
+        await asyncio.sleep(.3)
+        await t.send('Emulation.setDeviceMetricsOverride', width=1366, height=768, deviceScaleFactor=1, mobile=False)
+        await asyncio.sleep(.3)
+
+    async def stress(self, name, steps, baseline):
+        """A state's steps again at 1366x768, with a resize after every input and twice in the moment after the last:
+        exceptions, and controls the plain run leaves enabled that stay disabled here (a run that never finished)."""
+        t = await self.tab(1366, 768)
+        await self.steps(t, None, steps, resize=True)
+        await asyncio.sleep(.25); await self.resized(t)
+        await self.quiet(t)
+        await asyncio.sleep(1)
+        now = set(await self.ev(t, ENABLED_JS) or [])
+        out = {'name': name, 'errors': self.errs(t), 'stuck': sorted(set(baseline) - now) if baseline is not None else []}
+        await self.close(t)
+        return out
+
+    async def steps(self, t, ctx, steps, resize=False):
         """Run a state's steps with real input (the iframe host sits at 0,0, so frame points are page points).
-        Returns (clicks after which focus fell to the page, selectors not found)."""
+        Returns (clicks after which focus fell to the page, selectors not found). Notes the time of the last input
+        in self.last_input; with resize, flips the window size after every input."""
         lost, missing = [], []
+        self.last_input = None
         for s in steps:
             if 'click' in s:
                 for n in range(s.get('times', 1)):
@@ -261,11 +357,17 @@ class Audit:
                     if not p:
                         missing.append(s['click']); break
                     await self.press(t, *p)
+                    self.last_input = await self.ev(t, NOW_JS, ctx)
+                    if resize:
+                        await asyncio.sleep(.25); await self.resized(t, ctx)
                     await asyncio.sleep(s.get('gap', .4))
                     if await self.ev(t, FOCUS_JS, ctx) == 'body':
                         lost.append(f'{s["click"]} (click {n + 1})')
             elif 'key' in s:
                 await self.key(t, s['key'])
+                self.last_input = await self.ev(t, NOW_JS, ctx)
+                if resize:
+                    await self.resized(t, ctx)
                 await asyncio.sleep(.15)
             elif 'js' in s:
                 await self.ev(t, f'(async () => {{ {s["js"]} }})()', ctx)
@@ -284,15 +386,18 @@ class Audit:
                         await t.send('Input.dispatchMouseEvent', type='mouseMoved', x=x, y=y, button='left', buttons=1)
                         await asyncio.sleep(.02)
                     await t.send('Input.dispatchMouseEvent', type='mouseReleased', x=x, y=y, button='left', clickCount=1)
+                    self.last_input = await self.ev(t, NOW_JS, ctx)
+                    if resize:
+                        await self.resized(t, ctx)
             if 'wait' in s:
                 await asyncio.sleep(s['wait'] / 1000)
         await asyncio.sleep(.4)
         return lost, missing
 
-    async def quiet(self, t, most=15):
+    async def quiet(self, t, most=15, ctx=None):
         """Wait until nothing is queued and the last line has had its time (at most `most` seconds)."""
         for _ in range(int(most * 2)):
-            if await self.ev(t, IDLE_JS):
+            if await self.ev(t, IDLE_JS, ctx):
                 return
             await asyncio.sleep(.5)
 
@@ -351,6 +456,7 @@ class Audit:
             n0 = len(await self.ev(t, VLOG_JS) or [])
             sig0 = await self.ev(t, SIG_JS)
             await self.press(t, x, y)
+            tap = await self.ev(t, NOW_JS)
             await asyncio.sleep(2.5)
             after = await self.ev(t, f'({AFTER_JS})({i})') or {}
             now = await self.ev(t, SNAP_JS) or {}
@@ -360,6 +466,8 @@ class Audit:
             # the welcome after this first tap: wait for the narration to finish, then look for a welcome spoken whole
             changed = await self.ev(t, SIG_JS) != sig0
             await self.quiet(t)
+            drops = await self.dropped(t, tap)
+            enabled = await self.ev(t, ENABLED_JS) or []
             # focus checked again once things settle (a control disabled when a run ends), then the keyboard path:
             # Enter twice on whatever holds focus, 1.2 s apart (a control that disables itself at a limit)
             later = await self.ev(t, FOCUS_JS)
@@ -376,14 +484,37 @@ class Audit:
             full = await self.ev(t, VLOG_JS) or []
             wl = [e for e in full if e['kind'] == 'welcome' and e['as'] == 'spoken']
             welcome = 'n/a' if mode else 'heard' if any(not e['cut'] for e in wl) else f'cut ({wl[0]["cut"]})' if wl else 'not heard'
+            # the order: a welcome that comes only after this tap's own line lands while the student has moved on
+            # (welcomeAfter, meant for one-mode tools)
+            said = [e for e in full[n0:] if e['as'] == 'spoken']
+            if welcome == 'heard' and said and said[0]['kind'] != 'welcome':
+                welcome = f'late, after "{said[0]["text"][:40]}"'
             row = {'i': i, 'label': label, 'errors': self.errs(t), 'gone': after.get('gone'), 'focus': after.get('focus'),
                    'jumped': len(jumps), 'of': len(now), 'spoke': [e['text'] for e in spoke], 'hint': after.get('hint', '')[:100], 'voice': vlog is not None,
                    'welcome': welcome, 'id': label.split(' ')[0][1:] if label.startswith('#') else '',
-                   'changed': changed, 'later': later, 'keys': keys, 'on': on}
+                   'changed': changed, 'later': later, 'keys': keys, 'on': on, 'drops': drops, 'enabled': enabled,
+                   'x': x, 'y': y, 'mode_id': mode}
             rows.append(row)
             if spoke and not after.get('gone') and not mode:
                 speakers.append((i, label, x, y))
             await self.close(t)
+
+    async def shake(self, rows):
+        """Each control that did something on its walk click, again with the window resized 0.25 s and 0.85 s after
+        the tap: exceptions, and controls the plain click left enabled that stay disabled here."""
+        out = []
+        for r in [r for r in rows if r.get('x') is not None and (r['changed'] or r['spoke']) and r['id'] not in KIT_IDS][:30]:
+            t = await self.opened(r['mode_id'])
+            await self.ev(t, TAG_JS)
+            await self.press(t, r['x'], r['y'])
+            await asyncio.sleep(.25); await self.resized(t); await self.resized(t)
+            await asyncio.sleep(2); await self.quiet(t)
+            stuck = sorted(set(r['enabled']) - set(await self.ev(t, ENABLED_JS) or []))
+            e = self.errs(t)
+            if e or stuck:
+                out.append({'name': r['label'], 'errors': e, 'stuck': stuck})
+            await self.close(t)
+        return out
 
     async def repeats(self, rows, speakers):
         reps = []
@@ -463,7 +594,9 @@ def size_items(r, onload=True):
     if r.get('hscroll'): items.append(f'sideways page scroll {r["hscroll"]} px')
     for k, what in (('small', 'small target'), ('below', 'control below the fold'), ('noname', 'control with no name'),
                     ('overlap', 'overlap'), ('hidden', 'text hidden under another box or a scroll edge'), ('clipped', 'clipped text'),
-                    ('tiny', 'text under 10 px'), ('keep', 'keep region'), ('disabledNamed', 'names a disabled control')):
+                    ('tiny', 'text under 10 px'), ('keep', 'keep region'), ('disabledNamed', 'names a disabled control'),
+                    ('panelHidden', 'choices cut short by a scroll panel'), ('plural', 'count and word disagree'),
+                    ('crosses', 'line drawn across'), ('dropped', 'how line dropped with no input after it, never spoken')):
         for v in r.get(k, []):
             items.append(f'{what}: {v}')
     h = r.get('hint')
@@ -474,7 +607,7 @@ def size_items(r, onload=True):
     return items
 
 
-def report(a, sizes, calm, rows, reps, quick, states):
+def report(a, sizes, calm, rows, reps, quick, states, shaken=()):
     L = [f'# Audit: {a.tool}', '',
          f'Mechanical checks only (scripts/audit_tool.py). Each row is a lead to confirm on your own frames, not a verdict.',
          f'It does not judge teaching, giveaways, feel, art or the words of a line. Targets: ' + (f'{a.target} px at every size (K-2)' if a.k2 else f'{a.target} px') + '; the kit header buttons are 44 px everywhere.', '']
@@ -502,6 +635,13 @@ def report(a, sizes, calm, rows, reps, quick, states):
         L.append('')
     L += ['## Motion off (1366x768)', '', ('- running forever: ' + ', '.join(calm)) if calm else 'clean: nothing runs forever', '']
     flags += len(calm)
+    L += ['## Resized mid-action (1366x768 to 760x900 and back, after each input of every state and after each walk click)', '']
+    if not shaken: L.append('clean: no exceptions, nothing left disabled')
+    for s in shaken:
+        items = [f'error: {e}' for e in s['errors']] + ([f'left disabled (the plain run has them enabled): {", ".join(s["stuck"][:8])}'] if s['stuck'] else [])
+        flags += len(items)
+        L.append(f'- **{s["name"]}**: ' + '; '.join(items))
+    L.append('')
     if rows is not None:
         L += ['## One held click per control (1366x768, fresh page each)', '',
               '| # | control | errors | after the click | others moved | spoken | welcome after this first tap | settled, then Enter twice |', '|---|---|---|---|---|---|---|---|']
@@ -522,16 +662,21 @@ def report(a, sizes, calm, rows, reps, quick, states):
             if later != 'ok': flags += 1
             if r['errors']: flags += 1
             w = r.get('welcome', '')
-            if has_welcome and w not in ('heard', 'n/a') and r['id'] not in ('read', 'sound'):
+            # a late welcome is welcomeAfter at work: by design with one mode, a lead with two or more
+            late_ok = w.startswith('late') and len(a.modes) < 2
+            if has_welcome and w not in ('heard', 'n/a') and not late_ok and r['id'] not in ('read', 'sound'):
                 flags += 1; lost_welcome.append(r['label']); w = '**' + w + '**'
+            if r.get('drops'):
+                flags += 1; w += ' / **how line dropped, no input after: ' + '; '.join(r['drops'])[:80] + '**'
             L.append(f'| {r["i"]} | {r["label"]} | {"; ".join(r["errors"])[:120]} | {after} | {r["jumped"]} of {r["of"]} | {" / ".join(r["spoke"])[:140] if r["voice"] else "(no __tool.vlog)"} | {w} | {later} |')
         L += ['', '"others moved" counts controls that shifted more than 12 px: expected on a mode change, a panel jump otherwise.',
               '"nothing changed": the page and the narration log are identical after the click (a dead control, or one whose',
               'effect is only on a canvas: confirm on the frame). "settled, then Enter twice": focus once the narration is quiet,',
               'then the keyboard path on whatever holds focus; losing it there is a control disabled or rebuilt under focus.']
         if lost_welcome:
-            L += [f'Welcome not heard whole after a first tap on: {", ".join(lost_welcome)}. A student who starts there never hears the',
-                  'premise (unless the tool brings it back later): a lead for welcomeAfter or for the welcome waiting on that tap\'s own line.']
+            L += [f'Welcome not heard whole, or heard late, after a first tap on: {", ".join(lost_welcome)}. Not heard: a student who',
+                  'starts there never hears the premise (unless the tool brings it back later). Late: the welcome plays after the tap\'s own',
+                  'line, while the student has moved on (welcomeAfter is for one-mode tools; this one has ' + str(len(a.modes)) + ' modes).']
         L.append('')
         L += ["## Five held clicks, 2 s apart (controls that spoke; counted after the first tap's lines finish)", '']
         if not reps: L.append('none spoke on one click (or the tool has no __tool.vlog)')
@@ -564,7 +709,7 @@ async def run(tool, out, walk, states_file=None, tool_file=None):
         a.target = int(spec['target'])
     host = out / 'host'; host.mkdir(parents=True, exist_ok=True)
     (host / 'tool.html').write_bytes(a.file.read_bytes()); (host / 'host.html').write_text(HOST, encoding='utf-8')
-    hp = drive.PORT + 1
+    hp = HOST_PORT or drive.PORT + 1
     srv = serve(host, hp)
     drive.ensure_chrome(Path(drive.PROFILE).resolve() if drive.PROFILE else out.resolve() / 'chrome-prof')
     hosturl = f'http://127.0.0.1:{hp}/host.html'
@@ -584,9 +729,19 @@ async def run(tool, out, walk, states_file=None, tool_file=None):
             states.append((name, how, res))
         calm = await a.calm()
         rows, reps, quick = (await a.walk()) if walk else (None, None, None)
+        shaken = []
+        for (name, how, steps, kp, only), (_, _, res) in zip(plan, states):
+            if how != 'audit-states.json':
+                continue
+            base = next((r.get('enabled') for lb, r in res if lb == '1366x768'), None)
+            s = await a.stress(name, steps, base)
+            if s['errors'] or s['stuck']:
+                shaken.append(s)
+        if rows:
+            shaken += await a.shake(rows)
     finally:
         srv.shutdown()
-    md = report(a, sizes, calm, rows, reps, quick, states)
+    md = report(a, sizes, calm, rows, reps, quick, states, shaken)
     (out / 'audit.md').write_text(md, encoding='utf-8')
     print(md.split('\n')[4] if len(md.split('\n')) > 4 else '', f'\nreport: {out / "audit.md"}')
 
@@ -595,6 +750,7 @@ if __name__ == '__main__':
     drive.PORT = int(drive.flag('--port') or drive.PORT)
     drive.PROFILE = drive.flag('--profile')
     states_file, tool_file = drive.flag('--states'), drive.flag('--tool-file')
+    HOST_PORT = int(drive.flag('--host-port') or 0) or None
     walk = '--no-walk' not in sys.argv
     args = [x for x in sys.argv[1:] if x != '--no-walk']
     if len(args) != 2:

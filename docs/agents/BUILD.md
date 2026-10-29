@@ -65,5 +65,21 @@ If the spec is wrong or impossible, stop and report it rather than improvising.
   question. The family doc matches the engine.
 - **Motion off.** No infinite animations (the kit's `.calm` loops them at 0.01 ms). Placeholder art is legible.
 
+### Lessons from the network-help-desk test (2026-10-28)
+
+Three lenses agreed on each of these; the first three are checks the audit now runs, the rest are not.
+- **A short set of choices never hides in a scroll panel.** Seven answer cards in three groups lost a whole group
+  after a nudge at 1366x768 and two at 680x425. Every choice the student picks from is in view at every size.
+- **Resize mid-animation.** A redraw during a ping dropped a node the mover still used: an exception and a call that
+  stayed locked. Redraws carry the running animation's state, or wait for it.
+- **A welcome put off past a first tap's own line lands late.** `welcomeAfter` is for one-mode tools only.
+- **Show unknown as unknown.** A map or scene that hides a clue until it is asked draws that part as unknown, never
+  as working (a cable drawn plugged in before the question that shows it is unplugged).
+- **One look, one meaning.** A broken link drawn in the Guest link's orange dashes read as Guest. Each style in a
+  legend means one thing.
+- **The badge says what is true.** "Allowed" on the guest laptop that was refused contradicted the lesson.
+- **A hint that changes with a state changes back.** "No bars" stayed after the tablet came back in range.
+- **No answer by copying words.** Clue text that repeats the answer card's words turns diagnosis into matching.
+
 Report: what you built, each "Done when" check with pass or fail, the frames you looked at, and anything left open.
 Do not commit.
