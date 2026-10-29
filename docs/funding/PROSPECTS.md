@@ -57,7 +57,7 @@ These are reach, not money, but reach is what makes every later ask work.
 |---|---|---|
 | **OER Commons** | "Submit from Web": log in, Create, give the URL, check the metadata; librarians review it. Submit the site and the best tools one by one | |
 | **MERLOT** | Upload a finished resource to the community collection | |
-| **ISTE** and state ed-tech groups (Colorado: InnEdCO) | Conference sessions and member review platforms | |
+| **ISTE** and state ed-tech groups (Colorado: InnEdCO, see CONTACTS.md) | Conference sessions and member review platforms | |
 | **Teacher blogs and newsletters** (Ditch That Textbook, Free Technology for Teachers, Cult of Pedagogy, Edutopia) | Use each outlet's contact or suggest-a-tool page; no submission routes were confirmed by search | |
 | **Teacher communities** | r/Teachers and subject subreddits, teacher Facebook groups, ed social media: share one great tool, not the whole site | |
 
