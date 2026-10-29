@@ -199,3 +199,12 @@ then the item goes back to "ready" with a reply on the comment and the comment m
 - **Lesson plans (2026-10-25):** every tool gets `plan.md` (docs/LESSON-PLANS.md). Cory approved the three grade-2
   test plans, and every live tool (62) had a plan by 2026-10-25. New waves add the plan as part of going live.
 - **Parked K-2 tools waiting on voice:** see the Review Desk "Parked" filter.
+- **Voice backlog for the Forge (2026-10-28):** the tools at the art stage and the live K-2 tools parked for voice
+  (shape-talk, i-spy-science, community-map-words, library-adventure, sound-elevator, lunch-tray-builder,
+  feelings-faces, safety-street) can now record on the Forge (`localvoice.py <id> --forge`, one job each; the queue
+  runs them in turn). stage-blocker was the first, 15 of 15 lines. A parked tool goes back to 'ready' on the Review
+  Desk with a note once its voice lands.
+- **Uncommitted Word Wall cards (found 2026-10-28):** 24 new and 2 changed `closet/words/art/**/*.webp` from the
+  evening of 2026-10-27 were never committed and have no review record (the batch committed at 9c940dea left them
+  out). Among them is a redrawn Loyalist people card (sensitivity review needed). Look at them before deciding:
+  commit what passes a match check and the sensitivity review, discard the rest (`git status closet/words/art`).
