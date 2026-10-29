@@ -58,7 +58,8 @@ done (counts table, lessons in BUILD.md, KIT.md engine lines, the integrator spe
    half-life-dice, both Codex-built, both Refine PASS and merged as drafts (BATCH-BR-LOG.md, "Single-tool tests").
    Bring up, in order: the counts against BR1 and BR2; the Codex cost and the two timed-out polish rounds; the audit's
    cold catch rate and its 23 to 73 minute runs; half-life-dice's two spec questions (energy-ladder student action,
-   5,730 vs 5,700 years) and its two not-blocking notes; whether Codex becomes the default builder for BR3. Art,
+   5,730 vs 5,700 years) and its two not-blocking notes; whether Codex becomes the default builder for BR3 (the night used 42% of
+   the weekly Codex budget for two tools). Art,
    voice (on the Forge), Final look and Plan for both tools, and BR3, wait for that review.
 4. Small fixes found after close, not yet done: see BR2 "Found by the tuned audit after close" in the log.
 5. Board items: career-match-quiz onto kit/careers.js; scripts/careers_data.py writes the quiz path without --out.

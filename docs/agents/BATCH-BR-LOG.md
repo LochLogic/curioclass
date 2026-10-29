@@ -133,7 +133,9 @@ Codex cost and time (usage lines are cumulative per session; a failed or timed-o
 | half-life-dice build | 23:02 to 00:22 (80 min) | 25.9M (25.2M) | 152k |
 | half-life-dice polish | 01:05 to 01:24, then 01:24 to 02:24 (capacity failure, 60 min timeout) | not recorded | not recorded |
 
-Cory: about 3% of the weekly Codex budget for the network-help-desk build alone. Both polish rounds ran out their
+Cory: about 3% of the weekly Codex budget for the network-help-desk build alone, and 42% of the weekly budget for
+the whole night (both tools, every Codex round; Cory, 2026-10-29). At that rate a week covers about four or five
+tools, so Codex as the default builder for a 797-tool catalog is a budget question, not only a quality one. Both polish rounds ran out their
 timebox in their own final checks (re-shooting six sizes, a full audit), after the fixes were in: the integrator ran
 those checks instead. Lessons, in CODEX.md: reconnects fall back to HTTPS (the integrator stopped a polish there by
 mistake); `resume` needs `writable_roots` for the scratch folder; "Selected model is at capacity" is the server, resume
