@@ -158,3 +158,25 @@ Polish 9 partly held (card buttons show no short names at 375), dice tray reads 
 network-help-desk polish notes (Wi-Fi arcs through the "On" badge at 800x500 call 4, two badges near the right wall at
 680). Worktrees S:/CurioClass-codex-network-help-desk and S:/CurioClass-codex-half-life-dice (merged) and
 S:/CurioClass-codex-scratch (evidence) can be deleted.
+
+## Final look run: five clean tools (2026-10-29, local media only)
+
+Cory picked five of the ten clean drafts (code-drawn art, voice recorded locally with Qwen3-TTS bank voices) for the
+Final look while at work. Claude agents only; no Codex, no Gemini. Pushed as 0daba9a3.
+
+| Tool | Final look | Fix round | Plan | Notes for Cory's review |
+|---|---|---|---|---|
+| career-cluster-explorer | PASS, plus the sensitivity re-check PASS | none | explore-first, 45 min | welcome talks ~3 s after a cluster opens; trail stop header wraps at 1366; two try lines assume a house or a car |
+| song-form-builder | PASS | none | model-then-make, 45 min | listen to line 4 ("You changed A...") for a swallowed "A"; while-playing hints 46, 47, 52 can never be heard; Safari/Firefox first Play unchecked |
+| teach-the-robot | ROUND 2, then PASS | Read plays each part's clip; welcome never late; look-alike line off the names; chart counts | explore-first, 40 min | a Cat card's line still crosses Dog pictures; first Mystery pet is ~10 s of narration |
+| snowy-mail-route | ROUND 2, then PASS | welcomeAfter removed, event lines cut the welcome and intros, Go cuts the level intro; Pip off the Fish symbol; welcome take re-recorded | teach-then-practice, 40 min | arrow names drop while the welcome plays; level 8 hBuild can play after cards are down |
+| stage-blocker | ROUND 2 (1 blocker), then PASS | a focus note needs the actor lit (kit/stage.js, stage.md, spec); results scroll into view; same-mode tap keeps its welcome; dark actors dimmed | model-then-make, 45 min | at 1366 the results scroll hides Run again (`nearest` was tried and broke 680x425, so `start` stays); The Note run is ~40 s |
+
+Kit changes, both opt-in and backward compatible: `hold` on Curio.voice say (docs/KIT.md; 42 of 42 voice tests pass)
+and the stage family's "Lit for the eye" rule. Every plan passes check_plans; the integrator read each plan as a
+sub would and checked its paths, numbers and button names against the tool. Every Sub Day packet builds, with the
+module's six Word Wall words on the backup sheet.
+
+Deploy: built and checked (5261 pages, 81 built tools, 0 broken links), but `npx wrangler deploy` was blocked by the
+session's permission check, so the five are pushed and not yet live. After the deploy: Review Desk items set to ready
+and the stats refreshed.
