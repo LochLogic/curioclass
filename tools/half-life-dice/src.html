@@ -1,0 +1,330 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Half-Life Dice · Curio Class</title><meta name="description" content="Roll a thousand model nuclei, balance nuclear equations and date carbon-14 samples. Grade 10 chemistry. Works offline.">
+<!-- Curio Class, HS-PS1-8. Content CC BY 4.0, code MIT. Sources: OpenStax Chemistry 2e 21.3, 21.4, 5.3; OpenStax College Physics 2e 32.5 (D-T, 17.59 MeV), 32.6 (average U-235 fission, 200 MeV); NNDC NuDat 3; NIST CODATA 2018; NGSS (2013). Element number, symbol and name from Elements Inspector. All drawings in code. -->
+<link rel="stylesheet" href="kit:curio"><link rel="stylesheet" href="kit:theme-912"><style>
+:root{--brand:#97c059;--brand-ink:#10141a;--gr-1:#97c059;--gr-2:#e8edf3;--gr-3:#8fd7ff}body{height:100dvh;min-height:0;grid-template-rows:auto auto minmax(0,1fr);overflow:hidden}header{padding:8px 12px;gap:8px;flex-wrap:nowrap}h1{font-size:24px}h1 small{font-size:13px}.seg button,.icon-btn{min-height:44px;padding:0 11px;font-size:14px;white-space:nowrap}.hintbar{padding:6px 12px;background:var(--sec-bg);height:54px;display:flex;align-items:center}.hint{font-size:14px;line-height:1.35}main{display:block;padding:10px;min-height:0}.mode{height:100%;display:grid;grid-template-rows:auto minmax(0,1fr);gap:8px}.choices{display:grid;grid-template-columns:repeat(7,minmax(44px,1fr));gap:5px}.choices .btn{padding:3px;line-height:1.15}.choices small{display:block;font-size:11px;font-weight:400}.work{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:10px;min-height:0}.visual{grid-column:1;grid-row:1;min-width:0;min-height:0;display:grid;gap:8px}.controls{grid-column:2;grid-row:1;display:flex;flex-direction:column;gap:8px;min-width:0}.box{background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:9px;min-width:0}p{margin:0}.small,.rule{font-size:12px;line-height:1.4;color:var(--muted)}.row{display:flex;gap:6px}.row>*{flex:1;min-width:0}.btn{font-size:14px}.primary{background:var(--brand);color:var(--brand-ink)}.rollvisual{grid-template-rows:minmax(80px,.85fr) minmax(150px,1.15fr)}.traybox{display:grid;grid-template-rows:auto minmax(0,1fr) auto;gap:4px}.trayhead{display:flex;justify-content:space-between;gap:6px}.trayhead strong{font-size:16px}.trayhead span,.legend{font-size:11px;color:var(--muted)}#tray{display:block;width:100%;height:100%;min-height:0}.legend{display:flex;gap:10px;flex-wrap:wrap}.graphbox{padding:0;position:relative;overflow:hidden;background:var(--gr-bg)}#graph{width:100%;height:100%;display:block;touch-action:none}.graphlegend{position:absolute;right:5px;top:3px;background:#0e1520e0;padding:2px 4px;font-size:11px;pointer-events:none}.graphlegend span{margin-left:7px}#track-card,#half-card{font-size:13px;line-height:1.4;min-height:58px}.seedrow{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--muted)}.nucleusvisual{grid-template-rows:minmax(100px,1fr) auto minmax(130px,.85fr)}#nuclei,#ladder{display:block;width:100%;height:100%;min-height:0}.equation{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:8px;font-size:26px;min-height:64px;padding:5px}.isotope{display:inline-grid;grid-template-columns:auto auto;grid-template-rows:1fr 1fr;column-gap:3px;align-items:center}.isotope sup,.isotope sub{font-size:13px;line-height:1.1;position:static;grid-column:1}.isotope sup{grid-row:1}.isotope sub{grid-row:2}.isotope b{grid-column:2;grid-row:1/3;font-weight:500}.missing{border:1px dashed var(--brand);border-radius:5px;padding:3px 6px}.stepper{display:grid;grid-template-columns:44px minmax(44px,1fr) 44px;gap:5px;margin:3px 0 8px}.stepper input.num{width:100%;text-align:center;padding:0}.steplabel{font-size:12px;color:var(--muted)}#element-name{font-size:13px;min-height:22px}.result{font-size:14px;line-height:1.45;min-height:70px}#change{font-size:13px;line-height:1.4;min-height:58px}.ladderbox{display:grid;grid-template-rows:1fr auto;padding:7px;min-height:0}#energy-ratio{font-size:12px;color:var(--brand)}.privacy{margin-top:auto;font-size:11px;line-height:1.35;color:var(--muted);display:flex;align-items:center;gap:7px}.privacy button{margin-left:auto}.datingvisual{grid-template-rows:minmax(100px,.7fr) minmax(160px,1fr)}.counterbox{display:flex;align-items:center;justify-content:space-between;gap:12px;background:radial-gradient(ellipse at top left,#233328,#101923);padding:18px}#sample-name{font-size:18px;margin:0 0 6px}#activity{font-size:16px}.counter-face{font:700 clamp(25px,4vw,50px) var(--readout-font);color:var(--brand)}.stamp{font-size:11px;color:var(--brand)}.rulerbox{display:grid;grid-template-rows:auto 1fr auto;min-height:0}.rulerbox h2{font-size:12px;margin:0;color:var(--muted)}#ruler{width:100%;height:100%;min-height:100px;display:block;touch-action:none}#ruler-read{text-align:center;color:var(--brand);font-size:13px}#date-result{min-height:120px;font-size:14px;line-height:1.5}#estimate-result{min-height:42px;font-size:13px;line-height:1.4}
+@media(max-height:650px) and (min-width:600px){header{padding:4px 8px;gap:5px}h1{font-size:17px}h1 small{display:none}.seg button,.icon-btn{padding:0 8px;font-size:12px}.hintbar{height:42px;padding:4px 10px}.hint{font-size:12px}main{padding:6px}.mode,.work{gap:6px}.work{grid-template-columns:minmax(0,1fr) 250px}.choices{gap:4px}.choices .btn{font-size:12px}.choices small{font-size:10px}.box{padding:6px 8px}.controls{gap:5px}.btn{font-size:12px;padding:0 7px}.small,.rule{font-size:11px;line-height:1.3}#track-card,#half-card{font-size:11px;min-height:39px}.trayhead strong{font-size:13px}.trayhead span,.legend,.graphlegend{font-size:10px}.nucleusvisual{grid-template-rows:minmax(75px,1fr) 52px minmax(100px,1fr)}.equation{font-size:22px;min-height:52px;gap:6px}.stepper{margin:2px 0 4px}.steplabel{font-size:11px}.result{font-size:12px;min-height:45px}#change{font-size:11px;min-height:38px}#element-name{font-size:12px;min-height:16px}.privacy,#energy-ratio{font-size:10px}.datingvisual{grid-template-rows:minmax(75px,.7fr) minmax(145px,1fr)}.counterbox{padding:8px}#sample-name{font-size:14px}#activity{font-size:13px}#date-result{font-size:12px;min-height:100px}#estimate-result{font-size:12px;min-height:31px}}
+@media(max-width:599px){header{flex-wrap:wrap;padding:6px;gap:5px}h1{width:100%;font-size:20px}h1 small{display:none}.seg{flex:1}.seg button{padding:0 8px;font-size:13px;flex:1}.icon-btn{padding:0 9px;font-size:12px}.hintbar{height:57px;padding:5px 9px}.hint{font-size:12px}main{padding:6px}.mode,.work{gap:6px}.work{display:flex;flex-direction:column}.controls{gap:5px}.visual{flex:1;min-height:0}.choices{gap:3px}.choices .btn{font-size:11px;padding:3px}.choices small{display:none}#samples{grid-template-columns:repeat(4,minmax(44px,1fr))}#samples .btn{font-size:11px}.box{padding:6px 8px}.rollcontrols{display:grid;grid-template-columns:1fr 1fr}.rollcontrols>.row,.rollcontrols .rule,.rollcontrols .seedrow{grid-column:1/-1}#track-card,#half-card{font-size:11px;min-height:45px}.rule,.small{font-size:11px}.trayhead strong{font-size:12px}.trayhead span,.legend,.graphlegend{font-size:10px}.rollvisual{grid-template-rows:minmax(62px,.6fr) minmax(150px,1.2fr)}.nucleuscontrols{display:grid;grid-template-columns:1fr 1fr}.nucleuscontrols>.box:first-child{grid-row:1/3}.stepper{gap:3px;margin-bottom:4px}.steplabel{font-size:11px}.result{font-size:12px;min-height:50px}#change{font-size:11px;min-height:50px}#element-name{font-size:11px;min-height:28px}.nucleuscontrols .small{font-size:10px}.privacy{font-size:10px;gap:5px}.nucleusvisual{grid-template-rows:minmax(85px,1fr) auto minmax(113px,1fr)}.equation{font-size:22px;gap:6px;min-height:49px}#energy-ratio{font-size:10px}.datingcontrols{display:grid;grid-template-columns:1fr 1fr}.datingcontrols>.row,.datingcontrols .privacy{grid-column:1/-1}#date-result{font-size:11px;min-height:100px}#estimate-result{font-size:11px;min-height:38px}.datingvisual{grid-template-rows:minmax(70px,.6fr) minmax(140px,1fr)}.counterbox{padding:8px}#sample-name{font-size:13px}#activity{font-size:12px}.counter-face{font-size:24px}#counter-note{font-size:10px}#ruler-read{font-size:12px}}
+
+.choices{grid-template-columns:repeat(8,minmax(44px,1fr))}
+.seedrow{display:none}.privacy{display:none}
+#clear-n,#clear-d{font-size:11px}
+#card-context{display:none}
+#product-controls{display:grid;grid-template-columns:minmax(0,1fr) 80px;gap:0 4px}
+#product-controls .steplabel,#product-controls .stepper{grid-column:1/-1}
+#element-name{display:flex;align-items:center;min-height:44px}
+#product-controls #check{grid-column:2;grid-row:5}
+.traybox{grid-template-rows:auto minmax(0,1fr) auto auto}
+#check-result{min-height:0}
+#change{min-height:0}
+@media(max-height:650px) and (min-width:600px){
+ #product-controls{padding:4px 7px}.stepper{margin:0}.steplabel{line-height:13px}
+ #element-name{font-size:11px}#check-result,#change{font-size:11px;line-height:1.3;padding:5px 7px}
+ #assumptions{font-size:10px;line-height:1.25}
+ .rollvisual{grid-template-rows:minmax(90px,.75fr) minmax(150px,1.2fr)}
+ #half-card,#track-card{min-height:0}
+}
+@media(max-width:599px){
+ #dice,#cards{grid-template-columns:repeat(8,minmax(40px,1fr));gap:3px}
+ #dice .btn,#cards .btn{min-width:40px;padding:1px;font-size:10px}
+ #samples{grid-template-columns:repeat(4,minmax(44px,1fr))}
+ .rollcontrols{grid-template-rows:auto auto auto auto}.rollcontrols>.row{grid-column:1/-1}
+ .nucleuscontrols{grid-template-columns:1fr 1fr}.nucleuscontrols>.box:first-child{grid-row:1/3}
+ #product-controls{grid-template-columns:minmax(0,1fr) 65px}
+ #product-controls #check{font-size:12px}.privacy{display:none}
+}
+
+.saved-text{grid-column:1/-1;font-size:10px;color:var(--muted);line-height:12px}
+#card-context{display:block;font-size:11px;line-height:1.25;color:var(--muted)}
+.nucleusvisual{grid-template-rows:auto minmax(70px,1fr) auto minmax(100px,.8fr)}
+.graphbox{display:grid;grid-template-rows:auto minmax(0,1fr)}
+.graphlegend{position:static;grid-row:1;text-align:right;min-height:16px;font-size:10px}
+#graph{grid-row:2}
+@media(max-height:650px) and (min-width:600px){
+ #product-controls{padding:3px 7px}.steplabel{font-size:10px;line-height:11px}
+ #check-result,#change{font-size:10px;line-height:1.25;padding:4px 7px}
+ .nucleusvisual{grid-template-rows:auto minmax(50px,1fr) 49px minmax(100px,.9fr);gap:5px}
+ #card-context{font-size:10px}#element-name{min-height:44px}
+}
+@media(max-width:599px){#dice,#cards{grid-template-columns:repeat(4,minmax(44px,1fr))}#dice .btn,#cards .btn{min-width:44px;font-size:11px}.nucleusvisual{grid-template-rows:auto minmax(55px,1fr) auto minmax(95px,1fr)}}
+
+@media(max-height:650px) and (min-width:600px){
+ .rollvisual{grid-template-rows:minmax(105px,.85fr) minmax(145px,1.15fr)}
+ .traybox{grid-template-rows:auto minmax(0,1fr) auto}
+ .rollcontrols .rule{font-size:10px;line-height:1.2}
+}
+@media(max-width:599px){
+ header .seg{width:100%;flex:none}header .icon-btn{flex:1}header .seg button{font-size:13px}
+ .rollvisual{grid-template-rows:minmax(90px,.65fr) minmax(150px,1fr)}
+ .traybox{grid-template-rows:auto minmax(0,1fr) auto}
+ .rollcontrols .rule{font-size:10px;line-height:1.2}
+}
+.rulerbox{grid-template-rows:auto minmax(0,1fr) auto auto}#ruler{min-height:70px}
+.seg button,.icon-btn{min-width:44px}
+@media(max-height:650px) and (min-width:600px){.rollcontrols{gap:4px}.rollcontrols #track-card,.rollcontrols #half-card{line-height:1.25}}
+@media(max-width:599px){.rollcontrols #track-card,.rollcontrols #half-card{height:76px;min-height:76px}.rollvisual{grid-template-rows:minmax(80px,.65fr) minmax(140px,1fr)}.datingcontrols #date-result{height:160px;min-height:160px}}
+
+[aria-disabled="true"]{opacity:.43;filter:saturate(.4);cursor:default}
+button.btn[aria-pressed="true"]:not([data-die]):not([data-card]):not([data-sample]){background:#243729;border:2px solid var(--brand);color:#d9edbb;box-shadow:inset 0 -3px 0 #97c059}
+#new-seed,#clear-n,#clear-d{border-style:dashed;background:transparent;color:var(--muted);margin-left:5px}
+.stepper{grid-template-columns:44px 44px minmax(44px,1fr) 44px 44px;gap:3px}
+.type-hint{font-size:10px;white-space:nowrap}
+.rollvisual{grid-template-rows:minmax(0,1fr) minmax(190px,.65fr)}
+.traybox{grid-template-rows:auto minmax(0,1fr) auto auto;gap:3px}
+#roll-detail{font-size:12px;line-height:1.2}
+#track-card,#half-card{font-size:12px;line-height:1.35}
+#half-card{min-height:98px}
+.counter-toggles button{white-space:nowrap;font-size:12px;padding:0 5px}
+#count-history{max-width:460px;font-size:11px;margin-top:6px}
+.nucleusvisual{grid-template-rows:auto minmax(90px,1fr) auto minmax(128px,.75fr)}
+#product-controls #check{grid-row:5}
+#estimate-result{min-height:42px}
+@media(max-height:650px) and (min-width:600px){
+ .stepper{grid-template-columns:44px 44px minmax(44px,1fr) 44px 44px;gap:2px}
+ .stepper .btn{padding:0;font-size:11px}
+ .rollvisual{grid-template-rows:minmax(0,1fr) minmax(143px,1.05fr)}
+ #roll-detail{font-size:10px}
+ #track-card,#half-card{font-size:10px;line-height:1.22;min-height:0}
+ .rollcontrols{gap:4px}
+ .nucleusvisual{grid-template-rows:auto minmax(64px,1fr) 49px 132px;gap:4px}
+ .type-hint{font-size:10px}
+ #date-result{font-size:11px;line-height:1.25;min-height:0}
+ #estimate-result{font-size:11px;line-height:1.25;min-height:32px}
+ .datingvisual{grid-template-rows:minmax(75px,.7fr) minmax(145px,1fr)}
+ .counter-toggles button{font-size:11px}
+}
+@media(max-width:599px){
+ .stepper{grid-template-columns:44px minmax(44px,1fr) 44px}
+ #a-minus-ten,#a-plus-ten,#z-minus-ten,#z-plus-ten{display:none}
+ .type-hint{display:block;font-size:10px}
+ .rollcontrols #track-card,.rollcontrols #half-card{height:auto;min-height:70px;font-size:10px;line-height:1.2}
+ .rollvisual{grid-template-rows:minmax(80px,1fr) minmax(190px,1.1fr)}
+ #roll-detail{font-size:10px}
+ .nucleusvisual{grid-template-rows:auto minmax(90px,1fr) auto 130px;gap:4px}
+ .datingcontrols #date-result{height:177px;min-height:177px;font-size:10px;line-height:1.25}
+ .datingcontrols .box{padding:5px}
+ .datingvisual{grid-template-rows:minmax(80px,.65fr) minmax(135px,1fr)}
+ #count-history{font-size:10px;margin-top:2px}
+ #sample-name{font-size:12px}
+ .counter-face{font-size:22px}
+ .counterbox{gap:5px}
+ #counter-note{font-size:10px;max-width:115px}
+}
+
+@media(max-height:650px) and (min-width:600px){
+ .rollvisual{grid-template-rows:minmax(0,1fr) 137px}
+ .legend{gap:6px;white-space:nowrap}
+ .legend #seed-label{display:none}
+ .nucleusvisual{grid-template-rows:auto minmax(77px,1fr) 44px 113px;gap:2px}
+ .equation{min-height:44px;padding:2px}
+}
+@media(max-width:599px){
+ header{gap:4px}
+ header h1{width:auto;flex:1;font-size:15px;white-space:nowrap}
+ header .icon-btn{flex:none;font-size:11px;padding:0 7px}
+ header .seg{order:2}
+ .rollcontrols .rule{display:none}
+ .rollcontrols #track-card,.rollcontrols #half-card{min-height:44px;padding:5px}
+ .legend{gap:5px;font-size:10px}
+ .legend #seed-label{display:none}
+ .rollvisual{grid-template-rows:minmax(95px,1fr) 229px;gap:5px}
+ .traybox{padding:5px}
+ .datingcontrols #date-result{height:151px;min-height:151px}
+ .datingvisual{grid-template-rows:minmax(85px,.6fr) minmax(170px,1fr)}
+}
+
+@media(max-height:650px) and (min-width:600px){
+ header{padding:2px 8px}
+ .hintbar{height:38px;padding:2px 10px}
+ main{padding:3px}
+ .mode{gap:3px}
+ .nucleusvisual{grid-template-rows:auto minmax(77px,1fr) 44px 132px;gap:2px}
+}
+
+.graphbox{padding:0}
+@media(max-width:599px){
+ header{padding:4px 6px}
+ .hintbar{height:45px}
+ .rollvisual{grid-template-rows:minmax(93px,1fr) 231px}
+}
+</style></head><body><header><h1>Half-Life Dice <small>A crowd keeps time. One nucleus never does.</small></h1><div class="seg" role="group" aria-label="Mode"><button id="m-roll" aria-pressed="true">Roll</button><button id="m-nucleus" aria-pressed="false">Nucleus</button><button id="m-dating" aria-pressed="false">Dating lab</button></div><button class="icon-btn" id="motion" aria-pressed="true">Motion</button><button class="icon-btn" id="sound" aria-pressed="true">Sound</button><button class="icon-btn" id="read">Read</button></header><div class="hintbar"><p class="hint" id="hint"></p></div><main>
+<section class="mode" id="roll-mode"><div id="dice" class="choices" role="group" aria-label="Die picker"></div><div class="work"><div class="controls rollcontrols"><div class="row" id="roll-buttons"><button class="btn primary" id="roll-once">Roll once</button><button class="btn primary" id="roll-ten">Roll to 10</button><button class="btn" id="reset">Reset</button></div><div class="row"><button class="btn" id="expected" aria-pressed="true">Show expected</button><button class="btn" id="average">Average 20 runs</button></div><div class="row"><button class="btn" id="track">Track one</button><button class="btn" id="mark" aria-pressed="false">Mark a half-life</button></div><div class="box" id="track-card" aria-live="polite"></div><div class="box" id="half-card" aria-live="polite"></div><p class="rule">Dice model nuclei. Every 1 (tails for Coin) has decayed. Gray × dice leave the next roll.</p><div class="seedrow"><button class="btn" id="new-seed">New seed</button><span id="seed-label"></span><span id="average-status" aria-live="polite"></span></div></div><div class="visual rollvisual"><div class="box traybox"><div class="trayhead"><strong id="tray-summary" aria-live="polite"></strong><span>1,000 model nuclei</span></div><canvas id="tray" role="img"></canvas><p id="roll-detail" class="small"></p><div class="legend"><span>□ live face</span><span>▣ 1: new decay</span><span>× gray, decayed</span><span>◎ tracked</span></div></div><div class="box graphbox"><svg id="graph" role="group" aria-label="Undecayed nuclei against roll number"></svg><div class="graphlegend"><span>● observed</span><span id="expected-legend">- - expected</span><span id="mean-legend" hidden>··· mean</span></div></div></div></div></section>
+<section class="mode" id="nucleus-mode" hidden><div id="cards" class="choices" role="group" aria-label="Nuclear equation cards"></div><div class="work"><div class="controls nucleuscontrols"><div class="box" id="product-controls"><p class="steplabel"><label for="mass">Mass number A</label> <span class="type-hint">or type a number</span></p><div class="stepper"><button class="btn" id="a-minus-ten" aria-label="Decrease mass number by 10">−10</button><button class="btn" id="a-minus" aria-label="Decrease mass number">−</button><input class="num" id="mass" type="number" min="0" max="240" step="1" value="10"><button class="btn" id="a-plus" aria-label="Increase mass number">+</button><button class="btn" id="a-plus-ten" aria-label="Increase mass number by 10">+10</button></div><p class="steplabel"><label for="charge">Charge / atomic number Z</label></p><div class="stepper"><button class="btn" id="z-minus-ten" aria-label="Decrease charge by 10">−10</button><button class="btn" id="z-minus" aria-label="Decrease charge">−</button><input class="num" id="charge" type="number" min="-1" max="94" step="1" value="3"><button class="btn" id="z-plus" aria-label="Increase charge">+</button><button class="btn" id="z-plus-ten" aria-label="Increase charge by 10">+10</button></div><p id="element-name"></p><button class="btn primary" id="check" style="width:100%">Check</button></div><div class="box result" id="check-result" aria-live="polite"></div><div class="box" id="change"></div><p class="small" id="card-context"></p><div class="privacy"><span id="progress-n"></span><span>Saved on this device only</span><button class="btn" id="clear-n">Clear</button></div></div><div class="visual nucleusvisual"><svg id="nuclei" role="img" aria-label="Before and proposed after nuclei"></svg><div class="box equation" id="equation" aria-label="Nuclear equation"></div><div class="box ladderbox"><svg id="ladder" role="img" aria-label="Energy per event, logarithmic scale"></svg><p id="energy-ratio">Balance a card to reveal its energy comparison.</p></div></div></div></section>
+<section class="mode" id="dating-mode" hidden><div class="choices" id="samples" role="group" aria-label="Sample shelf"></div><div class="work"><div class="controls datingcontrols"><div class="row" id="date-buttons"><button class="btn primary" id="estimate">Estimate</button><button class="btn" id="calculate">Calculate</button><button class="btn" id="count-again" hidden>Count again</button></div><div class="row counter-toggles"><button class="btn" id="noise" aria-pressed="false">Counting noise</button><button class="btn" id="counter-clicks" aria-pressed="false">Counter clicks</button></div><div class="box"><p id="estimate-result" aria-live="polite"></p><p class="small" id="estimate-help">Read halving steps first. Arrow keys move the pin by 100 years.</p></div><div class="box" id="date-result" aria-live="polite"></div><p class="small" id="assumptions">Model: 5,730-year half-life. Living carbon: 13.6 decays per minute per gram (dpm/g).</p><div class="privacy"><span id="progress-d"></span><span>Saved on this device only</span><button class="btn" id="clear-d">Clear</button></div></div><div class="visual datingvisual"><div class="box counterbox"><div><h2 id="sample-name"></h2><p id="activity"></p><p class="stamp" id="sample-kind"></p><p id="count-history" class="small"></p></div><div><p class="counter-face" id="counter">1,080</p><p class="small" id="counter-note">Model counter · 100 min in 1 s · 1 g</p></div></div><div class="box rulerbox"><h2>Halving ruler · years since living carbon</h2><svg id="ruler" role="group" aria-label="Halving ruler, drag pin to estimate age"></svg><p id="ruler-read"></p></div></div></div></section>
+</main><script src="kit:curio"></script><script src="kit:graphing"></script><script>
+(() => {'use strict';
+
+const $=id=>document.getElementById(id),NS='http://www.w3.org/2000/svg';
+const mk=(tag,a,p)=>{const e=document.createElementNS(NS,tag);Object.entries(a||{}).forEach(([k,v])=>e.setAttribute(k,v));if(p)p.append(e);return e;};
+const txt=(p,x,y,t,a={})=>{const e=mk('text',{x,y,fill:'var(--ink)',...a},p);e.textContent=t;return e;};
+const ELEMENTS=[{"z": 1, "symbol": "H", "name": "Hydrogen"}, {"z": 2, "symbol": "He", "name": "Helium"}, {"z": 3, "symbol": "Li", "name": "Lithium"}, {"z": 4, "symbol": "Be", "name": "Beryllium"}, {"z": 5, "symbol": "B", "name": "Boron"}, {"z": 6, "symbol": "C", "name": "Carbon"}, {"z": 7, "symbol": "N", "name": "Nitrogen"}, {"z": 8, "symbol": "O", "name": "Oxygen"}, {"z": 9, "symbol": "F", "name": "Fluorine"}, {"z": 10, "symbol": "Ne", "name": "Neon"}, {"z": 11, "symbol": "Na", "name": "Sodium"}, {"z": 12, "symbol": "Mg", "name": "Magnesium"}, {"z": 13, "symbol": "Al", "name": "Aluminum"}, {"z": 14, "symbol": "Si", "name": "Silicon"}, {"z": 15, "symbol": "P", "name": "Phosphorus"}, {"z": 16, "symbol": "S", "name": "Sulfur"}, {"z": 17, "symbol": "Cl", "name": "Chlorine"}, {"z": 18, "symbol": "Ar", "name": "Argon"}, {"z": 19, "symbol": "K", "name": "Potassium"}, {"z": 20, "symbol": "Ca", "name": "Calcium"}, {"z": 21, "symbol": "Sc", "name": "Scandium"}, {"z": 22, "symbol": "Ti", "name": "Titanium"}, {"z": 23, "symbol": "V", "name": "Vanadium"}, {"z": 24, "symbol": "Cr", "name": "Chromium"}, {"z": 25, "symbol": "Mn", "name": "Manganese"}, {"z": 26, "symbol": "Fe", "name": "Iron"}, {"z": 27, "symbol": "Co", "name": "Cobalt"}, {"z": 28, "symbol": "Ni", "name": "Nickel"}, {"z": 29, "symbol": "Cu", "name": "Copper"}, {"z": 30, "symbol": "Zn", "name": "Zinc"}, {"z": 31, "symbol": "Ga", "name": "Gallium"}, {"z": 32, "symbol": "Ge", "name": "Germanium"}, {"z": 33, "symbol": "As", "name": "Arsenic"}, {"z": 34, "symbol": "Se", "name": "Selenium"}, {"z": 35, "symbol": "Br", "name": "Bromine"}, {"z": 36, "symbol": "Kr", "name": "Krypton"}, {"z": 37, "symbol": "Rb", "name": "Rubidium"}, {"z": 38, "symbol": "Sr", "name": "Strontium"}, {"z": 39, "symbol": "Y", "name": "Yttrium"}, {"z": 40, "symbol": "Zr", "name": "Zirconium"}, {"z": 41, "symbol": "Nb", "name": "Niobium"}, {"z": 42, "symbol": "Mo", "name": "Molybdenum"}, {"z": 43, "symbol": "Tc", "name": "Technetium"}, {"z": 44, "symbol": "Ru", "name": "Ruthenium"}, {"z": 45, "symbol": "Rh", "name": "Rhodium"}, {"z": 46, "symbol": "Pd", "name": "Palladium"}, {"z": 47, "symbol": "Ag", "name": "Silver"}, {"z": 48, "symbol": "Cd", "name": "Cadmium"}, {"z": 49, "symbol": "In", "name": "Indium"}, {"z": 50, "symbol": "Sn", "name": "Tin"}, {"z": 51, "symbol": "Sb", "name": "Antimony"}, {"z": 52, "symbol": "Te", "name": "Tellurium"}, {"z": 53, "symbol": "I", "name": "Iodine"}, {"z": 54, "symbol": "Xe", "name": "Xenon"}, {"z": 55, "symbol": "Cs", "name": "Cesium"}, {"z": 56, "symbol": "Ba", "name": "Barium"}, {"z": 57, "symbol": "La", "name": "Lanthanum"}, {"z": 58, "symbol": "Ce", "name": "Cerium"}, {"z": 59, "symbol": "Pr", "name": "Praseodymium"}, {"z": 60, "symbol": "Nd", "name": "Neodymium"}, {"z": 61, "symbol": "Pm", "name": "Promethium"}, {"z": 62, "symbol": "Sm", "name": "Samarium"}, {"z": 63, "symbol": "Eu", "name": "Europium"}, {"z": 64, "symbol": "Gd", "name": "Gadolinium"}, {"z": 65, "symbol": "Tb", "name": "Terbium"}, {"z": 66, "symbol": "Dy", "name": "Dysprosium"}, {"z": 67, "symbol": "Ho", "name": "Holmium"}, {"z": 68, "symbol": "Er", "name": "Erbium"}, {"z": 69, "symbol": "Tm", "name": "Thulium"}, {"z": 70, "symbol": "Yb", "name": "Ytterbium"}, {"z": 71, "symbol": "Lu", "name": "Lutetium"}, {"z": 72, "symbol": "Hf", "name": "Hafnium"}, {"z": 73, "symbol": "Ta", "name": "Tantalum"}, {"z": 74, "symbol": "W", "name": "Tungsten"}, {"z": 75, "symbol": "Re", "name": "Rhenium"}, {"z": 76, "symbol": "Os", "name": "Osmium"}, {"z": 77, "symbol": "Ir", "name": "Iridium"}, {"z": 78, "symbol": "Pt", "name": "Platinum"}, {"z": 79, "symbol": "Au", "name": "Gold"}, {"z": 80, "symbol": "Hg", "name": "Mercury"}, {"z": 81, "symbol": "Tl", "name": "Thallium"}, {"z": 82, "symbol": "Pb", "name": "Lead"}, {"z": 83, "symbol": "Bi", "name": "Bismuth"}, {"z": 84, "symbol": "Po", "name": "Polonium"}, {"z": 85, "symbol": "At", "name": "Astatine"}, {"z": 86, "symbol": "Rn", "name": "Radon"}, {"z": 87, "symbol": "Fr", "name": "Francium"}, {"z": 88, "symbol": "Ra", "name": "Radium"}, {"z": 89, "symbol": "Ac", "name": "Actinium"}, {"z": 90, "symbol": "Th", "name": "Thorium"}, {"z": 91, "symbol": "Pa", "name": "Protactinium"}, {"z": 92, "symbol": "U", "name": "Uranium"}, {"z": 93, "symbol": "Np", "name": "Neptunium"}, {"z": 94, "symbol": "Pu", "name": "Plutonium"}];
+const DICE=[['coin',2,'Coin'],['d4',4,'d4'],['d6',6,'d6'],['d8',8,'d8'],['d10',10,'d10'],['d12',12,'d12'],['d20',20,'d20']];
+const CARDS=[
+{id:'N1',name:'Carbon-14',short:'carbon',before:[[14,6,'C']],after:[[14,7,'N'],[0,-1,'e']],change:'Beta decay: a neutron became a proton and an electron left.',context:'Half-life 5,730 years (OpenStax). NNDC: 5,700 ± 30 years.',energy:1},
+{id:'N2',name:'Uranium-238',short:'uranium',before:[[238,92,'U']],after:[[234,90,'Th'],[4,2,'He']],change:'Alpha decay: the nucleus released 2 protons and 2 neutrons together.',context:'Alpha decay changes both mass number and charge.',energy:null},
+{id:'N3',name:'Iodine-131',short:'iodine',before:[[131,53,'I']],after:[[131,54,'Xe'],[0,-1,'e']],change:'Beta decay: a neutron became a proton and an electron left.',context:'Thyroid treatment and imaging. Half-life 8.02 days.',energy:null},
+{id:'N4',name:'Cobalt-60',short:'cobalt',before:[[60,27,'Co']],after:[[60,28,'Ni'],[0,-1,'e']],change:'Beta decay, then a gamma ray. Gamma changes neither mass number nor charge.',context:'Radiation therapy. Half-life 5.27 years.',energy:null},
+{id:'N5',name:'Fluorine-18',short:'fluorine',before:[[18,9,'F']],after:[[18,8,'O'],[0,1,'e']],change:'Positron decay: a proton became a neutron and a positron left.',context:'PET scans. Half-life about 110 minutes.',energy:null},
+{id:'F1',name:'Fission',short:'fission',before:[[235,92,'U'],[1,0,'n']],after:[[141,56,'Ba'],[92,36,'Kr'],[1,0,'n',3]],change:'Fission: one heavy nucleus split into two smaller nuclei and released 3 neutrons.',context:'About 200 MeV per event; about 0.85 MeV per nucleon.',energy:3},
+{id:'F2',name:'Fusion',short:'fusion',before:[[2,1,'H'],[3,1,'H']],after:[[4,2,'He'],[1,0,'n']],change:'Fusion: two light nuclei joined. A helium nucleus and a neutron left.',context:'17.6 MeV per event; 3.52 MeV per nucleon.',energy:2}];
+const SAMPLES=[{id:'scrolls',name:'Dead Sea Scrolls fragment',short:'Scrolls',A:10.8},{id:'seeds',name:'Seeds from Tutankhamun’s tomb',short:'Tomb seeds',A:9.07},{id:'leaf',name:'Fresh leaf',short:'Fresh leaf',A:13.6,practice:true},{id:'hearth',name:'Hearth charcoal',short:'Hearth',A:6.8,practice:true},{id:'cave',name:'Cave charcoal',short:'Cave',A:3.4,practice:true},{id:'mammoth',name:'Mammoth bone',short:'Mammoth',A:.85,practice:true},{id:'core',name:'Deep core wood',short:'Deep core',A:.02,practice:true}];
+const L={wRoll:'Pick a die, then press Roll once. Every 1 is a decay.',trackTip:'Watch the ringed die. Its chance stays the same, no matter how long it lasts.',wNucleus:'Pick a card. Set the missing mass number and charge, then press Check.',wDating:'Pick a sample. Drag the ruler pin, press Estimate, then press Calculate.',tooOld:"That one's past the clock's range. Too little carbon-14 left."};
+
+Object.assign(L,{
+hint1:'Watch the tray finish this roll. Reset can start a fresh tray.',
+hint2:'Watch Average 20 runs finish. Press Reset for a fresh tray.',
+hint3:'The ringed die decayed. Press Track one to choose another live die.',
+hint4:'Drag the line to 500, then read the roll number. Arrow keys move by 25 nuclei.',
+hint5:'Every roll is done. Press Reset for a fresh tray.',
+hint6:'Watch the ringed die beside the crowd. Press Roll once to test its unchanged chance.',
+hint7:'Compare energy per event on the ladder. Pick another card to balance its missing product.',
+hint8:'Fix the sum that is off, then press Check again.',
+hint9:'Watch the model counter finish, then drag the ruler pin and press Estimate.',
+hint10:'Compare your estimate with the calculation. Pick another sample or switch Counting noise.',
+hint11:'Your estimate is recorded. Press Calculate to see the logarithm steps.',
+hint12:'Press Reset to track a die from the start.',
+hint13:'Roll first, then mark the half-life.',
+hint14:'Press Estimate first to record your moved ruler pin, then press Calculate.',
+hint15:'Watch the model counter finish. Then press Calculate to compare this count with your recorded estimate.',
+hint16:'The line is on 500. Press Roll once until your tray crosses it.',
+hint17:'Compare your tray with the exact value. Press Average 20 runs to see the crowd settle.'
+});
+const EVENT_IDS=new Set(['tooOld']);
+const state={mode:'roll',kind:'d6',seed:20261029,rolls:0,faces:[],alive:[],points:[[0,1000]],mean:null,tracked:null,trackStart:0,trackDied:null,expected:true,mark:false,markY:750,markReading:null,markAccepted:false,busy:false,averaging:false,card:'N1',A:10,Z:3,checked:false,cardResult:null,ladder:false,sample:'scrolls',noise:false,count:1080,counting:false,counterClicks:false,countHistory:[],countSerial:0,clickEvents:[],previewFaces:null,lastRoll:null,estimateAge:0,pinPlaced:false,estimated:false,calculated:false,dateResult:null,progress:{cards:[],samples:[]}};
+let countRng,trackSerial=0,rng,op=0,countOp=0,g=null,halfHandle=null,halfSegment=null,rulerPlane=null,rulerHandle=null,resizePending=false;
+function mulberry32(a){return()=>{let t=a+=0x6D2B79F5;t=Math.imul(t^t>>>15,t|1);t^=t+Math.imul(t^t>>>7,t|61);return((t^t>>>14)>>>0)/4294967296;};}
+const cap=()=>sides()===20?16:10;
+const sides=()=>DICE.find(d=>d[0]===state.kind)[1],half=()=>Math.LN2/-Math.log(1-1/sides()),expected=n=>1000*(1-1/sides())**n,age=A=>5730/Math.LN2*Math.log(13.6/A),num=n=>Math.round(n).toLocaleString('en-US'),currentCard=()=>CARDS.find(c=>c.id===state.card),currentSample=()=>SAMPLES.find(s=>s.id===state.sample);
+const V=Curio.voice({lines:L,scope:()=>state.mode,hint:false,read:()=>$('hint').textContent,speaks:'#track',welcome:()=>state.mode==='roll'?['wRoll',{valid:()=>state.rolls<cap(),needs:'#reset'}]:state.mode==='nucleus'?['wNucleus',{needs:'#check'}]:['wDating',{valid:()=>!state.calculated,needs:'#estimate'}]});
+function hint(){let t;if(state.mode==='roll')t=state.busy?L.hint1:state.averaging?L.hint2:state.rolls>=cap()?(state.trackAtEnd?L.hint12:L.hint5):state.mark&&state.rolls===0?L.hint13:state.tracked!==null&&state.trackDied!==null?L.hint3:state.mark?(state.markAccepted?(state.markReading===null?L.hint16:L.hint17):L.hint4):state.tracked!==null?L.hint6:L.wRoll;else if(state.mode==='nucleus')t=state.checked?L.hint7:state.cardResult?L.hint8:L.wNucleus;else t=state.counting?(state.estimated?L.hint15:L.hint9):state.calculated?L.hint10:state.estimated?L.hint11:state.pinPlaced?L.hint14:L.wDating;$('hint').textContent=t;}
+function save(){try{localStorage.setItem('curio-half-life-dice',JSON.stringify(state.progress));}catch{}progress();}
+function progress(){$('progress-n').textContent=state.progress.cards.length+'/7 checked';$('progress-d').textContent=state.progress.samples.length+'/7 dated';if($('saved-cards'))$('saved-cards').textContent=state.progress.cards.length+'/7 cards checked. Saved on this device only';if($('saved-samples'))$('saved-samples').textContent=state.progress.samples.length+'/7 samples dated. Saved on this device only';}
+try{const p=JSON.parse(localStorage.getItem('curio-half-life-dice'));if(p&&Array.isArray(p.cards)&&Array.isArray(p.samples))state.progress={cards:p.cards.filter(x=>CARDS.some(c=>c.id===x)),samples:p.samples.filter(x=>SAMPLES.some(s=>s.id===x))};}catch{}
+function clear(mode){state.progress[mode==='nucleus'?'cards':'samples']=[];save();}
+function pressed(container,key,attr){[...$(container).children].forEach(b=>{if(b.dataset[attr]!==undefined)b.setAttribute('aria-pressed',b.dataset[attr]===key);});}
+function setMode(m){m=({'Roll':'roll','Nucleus':'nucleus','Dating lab':'dating'})[m]||m;if(!['roll','nucleus','dating'].includes(m)||state.mode===m)return;V.hush();state.mode=m;['roll','nucleus','dating'].forEach(k=>{$(k+'-mode').hidden=k!==m;$('m-'+k).setAttribute('aria-pressed',k===m);});hint();layout();V.welcome();}
+
+function reset(){op++;state.busy=false;state.averaging=false;state.rolls=0;state.alive=Array(1000).fill(true);state.faces=Array(1000).fill(sides()===2?2:sides());state.previewFaces=null;state.lastRoll=null;trackSerial=0;state.points=[[0,1000]];state.mean=null;state.tracked=null;state.trackDied=null;state.mark=false;state.markY=750;state.markReading=null;state.markAccepted=false;state.trackAtEnd=false;$('average-status').textContent='';rng=mulberry32(state.seed);updateRoll();drawGraph();hint();}
+function die(k){k=String(k).toLowerCase();if(!DICE.some(d=>d[0]===k))return;V.dropQueued();state.kind=k;pressed('dice',k,'die');reset();}
+function seed(s){state.seed=Number(s)>>>0;reset();resetCountStream();}
+function updateRoll(){const count=state.alive.filter(Boolean).length;
+$('tray-summary').textContent=num(count)+' left after '+state.rolls+(state.rolls===1?' roll':' rolls');
+$('roll-detail').textContent=state.lastRoll?state.lastRoll.decayed+' of '+state.lastRoll.before+' live dice decayed this roll ('+(state.lastRoll.before?Math.round(100*state.lastRoll.decayed/state.lastRoll.before):0)+' percent).':'A die never remembers. Each live die has a 1 in '+sides()+' chance.';
+$('tray').setAttribute('aria-label',count+' live and '+(1000-count)+' decayed dice after '+state.rolls+' rolls. Dice model nuclei.');
+$('seed-label').textContent='Seed '+state.seed;
+$('roll-once').setAttribute('aria-disabled',state.busy||state.averaging||state.rolls>=cap());
+$('roll-ten').setAttribute('aria-disabled',state.busy||state.averaging||state.rolls>=10);
+$('average').setAttribute('aria-disabled',state.busy||state.averaging);
+$('mark').setAttribute('aria-pressed',state.mark);$('expected').setAttribute('aria-pressed',state.expected);
+$('expected-legend').hidden=!state.expected;$('expected-legend').textContent='- - expected at 10: '+expected(10).toFixed(1);$('mean-legend').hidden=!state.mean;
+$('track-card').textContent=state.trackAtEnd?'Press Reset to track a die from the start.':state.tracked===null?'Press Track one to follow one nucleus.':'Die '+(state.tracked+1)+(state.trackDied!==null?' decayed on roll '+state.trackDied:': live')+'. Rolls survived: '+(state.trackDied===null?state.rolls:state.trackDied-1)+'. '+(state.trackDied!==null?'While live, chance each roll:':'Chance it decays next roll:')+' 1 in '+sides()+'.';
+const exact=' Exact for '+(state.kind==='coin'?'a coin':'a '+state.kind)+': '+half().toFixed(3)+' rolls.';
+state.markAccepted=state.mark&&state.rolls>0&&state.markY===500;state.markReading=state.markAccepted?crossing(500):null;
+let card=!state.mark?'Press Mark a half-life. Move the line to half the starting crowd.':state.rolls===0?'Roll first, then mark the half-life.':state.markY!==500?'Drag the line to 500, then read the roll number. Line: '+state.markY+' nuclei.':state.markReading===null?'Accepted at 500 nuclei. Keep using Roll once until your tray crosses 500.'+exact:'Accepted at 500 nuclei. Your tray: '+state.markReading.toFixed(1)+' '+(state.markReading===1?'roll':'rolls')+'.'+exact+(Math.abs(state.markReading-half())>.5?' One tray scatters. Press Average 20 runs to see the crowd hug the exact value.':'');
+if(sides()===20&&state.rolls<=10)card+=' Roll once continues past 10, up to roll 16.';
+if(state.rolls>=cap())$('track-card').textContent=state.trackAtEnd?'Press Reset to track a die from the start.':(state.tracked===null?'':(state.trackDied===null?'Live. ':'Decayed. ')+'Rolls survived: '+(state.trackDied===null?state.rolls:state.trackDied-1)+'. Chance each live roll: 1 in '+sides()+'. ')+'Every roll is done. Press Reset for a fresh tray.';
+$('half-card').textContent=card;drawTray();}
+async function roll(n=1){if(state.busy||state.averaging||state.rolls>=cap()||n<=0)return;const token=op,total=Math.min(n,cap()-state.rolls);state.busy=true;hint();updateRoll();
+try{for(let j=0;j<total;j++){const next=state.faces.slice(),before=state.alive.filter(Boolean).length;for(let i=0;i<1000;i++)if(state.alive[i])next[i]=1+Math.floor(rng()*sides());
+const start=performance.now();state.previewFaces=next;
+while(performance.now()-start<400){if(token!==op)return;const elapsed=performance.now()-start;drawTray(!Curio.reduce&&elapsed<160?Math.floor(elapsed/45):null);await Curio.wait(20);}
+if(token!==op)return;state.faces=next;state.previewFaces=null;state.rolls++;let decayed=0;
+for(let i=0;i<1000;i++)if(state.alive[i]&&next[i]===1){state.alive[i]=false;decayed++;if(i===state.tracked)state.trackDied=state.rolls;}
+state.lastRoll={before,decayed};state.points.push([state.rolls,state.alive.filter(Boolean).length]);updateRoll();drawGraph();}}
+finally{if(token===op){state.busy=false;state.previewFaces=null;updateRoll();hint();}}}
+async function average(){if(state.averaging||state.busy)return;state.averaging=true;const token=op,mean=Array(11).fill(0),s=sides();hint();updateRoll();for(let r=0;r<20;r++){const rand=mulberry32((state.seed+Math.imul(r+1,0x9e3779b9))>>>0),live=Array(1000).fill(true);mean[0]+=1000;for(let k=1;k<=10;k++){let count=0;for(let i=0;i<1000;i++)if(live[i]){live[i]=Math.floor(rand()*s)!==0;if(live[i])count++;}mean[k]+=count;}$('average-status').textContent=(r+1)+'/20';await Curio.wait(100);if(token!==op)return;}state.mean=mean.map((v,i)=>[i,v/20]);state.averaging=false;updateRoll();drawGraph();hint();}
+function trayGeometry(){const r=$('tray').getBoundingClientRect(),cols=Math.max(1,Math.round(Math.sqrt(1000*Math.max(1,r.width-8)/Math.max(1,r.height-8)))),rows=Math.ceil(1000/cols),cell=Math.min((r.width-8)/cols,(r.height-8)/rows);return{cols,rows,cell,x:(r.width-cell*cols)/2,y:(r.height-cell*rows)/2,size:cell-1};}
+function track(){if(state.rolls>=cap()){state.trackAtEnd=true;updateRoll();hint();return;}const geo=trayGeometry(),candidates=state.alive.map((a,i)=>a&&i!==state.tracked&&i%geo.cols>0&&i%geo.cols<geo.cols-1&&Math.floor(i/geo.cols)>0&&Math.floor(i/geo.cols)<geo.rows-1?i:-1).filter(i=>i>=0);
+if(!candidates.length){$('track-card').textContent='No live dice left. Press Reset, then Track one.';return;}
+const rand=mulberry32((state.seed^Math.imul(++trackSerial,0x45d9f3b))>>>0);state.tracked=candidates[Math.floor(rand()*candidates.length)];state.trackAtEnd=false;state.trackStart=state.rolls;state.trackDied=null;updateRoll();hint();if(!V.heard('trackTip'))V.how('trackTip',{hint:false,needs:'#track',valid:()=>state.tracked!==null&&state.trackDied===null&&state.rolls<cap()});}
+function drawTray(anim=null){const c=$('tray'),r=c.getBoundingClientRect();if(r.width<1||r.height<1)return;const dpr=devicePixelRatio||1;c.width=Math.round(r.width*dpr);c.height=Math.round(r.height*dpr);const ctx=c.getContext('2d');ctx.scale(dpr,dpr);const geo=trayGeometry(),sz=geo.size,font=Math.max(3,Math.min(sz*.72,16));
+state.trayGeometry={...geo,font};for(let i=0;i<1000;i++){const x=geo.x+i%geo.cols*geo.cell+.5,y=geo.y+Math.floor(i/geo.cols)*geo.cell+.5;ctx.fillStyle=state.alive[i]?'#e8edf3':'#4a5160';ctx.fillRect(x,y,sz,sz);
+if(!state.alive[i]){ctx.lineWidth=Math.max(.7,sz*.07);ctx.strokeStyle='#c7ced8';ctx.beginPath();ctx.moveTo(x+sz*.2,y+sz*.2);ctx.lineTo(x+sz*.8,y+sz*.8);ctx.moveTo(x+sz*.8,y+sz*.2);ctx.lineTo(x+sz*.2,y+sz*.8);ctx.stroke();}
+else{const face=anim===null?(state.previewFaces||state.faces)[i]:1+(i+anim)%sides();ctx.fillStyle='#10141a';ctx.font='600 '+font+'px sans-serif';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(sides()===2?(face===1?'T':'H'):String(face),x+sz/2,y+sz/2);
+if(state.previewFaces&&anim===null&&face===1){ctx.strokeStyle='#5d792e';ctx.lineWidth=Math.max(1,sz*.1);ctx.strokeRect(x+1,y+1,Math.max(0,sz-2),Math.max(0,sz-2));}}
+if(i===state.tracked){ctx.strokeStyle='#97c059';ctx.lineWidth=2;ctx.strokeRect(x-2,y-2,sz+4,sz+4);}}}
+function safeFocus(h){const f=h.el.focus.bind(h.el);h.el.focus=()=>f({preventScroll:true});}
+function makePlane(id,options){const svg=$(id),r=svg.getBoundingClientRect();if(r.width<1||r.height<1)return null;svg.replaceChildren();svg.setAttribute('viewBox','0 0 '+r.width+' '+r.height);return Plane(svg,{width:Math.max(80,r.width-74),height:Math.max(45,r.height-73),left:52,top:22,ticks:'edge',...options});}
+function crossing(y){for(let i=1;i<state.points.length;i++){const [a,b]=[state.points[i-1],state.points[i]];if(a[1]>=y&&b[1]<=y&&a[1]!==b[1])return Math.round((a[0]+(a[1]-y)/(a[1]-b[1]))*2)/2;}return null;}
+function markMove(x,y){state.markY=Math.max(25,Math.min(1000,Math.round(y/25)*25));halfSegment.set([0,state.markY],[g.range.x[1],state.markY]);updateRoll();hint();}
+function drawGraph(){if(state.mode!=='roll')return;const focused=document.activeElement?.getAttribute('aria-label')==='Half-life line';g=makePlane('graph',{x:[0,sides()===20?16:10],y:[0,1050],grid:[2,250],labels:[sides()===20?4:2,500],xLabel:'roll number'});if(!g)return;g.label(0,1050,'Undecayed: N = 1000 × (1 − 1/'+sides()+')ⁿ',{dy:-7,layer:'labels'}).el.style.fontSize='11px';if(state.expected)g.fn(expected,{color:2,opacity:.6,width:2,label:'Expected N = 1000 × (1 − 1/'+sides()+')ⁿ'});for(let i=1;i<state.points.length;i++)g.segment(state.points[i-1],state.points[i],{color:1,width:2});state.points.forEach(([x,y])=>g.point(x,y,{color:1,r:3,hit:3,ariaLabel:'Observed roll '+x+': '+y+' nuclei'}));if(state.mean){for(let i=1;i<11;i++)g.segment(state.mean[i-1],state.mean[i],{color:3,width:2});state.mean.forEach(([x,y])=>g.point(x,y,{color:3,shape:'diamond',r:3,hit:3,ariaLabel:'Mean at roll '+x+': '+y+' nuclei'}));}halfHandle=null;if(state.mark){const max=g.range.x[1];halfSegment=g.segment([0,state.markY],[max,state.markY],{color:'#ffcf8c',dashed:'4 3',width:2});halfHandle=g.point(max*.55,state.markY,{color:'#ffcf8c',draggable:true,hit:24,lock:{x:max*.55},range:{y:[25,1000]},step:25,ariaLabel:'Half-life line',valueText:(x,y)=>Math.round(y)+' nuclei; arrow keys move by 25 nuclei',snap:(x,y)=>[x,Math.round(y/25)*25],onMove:markMove,onDrop:()=>layout()});safeFocus(halfHandle);if(focused)halfHandle.el.focus({preventScroll:true});}}
+
+function symbol(A,Z){return Z===-1?'e':Z===0?(A===1?'n':'?'):ELEMENTS[Z-1]?.symbol||'?';}
+function iso([A,Z,S,m=1],missing=false){return(m>1?m+' ':'')+'<span class="isotope '+(missing?'missing':'')+'"><sup>'+A+'</sup><sub>'+(S==='e'&&Z===1?'+1':Z)+'</sub><b>'+S+'</b></span>';}
+function card(id){if(!CARDS.some(c=>c.id===id))return;V.dropQueued();state.card=id;state.A=10;state.Z=3;state.checked=false;state.cardResult=null;pressed('cards',id,'card');updateNucleus();hint();}
+function setProduct(A,Z){state.A=Math.min(240,Math.max(0,Math.round(Number(A)||0)));state.Z=Math.min(94,Math.max(-1,Math.round(Number(Z)||0)));state.checked=false;state.cardResult=null;updateNucleus();hint();}
+function sum(items,k){return items.reduce((v,p)=>v+p[k]*(p[3]||1),0);}
+function check(){const c=currentCard(),products=[[state.A,state.Z,symbol(state.A,state.Z)],...c.after.slice(1)],mass=[sum(c.before,0),sum(products,0)],charge=[sum(c.before,1),sum(products,1)];state.checked=mass[0]===mass[1]&&charge[0]===charge[1];state.cardResult={mass,charge,correct:state.checked};if(state.checked){state.ladder=true;if(!state.progress.cards.includes(c.id))state.progress.cards.push(c.id);save();Curio.yes();}updateNucleus();hint();return state.cardResult;}
+function updateNucleus(){$('mass').value=state.A;$('charge').value=state.Z;const c=currentCard();$('element-name').textContent=symbol(state.A,state.Z)+' · '+(state.Z>0?ELEMENTS[state.Z-1].name:state.Z===-1?'electron charge':state.A===1?'neutron':'no element at Z = 0');$('equation').innerHTML=c.before.map(x=>iso(x)).join('<span>+</span>')+'<span>→</span>'+[iso([state.A,state.Z,symbol(state.A,state.Z)],true),...c.after.slice(1).map(x=>iso(x)),...(c.id==='N4'&&state.checked?[iso([0,0,'γ'])]:[])].join('<span>+</span>');$('card-context').textContent=c.name+'. '+c.context;const r=state.cardResult;$('check-result').textContent=r?'Mass numbers: '+r.mass[0]+(r.mass[0]===r.mass[1]?' = ':' ≠ ')+r.mass[1]+'. Charges: '+r.charge[0]+(r.charge[0]===r.charge[1]?' = ':' ≠ ')+r.charge[1]+'. '+(state.checked?'Balanced.':'Adjust the sum that is off.'):'Balance both sums across the arrow.';$('check-result').classList.toggle('ok',state.checked);$('change').textContent=state.checked?c.change:state.cardResult?'Fix the sum that is off, then press Check again.':'Your proposed product is outlined. Check both sums to test it.';drawNuclei();drawLadder();}
+function drawNuclei(){if(state.mode!=='nucleus')return;const s=$('nuclei'),r=s.getBoundingClientRect();if(!r.width)return;s.replaceChildren();s.setAttribute('viewBox','0 0 '+r.width+' '+r.height);
+const c=currentCard(),groups=[c.before,[[state.A,state.Z,symbol(state.A,state.Z)],...c.after.slice(1)]],font=r.height<150?10:12;
+s.setAttribute('aria-label',groups.map((group,side)=>(side?'After, your product: ':'Before: ')+group.map(([A,Z,S,m=1])=>(m>1?m+' times ':'')+S+', mass '+A+', charge '+Z).join('; ')).join('. '));
+txt(s,r.width/2,11,'● proton p+    ○ neutron n',{'text-anchor':'middle','font-size':font,fill:'var(--muted)'});
+groups.forEach((group,side)=>{const x0=side*r.width/2;txt(s,x0+r.width/4,25,side?'After (your product)':'Before',{'text-anchor':'middle','font-size':font});
+const nuclear=group.filter(p=>p[0]>0);nuclear.forEach(([A,Z,S,m=1],j)=>{const n=A*m,slot=r.width/2/nuclear.length,cx=x0+(j+.5)*slot,cy=31+Math.max(1,r.height-52)/2,avail=Math.max(2,Math.min((r.height-55)/2,slot*.41));
+const positions=[];let k=Math.ceil(Math.sqrt(n))+1;for(let row=-k;row<=k;row++)for(let col=-k;col<=k;col++){const x=col*2+(row%2),y=row*Math.sqrt(3);positions.push({x,y,d:x*x+y*y});}positions.sort((a,b)=>a.d-b.d||a.y-b.y||a.x-b.x);const pts=positions.slice(0,n),extent=Math.max(1,...pts.map(p=>Math.hypot(p.x,p.y)))+1,dot=Math.min(7,avail/extent),types=Array(n).fill(false).map((_,i)=>i<Math.max(0,Math.min(A,Z))*m),rand=mulberry32((A*104729+Z*7919+m*31)>>>0);
+for(let i=n-1;i>0;i--){let q=Math.floor(rand()*(i+1));[types[i],types[q]]=[types[q],types[i]];}
+pts.forEach((p,i)=>mk('circle',{cx:cx+p.x*dot,cy:cy+p.y*dot,r:dot*.96,fill:types[i]?'#ff8f6b':'#101923',stroke:types[i]?'#ff8f6b':'#9fb3c8','stroke-width':types[i]?0:Math.max(.8,dot*.4),'data-nucleon':types[i]?'proton':'neutron'},s));
+txt(s,cx,r.height-4,Z<0||Z>A?'Not a nucleus':Z*m+' p+, '+(A-Z)*m+' n',{'text-anchor':'middle','font-size':font});});});
+txt(s,r.width/2,33,'→',{'text-anchor':'middle','font-size':16});}
+function drawLadder(){if(state.mode!=='nucleus')return;const s=$('ladder'),r=s.getBoundingClientRect();if(!r.width)return;s.replaceChildren();s.setAttribute('viewBox','0 0 '+r.width+' '+r.height);if(!state.ladder){txt(s,r.width/2,r.height*.45,'Balance a card to reveal energy per event',{'text-anchor':'middle','font-size':11,fill:'var(--muted)'});return;}
+const labels=['Methane: 9.23 eV','Carbon-14: 156 keV','D-T fusion: 17.6 MeV','U-235: about 200 MeV'],vals=[9.23,156000,17.6e6,200e6],left=r.width<600?143:185,right=r.width-8,x=v=>left+Math.log10(v)/Math.log10(200e6)*(right-left),bottom=r.height-21,dy=(bottom-20)/3;
+mk('line',{x1:left,x2:right,y1:bottom,y2:bottom,stroke:'#62789a','stroke-width':1},s);
+[[1,'1 eV'],[1000,'1 keV'],[1e6,'1 MeV'],[1e8,'100 MeV']].forEach(([v,l],i)=>{mk('line',{x1:x(v),x2:x(v),y1:bottom,y2:bottom+4,stroke:'#9fb3c8'},s);txt(s,x(v)+(i===2?-4:0),r.height-3,l,{'text-anchor':i===0?'start':i>=2?'end':'middle','font-size':10,fill:'var(--muted)'});});
+labels.forEach((l,i)=>{const y=11+i*dy;txt(s,2,y+3,l,{'font-size':r.width<600?10:12});mk('line',{x1:left,x2:x(vals[i]),y1:y,y2:y,stroke:i===currentCard().energy?'#97c059':'#9fb3c8','stroke-width':3},s);});
+$('energy-ratio').textContent='Log scale. One fission gives about 22 million times the energy of one methane molecule burning.';}
+function poisson(lambda,rand){let total=0;while(lambda>0){const l=Math.min(20,lambda),limit=Math.exp(-l);let p=1,k=0;do{k++;p*=rand();}while(p>limit);total+=k-1;lambda-=l;}return total;}
+function resetCountStream(){countRng=mulberry32((state.seed^Math.imul(SAMPLES.indexOf(currentSample())+1,7919)^0xabc123)>>>0);state.countHistory=[];state.countSerial=0;}
+async function countSample(){const me=++countOp;state.counting=true;const s=currentSample();if(!countRng)resetCountStream();state.count=state.noise?poisson(s.A*100,countRng):Math.round(s.A*100);if(state.noise)state.countHistory.push(state.count);
+const clickRand=mulberry32((state.seed^state.count^Math.imul(++state.countSerial,65537))>>>0),n=state.count<=20?state.count:Math.round(state.count/20),times=Array.from({length:n},()=>clickRand()*950+20).sort((a,b)=>a-b);state.clickEvents=[];hint();updateDating();const start=performance.now();let cursor=0;
+while(performance.now()-start<1000){if(me!==countOp)return;const elapsed=performance.now()-start;$('counter').textContent=Curio.reduce?'···':num(state.count*Math.min(1,elapsed/1000));
+while(cursor<times.length&&times[cursor]<=elapsed){if(state.counterClicks&&Curio.sound&&state.mode==='dating'){Curio.tone(950,.018,.01,'square');state.clickEvents.push(times[cursor]);}cursor++;}await Curio.wait(15);}
+if(me!==countOp)return;state.counting=false;$('counter').textContent=num(state.count);$('counter-note').textContent=(state.noise?'Counting noise model':'Model counter')+' · 100 min in 1 s · 1 g';updateDating();hint();}
+function sample(id){if(!SAMPLES.some(s=>s.id===id))return;V.dropQueued();state.sample=id;state.estimateAge=0;state.pinPlaced=false;state.estimated=false;state.calculated=false;state.dateResult=null;resetCountStream();pressed('samples',id,'sample');updateDating();drawRuler();countSample();}
+function noise(on){state.noise=!!on;state.calculated=false;state.dateResult=null;state.estimated=false;state.pinPlaced=false;state.estimateAge=0;resetCountStream();updateDating();drawRuler();countSample();}
+function updateDating(){const s=currentSample();$('sample-name').textContent=s.name;$('activity').textContent=(state.noise?'Nominal: ':'')+s.A+' dpm/g of carbon';$('sample-kind').textContent=s.practice?'Practice sample':'OpenStax example';
+$('noise').setAttribute('aria-pressed',state.noise);$('counter-clicks').setAttribute('aria-pressed',state.counterClicks);
+$('calculate').classList.toggle('primary',state.estimated);$('calculate').title=state.estimated?'Compare your estimate and the exact age':'Press Estimate first';
+$('estimate').setAttribute('aria-disabled',state.estimated);$('count-again').hidden=!state.noise;$('count-again').setAttribute('aria-disabled',state.counting);
+$('estimate-result').textContent=state.estimated?'You read '+num(state.estimateAge)+' years. Estimate recorded.':state.pinPlaced?'Pin placed. Press Estimate to record your reading.':'Move the ruler pin before pressing Estimate.';
+$('estimate-help').textContent=state.estimated?'Your reading is locked. Pick another sample to make another estimate.':'Read halving steps first. Arrow keys move the pin by 100 years.';
+$('ruler-read').textContent=state.pinPlaced?'Your ruler pin: '+num(state.estimateAge)+' years'+(state.estimated?' · recorded':''):'Pin unplaced. Drag it or use the arrow keys.';
+$('date-result').textContent=state.dateResult?.text||'Press Estimate first, then Calculate to compare your reading with the exact age.';
+$('count-history').textContent=state.noise?'Counts so far: '+state.countHistory.slice(-8).join(', ')+(state.countHistory.length>8?' (latest 8)':''):'Counting noise models counting time. Counter clicks are optional.';}
+function estimate(){if(state.counting){$('estimate-result').textContent='Let the model count finish, then press Estimate.';return;}if(state.estimated)return;if(!state.pinPlaced){$('estimate-result').textContent='Move the ruler pin before pressing Estimate.';return;}state.estimated=true;state.calculated=false;state.dateResult=null;updateDating();drawRuler();hint();}
+function calculate(){if(state.counting){$('date-result').textContent='Let the model counter finish, then press Estimate.';return;}if(!state.estimated){$('date-result').textContent='Press Estimate first to record your moved ruler pin before Calculate.';hint();return;}
+const s=currentSample(),A=state.noise?state.count/100:s.A,t=A>0?age(A):Infinity,sigma=Math.sqrt(state.count),lo=state.count>0?age((state.count+sigma)/100):Infinity,hi=state.count>sigma?age((state.count-sigma)/100):Infinity,off=t===0?(state.estimateAge===0?0:Infinity):Math.abs(state.estimateAge-t)/Math.abs(t)*100;
+let text='You read '+num(state.estimateAge)+' years. Exact: '+(isFinite(t)?num(t):'beyond the clock')+'. Off by '+(isFinite(off)?Math.round(off)+' percent':'more than the model can compare')+'. ';
+text+='13.6 / '+A+' = '+(13.6/A).toFixed(4)+'. ln(ratio) = '+Math.log(13.6/A).toFixed(4)+'. t = (5,730 / ln 2) × ln(13.6 / '+A+') = '+(isFinite(t)?num(t):'beyond the clock')+' years.';
+if(state.noise)text+=' '+state.count+' counts ± '+Math.round(sigma)+' (√count). Age range: '+(isFinite(lo)?num(Math.max(0,lo)):'beyond range')+' to '+(isFinite(hi)?num(Math.max(0,hi)):'beyond range')+' years.';
+if(s.id==='core'&&state.noise&&lo<50000)text+=' Near the end of the clock’s range. Too old to date well using the nominal activity.';else if(s.id==='core'||t>50000||!isFinite(t))text+=' Too old to date well.';else if(t>30000)text+=' Beyond the roughly 30,000-year accurate range.';
+state.calculated=true;state.dateResult={age:t,A,count:state.count,sigma,lo,hi,off,estimate:state.estimateAge,text};if(!state.progress.samples.includes(s.id))state.progress.samples.push(s.id);save();updateDating();hint();
+if(s.id==='core'&&EVENT_IDS.has('tooOld'))V.say('tooOld',{hint:false,now:true,valid:()=>state.sample==='core'&&state.calculated,needs:'#calculate'});}
+function drawRuler(){if(state.mode!=='dating')return;const focus=document.activeElement?.getAttribute('aria-label')==='Age estimate';rulerPlane=makePlane('ruler',{height:Math.max(40,$('ruler').clientHeight-48),top:15,x:[0,57300],y:[0,1],grid:[5730,1],labels:[11460,1],tickFormat:(v,a)=>a==='y'?'':num(v),axes:false});if(!rulerPlane)return;const p=rulerPlane;
+p.segment([0,.55],[57300,.55],{color:1,width:3});const labels=[];
+[0,1,2,3,4,6,8,10].forEach(k=>{p.segment([k*5730,.45],[k*5730,.7],{color:'#a6b3c4',width:1});const x=p.px(k*5730,0)[0];labels.push({x,l:Plane.fmt(13.6/2**k,k>4?3:2),age:k*5730});});
+for(let k=0;k<10;k++)for(let a=12;a>=7;a--){const v=a/2**k,x=age(v);if(x>57300)continue;p.segment([x,.50],[x,.63],{color:'#9fb3c8',width:1});const px=p.px(x,0)[0],label=Plane.fmt(v,k>2?2:1);if(labels.every(o=>o.l!==label&&Math.abs(o.x-px)>Math.max(26,(o.l.length+label.length)*2.5))){labels.push({x:px,l:label,age:x});}}
+labels.forEach(o=>p.label(o.age,.92,o.l,{anchor:'middle',layer:'labels'}).el.style.fontSize='10px');
+rulerHandle=p.point(state.estimateAge,.22,{draggable:!state.estimated,hit:24,lock:{y:.22},shape:'diamond',r:7,step:100,snap:100,range:{x:[0,57300]},color:1,onDrop:()=>layout(),ariaLabel:'Age estimate',valueText:x=>state.pinPlaced?num(x)+' years':'Unplaced, move with arrow keys',onMove:x=>{if(state.estimated)return;state.estimateAge=x;state.pinPlaced=true;state.calculated=false;state.dateResult=null;updateDating();hint();}});safeFocus(rulerHandle);if(focus)rulerHandle.el.focus({preventScroll:true});}
+function layout(){if(state.mode==='roll'){drawTray();drawGraph();}else if(state.mode==='nucleus'){drawNuclei();drawLadder();}else drawRuler();}
+DICE.forEach(([k,n,label])=>{const b=document.createElement('button');b.className='btn';b.dataset.die=k;b.id='die-'+k;b.textContent=label;b.setAttribute('aria-pressed',k===state.kind);b.onclick=()=>die(k);$('dice').append(b);});
+CARDS.forEach(c=>{const b=document.createElement('button');b.className='btn';b.id='card-'+c.id;b.dataset.card=c.id;b.innerHTML=c.id+'<small>'+c.short+'</small>';b.setAttribute('aria-label',c.id+' '+c.name);b.setAttribute('aria-pressed',c.id===state.card);b.onclick=()=>card(c.id);$('cards').append(b);});
+SAMPLES.forEach(s=>{const b=document.createElement('button');b.className='btn';b.id='sample-'+s.id;b.dataset.sample=s.id;b.textContent=s.short;b.setAttribute('aria-label',s.name);b.setAttribute('aria-pressed',s.id===state.sample);b.onclick=()=>sample(s.id);$('samples').append(b);});
+['roll','nucleus','dating'].forEach(m=>$('m-'+m).onclick=()=>setMode(m));
+$('roll-once').onclick=()=>roll(1);$('roll-ten').onclick=()=>roll(10-state.rolls);$('reset').onclick=()=>{V.hush();reset();};$('new-seed').onclick=()=>seed((state.seed+0x9e3779b9)>>>0);$('average').onclick=average;$('track').onclick=track;$('expected').onclick=()=>{state.expected=!state.expected;updateRoll();drawGraph();hint();};$('mark').onclick=()=>{state.mark=!state.mark;updateRoll();drawGraph();hint();};
+$('mass').onchange=()=>setProduct($('mass').value,state.Z);$('charge').onchange=()=>setProduct(state.A,$('charge').value);$('a-minus').onclick=()=>setProduct(state.A-1,state.Z);$('a-plus').onclick=()=>setProduct(state.A+1,state.Z);$('z-minus').onclick=()=>setProduct(state.A,state.Z-1);$('z-plus').onclick=()=>setProduct(state.A,state.Z+1);$('check').onclick=check;
+$('estimate').onclick=estimate;$('calculate').onclick=calculate;$('noise').onclick=()=>noise(!state.noise);$('clear-n').onclick=()=>clear('nucleus');$('clear-d').onclick=()=>clear('dating');
+$('counter-clicks').onclick=()=>{state.counterClicks=!state.counterClicks;updateDating();};$('count-again').onclick=()=>{if(!state.noise||state.counting)return;state.calculated=false;state.dateResult=null;countSample();};
+$('a-minus-ten').onclick=()=>setProduct(state.A-10,state.Z);$('a-plus-ten').onclick=()=>setProduct(state.A+10,state.Z);$('z-minus-ten').onclick=()=>setProduct(state.A,state.Z-10);$('z-plus-ten').onclick=()=>setProduct(state.A,state.Z+10);
+[['a-minus',-1,0],['a-plus',1,0],['z-minus',0,-1],['z-plus',0,1]].forEach(([id,a,z])=>{let holding=0;const b=$(id);b.addEventListener('pointerdown',async()=>{const stamp=++holding;await Curio.wait(400);while(stamp===holding){setProduct(state.A+a,state.Z+z);await Curio.wait(80);}});['pointerup','pointercancel','pointerleave'].forEach(e=>b.addEventListener(e,()=>holding++));});
+const geometryObserver=new ResizeObserver(()=>{if(resizePending||halfHandle?.dragging||rulerHandle?.dragging)return;resizePending=true;requestAnimationFrame(()=>{resizePending=false;layout();});});['main','#tray','#graph','#nuclei','#ladder','#ruler'].forEach(sel=>geometryObserver.observe(document.querySelector(sel)));
+Curio.init({clips:"voice:*",rate:.9});Curio.onMotion(layout);
+window.__tool={state,setMode,die,roll,seed,card,setProduct,check,sample,noise,allLines:V.allLines,vlog:V.log,get vq(){return V.queue;},get trayCount(){return state.alive.filter(Boolean).length;},get graphPoints(){return state.points;},get tracked(){return{index:state.tracked,died:state.trackDied};},get cardResult(){return state.cardResult;},get ladder(){return state.ladder;},get ladderEvents(){return [{name:'Methane combustion',eV:9.23},{name:'Carbon-14 decay',eV:156000},{name:'D-T fusion',eV:17600000},{name:'U-235 fission',eV:200000000}];},get datingResult(){return state.dateResult;},get graph(){return g;},get halfHandle(){return halfHandle;},get rulerHandle(){return rulerHandle;},get rulerPlane(){return rulerPlane;},get clickEvents(){return state.clickEvents;},half,expected,age,average,estimate,calculate,mulberry32};
+$('dice').append($('new-seed'));$('cards').append($('clear-n'));$('samples').append($('clear-d'));
+$('clear-n').title='Clear checked cards. Saved on this device only.';$('clear-d').title='Clear dated samples. Saved on this device only.';
+document.querySelector('.rollcontrols').append(document.querySelector('.rule'));document.querySelector('.legend').append($('seed-label'));
+document.querySelector('.rulerbox').append($('assumptions'));
+document.querySelector('.nucleusvisual').prepend($('card-context'));
+['cards','samples'].forEach(id=>{const p=document.createElement('span');p.className='saved-text';p.id=id==='cards'?'saved-cards':'saved-samples';p.textContent='Saved on this device only';$(id).append(p);});
+reset();updateNucleus();updateDating();progress();hint();
+})();
+</script></body></html>

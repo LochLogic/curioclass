@@ -48,11 +48,12 @@ D-T fusion 17.6 MeV; uranium-235 fission about 200 MeV. A ratio line: "One fissi
 energy of one methane molecule burning."
 
 ### Dating lab
-A sample shelf; each sample has a count of carbon-14 decays per minute per gram of carbon (dpm/g). A Geiger counter
-clicks (sound off by default) and counts for a set time. The halving ruler: 13.6 at the left, halving at each
+A sample shelf; each sample has a count of carbon-14 decays per minute per gram of carbon (dpm/g). A Geiger counter counts for a set time; its clicks follow the count (about one click per 20 counted
+decays) and play only when `Counter clicks` is on (off by default; the header Sound stays as the kit sets it). The halving ruler: 13.6 at the left, halving at each
 5,730-year tick. Students read the age from the ruler first (`Estimate`), then press `Calculate` to see the exact
 age by t = (5730 ÷ ln 2) × ln(13.6 ÷ A). Samples (Content). `Counting noise` (off by default): counts over 100
-minutes from 1 g follow Poisson noise (seeded) and the age shows a ± range from the square root of the count.
+minutes from 1 g follow Poisson noise (seeded) and the age shows a ± range from the square root of the count; `Count again` draws the
+next count from the same seeded stream and lists the counts so far.
 Progress (cards checked, samples dated) saved on this device (localStorage `curio-half-life-dice`, try/catch), `Clear`
 resets.
 
@@ -72,7 +73,7 @@ Nucleus cards (half-lives from NNDC NuDat):
 Energy ladder: methane combustion 890.6 kJ/mol ÷ Avogadro = 9.23 eV per molecule; carbon-14 decay energy 156 keV
 (NNDC); ratio fission to methane 2.2 × 10⁷.
 Dating (living carbon 13.6 dpm/g, half-life 5,730 years, OpenStax 21.3):
-- Dead Sea Scrolls paper (OpenStax example), 10.8 dpm/g: 1,906 years.
+- Dead Sea Scrolls fragment (OpenStax example), 10.8 dpm/g: 1,906 years.
 - Seeds from Tutankhamun's tomb (OpenStax example), 9.07 dpm/g: 3,349 years.
 - Made-up samples, labeled "practice sample": fresh leaf 13.6, 0 years; hearth charcoal 6.8, 5,730; cave charcoal 3.4,
   11,460; mammoth bone 0.85, 22,920; deep core wood 0.02, 53,916, which the card flags "too old to date well"
@@ -82,8 +83,11 @@ Dating (living carbon 13.6 dpm/g, half-life 5,730 years, OpenStax 21.3):
 ## Interactions in detail
 - Each roll draws one random face per live die from the seeded generator; the tray animates faces for 0.4 s (Motion
   off: no animation, faces shown).
-- `Mark a half-life` snaps to whole and half rolls on the graph; the card accepts a reading within 0.5 rolls of the
-  exact value and says "Your tray: 3.5 rolls. Exact for a d6: 3.80."
+- `Mark a half-life` moves the line in 25-nucleus steps and accepts it at 500; the card reads the tray's own crossing
+  to the half roll against the exact value ("Your tray: 3.5 rolls. Exact for a d6: 3.80.") and, when they differ by
+  more than 0.5 rolls, says one tray scatters and points to Average 20 runs. Before any roll it asks for a roll first.
+  (Integrator, 2026-10-29: the old rule, accept within 0.5 rolls of exact, refused correct lines on a noisy tray.)
+- Roll once continues to the graph's last roll for every die, so a d20 tray (half-life 13.5 rolls) can cross 500.
 - Nucleus steppers range A 0 to 240, Z −1 to 94; `Check` reports which sum is off ("Mass numbers: 14 = 14. Charges:
   6 ≠ 8.") without giving the answer.
 - Dating: `Estimate` takes a number from the ruler drag; within 10 percent of the exact age gets "Close"; then
@@ -108,7 +112,7 @@ scope = mode.
 - wRoll (how, Roll welcome): "Pick a die, then press Roll once. Every 1 is a decay."
 - trackTip (how, first Track one): "Watch the ringed die. Its chance stays the same, no matter how long it lasts."
 - wNucleus (how, Nucleus welcome): "Pick a card. Set the missing mass number and charge, then press Check."
-- wDating (how, Dating lab welcome): "Pick a sample. Drag on the ruler to estimate, then press Calculate."
+- wDating (how, Dating lab welcome): "Pick a sample. Drag the ruler pin, press Estimate, then press Calculate."
 - tooOld (event, the deep core sample is dated; stale on the next sample): "That one's past the clock's range. Too little carbon-14 left."
 
 ## Family engine
@@ -118,7 +122,7 @@ element symbols come from a copy of elements-inspector's ELEMENTS table (symbol 
 ## Sources
 - HS-PS1-8: NGSS Lead States (2013), Next Generation Science Standards, https://www.nextgenscience.org/
 - Radioactive decay, half-life, carbon-14 dating (13.6 dpm/g, 5,730 years, Dead Sea Scrolls and Tutankhamun examples, the 30,000 and 50,000 year limits), nuclear equations: OpenStax, Chemistry 2e, 21.3 "Radioactive Decay", https://openstax.org/books/chemistry-2e/pages/21-3-radioactive-decay
-- Fission of uranium-235 and D-T fusion energies: OpenStax, Chemistry 2e, 21.4 "Transmutation and Nuclear Energy", https://openstax.org/books/chemistry-2e/pages/21-4-transmutation-and-nuclear-energy (builder confirms 17.6 MeV and about 200 MeV against the page).
+- Fission of uranium-235 and D-T fusion reactions: OpenStax, Chemistry 2e, 21.4 "Transmutation and Nuclear Energy", https://openstax.org/books/chemistry-2e/pages/21-4-transmutation-and-nuclear-energy. Energies: D-T fusion 17.59 MeV, OpenStax College Physics 2e, 32.5 "Fusion", https://openstax.org/books/college-physics-2e/pages/32-5-fusion; average U-235 fission 200 MeV, 32.6 "Fission", https://openstax.org/books/college-physics-2e/pages/32-6-fission (checked by the integrator 2026-10-29).
 - Half-lives (C-14 5,700 ± 30 y, I-131 8.02 d, Co-60 5.27 y, F-18 109.8 min) and C-14 decay energy 156 keV: National Nuclear Data Center, NuDat 3, Brookhaven National Laboratory, https://www.nndc.bnl.gov/nudat3/ (checked 2026-10-27).
 - Methane combustion 890.6 kJ/mol: OpenStax, Chemistry 2e, 5.3 "Enthalpy" (standard enthalpies of combustion table).
 - Avogadro constant and the electronvolt: NIST CODATA 2018, https://physics.nist.gov/cuu/Constants/
@@ -126,7 +130,7 @@ element symbols come from a copy of elements-inspector's ELEMENTS table (symbol 
 
 ## Done when
 1. d6 tray: `Show expected` gives 161.5 at roll 10; `Average 20 runs` lands within 15 of it at every roll.
-2. The card's exact half-lives match Content for all seven dice; a marked half-life within 0.5 rolls is accepted.
+2. The card's exact half-lives match Content for all seven dice; a line at 500 is accepted and the card gives the tray's crossing and the exact value.
 3. The tracked die's card always says the same chance at every age.
 4. N1 to N5, F1 and F2 accept only the right product and report which sum is off otherwise.
 5. The energy ladder shows the four rungs and the 22 million ratio.

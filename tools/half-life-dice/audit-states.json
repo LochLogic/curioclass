@@ -1,0 +1,425 @@
+{
+  "target": 44,
+  "states": [
+    {
+      "name": "d6-ten",
+      "steps": [
+        {
+          "click": "#roll-ten"
+        },
+        {
+          "until": "!__tool.state.busy",
+          "max": 12000
+        }
+      ],
+      "keep": [
+        "#dice",
+        "#roll-buttons",
+        "#graph",
+        "#tray-summary"
+      ]
+    },
+    {
+      "name": "average",
+      "steps": [
+        {
+          "click": "#roll-ten"
+        },
+        {
+          "until": "!__tool.state.busy",
+          "max": 12000
+        },
+        {
+          "click": "#average"
+        },
+        {
+          "until": "!__tool.state.averaging",
+          "max": 12000
+        }
+      ],
+      "keep": [
+        "#average",
+        "#graph"
+      ]
+    },
+    {
+      "name": "mark-before-roll",
+      "steps": [
+        {
+          "click": "#mark"
+        },
+        {
+          "drag": "return (()=>{const h=__tool.halfHandle.el.getBoundingClientRect(),r=document.querySelector('#graph').getBoundingClientRect(),p=__tool.graph.px(__tool.halfHandle.x,500),x=Math.round(r.x+52+p[0]),y=Math.round(r.y+22+p[1]);return [[Math.round(h.x+h.width/2),Math.round(h.y+h.height/2)],[Math.round(h.x+h.width/2)+2,Math.round(h.y+h.height/2)+7],[x-1,y+2],[x,y]];})()"
+        }
+      ],
+      "keep": [
+        "#mark",
+        "#half-card"
+      ]
+    },
+    {
+      "name": "marked",
+      "steps": [
+        {
+          "click": "#roll-ten"
+        },
+        {
+          "until": "!__tool.state.busy",
+          "max": 12000
+        },
+        {
+          "click": "#mark"
+        },
+        {
+          "drag": "return (()=>{const h=__tool.halfHandle.el.getBoundingClientRect(),r=document.querySelector('#graph').getBoundingClientRect(),p=__tool.graph.px(__tool.halfHandle.x,500),x=Math.round(r.x+52+p[0]),y=Math.round(r.y+22+p[1]);return [[Math.round(h.x+h.width/2),Math.round(h.y+h.height/2)],[Math.round(h.x+h.width/2)+2,Math.round(h.y+h.height/2)+7],[x-1,y+2],[x,y]];})()"
+        }
+      ],
+      "keep": [
+        "#mark",
+        "#half-card",
+        "#graph"
+      ]
+    },
+    {
+      "name": "d20-cross",
+      "steps": [
+        {
+          "click": "#die-d20"
+        },
+        {
+          "click": "#roll-ten"
+        },
+        {
+          "until": "!__tool.state.busy",
+          "max": 12000
+        },
+        {
+          "click": "#roll-once",
+          "times": 5,
+          "gap": 0.5
+        },
+        {
+          "until": "!__tool.state.busy",
+          "max": 12000
+        },
+        {
+          "click": "#mark"
+        },
+        {
+          "drag": "return (()=>{const h=__tool.halfHandle.el.getBoundingClientRect(),r=document.querySelector('#graph').getBoundingClientRect(),p=__tool.graph.px(__tool.halfHandle.x,500),x=Math.round(r.x+52+p[0]),y=Math.round(r.y+22+p[1]);return [[Math.round(h.x+h.width/2),Math.round(h.y+h.height/2)],[Math.round(h.x+h.width/2)+2,Math.round(h.y+h.height/2)+7],[x-1,y+2],[x,y]];})()"
+        }
+      ],
+      "keep": [
+        "#dice",
+        "#roll-buttons",
+        "#half-card"
+      ]
+    },
+    {
+      "name": "last-roll",
+      "steps": [
+        {
+          "click": "#die-d20"
+        },
+        {
+          "click": "#roll-ten"
+        },
+        {
+          "until": "!__tool.state.busy",
+          "max": 12000
+        },
+        {
+          "click": "#roll-once",
+          "times": 6,
+          "gap": 0.5
+        },
+        {
+          "until": "!__tool.state.busy",
+          "max": 12000
+        }
+      ],
+      "keep": [
+        "#roll-buttons",
+        "#half-card"
+      ]
+    },
+    {
+      "name": "tracked",
+      "steps": [
+        {
+          "click": "#track"
+        },
+        {
+          "click": "#roll-once",
+          "times": 3,
+          "gap": 0.5
+        },
+        {
+          "until": "!__tool.state.busy",
+          "max": 12000
+        }
+      ],
+      "keep": [
+        "#track-card",
+        "#roll-buttons"
+      ]
+    },
+    {
+      "name": "wrong",
+      "steps": [
+        {
+          "click": "#m-nucleus"
+        },
+        {
+          "click": "#check"
+        }
+      ],
+      "keep": [
+        "#cards",
+        "#product-controls",
+        "#check-result"
+      ]
+    },
+    {
+      "name": "wrong-then-right",
+      "steps": [
+        {
+          "click": "#m-nucleus"
+        },
+        {
+          "click": "#check"
+        },
+        {
+          "click": "#a-plus",
+          "times": 4,
+          "gap": 0.05
+        },
+        {
+          "click": "#z-plus",
+          "times": 4,
+          "gap": 0.05
+        },
+        {
+          "click": "#check"
+        }
+      ],
+      "keep": [
+        "#product-controls",
+        "#check-result",
+        "#ladder"
+      ]
+    },
+    {
+      "name": "fission",
+      "steps": [
+        {
+          "click": "#m-nucleus"
+        },
+        {
+          "click": "#card-F1"
+        },
+        {
+          "click": "#a-plus-ten",
+          "times": 13,
+          "gap": 0.05
+        },
+        {
+          "click": "#a-plus"
+        },
+        {
+          "click": "#z-plus-ten",
+          "times": 5,
+          "gap": 0.05
+        },
+        {
+          "click": "#z-plus",
+          "times": 3,
+          "gap": 0.05
+        },
+        {
+          "click": "#check"
+        }
+      ],
+      "keep": [
+        "#equation",
+        "#check-result",
+        "#ladder"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ]
+    },
+    {
+      "name": "estimate-moved",
+      "steps": [
+        {
+          "click": "#m-dating"
+        },
+        {
+          "click": "#sample-seeds"
+        },
+        {
+          "until": "!__tool.state.counting",
+          "max": 12000
+        },
+        {
+          "drag": "return (()=>{const h=__tool.rulerHandle.el.getBoundingClientRect(),r=document.querySelector('#ruler').getBoundingClientRect(),p=__tool.rulerPlane.px(3300,.22),x=Math.round(r.x+52+p[0]),y=Math.round(r.y+15+p[1]);return [[Math.round(h.x+h.width/2),Math.round(h.y+h.height/2)],[Math.round(h.x+h.width/2)+3,Math.round(h.y+h.height/2)-1],[x+2,y-2],[x,y]];})()"
+        },
+        {
+          "click": "#estimate"
+        }
+      ],
+      "keep": [
+        "#samples",
+        "#date-buttons",
+        "#estimate-result",
+        "#date-result"
+      ]
+    },
+    {
+      "name": "dated",
+      "steps": [
+        {
+          "click": "#m-dating"
+        },
+        {
+          "click": "#sample-seeds"
+        },
+        {
+          "until": "!__tool.state.counting",
+          "max": 12000
+        },
+        {
+          "drag": "return (()=>{const h=__tool.rulerHandle.el.getBoundingClientRect(),r=document.querySelector('#ruler').getBoundingClientRect(),p=__tool.rulerPlane.px(3300,.22),x=Math.round(r.x+52+p[0]),y=Math.round(r.y+15+p[1]);return [[Math.round(h.x+h.width/2),Math.round(h.y+h.height/2)],[Math.round(h.x+h.width/2)+3,Math.round(h.y+h.height/2)-1],[x+2,y-2],[x,y]];})()"
+        },
+        {
+          "click": "#estimate"
+        },
+        {
+          "click": "#calculate"
+        }
+      ],
+      "keep": [
+        "#samples",
+        "#estimate-result",
+        "#date-result"
+      ]
+    },
+    {
+      "name": "count-again-twice",
+      "steps": [
+        {
+          "click": "#m-dating"
+        },
+        {
+          "click": "#sample-cave"
+        },
+        {
+          "click": "#noise"
+        },
+        {
+          "until": "!__tool.state.counting",
+          "max": 12000
+        },
+        {
+          "click": "#count-again"
+        },
+        {
+          "until": "!__tool.state.counting",
+          "max": 12000
+        },
+        {
+          "click": "#count-again"
+        },
+        {
+          "until": "!__tool.state.counting",
+          "max": 12000
+        },
+        {
+          "drag": "return (()=>{const h=__tool.rulerHandle.el.getBoundingClientRect(),r=document.querySelector('#ruler').getBoundingClientRect(),p=__tool.rulerPlane.px(3300,.22),x=Math.round(r.x+52+p[0]),y=Math.round(r.y+15+p[1]);return [[Math.round(h.x+h.width/2),Math.round(h.y+h.height/2)],[Math.round(h.x+h.width/2)+3,Math.round(h.y+h.height/2)-1],[x+2,y-2],[x,y]];})()"
+        },
+        {
+          "click": "#estimate"
+        },
+        {
+          "click": "#calculate"
+        }
+      ],
+      "keep": [
+        ".counter-toggles",
+        "#count-history",
+        "#date-result"
+      ]
+    },
+    {
+      "name": "counter-clicks",
+      "steps": [
+        {
+          "click": "#m-dating"
+        },
+        {
+          "click": "#counter-clicks"
+        },
+        {
+          "click": "#sample-leaf"
+        },
+        {
+          "until": "!__tool.state.counting",
+          "max": 12000
+        }
+      ],
+      "keep": [
+        ".counter-toggles",
+        "#counter",
+        "#samples"
+      ]
+    },
+    {
+      "name": "too-old",
+      "steps": [
+        {
+          "click": "#m-dating"
+        },
+        {
+          "click": "#sample-core"
+        },
+        {
+          "until": "!__tool.state.counting",
+          "max": 12000
+        },
+        {
+          "drag": "return (()=>{const h=__tool.rulerHandle.el.getBoundingClientRect(),r=document.querySelector('#ruler').getBoundingClientRect(),p=__tool.rulerPlane.px(3300,.22),x=Math.round(r.x+52+p[0]),y=Math.round(r.y+15+p[1]);return [[Math.round(h.x+h.width/2),Math.round(h.y+h.height/2)],[Math.round(h.x+h.width/2)+3,Math.round(h.y+h.height/2)-1],[x+2,y-2],[x,y]];})()"
+        },
+        {
+          "click": "#estimate"
+        },
+        {
+          "click": "#calculate"
+        }
+      ],
+      "keep": [
+        "#date-result",
+        "#samples"
+      ]
+    },
+    {
+      "name": "mid-roll",
+      "steps": [
+        {
+          "click": "#roll-once"
+        },
+        {
+          "wait": 50
+        }
+      ],
+      "keep": [
+        "#roll-buttons"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ]
+    }
+  ]
+}

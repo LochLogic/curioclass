@@ -1,0 +1,26 @@
+{
+  "id": "half-life-dice",
+  "status": "beta",
+  "hook": "A crowd keeps time. One nucleus never does.",
+  "outcome": "Model half-life, balance nuclear equations and compare nuclear energy, then estimate carbon-14 ages",
+  "driver": "students",
+  "minutes": "25-40",
+  "modes": [
+    "Roll",
+    "Nucleus",
+    "Dating lab"
+  ],
+  "grades_label": "Grade 10",
+  "sources": [
+    "HS-PS1-8: NGSS Lead States (2013), Next Generation Science Standards, https://www.nextgenscience.org/",
+    "Radioactive decay, half-life, carbon-14 dating (13.6 dpm/g, 5,730 years, Dead Sea Scrolls and Tutankhamun examples, the 30,000 and 50,000 year limits), nuclear equations: OpenStax, Chemistry 2e, 21.3 \"Radioactive Decay\", https://openstax.org/books/chemistry-2e/pages/21-3-radioactive-decay",
+    "Fission of uranium-235 and D-T fusion reactions: OpenStax, Chemistry 2e, 21.4 \"Transmutation and Nuclear Energy\", https://openstax.org/books/chemistry-2e/pages/21-4-transmutation-and-nuclear-energy. Energies: D-T fusion 17.59 MeV, OpenStax College Physics 2e, 32.5 \"Fusion\", https://openstax.org/books/college-physics-2e/pages/32-5-fusion; average U-235 fission 200 MeV, 32.6 \"Fission\", https://openstax.org/books/college-physics-2e/pages/32-6-fission (checked by the integrator 2026-10-29).",
+    "Half-lives (C-14 5,700 ± 30 y, I-131 8.02 d, Co-60 5.27 y, F-18 109.8 min) and C-14 decay energy 156 keV: National Nuclear Data Center, NuDat 3, Brookhaven National Laboratory, https://www.nndc.bnl.gov/nudat3/ (checked 2026-10-27).",
+    "Methane combustion 890.6 kJ/mol: OpenStax, Chemistry 2e, 5.3 \"Enthalpy\" (standard enthalpies of combustion table).",
+    "Avogadro constant and the electronvolt: NIST CODATA 2018, https://physics.nist.gov/cuu/Constants/",
+    "Dice half-lives, expected counts, ages and the noise range recomputed in Python (2026-10-27)."
+  ],
+  "third_party": [],
+  "updated": "2026-10-29",
+  "stage": "built"
+}
