@@ -39,7 +39,10 @@ run for them (the integrator stopped network-help-desk's first polish there by m
 is lost only on a `turn.failed` event, or when the events log stops growing for about 20 minutes while no command is
 in progress (the network-help-desk build sat on a hung command until its 2 hour timeout). Then stop the run and resume
 the same session at once with a short prompt ("your connection dropped; carry on from where you were, finish the
-report"), rather than waiting out the timebox.
+report"), rather than waiting out the timebox. A `turn.failed` reading "Selected model is at capacity" (half-life-dice's
+polish, 01:23) is the server, not the run: resume at once with the same short prompt naming what was left. When only
+the closing audit is left, the integrator can run it instead of another Codex turn (half-life-dice's resume ran out its
+hour on the audit).
 
 The session id is the `thread_id` in the first events line (`thread.started`). Polish (and any later round) resumes the same session, so it keeps its
 own context:

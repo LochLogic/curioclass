@@ -100,3 +100,59 @@ Found by the tuned audit after close (not fixed): biased-bot card stack over the
 cuts the how line, `#viewer-cards` focusable at 32 px; career-cluster-explorer Trails buttons below the fold at 760x900
 and the Clusters hint out of view at 375.
 Board items: career-match-quiz onto kit/careers.js; scripts/careers_data.py default --out.
+
+## Single-tool tests: network-help-desk and half-life-dice (2026-10-28 to 10-29)
+
+Two tools through the whole Refine process alone, Codex as builder (Build and Polish), blind Claude lenses, fresh
+Claude exit checks, the integrator closing. Both merged to main as drafts (58a1b956, f16fb21c); not deployed: art,
+voice, Final look and Plan come after Cory's review (a draft never deploys).
+
+| Tool | Grade | Family | Round 1 blockers | Round 1 should fix | Exit checks to PASS |
+|---|---|---|---|---|---|
+| network-help-desk | 4 | network (second tool, engine reused) | 0 | 15 | 2 + integrator fix |
+| half-life-dice | 9-12 | new (dice decay, nucleus cards, dating ruler) | 2 | 14 | 1 + integrator fixes |
+
+Against BR1 (1.1, 11.4, 2.0) and BR2 (1.4, 12.4, 1.6): round 1 about the same, a little more should-fix; exit rounds
+the same. Every last item was narrow and geometric, closed by the integrator and checked by driving the bundle, not
+by a fresh exit round:
+- network-help-desk: exit 1 left three items (clue cards in a scroll panel, lines through labels, badge overlaps);
+  Codex round 2 fixed all three but timed out before its own checks; exit 2 held two and failed one (router links
+  sharing the Internet cable's run at 680x425 and 800x500); the integrator gave each routed link its own lane.
+- half-life-dice: exit 1 failed two (fission arrow over Ba at 375 and 760x900; repeated ruler minor labels, a
+  regression from its own fix); the integrator moved the arrow to the title row and dropped repeated labels.
+- Spec, not build: network-help-desk's three biggest findings came from the spec (Cory changed it, giveaway "All
+  three"); half-life-dice's spec gained Counter clicks, Count again, the Mark rule and two OpenStax sources.
+
+Codex cost and time (usage lines are cumulative per session; a failed or timed-out turn writes none):
+
+| Run | Wall time | Input (cached) | Output |
+|---|---|---|---|
+| network-help-desk build + report resume | 19:12 to 21:22 (2 h timeout + 10 min) | 34.5M (33.8M) | 209k |
+| network-help-desk polish | 21:59 to 23:40 (stopped and resumed once) | 34.3M | 127k |
+| network-help-desk round 2 | 01:19 to 02:49 (90 min timeout) | not recorded | not recorded |
+| half-life-dice build | 23:02 to 00:22 (80 min) | 25.9M (25.2M) | 152k |
+| half-life-dice polish | 01:05 to 01:24, then 01:24 to 02:24 (capacity failure, 60 min timeout) | not recorded | not recorded |
+
+Cory: about 3% of the weekly Codex budget for the network-help-desk build alone. Both polish rounds ran out their
+timebox in their own final checks (re-shooting six sizes, a full audit), after the fixes were in: the integrator ran
+those checks instead. Lessons, in CODEX.md: reconnects fall back to HTTPS (the integrator stopped a polish there by
+mistake); `resume` needs `writable_roots` for the scratch folder; "Selected model is at capacity" is the server, resume
+at once; when only the closing audit is left, the integrator runs it.
+
+Audit pilot, cold catch rate:
+- half-life-dice round 1 (34 leads): one real catch that matters (Sound started off, the root of 19 "not heard"
+  rows); false: Age estimate hit-area overlap, curve "across" the half-life line, Clear "nothing changed" (designed);
+  missed: tray readability, ladder text overlap at 375 (SVG line over text), welcome/hint mismatch, color-only
+  nucleons, aria-disabled styling, the 500 mark rule, the Geiger rate. Mechanical, not teaching.
+- network-help-desk exit round 1 (118 leads): mostly "line drawn across" noise where links meet walls; one real
+  (claim clue cards hidden in a scroll panel, which the exit check also found); "welcome not heard" is settled
+  behavior there.
+- A run now takes 23 to 73 minutes (more states), not 15. Both final audits (exit rounds) did not finish: one hit
+  my 25 minute cap, the network-help-desk one lost its Chrome connection, and the half-life-dice re-run was stopped
+  in cleanup. Neither verdict rests on them.
+
+Left open for Cory: half-life-dice spec questions (an energy-ladder student action, rule 2; 5,730 vs 5,700 years),
+Polish 9 partly held (card buttons show no short names at 375), dice tray reads as texture at 680x425 and 375;
+network-help-desk polish notes (Wi-Fi arcs through the "On" badge at 800x500 call 4, two badges near the right wall at
+680). Worktrees S:/CurioClass-codex-network-help-desk and S:/CurioClass-codex-half-life-dice (merged) and
+S:/CurioClass-codex-scratch (evidence) can be deleted.
