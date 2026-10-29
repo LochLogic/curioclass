@@ -444,7 +444,7 @@ games, Sub Day 76 packets: all three follow the built tools, so a module without
 | 5 | Prep a whole module at once | Opens and prints three or four pages | A "Print the module kit" list on the module page: words, chart, game, Sub Day, each a checkbox, printed in one go | Medium |
 | 6 | Pictures on 9-12 cards | Leaves "Draw it" boxes (fine for older students, thin for ELD) | Another diagram pass on 9-12 cards (math, science and CS terms suit code drawings); the rest wait for the GPU | Medium |
 | 7 | A Sub Day for modules without a tool | Writes their own | "Sub Day lite": words (mini cards for a sort), the chart if any, a game if any, and a generic plan around them | Medium |
-| 8 | Charts for every module | Makes their own | Anchor charts for modules without tools. Now planned as a step in the tool build (main roadmap in docs/PHASE0-PLAN.md, item 2) | Large |
+| 8 | Charts for every module | Makes their own | Anchor charts for modules without tools. Now planned as a step in the tool build (docs/ROADMAP.md, Track 2, item 2) | Large |
 
 Still open from earlier phases: a real-printer test, Spanish native review, family game play-tests, Part 2 of the
 teacher-guide links (waits for the tools chat), and drafting the Map (`docs/MAP-RESEARCH.md`).
@@ -461,7 +461,7 @@ meanings, a five-minute practice idea) and 4 (`<module>-words.csv` on every word
 ## Roadmap
 
 The closet roadmap (9-12 diagrams, anchor charts in the tool build, links Part 2, the module kit) lives in the
-main roadmap: docs/PHASE0-PLAN.md, "Later phases", Supply Closet roadmap.
+main roadmap: docs/ROADMAP.md, Track 2.
 
 ---
 
@@ -497,7 +497,7 @@ comes:
 ## Order and dependencies
 
 ```
-A Foundation ──> B Sub Day ──> (ships with every new tool from here on; so will its anchor chart, see the main roadmap)
+A Foundation ──> B Sub Day ──> (ships with every new tool from here on; so will its anchor chart, see docs/ROADMAP.md)
             ├──> C Word Wall ──┐
             ├──> D Charts ─────┼──> F The Map ──> Late: Worksheet Generator
             └──> E Game Night ─┘
