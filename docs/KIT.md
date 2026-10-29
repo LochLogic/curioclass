@@ -68,7 +68,7 @@ once, results spoken every time, the first-tap welcome, Read, Sound and one log 
 
 ```js
 const V = Curio.voice({lines, scope, welcome, speaks, welcomeAfter, hint, read, est})   // once, before Curio.init
-V.say(line, {kind, key, valid, needs, maxAge, hint, wait, now})   // queue a line: true if queued (a promise with wait)
+V.say(line, {kind, key, valid, needs, maxAge, hold, hint, wait, now})   // queue a line: true if queued (a promise with wait)
 V.say([line, line, [line, partOpts]], opts)   // a sequence: plays whole, in order (see "Sequences")
 V.how(line, opts)               // V.say with kind 'how'
 V.welcome()                     // queue the mode's welcome if it was never said; true if queued
@@ -110,6 +110,8 @@ Options for `say`:
   and a newer how-to replaces any older queued how-to (a queued sequence goes as one unit).
 - `valid: () => bool`, `needs: '#share'`, `maxAge: ms` (a game beat that waited too long): checked when the line's turn
   comes, never when it is queued. A line that fails is dropped and stays unmarked, so its trigger can queue it again.
+- `hold: ms`: the longest this line may hold the queue, for a recorded clip close to the default cap (2.5 s plus 80 ms
+  a character, kept for a clip that never ends). It only lengthens the cap. A sequence part takes it in its own options.
 - `needs` is a selector or a list. Each control must be there, enabled (not `disabled`, not `aria-disabled`), not
   `visibility: hidden`, and visible to the student: inside the viewport, or inside a scroll panel (the nearest
   `overflow: auto` or `scroll` ancestor that actually scrolls) whose box is inside the viewport. So a button below the

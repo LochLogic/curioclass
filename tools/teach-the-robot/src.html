@@ -648,6 +648,23 @@ body.compact .tally{display:none}   /* the stage shows the same "7 of 10" large;
     if (refocus != null) { const c = g.querySelector(`[data-key="${refocus}"]`); refocus = null; if (c) c.focus({preventScroll: true}); }
   }
   const L_names = () => Lyt.names;
+  // a card name's width (11 px, as drawn under each card)
+  const nameCtx = document.createElement('canvas').getContext('2d'), nameWs = {};
+  function nameW(s) {
+    if (!(s in nameWs)) { nameCtx.font = "700 11px 'Segoe UI',sans-serif"; nameWs[s] = nameCtx.measureText(s).width; }
+    return nameWs[s];
+  }
+  // does the segment (x1, y1)-(x2, y2) touch the box [l, t, r, b]? (clipped against the box, Liang-Barsky)
+  function segHits(x1, y1, x2, y2, l, t, r, b) {
+    let u0 = 0, u1 = 1;
+    const dx = x2 - x1, dy = y2 - y1;
+    for (const [p, q] of [[-dx, x1 - l], [dx, r - x1], [-dy, y1 - t], [dy, b - y1]]) {
+      if (p === 0) { if (q < 0) return false; continue; }
+      const u = q / p;
+      if (p < 0) { if (u > u1) return false; if (u > u0) u0 = u; } else { if (u < u0) return false; if (u < u1) u1 = u; }
+    }
+    return true;
+  }
 
   function paintKip() {
     const L = Lyt, sp = spotOf();
@@ -685,13 +702,23 @@ body.compact .tally{display:none}   /* the stage shows the same "7 of 10" large;
         const c = cardPos(sp.match);
         if (c) {
           const G = petGeom(sp.pet), x1 = L.spotX + G.hx * L.ps, y1 = L.groundY + (G.hy - G.r * .95) * L.ps;
-          // it ends on the card's lower corner that faces the pet, so it leaves between the names, not across one
-          const x2 = x1 > c.x + c.s / 2 ? c.x + c.s - 6 : c.x + 6, y2 = c.y + c.s - 6, f = sp.line;
+          // with names under the cards it ends on the plank just under the card's own name, so it never enters the
+          // name row beside it; without names, on the card's lower corner that faces the pet
+          const x2 = L_names() ? c.x + c.s / 2 : x1 > c.x + c.s / 2 ? c.x + c.s - 6 : c.x + 6, y2 = L_names() ? c.y + c.s + 19 : c.y + c.s - 6, f = sp.line;
           const xe = lerp(x1, x2, f), ye = lerp(y1, y2, f);
           el('line', {x1, y1, x2: xe, y2: ye, stroke: '#fff', 'stroke-width': 9, 'stroke-linecap': 'round', opacity: .85}, g);
           el('line', {x1, y1, x2: xe, y2: ye, stroke: '#16679a', 'stroke-width': 5, 'stroke-linecap': 'round', 'stroke-dasharray': '0.1 11'}, g);
           el('circle', {cx: x1, cy: y1, r: 7, fill: '#16679a', stroke: '#fff', 'stroke-width': 2.5}, g);
           if (f >= 1) el('circle', {cx: x2, cy: y2, r: 5, fill: '#16679a', stroke: '#fff', 'stroke-width': 2}, g);
+          // a card name the line still passes (one on the Dog shelf, under a Cat card's line) goes back on top, on a
+          // patch of shelf color, so the line ducks under it and the name stays whole
+          if (L_names()) for (const w of state.wall) {
+            const p = cardPos(w.key); if (!p || w.arriving) continue;
+            const nx = p.x + p.s / 2, ny = p.y + p.s + 8, hw = nameW(w.pet.name) / 2 + 5;
+            if (!segHits(x1, y1, xe, ye, nx - hw - 5, ny - 7 - 5, nx + hw + 5, ny + 7 + 5)) continue;
+            el('rect', {x: nx - hw, y: ny - 6, width: hw * 2, height: 12, rx: 4, fill: '#fbefdc'}, g);
+            text(g, nx, ny, w.pet.name, {size: 11, fill: '#4b3f5c', weight: 700, font: "'Segoe UI',sans-serif"});
+          }
         }
       }
       // the truth: a big cat or dog icon over the pet, with the word
@@ -759,7 +786,27 @@ body.compact .tally{display:none}   /* the stage shows the same "7 of 10" large;
     welcome: () => state.mode === 'teach'
       ? ['teachWelcome', {valid: () => !state.busy && !waiting() && state.deck.length > 0 && state.sel == null, needs: '#next'}]
       : state.wall.length ? ['paradeWelcome', {valid: () => !state.running && !state.runs.length}] : null,
+    read: readParts,
   });
+  // Read: the hint as its own lines, in order, so each plays its clip (a two-part hint has no clip of its own)
+  function readParts() {
+    const whole = $('hint').textContent, all = V.allLines().sort((a, b) => b.length - a.length), out = [];
+    let s = whole.trim();
+    while (s) {
+      const l = all.find(x => s.startsWith(x));
+      if (!l) return [whole];
+      out.push(l); s = s.slice(l.length).trim();
+    }
+    return out.length ? out : [whole];
+  }
+  // a welcome cut off while it played was not heard: it does not count as said, so its next moment brings it again
+  function unsayCut() {
+    const last = {};
+    for (const e of V.log) if (e.kind === 'welcome' && e.as === 'spoken') last[e.key] = e;
+    for (const k in last) if (last[k].cut) V.said.delete(k);
+  }
+  const welcome = () => { unsayCut(); return V.welcome(); };
+  document.addEventListener('click', e => { if (e.target.closest && e.target.closest('#sound')) unsayCut(); }, true);
   const setHint = t => { if ($('hint').textContent !== t) $('hint').textContent = t; };
   function teachHow() {
     if (waiting()) return 'catOrDog';
@@ -829,13 +876,21 @@ body.compact .tally{display:none}   /* the stage shows the same "7 of 10" large;
       text(s, left - 5, y, String(v), {size: 14, fill: '#5a4d6e', anchor: 'end', font: "'Segoe UI',sans-serif"});
     }
     if (!runs.length) { text(s, left + pw / 2, top + ph / 2, 'No parades yet', {size: 15, fill: '#5a4d6e', weight: 600, font: "'Segoe UI',sans-serif"}); return; }
-    const slot = pw / max, bw = Math.min(40, slot * .62);
+    const slot = pw / max, bw = Math.min(40, slot * .62), my = H - bot / 2 + 1, pz = 15;
+    const dw = 10.5, perBar = pz + 3 + dw * Math.max(...runs.map(u => String(u.mem).length)) <= slot - 8;   // 16 px bold digit, about 10 px
+    if (!perBar) icon(s, 'paw', left / 2 - 2, my + 1, 14, '#16679a');
     runs.forEach((u, i) => {
       const cx = left + slot * (i + .5), last = i === runs.length - 1, hgt = ph * u.right / 10;
       const bar = el('rect', {x: cx - bw / 2, y: top + ph - hgt, width: bw, height: hgt, rx: 4, fill: last ? '#16679a' : '#7fb0d0', stroke: '#0f4f77', 'stroke-width': 1.5}, s);
       const lab = text(s, cx, top + ph - hgt - 10, String(u.right), {size: 16, fill: '#2b2238', weight: 800, font: "'Segoe UI',sans-serif"});
-      icon(s, 'paw', cx - 10, H - bot / 2 + 1, 15, '#16679a');
-      text(s, cx, H - bot / 2 + 1, String(u.mem), {size: 16, fill: '#2b2238', anchor: 'start', weight: 800, font: "'Segoe UI',sans-serif"});
+      // the count, centred under its bar; the paw goes beside it when every count has room for one, else once, at the
+      // left of the row (so two-digit counts never run into the next bar's paw)
+      const num = text(s, cx, my, String(u.mem), {size: 16, fill: '#2b2238', weight: 800, font: "'Segoe UI',sans-serif"});
+      if (perBar) {
+        const tw = num.getComputedTextLength() || dw * String(u.mem).length, x0 = cx - (pz + 3 + tw) / 2;
+        icon(s, 'paw', x0 + pz / 2, my, pz, '#16679a');
+        num.setAttribute('text-anchor', 'start'); num.setAttribute('x', x0 + pz + 3);
+      }
       if (last && grow && !Curio.reduce) {
         anim(600, t => { const h2 = hgt * ease(t); bar.setAttribute('y', top + ph - h2); bar.setAttribute('height', h2); lab.setAttribute('y', top + ph - h2 - 10); }, () => bar.isConnected);
       }
@@ -884,7 +939,7 @@ body.compact .tally{display:none}   /* the stage shows the same "7 of 10" large;
     finishFly();
     steer(['cat', 'dog'], state.deck.length ? 'next' : 'go-parade');
     Curio.tone(660, .16, .05); setTimeout(() => Curio.tone(880, .2, .04), 90);
-    V.welcome();
+    // no welcome here: a welcome the first tap skipped waits for its own moment (the next mode entry, Sound on)
     if (nx !== 'nextHow') V.how(nx, {needs: NEEDS[nx], valid: () => !state.busy && !waiting()});
   }
   function finishFly() {   // the card lands on its shelf (also when a mode change cuts the flight short)
@@ -1053,12 +1108,12 @@ body.compact .tally{display:none}   /* the stage shows the same "7 of 10" large;
     if (m === 'parade') renderChart();
     if (m === 'teach') {
       setHint(L[teachHow()]);
-      if (!V.welcome()) { const h = teachHow(); if (h !== 'teachWelcome') V.how(h, {needs: NEEDS[h]}); }
+      if (!welcome()) { const h = teachHow(); if (h !== 'teachWelcome') V.how(h, {needs: NEEDS[h]}); }
     } else {
       const h = paradeHow();
       setHint(L[h]);
       if (h === 'emptyParade') { V.say('emptyParade', {needs: '#m-teach', valid: () => !state.wall.length}); pulse('m-teach'); }
-      else { V.welcome(); V.how(h, {needs: NEEDS[h], valid: () => !state.running}); }
+      else { welcome(); V.how(h, {needs: NEEDS[h], valid: () => !state.running}); }
     }
   }
   for (const k of ['teach', 'parade']) $('m-' + k).onclick = () => { if (state.mode !== k) setMode(k); };

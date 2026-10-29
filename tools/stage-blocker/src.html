@@ -245,7 +245,7 @@ body.m-house #rough,body.m-run #rough{left:auto;right:8px}
           <dt>Body positions</dt><dd>How much of the face a seat sees. Seen from above, the house at the bottom:</dd>
         </dl>
         <div class="bp" id="bodyPos" aria-hidden="true"></div>
-        <p class="small" style="margin:6px 0 10px">A focus note and a "not upstaged" note need profile or better.</p>
+        <p class="small" style="margin:6px 0 10px">A focus note and a "not upstaged" note need profile or better. A focus note also needs the actor in light.</p>
       </details>
     </div>
 
@@ -255,7 +255,7 @@ body.m-house #rough,body.m-run #rough{left:auto;right:8px}
       <div class="seats5" id="seatGrid2" role="group" aria-label="Pick a seat. Row A is nearest the stage."></div>
       <h3 class="small" style="margin:0">From this seat</h3>
       <ul class="seen" id="seenList"></ul>
-      <p class="small">The eye marks where the eye goes first, by a rough guide (speaking, light, body position, level, movement, others looking).</p>
+      <p class="small">The eye marks where the eye goes first, by a rough guide (speaking, light, body position, level, movement, others looking). Nobody in the dark gets the eye.</p>
     </div>
 
     <!-- Run -->
@@ -881,7 +881,8 @@ body.m-house #rough,body.m-run #rough{left:auto;right:8px}
     for (const k of ['beats', 'actor', 'set', 'lights']) { $('tab-' + k).setAttribute('aria-selected', k === t); $('tab-' + k).tabIndex = k === t ? 0 : -1; $('t-' + k).hidden = k !== t; }
     if (focusIt) $('tab-' + t).focus({preventScroll: true});
   }
-  function setMode(m) {
+  function setMode(m, force) {
+    if (m === state.mode && !force) return;   // tapping the mode you are on changes nothing: no hush, no new welcome
     if (state.running && m !== 'run') stopRun();
     V.hush();
     state.mode = m;
@@ -941,7 +942,11 @@ body.m-house #rough,body.m-run #rough{left:auto;right:8px}
     state.running = false; player = null; state.runResults = all; state.ran = true;
     $('cue').hidden = true; S.beat = from;
     renderRun(); renderResults(); renderNow();
-    if (state.mode === 'run') $('runBtn').focus({preventScroll: true});
+    if (state.mode === 'run') {
+      $('runBtn').focus({preventScroll: true});
+      // the notes the hint points at come into view: the summary at the top of the panel (wide, compact) or the page (stack)
+      if (all.length) requestAnimationFrame(() => { if (state.mode === 'run' && state.runResults) $('runSum').scrollIntoView({block: 'start', behavior: Curio.reduce ? 'auto' : 'smooth'}); });
+    }
     if (all.length) { if (all.every(r => r.met)) Curio.yes(); V.say(all.every(r => r.met) ? 'runGood' : 'runSome'); }
     else V.say('runFree');
   }
@@ -1183,7 +1188,7 @@ body.m-house #rough,body.m-run #rough{left:auto;right:8px}
     check: i => Stage.check(beats()[i].notes, beats(), HOUSE, {names: names()}), run, stopRun, finishRun, results: () => state.runResults,
     plan: () => plan.last(), planView: plan, house: () => houseView.last(), insetLast: () => insetView.last(), mini: () => miniPlan.last(), relayout, renderNow,
     hint: () => $('hint').textContent, read: readNow, vlog: V.log, get vq() { return V.queue; }, heard: V.heard, layout: () => ({page, inset: state.inset})};
-  setMode('block');
+  setMode('block', true);
 })();
 </script>
 </body>

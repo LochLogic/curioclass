@@ -122,10 +122,11 @@ const Curio = (() => {
       const text = isKey(line) ? lines[line] : line, kind = po.kind || o.kind;
       const v1 = o.valid, v2 = po.valid;
       return {text, kind: kind === 'how' || kind === 'welcome' ? kind : 'event', key: po.key || (chain ? null : o.key) || (isKey(line) ? line : text),
-        valid: v1 && v2 ? () => v1() && v2() : v1 || v2, needs: [].concat(o.needs || [], po.needs || []), maxAge: po.maxAge || o.maxAge,
+        valid: v1 && v2 ? () => v1() && v2() : v1 || v2, needs: [].concat(o.needs || [], po.needs || []), maxAge: po.maxAge || o.maxAge, hold: po.hold || o.hold || 0,
         hint: 'hint' in po ? po.hint : 'hint' in o ? o.hint : true, at: performance.now(), scope: scope(), chain, link, detail: o.wait === 'detail'};
     }
-    // say(line or [line, line, ...], {kind, key, valid, needs, maxAge, hint, wait, now}). A list is one sequence: its
+    // say(line or [line, line, ...], {kind, key, valid, needs, maxAge, hold, hint, wait, now}). hold: ms a long clip may
+    // hold the queue, past the cap (it never shortens it). A list is one sequence: its
     // lines play in order, a newer how-to never splits it, and when one of its lines is dropped the rest go too.
     // Returns true when queued, or with wait a promise: 'spoken', 'silent' or 'dropped' ({as, why} with wait: 'detail')
     function say(x, o = {}) {
@@ -170,7 +171,7 @@ const Curio = (() => {
           if (it.kind !== 'event') said.add(it.key);          // marked when it plays, never when queued
           heardSet.add(it.key); heardSet.add(it.text);
           nS++; note(it, 'spoken'); it.entry = log[log.length - 1]; cur = it;
-          await Promise.race([say0(it.text), wait(cap(it.text)), new Promise(r => { it.cut = r; })]);
+          await Promise.race([say0(it.text), wait(Math.max(cap(it.text), it.hold)), new Promise(r => { it.cut = r; })]);
           if (cur === it) cur = null;
           end(it, 'spoken');
           if (g !== gen) return;

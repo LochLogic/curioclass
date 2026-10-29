@@ -5,7 +5,10 @@
   "outcome": "Organize short musical sections into forms (AB, ABA, AABA, rondo), refine them, and hear how repetition and contrast shape a song",
   "driver": "students or teacher",
   "minutes": "15-30",
-  "modes": ["Build", "Listen"],
+  "modes": [
+    "Build",
+    "Listen"
+  ],
   "grades_label": "Grades 3-5",
   "sources": [
     "National Core Arts Standards, Music (MU:Cr2, MU:Cr3, MU:Re7): https://www.nationalartsstandards.org/",
@@ -13,9 +16,9 @@
     "AABA as a common popular song form (32-bar form): Open Music Theory, \"AABA (32-bar song form)\", https://viva.pressbooks.pub/openmusictheory/",
     "Ode to Joy: Beethoven, Symphony No. 9, finale (1824), public domain score at IMSLP, https://imslp.org/wiki/Symphony_No.9,_Op.125_(Beethoven,_Ludwig_van)",
     "Twinkle Twinkle (\"Ah! vous dirai-je, maman\", France, 1761), Mary Had a Little Lamb (words by Sarah Josepha Hale, 1830; traditional tune), Row Row Row Your Boat (1881), Hot Cross Buns and Frere Jacques (traditional): public domain melodies as sung in US music classrooms, checked against the Library of Congress Songs of America pages, https://www.loc.gov/collections/songs-of-america/",
-    "Starter songs written for Curio Class; all sounds are made in the browser"
+    "Starter songs written for Curio Class; all sounds are made in the browser",
+    "Narration generated with Qwen3-TTS (Apache 2.0), cloning a Google Gemini text-to-speech voice"
   ],
   "third_party": [],
-  "updated": "2026-10-28",
-  "stage": "built"
+  "updated": "2026-10-29"
 }

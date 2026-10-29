@@ -571,7 +571,7 @@ body.stack #go{min-height:0;flex-direction:column;gap:2px;font-size:19px}
   const onHouseSq = (m, c, r) => !!houseAt(m, c, r) || (c === m.start[0] && r === m.start[1]);
   function footAt(f, s) {
     const m = map(), [c, r] = f.sq, h = onHouseSq(m, c, r), o = FP_SLOTS[f.slot % FP_SLOTS.length];
-    if (h) return {x: cx(c) - .31 * s, y: cy(r) + .3 * s, k: .6, nx: cx(c) - .37 * s, ny: cy(r) + .02 * s};
+    if (h) return {x: cx(c) - .31 * s, y: cy(r) + .3 * s, k: .6, nx: cx(c) - .37 * s, ny: cy(r) + .02 * s, house: [cx(c), cy(r) + .17 * s]};
     const x = cx(c) - .2 * s + o[0] * s, y = cy(r) + .1 * s + o[1] * s;
     return {x, y, k: f.slot ? .7 : 1, nx: cx(c) - .33 * s + o[0] * s * .5, ny: cy(r) - .3 * s + (f.slot ? o[1] * s * .4 : 0)};
   }
@@ -586,7 +586,11 @@ body.stack #go{min-height:0;flex-direction:column;gap:2px;font-size:19px}
     const p = mk('g', {transform: `translate(${x} ${y}) rotate(${op.rot}) scale(${L2})`}, g);
     for (const [fx, fy] of [[-.24, .2], [.24, -.2]]) footShape(mk('g', {transform: `translate(${fx} ${fy})`}, p), op.color);
     // the card number in a circle beside the pair
-    const nr = Math.max(10, s * .12 * Math.min(1, P.k + .2)), nx = P.nx, ny = P.ny;
+    const nr = Math.max(10, s * .12 * Math.min(1, P.k + .2)), nx = P.nx;
+    let ny = P.ny;
+    // on a house the circle keeps clear of the door's picture (radius .19 s): at small sizes the 10 px floor would
+    // reach into it, so the circle rises beside the roof instead (Final look item 3)
+    if (P.house) { const need = .19 * s + nr + 2, dx = P.house[0] - nx; if (Math.hypot(dx, P.house[1] - ny) < need) ny = P.house[1] - Math.sqrt(Math.max(0, need * need - dx * dx)); }
     if (numParent) { const ng = mk('g', {class: g.getAttribute('class'), 'data-i': f.i}, numParent); g.num = ng; }
     const ng = g.num || g;
     mk('circle', {cx: nx, cy: ny, r: nr, fill: '#fff', stroke: op.color, 'stroke-width': Math.max(2, nr * .22)}, ng);
@@ -673,9 +677,10 @@ body.stack #go{min-height:0;flex-direction:column;gap:2px;font-size:19px}
 
   // ---------- the moving layer ----------
   const pipT = {x: 0, y: 0, sz: 1, tilt: 0, op: 1};
+  // on a house Pip stands small at the right of the door, clear of its picture (Final look item 3)
   function pipSpot(c, r) {
     const m = map(), s = G.s, onHouse = !!houseAt(m, c, r) || (c === m.start[0] && r === m.start[1]);
-    return onHouse ? {x: cx(c) + .37 * s, y: cy(r) + .45 * s, sz: .5 * s} : {x: cx(c) + .2 * s, y: cy(r) + .4 * s, sz: .62 * s};
+    return onHouse ? {x: cx(c) + .45 * s, y: cy(r) + .45 * s, sz: .42 * s} : {x: cx(c) + .2 * s, y: cy(r) + .4 * s, sz: .62 * s};
   }
   function placePip() {
     D.pip.setAttribute('transform', `translate(${pipT.x} ${pipT.y}) rotate(${pipT.tilt}) scale(${pipT.sz})`);
@@ -880,6 +885,7 @@ body.stack #go{min-height:0;flex-direction:column;gap:2px;font-size:19px}
     } else if (prog.full) {
       strip.flash();
       const e = state.evt;
+      hushTalk();
       V.say('full', {valid: () => state.evt === e});
       return;
     } else {
@@ -1025,6 +1031,7 @@ body.stack #go{min-height:0;flex-direction:column;gap:2px;font-size:19px}
     else hows.push(V.heard(k) ? 'hStep' : k);
     if (!w.flag && !V.heard('hGuess') && hows.every(h => V.heard(h))) hows.push('hGuess');
     const e = state.evt;
+    hushTalk();
     V.say([...seq, ...hows.filter(h => !V.heard(h)).map(h => [h, {kind: 'how'}])], {valid: () => state.evt === e});
   }
   function flyLetter(at, finale) {
@@ -1056,11 +1063,11 @@ body.stack #go{min-height:0;flex-direction:column;gap:2px;font-size:19px}
   async function go() {
     if (walking()) { stop(); return; }
     if (!prog.length) { emptyNudge(); return; }
+    hushTalk();
     if (paused()) { strip.lock(true); state.guessing = false; run.go(); sync(); return; }
     strip.deselect('go');
-    // the walk starts at once; line 3 (trace and guess) comes with a result, never as a wait. A line naming Guess
-    // must not play on while Guess is off.
-    if (V.playing === L.hGuess || V.playing === L.hFlag || V.playing === L.hGo) V.hush();
+    // the walk starts at once; line 3 (trace and guess) comes with a result, never as a wait. A welcome, level intro
+    // or how line stops (hushTalk above), so nothing talks over the walk or holds the result back.
     closePicker();
     startRun().go();
     sync();
@@ -1072,6 +1079,7 @@ body.stack #go{min-height:0;flex-direction:column;gap:2px;font-size:19px}
     closePicker();
     strip.deselect('step');
     state.guessing = false;
+    hushTalk();
     if (paused()) { strip.lock(true); run.step(); sync(); return; }
     startRun().step();
     sync();
@@ -1086,6 +1094,7 @@ body.stack #go{min-height:0;flex-direction:column;gap:2px;font-size:19px}
     tray.classList.remove('pulse'); tray.getBoundingClientRect(); tray.classList.add('pulse');
     setTimeout(() => tray.classList.remove('pulse'), 900);
     const e = state.evt;
+    hushTalk();
     V.say('empty', {valid: () => state.evt === e});
   }
 
@@ -1109,6 +1118,7 @@ body.stack #go{min-height:0;flex-direction:column;gap:2px;font-size:19px}
     prog.clear();
     tone(520, .1, .03, 'triangle'); setTimeout(() => tone(390, .14, .03, 'triangle'), 90);
     const e = state.evt;
+    hushTalk();
     V.say('cleared', {valid: () => state.evt === e});
     live('All cards cleared.');
   };
@@ -1191,15 +1201,26 @@ body.stack #go{min-height:0;flex-direction:column;gap:2px;font-size:19px}
   const V = Curio.voice({
     lines: L, hint: false, read: () => $('hint').textContent,
     scope: () => state.mode + (state.mode === 'route' ? route.level : ''),
-    welcome: () => state.mode === 'town' ? [['wTown', {valid: idle}], ['hTown', {valid: idle}]] : [['wRoute', {valid: idle}]],
-    welcomeAfter: true,
+    // two modes, so no welcomeAfter (BUILD wave lesson): a welcome a first tap skips comes back at the next mode entry
+    // or Sound on. hTown plays only while it is still what a tap does (not once a card is down or Guess is on).
+    welcome: () => state.mode === 'town' ? [['wTown', {valid: idle}], ['hTown', {valid: () => idle() && howNow() === 'hTown'}]] : [['wRoute', {valid: idle}]],
   });
+  // event lines (results, Clear, empty, full) play at their moment: a welcome, level intro or how line that is playing
+  // is cut, and queued ones are dropped unmarked (the hint still shows them, Read still says them). Go and Step do
+  // the same, so no intro talks over a walk (Final look round 1, items 1 and 2).
+  const EVENT_KEYS = new Set(['empty', 'full', 'delivered', 'wrongHouse', 'snow', 'bank', 'edge', 'cleared', 'guessYes', 'guessNo', 'allDone', 'up', 'down', 'left', 'right', 'fixedBug', 'home']);
+  const TALK = new Set(Object.keys(L).filter(k => !EVENT_KEYS.has(k)).map(k => L[k]));
+  function hushTalk() {
+    if (V.playing && TALK.has(V.playing)) V.hush();
+    else V.dropQueued(x => x.kind !== 'event');
+  }
 
   // ======================================================================================================
   // Modes and levels
   // ======================================================================================================
   function levelLines() {
-    const n = route.level, lv = LEVELS[n], seq = ['lv' + (n + 1)];
+    // the level 4 clip runs 13.75 s, 170 ms inside the kit's cap for its length: hold gives it room (Final look item 4)
+    const n = route.level, lv = LEVELS[n], seq = [n === 3 ? ['lv4', {hold: 17000}] : 'lv' + (n + 1)];
     if (n === 3) seq.push('hCard');
     else seq.push(lv.kind === 'fix' ? fixHow() : 'hBuild');
     return seq;

@@ -78,8 +78,8 @@ tree's trunk and canopy). `Stage.solids(piece)` and `Stage.footprint(piece)` giv
 ```js
 Stage.bodyPos(actor, seat)          // 'full front' (< 22.5 deg) | 'one-quarter' (< 67.5) | 'profile' (< 112.5) | 'three-quarter' (< 157.5) | 'full back'
 Stage.sight(snap, house, seat)      // {cast: {id: {blocked: 0..5, status: 'clear' | 'partly' | 'hidden', by: [ids]}}, pieces: {id: {seen, by}}}
-Stage.focus(snap, beat, house, seat, weights, prevSnap)   // {id: {score (null when hidden), reasons: ['+3 speaking', ...], hidden, parts: {term: value}, why: {term: text}}}
-Stage.leader(focusResult)           // {id (null on a tie), top, tie, tied: [ids]}
+Stage.focus(snap, beat, house, seat, weights, prevSnap)   // {id: {score (null when hidden), reasons: ['+3 speaking', ...], hidden, dark, parts: {term: value}, why: {term: text}}}
+Stage.leader(focusResult)           // {id (null on a tie), top, tie, tied: [ids]}: never a hidden or dark actor
 Stage.upstaged(snap, beat, seat, house)   // {speaker, partner, gap, pos} or null
 Stage.check(notes, beats, house, {weights, names})        // per note {met, why, seats}
 Stage.free(snap, house, id, x, y, {r, gap})               // {x, y, on, sitOn}: the nearest free spot
@@ -101,7 +101,9 @@ Stage.initials(name) (first letters of the first two words, or the first two of 
   (moved `crossM` 0.5 m or more since the beat before, or entered); `gaze` 1 per other actor facing within `gazeDeg`
   30 deg of them; `alone` 1 (nobody within `aloneM` 1.5 m); `partly` -2; hidden: no score. `terms: [{id, fn(actor,
   ctx) -> {score, reason} | null}]` adds terms (`ctx`: snap, beat, house, seat, prev, sight); director-s-chair adds
-  `chorusGaze` and `address`. A tie has no leader. `parts` and `why` are keyed by term (`speak`, `light`, `spot`,
+  `chorusGaze` and `address`. A tie has no leader. `dark` is true for an actor in the dark (an `areas` house, no area
+  light and not in the spot); `Stage.leader` passes over dark and hidden actors, so the eye (plan and house view) never
+  lands on someone the house cannot see. `parts` and `why` are keyed by term (`speak`, `light`, `spot`,
   `pos`, `level`, `standAlone`, `row`, `move`, `gaze`, `alone`, `partly`, or a term's `id`), so a tool can name the
   biggest gap between two actors; the `focus` note's why does ("Biggest gap: Ben +2 for full light, Gran +1 for half
   light."). The light reasons read "full light", "half light", "in the dark".
@@ -109,6 +111,9 @@ Stage.initials(name) (first letters of the first two words, or the first two of 
   three-quarter or full back from the seat (`house.upSeat`), and the speaker is turned toward the partner (under 90
   deg). The note's why gives the fix: "Bring Ben down level with Ava, or have Ava cheat out: turn partly out to the
   house while still talking to Ben."
+- **Lit for the eye.** A `focus` note fails when the actor is in the dark (no area light, not in the spot), whatever the
+  scores say, so a check never gives the focus to someone the house cannot see. Why: "Coach is in the dark (USC is
+  off). Light USC or use the spot."
 - **Open to the house.** Three-quarter and full back are closed. A `focus` or `notUpstaged` note fails when the actor
   is closed to a judging seat, whatever the scores say, so a check never passes an actor with their back to the
   house. Why: "From B3, Ava's back is to the house (full back). Turn Ava out to the house, at least to profile."
@@ -121,7 +126,7 @@ Each note is `{t, beat (index), text, ...}`; `Stage.NOTE_TYPES` lists the 15 typ
 |---|---|---|
 | `see` | `a` | not hidden from any seat (partly hidden is fine) |
 | `lit` | `a` | standing in a half or full area, or in the spot |
-| `focus` | `a, seats?` | open (profile or better) to, and the leader from, every one of `seats` (default `house.focusSeats`) |
+| `focus` | `a, seats?` | lit, open (profile or better) to, and the leader from, every one of `seats` (default `house.focusSeats`) |
 | `at` | `a, areas` | in one of the listed areas |
 | `enters` | `a, entrance` | off stage in the beat before, on stage now, by `entrance`: the wing or Door they waited in during the beat before (`actor.wing` there), else the entrance nearest where they first stand |
 | `exits` | `a, entrance` | on stage before, off now, by `entrance`: the wing they were sent to (`actor.wing`), else the entrance nearest their last place |

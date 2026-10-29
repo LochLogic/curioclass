@@ -235,14 +235,17 @@ const Stage = (() => {
       if (!others.some(b => hyp(b.x - a.x, b.y - a.y) < W.aloneM)) add(W.alone, 'space around them');
       if (st.status === 'partly') add(W.partly, 'partly hidden');
       for (const t of W.terms || []) { const v = t.fn(a, {snap, beat, house: h, seat, prev, sight: sg}); if (v) add(v.score, v.reason, t.id); }
-      out[a.id] = {score: Math.round(s * 10) / 10, reasons: r, hidden: false, parts, why: whyOf};
+      // dark: in an areas house and not lit (no area light, no spot); leader() never gives the eye to a dark actor
+      out[a.id] = {score: Math.round(s * 10) / 10, reasons: r, hidden: false, dark: h.light === 'areas' && !lit(snap, h, a), parts, why: whyOf};
     }
     return out;
   }
   function leader(f) {
     let best = null, top = -Infinity, tie = false;
-    for (const [id, v] of Object.entries(f)) { if (v.score === null) continue; if (v.score > top + 1e-9) { top = v.score; best = id; tie = false; } else if (Math.abs(v.score - top) < 1e-9) tie = true; }
-    return {id: tie ? null : best, top, tie, tied: tie ? Object.keys(f).filter(k => f[k].score !== null && Math.abs(f[k].score - top) < 1e-9) : []};
+    // the eye goes to someone it can see: hidden actors (score null) and actors in the dark are never the leader
+    const can = v => v.score !== null && !v.dark;
+    for (const [id, v] of Object.entries(f)) { if (!can(v)) continue; if (v.score > top + 1e-9) { top = v.score; best = id; tie = false; } else if (Math.abs(v.score - top) < 1e-9) tie = true; }
+    return {id: tie ? null : best, top, tie, tied: tie ? Object.keys(f).filter(k => can(f[k]) && Math.abs(f[k].score - top) < 1e-9) : []};
   }
 
   // ---------- upstaging ----------
@@ -345,6 +348,8 @@ const Stage = (() => {
       case 'focus': {
         if (!on(A)) return offWhy(n.a);
         const seats = n.seats || h.focusSeats;
+        // the eye goes to a lit face: an actor in the dark (no area light, no spot) never has the focus
+        if (!lit(snap, h, A)) { const ar = areaOf(h, A.x, A.y), an = ar ? ar.label || ar.id : null; return {met: false, why: nm(n.a) + ' is in the dark' + (an ? ' (' + an + ' is off). Light ' + an + ' or use the spot.' : '. Move ' + nm(n.a) + ' into light or use the spot.'), seats: seats.slice()}; }
         // the eye goes to an open face: from every judging seat the actor must be profile or better
         const shut = seats.filter(s => closedPos(bodyPos(A, seatOf(h, s))));
         if (shut.length) return {met: false, why: shutWhy(nm(n.a), bodyPos(A, seatOf(h, shut[0])), shut[0]) + (shut.length > 1 ? ' Also from ' + list(shut.slice(1)) + '.' : '') + ' Turn ' + nm(n.a) + ' out to the house, at least to profile.', seats: shut};
@@ -989,23 +994,25 @@ const Stage = (() => {
     const x = Hc[0], yTop = sh[1], yBot = B[1];
     f.box = {cx: x, top: Hc[1] - hr, bottom: yBot, w: bw};
     const L = h.light === 'areas' ? clamp(lightAt(snap, h, a.x, a.y) / 2 + (inSpot(snap, h, a.x, a.y) ? .5 : 0), 0, 1) : 1;
-    const br = .5 + .5 * L, col = shadeHex(a.color, br);
+    // in the dark the figure drops to 30% (a gray rim keeps its shape on the dark floor, light initials stay AA);
+    // half light 75%, full 100%; a fade in Run passes smoothly between them
+    const br = L < .5 ? .3 + .9 * L : .5 + .5 * L, col = shadeHex(a.color, br), dim = br < .7, rim = dim ? '#8a8a94' : C.ink;
     ctx.save();
     if (ghost) { ctx.setLineDash([5, 4]); ctx.lineWidth = 2; ctx.strokeStyle = C.bad; }
     // body
     ctx.beginPath(); const r = Math.min(bw / 2, (yBot - yTop) / 2);
     roundRect(ctx, x - bw / 2, yTop, bw, Math.max(4, yBot - yTop), Math.max(2, r * .9));
-    if (ghost) ctx.stroke(); else { ctx.fillStyle = col; ctx.fill(); ctx.lineWidth = 1.2; ctx.strokeStyle = C.ink; ctx.stroke(); }
+    if (ghost) ctx.stroke(); else { ctx.fillStyle = col; ctx.fill(); ctx.lineWidth = 1.2; ctx.strokeStyle = rim; ctx.stroke(); }
     // head
     ctx.beginPath(); ctx.arc(x, Hc[1], hr, 0, 2 * Math.PI);
     if (ghost) ctx.stroke(); else {
-      ctx.fillStyle = shadeHex(a.color, br * 1.08); ctx.fill(); ctx.lineWidth = 1.2; ctx.strokeStyle = C.ink; ctx.stroke();
+      ctx.fillStyle = shadeHex(a.color, br * 1.08); ctx.fill(); ctx.lineWidth = 1.2; ctx.strokeStyle = rim; ctx.stroke();
       // the face: which way it turns, seen from this seat (signed angle between facing and the seat direction)
       const [fx, fy] = facingVec(a.facing || 0), dx = seat.x - a.x, dy = seat.y - a.y;
       const ang = Math.atan2(fx * dy - fy * dx, fx * dx + fy * dy);   // + when the actor faces to the seat's left
       if (Math.abs(ang) < 1.96) {
         const off = -Math.sin(ang) * hr * .55;
-        ctx.fillStyle = C.ink;
+        ctx.fillStyle = dim ? '#f2f2f5' : C.ink;
         const er = Math.max(1, hr * .12);
         if (Math.abs(ang) < 1.2) { ctx.beginPath(); ctx.arc(x + off - hr * .3 * Math.cos(ang), Hc[1] - hr * .15, er, 0, 7); ctx.fill(); }
         ctx.beginPath(); ctx.arc(x + off + hr * .3 * Math.cos(ang), Hc[1] - hr * .15, er, 0, 7); ctx.fill();
@@ -1016,12 +1023,12 @@ const Stage = (() => {
         ctx.beginPath();
         if (a.mask === 'full') ctx.ellipse(x, Hc[1], hr * .85, hr * 1.05, 0, 0, 2 * Math.PI);
         else ctx.ellipse(x, Hc[1] - hr * .3, hr * .85, hr * .55, 0, 0, 2 * Math.PI);
-        ctx.fillStyle = '#efe6d2'; ctx.fill(); ctx.strokeStyle = C.ink; ctx.lineWidth = 1; ctx.stroke();
+        ctx.fillStyle = shadeHex('#efe6d2', dim ? .45 : 1); ctx.fill(); ctx.strokeStyle = C.ink; ctx.lineWidth = 1; ctx.stroke();
       }
       // initials on the chest
       const fs = Math.max(10, Math.min(28, bw * .42));
       ctx.font = `800 ${fs}px "Segoe UI",system-ui,sans-serif`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-      ctx.fillStyle = C.ink; ctx.fillText(a.initials || initials(a.name), x, yTop + Math.min((yBot - yTop) * .35, fs * 1.1));
+      ctx.fillStyle = dim ? '#f2f2f5' : C.ink; ctx.fillText(a.initials || initials(a.name), x, yTop + Math.min((yBot - yTop) * .35, fs * 1.1));
     }
     ctx.restore();
   }
