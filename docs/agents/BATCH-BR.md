@@ -54,19 +54,27 @@ done (counts table, lessons in BUILD.md, KIT.md engine lines, the integrator spe
 
 1. Read BATCH-BR-LOG.md, BR2 and "Audit tuned after BR2": the counts, the Codex pilot verdict, the audit's state.
 2. Cory's open question there: "welcome not heard after a first tap", a rule or not.
-3. BR3 starts with ONE tool as a whole-process test (Cory, 2026-10-28), then the rest of the wave. Pick one with two
-   or three modes and a state past the first click (so the per-mode walk and audit-states.json are exercised), ideally
-   a family's second tool. Build under BUILD.md and REFINE.md: the builder writes `audit-states.json`; lenses run the
-   tuned audit first and keep `## Audit pilot` notes (its first cold catch rate).
-   **Next in line: network-help-desk** (grade 4 CS, spec ready, not built). Second tool of the network family (engine
+3. **Next is a single-tool test, not BR3** (Cory, 2026-10-28). One tool goes through the whole process alone; BR3 is
+   picked only after Cory reviews how it went. The tool should have two or three modes and a state past the first
+   click (so the per-mode walk and audit-states.json are exercised), ideally a family's second tool.
+   **The tool: network-help-desk** (grade 4 CS, spec ready, not built). Second tool of the network family (engine
    kit/network.js from BR1's internet-journey, never reused yet, so it tests the "engine matches the full family
    description" lesson); two modes (Calls, House); its key states sit past the first click (questions reveal parts of
    the house network, then a cause card); not K-2, no Rule 5 content.
-   **Builder: Codex** (Cory, 2026-10-28), steps 1 and 5 only: follow `docs/agents/CODEX.md` (worktree, brief modeled
-   on tools/biased-bot/CODEX-BRIEF.md, run and resume commands, polish prompt, what to record). Everything else as REFINE.md: three blind Claude lenses running the tuned audit first,
-   the integrator merge, cold exit checks, integrator close, then commit, push and a clean-worktree deploy.
-   **Stop after step 7 (deploy) and review with Cory how it went**: counts against BR1 and BR2, exit rounds, the
-   audit's cold catch rate from the lenses' `## Audit pilot` notes, Codex tokens and time. Art and voice wait for
-   that review. Start from a new chat.
+   **Builder: Codex** (Cory, 2026-10-28) for Build and Polish only, following `docs/agents/CODEX.md` (worktree, brief
+   modeled on tools/biased-bot/CODEX-BRIEF.md, run and resume commands, polish prompt, what to record). The steps:
+   1. Build: Codex, in its own worktree; it writes `audit-states.json` and answers every audit lead in codex-report.md.
+   2. Look: three blind Claude lenses (REFINE.md), each running the tuned audit first and keeping `## Audit pilot`.
+   3. Merge: the integrator (the main session) writes tools/network-help-desk/refine.md.
+   4. Polish prompt: the integrator settles what it can, approves or declines any `## Engine changes wanted`.
+   5. Polish: Codex, resuming its own session (CODEX.md, Run).
+   6. Exit check: fresh cold Claude agents, at most two rounds, then the integrator closes (REFINE.md, Rounds).
+   7. Merge the codex branch, commit, push and deploy from a clean worktree of main (RUNBOOK, Deploy while agents are
+      mid-edit).
+   **Then stop and review with Cory**: round 1 blockers and should-fixes against the BR1 and BR2 averages, exit
+   rounds, integrator fixes, the audit's cold catch rate from the lenses' `## Audit pilot` notes, Codex tokens and
+   wall time. Record them in BATCH-BR-LOG.md under a new "Single-tool test: network-help-desk" section. Art, voice
+   (now on the Forge) and BR3 wait for that review. If deleting the Codex worktree folder is blocked, leave it for
+   Cory to delete by hand (as with S:/CurioClass-audit).
 4. Small fixes found after close, not yet done: see BR2 "Found by the tuned audit after close" in the log.
 5. Board items: career-match-quiz onto kit/careers.js; scripts/careers_data.py writes the quiz path without --out.
