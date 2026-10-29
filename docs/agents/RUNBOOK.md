@@ -204,7 +204,7 @@ then the item goes back to "ready" with a reply on the comment and the comment m
   feelings-faces, safety-street) can now record on the Forge (`localvoice.py <id> --forge`, one job each; the queue
   runs them in turn). stage-blocker was the first, 15 of 15 lines. A parked tool goes back to 'ready' on the Review
   Desk with a note once its voice lands.
-- **Uncommitted Word Wall cards (found 2026-10-28):** 24 new and 2 changed `closet/words/art/**/*.webp` from the
-  evening of 2026-10-27 were never committed and have no review record (the batch committed at 9c940dea left them
-  out). Among them is a redrawn Loyalist people card (sensitivity review needed). Look at them before deciding:
-  commit what passes a match check and the sensitivity review, discard the rest (`git status closet/words/art`).
+- **Unreviewed Word Wall cards (committed 2026-10-28 on Cory's say, "sanitize later if needed"):** 24 new and 2
+  changed `closet/words/art/**/*.webp` from the evening of 2026-10-27, committed without a match check or sensitivity
+  review (see the commit that added this note). Among them is a redrawn Loyalist people card. Check them when the
+  Word Wall is next touched.
