@@ -33,15 +33,21 @@ The build as biased-bot ran it (default model; run it in the background, timebox
 
     codex exec --json --sandbox workspace-write -C S:/CurioClass-codex-<id> --add-dir <scratch> -o <scratch>/codex-last.md - < <brief> > <scratch>/codex-events.jsonl
 
-**Dropped streams.** The network-help-desk build reconnected five times, failed ("stream disconnected before
-completion"), then sat until the 2 hour timeout. The integrator watches the events log: an `error` event with
-"Reconnecting... 5/5" means the turn is lost. Stop the run and resume the same session at once with a short prompt
-("your connection dropped; carry on from where you were, finish the report"), rather than waiting out the timebox.
+**Dropped streams.** "Reconnecting... 2/5" to "5/5" `error` events are normal: the next event is "Falling back from
+WebSockets to HTTPS transport" and the run carries on (every resume of a long session starts this way). Do not stop a
+run for them (the integrator stopped network-help-desk's first polish there by mistake and had to resume it). A turn
+is lost only on a `turn.failed` event, or when the events log stops growing for about 20 minutes while no command is
+in progress (the network-help-desk build sat on a hung command until its 2 hour timeout). Then stop the run and resume
+the same session at once with a short prompt ("your connection dropped; carry on from where you were, finish the
+report"), rather than waiting out the timebox.
 
 The session id is the `thread_id` in the first events line (`thread.started`). Polish (and any later round) resumes the same session, so it keeps its
 own context:
 
-    codex exec resume -c sandbox_mode="workspace-write" --json -o <scratch>/codex-polish-last.md <session-id> - < <scratch>/polish-prompt.md
+    codex exec resume -c sandbox_mode="workspace-write" -c 'sandbox_workspace_write.writable_roots=["<scratch>"]' --json -o <scratch>/codex-polish-last.md <session-id> - < <scratch>/polish-prompt.md
+
+`resume` takes no `--add-dir`: without the `writable_roots` override the scratch folder is read-only on every resume
+(network-help-desk's polish fell back to %TEMP% for all its evidence).
 
 Polish prompt shape (biased-bot's, which worked): the review is `tools/<id>/refine.md`; fix every Should fix and every
 Polish accepted item and apply the Settled calls; leave Spec open questions; which engine change (if any) is approved,
