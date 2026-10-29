@@ -284,12 +284,14 @@ const Net = (() => {
       if (old && old.parentNode === layers.links) old.replaceWith(gEl); else { if (old) old.remove(); layers.links.appendChild(gEl); }
       if (g.node(l.a).hidden || g.node(l.b).hidden) gEl.style.display = 'none';   // a hidden node hides its links too
       const pts = linkPoints(l), path = d(pts), down = !l.up;
-      const col = down ? C.down : l.medium === 'fiber' ? C.fiber : l.medium === 'wifi' ? C.wifi : C.wire;
+      const custom = !down && skin.linkStyle ? skin.linkStyle(l) || {} : {};
+      const col = down ? C.down : custom.color ?? (l.medium === 'fiber' ? C.fiber : l.medium === 'wifi' ? C.wifi : C.wire);
+      const width = fallback => custom.width ?? fallback, dash = fallback => custom.dash ?? fallback;
       if (l.medium === 'fiber') {
-        mk('path', {d: path, fill: 'none', stroke: col, 'stroke-width': 5, 'stroke-linecap': 'round', 'stroke-dasharray': down ? '10 7' : null}, gEl);
+        mk('path', {d: path, fill: 'none', stroke: col, 'stroke-width': width(5), 'stroke-linecap': 'round', 'stroke-dasharray': dash(down ? '10 7' : null)}, gEl);
         if (!down) mk('path', {d: path, fill: 'none', stroke: C.fiberCore, 'stroke-width': 1.5, 'stroke-linecap': 'round'}, gEl);
       } else if (l.medium === 'wifi') {
-        mk('path', {d: path, fill: 'none', stroke: col, 'stroke-width': 3, 'stroke-dasharray': down ? '3 9' : '7 7', 'stroke-linecap': 'round'}, gEl);
+        mk('path', {d: path, fill: 'none', stroke: col, 'stroke-width': width(3), 'stroke-dasharray': dash(down ? '3 9' : '7 7'), 'stroke-linecap': 'round'}, gEl);
         // three arcs at the radio end, facing along the link
         const radio = /wifi-router|access-point/.test(g.node(l.b).kind) && !/wifi-router|access-point/.test(g.node(l.a).kind) ? l.b : l.a;
         const p = linkPoints(l, radio), [x0, y0] = p[0], [x1, y1] = p[1], len = Math.hypot(x1 - x0, y1 - y0) || 1;
@@ -297,10 +299,10 @@ const Net = (() => {
         for (let i = 0; i < 3; i++) {
           const r = R + 4 + i * 7, sp = .55;
           const ax = x0 + Math.cos(ang - sp) * r, ay = y0 + Math.sin(ang - sp) * r, bx = x0 + Math.cos(ang + sp) * r, by = y0 + Math.sin(ang + sp) * r;
-          mk('path', {d: `M${ax.toFixed(1)} ${ay.toFixed(1)}A${r} ${r} 0 0 1 ${bx.toFixed(1)} ${by.toFixed(1)}`, fill: 'none', stroke: col, 'stroke-width': 2.5, 'stroke-linecap': 'round'}, gEl);
+          mk('path', {d: `M${ax.toFixed(1)} ${ay.toFixed(1)}A${r} ${r} 0 0 1 ${bx.toFixed(1)} ${by.toFixed(1)}`, fill: 'none', stroke: col, 'stroke-width': width(2.5), 'stroke-linecap': 'round'}, gEl);
         }
       } else {
-        mk('path', {d: path, fill: 'none', stroke: col, 'stroke-width': 3, 'stroke-linecap': 'round', 'stroke-dasharray': down ? '10 7' : null}, gEl);
+        mk('path', {d: path, fill: 'none', stroke: col, 'stroke-width': width(3), 'stroke-linecap': 'round', 'stroke-dasharray': dash(down ? '10 7' : null)}, gEl);
       }
       if (down) {   // a break mark: two short slashes across the middle
         const m = mid(pts), a = m.ang + Math.PI / 2;
@@ -533,7 +535,7 @@ const Net = (() => {
   // move a token along one link (or toward a down node and back when bounce), frame by frame
   function glide(view0, tok, l, from, ms, bounce, check, mover) {
     return new Promise(res => {
-      const t0 = performance.now(), still = calm();
+      const t0 = performance.now();
       const pts = () => { const v = mover.view, p = v.linkPoints(l, from); return {p, R: v.R}; };
       const posAt = (p, f) => {   // the point at fraction f of the polyline
         let L = 0; const seg = [];
@@ -551,7 +553,7 @@ const Net = (() => {
         if (over) return;
         const c = check(); if (c) { done(c === true ? 'stopped' : c); return; }
         const f = Math.min(1, (performance.now() - t0) / ms);
-        if (!still) {
+        if (!calm()) {
           const {p, R} = pts();
           if (!bounce) { const [x, y] = posAt(p, f); place(tok, x, y); }
           else {

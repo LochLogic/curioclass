@@ -53,6 +53,7 @@ Skin options: `box, units, icon, tile ('round'|'circle'|'none'), label ('below'|
 labelSize, labelWidth, labelLines, labelGap, labelHaloWidth (default 4), font, colors {tile, tileLine, ink, label,
 labelHalo, wire, fiber, fiberCore, wifi, down, downTile, downLabel (a down node's name; default: down), bad, badText,
 linkLabel, linkHalo, ring}, pickable, onPick(node), canPick(node),
+linkStyle(link) (optional, up links only: {color, width, dash}, each optional; down links keep colors.down),
 onPickLink(link), linkFocus, linkAria, linkLabel(link), linkLabelSize, linkHit, nodeAria(node), drawIcon`. Per node:
 `hidden` (its links hide too), `faint`, `fill`.
 
@@ -70,11 +71,18 @@ tokens jump hop to hop with the same timing (Curio.reduce).
 - New engine features go into the engine and this file in the same change, keeping existing calls working. Re-check
   internet-journey after any change to `draw` or `send`.
 
+## Recipes
+
+- **Guest network** (network-help-desk): mark the router's guest links `guest: true` in the tool's own graph data.
+  The engine has no guest concept; for a home-device target pass `skip: l => l.guest` to `Net.path` and `Net.reach`
+  (guest-to-cloud routes stay open). Style guest links with the skin's `linkStyle(link)` option (added for this tool),
+  not by writing on the engine's link paths, and give down links a look of their own (`colors.down`) so a broken link never reads as Guest.
+
 ## What each tool brings (its own)
 
 | Tool | Grade | Its one idea (not shared) | Engine parts |
 |---|---|---|---|
 | internet-journey | 3 | a party invite travels in 8 numbered pieces; one choice per stop; the board of where copies live | graph, draw, send (envelopes, bounce), split, join, path (Trip map) |
-| network-help-desk | 4 | a home network appears only as you ask the right questions; sort the cause | graph, draw, send ('ping'), down nodes and links, reach |
+| network-help-desk | 4 | a home network appears only as you ask the right questions; sort the kind, then the cause | graph, draw, path, reach (guest skip), token and send ('ping'), stop, down nodes and links, badges |
 | packet-race | 6-8 | you are the routing table: aim each router's arrow, re-aim when routers fail | graph, draw, step, send ('numbered'), split, join |
 | network-architect | 9-12 | wire a high school, then run the tests a network team would | graph, draw, path, reach, flows (load, util) |

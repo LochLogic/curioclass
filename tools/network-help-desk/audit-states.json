@@ -1,0 +1,710 @@
+{
+  "target": 44,
+  "states": [
+    {
+      "name": "six-clues",
+      "steps": [
+        {
+          "click": "#q1"
+        },
+        {
+          "click": "#q2"
+        },
+        {
+          "click": "#q3"
+        },
+        {
+          "click": "#q4"
+        },
+        {
+          "click": "#q5"
+        },
+        {
+          "click": "#q6"
+        }
+      ],
+      "keep": [
+        "#questions",
+        "#make-claim",
+        "#call-strip"
+      ]
+    },
+    {
+      "name": "kind-first",
+      "steps": [
+        {
+          "click": "#q1"
+        },
+        {
+          "click": "#q2"
+        },
+        {
+          "click": "#q3"
+        },
+        {
+          "click": "#q4"
+        },
+        {
+          "click": "#q5"
+        },
+        {
+          "click": "#q6"
+        },
+        {
+          "click": "#make-claim"
+        }
+      ],
+      "keep": [
+        "#kind-choice",
+        "#call-strip"
+      ]
+    },
+    {
+      "name": "claim-connection",
+      "steps": [
+        {
+          "click": "#q1"
+        },
+        {
+          "click": "#q2"
+        },
+        {
+          "click": "#q3"
+        },
+        {
+          "click": "#q4"
+        },
+        {
+          "click": "#q5"
+        },
+        {
+          "click": "#q6"
+        },
+        {
+          "click": "#make-claim"
+        },
+        {
+          "click": "#kind-0"
+        }
+      ],
+      "keep": [
+        "#kind-choice",
+        "#cause-board",
+        "#send-fix",
+        "#call-strip"
+      ]
+    },
+    {
+      "name": "claim-login",
+      "steps": [
+        {
+          "click": "#q1"
+        },
+        {
+          "click": "#q2"
+        },
+        {
+          "click": "#q3"
+        },
+        {
+          "click": "#q4"
+        },
+        {
+          "click": "#q5"
+        },
+        {
+          "click": "#q6"
+        },
+        {
+          "click": "#make-claim"
+        },
+        {
+          "click": "#kind-1"
+        }
+      ],
+      "keep": [
+        "#kind-choice",
+        "#cause-board",
+        "#send-fix",
+        "#call-strip"
+      ]
+    },
+    {
+      "name": "claim-permission",
+      "steps": [
+        {
+          "click": "#q1"
+        },
+        {
+          "click": "#q2"
+        },
+        {
+          "click": "#q3"
+        },
+        {
+          "click": "#q4"
+        },
+        {
+          "click": "#q5"
+        },
+        {
+          "click": "#q6"
+        },
+        {
+          "click": "#make-claim"
+        },
+        {
+          "click": "#kind-2"
+        }
+      ],
+      "keep": [
+        "#kind-choice",
+        "#cause-board",
+        "#send-fix",
+        "#call-strip"
+      ]
+    },
+    {
+      "name": "two-clues",
+      "steps": [
+        {
+          "click": "#q1"
+        },
+        {
+          "click": "#q2"
+        },
+        {
+          "click": "#q3"
+        },
+        {
+          "click": "#q4"
+        },
+        {
+          "click": "#q5"
+        },
+        {
+          "click": "#q6"
+        },
+        {
+          "click": "#make-claim"
+        },
+        {
+          "click": "#kind-0"
+        },
+        {
+          "click": "#cause-1"
+        },
+        {
+          "click": "#evidence-1"
+        },
+        {
+          "click": "#evidence-4"
+        }
+      ],
+      "keep": [
+        "#kind-choice",
+        "#cause-board",
+        ".claim-clues",
+        "#send-fix"
+      ]
+    },
+    {
+      "name": "weak-clue",
+      "steps": [
+        {
+          "click": "#q1"
+        },
+        {
+          "click": "#q2"
+        },
+        {
+          "click": "#q3"
+        },
+        {
+          "click": "#q4"
+        },
+        {
+          "click": "#q5"
+        },
+        {
+          "click": "#q6"
+        },
+        {
+          "click": "#make-claim"
+        },
+        {
+          "click": "#kind-0"
+        },
+        {
+          "click": "#cause-1"
+        },
+        {
+          "click": "#evidence-2"
+        },
+        {
+          "click": "#send-fix"
+        }
+      ],
+      "keep": [
+        "#kind-choice",
+        "#cause-board",
+        "#hint",
+        "#send-fix"
+      ]
+    },
+    {
+      "name": "wrong-kind",
+      "steps": [
+        {
+          "click": "#q1"
+        },
+        {
+          "click": "#q2"
+        },
+        {
+          "click": "#q3"
+        },
+        {
+          "click": "#q4"
+        },
+        {
+          "click": "#q5"
+        },
+        {
+          "click": "#q6"
+        },
+        {
+          "click": "#make-claim"
+        },
+        {
+          "click": "#kind-1"
+        },
+        {
+          "click": "#cause-6"
+        },
+        {
+          "click": "#evidence-1"
+        },
+        {
+          "click": "#evidence-4"
+        },
+        {
+          "click": "#send-fix"
+        }
+      ],
+      "keep": [
+        "#kind-choice",
+        "#cause-board",
+        "#hint",
+        "#send-fix"
+      ]
+    },
+    {
+      "name": "wrong-cause",
+      "steps": [
+        {
+          "click": "#q1"
+        },
+        {
+          "click": "#q2"
+        },
+        {
+          "click": "#q3"
+        },
+        {
+          "click": "#q4"
+        },
+        {
+          "click": "#q5"
+        },
+        {
+          "click": "#q6"
+        },
+        {
+          "click": "#make-claim"
+        },
+        {
+          "click": "#kind-0"
+        },
+        {
+          "click": "#cause-2"
+        },
+        {
+          "click": "#evidence-1"
+        },
+        {
+          "click": "#evidence-4"
+        },
+        {
+          "click": "#send-fix"
+        },
+        {
+          "wait": 800
+        }
+      ],
+      "keep": [
+        "#kind-choice",
+        "#cause-board",
+        "#nudge",
+        "#send-fix"
+      ]
+    },
+    {
+      "name": "solved",
+      "steps": [
+        {
+          "click": "#q1"
+        },
+        {
+          "click": "#q2"
+        },
+        {
+          "click": "#q3"
+        },
+        {
+          "click": "#q4"
+        },
+        {
+          "click": "#q5"
+        },
+        {
+          "click": "#q6"
+        },
+        {
+          "click": "#make-claim"
+        },
+        {
+          "click": "#kind-0"
+        },
+        {
+          "click": "#cause-1"
+        },
+        {
+          "click": "#evidence-1"
+        },
+        {
+          "click": "#evidence-4"
+        },
+        {
+          "click": "#send-fix"
+        },
+        {
+          "until": "__tool.state.calls[0].solved",
+          "max": 6000
+        }
+      ],
+      "keep": [
+        "#next-call",
+        "#call-strip"
+      ]
+    },
+    {
+      "name": "resize-ping",
+      "steps": [
+        {
+          "click": "#q1"
+        },
+        {
+          "click": "#q2"
+        },
+        {
+          "click": "#q3"
+        },
+        {
+          "click": "#q4"
+        },
+        {
+          "click": "#q5"
+        },
+        {
+          "click": "#q6"
+        },
+        {
+          "click": "#make-claim"
+        },
+        {
+          "click": "#kind-0"
+        },
+        {
+          "click": "#cause-2"
+        },
+        {
+          "click": "#evidence-1"
+        },
+        {
+          "click": "#evidence-4"
+        },
+        {
+          "click": "#send-fix",
+          "gap": 0
+        },
+        {
+          "js": "if(parent!==window){const f=parent.document.querySelector('iframe');f.style.width='360px';f.style.height='780px';}"
+        },
+        {
+          "wait": 900
+        }
+      ],
+      "keep": [
+        "#send-fix"
+      ],
+      "sizes": [
+        "375x812"
+      ]
+    },
+    {
+      "name": "house-shed",
+      "steps": [
+        {
+          "click": "#m-house"
+        },
+        {
+          "drag": "const t=__tool.view.pos('tablet'),r=document.getElementById('map').getBoundingClientRect(),p=__tool.designToScreen(920,520);return [[Math.round(r.x+t.x),Math.round(r.y+t.y)],[Math.round(r.x+t.x+11),Math.round(r.y+t.y+7)],[p[0]-19,p[1]-13],p];"
+        },
+        {
+          "click": "[data-target=internet]"
+        }
+      ],
+      "keep": [
+        "#try-result"
+      ]
+    },
+    {
+      "name": "house-router-off",
+      "steps": [
+        {
+          "click": "#m-house"
+        },
+        {
+          "click": "[data-id=router]"
+        },
+        {
+          "click": "[data-target=internet]"
+        }
+      ],
+      "keep": [
+        "#try-result"
+      ]
+    },
+    {
+      "name": "shift-report",
+      "steps": [
+        {
+          "click": "#q1"
+        },
+        {
+          "click": "#q4"
+        },
+        {
+          "click": "#make-claim"
+        },
+        {
+          "click": "#kind-0"
+        },
+        {
+          "click": "#cause-1"
+        },
+        {
+          "click": "#evidence-1"
+        },
+        {
+          "click": "#evidence-4"
+        },
+        {
+          "click": "#send-fix"
+        },
+        {
+          "until": "__tool.state.calls[0].solved",
+          "max": 6000
+        },
+        {
+          "click": "#call-2"
+        },
+        {
+          "click": "#q4"
+        },
+        {
+          "click": "#make-claim"
+        },
+        {
+          "click": "#kind-0"
+        },
+        {
+          "click": "#cause-2"
+        },
+        {
+          "click": "#evidence-4"
+        },
+        {
+          "click": "#send-fix"
+        },
+        {
+          "until": "__tool.state.calls[1].solved",
+          "max": 6000
+        },
+        {
+          "click": "#call-3"
+        },
+        {
+          "click": "#q4"
+        },
+        {
+          "click": "#make-claim"
+        },
+        {
+          "click": "#kind-1"
+        },
+        {
+          "click": "#cause-6"
+        },
+        {
+          "click": "#evidence-4"
+        },
+        {
+          "click": "#send-fix"
+        },
+        {
+          "until": "__tool.state.calls[2].solved",
+          "max": 6000
+        },
+        {
+          "click": "#call-4"
+        },
+        {
+          "click": "#q4"
+        },
+        {
+          "click": "#make-claim"
+        },
+        {
+          "click": "#kind-0"
+        },
+        {
+          "click": "#cause-3"
+        },
+        {
+          "click": "#evidence-4"
+        },
+        {
+          "click": "#send-fix"
+        },
+        {
+          "until": "__tool.state.calls[3].solved",
+          "max": 6000
+        },
+        {
+          "click": "#call-5"
+        },
+        {
+          "click": "#q2"
+        },
+        {
+          "click": "#make-claim"
+        },
+        {
+          "click": "#kind-0"
+        },
+        {
+          "click": "#cause-4"
+        },
+        {
+          "click": "#evidence-2"
+        },
+        {
+          "click": "#send-fix"
+        },
+        {
+          "until": "__tool.state.calls[4].solved",
+          "max": 6000
+        },
+        {
+          "click": "#call-6"
+        },
+        {
+          "click": "#q4"
+        },
+        {
+          "click": "#make-claim"
+        },
+        {
+          "click": "#kind-1"
+        },
+        {
+          "click": "#cause-7"
+        },
+        {
+          "click": "#evidence-4"
+        },
+        {
+          "click": "#send-fix"
+        },
+        {
+          "until": "__tool.state.calls[5].solved",
+          "max": 6000
+        },
+        {
+          "click": "#call-7"
+        },
+        {
+          "click": "#q4"
+        },
+        {
+          "click": "#make-claim"
+        },
+        {
+          "click": "#kind-2"
+        },
+        {
+          "click": "#cause-9"
+        },
+        {
+          "click": "#evidence-4"
+        },
+        {
+          "click": "#send-fix"
+        },
+        {
+          "until": "__tool.state.calls[6].solved",
+          "max": 6000
+        },
+        {
+          "click": "#call-8"
+        },
+        {
+          "click": "#q1"
+        },
+        {
+          "click": "#make-claim"
+        },
+        {
+          "click": "#kind-2"
+        },
+        {
+          "click": "#cause-9"
+        },
+        {
+          "click": "#evidence-1"
+        },
+        {
+          "click": "#send-fix"
+        },
+        {
+          "until": "__tool.state.calls[7].solved",
+          "max": 6000
+        },
+        {
+          "click": "#next-call"
+        }
+      ],
+      "keep": [
+        "#new-shift",
+        "#call-strip"
+      ],
+      "sizes": [
+        "680x425",
+        "375x812",
+        "1366x768"
+      ]
+    }
+  ]
+}

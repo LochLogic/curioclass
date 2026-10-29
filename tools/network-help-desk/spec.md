@@ -25,16 +25,17 @@ Header (kit): "Network Help Desk", small line "Ask, then fix". Mode buttons: **C
 Stage (both modes): a top-down house plan drawn by the network engine: Living room (router and TV), Office, Kitchen, Bedroom, and the Backyard shed across a lawn. Walls drawn as thick lines, room names in 14 px or more.
 
 Calls panel, top to bottom: the **call card** (caller name, device icon, room, their first words in a speech bubble); **Questions**: six buttons with icons (Content), each greyed with a check once asked; **Clues**: the answers so far as small cards; **Make a claim** (big button); the call strip (8 phone icons, done ones ticked, tap any to open that call); **Call time** readout ("Call time: 3 min").
-Claim step (replaces Questions): **cause board**, 7 cards in 3 labeled groups (Connection, Logging in, Permission), then "Tap 1 or 2 clues that prove it", then **Send fix**, and **Back to questions**.
+Claim step (replaces Questions): first **What kind of problem?**, three big kind buttons (Connection, Logging in, Permission, each with its icon); then that kind's **cause cards** (Connection 4, Logging in 2, Permission 1; a "Change kind" button goes back to the three); then "Tap 1 or 2 clues that prove it", then **Send fix**, and **Back to questions**. (Changed 2026-10-28, Cory, after Refine round 1: the student makes the kind sort, it is not printed for them.)
 
 House panel: the selected device's controls (Content), a **Try** row (Internet, Library site, Family printer, Parent settings) and the result chip, plus **Reset house**.
 
 ### Mode 1: Calls (the mysteries)
 - A call opens: the map shows only the house, the router (lights unknown, drawn as a grey "?" badge) and the caller's device with a "?" link. Other devices are faint outlines.
 - Asking a question adds a clue card and lights the matching part of the map: Q1 draws the device's link (cable, Wi-Fi, or the Guest Wi-Fi in orange dashes); Q2 shows the router lights (on and blinking, or dark); Q3 colors the other devices (check badge = online, X badge = offline); Q4 shows the device's screen as a bubble; Q5 shows a login card (none, failed, or "Hi, Leo"); Q6 puts an account badge on the device (Grown-up, Kid, Student, Guest). Each question adds 1 minute to Call time.
-- Make a claim: pick a cause card, tap 1 or 2 clue cards, Send fix.
+- Make a claim: pick a kind, then a cause card, tap 1 or 2 clue cards, Send fix. The clue is judged before the cause.
   - Right cause and at least one key clue: the fix plays (cable plugs in, airplane turns off, the device walks closer, the router powers up, a password retypes with Caps Lock off, a "Student page" opens, a file goes to a family laptop), then a ping dot runs device to router to the internet cloud and back, the device badge turns to "Online" (or "Allowed" or "Signed in"), and the **Solved** card shows the kind stamped (Connection, Logging in or Permission), the questions asked, and the fix sentence. Call strip ticks.
-  - Right cause, no key clue picked: "Right cause. Which clue proves it? Tap a different clue." Send fix stays.
+  - No key clue picked (whatever the cause): the same reply for every cause, "That clue doesn't prove a cause yet. Pick a clue that shows what is broken." No Call time added. Send fix stays. The reply never says whether the cause is right.
+  - Key clue picked, wrong kind: a kind nudge, "Look at your clues again: is the path broken, did logging in fail, or did logging in work?" Call time +2 minutes.
   - Wrong cause: the caller says "I tried that. It still doesn't work." The ping runs and stops at the broken spot with an X. A nudge names the key question if not yet asked ("Try asking: What does the screen say?"), or quotes the key clue if it was ("Look at this clue again: ..."). Call time +2 minutes.
 - After all 8 calls: a **Shift report**: each call's caller, kind and questions asked. Buttons: **Start a new shift** (clears ticks), **Open House**.
 
@@ -52,13 +53,13 @@ Causes (group): Cable unplugged; Wi-Fi turned off; Too far from the router; Rout
 Calls (answers Q1 to Q6; key clues; cause; fix sentence on the Solved card):
 | # | Caller, device, room, first words | Q1 | Q2 | Q3 | Q4 | Q5 | Q6 | Key | Cause | Fix |
 |---|---|---|---|---|---|---|---|---|---|---|
-| 1 | Grandpa Lou, desktop, Office: "My computer says no internet!" | "A cable. The blue one." | "Lights on and blinking." | "My tablet works fine." | "A little computer with an X: Network cable unplugged." | "It never got that far." | "Mine. A grown-up account." | Q1, Q4 | Cable unplugged | Plug the cable back in at both ends. |
-| 2 | Mia, tablet, Bedroom: "My games won't load." | "Wi-Fi, I think." | "All the lights are on." | "Mom's phone works." | "There's a little airplane at the top." | "Not yet." | "My kid account." | Q4, Q3 | Wi-Fi turned off | Turn airplane mode off so Wi-Fi comes back on. |
-| 3 | Mr. Patel, laptop, Kitchen: "It keeps asking me something." | "Wi-Fi." | "Lights on." | "The kids' tablets work." | "Incorrect Wi-Fi password." | "It keeps asking for the Wi-Fi password." | "Mine. A grown-up account." | Q4, Q5 | Wrong Wi-Fi password | Type the Wi-Fi password from the sticker on the router. |
+| 1 | Grandpa Lou, desktop, Office: "My computer says no internet!" | "A cable. The blue one." | "Lights on and blinking." | "My tablet works fine." | "A little computer picture with a red X in the corner." | "It never got that far." | "Mine. A grown-up account." | Q4, Q1 (both together) | Cable unplugged | Plug the cable back in at both ends. |
+| 2 | Mia, tablet, Bedroom: "My games won't load." | "Wi-Fi, I think." | "All the lights are on." | "Mom's phone works." | "There's a little airplane at the top." | "Not yet." | "My kid account." | Q4 (Q3 only alongside it) | Wi-Fi turned off | Turn airplane mode off so Wi-Fi comes back on. |
+| 3 | Mr. Patel, laptop, Kitchen: "It keeps asking me something." | "Wi-Fi." | "Lights on." | "The kids' tablets work." | "It shows our Wi-Fi name and asks for the password again." | "It keeps asking for the Wi-Fi password." | "Mine. A grown-up account." | Q4, Q5 | Wrong Wi-Fi password | Type the Wi-Fi password from the sticker on the router. |
 | 4 | Sam, phone, Shed: "Nothing loads out here." | "Wi-Fi." | "Lights on." | "It works fine in the house." | "The Wi-Fi sign has no bars." | "No." | "My kid account." | Q4, Q3 | Too far from the router | Move closer to the router, or add a Wi-Fi extender by the back door. |
 | 5 | Aunt Rosa, laptop, Living room: "The whole house is offline!" | "Wi-Fi." | "No lights at all. It's dark." | "Nothing works. Not even the TV." | "No networks found." | "No." | "Mine. A grown-up account." | Q2, Q3 | Router has no power | Plug the router's power back in and wait for the lights. |
-| 6 | Grandma June, laptop, Living room: "The library website hates me." | "Wi-Fi." | "Lights on." | "Everything else works." | "Wrong password. And the Caps Lock light is on." | "It asks for my library password, then says it's wrong." | "Mine. My library account." | Q4, Q5 | Wrong account password | Turn off Caps Lock, then type the password again. |
-| 7 | Leo, school laptop, Bedroom: "My homework site is broken." | "Wi-Fi." | "Lights on." | "Yes." | "You don't have permission to open the Teacher page." | "Yes, I logged in fine. It says Hi, Leo." | "My student account." | Q4, Q6 | Not allowed | Nothing is broken. That page is for teachers; open the Student page. |
+| 6 | Grandma June, laptop, Living room: "The library website hates me." | "Wi-Fi." | "Lights on." | "Everything else works." | "It says the password is wrong. And the Caps Lock light is on." | "It asks for my library password, then says it's wrong." | "Mine. My library account." | Q4, Q5 | Wrong account password | Turn off Caps Lock, then type the password again. |
+| 7 | Leo, school laptop, Bedroom: "My homework site is broken." | "Wi-Fi." | "Lights on." | "Yes." | "A page with a lock on it that says Teachers only." | "Yes, I logged in fine. It says Hi, Leo." | "My student account." | Q4, Q6 | Not allowed | Nothing is broken. That page is for teachers; open the Student page. |
 | 8 | Ana (visiting), laptop, Kitchen: "I can't print my ticket." | "Wi-Fi. The Guest Wi-Fi." | "Lights on." | "The family's laptops can print." | "Printer not found." | "The guest Wi-Fi had its own password, and it worked." | "A guest. I'm visiting." | Q1, Q6 | Not allowed | Send the file to a family laptop to print. The Guest Wi-Fi keeps visitors away from home devices on purpose. |
 
 Kind lines on the Solved card: Connection "The path was broken: a cable, the Wi-Fi radio, distance or power." Logging in "The path was fine. The device had to prove who it was with the right password." Permission "Logging in worked. The account just isn't allowed to do that, and that is on purpose."
@@ -67,6 +68,7 @@ Kind lines on the Solved card: Connection "The path was broken: a cable, the Wi-
 - Calls can be taken in any order; the strip opens any call; an unfinished call keeps its clues for the page load.
 - Clue cards can be tapped to select them only during the claim step (selected = thick outline and a check, never color alone). Max 2 selected; a third tap swaps out the oldest.
 - Asking every question is allowed; nothing locks. Call time is display only: no score, no stars.
+- Key clues: a call is proved by any one of its key clues, except call 1, which needs Q4 and Q1 together (the screen shows a broken connection, the cable answer says which). Call 2's only key is Q4; its Q3 ("Mom's phone works") rules out the router but proves nothing alone. With only one of the two, call 1 gets the "doesn't prove a cause yet" reply.
 - Wrong-claim nudge uses the first key clue not yet asked; if both are asked, it quotes the first key clue.
 - Fix and ping: about 1.5 s fix animation, then the ping (engine mover, 300 ms per hop). Motion off: fix shows as a before/after swap and the ping jumps hop to hop, same timing.
 - House: the tablet drags with pointer or arrow keys (20 units per press, snaps inside the plan); bars update every move. Reset house puts everything back. Nothing saved to localStorage except the kit Motion setting.
@@ -88,8 +90,10 @@ none: drawn in code. House plan, devices, router lights, caller portraits as sim
 Bank voice `upbeat-guide` (Zephyr), "Say brightly and clearly, like an upbeat tour guide", here the help desk team lead. Not used by any neighbor (code-tracer clear-teacher, game-remix big-sister, score-keeper friendly-dad) or by any tool in this group. Callers' words are on screen only. `Curio.voice`, `scope: () => state.mode`.
 - w-calls (how, Calls welcome): "Welcome to the help desk. A caller can't get online. Tap a question to ask it. Each answer lights up part of their house."
 - ask (how, hint while asking): "Ask questions until you know what kind of problem it is. Then tap Make a claim."
-- claim (how, claim step): "Tap the cause you think it is. Then tap one or two clues that prove it, and press Send fix."
-- need-clue (event, right cause without a key clue; stale on any tap): "Right cause. Now tap a clue that proves it."
+- claim (how, after a kind is picked): "Tap the cause you think it is. Then tap one or two clues that prove it, and press Send fix."
+- need-clue (event, no key clue picked, any cause; stale on any tap): "That clue doesn't prove a cause yet. Tap a clue that shows what is broken."
+- kind (how, claim step start): "What kind of problem is it? Tap Connection, Logging in or Permission."
+- wrong-kind (event, key clue but wrong kind; stale when a question is asked): "Look at your clues again. Is the path broken, did logging in fail, or did it work?"
 - wrong (event; stale when a question is asked): "The caller tried that, and it still doesn't work. Ask another question, or check your clues."
 - solved-conn, solved-login, solved-perm (event, on Solved; stale when a call opens): "Solved. It was a connection problem: the path was broken." / "Solved. It was a logging in problem: the device had to prove who it was." / "Solved. It was a permission problem: logging in worked, but that account isn't allowed. That's on purpose."
 - next-call (how, after the first Solved): "Tap the next phone on the call strip to take another call."
@@ -98,7 +102,7 @@ Bank voice `upbeat-guide` (Zephyr), "Say brightly and clearly, like an upbeat to
 - far (how, first time the tablet drops to 0 bars): "No bars. Walls and distance weaken Wi-Fi. Drag the tablet closer to the router."
 
 ## Family engine
-`kit/network.js`, described in full in tools/internet-journey/spec.md. This tool uses: **Graph** (the house: router, devices, wire and wifi links, a `cloud` node for the internet, a `printer` node on the home network; the Guest network is a second link kind from the router marked `guest:true`, and the engine's Path ignores guest links when the target is a home device), **Path/reach** (is there a working path from the device to the cloud or printer), **Draw** with a house-plan skin (rooms drawn by the tool underneath), and **Mover** with `ping` tokens. Wi-Fi bars are the tool's own rule (Content) setting a wifi link's `up`.
+`kit/network.js`, described in full in tools/internet-journey/spec.md. This tool uses: **Graph** (the house: router, devices, wire and wifi links, a `cloud` node for the internet, a `printer` node on the home network; the Guest network is a second link kind from the router marked `guest:true`; for a home-device target the tool passes `skip: l => l.guest` to Path and reach, the recipe in docs/families/network.md), **Path/reach** (is there a working path from the device to the cloud or printer), **Draw** with a house-plan skin (rooms drawn by the tool underneath), and **Mover** with `ping` tokens. Wi-Fi bars are the tool's own rule (Content) setting a wifi link's `up`.
 
 ## Sources
 - CSTA 2026 ids E4-SYS-NT-14, E4-SYS-SE-13 (`data/standards/csta-2026-ids.txt`); CSTA 2017 1B-CS-03, 1B-NI-05: https://csteachers.org/k12standards/

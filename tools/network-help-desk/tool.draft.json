@@ -1,0 +1,25 @@
+{
+  "id": "network-help-desk",
+  "status": "beta",
+  "hook": "Answer eight help desk calls. Ask for clues, back a cause with evidence and watch the test ping.",
+  "outcome": "Troubleshoot wired and wireless connections and distinguish logging in to prove identity from permission to use a resource",
+  "driver": "students or teacher",
+  "minutes": "20-30",
+  "modes": [
+    "Calls",
+    "House"
+  ],
+  "grades_label": "Grade 4",
+  "sources": [
+    "CSTA 2026 ids E4-SYS-NT-14, E4-SYS-SE-13 (`data/standards/csta-2026-ids.txt`); CSTA 2017 1B-CS-03, 1B-NI-05: https://csteachers.org/k12standards/",
+    "Authentication (verifying identity) vs authorization (the access rights granted): NIST CSRC Glossary, \"authentication\" and \"authorization\", https://csrc.nist.gov/glossary/term/authentication and https://csrc.nist.gov/glossary/term/authorization",
+    "Passwords are case sensitive, so upper and lower case letters count as different (Caps Lock causes \"wrong password\"): CISA, \"Use Strong Passwords\", https://www.cisa.gov/secure-our-world/use-strong-passwords",
+    "Wi-Fi signal weakens with distance and through walls; extenders and mesh points extend coverage: Wi-Fi Alliance, \"Discover Wi-Fi\", https://www.wi-fi.org/discover-wi-fi",
+    "Guest networks keep visitors separate from home devices: CISA, \"Home Network Security\", https://www.cisa.gov/news-events/news/home-network-security",
+    "Airplane mode turns off Wi-Fi and other radios: FCC, \"Wireless Devices on Airplanes\", https://www.fcc.gov/consumers/guides/wireless-devices-airplanes",
+    "Wi-Fi bar thresholds are a Curio Class model, labeled \"about\" on screen. Callers and houses are original."
+  ],
+  "third_party": [],
+  "updated": "2026-10-28",
+  "stage": "built"
+}
