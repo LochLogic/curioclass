@@ -23,10 +23,27 @@ must stand on its own: anything not in the spec will not be in the tool.
   No points, timers or win states.
 - **Facts must be checkable.** Every number, date and claim in the content list gets a source in "Sources".
   Public-domain or original texts only for literature.
-- **Art.** List every image the tool needs. Mark any person `people: true` (Gemini only, reviewed). Prefer drawing
-  diagrams, charts and simple shapes in code. Keep the list short: 0 to 20 images is normal.
+- **Art (Cory's reviews, 2026-10-25 to 10-29).** Paint what a student looks at: scenes, places, characters, animals,
+  creatures, objects and props are painted images. Draw in code only diagrams, charts, graphs, maps of data, grids,
+  controls and labels, or a shape the tool must move or bend in ways an image can't. Half of Cory's fix notes were "the
+  graphics need work", most of them about code drawings of things that should have been painted (career town, pets,
+  hands, kids); "none: drawn in code" is right only when the whole tool is a diagram or chart. Plan art that
+  animates: separate cutouts per moving part or pose (Biscuit's head turns, Bix's six faces), not one flat scene.
+  Mark any person `people: true` (Gemini only, reviewed by Cory; never a local model). Text on signs, labels and
+  screens stays in code over a blank painted surface. 0 to 30 images is normal; more is fine if each earns its place.
 - **Voice.** K-2: list every fixed spoken line. Grades 3+: narration only where it truly helps (instructions, a story);
-  most text is read on screen.
+  most text is read on screen. Tag every line `how` (spoken the first time, then hint only) or `event` (spoken every
+  time it happens), and say when it stops fitting ("stale when the guess shows"). A waiting line names the action and
+  the control ("Tap Cat or Dog"), and never names a control that is disabled at that moment.
+- **Check your own numbers.** Run every rule, score table, tolerance and worked answer on real values (Python) before
+  you hand off, including the worst cases: noisy data, zero, the largest input, every ending. Half-Life Dice's "within
+  0.5 rolls" failed ordinary noisy runs; a career tool's data contradicted its own claim. Say what you ran in Sources.
+- **Name the focus.** For each mode, say what the student's eye should be on, and lay the screen out so it is the
+  biggest, central thing (Cory moved Trails' job cards onto the map). Anything that plays on its own (a run, a parade,
+  a song) keeps every control live: a tap changes what is shown at once, never at the next beat.
+- **Fit the kit and the scope.** Sound starts as the kit sets it (on); Read, Motion and Sound are the kit's. No
+  feature that makes students move work between devices by hand (codes to copy, print cards): Save on this device is
+  enough. Keep auto-plays short (a run over about 30 s needs a reason).
 - Plain words. No em dashes. Always "Curio Class", never "Curio" alone.
 
 ## Write `tools/<tool-id>/spec.md` with exactly these sections
@@ -40,7 +57,7 @@ must stand on its own: anything not in the spec will not be in the tool.
 ## Who and how
 <grade, subject, driver (teacher / students / either), minutes, standards codes>
 ## Screens and modes
-<each mode: what is on screen, what the person does, what responds. Name every button.>
+<each mode: its focus (what the eye is on), what is on screen, what the person does, what responds. Name every button.>
 ## Content
 <all the data: items, values, texts, scenes. Complete, not "and so on".>
 ## Interactions in detail
@@ -48,15 +65,17 @@ must stand on its own: anything not in the spec will not be in the tool.
 ## Look
 <accent color and scene palette, different from neighbors; contrast ratios>
 ## Art
-<name: one-line prompt; aspect; cutout yes/no; people yes/no; how it is used>  (or "none: drawn in code")
+<name: one-line positive prompt (what is in it, never "no X"); aspect; cutout yes/no; people yes/no; how it is used>
+ (or "none: drawn in code" with one line on why the tool is all diagram or chart)
 ## Voice
-<bank voice id (different from neighbors, see STANDARDS.md), style line, then every fixed line>  (or "none")
+<bank voice id (different from neighbors, see STANDARDS.md), style line, then every fixed line as
+ "how" or "event", when it plays, when it goes stale, and the text>  (or "none")
 ## Family engine
 <which engine parts it uses and the content it feeds them>  (or "none")
 ## Sources
-<one line per fact source, with a URL or citation>
+<one line per fact source, with a URL or citation; then the number checks you ran and their results>
 ## Done when
-<5 to 10 checks the Refine lenses can test by playing it>
+<5 to 10 checks the Refine lenses can test by playing it; include one for the focus and one for a tap while anything plays>
 ```
 
 Keep it under about 250 lines. Then stop and report: the one idea, the "not like" list, and any open question
