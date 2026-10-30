@@ -20,7 +20,7 @@ The class builds its own table on the board (choose the columns, decide whether 
 ## Screens and modes
 Kit frame (own `:root`, a classroom chalkboard). Header: title "Data Table Builder", small line "Rows, columns, charts"; mode buttons "Sample class" (open book icon) and "Our class" (chalk icon); Motion, Sound, Read.
 
-Layout (both modes): stage on the left split in two: the table on top (about 55 percent), the chart below. Panel on the right with `#hint`, then sections "Chart", "Questions" and the mode's own section. Targets at least 48 px (projector use).
+Layout (both modes): stage on the left split in two: the table on top (about 45 percent), the chart below (about 55 percent, the larger part, since the chart is what answers the question). Panel on the right with `#hint`, then sections "Chart", "Questions" and the mode's own section. Targets at least 48 px (projector use).
 
 The table (engine `renderTable`): one column per field, header shows the column name, a kind badge (List, Number, Yes/No, each with an icon: bullet list, hash, check) and a sort button (arrow; tap toggles up, down, off). Row label is the row number ("Row 7"). Tapping a column header selects it for the chart (outlined in the accent). A footer line under the table: "24 rows, 5 columns".
 
@@ -29,9 +29,15 @@ Chart section (panel): three buttons "Bar graph" (bars icon), "Dot plot" (stacke
 Questions section: question cards for the current table, one at a time with "Previous" and "Next" arrows. Each card: the question, a "Guess first" row (the choices for a List or Yes/No answer, or a number stepper; the teacher taps the class's guess), "Show me" (reveals the chart), and once shown, the answer sentence and "Our guess was" line. A card counts as answered when the selected column (and split) is the one the card needs; the card then shows a check and "Best chart: Bar graph, because each bar is one choice" (or the card's own reason).
 
 ### Mode 1: Sample class (opens first)
+Focus: the chart of the selected column, the largest thing on the stage, with that column outlined in chalk yellow
+in the table right above it, so the eye goes from the column to its chart; the open question card in the panel names
+what to look for.
 The made-up Room 4 table below, already filled (24 rows, 5 columns). Everything is open to explore: sort, select columns, switch charts, split. Editing cells is off here ("This is a sample. Switch to Our class to make your own." under the table). Six question cards.
 
 ### Mode 2: Our class
+Focus: while a row is being added, the entry card at the stage center (it covers the chart, never the table's new
+row); after Done, the new row flashes in the table and the chart grows below it; with 3 or more rows, the chart as in
+Sample class.
 Starts empty with a short card: "1 Choose columns. 2 Add rows. 3 Ask questions." Panel section "Build":
 - "Add a column" opens a shelf of ready columns (cards, below) plus "Make my own column". Up to 6 columns. Each column header gets an "x" (remove, with "Remove this column and its answers?" Yes / No).
 - "Make my own column": a name box (up to 24 characters), a kind picker (List, Number, Yes/No), then for List: up to 6 choices (each up to 14 characters, "Add a choice"), for Number: smallest and biggest allowed (0 to 100). A line under the kind picker: "Answers come from buttons, so the computer can count them exactly." "Save column" adds it.
@@ -42,7 +48,7 @@ Starts empty with a short card: "1 Choose columns. 2 Add rows. 3 Ask questions."
 
 ## Content
 Sample class "Room 4" (made up for practice; a line under the table says so). Columns:
-- Favorite fruit (List: Apple, Banana, Grapes, Orange, Strawberry; icons drawn in code)
+- Favorite fruit (List: Apple, Banana, Grapes, Orange, Strawberry; chalk icons from the icon kit in Art)
 - Teeth lost (Number, 0 to 20)
 - Can you whistle? (Yes/No)
 - Way to school today (List: Walk, Bus, Car, Bike)
@@ -96,12 +102,12 @@ Ready column shelf for Our class (name; kind; choices or range; icon):
 - Letters in my first name; Number; 1 to 15 (only the count is entered)
 - Jumping jacks in 10 seconds; Number; 0 to 30 (the class times it together)
 
-Answer sentences (all modes, computed): Bar graph: "[Top choice]: [n] of [rows]." (a tie: "[A] and [B] tie with [n]."); Dot plot on a Number column: "Most often [m]. From [min] to [max]." (several modes: "Most often [a] and [b]."); Sorted list on a Number column: "Total: [sum]." and "Biggest: [max]. Smallest: [min]."; Yes/No: "Yes [y], No [n]." Readouts never use averages (grade 4).
+Answer sentences (all modes, computed): Bar graph: "[Top choice]: [n] of [rows]." (a tie: "[A] and [B] tie with [n].", three or more: "[A], [B] and [C] tie with [n]."); Dot plot on a Number column: "Most often [m]. From [min] to [max]." (several modes: "Most often [a] and [b]."); Sorted list on a Number column: "Total: [sum]." and "Biggest: [max]. Smallest: [min]."; Yes/No: "Yes [y], No [n]." Readouts never use averages (grade 4).
 
 Fact line (Sample class, small, under the table): "Kids have 20 baby teeth. Most lose them between about age 6 and age 12."
 
 ## Interactions in detail
-- Selecting a column header or a chart button redraws the chart in under 100 ms; bars grow and dots drop in over 300 ms (instant with Motion off).
+- Selecting a column header or a chart button redraws the chart in under 100 ms; bars grow and dots drop in over 300 ms (instant with Motion off). A tap during that growth acts at once: the new chart replaces the growing one from its first frame.
 - Bar graph: List and Yes/No columns get one bar per choice in the column's own order (not sorted), choices with 0 still shown as an empty slot labeled 0. A Number column gets one bar per whole number from the smallest to the biggest value in the data, with numbers nobody has shown as 0. Bars have the count printed on top.
 - Dot plot: Number columns sit on a number line from the column's smallest to biggest value in the data (at least 5 ticks wide), one dot per row stacked. List and Yes/No columns get one stack per choice. With more than 12 dots in a stack, dots shrink so the tallest stack fits.
 - Sorted list: rows listed by the selected column (biggest first for numbers, choice order for lists) with the row number; for Number columns the total and biggest and smallest lines.
@@ -122,21 +128,45 @@ Fact line (Sample class, small, under the table): "Kids have 20 baby teeth. Most
 - Contrast: ink on paper 10.95:1, ink on panel 9.24:1, muted on panel 6.05:1, brand on paper 8.94:1, brand on panel 7.54:1, brand-ink on brand 12.63:1, focus on paper 7.51:1; series on paper 7.61, 7.10, 9.61, 6.80, 7.56, 9.77:1. All pass AA.
 
 ## Art
-none: drawn in code (chalkboard, fruit and travel icons, kind badges, charts, preview.svg: the chalkboard table with a yellow-outlined Fruit column and its bar graph below).
+Local FLUX (`scripts/localart.py`); no people. Mostly a table and charts (drawn in code), so the only painted pieces are
+the answer icons the class sees on the entry card buttons, the chart labels and the column shelf.
+- Chalk icon kit (13 pieces, one prompt: "A simple [object] drawn in soft colored chalk on a dark green chalkboard,
+  centered, hand-drawn chalk texture"); 1:1; cutout yes (the chalkboard knocked out, chalk strokes kept); people no;
+  shown at 28 to 48 px beside a choice's word on the entry card buttons, the bar graph's axis, dot plot stacks, the
+  sorted list and the column shelf; always with the word, never alone: icon-apple, icon-banana, icon-grapes,
+  icon-orange, icon-strawberry, icon-walk (a pair of sneakers), icon-bus (a yellow school bus), icon-car, icon-bike,
+  icon-winter (a snowflake), icon-spring (a tulip), icon-summer (a sun), icon-fall (an orange leaf).
+"Other", Yes and No, kind badges, the chalkboard (CSS chalk-dust texture), table, charts, legends and preview.svg (the
+chalkboard table with a yellow-outlined Fruit column and its bar graph below, with the fruit icons) are drawn in code;
+the teacher's own column choices have no icon. 13 images, 0 with people.
 
 ## Voice
 Bank voice `knowing-guide` (Sadaltager), "Say in a knowledgeable, friendly way, like a museum curator": a curator who treats the class's table as a collection worth labeling well. Not used by any CS neighbor (me-vs-the-counter easy-coach, code-tracer clear-teacher, score-keeper friendly-dad, biased-bot news-reader, network-help-desk upbeat-guide, game-remix big-sister) or a group sibling. Rows, cells and answer sentences are read on screen; Read speaks the hint.
-1. how, welcome Sample class: "This is Room 4's table. Each row is one student. Each column is one question. Tap a column name to chart it."
-2. how, first chart switch: "Same rows, new chart. Try Bar graph, Dot plot and Sorted list."
-3. how, first Split by: "Now the chart splits into groups, so you can compare them."
-4. how, first question card shown: "Guess first. Then tap the column that answers the question, and press Show me."
-5. event, a card answered: the card's answer sentence (six fixed lines in Sample class, from the list above). Stale when the card or column changes.
-6. how, welcome Our class: "Let's build our own table. Tap Add a column to choose what to ask."
-7. how, first column added: "Each column has a kind: a list, a number, or yes or no. Add more columns, or tap Add my row."
-8. how, first entry card opened: "Tap one answer for each column. Then tap Done."
-9. event, a row added: "Row [n] added." (forty fixed lines, one to forty). Stale after 3 seconds.
-10. how, rows reach 3: "Now the computer can count. Tap a column name and pick a chart."
-11. event, an Our class card answered: "That column answers it. Look at the chart and say what it shows."
+`Curio.voice`, `scope: () => state.mode`.
+How (spoken the first time its moment comes, then hint only):
+1. w-sample (Sample class entered; stale on the first column tap): "This is Room 4's table. Each row is one student.
+   Each column is one question. Tap a column name to chart it."
+2. charts (first column charted; stale on a chart button): "Same rows, new chart. Tap Bar graph, Dot plot or Sorted
+   list."
+3. split (first Split by choice; stale on the next chart change): "Now the chart splits into groups, so you can compare
+   them."
+4. card (first question card shown; stale on Show me): "Guess first and tap the class's guess. Then tap the column
+   that answers the question, and press Show me."
+6. w-ours (Our class entered with no columns; stale on Add a column): "Let's build our own table. Tap Add a column to
+   choose what to ask."
+7. kinds (first column saved; stale on Add my row): "Each column has a kind: a list, a number, or yes or no. Add more
+   columns, or tap Add my row."
+8. entry (first entry card opened; stale on Done or Cancel): "Tap one answer for each column. Then tap Done."
+10. counted (rows reach 3 for the first time; stale on a column tap): "Now the computer can count. Tap a column name
+    and pick a chart."
+Events (every time; stale as noted):
+5. A Sample card answered: its answer sentence, six fixed lines: "Apple: 8 of 24." "Most often 8. From 4 to 12." "Yes
+   16, No 8. Twice as many can." "Car 9, Bus 8, Walk 5, Bike 2." "56 pockets." "Car riders: 7 yes, 2 no. Bus riders: 5
+   yes, 3 no." Stale when the card or column changes.
+9. A row added: "Row 1 added." through "Row 40 added." (forty fixed lines). Stale after 3 seconds or on the next tap.
+11. An Our class card answered: "That column answers it. Look at the chart and say what it shows." Stale when the card
+    changes.
+Which line when: each line is queued at the moment named above; 5 and 11 follow Show me.
 
 ## Family engine
 data-desk (`kit/data-desk.js`, docs/families/data-desk.md). Uses `DataTable` (the sample rows, or the class rows), `renderTable` (editable in Our class), `t.on('change')` so the chart follows every new row, and `Chart` types `bar` and `dot` with `x` and `groupBy`. This tool needs three engine additions (add them to the engine and the family doc in the same change, keeping existing calls working): column `kind: 'number' | 'list' | 'yesno'` with `choices` for lists; `bar` and `dot` with only `x` set count rows per value (empty choices drawn as 0); `t.stats(key).sum` and `t.counts(key)` (count per choice). The sorted list, question cards, entry card and column shelf stay in this tool.
@@ -147,6 +177,11 @@ Dataset: the made-up Room 4 sample (no other sibling uses it). Family data rule 
 - Rows as records and columns as fields; organizing data for a computer to count: Code.org CS Fundamentals, "Data" lessons, and CSTA K-12 Computer Science Standards (2017) 1B-DA-06 and 1B-DA-07: https://csteachers.org/k12standards/
 - Bar graphs and line plots at grades 3 and 4: Common Core State Standards for Mathematics 3.MD.B.3 and 4.MD.B.4: https://www.thecorestandards.org/Math/
 - Room 4 and its answers are made up; every count above was computed from the table.
+- Checks run (Python, 2026-10-29, on the 24 rows above): Fruit Apple 8, Strawberry 6, Banana 4, Grapes 4, Orange 2;
+  Teeth counts 4:1, 5:1, 6:2, 7:3, 8:7, 9:5, 10:3, 11:1, 12:1 (most often 8, from 4 to 12); Whistle Yes 16, No 8 (16
+  is twice 8); Way Car 9, Bus 8, Walk 5, Bike 2; Pockets 0:2, 1:4, 2:9, 3:5, 4:2, 5:1, 6:1, total 56; Whistle by Way
+  Car 7 and 2, Bus 5 and 3, Walk 2 and 3, Bike 2 and 0. All match the spec. Every contrast ratio in Look recomputed
+  with the WCAG 2.1 formula and matches.
 
 ## Done when
 1. Sample class opens with 24 rows and 5 columns; tapping Favorite fruit and Bar graph shows Apple 8, Strawberry 6, Banana 4, Grapes 4, Orange 2 in choice order.
@@ -155,9 +190,13 @@ Dataset: the made-up Room 4 sample (no other sibling uses it). Family data rule 
 4. In Our class, adding Favorite season and Teeth lost, then three rows, enables the cards; a fourth row updates the open chart without a tap.
 5. "Done" stays disabled until every column in the entry card has an answer; removing a column removes its card.
 6. Reloading the page keeps Our class; "Clear our class" then Yes empties it and the saved key.
-7. Lines 2, 4 and 7 are each spoken once in a run of five chart or card actions; line 9 after every row.
+7. Lines 2, 4 and 7 are each spoken once in a run of five chart or card actions; line 9 after every row; no line names a disabled control.
 8. Chart buttons, "Add my row" and the chart are visible without scrolling at 1366x768 and 680x425; series are told apart in grayscale by shape and pattern.
 9. Motion off: bars and dots appear at once; counts are identical.
+10. Focus: at 1366x768 and 680x425 the chart is the largest thing on the stage, right under its outlined column; in
+    Our class the entry card never hides the table's newest row.
+11. Tap while it plays: a chart button or column tap while bars are growing shows the new chart at once, with no stale
+    line.
 
 ## Open questions
 - The family rule asks for real data with a source. Here the real data is the class's own, and the practice table (Room 4) is made up and labeled so. Keep the made-up sample, or replace it with a small real public table?

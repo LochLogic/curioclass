@@ -104,3 +104,9 @@
 - data-policy-council: six council portraits (Gemini), or nameplates with role icons?
 - sprint-board: personas shown by belongings, or five portraits?
 - Carried: dice-in-the-chatbot x2, emerging-tech-pitch x2, pull-request-review x1, sprint-board x1 (in the specs).
+
+## R17
+- traffic-light-coder: Rush Hour fix now takes two edits; fine, or space the walkers so one change suffices?
+- People images in K-5 CS: spot-the-ai 3, input-or-output 1, traffic-light-coder 3 walkers, design-for-a-friend 3 friends. Worth waiting on Gemini?
+- secret-keeper: "your grown-up at home", birthday as a secret (carried); 3 added reaction lines and Fern's Tell line change OK?
+- design-for-a-friend voice -> wise-mentor.

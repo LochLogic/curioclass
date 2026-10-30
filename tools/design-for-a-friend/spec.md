@@ -22,16 +22,22 @@ Kit frame, own `:root` (a warm design studio). Header: title "Design for a Frien
 The setting: the made-up Maple Street Community Garden wants an app so gardeners can sign up for watering days. Its test task is the same for everyone: "Sign up to water your plot on Saturday, and remember to go." Five steps: 1 Read the home screen, 2 Find your plot, 3 Pick Saturday, 4 Tap Save, 5 Remember on Saturday.
 
 ### Mode 1: Interview (opens first)
-Start: three friend cards (portrait, name, one line): "Lou, 72, has grown tomatoes here for forty years", "Ana, 9, shares plot 12 with her mom", "Kofi, 15, keeps his grandma's plot going". Tap one to begin. A "Friends" strip at the top of the stage lets you switch friends any time; each keeps its own progress.
+Focus, per tab: Ask, the friend's portrait and the newest chat bubble at the stage center, the largest pair on the
+stage, with the Needs board beside them; Design, the phone with its slots at the stage center; Test drive, the
+friend's marker walking the five steps under the phone, with each step's light and snag bubble beside the screen it
+happens on.
+Start: the community garden (art: garden-backdrop) behind three friend cards (portrait, name, one line): "Lou, 72, has grown tomatoes here for forty years", "Ana, 9, shares plot 12 with her mom", "Kofi, 15, keeps his grandma's plot going". Tap one to begin. A "Friends" strip at the top of the stage lets you switch friends any time; each keeps its own progress.
 
 Three steps on one screen, shown as tabs under the friend's name: "Ask", "Design", "Test drive". All open; nothing locked.
-- Ask. Stage: the friend's portrait and a chat column. Panel: "Questions" with the friend's question cards (below), and "Questions left: 4" (the friend has time for four; the tool's own limit). Tapping a card spends one question; the friend's answer appears as a chat bubble and the answer's note goes on the Needs board. Follow-up cards appear only after the open question they follow; they also cost one. "Start over with Lou" refills the questions and clears the board.
+- Ask. Stage: the friend's portrait (art: friend-lou, friend-ana or friend-kofi) over the garden and a chat column. Panel: "Questions" with the friend's question cards (below), and "Questions left: 4" (the friend has time for four; the tool's own limit). Tapping a card spends one question; the friend's answer appears as a chat bubble and the answer's note goes on the Needs board. Follow-up cards appear only after the open question they follow; they also cost one. "Start over with Lou" refills the questions and clears the board.
 - Needs board (right side of the stage under the chat, or its own tab at small sizes): yellow sticky notes for needs and wishes (they look the same) and blue cards for facts about the friend. Each note shows the friend's own words when tapped.
-- Design. Stage: a phone frame showing the app's home screen with three empty feature slots (the tool's own limit for one friend). Panel: the feature shelf, eleven cards (below), each with an icon and a one-line description. Tap a card then a slot, or drag; tap a placed card to remove it. The phone preview changes as features are placed (big text makes the words bigger, the Spanish switch adds an "ES / EN" toggle, plant pictures replace plot names with drawings, and so on).
-- Test drive. "Start test drive" (big button). The friend's marker walks the five steps along a path under the phone; each step lights green (done) or orange with a snag bubble in the friend's words when a need is not met by a placed feature. Then the result card: "Lou finished the task." or "Lou got stuck at steps 1 and 4.", and each placed feature stamped "Used at step 2" or "Never used". Any wish note on the Needs board whose feature was placed and never used gets a gray "Polite yes" stamp and a line: "You asked a leading question, so Lou agreed to be kind."
+- Design. Stage: a phone frame showing the app's home screen with three empty feature slots (the tool's own limit for one friend). Panel: the feature shelf, eleven cards (below), each with an icon and a one-line description. Tap a card then a slot, or drag; tap a placed card to remove it. The phone preview changes as features are placed (big text makes the words bigger, the Spanish switch adds an "ES / EN" toggle, plant pictures replace plot names with the painted plants from the plant kit, and so on).
+- Test drive. "Start test drive" (big button). The friend's marker (their portrait cutout in a circle) walks the five steps along a path under the phone, about 0.8 s a step (4 s a friend); each step lights green (done) or orange with a snag bubble in the friend's words when a need is not met by a placed feature. Then the result card: "Lou finished the task." or "Lou got stuck at steps 1 and 4.", and each placed feature stamped "Used at step 2" or "Never used". Any wish note on the Needs board whose feature was placed and never used gets a gray "Polite yes" stamp and a line: "You asked a leading question, so Lou agreed to be kind."
 - "Back to design" keeps the design for another try.
 
 ### Mode 2: One App for All
+Focus: the one phone with its four slots at the stage center; during and after the test drive, the three-row result
+table under it, the largest thing once it fills.
 One phone, four slots (the tool's own limit), all three friends. The Needs boards from Interview are shown side by side (or, for friends not yet interviewed, a "Not interviewed yet" card with "Interview" button). "Start test drive" runs Lou, then Ana, then Kofi; result table: three rows by five steps, green or orange. A "Helped more than one friend" line names any placed feature that met needs for two friends. A hint when a full design fails: "Four slots, six needs. Look for one feature that helps two friends."
 
 ## Content
@@ -82,6 +88,9 @@ On-screen ideas (Test drive result cards and the One App for All line): "A leadi
 - A placed feature is "Used" if it meets a need of that friend at some step; otherwise "Never used". The "Polite yes" stamp appears only on a wish whose feature was placed.
 - Design without asking anything is allowed; the test drive still runs and shows the snags. Placing the same feature twice is not allowed (its shelf card greys out).
 - One App for All uses needs from the content above even for friends not yet interviewed (the test is about the friends, not your notes), but shows "Not interviewed yet" on their board so the class sees what they skipped.
+- Every control stays live while a test drive plays and responds at once: tapping a slot or a shelf card, Back to
+  design, a tab or a friend stops the drive at once (no result card, no line); Start test drive restarts it from step 1;
+  Motion off shows each step's result at once on the same timing.
 - Mode switch keeps both modes' state. Nothing is saved after the page closes.
 - Keyboard: friend cards, question cards and shelf cards are buttons; a shelf card then a slot (Enter, Enter) places it. Visible focus.
 - Sizes: question cards, the chat's last bubble and "Questions left" visible without scrolling at 1280x720, 1366x768 and 680x425 (the Needs board becomes a tab there); in Design, the phone and the shelf side by side down to 760 wide, stacked below that with the slots first.
@@ -93,25 +102,59 @@ On-screen ideas (Test drive result cards and the One App for All line): "A leadi
 - Contrast: white on brand 5.93:1; brand on paper 5.56:1; brand on sticky note 5.20:1; ink on paper 15.50:1; ink on note 14.50:1; muted on paper 6.37:1; muted on panel 6.81:1; focus on paper 6.84:1; white on step-done green 5.02:1; white on snag orange 5.18:1. All pass AA.
 
 ## Art
-- `friend-lou`: "portrait of a friendly older man, about 72, with reading glasses pushed up, a straw sun hat and a gardening apron, holding a tomato, warm natural light, flat illustration, plain cream background, chest up"; 1:1; cutout yes; people: true; Codex (`scripts/gptart.py`), Cory reviews. Friend card and chat avatar.
-- `friend-ana`: "portrait of a cheerful girl, about 9, in a yellow raincoat holding a small watering can, flat illustration, plain cream background, chest up"; 1:1; cutout yes; people: true; Codex, Cory reviews. Friend card and chat avatar.
-- `friend-kofi`: "portrait of a relaxed teenage boy, about 15, with a backpack strap on one shoulder and a phone in his hand, wearing a work cap, flat illustration, plain cream background, chest up"; 1:1; cutout yes; people: true; Codex, Cory reviews. Friend card and chat avatar.
+People go to Gemini (`scripts/art.py`, set aside for now, so these wait on Cory); everything else is local FLUX
+(`scripts/localart.py`). One warm, flat illustration style for all, asked for in one session per tool.
+- friend-lou: "portrait of a friendly older man, about 72, with reading glasses pushed up, a straw sun hat and a
+  gardening apron, holding a tomato, warm natural light, flat illustration, plain cream background, chest up"; 1:1;
+  cutout yes; people: true (Gemini, Cory reviews); friend card, chat avatar, test drive marker.
+- friend-ana: "portrait of a cheerful girl, about 9, in a yellow raincoat holding a small watering can, flat
+  illustration, plain cream background, chest up"; 1:1; cutout yes; people: true (Gemini, Cory reviews); same uses.
+- friend-kofi: "portrait of a relaxed teenage boy, about 15, with a backpack strap on one shoulder and a phone in his
+  hand, wearing a work cap, flat illustration, plain cream background, chest up"; 1:1; cutout yes; people: true
+  (Gemini, Cory reviews); same uses.
 - Ana's mom appears only as a speech bubble (no image).
-Everything else (phone, features, garden plots, plant drawings, notes, path, preview.svg: a phone with three feature cards beside a sticky note board with one gray "Polite yes" stamp) is drawn in code. The three portraits share one style; ask for them in one session.
+- garden-backdrop: "A small neighborhood community garden on a sunny morning, raised wooden plots with tomatoes, beans
+  and sunflowers, a watering can on a gravel path, a low fence and a shed with a blank wooden sign, warm flat
+  illustration"; 16:9; cutout no; people no; the Interview stage behind the friend cards and the portrait (softened 40
+  percent behind the chat so bubbles read).
+- Plant kit (6 pieces, one prompt: "A single [plant], centered, warm flat illustration, plain white background"); 1:1;
+  cutout yes; people no; the app's plot list on the phone when Plant pictures is placed: plant-tomato (a red tomato on
+  its vine), plant-zucchini, plant-kohlrabi (a pale green kohlrabi bulb with leaves), plant-beans (green bean pods),
+  plant-strawberry, plant-sunflower.
+The phone frame and app screens (they are mock-ups of a UI), feature cards, sticky notes, the step path, stamps and
+preview.svg (a phone with three feature cards beside a sticky note board with one gray "Polite yes" stamp) are drawn
+in code. 10 images, 3 with people.
 
 ## Voice
-Bank voice `curious-librarian` (Aoede), "Say curiously and warmly, like a friendly school librarian": the studio lead who loves good questions. Not used by any CS neighbor (code-tracer clear-teacher, game-remix big-sister, biased-bot news-reader, network-help-desk upbeat-guide, leaf-sorter-ai gravel-ranger, data-defenders hero-coach) or a group sibling. Friends' answers are read on screen; Read speaks the hint.
-1. how, welcome Interview: "The garden wants an app. Before you design it, meet the people who'll use it. Tap a friend to start."
-2. how, first friend opened: "You have time for four questions. Tap a question to ask it."
-3. how, first open answer: "That answer went on your Needs board. Open questions get stories."
-4. how, first leading or yes or no answer: "Hmm. Did that question let them tell you something new?"
-5. how, questions run out (first time): "Time's up for questions. Tap Design and pick three features."
-6. how, first Design visit: "Tap a feature, then tap a slot on the phone. When you're ready, tap Start test drive."
-7. event, a test drive ends with every step done: "[Name] finished the task!" (three fixed lines). Stale on any design change.
-8. event, a test drive ends with snags: "[Name] got stuck. Look at the orange steps." (three fixed lines). Stale on any design change.
-9. event, a wish stamped: "Your friend said yes to be kind. A leading question can do that."
-10. how, welcome One App for All: "Now one app for all three friends, with four slots. Look for features that help more than one."
-11. event, One App for All with all three finished: "Everyone finished. Some features helped more than one friend."
+Bank voice `wise-mentor` (Gacrux), "Say thoughtfully and warmly, like a wise high school mentor": the studio lead who
+loves good questions. Changed from curious-librarian, which spot-the-ai (this batch, same subject) uses. Not used by
+any CS neighbor (code-tracer clear-teacher, game-remix big-sister, biased-bot news-reader, network-help-desk
+upbeat-guide, leaf-sorter-ai gravel-ranger, data-defenders hero-coach, data-table-builder knowing-guide,
+algorithm-audit calm-professor) or a group sibling. Friends' answers are read on screen; Read speaks the hint.
+`Curio.voice`, `scope: () => state.mode`.
+How (spoken the first time its moment comes, then hint only):
+1. w-interview (Interview entered; stale on a friend tap): "The garden wants an app. Before you design it, meet the
+   people who'll use it. Tap a friend to start."
+2. ask (first friend opened; stale on the first question): "You have time for four questions. Tap a question card to
+   ask it."
+3. open-q (first open answer; stale on the next question): "That answer went on your Needs board. Open questions get
+   stories."
+4. closed-q (first leading or yes or no answer; stale on the next question): "Hmm. Did that question let them tell you
+   something new? Try a card that asks them to tell you about something."
+5. time-up (questions run out, first time; stale on the Design tab): "Time's up for questions. Tap the Design tab and
+   pick three features."
+6. design (first Design visit; stale on Start test drive): "Tap a feature, then tap a slot on the phone. When you're
+   ready, tap Start test drive."
+10. w-all (One App for All entered; stale on Start test drive): "Now one app for all three friends, with four slots.
+    Look for features that help more than one. Then tap Start test drive."
+Events (every time; stale on any design change, a new drive or a mode switch):
+7. Drive ends with every step done: "Lou finished the task!" / "Ana finished the task!" / "Kofi finished the task!"
+8. Drive ends with snags: "Lou got stuck. Look at the orange steps, then tap Back to design." / the same with Ana /
+   the same with Kofi.
+9. A wish stamped (after 7 or 8): "Your friend said yes to be kind. A leading question can do that."
+11. One App for All, all three finished: "Everyone finished. Some features helped more than one friend."
+12. One App for All, someone stuck: "Someone got stuck. Four slots, six needs. Look for one feature that helps two
+    friends."
 
 ## Family engine
 none.
@@ -122,7 +165,14 @@ none.
 - Bigger, well-spaced tap targets help people who mistap: W3C, Understanding WCAG 2.2 Success Criterion 2.5.8 "Target Size (Minimum)": https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html
 - Designing with users in rounds (ask, make, test, change): IDEO.org, The Field Guide to Human-Centered Design (2015): https://www.designkit.org/resources/1.html
 - CSTA K-12 Computer Science Standards (2017): https://csteachers.org/k12standards/
-- Maple Street Garden, its app, Lou, Ana, her mom and Kofi are made up; the four-card solution was checked by trying every set of four of the eleven features.
+- Maple Street Garden, its app, Lou, Ana, her mom and Kofi are made up.
+- Checks run (Python, 2026-10-29, every set of the eleven features against the six needs): exactly one set of four
+  finishes for all three (Read aloud, Big buttons far apart, English and Spanish switch, Reminder you set); no set of
+  three does; eight sets of five do. Read aloud helps Lou and Ana, Big buttons helps Lou and Kofi. Each friend alone
+  needs at least two features, so three slots in Interview always leave room. Lou with Big text and Big buttons
+  finishes, with Big text alone snags at step 4; Kofi with Home screen shortcut and Reminder finishes, with Chat and
+  Reminder snags at step 4. Empty designs snag Lou at 1, 3, 4; Ana at 1, 2, 4; Kofi at 4, 5. Every contrast ratio in
+  Look recomputed with the WCAG 2.1 formula and matches.
 
 ## Done when
 1. Asking Lou questions 1 and 2 puts two notes on his board; question 3 appears only after question 2; after four questions every card disables.
@@ -133,3 +183,13 @@ none.
 6. Kofi with Home screen shortcut and Reminder you set finishes; with Chat and Reminder he snags at step 4.
 7. Lines 2, 3, 4 and 6 are each spoken once in a run of five actions; lines 7 and 8 after every test drive.
 8. Question cards and "Questions left" visible without scrolling at 1366x768 and 680x425; step results readable in grayscale by glyph and word.
+9. Focus: at 1366x768 and 680x425 the portrait with the newest bubble (Ask), the phone (Design) and the marker on the
+   step path (Test drive) are each the largest thing at the stage center.
+10. Tap while it plays: during a test drive, a slot tap or Back to design stops it at once with no result line, and
+    Start test drive restarts from step 1.
+11. Voice: no line names a disabled control; 7, 8 and 12 every drive and dropped on a design change.
+
+## Open questions
+- The three friends are people (Lou, Ana, Kofi), all waiting on Cory; the tool is about real users, so they stay.
+- The voice moved from curious-librarian to wise-mentor because spot-the-ai (grade 1, same subject) uses
+  curious-librarian. Fine?
