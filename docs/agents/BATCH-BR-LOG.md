@@ -197,4 +197,4 @@ buildings, no people") painted busy street scenes with crowds; positive wording 
 isolated game asset") gave clean sprites. Key-color tint in leg gaps: neutralize the tint, do not cut it (cutting
 speckled white fur). Waffles kept: every redraw gave bat ears, which would contradict its floppy-ears clue.
 
-Commit ba87ba5b. Site built and checked (5261 pages, 0 broken links); deploy waits on Cory (permission check).
+Commit ba87ba5b. Site built and checked (5261 pages, 0 broken links); deployed (version 69c28008) once Cory lifted the permission block; desk items back to ready, the three comments answered and marked done.
