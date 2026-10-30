@@ -7,7 +7,7 @@ A definition is a gate, and the other player holds a deck of counterexamples: yo
 - shape-talk (eld K-2, built): describe a hidden shape with frames so a partner can guess it. Here the student writes the rule that decides membership for every case, including tricky ones (a tilted square, a square as a rectangle, 2 as a prime).
 - word-problem-decoder (eld 6-8, not built): maps math words like per and each to operations. Here the words are conditions and quantifiers (all, exactly, at least, never) and the job is defining, not computing.
 - math-explainer (eld 3-5, not built): explains a solution with sequence words. Here the language is the language of definitions and justification ("is not a ___ because it does not ___").
-- chart-narrator, historian-s-toolkit, inbox-simulator, argument-frames-pro (eld 9-12, this group): data, history, email and debate language. This is the group's only math-language tool and its only card duel.
+- chart-narrator, is-the-historian-right, inbox-simulator, counterpoint-frames (eld 9-12, this group): data, history, email and debate language. This is the group's only math-language tool and its only card duel.
 
 ## Who and how
 - ELD grades 9 to 12. Module: Precise Mathematical Language (Language for Mathematics).
@@ -21,16 +21,18 @@ A definition is a gate, and the other player holds a deck of counterexamples: yo
 Header: title "Definition Duel"; mode buttons **Duel** (opens first), **Precise words**; Motion, Sound, Read. Panel: Help setting, hint, tip.
 
 ### Duel (opens first)
+- Focus: the gate and the four trays under it, center and together the largest thing on the stage; after a Test the eye goes to Slipped in and Shut out. The hand sits below the trays, the deck at the right edge, the term rail a thin strip on top.
 - Term rail along the top: eight term cards in order (Square, Rectangle, Parallel lines, Perpendicular lines, Circle, Function, Prime number, Line segment). Each card shows a ✓ word when won. Any term can be opened in any order.
 - Center: **Your gate**. A definition frame: "A [term] is [card] [card] [card]." The first slot is the starting definition's cards, already placed (each term starts with an imprecise definition from a classmate's notes, shown as a sticky note: "From the notes: A rectangle is a shape with two long sides and two short sides.").
 - Below the gate: the hand, all condition cards for the term (5 or 6), each with its words; precise words (all, every, exactly, at least, only, never, same) are underlined. Tap a card to add it to the gate, tap a placed card to take it back. A **kind** card (what sort of thing it is) has a small "kind" tag.
 - Right: **The deck**, six or seven figure cards face down, drawn in code.
-- **Test the gate**: the deck's cards flip one by one (instant with Motion off) and walk to one of four trays, each with a word and an icon: **In, correct** (examples the gate lets in), **Out, correct** (non-examples kept out), **Slipped in** (non-examples let in), **Shut out** (examples kept out). Tapping a tray card shows the figure big with every condition card it meets or fails, ✓ or ✗ with words.
+- **Test the gate** (always enabled): the deck's cards flip one by one, about 0.25 s each, under 2 s in all (instant with Motion off), and walk to one of four trays, each with a word and an icon: **In, correct** (examples the gate lets in), **Out, correct** (non-examples kept out), **Slipped in** (non-examples let in), **Shut out** (examples kept out). Tapping a tray card shows the figure big with every condition card it meets or fails, ✓ or ✗ with words.
 - The gate is won when Slipped in and Shut out are both empty. A card that does no work for this deck gets a quiet "extra" note (never for a kind card): "Every figure here passes or fails the same way without this card."
 - After a win, **Explain** opens: pick one figure from Out, correct, then build "A [figure] is not a [term] because it [reason]." At Lots and Some help the reason is chosen from the failed conditions' "not" phrases; at Little help it is typed. Then one positive sentence for a tricky example ("A tilted square is a square because it has all sides equal and four right angles."). **Next term** moves on.
 - The record (bottom of the panel): per term, the number of tests used. No timer, no points beyond that.
 
 ### Precise words
+- Focus: the open word card with its two example sentences, center; the Swap result (which figures change trays) appears right under it.
 - Ten word cards: all, every, each, exactly, at least, at most, only, never, same, if and only if. Each card shows a plain meaning, a picture made of dots or shapes drawn in code, and two sentences from the duel terms, one where swapping the word changes the meaning ("exactly two factors" against "at least two factors": 12 has at least two factors, but not exactly two).
 - A **Swap** button on each card replaces the word in the example with its partner and shows which deck figures would change trays.
 
@@ -57,13 +59,14 @@ Precise words examples: all ("all sides equal": a rhombus has all sides equal, a
 
 ## Interactions in detail
 - A figure passes the gate when it meets every placed card. Trays come from the tables above; nothing is random.
-- Test is always allowed, even with one card. Each Test counts once in the record. Changing a card after a Test returns the deck face down.
+- Test is always allowed, even with one card or none (no cards lets every figure in). Each Test counts once in the record. Changing a card after a Test returns the deck face down.
+- While the deck flips, every control stays live: tapping a card in the hand, Test again or another term stops the flips at once, returns the deck face down and acts on the tap.
 - "Extra" note: shown for a placed non-kind card when removing it leaves every figure in the same tray.
 - Explain checks: at Lots and Some help the chosen "not" phrase must be one the chosen figure fails, else "That one is true for a ___. Pick a condition it fails." At Little help the typed reason must contain a negative (not, no, never, doesn't, isn't, n't) and at least one keyword of a failed condition (keywords per card: Q quadrilateral, four sides; E equal; R right angle(s); P parallel; F flat; R1 right angle; L long, short; Pl plane, flat; Nm meet, never; Nt touch; RA right angle; Up up and down, vertical; Cr cross; Al every point, distance, center; So some; Rd round, corner; Ev every input; Ex1 exactly one, one output; Dif same output, different; Num numbers; Ln straight line; Wh whole; G1 greater than 1; T2 exactly two, two factors; Od odd; Nf other factor; Pt part of a line; St straight; Tw two endpoints, endpoint; Sh short). The positive sentence needs the term and one keyword per condition in the winning gate.
 - Little help also asks for the full definition in the student's own words after the win; checked for the term, a kind word (shape, quadrilateral, lines, rule, number, part of a line) and one keyword per gate card. A miss names the missing piece.
 - Help levels: Lots of help adds a picture icon to every card, reads each card when tapped, and shows the frame "A ___ is a ___ that ___." under the gate; Some help drops the icons; Little help hides the starting frame and adds the own-words step.
 - Two-player use: **Predict** (optional toggle) lets a second student tap figures they think will slip in before Test; their predictions show beside the trays.
-- Mode change calls `V.hush()`. Storage `definition-duel:v1` (try/catch): help setting and the record; **Clear record** in the panel.
+- Mode change calls `V.hush()`. Storage `definition-duel:v1` (try/catch): help setting and the record; **Clear record** in the panel asks first. Sound starts on, as the kit sets it.
 - Sizes: at 1366x768 the term rail, gate, hand, Test button and trays fit without scrolling; at 1000x625 the trays become a strip under the gate; at 760 the deck and trays go below the hand; at 375 the hand scrolls sideways inside its own box and Test stays pinned. Figure cards at least 72 px. No horizontal page scroll.
 
 ## Look
@@ -72,19 +75,20 @@ Precise words examples: all ("all sides equal": a rhombus has all sides equal, a
 - Contrast: ink on paper 15.71:1; muted on paper 6.75:1, on panel 7.55:1; brand on paper 10.35:1; white on brand 11.58:1; red 5.84:1 and blue 5.99:1 on paper; focus ring 4.49:1 on paper (non-text, needs 3:1). All pass AA.
 
 ## Art
-None: drawn in code (figures, tables, mapping diagrams, cards). No people.
+None: drawn in code. Every figure is a precise geometric drawing, number or input-output table whose exact angles, lengths and values decide which tray it lands in, so it must be drawn from the data (and the Swap view redraws the same figures); the cards are text cards. No people.
 
 ## Voice
-Bank voice `calm-professor` (Schedar), style "Say evenly and clearly, like a calm, friendly college professor." No other ELD tool uses it. `Curio.voice`, `scope: () => state.mode`. Card words are read on tap only at Lots of help.
-- w-duel (how): "Here's a definition from a classmate's notes. Add or remove cards, then press Test the gate."
-- slipped (event, after a Test with slipped figures; stale on the next card change): "Some figures slipped in. Your gate is too loose."
-- shut (event, after a Test with shut-out figures; stale on change): "A true example was shut out. Your gate is too tight."
-- both (event, when both happen): "Too loose and too tight at once. Check each tray."
-- won (event): "Exactly right. Now explain one figure that stays out."
-- extra (how): "One card does no work here. You can keep it or take it out."
-- explain (how): "Pick a figure outside the gate. Then say why it is not one."
-- explain-miss (event; stale on edit): "That is true for this figure. Pick a condition it fails."
-- w-words (how): "Tap a word. Then press Swap to see how one word changes the meaning."
+Bank voice `calm-professor` (Schedar), style "Say evenly and clearly, like a calm, friendly college professor." No other tool in this group or its neighbors uses it (shape-talk uses Puck). `Curio.voice`, `scope: () => state.mode`. Card words are read on tap only at Lots of help.
+- how, w-duel (Duel welcome, after the sticky note shows; stale when a card is tapped or Test is pressed): "Here's a definition from a classmate's notes. Tap cards to add or remove them, then press Test the gate."
+- event, slipped (after a Test with slipped figures only; stale on the next card change): "Some figures slipped in. Your gate is too loose."
+- event, shut (after a Test with shut-out figures only; stale on the next card change): "A true example was shut out. Your gate is too tight."
+- event, both (after a Test with both; stale on the next card change): "Too loose and too tight at once. Check each tray."
+- event, won (a Test with both trays empty; stale when Explain opens): "Exactly right. Now tap a figure in Out, correct, and say why it stays out."
+- how, extra (first extra note; stale on the next card change): "One card does no work here. You can keep it or tap it to take it out."
+- how, explain (first time Explain opens; stale when a figure is tapped): "Tap a figure in Out, correct. Then pick or type the reason it is not one."
+- event, explain-miss (a reason the figure meets; stale on edit): "That is true for this figure. Pick a condition it fails."
+- event, explain-ok (a correct reason; stale when Next term is tapped): "That's the reason. Tap Next term when you're ready."
+- how, w-words (Precise words welcome; stale when a word card is tapped): "Tap a word. Then press Swap to see how one word changes the meaning."
 
 ## Family engine
 None.
@@ -92,7 +96,8 @@ None.
 ## Sources
 - Common Core State Standards for Mathematics: G-CO.A.1 (precise definitions of angle, circle, perpendicular line, parallel line and line segment), https://www.thecorestandards.org/Math/Content/HSG/CO/; F-IF.A.1 (a function assigns to each element of the domain exactly one element of the range), https://www.thecorestandards.org/Math/Content/HSF/IF/; 4.OA.B.4 (prime and composite), https://www.thecorestandards.org/Math/Content/4/OA/; 3.G.A.1 and 5.G.B.3 (squares are rectangles; all rectangles have four right angles), https://www.thecorestandards.org/Math/Content/5/G/.
 - WIDA ELD Standards Framework, 2020 Edition (Explain; Language for Mathematics; proficiency levels): https://wida.wisc.edu/teach/standards/eld.
-- Every figure, table and starting definition is original to Curio Class; the truth tables were checked by computing all card combinations.
+- Every figure, table and starting definition is original to Curio Class.
+- Checks run (Python, 2026-10-29): every subset of every term's cards was tested against its deck. Starting definitions give exactly the slipped and shut-out figures in Content (Square: rhombus, pentagon slip; Rectangle: parallelogram slips, square shut out; Parallel: nearly parallel and skew slip; Perpendicular: 80 degree cross and the vertical pair slip, tilted cross shut out; Circle: four slip; Function: two slip, two shut out; Prime: 1 slips, 2 shut out; Line segment: long segment shut out). The smallest winning gates are exactly the listed ones: Square E with R or E with R1 (12 winning sets in all); Rectangle R; Parallel Pl with Nm; Perpendicular RA; Circle Pl with Al; Function Ex1; Prime T2 or G1 with Nf; Line segment St with Tw or Pt with Tw. E, R and F shuts out the tilted square; in the gate R with P, P is extra; St alone lets in the ray and the line. "At least two factors" lets in 9 and 15 and keeps 1 out (1 has one factor; 2.5 is not whole). No rule or table needed a fix.
 
 ## Done when
 - Each term's starting definition produces exactly the slipped and shut-out figures listed in Content.
@@ -102,8 +107,10 @@ None.
 - "Extra" never shows for a kind card (Q in a winning Rectangle gate); it shows for P added to a winning Rectangle gate.
 - Explain rejects a "not" phrase the figure meets; Little help accepts "A rhombus is not a square because it does not have four right angles" and rejects "because it is a shape".
 - Precise words: Swap on "exactly" (to "at least two factors") moves 9 and 15 into the Prime gate, and 1 stays out.
-- Record survives reload; Clear record empties it.
-- How lines are spoken once in five actions; slipped and won repeat per event.
+- Focus: at 1366x768 and 1000x625 the gate and the four trays are the largest thing on the stage, and every tray is visible after a Test without scrolling.
+- Tap while it plays: during the deck's flips, tapping a hand card or another term acts at once and the deck returns face down.
+- Record survives reload; Clear record asks first and empties it.
+- How lines are spoken once in five actions; slipped and won repeat per event; no line names a disabled control.
 - No horizontal scroll at any listed size; the hand scrolls inside its box at 375.
 
 ## Open questions

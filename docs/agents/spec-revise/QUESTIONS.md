@@ -160,3 +160,8 @@
 
 ## R29
 - stock-market-1929: close accounts under $1, or run to Dec 1932 in cents? At 1x, pause ~5 s on each voiced event, or cards only? Keep hs-narrator or switch to news-reader?
+
+## R28
+- 6 people images: counterpoint-frames Jordan x3, then-what-happened strip sheets x3 (Gemini). Ms. Lin as voice + name card OK?
+- chart-narrator and then-what-happened both "redraw from your words only" (chart line vs story order); acceptable overlap?
+- Home-language glossary for all six ELD tools (carried).

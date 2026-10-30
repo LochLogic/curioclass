@@ -8,7 +8,7 @@ Your words are the only thing the second pen can see: describe a real science ch
 - misleading-charts (cs 6-8, specced): finds the trick in a chart's design. Here every chart is honest; the student is the one who can mislead, with words.
 - i-spy-science (eld K-2, built): names and describes things in a picture. Here the thing described is change over time, with verbs, adverbs and numbers.
 - cer-builder (eld 6-8, not built): claim, evidence and reasoning about an experiment. Here describe first, then explain with causes and hedges; no claim to argue.
-- definition-duel, historian-s-toolkit, inbox-simulator, argument-frames-pro (eld 9-12, this group): math, history, email and debate language. This is the group's science and data tool.
+- definition-duel, is-the-historian-right, inbox-simulator, counterpoint-frames (eld 9-12, this group): math, history, email and debate language. This is the group's science and data tool.
 
 ## Who and how
 - ELD grades 9 to 12. Module: Explaining Models and Data (Language for Science).
@@ -19,21 +19,22 @@ Your words are the only thing the second pen can see: describe a real science ch
 - tool.json: driver "students", minutes "20-35", modes ["Narrate", "Listen"], grades_label "Grades 9-12". Kit starter plus `kit:data-desk` (DataTable and line Chart only).
 
 ## Screens and modes
-Header: title "Chart Narrator"; mode buttons **Narrate** (opens first), **Listen**; Motion, Sound, Read. Chart picker under the header: **Methane**, **Ozone hole**, **Lake Mead**, **Daylight**. Each chart carries its title, axis labels with units, a "Measured" or "Model" tag, and its "data as of" line.
+Header: title "Chart Narrator"; mode buttons **Narrate** (opens first), **Listen**; Motion, Sound, Read. Chart picker under the header: four cards, **Methane**, **Ozone hole**, **Lake Mead**, **Daylight**, each with its painted picture (see Art) and its name. Each chart carries its title, axis labels with units, a "Measured" or "Model" tag, and its "data as of" line. The open chart's picture sits as a small banner left of the chart title, never behind the plot.
 
 ### Narrate (opens first)
-- Two charts, stacked on short screens and side by side on wide ones: **The data** (real line and points) and **The pen** (same axes, empty).
+- Focus: the two charts, **The data** (real line and points) and **The pen** (same axes, starts empty), side by side and together the largest thing on the stage, centered; the sentence builder sits under them and the description list in the side panel. Stacked only where the size rules below say so.
 - Step tabs: **Describe**, **Explain**.
 - Describe: a sentence builder: "From [year] to [year], [thing] [verb] [how] (from [number] to [number])." Year pickers list the chart's x values. Verb chips: increased, decreased, remained stable, fluctuated, rose and then fell, fell and then rose; each with an arrow icon. How chips: sharply, steadily, gradually, slightly, (none). Numbers are typed. An extra frame, **Compare**, builds "[thing] [verb] more quickly / more slowly from [year] to [year] than from [year] to [year]."
-- **Add sentence**: it joins the description list and the pen draws that span: direction from the verb, steepness from the how word (sharply steep, gradually and slightly shallow, steadily a straight even line, none a medium slope), anchored to the typed numbers when given. "Fluctuated" draws a zigzag; "rose and then fell" draws a hump. A vague word typed at Little help ("changed", "moved", "was different") draws a dashed flat line with "?".
+- **Add sentence** is always enabled. With a slot still empty it does not add; it rings the empty slot and the hint says which one ("Pick a verb first."). Otherwise the sentence joins the description list and the pen draws that span: direction from the verb, steepness from the how word (sharply steep, gradually and slightly shallow, steadily a straight even line, none a medium slope), anchored to the typed numbers when given. "Fluctuated" draws a zigzag; "rose and then fell" draws a hump. A vague word typed at Little help ("changed", "moved", "was different") draws a dashed flat line with "?".
 - Each sentence gets a verdict chip with a word and an icon: **Fits** ✓, **Partly** ◐ (the verb fits, the how word or a number does not), **Doesn't fit** ✗. Tapping the chip shows why in one line ("From 1999 to 2006 the data moved less than 2 percent of its range. Try remained stable.").
 - **Read my description** reads the list aloud. **How the pen judges** opens the rules (below) in plain words.
 - Explain: cause cards for this chart (see Content), each tagged **Known** or **Still studied**. Frame: "[Phase] [verb] [because / probably because / scientists think that] [cause]." The student picks a phase from their own sentences, a cause card and a link phrase. A last question: "Is this chart measured data or a model?" with a one-line reason frame ("It is a ___ because ___.").
 
 ### Listen
-- Blank axes for a chart the student has not picked yet this session if possible (they can choose any). The tool reads a description (text shown sentence by sentence, each with **Hear it**).
-- The student sets a point at each marked year by dragging a handle up or down (or arrow keys); lines join the points.
-- **Show the data** overlays the real line and marks each interval between marked years ✓ or ✗ for direction (up, down, flat), and points to the words that told it ("'remained stable' told you this part was flat"). A count: "5 of 6 directions match." **Try another**.
+- Focus: the blank axes with their drag handles, the largest thing on the stage, centered; the description text sits in a strip above them, one sentence at a time.
+- The tool opens a chart the student has not picked yet this session if possible (they can choose any). The tool reads a description (text shown sentence by sentence, each with **Hear it**).
+- The student sets a point at each marked year by dragging a handle up or down (or arrow keys); lines join the points. Handles start at the middle of the y axis.
+- **Show the data** is always enabled: it overlays the real line and marks each interval between marked years ✓ or ✗ for direction (up, down, flat), and points to the words that told it ("'remained stable' told you this part was flat"). A count: "5 of 6 directions match." **Try another**.
 
 ## Content
 Datasets (copied in as JSON with the date pulled):
@@ -51,8 +52,8 @@ Listen marked x values: Methane 1984, 1992, 1999, 2006, 2013, 2019, 2025. Ozone 
 Listen descriptions (also the model answers shown after Explain):
 - Methane: "From 1984 to 1999, methane increased steadily, from about 1,645 to about 1,772 parts per billion. From 1999 to 2006, it remained stable at about 1,775. After 2006 it increased again, and after 2019 it increased more quickly. In 2025 it reached about 1,936."
 - Ozone hole: "From 1979 to 1987, the ozone hole grew sharply, from almost nothing to about 19 million square kilometers. From 1987 to 1998, it kept growing, with ups and downs, to about 26. After 1998 it fluctuated between about 17 and 27, except in 2002 and 2019, when it dropped to about 12 and about 9."
-- Lake Mead: "From 1999 to 2010, Lake Mead fell steadily, from about 1,214 to about 1,086 feet. In 2011 it rose sharply, to about 1,133. Then it fell again until 2022, when it reached a low of about 1,045. After that it rose a little and stayed about the same."
-- Daylight: "On January 21, a place at 40 degrees north has about 10 hours of daylight. Daylight increases steadily until June, when it peaks at about 15 hours. Then it decreases steadily to about 9 hours in December."
+- Lake Mead: "From 1999 to 2010, Lake Mead fell steadily, from about 1,214 to about 1,086 feet. In 2011 it rose sharply, to about 1,133. Then it fell again until 2022, when it reached a low of about 1,045. In 2023 it rose to about 1,068, and then it stayed about the same."
+- Daylight: "On January 21, a place at 40 degrees north has about 9.8 hours of daylight. Daylight increases steadily until June, when it peaks at about 15 hours. Then it decreases steadily to about 9.3 hours in December."
 
 Cause cards (Explain):
 - Methane: "Methane comes from wetlands, farm animals such as cattle, rice fields, landfills, and oil, gas and coal." (Known; any rising phase). "Scientists are still working out why methane stopped rising from about 1999 to 2006." (Still studied; 1999 to 2006). "Scientists are still studying why methane rose faster after 2019." (Still studied; 2019 to 2025).
@@ -64,40 +65,48 @@ Word bank (Little help accepts these and maps them): increased = rose, went up, 
 
 ## Interactions in detail
 How the pen judges a sentence about years a to b (R is the whole chart's range, max minus min; the screen states these as "the pen's rules"):
-- net = (value at b minus value at a) / R; within = (highest minus lowest between a and b) / R; rate = |net| / (b minus a, in years or months); a swing is a step of at least 0.08 R; flips = times two swings in a row go opposite ways.
+- The two years must differ: picking the same year twice gets "Pick two different years." and nothing is added. A later year picked first is swapped, so "From 2010 to 1999" is read as 1999 to 2010.
+- net = (value at b minus value at a) / R; within = (highest minus lowest between a and b) / R; rate = |net| / (b minus a, in years or months); a swing is a step of at least 0.08 R between neighboring data points (the ozone gap at 1995 counts 1994 to 1996 as one step); flips = times two swings in a row go opposite ways.
 - increased fits when net ≥ 0.08; decreased when net ≤ -0.08; remained stable when |net| < 0.08 and within < 0.15; fluctuated when flips ≥ 2; rose and then fell when the highest value between a and b is at least 0.15 R above both ends; fell and then rose, the same for the lowest.
 - When flips ≥ 3, increased or decreased alone is **Partly**: "It went up and down a lot. Say it fluctuated, or start with Overall." A sentence that starts with "Overall" fits.
 - sharply fits when rate ≥ 0.08; steadily when there are at least 3 steps and the sum of step sizes ≤ 1.3 × |net|; gradually when rate ≤ 0.05; slightly when |net| ≤ 0.20. More than one can fit.
-- Numbers fit within 3 percent of R of the real value at that year ("about" is fine). "Reached a high (low) of X" checks the highest (lowest) value in the span.
+- Numbers fit within 3 percent of R of the real value at that year ("about" is fine): methane 8.7 ppb, ozone 0.8 million km², Lake Mead 5.1 feet, daylight 0.17 hours. "Reached a high (low) of X" checks the highest (lowest) value in the span.
 - Compare: "more quickly" fits when the first span's rate is at least 1.3 times the second's; "more slowly" the reverse.
-- Checked cases (recompute at build): Methane 1984-1999 increased steadily or gradually: Fits; 1999-2006 remained stable: Fits; 2019-2025 increased sharply: Partly (rate 0.040); increased more quickly 2019-2025 than 2006-2019: Fits (0.040 against 0.024). Ozone 1979-1987 increased sharply: Fits; increased steadily: Partly (the 1986 dip); 1998-2025 fluctuated: Fits; decreased gradually: Partly (flips 13). Lake Mead 1999-2010 decreased steadily: Fits; 2010-2011 increased sharply: Fits; 2015-2018 remained stable: Fits; 2009-2013 rose and then fell: Fits. Daylight Jan-Dec rose and then fell: Fits; Jan-Jun increased sharply or steadily: Fits; May-Jul remained stable: Fits (within 0.08).
-- The pen: each sentence's span is redrawn when sentences overlap (the later sentence wins that span, and the earlier chip says "Replaced from ___ to ___"). Spans no sentence covers stay empty.
+- Checked cases (rerun at build; numbers from the check in Sources): Methane 1984-1999 increased steadily or gradually: Fits; 1999-2006 remained stable: Fits; 2019-2025 increased sharply: Partly (rate 0.040); increased more quickly 2019-2025 than 2006-2019: Fits (0.040 against 0.024). Ozone 1979-1987 increased sharply: Fits (rate 0.091); increased steadily: Partly (the 1986 dip); 1998-2025 fluctuated: Fits; decreased gradually: Partly (flips 14). Lake Mead 1999-2010 decreased steadily: Fits; 2010-2011 increased sharply: Fits; 2015-2018 remained stable: Fits; 2009-2013 rose and then fell: Fits (0.154 above both ends). Daylight Jan-Dec rose and then fell: Fits; Jan-Jun increased sharply or steadily: Fits; May-Jul remained stable: Fits (within 0.084).
+- The pen: each sentence's span is redrawn when sentences overlap (the later sentence wins that span, and the earlier chip says "Replaced from ___ to ___"). Spans no sentence covers stay empty. The pen draws a span in about 0.6 s (at once with Motion off); pressing Add sentence, changing a chip or switching charts while it draws finishes that stroke at once and acts on the new tap right away.
 - Explain checks: the cause card's phase must overlap the chosen phase, else "This card is about 2011, not 2022." A Still studied card needs a hedge (may, might, probably, scientists think, one reason may be); without one: "Scientists are not sure yet. Add may or scientists think." A Known card with a hedge is accepted with a note that a hedge is not needed. Model or measured: Daylight is a model, the other three measured; the reason frame needs computed/equations or measured/instrument/observed.
-- Listen: directions per interval use the same rules with net thresholds ±0.08 for up and down. The handles snap to whole numbers on the y axis.
+- Listen: directions per interval use the same rules with net thresholds ±0.08 for up and down. The handles snap to whole numbers on the y axis (daylight to half hours). While the description is read (about 20 s), the handles, Hear it and Show the data stay live; Show the data stops the reading and shows the overlay at once.
 - Help: Lots of help shades the chart's main phases (methane 1984-1999, 1999-2006, 2006-2025; ozone 1979-1987, 1987-1998, 1998-2025; Lake Mead 1999-2010, 2010-2011, 2011-2022, 2022-2025; daylight Jan-Jun, Jun-Dec), shows icons on chips and puts numbers as chips (the values at the chosen years). Some help: no shading, numbers typed. Little help: typed verb and how word, matched to the word bank; an unknown word gets "The pen doesn't know '___'. Try a word from Words."
-- Mode change calls `V.hush()`. Storage `chart-narrator:v1` (try/catch): help setting and each chart's description list. **Clear** asks first.
+- Mode change calls `V.hush()`. Storage `chart-narrator:v1` (try/catch): help setting and each chart's description list. **Clear** asks first. Sound starts on, as the kit sets it.
 - Sizes: at 1366x768 both charts, the builder and Add sentence fit; at 1000x625 the charts stack with a **Data / Pen / Both** toggle; at 375 one chart at a time with the toggle and the builder under it; drag handles at least 44 px. Chart text at least 11 px at 680x425. No horizontal page scroll.
 
 ## Look
 - Own dark `:root`, a lab screen: `--paper #0f1720`, `--panel #16212d`, `--ink #e8f0f7`, `--muted #a9b8c6`, `--line #2a3a4a`, accent `--brand #4dd2ff` (instrument cyan: the data line, active mode, Add sentence), `--btn #4dd2ff`, `--head-ink #0b1218`, `--focus #ffd166`. The pen line `#ffb3c7`, drawn dashed so it differs from the data line by pattern too.
+- The four painted pictures are cool, quiet field paintings (blue-green, slate, sand) so they sit on the dark screen without pulling the eye from the charts; each has a 1 px `--line` border.
 - Neighbors: climate-dashboard and the data-desk tools; nearest catalog accent algebra-tile-studio #6cc4ff (dE 13.4); source-mixer #45d4e8 (dE 14.7).
 - Contrast: ink on paper 15.67:1; muted on paper 8.90:1, on panel 8.03:1; brand on paper 10.29:1, on panel 9.29:1; button text on brand 10.75:1; pen on paper 10.76:1; focus on panel 11.29:1. All pass AA.
 
 ## Art
-None: drawn in code with the data-desk Chart (axes, lines, handles, cards). No people.
+Local FLUX (`scripts/localart.py`), one style for all four: "realistic gouache field painting, soft natural light, muted colors". No people. The charts, handles, pen line, cards and icons stay in code (they are the data and must bend to it).
+- methane-wetland: "A green marsh with reeds and shallow water at dawn, black and white cattle grazing on the far bank, a flooded rice field beyond, realistic gouache field painting, soft natural light, muted colors"; 4:3; cutout no; people no; the Methane picker card and title banner.
+- ozone-antarctica: "The icy coast of Antarctica under a deep blue polar sky, thin pale clouds high above, white ice cliffs over dark water, realistic gouache field painting, soft natural light, muted colors"; 4:3; cutout no; people no; the Ozone hole card and banner.
+- lake-mead-ring: "A desert reservoir between rocky red canyon walls, a wide pale band of bare white rock above the waterline, a curved concrete dam at the far end, realistic gouache field painting, soft natural light, muted colors"; 4:3; cutout no; people no; the Lake Mead card and banner.
+- daylight-field: "A low winter sun just above a wide flat farm field, long shadows from a row of bare trees, a pale clear sky, realistic gouache field painting, soft natural light, muted colors"; 4:3; cutout no; people no; the Daylight card and banner.
+
+4 images, none with people.
 
 ## Voice
-Bank voice `clear-teacher` (Iapetus), style "Say clearly and kindly, like a patient teacher reading a graph with a student." Not used by another ELD tool or this group. `Curio.voice`, `scope: () => state.mode`. The Listen descriptions are recorded so a student can hear them more than once.
-- w-narrate (how): "Pick two years. Then choose a verb and a how word, and press Add sentence. The pen draws only what you say."
-- fits (event; stale on the next sentence): "That fits the data."
-- partly (event): "Partly. The direction is right. Check the how word or the number."
-- nofit (event): "That doesn't fit. Look at where the line starts and ends."
-- vague (event): "The pen can't draw that. Use a word like increased or remained stable."
-- w-explain (how): "Now say why. Pick a phase, a cause card and a link phrase."
-- hedge (event): "Scientists are not sure yet. Add may, or scientists think."
-- w-listen (how): "Listen to the description. Then drag each point to where the words put it, and press Show the data."
-- listen-1 to listen-4 (event, the four descriptions, each sentence a separate line).
-- result (event): "Here's the data. Check which words told you each part."
+Bank voice `clear-teacher` (Iapetus), style "Say clearly and kindly, like a patient teacher reading a graph with a student." Not used by another tool in this group or its neighbors. `Curio.voice`, `scope: () => state.mode`. The Listen descriptions are recorded so a student can hear them more than once.
+- how, w-narrate (Narrate welcome; stale when the first chip or year is picked): "Pick two years, a verb and a how word. Then press Add sentence. The pen draws only what you say."
+- event, fits (after Add sentence with a Fits verdict; stale on the next sentence or chart change): "That fits the data."
+- event, partly (Partly verdict; stale the same way): "Partly. The direction is right. Check the how word or the number."
+- event, nofit (Doesn't fit verdict; stale the same way): "That doesn't fit. Look at where the line starts and ends."
+- event, vague (a vague word at Little help; stale on the next sentence): "The pen can't draw that. Type a word like increased or remained stable."
+- how, w-explain (first time Explain opens; stale when a cause card is picked): "Now say why. Pick one of your sentences, a cause card and a link phrase."
+- event, hedge (a Still studied card with no hedge; stale when the link phrase changes): "Scientists are not sure yet. Add may, or scientists think."
+- how, w-listen (Listen welcome, before the description; stale when a handle moves): "Listen to the description. Then drag each point to where the words put it, and press Show the data."
+- event, listen-1 to listen-4 (the four descriptions, each sentence a separate line; played in order when Listen opens a chart and on Hear it; stale on Show the data, Try another or a chart change).
+- event, result (after Show the data; stale on Try another): "Here's the data. Check which words told you each part."
 
 ## Family engine
 None. The tool uses the data-desk engine's DataTable and line Chart (`docs/families/data-desk.md`) as a library, with four datasets no data-desk sibling uses; the pen line and Listen handles are its own.
@@ -108,17 +117,21 @@ None. The tool uses the data-desk engine's DataTable and line Chart (`docs/famil
 - Lake Mead: Bureau of Reclamation, Lake Mead at Hoover Dam, end of month elevation, https://www.usbr.gov/lc/region/g4000/hourly/mead-elv.html, pulled 27 October 2026; drought and the 2011 and 2023 snowpacks: Reclamation, https://www.usbr.gov/lc/region/g4000/24mo.pdf and Colorado River basin drought pages (confirm each card at build; a news summary of the 2011 rise of more than 46 feet agrees with the table: 1086.30 to 1132.83).
 - Daylight: NOAA Global Monitoring Laboratory solar calculator equations, https://gml.noaa.gov/grad/solcalc/solareqns.PDF, computed for 40° N; axis tilt: NASA Space Place, "What Causes the Seasons?", https://spaceplace.nasa.gov/seasons/.
 - WIDA ELD Standards Framework, 2020 Edition (Explain, Language for Science): https://wida.wisc.edu/teach/standards/eld.
+- Checks run (Python, 2026-10-29, on the four datasets above). Ranges R: methane 291.19 ppb, ozone 26.5, Lake Mead 169.12 ft, daylight 5.69 h. Every checked case gives its listed verdict: methane 1984-1999 net 0.438, rate 0.029, steady (step sum 0.438 ≤ 0.569); 1999-2006 net 0.009, within 0.021; 2019-2025 rate 0.0397; compare 0.0397 / 0.0242 = 1.64. Ozone 1979-1987 rate 0.091, flips 2, step sum 1.004 > 0.942 (not steady); 1998-2025 flips 14. Lake Mead 1999-2010 net -0.755 steady; 2010-2011 rate 0.275; 2015-2018 net 0.003; 2009-2013 high 0.154 above both ends. Daylight Jan-Dec high 0.921 above both ends; Jan-Jun rate 0.184 per month, steady; May-Jul within 0.084.
+- The Listen descriptions were judged by the same rules: every phrase fits (methane 2006-2025 increased; ozone 1987-1998 increased, gradually fits and steadily is only Partly, so the text says "with ups and downs"; Lake Mead 2011-2022 decreased; 2023-2025 stable, net -0.035; daylight Jun-Dec decreased steadily). Fixed: the daylight text said "about 10 hours" and "about 9 hours", which miss the 0.17 h number tolerance (9.78 and 9.33), so it now says 9.8 and 9.3; the Lake Mead text said "rose a little and stayed about the same" from 2022, but 2022-2025 is "up" in Listen (net 0.103) and fails remained stable, so it now names the 2023 rise to 1,068. Every other number in the descriptions is within tolerance. Earlier draft figures corrected: ozone flips 14 (was 13), daylight May-Jul within 0.084 (was 0.08).
+- Listen directions on the marked years: methane up, up, flat, up, up, up (a flat line scores 1 of 6); ozone up, up, up, up, down, up, down, up; Lake Mead down, down, up, down, down, up; daylight up, up, down, down. A faithful drawing of each description matches every interval.
 
 ## Done when
-- Every checked case in Interactions gets the verdict listed.
+- Every checked case in Interactions gets the verdict listed; the same year twice is refused and reversed years are swapped.
 - The pen draws a flat dashed line with "?" for "changed" at Little help, and a zigzag for fluctuated.
 - Two overlapping sentences: the later one wins the span and the earlier shows "Replaced".
 - Explain rejects the 2011 snowpack card for the 2022 phase and asks for a hedge on a Still studied card; accepts "probably because".
 - Daylight answers Model; the others Measured.
-- Listen: drawing the methane description faithfully scores 6 of 6; a flat line scores no more than 2.
-- The ozone chart shows a gap at 1995 with "No data".
-- Data as of lines are on screen for all four charts.
-- How lines are spoken once in five actions; verdict lines repeat each time.
+- Listen: drawing the methane description faithfully scores 6 of 6; a flat line scores 1; every description drawn faithfully scores full marks.
+- The ozone chart shows a gap at 1995 with "No data"; the four picker cards show their paintings and "Data as of" lines are on screen for all four charts.
+- Focus: at 1366x768 and 1000x625 the data and pen charts (Narrate) and the Listen axes are the largest thing on the stage, and the paintings never sit behind a plot.
+- Tap while it plays: during a pen stroke or a Listen reading, Add sentence, a chip, a handle, Show the data or a chart switch acts at once.
+- How lines are spoken once in five actions; verdict lines repeat each time; no line names a disabled control (Add sentence and Show the data are never disabled).
 - No horizontal scroll at any listed size; the toggle works at 375.
 
 ## Open questions
