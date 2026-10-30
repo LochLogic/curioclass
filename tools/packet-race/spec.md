@@ -20,7 +20,9 @@ You are the routing table: aim each router's arrow at the neighbor it should pas
 ## Screens and modes
 Header (kit): "Packet Race", small line "Steer the packets". Mode buttons: **Watch** (opens first), **Race**. Then Motion, Sound, Read.
 
-Stage: a transit-map style network. Sender **S** on the left (a laptop icon), receiver **D** on the right (a laptop icon), routers as white station circles with an ink ring and their label (R1 to R10). Each router has an arrow (a blue pointer on its ring) aimed down one of its links. Links are thick grey lines with a white casing, with their delay printed small at the middle ("0.4 s"). Under D, the **slot strip**: 12 numbered boxes; each arriving packet's word drops into its box. Above the stage, the clock bar (Race) with the ghost marker.
+Focus (both modes): the network map, the biggest thing, center stage, with the slot strip pinned under it; the clock bar above it in Race.
+
+Stage: a transit-map style network. Sender **S** on the left (painted cutout, art: sender-pc), receiver **D** on the right (painted cutout, art: receiver-tablet), each with its letter drawn in code on a station tag, routers as white station circles with an ink ring and their label (R1 to R10). Each router has an arrow (a blue pointer on its ring) aimed down one of its links. Links are thick grey lines with a white casing, with their delay printed small at the middle ("0.4 s"). Under D, the **slot strip**: 12 numbered boxes; each arriving packet's word drops into its box. Above the stage, the clock bar (Race) with the ghost marker.
 
 Watch panel: `#hint`, map picker (**Town**, **City**, **Coast**), the **Path now** readout ("S R1 R3 R5 R6 D, 1.8 s"), **Reset map**. Tap a router to take it down or bring it back; tap a link to cut or repair it.
 
@@ -46,9 +48,9 @@ Sentences (12 words, one per packet):
 
 Maps (design units 1000 x 600; link delays in seconds):
 - **Town**: S (60,300), R1 (220,300), R2 (400,150), R3 (400,450), R4 (600,150), R5 (600,450), R6 (800,300), D (940,300). Links: S-R1 0.3, R1-R2 0.4, R1-R3 0.4, R2-R3 0.5, R2-R4 0.4, R3-R5 0.4, R4-R5 0.5, R4-R6 0.4, R5-R6 0.4, R6-D 0.3. Failures: R4 down at 3.0 s. Fastest path before: S R1 R2 R4 R6 D (1.8 s, tied with S R1 R3 R5 R6 D); after: S R1 R3 R5 R6 D (1.8 s). Par 6.2 s.
-- **City**: S (60,300), R1 (200,180), R2 (200,420), R3 (380,90), R4 (380,300), R5 (380,510), R6 (600,180), R7 (600,420), R8 (800,300), D (940,300). Links: S-R1 0.3, S-R2 0.3, R1-R3 0.4, R1-R4 0.3, R2-R4 0.3, R2-R5 0.4, R3-R4 0.3, R4-R5 0.3, R3-R6 0.4, R4-R6 0.4, R4-R7 0.4, R5-R7 0.4, R6-R8 0.4, R7-R8 0.4, R6-D 0.7, R8-D 0.3. Failures: R4 down at 2.5 s, R6 down at 5.0 s. Fastest before: S R1 R4 R6 D (1.7 s); after R4: S R1 R3 R6 D (1.8 s); after R6 too: S R2 R5 R7 R8 D (1.8 s). Par 6.2 s.
-- **Coast**: S (50,300), R1 (160,300), R2 (290,150), R3 (290,450), R4 (440,60), R5 (440,300), R6 (440,540), R7 (610,150), R8 (610,450), R9 (780,300), R10 (800,90), D (950,300). Links: S-R1 0.3, R1-R2 0.4, R1-R3 0.4, R2-R4 0.4, R2-R5 0.3, R3-R5 0.3, R3-R6 0.4, R4-R7 0.5, R5-R7 0.4, R5-R8 0.4, R6-R8 0.5, R7-R9 0.4, R8-R9 0.4, R7-R10 0.3, R10-D 0.4, R9-D 0.3. Failures: R5 down at 2.0 s, link R7-R10 cut at 4.5 s, R5 back up at 8.0 s. Fastest before: S R1 R2 R5 R7 R10 D (2.1 s); with R5 down and R7-R10 cut: S R1 R2 R4 R7 R9 D (2.3 s, tied with S R1 R3 R6 R8 R9 D). Par 6.7 s.
-Par = last send (4.4 s) + the fastest path that no failure ever touches (all computed with Dijkstra in Python).
+- **City**: S (60,300), R1 (200,180), R2 (200,420), R3 (380,90), R4 (380,300), R5 (380,510), R6 (600,180), R7 (600,420), R8 (800,300), D (940,300). Links: S-R1 0.3, S-R2 0.3, R1-R3 0.4, R1-R4 0.3, R2-R4 0.3, R2-R5 0.4, R3-R4 0.3, R4-R5 0.3, R3-R6 0.4, R4-R6 0.4, R4-R7 0.4, R5-R7 0.4, R6-R8 0.4, R7-R8 0.4, R6-D 0.7, R8-D 0.3. Failures: R4 down at 2.5 s, R6 down at 5.0 s. Fastest before: S R1 R4 R6 D (1.7 s; five other paths tie at 1.7 s and the tie rule picks this one); after R4: S R1 R3 R6 D (1.8 s, tied with S R1 R3 R6 R8 D and S R2 R5 R7 R8 D); after R6 too: S R2 R5 R7 R8 D (1.8 s). Par 6.2 s.
+- **Coast**: S (50,300), R1 (160,300), R2 (290,150), R3 (290,450), R4 (440,60), R5 (440,300), R6 (440,540), R7 (610,150), R8 (610,450), R9 (780,300), R10 (800,90), D (950,300). Links: S-R1 0.3, R1-R2 0.4, R1-R3 0.4, R2-R4 0.4, R2-R5 0.3, R3-R5 0.3, R3-R6 0.4, R4-R7 0.5, R5-R7 0.4, R5-R8 0.4, R6-R8 0.5, R7-R9 0.4, R8-R9 0.4, R7-R10 0.3, R10-D 0.3, R9-D 0.3. Failures: R5 down at 2.0 s, link R7-R10 cut at 4.5 s, R5 back up at 8.0 s. Fastest before: S R1 R2 R5 R7 R10 D (2.0 s); with R5 down: S R1 R2 R4 R7 R10 D (2.2 s); with R5 down and R7-R10 cut: S R1 R2 R4 R7 R9 D (2.3 s, tied with S R1 R3 R6 R8 R9 D); with R5 back up and R7-R10 still cut: S R1 R2 R5 R7 R9 D (2.1 s). Par 6.7 s.
+Par = last send (4.4 s) + the fastest path that no failure ever touches (all computed with Dijkstra in Python). Ties go as `net.path` breaks them: fewer hops, then the lower node index in the listed order (S, R1, R2, ..., D), so the paths named above are the ones Watch shows.
 
 Arrow direction order for "clockwise": by the link's angle from the router, measured from straight up, clockwise.
 
@@ -67,26 +69,29 @@ Arrow direction order for "clockwise": by the link's angle from the router, meas
 ## Look
 Accent `--brand #b42318` (signal red, for Start, failures and the header rule). Band 6-8, own `:root`. A printed transit map.
 - `--paper #f6f3ea`, `--panel #ffffff`, `--ink #1d1d1f`, `--muted #5b5850`, `--line #e1dccd`, `--btn #1d1d1f`, `--head-ink #ffffff`, `--focus #1d4ed8`.
-- Scene: links `#8a8578` 8 px with a white 2 px casing; stations white with a 3 px ink ring; arrows `#1d4ed8`; packets ink squares with white numbers; down routers `#6b6b6b` with a white X; cut link dashed with a red break mark `#b42318`; ghost outlines `#5b5850` dashed. Delay labels 12 px muted.
+- Scene: links `#8a8578` 8 px with a white 2 px casing; stations white with a 3 px ink ring; arrows `#1d4ed8`; packets ink squares with white numbers; down routers `#6b6b6b` with a white X; cut link dashed with a red break mark `#b42318`; ghost outlines `#5b5850` dashed. Delay labels 12 px muted. The two painted end devices sit on white station tags so they read as stops on the map.
 - Contrast (computed): white on brand 6.57:1; brand on paper 5.93:1; ink on paper 15.17:1; muted on paper 6.40:1; focus/arrow blue on paper 6.04:1; white on ink packets 16.83:1; white on arrow blue 6.70:1; down grey on paper 4.80:1. All pass AA.
-- Neighbors: phishing-spotter dark arcade lime, network-architect blueprint blue, internet-journey violet. No celebration: a new best shows "New best" in the Result card, nothing more.
+- Neighbors: phishing-spotter dark arcade lime, network-architect blueprint blue, internet-journey violet; in this batch algorithm-audit navy, chore-flowcharts cyan, code-kitchen copper, misleading-charts fuchsia, model-mechanic lime. No celebration: a new best shows "New best" in the Result card, nothing more.
 
 ## Art
-none: drawn in code. The map, stations, arrows, packets, slot strip, laptops and preview.svg are SVG.
+Local FLUX (`scripts/localart.py`), none with people. The stage is a network diagram (stations, links, arrows, packets, the slot strip), so it stays code; only the two end devices are painted.
+- sender-pc: "A chunky beige desktop computer with a boxy monitor showing a plain blank screen and a keyboard in front, soft flat illustration, plain white background"; 1:1; cutout yes; people no; the sender S, about 64 px tall on the map.
+- receiver-tablet: "A tablet standing in a small folding stand, plain blank screen, soft flat illustration, plain white background"; 1:1; cutout yes; people no; the receiver D, same size; a glow ring in code pulses on it when a packet arrives.
+The map, stations, arrows, packets, slot strip, clock bar and preview.svg are drawn in code.
 
 ## Voice
-Bank voice `firm-captain` (Alnilam), "Say firmly but kindly, like a ship captain giving clear directions", here a network dispatcher. Not used by any group sibling or CS neighbor (marching-band, a music tool, is its other user). Slot words, readouts and router names are on screen only. `Curio.voice`, `scope: () => state.mode`.
-- w-watch (how, Watch welcome): "Packets are flowing from S to D. Tap a router to take it down, and watch the network find another road."
+Bank voice `firm-captain` (Alnilam), "Say firmly but kindly, like a ship captain giving clear directions", here a network dispatcher. Not used by any group sibling or CS neighbor (algorithm-audit calm-professor, chore-flowcharts friendly-dad, code-kitchen easy-coach, misleading-charts news-reader, model-mechanic science-narrator; marching-band, a music tool, is its other user). Slot words, readouts and router names are on screen only. `Curio.voice`, `scope: () => state.mode`.
+- w-watch (how, Watch welcome; stale on the first router or link tap): "Packets are flowing from S to D. Tap a router to take it down, and watch the network find another road."
 - rerouted (event, first reroute after each change; stale on the next change): "The routers found a new path."
-- noroad (event; stale when a road returns): "There's no road to D. Bring a router back up."
-- w-race (how, Race welcome): "You are the routing table now. Tap each router to aim its arrow, then press Start."
-- unset (how, first packet waiting at an unaimed router): "A packet is waiting. Tap that router to aim it."
-- down (event, each scheduled failure; stale after 3 seconds): "A router just went down. Re-aim the arrows around it."
-- cut (event, link cut; stale after 3 seconds): "A link was cut. Find another way."
-- ttl (how, first TTL drop): "That packet ran out of hops. Two arrows may be pointing at each other."
-- resend (how, first resend): "Lost packets are sent again. Keep the road open."
-- done (event, all 12 delivered): "Message complete. Check your time."
-- best (event, new best): "New best. That run is your ghost now."
+- noroad (event, no road to D; stale when a road returns): "There's no road to D. Tap a grey router to bring it back up."
+- w-race (how, Race welcome; stale on Start): "You are the routing table now. Tap each router to aim its arrow, then press Start."
+- unset (how, first packet waiting at an unaimed router; stale when that router is aimed): "A packet is waiting. Tap that router to aim it."
+- down (event, each scheduled router failure; stale after 3 seconds): "A router just went down. Tap the routers next to it to aim around it."
+- cut (event, link cut; stale after 3 seconds): "A link was cut. Tap the router before the break to aim it another way."
+- ttl (how, first TTL drop; stale when either looping router is re-aimed): "That packet ran out of hops. Two arrows may be pointing at each other."
+- resend (how, first resend; stale when the race ends): "Lost packets are sent again. Keep the road open."
+- done (event, all 12 delivered; stale on Restart, Start or map change): "Message complete. Press Restart to race this map again."
+- best (event, new best; stale as done): "New best. That run is your ghost now."
 
 ## Family engine
 `kit/network.js`, described in full in tools/internet-journey/spec.md. This tool uses: **Graph** (the three maps), **Path** (Watch arrows: first hop of `net.path(g, router, 'D', {by:'ms'})`; Par), **Forward** (`net.step` with the player's arrow table, TTL 8, drops for down nodes and links), **Packets** (`net.split` of the sentence into 12, `net.join` for the slot strip), **Mover** with `numbered` tokens, and **Draw** with a transit-map skin (station circles, casing lines, delay labels). Router queues (6) and the 3.0 s resend timer are this tool's own.
@@ -98,6 +103,7 @@ Bank voice `firm-captain` (Alnilam), "Say firmly but kindly, like a ship captain
 - Sequence numbers and resending lost data after a timeout: RFC 9293 (Transmission Control Protocol), https://www.rfc-editor.org/rfc/rfc9293 ; Khan Academy, "Transmission Control Protocol", https://www.khanacademy.org/computing/computers-and-internet
 - Networks with many redundant paths keep working when parts fail: Paul Baran, "On Distributed Communications" (RAND, 1964), https://www.rand.org/pubs/research_memoranda/RM3420.html
 - Maps, delays, failure times and sentences are original to Curio Class; paths and par times computed with Dijkstra in Python.
+- Checks run (Python, 2026-10-29): every simple path on each map enumerated and the fastest found, then the `net.path` tie rule (fewer hops, then lower node index) emulated exactly. Town and City match the paths listed (City has many ties; the tie rule picks the ones named). Coast did not: with R10-D at 0.4 the tie rule picked S R1 R2 R5 R7 R9 D (2.1 s) before any failure, so the R7-R10 cut changed nothing in Watch. R10-D is now 0.3, so each failure moves the route: 2.0 s, then 2.2 s with R5 down, 2.3 s after the cut, 2.1 s when R5 returns. Par stays 6.2, 6.2 and 6.7 s. Contrast ratios recomputed with the WCAG formula; all as listed.
 
 ## Done when
 1. `net.path` on each map gives the fastest paths and delays listed in Content, before and after each failure; par times are 6.2, 6.2 and 6.7 s.
@@ -109,6 +115,11 @@ Bank voice `firm-captain` (Alnilam), "Say firmly but kindly, like a ship captain
 7. Bests save per map and the ghost fills the slot strip at the saved arrival times; Clear bests (after Yes) empties them.
 8. Every size in STANDARDS.md: Start, the slot strip and routers usable without page scrolling; 375 wide pans the map; routers stay 44 px.
 9. Voice: welcome once per mode, how lines once, failure lines each time while fresh; Read speaks the hint; console clean; no network requests; the name only as "Curio Class".
+10. Focus: at 1366x768 and 1000x625 the network map is the largest thing on the stage in both modes, with the slot strip under it.
+11. Tap while it plays: during a race or the endless Watch flow, a router tap turns its arrow (or takes it down) at once and the very next packet to reach it follows the new state.
+12. Coast in Watch: R5 down moves Path now to the 2.2 s route via R4 and R10; cutting R7-R10 moves it to the 2.3 s route via R9.
 
 ## Open questions
 - The format is a race, but the explore-first rule puts Watch first (packets flowing, tap a router to break it) with Race one tap away. Open on Watch as written, or straight on Race?
+- [packet-race] Coast's R10-D delay changed from 0.4 to 0.3 s so the scheduled link cut actually changes the route (with 0.4 the tie rule never used R10). OK?
+- [packet-race] Two small painted cutouts for S and D; the rest stays a code diagram. OK?

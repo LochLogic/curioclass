@@ -110,3 +110,9 @@
 - People images in K-5 CS: spot-the-ai 3, input-or-output 1, traffic-light-coder 3 walkers, design-for-a-friend 3 friends. Worth waiting on Gemini?
 - secret-keeper: "your grown-up at home", birthday as a secret (carried); 3 added reaction lines and Fern's Tell line change OK?
 - design-for-a-friend voice -> wise-mentor.
+
+## R18
+- algorithm-audit: 4 portraits still pending; background card gentle (neighborhood, home internet) or name income?
+- chore-flowcharts: Print removed (classroom wall print wanted?); 32 images for a side strip too many?
+- model-mechanic: painted animals sized by Size only (legs/tail/mask show as bars); OK or code silhouettes?
+- packet-race: Coast delay 0.4 -> 0.3 s OK? Open on Watch or Race?

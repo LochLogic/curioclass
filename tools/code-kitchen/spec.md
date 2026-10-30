@@ -20,10 +20,12 @@ Orders hang on the ticket rail and you cook them by writing code on a recipe car
 ## Screens and modes
 Header (kit): "Code Kitchen", small line "Cook with code". Mode buttons: **Tickets** (opens first, level 1), **Open kitchen**. Motion, Sound, Read.
 
+Focus (Tickets and Open kitchen): the recipe card, the biggest thing, center-left; while Cook runs, the highlighted line on it and the station beside it, which shows what that line just did.
+
 Stage, laid out at real pixel size per window:
-1. **Ticket rail** (top strip): paper tickets on a steel rail, one per order: table number, items as small drawn icons with numbers, a "TO GO" stamp and the label text when to go. A served ticket gets a ✓ stamp; a wrong plate gets a ✗ and the reason.
+1. **Ticket rail** (top strip): paper tickets (code: text on a cream card) on a steel rail, one per order: table number, items as small icons (the food cutouts, shrunk) with numbers, a "TO GO" stamp and the label text when to go. A served ticket gets a ✓ stamp; a wrong plate gets a ✗ and the reason.
 2. **Recipe card** (left, about 50 percent): the code on a lined index card, monospace, line numbers, at least 17 px at 1366x768. Lines are made of tiles; each value slot shows its type by shape: number in a round chip, text in a tag chip with quotes, True/False in a pill. A `def` line holds an indented body with a thin guide.
-3. **Station** (right): the griddle, toaster and pass, drawn in code; below it the **Jars** shelf: one jar per variable, showing its current value in its type shape. While a procedure runs, its parameters appear as jars inside a small card frame that disappears when it returns.
+3. **Station** (right): the painted griddle, toaster and plate at the pass (art: kitchen kit) over the faded diner-pass backdrop; cooked food appears as painted cutouts (eggs on the griddle, pancakes stacking one cutout per pancake, toppings on top, toast popping, the plate or a to-go box sliding to the pass). Below it the **Jars** shelf: one painted glass canister cutout per variable, its current value drawn in code as a chip in its type shape on the jar. While a procedure runs, its parameters appear as jars inside a small card frame that disappears when it returns.
 
 Panel (kit `aside`):
 - `#hint`.
@@ -56,19 +58,20 @@ Levels (starter code uses `;` here for line breaks; on the card each is its own 
 - **C7 One blank.** Tickets: T1 2 pancakes, T2 5 pancakes, T3 3 pancakes, all syrup. Starter: `def stack(size):` with `pour_pancakes(size); add_topping("syrup")`, then `stack(2); serve(1, False)`. Change: "Stacks get butter, not syrup." Par 1.
 - **C8 Two blanks.** Tickets: T5 3 pancakes berries; T6 4 pancakes banana; T7 2 pancakes syrup. Starter: C7's `stack(size)` with syrup fixed. Change: "Every stack gets 1 extra pancake." Par 1 (`pour_pancakes(size + 1)`).
 - **C9 A yes-or-no blank.** Tickets: T8 Classic; T9 to go Classic, label "Classic"; T10 to go Classic, label "Classic". Starter: `def classic():` and three plain calls with serves. Change: "To-go labels now read "Classic, thanks!"" Par 1 (`def order(table, to_go):` that cooks, labels and serves).
-- **D10 Copy and paste.** Tickets: T1 to T5, each a Short stack (3 pancakes, syrup). Starter: all five written out flat (20 lines), already correct. Change 1: "Short stacks are 2 pancakes now." Change 2 (after serving change 1): "Short stacks get berries instead of syrup." Par 1 for change 2 only (refactor after change 1 pays off).
+- **D10 Copy and paste.** Tickets: T1 to T5, each a Short stack (3 pancakes, syrup). Starter: all five written out flat (15 lines: pour, topping and serve for each table), already correct. Change 1: "Short stacks are 2 pancakes now." Change 2 (after serving change 1): "Short stacks get berries instead of syrup." Par 1 for change 2 only (refactor after change 1 pays off).
 - **D11 Order slips.** Tickets: T1 3 pancakes berries; T2 to go, 2 eggs and 1 toast, label "eggs"; T3 to go, 4 pancakes banana, label "4 pancakes"; T4 2 eggs and 1 toast; T5 to go, 3 pancakes berries, label "3 pancakes". Starter: an empty card. Change: "Egg plates get 2 toast." Par 1.
 - **D12 Two changes.** Tickets: T1 to T3 Short stack (3 pancakes, syrup); T4 to T6 Egg plate (2 eggs, 1 toast). Starter: correct, with stacks as a procedure and egg plates copied three times. Change 1: "Egg plates get 3 eggs." Change 2: "Short stacks get banana on top of the syrup." Par 1 each.
 
 Open kitchen: an empty card and no tickets until New ticket; up to 8 tickets. The card and tickets are saved on this device (localStorage `curio-code-kitchen-open`); level dots too (`curio-code-kitchen`), all in try/catch. Clear saved asks first.
 
 ## Interactions in detail
-- Cook runs line by line at 350 ms per kitchen action (eggs crack, batter pours and stacks, toppings drizzle, toast pops, the plate slides to the pass); assignments update a jar with a short drop. Step runs one line. Stop halts and clears the station. Any edit stops a run.
+- Cook runs line by line at 350 ms per kitchen action (eggs crack onto the griddle, pancakes drop onto the stack, toppings land, toast pops, the plate slides to the pass); assignments update a jar with a short drop. Step runs one line. Stop halts and clears the station. Any edit stops a run.
+- Controls stay live while Cook runs: tapping a slot or line stops the run at once and selects it; Step pauses on the next line; Stop clears at once; a level dot or mode button stops and switches at once. The longest level run (D10, 15 kitchen lines) takes about 5 s; a 40-line Open kitchen card at most 14 s.
 - After Cook, every plate is checked against the rail. All matched: the level dot fills; from B4 on the Manager's note slides over the rail with the change, tickets update, the edits counter starts at 0. Cook again; when all match, the counter freezes and shows par. Missing par shows "Restart level to try a reuse plan" (no penalty).
 - Typing "3" with quotes into a number slot is allowed on purpose: the slot shows a tag chip, and the error comes at Cook.
 - Undo keeps 40 steps and also undoes the edits counter. Restart level puts back the starter and the first menu.
-- Extremes: 40 lines per card; a procedure that calls itself stops after 20 nested calls ("This recipe calls itself forever."); a value over a built-in's range stops with its range ("pour_pancakes takes 1 to 8.").
-- Motion off: no slides or drizzles; the station jumps to each state at the same timing.
+- Extremes: 40 lines per card; a procedure that calls itself stops after 20 nested calls ("This recipe calls itself forever."); a value over a built-in's range stops with its range ("pour_pancakes takes 1 to 8."). A stack of 8 pancakes still fits the station: each pancake cutout overlaps the one below by 70 percent.
+- Motion off: no slides or drops; the station jumps to each state at the same timing.
 - Sizes: at 1366x768 the rail, card, station and Cook are on screen; under about 900 px tall the jars shelf shrinks to one row and the Pantry becomes a pop-over from the selected slot. At 760 wide the panel goes below with Cook first. At 375 wide the station folds into a strip of plate icons above the card; slots stay 44 px.
 - Keyboard: Tab order is mode buttons, header, Cook, Step, panel tools, then the card's lines and slots; Enter edits a slot; Alt+Up and Alt+Down move a line; Ctrl+Z undoes.
 - `window.__tool = {state, setLevel(n), card(), setCard(json), cook(), edits()}` for tests.
@@ -76,25 +79,28 @@ Open kitchen: an empty card and no tickets until New ticket; up to 8 tickets. Th
 ## Look
 - Accent `--brand #9a4a12` (copper, like the pans; header and Cook). Band 6-8, own light `:root`: a diner kitchen in cream tile and copper, the code on a lined recipe card.
 - `--paper #fbf3e4`, `--panel #fffaf1`, `--ink #2b1d14`, `--muted #6b5545`, `--line #e7d6bd`, `--btn #2b1d14`, `--head-ink #ffffff`, `--focus #1d4ed8`. Card `#fffdf7` with a red top rule and blue lines.
+- Painted station in the diner-pass style (warm painterly, cream tile and copper, soft morning light); the backdrop stays faded to about 25 percent so the cutouts and the card read first.
 - Type chips: number round, `#dbeafe` with `#1e3a8a`; text tag with quotes, `#fde68a` with `#78350f`; True/False pill, `#dcfce7` with `#14532d`. Shape carries the type, color only helps. Errors `#b91c1c` with a ✗ and words.
 - Contrast (computed): white on brand 6.25:1; brand on paper 5.66:1; ink on paper 14.78:1; muted on paper 6.33:1; ink on card 16.02:1; number chip 8.49:1; text chip 7.28:1; boolean chip 8.30:1; error red on card 6.36:1; focus blue on paper 6.08:1. All pass AA.
-- Neighbors: chore-flowcharts deep cyan whiteboard, code-tracer dark slate editor, model-mechanic dark lime, packet-race signal red. A filled dot and a par ring; no confetti.
+- Neighbors: chore-flowcharts deep cyan whiteboard (gouache home scenes), code-tracer dark slate editor, model-mechanic dark lime, packet-race signal red. A filled dot and a par ring; no confetti.
 
 ## Art
-- diner-pass: a warm diner kitchen pass-through window with a steel ticket rail, blank paper tickets, cream tile wall and copper pans hanging, soft morning light, empty counter; aspect 16:9; cutout no; people no; used faded (about 25 percent) behind the station and rail. Cloudflare FLUX.2 (`scripts/cfart.py`).
-- Food, griddle, toaster, plates, tickets and chips are drawn in code.
+Local FLUX (`scripts/localart.py`), none with people. One style: warm painterly diner illustration, cream tile and copper, soft morning light (the house style in `art/prompts.json`).
+- diner-pass (made, pending review): "A warm diner kitchen pass-through window with a steel ticket rail holding blank plain paper tickets, a cream tile wall, copper pans hanging, soft morning light, an empty clean counter"; 16:9; cutout no; people no; faded (about 25 percent) behind the station and rail.
+- Kitchen kit (13 pieces, each "..., warm painterly diner illustration, plain white background"; 1:1; cutout yes; people no). Sizing rule: every piece is scaled against the griddle's width (the share in brackets). griddle "a flat steel diner griddle with copper trim, seen from slightly above" (100%); toaster "a chrome two-slot diner toaster" (35%); plate "an empty round white diner plate" (45%); to-go-box "an open plain brown paper takeout box" (45%); fried-egg "a single fried egg, sunny side up" (14%); pancake "a single golden pancake seen from the side at a slight angle" (30%); toast "a single slice of golden toast" (16%); syrup "a glossy pool of maple syrup dripping over the edge" (30%); butter "a square pat of butter, slightly melting" (8%); berries "a small heap of blueberries and raspberries" (14%); banana "a small fan of banana slices" (14%); jar "a tall empty glass canister with a copper lid" (18%); ticket-rail "a short steel ticket rail with small clips" (full rail width, stretched in x only).
+- The ticket text, the recipe card, chips, the jars' values, the Manager's note and preview.svg (a recipe card beside a plate with a pancake stack) are drawn in code: they are code, text and labels.
 
 ## Voice
-Bank voice `easy-coach` (Umbriel), "Say in an easy-going, encouraging way, like a relaxed sports coach", here the head cook during a calm rush. Not used by any group sibling or CS neighbor. Code, errors and tickets are on screen only. `Curio.voice`, `scope: () => state.mode`.
-- w-tickets (how, Tickets welcome): "Orders are on the rail. Fix the recipe card, then press Cook."
-- slot (how, first slot selected): "Pick a value from the pantry, or type one. Quotes make it text."
-- stopped (event, Cook stops on an error; stale on the next edit): "The cook stopped. Read the red note on that line."
-- served (event, all plates match; stale on the next edit): "Every order's out."
-- change (event, a menu change arrives): "The menu just changed. Update your card, then cook again."
-- par (event, par met): "One change did it. That's what a procedure buys you."
-- over (how, first time par is missed): "That took a lot of edits. A procedure would let you change it in one place."
-- blank (how, first level in set C): "A blank holds whatever you pass in, only while that recipe runs."
-- w-open (how, Open kitchen welcome): "Write your own orders with New ticket, then cook them."
+Bank voice `easy-coach` (Umbriel), "Say in an easy-going, encouraging way, like a relaxed sports coach", here the head cook during a calm rush. Not used by any group sibling or CS neighbor (algorithm-audit calm-professor, chore-flowcharts friendly-dad, misleading-charts news-reader, model-mechanic science-narrator, packet-race firm-captain). Code, errors and tickets are on screen only. `Curio.voice`, `scope: () => state.mode`.
+- w-tickets (how, Tickets welcome; stale when a slot is selected or Cook pressed): "Orders are on the rail. Tap a slot on the recipe card to fix it, then press Cook."
+- slot (how, first slot selected; stale when the slot is filled): "Pick a value from the pantry, or type one. Quotes make it text."
+- stopped (event, Cook stops on an error; stale on the next edit): "The cook stopped. Read the red note on that line, fix it, then press Cook."
+- served (event, all plates match; stale on the next edit or level change): "Every order's out."
+- change (event, a menu change arrives; stale on the next Cook): "The menu just changed. Update your card, then press Cook again."
+- par (event, par met; stale on the next level): "One change did it. That's what a procedure buys you."
+- over (how, first time par is missed; stale on Restart level or the next level): "That took a lot of edits. Press Restart level and try a procedure, so the change is in one place."
+- blank (how, first level in set C opens; stale on the first Cook): "A blank holds whatever you pass in, only while that recipe runs."
+- w-open (how, Open kitchen welcome; stale on New ticket): "Press New ticket to write an order, then write the card and press Cook."
 
 ## Family engine
 none
@@ -106,6 +112,7 @@ none
 - `def`, parameters and local names inside a function: The Python Tutorial, "Defining Functions", https://docs.python.org/3/tutorial/controlflow.html#defining-functions
 - Procedures reduce the places a change must be made: Harold Abelson and Gerald Jay Sussman, Structure and Interpretation of Computer Programs, 2nd ed., section 1.1.8 (procedures as black-box abstractions), https://mitp-content-server.mit.edu/books/content/sectbyfn/books_pres_0/6515/sicp.zip/full-text/book/book-Z-H-10.html
 - Menu items, tickets, levels, pars and the language's kitchen built-ins are original to Curio Class.
+- Checks run (Python, 2026-10-29): "3" + "2" gives "32" and 3 + "2" raises TypeError, as the tool's errors say; str(5) + " pancakes" is "5 pancakes" (10 characters); every to-go label fits 24 characters ("Classic, thanks!" is 16). Edit counts walked by hand for every change: B4 1 with a procedure, 2 copied; D10 change 2: 1 after a refactor, 5 left copied; D12 change 1: 1 with an egg procedure, 3 copied. D10's starter is 15 lines (three per table), not the 20 the old spec said; fixed. Every ticket stays inside the built-in ranges after its change (the largest stack after the C8 change is 4 + 1 = 5 of 8).
 
 ## Done when
 1. A1 stops on line 2 with the number message; after `stack = 4` T3 is served.
@@ -118,3 +125,8 @@ none
 8. Open kitchen: a new ticket and the card survive a reload; Clear saved empties both after a Yes.
 9. Every size in STANDARDS.md: Cook, the rail and the selected line visible without page scrolling; slots 44 px.
 10. Voice: welcome once per mode, how lines once then hint only, stopped and change each time while fresh; Read speaks the hint; console clean; no network requests; the name only as "Curio Class".
+11. Focus: at 1366x768 and 1000x625 the recipe card is the largest thing on the stage, and during Cook the running line is highlighted while the station shows its painted result.
+12. Tap while it plays: during Cook, tapping a slot stops the run and selects the slot at once, and Stop clears the station at once; the plates on the station always match the lines run so far.
+
+## Open questions
+- [code-kitchen] Thirteen new painted cutouts (the station and food kit) beside the existing diner-pass backdrop, none with people. OK?

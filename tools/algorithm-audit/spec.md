@@ -21,9 +21,9 @@ A school district picks who gets the 40 summer robotics camp seats with a point 
 Kit frame, own `:root` (a manila audit file). Header: title "Algorithm Audit", small line "Cedar Valley Summer Robotics Camp"; mode buttons "Audit" (magnifier on a page icon) and "Hearing" (gavel icon); Motion, Sound, Read.
 
 ### Mode 1: Audit (opens first)
-Stage, top: the "Seat map": 40 seats as a grid of chairs, each filled with its student's neighborhood badge (Hillside green circle, Riverbend orange triangle) and a readout row: "Hillside 32 seats of 60 applicants. Riverbend 8 of 60." Stage, below: one of three audit views, chosen by tabs:
-- "Rule check": a table, one row per rule, with the district's reason, its points, and how many applicants in each neighborhood earn it (count and a small bar each). Grades show each neighborhood's average.
-- "Twin test": a pair of applicant cards side by side. Left: any applicant, picked from a searchable list (number, neighborhood, score, seat or no seat) or with "Show me a close call" (picks applicant 108). Right: the twin, identical, with each answer as a switch. Flipping one switch recomputes the twin's score, rank and seat; a line reads "Same student. One answer changed. Rank 42 becomes rank 10." Only one switch may differ at a time (flipping a second one resets the first, with the hint "A twin test changes one thing").
+Focus: the "Seat map", top center and the largest thing on the stage: 40 seats as a grid of chairs (code), each filled with its student's neighborhood badge (Hillside green circle, Riverbend orange triangle) and a readout row: "Hillside 32 seats of 60 applicants. Riverbend 8 of 60." Every formula change shows up here first. Below it (at least 40 percent of the stage height) one of three audit views, chosen by tabs; Rule check opens first:
+- "Rule check": a table, one row per rule, with the district's reason, its points, and how many applicants in each neighborhood earn it (count and a small bar each). Grades show each neighborhood's average. A "Background" card beside the table shows the painted valley view (art: valley-view) with the background text under it.
+- "Twin test": a pair of applicant cards side by side (the focus of this tab; the seat map shrinks to a one-row strip above them and lights the seat the twin would take). Left: any applicant, picked from a searchable list (number, neighborhood, score, seat or no seat) or with "Show me a close call" (picks applicant 108). Right: the twin, identical, with each answer as a switch. Flipping one switch recomputes the twin's score, rank and seat; a line reads "Same student. One answer changed. Rank 42 becomes rank 10." Only one switch may differ at a time (flipping a second one resets the first, with the hint "A twin test changes one thing").
 - "All applicants": the 120 applicants as a sortable `table` (number, neighborhood, grades, each rule's yes or no, score, rank, seat).
 Panel:
 - `#hint`.
@@ -33,11 +33,11 @@ Panel:
 - "Reset formula" (circular arrow).
 
 ### Mode 2: Hearing
-Stage: the board room drawn in code: a long table with three name plates and one public comment podium. Your formula's Results card on an easel. Board members speak in turn (speech bubbles, portraits from Art):
+Focus: the board member who is asking, center stage: their portrait (art: board-*) large at the painted board table (art: board-room) with their question in a speech bubble beside it; the other two sit smaller at the table. Your formula's Results card stands on the painted easel at one side (card drawn in code over the blank easel board). Name plates are blank in the painting; names are drawn in code on them. Board members speak in turn:
 1. Dr. Rivera, board chair: "The formula never mentions neighborhoods. How can it be unfair?"
 2. Mr. Bell, budget officer: "What does your change cost, and where does the money come from?"
 3. Ms. Ortiz, camp teacher: "Will my campers still be ready for hard robotics work?"
-For each question the panel shows your pinned evidence cards; tap one to present it. The member answers it (below): a relevant card gets a "That answers my question" response and the card is stamped "Presented"; an unrelated card gets "That doesn't answer what I asked" and you can present another. Then "Call the vote": each member votes yes or no by their rule (below), with their reason. Then public comment from Mrs. Park, a Hillside parent, whose words depend on how many Hillside seats changed. Result: "Passes 3 to 0", "Passes 2 to 1" or "Fails". No points; "Back to Audit" keeps everything for another try.
+For each question the panel shows your pinned evidence cards; tap one to present it. The member answers it (below): a relevant card gets a "That answers my question" response and the card is stamped "Presented"; an unrelated card gets "That doesn't answer what I asked" and you can present another. "Skip" passes a question. Then "Call the vote": each member votes yes or no by their rule (below), with their reason, one member every 1 s (all at once with Motion off; a tap on the stage or "Back to Audit" during the reveal shows the rest at once or leaves at once). Then public comment from Mrs. Park (art: parent-park, at the painted podium), a Hillside parent, whose words depend on how many Hillside seats changed. Result: "Passes 3 to 0", "Passes 2 to 1" or "Fails". No points; "Back to Audit" keeps everything for another try.
 
 ## Content
 District, camp, people and applicants are made up. 120 applicants, 40 seats.
@@ -53,11 +53,11 @@ Score = sum, rounded to one decimal (`Math.round(x * 10) / 10`). Top 40 get seat
 Applicants (exact, so every number reproduces): mulberry32 (`a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296`), seed 707. For i = 0 to 119: number i + 1; Hillside when i is even, Riverbend when odd; then, drawing in this order: grades = Math.round((1.5 + 2.5 R()) * 10) / 10; recommendation R() < 0.40; attendance R() < 0.60; first week R() < (Hillside 0.80, Riverbend 0.40); within 2 miles R() < (Hillside 0.70, Riverbend 0.20); last year's camp R() < (Hillside 0.30, Riverbend 0.08).
 Checked: Hillside applicants average grades 2.66, Riverbend 2.77. Rule check counts (Hillside, Riverbend, of 60 each): recommendation 23, 25; attendance 38, 40; first week 51, 21; within 2 miles 47, 11; last year's camp 17, 5.
 Why Riverbend differs (the on-screen "Background" card in Rule check): "Riverbend is across the river, more than 2 miles from school. Fewer Riverbend homes have home internet, so families often apply later, at the library. Last year's camp used the same formula." Home internet fact source below.
-Results (Riverbend seats of 40; average grades of the 40; returning campers; lowest score admitted):
+Results (Riverbend seats of 40; average grades of the 40, computed from the grade sum in tenths and shown to 2 decimals with halves rounded up; returning campers; lowest score admitted):
 | Formula | Riverbend | Avg grades | Returning | Cutoff |
 |---|---|---|---|---|
 | Start | 8 | 3.01 | 12 | 63 |
-| First week 0 | 13 | 3.04 | 9 | 53 |
+| First week 0 | 13 | 3.05 | 9 | 53 |
 | First week 5, last year 5 | 12 | 3.05 | 7 | 54 |
 | Within 2 miles 0 (or bus) | 12 | 3.07 | 11 | 57 |
 | Last year 0 | 10 | 3.09 | 7 | 60 |
@@ -69,7 +69,7 @@ Results (Riverbend seats of 40; average grades of the 40; returning campers; low
 | Lottery (grades 2.5 or higher, 71 in the pool) | 21 | 3.20 | 7 | - |
 Lottery order: Fisher-Yates over the pool in number order with mulberry32 seed 708 (for i from the last index down to 1, j = floor(R() * (i + 1)), swap); the first 40 get seats; first ten: 58, 59, 28, 27, 24, 60, 3, 21, 55, 36.
 Students admitted living over 2 miles away: Start 10; First week 0 and last year 0: 11; First week 0 and within 2 miles 0: 19; Lottery 23.
-Close call: applicant 108, Riverbend, grades 3.8, recommendation yes, attendance yes, applied in week two, lives over 2 miles away, no camp last year: score 63, rank 42 (63 is the cutoff; applicants 5, 9 and 83, Hillside, and 86, Riverbend, also have 63). Twin "applied in the first week": 78, rank 10. Twin "lives within 2 miles": 73, seat.
+Close call: applicant 108, Riverbend, grades 3.8, recommendation yes, attendance yes, applied in week two, lives over 2 miles away, no camp last year: score 63, rank 42 (63 is the cutoff; applicants 5, 9 and 83, Hillside, and 86, Riverbend, also have 63). Twin "applied in the first week": 78, rank 10. Twin "lives within 2 miles": 73, rank 14.
 Votes: Dr. Rivera yes when Riverbend has at least 16 seats ("within 4 seats of an even split, since each neighborhood sent 60"); Mr. Bell yes when added cost is $3,000 or less; Ms. Ortiz yes when the 40 average grades of 3.0 or higher. All three thresholds are the tool's own. A change passes with 2 or more yes votes. The board only votes on a change: "Call the vote" is disabled, with "The board is here to vote on a change", while the formula equals Start.
 Evidence relevance: Rivera accepts a Rule check pin (first week, within 2 miles or last year's camp) or a Twin test pin; Bell accepts a Results pin (shows cost); Ortiz accepts a Results pin (shows average grades) or a Rule check pin for grades.
 Board answers: Rivera, relevant: "So a rule about sign-up timing works like a rule about neighborhood. I see." Bell, relevant: "[Cost] it is. [Within budget / Over budget]." Ortiz, relevant: "Average grades of [x]. [I can work with that / That worries me]." Any member, not relevant: "That doesn't answer what I asked."
@@ -77,40 +77,48 @@ Mrs. Park (public comment): Hillside seats down 8 or more: "My son applied on th
 Ride note (Ortiz adds it when no bus and over 10 admitted live far away): "Some of these students will need a ride. Who's driving them?"
 
 ## Interactions in detail
-- Every formula change recomputes all 120 scores, the seat map and the Results in under 50 ms; seats re-fill with a 300 ms shuffle (instant with Motion off). The seat map always shows the neighborhood by shape and color.
+- Every formula change recomputes all 120 scores, the seat map and the Results in under 50 ms; seats re-fill with a 300 ms shuffle (instant with Motion off). A second change during the shuffle shows the newer result at once. The seat map always shows the neighborhood by shape and color.
 - The Lottery switch greys out rules 1 to 4 and 6 (rule 5's bus option stays, since rides still matter); turning it off restores the last formula.
 - Twin test works with any formula; ranks use the current formula. The twin is never added to the 120.
 - Pins store a snapshot (the numbers at the time), labeled with the formula they came from; a pin from an older formula shows "From an earlier formula".
-- Hearing with no pins: each question shows "You have no evidence pinned. Go back to Audit and pin what you found." The vote still happens after all three questions are answered or skipped ("Skip" per question; a skipped question gets "We'll vote without it.").
+- Hearing with no pins: each question shows "You have no evidence pinned. Go back to Audit and pin what you found." The vote still happens after all three questions are answered or skipped (a skipped question gets "We'll vote without it.").
+- Hearing while the formula equals Start: the board still asks its questions, but "Call the vote" is disabled with "The board is here to vote on a change".
 - Votes use the current formula's numbers, not the pins.
 - Nothing is saved. "Reset formula" restores Start and keeps pins.
 - Keyboard: panel before stage; seat grid is one focusable image with a text summary; applicant table rows focusable. Visible focus.
-- Sizes: the seat map, the formula section and the Results readouts visible without scrolling at 1280x720, 1366x768 and 680x425 (the formula rows compact to 40 px; audit views become a tab below the seat map); at 760 wide and below the panel stacks under the stage with the formula first.
+- Sizes: the seat map, the formula section and the Results readouts visible without scrolling at 1280x720, 1366x768 and 680x425 (the formula rows compact to 40 px; audit views become a tab below the seat map); at 760 wide and below the panel stacks under the stage with the formula first. In Hearing at 680x425 the asking member's portrait stays at least 140 px tall.
 
 ## Look
 - Accent `--brand #1e3a8a` (civic navy; header strip, formula code keywords, pressed pickers). `--head-ink #ffffff`.
 - Own `:root` (manila file): `--paper #f6efdc`, `--panel #fffaf0`, `--ink #1e2421`, `--muted #59615c`, `--line #e2d6b8`, `--btn #1e3a8a`, `--focus #b4235a`. Formula lines on #fffaf0 in the readout font. Hillside badge: white circle glyph on #15803d; Riverbend badge: white triangle glyph on #c2410c. Votes: "Yes" with a check, "No" with a cross, in ink.
+- Painted pieces share the portraits' flat editorial style (muted warm palette with navy accents): the board room in warm wood and cream, the valley in soft greens and river blue. Speech bubbles, name plate text and the easel card are code, ink on #fffaf0.
 - Neighbors: model-mechanic lime, packet-race red, phishing-spotter lime, flowchart-factory cyan, code-kitchen rust, ai-evaluator pink. Navy on manila is apart from them and from its group siblings (chalk yellow, hot spring orange, fuchsia, deep sky).
 - Contrast: white on brand 10.36:1; brand on paper 9.03:1; ink on paper 13.76:1; muted on paper 5.56:1; muted on panel 6.14:1; focus on paper 5.50:1; white on Hillside green 5.02:1; white on Riverbend orange 5.18:1. All pass AA.
 
 ## Art
-- `board-rivera`: "portrait of a calm woman in her fifties with short gray hair and a navy blazer, seated at a meeting table, flat illustration, plain warm background, chest up"; 1:1; cutout yes; people: true; Codex (`scripts/gptart.py`), Cory reviews.
-- `board-bell`: "portrait of a friendly man in his forties with glasses and a cardigan holding a calculator, flat illustration, plain warm background, chest up"; 1:1; cutout yes; people: true; Codex, Cory reviews.
-- `board-ortiz`: "portrait of an energetic teacher in her thirties in a robotics club t-shirt with a small robot kit on the table, flat illustration, plain warm background, chest up"; 1:1; cutout yes; people: true; Codex, Cory reviews.
-- `parent-park`: "portrait of a parent in their forties in a rain jacket standing at a podium, flat illustration, plain warm background, chest up"; 1:1; cutout yes; people: true; Codex, Cory reviews.
-Everything else (seat map, badges, tables, board room, preview.svg: the seat map with 32 green circles and 8 orange triangles beside a formula card) is drawn in code. Applicants are never pictured; they are numbers and badges.
+One style for all: flat editorial illustration, like a modern magazine portrait, clean shapes, soft shading, muted warm palette with navy accents (the house style in `art/prompts.json`). People go to Gemini (`scripts/art.py`, set aside for now) and wait on Cory; the rest is local FLUX (`scripts/localart.py`). The four portraits already in `art/` were made with Codex and are pending Cory's review; if he wants them redone, they move to Gemini with the same prompts.
+- board-rivera: "Portrait of a calm woman in her fifties with short gray hair and a navy blazer, seated at a meeting table, flat illustration, plain warm background, chest up"; 1:1; cutout yes; people: true; the Hearing (large when she asks, small at the table otherwise).
+- board-bell: "Portrait of a friendly man in his forties with glasses and a cardigan holding a calculator, flat illustration, plain warm background, chest up"; 1:1; cutout yes; people: true; as above.
+- board-ortiz: "Portrait of an energetic teacher in her thirties in a plain teal t-shirt with a small gear shape on it, a small robot kit on the table in front of her, flat illustration, plain warm background, chest up"; 1:1; cutout yes; people: true; as above.
+- parent-park: "Portrait of a parent in their forties in a rain jacket standing at a plain wooden podium, flat illustration, plain warm background, chest up"; 1:1; cutout yes; people: true; public comment.
+- board-room: "A school district board room: a long wooden table with three empty chairs and three blank wooden name plates, a plain wooden public comment podium to one side, an empty easel with a blank white board, cream walls, flat editorial illustration"; 16:9; cutout no; people no; the Hearing stage, portraits placed in the chairs, names and the Results card drawn in code.
+- valley-view: "A small valley town seen from a hill: a school with a flagpole and sports field on one bank of a wide river, a bridge, a neighborhood of houses close to the school, and a second neighborhood of houses across the river farther away, flat editorial illustration, soft greens and river blue"; 16:9; cutout no; people no; the Background card in Rule check (Hillside and Riverbend labels drawn in code over it).
+Seat map, badges, tables, twin cards and preview.svg (the seat map with 32 green circles and 8 orange triangles beside a formula card) are drawn in code: they are charts, tables and labels. Applicants are never pictured; they are numbers and badges.
 
 ## Voice
-Bank voice `calm-professor` (Schedar), "Say evenly and clearly, like a calm, friendly college professor": the outside auditor the board hired, coaching you. Not used by a 6-8 CS neighbor (model-mechanic science-narrator, packet-race firm-captain, phishing-spotter lively-host, flowchart-factory friendly-dad, code-kitchen easy-coach) or a group sibling; ai-evaluator, its closest topic, uses wise-mentor. Board members' and Mrs. Park's words are read on screen.
-1. how, welcome Audit: "The district's formula gave Riverbend 8 seats out of 40. Nothing in it says Riverbend. Your job is to find out why."
-2. how, first Rule check view: "Compare the two neighborhoods on each rule. Look for a rule one side earns much more often."
-3. how, first Twin test view: "Flip one switch on the twin. If one answer moves a student in or out, that rule matters."
-4. event, a twin flip moves the twin across the cutoff: "One answer changed, and the seat changed with it." Stale on the next flip.
-5. how, first formula change: "Watch the seat map. Every fix moves some students in and others out."
-6. how, first pin: "Pinned. You'll use it as evidence at the hearing."
-7. how, welcome Hearing: "The board will ask three questions. Answer each one with evidence you pinned."
-8. event, the vote: "The board votes. [Passes three to zero / Passes two to one / Fails]." (three fixed lines)
-9. event, Mrs. Park speaks: "Before the vote counts, a parent asked to speak." Stale when the hearing resets.
+Bank voice `calm-professor` (Schedar), "Say evenly and clearly, like a calm, friendly college professor": the outside auditor the board hired, coaching you. Not used by a 6-8 CS neighbor (model-mechanic science-narrator, packet-race firm-captain, phishing-spotter lively-host, flowchart-factory friendly-dad, code-kitchen easy-coach, chore-flowcharts friendly-dad, misleading-charts news-reader) or a group sibling; ai-evaluator, its closest topic, uses wise-mentor. Board members' and Mrs. Park's words are read on screen. `Curio.voice`, `scope: () => state.mode + ':' + state.tab`.
+1. wAudit (how, Audit welcome; stale when another tab opens or the formula changes): "The district's formula gave Riverbend 8 seats out of 40, and nothing in it says Riverbend. Compare the two columns in the Rule check, then tap Twin test."
+2. ruleCheck (how, first time Rule check is opened from another tab; stale when the tab changes): "Compare the two neighborhoods on each rule. Look for a rule one side earns much more often."
+3. twinTest (how, first Twin test view; stale on the first flip): "Press Show me a close call, then flip one switch on the twin."
+4. crossed (event, a twin flip moves the twin across the cutoff; stale on the next flip or tab change): "One answer changed, and the seat changed with it."
+5. firstChange (how, first formula change; stale on the next change): "Watch the seat map. Every fix moves some students in and others out."
+6. firstPin (how, first pin; stale on the next pin or mode change): "Pinned. When you're ready, press Hearing and use it as evidence."
+7. wHearing (how, Hearing welcome with at least one pin; stale when a card is presented or a question skipped): "The board will ask three questions. Tap one of your pinned cards to answer each one."
+8. noPins (how, Hearing welcome with no pins; stale when the mode changes): "You have no evidence pinned. Press Back to Audit and pin what you found, or press Skip."
+9. callVote (how, after the third question when the formula differs from Start; stale on Call the vote): "That's every question. Press Call the vote."
+10. noChange (how, after the third question when the formula equals Start; stale on mode change): "The board only votes on a change. Press Back to Audit and change the formula."
+11. park (event, Mrs. Park steps up; stale when the result shows or the hearing resets): "Before the vote counts, a parent asked to speak."
+12. vote (event, the result shows; stale on Back to Audit): "Passes three to zero." / "Passes two to one." / "The change fails." (three fixed lines)
 
 ## Family engine
 none.
@@ -121,6 +129,7 @@ none.
 - Lower-income households are less likely to have home broadband (on-screen background line): Pew Research Center, "Digital divide persists even as Americans with lower incomes make gains in tech adoption", June 22, 2021: https://www.pewresearch.org/short-reads/2021/06/22/digital-divide-persists-even-as-americans-with-lower-incomes-make-gains-in-tech-adoption/
 - CSTA K-12 Computer Science Standards (2017), 2-IC-20, 2-IC-21, 2-AP-17: https://csteachers.org/k12standards/
 - Cedar Valley, its camp, the board, the parent and all 120 applicants are made up; every result above was computed from the stated generator and rules.
+- Checks run (Python port of mulberry32 seed 707 and the rules, 2026-10-29): neighborhood averages 2.66 and 2.77; every Rule check count; all ten formula rows (Riverbend seats, average, returning, cutoff) and the far-away counts 10, 11, 19; the lottery pool of 71, its first ten numbers, Riverbend 21, average 3.20, returning 7, far 23; applicant 108 at 63 and rank 42 with 5, 9, 83 and 86 also at 63; twin first week 78, rank 10. Fixes: two averages are exact halves (3.045 and 3.185), so the rounding is now stated (from the tenths sum, halves up) and First week 0 reads 3.05, not 3.04; the "lives within 2 miles" twin now says rank 14 instead of only "seat". Votes checked for every row: Grades times 5 fails 1 to 2; First week 0 with Last year 0 and First week 0 with the bus both pass 3 to 0.
 
 ## Done when
 1. Audit opens with Riverbend 8 and Hillside 32 seats, average grades 3.01, cutoff 63.
@@ -130,9 +139,12 @@ none.
 5. Removing the distance rule with the bus and First week 0 gives Riverbend 20 and cost $2,500, and passes 3 to 0; Grades times 5 alone gets no from Rivera (9 seats) and Ortiz (2.92) and fails 1 to 2.
 6. Lottery gives Riverbend 21, average 3.20, 23 admitted living far away, and Ms. Ortiz's ride note when there is no bus.
 7. Presenting a Results pin to Dr. Rivera gets "That doesn't answer what I asked"; a Twin test pin gets her relevant answer.
-8. Lines 2, 3, 5 and 6 are each spoken once in a run of five actions; line 4 on every crossing flip.
+8. Lines 2, 3, 5 and 6 are each spoken once in a run of five actions; line 4 on every crossing flip; no line names Call the vote while it is disabled.
 9. Seat map, formula and Results visible without scrolling at 1366x768 and 680x425; neighborhoods told apart in grayscale by circle and triangle.
+10. Focus: at 1366x768 and 1000x625 the seat map is the largest thing on the Audit stage (the twin pair in Twin test), and the asking board member is the largest thing in Hearing.
+11. Tap while it plays: a formula change during the seat shuffle shows the newer result at once; a tap during the vote reveal shows every vote at once.
 
 ## Open questions
 - The unfairness is framed by neighborhood (across the river, less home internet), never by race or family income by name, to keep a 6-8 class discussion calm. Keep it that gentle, or name income directly in the background card?
-- Four board and parent portraits (people: true) for Cory to review. Drop them for name plates only, if fewer people images are preferred.
+- Four board and parent portraits (people: true) were made with Codex and still wait on Cory's review; drop them for name plates only, if fewer people images are preferred.
+- [algorithm-audit] Two new images without people (board-room, valley-view). The board room was drawn in code before.
