@@ -25,12 +25,14 @@ tool.json: driver "students", minutes "25-40", modes ["Bench", "Hunt"].
 Header (kit, 9-12 theme): "Hole Hunter", small line "Find every break. Patch what you can." Modes `Bench`, `Hunt`;
 kit `Motion`, `Sound`, `Read`.
 
-Stage: a graphing plane, x from -8 to 8, y from -8 to 8 (per level, Content), grid 1. Breaks are drawn the standard
-way: a hole is an open circle (`--paper` fill, curve-color ring); a defined point is a filled dot; vertical asymptotes
-dashed `--muted` lines; horizontal asymptotes dotted. The probe: a vertical hairline at the pointer's x with a readout
-"x = ..., f(x) = ..." (or "undefined").
+Stage: a graphing plane, x from -8 to 8, y from -8 to 8 (per level, Content), grid 1, filling the stage. Breaks are
+drawn the standard way: a hole is an open circle (`--paper` fill, curve-color ring); a defined point is a filled dot;
+vertical asymptotes dashed `--muted` lines; horizontal asymptotes dotted. The probe: a vertical hairline at the
+pointer's x with a readout "x = ..., f(x) = ..." (or "undefined").
 
 ### Bench (explore, default)
+Focus: the lit plane with the curve and its breaks, center stage and largest; the factor tiles and readouts are in the
+panel.
 Build f(x) = c(x - p1)(x - p2)(x - p3) / ((x - r1)(x - r2)(x - r3)) from factor tiles.
 - Panel "Top" and "Bottom": up to three factor tiles each, `Add factor` and a remove (x) on each tile; each tile has a
   value stepper (whole numbers -5 to 5) showing "(x - 2)" or "(x + 3)". A constant c stepper (-4 to 4, not 0).
@@ -40,16 +42,20 @@ Build f(x) = c(x - p1)(x - p2)(x - p3) / ((x - r1)(x - r2)(x - r3)) from factor 
 - Probe works everywhere; `Walk in` on any break shows the approach table (below).
 
 ### Hunt (the puzzle)
+Focus: the dark plane and the flashlight beam, center stage and largest; the step card sits in the panel beside it
+(under it below 1000 px wide, kept short so the plane still fills the view at 1366x768).
 Picker `Level 1` to `Level 13`. The plane is black except the flashlight beam: a circle of radius 1.2 units around the
-pointer (or the keyboard probe), lit softly at the edge. Asymptote lines and holes show only inside the beam.
+pointer (or the keyboard probe), lit softly at the edge. The flashlight cutout (art: flashlight) sits at the bottom
+edge of the plane, sliding along under the beam's x and tilting to point at it. Asymptote lines and holes show only
+inside the beam.
 Card "Breaks found: 0 of N" (N shown). Steps for each break:
 1. Find: with the beam over a break, press `Mark here` (or Enter). Within 0.3 of a break's x it snaps and pins the
    break; elsewhere: "Nothing broken here." Breaks may be found in any order.
 2. Walk in: the approach table for the pinned x = c: rows x = c - 0.1, c - 0.01, c - 0.001 and c + 0.001, c + 0.01,
-   c + 0.1 with f(x) to 6 significant figures (very large values in scientific form like 1.00 x 10⁶).
+   c + 0.1 with f(x) (number format in Interactions).
 3. Name it: left limit, right limit, f(c), then the kind. Limits take a number or the buttons `+∞`, `-∞`; f(c) takes a
-   number or `undefined`; kind buttons `Hole`, `Moved point`, `Jump`, `Asymptote`. Then the two-sided limit is filled
-   in by the tool ("exists, = 4" or "does not exist").
+   number or `undefined`; kind buttons `Hole`, `Moved point`, `Jump`, `Asymptote`; then `Check`. The two-sided limit
+   is then filled in by the tool ("exists, = 4" or "does not exist").
 4. Patch: `Patch it` gives a draggable glowing dot on the line x = c (snaps 0.25, typed values exact). It sticks only at
    the limit value of a hole or moved point: the curve becomes continuous, the break turns green with "Continuous at
    x = c". For a jump or asymptote, the correct answer is the button `No single point fixes this` and the card says why.
@@ -88,13 +94,19 @@ zero at x = -1, horizontal asymptote y = 1. (Simplified (x + 1)/(x - 3); at x = 
   on each side comes from the cancelled form just left and right of v (same sign both sides when n - m is even).
   Horizontal asymptote: top degree < bottom degree: y = 0; equal: y = c; greater: "none: the top grows faster".
   Edge: no bottom tiles: a polynomial ("no breaks"); all tiles cancel: a constant with holes.
+- Number format in the approach and walk-out tables: 6 significant figures with trailing zeros kept ("1.00000",
+  "-1000.00"); sizes of 10⁶ or more, or under 10⁻³ (but not 0), in scientific form to 3 significant figures
+  ("1.00 x 10⁶", "9.96 x 10⁻⁷").
 - Answer checks: numbers exact as fractions or decimals within 0.001 ("5/4", "1.25" both right); ±∞ by button only;
   wrong answers name the clue: "Look at the table from the left: the values keep getting more negative." Two misses
   show `Show me`.
 - Patch dot: values within 0.001 of the limit stick. Patching a moved point moves the filled dot and removes the old
   one.
-- Beam: also follows the keyboard probe (arrow keys move it 0.1, Shift 1; Up and Down move the beam along y). The beam
-  never reveals the answer text, only the drawing. With Motion off the beam edge is hard, not animated.
+- Beam: follows the pointer with no lag, and also the keyboard probe (arrow keys move it 0.1, Shift 1; Up and Down
+  move the beam along y). The beam never reveals the answer text, only the drawing. With Motion off the beam edge is
+  hard, not animated, and the flashlight jumps instead of tilting smoothly.
+- End of level: the light-up spreads across the plane in 0.8 s (instant with Motion off); `Next level`, `Skip level`
+  and the level picker act at once during it.
 - Table values come from direct evaluation (sin x / x at 0.001 is computed, not looked up); "undefined" when the
   formula divides by 0.
 - Levels unlock in order but all are reachable with `Skip level`. Done levels get a check, per device (localStorage
@@ -107,21 +119,32 @@ Accent (`--brand`) #fff533, flashlight lemon: 15.1:1 on --panel #141b25, 14.3:1 
 #ffe14d (Intersection Quest); no group sibling uses yellow.
 Scene: the dark plane #07090d outside the beam (grid hidden there), the beam lit to the theme plane color #0e1520 with
 the grid, a warm rim rgba(255,228,92,0.25). The curve `--gr-1`; a patched break `--ok` with a check glyph and text.
+The flashlight art is a dark steel body, so it reads against #07090d by its lit lens and rim highlight.
 
 ## Art
-none: drawn in code (plane, beam, holes, dots, asymptotes, preview.svg with the beam on a hole).
+Local FLUX (`scripts/localart.py`), no people. Everything else is the graph itself.
+- flashlight: "A sturdy dark steel flashlight lying on its side and pointing to the upper right, its round lens glowing
+  warm lemon yellow, small highlights along the knurled grip, painted illustration, plain white background"; 4:3;
+  cutout yes; people no; Hunt only, at the bottom edge of the plane under the beam, tilted in code to point at it;
+  also the small icon on the `Hunt` level card.
+The plane, curves, holes, dots, asymptotes, beam mask, factor tiles, tables and preview.svg (the beam on a hole) are
+drawn in code: they are the graph and its controls.
 
 ## Voice
 `big-sister` (Leda), style "Say in a friendly, youthful way, like an older student who loves puzzles." Not used by a
-group sibling or 9-12 math neighbor. `Curio.voice`, `scope: () => state.mode`.
-- bench (how, Bench welcome): "Change the factors on top and bottom. A factor on both cancels and leaves a hole."
-- asym (how, first asymptote made on Bench): "A bottom factor that doesn't cancel makes the graph shoot off. That's an asymptote."
-- hunt (how, Hunt welcome): "The graph is dark. Sweep the flashlight, and press Mark here when you see a break."
-- walk (how, first break marked): "Read the table from each side. Then type the left limit, the right limit and the value."
+group sibling, a 9-12 math neighbor or another spec in batch R05. `Curio.voice`, `scope: () => state.mode`. Tables
+and cards are read on screen; Read speaks the hint.
+- bench (how, Bench welcome; stale once a tile changes): "Step the numbers on the top and bottom factor tiles. A factor on both cancels and leaves a hole."
+- asym (how, first asymptote made on Bench; stale on a mode change): "A bottom factor that doesn't cancel makes the graph shoot off. That's an asymptote."
+- hunt (how, Hunt welcome; stale on the first Mark here): "The graph is dark. Sweep the flashlight over it, and press Mark here when you see a break."
+- walk (how, first break pinned; stale once Check is pressed): "Read the table from each side. Type the left limit, the right limit and the value, pick the kind, then press Check."
+- patch (how, first break named; stale once that break is patched or ruled out): "Press Patch it and drag the dot, or press No single point fixes this."
+- seam (how, first parameter level; stale when the seam lights): "Move the sliders until both pieces meet. The seam turns green when they do."
+- far (how, first Far away card; stale once it is answered): "Press Walk out and watch where the values settle at each end."
 - nothing (event, Mark here with no break; stale on the next mark): "Nothing broken here."
 - patched (event, a patch sticks; stale on a new break): "Patched. It's continuous there now."
 - noPatch (event, No single point chosen correctly; stale on a new break): "Right. The two sides don't meet, so one point can't fix it."
-- levelDone (event, all breaks done; stale on a new level): "Every break found."
+- levelDone (event, all breaks done; stale on a new level): "Every break found. Press Next level when you're ready."
 
 ## Family engine
 none. Uses `kit/graphing.js` `Plane` as a plotting tool (`g.fn` breaks at the undefined points, `g.point` with `lock`
@@ -135,7 +158,16 @@ for the patch dot and the probe, `g.segment` for asymptotes, `g.roots` for Bench
 - Same topics with worked examples (including lim sin x / x = 1): OpenStax, Calculus Volume 1, 2.2 "The Limit of a
   Function", 2.4 "Continuity", 4.6 "Limits at Infinity and Asymptotes",
   https://openstax.org/books/calculus-volume-1/pages/2-4-continuity
-- Every level is made up; every limit and table value checked in Python (2026-10-27).
+- Every level is made up.
+- Checks run (Python, 2026-10-29): every level's six approach rows evaluated directly; each matches its listed left and
+  right limits (level 1: 3.999 and 4.001; level 9: 11.994 and 12.006; level 10 at 2: 1.25006 and 1.24994; level 12
+  at -3: 3168.14 and -3165.19, so +∞ then -∞). Level 7: 0.998334, 0.999983, then 1 at ±0.001, which the first draft's
+  "6 significant figures" would print as "1"; the format now keeps trailing zeros so it reads "1.00000" as the note
+  says. Level 5 reaches 1.00 x 10⁶ at ±0.001, and walk-out values reach 9.96 x 10⁻⁷, so the scientific rule now covers
+  both very large and very small sizes. Far away at ±1000: level 4 about ±0.001, level 10 0.999 and 1.001, level 12
+  2.00002. Level 11 at k = 1: both sides 3; level 13 at a = 4, b = -3: 1 and 1 at x = 1, 9 and 9 at x = 3. Bench default
+  hole y = -3, and just left and right of 3: -3999 and 4001. Every patch value (4, -2, 0.5, 1, 12, 1.25) lies on the
+  0.25 snap. The closest two breaks in any level are 2 apart, so the 0.3 snap never pins the wrong one.
 
 ## Done when
 1. Bench default shows the hole at (2, -3), asymptote x = 3 (left -∞, right +∞), zero -1, horizontal y = 1.
@@ -144,10 +176,15 @@ for the patch dot and the probe, `g.segment` for asymptotes, `g.roots` for Bench
 4. Level 2 needs Moved point and f(-1) = 3; the patch moves the dot to -2.
 5. Level 3 and Level 8 accept only `No single point fixes this` as the repair.
 6. Level 6 has two breaks; the hole accepts 1/2 and 0.5.
-7. Level 7's table shows 0.998334 at ±0.1 and 0.999983 at ±0.01.
+7. Level 7's table shows 0.998334 at ±0.1, 0.999983 at ±0.01 and 1.00000 at ±0.001; Level 5 shows 1.00 x 10⁶ at ±0.001.
 8. Level 11 lights the seam only at k = 1; Level 13 only at a = 4, b = -3. Level 12 far away accepts 2 and 2.
-9. The beam follows arrow keys; how-to lines are spoken once each in five actions; "Nothing broken here." on every miss.
-10. Controls visible without scrolling at 1366x768; no network, no images, no em dashes.
+9. Focus: at 1366x768 and 1000x625 the plane is the largest thing on the stage in both modes, and in Hunt the step
+   card never covers the beam.
+10. Tap while it plays: during the end-of-level light-up, `Next level` loads the next level at once; the beam and the
+    flashlight follow a fast sweep with no lag.
+11. The beam follows arrow keys; how-to lines are spoken once each in five actions; "Nothing broken here." on every
+    miss; no line names a control that is not on screen.
+12. Controls visible without scrolling at 1366x768; one painted image, no people; no network, no em dashes.
 
 ## Open questions
 none

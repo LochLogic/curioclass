@@ -30,12 +30,16 @@ tool.json: driver "students", minutes "15-30", modes ["Workbench", "Race", "Solv
 Header (kit, 9-12 theme): "Identity Proof Race", small line "Make both sides match." Modes `Workbench`, `Race`,
 `Solve`; kit `Motion`, `Sound`, `Read`.
 
-Stage: a thin race lane across the top (your marker and, in Race, a ghost marker, both moving lap by lap); below it the
-workbench: two plates, `Left side` and `Right side`, each showing its current expression in large math type with a
-history of past lines under it (each line labeled with the card used); between them a status sign: "≠" while they
-differ, "=" when they match.
+Stage: a thin race lane across the top (art: track-lane, a strip no taller than 48 px at 1366x768) with your marker
+(art: sneaker) and, in Race, the ghost marker (the same sneaker as a pale grey silhouette at 60 percent, labeled
+"ghost"), both moving lap by lap; the clock sits at the right end of the lane on the stopwatch cutout (art: stopwatch,
+digits in code on its blank face). Below the lane, filling the rest of the stage, the workbench: two plates,
+`Left side` and `Right side`, each showing its current expression in large math type with a history of past lines
+under it (each line labeled with the card used); between them a status sign: "≠" while they differ, "=" when they
+match.
 
-Card tray (bottom or right): identity cards grouped by kind, each with its rule written out:
+Card tray (right of the stage on wide screens, under it below 1000 px): identity cards grouped by kind, each with its
+rule written out:
 - Reciprocal: sec θ = 1/cos θ, csc θ = 1/sin θ, cot θ = 1/tan θ.
 - Quotient: tan θ = sin θ/cos θ, cot θ = cos θ/sin θ.
 - Pythagorean: sin²θ + cos²θ = 1, 1 + tan²θ = sec²θ, 1 + cot²θ = csc²θ (read either way).
@@ -48,33 +52,40 @@ Card tray (bottom or right): identity cards grouped by kind, each with its rule 
   (a + b)² = a² + b², √(x²) = x.
 
 ### Workbench (explore, default)
+Focus: the two plates and the sign between them, center stage and largest; the lane stays a thin strip and the route
+map sits in the panel.
 - Lap picker L1 to L8. No clock, no fake cards. Drag a card (or select it and press Enter) onto a plate. If the card
   has several forms, a chooser lists all its forms; choosing one that has nothing to rewrite on that plate says
   "Nothing to rewrite here with that card" and changes nothing.
 - `Undo` steps back one line on either plate. `Route map` (side panel) shows the lap's routes as a small graph of
   expressions; routes you have walked light up, others stay as dotted shapes with their length ("a 3 move route").
 - When both plates match: the sign turns "=", the chain is printed as a two-column proof (statement, reason) with
-  `Copy proof` (plain text to the clipboard).
+  `Copy proof` (plain text to the clipboard, for the student's own notes).
 
 ### Race
+Focus: the two plates, as on the Workbench (or the trap proof's lines on a trap lap), center stage; the lane with both
+markers and the stopwatch across the top.
 - Track picker: `Sprint` (L1, L2, L5, T1, L3) or `Long track` (L4, L6, L7, T3, L8, T4). `Go` starts the clock.
 - Identity laps work as on the Workbench, with the fake cards in the tray. Dropping a fake: the card greys out with
   its counterexample ("fails at a = 30°, b = 60°: 1 ≠ 1.366") and 5 s are added. The plate does not change.
-- Trap laps (T1 to T4): a finished-looking proof is shown, one line of it wrong; click the bad line. Right: next lap.
+- Trap laps (T1 to T4): a finished-looking proof is shown, one line of it wrong; tap the bad line. Right: next lap.
   Wrong: 5 s added and the line you picked shows its value at the test angle matching the line above.
 - Ghost: your best time on that track (per device) runs as the ghost marker, lap by lap. Finish card: time, penalties,
   routes found, and "New best" when it is. No other celebration.
 
 ### Solve
+Focus: step 1, the one plate with the equation, center stage; step 2, the unit-circle dial, center stage and largest,
+with the rewritten equation above it.
 - Equation laps S1 to S8 on 0 ≤ x < 2π. Step 1, rewrite (same cards, one plate) until the equation is in a form like
   sin x = c, a product equal to 0, or tan x = c. Step 2, the unit-circle dial: tap points on the circle to mark every
   solution (snaps to multiples of π/12; for S6 and S7 free placement, read to 0.01 rad), or drag an arc for the
-  inequality S8. `Lock in` checks the set.
+  inequality S8. `Lock in` checks the set; it is always live (with nothing marked it says "Mark at least one solution
+  first.").
 - `Calculator` button for S6 and S7: arcsin or arccos gives one value and shades its restricted range on the dial
   ([-π/2, π/2] for arcsin, [0, π] for arccos), so the student finds the second solution by symmetry.
 
 ## Content
-Identity laps (each line checked equal at θ = 0.7 when written; routes listed by cards):
+Identity laps (each line checked equal at θ = 0.4, 0.7 and 1.3; routes listed by cards):
 - L1: sin θ cot θ = cos θ. Route: Quotient → sin θ cos θ / sin θ → Cancel → cos θ.
 - L2: (1 - cos²θ)/sin θ = sin θ. Route: Pythagorean → sin²θ/sin θ → Cancel → sin θ.
 - L3: sec²θ - tan²θ = 1. Route A: Pythagorean → 1 + tan²θ - tan²θ → Simplify → 1. Route B: Reciprocal → 1/cos²θ - tan²θ
@@ -123,12 +134,15 @@ Solve laps (solutions on 0 ≤ x < 2π):
   differs from the lap's value by more than 1e-9.
 - Plates match when they reach the same state id. Both plates can be worked in any order ("meet in the middle").
 - Fakes: counterexamples are fixed per card (sin(a + b) at 30° and 60°; sin 2θ at 30°: 0.866 versus 1; (a + b)² at
-  a = b = 1; √(x²) at x = -2). Penalties are 5 s each, shown on the clock as "+5".
+  a = b = 1: 4 versus 2; √(x²) at x = -2: 2 versus -2). Penalties are 5 s each, shown on the clock as "+5".
 - Solve check: the marked set must equal the solution set, each mark within 0.01 rad (snapped marks are exact);
   missing or extra marks are named ("one solution missing", "π/2 is not a solution: sin 2(π/2) = 0, sin(π/2) = 1"). The
   inequality arc must match its ends within 0.01 rad and include them.
 - Times to 0.1 s. Best times per track per device (localStorage `curio-identity-proof-race`, try/catch) with
   `Clear times`; routes found per lap kept the same way.
+- The clock and the ghost run on their own during a Race; every card, plate, `Undo` and trap line stays live and acts
+  at once. A card applies at once (with Motion on, the new line slides in over 200 ms, but the next card can be
+  dropped during the slide). Markers glide between laps in 300 ms.
 - Sound: a short tick per accepted card, a low thud for a fake, a soft bell at lap end; off with Sound.
 - Keyboard: cards are buttons (Enter picks one up, then Left or Right puts it on a plate); the dial is a radiogroup of
   24 points (arrows move, Space marks) plus a number box for free marks; trap lines are buttons.
@@ -138,24 +152,38 @@ Solve laps (solutions on 0 ≤ x < 2π):
 Accent (`--brand`) #ff5cf0, finish-line magenta: 6.6:1 on --panel #141b25, 6.3:1 on --sec-bg #18202b; --brand-ink #10161f
 on it 7.0:1. Far more saturated than Image Transformer's violet #a58cff, Polar Rose Studio's #ff8ab6 and the algebra
 group's #e59cff (Correlation Guessing Game); no 9-12 math neighbor uses it.
-Scene: a dark track lane #111821 with lane lines #2b3442, your marker the accent, the ghost marker #9aa6b4 at 60 percent
-with a dashed outline; plates #18202b with a 1 px #2b3442 border, expressions #e8edf3 (over 13:1). Card kinds get a
-left stripe: Pythagorean `--gr-1`, sum and difference `--gr-2`, double angle `--gr-3`, reciprocal and quotient
-#c9b48a, algebra #8a96a3. Fakes wear the stripe of the kind they imitate. The "=" sign glows in the accent; "+5" in
-`--gr-4`.
+Scene: the painted track lane (track-lane) dimmed toward #111821 so the markers read; your sneaker gets an accent ring,
+the ghost a grey dashed ring (#9aa6b4); plates #18202b with a 1 px #2b3442 border, expressions #e8edf3 (over 13:1).
+Card kinds get a left stripe: Pythagorean `--gr-1`, sum and difference `--gr-2`, double angle `--gr-3`, reciprocal and
+quotient #c9b48a, algebra #8a96a3. Fakes wear the stripe of the kind they imitate. The "=" sign glows in the accent;
+"+5" in `--gr-4`. Stopwatch digits #10161f on its pale face.
 
 ## Art
-none: drawn in code (lane, plates, cards, dial, route map, preview.svg).
+Local FLUX (`scripts/localart.py`), no people. One style: crisp, bright painted sports illustration.
+- track-lane: "Top-down view of a running track lane of terracotta red rubber with two crisp white lane lines running
+  left to right, fine rubber texture, even daylight, painted illustration"; 5:1; cutout no; people no; the race lane
+  strip across the top of the stage (a full-frame texture, cropped to the strip).
+- sneaker: "A single bright white and magenta running shoe in side view pointing right, painted illustration, plain
+  white background"; 4:3; cutout yes; people no; your marker on the lane, and the ghost marker drawn from it as a pale
+  grey silhouette.
+- stopwatch: "A chrome sports stopwatch with a round pale cream face that is smooth and blank, a crown button on top,
+  front view, painted illustration, plain white background"; 1:1; cutout yes; people no; the clock at the end of the
+  lane, the time and "+5" drawn in code on the face.
+Plates, cards, the route map, the unit-circle dial, trap lines and preview.svg are drawn in code: they are math type,
+controls and diagrams.
 
 ## Voice
-`hero-coach` (Puck), style "Say briskly and steadily, like a track coach calling splits, and keep it short." Not used
-by a group sibling or 9-12 math neighbor (lively-host is taken by Correlation Guessing Game in the algebra group). `Curio.voice`, `scope: () => state.mode`.
-- bench (how, Workbench welcome): "Drag a card onto either side. Make both sides match."
-- routes (how, first lap finished): "Open the route map. There is another way to the same proof."
-- race (how, Race welcome): "Press Go. Fake cards hide in the tray, and each one costs five seconds."
-- trap (how, first trap lap): "One line of this proof is wrong. Click it."
-- solve (how, Solve welcome): "Rewrite first, then mark every solution on the circle."
-- calc (how, first Calculator use): "The calculator gives one answer. Use the circle to find the other."
+`hero-coach` (Puck), style "Say briskly and steadily, like a track coach calling splits, and keep it short." Kept here;
+game-show-strategist, which also used it, moved to lively-host. Not used by a group sibling or 9-12 math neighbor.
+`Curio.voice`, `scope: () => state.mode`. Proof lines are read on screen; Read speaks the hint.
+- bench (how, Workbench welcome; stale once a card is applied): "Drag a card onto the Left side or the Right side. Make both sides match."
+- routes (how, first lap finished; stale once the route map is opened): "Open the Route map. There is another way to the same proof."
+- race (how, Race welcome; stale once Go is pressed): "Pick a track and press Go. Fake cards hide in the tray, and each one costs five seconds."
+- fake (event, a fake card dropped; stale on the next card): "Fake card. Plus five. Try a real one."
+- trap (how, first trap lap; stale once a line is tapped): "One line of this proof is wrong. Tap it."
+- solve (how, Solve welcome; stale once a card is applied): "Drag cards to rewrite the equation until it's simple."
+- dial (how, first time the dial opens; stale once Lock in is pressed): "Tap every solution on the circle, then press Lock in."
+- calc (how, first Calculator use; stale once a second mark is placed): "The calculator gives one answer. Tap the circle where the other one is."
 - best (event, a new best time; stale on the next Go): "New best time."
 
 ## Family engine
@@ -170,7 +198,14 @@ this tool's own; it could serve a later algebra proof tool, but no family is def
   https://openstax.org/books/precalculus-2e/pages/7-1-solving-trigonometric-equations-with-identities
 - Standards: Common Core F-TF.B and F-TF.C, https://www.thecorestandards.org/Math/Content/HSF/TF/ ; College Board, AP
   Precalculus CED (2023), Unit 3, https://apcentral.collegeboard.org/courses/ap-precalculus
-- Laps, traps and equations are made up; every state value and solution computed in Python (2026-10-27).
+- Laps, traps and equations are made up.
+- Checks run (Python, 2026-10-29): every listed state of L1 to L6 and L8 (all routes) evaluated at θ = 0.4, 0.7 and
+  1.3: 0 differences over 1e-9; values at 0.7 match the list (L1 0.764842, L2 0.644218, L3 1, L4 1.98545, L5 0.644218,
+  L6 0.169967, L8 2.02953). L7: both routes give 0.965926 = sin 75°. Traps: T1 2 versus 1, T2 1 versus 1.366, T3 0.866
+  versus -0.866, T4 2 versus 1.414. Fakes: 1 versus 1.366, 0.866 versus 1. Solve: every equation's roots on [0, 2π)
+  found numerically (2,000,000 steps) match the lists exactly in count and value, S5's 3π/2 included (a touching
+  root); S1 to S5 solutions all lie on the π/12 snap; S6 typed as 0.30 and 2.84 are within 0.005 and 0.004 rad, so the
+  0.01 rule accepts them.
 
 ## Done when
 1. L3 can be finished by Route A in two moves and by Route B in five; the route map lights each when walked.
@@ -178,13 +213,19 @@ this tool's own; it could serve a later algebra proof tool, but no family is def
 3. L5 by Cofunction in one move; by Difference, Exact values and Simplify in three.
 4. The build test passes: every state of L1 to L8 equals the lap value at θ = 0.4, 0.7 and 1.3 (L4 at 0.7: 1.98545).
 5. In Race, dropping "sin 2θ = 2 sin θ" greys it with "fails at 30°: 0.866 ≠ 1" and adds 5 s; the plate is unchanged.
-6. T3: clicking the line "sin θ" is right; clicking "√(sin²θ)" adds 5 s.
+6. T3: tapping the line "sin θ" is right; tapping "√(sin²θ)" adds 5 s.
 7. S4 accepts {0, π/3, π, 5π/3} and names π/2 as not a solution if marked; S6 accepts 0.30 and 2.84; S8 accepts the
-   arc π/6 to 5π/6.
+   arc π/6 to 5π/6; `Lock in` with nothing marked gives its message.
 8. A second Sprint run shows the ghost moving at the first run's lap times; "New best time." spoken only on a better
    time.
-9. Plates, tray and lane visible at 1366x768; at 760 wide the tray sits under the plates; math type at least 10 px in
-   the 680x425 preview; no network, no images, no em dashes.
+9. Focus: at 1366x768 and 1000x625 the plates (Workbench, Race) and the dial (Solve step 2) are the largest thing on
+   the stage; the lane stays a thin strip.
+10. Tap while it plays: during a Race, with the clock and ghost running and a line sliding in, the next card drops
+    and applies at once.
+11. How-to lines spoken once each in five actions; "Fake card" every time a fake is dropped; no line names a control
+    that is not on screen.
+12. Plates, tray and lane visible at 1366x768; at 760 wide the tray sits under the plates; math type at least 10 px
+    in the 680x425 preview; three painted images, no people; no network, no em dashes.
 
 ## Open questions
 - identity-proof-race: F-TF.B.5 (choosing trig functions to model periodic situations) is in the module's F-TF.B cluster but is not taught

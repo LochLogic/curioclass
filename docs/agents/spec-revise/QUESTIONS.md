@@ -34,3 +34,8 @@
 - audience-shift-briefing: 10 listener portraits (people, Gemini; initial badges stand in); right mix, or non-people listeners?
 - character-web: picker now shows painted settings instead of portraits; still want character portraits?
 - Carried: Bertha note; E5 deaths card; locked finding; founding-words-explorer glosses, echoes split, Johnson 1755; Du Bois wording and left-out paragraphs.
+
+## R05
+- game-show-strategist moved to lively-host (shared with work-rate-crew); optimization-workshop keeps friendly-dad (shared with polynomials-as-numbers). Voice bank pattern again.
+- optimization-workshop: swimmer is a person (Gemini); keep, or mark the spot with an object?
+- Carried: game-show probability-engine additions and TV-format likeness; identity-proof-race standards line, fake cards; image-transformer one 3x3 filter for A-REI.C.9; optimization-workshop leaves out local linearity and L'Hospital; polar-rose-studio Download PNG.

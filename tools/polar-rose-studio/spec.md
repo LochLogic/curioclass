@@ -26,11 +26,15 @@ tool.json: driver "students", minutes "20-40", modes ["Studio", "Stamps", "Galle
 Header (kit, 9-12 theme): "Polar Rose Studio", small line "Draw with r and θ." Modes `Studio`, `Stamps`, `Gallery`;
 kit `Motion`, `Sound`, `Read`.
 
-Stage: a square polar canvas (radius 6 units to the edge), black velvet background, faint polar grid (circles every
-1, rays every 15°, labels at 0°, 90°, 180°, 270° and on the circles 2, 4, 6), the real axis and imaginary axis
-labeled "Re" and "Im". The pen: a thin arm from the center to the pen tip, with an angle arc showing θ.
+Stage: a square polar canvas (radius 6 units to the edge), as tall as the stage allows and centered, black velvet
+background, faint polar grid (circles every 1, rays every 15°, labels at 0°, 90°, 180°, 270° and on the circles 2, 4,
+6), the real axis and imaginary axis labeled "Re" and "Im". The pen: a thin arm from the center to the pen tip, with
+an angle arc showing θ. When a limaçon reaches past the edge (a + b > 6), the canvas zooms out to radius 9 or 12 and
+labels the circles to match ("zoomed out" shows in a corner); every other family fits radius 6.
 
 ### Studio (explore, default)
+Focus: the polar canvas with the sweeping pen and the curve, center stage and largest; the curve, pen and ink controls
+are in the panel.
 Panel:
 - "Curve": family buttons `Rose`, `Limaçon`, `Spiral`, `Circle`, `Lemniscate`; the equation in large type, for
   example "r = 4 cos(2θ)". Sliders per family (Content). `cos` / `sin` toggle where it applies.
@@ -44,6 +48,8 @@ Panel:
 - `Ruler` toggle: tap two points of the drawing; shows z1, z2, distance |z1 - z2| and midpoint (z1 + z2)/2.
 
 ### Stamps
+Focus: the canvas with the stamp's live preview drawn over the tile, center stage and largest; the stamp cards in the
+panel.
 The current layers become the "tile". Stamp cards (each previews at once; `Apply` bakes it into a new layer):
 - `Turn`: copies the tile n times (n 2 to 12), each multiplied by w = cos(360°/n) + i sin(360°/n). Shows w in both forms
   and "multiplying by w adds 360°/n to every angle and keeps every distance".
@@ -54,6 +60,7 @@ The current layers become the "tile". Stamp cards (each previews at once; `Apply
 The stamp list shows what was applied, in order, with `Undo stamp`.
 
 ### Gallery
+Focus: the grid of design thumbnails, center stage; tapping one shows it large on the canvas with `Open`.
 Up to 12 saved designs on this device (localStorage `curio-polar-rose-studio`, try/catch): thumbnail, equations and
 stamps. `Save`, `Open`, `Delete`, `Clear gallery`, and `Download PNG` (the canvas at 1200 x 1200, made in the page,
 a file saved by the browser). Also six starter designs (Content) that can be opened but not deleted.
@@ -83,6 +90,9 @@ Ruler worked case on r = 4 cos 2θ: tap the point at θ = 0 (r = 4, the number 4
   (θ = 90° shows "π/2").
 - Pen speed: the sweep is constant in θ, so the tip visibly speeds up where r changes fast; a small "dr/dθ" readout
   (exact from the formula) shows the rate, and its sign says "moving away from the center" or "toward".
+- The 4 s Draw never blocks: during it every slider, family button, toggle and ink stays live. A curve change redraws
+  the new curve at once up to the pen's current θ and the sweep carries on from there; `Pause` stops the pen where it
+  is; grabbing the θ slider takes the pen by hand; changing mode stops the sweep and shows the whole curve.
 - Stamps operate on stored points (complex numbers), never on pixels, so they stay crisp. Total points are capped at
   200,000; a stamp that would pass it is disabled with "Too many copies for one drawing; remove a layer."
 - Spiral stamp copies that fall under 0.05 units are skipped.
@@ -93,23 +103,28 @@ Ruler worked case on r = 4 cos 2θ: tap the point at θ = 0 (r = 4, the number 4
 - Mode change: `Curio.stop()`, `V.hush()`; the drawing stays.
 
 ## Look
-Accent (`--brand`) #ff8ab6, rose pink: 7.9:1 on --panel #141b25, 7.5:1 on --sec-bg #18202b; --brand-ink #10161f on it
-8.3:1. Not used by any 9-12 math neighbor; in this group fuchsia (identity-proof-race) is bluer and darker.
+Accent (`--brand`) #ff8ab6, rose pink: 7.9:1 on --panel #141b25, 7.5:1 on --sec-bg #18202b, 9.0:1 on the velvet;
+--brand-ink #10161f on it 8.3:1. Not used by any 9-12 math neighbor; in this group fuchsia (identity-proof-race) is
+bluer and darker.
 Canvas: velvet #0b0a12, grid rgba(255,255,255,0.08), labels #a6b3c4 (8.1:1). Inks: rose #ff8ab6, gold #ffd166, mint
 #7ee0c3, sky #7cc4ff, lilac #c9a0ff, white #f2f2f2 (each over 7:1 on the velvet). Ink choice is never the only cue:
 each layer is listed by number and equation.
 
 ## Art
-none: drawn in code (canvas, grid, pen, curves, preview.svg with a glowing 8-petal rose).
+none: drawn in code. The whole stage is a polar graph and the student's own drawing: the grid, the pen arm whose
+length changes every frame, the curves, the stamped copies and preview.svg (a glowing 8-petal rose) are diagram and
+artwork made from the math, so a painted image would only cover them.
 
 ## Voice
 `smooth-narrator` (Algieba), style "Say smoothly and warmly, like an artist talking through a sketch." Not used by a
-group sibling or 9-12 math neighbor. `Curio.voice`, `scope: () => state.mode`.
-- studio (how, Studio welcome): "Pick a curve, then press Draw. The pen sweeps around while r grows and shrinks."
-- negative (how, first time r goes negative under the pen): "When r is negative, the point lands on the opposite side of the center."
-- petals (how, first k change on a rose): "Odd k gives k petals. Even k gives twice as many."
-- stamps (how, Stamps welcome): "Each stamp is complex arithmetic. Multiplying turns and stretches, adding shifts, and conjugating mirrors."
-- turn (how, first Turn preview): "Multiplying by w adds its angle to every point and keeps every distance."
+group sibling, a 9-12 math neighbor or another spec in batch R05. `Curio.voice`, `scope: () => state.mode`. Readouts
+are read on screen; Read speaks the hint.
+- studio (how, Studio welcome; stale once Draw is pressed or a slider moves): "Pick a curve, then press Draw. The pen sweeps around while r grows and shrinks."
+- negative (how, first time r goes negative under the pen; stale on a family change): "When r is negative, the point lands on the opposite side of the center."
+- petals (how, first k change on a rose; stale on a family change): "Odd k gives k petals. Even k gives twice as many."
+- stamps (how, Stamps welcome; stale once a stamp card is picked): "Pick a stamp card to preview it, then press Apply. Multiplying turns and stretches, adding shifts, and conjugating mirrors."
+- turn (how, first Turn preview; stale once Apply is pressed): "Multiplying by w adds its angle to every point and keeps every distance."
+- gallery (how, Gallery welcome; stale once Save or Open is pressed): "Press Save to keep this design, or tap a starter and press Open."
 - saved (event, a design saved; stale after 3 s): "Saved to the gallery."
 - full (event, a stamp refused for too many points; stale on any change): "That's too many copies for one drawing. Remove a layer first."
 
@@ -126,19 +141,32 @@ none (polar canvas; it does not use the graphing plane).
 - Standards: CCSS Math N-CN.B, https://www.thecorestandards.org/Math/Content/HSN/CN/ ; College Board, AP Precalculus
   CED (2023), Unit 3 topics 3.13 to 3.15.
 - Closing angle for r = cos(pθ/q): cos(p(θ + 2qπ)/q) = cos(pθ/q + 2pπ), so 2qπ always closes (worked here).
+- Checks run (Python, 2026-10-29): petals counted from the drawn points (distinct tips at full radius) for k = 1 to 12:
+  1, 4, 3, 8, 5, 12, 7, 16, 9, 20, 11, 24, matching the rule; sin 3θ also gives 3. Pen at θ = 90° on r = 4 cos 2θ: r = -4
+  at (0, -4). Ruler: 4 and 4i, distance 5.657, midpoint 2 + 2i. Turn n = 6: w = 0.5 + 0.866i. 0.9^11 = 0.314. k = 2/3
+  closes at 6π. Largest r: the Heart starter reaches 6.00 and the 3, 3 cardioid 6, so they fit; but limaçon a = 5, b = 2
+  (a Done when case) reaches 7 and a = b = 6 reaches 12, past the radius 6 canvas, so the canvas now zooms out to 9 or
+  12 for limaçons. Limaçon labels for (2, 4), (3, 3), (5, 2), (3, 2): inner loop, cardioid, convex, dimpled. Point
+  counts per curve stay far under the 200,000 cap (a 6-turn spiral is 4,320 samples; a 1/7 rose 5,040).
 
 ## Done when
 1. Load shows r = 4 cos(2θ) and Draw makes 4 petals; k = 3 makes 3, k = 4 makes 8; k = 1 says "a circle".
 2. Pen at θ = 90° on r = 4 cos 2θ reads r = -4, hollow tip at the bottom (0, -4), complex -4i, with the negative-r note.
-3. Limaçon a = 2, b = 4 says inner loop; a = b = 3 says cardioid; a = 5, b = 2 says convex.
+3. Limaçon a = 2, b = 4 says inner loop; a = b = 3 says cardioid; a = 5, b = 2 says convex and the canvas zooms out so
+   the whole curve shows.
 4. Fraction k = 2/3 draws a closed curve over 0 to 6π; k = 4/2 is treated as 2.
 5. Turn with n = 6 makes 6 copies; w reads 0.5 + 0.866i and "60°". Mirror on r = 3 sin 3θ gives a drawing symmetric
    across the real axis.
 6. Spiral s = 0.9, α = 30°, k = 12: the last copy's points are 0.9^11 ≈ 0.31 times as far out.
 7. Ruler between 4 and 4i shows distance 5.66 and midpoint 2 + 2i.
 8. Save, reload, Open restores the design; Clear gallery empties it; Download PNG produces a file.
-9. How-to lines spoken once each in five actions; nothing is spoken on every slider move.
-10. Main controls visible without scrolling at 1366x768; at 375 wide the canvas fits the width; no network; no em dashes.
+9. Focus: at 1366x768 and 1000x625 the canvas is the largest thing on the stage in Studio and Stamps, and centered.
+10. Tap while it plays: halfway through Draw, changing k redraws the new rose at once and the pen keeps sweeping;
+    `Pause` stops the pen at once.
+11. How-to lines spoken once each in five actions; nothing is spoken on every slider move; no line names a control
+    that is not on screen.
+12. Main controls visible without scrolling at 1366x768; at 375 wide the canvas fits the width; no network; no em
+    dashes.
 
 ## Open questions
 - polar-rose-studio: Download PNG saves a file on the student's device. Fine, or keep only the on-device gallery?
