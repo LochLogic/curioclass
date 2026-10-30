@@ -5,15 +5,16 @@ The one plan for Curio Class: what is done, what comes next, and in what order. 
 docs/LIBRARY-PLAN.md, docs/SITE.md ("Not done yet") and docs/agents/roadmap/.
 
 This file holds the order and the status. The design detail stays in each track's own plan, linked from its section.
-When a roadmap item starts, finishes or moves, update it here first.
+When a roadmap item starts, finishes or moves, update it here first, then post it to the Review Desk's Roadmap tab
+(`python scripts/desk_roadmap.py <out.json>`, then ArtifactData set stats/roadmap).
 
-## Where it stands (2026-10-28)
+## Where it stands (2026-10-30)
 
 | | Count |
 |---|---|
-| Tool concepts in the catalog | 797 |
-| Live tools | 76 |
-| Specs written | 198 more (of the 721 not yet built) |
+| Tool concepts in the catalog | 798 |
+| Live tools | 81 |
+| Specs written | 238 more, plus 11 built and waiting on voice |
 | Modules with Word Wall cards | all, English and Spanish |
 | Anchor charts / posters / Game Night games | 74 / 54 / 104 |
 | Sub Day packets | 76 (one per live tool) |
@@ -32,7 +33,7 @@ no accounts, no ads, no tracking.
 Detail: docs/BUILD-PLAN.md (the pipeline), docs/agents/SCALE-PLAN.md (the order), docs/agents/RUNBOOK.md (how a
 session runs it), docs/agents/decisions/BASELINE.md (Cory's standing rules).
 
-1. **Now:** the network-help-desk single-tool test with the Codex builder (docs/agents/BATCH-BR.md, "Resume here").
+1. **Now:** review the two Codex single-tool tests with Cory (docs/agents/BATCH-BR.md, "Resume here").
 2. **Then spec waves** of about 30 to 50 tools, one subject or band at a time, each with its own overlap check.
 3. **Art overnight per wave**, right after the spec check (docs/ART.md).
 4. **Builds stream** in small mixed Build and Refine waves (docs/agents/REFINE.md), then build-only waves per family
@@ -46,6 +47,10 @@ session runs it), docs/agents/decisions/BASELINE.md (Cory's standing rules).
    the bench, is listed in docs/agents/notes-backfill.txt: 92 at the start. Add the sections to a tool's notes.md, then
    take it off the list. An empty list means the check covers every tool. Small batches by band, each read against the
    real tool so nothing is generic; K-2 and sensitive tools get extra care on the home ideas.
+9. **Try Google Antigravity's Claude Opus 4.6 as a builder** (Cory, 2026-10-30). It takes the Build and Polish slots
+   the way Codex does (docs/agents/CODEX.md); Refine, merging and deploys stay in the main session. One simple tool
+   first, in its own worktree, with Cory starting each round in Antigravity. The first run shows whether it can run
+   the project's scripts and drive Chrome, and how far its usage limits reach. Judge it on Refine counts, next to Codex.
 
 ### Held-back collections (their own waves)
 
