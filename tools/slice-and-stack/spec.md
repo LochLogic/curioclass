@@ -38,6 +38,8 @@ a solid filled face where plane and solid meet. `Lift` raises the part of the so
 the cut face is in plain sight.
 
 ### Cut (explore)
+- Focus: the 3D view with the glowing cut face, center stage and the largest thing on screen; the flat, true-size
+  cross section in the panel is the second largest.
 - Solid picker: `Cube`, `Square pyramid`, `Triangular prism`, `Cylinder`, `Cone`, `Sphere`. Size sliders for the
   solid's own measures (Content).
 - Plane controls: `Height` (slides the plane along its normal through the whole solid), `Tilt` (0° to 90°, 0° is
@@ -48,14 +50,20 @@ the cut face is in plain sight.
   parallelogram, trapezoid, pentagon, hexagon) that tick when the current cut is one; `Show me one` per item sets
   an exact plane. A line under it: "No cut gives seven sides: a cube has only six faces."
 ### Twins (Cavalieri)
-- Two solids side by side on one table, one level plane through both. Twin picker (Content). The two flat slices
+- Focus: the two solids and the one plane through both in the 3D view, with the two flat slices side by side right
+  under it; the bar chart sits beside the slices.
+- Two solids side by side on one table (a wooden tabletop texture, art: ss-tabletop), one level plane through both.
+  The coin stacks of pair 1 are code cylinders with painted coin faces and edges (art: ss-coin-face, ss-coin-edge). Twin picker (Content). The two flat slices
   are drawn side by side in the panel with their areas, and a line "same area at every height" or not.
 - `Sweep` moves the plane bottom to top over 4 s; a bar chart builds up the slice area against height for each
   solid; equal twins draw the same bars. Then the volume line: "Equal slices at every height, so equal volume."
+  During a sweep every control stays live: dragging `Height` stops the sweep at that height, a twin change stops it
+  and shows the new pair at once, and `Sweep` again restarts from the bottom.
 ### Spin (explore)
+- Focus: the flat shape and the solid it sweeps out, center stage around the axis.
 - A flat shape on a side panel next to a vertical axis. Shape picker (Content). Drag the shape's distance from the
   axis (0 to 3 units). `Spin` sweeps it a full turn around the axis (2 s, instant with Motion off) and the solid
-  appears. The panel names the solid. A level plane in the solid shows that every level slice is a circle, a ring
+  appears. A shape change or a distance drag during the spin shows the new solid at once. The panel names the solid. A level plane in the solid shows that every level slice is a circle, a ring
   or two rings.
 
 ## Content
@@ -109,22 +117,31 @@ from the axis → a tube (cylinder with a hole); circle away from the axis → a
 
 ## Look
 Accent `--brand #7cff4f` (laser green: the cutting plane is a sheet of laser light), `--brand-ink #10161f`. Stage
-`#0b0f14`; solids glass `#9fb3c8` at 35% with edges `#d7e0ea`; plane accent at 20% with an accent rim; the cross
+`#0b0f14`; the Twins tabletop darkened to average about `#1a1714` so the glass and the accent plane still stand out; solids glass `#9fb3c8` at 35% with edges `#d7e0ea`; plane accent at 20% with an accent rim; the cross
 section solid accent with a dark outline; the lifted part a little brighter glass.
 Contrast (computed): brand on --panel 13.41:1, on --sec-bg 12.71:1, on the stage 14.89:1; brand-ink on brand
 14.07:1. Greener than zoom-to-the-limit's lime #c6f25a (gr 12) and model-my-world's #d4e65a (gr 9); different from
 solid-spinner's clay #e39b6e.
 
 ## Art
-none: drawn in code (Three.js solids, plane, flat sections, charts, preview.svg).
+Local FLUX (`scripts/localart.py`), no people anywhere. 3 images. The solids, plane, cut faces, flat sections, axis,
+spun shapes and bar charts stay in code: they are geometry that the plane cuts and the tool bends at every frame.
+- ss-tabletop: a dark walnut wooden tabletop seen straight down, fine straight grain, soft even light, blank surface,
+  full frame; 1:1; cutout no; people no; texture on the Twins table plane under both solids.
+- ss-coin-face: the flat face of a plain copper coin seen straight down, a smooth blank center with a thin raised
+  rim, soft even light, full frame; 1:1; cutout no; people no; texture on the top and bottom of every coin in
+  Twins pair 1.
+- ss-coin-edge: the reeded edge of a copper coin unrolled flat, fine even vertical ridges, soft even light, full
+  frame; 4:1; cutout no; people no; texture wrapped round each coin's side in Twins pair 1.
 
 ## Voice
-Bank voice `playful-friend` (Laomedeia), style "playful and bright, like a fun teacher with a laser cutter". No 9-12
-math tool uses it. `Curio.voice`, `scope: () => state.mode`.
-- wCut (how): "Pick a solid. Slide the plane through it, then tilt it. Watch the shape of the cut."
-- wTwins (how): "Two solids, one plane. Tap Sweep and compare the slices at every height."
-- wSpin (how): "Pick a flat shape, set how far it sits from the axis, then tap Spin."
-- hexagon (event, the cube section becomes a hexagon; stale when the plane moves): "Six sides! A cube can hide a hexagon."
+Bank voice `playful-friend` (Laomedeia), style "playful and bright, like a fun teacher with a laser cutter". Not used
+by its math neighbors or the other specs in this batch. `Curio.voice`, `scope: () => state.mode`. Readouts and names
+are read on screen; Read speaks the hint.
+- wCut (how, Cut welcome; stale when the plane first moves): "Pick a solid. Drag the Height slider to slide the plane through it, then try Tilt. Watch the shape of the cut."
+- wTwins (how, Twins welcome; stale on the first Sweep): "Two solids, one plane. Pick a pair, then tap Sweep and compare the slices at every height."
+- wSpin (how, Spin welcome; stale on the first Spin): "Pick a flat shape, drag it away from the axis if you like, then tap Spin."
+- hexagon (event, a plane drag or Show me one ends on a hexagon, at most once each time the cube is picked, so sliding back and forth does not repeat it; stale when the plane moves): "Six sides! A cube can hide a hexagon."
 - allFound (event, all eight cube sections ticked; stale on solid change): "All eight. That's every kind a cube can give."
 - equal (event, a twin sweep ends on an equal pair; stale on twin change): "Same slice at every height, so the same volume."
 - notEqual (event, sweep ends on pair 6; stale on twin change): "These slices differ, so the volumes can too."
@@ -140,6 +157,15 @@ none.
 - Volume formulas: OpenStax, Prealgebra 2e, 9.6 "Solve Geometry Applications: Volume and Surface Area", https://openstax.org/books/prealgebra-2e/pages/9-6-solve-geometry-applications-volume-and-surface-area
 - Three.js r128, MIT license, https://github.com/mrdoob/three.js/blob/r128/LICENSE
 - Every cube section and volume above was recomputed in Python (2026-10-27).
+- Checks run (Python, numpy, 2026-10-29): every cube plane intersected with the twelve edges, ordered and measured.
+  Triangle 2.83 each, 60°, 3.46; square 16; rectangle 4 by 5.66, 22.63; rhombus 4.47, 78.46° and 101.54°, 19.60;
+  parallelogram 4.12 and 4.47, 83.77° and 96.23°, 18.33; trapezoid 2.83 and 5.66 with legs 4.47, 18.00; pentagon
+  sides 2.24, 4.47, 4.47, 2.24, 2.83 (two parallel pairs), 17.15; hexagon 2.83 each, 120°, 20.78. A plane just past
+  a vertex gives a zero-area sliver (the "just touching" case). Level cuts: cone π = 3.14, pyramid 4, sphere 5π =
+  15.71. Volumes 64, 32, 36, 62.83, 25.13, 113.10. Twins: coins 3π = 9.42; pair 3 slice areas agree at 50 heights
+  (difference 0), pyramid side √(4π) = 3.545; pair 5 differ by at most 4.4e-15, inside the 1e-9 tolerance, V 18π =
+  56.55 and 36π = 113.10; pair 6 24π and 8π. Nothing failed; no rule changed.
+- Contrast ratios in Look computed with the WCAG 2.1 formula.
 
 ## Done when
 1. Cut, cube, `Level` at height 2: "square, side 4, area 16".
@@ -148,8 +174,13 @@ none.
 4. Twins 3 sweep draws equal bars and shows 25.13 for both; twins 5 shows 56.55 for both and the sphere line 36π; twins 6 draws unequal bars.
 5. Spin: semicircle on the axis gives "sphere"; circle 2 units away gives "torus"; rectangle away from the axis gives "tube".
 6. A plane through only one vertex of the cube shows "just touching: no area".
-7. Keyboard alone can cut a hexagon and run a sweep; every size in STANDARDS.md keeps the 3D view and the plane sliders visible without page scrolling.
-8. Console clean, no network, no em dashes, "Curio Class" only in full.
+7. Focus: at 1366x768 and 1000x625 the 3D view with the cut face is the largest thing in Cut and Twins, and the
+   spinning shape and its solid in Spin.
+8. Tap while it plays: during a Sweep, dragging Height stops it at that height and a twin change shows the new pair
+   at once; during a Spin, a new shape shows at once.
+9. The coin stacks show painted coin faces and edges; no other solid carries a texture.
+10. Keyboard alone can cut a hexagon and run a sweep; every size in STANDARDS.md keeps the 3D view and the plane sliders visible without page scrolling.
+11. Console clean, no network, no em dashes, "Curio Class" only in full.
 
 ## Open questions
 - Title: "Slice It!" is a published mobile puzzle game. This spec renames the tool "Slice and Stack". Keep it?

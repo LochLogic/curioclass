@@ -31,23 +31,30 @@ tray first. Under 900 px tall the diagram becomes a thumbnail at the top left of
 tower and tray stay in view.
 
 ### Tower (levels)
+- Focus: the tower, the tallest and widest thing on the stage, standing center right against the painted evening
+  sky (art: pt-sky); the diagram at its left is about two thirds of its width. The block being placed or the block
+  that wobbles is the brightest thing in the tower.
 - Level strip above the stage: `1` to `8`. A level opens when the one before it is finished. Teacher toggle in the
   panel's foot, `Open all levels` (also adds every theorem card).
 - Diagram (left of stage): the level's figure, drawn in code with labels and tick marks. Caption under it: "Not
   drawn to prove anything. Only reasons count."
-- Tower (right of stage): the Given blocks sit locked at the bottom (the foundation). A dashed ghost block at the
-  top holds the Prove statement.
+- Tower (right of stage): the Given blocks sit locked at the bottom on rough granite (art: pt-foundation). Each
+  statement is a carved slate block (art: pt-block) with its text in code on the blank face and a reason socket
+  at its right end. A dashed ghost block at the top holds the Prove statement (code outline).
 - Panel: tray with two tabs, `Statements` (the level's statement blocks, including look-alikes that can't be
-  proved) and `Reasons` (the reason shelf). Buttons `Hint`, `Remove block`, `Start over`.
+  proved) and `Reasons` (the reason shelf; each reason is a brass plate, art: pt-plate, with its text in code;
+  earned theorem cards are ivory tiles with a gold edge, art: pt-theorem). Buttons `Hint`, `Remove block`, `Start over`.
 - Drag a statement block onto the tower (it lands where you drop it: on top, or between two blocks). Drag a reason
   card onto the block's reason socket, or select the block and tap a reason. The tower checks itself after every
   change (Interactions). Locked blocks stand straight with a lock glyph and an accent bar. A block that can't lock
   tilts a few degrees with a dashed warn outline and text under it naming what is missing.
 - When the Prove block locks: the tower's outline turns accent, the panel shows the finished two-column proof
-  (Statement | Reason, bottom to top) and "New reason card: <theorem>". The next level opens.
+  (Statement | Reason, bottom to top) and, on levels 1, 2 and 6, "New reason card: <theorem>". The next level
+  opens.
 
 ### Compass (constructions)
-- Stage: a white-on-dark construction sheet. Tools across the top of the stage: `Point`, `Straightedge`,
+- Focus: the construction sheet, filling the stage; the challenge list and steps stay in the panel.
+- Stage: a white-on-dark construction sheet on a painted slate board (art: pt-slate). Tools across the top of the stage: `Point`, `Straightedge`,
   `Compass`, `Carry` (compass that keeps its opening), `Undo`, `Clear`. Panel: challenge list `C1` to `C8`, the
   steps used, and the check result.
 - `Straightedge`: tap two points, a full line is drawn through them. `Compass`: tap a center, then a point the
@@ -131,6 +138,9 @@ Compass challenges (sheet units, A and B given):
   only; the construction itself is exact). The checked points must be constructed (crossings), never free points;
   a free point gives "That point was placed by hand. Use a point where two lines or circles cross." C1 accepts
   either crossing point (above or below AB). Steps used counts each line and circle drawn; `Undo` removes the last.
+- Live while anything moves: a block settling, a wobble, a lock, the tower outline turning accent, a compass circle
+  being drawn (0.4 s) and the mini tower filling in all finish at once when the student drags, taps a reason,
+  changes level or switches mode; no input waits for an animation.
 - Keyboard: Tab through tray blocks, Enter picks one up, arrow keys choose its slot in the tower, Enter drops; on a
   selected block, R opens the reason list. In Compass, arrow keys move a crosshair between existing points.
 - Progress (finished levels and earned cards) saves on this device (localStorage) with `Clear progress` in the panel
@@ -138,8 +148,10 @@ Compass challenges (sheet units, A and B given):
 - `window.__tool = {state, setMode, level(n), place(statementId, slot), reason(slot, reasonId), check(), challenge(n)}`.
 
 ## Look
-Accent `--brand #b673ff` (ultraviolet), `--brand-ink #10161f`. Stage slate `#121826`; Given blocks stone `#3a4252`;
-statement blocks `#232c3b`; diagram lines `#e8edf3`; wobble outline dashed `#ffb8a8` (theme warn) plus text, never
+Accent `--brand #b673ff` (ultraviolet), `--brand-ink #10161f`. Stage slate `#121826` under the evening sky image
+(dimmed so it averages near the slate); Given blocks the granite image darkened to average `#3a4252`;
+statement blocks the slate image darkened to average `#232c3b` (text is checked against the lightest band of
+each image, not only the average); diagram lines `#e8edf3`; wobble outline dashed `#ffb8a8` (theme warn) plus text, never
 color alone; the lock glyph marks locked blocks. Compass sheet `#0f141c` with drawn circles `#a6b3c4`, lines
 `#e8edf3`, constructed points solid accent, free points hollow.
 Contrast (computed): brand on --panel 5.68:1, on --sec-bg 5.38:1, on slate 5.81:1; brand-ink on brand 5.95:1; ink on
@@ -147,17 +159,36 @@ block 11.93:1, on Given block 8.57:1; warn on block 8.48:1. No 9-12 math tool us
 image-transformer's #a58cff (gr 12) and correlation-guessing-game's #e59cff (gr 9).
 
 ## Art
-none: drawn in code (diagrams, blocks, construction sheet, preview.svg).
+Local FLUX (`scripts/localart.py`), no people anywhere. 6 images. One style: quiet painted stonework at dusk.
+- pt-sky: a calm evening sky over low dark hills, soft violet and blue clouds fading to deep navy at the top,
+  painted illustration; 9:16; cutout no; people no; behind the tower column in Tower, dimmed.
+- pt-block: a single long rectangular block of smooth dark gray slate stone, front face flat and blank, crisp
+  chiseled edges, soft light from above, painted illustration, plain white background; 4:1; cutout yes; people no;
+  every statement block (tilted in code when it wobbles), text in code on the face.
+- pt-foundation: a single long rectangular block of rough dark speckled granite, front face flat and blank, heavy
+  and weathered, soft light from above, painted illustration, plain white background; 4:1; cutout yes; people no;
+  the Given blocks at the bottom of the tower.
+- pt-plate: a small blank rectangular brass plate with four round rivets at the corners, softly polished, painted
+  illustration, plain white background; 4:1; cutout yes; people no; every reason card on the shelf and in a block's
+  socket, text in code.
+- pt-theorem: a small blank rectangular ivory tile with a thin gold edge, softly polished, painted illustration,
+  plain white background; 4:1; cutout yes; people no; the earned theorem cards.
+- pt-slate: a flat dark charcoal slate chalkboard surface seen straight on, faint smudges of old chalk dust, soft even
+  light, blank surface; 16:10; cutout no; people no; Compass sheet background, darkened to about `#0f141c`.
+Drawn in code: every figure and diagram, labels, tick marks, the ghost Prove block, lock glyphs, compass circles,
+lines and points, the mini towers' text, preview.svg.
 
 ## Voice
 Bank voice `clear-teacher` (Iapetus), style "clear and kind, like a patient geometry teacher at the board". No 9-12
-math neighbor uses it. `Curio.voice`, `scope: () => state.mode`.
-- wTower (how, Tower welcome): "Drag a statement onto the tower, then give it a reason. It locks only when what the reason needs is already below it."
-- wCompass (how, Compass welcome): "Pick a challenge. Choose Compass or Straightedge, then tap points to draw."
-- wobble (how, first wobbling block): "That block wobbles. Read the line under it to see what it still needs."
-- circular (how, first greyed theorem card used): "That is what you are proving, so it can't be a reason yet."
-- freePoint (how, first free point in a check): "That point was placed by hand. Use a point where two lines or circles cross."
-- levelDone (event, Prove block locks; stale when the level changes): "The proof holds. Its theorem is now a reason card."
+math neighbor or other spec in this batch uses it. `Curio.voice`, `scope: () => state.mode + ':' + state.level`.
+Block messages, the two-column proof and mini towers are read on screen; Read speaks the hint.
+- wTower (how, Tower welcome; stale when the first block lands): "Drag a statement from the tray onto the tower, then drag a reason onto its socket. It locks only when what the reason needs is already below it."
+- wCompass (how, Compass welcome; stale on the first line or circle drawn): "Pick a challenge in the list. Then tap Compass or Straightedge, and tap two points to draw."
+- wobble (how, first wobbling block; stale when that block locks or is removed): "That block wobbles. Read the line under it to see what it still needs."
+- circular (how, first greyed theorem card used; stale on the next reason or level change): "That is what you are proving, so it can't be a reason yet."
+- freePoint (how, first free point in a check; stale when the challenge checks or changes): "That point was placed by hand. Use a point where two lines or circles cross."
+- cardEarned (event, Prove block locks on level 1, 2 or 6; stale when the level changes): "The proof holds. Its theorem is now a reason card."
+- levelDone (event, Prove block locks on any other level; stale when the level changes): "The proof holds. Every block stands on its reasons."
 - built (event, challenge checks; stale when the challenge changes): "Constructed. Every point came from the compass and the straightedge."
 
 ## Family engine
@@ -167,6 +198,12 @@ none.
 - G-CO.C and G-CO.D text: Common Core State Standards for Mathematics, High School Geometry, Congruence, https://www.thecorestandards.org/Math/Content/HSG/CO/
 - Proof content (vertical angles I.15, alternate angles I.29, angle sum I.32, isosceles base angles I.5, parallelogram sides I.34) and constructions (equilateral triangle I.1, carried compass I.2, bisect angle I.9, bisect segment I.10, perpendicular I.11, copy angle I.23, parallel I.31, hexagon IV.15, square IV.6): Euclid's Elements, D. E. Joyce edition, Clark University, https://mathcs.clarku.edu/~djoyce/java/elements/elements.html
 - Every level's premise sets were checked by hand against these propositions (2026-10-27).
+- Checks run (Python, 2026-10-29): the lock rule simulated on all eight levels. Every listed solution, stacked in
+  order on the Given blocks, locks every block including Prove; the same blocks stacked upside down never lock Prove.
+  Theorem cards are used only after the level that earns them (vertical angles from level 2 on, alternate interior
+  from level 3, opposite sides from level 7). Level 1 with S5 placed under S4 locks S1 to S4 and leaves S5 wobbling.
+  Compass: C1's crossing (0, 2√3) is 4 from A and B; a 60° chord equals the radius (C7). No rule changed. Only levels 1, 2 and 6 earn a card, so the
+  draft's one "theorem is now a reason card" line is split into cardEarned and levelDone.
 
 ## Done when
 1. Level 1: placing S5 with its reason before S4 leaves it wobbling with "Needs below: m∠AEB = m∠CED"; moving S4 under it locks both.
@@ -176,8 +213,14 @@ none.
 5. Look-alike blocks never lock with any reason.
 6. C1 checks with circles about A through B and about B through A, the crossing C, and segments AC and BC; a hand-placed C near the crossing is refused.
 7. C7 checks with six constructed points stepped around the circle and the six sides drawn.
-8. Keyboard alone finishes level 1; every size in STANDARDS.md keeps the tower, the tray and the Prove block visible without page scrolling.
-9. Console clean, no network, no em dashes, "Curio Class" only in full.
+8. Focus: at 1366x768 and 1000x625 the tower is the largest thing on the Tower stage and the sheet fills the
+   Compass stage.
+9. Tap while it plays: during a lock or wobble animation and while a circle is drawing, a drag, a reason tap and a
+   level change act at once.
+10. No voice line names a control that is disabled when it plays; each how line is spoken once, then only the hint
+    changes.
+11. Keyboard alone finishes level 1; every size in STANDARDS.md keeps the tower, the tray and the Prove block visible without page scrolling.
+12. Console clean, no network, no em dashes, "Curio Class" only in full.
 
 ## Open questions
 - Title: "Proof Blocks" is also the name of a published drag-and-drop proof tool (University of Illinois,

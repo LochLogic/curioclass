@@ -17,3 +17,7 @@
 - design-the-study: editor portrait (people, Gemini) redrawn to not match fair-dice's librarian; shares news-reader with work-rate-crew.
 - flight-planner: shares firm-captain with launch-pad.
 - Pattern: the 9-12 voice bank is used up near many tools; more bank voices may be worth adding.
+
+## R03
+- work-rate-crew: voice changed news-reader -> lively-host (clears the R04 design-the-study clash).
+- Carried, unchanged: packaging-challenge invented box on the Shelf?; proof-tower rename and level order; ramp-and-roof ADA rules for homes; slice-and-stack rename; work-rate-crew practice sheet in the role play.

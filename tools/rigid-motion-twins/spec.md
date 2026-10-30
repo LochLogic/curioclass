@@ -27,13 +27,16 @@ not.
 ## Screens and modes
 Header (kit, 9-12 theme): title "Rigid Motion Twins", subtitle "Move the cast onto the print." Modes `Tracks`
 (opens first), `Criteria`. Kit buttons `Motion`, `Sound`, `Read`.
-Layout: square plane left (x and y from −10 to 10 on a sandstone texture), panel right (level list, move bar, move
-list). Under 1000 px wide the panel goes under the plane, move bar first. Under 900 px tall the level list becomes a
+Layout: square plane left (x and y from −10 to 10 on the painted sandstone, art: rmt-sandstone), panel right (level
+list under a banner of the trackway, art: rmt-trackway; move bar; move list). Under 1000 px wide the panel goes under the plane, move bar first. Under 900 px tall the level list becomes a
 dropdown so the plane and the move bar stay in view.
 
 ### Tracks (puzzle)
-- The print (target) is a dashed dark outline sunk in the rock; the cast (source) is plaster with its vertices
-  labeled A to I. Move bar: `Slide` (drag the arrow from any vertex; its tip snaps to lattice points), `Turn` (place
+- Focus: the plane with the cast and the print, the largest thing on screen, centered in the stage; the move being
+  set up (slide arrow, turn center and arc, flip line) is drawn on it in the scene ink.
+- The print (target) is a code polygon filled with the dark mud texture (art: rmt-mud) and a dashed outline, sunk
+  in the rock; the cast (source) is a code polygon filled with the plaster texture (art: rmt-plaster) with its
+  vertices labeled A to I. The texture moves, turns and mirrors with the polygon, so a flip shows on the plaster. Move bar: `Slide` (drag the arrow from any vertex; its tip snaps to lattice points), `Turn` (place
   the center on a lattice or half point, pick 90°, 180° or 270° counterclockwise, or 15° steps on level 9), `Flip`
   (tap two lattice points to set the line). `Undo`, `Start over`.
 - Each move animates (slide straight, turn along an arc, flip as a fold over the line; instant with Motion off)
@@ -45,9 +48,13 @@ dropdown so the plane and the move bar stay in view.
   (0, 0)").
 - `Measure`: tap any two vertices of either shape to see their distance (exact).
 - Level 9 (Self-twins): no print; a shape sits on the grid and you hunt every move that lands it on itself (not
-  counting doing nothing). Found moves fill a tray: "Found 3 of 3".
+  counting doing nothing). Found moves fill a tray: "Found 3 of 3". On this level `Flip` and `Turn` handles also
+  snap to the shape's vertices, edge midpoints and center, so the hexagon's slanted mirror lines (30°, 60°, 120°,
+  150°), which pass through no second lattice point, can be set.
 - Level 10 (Not twins?): `Not twins` button beside the move bar. The right call is Not twins, proved with Measure.
 ### Criteria
+- Focus: the two triangles on a ranger's field notebook page (art: rmt-notebook), center stage, with the step's
+  sentence directly under them.
 - Three cards, `SSS`, `SAS`, `ASA`. Each shows △ABC and △DEF with the given equal parts marked. `Next step` runs
   the standard three moves one at a time: slide A onto D, turn about D until AB lies on DE, flip over DE if C is on
   the wrong side. After each step one sentence says why the next part must land (SSS: "C is the one point that is
@@ -97,6 +104,8 @@ AC = 1.45.
 - Not twins pressed on a true twin: "Measure first. Every length here has a match." Trying moves on level 10 is
   allowed; after five moves a hint suggests Measure.
 - Criteria steps can go back and forth; the turn and flip use the same animation as Tracks.
+- Live while anything moves: a move animation (about 0.6 s) or a Criteria step finishes at once when the student
+  taps Undo, starts the next move, changes level or card, or switches mode; nothing waits for an animation.
 - Keyboard: Tab to the move bar; arrows move a slide tip or a center one lattice step (Shift for a half step);
   Enter applies. The move list is a live region read aloud with Read.
 - Progress (stars per level) is saved in localStorage with a `Clear progress` button; nothing else is saved.
@@ -104,9 +113,10 @@ AC = 1.45.
   landed(), notTwins(), measure(a, b), symmetriesFound(), criteria(card, step)}`.
 
 ## Look
-Accent `--brand #efe6d2` (plaster of a fossil cast), `--brand-ink #10161f`. Plane on the sandstone texture
-(average `#c9a57a`), grid lines `#2a1d12` at 25%; the print a sunken dark fill `#5b4636` with a dashed `#2a1d12`
-outline; the cast plaster with a `#2a1d12` outline and labels; motion lines (slide arrow, turn arc, flip line) in
+Accent `--brand #efe6d2` (plaster of a fossil cast), `--brand-ink #10161f`. Plane on the sandstone image
+(lightened or darkened in the build to average `#c9a57a`), grid lines `#2a1d12` at 25%; the print the mud image
+darkened to average `#5b4636` with a dashed `#2a1d12` outline; the cast the plaster image (average near the accent)
+with a `#2a1d12` outline and labels; Criteria on the notebook image (average near `#efe9da`) with the same ink; motion lines (slide arrow, turn arc, flip line) in
 `#2a1d12`, 2 px.
 Contrast (computed): brand on --panel 13.95:1, on --sec-bg 13.21:1; brand-ink on brand 14.63:1; scene ink `#2a1d12`
 on sandstone 7.13:1; plaster on the print fill 7.13:1; print fill on sandstone 3.85:1 (a graphic, needs 3:1). Paler
@@ -114,18 +124,31 @@ and greyer than polynomials-as-numbers' #f3e3a0 and function-family-reunion's #f
 #c7d2de.
 
 ## Art
-- rmt-sandstone: "a flat slab of pale rippled sandstone seen straight down, soft even light, fine grain, blank
-  surface, no marks"; 16:9; cutout no; people no; FLUX (cfart). Behind the plane, cropped square; footprints, casts
-  and the grid are drawn in code.
+Local FLUX (`scripts/localart.py`), no people anywhere. 5 images. One style: sunlit field geology, painted.
+- rmt-sandstone: a flat slab of pale rippled sandstone seen straight down, soft even light, fine sandy grain, smooth
+  blank surface; 16:9; cutout no; people no; behind the plane, cropped square.
+- rmt-plaster: a flat smooth surface of white casting plaster seen straight down, faint brush strokes and tiny air
+  bubbles, soft even light, full frame; 1:1; cutout no; people no; texture clipped to the cast polygon and the
+  level 9 shapes, moved with them.
+- rmt-mud: a flat surface of dark damp brown mudstone seen straight down, fine cracks and grit, soft even light, full
+  frame; 1:1; cutout no; people no; texture clipped to the sunken print.
+- rmt-trackway: a wide riverside shelf of pale sandstone with a long line of three-toed dinosaur footprints pressed
+  into it, ferns and a slow brown river beyond, low warm evening sun, painted illustration; 16:9; cutout no; people
+  no; the banner over the level list (cropped 4:1) and the first-load card.
+- rmt-notebook: an open field notebook page of pale cream graph paper seen straight down, faint blue grid, a soft
+  shadow at the spine, blank page, soft even light; 4:3; cutout no; people no; Criteria background.
+Drawn in code: the plane grid and axes, every polygon outline, labels, slide arrows, turn arcs, flip lines, ghosts,
+the orientation marker, Criteria's triangles and marks, preview.svg.
 
 ## Voice
 Bank voice `gravel-ranger` (Algenib), style "Say warmly with a gravelly voice, like an old ranger at a dinosaur
-trackway". No grade 9 to 11 math tool uses it (fire-lookout-triangles, grade 12, does). `Curio.voice`,
-`scope: () => state.mode`.
-- wTracks (how): "Pick slide, turn or flip, and move the cast until it fits the print."
-- wSelf (how, level 9 opens): "No print this time. Find every move that lands the shape on itself."
-- wNot (how, level 10 opens): "Is this cast a true twin? Measure before you move."
-- wCriteria (how): "Tap Next step and watch the triangle land, one move at a time."
+trackway". Not used by its math neighbors or the other specs in this batch (fire-lookout-triangles, grade 12, uses
+it and is not a neighbor). `Curio.voice`, `scope: () => state.mode + ':' + state.level`. The move list and proof
+cards are read on screen; Read speaks the hint.
+- wTracks (how, Tracks welcome; stale on the first move): "Tap Slide, Turn or Flip, then set the move on the rock. Move the cast until it fits the print."
+- wSelf (how, level 9 opens; stale on the first found move): "No print this time. Tap Turn or Flip and find every move that lands the shape on itself."
+- wNot (how, level 10 opens; stale on the first Measure or Not twins): "Is this cast a true twin? Tap Measure, then tap two corners of each footprint."
+- wCriteria (how, Criteria welcome; stale on the first step): "Pick a card, then tap Next step and watch the triangle land, one move at a time."
 - twins (event, a cast lands; stale on the next level): "Twins. That move list is your proof."
 - fewest (event, a landing in the fewest moves; stale on the next level): "And in the fewest moves. Clean work."
 - notTwins (event, Not twins correctly called; stale on the next level): "Good eye. One length doesn't match, so no move can fix it."
@@ -161,6 +184,17 @@ reuses it. Image-transformer (gr 12) uses matrices and is not in the family.
 - Glide reflection: Weisstein, Eric W., "Glide Reflection", MathWorld, https://mathworld.wolfram.com/GlideReflection.html
 - SSS, SAS and ASA: Euclid's Elements I.4, I.8 and I.26, D. E. Joyce edition, Clark University, https://mathcs.clarku.edu/~djoyce/java/elements/bookI/bookI.html
 - Footprint, levels and the SSA case are made up for this tool; every coordinate and value above was recomputed exactly in Python (2026-10-27).
+- Checks run (Python, exact integers, 2026-10-29): F has area 5.5 and no symmetry (its distance table matches itself
+  only under the identity, so every landing has one vertex match). All eight prints equal the listed motion applied
+  to the offset cast; every cast and print lies inside −10 to 10 and they never overlap; levels 3, 5, 6, 8 reverse
+  orientation, the others keep it. Level 5's flip y = 0 step stays on the rock, and the only flip that could send A
+  to A′ does not land the cast, so it needs two moves. A 180° turn about (0, 0) does not land level 4. Level 9 by
+  brute force (turns in 1° steps, mirror lines in 0.5° steps): rectangle 3, square 7, parallelogram 1 (a turn),
+  trapezoid 1 (a flip), hexagon 11; four hexagon mirror lines pass through no second lattice point, so the handles
+  now also snap to the shape's vertices, edge midpoints and center on level 9. Level 10: √5 = 2.24 and √10 = 3.16.
+  Criteria: squared sides 16, 10, 18 on both triangles; the three steps send B to (10, 1), (6, 5), (6, 5) and C to
+  (7, 4), (3, 2), (9, 2). SSA: C 53.46° with AC 6.21, or 126.54° with AC 1.45.
+- Contrast ratios in Look computed with the WCAG 2.1 formula.
 
 ## Done when
 1. Level 1: one slide ⟨9, 5⟩ lands the cast, shows "Twins!", two stars, and the move list reads (x, y) → (x + 9, y + 5).
@@ -170,8 +204,13 @@ reuses it. Image-transformer (gr 12) uses matrices and is not in the family.
 5. Level 9: the square shows "Found 7 of 7" only after all four flips and three turns; the parallelogram has no flip.
 6. Level 10: Measure shows √5 and √10 for the matching toe segments; Not twins wins the level.
 7. Criteria SSS: after three steps C lands on (9, 2); SSA shows two triangles with AC 6.21 and 1.45.
-8. Keyboard alone can finish levels 1 to 3; every size in STANDARDS.md keeps the plane and the move bar visible without page scrolling.
-9. Stars survive a reload; Clear progress empties them. Console clean, no network, no em dashes, "Curio Class" only in full.
+8. Focus: at 1366x768 and 1000x625 the plane with the cast and print is the largest thing in Tracks, and the two
+   triangles in Criteria.
+9. Tap while it plays: during a turn or flip animation, Undo, the next move, a level change and a mode switch act at
+   once and the cast ends exactly where the move list says.
+10. Level 9 hexagon: all six mirror lines can be set with the snapped handles, and "Found 11 of 11" appears.
+11. Keyboard alone can finish levels 1 to 3; every size in STANDARDS.md keeps the plane and the move bar visible without page scrolling.
+12. Stars survive a reload; Clear progress empties them. Console clean, no network, no em dashes, "Curio Class" only in full.
 
 ## Open questions
 - none.

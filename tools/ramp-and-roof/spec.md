@@ -25,16 +25,21 @@ into a cut list.
 ## Screens and modes
 Header (kit, 9-12 theme): title "Ramp and Roof", subtitle "Build it to code with one angle." Modes `Ratio lab`,
 `Ramp` (opens first), `Roof`. Kit buttons `Motion`, `Sound`, `Read`.
-Layout: stage left (a to-scale elevation drawing on dark drafting paper, re-laid out per size), panel right (job
-card, controls, readouts, `Inspect`). Under 1000 px wide the panel goes under the stage with controls first. Under
+Layout: stage left (a to-scale elevation on dark drafting paper, like an architect's presentation board: painted
+buildings, with the ramp, roof framing and dimensions drawn in code as blueprint lines; re-laid out per size),
+panel right (job card, controls, readouts, `Inspect`). Under 1000 px wide the panel goes under the stage with controls first. Under
 900 px tall the job card collapses to one line with `Job details`.
 
 Every mode shows the same triangle readout block: angle θ, opposite, adjacent, hypotenuse, sin θ, cos θ, tan θ,
 and for the other acute angle (90° − θ) its sine and cosine beside them.
 
 ### Ramp (builder)
-- Job picker `R1` to `R4` and `My porch`. The stage shows the porch (its height is the job's rise), the ground, the
-  lot line, and the ramp with its landings drawn as flat 60 in pads.
+- Focus: the ramp with its rise and run dimension lines, across the middle of the stage and the largest thing on
+  it; the building's front (art: rr-library, rr-house, rr-center, rr-shop) stands at the left and is cropped at
+  the left edge when the lot is long, so the ramp, its landings and the lot line always fit.
+- Job picker `R1` to `R4` and `My porch`. The stage shows the building's front on a code-drawn foundation whose
+  height is the job's rise (so the door sill is the porch), the porch landing, the ground, the lot line, and the
+  ramp running along the front with its landings drawn as flat 60 in pads.
 - Controls: `Runs` (1, 2, 3), `Run length` (slider and number box, 24 to 480 in, step 6 in; or drag the ramp's foot
   on the stage), `Turn back` (only with 2 runs: the second run folds back beside the first; a small plan view inset
   appears), `Width` (30 to 60 in, step 6), `Handrails` (on or off).
@@ -42,7 +47,12 @@ and for the other acute angle (90° − θ) its sine and cosine beside them.
   All pass: "Passes inspection." with the cut list: each run's surface length (the hypotenuse) and angle.
 - `My porch`: a rise box (1 to 60 in); no lot line.
 ### Roof (builder)
-- Job picker `F1` to `F5`. The stage shows the building's end wall, the rafters, the ridge, and the overhang.
+- Focus: the roof triangle (rafters, rise, run and the angle θ marked at the eave), center stage and largest; the
+  end wall under it fills the lower part of the stage.
+- Job picker `F1` to `F5`. The stage shows the building's end wall (a code shape filled with a painted texture:
+  siding, art: rr-siding, for F1, F2 and F4; logs, art: rr-logs, for F3; F5 is an architect's sketch, lines only),
+  the rafters, the ridge, and the overhang. F4 shows the house wall with its window (art: rr-window) placed so its
+  sill sits 20 in above the top of the porch wall.
 - Controls: `Shed` or `Gable`, `Pitch` x in 12 (0.5 to 18, step 0.5), or an `Angle` box in degrees (typing an angle
   shows the exact pitch, 12 tan θ, to two decimals; the stage snaps the build to the nearest half inch of pitch and
   says so), `Overhang` (0 to 24 in, step 2).
@@ -50,6 +60,7 @@ and for the other acute angle (90° − θ) its sine and cosine beside them.
   angle θ, angle at the ridge between rafter and the vertical (90° − θ), and the line "sin θ = cos(90° − θ) = 0.4472".
 - `Inspect` checks the job's rules.
 ### Ratio lab (explore)
+- Focus: the triangle and its stamped copies, center stage; the ratio table in the panel.
 - One right triangle. Drag the top corner to change the angle (1° to 89°, snaps to 0.5°), drag the far corner to
   change the size. The three side lengths change; sin, cos, tan don't, unless the angle moves.
 - `Stamp` leaves a faint copy of the current triangle, nested at the same corner, and adds a row to a small table
@@ -99,6 +110,9 @@ Roof jobs:
   slider stops at 480 in. Pitch 0.5:12 draws an almost flat roof and fails the shingle rule. Pitch 18:12 gives
   θ = 56.31°. Ratio lab angles stop at 1° and 89°, so tan never blows up.
 - Typing an angle in Roof: pitch = 12 tan θ shown exactly (two decimals); the build uses the nearest 0.5 pitch.
+- Live while anything moves: the second run folding back (0.6 s with `Turn back`, instant with Motion off) and a
+  stamp settling finish at once on any input; Inspect shows every line at once; dragging the ramp foot or a corner
+  redraws on every move.
 - Keyboard: every slider and number box works with arrows (Shift for ×4); the ramp foot and triangle corners are
   focusable handles with aria-valuetext ("run 288 inches, angle 4.76 degrees").
 - Reset: each job keeps its last build for the page session; `Reset job` restores the job's start. Nothing is saved.
@@ -106,26 +120,45 @@ Roof jobs:
 
 ## Look
 Accent `--brand #ff4d6d` (shingle red), `--brand-ink #10161f`. Stage drafting paper `#101823` with grid `#1d2a3a`;
-structure lines `#e8edf3`; dimension lines and labels `#a6b3c4`; the ramp surface and rafters in the accent;
+painted building fronts and wall textures sit on the paper at full color with a thin `#e8edf3` outline; any label
+that crosses a painting sits on a `#101823` pill so its ratio below holds; structure lines `#e8edf3`; dimension lines and labels `#a6b3c4`; the ramp surface and rafters in the accent;
 failed parts dashed `#ffb8a8` with words. Pass and fail lines always have a glyph and text.
 Contrast (computed): brand on --panel 5.39:1, on --sec-bg 5.10:1, on drafting paper 5.55:1; brand-ink on brand
 5.65:1; structure lines on paper 15.16:1; dimension labels 8.38:1. Redder than fire-lookout-triangles' flame
 #ff6150 (gr 12) and launch-pad's coral #ff7a5c (gr 9); no grade 10 or 11 math tool is red.
 
 ## Art
-none: drawn in code (porch, ramp, building, rafters, triangles, preview.svg).
+Local FLUX (`scripts/localart.py`), no people anywhere. 7 images. One style: clean painted architectural
+illustration, flat front view, soft daylight.
+- rr-library, rr-house, rr-center, rr-shop (kit of four, one shared prompt): the front of {a small one-story red
+  brick library with tall arched windows and a side door at the right end | a one-story yellow wooden cottage
+  with a low porch roof and a front door at the right end | a long one-story tan block community center with a glass door at
+  the right end | a narrow two-story corner shop with a green awning and a door at the right end}, flat straight-on
+  elevation view, the bottom edge is the floor line, blank sign boards, soft daylight, painted architectural
+  illustration, plain white background; 16:9 (rr-house and rr-shop 4:3); cutout yes; people no; Ramp, one per job
+  (My porch uses rr-house). Sizing rule: crop to content and scale so the front is 240, 360, 480 and 300 in wide;
+  it stands on the code foundation of height = rise.
+- rr-siding: muted sage green vertical board and batten wooden siding, seen straight on, even light, full
+  frame, blank boards; 1:1; cutout no; people no; texture clipped to the end wall and gable in F1, F2 and F4.
+- rr-logs: a wall of stacked round honey-brown pine logs seen straight on, even light, full frame; 1:1; cutout no;
+  people no; texture clipped to the end wall in F3.
+- rr-window: a single white double-hung window with a plain sill, straight-on view, soft daylight, painted
+  architectural illustration, plain white background; 3:4; cutout yes; people no; F4, scaled to 36 in wide.
+Drawn in code: the drafting paper and grid, foundations, porch, ramp runs and landings, handrails, lot line, roof
+framing, every triangle, dimension line and label, the Ratio lab, preview.svg.
 
 ## Voice
 Bank voice `gentle-storyteller` (Vindemiatrix), style "gentle and warm, like a grandmother reading out the job
-cards from her carpentry crew". Not used by any grade 9 to 11 math tool (function-family-reunion, gr 12, uses it).
-`Curio.voice`, `scope: () => state.mode`.
-- wRamp (how): "Here is a job card. Set the run, or drag the foot of the ramp. When it looks right, tap Inspect."
-- wRoof (how): "Pick a pitch, so many inches up for every twelve across. Then tap Inspect."
-- wLab (how): "Drag the top corner to change the angle, and the far corner to change the size. Watch the three ratios."
-- sameRatio (how, first Stamp of a second size at the same angle): "A different size, the same three ratios. They belong to the angle."
-- turnHint (how, first time R4 fails on length): "Too long for this lot. Try two runs, and tap Turn back."
+cards from her carpentry crew". Not used by its math neighbors or the other specs in this batch (function-family-reunion, gr 12, uses it and is not
+a neighbor). `Curio.voice`, `scope: () => state.mode + ':' + state.job`. Job cards and inspection lines are read on
+screen; Read speaks the hint.
+- wRamp (how, Ramp welcome; stale on the first Inspect): "Here is a job card. Set the Run length, or drag the foot of the ramp. When it looks right, tap Inspect."
+- wRoof (how, Roof welcome; stale on the first Inspect): "Set the Pitch slider, so many inches up for every twelve across. Then tap Inspect."
+- wLab (how, Ratio lab welcome; stale on the first Stamp): "Drag the top corner to change the angle, and the far corner to change the size. Then tap Stamp."
+- sameRatio (how, first Stamp of a second size at the same angle; stale when the angle moves): "A different size, the same three ratios. They belong to the angle."
+- turnHint (how, first time R4 fails on length; stale on a job change or once Turn back is on): "Too long for this lot. Set Runs to 2, then tap Turn back."
 - pass (event, Inspect passes; stale when the job changes): "That passes inspection. The cut list is ready."
-- fail (event, Inspect fails; stale on any change): "Not yet. Read the lines with a cross."
+- fail (event, Inspect fails; stale on any change): "Not yet. Read the lines with a cross, change the build, and tap Inspect again."
 
 ## Family engine
 none.
@@ -136,6 +169,16 @@ none.
 - Shingle pitch 2 in 12 or steeper: International Code Council, International Residential Code 2021, R905.2.2, https://codes.iccsafe.org/content/IRC2021P2/chapter-9-roof-assemblies (the same rule in the 2012 to 2024 editions; local amendments can differ, said in teacher notes).
 - Trig ratios and complements: OpenStax, Algebra and Trigonometry 2e, 7.2 "Right Triangle Trigonometry", https://openstax.org/books/algebra-and-trigonometry-2e/pages/7-2-right-triangle-trigonometry
 - Every job's numbers were recomputed in Python (2026-10-27).
+- Checks run (Python, exact fractions for the slope rule, 2026-10-29): R1 one run of 72 passes, uses 132 in, no
+  handrails needed; R2 288 passes (surface 289.00, θ 4.7636°), 282 fails "needs 288", 288 without handrails fails;
+  R3 one run fails (36 > 30), two of 216 pass using 552 (surface 216.75); R4 one run needs 420, two straight 480,
+  two with Turn back 240 (passes exactly). 1:12 gives sin 0.0830, cos 0.9965, tan 0.0833. F1 rise 32, rafter
+  101.19, θ 18.43°, 71.57°, 0.3162; F2 rafter 161.00 and 174.41, θ 26.57°, 0.4472; F3 169.71, 45°; F4 rises 12,
+  16, 20, 24 in at 1.5, 2, 2.5, 3 (θ 7.13°, 9.46°, 11.77°, 14.04°); F5 30° is 6.928 in 12, 6.5:12 28.44°, 7:12
+  30.26° (rise 98, rafter 194.49), 7.5:12 32.01°. Pitch 18 gives 56.31°, 0.5 gives 2.39°. My porch at rise 60 needs
+  two runs of 360 or three of 240, both inside the 480 slider. Ratio lab 30°: 0.5000, 0.8660, 0.5774. Nothing
+  failed; no rule changed.
+- Contrast ratios in Look computed with the WCAG 2.1 formula.
 
 ## Done when
 1. R2 with one run of 288 in passes; 282 in fails slope ("needs at least 288 in"); with Handrails off it fails the handrail line.
@@ -145,8 +188,13 @@ none.
 5. F2 at 6:12 with a 12 in overhang shows rise 72, rafter 174.41 in, θ 26.57°, sin θ = cos 63.43° = 0.4472.
 6. F4 passes at 2 and 2.5, fails at 1.5 (shingles) and at 3 (window); F5 passes only at 7:12 (30.26°); typing 30 shows 6.93 in 12.
 7. Ratio lab: stamping 30° at two sizes shows 0.5000, 0.8660, 0.5774 in both rows.
-8. Keyboard alone completes R2; every size in STANDARDS.md keeps the drawing, the controls and Inspect visible without page scrolling.
-9. Console clean, no network, no em dashes, "Curio Class" only in full.
+8. Focus: at 1366x768 and 1000x625 the ramp and its dimensions (Ramp), the roof triangle (Roof) and the triangle
+   with its stamps (Ratio lab) are the largest thing on the stage; the building front never pushes the ramp or the
+   lot line off the stage.
+9. Tap while it plays: during the Turn back fold, a slider, the job picker and Inspect act at once.
+10. Every building front sits on its foundation with the door sill at the porch height for every rise from 1 to 60 in.
+11. Keyboard alone completes R2; every size in STANDARDS.md keeps the drawing, the controls and Inspect visible without page scrolling.
+12. Console clean, no network, no em dashes, "Curio Class" only in full.
 
 ## Open questions
 - Homes are not required to follow the ADA ramp rules; this tool uses them as the class code for every ramp, and
