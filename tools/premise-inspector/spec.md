@@ -22,6 +22,7 @@ The Declaration of Independence argues from four premises to one conclusion; lay
 Header: title "Premise Inspector", small line "Four premises, five later voices."; mode buttons **Bench** (opens first), **Overlay**, **Pattern**; **For teachers**; Motion, Sound, Read. Layout: a section ribbon across the top of the work area (engine Reader), the light table in the middle, a panel on the right with `#hint`. At 760 wide and below the panel drops under the table; at 375 the ribbon becomes a select box.
 
 ### Bench (opens first)
+Focus: the five lit cards and their lines on the light table, center and the largest thing on screen; the panel and the reader strip stay beside and below it. The evidence drawer slides over the lower table and closes again without moving the cards; any tap during the slide acts at once.
 - The light table shows the Declaration (National Archives transcript) as five lit cards in argument order, not page order: **P1** truths, **P2** governments and consent, **P3** right to alter or abolish, **P4** the King's history, **C** conclusion. Lines run P1 to P2 to P3 ("so, when..."), P4 into P3 ("this is that case"), P3 and P4 into C. Each card shows the exact words from Content; a small **In the text** link scrolls the reader strip below the table to that sentence with a highlight.
 - Under P4 sits the **Evidence drawer** (button **Open the 27 grievances**). It slides up as 27 small tags G1 to G27 with their opening words. Filter chips: **All**, **Laws and assemblies**, **Courts**, **Armies and war**, **Trade, taxes and land** (one grouping, Content). Tapping a tag shows its full sentence. A chip count reads "10 of 27 are about laws made or blocked without the colonists' assemblies: the consent premise (P2) at work inside P4."
 - Two **Objection answered** pins hang off P3 and P4: the prudence sentence and the petitions sentence (Content). The panel says what objection each answers.
@@ -29,6 +30,7 @@ Header: title "Premise Inspector", small line "Four premises, five later voices.
 - Panel: the selected card's plain-English line (Content), and a one-line question per card: P1 "Is this a fact, a value or a promise?", P2 "Who counted as 'the governed' who could consent?", P3 "Who decides when a government is destructive?", P4 "Does a list of facts prove a design?" Answers are private notes (one box per card).
 
 ### Overlay
+Focus: the four premise cards with their stamp slots under the laid sheet, the sheet lines floating beside them; the stamp tray and sheet buttons sit at the table's edge. The sheet slide never blocks a tap: tapping a slot or a line mid-slide finishes the slide and acts at once.
 - A row of five sheet buttons in date order: **Apess 1836**, **Seneca Falls 1848**, **Douglass 1852**, **Stephens 1861**, **Lincoln 1863**. Each shows a context strip first (speaker, date, place, audience: Content) with **Lay it on the table**.
 - The sheet slides over the bench as a translucent layer (fade only with Motion off). Its excerpt lines (Content, R-ids) float near the premise they bear on; lines bearing on none sit at the edge.
 - On each premise card an empty stamp slot. The student picks a stamp (**Accepts**, **Stretches**, **Rejects**, **Not addressed**), then taps one or more sheet lines as the evidence. A stamp without evidence shows "Pin a line"; Not addressed needs none. Stamps show their word and glyph (check, outward arrows, cross, dash).
@@ -37,6 +39,7 @@ Header: title "Premise Inspector", small line "Four premises, five later voices.
 - **Next sheet** and **Lift sheet**. Stamps persist per sheet in localStorage.
 
 ### Pattern
+Focus: the 5 x 4 grid, center, with the column readouts under it.
 - A 5 x 4 grid: sheets down, premises across, filled with the student's stamps (unstamped cells dashed). **Show one reading** switches the grid to the key; **Show both** splits each cell.
 - Column readouts computed from whichever grid is shown, for example "P1: 2 accept, 2 stretch, 1 rejects."
 - Three pattern prompts, each with a private answer box: "Which premise did the most work for people the Declaration left out?", "Stephens rejects P1 and keeps P3. What does that show about how premises can be separated?", "Lincoln calls P1 a 'proposition'. What changes when a self-evident truth becomes a proposition to be tested?"
@@ -114,18 +117,19 @@ Contrast (WCAG): brand on panel 10.07, on paper 10.93; brand-ink on brand 10.25;
 Type: kit 9-12 sans for UI; quotations in the kit serif at 1.05 rem with source ids in small caps.
 
 ## Art
-none: drawn in code (cards, stamps, grid, sheet layer). No people.
+none: drawn in code. The tool is text cards, stamp glyphs and a grid on a light table: every thing the student looks at is a quotation, a premise card or a cell. No portraits of the speakers (all real people; a painted Stephens would honor him, and portraits of the others would need Gemini and Cory's review while teaching nothing the words don't). The light-table glow, stamps, ribbon, drawer tags and preview.svg (five lit cards and one stamp) are drawn in code.
 
 ## Voice
-Bank voice `science-narrator`, style "Say evenly, like an inspector reading findings into a record." Not used by any family sibling or grade 9-12 ELA neighbor. `Curio.voice`, `scope: () => state.mode + state.sheet`. The voice never reads the historical texts aloud (Read speaks the hint).
-- w-bench (how): "Four premises lead to one conclusion. Tap a card to see its words."
-- drawer (how, first open): "These are the facts offered for premise four. Try a filter."
-- left (how, first Left out toggle): "Bracketed words mark who the text left out. Tap one."
-- w-overlay (how): "Lay a sheet on the table, then stamp each premise."
-- pin (how, first stamp without evidence): "Now tap the line that shows it."
-- compared (event, after Compare; stale on any stamp change or sheet change): "Here is one reading beside yours."
-- stephens (how, first time the Stephens strip opens): "This speech defends slavery. Read it as evidence of an argument, not as an argument to accept."
-- w-pattern (how): "Each row is a speaker. Each column is a premise. Read down a column."
+Bank voice `science-narrator` (Charon), style "Say evenly, like an inspector reading findings into a record." Not used by any family sibling, any neighbor `neighbors.py` lists, or another spec in batch R10. `Curio.voice`, `scope: () => state.mode + state.sheet`. The voice never reads the historical texts aloud (Read speaks the hint).
+- w-bench (how, Bench entered; stale once a card is tapped): "Four premises lead to one conclusion. Tap a card to see its words."
+- drawer (how, first time the drawer opens; stale once a filter chip is tapped): "These are the facts offered for premise four. Tap a filter chip to group them."
+- left (how, first time Left out is turned on; stale once a bracketed phrase is tapped): "Bracketed words mark who the text left out. Tap one to open its card."
+- w-overlay (how, Overlay entered; stale once a sheet is laid on the table): "Tap a sheet button, then Lay it on the table, and stamp each premise."
+- pin (how, first stamp chosen without evidence; stale once a line is pinned or the stamp becomes Not addressed): "Now tap the sheet line that shows it."
+- ready (how, first time all four slots on a sheet are filled; stale once Compare is tapped or a slot is emptied): "All four are stamped. Tap Compare with one reading when you are ready."
+- compared (event, each Compare; stale on any stamp change or sheet change): "Here is one reading beside yours."
+- stephens (how, first time the Stephens strip opens; stale when the sheet is lifted): "This speech defends slavery. Read it as evidence of an argument, not as an argument to accept."
+- w-pattern (how, Pattern entered; stale once a prompt box has text): "Each row is a speaker. Each column is a premise. Read down a column, then answer a prompt below."
 
 ## Family engine
 `kit/founding-docs.js` (family founding-docs: rights-match, grade 5; constitutional-convention, grade 8; reconstruction-amendments, grade 8; founding-words-explorer, grade 9; premise-inspector, grade 11). No family doc exists; this spec holds the full description. Pure parts in one marked block, exposed as `__tool.fd`.
@@ -146,6 +150,7 @@ This tool uses: Doc (Declaration and five sheets), Layers (plain, leftout), Link
 - Apess, Eulogy on King Philip, second edition, Boston, 1837, title page and text: Internet Archive, https://archive.org/details/eulogyonkingphil00apes. Apess, Pequot, 1798 to 1839: Wikipedia, "William Apess", checked 2026-10-27; confirm at build.
 - Stephens, "Cornerstone Speech", March 21, 1861, Savannah, as reported: Wikisource, https://en.wikisource.org/wiki/Cornerstone_Speech (title "Vice-President" from the report's own text).
 - Gettysburg Address, Bliss copy, November 19, 1863: Wikisource, https://en.wikisource.org/wiki/Gettysburg_Address_(Bliss_copy).
+- Checks run 2026-10-29 (Python): the 27 grievance group letters in Content count L 10, J 5, W 8, T 4 (total 27); the one-reading key gives column readouts P1: 2 accept, 2 stretch, 1 rejects; P2: 2 stretch, 2 not addressed, 1 accept; P3: 2 stretch, 2 accept, 1 not addressed; P4: 4 not addressed, 1 stretch. Contrast in Look recomputed: brand on panel 10.07, on paper 10.93, brand-ink on brand 10.25.
 - Jefferson as an enslaver (more than 600 people over his adult life): Wikipedia, "Thomas Jefferson and slavery", checked 2026-10-27; confirm at build against the Thomas Jefferson Foundation, https://www.monticello.org/slavery/.
 
 ## Done when
@@ -158,6 +163,9 @@ This tool uses: Doc (Declaration and five sheets), Layers (plain, leftout), Link
 7. Stamps and notes survive a reload; Clear wipes them; with storage blocked the tool still runs and says so.
 8. At 680 x 425 and 375 wide no horizontal scroll, and the stamp tray and sheet buttons are visible without scrolling.
 9. Every stamp is readable without color (word and glyph).
+10. Focus: at 1366x768 and 680x425 the five Bench cards are the largest thing on screen; in Overlay the premise slots and the laid sheet lines are visible together without scrolling; in Pattern the grid is.
+11. Tapping a stamp slot or a sheet line while the sheet is still sliding in acts at once; tapping a card while the evidence drawer slides selects it at once.
+12. No voice line names a control that is hidden or disabled when it plays (the ready line plays only once Compare is enabled).
 
 ## Open questions
 - premise-inspector: Show Stephens' full "corner-stone" sentence on screen, or keep the summary used here?

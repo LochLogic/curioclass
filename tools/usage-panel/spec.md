@@ -17,7 +17,7 @@ You chair a dictionary's usage panel: hear five panelists argue over one contest
 - Grade 11, ELA (Language). Format: Role Play (council). Students drive on their own laptops, alone or in pairs; a teacher can also project it and let the class vote out loud.
 - 20 to 40 minutes for one case; each case stands alone.
 - Standards: L.11-12.1 (and its sub-point that usage is a matter of convention, can change over time, and is sometimes contested; L.11-12.1a). SL.11-12.1 (collaborative discussion when used in pairs: weigh and synthesize the claims on all sides).
-- Look: 9-12 dark instrument theme. Link `kit:curio`, then `kit:theme-912`. Tool accent `--brand` a warm ink red (the copy editor's pencil), checked for AA contrast on the theme panel color. No confetti, no mascots.
+- Kit: link `kit:curio`, then `kit:theme-912` (colors in Look). No confetti, no mascots.
 
 ## Screens and modes
 Header: title "Usage Panel", three mode buttons in a `.seg` group: **Hearing**, **Record**, **Ruling**; then icon buttons **Motion**, **Sound**, **Read** (ids `motion`, `sound`, `read`).
@@ -25,21 +25,25 @@ Header: title "Usage Panel", three mode buttons in a `.seg` group: **Hearing**, 
 Docket strip (always visible under the header): five case tabs, one per contested usage: **They**, **Literally**, **Hopefully**, **To boldly**, **Less**. Each tab shows the word in a large serif and a small status dot plus text ("not ruled" / "ruled"). Picking a tab keeps the current mode and swaps the case. First load opens **They** in Hearing.
 
 ### Hearing (start here)
-- Stage: a long hearing table seen from the front, drawn in code (a dark bar with five nameplates). Above each nameplate sits a panelist card: a simple non-human icon drawn in SVG and the role name. No portraits, no faces.
-- Center of the table: the **test sentence** card, large, with the contested word underlined. Arrows **Previous sentence** and **Next sentence** move through the case's 3 or 4 test sentences.
-- Tap a panelist card (or press keys 1 to 5): the card lifts and its statement on the current case appears in a speech panel beside the table. Two small buttons under the statement: **Persuasive** and **Not for me**. They only tint that card (a filled pencil mark or an empty circle, plus the word) as a private note; nothing is scored.
+- Focus: the test sentence card, center and the largest text on screen, with the speaking panelist's statement beside it; the painted hearing table frames them.
+- Stage: the painted hearing room (Art) as the backdrop, a long table seen from the front with five blank nameplates; the role names are written on the nameplates in code. On the table above each nameplate stands that panelist's painted emblem (a cutout: red pencil, ear trumpet, stack of papers, quill, notebook). No portraits, no faces.
+- Over the middle of the table: the **test sentence** card, large, with the contested word underlined. Arrows **Previous sentence** and **Next sentence** move through the case's 3 or 4 test sentences.
+- Tap a panelist's emblem or nameplate (or press keys 1 to 5): the emblem lifts and its statement on the current case appears in a speech panel beside the table. Two small buttons under the statement: **Persuasive** and **Not for me**. They only mark that nameplate (a filled pencil mark or an empty circle, plus the word) as a private note; nothing is scored.
 - **Evidence** drawer (button at the bottom of the stage): opens the case's dated evidence cards (quotes from public-domain writers and style-guide rulings). Each card has the year in large readout type.
 - **Your vote** row under the test sentence: **Acceptable**, **Acceptable in casual use only**, **Not acceptable**. After you vote, a **Real panel** bar slides in under the sentence if real American Heritage Dictionary (AHD) Usage Panel figures exist for that sentence: "In 2015, 48 percent of the AHD Usage Panel rejected this sentence. In 1996, 80 percent did." Sentences with no real panel figure show "No real panel vote on record for this sentence." The bar never shows before you vote.
 - Panel side text (`hint`): "Pick a panelist to hear them. Vote on the sentence, then see how a real panel voted."
 
 ### Record
+- Focus: the time axis with its markers and the moving year line, across the full stage width; the stance board sits right under it so a ruling's change and its marker are seen together.
 - Stage: a horizontal time axis from the case's earliest year to 2026, drawn in code, with tick labels. Markers sit on the axis: a round marker for "in use" (a writer using it), a square marker for "ruling" (a style guide or panel deciding on it). Shape plus a text label, never color alone.
 - Below the axis: a **stance board**, one row per authority that has dated rulings in this case (for example AP Stylebook, Chicago Manual of Style, APA, AHD Usage Panel). Each row shows that authority's stance as of the slider year: **Accepts**, **Accepts in limited cases**, **Advises against**, **No ruling on record** (grey, dashed). Panel rows with percentages show a thin bar with the percent number.
 - **Year** slider (big thumb, readout above it in large digits) from the case's earliest year to 2026. Dragging it moves a vertical line across the axis; markers left of the line light up, the stance board updates.
-- Buttons: **Play the record** (sweeps the slider from start to 2026 over about 12 seconds, pausing 1.5 seconds at each marker so its card can be read; with Motion off the slider jumps marker to marker on the same timing), **Stop**, **Your ruling** (adds a diamond marker at 2026 labeled "Your panel, 2026" using the ruling from Ruling mode, or "Not ruled yet" if none).
+- Buttons: **Play the record** (sweeps the slider from start to 2026 with 8 seconds of moving time in all, pausing 1.5 seconds at each marker so its card can be read: 26 s for They, the longest, 14 s for Literally and Less; with Motion off the slider jumps marker to marker on the same timing), **Stop**, **Your ruling** (adds a diamond marker at 2026 labeled "Your panel, 2026" using the ruling from Ruling mode, or "Not ruled yet" if none).
 - Tap any marker: its card opens in the side panel with the year, who, what they said or did, and the source line.
+- While Play the record runs, every control stays live: tapping a marker or dragging the slider stops the sweep at once and shows that marker or year; a case tab or mode button stops it too.
 
 ### Ruling
+- Focus: the four-row settings grid, center, with the usage note rebuilding live beside it (under it below 1000 px wide).
 - Stage: a grid. Rows are the four settings: **Text to a friend**, **News story**, **School essay**, **Graduation speech**. Columns are **Accept**, **Accept with a note**, **Avoid**. One choice per row (radio groups, big targets).
 - Under the grid: **Reasons** checklist, one checkbox per panelist argument ("The Linguist: people have used it this way for centuries" and so on). Pre-checked if you marked that panelist **Persuasive** in Hearing.
 - **Usage note** panel: a generated note in dictionary style, rebuilt live as you change choices, then freely editable in a textarea. Buttons: **Rebuild note** (overwrites edits after a confirm), **Copy note**, **Clear ruling**.
@@ -48,11 +52,11 @@ Docket strip (always visible under the header): five case tabs, one per conteste
 
 ## Content
 Panelists (the same five in every case; role names on cards, no personal names):
-1. **The Copy Editor**: icon a red pencil. Cares about what readers expect and consistent house style.
-2. **The Linguist**: icon a sound wave in a magnifier. Cares about evidence of how people actually speak and write.
-3. **The Teacher**: icon a stack of papers with a check mark. Cares about clarity and what students will be graded on.
-4. **The Poet**: icon a quill. Cares about rhythm, force and effect.
-5. **The Reporter**: icon a notebook and microphone. Cares about readers of every age and not distracting from the news.
+1. **The Copy Editor**: emblem a red pencil. Cares about what readers expect and consistent house style.
+2. **The Linguist**: emblem a brass ear trumpet (changed from a sound wave in a magnifier, so the batch has no second magnifying glass). Cares about evidence of how people actually speak and write.
+3. **The Teacher**: emblem a stack of papers with a red check mark (the check drawn in code on the painted top sheet). Cares about clarity and what students will be graded on.
+4. **The Poet**: emblem a quill. Cares about rhythm, force and effect.
+5. **The Reporter**: emblem a notebook and microphone. Cares about readers of every age and not distracting from the news.
 
 ### Case 1: They (singular they)
 Test sentences: (a) "If anyone calls, tell them I can't come to the phone." Real panel: 2008, 56 percent accepted. (b) "A person at that level should not have to keep track of the hours they put in." Real panel: 1996, 80 percent rejected; 2015, 48 percent rejected. (c) "We thank the anonymous reviewer for their helpful comments." Real panel: 2015, 58 percent rejected. (d) "Jordan uses they as their pronoun, and they will chair the meeting." No real panel vote shown (see Open question); a note card under it reads "For a person who uses they, AP (2017), Chicago (2017), APA (2019) and Merriam-Webster (2019) all use the person's pronoun." On sentence (d) the panelists all say a version of "We use the pronoun a person uses; the open question is the generic use," and the vote row is replaced by that note.
@@ -73,7 +77,7 @@ Record: 1648, earliest known sentence-adverb use (Merriam-Webster) (round). 1960
 ### Case 4: To boldly (the split infinitive)
 Test sentences: (a) "She decided to quickly finish the essay." (b) "We expect to more than double the club's members." (c) "He wanted to really try."
 Statements: Copy Editor: "Many readers still notice it. When the adverb can move without harm, I move it." Linguist: "Writers split infinitives in the 1200s and 1300s. The rule against it first appeared in print in the 1800s, with no reason older than taste." Teacher: "Try sentence (b) unsplit. To double more than our members? The split is the only clear version. Clarity wins." Poet: "Sometimes the adverb belongs right against the verb, for the beat." Reporter: "Readers do not complain about it any more than they complain about commas. If it reads cleanly, it stays."
-Record: early 1200s, Layamon's Brut has a split infinitive (round). 1300s, John Wycliffe often splits infinitives (round). 1834, a writer in the New-England Magazine proposes a rule against it (square). 1864, Henry Alford, A Plea for the Queen's English, condemns it (square). 1926, H. W. Fowler, Modern English Usage: avoiding a split means rewriting the sentence, not just moving one word, and that is not always worth it (square). 1994, Merriam-Webster's Dictionary of English Usage: the objection never had a rational basis (square). 2018, The Economist Style Guide, 12th edition: split when moving the modifier would ruin rhythm or meaning (square). Stance board: Alford: Advises against from 1864. Fowler: Accepts in limited cases from 1926. Merriam-Webster usage guide: Accepts from 1994. The Economist: Advises against from 2012 (10th edition), Accepts in limited cases from 2018.
+Record: early 1200s, Layamon's Brut has a split infinitive (round). 1300s, John Wycliffe often splits infinitives (round). 1834, a writer in the New-England Magazine proposes a rule against it (square). 1864, Henry Alford, A Plea for the Queen's English, condemns it (square). 1926, H. W. Fowler, Modern English Usage: avoiding a split means rewriting the sentence, not just moving one word, and that is not always worth it (square). 1994, Merriam-Webster's Dictionary of English Usage: the objection never had a rational basis (square). 2012, The Economist Style Guide, 10th edition: advises against splitting (square; the marker for the stance row below, added 2026-10-29 so every stance change has a marker). 2018, The Economist Style Guide, 12th edition: split when moving the modifier would ruin rhythm or meaning (square). Stance board: Alford: Advises against from 1864. Fowler: Accepts in limited cases from 1926. Merriam-Webster usage guide: Accepts from 1994. The Economist: Advises against from 2012 (10th edition), Accepts in limited cases from 2018.
 
 ### Case 5: Less (with things you count)
 Test sentences: (a) "Ten items or less." (b) "Less people came this year." (c) "The school is less than 50 miles away." (shown with the label "distance, time and money take less even for strict editors").
@@ -90,25 +94,33 @@ Record: 888, Alfred the Great writes "laes worda," less of words (OED, via secon
 - Pair mode needs no extra screen; the Hearing vote row is enough for two students to argue over.
 - Narrow screens (under 760 px): the hearing table becomes a two-row grid of cards; the stance board stacks under the axis.
 - Read button reads the visible statement, sentence or marker card through the kit fallback.
+- Nothing waits on an animation: tapping another emblem while one lifts, or a vote while the Real panel bar slides in, acts at once.
+
+## Look
+- Base `kit:theme-912` (dark). Accent `--brand #ff6f61` (the copy editor's red pencil: header rule, docket tab underline, slider thumb, selected grid cell, vote buttons' outlines), `--brand-ink #1c1203` on brand fills. Markers: round for in use, square for ruling, diamond for your panel, always with a text label. Stance words in ink with their shape (check, half check, cross, dashed box).
+- Neighbors: satire-decoder oxblood rose `#e8a598` (dE 37.1), rhetorical-situation-simulator split-flap cream, premise-inspector inspection yellow, source-mixer console cyan. Nearest catalog accents: counterpoint-frames and storyboard-studio `#ff6b6b` (dE 6.7, ELD and arts, not neighbors).
+- Contrast (WCAG 2.1, computed 2026-10-29): brand on panel `#141b25` 6.35:1, on sec-bg 6.01:1, on paper 6.89:1; brand-ink on brand 6.77:1; ink on panel 14.70:1; muted on sec-bg 7.71:1. All pass AA.
 
 ## Art
-- dictionary-desk: an old open dictionary on a dark wooden desk, low warm lamp light, shallow depth of field, no text legible, no people or hands; 16:9; cutout no; people no. Used faded behind the docket strip on first load only.
-- Everything else (table, nameplates, the five panelist icons, axis, markers, stance board) is drawn in code.
+Local FLUX (`scripts/localart.py`), one warm painted style (soft oil, lamp light). No image has a person, face or hand: the panelists are their emblems.
+- hearing-room: "A long polished wooden hearing table seen from the front in a wood-paneled room, five empty leather chairs behind it, five blank brass nameplates standing on the table, a green-shaded lamp at each end, warm lamp light, soft oil painting"; 16:9; cutout no; people no; the Hearing stage backdrop, drawn at the stage's real size (the lower third kept for the nameplate text and the sentence card). Nameplate text is written in code over the blank plates.
+- Panelist emblems: 5 cutouts, each "<item>, a single object standing upright, front view, soft oil painting, warm lamp light, plain light background"; 1:1; cutout yes; people no; each stands on the table above its nameplate, scaled to the same height (about one third of the table's front face), and lifts 8 px when its panelist speaks (no lift with Motion off). Items: a long red editing pencil standing in a small brass cup (Copy Editor); a brass ear trumpet resting on its bell (Linguist); a neat stack of plain white papers held by a black binder clip (Teacher); a white feather quill standing in a small round inkpot (Poet); a reporter's spiral notebook propped open against a small vintage silver microphone (Reporter).
+6 images, none with people. Drawn in code: the docket strip, sentence card, vote row, Real panel bar, the time axis, markers, stance board, settings grid, usage note, the Teacher's check mark and preview.svg (the table with five emblems in silhouette and a sentence card).
 
 ## Voice
-Bank `hs-narrator`, voice `Kore`, style "Read clearly and naturally, at a moderate pace". 11 lines:
-1. welcome: "Welcome to the Usage Panel. You are the chair. Five panelists will argue about one word, and you will make the ruling."
-2. hearing: "Pick a panelist to hear their case. Then vote on the sentence and see how a real dictionary panel voted."
-3. record: "This is the record. Drag the year and watch real style guides change their minds."
-4. ruling: "Now rule. Decide where this use belongs, from a text to a friend to a graduation speech, and write the usage note."
-5. case-they: "Singular they. Can one person, or anyone at all, be they?"
-6. case-literally: "Literally. Can a word that means exactly also mean the opposite?"
-7. case-hopefully: "Hopefully. Can it mean I hope, at the start of a sentence?"
-8. case-split: "The split infinitive. Is it wrong to put a word between to and its verb?"
-9. case-less: "Less or fewer. Does ten items or less break a rule, and whose rule is it?"
-10. record-end: "That is the record so far. Your panel's ruling is the newest entry."
-11. note-done: "Your usage note is ready. Compare it with the rulings that came before it."
-Lines 1 to 4 play once per mode on first visit (1 on the first tap anywhere), 5 to 9 when a case opens, 10 when Play the record reaches 2026, 11 the first time a note is built for a case.
+Bank voice `firm-captain` (Alnilam), style "Say firmly but kindly, like the clerk calling a hearing to order." Changed 2026-10-29 from `hs-narrator`, which satire-decoder (a neighbor and batch-mate) also used; firm-captain is used by no neighbor `neighbors.py` lists and no other spec in batch R10. `Curio.voice`, `scope: () => state.mode + ':' + state.case`.
+1. welcome (how, Hearing entered the first time, on the first tap anywhere; stale once a panelist is tapped): "Welcome to the Usage Panel. You are the chair. Tap a panelist to hear their case."
+2. vote (how, first statement heard; stale once a vote is cast): "When you have heard enough, tap Acceptable, Acceptable in casual use only, or Not acceptable."
+3. record (how, Record entered the first time; stale once the slider moves or Play the record is tapped): "This is the record. Drag the Year slider, or tap Play the record, and watch the rulings change."
+4. ruling (how, Ruling entered the first time; stale once a setting is chosen): "Now rule. Pick Accept, Accept with a note or Avoid for each setting, and the usage note writes itself."
+5. case-they (how, first time They opens; stale when another case opens): "Singular they. Can one person, or anyone at all, be they?"
+6. case-literally (how, first time Literally opens; same stale rule): "Literally. Can a word that means exactly also mean the opposite?"
+7. case-hopefully (how, first time Hopefully opens; same stale rule): "Hopefully. Can it mean I hope, at the start of a sentence?"
+8. case-split (how, first time To boldly opens; same stale rule): "The split infinitive. Is it wrong to put a word between to and its verb?"
+9. case-less (how, first time Less opens; same stale rule): "Less or fewer. Does ten items or less break a rule, and whose rule is it?"
+10. record-end (event, each time Play the record reaches 2026; stale on a slider move, case change or mode change): "That is the record so far. Tap Your ruling to add your panel to it."
+11. note-done (how, first time a note is built for each case; stale once the note box is edited or the case changes): "Your usage note is ready. Edit it in the box, or tap Copy note."
+On the first load the case line (5) plays after the welcome. Read speaks the hint.
 
 ## Family engine
 none. Keep the case data (one `CASES` array) and the timeline and stance-board logic in one clearly marked block.
@@ -128,15 +140,20 @@ none. Keep the case data (one `CASES` array) and the timeline and stance-board l
 - Split infinitive history (Layamon, Wycliffe, 1834, Alford 1864, Fowler 1926, MWDEU 1994, Economist 2012 and 2018): https://en.wikipedia.org/wiki/Split_infinitive (builder: keep its cited works in the source comment)
 - Less and fewer (Alfred 888, Baker 1770 quote, MWDEU 1995, Cambridge Guide 2004): https://en.wikipedia.org/wiki/Fewer_versus_less
 - Test sentences without a credit are original writing.
+- Checks run 2026-10-29 (Python on the Content figures): the AHD reject and accept figures agree (They (b): 80 percent rejected in 1996 is 20 percent accepting, 48 percent rejected in 2015 is 52 percent accepting); every stance row change has a marker on the axis (Case 4 lacked the Economist 2012 marker; added). Play the record lengths at 8 s moving time plus 1.5 s per marker: They 12 markers 26 s, Literally 4 markers 14 s, Hopefully 5 markers 15.5 s, To boldly 8 markers 20 s, Less 4 markers 14 s, all under 30 s (the old 12 s plus 1.5 s per marker ran They to 30 s). Contrast in Look computed for the named accent.
 
 ## Done when
 1. All five cases open from the docket strip, each with its panelists' statements, 3 or 4 test sentences and evidence cards, and no text says "and so on".
-2. No image or icon shows a person, face or hand; panelists are role-named cards with SVG icons.
+2. No image shows a person, face or hand; the hearing room is painted and the five panelists are painted emblems on role-named nameplates.
 3. The Real panel bar appears only after a vote and shows the exact figures listed above (for example sentence (b) in They: 80 percent rejected in 1996, 48 percent in 2015).
 4. In Record, dragging They to 2016 shows Chicago "No ruling on record" or blank, 2017 shows "Advises against", 2024 shows "Accepts"; keyboard arrows and Page Up/Down work.
-5. Play the record sweeps to 2026 and plays line 10; with Motion off it jumps marker to marker on the same timing.
+5. Play the record sweeps to 2026 in at most 26 s and plays line 10; with Motion off it jumps marker to marker on the same timing; tapping a marker or dragging the slider mid-sweep stops it and shows that marker or year at once.
 6. Overlapping markers (They, 2015 to 2019) stack and every label is readable at 1280 by 800 and at 375 px wide.
 7. Ruling builds a grammatical usage note that updates live, survives a reload (when storage works), copies, and clears after a confirm.
 8. Your ruling appears as a diamond at 2026 in Record.
 9. Stance never depends on color alone (shape plus words), the accent passes AA, and every target is at least 44 px.
-10. Voice plays only after the first tap, each mode line once, and Curio.stop() cuts speech on mode or case change.
+10. Voice plays only after the first tap, each how line once per page load, record-end every time a sweep ends, and Curio.stop() cuts speech on mode or case change; no line names a control that is hidden.
+11. Focus: at 1366x768 and 680x425 the test sentence card is the largest text in Hearing, the axis spans the stage in Record, and the settings grid is central in Ruling, each without scrolling.
+
+## Open questions
+- usage-panel: They sentence (d) shows no AHD Usage Panel figure (the spec points to an open question that was never written down). Is there a published panel figure for a person who uses they, or does the note card stay as the only evidence?

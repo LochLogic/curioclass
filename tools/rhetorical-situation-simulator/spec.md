@@ -21,6 +21,7 @@ A great speech is great for one room on one day: keep the words of Lincoln, Roos
 Header: title "Rhetorical Situation Simulator", small line "Same words. Different room."; speech picker **Lincoln, 1865** / **Roosevelt, 1941** / **Joseph, 1879**; mode buttons **Explore** (opens first), **What changed?**, **Rewrite**; Motion, Sound, Read. Each speech opens with a context card (Content), closed with **Begin**; **Context** reopens it.
 
 ### Explore (opens first)
+Focus: the five line cards on the teleprompter strip and their Holds or Strains badges. The strip is the widest and tallest thing on the stage (about 60 percent of its height at 1366x768); the board above it is a compact row of controls, and the eye moves from a flipped row straight down to the badges that changed.
 - Stage, top: the situation board, five dials drawn as rows of a split-flap departures board, like an old train station sign: **Speaker**, **Audience**, **Purpose**, **Moment**, **Medium**. Each row has three stops; the real one carries a small star and the word "real". A row flips to its next stop by a tap on it, by its **‹** and **›** buttons, or by arrow keys; the flap letters spell the current stop's words.
 - Stage, below: the five lines of the speech, as cards on a teleprompter strip, each with a status badge: **Holds** (✓) or **Strains** (✗ plus a count "2 reasons").
 - Tapping a straining card opens its reasons, one per missing tag, each naming the dial that removed it ("Moment: 'Yesterday' only works the day after.").
@@ -28,11 +29,13 @@ Header: title "Rhetorical Situation Simulator", small line "Same words. Differen
 - A **Full speech** drawer shows the whole text with the five cards boxed in place.
 
 ### What changed?
-- The tool secretly turns one dial (rounds 1 to 3) or two dials (rounds 4 to 6) away from the real setting, without showing which. The teleprompter shows only which lines hold and strain, not the reasons.
-- The student guesses by flipping rows, then presses **Lock my guess**. Result: "Right dial and stop", "Right dial, different stop: same lines strain, so both fit" (counted as right when the strain pattern matches), or "Not this one: your setting strains line 2, the mystery doesn't". Then the reasons are shown.
+- Focus: the teleprompter strip, where each line card carries two badges side by side: **Mystery** (the hidden room's Holds or Strains) and **Yours** (the board's current setting). The student flips rows until the two columns match.
+- The tool secretly turns one dial (rounds 1 to 3) or two dials (rounds 4 to 6) away from the real setting, without showing which. The Mystery badges show only which lines hold and strain, not the reasons.
+- The student guesses by flipping rows, then presses **Lock my guess**. Result: "Right dial and stop", "Right dial, different stop: same lines strain, so both fit", "Different dial, same strain: both rooms fit the evidence" (both counted as right when the strain pattern matches; Roosevelt's Moment and Medium stops both strain D1 and D3, for example), or "Not this one: your setting strains line 2, the mystery doesn't". Then the reasons are shown.
 - Rounds draw from all three speeches' dials. **New round**. A tally "4 of 6" is shown; nothing else is scored.
 
 ### Rewrite
+Focus: the open rewrite pad (original line, its reasons, Your version and Because...), which takes the stage center; the board shrinks to a one-line summary of the chosen room with **Change room**.
 - Choose any situation (rows as in Explore). Each straining line gets a **Rewrite for this room** button. It opens a private pad: the original line above (read only), the reasons below it, a text box "Your version", and a box "Because..." (one sentence on what you changed and why).
 - **Read it aloud** step: a checkbox "I read my version aloud to a partner" and a prompt "Did it sound like it belonged in this room? Change one word if not." No microphone.
 - **Make the case**: one box per speech, "Which dial changes this speech the most, and why?" with the Which dial moved most readout beside it as evidence.
@@ -91,26 +94,27 @@ Fit check for the build: with every row on its star, all 15 lines hold. Every no
 - What changed?: the mystery is drawn so that at least one line strains. "Right" means the student's setting gives the same strain pattern on all five lines. Six rounds, then **New round** keeps going; speech picker is hidden in this mode (rounds pick their own speech, named on screen).
 - Rewrite saves per speech and full situation (`rss:v1`, try/catch): reopening that situation shows the saved text. **Copy all** writes plain text with each situation spelled out. **Clear all** asks "Clear every rewrite on this device?" with **Clear** and **Keep**.
 - Speech or mode change calls `V.hush()` and stops the Player.
+- Nothing waits on an animation: a tap on a row during a flip starts the next flip at once (the letters jump to the new stop), and a tap on a card, a row or another line while Hear the line plays stops the line at once and acts.
 - Sizes: at 375 wide the rows shrink to two lines each (dial name above, stop below) with their arrows; the lines scroll beneath. At 680x425 all five rows and at least three line badges are visible without scrolling. No horizontal page scroll at any listed size.
 
 ## Look
-- Base `kit:theme-912` (dark instrument), styled as a station departures board: black split-flap rows with warm lettering that clack over when flipped (a short flip animation and a soft click with Sound on; the letters change instantly with Motion off), above a teleprompter strip with a soft top glow. Accent `--brand #ffd18c` (warm footlight: header rule, flap lettering, Real setting star, selected card ring), `--brand-ink #1c1203`. Holds uses `--ok #6fdca6` with ✓, Strains `--warn #ffb8a8` with ✗; never color alone.
-- Neighbors: argument-map blueprint cyan (dark), rhetoric-spotter electric blue (light), satire-decoder oxblood and usage-panel ink red (dark), audience-shift-briefing magenta (light). Nearest catalog accents: energy-accountant and polynomials-as-numbers (dE 13.5, both math and science, not ELA); the default theme amber `#f2a93b` is avoided (this is paler and pinker).
-- Contrast (WCAG 2.1): ink on panel 14.70:1, on sec-bg 13.93:1; muted on sec-bg 7.71:1; brand on panel 12.16:1, on sec-bg 11.52:1; brand-ink on brand 12.97:1; ok on panel 10.27:1; warn on panel 10.45:1; focus on panel 12.03:1. All pass AA.
+- Base `kit:theme-912` (dark instrument), styled as a station departures board: black split-flap rows with warm lettering that clack over when flipped (a short flip animation and a soft click with Sound on; the letters change instantly with Motion off), above a teleprompter strip with a soft top glow. Accent `--brand #fff0c2` (split-flap cream: header rule, flap lettering, Real setting star, selected card ring), `--brand-ink #1c1203`. Changed 2026-10-29 from warm footlight `#ffd18c`, which sat at dE 10.0 from neighbor american-lit-timeline `#e3c98a`. Holds uses `--ok #6fdca6` with ✓, Strains `--warn #ffb8a8` with ✗; never color alone.
+- Neighbors: argument-map blueprint cyan (dark), rhetoric-spotter electric blue (light), satire-decoder oxblood rose and usage-panel red pencil (dark), audience-shift-briefing magenta (light). Nearest catalog accents: polynomials-as-numbers `#f3e3a0` (dE 11.9, math, not a neighbor), then american-lit-timeline (dE 17.1); the default theme amber `#f2a93b` is avoided.
+- Contrast (WCAG 2.1): ink on panel 14.70:1, on sec-bg 13.93:1; muted on sec-bg 7.71:1; brand on panel 15.24:1, on sec-bg 14.45:1, flap lettering on black 18.50:1; brand-ink on brand 16.26:1; ok on panel 10.27:1; warn on panel 10.45:1; focus on panel 12.03:1. All pass AA.
 
 ## Art
-None: drawn in code (split-flap rows, teleprompter, badges). No portraits.
+none: drawn in code. The tool is a control board and a strip of quoted lines: the split-flap rows, teleprompter cards, badges and preview.svg (a three-row flap board over two line cards) are controls and text, and the speakers are real people the tool keeps as names (no portraits).
 
 ## Voice
-Bank voice `knowing-guide` (Sadaltager), style "Say in a knowledgeable, friendly way, like a veteran speechwriter backstage." Not used by any family sibling or 9-12 ELA neighbor. `Curio.voice`, `scope: () => state.mode + state.speech`. Hear the line uses the same voice through the Player.
-- w-explore (how): "Flip any row on the board. Watch which lines still hold."
-- reasons (how, first strain): "Tap a line that strains to see why."
-- real (how, first time three or more lines strain): "Press Real setting to flip every row back."
-- w-mystery (how): "Someone changed the room. Flip the rows until the same lines strain, then lock your guess."
-- right (event, Lock my guess when right; stale on New round): "That's the room."
-- notyet (event, Lock my guess when not; stale on New round): "Not this one. Look at which lines differ."
-- w-rewrite (how): "Pick a room, then rewrite a line that strains. Say why in one sentence."
-- aloud (how, first saved rewrite): "Now read it aloud to a partner. Does it belong in this room?"
+Bank voice `wise-mentor` (Gacrux), style "Say thoughtfully and warmly, like a veteran speechwriter talking backstage." Changed 2026-10-29 from `knowing-guide`, which neighbor portrait-in-four-media uses; wise-mentor is used by no neighbor `neighbors.py` lists (thesis-workshop moved off it the same day) and no other spec in batch R10. `Curio.voice`, `scope: () => state.mode + state.speech`. Hear the line uses the same voice through the Player.
+- w-explore (how, after **Begin** on the first context card; stale on the first flip): "Tap any row on the board to flip it. Watch which lines still hold."
+- reasons (how, first time a line strains; stale once a straining card is opened): "Tap a line marked Strains to see why."
+- real (how, first time three or more lines strain; stale once Real setting is tapped or fewer than three strain): "Tap Real setting to flip every row back."
+- w-mystery (how, What changed? entered; stale on the first flip): "Someone changed the room. Flip the rows until your badges match the mystery's, then tap Lock my guess."
+- right (event, each Lock my guess that is right; stale on New round): "That's the room."
+- notyet (event, each Lock my guess that is not; stale on New round): "Not this one. Compare the badges, then tap New round."
+- w-rewrite (how, Rewrite entered; stale once a pad opens): "Pick a room on the board, then tap Rewrite for this room on a line that strains."
+- aloud (how, first saved rewrite; stale once the read-aloud box is ticked): "Now read it aloud to a partner. Tick the box if it belongs in this room."
 
 ## Family engine
 `kit/rhetoric.js`, described in full in tools/argument-map/spec.md. This tool uses: Passage (three speeches, five units each, in their full text for the drawer), Marks (the boxed lines in the drawer), Player (Hear the line), and Situation tags (each unit's `depends`; the dial stops and reasons live in the tool). Not Tagger, Map or Order. The pure strain function `situate(stops, units)` sits in the tool's marked pure block, exposed as `__tool.situate`.
@@ -121,6 +125,7 @@ Bank voice `knowing-guide` (Sadaltager), style "Say in a knowledgeable, friendly
 - Roosevelt text: The American Presidency Project, "Address to Congress Requesting a Declaration of War with Japan", December 8, 1941, https://www.presidency.ucsb.edu/node/210408.
 - Executive Order 9066 (February 19, 1942; about 122,000 removed; nearly 70,000 citizens; no charges): National Archives, "Executive Order 9066", https://www.archives.gov/milestone-documents/executive-order-9066.
 - Chief Joseph text and facts (Bear Paw, General Miles's promise, Fort Leavenworth, Indian Territory, seventy deaths, the interpreter, Bishop Hare's introduction): North American Review, vol. 128, no. 269 (April 1879), Internet Archive, https://archive.org/details/sim_north-american-review_1879-04_128_269.
+- Checks run 2026-10-29 (Python, the tag rule in Content on every stop): with every row on its star all 15 lines hold; each of the 30 non-real stops strains at least one line except Lincoln's funeral stop (strains none); Roosevelt Moment "one year later" strains D1 and D3; Lincoln Purpose "punished" strains L5 only. What changed? pools: one-dial mysteries with a strain 9 of 10 (Lincoln, the funeral stop excluded), 10 of 10 (Roosevelt, Joseph); two-dial mysteries 40 of 40 each. Different dials can give the same pattern (Roosevelt Moment and Medium both strain D1 and D3), hence the "Different dial, same strain" result. Contrast in Look recomputed for the new accent.
 - "More than three months" (June to October 1877): National Park Service, Nez Perce National Historical Park, "The Nez Perce War of 1877"; confirm at build.
 
 ## Done when
@@ -131,6 +136,8 @@ Bank voice `knowing-guide` (Sadaltager), style "Say in a knowledgeable, friendly
 - What changed?: setting the same strain pattern by a different stop counts as right.
 - A rewrite and its because line survive a reload; Copy all copies plain text; Clear all asks first.
 - Context cards appear for all three speeches, including Executive Order 9066 and the interpreter note.
+- Focus: at 1366x768 and 680x425 the five line cards are the largest thing on the stage in Explore; in What changed? each card shows Mystery and Yours badges side by side.
+- Flipping a row during a flip, or tapping a card while Hear the line plays, acts at once and stops the line.
 - At 375 wide the rows stack with arrows; at 680x425 all rows and line badges show without scrolling; no horizontal scroll.
 
 ## Open questions

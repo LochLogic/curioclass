@@ -14,19 +14,19 @@ An open ending is built, not an accident: take two famous stories that refuse to
 - Grade 12 ELA, module Complex Structure and Ambiguity: "How structure choices contribute to meaning and aesthetic impact".
 - Standards: RL.11-12.5, RL.11-12.3.
 - Driver: students on laptops, alone or in pairs, after reading at least one story (Stockton about 12 minutes, Hawthorne about 22). 30 to 45 minutes for four to six trials. A teacher can project a trial and poll the room for verdicts.
-- tool.json: driver "students", minutes "30-45", modes ["Read", "Tag", "Trials"], grades_label "Grade 12". Kit starter with `kit:theme-912` (dark) and an accent override.
+- tool.json: driver "students", minutes "30-45", modes ["Story", "Tag", "Trials"] (the first mode was called Read; renamed 2026-10-29 because the kit's Read button sits in the same header), grades_label "Grade 12". Kit starter with `kit:theme-912` (dark) and an accent override.
 
 ## Screens and modes
-Kit frame. Header: "Ambiguity Lab", small line with the story; Motion, Sound, Read. A story picker: **The Lady, or the Tiger?** (Frank R. Stockton, 1882; "Which door did she point to?") and **Young Goodman Brown** (Nathaniel Hawthorne, 1835; "Was it real, or a dream?").
+Kit frame. Header: "Ambiguity Lab", small line with the story; Motion, Sound, Read. A story picker: **The Lady, or the Tiger?** (Frank R. Stockton, 1882; "Which door did she point to?") and **Young Goodman Brown** (Nathaniel Hawthorne, 1835; "Was it real, or a dream?"), each a card with its painting (Art).
 
-**Read.** The story as the current switches make it, paragraph by paragraph. Removed text shows struck through and dimmed (never hidden), so the student always sees what the trial cut; moved paragraphs carry a small "moved" tag. The question bar at the top names the two readings: **Lady | Tiger** or **Real | Dream**.
+**Story.** Focus: the text column, center and widest. The story as the current switches make it, paragraph by paragraph. Removed text shows struck through and dimmed (never hidden), so the student always sees what the trial cut; moved paragraphs carry a small "moved" tag. The question bar at the top names the two readings: **Lady | Tiger** or **Real | Dream**.
 
-**Tag.** The clues (8 in Stockton, 9 in Hawthorne) glow in the text. Tap one: a card asks **Which reading does this support?** (Reading A, Reading B, Both, Neither) and **How strongly?** (1 or 2). Students can also tag any other sentence as a clue (up to 6 extra). **Compare with ours** shows our tags beside theirs, with one line of reasoning each.
+**Tag.** Focus: the text with its glowing clues; the tag card opens beside the tapped clue, never over it. The clues (8 in Stockton, 9 in Hawthorne) glow in the text. Tap one: a card asks **Which reading does this support?** (Reading A, Reading B, Both, Neither) and **How strongly?** (1 or 2). Students can also tag any other sentence as a clue (up to 6 extra). **Compare with ours** shows our tags beside theirs, with one line of reasoning each.
 
-**Trials.** The bench: four switches on the left, the text preview in the middle, the meters on the right.
+**Trials.** The bench: four switches on the left, the text preview in the middle, the meters on the right. Focus: the meters (Balance bar on top, the largest of them) and the text preview, which change together the moment a switch flips; the switches column is narrow.
 - Switches, Stockton: **Ending**: Original (p25, the narrator's question) | Stop at p17 ("and opened it.") | Closed: Lady | Closed: Tiger (two-sentence endings written for Curio Class, marked "not Stockton"). **Princess's reflections** (p19 to p24): Keep | Remove. **Narrator's asides** (p18 and p25's first sentence): Keep | Remove. **Order**: From the king (p0) | Start in the arena (p10 to p17 first, then p0 to p9 as "how it came to this", then the rest).
 - Switches, Hawthorne: **Ending**: Original (p69 to p72) | Stop at p68 ("look up to heaven, and resist the wicked one.") | Stop at the question (p71, without p72). **Narrator's hedges** (p12's "This, of course, must have been an ocular deception, assisted by the uncertain light." and p35's ", perhaps,"): Keep | Remove. **The forest ribbon** (p48's last sentence): Keep | Remove. **The morning ribbons** (p70's "with the pink ribbons,"): Keep | Remove.
-- Meters, recomputed from the student's own tags as switches change: **Balance** (a horizontal bar, A points against B points, counting only clues still in the text); **Last clue** (which reading the last clue in reading order supports); **Asked?** (does the text still pose the question in words: Yes or No); **Answered?** (Yes only for the closed endings).
+- Meters, recomputed from the student's own tags as switches change: **Balance** (a horizontal bar, A points against B points, counting only clues still in the text; a clue tagged Both adds its strength to each side, Neither to none); **Last clue** (which reading the last clue in reading order supports); **Asked?** (does the text still pose the question in words: Yes or No); **Answered?** (Yes only for the closed endings).
 - **Run trial** saves a row to the notebook. Before saving, the student gives a **Verdict** (A, B, or Can't tell) and **Confidence** (1 to 5), and one line, "What did this change do to the meaning?" (up to 160 characters). Only one switch may differ from the original per trial unless **Two-switch trial** is ticked (marked in the row).
 
 **Notebook** (a tab under the bench): the trial table, columns Trial, Story, Change, A points, B points, Last clue, Asked?, Answered?, Verdict, Confidence, Note. Trial 0 for each story is the original text and is added automatically on first Tag. Under it the **Conclusion card**: "Which single choice of the author's does the most to keep the question open? Name the trial that shows it." and "Why might an author build a story that will not answer its own question?" (up to 400 characters each).
@@ -67,7 +67,7 @@ With our tags: Original, Real 4, Dream 9, Last clue Dream, Asked? Yes. Hedges re
 - Stockton blames the princess's jealousy on "the savage blood transmitted to her through long lines of wholly barbaric ancestors" (p13); the idea that a people's character is passed down in the blood is an old prejudice, and the story's "semi-barbaric" kingdom is a joke built on it.
 
 ## Interactions in detail
-- Switches are radio groups; changing one updates Read, the meters and the preview in under 100 ms. With Motion off, moved paragraphs jump; with Motion on they slide.
+- Switches are radio groups; changing one updates Story, the meters and the preview in under 100 ms. With Motion off, moved paragraphs jump; with Motion on they slide (300 ms), and a switch flipped mid-slide starts from where the paragraphs are, never waits.
 - The Balance bar shows numbers and icons on both sides (door with a flower for Lady, a claw for Tiger, a sun for Real, a moon for Dream); screen readers hear "Lady 5, Tiger 7, last clue Lady, asked yes".
 - Run trial is disabled until Verdict and Confidence are set; a sixth trial per story asks "Keep going?" once.
 - Clue cards and extra tags are keyboard reachable (Tab through glowing clues, Enter opens).
@@ -83,16 +83,19 @@ With our tags: Original, Real 4, Dream 9, Last clue Dream, Asked? Yes. Hedges re
 - Contrast (WCAG 2.1): brand on paper `#0d1219` 11.10:1, on panel 10.22:1, on sec-bg 9.69:1; brand-ink on brand 10.91:1; `#5fd39a` on sec-bg 8.80:1; `#ffb35c` on sec-bg 9.26:1. All pass AA.
 
 ## Art
-None needed: the bench, switches, meters, icons and preview.svg (two doors under a periwinkle question mark, a balance bar beneath) are drawn in code.
+Two painted story cards, local FLUX (`scripts/localart.py`), one dusky gouache style; no people. The bench is all controls and meters, so everything else is code.
+- pick-doors: "Two identical heavy wooden doors side by side in the curved stone wall of an ancient sunlit arena, sand floor in front, tiers of empty stone seats above, dusky gouache painting"; 16:10; cutout no; people no; the Stockton story card (about 280 px wide) and the header strip of its Story view.
+- pick-forest: "A narrow path into a dark pine forest at night under a pale moon, a single pink ribbon caught on a low branch, dusky gouache painting"; 16:10; cutout no; people no; the Hawthorne story card and the header strip of its Story view.
+2 images, none with people. Drawn in code: the switches, meters, icons (door with a flower, claw, sun, moon), the notebook and preview.svg (two doors under a periwinkle question mark, a balance bar beneath).
 
 ## Voice
-Bank voice `curious-librarian` (Aoede), style "Say curiously and warmly, like a librarian who loves a story that keeps its secret". Not used by any 9-12 ELA tool or this group. `Curio.voice`, scope the mode and story. The stories are never voiced; Read speaks the hint.
-- welcome (how, first open): "Two stories that won't answer their own question. Let's find out how they do it."
-- tag (how, first Tag): "Tap a glowing clue. Which reading does it support, and how strongly?"
-- trials (how, first Trials): "Flip one switch, give your verdict, then run the trial."
-- cut (event, a trial makes Asked? turn No; stale on the next switch change): "Now the story doesn't ask the question at all. Do you still wonder?"
-- closed (event, first closed ending; stale on the next switch change): "That ending isn't Stockton's. Does knowing the answer make it a better story or a smaller one?"
-- conclude (how, third trial saved): "Three trials in. Which one kept the question most open? Write it in the conclusion."
+Bank voice `curious-librarian` (Aoede), style "Say curiously and warmly, like a librarian who loves a story that keeps its secret". Used by no neighbor `neighbors.py` lists and no other spec in batch R10. `Curio.voice`, scope the mode and story. The stories are never voiced; Read speaks the hint.
+- welcome (how, first open; stale once a story card is tapped): "Two stories that won't answer their own question. Tap a story card to start reading."
+- tag (how, Tag entered the first time; stale once a clue is tagged): "Tap a glowing clue. Then choose which reading it supports, and how strongly."
+- trials (how, Trials entered the first time; stale once a trial is run): "Flip one switch, choose a Verdict and a Confidence, then tap Run trial."
+- cut (event, each time a switch makes Asked? turn No; stale on the next switch change): "Now the story doesn't ask the question at all. Do you still wonder?"
+- closed (how, first time a closed ending is chosen; stale on the next switch change): "That ending isn't Stockton's. Does knowing the answer make it a better story or a smaller one?"
+- conclude (how, third trial saved; stale once the Conclusion card has text): "Three trials in. Open the Notebook tab and write which one kept the question most open."
 
 ## Family engine
 none
@@ -102,6 +105,7 @@ none
 - Nathaniel Hawthorne, "Young Goodman Brown," in Mosses from an Old Manse, Project Gutenberg eBook #512, https://www.gutenberg.org/ebooks/512 ; first publication (New-England Magazine, 1835) and John Hathorne's role: Britannica, "Young Goodman Brown" and "Nathaniel Hawthorne".
 - Salem witch trials of 1692 (twenty executed): Britannica, "Salem witch trials," https://www.britannica.com/event/Salem-witch-trials
 - Paragraph and word counts: computed from the Gutenberg files on 2026-10-27.
+- Checks run 2026-10-29 (Python on fresh copies of Gutenberg #396 and #512): Stockton 26 paragraphs and 2,699 words, Hawthorne 73 paragraphs and 5,229 words by the stated rule; every clue quote found in exactly the paragraph Content names; p17 ends "and opened it."; p68 ends "resist the wicked one."; p25's first sentence (removed by Narrator's asides) leaves its question standing. Meter values with our tags, Both counted on each side: Stockton Original Lady 5, Tiger 7, last clue Lady (p23); Reflections removed Lady 1, Tiger 3, last clue Tiger (p13); Stop at p17 the same with Asked? No. Hawthorne Original Real 4, Dream 9; Hedges removed Real 4, Dream 7; Forest ribbon removed Real 2, Dream 9; Stop at p68 Real 3, Dream 3, last clue Real (p48), Asked? No. All match Done when.
 - Standards: CCSS ELA RL.11-12.3 and RL.11-12.5, https://www.thecorestandards.org/ELA-Literacy/RL/11-12/
 - Clue choices, our tags, closed endings and teacher notes: written for Curio Class.
 
@@ -114,6 +118,9 @@ none
 6. Student tags replace ours in the meters; Compare with ours shows both.
 7. Reload keeps tags, trials and the Conclusion card; Clear my work (after Yes) empties them; no network; console clean.
 8. At every size in STANDARDS.md the switches and meters are reachable without page scroll; 375 wide works in `drive.py --host`.
+9. Focus: at 1366x768 and 680x425 the text is the widest column in Story and Tag, and in Trials the Balance bar and the text preview change together when a switch flips.
+10. Flipping a switch while moved paragraphs are sliding acts at once; the header shows Story, Tag and Trials beside the kit's Read button, and Read speaks the hint.
+11. Both story cards show their paintings; no person appears.
 
 ## Open questions
 - [ambiguity-lab] "Young Goodman Brown" has a witch meeting, the devil as a traveler, a "devilish Indian" line (p8) and a witch-lore recipe with "the fat of a new-born babe" (p32). Teacher notes handle them plainly; anything a parent might want to see first?

@@ -21,12 +21,14 @@ Answer "What caused the Dust Bowl?" at a mixing desk: a rain chart, a radio broa
 ## Screens and modes
 Kit frame. Header: "Source Mixer", small line "What caused the Dust Bowl?"; Motion, Sound, Read. No modes.
 
-**The desk** (stage). Across the top, the **claim selector**: three buttons, **Drought alone**, **Drought plus farming that didn't suit the Plains**, **Farming alone**. Below it, four **channel strips** side by side, each labeled with its medium icon and short name: **Chart** (rain data), **Broadcast** (radio transcript), **Message** (government text), **Photo**. Each strip has, top to bottom: a **Solo** button (opens the source in the monitor), its list of **takes** (the parts routed in, each a small lit tile with a +, - or E badge), a vertical **fader** 0 to 10 (default 5), and a **contribution LED** row: green segments for support, coral for complications, grey for effects-only, sized by fader times takes.
+Focus: the four channel strips with their faders and LEDs, center and the largest thing on the stage, and the claim meter in the master section beside them: every fader move, route or claim change lights the LEDs and moves the meter at once, so the eye goes from the fader to the meter. The monitor sits under the strips and never covers the faders (a drawer at small sizes that leaves the faders' row visible).
+
+**The desk** (stage). Across the top, the **claim selector**: three buttons, **Drought alone**, **Drought plus farming that didn't suit the Plains**, **Farming alone**. Below it, four **channel strips** side by side, each headed by its painted object (Art) and short name: **Chart** (rain data), **Broadcast** (radio transcript), **Message** (government text), **Photo**. Each strip has, top to bottom: a **Solo** button (opens the source in the monitor), its list of **takes** (the parts routed in, each a small lit tile with a +, - or E badge), a vertical **fader** 0 to 10 (default 5), and a **contribution LED** row: green segments for support, coral for complications, grey for effects-only, sized by fader times takes.
 
 **The monitor** (under the strips, or a drawer at small sizes) shows the soloed source:
 - Chart: a data-desk line chart of yearly rainfall (inches) with a filter bar: **Division** (Oklahoma Panhandle, Southwest Kansas, Texas High Plains), **From** and **To** years (1895 to 1960), **Average line** toggle (1895-1960 average for that division), and **Table** to see the DataTable. A **Take this reading** button turns the current view into a take (Interactions).
-- Broadcast: the transcript paragraphs with a radio header ("Fireside chat, September 6, 1936"); tap a highlighted passage and **Route it**.
-- Message: the document with a letterhead line ("Message to Congress, February 10, 1937"); same routing.
+- Broadcast: the transcript paragraphs with a radio header (the painted radio beside the header text) ("Fireside chat, September 6, 1936"); tap a highlighted passage and **Route it**.
+- Message: the document on the painted blank letter with a letterhead line drawn in code over it ("Message to Congress, February 10, 1937"); same routing.
 - Photo: the image large, with the Met caption and a note on dates; **Route it** routes the single take.
 
 **The master section** (panel): the **claim meter** for the chosen claim (Support and Complications bars, with counts), a **Media used** row of four lamps, the **balance readout** (each channel's share of the faders as a percent, with the warning when one passes 50), and **Mixdown**.
@@ -88,7 +90,8 @@ In-text: (National Centers for Environmental Information), (Roosevelt, "Fireside
 ## Interactions in detail
 - Routing: a take can be routed once; tap its tile on the strip to unroute. Each strip holds up to 5 takes (the chart up to 4 readings; a fifth asks to replace the oldest).
 - Take this reading: computes the view's average and percent against the 1895-1960 average for the division and labels the tile ("OK Panhandle 1933-37: 13.26 in, -32%"). A range shorter than 3 years is refused: "Pick at least 3 years; one dry year isn't a drought."
-- Faders: drag, arrow keys (1 step), Page Up and Page Down (5 steps); each shows its number. Meters and the balance readout update at once; with Motion on, meter bars ease over 200 ms; with Motion off they jump.
+- Faders: drag, arrow keys (1 step), Page Up and Page Down (5 steps); each shows its number. Meters and the balance readout update at once; with Motion on, meter bars ease over 200 ms; with Motion off they jump. A fader move during an ease starts the next ease from where the bar is, never waits.
+- Edge cases: with every routed strip at fader 0 the balance has no shares (no division by zero): each routed strip reads "Muted source" and no share warning shows. One strip alone with takes is always "Leaning on one channel" (100 percent).
 - Changing the claim keeps every take and fader; only the + and - badges and meters change, so the student can see one mix argue three ways.
 - Mixdown: the order of lines is the student's; the claim line can be edited (kept local). Copy outline gives plain text with citations and the Works Cited.
 - Store: claim, takes, faders, order and complication answers save to localStorage `sm-desk` (try/catch); Clear desk (after Yes) empties it.
@@ -98,21 +101,27 @@ In-text: (National Centers for Environmental Information), (Roosevelt, "Fireside
 ## Look
 - `kit:theme-912` dark, a studio console. Accent `--brand #45d4e8` (console cyan: claim selector, fader caps, Take this reading), `--btn #45d4e8` with `--brand-ink #1c1203` text; `--focus` overridden to `#ffffff` so focus never matches the cyan. Meters: support `#6fdca6`, complications `#ffb8a8`, effects `#a6b3c4`, each with its +, - or E badge. Chart: rain line `#5aa9ff` on `--gr-bg`, average line `#ffcf5c` dashed, the 1933-37 and 1952-56 bands shaded when a reading covers them.
 - Strip labels in small caps, faders as long slots with cap knobs drawn in CSS, LED segments as rounded rectangles.
-- Neighbors: chart-narrator (wave 4, not yet specced), satire-decoder oxblood, usage-panel ink red, boolean-builder orchid. Group siblings: Research Notebook fountain-pen blue (light), Portrait in Four Media coral (dark), Question Sharpener violet (light), Source Portfolio green (light), Enduring Questions lantern gold (dark). Cyan on dark is new among 9-12 ELA tools.
+- Neighbors: chart-narrator (wave 4, not yet specced), satire-decoder oxblood rose, usage-panel red pencil, boolean-builder orchid. Group siblings: Research Notebook fountain-pen blue (light), Portrait in Four Media coral (dark), Question Sharpener violet (light), Source Portfolio green (light), Enduring Questions lantern gold (dark). Cyan on dark is new among 9-12 ELA tools.
 - Contrast (WCAG 2.1): brand on paper 10.59:1, on panel 9.76:1, on sec-bg 9.24:1; brand-ink on brand 10.41:1; focus white on panel 17.31:1; support on sec-bg 9.73:1; complications on sec-bg 9.90:1; rain line on gr-bg 7.46:1; average line on gr-bg 12.50:1. All pass AA.
 
 ## Art
-Real public-domain photograph from The Met (Open Access, CC0), fetched with `python scripts/pd_art.py source-mixer met:260387`: Dorothea Lange, Abandoned Farm in the Dustbowl, Coldwater District, near Dalhart, Texas, June 1938, printed ca. 1972, gelatin silver print, Gift of Phyllis D. Massar, 1972 (checked 2026-10-27: isPublicDomain true with a primary image). Credit from `art/public-domain.json`. Everything else (console, strips, faders, radio and letterhead headers, preview.svg showing four strips and a meter) is drawn in code.
+Real public-domain photograph from The Met (Open Access, CC0), fetched with `python scripts/pd_art.py source-mixer met:260387`: Dorothea Lange, Abandoned Farm in the Dustbowl, Coldwater District, near Dalhart, Texas, June 1938, printed ca. 1972, gelatin silver print, Gift of Phyllis D. Massar, 1972 (checked 2026-10-27: isPublicDomain true with a primary image). Credit from `art/public-domain.json`. It heads the Photo strip as a thumbnail and fills the monitor when soloed. No people appear in it.
+
+Three strip heads, local FLUX (`scripts/localart.py`), one warm 1930s still-life painting style, plain light background so they sit on the dark strips as cutouts:
+- radio-1930s: "A 1930s wooden cathedral-style tabletop radio with a curved top, cloth speaker grille and two round knobs, warm still-life painting, plain light background"; 1:1; cutout yes; people no; Broadcast strip head (about 72 px) and beside the monitor's radio header (about 140 px).
+- letter-blank: "A sheet of cream typing paper lying slightly curled on a dark wooden desk beside a black fountain pen, blank paper, warm still-life painting"; 4:3; cutout no; people no; Message strip head (about 72 px) and, faded, behind the monitor's Message document so the code letterhead and text sit on it.
+- rain-gauge: "A brass rain gauge fixed to a weathered wooden fence post above short dry prairie grass, warm still-life painting, plain light background"; 3:4; cutout yes; people no; Chart strip head (about 72 px).
+4 images (1 photograph, 3 painted), none with people. Drawn in code: the console, strips, faders, LEDs, the chart, the letterhead and radio header text, the Mixdown sheet and preview.svg (four strips and a meter).
 
 ## Voice
-Bank voice `news-reader` ("Say clearly and steadily, like a trusted radio news reader"): fits a desk built around a 1936 radio broadcast. `Curio.voice`, one scope, `welcomeAfter: true`. The tool never reads the sources aloud (Read reads the hint).
-- w-desk (how, welcome): "Pick a claim. Then solo a source, route the parts you'll use, and set each fader."
-- reading (how, first chart solo): "Set the years and the division, then press Take this reading."
+Bank voice `news-reader` (Rasalgethi), style "Say clearly and steadily, like a trusted radio news reader": fits a desk built around a 1936 radio broadcast. Used by no neighbor `neighbors.py` lists for this tool and by no other spec in batch R10. `Curio.voice`, one scope, `welcomeAfter: true`. The tool never reads the sources aloud (Read reads the hint).
+- w-desk (how, welcome; stale once a claim is tapped): "Tap a claim at the top. Then tap Solo on a strip, route the parts you'll use, and set each fader."
+- reading (how, first chart solo; stale once a reading is taken): "Set the division and the years, then tap Take this reading."
 - lean (event, each time one channel passes half the mix; stale if the faders change before it plays): "Most of this answer rests on one source."
-- muted (how, first muted source): "That source is routed, but its fader is at zero."
-- context (how, first 1950s reading): "The fifties were as dry. Open the context card to see what was different."
-- comp (how, first complication routed): "That part pushes against your claim. Say how your answer handles it."
-- strong (event, each time the mix becomes Strong): "Strong mix. Three media, and no single source carries it."
+- muted (how, first muted source; stale once that fader is above 0 or the take is unrouted): "That source is routed, but its fader is at zero. Raise the fader to lean on it."
+- context (how, first 1950s reading; stale once the Context card opens): "The fifties were as dry. Tap Context card to see what was different."
+- comp (how, first complication routed; stale once its answer box has text): "That part pushes against your claim. Open Mixdown and say how your answer handles it."
+- strong (event, each time the mix becomes Strong; stale if it stops being Strong before it plays): "Strong mix. Three media, and no single source carries it."
 
 ## Family engine
 research (`kit/research.js`), described in full in Question Sharpener's spec. This tool uses: Source (four sources with medium, context and segments; the chart's readings are made at run time as segments), Weight (fader shares and the over-50-percent flag), Conflicts and corroboration (the + / - tags per claim), Cite (MLA 9, including same-author entries, a dataset, a radio transcript, a government message and a museum photograph) and Store (`sm-desk`). The chart uses the data-desk engine (`kit/data-desk.js`, docs/families/data-desk.md): DataTable and the line Chart with an average line.
@@ -125,18 +134,21 @@ research (`kit/research.js`), described in full in Question Sharpener's spec. Th
 - 1950s drought without 1930s-scale dust, mainly because of conservation: R. Douglas Hurt, "Dust Bowl," Encyclopedia of the Great Plains, University of Nebraska-Lincoln, http://plainshumanities.unl.edu/encyclopedia/doc/egp.pe.022.html (summary only).
 - Black Sunday, April 14, 1935; Soil Conservation Service created April 27, 1935: Kansas Historical Society, Kansapedia, "Dust Bowl," https://www.kshs.org/kansapedia/dust-bowl/12040 ; USDA Natural Resources Conservation Service history.
 - Citation forms: MLA Handbook, 9th ed. (2021).
+- Checks run 2026-10-29 (Python): re-pulled the three NOAA files (66 years each) and recomputed every cell of the Content table; all match (OK Panhandle 1933-37 13.26 in, -32 percent; SW Kansas 1952-56 12.78 in, -32 percent; TX High Plains 1895-1929 19.46 in, +4 percent; 1956 driest in all three). Ran the meter rule on the Done when cases: R1 + M3 at 5/5 gives Support 10, Media 2, not Strong; adding a 1933-37 reading gives Support 15, Media 3, Strong; Message at 10 is 10 of 20 (50 percent, no warning). The old check "11 of 21" could not happen (faders stop at 10), so it now lowers Broadcast to 4: Message 10 of 19, 53 percent, warns. Drought alone with the same takes: Support 10, Complications 5 (M3), Strong only once M3's box is answered. Worst cases: all faders 0, and one strip alone (100 percent), behave as in Interactions.
 - Standards: CCSS ELA RI.11-12.7, https://www.thecorestandards.org/ELA-Literacy/RI/11-12/ ; W.11-12.8, https://www.thecorestandards.org/ELA-Literacy/W/11-12/
 
 ## Done when
 1. The three NOAA files load (66 years each) and Take this reading gives: Oklahoma Panhandle 1933-37 "13.26 in, -32%"; Southwest Kansas 1952-56 "12.78 in, -32%"; Texas High Plains 1895-1929 "19.46 in, +4%"; a 2-year range is refused.
 2. The first 1950s reading shows the Context card button; a 1895-1929 reading marks M4 "checked" with its percent.
 3. Every broadcast and message take matches The American Presidency Project text word for word.
-4. With claim Drought plus farming, takes R1 and M3 at faders 5 and 5: Support 10, Complications 0, Media 2 of 4, no Strong mix; adding a 1933-37 reading at fader 5 gives Support 15, Media 3 and Strong mix; raising the Message fader to 10 (10 of 20, exactly half) does not warn, 11 of 21 warns "Leaning on one channel". Adding P1 lights Effects and changes neither bar.
+4. With claim Drought plus farming, takes R1 and M3 at faders 5 and 5: Support 10, Complications 0, Media 2 of 4, no Strong mix; adding a 1933-37 reading at fader 5 gives Support 15, Media 3 and Strong mix; raising the Message fader to 10 (10 of 20, exactly half) does not warn; then lowering Broadcast to 4 (Message 10 of 19) warns "Leaning on one channel". Adding P1 lights Effects and changes neither bar.
 5. Switching to Drought alone with the same takes: M3 counts as a complication and shows in Mixdown's Complications with an answer box.
 6. Mixdown lists takes in the student's order with in-text citations, and Works Cited matches Content, with "---." for the second Roosevelt entry, alphabetized.
 7. Reload keeps everything; Clear desk (after Yes) empties it; the photo is bundled; no network requests at run time; console clean.
 8. At every size in STANDARDS.md the claim selector, the four strips' faders and the meter are visible without scrolling the page; 375 wide works in `drive.py --host`.
 9. Voice: welcome once, how lines once, "Most of this answer rests on one source" every time a channel passes half; only "Curio Class" appears.
+10. Focus: at 1366x768 and 680x425 the four strips with their faders are the largest thing on the stage and the claim meter is visible beside or under them without scrolling; soloing a source never hides the faders.
+11. Dragging a fader while the meter bars are still easing moves them at once from where they are; the radio, letter and rain gauge heads and the Lange photo show on their strips.
 
 ## Open questions
 - [source-mixer] The concept names a "video transcript"; this uses the transcript of a 1936 radio broadcast (public domain, and the period's own medium). OK, or find a public-domain film (for example The Plow That Broke the Plains, 1936, a US government film) and use its narration instead?

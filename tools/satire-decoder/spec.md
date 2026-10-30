@@ -15,12 +15,13 @@ Every satire runs two cases at once: the speaker's face-value case is already pi
 ## Who and how
 Grade 11 (works 10-12), ELA. Driver: students, often alone on laptops; a teacher can project one case for the class. 15 to 40 minutes (one case is about 12 minutes). Standards: RL.11-12.6 (distinguish what is directly stated from what is really meant: satire, sarcasm, irony, understatement). Also RL.11-12.1 (cite strong and thorough textual evidence: each clue is a quoted line).
 
-Look: 9-12 band. Link `kit:curio` then `kit:theme-912`; set `--brand` to a muted oxblood (about #8a3b3b, keep AA contrast against the theme). A dark detective desk: the passage on an aged paper card at left, a corkboard-style "case board" at right drawn in code (two columns, pins, string lines). Minimal celebration: no confetti, no mascots.
+Kit: link `kit:curio` then `kit:theme-912` (colors in Look). Minimal celebration: no confetti, no mascots.
 
 ## Screens and modes
 Header: title "Satire Decoder" with small line "Said one way. Meant another." Mode buttons (`.seg`): **Case Files**, **Sincere or Satire?**, **Open a Case**. Then the kit buttons **Motion**, **Sound**, **Read**.
 
 ### Case Files (default, explore first)
+Focus: on the shelf, the four painted folder covers. On the desk, the passage is the focus while gathering (left, about 55 percent of the stage width, the largest thing on screen); from step 2 on, the case board takes the larger share and the passage narrows to a column, so the eye is on whatever the current step asks for. Under 900 px wide the **Board** / **Text** toggle switches to the step's side on its own when a step is tapped.
 1. **Case shelf.** Four case folders as cards (cover image, title, author, year, one-line teaser). Click a folder to open it. Button on each: **Open case**.
 2. **Case desk.** Left: the passage, split into numbered lines (the chunks in Content). Right: the case board with two columns.
    - Top of the board, already filled: **Face value**, a typed card stating what the speaker literally says (from Content). It has a faint stamp "AS STATED".
@@ -35,12 +36,13 @@ Header: title "Satire Decoder" with small line "Said one way. Meant another." Mo
    - The file's claim beside yours, slot by slot, with the verdict text for whatever option you chose (best, partial or misread, as written in Content). Verdict words are shown as plain labels: "Strongest read", "Partly there", "Misread".
    - One "Talk it over" question for the case.
    - Buttons: **Change my read** (closes the folder, keeps everything), **Reset case** (clears tags, claim, pins for this case), **Next case**.
+   - The folder slide never blocks a tap: tapping Change my read or a claim slot mid-slide finishes the slide and acts at once.
 
 ### Sincere or Satire? (optional challenge)
-Ten short original pieces, one at a time, on a clipping card. Three buttons: **Sincere**, **Satire**, **Need more context**. After a choice, the card flips to show the answer and "The tell" (one or two sentences). Buttons: **Next clipping**, **Start over**. A small tally at the end: "You matched 7 of 10." No timer, no stars. Final screen line: "An extreme idea is not proof of satire. Look for the writer signaling a second meaning."
+Focus: the clipping card, center and large, with its three buttons right under it. Ten short original pieces, one at a time, on a clipping card. Three buttons: **Sincere**, **Satire**, **Need more context**. After a choice, the card flips to show the answer and "The tell" (one or two sentences). Buttons: **Next clipping**, **Start over**. A small tally at the end: "You matched 7 of 10." No timer, no stars. Final screen line: "An extreme idea is not proof of satire. Look for the writer signaling a second meaning."
 
 ### Open a Case (bring your own text)
-A paste box (limit 4,000 characters, counter shown) with **Split into lines**. Sentences split on . ! or ? followed by a space or line break; each becomes a tappable line with the same seven tags. The board has an editable **Face value** box and three free-text slots (Target, Charge, Method) plus the Clues tray and pinning. Buttons: **Print case** (window.print with a clean print stylesheet: passage with tags, face value, claim, pinned clues), **Clear**. Note under the box: "Your text stays on this device. Nothing is sent anywhere." A draft may be kept in localStorage `curio-satire-draft` (try/catch).
+Focus: the paste box until it is split, then the tappable lines, as in Case Files. A paste box (limit 4,000 characters, counter shown) with **Split into lines**. Sentences split on . ! or ? followed by a space or line break; each becomes a tappable line with the same seven tags. The board has an editable **Face value** box and three free-text slots (Target, Charge, Method) plus the Clues tray and pinning. Button: **Clear** (asks "Clear this case?" with **Clear** and **Keep**). Print case was removed 2026-10-29 (no print cards: Save on this device is enough). Note under the box: "Your text stays on this device. Nothing is sent anywhere." A draft may be kept in localStorage `curio-satire-draft` (try/catch).
 
 ## Content
 
@@ -160,32 +162,39 @@ Talk it over: "Write a Devil's Dictionary definition for a word from school life
 - Open a Case extremes: empty paste disables **Split into lines**; over 4,000 characters the counter turns to a warning and the extra is not accepted; a single giant sentence still becomes one line; more than 80 lines shows "Long text: consider pasting one passage at a time." and still works.
 - Read button: reads the hint for the current step (kit fallback); it never reads the full passage unless the student selects a line and presses Read, which reads that line with the browser voice.
 - Motion off: folder and card flips become instant fades; string lines appear without drawing animation.
+- Nothing waits on an animation: string lines and card flips finish at once when a new tap comes, and the tap acts.
 - Small screens: below about 900px wide, the board stacks under the passage with a **Board** / **Text** toggle.
 
+## Look
+- Base `kit:theme-912` (dark). A detective desk at night: the passage on an aged paper card at left, the case board at right over the painted cork texture, with pins, string lines and index cards drawn in code.
+- Accent `--brand #e8a598` (oxblood rose: header rule, selected line, stepper, button text and outlines), `--brand-ink #1c1203` on brand fills. Oxblood `#8a3b3b` is used only as a fill (the stepper's current step, the AS STATED stamp, the folder tab) with light text `#f3e6e3`. Tag marks carry the tag name in text, never color alone.
+- Neighbors: rhetorical-situation-simulator split-flap cream, usage-panel red pencil `#ff6f61` (dE 37.1 from this accent), premise-inspector inspection yellow, argument-map blueprint cyan. Nearest catalog accent: carrying-capacity `#e2a19c` (dE 4.6, science grade 9, not a neighbor).
+- Contrast (WCAG 2.1, computed 2026-10-29): brand on panel `#141b25` 8.46:1, on sec-bg 8.02:1; brand-ink on brand 9.03:1; `#f3e6e3` on oxblood 6.22:1. All pass AA. (The old plan to set `--brand` to oxblood itself failed: 2.28:1 on panel.)
+
 ## Art
-Made locally by FLUX. No people, faces or hands anywhere.
-- cover-proposal: an 18th-century printed pamphlet lying folded on a dark wooden table beside an empty pewter plate and fork, candlelight, muted; 16:10; cutout no; people no.
-- cover-egg: a single soft-boiled egg in a tiny ornate egg cup, top cracked, beside a toy-sized wooden sailing ship, dark velvet background; 16:10; cutout no; people no.
-- cover-pews: empty wooden church pews and tall organ pipes in dim morning light, a small flag on a stand near the front; 16:10; cutout no; people no.
-- cover-ink: a tipped-over glass inkwell with a sharp steel pen nib on yellowed paper, a small pool of spilled black ink, warm lamplight (changed at the spec check: usage-panel already uses an open dictionary); 16:10; cutout no; people no.
-- board-texture: dark cork detective board surface, seamless, low contrast (changed at the spec check: savings-plan already uses a walnut desk); 16:9; cutout no; people no.
-The case board, pins, string, index cards, stamps, tag marks and the manila folder are drawn in code.
+Local FLUX (`scripts/localart.py`), one muted oil-painting style for all five. No image has a person, face or hand.
+- cover-proposal: "An 18th-century printed pamphlet lying folded on a dark wooden table beside an empty pewter plate and fork, blank cream paper, candlelight, muted oil painting"; 16:10; cutout no; people no; Case 1 folder cover on the shelf and the desk header.
+- cover-egg: "A single soft-boiled egg in a tiny ornate egg cup with its top cracked, beside a toy-sized wooden sailing ship, dark velvet background, muted oil painting"; 16:10; cutout no; people no; Case 2 cover.
+- cover-pews: "Empty wooden church pews and tall organ pipes in dim morning light, a small flag on a stand near the front, muted oil painting"; 16:10; cutout no; people no; Case 3 cover.
+- cover-ink: "A tipped-over glass inkwell with a sharp steel pen nib on yellowed blank paper, a small pool of spilled black ink, warm lamplight, muted oil painting"; 16:10; cutout no; people no; Case 4 cover (an open dictionary was avoided: usage-panel once used one).
+- board-texture: "Dark brown cork board surface, seamless even texture, soft low light, full frame"; 16:9; cutout no; people no; tiled under the case board (a walnut desk was avoided: savings-plan uses one).
+5 images, none with people. Drawn in code: the case board, pins, string, index cards, stamps, tag marks, the manila folder, the clipping cards and preview.svg (a folder cover and a pinned card).
 
 ## Voice
-Bank "hs-narrator", voice "Kore", style "Read clearly and naturally, at a moderate pace". Passages are read on screen, not narrated.
-1. welcome: "Welcome to the Satire Decoder. Every case here says one thing and means another. Your job is to prove the difference."
-2. shelf: "Pick a case file. Each one holds a real piece of satire, written long ago."
-3. gather: "Read the speaker's words. Tap any line that feels wrong for what it is saying, and tag the trick it uses."
-4. claim: "Now make your claim. Who is the real target, what is the charge, and how does the writer land it?"
-5. defend: "Pin two or three clues to your claim. A claim with no clues is only a guess."
-6. file: "Here is the case file. Compare its reading with yours. Where you differ, decide who has the better evidence."
-7. case-proposal: "Dublin, seventeen twenty nine. The poor are starving, and a calm planner has a solution."
-8. case-egg: "The empire of Lilliput is at war. An official explains why."
-9. case-pews: "A church prays for victory before its soldiers march. Then a stranger walks in."
-10. case-dictionary: "A dictionary that defines polite words by what people really mean."
-11. sincere: "Some of these clippings are satire. Some are sincere, even when they sound extreme. Read each one and decide."
-12. sincere-end: "Remember, an extreme idea is not proof of satire. Look for the writer signaling a second meaning."
-13. open: "Paste any text you want to decode. It stays on this device. Nothing is sent anywhere."
+Bank voice `hs-narrator` (Kore), style "Read clearly and naturally, at a moderate pace". Kept: in batch R10 usage-panel moved off it (to `firm-captain`), and no other neighbor uses it. `Curio.voice`, `scope: () => state.mode + state.case`. Passages are read on screen, never narrated; Read speaks the hint (or a selected line, as in Interactions).
+1. welcome (how, Case Files entered the first time; stale once a folder is opened): "Welcome to the Satire Decoder. Every case here says one thing and means another. Tap Open case on a folder to start."
+2. gather (how, first case desk opened; stale once a line is tagged): "Read the speaker's words. Tap a line that seems wrong for what it says, then pick the trick it uses."
+3. claim (how, first time step 2 is tapped; stale once all three slots are filled): "Now make your claim. Tap Target, Charge and Method on the board, and pick one option for each."
+4. defend (how, first time step 3 is tapped; stale once two clues are pinned): "Drag two or three clue cards onto your claim, or tap a card and then tap Pin."
+5. file (how, first case file opened; stale when the folder closes): "Here is the case file. Where you differ, decide who has the better evidence, then tap Change my read or Next case."
+6. case-proposal (how, first time Case 1 opens; stale when another case or the shelf opens): "Dublin, seventeen twenty nine. The poor are starving, and a calm planner has a solution."
+7. case-egg (how, first time Case 2 opens; same stale rule): "The empire of Lilliput is at war. An official explains why."
+8. case-pews (how, first time Case 3 opens; same stale rule): "A church prays for victory before its soldiers march. Then a stranger walks in."
+9. case-dictionary (how, first time Case 4 opens; same stale rule): "A dictionary that defines polite words by what people really mean."
+10. sincere (how, Sincere or Satire? entered; stale once a choice is tapped): "Some clippings are satire. Some are sincere, even when they sound extreme. Tap Sincere, Satire or Need more context."
+11. sincere-end (event, each time the tenth clipping is answered; stale on Start over or a mode change): "Remember, an extreme idea is not proof of satire. Look for the writer signaling a second meaning."
+12. open (how, Open a Case entered; stale once Split into lines is tapped): "Paste any text in the box, then tap Split into lines. It stays on this device."
+A case intro (6 to 9) plays before the gather line when both are due.
 
 ## Family engine
 none. Keep the tag menu, clue tray and pinning in one clearly marked block ("CASE BOARD") so it could later be lifted into a kit file.
@@ -201,6 +210,7 @@ none. Keep the tag menu, clue tray and pinning in one clearly marked block ("CAS
 - The Cynic's Word Book (1906) retitled The Devil's Dictionary (1911): Encyclopaedia Britannica, "Ambrose Bierce": https://www.britannica.com/biography/Ambrose-Bierce
 - Earth's surface about 71 percent water: USGS Water Science School, "How Much Water is There on Earth?": https://www.usgs.gov/special-topics/water-science-school/science/how-much-water-there-earth
 - Sincere or Satire? clippings, face value cards, notes, tags and claim options: original text written for Curio Class.
+- Checks run 2026-10-29 (Python on the Content lists): every case has exactly four options per slot with one Strongest read each; the clippings split Satire 5 (1, 3, 5, 7, 9), Sincere 4 (2, 4, 6, 8), Need more context 1 (10), so the tally runs 0 to 10; the pin limit is 3; contrast in Look computed for the accent (the original oxblood-as-brand failed AA at 2.28:1).
 
 ## Done when
 1. All four cases open from the shelf; every quoted line matches the cited Gutenberg text word for word (spot-check lines 5 and 8 of Case 1, line 7 of Case 2, line 5 of Case 3), with "[...]" shown where cut and no em dashes anywhere.
@@ -209,6 +219,11 @@ none. Keep the tag menu, clue tray and pinning in one clearly marked block ("CAS
 4. The case file opens from step 4 at any point, shows Same read / Missed clue / differing tags correctly, and shows the verdict for each chosen option; changing a slot with the folder open updates the verdict.
 5. Change my read keeps all work; Reset case clears only that case; switching modes and back keeps case state.
 6. Sincere or Satire? runs all ten clippings with three buttons, shows each tell, and ends on the tally plus the closing line; no timer.
-7. Open a Case splits pasted text into lines, enforces the 4,000 character limit, supports tags and pinning, prints a clean case sheet, and makes no network request.
+7. Open a Case splits pasted text into lines, enforces the 4,000 character limit, supports tags and pinning, has no print button, and makes no network request.
 8. Fully keyboard usable with visible focus; targets at least 44px; Motion off removes movement; works in a 16:10 iframe and full screen, and stacks below 900px.
-9. Exactly 13 voice lines exist; no image contains a person, face or hand.
+9. Exactly 12 voice lines exist, each tagged how or event; no waiting line names a control that is disabled when it plays; no image contains a person, face or hand.
+10. Focus: at 1366x768 and 680x425 the passage is the largest thing on the desk while gathering, the board while claiming and defending, and the clipping card in Sincere or Satire?.
+11. A tap during the folder slide, a card flip or a string-line draw acts at once.
+
+## Open questions
+- None new. Settled here: Print case removed (scope rule); the accent keeps its oxblood identity, but text uses a lighter rose so it passes AA.

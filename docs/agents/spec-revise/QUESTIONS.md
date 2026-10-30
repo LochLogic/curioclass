@@ -56,3 +56,10 @@
 - american-lit-timeline uses warm-teacher (a K voice) for grade 11: FIX in the final voice sweep.
 - thesis-workshop voice -> smooth-narrator.
 - Carried: Equiano; Twain and Zitkala-Sa; "Indian-fashion" cut; ghost-story fright; ominous column.
+
+## R10
+- ad-agency: one person image (Dana, R4) to approve.
+- rhetorical-situation-simulator: voice -> wise-mentor, cream accent OK? usage-panel voice -> firm-captain.
+- usage-panel: does a real AHD panel figure exist for They sentence (d)?
+- ambiguity-lab: "Read" mode renamed "Story" (same as page-to-screen).
+- Carried: premise-inspector Stephens and Apess review; EO 9066 and Nez Perce review; ambiguity-lab content; ad-agency letters and FTC naming; argument-map author name and Thoreau length; source-mixer radio vs video, teacher-editable tags.
