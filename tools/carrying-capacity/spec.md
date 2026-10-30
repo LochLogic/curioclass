@@ -30,19 +30,28 @@ Topic line: population limits and energy flow.
 9-12 dark theme. Header: title, `.seg` modes **Herd**, **Island**, kit buttons `motion`, `sound`, `read`.
 
 ## Screens and modes
-Shared stage: a backdrop image (forest edge or tundra island) with deer drawn in code as small silhouettes (one
-icon per deer up to 60, then each icon is worth more and a "1 icon = N deer" key shows), a food bar under the
-backdrop (browse or lichen left), and the population chart below (graphing.js): deer per year (accent), food left
-(dashed), and a K line when known. Panel: controls, readouts (`dl.readouts`), `hint`, `tip`. Under 900 px tall:
-backdrop shrinks to a 90 px strip.
+Shared stage: a painted backdrop (forest edge or tundra island, Art) as a band across the top with the herd
+standing on its open foreground as painted deer or reindeer cutouts (one cutout per animal up to 60, then each is
+worth more and a "1 deer = N deer" key shows; the three poses mix by seeded draw), wolves as painted wolf cutouts at
+the forest margin (one per wolf), a food bar under the backdrop (browse or lichen left), and the population chart
+below (graphing.js): deer per year (accent), food left (dashed), and a K line when known. The chart is the focus and
+the largest thing on the stage (about 55 percent of its height); the herd band above it shows the same year. Panel:
+controls, readouts (`dl.readouts`), `hint`, `tip`. Under 900 px tall: the herd band shrinks to a 90 px strip.
+The backdrop changes with events: a Fire year crossfades to the burned forest edge for that year and fades back as
+the browse regrows over the next two years; a Hard winter year shows the winter forest edge for that year; on the
+island the grazed-out tundra crossfades in as lichen falls (its opacity = 1 minus lichen left over 20,000). Crossfades
+take 0.4 s (instant with Motion off).
 
-**Herd** (opens first). Forest edge. Controls:
+**Herd** (opens first). Focus: the population chart, where the herd line levels off. Forest edge. Controls:
 - **Start herd** slider 2 to 100 (step 1, default 10). **Forest size** slider 0.25 to 2.0 times (step 0.25, default
   1.0).
 - **Wolves** slider 0 to 6 (a fixed pack; takes effect from the next year).
 - Events: **Fire** (burns 70 percent of the browse above the bare minimum, this year), **Hard winter** (30 percent
   of the herd dies this year).
-- **Step 1 year**, **Play** / **Pause** (2 years per second), **Reset** (year 0). The chart shows 60 years.
+- **Step 1 year**, **Play** / **Pause** (2 years per second, so 60 years take 30 s), **Reset** (year 0). The chart
+  shows 60 years. Every control stays live during Play: a slider move or event press shows on the chart and readouts
+  at once (an event mark appears on the time axis the moment it is pressed) and takes effect in the next year, at
+  most 0.5 s later.
 - **View** `.seg` **Herd** / **Energy flow**. Energy flow replaces the backdrop with a three-level pyramid:
   browse eaten this year, deer and wolves, using the 10 percent rule (bar widths and kJ numbers; see Content).
 - **Compare with logistic** switch: draws the logistic curve with handles for K and r (drag, or number fields);
@@ -50,7 +59,8 @@ backdrop shrinks to a 90 px strip.
 Readouts: Year, Deer, Food left, Food per deer (percent of a full ration), Births, Deaths from hunger, Other deaths,
 Wolf kills, K for this forest (shown after the run levels off: "levels off at 300").
 
-**Island** (the case study). Tundra island backdrop. The real counts as points on the chart: 29 (1944), 1,350
+**Island** (the case study). Focus: the chart, with the real counts beside the model line. Tundra island backdrop,
+reindeer cutouts. The real counts as points on the chart: 29 (1944), 1,350
 (1957), about 6,000 (1963), 42 (1966). **Play the model** runs the same rules with slow-growing lichen, year 0 =
 1944. Prompts (cards, no scoring): "Why did the forest herd level off but the island herd crash?" / "How fast does
 lichen grow back compared with browse?" **Lichen regrowth** slider (0.002 to 0.05 per year, default 0.005) lets
@@ -85,13 +95,18 @@ Logistic overlay: N(t) = K / (1 + ((K - N0)/N0) x e^(-r t)); with K 300, r 0.300
 sharply, because deer eat well until the food runs short."
 Energy flow (10 percent rule, model): browse eaten E units, each unit shown as 1,000 kJ of plant energy (a model
 unit); deer level 10 percent of that; wolves 10 percent of the energy in the deer they kill. At the steady forest
-herd: plants eaten 216 units = 216,000 kJ, deer level 21,600 kJ, wolves (with 4 wolves, 49.8 deer killed) shown as
-1 percent of plant energy. Bars scale by log so wolves stay visible; the numbers are printed.
+herd (no wolves): plants eaten 216 units = 216,000 kJ, deer level 21,600 kJ. With 4 wolves from year 20 the herd
+settles at 244.6 and still eats 216 units a year (each deer eats 88 percent of a full ration instead of 72): plants
+216,000 kJ, deer 21,600 kJ, wolves 10 percent of the 49.8 killed deer's share (49.8 of 244.6) = 440 kJ, about 0.2
+percent of plant energy. Bars scale by log so wolves stay visible; the numbers are printed.
 Hints: Herd "<b>Herd.</b> Press Play and watch where the herd levels off. Then change one thing: wolves, fire, winter
 or forest size." / Island "<b>Island.</b> Press Play the model, then compare it with the real counts."
 Tips: "Carrying capacity is the largest population the habitat can support over time." / "A herd can overshoot when
-food runs out slowly." / "Wolves lower the steady herd, and the forest gets more browse left over." / "Only about 10
+food runs out slowly." / "Wolves lower the steady herd, and each deer that is left gets more to eat." / "Only about 10
 percent of the energy at one level reaches the next."
+Die-out note (shown in the readouts when the herd reaches 0 while Wolves is above 0): "The herd is gone. In this model
+the pack never starves or leaves, so a small herd can be eaten out. Real wolves would move on first." With the
+default start herd of 10, 2 or more wolves set from year 0 eat the herd out (see the checks in Sources).
 Model limits line: "This model leaves out ages, males and females, disease, snow depth and migration, and wolves
 here never starve. Real food regrowth changes year to year."
 
@@ -103,9 +118,10 @@ here never starve. Real food regrowth changes year to year."
   changes the model.
 - Island: the real points show from the start; Play the model draws the model line year by year. The regrowth slider
   resets the island run.
-- Herd icons: deer appear and disappear with a quick fade (none with Motion off); starving years tint the food bar.
+- Herd cutouts: deer appear and disappear with a quick fade (none with Motion off); starving years tint the food bar.
+  Animals never move on their own, so nothing animates between years except these fades and the crossfades.
 - Readouts live in an `aria-live="polite"` region, updated once per year.
-- Mode change: `V.hush()`; each mode keeps its run.
+- Mode change: `V.hush()`; each mode keeps its run. Sound starts on (kit); the tool's only sound is the voice.
 
 ## Look
 Accent `--brand #e2a19c` (summer coat of a deer, lightened), `--brand-ink #10161f`. Stage under the backdrop
@@ -115,26 +131,52 @@ Contrast (computed): brand on --panel 8.09:1, on --sec-bg 7.66:1; brand-ink on b
 accents #f39cbc and #ff8f9e (dE about 20); in this group energy-accountant #d3b069 and mitosis-mixer #f1b1ed (dE 35).
 
 ## Art
-Cloudflare FLUX.2 (`scripts/cfart.py`), wide landscape backdrops, no animals (deer are drawn in code on top), no
-people, no lettering, soft natural light, webp, 16:9, long side 1600 px, cutout no.
-- cc-forest-edge: a northern forest edge meeting a grassy clearing with shrubs and young trees, late summer, open
-  ground in the foreground for animals to stand on.
-- cc-tundra-island: a treeless subarctic island tundra with low hills, pale lichen mats and grass, gray sea at the
-  horizon, open ground in the foreground.
+Local FLUX (`scripts/localart.py`), no people. 11 images. The two backdrops already drawn (review pending) keep
+their prompts in `art/prompts.json`; the rest share that house style (naturalistic, soft natural light, muted calm
+colors, no lettering).
+- cc-forest-edge (drawn): a northern forest edge meeting a grassy clearing in late summer, spruce, fir and birch
+  behind, shrubs and saplings at the margin, open short grass across the foreground; 16:9; cutout no; people no;
+  Herd backdrop.
+- cc-forest-edge-burned: the same kind of northern forest edge after a ground fire, blackened trunks and scorched
+  shrubs, gray ash over the clearing, a few green shoots, open ground across the foreground; 16:9; cutout no; people
+  no; crossfades in for a Fire year.
+- cc-forest-edge-winter: a northern forest edge in deep winter, snow-loaded spruce, bare birch, a wide snowy clearing
+  across the foreground under a pale low sky; 16:9; cutout no; people no; shown for a Hard winter year.
+- cc-tundra-island (drawn): a treeless subarctic island tundra, low rolling hills, pale lichen mats and sedge, gray sea
+  at the horizon, open flat tundra across the foreground; 16:9; cutout no; people no; Island backdrop.
+- cc-tundra-grazed: the same kind of treeless island tundra grazed bare, brown trampled sedge and bare gravel where
+  the lichen was, gray sea at the horizon, open ground across the foreground; 16:9; cutout no; people no; crossfades in
+  as the lichen falls.
+- Animal kit (one shared prompt: "a single animal in full side view, whole body with all four legs, natural colors,
+  soft daylight", one cutout per piece): cc-deer-stand (a white-tailed deer standing alert), cc-deer-graze (a
+  white-tailed deer with its head down browsing), cc-deer-walk (a white-tailed deer walking), cc-reindeer-stand (a
+  wild reindeer with antlers standing), cc-reindeer-graze (a wild reindeer with its head down grazing), cc-wolf (a gray
+  wolf standing); 4:3; cutout yes; people no. Sizing: every animal's height is 7 percent of the herd band's height at
+  the front of the foreground, shrinking to 4 percent at the back (placed in seeded rows), the wolf at 6 percent; with
+  Motion on they fade in and out, never walk.
+The food bar, chart, pyramid and logistic handles stay in code (charts and controls).
 
 ## Voice
-Bank `science-narrator` (a wildlife documentary narrator, calm, not dramatic). Uses `Curio.voice`, scope = mode.
-- welcomeHerd (how): "Welcome to Carrying Capacity. Press Play and watch where the herd levels off."
-- welcomeIsland (how): "Island. Press Play the model, then compare it with the real reindeer counts."
-- leveled (event, the first time a run holds within 1 percent for 3 years; stale on Reset): "The herd has leveled
-  off. The forest's regrowth feeds about this many deer."
-- wolvesIn (how, first wolves above 0): "Wolves join next year. Watch what happens to the herd and to the browse."
-- fire (event, each fire; stale on Reset): "Fire. Most of the browse is gone this year."
-- winter (event, each hard winter; stale on Reset): "A hard winter. Many deer die, and the food that's left goes
+Bank `science-narrator` (a wildlife documentary narrator, calm, not dramatic). Uses `Curio.voice`, scope = mode. How
+lines speak once per page load, then only update the hint; event lines speak each time.
+- welcomeHerd (how; on entering Herd; stale once Play or Step 1 year is pressed): "Welcome to Carrying Capacity. Press
+  Play and watch where the herd levels off."
+- welcomeIsland (how; on entering Island; stale once Play the model is pressed): "Island. Press Play the model, then
+  compare it with the real reindeer counts."
+- leveled (event; the first time a run holds within 1 percent for 3 years; stale on Reset or any slider change):
+  "The herd has leveled off. The forest's regrowth feeds about this many deer. Now change one thing: wolves, fire,
+  winter or forest size."
+- wolvesIn (how; first Wolves above 0; stale if Wolves returns to 0): "Wolves join next year. Watch what happens to
+  the herd and to each deer's share of food."
+- fire (event; each fire; stale on Reset): "Fire. Most of the browse is gone this year."
+- winter (event; each hard winter; stale on Reset): "A hard winter. Many deer die, and the food that's left goes
   further."
-- overshoot (event, island model passes the real 1963 count; stale on Reset): "The herd has outgrown its lichen.
+- dieOut (event; the herd reaches 0 with Wolves above 0; stale on Reset): "The herd is gone. This pack never starves,
+  so a small herd can be eaten out. Press Reset, or lower Wolves."
+- overshoot (event; island model passes the real 1963 count; stale on Reset): "The herd has outgrown its lichen.
   Lichen grows back very slowly."
-- energyView (how, first Energy flow view): "Each level keeps only about a tenth of the energy from the level below."
+- energyView (how; first Energy flow view; stale on switching back to Herd view): "Each level keeps only about a tenth
+  of the energy from the level below."
 
 ## Family engine
 **ecosystem** family. This spec describes the shared engine in full for the unspecced siblings food-web-wobble
@@ -152,8 +194,9 @@ Bank `science-narrator` (a wildlife documentary narrator, calm, not dramatic). U
 - `PopChart(el, opts)`: population lines over years, K line, event marks, real-data points, optional logistic
   overlay with draggable K and r handles.
 - `Pyramid(el, levels, {rule: 0.1, scale: 'log' | 'linear'})`: energy bars with printed kJ.
-- `Landscape(el, {backdrop, species, counts})`: draws code-drawn animal icons over an image backdrop, with
-  "1 icon = N" scaling past a cap.
+- `Landscape(el, {backdrop, species, counts})`: places each species' painted cutouts (poses mixed by seeded draw,
+  sized by row depth) over a painted backdrop, with "1 animal = N" scaling past a cap and crossfades between
+  backdrops.
 What each sibling feeds: food-web-wobble feeds `Species` and `Web` for a five or six species food web, a simple
 multi-species `Model` run and `Landscape`. predator-prey-island feeds `Model` with a dynamic predator (wolves and
 moose on Isle Royale; the Isle Royale dataset is reserved for it) and `PopChart` with real counts. energy-pyramid
@@ -177,20 +220,38 @@ pack, fire and winter events and land size, `PopChart` with the logistic overlay
   Yellowstone, "Wolf Restoration" (https://www.nps.gov/yell/learn/nature/wolf-restoration.htm).
 - All rates (births, deaths, regrowth, kill rate) are model values; runs computed in Python (Curio Class,
   2026-10-27).
+- Number checks (Python, 2026-10-29, the yearly step above): every worked run reproduces (forest 10 deer passes 150 in
+  year 10, peak 305.6 in year 12; wolves 1 to 6 settle at 285.8 to 218.6; fire 111 then 300 by year 30; winter 210;
+  size 0.5 holds 150, 0.25 holds 75, 2.0 holds 600; island 1,435 in 1957, peak 6,432.9 in 1962, 392 in 1964, 136;
+  lichen 0.05 settles at 1,361.1 and 0.002 at 54.4, both peaking at 6,433; logistic 122.8 at year 10, 227.0 at 15).
+  Worst cases: Wolves set from year 0 eat out the default herd of 10 at 2 wolves or more, a herd of 50 at 3 or more,
+  100 at 4 or more (any herd under about 207 at 6 wolves); fire and hard winter in the same year drop 300 to 21, which
+  recovers. Fixed: the tip "the forest gets more browse left over" was wrong in this model (browse left stays at the
+  30 unit minimum; each deer eats more instead); the wolves' energy level is 0.2 percent of plant energy, not 1
+  percent; added the die-out note and line.
 
 ## Done when
 1. Herd, defaults: the herd passes 150 in year 10, peaks at about 305.6 in year 12, and holds 300 from year 15; the K
    readout says 300.
-2. Forest size 0.5 levels at 150; 4 wolves from year 20 settle at about 244.6.
-3. Fire in year 25 drops the herd to about 111 and it is back to 300 by year 30; a hard winter drops it to about 210.
-4. Island model: 1,435 in 1957, peak 6,433 in 1962, crash to 392 by 1964, then 136; real points sit beside it.
+2. Forest size 0.5 levels at 150; 4 wolves from year 20 settle at about 244.6, with wolf cutouts at the margin.
+3. Fire in year 25 drops the herd to about 111, crossfades to the burned forest edge and is back to 300 by year 30; a
+   hard winter shows the winter backdrop and drops the herd to about 210.
+4. Island model: 1,435 in 1957, peak 6,433 in 1962, crash to 392 by 1964, then 136; real points sit beside it and the
+   grazed tundra fades in as lichen falls.
 5. Lichen regrowth 0.05 still peaks at 6,433 but settles at about 1,361 (0.002 settles at about 54).
 6. Logistic overlay with K 300 and r 0.300 reads about 122.8 at year 10; dragging K moves the curve, not the model.
-7. Energy flow view prints three levels with the 10 percent rule.
-8. All controls work by keyboard; main controls visible at 1366x768 and 680x425; chart readable at 375 wide.
-9. Each how-to line speaks once in five repeated actions; event lines speak each event.
-10. No network, no em dashes.
+7. Energy flow view prints three levels with the 10 percent rule (4 wolves: 216,000, 21,600 and about 440 kJ).
+8. Focus: the population chart is the largest thing on the stage in both modes, at 1366x768 and in the 680x425
+   preview.
+9. A tap while Play runs: pressing Fire puts its mark on the chart at once and the next year shows the burn; moving
+   Wolves changes the readout at once.
+10. 2 wolves from year 0 with a start herd of 10 shows the die-out note and line.
+11. All controls work by keyboard; main controls visible at 1366x768 and 680x425; chart readable at 375 wide.
+12. Each how-to line speaks once in five repeated actions; event lines speak each event; no network, no em dashes.
 
 ## Open questions
 - [carrying-capacity] The Wolves slider stops at 6 because the pack never starves here; at 7 or more the herd
   collapses, which would mislead. OK to cap it, or show the collapse with a "real wolves would starve first" note?
+- [carrying-capacity] The checks found the same problem below 7: 2 or more wolves set before the herd grows eat out
+  the default herd of 10. The revision adds a die-out note and line rather than changing the model. Enough, or should
+  the pack shrink when deer are few (a model change)?

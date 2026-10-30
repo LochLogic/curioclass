@@ -34,9 +34,22 @@ Header (kit, 9-12 theme): "Lake Commons", small line "Take what grows back." Mod
 Report`; kit `Motion`, `Sound`, `Read`.
 
 ### Town (default)
-Stage: a lake town seen from above at a slant: the lake (fish shown as shimmer density), forested hills around it,
-the floodplain by the river mouth, the town, boats on the water, and a year banner "Year 35 of 100". The scene changes
-with the numbers: thinning forest, browner water after floods, empty docks after a collapse.
+Focus: the painted lake town, the biggest thing on the stage, with the year banner "Year 35 of 100" and the year card
+over its top edge; the readouts run as a sparkline strip under it. Stage: the painted lake town (Art, lake-town) seen
+from a low hill at a slant, with painted cutouts placed on it and code effects over it. The scene changes with the
+numbers:
+- Forest: stump patch cutouts cover the forested hills in proportion to forest lost (one patch per 400 ha below
+  8,000, up to 20, placed in a fixed seeded order across the slopes); above 8,000 ha nothing is added.
+- Fish: shimmer density on the water (code), clipped to the lake outline the builder traces once over the picked
+  image.
+- Mud: a brown code tint clipped to the same outline after a flood, fading over the next two years.
+- Boats: one boat cutout on the water per 5 fishing boats (up to 12); after a collapse they sit tied at the docks.
+- Homes: hillside and floodplain house cutouts added as homes are built (one per 10 homes), on fixed spots on the
+  slopes and on the meadow by the river mouth.
+- Builds: dam, solar array, fish ladder, buffer strips and water treatment plant cutouts appear on fixed spots when
+  bought.
+- Indicator species: their cutouts sit in a row along the readout strip, full color when seen and a dim outline when
+  not.
 Panel, Choices (set once per turn): Fishing boats (0 to 60, default 25), Logging (0 to 300 hectares a year, default
 64, what the forest regrows each year at 8,000 ha), New homes this turn (20 homes): `Floodplain` (default) / `Hillside`,
 Energy: `Firewood` (default) / `Small dam` / `Solar` (switch any
@@ -44,23 +57,24 @@ turn, paying the build cost once), Builds (one time each): `Fish ladder` (needs 
 treatment`.
 Panel, Readouts with small 100-year sparklines: fish in the lake (t), catch per year (t), forest (ha), homes (on
 floodplain / hillside), treasury ($), boil-water days, species seen (of 6).
-- `Next 5 years` (Space) plays five years at about 1 s each: a year card flips for each (Normal, Good year, Flood
+- `Next 5 years` (Space) plays five years at about 1 s each (5 s in all): a year card flips for each (Normal, Good year, Flood
   year, Drought year) with what it did ("Flood: 40 floodplain homes damaged, the lake muddied, fish down 4 percent").
 - Every 25 years a generation marker pauses play: "Your children take over the town" (year 25), "grandchildren" (50),
-  "great-grandchildren" (75), with a one-line look at the lake then and now.
+  "great-grandchildren" (75), with a one-line look at the lake then and now and "Press Next 5 years to go on".
 - `Calm years` toggle (set before year 0): every year Normal, for clean experiments.
 - `Replay same years` (after a century): restarts with the same year sequence so two strategies meet the same weather.
 - `New town` starts over with a new seed.
 
 ### Field Guide
-Cards that explain the model in plain words, each with a small live diagram: how fish regrow (fastest at half full),
+Focus: the open card's live diagram, centered and large; the other cards sit as a list beside it. Cards that explain
+the model in plain words, each with a small live diagram: how fish regrow (fastest at half full),
 how forest regrows, how forest protects the lake (less mud), floods and the floodplain, droughts and stored water,
-energy choices (cost and benefit table), the three builds, and the six indicator species with what each needs.
+energy choices (cost and benefit table), the three builds, and the six indicator species with what each needs (each with its painted cutout).
 
 ### Century Report
-After year 100 (or open any time for the run so far): charts of fish, catch, forest and treasury over the century with
+Focus: the four century charts with the generation markers, filling the stage. After year 100 (or open any time for the run so far): charts of fish, catch, forest and treasury over the century with
 the generation markers; totals; a strip "Town still going at year 100: yes / no" with the reasons; and a side by side of
-the last two runs if `Replay same years` was used. `Copy report` (text).
+the last two runs if `Replay same years` was used. `Copy report` (plain text to paste into class work; nothing is ever loaded back from it).
 
 ## Content
 Model, one step per year (all values made up for the lab, in realistic proportions):
@@ -93,23 +107,25 @@ Check values, Calm years, start fish 800 t and forest 8,000 ha, new homes on the
 | 25 | 64 | solar | 460.0 | 115.0 | 8,000 | steady from about year 25; income $147,000 a year |
 | 25 | 64 | small dam | 262.9 | 65.7 | 8,000 | trout gone |
 | 25 | 64 | dam and ladder | 408.9 | 102.2 | 8,000 | |
-| 25 | 64 | firewood (94 cut) | 434.0 | 108.5 | 6,679 | forest still falling |
+| 25 | 64 | firewood (94 cut) | 433.9 | 108.5 | 6,679 | forest still falling |
 | 35 | 64 | solar | 276.0 | 96.6 | 8,000 | more boats, smaller catch than 25 boats |
 | 50 | 64 | solar | 17.3 | 8.7 | 8,000 | collapse (under 50 t) in year 32 |
 | 25 | 200 | solar | 300.0 | 75.0 | 0 | forest under 1,000 ha in year 61 |
-| 20 | 0 | solar | 598.8 | 119.8 | 9,958 | |
+| 20 | 0 | solar | 598.9 | 119.8 | 9,958 | |
 Flood rule check: forest 8,000 ha, fish 460 t: no buffer strips, fish to 441.6 t; with buffer strips, 450.8 t.
 Steady state with 25 boats and 64 ha: 0.04 × 8,000 × 0.2 = 64 ha regrows each year; F = 920 × (1 − 0.25 / 0.5) = 460,
 catch 0.25 × 460 = 115.
 
 ## Interactions in detail
-- Choices lock while years play; they can be changed between turns. Builds are permanent once bought.
+- Choices stay live while years play: a change applies from the next year that plays (the choice shows "from year
+  N" beside it at once), and a build bought mid-turn appears on the scene at once. Builds are permanent once bought.
 - Switching energy away from the dam keeps the dam (and its fish effect) unless `Remove dam` ($100,000) is chosen; the
   Field Guide says why removing it helps the fish.
 - Year results apply in order: forest, then lake limit, then fish growth and catch, then the year type's events.
 - Numbers shown rounded (fish to 1 t, forest to 10 ha, money to $1,000); the model keeps full precision.
 - Collapse is recoverable: with few boats the fish slowly return (the report shows how long).
-- Sound: lake water and birds whose number follows the species count; a rumble on flood years; off with Sound.
+- Sound starts on (kit): lake water and birds whose number follows the species count; a rumble on flood years; off
+  with Sound.
 - Keyboard: Space = Next 5 years, Tab through choices, arrows on sliders; C toggles Calm years before year 0.
 - Layout by real stage pixels: wide (scene with panel at side), compact, stack (375 wide: readouts as a strip of
   chips over the scene, choices in a drawer).
@@ -120,27 +136,51 @@ catch 0.25 × 460 = 115.
 Accent (`--brand`) #7cac64, lake reed green: 6.55:1 on --panel #141b25, 6.20:1 on --sec-bg #18202b; --brand-ink #10161f
 on it 6.87:1. Moved off brighter greens near virtual-gallery (#b8e07a) and half-life-dice (#97c059); nearest now
 half-life-dice (ΔE 17); trade-island and the other island tools use sea blues and sands.
-Scene: lake #2f6f8f deepening to #1f4f6a, muddy water #7a6a4a blended in after floods, forest #2f5a3a and #3f7048,
-cut slopes #8a7a5a, floodplain meadow #6a8a4a, town roofs #b86a4a and #8a8f96, boats #e8edf3, dam concrete #a8a8a0.
+Scene: the painted lake town carries its own colors (lake blues, forest greens, warm roofs); the code layers add
+muddy water #7a6a4a as a tint after floods and the fish shimmer in #e8edf3. The year banner and year card sit on a
+#10161f panel at 85 percent so their text holds 15:1 or more over any part of the picture.
 Sparklines: fish `--gr-1`, forest `--gr-3`, treasury `--gr-2`, damage `--gr-4`.
 
 ## Art
-- lake-town: "A calm lake town seen from a low hill at a slant, forested hills around a blue lake, small wooden docks,
-  a river mouth with a green floodplain, soft painterly style, early morning light, no people, no text"; 16:9; cutout
-  no; people no; the Town background at year 0 (scrim behind the live overlays; the code draws forest loss, mud,
-  boats and homes on top).
-- Everything else drawn in code (overlays, cards, charts, preview.svg).
+Local FLUX (`scripts/localart.py`), no people. 17 images. The house style in `art/prompts.json` (soft painterly,
+early morning light, calm, deserted, no lettering) covers every piece.
+- lake-town (drawn, review pending): a calm lake town seen from a low hill at a slant, forested hills around a blue
+  lake, small wooden docks, a cluster of small houses, a river mouth with a green floodplain meadow; 16:9; cutout no;
+  people no; the Town scene under every cutout and code layer.
+- Town kit (one shared prompt: "a single small object for a painted lake town, seen from a low hill at a slant, soft
+  morning light", one cutout per piece): lc-stumps-a and lc-stumps-b (a patch of cut tree stumps and bare brown
+  ground, two shapes), lc-boat (a small wooden fishing boat with an outboard motor), lc-house-meadow (a small wooden
+  cottage with a brown roof), lc-house-hill (a small two-story house with a gray roof on a stone footing), lc-dam (a
+  small concrete dam with a spillway), lc-solar (a short row of solar panels on a frame), lc-ladder (a concrete fish
+  ladder of stepped pools beside a dam), lc-buffer (a strip of shrubs and young willows along a stream bank),
+  lc-treatment (a small water treatment building with two round open tanks, plain walls); 4:3; cutout yes; people no.
+  Sizing: one scale for the whole kit, set so a cottage is 4 percent of the scene's height on the near meadow; pieces
+  on the far slopes shrink to 70 percent; stump patches are 9 percent of the scene's width.
+- Species kit (one shared prompt: "a single animal in natural colors, side view, whole body, soft daylight", one
+  cutout per piece): lc-trout (a brook trout), lc-otter (a river otter standing on all fours), lc-osprey (an osprey
+  with wings spread), lc-heron (a great blue heron standing), lc-salamander (a spotted salamander), lc-mayfly (a mayfly
+  with upright wings and long tails); 1:1; cutout yes; people no. Sizing: all six the same height, 40 px in the
+  readout strip and 96 px on the Field Guide cards.
+Fish shimmer, mud tint, rain and sun effects, year cards, charts and sparklines stay in code.
 
 ## Voice
-`gentle-storyteller` (Vindemiatrix), style "Say gently and expressively, like a grandmother telling the town's story
-to her grandchildren." No group sibling uses it;
-shared in 9-12 science only with equilibrium-seesaw (gr 10 chemistry). `Curio.voice`, `scope: () => state.mode`.
-- town (how, Town welcome): "Set your boats and your logging, then press Next five years."
-- flood (event, first flood year; stale after the turn): "A flood year. Homes by the river took the water first."
-- collapse (event, the fishery collapses; stale when fish recover above 100 t): "The nets come up empty now. The lake needs time."
-- generation (event, each generation marker; stale on the next): "A new generation takes over the town."
-- guide (how, Field Guide welcome): "Each card shows one link between fish, forest and water."
-- report (how, Century Report welcome): "Here is your century. Replay the same years to try another way."
+`easy-coach` (Umbriel), style "Say in an easy-going, warm way, like an old fishing guide on the dock telling the
+town's story." Changed from gentle-storyteller, which equilibrium-seesaw (a listed neighbor) uses; no tool that
+`neighbors.py` lists for this one uses easy-coach. `Curio.voice`, `scope: () => state.mode`. How lines speak once per
+page load, then only update the hint; event lines speak each time.
+- town (how; Town welcome; stale once Next 5 years is pressed): "Set your boats and your logging, then press Next
+  five years."
+- flood (event; each flood year card; stale after the turn): "A flood year. Homes by the river took the water first."
+- collapse (event; the fishery collapses; stale when fish recover above 100 t): "The nets come up empty now. The lake
+  needs time. Try fewer boats."
+- generation (event; each generation marker; stale on the next): "A new generation takes over the town. Press Next
+  five years to go on."
+- guide (how; Field Guide welcome; stale once a card opens): "Tap a card to open it. Each one shows one link between
+  fish, forest and water."
+- report (how; Century Report welcome after year 100; stale on a mode change): "Here is your century. Press Replay
+  same years to try another way with the same weather."
+- reportEarly (how; Century Report welcome before year 100, when Replay same years is still disabled; stale on a mode
+  change): "Here is your century so far. Go back to Town and press Next five years to finish it."
 
 ## Family engine
 none. Charts use `kit/graphing.js` `Plane` if present; otherwise the tool's own SVG.
@@ -158,6 +198,12 @@ none. Charts use `kit/graphing.js` `Plane` if present; otherwise the tool's own 
 - Commons and overharvest: Ostrom, "Governing the Commons" (1990); NOAA Fisheries, "Status of Stocks" (overfishing
   terms).
 - The town, rates, prices and year odds are made up; every check value computed in Python (2026-10-27).
+- Number checks (Python, 2026-10-29, the yearly step in the stated order: forest, then lake limit, then fish growth
+  and catch): every table row reproduces except two, now fixed: firewood gives 433.9 t (was 434.0) and 20 boats with
+  no logging 598.9 t (was 598.8); the old values came from computing the lake limit with last year's forest. Steady
+  state 460 t, 115 t a year. Worst cases: 60 boats collapse in year 11; logging 300 ha a year takes the forest under
+  1,000 ha in year 33; a collapsed lake (50 boats to year 40, then 5 boats) is back above 100 t in year 43. Catch by
+  boats at steady state peaks at 25 boats (115 t; 20 and 30 boats both 110.4). Flood rule 441.6 and 450.8 t.
 
 ## Done when
 1. Calm years, default settings with solar energy (25 boats, 64 ha): year 100 fish 460 t, catch 115 t a year, forest 8,000 ha.
@@ -170,9 +216,12 @@ none. Charts use `kit/graphing.js` `Plane` if present; otherwise the tool's own 
    floodplain home.
 7. `Replay same years` gives an identical year card sequence; the report shows both runs side by side.
 8. Generation markers pause at years 25, 50 and 75 with the line spoken each time.
-9. How-to lines once each; event lines as listed.
-10. Scene, choices and readouts usable at 1366x768; drawer at 375 wide; labels at least 10 px in the 680x425 preview;
-    no network, one image (lake-town), no em dashes.
+9. How-to lines once each; event lines as listed; the report line never names Replay same years before year 100.
+10. Focus: the painted town is the largest thing in Town at 1366x768 and 680x425; stump patches appear as the forest
+    falls and the boats tie up after a collapse.
+11. A tap while years play: moving Fishing boats mid-turn shows "from year N" at once and the next year uses it.
+12. Scene, choices and readouts usable at 1366x768; drawer at 375 wide; labels at least 10 px in the 680x425 preview;
+    no network, the 17 images load, no em dashes.
 
 ## Open questions
 - [island-economy] Take "Lake Commons" (the overlap note's reshape) as the new title? The spec is written for it.

@@ -27,12 +27,15 @@ Header (kit, 9-12 theme): "Feedback Loop Builder", small line "Count the minus s
 Loops`, `Life Joins In`; kit `Motion`, `Sound`, `Read`.
 
 ### Build (explore, default)
-Stage: a canvas of round nodes. A palette on the side holds the node set (Content), grouped `Ice and sun`, `Air and
+Focus: the loop on the canvas with its label, and the lap bar chart docked right under it while a nudge runs; the
+canvas takes the middle of the stage, palette and table to the sides. Stage: a canvas of round nodes. A palette on the side holds the node set (Content), grouped `Ice and sun`, `Air and
 ocean`, `Rock and deep Earth`, `Life`. Drag a node onto the canvas; drag from one node's edge to another to draw an
 arrow; tap the arrow's badge to cycle its sign `+` (more causes more) / `−` (more causes less) / `?`.
 - When arrows close a loop, the loop glows and a label appears in its middle: "R: amplifying (0 minus signs)" or "B:
   stabilizing (1 minus sign)". Several loops can share nodes; each gets its own label, listed in a side table.
-- `Nudge`: pick a node in the loop and press `Nudge` (Space). A pulse travels the loop; each lap the change is
+- `Nudge`: pick a node in the loop and press `Nudge` (Space); with no node picked it starts at Temperature, or the
+  loop's first node. `Nudge` is disabled, with the reason "Set every sign first", while the loop has a `?`. A pulse
+  travels the loop; each lap the change is
   multiplied by the loop strength (slider 0.1 to 1.2, default 0.5). A lap counter and a small bar chart show each lap's
   change and the running total ("after 6 laps: +1.97 of a possible +2.00").
 - Strength 1.0 or more on an amplifying loop: the bars keep growing and the note says "Runaway: this never settles.
@@ -40,7 +43,9 @@ arrow; tap the arrow's badge to cycle its sign `+` (more causes more) / `−` (m
 - `Clear canvas`, `Undo` (Ctrl+Z), `Tidy` (auto-lays out the nodes in a circle per loop).
 
 ### Earth's Loops
-Evidence cards, one per real loop (Content). Each card has a mini loop already drawn, its sign count, how fast it
+Focus: the open card (its painted picture, mini loop and numbers) or, when it is open, the Stack the feedbacks lap
+chart, in the middle of the stage. Evidence cards, one per real loop (Content). Each card has a painted picture of
+the loop's place (Art; the Planck card has a code diagram of heat leaving Earth instead), a mini loop already drawn, its sign count, how fast it
 works, how strong it is (with the IPCC numbers for the four climate feedbacks) and a source line. `Open in Build`
 places the loop on the canvas to nudge.
 A `Stack the feedbacks` panel: start with doubled CO2 and only the outgoing heat (Planck) response, 1.22 °C; add water
@@ -51,6 +56,7 @@ subduction feeds volcanoes, volcanoes build mountains and release CO2, erosion w
 sediment to the sea) and the rock thermostat (weathering), each with its time scale.
 
 ### Life Joins In
+Focus: the deep time strip with its painted cards, across the middle of the stage; the claim panel sits under it.
 For HS-ESS2-7. A deep time strip (4 billion years ago to now) with event cards (Content); click a card to read its
 evidence and build its loop or chain on a small canvas. A claim panel: "Life changed the air, and the air changed what
 could live." Drag evidence cards into `Supports` or `Does not fit`; `Check` explains each.
@@ -109,12 +115,14 @@ are 4 billion years old", "Earth's orbit changes over 100,000 years"), each with
 - Loop finding: all simple cycles up to 8 nodes (Johnson's algorithm); an arrow with `?` makes its loops grey with
   "set every sign to classify".
 - Nudge: strength is per loop (each loop's row in the side table has its own slider); with shared nodes the nudge runs
-  one loop at a time, chosen in the table. Laps animate 0.8 s each, up to 12 laps; Motion off shows the bar chart only.
+  one loop at a time, chosen in the table. Laps animate 0.8 s each, up to 12 laps (9.6 s at most); Motion off shows the
+  bar chart only. Every control stays live during a nudge: a strength or sign change stops the pulse and redraws the
+  bar chart for the new values at once; `Nudge` pressed again restarts from lap 1.
 - Card loops opened in Build keep their real signs and use strengths that match the card (ice and albedo 0.11, water
   vapor 0.40, combined 0.64; balancing loops −0.5 as a teaching value, labeled).
 - Extremes: g ≥ 1 on a reinforcing loop stops at 12 laps with the runaway note; a balancing loop at −1 or below shows
   "swings that never settle" and stops at 12.
-- Sound: a soft chime per lap, pitch rising for reinforcing and falling for balancing; off with Sound.
+- Sound starts on (kit): a soft chime per lap, pitch rising for reinforcing and falling for balancing; off with Sound.
 - Keyboard: Tab through nodes and arrows, Enter to select, arrow keys to move a node, S to cycle a sign, Space =
   Nudge, Delete removes the selection; focus({preventScroll: true}).
 - Layout by real stage pixels: wide (palette left, canvas, table right), compact (table under), stack (375 wide:
@@ -128,21 +136,49 @@ on it 10.78:1. Far from body-thermostat's #e25a7e and every group sibling (neare
 sits at ΔE 12.
 Nodes colored by sphere: ice #c8e4ff, air #9fb4d9, ocean #4f8fd0, rock #b08a6a, life #6fc78a, all with #10161f labels
 (over 7:1). Reinforcing loops glow `--gr-4`, balancing loops `--gr-1`; arrows #e8edf3 with + badges in `--gr-3` and −
-badges in `--gr-2`. Canvas #121821 with a faint dot grid.
+badges in `--gr-2`. Canvas #121821 with a faint dot grid. Card pictures sit in a frame above each card's text, never behind it.
 
 ## Art
-none: drawn in code (nodes with small sphere icons, arrows, loops, bar chart, deep time strip, cards, preview.svg).
+Local FLUX (`scripts/localart.py`), no people. 15 images, all card pictures (4:3, cutout no, people no), shown at the
+top of each card and as a small thumbnail on the deep time strip. House style: naturalistic nature photography look
+painted softly, wide view, calm light, no lettering.
+- flb-sea-ice: broken white sea ice floes on dark open Arctic water under a low sun; Ice and albedo card.
+- flb-water-vapor: a warm tropical ocean with haze and mist rising off the surface; Water vapor card.
+- flb-clouds: a field of puffy cumulus clouds with a thin high sheet of cirrus above a dark ocean; Clouds card.
+- flb-ocean: a cold gray-green North Atlantic swell with whitecaps under a cloudy sky; Ocean CO2 card.
+- flb-permafrost: a thawing tundra riverbank slumping into a river, exposed dark peat and pale ice wedges under the
+  turf; Permafrost card.
+- flb-plankton: a swirling turquoise and green plankton bloom in the open ocean seen from high above; Plants and CO2
+  card.
+- flb-weathering: rain falling on a cracked gray granite boulder with moss in the cracks; Rock thermostat card.
+- flb-volcano: an erupting volcano with a tall gray ash cloud; Deep Earth plate engine card.
+- flb-mountains: a jagged snowy mountain range with a braided gravel river carrying sediment out of the valley; Deep
+  Earth erosion card.
+- flb-stromatolites: rounded layered stromatolite mounds in shallow clear water at low tide; 3.4 billion years card.
+- flb-banded-iron: a cliff of red and silver-gray banded iron rock layers; Great Oxidation card.
+- flb-early-plants: low leafless green stems of early land plants on bare rocky ground beside a stream; 470 to 360
+  million years card.
+- flb-coal-swamp: a swamp forest of giant club mosses and tree ferns standing in still dark water; Carboniferous card.
+- flb-rainforest: the Amazon rainforest canopy with low clouds rising out of it after rain; Today card.
+- flb-moon-craters: the gray cratered surface of the Moon under black sky; decoy card.
+The ozone card and the orbit decoy card use code diagrams (a UV arrow stopped by a layer; an orbit ellipse). Nodes,
+arrows, loops, the bar charts and the time strip itself stay in code: the student builds and bends them.
 
 ## Voice
-`wise-mentor` (Gacrux), style "Say thoughtfully and warmly, like a wise high school mentor who loves big systems."
-No group sibling uses it; shared in 9-12 science only with gas-law-lab (gr 10 chemistry), far in topic (23 kept voices
-for 31 science tools). carrying-capacity's science-narrator stays clear of this loop tool. `Curio.voice`, `scope: () => state.mode`.
-- build (how, Build welcome): "One arrow is missing its sign. Tap it, then press Nudge."
-- loop (event, a loop closes; stale when it opens again): "A loop. Count the minus signs."
-- runaway (event, runaway note shown; stale on a strength change): "That loop never settles. Earth's real loops are weaker."
-- earth (how, Earth's Loops welcome): "Open a card, then stack the feedbacks to see where three degrees comes from."
-- life (how, Life Joins In welcome): "Walk the time line. Each card shows life changing the air, or the air changing life."
-- sorted (event, claim sort all right; stale on Clear): "Every card is in the right pile."
+`clear-teacher` (Iapetus), style "Say clearly and kindly, like a patient teacher at the whiteboard who loves big
+systems." Changed from wise-mentor, which orbit-lab (grade 9 space) and gas-law-lab use; no tool that
+`neighbors.py` lists for this one uses clear-teacher. `Curio.voice`, `scope: () => state.mode`. How lines speak once
+per page load, then only update the hint; event lines speak each time.
+- build (how; Build welcome; stale once the missing sign is set): "One arrow is missing its sign. Tap its badge to
+  set a sign, then press Nudge."
+- loop (event; a loop closes; stale when it opens again): "A loop. Count the minus signs."
+- runaway (event; runaway note shown; stale on a strength change): "That loop never settles. Earth's real loops are
+  weaker. Lower the strength slider and nudge again."
+- earth (how; Earth's Loops welcome; stale once a card opens or a feedback toggle is on): "Open a card, or switch on
+  the feedbacks in Stack the feedbacks to see where three degrees comes from."
+- life (how; Life Joins In welcome; stale once a card is sorted): "Tap a card on the time line to read it. Then drag
+  it into Supports or Does not fit."
+- sorted (event; claim sort all right; stale on Clear): "Every card is in the right pile."
 
 ## Family engine
 none. Bar charts use `kit/graphing.js` `Plane` if present; otherwise the tool's own SVG.
@@ -163,6 +199,12 @@ none. Bar charts use `kit/graphing.js` `Plane` if present; otherwise the tool's 
   Stratigraphy, Chart 2023/09.
 - Mantle convection, plates, seafloor and mountains: USGS, "This Dynamic Earth", https://pubs.usgs.gov/gip/dynamic/
 - Lap totals computed in Python (2026-10-27).
+- Number checks (Python, 2026-10-29): Build's starting loop with the last sign − has 2 minus signs (reinforcing), with
+  + 1 (balancing); g 0.5 laps total 1.96875 after 6 (shows +1.97 of +2.00); g −0.5 settles at 0.667; 3.93 / 3.22 =
+  1.22 °C; shares 0.404, 0.109, 0.130, sum 0.643, total 3.42; albedo alone 1.37, water vapor alone 2.05; every
+  Earth's Loops sign count matches its card (Planck 1, ice and albedo 2, ocean CO2 2, permafrost 0, plants 1,
+  weathering 1). Worst cases: g 1.0 and 1.2 grow every lap (stop at 12 with the runaway note); g −1 swings at full size
+  forever (stops at 12). Nothing needed fixing.
 
 ## Done when
 1. Build's starting loop gets its last sign: with − it reads "R: amplifying (2 minus signs)"; with + it reads "B:
@@ -174,9 +216,15 @@ none. Bar charts use `kit/graphing.js` `Plane` if present; otherwise the tool's 
 5. Each Earth's Loops card opens in Build with the right sign count (Planck 1, ice and albedo 2, weathering 1).
 6. Life Joins In: the six evidence cards support and the two decoys do not fit; "Every card is in the right pile."
 7. A canvas with two loops sharing Temperature lists both in the table with separate sliders.
-8. How-to lines once each; event lines as listed.
-9. Canvas, palette and table usable at 1366x768; drawer at 375 wide; labels at least 10 px in the 680x425 preview; no
-   network, no images, no em dashes.
+8. How-to lines once each; event lines as listed; `Nudge` is never named while disabled except as the step after
+   setting the sign.
+9. Focus: the canvas loop and lap chart are the largest thing in Build, the open card in Earth's Loops, the time strip
+   in Life Joins In.
+10. A tap while a nudge runs: dragging the strength slider mid-nudge redraws the bar chart for the new strength at
+    once.
+11. The 15 card pictures load on their cards and as strip thumbnails.
+12. Canvas, palette and table usable at 1366x768; drawer at 375 wide; labels at least 10 px in the 680x425 preview;
+    no network, no em dashes.
 
 ## Open questions
 - [feedback-loop-builder] HS-ESS2-1 and HS-ESS2-3 (landforms, Earth's interior) are covered only by the Deep Earth

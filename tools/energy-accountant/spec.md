@@ -30,36 +30,46 @@ Topic line: photosynthesis, respiration and the carbon cycle.
 9-12 dark theme. Header: title, `.seg` modes **Ledger**, **Oxygen switch**, **Planet's books**, kit buttons.
 
 ## Screens and modes
-Shared: stage left (a scene drawn in code above a ledger), panel right (controls, `hint`, `tip`). The **ledger**
+Shared: stage left (a painted scene ringed by account boxes, above a ledger), panel right (controls, `hint`,
+`tip`). The **ledger**
 is a real `table.inst` with columns Entry, C, H, O, N (atoms in and out), Energy in (kJ), Stored (kJ), ATP
 captured (kJ), Heat (kJ), and a totals row whose cells show a check mark and "balances" or the difference.
 
-**Ledger** (opens first). **Scene** `.seg`: **Leaf by day**, **Leaf by night**, **Deer**, **Bread dough**,
-**Soil**. Each scene offers its own entry buttons (see Content). Pressing an entry plays a 1.5 s animation (atoms as
-small lettered balls moving from their source account to their destination, Motion off: instant) and posts one row.
-Accounts are boxes around the scene: **Air**, **Water**, **Sugar store**, **Body (proteins, starch)**, **ATP spent on
+**Ledger** (opens first). Focus: the painted scene in the middle of the stage with the account boxes around it,
+where the atoms move and the C bars change; the ledger table sits under it, smaller (its last four rows show, older
+rows scroll inside it). **Scene** `.seg`: **Leaf by day**, **Leaf by night**, **Deer**, **Bread dough**, **Soil**,
+each showing its painted scene (Art). Each scene offers its own entry buttons (see Content). Pressing an entry plays a
+1.5 s animation (atoms as small lettered balls moving from their source account to their destination, Motion off:
+instant) and posts one row. Every button stays live during the animation: pressing another entry finishes the running
+one at once (its row posts) and starts the new one. Accounts are boxes around the scene: **Air**, **Water**, **Sugar store**, **Body (proteins, starch)**, **ATP spent on
 work**, **Heat**, and in Soil also **Soil**. Each box shows its running atom counts; the C count in every box is
 also a bar.
 - **Where did the wood come from?** card (Leaf by day): three sliders Soil, Water, Air that must sum to 100
   (moving one rescales the others). **Check** posts one photosynthesis entry and reveals the mass ledger for one
   glucose: carbon 72 g and oxygen 96 g came from the air (CO2), hydrogen 12 g from water: 93.3 percent from air,
   6.7 percent from water, 0 from soil. The O2 given off came from the water (stated, sourced).
-- **Follow one carbon** button: tags one carbon atom (accent ring) and steps through stamps with **Next stamp**:
+- **Follow one carbon** button: tags one carbon atom (accent ring) and steps through stamps with **Next stamp**
+  (each stamp a round painted vignette, Art):
   Air, Leaf (photosynthesis), Sugar, Deer (eats the leaf), Deer muscle (respiration), Air, Ocean (dissolves,
   becomes bicarbonate), Clam shell (calcium carbonate), Limestone (rock, millions of years), back to Air
   (volcano or weathering). Each stamp names the sphere (atmosphere, biosphere, hydrosphere, geosphere) and shows its
   balanced equation where one applies. A passport strip records the stamps.
 - **Clear ledger** empties the rows and accounts.
 
-**Oxygen switch**. A muscle cell (or a yeast cell, **Cell** `.seg` **Muscle**, **Yeast**) with an ATP demand
+**Oxygen switch**. Focus: the two side-by-side counters (glucose used, oxygen on and off), set large on either side
+of the painted cell in the middle of the stage. A muscle cell (or a yeast cell, **Cell** `.seg` **Muscle**,
+**Yeast**; both painted, Art) with an ATP demand
 slider **Work** (8 to 64 ATP per tick, step 8, default 32) and the **Oxygen** switch (on). Each **Tick** button
-press (or **Run** for 10 ticks) burns as much glucose as the work needs: with oxygen, 1 glucose per 32 ATP; without,
+press (or **Run** for 10 ticks, 0.4 s each, 4 s in all) burns as much glucose as the work needs: with oxygen, 1 glucose per 32 ATP; without,
 1 glucose per 2 ATP, piling up lactic acid (muscle) or ethanol and CO2 bubbles (yeast). Two side-by-side counters:
 glucose used, ATP made, waste made, energy still locked in waste (kJ). The ledger rows post as in Ledger.
-Readout line: "Same work, oxygen off: 16 times the glucose."
+Readout line: "Same work, oxygen off: 16 times the glucose." During Run every control stays live: Oxygen, Work
+and Cell apply from the next tick, and the counters update on that tick.
 
-**Planet's books** (the data). A line chart (data-desk engine) of monthly CO2 in 2023 at **Utqiagvik, Alaska**,
-**Mauna Loa, Hawaii** and **South Pole**, each toggled by a checkbox button. `.seg` **Raw ppm** / **Swing**
+**Planet's books** (the data). Focus: the line chart, which fills the stage; the data table sits under it,
+collapsed to a **Show table** button under 900 px tall. A line chart (data-desk engine) of monthly CO2 in 2023 at **Utqiagvik, Alaska**,
+**Mauna Loa, Hawaii** and **South Pole**, each toggled by a checkbox button that carries a small painted picture of
+the station's place (Art). `.seg` **Raw ppm** / **Swing**
 (each station minus its own trend line, see Content). A data table under the chart (`renderTable`, read-only).
 Prompts (cards, no scoring): "Which months does the air lose CO2 at Utqiagvik?" / "Why is the South Pole's swing
 small and flipped?" / "Which ledger entry wins in northern summer?" **Show what scientists conclude** reveals the
@@ -113,39 +123,75 @@ in real cells; this tool uses 32."
   moment is the accounts: the C bar in Air drops when the leaf photosynthesizes and climbs at night.
 - Accounts start with a stock (Air 600 C, Water 0 C, others 0) so nothing goes negative; an entry whose inputs are
   missing (Respire with no sugar in a scene) is disabled with the reason ("No sugar to burn: photosynthesize or eat
-  first"). Deer scene starts with 12 glucose of eaten leaves in Sugar store.
+  first"). Deer scene starts with 12 glucose of eaten leaves in Sugar store; Leaf by night starts with 2
+  glucose made that day when its Sugar store holds less, so Respire is always live there.
 - The wood sliders always sum to 100 (integer percents); Check works at any setting and never scores.
 - Oxygen switch: fractional glucose shown as fractions of a hexagon icon; waste piles cap their drawing at 64 icons
   with a number.
 - Chart: toggling a station never rescales without animation (instant with Motion off); y axis "ppm CO2"; months on x.
 - Keyboard: every entry, slider and toggle in tab order; the ledger table is real HTML.
 - Mode change: `V.hush()`; ledger kept per mode until Clear ledger.
+- Sound starts on (kit); the tool's only sound is the voice.
 
 ## Look
 Accent `--brand #d3b069` (ledger gilt), `--brand-ink #10161f`. Stage `#121821` with faint green column rules like
-ledger paper. Atom balls: C dark gray with white "C", O red, H white, N blue, all with letters (never color only).
+ledger paper around the scene; the painted scene sits in a rounded frame with a `#121821` scrim at 55 percent under
+the moving atoms so their letters stay readable. Atom balls: C dark gray with white "C", O red, H white, N blue, all with letters (never color only).
 Contrast (computed): brand on --panel 8.39:1, on --sec-bg 7.95:1; brand-ink on brand 8.81:1. Station lines use the
 data-desk colors plus dash patterns. Nearest 9-12 accents #e8b54a (field-lines), #f3e3a0, #e39b6e (dE 19 to 20).
 
 ## Art
-none: drawn in code (leaf, deer outline, dough bowl, soil, cells, atoms, chart).
+Local FLUX (`scripts/localart.py`), no people. 15 images. House style: clear naturalistic science illustration, soft
+light, calm colors, no lettering.
+- ea-leaf-day: a single broad green maple leaf on a twig in bright sunshine against a blue sky, veins lit from behind;
+  16:9; cutout no; people no; Leaf by day scene.
+- ea-leaf-night: a single green maple leaf on a twig at night, cool blue moonlight, dark sky with a few stars; 16:9;
+  cutout no; people no; Leaf by night scene.
+- ea-deer: a mule deer bounding across a dry golden hillside in late afternoon, all four hooves off the ground; 16:9;
+  cutout no; people no; Deer scene.
+- ea-dough: a ceramic bowl of rising bread dough with a domed top and small bubbles, on a floury wooden counter;
+  16:9; cutout no; people no; Bread dough scene.
+- ea-soil: a close view of a forest floor, dark moist soil, fallen brown leaves breaking down, small white mushrooms
+  and threads of fungus; 16:9; cutout no; people no; Soil scene.
+- ea-muscle-cell: one long striated muscle fiber as a scientific illustration, pink and red cross bands, small round
+  mitochondria along it, on a dark plain background; 4:3; cutout no; people no; Oxygen switch, Muscle.
+- ea-yeast-cell: a few oval yeast cells as a scientific illustration, pale gold, one with a small bud, on a dark plain
+  background; 4:3; cutout no; people no; Oxygen switch, Yeast.
+- Stamp kit (one shared prompt: "a small round painted vignette inside a plain cream circle frame", one cutout per
+  piece): ea-stamp-air (blue sky with thin high clouds), ea-stamp-ocean (a shallow turquoise sea over pale sand),
+  ea-stamp-shell (a ribbed clam shell on wet sand), ea-stamp-limestone (a pale layered limestone cliff),
+  ea-stamp-vent (a steaming volcanic vent and a hot spring on a rocky volcano flank); 1:1; cutout yes; people no.
+  Sizing: all stamps 72 px across in the passport strip and 160 px in the stamp card. The Leaf, Deer and Deer muscle
+  stamps reuse ea-leaf-day, ea-deer and ea-muscle-cell in the same round frame (code mask); the Sugar stamp is the
+  code glucose hexagon.
+- Station kit (one shared prompt: "a small research station far from any town, wide view, plain walls"):
+  ea-station-arctic (a low research building on flat snowy Arctic coastal tundra beside a gray sea),
+  ea-station-maunaloa (small white observatory domes on a bare dark lava slope high above a sea of clouds),
+  ea-station-pole (a long raised research building on flat white polar ice under a deep blue sky); 4:3; cutout no;
+  people no; thumbnails on the three station buttons.
+Atoms, account boxes, bars, glucose hexagons, waste piles, the ledger table and the chart stay in code: they move,
+count or plot.
 
 ## Voice
 Bank `calm-professor` ("Say evenly and clearly, like a calm, friendly college professor"): an even accountant's
-voice. Uses `Curio.voice`, scope = mode.
-- welcomeLedger (how): "Welcome to Energy Accountant. Pick a scene, then press an entry. Every atom that goes in has
-  to come out somewhere."
-- welcomeOxygen (how): "Oxygen switch. Set the work, press Tick, then switch the oxygen off and tick again."
-- welcomePlanet (how): "Planet's books. Turn on a station, then switch to Swing and look for the months the air loses
-  carbon dioxide."
-- woodAsk (how, when the wood card opens): "Where did the wood come from? Set the three sliders, then press Check."
-- woodReveal (event, each Check; stale on scene change): "Almost all of it came from the air. The carbon and most of
+voice. Uses `Curio.voice`, scope = mode. How lines speak once per page load, then only update the hint; event lines
+speak each time.
+- welcomeLedger (how; on entering Ledger; stale once an entry is posted): "Welcome to Energy Accountant. Pick a scene,
+  then press an entry. Every atom that goes in has to come out somewhere."
+- welcomeOxygen (how; on entering Oxygen switch; stale once Tick or Run is pressed): "Oxygen switch. Set the work,
+  press Tick, then switch the oxygen off and tick again."
+- welcomePlanet (how; on entering Planet's books; stale once Swing is on): "Planet's books. Press a station button,
+  then press Swing and look for the months the air loses carbon dioxide."
+- woodAsk (how; when the wood card opens; stale once Check is pressed): "Where did the wood come from? Set the three
+  sliders, then press Check."
+- woodReveal (event; each Check; stale on scene change): "Almost all of it came from the air. The carbon and most of
   the oxygen arrived as carbon dioxide."
-- oxygenOff (event, each switch off; stale if switched back on): "Oxygen off. Each glucose now pays two ATP instead
-  of about thirty two."
-- passport (how, first Follow one carbon): "Press Next stamp to follow one carbon atom through air, life, ocean and
-  rock."
-- night (how, first Leaf by night): "No light, so no photosynthesis. The leaf only respires."
+- oxygenOff (event; each switch off; stale if switched back on): "Oxygen off. Each glucose now pays two ATP instead
+  of about thirty two. Press Tick to see the cost."
+- passport (how; first Follow one carbon; stale once the tenth stamp shows): "Press Next stamp to follow one carbon
+  atom through air, life, ocean and rock."
+- night (how; first Leaf by night; stale on another scene): "No light, so no photosynthesis. Press Respire: the leaf
+  only respires."
 
 ## Family engine
 none (not a family member). Uses data-desk parts as a consumer (`kit/data-desk.js`): `DataTable` for the 36 CO2
@@ -170,6 +216,11 @@ may also use NOAA CO2 for long-term trends: see Open questions.
   Carbon Dioxide" https://www.climate.gov/news-features/understanding-climate/climate-change-atmospheric-carbon-dioxide
 - Atomic masses C 12, H 1, O 16, N 14 (rounded): NIST, https://www.nist.gov/pml/atomic-weights-and-isotopic-compositions-relative-atomic-masses
 - All equations atom-checked in Python (Curio Class, 2026-10-27).
+- Number checks (Python, 2026-10-29): all eight equations balance in C, H, O, N and Ca; 32 x 30.5 = 976 kJ (34.0
+  percent), 1,894 heat; fermentation 61 of 196 (31 percent), 2,674 and 2,635 kJ left in waste; one glucose 93.3
+  percent from air, 6.7 from water; 264 + 108 = 180 + 192 = 372 g. Swings recomputed from the listed monthly and
+  annual means: every value matches; Utqiagvik range 19.06 (19.1 from unrounded values; the rounded list spans 19.0),
+  lowest August; Mauna Loa 6.5, lowest September; South Pole 1.1, lowest March. Nothing needed fixing.
 
 ## Done when
 1. Every entry posts a row whose C, H, O, N totals balance; Photosynthesize moves 6 C from Air to Sugar store.
@@ -181,8 +232,13 @@ may also use NOAA CO2 for long-term trends: see Open questions.
 5. Follow one carbon visits all four spheres and the passport strip lists ten stamps.
 6. Leaf by night disables Photosynthesize with a reason; Respire with no sugar is disabled with a reason.
 7. Main controls visible without scrolling at 1366x768 and 680x425; tables readable at 375 wide (scroll inside).
-8. Each how-to line speaks once in five repeated actions; woodReveal speaks every Check.
-9. No images, no network, no em dashes.
+8. Each how-to line speaks once in five repeated actions; woodReveal speaks every Check; no line names a disabled
+   control (night is never spoken while Respire is disabled).
+9. Focus: the scene and account ring is the largest thing in Ledger, the two counters in Oxygen switch, the chart in
+   Planet's books, at 1366x768 and 680x425.
+10. A tap while anything plays: pressing a second entry during the 1.5 s animation posts the first row at once and
+    starts the second; switching Oxygen off during Run changes the very next tick.
+11. All 15 images load (five scenes, two cells, five stamps, three stations); no network, no em dashes.
 
 ## Open questions
 - [energy-accountant] climate-dashboard may also use NOAA CO2 (long-term). This tool uses only 2023 monthly at three

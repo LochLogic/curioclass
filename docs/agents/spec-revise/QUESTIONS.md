@@ -63,3 +63,9 @@
 - usage-panel: does a real AHD panel figure exist for They sentence (d)?
 - ambiguity-lab: "Read" mode renamed "Story" (same as page-to-screen).
 - Carried: premise-inspector Stephens and Apess review; EO 9066 and Nez Perce review; ambiguity-lab content; ad-agency letters and FTC naming; argument-map author name and Thoreau length; source-mixer radio vs video, teacher-editable tags.
+
+## R12
+- body-thermostat: keep code thermal outline, or paint a person (Gemini, cannot tint)?
+- carrying-capacity: die-out note enough, or shrink the wolf pack when deer are few (model change)?
+- Voices: feedback-loop-builder -> clear-teacher, lake-commons -> easy-coach.
+- Carried: wolves cap; cystic fibrosis wording; carbon budget depth; yearly data refresh; NOAA source sharing; amino acid entry; Lake Commons title; Indigenous fisheries card.

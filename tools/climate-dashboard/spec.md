@@ -25,6 +25,7 @@ Header (kit, 9-12 theme): "Climate Dashboard", small line "Signal and noise, sid
 Window`, `Drivers`, `Futures`; kit `Motion`, `Sound`, `Read`. A line under every chart: "Data as of ..." (Content).
 
 ### Records (explore, default)
+Focus: the three stacked charts and the one-year readout above them; they fill the stage, filters sit in the panel.
 Three stacked charts sharing one year axis (1880 to the latest year): temperature anomaly (°C), CO2 (ppm), September
 sea ice extent (million km²). Hovering or tapping a year shows all three values on one readout ("2012: +0.65 °C,
 394.1 ppm, 3.57 million km²").
@@ -35,19 +36,20 @@ A `Seasons` card opens beside the monthly CO2: "CO2 peaks in May and dips in Sep
 Northern Hemisphere plants grow in summer and take carbon from the air." (Content: 2026 swing 6.27 ppm.)
 
 ### Trend Window
-The temperature chart (or the sea ice chart, picked with `Temperature` / `Sea ice`) with a draggable window: drag
+Focus: the window on the chart and its slope number, drawn large beside the window; the strip chart sits under it,
+smaller. The temperature chart (or the sea ice chart, picked with `Temperature` / `Sea ice`) with a draggable window: drag
 its middle to move it, its edges to resize (3 years to the whole record). The least squares line through the window's
 yearly values draws in the accent with its slope "+0.21 °C per decade". Under it:
 - A strip chart of every window of the current length since 1975 (sea ice: since 1979), each a dot at its start year
   colored by slope sign. Readout: "Windows of 5 years: 10 of 47 show cooling. Slopes from −0.46 to +1.05."
 - `Cherry picker` card: "Find a window that shows cooling." Accepted for any window with a negative slope; the card
   then asks "Now find one 12 years or longer." The answer since 1975 is none; the card says so after two tries.
-- Sea ice: the same idea; 15-year windows ending in 2025 or 2026 show tiny rises (+0.002 and +0.042 million km² per
+- Sea ice: the same idea; 15-year windows ending in 2025 or 2026 show tiny rises (+0.002 and +0.043 million km² per
   decade) while the full record is −0.74 per decade. Strip: "Ice loss has slowed since 2012; the long record still
   falls."
 
 ### Drivers
-For HS-ESS2-4. The temperature chart with markers that toggle on: `Volcanoes` (Agung 1963, El Chichón 1982, Pinatubo
+Focus: the temperature chart with the markers switched on; the time scale cards sit in the panel. For HS-ESS2-4. The temperature chart with markers that toggle on: `Volcanoes` (Agung 1963, El Chichón 1982, Pinatubo
 1991; ash and sulfate haze reflect sunlight for a year or two), `El Niño` (1997 to 98, 2015 to 16, 2023 to 24; the
 Pacific releases heat), `Sun` (11-year cycle; sunlight changes by about 0.1 percent). Beside the chart, "Time scale
 cards" sorted by how fast each driver works: ocean cycles (years), volcanoes (one to two years), the Sun's cycle (11
@@ -56,6 +58,7 @@ An "Energy in, energy out" gauge: satellites show Earth taking in more energy th
 square meter around 2019, roughly double 2005.
 
 ### Futures
+Focus: the range bars (Scenarios) or the cumulative bar and its warming range (Carbon budget), centered on the stage.
 For HS-ESS3-5 and HS-ESS3-6. Two panels picked with `Scenarios` and `Carbon budget`.
 - Scenarios: the observed record plus five shaded IPCC bars for 2081 to 2100 (Content), each named only by its
   emissions path ("very low", "low", "intermediate", "high", "very high"), with its likely range drawn as a bar, not a
@@ -91,7 +94,7 @@ Trends (least squares on yearly values, computed 2026-10-27):
   −0.008, after Pinatubo); 12 years or longer, none (12-year slopes 0.049 to 0.373; 20-year 0.113 to 0.316).
 - CO2: 1959 to 2025, 1.672 ppm per year; 1959 to 1968, 0.755; 2016 to 2025, 2.522.
 - Sea ice: 1979 to 2026, −0.741 million km² per decade (−11.6 percent of the 1981 to 2010 mean per decade); 2012 to
-  2026, +0.042.
+  2026, +0.043 (exactly 0.04250, so 3 decimals round up).
 Futures:
 - IPCC AR6 WG1, Table SPM.1, warming for 2081 to 2100 above 1850 to 1900 (best estimate, very likely range): very low
   (SSP1-1.9) 1.4 (1.0 to 1.8); low (SSP1-2.6) 1.8 (1.3 to 2.4); intermediate (SSP2-4.5) 2.7 (2.1 to 3.5); high
@@ -114,8 +117,10 @@ aerosols and changing sinks; scenario bars are IPCC assessed ranges, not predict
   windows start no earlier than 1979.
 - Strip chart dots: tap a dot to move the window there.
 - Baseline toggle changes labels and the axis only; trends never change with the baseline (a note says so).
-- Futures: switching paths animates the cumulative bar; outputs to 2 decimals for °C with the range in brackets.
-- Sound: off by default for data; a soft tick per window move with Sound on.
+- Futures: switching paths animates the cumulative bar over 0.6 s (instant with Motion off); a second switch during
+  the animation jumps straight to the new path, and the outputs update at once. Outputs to 2 decimals for °C with the
+  range in brackets.
+- Sound starts on (kit): the voice, and a soft tick per window move; both silent with Sound off.
 - Keyboard: arrows move the window 1 year, Shift+arrows resize; Tab reaches filters and markers.
 - Layout by real stage pixels: wide (three charts stacked beside the panel), compact, stack (375 wide: one chart at a
   time with `Temperature` / `CO2` / `Sea ice` tabs).
@@ -131,17 +136,25 @@ Charts: temperature bars blue `--gr-1` below zero and `--gr-4` above, smoothed l
 backgrounds; numbers carry the message.
 
 ## Art
-none: drawn in code (charts, markers, gauge, bars, preview.svg).
+none: drawn in code. Every screen is a chart of real data (three records, trend lines, the strip chart, markers, the
+energy gauge, scenario range bars and the cumulative bar), so there is no scene, place or object to paint.
 
 ## Voice
-`hs-narrator` (Kore), style "Read clearly and naturally, at a moderate pace, like a calm science reporter." No 9-12
-science tool uses it (news-reader went to population-dashboard, the other science data dashboard). `Curio.voice`, `scope: () => state.mode`.
-- records (how, Records welcome): "Three records, one time line. Tap any year to read all three."
-- window (how, Trend Window welcome): "Drag the window. Short windows can point anywhere. Then make it wider."
-- cooling (event, first cooling window found; stale on a window change): "That window shows cooling. Now try one twelve years or longer."
-- none (event, Cherry picker second try at 12 years; stale on a mode change): "Since 1975, no window that long shows cooling."
-- drivers (how, Drivers welcome): "Turn on the markers and match each wiggle to its cause."
-- futures (how, Futures welcome): "Pick an emissions path and read the range, not just the middle number."
+`hs-narrator` (Kore), style "Read clearly and naturally, at a moderate pace, like a calm science reporter." No
+neighbor uses it (news-reader went to population-dashboard, the other science data dashboard). `Curio.voice`,
+`scope: () => state.mode`. How lines speak once per page load, then only update the hint; event lines speak each time.
+- records (how; Records welcome; stale once a year has been tapped): "Three records, one time line. Tap any year to
+  read all three."
+- window (how; Trend Window welcome; stale once the window has moved): "Drag the window across the chart. Short
+  windows can point anywhere. Then drag an edge to make it wider."
+- cooling (event; a cooling window is found while the Cherry picker card asks for one; stale on the next window
+  change): "That window shows cooling. Now drag an edge to make it twelve years or longer."
+- none (event; Cherry picker second try at 12 years or longer; stale on a mode change): "Since 1975, no window that
+  long shows cooling."
+- drivers (how; Drivers welcome; stale once a marker is on): "Press Volcanoes, El Niño or Sun, and match each wiggle
+  to its cause."
+- futures (how; Futures welcome; stale once a path has been picked): "Pick an emissions path, then read the range,
+  not just the middle number."
 
 ## Family engine
 none. Charts use `kit/graphing.js` `Plane` if present (`g.trace`, `g.segment`), otherwise the tool's own SVG; the
@@ -164,18 +177,27 @@ data-desk family is not used (time series only).
   "What Is the Sun's Role in Climate Change?" (2019), https://science.nasa.gov/climate-change/
 - Seasonal CO2 cycle and plants: NOAA GML, "Trends in Atmospheric Carbon Dioxide" (seasonal cycle notes).
 - Every trend and box model value computed in Python (2026-10-27).
+- Number checks (Python, 2026-10-29, on the GISTEMP and NSIDC files pulled again that day, values unchanged): every
+  temperature check value; trends 0.083, 0.207, 0.134, 0.296, −0.019, 0.14, −0.044; window counts 5 years 10 of 47
+  (−0.46 to +1.05), 8 years 6 of 44, 10 years 1 of 42 (1987 to 1996, −0.008), 12 years 0 of 40 (0.049 to 0.373), 20
+  years 0 (0.113 to 0.316); 1880 to 1900 mean −0.218; sea ice −0.741 per decade, 1981 to 2010 mean 6.413, −11.6
+  percent. Fixed: 2012 to 2026 sea ice is 0.04250, which a builder's toFixed(3) shows as +0.043, not +0.042. Carbon
+  budget: 3,040, 520, 920 and 1,520 GtCO2 give +1.37, +0.23, +0.41, +0.68 °C and +195, +33, +59, +97 ppm. CO2 values
+  not re-pulled (taken from the 2026-10-27 file list).
 
 ## Done when
 1. Hover 2012 reads +0.65 °C, 394.06 ppm, 3.57 million km²; data-as-of lines name the three files and dates.
 2. Trend Window 1975 to 2025 reads +0.207 °C per decade; 1880 to 2025 reads +0.083.
 3. 5-year windows strip: "10 of 47 show cooling", slopes −0.46 to +1.05; 12-year windows: none cooling.
 4. Cherry picker accepts 2015 to 2022 (−0.044) and, at 12 years, says none exist after the second try.
-5. Sea ice 1979 to 2026 reads −0.741 per decade; 2012 to 2026 reads +0.042 with the slowing note.
+5. Sea ice 1979 to 2026 reads −0.741 per decade; 2012 to 2026 reads +0.043 with the slowing note.
 6. Baseline 1880 to 1900 shifts 2024 to +1.50 and leaves every trend unchanged.
 7. Monthly CO2 shows the 2026 May peak 432.34 and September low 426.07.
 8. Carbon budget: hold steady gives 3,040 GtCO2 and +1.37 °C (0.82 to 1.92); zero by 2050 gives +0.23.
-9. How-to lines once each; event lines as listed.
-10. Three charts visible at 1366x768; tabs at 375 wide; labels at least 10 px in the 680x425 preview; no network at
+9. How-to lines once each; event lines as listed; no line names a control that is not on screen.
+10. Focus: in each mode the chart named under its Focus is the largest thing on the stage at 1366x768.
+11. A tap while anything plays: switching emissions path twice fast lands on the second path's numbers at once.
+12. Three charts visible at 1366x768; tabs at 375 wide; labels at least 10 px in the 680x425 preview; no network at
     run time, no images, no em dashes.
 
 ## Open questions
