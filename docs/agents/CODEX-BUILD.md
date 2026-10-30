@@ -21,15 +21,26 @@ The tool holds on this branch until review.
   `## Engine changes wanted`: the file, the function, the exact change and why.
 - If the spec is wrong or impossible, build everything else and say so in `handoff.md` and the report. Do not improvise.
 - Do not draw, generate, download or record anything. `art/prompts.json` and any images already there stay as they are.
-  Use `art:<name>` tokens for the names in prompts.json; draft builds show labeled placeholders for missing images.
+  If the tool has no `art/prompts.json`, write it from the spec's Art section, in the format of
+  `tools/calm-corner/art/prompts.json`. Use `art:<name>` tokens for the names in prompts.json; draft builds show labeled
+  placeholders for missing images, and the paintings arrive after your build. Lay out each image at its final size, and
+  make the scene look finished around it.
 - Write readable code: normal line breaks and one statement per line, about 160 characters a line at most. Never
   compress `src.html`. The next person has to change it.
 - Write "Curio Class", never "Curio" alone. Never use an em dash anywhere: code comments, UI text, notes, lines, reports.
 - The tool makes no network requests. You need no internet.
 - Screenshots, Chrome profiles, shots files, audit output and temporary scripts go in Scratch or %TEMP%, never the repo.
   Your sandbox cannot delete files afterwards, so anything left in the tool folder stays.
-- Chrome debugging ports 9990 to 9997 and the host server on 8795, only. Every Chrome uses `--mute-audio` (drive.py does).
+- Use only the ports your prompt names (default: Chrome debugging 9990 to 9997, host server 8795), and use those numbers
+  wherever the commands below show the defaults. Other builds may be running. Every Chrome uses `--mute-audio` (drive.py does).
   drive.py and audit_tool.py already handle a missing `websockets` and a Chrome that will not start; do not work around them.
+
+## Super tools
+
+If your prompt calls this a super tool, also read `docs/agents/SUPER.md` right after the spec. Its three tests, First
+minute, Goals, shine and ten-minute check are the point of the tool. The simulation runs on the real rule and stays
+smooth at 60 frames a second within the spec's budget. Expect a longer build, and keep to the same time limits per
+command. In the Feel check, say honestly whether you would still be playing after 10 minutes, and why.
 
 ## Make it look good and play well
 
@@ -113,7 +124,7 @@ trust the computation, say what differs in the report, and leave the spec alone.
 ## Files to make in `tools/<id>/`
 
 As BUILD.md lists: `src.html`, `tool.draft.json` (`"stage": "built"`), `notes.md`, `voice/lines.json`,
-`audit-states.json`, `handoff.md`, plus `codex-report.md`. Leave out `art/prompts.json` if it already exists.
+`audit-states.json`, `handoff.md`, plus `codex-report.md`. Keep `art/prompts.json` as it is if it already exists.
 `notes.md` opens with `## What it teaches`, `## Key skills` and `## Support at home`, as BUILD.md says. The bundle
 `<id>.html` is generated and git-ignored. Delete `host.html` when you finish, or say you could not.
 

@@ -16,7 +16,7 @@ Spec only. Each agent owns one grade band and writes its specs one at a time in 
 - **Neighbors.** 35 Arts and Music tools already have a spec or are live. `neighbors.py` lists them; read the specs of
   the close ones before you pick a mechanic, image list, palette or voice.
 - **Art.** Arts tools look at art, so painted images matter most here. Local FLUX (`scripts/localart.py`) for
-  anything without people. People, faces and hands go to Gemini (`scripts/art.py`), which is set aside for now, so
+  anything without people. People, faces and hands go to Gemini (`scripts/art.py`), reviewed by Cory, so
   every `people: true` image waits on Cory: prefer a stage, an instrument, a costume on a stand, a puppet, an animal or
   a silhouette in code when it teaches just as well, and keep people only where the person is the point. Artworks a
   student studies are original paintings in a named style, never copies of a real work; real works may be named and
