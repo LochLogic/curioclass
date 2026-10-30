@@ -102,7 +102,7 @@ Local FLUX (`scripts/localart.py`), no people, no lettering. 15 images (14 pictu
 - Drawn in code: the book frame and tabs, the drawing pad, the tag card, swatches, and the idea map (a diagram).
 
 ## Voice
-Bank voice: `curious-librarian` (Aoede), "Say curiously and warmly, like a friendly school librarian", here a librarian who loves sketchbooks and asks where ideas came from. Not used by any 9-12 arts neighbor (gallery-critique calm-professor, city-skyline casual-peer, virtual-gallery wise-mentor, theory-gym firm-captain, music-history-radio news-reader, director-s-chair science-narrator, dance-styles-explorer upbeat-guide, storyboard-studio smooth-narrator, brand-builder hs-narrator) or by another spec in this band. `Curio.voice`, scope = mode. Most text is read on screen.
+Bank voice: `clear-teacher` (Iapetus), "Say clearly and kindly, like a patient elementary school teacher", played here as a patient art teacher who asks where ideas came from. The bank lists it for grades 3 to 5; every 9-12 voice is taken by a neighbor (see Open questions). `Curio.voice`, scope = mode. Most text is read on screen.
 - welcomeSample (how; Sample book entered; stale once a tab or Next page is tapped): "This is Theo's sketchbook. Tap Next page to see how the idea changed."
 - welcomeMine (how; My book entered with no issue chosen; stale once an issue card is tapped): "Tap an issue card, then tap Choose this issue."
 - pickTradition (how; issue chosen and no tradition; stale once a tradition card is tapped): "Now open Tradition. Tap a tradition card, then tap Choose this tradition."
@@ -136,3 +136,6 @@ None.
 7. With 12 pages the map scrolls sideways and the source column stays put; nothing overlaps at 760 and 375 wide.
 8. How lines are spoken once each in five page adds in a row; firstBreak is spoken every time a Broke from tag is added.
 9. All 15 images load, show no people and no fake lettering; WPA bands are blank.
+
+## Open questions
+- Voice: the bank has no free grown-up voice for this tool (every 9-12 voice is used by a neighbor), so it borrows a younger one. Add a grown-up voice to the bank and swap it in? (Batch ARTS check, 2026-10-29.)

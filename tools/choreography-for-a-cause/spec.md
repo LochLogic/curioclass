@@ -85,7 +85,7 @@ Local FLUX, no people, no lettering. 7 images, none for Gemini. webp, long side 
 - Drawn in code: the dancers (the dance engine's figure, no faces), data charts on the cards, the form strip, viewer cards with simple icon heads (circle and shoulders, no faces), and all text.
 
 ## Voice
-Bank voice: `big-sister` (Leda), "Say in a friendly, youthful way, like a helpful older student", here a senior in the school's dance company. The bank lists it for grades 3 to 8 peers; casual-peer, the 9-12 peer voice, is used by city-skyline-studio, a close neighbor, so this is the closest fit (Open question). Not used by any 9-12 arts neighbor or another spec in this band. `Curio.voice`, scope = mode.
+Bank voice: `lively-host` (Sadachbia), "Say with lively energy, like a friendly game show host", played here as the dance company's upbeat rehearsal captain. The bank lists it for showdowns and races; every 9-12 voice is taken by a neighbor (see Open questions). `Curio.voice`, scope = mode.
 - welcomeFile (how; Fact file entered; stale once a folder tab is tapped): "Open a folder and read the five cards. Then tap Choose this issue."
 - motifHow (how; Motifs entered with no motifs; stale once Make a motif is tapped): "Tap a card, then tap Make a motif. Watch, then stand up and try it."
 - tuneHow (how; the first motif made; stale once any motif control changes): "Change the poses, the dynamic or the pathway until it feels like the card."
@@ -115,3 +115,6 @@ Uses the dance engine (`kit/dance.js`, docs/families/dance.md), though the catal
 6. Versions survive a reload with their results and real viewer cards.
 7. How lines once each over five motifs in a row; allNamed and noneNamed every time.
 8. All 7 images load with no people and no lettering; every card names its source.
+
+## Open questions
+- Voice: the bank has no free grown-up voice for this tool (every 9-12 voice is used by a neighbor), so it borrows a younger one. Add a grown-up voice to the bank and swap it in? (Batch ARTS check, 2026-10-29.)

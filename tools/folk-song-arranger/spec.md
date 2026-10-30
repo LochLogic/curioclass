@@ -105,7 +105,7 @@ Local FLUX, no people. Style: "warm painted illustration, wood and lamplight".
 - 11 images, none with people. Drawn in code: the grid, role blocks, ruler, playhead, check lights and every label.
 
 ## Voice
-Bank voice: `gravel-ranger` (an old fiddler who has played every barn and gym in the county; no neighbor or other spec in this band uses it). Style from the bank. `Curio.voice` with `scope: () => state.mode`. No line plays while the arrangement plays (V.hush on Play); result lines wait for Stop or the end.
+Bank voice: `hs-narrator` (Kore), style "Read clearly and naturally, at a moderate pace": a plain, steady guide who lets the tune be the star (no neighbor or other spec in this band uses it). `Curio.voice` with `scope: () => state.mode`. No line plays while the arrangement plays (V.hush on Play); result lines wait for Stop or the end.
 - welcomeArrange (how; entering Arrange; stale when any cell or Play is tapped): "Here's an old tune and a job to do. Press Play to hear it, then tap a block to change who plays what."
 - checksHow (how; first time a check light turns amber; stale when that light turns green): "Amber means a real band would trip there. Tap the light to see where."
 - reasonHow (how; first time the Reason strip opens): "Every change gets a reason. Tap one, or type your own."

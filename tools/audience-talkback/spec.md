@@ -87,7 +87,7 @@ Local FLUX, no people (the actors are animals). Style line: "painted storybook l
 - Voice clips for the scene (20, made with the voice pipeline like narration, not art): Kit with bank voice Autonoe, Holloway with Gacrux, with these style lines: Kit A "Say quietly and slowly, a little shaky, like a scared kid owning up"; Kit B "Say fast and too loud with a nervous laugh, like a kid trying to make it no big deal"; Holloway A "Say softly and slowly, like a kind old neighbor who is sad but gentle"; Holloway B "Say briskly and surprised, like a busy gardener who just heard odd news".
 
 ## Voice
-Bank voice `calm-professor` (Schedar), style "Say evenly and clearly, like a calm, friendly college professor": the talkback host who asks the audience what they saw. Not used by any 3-5 arts neighbor or another tool in this band. Narration never plays during the scene. `Curio.voice` with `scope: () => state.mode`.
+Bank voice `knowing-guide` (Sadaltager), style "Say in a knowledgeable, friendly way, like a museum curator": the talkback host who asks the audience what they saw. Not used by any 3-5 arts neighbor or another tool in this band. `Curio.voice` with `scope: () => state.mode`.
 - welcomeWatch (how; entering Watch; stale when a Play button is tapped): "Here are two versions of the same scene. Tap Play Version A, then Play Version B."
 - feelHow (how; after both versions have played; stale when a feeling chip is tapped): "How did each one feel? Tap up to two feelings for each version."
 - welcomeLab (how; entering Swap lab; stale when Play is tapped): "Flip one switch, then tap Play. Change one thing at a time, so you know what did it."

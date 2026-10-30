@@ -81,7 +81,7 @@ Local FLUX, no people (a hand silhouette is drawn in code). Style line: "photo o
 - 20 generated images, none with people. Drawn in code: the camera frame, onion skin, Jump Finder difference view, the hand silhouette, the strip, icons and all text.
 
 ## Voice
-Bank voice `casual-peer` (style "Say casually and naturally, like a friendly teenager explaining something"): an older student who runs the after-school animation club. Not used by any 3-5 arts neighbor or another tool in this band. `Curio.voice` with `scope: () => state.mode`.
+Bank voice `firm-captain` (Alnilam), style "Say firmly but kindly, like a ship captain giving clear directions": the animation studio's director calling set-up checks. Not used by any 3-5 arts neighbor or another tool in this band. `Curio.voice` with `scope: () => state.mode`.
 - welcomeCut (how; entering Rough cut; stale when Play or the strip is touched): "Our club's film keeps jumping. Tap Play, then step through it with the arrows."
 - finderHow (how; after the first full play; stale when Jump Finder is turned on): "Turn on Jump Finder. It lights up whatever changed since the last frame."
 - tagHow (how; Jump Finder on, nothing tagged; stale when a frame is tagged): "Find a frame where too much lit up, and tap Something jumped here."
