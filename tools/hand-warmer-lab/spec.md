@@ -22,6 +22,8 @@ design hot packs and cold packs for a winter trail crew.
 Header: title, subtitle "Break costs. Form pays." Modes `Bond ledger` (opens first), `Pack bench`. Kit buttons.
 
 ### Bond ledger
+Focus: the molecules being broken and formed and the energy staircase beside them, together the central and largest
+part of the stage; the ledger table sits at the right in smaller type.
 Left: the reactants drawn ball-and-stick with every bond clickable. Middle: the energy staircase, a vertical bar
 chart that starts at the reactants' level. Right: the ledger table (bond, count, kJ/mol each, total).
 1. Pick a reaction (L1 to L6, Content). The products show faded on the right.
@@ -37,17 +39,23 @@ The staircase is the HS-PS1-4 model: reactants level, the climb to loose atoms, 
 between start and end labeled "net".
 
 ### Pack bench
-A pouch with an inner bag of 100 g water (20.0 °C) and a cup of salt. A thermometer and a 60-second temperature
-graph sit beside it. Panel: salt picker, grams box and slider (0 to 40 g, step 0.01), `Pop` (squeezes the pouch,
-breaks the inner bag), `Fresh pack` (resets to 20.0 °C).
+Focus: the pouch and the thermometer beside it, central and largest, over the painted winter trail (`hw-trail`,
+dimmed); the graph and the order list are smaller.
+The painted pouch (`hw-pouch`) with an inner bag of 100 g water (20.0 °C) and the painted cup of salt (`hw-salt-cup`)
+beside it. A code thermometer and a 60-second temperature graph sit beside it. Panel: salt picker, grams box and
+slider (0 to 40 g, step 0.01; opens at CaCl2, 10.00 g, so `Pop` is live at once), `Pop` (squeezes the pouch, breaks
+the inner bag: the picture swaps to `hw-pouch-popped`), `Fresh pack` (resets to 20.0 °C and the unpopped pouch).
+While the temperature moves every control stays live: `Fresh pack`, a new salt or new grams act in the same frame
+(a change after Pop starts a fresh pack with the new choice).
 - After `Pop` the temperature moves toward its final value over 10 seconds (instant with Motion off); the card shows
   ΔT, final temperature, kJ released or absorbed, and moles of salt.
 - `Why` card: dissolving is a small bond budget too. Pulling the ions apart costs energy; water molecules gripping
   the ions pays energy back. For NaCl the two are almost equal (Content), so the change is tiny. The card shows the
   two bars for NaCl and only the net arrow for the other salts (their two halves are not in our sources).
-- Trail orders (a list on the right, any order): each card has a target and a pass band of ±1.0 °C. Passing
+- Trail orders (a list on the right, any order, each card with its small painted picture): each card has a target
+  and a pass band of ±1.0 °C (T3 is a must-reach target instead, see Content). Passing
   checks the card; progress saved on this device (localStorage `curio-hand-warmer-lab`, try/catch), `Clear` resets.
-- Iron card: the air-activated warmer, 4 Fe + 3 O2 → 2 Fe2O3, shown on a separate meter in kJ (not a 100 g water
+- Iron card: the painted air-activated warmer (`hw-iron-warmer`), 4 Fe + 3 O2 → 2 Fe2O3, shown on a separate meter in kJ (not a 100 g water
   pouch: it heats slowly as air seeps in). The card compares kJ per gram with the salt packs.
 
 ## Content
@@ -75,12 +83,13 @@ KNO3 −7.51 / −13.76 / −19.06; NH4Cl −6.02 / −11.03 / −15.28; KCl −
 NaCl why card: about 769 kJ to pull a mole of NaCl apart (lattice energy, OpenStax 7.5), about 765 back when water
 grips the ions, net +3.9.
 Trail orders:
-- T1 Mitten pack: +22 °C. CaCl2 14.35 g, or MgSO4 13.81 g.
-- T2 Ankle ice pack: −15 °C. NH4NO3 24.27 g, KNO3 22.20 g, or NH4Cl 29.30 g.
-- T3 "Table salt cold pack?": reach −5 °C with NaCl. It cannot (−3.68 °C at 30 g, −4.56 °C at the 40 g limit); the
-  card passes when the student marks it `Can't be done` after trying at least two amounts.
+- T1 Mitten pack: +22 °C. CaCl2 14.36 g, MgSO4 13.81 g, or LiCl 11.78 g.
+- T2 Ankle ice pack: −15 °C. NH4NO3 24.27 g, KNO3 22.19 g, NH4Cl 29.30 g, or KCl 37.32 g.
+- T3 "Table salt cold pack?": reach −5 °C or colder with NaCl (a must-reach target, no ±1.0 band: −4.56 °C at the
+  40 g limit would sit inside a band). It cannot (−3.68 °C at 30 g, −4.56 °C at 40 g); `Can't be done` becomes live
+  after two NaCl Pops at different amounts, and the card passes when the student presses it.
 - T4 Pocket heater: 0.50 kJ per gram of pack is the bar. CaCl2 gives about 0.73 kJ per gram of salt, but the pouch
-  must carry its water too: 14.35 g in 114.35 g of pack is 0.092 kJ/g. Iron: 7.38 kJ per gram of iron. The card
+  must carry its water too: 14.36 g in 114.36 g of pack is 0.092 kJ/g. Iron: 7.38 kJ per gram of iron. The card
   passes when the student picks iron and says why (choice of three reasons, one right: "more energy per gram").
 Iron warmer: 4 Fe + 3 O2 → 2 Fe2O3, −1,648.4 kJ for 223.38 g of iron: 7.38 kJ/g. 10 g iron 73.8 kJ; 10 g CaCl2
 7.33 kJ. Real air-activated warmers hold iron powder, salt, activated carbon and vermiculite; the salt and carbon
@@ -95,30 +104,52 @@ purpose (caustic).
 - Net = in − out, exactly from the table. Positive net: endothermic; negative: exothermic; the words appear only
   after the last bond forms.
 - Pack math: n = g ÷ M; q = −ΔH × n (kJ); ΔT = q × 1000 ÷ ((100 + g) × 4.18). Shown to 2 decimals.
-- Pass check: |ΔT − target| ≤ 1.0 °C. A wrong pack is not a fail: the card says "Off by 3.4 °C. Fresh pack and
+- Pass check: |ΔT − target| ≤ 1.0 °C (T3: ΔT ≤ −5.0 °C, which NaCl never reaches). A wrong pack is not a fail: the card says "Off by 3.4 °C. Fresh pack and
   try again."
 - Keyboard: bonds are buttons in reading order (Tab, Enter); sliders arrows 0.01 g and Page 1 g.
 - `window.__tool = {state, setMode, reaction(id), breakAll(), formAll(), backward(), pack(salt, g), pop(), order(id)}`.
 
 ## Look
-Accent `--brand #d28279` (ember clay), `--brand-ink #10141a`. Scene: dusk snow trail drawn in code (`#1a2230` sky,
-`#d8e2ee` snow at 30 percent). Warming uses the accent; cooling uses `#8fd3ff`; the graph line changes color as it
-crosses 20 °C. Staircase: climb bars `#8fd3ff` (energy in), drop bars accent (energy out), net bracket in `--ink`.
-Atoms in molecules-engine colors. Contrast (computed): brand on panel 5.94:1, on --sec-bg 5.63:1, brand-ink on
-brand 6.34:1.
+Accent `--brand #d28279` (ember clay), `--brand-ink #10141a`. Scene: the painted dusk snow trail (`hw-trail`) under a
+`#0b0f17` wash at 45 percent behind the Pack bench; the Bond ledger has no painting (it is all diagram) and sits on
+`--sec-bg`. Warming uses the accent; cooling uses `#8fd3ff`; the graph line changes color as it crosses 20 °C.
+Staircase: climb bars `#8fd3ff` (energy in), drop bars accent (energy out), net bracket in `--ink`. Atoms in
+molecules-engine colors. Readouts sit on `--panel` chips, never straight on the painting. Contrast (computed): brand
+on panel 5.94:1, on --sec-bg 5.63:1, brand-ink on brand 6.34:1.
 
 ## Art
-None. Pouch, thermometer, trail and molecules are drawn in code.
+Local FLUX (`scripts/localart.py`), no people anywhere. 9 images, all on the Pack bench. Molecules, the staircase,
+the ledger, the thermometer and the graph stay in code (diagrams and charts).
+- hw-trail: a snowy mountain trail at dusk, a pine forest and a small trail crew's orange tent with its flap closed,
+  blue snow and a pink sky; 16:9; cutout no; people no; Pack bench backdrop, dimmed.
+- hw-pouch: a clear soft plastic pouch holding a small sealed inner bag of water and loose white crystals around it,
+  on plain white; 3:4; cutout yes; people no; the pack before Pop.
+- hw-pouch-popped: the same kind of clear plastic pouch, the inner bag burst, filled with cloudy liquid and a few
+  undissolved white crystals, on plain white; 3:4; cutout yes; people no; the pack after Pop, drawn at the same size
+  and place.
+- hw-salt-cup: a small white paper cup heaped with white crystals, on plain white; 1:1; cutout yes; people no; the
+  salt beside the pouch (every salt here is white; the name is a code label).
+- hw-iron-warmer: a small plain grey fabric hand warmer packet, blank on both sides, on plain white; 4:3; cutout yes;
+  people no; the iron card's warmer, beside its kJ meter.
+- Order pictures, one shared line, four cutouts (1:1, cutout yes, people no, each the small picture on its trail
+  order card): hw-order-mitten: a single knitted red wool mitten lying flat. hw-order-ankle: a blue elastic ankle wrap
+  with a flat gel pouch tucked in it. hw-order-saltshaker: a plain glass salt shaker with a steel cap.
+  hw-order-pocket: a puffy orange winter jacket laid flat, a zippered chest pocket.
 
 ## Voice
-Bank voice `news-reader` (the trail crew's steady radio bulletin). No 9-12 science tool uses it. `Curio.voice`,
-scope = mode.
-- wLedger (how, Bond ledger welcome): "Click each bond on the left to break it. When they're all loose, press Form."
-- formTip (how, first time all bonds are broken): "Everything's loose. Now click the product bonds to form them."
-- wBench (how, Pack bench welcome): "Pick a salt, set the grams, then press Pop to break the inner bag."
-- coldTip (how, first endothermic result): "It got colder. Pulling apart cost more than the water paid back."
-- hit (event, an order passes; stale on the next Pop): "That pack will do the job on the trail."
-- t3Tip (how, second NaCl try on T3): "If no amount gets there, press Can't be done."
+Bank voice `news-reader` (Rasalgethi), style "Say clearly and steadily, like the trail crew's radio bulletin." No 9-12
+science tool and no other spec in this batch uses it. `Curio.voice`, scope = mode.
+- wLedger (how; Bond ledger welcome; stale once a reaction is picked or a bond is clicked): "Pick a reaction, then
+  click each bond in the molecules on the left to break it."
+- formTip (how; the first time every reactant bond is broken; stale once a product bond forms): "Everything's loose.
+  Now click the product bonds to form them, or press Form all."
+- wBench (how; Pack bench welcome; stale once Pop, a salt or the grams change): "Pick a salt, set the grams, then
+  press Pop to break the inner bag."
+- coldTip (how; the first endothermic result in either mode; stale on the next Pop or reaction): "It got colder.
+  Pulling apart cost more than the water paid back."
+- hit (event; an order passes; stale on the next Pop): "That pack will do the job on the trail."
+- t3Tip (how; `Can't be done` turns live on T3 after two NaCl Pops; stale once it is pressed or the order changes):
+  "If no amount gets there, press Can't be done."
 
 ## Family engine
 molecules (`kit/molecules.js`), described in full in bond-battle's spec. Family none here; it calls `draw` with
@@ -136,16 +167,32 @@ for H2, Cl2, O2, N2, F2, H2O, HCl, NH3, HF, CH4, CO2, and adds CO and CH3OH entr
 - Molar masses: the molecules engine (RSC masses), checked against PubChem.
 - School lab safety: American Chemical Society, Guidelines for Chemical Laboratory Safety in Secondary Schools (2016), https://www.acs.org/
 - Every ΔT, gram target and ledger total recomputed in Python (2026-10-27).
+- Number checks (Python, 2026-10-29): all six ledgers (in, out, net) recomputed from the bond table and match; the
+  measured values recomputed from the formation values and match (the iron reaction's −1,648.4 kJ is 2 × −824.2).
+  All 30 pack ΔT values (10, 20, 30 g) match. Trail orders solved for the exact grams: CaCl2 needs 14.36 g (14.35
+  gives 21.99 °C), KNO3 22.19 g, so both are corrected; LiCl (11.78 g) also makes T1 and KCl (37.32 g) also makes T2,
+  so they are now listed. T3 failed its own claim: NaCl at the 40 g limit gives −4.56 °C, inside the old ±1.0 band
+  around −5, so a student could "pass" an order the card says cannot be done; T3 is now a must-reach target. Iron
+  7.38 kJ per gram, CaCl2 0.73 kJ per gram of salt and 0.092 per gram of pack, 10 g CaCl2 7.33 kJ all match.
 
 ## Done when
 1. L3 with every bond broken and formed shows in 2,656, out 3,338, net −682 and measured −802.5 with the why line.
 2. `Form` stays locked until the last reactant bond breaks; Undo steps back one bond.
 3. `Run it backward` on L2 shows +486 and the word endothermic.
-4. Pack bench: 10 g CaCl2 reads +15.93 °C and 7.33 kJ; 30 g NH4NO3 reads −17.73 °C.
-5. T1 passes with 14.35 g CaCl2; T2 passes with 24.27 g NH4NO3; T3 passes only through `Can't be done` after two tries; T4 passes on iron.
+4. Pack bench: 10 g CaCl2 reads +15.93 °C and 7.33 kJ; 30 g NH4NO3 reads −17.73 °C; Pop swaps to the popped pouch.
+5. T1 passes with 14.36 g CaCl2; T2 passes with 24.27 g NH4NO3 and with 37.32 g KCl; T3 does not pass at 40 g NaCl
+   (−4.56 °C) and passes only through `Can't be done` after two tries; T4 passes on iron.
 6. The NaCl why card shows 769 in, 765 back, +3.9 net; other salts show only a net arrow.
 7. Progress survives a reload; `Clear` resets; Motion off makes the thermometer jump to its final value.
-8. Every size in STANDARDS.md keeps the staircase or the pouch, the ledger or the panel, and the action button visible; keyboard-only works; console clean, no network.
+8. Focus: in Bond ledger the molecules and staircase are the largest thing at 1366x768 and in the 680x425 preview;
+   in Pack bench the pouch and thermometer are.
+9. A tap while the thermometer moves: `Fresh pack` resets to 20.0 °C in the same frame; new grams start a fresh pack
+   at once.
+10. How-to lines once each per page load; hit each time an order passes; no line names `Form` or `Can't be done`
+    while it is locked.
+11. Every size in STANDARDS.md keeps the staircase or the pouch, the ledger or the panel, and the action button
+    visible; keyboard-only works; all 9 images load and none shows a person; console clean, no network, no em
+    dashes.
 
 ## Open questions
 - HS-PS1-4 asks about reactions; dissolving salts is a physical change. Is the Pack bench's "dissolving is a small bond budget too" framing OK, with the iron warmer as the true reaction?

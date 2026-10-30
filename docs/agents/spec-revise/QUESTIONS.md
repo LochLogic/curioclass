@@ -69,3 +69,8 @@
 - carrying-capacity: die-out note enough, or shrink the wolf pack when deer are few (model change)?
 - Voices: feedback-loop-builder -> clear-teacher, lake-commons -> easy-coach.
 - Carried: wolves cap; cystic fibrosis wording; carbon budget depth; yearly data refresh; NOAA source sharing; amino acid entry; Lake Commons title; Indigenous fisheries card.
+
+## R14
+- bond-battle: Road de-icer accepts KCl (needs a source line)?
+- gas-law-lab voice -> bright-teacher (check in the final sweep).
+- Carried: water-shapes-earth made-up rates; bond-battle boiling-point sources and molecules family; equation-balancer HS-PS1-2; equilibrium-seesaw model choices; gas-law-lab HS-PS3-2; hand-warmer-lab framing and T4 bar; mole-bakery 90% yeast yield.

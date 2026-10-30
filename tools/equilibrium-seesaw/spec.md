@@ -22,28 +22,39 @@ which is the shift students can see as a change in color.
 ## Screens and modes
 Header: title, subtitle "Level means equal speed, not equal amounts." Modes `Syringe` (opens first), `Design`. Kit
 buttons.
-Stage, left: a glass syringe seen from the side, gas drawn as moving particles (NO2 single brown dots, N2O4 linked
-pale pairs), behind a tint whose brownness follows [NO2]. Stage, right: the seesaw. Left pan "splitting per second"
-(N2O4 → 2 NO2), right pan "pairing per second" (2 NO2 → N2O4); pan weights are the two rates, drawn as stacks of
-blocks with numbers. Below: an amounts bar (moles of NO2 and N2O4) and a strip chart of both rates over time.
+Stage, over a dimmed painted lab bench (`es-lab`), left: the painted glass syringe barrel (`es-syringe`) lying on
+its side in the painted bath for the chosen temperature (`es-bath-ice`, `es-bath-room`, `es-bath-warm`,
+`es-bath-hot`), with the painted plunger (`es-plunger`) sliding in code to the 25, 50 or 100 mL mark; the gas inside
+is drawn in code as moving particles (NO2 single brown dots, N2O4 linked pale pairs) behind a tint whose brownness
+follows [NO2], and the graduation marks are code over the plain glass. Stage, right: the seesaw, a painted brass
+stand (`es-stand`) and beam (`es-beam`) that tips in code, with a painted pan (`es-pan`, used twice) hanging level
+from each end. Left pan "splitting per second" (N2O4 → 2 NO2), right pan "pairing per second" (2 NO2 → N2O4); pan
+weights are the two rates, drawn in code as stacks of blocks with numbers. Below: an amounts bar (moles of NO2 and
+N2O4) and a strip chart of both rates over time, both in code.
+Focus: the seesaw and the syringe side by side, together the central and largest part of the stage; the readout
+card, amounts bar and strip chart are smaller, below or in the panel.
 
 ### Syringe (explore)
 Controls: bath `Ice 0 °C`, `Room 25 °C`, `Warm 50 °C`, `Hot 80 °C`; plunger `25 mL`, `50 mL`, `100 mL`; `Add NO2`
 and `Add N2O4` (0.0005 mol each press); `Add argon` (0.0010 mol, a gas that takes no part); `Reset` (0.0020 mol
 N2O4 at 25 °C, 50 mL, settled). Any change applies at once, the seesaw tips, then it settles over about 4 seconds
-(instant with Motion off).
+(instant with Motion off). While it settles every control stays live: a new bath, plunger or Add starts from the
+state on screen in the same frame, never after the settle ends.
 A readout card: temperature, volume, mol NO2, mol N2O4, percent of molecules that are NO2, [NO2] in mol/L, total
 pressure in kPa, and the word `level` or which side is faster.
 `Collision view` (toggle): slows the picture, highlights NO2 pairs that bump and join, and counts bumps per second
 in the picture next to the right pan, so students see why squeezing (more crowding) speeds pairing.
 
 ### Design
-Three challenge cards, done in any order, each checked by the model (Content). Progress saved on this device
+Focus: the open card and the syringe tint beside it; the seesaw shrinks to the side.
+Three challenge cards, done in any order, each checked by the model (Content) when the student presses `Check`
+(D1 and D2: after picking bath and volume; D3: after the four choices). Progress saved on this device
 (localStorage `curio-equilibrium-seesaw`, try/catch), `Clear` resets.
 - D1 Brown signal: a warning sign needs [NO2] of at least 0.040 mol/L, using the least heating. Pick bath and volume.
 - D2 Keep it pale: at least 90 percent of the molecules must be N2O4.
 - D3 The ammonia plant: N2 + 3 H2 ⇌ 2 NH3, about −92 kJ per 2 NH3. Four choices (temperature, pressure,
   catalyst, removing ammonia), each picked from two options with a reason, then the card shows what real plants do.
+  The painted ammonia plant (`es-ammonia-plant`) runs across the card's top.
 
 ## Content
 Reaction: N2O4 ⇌ 2 NO2, ΔH +57.12 kJ, ΔS +175.70 J/K (from NIST WebBook data: NO2 ΔfH 33.10 kJ/mol, S° 240.04 J/mol K;
@@ -93,22 +104,52 @@ virtual."
 - `window.__tool = {state, setMode, bath(tC), volume(mL), add(species, mol), settle(), rates(), card(id, answer)}`.
 
 ## Look
-Accent `--brand #c0b959` (brass, like an old balance), `--brand-ink #10141a`. Gas tint from `#f4e9d8` alpha 0 (no NO2)
-to `#8a4a1c` alpha 0.85 at [NO2] 0.16 mol/L (the most a full syringe reaches: 0.0050 mol, 25 mL, 80 °C gives
-0.151), linear in [NO2]. Baths: ice `#8fd3ff`, room `--ink`, warm `#f2b880`,
-hot `#ff8a5c`. Pans: splitting blocks `#d39a64`, pairing blocks `#9fb7d9`, each with its label (not color alone).
-Contrast (computed): brand on panel 8.51:1, on --sec-bg 8.06:1, brand-ink on brand 9.08:1.
+Accent `--brand #c0b959` (brass, like an old balance, matching the painted brass seesaw), `--brand-ink #10141a`. Gas
+tint drawn in code from `#f4e9d8` alpha 0 (no NO2) to `#8a4a1c` alpha 0.85 at [NO2] 0.16 mol/L (the most a full
+syringe reaches: 0.0050 mol, 25 mL, 80 °C gives 0.151), linear in [NO2]. Bath buttons carry a small swatch: ice
+`#8fd3ff`, room `--ink`, warm `#f2b880`, hot `#ff8a5c`, each with its label. Pans: splitting blocks `#d39a64`,
+pairing blocks `#9fb7d9`, each with its label (not color alone). The lab backdrop sits under a `#0b0f17` wash at 50
+percent so the syringe and seesaw lead. Contrast (computed): brand on panel 8.51:1, on --sec-bg 8.06:1, brand-ink on
+brand 9.08:1.
 
 ## Art
-None. Syringe, baths, seesaw and particles are drawn in code.
+Local FLUX (`scripts/localart.py`), no people anywhere. 11 images. Particles, tint, graduation marks, blocks, numbers,
+the amounts bar and the strip chart stay in code.
+- es-lab: a chemistry lab bench in front of a closed glass fume hood, soft cool light, steel and white tile; 16:9;
+  cutout no; people no; Syringe and Design backdrop, dimmed.
+- es-syringe: a large clear glass syringe barrel lying on its side, empty, plain unmarked glass, the tip sealed with
+  a red rubber cap, on plain white; 4:1; cutout yes; people no; the barrel the gas is drawn behind.
+- es-plunger: a glass syringe plunger with a grey rubber tip and a flat round thumb rest, lying on its side, on plain
+  white; 4:1; cutout yes; people no; slides in code to 25, 50 or 100 mL.
+- Baths, one shared line, four cutouts, each wide and low so the barrel lies across it (4:1, cutout yes, people no,
+  drawn under the barrel at the same size and place): es-bath-ice: a steel tray of crushed ice and cold water.
+  es-bath-room: a clear plastic tray of still water. es-bath-warm: an enamel tray of water on a small electric hot
+  plate with faint steam. es-bath-hot: an enamel tray of water at a rolling simmer on a hot plate, with steam.
+- es-stand: a polished brass balance stand with a heavy round base and a pivot at the top, on plain white; 3:4;
+  cutout yes; people no; the seesaw's fixed post.
+- es-beam: a long polished brass balance beam with a small hook at each end, on plain white; 5:1; cutout yes; people
+  no; rotates about its center in code (up to 20 degrees).
+- es-pan: a shallow round brass balance pan hanging from three fine chains, on plain white; 1:1; cutout yes; people
+  no; one at each end of the beam, always hanging level; the code blocks stack in it.
+- es-ammonia-plant: an industrial ammonia plant at dusk, tall steel reactor towers, pipes and a column of white
+  steam, plain unmarked tanks; 16:9; cutout no; people no; across the top of the D3 card.
 
 ## Voice
-Bank voice `gentle-storyteller` (unhurried, like the seesaw settling). No 9-12 science tool uses it. `Curio.voice`, scope = mode.
-- wSyringe (how, Syringe welcome): "Pick a bath or move the plunger, then watch which pan drops."
-- levelTip (how, first time the seesaw settles after a change): "Level again. The speeds match now, but the amounts moved."
-- squeezeTip (how, first squeeze): "Crowded molecules bump more, so pairing speeds up first."
-- wDesign (how, Design welcome): "Pick a card. Set the bath and the plunger, then press Check."
-- pass (event, a card passes; stale when the next card opens): "That design works. The numbers on the card show why."
+Bank voice `gentle-storyteller` (Vindemiatrix), style "Say gently and expressively, like a storyteller who never
+hurries, the way the seesaw settles." No tool `neighbors.py` lists for this one uses it (lake-commons moved to
+easy-coach in its own revision), and no other spec in this batch. `Curio.voice`, scope = mode.
+- wSyringe (how; Syringe welcome; stale once a bath, plunger or Add button is pressed): "Pick a bath or a plunger
+  mark, then watch which pan drops."
+- levelTip (how; the first time the seesaw settles level after a change; stale on the next change): "Level again.
+  The speeds match now, but the amounts moved."
+- squeezeTip (how; the first time the plunger moves to a smaller volume; stale once the seesaw settles): "Crowded
+  molecules bump more, so pairing speeds up first."
+- wDesign (how; Design welcome; stale once a card opens): "Pick a card. Set the bath and the plunger, then press
+  Check."
+- pass (event; a card passes on Check; stale when another card opens or a setting changes): "That design works. The
+  numbers on the card show why."
+- fail (event; a card fails on Check; stale when a setting changes): "Not yet. Read the numbers on the card, change
+  the bath or the plunger, then press Check again."
 
 ## Family engine
 particles (`kit/particles.js`), described in full in gas-law-lab's spec. Family none here; it uses `Box` with two
@@ -124,16 +165,31 @@ picture's counts toward the model's (1 dot = 0.00001 mol). Readouts never come f
 - Colors (NO2 reddish brown, N2O4 colorless): PubChem, nitrogen dioxide CID 3032552 and dinitrogen tetroxide CID 25352, https://pubchem.ncbi.nlm.nih.gov/
 - Gas constant: NIST CODATA 2018.
 - Every amount, Kp and rate recomputed in Python (2026-10-27).
+- Number checks (Python, 2026-10-29): ΔH 57.12 kJ and ΔS 175.70 J/K from the NIST values; Kp at 0, 25, 50, 80 °C
+  0.01797, 0.14807, 0.8803, 5.3574; all 12 settled states (three volumes, four baths) recomputed from the exact root
+  and match Content; additions 0.000748 / 0.001876 and 0.000793 / 0.002104 match; full syringe at 25 mL and 80 °C
+  gives 0.1508 mol/L (tint top 0.16 holds). Kc at 25 °C 0.005973 mol/L; splitting scales ×0.1325, ×5.485, ×30.55.
+  Squeeze settles at 211.6, heat to 80 °C at 1,332, cool to 0 °C at 15.0. Design: D1 passes only at 25 mL with 50 or
+  80 °C and 50 mL with 80 °C (0.04366, 0.08353, 0.05123), least heat 25 mL at 50 °C; D2 passes only at 25 mL and
+  0 °C (90.7 percent; the next best, 50 mL at 0 °C, is 87.3).
 
 ## Done when
 1. Reset shows 0.000702 mol NO2, 29.9 percent, 116.6 kPa, [NO2] 0.01404, seesaw level.
-2. Squeeze to 25 mL: pans read 200 and 400 at once, then level at 211.6; [NO2] reads 0.02807 then settles at 0.02042, and the tint follows.
-3. Hot 80 °C at 50 mL settles at 0.002562 mol NO2 and 78.1 percent; Ice 0 °C at 50 mL settles at 0.000272.
+2. Squeeze to 25 mL: pans read 200 and 400 at once, then level at 211.6; [NO2] reads 0.02807 then settles at
+   0.02042, and the tint follows.
+3. Hot 80 °C at 50 mL settles at 0.002562 mol NO2 and 78.1 percent; Ice 0 °C at 50 mL settles at 0.000272; the bath
+   picture under the syringe changes with the button.
 4. Add argon leaves both amounts unchanged and the seesaw level; total pressure rises.
 5. Add NO2 settles at 0.000748 and 0.001876; the cap stops adds at 0.0050 mol.
-6. D1 passes at 25 mL and 50 °C and fails at 50 mL and 50 °C; D2 passes at 25 mL and 0 °C only; D3 shows the real plant ranges after four answers.
+6. D1 passes at 25 mL and 50 °C and fails at 50 mL and 50 °C; D2 passes at 25 mL and 0 °C only; D3 shows the real
+   plant ranges after four answers and `Check`.
 7. Motion off snaps to the settled state; progress survives a reload; `Clear` resets.
-8. Every size in STANDARDS.md keeps the syringe, the seesaw and the controls visible; keyboard-only works; console clean, no network.
+8. Focus: in Syringe the seesaw and syringe are the largest things on screen at 1366x768 and in the 680x425 preview.
+9. A tap while the seesaw settles: pressing Hot during a squeeze settle tips the pans from the on-screen state in the
+   same frame and settles to the 25 mL, 80 °C state (0.002088 mol NO2).
+10. How-to lines once each per page load; pass and fail each time; no line names `Check` before a card is open.
+11. Every size in STANDARDS.md keeps the syringe, the seesaw and the controls visible; keyboard-only works; all 11
+    images load and none shows a person; console clean, no network, no em dashes.
 
 ## Open questions
 - Holding the pairing rate constant while splitting carries all the temperature change is a model choice that keeps level matched to Kp. OK as is, or show both rates rising with temperature?

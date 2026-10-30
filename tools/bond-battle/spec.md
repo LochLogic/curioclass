@@ -23,11 +23,15 @@ heavy carbon tetrachloride with no polarity at all still outlasts methanol).
 ## Screens and modes
 Header: title, subtitle "The last one still liquid wins." Modes `Bench` (opens first), `Battle`, `Jobs`. Kit buttons
 `Motion`, `Sound`, `Read`.
-Stage (all modes): left, the workbench where atom cards and built substances sit; right, the heat column: a tall
-thermometer from −273 °C to 4,000 °C on a piecewise scale (−273 to 0, 0 to 200, 200 to 4,000 each get a third of
-the height, scale breaks marked with a zigzag). Panel: substance card, bond meter, forces ladder, hint.
+Stage (all modes): a painted green felt card table (`bb-felt`) under everything. Left, the workbench where atom
+cards and built substances sit; right, the heat column: a tall thermometer from −273 °C to 4,000 °C on a piecewise
+scale (−273 to 0, 0 to 200, 200 to 4,000 each get a third of the height, scale breaks marked with a zigzag), drawn in
+code. Panel: substance card, bond meter, forces ladder, hint. Card faces are code (atom spheres, symbols, numbers);
+card backs use the painted `bb-card-back`.
 
 ### Bench (explore)
+Focus: the built substance on the workbench (its drawing at least a third of the stage width), with its marker on
+the heat column beside it.
 Atom palette (10 cards, Content). Tap a card to add an atom to the workbench (drag also works). The molecules
 engine joins atoms by their usual bonds and ion charges. When the atoms on the bench match a substance in the
 recipe book, it snaps together: ball-and-stick drawing (or an ion lattice tile for ionic, a network tile for
@@ -46,6 +50,8 @@ step 1 °C, Page keys 50) sets one temperature for the whole shelf; each pinned 
 bond".
 
 ### Battle
+Focus: the build tray and hand while building; the heat column with both substances' markers while it climbs (the
+two face-up cards sit at its foot, the column runs the full stage height).
 Two seats: `You` and `Rival` (computer), or `Player 2` (toggle `Two players`, hands hidden by a `Pass the laptop`
 screen between turns). Each seat holds 7 atom cards from the 36-card deck. Round:
 1. Build: tap cards from your hand into the build tray until they make a recipe-book substance; `Lock in` places
@@ -54,12 +60,15 @@ screen between turns). Each seat holds 7 atom cards from the 36-card deck. Round
 2. Heat: both cards flip; the heat column climbs (about 3 s, instant with Motion off). Each substance's marker
    rises with it; at its boiling point (or sublimation point) its particle window turns to gas and the card
    greys with `boiled at −161.5 °C`. The other wins the round.
+   While the column climbs, every control stays live: a tap on the column or Space skips to the result at once,
+   and `New match` or a mode button stops the climb in the same frame.
 3. Why card: one sentence from Content naming the force that decided it, with both boiling points.
 Hands refill to 7. First to 5 rounds wins the match; `New match`. Same substance on both sides is a tie, no point.
 Ionic substances need their charges to add to zero (Mg with two Cl). Rival: builds the highest boiling substance
 it can 70 percent of the time, otherwise a random valid one (seeded per match).
 
 ### Jobs
+Focus: the open job card, its painted picture (`bb-job-*`) across the top and the spec under it, beside the book.
 Five job cards (Content). Open one, read the spec, pick any recipe-book substance from the book (all unlocked
 here), `Try it`. The card answers with the property check against the spec (pass or fail in words, with the
 number) and, when it passes, the structure reason and the real use with its source. Some jobs accept two.
@@ -127,34 +136,60 @@ Jobs (spec; accepted; answer):
 - Valid builds come only from the recipe book; the engine matches atom counts (Hill formula), and an ionic build
   must have charge sum zero. Building an unlisted but valid molecule (H2O2, C2H6) in Bench says "That's a real
   molecule, but it isn't in this book yet" and does not snap.
-- Heat column: the substance boils when the dial passes bp (sublimes for CO2); with Motion off the dial jumps to
-  the loser's bp, then to the winner's.
+- Heat column: the substance boils when the dial passes bp (sublimes for CO2); the climb takes about 3 s; with
+  Motion off the dial jumps to the loser's bp, then to the winner's.
+- A hand that cannot build anything (about 1 hand in 90, checked) has only `Swap 2`; the hint says so. If both
+  sides swap, no one scores and the next round starts.
 - Rival seeded with `Math.random` once per match; `__tool.seed(n)` fixes it for tests.
 - Battle keeps no score between page loads. Reset: `New match`.
 - Keyboard: atom cards and hand cards are buttons; Enter adds; the heat slider has arrow and Page keys.
 - `window.__tool = {state, setMode, build(syms), pin(id), heat(t), battle({you, rival}), job(n, formula), seed(n)}`.
 
 ## Look
-Accent `--brand #ecf994` (pale lime), `--brand-ink #10141a`. Card table `#13241c` felt with cards `#f4f1e6` and dark
-ink `#14110a` (16.9:1). Atom spheres in Jmol CPK colors with the symbol printed on each (H `#ffffff`, C `#909090`,
-N `#3050f8`, O `#ff0d0d`, F `#90e050`, Cl `#1ff01f`, Si `#f0c8a0`, Na `#ab5cf2`, K `#8f40d4`, Mg `#8aff00`), dark
-outline so white H shows on the light card. Heat column gradient blue to red with tick labels in `--ink`.
-Contrast (computed): brand on panel 15.29:1, on --sec-bg 14.48:1, brand-ink on brand 16.31:1. Kind of force is
-shown by name and icon, not color alone.
+Accent `--brand #ecf994` (pale lime), `--brand-ink #10141a`. Card table: the painted felt (`bb-felt`, deep green,
+about `#13241c`) with code cards `#f4f1e6` and dark ink `#14110a` (16.9:1). Atom spheres in Jmol CPK colors with the
+symbol printed on each (H `#ffffff`, C `#909090`, N `#3050f8`, O `#ff0d0d`, F `#90e050`, Cl `#1ff01f`, Si `#f0c8a0`,
+Na `#ab5cf2`, K `#8f40d4`, Mg `#8aff00`), dark outline so white H shows on the light card. Heat column gradient blue
+to red with tick labels in `--ink` on a solid `--panel` strip, never on the felt. Contrast (computed): brand on panel
+15.29:1, on --sec-bg 14.48:1, brand-ink on brand 16.31:1. Kind of force is shown by name and icon, not color alone.
 
 ## Art
-none: drawn in code (cards, atoms, lattices, heat column, card back pattern, preview.svg).
+Local FLUX (`scripts/localart.py`), no people anywhere. 7 images. Card faces, atoms, lattices, particle windows and
+the heat column stay in code (they are diagrams and a scale).
+- bb-felt: a worn deep green felt card table surface seen from straight above, soft lamp light and a faint fabric
+  weave, filling the frame; 16:9; cutout no; people no; the stage background in every mode.
+- bb-card-back: an ornate playing card back in deep teal and cream, a symmetric pattern of small hexagon rings
+  linked like molecules, a plain cream border; 3:4; cutout no; people no; face-down cards (Lock in, the Rival's hand,
+  the deck) with rounded corners clipped in code.
+- bb-job-road: a snowy two-lane country road at dawn with fresh white salt crystals scattered on dark wet asphalt,
+  pine trees at the edge; 16:9; cutout no; people no; header of the Road de-icer job.
+- bb-job-furnace: the glowing orange mouth of an industrial furnace lined with pale cream fire bricks, heat shimmer;
+  16:9; cutout no; people no; header of the Furnace brick job.
+- bb-job-rink: an empty indoor ice rink under bright lights, the smooth white ice and the blue boards, a row of
+  silver chiller pipes along the wall; 16:9; cutout no; people no; header of the Ice rink chiller job.
+- bb-job-rocket: a tall white rocket on a launch pad at dusk, frost on its fuel tank and white vapor rolling off
+  it, plain unmarked sides; 16:9; cutout no; people no; header of the Rocket fuel tank job.
+- bb-job-window: a tall clear window pane in a sunlit old brick wall, light passing through it onto a wooden floor;
+  16:9; cutout no; people no; header of the Window glass job.
 
 ## Voice
-Bank voice `hero-coach` (bright, encouraging coach). No 9-12 science neighbor uses it. `Curio.voice`, scope = mode.
-- wBench (how, Bench welcome): "Tap atom cards to build a substance. Then pin it and slide the heat."
-- wBattle (how, Battle welcome): "Tap cards from your hand to build a substance. Then press Lock in."
-- pinTip (how, first substance built): "Press Pin to keep it on the shelf. Pin a few, then slide Heat."
-- cancelTip (how, first CO2 or CCl4 built): "Polar bonds, but they point opposite ways and cancel. The molecule is nonpolar."
-- wJobs (how, Jobs welcome): "Open a job card. Pick a substance from the book, then press Try it."
-- roundWin (event, you win a round; stale when the next round starts): "Yours held on longer. Read why on the card."
-- roundLose (event, you lose a round; stale when the next round starts): "Boiled first. Check which force the winner had."
-- jobDone (event, a job passes; stale on job change): "That fits the job. Structure did the work."
+Bank voice `hero-coach` (Puck), style "Say with bright, encouraging energy, like a friendly coach at a card table."
+No 9-12 science neighbor uses it, and no other spec in this batch. `Curio.voice`, scope = mode.
+- wBench (how; Bench welcome; stale once an atom card is tapped): "Tap atom cards to build a substance on the bench."
+- pinTip (how; the first substance snaps together; stale once Pin is pressed or the bench is cleared): "Press Pin to
+  keep it on the shelf. Pin a few, then slide Heat."
+- cancelTip (how; the first CO2 or CCl4 built; stale when it leaves the bench): "Polar bonds, but they point opposite
+  ways and cancel. The molecule is nonpolar."
+- wBattle (how; Battle welcome; stale once a hand card is tapped): "Tap cards from your hand into the tray. Lock in
+  lights up when they make a substance."
+- roundWin (event; you win a round; stale when the next round starts): "Yours held on longer. Read why on the card."
+- roundLose (event; you lose a round; stale when the next round starts): "Boiled first. Check which force the winner
+  had."
+- matchEnd (event; a match ends, either side; stale when New match is pressed): "Match over. Press New match to deal
+  again."
+- wJobs (how; Jobs welcome; stale once a job card opens): "Open a job card. Pick a substance from the book, then press
+  Try it."
+- jobDone (event; a job passes; stale on job change): "That fits the job. Structure did the work."
 
 ## Family engine
 molecules (`kit/molecules.js`, inlined after `kit:curio`). No family doc exists; this spec holds the full engine
@@ -192,17 +227,39 @@ reaction-kitchen (gr 7, lab). equation-balancer and mole-bakery (gr 10, family n
 - Electron counts in the why card: CCl4 6 + 4 × 17 = 74; CH3OH 6 + 8 + 4 × 1 = 18 (atomic numbers).
 - Jmol CPK colors: Jmol, "Jmol Colors", https://jmol.sourceforge.net/jscolors/
 - Gaps recomputed (2026-10-27): HF 1.78, NaCl 2.23, KCl 2.34, NaF 3.05, MgO 2.13, MgCl2 1.85, Si–O 1.54, C=O 0.89, C–Cl 0.61, N–H 0.84, O–H 1.24, H–Cl 0.96, C–H 0.35.
+- Number checks (Python, 2026-10-29): every electronegativity gap above recomputed from the atom cards; deck adds up
+  to 36; electron counts CH4 10, N2 14, O2 16, F2 18, CH3OH 18, CCl4 74 (so the "both London" card's warning holds:
+  CH4 outlasts N2 and O2 outlasts F2 with fewer electrons). Hands: 200,000 random 7-card hands from the deck; 1.1
+  percent can build nothing (hence the Swap 2 hint), and the best build is most often MgO, H2O or NaCl. Jobs: only
+  Cl2 and NH3 boil between −40 and 0 °C; only H2 is liquid at −253 °C; only MgO and SiO2 stay solid at 1,500 °C.
+  Heat column positions on the piecewise scale (fraction of height): H2 0.03, CH4 0.14, NH3 0.29, CCl4 0.46, H2O
+  0.50, NaCl 0.78, MgO 0.97.
 
 ## Done when
-1. Bench: H, H, O snaps into water; the bond meter shows O–H at 1.24 (polar covalent); hydrogen bonding is boxed; bp 100.0 on the column.
-2. Na and Cl make NaCl (ionic, 2.23); Mg with one Cl waits with "no free bond" style message until a second Cl joins (MgCl2).
+1. Bench: H, H, O snaps into water; the bond meter shows O–H at 1.24 (polar covalent); hydrogen bonding is boxed; bp
+   100.0 on the column.
+2. Na and Cl make NaCl (ionic, 2.23); Mg with one Cl waits with the "no free bond" message until a second Cl joins
+   (MgCl2).
 3. CO2 and CCl4 show polar bonds but the word "nonpolar molecule", and the cancel tip plays once.
 4. Pin CH4, NH3, H2O, NaCl; Heat at 20 °C shows gas, gas, liquid, solid.
-5. Battle: CCl4 vs CH3OH: methanol boils at 64.7 °C first and the size why card appears. HF vs HCl: HCl boils at −85.1 °C.
+5. Battle: CCl4 vs CH3OH: methanol boils at 64.7 °C first and the size why card appears. HF vs HCl: HCl boils at
+   −85.1 °C.
 6. An ionic build with unbalanced charge (Mg + Cl) cannot Lock in; `Swap 2` hands the round to a side that built.
-7. Jobs: Cl2 on the chiller gets the "numbers aren't the only spec" answer; NH3 passes; stamps survive a reload; `Clear jobs` clears.
-8. Every size in STANDARDS.md keeps the hand, the build tray, `Lock in` and the heat column visible; keyboard-only play works; console clean, no network.
+7. Jobs: Cl2 on the chiller gets the "numbers aren't the only spec" answer; NH3 passes; stamps survive a reload;
+   `Clear jobs` clears.
+8. Focus: in Bench the built substance is the largest thing on the stage; in Battle the heat column runs the stage
+   height while it climbs; in Jobs the open job card is central, at 1366x768 and in the 680x425 preview.
+9. A tap while the column climbs (on the column, or Space) shows the result in the same frame; `New match` during
+   the climb starts a new match at once.
+10. How-to lines once each per page load; round and match lines each time; no line names `Lock in` or `Pin` while
+    it is disabled.
+11. Every size in STANDARDS.md keeps the hand, the build tray, `Lock in` and the heat column visible; keyboard-only
+    play works; all 7 images load and none shows a person; console clean, no network, no em dashes.
 
 ## Open questions
-- Boiling points of KCl, MgCl2 and SiO2 differ between sources (some list decomposition or sublimation). OK to use PubChem's value at build and note it?
-- molecules engine: equation-balancer and mole-bakery (family none) use kit/molecules.js too. Add them to the molecules family, or keep them as outside users of the engine?
+- Boiling points of KCl, MgCl2 and SiO2 differ between sources (some list decomposition or sublimation). OK to use
+  PubChem's value at build and note it?
+- molecules engine: equation-balancer and mole-bakery (family none) use kit/molecules.js too. Add them to the
+  molecules family, or keep them as outside users of the engine?
+- [bond-battle] The Road de-icer job accepts NaCl and MgCl2 but refuses KCl, which is also sold as a de-icer and is
+  in the book. Add KCl as accepted (needs a source line), or keep the two with the USGS line?
