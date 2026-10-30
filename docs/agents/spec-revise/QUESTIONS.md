@@ -132,3 +132,9 @@
 ## R23
 - gallery-critique: new Support tables (the tool's own calls) OK? Curator claim naming the race reading of The Gulf Stream (carried).
 - music-history-radio: add a station from outside the European-then-American line? (carried)
+
+## R24
+- body-systems-tour: paint the body outline too?
+- fitness-circuit: keep the code pose figure (shared with dance), or 24 people images?
+- growing-up-q-a (sensitive): painted kids (5 people images) or plain shapes? (spec open question 5); print slips (carried).
+- pressure-point: 16 cast images (before and after) or 8?

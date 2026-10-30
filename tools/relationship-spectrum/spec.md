@@ -22,11 +22,12 @@ Every scenario card has one detail you can flip (asks or demands, once or every 
 Header: title "Relationship Spectrum" with the topic line under it, mode buttons **The line**, **Flags**, then **Teacher**, **Motion**, **Sound**, **Read**. Stage left, panel right. A help footer in every mode (Content).
 
 ### The line (opens first)
+- Focus: the band with the scenario card and the two markers on it. The band and card fill the stage's top two thirds; when a detail flips, the eye follows the Guide marker sliding along the band.
 - Stage, top: the spectrum, a wide horizontal band in three zones, left to right: **Healthy** (circle glyph, solid light tint), **Unhealthy** (triangle glyph, diagonal hatch), **Abusive** (square glyph, cross-hatch). Under the band the three zone sentences (Content). Positions run 0 (left) to 100 (right).
-- Stage, middle: the current scenario card (who, the situation, the current detail) and a marker "Your spot" that starts above the band at 50.
+- Stage, middle: the current scenario card (its painted picture from Art on the left, then who, the situation and the current detail; the picture stays the same when a detail flips) and a marker "Your spot" that starts above the band at 50.
 - Stage, bottom: the deck: 12 small card backs (6 with a two-friends icon, 6 with a heart icon); played cards show their last guide zone glyph.
 - Panel, step by step:
-  1. **Place it**: hint, then **Healthy**, **Unhealthy**, **Abusive** buttons (drop your marker in the middle of that zone) or drag the marker along the band (steps of 5; arrow keys move it, Enter drops). Then **Show the guide's spot**.
+  1. **Place it**: hint, then **Healthy**, **Unhealthy**, **Abusive** buttons (drop your marker in the middle of that zone, on the steps of 5: 15, 50 or 85) or drag the marker along the band (steps of 5; arrow keys move it, Enter drops). Then **Show the guide's spot**.
   2. **Reveal**: a second marker "Guide" slides to the guide's position; your marker stays where you put it. The flag card opens: the green or red flags for this detail (each a chip with its glyph: green flags a filled leaf, red flags a filled flag, missing green flags a hollow leaf "Missing: Respect"), and a one-line why. No score.
   3. **Flip a detail**: the scenario's detail chips (2 or 3, each one short phrase). Tapping one swaps the card text, slides the Guide marker to the new spot (500 ms, instant with Motion off) and swaps the flag card. This is the main thing to explore.
   4. **Say it** (shown when the current detail is in Unhealthy): see "Say it" below. When the current detail is in Abusive, the **Get support** card shows instead.
@@ -41,6 +42,7 @@ Header: title "Relationship Spectrum" with the topic line under it, mode buttons
 "When someone threatens you, scares you or tries to cut you off from others, you don't have to handle it alone or face them by yourself. Tell a trusted adult: a parent, the school counselor, a teacher or a coach. You can also reach loveisrespect (below)."
 
 ### Flags
+- Focus: the two columns of flag cards.
 - Stage: two columns of flag cards, **Green flags** and **Red flags** (Content). Tapping a card lists every scenario detail that shows it; tapping one jumps to The line with that card and detail open.
 - Panel: hint and a short note: "One red flag once can be a bad day. A red flag that keeps happening, or that comes with fear, is a pattern. Patterns are what move a relationship toward abusive."
 
@@ -97,19 +99,32 @@ One calm line: "Is something like this happening to you or a friend? Talk to a t
 - Different from group siblings (pressure-point berry #a3263f, stress-toolkit moss #4f6b2c, screen-time-detective blue #1f5fbf on a night stage) and neighbors (conflict-coach burnt orange, goal-tracker indigo, rules-referee gold, growing-up-q-a mauve).
 
 ## Art
-none: drawn in code (the band, hatching, glyphs, card fronts with a small two-friends or heart icon, the text thread). No people.
+Local FLUX (`scripts/localart.py`), one style for all: "paper-cut collage illustration, soft layered paper shapes, calm colors". 12 images, none with people: each scenario card shows a place or object from its situation, so no picture puts a face on a behavior. 4:3; cutout no; people no; shown on the left of the scenario card, the same for every detail of that card.
+- rs-f1-phone: "A smartphone lying face down on a cafeteria table beside a lunch tray"; F1.
+- rs-f2-party: "A front porch at dusk decorated with balloons and string lights"; F2.
+- rs-f3-lunch: "A long school lunch table with trays and milk cartons, seen from the end"; F3.
+- rs-f4-band: "A trumpet resting on a chair beside a music stand with blank sheet music in a school band room"; F4.
+- rs-f5-homework: "An open notebook with blank lined pages, a pencil and a closed textbook on a desk"; F5.
+- rs-f6-photo: "A corkboard with a row of blank instant photos pinned to it"; F6.
+- rs-d1-practice: "A sports bag and a pair of cleats on a bench beside a green practice field"; D1.
+- rs-d2-closet: "A closet rail of colorful shirts on hangers with a pair of sneakers below"; D2.
+- rs-d3-bikes: "Two bicycles parked side by side on a path in a sunny park"; D3.
+- rs-d4-stairs: "An empty school staircase with sunlight through a tall window"; D4.
+- rs-d5-bench: "An empty park bench under an autumn tree with fallen leaves"; D5.
+- rs-d6-steps: "Two backpacks leaning together on the front steps of a school"; D6.
+Drawn in code: the band, hatching, zone glyphs, markers, flag chips, the card backs with their two-friends or heart icon, the text thread and preview.svg.
 
 ## Voice
-`wise-mentor` (Gacrux): "Say thoughtfully and warmly, like a wise high school mentor." The trusted older voice the topic calls for. Different from conflict-coach (big-sister), goal-tracker (easy-coach), rules-referee (firm-captain) and the group siblings (smooth-narrator, soft-breath, science-narrator).
-| Key | Kind | Line | Stale when |
-|---|---|---|---|
-| wLine | how | Read the card. Then tap Healthy, Unhealthy or Abusive to place it, and tap Show the guide's spot. | mode left |
-| wFlags | how | Tap a flag to see where it shows up. | mode left |
-| flip | how | Now tap a different detail and watch the card move. | card changed |
-| sayit | how | Pick a line to send. Then flip the switch to see two ways they might answer. | detail changed |
-| reveal | event | You put it in {zone}. The guide puts it in {zone}. | detail or card changed |
-| support | event | You don't have to handle this alone. Tell a trusted adult. | detail or card changed |
-| boundary | event | A boundary isn't a test you pass. If they keep pushing, that tells you about them, not you. | thread cleared |
+`wise-mentor` (Gacrux): "Say thoughtfully and warmly, like a wise high school mentor." The trusted older voice the topic calls for. Different from conflict-coach (big-sister), goal-tracker (easy-coach), pressure-point (smooth-narrator), rules-referee (firm-captain) and the other group siblings (soft-breath, science-narrator). `Curio.voice`, scope mode plus card plus detail.
+| Key | Kind | When it plays | Line | Stale when |
+|---|---|---|---|---|
+| wLine | how | entering The line, first time | Read the card. Then tap Healthy, Unhealthy or Abusive to place it, and tap Show the guide's spot. | a zone button or Show tapped; mode left |
+| wFlags | how | entering Flags, first time | Tap a flag to see where it shows up. | a flag tapped; mode left |
+| flip | how | after the first reveal of the load | Now tap a different detail chip and watch the card move. | a detail chip tapped; card changed |
+| sayit | how | the first time Say it shows | Tap a line to send it. Then use the switch to see two ways they might answer. | a line sent; detail changed |
+| reveal | event | each reveal | You put it in {zone}. The guide puts it in {zone}. | detail or card changed |
+| support | event | each time Get support shows | You don't have to handle this alone. Tell a trusted adult. | detail or card changed |
+| boundary | event | each time a Say it line is sent | A boundary isn't a test you pass. If they keep pushing, that tells you about them, not you. | thread cleared |
 Card texts, flags and replies are read on screen; Read speaks the hint or the open card.
 
 ## Family engine
@@ -124,6 +139,8 @@ none
 - CDC, About Teen Dating Violence: can happen in person, online or through technology; psychological aggression and stalking definitions; teaching healthy communication prevents it (Dating Matters for ages 11 to 14). https://www.cdc.gov/intimate-partner-violence/about/about-teen-dating-violence.html
 - National Health Education Standards (SHAPE America), Standards 1 and 4.
 - Tool's own choices: the 0 to 100 positions within each zone, the 5-point "close" margin, the scenario wording and replies (original).
+- Art: original paintings made for this tool with local FLUX (Art).
+- Checks run (Python, 2026-10-29): all 33 guide positions (12 + 12 + 9) sit in their zones (every (a) detail 4 to 18, Healthy 0 to 33; every (b) 42 to 64, Unhealthy 34 to 66; every (c) 72 to 90, Abusive 67 to 100), so Say it shows on all 12 opening (b) details and Get support on all 9 (c) details. The zone buttons drop the marker at 15, 50 and 85, each inside its zone on the steps of 5 (the old "middle of the zone" was 16.5 and 83.5, off the step grid); step values 30 and 35 fall in Healthy and Unhealthy, 65 and 70 in Unhealthy and Abusive. Threats appears on F2c, F6c and D5c only. Contrast recomputed (WCAG 2.1): all match to rounding.
 
 ## Done when
 1. Every card's details slide the Guide marker to the listed positions, in the listed zone, with the listed flags; recompute that every position sits inside its zone's range.
@@ -135,6 +152,8 @@ none
 7. Voice: flip is spoken once across the deck; reveal is spoken every reveal and dropped if the student flips first.
 8. At 1366x768 and 680x425 the band, the card and the Place it buttons are visible without scrolling; at 375 wide the deck scrolls sideways and the band stays full width.
 9. Nothing about the student is stored; only `curio-relationship-spectrum-set` is in localStorage; help numbers match Sources.
+10. Focus: at 1366x768 and 680x425 the band, the card with its painted picture and both markers are the biggest, central thing on The line, and a flip's slide is in view without scrolling.
+11. Tap while it plays: tapping another detail chip while the Guide marker is sliding sends it to the new spot at once, swaps the flag card and drops the old reveal line.
 
 ## Open questions
 - Default for Teacher: Friendships and dating (this spec) or Friendships only, so dating is something a teacher turns on? A parent might want to see the dating cards first.

@@ -32,11 +32,11 @@ A line under the header on every mode, small and calm: "Every body changes on it
 ### Age ribbon
 - Stage: a ruler from age 7 to 18 across the top. Under it, lanes of soft bands (Content, "Age ribbon"), each a rounded bar from its earliest to its latest common age, with a darker dot where a source gives a typical peak or average. Lanes are grouped: **Changes for everyone**, **Girls' bodies**, **Boys' bodies** (labels follow Wording; lanes the teacher turned off are hidden).
 - **Pick an age** slider (7 to 18, default 10) draws a vertical line through every lane. The panel lists each band the line crosses: "At 10, for some kids: breast buds may start; growth spurt may start; body hair may start." and, below, the bands that usually come later or earlier: "Usually later: wet dreams (13 to 17)." Every list ends with: "Some kids your age have started some of these, some have not. Both are normal."
-- **Same age, different clocks**: a row of five simple figures drawn in code (rounded rectangles with a circle head, no faces or body details, five different heights) all labeled "Age 11", each with a little clock icon set to a different time. A caption: "Five kids, all 11, all normal." Tapping a figure shows one line: "This one hasn't started yet," "This one started at 9," and so on (Content). Heights and caps are the only differences drawn.
+- **Same age, different clocks**: a row of five painted kids (Art; cutouts, full body, fully clothed in loose everyday clothes, five different heights) all labeled "Age 11", each with a little clock icon (code) set to a different time. A caption: "Five kids, all 11, all normal." Tapping a kid shows one line: "This one hasn't started yet," "This one started at 9," and so on (Content). Height, hair, skin tone and clothes colors are the only differences painted; no body changes are shown in any picture.
 - Tap any band to open its card (same answer panel as Questions).
 
 ### Who can I ask?
-- Five people cards (icon, title, one line): **Parent or caregiver**, **School nurse**, **School counselor**, **Doctor or health care provider**, **Teacher or coach**.
+- Five people cards (a small painted picture of a place or object from Art, title, one line): **Parent or caregiver**, **School nurse**, **School counselor**, **Doctor or health care provider**, **Teacher or coach**.
 - **Ways to start** (three sentence starters, each on its own card): Content.
 - **The class question box** card: "Your teacher may have a question box in the classroom. Write your question on a slip of paper. You don't need to write your name." (Hidden if the teacher sets Question box: Off.)
 - **Private is okay** card: "You don't have to talk about your body with friends if you don't want to. You can read and learn on your own, and ask when you're ready."
@@ -110,17 +110,35 @@ Taking care:
 - Group siblings: body-systems-tour orange, first-aid-responder mint, meal-and-move-planner sky blue, health-claim-checker yellow. 3-5 health neighbors are teal, raspberry and green.
 
 ## Art
-none: drawn in code (cards, icons, ribbon, five simple figures with no faces or body details). No anatomical drawings: all body changes are described in words.
+12 images, 5 with people. One calm style for all: "soft pastel colored-pencil illustration, warm and gentle"; cutouts add "plain white background". No anatomical drawings: all body changes are described in words, and no picture shows a body change.
+
+The five kids (people: true: Gemini via `scripts/art.py`, which is set aside for now, so these wait on Cory; every one needs Cory's review before launch). Kit rule: one shared prompt, "A smiling 11-year-old kid standing relaxed, full body, front view, fully clothed in loose everyday clothes and sneakers, soft pastel colored-pencil illustration, plain white background", plus each kid's own line below; 3:4; cutout yes; people yes; used in Same age, different clocks. Sizing rule: each is scaled to its own height in the row (five different heights, not in height order, so height does not line up with the clock lines), feet on one baseline.
+- gu-kid-1: short curly black hair, brown skin, a yellow t-shirt and jeans.
+- gu-kid-2: a long brown ponytail, light skin, a green hoodie and gray joggers.
+- gu-kid-3: short straight black hair, light brown skin, a red striped shirt and shorts.
+- gu-kid-4: braids, dark brown skin, a purple sweatshirt and jeans.
+- gu-kid-5: short wavy blond hair, light skin, a blue t-shirt and cargo pants.
+
+Who can I ask? and the two help cards (local FLUX, `scripts/localart.py`; places and objects only, no people; 4:3; cutout no):
+- gu-ask-home: "A kitchen table with two mugs and a plate of cookies by a sunny window"; people no; Parent or caregiver card.
+- gu-ask-nurse: "A school nurse's office with a neat cot, a first aid kit on a shelf and a jar of bandages"; people no; School nurse card.
+- gu-ask-counselor: "A cozy school counselor's office corner with two soft armchairs, a potted plant and a box of tissues"; people no; School counselor card.
+- gu-ask-doctor: "A stethoscope and a clipboard with blank paper on a tidy doctor's desk"; people no; Doctor or health care provider card.
+- gu-ask-coach: "A whistle on a lanyard and a red ball beside an apple on a wooden desk"; people no; Teacher or coach card.
+- gu-question-box: "A small shoebox covered in pastel paper with a slot in the lid, a few folded blank paper slips beside it"; people no; The class question box card.
+- gu-journal: "A closed notebook with a ribbon bookmark and a pencil on a soft knitted blanket"; people no; Private is okay card.
+
+Drawn in code: the cards, chips, icons, clock icons, the age ribbon (a chart), the slider and preview.svg.
 
 ## Voice
-`clear-teacher` (Iapetus): "Say clearly and kindly, like a patient elementary school teacher." Different from body-systems-tour (upbeat-guide) and fitness-circuit (big-sister).
-| Key | Kind | Line | Stale when |
-|---|---|---|---|
-| wQ | how | Welcome. Tap a question to read the answer. Tap Read if you want to hear it. | mode left |
-| wRibbon | how | Slide the age to see which changes might be starting. Normal is a range. | mode left |
-| wAsk | how | Here are people you can ask, and some ways to start. Pick the one that feels right. | mode left |
-| howChip | how | Tap a topic to show only those questions. | a chip tapped |
-Answers, bands and figure lines are never spoken by themselves; Read speaks the open answer, else the hint.
+`clear-teacher` (Iapetus): "Say clearly and kindly, like a patient elementary school teacher." Different from body-systems-tour (upbeat-guide), fitness-circuit (big-sister) and playbook (lively-host). `Curio.voice`; every line is a how line, spoken once per load, then hint only.
+| Key | Kind | When it plays | Line | Stale when |
+|---|---|---|---|---|
+| wQ | how | entering Questions, first time | Welcome. Tap a question card to read the answer. Tap Read if you want to hear it. | a card or chip tapped; mode left |
+| wRibbon | how | entering Age ribbon, first time | Drag the Pick an age slider to see which changes might be starting. Normal is a range. | the slider moved; mode left |
+| wAsk | how | entering Who can I ask?, first time | Here are people you can ask, and some ways to start. Tap Read to hear them. | Read tapped; mode left |
+| howChip | how | the first time an answer is closed | Tap a topic to show only those questions. | a chip tapped |
+Answers, bands and kid lines are never spoken by themselves; Read speaks the open answer, else (in Who can I ask?) the cards in order, else the hint. There are no event lines.
 
 ## Family engine
 none
@@ -146,9 +164,13 @@ none
 6. Answers never auto-play; Read speaks the open answer; welcome lines speak once per load.
 7. Print question slips prints 12 blank slips with no name line.
 8. At 1366x768 chips, cards and an open answer fit without scrolling; at 375 wide the answer covers the shelf with Back reachable; keyboard alone can open, read and close every card.
+9. Focus: in Questions the open answer is the largest, clearest panel beside the shelf; in Age ribbon the age line and the list it crosses are the center of the screen at 1366x768 and 680x425.
+10. Tap while it plays: while Read is speaking, a tap on another card, Back, a chip, the slider or a mode stops the speech at once; nothing plays aloud that the student did not ask for.
+11. Art: the five kids are fully clothed, differ only in height, hair, skin tone and clothes colors, and are approved by Cory before launch; the seven place and object pictures show no people and no lettering.
 
 ## Open questions
 1. Question box (concept change): the concept had an anonymous question box stored only locally. Per the wave rule, there is no text box at all. In its place: 21 pre-written real-kid questions, a card pointing to the teacher's paper box, and a teacher button that prints blank slips. OK, or drop the print button too?
 2. Default wording: "Girls and boys" (common in district curricula) or "Body parts" (inclusive of every body)? The tool offers both; Cory picks the default.
 3. Default topics: Periods and Erections and wet dreams are on by default. Some districts teach these only in grade 5 or in separate groups. Keep them on, or default them off for teachers to turn on?
 4. Parent preview: should the tool page carry a line for parents ("Preview every card at this address; nothing your child does is stored")?
+5. Same age, different clocks now asks for five painted kids (people: true, Gemini, your review) in place of the plain code figures. OK, or keep plain shapes for this sensitive tool?
