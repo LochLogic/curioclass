@@ -180,3 +180,21 @@ module's six Word Wall words on the backup sheet.
 Deploy: built and checked (5261 pages, 81 built tools, 0 broken links). The first `npx wrangler deploy` was blocked by
 the session's permission check; Cory said go and it deployed (version 6f87e8bf). Review Desk items 55 to 59 set to
 ready, stats board refreshed (live 81, voice 11 drafts left).
+
+## Cory's review notes, round 1 (2026-10-29)
+
+Cory reviewed three on the Review Desk. song-form-builder: approved (status ok). The other two came back with notes,
+fixed with local FLUX art on the 5080 (Cory's pick over code redraws):
+
+| Tool | Note | Fix | Final look |
+|---|---|---|---|
+| teach-the-robot | "the dogs and cats look weird, its mostly the face" | 26 painted FLUX pets replace the code-drawn ones; Shadow, Noodle, Pebble redrawn after the first look (cartoon faces, collar); look-alike line starts on the forehead; card crops keep ear tips; truth badge moves beside the pet | FIX then PASS (final-art.md) |
+| career-cluster-explorer | "the background graphics are not good and need upgraded" | 34 painted FLUX sprites on a painted land strip, signs kept as code text; art row redrawn after its easel painting showed people; 9 HOT markers moved | FIX then PASS (final-art.md, sensitivity clean) |
+| career-cluster-explorer | "jobs and descriptions over the map" in Trails | each stop's card drawn at its dot, earlier stops labelled, end line pinned on the town; 121 layouts measured clean | same |
+
+Lessons for local art: FLUX schnell takes "no X" as "draw X". The first town run ("festival at night", "no other
+buildings, no people") painted busy street scenes with crowds; positive wording ("a single ..., shown as one
+isolated game asset") gave clean sprites. Key-color tint in leg gaps: neutralize the tint, do not cut it (cutting
+speckled white fur). Waffles kept: every redraw gave bat ears, which would contradict its floppy-ears clue.
+
+Commit ba87ba5b. Site built and checked (5261 pages, 0 broken links); deploy waits on Cory (permission check).
