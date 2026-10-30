@@ -144,3 +144,7 @@
 - stress-toolkit: wooden mannequin, or a real teen for the moves? Print my toolkit dropped OK?
 - captain-s-choices: added spirit rule (2a Attitude +1) OK? fitness-program-designer: checks judge week 6, Fix it needs only no fails OK? health-claim-checker: cases 2 and 5 answer key change OK?
 - Carried: 988 line; worry dump text; opioid scene; race tone; 2025-2030 Dietary Guidelines; vaping case on the shelf.
+
+## R27
+- source-portfolio: Corroboration counts two sources on a claim even when they disagree; keep, rename "Cross-checked claims", or count only agreeing (leaves one full-marks set, no lake homeowner voice)?
+- Carried: enduring-questions title matches an NEH program, phones/cameras teacher note, "Who was left out" lines; fair-use-review real cases name real people, teacher toggle to hide Theo's call; source-portfolio made-up tribal government card review, social studies standards on a library tool.

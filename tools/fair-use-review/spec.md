@@ -23,17 +23,19 @@ Kit frame, own light `:root` (a daylit review desk). Header: title "Fair Use Rev
 
 ### Review queue (opens first)
 Queue strip: six upload cards (C1 to C6), each "To review" or "Reviewed". Any order.
-Stage: the open upload: a code-drawn video thumbnail and title, the uploader's handle, the description, a **What it uses** box (the borrowed work: title, creator, kind, its license or "All rights reserved"), the **Facts** list, and two **What if** switches, each a labelled two-way toggle (left is the case as uploaded). A **Myths** fold at the bottom of the stage (four cards, Content).
-Panel: `#hint`; the four **Factors**, each a row with its plain question and a five-step lean control: **Strongly against**, **Against**, **Neutral**, **Favors**, **Strongly favors** (fair use); then **Your call**: **Keep it up**, **Ask for changes**, **Take it down**; then **Submit review** (enabled when all four factors and a call are set).
-After Submit: the **Senior review** card from Theo Marsh, senior reviewer: a second marker on each factor row (Theo's lean, a brass diamond with his initials), one reason line per factor, his call, and, where one fits, a **Real case** card. Rows where your lean and Theo's differ by 2 or more steps get the label "You differ". No score.
+Focus: the **Factor board**, the four factor rows with your markers and, after Submit, Theo's, in the center of the stage and its biggest block, because that is where a flipped switch shows its effect. The upload sits in a narrower column to its left so the What if switches sit right beside the rows they move.
+Stage, left column: the open upload: its painted thumbnail (art fur-c1 to fur-c6) with the title in code under it, the uploader's handle, the description, a **What it uses** box (the borrowed work: title, creator, kind, its license or "All rights reserved"), the **Facts** list, and two **What if** switches, each a labelled two-way toggle (left is the case as uploaded). A **Myths** fold at the bottom of the column (four cards, Content).
+Stage, center: the Factor board: the four **Factors**, each a wide row with its plain question and a five-step lean control: **Strongly against**, **Against**, **Neutral**, **Favors**, **Strongly favors** (fair use).
+Panel: `#hint`; **Your call**: **Keep it up**, **Ask for changes**, **Take it down**; then **Submit review** (enabled when all four factors and a call are set); then, after Submit, Theo's call and the Real case card.
+After Submit: the **Senior review** from Theo Marsh, senior reviewer (never pictured; his brass diamond marker and initials stand for him): a second marker on each factor row (Theo's lean, a brass diamond with his initials), one reason line per factor, his call, and, where one fits, a **Real case** card. Rows where your lean and Theo's differ by 2 or more steps get the label "You differ". No score.
 From then on the What if switches drive Theo's markers live: flipping one moves the markers that change (each changed row flashes once and shows "moved by: [switch]"), his reason lines and his call update, and the case summary line reads "As uploaded" or "With [switch text]". Your own leans stay where you put them, so you can compare.
 
 ### Your upload
-You made a two-minute video, "Trees of Our Town". Stage: a **Materials shelf** of seven items (Content), each a card with its title, creator, kind and license badge; **Add to video** puts it on a timeline strip; **Remove** takes it off. Each item on the timeline gets a status chip: ✓ "OK, with credit", ✓ "Free to use", ! "OK, with a condition" or ✗ "Can't use this way", with the reason.
+You made a two-minute video, "Trees of Our Town" (its title card, art fur-own-video, heads the timeline). Focus: the **timeline** strip with each item's status chip, center stage and wide; the shelf sits above it. Stage: a **Materials shelf** of seven items (Content), each a card with its title, creator, kind and license badge (the four photos and the clip show painted thumbnails, art fur-mat-*; the three sounds show a code sound-wave icon); **Add to video** puts it on a timeline strip; **Remove** takes it off. Each item on the timeline gets a status chip: ✓ "OK, with credit", ✓ "Free to use", ! "OK, with a condition" or ✗ "Can't use this way", with the reason.
 Panel: `#hint`; **Credits**: one TASL line per item on the timeline (Title, Author, Source, License), built from the item's card, with each of the four parts labelled T, A, S, L under it; then the **License chooser** for your own video: "Let others share changed versions of your video?" **Yes** / **Yes, if they share alike** / **No**; "Let others use it commercially?" **Yes** / **No**; or **Waive all rights (CC0)**. The result shows the license name (for example "CC BY-NC-SA 4.0") and its condition badges. Conflicts with your materials show as ✗ lines under the result, naming the item.
 
 ## Content
-The site, people, works and uploads are made up. Lean values: Strongly against -2, Against -1, Neutral 0, Favors +1, Strongly favors +2. Theo's leans and calls below are the tool's authored judgments, built from the Copyright Office's description of each factor; the card says "One reviewer's call. Reasonable reviewers can differ."
+The site, people, works and uploads are made up. Lean values: Strongly against -2, Against -1, Neutral 0, Favors +1, Strongly favors +2. Theo's leans and calls below are the tool's authored judgments, built from the Copyright Office's description of each factor; the card says "One reviewer's call. Reasonable reviewers can differ. The four factors are weighed together, not added up."
 
 Factor questions (the four factors of 17 U.S.C. 107): 1 "Purpose and character: Does it add something new, like comment or criticism? Is it commercial or nonprofit educational?" 2 "Nature of the work: Is the original creative (a song, film, novel) or factual?" 3 "Amount: How much was used, and was it the heart of the work?" 4 "Market effect: Could it replace the original or a sale or license of it?"
 
@@ -61,11 +63,11 @@ TASL line format: "[Title] by [Author], from [Source], licensed under [License].
 ## Interactions in detail
 - Factor controls are segmented buttons (keys 1 to 5 when a row is focused). Changing your leans after Submit is allowed; Theo's markers are unaffected.
 - What if switches are disabled with a lock and "Submit your review first" until Submit, so the first read is the case as uploaded.
-- Theo's markers slide 300 ms when a switch moves them (instant with Motion off); the "moved by" label stays until the next switch.
+- Theo's markers slide 300 ms when a switch moves them (instant with Motion off); the "moved by" label stays until the next switch. A second flip during a slide takes effect at once: the markers jump to the new values.
 - Reviewed cases keep your leans, call and switch positions; **Reset case** clears them. **Clear desk** (asks Yes / No) resets all six and Your upload.
 - Your upload: a timeline holds all seven at most; an item can be removed any time; credits and conflicts update at once.
 - Saved in localStorage (`fur-desk`, try/catch): leans, calls, switch positions, timeline and license choice. Clear desk empties it.
-- Keyboard: queue, then panel factor rows, call, Submit, then stage switches. Visible focus.
+- Keyboard: queue, then the factor rows, call, Submit, then the What if switches. Visible focus.
 - Sizes: the four factor rows, the call and Submit visible without scrolling at 1280x720 and 1366x768; at 680x425 the factor questions collapse to their short names (Purpose, Nature, Amount, Market) with the full question on focus; at 375 wide the upload card sits above the panel and the switches stack.
 
 ## Look
@@ -75,16 +77,29 @@ TASL line format: "[Title] by [Author], from [Source], licensed under [License].
 - Contrast: white on brand 5.02:1; brand on paper 4.53:1; brand on panel 5.02:1; ink on paper 15.45:1; muted on paper 6.41:1; muted on panel 7.11:1; focus on panel 6.70:1 and on paper 6.05:1; favors teal on panel 5.47:1 and on paper 4.94:1; against red on paper 7.23:1 and on panel 8.02:1; ink on myth tint 15.47:1. All pass AA.
 
 ## Art
-none: drawn in code (thumbnails as titled color cards with a kind icon, switches, scales, timeline, license pills and preview.svg).
+All local FLUX (`scripts/localart.py`); no people (every thumbnail shows objects and places, and Theo is a marker, not a portrait). One style: bright daylit painted illustration, like video thumbnails on a friendly site. Titles, captions and any screen or label text are code over blank painted surfaces.
+- fur-c1: an electric guitar leaning on a band room chair beside a music stand holding a blank sheet, bright stage lights, painted illustration; 16:9; cutout no; people no; the C1 parody thumbnail.
+- fur-c2: a single red movie theater seat with a tub of popcorn on it, facing a blank glowing screen, painted illustration; 16:9; cutout no; people no; the C2 review thumbnail.
+- fur-c3: a tall waterfall at first light in a long exposure, silky white water over dark rocks, soft pink dawn sky, painted illustration; 16:9; cutout no; people no; the C3 slideshow thumbnail and the borrowed photo "Falls at First Light" in its What it uses box.
+- fur-c4: a cheerful cartoon castle kitchen with copper pots, a stone hearth and a long wooden table, a blank caption band across the bottom, painted cartoon style; 16:9; cutout no; people no; the C4 meme thumbnail (the "Castle Kitchen" frame), caption in code on the band.
+- fur-c5: a tall stack of colorful hardcover novels with blank spines beside an open laptop with a blank bright screen, painted illustration; 16:9; cutout no; people no; the C5 ShelfSearch thumbnail.
+- fur-c6: a desk by a rainy window at night with big headphones, a warm lamp and a mug of tea, painted illustration; 16:9; cutout no; people no; the C6 study mix thumbnail.
+- fur-own-video: a single huge old oak tree in a small grassy town square beside a white bandstand, golden autumn afternoon, painted illustration; 16:9; cutout no; people no; the title card of "Trees of Our Town" at the head of the timeline.
+- fur-mat-bridge: an old sepia photograph of a stone mill bridge over a small river with a wooden water wheel, faded edges, painted illustration; 4:3; cutout no; people no; "Old Mill Bridge, 1925".
+- fur-mat-oak: close-up of wet green oak leaves with raindrops, painted illustration; 4:3; cutout no; people no; "Oak Leaves in Rain" (shown cropped and recolored once on the timeline, by code filters).
+- fur-mat-drone: a city park seen from high above, green lawns, winding paths and a pond, painted illustration; 4:3; cutout no; people no; "Drone over Elm Park".
+- fur-mat-skyline: a city skyline at night with lit office windows reflected in a river, painted illustration; 4:3; cutout no; people no; "City Skyline at Night".
+That is 11 images, none with people. Factor rows, lean controls, markers, switches, timeline, status chips, license pills, sound icons and preview.svg are drawn in code (controls and labels).
 
 ## Voice
-Bank voice `easy-coach` (Umbriel), "Say in an easy-going, encouraging way, like a relaxed sports coach": Theo, a laid-back senior reviewer showing a new teammate the ropes. Its other 9-12 wave users are health tools (game-day-fuel, health-claim-checker), not library tools or close neighbors; no group sibling uses it. The bank has no free voice that fits 9-12 better. `Curio.voice`, `scope: () => state.mode`. Case texts and reasons are on screen only.
-- w-queue (how): "Welcome to the Rights Desk. Pick an upload, set a lean for each of the four factors, make your call, and press Submit review."
-- switches (how, first Submit): "Now flip a What if switch and watch which factors move."
-- differ (event, each Submit with a "You differ" row; stale on case change): "We see one factor differently. Read my reason, then decide if you'd change yours."
-- agree (event, each Submit with no "You differ" row; stale on case change): "We're on the same page with this one."
-- w-upload (how): "Your turn as a creator. Add materials to your video, check each one's status, then choose a license."
-- conflict (event, each new ✗ conflict; stale when it clears): "Something on your timeline doesn't fit that license. Read the red line."
+Bank voice `easy-coach` (Umbriel), "Say in an easy-going, encouraging way, like a relaxed sports coach": Theo, a laid-back senior reviewer showing a new teammate the ropes. No neighbor from `neighbors.py` (boolean-builder curious-librarian, enduring-questions gravel-ranger, source-portfolio firm-captain) and no other spec in this batch uses it; its other 9-12 wave users are health tools (game-day-fuel, health-claim-checker). `Curio.voice`, `scope: () => state.mode`. Case texts and reasons are on screen only. How lines are spoken the first time, then only update the hint; event lines play every time and are dropped when stale.
+- w-queue (how; Review queue welcome; stale once a lean is set): "Welcome to the Rights Desk. Tap an upload, tap a lean on each of the four factors, then tap your call."
+- submit (how; the first time Submit review turns on; stale once it is pressed): "All four leans and a call. Press Submit review."
+- switches (how; the first Submit, when the switches unlock; stale once a switch is flipped): "Now flip a What if switch and watch which factors move."
+- differ (event; each Submit with a "You differ" row; stale on case change or a switch flip): "We see one factor differently. Read my reason on that row. Tap a lean if you want to change yours."
+- agree (event; each Submit with no "You differ" row; stale on case change or a switch flip): "We're on the same page with this one."
+- w-upload (how; Your upload welcome; stale once an item is added): "Your turn as a creator. Tap Add to video on the materials you want, check each one's status, then choose a license."
+- conflict (event; each new ✗ conflict; stale when it clears): "Something on your timeline doesn't fit that license. Tap Remove on that item, or pick another license."
 
 ## Family engine
 none
@@ -103,17 +118,21 @@ none
 - Cornell University Library, "Copyright Term and the Public Domain in the United States" (works published before 1931 are public domain as of 2026). https://guides.library.cornell.edu/copyright/publicdomain
 - AASL, National School Library Standards (2018), Engage VI.A.2 and VI.B.1, Include. https://standards.aasl.org/framework/
 - All uploads, works, people and the site are made up for Curio Class; Theo's leans and calls are the tool's own authored judgments.
+- Checks run 2026-10-29 (Python, all 20 unlicensed case states plus the 4 licensed ones): every lean is in -2 to +2; each switch moves the rows its reasons name (for example C1 A moves factors 1 and 3, C2 A moves 3 and 4, C3 B moves only 1); the license chooser yields exactly 7 results (CC BY, BY-SA, BY-ND, BY-NC, BY-NC-SA, BY-NC-ND, CC0). The sum of Theo's four leans does not predict his call (C1 with B sums to 0 and is Keep it up, C2 with B also 0 is Ask for changes, C3 uploaded is -4 and Ask for changes while C1 with A and B is -3 and Take it down), which is true to the law, since the factors are weighed together; so the senior card now says the factors are not added up, before a student infers a points rule.
 
 ## Done when
 1. All six cases open; switches stay locked until Submit; Submit needs four leans and a call.
 2. For every case and all four switch settings, Theo's leans, reasons and call match Content exactly (`__tool.theo(case, a, b)`), and the moved rows flash with "moved by".
-3. "You differ" appears exactly on rows two or more steps apart; no score anywhere.
+3. "You differ" appears exactly on rows two or more steps apart; no score anywhere; the senior card says the factors are weighed together, not added up.
 4. Licensed settings (C3 A, C6 A) show "Not needed: the license allows it" on all four rows.
 5. Real case cards appear on C1, C2, C3 and C5 only; the Myths fold shows four myths with their facts.
 6. Your upload: each of the seven materials shows its Content status; the chooser yields all seven results; every conflict rule fires and clears when its cause is removed; TASL lines match the format.
-7. State survives a reload; Clear desk (after Yes) resets everything.
-8. Factor rows, call and Submit visible without scrolling at every size in STANDARDS.md; 375 wide works in `drive.py --host`.
-9. Voice: welcome once per mode, how lines once, the agree or differ line every Submit and dropped on case change; Read speaks the hint; console clean; no network requests; only "Curio Class"; the legal disclaimer is on every screen.
+7. Focus: the Factor board is the largest, central block in Review queue, and the timeline in Your upload, at 1280x720, 1366x768 and 1920x1080; the switches sit beside the factor rows.
+8. Tap while it plays: flipping a second switch while Theo's markers slide moves them to the new values at once.
+9. All 11 thumbnails load, none shows a person, and no painted surface carries fake lettering.
+10. State survives a reload; Clear desk (after Yes) resets everything.
+11. Factor rows, call and Submit visible without scrolling at every size in STANDARDS.md; 375 wide works in `drive.py --host`.
+12. Voice: welcome once per mode, how lines once, the agree or differ line every Submit and dropped on case change; no line names a disabled control; Read speaks the hint; console clean; no network requests; only "Curio Class"; the legal disclaimer is on every screen.
 
 ## Open questions
 - The four real case cards name real people and works (Roy Orbison's "Oh, Pretty Woman", Gerald Ford's memoir, a photo of Prince, Google). They are court-case citations from the Copyright Office's index, not made-up content. Keep them, or describe each case without names?

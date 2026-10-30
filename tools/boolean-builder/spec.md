@@ -23,6 +23,7 @@ Kit frame on `kit:theme-912`. Header: title "Boolean Builder", small line "Lante
 
 Top of the stage, full width: the **query bar**: a text field in the readout font, a row of insert buttons **AND**, **OR**, **NOT**, **( )**, **" "**, **\*** (each inserts at the caret), and **Clear**. Results update live as you type (300 ms after the last key) whenever the query parses; Enter does the same at once.
 Under it, the **Query tree**: the parsed query drawn as a small tree (operator nodes, term leaves), each node labelled with its own count ("tree*: 11", "AND: 7"). This is where grouping becomes visible.
+Focus (both modes): the Venn, the biggest block, in the center of the stage under the query bar; the query bar and tree above it stay compact (about a quarter of the stage height together), so every keystroke's effect lands in the middle of the screen.
 Stage, main area: the **Venn**: up to three circles labelled with their terms in the set colors, inside a frame for the whole collection ("All 36 records"). Each region the query asks for is filled with the accent at 35% plus diagonal hatching. Every record is a dot placed in its region (records matching no circle sit in the frame outside the circles); dots in the result are filled, the rest are hollow rings. Hover, focus or tap a dot: its record card (title, year, abstract).
 Panel: `#hint`; **Results: [n] of 36**; the result list (title, year, abstract, with every matched word underlined and bold); under the list, **How this database reads queries** (a fold-out with the rules in Content).
 
@@ -30,7 +31,7 @@ Panel: `#hint`; **Results: [n] of 36**; the result list (title, year, abstract, 
 Starts with the query `heat` (20 results, one circle). Everything is free. Five **Try this** chips above the result list load a query: `heat AND island`, `"heat island"`, `tree OR trees`, `tree*`, `school* AND tree* OR shade`.
 
 ### Briefs (optional)
-A brief card replaces the Try this chips: a research need in one line, the number of key records, and live counts "Key records: [k] of [K] · Extras: [e]". Key records in the list and in the Venn get a small star (★ and the word "key" for screen readers). When every key record is in the results with no extras, the card shows "Brief met" with the query saved under it. Four briefs, any order; **Show a hint** gives one rule from Content per press (never the query).
+Four brief tabs, **Brief 1** to **Brief 4**, replace the Try this chips (each tab shows a check once met); the open brief's card shows a research need in one line, the number of key records, and live counts "Key records: [k] of [K] · Extras: [e]". Key records in the list and in the Venn get a small star (★ and the word "key" for screen readers). When every key record is in the results with no extras, the card shows "Brief met" with the query saved under it. Four briefs, any order; **Show a hint** gives one rule from Content per press (never the query).
 
 ## Content
 Collection: Lantern Index, urban heat collection (all records made up). Search text is the title plus the abstract.
@@ -105,6 +106,7 @@ Hints, in order, per brief: 1 "Look at the tree. What did OR join?" then "Parent
 - Tapping a circle label puts its term at the caret; tapping a region shows "Records here: [n]" and their titles in a tooltip list.
 - Empty query: one empty frame with all 36 hollow dots and "Type a search to start."
 - Record cards never link out.
+- Nothing plays on its own except short eases (300 to 400 ms); typing is never blocked by a running ease, which jumps to its end when a new query lands.
 - Brief progress (which briefs are met, with their queries) saves in localStorage (`bb-briefs`, try/catch); **Clear briefs** (asks Yes / No) empties it. The Sandbox saves nothing.
 - Keyboard: the query field first, then insert buttons, then the list, then the dots in record order. Visible focus. The tree and Venn have text equivalents for screen readers ("Region tree* and shade, not school*: 1 record, in results").
 - Sizes: the query bar, tree and Venn visible without scrolling at 1280x720 and 1366x768 (the list scrolls in the panel); at 680x425 the tree collapses to one line of nested parentheses with counts; at 375 wide the Venn sits above the list at full width.
@@ -112,19 +114,19 @@ Hints, in order, per brief: 1 "Look at the tree. What did OR join?" then "Parent
 ## Look
 - Accent `--brand #e879f9` (orchid: the shaded regions, Search caret, focus of the query field, the header rule) with `--brand-ink #1c1203` for text on it, on `kit:theme-912` (dark).
 - Set colors from the graphing family where they exist: first circle #5aa9ff, second #fbbf24, third #5fd39a; result regions are accent plus hatching, so shading never relies on color alone; filled vs hollow dots carry membership too. Errors use `--warn` with ✗.
-- Neighbors: api-playground lemon #ffd75e, sorting-showdown lavender #c39bff, capture-the-flag pink #ff7ac8, data-policy-council navy (light theme); orchid sits between the pinks and lavenders and is new among 9-12 tools. Group siblings: olive, crimson, violet, teal (light themes) and fair-use-court brass (light): this is the group's only dark tool.
+- Neighbors: api-playground lemon #ffd75e, sorting-showdown lavender #c39bff, capture-the-flag pink #ff7ac8, data-policy-council navy (light theme); orchid sits between the pinks and lavenders and is new among 9-12 tools. Group siblings: keyword-fishing olive, credit-card-builder crimson, fake-or-fact-lab violet, research-quest teal and fair-use-review brass (light themes), enduring-questions lantern gold (dark), source-portfolio archive green (light): orchid stays apart from enduring-questions' gold on dark.
 - Contrast: brand on paper (#0d1219) 7.64:1; brand on panel 7.03:1; brand on section bg 6.67:1; brand-ink on brand 7.50:1; ink on paper 15.96:1; muted on panel 8.13:1; set colors on the Venn bg (#0e1520): blue 7.46:1, amber 10.97:1, green 9.83:1; focus on panel 12.03:1; warn on section bg 9.90:1. All pass AA.
 
 ## Art
-none: drawn in code (query bar, tree, Venn, dots, cards and preview.svg).
+none: drawn in code. The whole tool is a diagram and its data: query bar, query tree, Venn circles, record dots, result list and preview.svg. Nothing on screen is a scene, place, creature or object a picture would show better; the records are text abstracts, never photos.
 
 ## Voice
-Bank voice `curious-librarian` (Aoede), "Say curiously and warmly, like a friendly school librarian": a reference librarian at the database desk. No 9-12 tool in this wave uses it, and it differs from every group sibling. `Curio.voice`, `scope: () => state.mode`. Narration is light: records and queries are on screen only.
-- w-sandbox (how): "Type a search in the bar. The circles show which records it finds. Try AND, OR and NOT, and watch the shading."
-- tree (how, the first query with two operators): "The tree under the bar shows how the database grouped your search. Parentheses change the grouping."
-- star (how, the first * typed): "A star finds every word that starts that way. Check what else it caught."
-- w-briefs (how): "Pick a brief. Find every key record with no extras. The stars mark the key records."
-- met (event; stale on brief change): "Brief met. Every key record, nothing extra."
+Bank voice `curious-librarian` (Aoede), "Say curiously and warmly, like a friendly school librarian": a reference librarian at the database desk. No neighbor from `neighbors.py` (fair-use-review easy-coach, enduring-questions gravel-ranger, source-portfolio firm-captain) and no other spec in this batch uses it. `Curio.voice`, `scope: () => state.mode`. Narration is light: records and queries are on screen only. How lines are spoken the first time, then only update the hint; event lines play every time and are dropped when stale.
+- w-sandbox (how; Sandbox welcome; stale once the query changes): "Type a search in the bar, or tap a Try this chip. The circles show which records it finds. Try AND, OR and NOT, and watch the shading."
+- tree (how; the first query with two operators; stale on the next query change): "The tree under the bar shows how the database grouped your search. Type parentheses to change the grouping."
+- star (how; the first star typed; stale on the next query change): "A star finds every word that starts that way. Tap a dot to check what else it caught."
+- w-briefs (how; Briefs welcome; stale once the query changes): "Tap a brief tab, then type a search. Find every key record with no extras. Stars mark the key records."
+- met (event; each time a brief is met; stale on brief change or query change): "Brief met. Every key record, nothing extra."
 
 ## Family engine
 none
@@ -134,12 +136,15 @@ none
 - MIT Libraries, "Database Search Tips" guide: Boolean operators and search order (https://libguides.mit.edu/c.php?g=175963&p=1158594), plus its Phrases and Truncation pages. https://libguides.mit.edu/database-search
 - Common Core State Standards, HSS-CP.A.1 (subsets of a sample space using unions, intersections and complements). https://www.thecorestandards.org/Math/Content/HSS/CP/
 - All records and the Lantern Index are made up for Curio Class. The no-plurals rule, the 3-letter truncation minimum, the AND-before-OR order and the brief rule are the tool's own choices, said in the fold-out.
+- Checks run 2026-10-29 (Python: whole-word match on title plus abstract, star as prefix, quotes as adjacent words, AND and NOT left to right before OR, juxtaposition as AND): all 26 checked results in Content match, count and record numbers (for example `heat AND island` 9, `"heat island"` 7, `tree*` 11, `coo*` 16, `school* AND tree* OR shade` 5 as 1, 4, 17, 22, 29, `school* OR shade AND tree*` 7); the five Try this chips give 9, 7, 10, 11 and 5; every brief solution returns exactly its key records; `heat AND island` misses brief 3 by 2 extras (5 and 6). Nothing needed fixing.
 
 ## Done when
 1. Every checked result in Content matches the live count and record list exactly (`__tool.search(q)`).
 2. `school* AND tree* OR shade` shows a tree grouping `(school* AND tree*) OR shade` and 5 results; adding parentheses around `tree* OR shade` gives 4 and the tree and Venn change to match.
 3. The Venn follows the Venn rule: one to three circles for terms or OR groups; "Too many groups to draw" otherwise; every region's fill matches a hand check of the query on that membership; all 36 dots appear once.
 4. Parse errors show their messages and keep the last good query dimmed; lowercase "and" gets the "Did you mean AND?" mark.
-5. Each brief's listed solution meets it; `heat AND island` does not meet brief 3 (2 extras); progress survives a reload and Clear briefs (after Yes) empties it.
-6. Query bar, tree and Venn visible without scrolling at every size in STANDARDS.md; 375 wide works in `drive.py --host`; dots reachable by keyboard with text equivalents.
-7. Voice: welcome once per mode, how lines once, "Brief met" every time and dropped on brief change; Read speaks the hint; console clean; no network requests; only "Curio Class".
+5. Each brief's listed solution meets it; `heat AND island` does not meet brief 3 (2 extras); the four brief tabs show their checks; progress survives a reload and Clear briefs (after Yes) empties it.
+6. Focus: the Venn is the largest block, centered under the query bar, at 1280x720, 1366x768 and 1920x1080.
+7. Tap while it plays: typing or tapping an insert button during a dot slide or circle fade takes effect at once, and the Venn jumps to the new query.
+8. Query bar, tree and Venn visible without scrolling at every size in STANDARDS.md; 375 wide works in `drive.py --host`; dots reachable by keyboard with text equivalents.
+9. Voice: welcome once per mode, how lines once, "Brief met" every time and dropped on brief change; no line names a disabled control; Read speaks the hint; console clean; no network requests; only "Curio Class".

@@ -22,16 +22,18 @@ Build a six-source portfolio for a contested question, "Should the Millbrook Dam
 ## Screens and modes
 Kit frame. Header: "Source Portfolio", small line "Should the Millbrook Dam come down?"; Motion, Sound, Read. Two views as a segmented control, **Shelf** and **Citation web**, plus a **Background** button (the Elwha card, Content).
 
-**Shelf.** A grid of 13 source cards like library catalog cards. Each card front shows its title, maker, kind (as a stamp: STUDY, DATA, NEWS, PRESS RELEASE, BLOG, REPORT, MEMO, PREPRINT, WEB PAGE, PAMPHLET, NEWSLETTER) and the view it comes from (a colored tab with the view's word). Tap a card to flip it: the back lists **Origin** (who first produced the information), **Authority** (who wrote it and what they know), **Context** (when, for whom, why), **Structure** (what kind of document, reviewed or not), **Cites** and **Cited by** (card numbers), and **Speaks to** (the key claims, each with its side). Badges on the back: **Peer reviewed**, **Government report**, **Cited by an expert source**, **Preprint**, **Correction notice**, **Paid for by an interested party**. **Add to portfolio** on both faces.
+A slim painted banner of the dam the question is about (art sp-millbrook-dam) runs above both views, the question in code across its blank sky.
+
+**Shelf.** Focus: the card grid, the biggest, central block, with the portfolio and gauges beside it in the panel so each Add shows its effect at once. A grid of 13 source cards like library catalog cards. Each card front shows its title, maker, kind (as a stamp: STUDY, DATA, NEWS, PRESS RELEASE, BLOG, REPORT, MEMO, PREPRINT, WEB PAGE, PAMPHLET, NEWSLETTER) and the view it comes from (a colored tab with the view's word). Tap a card to flip it: the back lists **Origin** (who first produced the information), **Authority** (who wrote it and what they know), **Context** (when, for whom, why), **Structure** (what kind of document, reviewed or not), **Cites** and **Cited by** (card numbers), and **Speaks to** (the key claims, each with its side). Badges on the back: **Peer reviewed**, **Government report**, **Cited by an expert source**, **Preprint**, **Correction notice**, **Paid for by an interested party**. **Add to portfolio** on both faces.
 
 **The portfolio** (panel, top): six slots like folder pockets. Each filled slot shows the card's number, title and view tab, with **Remove**. Under the slots, four **gauges**, each a short bar with a goal tick, its count and a one-line reason:
 - **Range of views**: distinct views in the portfolio (goal 4).
 - **Kinds of sources**: distinct kinds (goal 3).
-- **Corroboration**: key claims covered by at least two independent origins (goal 4 of 4); tap to see the claim list with origins.
+- **Corroboration**: key claims covered by at least two independent origins, on either side (goal 4 of 4); its line reads "[n] of 4 claims checked by two independent origins"; tap to see the claim list with origins and their sides.
 - **Expert standing**: sources experts value (goal 2).
 Under the gauges, **Echo check** lines ("Cards 3, 4 and 5 all trace to card 2's press release. They count as one origin.").
 
-**Citation web.** The 13 cards as nodes (number and view color), arrows from citer to cited, and shaded hulls around sources that share an origin, each hull labeled ("One origin: Hartwell Engineering cost study"). Cards in the portfolio are drawn with a thick ring. Four **claim filters** above the web (Salmon, Sediment, Power, Cost): choosing one lights only sources that speak to it, with + or - marks for side. Tap a node to open its card back in a side drawer.
+**Citation web.** Focus: the web itself, filling the stage. The 13 cards as nodes (number and view color), arrows from citer to cited, and shaded hulls around sources that share an origin, each hull labeled ("One origin: Hartwell Engineering cost study"). Cards in the portfolio are drawn with a thick ring. Four **claim filters** above the web (Salmon, Sediment, Power, Cost): choosing one lights only sources that speak to it, with + or - marks for side. Tap a node to open its card back in a side drawer.
 
 **Views wheel** (in the panel, below the gauges): seven slices, one per view, filled when the portfolio holds a source from that view, so a missing view is a visible gap.
 
@@ -68,7 +70,7 @@ Independent origins per claim (the rule: sources share an origin when one repeat
 - K4: origin 6 (cards 2, 3, 4, 5, 6, 7), origin 13 (card 13).
 Valued by experts (Expert standing): 1 (peer reviewed), 8 and 13 (government reports), 9 (cited by a peer-reviewed study). Card 11 shows "Not yet reviewed" and does not count, but its correction notice line says "A public correction is a sign the authors check their work." Card 6 shows "Paid for by Sable Valley Power; cited only by the utility and groups repeating it."
 
-A full-marks portfolio exists (1, 2, 7, 8, 9, 13: five views, six kinds, 4 of 4 claims, 4 valued), and many others; the tool never names one.
+Exactly four six-card portfolios meet every goal (checked by script): 1, 2, 7, 8, 9, 13 (five views, six kinds, 4 of 4 claims, 4 valued), the same with card 3 or card 4 in place of card 2, and 1, 7, 8, 9, 11, 13. The tool never names one. 1,048 of the 1,716 possible portfolios meet at least three of the four goals.
 
 Background card (real; Content checked in Sources): "On the Elwha River in Washington, two dams, the Elwha Dam (1913) and the Glines Canyon Dam (1927), were taken down between September 2011 and 2014, the largest dam removal in United States history until the Klamath River dams came down in 2024. The Lower Elwha Klallam Tribe had pressed for removal for decades. Scientists have tracked salmon returning upstream since." Source line on the card.
 
@@ -77,7 +79,8 @@ Background card (real; Content checked in Sources): "On the Elwha River in Washi
 - Gauges update at once; with Motion on, bars ease over 200 ms. Each gauge's line names the reason ("3 views: add a view the wheel shows empty"; "Cost is backed by one origin only: cards 2 and 7 both repeat card 6").
 - Echo check appears when two or more portfolio cards share an origin, naming the cards and the origin card.
 - Citation web: laid out once from fixed positions (no physics), so it is the same every time; arrows are drawn in SVG; hulls are rounded shapes around shared-origin groups. With Motion off, filters change instantly.
-- Background opens a dialog; Escape closes.
+- Background opens a dialog with the painted river (art sp-elwha-river) above the card's text; Escape closes.
+- Nothing plays on its own except 200 ms gauge eases; a tap during an ease is taken at once.
 - Store: the portfolio saves to localStorage `sp-portfolio` (try/catch); Clear portfolio (after Yes) empties it.
 - Keyboard: view control, card grid (arrow keys; Enter flips; A adds), then the panel. The citation web has a text equivalent: a list of each card with "cites" and "cited by" and its origin group.
 - Sizes: at 1366x768 and 1280x720 the grid shows 13 cards in 5 columns and the panel holds slots, gauges and wheel. At 680x425 cards show 4 columns with the back as a drawer, and the wheel folds under a **Views** button. At 760 and 375 wide, the portfolio slots become a sticky strip of six numbered pockets at the top, gauges follow the grid, and the web shows as its text list with a **Show web** toggle.
@@ -90,16 +93,19 @@ Background card (real; Content checked in Sources): "On the Elwha River in Washi
 - Contrast (WCAG 2.1): white on brand 6.73:1; brand on paper 5.62:1, on panel 6.61:1, on slot manila 4.81:1; ink on paper 13.97:1, on manila 11.96:1; muted on paper 6.22:1, on panel 7.31:1; focus on panel 6.59:1, on paper 5.60:1; echo on panel 7.18:1. View colors on panel: 5.38, 6.59, 4.84, 6.98, 7.5, 5.94, 6.61. All pass AA.
 
 ## Art
-none: drawn in code (catalog cards, stamps, folder pockets, gauges, views wheel, citation web, a small dam-and-river line drawing for the header and preview.svg).
+Local FLUX (`scripts/localart.py`); no people. The tool is mostly diagram and data (catalog cards, stamps, pockets, gauges, views wheel, citation web, all in code), so only the two places it is about are painted, in one style: soft daylit painted landscape.
+- sp-millbrook-dam: a small old concrete dam across a river in a wooded valley, a calm lake behind it with a few houses and docks on the far shore, the river running on below the dam, a wide plain sky across the top, soft daylight, painted landscape; 4:1; cutout no; people no; the banner above both views and the backdrop of preview.svg, the question in code across the sky. A lake behind a dam in daylight, so it does not repeat keyword-fishing's misty lake from a dock.
+- sp-elwha-river: a wild river running fast and clear through a deep forested canyon, gravel bars and young alder trees along the banks, a broken concrete wall remnant on one bank, painted landscape; 16:9; cutout no; people no; the Background dialog about the real Elwha River (a painting, not a photo of the place, so no caption claims an exact view).
+That is 2 images, none with people.
 
 ## Voice
-Bank voice `firm-captain` ("Say firmly but kindly, like a ship captain giving clear directions"): a river pilot keeping the set on course. `Curio.voice`, scope the view, `welcomeAfter: true`.
-- w-shelf (how, welcome): "Flip a card to see where its facts come from. Then add six to your portfolio."
-- gauge (how, first gauge under its goal after 3 cards): "Check the gauges. Each one tells you what the set still needs."
-- echo (event, each new echo found; stale if the portfolio changes first): "Those cards share one origin. They count once."
-- wheel (how, first time 6 cards fill only 3 views or fewer): "The wheel shows a view you haven't heard from."
-- w-web (how, Citation web welcome): "Arrows show who cites whom. Shaded groups share one origin."
-- full (event, each time all four gauges reach their goals): "All four gauges are full. That's a balanced set."
+Bank voice `firm-captain` (Alnilam), "Say firmly but kindly, like a ship captain giving clear directions": a river pilot keeping the set on course. No neighbor from `neighbors.py` (research family: research-notebook calm-professor, portrait-in-four-media knowing-guide, source-mixer news-reader, question-sharpener big-sister; same subject: boolean-builder curious-librarian, fair-use-review easy-coach, enduring-questions gravel-ranger; credit-card-builder bright-teacher) and no other spec in this batch uses it. `Curio.voice`, scope the view, `welcomeAfter: true`. How lines are spoken the first time, then only update the hint; event lines play every time and are dropped when stale.
+- w-shelf (how; Shelf welcome; stale once a card is added): "Tap a card to flip it and see where its facts come from. Then press Add to portfolio to fill your six pockets."
+- gauge (how; the first time a gauge is under its goal after 3 cards; stale once that gauge moves): "Check the gauges. Each one tells you what the set still needs."
+- echo (event; each new echo found; stale if the portfolio changes first): "Those cards share one origin. They count once."
+- wheel (how; the first time 6 cards fill only 3 views or fewer; stale once a view is added): "The wheel shows views you haven't heard from. Tap Remove on a card, then add one from an empty view."
+- w-web (how; Citation web welcome; stale once a node or filter is tapped): "Arrows show who cites whom. Shaded groups share one origin. Tap a claim filter or a card to look closer."
+- full (event; each time all four gauges reach their goals; stale when the portfolio changes): "All four gauges are full. That's a balanced set."
 
 ## Family engine
 research (`kit/research.js`), described in full in Question Sharpener's spec. This tool uses: Source (13 cards with origin, authority, context, structure, cites and claim sides), Shelf (card grid and flip), Conflicts and corroboration (`R.web`: origin groups and independent origins per claim), and Store (`sp-portfolio`). The gauges, wheel and citation web drawing are this tool's own.
@@ -111,6 +117,7 @@ research (`kit/research.js`), described in full in Question Sharpener's spec. Th
 - Kinds of sources, origin, authority, structure, context and corroboration: C3 Framework for Social Studies State Standards, D1.5.9-12, D3.1.9-12, D3.2.9-12, https://www.socialstudies.org/standards/c3
 - AASL National School Library Standards (2018), shared foundation Curate, https://standards.aasl.org/framework/
 - Millbrook and all 13 cards are written for Curio Class.
+- Checks run 2026-10-29 (Python, all 1,716 six-card portfolios, origins per claim as in Content): 1, 2, 7, 8, 9, 13 gives 5 views, 6 kinds, 4 of 4, 4 valued; 2, 3, 4, 5, 6, 7 gives 2 views, 0 of 4, 0 valued; swapping 13 in for 5 gives 1 of 4 (and 3 views); exactly four portfolios meet every goal. Fixed: Content said "many others" reach full marks; it is four. Note: the Corroboration gauge counts a claim when two independent origins speak to it on either side (card 1 and the lake group disagree on sediment, yet K2 counts); if it counted only agreeing origins, just one portfolio (1, 7, 8, 9, 11, 13, with no lake homeowner voice) could fill every gauge. Left as written; see Open questions.
 
 ## Done when
 1. The portfolio 1, 2, 7, 8, 9, 13 shows Range 5 (goal 4), Kinds 6 (goal 3), Corroboration 4 of 4, Expert standing 4 (goal 2), and the full line plays.
@@ -119,10 +126,14 @@ research (`kit/research.js`), described in full in Question Sharpener's spec. Th
 4. Card 11 never counts toward Expert standing; its back shows Preprint and Correction notice; card 6 shows "Paid for by Sable Valley Power".
 5. The citation web draws the arrows in Content (2 to 6, 3 to 2, 4 to 2, 5 to 3, 7 to 6, 1 to 9, 12 to 1) and hulls for the Friends of Millbrook Lake group and the Hartwell group; the claim filter Cost lights cards 2, 3, 4, 5, 6, 7, 13.
 6. The views wheel fills one slice per view and leaves the rest visibly empty with their names.
-7. Reload keeps the portfolio; Clear portfolio (after Yes) empties it; no network requests; console clean.
-8. At every size in STANDARDS.md the six slots and the gauges are visible without scrolling the page; 375 wide works in `drive.py --host`.
-9. Voice: welcome once per view, how lines once, "Those cards share one origin" every time a new echo appears; only "Curio Class" appears.
+7. Focus: in Shelf the card grid is the largest, central block with the slots and gauges visible beside it; in Citation web the web fills the stage; checked at 1280x720, 1366x768 and 1920x1080.
+8. Tap while it plays: an Add or Remove during a gauge ease is taken at once and the gauges show the new values.
+9. The dam banner and the Elwha painting load, show no person and no fake lettering; the question text is code over the banner's sky.
+10. Reload keeps the portfolio; Clear portfolio (after Yes) empties it; no network requests; console clean.
+11. At every size in STANDARDS.md the six slots and the gauges are visible without scrolling the page; 375 wide works in `drive.py --host`.
+12. Voice: welcome once per view, how lines once, "Those cards share one origin" every time a new echo appears; no line names a disabled control; only "Curio Class" appears.
 
 ## Open questions
 - [source-portfolio] The tribal view comes from a made-up tribal government (Upriver Nation Fisheries Department) beside a real background card about the Lower Elwha Klallam Tribe. OK, or should a Native educator review the card first, or the view be framed only through the real Elwha example?
 - [source-portfolio] D1.5, D3.1 and D3.2 are 9-12 social studies standards on a library tool. Keep the four-code standards line as the module has it?
+- [source-portfolio] The Corroboration gauge counts a claim as corroborated when two independent origins speak to it, even when they disagree (card 1 says the sediment is manageable, the lake group says it would harm the river). Strictly, corroboration means agreeing. Keep the gauge as is (and its reason line says "checked by two independent origins"), rename it "Cross-checked claims" (the One idea says "real corroboration"), or count only agreeing origins, which leaves one full-marks set with no lake homeowner voice?
