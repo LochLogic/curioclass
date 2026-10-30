@@ -81,3 +81,8 @@
 - tree-of-life: two painted hominin skulls (objects) fine, or Cory review? voice clear-teacher.
 - Carried: protein-factory disease names; punnett nondisjunction and Morgan counts; SH 9 crossing source; finch model for LS4-2/4-3; hippo gap.
 - Pattern (again): the 9-12 voice bank is nearly used up; restyled teacher voices are filling in.
+
+## R16
+- up-the-watershed: map is painted textures inside code shapes; that look, or plain code map?
+- biome-atlas runs 349 lines because of a 20-piece plant kit (accepted; minor).
+- design-challenge-studio voice -> wise-mentor.

@@ -32,15 +32,16 @@ you pick fixes and find that no plan cleans everything, so you choose what matte
   "Grade 12".
 
 ## Screens and modes
-Layout: the watershed map (drawn in code) fills the stage; the panel holds the case card, kit counter and the mode's
-controls. At 1366x768 the map and the panel's buttons fit without scrolling; below 760 wide the map is on top with
+Layout: stage left (about 62 percent), panel right with the case card, kit counter and the mode's controls. The
+watershed map is code shapes (creek, forks, lake, land parcels, roads) filled with painted textures, with the
+suspects as painted cutout icons on it and sample spots, flags and labels in code (Art). At 1366x768 the map and the panel's buttons fit without scrolling; below 760 wide the map is on top with
 pinch and drag disabled (it fits the width), and the panel below.
 
-**Cases (default).** Three case cards: **Beach closed** (Heron Lake beach, E. coli), **Green lake** (Heron Lake,
+**Cases (default).** Focus: the three painted case cards, side by side on the stage. Three case cards: **Beach closed** (Heron Lake beach, E. coli), **Green lake** (Heron Lake,
 phosphorus), **Muddy creek** (trout below Main Street, sediment). Each card: what people noticed, the measured
 problem, the limit it breaks, and **Open case**. Cards show a check when solved.
 
-**Sample.** The map: two forks join into Alder Creek, which runs past the town of Linden into Heron Lake. Eleven
+**Sample.** Focus: the map, filling the stage; the newest result card opens beside the spot it came from. The map: two forks join into Alder Creek, which runs past the town of Linden into Heron Lake. Eleven
 sample spots (circles with labels S1 to S9, Pipe, Outfall) and seven suspects (icons with names). Choose a spot, then
 **Dry day** or **Day after storm**, then **Take sample** (uses one kit; 8 per case, counter "Kits left: 5"). The
 result card lists all four tests (E. coli, nitrate, phosphorus, suspended sediment) with units, the limit for the
@@ -49,15 +50,18 @@ case's pollutant as a line on a small bar, and stays pinned on the map as a flag
 ("Up 1,333 CFU per 100 mL from S6 to S7, dry day"). A spot sampled twice in the same weather gives the same numbers
 (the model has no noise; a note says real samples vary and real teams repeat them).
 
-**Claim.** A suspect list with checkboxes; for each checked suspect, **Add evidence** opens the logbook to pick a
+**Claim.** Focus: the map, with each checked suspect's icon ringed and its evidence pair drawn as a bracket. The
+panel holds a suspect list with checkboxes; for each checked suspect, **Add evidence** opens the logbook to pick a
 bracketing pair (one sample above, one below, same weather) or a direct sample (Pipe, Outfall). **Submit claim**.
 Feedback per suspect: right with good evidence; right but the evidence doesn't bracket it (with what to sample);
 wrong (with its real share at the target); missed (a hint naming the weather). After a submit, **Show the whole
 creek** fills every spot in both weathers and draws each suspect's share at the target as a bar. Claims can be
 revised; the case is solved when the culprit set is right with evidence for each.
 
-**Fix-it.** Opens when any case is solved (all three goals show; unsolved ones are marked "case not solved yet").
-Solution cards with cost, what it changes, and who pays. Toggle any; the budget bar ($3,000,000) fills; over budget
+**Fix-it.** Focus: the three goal gauges, before and after, in a row across the top of the stage, with the budget
+bar under them; the solution cards fill the rest of the stage, each with its source's painted icon. Fix-it opens
+when any case is solved (all three goals show; unsolved ones are marked "case not solved yet").
+Solution cards with cost, what it changes, and who pays. Toggle any with **Add** / **Remove** on the card; the budget bar ($3,000,000) fills; over budget
 turns the bar red and disables **Test plan**. **Test plan** shows the three goals as gauges, before and after, in both
 weathers. **Save plan** keeps up to three for side by side; a **Why** box per plan offers sentence starters ("We put
 the beach first because ..."), not saved beyond the session.
@@ -144,42 +148,72 @@ bacteria dying in sunlight, groundwater, and the fact that real samples vary fro
 - A bracketing pair must be adjacent across the suspect: A needs S1 and S2; B needs S3 and S4; C needs S5 and S6; D1
   needs the Pipe in a storm, or S6 and S7 in a storm with a dry S6 and S7 pair for contrast; D2 needs S6 and S7 dry;
   E needs the Outfall, or S7 and S8; geese are cleared by S8 and S9 in the same weather.
-- Fix-it updates the budget bar on each toggle; gauges animate 400 ms after Test plan.
-- Progress (solved cases, logbooks, saved plans) persists in localStorage under `watershed-detective`; **Clear my
+- Fix-it updates the budget bar on each toggle; gauges animate 400 ms after Test plan. A toggle during the
+  animation clears the gauges to "plan changed, press Test plan" at once; nothing else plays on its own.
+- Progress (solved cases, logbooks, saved plans) persists in localStorage under `up-the-watershed`; **Clear my
   progress** wipes it. Reset (kit) returns to Cases without clearing saved progress.
 - `window.__tool`: `{mode, caseId, kitsLeft, samples, claim, solved, plan, goals}`.
 
 ## Look
-Accent `--brand #5aa6c8` (creek blue), `--brand-ink #10161f`. Map: land `#1a2420`, fields `#2a3322`, town blocks
-`#2a2f38`, creek `#3b7fa8` widening downstream, lake `#2c6a8f`. Suspect icons in `#e8edf3` line art with a
-`#ffb8a8` ring when accused. Dry flags `#5aa9ff` with "D", storm flags `#9fb4c8` with "S". Contrast (computed): brand
+Accent `--brand #5aa6c8` (creek blue), `--brand-ink #10161f`. Map: the painted textures are multiplied down to the
+map palette so code labels stay readable: land `#1a2420`, fields `#2a3322`, town blocks `#2a2f38`, creek `#3b7fa8`
+widening downstream, lake `#2c6a8f`. Painted suspect icons get a `#ffb8a8` ring when accused. Dry flags `#5aa9ff`
+with "D" (7.40:1 for the `#10161f` letter), storm flags `#9fb4c8` with "S" (8.50:1). Contrast (computed): brand
 on --panel 6.37:1, on --sec-bg 6.03:1; brand-ink on brand 6.68:1. Nearest accent on any spec is #9ec9e8 (gas-law-lab,
 dE 16.6); group siblings are 81 or more apart.
 
 ## Art
-Suspect cards (FLUX via cfart.py), 4:3, no cutout, people: false, shown when a suspect icon is tapped (about 280 px):
-- pasture: "Brown cattle standing in a shallow creek in a green pasture, muddy banks, summer"
-- fields: "Flat cornfields with a drainage tile pipe outlet flowing into a ditch, early summer"
-- construction: "Graded bare-soil construction site next to a small creek, a muddy runoff channel, cloudy day"
-- storm-drain: "Concrete storm drain outfall pipe under a town bridge, water flowing into a creek after rain"
-- sewer: "Old brick manhole on a grassy creek bank, damp ground around it, small town in the background"
-- plant: "Small town wastewater treatment plant with round clarifier tanks beside a river, aerial view"
-- geese: "Canada geese on a sandy lake beach, calm water, morning light"
-- beach: "Small lake beach with a lifeguard stand, calm water, empty sand, summer afternoon"
-Map, flags and gauges: drawn in code.
+Local FLUX (`scripts/localart.py`), no people anywhere. 22 images. Prompts say only what is in the picture; signs
+stay blank (the beach notice text is code).
+Case and suspect cards: 4:3; cutout no; people no; the three case cards in Cases (about 300 px) and a suspect's card
+when its icon is tapped (about 280 px).
+- uw-beach: small lake beach with an empty lifeguard stand and a blank white notice board on a post, calm water,
+  empty sand, summer afternoon (Beach closed case card; the notice text "Beach closed" is code over the board)
+- uw-green-lake: a lake shore with thick bright green algae scum on the water, reeds, overcast light (Green lake)
+- uw-muddy-creek: a small brown muddy creek under a stone bridge in a small town, cloudy day (Muddy creek)
+- uw-pasture: brown cattle standing in a shallow creek in a green pasture, muddy banks, summer
+- uw-fields: flat cornfields with a drainage tile pipe outlet flowing into a ditch, early summer
+- uw-construction: graded bare-soil construction site next to a small creek, a muddy runoff channel, cloudy day
+- uw-storm-drain: concrete storm drain outfall pipe under a town bridge, water flowing into a creek after rain
+- uw-sewer: old brick manhole on a grassy creek bank, damp ground around it, small town houses behind
+- uw-plant: small town wastewater treatment plant with round clarifier tanks beside a river, aerial view
+- uw-geese: Canada geese on a sandy lake beach, calm water, morning light
+Map icons (the suspects on the map, also the picture on each Fix-it card): one shared prompt, "a tiny <piece>,
+three-quarter view from above, like a model railway miniature, crisp painted illustration, on a plain flat light
+grey background"; 1:1; cutout yes; people no; drawn 48 px on the map (40 px at 760 wide and below), 64 px on fix
+cards. Pieces (7): uw-i-cattle (two brown cows standing in a strip of creek water); uw-i-tile (a short black drain
+pipe pouring water into a ditch beside green crop rows); uw-i-construction (a small yellow excavator on a patch of
+bare brown soil); uw-i-storm-drain (a round concrete pipe mouth spilling grey water); uw-i-sewer (an old brick
+manhole with a cracked iron lid on grass); uw-i-plant (two round treatment tanks and a small building); uw-i-geese
+(three Canada geese standing together). Fix G (rain advisory) uses a code notice-board shape.
+Map textures: one shared prompt, "seamless top-down aerial texture of <piece>, even soft light, filling the whole
+frame"; 1:1; cutout no; people no; tiled and clipped to the code shapes of the map, darkened to the map palette.
+Pieces (5): uw-t-pasture (green grazed grass with a few cattle paths); uw-t-cropland (rows of young corn in brown
+soil); uw-t-town (small town rooftops, yards and trees); uw-t-bare-soil (graded brown soil with tire tracks);
+uw-t-water (calm blue-green lake water with small ripples).
+Sizing rule: icons sit on their suspect's map point, bottom-centered; textures tile at 256 px.
+Drawn in code: the map shapes and roads, sample spots, flags, labels, the logbook, result cards, gauges, budget bar,
+brackets, preview.svg.
 
 ## Voice
-Bank voice `casual-peer` (Zubenelgenubi, "casually and naturally, like a friendly teenager explaining something"),
-framed as a volunteer on Linden's stream team. Different from every voice in this group.
-- wCases (how, Cases welcome): "Pick a case card and press Open case. We have eight kits, so plan your stops."
-- wSample (how, Sample welcome): "Tap a spot, choose Dry day or Day after storm, then press Take sample."
-- bracket (how, first time two samples sit on both sides of a suspect): "Nice, that pair brackets a suspect. A jump
-  between them is evidence."
-- lastKit (event, one kit left; stale on Restart case): "Last kit. Make it count."
-- wClaim (how, Claim welcome): "Check each suspect you blame, then press Add evidence for each one."
-- solved (event, claim right; stale on case change): "That's the case. Every source has evidence behind it."
-- wFix (how, Fix-it welcome): "Toggle fixes until the budget bar is full. Then press Test plan."
-- noPlan (event, first Test plan that misses a goal; stale on plan change): "No plan here fixes everything for three
+Bank voice `casual-peer` (Zubenelgenubi, "Say casually and naturally, like a friendly teenager explaining
+something"), framed as a volunteer on Linden's stream team. No neighbor and no other spec in this batch uses it.
+`Curio.voice`, `scope: () => state.mode`.
+- wCases (how; Cases welcome; stale once a case is opened): "Pick a case card and press Open case. We have eight
+  kits, so plan your stops."
+- wSample (how; Sample welcome; stale once a sample is taken): "Tap a spot, choose Dry day or Day after storm, then
+  press Take sample."
+- bracket (how; first time two samples in the same weather sit on both sides of a suspect; stale on case change):
+  "Nice, that pair brackets a suspect. A jump between them is evidence."
+- lastKit (event; one kit left; stale on Restart case): "Last kit. Make it count."
+- outOfKits (event; kits reach 0; stale on Restart case or Claim): "Out of kits. Go to Claim and make your case, or
+  press Restart case."
+- wClaim (how; Claim welcome; stale once a suspect is checked): "Check each suspect you blame, then press Add
+  evidence for each one."
+- solved (event; claim right; stale on case change): "That's the case. Every source has evidence behind it."
+- wFix (how; Fix-it welcome; stale once a fix is added): "Press Add on the fixes you want, keep the bar under three
+  million, then press Test plan."
+- noPlan (event; first Test plan that misses a goal; stale on plan change): "No plan here fixes everything for three
   million. Pick what matters most, and write why."
 
 ## Family engine
@@ -205,6 +239,13 @@ none.
   Document, EPA 832-R-08-006.
 - Rain advisories at beaches: EPA BEACH Act program, https://www.epa.gov/beaches
 - Creek, town, flows, loads and costs: made up for this tool, scaled to the sources above.
+- Number checks (Python, 2026-10-29, scratch ws.py, ws2.py): the load model as written (loads and flows add,
+  E. coli = load / (flow x 10,000), beach = 0.30 x inlet + 40 x geese) reproduces every Sample value, every case
+  share listed (beach dry 83.8 / 8.9 / 5.0; storm 42.6 / 31.5 / 7.9 / 6.6 / 5.9 / 5.4; lake dry 86.7 / 8.1, storm
+  27.2 / 23.4 / 18.3 / 13.0 / 9.8 / 8.2; creek 61.2 / 14.3 / 11.0 / 10.3 / 3.3) and every worked plan. Nitrate peaks
+  at 2.09 mg/L (S8 dry), under 10 everywhere but the Outfall. All 512 fix sets checked: none at $3,000,000 or less
+  meets every goal without the advisory; two meet them with it (E + D2 + A + C + G at $2,955,000, and the same + F at
+  $2,970,000). Kits: each case solves in 5, 5 and 2 samples, inside 8. No line, table or rule changed.
 
 ## Done when
 1. The Sample table values appear for every spot and weather (rounded as listed).
@@ -215,12 +256,18 @@ none.
 6. Fix-it E + D2 + A + C + G shows $2,955,000 and all three goals met (beach "protected" on storm days).
 7. D2 + A + D1 + C + B1 + B2 + F shows the lake goal failing on dry days at 0.209.
 8. Turning on every fix goes over budget at $4,100,000 and disables Test plan.
-9. Each how-to line speaks once in five actions; lastKit and solved speak every time.
+9. Focus: at 1366x768 and 680x425 the case cards fill the stage in Cases, the map in Sample and Claim, and the
+   gauges lead Fix-it; spot labels are at least 10 px in the preview.
+10. A tap while the gauges animate: adding or removing a fix clears them at once; no other motion waits on a tap.
+11. At 1366x768 and 375 wide the map, Take sample and the kit counter are visible without scrolling; all 22 images
+    load, the map textures line up with their shapes, and none shows a person.
+12. Each how-to line speaks once in five actions; lastKit, outOfKits and solved speak every time; no line names a
+    disabled control.
 
 ## Open questions
-- [watershed-detective] Title: "Up the Watershed" (keeps the topic word; the overlap note's "Upstream" drops it). Take
+- [up-the-watershed] Title: "Up the Watershed" (keeps the topic word; the overlap note's "Upstream" drops it). Take
   it, or another?
-- [watershed-detective] The rain advisory lets a plan meet the beach goal without cleaning the water. Keep it as an
+- [up-the-watershed] The rain advisory lets a plan meet the beach goal without cleaning the water. Keep it as an
   honest real-world option, or count it as a miss?
-- [watershed-detective] Costs, flows and loads are made up (scaled to EPA guidance). OK, or should Sources name real
+- [up-the-watershed] Costs, flows and loads are made up (scaled to EPA guidance). OK, or should Sources name real
   cost studies?

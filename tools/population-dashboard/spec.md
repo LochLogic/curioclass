@@ -36,7 +36,7 @@ Layout: chart stage left, panel right (country chips, mode tabs, readouts). Coun
 **Compare** to pin a second) stay at the top of the panel at every size; at 760 wide and below they become a
 scrollable row above the stage. "Data as of" line under every chart.
 
-**Split (default).** Stage: the rectangle view. Two rectangles share a bottom-left corner: 1990 (outlined, `--muted`)
+**Split (default).** Focus: the two rectangles and their strips, filling most of the stage. Stage: the rectangle view. Two rectangles share a bottom-left corner: 1990 (outlined, `--muted`)
 and 2024 (filled). Width = population (millions), height = primary energy per person (kWh). The change becomes strips:
 - right strip, "More people": (P2024 - P1990) x e1990, `--gr-1` with dots pattern
 - top strip, "More use per person": P1990 x (e2024 - e1990), `--gr-2` with diagonal hatching
@@ -46,20 +46,20 @@ its label in words ("less use per person"). Both axes rescale per country so the
 scale** toggle puts all countries on World's scale (small countries become tiny; that is the point).
 Panel readouts: the three strips in TWh and as percent of 1990 total, the total change, and a one-line reading
 built from the numbers ("Most of the growth came from more use per person."). **Compare** shows two countries'
-rectangles side by side at the same scale. A small **Over time** line chart below the rectangles shows energy per
+rectangles side by side at the same scale. A small **Over time** line chart below the rectangles (about a fifth of the stage height) shows energy per
 person from 1965 to 2024 for the selected countries (data-desk chart, `--gr-1`, `--gr-2`).
 
-**Future.** Stage: population 1950 to 2100. Solid line to 2023 (estimates), then the UN fan: 95 percent band (light),
+**Future.** Focus: the fan chart, filling the stage. Stage: population 1950 to 2100. Solid line to 2023 (estimates), then the UN fan: 95 percent band (light),
 80 percent band (darker), median line, and the Low and High variants as dashed lines labeled "Low (half a child
 fewer)" and "High (half a child more)". A legend says the bands are the UN's probabilities, while Low and High are
 "what if" lines with no probability. Year slider (2024 to 2100) with a readout of median, both bands and both
 variants for that year. Buttons: **2050**, **2100** (jump), **Show peak** (marks the median's highest year; China,
 Japan and Germany peak before 2050; a country whose median is highest in 2100 reads "still rising in 2100").
 
-**Feed.** Stage: a stacked bar (people the world's cereal could feed, in billions) against a horizontal line for the
+**Feed.** Focus: the bar against the population line, centered on the stage. Stage: a stacked bar (people the world's cereal could feed, in billions) against a horizontal line for the
 2023 world population (8.09 billion). Sliders: **Cereal land** (400 to 1,000 million hectares, default 739.4),
 **Yield** (1.0 to 9.0 tonnes per hectare, chips **1961**, **1990**, **2023**, **US 2023**), **Share eaten by people**
-(0 to 100 percent, chips **Today 45.6%** and **All of it**), **Calories per person per day** (1,800 to 3,000, default
+(0 to 100 percent, chips **Today 45.6 percent** and **All of it**), **Calories per person per day** (1,800 to 3,000, default
 2,100). The formula is written out live with the numbers in it. Under it, the **People, yields and land** panel: three
 small bars, 1990 to 2023: population +51.9 percent, cereal yield +53.3 percent, arable land per person -24.2 percent,
 with the sentence "Yields kept pace with people while land per person shrank." Model note: "If every calorie came from
@@ -128,15 +128,18 @@ billion, food share: 2.09 billion; yield 8.330 all: 28.12 billion; 4.228 with fo
 (81.5 percent): 11.64 billion; 4.228, food share, 2,500 kcal: 5.47 billion.
 
 ## Interactions in detail
-- Changing country animates the rectangles (400 ms); the strips grow out from the 1990 rectangle in order: people,
+- Changing country animates the rectangles (400 ms; a tap on another chip or toggle during it jumps to the new
+  state at once); the strips grow out from the 1990 rectangle in order: people,
   per person, both, so the eye follows the split. Hover or focus on a strip shows its formula with numbers
   ("(1,450.9 - 865.0) million x 2,511 kWh = 1,471 TWh").
-- Values are computed live from the data table, not typed in; the build check compares them to Content within 0.5
-  percent (rounding of inputs).
+- Values are computed live from the data table, not typed in; the build check compares each strip to Content within
+  0.5 percent of that country's 1990 total (strips near zero, like Japan's people strip, differ by a few TWh with
+  rounded inputs).
 - Compare uses the larger of the two countries for the shared scale.
 - Future: the year slider snaps to whole years; keyboard arrows step 1, Page keys step 10. Bands draw under lines;
   both bands and both variants are labeled at the right edge (no legend-only reading).
-- Feed: sliders update the bar and the formula on input. When the bar passes the population line the line label
+- Feed: sliders update the bar and the formula on input. The bar's axis runs 0 to 50 billion (the largest setting,
+  1,000 million ha, 9.0 t/ha, all of it, 1,800 kcal, feeds 47.95 billion). When the bar passes the population line the line label
   reads "enough grain calories for everyone, if shared evenly"; below it, "not enough from grain alone". At share 0
   the bar is 0 and the line says why.
 - Reset returns to World, Split, and all Feed defaults. Nothing is saved; no localStorage.
@@ -151,19 +154,23 @@ outlines with cross-hatching. Fan bands `#5aa9ff` at 18 and 32 percent alpha, me
 accent on any spec is #ff7ac8 (dE 15.9); group siblings are 37 or more apart.
 
 ## Art
-none: drawn in code.
+none: drawn in code. Every mode is a chart of real data (area rectangles, a projection fan, a bar against a line),
+and painting any of it would blur the numbers; no scene, place or object is shown.
 
 ## Voice
-Bank voice `news-reader` (Rasalgethi, "clearly and steadily, like a trusted radio news reader"). Not used by any wave
-3 sibling; it suits reading numbers out.
-- wSplit (how, Split welcome): "Tap a country. The colored strips show where its energy growth came from."
-- reading (event, country change in Split; stale on the next change): the reading line for that country (the five
+Bank voice `news-reader` (Rasalgethi, "Say clearly and steadily, like a trusted radio news reader"); it suits
+reading numbers out. No neighbor and no other spec in this batch uses it. `Curio.voice`, `scope: () => state.mode`.
+- wSplit (how; Split welcome; stale once a country chip is tapped): "Tap a country chip. The colored strips show
+  where its energy growth came from."
+- reading (event; country change in Split; stale on the next change): the reading line for that country (the four
   fixed lines in Content).
-- wFuture (how, Future welcome): "Drag the year slider. The shaded bands show how sure the UN is."
-- variants (how, first time Low or High is focused): "Low and High are what-ifs, half a child fewer or more per woman.
-  They are not the edges of the bands."
-- wFeed (how, Feed welcome): "Move the Yield and Share sliders. Watch the bar against the line for today's people."
-- crossed (event, bar crosses the line upward; stale when it drops back): "Enough grain calories for everyone, if
+- wFuture (how; Future welcome; stale once the year slider or a jump button is used): "Drag the year slider, or press
+  2050 or 2100. The shaded bands show how sure the UN is."
+- variants (how; first time Low or High is hovered or focused; stale on mode change): "Low and High are what-ifs,
+  half a child fewer or more per woman. They are not the edges of the bands."
+- wFeed (how; Feed welcome; stale once a slider or chip moves): "Move the Yield and Share sliders, or tap a chip.
+  Watch the bar against the line for today's people."
+- crossed (event; bar crosses the line upward; stale when it drops back): "Enough grain calories for everyone, if
   shared evenly."
 
 ## Family engine
@@ -185,19 +192,32 @@ none. The Over time chart may reuse data-desk's Chart for a line chart, adding n
 - Grain energy: USDA FoodData Central (https://fdc.nal.usda.gov/), whole wheat, rice and corn grain about 3,400 to
   3,700 kcal per kg; 3,500 used, rounded.
 - 2,100 kcal per person per day: WHO, UNHCR, IFRC and WFP (2004), Food and Nutrition Needs in Emergencies.
+- Number checks (Python, 2026-10-29, scratch pop.py): every 2024 total equals population x energy per person within
+  3 TWh. The three strips recomputed from the rounded table match Split results within 0.1 percent of each 1990
+  total (largest gaps: US people 8,083 against 8,088; Japan people 17 against 15), so the old "within 0.5 percent of
+  each value" build check would have failed on the tiny strips; it now uses the 1990 total. The reading-line rule
+  gives the listed line for all eight countries. Feed: land 3,126.27 / 4.228 = 739.4 million ha; food share 45.6,
+  food and feed 81.5 percent; the seven worked values reproduce (14.28, 6.52, 4.57, 2.09, 28.12, 11.64, 5.47
+  billion); the bar crosses the 8.09 billion line at a 56.7 percent share with 2023 yield. 1990 to 2023: population
+  +51.9, yield +53.3, arable land per person -24.2 percent.
 
 ## Done when
-1. Split for India shows strips 1,471 / 4,256 / 2,883 TWh (within 0.5 percent) and "Most of the growth came from more
-   use per person."
+1. Split for India shows strips 1,471 / 4,256 / 2,883 TWh (within 0.5 percent of its 1990 total) and "Most of the
+   growth came from more use per person."
 2. Split for the United States draws the per person strip as a removed band and reads "Use per person fell, but more
    people kept the total rising."
 3. Japan and Germany show a negative total with the "total fell" line.
 4. Future for World at 2100 reads median 10,180.2, 80 percent 9,405.1 to 11,034.8, 95 percent 9,046.8 to 11,437.4,
    Low 6,986.8, High 14,395.2 (millions).
 5. Show peak marks a year before 2050 for China, Japan and Germany, and for Nigeria says "still rising in 2100".
-6. Feed defaults give 6.52 billion; chip All of it gives 14.28; chip 1961 with All of it gives 4.57.
-7. Every chart shows its "data as of" line; strips read in grayscale by pattern.
-8. At 1366x768 and 375 wide, the country chips and the mode's main control are visible without scrolling.
+6. Feed defaults give 6.52 billion; chip All of it gives 14.28; chip 1961 with All of it gives 4.57; every slider at
+   its most generous end gives 47.95 and stays on the axis.
+7. Focus: at 1366x768 and 680x425 the rectangles are the biggest thing in Split, the fan in Future and the bar in
+   Feed; chart text is at least 10 px in the preview.
+8. A tap during the 400 ms strip animation (another country chip, or Same scale) shows the new state at once.
+9. Every chart shows its "data as of" line; strips read in grayscale by pattern.
+10. At 1366x768 and 375 wide, the country chips and the mode's main control are visible without scrolling.
+11. Each how-to line speaks once in five actions; reading speaks on every country change.
 
 ## Open questions
 - [population-dashboard] HS-ESS3-1 is taught only through the "people, yields and land" panel; its natural hazards

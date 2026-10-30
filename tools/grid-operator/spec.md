@@ -32,7 +32,8 @@ skyline strip (art) whose windows dim in hours with unserved demand, the week na
 Run controls, the chart and the live readouts fit without scrolling; at 760 wide and below the readouts move under
 the chart in a two-column grid and the Run buttons stay above the chart.
 
-**Plan (default).** Eight plant cards in a grid, each with its color swatch and pattern, numbers and controls:
+**Plan (default).** Focus: the fleet, eight plant cards filling the stage in a 4 x 2 grid, each headed by its painted
+plant picture (Art) with its color swatch and pattern, numbers and controls:
 Nuclear, Coal unit 1, Coal unit 2, Gas combined cycle, Gas peakers, Wind, Solar, Battery.
 Each card shows: megawatts now, run cost ($/MWh), CO2 (t/MWh), a "typical in the US 2024" capacity factor line, and
 for buildable types the build cost per 100 MW and its weekly charge. Controls: **Retire** / **Keep** on existing
@@ -42,7 +43,7 @@ plants (coal units, the existing nuclear, CC, peakers, wind, solar); **-100** / 
 (names it Plan A, B, C, D; a fifth save asks which to replace), **Run week** (goes to Run), **Start over** (base
 fleet).
 
-**Run.** Week chips: **Spring**, **Heat wave**, **Still winter week**. Coal toggles **Coal 1 on** / **Coal 2 on** for
+**Run.** Focus: the stacked chart, the biggest thing on the stage, with the live readouts in the panel. Week chips: **Spring**, **Heat wave**, **Still winter week**. Coal toggles **Coal 1 on** / **Coal 2 on** for
 the week (a coal unit is committed for the whole week: on means at least 40 percent output all week). Buttons
 **Play** / **Pause**, **Step hour**, **Speed** (6 or 24 hours per second), **Skip to end**. The stage: a 168-hour
 stacked area chart (MW), order from the bottom: nuclear, coal minimum, wind, solar, CC, coal above minimum, battery
@@ -51,7 +52,8 @@ and the line; curtailed wind and solar as hollow outlines above the line; batter
 Live readouts: demand now, each source now, battery charge (MWh and percent), running cost, CO2 so far, unserved
 MWh and hours. Events appear as a banner and a marker on the time axis. **Scorecard** opens at the end of the week.
 
-**Compare.** Up to four saved plans as columns, each week as rows, plus a three-week total row: total cost, $ per
+**Compare.** Focus: the comparison table, on the stage, with the three bar charts under it. Up to four saved plans
+as columns, each week as rows, plus a three-week total row: total cost, $ per
 MWh served, unserved MWh and hours, CO2 t and t per MWh, wind and solar share, curtailed MWh. Three small bar charts
 (cost per MWh, unserved MWh, CO2 t) with the plan names on the bars. **Challenge cards** (optional, a drawer): four
 cards, each checked live against saved plans; met cards get a check mark.
@@ -74,7 +76,7 @@ Run cost inputs: nuclear fuel 6.64 + upkeep 2.67; coal 10.777 MMBtu/MWh x $2.47 
 peaker 9.905 x $2.77 + 5.06. CO2: coal 2.31 lb/kWh; gas 116.65 lb CO2 per MMBtu times heat rate. Weekly capital =
 build cost x 0.080586 / 52 (7 percent, 30 years); battery uses 0.109795 (15 years). Existing plants are paid off and
 pay fixed upkeep only (base fleet: $1,369,269 a week); a retired plant pays nothing. Battery round trip 85 percent,
-starts each week half full. Note on screen: "Build costs are 2022 dollars, fuel 2024 prices. Use them to compare
+counted when charging (1 MWh in stores 0.85 MWh; discharge is 1 to 1); it starts each week half full. Note on screen: "Build costs are 2022 dollars, fuel 2024 prices. Use them to compare
 plans, not as a bill."
 
 **Demand** MW = day peak x hour shape. Day peaks (Mon to Sun): spring 760 770 760 750 740 660 640; heat wave 880 930
@@ -105,6 +107,10 @@ CO2 from burning fuel."
 - Steppers clamp at 0 and +1,000. Retiring a plant greys its card and keeps a **Keep** button to undo.
 - Changing the plan while a week is running stops the run and clears the chart, with a line "Plan changed: run the
   week again".
+- Every Run control stays live while Play runs: Pause stops on the current hour at once; Step hour pauses and
+  steps one; Skip to end finishes at once; Speed changes the pace from the next frame; a week chip or coal toggle
+  resets the run at once. A week plays in 28 s at 6 hours per second (the default, so each day is readable) or 7 s at
+  24.
 - The chart draws hour by hour while playing; Step hour advances one; Skip to end computes the rest at once. Pausing
   and changing week chips resets the run.
 - Unserved hours flash the skyline windows dark for 300 ms in Play (no flashing faster than 3 times a second); the
@@ -126,26 +132,45 @@ Source colors, each with a pattern and a label at the right edge of the stack: n
 #ffd75e (dE 17.4); the closest in this group is Design Challenge Studio's #00f28d (dE 86).
 
 ## Art
-- control-room: "Empty grid control room at night, wall of glowing screens with line charts, rows of desks, amber and
-  blue light, no people"; 16:9; no cutout; people: false; Plan and Compare backdrop at 15 percent opacity behind the
-  cards.
-- skyline: "Coastal city skyline at dusk across calm water, many lit windows, a few wind turbines on a far hill";
-  4:1; no cutout; people: false; status bar strip (windows dim in code with an overlay when unserved).
-Plant icons, charts and cards: drawn in code.
+Local FLUX (`scripts/localart.py`), no people anywhere. 9 images. Prompts say only what is in the picture.
+- go-control-room: an empty grid control room at night, a wall of glowing screens with line charts, rows of empty
+  desks and chairs, amber and blue light; 16:9; cutout no; people no; Plan and Compare backdrop at 15 percent
+  opacity behind the cards.
+- go-skyline: coastal city skyline at dusk across calm water, many lit windows, a few wind turbines on a far hill;
+  4:1; cutout no; people no; status bar strip (windows dim in code with an overlay when unserved).
+Plant pictures: one shared prompt, "<plant>, seen from a low hill at a distance, clear afternoon light, painted
+realistic illustration, wide view"; 16:9; cutout no; people no; the header of each plant card (about 180 px wide;
+the two coal cards share one picture; existing nuclear and small modular nuclear share one).
+- go-nuclear: a nuclear power plant with a domed reactor building and a low turbine hall beside a coast
+- go-coal: a coal power plant with a tall smokestack, a conveyor and a long black coal pile
+- go-gas-cc: a modern gas combined cycle plant with two short stacks and a steam turbine hall
+- go-peakers: a row of small gas turbine units in white enclosures with short stacks inside a fenced yard
+- go-wind: a line of tall white wind turbines along a grassy ridge
+- go-solar: rows of solar panels on a flat field under a blue sky
+- go-battery: rows of white battery storage containers on a gravel pad beside a substation
+Drawn in code: the stacked chart, readouts, cards' numbers and controls, color swatches and patterns, the comparison
+table and bars, preview.svg.
 
 ## Voice
-Bank voice `firm-captain` (Alnilam, "firmly but kindly, like a ship captain giving clear directions"). Not used by
-any wave 3 sibling or this group.
-- wPlan (how, Plan welcome): "Set your fleet on the plant cards. Then press Run week to test it."
-- wRun (how, Run welcome): "Pick a week and press Play. Watch the stack rise to meet the demand line."
-- trip (event, hour 63 of the heat wave; stale after Skip to end): "A coal unit just tripped. The rest of the fleet has
-  to cover the gap." (When the CC block trips: "A gas unit just tripped. The rest of the fleet has to cover the gap.")
-- squeeze (event, day 3 of the winter week): "Gas supply is tight for two days. Combined cycle is held to seventy
-  percent."
-- dark (event, first unserved hour in a run): "Demand is above supply. Some customers are in the dark."
-- done (event, week ends; stale on Plan change): "Week complete. Read the scorecard, then try another week."
-- wCompare (how, Compare welcome): "Save plans in Plan, then compare them here, week by week."
-- challenge (event, a card is met; stale on card change): "Challenge met. Check the other two scores before you
+Bank voice `firm-captain` (Alnilam, "Say firmly but kindly, like a ship captain giving clear directions"), here the
+shift supervisor. No neighbor and no other spec in this batch uses it. `Curio.voice`, `scope: () => state.mode`.
+- wPlan (how; Plan welcome; stale once a Retire, Keep or stepper is pressed): "Set your fleet on the plant cards.
+  Then press Run week to test it."
+- wRun (how; Run welcome; stale once Play, Step hour or Skip to end is pressed): "Pick a week chip and press Play.
+  Watch the stack rise to meet the demand line."
+- trip (event; hour 63 of the heat wave while playing or stepping; stale after Skip to end or a reset): "A coal unit just tripped. The rest of the fleet has to cover the gap." (When the CC block trips: "A gas
+  unit just tripped. The rest of the fleet has to cover the gap.")
+- squeeze (event; hour 48 of the winter week; stale the same way): "Gas supply is tight for two days. Combined cycle
+  is held to seventy percent."
+- dark (event; first unserved hour in a run; stale the same way): "Demand is above supply. Some customers are in the
+  dark."
+- done (event; week ends; stale on Plan change or a new run): "Week complete. Read the scorecard, then try another
+  week."
+- wCompareEmpty (how; Compare opened with fewer than two saved plans; stale once two exist): "Save plans in Plan with
+  Save plan. Then compare them here, week by week."
+- wCompare (how; Compare opened with two or more plans; stale once the challenge drawer opens): "Read across each
+  row. The word best marks the lowest number."
+- challenge (event; a card is met; stale on card change): "Challenge met. Check the other two scores before you
   celebrate."
 
 ## Family engine
@@ -166,6 +191,15 @@ none.
 - Gas shortfalls in cold weather: FERC and NERC, Inquiry into Bulk-Power System Operations During December 2022
   Winter Storm Elliott (October 2023), https://www.ferc.gov/media/winter-storm-elliott-report-inquiry-grid-operations-december-2022
 - Demand shapes, wind and solar weeks, Ridgeport: made up for this tool, sized to the capacity factors above.
+- Number checks (Python, 2026-10-29, scratch grid.py, grid2.py, grid3.py): the hourly dispatch as written (battery
+  loss on charge, coal minimums must-run, trip at hour 63, CC at 70 percent on winter days 3 and 4, CO2 from 2.31
+  lb/kWh and 116.65 lb/MMBtu x heat rate) reproduces every Done when number exactly (base three-week $9,843,446,
+  $28.59/MWh, 116,140 t; all the retire and build cases). Run costs 9.31, 31.68, 19.74, 32.50 and CO2 1.048, 0.337,
+  0.524 recomputed from their inputs; base fixed upkeep $1,369,269 a week. Every card is reachable: card 3 needs coal
+  retired (with coal on, must-run curtails wind and +600 wind reaches only 25.7 percent); retire coal, +600 wind,
+  +300 solar, +300 battery, +400 CC gives 50.1 percent with zero unserved. +100 and +200 CC without coal still leave
+  heat wave gaps (6,248.4 and 2,216.1 MWh); +300 CC leaves 227.9 MWh in 11 hours; +400 is the smallest CC-only fix.
+  Play length: 168 hours at 6 per second is 28 s, inside the 30 s guide.
 
 ## Done when
 1. Base fleet, coal on: Spring total $2,948,769 ($28.43/MWh), CO2 32,582 t, no unserved, 2,000 MWh curtailed; Heat
@@ -179,10 +213,15 @@ none.
 5. Retire both coal, +300 solar, +200 battery: Spring 27.0 percent wind and solar, no unserved; Heat wave 5,944.7 MWh
    short in 43 hours; Winter 2,889.5 MWh in 40 hours.
 6. Base plus +200 battery: winter CO2 unchanged at 44,444 t (nothing spare to store), spring curtailment falls to
-   1,530 MWh.
-7. At 1366x768 Play, Step hour and the week chips sit above the fold with the chart; at 375 wide the stack labels
-   stay readable and Play is visible without scrolling.
-8. Each how-to line speaks once in five actions; trip, squeeze and dark speak every run.
+   1,530 MWh. Retire coal, +600 wind, +300 solar, +300 battery, +400 CC meets card 3 (50.1 percent).
+7. Focus: at 1366x768 and 680x425 the plant cards fill the stage in Plan, the stacked chart is the biggest thing in
+   Run, and the table in Compare; stack labels are at least 10 px in the preview.
+8. A tap while Play runs: Pause stops on that hour in the same frame; a week chip resets at once; Skip to end
+   finishes at once.
+9. At 1366x768 Play, Step hour and the week chips sit above the fold with the chart; at 375 wide the stack labels
+   stay readable and Play is visible without scrolling; all 9 images load and none shows a person.
+10. Each how-to line speaks once in five actions; trip, squeeze and dark speak every run; Compare with one saved
+    plan plays wCompareEmpty.
 
 ## Open questions
 - [grid-operator] Build costs come from AEO2023 (2022 dollars) mixed with 2024 fuel prices, and capital uses a flat

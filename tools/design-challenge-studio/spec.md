@@ -30,32 +30,38 @@ yours and you can say exactly what it rests on.
   grades_label "Grade 12".
 
 ## Screens and modes
-Start screen: three challenge cards, **Cool classroom**, **Safe water at home**, **Your own challenge**, each with
-**Start**. Inside a challenge, the four stations are tabs in order with a progress dot each; any tab can be opened at
-any time (explore first), and the dots only report. At 1366x768 each station's main controls fit without scrolling;
-at 760 wide and below the stage stacks above the panel and the station tabs become a compact row of four icons with
-labels.
+Start screen: three painted challenge cards side by side, **Cool classroom**, **Safe water at home**, **Your own
+challenge**, each with **Start**. Inside a challenge, the four stations are tabs in order with a progress dot each;
+any tab can be opened at any time (explore first), and the dots only report. Layout: stage left (about 62 percent),
+panel right. At 1366x768 each station's main controls fit without scrolling; at 760 wide and below the stage stacks
+above the panel and the station tabs become a compact row of four icons with labels.
 
-**Break it down.** Stage: a tree with the big problem at the top and three empty branch boxes. Panel: a deck of
-sub-problem cards. Drag a card (or tap a card, then tap a branch) onto a branch; **Check tree** says per card whether
-it fits that branch, belongs on another, or is not part of this problem (with one line why). Cards that fit light
-the option chips that address them ("Sun through west windows: shades, trees"). **Add my own card** (text, 40
-characters) adds a blank card the check does not grade.
+**Break it down.** Focus: the tree, filling the stage, with the big problem at the top and three branch boxes. Panel:
+a deck of sub-problem cards. Drag a card (or tap a card, then tap a branch) onto a branch; **Check tree** says per
+card whether it fits that branch, belongs on another, or is not part of this problem (with one line why). Cards that
+fit light the option chips that address them ("Sun through west windows: shades, trees"). **Add my own card** (text,
+40 characters) adds a blank card the check does not grade.
 
-**Criteria.** A list of items to sort with two buttons each: **Criterion** (more or less is better) or **Constraint**
-(must pass). Criteria get a weight slider 0 to 5 (default 3) and a direction label; constraints get their limit, which
-the student can edit within a range. **Check sort** gives feedback on the suggested sort, but any sort is allowed
-downstream (a different sort changes Trade-offs, and that is fine).
+**Criteria.** Focus: the sort list, moved onto the stage. Each item has two buttons, **Criterion** (more or less is
+better) or **Constraint** (must pass). Criteria get a weight slider 0 to 5 (default 3) and a direction label;
+constraints get their limit, which the student can edit within a range. **Check sort** gives feedback on the
+suggested sort, but any sort is allowed downstream (a different sort changes Trade-offs, and that is fine).
 
-**Prototype.** The challenge's simulator (Content). **Save design** stores the current settings as Design 1 to 4 with
-its results. A results card shows every criterion's value and every constraint as pass or fail in words.
+**Prototype.** Focus: the simulator's result, the biggest thing on the stage. Cool classroom: the hottest-day chart
+fills the stage; the panel holds the eight option toggles as painted thumbnail tiles (Art) with name and cost, and
+the **Comfort line** slider. Safe water: the four protection bars fill the stage with the chosen steps as a row of
+painted tiles above them; the panel holds the **Source** chips (painted) and the six step tiles. Your own challenge:
+the value table fills the stage. **Save design** stores the current settings as Design 1 to 4 with its results. A
+results card under the chart shows every criterion's value and every constraint as pass or fail in words.
 
-**Trade-offs.** A table: saved designs as rows, the student's criteria as columns, each with its weight slider in the
-header. Each cell shows the raw value and a 0 to 10 score (best design in that column = 10, worst = 0, linear between;
-all equal = 10). Total = sum of weight x score; constraint fails grey the row out with the reason. The winner row gets
-a "top" tag in words. **Flip finder** lists, for each criterion, the smallest weight change (in steps of 1) that
-changes the winner, or "no single change flips it". A **Why** box with sentence starters ("We chose Design 2 because
-..., even though ...") stays on screen for the session; nothing typed there is saved.
+**Trade-offs.** Focus: the table, filling the stage. Saved designs as rows, the student's criteria as columns, each
+with its weight slider in the header. Each cell shows the raw value and a 0 to 10 score (best passing design in that
+column = 10, worst passing = 0, linear between; all equal = 10). Total = sum of weight x score. A design that fails
+a constraint is greyed out with the reason and left out of the scaling and the winner. The winner row gets a "top"
+tag in words; equal totals read "tie, no top design". **Flip finder** lists, for each criterion, the smallest weight
+change (in steps of 1, within 0 to 5) that changes the top design (a tie counts as a change), or "no single change
+flips it". A **Why** box with sentence starters ("We chose Design 2 because ..., even though ...") stays on screen
+for the session; nothing typed there is saved.
 
 ## Content
 **Challenge 1, Cool classroom.** Card facts: "In 2020 the US Government Accountability Office estimated that about 41
@@ -85,11 +91,12 @@ Model (one room, 3 days from 30 °C, day 3 reported, 60 s steps):
   off); otherwise 100 W. Fans add 240 W and lower feels-like by 2.5 °C. Night vents add 576 W/K from 19:00 to 7:00
   when outdoors is cooler. Air conditioning: 10.5 kW of cooling, 3.5 kW of electricity, 7:00 to 15:00, set to 26 °C.
   Heat capacity of the room 20 MJ/K. Electricity counted for 24 hours. CO2 shown as 0.367 kg per kWh (US average).
-Results (hottest indoor, hottest feels-like, hours over 27 in school, kWh per day): nothing 38.64, 38.64, 7.0, 7.30;
+Results (hottest indoor in school hours, hottest feels-like, hours over 27 in school, kWh per day): nothing 38.64, 38.64, 7.0, 7.30;
 shades 37.04, 37.04, 7.0, 7.30; cool roof 36.26, 7.0, 7.30; insulation 37.09, 7.0; night vents 34.98, 6.5, 7.30; fans
 38.93, 36.43, 7.0, 8.98; lights off 38.28, 7.0, 5.20; trees 37.60, 7.0; air conditioning 26.54, 0, 31.01. Within
-both constraints, fewest hours over: shades + vents + fans + lights off ($3,900) 33.82, 31.32, 3.55, 6.88; vents + fans
-+ lights off ($2,700) 34.92, 32.42, 3.95, 6.88. Adding the cool roof ($6,400, over budget) gives 2.35 hours.
+both constraints and ready this summer, fewest hours over: shades + vents + fans + lights off ($3,900) 33.82, 31.32, 3.55, 6.88; vents + fans
++ lights off ($2,700) 34.92, 32.42, 3.95, 6.88. Adding the cool roof ($6,400, over budget) gives 2.35 hours. Adding shade trees instead ($4,800) gives 3.50 hours
+(33.66, 31.16) but is not ready this summer.
 Model note: "One room, one heat-wave day shape. Leaves out humidity, walls heating differently on each side, students
 moving, and how hot is unsafe for each person."
 
@@ -119,6 +126,12 @@ four (CDC). Cloudy river: chlorine and chlorine dioxide drop one level unless se
 Stage: four horizontal protection bars, the steps as a row of tiles in order, the totals (time, cost level, fuel,
 taste).
 
+**Trade-offs worked example** (Cool classroom, default sort, criteria hours, feels-like, cost, ready): Design 1
+nothing; Design 2 shades + vents + fans + lights off; Design 3 vents + fans + lights off; Design 4 cool roof + vents +
+trees ($4,900; 32.41, 5.35 hours; not ready). At weights 3, 3, 3, 3 the totals are 60.0, 96.1, 95.5, 39.9: Design 2
+is top. Flips: hours 3 to 2, feels-like 3 to 2, or cost 3 to 4 each make Design 3 top; Ready never flips it (both
+are ready).
+
 **Challenge 3, Your own challenge.** Blank tree with three branches the student names; typed cards (40 characters);
 typed criteria and constraints; no simulator, so Prototype becomes a table where the student types up to four design
 names and gives each criterion a value 0 to 10. Trade-offs works the same. Saved in localStorage under
@@ -128,9 +141,11 @@ names and gives each criterion a value 0 to 10. Trade-offs works the same. Saved
 - Drag and drop has a tap-then-tap equivalent and keyboard support (Enter picks a card, arrows choose a branch, Enter
   drops). Cards snap into a branch list; a wrong placement is allowed until Check tree.
 - Option toggles update the classroom chart within 100 ms (the model runs 4,320 steps); water steps update at once.
+  Nothing plays on its own; a toggle or slider move during a redraw or a highlight replaces it at once.
   Adding a fourth water step is blocked with "Three steps is the limit here".
 - Save design over 4 opens "Replace which design?". Changing challenge clears saved designs after a confirm.
-- Trade-off scores recompute on every weight move; Flip finder recomputes too. With one design, the table says "Save
+- Trade-off scores recompute on every weight move; Flip finder recomputes too. A flip highlights the new top row
+  for 300 ms. With one design, the table says "Save
   at least two designs to compare."
 - Constraint edits in Criteria re-check every saved design.
 - Reset (kit) returns to the start screen; challenge 3 data stays until Clear my challenge.
@@ -145,26 +160,56 @@ faint 24 px grid `#1a2430`; cards `#1c2532` with `--btn-line` borders. Tree line
 group is Biome Atlas's #5cbf2a (dE 34.2).
 
 ## Art
-- classroom: "Empty high school classroom on a hot afternoon, sunlight streaming through west windows, rows of desks,
-  warm light"; 16:9; no cutout; people: false; Cool classroom card and Prototype backdrop at 20 percent.
-- stream: "Clear mountain stream over stones in a forest"; 4:3; people: false; Source chip image.
-- river: "Muddy brown river after rain, swollen banks"; 4:3; people: false; Source chip image.
-- rain-barrel: "Blue rain barrel under a house downspout in a garden"; 4:3; people: false; Source chip image.
-Tree, cards, charts and step tiles: drawn in code.
+Local FLUX (`scripts/localart.py`), no people anywhere (the classroom is empty on purpose: the heat is the subject).
+21 images. Prompts say only what is in the picture.
+Cards and backdrops (cutout no; people no):
+- dc-classroom: empty high school classroom on a hot afternoon, sunlight streaming through west windows, rows of
+  desks, warm light; 16:9; the Cool classroom card and the Prototype backdrop at 20 percent behind the chart.
+- dc-water-jug: a clear plastic jug of water and a dented metal cooking pot on a wooden table by a window, soft
+  light; 16:9; the Safe water at home card.
+- dc-own: a large blank sketchbook open on a drafting table with pencils, a ruler and sticky notes, top view; 16:9;
+  the Your own challenge card.
+- dc-stream: clear mountain stream over stones in a forest; 4:3; Source chip.
+- dc-river: muddy brown river after rain, swollen banks; 4:3; Source chip.
+- dc-rain-barrel: blue rain barrel under a house downspout in a garden; 4:3; Source chip.
+Option and step kit: one shared prompt, "a single <piece>, three-quarter view, centered, clean product illustration,
+soft studio light, on a plain flat light grey background"; 1:1; cutout yes; people no; shown about 72 px on the
+option and step tiles and about 96 px in the chosen-steps row.
+- Classroom options (8): dc-o-shades (an exterior roller shade on a window frame, half lowered); dc-o-cool-roof (a
+  section of flat roof half painted bright white, with a paint roller); dc-o-insulation (a stack of pink insulation
+  batts); dc-o-vents (a small lockable louvered wall vent); dc-o-fan (a white ceiling fan); dc-o-switch (a light
+  switch beside a laptop with its lid closed); dc-o-tree (a young leafy shade tree in a planting ring); dc-o-ac (a
+  window air conditioner unit).
+- Water steps (6): dc-s-settle (a bucket of water with a layer of silt at the bottom beside a clean jar); dc-s-cloth
+  (a folded cotton cloth tied over the mouth of a jug); dc-s-microfilter (a hand-pump water microfilter with its
+  tubes); dc-s-boil (a metal pot of water at a rolling boil on a small stove flame); dc-s-chlorine (a small dropper
+  bottle and a strip of white tablets); dc-s-dioxide (a foil blister pack of round tablets).
+Sizing rule: every kit piece sits centered in its tile at 80 percent of the tile, bottom-aligned.
+Drawn in code: the tree, cards, sort list, the hottest-day chart, protection bars, tables, preview.svg.
 
 ## Voice
-Bank voice `easy-coach` (Umbriel, "easy-going, encouraging, like a relaxed sports coach"). Not used by this group;
-in wave 3 only by curling-stones (grade 11).
-- wStart (how, start screen): "Pick a challenge card and press Start."
-- wTree (how, Break it down welcome): "Drag each card onto the branch where it belongs. Then press Check tree."
-- wCriteria (how, Criteria welcome): "Sort each item with Criterion or Constraint. Then set how much each criterion
-  matters."
-- wProto (how, Prototype welcome): "Turn options on and off and watch the results. Press Save design to keep one."
-- wTrade (how, Trade-offs welcome): "Move the weight sliders. Watch whether the top design changes."
-- flip (event, the winner changes during a weight move; stale on the next move): "The top design just changed. That
-  weight is doing a lot of work."
-- fail (event, a saved design fails a constraint; stale when fixed): "That design breaks a constraint. It can't win
-  until you change it."
+Bank voice `wise-mentor` (Gacrux, "Say thoughtfully and warmly, like a design studio mentor"). Changed from
+easy-coach, which neighbor curling-stones already uses; no neighbor and no other spec in this batch uses
+wise-mentor. `Curio.voice`, `scope: () => state.station`.
+- wStart (how; start screen; stale once Start is pressed): "Pick a challenge card and press Start."
+- wTree (how; Break it down welcome; stale once a card is placed): "Drag each card onto the branch where it belongs,
+  or tap a card and then a branch. Then press Check tree."
+- wCriteria (how; Criteria welcome; stale once an item is sorted): "Sort each item with Criterion or Constraint.
+  Then use each criterion's slider to say how much it matters."
+- wProtoRoom (how; Prototype welcome in Cool classroom; stale once an option is toggled): "Turn the option tiles on
+  and off and watch the hottest day change. Press Save design to keep one."
+- wProtoWater (how; Prototype welcome in Safe water; stale once a step is added): "Pick a Source, then tap up to
+  three Steps in order. Press Save design to keep one."
+- wProtoOwn (how; Prototype welcome in Your own challenge; stale once a value is typed): "Type your design names,
+  then give each one a score for every criterion. Press Save design when done."
+- wTradeEmpty (how; Trade-offs opened with fewer than two saved designs; stale once two exist): "Save at least two
+  designs in Prototype first. Then come back here to compare them."
+- wTrade (how; Trade-offs opened with two or more designs; stale once a weight moves): "Move the weight sliders in
+  the column headers. Watch whether the top design changes."
+- flip (event; the top design changes during a weight move; stale on the next move): "The top design just changed.
+  That weight is doing a lot of work."
+- fail (event; a design is saved that fails a constraint; stale when the constraint changes): "That design breaks a
+  constraint. It can't win until you change it."
 
 ## Family engine
 none.
@@ -184,20 +229,36 @@ none.
 - Fans and feels-like: ASHRAE Standard 55-2020, elevated air speed.
 - Electricity CO2 0.81 lb per kWh (US 2023): EIA FAQ, https://www.eia.gov/tools/faqs/faq.php?id=74&t=11
 - Room size, option costs and the heat-wave day shape: made up for this tool, rounded.
+- Number checks (Python, 2026-10-29, scratch room.py, room2.py, trade.py): the room model (60 s steps, 3 days from
+  30 °C, day 3, hottest values over school hours, AC capped so it never cools below 26) reproduces every Results line
+  to 0.01 (insulation 37.10 against the listed 37.09). A search of all 256 option sets found shades + vents + fans +
+  lights off + trees ($4,800) at 3.50 hours, under the listed "fewest" 3.55, so that claim now says "and ready this
+  summer". The comfort slider at 25 and 29 leaves the no-option day at 7.0 hours (indoor stays above 29 all school
+  day). Trade-offs: the worked example and its flips were computed with the scoring rule above; all weights 0 gives a
+  tie, now handled ("tie, no top design").
 
 ## Done when
 1. Cool classroom, nothing on: hottest indoor 38.64 °C, 7.0 hours over 27, 7.30 kWh.
 2. Air conditioning alone shows 0 hours over but fails the electricity constraint (31.01 kWh) and the row greys out in
    Trade-offs.
-3. Shades + vents + fans + lights off: $3,900, 33.82 °C, feels 31.32, 3.55 hours, 6.88 kWh, both constraints pass.
+3. Shades + vents + fans + lights off: $3,900, 33.82 °C, feels 31.32, 3.55 hours, 6.88 kWh, both constraints pass;
+   adding shade trees gives 3.50 hours and "Ready this summer: no".
 4. Fans alone fail the electricity constraint (8.98 kWh); fans plus lights off pass (6.88).
 5. Water: Cloudy river with chlorine alone reads Not effective / Not effective / Moderate / Moderate; with settle
    first, Low to moderate / Not effective / High / High; microfilter then chlorine reads Very high for all four.
-6. Trade-offs with two designs and weights changed one step at a time: Flip finder's listed change does flip the
-   winner, checked for every criterion.
+6. Trade-offs with the four designs in Content's worked example at weights 3, 3, 3, 3: Design 2 is top (96.1 against
+   95.5); Flip finder lists hours 3 to 2, feels-like 3 to 2 and cost 3 to 4 as flips to Design 3, and "no single
+   change flips it" for Ready; each listed change really flips it. All weights at 0 reads "tie, no top design".
 7. Check tree marks "Students are too loud" as not part of the problem.
-8. Your own challenge survives a reload and Clear my challenge wipes it.
-9. At 1366x768 and 375 wide, the station tabs and each station's main buttons are visible without scrolling.
+8. Focus: at 1366x768 and 680x425 the tree, the sort list, the simulator result and the table are each the biggest
+   thing on the stage in their station.
+9. A tap while anything moves: toggling an option while the chart redraws shows the new result within 100 ms;
+   moving a weight while a flip highlight runs recomputes at once.
+10. Your own challenge survives a reload and Clear my challenge wipes it.
+11. At 1366x768 and 375 wide, the station tabs and each station's main buttons are visible without scrolling; all 21
+    images load and none shows a person.
+12. Each how-to line speaks once in five actions; flip and fail speak every time; Trade-offs with one design plays
+    wTradeEmpty, never wTrade.
 
 ## Open questions
 - [design-challenge-studio] Challenge 3 saves typed text in localStorage on the device. OK, or keep it unsaved like
