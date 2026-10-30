@@ -24,33 +24,42 @@ tool.json: driver "students", minutes "25-40", modes ["Storm", "Slices", "Foreca
 Header (kit, 9-12 theme): "Rain Gauge", small line "Rate in, water out." Modes `Storm`, `Slices`, `Forecast`; kit
 `Motion`, `Sound`, `Read`.
 
-Stage: left, a house roof with a gutter and downspout feeding a rain barrel (drawn in code), rain streaks whose
-density follows the current rate, a clock "14:30", and the barrel's level with a liter scale; right, two stacked
-engine planes sharing the time axis (0 to 24 h): top "rain rate (mm per hour)" r(t), bottom "rain so far (mm)"
-A(t) = integral of r from 0 to t, both with a moving time line.
+Stage: left (about 40 percent of the width), the painted scene: the cottage in the storm (art: storm-cottage) with the
+rain barrel (art: rain-barrel) on the stone pad under the downspout; rain streaks in code whose density follows the
+current rate, a clock "14:30" in code, and the barrel's water level drawn in code inside its glass window with a liter
+scale beside it. Right (about 60 percent), two stacked engine planes sharing the time axis (0 to 24 h): top "rain rate
+(mm per hour)" r(t), bottom "rain so far (mm)" A(t) = integral of r from 0 to t, both with a moving time line.
 
 Panel: storm picker (cards S1 to S5 with a mini graph), roof area slider (10 to 100 m², default 50), barrel size
 (100, 200 or 400 L, default 200), `Garden tap` toggle (drains 20 L/h while open), and the readouts: "rain so far ... mm",
 "water caught ... L" (mm x m² = L), "in the barrel ... L", "overflowed ... L".
 
 ### Storm (explore, default)
-`Play` runs the day (1 real second = 1 hour; `x4` toggle), `Pause`, time scrubber, `Restart`. The top graph shades the
-area under r up to now (the area is the rain so far); the bottom graph draws A(t) as it goes, with a tangent at the
-time line labeled "slope = r(t) = ... mm/h" (FTC). The barrel fills; when full, water spills over the rim (an
-overflow counter keeps adding). With the tap open, the barrel's net rate is (roof x r(t) - 20) L/h, shown as its own
-line.
+Focus: the top plane's shaded area growing under r(t), the largest thing on the stage (the top plane takes about 60
+percent of the graph column's height), with the barrel filling beside it.
+`Play` runs the day (1 real second = 1 hour, so 24 s; `x4` toggle makes it 6 s), `Pause`, time scrubber, `Restart`.
+The top graph shades the area under r up to now (the area is the rain so far); the bottom graph draws A(t) as it goes,
+with a tangent at the time line labeled "slope = r(t) = ... mm/h" (FTC). The barrel fills; when full, water spills over
+the rim (code drips; an overflow counter keeps adding). With the tap open, a code stream runs from the barrel's brass
+tap and the barrel's net rate is (roof x r(t) - 20) L/h, shown as its own line.
 
 ### Slices
+Focus: the top plane with its n rectangles (or trapezoids), which grows to about 70 percent of the graph column's
+height; the measuring cylinder (art: measuring-cylinder) stands at the plane's right end and replaces the cottage
+scene, which shrinks to a small thumbnail with the barrel's total.
 - Slice count n: buttons `4`, `8`, `24`, `96` and a slider 1 to 96. Method buttons `Left`, `Right`, `Midpoint`,
   `Trapezoid`.
-- The top graph shows the n rectangles (or trapezoids); `Pour slices` drops them one by one into a measuring cylinder
-  beside the barrel (one block per slice, its height in mm; 120 ms each, instant with Motion off).
+- `Pour slices` drops the slices one by one into the cylinder (one code block per slice, its height in mm; 120 ms
+  each, instant with Motion off).
 - Table: method, n, sum (mm, 3 decimals), exact (mm), error. Line under it: "Thinner slices, closer sum."
 - `Exact` card: the antiderivative F(t), "F(24) - F(0) = ...", for storms with a formula antiderivative.
 
 ### Forecast (optional)
-Cards F1 to F4, each a question with a box: when does the barrel overflow, how much is caught by a time, how full is
-it at the end with the tap open. Answers checked (Content). `Show me` after two misses opens the integral work.
+Focus: the chosen card (question, answer box, `Check`) centered over the top of the graph column, with that card's
+storm graphed under it; the scene shows the card's roof and barrel.
+Cards F1 to F4, each a question with a box and a `Check` button: when does the barrel overflow, how much is caught by a
+time, how full is it at the end with the tap open. Answers checked (Content). `Show me` appears after two misses and
+opens the integral work.
 
 ## Content
 Storms (made up; t in hours from midnight, r in mm per hour):
@@ -61,7 +70,8 @@ Storms (made up; t in hours from midnight, r in mm per hour):
 | S3 Afternoon build | 0.01t(24 - t) | 23.04 | 0.01(12t² - t³/3) |
 | S4 Cloudburst | 0 before 14:00, up to 30 at 15:00, down to 0 at 17:00 (straight lines) | 45 | piecewise (area of a triangle) |
 | S5 Two showers | 4 from 6:00 to 9:00, 8 from 18:00 to 20:00, else 0 | 28 | piecewise |
-Rain so far for S3: 11.52 mm by noon, 23.04 mm by midnight.
+Rain so far for S3: 11.52 mm by noon, 23.04 mm by midnight. S5's showers switch on at the start hour and off at the end
+hour (the rate at exactly 6:00 is 4, at exactly 9:00 it is 0).
 
 Riemann sums (mm), left / right / midpoint / trapezoid:
 - S2: n = 4: 43.456 / 43.456 / 47.036 / 43.456; n = 8: 45.246 / 45.246 / 46.132 / 45.246; n = 24: 45.771 / 45.771 /
@@ -70,8 +80,9 @@ Riemann sums (mm), left / right / midpoint / trapezoid:
   23.038 / 23.038 / 23.041 / 23.038.
 - S4: n = 4: 0 / 0 / 180 / 0 (the coarse slices miss the burst or catch only its peak); n = 8: 90 / 90 / 22.5 / 90;
   n = 24 and 96: 45 exactly for every method (slice edges land on the corners).
-- S1: every method gives 48 for every n. S5: left and right are exact when the slice edges land on the hours 6, 9,
-  18 and 20 (n = 8, 24, 96).
+- S1: every method gives 48 for every n.
+- S5: n = 4: 72 / 72 / 0 / 72; n = 8: 36 for every method (the 20:00 edge falls inside a 3-hour slice); n = 24 and 96:
+  28 exactly for every method (slice edges land on 6, 9, 18 and 20).
 (Left equals right for S2, S3 and S4 because r is 0 at both ends of the day.)
 Water: 1 mm of rain on 1 m² is 1 liter. 50 m² roof: S3 gives 1,152 L in a day (overflows a 200 L barrel).
 
@@ -93,41 +104,60 @@ Checks: times within 0.05 h (3 min, typed as hours or as hh:mm), amounts within 
 - Riemann sums are computed from r directly: left uses t_i = 24i/n, right t_(i+1), midpoint their average, trapezoid
   the average of left and right. Printed to 3 decimals, trailing zeros dropped.
 - n slider: any whole number 1 to 96; `Pour slices` for n over 24 animates in batches so it takes at most 3 s.
+- Taps while it plays: during Play, the scrubber, `Pause`, `x4` and `Garden tap` act at once (the tap stream starts or
+  stops on that frame); changing storm, roof or barrel resets the day to 0:00 and pauses. During a pour, changing n or
+  the method stops the pour and shows the new slices and table at once; `Pour slices` starts again from empty.
 - Tangent on A(t): slope from r(t) exactly; at S4's corners (14, 15, 17) the label says "corner: the rate jumps
   direction here" and draws no tangent at exactly those times.
-- Changing storm, roof or barrel resets the day. The tap only affects the barrel, never the mm readouts.
-- Sound: soft rain noise (Web Audio filtered noise) whose loudness follows r(t), one drip per poured slice; off with
-  Sound.
+- The tap only affects the barrel, never the mm readouts.
+- Sound (on as the kit sets it): soft rain noise (Web Audio filtered noise) whose loudness follows r(t), one drip per
+  poured slice; off with Sound.
 - Keyboard: scrubber range input (arrows 0.1 h, PageUp/PageDown 1 h); method and n buttons in tab order before the
-  table.
+  table; Enter in a Forecast box presses `Check`.
 - Mode change: `Curio.stop()`, `V.hush()`. Forecast check marks per device (localStorage `curio-rain-gauge`, try/catch),
   `Clear marks`.
 
 ## Look
-Accent (`--brand`) #7e98ff, cornflower rain blue: 6.4:1 on --panel #141b25, 6.1:1 on --sec-bg #18202b; --brand-ink
-#10161f on it 6.8:1. Bluer and darker than flight-planner's sky #3aa8ff; no 9-12 math neighbor uses it.
-Scene: overcast night slate #151b24, roof shingles #3a3f47, gutter metal #8a96a3, barrel wood #6e4f33 with iron hoops
-#4a525c, water #4f7fd9 at 80 percent, rain streaks #9fb4d9. Liter scale labels #e8edf3 on the barrel side (over 9:1).
-Rate curve `--gr-1`, accumulation `--gr-3`, slices filled with the accent at 35 percent with a full-strength edge.
+Accent (`--brand`) #7e98ff, cornflower rain blue: 6.45:1 on --panel #141b25, 6.11:1 on --sec-bg #18202b; --brand-ink
+#10161f on it 6.76:1. Bluer and darker than flight-planner's sky #3aa8ff; no 9-12 math neighbor uses it.
+Scene: the painted storm at dusk sets the palette (slate cloud greys, dark shingles, wet green grass, warm barrel wood);
+code over it: water #4f7fd9 at 80 percent inside the barrel window, rain streaks #9fb4d9, the clock and liter scale
+#e8edf3 on a #10161f chip at 85 percent (15.4:1). Rate curve `--gr-1`, accumulation `--gr-3`, slices filled with the
+accent at 35 percent with a full-strength edge.
 
 ## Art
-none: drawn in code (house, gutter, barrel, cylinder, rain, planes, preview.svg).
+Local FLUX (`scripts/localart.py`); no people. One style: soft painted illustration, stormy dusk light.
+- storm-cottage: "A small wooden cottage seen from the side under heavy grey storm clouds at dusk, a sloped dark
+  shingle roof with a metal gutter along its lower edge and a downspout running down the right corner to a flat stone
+  pad, wet grass and a stone path, soft painted illustration"; 4:3; cutout no; people no; the left stage background in
+  Storm and Forecast, the small thumbnail in Slices; rain streaks, splashes and the clock drawn over it in code.
+- rain-barrel: "A wooden rain barrel with dark iron hoops, an open top, a tall clear glass window strip down its front
+  and a brass tap near the bottom, soft painted illustration, plain white background"; 3:4; cutout yes; people no;
+  stands on the stone pad at the downspout's foot (the build places it once from measured points); the water level is
+  drawn in code inside the window strip, the liter scale beside it, overflow drips over the rim and the tap stream.
+- measuring-cylinder: "A tall clear glass laboratory measuring cylinder with a round glass foot and a pouring lip,
+  smooth blank glass, soft painted illustration, plain white background"; 9:16; cutout yes; people no; Slices: poured
+  slice blocks stack inside it in code, with the mm scale in code beside it.
+Rain streaks, water, the two planes, slices, tangents, storm-card mini graphs and preview.svg are drawn in code (they
+change every frame or are graphs).
 
 ## Voice
 `calm-professor` (Schedar), style "Say evenly and clearly, like a calm TV weather forecaster." Not used by a group
-sibling or 9-12 math neighbor. `Curio.voice`, `scope: () => state.mode`.
-- storm (how, Storm welcome): "Press Play. The shaded area under the rate graph is the rain so far, and it pours into the barrel."
-- ftc (how, first pause after noon): "The slope of the rain-so-far graph at any time is the rate at that time."
-- overflow (event, the barrel first overflows in a run; stale on Restart): "The barrel is full. The rest spills over."
-- slices (how, Slices welcome): "Choose a number of slices and a method, then press Pour slices."
-- thin (how, first n of 24 or more): "Thinner slices land closer to the exact amount."
-- forecast (how, Forecast welcome): "Each card asks about the barrel. Set up the integral, then type your answer."
+sibling or 9-12 math neighbor. `Curio.voice`, `scope: () => state.mode`. Cards and readouts are read on screen; Read
+speaks the hint.
+- storm (how, Storm welcome; stale on the first Play): "Press Play. The shaded area under the rate graph is the rain so far, and it pours into the barrel."
+- ftc (how, first Pause or scrub past noon; stale when Play resumes or the storm changes): "The slope of the rain so far graph at any time is the rate at that time."
+- overflow (event, the barrel first overflows in a run; stale on Restart or a reset): "The barrel is full. The rest spills over."
+- slices (how, Slices welcome; stale on the first Pour slices): "Pick a number of slices and a method, then press Pour slices."
+- thin (how, first n of 24 or more; stale when n drops under 24 or the mode changes): "Thinner slices land closer to the exact amount."
+- forecast (how, Forecast welcome; stale on the first Check): "Pick a card. Set up the integral, type your answer in the box, then press Check."
+- miss (event, a wrong Check; stale on the next Check or a new card): "Not yet. Look at the graph under the card, then press Check again."
 - right (event, a correct forecast; stale on a new card): "Right on the forecast."
 
 ## Family engine
 none. Uses `kit/graphing.js` `Plane` as a plotting tool for the two planes (`g.fn`, `g.trace` for the time line,
-`g.segment` for the tangent, slices and shading drawn in the `plot` layer with `g.px`); the house and barrel are the
-tool's own SVG.
+`g.segment` for the tangent, slices and shading drawn in the `plot` layer with `g.px`); the scene layers (painted
+images plus code rain and water) are the tool's own.
 
 ## Sources
 - Riemann sums (left, right, midpoint, trapezoid), accumulation functions, the Fundamental Theorem of Calculus: College
@@ -136,20 +166,32 @@ tool's own SVG.
   https://openstax.org/books/calculus-volume-1/pages/5-3-the-fundamental-theorem-of-calculus
 - 1 mm of rain on 1 m² = 1 liter (1 mm x 1 m² = 0.001 m³ = 1 L): NIST SP 811 (liter = 0.001 m³),
   https://www.nist.gov/pml/special-publication-811
-- Storms, roof, barrels and the tap are made up; every sum, total and time computed in Python (2026-10-27).
+- Storms, roof, barrels and the tap are made up.
+- Checks run (Python, scipy, 2026-10-29): totals by numeric integration 48, 45.8366, 23.04, 45, 28; every Riemann sum in
+  Content recomputed. The first draft said S5's left and right sums are exact at n = 8; at n = 8 the 20:00 edge falls
+  inside a slice and every method gives 36, so Content now says so and adds S5's n = 4 row (72 / 72 / 0 / 72) and its
+  switch-on convention. S3 by noon 11.52 mm, 576 L on 50 m²; day 1,152 L, 952 L overflowed from 200 L; r(6) = 1.08.
+  F2 T = 7.2193 h, F3 T = 5.1428 h (both inside the 0.05 h tolerance of the stated answers and of 7:13 and 5:09). F4
+  stepped at 0.0001 h: empty at 5.00 h, full at 15.219 h, leaves full at 16.933 h, 259.33 L at midnight. Tap on S1 with
+  a 10 m² roof: net 0 L/h. Storm run 24 s (6 s at x4); a 24-slice pour 2.9 s. Contrast ratios by the WCAG 2.1 formula.
 
 ## Done when
 1. Storm S3 played to 12:00 shows 11.52 mm and, with a 50 m² roof, 576 L caught; at 24:00 23.04 mm and the 200 L barrel
    full with 952 L overflowed.
 2. The tangent label on A(t) equals r(t) at three spot times (S3 at t = 6: r = 1.08).
-3. Slices S3 left n = 8 gives 22.68; midpoint n = 8 gives 23.22; exact 23.04.
+3. Slices S3 left n = 8 gives 22.68; midpoint n = 8 gives 23.22; exact 23.04. S5 at n = 8 gives 36 for every method.
 4. Slices S4 midpoint n = 4 gives 180 and n = 24 gives 45.
 5. S1 gives 48 for every method and n.
 6. Forecast F1 accepts 2.5 (and 2:30); F2 accepts 7.22 h (7:13); F3 accepts 5.14 h; F4 accepts 259 L (and refuses 520).
 7. Tap open on S1 with a 10 m² roof: net (20 - 20) = 0 L/h, the level stays flat (a check of the net rate).
-8. How-to lines spoken once each in five actions; "The barrel is full." once per run.
-9. Scene and graphs visible with controls at 1366x768; at 760 wide the scene sits above the graphs; graph labels at
-   least 10 px in the 680x425 preview; no network, no images, no em dashes.
+8. Focus: at 1366x768 and 1000x625 the shaded rate graph (Storm), the sliced rate graph with its cylinder (Slices) and
+   the card with its box (Forecast) are each the largest thing on the stage.
+9. Tap while it plays: during Play, dragging the scrubber or toggling the tap changes the barrel and graphs on that
+   frame; during a 96-slice pour, pressing `8` shows 8 slices and the new table at once.
+10. How-to lines spoken once each in five actions; "The barrel is full." once per run; no line names a control that is
+    not on screen.
+11. Scene and graphs visible with controls at 1366x768; at 760 wide the scene sits above the graphs; graph labels at
+    least 10 px in the 680x425 preview; the barrel stands on the stone pad at every size; no network, no em dashes.
 
 ## Open questions
 none

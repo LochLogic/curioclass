@@ -26,3 +26,6 @@
 - equation-golf: painted balance pieces added as a shared-engine option; give the other balance tools painted pieces later too?
 - graph-story-lab: runner on the oval track is a person (waits on review); swap to a dog doing laps?
 - launch-pad: voice changed firm-captain -> big-sister (clears flight-planner clash); OK, or keep mission-control feel?
+
+## R06
+- Carried only: sample-machine two-hopper mode; slope-field-garden BC models; solid-spinner U8 motion and shell method; speedometer implicit differentiation; zoom-to-the-limit F-IF.B.6.
