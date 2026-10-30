@@ -198,3 +198,11 @@ isolated game asset") gave clean sprites. Key-color tint in leg gaps: neutralize
 speckled white fur). Waffles kept: every redraw gave bat ears, which would contradict its floppy-ears clue.
 
 Commit ba87ba5b. Site built and checked (5261 pages, 0 broken links); deployed (version 69c28008) once Cory lifted the permission block; desk items back to ready, the three comments answered and marked done.
+
+## Cory's review notes, round 2 (2026-10-29 night)
+
+Approved: teach-the-robot, career-cluster-explorer, and snowy-mail-route (approve-when-fixed). Snowy Mail Route: the
+'Left!' take itself was clipped (0.56 s, ended mid-word); re-recorded with 5 takes (localvoice.py --redo 28), new take
+1.04 s with a clean fade. Stage Blocker: in Run, a seat tap only showed at the next cue's crossfade (holds are 2.2 s or
+more); setSeat now redraws the current run moment from the new seat at once (runSnap, runFit), measured about 4 ms
+mid-hold, no console errors. Commit 3c1be2e9, deployed (version de7f192f). Stage Blocker back on the desk as ready.
