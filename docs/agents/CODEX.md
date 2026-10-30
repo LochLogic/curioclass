@@ -92,3 +92,7 @@ blockers and should fix in round 1, exit rounds to PASS and integrator fixes aga
   `polish.md` as claims; the exit check is still needed.
 - About 14M input tokens to build and 30M a polish round, almost all cached; 37 minutes to build.
 - Its states file and scratch habits are the two things to brief harder.
+
+Cory's queue: docs/agents/codex-prompts-40.txt, started with `scripts/codex-start.cmd <tool-id>`. Left out on purpose:
+tools waiting on desk answers, tools needing a kit engine that doesn't exist yet, sensitive or cultural topics, and the
+three super tools with unanswered cards.

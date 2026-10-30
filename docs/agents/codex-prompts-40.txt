@@ -1,0 +1,614 @@
+CURIO CLASS: 40 CODEX BUILD PROMPTS
+
+Each tool has two steps.
+1. In a terminal, run the START line. It makes the tool's worktree from the latest main, then opens Codex there.
+2. Paste the PROMPT block into Codex.
+
+Each build holds in S:\CurioClass-codex-<tool-id>, uncommitted, until Refine. When Codex says "Build done", mark [x] here.
+
+Up to three can run at once if you pick one from each group: A, B and C use different ports.
+If a command hangs for about 20 minutes, press Esc and paste:
+
+That command hung, so I stopped it. Close any Chrome or server you started, note it under Left open in the report, and carry on with the next step. Do not rerun it with no time limit.
+
+If it says it is reconnecting, wait. If the model is at capacity, send: carry on
+
+==============================================================================
+[ ] 1 of 40: Game Day Fuel  (health-pe, grade 9-12)  group A
+==============================================================================
+
+START:
+S:\CurioClass-media\scripts\codex-start.cmd game-day-fuel
+
+PROMPT:
+Build the Curio Class tool game-day-fuel. Read docs/agents/CODEX-BUILD.md first and follow it exactly. This is Build only: write only inside tools/game-day-fuel/, use S:/CurioClass-codex-scratch/game-day-fuel for scratch files, make no git commits, and do not start a polish round. Use Chrome ports 9990 to 9997 and host port 8795.
+
+Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed, so give it rich art and real depth in play before you spend time on size checks. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+
+Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which check you expect to take longest. Then go ahead without waiting for me. Put a time limit on every command. When tools/game-day-fuel/codex-report.md is written, say "Build done" and stop.
+
+
+==============================================================================
+[ ] 2 of 40: Art Style Match  (arts, grade 3-5)  group B
+==============================================================================
+
+START:
+S:\CurioClass-media\scripts\codex-start.cmd art-style-match
+
+PROMPT:
+Build the Curio Class tool art-style-match. Read docs/agents/CODEX-BUILD.md first and follow it exactly. This is Build only: write only inside tools/art-style-match/, use S:/CurioClass-codex-scratch/art-style-match for scratch files, make no git commits, and do not start a polish round. Use Chrome ports 9980 to 9987 and host port 8785.
+
+Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed, so give it rich art and real depth in play before you spend time on size checks. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+
+Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which check you expect to take longest. Then go ahead without waiting for me. Put a time limit on every command. When tools/art-style-match/codex-report.md is written, say "Build done" and stop.
+
+
+==============================================================================
+[ ] 3 of 40: Virtual Gallery  (arts, grade 9-12)  group C
+==============================================================================
+
+START:
+S:\CurioClass-media\scripts\codex-start.cmd virtual-gallery
+
+PROMPT:
+Build the Curio Class tool virtual-gallery. Read docs/agents/CODEX-BUILD.md first and follow it exactly. This is Build only: write only inside tools/virtual-gallery/, use S:/CurioClass-codex-scratch/virtual-gallery for scratch files, make no git commits, and do not start a polish round. Use Chrome ports 9970 to 9977 and host port 8775.
+
+Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed, so give it rich art and real depth in play before you spend time on size checks. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+
+Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which check you expect to take longest. Then go ahead without waiting for me. Put a time limit on every command. When tools/virtual-gallery/codex-report.md is written, say "Build done" and stop.
+
+
+==============================================================================
+[ ] 4 of 40: Biome Atlas  (science, grade 12)  group A
+==============================================================================
+
+START:
+S:\CurioClass-media\scripts\codex-start.cmd biome-atlas
+
+PROMPT:
+Build the Curio Class tool biome-atlas. Read docs/agents/CODEX-BUILD.md first and follow it exactly. This is Build only: write only inside tools/biome-atlas/, use S:/CurioClass-codex-scratch/biome-atlas for scratch files, make no git commits, and do not start a polish round. Use Chrome ports 9990 to 9997 and host port 8795.
+
+Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed, so give it rich art and real depth in play before you spend time on size checks. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+
+Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which check you expect to take longest. Then go ahead without waiting for me. Put a time limit on every command. When tools/biome-atlas/codex-report.md is written, say "Build done" and stop.
+
+
+==============================================================================
+[ ] 5 of 40: Workplace Scenarios  (cte, grade 6-8)  group B
+==============================================================================
+
+START:
+S:\CurioClass-media\scripts\codex-start.cmd workplace-scenarios
+
+PROMPT:
+Build the Curio Class tool workplace-scenarios. Read docs/agents/CODEX-BUILD.md first and follow it exactly. This is Build only: write only inside tools/workplace-scenarios/, use S:/CurioClass-codex-scratch/workplace-scenarios for scratch files, make no git commits, and do not start a polish round. Use Chrome ports 9980 to 9987 and host port 8785.
+
+Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed, so give it rich art and real depth in play before you spend time on size checks. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+
+Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which check you expect to take longest. Then go ahead without waiting for me. Put a time limit on every command. When tools/workplace-scenarios/codex-report.md is written, say "Build done" and stop.
+
+
+==============================================================================
+[ ] 6 of 40: Up the Watershed  (science, grade 12)  group C
+==============================================================================
+
+START:
+S:\CurioClass-media\scripts\codex-start.cmd up-the-watershed
+
+PROMPT:
+Build the Curio Class tool up-the-watershed. Read docs/agents/CODEX-BUILD.md first and follow it exactly. This is Build only: write only inside tools/up-the-watershed/, use S:/CurioClass-codex-scratch/up-the-watershed for scratch files, make no git commits, and do not start a polish round. Use Chrome ports 9970 to 9977 and host port 8775.
+
+Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed, so give it rich art and real depth in play before you spend time on size checks. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+
+Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which check you expect to take longest. Then go ahead without waiting for me. Put a time limit on every command. When tools/up-the-watershed/codex-report.md is written, say "Build done" and stop.
+
+
+==============================================================================
+[ ] 7 of 40: Reserve Designer  (science, grade 9)  group A
+==============================================================================
+
+START:
+S:\CurioClass-media\scripts\codex-start.cmd reserve-designer
+
+PROMPT:
+Build the Curio Class tool reserve-designer. Read docs/agents/CODEX-BUILD.md first and follow it exactly. This is Build only: write only inside tools/reserve-designer/, use S:/CurioClass-codex-scratch/reserve-designer for scratch files, make no git commits, and do not start a polish round. Use Chrome ports 9990 to 9997 and host port 8795.
+
+Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed, so give it rich art and real depth in play before you spend time on size checks. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+
+Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which check you expect to take longest. Then go ahead without waiting for me. Put a time limit on every command. When tools/reserve-designer/codex-report.md is written, say "Build done" and stop.
+
+
+==============================================================================
+[ ] 8 of 40: First Aid Responder  (health-pe, grade 9-12)  group B
+==============================================================================
+
+START:
+S:\CurioClass-media\scripts\codex-start.cmd first-aid-responder
+
+PROMPT:
+Build the Curio Class tool first-aid-responder. Read docs/agents/CODEX-BUILD.md first and follow it exactly. This is Build only: write only inside tools/first-aid-responder/, use S:/CurioClass-codex-scratch/first-aid-responder for scratch files, make no git commits, and do not start a polish round. Use Chrome ports 9980 to 9987 and host port 8785.
+
+Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed, so give it rich art and real depth in play before you spend time on size checks. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+
+Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which check you expect to take longest. Then go ahead without waiting for me. Put a time limit on every command. When tools/first-aid-responder/codex-report.md is written, say "Build done" and stop.
+
+
+==============================================================================
+[ ] 9 of 40: Data Policy Council  (computer-science, grade 9-12)  group C
+==============================================================================
+
+START:
+S:\CurioClass-media\scripts\codex-start.cmd data-policy-council
+
+PROMPT:
+Build the Curio Class tool data-policy-council. Read docs/agents/CODEX-BUILD.md first and follow it exactly. This is Build only: write only inside tools/data-policy-council/, use S:/CurioClass-codex-scratch/data-policy-council for scratch files, make no git commits, and do not start a polish round. Use Chrome ports 9970 to 9977 and host port 8775.
+
+Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed, so give it rich art and real depth in play before you spend time on size checks. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+
+Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which check you expect to take longest. Then go ahead without waiting for me. Put a time limit on every command. When tools/data-policy-council/codex-report.md is written, say "Build done" and stop.
+
+
+==============================================================================
+[ ] 10 of 40: Act It Out  (arts, grade k-2)  group A
+==============================================================================
+
+START:
+S:\CurioClass-media\scripts\codex-start.cmd act-it-out
+
+PROMPT:
+Build the Curio Class tool act-it-out. Read docs/agents/CODEX-BUILD.md first and follow it exactly. This is Build only: write only inside tools/act-it-out/, use S:/CurioClass-codex-scratch/act-it-out for scratch files, make no git commits, and do not start a polish round. Use Chrome ports 9990 to 9997 and host port 8795.
+
+Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed, so give it rich art and real depth in play before you spend time on size checks. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+
+Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which check you expect to take longest. Then go ahead without waiting for me. Put a time limit on every command. When tools/act-it-out/codex-report.md is written, say "Build done" and stop.
+
+
+==============================================================================
+[ ] 11 of 40: Research Quest  (library, grade 6-8)  group B
+==============================================================================
+
+START:
+S:\CurioClass-media\scripts\codex-start.cmd research-quest
+
+PROMPT:
+Build the Curio Class tool research-quest. Read docs/agents/CODEX-BUILD.md first and follow it exactly. This is Build only: write only inside tools/research-quest/, use S:/CurioClass-codex-scratch/research-quest for scratch files, make no git commits, and do not start a polish round. Use Chrome ports 9980 to 9987 and host port 8785.
+
+Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed, so give it rich art and real depth in play before you spend time on size checks. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+
+Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which check you expect to take longest. Then go ahead without waiting for me. Put a time limit on every command. When tools/research-quest/codex-report.md is written, say "Build done" and stop.
+
+
+==============================================================================
+[ ] 12 of 40: Design Challenge Studio  (science, grade 12)  group C
+==============================================================================
+
+START:
+S:\CurioClass-media\scripts\codex-start.cmd design-challenge-studio
+
+PROMPT:
+Build the Curio Class tool design-challenge-studio. Read docs/agents/CODEX-BUILD.md first and follow it exactly. This is Build only: write only inside tools/design-challenge-studio/, use S:/CurioClass-codex-scratch/design-challenge-studio for scratch files, make no git commits, and do not start a polish round. Use Chrome ports 9970 to 9977 and host port 8775.
+
+Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed, so give it rich art and real depth in play before you spend time on size checks. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+
+Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which check you expect to take longest. Then go ahead without waiting for me. Put a time limit on every command. When tools/design-challenge-studio/codex-report.md is written, say "Build done" and stop.
+
+
+==============================================================================
+[ ] 13 of 40: Brand Builder  (arts, grade 9-12)  group A
+==============================================================================
+
+START:
+S:\CurioClass-media\scripts\codex-start.cmd brand-builder
+
+PROMPT:
+Build the Curio Class tool brand-builder. Read docs/agents/CODEX-BUILD.md first and follow it exactly. This is Build only: write only inside tools/brand-builder/, use S:/CurioClass-codex-scratch/brand-builder for scratch files, make no git commits, and do not start a polish round. Use Chrome ports 9990 to 9997 and host port 8795.
+
+Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed, so give it rich art and real depth in play before you spend time on size checks. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+
+Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which check you expect to take longest. Then go ahead without waiting for me. Put a time limit on every command. When tools/brand-builder/codex-report.md is written, say "Build done" and stop.
+
+
+==============================================================================
+[ ] 14 of 40: Speech Coach  (ela, grade 12)  group B
+==============================================================================
+
+START:
+S:\CurioClass-media\scripts\codex-start.cmd speech-coach
+
+PROMPT:
+Build the Curio Class tool speech-coach. Read docs/agents/CODEX-BUILD.md first and follow it exactly. This is Build only: write only inside tools/speech-coach/, use S:/CurioClass-codex-scratch/speech-coach for scratch files, make no git commits, and do not start a polish round. Use Chrome ports 9980 to 9987 and host port 8785.
+
+Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed, so give it rich art and real depth in play before you spend time on size checks. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+
+Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which check you expect to take longest. Then go ahead without waiting for me. Put a time limit on every command. When tools/speech-coach/codex-report.md is written, say "Build done" and stop.
+
+
+==============================================================================
+[ ] 15 of 40: Design for a Friend  (computer-science, grade 5)  group C
+==============================================================================
+
+START:
+S:\CurioClass-media\scripts\codex-start.cmd design-for-a-friend
+
+PROMPT:
+Build the Curio Class tool design-for-a-friend. Read docs/agents/CODEX-BUILD.md first and follow it exactly. This is Build only: write only inside tools/design-for-a-friend/, use S:/CurioClass-codex-scratch/design-for-a-friend for scratch files, make no git commits, and do not start a polish round. Use Chrome ports 9970 to 9977 and host port 8775.
+
+Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed, so give it rich art and real depth in play before you spend time on size checks. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+
+Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which check you expect to take longest. Then go ahead without waiting for me. Put a time limit on every command. When tools/design-for-a-friend/codex-report.md is written, say "Build done" and stop.
+
+
+==============================================================================
+[ ] 16 of 40: Credit Card Builder  (library, grade 3-5)  group A
+==============================================================================
+
+START:
+S:\CurioClass-media\scripts\codex-start.cmd credit-card-builder
+
+PROMPT:
+Build the Curio Class tool credit-card-builder. Read docs/agents/CODEX-BUILD.md first and follow it exactly. This is Build only: write only inside tools/credit-card-builder/, use S:/CurioClass-codex-scratch/credit-card-builder for scratch files, make no git commits, and do not start a polish round. Use Chrome ports 9990 to 9997 and host port 8795.
+
+Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed, so give it rich art and real depth in play before you spend time on size checks. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+
+Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which check you expect to take longest. Then go ahead without waiting for me. Put a time limit on every command. When tools/credit-card-builder/codex-report.md is written, say "Build done" and stop.
+
+
+==============================================================================
+[ ] 17 of 40: Captain's Choices  (health-pe, grade 9-12)  group B
+==============================================================================
+
+START:
+S:\CurioClass-media\scripts\codex-start.cmd captain-s-choices
+
+PROMPT:
+Build the Curio Class tool captain-s-choices. Read docs/agents/CODEX-BUILD.md first and follow it exactly. This is Build only: write only inside tools/captain-s-choices/, use S:/CurioClass-codex-scratch/captain-s-choices for scratch files, make no git commits, and do not start a polish round. Use Chrome ports 9980 to 9987 and host port 8785.
+
+Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed, so give it rich art and real depth in play before you spend time on size checks. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+
+Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which check you expect to take longest. Then go ahead without waiting for me. Put a time limit on every command. When tools/captain-s-choices/codex-report.md is written, say "Build done" and stop.
+
+
+==============================================================================
+[ ] 18 of 40: Model Mechanic  (computer-science, grade 6-8)  group C
+==============================================================================
+
+START:
+S:\CurioClass-media\scripts\codex-start.cmd model-mechanic
+
+PROMPT:
+Build the Curio Class tool model-mechanic. Read docs/agents/CODEX-BUILD.md first and follow it exactly. This is Build only: write only inside tools/model-mechanic/, use S:/CurioClass-codex-scratch/model-mechanic for scratch files, make no git commits, and do not start a polish round. Use Chrome ports 9970 to 9977 and host port 8775.
+
+Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed, so give it rich art and real depth in play before you spend time on size checks. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+
+Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which check you expect to take longest. Then go ahead without waiting for me. Put a time limit on every command. When tools/model-mechanic/codex-report.md is written, say "Build done" and stop.
+
+
+==============================================================================
+[ ] 19 of 40: Grid Operator  (science, grade 12)  group A
+==============================================================================
+
+START:
+S:\CurioClass-media\scripts\codex-start.cmd grid-operator
+
+PROMPT:
+Build the Curio Class tool grid-operator. Read docs/agents/CODEX-BUILD.md first and follow it exactly. This is Build only: write only inside tools/grid-operator/, use S:/CurioClass-codex-scratch/grid-operator for scratch files, make no git commits, and do not start a polish round. Use Chrome ports 9990 to 9997 and host port 8795.
+
+Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed, so give it rich art and real depth in play before you spend time on size checks. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+
+Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which check you expect to take longest. Then go ahead without waiting for me. Put a time limit on every command. When tools/grid-operator/codex-report.md is written, say "Build done" and stop.
+
+
+==============================================================================
+[ ] 20 of 40: Work Rate Crew  (math, grade 11)  group B
+==============================================================================
+
+START:
+S:\CurioClass-media\scripts\codex-start.cmd work-rate-crew
+
+PROMPT:
+Build the Curio Class tool work-rate-crew. Read docs/agents/CODEX-BUILD.md first and follow it exactly. This is Build only: write only inside tools/work-rate-crew/, use S:/CurioClass-codex-scratch/work-rate-crew for scratch files, make no git commits, and do not start a polish round. Use Chrome ports 9980 to 9987 and host port 8785.
+
+Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed, so give it rich art and real depth in play before you spend time on size checks. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+
+Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which check you expect to take longest. Then go ahead without waiting for me. Put a time limit on every command. When tools/work-rate-crew/codex-report.md is written, say "Build done" and stop.
+
+
+==============================================================================
+[ ] 21 of 40: Spot the AI  (computer-science, grade 1)  group C
+==============================================================================
+
+START:
+S:\CurioClass-media\scripts\codex-start.cmd spot-the-ai
+
+PROMPT:
+Build the Curio Class tool spot-the-ai. Read docs/agents/CODEX-BUILD.md first and follow it exactly. This is Build only: write only inside tools/spot-the-ai/, use S:/CurioClass-codex-scratch/spot-the-ai for scratch files, make no git commits, and do not start a polish round. Use Chrome ports 9970 to 9977 and host port 8775.
+
+Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed, so give it rich art and real depth in play before you spend time on size checks. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+
+Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which check you expect to take longest. Then go ahead without waiting for me. Put a time limit on every command. When tools/spot-the-ai/codex-report.md is written, say "Build done" and stop.
+
+
+==============================================================================
+[ ] 22 of 40: Shadow Measure  (math, grade 10)  group A
+==============================================================================
+
+START:
+S:\CurioClass-media\scripts\codex-start.cmd shadow-measure
+
+PROMPT:
+Build the Curio Class tool shadow-measure. Read docs/agents/CODEX-BUILD.md first and follow it exactly. This is Build only: write only inside tools/shadow-measure/, use S:/CurioClass-codex-scratch/shadow-measure for scratch files, make no git commits, and do not start a polish round. Use Chrome ports 9990 to 9997 and host port 8795.
+
+Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed, so give it rich art and real depth in play before you spend time on size checks. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+
+Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which check you expect to take longest. Then go ahead without waiting for me. Put a time limit on every command. When tools/shadow-measure/codex-report.md is written, say "Build done" and stop.
+
+
+==============================================================================
+[ ] 23 of 40: Rules Referee  (health-pe, grade 6-8)  group B
+==============================================================================
+
+START:
+S:\CurioClass-media\scripts\codex-start.cmd rules-referee
+
+PROMPT:
+Build the Curio Class tool rules-referee. Read docs/agents/CODEX-BUILD.md first and follow it exactly. This is Build only: write only inside tools/rules-referee/, use S:/CurioClass-codex-scratch/rules-referee for scratch files, make no git commits, and do not start a polish round. Use Chrome ports 9980 to 9987 and host port 8785.
+
+Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed, so give it rich art and real depth in play before you spend time on size checks. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+
+Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which check you expect to take longest. Then go ahead without waiting for me. Put a time limit on every command. When tools/rules-referee/codex-report.md is written, say "Build done" and stop.
+
+
+==============================================================================
+[ ] 24 of 40: pH Mystery Liquids  (science, grade 10)  group C
+==============================================================================
+
+START:
+S:\CurioClass-media\scripts\codex-start.cmd ph-mystery-liquids
+
+PROMPT:
+Build the Curio Class tool ph-mystery-liquids. Read docs/agents/CODEX-BUILD.md first and follow it exactly. This is Build only: write only inside tools/ph-mystery-liquids/, use S:/CurioClass-codex-scratch/ph-mystery-liquids for scratch files, make no git commits, and do not start a polish round. Use Chrome ports 9970 to 9977 and host port 8775.
+
+Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed, so give it rich art and real depth in play before you spend time on size checks. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+
+Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which check you expect to take longest. Then go ahead without waiting for me. Put a time limit on every command. When tools/ph-mystery-liquids/codex-report.md is written, say "Build done" and stop.
+
+
+==============================================================================
+[ ] 25 of 40: Packaging Challenge  (math, grade 10)  group A
+==============================================================================
+
+START:
+S:\CurioClass-media\scripts\codex-start.cmd packaging-challenge
+
+PROMPT:
+Build the Curio Class tool packaging-challenge. Read docs/agents/CODEX-BUILD.md first and follow it exactly. This is Build only: write only inside tools/packaging-challenge/, use S:/CurioClass-codex-scratch/packaging-challenge for scratch files, make no git commits, and do not start a polish round. Use Chrome ports 9990 to 9997 and host port 8795.
+
+Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed, so give it rich art and real depth in play before you spend time on size checks. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+
+Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which check you expect to take longest. Then go ahead without waiting for me. Put a time limit on every command. When tools/packaging-challenge/codex-report.md is written, say "Build done" and stop.
+
+
+==============================================================================
+[ ] 26 of 40: Me vs the Counter  (computer-science, grade k)  group B
+==============================================================================
+
+START:
+S:\CurioClass-media\scripts\codex-start.cmd me-vs-the-counter
+
+PROMPT:
+Build the Curio Class tool me-vs-the-counter. Read docs/agents/CODEX-BUILD.md first and follow it exactly. This is Build only: write only inside tools/me-vs-the-counter/, use S:/CurioClass-codex-scratch/me-vs-the-counter for scratch files, make no git commits, and do not start a polish round. Use Chrome ports 9980 to 9987 and host port 8785.
+
+Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed, so give it rich art and real depth in play before you spend time on size checks. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+
+Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which check you expect to take longest. Then go ahead without waiting for me. Put a time limit on every command. When tools/me-vs-the-counter/codex-report.md is written, say "Build done" and stop.
+
+
+==============================================================================
+[ ] 27 of 40: Launch Pad  (math, grade 9)  group C
+==============================================================================
+
+START:
+S:\CurioClass-media\scripts\codex-start.cmd launch-pad
+
+PROMPT:
+Build the Curio Class tool launch-pad. Read docs/agents/CODEX-BUILD.md first and follow it exactly. This is Build only: write only inside tools/launch-pad/, use S:/CurioClass-codex-scratch/launch-pad for scratch files, make no git commits, and do not start a polish round. Use Chrome ports 9970 to 9977 and host port 8775.
+
+Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed, so give it rich art and real depth in play before you spend time on size checks. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+
+Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which check you expect to take longest. Then go ahead without waiting for me. Put a time limit on every command. When tools/launch-pad/codex-report.md is written, say "Build done" and stop.
+
+
+==============================================================================
+[ ] 28 of 40: Keyword Fishing  (library, grade 3-5)  group A
+==============================================================================
+
+START:
+S:\CurioClass-media\scripts\codex-start.cmd keyword-fishing
+
+PROMPT:
+Build the Curio Class tool keyword-fishing. Read docs/agents/CODEX-BUILD.md first and follow it exactly. This is Build only: write only inside tools/keyword-fishing/, use S:/CurioClass-codex-scratch/keyword-fishing for scratch files, make no git commits, and do not start a polish round. Use Chrome ports 9990 to 9997 and host port 8795.
+
+Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed, so give it rich art and real depth in play before you spend time on size checks. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+
+Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which check you expect to take longest. Then go ahead without waiting for me. Put a time limit on every command. When tools/keyword-fishing/codex-report.md is written, say "Build done" and stop.
+
+
+==============================================================================
+[ ] 29 of 40: Is the Historian Right?  (eld, grade 9-12)  group B
+==============================================================================
+
+START:
+S:\CurioClass-media\scripts\codex-start.cmd is-the-historian-right
+
+PROMPT:
+Build the Curio Class tool is-the-historian-right. Read docs/agents/CODEX-BUILD.md first and follow it exactly. This is Build only: write only inside tools/is-the-historian-right/, use S:/CurioClass-codex-scratch/is-the-historian-right for scratch files, make no git commits, and do not start a polish round. Use Chrome ports 9980 to 9987 and host port 8785.
+
+Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed, so give it rich art and real depth in play before you spend time on size checks. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+
+Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which check you expect to take longest. Then go ahead without waiting for me. Put a time limit on every command. When tools/is-the-historian-right/codex-report.md is written, say "Build done" and stop.
+
+
+==============================================================================
+[ ] 30 of 40: Input or Output?  (computer-science, grade 2)  group C
+==============================================================================
+
+START:
+S:\CurioClass-media\scripts\codex-start.cmd input-or-output
+
+PROMPT:
+Build the Curio Class tool input-or-output. Read docs/agents/CODEX-BUILD.md first and follow it exactly. This is Build only: write only inside tools/input-or-output/, use S:/CurioClass-codex-scratch/input-or-output for scratch files, make no git commits, and do not start a polish round. Use Chrome ports 9970 to 9977 and host port 8775.
+
+Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed, so give it rich art and real depth in play before you spend time on size checks. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+
+Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which check you expect to take longest. Then go ahead without waiting for me. Put a time limit on every command. When tools/input-or-output/codex-report.md is written, say "Build done" and stop.
+
+
+==============================================================================
+[ ] 31 of 40: Fire Lookout Triangles  (math, grade 12)  group A
+==============================================================================
+
+START:
+S:\CurioClass-media\scripts\codex-start.cmd fire-lookout-triangles
+
+PROMPT:
+Build the Curio Class tool fire-lookout-triangles. Read docs/agents/CODEX-BUILD.md first and follow it exactly. This is Build only: write only inside tools/fire-lookout-triangles/, use S:/CurioClass-codex-scratch/fire-lookout-triangles for scratch files, make no git commits, and do not start a polish round. Use Chrome ports 9990 to 9997 and host port 8795.
+
+Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed, so give it rich art and real depth in play before you spend time on size checks. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+
+Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which check you expect to take longest. Then go ahead without waiting for me. Put a time limit on every command. When tools/fire-lookout-triangles/codex-report.md is written, say "Build done" and stop.
+
+
+==============================================================================
+[ ] 32 of 40: Fair Dice Investigation  (math, grade 12)  group B
+==============================================================================
+
+START:
+S:\CurioClass-media\scripts\codex-start.cmd fair-dice-investigation
+
+PROMPT:
+Build the Curio Class tool fair-dice-investigation. Read docs/agents/CODEX-BUILD.md first and follow it exactly. This is Build only: write only inside tools/fair-dice-investigation/, use S:/CurioClass-codex-scratch/fair-dice-investigation for scratch files, make no git commits, and do not start a polish round. Use Chrome ports 9980 to 9987 and host port 8785.
+
+Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed, so give it rich art and real depth in play before you spend time on size checks. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+
+Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which check you expect to take longest. Then go ahead without waiting for me. Put a time limit on every command. When tools/fair-dice-investigation/codex-report.md is written, say "Build done" and stop.
+
+
+==============================================================================
+[ ] 33 of 40: Design the Study  (math, grade 12)  group C
+==============================================================================
+
+START:
+S:\CurioClass-media\scripts\codex-start.cmd design-the-study
+
+PROMPT:
+Build the Curio Class tool design-the-study. Read docs/agents/CODEX-BUILD.md first and follow it exactly. This is Build only: write only inside tools/design-the-study/, use S:/CurioClass-codex-scratch/design-the-study for scratch files, make no git commits, and do not start a polish round. Use Chrome ports 9970 to 9977 and host port 8775.
+
+Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed, so give it rich art and real depth in play before you spend time on size checks. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+
+Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which check you expect to take longest. Then go ahead without waiting for me. Put a time limit on every command. When tools/design-the-study/codex-report.md is written, say "Build done" and stop.
+
+
+==============================================================================
+[ ] 34 of 40: Courtroom Statistics  (math, grade 12)  group A
+==============================================================================
+
+START:
+S:\CurioClass-media\scripts\codex-start.cmd courtroom-statistics
+
+PROMPT:
+Build the Curio Class tool courtroom-statistics. Read docs/agents/CODEX-BUILD.md first and follow it exactly. This is Build only: write only inside tools/courtroom-statistics/, use S:/CurioClass-codex-scratch/courtroom-statistics for scratch files, make no git commits, and do not start a polish round. Use Chrome ports 9990 to 9997 and host port 8795.
+
+Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed, so give it rich art and real depth in play before you spend time on size checks. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+
+Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which check you expect to take longest. Then go ahead without waiting for me. Put a time limit on every command. When tools/courtroom-statistics/codex-report.md is written, say "Build done" and stop.
+
+
+==============================================================================
+[ ] 35 of 40: Code Kitchen  (computer-science, grade 6-8)  group B
+==============================================================================
+
+START:
+S:\CurioClass-media\scripts\codex-start.cmd code-kitchen
+
+PROMPT:
+Build the Curio Class tool code-kitchen. Read docs/agents/CODEX-BUILD.md first and follow it exactly. This is Build only: write only inside tools/code-kitchen/, use S:/CurioClass-codex-scratch/code-kitchen for scratch files, make no git commits, and do not start a polish round. Use Chrome ports 9980 to 9987 and host port 8785.
+
+Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed, so give it rich art and real depth in play before you spend time on size checks. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+
+Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which check you expect to take longest. Then go ahead without waiting for me. Put a time limit on every command. When tools/code-kitchen/codex-report.md is written, say "Build done" and stop.
+
+
+==============================================================================
+[ ] 36 of 40: Zipline Energy  (science, grade 11)  group C
+==============================================================================
+
+START:
+S:\CurioClass-media\scripts\codex-start.cmd zipline-energy
+
+PROMPT:
+Build the Curio Class tool zipline-energy. Read docs/agents/CODEX-BUILD.md first and follow it exactly. This is Build only: write only inside tools/zipline-energy/, use S:/CurioClass-codex-scratch/zipline-energy for scratch files, make no git commits, and do not start a polish round. Use Chrome ports 9970 to 9977 and host port 8775.
+
+Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed, so give it rich art and real depth in play before you spend time on size checks. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+
+Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which check you expect to take longest. Then go ahead without waiting for me. Put a time limit on every command. When tools/zipline-energy/codex-report.md is written, say "Build done" and stop.
+
+
+==============================================================================
+[ ] 37 of 40: Water Shapes Earth  (science, grade 9)  group A
+==============================================================================
+
+START:
+S:\CurioClass-media\scripts\codex-start.cmd water-shapes-earth
+
+PROMPT:
+Build the Curio Class tool water-shapes-earth. Read docs/agents/CODEX-BUILD.md first and follow it exactly. This is Build only: write only inside tools/water-shapes-earth/, use S:/CurioClass-codex-scratch/water-shapes-earth for scratch files, make no git commits, and do not start a polish round. Use Chrome ports 9990 to 9997 and host port 8795.
+
+Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed, so give it rich art and real depth in play before you spend time on size checks. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+
+Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which check you expect to take longest. Then go ahead without waiting for me. Put a time limit on every command. When tools/water-shapes-earth/codex-report.md is written, say "Build done" and stop.
+
+
+==============================================================================
+[ ] 38 of 40: Theory Gym  (arts, grade 9-12)  group B
+==============================================================================
+
+START:
+S:\CurioClass-media\scripts\codex-start.cmd theory-gym
+
+PROMPT:
+Build the Curio Class tool theory-gym. Read docs/agents/CODEX-BUILD.md first and follow it exactly. This is Build only: write only inside tools/theory-gym/, use S:/CurioClass-codex-scratch/theory-gym for scratch files, make no git commits, and do not start a polish round. Use Chrome ports 9980 to 9987 and host port 8785.
+
+Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed, so give it rich art and real depth in play before you spend time on size checks. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+
+Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which check you expect to take longest. Then go ahead without waiting for me. Put a time limit on every command. When tools/theory-gym/codex-report.md is written, say "Build done" and stop.
+
+
+==============================================================================
+[ ] 39 of 40: Storyboard Studio  (arts, grade 9-12)  group C
+==============================================================================
+
+START:
+S:\CurioClass-media\scripts\codex-start.cmd storyboard-studio
+
+PROMPT:
+Build the Curio Class tool storyboard-studio. Read docs/agents/CODEX-BUILD.md first and follow it exactly. This is Build only: write only inside tools/storyboard-studio/, use S:/CurioClass-codex-scratch/storyboard-studio for scratch files, make no git commits, and do not start a polish round. Use Chrome ports 9970 to 9977 and host port 8775.
+
+Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed, so give it rich art and real depth in play before you spend time on size checks. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+
+Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which check you expect to take longest. Then go ahead without waiting for me. Put a time limit on every command. When tools/storyboard-studio/codex-report.md is written, say "Build done" and stop.
+
+
+==============================================================================
+[ ] 40 of 40: Traffic Light Coder  (computer-science, grade 3)  group A
+==============================================================================
+
+START:
+S:\CurioClass-media\scripts\codex-start.cmd traffic-light-coder
+
+PROMPT:
+Build the Curio Class tool traffic-light-coder. Read docs/agents/CODEX-BUILD.md first and follow it exactly. This is Build only: write only inside tools/traffic-light-coder/, use S:/CurioClass-codex-scratch/traffic-light-coder for scratch files, make no git commits, and do not start a polish round. Use Chrome ports 9990 to 9997 and host port 8795.
+
+Graphics and gameplay come first. A tool that passes every check but looks plain or plays flat has failed, so give it rich art and real depth in play before you spend time on size checks. Stay inside what the spec teaches. If the spec lists open questions, take the option it leans toward and note each one in handoff.md.
+
+Before you build anything, tell me in five lines what the tool is, what the first 10 seconds look like, what the most satisfying moment will be, what makes later rounds different from the first, and which check you expect to take longest. Then go ahead without waiting for me. Put a time limit on every command. When tools/traffic-light-coder/codex-report.md is written, say "Build done" and stop.
+
