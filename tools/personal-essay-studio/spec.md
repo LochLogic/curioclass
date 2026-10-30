@@ -22,11 +22,13 @@ Header: title "Personal Essay Studio", small line "Zoom in on one moment."; mode
 A one-line note sits under the header on every mode: "You choose what to share. Pick a moment you'd be comfortable with a teacher reading. Your writing stays on this device."
 
 ### Spark (opens first)
+Focus: the wall of prompt cards, center; the spark list sits in the panel column on the right.
 - A wall of 10 prompt cards (Content), each a neutral starting point. Tapping a card flips it to three smaller "narrow it" questions. The student writes up to five quick sparks (one line each) in a list on the right: **Add spark**.
 - Each spark gets **Small enough?**: two checks the student ticks, "It happened in one place" and "It took less than a day". A spark with both ticked gets a ◎ mark and the line "Good size for one essay."
 - **Use this spark** moves it to the top of the Draft page as the working title.
 
 ### Draft
+Focus: the writing area, the largest thing on the stage, centered; the lens drawer opens beside it and never covers the outlined sentence.
 - A plain, large writing area (18 px, line length about 70 characters) with the working title above it. Autosaves every few seconds.
 - The **Zoom lens** button (also the Z key with a sentence selected): the student taps any sentence; the tool outlines it and opens the lens drawer beside it with five boxes:
   1. "Where exactly were you? Name the place."
@@ -39,11 +41,13 @@ A one-line note sits under the header on every mode: "You choose what to share. 
 - **Close-up meter** (panel): two bars per 100 words, "Close-ups" (numbers, named places and people, quoted speech, sense words) and "Wide shots" (stock phrases and big abstract words), with the counts behind each bar listed under it. It reads, never judges: "12 close-ups, 4 wide shots per 100 words."
 
 ### Then and Now
+Focus: the three boxes (Then, The turn, Now) in one row across the stage; the draft shows as a narrow strip only while Pick a detail is on.
 - Two columns: **Then** ("What did you believe or expect before this moment?") and **Now** ("What do you notice or believe now?"), each a short box; between them **The turn** ("What in the moment changed it? Point to a detail from your draft."), where the student can tap **Pick a detail** and then a highlighted close-up in the draft.
 - **Draft an ending** builds a three-line ending frame from the three boxes, with the student's words in place and blanks marked, to paste into the draft (**Add to the end of my draft**). The student edits it there.
 - A note: "An ending that reflects doesn't sum up a lesson. It shows how your thinking moved."
 
 ### Revise
+Focus: the open Revise tool (Compare, Opening swap or Sequence board), one at a time in the stage; the others are buttons in the panel.
 - **Save version** stores a named snapshot (up to 10; the oldest unnamed one drops first, with a note).
 - **Compare**: pick two versions; the tool shows them side by side with added words underlined and cut words struck, plus a row of numbers: words, close-ups, wide shots, quoted lines, and the opening sentence of each.
 - **Opening swap**: three boxes for alternate first sentences, labeled "Start inside the moment", "Start with someone's words", "Start with a thought from now". **Try it** shows the draft's first paragraph with that opening in place (preview only); **Use this opening** replaces the first sentence and saves a version first.
@@ -54,7 +58,7 @@ A one-line note sits under the header on every mode: "You choose what to share. 
 - **Copy essay** copies the plain text.
 
 ### See an example
-- A drawer with an original sample essay in two versions (Content): "Wide shot" and "Zoomed", with the Close-up meter shown for each and the five lens answers that turned one into the other.
+- A drawer with an original sample essay in two versions (Content): "Wide shot" and "Zoomed", with the Close-up meter shown for each and the five lens answers that turned one into the other. Each version sits under its own painting (Art): a wide shot of the community center kitchen from its doorway over the Wide shot version, and a close-up of a torn tortilla on a hot iron pan over the Zoomed version, so the camera words in the tool have a picture.
 
 ## Content
 ### Spark prompts (10 cards, each with three narrow-it questions)
@@ -72,6 +76,7 @@ A one-line note sits under the header on every mode: "You choose what to share. 
 ### Wide-shot finder lists
 - Stock phrases (dotted underline): "ever since I was young", "ever since I was little", "I have always", "life-changing", "made me who I am", "taught me a lot", "hard work pays off", "a big success", "in today's society", "comfort zone", "at the end of the day", "eye-opening", "everything happens for a reason", "the dictionary defines", "never give up", "I realized that", "it was a great experience", "words can't describe".
 - Big abstract words (dashed underline): responsibility, perseverance, passion, dedication, determination, resilience, growth, journey, leadership, teamwork, success, potential, inspire, inspired, inspiring, amazing, incredible.
+- A big word inside a matched stock phrase counts once, as part of the phrase ("a big success" is one wide shot, not two).
 - Close-up signals counted by the meter: numerals and number words (one to twenty, thirty to ninety by tens, hundred, first to tenth); capitalized words not at a sentence start (excluding "I" and month and day names, which count as close-ups anyway); text inside quotation marks (each quoted span counts once); sense words: smell, smelled, smoke, sound, loud, quiet, hiss, buzz, creak, crunch, clatter, hum, bright, dim, glow, shadow, cold, warm, hot, damp, dry, dusty, sticky, rough, smooth, sharp, soft, heavy, bitter, sweet, salty, sour, burnt, tore, cracked, dripped, scraped, flickered.
 
 ### Sample essay (original, written for Curio Class)
@@ -85,6 +90,7 @@ A one-line note sits under the header on every mode: "You choose what to share. 
 "Before, I [Then]. That changed [The turn]. Now I [Now]." with each bracket replaced by the student's words, or left as a marked blank.
 
 ## Interactions in detail
+- Prompt cards flip in 250 ms (instant with Motion off); tapping another card mid-flip finishes the first at once and flips the new one. Autosave never blocks typing.
 - Sentences are split on . ! ? followed by a space or a closing quote; text in quotation marks stays with its sentence; "Mr." "Mrs." "Ms." "Dr." "St." do not end sentences.
 - The meter counts per 100 words (rounded to whole numbers) and needs 50 words before it shows bars ("Write 50 words to see the meter").
 - Lens notes are stored with the sentence's text; if the student rewrites the sentence, the notes stay in the draft as plain notes.
@@ -100,20 +106,22 @@ A one-line note sits under the header on every mode: "You choose what to share. 
 - Different from neighbors: thesis-workshop slate #5b63a6, editors-in-the-margin red pencil #b3261e (this group, light, more orange), question-sharpener violet, usage-panel ink red on dark, theme-ledger wine #592439 (not a neighbor, darker and browner), and this group's accents.
 
 ## Art
-None: drawn in code. No people.
+Local FLUX (`scripts/localart.py`), no people, house style "warm natural-light photograph look, shallow depth of field". 2 images, both in See an example. The prompt cards stay plain text on purpose: a picture on a prompt would steer students toward one kind of moment, and the prompts must stay neutral. Everything else (writing area, lens drawer, meter, cards, strips) is a writing interface drawn in code.
+- pes-kitchen-wide: a community center kitchen seen from its open doorway, long steel counters, a big stove with an iron pan, a bowl of dough and a stack of plates, Saturday morning light through high windows; 16:9; cutout no; people no; above the Wide shot version.
+- pes-tortilla-close: a close-up of a torn flour tortilla on a hot black iron pan, small bubbles and brown spots on it, a dusting of white flour on the wooden board beside it; 16:9; cutout no; people no; above the Zoomed version.
 
 ## Voice
-Bank voice `calm-professor`, style "Say evenly and warmly, like a calm college writing professor reading over your shoulder." Not used by this group or any neighbor (research-notebook, grade 9, is the only other 9-12 ELA user). It moved off wise-mentor, which neighbor thesis-workshop uses. The kit voice queue (`Curio.voice`), `scope: () => state.mode`. The student's writing is never read aloud.
-- w-spark (how, welcome Spark): "Tap a card that sparks something. Write a few small moments on the right."
-- small (how, first spark added): "Tick both checks if it happened in one place, in less than a day. Small moments make strong essays."
-- w-draft (how, welcome Draft): "Write freely first. Then tap a sentence that feels general and press Zoom lens."
-- lens (how, first lens opened): "Answer any of the five questions in short notes. Then tap Drop notes under this sentence."
-- finder (how, first Wide-shot finder on): "Dotted lines mark wide shots. Ask what moment shows each one."
-- w-then (how, welcome Then and Now): "Write what you thought then and what you think now. Then point to the detail that changed it."
-- w-revise (how, welcome Revise): "Save a version before big changes. Then try a new opening with Opening swap."
-- order (how, first Sequence board): "Give each paragraph a job. Then drag the cards to try a new order."
-- saved (event, Save version; stale after 5 seconds): "Version saved."
-- over (event, first time the count passes the limit in a session; stale when under again): "You're over your word limit. Look for a wide shot to cut."
+Bank voice `calm-professor`, style "Say evenly and warmly, like a calm college writing professor reading over your shoulder." Not used by this group or any neighbor (research-notebook, grade 9, is the only other 9-12 ELA user, and neighbors.py does not list it for this tool). It moved off wise-mentor, which neighbor thesis-workshop used then. The kit voice queue (`Curio.voice`), `scope: () => state.mode`. The student's writing is never read aloud.
+- w-spark (how; on entering Spark; stale once a card is tapped or a spark added): "Tap a card that sparks something. Then type a small moment in the box and tap Add spark."
+- small (how; the first spark added; stale once both checks on it are ticked): "Tick both checks if it happened in one place, in less than a day. Small moments make strong essays."
+- w-draft (how; on entering Draft; stale once the lens is opened): "Write freely first. Then tap a sentence that feels general and press Zoom lens."
+- lens (how; the first lens opened; stale once notes are dropped or the drawer closes): "Answer any of the five questions in short notes. Then tap Drop notes under this sentence."
+- finder (how; the first time the Wide-shot finder is turned on; stale when it is turned off): "Dotted lines mark wide shots. Ask what moment shows each one."
+- w-then (how; on entering Then and Now; stale once any box has text): "Write what you thought then and what you think now. Then tap Pick a detail and tap the detail that changed it."
+- w-revise (how; on entering Revise; stale once a version is saved): "Tap Save version before big changes. Then try a new opening with Opening swap."
+- order (how; the first Sequence board; stale once a card gets a job): "Tap a job chip for each paragraph. Then drag the cards to try a new order."
+- saved (event; each Save version; stale after 5 seconds): "Version saved."
+- over (event; each time the count passes the limit after being under it; stale when under again): "You're over your word limit. Look for a wide shot to cut."
 
 ## Family engine
 None.
@@ -122,18 +130,21 @@ None.
 - Standards: CCSS ELA W.11-12.3 and W.11-12.5, https://www.thecorestandards.org/ELA-Literacy/W/11-12/.
 - "Many college applications set a limit between 250 and 650 words": the Common App first-year essay instructions (2025-2026 prompts page, commonapp.org) give 250 to 650 words; confirm on the current page at build and keep the line generic (no application named on screen). If it can't be confirmed, drop the sentence and keep the limit picker.
 - Sample essay, prompts, lens questions and lists: original, written for Curio Class.
+- Number checks (Python, 2026-10-29), the meter rules run on the two samples: Wide shot, 94 words, 1 close-up ("One") and 10 wide shots (6 stock phrases: "I have always", "life-changing", "a big success", "hard work pays off", "I realized that", "made me who I am"; 4 big words outside them: responsibility, passion twice, dedication), so 1 close-up and 11 wide shots per 100 words. Zoomed, 155 words, 13 close-ups (number words first, Thirty, one, eighth, first, one, second; the name Ortega; the day Saturday; one quoted span; sense words hot, tore, hiss) and 0 wide shots, so 8 and 0 per 100 words. The finder finds nothing in the Zoomed sample. Without the new once-only rule, "success" counted twice and the Wide shot read 12 per 100.
 
 ## Done when
-- A spark with both checks ticked shows ◎ and moves to Draft as the working title.
-- Zoom lens opens beside a tapped sentence; Drop notes adds a note block and never adds sentences.
-- The Wide-shot finder underlines every phrase and word in the lists (case-insensitive) and finds nothing in the Zoomed sample (check by running both samples).
-- The Close-up meter on the two samples: the Zoomed version shows more close-ups and fewer wide shots per 100 words than the Wide shot version (recompute both with the listed rules).
-- Draft an ending fills the frame from the three boxes and marks empty ones as blanks.
-- Save version, Compare (word diff with underline and strike) and Opening swap with Use this opening (which saves a version first) all work.
-- Sequence board: tagging Background before The moment shows the wait question with the right paragraph count; Use this order saves a version first and reorders the draft paragraphs exactly.
-- Everything survives a reload; Clear everything asks twice; with storage blocked the banner appears.
-- Every screen shows the "You choose what to share" line; no prompt mentions health, loss, conflict or family trouble.
-- At 375 and 760 wide the lens and panel open as bottom sheets with no horizontal scroll; at 1366x768 the draft and mode buttons are visible without scrolling.
+1. A spark with both checks ticked shows ◎ and moves to Draft as the working title.
+2. Zoom lens opens beside a tapped sentence; Drop notes adds a note block and never adds sentences.
+3. The Wide-shot finder underlines every phrase and word in the lists (case-insensitive) and finds nothing in the Zoomed sample (check by running both samples).
+4. The Close-up meter on the two samples: Wide shot 1 close-up and 11 wide shots per 100 words; Zoomed 8 close-ups and 0 wide shots per 100 words (recompute with the listed rules).
+5. Draft an ending fills the frame from the three boxes and marks empty ones as blanks.
+6. Save version, Compare (word diff with underline and strike) and Opening swap with Use this opening (which saves a version first) all work.
+7. Sequence board: tagging Background before The moment shows the wait question with the right paragraph count; Use this order saves a version first and reorders the draft paragraphs exactly.
+8. Focus: at 1366x768 and 680x425 the writing area is the largest thing in Draft and the open lens drawer does not cover the outlined sentence.
+9. A tap while anything plays: tapping a second prompt card mid-flip flips it at once; typing during an autosave loses no keystroke.
+10. Everything survives a reload; Clear everything asks twice; with storage blocked the banner appears.
+11. Every screen shows the "You choose what to share" line; no prompt mentions health, loss, conflict or family trouble; both example images load and show no person.
+12. At 375 and 760 wide the lens and panel open as bottom sheets with no horizontal scroll; at 1366x768 the draft and mode buttons are visible without scrolling.
 
 ## Open questions
 None. Settled:

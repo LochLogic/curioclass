@@ -21,8 +21,9 @@ While the class talks, the projector draws who answers whom: every turn is a lin
 Header: title "Socratic Seminar Board", small line "Who answers whom."; mode buttons **Practice** (opens first), **Prepare**, **Seminar**, **Fishbowl**, **Debrief**; Motion, Sound, Read; **Full screen**. Panel: `#hint`, seat count, the text in use, **New seminar** (asks Yes / No; clears the map, goals and votes).
 
 ### Practice (opens first; one student, no teacher needed)
-- The board in its seminar look: six seats and **T** (a made-up facilitator), the Text and Open floor nodes, the paragraph strip, the Self-Reliance excerpt in a side drawer. A line on screen: "These classmates are made up. Map who answers whom, then join in."
-- The recorded seminar (16 turns, Content) plays one turn at a time as a speech bubble from the speaker's seat. For each turn the student taps **whom they answered** (a seat, T, Text or Open floor) and one move chip. Then **One reading** shows the transcript's target and move ("Seat 3 answered seat 2: 'Building on seat 2'. Builds on.") with "Your call can differ." The line on the map always follows the transcript, so the shape is the same for everyone. **Next turn** moves on.
+Focus: the seat ring with its lines, centered and the largest thing on the stage; the speech bubble rises from the speaking seat inside the ring, the move chips and One reading sit in the panel beside it, and the excerpt drawer opens over the panel, never over the ring.
+- A start card shows first, over a painted classroom with its chairs pulled into a circle (Art), with the Opening vote and **Begin**. Then the board in its seminar look: six seats and **T** (a made-up facilitator), the Text and Open floor nodes, the paragraph strip, the Self-Reliance excerpt in a side drawer. A line on screen: "These classmates are made up. Map who answers whom, then join in."
+- The recorded seminar (16 turns, Content) moves only when the student taps **Next turn**; it never plays on its own. It shows one turn at a time as a speech bubble from the speaker's seat. For each turn the student taps **whom they answered** (a seat, T, Text or Open floor) and one move chip. Then **One reading** shows the transcript's target and move ("Seat 3 answered seat 2: 'Building on seat 2'. Builds on.") with "Your call can differ." The line on the map always follows the transcript, so the shape is the same for everyone. **Next turn** moves on.
 - The shape reading works as in Seminar: at turn 8 it reads Star (talk runs through T), by turn 12 it reads Web. A note at turn 12 asks: "What changed when the classmates started answering each other?"
 - **Your turn** comes after turns 7, 12 and 15. The student chooses whom to answer, a move (Question, Builds on, Challenges, Clarifies) and a paragraph, then writes what they would say. The turn joins the map from a seat marked **You**. A self-check card has three ticks: "I named whom I'm answering", "I pointed to a paragraph", "I added something new (a question, an example, a disagreement)". Nothing is graded and nothing leaves the page.
 - **Opening vote** and **Closing vote** become the student's own pick (Agree, Partly, Disagree) before turn 1 and after turn 16, with "What moved you, if anything?" at the end.
@@ -30,7 +31,8 @@ Header: title "Socratic Seminar Board", small line "Who answers whom."; mode but
 - Practice keeps the student's turns, calls and votes in memory for the session; **Start over** clears them.
 
 ### Prepare
-- **Text**: **Self-Reliance (excerpt)** built in (Content), or **Your own text**: a title box and a paragraph count (1 to 60), so pins can point at paragraph numbers in whatever the class read. The built-in text shows with paragraph numbers ¶1 to ¶6 and a context card.
+Focus: the form column (text, seats, questions, goals, vote), one card per item down the stage.
+- **Text**: **Self-Reliance (excerpt)** built in (Content), or **Your own text**: a title box and a paragraph count (1 to 60), so pins can point at paragraph numbers in whatever the class read. The built-in text shows with paragraph numbers ¶1 to ¶6 and a context card with a painted Concord house (Art).
 - **Seats**: 6 to 24 seats in a ring, numbered 1 to N, plus **T** (teacher) and two nodes in the middle, **Text** and **Open floor**. No names, ever; the panel says "Seats are numbers. Nothing about students is saved."
 - **Question bank**: the built-in opening, core and closing questions (Content), each with a check box to use it; **Add a question** for the teacher's own (saved on this device).
 - **Class goals** (1b): choose up to three from the list (Content) or write one; they show as meters on the board.
@@ -38,21 +40,24 @@ Header: title "Socratic Seminar Board", small line "Who answers whom."; mode but
 - **Opening vote**: the class's claim (Content, or the teacher's own) with three counts entered by hand: **Agree / Partly / Disagree**.
 
 ### Seminar (projector board)
+Focus: the seat ring, centered and at least 60 percent of the stage height at 1280x720; everything else (goals, question, shape reading, turn list) sits around its edges.
 - Center: the seat ring. Each turn is logged in two taps: tap the **speaker's seat**, then tap **whom they answered** (another seat, Text when they go straight to the text, Open floor for a new thread). A line draws from speaker to target with an arrowhead; repeated pairs thicken the line.
 - After the second tap a chip row appears for that turn (optional, one tap, then it fades): **Question ?**, **Builds on +**, **Challenges !**, **Clarifies =**, **Cites text ¶**, **Summarizes Σ**. Cites text then asks for the paragraph number (¶1 to ¶6, or 1 to N for your own text) and drops an **evidence pin** on the paragraph strip along the bottom.
-- **Wait time**: when a turn is tagged Question, a ring fills softly around the speaker's seat for the chosen wait (3 or 5 seconds, set in the panel, labeled "the teacher's choice"); no sound.
+- **Wait time**: when a turn is tagged Question, a ring fills softly around the speaker's seat for the chosen wait (3 or 5 seconds, set in the panel, labeled "the teacher's choice"); no sound. The board never waits for it: a seat tapped while the ring fills logs the next turn at once and the ring stops.
 - **Undo last turn** (one level per tap, back to the start); the board keeps a turn list in the side panel (seat to seat, chip, ¶).
 - Top strip: the class goals as meters, the current question from the bank (**Next question** steps through the checked ones), elapsed time.
 - **Shape reading** sits in a corner, updated every turn after the eighth: **Still forming**, **Star**, **Ping-pong** or **Web** (rules in Interactions), with one plain line: "Star: most talk goes through seat 4" or "Web: 14 of 18 seats have spoken and talk is spread out." Seat numbers in this line only name the hub, never a count of who spoke least.
 - **Seat counts** are hidden by default; a panel toggle shows a small dot per turn on each seat for the teacher's eyes when the board is not projected.
 
 ### Fishbowl
+Focus: the inner circle's map, centered; the outer seats sit as a thin ring of numbered dots around it and the observer prompt in the panel.
 - Seats split into **Inner** and **Outer** (the teacher taps seats to move them). Only the inner circle is on the map; each outer seat is paired with an inner seat ("Seat 12 watches seat 3").
 - **Observer prompts** on screen for the outer circle (Content), one at a time, chosen by the teacher. Observers keep their notes on paper; the board stores nothing about any one student.
 - **Swap** moves outer to inner; the map for each round is kept as Round 1 and Round 2 for Debrief.
 
 ### Debrief
-- **The map, replayed**: a slider replays the turns in order; the shape reading at the end; for a fishbowl, Round 1 and Round 2 side by side.
+Focus: the replayed map, centered and largest; the moves, pins, goals, votes and speaker check are cards in the panel, opened one at a time.
+- **The map, replayed**: a slider replays the turns in order (drag it, or **Play**, which steps one turn every 0.6 s, so a 40-turn seminar replays in 24 s; any tap on the slider or on Play again stops it at once at that turn); the shape reading at the end; for a fishbowl, Round 1 and Round 2 side by side.
 - **Moves**: class totals for each chip (bars with glyph and number), with the line "More builds and questions than challenges? More challenges? Neither is wrong; ask why."
 - **Evidence pins**: the paragraph strip with a pin count per paragraph, and the question "Which paragraphs did nobody use?"
 - **Goals check**: each goal's meter at the end, and a box for the class's one-line note on it (saved on this device with the goals).
@@ -128,19 +133,22 @@ Each turn: speaker to target; move; paragraph; words.
 - Different from this group (editors-in-the-margin red, key-term-tracker amber, personal-essay-studio rose, all light) and grade 10 neighbors.
 
 ## Art
-None: drawn in code (seat ring, lines, paragraph strip). No people.
+Local FLUX (`scripts/localart.py`), no people, house style "warm soft gouache painting, bright daylight, calm muted colors". 2 images; everything the class works with (seat ring, lines, chips, paragraph strip, meters) is a diagram drawn in code, and seats stay numbers by design.
+- ssb-circle-room: an empty sunny high school classroom with wooden chairs pulled into one big circle, a few paperback books left on the seats, tall windows; 16:9; cutout no; people no; the backdrop of the Practice start card and the header image of Prepare (text never sits on the painting; the cards sit on solid panels).
+- ssb-concord-house: a square white two-story New England house of the 1840s behind a low stone wall, tall chestnut and pine trees around it, a quiet dirt road in front, early autumn; 4:3; cutout no; people no; the Self-Reliance context card and the top of the excerpt drawer, captioned "A Concord house of the 1840s (painted)", never as Emerson's own house.
 
 ## Voice
-Bank voice `soft-breath`, style "Say softly and calmly, like a seminar leader who lets the room think." The only 9-12 ELA tool with this voice. The kit voice queue (`Curio.voice`), `scope: () => state.mode`. **Seminar and Fishbowl are silent**: no line plays while the class is talking. The text is never voiced.
-- w-practice (how, welcome Practice): "Each bubble is one turn. Tap the seat it answers, then tap a move."
-- yourturn (how, first Your turn): "Your turn. Pick whom you answer and a paragraph, then write what you would say."
-- shape-now (event, the Practice shape reading changes; stale on the next turn): "The map just changed shape. Look at the corner."
-- w-prep (how, welcome Prepare): "Choose your text, set the seats, and pick up to three goals for the class."
-- vote (how, first time Opening vote is shown): "Count hands for agree, partly and disagree, and type the numbers."
-- w-seminar (how, on entering Seminar the first time, before talk starts, shown as text with Read for those who want it spoken): "Tap the speaker, then tap who they answered. The board stays quiet from here."
-- w-debrief (how, welcome Debrief): "Replay the map. Then look at which paragraphs nobody used."
-- check (how, first speaker check): "Vote on the author, not each other. Supported, partly, or asserted only."
-- shape (event, on entering Debrief; stale when the turns change): "Your conversation was a [shape]. Look at the map and ask how it got that way."
+Bank voice `soft-breath`, style "Say softly and calmly, like a seminar leader who lets the room think." The only 9-12 ELA tool with this voice. The kit voice queue (`Curio.voice`), `scope: () => state.mode`. **Seminar and Fishbowl are silent**: no line plays while the class is talking. The text and the transcript are never voiced.
+- w-practice (how; on entering Practice, while the start card shows; stale once Begin is pressed): "First pick Agree, Partly or Disagree, then tap Begin."
+- map (how; the first transcript turn shown; stale once that turn has a target): "Each bubble is one turn. Tap the seat it answers, then tap a move chip."
+- yourturn (how; the first Your turn; stale once the turn is added): "Your turn. Pick whom you answer, a move and a paragraph, then write what you would say."
+- shape-now (event; each time the Practice shape reading changes; stale on the next turn): "The map just changed shape. Look at the corner."
+- w-prep (how; on entering Prepare; stale once any setting changes): "Choose your text, set the seats, and pick up to three goals for the class."
+- vote (how; the first time Opening vote is shown in Prepare; stale once a count is typed): "Count hands for agree, partly and disagree, and type the numbers in the three boxes."
+- w-seminar (how; on entering Seminar the first time, shown as text only, spoken only if Read is pressed; stale once a turn is logged): "Tap the speaker, then tap who they answered. The board stays quiet from here."
+- w-debrief (how; on entering Debrief; stale once the slider moves): "Drag the slider or press Play to replay the map. Then open Evidence pins to see which paragraphs nobody used."
+- check (how; the first speaker check card; stale once its counts or choice are in): "Judge the author, not each other. Choose Supported, Partly or Asserted only for this claim."
+- shape (event; on entering Debrief with 8 or more turns; stale when the turns change): "Your conversation was a [shape]. Look at the map and ask how it got that way."
 
 ## Family engine
 None. Standalone tool on the kit starter.
@@ -151,17 +159,21 @@ None. Standalone tool on the kit starter.
 - Emerson's dates and Concord: the Ralph Waldo Emerson Society, https://emersonsociety.org/ (confirm at build; if not plainly stated, keep only "American essayist and lecturer").
 - Wait time: Mary Budd Rowe's research on teacher wait time (Rowe, 1986, Journal of Teacher Education). Not shown on screen; the 3 and 5 second settings are labeled the teacher's choice.
 - Seminar format (inner and outer circle, opening, core and closing questions): common classroom practice; no source shown on screen.
+- Number checks (Python, 2026-10-29), the shape rules run on the Practice transcript: turns 8 to 10 read Star (T touches 5 of 8, 9, 10); from turn 11 on, Web (all six seats spoke, top seat T 5 of 11 to 6 of 16, top pair seat 2 and T with 3, below 40 percent). With the student's three Your turns added (You answering seats 3, 6 and 2), the reading is the same: Star at 8, Web at 12, 16 and 19. The three Done when examples give Star (T 8 of 8), Ping-pong (pair 2 and 3, 4 of 10) and Web (6 of 8 seats spoke, top seat 3 of 8). Debrief Play at 0.6 s a turn: 16 turns in 9.6 s, 40 turns in 24 s.
 
 ## Done when
-- Practice opens first with no setup; each of the 16 turns takes a target and a chip and shows One reading; the shape reads Star after turn 8 and Web after turns 12 and 16 (with Your turns skipped); Your turn adds a line from the You seat; the speaker check shows One reading only after the student's own call.
-- Two taps log a turn and draw a line from speaker to target; repeated pairs thicken; Undo removes the last turn.
-- With 8 seats: turns T-1, T-2, T-3, T-4, 5-T, 6-T, T-7, 8-T read **Star** (T touches 8 of 8); turns 2-3, 3-2, 2-3, 3-2, 4-5, 6-7, 8-1, 5-4, 7-6, 1-8 read **Ping-pong** (pair 2-3 is 4 of 10, no seat above 40 percent); turns 1-2, 2-3, 3-4, 4-5, 5-6, 6-1, 1-4, 2-5 read **Web** (8 different pairs, 6 of 8 seats spoke, no seat above 3 of 8).
-- Cites text asks for a paragraph and drops a pin; Debrief counts pins per paragraph and names the unused ones.
-- Goals meters move as turns are logged and match their rules.
-- Fishbowl keeps Round 1 and Round 2 maps separately; outer seats never appear on the map.
-- Opening and closing votes show side by side; the speaker check shows One reading only after counts are entered; the Point of view and Rhetoric cards show One reading after the box has text.
-- No voice line plays in Seminar or Fishbowl; nothing about a student is stored; a reload clears the seminar but keeps goals and added questions.
-- At 1280x720 the full board fits with no scroll; at 375 and 760 there is no horizontal scroll.
+1. Practice opens first with no setup; each of the 16 turns takes a target and a chip and shows One reading; the shape reads Star after turn 8 and Web after turns 12 and 16 (with Your turns skipped or included); Your turn adds a line from the You seat; the speaker check shows One reading only after the student's own call.
+2. Two taps log a turn and draw a line from speaker to target; repeated pairs thicken; Undo removes the last turn.
+3. With 8 seats: turns T-1, T-2, T-3, T-4, 5-T, 6-T, T-7, 8-T read **Star** (T touches 8 of 8); turns 2-3, 3-2, 2-3, 3-2, 4-5, 6-7, 8-1, 5-4, 7-6, 1-8 read **Ping-pong** (pair 2-3 is 4 of 10, no seat at 50 percent); turns 1-2, 2-3, 3-4, 4-5, 5-6, 6-1, 1-4, 2-5 read **Web** (8 different pairs, 6 of 8 seats spoke, no seat above 3 of 8).
+4. Cites text asks for a paragraph and drops a pin; Debrief counts pins per paragraph and names the unused ones.
+5. Goals meters move as turns are logged and match their rules.
+6. Fishbowl keeps Round 1 and Round 2 maps separately; outer seats never appear on the map.
+7. Opening and closing votes show side by side; the speaker check shows One reading only after counts are entered; the Point of view and Rhetoric cards show One reading after the box has text.
+8. Focus: at 1280x720 and 680x425 the seat ring is the largest thing in Practice, Seminar, Fishbowl and Debrief; no drawer or bubble covers it.
+9. A tap while anything plays: a seat tapped while the wait-time ring fills logs the next turn at once; a tap on the slider during Debrief Play stops the replay at once at that turn.
+10. No voice line plays in Seminar or Fishbowl; nothing about a student is stored; a reload clears the seminar but keeps goals and added questions.
+11. At 1280x720 the full board fits with no scroll; at 375 and 760 there is no horizontal scroll.
+12. Both images load and show no person; each how line plays once and names an enabled control.
 
 ## Open questions
 None. Settled:

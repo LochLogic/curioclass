@@ -12,7 +12,7 @@ Every mark is a power-up with one test it must pass (a semicolon needs a full se
 
 ## Who and how
 - Grade 10 ELA. Module: Semicolons, Colons and Style (Language).
-- Driver: students on laptops, alone; pairs can race the same ghost. 15 to 30 minutes (a heat takes 2 to 5 minutes; students rerun to beat their ghost).
+- Driver: students on laptops, alone; pairs can race the same ghost. 15 to 30 minutes (a heat takes about 1 to 4 minutes; students rerun to beat their ghost).
 - Standards: L.9-10.2 (capitalization, punctuation and spelling): 2a semicolons, with and without a conjunctive adverb, in Heat 1; 2b colons to introduce a list or quotation in Heat 2; 2c spelling in the pit stops. L.9-10.3 (apply knowledge of language; write and edit to conform to a style manual): Heat 4, Style sheet, and the guide notes on every gate.
 - tool.json: driver "students", minutes "15-30", modes ["Race", "Practice lap", "Rule book"], grades_label "Grade 10". Kit starter plus `kit:theme-912`.
 
@@ -20,20 +20,21 @@ Every mark is a power-up with one test it must pass (a semicolon needs a full se
 Header: title "Punctuation Power-Ups", small line "Every mark has a test."; mode buttons **Race** (opens first), **Practice lap**, **Rule book**; Motion, Sound, Read. Panel: `#hint`, heat picker **1 Semicolons**, **2 Colons**, **3 Dashes**, **4 Style sheet**, the style guide picker (Heat 4 and Rule book only) **Chicago 18**, **APA 7**, **MLA 9**, **AP**, best time per heat, **Clear best times** (asks Yes / No).
 
 ### Race (opens first)
-- Stage, top: a race track drawn in code, a lane of 12 gates in Heats 1 to 3 (10 sentence gates and 2 pit stops) and 8 gates in Heat 4 (no pit stops). The runner is a small hover craft; the ghost of the best run is a translucent outline in the next lane. A clock reads tenths of a second (`mm:ss.s`). A streak meter shows tiers 0 to 3 with chevrons.
-- **Start** begins the clock. The craft glides to gate 1 and stops. The sentence card drops in above the track with one or two glowing gaps (a caret ^ under each).
+Focus: the sentence card with its glowing gap, centered over the track and the largest text on the stage; the power-up tray sits right under it. The track is a thinner band below.
+- Stage, lower band: a painted night raceway backdrop (Art) with a lane of gates drawn in code over it, 12 gates in Heats 1 to 3 (10 sentence gates and 2 pit stops) and 8 gates in Heat 4 (no pit stops). The runner is a painted hover craft cutout (Art); the ghost of the best run is the same cutout at 40 percent in the next lane. A clock reads tenths of a second (`mm:ss.s`). A streak meter shows tiers 0 to 3 with chevrons.
+- **Start** begins the clock. The craft glides toward gate 1, and gate 1's sentence card drops in above the track at once with one or two glowing gaps (a caret ^ under each). The card above is always the next closed gate's sentence.
 - Power-up tray under the card, five buttons with glyph and name: **;** Semicolon, **:** Colon, **--** Dash (drawn as one long bar, see Look), **,** Comma, **∅** No mark. Keys 1 to 5. For two-gap sentences the student fills the first gap, then the second.
-- Right: the marks snap into the gaps, the gate opens, a short "Pass: two full sentences" line flashes under the card, and the streak rises a tier. Higher tiers make the glide to the next gate shorter (2.0, 1.4, 0.9, 0.6 seconds).
-- Wrong: the craft stalls for 1.5 seconds, the streak drops to 0, 3 seconds are added, and the failed test appears on the words themselves: the clause before the gap is boxed and labeled, for example "'The supplies are' can't stand alone, so a colon can't follow it." The student then tries again (the wrong mark greys out).
+- The tray is live the whole time, gliding or not. Right: the marks snap into the gaps at once, the gate opens, a short "Pass: two full sentences" line flashes under the card, the next card drops in, and the streak rises a tier. The craft flies through open gates without stopping and stops at the first closed one. Higher tiers make the glide between gates shorter (2.0, 1.4, 0.9, 0.6 seconds).
+- Wrong: the craft swaps to its stalled cutout and stops where it is for 1.5 seconds, the streak drops to 0, 3 seconds are added, and the failed test appears on the words themselves: the clause before the gap is boxed and labeled, for example "'The supplies are' can't stand alone, so a colon can't follow it." The tray stays live during the stall; the wrong mark greys out, and a right mark tapped during the stall passes at once (the stall still costs its time).
 - Accepted alternatives: some gates take two marks (Content). Either passes; the flash says "Pass. A dash works too; the colon is more formal."
-- Pit stops: a word with one tile missing its spelling ("acco__odate"); three spellings on buttons. Right passes; wrong stalls like a wrong mark and shows the correct spelling with its tricky part bold.
+- Pit stops: the craft pulls into a painted pit bay (Art) and the card shows a word with one tile missing its spelling ("acco__odate"); three spellings on buttons. Right passes; wrong stalls like a wrong mark and shows the correct spelling with its tricky part bold.
 - After the last gate: the finish card with time, the ghost's time, the difference, marks right first try ("9 of 12"), and a list of gates missed with their test. **Run again**, **Practice this heat**. A new best becomes the ghost. No confetti; the clock just turns the brand color.
 
 ### Practice lap
-- Same gates, no clock, no ghost, no streak. Each gate shows a **Test it** button: tap a mark and the tool runs its test on the words before choosing ("Semicolon test: 'Because the road was icy' is not a full sentence. Fails."). The student can test every mark before committing. **Next gate** and **Back**.
+Focus: the sentence card, centered, with the test result under it. No clock, no ghost, no streak, no track. Each gate shows a **Test it** button: tap a mark and the tool runs its test on the words before choosing ("Semicolon test: 'Because the road was icy' is not a full sentence. Fails."). The student can test every mark before committing. **Next gate** and **Back**.
 
 ### Rule book
-- One card per mark (semicolon, colon, dash, comma between clauses), each with its test in one line, two examples from the heats and a "When guides differ" table for the chosen guide (Content). A card for spelling lists the six pit-stop words with their tricky parts.
+Focus: the open mark card. One card per mark (semicolon, colon, dash, comma between clauses), each with its test in one line, two examples from the heats and a "When guides differ" table for the chosen guide (Content). A card for spelling lists the six pit-stop words with their tricky parts.
 
 ### Heat 4, Style sheet
 - Before the heat starts, the guide picker must be set (it opens as a card: "Pick the guide your class uses."). Gates here offer the choices in Content (for example **,** or **∅**; **c** or **C**; **closed** or **spaced** dash). The answer depends on the guide; the pass line names it: "Pass under AP: no comma before 'and' in a simple series."
@@ -108,33 +109,38 @@ Pit stops: "acco_odate" (accommodate / accomodate / acommodate; "two c, two m"),
 
 ## Interactions in detail
 - Each gate is data: `{text, gaps:[{accept:[...], tests:{mark: line}}], passLine:{mark: line}}`. A gate with two gaps passes only when both are right; the first right gap stays placed after a wrong second.
-- Clock: starts on Start, stops at the finish; stall and penalty seconds are added, never subtracted. Times save per heat (and per guide for Heat 4) in localStorage `punctuation-power-ups:v1` (try/catch) with the ghost's per-gate splits. Clear best times asks first.
+- Clock: starts on Start, stops when the last gate opens; it is wall time plus 3 penalty seconds per wrong mark (the 1.5 s stall is wall time). Glides only cost time when the student answers faster than the craft flies, so the streak matters most to fast, accurate racers. Times save per heat (and per guide for Heat 4) in localStorage `punctuation-power-ups:v1` (try/catch) with the ghost's per-gate splits. Clear best times asks first.
 - Ghost: replays the stored splits; if none, the lane is empty with "No ghost yet."
 - Keyboard: 1 to 5 choose marks, Enter starts and continues, Esc pauses (the clock stops and the card blurs so the sentence can't be read while paused).
 - Motion off: the craft jumps gate to gate; times are the same (glide times still count) so ghosts stay fair.
-- Sizes: at 680x425 the card, the tray and the lane fit without scrolling (the lane shrinks to a thin progress strip under 500 px tall). At 375 wide the tray becomes a row of five 56 px buttons under the card and the lane a strip. No horizontal scroll.
+- Sizes: at 680x425 the card, the tray and the lane fit without scrolling (the lane shrinks to a thin progress strip under 500 px tall, the backdrop hidden, the craft a small chip on the strip). At 375 wide the tray becomes a row of five 56 px buttons under the card and the lane a strip. No horizontal scroll.
 - Sound: a short rising tone on a pass, a low thud on a stall (`Curio.tone`), off with Sound.
 
 ## Look
-- Accent `--brand #ff4fd8` (power-up magenta: header rule, streak chevrons, Start, the finish time) on the kit `theme-912` base. Track `#10161f` with lane lines `#2b3646`; gates outlined in `--line` and filled brand when open; ghost craft `#a6b3c4` at 40 percent. Mark glyphs in the tray are large (28 px) in `--ink`; the dash is drawn as a 1.6 em bar so it can never be confused with a hyphen.
+- Accent `--brand #ff4fd8` (power-up magenta: header rule, streak chevrons, Start, the finish time) on the kit `theme-912` base. The painted raceway sits under a `#10161f` wash at 55 percent so lane lines `#2b3646` and gate outlines in `--line` read on it; gates fill brand when open. Mark glyphs in the tray are large (28 px) in `--ink`; the dash is drawn as a 1.6 em bar so it can never be confused with a hyphen.
 - Failed-test boxes use `--warn #ffb8a8` outlines with the test in words; passes use `--ok #6fdca6` with "Pass" in words.
-- Contrast (WCAG 2.1): brand on panel #141b25 6.07:1, on sec-bg 5.75:1; brand-ink #1c1203 on brand 6.47:1; theme ink on panel 14.7:1; warn and ok as in theme-912.
-- Different from ELA 9-12 neighbors (shakespeare-remix lavender, portrait-in-four-media coral, tone-dial orchid #f29ff0, source-mixer cyan, usage-panel ink red on dark) and this group. The nearest accent in 9-12 ELA is idea-threads magenta #ff6fd0 (dE 18), not a neighbor and a light-text explorer; this one is pinker and sits on a race track.
+- Contrast (WCAG 2.1): brand on panel #141b25 6.07:1, on sec-bg 5.75:1; brand-ink #1c1203 on brand 6.47:1; theme ink on panel 14.7:1; warn and ok as in theme-912. The clock and streak sit on a solid `--panel` chip, never directly on the painting.
+- Different from ELA 9-12 neighbors (shakespeare-remix lavender, portrait-in-four-media coral, tone-dial orchid #f29ff0 at dE 38, source-mixer cyan, usage-panel ink red on dark) and this group. The nearest accent in 9-12 ELA is idea-threads magenta #ff6fd0 (dE 18), not a neighbor and a light-text explorer; this one is pinker and sits on a race track.
 
 ## Art
-None: drawn in code (track, craft, gates, glyphs). No people.
+Local FLUX (`scripts/localart.py`), no people anywhere, house style "sleek futuristic racing game art, night, glowing magenta and teal trim, clean painted look". 4 images.
+- ppu-raceway: a long empty hover-racing track at night seen from the side, a smooth dark road band across the lower half, glowing trim lights along its edges, a distant city skyline under a dark sky; 4:1; cutout no; people no; the backdrop of the Race track band, behind the code lane and gates.
+- ppu-craft: a small sleek one-seat hover racing craft seen from the side, rounded nose pointing right, a closed tinted canopy, glowing magenta stripes and a soft blue glow underneath, plain white background; 16:9; cutout yes; people no; the runner (full color) and the ghost (same image at 40 percent opacity).
+- ppu-craft-stall: the same hover racing craft seen from the side, nose dipped toward the ground, small sparks and a puff of grey smoke at its rear, its underglow flickering dim, plain white background; 16:9; cutout yes; people no; swapped in for 1.5 s on every stall.
+- ppu-pit-bay: an empty brightly lit pit garage bay at a night race track, a tool cart, a tire stack and a blank wall panel; 16:9; cutout no; people no; shown behind the pit-stop card while the craft is in the pit.
+Drawn in code: the lane, gates, clock, streak chevrons, sentence cards, tray glyphs and the drawn dash bar (controls and labels that change every moment).
 
 ## Voice
 Bank voice `hero-coach`, style "Say with bright, encouraging energy, like a friendly coach at a time trial, kept short." The only 9-12 ELA tool with this voice; none of its neighbors or this group uses it. The kit voice queue (`Curio.voice`), `scope: () => state.mode + ':' + state.heat`. Sentences are never voiced (that would give away the pauses).
-- w-race (how, welcome Race): "Press Start. At each gate, pick the mark that passes its test."
-- stall (how, first wrong mark): "Stalled. Read the box: it shows the test that failed. Then pick another mark."
-- pit (how, first pit stop): "Pit stop. Tap the right spelling."
-- finish (event, every finish; stale on Run again): "Finished. {n} of 12 right the first time."
-- best (event, a new best time; stale on Run again): "New best. That's your ghost now."
-- w-practice (how, welcome Practice lap): "No clock here. Tap Test it to try any mark before you choose."
-- w-rules (how, welcome Rule book): "Each card shows one mark's test. Pick a guide to see where guides differ."
-- w-style (how, Heat 4 first open): "Pick the guide your class uses. The right answer depends on it."
-- flip (event, Same sentence, other guide; stale on mode change): "{n} gates flip under {guide}."
+- w-race (how; on entering Race before Start; stale once Start is pressed): "Press Start. Then tap the mark in the tray that passes each gate's test."
+- stall (how; the first wrong mark; stale when that gate passes): "Stalled. Read the box: it shows the test that failed. Tap another mark in the tray."
+- pit (how; the first pit stop; stale when that pit stop passes): "Pit stop. Tap the right spelling."
+- finish (event; every finish; stale on Run again or a mode change): "Finished. {n} of 12 right the first time." ({n} of 8 in Heat 4.)
+- best (event; a new best time; stale on Run again or a mode change): "New best. That's your ghost now."
+- w-practice (how; on entering Practice lap; stale once Test it is used): "No clock here. Tap a mark, then tap Test it to check it before you choose."
+- w-rules (how; on entering Rule book; stale on a guide change): "Each card shows one mark's test. Pick a guide in the panel to see where guides differ."
+- w-style (how; Heat 4 first opened, while the guide card shows; stale once a guide is picked): "Pick the guide your class uses. The right answer depends on it."
+- flip (event; each Same sentence, other guide; stale on a mode change): "{n} gates flip under {guide}."
 
 ## Family engine
 None.
@@ -147,18 +153,21 @@ None.
 - AP: no serial comma in a simple series, space on each side of a dash, capital after a colon when a complete sentence follows: The Associated Press Stylebook, current edition (name the edition and year on screen at build).
 - Spellings: Merriam-Webster.com Dictionary entries for separate, necessary, definitely, occurrence, accommodate, embarrass.
 - Lincoln quotation: Gettysburg Address, Bliss copy, https://www.loc.gov/exhibits/gettysburg-address/.
+- Number checks (Python, 2026-10-29): Heat 4 flips from the answer table: Chicago to AP 7 of 8 (every gate but 5), Chicago to APA 2 of 8 (gates 2 and 6), APA to AP 5 of 8 (1, 3, 4, 7, 8), Chicago to MLA 0 of the gates MLA answers. Heat length: a race model with glides overlapping thinking time, 500 runs per case, gave 12-gate medians of 25 s (2 s per gate, no misses), 55 s (4 s, 10 percent wrong), 123 s (8 s, 25 percent wrong) and 238 s (15 s, 40 percent wrong); the old "2 to 5 minutes" was too long for most students and now reads "about 1 to 4 minutes". The fastest possible 12-gate run is 9.7 s of glides.
 
 ## Done when
-- Heats 1 to 3 run 12 gates and Heat 4 runs 8; every gate passes with its accepted marks and fails with each other mark, showing the listed test line.
-- Two-gap gates need both gaps right; a two-mark gate passes with either and shows the alternative line.
-- Clock math: with a fixed script of answers, total time equals glide plus answer time plus 3 seconds per wrong mark (recompute from the log).
-- A new best is saved and replayed as the ghost; Clear best times asks first.
-- Heat 4 answers change with the guide; Same sentence, other guide reports the right number of flipped gates (Chicago to AP: 7 of 8, every gate but 5; Chicago to APA: 2 of 8, gates 2 and 6).
-- Practice lap's Test it runs the test without committing.
-- The dash is drawn as a long bar, never as a hyphen; no em dash character appears anywhere on screen (sentences, instructions, hints, Rule book).
-- Heat 2 gate 5 fails a colon with the colon test; Heat 3 gate 3 passes with the dash or no mark; Heat 1 gate 10 with a dash shows the dash-between-sentences line.
-- At 375 and 680x425 the card and tray are visible without scrolling; no horizontal scroll at any listed size.
-- Voice: the stall line is spoken once; later stalls only update the hint; the finish line is spoken every finish.
+1. Heats 1 to 3 run 12 gates and Heat 4 runs 8; every gate passes with its accepted marks and fails with each other mark, showing the listed test line.
+2. Two-gap gates need both gaps right; a two-mark gate passes with either and shows the alternative line.
+3. Clock math: with a fixed script of answers, the finish time equals the last pass's wall time minus Start plus 3 seconds per wrong mark (recompute from the log).
+4. A new best is saved and replayed as the ghost; Clear best times asks first.
+5. Heat 4 answers change with the guide; Same sentence, other guide reports the right number of flipped gates (Chicago to AP: 7 of 8, every gate but 5; Chicago to APA: 2 of 8, gates 2 and 6).
+6. Practice lap's Test it runs the test without committing.
+7. The dash is drawn as a long bar, never as a hyphen; no em dash character appears anywhere on screen (sentences, instructions, hints, Rule book).
+8. Heat 2 gate 5 fails a colon with the colon test; Heat 3 gate 3 passes with the dash or no mark; Heat 1 gate 10 with a dash shows the dash-between-sentences line.
+9. Focus: at 1366x768 and 680x425 the sentence card is the largest text on the stage, centered, with the tray directly under it; the track never pushes the card or tray below the fold.
+10. A tap while the craft glides or stalls: a right mark tapped mid-glide opens the gate and shows the next card at once; a right mark tapped during a stall passes at once.
+11. At 375 and 680x425 the card and tray are visible without scrolling; no horizontal scroll at any listed size.
+12. Voice: the stall line is spoken once; later stalls only update the hint; the finish line is spoken every finish; all 4 images load and none shows a person.
 
 ## Open questions
 None. Settled:

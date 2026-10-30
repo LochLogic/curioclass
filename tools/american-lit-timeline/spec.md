@@ -20,18 +20,18 @@ American literature from Plymouth to 1929 laid out as pairs: two works written w
 ## Screens and modes
 Kit frame. Header: "American Lit Timeline", small line "1620 to 1929"; Motion, Sound, Read. Mode switch: **Pairs** and **Place it**.
 
-**The timeline** (top two thirds): a horizontal axis from 1620 to 1930 with decade ticks, zoomable (buttons and pinch) from the full span to about 40 years. Three layers:
+**The timeline** (the whole stage until a pair opens; then a one-third strip at the top, still live for panning and tapping): a horizontal axis from 1620 to 1930 with decade ticks, zoomable (buttons and pinch) from the full span to about 40 years. Three layers:
 - **Movement bands** across the top, with soft edges because the dates are approximate (Content); tap a band for a card: name, rough dates, three features to look for, and "Dates are approximate; movements overlap."
 - **Work pins** on the middle row: a book or quill icon, a short title, the year. Pairs are drawn as two pins joined by a bracket with the theme word on it (**Freedom**, **Providence**, **Nature**, **Self**, **Being civilized**, **Indifferent world**, **Who speaks**). Solo works are single pins.
 - **History lane** along the bottom: dated events as small flags (Content). When a pair is open, events within ten years of it light up.
 
-**Pairs mode.** Tap a pair bracket: the **pair reader** opens below the timeline with the two excerpts side by side, each with author, title, year, where it first appeared, and a one-line "who was writing, from where" note. Under them, the **lens** asks three questions in turn, each answered by tapping words in either excerpt and choosing a chip:
+**Pairs mode.** Focus: the timeline until a pair opens, then the two excerpts. Tap a pair bracket: the **pair reader** opens below the timeline strip, taking about two thirds of the stage, with the two excerpts side by side, each under a small painted picture of its work's world (Art) and with author, title, year, where it first appeared, and a one-line "who was writing, from where" note. Under them, the **lens** asks three questions in turn, each answered by tapping words in either excerpt and choosing a chip:
 1. "What does each one say about [theme]?" (chips per text, for example for Freedom: **a right**, **a cause**, **a wish for others**, **something taken from me**).
 2. "Where is each writer standing?" (chips: **free**, **enslaved**, **leaving**, **arriving**, **inside the system**, **outside it**, **a woman in 18__**, and others per pair).
 3. "Same moment, different view: finish the sentence." A frame: "Both [A] and [B] write about [theme] around [year], but [A] ___, while [B] ___, because ___." with the tapped words dropped in as quotes. **Show ours** reveals the tool's sentence for that pair beside it, never a score.
 A pair is "read" once the sentence is saved; the bracket fills in. Solo works open a one-excerpt reader with the first lens question only.
 
-**Place it.** A deck of eight unlabeled excerpt cards (from works not in the pairs, plus some from the pairs with names hidden). Drag a card onto the timeline (or focus it and press arrow keys, then Enter). The card snaps to the nearest band; then the tool shows the real year and how far off the guess was, and which band features the student could have used ("Plain style, God's providence: Puritan"). A row of eight dots tracks the deck. No score; the end shows "within 25 years: n of 8".
+**Place it.** Focus: the timeline, full stage, with the current card above it. A deck of eight unlabeled excerpt cards (from works not in the pairs, plus some from the pairs with names hidden). Drag a card onto the timeline (or focus it and press arrow keys, then Enter). The card lands at the year under the pointer; then the tool shows the real year and how far off the guess was, which band features the student could have used ("Plain style, God's providence: Puritan"), and the work's painted picture (Art), shown only after the reveal so it never hints at the date. A row of eight dots tracks the deck. No score; the end shows "within 25 years: n of 8".
 
 Panel (right): `#hint`, **Pairs read** (n of 8), the open pair's history events as a list, **Who was left out** (a short note for the open pair, Content), and **Clear my work** (asks Yes / No).
 
@@ -59,7 +59,7 @@ History lane (each with its source): 1620 Mayflower arrives, Plymouth founded; 1
 ## Interactions in detail
 - Timeline: drag or arrow keys to pan, plus and minus to zoom; pins never overlap (they stack upward when close). Every pin, bracket and flag is a button with its full label for screen readers; a **List view** toggle shows the same items as a table sorted by year.
 - Pair reader: tapping words in an excerpt selects whole words (up to 12 per text) and places them in the lens frame as a quote. Chips are toggles; more than one may apply. Show ours appears only after the student's sentence has at least 20 characters.
-- Place it: dropping snaps to the year under the pointer; the reveal animates the card to its true year (instant with Motion off) and draws the gap as a line labeled "off by n years".
+- Place it: dropping snaps to the year under the pointer; the reveal animates the card to its true year in 400 ms (instant with Motion off) and draws the gap as a line labeled "off by n years". The next card can be picked up during the animation, which then finishes at once.
 - Store: lens answers and sentences per pair, and the Place it deck state, in localStorage `amlit-work` (try/catch). Clear my work (after Yes) empties it.
 - Sizes: at 1366x768 and 1280x720 the timeline shows the full span with bands, pins and lane, and the pair reader fits below without page scroll. At 680x425 the reader opens as a full-height sheet over the timeline. At 760 and 375 wide the timeline turns vertical (years down the left edge, bands as colored edge stripes), the reader stacks the two excerpts, and Place it uses a year picker instead of drag.
 
@@ -71,17 +71,38 @@ History lane (each with its source): 1620 Mayflower arrives, Plymouth founded; 1
 - Contrast (WCAG 2.1): brand on paper `#0d1219` 11.62:1, on panel 10.71:1, on sec-bg 10.14:1; brand-ink on brand 11.42:1; `--ink` on the band tints 9.77:1 (Puritan `#2f3a4a`, the lowest) to 11.35:1. All pass AA.
 
 ## Art
-None needed: pins, flags, bands and preview.svg (the axis with three bands, two paired pins and a lit flag) are drawn in code. No portraits: the texts carry the tool.
+Local FLUX (`scripts/localart.py`), no people, house style "quiet painterly illustration in muted period colors, soft light". 21 images, one per work: a place or object from that work's world, never its author and never a person, so the excerpt stays the thing to read. All 16:9; cutout no; people no; shown as a 96 px strip (center crop) above that work's excerpt in the reader, and full size in the Place it reveal. Pins, flags, bands, brackets, the axis and preview.svg (the axis with three bands, two paired pins and a lit flag) are drawn in code.
+- alt-bradford: a small wooden sailing ship at anchor off a bare wintry shore with grey sea and dark pines.
+- alt-bradstreet: the smoking ruin of a small timber house at dawn, a stone chimney still standing, a few saved chairs on the grass.
+- alt-wheatley: a quill in an inkwell beside a candle and blank sheets of paper on a plain wooden desk, a 1770s Boston harbor seen through the window.
+- alt-paine: a wooden hand printing press with a stack of fresh blank pamphlets, candlelight.
+- alt-emerson: a lone tall pine on a hillside above a white New England village in autumn.
+- alt-hawthorne: a weathered wooden scaffold platform in an empty Puritan town square under a grey sky, a meeting house behind.
+- alt-thoreau: a small one-room wooden cabin by a still pond at summer dawn, woods all around.
+- alt-douglass: a busy 1830s harbor at Baltimore with tall ships and warehouses, a road leading north out of town.
+- alt-gilman: an upstairs nursery room with peeling yellow patterned wallpaper, barred windows and a heavy bed, afternoon light.
+- alt-chopin: a Gulf coast beach at Grand Isle at sunset, calm water and a wooden boardwalk.
+- alt-twain: a log raft with a small wigwam tent drifting on the wide Mississippi at dusk.
+- alt-zitkala: a large red brick boarding school building on open winter plains, a bare flagpole, a long fence.
+- alt-crane: a small open lifeboat on big grey ocean waves, a distant lighthouse on the shore.
+- alt-london: a frozen trail through dark spruce forest in deep Yukon snow, a small dead campfire under a snow-laden tree.
+- alt-eliot: a fog-filled city street at evening with streetlamps, a café window and a row of coffee cups on the sill.
+- alt-hughes: a wide river at sunset with ancient stone banks, palm trees and a distant pyramid shape on the horizon.
+- alt-edwards: the interior of a plain white colonial meeting house with empty wooden pews and a tall pulpit.
+- alt-whitman: a busy 1860 riverfront with boats, a carpenter's workbench and a ferry in the background, bright morning.
+- alt-dickinson: a small bird perched on a branch outside a white-framed upstairs window in snow, a writing desk inside.
+- alt-dunbar: a theater mask with a wide painted grin resting on a dark velvet cloth.
+- alt-gatsby: a green light glowing at the end of a wooden dock across a dark bay at night.
 
 ## Voice
 Bank voice `warm-teacher` (Sulafat), style "Say warmly and clearly, like a favorite high school English teacher". `Curio.voice`, scope the mode.
-- welcome (how, first open): "Each bracket holds two works from the same years. Open one and compare how they see the same theme."
-- lens (how, first pair opened): "Tap the words that show what each writer says. Then choose where each one is standing."
-- frame (how, first lens step 3): "Finish the sentence. Use their words, not just yours."
-- lane (how, first pair with lit history flags): "The flags below were happening while they wrote. Tap one."
-- place (how, first Place it): "No names, no dates. Drag each card to where you think it belongs, then see how close you were."
-- placed (event, each card revealed; stale when the next card is dragged): "Off by {n} years. Check the band's features."
-- done (event, the eighth pair read; stale when any pair answer is cleared): "All eight pairs read. Pick the pair that surprised you most and say why to a partner."
+- welcome (how; on entering Pairs; stale once a bracket is tapped): "Each bracket holds two works from the same years. Tap one to open the pair."
+- lens (how; the first pair opened; stale once a word is tapped): "Tap the words that show what each writer says. Then tap a chip for each one."
+- frame (how; the first lens step 3; stale once the sentence has 20 characters): "Finish the sentence in the box. Use their words, not just yours."
+- lane (how; the first pair with lit history flags; stale once a flag is tapped or the pair closes): "The lit flags below were happening while they wrote. Tap one."
+- place (how; on entering Place it; stale once the first card is placed): "No names, no dates. Drag the card onto the timeline, or pick a year, then see how close you were."
+- placed (event; each card revealed; stale when the next card is picked up): "Off by {n} years. Check the band's features."
+- done (event; when the eighth pair is read; stale when any pair answer is cleared): "All eight pairs read. Pick the pair that surprised you most and say why to a partner."
 
 ## Family engine
 lit-timeline (`kit/lit-timeline.js`), described in full here. No other tool is in this family yet; the engine is written so a British or world literature timeline can reuse it.
@@ -103,15 +124,19 @@ Fixed by the engine: axis style, the fuzzy band rule (approximate dates always s
 - Movement dates and features: Britannica, "American literature," https://www.britannica.com/art/American-literature
 - History lane: National Archives (Declaration, Constitution, Thirteenth and Nineteenth Amendments, Indian Removal Act, Plessy v. Ferguson), https://www.archives.gov/milestone-documents ; Library of Congress (transcontinental railroad, Indian Citizenship Act); Britannica (Plymouth Colony, Salem witch trials, Seneca Falls Convention, Carlisle Indian Industrial School, frontier and the 1890 census, World War I, stock market crash of 1929).
 - Standards: CCSS ELA RL.11-12.9, https://www.thecorestandards.org/ELA-Literacy/RL/11-12/
+- Number checks (Python, 2026-10-29): the history lane lists 17 flags. Flags lit within ten years of each pair's span: 1 Mayflower; 2 Declaration; 3 Narrative, Seneca Falls; 4 Narrative, Seneca Falls; 5 frontier, Plessy; 6 Carlisle, frontier, Plessy; 7 frontier, Plessy, World War I, Nineteenth Amendment; 8 World War I, Nineteenth Amendment, Indian Citizenship Act, crash. Place it: Edwards dropped at 1800 is off by 59 years; every deck year falls inside a band (1891, 1896 and 1897 inside both Realism and Naturalism; 1921 and 1925 inside both Modernism and Harlem Renaissance, which the band cards' "movements overlap" line covers). The old spec said a card "snaps to the nearest band" in one place and "to the year under the pointer" in another; it now lands at the year.
 
 ## Done when
 1. The axis runs 1620 to 1930 with seven bands, eight pair brackets, five solo pins and seventeen history flags, and List view shows the same items as a sorted table.
 2. Every excerpt matches its Gutenberg file word for word, with "--" where the source has an em dash (Dunbar).
-3. Opening pair 4 lights the flags within ten years (1845 Narrative, 1848 Seneca Falls) and shows both excerpts with their years and first appearances.
+3. Opening pair 4 lights the flags within ten years (1845 Narrative, 1848 Seneca Falls) and shows both excerpts with their years, first appearances and pictures.
 4. The lens frame fills with tapped words as quotes; Show ours stays off until the sentence has 20 characters, then shows the pair's sentence.
-5. In Place it, dropping the Edwards card at 1800 reveals 1741, "off by 59 years", and the Puritan features.
+5. In Place it, dropping the Edwards card at 1800 reveals 1741, "off by 59 years", the Puritan features and only then its picture.
 6. Pairs read counts to 8; reload keeps lens answers and the deck; Clear my work (after Yes) empties them; no network; console clean.
-7. At 375 wide the timeline is vertical, pairs open as stacked readers, and Place it works with the year picker; every size in STANDARDS.md works in `drive.py --host`.
+7. Focus: at 1366x768 and 680x425 the timeline fills the stage until a pair opens; with a pair open the two excerpts are the largest thing on screen and the timeline strip still pans.
+8. A tap while the reveal animates: picking up the next Place it card mid-animation works at once.
+9. At 375 wide the timeline is vertical, pairs open as stacked readers, and Place it works with the year picker; every size in STANDARDS.md works in `drive.py --host`.
+10. All 21 images load, none shows a person, and no Place it card shows its picture before the reveal; each how line plays once and names an enabled control.
 
 ## Open questions
 - [american-lit-timeline] Pair 6 (Twain and Zitkala-Ša) and pair 2 (Wheatley) teach slavery and the boarding schools plainly at grade level. Anything a parent might want to see first, beyond the "who was left out" notes?

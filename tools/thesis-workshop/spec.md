@@ -18,25 +18,28 @@ A thesis is a promise about the whole text: build one from a topic, a move the a
 - tool.json: driver "students", minutes "30-45", modes ["Build", "Prove", "Draft"], grades_label "Grade 10". Kit starter; light theme with its own `:root`.
 
 ## Screens and modes
-Header: title "Thesis Workshop", small line "A thesis is a promise."; text picker **The Open Window** (Saki) / **The Road Not Taken** (Frost); mode buttons **Build** (opens first), **Prove**, **Draft**; Motion, Sound, Read. Layout: the text in a left column (about 45 percent) with passage ids in the margin; the workbench on the right with `#hint`. At 760 wide and below the text is a tab beside the bench (**Text** / **Bench**), and passages lit by the thesis show a count on the Text tab.
+Header: title "Thesis Workshop", small line "A thesis is a promise."; text picker **The Open Window** (Saki) / **The Road Not Taken** (Frost); mode buttons **Build** (opens first), **Prove**, **Draft**; Motion, Sound, Read. Layout: the text in a left column (about 45 percent) with passage ids in the margin, under a small painted header for the chosen text (Art); the workbench on the right with `#hint`. At 760 wide and below the text is a tab beside the bench (**Text** / **Bench**), and passages lit by the thesis show a count on the Text tab.
 
 ### Build (opens first)
+Focus: the lit text. The text column is the biggest thing on screen and the glow is the answer; the chip rows and the Promise meter sit in the bench beside it, never over it.
 - Three chip rows on the bench: **Topic**, **Move** (what the author does), **Meaning** (what it adds up to), from Content. Each row also has **Any** (a deliberately loose choice). The chosen chips form a sentence in a frame: "In [text], [author] uses [move] with [topic] to show that [meaning]." A **My own words** box lets the student rewrite that sentence freely; the test still runs on the chips.
 - **Promise light**: as soon as Topic and Move are chosen, every passage tagged with both glows in the text (outline plus a small lamp glyph, not only color). Meaning adds a second mark: lit passages that fit the meaning get a check glyph; lit passages that cut against it get a cross glyph and a warn tint.
 - **Promise meter** (four readouts, each word plus glyph):
   - **Arguable**: "Yes, a reader could disagree" (shows the meaning's counter-reading from Content), or "Summary: this is what happens, not what it means" for a summary chip.
   - **Scope**: lit count: 0 to 1 "Too narrow: one line can't carry an essay"; 2 "Thin"; 3 to 8 "Workable"; 9 or more "Too broad: you would have to explain most of the text".
-  - **Fit**: "Meaning fits 5 of 6 lit passages". Under half: "This meaning doesn't fit most of your passages. Change one chip."
+  - **Fit**: "Meaning fits 5 of 6 lit passages". Under half: "This meaning doesn't fit most of your passages. Change one chip." With nothing lit: "Nothing lit yet." Before a meaning is picked: "Pick a meaning."
   - **Against you**: "2 lit passages cut against this" (or "None found"), each a link that scrolls to the passage.
 - **Save this thesis** stores it (up to five per text) in a list under the bench with its meter readings, so students can compare drafts. **Use this one** carries it to Prove.
 
 ### Prove
+Focus: the evidence cards and their Because boxes, in the bench; the text column keeps the chosen passages lit so each card points back to its lines.
 - The chosen thesis at the top. The lit passages are listed; the student picks three as evidence (taps **Use as evidence**). Each becomes a card with the quotation and a **Because** box: "This shows [meaning] because ..."
 - **Because check** per card, two nudges, never a grade: "Names words from the quote" (looks for at least one word of four or more letters from the passage) and "Links to your meaning" (looks for one of the meaning's keywords in Content). Each shows a check or an open circle with the word.
 - If any lit passage is marked against the thesis, a fourth card **Answer the line against you** appears: "Some readers will point to [passage]. Here is why it doesn't sink my claim: ..." It can be left empty, but Draft notes it.
 - **Swap evidence** returns a card to the list.
 
 ### Draft
+Focus: the paragraph text area, which widens to most of the stage (the text column narrows to a strip of passage ids).
 - Assembles a paragraph from the thesis sentence, the three evidence cards (quotation in quotation marks with its passage id) and the answer card, in order, into one editable text area.
 - **Copy** puts the paragraph on the clipboard. **Clear my work** (confirm) wipes this tool's storage. Nothing leaves the browser.
 - A short checklist beside it, read from the state: thesis meter Workable or better, three because lines with both checks, the line against you answered.
@@ -115,7 +118,7 @@ Counts: R 12, C 10, T 5; Q 6, G 4, F 5, S 2, D 1.
 **Context cards**: Saki was the pen name of H. H. Munro; "The Open Window" is in Beasts and Super-Beasts (1914). "The Road Not Taken" first appeared in the Atlantic Monthly, August 1915, and opens Mountain Interval (1916).
 
 ## Interactions in detail
-- Light updates on every chip change, with a 150 ms fade (none with Motion off). The text column scrolls to the first lit passage only when the student presses **Show me**, never on its own.
+- Light updates on every chip change, with a 150 ms fade (none with Motion off). A second chip tapped during a fade jumps the light to the new state at once; the meter always shows the latest chips. The text column scrolls to the first lit passage only when the student presses **Show me**, never on its own.
 - Any + Any lights everything and the meter says "Too broad" for Scope and "Pick a meaning" for Fit.
 - Choosing N0 sets Arguable to Summary and greys Fit; Prove is still allowed, with a note "Most teachers would ask for a claim, not a summary."
 - Free text in My own words does not change the light; if it no longer mentions the chosen topic word, the panel says "Your sentence and your chips have drifted apart."
@@ -125,21 +128,24 @@ Counts: R 12, C 10, T 5; Q 6, G 4, F 5, S 2, D 1.
 - At 680 x 425 the chip rows wrap to two lines and the meter collapses to four icons with words under them; all stay visible with the text.
 
 ## Look
-Light and cool, a writing room. Paper #f4f4fa, panel #ffffff, ink #1c1d2b, muted #555870. Accent brand #5b63a6 (slate indigo), white text on brand. Chip rows have their own ink: Topic #0b6e75, Move #8a4b00, Meaning #8a2b6e; each row also has its label word. Lit passages: brand outline plus lamp glyph; against-you: #b02a1a outline plus cross glyph. Focus ring #b3541e.
+Light and cool, a writing room. Paper #f4f4fa, panel #ffffff, ink #1c1d2b, muted #555870. Accent brand #5b63a6 (slate indigo), white text on brand. Chip rows have their own ink: Topic #0b6e75, Move #8a4b00, Meaning #8a2b6e; each row also has its label word. Lit passages: brand outline plus lamp glyph; against-you: #b02a1a outline plus cross glyph. Focus ring #b3541e. The two painted text headers are soft and pale (a 96 px high strip, cropped from the middle), with the title in ink on a white chip, so they set the scene without pulling the eye off the glow.
 Contrast (WCAG): brand on white 5.56, on paper 5.07; white on brand 5.56; ink on paper 15.21; muted on paper 6.35; Topic 5.47, Move 6.21, Meaning 7.23, against #b02a1a 6.0 on paper; focus 4.56 on paper (non-text, over 3). Nearest catalog accent: animal-moves #1f6fb2 at dE 15.1.
 
 ## Art
-none: drawn in code (lamp, check and cross glyphs, meter). No people.
+Local FLUX (`scripts/localart.py`), no people, house style "soft watercolor illustration, pale washes, gentle light". 2 images; the rest is text, chips, glyphs and the meter, drawn in code.
+- tw-open-window: a tall French window standing wide open from a quiet English country drawing room onto a lawn at October dusk, a chintz armchair and a small table inside, long shadows on the grass and a line of shrubs beyond; 4:1; cutout no; people no; the header strip of the text column when The Open Window is chosen, and its context card.
+- tw-yellow-wood: a narrow dirt path in an autumn wood of yellow birch and maple that splits into two grassy paths curving away, fallen leaves on both; 4:1; cutout no; people no; the header strip when The Road Not Taken is chosen, and its context card.
+page-to-screen (a neighbor) also uses "The Open Window"; this header is the empty room and open window at dusk, not a film shot, and carries no figures.
 
 ## Voice
-Bank voice `wise-mentor`, style "Say warmly and plainly, like a writing teacher leaning over your shoulder." Not used by a grade 9-12 ELA neighbor. `Curio.voice`, `scope: () => state.mode + state.text`. Texts are not read aloud by the voice (Read speaks the hint).
-- w-build (how): "Pick a topic and a move. Watch which passages light up."
-- meaning (how, first time Topic and Move are set): "Now pick a meaning. Checks show where it fits."
-- broad (event, Scope reaches Too broad; stale on any chip change): "That promise covers too much. Tighten one chip."
-- narrow (event, Scope reaches Too narrow; stale on any chip change): "One line can't carry a whole essay. Loosen one chip."
-- against (how, first against-you mark): "A crossed passage cuts against your claim. You'll have to answer it."
-- w-prove (how): "Pick three lit passages, then finish each because."
-- w-draft (how): "Here is your paragraph. Edit it, then copy it."
+Bank voice `smooth-narrator`, style "Say smoothly and warmly, like a writing teacher reading over your shoulder." It moved off `wise-mentor`, which neighbor character-web (ela 9) uses; no 9-12 ELA neighbor uses smooth-narrator. `Curio.voice`, `scope: () => state.mode + state.text`. Texts are not read aloud by the voice (Read speaks the hint).
+- w-build (how; on entering Build; stale once a Topic and a Move are both chosen): "Tap a topic chip and a move chip. Watch which passages light up."
+- meaning (how; the first time Topic and Move are both set; stale once a meaning is chosen): "Now tap a meaning chip. Checks show where it fits."
+- broad (event; each time Scope becomes Too broad; stale on any chip change): "That promise covers too much. Tap a narrower chip."
+- narrow (event; each time Scope becomes Too narrow; stale on any chip change): "One line can't carry a whole essay. Tap a wider chip, or Any."
+- against (how; the first against-you mark; stale on any chip change): "A crossed passage cuts against your claim. You'll have to answer it in Prove."
+- w-prove (how; on entering Prove; stale once three cards are chosen): "Tap Use as evidence on three lit passages, then finish each Because box."
+- w-draft (how; on entering Draft; stale once the paragraph is edited or copied): "Here is your paragraph. Edit it in the box, then tap Copy."
 
 ## Family engine
 none.
@@ -148,16 +154,20 @@ none.
 - Saki, "The Open Window", in Beasts and Super-Beasts (London: John Lane, The Bodley Head, 1914): Project Gutenberg eBook #269, https://www.gutenberg.org/ebooks/269. Saki as H. H. Munro: same eBook's catalog record.
 - Robert Frost, "The Road Not Taken", in Mountain Interval (New York: Henry Holt, 1916): Project Gutenberg eBook #29345, https://www.gutenberg.org/ebooks/29345. First printing in the Atlantic Monthly, August 1915, and its place as the collection's first poem: Wikipedia, "The Road Not Taken", checked 2026-10-27.
 - Passage tags, chips, meanings and counter-readings: the tool's own analysis; counts above computed from the tags.
+- Number checks (Python, 2026-10-29), every Topic by Move pair (Any included) run through the tags: The Open Window counts V 12, W 7, F 10, A 7; P 4, I 12, H 8, S 6, E 2, as stated. Vera + Story inside lights W6, W7, W8, W10, W11, W22 (Workable, N1 fits 6 of 6); Window + Planted lights W7, W19 (Thin); Framton + Irony lights 8 (Workable, N2 fits 5 of 8, the "5 of" example); Any + Any 23 (Too broad). Of the 30 Open Window pairs, 14 are Workable, 4 Thin, 8 Too narrow (5 of them light 0, which is why Fit now reads "Nothing lit yet" instead of dividing by zero) and 4 Too broad. Frost counts R 12, C 10, T 5; Q 6, G 4, F 5, S 2, D 1, as stated; The two roads + Roads described as equal lights R6, R7, R9 to R12 (Workable), N3 fits 0 of 6 with Against you 4 (R9 to R12), N1 fits 6 of 6; Any + Any lights 20 (Too broad).
 
 ## Done when
 1. Choosing Vera + A story inside the story lights exactly W6, W7, W8, W10, W11 and W22, and the meter reads Workable.
-2. Any + Any lights all 23 passages and reads Too broad; Window + Planted details reads Thin.
+2. Any + Any lights all 23 passages and reads Too broad; Window + Planted details reads Thin; Window + The last line lights nothing and Fit reads "Nothing lit yet".
 3. In Frost, The two roads + Roads described as equal + N3 shows Against you: 4 and links to R9 to R12.
 4. Choosing N0 sets Arguable to Summary in both texts.
 5. In Prove, a because line with no quote word and no meaning keyword shows two open circles; adding one of each turns both to checks.
 6. Draft assembles thesis, three quoted pieces of evidence with ids and the answer card; Copy works; nothing is sent anywhere.
 7. Saved theses, evidence and drafts survive a reload; Clear my work wipes them.
-8. At 680 x 425 and 375 wide no horizontal scroll; chips and meter visible with the text tab or column.
+8. Focus: at 1366x768 and 680x425 the text column is the largest thing in Build and no bench part covers it; in Draft the paragraph box is the largest thing.
+9. A tap during the light fade: two chips tapped 50 ms apart show the second state at once, and the meter matches it.
+10. At 680 x 425 and 375 wide no horizontal scroll; chips and meter visible with the text tab or column.
+11. Voice: each how line plays once and names a control that is enabled at that moment; broad and narrow play each time Scope becomes that reading; both header images load and show no person.
 
 ## Open questions
 - thesis-workshop: The Open Window has a mild ghost-story fright (three men believed drowned in a bog). Fine for grade 10?

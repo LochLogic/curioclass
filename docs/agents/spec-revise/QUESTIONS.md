@@ -49,3 +49,10 @@
 - globe-theatre-stage: 19 people cutouts block the build until Gemini returns; cut Bianca and the Widow (17)? Voice -> upbeat-guide.
 - speech-coach: public-domain Vermeer and Bruegel show people (not generated); keep?
 - Carried: globe voice clips keyed by style; Trifles here or own tool; parent-preview note; question-sharpener format label, AASL standard, "my own topic" path.
+
+## R09
+- portrait-in-four-media: 3 people storyboard frames (Gemini); keep or swap for objects?
+- tone-dial: woman at the gate (1 people image) or empty gate? Classics paintings after Show ours, or text only?
+- american-lit-timeline uses warm-teacher (a K voice) for grade 11: FIX in the final voice sweep.
+- thesis-workshop voice -> smooth-narrator.
+- Carried: Equiano; Twain and Zitkala-Sa; "Indian-fashion" cut; ghost-story fright; ominous column.

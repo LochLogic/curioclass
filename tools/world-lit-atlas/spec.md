@@ -19,16 +19,17 @@ Every story assumes its first readers already know things: open a pin on the map
 ## Screens and modes
 Kit frame. Header: "World Lit Atlas", small line "Seven stories, seven first audiences"; Motion, Sound, Read.
 
-**Map.** A world map drawn in code (Natural Earth land outline, dark land on darker sea) with seven pins, each a book icon with the author's name and year. A pin that has been read gets a filled ring. A **List** toggle shows the same seven as cards (author, title, place, year, translator) for keyboard and narrow screens.
+**Map.** Focus: the map, filling the stage until a pin is opened. A world map drawn in code (Natural Earth land outline, dark land on darker sea) with seven pins, each a book icon with the author's name and year. A pin that has been read gets a filled ring. A **List** toggle shows the same seven as cards (author, title, place, year, translator) for keyboard and narrow screens.
 
-**Reader** (opens beside the map, or over it on narrow screens), for the chosen pin:
+**Reader** (opens beside the map, or over it on narrow screens), for the chosen pin. Focus: the passage. When the reader opens, it takes about two thirds of the stage and the map shrinks to the remaining third (still live, the open pin ringed).
+- A painted picture of one thing from the passage that its first readers knew at a glance (Art), as a short strip at the top of the reader, captioned with the glowing word it shows.
 - Header: title, author, place, year of first publication, original language, and the English edition used ("Translated by C. F. Andrews with the author, 1916"). A one-line setup written for Curio Class.
 - **The passage**, with 4 to 6 **glowing words** (a soft accent underline and a small dot after each).
 - Tap a glowing word: a small question card asks "Would a first reader in [place], [year] need this explained?" with **Yes** and **No**. After the choice, the card turns over: **What a reader at home knew** (two sentences, with its source), and **Who explained it in this passage**: **The author**, **The translator** (for a footnote or added phrase), or **Nobody**. A glowing word whose explanation sits in the passage itself also lights those words.
 - When every glowing word is turned, the **Explained-o-meter** appears: a bar split into Author, Translator and Nobody, with counts.
 - Then the **Reader card**: "Who was this passage written for?" with three chips (**Readers at home who knew all this**, **Readers far away**, **Both**), then **Show ours** with our answer and reason. Last, **Inside view**: "Whose experience does this passage show from the inside, and what does it take for granted?" (up to 240 characters, saved).
 
-**Compare** (button on the map once two pins are read): the read pins' Explained-o-meters side by side, sorted from most explained to least, with one sentence per pin from the student's Reader card.
+**Compare** (button on the map once two pins are read; focus the row of meters): the read pins' Explained-o-meters side by side, sorted from most explained to least, with one sentence per pin from the student's Reader card.
 
 Panel (right): `#hint`, **Read** count (n of 7), a **Who's missing** note ("This atlas has no pin yet for the Middle East, South America or Oceania. Which story would you add?"), and **Clear my work** (asks Yes / No).
 
@@ -54,9 +55,10 @@ Passages are quoted exactly from the editions in Sources, each 100 to 310 words 
 - Glowing words: Tab moves through them; Enter opens the question card; Yes or No must be chosen before the card turns (the guess is kept and shown on the turned card: "You said: needed").
 - Explained-o-meter: three segments with counts and words; screen readers hear "Author 5, translator 0, nobody 0".
 - Show ours appears after a chip is chosen. Inside view saves on blur.
-- Compare sorts by the share explained by Author plus Translator.
+- Compare sorts by the share explained by Author plus Translator, most first; ties keep the map's west-to-east order.
+- The question card turns over in 300 ms (instant with Motion off). Tapping another glowing word during the turn finishes this turn at once and opens the new word's card.
 - Store: localStorage `atlas-work` (guesses, chips, Inside view text per pin), try/catch. Clear my work (after Yes) empties it.
-- Sizes: at 1366x768 and 1280x720 the map takes the left half and the reader the right half, the passage scrolling inside its box. At 680x425 the reader covers the map with a Back to map button. At 760 and 375 wide the List view is the default and the map is a small strip at the top.
+- Sizes: at 1366x768 and 1280x720 the map fills the stage until a pin opens; then the map takes the left third and the reader the right two thirds, the passage scrolling inside its box (the picture strip is 96 px high). At 680x425 the reader covers the map with a Back to map button. At 760 and 375 wide the List view is the default and the map is a small strip at the top.
 
 ## Look
 - `kit:theme-912` dark, accent `--brand #8ff05a` (atlas green: pins, glow underlines, header rule, buttons), `--btn #8ff05a`, brand text on brand `--brand-ink #1c1203`.
@@ -66,16 +68,23 @@ Passages are quoted exactly from the editions in Sources, each 100 to 310 words 
 - Contrast (WCAG 2.1): brand on paper `#0d1219` 13.22:1, on panel 12.18:1, on sec-bg 11.54:1; brand-ink on brand 13.00:1; brand on land `#1f2a36` 10.3:1 or better (builder recheck); Author `#5aa9ff` on sec-bg 6.68:1; Translator `#ffcf5c` on sec-bg 11.19:1. All pass AA.
 
 ## Art
-None needed: the map outline reuses art-passport's `world.json` (Natural Earth 1:110m land, public domain); pins, icons and preview.svg (the map with three pins and a reader card) are drawn in code. No portraits of the authors.
+Local FLUX (`scripts/localart.py`), no people, house style "still life and landscape painting, soft natural light, rich earthy colors". 7 images, one per pin: each shows a thing named by one of that passage's glowing words, the kind of thing a first reader at home never needed explained. All 16:9; cutout no; people no; the strip at the top of that pin's reader (cropped to 96 px high, centered) and full size in that word's turned card. The map outline reuses art-passport's `world.json` (Natural Earth 1:110m land, public domain); pins, icons, the meter and preview.svg (the map with three pins and a reader card) are drawn in code. No portraits of the authors.
+- wla-cabul-fruit (Tagore, "Cabuliwallah"): a loose cloth bundle opened on a wooden step, heaped with dried apricots, raisins, almonds and pistachios, a brass weighing scale beside it.
+- wla-sasa-ame (Sōseki, "sasa-ame"): small pale rice jellies wrapped in fresh green bamboo leaves and tied with straw, on a plain wooden tray.
+- wla-river-gorge (Li Bai, "Ku-to-Yen"): a narrow river gorge between towering cliffs, fast swirling water and rocks, a small wooden boat with a curved roof near the bank, morning mist.
+- wla-spring-road (Chekhov, "highroad"): a wide unpaved country road in early spring, deep mud and puddles like small lakes, a wooden cart with one horse standing at the side, bare birch trees and patches of old snow.
+- wla-cantaro (Azuela, "cantaro"): a round red clay water jar with a narrow neck standing beside a sun-dried adobe wall, a stack of tortillas wrapped in cloth on a bench, dark mountains at dusk behind.
+- wla-stickado (Equiano, "stickado"): a wooden West African xylophone with gourd resonators hung beneath its keys, two beaters, and a folded length of indigo-dyed cotton cloth beside it.
+- wla-parlor (Ibsen, "papa's hands into yours"): a cozy 1870s Norwegian parlor at Christmas, a decorated fir tree, a piano, a stove, and a closed door with a small brass letter box.
 
 ## Voice
 Bank voice `upbeat-guide` (Zephyr), style "Say brightly and clearly, like an upbeat tour guide". `Curio.voice`, scope the pin.
-- welcome (how, first open): "Seven stories, seven places. Pick a pin and read what its first readers already knew."
-- glow (how, first passage opened): "Tap a glowing word. Guess first: would a reader there and then need it explained?"
-- turned (how, first card turned): "Now see who explained it: the author, the translator, or nobody."
-- meter (event, each Explained-o-meter completed; stale when the next pin opens): "That's the pattern. Who was this written for?"
-- compare (how, first Compare): "Line them up. Who explains the most, and why?"
-- missing (how, the seventh pin read): "That's all seven. Which part of the world is missing? Say which story you'd add."
+- welcome (how; on first open; stale once a pin opens): "Seven stories, seven places. Tap a pin on the map, or a card in the List."
+- glow (how; the first passage opened; stale once a glowing word is tapped): "Tap a glowing word. Then tap Yes or No: would a reader there and then need it explained?"
+- turned (how; the first card turned; stale when the next glowing word is tapped): "Now see who explained it: the author, the translator, or nobody."
+- meter (event; each Explained-o-meter completed; stale when a Reader card chip is tapped or another pin opens): "That's the pattern. Tap the chip that says who this was written for."
+- compare (how; the first Compare; stale when Compare closes): "Line them up. Who explains the most, and why?"
+- missing (how; when the seventh pin is read; stale when any pin opens): "That's all seven. Which part of the world is missing? Say which story you'd add."
 
 ## Family engine
 none
@@ -90,6 +99,7 @@ none
 - Ibsen: A Doll's House, translated by R. Farquharson Sharp, Project Gutenberg eBook #2542, https://www.gutenberg.org/ebooks/2542 ; Britannica, "A Doll's House" (the 1879 premiere and the debate over the ending); the loan rule is quoted from the play itself (Act I).
 - Map: Natural Earth 1:110m land, public domain, https://www.naturalearthdata.com/ (as in art-passport).
 - Standards: CCSS ELA RL.9-10.6, https://www.thecorestandards.org/ELA-Literacy/RL/9-10/
+- Number checks (Python, 2026-10-29), the Explained-o-meters recounted from each glowing word's "who explained it": Tagore 2, 0, 3; Sōseki 0, 1, 4; Li Bai 0, 0, 5; Chekhov 1, 0, 4; Azuela 0, 1, 5; Equiano 5, 0, 0; Ibsen 1, 0, 4; all as stated, each pin 5 or 6 words (within 4 to 6). Compare shares (Author plus Translator over words): Equiano 1.00, Tagore 0.40, Chekhov 0.20, Sōseki 0.20, Ibsen 0.20, Azuela 0.17, Li Bai 0.00; three pins tie at 0.20, so the sort now names its tie rule (map order, west to east: Ibsen, Chekhov, Sōseki).
 Every passage boundary above was checked against its Gutenberg file on 2026-10-27; the builder copies the text between the stated first and last words exactly.
 
 ## Done when
@@ -98,9 +108,12 @@ Every passage boundary above was checked against its Gutenberg file on 2026-10-2
 3. Explained-o-meters match Content: Equiano Author 5, Translator 0, Nobody 0; Botchan 0, 1, 4; Pound 0, 0, 5.
 4. Tapping "father-in-law's house" in Tagore lights the narrator's explaining sentence in the passage.
 5. Show ours appears only after a chip; Inside view keeps up to 240 characters.
-6. Compare with two read pins sorts them by share explained and shows each Reader card sentence.
-7. Reload keeps work per pin; Clear my work (after Yes) empties it; no network (the map is bundled); console clean.
-8. At every size in STANDARDS.md the pins or List cards are reachable and the reader opens without page scroll; 375 wide works in `drive.py --host`.
+6. Compare with two read pins sorts them by share explained and shows each Reader card sentence; with Chekhov, Sōseki and Ibsen read, the order is Ibsen, Chekhov, Sōseki.
+7. Focus: at 1366x768 and 680x425 the map fills the stage before a pin opens; with a pin open the passage is the largest thing on screen.
+8. A tap during a card turn: tapping a second glowing word mid-turn opens its card at once with no lost tap.
+9. Reload keeps work per pin; Clear my work (after Yes) empties it; no network (the map and images are bundled); console clean.
+10. At every size in STANDARDS.md the pins or List cards are reachable and the reader opens without page scroll; 375 wide works in `drive.py --host`.
+11. All 7 images load, show no person and match their glowing word; each how line plays once and names an enabled control.
 
 ## Open questions
 - [world-lit-atlas] Equiano's passage is from a narrative of enslavement (this excerpt describes his home, not the slave ship); the card states his kidnapping and the birthplace debate plainly. Anything a parent might want to see first?
