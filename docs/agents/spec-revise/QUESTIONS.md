@@ -44,3 +44,8 @@
 - page-to-screen: 16 people images (Gemini); paint the cast, or simple drawn figures over painted rooms? "Read" mode renamed "Story", OK?
 - Voices changed: shakespeare-remix -> curious-librarian, tension-meter -> science-narrator.
 - Carried: Anthony A9; Henry's slaveholding; Pokagon B3; Set 1 deaths; Owl Creek and Dracula at grade 9; Story of an Hour at 9; Suspicion meter; spaniel grave story.
+
+## R11
+- globe-theatre-stage: 19 people cutouts block the build until Gemini returns; cut Bianca and the Widow (17)? Voice -> upbeat-guide.
+- speech-coach: public-domain Vermeer and Bruegel show people (not generated); keep?
+- Carried: globe voice clips keyed by style; Trifles here or own tool; parent-preview note; question-sharpener format label, AASL standard, "my own topic" path.

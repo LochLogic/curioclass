@@ -21,9 +21,11 @@ Every research question has a price: the tool breaks your draft question into th
 ## Screens and modes
 Kit frame. Header: "Question Sharpener", Motion, Sound, Read. Two views as a segmented control: **Price it** and **Run the season** (the second is disabled with the reason "Price a question that fits first" until one does).
 
-**Price it.** Left of the stage, the **Question builder**, top to bottom:
+**Price it.** Focus: the assembled question and its Price tag (the hours bar against the 27-hour line and the verdict stamp); together they take the center and the widest column, the builder a narrower column at the left. It opens with nothing chosen: the Price tag shows an empty tree and the line "Choose chips to price a question." (A saved last question loads instead, if there is one.)
+
+At the left, the **Question builder**, top to bottom:
 1. **Interest**: three big chips, Music, Sports, Food.
-2. **Focus**: three chips for the chosen interest (Content), each with a small "written about: plenty / some / little" tag.
+2. **Focus**: three chips for the chosen interest (Content), each with its small painted picture (Art) and a "written about: plenty / some / little" tag. The chosen focus's picture also sits beside the assembled question, smaller than the question text.
 3. **Kind of question**: four chips, What, How has ... changed, Why, Should.
 4. **Where**: around the world, in the United States, in our state, in our town.
 5. **When**: throughout history, since 1950, since 2000, this year.
@@ -34,7 +36,7 @@ Right of the stage, the **Price tag**: the sub-question tree (the question at th
 
 Below both, the **Ledger**: every question the student priced this session, one row each (question, hours, sources, verdict), newest on top, up to 20. Tap a row to load it back into the builder.
 
-**Run the season** (for the question loaded when the view opened). A six-week calendar across the top: weeks 1, 2, 4, 5, 6 have 5 hours; week 3 is marked "Exams: 2 hours". Below it, the sub-questions as horizontal bars in the student's order, each filling as hours go in. Controls: **Up** and **Down** on each bar (or drag) to set the order, **Drop** on each bar (asks Yes / No; a dropped sub-question becomes a named limit in the report), and the big button **Run week n**. Hours pour into bars in order: the first unfinished bar takes hours until full, then the next. At the start of week 4 a card appears: "A source you counted on is checked out. The sub-question you are working on needs 2 more hours." (Content). After week 6, the **Season report** replaces the controls (Content); **Back to pricing** and **Run again** sit under it.
+**Run the season** (for the question loaded when the view opened). Focus: the sub-question bars filling, in the center at full width. A six-week calendar across the top: weeks 1, 2, 4, 5, 6 have 5 hours; week 3 is marked "Exams: 2 hours". Below it, the sub-questions as horizontal bars in the student's order, each filling as hours go in; with a survey, one more bar, **Our survey** (6 hours), joins the list and can be ordered like the rest. Controls: **Up** and **Down** on each bar (or drag) to set the order, **Drop** on each bar (asks Yes / No; a dropped sub-question becomes a named limit in the report), and the big button **Run week n**. Hours pour into bars in order: the first unfinished bar takes hours until full, then the next. At the start of week 4 a card appears: "A source you counted on is checked out. The sub-question you are working on needs 2 more hours." (Content). After week 6, the **Season report** replaces the controls (Content); **Back to pricing** and **Run again** sit under it.
 
 Panel (right): `#hint`, the season's hours (27), a **Why this verdict** box that states the rule that fired in one line, and **Clear ledger** (asks Yes / No).
 
@@ -69,18 +71,19 @@ Verdicts, checked in this order (stamp text, then the Why line):
 2. What, otherwise: "Too narrow: one fact". Why: "A single fact isn't a research question. Ask how, why or should."
 3. How, this year: "Too narrow: no time to change". Why: "Change needs a span of time. Try since 2000."
 4. H over 27: "Too broad". Why: "This needs H hours; the season has 27. Narrow the place or the time."
-5. S under 2: "Too narrow: thin shelf". Why: "Only S source(s) per sub-question. Widen the place or time, or add a survey."
+5. S under 2: "Too narrow: thin shelf". Why, for state and town: "Only S source(s) per sub-question. Widen the place or time, or add a survey."; for world and United States, where no survey is offered: "Only S source(s) per sub-question. Choose a longer time." (6 of the 96 world and United States settings, counted by source base, land here, all with this year; checked, Sources.)
 6. H 23 or less: "Researchable: room to spare". H over 23 to 27: "Researchable: no slack". Why: "Fits in the season with 27 minus H hours to spare."
 
 What you would need to find out (one line per sub-question): S1 "Numbers: counts, dates or records"; S2 "Voices: what people involved say"; start-of-period "Background: a source from the start of the span"; causes "Comparison: weigh the causes against each other"; what would change "Effects: who gains and who loses"; who disagrees "Values: the strongest case for the other side".
 
-Season: weeks 5, 5, 2, 5, 5, 5 hours (27). Week 4 surprise: +2 hours on the first unfinished sub-question in the order. Season report (one of): "Answered, with X hours to spare" (all finished, X of 2 or more); "Answered, just" (all finished, under 2 to spare); "Answered in part" (any unfinished or dropped), listing each unfinished sub-question with "Y of Z hours" and a suggested limits sentence: "This paper does not fully answer: {sub-question}." Under it, one line comparing the plan: "You planned H hours. The season needed H plus 2."
+Season: weeks 5, 5, 2, 5, 5, 5 hours (27). Week 4 surprise: +2 hours on the first unfinished bar in the order. If every bar is already finished (possible only after drops, since the smallest researchable plan is 15 hours and weeks 1 to 3 give 12), the card says instead: "A source you counted on is checked out, but you had already finished that part. No hours lost." Season report (one of): "Answered, with X hours to spare" (all finished, X of 2 or more); "Answered, just" (all finished, under 2 to spare); "Answered in part" (any unfinished or dropped), listing each unfinished sub-question with "Y of Z hours" and a suggested limits sentence: "This paper does not fully answer: {sub-question}." Under it, one line comparing the plan: "You planned H hours. The season needed H plus 2." (or "The season needed H." when the surprise cost nothing).
 
 ## Interactions in detail
 - Every chip change re-prices at once; with Motion on the bar slides and the stamp drops in (300 ms); with Motion off they change in place.
 - The Ledger adds a row only when the price changes and the student pauses 1.5 seconds, or presses **Keep in ledger**, so scrolling through chips does not fill it. Same question twice: the old row moves to the top.
 - Edit wording: the free sentence is kept with the ledger row; the price still follows the chips. Ten words or fewer gets a gentle note "Short questions often hide their scope. Check where and when."
-- Run the season: Run week is the only way time passes. Reorder and Drop are allowed before any week. The surprise card needs **OK** before week 4 runs. Fractional hours are kept exactly (6.75 shows as 6 3/4).
+- Run the season: Run week is the only way time passes. Each week's hours pour in over 600 ms (instant with Motion off); a tap on Run week, Back to pricing or anything else during a pour finishes that pour at once and acts. Reorder and Drop are allowed before any week. The surprise card needs **OK** before week 4 runs. Fractional hours are kept exactly in quarters (6.75 shows as 6 3/4).
+- Survey: turning on the survey and then choosing world or United States turns the survey off and hides the toggle.
 - Ending a season with spare hours: the report says where they could go ("Spare hours could go to a second draft or a stronger counterargument.").
 - Store: the ledger and the last question save to localStorage `qs-ledger` (try/catch); Clear ledger empties it.
 - Keyboard: builder chips are radio groups (arrow keys), then the price tag, then the ledger. In the season, the bars are a list; Alt+Up and Alt+Down move the focused bar.
@@ -93,18 +96,22 @@ Season: weeks 5, 5, 2, 5, 5, 5 hours (27). Week 4 surprise: +2 hours on the firs
 - Contrast (WCAG 2.1): white on brand 7.24:1; brand on paper 6.53:1, on panel 7.24:1; ink on paper 15.20:1; muted on paper 6.45:1, on panel 7.15:1; focus on panel 5.81:1, on paper 5.24:1; fits on panel 6.51:1; over on panel 7.37:1; ink on lilac 13.87:1. All pass AA.
 
 ## Art
-none: drawn in code (chips, sub-question tree, clock and book badges, season calendar, verdict stamps; preview.svg shows a tree with the 27-hour bar).
+Local FLUX (`scripts/localart.py`), no people. 10 images. The price tag, tree, badges, bars, calendar and stamps stay in code (they are the chart); the paintings make each focus a real thing to picture.
+- Focus pictures (kit of parts, one image each). Shared prompt: "a warm painted picture of [subject], soft daylight, simple uncluttered composition"; 4:3; cutout no; people no; the focus chip thumbnail (cropped square) and the picture beside the assembled question. Pieces: qs-streaming (a pair of headphones resting on a phone with a dark blank screen, on a bedside table); qs-school-music (a trumpet and a folding music stand in an empty school band room with chairs in rows); qs-small-venue (a tiny empty music club stage with a microphone stand, an amp and string lights); qs-youth-sports (a soccer ball on bright grass in front of a small goal net); qs-womens-leagues (a basketball resting on a polished arena court under bright lights, empty stands); qs-pickup-park (an outdoor park basketball court with a chain net at golden hour, a ball by the line); qs-school-lunch (a cafeteria tray with a sandwich, an apple, carrots and a milk carton with a plain blank label); qs-food-truck (a colorful food truck parked on a city street, its menu board painted plain and blank, side view); qs-community-garden (raised wooden garden beds full of tomatoes and greens, a watering can on the path).
+- qs-checked-out: an old library book lying on a wooden desk with a plain blank due-date card sticking out of its pocket; 4:3; cutout no; people no; the week 4 surprise card (the card's words in code).
+- Drawn in code: chips, sub-question tree, clock and book badges, the hours bar, season calendar and bars, verdict stamps; preview.svg shows the tree with the 27-hour bar and the qs-small-venue picture.
 
 ## Voice
-Bank voice `big-sister` ("Say in a friendly, youthful way, like a helpful older student"): a senior who just finished her own project. `Curio.voice`, scope the view, `welcomeAfter: true`.
-- w-price (how, welcome): "Pick an interest, a focus, and a kind of question. Then choose where and when, and watch the price."
-- answered (how, first Already answered): "A search already answers that one. Try how, why, or should."
-- broad (how, first Too broad): "That costs more hours than the season has. Make the place or the time smaller."
-- thin (how, first thin shelf): "Not enough sources for that. Widen the time, or add a survey."
-- fits (event, each time a question becomes researchable; stale if the chips change before it plays): "That one fits the season."
-- w-season (how, welcome of Run the season): "Put the sub-questions in order, then press Run week."
-- surprise (event, week 4 card): "A source is checked out. That costs two more hours."
-- done (event, season report): "Season's over. Here's what got answered."
+Bank voice `big-sister` (Leda, "Say in a friendly, youthful way, like a helpful older student"): a senior who just finished her own project. No neighbor or batch tool uses it (research siblings: research-notebook calm-professor, portrait-in-four-media knowing-guide, source-mixer news-reader, source-portfolio firm-captain). `Curio.voice`, scope the view, `welcomeAfter: true`. Results are read on screen in the Why this verdict box; each how line speaks only the first time its verdict appears.
+- w-price (how; Price it welcome; stale once any price shows): "Tap an interest, a focus and a kind of question. Then tap where and when, and watch the price."
+- answered (how; first Already answered; stale when the verdict changes): "A search already answers that one. Tap How, Why or Should instead."
+- broad (how; first Too broad; stale when the verdict changes): "That costs more hours than the season has. Tap a smaller place or a shorter time."
+- thin (how; first thin shelf at state or town; stale when the verdict changes): "Not enough sources for that. Tap a longer time, or turn on Add our own survey."
+- thin-far (how; first thin shelf at world or United States; stale when the verdict changes): "Not enough sources for that. Tap a longer time."
+- fits (event; each time the verdict changes into Researchable; stale if the chips change before it plays): "That one fits the season."
+- w-season (how; Run the season welcome; stale once week 1 runs): "Use Up and Down to put the sub-questions in order. Then press Run week."
+- surprise (event; each week 4 card that costs hours; stale once OK is pressed): "A source is checked out. That costs two more hours. Press OK to go on."
+- done (event; each season report; stale on Run again or Back to pricing): "Season's over. Here's what got answered."
 
 ## Family engine
 research (`kit/research.js`). No family doc exists yet; this is the full description, written so the lower grades can reuse it. Members: Big Question Chart (K-2), Note Card Shuffle (3), Research Rover (4), Fact Fusion (5), Source Sorter (6), Summary Scaffold (ELD 6-8), Research Notebook (9), Portrait in Four Media (10), Source Mixer (11), this tool (12) and Source Portfolio (library 9-12). Each part works alone; a tool loads the ones it needs.
@@ -125,6 +132,7 @@ research (`kit/research.js`). No family doc exists yet; this is the full descrip
 - Researchable questions, narrowing and broadening: CCSS ELA W.11-12.7, https://www.thecorestandards.org/ELA-Literacy/W/11-12/
 - AASL National School Library Standards (2018), shared foundation Inquire ("Build new knowledge by inquiring, thinking critically, identifying problems, and developing strategies for solving problems"), https://standards.aasl.org/framework/
 - The price model, interests, focuses and stems are written for Curio Class and state no facts about music, sports or food; the source counts are a model, said so on screen.
+- Checks run 2026-10-29 (Python, scratch qs.py): every Done when price recomputed and matches (13.5 h, 0 sources, thin; 19.5 h, 2, room; 81 h, broad; 27 h, 4, no slack; 18 h, 3, room). All 288 settings per source base enumerated (3 bases, which the 9 focuses share; 4 kinds, 4 places, 4 times, survey where offered): broad 99, one fact 56, thin 42, no slack 35, room 22, no change 18, already answered 16; every focus has at least 3 researchable settings for each of How, Why and Should. Thin shelf without a survey offered: 6 settings per base set, all at world or United States with this year, so the Why line and the voice no longer offer a survey there (fixed). Smallest researchable plan 15 hours (Why, town, this year, with survey), so the week 4 surprise always finds an unfinished bar unless the student drops some; the no-target card was added. The survey's 6 hours had no bar in the season; Our survey was added. Season run for every researchable setting with no drops: every "room to spare" ends "Answered, with X hours to spare" (22 of 22); "no slack" ends "Answered, just" (14) or "Answered in part" (21). The 27-hour season ends with bar 4 at 19/4 of 27/4 hours and the 18-hour season with 7 to spare, as in Done when. Hours per sub-question are always whole, halves or quarters. Contrast ratios recomputed; all match Look.
 
 ## Done when
 1. "Why do small music venues close in our town since 2000?" prices at 3 sub-questions x 4.5 hours = 13.5 hours, 0 sources each, stamp "Too narrow: thin shelf"; adding the survey gives 19.5 hours, 2 sources, "Researchable: room to spare".
@@ -135,7 +143,10 @@ research (`kit/research.js`). No family doc exists yet; this is the full descrip
 6. Dropping a sub-question before week 1 lists it in the report as a limit; the season cannot start without at least one sub-question.
 7. Ledger keeps up to 20 rows, reloads a row into the builder, survives reload, and Clear ledger (after Yes) empties it; no network requests; console clean.
 8. At every size in STANDARDS.md the assembled question, the verdict stamp and Run week are visible without scrolling the page; 375 wide works in `drive.py --host`.
-9. Voice: welcome once per view, each how line once, "That one fits the season" every time a question becomes researchable; only "Curio Class" appears.
+9. Voice: welcome once per view, each how line once, "That one fits the season" every time a question becomes researchable; no thin-shelf line or Why line offers a survey at world or United States; only "Curio Class" appears.
+10. Focus: in Price it at 1366x768 the assembled question and the Price tag (bar and stamp) are the widest, central block; in Run the season the bars are.
+11. Tapping Run week twice fast, or Back to pricing during a pour, acts at once: the first pour completes instantly and nothing waits on the animation.
+12. A season with a survey shows an Our survey bar; dropping bars until all are done by week 3 shows the no-hours-lost surprise card and the plan line without "plus 2".
 
 ## Open questions
 - [question-sharpener] The overlap pass kept the tycoon format; here the tycoon currency is hours in a research season, not money. Does that meet the reshape, or should the format label change to simulator?
