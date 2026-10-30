@@ -17,7 +17,9 @@ Facts: Advance CTE, Career Clusters Framework (2024); U.S. Bureau of Labor Stati
 sources.md); BLS Occupational Employment and Wage Statistics, May 2025, national (median pay, jobs). Career
 descriptions, paths and Try it now: written for grades 6-8 (scripts/careers_data.py). The town, hotspots and trails
 are made up for this tool. Uses the careers family engine (kit:careers, docs/families/careers.md).
-Everything is drawn in code. One file, no network requests. Content CC BY 4.0, code MIT. curioclass.org
+The town is painted: a land strip and one sprite per place, drawn with FLUX.1-schnell (Apache 2.0) on a local
+computer, edited for Curio Class (art/prompts.json); the sky, lights, road and every sign and number are drawn in code.
+One file, no network requests. Content CC BY 4.0, code MIT. curioclass.org
 -->
 <link rel="stylesheet" href="kit:curio">
 <style>
@@ -98,7 +100,7 @@ body.compact[data-mode=trails] .hint{min-height:calc(3 * 1.32em)}
 body.compact .stopbox{gap:3px}body.compact .stopbox .sn{font-size:11px}body.compact .stopbox .who{font-size:15px}body.compact .stopbox .who .em{font-size:24px}
 body.compact .endrow{padding:6px 8px}body.compact .endrow p{font-size:13.5px;margin-bottom:4px}body.compact .chip{font-size:12px;padding:2px 8px 2px 5px}
 .stopbox .ts{display:none}body.compact .stopbox .tn{display:none}body.compact .stopbox .ts{display:inline}
-.stopbox{background:var(--b1);border-radius:14px;padding:10px 12px;display:flex;flex-direction:column;gap:6px;min-height:118px}
+.stopbox{background:var(--b1);border-radius:14px;padding:10px 12px;display:flex;flex-direction:column;gap:6px;min-height:96px}
 .stopbox .sn{font-size:12.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
 .stopbox .who{display:flex;gap:10px;align-items:center;font-weight:800;font-size:17px}
 .stopbox .who .em{font-size:30px;line-height:1}
@@ -164,6 +166,43 @@ body.stack .stage{min-height:0}
 .mk.stop::before{content:attr(data-n);display:grid;place-items:center;width:30px;height:30px;font:900 13px/1 'Segoe UI',sans-serif;color:#1a1438;background:var(--lamp)}
 .mk.stop.cur::before{background:#fff;box-shadow:0 0 0 5px var(--lamp),0 0 22px 6px #ffd36ecc}
 .mk.off{display:none}
+/* Trails: each stop's job is drawn on the map (drawTrailCards): the current stop's card, a compact label at each
+   earlier stop, a pointer line to each dot, and the trail's end line pinned at the top of the town */
+#tlines{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1}
+#tcards{position:absolute;inset:0;pointer-events:none;z-index:3}
+.tcard{position:absolute;box-sizing:border-box;width:290px;background:var(--panel);color:var(--ink);border:2px solid var(--lamp);border-radius:14px;box-shadow:0 10px 30px #000c;padding:9px 12px 11px}
+.tcard .tsn{display:block;font:800 12px/1.2 'Segoe UI',sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.tcard .tw{display:flex;gap:10px;align-items:center;margin:5px 0 7px}
+.tcard .tw .em{font-size:38px;line-height:1;flex:none}
+.tcard .tt{display:block;font:800 19px/1.2 'Segoe UI',sans-serif}
+.tcard .tcl{display:flex;gap:6px;align-items:center;margin-top:3px;font:700 13.5px/1.25 'Segoe UI',sans-serif;color:var(--muted)}
+.tlamp{flex:none;display:inline-block;width:11px;height:15px;border-radius:4px 4px 6px 6px;background:var(--lc);box-shadow:0 0 8px var(--lc)}
+.tcard p{margin:0;font-size:15.5px;line-height:1.4}
+.tcard.sm{padding:7px 9px 8px;border-radius:12px}.tcard.sm .tsn{font-size:10.5px}.tcard.sm .tw{gap:8px;margin:3px 0 5px}.tcard.sm .tw .em{font-size:28px}
+.tcard.sm .tt{font-size:15.5px}.tcard.sm .tcl{font-size:12px}.tcard.sm p{font-size:13px;line-height:1.35}
+.tcard.xs{padding:6px 8px 7px;border-radius:11px}.tcard.xs .tsn{font-size:10px}.tcard.xs .tw{gap:6px;margin:2px 0 4px}.tcard.xs .tw .em{font-size:24px}
+.tcard.xs .tt{font-size:14.5px}.tcard.xs .tcl{font-size:11.5px}.tcard.xs p{font-size:12.5px;line-height:1.3}
+/* flat: a wide, short card for a cramped town (it sits above or below its dot, with a longer pointer) */
+.tcard.flat .tw>div{display:flex;flex-wrap:wrap;align-items:center;column-gap:8px}.tcard.flat .tcl{margin-top:0}
+.tcard.flat .tsn{display:none}.tcard.flat{padding:5px 8px 6px}.tcard.flat .tw{margin:0 0 3px}   /* the panel still says Stop N of M */
+.tcard.lg{padding:12px 16px 14px}.tcard.lg .tsn{font-size:13.5px}.tcard.lg .tw .em{font-size:46px}.tcard.lg .tt{font-size:23px}.tcard.lg .tcl{font-size:15.5px}.tcard.lg p{font-size:18px}
+.tcard.in{animation:tcin .3s ease-out 1}
+@keyframes tcin{0%{opacity:0;transform:translateY(6px)}100%{opacity:1;transform:none}}
+.tlab{position:absolute;box-sizing:border-box;background:#0d0a22f2;color:var(--ink);border:1.5px solid var(--b3);border-left:5px solid var(--lc);border-radius:8px;padding:3px 8px 3px 6px;font:700 13px/1.3 'Segoe UI',sans-serif;white-space:nowrap}
+.tlab span{display:flex;gap:6px;align-items:center}
+.tlab i{font-style:normal;display:inline-grid;place-items:center;min-width:18px;height:18px;border-radius:50%;background:var(--lamp);color:#1a1438;font:900 11px/1 'Segoe UI',sans-serif}
+.tlab.sm{font-size:11.5px;padding:2px 6px 2px 5px}.tlab.sm i{min-width:16px;height:16px;font-size:10px}
+.tlab.lg{font-size:15px}.tlab.lg i{min-width:21px;height:21px;font-size:12px}
+.tend{position:absolute;z-index:5;top:8px;left:50%;transform:translateX(-50%);box-sizing:border-box;width:max-content;max-width:calc(100% - 16px);background:#241d4af5;border:2px solid var(--lamp);border-radius:14px;box-shadow:0 10px 30px #000c;padding:8px 14px 10px;text-align:center;pointer-events:none}
+.tend p{margin:0 0 6px;font:800 19px/1.25 'Segoe UI',sans-serif;color:var(--ink)}
+.tend .chips{justify-content:center}
+.tend.sm{padding:5px 9px 7px;border-radius:12px}.tend.sm p{font-size:15px;margin-bottom:4px}.tend.sm .chip{font-size:12px;padding:2px 8px 2px 5px}
+.tend.lg p{font-size:24px}.tend.lg .chip{font-size:15.5px}
+.calm .tcard.in{animation:none}
+/* the kit's .calm gives every element a .01 ms transition, which makes a size read right after a class change stale */
+#tcards,#tcards *,#tend,#tend *{transition-property:none!important}
+/* on a phone the ◀ ▶ buttons would sit over the trail's cards: in Trails, Next and Back pan the town (drag and the minimap still work) */
+body.narrow[data-mode=trails] .pan-btn{display:none}
 .pan-btn{position:absolute;top:50%;transform:translateY(-50%);z-index:4;width:44px;height:64px;border:2px solid #ffffff55;background:#0d0a22cc;color:var(--ink);font-size:20px;border-radius:12px}
 #panL{left:6px}#panR{right:6px}
 #mini{position:relative;flex:none;height:16px;background:#0d0a22;cursor:pointer}
@@ -320,8 +359,11 @@ body.compact .lj .see{padding:0 8px;font-size:12.5px}body.compact .ladder{gap:6p
       <div id="pan">
         <svg id="scene" viewBox="0 0 2400 900" preserveAspectRatio="none" aria-hidden="true"></svg>
         <svg id="trailsvg" viewBox="0 0 2400 900" preserveAspectRatio="none" aria-hidden="true"></svg>
+        <svg id="tlines" aria-hidden="true"></svg>
         <div id="marks"></div>
+        <div id="tcards" aria-hidden="true"></div>
       </div>
+      <div class="tend" id="tend" hidden></div>
       <button class="pan-btn" id="panL" aria-label="Pan left">◀</button>
       <button class="pan-btn" id="panR" aria-label="Pan right">▶</button>
       <div class="card" id="card" hidden role="dialog" aria-labelledby="cardTitle"></div>
@@ -382,22 +424,22 @@ body.compact .lj .see{padding:0 8px;font-size:12.5px}body.compact .ladder{gap:6p
     ['kids', 1170, 850, "The kids' craft corner", '', "the kids' craft corner", ['teacher', 'preschool', 'teacher-asst', 'childcare']],
     ['theater', 1190, 710, 'The theater tent with a short play', 'Ten minutes of story, written and performed tonight.', 'the theater tent', ['actor', 'writer']],
     ['screen', 1236, 345, 'The big screen beside the stage, showing a game tournament', 'Edited clips, animated scores, a game someone designed.', 'the big screen', ['film-editor', 'animator', 'game-design']],
-    ['artrow', 1290, 530, 'Art row: the festival poster, a photo booth and the costume parade float', '', 'art row', ['graphic-design', 'photographer', 'fashion']],
+    ['artrow', 1290, 640, 'Art row: the festival poster, a photo booth and the costume parade float', '', 'art row', ['graphic-design', 'photographer', 'fashion']],
     ['help', 1310, 830, 'The community help booth', 'Someone to talk to, and help finding help.', 'the community help booth', ['counselor', 'social-worker', 'psychologist', 'home-aide']],
-    ['food', 1330, 680, 'The food trucks and the ice cream freezer', '', 'the food trucks', ['chef', 'cook', 'hvac']],
-    ['field', 1420, 420, 'The youth soccer game under the lights', '', 'the soccer game', ['coach', 'athletic-trainer']],
+    ['food', 1316, 745, 'The food trucks and the ice cream freezer', '', 'the food trucks', ['chef', 'cook', 'hvac']],
+    ['field', 1467, 670, 'The youth soccer game under the lights', '', 'the soccer game', ['coach', 'athletic-trainer']],
     ['restrooms', 1440, 800, 'Restrooms and the water fountain', 'Clean water in, wastewater out.', 'the restrooms', ['plumber']],
-    ['firstaid', 1450, 600, 'The first aid tent', '', 'the first aid tent', ['nurse', 'paramedic']],
+    ['firstaid', 1603, 655, 'The first aid tent', '', 'the first aid tent', ['nurse', 'paramedic']],
     ['radio', 1560, 470, 'The local radio booth broadcasting from the fair', '', 'the radio booth', ['pr']],
-    ['braids', 1560, 720, 'The braids and face paint booth', '', 'the braids booth', ['stylist']],
+    ['braids', 1543, 745, 'The braids and face paint booth', '', 'the braids booth', ['stylist']],
     ['sponsor', 1590, 860, 'The sponsor tent with a "Which snack wins?" survey', '', 'the sponsor tent', ['marketing-mgr', 'market-research']],
-    ['library', 1700, 600, 'The new library on Main Street, open late', '', 'the library', ['architect', 'librarian']],
-    ['police', 1730, 820, 'A police officer at the crosswalk', 'Back at the lab, someone tests evidence from a stolen bike case.', 'the crosswalk', ['police', 'forensic']],
-    ['upstairs', 1800, 400, "Lit windows above the clinic: a dentist's office and a physical therapy gym", '', 'the windows above the clinic', ['hygienist', 'pt']],
+    ['library', 1700, 662, 'The new library on Main Street, open late', '', 'the library', ['architect', 'librarian']],
+    ['police', 1730, 820, 'A police car at the crosswalk', 'Back at the lab, someone tests evidence from a stolen bike case.', 'the crosswalk', ['police', 'forensic']],
+    ['upstairs', 1790, 500, "Lit windows above the clinic: a dentist's office and a physical therapy gym", '', 'the windows above the clinic', ['hygienist', 'pt']],
     ['clinic', 1840, 610, 'The evening clinic and pharmacy on Main Street', '', 'the clinic', ['doctor', 'pa', 'med-assist', 'pharmacist']],
     ['forsale', 1870, 820, 'A "For sale" sign on a house by the park', '', 'the For sale sign', ['realtor']],
-    ['bank', 1960, 520, 'The bank and its ATM, plus an insurance office next door', '', 'the bank', ['accountant', 'fin-advisor', 'actuary']],
-    ['hardware', 2000, 700, 'The hardware store, the fair\'s main sponsor, with a "Now hiring" sign', '', 'the hardware store', ['ops-mgr', 'hr', 'retail']],
+    ['bank', 1960, 600, 'The bank and its ATM, plus an insurance office next door', '', 'the bank', ['accountant', 'fin-advisor', 'actuary']],
+    ['hardware', 1958, 728, 'The hardware store, the fair\'s main sponsor, with a "Now hiring" sign', '', 'the hardware store', ['ops-mgr', 'hr', 'retail']],
     ['truck', 2010, 850, 'A delivery truck at the loading zone', 'Paper cups, ice, 600 pounds of corn.', 'the delivery truck', ['trucker', 'logistician', 'mover']],
     ['hotel', 2080, 420, 'The hotel lobby across the street', 'Full of out-of-town visitors this weekend.', 'the hotel', ['hotel-mgr', 'interior']],
     ['townhall', 2160, 590, 'Town hall: festival permits, contracts and the new park plan', '', 'town hall', ['lawyer', 'paralegal', 'planner', 'admin-asst']],
@@ -563,169 +605,110 @@ body.compact .lj .see{padding:0 8px;font-size:12.5px}body.compact .ladder{gap:6p
   function openCareer(id, ctx) { sheet.open(id, ctx); }
 
   // ======================================================================================
-  // THE SCENE: Maple Bend Harvest Night, flat layered shapes, 2400 x 900
+  // THE SCENE: Maple Bend Harvest Night, 2400 x 900: code sky, painted land and place sprites, code signs
   // ======================================================================================
   function drawScene() {
     const P = [];
     const r = (x, y, w, h, f, extra = '') => P.push(`<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="${f}" ${extra}/>`);
-    const poly = (pts, f, extra = '') => P.push(`<polygon points="${pts}" fill="${f}" ${extra}/>`);
     const circ = (x, y, rr, f, extra = '') => P.push(`<circle cx="${x}" cy="${y}" r="${rr}" fill="${f}" ${extra}/>`);
     const path = (d, f, extra = '') => P.push(`<path d="${d}" fill="${f}" ${extra}/>`);
     const text = (x, y, s, size, f, extra = '') => P.push(`<text x="${x}" y="${y}" font-size="${size}" fill="${f}" font-family="Trebuchet MS,Segoe UI,sans-serif" font-weight="800" text-anchor="middle" ${extra}>${s}</text>`);
-    const win = (x, y, w, h, cols, rows, lit = .7, seed = 1) => { let n = seed; for (let i = 0; i < cols; i++) for (let j = 0; j < rows; j++) { n = (n * 9301 + 49297) % 233280; r(x + i * w / cols + 4, y + j * h / rows + 4, w / cols - 8, h / rows - 8, n / 233280 < lit ? '#ffd36e' : '#1a1438', 'rx="2"'); } };
     P.push('<defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#120e2a"/><stop offset=".66" stop-color="#3b2a63"/></linearGradient>' +
       '<radialGradient id="glow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#ffd36e" stop-opacity=".55"/><stop offset="1" stop-color="#ffd36e" stop-opacity="0"/></radialGradient></defs>');
     r(0, 0, 2400, 900, 'url(#sky)');
     // stars
     let n = 7; for (let i = 0; i < 90; i++) { n = (n * 9301 + 49297) % 233280; const x = n / 233280 * 2400; n = (n * 9301 + 49297) % 233280; const y = 30 + n / 233280 * 330; circ(x.toFixed(0), y.toFixed(0), i % 5 ? 1.6 : 2.6, '#f3f0ff', `opacity="${i % 3 ? .5 : .85}"`); }
     circ(1560, 170, 40, '#f3f0ff', 'opacity=".9"'); circ(1575, 160, 36, '#3b2a63', 'opacity=".55"');
-    // far hills
-    path('M0 600 Q200 520 420 575 T900 560 T1400 575 T1900 550 T2400 560 V900 H0Z', '#2b2450');
-    // the ridge, the turbine, the power lines
-    path('M0 640 L0 520 Q120 470 240 540 Q300 580 360 600 L360 640Z', '#3a3166');
-    r(116, 300, 9, 225, '#cfc8f0'); poly('120,300 120,300 128,296', '#fff');
-    r(108, 290, 30, 16, '#e7e2fb', 'rx="6"');
-    [[0, -150], [130, 75], [-130, 75]].forEach(([dx, dy]) => P.push(`<path d="M122 298 L${122 + dx} ${298 + dy}" stroke="#e7e2fb" stroke-width="9" stroke-linecap="round"/>`));
-    circ(122, 298, 8, '#fff');
-    const poles = [[220, 520], [470, 545], [700, 520], [1660, 500]];
+    // painted art (FLUX.1-schnell, cut out): the land strip, then each place as a sprite standing on it.
+    // put(href, native w, native h, left x, bottom y, scale): bottom y is where the sprite meets the ground
+    const put = (href, w, h, x, b, k = 1, extra = '') => P.push(`<image href="${href}" x="${x}" y="${(b - h * k).toFixed(0)}" width="${(w * k).toFixed(0)}" height="${(h * k).toFixed(0)}" preserveAspectRatio="none" ${extra}/>`);
+    P.push('<defs>' +
+      '<linearGradient id="riv" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2f8fa6"/><stop offset="1" stop-color="#1d3f6e"/></linearGradient></defs>');
+    put('art:town-land', 2400, 591, 0, 900);
+    // power lines from the turbine into town
+    const poles = [[230, 540], [470, 560], [700, 540], [1660, 520]];
+    for (let i = 0; i < poles.length - 1; i++) { const [a, b] = poles[i], [c, d] = poles[i + 1]; [-18, 18].forEach(o => P.push(`<path d="M${a + o} ${b + 8} Q${(a + c) / 2} ${(b + d) / 2 + 50} ${c + o} ${d + 8}" stroke="#7d73b0" stroke-width="2" fill="none" opacity=".8"/>`)); }
     poles.forEach(([x, y]) => { r(x - 4, y, 8, 110, '#4b417c'); r(x - 22, y + 6, 44, 6, '#4b417c'); });
-    for (let i = 0; i < poles.length - 1; i++) { const [a, b] = poles[i], [c, d] = poles[i + 1]; [-18, 18].forEach(o => P.push(`<path d="M${a + o} ${b + 8} Q${(a + c) / 2} ${(b + d) / 2 + 50} ${c + o} ${d + 8}" stroke="#7d73b0" stroke-width="2" fill="none"/>`)); }
-    P.push('<path d="M140 520 Q180 540 216 528" stroke="#7d73b0" stroke-width="2" fill="none"/>');
-    // ground
-    path('M0 640 Q600 610 1200 625 T2400 630 V900 H0Z', '#221b46');
-    // farm: corn rows, barn, solar panels
-    for (let i = 0; i < 7; i++) P.push(`<path d="M${170 + i * 18} 720 L${200 + i * 26} 640" stroke="#4a5a2c" stroke-width="7" stroke-linecap="round"/>`);
-    poly('270,570 330,520 390,570 390,680 270,680', '#5a2f4f'); poly('260,575 330,515 400,575', '#3a3166');
-    r(312, 625, 36, 55, '#2b2450'); P.push('<path d="M312 625 L348 680 M348 625 L312 680" stroke="#7a4a6a" stroke-width="3"/>');
-    P.push('<polygon points="335,528 392,575 380,583 323,536" fill="#2b4a8a" stroke="#7fa4e8" stroke-width="2"/><path d="M345 537 L384 571 M357 547 L372 560" stroke="#7fa4e8" stroke-width="1.5"/>');
-    r(400, 600, 30, 80, '#4b417c', 'rx="14"'); circ(415, 600, 15, '#4b417c');
-    // river, heron, bridge, roadwork
-    path('M430 900 Q470 760 520 720 Q560 690 640 700 Q700 712 700 760 Q690 840 640 900Z', '#1d2f5a');
-    [[480, 820], [560, 760], [600, 860]].forEach(([x, y]) => P.push(`<path d="M${x} ${y} q12 -6 24 0 t24 0" stroke="#5b7fc4" stroke-width="3" fill="none"/>`));
-    P.push('<path d="M470 790 l0 -36 M470 754 q6 -14 16 -10 l8 2" stroke="#c9c3ea" stroke-width="3" fill="none"/>');
-    r(470, 655, 260, 18, '#6b5fa0'); P.push('<path d="M490 673 Q600 600 710 673" stroke="#6b5fa0" stroke-width="12" fill="none"/>');
-    for (let x = 500; x < 720; x += 30) r(x, 630, 4, 25, '#8d82c4');
-    r(470, 628, 260, 4, '#8d82c4');
-    poly('640,760 652,730 664,760', '#fb923c'); poly('680,770 692,740 704,770', '#fb923c');
-    r(560, 725, 70, 30, '#d9a53a', 'rx="4"'); r(600, 705, 26, 22, '#d9a53a'); P.push('<path d="M565 725 l-30 -30 l-18 18" stroke="#d9a53a" stroke-width="7" fill="none"/>');
-    circ(575, 760, 9, '#2b2450'); circ(615, 760, 9, '#2b2450');
-    // fair: fence, string lights
-    r(740, 700, 900, 6, '#4b417c'); for (let x = 740; x <= 1640; x += 45) r(x, 690, 5, 26, '#4b417c');
+    // the ridge: wind turbine on its hill
+    put('art:town-turbine', 377, 365, -68, 705);
+    // string-light poles (behind the fair's sprites)
     const sl = [[760, 330], [900, 360], [1060, 330], [1240, 345], [1420, 335], [1640, 345]];
+    sl.forEach(([x, y]) => r(x - 3, y, 6, 360, '#3a3166'));
+    // back row of the fair
+    put('art:town-ferris', 481, 642, 856, 678, .62);
+    put('art:town-radio', 130, 206, 1495, 620);
+    put('art:town-stage', 234, 159, 1021, 650, .85);
+    // big screen above the stage (numbers stay as code text)
+    r(1182, 404, 6, 120, '#8d82c4'); r(1120, 320, 130, 84, '#0d0a22', 'rx="6" stroke="#8d82c4" stroke-width="5"');
+    r(1134, 336, 44, 14, '#f472b6', 'rx="3"'); r(1192, 336, 44, 14, '#22d3ee', 'rx="3"'); text(1185, 390, '2 : 1', 30, '#f3f0ff');
+    // farm: barn with solar panels and corn
+    put('art:town-barn', 351, 211, 150, 702, .9);
+    // river below the bridge (the bridge sprite brings its own stretch of water)
+    path('M455 900 Q478 800 520 752 L700 752 Q720 800 690 900Z', 'url(#riv)', 'opacity=".9"');
+    [[500, 830], [585, 790], [610, 870]].forEach(([x, y]) => P.push(`<path d="M${x} ${y} q12 -6 24 0 t24 0" stroke="#7fd3e0" stroke-width="3" fill="none" opacity=".6"/>`));
+    put('art:town-bridge', 364, 147, 418, 762);
+    // weather board
+    r(726, 440, 8, 262, '#4b417c'); r(670, 360, 120, 90, '#1a1438', 'rx="8" stroke="#ffd36e" stroke-width="3"');
+    circ(700, 390, 14, '#ffd36e'); text(745, 398, '72°', 26, '#f3f0ff'); text(730, 434, 'CLEAR', 22, '#a3e635');
+    // middle row
+    put('art:town-gate', 195, 155, 770, 702, .8);
+    put('art:town-kettle', 156, 155, 921, 709, .7);
+    // art row, then the youth soccer field lying flat on the fairground behind the fence, under two light towers
+    put('art:town-artrow', 195, 140, 1222, 692, .7);
+    [1380, 1556].forEach(x => { r(x - 3, 552, 6, 112, '#6b5fa0'); r(x - 16, 544, 32, 12, '#ffd36e', 'rx="3"'); circ(x, 560, 54, 'url(#glow)'); });
+    put('art:town-soccer', 247, 75, 1368, 699, .8);
+    put('art:town-firstaid', 156, 184, 1560, 701, .55);
+    put('art:town-theater', 182, 198, 1136, 774, .6);
+    // fence along the fair
+    r(740, 700, 900, 6, '#4b417c'); for (let x = 740; x <= 1640; x += 45) r(x, 690, 5, 26, '#4b417c');
+    put('art:town-braids', 130, 152, 1500, 790, .65);
+    // string lights (in front of the rides, like the real thing)
     for (let i = 0; i < sl.length - 1; i++) {
       const [a, b] = sl[i], [c, d] = sl[i + 1], mx = (a + c) / 2, my = (b + d) / 2 + 40;
       P.push(`<path d="M${a} ${b} Q${mx} ${my} ${c} ${d}" stroke="#7d73b0" stroke-width="1.5" fill="none"/>`);
       for (let t = .1; t < 1; t += .1) { const x = (1 - t) ** 2 * a + 2 * (1 - t) * t * mx + t * t * c, y = (1 - t) ** 2 * b + 2 * (1 - t) * t * my + t * t * d; circ(x.toFixed(0), (y + 4).toFixed(0), 4, '#ffd36e'); }
     }
-    sl.forEach(([x, y]) => r(x - 3, y, 6, 360, '#3a3166'));
-    // weather board
-    r(726, 440, 8, 200, '#4b417c'); r(670, 360, 120, 90, '#1a1438', 'rx="8" stroke="#ffd36e" stroke-width="3"');
-    circ(700, 390, 14, '#ffd36e'); text(745, 398, '72°', 26, '#f3f0ff'); text(730, 434, 'CLEAR', 22, '#a3e635');
-    // gate
-    r(790, 560, 16, 140, '#6b5fa0'); r(890, 560, 16, 140, '#6b5fa0');
-    path('M780 570 Q848 500 916 570 L916 590 Q848 525 780 590Z', '#e8604c');
-    text(848, 548, 'FAIR', 24, '#fff7e0');
-    r(826, 640, 24, 40, '#1a1438', 'rx="4"'); r(830, 646, 16, 22, '#22d3ee', 'rx="2"');
-    // fire truck and the dispatch window
-    r(700, 760, 130, 50, '#c2414b', 'rx="6"'); r(800, 740, 40, 70, '#c2414b', 'rx="6"'); r(808, 748, 24, 20, '#9ad5f5', 'rx="3"');
-    P.push('<path d="M705 752 L800 740 M705 752 l0 6 M730 749 l0 8 M755 746 l0 8 M780 743 l0 8" stroke="#e7e2fb" stroke-width="4"/>');
-    circ(725, 815, 14, '#1a1438'); circ(810, 815, 14, '#1a1438'); r(812, 736, 16, 6, '#60a5fa', 'rx="2"');
-    // petting pen
-    r(848, 800, 130, 70, 'none', 'stroke="#8d6e4a" stroke-width="5"'); for (let x = 848; x <= 978; x += 26) r(x - 2, 795, 5, 75, '#8d6e4a');
-    const goat = (x, y, f) => { path(`M${x} ${y} q20 -14 40 0 l0 16 l-40 0z`, f); r(x + 4, y + 14, 4, 14, f); r(x + 32, y + 14, 4, 14, f); circ(x + 44, y - 6, 9, f); };
-    goat(866, 828, '#e7e2fb'); goat(920, 838, '#d9c4a8');
-    // kettle corn stand
-    r(930, 640, 95, 70, '#4b417c'); for (let i = 0; i < 5; i++) poly(`${928 + i * 20},640 ${948 + i * 20},640 ${938 + i * 20},620`, i % 2 ? '#fde68a' : '#e8604c');
-    r(926, 612, 103, 10, '#e8604c'); circ(978, 675, 22, '#2b2450', 'stroke="#c9c3ea" stroke-width="4"'); circ(970, 668, 4, '#fff7e0'); circ(984, 674, 4, '#fff7e0'); circ(976, 680, 4, '#fff7e0');
-    // Ferris wheel
-    P.push('<path d="M1000 420 L940 640 M1000 420 L1060 640" stroke="#8d82c4" stroke-width="10"/>');
-    circ(1000, 420, 175, 'none', 'stroke="#c9c3ea" stroke-width="7"'); circ(1000, 420, 150, 'none', 'stroke="#8d82c4" stroke-width="3"');
-    for (let i = 0; i < 12; i++) { const a = i * Math.PI / 6, x = 1000 + 175 * Math.cos(a), y = 420 + 175 * Math.sin(a); P.push(`<path d="M1000 420 L${x.toFixed(0)} ${y.toFixed(0)}" stroke="#8d82c4" stroke-width="3"/>`); r((x - 13).toFixed(0), (y + 4).toFixed(0), 26, 20, ['#f472b6', '#22d3ee', '#fbbf24', '#a3e635'][i % 4], 'rx="5"'); circ(x.toFixed(0), y.toFixed(0), 4, '#ffd36e'); }
-    circ(1000, 420, 18, '#ffd36e');
-    // office tent and crowd counter
-    poly('985,780 1040,740 1095,780', '#e7e2fb'); r(990, 780, 100, 60, '#c9c3ea'); r(1010, 790, 60, 36, '#1a1438', 'rx="4"');
-    [6, 12, 18, 26, 20].forEach((h, i) => r(1016 + i * 10, 820 - h, 7, h, '#22d3ee'));
-    // stage, scaffold, lights, the band's gear
-    r(1050, 600, 160, 50, '#4b417c'); r(1050, 480, 8, 120, '#8d82c4'); r(1202, 480, 8, 120, '#8d82c4'); r(1050, 476, 160, 10, '#8d82c4');
-    for (let x = 1058; x < 1200; x += 20) P.push(`<path d="M${x} 486 l20 20 m0 -20 l-20 20" stroke="#6b5fa0" stroke-width="1.5"/>`);
-    ['#f472b6', '#22d3ee', '#fbbf24', '#a3e635', '#c4b5fd'].forEach((f, i) => { poly(`${1068 + i * 30},486 ${1082 + i * 30},486 ${1086 + i * 30},500 ${1064 + i * 30},500`, '#2b2450'); P.push(`<path d="M${1065 + i * 30} 500 L${1040 + i * 34} 600 L${1110 + i * 26} 600Z" fill="${f}" opacity=".18"/>`); });
-    circ(1100, 585, 16, '#2b2450', 'stroke="#c9c3ea" stroke-width="3"'); r(1150, 555, 3, 45, '#c9c3ea'); circ(1151, 553, 6, '#2b2450');
-    // big screen
-    r(1120, 320, 130, 84, '#0d0a22', 'rx="6" stroke="#8d82c4" stroke-width="5"'); r(1182, 404, 6, 70, '#8d82c4');
-    r(1134, 336, 44, 14, '#f472b6', 'rx="3"'); r(1192, 336, 44, 14, '#22d3ee', 'rx="3"'); text(1185, 390, '2 : 1', 30, '#f3f0ff');
-    // theater tent
-    poly('1130,700 1190,650 1250,700', '#a14f8a'); r(1135, 700, 110, 50, '#7d3d6c'); P.push('<path d="M1190 700 L1190 750" stroke="#2b2450" stroke-width="6"/>'); for (let x = 1145; x < 1240; x += 22) r(x, 700, 8, 50, '#a14f8a');
-    // kids corner
-    r(1125, 845, 90, 10, '#c4b5fd', 'rx="3"'); r(1130, 855, 6, 25, '#c4b5fd'); r(1205, 855, 6, 25, '#c4b5fd');
-    circ(1145, 838, 8, '#f87171'); r(1160, 830, 16, 14, '#fbbf24'); circ(1192, 838, 8, '#22d3ee');
-    // art row: poster, photo booth, float
-    r(1240, 470, 60, 84, '#fef3c7', 'rx="4"'); circ(1270, 500, 16, '#e879f9'); r(1252, 525, 36, 8, '#fb923c');
-    r(1310, 490, 44, 70, '#2b2450', 'stroke="#e879f9" stroke-width="3"'); r(1318, 500, 28, 22, '#1a1438'); circ(1332, 511, 7, '#c9c3ea');
-    r(1240, 570, 110, 26, '#e879f9', 'rx="10"'); circ(1260, 600, 9, '#1a1438'); circ(1330, 600, 9, '#1a1438');
-    // help booth
-    r(1270, 800, 80, 60, '#3a3166'); r(1264, 790, 92, 12, '#22d3ee'); path('M1310 832 q-14 -14 -6 -22 q6 -6 6 2 q0 -8 6 -2 q8 8 -6 22z', '#f87171');
-    // food trucks and the freezer
-    r(1270, 650, 70, 50, '#d9a53a', 'rx="6"'); r(1280, 660, 40, 18, '#ffd36e'); circ(1285, 702, 9, '#1a1438'); circ(1325, 702, 9, '#1a1438');
-    r(1345, 655, 70, 45, '#5eead4', 'rx="6"'); r(1355, 663, 40, 16, '#ffd36e'); circ(1358, 702, 9, '#1a1438'); circ(1400, 702, 9, '#1a1438');
-    r(1352, 640, 20, 15, '#e7e2fb', 'rx="3"');
-    // soccer field under lights
-    path('M1360 690 L1520 690 L1500 640 L1380 640Z', '#2f6b3f'); P.push('<path d="M1440 640 L1440 690" stroke="#e7e2fb" stroke-width="2"/>');
-    [1370, 1510].forEach(x => { r(x - 3, 400, 6, 240, '#6b5fa0'); r(x - 18, 392, 36, 14, '#ffd36e', 'rx="3"'); circ(x, 420, 60, 'url(#glow)'); });
-    r(1385, 650, 4, 22, '#e7e2fb'); r(1385, 650, 20, 4, '#e7e2fb');
-    // restrooms and fountain
-    r(1400, 770, 80, 70, '#4b417c'); r(1410, 790, 24, 50, '#2b2450'); r(1446, 790, 24, 50, '#2b2450'); r(1490, 800, 14, 40, '#8d82c4'); P.push('<path d="M1497 798 q8 -12 16 0" stroke="#7fd3f5" stroke-width="3" fill="none"/>');
-    // first aid tent
-    poly('1400,600 1450,560 1500,600', '#f3f0ff'); r(1405, 600, 90, 50, '#e7e2fb'); r(1443, 608, 14, 34, '#e8604c'); r(1433, 618, 34, 14, '#e8604c');
-    // radio booth with mast
-    r(1525, 520, 70, 60, '#3a3166'); r(1557, 410, 6, 110, '#8d82c4'); circ(1560, 410, 8, '#f87171');
-    P.push('<path d="M1540 420 q20 -20 40 0 M1532 412 q28 -30 56 0" stroke="#f87171" stroke-width="3" fill="none"/>'); r(1532, 535, 56, 16, '#f472b6', 'rx="4"');
-    // braids booth
-    r(1520, 700, 80, 50, '#4b417c'); for (let i = 0; i < 4; i++) poly(`${1518 + i * 21},700 ${1539 + i * 21},700 ${1528 + i * 21},684`, i % 2 ? '#e879f9' : '#22d3ee');
-    // sponsor tent
-    poly('1540,850 1590,815 1640,850', '#fbbf24'); r(1545, 850, 90, 40, '#d9a53a'); r(1570, 856, 40, 22, '#1a1438', 'rx="3"'); r(1576, 868, 8, 6, '#a3e635'); r(1588, 862, 8, 12, '#f472b6');
-    // Main Street road and crosswalk
-    r(1640, 760, 760, 120, '#1a1438'); for (let x = 1690; x < 1790; x += 22) r(x, 800, 12, 50, '#e7e2fb', 'opacity=".7"');
-    for (let x = 1820; x < 2400; x += 70) r(x, 818, 34, 5, '#ffd36e', 'opacity=".6"');
-    // library
-    r(1650, 540, 110, 150, '#4b417c'); poly('1640,545 1705,500 1770,545', '#3a3166'); for (let x = 1662; x < 1760; x += 22) r(x, 560, 9, 120, '#8d82c4');
-    r(1690, 630, 30, 60, '#ffd36e'); text(1705, 532, 'LIBRARY', 18, '#f3f0ff');
-    // police officer at the crosswalk (a figure in flat shapes)
-    circ(1732, 778, 10, '#c9c3ea'); r(1724, 788, 17, 32, '#60a5fa', 'rx="5"'); r(1723, 768, 19, 6, '#1e3a8a', 'rx="2"');
-    // clinic with the lit windows above
-    r(1770, 340, 120, 350, '#3a3166'); win(1776, 360, 108, 90, 3, 2, .95, 3); r(1775, 470, 110, 6, '#2b2450');
-    r(1778, 560, 104, 100, '#2b2450'); r(1800, 600, 60, 60, '#9ad5f5'); r(1823, 570, 14, 26, '#e8604c'); r(1817, 576, 26, 14, '#e8604c');
-    // house with For sale sign
-    poly('1880,790 1910,770 1940,790', '#4b417c'); r(1885, 790, 50, 30, '#3a3166'); r(1902, 800, 14, 20, '#ffd36e');
-    r(1862, 810, 4, 34, '#c9c3ea'); r(1840, 800, 48, 22, '#f87171', 'rx="3"'); text(1864, 817, 'SALE', 14, '#fff7e0');
-    // bank and insurance office
-    r(1905, 470, 100, 220, '#4b417c'); poly('1898,476 1955,440 2012,476', '#3a3166'); for (let x = 1915; x < 2000; x += 24) r(x, 495, 10, 130, '#8d82c4');
-    r(1940, 640, 30, 50, '#2b2450'); r(1977, 650, 20, 28, '#22d3ee', 'rx="3"'); text(1955, 465, '$', 26, '#ffd36e');
-    // hardware store
-    r(1960, 650, 100, 110, '#5a4a8c'); r(1955, 640, 110, 22, '#fb923c'); text(2010, 658, 'HARDWARE', 16, '#1a1438');
-    r(1975, 680, 70, 40, '#ffd36e'); r(1985, 726, 50, 18, '#f3f0ff'); text(2010, 740, 'HIRING', 13, '#1a1438');
-    // hotel
-    r(2030, 330, 85, 370, '#3a3166'); win(2034, 350, 78, 260, 3, 6, .7, 11); r(2050, 640, 45, 60, '#ffd36e'); text(2072, 324, 'HOTEL', 18, '#f3f0ff');
-    // town hall
-    r(2120, 520, 100, 170, '#4b417c'); path('M2140 520 Q2170 470 2200 520Z', '#6b5fa0'); r(2167, 455, 6, 25, '#8d82c4'); poly('2173,455 2195,462 2173,469', '#f87171');
-    for (let x = 2130; x < 2215; x += 20) r(x, 540, 8, 120, '#8d82c4'); r(2155, 640, 30, 50, '#ffd36e');
-    // delivery truck
-    r(1945, 830, 85, 45, '#e7e2fb', 'rx="4"'); r(2030, 845, 30, 30, '#60a5fa', 'rx="4"'); r(2036, 850, 16, 12, '#9ad5f5'); circ(1965, 878, 10, '#0d0a22'); circ(2040, 878, 10, '#0d0a22');
-    // auto shop and tow truck
-    r(2130, 720, 120, 70, '#3a3166'); r(2140, 735, 60, 50, '#ffd36e'); r(2126, 712, 128, 12, '#22d3ee');
-    r(2205, 760, 60, 30, '#fbbf24', 'rx="4"'); P.push('<path d="M2210 760 l-25 -20 l0 25" stroke="#c9c3ea" stroke-width="4" fill="none"/>'); circ(2220, 792, 9, '#0d0a22'); circ(2255, 792, 9, '#0d0a22');
-    // airport hill and beacon
-    path('M2230 700 Q2310 560 2400 580 V700Z', '#3a3166'); r(2304, 500, 12, 110, '#8d82c4'); circ(2310, 498, 14, '#22d3ee'); circ(2310, 498, 46, 'url(#glow)');
-    P.push('<path d="M2310 498 L2400 470 L2400 520Z" fill="#a5f3fc" opacity=".2"/>');
-    // the plane and its trail
-    P.push('<path d="M2060 300 Q2150 282 2205 274" stroke="#c9c3ea" stroke-width="3" stroke-dasharray="10 10" fill="none" opacity=".6"/>');
-    path('M2200 272 L2268 262 Q2280 262 2276 270 L2210 282Z', '#e7e2fb'); poly('2232,268 2250,244 2258,246 2246,268', '#c9c3ea'); poly('2232,278 2246,296 2254,294 2246,276', '#c9c3ea');
-    circ(2272, 264, 4, '#f87171'); circ(2214, 276, 3, '#4ade80');
-    // a little foreground grass
-    path('M0 900 L0 860 Q300 840 600 870 T1200 860 T1640 870 L1640 900Z', '#1a1438');
+    // front row of the fair
+    put('art:town-firetruck', 195, 112, 710, 834, .75);
+    put('art:town-foodtrucks', 221, 98, 1248, 778, .62);
+    put('art:town-petting', 195, 88, 827, 856, .75);
+    put('art:town-office', 156, 133, 985, 858, .7);
+    put('art:town-kids', 143, 86, 1117, 885, .75);
+    put('art:town-help', 130, 136, 1265, 880, .7);
+    put('art:town-restrooms', 156, 130, 1386, 843, .7);
+    put('art:town-sponsor', 143, 101, 1533, 886, .8);
+    // Main Street: the far side, back to front
+    put('art:town-airport', 234, 214, 2192, 659);
+    circ(2310, 470, 46, 'url(#glow)'); P.push('<path d="M2310 470 L2400 440 L2400 492Z" fill="#a5f3fc" opacity=".18"/>');
+    put('art:town-clinic', 182, 234, 1735, 700, 1.2);
+    put('art:town-hotel', 130, 246, 2002, 700, 1.2);
+    put('art:town-library', 182, 215, 1632, 702, .75);
+    put('art:town-bank', 169, 194, 1880, 702, .9);
+    put('art:town-townhall', 156, 187, 2090, 702);
+    put('art:town-hardware', 169, 108, 1925, 772);
+    put('art:town-house', 156, 144, 1828, 826, .75);
+    put('art:town-autoshop', 195, 102, 2080, 822);
+    // the road, crosswalk and lane lines
+    P.push('<defs><linearGradient id="road" x1="1600" y1="0" x2="2400" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#1a1438" stop-opacity="0"/><stop offset=".08" stop-color="#1a1438" stop-opacity=".92"/></linearGradient></defs>');
+    r(1600, 818, 800, 72, 'url(#road)', 'rx="10"'); for (let x = 1690; x < 1790; x += 22) r(x, 826, 12, 56, '#e7e2fb', 'opacity=".7"');
+    for (let x = 1820; x < 2400; x += 70) r(x, 852, 34, 5, '#ffd36e', 'opacity=".6"');
+    put('art:town-policecar', 156, 75, 1672, 872, .75);
+    put('art:town-deliverytruck', 162, 84, 1945, 889, .8);
+    // signs as code text over the painted walls
+    text(848, 600, 'FAIR', 22, '#fff7e0');
+    text(1700, 590, 'LIBRARY', 17, '#f3f0ff');
+    r(1834, 780, 40, 20, '#c2414b', 'rx="3"'); text(1854, 795, 'SALE', 12, '#fff7e0');
+    text(1956, 572, '$', 26, '#ffd36e');
+    text(2037, 690, 'HARDWARE', 14, '#1a1438');
+    r(1990, 724, 50, 16, '#f3f0ff', 'rx="2"'); text(2015, 737, 'HIRING', 12, '#1a1438');
+    text(2080, 400, 'HOTEL', 18, '#f3f0ff');
+    // the plane and its trail (the painted plane faces left, so it flies left)
+    P.push('<path d="M2400 250 Q2340 262 2300 266" stroke="#c9c3ea" stroke-width="3" stroke-dasharray="10 10" fill="none" opacity=".6"/>');
+    put('art:town-plane', 130, 74, 2165, 307);
     $('scene').innerHTML = P.join('');
     // the minimap: the skyline in silhouette
-    $('miniSvg').innerHTML = '<rect width="2400" height="100" fill="#1a1438"/>' +
-      '<path d="M0 100 L0 70 Q120 40 240 70 L260 70 L270 45 L390 45 L400 70 L740 70 L740 60 L840 40 L916 60 L1000 10 L1060 60 L1250 60 L1250 50 L1640 55 L1650 40 L1770 40 L1770 5 L1890 5 L1890 30 L2030 30 L2030 0 L2115 0 L2115 30 L2220 30 L2310 55 L2400 50 V100Z" fill="#4b417c"/>';
+    $('miniSvg').innerHTML = '<rect width="2400" height="100" fill="#0d0a22"/>' +
+      '<path d="M0 100 L0 72 Q100 45 160 62 L170 45 L300 30 L466 55 L740 62 L770 50 L926 50 L940 40 L1000 8 L1060 40 L1120 30 L1250 30 L1250 48 L1495 48 L1495 35 L1625 35 L1632 45 L1735 45 L1735 22 L2002 22 L2002 16 L2158 16 L2158 38 L2246 38 L2260 50 L2310 35 L2400 55 V100Z" fill="#8d82c4"/>';
   }
 
   // ======================================================================================
@@ -785,6 +768,7 @@ body.compact .lj .see{padding:0 8px;font-size:12.5px}body.compact .ladder{gap:6p
     $('miniView').style.left = Math.max(0, state.pan / state.s * k) + 'px';
     $('miniView').style.width = Math.min(state.W, state.W / state.s * k) + 'px';
     if (state.card) placeCard();
+    clipLabs();
   }
   function panTo(p, animate = true) {
     cancelAnimationFrame(panAnim);
@@ -952,17 +936,16 @@ body.compact .lj .see{padding:0 8px;font-size:12.5px}body.compact .ladder{gap:6p
   function goStop(i) {
     const t = TRAILS[state.trail]; if (!t) return;
     state.stop = Math.max(0, Math.min(t.stops.length - 1, i));
-    const h = H[HOME[t.stops[state.stop][0]]];
-    centerOn(h);
     drawTrail(); drawLanterns(); drawMarkers(); drawPanel(); drawHint();
+    drawTrailCards(true); panToTrail(true);
     // a button that just disabled itself hands focus on: Next at the end to Open career, Back at the start to Next
     const a = document.activeElement;
     if (a === $('next') && a.disabled) $('openCareer').focus({preventScroll: true});
     if (a === $('back') && a.disabled) $('next').focus({preventScroll: true});
-    // stacked: the trail's result sits under the stage, so bring it into view
-    if (state.stop === t.stops.length - 1 && document.body.classList.contains('stack')) {
-      const er = $('endrow').getBoundingClientRect();
-      if (er.bottom > innerHeight) scrollBy({top: er.bottom - innerHeight + 12, behavior: Curio.reduce ? 'auto' : 'smooth'});
+    // stacked: the map holds the stop's card and the trail's result, so bring the town into view if it scrolled off
+    if (document.body.classList.contains('stack')) {
+      const tr = $('town').getBoundingClientRect();
+      if (tr.top < 0) scrollBy({top: tr.top - 8, behavior: Curio.reduce ? 'auto' : 'smooth'});
     }
     if (state.stop === t.stops.length - 1) {
       const n = trailClusters(t).length, tr = state.trail;
@@ -981,6 +964,156 @@ body.compact .lj .see{padding:0 8px;font-size:12.5px}body.compact .ladder{gap:6p
       pts.forEach(h => { s += `<circle cx="${h.x}" cy="${h.y}" r="70" fill="url(#glow)"/>`; });
     }
     svg.innerHTML = '<defs><radialGradient id="glow2" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#ffd36e" stop-opacity=".5"/><stop offset="1" stop-color="#ffd36e" stop-opacity="0"/></radialGradient></defs>' + s.replace(/url\(#glow\)/g, 'url(#glow2)');
+  }
+
+  // the jobs on the map (Cory's review, 2026-10-29): the current stop's card beside its numbered dot with a pointer,
+  // a compact label (number and title) at each earlier stop, and at the last stop the end line pinned at the top.
+  // Everything sits in #pan coordinates (pixels, scene x * s), so it moves with the town. Placement tries spots
+  // around each dot and keeps the first that stays inside the town and clear of every stop dot, the end line and
+  // what is already placed; the town then pans so the card is in view.
+  const DOTR = 22;   // a stop dot's box (the 44 px marker) as a half-size
+  const ovl = (a, b) => Math.max(0, Math.min(a.x + a.w, b.x + b.w) - Math.max(a.x, b.x)) * Math.max(0, Math.min(a.y + a.h, b.y + b.h) - Math.max(a.y, b.y));
+  function trailSize() {
+    const b = document.body.classList;
+    return b.contains('narrow') || b.contains('compact') || state.Hh < 420 ? 'sm' : state.Hh >= 760 && state.W >= 1100 ? 'lg' : 'md';
+  }
+  // every spot for a w x h box, clamped inside the town, scored: overlap first, then pointer length (and, for the card,
+  // how far it and its dot run past the room between the ◀ ▶ buttons), best first
+  function rankBoxes(w, h, dot, cands, obst, bounds, room) {
+    return cands.map(([x, y], i) => {
+      x = Math.max(bounds.x0, Math.min(bounds.x1 - w, x)); y = Math.max(bounds.y0, Math.min(bounds.y1 - h, y));
+      const r = {x, y, w, h};
+      let bad = 0; obst.forEach(o => { bad += ovl(r, o) * (o.wt || 1); });
+      if (y < bounds.y0 - .5 || y + h > bounds.y1 + .5) bad += 1e7;
+      const cx = Math.max(x, Math.min(x + w, dot.x)), cy = Math.max(y, Math.min(y + h, dot.y));
+      const wide = room ? Math.max(0, Math.max(x + w, dot.x + DOTR) - Math.min(x, dot.x - DOTR) - room) * 3 : 0;
+      return {...r, bad, score: Math.hypot(cx - dot.x, cy - dot.y) + wide + i * .01};
+    }).sort((a, b) => a.bad - b.bad || a.score - b.score);
+  }
+  // spots around a dot for a w x h box: above and below (centered, then slid), beside it, then the corners
+  function spotsAround(dot, w, h, g0) {
+    const out = [];
+    for (const g of [g0, g0 * 1.6, g0 * 2.4]) {
+      const xs = [dot.x - w / 2, dot.x - w * .2, dot.x - w * .8, dot.x - g / 2, dot.x - w + g / 2];
+      const ys = [dot.y - h / 2, dot.y - h * .25, dot.y - h * .75, dot.y - g / 2, dot.y - h + g / 2];
+      xs.forEach(x => out.push([x, dot.y - g - h])); xs.forEach(x => out.push([x, dot.y + g]));
+      ys.forEach(y => out.push([dot.x + g, y])); ys.forEach(y => out.push([dot.x - g - w, y]));
+      [[1, 1], [-1, 1], [1, -1], [-1, -1]].forEach(([sx, sy]) => out.push([sx > 0 ? dot.x + g * .7 : dot.x - g * .7 - w, sy > 0 ? dot.y + g * .7 : dot.y - g * .7 - h]));
+    }
+    // last: at the top or the bottom of the town, over the dot (clamped in), with a long pointer
+    [.5, .2, .8].forEach(f => { out.push([dot.x - w * f, -1e5]); out.push([dot.x - w * f, 1e5]); });
+    return out;
+  }
+  function drawTrailCards(fresh) {
+    const lay = $('tcards'), lines = $('tlines'), end = $('tend');
+    const t = state.mode === 'trails' && state.trail !== null ? TRAILS[state.trail] : null;
+    state.tlay = null;
+    if (!t || !(state.Hh > 0)) { lay.innerHTML = ''; lines.innerHTML = ''; end.hidden = true; return; }
+    const s = state.s, PW = 2400 * s, Hh = state.Hh, size = trailSize(), last = state.stop === t.stops.length - 1;
+    // the end line, pinned at the top of the town (stage coordinates, so it never pans away)
+    let top0 = 6;
+    end.hidden = !last;
+    if (last) {
+      const cls = trailClusters(t);
+      end.className = 'tend ' + size;
+      end.innerHTML = `<p>${esc(t.end)} ${cls.length} clusters</p><div class="chips">${cls.map(k => `<span class="chip"><i class="dot" style="background:${col(k)}"></i>${SHORT[k]}</span>`).join('')}</div>`;
+      top0 = end.offsetTop + end.offsetHeight + 8;
+    }
+    const bounds = {x0: 6, x1: PW - 6, y0: top0, y1: Hh - 6};
+    // the trail's dots (one per hotspot) and which stops each holds
+    const dots = [];
+    t.stops.forEach(([id], i) => {
+      const h = H[HOME[id]]; let d = dots.find(o => o.id === h.id);
+      if (!d) dots.push(d = {id: h.id, x: h.x * s, y: h.y * s, stops: []});
+      d.stops.push(i);
+    });
+    const [cid, line] = t.stops[state.stop], c = C[cid], curDot = dots.find(d => d.stops.includes(state.stop));
+    const nextDot = state.stop < t.stops.length - 1 ? dots.find(d => d.stops.includes(state.stop + 1)) : null;
+    const dotBox = (d, pad = 0) => ({x: d.x - DOTR - pad, y: d.y - DOTR - pad, w: 2 * (DOTR + pad), h: 2 * (DOTR + pad)});
+    // first every dot is off limits; if nothing fits clean at any size, only this stop's dot and the next one's are
+    const hard = dots.map(d => ({...dotBox(d, 4), wt: 1e4}));
+    const soft = dots.map(d => ({...dotBox(d, 4), wt: d === curDot || d === nextDot ? 1e4 : 1}));
+    lay.innerHTML = '';
+    // compact labels at the earlier stops (one label per dot, a line per stop), measured first
+    const labEls = [];
+    dots.forEach(d => {
+      const prev = d.stops.filter(i => i < state.stop);
+      if (!prev.length) return;
+      const el = document.createElement('div');
+      el.className = 'tlab ' + size;
+      el.style.setProperty('--lc', col(C[t.stops[prev[prev.length - 1]][0]].cluster));
+      el.innerHTML = prev.map(i => `<span><i>${i + 1}</i>${esc(C[t.stops[i][0]].name)}</span>`).join('');
+      lay.append(el);
+      labEls.push({d, el, w: el.offsetWidth, h: el.offsetHeight, last: Math.max(...prev)});
+    });
+    labEls.sort((a, b) => b.last - a.last);   // the most recent stops get the first pick of spots
+    // the current card: for its best spots, place the labels too and keep the cleanest whole layout;
+    // try the size for this screen first, then smaller ones until everything fits clean
+    const card = document.createElement('div');
+    card.innerHTML = `<span class="tsn">Stop ${state.stop + 1} of ${t.stops.length}</span>
+      <div class="tw"><span class="em">${c.emoji}</span><div><b class="tt">${esc(c.name)}</b><span class="tcl"><i class="tlamp" style="--lc:${col(c.cluster)}"></i>${esc(CL[c.cluster])}</span></div></div><p>${esc(line)}</p>`;
+    lay.append(card);
+    const widths = {lg: 340, md: 290, sm: 240, xs: 200}, room = state.W - (document.body.classList.contains('narrow') ? 16 : 112);
+    const tries = size === 'lg' ? ['lg', 'md', 'sm'] : size === 'md' ? ['md', 'sm', 'xs'] : ['sm', 'xs', 'flat'];
+    const cls = z => z === 'flat' ? 'xs flat' : z, wOf = z => z === 'flat' ? Math.min(360, room) : Math.min(widths[z], state.W - 16);
+    let best = null;
+    for (const obst of [hard, soft]) for (const z of tries) {
+      if (best && !best.bad) break;
+      card.className = 'tcard ' + cls(z); card.style.width = wOf(z) + 'px';
+      const w = card.offsetWidth, h = card.offsetHeight;
+      const cands = rankBoxes(w, h, curDot, spotsAround(curDot, w, h, 30), obst, bounds, room).slice(0, 16);
+      for (const cb of cands) {
+        const placed = [{...cb, wt: 1e4}], labs = [];
+        let bad = cb.bad;
+        labEls.forEach(L => {
+          const b = rankBoxes(L.w, L.h, L.d, spotsAround(L.d, L.w, L.h, 26), [...obst, ...placed], bounds)[0];
+          bad += b.bad; placed.push({...b, wt: 1e4}); labs.push({...L, ...b});
+        });
+        if (!best || bad < best.bad || (bad === best.bad && cb.score < best.cb.score)) best = {z, cb, labs, bad};
+        if (!bad) break;
+      }
+    }
+    const cb = best.cb, labs = best.labs;
+    card.className = 'tcard ' + cls(best.z); card.style.width = wOf(best.z) + 'px';
+    if (fresh && !Curio.reduce) card.classList.add('in');
+    card.style.left = cb.x + 'px'; card.style.top = cb.y + 'px';
+    labs.forEach(l => { l.el.style.left = l.x + 'px'; l.el.style.top = l.y + 'px'; });
+    // pointers: from each dot's edge to the nearest point of its card or label
+    const ptr = (d, r, cls) => {
+      const px = Math.max(r.x, Math.min(r.x + r.w, d.x)), py = Math.max(r.y, Math.min(r.y + r.h, d.y));
+      const L0 = Math.hypot(px - d.x, py - d.y); if (L0 < 18) return '';
+      const k = 16 / L0;
+      return `<line x1="${d.x + (px - d.x) * k}" y1="${d.y + (py - d.y) * k}" x2="${px}" y2="${py}" ${cls}/>`;
+    };
+    lines.innerHTML = labs.map((l, i) => ptr(l.d, l, `data-i="${i}" stroke="#b9b2dd" stroke-width="2"`)).join('') + ptr(curDot, cb, 'stroke="#ffd36e" stroke-width="4" stroke-linecap="round"');
+    state.tlay = {card: cb, dot: curDot, labs, dots};
+    clipLabs();
+  }
+  // an earlier-stop label cut by the stage edge would show half a word: hide it (and its pointer) until it is all in view
+  function clipLabs() {
+    const L = state.tlay; if (!L) return;
+    L.labs.forEach((l, i) => {
+      const cut = l.x < state.pan - .5 || l.x + l.w > state.pan + state.W + .5;
+      l.el.style.visibility = cut ? 'hidden' : '';
+      const ln = $('tlines').querySelector(`[data-i="${i}"]`); if (ln) ln.style.visibility = cut ? 'hidden' : '';
+    });
+  }
+  // pan so the current card and its dot are in view (clear of the ◀ ▶ buttons when there is room),
+  // then take in the earlier stops, most recent first, while they still fit
+  function panToTrail(animate) {
+    const L = state.tlay; if (!L) return;
+    const W = state.W, m = document.body.classList.contains('narrow') ? 8 : 56;
+    const box = (a, r) => ({x0: Math.min(a.x0, r.x), x1: Math.max(a.x1, r.x + r.w)});
+    let span = box({x0: L.dot.x - DOTR, x1: L.dot.x + DOTR}, L.card);
+    const room = W - 2 * m;
+    [...L.labs].sort((a, b) => Math.max(...b.d.stops.filter(i => i < state.stop)) - Math.max(...a.d.stops.filter(i => i < state.stop))).forEach(l => {
+      const nb = box(box(span, l), {x: l.d.x - DOTR, w: 2 * DOTR});
+      if (nb.x1 - nb.x0 <= room) span = nb;
+    });
+    const fits = span.x1 - span.x0 <= room, mm = fits ? m : 8;
+    let p = (span.x0 + span.x1) / 2 - W / 2;
+    if (!fits) { p = Math.min(p, L.card.x - mm); p = Math.max(p, L.card.x + L.card.w - W + mm); }
+    panTo(p, animate);
   }
 
   // ======================================================================================
@@ -1075,10 +1208,11 @@ body.compact .lj .see{padding:0 8px;font-size:12.5px}body.compact .ladder{gap:6p
       } else {
         const [id, line] = t.stops[state.stop], c = C[id];
         $('stopbox').innerHTML = `<span class="sn"><span class="tn">${esc(t.name)}: s</span><span class="ts">S</span>top\u00a0${state.stop + 1}\u00a0of\u00a0${t.stops.length}</span>
-          <div class="who"><span class="em" aria-hidden="true">${c.emoji}</span><div>${esc(c.name)}<small><i class="dot" style="background:${col(c.cluster)}"></i>${esc(CL[c.cluster])}</small></div></div><p>${esc(line)}</p>`;
+          <div class="who"><span class="em" aria-hidden="true">${c.emoji}</span><div>${esc(c.name)}<span class="sr">, ${esc(CL[c.cluster])}. ${esc(line)}</span></div></div>`;
+        // the job's card and the trail's end line are on the map now (drawTrailCards); the panel keeps the short version
         const last = state.stop === t.stops.length - 1, cls = trailClusters(t);
-        $('endrow').hidden = !last;
-        if (last) $('endrow').innerHTML = `<p>${esc(t.end)} ${cls.length} clusters</p><div class="chips">${cls.map(k => `<span class="chip" title="${esc(CL[k])}"><i class="dot" style="background:${col(k)}"></i>${SHORT[k]}</span>`).join('')}</div>`;
+        $('endrow').hidden = true;
+        $('endrow').innerHTML = last ? `${esc(t.end)} ${cls.length} clusters: ${cls.map(k => esc(CL[k])).join(', ')}.` : '';
       }
       $('back').disabled = !t || state.stop === 0;
       $('next').disabled = !!t && state.stop === t.stops.length - 1;
@@ -1136,7 +1270,7 @@ body.compact .lj .see{padding:0 8px;font-size:12.5px}body.compact .ladder{gap:6p
     if (m === 'clusters') drawBoard();
     relayout();
     drawTrail(); drawLanterns(); drawMarkers(); drawPanel(); drawHint();
-    if (m === 'trails' && state.trail !== null) centerOn(H[HOME[TRAILS[state.trail].stops[state.stop][0]]], false);
+    drawTrailCards(); if (m === 'trails') panToTrail(false);
     if (!quiet) V.welcome();
   }
   for (const k of ['festival', 'trails', 'clusters']) $('m-' + k).onclick = () => { if (state.mode !== k) setMode(k); };
@@ -1181,8 +1315,10 @@ body.compact .lj .see{padding:0 8px;font-size:12.5px}body.compact .ladder{gap:6p
       const ratio = state.s ? (state.pan + state.W / 2) / (2400 * state.s) : 0;
       state.s = tr.height / 900;
       $('pan').style.width = (2400 * state.s) + 'px'; $('pan').style.height = tr.height + 'px';
+      const moved = state.tdim !== state.W + 'x' + tr.height; state.tdim = state.W + 'x' + tr.height;
       drawMarkers(); setPan(ratio * 2400 * state.s - state.W / 2);
-    }
+      drawTrailCards(); if (moved && state.mode === 'trails') panToTrail(false);
+    } else drawTrailCards();
     if (state.mode === 'clusters' && state.cluster !== null) {
       const want = body.classList.contains('narrow') || $('board').getBoundingClientRect().width < 900;
       if (want !== $('board').querySelector('.ladder')?.classList.contains('rows')) drawBoard();

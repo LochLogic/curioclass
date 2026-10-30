@@ -15,7 +15,9 @@ walk past, Kip guesses each, and Kip's Chart keeps one bar per run with the numb
 Kip guesses with the nearest-neighbor rule (k = 1) over six clues the class can see on every pet: ears, snout,
 whiskers, size, dark coat and fluffy. Engine: kit/ml-lab.js (docs/families/ml-lab.md). Nearest neighbors: scikit-learn
 user guide, "Nearest Neighbors". The pets and their clue values are made up for this tool; the parade scores were
-computed with the engine. Everything is drawn in code; sounds are made in the browser. One file, no network requests.
+computed with the engine. The 26 pets are illustrations drawn with FLUX.1-schnell (Apache 2.0) on a local computer,
+edited for Curio Class; Kip, the lobby and the chart are drawn in code; sounds are made in the browser. One file, no
+network requests.
 Content CC BY 4.0, code MIT. curioclass.org
 -->
 <link rel="stylesheet" href="kit:curio">
@@ -327,154 +329,76 @@ body.compact .tally{display:none}   /* the stage shows the same "7 of 10" large;
     g.innerHTML = ICON[k];
     return g;
   }
-  function mix(hex, to, t) {
-    const a = parseInt(hex.slice(1), 16), b = parseInt(to.slice(1), 16);
-    const c = [16, 8, 0].map(s => Math.round(lerp(a >> s & 255, b >> s & 255, t)));
-    return '#' + c.map(v => v.toString(16).padStart(2, '0')).join('');
-  }
-  const lum = hex => { const a = parseInt(hex.slice(1), 16); return (.299 * (a >> 16 & 255) + .587 * (a >> 8 & 255) + .114 * (a & 255)) / 255; };
 
   // ======================================================================================
-  // The pet: one parametric drawing for cats and dogs, so the class sees the clues Kip compares.
-  // Origin: on the ground, under the middle of the body; facing right (toward Kip). Nominal size: about 380 x 240.
+  // The pet: a painted portrait for each cat and dog (FLUX.1-schnell, art/pet-*.webp). The clue values above are what
+  // Kip compares; the paintings show them (ears, snout, whiskers, size, dark coat, fluffy fur).
+  // Origin: on the ground, under the middle of the picture; facing right (toward Kip). Height by the size clue, so big
+  // pets stand taller: about 170 (size .2) to 245 (size .95) in stage units.
   // ======================================================================================
   const INK = '#2b2238';
+  // each painting: picture, width / height, head centre (fractions of the picture, before any flip), head radius
+  // (fraction of the height), and flip (painted facing left, so it is mirrored to face Kip)
+  const ART = {
+    Marmalade: ['art:pet-marmalade', 326 / 360, .20, .30, .20, 1],
+    Bear: ['art:pet-bear', 322 / 360, .76, .25, .20],
+    Inky: ['art:pet-inky', 401 / 360, .15, .30, .16, 1],
+    Pebble: ['art:pet-pebble', 328 / 360, .78, .24, .20],
+    Snowball: ['art:pet-snowball', 307 / 360, .80, .26, .19],
+    Rocket: ['art:pet-rocket', 358 / 360, .88, .22, .15],
+    Tiger: ['art:pet-tiger', 450 / 360, .89, .25, .15],
+    Biscuit: ['art:pet-biscuit', 378 / 360, .86, .15, .14],
+    Coco: ['art:pet-coco', 352 / 360, .82, .27, .17],
+    Pudding: ['art:pet-pudding', 343 / 360, .80, .25, .20],
+    Smoky: ['art:pet-smoky', 459 / 360, .89, .25, .15],
+    Ziggy: ['art:pet-ziggy', 376 / 360, .85, .25, .17],
+    Duchess: ['art:pet-duchess', 445 / 360, .93, .25, .15],
+    Moose: ['art:pet-moose', 470 / 360, .86, .17, .16],
+    Pepper: ['art:pet-pepper', 330 / 360, .15, .26, .17, 1],
+    Scout: ['art:pet-scout', 366 / 360, .80, .21, .17],
+    Maple: ['art:pet-maple', 297 / 360, .76, .30, .19],
+    Nutmeg: ['art:pet-nutmeg', 427 / 360, .88, .25, .17],
+    Luna: ['art:pet-luna', 338 / 360, .15, .30, .17, 1],
+    Noodle: ['art:pet-noodle', 311 / 360, .72, .23, .20],
+    Ghost: ['art:pet-ghost', 418 / 360, .89, .26, .15],
+    Shadow: ['art:pet-shadow', 433 / 360, .82, .18, .15],
+    Pippin: ['art:pet-pippin', 297 / 360, .87, .24, .17],
+    Waffles: ['art:pet-waffles', 342 / 360, .78, .22, .20],
+    Bramble: ['art:pet-bramble', 421 / 360, .90, .22, .15],
+    Juniper: ['art:pet-juniper', 364 / 360, .90, .24, .14],
+  };
+  // the paintings are decoded once up front, so a walking pet never flashes empty while its frames are redrawn
+  const petImgs = Object.values(ART).map(a => { const im = new Image(); im.src = a[0]; return im; });
+  // the shape the rest of the scene works from (the look-alike line, the truth badge, the fly to the shelf):
+  // picture height and width, head centre and radius, and a body box (bw wide, centred at by, bh tall)
   function petGeom(p) {
-    const v = p.v, bw = 140 + 120 * v.size, bh = bw * .42, lh = 26 + 18 * v.size, by = -(lh + bh * .5) + bh * .16;
-    const r = 30 + 20 * v.size, hx = bw * .42, hy = by - bh * .45 - r * .2;
-    return {bw, bh, lh, by, r, hx, hy};
-  }
-  function drawHead(g, p, cx, cy, r) {
-    const v = p.v, coat = p.coat, sw = Math.max(2, r * .07), darkCoat = lum(coat) < .35, dog = p.label === 'dog';
-    const fur = v.fluffy > .25;
-    // ears: floppy flap (0) to upright point (1), by the ears clue. Dog ears get a contrasting fill so they show on
-    // any coat (lighter on dark coats); cat ears have a pink inner ear.
-    const earFill = dog ? (darkCoat ? mix(coat, '#ffffff', .3) : mix(coat, '#000000', .22)) : coat;
-    const ear = sgn => {
-      const e = v.ears, th = -Math.PI / 2 + sgn * (dog ? .82 : .7), half = dog ? .3 : .32;
-      const b1 = [cx + Math.cos(th - sgn * half) * r * .92, cy + Math.sin(th - sgn * half) * r * .92];
-      const b2 = [cx + Math.cos(th + sgn * half) * r * .92, cy + Math.sin(th + sgn * half) * r * .92];
-      const up = [cx + Math.cos(th - sgn * .08) * r * 1.78, cy + Math.sin(th - sgn * .08) * r * 1.78];
-      const flop = dog ? [cx + sgn * r * 1.12, cy + r * .82] : [cx + sgn * r * 1.22, cy + r * .62];
-      const tip = [lerp(flop[0], up[0], e), lerp(flop[1], up[1], e)];
-      const bulge = (1 - e) * r * (dog ? .3 : .6) + r * (dog ? .14 : .06);
-      const ctl = (a, b, s2) => { const mx = (a[0] + b[0]) / 2, my = (a[1] + b[1]) / 2, dx = b[0] - a[0], dy = b[1] - a[1], n = Math.hypot(dx, dy) || 1; return [mx + s2 * dy / n * bulge, my - s2 * dx / n * bulge]; };
-      const c1 = ctl(b1, tip, sgn), c2 = ctl(tip, b2, sgn);
-      const d = `M${b1} Q${c1} ${tip} Q${c2} ${b2} Z`.replace(/,/g, ' ');
-      el('path', {d, fill: earFill, stroke: darkCoat && dog ? '#f1ece4' : INK, 'stroke-width': sw, 'stroke-linejoin': 'round'}, g);
-      if (e > .6) {   // inner ear on upright ears
-        const ib1 = [lerp(b1[0], b2[0], .25), lerp(b1[1], b2[1], .25)], ib2 = [lerp(b1[0], b2[0], .75), lerp(b1[1], b2[1], .75)], it = [lerp(tip[0], cx, .22), lerp(tip[1], cy, .22)];
-        el('path', {d: `M${ib1} L${it} L${ib2} Z`.replace(/,/g, ' '), fill: dog ? mix(coat, '#ffffff', .45) : darkCoat ? '#8a5a6a' : '#f2a8a8'}, g);
-      }
-    };
-    // dogs: upright ears go behind the head, floppy and half ears hang in front of it (so a ruff never hides them)
-    const earsBehind = dog ? v.ears >= .7 : v.ears >= .5;
-    if (fur) {   // a scalloped ruff around the head
-      const n = 16, fr = r * (.1 + .17 * v.fluffy);
-      for (let i = 0; i < n; i++) { const a = i / n * Math.PI * 2; el('circle', {cx: cx + Math.cos(a) * r * .98, cy: cy + Math.sin(a) * r * .98, r: fr, fill: coat, stroke: INK, 'stroke-width': sw}, g); }
-    }
-    if (earsBehind) { ear(-1); ear(1); }
-    el('circle', {cx, cy, r, fill: coat, stroke: fur ? 'none' : INK, 'stroke-width': sw}, g);
-    if (p.pat === 'tabby' || p.pat === 'stripes') {
-      const sc = p.pat === 'tabby' ? mix(coat, '#5a2a00', .45) : mix(coat, '#000000', .45);
-      for (const dx of [-.28, 0, .28]) el('path', {d: `M${cx + dx * r} ${cy - r * .92} Q${cx + dx * r * 1.15} ${cy - r * .7} ${cx + dx * r} ${cy - r * .5}`, fill: 'none', stroke: sc, 'stroke-width': r * .1, 'stroke-linecap': 'round'}, g);
-    }
-    if (p.pat === 'spots') el('ellipse', {cx: cx - r * .42, cy: cy - r * .3, rx: r * .32, ry: r * .38, fill: '#3a3a3a'}, g);
-    if (dog) {   // a collar with a tag (not a clue Kip uses; people notice more than Kip does)
-      const cd = `M${cx - r * .74} ${cy + r * .66} Q${cx} ${cy + r * 1.08} ${cx + r * .74} ${cy + r * .66}`;
-      el('path', {d: cd, fill: 'none', stroke: INK, 'stroke-width': r * .26, 'stroke-linecap': 'round'}, g);
-      el('path', {d: cd, fill: 'none', stroke: '#d23c3c', 'stroke-width': r * .16, 'stroke-linecap': 'round'}, g);
-      el('circle', {cx: cx - r * .05, cy: cy + r * 1.02, r: r * .14, fill: '#f2c230', stroke: INK, 'stroke-width': sw * .6}, g);
-    }
-    const ms = v.snout, muzzle = p.pat === 'white' ? '#f7f4ee' : mix(coat, '#ffffff', darkCoat ? .22 : .38);
-    const wc = darkCoat ? '#f1ece4' : INK, line = darkCoat ? '#f1ece4' : INK;
-    let nx, ny, mcx, mcy, mrx, mry;
-    if (dog) {
-      // a dog snout: reaches out toward Kip, its length set by the snout clue; a big nose pad at the tip and a tongue
-      mcx = cx + r * (.3 + .8 * ms); mcy = cy + r * .34; mrx = r * (.4 + .55 * ms); mry = r * (.36 + .06 * (1 - ms));
-      const tg = `M${mcx - mrx * .1} ${mcy + mry * .55} q${r * .02} ${r * .42} ${r * .2} ${r * .4} q${r * .18} ${-r * .02} ${r * .14} ${-r * .42} Z`;
-      el('path', {d: tg, fill: '#ef7f95', stroke: INK, 'stroke-width': sw * .7, 'stroke-linejoin': 'round'}, g);
-      el('ellipse', {cx: mcx, cy: mcy, rx: mrx, ry: mry, fill: muzzle, stroke: INK, 'stroke-width': sw}, g);
-      nx = mcx + mrx * .78; ny = mcy - mry * .38;
-      el('ellipse', {cx: nx, cy: ny, rx: r * .2, ry: r * .15, fill: '#16121a', stroke: darkCoat ? '#bdb6c4' : 'none', 'stroke-width': sw * .5}, g);
-      el('ellipse', {cx: nx - r * .05, cy: ny - r * .05, rx: r * .06, ry: r * .035, fill: '#ffffff', opacity: .7}, g);
-      el('path', {d: `M${nx - r * .02} ${ny + r * .13} L${nx - r * .02} ${mcy + mry * .35} M${mcx - mrx * .55} ${mcy + mry * .35} Q${nx - r * .02} ${mcy + mry * .75} ${nx + r * .14} ${mcy + mry * .3}`, fill: 'none', stroke: line, 'stroke-width': sw * .7, 'stroke-linecap': 'round'}, g);
-      // whisker spots only (the whiskers clue): dots on the snout, more dots for longer whiskers
-      const nd = 2 + Math.round(v.whiskers * 3);
-      for (let i = 0; i < nd; i++) el('circle', {cx: mcx - mrx * .35 + i * r * .1, cy: mcy + (i % 2 ? r * .05 : -r * .03), r: r * .035, fill: wc, opacity: .75}, g);
-    } else {
-      // a cat muzzle: small whisker pads, a pink triangle nose, a w mouth
-      mcx = cx + r * (.1 + .5 * ms); mcy = cy + r * .36; mrx = r * (.3 + .3 * ms); mry = r * .26;
-      for (const k of [-1, 1]) el('ellipse', {cx: mcx + k * mrx * .45, cy: mcy + mry * .2, rx: mrx * .58, ry: mry * .8, fill: muzzle, stroke: INK, 'stroke-width': sw * .7}, g);
-      nx = mcx; ny = mcy - mry * .35;
-      el('path', {d: `M${nx - r * .12} ${ny - r * .06} L${nx + r * .12} ${ny - r * .06} L${nx} ${ny + r * .08} Z`, fill: '#f08ca0', stroke: INK, 'stroke-width': sw * .5, 'stroke-linejoin': 'round'}, g);
-      el('path', {d: `M${nx} ${ny + r * .08} q${-r * .04} ${r * .14} ${-r * .14} ${r * .1} M${nx} ${ny + r * .08} q${r * .04} ${r * .14} ${r * .14} ${r * .1}`, fill: 'none', stroke: line, 'stroke-width': sw * .6, 'stroke-linecap': 'round'}, g);
-    }
-    // eyes, looking at the class: cats have green-gold eyes with slit pupils, dogs round dark eyes
-    for (const ex of [cx - r * .36, cx + r * .2]) {
-      if (dog) {
-        el('ellipse', {cx: ex, cy: cy - r * .12, rx: r * .16, ry: r * .18, fill: '#fffdf6', stroke: INK, 'stroke-width': sw * .6}, g);
-        el('circle', {cx: ex + r * .03, cy: cy - r * .1, r: r * .11, fill: '#3a2414'}, g);
-        el('circle', {cx: ex + r * .06, cy: cy - r * .15, r: r * .04, fill: '#fff'}, g);
-      } else {
-        el('ellipse', {cx: ex, cy: cy - r * .12, rx: r * .17, ry: r * .19, fill: '#d6dc6a', stroke: INK, 'stroke-width': sw * .6}, g);
-        el('ellipse', {cx: ex + r * .02, cy: cy - r * .12, rx: r * .045, ry: r * .15, fill: INK}, g);
-        el('circle', {cx: ex + r * .07, cy: cy - r * .19, r: r * .035, fill: '#fff'}, g);
-      }
-    }
-    if (!dog) {   // whiskers: length by the whiskers clue (cats only)
-      const wl = r * (.25 + 1.05 * v.whiskers), wsw = Math.max(1.4, r * .035);
-      for (const k of [-1, 0, 1]) {
-        el('path', {d: `M${mcx + mrx * .6} ${mcy + r * .02} l${wl} ${k * wl * .26 - wl * .04}`, fill: 'none', stroke: wc, 'stroke-width': wsw, 'stroke-linecap': 'round'}, g);
-        el('path', {d: `M${mcx - mrx * .6} ${mcy + r * .02} l${-wl * .85} ${k * wl * .26 - wl * .04}`, fill: 'none', stroke: wc, 'stroke-width': wsw, 'stroke-linecap': 'round'}, g);
-      }
-    }
-    if (!earsBehind) { ear(-1); ear(1); }
+    const [, ar, fx, fy, fr, flip] = ART[p.name], ph = 150 + 100 * p.v.size, pw = ph * ar;
+    const hx = ((flip ? 1 - fx : fx) - .5) * pw, hy = -(1 - fy) * ph, r = fr * ph;
+    return {ph, pw, bw: pw * .8, bh: ph * .45, by: -ph * .45, r, hx, hy};
   }
   function drawPet(parent, p, x, y, s, o = {}) {
-    const g = el('g', {transform: `translate(${x} ${y}) scale(${s})`}, parent);
+    // o.step (walking): a gentle rock on the feet in place of steps; callers pass 0 when motion is off
+    const tilt = o.step ? o.step * 2.5 : 0;
+    const g = el('g', {transform: `translate(${x} ${y}) scale(${s})${tilt ? ` rotate(${tilt.toFixed(2)})` : ''}`, 'aria-hidden': 'true'}, parent);
     if (o.opacity != null) g.setAttribute('opacity', o.opacity);
-    const v = p.v, G = petGeom(p), {bw, bh, lh, by, r, hx, hy} = G, coat = p.coat, sw = 3.4, fur = v.fluffy > .25;
-    const leg = (lx, back) => {
-      const w = bw * .1;
-      el('rect', {x: lx - w / 2, y: by, width: w, height: -by - 2 + (o.step ? (back ? 1 : -1) * o.step * 4 : 0), rx: w * .45, fill: back ? mix(coat, '#000000', .12) : coat, stroke: INK, 'stroke-width': sw}, g);
-      el('ellipse', {cx: lx + w * .12, cy: -3, rx: w * .62, ry: w * .32, fill: p.pat === 'white' && !back ? '#f7f4ee' : mix(coat, '#ffffff', .15), stroke: INK, 'stroke-width': sw}, g);
-    };
-    // tail: a cat's is long, upright and curled at the tip; a dog's is shorter and wags up and back (both thicker when fluffy)
-    const dogT = p.label === 'dog';
-    const tw = dogT ? 12 + 18 * v.fluffy : 8 + 12 * v.fluffy, wag = o.step ? o.step * bh * .08 : 0;
-    const td = dogT
-      ? `M${-bw * .44} ${by - bh * .12} Q${-bw * .62} ${by - bh * .28} ${-bw * .66 + wag} ${by - bh * .78}`
-      : `M${-bw * .44} ${by - bh * .05} C${-bw * .68} ${by - bh * .45} ${-bw * .62} ${by - bh * 1.2} ${-bw * .52} ${by - bh * 1.42} C${-bw * .47} ${by - bh * 1.55} ${-bw * .37} ${by - bh * 1.52} ${-bw * .4} ${by - bh * 1.36}`;
-    el('path', {d: td, fill: 'none', stroke: INK, 'stroke-width': tw + 7, 'stroke-linecap': 'round'}, g);
-    el('path', {d: td, fill: 'none', stroke: coat, 'stroke-width': tw, 'stroke-linecap': 'round'}, g);
-    leg(-bw * .3, true); leg(bw * .24, true);
-    if (fur) {   // scalloped fur outline, bigger scallops for fluffier coats
-      const fr = 5 + 13 * v.fluffy, per = Math.PI * (bw + bh) / 2, n = Math.round(per / (fr * 1.25));
-      for (let i = 0; i < n; i++) { const a = i / n * Math.PI * 2; el('circle', {cx: Math.cos(a) * bw * .49, cy: by + Math.sin(a) * bh * .48, r: fr, fill: coat, stroke: INK, 'stroke-width': sw}, g); }
-    }
-    el('ellipse', {cx: 0, cy: by, rx: bw / 2, ry: bh / 2, fill: coat, stroke: fur ? 'none' : INK, 'stroke-width': sw}, g);
-    if (p.pat === 'tabby' || p.pat === 'stripes') {
-      const sc = p.pat === 'tabby' ? mix(coat, '#5a2a00', .45) : mix(coat, '#000000', .45);
-      for (let i = 0; i < 5; i++) {
-        const sx = -bw * .32 + i * bw * .15, top = by - bh * .46 * Math.sqrt(Math.max(0, 1 - (sx / (bw * .5)) ** 2));
-        el('path', {d: `M${sx} ${top + 3} Q${sx + 9} ${by - bh * .1} ${sx - 3} ${by + bh * .16}`, fill: 'none', stroke: sc, 'stroke-width': 7, 'stroke-linecap': 'round'}, g);
-      }
-    }
-    if (p.pat === 'spots') for (const [sx, sy, rx] of [[-.25, -.1, .1], [.02, .12, .08], [.18, -.18, .07], [-.05, -.28, .05]])
-      el('ellipse', {cx: sx * bw, cy: by + sy * bh, rx: rx * bw, ry: rx * bw * .8, fill: '#3a3a3a'}, g);
-    if (p.pat === 'white') el('ellipse', {cx: bw * .3, cy: by + bh * .12, rx: bw * .17, ry: bh * .32, fill: '#f7f4ee'}, g);
-    leg(-bw * .16, false); leg(bw * .36, false);
-    drawHead(g, p, hx, hy, r);
+    const [src, , , , , flip] = ART[p.name], {ph, pw} = petGeom(p);
+    el('image', {href: src, x: -pw / 2, y: -ph, width: pw, height: ph, preserveAspectRatio: 'none', transform: flip ? 'scale(-1 1)' : null}, g);
     return g;
   }
-  // a portrait card's picture: the head only, sized by the size clue
+  // a portrait card's picture: head and shoulders, the face in the upper middle; bigger pets fill more of the card.
+  // The crop is centred a little under the head (chin and shoulders show), and moved up when needed so its top edge
+  // sits just above the top of the painting: ear tips (a clue) always stay in. sc: the scale, dy: crop centre below
+  // the head centre, in pet units.
+  function portraitFrame(p, G, card) {
+    const side = G.r * 3.5 / (.82 + .3 * p.v.size), cy = Math.min(G.hy + G.r * .15, -G.ph + side * .46);
+    return {sc: card / side, dy: cy - G.hy};
+  }
   function drawPortrait(parent, p, cx, cy, card) {
-    const r = card * .23 * (.82 + .3 * p.v.size);
-    const g = el('g', {}, parent);
-    drawHead(g, p, cx - r * .12, cy + card * .06, r);
-    return g;
+    const G = petGeom(p), {sc, dy} = portraitFrame(p, G, card);
+    return drawPet(parent, p, cx - G.hx * sc, cy - (G.hy + dy) * sc, sc);
   }
+  // where the look-alike line starts: the forehead, above the eyes and below the ears (ears are a clue; keep them clear)
+  const petFace = G => ({x: G.hx - G.r * .1, y: G.hy - G.r * .5});
 
   // ======================================================================================
   // Kip: a round-cornered box robot. Origin on the ground, centred. Nominal 180 x 300.
@@ -680,6 +604,7 @@ body.compact .tally{display:none}   /* the stage shows the same "7 of 10" large;
   function paintDyn() {
     const L = Lyt, sp = spotOf(), g = S.dyn;
     g.textContent = '';
+    const under = el('g', {}, g);   // the look-alike line runs under the pet, so it never hides an ear (a clue)
     const leave = state.leaving;
     if (leave && leave.mode === state.mode) drawPet(g, leave.pet, L.spotX + leave.t * 60 * L.ps, L.groundY, L.ps, {opacity: 1 - leave.t});
     if (sp) {
@@ -690,7 +615,9 @@ body.compact .tally{display:none}   /* the stage shows the same "7 of 10" large;
         if (c) {
           const G = petGeom(sp.pet), hs = L.ps;
           const hx = L.spotX + G.hx * hs, hy = L.groundY + G.hy * hs;
-          const tx = lerp(hx, c.x + c.s / 2, f), ty = lerp(hy, c.y + c.s / 2, f), sc = lerp(hs, c.s / (G.r * 4.2), f);
+          // it lands where its portrait card shows the head (drawPortrait), so the swap to the card does not jump
+          const {sc: sc1, dy} = portraitFrame(sp.pet, G, c.s);
+          const tx = lerp(hx, c.x + c.s / 2, f), ty = lerp(hy, c.y + c.s / 2 - dy * sc1, f), sc = lerp(hs, sc1, f);
           const pg = el('g', {transform: `translate(${tx - G.hx * sc} ${ty - G.hy * sc})`}, g);
           drawPet(pg, sp.pet, 0, 0, sc, {opacity: 1 - f * .3});
         }
@@ -701,14 +628,15 @@ body.compact .tally{display:none}   /* the stage shows the same "7 of 10" large;
       if (sp.match != null && sp.line > 0 && sp.phase !== 'fly') {
         const c = cardPos(sp.match);
         if (c) {
-          const G = petGeom(sp.pet), x1 = L.spotX + G.hx * L.ps, y1 = L.groundY + (G.hy - G.r * .95) * L.ps;
+          const G = petGeom(sp.pet), F0 = petFace(G), x1 = L.spotX + F0.x * L.ps, y1 = L.groundY + F0.y * L.ps;
           // with names under the cards it ends on the plank just under the card's own name, so it never enters the
           // name row beside it; without names, on the card's lower corner that faces the pet
           const x2 = L_names() ? c.x + c.s / 2 : x1 > c.x + c.s / 2 ? c.x + c.s - 6 : c.x + 6, y2 = L_names() ? c.y + c.s + 19 : c.y + c.s - 6, f = sp.line;
           const xe = lerp(x1, x2, f), ye = lerp(y1, y2, f);
-          el('line', {x1, y1, x2: xe, y2: ye, stroke: '#fff', 'stroke-width': 9, 'stroke-linecap': 'round', opacity: .85}, g);
-          el('line', {x1, y1, x2: xe, y2: ye, stroke: '#16679a', 'stroke-width': 5, 'stroke-linecap': 'round', 'stroke-dasharray': '0.1 11'}, g);
-          el('circle', {cx: x1, cy: y1, r: 7, fill: '#16679a', stroke: '#fff', 'stroke-width': 2.5}, g);
+          el('line', {x1, y1, x2: xe, y2: ye, stroke: '#fff', 'stroke-width': 9, 'stroke-linecap': 'round', opacity: .85}, under);
+          el('line', {x1, y1, x2: xe, y2: ye, stroke: '#16679a', 'stroke-width': 5, 'stroke-linecap': 'round', 'stroke-dasharray': '0.1 11'}, under);
+          // the start dot sits on the forehead, sized to the pet so it stays small on a small screen
+          el('circle', {cx: x1, cy: y1, r: clamp(8 * L.ps, 3.5, 7), fill: '#16679a', stroke: '#fff', 'stroke-width': clamp(3 * L.ps, 1.5, 2.5)}, g);
           if (f >= 1) el('circle', {cx: x2, cy: y2, r: 5, fill: '#16679a', stroke: '#fff', 'stroke-width': 2}, g);
           // a card name the line still passes (one on the Dog shelf, under a Cat card's line) goes back on top, on a
           // patch of shelf color, so the line ducks under it and the name stays whole
@@ -723,19 +651,31 @@ body.compact .tally{display:none}   /* the stage shows the same "7 of 10" large;
       }
       // the truth: a big cat or dog icon over the pet, with the word
       if (sp.phase === 'truth') {
-        // above the pet when there is room, else beside it on the left, else over its body (never over its face)
-        const G = petGeom(sp.pet), d = clamp(80 * L.ps + 20, 46, 110), fs0 = clamp(d * .26, 13, 24), need = d + fs0 * 1.45;
-        const top = L.groundY + Math.min(G.hy - G.r * 1.8, G.by - G.bh * 1.3) * L.ps, leftEdge = L.spotX - G.bw * .62 * L.ps;
-        let cx = L.spotX - G.bw * .05 * L.ps, cy = top - 6 - need + d / 2;
+        // above the pet when there is room; else beside it (left, then right, shrunk to fit the gap down to 34 px);
+        // else a small badge over its back end, never over its face, so the pet stays mostly in view
+        const G = petGeom(sp.pet), d0 = clamp(80 * L.ps + 20, 46, 110);
+        const fsFor = d => clamp(d * .26, 13, 24), needFor = d => d + fsFor(d) * 1.45, wFor = d => Math.max(d, fsFor(d) * 3.4);
+        const top = L.groundY + Math.min(G.hy - G.r * 1.8, G.by - G.bh * 1.3) * L.ps;
+        const petL = L.spotX - G.pw / 2 * L.ps, petR = L.spotX + G.pw / 2 * L.ps;
+        let d = d0, cx = L.spotX - G.bw * .05 * L.ps, cy = top - 6 - needFor(d) + d / 2;
         sp.low = false;
         if (cy - d / 2 < L.by1 + 4) {
-          if (leftEdge - (L.doorX + L.doorW) > d + 8) { cx = leftEdge - d / 2 - 4; cy = L.groundY - need + d / 2 - 6; }
-          else { cy = L.groundY + G.by * L.ps; sp.low = true; }
+          const fitIn = gap => { let k = Math.min(d0, gap - 10); while (k > 34 && wFor(k) > gap - 10) k--; return k >= 34 && wFor(k) <= gap - 10 ? k : 0; };
+          const lGap = petL - (L.doorX + L.doorW), rGap = (L.kipX - 92 * L.ks) - petR, dl = fitIn(lGap), dr = fitIn(rGap);
+          if (dl || dr) {
+            d = dl >= dr ? dl : dr;
+            cx = dl >= dr ? petL - wFor(d) / 2 - 5 : petR + wFor(d) / 2 + 5;
+            cy = L.groundY - 6 - needFor(d) + d / 2;
+          } else {
+            d = 34; sp.low = true;
+            cx = petL + Math.max(wFor(d) / 2, G.pw * .22 * L.ps);   // every pet faces right: the back end is on the left
+            cy = L.groundY + G.by * L.ps;
+          }
         }
         const col = sp.pet.label === 'cat' ? '#0f7c7a' : '#b5531a';
         el('circle', {cx, cy, r: d / 2, fill: '#fff', stroke: col, 'stroke-width': Math.max(4, d * .07)}, g);
         icon(g, sp.pet.label, cx, cy - d * .02, d * .72, col, '#fff');
-        const fs = Math.round(clamp(d * .26, 13, 24));
+        const fs = Math.round(fsFor(d));
         el('rect', {x: cx - fs * 1.7, y: cy + d / 2 - 2, width: fs * 3.4, height: fs * 1.45, rx: fs * .7, fill: col}, g);
         text(g, cx, cy + d / 2 - 2 + fs * .74, WORD[sp.pet.label], {size: fs, fill: '#fff', weight: 800});
       }

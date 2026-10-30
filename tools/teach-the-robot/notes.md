@@ -27,7 +27,7 @@
 - Keyboard: Tab moves through the mode buttons, header buttons, panel buttons, then the wall cards. Enter or Space activates. On a selected wall card, Delete forgets it and Escape lets go. Arrow keys move between wall cards.
 - Motion off: pets appear in place instead of walking, with the same timing and the same scores.
 - Every line is spoken; the "how to" lines are spoken once, then stay in the hint. **Read** speaks the hint again.
-- Everything is drawn in code, so it stays sharp on any projector. Nothing is saved; a reload starts fresh.
+- The pets are painted pictures; Kip, the lobby and the chart are drawn in code, so they stay sharp on any projector. Nothing is saved; a reload starts fresh.
 
 ## Standards
 
