@@ -86,3 +86,11 @@
 - up-the-watershed: map is painted textures inside code shapes; that look, or plain code map?
 - biome-atlas runs 349 lines because of a 20-piece plant kit (accepted; minor).
 - design-challenge-studio voice -> wise-mentor.
+
+## R15
+- spectrum-explorer: One idea says "ten trillion" times; strip spans 10^16, stops 3.4x10^11. Which wording?
+- zipline-energy: 6 rider people images (Gemini), or weighted test bags (loses Upright/Tuck)?
+- curling-stones: broom heads and stick stand in for curlers; OK or painted curler (people)?
+- circuit-builder: show circuit symbols beside parts? ph-mystery-liquids: C3 never lands on exactly 7.0 at 0.001 g; accept or finer step?
+- Voices: circuit-builder -> calm-professor, sound-studio -> smooth-narrator.
+- Carried: ph HS-PS1-2 fit, bulb thresholds; curling curl; hot-meets-cold 12 particles; spectrum health claims and four modes; zipline rules vs ASTM F2959.
