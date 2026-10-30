@@ -21,3 +21,8 @@
 ## R03
 - work-rate-crew: voice changed news-reader -> lively-host (clears the R04 design-the-study clash).
 - Carried, unchanged: packaging-challenge invented box on the Shelf?; proof-tower rename and level order; ramp-and-roof ADA rules for homes; slice-and-stack rename; work-rate-crew practice sheet in the role play.
+
+## R01
+- equation-golf: painted balance pieces added as a shared-engine option; give the other balance tools painted pieces later too?
+- graph-story-lab: runner on the oval track is a person (waits on review); swap to a dog doing laps?
+- launch-pad: voice changed firm-captain -> big-sister (clears flight-planner clash); OK, or keep mission-control feel?

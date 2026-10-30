@@ -24,31 +24,35 @@ the sign has to flip.
 ## Screens and modes
 Header: title, subtitle "Fewest legal moves wins." Modes `Range` (opens first), `Front nine`, `Back nine`.
 Kit buttons `Motion`, `Sound`, `Read`.
-Stage: a balance beam on a fairway drawn in code. Each side's items sit in its pan: weight blocks for positive
-constants, balloons (tied on, pulling up) for negative constants, mystery bags for +x, balloon bags for −x, a bag
-cut in parts for fractions of x ("1/3" printed on it), and brackets around a group with its multiplier on a tag
-("4 ×"). Above the beam the equation in large type. Pans hold up to 12 glyphs; more become a crate labeled with
-the count ("38").
+Stage: the balance beam stands on a painted fairway (art: fairway), center stage and the largest thing on it, with the
+equation in large type above it. The beam, pivot and pans are painted cutouts (art: beam kit) that the code tilts.
+Each side's items sit in its pan as painted cutouts: weight blocks for positive constants (the number in code on the
+blank face), balloons (tied on, pulling up) for negative constants, mystery bags for +x, balloon bags for −x, a bag
+cut in parts for fractions of x (dashed cut lines and "1/3" in code over the bag), and code-drawn brackets around a
+group with its multiplier on a tag ("4 ×"). Pans hold up to 12 glyphs; more become a crate with the count in code
+("38").
 Panel, top to bottom: stroke counter "Strokes 2 / Par 3", the move bar, the scorecard, the hint.
 Move bar: `Add`, `Subtract` (each opens a term box: a number, or a number times x, like "2x" or "-3"),
 `Multiply`, `Divide` (each opens a number box: integers, fractions "6/5", decimals), `Distribute` (then tap a
-group), `Tidy` (free), `Swap sides` (free), `Undo`, `Declare` (opens: `x = ...` is automatic; `No solution`,
-`Every x works`).
+group; disabled when no group is on the beam), `Tidy` (free), `Swap sides` (free), `Undo` (disabled before the first
+move), `Declare` (opens: `x = ...` is automatic; `No solution`, `Every x works`).
 Under 900 px tall the move bar sits beside the beam; at 760 wide it sits right under the equation.
 
 ### Range (explore)
+Focus: the beam and the number line under it; the shading is the thing to watch while moves change the beam.
 Type any linear equation or inequality in one variable into the box `Your equation` (or pick from the Content
 sample list) and play moves freely. No par, no score. A `Try x` slider (from −10 to 10, step 0.5) tips the beam by
 the two sides' values at that x, and a number line under the beam shades every x for which the statement is true.
 The shading never changes as you make legal moves: that is the point the Range shows.
 
 ### Front nine and Back nine
+Focus: the beam and the equation above it; the move bar sits next to it in the panel.
 Holes 1 to 9 (equations) and 10 to 18 (two special equations, then inequalities). Each hole shows its par. Make
 moves until the hole is finished: one side is exactly x and the other a number (either order), or you Declare.
-Then a card: strokes, par, the golf name (eagle 2 under, birdie 1 under, par, bogey 1 over, double bogey 2 over,
-"+3" and so on), the move log with each step's reason, and `Replay` (the moves animate in order), `Retry`,
-`Next hole`. Best strokes per hole saved on this device (localStorage `curio-equation-golf`, try/catch) with
-`Clear scores` in the scorecard.
+Then a card with the painted green (art: green-flag) across its top: strokes, par, the golf name (eagle 2 under,
+birdie 1 under, par, bogey 1 over, double bogey 2 over, "+3" and so on), the move log with each step's reason, and
+`Replay` (the moves animate in order, 0.8 s each, at most 6 s), `Retry`, `Next hole`. Best strokes per hole saved on
+this device (localStorage `curio-equation-golf`, try/catch) with `Clear scores` in the scorecard.
 
 ## Content
 Holes (start as written; par route; answer):
@@ -71,10 +75,11 @@ Holes (start as written; par route; answer):
 17. 3 − x/2 > 1. Par 2: subtract 3, multiply by −2 (flip). x < 4.
 18. 2x + 5 ≤ 2(x + 1). Par 2: distribute, subtract 2x (5 ≤ 2, false), Declare No solution.
 Range samples: the 18 holes plus 6(x − 1) = 3(2x − 2) (every x) and 1.5x − 2 ≥ 0.5x + 3 (x ≥ 5).
-Par values were found by hand. The build agent confirms each with a breadth-first search over the candidate moves
-(add or subtract any term that appears, with either sign; multiply or divide by any coefficient, denominator,
-group multiplier, their negatives and reciprocals; distribute any group; Tidy; Declare), up to depth par. If a
-shorter route exists, par drops to it and this table is updated in the same change.
+Every par was confirmed by a breadth-first search (Sources). The build keeps that search as a test over the
+candidate moves (add or subtract any term that appears, inside groups too, with either sign; multiply or divide by
+any coefficient, denominator, group multiplier, their negatives and reciprocals; distribute any group; Tidy;
+Declare), up to depth par. If a shorter route ever appears, par drops to it and this table is updated in the same
+change.
 
 ## Interactions in detail
 - Exact arithmetic: every coefficient is a fraction (integers with gcd reduction). Decimal holes display decimals
@@ -82,14 +87,14 @@ shorter route exists, par drops to it and this table is updated in the same chan
 - Model: a side is a list of items; an item is a term (a·x or a constant) or a group k·(terms). Multiply or divide
   a side: terms scale; a group's k scales, and a group whose k becomes 1 dissolves into its terms. Distribute
   turns k·(terms) into terms. After every stroke, like terms at the top level combine and zero pairs vanish (the
-  balloons and blocks pop together, instant with Motion off); the log notes "combined like terms".
+  balloons and blocks pop together, 250 ms, instant with Motion off); the log notes "combined like terms".
 - Strokes: Add, Subtract, Multiply, Divide, Distribute count 1. Tidy, Swap sides, Declare and Undo count 0 (Undo
   also removes the stroke).
 - Refused moves (no stroke, tip says why): multiply by 0 ("That makes 0 = 0 and loses the answer"), divide by 0
-  ("Dividing by zero is undefined"), a term box that isn't a number or a number times x, Distribute with no group.
-- Declare is accepted only when true: No solution when the sides are unequal constants; Every x works when the
-  sides are identical after tidying (a true constant statement like 6 = 6 counts too). A wrong Declare costs a
-  stroke and shows the shading of the true solution set.
+  ("Dividing by zero is undefined"), a term box that isn't a number or a number times x.
+- Declare is accepted only when true: when both sides are numbers, a false statement (−3 = 8, 5 ≤ 2) is No solution
+  and a true one (6 = 6, 2 ≤ 5) is Every x works; when the two sides are identical after tidying (2x + 6 = 2x + 6),
+  Every x works. A wrong Declare costs a stroke and shows the shading of the true solution set.
 - Inequalities: after multiplying or dividing by a negative, the sign shows "?" and the beam swings to show that
   every x now makes the other side heavier; two buttons `<` `>` (or `≤` `≥`) ask which way. A wrong pick shades
   the number line differently from the original's shading, side by side, and asks again. No stroke for the pick.
@@ -97,28 +102,49 @@ shorter route exists, par drops to it and this table is updated in the same chan
   the original's, computed exactly. It always does if only legal moves were used; the check guards the code.
 - Try x slider in Range: tilt angle = sign(left − right) × min(14°, 3° + 2° × |left − right|); level only when
   equal (an open circle on the number line shows a boundary that is not included).
+- Nothing waits for an animation: a move during a beam swing, a pop or a Replay ends that animation at once (Replay
+  stops) and the move acts on the current equation.
 - Keyboard: every move is a button; the term and number boxes accept Enter; Ctrl+Z is Undo.
 - `window.__tool = {state, setMode, load(hole), move(name, arg), solution()}`.
 
 ## Look
-Accent `--brand #7ddc72` (fairway green), `--brand-ink #062008`. Sky band `#0f1c2a`, fairway `#16301f` with
-mown stripes `#1b3a26`, beam and pivot `#c9d3df`, weight blocks `#e8edf3` with dark numerals, balloons `#ff8a8a`
-with a minus glyph and string, bags `#d9b98a` with an x printed, true-shading on the number line `#7ddc72` with
-open or closed circles. Contrast (computed): brand on panel 10.18:1, on --sec-bg 9.65:1, brand-ink on brand
-10.14:1. Sign is shown by glyph (weight vs balloon, minus mark) as well as color.
+Accent `--brand #7ddc72` (fairway green), `--brand-ink #062008`. The painted fairway (art: fairway) fills the stage,
+dimmed to 60% under the beam so the cutouts and the equation stand out; the equation sits on a `#0f1c2a` band at 85%.
+Balloons are painted red with a code minus glyph; bags are painted burlap with a code "x"; weights are painted iron
+with dark numerals in code on a light `#e8edf3` label; true-shading on the number line `#7ddc72` with open or closed
+circles. Contrast (computed): brand on panel 10.18:1, on --sec-bg 9.65:1, brand-ink on brand 10.14:1. Sign is shown
+by glyph (weight vs balloon, minus mark) as well as color.
 
 ## Art
-none: drawn in code (beam, fairway, glyphs, flag on the hole card, preview.svg).
+Local FLUX (`scripts/localart.py`); no people. One style: sunny painted illustration.
+- fairway: "A sunny golf fairway seen from the side, mown stripes of green grass, a sand bunker and a few round trees,
+  pale blue sky, painted illustration"; 16:9; cutout no; people no; stage background on every mode, dimmed.
+- green-flag: "A putting green on a golf course with a flagstick standing in the cup, the flag a plain red cloth,
+  late afternoon light, painted illustration"; 4:1; cutout no; people no; the band across the top of the hole card.
+- Beam kit (8 cutouts, one shared prompt): "<piece>, seen from the front, soft daylight, painted illustration, plain
+  white background"; 1:1 (beam 4:1); cutout yes; people no. Pieces: beam "a long polished wooden plank with brass end
+  caps"; pivot "a sturdy iron stand shaped like a triangle with a round pin at the top"; pan "a shallow brass weighing
+  pan hanging from three short chains"; weight "a gray iron block weight with a smooth blank front face and a small
+  handle on top"; balloon "a round red balloon with a curled white string"; bag "a small tied burlap sack with a
+  smooth blank front"; balloon-bag "a small tied burlap sack lifted by a red balloon on a string"; crate "a small
+  wooden crate with a blank plank front". Sizing rule: the beam spans 70% of the stage width and pivots at the pivot's
+  pin; the pivot is 30% of the stage height; each pan is 22% of the beam length and hangs from the beam end; weights,
+  bags and crates fit a cell 44 to 64 px square, two rows of six per pan; balloons float one cell above their pan on
+  their strings.
+The equation, numerals, x and fraction marks on the pieces, group brackets and tags, the number line, the scorecard
+and preview.svg are drawn in code.
 
 ## Voice
-Bank voice `easy-coach` (relaxed sports coach). Not used by math 9-12 neighbors. `Curio.voice`, scope = mode.
-- wRange (how, Range welcome): "Type an equation, then make moves. Slide Try x to see which values keep it true."
-- wHoles (how, Front or Back nine welcome): "Pick a move from the bar. Every move on both sides is one stroke."
-- groupTip (how, first hole with a group): "Dividing the whole side can be cheaper than distributing. Your call."
-- flip (how, first negative multiply or divide on an inequality): "Negative number. The heavy side just swapped. Pick the new sign."
-- holed (event, hole finished at or under par; stale on Next hole): "In the hole. That's par or better."
-- over (event, finished over par; stale on Next hole): "Holed out. Replay it and look for a shorter route."
-- declareWrong (event; stale after the next move): "That declare doesn't hold. Look at the shading."
+Bank voice `easy-coach` (relaxed sports coach). Not used by math 9-12 neighbors, group siblings or batch specs.
+`Curio.voice`, scope = mode. The move log and cards are read on screen; Read speaks the hint.
+- wRange (how; Range entered; stale after the first move): "Type an equation in Your equation, then tap a move. Slide Try x to see which values keep it true."
+- wHoles (how; Front or Back nine entered; stale after the first move): "Tap a move in the bar, like Subtract or Divide. Each move on both sides is one stroke."
+- groupTip (how; first hole with a group; stale after the first move on it): "Dividing the whole side can be cheaper than distributing. Your call."
+- flip (how; first negative multiply or divide on an inequality; stale once a sign is picked): "Negative number, so the heavy side just swapped. Tap the new sign."
+- declareHow (how; first time both sides are numbers or identical; stale once Declare is pressed): "Nothing left to solve for. Press Declare and pick what it means."
+- holed (event; hole finished at or under par; stale on Next hole): "In the hole. That's par or better."
+- over (event; finished over par; stale on Next hole): "Holed out. Press Replay and look for a shorter route."
+- declareWrong (event; wrong Declare; stale after the next move): "That declare doesn't hold. Check the shading, then tap a move."
 
 ## Family engine
 balance (`kit/balance.js`, inlined after `kit:curio`). This spec holds the full description for the family;
@@ -133,7 +159,8 @@ snack-scale (K), balance-the-beam (gr 1) and balance-puzzle (gr 6) reuse it.
 - `Beam(svgGroup, {width, height, skin: 'snack' | 'weights' | 'bags' | 'fairway', eq, x})`: draws the pivot,
   beam and pans; `set(eq)`, `tryX(x)` tilts by the side values (level only when equal); glyphs: icons (snack),
   weight blocks, balloons for negatives, bags for x, cut bags for fractions, group brackets with a multiplier tag,
-  crates past 12 glyphs; pans move with the beam; Motion off sets angles instantly.
+  crates past 12 glyphs; pans move with the beam; Motion off sets angles instantly. Each skin may supply image
+  cutouts for the beam, pivot, pans and glyphs; this tool's fairway skin uses the beam kit above.
 - What each sibling feeds it: snack-scale: icon items, compare tilt, no x. balance-the-beam: number weights and a
   missing-weight box, level check. balance-puzzle: bags and positive weights, add and remove the same on both
   sides. This tool: negatives, groups, fractions, inequalities, the stroke count, par and the sign flip choice.
@@ -143,7 +170,14 @@ snack-scale (K), balance-the-beam (gr 1) and balance-puzzle (gr 6) reuse it.
 - Properties of equality and inequality (multiplying or dividing by a negative reverses the inequality): OpenStax, Elementary Algebra 2e, 2.7 "Solve Linear Inequalities", https://openstax.org/books/elementary-algebra-2e/pages/2-7-solve-linear-inequalities
 - Equations with no solution or every real number: OpenStax, Elementary Algebra 2e, 2.3 "Solve Equations with Variables and Constants on Both Sides", https://openstax.org/books/elementary-algebra-2e/pages/2-3-solve-equations-with-variables-and-constants-on-both-sides
 - Golf score names (birdie, eagle, bogey): R&A and USGA, Rules of Golf definitions and glossary, https://www.usga.org/
-- Every hole's answer and par route was checked with exact fractions (2026-10-27).
+- Checks run (Python, exact fractions, 2026-10-29): a breadth-first search over the move set above, with the
+  dissolve and combine rules of this spec, finds the shortest route for all 18 holes; every par in Content matches it
+  and every answer matches. Hole 11 reached par 1 only once Declare accepted identical sides (2x + 6 = 2x + 6); the
+  first draft's Declare rule allowed only constant sides, so the rule now says both. The first draft's rule said
+  "unequal constants" for No solution, which is wrong for inequalities (2 ≤ 5 is true); Declare now tests the truth
+  of the constant statement. Range samples: 6(x − 1) = 3(2x − 2) reaches identical sides in 2 moves;
+  1.5x − 2 ≥ 0.5x + 3 gives x ≥ 5 in 2. Tilt: difference 0.5 tilts 4°, 1 tilts 5°, 5.5 and more cap at 14°.
+- Contrast ratios in Look computed with the WCAG 2.1 formula.
 
 ## Done when
 1. Hole 3 finishes in 2 strokes by Divide 4 then Subtract 1; Distribute first takes 3 and the card says bogey.
@@ -153,8 +187,11 @@ snack-scale (K), balance-the-beam (gr 1) and balance-puzzle (gr 6) reuse it.
 5. Hole 15: Divide −4 shows "?" and the swing; picking `<` shows mismatched shading; `>` gives x > −2.
 6. Hole 16 ends as −3 ≥ x and reads "x ≤ −3"; Range shading for the hole is the same before and after every move.
 7. Divide by 0 and Multiply by 0 are refused without a stroke.
-8. Each par in Content is confirmed by the build's search; best scores survive a reload and `Clear scores` clears them.
-9. Every size in STANDARDS.md keeps the move bar and equation visible without page scrolling; keyboard-only play works; console clean, no network.
+8. Focus: at 1366x768 and 1000x625 the beam with its pans is the largest thing on the stage and the equation sits right above it.
+9. Tap while it plays: during a beam swing, a pop or a Replay, a move button acts at once on the current equation.
+10. Each par in Content is confirmed by the build's search; best scores survive a reload and `Clear scores` clears them.
+11. Every size in STANDARDS.md keeps the move bar and equation visible without page scrolling; keyboard-only play works; no voice line names a disabled control; console clean, no network.
 
 ## Open questions
 - The module lists A-REI.B, which includes A-REI.B.4 (quadratics). launch-pad holds that code as its whole module, so this tool stops at linear. Also A-REI.B.3's "coefficients represented by letters" is left to model-my-world's formula rearranging. Fine?
+- The beam kit adds image cutouts to the shared balance engine's Beam (a per-skin option). The other balance tools keep their own skins; is a painted kit wanted for them too when they are next touched?
