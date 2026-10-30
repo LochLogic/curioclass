@@ -1,0 +1,656 @@
+{
+ "book": [
+  "hydrogen",
+  "oxygen",
+  "nitrogen",
+  "chlorine",
+  "hydrogen chloride",
+  "water",
+  "hydrogen sulfide",
+  "ammonia",
+  "carbon dioxide",
+  "methane",
+  "hydrogen peroxide",
+  "acetylene",
+  "formic acid",
+  "silane",
+  "hydrazine",
+  "methanol",
+  "ethylene",
+  "urea",
+  "ethane",
+  "acetic acid",
+  "ethanol",
+  "dimethyl ether",
+  "acetone",
+  "propane",
+  "butane",
+  "isobutane",
+  "isopropyl alcohol",
+  "glycine",
+  "benzene",
+  "vanillin",
+  "aspirin",
+  "caffeine"
+ ],
+ "also": [
+  "formaldehyde",
+  "acetaldehyde",
+  "formamide",
+  "propene",
+  "propyne",
+  "cyclopropane",
+  "cyclohexane",
+  "1-propanol",
+  "methoxyethane",
+  "chloromethane",
+  "dichloromethane",
+  "chloroform",
+  "carbon tetrachloride",
+  "methylamine",
+  "methanethiol",
+  "hydrogen cyanide",
+  "hypochlorous acid",
+  "carbonic acid",
+  "carbon disulfide",
+  "carbonyl sulfide",
+  "sulfur dichloride",
+  "dichlorine monoxide",
+  "ethylene glycol",
+  "disilane",
+  "hydroxylamine",
+  "chloramine",
+  "dimethylamine",
+  "ethylamine",
+  "acetonitrile",
+  "cyclohexene",
+  "toluene",
+  "cyclopentane",
+  "ethylene oxide",
+  "allene",
+  "ketene",
+  "diazene",
+  "methanimine",
+  "aziridine",
+  "cyclopropene",
+  "methylhydrazine"
+ ],
+ "data": {
+  "hydrogen": {
+   "CID": 783,
+   "MolecularFormula": "H2",
+   "SMILES": "[HH]",
+   "Charge": 0,
+   "AtomStereoCount": 0,
+   "BondStereoCount": 0
+  },
+  "oxygen": {
+   "CID": 977,
+   "MolecularFormula": "O2",
+   "SMILES": "O=O",
+   "Charge": 0,
+   "AtomStereoCount": 0,
+   "BondStereoCount": 0
+  },
+  "nitrogen": {
+   "CID": 947,
+   "MolecularFormula": "N2",
+   "SMILES": "N#N",
+   "Charge": 0,
+   "AtomStereoCount": 0,
+   "BondStereoCount": 0
+  },
+  "chlorine": {
+   "CID": 24526,
+   "MolecularFormula": "Cl2",
+   "SMILES": "ClCl",
+   "Charge": 0,
+   "AtomStereoCount": 0,
+   "BondStereoCount": 0
+  },
+  "hydrogen chloride": {
+   "CID": 313,
+   "MolecularFormula": "ClH",
+   "SMILES": "Cl",
+   "Charge": 0,
+   "AtomStereoCount": 0,
+   "BondStereoCount": 0
+  },
+  "water": {
+   "CID": 962,
+   "MolecularFormula": "H2O",
+   "SMILES": "O",
+   "Charge": 0,
+   "AtomStereoCount": 0,
+   "BondStereoCount": 0
+  },
+  "hydrogen sulfide": {
+   "CID": 402,
+   "MolecularFormula": "H2S",
+   "SMILES": "S",
+   "Charge": 0,
+   "AtomStereoCount": 0,
+   "BondStereoCount": 0
+  },
+  "ammonia": {
+   "CID": 222,
+   "MolecularFormula": "H3N",
+   "SMILES": "N",
+   "Charge": 0,
+   "AtomStereoCount": 0,
+   "BondStereoCount": 0
+  },
+  "carbon dioxide": {
+   "CID": 280,
+   "MolecularFormula": "CO2",
+   "SMILES": "C(=O)=O",
+   "Charge": 0,
+   "AtomStereoCount": 0,
+   "BondStereoCount": 0
+  },
+  "methane": {
+   "CID": 297,
+   "MolecularFormula": "CH4",
+   "SMILES": "C",
+   "Charge": 0,
+   "AtomStereoCount": 0,
+   "BondStereoCount": 0
+  },
+  "hydrogen peroxide": {
+   "CID": 784,
+   "MolecularFormula": "H2O2",
+   "SMILES": "OO",
+   "Charge": 0,
+   "AtomStereoCount": 0,
+   "BondStereoCount": 0
+  },
+  "acetylene": {
+   "CID": 6326,
+   "MolecularFormula": "C2H2",
+   "SMILES": "C#C",
+   "Charge": 0,
+   "AtomStereoCount": 0,
+   "BondStereoCount": 0
+  },
+  "formic acid": {
+   "CID": 284,
+   "MolecularFormula": "CH2O2",
+   "SMILES": "C(=O)O",
+   "Charge": 0,
+   "AtomStereoCount": 0,
+   "BondStereoCount": 0
+  },
+  "silane": {
+   "CID": 23953,
+   "MolecularFormula": "H4Si",
+   "SMILES": "[SiH4]",
+   "Charge": 0,
+   "AtomStereoCount": 0,
+   "BondStereoCount": 0
+  },
+  "hydrazine": {
+   "CID": 9321,
+   "MolecularFormula": "H4N2",
+   "SMILES": "NN",
+   "Charge": 0,
+   "AtomStereoCount": 0,
+   "BondStereoCount": 0
+  },
+  "methanol": {
+   "CID": 887,
+   "MolecularFormula": "CH4O",
+   "SMILES": "CO",
+   "Charge": 0,
+   "AtomStereoCount": 0,
+   "BondStereoCount": 0
+  },
+  "ethylene": {
+   "CID": 6325,
+   "MolecularFormula": "C2H4",
+   "SMILES": "C=C",
+   "Charge": 0,
+   "AtomStereoCount": 0,
+   "BondStereoCount": 0
+  },
+  "urea": {
+   "CID": 1176,
+   "MolecularFormula": "CH4N2O",
+   "SMILES": "C(=O)(N)N",
+   "Charge": 0,
+   "AtomStereoCount": 0,
+   "BondStereoCount": 0
+  },
+  "ethane": {
+   "CID": 6324,
+   "MolecularFormula": "C2H6",
+   "SMILES": "CC",
+   "Charge": 0,
+   "AtomStereoCount": 0,
+   "BondStereoCount": 0
+  },
+  "acetic acid": {
+   "CID": 176,
+   "MolecularFormula": "C2H4O2",
+   "SMILES": "CC(=O)O",
+   "Charge": 0,
+   "AtomStereoCount": 0,
+   "BondStereoCount": 0
+  },
+  "ethanol": {
+   "CID": 702,
+   "MolecularFormula": "C2H6O",
+   "SMILES": "CCO",
+   "Charge": 0,
+   "AtomStereoCount": 0,
+   "BondStereoCount": 0
+  },
+  "dimethyl ether": {
+   "CID": 8254,
+   "MolecularFormula": "C2H6O",
+   "SMILES": "COC",
+   "Charge": 0,
+   "AtomStereoCount": 0,
+   "BondStereoCount": 0
+  },
+  "acetone": {
+   "CID": 180,
+   "MolecularFormula": "C3H6O",
+   "SMILES": "CC(=O)C",
+   "Charge": 0,
+   "AtomStereoCount": 0,
+   "BondStereoCount": 0
+  },
+  "propane": {
+   "CID": 6334,
+   "MolecularFormula": "C3H8",
+   "SMILES": "CCC",
+   "Charge": 0,
+   "AtomStereoCount": 0,
+   "BondStereoCount": 0
+  },
+  "butane": {
+   "CID": 7843,
+   "MolecularFormula": "C4H10",
+   "SMILES": "CCCC",
+   "Charge": 0,
+   "AtomStereoCount": 0,
+   "BondStereoCount": 0
+  },
+  "isobutane": {
+   "CID": 6360,
+   "MolecularFormula": "C4H10",
+   "SMILES": "CC(C)C",
+   "Charge": 0,
+   "AtomStereoCount": 0,
+   "BondStereoCount": 0
+  },
+  "isopropyl alcohol": {
+   "CID": 3776,
+   "MolecularFormula": "C3H8O",
+   "SMILES": "CC(C)O",
+   "Charge": 0,
+   "AtomStereoCount": 0,
+   "BondStereoCount": 0
+  },
+  "glycine": {
+   "CID": 750,
+   "MolecularFormula": "C2H5NO2",
+   "SMILES": "C(C(=O)O)N",
+   "Charge": 0,
+   "AtomStereoCount": 0,
+   "BondStereoCount": 0
+  },
+  "benzene": {
+   "CID": 241,
+   "MolecularFormula": "C6H6",
+   "SMILES": "C1=CC=CC=C1",
+   "Charge": 0,
+   "AtomStereoCount": 0,
+   "BondStereoCount": 0
+  },
+  "vanillin": {
+   "CID": 1183,
+   "MolecularFormula": "C8H8O3",
+   "SMILES": "COC1=C(C=CC(=C1)C=O)O",
+   "Charge": 0,
+   "AtomStereoCount": 0,
+   "BondStereoCount": 0
+  },
+  "aspirin": {
+   "CID": 2244,
+   "MolecularFormula": "C9H8O4",
+   "SMILES": "CC(=O)OC1=CC=CC=C1C(=O)O",
+   "Charge": 0,
+   "AtomStereoCount": 0,
+   "BondStereoCount": 0
+  },
+  "caffeine": {
+   "CID": 2519,
+   "MolecularFormula": "C8H10N4O2",
+   "SMILES": "CN1C=NC2=C1C(=O)N(C(=O)N2C)C",
+   "Charge": 0,
+   "AtomStereoCount": 0,
+   "BondStereoCount": 0
+  },
+  "formaldehyde": {
+   "CID": 712,
+   "MolecularFormula": "CH2O",
+   "SMILES": "C=O",
+   "Charge": 0,
+   "AtomStereoCount": 0,
+   "BondStereoCount": 0
+  },
+  "acetaldehyde": {
+   "CID": 177,
+   "MolecularFormula": "C2H4O",
+   "SMILES": "CC=O",
+   "Charge": 0,
+   "AtomStereoCount": 0,
+   "BondStereoCount": 0
+  },
+  "formamide": {
+   "CID": 713,
+   "MolecularFormula": "CH3NO",
+   "SMILES": "C(=O)N",
+   "Charge": 0,
+   "AtomStereoCount": 0,
+   "BondStereoCount": 0
+  },
+  "propene": {
+   "CID": 8252,
+   "MolecularFormula": "C3H6",
+   "SMILES": "CC=C",
+   "Charge": 0,
+   "AtomStereoCount": 0,
+   "BondStereoCount": 0
+  },
+  "propyne": {
+   "CID": 6335,
+   "MolecularFormula": "C3H4",
+   "SMILES": "CC#C",
+   "Charge": 0,
+   "AtomStereoCount": 0,
+   "BondStereoCount": 0
+  },
+  "cyclopropane": {
+   "CID": 6351,
+   "MolecularFormula": "C3H6",
+   "SMILES": "C1CC1",
+   "Charge": 0,
+   "AtomStereoCount": 0,
+   "BondStereoCount": 0
+  },
+  "cyclohexane": {
+   "CID": 8078,
+   "MolecularFormula": "C6H12",
+   "SMILES": "C1CCCCC1",
+   "Charge": 0,
+   "AtomStereoCount": 0,
+   "BondStereoCount": 0
+  },
+  "1-propanol": {
+   "CID": 1031,
+   "MolecularFormula": "C3H8O",
+   "SMILES": "CCCO",
+   "Charge": 0,
+   "AtomStereoCount": 0,
+   "BondStereoCount": 0
+  },
+  "methoxyethane": {
+   "CID": 10903,
+   "MolecularFormula": "C3H8O",
+   "SMILES": "CCOC",
+   "Charge": 0,
+   "AtomStereoCount": 0,
+   "BondStereoCount": 0
+  },
+  "chloromethane": {
+   "CID": 6327,
+   "MolecularFormula": "CH3Cl",
+   "SMILES": "CCl",
+   "Charge": 0,
+   "AtomStereoCount": 0,
+   "BondStereoCount": 0
+  },
+  "dichloromethane": {
+   "CID": 6344,
+   "MolecularFormula": "CH2Cl2",
+   "SMILES": "C(Cl)Cl",
+   "Charge": 0,
+   "AtomStereoCount": 0,
+   "BondStereoCount": 0
+  },
+  "chloroform": {
+   "CID": 6212,
+   "MolecularFormula": "CHCl3",
+   "SMILES": "C(Cl)(Cl)Cl",
+   "Charge": 0,
+   "AtomStereoCount": 0,
+   "BondStereoCount": 0
+  },
+  "carbon tetrachloride": {
+   "CID": 5943,
+   "MolecularFormula": "CCl4",
+   "SMILES": "C(Cl)(Cl)(Cl)Cl",
+   "Charge": 0,
+   "AtomStereoCount": 0,
+   "BondStereoCount": 0
+  },
+  "methylamine": {
+   "CID": 6329,
+   "MolecularFormula": "CH5N",
+   "SMILES": "CN",
+   "Charge": 0,
+   "AtomStereoCount": 0,
+   "BondStereoCount": 0
+  },
+  "methanethiol": {
+   "CID": 878,
+   "MolecularFormula": "CH4S",
+   "SMILES": "CS",
+   "Charge": 0,
+   "AtomStereoCount": 0,
+   "BondStereoCount": 0
+  },
+  "hydrogen cyanide": {
+   "CID": 768,
+   "MolecularFormula": "CHN",
+   "SMILES": "C#N",
+   "Charge": 0,
+   "AtomStereoCount": 0,
+   "BondStereoCount": 0
+  },
+  "hypochlorous acid": {
+   "CID": 24341,
+   "MolecularFormula": "ClHO",
+   "SMILES": "OCl",
+   "Charge": 0,
+   "AtomStereoCount": 0,
+   "BondStereoCount": 0
+  },
+  "carbonic acid": {
+   "CID": 767,
+   "MolecularFormula": "CH2O3",
+   "SMILES": "C(=O)(O)O",
+   "Charge": 0,
+   "AtomStereoCount": 0,
+   "BondStereoCount": 0
+  },
+  "carbon disulfide": {
+   "CID": 6348,
+   "MolecularFormula": "CS2",
+   "SMILES": "C(=S)=S",
+   "Charge": 0,
+   "AtomStereoCount": 0,
+   "BondStereoCount": 0
+  },
+  "carbonyl sulfide": {
+   "CID": 10039,
+   "MolecularFormula": "COS",
+   "SMILES": "C(=O)=S",
+   "Charge": 0,
+   "AtomStereoCount": 0,
+   "BondStereoCount": 0
+  },
+  "sulfur dichloride": {
+   "CID": 25353,
+   "MolecularFormula": "Cl2S",
+   "SMILES": "S(Cl)Cl",
+   "Charge": 0,
+   "AtomStereoCount": 0,
+   "BondStereoCount": 0
+  },
+  "dichlorine monoxide": {
+   "CID": 24646,
+   "MolecularFormula": "Cl2O",
+   "SMILES": "O(Cl)Cl",
+   "Charge": 0,
+   "AtomStereoCount": 0,
+   "BondStereoCount": 0
+  },
+  "ethylene glycol": {
+   "CID": 174,
+   "MolecularFormula": "C2H6O2",
+   "SMILES": "C(CO)O",
+   "Charge": 0,
+   "AtomStereoCount": 0,
+   "BondStereoCount": 0
+  },
+  "disilane": {
+   "CID": 74123,
+   "MolecularFormula": "H6Si2",
+   "SMILES": "[SiH3][SiH3]",
+   "Charge": 0,
+   "AtomStereoCount": 0,
+   "BondStereoCount": 0
+  },
+  "hydroxylamine": {
+   "CID": 787,
+   "MolecularFormula": "H3NO",
+   "SMILES": "NO",
+   "Charge": 0,
+   "AtomStereoCount": 0,
+   "BondStereoCount": 0
+  },
+  "chloramine": {
+   "CID": 25423,
+   "MolecularFormula": "ClH2N",
+   "SMILES": "NCl",
+   "Charge": 0,
+   "AtomStereoCount": 0,
+   "BondStereoCount": 0
+  },
+  "dimethylamine": {
+   "CID": 674,
+   "MolecularFormula": "C2H7N",
+   "SMILES": "CNC",
+   "Charge": 0,
+   "AtomStereoCount": 0,
+   "BondStereoCount": 0
+  },
+  "ethylamine": {
+   "CID": 6341,
+   "MolecularFormula": "C2H7N",
+   "SMILES": "CCN",
+   "Charge": 0,
+   "AtomStereoCount": 0,
+   "BondStereoCount": 0
+  },
+  "acetonitrile": {
+   "CID": 6342,
+   "MolecularFormula": "C2H3N",
+   "SMILES": "CC#N",
+   "Charge": 0,
+   "AtomStereoCount": 0,
+   "BondStereoCount": 0
+  },
+  "cyclohexene": {
+   "CID": 8079,
+   "MolecularFormula": "C6H10",
+   "SMILES": "C1CCC=CC1",
+   "Charge": 0,
+   "AtomStereoCount": 0,
+   "BondStereoCount": 0
+  },
+  "toluene": {
+   "CID": 1140,
+   "MolecularFormula": "C7H8",
+   "SMILES": "CC1=CC=CC=C1",
+   "Charge": 0,
+   "AtomStereoCount": 0,
+   "BondStereoCount": 0
+  },
+  "cyclopentane": {
+   "CID": 9253,
+   "MolecularFormula": "C5H10",
+   "SMILES": "C1CCCC1",
+   "Charge": 0,
+   "AtomStereoCount": 0,
+   "BondStereoCount": 0
+  },
+  "ethylene oxide": {
+   "CID": 6354,
+   "MolecularFormula": "C2H4O",
+   "SMILES": "C1CO1",
+   "Charge": 0,
+   "AtomStereoCount": 0,
+   "BondStereoCount": 0
+  },
+  "allene": {
+   "CID": 10037,
+   "MolecularFormula": "C3H4",
+   "SMILES": "C=C=C",
+   "Charge": 0,
+   "AtomStereoCount": 0,
+   "BondStereoCount": 0
+  },
+  "ketene": {
+   "CID": 10038,
+   "MolecularFormula": "C2H2O",
+   "SMILES": "C=C=O",
+   "Charge": 0,
+   "AtomStereoCount": 0,
+   "BondStereoCount": 0
+  },
+  "diazene": {
+   "CID": 123195,
+   "MolecularFormula": "H2N2",
+   "SMILES": "N=N",
+   "Charge": 0,
+   "AtomStereoCount": 0,
+   "BondStereoCount": 0
+  },
+  "methanimine": {
+   "CID": 123139,
+   "MolecularFormula": "CH3N",
+   "SMILES": "C=N",
+   "Charge": 0,
+   "AtomStereoCount": 0,
+   "BondStereoCount": 0
+  },
+  "aziridine": {
+   "CID": 9033,
+   "MolecularFormula": "C2H5N",
+   "SMILES": "C1CN1",
+   "Charge": 0,
+   "AtomStereoCount": 0,
+   "BondStereoCount": 0
+  },
+  "cyclopropene": {
+   "CID": 123173,
+   "MolecularFormula": "C3H4",
+   "SMILES": "C1C=C1",
+   "Charge": 0,
+   "AtomStereoCount": 0,
+   "BondStereoCount": 0
+  },
+  "methylhydrazine": {
+   "CID": 6061,
+   "MolecularFormula": "CH6N2",
+   "SMILES": "CNN",
+   "Charge": 0,
+   "AtomStereoCount": 0,
+   "BondStereoCount": 0
+  }
+ }
+}
