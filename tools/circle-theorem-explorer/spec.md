@@ -27,15 +27,18 @@ depends on.
 ## Screens and modes
 Header (kit, 9-12 theme): title "Circle Theorem Explorer", subtitle "Drag anything. One thing won't move." Kit
 buttons `Motion`, `Sound`, `Read`.
-Layout: stage left (one large circle and its figure, drawn at real pixel size), panel right (card list, layers,
-readouts). Under 1000 px wide the panel goes under the stage with the card list as a horizontal strip. Under 900 px
-tall the card list becomes a dropdown so the figure and the locked line stay in view.
+Focus: the figure and its locked line together. The locked line is a banner across the top of the stage, directly
+over the circle, so the eye never leaves the figure to read it; the circle is the largest thing on screen.
+Layout: stage left (the locked-line banner, then one large circle and its figure, drawn at real pixel size), panel
+right (card list, layers, other readouts, Break it, Fix it, Predict). Under 1000 px wide the panel goes under the
+stage with the card list as a horizontal strip. Under 900 px tall the card list becomes a dropdown so the figure and
+the locked line stay in view.
 
 - Card list (panel), grouped: Angles (1 to 3, 5), Lines (4, 6, 7), Triangles (8), Size (9 to 11). Choosing a card
   loads its figure.
 - Figure: draggable points are solid dots with 44 px targets; fixed points are small rings. Measures are drawn on
   the figure (angle arcs with their values, segment lengths, arc measures in small labels outside the circle).
-- The locked line (top of the panel, large): the card's relationship with today's numbers, for example "∠ACB = 60°,
+- The locked line (banner over the figure, large): the card's relationship with today's numbers, for example "∠ACB = 60°,
   half of arc AB = 120°". It has a lock glyph while the rule holds.
 - Layers (toggles under the readouts, any mix): `Measures`, `Arcs`, `Why` (draws the helper lines a proof uses, such
   as the radius to C that splits the figure into two isosceles triangles, with one sentence of reason), `Ghosts`
@@ -52,7 +55,7 @@ tall the card list becomes a dropdown so the figure and the locked line stay in 
 Positions are given as degrees around the circle (0° at the right, counterclockwise), radius 4 units unless said.
 1. Inscribed angle and central angle. A at 200°, B at 320°, C draggable on the major arc (start 80°). Locked:
    ∠ACB = half the central angle AOB. Start: central 120°, inscribed 60°. Break it: C slides off the circle inward
-   to 60% of the radius (angle grows past half). Euclid III.20.
+   to 60% of the radius along its own direction (the angle grows to 76.4°, past half). Euclid III.20.
 2. Same arc, same angle. A, B as card 1; C at 80° and D at 140°, both draggable. Locked: ∠ACB = ∠ADB (60° and 60°).
    Break it: D crosses to the minor arc (its angle becomes 180° − 60° = 120°). Euclid III.21.
 3. Angle in a semicircle. A at 180°, B at 0° (a diameter), C draggable. Locked: ∠ACB = 90°. Break it: B moves to
@@ -97,7 +100,10 @@ the radius." 11 "The sector is θ ÷ 360° of the whole disk."
   (no triangle): it stops 1° short. Card 6's P can't enter the circle (it stops at 1.05 × radius, where tangents
   still exist); the readout explains "Inside the circle there are no tangents".
 - `Break it` and `Fix it` animate over 600 ms (instant with Motion off) and can be repeated; dragging after a break
-  keeps the broken state until `Fix it` or a card change.
+  keeps the broken state until `Fix it` or a card change. `Fix it` is disabled while the rule holds, `Break it` while
+  it is broken.
+- Tap while it plays: a drag, a card change, a layer toggle or the other button during a Break it, Fix it or Unroll
+  animation jumps it to its end state at once and then acts; the readouts are never left between states.
 - Predict checks within 0.5° (Snap on) or 0.1 (lengths). Wrong: "Not quite. Drag a point and watch the locked line."
 - Keyboard: Tab through draggable points (panel controls first), arrow keys move a point 1° along the circle (or
   0.1 unit off it), aria-valuetext "C at 80 degrees; angle ACB 60 degrees".
@@ -113,16 +119,21 @@ measures on the dome 8.76:1. Greyer than algebra-tile-studio's #6cc4ff and expon
 9-12 math tool uses a muted lavender.
 
 ## Art
-none: drawn in code (circles, figures, layers, preview.svg).
+none: drawn in code. Every figure is a geometric construction whose points, chords, tangents and arcs the student
+drags and the tool bends live (Break it, Unroll), so the whole tool is a diagram; there is no scene or object to
+paint.
 
 ## Voice
-Bank voice `soft-breath`, style "soft and unhurried, like a quiet guide in a planetarium". No 9-12 math tool uses
-it. `Curio.voice`; one scope (the card), `welcomeAfter: true` (one mode).
-- welcome (how): "Pick a card and drag any point. Watch the line at the top. It stays true."
-- breakHow (how, first card change after the welcome): "When you are ready, tap Break it to see what the rule needs."
-- predictHow (how, first Predict opened): "Type your guess, then tap Check."
-- broke (event, Break it finishes; stale on Fix it or card change): "Now it breaks. Look at what moved."
-- fixed (event, Fix it finishes; stale on card change): "Back on the circle. The rule holds again."
+Bank voice `soft-breath` (Enceladus), style "soft and unhurried, like a quiet guide in a planetarium". Not used by
+math 9-12 neighbors, group siblings or the R02 batch. `Curio.voice`; one scope (the card), `welcomeAfter: true` (one
+mode). The Why sentences and readouts are read on screen; Read speaks the hint.
+- welcome (how, first load; stale after the first drag): "Pick a card and drag any point. Watch the line at the top. It stays true."
+- breakHow (how, first card change after the welcome; stale once Break it is pressed): "When you are ready, tap Break it to see what the rule needs."
+- predictHow (how, Predict first opened; stale when Check is pressed): "Type your guess in the box, then tap Check."
+- broke (event, Break it finishes; stale on Fix it, a drag or a card change): "Now it breaks. Look at what moved, then tap Fix it to put it back."
+- fixed (event, Fix it finishes; stale on a drag or card change): "Back on the circle. The rule holds again."
+- predictRight (event, a Predict check within the step; stale on the next check or card change): "Right. Drag a point and see it hold."
+- predictWrong (event, a Predict check that misses; stale on the next check or card change): "Not quite. Drag a point and watch the locked line, then try again."
 - unrolled (event, Unroll finishes on card 10; stale when the radius or angle changes): "The arc, laid straight. Count how many radii it takes."
 
 ## Family engine
@@ -132,18 +143,26 @@ none.
 - G-C text: Common Core State Standards for Mathematics, High School Geometry, Circles, https://www.thecorestandards.org/Math/Content/HSG/C/
 - Theorems (III.18 tangent, III.20 central and inscribed, III.21 same segment, III.22 cyclic quadrilateral, III.31 semicircle, III.35 crossing chords, III.36 tangent and secant, IV.4 inscribed circle, IV.5 circumscribed circle): Euclid's Elements, D. E. Joyce edition, Clark University, https://mathcs.clarku.edu/~djoyce/java/elements/bookIII/bookIII.html
 - Radians and sector area: OpenStax, Algebra and Trigonometry 2e, 7.1 "Angles", https://openstax.org/books/algebra-and-trigonometry-2e/pages/7-1-angles
-- Every start value above was recomputed in Python (2026-10-27).
+- Checks run (Python, 2026-10-29), radius 4 unless said: card 1 central 120.0°, inscribed 60.0° at every C on the major
+  arc, and 76.4° with C at 60% of the radius (the old spec only said "grows"); card 2 D at 140° gives 60.0°, on the
+  minor arc 120.0°; card 3 90.0°, after B moves to 340° 80.0° or 100.0°; card 5 angles 90, 95, 90, 85 (opposite
+  sums 180 and 180); card 6 tangent √(25 − 9) = 4.00; card 7 E at (−0.956, 0.956), AE × EB = CE × ED = 14.17 (= r²
+  − OE²); card 10 arcs 3.14 (r 3) and 5.24 (r 5) at 60°, ratio 1.047 = π/3, full turn 6.283; chord ÷ radius at 30°,
+  60°, 90°, 180°: 0.518, 1.000, 1.414, 2.000 against radians 0.524, 1.047, 1.571, 3.142 (not proportional); card 11
+  sector 4.71 = 3π/2.
 
 ## Done when
-1. Card 1 at the start shows 120° and 60°; dragging C anywhere on the major arc keeps 60° with the lock; Break it opens the lock with a larger angle.
+1. Card 1 at the start shows 120° and 60°; dragging C anywhere on the major arc keeps 60° with the lock; Break it opens the lock at 76.4°.
 2. Card 2: D on the minor arc shows 120°, and the locked line says the rule needs both on the same arc.
 3. Card 3: ∠ACB reads 90.0° for every C; after Break it (B at 340°) it reads 80.0° or 100.0°.
 4. Card 5 start: 90 + 90 and 95 + 85, both 180.
 5. Card 6 start: both tangents 4.00; P can't be dragged inside the circle.
 6. Card 7 start: both products 14.17.
 7. Card 10: r = 3 and r = 5 at 60° give arcs 3.14 and 5.24, ratio 1.047 each; card 11 gives 4.71 at r = 3.
-8. Keyboard alone can drag every point; with Snap off the locked line says "within 0.1°"; every size in STANDARDS.md keeps the figure and the locked line visible without page scrolling.
-9. Console clean, no network, no em dashes, "Curio Class" only in full.
+8. Focus: at 1366x768 and 1000x625 the circle is the largest thing on screen and the locked line sits directly over it.
+9. Tap while it plays: dragging a point or changing card during a Break it or Unroll animation shows the new state at once, with the lock and readouts matching the figure.
+10. Keyboard alone can drag every point; with Snap off the locked line says "within 0.1°"; every size in STANDARDS.md keeps the figure and the locked line visible without page scrolling; no voice line names a disabled button.
+11. Console clean, no network, no em dashes, "Curio Class" only in full.
 
 ## Open questions
 - none.

@@ -34,31 +34,39 @@ wide the panel goes under the plane, name board first. Under 900 px tall the mea
 panel; the plane and the name board stay in view.
 
 ### Quad lab (sandbox)
+Focus: the quadrilateral on the plane with its marks, the largest thing on screen; the name board right beside it.
 - Quadrilateral ABCD with four handles snapping to lattice points (or half points with `Snap ½`). Starts as P1.
 - Measuring table (panel): sides AB, BC, CD, DA and diagonals AC, BD, each with d² (a whole number), exact length
   (simplest radical form: "√17", "2√5", "8") and decimal, slope as a reduced fraction ("1/4", "−5/2", "0",
   "undefined") and midpoint. Below: perimeter (like radicals combined: "4√17 ≈ 16.49"; otherwise the decimal) and
   area by the shoelace formula, exact.
 - Name board: Parallelogram, Rectangle, Rhombus, Square, Trapezoid, Isosceles trapezoid, Kite, each with a light
-  (on or off) and, when on, the one-line reason ("Both pairs of opposite sides have equal slopes").
+  (on or off) and, when on, the one-line reason ("Both pairs of opposite sides have equal slopes"). Trapezoid and Kite
+  are exclusive: a trapezoid has exactly one pair of parallel sides; a kite has two pairs of equal adjacent sides and
+  is not a rhombus.
 - `Marks` layer: equal sides get the same number of tick marks, parallel sides the same number of arrows, right
   angles a small square. All marks come from exact arithmetic, never from how it looks.
 - If two sides cross, the fill turns hatched warn and the board says "Sides cross: not a quadrilateral. No name
   applies." All lights go off.
 - `Load` picks a preset: P1 to P5 and the Bowtie (Content).
 ### Partition
+Focus: segment AB on the plane, where your tap and the true point P land.
 - Segment AB (handles, start A(−2, 1), B(7, 7)) and a ratio m:n (steppers 1 to 5 each, start 2:1). `Predict`:
   tap where the point P should go, then `Show` draws P and the slope staircase: the run and rise split into m + n
-  equal steps, m of them from A. Readout: P = A + m/(m+n) × (B − A), each coordinate as an exact fraction.
+  equal steps, m of them from A, drawn one step at a time over at most 1 s (at once with Motion off). `Show` is
+  disabled until you have tapped a guess; `Skip guess` shows P without one. Readout: P = A + m/(m+n) × (B − A), each coordinate as an exact fraction.
 - A miss shows the distance from your tap to P in grid units; within 0.25 counts as on it.
 ### Circle
+Focus: the circle on the plane with its live equation in large type directly under the plane.
 - Center handle and a rim handle (both on lattice points). The equation updates live in two forms:
   (x − h)² + (y − k)² = r² and the expanded x² + y² + Dx + Ey + F = 0. The radius shows exact (√r² simplified).
 - A test point handle: readout "(x − h)² + (y − k)² = 20, and r² = 25: not on the circle (inside)".
-- `Complete the square`: choose one of five general forms (Content); steps reveal one at a time: group x and y
-  terms, add (D/2)² and (E/2)² to both sides, factor, read the center and r². The last step draws the result,
+- `Complete the square`: choose one of five general forms (Content); `Next step` reveals the steps one at a time:
+  group x and y terms, add (D/2)² and (E/2)² to both sides, factor, read the center and r². The last step draws the result,
   including the two odd cases (a single point, and no points at all).
 ### Prove
+Focus: the measuring table, whose cells you tap, and the proof tray under it. In this mode the table moves onto the
+stage at full size beside a smaller locked plane (the plane goes under it below 1000 px wide).
 - Card list on the panel; each card loads its points (locked) and a claim ("ABCD is a rhombus"). Tap cells of the
   measuring table (one length, one slope or one midpoint) to put them in the proof tray, each counting as one
   measurement; choose the conclusion, then `Check`. Checker: the tray must contain a sufficient set for the claim (rules below). The tray count shows next to
@@ -110,6 +118,8 @@ Sufficient sets the checker accepts (each measurement = one table cell; "simple"
   ("This shows a parallelogram. A rectangle needs one more fact."). Extra cells never fail a proof.
 - Keyboard: Tab through handles; arrows move one lattice step; aria-valuetext "A at 1, 1". Table rows are buttons
   in Prove: each cell is a button (Enter adds or removes). Every readout has a text label, so screen readers hear the table.
+- Tap while it plays: dragging a handle, changing m or n, or a mode switch during the staircase drawing ends it at
+  once and shows the new state; every readout always matches the points on screen.
 - Reset per mode; the last Quad lab shape and passed cards last for the page session; nothing is saved.
 - `window.__tool = {state, setMode, setPoints(pts), measure(), names(), card(id), tray(cells), check(),
   partition(m, n), circle(h, k, r2), general(i)}`.
@@ -124,18 +134,24 @@ Contrast (computed): brand on --panel 10.84:1, on --sec-bg 10.27:1, on --gr-bg 1
 optimization-workshop's #2ff0b0.
 
 ## Art
-none: drawn in code (plane, shapes, marks, preview.svg).
+none: drawn in code. The whole tool is a coordinate plane: lattice, draggable polygons, marks, segments, circles and
+the measuring table must all move with the handles and stay exact, so everything is diagram and chart; there is no
+scene or object to paint.
 
 ## Voice
-Bank voice `hs-narrator` (Kore), style "Read clearly and naturally, at a moderate pace". Chosen because the bank's
-other kept voices are either on grade 9 to 11 math neighbors or are K-2 teachers (warm-teacher, bright-teacher).
-`Curio.voice`, `scope: () => state.mode`.
-- wQuad (how): "Drag the corners. The table measures every side, slope and diagonal for you."
-- wPart (how): "Set a ratio, then tap where you think the point lands."
-- wCircle (how): "Drag the center and the rim. Move the test point to see if it's on the circle."
-- wProve (how): "Tap the measurements your proof needs, pick the conclusion, then tap Check."
-- proved (event, Check passes; stale on the next card): "That's a complete proof."
-- notYet (event, Check finds a gap; stale when the tray changes): "Not enough yet. One thing is still unproven."
+Bank voice `calm-professor` (Schedar, "Say evenly and clearly, like a calm, friendly college professor"): a proof lab
+spoken like office hours. The spec first named hs-narrator, which seven built neighbors use (ferris-wheel,
+imaginary-island, outbreak-model, poll-workshop, rollercoaster-polynomials, savings-plan, undo-machine); every kept
+voice is used by some neighbor, and calm-professor's only one here is exponent-rule-builder (grade 9 algebra). Not
+used by group siblings or the R02 batch. `Curio.voice`, `scope: () => state.mode`. Tables, names and reasons are read
+on screen; Read speaks the hint.
+- wQuad (how, Quad lab welcome; stale after the first drag): "Drag the corners. The table measures every side, slope and diagonal for you."
+- wPart (how, Partition welcome; stale when Show is pressed): "Set the ratio with the steppers, tap the grid where you think the point lands, then press Show."
+- wCircle (how, Circle welcome; stale after the first drag): "Drag the center and the rim. Move the test point to see if it's on the circle."
+- wSquare (how, Complete the square first opened; stale on the last step): "Press Next step to complete the square one move at a time."
+- wProve (how, Prove welcome; stale when Check is first pressed): "Pick a card. Tap the measurements your proof needs, pick the conclusion, then tap Check."
+- proved (event, Check passes; stale on the next card): "That's a complete proof. Pick another card."
+- notYet (event, Check finds a gap; stale when the tray changes): "Not enough yet. Tap one more measurement, then tap Check."
 - crossed (event, a drag makes two sides cross; stale when they uncross): "The sides cross. That isn't a quadrilateral any more."
 
 ## Family engine
@@ -175,19 +191,30 @@ spec holds the full description for the family; two-rule-race (gr 5 simulator, 5
 - Slopes of parallel and perpendicular lines: OpenStax, College Algebra 2e, 4.1 "Linear Functions", https://openstax.org/books/college-algebra-2e/pages/4-1-linear-functions
 - Area from coordinates: Wikipedia, "Shoelace formula", read 2026-10-27, https://en.wikipedia.org/wiki/Shoelace_formula
 - Exclusive and inclusive trapezoid definitions: Wikipedia, "Trapezoid", Definitions section, read 2026-10-27, https://en.wikipedia.org/wiki/Trapezoid
-- Every preset, partition and circle value above was recomputed exactly in Python with fractions (2026-10-27).
+- Checks run (Python, fractions, 2026-10-29): P1 sides d² 17, slopes 1/4 and 4, diagonals d² 50 and 18 with slopes 1
+  and −1 and shared midpoint (7/2, 7/2), area 15; P2 d² 20, 45, 20, 45, diagonals 65 and 65, area 30; P3 d² 10 each,
+  diagonals 20 and 20 with slopes 2 and −1/2, area 10; P4 d² 64, 29, 16, 29, slopes 0, −5/2, 0, 5/2, diagonals 61
+  and 61, area 30; P5 slopes 0, 3, 0, undefined, area 33/2; Bowtie sides 5, 3, 5, 3 with AB and CD crossing; T1 d² 25,
+  25, 50, slopes 4/3 × −3/4 = −1; C1 d² 25, 25, 25 and 20. The name rules light exactly: P1 Parallelogram and Rhombus;
+  P2 Parallelogram and Rectangle; P3 Parallelogram, Rectangle, Rhombus, Square; P4 Trapezoid and Isosceles
+  trapezoid; P5 Trapezoid; Bowtie none. Kite was not defined before: with an inclusive kite, P1 and P3 would also
+  light Kite, against Done when 3, so Kite is now exclusive like Trapezoid. Partitions 2:1 (4, 5), 1:2 (1, 3),
+  1:1 (5/2, 4), 3:2 (17/5, 23/5). General forms: centers and r² (2, −3) 25, (−4, 1) 9, (1, −2) 0, (−1, 0) −9,
+  (3, 4) 25; C1 expanded x² + y² − 4x + 2y − 20 = 0.
 
 ## Done when
-1. P1 shows four sides √17, slopes 1/4 and 4, diagonal slopes 1 and −1, area 15; Rhombus on, Rectangle off.
+1. P1 shows four sides √17, slopes 1/4 and 4, diagonal slopes 1 and −1, area 15; Rhombus on, Rectangle and Kite off.
 2. P2 lights Rectangle and Parallelogram only; diagonals both √65; area 30.
-3. P3 lights Square, Rectangle, Rhombus and Parallelogram; P5 lights Trapezoid only (area 16.5).
+3. P3 lights Square, Rectangle, Rhombus and Parallelogram (not Kite); P5 lights Trapezoid only (area 16.5).
 4. The Bowtie shows sides 5, 3, 5, 3, hatched warn and no names; its card accepts only `Not a quadrilateral`.
-5. Partition 3:2 gives (17/5, 23/5); 1:1 gives (5/2, 4).
+5. Partition 3:2 gives (17/5, 23/5); 1:1 gives (5/2, 4); Show is disabled until a guess is tapped.
 6. Circle center (2,−1) with rim (5,3) shows (x − 2)² + (y + 1)² = 25 and x² + y² − 4x + 2y − 20 = 0; the test point at (6,1) reads 20, not on it.
 7. General forms 3 and 4 end in "only the point (1, −2)" and "no points".
 8. A P2 rectangle proof with only the four side lengths fails with the "one more fact" line (it proves a parallelogram); adding the two diagonal lengths passes.
-9. Keyboard alone can move every handle and build a proof; every size in STANDARDS.md keeps the plane and the name board visible without page scrolling.
-10. Console clean, no network, no em dashes, "Curio Class" only in full.
+9. Focus: at 1366x768 and 1000x625 the plane with its shape is the largest thing in Quad lab, Partition and Circle, and the measuring table is the largest thing in Prove.
+10. Tap while it plays: dragging A or B during the staircase drawing shows the new segment and P at once.
+11. Keyboard alone can move every handle and build a proof; every size in STANDARDS.md keeps the plane and the name board visible without page scrolling; no voice line names a disabled control.
+12. Console clean, no network, no em dashes, "Curio Class" only in full.
 
 ## Open questions
 - Trapezoid uses the exclusive definition (exactly one pair of parallel sides), so a parallelogram is not a
@@ -195,4 +222,5 @@ spec holds the full description for the family; two-rule-race (gr 5 simulator, 5
 - G-GPE.A.2 (parabola from focus and directrix) is left to Conic Focus Finder (grade 12). OK, or add a parabola mode
   here?
 - Move the exact `Frac` into kit/curio.js as `Curio.Frac`, shared by balance, coordinate and probability?
-- Voice is hs-narrator, which already speaks for many tools; the only unused kept voices are K-2 teachers. OK?
+- Voice changed from hs-narrator (seven built neighbors) to calm-professor (one neighbor, exponent-rule-builder). Every kept voice is used by some neighbor. OK?
+- Kite is now exclusive (not a rhombus), matching Trapezoid. Keep both exclusive, or switch both to inclusive?

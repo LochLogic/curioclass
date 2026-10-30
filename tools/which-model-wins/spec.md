@@ -21,18 +21,23 @@ the exponential that fits the young United States best is beaten when the 1870 a
 - tool.json: driver "students", minutes "25-45", modes ["Look", "Build", "Reveal"], grades_label "Grade 9".
 
 ## Screens and modes
-Header: title, subtitle "The future decides." Dataset picker `Stopping distances`, `US population`,
-`Two savers`. Modes `Look` (opens first), `Build`, `Reveal`. Kit buttons. Each dataset card shows "Data as of" and
-its source line.
-Stage: a data-desk scatter chart of the visible rows; hidden rows appear as dashed "?" columns at their x values.
-Panel: the data table (visible rows), then the model cards.
+Header: title, subtitle "The future decides." Dataset picker: three cards `Stopping distances`, `US population`,
+`Two savers`, each with its painting (Art) and title. Modes `Look` (opens first), `Build`, `Reveal`. Kit buttons.
+Each dataset shows "Data as of" and its source line under the chart.
+Stage (Build and Reveal): a data-desk scatter chart of the visible rows; hidden rows appear as dashed "?" columns at
+their x values. Panel: the data table (visible rows), then the model cards. Under 1000 px wide the panel goes under
+the chart, active model card first.
 
 ### Look (explore)
+Focus: the table with its Differences and Ratios columns, center stage and large; in this mode the table moves onto
+the stage and a small scatter of the same rows sits beside it (under it below 1000 px).
 The table with two extra toggle columns: `Differences` (y minus the row before) and `Ratios` (y divided by the row
 before), and `Second differences`. A sentence under the table names what to notice without the answer ("Are the
 differences steady? Are the ratios?"). Tapping a point highlights its row.
 
 ### Build
+Focus: the scatter with the three model curves and their handles, center stage and the largest thing; the active
+model card beside it.
 Three model cards, each with its own engine color and dash pattern, its equation in parameter form, handles on the
 chart and sliders with number boxes:
 - Line: y = m(x − x0) + y0; handles: a point (x0, y0) and a slope handle.
@@ -46,11 +51,13 @@ Stopping distances adds a `Combine` card: Total = Thinking model + Braking model
 builds a line for the thinking column and a parabola for the braking column, and the sum is drawn over the totals.
 
 ### Reveal
-`Reveal the hidden rows`: the hidden points fall into place, each model's prediction for each hidden x is listed
+Focus: the scatter, where the hidden points land against the three curves; the prediction table under it.
+`Reveal the hidden rows`: the hidden points fall into place over 800 ms (at once with Motion off), each model's prediction for each hidden x is listed
 with its error, and the model with the smallest mean absolute error on the hidden rows gets "wins". Your pick and
-reason are shown beside it ("You picked Exponential for steady ratios; the hidden rows went to the Parabola").
-`Long run` (Two savers and US population): the x range widens step by step (to 1950, or to 60 years) so the student
-sees where each model goes. Parameter cards (F-LE.B.5) read the winning model in words (Content).
+reason are shown beside it ("You picked Exponential for steady ratios; the hidden rows went to the Parabola"); with
+no pick it says "No pick this time" (Reveal never waits for one). `Hide again` puts the rows back.
+`Long run` (Two savers and US population): the x range widens in 10 steps over 4 s (to 1950, or to 60 years; one
+jump with Motion off) so the student sees where each model goes. Parameter cards (F-LE.B.5) read the winning model in words (Content).
 
 ## Content
 1. Stopping distances. UK Highway Code, rule 126, typical stopping distances (data as of the current Highway Code
@@ -83,31 +90,47 @@ sees where each model goes. Parameter cards (F-LE.B.5) read the winning model in
 ## Interactions in detail
 - Data comes in through `DataTable` with `columns` and units; the scatter, fits and r² come from the engine.
 - Handles: dragging changes the parameters live; sliders and number boxes stay in sync; b is limited to 0.5 to 2,
-  a to −1 to 1 (stopping) or −0.1 to 0.1 (population), never 0 (a zero stretch is refused with a tip).
+  a to −1 to 1 (stopping), −0.1 to 0.1 (population) or −5 to 5 (Two savers, whose best parabola has a = 1.97), never
+  0 (a zero stretch is refused with a tip).
 - Errors: mean absolute error on the rows named, in the data's units, to 1 decimal (2 for millions).
 - Winner on hidden rows: the smallest mean absolute error; ties within 0.05 units are called a tie.
 - Two savers crossing: the tool finds the first whole year t where 1000 · 1.06^t > 1000 + 100t by stepping t
   (year 18) and prints it with both values.
 - Combine: the Total curve is the pointwise sum of the student's two models; its error on hidden totals is listed.
+- Tap while it plays: during the Reveal drop or a Long run, a handle drag, slider, pick, mode or dataset change
+  acts at once: the animation jumps to its end state (or is dropped, on a dataset change) and the new state shows.
 - Switching datasets keeps each dataset's models this session; `Reset models` clears the current one.
 - `window.__tool = {state, setMode, dataset(id), model(kind, params), errors(), reveal()}`.
 
 ## Look
 Accent `--brand #ff8fd0` (pink), `--brand-ink #2b0a1e`. Chart on `#0e1520`; the three models use data-desk series
 colors 1, 2, 3 with their dash patterns and shapes; hidden-row "?" columns dashed `#a6b3c4`; the winner gets a
-"wins" tag in words. Contrast (computed): brand on panel 8.32:1, on --sec-bg 7.88:1, brand-ink on brand 8.66:1.
+"wins" tag in words. Dataset cards carry soft watercolor paintings in greens and creams, which sit only on the
+picker cards and the Reveal band, never behind the chart. Contrast (computed): brand on panel 8.32:1, on --sec-bg 7.88:1, brand-ink on brand 8.66:1.
 
 ## Art
-none: drawn in code.
+Local FLUX (`scripts/localart.py`), all without people. One style: soft watercolor illustration. Each is its dataset
+card's picture in the picker (4:3) and a small band above the Reveal table.
+- data-road: "A two-lane country road curving away between green fields, dark tire skid marks on the asphalt ending
+  near a red warning triangle, daylight, soft watercolor illustration"; 4:3; cutout no; people no; Stopping distances.
+- data-town: "A small 1800s American river town seen from a hill, wooden houses, a white church steeple, a
+  steamboat at the dock and farms spreading out to the hills, soft watercolor illustration"; 4:3; cutout no; people
+  no; US population.
+- data-savers: "Two containers side by side on a wooden shelf, a clear glass jar of coins on the left and a small
+  locked green metal savings box on the right, soft watercolor illustration"; 4:3; cutout no; people no; Two savers
+  (the jar is Ana's, the box Ben's; their names are code labels under each).
+The scatter, curves, handles, tables, "?" columns and preview.svg are drawn in code (they are charts and controls).
 
 ## Voice
-Bank voice `science-narrator` (clear documentary). Not used by math 9-12 neighbors or group siblings.
-- wLook (how, Look welcome): "Turn on Differences and Ratios. One of them stays almost steady. Which one?"
-- wBuild (how, Build welcome): "Drag each model's handles to fit the dots. Then pick your winner and a reason."
-- wReveal (how, Reveal welcome): "Press Reveal to bring in the hidden rows. The best prediction wins."
-- winner (event, reveal done; stale on dataset change): "The hidden rows have spoken. Compare your pick with the winner."
-- combine (how, Combine opens): "Build the thinking part and the braking part. Their sum is the total."
-- longRun (event, Long run finished; stale on dataset change): "Far enough out, the exponential always pulls away."
+Bank voice `science-narrator` (Charon, "Say in a clear, informative way, like a nature documentary narrator"). Not
+used by math 9-12 neighbors, group siblings or the R02 batch. `Curio.voice`, `scope: () => state.mode + ':' +
+state.dataset`. Tables, cards and notes are read on screen; Read speaks the hint.
+- wLook (how, Look welcome; stale when Differences or Ratios is turned on): "Turn on Differences and Ratios under the table. One of them stays almost steady. Which one?"
+- wBuild (how, Build welcome; stale on the first handle drag or Computer's best fit): "Drag each model's handles to fit the dots. Then press My winner and pick a reason."
+- combine (how, the Combine card opens; stale when both parts have been dragged): "Drag the thinking line's handles, then the braking parabola's. Their sum is drawn over the totals."
+- wReveal (how, Reveal welcome; stale on Reveal the hidden rows): "Press Reveal the hidden rows. The best prediction wins."
+- winner (event, reveal done; stale on dataset change or Hide again): "The hidden rows have spoken. Compare your pick with the winner."
+- longRun (event, Long run finished; stale on dataset change): "Far enough out, the growing exponential always pulls away."
 
 ## Family engine
 data-desk (`kit/data-desk.js`, docs/families/data-desk.md). Uses `DataTable` (one per dataset, hidden rows flagged
@@ -126,7 +149,16 @@ made-up Two savers. No other sibling may use them.
 - 1 mph = 0.44704 m/s (exact): NIST SP 811, Appendix B.
 - US resident population by census, 1790 to 1950: U.S. Census Bureau, "Population and Housing Unit Counts" (2010 Census, CPH-2-1), Table 1, and the Census history page, https://www.census.gov/library/publications/2012/dec/cph-2.html (copy every figure from the table; 1870 to 1890 use the revised counts 38,558,371, 50,189,209 and 62,979,766).
 - Linear vs exponential growth, equal differences and equal ratios: OpenStax, College Algebra 2e, 6.1 "Exponential Functions", https://openstax.org/books/college-algebra-2e/pages/6-1-exponential-functions
-- Fits and predictions recomputed with numpy least squares (2026-10-27), values as in Content.
+- Checks run (Python, numpy least squares, 2026-10-29): Stopping Total on 20 to 50 mph: line 1.36v − 16.6 (hidden
+  65.0, 78.6, mean error 12.7), parabola 0.015v² + 0.31v − 0.1 (72.5, 95.1, 0.7), exponential 4.841 · 1.0503^v
+  (91.8, 149.9, 36.4); differences 11, 13, 17, 20, 23, second differences 2, 4, 3, 3, thinking differences all 3;
+  reaction 0.3 / 0.44704 = 0.67 s; Combine 0.3v + 0.015v² gives 72.0 and 94.5 (within 2 m of 73 and 96). US
+  population 1790 to 1860: ratios 1.351 to 1.364, then 1.226; exponential 3.956 · 1.02996^x has the smallest visible
+  error (0.09) and hidden error 4.78; parabola 38.79 and 47.93, hidden error 1.24; line 30.70 and 34.44, 11.80;
+  1950: exponential 444.9, parabola 142.2; 1.02996^10 = 1.343 a decade. Two savers: Ben 1,000, 1,060, 1,123.60,
+  1,191.02, 1,262.48, 1,338.23; t = 10 1,790.85, t = 20 3,207.14, t = 60 32,987.69; first year Ben passes Ana is 18
+  (2,854.34 against 2,800; year 17 is 2,692.77 against 2,700); best parabola on years 0 to 5 has a = 1.97, outside
+  the old −1 to 1 slider, so Two savers got its own range.
 
 ## Done when
 1. Look on Stopping distances: Differences show 11, 13, 17, 20, 23 for Total and 3, 3, 3, 3, 3 for Thinking.
@@ -134,6 +166,11 @@ made-up Two savers. No other sibling may use them.
 3. US population: Ratios show about 1.33 to 1.36 up to 1860; exponential has the smallest visible error, and Reveal names the parabola the winner (1.24 vs 4.78 million mean error).
 4. Long run on US population shows the exponential at about 445 million in 1950 against 151.3 actual.
 5. Combine: a thinking line 0.3v and a braking parabola 0.015v² sum to predictions within 2 m of 73 and 96.
-6. Two savers: the crossing is year 18 (Ana $2,800, Ben $2,854.34); Reveal names the exponential the winner at t = 10 and 20 (1,790.85 and 3,207.14).
-7. Every dataset shows "Data as of" and its source; handles work by keyboard with value text; a stretch of 0 is refused.
-8. Every size in STANDARDS.md keeps the chart and the active model card visible; console clean, no network.
+6. Two savers: the crossing is year 18 (Ana $2,800, Ben $2,854.34); Reveal names the exponential the winner at t = 10 and 20 (1,790.85 and 3,207.14); Computer's best fit for the parabola lands inside its slider range.
+7. Focus: at 1366x768 and 1000x625 the table is the largest thing in Look and the scatter with its curves is the largest thing in Build and Reveal.
+8. Tap while it plays: dragging a handle or switching dataset during the Reveal drop or a Long run shows the new state at once.
+9. Every dataset shows its painting, "Data as of" and its source; handles work by keyboard with value text; a stretch of 0 is refused; Reveal works with no pick.
+10. Every size in STANDARDS.md keeps the chart and the active model card visible; console clean, no network.
+
+## Open questions
+- none.

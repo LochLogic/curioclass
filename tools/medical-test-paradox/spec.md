@@ -28,22 +28,32 @@ test finds true cases. Slide how common the condition is and watch that one frac
 Header (kit, 9-12 theme): title "Medical Test Paradox", subtitle "A positive test, and what it really means."
 Modes `Town` (opens first), `Table`, `Second test`, `Cases`. Kit buttons `Motion`, `Sound`, `Read`.
 Layout: stage left (the town as an icon grid), panel right (sliders, readouts). Under 1000 px wide the panel goes
-under the stage, sliders first. Under 900 px tall the grid shrinks to fit and the readouts stay in view.
+under the stage, sliders first. Under 900 px tall the grid shrinks to fit, the painted band is hidden and the
+readouts stay in view.
 A note under the header on every mode: "Glimmer fever is made up. Real tests have their own numbers; ask a doctor
 about yours."
 
 ### Town (simulator)
+Focus: the icon grid of the town, the largest thing on screen, with the big readout directly under it. A short
+painted band of the town (art: town-street, 4:1) runs across the top of the stage above the grid.
 - Controls: `People` 1,000 / 10,000 / 100,000; `How common` (prevalence, log slider 0.1% to 50%); `Catches`
   (sensitivity, 50% to 100%); `Clears` (specificity, 50% to 99.9%). Each slider has a number box.
-- `Test everyone` plays in three beats (instant with Motion off): people with glimmer fever fill in; the test
-  marks positives with a raspberry color and a plus badge; the grid sorts into four blocks with counts.
-- Before the third beat a `Predict` slider asks "Of the people who test positive, what share have it?" (0% to 100%).
+- `Test everyone` plays in three beats of about 1 s each (instant with Motion off): people with glimmer fever fill
+  in; the test marks positives with a raspberry color and a plus badge; the grid sorts into four blocks with counts.
+- Before the third beat it pauses: a `Predict` slider asks "Of the people who test positive, what share have it?"
+  (0% to 100%) with `Lock in guess` (runs the third beat) and `Skip guess` (runs it without a guess).
 - `Positives only` fades everyone who tested negative. The big readout: "Of 981 who tested positive, 90 have it:
   9.17%." Your prediction sits beside it.
 - `On average` (default) shows expected counts, one decimal when not whole, labeled "on average". `Random run`
   draws each person with a seeded random number (seed shown, `New run`), so counts are whole and vary a little.
-  `Run 100 towns` plots the running share of positives who have it against the on-average value (Converge chart).
+  `Run 100 towns` plots the running share of positives who have it against the on-average value (Converge chart),
+  drawn over at most 5 s.
+- Tap while it plays: a slider, a mode switch or any button during a beat, the sort or Run 100 towns acts at once: a
+  beat jumps to its end state, a run is stopped (its partial chart stays, labeled "stopped") and the new numbers show
+  straight away.
 ### Table
+Focus: the two-way table, center stage and large, with the lit fraction in big type under it; the Which question?
+sentences and the addition panel in the panel.
 - The same numbers as a two-way table: rows Has it / Doesn't, columns Positive / Negative, with totals. Tap a row
   or a column to divide by it: the cells in it light and the fraction shows ("90 out of 100 = 90%: of people who
   have it, the share who test positive").
@@ -53,11 +63,16 @@ about yours."
 - Addition rule panel: P(has it or positive) = P(has it) + P(positive) − P(both) = 100/10,000 + 981/10,000 −
   90/10,000 = 991/10,000 = 0.0991, with the double-counted block flashing.
 ### Second test
+Focus: the tree, center stage, with the double-positive share in big type under it. Two test strips (art:
+test-strip, shown twice) mark the first and second rounds above the tree.
 - Everyone who tested positive takes a second test with the same Catches and Clears, assumed independent of the
   first given the condition (stated on screen). A tree shows both rounds with counts on every branch, and a toggle
-  shows probabilities instead (multiplication rule along a branch). Readout: share of double positives who have it.
+  `Counts` / `Chances` shows probabilities instead (multiplication rule along a branch). Readout: share of double positives who have it.
 ### Cases
-- Case cards that set the sliders and ask one question before showing the answer (Content). The last card, the coin
+Focus: the open case's question with its Predict slider, then the grid and readout it reveals, center stage. The
+case picker is a row of seven case cards, each with its painting (Art) and title.
+- Case cards that set the sliders and ask one question; drag `Predict` to your answer, then `Show answer` runs the
+  town and reveals it (Content). The last card, the coin
   test, is a "test" that says positive half the time no matter what: P(has it | positive) equals P(has it), the
   meaning of independence.
 
@@ -97,21 +112,39 @@ false positive, false negative.
 ## Look
 Accent `--brand #ff3d9a` (the raspberry line on a home test strip), `--brand-ink #10161f`. Stage `#0f141c`; people
 icons: well and negative are slate outlines `#6b7a90`, has-it fills the body, positives are raspberry with a plus
-badge. Tree and table highlights in the accent at 25%.
+badge. Tree and table highlights in the accent at 25%. The pastel paintings (town band, case cards) never sit behind the
+grid, table or text; the band fades into the stage color at its lower edge.
 Contrast (computed): brand on --panel 5.26:1, on --sec-bg 4.99:1, on the stage 5.62:1; brand-ink on brand 5.52:1;
 slate icons on the stage 4.23:1 (graphics, need 3:1); ink on the stage 15.69:1. Redder and deeper than
 identity-proof-race's #ff5cf0 and the pinks #ff8ab6 and #ff8fd0; bluer than ramp-and-roof's #ff4d6d.
 
 ## Art
-none: icons, table and tree drawn in code (preview.svg is the sorted grid).
+Local FLUX (`scripts/localart.py`), all without people. One style: soft pastel painted illustration, morning light.
+- town-street: "A quiet small-town main street at dawn, brick shops with plain blank awnings, a small clinic with a
+  green cross lamp, trees and a water tower behind, soft pastel painted illustration"; 4:1; cutout no; people no;
+  the band over the Town grid and the case cards for C1 and C5 (C5 adds a "half the town" label in code).
+- test-strip: "A white plastic home test cassette lying flat with a small oval window showing one raspberry red
+  line, plain blank label area, soft pastel painted illustration, plain white background"; 1:1; cutout yes; people
+  no; the Second test round markers and the case cards for C4 (two copies) and C6.
+- clinic-hall: "An empty bright clinic waiting room with rows of teal chairs, a reception desk with a plain blank
+  sign, potted plants, soft pastel painted illustration"; 4:3; cutout no; people no; case card C2.
+- lab-rack: "A rack of capped test tubes and a microscope on a clean lab bench by a window, soft pastel painted
+  illustration"; 4:3; cutout no; people no; case card C3.
+- coin-flip: "A single silver coin spinning on its edge on a wooden table, soft pastel painted illustration, plain
+  white background"; 1:1; cutout yes; people no; case card C7 (the coin test).
+The people icons are an icon array (a chart of counts), so they stay in code with the table, tree, Converge chart,
+badges and preview.svg.
 
 ## Voice
 Bank voice `curious-librarian` (Aoede), style "Say calmly and curiously, like a librarian helping you check a
-surprising fact". No 9-12 math tool uses it. `Curio.voice`, `scope: () => state.mode`.
-- wTown (how): "Set the town, then tap Test everyone. Before the last step, guess the share."
-- wTable (how): "Tap a row or a column to divide by it. Then match each question to its fraction."
-- wSecond (how): "Everyone who tested positive takes the test again. Follow the branches."
-- wCases (how): "Pick a case and answer its question before you look."
+surprising fact". Not used by math 9-12 neighbors, group siblings or the R02 batch. `Curio.voice`,
+`scope: () => state.mode`. Readouts, notes and case texts are read on screen; Read speaks the hint.
+- wTown (how, Town welcome; stale on Test everyone): "Set the sliders, then press Test everyone."
+- predictHow (how, the first Predict pause; stale on Lock in guess or Skip guess): "Drag Predict to your guess, then press Lock in guess."
+- positivesHow (how, the first time the sort finishes; stale on Positives only): "Press Positives only to look at just the people who tested positive."
+- wTable (how, Table welcome; stale on the first row or column tap): "Tap a row or a column to divide by it. Then drag each question onto its fraction."
+- wSecond (how, Second test welcome; stale on the Counts or Chances toggle): "Everyone who tested positive takes the test again. Follow the branches, or tap Chances to see probabilities."
+- wCases (how, Cases welcome; stale on Show answer): "Tap a case card, drag Predict to your answer, then press Show answer."
 - surprise (event, Positives only shows a share under 20% after a prediction 30 points higher; stale on slider change): "Most of these positives are false alarms. The healthy crowd is just so much bigger."
 - close (event, a prediction within 5 points; stale on slider change): "Close. You read it the right way round."
 - coin (event, the coin test case is revealed; stale on case change): "The test knows nothing, so a positive tells you nothing new."
@@ -147,18 +180,26 @@ family; carnival-odds (gr 7 simulator, 7.SP.C) and game-show-strategist (gr 12 s
 - The 1%, 90%, 9% example and natural frequencies: Gigerenzer G, Gaissmaier W, Kurz-Milcke E, Schwartz LM, Woloshin S, "Helping Doctors and Patients Make Sense of Health Statistics", Psychological Science in the Public Interest 8(2):53-96, 2007, https://pubmed.ncbi.nlm.nih.gov/26161749/
 - Doctors do better with natural frequencies: Association for Psychological Science, "Just a Numbers Game? Making Sense of Health Statistics", https://www.psychologicalscience.org/news/releases/just-a-numbers-game-making-sense-of-health-statistics.html
 - Sensitivity, specificity and predictive values: Shreffler J, Huecker MR, "Diagnostic Testing Accuracy: Sensitivity, Specificity, Predictive Values and Likelihood Ratios", StatPearls (NCBI Bookshelf NBK557491), https://www.ncbi.nlm.nih.gov/books/NBK557491/
-- Every case value above was recomputed in Python (2026-10-27).
+- Checks run (Python, 2026-10-29): C1 TP 90, FN 10, FP 891, TN 9,009, 90/981 = 9.17%, 9,009/9,019 = 99.89%,
+  (100 + 981 − 90)/10,000 = 0.0991; C2 (10,000 people) TP 2,700, FP 630, 81.08%; C3 TP 99, FP 999, 9.02%; C4 TP 81,
+  FP 80.19, 50.25%; C5 TP 4,500, FP 450, 90.91%; C6 100%; C7 TP 50, FP 4,950, 1.00%. Slider extremes: 0.1% with a
+  coin-like test gives 0.10%; 50% with 100% and 99.9% gives 99.90%; no setting gives zero positives on average.
+  Random runs (numpy, 300 runs of 100 towns of 10,000 at C1): pooled share mean 9.17%, spread 0.09 points, worst
+  0.29 points off, so "within 0.5 points" in Done when is safe; a single town of 10,000 spreads 0.93 points (1st to
+  99th percentile 7.0% to 11.4%).
 
 ## Done when
 1. C1 shows TP 90, FN 10, FP 891, TN 9,009 and "Of 981 who tested positive, 90 have it: 9.17%".
 2. C2 gives 81.08%, C3 gives 9.02%, C5 gives 90.91%, C7 gives 1.00%.
 3. C4's tree shows 81 and 80.2 on average, and 50.25%.
 4. Table: dividing by the Positive column gives 90/981; by the Has it row gives 90/100; the addition panel ends at 0.0991.
-5. Random run with the same seed gives the same counts twice; a new seed changes them; Run 100 towns settles near 9.17%.
+5. Random run with the same seed gives the same counts twice; a new seed changes them; Run 100 towns at C1 ends within 0.5 points of 9.17%.
 6. 100,000 people draws without stalling and the legend says each square is 10 people.
-7. Color is never the only signal: positives carry a plus badge and has-it is filled.
-8. Keyboard alone can run C1 and the Table; every size in STANDARDS.md keeps the grid and the main readout visible without page scrolling.
-9. Console clean, no network, no em dashes, "Curio Class" only in full.
+7. Focus: at 1366x768 and 1000x625 the grid is the largest thing in Town and Cases, the two-way table in Table and the tree in Second test.
+8. Tap while it plays: moving a slider during a beat or during Run 100 towns shows the new numbers at once; Test everyone waits at the Predict pause until Lock in guess or Skip guess.
+9. Color is never the only signal: positives carry a plus badge and has-it is filled; the paintings load on the band and the case cards.
+10. Keyboard alone can run C1 and the Table; every size in STANDARDS.md keeps the grid and the main readout visible without page scrolling; no voice line names a disabled or hidden control.
+11. Console clean, no network, no em dashes, "Curio Class" only in full.
 
 ## Open questions
 - S-CP.B.8 (+) shows only as the tree's probability view, and S-CP.B.9 (+) (counting) is not taught. Keep the
