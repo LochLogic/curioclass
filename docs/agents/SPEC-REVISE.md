@@ -29,6 +29,25 @@ numbers, Name the focus, Fit the kit and the scope). You do not write code and y
    Shorten auto-plays over about 30 s or give the reason.
 6. **Done when.** Add a check for the focus and one for a tap while anything plays, if missing.
 
+## Rulings (from the pilot)
+
+- **Art tools.** Follow STANDARDS.md: local FLUX (`scripts/localart.py`) for everything without people; people,
+  faces and hands go to Gemini (`scripts/art.py`), which is set aside for now, so every `people: true` image waits on
+  Cory. Replace old mentions of `cfart.py` or `gptart.py`. Prefer a non-person picture when it teaches just as well
+  (an object, an animal, an icon); keep people only where the person is the point, and count them in your report.
+- **Kits of parts** (costumes, furniture, pieces a student places): one cutout per piece, one shared prompt line with
+  a list of the pieces, and one sizing rule for where each sits. Aim for 20 or fewer pieces.
+- **Facts versus the tool's own claims.** Real-world facts (dates, data, quotes, science) stay. Rules, scores, advice
+  and notes the spec made up may be fixed when your checks show they are wrong; say what changed in your report.
+- **Missing pieces.** Adding a missing ending, control or voice line that the current spec needs to work is in scope.
+  New modes or new content are not.
+- **Voice clashes.** A clash counts against the tools `neighbors.py` lists and the other specs in your batch, nothing
+  wider. To see their voices: `awk '/^## Voice/{getline; print FILENAME": "$0; exit}' tools/<id>/spec.md`.
+- **Length.** Up to about 300 lines is fine when the art list needs it; Done when may run to 12 checks.
+- **Missing kit files.** If a family engine names a kit file that does not exist yet, leave the reference as it is;
+  the build creates it. Do not design a fallback.
+- **Open questions.** Keep the spec's "Open questions" section at the end (after Done when) and add yours there.
+
 ## What not to change
 
 - The One idea, the Not like list, the standards, grade and the content facts. If a fix seems to need one of these
