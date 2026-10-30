@@ -157,3 +157,6 @@
 - prototype-lab: 0.30 N tap target; 8-hour printer budget default on? interview-simulator: Resume lines mode enough? unsaved typing box OK?
 - compound-interest-head-start: stopped saver never catches up at savings rates, framing OK? covered-insurance-claims: title, made-up premiums OK?
 - the-credit-card-diaries: lender wording and possible cosigner ending; medical-debt-under-$500 rule or non-medical bill?
+
+## R29
+- stock-market-1929: close accounts under $1, or run to Dec 1932 in cents? At 1x, pause ~5 s on each voiced event, or cards only? Keep hs-narrator or switch to news-reader?

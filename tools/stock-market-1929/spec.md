@@ -18,19 +18,21 @@ written after the crash.
 ## Who and how
 Grade 11, social studies (US history, Roaring Twenties and the Great Depression). Driver: students on their own laptops,
 or a teacher on a projector. 20 to 40 minutes. Standards: D2.His.14.9-12, D2.Eco.12.9-12.
-Look: 9-12 dark instrument. Link `kit:curio`, then `kit:theme-912`; set `--brand` to a ticker green (pick a value that
-passes AA on the theme's `--paper`). Readout numbers in the theme's readout font. No confetti, no score, no win screen:
-every run ends in a plain account statement, never "you beat the crash".
 
 ## Screens and modes
-Header: title "Stock Market 1929", `.seg` mode buttons **Ride the market**, **Two rule books**, **What changed**, then
-icon buttons Motion (`motion`), Sound (`sound`), Read (`read`). Layout: kit stage plus panel.
+Header: title "Stock Market 1929" with the ticker-machine picture small at its left, `.seg` mode buttons **Ride the
+market**, **Two rule books**, **What changed**, then icon buttons Motion (`motion`), Sound (`sound`), Read (`read`).
+Layout: kit stage plus panel. Under about 900 px tall the panel goes buttons-first (Play, Pause, Next day, Speed, Sell
+everything at the top, setup chips below).
 
 ### Ride the market (opens here)
+- Focus: the Dow line growing day by day and, right under it, your account bar. Together they fill the stage (the chart
+  about two thirds of the stage height, the bar the rest); the panel holds only setup chips, readouts and buttons.
 - Stage: a large line chart of the Dow close (y axis 0 to 400, x axis from the chosen start to 12/31/1932), drawn up
   to the current day only. Under it, a stacked bar for the account: your share (equity) in green, the broker's loan in
-  grey, and a dashed horizontal "call line" marker. A ticker strip across the top shows the date and close as plain
-  text, like tape ("OCT 29 1929   DOW 230.07   DOWN 11.7 PERCENT").
+  grey, and a dashed horizontal "call line" marker. A ticker strip across the top of the stage shows the date and close
+  as plain code text on the painted tape-strip ("OCT 29 1929   DOW 230.07   DOWN 11.7 PERCENT").
+- Before Play the chart shows its axes and the start point only, with the start close on the tape.
 - Panel, before Play:
   - **Start day** chips: **Jan 1928**, **Jan 1929**, **Peak: Sep 3, 1929**, **Oct 23, 1929**.
   - **You put down** chips: **100 percent (no loan)**, **50 percent**, **25 percent**, **10 percent** (default 10).
@@ -41,29 +43,38 @@ icon buttons Motion (`motion`), Sound (`sound`), Read (`read`). Layout: kit stag
   - Readouts: Stock value, Loan, Your share, Your share as a percent, Savings left, Loan interest rate this month.
   - Buttons: **Play**, **Pause**, **Next day**, **Speed** (1x, 4x), **Sell everything**, **Reset**.
 - While playing, each step reveals the next close (see Content for steps). Event markers pop up as small cards on the
-  chart (Content, Events). Hint paragraph (`hint`) explains the current state in one sentence.
-- **Margin call** panel (playback pauses): "MARGIN CALL. Your share has fallen to X percent. Your broker needs $N to
-  bring it back to Y percent." Buttons: **Pay from savings ($N)** (disabled with "Not enough savings" if N > savings),
-  **Let the broker sell**, **Sell everything**. A checkbox **From now on, let the broker sell** answers future calls
-  automatically.
-- **Account statement** (end of data, Sell everything, or wiped out): start day, rules, down payment, highest your
-  share reached and when, the day it ended, cash returned or "You owe the broker $N", what the same $1,000 would be
-  with no loan on the same day. Buttons: **Try another down payment** (same start, back to setup), **Reset**.
+  chart (Content, Events); the four voiced events carry a small painted picture (Art). Hint paragraph (`hint`) explains
+  the current state in one sentence.
+- **Margin call** card (playback pauses): it opens over the lower part of the stage, covering the right side of the
+  account bar, with the chart still visible above it and the phone cutout at its left; the eye goes here. Text:
+  "MARGIN CALL. Your share has fallen to X percent. Your broker needs $N to bring it back to Y percent." Buttons:
+  **Pay from savings ($N)** (disabled with "Not enough savings" if N > savings), **Let the broker sell**, **Sell
+  everything**. A checkbox **From now on, let the broker sell** answers future calls automatically.
+- **Account statement** (end of data, Sell everything, wiped out, or closed under $1): a card centered on the stage over
+  the dimmed chart, its text in code on the painted statement-paper, the ticker-machine picture in its corner. It shows
+  start day, rules, down payment, highest your share reached and when, the day it ended, cash returned or "You owe the
+  broker $N", what the same $1,000 would be with no loan on the same day. Buttons: **Try another down payment** (same
+  start, back to setup), **Reset**.
 
 ### Two rule books
+- Focus: the one chart with the two account lines; the two mini statements sit in the panel and stay small.
 - Same start day chips. Two accounts run together on one chart: **1929 rules, 10 percent down** (amber line) and
   **Today's rules, 50 percent down** (green line), each line showing that account's share in dollars, with the Dow
   as a faint grey line behind on its own right axis. Both start with $1,000; calls are answered "broker sells"
   automatically and marked with a small labelled tick on that account's line ("call", "sold", "closed").
 - Buttons: **Play**, **Pause**, **Next day**, **Speed**, **Reset**. Side panel: two mini statements updating live, plus
   a no-loan $1,000 readout for reference.
-- Fixed takeaway text once both finish: "The 50 percent rule did not stop the losses. It made the first call come
-  later and smaller, so fewer forced sales hit the market at once." (Must agree with the computed results in Done when.)
+- Takeaway card once both finish (or the data ends), centered on the stage over the chart: one computed line per
+  account (Peak start: "1929 rules: first forced sale Sep 20, 1929; closed Oct 28, 1929 owing $18.12." and "Today's
+  rules: first forced sale Oct 29, 1929; still open with $3.08."), then the fixed text: "Both accounts lost money. The
+  50 percent rule did not stop the losses. It gave the account room: the forced sales came later and were smaller, and
+  no single bad day wiped it out." (Checked for all four start days, see Sources.)
 
 ### What changed
-- A horizontal timeline 1929 to 1934 with seven cards (Content, Reforms). Click a card to open it in the panel: date,
-  what it did in one or two plain sentences, a short primary-source excerpt where listed, and a "Connects to your
-  account" line. Keyboard: left and right arrows move between cards.
+- Focus: the open card, large in the middle of the stage (its painted picture on the left; date, title, text, excerpt
+  and "Connects to your account" on the right). A horizontal timeline strip 1929 to 1934 with the seven card titles
+  runs along the bottom of the stage; the panel holds the hint, and the Try it button when card 7 is open.
+- Tap a card on the timeline strip to open it (Content, Reforms). Keyboard: left and right arrows move between cards.
 - One card, **Margin rules**, has a **Try it** button that switches to Ride the market with Today's rules and 50
   percent down already chosen.
 - No quiz, no points.
@@ -127,6 +138,10 @@ below the peak. First close above 381.17 again: 382.74 on 11/23/1954 (shown as a
 - If share is 0 or less at any step: the broker sells everything; if the sale does not cover the loan, the statement
   says "You owe the broker $N" (N = minus share). Account closed; playback stops.
 - Sell everything: share is paid out as cash, loan repaid, account closed, statement shows.
+- If share is under $1.00 after any step (and above 0): the broker closes the account and pays the share out as cash;
+  the statement says "Closed: your share fell under $1."
+- At 50 percent down the two rule books give the same call line (25 percent); Today's rules differ by forbidding 25 and
+  10 percent down.
 - Savings never earn interest. No taxes or commissions (say so in a note).
 
 ### Reforms (What changed cards)
@@ -152,49 +167,109 @@ below the peak. First close above 381.17 again: 382.74 on 11/23/1954 (shown as a
 ## Interactions in detail
 - Setup choices lock when Play is pressed; Reset unlocks them. Changing Rules to Today's while 25 or 10 is chosen
   moves the down payment to 50.
-- Playback: 1x = 4 rows per second, 4x = 16 rows per second. Next day advances one row while paused. With motion off,
-  the line still advances step by step (it is data pacing) but the chart does not animate between points, and cards
-  appear without sliding.
+- Playback: 1x = 4 rows per second, 4x = 16 rows per second. Next day advances one row while paused (it is disabled
+  while playing, and no line names it then). With Motion off, the line still advances step by step (it is data pacing)
+  but the chart does not animate between points, cards appear without sliding and the phone does not shake.
+- Run length: 47 s (Oct 23) to 79 s (Jan 1928) at 1x, plus voiced holds. Kept: the slow 1930 to 1932 grind is the
+  lesson for no-loan and 50 percent accounts; 10 percent runs close within about 15 s, and 4x takes 20 s or less.
+- Controls stay live while playing: Pause stops on the current row at once, Speed changes the rate from the next row,
+  Sell everything closes the account on the current row and opens the statement, and the mode buttons stop playback
+  and speech. A tap is never held for the next row.
 - Event cards: up to 3 visible; older ones fade to small dots on the line that reopen on click or Enter. Pressing an
   event card does not pause playback; a margin call always pauses.
-- Speech: the four voiced events (Content, Voice) play once per run when reached; at 4x speed they are skipped and only
-  shown as cards. Curio.stop() on mode change and Reset.
-- Extremes: a call can fire on the very next row after buying (Oct 23 start, 10 percent down). Multiple calls in a row
-  each pause unless the auto-sell box is ticked. Pay button shows exact dollars to the cent and disables when savings
-  are short. A share that crosses zero between rows (gap down) produces the "owe" statement, never a negative bar: the
-  bar shows 0 share and a red "owed" stub below the axis.
-- Reaching 12/31/1932 with an open account: statement says "Still open on Dec 31, 1932".
+- Voiced market events (Black Thursday, Black Monday, Black Tuesday, the bottom): at 1x with Sound on, playback holds
+  on that row until the line ends (about 5 s), with its card shown larger; Pause, Speed (4x ends the hold), Sell
+  everything and Read still respond at once. At 4x or with Sound off there is no hold and the card only shows. Each
+  plays once per run.
+- If a market event and an account event land on the same row (Black Monday and a 10 percent account closing), the
+  market line plays first, then the account line, then the statement line if it was never heard.
+- Extremes: the Jan 1929 start at 10 percent down gets its first call on Black Thursday (10/24) and is wiped out on the
+  next row (10/28) owing $89.65. The Oct 23 start at 10 percent gets no call at all: its share is 7.9 percent on
+  10/26, above the 5 percent line, and the 10/28 gap takes it straight to owing $486.11. Multiple calls in a row each
+  pause unless the auto-sell box is ticked. Pay button shows exact dollars to the cent and disables when savings are
+  short. A share that crosses zero between rows (gap down) produces the "owe" statement, never a negative bar: the bar
+  shows 0 share and a red "owed" stub below the axis.
+- A share under $1.00 closes the account (Content, Account model). Reaching 12/31/1932 open: the statement says
+  "Still open on Dec 31, 1932".
 - Two rule books: both accounts step together on the same rows; a closed account's line stops with a "closed" tick.
+  Its call, sold and closed ticks are silent (text on the chart only).
 - What changed opens on card 1. Try it keeps the start day the student last used.
 - Keyboard: Space = Play/Pause, Right arrow = Next day, all buttons focusable with visible focus, 44px targets. Colors
-  are never the only signal: lines are also labelled at their ends, and call ticks carry text.
-- localStorage (try/catch): last mode only.
+  are never the only signal: lines are also labelled at their ends, and call ticks carry text. Moving focus to the
+  margin call card or the statement uses `focus({preventScroll: true})`.
+- Sound starts on (kit default). localStorage (try/catch): last mode only. Nothing to copy, print or move between
+  devices.
+
+## Look
+9-12 dark instrument. Link `kit:curio`, then `kit:theme-912`; `--brand` is ticker green `#3ccf7e` (9.32:1 on `--paper`
+`#0d1219`, 8.59:1 on `--panel` `#141b25`; button text `#08180f` on it 9.08:1). The account share bar and the Today
+line use the brand green; the loan bar and the faint Dow line are grey `#8a96a8` (6.27:1 on paper); the 1929 account
+line is amber `#f2a93b` (9.41:1); the owed stub is red `#ff8a7a` (8.2:1). Statement text `#1e1a14` on the paper's
+cream `#efe6d2` (13.95:1, muted `#5a5040` 6.37:1); ticker text `#1b1b1b` on the tape's `#ece4cf` (13.59:1). Painted
+art is a muted period palette (sepia, brass, ink green), unlike market-time-machine's brass and teal editorial look
+and concert-ticket-market's indigo and magenta. Readout numbers in the theme's readout font. No confetti, no score, no
+win screen: every run ends in a plain account statement, never "you beat the crash".
 
 ## Art
-Most of it is drawn in code (chart, bars, ticker strip, timeline). Three images, no people, faces or hands anywhere:
-- ticker-machine: "a 1920s brass stock ticker machine under a glass dome on a dark wooden desk, a curl of paper ticker
-  tape spilling out, moody low light, photographic, no people"; 1:1; cutout yes; people no. Used small in the header
-  corner and on the statement.
-- tape-texture: "close up of narrow white paper ticker tape with faded printed stock symbols and numbers, piled loosely
-  on a dark background, shallow depth of field, no people"; 16:9; cutout no; people no. Faint background behind the
-  ticker strip and statement.
-- capitol-dome: "the United States Capitol dome at dusk seen from a distance, 1930s photo look, sepia toned, no people" (changed at the spec check: savings-plan already uses a vault door);
-  4:3; cutout no; people no. Header image for the What changed mode.
+Local FLUX (`scripts/localart.py`) for all 15 images; none has people (people no on every one), so none waits on
+Gemini. Every prompt ends with the style "muted period oil painting, sepia, brass and ink green, low warm light".
+Surfaces that would carry print are asked for blank; all text stays in code. Cutout no unless marked.
+- ticker-machine: "A 1920s brass stock ticker machine under a glass dome on a dark wooden desk, a curl of blank white
+  paper tape spilling from it, plain dark background"; 1:1; cutout yes; beside the header title, statement corner.
+- tape-strip: "A long flat strip of blank cream paper ticker tape lying straight across a dark wooden surface, side
+  light showing the grain"; 5:1; full-frame texture behind the ticker strip text.
+- phone: "A 1920s black candlestick telephone with its earpiece on the hook, brass details, front view, plain white
+  background"; 1:1; cutout yes; left of the margin call card, shakes briefly as the call opens (Motion on).
+- statement-paper: "A sheet of blank aged cream paper with faint ruled lines and a thin border, lying flat, even soft
+  light"; 3:4; full-frame background of the statement and the takeaway card.
+- exchange-facade: "The columned stone front of the New York Stock Exchange on a narrow empty street at dawn, flags
+  hanging still, wet cobbles"; 16:9; the Black Thursday card.
+- board-room: "A 1920s brokerage customers' room, rows of empty wooden chairs facing a tall blank green chalkboard
+  wall, one chair tipped over, loose papers on the floor, grey window light"; 16:9; the Black Monday card.
+- floor-paper: "An empty 1920s stock exchange trading floor ankle deep in torn paper slips and ticker tape, tall
+  trading posts with blank boards, dusty window light"; 16:9; the Black Tuesday card.
+- cold-chimneys: "A row of brick factory chimneys under a flat grey winter sky, the air still and clear, bare trees and
+  a frozen yard below"; 16:9; the July 1932 bottom card.
+- certificates: "A small stack of ornate stock certificates with engraved green borders and blank centers, tied with a
+  faded ribbon, a brass fountain pen beside them"; 4:3; What changed card 1, Borrowed money.
+- bank-doors: "The tall closed bronze doors of a 1930s stone bank, a blank paper notice pasted on one door, fallen
+  leaves on the steps, overcast light"; 4:3; card 2, Bank holiday.
+- open-book: "A thick open bound book with blank cream pages, a brass magnifying glass resting on them, a green
+  banker's lamp glowing"; 4:3; card 3, Securities Act.
+- teller-window: "A closed brass bank teller's window grille on a polished marble counter, a small brass bell beside
+  it"; 4:3; card 4, Banking Act.
+- passbook: "A small closed savings passbook with a plain dark blue cover on a wooden table beside a short stack of
+  silver dollars"; 4:3; card 5, Deposit insurance.
+- capitol-dome: "The United States Capitol dome at dusk seen from a distance across a quiet lawn, sepia tones"; 4:3;
+  card 6, Securities Exchange Act (kept from the first spec; savings-plan uses a vault door).
+- balance-scale: "A brass balance scale on a dark wooden desk, an equal small stack of gold coins on each pan, the
+  beam level"; 4:3; card 7, Margin rules.
+Drawn in code (charts, bars and labels): the Dow chart, account bar, call line, ticks, two-line chart, timeline strip,
+readouts and preview.svg. The 9 unvoiced event cards are text only.
 
 ## Voice
-Bank `hs-narrator`, voice `Kore`, style "Read clearly and naturally, at a moderate pace". 12 lines:
-1. welcome-ride: "It is nineteen twenty-nine, and you can buy stocks with mostly borrowed money. Pick a start day and a down payment, then press Play."
-2. welcome-two: "Same days, two rule books. One account follows nineteen twenty-nine habits, the other follows today's law. Press Play and watch when the broker calls."
-3. welcome-changed: "After the crash, Congress wrote new rules for banks and markets. Open each card to see what changed, and why."
-4. first-call: "Margin call. Your share of the account has fallen too low. Pay from your savings, or the broker will sell your stock."
-5. broker-sold: "The broker sold part of your stock to pay down the loan."
-6. wiped: "Your account is closed. The broker sold everything to pay back the loan."
-7. owe: "Prices fell so fast that the sale did not cover the loan. You still owe the broker money."
-8. black-thursday: "October twenty-fourth, nineteen twenty-nine. Black Thursday. Panic selling floods the exchange."
-9. black-monday: "October twenty-eighth. The Dow falls almost thirteen percent in a single day."
-10. black-tuesday: "October twenty-ninth. Another drop of nearly twelve percent. Brokers call in loans everywhere."
-11. bottom: "July eighth, nineteen thirty-two. The Dow closes at forty-one point two two, eighty-nine percent below its peak."
-12. statement: "Your statement is ready. Try the same start with a different down payment and compare."
+Bank `hs-narrator`, voice `Kore`, style "Read clearly and naturally, at a moderate pace" (kept: no tool `neighbors.py`
+lists has a voice yet; the two built neighbors, market-time-machine and concert-ticket-market, have none). Uses
+`Curio.voice` with scope `mode + ':' + runId`. Readouts, cards and the statement are read on screen; Read speaks the
+hint. Event lines below are the explicit event set; the rest are how lines (spoken once per page load, then hint only).
+1. welcome-ride (how; Ride entered; stale on Play): "It is nineteen twenty-nine, and you can buy stocks with mostly borrowed money. Tap a start day and a down payment, then press Play."
+2. welcome-two (how; Two rule books entered; stale on Play): "Same days, two rule books. One account follows nineteen twenty-nine habits, the other follows today's law. Press Play and watch when the broker calls."
+3. welcome-changed (how; What changed entered; stale when a second card opens): "After the crash, Congress wrote new rules for banks and markets. Tap a card on the timeline to see what changed, and why."
+4. first-call (how; first margin call card when Pay is enabled; stale when the card closes): "Margin call. Your share of the account has fallen too low. Tap Pay from savings, or tap Let the broker sell."
+5. call-short (how; first margin call card when Pay is disabled; stale when the card closes): "Margin call, and your savings cannot cover it. Tap Let the broker sell, or tap Sell everything."
+6. call-again (event; every later margin call card; stale when the card closes): "Another margin call. Pick an answer on the card."
+7. broker-sold (event; each broker sale in Ride, chosen or automatic; stale at the next call, the close, Reset or mode change): "The broker sold part of your stock to pay down the loan."
+8. wiped (event; account closed with nothing owed and nothing left, or under $1; stale on Reset or mode change): "Your account is closed. The broker sold everything to pay back the loan."
+9. owe (event; account closed owing money; stale on Reset or mode change): "Prices fell so fast that the sale did not cover the loan. You still owe the broker money."
+10. black-thursday (event; 10/24/1929 row reached at 1x, Ride; stale when playback leaves that row, on Reset or mode change): "October twenty-fourth, nineteen twenty-nine. Black Thursday. Panic selling floods the exchange."
+11. black-monday (event; 10/28/1929 row at 1x, Ride; stale as above): "October twenty-eighth. The Dow falls almost thirteen percent in a single day."
+12. black-tuesday (event; 10/29/1929 row at 1x, Ride; stale as above): "October twenty-ninth. Another drop of nearly twelve percent. Brokers call in loans everywhere."
+13. bottom (event; 7/8/1932 row at 1x, Ride; stale as above): "July eighth, nineteen thirty-two. The Dow closes at forty-one point two two, eighty-nine percent below its peak."
+14. statement (how; first statement shown; stale when it closes): "Your statement is ready. Tap Try another down payment to run the same start again, and compare."
+15. takeaway (event; Two rule books takeaway card appears; stale on Reset or mode change): "Both accounts lost money. The fifty percent account was sold out later and in smaller pieces, and no single day wiped it out."
+Hints (silent after their line, spoken by Read): before Play "Tap a start day and a down payment, then press Play.";
+playing "Press Pause to stop on this day, or Sell everything to cash out now."; paused "Press Play to go on, or Next
+day to step one row."; call card as lines 4 or 5; statement as line 14.
 
 ## Family engine
 none. Keep the account model and chart in clearly marked blocks (`MARGIN ACCOUNT MODEL`, `DOW CHART`) so they can be
@@ -223,20 +298,58 @@ lifted into a kit file later.
 - Britain leaves gold 9/21/1931: Federal Reserve History, "Britain leaves the gold standard"
 - 1933 unemployment 24.9 percent: Historical Statistics of the United States, series Ba475 (Lebergott)
 - $1,000 in 1929 about $18,000 in 2024: BLS CPI-U annual averages 17.1 (1929) and 313.689 (2024), https://www.bls.gov/cpi/
+- Number checks (Python, 2026-10-29 revision; the account model above run on the 317 rows and the monthly rates):
+  - Data: 317 rows, increasing, no duplicates or Sundays. Ticker changes 10/28 -12.8, 10/29 -11.7, 10/30 +12.3
+    percent: match. Low 41.22 is 89.2 percent below 381.17; 11/13 low 198.69 is 47.9 percent below ("almost half");
+    CPI ratio gives $18,344 ("about $18,000").
+  - Done when 1 to 5 all reproduce: Peak no-loan $157.23 (end) and $108.14 (7/8/1932); Peak 10 percent pay $487.15,
+    $12.85 left, 9/30 unpayable; auto-sell sales 9/20, 9/30, 10/4, 10/23 then owe $18.12 on 10/28; Oct 23 start owes
+    $486.11 on 10/28; Today's 50 percent first call 10/29/1929, open at the end with $3.08.
+  - Fixed: the old extremes note said a call can fire on the next row after an Oct 23 start at 10 percent. It does
+    not (share 7.9 percent on 10/26, then owing on 10/28 with no call); the Jan 1929 start now carries the example.
+  - Fixed: the old takeaway said the first call comes "later and smaller" for every start, but the Oct 23 1929-rules
+    account never gets a call. New wording checked on all four starts: Today's first forced sale is later (Jan 1928:
+    4/25/1931 vs 11/12/1929; Jan 1929: 11/12/1929 vs 10/24/1929; Peak: 10/29 vs 9/20/1929; Oct 23: 11/13 vs the 10/28
+    close) and smaller ($863, $754, $816, $708 vs $8,704, $6,943, $4,871 and a full close), the Today account is never
+    wiped out, and both accounts end below $20 while no-loan ends at $157 to $297.
+  - Added: the under-$1 close; 25 percent auto-sell runs otherwise sit open at $0.00 to $0.98 from late 1931 (Peak
+    drops under $1 on 9/12/1931). No Done when result changes (smallest open account at the end is $3.08).
+  - At 50 percent down, 1929 rules and Today's rules give identical runs (both call at 25 percent).
+  - Run lengths at 1x: 79, 66, 57 and 47 s for the four starts; at 4x 20, 17, 14 and 12 s.
 
 ## Done when
 1. Ride, Peak start, 100 percent down: no call ever; statement shows $157.23 on 12/31/1932, and $108.14 at the 7/8/1932
    low (within $0.01).
 2. Ride, Peak start, 10 percent down, 1929 rules: first margin call on 9/20/1929 (close 362.05). Paying from savings
-   costs $487.15 (within $1) and leaves $12.85; the next call on 9/30/1929 cannot be paid.
+   costs $487.15 (within $1) and leaves $12.85; the next call on 9/30/1929 cannot be paid, its card says so and the
+   call-short line never names Pay.
 3. Same as 2 with the auto-sell box ticked: broker sells on 9/20, 9/30, 10/4 and 10/23/1929, then the account closes on
    10/28/1929 owing about $18 (within $1).
-4. Ride, Oct 23 start, 10 percent down: wiped out 10/28/1929 owing about $486 (within $1); the Black Monday line plays.
+4. Ride, Oct 23 start, 10 percent down: no call; wiped out 10/28/1929 owing about $486 (within $1); the Black Monday
+   line plays, then the owe line.
 5. Ride, Peak start, Today's rules, 50 percent down: first call on 10/29/1929; with auto-sell the account is still open
-   on 12/31/1932. 25 and 10 chips are disabled under Today's rules.
-6. Two rule books, Peak start: the 1929 account closes in October 1929, the Today account is still open at the end, and
-   the takeaway text appears only after both finish.
-7. What changed: seven cards in date order, arrows move between them, Try it opens Ride with Today's rules and 50 percent.
-8. No win screen, score, confetti or celebratory sound anywhere; every run ends in the statement.
-9. Motion off: no tweening or slides, playback rate unchanged. Keyboard alone can run a whole ride and answer a call.
-10. No em dashes in any visible text; the tool says "Curio Class" wherever it names the site.
+   on 12/31/1932 with $3.08. 25 and 10 chips are disabled under Today's rules. A 25 percent auto-sell run closes with
+   "Closed: your share fell under $1."
+6. Two rule books, Peak start: the 1929 account closes on 10/28/1929, the Today account is still open at the end, and
+   the takeaway card (with its computed lines) appears only after both finish.
+7. Focus: at 1366x768 and 680x425 the Dow chart and account bar are the biggest thing on the Ride stage, the margin
+   call card and the statement open over the stage (not in the panel), and the open What changed card is the biggest
+   thing in that mode; Play, Pause and Sell everything are visible without scrolling at every size.
+8. Tap while playing: at 1x, held clicks on Pause, Speed and Sell everything (including during a voiced hold on Black
+   Thursday) take effect on the current row; Sell everything at once shows the statement for that row.
+9. Every waiting line names an action and an enabled control; each how line is spoken once per load (five runs in a
+   row: welcome and first-call once), event lines every time, and none plays after its moment has passed.
+10. What changed: seven cards in date order, each with its painted picture, arrows move between them, Try it opens Ride
+    with Today's rules and 50 percent.
+11. No win screen, score, confetti or celebratory sound anywhere; every run ends in the statement. Motion off: no
+    tweening, slides or phone shake, playback rate unchanged. Keyboard alone can run a whole ride and answer a call.
+12. No em dashes in any visible text; the tool says "Curio Class" wherever it names the site.
+
+## Open questions
+- The under-$1 close is a new rule for the model (brokers did close tiny accounts, but the $1 line is this tool's
+  choice). Keep it, or let those accounts run on to Dec 31, 1932 showing cents?
+- Voiced market events now hold playback about 5 s each at 1x so the line matches the day on screen (up to about 20 s
+  added). Keep the hold, or skip the voice during playback and show cards only?
+- `hs-narrator` (Kore) is kept since no listed neighbor uses a voice yet, but it is a common voice across the site;
+  `news-reader` (Rasalgethi, "trusted radio news reader") fits a 1929 ticker well if Cory wants this tool to sound
+  different.
