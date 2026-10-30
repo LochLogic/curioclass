@@ -1,4 +1,7 @@
-# Open questions from the spec revision (for Cory, later)
+# Open questions from the spec revision
+
+The important ones are on the Review Desk as question cards (2026-10-30). The rest are routine: settle them from
+docs/agents/decisions/BASELINE.md during each tool's build.
 
 ## Pilot
 - me-vs-the-counter: painted child's hand (people) or a plain hand icon?

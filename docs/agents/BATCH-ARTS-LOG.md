@@ -12,6 +12,8 @@ under docs/agents/BATCH-ARTS.md, then a cross-band spec check. Every Arts and Mu
 
 ## Open questions for Cory
 
+The ones that need Cory are on the Review Desk as question cards (2026-10-30). Item 2 goes to a fresh review agent per BASELINE.md.
+
 1. name-song-practice: keep the microphone (take 1 and take 2 recorded in memory only, never saved), or drop it?
 2. family-dance-night (seven cultural dances) and recital-stage-directions (ballet and jazz cards): cultural and
    accuracy review of the moves and card text before they ship.

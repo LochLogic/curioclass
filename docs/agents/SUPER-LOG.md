@@ -11,6 +11,8 @@ The check scripts are kept in docs/agents/super-checks/ for the builders. Next: 
 
 ## Open questions for Cory
 
+These now live on the Review Desk as question cards (2026-10-30); answers go there. Kept here as a record.
+
 **pocket-universe**
 1. Sandbox masses are exaggerated (Giant 1/10 of a star, Planet 1/100) so moons fit on screen, with an honesty line;
    Real Solar System uses true numbers. OK?
