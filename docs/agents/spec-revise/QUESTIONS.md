@@ -116,3 +116,8 @@
 - chore-flowcharts: Print removed (classroom wall print wanted?); 32 images for a side strip too many?
 - model-mechanic: painted animals sized by Size only (legs/tail/mask show as bars); OK or code silhouettes?
 - packet-race: Coast delay 0.4 -> 0.3 s OK? Open on Watch or Race?
+
+## R21
+- dance-pattern-puzzle: keep the faceless code dancer for the whole dance family (a painted dancer = person, many poses)? Folk dance list (carried).
+- band-practice: one-note-a-bar parts read "held steady" or "too uneven" rather than "rushed"; acceptable?
+- character-voice-booth: mic in the preview iframe (carried).
