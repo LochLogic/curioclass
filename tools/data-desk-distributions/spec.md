@@ -26,11 +26,14 @@ clause backed or not backed.
 
 ## Screens and modes
 Header: title, subtitle "Every claim needs a mark on the chart." Modes `Explore` (opens first), `Describe`. Desk
-picker (4 desks). Kit buttons.
-Stage: the chart on graph paper; under it the stats readout. Panel: controls (Explore) or the description builder
+picker (4 desks): a row of four small cards, each a painted picture (art: desk-ages, desk-statehood, desk-lifespan,
+desk-wealth) with the desk's name typed in code under it. Kit buttons.
+Stage: the chart on graph paper, centered and as large as the stage allows (the focus in both modes); under it the
+stats readout. Panel: controls (Explore) or the description builder
 (Describe). A "data as of" line sits under every real-data chart.
 
 ### Explore
+Focus: the chart. A tapped dot's label card opens beside the dot, on the chart, not in the panel.
 - Chart type: `Dot`, `Histogram`, `Box` (desk 4: `Scatter`). Bin width slider for histograms (settable start too).
 - Stats readout: n, min, Q1, median, Q3, max, IQR, mean, SD, fences and outliers.
 - Tap or arrow to a dot: its label, value, z-score and percentile (percent of values below it).
@@ -42,6 +45,8 @@ Stage: the chart on graph paper; under it the stats readout. Panel: controls (Ex
 - Desk 4: `Log x` toggle redraws the x axis on a log scale and refits the line; readouts r and the line.
 
 ### Describe
+Focus: the chart with the evidence marks; the growing sentence sits right under the chart so the eye goes from a mark
+to its clause. The chip rows are in the panel.
 Four chip rows, one claim each, plus a context row filled in by the desk (variable, units, who):
 - Shape: `Roughly symmetric`, `Skewed left`, `Skewed right`, `Two peaks`, `Uniform`.
 - Center: `Median = ...`, `Mean = ...` (values filled from the data; the student picks which measure).
@@ -102,6 +107,8 @@ values, n = 154 (no 2024 GDP for Cuba, Eritrea, Korea Dem. People's Rep., South 
   Center and Spread must be a matched pair (median with IQR for skewed or outlier data, mean with SD allowed only for
   roughly symmetric data without outliers); Unusual chips must match the fence rule or a stored gap or cluster;
   decoys are marked not backed.
+- Chart changes (chart type, bins, lens, Log x, an evidence mark) redraw with a short ease of at most 300 ms (none
+  with Motion off); a tap during it acts at once on the newest state, and nothing else plays on its own.
 - Every chart has a text alternative listing its numbers; the evidence marks have text labels.
 - Last desk and chart type remembered on device (localStorage `curio-ddd-last`, try/catch) with `Clear`.
 - `window.__tool = {state, setMode, desk(i), stats(), chart(type), bins(w, start), lens(k), describe(chips), check()}`.
@@ -117,16 +124,31 @@ Contrast (computed): ink on panel 15.65:1; muted 6.04:1; brand on panel 8.05:1, 
 5.04, 6.04, 5.37, 7.56:1. No celebration: Check shows a count of backed clauses.
 
 ## Art
-none: drawn in code.
+Local FLUX (`scripts/localart.py`), no people. One style: soft painted still life, light and airy, on pale gray-blue,
+to sit on the light graph-paper theme. The charts themselves are drawn in code; these four pictures only mark the
+desks so a student can tell them apart at a glance.
+- desk-ages: "An empty wooden lectern on a small stage in front of a deep blue curtain, a glass of water on a side
+  table, soft light, painted still life"; 4:3; cutout no; people no; desk 1 card (presidents' ages).
+- desk-statehood: "A stack of old parchment documents tied with ribbon beside a red wax seal, a quill and an inkwell
+  on a wooden desk, the papers blank, soft light, painted still life"; 4:3; cutout no; people no; desk 2 card
+  (statehood years).
+- desk-lifespan: "A small desk globe beside a potted plant and a pair of reading glasses on a light wooden table, soft
+  morning light, painted still life"; 4:3; cutout no; people no; desk 3 card (life expectancy).
+- desk-wealth: "A brass balance scale on a wooden table, a short stack of plain blank coins on one pan and a sprouting
+  seedling in a small pot on the other, soft light, painted still life"; 4:3; cutout no; people no; desk 4 card (life expectancy and income).
+Dot plots, histograms, box plots, scatter plots, evidence marks, chips, the graph paper and preview.svg are drawn in
+code (the tool is otherwise all charts).
 
 ## Voice
-Bank voice `upbeat-guide` (bright, encouraging data-desk host). Not used by grade 12 math neighbors or group siblings (grade 9 math uses it; different grade band).
-- wExplore (how, Explore welcome): "Pick a desk, then try Dot, Histogram and Box. Tap any dot to see where it stands."
-- normal (how, first Normal model): "The curve uses the data's mean and SD. Compare the table with sixty-eight, ninety-five, ninety-nine point seven."
-- wDescribe (how, Describe welcome): "Add one chip from each row. Each one shows its evidence on the chart. Then press Check."
-- notBacked (event, Check with any clause not backed; stale on chip change): "Some claims aren't backed yet. Read the reason under each one."
+Bank voice `upbeat-guide` (Zephyr; bright, encouraging data-desk host). Not used by grade 12 math neighbors or group
+siblings. `Curio.voice`, `scope: () => state.mode + ':' + state.desk`. Readouts and reasons are read on screen; Read
+speaks the hint.
+- wExplore (how, Explore welcome; stale after the first chart-type tap): "Tap Dot, Histogram or Box to switch the chart. Then tap any dot to see where it stands."
+- normal (how, first Normal model; stale when Normal model is turned off): "The curve uses the data's mean and SD. Compare the table with sixty-eight, ninety-five, ninety-nine point seven."
+- wDescribe (how, Describe welcome; stale once a chip is added): "Tap one chip from each row. Each one shows its evidence on the chart. Then press Check."
+- notBacked (event, Check with any clause not backed; stale on chip change): "Some claims aren't backed yet. Read the reason under each one, then swap that chip."
 - allBacked (event, Check all backed; stale on desk change): "Every claim is backed by the chart."
-- logx (how, first Log x on desk 4): "Same data, new scale. Watch the curve straighten."
+- logx (how, first Log x on desk 4; stale when Log x is turned off): "Same data, new scale. Watch the curve straighten."
 
 ## Family engine
 data-desk (`kit/data-desk.js`, docs/families/data-desk.md). Uses DataTable, t.stats, Chart types dot, histogram,
@@ -146,6 +168,14 @@ the family doc in the same change, existing calls kept working):
 - Statehood years: U.S. Senate, "States in the Senate", https://www.senate.gov/states/statesmap.htm; the original 13 by ratification year, National Archives, "The Constitution: How Did it Happen?", https://www.archives.gov/founding-docs/constitution/how-did-it-happen
 - Life expectancy and GDP per capita: World Bank, World Development Indicators, SP.DYN.LE00.IN, NY.GDP.PCAP.CD, SP.POP.TOTL, https://data.worldbank.org/indicator/SP.DYN.LE00.IN (CC BY 4.0); last updated 2026-10-08, pulled 2026-10-27.
 - Every summary value above was recomputed in Python on 2026-10-27.
+- Checks run again (Python, numpy and scipy, 2026-10-29), all match the Content list: desk 1 n 45, quartiles by the
+  median of halves 51, 55, 60.5, mean 55.511, SD 7.4334, fences 36.75 and 74.75 (only 78 outside), within 1, 2, 3 SD
+  31, 44, 44, Kennedy z -1.683 at 2.2, Biden z 3.025 at 97.8, lenses (years over 35: median 20, mean 20.511; months:
+  median 660, mean 666.13, SD 89.20, IQR 114), bins 2, 7, 13, 11, 7, 3, 1, 1, sample skewness 0.71 (so "slight right
+  tail" is fair). Desk 2 n 50, Q1 1790, median 1836.5, Q3 1876, mean 1839.7, SD 47.85, fences 1661 and 2005, bins,
+  flip median 189.5 and mean 186.3. Desks 3 and 4 re-pulled from the World Bank API (last updated 2026-10-08): n 160,
+  quartiles 67.6, 74.2, 78.9, min 54.6, max 85.4, mean 73.28, SD 7.385, bins, every region n, median and IQR; n 154,
+  raw r 0.7015, log r 0.8862, line 33.79 + 10.31 log10(GDP), the five largest residuals.
 
 ## Done when
 1. Desk 1 readout: Q1 51, median 55, Q3 60.5, IQR 9.5, mean 55.511, SD 7.433, outlier 78; Kennedy z -1.683, percentile 2.2.
@@ -154,7 +184,12 @@ the family doc in the same change, existing calls kept working):
 4. Desk 3 has n 160, median 74.2, IQR 11.3, and the "data as of" line; region boxes show 5 regions, 2 flagged too few.
 5. Desk 4 Log x reads r 0.886 and the line 33.79 + 10.31 log10(GDP).
 6. Describe with "mean and SD" on desk 3 marks the pair not backed with the skew reason; the desk 1 example sentence checks fully backed.
-7. Every size in STANDARDS.md keeps the chart, the stats readout and the chip rows visible without page scrolling; keyboard only works; console clean, no network.
+7. Focus: at 1366x768 and 1000x625 the chart is the largest thing on the stage in both modes, the dot label opens on
+   the chart, and in Describe the sentence sits under the chart.
+8. Tap while it plays: switching chart type, bins or a chip during a redraw ease acts at once, and the readout and
+   marks match the final state.
+9. The four desk cards show their pictures; no image has people or lettering.
+10. Every size in STANDARDS.md keeps the chart, the stats readout and the chip rows visible without page scrolling; keyboard only works; console clean, no network.
 
 ## Open questions
 - [data-desk-distributions] AP-STAT.U2 is covered only by desk 4 (form, direction, strength, a log transform); r, residuals and two-way tables live in correlation-guessing-game and data-detective. Enough, or add a two-way table desk?

@@ -11,3 +11,9 @@
 - polynomials-as-numbers: shares friendly-dad with optimization-workshop (no free voice left), OK?
 - coordinate-proof-lab: voice changed to calm-professor; Kite and Trapezoid both exclusive?
 - unit-sense: title "Unit Sense" or "Unit Detective"? (carried)
+
+## R04
+- conic-focus-finder: catalog concept line still says "Slice a double cone"; agree with the new name and line?
+- design-the-study: editor portrait (people, Gemini) redrawn to not match fair-dice's librarian; shares news-reader with work-rate-crew.
+- flight-planner: shares firm-captain with launch-pad.
+- Pattern: the 9-12 voice bank is used up near many tools; more bank voices may be worth adding.

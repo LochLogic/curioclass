@@ -22,10 +22,17 @@ Lineup shows that the interval is exactly the set of claims the court would not 
 
 ## Screens and modes
 Header: title, subtitle "Innocent until proven guilty." Modes `Trial` (opens first), `Lineup`, `Docket`. Kit buttons.
-Stage: the courtroom scene (art) with a bench strip across the top showing the case name and the six trial stages as
-tabs that unlock in order. Panel: the stage's controls and the clerk's line.
+Stage: the painted courtroom (art: courtroom-empty) as a dimmed backdrop, with a bench strip across the top showing
+the case name and the six trial stages as tabs that unlock in order. The current stage's card sits centered on the
+stage over the courtroom, large: it is the focus. Panel: the stage's controls and the clerk's line.
 
 ### Trial (one case at a time; case picker shows 7 case folders)
+The picker is a row of 7 painted manila folders (art: case-folder, the case name typed in code on the blank tab).
+Opening a case shows its evidence picture (art: evidence-*) on the Charges card beside the claim.
+Focus by stage: Charges, the claim card with its evidence picture; Standard of proof, the three α buttons on the card;
+Admissibility, the three chips with the dot plot; Evidence, the null curve with the shaded tail (the largest thing on
+the stage, readouts under it); Verdict, the three verdict buttons and the sentence being built; Sentencing, the
+number line with the interval and the claim marker.
 1. Charges: read the claim; pick the defendant (H0, filled in) and the charge, Ha: `<`, `>` or `≠` (one is right for
    the case's wording; a wrong pick gets the clerk's correction quoting the wording).
 2. Standard of proof: lock α at `0.10`, `0.05` or `0.01` before evidence. After evidence, changing it makes the clerk
@@ -35,7 +42,8 @@ tabs that unlock in order. Panel: the stage's controls and the clerk's line.
    large counts or nearly normal, with the data's dot plot for means). Each chip shows the numbers it rests on.
 4. Evidence: the null curve (normal or t with its df) centered at the claim, the observed statistic marked, the tail
    (or both tails) shaded in the accent; readouts: statistic, SE, z or t, df, p-value (4 places).
-5. Verdict: `Guilty (reject H0)`, `Not guilty (fail to reject H0)`, `Innocent (accept H0)`. Innocent is never right:
+5. Verdict (a painted gavel, art: gavel, swings down once beside the stamp when a verdict is pressed, 400 ms;
+   still with Motion off): `Guilty (reject H0)`, `Not guilty (fail to reject H0)`, `Innocent (accept H0)`. Innocent is never right:
    the clerk explains "Not guilty means the evidence fell short, not that the claim is true." Then write the verdict
    in context: chips build a sentence ("At the 0.05 standard, there is convincing evidence that the true germination
    rate is less than 0.85.").
@@ -43,17 +51,21 @@ tabs that unlock in order. Panel: the stage's controls and the clerk's line.
    drawn on a number line with the claim marked; readouts: estimate, critical value, margin, interval.
 
 ### Lineup
-Pick a case. A slider drags the claimed value along the number line; the trial runs live (two-sided at the chosen α)
+Focus: the number line with the moving claim marker, the not-convicted band and the interval under it, centered and
+wide across the stage; the slider sits directly under the line. Pick a case. A slider drags the claimed value along the number line; the trial runs live (two-sided at the chosen α)
 and the claim's marker turns "convicted" (filled square) or "not convicted" (hollow circle). The values never convicted
 form a band; the confidence interval at C = 1 - α is drawn under it. For means the band and the t interval match
 exactly. For proportions both brackets show: the band (the test uses the claimed p in its SE) and the AP interval
 (uses p̂), which differ slightly; a note says why.
 
 ### Docket (errors and power)
+Focus: the two-curve picture (null and true distributions of x) with α and power shaded, centered; the two bars sit
+beside it on wide screens and under it on narrow ones. A painted coin (art: coin) sits on the Docket card's title.
 A fair-coin court: H0 p = 0.5, Ha p > 0.5, reject when the count of heads x is at least k. Controls: n (20, 50, 100,
 200, 400), α (0.10, 0.05, 0.01), the true p (0.50 to 0.70, step 0.05). `Hold 1,000 trials` simulates; two bars show
 the share convicted when H0 is true (Type I) and when the true p is the slider's (power); exact values print beside the
-simulated ones. A two-curve picture (null and true distributions of x) shades α and power, and β as the unshaded part.
+simulated ones. The 1,000 trials are computed at once and the bars grow over at most 1 s; changing n, α or the
+true p during the growth stops it and shows the new state at once. A two-curve picture (null and true distributions of x) shades α and power, and β as the unshaded part.
 
 ## Content
 All cases are made up and labeled "made-up case".
@@ -93,6 +105,8 @@ k 57, power 0.763; at p 0.55 and α 0.05, power 0.241.
 - Answers checked: Ha sign against the case's stored answer; verdict = (p < α) computed live, so a changed α changes
   the right verdict; the context sentence must use the case's parameter, direction and standard (chip order free).
 - Case summaries (per case: α, verdict, standard changed or not) stay for the session; nothing stored on device.
+- Every control stays live while anything animates (the gavel, the Docket bars, the curve shading when α changes):
+  a tap acts at once and the readouts match the new state.
 - Docket simulation seeded (`?seed=n` for tests); exact binomial tails computed in code (log-gamma sums).
 - `window.__tool = {state, setMode, openCase(i), setAlpha(a), stats(), interval(C), lineup(v), docket(n,a,p)}`.
 
@@ -106,20 +120,47 @@ white on brand 6.47:1; header text on walnut 10.46:1; focus 6.38:1; button line 
 No celebration: the verdict is read out and stamped.
 
 ## Art
-- `courtroom-empty`: "empty small-town courtroom interior, oak judge's bench, witness stand, wooden railings and
-  benches, tall windows with soft daylight, flat illustration, warm muted colors, no people, no text, no flags";
-  16:9; cutout no; people: no; Cloudflare FLUX, Cory reviews.
-Everything else (curves, number lines, Docket bars, case folders) is drawn in code.
+Local FLUX (`scripts/localart.py`), no people. One style (from art/prompts.json): flat illustration, warm muted oak,
+walnut and cream colors, soft daylight, clean simple shapes, calm.
+- courtroom-empty (made 2026-10-27, review pending): "The interior of an empty small-town courtroom seen from the back:
+  a raised oak judge's bench in front of a wall of plain warm oak paneling, a witness stand beside it, wooden railings
+  and rows of wooden benches, plain cream plaster walls, tall bare windows with soft daylight"; 16:9; cutout no; people
+  no; dimmed backdrop behind the stage cards.
+- case-folder: "A single closed manila file folder with a blank tab, lying flat, seen from above, soft daylight, flat
+  illustration, plain white background"; 4:3; cutout yes; people no; the 7 cases in the picker, each labeled in code
+  on the blank tab.
+- gavel: "A polished walnut judge's gavel with a brass band, lying at an angle beside its round sound block, soft
+  daylight, flat illustration, plain white background"; 1:1; cutout yes; people no; swings once on a verdict (rotated
+  in code around its handle end).
+- coin: "A single plain silver coin with a smooth blank face and a ridged edge, seen from slightly above, soft
+  daylight, flat illustration, plain white background"; 1:1; cutout yes; people no; the Docket card title.
+- evidence-seeds: "Rows of small seed trays on a greenhouse bench, some seedlings sprouted green and some bare soil
+  cells, a seed scoop beside them, soft daylight, flat illustration"; 4:3; cutout no; people no; case 1.
+- evidence-cereal: "A plain cereal box with a blank cream front on a kitchen scale beside a bowl of cereal, soft
+  daylight, flat illustration"; 4:3; cutout no; people no; case 2 (the box front stays blank; the "368 g" label is code).
+- evidence-texts: "A smartphone with a plain glowing blank screen lying on a clinic waiting room counter beside an
+  appointment card holder and a small potted plant, soft daylight, flat illustration"; 4:3; cutout no; people no; case 3.
+- evidence-bus: "An empty city bus stop shelter with a bench and a blank timetable panel on a quiet street, a bus far
+  down the road, soft morning light, flat illustration"; 4:3; cutout no; people no; case 4.
+- evidence-shoes: "A worn pair of running shoes and a bright new pair of running shoes side by side on the lane lines
+  of a red running track, soft daylight, flat illustration"; 4:3; cutout no; people no; case 5.
+- evidence-desks: "An open office with one tall standing desk and one ordinary sitting desk side by side, each with a
+  laptop with a blank screen, soft daylight, flat illustration"; 4:3; cutout no; people no; case 6.
+- evidence-callin: "An old landline telephone beside a television with a plain glowing blank screen on a living room
+  side table, soft evening lamp light, flat illustration"; 4:3; cutout no; people no; case 7.
+Curves, number lines, Docket bars, chips, stamps, the bench strip and preview.svg are drawn in code (charts and labels).
 
 ## Voice
-Bank voice `clear-teacher` (the court clerk: plain, steady). Not used by math 9-12 neighbors or group siblings.
-- wTrial (how, Trial welcome): "Open a case folder. Then pick the charge and set your standard of proof before you see any evidence."
+Bank voice `clear-teacher` (Iapetus; the court clerk: plain, steady). Not used by math 9-12 neighbors or group siblings.
+`Curio.voice`, `scope: () => state.mode + ':' + state.caseId`. Case text, cards and readouts are read on screen; Read
+speaks the hint.
+- wTrial (how, Trial welcome; stale once a case is open): "Tap a case folder to open it. Then pick the charge and lock your standard of proof before you see any evidence."
 - alphaLate (event, α changed after Evidence; stale on next case): "The standard was set before the evidence. Changing it now isn't fair to the defendant."
-- innocent (event, Innocent pressed; stale on next verdict): "This court never finds a claim innocent. Not guilty means the evidence fell short."
-- sentencing (how, first Sentencing): "Now the sentence: the interval of values the evidence supports. Compare it with the claim."
-- wLineup (how, Lineup welcome): "Drag the claim along the line. Watch which claims this court would convict."
-- wDocket (how, Docket welcome): "Pick a sample size and a true p, then press Hold 1,000 trials."
-- dismissed (event, case 7 dismissed; stale on next case): "No random sample, no trial."
+- innocent (event, Innocent pressed; stale on next verdict): "This court never finds a claim innocent. Not guilty means the evidence fell short. Tap Guilty or Not guilty."
+- sentencing (how, first Sentencing; stale on a new case): "Now the sentence: the interval of values the evidence supports. Compare it with the claim marker on the line."
+- wLineup (how, Lineup welcome; stale after the first slider move): "Drag the claim slider along the line. Watch which claims this court would convict."
+- wDocket (how, Docket welcome; stale after the first run): "Pick a sample size and a true p, then press Hold 1,000 trials."
+- dismissed (event, case 7 dismissed; stale on next case): "No random sample, no trial. Tap another case folder."
 
 ## Family engine
 none (its distributions, tails and intervals are its own; it does not use data-desk or sampling).
@@ -131,6 +172,14 @@ none (its distributions, tails and intervals are its own; it does not use data-d
 - Duality of tests and intervals; score versus Wald interval for a proportion: OpenIntro Statistics 4e, 5.3 and 6.1, https://www.openintro.org/book/os/
 - Welch df (Satterthwaite): OpenStax, Introductory Statistics 2e, 10.1 "Two Population Means with Unknown Standard Deviations", https://openstax.org/books/introductory-statistics-2e/pages/10-1-two-population-means-with-unknown-standard-deviations
 - All cases are made up; every statistic, p-value, interval and Docket value above was recomputed in Python (scipy) on 2026-10-27.
+- Checks run again (Python, scipy, 2026-10-29), all match the Content list: case 1 SE0 0.025249, z -2.376, p 0.0087,
+  SE 0.028801, intervals (0.753, 0.827), (0.743, 0.837), (0.723, 0.857), score band (0.739, 0.833); case 2 n 25, mean
+  365.9, s 5.2450, t -2.002, p 0.0284, intervals to 0.1; case 3 z 2.365, p 0.0090, SE 0.033665, intervals; case 4 SE
+  0.4902, t 1.224, p 0.1141; case 5 mean difference -1.05, s 0.9060, t -4.015, p 0.0010 (run as two samples by
+  mistake: t -0.49, p 0.63, which is why the trap chip matters); case 6 SE 9.432, df 57.6, t 2.120, p 0.0383, 99%
+  interval (-5.1, 45.1) holds 0. Docket cutoffs and exact tails at n 20, 50, 100, 200, 400; worst case n 20 at α 0.01:
+  k 16, Type I 0.0059. Binomial spread of a 1,000-trial share: 0.0069 at 0.05 and 0.0153 at 0.62, so a ±0.02 and
+  ±0.05 band holds three spreads.
 
 ## Done when
 1. Case 1 shows z = -2.376, p = 0.0087, and at α 0.05 a 90% interval (0.743, 0.837).
@@ -139,7 +188,13 @@ none (its distributions, tails and intervals are its own; it does not use data-d
 4. Changing α after Evidence triggers the clerk's objection and marks the case; Innocent is always corrected.
 5. Lineup on case 2: the not-convicted band at α 0.05 matches the 95% t interval to 0.01; on case 1 both brackets show.
 6. Docket exact values match the Content list (for example n = 100, α 0.05: k 59, Type I 0.0443, power at 0.6 0.6225).
-7. Every size in STANDARDS.md keeps the bench strip, the curve and the verdict buttons visible without page scrolling; keyboard only works; console clean, no network.
+7. Focus: at 1366x768 and 1000x625 the current stage card (Trial; the null curve on Evidence), the number line
+   (Lineup) and the two-curve picture (Docket) are each the largest thing on the stage, over the dimmed courtroom.
+8. Tap while it plays: during the gavel swing or the Docket bars growing, a verdict, α, n or true p tap acts at once
+   and the readouts match the new state; Docket's simulated shares land within 0.02 of exact Type I and 0.05 of exact
+   power.
+9. Every case folder shows its evidence picture; no image has people or lettering.
+10. Every size in STANDARDS.md keeps the bench strip, the curve and the verdict buttons visible without page scrolling; keyboard only works; console clean, no network.
 
 ## Open questions
 - [courtroom-statistics] For proportions, the test (SE from the claim) and the AP interval (SE from p̂) don't match exactly, so the Lineup shows two brackets. Keep both, or show only the AP interval with a note?

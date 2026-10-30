@@ -26,40 +26,49 @@ tool.json: driver "students", minutes "25-40", modes ["Free fly", "Flight plans"
 Header (kit, 9-12 theme): "Flight Planner", small line "Islands of the Saltwind Chain, a made-up map". Modes
 `Free fly`, `Flight plans`, `Landing`; kit `Motion`, `Sound`, `Read`.
 
-Stage left: a chart of the made-up Saltwind islands drawn in code at real pixel size, x from -55 to 105 nautical miles
-east, y from -40 to 45 north, equal scale, north up, scale bar "20 nm", compass rose. Six airfields (runway symbol and
-name). The plane is a small top-view silhouette drawn in code, its nose pointing along its heading.
+Stage left: a chart of the made-up Saltwind islands at real pixel size, x from -55 to 105 nautical miles east, y from
+-40 to 45 north, equal scale, north up, scale bar "20 nm", compass rose. The sea is a painted texture (art: sea-texture)
+and each island is its fixed code polygon filled with a painted land texture (art: land-texture, clipped to the
+polygon), so the coastlines stay exact. Six airfields (runway symbol and name in code). The plane is the painted
+top-view plane (art: plane-top, cutout, about 36 px), turned in code so its nose points along its heading.
+The chart is the focus in Free fly and Flight plans: it is the largest thing on the stage, centered, with the vector
+card beside it; the same three arrows are drawn at the plane so the eye need not leave the chart.
 Stage right (or below the chart under 1000 px): the vector card, a small square plane of its own (knots, -120 to 120
 both ways, grid every 20) where the three arrows are drawn tip to tail from the origin: air arrow (`--gr-1` solid,
 "plane"), wind arrow starting at the air arrow's tip (`--gr-2` dashed, "wind"), and their sum from origin to the wind
 tip (`--brand`, thick, "ground"). The same three arrows are drawn small on the chart at the plane.
 
 Panel cards: "Plane" (heading box and slider 000 to 359, airspeed box and slider 60 to 140 kt), "Wind" (from box and
-slider 000 to 359, speed 0 to 40 kt), "Components" (table, east and north for plane, wind, ground; ground row = sum,
+slider 000 to 359, speed 0 to 40 kt, with a painted windsock, art: windsock, turned in code to stream the way the wind
+blows), "Components" (table, east and north for plane, wind, ground; ground row = sum,
 magnitude and direction), "Flight" (`Fly`, `Pause`, `x4` speed toggle, `Reset`, clock "0:00 flown").
 
 ### Free fly (explore, default)
+Focus: the plane on the chart with its 30-minute line, and the ground arrow on the vector card.
 The plane sits on Pelican Key. Drag the tip of the air arrow or the wind arrow on the vector card (or use the sliders
 and boxes) and everything updates live: the ground arrow, the components table, and a dashed "where you will be in
 30 minutes" line on the chart (0.5 h times the ground velocity). `Fly` moves the plane along the ground velocity, nose
-still pointing along the heading, so in a crosswind it visibly flies sideways (crab). Time: 1 real second = 1 flight
-minute (x4 makes it 4). The plane leaves a thin trail. Flying off the chart pauses with "Off the chart. Press Reset."
+still pointing along the heading, so in a crosswind it visibly flies sideways (crab). Time: 1 real second = 2 flight minutes (x4 makes it 8), so the longest plan (39 min) plays in about 20 s. The plane leaves a thin trail. Flying off the chart pauses with "Off the chart. Press Reset."
 
 ### Flight plans
+Focus: the chart with the course line, the plane and the target field; the plan card and the three number boxes sit at
+the top of the panel.
 Picker: `Plan 1` to `Plan 5`, then `Find the wind 1`, `Find the wind 2`. A plan card gives from, to, course
 (the direction you must travel over the ground), distance, wind and airspeed (always 100 kt). The wind card is locked
 to the plan. The student:
 1. Sets a heading (box or the air arrow's tip, airspeed locked at 100). The ground arrow shows where that heading goes;
    a thin target line shows the course.
 2. Types the ground speed they expect (kt) and the flight time (minutes).
-3. `Fly it`: the plane flies their heading. It lands "On the field" if it ends within 1.5 nm of the field when the
-   clock reaches their time, otherwise the chart marks where it ended and how far off, and `Try again` resets.
+3. `Fly it`: the plane flies their heading. It lands "On the field" if it ends within 2.5 nm of the field (the
+   field's circle, drawn) when the clock reaches their time, otherwise the chart marks where it ended and how far off, and `Try again` resets.
 A `Check my numbers` button grades heading (within 1 degree), ground speed (within 1 kt) and time (within 1 min)
 separately, with the error direction ("Your ground speed is too high: the wind has a part against you.").
 Find the wind: the card gives a heading and airspeed flown and the track and ground speed actually made good; the
 student drags the wind arrow (or types from and speed) until air + wind = ground. Checked within 1 kt and 2 degrees.
 
 ### Landing
+Focus: the zoomed runway (art: runway-top, its number in code at the threshold) with the plane on final, centered and
+large; the "Wind on the runway" card sits beside it.
 Picker `Approach 1` to `Approach 3`. The chart zooms to one runway (drawn 1 nm long, numbered). Approach airspeed 65 kt.
 The wind is given "from" a direction. Panel card "Wind on the runway": two boxes the student fills, crosswind and
 headwind components (kt), then the crab heading. `Fly final` animates the last 2 nm: a correct crab keeps the plane on
@@ -82,7 +91,10 @@ Plans (airspeed 100 kt; worked answers):
 | 4 | Coral Point to Gull Rock | 200 | 70 | 320 / 18 | 209 (208.97) | 107.78 | 39.0 min |
 | 5 | Pelican Key to North Shoal | 330 | 40 | 240 / 22 | 317 (317.29) | 97.55 | 24.6 min |
 Plan 2 is a pure headwind (the sum is just 100 - 25). Plan 4 has a tailwind part, so ground speed beats airspeed.
-Flying the rounded heading misses the field by at most 0.49 nm (Plan 1), inside the 1.5 nm tolerance.
+Flying the rounded heading misses the field by at most 0.49 nm at the exact time (Plan 1) and 0.63 nm at the nearest
+whole minute (Plan 5). A heading 1 degree off and a time 1 minute off, the most Check my numbers accepts, miss by at
+most 2.44 nm (Plan 5), so the field's circle is 2.5 nm: numbers the checker accepts always land. Heading 090 on
+Plan 1 still misses by 12 nm.
 Components check (Plan 1): plane (97.98, 20.00) + wind (0, -20.00) = ground (97.98, 0).
 
 Find the wind:
@@ -113,7 +125,9 @@ arcsin(crosswind / 65), turned toward the wind.
   says "Calm".
 - Zero ground speed (possible in Free fly only if wind could match airspeed; it cannot) is guarded anyway: "You are
   hovering over one spot."
-- Any change while flying pauses the flight. `Reset` returns the plane to the start of the current leg and clears the
+- Any change while flying acts at once: the arrows and the plane's ground velocity update on the spot and the plane
+  keeps flying the new way (in Flight plans the card then notes "Heading changed in flight"; Landing's `Fly final`
+  takes the crab as set when pressed, and a change restarts final from 2 nm). `Pause` stops the clock. `Reset` returns the plane to the start of the current leg and clears the
   trail. Mode change: `Curio.stop()`, `V.hush()`.
 - Typed boxes accept "78", "078", "78.5"; out-of-range values clamp with a tip.
 - Plan progress: check marks on the picker, kept per device (localStorage `curio-flight-planner`, try/catch) with
@@ -127,22 +141,38 @@ Chart palette (night chart): sea #0f1d2b, shallows #16314a, land #2a3a2c with co
 #e8edf3, course lines `--muted`. Chart text #e8edf3 on the sea is over 13:1.
 
 ## Art
-none: drawn in code. Islands (fixed polygons), runways, the plane silhouette, arrows, compass rose and preview.svg are
-SVG in the tool.
+Local FLUX (`scripts/localart.py`), no people. One style: soft painted illustration, night chart colors (deep teal
+sea, muted green land), seen from straight above.
+- sea-texture: "Top-down view of deep blue-teal open ocean at night, gentle swells and faint moonlit ripples, painted
+  texture, full frame"; 16:10; cutout no; people no; the chart's sea, dimmed so chart text keeps its contrast.
+- land-texture: "Top-down view of a small tropical island interior, low green scrub, palm crowns and sandy paths,
+  painted texture, full frame"; 1:1; cutout no; people no; tiled and clipped to each island polygon.
+- plane-top: "A small white single-engine propeller airplane seen from directly above, nose pointing up, wings level,
+  painted illustration, plain white background"; 1:1; cutout yes; people no; the plane on the chart and on final
+  (turned in code).
+- runway-top: "Top-down view of one long gray asphalt runway with plain white edge lines and a white dashed center
+  line, grass on both sides, painted illustration"; 9:16; cutout no; people no; Landing's zoom, turned in code to the
+  runway's direction (its number is code text at the threshold).
+- windsock: "An orange and white striped airport windsock on a short pole, streaming straight out to the right in a
+  breeze, painted illustration, plain white background"; 1:1; cutout yes; people no; the Wind card, turned with the
+  wind.
+The vector card, arrows, grid, course lines, compass rose, scale bar, airfield symbols, labels, coast lines and
+preview.svg are drawn in code (they are the vectors and the chart).
 
 ## Voice
-`firm-captain` (Alnilam), style "Say firmly but kindly, like a calm flight instructor in the right seat." Not used
-by any group sibling or 9-12 math neighbor. `Curio.voice`, `scope: () => state.mode`.
-- free (how, Free fly welcome): "Drag the tip of the plane arrow or the wind arrow. The thick arrow is where you really go. Then press Fly."
-- crab (how, first flight with a crosswind): "See the nose point one way while the plane moves another. That is the wind adding on."
-- plans (how, Flight plans welcome): "Pick a plan. Set a heading so the thick arrow lies on the course line, then press Fly it."
-- numbers (how, first plan opened): "Type your ground speed and time too. Time is distance divided by ground speed."
+`firm-captain` (Alnilam), style "Say firmly but kindly, like a calm flight instructor in the right seat." Not used by
+any group sibling; launch-pad (gr 9) also uses it (see Open questions). `Curio.voice`, `scope: () => state.mode`.
+Cards and readouts are read on screen; Read speaks the hint.
+- free (how, Free fly welcome; stale after the first arrow drag): "Drag the tip of the plane arrow or the wind arrow. The thick arrow is where you really go. Then press Fly."
+- crab (how, first flight with a crosswind; stale on Reset): "See the nose point one way while the plane moves another. That is the wind adding on."
+- plans (how, Flight plans welcome; stale once a plan is picked): "Tap Plan 1. Set a heading so the thick arrow lies on the course line, then press Fly it."
+- numbers (how, first plan opened; stale once both boxes are filled): "Type your ground speed and time too. Time is distance divided by ground speed."
 - onField (event, landed within tolerance; stale on Reset or a new plan): "On the field. Nice flying."
-- off (event, missed; stale on Reset): "You missed the field. Check which way the wind pushed you, then try again."
-- findWind (how, first Find the wind): "Drag the wind arrow until plane plus wind matches the track you made good."
-- landing (how, Landing welcome): "Split the wind into crosswind and headwind. Then crab into the wind and press Fly final."
+- off (event, missed; stale on Try again): "You missed the field. Check which way the wind pushed you, then press Try again."
+- findWind (how, first Find the wind; stale after the first wind drag): "Drag the wind arrow until plane plus wind matches the track you made good."
+- landing (how, Landing welcome; stale once both boxes are filled): "Type the crosswind and the headwind, then set a crab heading into the wind and press Fly final."
 - landed (event, touchdown on the centerline; stale on a new approach): "Landed on the centerline."
-- goAround (event, drift off the centerline; stale on a new try): "Go around. The crosswind pushed you off the centerline."
+- goAround (event, drift off the centerline; stale on a new try): "Go around. The crosswind pushed you off the centerline. Change the crab and press Fly final."
 
 ## Family engine
 none. The vector card may reuse `kit/graphing.js` `Plane` for its grid and arrows (`g.segment` with `arrow: 'end'`,
@@ -163,11 +193,18 @@ none. The vector card may reuse `kit/graphing.js` `Plane` for its grid and arrow
 - Standards: CCSS Math N-VM, https://www.thecorestandards.org/Math/Content/HSN/VM/ ; College Board, AP Precalculus
   Course and Exam Description (2023), Unit 4.
 - Islands, plans, winds and approaches are made up; every value above computed in Python (2026-10-27).
+- Checks run again (Python, 2026-10-29): courses, distances, headings, ground speeds and times for Plans 1 to 5 match
+  the table; components check (97.98, 20.00); Find the wind 1 (18.06, 2.42), 18.22 kt from 262.4; Find the wind 2
+  (-11.37, 15.63), 19.33 kt from 144.0; Approaches 1 to 3 crosswind, headwind, crab and ground speed match. Misses:
+  rounded heading at exact time 0.49, 0, 0.28, 0.04, 0.21 nm; at the nearest whole minute 0.58, 0, 0.35, 0.06, 0.63 nm;
+  worst within the checker's 1 degree and 1 minute 2.33, 1.64, 1.92, 2.30, 2.44 nm. The first draft's 1.5 nm field
+  could reject numbers the checker passed, so the field is now 2.5 nm. Heading 090 on Plan 1 ends at (60, -12), 12 nm
+  south. Plan times at 2 flight minutes per second: 12 to 20 s each.
 
 ## Done when
 1. Free fly: heading 090, airspeed 100, wind from 360 at 20 shows ground (97.98, 0.00), 97.98 kt toward 090, and the
    plane flies east with its nose pointing 078 only if the heading is set to 078; with heading 090 it drifts south.
-2. Plan 1 with heading 078, ground speed 98, time 37 lands "On the field"; heading 090 misses to the south by about
+2. Plan 1 with heading 078, ground speed 98, time 37 lands "On the field" (0.58 nm off); heading 090 misses to the south by about
    12 nm (60 nm at 20 kt for 0.6 h).
 3. Plan 2: heading 270, 75 kt, 36 min. Plan 4: ground speed 108 is accepted (tailwind part).
 4. Find the wind 1 accepts wind from 262 at 18 kt; Find the wind 2 accepts from 144 at 19 kt.
@@ -175,10 +212,15 @@ none. The vector card may reuse `kit/graphing.js` `Plane` for its grid and arrow
 6. The components table always sums: ground east = plane east + wind east (spot-check three settings).
 7. Arrow tips work by keyboard; headings print as three digits; wind 0 shows "Calm".
 8. Each how-to line is spoken once in a run of five actions; "On the field" is spoken every time.
-9. Main controls visible without scrolling at 1366x768, 1280x720 and in the 800x500 preview; 375 wide stacks chart,
+9. Focus: at 1366x768 and 1000x625 the chart is the largest thing on the stage in Free fly and Flight plans, and the
+   runway in Landing; the painted plane turns with the heading.
+10. Tap while it plays: during a flight, a heading, wind or speed change acts at once (the plane changes course on the
+   spot and the components table matches); `Pause` and `Reset` work mid-flight.
+11. Main controls visible without scrolling at 1366x768, 1280x720 and in the 800x500 preview; 375 wide stacks chart,
    vector card, panel.
-10. No network, no images, no em dashes.
+12. No network, no people in any image, no em dashes.
 
 ## Open questions
+- [flight-planner] Voice: firm-captain is also launch-pad's (gr 9, listed as a neighbor). Every kept 9-12 voice is already used by a math 9-12 neighbor; the only free ones are the K-2 teachers and lively-host, which do not fit a flight instructor. Keep firm-captain, or take lively-host?
 - flight-planner: the chart leaves out magnetic variation (said on screen). Fine for grade 12, or add a variation
   line on one plan?
