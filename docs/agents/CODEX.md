@@ -4,6 +4,12 @@ Codex does Build (step 1) and Polish (step 5) only. Everything else stays as REF
 session) writes the brief, three blind Claude lenses review, the integrator merges, fresh Claude agents run the exit
 checks, the integrator closes, commits, pushes and deploys. First run: biased-bot, BR2 (BATCH-BR-LOG.md).
 
+## Build-only runs Cory starts himself (2026-10-30)
+
+One shared brief, docs/agents/CODEX-BUILD.md, needs no per-tool writing and adds rules against hanging. Cory runs Codex
+interactively in the tool's own worktree, one tool at a time; the tool holds there, uncommitted, until a Claude session
+has the budget for Refine. Polish is the costly round, so leave Codex budget for it.
+
 ## Set up
 
 - Its own worktree and branch off main: `git worktree add S:/CurioClass-codex-<id> -b codex/<id> origin/main`.
