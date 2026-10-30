@@ -4,6 +4,10 @@ You are building ONE tool for Curio Class (curioclass.org), a free, public K-12 
 Each tool is one self-contained HTML file that a teacher projects or a student opens on a school laptop. Three blind
 reviewers will check your work later, so build it as if it ships to real students tomorrow.
 
+A tool that passes every check and is dull has failed. The first two Codex builds had a sound frame, color and layout,
+but the owner found the graphics very simple and the play underwhelming. Correct is the floor here. The goal is a tool a
+student would open again on their own.
+
 The tool id is in the prompt that sent you here. `<id>` below means that id. Scratch means
 `S:/CurioClass-codex-scratch/<id>`. The repo root is this worktree.
 
@@ -18,6 +22,8 @@ The tool holds on this branch until review.
 - If the spec is wrong or impossible, build everything else and say so in `handoff.md` and the report. Do not improvise.
 - Do not draw, generate, download or record anything. `art/prompts.json` and any images already there stay as they are.
   Use `art:<name>` tokens for the names in prompts.json; draft builds show labeled placeholders for missing images.
+- Write readable code: normal line breaks and one statement per line, about 160 characters a line at most. Never
+  compress `src.html`. The next person has to change it.
 - Write "Curio Class", never "Curio" alone. Never use an em dash anywhere: code comments, UI text, notes, lines, reports.
 - The tool makes no network requests. You need no internet.
 - Screenshots, Chrome profiles, shots files, audit output and temporary scripts go in Scratch or %TEMP%, never the repo.
@@ -25,9 +31,55 @@ The tool holds on this branch until review.
 - Chrome debugging ports 9990 to 9997 and the host server on 8795, only. Every Chrome uses `--mute-audio` (drive.py does).
   drive.py and audit_tool.py already handle a missing `websockets` and a Chrome that will not start; do not work around them.
 
+## Make it look good and play well
+
+This comes first. Spend your time here before the size and audit checks, not after them.
+
+The spec sets what the tool teaches, its modes, content and facts: add no new features or topics. It does not set the
+finish. Rich drawing, motion, sound and feedback inside what the spec describes are the job, not extras, and "drawn in
+code" or "Art: none" never means plain.
+
+**Graphics**
+
+- Draw a place, not a diagram. Every scene has a background, a middle and a foreground, with light from one direction.
+  Use SVG gradients, soft shadows, highlights and texture so things have weight.
+- Each object gets at least three levels: its shape, its shading, and small true details (the screws on a router, the
+  chips on a die, the grain on a desk). A plain rounded rectangle with a label is not finished art.
+- Small life: something quietly moves while the tool waits, such as a blinking light, a drifting cloud or a ticking
+  needle. It stops with Motion off.
+- Use every painted image the spec lists, large enough to enjoy. Do not shrink art into a thumbnail.
+- Panels and buttons belong to the scene's world (a clipboard, a control desk, a field notebook), not a default web form.
+
+**Gameplay**
+
+- The first tap pays off. Within about 10 seconds, with nothing read, the student has done something and seen a result.
+- Every action answers at once: within about 100 ms something moves, something sounds (`Curio.tone`, or Web Audio for
+  richer sounds, silent when Sound is off) and the state visibly changes. A number changing alone is not an answer.
+- Show the outcome, do not tell it. Let the bridge sag, the ping travel and stop, the dice tumble and land. Play it out
+  on screen, then put the words after it.
+- Real choices. At each step the student weighs something and can be wrong in an interesting way. A wrong choice shows
+  what it caused, so failing teaches something and is worth watching.
+- It builds. Later rounds change something: a new twist, a harder case, a combination. The same step repeated is not depth.
+- A payoff. The session ends in something earned and specific to what this student did, worth showing someone: their
+  record, their design, a recap of their own choices.
+- Less reading. Between two actions a student reads about two short sentences at most. Move the rest into the scene,
+  the hint or the teacher notes.
+
+The grade band rules still win (docs/agents/STANDARDS.md): 9-12 tools work like the real thing, so their reward is
+respect and a sharp result, not confetti. K-2 stays teacher led. Hard history has no points, timers or win states.
+
+**The bar.** Before you start, bundle and open `tools/snowy-mail-route/` (motion and feedback) and `tools/beat-lab/`
+(the owner's model of a tool people want to use). Match their finish, not their look.
+
+**Feel check.** Near the end, play the whole tool once as a student of that grade. Then, in the report's Feel check
+section, write down the best moment, the two flattest moments and what you changed to fix them, and put one frame of
+your tool beside one from a bar tool. If yours looks plainer, keep going.
+
 ## Do not hang
 
 Past builds lost hours to one stuck command and to re-running every check at the end. So:
+
+The limits below are for commands and checks. They are never a reason to cut the graphics or the play.
 
 1. **Start the report early.** Create `tools/<id>/codex-report.md` as soon as the first version bundles, and fill each
    section as its check finishes. Keep it under 200 lines.
@@ -83,6 +135,7 @@ As BUILD.md lists: `src.html`, `tool.draft.json` (`"stage": "built"`), `notes.md
 # Codex report: <id>
 ## Built
 ## Numbers check
+## Feel check         (best moment, two flattest moments, what you changed, frames compared with a bar tool)
 ## Done when          (each spec item: PASS or FAIL, with evidence)
 ## Wave lessons       (each BUILD.md lesson: PASS or FAIL, and how you checked)
 ## Audit leads        (each lead: fixed, or why not; or "audit not finished")
