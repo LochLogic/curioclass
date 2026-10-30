@@ -40,7 +40,12 @@ session runs it), docs/agents/decisions/BASELINE.md (Cory's standing rules).
 5. **Voice nights per refined group** on the Forge, the same nights as art.
 6. **Reviews per wave** on the Review Desk. Cory reviews every K-2 and sensitive tool in full and spot-checks about
    one in four of the rest (10 to 20 hours a week available, Cory 2026-10-28).
-7. **Each new tool also ships** its lesson plan, Sub Day exit file and (from Track 2, item 2) its module's anchor chart.
+7. **Each new tool also ships** its lesson plan, Sub Day exit file, (from Track 2, item 2) its module's anchor chart,
+   and the three opening sections of its teacher notes: What it teaches, Key skills, Support at home (docs/agents/BUILD.md).
+8. **Backfill those three sections on built tools** (Cory, 2026-10-30). Every tool built before the rule, live or on
+   the bench, is listed in docs/agents/notes-backfill.txt: 92 at the start. Add the sections to a tool's notes.md, then
+   take it off the list. An empty list means the check covers every tool. Small batches by band, each read against the
+   real tool so nothing is generic; K-2 and sensitive tools get extra care on the home ideas.
 
 ### Held-back collections (their own waves)
 

@@ -7,6 +7,8 @@ from bundle_tool import bundle_all  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 MAX_BYTES = 2 * 1024 * 1024
+NOTES_SECTIONS = ['## What it teaches', '## Key skills', '## Support at home']
+BACKFILL = set((ROOT / 'docs/agents/notes-backfill.txt').read_text(encoding='utf-8').split())
 REQUIRED_JSON = ['id', 'status', 'hook', 'outcome', 'driver', 'minutes', 'modes', 'grades_label', 'sources', 'third_party', 'updated']
 NETWORK = [
     (r'<(?:script|img|iframe|audio|video|source|embed)\b[^>]*\ssrc\s*=\s*["\']?(?:https?:)?//', 'external src'),
@@ -14,6 +16,15 @@ NETWORK = [
     (r'@import\s+(?:url\()?["\']?(?:https?:)?//', 'external @import'),
     (r'url\(\s*["\']?(?:https?:)?//', 'external url()'),
 ]
+
+
+def notes_sections(folder):
+    """New tools must carry the three family-and-teacher sections; older ones wait in BACKFILL (docs/ROADMAP.md)."""
+    if folder.name in BACKFILL:
+        return []
+    notes = folder / 'notes.md'
+    text = notes.read_text(encoding='utf-8') if notes.exists() else ''
+    return [f'notes.md missing "{h}"' for h in NOTES_SECTIONS if not re.search(rf'^{h}\s*$', text, re.M)]
 
 
 def check(folder):
@@ -77,12 +88,16 @@ bundle_all()
 bad = 0
 for folder in sorted(p for p in (ROOT / 'tools').iterdir() if p.is_dir()):
     if (folder / 'tool.draft.json').exists():  # waiting for art: not on the site yet
-        print(f'draft {folder.name}')
+        problems = notes_sections(folder)
+        print(f'{"FAIL" if problems else "draft"} {folder.name}')
+        for p in problems:
+            print('     ', p)
+        bad += bool(problems)
         continue
     if not (folder / 'tool.json').exists() and (folder / 'spec.md').exists():  # specced, not built yet
         print(f'spec  {folder.name}')
         continue
-    problems = check(folder)
+    problems = check(folder) + (notes_sections(folder) if (folder / 'tool.json').exists() else [])
     print(f'{"FAIL" if problems else "ok  "} {folder.name}')
     for p in problems:
         print('     ', p)

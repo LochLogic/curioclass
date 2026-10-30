@@ -18,7 +18,13 @@ If the spec is wrong or impossible, stop and report it rather than improvising.
 - `src.html` from the starter: the kit stylesheet and script, the tool's palette, its scene and logic.
   Keep `window.__tool = {state, setMode, allLines, ...}` so frames can be checked.
 - `tool.draft.json`: the tool.json fields from the contract, plus `"stage": "built"`. (Draft until its art is in.)
-- `notes.md`: teacher notes (a 5-minute start, the modes, talk questions, good to know). Look at `tools/shape-talk/notes.md`.
+- `notes.md`: teacher notes. Open with these three sections, in this order, then a 5-minute start, the modes, talk
+  questions and good to know. Look at `tools/shape-talk/notes.md` for the rest. `scripts/check_tools.py` fails without them.
+  - `## What it teaches`: one or two plain sentences on the educational goal, naming what students can do afterward.
+    Not a copy of the plan's goal line, which speaks to students.
+  - `## Key skills`: 3 to 5 bullets, each something a student practices in this tool, in everyday words, no standard codes.
+  - `## Support at home`: 2 or 3 things a family can do this week, tied to this tool's idea, written to a parent or
+    caregiver. No screen needed, nothing to buy, no teaching background assumed.
 - `art/prompts.json`: the spec's art list in the format of `tools/calm-corner/art/prompts.json`. Do not draw art.
 - `voice/lines.json`: voice, style and every line `allLines()` returns. Do not record.
 - `audit-states.json`: the states a student reaches beyond the first screen (after a run, every stepper at its

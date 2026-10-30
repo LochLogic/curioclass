@@ -35,6 +35,8 @@ check gets a fresh run on the polished bundle the same way.
 3. Facts: every number, date and claim on screen or in notes matches the spec's Sources. Recompute numbers yourself.
 4. Nothing gives an answer away in a predict, quiz or hidden-information mode (POLISH, Games and quizzes).
 5. Language is plain and right for the grade; teacher notes name sensitive topics the standards cover (rule 8).
+   What it teaches, Key skills and Support at home are true of this tool, not of the topic in general, and the home
+   ideas are ones a family could really do tonight.
 6. Guardrails: K-2 teacher-led; hard history has no points, timers or win states; health topics neutral.
 7. Flag anything cultural, Native or hard-history for the sensitivity agent (rule 5). Don't judge it yourself.
 

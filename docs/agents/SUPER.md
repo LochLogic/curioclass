@@ -46,7 +46,8 @@ Follow SPEC.md and STANDARDS.md in full (all five rules from Cory's reviews), pl
 - **Ten-minute check.** In Done when, add: "a fresh player with no instructions is still choosing to play after 10
   minutes, and can name one thing they figured out."
 - **Teacher layer, light.** One short Teacher note: three ways to use it in a period (free play, a goal set, a
-  challenge for the room) and the standards it reaches. No worksheets.
+  challenge for the room) and the standards it reaches. No worksheets. Notes open with the three sections every tool
+  has (docs/agents/BUILD.md).
 
 ## Per-tool notes
 

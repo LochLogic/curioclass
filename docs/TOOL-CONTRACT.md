@@ -8,7 +8,7 @@ How a tool plugs into Curio Class. Every built tool follows this. `python script
 tools/<tool-id>/
   <tool-id>.html   the tool: one self-contained file (required)
   tool.json        details the site needs (required)
-  notes.md         teacher notes in Markdown (recommended)
+  notes.md         teacher notes in Markdown (required; opens with What it teaches, Key skills, Support at home)
   plan.md          one-period lesson plan (expected for every tool; docs/LESSON-PLANS.md, scripts/check_plans.py)
   preview.svg      card art, 16:10 (optional; otherwise a format pattern is used)
 ```
