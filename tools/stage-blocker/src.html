@@ -874,7 +874,11 @@ body.m-house #rough,body.m-run #rough{left:auto;right:8px}
     renderNow();
     const btn = $('beats').querySelector('[aria-current="true"]'); if (btn) btn.focus({preventScroll: false});
   }
-  function setSeat(id) { if (!HOUSE.seatById[id]) return; state.seat = id; live('Sitting in ' + seatName(id) + '.'); render(); }
+  function setSeat(id) {
+    if (!HOUSE.seatById[id]) return; state.seat = id; live('Sitting in ' + seatName(id) + '.');
+    if (state.running && runSnap) houseView.update({...planState(runSnap), focus: true, fit: runFit}, id);  // a run only redraws per beat, so show the new seat now
+    render();
+  }
   function nextSeat() { const ids = HOUSE.seats.map(s => s.id), i = ids.indexOf(state.seat); setSeat(ids[(i + 1) % ids.length]); }
   function setTab(t, focusIt) {
     state.tab = t;
@@ -906,21 +910,21 @@ body.m-house #rough,body.m-run #rough{left:auto;right:8px}
   }
 
   // ================= Run =================
-  let player = null, runFrom = 0;
+  let player = null, runFrom = 0, runSnap = null, runFit = null;
   async function run() {
     if (state.running) return;
     state.running = true; state.runResults = null;
     V.hush(); renderRun(); renderResults(); setHint();
     $('stopBtn').focus({preventScroll: true});
     const S = sc(), B = beats(), from = S.beat; runFrom = from;
-    const fit = sceneFit();
+    const fit = runFit = sceneFit();
     $('cue').hidden = false; $('cue').textContent = 'Places';
     const show = (snap, info) => {
-      sc().beat = info.beat;
+      sc().beat = info.beat; runSnap = snap;
       houseView.update({...planState(snap), focus: true, fit}, state.seat);
       miniPlan.update({...planState(snap), rays: false, focus: false, flags: false, sel: null});
     };
-    houseView.update({...planState(B[0].snap), focus: true, fit}, state.seat);
+    runSnap = B[0].snap; houseView.update({...planState(runSnap), focus: true, fit}, state.seat);
     S.beat = 0; setCaption();
     await V.say('runStart', {wait: true, hint: false, valid: () => state.running});
     if (!state.running) return;
