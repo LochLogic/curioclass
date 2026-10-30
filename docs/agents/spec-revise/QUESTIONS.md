@@ -121,3 +121,10 @@
 - dance-pattern-puzzle: keep the faceless code dancer for the whole dance family (a painted dancer = person, many poses)? Folk dance list (carried).
 - band-practice: one-note-a-bar parts read "held steady" or "too uneven" rather than "rushed"; acceptable?
 - character-voice-booth: mic in the preview iframe (carried).
+
+## R22
+- flipbook-studio Print pages and brand-builder Print sheet kept as crafts (not moving work between devices); OK?
+- Voices: choreography-board -> hero-coach, dance-styles-explorer -> upbeat-guide.
+- dance-styles-explorer: 8 footwear pictures, or style files text only?
+- director-s-chair: 5 masks are face-shaped objects; local model OK or Gemini review?
+- world-music-map: find a public-domain siku photo to replace the painting? brand-builder: Willowmere scrubs -> storefront sign OK?

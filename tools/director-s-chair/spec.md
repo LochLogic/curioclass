@@ -19,14 +19,14 @@ Direct the same short scene, the Guard's report from Sophocles' Antigone, as a g
 ## Screens and modes
 Header: title, topic line, `Read`, `Motion`, `Sound` (kit, theme-912). Mode buttons (`.seg`): `Tour` (default), `Compare`.
 
-**Tour.** Five house cards in a row (stacked at narrow widths), in history order, each with its picture (Art), name, place and date line, and a status ("not staged" or "staged" with a check). Tap a card to arrive. Any order is fine.
+**Tour.** Focus: the five painted house cards, large, filling the stage. Five house cards in a row (stacked at narrow widths), in history order, each with its picture (Art), name, place and date line, and a status ("not staged" or "staged" with a check). Tap a card to arrive. Any order is fine.
 
-**Arrival.** The house picture with its name and date line, the house rules (three or four short lines), and the cast list ("Here the Guard is played by..."). Button `Begin`.
+**Arrival.** Focus: the house picture, wide across the stage, with the rules beside it. The house picture with its name and date line, the house rules (three or four short lines), and the cast list ("Here the Guard is played by..."), each masked role shown with its painted mask (Art). Button `Begin`.
 
-**Scene.** The stage area is the engine's House view from the chosen seat, with the ground plan in a corner inset (seats shown; tap one to sit there). Panel, top to bottom: `Seat` (cycles the house's three seats; names in Content), the script (eight beats, current one highlighted, speaker names as this house casts them), `Prev beat`, `Next beat`, `Play scene` (plays all beats with the engine's tweening). At each choice beat (three per house) the panel shows a choice card with two options, each a name and one line; choosing applies its blocking to that beat and every later beat until the next choice, plays the beat, and opens the "What the audience notices" card (two sentences, plus the engine's focus leader from the current seat: "From the yard, the eye goes to the Guard."). `Change choice` reopens the card. After the third choice, `Program note`: the three choices with their first notice sentence, and `Back to tour`.
+**Scene.** Focus: the House view from the chosen seat, the biggest thing on screen (at least 60% of the width at 1366x768), with the choice card beside it in the panel so a choice and its result are seen together. The stage area is the engine's House view from the chosen seat, with the ground plan in a corner inset (seats shown; tap one to sit there). Panel, top to bottom: `Seat` (cycles the house's three seats; names in Content), the script (eight beats, current one highlighted, speaker names as this house casts them), `Prev beat`, `Next beat`, `Play scene` (plays all beats with the engine's tweening). At each choice beat (three per house) the panel shows a choice card with two options, each a name and one line; choosing applies its blocking to that beat and every later beat until the next choice, plays the beat, and opens the "What the audience notices" card (two sentences, plus the engine's focus leader from the current seat: "From the yard, the eye goes to the Guard."). `Change choice` reopens the card. After the third choice, `Program note`: the three choices with their first notice sentence, and `Back to tour`.
 - `Adjust` (toggle, off by default): drag actors on the inset plan (it grows to half the stage). The house rules are checked softly: a broken rule shows a note in words ("In Noh, entrances come along the bridgeway"), never blocks the move.
 
-**Compare** (enabled after two houses are staged). A `Beat` picker (1, 4, 6, 8). Small House views of every staged house from its front seat side by side (wrapping to two rows), each with the house name, the chosen option at that beat (or "house default") and its notice line. Below: `Director's note` (a text box, 600 characters, prompt "Which theater made the Guard most sympathetic, and how?"), `Save on this device`, `Clear` (localStorage `curio-directors-chair`, which also keeps choices per house).
+**Compare** (enabled after two houses are staged). Focus: the grid of small House views, filling the stage. A `Beat` picker (buttons 1, 4, 6, 8). Small House views of every staged house from its front seat side by side (wrapping to two rows), each with the house name, the chosen option at that beat (or "house default") and its notice line. Below: `Director's note` (a text box, 600 characters, prompt "Which theater made the Guard most sympathetic, and how?"), `Save on this device`, `Clear` (localStorage `curio-directors-chair`, which also keeps choices per house).
 
 ## Content
 **The scene.** Sophocles, Antigone, the Guard's report, in F. Storr's translation (Loeb, 1912), cut to eight beats; [...] marks a cut. Two dashes in Storr's text are set as commas here (house rule: no long dashes).
@@ -92,31 +92,44 @@ A one-line setup shows above beat 1: "Creon, the new king of Thebes, has forbidd
 - A choice applies its blocking from its beat to the next choice beat; later choices start from it, so a Greek Guard who took the side road is still out in the orchestra at beat 2 (that is the branching).
 - Engine weights for this tool (the tool's own, labeled "rough guide"): masked actors score body position only at full front (+2) or one-quarter (+1.5), else 0 (a mask reads from the front); `chorusGaze`: each chorus figure facing an actor adds +0.5, up to +3 (Greek, Noh); `address`: a speaker facing the house within 45 degrees in an option marked "to the crowd" or "to the yard" adds +2 (commedia, Elizabethan). Lights matter only in the realist house.
 - Adjust rule checks: Greek, the chorus stays inside the orchestra circle; Noh, entrances and exits use the bridgeway and the chorus stays seated; realist, a speaker facing the stalls center full front gets "This reads as talking to the audience."
-- Play scene: 2 s per beat plus cross time (Noh slides at 0.4 m a second, the tool's choice); Motion off jumps between blockings, same pacing.
+- Play scene: 2 s per beat plus cross time (Noh slides at 0.4 m a second, the tool's choice); Motion off jumps between blockings, same pacing. Most houses run 20 to 30 s. Noh runs about 80 s when the Guard takes the whole bridge (12.2 m, 31 s) and leaves on it (14.0 m, 35 s): the slow slide is what the Noh notices teach, so it is kept, and every control stays live while it plays: Next beat finishes the current cross at once and shows the next beat, Prev beat goes back at once, Seat changes the view at once mid-cross, and tapping Play scene again stops it.
 - Reset on a house (`Restart house`) clears its three choices; the tour status follows. Saved data: choices per house and the director's note only.
 
 ## Look
 - Accent (`--brand`) #ff9e5e footlight orange, on the kit `theme-912` base. Scene colors per house (canvas only): Greek limestone #d8cdb8 under a pale sky; Noh cypress #d9b77a, pine #2f5d3a, roof #3b2f2a; commedia backcloth ochre #c9873a; Globe oak #8a5a34 and plaster #efe6d2; realist wallpaper #5d6b4f with warm lamp pools. Figures: Guard #ffd84d, Creon #5ec8ff, chorus and others #d9a3ff, each with initials; masks drawn as pale face shapes.
-- Contrast: brand on panel 8.5:1; brand on section 8.0:1; brand-ink #1c1203 on brand 9.1:1; theme ink and muted as in theme-912.
+- Contrast (recomputed in Python): brand on panel 8.49:1; brand on section 8.05:1; brand-ink #1c1203 on brand 9.06:1; theme ink and muted as in theme-912.
 - Different from 9-12 arts neighbors: gallery-critique #f39cbc, city-skyline-studio #6fd6e8, virtual-gallery #b8e07a, music-history-radio #ff5a5f, storyboard-studio #ff6b6b, dance-styles-explorer #c9b3ff, and the theme default amber #f2a93b (more orange and lighter).
 
 ## Art
-Cloudflare FLUX.2 (`scripts/cfart.py`), house cards only (Tour and Arrival); every stage view is drawn in code by the engine. No people; blank surfaces.
+Local FLUX (`scripts/localart.py`; the five house cards were drawn this way and wait for review in `art/prompts.json`). No people; blank surfaces. Every stage view stays in code, on purpose: the engine's House view and plan must move actors, turn them and test sightlines from each seat, which a painting cannot do.
+
+House cards (Tour and Arrival), house style in `prompts.json` (detailed painterly architectural illustration, natural light, an empty venue):
 - greek-theatre: an ancient open-air stone theater on a hillside in Greece, semicircular stone seats around a round flat stone floor, a low stone stage building behind, olive-covered hills, late afternoon light; 16:9; cutout no; people no.
 - noh-stage: a traditional Japanese Noh stage of pale cypress wood under its own roof, a large painted pine tree on the back wall, a roofed bridgeway leading off to the left, four square pillars, polished floor, soft even light; 16:9; cutout no; people no.
 - commedia-piazza: a wooden trestle stage in an Italian town square, a painted cloth backdrop of a street of houses hung behind it, cobblestones, stone buildings and a church tower around, morning light; 16:9; cutout no; people no.
 - globe-playhouse: inside a round timber Elizabethan playhouse, three tiers of wooden galleries, open to the sky, a raised wooden stage jutting into an open yard, two painted pillars holding a canopy over the stage; 16:9; cutout no; people no.
 - box-set-study: a realistic theater set of an 1890s study seen through a proscenium arch, three wallpapered walls, a desk with a green lamp, a door at the back, a curtained window at the side, a dark auditorium in front; 16:9; cutout no; people no.
 
+Masks (new): objects, no person wears them. One shared prompt line: "<mask>, a single theater mask lying on dark cloth, seen from the front, soft museum light, realistic painted detail, plain dark background"; 1:1; cutout yes; people no (a carved or leather object, not a face; Cory to confirm, open question); shown at about 72 px beside each masked role in the Arrival cast list and on the plan inset's legend. Masks:
+- mask-greek: a pale linen and plaster Greek tragic mask with wide open mouth and eye holes and painted brows.
+- mask-noh: a carved and painted wooden Noh mask of a middle-aged man, calm, with a smooth ivory surface and small eye holes.
+- mask-zanni: a brown leather commedia half mask with a long hooked nose and small eye holes.
+- mask-capitano: a brown leather commedia half mask with a very long straight nose and a fierce brow.
+- mask-dottore: a black leather commedia half mask covering only the forehead and nose, with round red cheeks painted beside it.
+
+The figures in the House view stay simple code shapes with initials, and their masks are drawn there as pale face shapes (they turn with the actor).
+
 ## Voice
-Bank voice `science-narrator` (Charon), style "Say in a clear, informative way, like a nature documentary narrator": the narrator of a travel documentary about the world's theaters. Not used by any 9-12 arts neighbor (gallery-critique calm-professor, city-skyline-studio casual-peer, virtual-gallery wise-mentor, theory-gym firm-captain, music-history-radio news-reader, storyboard-studio smooth-narrator; dance-styles-explorer and brand-builder took knowing-guide) or this group. The play text is on screen, never voiced. `Curio.voice` with `scope: () => state.mode + ':' + state.house`.
-- how, welcome (Tour): "Welcome, guest director. Five theaters, one scene. Tap a theater to begin."
-- how, arrival, one per house: "The Greek theater: the chorus lives in the round orchestra. Read the rules, then tap Begin." / "The Noh stage: a bridge, four pillars and a painted pine. Read the rules, then tap Begin." / "A commedia stage in the square: masks, tricks and a crowd. Read the rules, then tap Begin." / "The Globe, by daylight, with the crowd on three sides. Read the rules, then tap Begin." / "A realist room with its fourth wall. Read the rules, then tap Begin."
-- how, first choice card: "Pick one of the two choices. Then watch from a seat and read what the audience notices."
-- how, first notice: "Tap Seat to watch the same moment from somewhere else."
-- event, third choice in a house: "Program note written. Tap Back to tour for the next theater."
-- event, all five staged: "You've directed all five. Tap Compare to see them side by side."
-- how, welcome (Compare): "Pick a beat. Every theater you staged shows it side by side."
+Bank voice `science-narrator` (Charon), style "Say in a clear, informative way, like a nature documentary narrator": the narrator of a travel documentary about the world's theaters. Not used by any voiced neighbor (gallery-critique calm-professor, city-skyline-studio casual-peer, virtual-gallery wise-mentor, theory-gym and stage-blocker firm-captain, music-history-radio news-reader, storyboard-studio smooth-narrator, brand-builder hs-narrator, dance-styles-explorer upbeat-guide). The play text is on screen, never voiced. `Curio.voice` with `scope: () => state.mode + ':' + state.house`. How lines speak once per page load, then only update the hint. No line plays while Play scene runs; queued lines wait for it to end.
+- welcomeTour (how; Tour entered; stale when a house card is tapped): "Welcome, guest director. Five theaters, one scene. Tap a theater to begin."
+- arrive.<house> (how, one per house; Arrival opens; stale when Begin or Back to tour is tapped): "The Greek theater: the chorus lives in the round orchestra. Read the rules, then tap Begin." / "The Noh stage: a bridge, four pillars and a painted pine. Read the rules, then tap Begin." / "A commedia stage in the square: masks, tricks and a crowd. Read the rules, then tap Begin." / "The Globe, by daylight, with the crowd on three sides. Read the rules, then tap Begin." / "A realist room with its fourth wall. Read the rules, then tap Begin."
+- sceneHow (how; the first Scene opens; stale when Next beat or Play scene is tapped): "Read the beat, then tap Next beat to move on, or Play scene to watch it run."
+- choiceHow (how; the first choice card; stale when a choice is tapped): "Tap one of the two choices. Then watch from a seat and read what the audience notices."
+- seatHow (how; the first notice card; stale when Seat is tapped or the beat changes): "Tap Seat to watch the same moment from somewhere else."
+- programNote (event; the third choice in a house; stale when Back to tour or Change choice is tapped): "Program note written. Tap Back to tour for the next theater."
+- compareReady (event; the second house staged; stale when Compare is opened): "Two theaters staged. Tap Compare to see them side by side."
+- allStaged (event; all five staged; stale when Compare is opened): "You've directed all five. Tap Compare to see them side by side."
+- welcomeCompare (how; Compare entered; stale when a beat is tapped): "Tap a beat number. Every theater you staged shows that moment side by side."
 - Read speaks the hint; on a notice card it speaks the notice.
 
 ## Family engine
@@ -133,6 +146,8 @@ Bank voice `science-narrator` (Charon), style "Say in a clear, informative way, 
 - National Core Arts Standards, Theatre, high school (TH:Re8, TH:Cn11): https://www.nationalartsstandards.org
 - Stage sizes, coordinates, figure counts, weights and notices: this tool's own drawing and interpretation, labeled as such.
 
+- Checks run in Python (2026-10-29): the Look contrast pairs (rounded values corrected to 8.49, 8.05 and 9.06). Blocking positions checked against each house outline: every Greek spot lies inside the orchestra circle (the closed-up elders reach 8 m from its center, inside its 10 m radius) or on the stage strip; the Noh stop on the bridge (-8, 7) lies on the bridgeway's center line (6.94 at x -8), and the eye-pillar spot is 0.6 m clear of the pillar; every commedia, Globe and box set spot lies inside its stage. Noh slide times at 0.4 m a second: the whole bridge 12.2 m = 30.6 s, leaving on the bridge 14.0 m = 34.9 s, so a full Noh Play scene runs about 80 s, explained in Interactions.
+
 ## Done when
 1. Every house plays all eight beats in order with this house's speaker names, and each of its three choice beats offers its two options.
 2. Each option's blocking matches the coordinates above (check the snapshot numbers in Python) and carries forward to the next choice.
@@ -140,6 +155,11 @@ Bank voice `science-narrator` (Charon), style "Say in a clear, informative way, 
 4. Masked figures score body position only at full front or one-quarter; the address bonus applies only in commedia and Elizabethan "to the crowd" options; lights work only in the realist house.
 5. Program note lists the three choices; Compare unlocks after two houses and shows one beat across every staged house.
 6. Adjust flags each house rule in words and never blocks a move.
-7. Save on this device keeps choices and the note across a reload; Clear empties `curio-directors-chair`.
-8. The House view, Next beat and the choice card are visible without scrolling at 680x425, 1366x768 and 760 wide; scene text 10 px or more in the preview.
-9. How-to lines spoken once in five actions; no em dashes in any on-screen text, including the play text.
+7. Focus: in Scene at 1366x768 the House view is the biggest thing on screen with the choice card beside it; in Tour the five painted cards fill the stage; each masked role in the cast list shows its mask.
+8. A tap during Play scene acts at once: Next beat in the middle of the Noh bridge slide puts the Guard at the end of the slide and shows the next beat, Seat changes the view mid-cross, and Play scene again stops it.
+9. Save on this device keeps choices and the note across a reload; Clear empties `curio-directors-chair`.
+10. The House view, Next beat and the choice card are visible without scrolling at 680x425, 1366x768 and 760 wide; scene text 10 px or more in the preview.
+11. How-to lines spoken once in five actions; no line plays during Play scene; no em dashes in any on-screen text, including the play text.
+
+## Open questions
+- Five painted masks (Greek, Noh, three commedia) were added to the cast list as objects on local FLUX. They are face-shaped: fine on the local model, or send them to Gemini for review like people?
