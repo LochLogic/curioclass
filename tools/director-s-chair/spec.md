@@ -98,7 +98,7 @@ A one-line setup shows above beat 1: "Creon, the new king of Thebes, has forbidd
 ## Look
 - Accent (`--brand`) #ff9e5e footlight orange, on the kit `theme-912` base. Scene colors per house (canvas only): Greek limestone #d8cdb8 under a pale sky; Noh cypress #d9b77a, pine #2f5d3a, roof #3b2f2a; commedia backcloth ochre #c9873a; Globe oak #8a5a34 and plaster #efe6d2; realist wallpaper #5d6b4f with warm lamp pools. Figures: Guard #ffd84d, Creon #5ec8ff, chorus and others #d9a3ff, each with initials; masks drawn as pale face shapes.
 - Contrast (recomputed in Python): brand on panel 8.49:1; brand on section 8.05:1; brand-ink #1c1203 on brand 9.06:1; theme ink and muted as in theme-912.
-- Different from 9-12 arts neighbors: gallery-critique #f39cbc, city-skyline-studio #6fd6e8, virtual-gallery #b8e07a, music-history-radio #ff5a5f, storyboard-studio #ff6b6b, dance-styles-explorer #c9b3ff, and the theme default amber #f2a93b (more orange and lighter).
+- Different from 9-12 arts neighbors: gallery-critique #f39cbc, city-skyline-studio #6fd6e8, virtual-gallery #b8e07a, music-history-radio #4fd18b, storyboard-studio #ff6b6b, dance-styles-explorer #c9b3ff, and the theme default amber #f2a93b (more orange and lighter).
 
 ## Art
 Local FLUX (`scripts/localart.py`; the five house cards were drawn this way and wait for review in `art/prompts.json`). No people; blank surfaces. Every stage view stays in code, on purpose: the engine's House view and plan must move actors, turn them and test sightlines from each seat, which a painting cannot do.

@@ -128,3 +128,7 @@
 - dance-styles-explorer: 8 footwear pictures, or style files text only?
 - director-s-chair: 5 masks are face-shaped objects; local model OK or Gemini review?
 - world-music-map: find a public-domain siku photo to replace the painting? brand-builder: Willowmere scrubs -> storefront sign OK?
+
+## R23
+- gallery-critique: new Support tables (the tool's own calls) OK? Curator claim naming the race reading of The Gulf Stream (carried).
+- music-history-radio: add a station from outside the European-then-American line? (carried)
