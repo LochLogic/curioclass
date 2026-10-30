@@ -22,8 +22,9 @@ Header: title "Parallel Parking", small line "Make every item the same shape."; 
 
 ### Lots (opens first)
 - Lot picker across the top of the stage: **1 Words and verbs**, **2 Phrases**, **3 Clauses**, **4 Pairs**, **5 Comparisons**, **6 Your lead**. Each lot holds 3 sentences, shown as "Sentence 2 of 3". All lots are open from the start (explore first); a lot's tab shows a small ✓ when all its rows are parked clean.
-- Stage: a top-down parking lot drawn in code. The sentence's fixed words run along the curb at the top as a painted line of text (the "frame"). Below it, one parking row: a space for each list item, with the connecting words ("and", "or", "but also", "than") painted on the asphalt between spaces.
-- Each item is a car with its words printed on the roof and a shape badge on the hood (glyph plus word): ◆ "-ing", ▲ "to + verb", ● "verb", ■ "noun phrase", ⬟ "clause", ✚ "prepositional phrase", ★ "adjective". The space it sits in is outlined in the lead car's shape (the same glyph painted on the asphalt).
+- Focus: the parking row of cars with any scrape tags, the biggest thing on the stage and centered in it, with the frame on the curb just above. The lot picker and Read it are smaller and sit at the edges.
+- Stage: a top-down parking lot: painted asphalt (art: lot-asphalt) and a painted curb strip (art: lot-curb) along the top. The sentence's fixed words run along the curb as text drawn in code (the "frame"). Below it, one parking row: a space for each list item, with stall lines and the connecting words ("and", "or", "but also", "than") drawn in code on the asphalt between spaces.
+- Each item is a painted car seen from above (art: car-mustard, car-teal, car-red, car-white; the lead is always car-mustard) with its words in code on a roof plate and a shape badge on the hood (glyph plus word): ◆ "-ing", ▲ "to + verb", ● "verb", ■ "noun phrase", ⬟ "clause", ✚ "prepositional phrase", ★ "adjective". The space it sits in is outlined in the lead car's shape (the same glyph painted on the asphalt).
 - The lead car (first item) is locked in Lots 1 to 5, marked with a small padlock and the word "lead".
 - **Reshape** (a wrench button on each unlocked car, or tap the car then press R or Enter): the car cycles through its forms (3 per item, listed in Content); the roof words and badge change; the car rolls back and parks again.
 - When an item's shape differs from its neighbor's, the two cars touch and show a scrape (a jagged mark drawn between them) with a tag: "-ing next to to + verb". When a row's shared shape doesn't fit the frame, the whole row bumps the curb with the tag "Parallel, but 'should' needs a verb here".
@@ -31,7 +32,8 @@ Header: title "Parallel Parking", small line "Make every item the same shape."; 
 - **Read it** (button under the row) shows the current sentence as plain text with mismatched items underlined, so a student can hear the problem in their head.
 
 ### Garage
-- Stage: a garage bay with one base sentence on a car chassis in the middle, and a rack of trailer pieces along the side (10 or 11 per base), each a labeled block with two tags: its **form** (glyph and name: prepositional phrase, participial phrase, absolute phrase, appositive (a noun phrase), adjective phrase, adverb phrase, verb phrase, adverb clause, relative clause, noun clause, independent clause) and its **job** in this sentence (acts as a noun, acts as an adjective, acts as an adverb, main verb, stands alone), and its words.
+- Focus: the base sentence on the chassis with its glowing hitch points, large and centered; the work order card sits right above it and the rack at the side.
+- Stage: a painted garage bay (art: garage-bay) behind one base sentence on a car chassis in the middle (the chassis and pieces are drawn in code, because they stretch with their words), and a rack of trailer pieces along the side (10 or 11 per base), each a labeled block with two tags: its **form** (glyph and name: prepositional phrase, participial phrase, absolute phrase, appositive (a noun phrase), adjective phrase, adverb phrase, verb phrase, adverb clause, relative clause, noun clause, independent clause) and its **job** in this sentence (acts as a noun, acts as an adjective, acts as an adverb, main verb, stands alone), and its words.
 - The base sentence's own parts are labeled too: its subject is a **noun phrase** and its main verb a **verb phrase** (small tags under the chassis), so every phrase type the standard names is on screen and in play.
 - A **Work order** card above the bay (3 per base sentence, Content) asks for a meaning, then names the type: "Show what the bus looked like without a new main verb: add an absolute phrase."
 - The student taps a piece, then taps one of the glowing hitch points (front, after the subject, end, or replace the subject), or drags it there. Each piece offers only the hitch points where it is grammatical (Content). Commas are placed automatically.
@@ -71,8 +73,8 @@ All sentences are original, written for Curio Class, except the Lincoln line (So
 15. "The new phone's battery lasts longer than [ ]." No lead car; the lead is the painted phrase "The new phone's battery" (■). Item: the old phone ■ (bumps: "Compares a battery with a whole phone") / **the old phone's battery** ■ / **the old phone's** ■. Both bold forms park clean; the tool notes "'the old phone's' leaves out 'battery' because it is understood."
 
 ### Lot 6: Your lead (no locked car; any shape the frame accepts parks clean)
-16. "Our club's goals for spring are [ ], [ ] and [ ]." Frame shapes: ◆ ▲ ■. Items: raising money ◆ / to raise money ▲ / more money ■; planting trees ◆ / to plant trees ▲ / new trees ■; cleaning the creek ◆ / to clean the creek ▲ / a clean creek ■. Three clean rows exist; after one is found, **Find another clean row** asks for a second. The tool says: "Parallel isn't one right answer. It's a match."
-17. "The report says the town should [ ], [ ] and [ ]." Frame shapes: ● only. Items: fix the sidewalks ● / fixing the sidewalks ◆ / sidewalk repair ■; add bike lanes ● / adding bike lanes ◆ / more bike lanes ■; light the crosswalks ● / lighting the crosswalks ◆ / brighter crosswalks ■. An all-◆ or all-■ row bumps the curb: "Parallel, but 'should' needs a verb here."
+16. "Our club's goals for spring are [ ], [ ] and [ ]." Frame shapes: ◆ ▲ ■. Items: raising money ◆ / to raise money ▲ / more money ■; planting trees ◆ / to plant trees ▲ / new trees ■; cleaning the creek ◆ / to clean the creek ▲ / a clean creek ■. Start forms: raising money, to plant trees, a clean creek. Three clean rows exist; after one is found, **Find another clean row** asks for a second. The tool says: "Parallel isn't one right answer. It's a match."
+17. "The report says the town should [ ], [ ] and [ ]." Frame shapes: ● only. Items: fix the sidewalks ● / fixing the sidewalks ◆ / sidewalk repair ■; add bike lanes ● / adding bike lanes ◆ / more bike lanes ■; light the crosswalks ● / lighting the crosswalks ◆ / brighter crosswalks ■. Start forms: fix the sidewalks, adding bike lanes, brighter crosswalks. An all-◆ or all-■ row bumps the curb: "Parallel, but 'should' needs a verb here."
 18. Lincoln, 1863: "...that government [ ], [ ], [ ], shall not perish from the earth." Frame shapes: ✚. Items: **of the people** ✚ / which the people run ⬟ / popular ★; **by the people** ✚ / that people elect ⬟ / people-made ★; **for the people** ✚ / serving the people ◆ / for everyone's good ✚. The last item's ✚ form "for everyone's good" parks but the panel adds: "Clean. Lincoln repeated 'the people' three times; listen to the difference." When the three bold forms are parked, a context card: "From the Gettysburg Address, November 19, 1863, at the dedication of a cemetery for soldiers killed in the Battle of Gettysburg. Wording from the Bliss copy."
 
 ### Garage
@@ -89,7 +91,7 @@ Each piece: form, job, words, hitch points. Commas are added at front, around af
 
 ## Interactions in detail
 - Shapes are data: each form has one shape tag. A row is clean when every item has the same tag and that tag is in the frame shapes (Lots 1 to 5: the lead's tag). Scrapes are computed between neighbors left to right; one odd car in the middle shows two scrapes.
-- Each unlocked car starts on the first listed form that is not bold, so no row starts clean; Reshape then cycles forms in the listed order and wraps. Keys: Tab moves between cars (panel controls come first in tab order), R or Enter reshapes, Space shows Read it.
+- Each unlocked car starts on the first listed form that is not bold (in sentences 16 and 17, where nothing is bold, on the start forms listed in Content), so no row starts clean; Reshape then cycles forms in the listed order and wraps. Keys: Tab moves between cars (panel controls come first in tab order), R or Enter reshapes, Space shows Read it.
 - Sentence 15 accepts either bold form; sentence 16 accepts any of three rows and counts each one found ("2 of 3 clean rows found").
 - Reset this sentence returns every unlocked car to its starting form.
 - Frame misfits are data too: a form can carry a `misfit` line that bumps the curb even when its shape matches (sentence 15: "the old phone" is a noun phrase like the lead but compares a battery with a whole phone).
@@ -97,29 +99,36 @@ Each piece: form, job, words, hitch points. Commas are added at front, around af
 - Progress (which rows are clean, Garage pieces per base) saves to localStorage `parallel-parking:v1` (try/catch). Clear my progress asks first. Nothing else is stored; nothing leaves the page.
 - Sizes: the lot is drawn at real pixel size per layout. At 760 wide and below, cars stack in a vertical row (spaces become stalls down the page) so roof words stay at 14 px or more. At 680x425 the frame, row and Reshape buttons fit without scrolling (compact panel beside the stage). At 375 the Garage rack becomes a scrolling strip under the chassis.
 - Motion off: cars jump to their stalls instead of rolling; the scrape mark and tag still show.
+- A tap while a car rolls (400 ms) or the row slides into line acts at once: the motion jumps to its end, the new reshape or sentence starts, and any line about the old state is dropped.
 
 ## Look
-- Accent `--brand #f7e463` (lane-line yellow: header rule, active lot tab, Next sentence, lead badge) on the kit `theme-912` base. Scene: asphalt `#262c36` with faint aggregate speckle, stall lines `#e8edf3`, curb `#8a93a3`, painted connector words `#c9d3df`. Cars `#3a4558` with roof text in `--ink`; scrape marks `#ffb8a8` (the theme's warn) always with the tag in words.
+- Accent `--brand #f7e463` (lane-line yellow: header rule, active lot tab, Next sentence, lead badge) on the kit `theme-912` base. Scene: the painted asphalt is kept dark (average near `#262c36`, the value the contrast below uses), stall lines `#e8edf3`, the painted curb a cool grey near `#8a93a3`, connector words `#c9d3df`. Roof words sit on a code-drawn roof plate `#3a4558` with text in `--ink`, so they read the same on every painted car; scrape marks `#ffb8a8` (the theme's warn) always with the tag in words. Art style: clean flat gouache, seen from straight above, soft shadows, night-lot colors.
 - Shapes carry the meaning by glyph and word on every car and stall; color is never the only signal.
 - Contrast (WCAG 2.1): brand on panel #141b25 13.38:1, on sec-bg #18202b 12.68:1, on asphalt 10.85:1; brand-ink #1c1203 on brand 14.27:1; roof text #e8edf3 on car #3a4558 8.21:1; warn #ffb8a8 on asphalt 8.47:1.
 - Different from 9-12 ELA neighbors: shakespeare-remix lavender #9d8cff and page-to-screen blue (the earlier periwinkle sat 17 dE from shakespeare-remix, so it moved), portrait-in-four-media coral, rhetorical-situation-simulator sand #ffd18c (dE 29), and the theme-912 default amber. Different from this group's accents.
 
 ## Art
-None: drawn in code (lot, cars, stalls, garage, pieces). No people.
+Local FLUX (`scripts/localart.py`), one clean flat gouache style seen from straight above, asked in one session. No people. Text (roof words, the frame, connector words) stays in code.
+- lot-asphalt: "Dark grey asphalt seen from straight above, fine gravel speckle, a few faint oil stains, even night lighting, flat gouache texture"; 16:9; cutout no; people no; full-frame texture under the Lots stage, tiled or cropped per size, with stall lines drawn over it in code.
+- lot-curb: "A long grey concrete curb seen from straight above, with a strip of sidewalk behind it, even lighting, flat gouache"; 5:1; cutout no; people no; runs across the top of the Lots stage under the frame text.
+- Cars (kit of 4 cutouts, one shared prompt): "A small hatchback car seen from straight above, pointing right, a plain flat blank roof panel, clean flat gouache, soft shadow, plain white background", one each in mustard yellow, teal, brick red and white; 16:9; cutout yes; people no; one car per space, scaled so its length is 90% of the stall; car-mustard is always the lead; the others take turns in row order. At 760 wide and below the builder rotates them 90 degrees for the stacked stalls.
+- garage-bay: "Inside an empty clean auto repair garage bay, a pegboard wall of hanging wrenches and tools, a red rolling tool chest, concrete floor, warm work lights, clean flat gouache"; 16:9; cutout no; people no; Garage backdrop, dimmed to 70% behind the chassis.
+7 images, none with people. Drawn in code: stall lines, connector words, shape badges, roof plates, the padlock, wrench buttons, scrape marks, the chassis, hitch points, trailer pieces and every label (they stretch with their words or carry text).
 
 ## Voice
-Bank voice `clear-teacher`, style "Say clearly and kindly, like a patient driving instructor." Not used by another tool in this group or by any neighbor (argument-map, grade 12, is the only other 9-12 ELA user). It moved off upbeat-guide, which neighbor world-lit-atlas uses. The kit voice queue (`Curio.voice`), `scope: () => state.mode + ':' + state.sentence`. Sentences are on screen, never voiced, so the student hears the instructions, not the answers.
-- w-lots (how, welcome Lots): "The first car sets the shape. Tap the wrench on each other car until it matches."
-- scrape (how, first scrape): "A scrape means two shapes don't match. Read the tag, then reshape that car."
-- curb (how, first curb bump): "The row matches, but it doesn't fit the words before it. Try a shape the curb accepts."
+Bank voice `clear-teacher`, style "Say clearly and kindly, like a patient driving instructor." Not used by another tool in this batch or by any neighbor (argument-map, grade 12, is the only other 9-12 ELA user). It moved off upbeat-guide, which neighbor world-lit-atlas uses. The kit voice queue (`Curio.voice`), `scope: () => state.mode + ':' + state.sentence`. Sentences are on screen, never voiced, so the student hears the instructions, not the answers. Event line ids: clean, lincoln, order-done, order-miss.
+- w-lots (how, welcome on entering Lots in Lots 1 to 5; stale when a wrench is tapped or the lot changes): "The first car sets the shape. Tap the wrench on each other car until it matches."
+- scrape (how, the first time a scrape shows; stale when that scrape clears): "A scrape means two shapes don't match. Read the tag, then tap the wrench on that car."
+- curb (how, the first curb bump; stale when the row changes): "The row matches, but it doesn't fit the words before it. Tap a wrench and try a shape the curb accepts."
 - clean (event, every clean row; stale when the sentence changes): "Parked clean."
-- lot6 (how, first entry to Lot 6): "No lead car here. Pick any shape, then make every car match it."
-- another (how, after the first clean row in sentence 16): "There's more than one clean row. Tap Find another clean row."
-- lincoln (event, sentence 18 clean): "That's Lincoln's line, from 1863."
-- w-garage (how, welcome Garage): "Read the work order. Tap a piece, then tap a glowing spot on the sentence."
-- jobs (how, first piece tapped): "Each piece has a form and a job. Check both tags, then tap a glowing spot."
+- lot6 (how, first entry to Lot 6; stale when a wrench is tapped): "No lead car here. Pick any shape with the wrenches, then make every car match it."
+- another (how, after the first clean row in sentence 16; stale when the sentence changes): "There's more than one clean row. Tap Find another clean row."
+- lincoln (event, sentence 18 clean; stale when the sentence changes): "That's Lincoln's line, from 1863."
+- w-garage (how, welcome on entering Garage; stale when a piece is tapped): "Read the work order. Tap a piece, then tap a glowing spot on the sentence."
+- jobs (how, the first piece tapped; stale when it is hitched or another piece is tapped): "Each piece has a form and a job. Check both tags, then tap a glowing spot."
 - order-done (event, Check work order passes; stale on any hitch): "Work order done."
-- order-miss (event, Check work order fails; stale on any hitch): "Not yet. Read what this order asks for, then try another piece."
+- order-miss (event, Check work order fails; stale on any hitch): "Not yet. Read what this order asks for, then tap another piece."
+- Read speaks the hint, which always names the next action and control.
 
 ## Family engine
 None.
@@ -129,6 +138,7 @@ None.
 - Phrase and clause types and parallel structure: The Chicago Manual of Style, 18th ed. (2024), chapter 5, "Grammar and Usage" (parallel structure with correlative conjunctions; noun, verb, adjective, adverb, prepositional, participial and absolute phrases; independent and dependent clauses and sentence types, as used in What it adds); confirm section numbers at build and cite them in the source comment.
 - Gettysburg Address, Bliss copy: Abraham Lincoln, November 19, 1863, text at the Library of Congress exhibition "The Gettysburg Address", https://www.loc.gov/exhibits/gettysburg-address/ ("that government of the people, by the people, for the people, shall not perish from the earth"). Date and occasion from the same page.
 - All other sentences are original, written for Curio Class.
+- Checks run (Python, 2026-10-29): every Lots sentence simulated over all form combinations. Sentences 1 to 15 have exactly one clean row each except 15 (two: either bold form) and every clean row uses only bold forms; no starting row is clean. The old start rule (first form that is not bold) left sentences 16 and 17, which have no bold forms, starting clean, so both now list start forms. Sentence 16 has 3 clean rows; 17 has 1 clean row and 2 rows that are parallel but bump the curb (all ◆, all ■); 18 has 2 clean rows (the bold three, and the one ending "for everyone's good", which carries its note). Garage clause counts: G1 plus "and Maya watched it go" is compound; G2 plus "but the bridge stayed closed" is compound; G3 plus "because each team knew its job" and "and the class celebrated" is 2 independent and 1 dependent clause, compound-complex. Contrast ratios in Look recomputed with the WCAG 2.1 formula; all match to 0.01.
 
 ## Done when
 - Every Lots sentence starts unclean and reaches "Parked clean" only with the bold forms (sentence 15: either bold form; 16: each of 3 rows).
@@ -140,6 +150,9 @@ None.
 - Each work order passes with its named type and fails with a different one, with the line in Content.
 - Progress survives a reload; Clear my progress asks first and empties it.
 - Voice: the reshape instruction is spoken once; five reshapes in a row speak nothing new; each clean row says "Parked clean."
+- Focus: at 1366x768 and 680x425 the parking row (or the Garage chassis) is the largest thing on the stage, centered, with every car's roof words readable.
+- Tap while it plays: a wrench, Next sentence or lot tab tapped while a car rolls or the row slides acts at once; nothing waits for the animation and no stale line plays.
+- Sentences 16 and 17 open unclean on their listed start forms.
 - At 375 and 760 wide the cars stack with roof text at 14 px or more and no horizontal scroll; at 1366x768 the frame, row and Reshape controls are visible without scrolling.
 
 ## Open questions

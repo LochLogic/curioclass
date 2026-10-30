@@ -17,14 +17,14 @@ Shakespeare was a remixer: lay one of his scenes beside the older book he borrow
 - tool.json: driver "students", minutes "25-40", modes ["Log", "Your remix"], grades_label "Grade 9". Kit starter with `kit:theme-912` (dark) and an accent override.
 
 ## Screens and modes
-Kit frame. Header: "Shakespeare Remix", small line naming the set ("Ovid into A Midsummer Night's Dream"); Motion, Sound, Read. A set picker of three cards opens first, each with the two titles, the source's date and a one-line "what to watch for".
+Kit frame. Header: "Shakespeare Remix", small line naming the set ("Ovid into A Midsummer Night's Dream"); Motion, Sound, Read. A set picker of three cards opens first, each with its painted emblem (art: emblem-wall, emblem-island, emblem-barge), the two titles, the source's date and a one-line "what to watch for". Focus there: the three cards, large and centered.
 
-**Log mode.** Three columns set by Bard.Align: **Source** (left), **Shakespeare** (middle), **Ours** (right, collapsed by default to a narrow tab labeled "A modern retelling, written for Curio Class"). Each text is split into numbered segments (Content). Thin link lines join matching segments; a source segment with no partner shows a "nothing here" stub on the other side, and the reverse.
+**Log mode.** Focus: the Source and Shakespeare columns side by side with their link lines, filling the middle of the stage; the open log card overlays the link it belongs to, and the change log strip sits below. Three columns set by Bard.Align: **Source** (left), **Shakespeare** (middle), **Ours** (right, collapsed by default to a narrow tab labeled "A modern retelling, written for Curio Class"). Each text is split into numbered segments (Content). Thin link lines join matching segments; a source segment with no partner shows a "nothing here" stub on the other side, and the reverse.
 - Tap a link (or a stub) to open the **log card**: a mark (**Kept**, **Cut**, **Added**, **Changed**, **Flipped**), a **Why** chip row (**For laughs**, **For the stage**, **For the verse**, **To change who we side with**, **To fit the play's world**, **Other**, with a short note box up to 140 characters), and **Quote it**: tap a few words in each column to attach them as evidence (highlighted in both).
 - The **change log** strip under the columns lists every link in order, with its mark word, why chip and quoted words. **Compare with ours** shows the tool's log beside the student's, row by row, and never scores; a row that differs reads "Ours says Flipped. Which words would change your mind?".
 - When every link has a mark, the **pattern bar** appears: counts per mark, and one sentence the student completes from a frame, "Shakespeare mostly ___ his source, especially when ___, which makes ___." (word chips plus free text).
 
-**Your remix.** Pick one Shakespeare segment from the set (three are offered per set). Choose a new setting from four cards (a school hallway, a group chat, a night bus, a spaceship). Write your version (up to 400 characters) in a box under the original. Then log your own changes against Shakespeare's lines with the same marks and why chips. **Read my remix** shows the original, the student's version and their log, with **Copy**.
+**Your remix.** Focus: the student's writing box directly under the original segment, centered, with the chosen setting's painting as a band above them. Pick one Shakespeare segment from the set (two are offered per set). Choose a new setting from four painted cards (art: set-hallway, set-chat, set-bus, set-ship: a school hallway, a group chat, a night bus, a spaceship). Write your version (up to 400 characters) in a box under the original. Then log your own changes against Shakespeare's lines with the same marks and why chips. **Read my remix** shows the original, the student's version and their log, with **Copy**.
 
 **Afterlives** card (in the panel, per set): later works that reused the same story, as title, author or maker, year and one line, never quoted.
 
@@ -61,14 +61,14 @@ Context card: Montaigne's essay was written in the 1570s to 1580s from reports o
 
 **Set 3. Plutarch, Life of Antonius (Sir Thomas North's translation, 1579), into Antony and Cleopatra, 2.2** (Enobarbus describes the barge).
 What to watch for: "Shakespeare kept the facts and turned them into a spell."
-1. The barge. Source: "to take her barge in the river of Cydnus; the poop whereof was of gold, the sails of purple, and the oars of silver, which kept stroke in rowing after the sound of the music of flutes, howboys, cithernes, viols, and such other instruments as they played upon in the barge." Shakespeare: "The barge she sat in, like a burnished throne, / Burned on the water. The poop was beaten gold; / Purple the sails, and so perfumed that / The winds were love-sick with them; the oars were silver, / Which to the tune of flutes kept stroke, and made / The water which they beat to follow faster, / As amorous of their strokes." Log: **Kept** (gold, purple, silver, flutes, kept stroke) and **Changed**, for the verse: "burnished throne", "Burned on the water", the love-sick winds and amorous water are new.
+1. The barge. Source: "to take her barge in the river of Cydnus; the poop whereof was of gold, the sails of purple, and the oars of silver, which kept stroke in rowing after the sound of the music of flutes, howboys, cithernes, viols, and such other instruments as they played upon in the barge." Shakespeare: "The barge she sat in, like a burnished throne, / Burned on the water. The poop was beaten gold; / Purple the sails, and so perfumed that / The winds were love-sick with them; the oars were silver, / Which to the tune of flutes kept stroke, and made / The water which they beat to follow faster, / As amorous of their strokes." Log: **Changed**, for the verse, with the note "Kept the facts: gold, purple, silver, flutes, kept stroke": "burnished throne", "Burned on the water", the love-sick winds and amorous water are new.
 2. The instruments. Source: "flutes, howboys, cithernes, viols". Shakespeare: "flutes" only. Log: **Cut**, for the verse.
 3. Cleopatra herself. Source: "And now for the person of her self, she was laid under a pavilion of cloth of gold of tissue, apparelled and attired like the goddess Venus, commonly drawn in picture:" Shakespeare: "For her own person, / It beggared all description:" Log: **Flipped**: Plutarch describes her, Shakespeare says she cannot be described.
 4. Who tells it. Source: the historian narrates. Shakespeare: Enobarbus, a hard-bitten soldier, tells it to Roman officers. Log: **Changed**, to change who we side with: even a cynic is dazzled.
 Ours: "Arrival", a pop star's arrival at an awards show, told first as a news brief and then by a bored security guard who cannot stop describing it (about 120 words, written for Curio Class).
 Afterlives: All for Love, John Dryden (1677), the same story as a tighter tragedy; Cleopatra, directed by Joseph L. Mankiewicz (1963 film).
 
-Your remix segments offered: Set 1 segments 1 and 5, Set 2 segment 3, Set 3 segment 1.
+Your remix segments offered: Set 1 segments 1 and 5, Set 2 segments 1 and 3, Set 3 segments 1 and 3.
 
 ## Interactions in detail
 - Links: tap a link line, its stub, or either segment (then pick the partner); arrow keys move between links, Enter opens the log card. One mark per link; the student can change it any time.
@@ -76,26 +76,36 @@ Your remix segments offered: Set 1 segments 1 and 5, Set 2 segment 3, Set 3 segm
 - Compare with ours: a second, thinner log row under each student row; marks that match show "Same", others show both marks and the prompt above. Never a score.
 - Pattern bar: counts computed from the student's marks; the frame sentence keeps its chips and text in the store.
 - Your remix: the 400-character box shows a live count; the log for the remix uses the same card; Copy puts plain text on the clipboard.
+- A tap while a link line draws or the log card opens (200 ms) acts at once; with Motion off they appear without animation.
 - Store: localStorage `remix-work` per set (marks, why, notes, quotes, remix text), try/catch. Clear my work (after Yes) empties it.
 - Sizes: at 1366x768 and 1280x720 Source and Shakespeare sit side by side with Ours as a tab; the change log strip shows six rows. At 680x425 the columns become two tabs with the link list between them. At 760 and 375 wide the columns stack, each segment shows its partner's number, and links open from the change log list instead of lines.
 
 ## Look
 - `kit:theme-912` dark, accent `--brand #9d8cff` (remix violet: header rule, mark buttons, links), `--btn #9d8cff`, brand text on brand `--brand-ink #1c1203`.
-- Columns: Source on a warm paper tint `#1e1c1a` with its title in old-style italics; Shakespeare on `--sec-bg`; Ours on `--panel`. Link styles, each with its word on the line: Kept solid, Cut a line ending in a small x, Added a line from a plus, Changed a wavy line, Flipped a line with a half-turn arrow.
+- Paintings (emblems and settings) in a dusky gouache with violet shadows, so they sit with the remix violet; the setting band is dimmed to 60% under its title. Columns: Source on a warm paper tint `#1e1c1a` with its title in old-style italics; Shakespeare on `--sec-bg`; Ours on `--panel`. Link styles, each with its word on the line: Kept solid, Cut a line ending in a small x, Added a line from a plus, Changed a wavy line, Flipped a line with a half-turn arrow.
 - Neighbors: globe-theatre-stage oak `#c0a080` (same family), boolean-builder orchid, satire-decoder oxblood. Nearest catalog color: `--gr-2` `#c9a0ff` (dE 16), used here only in charts.
 - Contrast (WCAG 2.1): brand on paper `#0d1219` 6.83:1, on panel 6.29:1, on sec-bg 5.96:1; brand-ink on brand 6.71:1; `--ink` on the source tint `#1e1c1a` 14.43:1. All pass AA.
 
 ## Art
-None needed: columns, link lines, the set cards' small emblems (a wall with a chink, an island, a barge) and preview.svg (two columns with three link lines) are drawn in code.
+Local FLUX (`scripts/localart.py`), one dusky gouache style with violet shadows, asked in one session. No people. Screens, signs and lockers are asked blank; any text stays in code.
+- emblem-wall: "An old garden wall of rough stone at night with one narrow crack of light shining through it, moonlight, dusky gouache"; 4:3; cutout no; people no; Set 1 card, and a small chip on the set name in the header.
+- emblem-island: "A small rocky island with a sandy cove and a few wind-bent trees in a calm blue sea, dusky gouache"; 4:3; cutout no; people no; Set 2 card and header chip.
+- emblem-barge: "A gilded river barge with purple sails and silver oars resting on still water at dusk, empty, dusky gouache"; 4:3; cutout no; people no; Set 3 card and header chip.
+- set-hallway: "An empty school hallway with rows of plain metal lockers and a long shiny floor, late afternoon light, dusky gouache"; 16:9; cutout no; people no; Your remix setting card and band.
+- set-chat: "A dark cozy bedroom at night lit only by a soft glow on the pillow, a string of fairy lights on the wall, dusky gouache"; 16:9; cutout no; people no; setting card and band.
+- set-bus: "The inside of an empty city bus at night, rows of seats, windows of passing streetlights, dusky gouache"; 16:9; cutout no; people no; setting card and band.
+- set-ship: "The inside of a spaceship corridor with round windows showing stars and a ringed planet, dusky gouache"; 16:9; cutout no; people no; setting card and band.
+7 images, none with people. Drawn in code: the columns, link lines and their styles, stubs, chips, the change log, the pattern bar and preview.svg (two columns with three link lines).
 
 ## Voice
-Bank voice `casual-peer` (Zubenelgenubi), style "Say casually and naturally, like a friendly teenager explaining something". `Curio.voice`, scope the set.
-- welcome (how, first open): "Shakespeare borrowed a lot. Pick a set and line up his scene with the book he took it from."
-- link (how, first link opened): "Mark what he did with this part: kept it, cut it, added something, changed it, or flipped it. Then pick why."
-- quote (how, first mark without quoted words): "Tap a few words on each side to prove it."
+Bank voice `curious-librarian` (Aoede), style "Say curiously and warmly, like a friendly school librarian pulling an old book off the shelf". It moved off casual-peer, which neighbor audience-shift-briefing uses; no neighbor or other tool in this batch uses curious-librarian. `Curio.voice`, scope the set. Event line ids: differ, pattern.
+- welcome (how, on the set picker; stale when a set is tapped): "Shakespeare borrowed a lot. Tap a set to line up his scene with the book he took it from."
+- link (how, the first time Log opens; stale when a link is tapped): "Tap a link line to open its card. Mark what he did with this part, then tap why."
+- quote (how, first mark without quoted words; stale when words are tapped or the card closes): "Tap a few words on each side to prove it."
 - differ (event, each Compare row that differs; stale when that mark changes): "We marked that one differently. Which words would change your mind?"
 - pattern (event, all links in a set marked; stale when any mark changes): "That's the whole log. Finish the sentence about what he mostly did."
-- remix (how, first Your remix): "Your turn. Pick a setting, rewrite the line, then log your own changes."
+- remix (how, first Your remix; stale when a setting is tapped): "Your turn. Tap a segment and a setting, write your version, then log your own changes."
+- Read speaks the hint.
 
 ## Family engine
 shakespeare (`kit/bard.js`), described in full in Globe Theatre Stage's spec. This tool uses Bard.Text (segments with source and Shakespeare lines), Bard.Align (three columns, link kinds kept, cut, added, changed, flipped), Bard.Script (Shakespeare excerpts with line numbers), Bard.Gloss (shared glosses for Shakespeare words) and Bard.Store (`remix-work`). The pattern bar, why chips and Your remix are this tool's own.
@@ -110,6 +120,7 @@ shakespeare (`kit/bard.js`), described in full in Globe Theatre Stage's spec. Th
 - Enobarbus's speech from North's Plutarch: Britannica, "Antony and Cleopatra," https://www.britannica.com/topic/Antony-and-Cleopatra-by-Shakespeare
 - Afterlives: Britannica entries "West Side Story," "Forbidden Planet," "Aimé Césaire," "All for Love," "Cleopatra (1963 film)".
 - Standards: CCSS ELA RL.9-10.9, https://www.thecorestandards.org/ELA-Literacy/RL/9-10/
+- Checks run (Python, 2026-10-29): the tool's log counts per set. Set 1: 7 links, Changed 2, Flipped 2, Cut 1, Added 2 (matches Done when 2). Set 2: 5 links, Kept 2, Changed 2, Added 1. Set 3: 4 links; segment 1 was logged with two marks (Kept and Changed) though a link takes one mark, so it is now Changed with a note of the kept facts: Changed 2, Cut 1, Flipped 1. Your remix said three segments per set but listed four in all; it now offers two per set. Contrast ratios in Look recomputed with the WCAG 2.1 formula; all match to 0.01.
 
 ## Done when
 1. The three sets render with Bard.Align; every quotation matches its edition word for word (the archive.org OCR is normalized only for spacing before punctuation and stray footnote marks).
@@ -120,6 +131,9 @@ shakespeare (`kit/bard.js`), described in full in Globe Theatre Stage's spec. Th
 6. Your remix accepts up to 400 characters, logs changes, and Read my remix with Copy gives plain text.
 7. Reload keeps all work per set; Clear my work (after Yes) empties it; no network; console clean.
 8. At every size in STANDARDS.md the set name, mode switch and change log are reachable without page scroll; 375 wide works in `drive.py --host`.
+9. Focus: at 1366x768 and 680x425 the Source and Shakespeare columns with their link lines are the largest thing in Log, and the writing box sits right under the original in Your remix.
+10. Tap while it plays: tapping a link while another link's card is opening acts at once, with no stale line.
+11. Set 3 segment 1 shows one mark (Changed) with its kept-facts note in Compare with ours; each set offers two remix segments and four painted settings.
 
 ## Open questions
 - [shakespeare-remix] Set 1 ends in the lovers' deaths in both texts (played for laughs in Shakespeare). Fine for grade 9 with the content note on the card?

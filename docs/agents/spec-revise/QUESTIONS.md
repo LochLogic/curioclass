@@ -39,3 +39,8 @@
 - game-show-strategist moved to lively-host (shared with work-rate-crew); optimization-workshop keeps friendly-dad (shared with polynomials-as-numbers). Voice bank pattern again.
 - optimization-workshop: swimmer is a person (Gemini); keep, or mark the spot with an object?
 - Carried: game-show probability-engine additions and TV-format likeness; identity-proof-race standards line, fake cards; image-transformer one 3x3 filter for A-REI.C.9; optimization-workshop leaves out local linearity and L'Hospital; polar-rose-studio Download PNG.
+
+## R08
+- page-to-screen: 16 people images (Gemini); paint the cast, or simple drawn figures over painted rooms? "Read" mode renamed "Story", OK?
+- Voices changed: shakespeare-remix -> curious-librarian, tension-meter -> science-narrator.
+- Carried: Anthony A9; Henry's slaveholding; Pokagon B3; Set 1 deaths; Owl Creek and Dracula at grade 9; Story of an Hour at 9; Suspicion meter; spaniel grave story.

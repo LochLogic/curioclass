@@ -18,9 +18,10 @@ Sorting a speech line into ethos, pathos or logos only counts when you can point
 - tool.json: driver "students or teacher", minutes "25-40", modes ["Sort", "Devices", "Hear it"], grades_label "Grade 9". Kit starter plus `kit:rhetoric`.
 
 ## Screens and modes
-Header: title "Rhetoric Spotter", small line "Point at the words that persuade."; speech picker **Henry, 1775** / **Anthony, 1873** / **Roosevelt, 1933**; mode buttons **Sort** (opens first), **Devices**, **Hear it**; Motion, Sound, Read. Each speech opens with a context card (Content) the student closes with **Start sorting**; **Context** reopens it.
+Header: title "Rhetoric Spotter", small line "Point at the words that persuade."; speech picker **Henry, 1775** / **Anthony, 1873** / **Roosevelt, 1933**; mode buttons **Sort** (opens first), **Devices**, **Hear it**; Motion, Sound, Read. Each speech opens with a context card (Content) headed by a painting of the empty place where it was given (art: place-henry, place-anthony, place-roosevelt), which the student closes with **Start sorting**; **Context** reopens it.
 
 ### Sort (opens first)
+- Focus: the current line on its large card, centered at the top of the stage; the three bins below it are the next biggest thing.
 - Stage, top: the line deck: the current line on a large card, with its number ("Line 3 of 10") and the paragraph it comes from (a **Show it in the speech** link opens the full text in a side drawer with the line boxed).
 - Stage, bottom: three bins side by side: **Ethos** (◆ "trust in the speaker"), **Pathos** (● "the listeners' feelings"), **Logos** (■ "reasons and evidence"). Each bin has its glyph, its word and a one-line meaning; color is extra.
 - The student drags the card into a bin, or taps a bin button under the card (keys 1, 2, 3). **Also fits** lets one more bin be added (a line may sit in two bins, never three).
@@ -30,13 +31,16 @@ Header: title "Rhetoric Spotter", small line "Point at the words that persuade."
 - **Purpose**: the last card asks "What did this speaker want the audience to do or believe?" with three choices from Content (one fits the whole speech, two fit only part of it) and **Why?** reveals the reasoning for each.
 
 ### Devices
+- Focus: the list of lines with the chosen device's marks; the device tabs sit above it.
 - The whole speech's sorted lines as a list. Four device tabs: **Anaphora** (repeated opening words), **Antithesis** (opposites set side by side), **Rhetorical question** (a question that expects no answer), **Tricolon** (three parallel parts). Each tab shows a two-line definition.
-- For the chosen device, the student taps every line that uses it, then taps the words that make it (the repeated words, the two opposites, the three parts). **Check this device** shows how many of the reading's lines were found ("Found 2 of 3") and lights any missed line with a hint of where to look ("Look at the start of each clause"). No penalty for extras; each extra shows the reading's note if it has one.
+- For the chosen device, the student taps every line that uses it, then taps the words that make it (the repeated words, the two opposites, the three parts). **Check this device** shows how many of the reading's lines were found ("Found 2 of 3") and lights any missed line with a hint of where to look ("Look at the start of each clause"). When the reading finds none of that device in the speech (Roosevelt has no rhetorical question), the tab says so at once: "The reading finds none in this speech. Tap any line you think uses it." No penalty for extras; each extra shows the reading's note if it has one.
 
 ### Hear it
+- Focus: the line being spoken, lit and enlarged in the middle of the stage, with its glyph and underlines; the place painting sits faint behind the text (20% opacity) so it never competes.
 - The speech, in order, as lines of text. **Play** reads the sorted lines aloud one at a time in the tool's voice (`rh.play`), lighting each line and showing the student's bin glyph and underlined words as it is spoken, plus any device marks. **Pause**, **Step** and **Stop**. A note under the controls: "Read by the Curio Class narrator, not by the speaker. No recording of Henry or Anthony exists."
 - **Show only**: chips **Ethos**, **Pathos**, **Logos** and each device filter which marks are lit, so a student can hear only the pathos lines.
 - With Sound off, lines light at reading pace (`est`) so the replay still works silently.
+- A full play runs 74 to 102 seconds (Roosevelt 184 words, Henry 240, Anthony 256, at about 150 words a minute). It stays whole because hearing the speech in order is the point; Pause, Step and Stop are live the whole time and act at once, and a Show only chip changes which marks are lit on the current line immediately, not at the next line.
 
 ## Content
 Exact texts from the named editions (Sources). Source em dashes are shown as "--". Each line: id, text, the reading's bins (first is the main), devices, cue words (the reading's "words that do it") and the reason shown on compare.
@@ -88,27 +92,33 @@ Context card: "Roosevelt took office in the worst year of the Great Depression. 
 - Compare is enabled after every line has a bin and words; **Show it now** (second press) reveals early. Answers per speech are kept in localStorage `rhetoric-spotter:v1` (try/catch) with **Start this speech over**.
 - Devices: a line found for a device it doesn't use shows the reading's note if any (for example H8 under Tricolon: "Two parts, not three"), else "The reading doesn't count this one. Do you?" with no penalty.
 - Hear it with unsorted lines: they play with no glyph and a grey "not sorted" tag. Mode or speech change calls `V.hush()` and stops the Player.
+- A tap while a card flies into a bin (300 ms) or while Hear it plays acts at once: the animation jumps to its end and the tapped control works.
 - Sizes: at 375 wide the bins stack under the card as three full-width buttons; the drawer becomes a full-screen sheet with **Close**. No horizontal page scroll at any listed size.
 
 ## Look
-- Own light `:root`, a podium in morning light: `--paper #f5f7ff`, `--panel #ffffff`, `--ink #141a33`, `--muted #4f5875`, `--line #d5dbef`, accent `--brand #1947ff` (electric podium blue: header rule, active mode, Compare, the light that moves through Hear it), `--btn #1947ff`, `--btn-line #8b97c4`, `--head-ink #ffffff`, `--focus #c2410c`. Bin tints: Ethos `#dbe4ff`, Pathos `#ffe0e6`, Logos `#dff5e8`; Hear it current-line light `#fff3b0`. Glyphs and underline styles carry the meaning; tints are extra.
+- Place paintings in soft oil, cool morning light, muted creams and greys, so the electric-blue accent stays the only strong color. Own light `:root`, a podium in morning light: `--paper #f5f7ff`, `--panel #ffffff`, `--ink #141a33`, `--muted #4f5875`, `--line #d5dbef`, accent `--brand #1947ff` (electric podium blue: header rule, active mode, Compare, the light that moves through Hear it), `--btn #1947ff`, `--btn-line #8b97c4`, `--head-ink #ffffff`, `--focus #c2410c`. Bin tints: Ethos `#dbe4ff`, Pathos `#ffe0e6`, Logos `#dff5e8`; Hear it current-line light `#fff3b0`. Glyphs and underline styles carry the meaning; tints are extra.
 - Neighbors: satire-decoder oxblood and usage-panel ink red (dark), research-notebook fountain-pen blue `#2348a6` (dE 51, much duller), fake-or-fact-lab violet (dE 19.1), argument-map cyan (dark).
 - Contrast (WCAG 2.1): white on brand 6.20:1; brand on paper 5.80:1, on panel 6.20:1; ink on paper 16.02:1; muted on paper 6.58:1, on panel 7.03:1; focus on paper 4.84:1, on panel 5.18:1; ink on Ethos tint 13.51:1, Pathos 13.92:1, Logos 14.99:1, current-line light 15.26:1. All pass AA.
 
 ## Art
-None: drawn in code (cards, bins, glyphs). No portraits, so no speaker is pictured from a modern likeness.
+Local FLUX (`scripts/localart.py`), one soft oil-painting style, cool morning light, asked in one session. No people and no portraits, so no speaker is pictured from a modern likeness. Places are shown empty.
+- place-henry: "The interior of a small white wooden colonial church in 1775, plain box pews, tall clear arched windows, a raised pulpit, morning light, empty, soft oil painting"; 16:9; cutout no; people no; header of Henry's context card, and faint behind Hear it.
+- place-anthony: "An empty small-town meeting hall in 1870s New York State, rows of wooden chairs facing a plain wooden lectern, oil lamps on the walls, evening light, soft oil painting"; 16:9; cutout no; people no; Anthony's context card and Hear it.
+- place-roosevelt: "The east front of the United States Capitol on a grey March day in 1933, a wide draped wooden platform on the steps, bare trees, empty, soft oil painting"; 16:9; cutout no; people no; Roosevelt's context card and Hear it.
+3 images, none with people. Drawn in code: cards, bins, glyphs, underlines, chips and the Hear it light.
 
 ## Voice
-Bank voice `firm-captain` (Alnilam), style "Say firmly but kindly, like a speech coach calling the next drill." Not used by any 9-12 ELA tool; family siblings use knowing-guide and clear-teacher. The same voice reads the speech lines in Hear it (Player), so the student hears one steady reader. `Curio.voice`, `scope: () => state.mode + state.speech`.
-- w-sort (how): "Drag the line into the bin that fits, then tap the words that do the persuading."
-- words (how, first word picking): "Tap the few words that carry it, then press Done."
-- also (how, first time a line is sorted): "If a line does two jobs, press Also fits."
-- compare (how, when every line is sorted): "Every line is sorted. Press Compare with one reading."
-- w-devices (how): "Pick a device, then tap every line that uses it."
+Bank voice `firm-captain` (Alnilam), style "Say firmly but kindly, like a speech coach calling the next drill." Not used by any neighbor or another tool in this batch; family siblings use knowing-guide and clear-teacher. The same voice reads the speech lines in Hear it (Player), so the student hears one steady reader. `Curio.voice`, `scope: () => state.mode + state.speech`. Event line ids: found, limit, none.
+- w-sort (how, welcome when Sort opens after Start sorting; stale when a line is put in a bin): "Drag the line into the bin that fits, or tap its bin button. Then tap the words that do the persuading."
+- words (how, first word picking; stale when Done is tapped): "Tap the few words that carry it, then tap Done."
+- also (how, the first time a line is sorted; stale when Next line is tapped): "If a line does two jobs, tap Also fits."
+- compare (how, when every line is sorted; stale when Compare is tapped or a line is changed): "Every line is sorted. Tap Compare with one reading."
+- w-devices (how, welcome on Devices; stale when a device tab is tapped): "Tap a device tab, then tap every line that uses it."
 - found (event, Check this device; stale on tab change): "You found {n} of {m}."
-- w-hear (how): "Press Play to hear the speech with your marks lit."
-- limit (event): "Two is the limit. Which matters most?"
-- Speech lines in Hear it are passage text, spoken through `rh.play`, not voice table lines; they are never "how" lines and are spoken every time Play is pressed.
+- none (event, a device tab with nothing in this speech is opened; stale on tab change): "The reading finds none in this speech. Tap any line you think uses it."
+- w-hear (how, welcome on Hear it; stale when Play is tapped): "Tap Play to hear the speech with your marks lit."
+- limit (event, a third bin is refused; stale on the next tap): "Two is the limit. Which matters most?"
+- Speech lines in Hear it are passage text, spoken through `rh.play`, not voice table lines; they are never "how" lines, are spoken every time Play is pressed, and stop at once on Pause, Stop, a mode change or Read.
 
 ## Family engine
 `kit/rhetoric.js`, described in full in tools/argument-map/spec.md. This tool uses: Passage (three speeches, units = the lines above inside their full paragraphs), Marks (bin underline layers, device marks), Tagger (bins Ethos, Pathos, Logos with `multi: 2`; device bins with `multi: 4`; key from Content; `rh.cueOverlap` for the words), Player (Hear it). Not Map or Order.
@@ -120,6 +130,7 @@ Bank voice `firm-captain` (Alnilam), style "Say firmly but kindly, like a speech
 - Fifteenth Amendment (1870) and Nineteenth Amendment (1920): National Archives, Constitution amendments 11-27 transcript, https://www.archives.gov/founding-docs/amendments-11-27. Anthony died in 1906: National Park Service, Women's Rights National Historical Park, "Susan B. Anthony".
 - Roosevelt text and note on delivered versus printed text: The American Presidency Project, UC Santa Barbara, "Inaugural Address", March 4, 1933, https://www.presidency.ucsb.edu/documents/inaugural-address-8.
 - Appeal definitions: Aristotle, Rhetoric, Book I, chapter 2, trans. W. Rhys Roberts (1924), MIT Internet Classics Archive, https://classics.mit.edu/Aristotle/rhetoric.1.i.html.
+- Checks run (Python, 2026-10-29) on the Content lines: 28 lines (Henry 10, Anthony 9, Roosevelt 9). Reading's device lines: Anaphora H5, H6 / A3, A5, A9 / R7, R8; Antithesis H8, H10 / A2, A4, A9 / R5; Rhetorical question H3, H4, H5, H9 / A6 / none in Roosevelt (the none case is now handled); Tricolon H6 / A3, A9 / R2, R3. So "Found 2 of 2" for Henry's anaphora is right. Hear it lengths at 150 words a minute: Henry 240 words, about 96 s; Anthony 256, about 102 s; Roosevelt 184, about 74 s. Every contrast ratio in Look recomputed with the WCAG 2.1 formula; all match to 0.01.
 
 ## Done when
 - Each speech has its context card, 9 or 10 lines, and every line text matches its edition (`rh.check` is silent).
@@ -130,6 +141,10 @@ Bank voice `firm-captain` (Alnilam), style "Say firmly but kindly, like a speech
 - The Anthony A9 note card opens when A9 is first shown.
 - Answers survive a reload; Start this speech over clears only that speech.
 - At 375 wide the bins become buttons and everything works by tap with no horizontal scroll; at 680x425 the card and bins are visible without scrolling.
+- Focus: at 1366x768 and 680x425 the current line card is the largest thing in Sort, and the spoken line is the brightest, largest line in Hear it.
+- Tap while it plays: Pause, Stop, Step and the Show only chips act at once during Hear it; the speech stops mid-line on Pause and no old line plays after Stop.
+- Devices on Roosevelt's Rhetorical question tab shows the none line instead of "Found 0 of 0".
+- Each speech's context card shows its place painting with no person in it.
 
 ## Open questions
 - Anthony's "oligarchy of race... might be endured" (A9) is kept, with a note card that names what it ranks. Keep it, or drop the line and mention it only in the teacher notes?

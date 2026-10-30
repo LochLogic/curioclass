@@ -21,7 +21,8 @@ Every fallacy has a harmless lookalike that uses the same move fairly (an expert
 Header: title "Fallacy Field Guide", small line "Spot it. Then tell it from its twin."; mode buttons **Field** (opens first), **Guide**, **Make one**; Motion, Sound, Read.
 
 ### Field (opens first)
-- Habitat tabs along the top: **Ad board**, **Comment section**, **Headlines**, **Group chat**. Each habitat shows its six specimens in its own made-up look (a corkboard of posters, a comment thread under a made-up news story about a skatepark, a feed of headlines and posts, a phone chat). Specimens are numbered (F1 to F24).
+- Focus: the habitat with its six specimens, filling the stage, and the selected specimen enlarged and outlined in it; the field kit is in the panel beside it.
+- Habitat tabs along the top: **Ad board**, **Comment section**, **Headlines**, **Group chat**. Each habitat shows its six specimens in its own made-up look: posters drawn in code pinned to a painted corkboard (art: habitat-cork); a comment thread under a made-up news story about a skatepark (code); a feed of headlines and posts (code); a chat drawn in code inside a painted phone (art: habitat-phone). Specimens are numbered (F1 to F24).
 - Panel: `#hint`; the **Field kit**: eight species buttons with their glyphs, plus **Legit**; **Field test**; the current specimen's status.
 - To log a sighting: tap a specimen to select it, then tap the words where the reasoning goes wrong (the field mark: tap the first and last word). Then choose a species, or **Legit**. Choosing Legit asks one more thing: "It looks like which species?" (the lookalike it resembles).
 - **Log sighting** checks: the words must overlap at least half of the key's field-mark words and the species (or Legit plus the right lookalike) must match. A right call shows "Logged" with a one-line field note (Content) and stamps the specimen. A miss shows what doesn't fit without giving the answer ("This does name a real expert. Is the expert's field the one the claim is about?") and the student may try again; a second miss offers **Show me** (the key and note; the sighting is not counted).
@@ -29,11 +30,13 @@ Header: title "Fallacy Field Guide", small line "Spot it. Then tell it from its 
 - Each habitat footer: "Logged 4 of 6".
 
 ### Guide
-- The field guide book: eight species cards in two rows. Each card has its glyph, name, also-called names, two field marks, its legitimate lookalike, its test question, and a sightings count. Card states: **Unseen** (silhouette glyph, name only), **Spotted** (the fallacy has been logged at least once), **Confirmed** (spotted, and its lookalike specimen correctly logged as Legit). Confirmed cards get a pressed-flower stamp and the word "Confirmed".
+- Focus: the eight species cards, each led by its painted animal plate.
+- The field guide book: eight species cards in two rows. Each card has its painted plate (art: species kit), its glyph, name, also-called names, two field marks, its legitimate lookalike, its test question, and a sightings count. Card states: **Unseen** (the plate as a flat dark silhouette, name only), **Spotted** (the fallacy has been logged at least once), **Confirmed** (spotted, and its lookalike specimen correctly logged as Legit). Confirmed cards get a painted pressed flower (art: pressed-flower) and the word "Confirmed".
 - Tapping a card opens it full size with the specimens where it was seen, each with **Go to it**.
 - Guide footer: "Confirmed 3 of 8. Spotted 6 of 8."
 
 ### Make one
+- Focus: the two slips side by side, the largest thing on the stage.
 - Pick a species card (any state). Two blank specimen slips: **The fallacy** and **Its fair twin**. The student writes one of each on a topic of their choice (examples offered as chips: lunch rules, a phone plan, a sports team, a video game), then marks the field mark on each with the same tap method.
 - **Field test it**: walks the student through the species' test question on both slips with Yes and No buttons, and shows "Your twin passes the test" or "Your twin still fails the test: look at the field mark again" from the student's own answers.
 - Slips stay on this device (localStorage) with **Clear my slips**.
@@ -83,37 +86,45 @@ Group chat (friends planning a movie night)
 Each species has two fallacy specimens and one lookalike: Ad hominem F7, F19 / F8; Straw man F9, F20 / F10; Black-or-white F4, F21 / F5; Slippery slope F11, F24 / F13; Hasty generalization F12, F22 / F14; Unqualified authority F2, F23 / F3; Bandwagon F1, F15 / F16; Post hoc F6, F17 / F18.
 
 ## Interactions in detail
-- Overlap rule: the student's marked words must cover at least half of the key's field-mark words, and may include up to 6 words outside it. A mark too wide (more than 6 extra words) gets "Narrow it to where the reasoning goes wrong."
+- Overlap rule: the student's marked words must cover at least half of the key's field-mark words (rounded up), and may include up to 5 words outside it. A mark too wide (more than 5 extra words) gets "Narrow it to where the reasoning goes wrong." At 5, no specimen can be logged by marking its whole text.
 - A logged specimen can be reopened; changing a logged call removes it from the counts until logged again.
 - Card states recompute from logged sightings; a card never loses Confirmed once earned in a session unless **Reset field guide** (asks first).
 - Make one: each slip needs at least 8 words and a marked field mark before Field test it is enabled.
 - Storage `fallacy-field-guide:v1` (try/catch): sightings, card states, slips.
 - Mode and habitat changes call `V.hush()`.
+- A tap while a stamp lands or a card flips to Confirmed (400 ms) acts at once: the animation jumps to its end and the tap works.
 - Sizes: at 760 and below the field kit becomes a bottom sheet with species in a 3-column grid; at 375 the guide shows one card per row. At 680x425 a full specimen and the kit buttons are visible without scrolling. No horizontal scroll at any listed size.
 
 ## Look
-- Own light `:root`, a naturalist's field guide: `--paper #efe9d4` (khaki cloth), `--panel #faf6e8`, `--ink #23220f`, `--muted #57553a`, `--line #cfc7a6`, accent `--brand #5c5c08` (field-guide olive: header rule, Log sighting, card spines, active tab), `--btn #5c5c08`, `--btn-line #8f8a66`, `--head-ink #ffffff`, `--focus #1f5fa8`. Legit stamp `#1d6b3e` with "Legit"; fallacy stamp `#a3261b` with the species name. Each species has its glyph everywhere it appears. Habitats keep their own made-up looks inside a frame so they never look like the tool's chrome.
+- Plates in ink and soft watercolor on cream, earthy greens and browns, the way an old field guide prints them. Own light `:root`, a naturalist's field guide: `--paper #efe9d4` (khaki cloth), `--panel #faf6e8`, `--ink #23220f`, `--muted #57553a`, `--line #cfc7a6`, accent `--brand #5c5c08` (field-guide olive: header rule, Log sighting, card spines, active tab), `--btn #5c5c08`, `--btn-line #8f8a66`, `--head-ink #ffffff`, `--focus #1f5fa8`. Legit stamp `#1d6b3e` with "Legit"; fallacy stamp `#a3261b` with the species name. Each species has its glyph everywhere it appears. Habitats keep their own made-up looks inside a frame so they never look like the tool's chrome.
 - Neighbors: rhetoric-spotter electric blue, thesis-workshop slate indigo, theme-ledger wine, research-notebook fountain-pen blue. Nearest catalog accents: decision-tree `#4a6417` (dE 12.9; greener) and stress-toolkit (16.6), neither in ELA.
 - Contrast (WCAG 2.1): white on brand 7.02:1; brand on paper 5.78:1, on panel 6.49:1; ink on paper 13.22:1; muted on paper 6.25:1, on panel 7.02:1; focus on paper 5.30:1; Legit green on panel 6.02:1; fallacy red on panel 6.81:1. All pass AA.
 
 ## Art
-None: drawn in code (cards, glyphs, habitat frames, pressed-flower stamp as a simple vector). No people pictured; chat names and commenters have letter avatars.
+Local FLUX (`scripts/localart.py`), one naturalist field-guide style (ink and soft watercolor on cream), asked in one session. No people: chat names and commenters keep letter avatars. Every specimen's words stay in code, because the student taps them.
+- Species plates (kit of 8 cutouts, one shared prompt): "<animal>, a naturalist field-guide plate, fine ink lines and soft watercolor, plain cream background"; 1:1; cutout yes; people no; the top of each Guide card (about half its height), small beside each species button in the Field kit, and as a dark silhouette for Unseen cards. Each animal fits its species: Ad hominem "a hissing goose with its neck stretched forward"; Straw man "a straw scarecrow on a wooden pole with a plain burlap sack head and straw tufts for arms"; Black-or-white "a black and white magpie on a fence post"; Slippery slope "a garden snail sliding down a wet, tilted leaf"; Hasty generalization "a brown hare in full sprint"; Unqualified authority "a peacock with its tail fanned in full display"; Bandwagon "a row of ducklings following one another"; Post hoc "a rooster crowing on a fence rail at sunrise".
+- pressed-flower: "A single pressed and dried wildflower lying flat, faded purple petals and a thin stem, a naturalist field-guide plate, plain cream background"; 1:1; cutout yes; people no; the Confirmed stamp on a card corner, rotated a few degrees.
+- habitat-cork: "A full-frame close view of a cork bulletin board with a few brass pushpins, evenly lit"; 16:10; cutout no; people no; Ad board background, with the six posters drawn in code and pinned on it.
+- habitat-phone: "A smartphone seen straight from the front, a plain black glass screen with a thin bezel, plain white background"; 9:16; cutout yes; people no; the frame of the Group chat habitat, with the chat drawn in code inside the screen area.
+11 images, none with people. Drawn in code: specimen texts and posters, the comment thread, the headline feed, chat bubbles, letter avatars, glyphs, buttons and the cards' text.
 
 ## Voice
-Bank voice `gravel-ranger` (Algenib), style "Say warmly with a gravelly voice, like an old ranger who keeps a field guide in his pocket." Not used by any 9-12 ELA tool. `Curio.voice`, `scope: () => state.mode + state.habitat`.
-- w-field (how): "Pick a specimen. Tap where the reasoning goes wrong, then name it, or call it legit."
-- legit (how, first Legit choice): "Legit ones still look like something. Pick the species it resembles."
-- test (how, first time a call misses): "Not quite. Try the Field test on it."
+Bank voice `gravel-ranger` (Algenib), style "Say warmly with a gravelly voice, like an old ranger who keeps a field guide in his pocket." Not used by any neighbor or another tool in this batch. `Curio.voice`, `scope: () => state.mode + state.habitat`. Event line ids: logged, confirmed, miss.
+- w-field (how, welcome on Field; stale when a specimen is tapped): "Tap a specimen. Then tap the first and last word where the reasoning goes wrong."
+- pick (how, the first time a mark is made; stale when a species or Legit is tapped): "Now tap a species in your field kit, or tap Legit. Then tap Log sighting."
+- legit (how, the first Legit choice; stale when a lookalike is picked): "Legit ones still look like something. Tap the species it resembles."
+- miss (event, each missed call; stale when the mark or call changes): "Not quite. Read the note, or tap Field test."
 - logged (event, each right call; stale on specimen change): "Logged."
 - confirmed (event, each card turning Confirmed; stale on mode change): "{species}: confirmed. You can tell it from its twin."
-- w-guide (how): "Your field guide. A card is confirmed when you've caught it and let its twin go."
-- w-make (how): "Write one fallacy and its fair twin. Then field test them."
+- w-guide (how, welcome on Guide; stale when a card is tapped): "Your field guide. A card is confirmed when you've caught it and let its twin go. Tap a card to open it."
+- w-make (how, welcome on Make one; stale when a species is picked): "Tap a species card. Then write one fallacy and its fair twin, and tap Field test it."
+- Read speaks the hint, which names the next control (a specimen, the words, a species or Legit, then Log sighting).
 
 ## Family engine
 `kit/fallacies.js` (the fallacies family: logic-gym, grade 7; fallacy-field-guide, grade 10). No family doc exists; this spec holds the full description. Pure parts in one marked block, exposed as `__tool.fx`.
 - **Species catalog**: `{id, glyph, name, aka:[], marks:[], lookalike, test:{question, yes, no}}`. A tool may pass a subset; logic-gym can add `relevance` and `sufficiency` checks as species-like categories.
 - **Specimens**: `{id, habitat, text, mark:[start,end], key: speciesId|{legit: speciesId}, note}`; the text may carry a speaker line (`who`) and a context line.
-- **Spot**: `fx.spot(specimen, picked:[start,end], call)` returns `{ok, markOk, callOk, why}` using the overlap rule (at least half of the key's words, at most `extra` outside, default 6) and the call match; `why` is a hint keyed to the miss (wrong species, legit called fallacy, fallacy called legit, mark off).
+- **Spot**: `fx.spot(specimen, picked:[start,end], call)` returns `{ok, markOk, callOk, why}` using the overlap rule (at least half of the key's words, rounded up, at most `extra` outside, default 5) and the call match; `why` is a hint keyed to the miss (wrong species, legit called fallacy, fallacy called legit, mark off).
 - **Field test**: `fx.test(speciesId)` returns the question and what yes and no suggest; it never reads the key.
 - **Guide**: `fx.cards(sightings)` returns each species' state (`unseen`, `spotted`, `confirmed`) and count.
 - **Habitats**: renderers for `board`, `thread`, `feed`, `chat`, each with its own look; specimens render inside them.
@@ -122,16 +133,20 @@ This tool uses all of it, with the eight species and 24 specimens above.
 ## Sources
 - Species definitions and the lookalike notes (most appeals to authority are not fallacious; correlation is often good evidence; the black-or-white "limited menu is fair or unfair" test): Bradley Dowden, "Fallacies", Internet Encyclopedia of Philosophy, https://iep.utm.edu/fallacy/ (paraphrased; one short quotation, credited).
 - All specimens, brands, people and places (Westbrook High, GlowCase, FocusMint, Dax Rivera, Clean Creek Fund, Ridgeway, Councilmember Ortiz, VitaBlast, Pine Ridge Trail) are made up for this tool.
+- Checks run (Python, 2026-10-29): all 24 field marks appear word for word in their specimen texts; marks run 4 to 13 words, so "half, rounded up" needs 2 to 7. Each species has two fallacy specimens and one lookalike (8 x 3 = 24). Worst case, marking a whole specimen: with the old limit of 6 extra words, F3, F9, F21 and F22 could be logged that way (exactly 6 extra each); at 5 none can, so the limit is now 5 and the Done when check uses 6 extra words. Contrast ratios in Look recomputed with the WCAG 2.1 formula; all match to 0.01.
 
 ## Done when
 - All 24 specimens appear in their four habitats, each in its own look.
 - Logging F3 as Legit with lookalike Unqualified authority counts; logging it as Unqualified authority gives the "real expert... their field" hint.
-- A mark covering less than half of a key mark misses with "where the reasoning goes wrong"; a mark with 7 extra words gets "Narrow it".
+- A mark covering less than half of a key mark misses with "where the reasoning goes wrong"; a mark with 6 extra words gets "Narrow it"; marking the whole text of F3, F9, F21 or F22 gets "Narrow it".
 - Logging F2 makes Unqualified authority Spotted; then logging F3 correctly as Legit makes it Confirmed.
 - Field test shows the selected species' question with Yes and No and never reveals the key.
 - Make one runs the test on two student slips and reports from the student's answers.
 - Sightings and slips survive a reload; Reset field guide asks first.
 - At 375 wide the kit is a bottom sheet and nothing scrolls sideways; at 680x425 a specimen and the kit show together.
+- Focus: at 1366x768 and 680x425 the selected specimen is the largest, outlined item in its habitat, and each Guide card shows its painted plate (a silhouette while Unseen).
+- Tap while it plays: tapping another specimen or mode while a stamp lands acts at once, with no stale line.
+- Every waiting line names its control; "Logged." plays on every right call.
 
 ## Open questions
 - None beyond the group's shared ones.

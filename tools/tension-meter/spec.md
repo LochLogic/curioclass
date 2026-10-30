@@ -17,15 +17,15 @@ Rate the tension of every section of a story, and the meter plots it two ways: i
 - tool.json: driver "students", minutes "20-35", modes ["Rate", "Chart"], grades_label "Grade 9". Kit starter with `kit:theme-912` (dark) and an accent override.
 
 ## Screens and modes
-Kit frame. Header: "Tension Meter", small line with the story; Motion, Sound, Read. A story picker: **An Occurrence at Owl Creek Bridge** (Ambrose Bierce, 1890; 15 rows; "a flashback and a stretched moment") and **Dracula, chapters I to VIII** (Bram Stoker, 1897; 40 rows; "parallel threads told in letters and diaries"), each with a content line.
+Kit frame. Header: "Tension Meter", small line with the story; Motion, Sound, Read. A story picker: two cards, each topped by a painting of the story's place (art: story-bridge, story-castle): **An Occurrence at Owl Creek Bridge** (Ambrose Bierce, 1890; 15 rows; "a flashback and a stretched moment") and **Dracula, chapters I to VIII** (Bram Stoker, 1897; 40 rows; "parallel threads told in letters and diaries"), each with a content line. The chosen story's painting stays as a slim band behind the header line.
 
-**Rate.** The data table, one row per section, in reading order: **#**, **Section** (chapter, part or entry heading), **Writer or thread** (an icon and a word), **Story time** (when it happens), **Words**, **Key line** (one quoted sentence), and **Tension** (a 0 to 5 meter of six segments; tap, or focus and press 0 to 5). A one-line plain summary sits under each row's key line. A note under the table header: "Words counted by script: every space-separated token with a letter or digit in it, from the Project Gutenberg text." **Use ours** fills any unrated rows with our ratings, marked with a dotted meter, so a class can go straight to the chart.
+**Rate.** Focus: the Tension column of the table, the meters in a wide band down the right of the table, with the row being rated outlined. The data table, one row per section, in reading order: **#**, **Section** (chapter, part or entry heading), **Writer or thread** (an icon and a word), **Story time** (when it happens), **Words**, **Key line** (one quoted sentence), and **Tension** (a 0 to 5 meter of six segments; tap, or focus and press 0 to 5). A one-line plain summary sits under each row's key line. A note under the table header: "Words counted by script: every space-separated token with a letter or digit in it, from the Project Gutenberg text." **Use ours** fills any unrated rows with our ratings, marked with a dotted meter, so a class can go straight to the chart.
 
-**Chart.** An SVG chart drawn by the tool: x is the row sequence, y is tension 0 to 5, drawn as a stepped line with a dot per row. Three switches above it:
+**Chart.** Focus: the tension line itself, the biggest thing on the stage, with the three switches right above it and the readouts below. An SVG chart drawn by the tool: x is the row sequence, y is tension 0 to 5, drawn as a stepped line with a dot per row. Three switches above it:
 - **Order: Reading | Story time.** Reorders the rows (animated slide, instant with Motion off). In story-time order, rows that happen at the same moment stack, and imagined time (Owl Creek part III) is drawn in a hatched band labeled "imagined, inside one moment".
 - **Width: Equal | By words.** By words gives each row a width proportional to its word count, so long sections stretch the line.
 - **Color by: Thread | None.** Rows take their thread's color and icon.
-Under the chart, three readouts: **Biggest jump** (the largest rise between neighbors, with both rows named), **Longest wait** (for Dracula: the most words read elsewhere between two rows of the same thread; for Owl Creek: words between the hanging's setup and its outcome, I-e to III-g, 2,647 words), and **Slow motion** (words per minute of story time for the row with the highest ratio). A **Compare with ours** toggle draws our ratings as a thin dotted line.
+Under the chart, three readouts: **Biggest jump** (the largest change between neighbors in the current order, up or down, with both rows named and the direction; on a tie, the first in the current order, plus "and n more the same size"), **Longest wait** (for Dracula: the most words read elsewhere between two rows of the same thread, where Sister Agatha's letter counts with Transylvania because it is the next news of Jonathan; for Owl Creek: words between the hanging's setup and its outcome, I-e to III-g, 2,647 words), and **Slow motion** (Owl Creek: Part III, below; Dracula: words per day of story time, the row's word count over the days its dates span, counting both ends, for the row with the highest ratio; undated rows are skipped). A **Compare with ours** toggle draws our ratings as a thin dotted line.
 
 A **Structure question** card under the readouts gives one question per switch state, for example, in story-time order on Owl Creek: "Told in this order, when would you learn he is not escaping? What is lost?" A text box (up to 300 characters) keeps the student's answer per question.
 
@@ -63,12 +63,14 @@ Rows (section, writer, story date, words), in reading order:
 - Ch VI: Mina, 24 July, 947; Mina, 1 August, 1,701; Seward on Renfield, 5 June to 8 July, 512 (key line "The case of Renfield grows more interesting the more I get to understand the man."); Seward, 19 and 20 July, 897; Mina, 26 July, 373; Mina, 27 July, 140 (key line "No news from Jonathan."); Mina, 3 August, 103; Mina, 6 August, 824 (key line "Another three days, and no news. This suspense is getting dreadful.").
 - Ch VII: Dailygraph cutting, 8 August (the storm and the ship), 2,261; Dailygraph, 9 August, the sequel and the log's opening, 993; Captain's log, 22 July to 4 August, 1,334 (key lines "There seems some doom over this ship." and "At midnight I went to relieve the man at the wheel, and when I got to it found no one there."); Mina, 8 August, 226; Mina, 10 August, 605.
 - Ch VIII: Mina, 10 August 11 p.m., 412; Mina, 11 August 3 a.m., 1,748 (key line "We have had such an adventure, such an agonising experience."); Mina, 12 to 15 August, 1,007; Mina, 17 August, 260; solicitors' letters about fifty boxes of earth, 17 and 21 August, 330; Mina, 18 August, 522; Mina, 19 August, 187; Sister Agatha to Mina, 12 August, 404 (key line "I write by desire of Mr. Jonathan Harker, who is himself not strong enough to write,"); Seward, 19 August, 1,244 (key line "Strange and sudden change in Renfield last night.").
-Our ratings (0 to 5) are set per row in the data; anchors: Ch III 5, 30 June 5, Mina 9 May 1, Mina 6 August 3, the log's 3 August entry row 5, Sister Agatha 3.
+Our ratings (0 to 5) are set per row in the data; anchors: Ch III 5, 30 June 5, Mina 9 May 1, Mina 6 August 3, the Captain's log row 5, Sister Agatha 3.
+Slow motion for Dracula: the Dailygraph cutting of 8 August (2,261 words for one day) has the highest ratio; next are Lucy's 24 May letter (2,017) and Ch I (5,647 words over 3 to 5 May, 1,882 a day).
 Longest wait (the readout this story is built for): from Jonathan's 30 June entry to Sister Agatha's letter, the reader goes through 18,880 words of other threads before any news of him (Ch V 3,498, Ch VI 5,497, Ch VII 5,419, Ch VIII before the letter 4,466). Story-time order puts Mina's May letters before Jonathan's June entries and moves the log (July) before the Whitby storm (8 August).
 Teacher note on the story card: "Includes a vampire's attacks, a ship's crew disappearing, and an asylum patient who eats insects and birds."
 
 ## Interactions in detail
 - Rating meters: six segments with numbers 0 to 5; arrow keys move between rows, number keys set the rating. A rated row shows its number; screen readers hear "Row I-c, tension 4".
+- A tap while the rows slide between orders (400 ms) acts at once: the slide jumps to its end and the tapped switch or meter works on the new layout.
 - Story-time sort: a stable sort by the row's `storyOrder` field; rows with the same value keep reading order and stack. The hatched band covers rows flagged `imagined`.
 - Width by words: each row's width = words / total words of the chart width, with a minimum of 6 px so short rows stay visible and tappable (tap target extends to 24 px).
 - Readouts recompute on every rating or switch; each names its rows so it can be read without the chart.
@@ -77,23 +79,27 @@ Teacher note on the story card: "Includes a vampire's attacks, a ship's crew dis
 - Sizes: at 1366x768 and 1280x720 the table (scrolling inside its own box) and the chart sit one above the other with the switches visible; Owl Creek's 15 rows fit without scroll. At 680x425 Rate and Chart become tabs. At 760 and 375 wide the table shows #, Section, Words and Tension, with key line and summary in an expanding row; the chart scrolls sideways inside its box for Dracula.
 
 ## Look
-- `kit:theme-912` dark, accent `--brand #ff5a4f` (seismograph red: the tension line, header rule, buttons), `--btn #ff5a4f`, brand text on brand `--brand-ink #1c1203`.
+- Story paintings in dark, moody oil, deep blue-greens and greys, so the seismograph red stays the only hot color; the header band shows them at 35% under a dark scrim. `kit:theme-912` dark, accent `--brand #ff5a4f` (seismograph red: the tension line, header rule, buttons), `--btn #ff5a4f`, brand text on brand `--brand-ink #1c1203`.
 - Thread colors with icons, never color alone: Transylvania `#c9a0ff`, Whitby `#5aa9ff`, London `#5fd39a`, Business `#a6b3c4`, Budapest `#ffcf5c`; Owl Creek parts I `#5aa9ff`, II `#ffcf5c`, III `#c9a0ff`. Imagined band hatched in `--line`.
 - The tension meter's segments fill in the accent; our dotted line in `--ink`.
 - Neighbors: character-web rose (this group), satire-decoder oxblood, portrait-in-four-media coral `#ff8a66` (dE 23, the nearest). Red on dark is new among 9-12 ELA tools.
 - Contrast (WCAG 2.1): brand on paper `#0d1219` 6.11:1, on panel 5.63:1, on sec-bg 5.33:1; brand-ink on brand 6.00:1; thread colors on sec-bg: `#c9a0ff` 7.78:1, `#5aa9ff` 6.68:1, `#5fd39a` 8.80:1, `#a6b3c4` 7.71:1, `#ffcf5c` 11.19:1. All pass AA.
 
 ## Art
-None needed: the table, meter, chart, thread icons and preview.svg (a stepped red tension line over word-width bars, with a hatched band) are drawn in code.
+Local FLUX (`scripts/localart.py`), one dark, moody oil style, asked in one session. No people. Everything the student reads or rates (table, meters, chart, thread icons) stays in code, because it is data.
+- story-bridge: "A wooden railroad trestle bridge over a swift brown creek in the pine woods of northern Alabama, early morning mist, empty, dark moody oil painting"; 16:9; cutout no; people no; the Owl Creek story card and the header band.
+- story-castle: "A ruined castle on a high rocky crag above dark pine forests in the Carpathian mountains at dusk, a single lit window, dark moody oil painting"; 16:9; cutout no; people no; the Dracula story card and the header band.
+2 images, none with people. Drawn in code: the table, meters, chart, hatched band, thread icons and preview.svg (a stepped red tension line over word-width bars, with a hatched band).
 
 ## Voice
-Bank voice `news-reader` (Rasalgethi), style "Say clearly and steadily, like a trusted radio news reader". `Curio.voice`, scope the mode.
-- welcome (how, first open): "Pick a story. You'll rate how tense each section is, then see what the order does to it."
-- rate (how, first Rate view): "Tap a number for each row. Zero is calm, five is can't-look-away."
-- chart (how, first Chart view): "This is the story in the order it's told. Now switch to story time."
-- storytime (how, first switch to story-time order): "Same ratings, different order. Watch where the big jump goes."
-- words (how, first Width by words): "Now each section is as wide as its words. Long sections stretch the line."
-- wait (event, Longest wait readout changes to a new pair of rows; stale when another rating changes): "Longest wait: {n} words before you hear from that thread again."
+Bank voice `science-narrator` (Charon), style "Say in a clear, informative way, like a documentary narrator reading the numbers". It moved off news-reader, which neighbors founding-words-explorer and source-mixer use; no neighbor or other tool in this batch uses science-narrator. `Curio.voice`, scope the mode and story. The story text is never voiced. Event line ids: none (every line is how-to).
+- welcome (how, on the story picker; stale when a story is tapped): "Tap a story. You'll rate how tense each section is, then see what the order does to it."
+- rate (how, first Rate view; stale when a meter is set): "Tap a number on each row's meter. Zero is calm, five is can't-look-away."
+- chart (how, first Chart view; stale when the order switch is tapped): "This is the story in the order it's told. Now tap Story time."
+- storytime (how, first switch to story-time order; stale when the order switches back or Width is tapped): "Same ratings, different order. Watch the Biggest jump readout change."
+- words (how, first Width by words; stale when Width switches back): "Now each section is as wide as its words. Long sections stretch the line."
+- wait (how, first Chart view of Dracula, after chart; stale when the story changes): "Check Longest wait: that's how long the story keeps you from Jonathan."
+- Read speaks the hint, which names the next control (a meter, then the Order switch, then the Width switch, then the structure question box).
 
 ## Family engine
 none
@@ -104,16 +110,19 @@ none
 - Word counts: computed from those files on 2026-10-27 (rule in Screens). Key lines checked against the same files.
 - Flashback, parallel plot and pacing as structure choices: CCSS ELA RL.9-10.5 wording, https://www.thecorestandards.org/ELA-Literacy/RL/9-10/
 - Standards: CCSS ELA RL.9-10.5.
+- Checks run (Python, 2026-10-29) on the word counts in Content: Owl Creek rows sum to 3,728; Part III (III-a to III-f) is 2,166, 58.1% of the width; I-e to III-g has 2,647 words between them. Dracula has 40 rows; the four gaps sum to 18,880 (3,498 + 5,497 + 5,419 + 4,466). The old Longest wait rule (same thread only) gives a different answer, Seward 19 and 20 July to Seward 19 August, 11,729 words, because Sister Agatha's letter is its own thread; the rule now counts her letter with Transylvania, which gives 18,880 from 30 June, the largest wait. With our Owl Creek ratings the largest rise is only +2 in both orders (I-b to I-c, III-f to III-g), so the old rises-only Biggest jump did not move when the order changed; counting falls too, reading order shows I-e to II-a, -4 (the cut to the flashback), and story order shows +2 at I-b to I-c, so the readout now changes as the voice line says. Slow motion had no story-time minutes for Dracula; it now uses words per day (Dailygraph 8 August, 2,261, highest). The anchor "the log's 3 August entry" named a row that does not exist (the log is one row); fixed. Contrast ratios in Look recomputed with the WCAG 2.1 formula; all match to 0.01.
 
 ## Done when
 1. The data script regenerates every word count from the Gutenberg files with the stated rule and they match this spec (Owl Creek total 3,728; Dracula Ch I 5,647).
 2. Owl Creek in story-time order runs II-a, II-b, II-c, I-a to I-e, then III-a to III-f in the hatched imagined band, then III-g.
 3. With our ratings and Width by words, Part III (rows III-a to III-f) takes about 58% of the Owl Creek chart width.
 4. Dracula's Longest wait (it needs no ratings) reads from Jonathan's 30 June row to Sister Agatha's letter: 18,880 words.
-5. Biggest jump names both rows; Slow motion on Owl Creek names Part III and its word count.
+5. Biggest jump names both rows and the direction: with our Owl Creek ratings it reads I-e to II-a, down 4, in reading order, and I-b to I-c, up 2, in story-time order. Slow motion on Owl Creek names Part III and its 2,166 words; on Dracula it names the 8 August Dailygraph cutting.
 6. Use ours fills only unrated rows, with dotted meters; Compare with ours draws the dotted line.
 7. Every key line matches its Gutenberg file, with "--" for em dashes.
 8. Reload keeps ratings and answers per story; Clear my work (after Yes) empties them; no network; console clean; at every size in STANDARDS.md the order switch and the chart are reachable without page scroll; 375 wide works in `drive.py --host`.
+9. Focus: at 1366x768 and 680x425 the tension line is the largest thing in Chart, and the meters column is visible beside the key lines in Rate.
+10. Tap while it plays: tapping a switch or a meter while the rows slide acts at once, with no wait.
 
 ## Open questions
 - [tension-meter] Parent preview: Owl Creek is a hanging of a slave-owning Confederate civilian; Dracula I to VIII includes attacks, a crew vanishing and Renfield eating insects and birds. Both get a teacher note on the card. Keep both stories at grade 9?

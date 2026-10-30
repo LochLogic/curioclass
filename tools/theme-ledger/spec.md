@@ -19,23 +19,26 @@ Keep a story's two themes like a bookkeeper keeps two accounts: every entry is a
 - tool.json: driver "students", minutes "35-50", modes ["Ledger", "Chart", "Draft"], grades_label "Grades 9-12". Kit starter plus `kit:evidence`.
 
 ## Screens and modes
-Header: title "Theme Ledger", small line "Two themes, every entry quoted."; story picker **The Gift of the Magi** / **The Story of an Hour**; mode buttons **Ledger** (opens first), **Chart**, **Draft**; Motion, Sound, Read.
+Header: title "Theme Ledger", small line "Two themes, every entry quoted."; story picker **The Gift of the Magi** / **The Story of an Hour**, each with a small painted picture (art: story-magi, story-hour) that also heads its About this story card; mode buttons **Ledger** (opens first), **Chart**, **Draft**; Motion, Sound, Read.
 
 ### Ledger (opens first)
-- Left: the story, with paragraph numbers in the margin (M1 to M45, H1 to H23). Right: the open ledger book. Its two columns carry the story's two theme topics (Content), each with its glyph: Theme A ◆, Theme B ●. Under each topic, a line "Your theme statement (write it when you're ready)" stays editable all session.
+- Focus: the story text and the open ledger book side by side, the story the wider of the two, with the lit span and the Log it bar between them.
+- Left: the story, with paragraph numbers in the margin (M1 to M45, H1 to H23). Right: the open ledger book, its pages a painted aged-paper texture (art: ledger-paper) with the columns and rules drawn in code over it. Its two columns carry the story's two theme topics (Content), each with its glyph: Theme A ◆, Theme B ●. Under each topic, a line "Your theme statement (write it when you're ready)" stays editable all session.
 - Making an entry: tap the first word of a passage, then the last (or select with the keyboard: Shift and arrows). The span lights. The **Log it** bar appears with: column **A**, **B** or **Both**; weight **Faint**, **Clear**, **Strong** (1, 2, 3 marks on the ledger's tally edge); at 11-12 a tag **Says it** / **Suggests it** / **Leaves it open**; and **What it shows** (a text box). **Enter in ledger** writes the row.
 - A ledger row: paragraph number, the quote (exact, with "..." only where the student skipped words inside one paragraph using **Trim**), weight marks, tag, and the comment. Rows sit in story order. **Edit** and **Strike** (struck rows stay visible with a line through, as in a real ledger, until **Remove struck rows**).
 - The evidence checker writes small margin notes on a row when it applies (engine rules): "Just repeats the quote: say what it shows", "Explain it: a few more words", "Long quote: which words matter most? Try Trim". Notes never block an entry.
 - Footer totals: entries per column, Both entries, and "Covered: 9 of 45 paragraphs".
 
 ### Chart
-- Stage: a line chart across the story, x = paragraph number (labelled Beginning, Middle, End along the axis too), y = the summed weight of entries in a three-paragraph window. Theme A is a solid line with ◆ markers, Theme B a dashed line with ● markers. Every crossing is marked ✕ with its paragraph ("cross at H15"). Both entries show as small rings on both lines.
+- Focus: the two theme lines, the biggest thing on the stage; filters and readouts sit beside and below.
+- Stage: a line chart across the story, x = paragraph number (labelled Beginning, Middle, End along the axis too), y = the summed weight of entries in a window centered on each paragraph (three paragraphs: the one before, it and the one after). Theme A is a solid line with ◆ markers, Theme B a dashed line with ● markers. Every crossing is marked ✕ with its paragraph ("cross at H15"). Both entries show as small rings on both lines.
 - Filters (panel): **Show** A, B, both; **Weight** at least Faint / Clear / Strong; **Tag** (11-12) Says, Suggests, Leaves open; **Part** Beginning, Middle, End, Whole.
 - **One reading** toggle draws the tool's key (Content) as thin grey lines behind the student's, with the caption "One reader's ledger. Yours can differ."
-- Readouts: "Theme A peaks at M45", "Theme B peaks at M34", "Crossings: 2", "Longest quiet stretch for Theme A: M11 to M16". Tapping a point lists the entries behind it, each with **Go to text**.
+- Readouts, shown here as they read with the key's own entries for Magi (window 3): "Theme A peaks at M44 to M45", "Theme B peaks at M2, M33 and M34", "Crossings: 5", "Longest quiet stretch for Theme A: M1 to M4". A peak names every paragraph at the top value, up to three, else the first and "and n more". Tapping a point lists the entries behind it, each with **Go to text**.
 - **Notice** box (private): "Where do the two themes meet, and what happens to each after?"
 
 ### Draft
+- Focus: the three evidence slots with their quotes, in the middle of the stage; the Claim box above them.
 - The paragraph frame, top to bottom: **Claim** (pre-filled with the student's theme statement for the chosen column, or both at 11-12), then three evidence slots filled from the ledger's strongest entries (highest weight, then spread across the story; the student can swap any slot for any row with **Swap**), each with **Lead-in** (who says it or when it happens), the quote (read only), and **Analysis** (how it supports the claim). At 11-12 a fourth box: **How the themes build on each other**.
 - **Check my paragraph** runs the engine rules on each slot: lead-in missing ("Drop-in quote: say where it comes from"), analysis missing or only repeating ("Explain it"), claim is only a topic ("A theme is a statement: what does the story say about it?"). Each note links to its box.
 - **Assemble** shows the paragraph as one block of text. **Copy paragraph**. **Clear draft**. Everything stays on this device.
@@ -68,7 +71,7 @@ Exact texts from the named editions (Sources). Source em dashes are shown as "--
   - M39 A2 "My hair grows so fast, Jim!"
   - M44 A3, B1 "I sold the watch to get the money to buy your combs."
   - M45 A3, B3 "of all who give gifts these two were the wisest"
-  - Expected crossings with the key (window 3): computed at build; the key's Theme B leads early (M1 to M19) and Theme A leads from M24 on, with both peaking in M44 to M45.
+  - With the key (window 3): Theme B leads M1 to M7; the lines cross 5 times (at M9, M15, M23, M33 and M36); Theme A peaks at 6 in M44 to M45, Theme B at 5 in M2, M33 and M34; Theme B is quiet (0) from M24 to M31, its longest gap.
 
 ### The Story of an Hour (Kate Chopin), 23 paragraphs, H1 to H23
 - Theme topics: A "Freedom and selfhood" (◆). B "Love and marriage" (●).
@@ -89,7 +92,7 @@ Exact texts from the named editions (Sources). Source em dashes are shown as "--
   - H20 A2 "she carried herself unwittingly like a goddess of Victory"
   - H21 B2 "It was Brently Mallard who entered"
   - H23 A2, B2 "she had died of heart disease--of joy that kills" (at 11-12 the key tags this "Leaves it open": whose joy, and what killed her, the story does not say)
-  - Key reading: Theme B leads at the start (H1 to H3), Theme A rises from H9 and overtakes it; the two meet at H13 to H15, where love is weighed against selfhood; Theme A carries H16 to H20; both return at H21 to H23.
+  - Key reading (window 3): Theme B leads H1 to H4; Theme A overtakes at H5 and climbs from H9; the lines tie at H13 and H14, where love is weighed against selfhood, and Theme A peaks at 9 in H15 (Theme B at 8 in H14); Theme A carries H15 to H20; Theme B leads again at H22 and they tie at H23. Crossings: 2 (at H5 and H22).
 
 ### Context cards (one per story, from **About this story**)
 - Magi: "First printed in a New York newspaper in 1905 and collected in The Four Million (1906). Della and Jim live on $20 a week. The magi are the wise men who, in the Bible story, brought gifts to the infant Jesus."
@@ -100,28 +103,34 @@ Exact texts from the named editions (Sources). Source em dashes are shown as "--
 - A span stays inside one paragraph. **Trim** lets the student drop words from the middle of a span, shown as "..."; at least 3 words must remain. A span over 40 words gets the "Long quote" note.
 - The same words can sit in two rows (one per column) or one Both row; the chart counts a Both row on both lines.
 - Weight changes or struck rows update the chart at once. A story with fewer than 3 entries shows the chart axes with "Log at least 3 entries to see a line."
-- The window is 3 paragraphs for Magi and 3 for Hour; a slider at 11-12 sets 1 to 5 ("Smooth"). Crossings are counted where the difference between the lines changes sign.
+- The window is 3 paragraphs for Magi and 3 for Hour; a slider at 11-12 sets 1, 3 or 5 ("Smooth"), always centered, cut off at the story's first and last paragraph. Crossings are counted where the leading line changes; a tie (equal values) is not a crossing, and the crossing is placed at the first paragraph where the other line leads.
+- A tap while the chart redraws after a filter change (300 ms) acts at once on the new chart.
 - Draft's strongest-three pick: sort by weight, then prefer rows at least 5 paragraphs apart; ties go to story order.
 - Storage per story in localStorage `theme-ledger:v1` (try/catch): rows, theme statements, notes, draft. **Clear this story** asks first. Nothing leaves the page.
 - Sizes: at 760 wide and below the story and ledger become two tabs (**Story**, **Ledger**) with the Log it bar pinned to the bottom; at 375 the chart's filters fold into a **Filters** drawer. No horizontal scroll at any listed size; at 680x425 the Log it bar and the current paragraph are visible together.
 
 ## Look
-- Own light `:root`, an accounting ledger: `--paper #f7f3e8` with faint green column rules, `--panel #fffdf6`, `--ink #22191c`, `--muted #5e5357`, `--line #d8cfbd`, accent `--brand #592439` (ledger wine: header rule, ruled double line under totals, Enter in ledger, active mode), `--btn #592439`, `--btn-line #a38f8f`, `--head-ink #ffffff`, `--focus #0b6e75`. Theme A ink `#1d4f91` (◆, solid line), Theme B ink `#8a4b00` (●, dashed line); glyphs and dash patterns carry the difference. Weights are tally marks, not colors.
+- Paintings in warm sepia and muted ochre, like old bookkeeping, kept clear of the wine accent. Own light `:root`, an accounting ledger: `--paper #f7f3e8` with faint green column rules, `--panel #fffdf6`, `--ink #22191c`, `--muted #5e5357`, `--line #d8cfbd`, accent `--brand #592439` (ledger wine: header rule, ruled double line under totals, Enter in ledger, active mode), `--btn #592439`, `--btn-line #a38f8f`, `--head-ink #ffffff`, `--focus #0b6e75`. Theme A ink `#1d4f91` (◆, solid line), Theme B ink `#8a4b00` (●, dashed line); glyphs and dash patterns carry the difference. Weights are tally marks, not colors.
 - Neighbors: research-notebook fountain-pen blue, satire-decoder oxblood (dark; this is a light page and a wine closer to purple, dE well over 20 from any catalog accent, nearest two-trains at 24.3), usage-panel ink red (dark), fallacy-field-guide olive, founding-words-explorer rust.
 - Contrast (WCAG 2.1): white on brand 12.10:1; brand on paper 10.91:1, on panel 11.88:1; ink on paper 15.48:1; muted on paper 6.64:1, on panel 7.24:1; focus on paper 5.41:1; Theme A on paper 7.34:1; Theme B on paper 6.14:1. All pass AA.
 
 ## Art
-None: drawn in code (ledger book, chart). No people.
+Local FLUX (`scripts/localart.py`), one warm sepia still-life style, asked in one session. No people. The ledger's columns, rules, rows and tally marks stay in code because they hold the student's entries.
+- ledger-paper: "A full-frame close view of aged cream ledger paper, soft fibers and faint foxing, evenly lit, plain, warm sepia still life"; 4:3; cutout no; people no; full-frame texture clipped to the ledger book's pages, with rules drawn over it.
+- story-magi: "A pair of tortoiseshell hair combs with jeweled rims and a platinum pocket-watch fob chain lying on a worn wooden table by a window, warm sepia still life"; 4:3; cutout no; people no; the Magi picker button and its About this story card.
+- story-hour: "An open window seen from inside a quiet room, white curtains moving, the tops of spring trees with new leaves and patches of blue sky between clouds, warm sepia still life"; 4:3; cutout no; people no; the Hour picker button and its About this story card.
+3 images, none with people. Drawn in code: the ledger's columns, rules and tally marks, the chart, markers, crossings and every label.
 
 ## Voice
-Bank voice `smooth-narrator` (Algieba), style "Say smoothly and warmly, like an audiobook narrator who keeps careful books." Not used by any 9-12 ELA tool or evidence sibling specced so far. `Curio.voice`, `scope: () => state.mode + state.story`. The story itself is never read by the voice; Read speaks the hint.
-- w-ledger (how): "Tap the first word of a line that shows a theme, then the last."
-- logit (how, first span): "Choose its column and weight, say what it shows, then press Enter in ledger."
-- statement (how, after the fifth entry): "When you're ready, write each theme as a sentence at the top of its column."
-- w-chart (how): "Each line is one theme. Look for where they cross."
-- reading (how, first One reading): "That grey line is one reader's ledger. Yours can differ."
-- w-draft (how): "Your strongest entries are in place. Add a lead-in and say how each one supports your claim."
+Bank voice `smooth-narrator` (Algieba), style "Say smoothly and warmly, like an audiobook narrator who keeps careful books." Not used by any neighbor or another tool in this batch. `Curio.voice`, `scope: () => state.mode + state.story`. The story itself is never read by the voice; Read speaks the hint. Event line ids: checked.
+- w-ledger (how, welcome on Ledger; stale when a word is tapped): "Tap the first word of a line that shows a theme, then tap the last."
+- logit (how, the first span; stale when Enter in ledger is tapped): "Tap a column and a weight, type what it shows, then tap Enter in ledger."
+- statement (how, after the fifth entry; stale when a theme statement is typed): "When you're ready, write each theme as a sentence at the top of its column."
+- w-chart (how, welcome on Chart; stale when a filter or point is tapped): "Each line is one theme. Look for the crossing marks, then tap a point to see its entries."
+- reading (how, first One reading; stale when it is turned off): "That grey line is one reader's ledger. Yours can differ."
+- w-draft (how, welcome on Draft; stale when a box is typed in): "Your strongest entries are in place. Type a lead-in and say how each one supports your claim."
 - checked (event, Check my paragraph; stale on any edit): "{n} notes to look at." or "No notes. Read it aloud once."
+- With fewer than 3 entries, Chart's hint reads "Log at least 3 entries in Ledger to see a line." and w-chart waits until there are 3.
 
 ## Family engine
 `kit/evidence.js` (the evidence family). No family doc exists; this spec holds the full description, written so the lower grades can reuse it. Siblings: because-bridge (K-2), main-idea-pinboard (3-5), quote-picker (4), claim-court (5), argument-x-ray (6), debate-prep-desk (6), cer-builder (6-8), claim-quote-comment (6-8), theme-evidence-ladder (6-8), argument-builder-pro (9), theme-ledger (9-12). Pure parts in one marked block, exposed as `__tool.ev`.
@@ -142,6 +151,7 @@ This tool uses: Source pack (two stories with keys), Spans with skips, Evidence 
 - "The Story of an Hour": Kate Chopin International Society, https://www.katechopin.org/story-hour/ (text and its note: Vogue, December 6, 1894, as "The Dream of an Hour").
 - Married women's limited property and wage rights and hard divorce in the 1890s: confirm a plain one-line statement against the Library of Congress "Women's History" research guide or the National Women's History Museum at build; cut it if no source fits.
 - Magi in the Bible story: Matthew 2:1-12 (King James Version).
+- Checks run (Python, 2026-10-29) on both keys with a centered window of 1, 3 and 5. Magi, window 3: crossings at M9, M15, M23, M33 and M36 (5); Theme A peaks at 6 in M44 and M45; Theme B at 5 in M2, M33 and M34; Theme A quiet M1 to M4. The old text said Theme B leads M1 to M19 and A from M24 on, and its sample readouts gave 2 crossings, peaks at M45 and M34 and a quiet stretch M11 to M16; none of that matched the key, so the key readings and samples now carry the computed values. Hour, window 3: B leads H1 to H4, A from H5; ties at H13, H14, H21 and H23; crossings at H5 and H22 (2); Theme A peaks at 9 in H15. The old "Theme A rises from H9 and overtakes it" was late by four paragraphs. The slider now steps 1, 3, 5, because an even window has no center. Contrast ratios in Look recomputed with the WCAG 2.1 formula; all match to 0.01.
 
 ## Done when
 - Both stories show every paragraph with its id; texts match the editions.
@@ -152,6 +162,9 @@ This tool uses: Source pack (two stories with keys), Spans with skips, Evidence 
 - Draft picks three entries spread across the story, and Check my paragraph flags a missing lead-in and a topic-only claim.
 - Rows, statements and draft survive a reload; Clear this story asks first.
 - At 375 wide Story and Ledger are tabs with the Log it bar visible; no horizontal scroll at any listed size.
+- With every key entry logged at window 3, Magi reads "Crossings: 5" with marks at M9, M15, M23, M33 and M36, and Hour reads "Crossings: 2" at H5 and H22.
+- Focus: at 1366x768 and 680x425 the story text and the ledger are side by side in Ledger, and the two theme lines are the largest thing in Chart.
+- Tap while it plays: changing a filter or weight while the chart redraws acts at once, with no stale line.
 
 ## Open questions
 - "The Story of an Hour" ends with a woman's sudden death and treats her husband's reported death as a release. Fine for grade 9 as the second story, or offer it only at the 11-12 setting?
