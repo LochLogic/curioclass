@@ -21,9 +21,10 @@ A key term is a word an author keeps working on: follow one loaded word (faction
 - tool.json: driver "students", minutes "30-45", modes ["Track", "Meaning card", "Word help", "Use it"], grades_label "Grades 9-12". Kit starter plus `kit:wordlab`.
 
 ## Screens and modes
-Header: title "Key Term Tracker", small line "One word, every stop."; text picker **Federalist No. 10: faction** / **King Lear: nature**; mode buttons **Track** (opens first), **Meaning card**, **Word help**, **Use it**; Motion, Sound, Read. Panel: `#hint`, the stop counter ("Stops logged: 6 of 13"), the move key, the Word bank count, **About this text** (context card), **Clear this text** (asks Yes / No).
+Header: title "Key Term Tracker", small line "One word, every stop."; text picker **Federalist No. 10: faction** / **King Lear: nature**, each button with its painted picture (Art); mode buttons **Track** (opens first), **Meaning card**, **Word help**, **Use it**; Motion, Sound, Read. Panel: `#hint`, the stop counter ("Stops logged: 6 of 13"), the move key, the Word bank count, **About this text** (context card), **Clear this text** (asks Yes / No).
 
 ### Track (opens first)
+Focus: the text with its highlighted stops (left, the widest column) and the open stop card beside it.
 - Left: the text as an excerpt, stop passages in order with "[text skipped]" markers between them and a location label on each (Federalist: sentence number in the edition; Lear: act, scene and the speaker). Every form of the term is highlighted like a highlighter stroke (faction, factions, factious; nature, nature's, natural, unnatural) and is a stop.
 - Hard words are dotted-underlined; tapping one opens Word help for it in a side sheet.
 - Tap a stop: the stop card opens on the right with:
@@ -35,17 +36,20 @@ Header: title "Key Term Tracker", small line "One word, every stop."; text picke
 - **Unnamed stops** (11-12): the line "Madison sometimes talks about faction without the word. Find 2 places." Tapping a sentence that isn't a stop lets the student **Mark as unnamed stop**; the tool confirms the two in Content ("Found: the idea without the word") and leaves any others as the student's own.
 
 ### Meaning card
+Focus: the meaning card, centered and the biggest thing on screen.
 - The term's card grows from the bottom up: each logged stop is a layer showing its location, the move chip's glyph, the student's words and the feeling dial. Layers are colored by move and carry its glyph and name.
 - **Today's dictionary** sits as a separate tab on the card (Content), and at 11-12 **Then and now** sets the student's final meaning beside it in two columns with prompts: "What does the author's meaning include that today's doesn't?" and "What does today's include that the author's doesn't?"
 - **My definition**: the student writes the author's meaning of the term in one or two sentences; a check lists which logged layers the definition draws on (the student ticks them), so the definition is built from the stops.
 - **Feeling line**: a small strip across the card showing the feeling dial at each stop in order, so a shift in connotation shows as a change in the strip (with words: "negative at 1 to 5, mixed at 6").
 
 ### Word help
+Focus: the current word's step card, under the painted magnifier (Art).
 - The hard words of the current text (Content), each a row. Tapping one runs the word-lab steps in order: **Context** (the student's guess from the sentence), **Parts** (split into parts with meanings, when it has them), **Dictionary** (the entry: respelling, part of speech, etymology line, meaning in this text, today's meaning when different, source line), **Forms** (the word's family with the changing part lit, Content: "adverse, adversity, adversary"), **Verify** (the student ticks "My guess fit" or "I needed the dictionary").
 - **Add to Word bank** puts the word in the student's bank. The Strategy log shows which step cracked each word.
 - **My own word**: the student taps any word in the text and adds it to the list. Its steps run the same way, except Dictionary has no built-in entry: the card says "Look it up in a print or online dictionary, then write its part of speech and the meaning that fits this sentence," with boxes for both. The word can go to the Word bank like any other.
 
 ### Use it
+Focus: the two sentence boxes.
 - Two sentence boxes for the term: "Use faction the way Madison does." and "Use faction the way people use it today." (Lear: "Use nature the way Edmund means it." and "Use nature the way Lear means it in 'The offices of nature'.")
 - Word bank practice: for each banked word, a box "Your own sentence" with the word's meaning shown above it. A small count: "5 words used in your own sentences".
 
@@ -100,28 +104,33 @@ Header: title "Key Term Tracker", small line "One word, every stop."; text picke
 - Unnamed stops: only the two listed sentences confirm; the student may mark others, kept as "your own" layers.
 - Lear has 13 stops after the 2.1 stop is added, matching Federalist No. 10's 13, so the counter reads "of 13" for both.
 - Word help uses the word-lab engine's Split, Lookup and Strategy log; the dictionary entry shows "meaning here" and "today's meaning" when they differ (mischiefs, sinister, engine, offices, curiosity).
+- Nothing plays on its own. A logged layer slides onto the card over 300 ms (instant with Motion off); a tap during the slide acts at once and the layer lands where it belongs.
 - Storage per text in localStorage `key-term-tracker:v1` (try/catch): logged stops, unnamed stops, definition, Then and now, Word bank, sentences, strategy log. Clear this text asks first.
 - Sizes: at 1000 px and up, text and stop card side by side; at 760 and below the stop card and Word help open as bottom sheets. At 680x425 a stop passage and its card are visible together. At 375 the meaning card shows layers as a scrolling list. No horizontal scroll.
 
 ## Look
-- Accent `--brand #7a4b00` (dark highlighter amber: header rule, active mode, Log stop, the meaning card's frame). Own light `:root`, a reading desk with a dictionary: `--paper #faf7f0`, `--panel #fffef8`, `--ink #1f1b16`, `--muted #5a5247`, `--line #e3dccd`, `--btn #7a4b00`, `--head-ink #ffffff`, `--focus #1a5fa0`. Term highlight `#ffe27a` behind ink text (a highlighter stroke); hard words dotted underline in `--muted`.
+- Accent `--brand #7a4b00` (dark highlighter amber: header rule, active mode, Log stop, the meaning card's frame). Own light `:root`, a cool index-card desk (changed in revision so it no longer shares editors-in-the-margin's warm paper): `--paper #f3f5f8`, `--panel #ffffff`, `--ink #1f1b16`, `--muted #5a5247`, `--line #dde2e8`, `--btn #7a4b00`, `--head-ink #ffffff`, `--focus #1a5fa0`. Term highlight `#ffe27a` behind ink text (a highlighter stroke); hard words dotted underline in `--muted`.
 - Move layers (glyph, name and color): Defines ■ `#1a5fa0`, Narrows ▼ `#2f6b2f`, Widens ▲ `#7a3fa0`, Bends ~ `#a33a2a`, Uses ● `#5a5247`.
-- Contrast (WCAG 2.1): brand on paper 6.93:1, on panel 7.33:1; white on brand 7.41:1; ink on the highlight 13.38:1; move colors on panel: Defines 6.52, Narrows 6.37, Widens 6.82, Bends 6.50, Uses 7.61.
-- Different from ELA 9-12 neighbors (theme-ledger wine, research-notebook blue, source-portfolio green, all light) and this group (editors-in-the-margin red, personal-essay-studio rose, socratic-seminar-board teal, all light; dark tools elsewhere).
+- Contrast (WCAG 2.1, recomputed 2026-10-29 on the new paper): brand on paper 6.78:1, on panel 7.41:1; white on brand 7.41:1; ink on paper 15.68:1; muted on paper 7.04:1; focus on paper 6.03:1; ink on the highlight 13.38:1; move colors on panel: Defines 6.59, Narrows 6.43, Widens 6.89, Bends 6.57, Uses 7.68 (on paper each above 5.8).
+- Different from ELA 9-12 neighbors (theme-ledger wine, research-notebook blue, source-portfolio green, all light) and this group (editors-in-the-margin red on warm paper, personal-essay-studio rose, socratic-seminar-board teal, all light; founding-words-explorer iron-gall brown on parchment, dE 22 from this accent and a much warmer paper).
 
 ## Art
-None: drawn in code. No people.
+Three painted images, all local FLUX (`scripts/localart.py`), people: false. The texts and the meaning card are the point; the paintings mark which text is open and where Word help lives.
+- `pick-federalist`: "A stack of folded 1780s newspapers tied with twine on a wooden windowsill, plain blank pages, winter light". 4:3; cutout no; people: false. On the Federalist No. 10 picker button (about 120 px wide) and at the top of its About this text card (about 280 px).
+- `pick-lear`: "A gold crown lying in wet heath grass under a dark storm sky, lightning far off on the horizon". 4:3; cutout no; people: false. On the King Lear picker button and its About this text card.
+- `magnifier`: "A brass magnifying glass resting on a blank white index card, soft studio light, plain light backdrop". 1:1; cutout yes; people: false. Word help's header (64 px) and the Word bank count in the panel (24 px).
+Drawn in code: the highlighter strokes, stop cards, move glyphs, the growing meaning card, the feeling line and the Forms rows.
 
 ## Voice
-Bank voice `curious-librarian`, style "Say curiously and warmly, like a school librarian who loves a good word." Not used by this group or any neighbor; the other 9-12 ELA user, ambiguity-lab (grade 12), is not a neighbor. The kit voice queue (`Curio.voice`), `scope: () => state.mode + ':' + state.text`. The texts are never voiced.
-- w-track (how, welcome Track): "Every highlighted word is a stop. Tap one, choose what the author does with it, and log it."
-- moves (how, first stop opened): "Defines, narrows, widens, bends or just uses. Pick the one that fits, then say what it means here."
-- reading (how, first One reading): "That's one reader's call. Yours can differ."
-- unnamed (how, first Unnamed stops prompt at 11-12): "Look for the idea without the word. Tap a sentence and mark it."
-- w-card (how, welcome Meaning card): "Each layer is a stop you logged. Write your definition from them."
-- w-help (how, welcome Word help): "Guess from the sentence first. Then try the parts, then the dictionary."
-- w-use (how, welcome Use it): "Write the word two ways: the author's way and today's."
-- majority (event, the student logs Federalist stop 3; stale on the next stop): "Notice: a faction can be a majority."
+Bank voice `curious-librarian`, style "Say curiously and warmly, like a school librarian who loves a good word." Not used by this group, any neighbor or another spec in this batch; the other 9-12 ELA user, ambiguity-lab (grade 12), is not a neighbor. The kit voice queue (`Curio.voice`), `scope: () => state.mode + ':' + state.text`. The texts are never voiced.
+- w-track (how, Track welcome; stale once a stop card opens): "Every highlighted word is a stop. Tap one, choose what the author does with it, and tap Log stop."
+- moves (how, first stop card opened; stale once a chip is chosen): "Tap Defines, Narrows, Widens, Bends or Uses. Then write what it means here."
+- reading (how, first One reading shown; stale when the next stop opens): "That's one reader's call. Yours can differ."
+- unnamed (how, first Unnamed stops prompt at 11-12; stale once a sentence is marked): "Look for the idea without the word. Tap a sentence, then tap Mark as unnamed stop."
+- w-card (how, Meaning card welcome; stale once My definition has text): "Each layer is a stop you logged. Write your definition in the My definition box."
+- w-help (how, Word help welcome; stale once a word is opened): "Tap a word. Type your guess from the sentence first, then try Parts, then Dictionary."
+- w-use (how, Use it welcome; stale once a box has text): "Write the word two ways in the two boxes: the author's way and today's."
+- majority (event, each time the student logs Federalist stop 3; stale on the next stop): "Notice: a faction can be a majority."
 
 ## Family engine
 `kit/wordlab.js`, the word-lab family engine, described in full in tools/word-family-tree/spec.md (siblings word-lab, root-detective-cards, glossary-makers, context-roots-dictionary, key-term-tracker, word-family-tree). This tool feeds it: word records for the term's forms and for each hard word (parts where they exist, the meaning-here and today's senses, sources); Card view for the growing meaning card, with each logged stop as a layer `{loc, move, text, feeling}`; Split, Lookup, Strategy log and Guess and verify for Word help. It does not use Tree view or Build.
@@ -135,16 +144,19 @@ Bank voice `curious-librarian`, style "Say curiously and warmly, like a school l
 - Today's senses of faction and nature (paraphrased): Merriam-Webster.com Dictionary.
 - Johnson's Dictionary (1755) entry for faction: https://johnsonsdictionaryonline.com/ (shown at 11-12 only if the entry is confirmed there).
 - Word parts for the Federalist hard words: Merriam-Webster etymologies.
+- Checks run 2026-10-29: Federalist stops listed 13, Lear stops listed 13 (with 2.1), unnamed stops 2, so the counter reads "of 13" on both; contrast ratios in Look recomputed in Python for the new paper.
 
 ## Done when
+- Focus: at 1366x768 and 680x425 in Track, the text with its highlighted stops is the largest thing on screen and an open stop card sits beside it; in Meaning card, the card is.
 - Every listed form of the term is highlighted in both texts and every stop opens a card; the stop texts match the editions.
-- Logging a stop adds a layer to the meaning card in text order with its glyph, words and feeling.
+- Logging a stop adds a layer to the meaning card in text order with its glyph, words and feeling; a tap during the layer's slide acts at once.
 - One reading appears only after logging and shows the Content move and note.
 - At 11-12 the two Unnamed stops in Federalist No. 10 confirm; other marked sentences stay as the student's own.
-- Logging Federalist stop 3 speaks the majority line once per logging.
+- Logging Federalist stop 3 speaks the majority line each time it is logged.
 - Word help runs Context, Parts (where parts exist), Dictionary (with respelling and etymology), Forms, Verify in order and logs the cracking step; My own word works for any tapped word with the look-it-up boxes; Add to Word bank and Use it work.
 - The Lear 2.1 stop shows its double-meaning note; the stop counter reads "of 13" on both texts.
 - The Federalist context card names who could not vote and that Madison enslaved people.
+- The picker buttons and context cards show their paintings; no people appear; no voice line names a control that is hidden or disabled.
 - Work survives a reload; Clear this text asks first.
 - At 375 and 760 wide the stop card opens as a bottom sheet with no horizontal scroll; at 680x425 a passage and its card are visible together.
 

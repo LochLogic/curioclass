@@ -22,7 +22,8 @@ Three editors write in your margin (one for audience and purpose, one for the rh
 Header: title "Editors in the Margin", small line "Three editors. Your call."; essay picker **A: Letter to the school board** / **B: Newsletter explainer**; mode buttons **Edit** (opens first), **Before and after**, **Editor's letter**; Motion, Sound, Read. Panel: `#hint`, the assignment card (task, audience, purpose: Content), a decisions count ("9 of 15 notes answered"), **Start this essay over** (asks Yes / No).
 
 ### Edit (opens first)
-- Center: the essay as a typeset page, paragraphs numbered. Right margin: note cards, each tied to its span by a thin leader line. Each editor has a mark and a glyph: Audience ◆ (solid underline), Rhythm ● (wavy underline), Copy ■ (double underline). Card header: glyph, editor name, note number.
+Focus: the essay page and the open note card beside its span; the page is the biggest, central thing, laid on the painted desk (Art).
+- Center: the essay as a typeset page, paragraphs numbered. Right margin: note cards, each tied to its span by a thin leader line. Each editor has a mark and a glyph: Audience ◆ (solid underline), Rhythm ● (wavy underline), Copy ■ (double underline). Card header: the editor's painted emblem (Art), glyph, editor name, note number.
 - A note card shows the editor's comment (one or two sentences) and, when the editor proposes wording, the proposal as a tracked change (insertion underlined, deletion struck).
 - Buttons on every card: **Accept**, **Reject**, **Rewrite**. Rewrite turns the span into an editable box with the original words in it; **Done** keeps the student's version as a tracked change in the student's own mark (▲, dotted underline).
 - A one-line **Why?** box follows every decision. Quick chips fill it and can be edited: "Fits my audience better", "Keeps my meaning", "Clearer", "Changes what I meant", "The guide says so", "I like the rhythm as it is". A decision with an empty Why? shows "Add a reason" on the card; it still counts, but Editor's letter lists it as missing a reason.
@@ -32,6 +33,7 @@ Header: title "Editors in the Margin", small line "Three editors. Your call."; e
 - Notes can be answered in any order; **Next note** jumps to the next unanswered card.
 
 ### Before and after
+Focus: the three gauges over the two columns.
 - Two columns, original and current, each with three gauges above it:
   - **Audience fit**: words or phrases from the essay's watch list still present (Content), as a count with each one listed ("Too casual for the board: 'So basically'"), plus the essay's purpose checks as yes/no lines with words.
   - **Sentence rhythm**: a bar for every sentence, its length in words, in order; under it shortest, longest, the spread (standard deviation, one decimal) and how many sentences start with the same word as the one before.
@@ -40,6 +42,7 @@ Header: title "Editors in the Margin", small line "Three editors. Your call."; e
 - **Read both** (button): shows the two versions one paragraph at a time, side by side, for a slow read; nothing is voiced.
 
 ### Editor's letter
+Focus: the letter, centered on the painted desk.
 - A short letter the tool assembles from the decisions: "Dear editors, I accepted 9 of your 15 notes..." then one line per note: the note number, the decision and the student's Why? text. Missing reasons are marked "(reason to add)". Below it, a box for the student's own closing paragraph: "What did you change most, and why?"
 - **Copy letter** copies it as plain text. Nothing leaves the page otherwise.
 
@@ -107,36 +110,42 @@ All essays and notes are original, written for Curio Class. Sentence ids: paragr
 - Under the card: "For more, writers consult books on syntax and style, such as Virginia Tufte's Artful Sentences (named only)."
 
 ### Context card for Essay B (About the elms)
+- With the painted elm (Art) at the top of the card.
 - "Dutch elm disease is caused by a fungus spread by elm bark beetles and by connected roots. It has killed most of the American elms that once lined streets in the United States." (Sources.) The town, the trees and the dates in the essay are made up.
 
 ## Interactions in detail
 - Spans are character ranges on the current text; every accepted or rewritten change is stored as an operation on the original, so Undo works per note in any order and the gauges recompute from scratch each time.
 - A proposal whose span has changed (another note touched it) is rebuilt only where Content says so (B V1, B V3); otherwise the card greys with the "text is gone" line and Undo link.
-- Gauges: sentences split on . ! ? followed by a space; words split on spaces; hyphenated words count as one word; numerals count as words. Standard deviation is the population formula over sentence lengths.
+- Gauges: sentences split on . ! ? followed by a space or the end of the paragraph; words split on spaces; hyphenated words count as one word; numerals count as words. Standard deviation is the population formula over sentence lengths.
 - Watch-list matching is case-insensitive on whole words or phrases. Copy errors are counted by checking whether each erroneous string is still present.
 - Storage per essay in localStorage `editors-in-the-margin:v1` (try/catch): decisions, rewrites, reasons, the closing paragraph. Start this essay over asks first.
+- Nothing plays on its own. Leader lines and gauge bars ease over 200 ms (instant with Motion off); a tap during an ease acts at once and the gauges recompute on that tap.
 - Keyboard: Tab moves through note cards in text order (panel controls first), A / R / W choose Accept, Reject, Rewrite on the focused card.
 - Sizes: at 1000 px and up, page and margin side by side; at 760 and below, notes become numbered pins in the text that open a card as a bottom sheet. At 680x425 a note card and its span are visible together. At 375 Before and after shows one column at a time with a **Before / After** switch.
 
 ## Look
-- Accent `--brand #b3261e` (editor's red pencil: header rule, active mode, unanswered-note dots). Own light `:root`, a manuscript on a desk: `--paper #faf7f0`, `--panel #fffef8`, `--ink #1e1b18`, `--muted #5b554d`, `--line #e2dacb`, `--btn #b3261e`, `--head-ink #ffffff`, `--focus #1d5fa8`. Essay text in a serif stack at 18 px.
+- Accent `--brand #b3261e` (editor's red pencil: header rule, active mode, unanswered-note dots). Own light `:root`, a manuscript on a desk (the painted desk shows only around the page; all text sits on `--paper` or `--panel`): `--paper #faf7f0`, `--panel #fffef8`, `--ink #1e1b18`, `--muted #5b554d`, `--line #e2dacb`, `--btn #b3261e`, `--head-ink #ffffff`, `--focus #1d5fa8`. Essay text in a serif stack at 18 px.
 - Editor inks (marks also differ by glyph and underline style): Audience ◆ `#1d5fa8` solid, Rhythm ● `#7a4b9a` wavy, Copy ■ `#b3261e` double, student ▲ `#1e6b3a` dotted.
-- Contrast (WCAG 2.1): brand on paper 6.11:1, on panel 6.47:1; white on brand 6.54:1; editor inks on panel each above 4.5:1 (confirm at build); ink on paper above 15:1.
+- Contrast (WCAG 2.1): brand on paper 6.11:1, on panel 6.47:1; white on brand 6.54:1; editor inks on panel (computed 2026-10-29): Audience 6.39:1, Rhythm 6.30:1, Copy 6.47:1, student 6.46:1; ink on paper above 15:1.
 - Different from ELA 9-12 neighbors: research-notebook fountain-pen blue, theme-ledger ledger wine, interview-simulator (CTE) brick, usage-panel ink red on dark; this is a light page with a brighter red. Different from this group's accents.
 
 ## Art
-None: drawn in code. No people (editors appear only as glyphs and role names).
+Five painted images, all local FLUX (`scripts/localart.py`), people: false. The editors stay as emblems and role names, not faces: what they say is the point.
+- `desk`: "Top-down view of a warm oak writing desk, a coffee mug, a few paper clips and a fountain pen near the edges, soft morning light, a wide empty middle". 16:9; cutout no; people: false. The backdrop around the essay page and the letter; cover-fit, the page card covers the empty middle.
+- Editor emblem kit (3 cutouts). Shared prompt: "single object, three-quarter view, soft studio light, plain light backdrop, painted". Pieces: `ed-audience` a pair of reading glasses resting on a folded letter; `ed-rhythm` a wooden metronome; `ed-copy` a red pencil and a pink rubber eraser side by side. 1:1; cutout yes; people: false. Sizing rule: each fills about 80 percent of its square; 28 px in note card headers, 56 px on the Rhythm reference card and in the Editor's letter salutation line.
+- `elm`: "A tall American elm with a wide vase-shaped canopy beside the stone steps of a small-town library, early spring, bare branches just budding, clear sky". 4:3; cutout no; people: false. Top of the About the elms card for Essay B (about 280 px wide). The library has no sign.
+Drawn in code: the page, marks and leader lines, tracked changes, note cards, gauges and sentence-length bars.
 
 ## Voice
-Bank voice `friendly-dad`, style "Say in a relaxed, friendly way, like a kind managing editor." Not used by this group or by any neighbor; the other 9-12 ELA user, page-to-screen (grade 10 literature), is not a neighbor. The kit voice queue (`Curio.voice`), `scope: () => state.mode + ':' + state.essay`. Essays and notes are read on screen, not voiced.
-- w-edit (how, welcome Edit): "Three editors left notes. Tap a note, then Accept, Reject or Rewrite, and say why."
-- why (how, first decision): "Add a reason in the Why box. A chip is a fine start."
-- rhythm-ref (how, first Rhythm reference opened): "Each pattern shows its sentence bars. Tap Try it on a classic to measure it."
-- conflict (how, first greyed note): "That note's text is gone because of another change. Tap Undo if you want it back."
-- judgment (how, first time a purpose check turns to no): "One of your changes removed something your purpose needs. Check Before and after."
-- w-before (how, welcome Before and after): "Each gauge lists the decisions that moved it. Some good decisions move nothing."
-- w-letter (how, welcome Editor's letter): "Here is every decision with your reason. Add a closing paragraph at the bottom."
-- done (event, all notes answered; stale on Undo): "All notes answered. Open Before and after."
+Bank voice `friendly-dad`, style "Say in a relaxed, friendly way, like a kind managing editor." Not used by this group, any neighbor or another spec in this batch; the other 9-12 ELA user, page-to-screen (grade 10 literature), is not a neighbor. The kit voice queue (`Curio.voice`), `scope: () => state.mode + ':' + state.essay`. Essays and notes are read on screen, not voiced.
+- w-edit (how, Edit welcome; stale after the first decision): "Three editors left notes. Tap a note, then Accept, Reject or Rewrite, and say why."
+- why (how, first decision; stale once the Why box has text): "Type a reason in the Why box, or tap a chip to start one."
+- rhythm-ref (how, first Rhythm reference opened; stale when it closes): "Each pattern shows its sentence bars. Tap Try it on a classic to measure it."
+- conflict (how, first greyed note; stale when that note is restored or the card closes): "That note's text is gone because of another change. Tap Undo if you want it back."
+- judgment (how, first time a purpose check turns to no; stale when it turns back to yes): "One of your changes removed something your purpose needs. Tap Before and after to see which."
+- w-before (how, Before and after welcome; stale on mode change): "Each gauge lists the decisions that moved it. Some good decisions move nothing. Tap Read both for a slow read."
+- w-letter (how, Editor's letter welcome; stale once the closing box has text): "Here is every decision with your reason. Write a closing paragraph in the box at the bottom."
+- done (event, each time all notes become answered; stale on Undo): "All notes answered. Tap Before and after."
 
 ## Family engine
 None.
@@ -152,15 +161,19 @@ None.
 - Thoreau, Walden (1854), chapter 2, "Where I Lived, and What I Lived For": Project Gutenberg eBook #205, https://www.gutenberg.org/ebooks/205.
 - Dutch elm disease: USDA Forest Service, "Dutch Elm Disease" (Forest Insect and Disease Leaflet or Pest Alert), https://www.fs.usda.gov/ (confirm the exact page at build); fungus spread by elm bark beetles and root grafts; losses of American elms in US cities.
 - Essays, notes and the town: original, written for Curio Class.
+- Checks run in Python (2026-10-29) with the stated split rules: original Essay A has 19 sentences, lengths 3, 9, 12, 3, 3, 3, 15, 6, 7, 15, 18, 10, 7, 3, 12, 6, 10, 7, 5 (shortest 3, longest 18, spread 4.5, one same-word start: "They are slow." then "They are warm."); Essay B has 4 sentences of 51, 47, 54 and 46 words (spread 3.2, one same-word start), so V1's "51-word sentence" holds and B P3 has three "and"s as V3 says. Clean copy on the originals: A 3 hyphen and 3 spelling errors, B 3 hyphen and 2 spelling. Rhythm reference: Lincoln 28 and 4 words, Douglass 10, Declaration 71, Thoreau 44. The split rule now names the end of a paragraph too, so each paragraph is split on its own.
 
 ## Done when
+- Focus: at 1366x768 and 680x425 in Edit, the essay page is the largest thing on screen and an open note card is visible beside its span.
 - Both essays load with every note tied to the right span; all 15 (A) and 15 (B) notes can be accepted, rejected or rewritten and undone in any order.
 - Accepting A4 turns "Answers the other side" to no and lists A4 under Audience fit's purpose line; undoing it turns it back.
 - Accepting A V4 greys C6 with the "text is gone" line.
-- Gauges recompute exactly: on the original Essay A, the Rhythm bars match the sentence lengths (recompute in Python with the stated split rules), and Clean copy shows 3 hyphen errors (C3, C4, C5) and 3 spelling errors (C1, C2, C6) before any note is accepted; Essay B shows 3 hyphen (C2, C3, C4) and 2 spelling (C1, C5).
+- Gauges recompute exactly: on the original Essay A the Rhythm bars read 3, 9, 12, 3, 3, 3, 15, 6, 7, 15, 18, 10, 7, 3, 12, 6, 10, 7, 5 (spread 4.5), and Clean copy shows 3 hyphen errors (C3, C4, C5) and 3 spelling errors (C1, C2, C6) before any note is accepted; Essay B shows bars 51, 47, 54, 46 and 3 hyphen (C2, C3, C4) and 2 spelling (C1, C5).
+- A tap on Accept while a leader line or gauge bar is easing acts at once; no voice line names a control that is hidden or disabled.
 - Which edits mattered lists only decisions that changed a gauge value; others appear under "Moved no gauge".
 - Editor's letter lists every decision with its reason and marks missing reasons.
 - Accepting B V3 greys C3; the Rhythm reference shows four examples whose bars match their word counts (Lincoln: 28 and 4 words; a semicolon never ends a sentence).
+- Each note card shows its editor's painted emblem; Essay B's About the elms card shows the painted elm.
 - Work survives a reload; Start this essay over asks first.
 - At 375 and 760 wide notes open as bottom sheets with no horizontal scroll; at 680x425 a card and its span are visible together.
 

@@ -17,15 +17,17 @@ A character is pulled several ways at once: put their motivations on a web as an
 - tool.json: driver "students", minutes "25-40", modes ["Read the web", "Your read", "Theme"], grades_label "Grade 9". Kit starter with `kit:theme-912` (dark) and an accent override.
 
 ## Screens and modes
-Kit frame. Header: "Character Web", small line with the character and novel ("Victor Frankenstein, Frankenstein, 1818"); Motion, Sound, Read. A character picker opens first: three cards (Victor Frankenstein, Jane Eyre, Henry Jekyll), each with the novel, year, a one-line setup and a content line.
+Kit frame. Header: "Character Web", small line with the character and novel ("Victor Frankenstein, Frankenstein, 1818"); mode buttons **Read the web** (opens first), **Your read**, **Theme**; **Change character**; Motion, Sound, Read. A character picker opens first: three cards (Victor Frankenstein, Jane Eyre, Henry Jekyll), each with a painted picture of the novel's main setting (Art), the novel, year, a one-line setup and a content line. The same painting sits dimmed behind the web for that character.
 
-**The web** (center): the character's name in a circle that moves. Around it, five **pull anchors** on a ring, each a labeled node with an icon (Content). Thin threads run from the dot to each anchor; a thread's thickness shows that pull's strength at the current turning point (0 to 3), with the number on the thread. The dot's position is the weighted pull of all anchors (a weighted average of anchor positions, pulled toward the center when all are weak). Earlier positions leave a dotted **path** with numbered stops.
+Focus: in Read the web and Your read, the web is the biggest, central thing (about 460 px at 1366x768), with the turning point card beside it; in Theme, the finished path on the web and the sentence frame under it.
+
+**The web** (center): the character's name in a circle that moves. Around it, five **pull anchors** on a ring, each a labeled node with a painted icon (Art). Thin threads run from the dot to each anchor; a thread's thickness shows that pull's strength at the current turning point (0 to 3), with the number on the thread. The dot's position is the weighted pull of all anchors (a weighted average of anchor positions, pulled toward the center when all are weak). Earlier positions leave a dotted **path** with numbered stops.
 
 **Turning point card** (right, or below on narrow screens): number and chapter, a two-sentence plain summary of what happens, the **quote** that shows the pull (one or two sentences from the novel), and **With**: the other character in the scene and what they do to the pull ("Rochester proposes; love pulls hardest just as principle is tested").
 
-**Read the web.** A scrubber of turning points (6 or 7 stops) under the web. Moving it animates the dot from stop to stop (instant with Motion off); threads change thickness. This is "our reading", labeled as such: "One reading, built from the quotes. Yours can differ."
+**Read the web.** A scrubber of turning points (6, 6 or 8 stops) under the web. Moving it animates the dot from stop to stop (instant with Motion off); threads change thickness. A new scrubber position during a move sends the dot straight to the new stop from where it is. This is "our reading", labeled as such: "One reading, built from the quotes. Yours can differ."
 
-**Your read.** The same turning points, but the threads start at 0. At each stop the student reads the summary and quote and sets each pull with a 0 to 3 stepper, and must tap at least one word of the quote as evidence for the strongest pull. **Compare** draws our dot as a hollow ring beside theirs, with the distance in words ("close", "some way off", "far off"), never a score. Two paths, theirs solid and ours dotted, build across the novel.
+**Your read.** The same turning points, but the threads start at 0. At each stop the student reads the summary and quote and sets each pull with a 0 to 3 stepper, and must tap at least one word of the quote as evidence for the strongest pull. A **Compare** button under the steppers draws our dot as a hollow ring beside theirs, with the distance in words ("close", "some way off", "far off"), never a score. Two paths, theirs solid and ours dotted, build across the novel.
 
 **Theme.** The finished path with each stop's winning pull. The tool names the two pulls that most often fight: at each stop the two strongest pulls form a pair (pulls tied for a place share that stop equally), and the pair with the highest total wins. A sentence frame: "When [pull chip] wins over [pull chip], [result]." The result is free text up to 160 characters, and the student attaches two stops as evidence (tap stops on the path). **Show ours** reveals our theme sentence for that character. **Read my theme** shows the sentence with the two quotes, with **Copy**.
 
@@ -65,12 +67,12 @@ Bertha note on the card at stop 3, neutral and short: "The novel shows Bertha on
 Last card: "Here then, as I lay down the pen and proceed to seal up my confession, I bring the life of that unhappy Henry Jekyll to an end." (Fear 3, Conscience 2.) Seven stops plus this card, eight in all.
 Most-fought pair: Reputation against Hidden pleasure. Our theme: "When a hidden pleasure wins over the self you show the world, the hidden self can take over."
 
-Pull icons (drawn in code): Knowledge, a lamp; Family, two linked rings; Fear, an open eye; Guilt, a scale; Revenge, a blade outline; Self-respect, a spine; Love, a heart; Principle, a book; Independence, an open door; Belonging, a hearth; Reputation, a mask facing out; Hidden pleasure, a mask facing in; Curiosity, a flask; Conscience, a candle; Fear, the open eye.
+Pull icons (painted, Art): Knowledge, an oil lamp; Family, two linked rings; Fear, a storm cloud with lightning (Victor and Jekyll share it); Guilt, a balance scale; Revenge, a coiled snake; Self-respect, a straight walking staff; Love, a red rose; Principle, a clasped book; Independence, an open door; Belonging, a teapot with two cups; Reputation, a white theatre mask; Hidden pleasure, a dark masquerade mask; Curiosity, a glass flask; Conscience, a lit candle.
 
 ## Interactions in detail
-- Dot motion: position = sum(weight x anchor) / max(sum(weight), 3), so weak pulls leave the dot near the center; 400 ms ease between stops, instant with Motion off. Threads show their number as text; screen readers hear "Stop 4: Guilt 3, Fear 2, Family 2. Strongest: Guilt."
+- Dot motion: anchors sit on a unit ring in the order listed in Content (first at the top, then clockwise, 72 degrees apart). Position = sum(weight cubed x anchor) / max(sum(weight cubed), 27), so the strongest pull wins the position and weak pulls leave the dot near the center (a lone pull of 1 moves it 0.04 of the way, 2 moves it 0.30, 3 all the way); 400 ms ease between stops, instant with Motion off. Plain weights (the old rule) put the dot nearest the wrong anchor at 6 of the 20 stops (checked in Python); cubed weights put it nearest the strongest pull at all 20. Threads show their number as text; screen readers hear "Stop 4: Guilt 3, Fear 2, Family 2. Strongest: Guilt."
 - Steppers: 0 to 3, arrow keys or buttons. Setting a stop is done when at least one pull is above 0 and one quote word is tapped.
-- Compare: hollow ring for our dot; distance words by Euclidean distance on the unit ring (under 0.15 close, under 0.35 some way off, else far off).
+- Compare: hollow ring for our dot, both placed by the same rule; distance words by Euclidean distance on the unit ring (under 0.15 close, under 0.35 some way off, else far off).
 - Theme: the most-fought pair is computed by the rule in Screens (top two per stop, ties shared) from the student's weights in Your read if all stops are set, else from ours; the chip row offers all five pulls anyway. With our weights: Victor, Knowledge and Family 2.0 (every other pair 1.0 or less); Jane, Self-respect and Love 2.83; Jekyll, Reputation and Hidden pleasure 3.0 (next Curiosity and Hidden pleasure 2.0).
 - Store: localStorage `cweb-work`, per character (weights, evidence words, theme sentence), try/catch. Clear my work (after Yes) empties it.
 - Keyboard: picker cards, scrubber (arrow keys), steppers, quote words (Tab then Space), path stops in Theme.
@@ -79,20 +81,25 @@ Pull icons (drawn in code): Knowledge, a lamp; Family, two linked rings; Fear, a
 ## Look
 - `kit:theme-912` dark, accent `--brand #ff8fb8` (pulled-thread rose: the dot, header rule, buttons), `--btn #ff8fb8`, brand text on brand `--brand-ink #1c1203`.
 - Threads in `--muted`, the strongest pull's thread in the accent and thicker; the path dotted in `--focus`; our hollow ring `--ink`.
-- Anchor nodes on `--sec-bg` with a 1 px `--line` border and their icon; never color alone.
+- Anchor nodes on `--sec-bg` with a 1 px `--line` border, their painted icon (40 px) and their name in text; never color alone. The setting painting sits behind the web at 18 percent opacity over `--paper`, so text and thread contrast are measured on `--paper`.
 - Neighbors: tone-dial orchid `#f29ff0` (this group, dE 26), idea-threads magenta `#ff6fd0` (this group), boolean-builder orchid, satire-decoder oxblood. Nearest catalog color: `--gr-4` `#ff8a8a` (dE 23), used in charts only.
 - Contrast (WCAG 2.1): brand on paper `#0d1219` 8.83:1, on panel 8.14:1, on sec-bg 7.71:1; brand-ink on brand 8.68:1; `--focus` on paper 13.2:1 or better. All pass AA.
 
 ## Art
-Optional portraits of the three characters as small round cards on the picker, made with Codex (`scripts/gptart.py`, people:true, Cory reviews): Victor in an 1810s student's coat by lamplight; Jane in a plain grey governess dress on Thornfield's roof; Jekyll in a frock coat in a cluttered laboratory. Style: muted ink-and-wash, no gore, no Hyde. If they are not made, the cards use drawn monograms. Everything else (web, anchors, icons, preview.svg showing a web with a path) is drawn in code.
+Seventeen painted images, all local FLUX (`scripts/localart.py`), people: false. No portraits: the dot is the character, and a painted setting tells the student which novel they are in as well as a face would.
+- `set-victor`: "Attic laboratory at night lit by one oil lamp, glass jars, copper wire coils and a long wooden table, rain on a small round window, late 1700s". 16:10; cutout no; people: false. Victor's picker card and dimmed web backdrop.
+- `set-jane`: "Stone battlements on the roof of an old English manor house at dusk, moorland and dark woods beyond, wind-torn clouds". 16:10; cutout no; people: false. Jane's picker card and backdrop.
+- `set-jekyll`: "Victorian laboratory cabinet, a glass-fronted press of chemical bottles, a red baize door, gas lamp glow, yellow fog at the window". 16:10; cutout no; people: false. Jekyll's picker card and backdrop.
+- Pull icon kit (14 cutouts, one per pull; Fear is shared by Victor and Jekyll). Shared prompt: "single object, painted in muted ink and wash, soft side light, plain dark backdrop". Pieces: `lamp` an oil lamp, lit; `rings` two linked gold rings; `storm` a dark storm cloud with a lightning bolt; `scale` a brass balance scale; `snake` a coiled black snake; `staff` a straight oak walking staff; `rose` a single red rose; `book` a leather book with a brass clasp; `door` an open wooden door with light beyond it; `teapot` a china teapot with two cups; `mask-white` a plain white theatre mask; `mask-dark` a dark velvet masquerade mask; `flask` a glass flask of glowing green liquid; `candle` a lit candle in a brass holder. 1:1; cutout yes; people: false. Sizing rule: each object fills about 80 percent of its square, centered; 40 px on anchor nodes, 24 px in the Pulls legend and the Theme chips.
+Drawn in code: the web, ring, threads and their numbers, the dot, the paths, the scrubber, and preview.svg (a web with a path).
 
 ## Voice
-Bank voice `wise-mentor` (Gacrux), style "Say thoughtfully and warmly, like a wise high school mentor". `Curio.voice`, scope the mode.
-- welcome (how, first open): "Pick a character. Every turning point pulls them several ways at once."
-- scrub (how, first Read the web): "Slide through the turning points. The dot goes where the pulls are strongest."
-- yours (how, first Your read): "Now you weigh it. Set each pull, then tap the words that prove the strongest one."
+Bank voice `wise-mentor` (Gacrux), style "Say thoughtfully and warmly, like a wise high school mentor". Not used by another spec in this batch. `Curio.voice`, scope the mode.
+- welcome (how, first open, picker showing; stale when a character is picked): "Tap a character to start. Every turning point pulls them several ways at once."
+- scrub (how, first Read the web; stale once the scrubber moves): "Drag the slider under the web through the turning points. The dot goes where the pull is strongest."
+- yours (how, first Your read; stale once a stop is set): "Now you weigh it. Set each pull with its plus and minus buttons, then tap the words in the quote that prove the strongest one."
 - far (event, each Compare that shows far off; stale when that stop changes): "We read that one differently. Which words made you choose that pull?"
-- theme (how, first Theme view): "Look at which pulls keep fighting. Finish the sentence: when one wins over the other, what happens?"
+- theme (how, first Theme view; stale once both chips are filled): "Tap the two pulls that keep fighting to fill the sentence. Then finish it and tap two stops on the path."
 - done (event, a theme saved with two stops attached; stale when the sentence changes): "That's a theme with proof. Read it to a partner and see if they'd pick the same stops."
 
 ## Family engine
@@ -105,17 +112,21 @@ none
 - Plot facts in the summaries (Waldman's lecture, Justine's trial, the destroyed companion, Elizabeth's death; Bertha Mason, the inheritance and the Rivers cousins, St. John's proposal; Carew's murder): the same editions, cross-checked with Britannica, "Frankenstein," "Jane Eyre," and "Strange Case of Dr. Jekyll and Mr. Hyde."
 - Wide Sargasso Sea (1966) as a retelling of Bertha's story: Britannica, "Jean Rhys."
 - Standards: CCSS ELA RL.9-10.3 and RL.9-10.2, https://www.thecorestandards.org/ELA-Literacy/RL/9-10/
+- Checks run in Python (2026-10-29) on our weights: most-fought pair with the shared-tie rule gives Victor Knowledge and Family 2.0, Jane Self-respect and Love 2.83, Jekyll Reputation and Hidden pleasure 3.0, matching Interactions. Dot rule: with plain weights the nearest anchor was not the strongest pull at Victor 4 (Fear, not Guilt), Jane 5, Jekyll 4, 5, 6 and 7; with cubed weights over max(sum, 27) the nearest anchor is a strongest pull at all 20 stops (Jane 3's three-way tie lands nearest Love, one of the three).
 
 ## Done when
-1. Every quote matches its edition word for word; Jane's "I" at stop 3 is italic; Jekyll's stop 1 shows the "[...]" cut.
-2. In Read the web, Victor's dot sits near Knowledge at stops 1 and 2, swings to Fear at stop 3, to Guilt at stop 4 and to Revenge at stop 6; the path shows six numbered stops and the look back card.
-3. The screen reader text for Jane's stop 3 reads "Self-respect 3, Principle 3, Love 3" and names a tie as "Strongest: Self-respect, Principle and Love, tied."
-4. In Your read, a stop cannot be set without a tapped quote word; Compare shows our ring and a distance word.
-5. Theme computes the most-fought pair with the shared-tie rule and matches the totals in Interactions for all three characters with our weights; Show ours reveals our sentence.
-6. Read my theme shows the sentence with the two attached quotes; Copy gives plain text.
-7. Reload keeps work per character; Clear my work (after Yes) empties it; no network; console clean.
-8. At every size in STANDARDS.md the web and the scrubber are visible together; 375 wide works in `drive.py --host`.
+1. Focus: at 1366x768 and 680x425 the web is the largest thing on screen in Read the web and Your read, centered, with the turning point card beside or under it.
+2. Every quote matches its edition word for word; Jane's "I" at stop 3 is italic; Jekyll's stop 1 shows the "[...]" cut.
+3. In Read the web, Victor's dot sits nearest Knowledge at stops 1 and 2, Fear at stop 3, Guilt at stop 4, Fear at stop 5 and Revenge at stop 6; at every stop of all three characters the dot is nearest a strongest pull; the path shows the numbered stops and the look back card.
+4. Dragging the scrubber again while the dot is moving sends it to the new stop at once.
+5. The screen reader text for Jane's stop 3 reads "Self-respect 3, Principle 3, Love 3" and names a tie as "Strongest: Self-respect, Principle and Love, tied."
+6. In Your read, a stop cannot be set without a tapped quote word; Compare shows our ring and a distance word.
+7. Theme computes the most-fought pair with the shared-tie rule and matches the totals in Interactions for all three characters with our weights; Show ours reveals our sentence.
+8. Read my theme shows the sentence with the two attached quotes; Copy gives plain text.
+9. Each anchor shows its painted icon and its name; the picker shows the three setting paintings; no people appear anywhere.
+10. Reload keeps work per character; Clear my work (after Yes) empties it; no network; console clean.
+11. At every size in STANDARDS.md the web and the scrubber are visible together; 375 wide works in `drive.py --host`.
 
 ## Open questions
 - [character-web] Jane Eyre's Bertha Mason is handled with one neutral line and the Wide Sargasso Sea afterlife. Enough, or leave the Bertha note out at grade 9?
-- [character-web] Codex portraits for the three characters, or monograms only?
+- [character-web] The picker now shows painted settings, not portraits (no people). Say if you would still like character portraits (they would go to Gemini and your review).

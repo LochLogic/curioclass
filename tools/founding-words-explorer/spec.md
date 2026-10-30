@@ -106,17 +106,23 @@ Contrast (WCAG): brand on paper 5.33, on panel 5.81, white on brand 6.27; ink on
 Type: a serif for document text at 1.1 rem with generous leading; the kit sans for UI. Drift badges are pill shapes with the badge word.
 
 ## Art
-none: drawn in code (parchment texture as a CSS gradient, clock glyph, trail lines). No people.
+Six painted images, all local FLUX (`scripts/localart.py`), people: false. This tool touches hard history (the Left out layer): no image shows a person, and the Left out cards stay text only, with no pictures.
+- `parchment`: "Close-up of plain cream laid paper, soft fibers and faint chain lines, even light, filling the frame". 16:10; cutout no; people: false. A full-frame texture under the document card, blended over `--paper` at 35 percent so the measured text contrast in Look still holds (check ink on the texture's darkest patch at build).
+- Then-and-now kit (2 cutouts, one shared prompt: "single object, three-quarter view, soft studio light, plain light backdrop, painted"): `quill` a goose quill pen standing in a glass inkwell; `laptop` an open laptop with a blank glowing screen. 1:1; cutout yes; people: false. Sizing rule: 24 px beside the **1787** and **Now** labels of every Drift switch, 40 px beside the **1828** and **Today** headings of the word card.
+- `webster`: "A thick old leather-bound dictionary, closed, worn gilt page edges, blank spine". 1:1; cutout yes; people: false. On the word card's 1828 section header (40 px) and the Webster's dictionary context card (120 px).
+- `assembly`: "Empty eighteenth-century assembly room, rows of wooden Windsor chairs, tables with green cloth, tall paned windows, quill pens on the tables, summer light". 16:9; cutout no; people: false. Header picture on the Preamble, First Amendment and Commerce Clause context cards (about 280 px wide).
+- `press`: "A wooden hand printing press of the 1790s in a print shop, a tray of metal type, stacks of blank paper, window light". 16:9; cutout no; people: false. Header picture on the Farewell Address context card.
+Drawn in code: the clock glyph, drift badges, switches, the Drift meter, the section ribbon, Trail tiles and trail lines, and the layer glyphs.
 
 ## Voice
-Bank voice `news-reader`, style "Say clearly and steadily, like an evening news anchor explaining a story." Not used by a family sibling or a grade 9 ELA neighbor. `Curio.voice`, `scope: () => state.mode + state.doc`. Document text is not read by the voice (Read speaks the hint).
-- w-read (how): "Words with a dotted line have changed since 1787. Tap one."
-- layers (how, first layer toggle): "Layers add notes. Turn on Left out to see who these words did not cover."
-- w-drift (how): "This is how the sentence sounds today. Flip a word to 1787 and watch it change."
-- same (how, first Hardly moved switch): "That word has hardly moved. The sentence stays the same."
-- meaning (how, first flip): "Did the meaning of the whole sentence change? Choose yes or no."
-- clue (event, after Check the clue; stale on Next, Previous or tab change): "The clue comes from the same documents."
-- w-trail (how): "Tap a purpose to follow it into the Constitution."
+Bank voice `news-reader`, style "Say clearly and steadily, like an evening news anchor explaining a story." Not used by a family sibling, a grade 9 ELA neighbor or another spec in this batch. `Curio.voice`, `scope: () => state.mode + state.doc`. Document text is not read by the voice (Read speaks the hint).
+- w-read (how, Read welcome; stale once a word card opens): "Words with a dotted line have changed since 1787. Tap one to open its card."
+- layers (how, first layer toggle; stale on mode change): "Layers add notes. Tap Left out to see who these words did not cover."
+- w-drift (how, Drift welcome; stale once a switch is flipped): "This is how the sentence sounds today. Tap a switch to 1787 and watch the reading change."
+- same (how, first Hardly moved switch flipped; stale on the next flip): "That word has hardly moved. The sentence stays the same."
+- meaning (how, first flip of any switch, when the Yes and No buttons turn on; stale once Yes or No is chosen): "Did the meaning of the whole sentence change? Tap Yes or No."
+- clue (how, first Check the clue; stale once Now, 1787 or Both is tapped, or on Next, Previous or tab change): "The clue comes from the same documents. Tap Now, 1787 or Both."
+- w-trail (how, Trail welcome; stale once a tile is tapped): "Tap a purpose to follow it into the Constitution."
 
 ## Family engine
 Uses `kit/founding-docs.js` as described in full in tools/premise-inspector/spec.md (Family engine).
@@ -133,17 +139,21 @@ Uses `kit/founding-docs.js` as described in full in tools/premise-inspector/spec
 - Webster 1828 senses: Noah Webster, An American Dictionary of the English Language (1828), online at https://webstersdictionary1828.com/Dictionary/<word> (insure, domestic, tranquillity, welfare, posterity, ordain, establishment, abridge, press, redress, regulate, commerce, palladium, jealousy, entangle, party), checked 2026-10-27.
 - Today glosses: the tool's own plain wording, checked against Merriam-Webster online; no definitions copied.
 - Committee of Style, September 1787; First Amendment ratified 1791; Farewell first printed in the American Daily Advertiser, September 1796: National Archives "Constitution of the United States: A History" and Mount Vernon's Farewell Address page; confirm both at build.
+- Checks run in Python (2026-10-29): Webster 1828 is 41 years after 1787 (as the context card says); E1 has five switches (insure, domestic Tranquility, Welfare, Posterity, ordain), four of which change a fill.
 - Voting left to the states: Article I, Section 2 (transcript above). Women barred in nearly every state, New Jersey the exception for property-owning women until its 1807 law: Wikipedia, "Women's suffrage in New Jersey", checked 2026-10-27; confirm at build against NPS or the New Jersey State Archives.
 
 ## Done when
-1. Every document tab shows the exact transcript text, and every drift word in Content has a dotted underline and opens its card with the 1828 quotation and sense number.
-2. In Drift E1, flipping insure, domestic Tranquility, Welfare and ordain changes the paraphrase to the 1787 fills; flipping Posterity shows "Same either way".
-3. Flipping every switch back restores the Today reading exactly.
-4. Check the clue on E1 shows the Article IV words and its line; no score appears anywhere.
-5. Trail draws each of the six purposes to its clause cards with article and section.
-6. Left out shows L1 to L6 in Read and L1 to L5 in Trail, each with exact words and a plain line, and the "slave" note with L1.
-7. Notes and switch states survive a reload; Clear my readings wipes them; with storage blocked the tool runs and says so.
-8. At 680 x 425 and 375 wide no horizontal scroll; switches, meter and tabs are reachable without scrolling.
+1. Focus: at 1366x768 and 680x425 the document text is the largest thing on screen in Read, the paraphrase with its switches in Drift, and the trail column in Trail.
+2. Every document tab shows the exact transcript text, and every drift word in Content has a dotted underline and opens its card with the 1828 quotation and sense number.
+3. In Drift E1, flipping insure, domestic Tranquility, Welfare and ordain changes the paraphrase to the 1787 fills; flipping Posterity shows "Same either way".
+4. Flipping every switch back restores the Today reading exactly.
+5. Check the clue on E1 shows the Article IV words and its line; no score appears anywhere.
+6. Trail draws each of the six purposes to its clause cards with article and section; tapping a second tile while a trail is still drawing replaces it at once, and flipping a switch during its highlight acts at once.
+7. Left out shows L1 to L6 in Read and L1 to L5 in Trail, each with exact words and a plain line, and the "slave" note with L1; the Left out cards carry no images.
+8. The Drift switches show the quill (1787) and laptop (Now) icons beside their words; context cards show their paintings; no people appear anywhere.
+9. No voice line names a control that is hidden or disabled ("Tap Yes or No" plays only once a switch has been flipped and the buttons are on).
+10. Notes and switch states survive a reload; Clear my readings wipes them; with storage blocked the tool runs and says so.
+11. At 680 x 425 and 375 wide no horizontal scroll; switches, meter and tabs are reachable without scrolling.
 
 ## Open questions
 - founding-words-explorer: Today glosses are the tool's own plain wording; use Wiktionary quotations instead (open licence, but long)?

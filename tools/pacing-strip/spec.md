@@ -22,10 +22,12 @@ Pacing is how many words you spend on how much story time: tag each sentence of 
 Header: title "Pacing Strip", small line "Words against story time."; scene picker **My scene** / **Sample: The Bus** / **Sample: The Key**; mode buttons **Write** (opens first for My scene; samples open in Strip), **Tag**, **Strip**, **Compare**; Motion, Sound, Read. Panel: `#hint`, grade setting, the readouts (below), **Save version**, **Clear my scene** (asks Yes / No).
 
 ### Write
-- A prompt shelf (8 neutral scene prompts, Content) with **Use this prompt**, and a plain writing area. A note: "Aim for 10 to 25 sentences. One scene, one turning point."
+Focus: the writing area, center and widest; the prompt shelf is a row of small painted cards above it.
+- A prompt shelf (8 neutral scene prompts, Content), each card with its painted picture (Art) and **Use this prompt**, and a plain writing area. A note: "Aim for 10 to 25 sentences. One scene, one turning point."
 - Live count: words and sentences. Nothing else is shown while writing.
 
 ### Tag
+Focus: the sentence rows and their chips.
 - The scene as a list of sentence rows, numbered. Each row has two chip sets:
   - Kind: **Action** (▶), **Dialogue** (❝), **Description** (◐), **Reflection** (✎). One per sentence; a sentence that mixes two takes the one that does most of the work (the tip says so).
   - Story time: **Clock stopped** (description or thought while nothing happens), **An instant**, **Seconds**, **A minute**, **Minutes**, **An hour**, **Hours**, **A day or more**.
@@ -35,13 +37,14 @@ Header: title "Pacing Strip", small line "Words against story time."; scene pick
 - At 11-12, a third chip set **Plot line A / B** appears, with a box to name each line (for example "the game", "Dani").
 
 ### Strip
+Focus: the strip and its speed lane, full width across the middle of the stage; readouts in the panel.
 - Stage: the strip, one horizontal band of blocks in sentence order, each block's width proportional to its words (with a 6 px minimum), filled by kind with a pattern and glyph: Action solid with ▶, Dialogue dotted with ❝, Description hatched with ◐, Reflection wavy with ✎. The turning point's blocks have a flag above them and are bracketed.
 - Under it, the speed lane, aligned block for block: Clock stopped draws a flat bar labeled "pause"; An instant to A minute draw a level bar labeled "scene" (words take about as long as the moment); Minutes and longer draw chevrons labeled "summary", more chevrons for more time skipped.
 - At 11-12, the strip splits into two lanes (A on top, B under), each sentence in its line's lane, so crosscutting shows as blocks alternating lanes.
 - Readouts (panel), all in words and numbers:
   - "Turning point: 13 of 116 words (11 percent)."
   - Share of words by kind (four numbers with glyphs).
-  - Story time covered by the scene, as a range from the time chips ("about 3 to 4 hours").
+  - Story time covered by the scene: the sum of the time chips' values, rounded to a friendly unit ("about 11 hours"), with the note "Rough total: sentences that overlap in time count twice."
   - Readings (soft lines, shown only when they apply; never called errors): **Rush**: "The turning point has under 15 percent of the words." **Long run**: "Sentences 1 to 5 are all description before anything happens." **Jump**: "The clock skips from seconds to hours right after the turning point." **No pause at the turn**: "Nothing slows down at the turning point: it is all action." **Ending**: always shown once readouts are on, from the last sentence's kind: "Your scene ends by looking back." when it is Reflection; otherwise "Your scene ends on Action. Does the reader learn what it meant or how it settled?" (with that sentence's kind in place of Action). **Opening**: always shown, naming the first sentence's kind and whether a character and a place are named in the first two sentences (the student ticks **Who** and **Where** chips on the Tag screen; the tool never guesses).
 - Tap any block to jump to its sentence in a side editor and change it in place; the strip re-measures as the student types (after a 400 ms pause).
 - Revision helpers (buttons, they suggest moves and never write words):
@@ -50,6 +53,7 @@ Header: title "Pacing Strip", small line "Words against story time."; scene pick
 - **One reading** (samples only): draws the tool's tags as thin outlines over the student's, with "One reader's tags. Yours can differ."
 
 ### Compare
+Focus: the two strips, stacked.
 - Two saved versions as two strips stacked, with the readouts side by side and the change in the turning point's share ("9 percent to 31 percent").
 
 ## Content
@@ -93,7 +97,7 @@ All scenes and prompts are original, written for Curio Class.
 - Plot lines at 11-12: A "the key" (6 to 11), B "the library" (1 to 5).
 
 ### Time values used by the measures (seconds; shown on screen only as words)
-Clock stopped 0; An instant 1; Seconds 10; A minute 60; Minutes 600; An hour 3600; Hours 14400; A day or more 86400. The covered-time range adds the chips' lower bounds and upper bounds: instant 0 to 2 s, seconds 2 to 59 s, a minute 1 to 2 min, minutes 2 to 59 min, an hour 1 to 2 h, hours 2 to 23 h, a day or more 1 day and up ("1 day or more" when present).
+Clock stopped 0; An instant 1; Seconds 10; A minute 60; Minutes 600; An hour 3600; Hours 14400; A day or more 86400. Covered time is the sum of these values, shown in seconds under 2 minutes, minutes under 2 hours, hours under 2 days, days after that, rounded to a whole number ("about 11 hours"). With One reading's tags: The Bus about 11 hours (40,880 s), The Key about 2 days (173,421 s). (The old rule added lower and upper bounds and gave The Bus "about 7 to 54 hours", too wide to read.)
 
 ### Craft notes (a **Pacing words** card in the panel)
 - "Scene: the words take about as long to read as the moment takes to happen."
@@ -112,27 +116,29 @@ Clock stopped 0; An instant 1; Seconds 10; A minute 60; Minutes 600; An hour 360
 - Save version keeps text and tags (up to 8 versions). Squeeze saves a version first automatically.
 - Storage: localStorage `pacing-strip:v1` (try/catch): My scene, tags, versions, grade setting. Sample edits are kept separately per sample with **Reset sample**. Clear my scene asks first.
 - Sizes: the strip is redrawn at real pixel size each layout; when blocks would go under 6 px it wraps into two rows with a "continued" mark. At 760 wide and below, the side editor becomes a bottom sheet. At 680x425 the strip, speed lane and readouts fit without scrolling. At 375 the strip runs vertically (blocks as rows whose height is the word count) so text stays readable. No horizontal page scroll.
-- Motion off: blocks resize instantly instead of easing.
+- Motion off: blocks resize instantly instead of easing. With Motion on, blocks ease over 250 ms; a tap on a block during an ease opens its sentence at once, and a chip changed during an ease restarts it from where the blocks are.
 
 ## Look
 - Accent `--brand #3fe0c5` (film-leader mint: header rule, the turning-point flag, active mode, Stretch the turn) on the kit `theme-912` base. Kind fills (each with glyph and pattern): Action `#5aa9ff` solid, Dialogue `#ffd166` dots, Description `#c9a0ff` hatch, Reflection `#ff8a8a` waves; speed lane `#a6b3c4` with labels.
-- Contrast (WCAG 2.1): brand on panel #141b25 10.45:1, on sec-bg 9.90:1; brand-ink #1c1203 on brand 11.15:1; glyphs drawn in `#0d1219` on each fill, each above 7:1 (confirm at build).
+- Contrast (WCAG 2.1): brand on panel #141b25 10.45:1, on sec-bg 9.90:1; brand-ink #1c1203 on brand 11.15:1; glyphs drawn in `#0d1219` on each fill, computed 2026-10-29: Action 7.65:1, Dialogue 13.03:1, Description 8.91:1, Reflection 8.28:1; speed lane labels on #a6b3c4 8.83:1.
 - Different from ELA 9-12 neighbors: argument-map cyan #19ffff on navy (dE 18.5, and this is greener and softer), source-mixer cyan #45d4e8, theme-ledger and others on light. Different from this group's accents.
 
 ## Art
-None: drawn in code. No people.
+Eight painted prompt pictures, all local FLUX (`scripts/localart.py`), people: false. The strip, lanes and readouts are charts and stay in code.
+- Prompt kit (8 images, one per Write prompt; the first two are also the two samples' pictures). Shared prompt: "painted, story-book realism, quiet light, wide view, signs and labels blank". Pieces: `p1-bus` a yellow school bus stopped on the shoulder of a rainy two-lane highway between flat fields, hazard lights on, grey sky; `p2-key` a small brass key lying on worn green library carpet beside a fallen book with a blank cover; `p3-cake` a half-frosted layer cake on a kitchen counter with bowls, spatulas and a wall clock; `p4-stage` a school auditorium stage gone dark, music stands and chairs lit only by an exit-sign glow; `p5-dog` a scruffy brown stray dog sitting on a sidewalk curb in morning light; `p6-storm` a small orange tent at a lakeside campsite under a black storm front; `p7-trophy` a single gold trophy on a table draped in blue cloth on an empty school stage; `p8-locker` a row of school lockers with one door open and a small wrapped package inside. 4:3; cutout no; people: false. Prompt shelf cards (about 140 px wide; 100 px at 375 wide); the scene picker shows p1 for Sample: The Bus and p2 for Sample: The Key.
+Drawn in code: the strip, kind patterns and glyphs, the speed lane, flags, plot-line lanes and readouts.
 
 ## Voice
-Bank voice `playful-friend`, style "Say playfully and cheerfully, like a fun music teacher talking about tempo." The only 9-12 ELA tool with this voice. The kit voice queue (`Curio.voice`), `scope: () => state.mode + ':' + state.scene`. Scenes are on screen, never voiced.
-- w-write (how, welcome Write): "Pick a prompt or start your own. Write one scene with one turning point."
-- w-tag (how, welcome Tag): "Give each sentence a kind and a story time. Then tap the flag on your turning point."
-- w-strip (how, welcome Strip): "Each block is as wide as its words. Look at how much room your turning point gets."
-- rush (event, Rush appears; stale when it clears): "Your turning point is rushed. Try Stretch the turn."
-- run (event, Long run appears; stale when it clears): "A long run of one kind. Try Squeeze a run."
-- stretch (how, first Stretch the turn): "Pick a move, then tap Insert a blank sentence and write it yourself."
-- squeeze (how, first Squeeze a run): "Say all of the selected sentences in one sentence. Then tap Replace."
-- w-compare (how, welcome Compare): "Two versions, one above the other. Did the turning point get more room?"
-- reading (how, first One reading): "The thin outlines are one reader's tags. Yours can differ."
+Bank voice `playful-friend`, style "Say playfully and cheerfully, like a fun music teacher talking about tempo." The only 9-12 ELA tool with this voice, and not used by another spec in this batch. The kit voice queue (`Curio.voice`), `scope: () => state.mode + ':' + state.scene`. Scenes are on screen, never voiced.
+- w-write (how, Write welcome; stale once the writing area has text): "Tap Use this prompt on a card, or start typing your own. Write one scene with one turning point."
+- w-tag (how, Tag welcome; stale once every row is tagged): "Tap a kind and a story time on each sentence. Then tap the flag on your turning point."
+- w-strip (how, Strip welcome; stale on mode change): "Each block is as wide as its words. Look at how much room your turning point gets, and tap a block to edit it."
+- rush (event, each time Rush appears; stale when it clears): "Your turning point is rushed. Try Stretch the turn."
+- run (event, each time Long run appears; stale when it clears): "A long run of one kind. Try Squeeze a run."
+- stretch (how, first Stretch the turn; stale when its cards close): "Pick a move, then tap Insert a blank sentence here and write it yourself."
+- squeeze (how, first Squeeze a run; stale when the box closes): "Say all of the selected sentences in one sentence. Then tap Replace with my sentence."
+- w-compare (how, Compare welcome; stale on mode change): "Two versions, one above the other. Did the turning point get more room?"
+- reading (how, first One reading; stale when it is turned off): "The thin outlines are one reader's tags. Yours can differ."
 
 ## Family engine
 None.
@@ -141,18 +147,21 @@ None.
 - Standards: CCSS ELA W.9-10.3, https://www.thecorestandards.org/ELA-Literacy/W/9-10/; W.11-12.3, https://www.thecorestandards.org/ELA-Literacy/W/11-12/.
 - Scene, summary and pause as kinds of narrative speed: Gérard Genette, Narrative Discourse (1972; English translation 1980), named only, not quoted; the Pacing words card is original wording and says the thresholds are rules of thumb.
 - Scenes and prompts: original, written for Curio Class.
+- Checks run in Python (2026-10-29) with One reading's tags and words split on spaces: The Bus 116 words (14, 12, 10, 13, 15, 13, 14, 5, 12, 8), turning point 13 = 11 percent (Rush), next chip Hours after Seconds = 1,440 times (Jump), turning point all Action (No pause), longest same-kind run before the turn 3 (no Long run), ends on Reflection. The Key 133 words, turning point 13 = 10 percent (Rush), An instant to Minutes = 600 times (no Jump), sentences 1 to 5 Description (Long run), No pause, ends on Action. Covered time: The Bus 40,880 s (about 11 hours), The Key 173,421 s (about 2 days); the old bounds rule gave The Bus about 7 to 54 hours and was replaced.
 
 ## Done when
+- Focus: at 1366x768 and 680x425 in Strip, the strip and speed lane run full width across the middle and are the largest thing on screen, with the readouts visible without scrolling.
 - Typing a scene splits it into rows per the rules; quoted dialogue gets a ❝ suggestion and nothing else is suggested.
 - The strip's block widths are proportional to word counts (check three blocks against their counts) and every block shows its glyph and pattern.
 - The speed lane shows pause, scene and summary from the time chips.
-- With One reading's tags, The Bus shows Rush (13 of 116 words, 11 percent), Jump and No pause at the turn; The Key shows Rush (13 of 133, 10 percent), Long run (sentences 1 to 5) and No pause, and no Jump; recompute in Python from the text.
+- With One reading's tags, The Bus shows Rush (13 of 116 words, 11 percent), Jump and No pause at the turn and "about 11 hours"; The Key shows Rush (13 of 133, 10 percent), Long run (sentences 1 to 5) and No pause, no Jump, and "about 2 days"; recompute in Python from the text.
+- A tap on a block while the strip is easing opens its sentence at once; no voice line names a control that is hidden or disabled.
 - Stretch the turn inserts blank sentences only; Squeeze replaces the selected run with the student's sentence and saves a version first.
 - At 11-12 the strip shows two lanes and the samples' plot lines fall in the listed lanes.
 - Compare shows two strips with the turning-point share change.
 - The Bus shows the Ending line "Your scene ends by looking back." (sentence 10 is Reflection); The Key shows "Your scene ends on Action..." (sentence 11 is Action).
-- Work survives a reload; Clear my scene asks first; Reset sample restores a sample.
-- At 375 the strip runs vertically with readable text; at 680x425 the strip, lane and readouts are visible without scrolling.
+- Each prompt card shows its painted picture; no people appear.
+- Work survives a reload; Clear my scene asks first; Reset sample restores a sample; at 375 the strip runs vertically with readable text.
 
 ## Open questions
 None. Settled: the Rush and Long run thresholds stay fixed and labeled as rules of thumb on screen; a teacher setting would be an extra, not the main path (BASELINE rule 4).

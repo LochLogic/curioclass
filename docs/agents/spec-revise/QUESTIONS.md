@@ -29,3 +29,8 @@
 
 ## R06
 - Carried only: sample-machine two-hopper mode; slope-field-garden BC models; solid-spinner U8 motion and shell method; speedometer implicit differentiation; zoom-to-the-limit F-IF.B.6.
+
+## R07
+- audience-shift-briefing: 10 listener portraits (people, Gemini; initial badges stand in); right mix, or non-people listeners?
+- character-web: picker now shows painted settings instead of portraits; still want character portraits?
+- Carried: Bertha note; E5 deaths card; locked finding; founding-words-explorer glosses, echoes split, Johnson 1755; Du Bois wording and left-out paragraphs.
