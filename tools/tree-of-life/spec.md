@@ -32,35 +32,45 @@ Topic line: evidence for evolution and natural selection.
 ## Screens and modes
 **Tree** (opens first). Stage: a dated tree drawn in code, time axis along the bottom in millions of years (Ma) on a
 log-like scale with ticks 1, 10, 100, 1,000, 1,500 (labeled; real ages printed on every node, so the squeeze never
-hides a number). Sixteen tips on the right, each with a portrait and a common name. Panel: **Lens** `.seg`
-**Time**, **Molecules**, **Anatomy**, **Fossils**, a detail card, `hint`, `tip`.
+hides a number). Sixteen tips on the right, each with a painted round portrait and a common name. Panel: **Lens**
+`.seg` **Time**, **Molecules**, **Anatomy**, **Fossils**, a detail card, `hint`, `tip`.
+Focus: the tree, the biggest, central thing in every lens (at least 60 percent of the stage); the Molecules scatter
+and the Anatomy limbs open in the detail area under or beside it, never covering it.
 - Time: click any node to see "Last common ancestor of human and dog: about 89 million years ago" (node ages
   below). Click two tips to have their meeting node light up.
 - Molecules: each tip shows a bar and number: cytochrome c amino acids that differ from human (out of 104).
   **Sort by difference** reorders the tips list in the panel (the tree itself never redraws). A scatter (graphing.js)
   plots split time from humans (x) against differences (y): the points climb together, not exactly in a line.
 - Anatomy: five forelimbs (human arm, horse leg, gray whale flipper, chicken wing, bullfrog front leg) drawn in
-  code side by side, bones colored by name with a key (upper arm, forearm pair, wrist, hand); click a bone to highlight it
+  code side by side (a bone diagram, kept in code because every bone is a clickable, recolored shape), each under the
+  small painted portrait of its animal, bones colored by name with a key (upper arm, forearm pair, wrist, hand); click a bone to highlight it
   in all five. Text: "same bones, different jobs".
-- Fossils: fossils pinned to the branches where they sit, each a card with age and what it shows (list in Content).
+- Fossils: fossils pinned to the branches where they sit (a small painted fossil thumbnail on the branch), each
+  opening a card with its painted fossil, age and what it shows (list in Content).
 **Which lens agrees?** button (any lens): asks "Is a whale closer to a hippo or to a dog?" and makes the student check
 each lens in turn; each lens adds a tick to a small four-row table (lens, says). No score.
 
-**Whale case** (a guided case, five clue cards in order, Next and Back). 1 Anatomy: whales have a flipper with arm
-bones and a tiny hip bone. 2 Time: the tree says whale and hippo split about 53 Ma. 3 Fossils: Pakicetus (about 50
+**Whale case** (a guided case, five clue cards in order, Next and Back; each card has a painted picture: 1
+tol-whale-hip, 2 the whale and hippo portraits, 3 the three whale fossils, 4 tol-ankle, 5 the whale and hippo
+portraits joined by the tree's branch). Focus: the clue card, large, with the tree's whale branches lit beside it;
+on the last card the tree takes the center for the drop. 1 Anatomy: whales have a flipper with arm bones and a tiny
+hip bone. 2 Time: the tree says whale and hippo split about 53 Ma. 3 Fossils: Pakicetus (about 50
 Ma, land animal with a whale ear bone), Ambulocetus (about 49 Ma), Dorudon (about 40 Ma, fully at sea with small hind
 legs) placed on the branch. 4 The ankle: early whale fossils have the double-pulley ankle bone found only in the
 group with hippos, pigs and deer (Gingerich 2001, Thewissen 2001). 5 DNA studies agree. Last card: the student
 drags the whale tip to the branch it belongs on (hippo, dog or horse); a wrong drop shows which clue disagrees.
 
-**Make a fork** (the selection model). Two islands side by side, each a dot strip of 200 finches by beak depth
-(mm) with a histogram, a seed bar showing the island's best beak depth (θ), and a survivors count. Controls:
+**Make a fork** (the selection model). Two islands side by side, each headed by its painted island (tol-island-a,
+tol-island-b, a band across the top of its panel) and its painted finch cutout (tol-finch-deep on A, tol-finch-slim
+on B), then a dot strip of 200 finches by beak depth (mm, code) with a histogram, a seed bar showing the island's best beak depth (θ), and a survivors count. Controls:
 **Next generation**, **Run 10**, **Reset**; **Gene flow** slider 0 to 20 percent of birds swapping islands each
 generation (step 1, default 0); **Drought** buttons, one per island (moves that island's best beak 2 mm deeper);
 **Seed** field (number, default 1) so a class can share a run. A chart under the islands: mean beak depth for
 each island by generation, with a band where they differ by more than 2 mm. When they first differ by more than 2
 mm a fork appears on a small tree drawing: "Model rule: we call it a fork when the island means differ by more than
 2 mm." Readouts per island: mean, survivors last generation, share of beaks over 10 mm.
+Focus: the two dot strips and their histograms, side by side and central; the painted island bands are headers, and
+the means chart sits under them.
 
 ## Content
 Tips, NCBI taxon id, cytochrome c difference from human: human 9606 (0, the reference), chimpanzee 9598 (0), rhesus
@@ -88,11 +98,17 @@ Finch model (Make a fork, labeled "model" on screen; numbers from Python, Curio 
   competition: only some survive; better fit: survival curve. The four HS-LS4-2 factors are named on screen.)
 - Gene flow: that percent of chicks swap islands before the next selection.
 - Extinction: an island with under 10 survivors has no chicks; it shows "Extinct on this island".
-- Expected behavior (averaged model): island A survivors about 87 of 200 in generation 1, rising to about 170 by
-  generation 8; means differ by more than 2 mm at about generation 7 (seeded runs 6 or 7); final means 11.0 and 8.0,
-  spread settles near sd 0.7. Gene flow 2 percent: fork at about generation 9; 3 percent: about 12; 4 percent or more:
-  never (steady gap 1.95 mm at 4, 1.17 at 10). Drought on an adapted island: about 87 survivors; a second drought
-  before it adapts (4 mm shift): about 9 survivors, usually extinction.
+- Expected behavior (the model itself, simulated bird by bird, 100 to 400 seeded runs each): island A survivors
+  about 87 of 200 in generation 1, rising to about 170 by generation 8; island B about 155 at once. Means first differ
+  by more than 2 mm at generation 6 or 7 in 4 runs of 5 (5 to 9 in nearly all); final means near 11.0 and 8.0. Gene
+  flow (steady gap after 40 generations, fork generation): 2 percent 2.8 mm, about 7 to 8; 4 percent 2.6 mm, about
+  9; 6 percent 2.4 mm, about 11; 8 percent 2.2 mm, about 14; 10 percent 2.0 mm, usually 15 to 30 (the gap hovers at
+  the line); 12 percent 1.8 mm, about half the runs never fork in 60 generations; 15 percent 1.5 mm and 20 percent
+  1.1 mm, never. Migrants land on the wrong island's seeds and mostly die before breeding, so it takes far more gene
+  flow to stop a fork than an averaged formula suggests. Drought on an adapted island: about 76 survivors, the island
+  recovers. Two drought presses before the next generation (a 4 mm shift at once): about 7 survivors, extinct in
+  about 4 runs of 5. One drought per generation for two generations: extinct in about 1 run in 4; for three
+  generations: always extinct.
 Hints: Tree "<b>Tree.</b> Pick a lens, then click a node or two tips. Do the lenses tell the same story?" / Whale
 "<b>Whale case.</b> Read each clue, then place the whale on its branch." / Fork "<b>Make a fork.</b> Press Next
 generation and watch the beak means. Then add gene flow and try again."
@@ -109,7 +125,10 @@ model has one number and one best beak per island."
 - Whale drop: drag or keyboard (pick the whale, then pick a branch button). Wrong drop: "The ankle clue says
   otherwise" (or the clue that disagrees); never a fail sound.
 - Fork: Next generation animates selection (unfit dots fade, 600 ms) then breeding (new strip, 600 ms); Motion off:
-  instant. Run 10 runs ten generations at 4 per second. The seeded generator is probability.js `Rand(seed)`, so the
+  instant. Run 10 runs ten generations at 4 per second (2.5 s). While it runs every control stays live: Reset stops
+  it at once; Gene flow and Drought apply from the next generation; a second Run 10 or Next generation adds its
+  generations at once after the current one. The dot strip shows each generation's result as soon as it is computed;
+  the fade only decorates it. The seeded generator is probability.js `Rand(seed)`, so the
   same seed gives the same run on every computer.
 - Gene flow and drought change the next generation only. Reset keeps the slider and seed.
 - Mode change: `V.hush()`; Tree selection and Fork run kept per mode.
@@ -117,44 +136,72 @@ model has one number and one best beak per island."
 ## Look
 Accent `--brand #b8ead3` (celadon, a pale museum green), `--brand-ink #10161f`. Stage `#0f1517`, branches
 `#8fa3a8` (6.88:1 on `#10171a`), time axis ink. Island A dots warm `#ffb36b`, island B cool `#7cc4ff`, also told
-apart by shape (circles and squares) and labels. Bone colors with a text key (never color alone).
+apart by shape (circles and squares) and labels; the painted island bands echo them (A dry and golden, B green and
+blue). Bone colors with a text key (never color alone).
 Contrast (computed): brand on --panel 12.98:1, on --sec-bg 12.30:1; brand-ink on brand 13.62:1. Nearest 9-12
 accent #efe6d2 (dE 21); in this group punnett-predictor's #a3ffaf is the closest (dE 33).
 
 ## Art
-Cloudflare FLUX.2 (`scripts/cfart.py`), natural history portraits, one animal or plant centered on a plain dark
-slate background, soft studio light, no lettering, webp, 1:1, long side 512 px, cutout no, people no. Used as round
-tip portraits (shown at 44 px, 96 px in the detail card).
-- tol-chimp: an adult chimpanzee head and shoulders, calm, facing slightly left.
-- tol-rhesus: a rhesus macaque sitting, face toward the viewer.
-- tol-mouse: a brown house mouse on all fours, side view.
-- tol-dog: a mixed breed dog sitting, three-quarter view.
-- tol-horse: a bay horse head and neck, side view.
-- tol-whale: a gray whale surfacing, mottled gray skin, side view.
-- tol-hippo: a hippopotamus standing in shallow water, three-quarter view.
-- tol-kangaroo: a red kangaroo standing upright, side view.
-- tol-chicken: a brown hen standing, side view.
-- tol-rattlesnake: an eastern diamondback rattlesnake coiled, pattern clear, no strike pose.
-- tol-bullfrog: an American bullfrog sitting, three-quarter view.
-- tol-tuna: a skipjack tuna side view, striped belly.
-- tol-fly: a fruit fly, red eyes, macro side view.
-- tol-yeast: budding yeast cells as a microscope view, round cells, some with small buds.
-- tol-wheat: a single ripe bread wheat ear on its stem.
-Human tip: a plain code-drawn outline (no photo of a person).
+Local FLUX (`scripts/localart.py`), no people. 29 images. House style for all: a natural history museum painting,
+soft studio light, true colors, no lettering.
+- Tip portraits (one shared prompt: "a natural history portrait, one living thing centered on a plain dark slate
+  background, soft studio light"; 1:1; cutout no; people no; round tip portraits at 44 px, 96 px in the detail card,
+  and the Anatomy limb headers): tol-chimp (an adult chimpanzee, head and shoulders, calm, facing slightly left),
+  tol-rhesus (a rhesus macaque sitting, face toward the viewer), tol-mouse (a brown house mouse on all fours, side
+  view), tol-dog (a mixed breed dog sitting, three-quarter view), tol-horse (a bay horse, head and neck, side view),
+  tol-whale (a gray whale surfacing, mottled gray skin, side view), tol-hippo (a hippopotamus standing in shallow
+  water, three-quarter view), tol-kangaroo (a red kangaroo standing upright, side view), tol-chicken (a brown hen
+  standing, side view), tol-rattlesnake (an eastern diamondback rattlesnake coiled and resting, pattern clear),
+  tol-bullfrog (an American bullfrog sitting, three-quarter view), tol-tuna (a skipjack tuna, side view, striped
+  belly), tol-fly (a fruit fly, red eyes, macro side view), tol-yeast (budding yeast cells under a microscope, round
+  cells, some with small buds), tol-wheat (a single ripe bread wheat ear on its stem), tol-human-footprint (a single
+  bare human footprint pressed into smooth wet sand, top view; stands for the human tip, so no person is shown).
+- Fossil kit (one shared prompt: "a museum fossil specimen in pale gray-brown rock, top lit, on a plain dark slate
+  background"; 4:3; cutout no; people no; Fossils lens cards at 240 px and branch thumbnails at 40 px; the three
+  whales also on clue card 3): tol-tiktaalik (a flat-headed fossil fish with a neck and sturdy front fins with wrist
+  bones), tol-archaeopteryx (a crow-sized fossil bird with clear feather impressions on its wings, a long bony tail and
+  small teeth), tol-pakicetus (a long-snouted fossil skull of a wolf-sized four-legged early whale relative),
+  tol-ambulocetus (a fossil skeleton of a crocodile-shaped early whale with four strong legs and big hind feet),
+  tol-dorudon (a long fossil skeleton of an early whale with a sleek body, flippers and tiny hind legs),
+  tol-sahelanthropus (a dark brown fossil skull with a small braincase and a heavy brow ridge, lying on rock),
+  tol-jebel-irhoud (pale fossil skull pieces with a flat face and a long low braincase, lying on rock).
+- tol-whale-hip: a small curved whale hip bone lying on a dark museum cloth beside a long whale rib for scale,
+  top view; 4:3; cutout no; people no; clue card 1.
+- tol-ankle: a single fossil ankle bone with a pulley-shaped groove at each end, three-quarter view, on a dark museum
+  cloth; 4:3; cutout no; people no; clue card 4.
+- tol-island-a: a dry rocky volcanic island under hard sun, black lava rock, low cactus and thorny scrub with hard
+  dark seed pods on the ground, wide view; 4:1; cutout no; people no; the band across the top of island A's panel.
+- tol-island-b: a green damp volcanic island, soft grasses and leafy shrubs heavy with tiny pale seeds, misty hills,
+  wide view; 4:1; cutout no; people no; the band across the top of island B's panel.
+- Finch kit (one shared prompt: "a single dark brown ground finch perched on a twig, side view, on a plain green
+  background"; 1:1; cutout yes; people no; 64 px beside each island's name, same size): tol-finch-deep (a thick deep
+  crushing beak), tol-finch-slim (a small slender pointed beak).
+Drawn in code: the tree, time axis, node ages, bars, scatter, the five forelimb bone diagrams, the lens table, dot
+strips, histograms, seed bars, means chart, the small fork tree, preview.svg.
 
 ## Voice
-Bank `knowing-guide` (a museum curator here): even, curious, never hurried. Uses `Curio.voice`, scope = mode.
-- welcomeTree (how): "Welcome to Tree of Life. Pick a lens, then click a branch point or two living things."
-- welcomeWhale (how): "Whale case. Read each clue, then place the whale on the branch where it belongs."
-- welcomeFork (how): "Make a fork. Press Next generation and watch the two islands' beaks."
-- lensMolecules (how, first Molecules lens): "Each number counts the cytochrome c amino acids that differ from ours."
-- lensAnatomy (how, first Anatomy lens): "Click a bone to find it in every limb."
-- whalePlaced (event, correct drop; stale on Back): "The whale goes beside the hippo. Every clue agrees."
-- whaleWrong (event, wrong drop): "One clue disagrees. Look at the highlighted card."
-- fork (event, the first time the means split by 2 mm in a run): "The islands have forked. The beak means now differ
-  by more than two millimeters."
-- extinct (event, each extinction): "Too few birds survived on this island to raise chicks."
-- flowHint (how, first gene flow above 4 percent): "With this much gene flow, the islands keep mixing back together."
+Bank `clear-teacher` (Iapetus), restyled: "Say clearly and kindly, like a patient museum educator at a fossil hall."
+Changed from `knowing-guide`, which spectrum-explorer (a `neighbors.py` explorer neighbor) also uses; clear-teacher
+is used nearby only by hot-meets-cold, which is not on this tool's list. Uses `Curio.voice`, scope = mode.
+- welcomeTree (how; Tree entered; stale once a node or tip is clicked): "Welcome to Tree of Life. Pick a lens at the
+  top of the panel, then click a branch point or two living things."
+- welcomeWhale (how; Whale case entered; stale once Next is pressed): "Whale case. Read the clue, then press Next.
+  On the last card, drag the whale to its branch."
+- dropHow (how; last clue card reached; stale once the whale is dropped): "Drag the whale onto the hippo, dog or
+  horse branch. Or press the whale, then a branch button."
+- welcomeFork (how; Make a fork entered; stale once a generation runs): "Make a fork. Press Next generation and watch
+  the two islands' beaks."
+- lensMolecules (how; first Molecules lens; stale on a lens change): "Each number counts the cytochrome c amino acids
+  that differ from ours."
+- lensAnatomy (how; first Anatomy lens; stale once a bone is clicked): "Click a bone to find it in every limb."
+- whalePlaced (event; correct drop; stale on Back): "The whale goes beside the hippo. Every clue agrees."
+- whaleWrong (event; each wrong drop; stale on the next drop): "One clue disagrees. Look at the highlighted card,
+  then drag the whale again."
+- fork (event; the first time the means split by 2 mm in a run; stale on Reset): "The islands have forked. The beak
+  means now differ by more than two millimeters."
+- extinct (event; each extinction; stale on Reset): "Too few birds survived on this island to raise chicks."
+- flowHint (how; first gene flow of 15 percent or more; stale on the next slider move): "With this much gene flow,
+  the islands keep mixing back together."
 
 ## Family engine
 none. Uses `kit/probability.js` (from medical-test-paradox: `Rand(seed)` for all finch randomness, `Tally` for the
@@ -177,23 +224,42 @@ histograms) and `kit/graphing.js` (scatter in Molecules, beak means chart).
 - Finch beak depth and drought selection (qualitative only): Grant, P. R. and Grant, B. R. (2002), Science
   296:707-711. All finch numbers are model values.
 - NGSS HS-LS4 evidence statements: https://www.nextgenscience.org (four factors in HS-LS4-2).
+- Checks run in Python (Curio Class, 2026-10-29): node ages nest correctly (6.45 < 28.90 < 83.51 < 89.48; 73.20 and
+  53.01 < 75.95 < 89.48; 280.68 < 318.82; each older node larger); 104 - 37 = 67 shared with yeast; kangaroo 10 and
+  dog 11 against splits of 159.16 and 89.48 Ma. The finch model run bird by bird with numpy (200 seeds no gene flow,
+  100 seeds per gene flow level, 400 per drought case): fork generation 6 (79 runs), 7 (79), 8 (26), 5 (9), other
+  (7); gen 1 survivors 87.4, gen 8 171.2; steady gaps 2.78, 2.58, 2.37, 2.17, 1.97, 1.79, 1.51, 1.08 mm at 2, 4,
+  6, 8, 10, 12, 15, 20 percent; one drought 76 survivors, double press 7.4 survivors and 78 percent extinct. These
+  replaced the old averaged-model numbers (fork never at 4 percent, gap 1.95 mm; drought 87 and 9 survivors), which
+  the bird-by-bird model the tool runs does not reproduce.
 
 ## Done when
 1. Tree, Time lens: clicking whale then hippo lights the 53.01 Ma node; human and dog lights 89.48.
 2. Molecules lens shows the sixteen numbers above, hippo as "not sequenced"; the scatter has fifteen points.
 3. Anatomy lens: clicking the forearm in one limb highlights it in all five.
 4. Whale case: dropping the whale on the dog branch names a disagreeing clue; on the hippo branch it completes.
-5. Make a fork, seed 1, no gene flow: the fork appears near generation 6 or 7 and island A survivors climb from
-   about 80 toward 170.
-6. Gene flow 10 percent: after 40 generations the means stay within 2 mm (about 1.2 apart) and no fork shows.
-7. Two droughts in a row on one island usually end in "Extinct on this island".
-8. Everything works by keyboard; the main controls are visible at 1366x768 and 680x425; tree readable at 375 wide
-   (scrolls inside its frame).
-9. Each how-to line speaks once in five repeated actions; the fork line speaks once per run.
-10. No network, no em dashes, no images of people.
+5. Make a fork, seed 1, no gene flow: the fork appears between generations 5 and 9 and island A survivors climb from
+   about 87 toward 170.
+6. Gene flow 20 percent: after 40 generations the means stay about 1.1 mm apart and no fork shows; at 2 percent the
+   fork still comes, a little later.
+7. Pressing Drought twice on one island before Next generation usually ends in "Extinct on this island"; one press
+   leaves about 76 survivors and the island recovers.
+8. Focus: at 1366x768 and 680x425 the tree is the largest thing in Tree, the clue card in Whale case, and the two
+   dot strips in Make a fork.
+9. A tap while anything plays: during Run 10, Reset stops it in the same frame and a Drought press shows on the seed
+   bar at once.
+10. Everything works by keyboard; the main controls are visible at 1366x768 and 680x425; tree readable at 375 wide
+    (scrolls inside its frame).
+11. Each how-to line speaks once in five repeated actions and never names a control that is not on screen; the
+    fork line speaks once per run.
+12. All 29 images load and none shows a person (the human tip is a footprint); no network, no em dashes.
 
 ## Open questions
 - [tree-of-life] HS-LS4-2 and LS4-3 are carried by the finch model only (the tree carries LS4-1). Enough, or should
   Make a fork add a second trait (for example, wing length) to show variation in more than one trait?
 - [tree-of-life] Hippo cytochrome c is not in UniProt, so its Molecules bar reads "not sequenced". Keep the gap as
   a real-data lesson, or swap the hippo for a species with a sequence (then the whale case loses its partner)?
+- [tree-of-life] The human tip is now a painted footprint, and the Fossils lens shows two painted fossil skulls
+  (Sahelanthropus, Jebel Irhoud) from local FLUX as objects, not people. OK, or send the skulls to Cory's review too?
+- [tree-of-life] Voice moved from knowing-guide to clear-teacher (restyled as a museum educator) because
+  spectrum-explorer uses knowing-guide. OK?

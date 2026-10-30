@@ -74,3 +74,10 @@
 - bond-battle: Road de-icer accepts KCl (needs a source line)?
 - gas-law-lab voice -> bright-teacher (check in the final sweep).
 - Carried: water-shapes-earth made-up rates; bond-battle boiling-point sources and molecules family; equation-balancer HS-PS1-2; equilibrium-seesaw model choices; gas-law-lab HS-PS3-2; hand-warmer-lab framing and T4 bar; mole-bakery 90% yeast yield.
+
+## R13
+- punnett-predictor: shared genetics engine Skins now painted cutouts (peas, flies, later gene-pool creatures); OK?
+- reserve-designer: farms still farming join protected land ($2,750k) or not ($2,950k)? $4,000k budget fixed or teacher setting? voice warm-teacher restyled as land trust guide.
+- tree-of-life: two painted hominin skulls (objects) fine, or Cory review? voice clear-teacher.
+- Carried: protein-factory disease names; punnett nondisjunction and Morgan counts; SH 9 crossing source; finch model for LS4-2/4-3; hippo gap.
+- Pattern (again): the 9-12 voice bank is nearly used up; restyled teacher voices are filling in.
