@@ -21,23 +21,24 @@ Wire a whole high school on its floor plan (core switch, access switches, Wi-Fi,
 ## Screens and modes
 Header (kit, 9-12 theme): "Network Architect", small line "Juniper Ridge High School". Mode buttons: **Sample** (opens first), **Build**. Then Motion, Sound, Read.
 
-Stage: a blueprint floor plan of the made-up Juniper Ridge High School (180 m by 100 m, Content), at real pixel size per box with a scale bar ("20 m"). Rooms are outlined boxes with their name and device chips ("12 desktops, Staff, wired"). Equipment sits on a room's shelf (a row inside the room). Cables are drawn as corridor-style elbows (horizontal then vertical) with their length label; copper amber solid, fiber violet with a dashed core line; a run over its limit is red, dashed, labeled "150 m: over 100 m copper limit". Bundles (two or more cables between the same pair) draw as one line with "x2".
+Focus, both modes: the floor plan, the largest thing on the stage (at least 60 percent of its width on wide screens); in Sample, the rooms that go offline; in Build, the room or cable a failed test line points at.
+Stage: a blueprint floor plan of the made-up Juniper Ridge High School (180 m by 100 m, Content), at real pixel size per box with a scale bar ("20 m"). Rooms are outlined boxes with their name and device chips ("12 desktops, Staff, wired"). Equipment sits on a room's shelf (a row inside the room) as its painted cutout (Art) on a small ringed tile with a code label ("Core", "AP 3"). Cables are drawn as corridor-style elbows (horizontal then vertical) with their length label; copper amber solid, fiber violet with a dashed core line; a run over its limit is red, dashed, labeled "150 m: over 100 m copper limit". Bundles (two or more cables between the same pair) draw as one line with "x2".
 
 Panel (`.sec` cards, scrolls inside itself; Run tests and Budget pinned at the top):
 1. **Budget**: "30,300 of 32,000 credits" and **Run tests** (big button).
-2. **Parts**: Core switch, Access switch, Access point (each with cost and specs), then **Cable** with **Copper** / **Fiber** toggle, then **Remove** (removes the selected item or cable). Internet plan: **1 Gbps** (included) / **2 Gbps** (+4,000).
+2. **Parts**: Core switch, Access switch, Access point (each a card with its painted picture, cost and specs), then **Cable** with **Copper** / **Fiber** toggle (each with its cable picture), then **Remove** (removes the selected item or cable). Internet plan: **1 Gbps** (included) / **2 Gbps** (+4,000).
 3. **Networks**: a table: Staff, Students, Guest, Cameras, Servers; devices; size select (/26, /25, /24, /23, /22); usable addresses.
 4. **Rules**: an Allow/Block matrix. Rows (from): Staff, Students, Guest, Cameras. Columns (to): Internet, Records server, Video recorder, Staff, Students, Guest, Cameras (a network to itself is always Allow, greyed). Cells R7 does not name (Staff to Students, Guest or Cameras) may be either.
 5. **Report**: the test report (monospace) and the Brief checklist R1 to R9 with PASS/FAIL marks after a run.
 
 ### Mode 1: Sample (explore)
-The finished sample design (Content) is loaded and passes every test. Tap any cable to cut it (it shows a break) or any switch to power it off. Within 300 ms the plan shades every room that lost the internet (hatched, with "offline" label) and the Report panel lists who lost what ("Gym: guests lost internet; cameras lost the video recorder"). Tap again to restore. **Reset sample** restores all. **Copy to Build** loads the sample into Build to change.
+The finished sample design (Content) is loaded and passes every test. Tap any cable to cut it (it shows a break) or any switch to power it off. Within 300 ms the plan shades every room that lost the internet (a 300 ms fade; a second cut during the fade acts at once and the shading shows both) (hatched, with "offline" label) and the Report panel lists who lost what ("Gym: guests lost internet; cameras lost the video recorder"). Tap again to restore. **Reset sample** restores all. **Copy to Build** loads the sample into Build to change.
 
 ### Mode 2: Build
 Starts empty except the fixed server room items: Internet handoff, Firewall (cabled to the handoff, fixed), Records server, Video recorder. Place parts by choosing a part then tapping a room (up to 4 items per room shelf, 10 in the Gym). Cable: choose Copper or Fiber, tap one end then the other (equipment, or a room's wired device chip, which takes one port per device). The cable's length shows as it is placed. Wireless chips need no cable: they use the access points in the same room. Run tests writes the report; nothing is checked live except the budget and cable lengths. **Clear design** (confirm Yes/No). The design saves on this device (localStorage `curio-network-architect`) with **Clear saved**.
 
 ## Content
-Rooms (center x, y in meters; size): Server room SR (40, 50; 10 x 10), Office OF (20, 20; 24 x 16), Library LB (40, 85; 30 x 18), Classrooms A1 to A6 (75, 90, 105, 120, 135, 150 by 20; 13 x 16 each), Gym GY (165, 75; 28 x 34).
+Rooms (center x, y in meters; size): Server room SR (40, 50; 10 x 10), Office OF (20, 20; 24 x 16), Library LB (40, 85; 30 x 18), Classrooms A1 to A6 (x 75, 90, 105, 120, 135, 150, all at y 20; 13 x 16 each), Gym GY (165, 75; 28 x 34).
 Cable length = |dx| + |dy| between the two room centers + 10 m slack (5 m each end); the same room is 10 m. Computed from SR: OF 60, LB 45, A1 75, A2 90, A3 105, A4 120, A5 135, A6 150, GY 160. From A2: A1 25, A3 25, A4 40, A5 55, A6 70. Limits: copper 100 m, fiber 300 m.
 
 Device chips (network, count, wired or wireless, Mbps each at the 10 a.m. test / the 7 p.m. game night test, target):
@@ -66,7 +67,7 @@ Requirements (the Brief, R1 to R9, each a test):
 - R5 Addresses: every network's size fits its address need.
 - R6 Traffic: at both tests no link, the firewall or the internet plan is above 80 percent.
 - R7 Security: Guest reaches only the internet; Students reach the internet only (not the Records server, Video recorder, Staff or Cameras); Cameras reach only the Video recorder; Staff reach the internet, Records server and Video recorder. (Default rules are all Allow, as the old network was.)
-- R8 Cut: cut any one cable that joins two of these (an access switch, the core switch, the firewall; each cable of a bundle counts on its own) and every office chip still reaches the internet, and Staff still reach the Records server. Cables to access points and device chips, and the fixed handoff line, are not cut.
+- R8 Cut: cut any one cable that joins two of these (an access switch, the core switch, the firewall; each cable of a bundle counts on its own) and every Office (OF) chip still reaches the internet, and the Office's Staff chips still reach the Records server (teacher laptops in the A rooms may go down with their wing's uplink). Cables to access points and device chips, and the fixed handoff line, are not cut.
 - R9 Budget: total 32,000 credits or less.
 
 Report lines (one per test; examples of format): `R2 CABLES  FAIL  A6 access point: 150 m copper (limit 100 m)`; `R5 ADDRESS FAIL  Guest needs 301 addresses; /24 gives 254`; `R6 TRAFFIC FAIL  10 a.m.: A2 switch uplink 912 of 1000 Mbps (91%)`; `R7 SECURITY FAIL  Guest to Records server is Allow (should be Block)`; `R9 BUDGET  PASS  30,300 of 32,000`. Every FAIL line is a button that highlights the room, cable or rule cell.
@@ -87,21 +88,23 @@ Known traps the tests catch: one copper uplink for the whole A wing (912 of 1,00
 
 ## Look
 Accent `--brand #7cc4ff` (blueprint sky blue) on the 9-12 theme. `--brand-ink #0b1a2a`.
-- Plan: blueprint `#0f2238` with a 5 m grid `#1d3a5c` and walls `#cfe3f7`; labels `#e8edf3`, chips `#a6b3c4`; copper `#e8c07a` solid; fiber `#c9a0ff` with a dashed core; over-limit and FAIL `#ff8a8a` dashed with a text label; equipment tiles `#9fe0c9` (switches) and `#7cc4ff` (access points) with ink glyphs; offline rooms hatched with an "offline" label.
+- Plan: blueprint `#0f2238` with a 5 m grid `#1d3a5c` and walls `#cfe3f7`; labels `#e8edf3`, chips `#a6b3c4`; copper `#e8c07a` solid; fiber `#c9a0ff` with a dashed core; over-limit and FAIL `#ff8a8a` dashed with a text label; equipment shows its painted cutout on a tile ringed `#9fe0c9` (switches, firewall, servers) or `#7cc4ff` (access points), with a code label; offline rooms hatched with an "offline" label.
 - Contrast (computed): brand on theme panel `#141b25` 9.23:1, on `--sec-bg` 8.75:1; brand-ink on brand 9.37:1; walls on blueprint 12.24:1; labels 13.66:1; chips 7.55:1; copper 9.38:1; fiber 7.62:1; FAIL red 7.08:1; switch tiles 10.70:1. All pass AA; line kinds also differ by dash pattern, never color alone.
 - Neighbors: theme default amber is left to other 9-12 tools; capture-the-flag uses pink on the same theme; packet-race red on paper.
 
 ## Art
-none: drawn in code. Plan, equipment glyphs, cables and preview.svg are SVG.
-
+Local FLUX (`scripts/localart.py`), no people. One style: clean painted product illustration, three-quarter view, soft studio light, plain white background (cut out). Fronts and panels are blank; every label is in code.
+- Equipment cutouts, one shared prompt "[item], painted product illustration, three-quarter view, soft studio light, plain white background" with: eq-core "a wide rack-mounted network switch with four rows of ports and green link lights"; eq-access "a small rack-mounted network switch with one row of ports"; eq-ap "a white ceiling-mounted Wi-Fi access point disc with one small light"; eq-firewall "a black rack-mounted firewall appliance with a few ports and an amber status light"; eq-records "a tower server with a blank front panel"; eq-recorder "a compact video recorder box with four drive bays"; eq-handoff "a small grey wall-mounted fiber handoff box with one cable entering"; 1:1 each; cutout yes; people no; Parts cards (64 px) and the plan's equipment tiles (32 to 40 px).
+- cable-copper: "A coiled blue copper network patch cable with clear plug ends, painted product illustration, plain white background"; 1:1; cutout yes; people no; the Copper toggle.
+- cable-fiber: "A coiled thin orange fiber optic patch cable with small connector ends, painted product illustration, plain white background"; 1:1; cutout yes; people no; the Fiber toggle.
+The floor plan, rooms, cables, chips, the Networks table, the Rules matrix, the report and preview.svg are drawn in code (a diagram, tables and labels).
 ## Voice
-Bank voice `calm-professor` (Schedar), "Say evenly and clearly, like a calm, friendly college professor". Not used by any CS neighbor or group sibling. 9-12: narration is short and rare; report lines are read on screen only. `Curio.voice`, `scope: () => state.mode`.
-- w-sample (how, Sample welcome): "This design passes every test. Tap a cable or a switch to break it, and see which rooms go dark."
-- w-build (how, Build welcome): "Pick a part, then tap a room to place it. Cable it up, then press Run tests."
-- cable (how, first cable started): "Tap the other end. Copper reaches 100 meters; fiber reaches 300."
-- fails (event, a run with failures; stale on the next run): "Some tests failed. Tap a failed line to see where."
+Bank voice `calm-professor` (Schedar), "Say evenly and clearly, like a calm, friendly college professor". Not used by any CS neighbor or group sibling. 9-12: narration is short and rare; report lines are read on screen only. `Curio.voice`, `scope: () => state.mode`. Read speaks the hint.
+- w-sample (how, Sample welcome; stale on the first cut): "This design passes every test. Tap a cable or a switch to break it, and see which rooms go dark."
+- w-build (how, Build welcome; stale when the first part is placed): "Pick a part in the panel, then tap a room to place it. Cable it up, then press Run tests."
+- cable (how, first cable started; stale when that cable is placed or cancelled): "Now tap the other end. Copper reaches 100 meters; fiber reaches 300."
+- fails (event, a run with failures; stale on the next run or any change): "Some tests failed. Tap a failed line to see where."
 - pass (event, all nine pass; stale on any change): "All nine requirements pass."
-
 ## Family engine
 `kit/network.js`, described in full in tools/internet-journey/spec.md. This tool uses: **Graph** (built by the player: equipment nodes, chip nodes, cable links with `medium`, `mbps`, `lenM`; bundles merged by the tool), **Path/reach** (R1, R7, R8, and Sample's offline shading), **flows** (R6 loads), and **Draw** with a blueprint skin (rooms drawn by the tool; corridor elbows for links). No Mover or Packets.
 
@@ -115,6 +118,7 @@ Bank voice `calm-professor` (Schedar), "Say evenly and clearly, like a calm, fri
 - Streaming HD video at about 5 Mbps per stream (basis for the 5 Mbps model value): Netflix Help Center, "Internet connection speed recommendations", https://help.netflix.com/en/node/306
 - Planning about 1 Mbps per student of internet as a school target (context for the internet plan): SETDA, "The Broadband Imperative III" (2019), https://www.setda.org
 - Part costs, port counts, 40 clients per access point, the 80 percent line and the school are Curio Class model values, labeled as such on screen.
+- Checks run (Python, 2026-10-29): every cable length in Content (SR to OF 60, LB 45, A1 to A6 75 to 150, GY 160; A2 to A1 to A6 25, 10, 25, 40, 55, 70) and no two rooms overlap inside 180 by 100 m. The draft's room line was ambiguous ("by 20"); read as y 90 it gave lengths 10 m longer and put A6 inside the gym, so it now says y 20. Demands: 10 a.m. internet 1,118 Mbps (students 1,070, staff 48), game night 312; address needs 27, 215, 301, 5, 3 and usable sizes 62 to 1,022; sample cost 30,300; 16 access points (1, 1, 6, 8); loads 56 percent internet, 22 percent firewall, 6 percent core to firewall, 9 percent A2 uplink, 16 percent and 3 percent at game night; traps 91 percent and 112 percent; ports used: office switch 15 of 24, gym switch 12 of 24, core 9 of 48 copper and 4 of 4 fiber. R8 said "Staff still reach the Records server", which the sample fails if read as every Staff chip (an A-wing cut drops the teacher laptops), so it now names the Office's Staff chips.
 
 ## Done when
 1. Sample loads and `test()` returns all nine PASS with the Content numbers (cost 30,300; internet 56%; A2 uplink 9%).
@@ -124,4 +128,6 @@ Bank voice `calm-professor` (Schedar), "Say evenly and clearly, like a calm, fri
 5. Fiber to a device chip is refused with the tip; a red over-limit cable still places.
 6. Budget is live and correct; Clear design and Clear saved both confirm first; a saved design reloads after refresh.
 7. Every size in STANDARDS.md: Run tests and Budget visible without page scrolling; 375 wide pans and zooms the plan.
-8. Keyboard-only build of a passing design is possible; Motion off; console clean; no network requests; the name only as "Curio Class".
+8. Keyboard-only build of a passing design is possible; Motion off; console clean; no network requests; the name only as "Curio Class"; no voice line names a control that is disabled at that moment.
+9. Focus: at 1366x768 and 1000x625 the floor plan is the largest thing on the stage, and tapping a FAIL line highlights its room, cable or rule cell in view.
+10. Tap while it plays: two quick cuts in Sample inside the 300 ms fade shade every room either cut takes offline, and Reset sample during a fade restores at once.

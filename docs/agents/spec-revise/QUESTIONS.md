@@ -99,3 +99,8 @@
 - computing-team-stories: people are the point but 0 portraits now; 25 member portraits (Gemini), 5 turning-point members, or objects as specced?
 - cloud-through-time: The Dalles line likely backwards (the city sued to block The Oregonian's request, settled Dec 2022); flagged in the spec for the build's fact check. ENIAC: use the Army PD photo with its programmers? Telegraph card replacing the phones decoy OK?
 - Carried: ai-evaluator "AI outputs" meaning; catalog-column-rules data-desk engine; coin-cell-greenhouse board numbers, blocks vs typed; computing-team-stories careers.json and Native educator review; cloud-through-time company names, newspaper water figures.
+
+## R20
+- data-policy-council: six council portraits (Gemini), or nameplates with role icons?
+- sprint-board: personas shown by belongings, or five portraits?
+- Carried: dice-in-the-chatbot x2, emerging-tech-pitch x2, pull-request-review x1, sprint-board x1 (in the specs).

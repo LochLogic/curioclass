@@ -21,9 +21,10 @@ You hold the pen on a school district's data policy for a new hall-pass app: eve
 Header (kit): "Data Policy Council", small line "Linden Valley Unified". Mode buttons: **Draft** (opens first), **Compare**. Motion, Sound, Read. Footer line on the stage: "A classroom model, not legal advice."
 
 ### Mode 1: Draft
+Focus: **a day in the data**, the widest band, in the middle of the stage (about 45 percent of its height). Every option change shows up there first; the dais above it is smaller and the draft document is secondary.
 Stage, three bands laid out at real pixel size:
-1. **The dais** (top): six nameplates in an arc, five voting members and Counsel (non-voting, at the end). Each voting nameplate: portrait, name, role, a lean bar from no to yes with a marked **Yes line**, and the words "Leaning yes" or "Leaning no". A member's latest line appears in a speech card under the plate when a clause they care about changes.
-2. **A day in the data** (middle): Jordan's day (age 12, grade 7) as a timeline from 7:35 am to 9:00 pm with eight events (Content). An event the policy collects is lit, with chips for who can see it, how long it is kept, and ad or sale use; an unlit event shows "not collected". Readout: "Collected today: 4 of 8 moments" (the vendor proposal).
+1. **The dais** (top, about 30 percent): the painted council chamber dimmed behind six nameplates in an arc, five voting members and Counsel (non-voting, at the end). Each voting nameplate: portrait, name, role, a lean bar from no to yes with a marked **Yes line**, and the words "Leaning yes" or "Leaning no". A member's latest line appears in a speech card under the plate when a clause they care about changes.
+2. **A day in the data** (middle, the focus): Jordan's day (age 12, grade 7) as a timeline from 7:35 am to 9:00 pm with eight events (Content), each a painted moment card (Art) above its time. An event the policy collects is lit (full color, a brand frame), with chips for who can see it, how long it is kept, and ad or sale use; an uncollected event is greyed with the words "not collected". Readout: "Collected today: 4 of 8 moments" (the vendor proposal).
 3. **The draft** (bottom left on wide screens): the policy as a short document, one numbered section per clause in plain sentences, rebuilt from the choices. A flagged section has a red margin bar, "Flag" and Counsel's note.
 
 Panel:
@@ -33,6 +34,7 @@ Panel:
 - **Ask the room**, **Call the vote** (big), **Pin draft** (to Compare, up to three, labeled A, B, C), **Show the math** toggle (adds each member's points per clause under the lean bars).
 
 ### Mode 2: Compare
+Focus: the pinned drafts' day strips, stacked so the lit moments line up (the moment cards shrink to small thumbnails here). With no pins the stage shows "No drafts pinned yet" and a **Back to Draft** button.
 Stage: up to three pinned drafts as columns: the six choices, flags, the vote forecast (five Yes or No marks with names), and each draft's day-in-the-data strip, stacked so the lit moments line up. Panel: `#hint`, **Unpin** per draft, **Load into Draft** per draft, **Clear pins**.
 
 ## Content
@@ -70,8 +72,8 @@ Draft text: each section is one sentence built from the option ("2. Keep for: Th
 ## Interactions in detail
 - Opens on the vendor proposal (L3, R4, A3, S3, E3, F2): Counsel flags section 4 and Call the vote is replaced by the blocked line. The lean totals then are Parent -9, Student -10, Teacher -2, Principal 3, Budget 3.
 - Changing an option updates lean bars (300 ms ease), the day strip, the draft section, and queues the line of the member whose points for that clause changed most (one line at a time; a newer change replaces a waiting line).
-- Ask the room: each member leaning no names the one option change that raises their total most, in clause order on ties: "Change Location to Door check-ins and I'm a yes." or, if no single change reaches the Yes line, "Even with No limit changed to the school year, I'm still a no." Flagged options are never suggested.
-- Call the vote: the clerk reads the motion, then each plate flips to Yes or No in order with its line (600 ms apart), then "The motion passes, 4 to 1." or "fails, 2 to 3." Changing any option after a vote clears the result.
+- Ask the room: each member leaning no names the one option change that raises their total most, in clause order on ties: "Change Location to Door check-ins and I'm a yes." or, if no single change reaches the Yes line, "Even with Keep for changed to 30 days, I'm still a no." Ties go to the earlier clause, then the earlier option. Flagged options are never suggested. Worked check (vendor proposal with Ads at S2): Parent's best is Keep for 30 days (+3, still -3, a no), Student's is No location data (+4, still -4), Teacher's is Early warning with a counselor (+3, reaches 2), Budget's is Keep for 30 days (+2, reaches 3).
+- Call the vote: the clerk reads the motion, then each plate flips to Yes or No in order with its line (600 ms apart, about 4 s in all), then "The motion passes, 4 to 1." or "fails, 2 to 3." Every control stays live while it plays: changing any option during or after a vote stops the vote at once, clears the result and drops the vote's queued lines; Pin draft during a vote pins the draft without its result.
 - Blank start: options unset, lean bars at 0, Call the vote disabled until all six are set (the hint says which are left).
 - Pins are for this page load only; nothing is saved. No text entry anywhere.
 - Motion off: bars and plates change at once; the vote keeps its 600 ms pacing so the voice stays in step.
@@ -86,26 +88,28 @@ Draft text: each section is one sentence built from the option ("2. Keep for: Th
 - Neighbors: sorting-showdown violet and api-playground lemon (both dark), ai-evaluator pink. No celebration: the clerk reads the result.
 
 ## Art
-Six portraits, Codex (`scripts/gptart.py`), `people: true`, Cory reviews each. One shared style: head and shoulders, flat editorial illustration, plain warm grey background, 1:1, cutout no, shown 72 px in the nameplates and 160 px on a member's card.
-- member-dana-ruiz: a Latina mother in her forties in a cardigan, warm, attentive; people: true.
-- member-malik-owens: a Black high school junior in a hoodie with a lanyard, thoughtful; people: true.
-- member-priya-natarajan: a South Asian woman teacher in her thirties with glasses and a lanyard, lively; people: true.
-- member-tom-becker: a white middle school principal in his fifties in a shirt and tie, calm; people: true.
-- member-grace-lee: an East Asian woman in her forties in a blazer holding a folder, practical; people: true.
-- member-ana-sorensen: a woman lawyer in her sixties with grey hair and a dark suit, serious and kind; people: true.
-Jordan is never drawn: the day strip uses icons (bus stop, door, nurse's cross, tray, quiz sheet, house).
-
+Local FLUX (`scripts/localart.py`) unless marked people. People go to Gemini (`scripts/art.py`), which is set aside for now, so the six portraits wait on Cory. One style: soft daylight editorial painting, warm paper tones.
+- council-chamber: "A school district board room in daylight, a curved wooden dais with six empty chairs and six blank nameplates, tall windows, a blank wall plaque, painted illustration"; 16:9; cutout no; people no; behind the dais band, dimmed under the nameplates.
+- Jordan's day, eight moment cards, one shared prompt "[place], soft painted illustration, warm natural light, empty scene" with: moment-bus-stop "an empty suburban bus stop with a blank sign post at a curb, early morning"; moment-main-door "the open glass main doors of a middle school, morning"; moment-nurse "a school nurse's office with a cot, a first-aid cabinet and a blank wall chart"; moment-lunch "a cafeteria tray with a sandwich, an apple and a milk carton with a blank label"; moment-quiz "a quiz sheet with blank lines and a red check mark beside a pencil on a desk"; moment-leaving "a school side gate and a bike rack, afternoon"; moment-friend "the front porch of a small house with two bikes leaning on the rail, late afternoon"; moment-home "a lit house window at night with a desk lamp glowing inside"; 4:3 each; cutout no; people no; one card above each timeline event, full color when collected, greyed when not. Jordan is never shown.
+- member-dana-ruiz: "Head and shoulders portrait of a Latina mother in her forties in a cardigan, warm and attentive, flat editorial illustration, plain warm grey background"; 1:1; cutout no; people: true.
+- member-malik-owens: "Head and shoulders portrait of a Black high school junior in a hoodie with a lanyard, thoughtful, flat editorial illustration, plain warm grey background"; 1:1; cutout no; people: true.
+- member-priya-natarajan: "Head and shoulders portrait of a South Asian woman teacher in her thirties with glasses and a lanyard, lively, flat editorial illustration, plain warm grey background"; 1:1; cutout no; people: true.
+- member-tom-becker: "Head and shoulders portrait of a white middle school principal in his fifties in a shirt and tie, calm, flat editorial illustration, plain warm grey background"; 1:1; cutout no; people: true.
+- member-grace-lee: "Head and shoulders portrait of an East Asian woman in her forties in a blazer holding a folder, practical, flat editorial illustration, plain warm grey background"; 1:1; cutout no; people: true.
+- member-ana-sorensen: "Head and shoulders portrait of a woman lawyer in her sixties with grey hair and a dark suit, serious and kind, flat editorial illustration, plain warm grey background"; 1:1; cutout no; people: true.
+Portraits show 72 px in the nameplates and 160 px on a member's card. Lean bars, chips, the timeline, the draft document, the Compare columns and preview.svg are drawn in code (charts, labels and text).
 ## Voice
-Bank voice `news-reader` (Rasalgethi), "Say clearly and steadily, like a trusted radio news reader", here the council clerk. Not used by any group sibling or 9-12 CS neighbor. Members' lines are on screen in speech cards (not voiced, so one voice never plays six people). `Curio.voice`, `scope: () => state.mode`.
-- w-draft (how, Draft welcome): "The vendor's proposal is on the table. Change any section, and watch the council and the day in the data respond."
-- flag (event, a flag appears; stale when that section changes): "Counsel has flagged a section. It must be fixed before a vote."
-- clear (event, the last flag is fixed): "No legal flags. The draft can go to a vote."
-- ask (how, first Ask the room): "Members who lean no have each named one change that would win them over."
-- motion (event, Call the vote): "The council will now vote on the draft."
+Bank voice `news-reader` (Rasalgethi), "Say clearly and steadily, like a trusted radio news reader", here the council clerk. Not used by any group sibling or 9-12 CS neighbor. Members' lines are on screen in speech cards (not voiced, so one voice never plays six people). `Curio.voice`, `scope: () => state.mode`. Read speaks the hint.
+- w-draft (how, Draft welcome; stale on the first option change): "The vendor's proposal is on the table. Tap any option in the panel, and watch Jordan's day and the council respond."
+- flag (event, a flag appears; stale when that section changes): "Counsel has flagged a section. Tap a different option in that section to fix it."
+- clear (event, the last flag is fixed; stale on the next change): "No legal flags. Press Call the vote when you're ready."
+- ask (how, first Ask the room; stale when an option changes): "Members who lean no have each named one change. Tap that option to try it."
+- motion (event, Call the vote; stale if an option changes during the vote): "The council will now vote on the draft."
 - passes (event; stale on any change): "The motion passes."
-- fails (event; stale on any change): "The motion fails. Ask the room, or change a section."
-- w-compare (how, Compare welcome): "Pinned drafts sit side by side. Compare who each one wins over, and what each one collects."
-
+- fails (event; stale on any change): "The motion fails. Press Ask the room, or change a section."
+- w-compare (how, Compare welcome with at least one pin; stale on Unpin or Load): "Pinned drafts sit side by side. Press Load into Draft on any column to keep working on it."
+- w-compare-empty (how, Compare welcome with no pins; stale when a draft is pinned): "No drafts pinned yet. Press Back to Draft, then Pin draft."
+Call the vote is disabled while a flag stands or a section is unset, so no line names it then.
 ## Family engine
 none
 
@@ -116,7 +120,9 @@ none
 - SOPIPA bans targeted ads based on student data, profiles for non-school purposes and selling student information: California Business and Professions Code 22584, https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=BPC&sectionNum=22584
 - Data minimization and limited retention as privacy principles: NIST Privacy Framework 1.0 (2020), https://www.nist.gov/privacy-framework ; FTC, "Protecting Consumer Privacy in an Era of Rapid Change" (2012), https://www.ftc.gov/reports/protecting-consumer-privacy-era-rapid-change-recommendations-businesses-policymakers
 - Early-warning systems that flag students from grades and attendance: U.S. Department of Education, Office of Planning, Evaluation and Policy Development, "Issue Brief: Early Warning Systems" (2016), https://www2.ed.gov/rschstat/eval/high-school/early-warning-systems-brief.pdf
-- The district, app, vendor, members, Jordan, the points and the vote rule are original to Curio Class; pass counts computed in Python (2026-10-27).
+- The district, app, vendor, members, Jordan, the points and the vote rule are original to Curio Class.
+- Checks run (Python, 2026-10-29, every option combination): vendor proposal totals -9, -10, -2, 3, 3 with one flag (S3); Ads to S2: -6, -8, -1, 3, 1, 1 yes; then E2, R2, L2: 2, 1, 4, 4, 1, 3 yes; then A1: 5, 4, 5, 4, 0, 4 yes; Most private: 8, 10, -1, -5, -1, 2 yes. Of 2,304 drafts, 576 are flag-free and 156 of those pass; none is unanimous (the most is 4 yes). Ranges over flag-free drafts: Parent -8 to 9, Student -9 to 10, Teacher -3 to 5, Principal -5 to 6, Budget -5 to 4, so every member can reach yes. Ask the room picks matched the worked check in Interactions; the draft's example "No limit changed to the school year" was not a pick the tie rule would make, so the example now names Keep for 30 days. Day strip: vendor 4 of 8, L4 with E2 8, L4 with E1 7, L1 with E1 2.
+- Contrast ratios in Look recomputed with the WCAG 2.1 formula; all as stated.
 
 ## Done when
 1. The vendor proposal shows one flag (section 4), a blocked vote, and totals -9, -10, -2, 3, 3.
@@ -128,8 +134,10 @@ none
 7. The day strip lights 4 of 8 moments for the vendor proposal, 8 of 8 for L4 with E2, 7 of 8 for L4 with E1, and 2 of 8 for L1 with E1; chips follow the clauses.
 8. Pin three drafts; Compare lines up their strips and forecasts; Load into Draft restores one.
 9. Every size in STANDARDS.md: the clause groups and Call the vote reachable without page scrolling; 375 wide shows the small plates.
-10. Voice: welcome once per mode, ask once, events each time while fresh; members' lines never voiced; Read speaks the hint; console clean; no network requests; the name only as "Curio Class".
+10. Voice: welcome once per mode, ask once, events each time while fresh; members' lines never voiced; no line names Call the vote while it is disabled; Read speaks the hint; console clean; no network requests; the name only as "Curio Class".
+11. Focus: at 1366x768 and 1000x625 the day in the data strip is the widest band on the stage, and every option change updates it first; Compare stacks the strips so the lit moments line up.
+12. Tap while it plays: during a vote's plate flips, changing an option stops the vote at once, clears the result and drops its lines; Pin draft during a vote still pins.
 
 ## Open questions
 - The tool names real laws (FERPA, COPPA, California's SOPIPA) and places the made-up district in California so SOPIPA applies. Keep the real laws, or make the state law generic ("a state student privacy law")?
-- Six portraits (five adults, one teen; Codex, for your review). Keep portraits, or use nameplates with icons only?
+- Six portraits with people (five adults, one teen; Gemini, waiting on Cory's review). Keep portraits, or use nameplates with role icons only? The eight day moments and the chamber are people-free and local.

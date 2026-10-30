@@ -27,8 +27,9 @@ Start: a **Team** card asks "How many in your team?" with **2**, **3**, **4**. S
 A role strip under the header always shows "Sprint 1: Seat 1 Product lead, Seat 2 Designer, ..." and the active role glows.
 
 ### Design doc
+Focus: the one-page document, centered; its top carries the client's brief beside the painted transit office (Art).
 Stage: a one-page document with four parts, each filled by picking, not typing:
-- **Who it's for**: five persona cards (Content); mark up to three **Design for first**.
+- **Who it's for**: five persona cards (Content), each with its painted "things they carry" picture (Art), name and one line; mark up to three **Design for first**.
 - **Problem**: pick one of three statements (Content).
 - **Must have**: from the backlog, mark up to five cards "Must" (they get a pin).
 - **Won't do this release**: mark any cards "Won't" (they leave the backlog lane, can be restored).
@@ -36,13 +37,14 @@ Stage: a one-page document with four parts, each filled by picking, not typing:
 Panel: **Copy design doc**, **Start sprint 1**.
 
 ### Sprint
+Focus: the board, with the lane the active step works in (This sprint in Plan, Doing and Testing in Build and Test, the persona results in User test) outlined and widest.
 Stage: the board, five lanes: **Backlog**, **This sprint**, **Doing**, **Testing**, **Done**. Cards are sticky notes with title, points, type color plus a type word (Spec, Access, User, Extra), pins and tags ("Reported by Ana"). A capacity bar over This sprint: "8 of 10 points".
-Each sprint runs four steps, shown as a stepper; each step starts with a full-width **hand-off** screen "Pass the laptop to Seat 3: Developer" and a **Ready** button.
+Each sprint runs four steps, shown as a stepper; each step starts with a full-width **hand-off** screen "Pass the laptop to Seat 3: Developer" and a **Ready** button, unless the same seat holds the next role too (then the step simply opens).
 1. **Plan** (Product lead): drag cards from Backlog into This sprint (or select a card, then **Add to sprint**), up to 10 points; order them by dragging (or **Up**, **Down**). A card that breaks a client value shows a red-bordered "Value: No ads" label but can still be planned.
 2. **Build** (Developer): **Build sprint** moves each planned card to Doing, then Testing, in plan order, skipping ahead to build a card's dependency first if it is planned too. A card whose dependency is neither Done nor planned is **Blocked** ("Needs: Next arrival time"): it uses its points and returns to the Backlog at the end of the sprint.
 3. **Test** (Tester): **Run spec checks**: S1 to S8 each show ✓ Pass, ✗ Fail or "Not built". Then **Move tested cards to Done**.
 4. **User test and review** (Designer, then everyone): **Run user tests**: five persona sessions, each with Succeeded, Struggled or Blocked and a quote; new issue tags appear on the matching backlog cards. Then the **client review**: any Done card that breaks a value comes back with the client's note and moves to Backlog with a "Client said no" tag (its points are spent). Then **Retro**: pick one "Went well" and one "Change next time" chip (Content). **Next sprint** rotates the roles.
-Panel (all steps): the active step's instructions as the hint, the spec checklist with current results, the persona strip (five faces drawn as simple initials badges with their last result), and **Undo last move** (Plan only).
+Panel (all steps): the active step's instructions as the hint, the spec checklist with current results, the persona strip (the five painted persona pictures, small, each with its name and last result as a word and a mark), and **Undo last move** (Plan only).
 Sprint 2 begins with an event card: "Tuesday night the arrival data feed went down for an hour." From then on, Jay's session tests what the app shows when data can't load.
 
 ### Release
@@ -92,6 +94,7 @@ Checked plans (the build reproduces each):
 ## Interactions in detail
 - Capacity is enforced at Plan: a card that would pass 10 points won't drop in ("Over by 2 points"). Unused points are simply unused.
 - Dependency order in Build: if a card's dependency is planned later in the same sprint, the dependency is built first and the order shown changes with a note.
+- Build sprint moves each card 400 ms apart, and Run user tests reveals the five sessions 600 ms apart (3 s); any tap during either (a card, a step button, Skip hand-offs) shows the rest at once and then acts.
 - Hand-off screens hide the board so seats really switch (the smallest team is 2; there is no solo mode). A **Skip hand-offs** toggle in the panel footer exists for teachers demonstrating on a projector.
 - Undo last move works for Plan moves only. Nothing else can be undone; **New project** starts over.
 - Won't do cards can be restored in Design doc at any time before sprint 3.
@@ -101,24 +104,24 @@ Checked plans (the build reproduces each):
 
 ## Look
 - Own light palette: whiteboard `#f7f8fa`, panel `#ffffff`, ink `#1c2330`, muted `#555e6e`, lane rules `#d5d9e0`, accent `--brand #2d3fbf` (marker blue: header rule, buttons, the active role glow, capacity bar) with white text.
-- Card colors by type (always with the type word): Spec `#fff4b8`, Access `#d9f2e4`, User `#ffd9e2`, Extra `#dbe7ff`; value-break label border `#b91c1c` with the word "Value".
+- Card colors by type (always with the type word): Spec `#fff4b8`, Access `#d9f2e4`, User `#ffd9e2`, Extra `#dbe7ff`; value-break label border `#b91c1c` with the word "Value" (6.47:1 on white). Persona pictures sit in white frames with the result as a word ("Struggled") and a mark, never color alone.
 - Contrast (computed): brand on whiteboard 7.67:1, white on brand 8.16:1; ink on Spec 14.17:1, Access 13.34:1, User 12.21:1, Extra 12.67:1; muted on whiteboard 6.15:1. All pass AA.
 - Neighbors: pull-request-review (this group) wine on a pale page, catalog-column-rules purple on manila, cloud-through-time teal on archive paper; data-policy-council navy on paper; the dark 9-12 CS tools. Marker blue on a whiteboard is unused.
 
 ## Art
-none: drawn in code (board, sticky cards, persona initials badges, the phone mockup in Release, preview.svg: the board mid-sprint with a "Reported by Ana" card).
-
+Local FLUX (`scripts/localart.py`), no people: each persona is shown by the things they carry, so the user test is about needs, not faces. One style: warm painted still life, soft light.
+- client-desk: "A transit office front desk with three desk phones, a stack of sticky notes and a wall map of colored bus routes with blank labels, daylight, painted illustration"; 16:9; cutout no; people no; top of the Design doc beside the client brief, and on preview.svg.
+- Persona pictures, one shared prompt "[objects], painted still life, soft light, plain warm background" with: persona-ana "a folded white cane beside wireless earbuds and a phone on a cafe table"; persona-walt "reading glasses and a large magnifying glass beside a phone on a doily"; persona-rosa "a pocket Spanish-English dictionary with a blank cover beside a phone and a bus pass card with a blank face"; persona-dee "a stroller handle with a phone clipped to it and a diaper bag hanging off it"; persona-jay "a reflective safety vest and a lunch cooler on a bench under a streetlight at night"; 1:1 each; cutout no; people no; Design doc persona cards (120 px), the persona strip (48 px) and the user test results.
+The board, sticky cards, the capacity bar, the stepper, hand-off screens, the release scorecard and its phone mockup are drawn in code (a diagram, labels and interface).
 ## Voice
-Bank voice `easy-coach`, style "Say in an easy-going, encouraging way, like a relaxed sports coach": a coach calling the team's plays. Not used by a 9-12 CS tool or a group sibling. Light narration:
-1. how, welcome (Design doc): "Pick who you're designing for and what you won't do. Then start sprint one."
-2. how, first Plan step: "Product lead, drag cards into this sprint. Ten points fit."
-3. event, every hand-off (stale once Ready is pressed): "Pass the laptop to the [role]." (four recorded variants, one per role)
-4. event, any card Blocked in Build: "A card got blocked. It needs another card done first."
-5. event, a persona Struggled or Blocked (once per sprint, after user tests): "Your testers found problems. Their cards moved to the top of the backlog."
-6. event, client sends a card back: "The client said no to a card. Read their note."
-7. how, welcome (Release): "Here's what you shipped. Copy the release notes for your class."
-Read speaks the hint. Persona quotes are read on screen, not spoken.
-
+Bank voice `easy-coach` (Umbriel), style "Say in an easy-going, encouraging way, like a relaxed sports coach": a coach calling the team's plays. Not used by a 9-12 CS tool or a group sibling. Light narration, `Curio.voice`, `scope: () => state.mode + ':' + state.sprint`. Read speaks the hint. Persona quotes are read on screen, not spoken.
+- w-doc (how, Design doc welcome; stale on Start sprint 1): "Tap who you're designing for and what you won't do. Then press Start sprint 1."
+- plan (how, first Plan step; stale when the first card is planned): "Product lead, drag cards into This sprint, or tap a card and press Add to sprint. Ten points fit."
+- handoff (event, every hand-off screen; stale once Ready is pressed): "Pass the laptop to the [role]. Then press Ready." (one recorded variant per role: Product lead, Designer, Developer, Tester, and the three combined roles)
+- blocked (event, any card Blocked in Build; stale when the Test step opens): "A card got blocked. It needs another card done first."
+- testers (event, once per sprint after user tests if a persona Struggled or Blocked; stale on Next sprint): "Your testers found problems. Their cards moved to the top of the backlog."
+- sentback (event, the client sends a card back; stale on Next sprint): "The client said no to a card. Read their note, then pick your retro chips."
+- w-release (how, Release welcome; stale on any panel press): "Here's what you shipped. Press Copy release notes to share it with your class."
 ## Family engine
 none
 
@@ -128,6 +131,7 @@ none
 - Human-centered design and usability testing: ISO 9241-210:2019 (human-centred design for interactive systems), summarized at https://www.iso.org/standard/77520.html ; Nielsen Norman Group, "Usability Testing 101": https://www.nngroup.com/articles/usability-testing-101/
 - Spec checks S5 to S7: W3C, WCAG 2.2: 4.1.2 Name, Role, Value; 1.4.4 Resize Text (200 percent); 1.4.3 Contrast (Minimum) 4.5:1: https://www.w3.org/TR/WCAG22/
 - Maple Valley Transit, the personas, the backlog and the values are made up; checked plans were worked out with the rules above.
+- Checks run (Python, 2026-10-29, the build, client review, spec and persona rules above): backlog total 41 points; Plan A 8 of 8 checks, 5 Succeeded, 4 of 4 values, 28 points Done; Plan B 7 of 8 (S8 Not built), Jay Struggled, values 2 of 4, 29 spent and 25 Done; Plan C 1 card Done, 5 points blocked, every persona Blocked (values would read 3 of 4, since V4 needs S5 to S7). Every sprint in the checked plans holds 10 points or fewer. Contrast ratios in Look recomputed with the WCAG formula; all as stated.
 
 ## Done when
 1. Team of 3: the role strip shows Seat 1 Product lead and Designer, Seat 2 Developer, Seat 3 Tester; sprint 2 rotates them.
@@ -138,7 +142,10 @@ none
 6. A Struggled result tags its card "Reported by" and moves it to the top of the Backlog.
 7. Hand-off screens hide the board until Ready; Skip hand-offs removes them.
 8. Five lanes and the capacity bar fit without scrolling at 1366x768; at 760 wide lanes become tabs.
-9. Voice: line 2 plays once; line 3 plays at each hand-off and is dropped if Ready is pressed first.
+9. Voice: the plan line plays once; the handoff line plays at each hand-off and is dropped if Ready is pressed first; a 2-seat team never sees a hand-off to the seat already holding the laptop.
+10. Focus: at 1366x768 and 1000x625 the board fills the stage in Sprint with the active step's lane outlined; Design doc and Release each fill theirs.
+11. Tap while it plays: during Build sprint's card moves and the user test reveal, a tap shows the rest at once and then acts; no result is lost.
 
 ## Open questions
 - [sprint-board] The tool is built for one shared laptop with hand-off screens. Should it also support each student on their own laptop (that would need syncing, which the no-network rule rules out)?
+- [sprint-board] The five personas are now shown by the things they carry (a cane and earbuds, a magnifier, a pocket dictionary, a stroller, a work vest), with no faces, so no image waits on Gemini. OK, or do you want painted portraits (five people for your review)?

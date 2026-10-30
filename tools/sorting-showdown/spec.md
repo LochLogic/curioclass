@@ -21,6 +21,7 @@ Five sorting algorithms sort the same list side by side, one comparison per tick
 Header (kit): "Sorting Showdown", small line "Same list, five sorts". Mode buttons: **Lanes** (opens first), **Growth**. Motion, Sound, Read.
 
 ### Mode 1: Lanes
+Focus: the five lanes of bars, filling the stage; the compared ▲ marks are where the eye goes while it runs.
 Stage: five stacked lanes, laid out at real pixel size. Each lane: the algorithm's name (a button that opens its card), a bar chart of the list (n bars, height = value), and readouts at the right: Comparisons, Moves, and a finish rank ("1st", "tied 2nd") when done. Across the top, the **Tick** counter. Bars being compared are violet with a small ▲ under each; bars just written flash orange with an outline; a finished lane turns its bars green with a ✓ beside the name.
 
 Panel:
@@ -28,7 +29,7 @@ Panel:
 - **Data** picker (`.btn` group): **Random**, **Nearly sorted**, **Reversed**, **Few unique**, **Draw**.
 - **Size**: 16, 32, 64.
 - **Run** (big; becomes **Pause**), **Step** (one tick), **Finish** (jump every lane to its end), **Reset** (same list, counters to 0), **New shuffle** (a new seed for Random, Nearly sorted and Few unique; off for Reversed and Draw).
-- **Speed** slider: 2 to 400 ticks per second, log scale (default 20).
+- **Speed** slider: 2 to 400 ticks per second, log scale. Its default follows the size so the slowest lane finishes in about 12 to 25 s: 10 at 16, 20 at 32, 80 at 64 (choosing a size resets it to that default; the student can still move it).
 - **Show equal bars' order** toggle (only for Few unique and Draw): shades bars of the same value from light to dark by their starting position, and adds a Stable column to the results.
 - **Results** table (`table.inst`), filled as lanes finish: Algorithm, Comparisons, Moves, Rank, (Stable). Tap a column head to sort the table by it (the table is itself sorted with a stable sort).
 
@@ -37,6 +38,7 @@ Draw: the lanes hide behind one input strip; drag across it (or use arrow keys o
 Algorithm card (opens over the lanes from a lane's name): two sentences, the pseudocode (Content), and the facts line with its numbers. **Close** or Escape.
 
 ### Mode 2: Growth
+Focus: the growth plane, the largest thing on the stage.
 Stage: a `kit/graphing` plane. x: list size n at 8, 16, 32, 64, 128, 256, 512, 1024 (plotted at log2 n, labeled with n). y: comparisons, **Linear** (default, 0 to 550,000) or **Log** (1 to 1,000,000, powers of ten). Five series with points joined by lines, each with its own color and dash and an end label; two grey dashed reference curves labeled "n²/2" and "n log₂ n". A trace point on each series reads out (n, comparisons) on hover or arrow keys.
 Panel: `#hint`, the **Data** picker (Random, Nearly sorted, Reversed, Few unique), **Linear / Log**, series checkboxes (all on), and the values table for the chosen shape (Content).
 
@@ -80,6 +82,7 @@ The tool computes these live (the same code as the lanes, with no drawing); the 
 ## Interactions in detail
 - Opens on Lanes, Random, n = 32, paused at tick 0, so the first Run shows merge finishing at tick 124 and bubble last.
 - Changing Data or Size resets all lanes. Pause holds every lane at the same tick. Step works while paused. Finish fills the results at once.
+- Every control stays live during a run and acts at once: Pause stops on the current tick, Speed changes take effect on the next frame, Finish, Reset, Data, Size and a lane's card all respond without waiting for a tick, and the Results table can be sorted mid-run.
 - At 400 ticks per second, bars redraw once per animation frame (several ticks per frame); counters stay exact.
 - Show equal bars' order: shades go from `#e3d6ff` (first) to `#6c4bc4` (last) within each value; the Stable column reads "yes" or "no (3 pairs swapped)". Not color alone: the column says it.
 - Draw: an empty strip starts all at height 1; painting is clamped to 1..n; Use this list is off until at least two bars differ.
@@ -97,18 +100,16 @@ The tool computes these live (the same code as the lanes, with no drawing); the 
 - Neighbors: api-playground lemon, network-architect sky blue, ai-evaluator and capture-the-flag pink. No celebration: ranks and a ✓.
 
 ## Art
-none: drawn in code (bars, lanes, the growth chart, preview.svg).
-
+none: drawn in code. The whole tool is bars that must reorder every tick, a results table and a growth chart, so there is no scene, character or object to paint (bars, lanes, the growth chart, preview.svg).
 ## Voice
-Bank voice `science-narrator` (Charon), "Say in a clear, informative way, like a nature documentary narrator", here watching algorithms behave in the wild. Not used by any group sibling or 9-12 CS neighbor (model-mechanic, 6-8, is its nearest other CS user). Numbers and cards are on screen only. `Curio.voice`, `scope: () => state.mode`.
-- w-lanes (how, Lanes welcome): "Five sorts, one list. Pick the data, then press Run."
-- data (how, first change of Data): "Same five sorts, new data. Watch who finishes first now."
-- nearly (event, a Nearly sorted run finishes; stale on reset): "On a nearly sorted list, insertion sort barely has to move."
-- quickbad (event, quicksort finishes last on Nearly sorted or Reversed; stale on reset): "Quicksort chose the largest item as its pivot again and again, and fell to n squared."
-- stable (how, first time the order toggle is on): "Shaded bars show the order equal items started in. A stable sort keeps it."
-- w-growth (how, Growth welcome): "Now grow the list. Switch to Log to see two families of curves."
-- log (how, first switch to Log): "On a log scale, the n squared sorts run parallel, and the n log n sorts pull away below."
-
+Bank voice `science-narrator` (Charon), "Say in a clear, informative way, like a nature documentary narrator", here watching algorithms behave in the wild. Not used by any group sibling or 9-12 CS neighbor (model-mechanic, 6-8, is its nearest other CS user). Numbers and cards are on screen only. `Curio.voice`, `scope: () => state.mode`. Read speaks the hint.
+- w-lanes (how, Lanes welcome; stale on the first Run or Step): "Five sorts, one list. Pick the data in the panel, then press Run."
+- data (how, first change of Data; stale on Run): "Same five sorts, new data. Press Run and watch who finishes first now."
+- nearly (event, a Nearly sorted run finishes; stale on reset or a data change): "On a nearly sorted list, insertion sort barely has to move."
+- quickbad (event, quicksort finishes last on Nearly sorted or Reversed; stale on reset or a data change): "Quicksort chose the largest item as its pivot again and again, and fell to n squared."
+- stable (how, first time the order toggle is on; stale when it is turned off): "Shaded bars show the order equal items started in. A stable sort keeps it."
+- w-growth (how, Growth welcome; stale on the first Data or scale change): "Now grow the list. Press Log to see two families of curves."
+- log (how, first switch to Log; stale on a switch back to Linear): "On a log scale, the n squared sorts run parallel, and the n log n sorts pull away below."
 ## Family engine
 none. Uses `kit/graphing.js` (docs/families/graphing.md) as a library for the Growth plane: `Plane` with `tickFormat` (x labels as n, y as plain numbers or powers of ten), each series drawn as `g.segment` lines between `g.point` markers (keyboard focusable, with `valueText` readouts), and `g.label` for end labels.
 
@@ -118,7 +119,7 @@ none. Uses `kit/graphing.js` (docs/families/graphing.md) as a library for the Gr
 - Lomuto partition (last-item pivot): Thomas H. Cormen et al., Introduction to Algorithms, 3rd ed., section 7.1 (PARTITION) and problem notes crediting Lomuto; Jon Bentley, Programming Pearls, 2nd ed., column 11.
 - Bubble sort with an early exit and stability definitions: Donald E. Knuth, The Art of Computer Programming, vol. 3, Sorting and Searching, 2nd ed., section 5.2.2 and section 5 (stable sorting).
 - mulberry32 generator (Tommy Ettinger, public domain), JavaScript form as listed in bryc, "Pseudorandom number generators", https://github.com/bryc/code/blob/master/jshash/PRNGs.md
-- All counts in Content computed in Python with the exact rules above (2026-10-27).
+- All counts in Content computed in Python with the exact rules above (2026-10-27), and run again 2026-10-29 with a port of mulberry32: the n = 32 Random list, the Nearly sorted pairs (positions 9-10, 11-12, 23-24), every cell of the n = 32 table, the n = 16 and n = 64 Random counts, stability on Few unique at 16, 32 and 64, and all 160 Growth values match; every lane ends sorted. Run lengths at the default speeds: slowest lane 120 ticks at 10 per second (12 s), 496 at 20 (24.8 s), 2,016 at 80 (25.2 s). The draft's single default of 20 made a 64-item run take 101 s, so the default now follows the size.
 
 ## Done when
 1. `counts(kind, 32)` matches the n = 32 table for all four data shapes, comparisons and moves.
@@ -130,3 +131,5 @@ none. Uses `kit/graphing.js` (docs/families/graphing.md) as a library for the Gr
 7. Draw: painting and Use this list run all five lanes on the drawn list; every lane ends sorted.
 8. Every size in STANDARDS.md: Run and at least two full lanes visible without page scrolling; 375 wide shows the two-lane picker.
 9. Voice: welcome once per mode, how lines once then hint only, event lines each time while fresh; Read speaks the hint; console clean; no network requests; the name only as "Curio Class".
+10. Focus: at 1366x768 and 1000x625 the five lanes (Lanes) and the plane (Growth) are the largest thing on the stage; at the default speed for each size the slowest lane finishes in 25.2 s or less.
+11. Tap while it plays: during a run, Pause, Finish, Reset, a Data or Size change, the Speed slider and a lane's card each act on the next frame; the counters stay exact.

@@ -21,24 +21,25 @@ A new technology only helps the people it can reach: build a concept for a made-
 ## Screens and modes
 Header (kit): "Emerging Tech Pitch", small line "Cedar Gap, a made-up valley town". Mode buttons: **Brief** (opens first), **Compare**, **Build**, **Pitch**. Motion, Sound, Read. All four are open from the start; Compare, Build and Pitch use the brief picked in Brief (default Smoke alerts).
 
+Focus: in Brief and Build, the **household grid**, centered and the largest thing on the stage; in Compare, the three option columns; in Pitch, the pitch sheet. A painted banner of Cedar Gap (Art) runs as a thin strip above the grid in Brief and heads the pitch sheet.
 Stage, every mode except Pitch: the **household grid**, 10 by 10 squares, one per household, grouped in seven labeled blocks (group name and count beside each block, Content). Each square shows the state for the current concept: **reached** (filled, brand coral, a ✓), **left out** (outline only, a small ✕). Under the grid one line: "Reached 72 of 100 households" and the left-out groups as chips ("Canyon, older, no car 8"). Tap a group label: a card with its row of needs (signal, smartphone, any cell phone, home internet, hears a siren, reads English, car, lives in town) as ✓ and ✕.
 
 ### Brief
-Panel: three brief cards (radio): **Smoke alerts** ("Wildfire smoke rolls into the valley at night. Who gets warned within 30 minutes?"), **Library books** ("The only library is in town. Who can get a requested book within a week?"), **Town meetings** ("The council meets Tuesdays at 7 pm. Who can follow it live?"). Under the picked card: the goal line and the town note "Cedar Gap is made up. Its 100 households stand for the kinds of homes many rural towns have." Grid: the established fix's reach.
+Panel: three brief cards (radio), each with its painted thumbnail (Art): **Smoke alerts** ("Wildfire smoke rolls into the valley at night. Who gets warned within 30 minutes?"), **Library books** ("The only library is in town. Who can get a requested book within a week?"), **Town meetings** ("The council meets Tuesdays at 7 pm. Who can follow it live?"). Under the picked card: the goal line and the town note "Cedar Gap is made up. Its 100 households stand for the kinds of homes many rural towns have." Grid: the established fix's reach.
 
 ### Compare
-Stage: three columns, one per option of the brief: the established fix and two emerging ones. Rows: **How it works** (one line), **Needs** (need chips), **Works in a power outage** (yes / partly / no with a word), **Data it collects**, **Who keeps it running**, **Fact** (one sourced fact card, Content). Under each column a mini grid (100 dots) with its reach number. Panel: **Show differences only** (hides rows where all three match) and the sources drawer for the fact cards.
+Stage: three columns, one per option of the brief: the established fix and two emerging ones, each headed by its painted option picture (Art). Rows: **How it works** (one line), **Needs** (need chips), **Works in a power outage** (yes / partly / no with a word), **Data it collects**, **Who keeps it running**, **Fact** (one sourced fact card, Content). Under each column a mini grid (100 dots) with its reach number. Panel: **Show differences only** (hides rows where all three match) and the sources drawer for the fact cards.
 
 ### Build
 Panel, top to bottom:
-- **Core** (radio, three options from the brief).
+- **Core** (radio, three options from the brief, each with a small thumbnail of its option picture).
 - **Add-ons** (checkboxes, the brief's list, each with its cost line and effect line, for example "Spanish messages too: households that read Spanish best can now use it").
 - **Impact check** (`dl.readouts`): Reached, Setup cost, Yearly cost, Energy per year, Works in an outage, Data collected. Each number shows the difference from the established fix in small type ("+12 households", "+$15,000 a year").
 - **Benefit and harm**: the core's two benefit cards and two harm cards (Content), each with a **Pin** button; pinned cards go on the pitch sheet (up to 2 of each).
-Stage: the grid updates live; a ghost outline shows the established fix's reach so the change is visible. Changed squares pulse once (not with Motion off).
+Stage: the grid updates live; a ghost outline shows the established fix's reach so the change is visible. Changed squares pulse once for 400 ms (not with Motion off); a tap during a pulse acts at once, and the grid shows the newest state.
 
 ### Pitch
-Stage: the pitch sheet, drawn as one page: title "Cedar Gap: [brief]", the concept as a block diagram drawn in code (Sense, Decide, Deliver, Backup boxes filled from the core and add-ons, Content), the reach grid small, the impact table beside the established fix's numbers, the pinned benefits and harms, and an automatic **Who it still leaves out** line. Panel: **Present** (full screen, panel hidden, Escape returns), **Copy pitch text** (plain text to the clipboard), **Save on this device** and **Clear saved** (localStorage, the choices only, no text), **Start over**.
+Stage: the pitch sheet, drawn as one page: the Cedar Gap banner, title "Cedar Gap: [brief]", the core's option picture, the concept as a block diagram drawn in code (Sense, Decide, Deliver, Backup boxes filled from the core and add-ons, Content), the reach grid small, the impact table beside the established fix's numbers, the pinned benefits and harms, and an automatic **Who it still leaves out** line. Panel: **Present** (full screen, panel hidden, Escape returns), **Copy pitch text** (plain text to the clipboard), **Save on this device** and **Clear saved** (localStorage, the choices only, no text), **Start over**.
 
 ## Content
 Households (made up; columns: in town, cell signal at home, smartphone, any cell phone, home internet, hears a siren, reads English, car):
@@ -82,7 +83,7 @@ Add-ons: ASL interpreter (waive hears; +$2,400/yr). Spanish interpreter (waive E
 
 Checked reaches (computed with the rules above; the build reproduces every one):
 - Smoke: sensors + Spanish 76; sensors + Spanish + keep sirens 76 (still not the canyon); satellite + Spanish 84; satellite + Spanish + loan smartphones 100; sirens + strobe kits 76.
-- Library: drone + keep bookmobile 92; drone + keep bookmobile + volunteer drivers 100; hotspots + loan e-readers 100; bookmobile + volunteer drivers 100 (the cheapest 100: $39,500 a year, no setup).
+- Library: drone + keep bookmobile 92; drone + keep bookmobile + volunteer drivers 100; hotspots + loan e-readers 100; bookmobile + volunteer drivers 100 (no setup cost, $39,500 a year; hotspots + e-readers reaches 100 for $7,920 setup and $10,000 a year, so neither is simply "cheapest").
 - Meetings: captions + canyon dishes 84; captions + canyon dishes + loan smartphones 100; stream + ASL + Spanish interpreters 68; town hall + both interpreters 92; captions + keep town hall 92.
 Energy and costs add up across core and add-ons, with "keep the old fix" adding the established fix's numbers.
 
@@ -120,21 +121,25 @@ Fact cards (one per emerging option; sources in Sources):
 ## Look
 - Accent `--brand #ff8a7a` (warm coral: reached squares, Build controls, the header rule) with `--brand-ink #2a0d08`, on `kit:theme-912`.
 - Grid: left-out squares outline `#a6b3c4` with ✕; ghost outline of the established fix's reach dashed `#62789a`. Pitch sheet: a light card `#fbfaf7` with ink `#1c1f26` and coral rules, so it reads like a handout.
-- Contrast (computed): brand on `--panel #141b25` 7.56:1, on `--sec-bg #18202b` 7.16:1; brand-ink on brand 7.91:1; outline grey on panel 8.6:1 (graphics need 3:1); pitch ink on its card about 16:1. All pass AA. Reached and left out differ by fill and glyph, never color alone.
+- Contrast (computed): brand on `--panel #141b25` 7.56:1, on `--sec-bg #18202b` 7.16:1; brand-ink on brand 7.91:1; outline grey on panel 8.13:1; ghost outline 3.85:1 (graphics need 3:1); pitch ink on its card about 16:1. All pass AA. Reached and left out differ by fill and glyph, never color alone.
 - Neighbors: ai-evaluator and capture-the-flag pink, sorting-showdown violet, api-playground lemon, network-architect sky blue, simulation-studio orange, data-policy-council navy on paper. Coral is unused in 9-12 computer science.
 
 ## Art
-none: drawn in code (household grid, block diagram, need chips, the pitch sheet, preview.svg: the grid with the canyon blocks left out).
-
+Local FLUX (`scripts/localart.py`), no people. One style: warm painted illustration of a small western valley town, late-day light. Objects that usually carry text (signs, vans, screens) are asked for blank; any words go on in code.
+- cedar-gap-banner: "A small valley town in the American West seen from a hillside, a main street of low buildings, a water tower, ranch houses scattered up a pine canyon beyond, late afternoon light, painted illustration"; 4:1; cutout no; people no; strip above the grid in Brief and the head of the pitch sheet.
+- brief-smoke: "Wildfire smoke rolling into a quiet valley town at night, porch lights glowing through haze, painted illustration"; 4:3; cutout no; people no; Smoke alerts brief card.
+- brief-library: "A small brick town library with a blank sign over the door and a book drop box, evening, painted illustration"; 4:3; cutout no; people no; Library books brief card.
+- brief-meeting: "A small-town hall with lit windows at dusk and a flagpole, painted illustration"; 4:3; cutout no; people no; Town meetings brief card.
+- Option pictures, one shared prompt "[object], painted illustration, warm light, plain soft background" with: opt-sirens "an outdoor warning siren on a tall wooden pole above rooftops"; opt-sensors "a small white air quality sensor box mounted on a fence post"; opt-satellite "a flat satellite internet dish on the roof of a ranch house in a canyon"; opt-bookmobile "a bookmobile van with blank sides parked by a rural fire hall"; opt-drone "a delivery drone carrying a small package over town rooftops"; opt-hotspots "a portable internet hotspot and a tablet with a blank screen on a kitchen table"; opt-hall "rows of empty folding chairs facing a table in a town hall meeting room"; opt-stream "a phone on a small tripod at the back of a town hall meeting room, its screen blank"; opt-captions "a phone with a blank screen propped against a sugar bowl on a kitchen table at night"; 4:3 each; cutout no; people no; Compare column heads, Build's core thumbnails and the pitch sheet. Captions and stream text appear in code over the blank screens.
+The household grid, need chips, group cards, the block diagram, the impact table and preview.svg are drawn in code (data, diagrams and labels).
 ## Voice
-Bank voice `upbeat-guide`, style "Say brightly and clearly, like an upbeat tour guide": a friendly guide showing a pitch team around the town. Not used by any 9-12 computer science tool or group sibling. Light narration:
-1. how, welcome (Brief): "Pick a problem for Cedar Gap. Then open Compare to see the old fix and two new ones side by side."
-2. how, first visit to Build: "Pick a core technology, then add backups. Watch which houses light up."
-3. event, reach rises to 100 for the first time in a brief (stale if reach drops before it plays): "Every household is reached. Now look at what it costs."
-4. event, an add-on reaches no one new with this core (stale when unchecked): "That add-on costs money but reaches no one new here."
-5. how, first visit to Pitch: "This is your pitch. Press Present to show the class, and be ready to say who it still leaves out."
-Read speaks the hint. Numbers are never spoken.
-
+Bank voice `upbeat-guide` (Zephyr), style "Say brightly and clearly, like an upbeat tour guide": a friendly guide showing a pitch team around the town. Not used by any 9-12 computer science tool or group sibling. Light narration, `Curio.voice`, `scope: () => state.mode + ':' + state.brief`. Read speaks the hint. Numbers are never spoken.
+- w-brief (how, Brief welcome; stale when another mode opens): "Tap a problem card in the panel. Then press Compare to see the old fix and two new ones side by side."
+- w-compare (how, Compare welcome; stale when another mode opens): "Three ways to solve one problem. Press Show differences only to see what sets them apart."
+- w-build (how, first visit to Build; stale on the first core or add-on change): "Tap a core technology, then tick add-ons. Watch which houses light up."
+- all (event, reach rises to 100 for the first time in a brief; stale if reach drops before it plays): "Every household is reached. Now look at what it costs."
+- noone (event, an add-on reaches no one new with this core; stale when it is unticked or the core changes): "That add-on costs money but reaches no one new here."
+- w-pitch (how, first visit to Pitch; stale on Present): "This is your pitch. Press Present to show the class, and be ready to say who it still leaves out."
 ## Family engine
 none
 
@@ -148,6 +153,7 @@ none
 - Diesel heat content 137,381 Btu per gallon: U.S. EIA, "Units and calculators explained: British thermal units": https://www.eia.gov/energyexplained/units-and-calculators/british-thermal-units.php ; 1 kWh = 3,412 Btu (same source).
 - On-device AI works without sending data to a server: Chrome for Developers, "Built-in AI": https://developer.chrome.com/docs/ai/built-in
 - Cedar Gap, its households, every cost and every other energy figure are made up; reaches were computed with the rules above.
+- Checks run (Python, 2026-10-29, the needs rules above on the seven groups): every reach in the option tables and in "Checked reaches", with the left-out groups in Done when; Smoke satellite + Spanish + loan smartphones setup $23,600, yearly $18,280; 16 households lack a smartphone (so "loan to 16 homes" covers them); 24 dishes x 60 W x 8,760 h = 12,614 kWh; 1,200 gallons x 137,381 Btu / 3,412 = 48,317 kWh. The draft called bookmobile + volunteer drivers "the cheapest 100", but hotspots + e-readers costs less a year, so that note now gives both. Contrast recomputed: the outline grey is 8.13:1 (the draft said 8.6), the ghost outline 3.85:1 (graphics need 3:1).
 
 ## Done when
 1. Brief, Smoke alerts: the grid shows 70 reached; deaf, Canyon ranches and Canyon older are left out.
@@ -159,6 +165,8 @@ none
 7. Pitch shows the block diagram, the pinned cards and the left-out line; Present hides the panel; Copy pitch text contains no typed text.
 8. Save, reload: choices return; Clear saved: they are gone.
 9. Grid, core picker and Impact check fit without scrolling at 1366x768; every voice how-line plays once in five changes.
+10. Focus: at 1366x768 and 1000x625 the household grid is the largest thing on the stage in Brief and Build; Compare's three columns and Pitch's sheet fill theirs.
+11. Tap while it plays: ticking two add-ons inside one 400 ms pulse shows the reach for both at once; no change waits for a pulse or a voice line.
 
 ## Open questions
 - [emerging-tech-pitch] The concept's "late buses" brief became "Town meetings" so it doesn't repeat sprint-board's bus-alert app. OK?

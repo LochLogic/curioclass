@@ -20,11 +20,11 @@ An AI helper opened three pull requests on a robotics club's website and says "A
 ## Screens and modes
 Own light `:root` (a code-review page: white diff on a pale page), theme-912 class names kept with light values. Header: "Pull Request Review", small line "Lakeside Robotics Club website". Case buttons: **Case 1** (opens first), **Case 2**, **Case 3**, each with a status word (Open, Reviewed, Merged). Motion, Sound, Read.
 
-Each case is one pull request page with tabs across the stage:
+Each case is one pull request page with tabs across the stage. Focus: the open tab's main object, centered and largest: the diff in Files changed (the case opens here after a first look at Conversation), the result list in Checks, the browser frame in Preview, the file in Repo files; the Case file panel beside it stays narrower.
 - **Conversation**: the pull request title, the author "Helper (AI assistant)", its description (Content), the linked issue with the **Requirements** list, and the review timeline (comments the student posts appear here).
 - **Files changed**: a unified diff per file, line numbers on the left, added lines with "+" on a blue tint, removed lines with "-" on an orange tint. Tap (or Enter on) any line: a comment box opens under it with six tag buttons, **Bug**, **Requirement not met**, **License or credit**, **Test gap**, **Question**, **Nit**, and a list of prewritten comment lines for that tag (Content gives the ones tied to clues; every tag also has "Something else looks off here"). Posting adds a marker on the line and an entry in the timeline. No free typing.
-- **Checks**: two buttons, **Run PR tests** (the helper's own tests) and **Run club tests** (acceptance tests the club wrote from the requirements). Results list each test with ✓ Passed or ✗ Failed and its message. Each run adds an evidence card.
-- **Preview**: the feature running in a small browser frame drawn in the page (made-up site, nothing loads from a network). Case 1: a signup form plus **Fill 12 people** and **Add one more** buttons and the list of Confirmed, Waitlist and "Spots left". Case 2: the site with its toggle. Case 3: the parts search box. Errors show in a console strip under the frame. Each preview action that shows something adds an evidence card.
+- **Checks**: two buttons, **Run PR tests** (the helper's own tests) and **Run club tests** (acceptance tests the club wrote from the requirements). Results list each test with ✓ Passed or ✗ Failed and its message, one row every 120 ms (under 1 s); a tap during the list (another run, a tab, a comment) fills the rest at once, then acts. Each run adds an evidence card.
+- **Preview**: the feature running in a small browser frame drawn in the page (made-up site, nothing loads from a network). The club site's header shows its painted robot (Art) in both light and dark mode; Case 3's search results show each part's painted thumbnail. Case 1: a signup form plus **Fill 12 people** and **Add one more** buttons and the list of Confirmed, Waitlist and "Spots left". Case 2: the site with its toggle. Case 3: the parts search box. Errors show in a console strip under the frame. Each preview action that shows something adds an evidence card.
 - **Repo files**: README, CONTRIBUTING.md, LICENSE, CREDITS.md and a **JavaScript reference** (Array methods list, Content). Tapping "Cite this line" on any line adds it as an evidence card.
 
 Panel (all tabs): **Case file**: the comments posted, each with its evidence slots (**Attach evidence** opens the evidence cards gathered so far); then **Verdict**: **Approve**, **Request changes**, **Rewrite with credit** (Request changes and Rewrite with credit are enabled once the case has a blocking comment; Approve always is; Case 2 offers Approve and Request changes), and **Submit review**. Submitting needs every Bug, Requirement not met, License or credit and Test gap comment to have at least one evidence card; otherwise the panel lists which comments still need evidence. After Submit: **Maintainer's notes** (Content) open beside the case file, comparing the student's comments with the clues, never a score. For Case 1 and 3 with Request changes or Rewrite, a **Fix it** section appears: fix choices (Content), **Run club tests** again, and **Merge** (enabled only when every club test passes and no license comment is open).
@@ -158,18 +158,20 @@ Maintainer's notes per case: Case 1 lists C1 to C5 and the red herring, each mar
 - Neighbors: the dark 9-12 CS tools (pink, violet, lemon, sky blue, orange) and data-policy-council's navy on paper; sprint-board (this group) is royal blue on a whiteboard, catalog-column-rules purple on manila. Wine is unused.
 
 ## Art
-none: drawn in code (the pull request pages, diff, checks, preview frames, preview.svg: the Files changed tab with one comment marker on the > line).
-
+Local FLUX (`scripts/localart.py`), no people. One style: bright painted product illustration on plain white (cut out), like photos on a small club website.
+- club-robot: "A small four-wheeled hobby robot with an ultrasonic sensor on the front, a blank circuit board on top and coiled wires, sitting on a wooden workbench, painted illustration"; 16:9; cutout no; people no; the club site's header in every Preview (light and dark).
+- Parts thumbnails, one shared prompt "[part], painted product illustration, plain white background" with: part-servo "a small blue micro servo motor with a white horn"; part-horn-kit "a set of small white plastic servo horns in different shapes"; part-wheel "a rubber robot wheel with a yellow hub"; part-battery "a black battery holder with four AA batteries"; part-ultrasonic "an ultrasonic distance sensor board with two silver round transducers"; part-line-sensor "a small line sensor board with infrared emitters"; part-jumpers "a bundle of rainbow jumper wires"; part-motor-driver "a small red motor driver board with screw terminals"; 1:1 each; cutout yes; people no; Case 3's parts list in Preview, 48 px beside each name.
+The pull request pages, the diff, checks, the browser frame chrome, the console strip, repo files and preview.svg are drawn in code (text and interface).
 ## Voice
-Bank voice `firm-captain`, style "Say firmly but kindly, like a ship captain giving clear directions": the club's lead maintainer handing over reviews. Not used by a 9-12 CS tool or a group sibling. Light narration:
-1. how, welcome (Case 1): "The helper says all tests pass. Check that yourself. Tap any line in Files changed to leave a comment."
-2. how, first comment posted that needs evidence: "Now back it up. Run the checks or the preview, then attach what you found."
-3. event, Run club tests with any failure (stale after another run): "The club's own tests fail. Open the failing one and find the line behind it."
-4. event, Submit review (every time): "Review sent. Read the maintainer's notes beside your case file."
-5. event, Merge (every time): "Merged. Every club test passes."
-6. how, welcome (Case 2): "Same helper, new pull request. Decide what this one deserves."
-Read speaks the hint. Code is never spoken.
-
+Bank voice `firm-captain` (Alnilam), style "Say firmly but kindly, like a ship captain giving clear directions": the club's lead maintainer handing over reviews. Not used by a 9-12 CS tool or a group sibling. Light narration, `Curio.voice`, `scope: () => state.caseId`. Read speaks the hint. Code is never spoken.
+- w-case1 (how, Case 1 welcome; stale on the first comment): "The helper says all tests pass. Check that yourself. Open Files changed and tap any line to leave a comment."
+- evidence (how, first comment posted that needs evidence; stale when it gets a card): "Now back it up. Press Run club tests or try the Preview, then press Attach evidence."
+- clubfail (event, Run club tests with any failure; stale after another run): "The club's own tests fail. Open the failing one and find the line behind it."
+- sent (event, Submit review, every time; stale on Reset case): "Review sent. Read the maintainer's notes beside your case file."
+- merged (event, Merge, every time; stale on case change): "Merged. Every club test passes."
+- w-case2 (how, Case 2 welcome; stale on the first verdict pick): "Same helper, new pull request. Check it, then press Approve or leave a comment on a line."
+- w-case3 (how, Case 3 welcome; stale on the first comment): "This one says its tests pass too. Open Checks and press Run club tests."
+Request changes and Rewrite with credit are disabled until a blocking comment exists, and Merge until the club tests pass, so no line names them while disabled.
 ## Family engine
 none
 
@@ -181,6 +183,7 @@ none
 - Contrast 4.5:1 for text: WCAG 2.2, Success Criterion 1.4.3: https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum ; ratios computed with the WCAG formula.
 - Code review practice: Google Engineering Practices, "How to do a code review": https://google.github.io/eng-practices/review/reviewer/
 - The club, the helper, mailcheck-lite, validate-mini and all code are made up.
+- Checks run (Python, 2026-10-29, a port of signup.js and the email pattern): with ">" the 13th signup is confirmed and spots left is -1 (A3 and A4 fail); A6 passes but leaves 13 confirmed; with ">=" A3 to A6 pass and spots left is 0; with CAPACITY 11 A3 passes and A4 still reads -1; "sam@club" is refused and "Sam@Club.org" after "sam@club.org" is a duplicate. Case 2 contrast 15.76, 6.67, 15.10, 10.04 and every ratio in Look recomputed with the WCAG formula; all as stated.
 
 ## Done when
 1. Case 1 Run PR tests: 4 passed. Run club tests: A3 and A4 fail with the stated messages; the others pass.
@@ -191,6 +194,8 @@ none
 6. Case 3: club tests D1, D2, D4 fail with the TypeError; the reference lists no fuzzyFilter; "Use filter and includes" makes all four pass.
 7. The build's check runs the shown code itself and agrees with every club test result above.
 8. Diff and Case file fit side by side at 1366x768; no horizontal scroll at 375 wide (lines wrap).
+9. Focus: at 1366x768 and 1000x625 the open tab's main object (diff, results, preview frame, file) is the largest thing on the stage.
+10. Tap while it plays: while club test rows are appearing, a tab switch or a comment acts at once and the list is complete when you come back; no voice line names a disabled verdict or Merge.
 
 ## Open questions
 - [pull-request-review] Case 1's license lesson uses GPL-3.0 code in an MIT project. Is GPL the right example for grade 9-12, or would a "no license at all" snippet (all rights reserved) be clearer?
