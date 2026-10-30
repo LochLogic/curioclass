@@ -10,3 +10,5 @@ builder re-runs these to match the tool's numbers to the spec's Sources. Run fro
 - molecule-forge: check1.py (bonding rules on every book molecule), legal_enum.py, crystal.py, salt2.py, push.py,
   with the PubChem data they read (pubchem.json, pc3d.json).
 - span-and-spire: the truss stiffness solver, tower modal and shake checks.
+- cipher-vault: round trips for all six rooms (Enigma checked against the AAAAA to BDZGO test vector), the
+  substitution solver by length, Kasiski and the column splitter, the bombe search and the one-time-pad decoys.
