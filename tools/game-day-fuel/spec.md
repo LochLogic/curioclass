@@ -23,9 +23,10 @@ Plan a teen athlete's week of meals around a training schedule the coach already
 ## Screens and modes
 Header (theme-912): title "Game Day Fuel" with small line "Nutrition and fitness planning", mode buttons **Plan the week**, **Game day** (keys 1, 2), **Motion**, **Sound**, **Read**.
 
-Athlete bar (both modes, top of stage): four athlete cards (Content); the chosen one shows name, age, sport, game time, and the week's schedule strip (Mon to Sun chips: **Rest**, **Practice**, **Game**). No body weights or sizes anywhere.
+Athlete bar (both modes, top of stage): four athlete cards (Content), each with its painted sport gear (Art), never a portrait; the chosen one shows name, age, sport, game time, and the week's schedule strip (Mon to Sun chips: **Rest**, **Practice**, **Game**). No body weights or sizes anywhere.
 
 ### Plan the week (opens first, with Ana and her "Typical week" loaded)
+- Focus: the week grid with its day bars, center stage and the biggest thing; the shelf is in the panel right beside it.
 - Stage, main: the week grid: 7 columns (Mon to Sun, each headed by its day type chip) by meal-slot rows (Content, "Slots"). Each cell holds up to 4 food chips (picture, short name); an empty cell reads "Skipped".
 - Under each column: a day bar: **Energy in** against **Energy needed** (the day's target), with both numbers ("1,770 of 2,400") and a percent; the bar is shaded by the flag state, always with a word ("Low", "OK", "Very high").
 - Panel, top: the **Food shelf** (Content, 30 foods) in a scroll box, filterable by chips **All**, **Breakfast**, **Meals**, **Snacks**, **Drinks**, and by food group. Tap a food to add it to the selected cell; tap a chip in a cell to remove it.
@@ -34,8 +35,9 @@ Athlete bar (both modes, top of stage): four athlete cards (Content); the chosen
 - Buttons: **Typical week** (reload the starter), **Clear week**, **Copy day to...** (pick target days), **Save**, **Load**, **Clear saved**, and **Fuel notes** (opens six cards, Content).
 
 ### Game day
+- Focus: the Fuel tank line riding over the timeline, center stage and the biggest thing, with the live clock and tank percent beside it in the panel.
 - Stage: a timeline of the game day from wake to bedtime, with each meal slot as a flag at its time (food chips shown on it), the game as a shaded block, and two gauges over the timeline: the **Fuel tank** (percent, a line) and **Drinks** (a check at each drink).
-- Panel: **▶ Play game day** (the clock runs at 1 hour per 2 s; becomes **⏸ Pause**), **Restart**, a speed toggle **1x / 4x**, the live clock, the tank percent, and the result card at the final whistle (Content, "Result").
+- Panel: **▶ Play game day** (the clock runs at 1 hour per 2 s from wake to the final whistle, where the result card shows: Ana 22 s, Priya 26 s, Marcus 12 s, Kai 7 s at 1x; becomes **⏸ Pause**), **Restart**, a speed toggle **1x / 4x**, the live clock, the tank percent, and the result card at the final whistle (Content, "Result").
 - Edits: tap a meal flag to change its foods with the same shelf (it edits the game day in the week plan too). **Move meal** lets the student drag a meal flag along the timeline within its window (Content), to test timing.
 - Above the tank, always: "Fuel tank is a teaching model, not a measurement of a real body."
 
@@ -105,7 +107,7 @@ Every non-game day: Breakfast oatmeal, banana, white milk; Lunch turkey sandwich
 4. **Added sugars**: over 10 percent of the day's calories (added sugar g times 4) ! per day.
 5. **Sodium**: over 2,300 mg in a day ! per day.
 6. **Breakfast**: skipped on a morning practice or game day ✗.
-7. **Pre-game meal**: under 60 g carbohydrate eaten 1 to 4 hours before the start ✗.
+7. **Pre-game meal**: under 60 g carbohydrate eaten 1 to 4 hours before the start ✗ (both ends count: Ana's 12:00 lunch, exactly 4 hours before her 4:00 game, is inside).
 8. **Heavy stomach**: 20 g fat or more, or 10 g fiber or more, eaten within 2 hours before the start ! .
 9. **Recovery**: no slot within 2 hours after the game with at least 40 g carbohydrate and 15 g protein ! .
 10. **Drinks**: no drink in the pre-game slot or in During ! .
@@ -136,7 +138,7 @@ The 80, 130, 60 g, 20 g, 10 g, 40 g and 15 g lines are the tool's own thresholds
 - Totals, bars and flags update in under 50 ms. Bars grow over 200 ms (instant with Motion off).
 - Changing athlete swaps schedule, targets and slots and loads that athlete's saved plan if there is one, else the Typical week. Food in a slot that no longer exists is kept in a "Moved" note on that day for the student to place.
 - Move meal clamps to its window (pre-game 1 to 4 hours before start; recovery 0 to 2 hours after end; others 1 hour either side).
-- Game day replay: tank and clock move together; Pause holds both. With Motion off the replay still runs on time, the line simply draws without easing. 4x speed is 1 hour per 0.5 s.
+- Game day replay: tank and clock move together; Pause holds both. Every control stays live while it runs: a meal edit or a Move meal drag during the replay redraws the tank line for the new plan at once and keeps playing from the same clock time; Restart starts from wake at once. With Motion off the replay still runs on time, the line simply draws without easing. 4x speed is 1 hour per 0.5 s.
 - Save keeps one plan per athlete in localStorage `gdf-plans` (try/catch); Clear saved confirms. Nothing about the student is ever entered or stored.
 - Language rules: no "good" or "bad" foods, no weight, no "burn off", no dieting. Flags talk about fuel, timing and balance.
 - Sizes: at 1366x768 the week grid, the shelf and the top of the flags list fit; the selected-day label may scroll inside the panel. Under 900 px tall the shelf shows two rows with a filter row above. At 760 wide the grid scrolls sideways inside its box with slot names pinned.
@@ -148,38 +150,44 @@ The 80, 130, 60 g, 20 g, 10 g, 40 g and 15 g lines are the tool's own thresholds
 - Group siblings: body-systems-tour orange, growing-up-q-a mauve, first-aid-responder mint, health-claim-checker yellow. 9-12 neighbors: fitness-program-designer lime, captain-s-choices coral. Food family: lunch-tray-builder orange #c4572f and label-detective teal #1d5c63 (both light themes).
 
 ## Art
-LD foods reuse label-detective's art. New food art (Cloudflare FLUX, `scripts/cfart.py`), each one food on a plain white plate or in its own simple container, top three-quarter view, soft flat illustration matching label-detective's style, blank packaging with no lettering, cutout yes, people no, 1:1, used as shelf and chip pictures:
-- gdf-strawberries: a small bowl of fresh strawberries; 1:1; cutout yes; people no; shelf and chip picture
-- gdf-toast: two slices of whole-wheat toast on a plate; 1:1; cutout yes; people no; shelf and chip picture
-- gdf-eggs: scrambled eggs on a plate; 1:1; cutout yes; people no; shelf and chip picture
-- gdf-bagel-pb: a sliced bagel spread with peanut butter; 1:1; cutout yes; people no; shelf and chip picture
-- gdf-turkey: a turkey sandwich on whole-wheat bread with lettuce and tomato; 1:1; cutout yes; people no; shelf and chip picture
-- gdf-pbj: a peanut butter and jelly sandwich cut in half; 1:1; cutout yes; people no; shelf and chip picture
-- gdf-pasta: a bowl of pasta with meat sauce; 1:1; cutout yes; people no; shelf and chip picture
-- gdf-ricebowl: a bowl of rice topped with sliced chicken and vegetables; 1:1; cutout yes; people no; shelf and chip picture
-- gdf-burrito: a bean and cheese burrito cut in half; 1:1; cutout yes; people no; shelf and chip picture
-- gdf-pizza: one slice of cheese pizza; 1:1; cutout yes; people no; shelf and chip picture
-- gdf-salmon: a baked salmon fillet with a lemon slice; 1:1; cutout yes; people no; shelf and chip picture
-- gdf-potato: a baked potato split open; 1:1; cutout yes; people no; shelf and chip picture
-- gdf-salad: a green salad in a bowl; 1:1; cutout yes; people no; shelf and chip picture
-- gdf-broccoli: steamed broccoli in a bowl; 1:1; cutout yes; people no; shelf and chip picture
-- gdf-chicken-sandwich: a fried chicken sandwich in a plain paper wrapper; 1:1; cutout yes; people no; shelf and chip picture
-- gdf-fries: french fries in a plain red paper carton; 1:1; cutout yes; people no; shelf and chip picture
-- gdf-smoothie: a fruit smoothie in a tall clear cup; 1:1; cutout yes; people no; shelf and chip picture
-Athlete cards use initials and a sport icon drawn in code; no portraits.
+Local FLUX (`scripts/localart.py`), no people. LD foods reuse label-detective's art. New food art, one shared prompt so they match label-detective's style: "{food}, top three-quarter view, soft flat illustration, blank packaging with no lettering, plain white background"; 1:1; cutout yes; people no; used as shelf and chip pictures and on the Game day meal flags:
+- gdf-strawberries: a small bowl of fresh strawberries
+- gdf-toast: two slices of whole-wheat toast on a white plate
+- gdf-eggs: scrambled eggs on a white plate
+- gdf-bagel-pb: a sliced bagel spread with peanut butter on a white plate
+- gdf-turkey: a turkey sandwich on whole-wheat bread with lettuce and tomato
+- gdf-pbj: a peanut butter and jelly sandwich cut in half
+- gdf-pasta: a bowl of pasta with meat sauce
+- gdf-ricebowl: a bowl of rice topped with sliced chicken and vegetables
+- gdf-burrito: a bean and cheese burrito cut in half
+- gdf-pizza: one slice of cheese pizza
+- gdf-salmon: a baked salmon fillet with a lemon slice on a white plate
+- gdf-potato: a baked potato split open
+- gdf-salad: a green salad in a bowl
+- gdf-broccoli: steamed broccoli in a bowl
+- gdf-chicken-sandwich: a fried chicken sandwich in a plain paper wrapper
+- gdf-fries: french fries in a plain red paper carton
+- gdf-smoothie: a fruit smoothie in a tall clear cup
+Athlete gear (same style, 1:1, cutout yes, people no, one per athlete card; different objects from fitness-program-designer's client cards):
+- gdf-gear-ana: a black and white soccer ball beside a pair of soccer cleats
+- gdf-gear-priya: an orange basketball beside a pair of high-top basketball shoes
+- gdf-gear-marcus: swim goggles and a plain swim cap on a folded striped towel
+- gdf-gear-kai: a pair of lightweight running spikes on a patch of grass beside a water bottle
+21 images, none with people. The grid, day bars, flags, selected-day label, timeline, Fuel tank line and Drinks gauge are drawn in code (charts and controls).
 
 ## Voice
-`easy-coach` (Umbriel): "Say in an easy-going, encouraging way, like a relaxed sports coach." Different from fitness-program-designer (calm-professor) and captain-s-choices (wise-mentor).
-| Key | Kind | Line | Stale when |
-|---|---|---|---|
-| wPlan | how | This is a typical week. Check the flags, then tap a meal and add foods to fuel the training days. | mode left |
-| wGame | how | Press Play game day and watch the fuel tank. Change a meal and play it again. | mode left |
-| howCell | how | Tap a meal, then tap foods on the shelf to add them. | a food added |
-| allClear | event | All ten flags clear. | any edit |
-| strong | event | Strong finish. The fuel lasted the whole game. | Restart or any edit |
-| low | event | Running low near the end. Check the pre-game meal. | Restart or any edit |
-| out | event | Out of fuel in the second half. | Restart or any edit |
-Flags, food values and Fuel notes are read on screen; Read speaks the selected flag, the result card or the hint.
+`easy-coach` (Umbriel): "Say in an easy-going, encouraging way, like a relaxed sports coach." Different from fitness-program-designer (calm-professor), captain-s-choices (wise-mentor), first-aid-responder (firm-captain), health-claim-checker (casual-peer) and playbook (lively-host); the food siblings have no voice. `Curio.voice`, `scope: () => state.mode`; Read speaks the selected flag, the result card or the hint.
+| Key | Kind | When it plays | Line | Stale when |
+|---|---|---|---|---|
+| wPlan | how | Plan the week entered | This is a typical week. Tap a meal on the grid, then tap foods on the shelf to add them. | a food added, or mode left |
+| howFlag | how | first edit that changes a flag | Tap a flag in the panel to see which days it is about. | a flag tapped |
+| wGame | how | Game day entered, replay not running | Tap Play game day and watch the fuel tank. | Play tapped, or mode left |
+| again | how | first result card | Tap a meal flag on the timeline to change it. Then tap Play game day again. | a meal edited |
+| allClear | event | all ten flags clear | All ten flags clear. | any edit |
+| strong | event | result Strong finish, every replay | Strong finish. The fuel lasted the whole game. | Restart or any edit |
+| low | event | result Running low late, every replay | Running low near the end. Check the pre-game meal. | Restart or any edit |
+| out | event | result Out of gas, every replay | Out of fuel in the second half. | Restart or any edit |
+Flags, food values and Fuel notes are read on screen.
 
 ## Family engine
 food (no family doc; the built siblings are the reference). Uses label-detective's food record (`RAW` rows: name, art, serving, servings per container, kind, then the 15 `KEYS` nutrients), its FDA Daily Values `DV` and rounding `R` for the selected-day label, and its art for the 13 LD foods. Uses lunch-tray-builder's five group keys (`fruit`, `veg`, `grain`, `protein`, `dairy`) and their names. Adds to each record a `groups` object of MyPlate amounts (cups or ounce-equivalents) and a `slotKind` (breakfast, meal, snack, drink). It feeds the engine 17 new food records, four athletes, slot templates and the flag rules above.
@@ -192,6 +200,7 @@ food (no family doc; the built siblings are the reference). Uses label-detective
 - Fluids before, during and after; water first: CDC, "Heat and Athletes": https://www.cdc.gov/heat-health/hcp/clinical-guidance/heat-and-athletes.html
 - Food values: USDA FoodData Central: https://fdc.nal.usda.gov/ ; label-detective's records (FDA 21 CFR 101.9 Daily Values).
 - Tool's own, labeled on screen: the rest and training mapping to activity levels, flag thresholds, the fuel tank model and play drains.
+- Checks run (Python, `gdf.py` in the R25 scratch folder): training day sums to 1,770 kcal, 256 g carbohydrate, 2,670 mg sodium, 13 g added sugars; Ana's game day 2,270 kcal, 2,610 mg sodium, 70 g added sugars (12.3 percent). Energy: 73.75 percent Mon to Thu (✗), 94.6 Fri, 88.5 Sat and Sun. Week groups: vegetables 12 of 21 cups (57 percent ✗), protein 28 of 45.5 oz (62 percent ✗), grains 49 of 56 (88), fruit and dairy over. Ana's recovery 51 g carbohydrate, 9 g protein (!). Pre-game: Ana's lunch (85 g, at exactly 4 hours) plus the 50 g snack pass; Priya has only the 50 g snack inside 2:00 to 5:00 (✗); Marcus and Kai's breakfast is 58 g (✗). So 5 of 10 flags clear, as listed. Fuel tank, minute by minute: Ana starts the game at 81.75 and ends at 38.75 (Strong finish); without the pre-game snack 26.25 (Running low late); Marcus starts 67.5, ends 26.1; Kai 69.0 to 27.0; Priya 75.75 to 35.25; none crosses 15. Atwater check (4, 4, 9 per gram) within 15 percent for every food but broccoli (55 listed, 64 by Atwater: fiber lowers it; USDA lists about 55, kept). Replay lengths at 1 hour per 2 s from wake to the final whistle: 21.7, 26.0, 12.0 and 7.0 s, all under 30 s (it used to run to bedtime, over 30 s). Contrast ratios recomputed: all as listed.
 
 ## Done when
 1. Ana's Typical week shows exactly the flags listed under "Typical week" (5 of 10 clear); each day's kcal, carbohydrate and sodium match a hand sum of the table (1,770 kcal, 256 g, 2,670 mg on a training day; 2,270 kcal on game day).
@@ -201,8 +210,10 @@ food (no family doc; the built siblings are the reference). Uses label-detective
 5. Changing athlete swaps schedule, slots, targets and game time; Kai's and Marcus's game days start with a pre-game breakfast.
 6. Save, reload, Load restores each athlete's plan; Clear saved empties `gdf-plans`; nothing else is stored.
 7. No body weight, size or "diet" word appears anywhere in the tool (search the DOM text).
-8. At 1366x768 grid, shelf and flag summary are visible; at 760 wide the grid scrolls inside its box; keyboard alone can fill a day.
-9. Result lines speak every replay; how-to lines once per load.
+8. Focus: the week grid is the biggest, central thing in Plan the week, and the tank line in Game day; at 1366x768 grid, shelf and flag summary are visible; at 760 wide the grid scrolls inside its box; keyboard alone can fill a day.
+9. A tap while the replay runs acts at once: Pause stops the clock within one frame, and a meal edit redraws the tank line at once; the replay ends at the final whistle in under 30 s for every athlete.
+10. Result lines speak every replay; how lines once per load.
+11. All 21 new paintings show beside the 13 LD pictures in one matching style; no person appears.
 
 ## Open questions
 1. Rename to "Game Day Fuel" (the overlap pass's suggestion) as written? The topic line keeps "nutrition and fitness planning".

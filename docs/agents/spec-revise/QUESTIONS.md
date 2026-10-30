@@ -138,3 +138,9 @@
 - fitness-circuit: keep the code pose figure (shared with dance), or 24 people images?
 - growing-up-q-a (sensitive): painted kids (5 people images) or plain shapes? (spec open question 5); print slips (carried).
 - pressure-point: 16 cast images (before and after) or 8?
+
+## R25
+- screen-week, captain-s-choices: rooms and jerseys, or portraits later (Gemini)?
+- stress-toolkit: wooden mannequin, or a real teen for the moves? Print my toolkit dropped OK?
+- captain-s-choices: added spirit rule (2a Attitude +1) OK? fitness-program-designer: checks judge week 6, Fix it needs only no fails OK? health-claim-checker: cases 2 and 5 answer key change OK?
+- Carried: 988 line; worry dump text; opioid scene; race tone; 2025-2030 Dietary Guidelines; vaping case on the shelf.

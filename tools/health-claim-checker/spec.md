@@ -8,7 +8,7 @@ Follow a viral health claim back up its chain of retellings (post, article, pres
 - fake-or-fact-lab (6-8 library, lab, fact-check family): lateral reading of made-up sites (authors, dates). Here the source is found already; the question is what the study really showed and how the claim grew on the way out.
 - misleading-charts (6-8 CS, mystery): charts that mislead by their drawing. No charts here; the claims mislead by their words and study design.
 - label-detective (3-5 health, mystery): proves an answer with a label line. Here proof is a hop in a chain and a study's design.
-- first-aid-responder and meal-and-move-planner (same group): acting and planning. This one is judging information, untimed.
+- first-aid-responder and game-day-fuel (same group): acting and planning. This one is judging information, untimed.
 - mind-map (9-12 health, built): mental health facts. No mental health claims in these cases.
 
 ## Who and how
@@ -25,10 +25,11 @@ Header (theme-912): title "Health Claim Checker" with small line "Evaluating hea
 A line under the header in both modes: "Every post, person, product, outlet and study in these cases is made up for practice. The real facts in the case files are sourced."
 
 ### Cases (opens first)
-- Case shelf: six case cards (title, the viral post's text as a teaser, "3 hops" or "4 hops", and "Closed" once done this session). Tap **Open case**.
-- Case screen, stage: **the chain**, a vertical column. At the top the viral post (styled as a plain social card: made-up handle, likes, the claim). Under it a **Trace it ↓** button. Each press reveals the next hop down (an article, a product page, a press release, a study summary), joined by a link line. Each hop card shows: what kind of source it is (icon and word), who made it, **Who gains?** (a button that reveals the motive line), and the claim as that source states it.
+- Case shelf: six case cards (the case's painted object, Art, title, the viral post's text as a teaser, "3 hops" or "4 hops", and "Closed" once done this session). Tap **Open case**.
+- Focus, case screen: the chain, center stage and the biggest thing; the case notes sit beside it in the panel.
+- Case screen, stage: **the chain**, a vertical column. At the top the viral post (styled as a plain social card drawn in code: made-up handle, likes, the claim, and the case's painted object as the post's photo). Under it a **Trace it ↓** button. Each press reveals the next hop down (an article, a product page, a press release, a study summary), joined by a link line. Each hop card shows: what kind of source it is (icon and word), who made it, **Who gains?** (a button that reveals the motive line), and the claim as that source states it.
 - The diff: on every hop above the bottom one, words that are new compared with the hop below are highlighted (yellow marker, plus underline), and a "Lost on the way" line under the card lists the words the hop below had that this one dropped, struck through. The diffs are written by hand in Content, not computed.
-- The bottom hop is the source: a study card with fields **Who was studied**, **How many**, **How long**, **Compared with**, **What they measured**, **What they found**, **Who paid**, **Kind of study**. Or, for one case, "No study found" with what the search turned up.
+- The bottom hop is the source: a study card (case 5's card also shows the painted lab mouse) with fields **Who was studied**, **How many**, **How long**, **Compared with**, **What they measured**, **What they found**, **Who paid**, **Kind of study**. Or, for one case, "No study found" with what the search turned up.
 - Panel, the case notes (three steps, each always open, any order):
   1. **Pin where it broke**: tap a hop's **📌 Pin** button (one or two hops), then pick up to two reasons from the eight reason chips (Content) or **It holds up**.
   2. **Verdict**: **Holds up**, **Overstated**, **Not supported**.
@@ -36,6 +37,7 @@ A line under the header in both modes: "Every post, person, product, outlet and 
 - No "Closed" state, pin or verdict is stored after the page closes.
 
 ### Toolkit
+- Focus: the card being read, center stage; the Questions to ask cards, the Study ladder and the Risk calculator stack in that order, each one screen tall.
 - **Questions to ask** (ten cards, each with a one-line why): Who made it and who pays? Is someone selling something? What is the source, and can you find it? Was it in people? How many? Compared with what? A link, or a cause? Relative or absolute risk? Do other experts and reviews agree? How new is it?
 - **Study ladder**: five rungs from weakest to strongest evidence for "does X cause Y in people" (Content), each a card with an example from the cases. Tap a rung to see which case uses it.
 - **Risk calculator** (small sandbox): two steppers, "cases per 1,000 without" and "with" (0 to 100). It shows relative risk ("2 times the risk", "+100 percent") beside absolute ("1 more person in 1,000") and draws two 1,000-dot grids.
@@ -54,15 +56,15 @@ A line under the header in both modes: "Every post, person, product, outlet and 
    - Hop 2, shop page (Mist Theory Vapor Lounge, made up): "Our smooth, water-based vapor." Who gains: sells vapes. Lost: none.
    - Hop 3, source search: "No study cited. The shop's page links to nothing."
    - Case file, real facts: e-cigarette aerosol is not harmless water vapor; it can contain nicotine, ultrafine particles, flavorings such as diacetyl, cancer-causing chemicals and heavy metals such as nickel, tin and lead. Most vapes contain nicotine, which is highly addictive and can harm the developing teen brain. Honest version: "Vape aerosol is not just water vapor, and most of it carries nicotine."
-2. **Coffee and a longer life** (Overstated; pins: hop 2 or hop 3; reasons: A link, not a cause)
-   - Hop 1, post (@lifehack_daily): "Science says: drink coffee, live longer." New: "drink coffee, live longer". Lost: "linked", "adults 50 to 70".
-   - Hop 2, news (DailyBuzz Health, made up): "Coffee drinkers live longer, huge study finds." New: "live longer". Lost: "linked to", "lower risk of dying during the study".
+2. **Coffee and a longer life** (Overstated; pins: hop 1 or hop 2; reasons: A link, not a cause)
+   - Hop 1, post (@lifehack_daily): "Science says: drink coffee, live longer." New: "Science says", "drink coffee". Lost: "huge study finds".
+   - Hop 2, news (DailyBuzz Health, made up): "Coffee drinkers live longer, huge study finds." New: "live longer", "huge". Lost: "linked to", "lower risk of dying", "older adults".
    - Hop 3, press release (Northfield University, made up): "Coffee drinking linked to lower risk of dying in large study of older adults."
    - Hop 4, study: 300,000 adults aged 50 to 70, surveyed once about coffee, followed 12 years; compared with non-drinkers; measured deaths; those drinking 2 to 3 cups a day had about a 10 percent lower risk of dying during the study; paid for by a government health agency (made up); observational. The authors write that coffee drinkers also differed in other ways.
    - Honest version: "In a big study of older adults, coffee drinkers died a little less often over 12 years. It shows a link, not that coffee caused it, and says nothing about teens."
 3. **Muscle powder** (Not supported; pins: hop 3; reasons: Seller made or paid for it, No comparison group, Too few people)
-   - Hop 1, post (@liftwithjay, "use my code"): "TitanBuild = 3x faster muscle gains. Clinically proven." New: "3x faster", "Clinically proven". Lost: "pilot", "10 men".
-   - Hop 2, product page (TitanBuild, made up): "Clinically proven to triple muscle growth.*" Fine print: "*Based on a pilot study." Who gains: sells the powder.
+   - Hop 1, post (@liftwithjay, "use my code"): "TitanBuild = 3x faster muscle gains. Clinically proven." New: "3x faster", "gains". Lost: "Based on a pilot study".
+   - Hop 2, product page (TitanBuild, made up): "Clinically proven to triple muscle growth.*" Fine print: "*Based on a pilot study." Who gains: sells the powder. New: "Clinically proven", "triple". Lost: "10 young men", "no comparison group".
    - Hop 3, study: 10 young men, 8 weeks of weight training while taking the powder; no comparison group; gained an average of 1.2 kg of lean mass; "3x" compares this with 0.4 kg from an unrelated older study; paid for by TitanBuild's maker; a company report, not a reviewed journal.
    - Case file, real facts: the FDA does not review dietary supplements for safety or effectiveness before they are sold; most teens can get the protein they need from food. Honest version: "Ten men who lifted for 8 weeks while taking the powder gained some muscle. With no comparison group, we can't tell what the powder added."
 4. **Sweetener doubles your risk** (Overstated; pins: hop 1 or hop 2; reasons: Scary relative risk, A link, not a cause)
@@ -70,9 +72,9 @@ A line under the header in both modes: "Every post, person, product, outlet and 
    - Hop 2, news (Metro Wellness Wire, made up): "Sweetener Zentrose linked to twice the risk of kidney stones." New: "twice the risk". Lost: "2 in 1,000", "1 in 1,000".
    - Hop 3, study: 20,000 adults followed 5 years; compared daily Zentrose drinkers with non-drinkers; kidney stones in 2 per 1,000 drinkers and 1 per 1,000 non-drinkers; observational; paid for by a university (made up). Zentrose is a made-up sweetener.
    - Honest version: "In one study, people who drank Zentrose daily had kidney stones a little more often: 2 in 1,000 instead of 1 in 1,000. It shows a link, not a cause."
-5. **Broccoli reverses aging** (Overstated; pins: hop 2 or hop 3; reasons: In animals or cells)
-   - Hop 1, post (@youngforever): "Eat broccoli, reverse aging. Scientists proved it." New: "Eat broccoli", "reverse aging", "proved". Lost: "mice", "compound".
-   - Hop 2, blog (Glow Daily, made up; sells a "BX-7" supplement): "Broccoli compound turns back the clock." New: "turns back the clock". Lost: "in aging mice", "muscle".
+5. **Broccoli reverses aging** (Overstated; pins: hop 1 or hop 2; reasons: In animals or cells)
+   - Hop 1, post (@youngforever): "Eat broccoli, reverse aging. Scientists proved it." New: "Eat", "reverse aging", "Scientists proved it". Lost: "compound".
+   - Hop 2, blog (Glow Daily, made up; sells a "BX-7" supplement): "Broccoli compound turns back the clock." New: "turns back the clock". Lost: "improves muscle strength", "in aging mice".
    - Hop 3, press release (Lakeshore Institute, made up): "Compound found in broccoli improves muscle strength in aging mice."
    - Hop 4, study: 80 old mice, half given purified compound BX-7 by injection at a dose far above what food could provide, half not; 6 weeks; grip strength improved in treated mice; paid for by a research grant (made up); animal study.
    - Honest version: "A purified compound from broccoli helped old mice's muscles. It hasn't been tested in people, and broccoli itself wasn't tested." Real fact in the file: vegetables like broccoli are part of a healthy eating pattern anyway.
@@ -86,7 +88,7 @@ A line under the header in both modes: "Every post, person, product, outlet and 
 A pin is ✓ if the hop is in the case's pin list; a reason is ✓ if it is in the case's reasons. The case file always shows the full answer whatever the student chose. "It holds up" on case 6 with Holds up is fully ✓; any pin on case 6 is shown ✗ with "This chain kept the claim intact."
 
 ## Interactions in detail
-- Trace it reveals one hop at a time with a 300 ms slide (instant with Motion off); **Show all hops** reveals the rest. Pins work only on revealed hops.
+- Trace it reveals one hop at a time with a 300 ms slide (instant with Motion off); a tap during a slide acts at once (the slide snaps to its end and the next hop starts); **Show all hops** reveals the rest. Pins work only on revealed hops.
 - Who gains? reveals per hop; the reveal stays for the case.
 - Diff highlights appear only after the hop below is revealed (you can't compare with what you haven't seen); until then the hop shows its plain text and "Trace further to compare."
 - Changing a pin or verdict after Close reopens the notes and hides the case file (so the file never disagrees with the notes on screen).
@@ -99,21 +101,30 @@ A pin is ✓ if the hop is in the case's pin list; a reason is ✓ if it is in t
 - `kit/theme-912.css` with its own accent `--brand` #ffe066 (highlighter yellow, the same color as the diff marks), `--brand-ink` #2a2200.
 - Contrast: accent on panel #141b25 13.28:1, on sec-bg #18202b 12.58:1; brand-ink on accent 12.13:1 (the highlighted words are ink #2a2200 on #ffe066). Struck "lost" words in theme --muted (7.7:1 on sec-bg) with the label "Lost on the way". ✓ and ✗ in --ok and --warn with glyphs and words.
 - The chain: hop cards on #18202b with a 2 px left rule colored by source kind (post #c9a0ff, news #5aa9ff, product page #ff8a8a, press release #5fd39a, study #e8edf3), each also labeled in words.
-- Group siblings: body-systems-tour orange, growing-up-q-a mauve, first-aid-responder mint, meal-and-move-planner sky blue. 9-12 neighbors: fitness-program-designer lime, captain-s-choices coral; satire-decoder oxblood.
+- Group siblings: body-systems-tour orange, growing-up-q-a mauve, first-aid-responder mint, game-day-fuel sky blue. 9-12 neighbors: fitness-program-designer lime, captain-s-choices coral; satire-decoder oxblood.
 
 ## Art
-none: drawn in code (social card, hop cards, study card, link lines, dot grids). Handles get a colored initial circle, no avatars.
+Local FLUX (`scripts/localart.py`), no people; one soft painterly style, plain surfaces with no lettering, asked in one session. Each case's object is its shelf card picture and the photo in its viral post.
+- hc-vape: "A plain grey vape pen with a smooth blank body lying on a glass shop counter, a thin wisp of white vapor, soft painterly style"; 4:3; cutout no; people no; case 1.
+- hc-coffee: "A steaming mug of black coffee on a wooden table beside a folded newspaper with blank pages, morning light, soft painterly style"; 4:3; cutout no; people no; case 2.
+- hc-powder: "A large tub of protein powder with a blank white label, a scoop of powder beside it on a gym bench, soft painterly style"; 4:3; cutout no; people no; case 3.
+- hc-soda: "A plain blank silver soda can beside a glass of fizzy soda with ice, soft painterly style"; 4:3; cutout no; people no; case 4.
+- hc-broccoli: "A bunch of fresh green broccoli on a wooden cutting board, soft painterly style"; 4:3; cutout no; people no; case 5.
+- hc-sleep: "An analog alarm clock with a blank face resting on a soft white pillow, early morning light, soft painterly style"; 4:3; cutout no; people no; case 6.
+- hc-mouse: "A small white lab mouse sitting on clean wood shavings in a clear plastic lab cage, soft painterly style"; 1:1; cutout yes; people no; case 5's study card, beside "Who was studied".
+7 images, none with people. The social card, hop cards, link lines, highlights, study card fields, ladder and dot grids are drawn in code (text, diagrams and a chart). Handles get a colored initial circle, no avatars.
 
 ## Voice
-`casual-peer` (Zubenelgenubi): "Say casually and naturally, like a friendly teenager explaining something." Different from first-aid-responder (firm-captain), meal-and-move-planner (easy-coach), fitness-program-designer (calm-professor).
-| Key | Kind | Line | Stale when |
-|---|---|---|---|
-| wCases | how | Pick a case. Tap Trace it to follow the claim back to where it started. | mode left |
-| wTool | how | These are the questions to ask any health claim. Tap a card or try the risk calculator. | mode left |
-| howPin | how | Tap Pin on the hop where the claim changed, then pick a reason. | a pin placed |
-| howClose | how | Pick a verdict, then tap Close the case. | case closed |
-| closed | event | Case closed. Here's what the source really showed. | case left or reopened |
-Hop texts, study cards and case files are read on screen; Read speaks the newest revealed hop, the open case file or the hint.
+`casual-peer` (Zubenelgenubi): "Say casually and naturally, like a friendly teenager explaining something." Different from first-aid-responder (firm-captain), game-day-fuel (easy-coach), fitness-program-designer (calm-professor) and captain-s-choices (wise-mentor). `Curio.voice`, `scope: () => state.mode`; Read speaks the newest revealed hop, the open case file or the hint.
+| Key | Kind | When it plays | Line | Stale when |
+|---|---|---|---|---|
+| wCases | how | Cases entered, shelf showing | Pick a case. Tap Open case on its card. | a case opened, or mode left |
+| howTrace | how | first case opened | Tap Trace it to follow the claim back one hop. | Trace it or Show all tapped |
+| howPin | how | first time the source hop shows | Tap Pin on the hop where the claim changed. Then tap a reason chip. | a pin placed or It holds up tapped |
+| howClose | how | first pin or It holds up | Tap a verdict. Then tap Close the case. | case closed |
+| wTool | how | Toolkit entered | Tap a question card to read it, or try the risk calculator below. | mode left |
+| closed | event | every case closed | Case closed. Here's what the source really showed. | case left or reopened |
+Hop texts, study cards and case files are read on screen.
 
 ## Family engine
 none
@@ -127,17 +138,21 @@ none
 - Teen sleep 8 to 10 hours and effects of too little sleep: CDC, "About Sleep": https://www.cdc.gov/sleep/about/index.html ; CDC, "Sleep and Health" (schools): https://www.cdc.gov/healthy-schools/sleep/
 - Vegetables in a healthy eating pattern: Dietary Guidelines for Americans: https://www.dietaryguidelines.gov/
 - All case people, handles, outlets, products, sweetener Zentrose, compound BX-7 and studies 2 to 5 are made up and labeled so on screen.
+- Checks run (Python, `hcc.py` in the R25 scratch folder): every "New" phrase must appear in its hop and not in the hop below; every "Lost" phrase must appear in the hop below and not in its hop. The old lists failed 6 times (case 2 hop 1 lost "linked" and "adults 50 to 70", which hop 2 never had; case 2 hop 2 lost "during the study", not in hop 3; case 3 hop 1 marked "Clinically proven" new though hop 2 says it, and lost "10 men", not in hop 2; case 5 hop 1 lost "mice", not in hop 2). The revised lists pass with 0 problems. Pins: in cases 2 and 5, hop 3 is an accurate press release ("linked to", "in aging mice"), so it can't be where the claim broke; the pins are now hop 1 or hop 2 (the hops that dropped "linked" and "mice"). Numbers: 1.2 kg against 0.4 kg is 3x; 2 against 1 per 1,000 is 2 times the risk, +100 percent, 1 more in 1,000. Hop counts 3, 4, 3, 3, 4, 3. Contrast ratios recomputed: all as listed (source-kind rules 6.68 to 13.93 on #18202b).
 
 ## Done when
 1. All six cases open; Trace it reveals hops one at a time; hop counts are 3, 4, 3, 3, 4, 3.
 2. Highlights and "Lost on the way" lines match Content and appear only after the hop below is revealed.
-3. Close the case is disabled until a pin (or It holds up) and a verdict are set; the case file marks each choice ✓ or ✗ against the case's lists.
+3. Close the case is disabled until a pin (or It holds up) and a verdict are set; the case file marks each choice ✓ or ✗ against the case's lists (cases 2 and 5 accept hop 1 or hop 2).
 4. Case 6 with It holds up and Holds up shows every choice ✓; a pin on case 6 shows ✗ with its line.
 5. Changing a choice after closing hides the case file again.
 6. Risk calculator: 1 and 2 per 1,000 shows "2 times the risk", "+100 percent" and "1 more person in 1,000"; 0 without shows the divide-by-zero line.
-7. Nothing persists after reload except Motion.
-8. At 1366x768 the post, two hops and the full notes panel are visible; at 375 wide the Notes button reaches the notes; keyboard alone can trace, pin, judge and close a case.
-9. The made-up line shows in both modes; no real brand, outlet or product name appears anywhere.
+7. Focus: the chain is the biggest, central thing on the case screen at 1366x768 and 680x425, with the notes beside it.
+8. A tap during a hop's slide or a voice line acts at once: Trace it snaps the slide and reveals the next hop; a pin tap stops a stale how line.
+9. Nothing persists after reload except Motion.
+10. At 1366x768 the post, two hops and the full notes panel are visible; at 375 wide the Notes button reaches the notes; keyboard alone can trace, pin, judge and close a case.
+11. The made-up line shows in both modes; no real brand, outlet or product name appears anywhere, in text or in the seven paintings.
 
 ## Open questions
 1. The vaping case uses CDC facts and a made-up shop. Vaping is a topic parents may want to preview; keep it as case 1, or move it later in the shelf?
+2. Answer key change: cases 2 and 5 now pin hop 1 or hop 2 instead of hop 2 or hop 3 (hop 3 in both is an accurate press release). OK?

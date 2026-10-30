@@ -5,7 +5,7 @@ Race your own ghost through six school emergencies by putting each one's steps i
 
 ## Not like
 - fitness-program-designer (9-12 PE, builder): an untimed design bench for training plans. First Aid Responder is timed ordering and rhythm, no planning.
-- meal-and-move-planner (9-12 health, builder, same group): a week of meals. Nothing to plan here; you act in sequence against a clock.
+- game-day-fuel (9-12 health, builder, same group): a week of meals. Nothing to plan here; you act in sequence against a clock.
 - health-claim-checker (9-12 health, mystery, same group): weighs claims with no clock. This one is about acting fast and right.
 - fitness-circuit (3-5 PE, race): times exercise stations and counts pulses. Here the timer is on decisions, and the rhythm is chest compressions on a key, not exercise.
 - mind-map (9-12 health, built): mental health support. No mental health crisis content here; physical first aid only.
@@ -24,12 +24,14 @@ Header (theme-912): title "First Aid Responder" with small line "Emergency steps
 
 ### Scenes (opens first)
 - Scene picker: six cards in a 3 by 2 grid, each with its backdrop thumbnail, name, a one-line situation, and the best time on this device ("Best 0:38" or "Not run yet").
+- Focus, scene screen: the step rail and the deck, center stage and the biggest thing; the backdrop sits dimmed behind them and the briefing is one short card above.
 - Scene screen, stage: the backdrop (Art) dimmed behind a briefing card (2 to 3 sentences, Content) at the top. Below it the **step rail**: numbered empty slots, one per correct step; slots that share a rank are drawn joined with "either order". Under the rail the **deck**: the correct steps and two "Don't" cards, shuffled, as tappable cards (drag also works).
 - Panel: the race clock (m:ss.s), **Mistakes: 0** (each adds 5 s), the ghost bar (Interactions), **Timer: On / Off** toggle, **↺ Restart scene**, **◀ All scenes**.
 - Finish card (replaces the briefing): time with penalties, mistakes, ghost result ("2.4 s faster than your best" or "Best: 0:38"), and **Why this order**: every step with its one-line reason. Buttons **Run it again**, **Next scene ▶**.
 
 ### CPR rhythm
-- Stage: a training chest drawn in code (a plain torso outline seen from above, no face, with a hand-position target on the center of the chest, lower half of the breastbone) that dips on each compression. Beside it the rate gauge: a semicircle from 60 to 160 per minute with the band 100 to 120 shaded and labeled "Target 100 to 120", a needle and a big number. Below: a 2-minute strip chart of your rate over time with the band, and the compression count.
+- Focus: the training chest and the rate gauge side by side, center stage, together the biggest thing; the strip chart is a short band under them.
+- Stage: the painted CPR training manikin torso seen from above (Art), with a hand-position target drawn in code on the center of the chest (lower half of the breastbone); the cutout dips (a quick squash in code) on each compression. Beside it the rate gauge: a semicircle from 60 to 160 per minute with the band 100 to 120 shaded and labeled "Target 100 to 120", a needle and a big number. Below: a 2-minute strip chart of your rate over time with the band, and the compression count.
 - Panel: **Metronome: On / Off** (110 a minute), **▶ Start 2-minute round**, **■ Stop**, **Coach voice: On / Off**, the live coaching line ("Push faster", "Good rate", "A little slower", "Keep going: don't stop"), and the round summary when a round ends.
 - Input: press **Space** or **Enter**, or tap or click the chest pad (pointerdown counts, so a held click is one compression). Free practice runs whenever no round is going.
 - Round summary: average rate, percent of compressions in 100 to 120, longest pause (seconds), total compressions, and the ghost: best in-band percent on this device with its rate trace drawn faintly on the strip chart. **Clear best times** lives here and in Scenes (one confirm clears both).
@@ -53,19 +55,21 @@ Ranks: steps with the same rank may go in either order. Scene, steps: "rank. Ste
 Collapse in the gym: "Someone collapses and doesn't respond." Choking at lunch: "A friend can't breathe or talk." Deep cut in the wood shop: "Heavy bleeding from a cut." Burn in the teaching kitchen: "A hot pan burn." Heat at practice: "A teammate overheats." Seizure in the hallway: "A student has a seizure."
 
 ### Field guide cards
-- Check, Call, Care: Check that the scene is safe, then check the person. Call 911 (or send someone) when it's serious. Care for the person until help takes over.
+- Check, Call, Care (with the painted first aid bag picture): Check that the scene is safe, then check the person. Call 911 (or send someone) when it's serious. Care for the person until help takes over.
 - When to call 911: someone isn't responding or isn't breathing normally, can't breathe, has heavy bleeding that won't stop, has signs of heat stroke, has a seizure longer than 5 minutes, or you're not sure. Put the phone on speaker so your hands are free.
 - Hands-only CPR: for a teen or adult who suddenly collapses: call 911, then push hard and fast in the center of the chest, 100 to 120 a minute, at least 2 inches deep, letting the chest come all the way up. Don't stop until help takes over. (For infants and young children, a class teaches CPR with breaths.)
-- AEDs: An AED is a portable device that can check the heart's rhythm and give a shock if needed. Turn it on and follow its voice prompts; it won't shock someone who doesn't need it. Many schools and gyms have one: find yours.
+- AEDs (with the painted AED picture): An AED is a portable device that can check the heart's rhythm and give a shock if needed. Turn it on and follow its voice prompts; it won't shock someone who doesn't need it. Many schools and gyms have one: find yours.
 - Good to know: A class with a manikin teaches depth, hand position and how it feels. The American Heart Association and the American Red Cross offer them, and many schools teach hands-only CPR.
 
 ## Interactions in detail
 - Scene clock starts on the first card tap (reading the briefing is free) and stops when the last correct step lands. Timer Off hides the clock and ghost; mistakes are still shown with reasons; nothing is recorded.
+- A card tap acts at once, also while the briefing line plays (the line stops: it is stale on the first tap).
 - Tapping a card: if its rank is the lowest unfilled rank, it slides into the next slot. If not, it shakes back with "Not yet: {reason of the step that comes first}" and +5 s. A Don't card turns over to show ✗ and its reason, +5 s, and moves to a small **Never** tray beside the deck. Keyboard: Tab to a card, Enter to place.
 - Ghost: the best run's step times are replayed as a hollow marker moving along the rail; the panel shows "Ghost: step 3 at 0:21". A run with any Timer Off time never becomes the best. Best times and step stamps per scene are saved in localStorage `far-best` (try/catch); **Clear best times** empties it.
-- CPR rate: from the last 5 intervals (median, so one stray tap doesn't swing the needle). A pause over 2 s shows "Keep going: don't stop" and is counted as a pause; the round's longest pause is reported. In-band means a compression whose interval-based rate is 100 to 120. The needle eases over 150 ms (instant with Motion off).
+- CPR rate: from the last 5 intervals (median, so one stray tap doesn't swing the needle). A pause over 2 s shows "Keep going: don't stop" and is counted as a pause; the round's longest pause is reported. In-band means a compression where the needle's rate (that median) is 100 to 120. (A single-interval rule failed ordinary human timing: with taps off by up to 50 ms, only about 75 percent of single intervals land in band at a steady 110; see Sources.) The needle eases over 150 ms (instant with Motion off).
 - Metronome: a short soft click at 110 a minute via Web Audio, scheduled ahead on the audio clock so it never drifts; every 30th click is slightly higher (the count of 30 is only a reference point here; hands-only CPR doesn't stop). Sound Off silences it.
 - Coaching lines update every 3 s; Coach voice speaks them at most once every 8 s, never while the student is between 100 and 120.
+- The 2-minute round is longer than 30 s on purpose: it is the stretch a rescuer keeps going before trading off (AHA). Stop stays live the whole round and ends it at once; the chest pad answers every tap at once.
 - Round end at 2:00 or Stop. Stopping early still shows the summary, marked "Partial round", and cannot become the best.
 - Sizes: at 1366x768 the rail, the full deck and the clock are visible together; CPR gauge, chest pad and Start button too. Under 900 px tall the briefing collapses to one line with **More**. At 375 wide (host) the deck becomes a two-column list under the rail and the chest pad is at least 160 px.
 
@@ -74,31 +78,36 @@ Collapse in the gym: "Someone collapses and doesn't respond." Choking at lunch: 
 - Contrast: accent on panel #141b25 10.3:1, on sec-bg #18202b 9.76:1; brand-ink on accent 9.14:1; theme ink and muted as in the theme file. Don't cards and ✗ use the theme --warn #ffb8a8 (9.9:1 on sec-bg) with the ✗ glyph and words; ✓ uses --ok.
 - Rate band on the gauge: accent fill at 35 percent with the words "Target 100 to 120"; out of band is the panel color, the needle is ink.
 - The first aid icon is a white plus on a mint rounded square. Never a red cross on white (a protected emblem).
-- Group siblings: body-systems-tour orange, growing-up-q-a mauve, meal-and-move-planner sky blue, health-claim-checker yellow. 9-12 neighbors: fitness-program-designer lime #a3e05a, captain-s-choices coral.
+- Group siblings: body-systems-tour orange, growing-up-q-a mauve, game-day-fuel sky blue, health-claim-checker yellow. 9-12 neighbors: fitness-program-designer lime #a3e05a, captain-s-choices coral.
 
 ## Art
-Scene backdrops (Cloudflare FLUX, `scripts/cfart.py`), empty places with no people, blank surfaces with no lettering, softly lit, used dimmed behind the briefing and as picker thumbnails:
-- fa-gym: an empty school gymnasium with wooden bleachers and a polished court, afternoon light; 16:9; cutout no; people no.
-- fa-cafeteria: an empty school cafeteria with long tables and lunch trays on one table; 16:9; cutout no; people no.
-- fa-shop: a tidy school wood shop with workbenches, clamps and wood pieces, power tools switched off; 16:9; cutout no; people no.
-- fa-kitchen: a school teaching kitchen with a stove, a pan on a burner and blank cabinets; 16:9; cutout no; people no.
-- fa-field: an empty high school practice field on a hot summer afternoon, bright sun, water cooler on a bench; 16:9; cutout no; people no.
-- fa-hallway: an empty school hallway with blank lockers and a tiled floor; 16:9; cutout no; people no.
-Chest pad, gauge, AED and icons: drawn in code.
+Local FLUX (`scripts/localart.py`), no people; one soft painterly style, asked in one session; blank surfaces with no lettering; never a red cross. Backdrops are empty places, used dimmed behind the rail and as picker thumbnails. Different from captain-s-choices' ultimate field and bus.
+- fa-gym: "An empty school gymnasium with wooden bleachers and a polished court, afternoon light through high windows, soft painterly style"; 16:9; cutout no; people no; scene 1.
+- fa-cafeteria: "An empty school cafeteria with long tables and a few lunch trays on one table, soft painterly style"; 16:9; cutout no; people no; scene 2.
+- fa-shop: "A tidy school wood shop with workbenches, clamps and wood pieces, power tools resting switched off, soft painterly style"; 16:9; cutout no; people no; scene 3.
+- fa-kitchen: "A school teaching kitchen with a stove, a pan on a burner and plain blank cabinets, soft painterly style"; 16:9; cutout no; people no; scene 4.
+- fa-field: "A sunbaked high school football practice field at midday, white yard lines, a blocking sled, heat shimmer, a shade tent on the sideline, soft painterly style"; 16:9; cutout no; people no; scene 5.
+- fa-hallway: "An empty school hallway with blank lockers and a tiled floor, soft painterly style"; 16:9; cutout no; people no; scene 6.
+- fa-manikin: "A CPR training manikin torso lying flat, seen from straight above, smooth light grey plastic chest and shoulders, the head turned out of frame, soft painterly style, plain white background"; 4:3; cutout yes; people no; the CPR rhythm chest pad (target and dip in code).
+- fa-aed: "A portable AED device in a bright yellow case with its lid open, two folded pads and a blank grey screen, soft painterly style, plain white background"; 1:1; cutout yes; people no; the AEDs card and the scene 1 AED step card.
+- fa-kit: "A plain mint green zippered first aid bag with a blank front, gauze rolls and a pair of blue gloves beside it, soft painterly style, plain white background"; 1:1; cutout yes; people no; the Check, Call, Care card and the scene 3 gloves step card.
+9 images, none with people. The rail, cards, gauge, strip chart, timers and icons are drawn in code (diagrams, charts and controls).
 
 ## Voice
-`firm-captain` (Alnilam): "Say firmly but kindly, like a ship captain giving clear directions." Different from fitness-program-designer (calm-professor) and captain-s-choices (wise-mentor).
-| Key | Kind | Line | Stale when |
-|---|---|---|---|
-| wScenes | how | Pick a scene. Read the briefing, then tap the steps in the order you'd do them. | mode left |
-| wCpr | how | Press Space or tap the chest to the beat. Keep the needle in the green band. | mode left |
-| wGuide | how | Tap a card to read it, or Practice it to try. | mode left |
-| brief.* | event | each scene briefing (6 lines) | scene left or first card tapped |
-| best | event | New best time. | next tap |
-| done | event | Scene complete. Check why this order works. | scene left |
-| coach.* | event | Push faster. / A little slower. / Keep going. Don't stop. | 3 s after queued (maxAge) |
-| roundEnd | event | Round over. {percent} percent of your compressions were on target. | Start pressed |
-Step reasons and Field guide cards are read on screen; Read speaks the open card, the finish card or the hint.
+`firm-captain` (Alnilam): "Say firmly but kindly, like a ship captain giving clear directions." Different from fitness-circuit (big-sister), fitness-program-designer (calm-professor), captain-s-choices (wise-mentor), game-day-fuel (easy-coach) and health-claim-checker (casual-peer). `Curio.voice`, `scope: () => state.mode`; Read speaks the open card, the finish card or the hint.
+| Key | Kind | When it plays | Line | Stale when |
+|---|---|---|---|---|
+| wScenes | how | Scenes entered, picker showing | Tap a scene card to open it. | a scene opened, or mode left |
+| order | how | first scene opened, after its briefing | Tap the step you would do first. Then keep tapping steps in order. | first card tapped |
+| wCpr | how | CPR rhythm entered | Press Space or tap the chest to the beat. Keep the needle in the shaded band. | mode left |
+| round | how | after 10 free practice compressions | Tap Start 2-minute round when you are ready. | Start tapped, or mode left |
+| wGuide | how | Field guide entered | Tap a card to read it, or tap Practice it to try it. | mode left |
+| brief.* | event | each scene opened, every time (6 lines, the briefings) | | scene left or first card tapped |
+| best | event | a run beats the best time | New best time. | next tap |
+| done | event | last step placed | Scene complete. Check why this order works. | scene left |
+| coach.* | event | coaching line changes (at most every 8 s, never while in band) | Push faster. / A little slower. / Keep going. Don't stop. | 3 s after queued (maxAge) |
+| roundEnd | event | round ends at 2:00 or Stop | Round over. {percent} percent of your compressions were on target. | Start pressed |
+Step reasons, "Not yet" lines and Field guide cards are read on screen. No line names a hidden control: round plays only while no round is running.
 
 ## Family engine
 none
@@ -113,17 +122,20 @@ none
 - Seizure first aid (stay, time it, ease to floor, clear the area, soft under head, on one side, nothing in mouth, don't hold down, 911 over 5 minutes, stay until awake): CDC, "First Aid for Seizures": https://www.cdc.gov/epilepsy/first-aid-for-seizures/index.html
 - Tool's own choices, labeled where shown: 5 s penalty, 2 s pause threshold, 5-interval median for the rate, 110 a minute metronome (inside the AHA band), 2-minute round.
 - The build agent rechecks every step against the current AHA 2025 and Red Cross pages before building (the choking sequence changed in the 2025 AHA guidelines; use their exact wording).
+- Checks run (Python, `cpr.py` in the R25 scratch folder): 200 simulated 2-minute rounds at a steady 110 with each tap off by a random amount. Old single-interval rule: taps off by up to 30 ms gave 93 to 100 percent in band, up to 50 ms gave 67 to 75 percent (fails the old "over 90 percent" check for ordinary hands). Needle rule (median of the last 5 intervals): up to 30 ms stays 101 to 119 on the needle and 100 percent in band; up to 50 ms 98 to 100 percent; up to 80 ms still 87 percent or more. At a steady 90 the needle never goes over 96 (Push faster). A 3 s gap gives a 3.5 s interval, counted as a pause. Metronome: 110 a minute over 120 s is 220 clicks, 545.5 ms apart. Rail slots: scenes 1 to 6 have 6, 5, 6, 5, 5, 6 steps (shared ranks counted per step). Contrast ratios recomputed: all as listed.
 
 ## Done when
 1. Every scene loads its briefing, a rail with the right slot count (6, 5, 6, 5, 5, 6 including shared ranks) and a deck of its steps plus two Don't cards.
-2. Same-rank steps place in either order; any other out-of-order tap shakes back with the earlier step's reason and adds 5 s; Don't cards go to Never with ✗, reason and 5 s.
+2. Same-rank steps place in either order; any other out-of-order tap shakes back with the earlier step's reason and adds 5 s; Don't cards go to Never with the cross mark, reason and 5 s.
 3. The clock starts on the first tap; a best run is saved, replays as the ghost next time, and Clear best times removes it; Timer Off runs are never saved.
-4. CPR rhythm: tapping steadily at 110 (scripted with jitter) reads 105 to 115 and over 90 percent in band; at 90 it reads "Push faster"; a 3 s gap counts as a pause.
+4. CPR rhythm: tapping steadily at 110 with each tap off by up to 30 ms (scripted, random) keeps the needle within 100 to 120 and 95 percent or more in band; at 90 it reads "Push faster"; a 3 s gap counts as a pause.
 5. The metronome holds 110 a minute over 2 minutes (220 clicks, plus or minus 1) and is silent with Sound Off.
 6. Held clicks (press 120 ms, release) count one compression each; Space held down counts once.
-7. The certification and 911 footer shows on all three modes; no red cross emblem appears anywhere.
-8. At 1366x768 rail, deck and clock fit; at 375 wide the chest pad is at least 160 px and Start is visible.
-9. Briefings and results speak each time; welcome lines once per load; coach lines are dropped when stale and never overlap Read.
+7. Focus: the rail and deck are the biggest, central thing in a scene; the chest and gauge are in CPR rhythm, at 1366x768 and 680x425.
+8. A tap while anything plays acts at once: a card tap during the briefing line places the card and stops the line; Stop during a round ends it within one beat; the chest answers every tap during the metronome.
+9. The certification and 911 footer shows on all three modes; no red cross emblem appears anywhere, painted or drawn.
+10. At 1366x768 rail, deck and clock fit; at 375 wide the chest pad is at least 160 px and Start is visible.
+11. Briefings and results speak each time; how lines once per load; coach lines are dropped when stale and never overlap Read.
 
 ## Open questions
 1. An opioid overdose scene (recognize it, call 911, give naloxone if available, CPR if needed; CDC and AHA 2025 cover it) is common in high school health now. Add it as a seventh scene, or leave it out so parents and districts aren't surprised?

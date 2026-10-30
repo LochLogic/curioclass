@@ -4,7 +4,7 @@
 Build a 6-week training plan for a client on a coach's week-by-week grid while a live check panel and a weekly load chart (minutes times effort) catch the classic mistakes as you make them: too much too soon, the same muscles two days running, a missing fitness component, and no progression.
 
 ## Not like
-- meal-and-move-planner (9-12 health, builder; may become "Game Day Fuel"): plans meals around training days and energy balance. Fitness Program Designer owns FITT programming and has no food in it.
+- game-day-fuel (9-12 health, builder): plans meals around training days and energy balance. Fitness Program Designer owns FITT programming and has no food in it.
 - goal-tracker (6-8 PE, creature): one SMART goal, a log and a creature. This tool designs the training itself, session by session, and checks it against guidelines.
 - first-aid-responder (9-12 health, race): emergency steps against the clock. Nothing timed here; it is an untimed design bench.
 - captain-s-choices (9-12 PE, story): team culture choices. This tool is solo planning with numbers.
@@ -21,7 +21,8 @@ Build a 6-week training plan for a client on a coach's week-by-week grid while a
 Header (theme-912): title "Fitness Program Designer" with small line "FITT, overload and progression", mode buttons **Design**, **Fix it** (keys 1, 2), **Motion**, **Sound**, **Read**.
 
 ### Design (opens first)
-- Top of stage: **Client** selector (four persona cards, Content), showing name, age, goal and current week.
+- Focus: the program grid, center stage and the biggest thing; the client strip is one short row above it and the load chart a short band below it.
+- Top of stage: **Client** selector (four persona cards, Content), each with its painted goal object (Art), name, age, goal and current week. No portraits.
 - Stage, main: the program grid, 6 rows (Week 1 to 6) by 7 columns (Mon to Sun). Each cell shows up to two session chips: a type letter and icon (**C** Cardio, **S** Strength, **F** Flexibility, **K** Sport or skill), minutes, and RPE; an empty cell reads "Rest". Cell background tint deepens with that day's load (and the load number is printed, so tint is never the only signal).
 - Stage, below the grid: the weekly load chart (Content), one bar per week split by type, with the week's load number and its change from the week before ("+8%").
 - Panel, top: the session editor for the selected cell: **Type** (five buttons including **Rest**), **Minutes** slider 5 to 120 in 5s, **Effort (RPE)** slider 0 to 10 with its word label, and for Cardio and Sport the client's estimated heart rate range for that effort band. For Strength: **Muscle groups** toggles **Legs**, **Push**, **Pull**, **Core**; **Sets** 1 to 4; **Reps** 6 to 15. Buttons **Add second session**, **Delete session**.
@@ -30,7 +31,8 @@ Header (theme-912): title "Fitness Program Designer" with small line "FITT, over
 - **Save** to one of three slots on this device, **Load**, **Clear saved** (confirm).
 
 ### Fix it
-- Three broken plans (Content). Pick one: it loads into the same grid with its client. The Checks list shows what is wrong; the panel shows "Fixed: 2 of 5 problems". Fix it is done when every ✗ is gone and at most one ! remains; then a small "Coach approved" stamp appears (no confetti). **Reset this plan** reloads it.
+- Focus: the same grid, center stage, with the Checks list beside it at the top of the panel.
+- Three broken plans (Content). Pick one: it loads into the same grid with its client. The Checks list shows what is wrong; the panel shows "Fixed: 2 of 5 problems". Fix it is done when every ✗ is gone; then a small "Coach approved" stamp appears (no confetti), with "{n} cautions to think about" when any ! remains. **Reset this plan** reloads it.
 
 ## Content
 
@@ -54,14 +56,15 @@ Heart rate (estimated max = 220 minus age; moderate 64 to 76 percent, vigorous 7
 A note under the range: "An estimate. Real maximum heart rates vary a lot from person to person; effort (RPE) is the main guide here."
 
 ### Load
-Session load = minutes times RPE (session RPE method). Week load = sum of its sessions. Change = (this week minus last week) divided by last week, as a whole percent. Week 1 is compared with the client's current week. When the week before has a load of 0, the change shows "new" and checks 7 and 8 do not flag it.
+Session load = minutes times RPE (session RPE method). Week load = sum of its sessions. Change = (this week minus last week) divided by last week, as a whole percent (a half rounds up: +12.5 shows +13; the checks use the unrounded value). Week 1 is compared with the client's current week. When the week before has a load of 0, the change shows "new" and checks 7 and 8 do not flag it.
 
 ### Checks (recomputed on every edit; each shows which week fails)
-1. **Vigorous cardio**: at least 3 days a week with a Cardio or Sport session at RPE 7 or more (teen guideline). ✗ if fewer in any week.
-2. **Muscle strength**: at least 3 days a week with a Strength session (teen guideline). ✗ if fewer.
-3. **All muscle groups**: Legs, Push, Pull and Core each at least once a week. ✗ if one is missing.
+Checks 1, 2, 3 and 5 are the guideline week: they are judged on week 6, the week the plan builds up to (a beginner can't start there without breaking checks 7 and 8). For weeks 1 to 5 each of them shows progress in words, never a flag ("Week 3: 2 of 3 days").
+1. **Vigorous cardio**: at least 3 days in week 6 with a Cardio or Sport session at RPE 7 or more (teen guideline). ✗ if fewer.
+2. **Muscle strength**: at least 3 days in week 6 with a Strength session (teen guideline). ✗ if fewer.
+3. **All muscle groups**: Legs, Push, Pull and Core each at least once in week 6. ✗ if one is missing.
 4. **Recovery**: no muscle group trained on two days in a row (about 48 hours of rest for a group). ✗, highlighting both days.
-5. **Flexibility**: at least 2 days a week with a Flexibility session. ✗ if fewer.
+5. **Flexibility**: at least 2 days in week 6 with a Flexibility session. ✗ if fewer.
 6. **Days off**: at least 1 Rest day a week. ✗ if none.
 7. **Start where you are**: week 1 load against the current week. ! over +10 percent; ✗ over +50 percent.
 8. **Gradual progression**: each week against the one before. ! over +10 percent; ✗ over +50 percent. The ! text: "Big jump. Many coaches keep weekly increases near 10 percent; studies disagree on how strict that must be." The ✗ text: "Too much at once. This tool flags jumps over 50 percent."
@@ -83,7 +86,7 @@ The "problems" count in the panel is the number of checks not passing at load.
 
 ## Interactions in detail
 - Click or tap a cell to select it (Enter on a focused cell); arrow keys move the selection; Delete clears it. A selected cell has a 3 px accent outline.
-- Editing a slider updates the cell, the chart and the checks live (under 50 ms). The chart bars animate their height over 200 ms (instant with Motion off).
+- Editing a slider updates the cell, the chart and the checks live (under 50 ms), also while a bar is still easing or a voice line plays. The chart bars animate their height over 200 ms (instant with Motion off).
 - Rest is a type: choosing it clears the cell's sessions. A cell with no session counts as a Rest day.
 - Copy week to next overwrites the next week after a confirm if it has sessions. On week 6 it is disabled.
 - Changing the client keeps the plan and re-runs the checks against the new client (heart rates, goal, current week).
@@ -98,19 +101,24 @@ The "problems" count in the panel is the number of checks not passing at load.
 - Numbers in the readout font; ✓ uses the theme's --ok, ! and ✗ use --warn, always with the glyph and words.
 
 ## Art
-none: drawn in code (grid, chips, chart, persona cards with initials, no portraits).
+Local FLUX (`scripts/localart.py`), no people; one soft painterly style, plain white background, asked in one session. Not the same objects as game-day-fuel's athlete gear.
+- fpd-maya: "A digital stopwatch with a blank screen hanging on a green lanyard, soft painterly style, plain white background"; 1:1; cutout yes; people no; Maya's client card (5K).
+- fpd-dev: "Black wrestling headgear beside a pair of high-top wrestling shoes, soft painterly style, plain white background"; 1:1; cutout yes; people no; Dev's client card (strength).
+- fpd-sam: "A pair of soft tan jazz dance shoes resting on a rolled purple yoga mat, soft painterly style, plain white background"; 1:1; cutout yes; people no; Sam's client card (flexibility).
+- fpd-riley: "A coiled jump rope beside a pickleball paddle and a yellow ball, soft painterly style, plain white background"; 1:1; cutout yes; people no; Riley's client card (try new activities).
+4 images, none with people. The grid, chips and their type icons, the load chart and the checks are drawn in code (a planning grid and a chart).
 
 ## Voice
-`calm-professor` (Schedar): "Say evenly and clearly, like a calm, friendly college professor." Minimal narration; most text is read on screen.
+`calm-professor` (Schedar): "Say evenly and clearly, like a calm, friendly college professor." Minimal narration; most text is read on screen. Different from first-aid-responder (firm-captain), captain-s-choices (wise-mentor), game-day-fuel (easy-coach), health-claim-checker (casual-peer) and playbook (lively-host). `Curio.voice`, `scope: () => state.mode`; Read speaks the selected check, or the hint.
 
-| Key | Kind | Line | Stale when |
-|---|---|---|---|
-| wDesign | how | Pick a client, then click a day to add a session. The checks update as you go. | mode left |
-| wFix | how | Pick a broken plan. Use the checks to find each problem, then fix it in the grid. | mode left |
-| howCheck | how | Click a check to see which days it is about. | a check clicked |
-| allPass | event | All ten checks pass. | any edit |
-| fixed | event | Coach approved. | any edit |
-Check texts and coach notes are read on screen; Read speaks the selected check, or the hint.
+| Key | Kind | When it plays | Line | Stale when |
+|---|---|---|---|---|
+| wDesign | how | Design entered | Tap a client card at the top. Then tap a day on the grid to add a session. | a cell selected, or mode left |
+| howEdit | how | first cell selected | Tap a type in the panel. Then slide Minutes and Effort. The checks update as you go. | a session edited |
+| howCheck | how | first time a check turns ✗ or ! after an edit | Tap a check to see which days it is about. | a check tapped |
+| wFix | how | Fix it entered | Tap a broken plan to load it. Then tap a check to find each problem in the grid. | a plan loaded and a check tapped, or mode left |
+| allPass | event | all ten checks pass | All ten checks pass. | any edit |
+| fixed | event | the last ✗ of a Fix it plan clears | Coach approved. | any edit |
 
 ## Family engine
 none
@@ -126,14 +134,19 @@ none
 - At least one day off a week for young athletes: Brenner, AAP Council on Sports Medicine and Fitness, "Overuse injuries, overtraining, and burnout in child and adolescent athletes," Pediatrics 119(6), 2007.
 - 10 percent rule is a rule of thumb with mixed evidence: Buist et al., "No effect of a graded training program on the number of running-related injuries in novice runners," Am J Sports Med 36(1), 2008.
 - The 50 percent "too much at once" line is this tool's own threshold, labelled as such on screen.
+- Checks run (Python, `fpd.py` in the R25 scratch folder): current-week loads Maya 180, Dev 480, Sam 900, Riley 240. Fix it plan 1: loads 1260, 1470, 1680, 1890, 2100, 2310; changes +600, +17, +14, +12.5 (shows +13), +11, +10 percent; problems start ✗, progression ! (weeks 2 to 5; week 6 is exactly 10, not over), strength ✗, muscle groups ✗, flexibility ✗ (5). Plan 2: 2205 every week, +359 percent; recovery, muscle groups, vigorous cardio, flexibility, start ✗, overload and fits the goal ! (7). Plan 3: 1120, +24 percent; vigorous cardio, strength, muscle groups ✗, start, overload, fits the goal ! (6). Same lists under the old and new check rules. Heart rate table recomputed from 220 minus age at 64, 76, 77 and 93 percent: matches. Rule fix: with checks 1, 2, 3 and 5 required in every week, Maya's week 1 had to stay under 270 (no ✗ on start) while holding 3 vigorous cardio, 3 strength and 2 flexibility days: only 5-minute sessions could do it, so plan 1 could not be fixed sensibly, and "at most one !" was impossible for Maya (start and progression both caution on any build-up). Now those four checks judge week 6 and the stamp needs no ✗. A sensible Maya fix passes with only two cautions: walk-jog 3 x 20 min at RPE 4 (240, +33), then 340, 475, 640, 915, 990 (each change under 50), week 6 with 3 runs of 30 min at RPE 7, 3 strength days covering all groups and 2 flexibility days. Dev can pass all ten: 480, 520, 520 (sets up), 550, 580, 610 (each change 10 percent or less). Contrast ratios recomputed: all as listed (type colors 7.46 to 9.83 on the graph background).
 
 ## Done when
-1. Design opens with Maya and an empty grid; the empty plan shows vigorous cardio, muscle strength, all muscle groups and flexibility ✗, days off ✓, and no divide-by-zero anywhere.
+1. Design opens with Maya and an empty grid; the empty plan shows vigorous cardio, muscle strength, all muscle groups and flexibility ✗ (week 6 empty), days off ✓, and no divide-by-zero anywhere.
 2. Adding sessions updates cell, chart and checks live; the load and percent change on each bar match a hand recomputation (minutes times RPE).
 3. Recovery flags legs on Mon and Tue and highlights both cells; moving one to Wed clears it.
 4. Copy week to next +10% raises the next week's load by about 10 percent (rounding to 5 minutes may shift it by a few percent; the check uses the true load).
-5. Each Fix it plan loads with exactly the problems listed; fixing them yields "Coach approved".
+5. Each Fix it plan loads with exactly the problems listed; clearing every ✗ yields "Coach approved" with the count of cautions left; the Maya fix in Sources gets the stamp with 2 cautions.
 6. Heart rate ranges match the table for each client's age.
 7. Save, reload, Load restores a plan; Clear saved empties the slots; nothing else is stored.
-8. At 1366x768 grid, editor and the checks summary are visible together; at 760 wide the grid scrolls inside its box; keyboard alone can build a full week.
-9. allPass and fixed lines speak each time they happen; how-to lines once per load.
+8. Focus: the grid is the biggest, central thing in both modes; at 1366x768 grid, editor and the checks summary are visible together; at 760 wide the grid scrolls inside its box; keyboard alone can build a full week.
+9. An edit while a chart bar is easing or a voice line plays shows its new value at once; allPass and fixed lines speak each time they happen; how lines once per load.
+10. The four client paintings show on the cards; no person appears.
+
+## Open questions
+- Rule change: the guideline checks (vigorous cardio, strength, all muscle groups, flexibility) now judge week 6 only, and Fix it needs no ✗ instead of at most one !. Without this, plan 1 (Maya) could only be fixed with 5-minute sessions. OK?
