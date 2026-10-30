@@ -94,3 +94,8 @@
 - circuit-builder: show circuit symbols beside parts? ph-mystery-liquids: C3 never lands on exactly 7.0 at 0.001 g; accept or finer step?
 - Voices: circuit-builder -> calm-professor, sound-studio -> smooth-narrator.
 - Carried: ph HS-PS1-2 fit, bulb thresholds; curling curl; hot-meets-cold 12 particles; spectrum health claims and four modes; zipline rules vs ASTM F2959.
+
+## R19
+- computing-team-stories: people are the point but 0 portraits now; 25 member portraits (Gemini), 5 turning-point members, or objects as specced?
+- cloud-through-time: The Dalles line likely backwards (the city sued to block The Oregonian's request, settled Dec 2022); flagged in the spec for the build's fact check. ENIAC: use the Army PD photo with its programmers? Telegraph card replacing the phones decoy OK?
+- Carried: ai-evaluator "AI outputs" meaning; catalog-column-rules data-desk engine; coin-cell-greenhouse board numbers, blocks vs typed; computing-team-stories careers.json and Native educator review; cloud-through-time company names, newspaper water figures.

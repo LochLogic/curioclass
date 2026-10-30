@@ -20,16 +20,17 @@ A made-up town's open-data APIs answer inside the page like real ones (status co
 ## Screens and modes
 Header (kit): "API Playground", small line "Millbrook Open Data". Mode buttons: **Console** (opens first), **App**. Motion, Sound, Read.
 
-Panel (both modes): `#hint`; **Morning** picker: **Sunny Monday** (default), **Rainy Tuesday**, **Windy Friday** (the data changes; the clock reads 7:20 am); the rate meter "Calls this minute: 4 of 30"; then the **Docs** drawer (Console: endpoints; App: modules), each entry with a **Try it** button.
+Panel (both modes): `#hint`; **Morning** picker: **Sunny Monday** (default), **Rainy Tuesday**, **Windy Friday**, each a small painted thumbnail of the same Millbrook bus stop in that weather (art `ap-morning`) with its name (the data changes; the clock reads 7:20 am); the rate meter "Calls this minute: 4 of 30"; then the **Docs** drawer (Console: endpoints; App: modules), each entry with a **Try it** button.
 
 ### Mode 1: Console
-Stage, top to bottom:
+Focus: the Response box (status line and body), the largest box on the stage, directly under the request bar. Stage, top to bottom:
 - **Request bar**: "GET" tag, the URL field (`https://api.millbrook.example/v1/...`, typed with autocomplete of paths and parameter names), **Send** (big). Under it the parameter form for the chosen endpoint (one field per parameter, required ones marked), kept in sync with the URL both ways. **Show as code** toggle: the same request as one line of JavaScript `fetch(...)` and of Python `requests.get(...)`, display only.
 - **Response**: status line ("200 OK", "404 Not Found", with a ✓ or ✗ glyph), time ("180 ms"), **Headers** (collapsed: `Content-Type`, `X-RateLimit-Limit`, `X-RateLimit-Remaining`, and `Retry-After` on 429), and the body as a **Tree** (collapsible objects and lists, keys, typed values in color with quotes on strings) or **Raw** (pretty-printed JSON). Tapping a value shows its path ("arrivals[0].minutes") with **Use in app**.
 - **History** (side strip): the last 20 requests (status and path); tap one to load it again.
 
 ### Mode 2: App
-Stage: a **phone** (9:16, light screen) on the left showing up to four tiles, and the **pipeline editor** on the right for the selected tile.
+Focus: the selected tile's pipeline, with the phone beside it showing the result; both share the stage and neither scrolls off. Stage: a **phone** (9:16, light screen, drawn in code at real pixel size) on the left showing up to four tiles, and the **pipeline editor** on the right for the selected tile.
+- The phone's wallpaper is the painted morning scene for the current Morning (art `ap-morning`, dimmed under the tiles). Each tile shows a painted icon for its module (art `ap-icons`): weather by its sky (sun, rain cloud, wind), transit a bus, bikes a bicycle, library a book.
 - A tile = title, then a pipeline of cards, top to bottom. Each card's output feeds the next, and its value shows under it ("→ 6", "→ [3 items]", "→ {object}", tap to expand). The last card is **Show** ("Next bus in {} min", where {} is the value) or **Decide** ("if value > 40 show "Take the bus" else "Bike today"").
 - **Add card** menu: a module call (Content), `get`, `first`, `count`, `where`, `min_of`, `max_of`, `round`, Show, Decide. Cards can be reordered (**Up**, **Down**) and removed (**Remove**).
 - Buttons: **New tile**, **Delete tile**, **Refresh app** (re-runs every tile, which calls the APIs again and counts toward the rate limit), **Clear app**.
@@ -70,6 +71,7 @@ Ideas: "Next bus to school" (transit, util), "Bike or bus?" (weather), "Is my bo
 - Use in app (from the console) adds a tile with that call and a `get` of that path.
 - The app (tiles and pipelines) is saved on this device in localStorage `curio-api-playground` (try/catch); Clear app asks first. History is for the page load only.
 - Extremes: 4 tiles, 8 cards per tile; URL field 300 characters.
+- Nothing plays on its own; the only wait is the response spinner (120 ms plus 20 ms per item, under 1 s). Send, mode and Morning stay live during it: a new Send replaces the pending one, and a mode switch shows the other mode at once.
 - Motion off: no spinner rotation (a "Waiting..." label instead) and no card slide.
 - Sizes: at 1366x768 the request bar, Send and the status line are on screen with the body scrolling in its own box; in App the phone and the selected pipeline both show. At 760 wide the panel goes below; at 375 wide App shows the phone or the pipeline with a **Phone / Pipeline** switch, and the docs open as a sheet.
 - Keyboard: Enter in the URL field sends; Up and Down walk History when the field is empty; tree nodes expand with Right and Left.
@@ -83,18 +85,22 @@ Ideas: "Next bus to school" (transit, util), "Bike or bus?" (weather), "Is my bo
 - Neighbors: sorting-showdown violet, data-policy-council light navy paper, network-architect sky blue, capture-the-flag pink.
 
 ## Art
-none: drawn in code (phone, tiles, weather and bus icons, preview.svg).
+Local FLUX (`scripts/localart.py`), no people. One style: soft, bright painted illustration with clean shapes. The console, JSON tree, docs, pipeline cards, phone frame and tile text stay code (they are text and controls).
+- ap-morning (kit of 3, one prompt line): "A small-town bus stop shelter with a blank sign panel beside a bike rack with a few bicycles and the steps of a brick library, {bright sunny morning with clear blue sky | rainy morning with wet pavement, puddles and grey clouds | windy morning with leaves blowing and trees bending under fast clouds}, soft painted illustration"; 9:16; cutout no; people no; Sunny Monday, Rainy Tuesday, Windy Friday; the phone's wallpaper (dimmed under tiles) and, cropped square, the Morning picker thumbnails.
+- ap-icons (kit of 6, one cutout each, one prompt line): "A single soft painted icon of a {plain round yellow sun with short rays | grey rain cloud with falling drops | swirl of wind with two blowing leaves | yellow city bus seen from the front with a blank destination sign | green bicycle seen from the side | closed red hardcover book}, centered, plain white background"; 1:1; cutout yes; people no; tile icons at 28 px and Docs drawer headings at 24 px (weather now picks sun, rain cloud or wind by the sky field: clear, rain, cloudy with wind over 20 mph).
+The preview.svg is code (the console with a 200 response beside the phone).
 
 ## Voice
-Bank voice `casual-peer` (Zubenelgenubi), "Say casually and naturally, like a friendly teenager explaining something", here a classmate who builds apps. Not used by any group sibling or 9-12 CS neighbor. JSON, docs and messages are on screen only. `Curio.voice`, `scope: () => state.mode`.
-- w-console (how, Console welcome): "This is the town's data. Press Send and see what comes back."
-- tree (how, first 200 response): "Tap any value to see its path. That's how you'll grab it in your app."
-- e400 (how, first 400): "A 400 means the request was missing something. The docs list what each call needs."
-- e404 (how, first 404): "A 404 means that thing doesn't exist. Check the id or the path."
-- e429 (event, each new 429 streak; stale when the limit clears): "Too many calls. The server says wait, so wait."
-- w-app (how, App welcome): "Pick an idea, or press New tile. Each card's answer feeds the next one."
-- stopped (event, a pipeline stops on a card; stale on the next edit): "The pipeline stopped. Read the note on that card."
-- morning (how, first Morning change in App): "Same app, new morning. The data changed, your code didn't."
+Bank voice `casual-peer` (Zubenelgenubi), "Say casually and naturally, like a friendly teenager explaining something", here a classmate who builds apps. Not used by any group sibling or 9-12 CS neighbor. JSON, docs and messages are on screen only. `Curio.voice`, `scope: () => state.mode`. Waiting lines name the action and the control.
+- w-console (how; Console entered; stale when Send is pressed): "This is the town's data. Press Send and see what comes back."
+- tree (how; first 200 response; stale when a value is tapped or another request is sent): "Tap any value to see its path. Then press Use in app to grab it."
+- e400 (how; first 400; stale on the next Send): "A 400 means the request was missing something. Fill in the marked field, then press Send."
+- e404 (how; first 404; stale on the next Send): "A 404 means that thing doesn't exist. Check the id or the path in the docs, then press Send."
+- e429 (event; each new 429 streak; stale when the limit clears): "Too many calls. Watch the meter count down, then press Send again."
+- w-app (how; App entered; stale when a tile is added): "Press Start it on an idea, or press New tile. Then press Add card to build its pipeline."
+- stopped (event; a pipeline stops on a card; stale on the next edit to that tile): "The pipeline stopped. Read the note on that card, then fix it or press Remove."
+- morning (how; first Morning change in App; stale on the next edit): "Same app, new morning. The data changed, your code didn't."
+Read speaks the hint.
 
 ## Family engine
 none
@@ -110,6 +116,7 @@ none
 - `fetch` and Python `requests.get` forms: MDN "Using the Fetch API", https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch ; Requests quickstart, https://requests.readthedocs.io/en/latest/user/quickstart/
 - Book titles, authors and first publication years: each title's entry at Project Gutenberg, https://www.gutenberg.org (all public domain in the US).
 - Millbrook, its weather, stops, buses, bikes, copies and the 30-per-minute limit are original to Curio Class.
+- Checks run (Python, 2026-10-29): Next bus (arrivals at S12, to Millbrook High, smallest minutes) gives 6, 11, 3 for Monday, Tuesday, Friday; Bike or bus (north rain_chance > 40) gives Bike today, Take the bus, Bike today. Hourly temps stay in range at hour 12 (Monday north 54 + 24 = 78). `library.search("wells")` returns 2; `library.search("the")` matches 6 titles and returns 5 by default with count 6. Twelve publication years match Project Gutenberg's entries. 30 calls a minute is one every 2 s, so Refresh app with 4 tiles (4 calls) can run 7 times in a minute before a 429.
 
 ## Done when
 1. `/weather/now?zone=north` on Sunny Monday returns 200 with temp_f 54, rain_chance 10; Rainy Tuesday 48, 80.
@@ -119,6 +126,11 @@ none
 5. Tapping `minutes` in an arrivals response shows `arrivals[0].minutes`; Use in app makes a tile that shows that value.
 6. The Next bus pipeline shows 6, 11 and 3 across the three mornings; a misspelled field stops at its card with the field list.
 7. Bike or bus (`weather.now("north")` → `get("rain_chance")` → Decide > 40) shows "Bike today" Monday and "Take the bus" Tuesday.
-8. The app survives a reload; Clear app (after Yes) empties it; nothing goes over the network (no requests in DevTools).
+8. The app survives a reload; Clear app (after Yes) empties it; nothing goes over the network (no requests in DevTools). The morning wallpaper and the tile icons change with Morning and module.
 9. Every size in STANDARDS.md: Send and the status line (Console) and the phone or pipeline (App) visible without page scrolling.
 10. Voice: welcome once per mode, how lines once then hint only, e429 each new streak; Read speaks the hint; console clean; the name only as "Curio Class".
+11. Focus: in Console the Response box is the largest box and sits under the request bar at 1366x768; in App the selected pipeline and the phone show side by side.
+12. Taps during a pending response: a second Send replaces the first at once; switching mode or Morning shows at once with no stale response landing after.
+
+## Open questions
+- None.

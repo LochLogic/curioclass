@@ -23,22 +23,22 @@ Header (kit): "Coin Cell Greenhouse", small line "Make one battery last a month"
 Panel in every mode: the **goal card** ("30 days. No memory reset. Soil never below 25%.") and the three live gauges from the last run: **Battery** (mAh used of 220, with "days it would last"), **Memory** (log entries used of 384), **Driest soil** (lowest moisture in percent). Before any run they read "No run yet".
 
 ### Device
-Stage: a drawing of the setup (in code): a seedling tray in a small greenhouse, a soil probe, a valve on a drip line from a rain barrel, the Sprout-1 board with a coin cell, and a tiny LCD on the board. Tapping each part opens its **spec card** (Content): what it does, how long it takes, what current it draws. A table under the drawing, **Where the charge goes**, lists every action with time, current and charge per use (Content), so the arithmetic is on screen before any code runs. **Start programming** opens Program.
+Focus: the painted setup, center stage. Stage: the setup, painted (art `cg-greenhouse` behind, with `cg-parts` cutouts placed on it): a seedling tray in a small greenhouse, a soil probe, a valve on a drip line from a rain barrel, and the Sprout-1 board with a coin cell. The board's tiny LCD is a blank painted screen with its text in code (lime on dark). The drip line between barrel, valve and tray is a code-drawn tube, so it can show water flowing when the valve is open. Tapping each part opens its **spec card** (Content): what it does, how long it takes, what current it draws. A table under the drawing, **Where the charge goes**, lists every action with time, current and charge per use (Content), so the arithmetic is on screen before any code runs. **Start programming** opens Program.
 
 ### Program
-Stage left: the **block palette** (Content). Stage main: the **program**, a vertical stack of blocks that reads like code, with line numbers; it starts as the starter program. Blocks are added by dragging from the palette or by selecting a line and tapping a palette block (inserts after it). Every block can be moved (drag or Alt+Up/Down), deleted, and edited in place (numbers by a small stepper or typing). Two quick toggles on blocks: `wait` and `sleep` switch with one tap (same seconds), and an inline `readSoil()` can be switched to the variable `m` once `m = readSoil()` exists above it.
+Focus: the program stack, center stage and widest. Stage left: the **block palette** (Content). Stage main: the **program**, a vertical stack of blocks that reads like code, with line numbers; it starts as the starter program. Blocks are added by dragging from the palette or by selecting a line and tapping a palette block (inserts after it). Every block can be moved (drag or Alt+Up/Down), deleted, and edited in place (numbers by a small stepper or typing). Two quick toggles on blocks: `wait` and `sleep` switch with one tap (same seconds), and an inline `readSoil()` can be switched to the variable `m` once `m = readSoil()` exists above it.
 **Make procedure**: select two or more neighboring lines, tap Make procedure, name it from a short list (`water`, `checkSoil`, `logIt`, `rest`) and choose which number becomes the input (for example the 600 in `wait(600)` becomes `seconds`). The lines move into a **procedure card** above the forever loop, and every other place with the same lines (same blocks, any number) is offered for replacement: "Also replace lines 8 to 10 with water(300)?" Editing inside the procedure card changes every call.
 Under the program: **Step one loop** (a trace table: line, time spent, current, charge, moisture, log count, for one pass through the loop) and **Run 30 days** (goes to Run). **Undo** and **Reset to starter**.
 
 ### Run
-Stage top: the **30-day strip**, one tile per day with the weather (cool, warm, hot as an icon and a word); the run plays across it in about 10 seconds (instant with Motion off). Under it the **moisture chart**: soil moisture over 30 days as a line, the healthy band 30 to 80 percent shaded, the stress line at 25 percent, and a small mark at every watering. Beside it the **charge breakdown**: a bar split into awake waiting, sleep, sensor, valve and logging, in mAh, with each share. Then the **result line**, one of:
+Focus: the moisture chart, the largest thing on the stage. Stage top: the **30-day strip**, one tile per day with the weather (cool, warm, hot as a painted icon, art `cg-weather`, and a word); the run plays across it in about 10 seconds (instant with Motion off). Under it the **moisture chart**: soil moisture over 30 days as a line, the healthy band 30 to 80 percent shaded, the stress line at 25 percent, and a small mark at every watering. Beside it the **charge breakdown**: a bar split into awake waiting, sleep, sensor, valve and logging, in mAh, with each share. Then the **result line**, one of:
 - "Memory full after 7.0 hours: the board reset and stopped watering."
 - "Battery empty on day 2.5."
 - "Made it 30 days: 27.7 mAh used, about 238 days of battery at this rate. Driest soil 34.6%."
-If the board stops, the chart greys the rest of the month and the tray drawing (small, at the right) shows wilting seedlings for the days after. **Save run** stores the program and its numbers for Compare (up to 8 runs, in the page; Save on this device keeps them).
+If the board stops, the chart greys the rest of the month and the tray picture (small, at the right) swaps from the healthy tray (`cg-tray-healthy`) to the wilted one (`cg-tray-wilted`) for the days after; it shows healthy again whenever the soil is above 25 percent. **Save run** stores the program and its numbers for Compare (up to 8 runs, in the page; Save on this device keeps them).
 
 ### Compare
-Stage: a table of saved runs (name it from a short list: Starter, Try 1 to Try 7), columns: how it ended, days lasted, mAh per day, log entries used, driest soil, stress hours, waterings. A bar chart of mAh per day (log scale switch) and a **What changed** column that lists the edits between two runs picked with checkboxes ("wait(60) became sleep(600); readSoil() 3 times became once"). **Copy table** copies plain text.
+Focus: the runs table. Stage: a table of saved runs (name it from a short list: Starter, Try 1 to Try 7), columns: how it ended, days lasted, mAh per day, log entries used, driest soil, stress hours, waterings. A bar chart of mAh per day (log scale switch) and a **What changed** column that lists the edits between two runs picked with checkboxes ("wait(60) became sleep(600); readSoil() 3 times became once"). **Copy table** copies plain text.
 
 ## Content
 Device specs (made-up board, real-world sized numbers):
@@ -75,7 +75,7 @@ Block palette: `m = readSoil()`; `readSoil()` (inline, inside log or an if); `if
 Checked runs (same model as the build, to verify):
 | Program | How it ends | mAh per day | Logs | Driest |
 |---|---|---|---|---|
-| Starter | memory full at 7.04 h | 87.5 | 385 | 55.8% |
+| Starter | memory full at 7.04 h | 87.3 | 385 | 55.8% |
 | logAverage(m, 60), still wait, readSoil 3 times | battery empty day 2.52 | 87.3 | 54 | 35.0% |
 | + sleep(60) at loop end, watering still waits | battery empty day 9.95 | 22.1 | 216 | 35.0% |
 | + read once into m | memory full day 16.64 | 8.11 | 385 | 35.0% |
@@ -85,15 +85,16 @@ Checked runs (same model as the build, to verify):
 | loop sleep(600), logAverage 6 | memory full day 16.15 | 0.92 | 385 | 34.6% |
 | loop sleep(600), logAverage 12 | 30 days, 27.71 mAh used | 0.92 | 357 | 34.6% |
 | loop sleep(3600), logAverage 24 | 30 days, 7.87 mAh used | 0.26 | 29 | 32.7% |
-| loop sleep(10800), log every check | 30 days, 5.24 mAh used | 0.17 | 240 | 27.9% |
-| loop sleep(21600), log every check | 30 days, 4.54 mAh, 5.3 stress hours | 0.15 | 120 | 20.9% |
+| loop sleep(10800), log every check | 30 days, 5.22 mAh used | 0.17 | 240 | 27.9% |
+| loop sleep(21600), log every check | 30 days, 4.52 mAh, 5.3 stress hours | 0.15 | 120 | 20.9% |
 The last row is the trap the panel calls out: sleeping too long saves charge but lets the hot days dry the tray. Waterings in the 30-day runs: 30 to 34.
 
 ## Interactions in detail
+- The run plays across the strip in about 10 s, under the 30 s limit. Every control stays live while it plays: tapping a day tile jumps the play to that day at once, Run 30 days restarts from day 1, a mode switch stops the play and keeps the finished result, and Save run is enabled from the start (the result is computed before the play begins; the play only reveals it).
 - Running: Run 30 days is always available; a program with an empty forever loop shows "The loop does nothing: add at least one block." A program that never sleeps or waits runs as fast as its blocks take (the sim still advances by each block's time).
-- The run ends at the first moment charge passes 220 mAh or a 385th log entry is stored; the result line gives the hour or day to two decimals.
+- The run ends at the first moment charge passes 220 mAh, a 385th log entry is stored, or the clock reaches exactly 30 days (even in the middle of a sleep); the result line gives the hour or day to two decimals.
 - Step one loop: the trace table walks the program once from the current state of day 1, hour 0, listing every line executed in order (procedure calls expand, indented). The total charge row is the number a student can multiply by loops per day.
-- The panel calls out (once per run, as a short note under the result line, not a score): the largest bar in the charge breakdown (on the starter: "Awake waiting is 75% of the charge"), memory filling ("Logs fill at about 55 per hour"), and stress ("Soil dropped below 25% on day 14, a hot day").
+- The panel calls out (once per run, as a short note under the result line, not a score): the largest bar in the charge breakdown (on the starter: "Awake waiting is 75% of the charge"), memory filling ("Logs fill at about 55 per hour"), and stress (on the sleep(21600) run: "Soil dropped below 25% on day 6, a hot day").
 - Make procedure: lines must be neighbors and inside the same block; it refuses with "Pick lines next to each other" otherwise. Replacing other copies is offered, never forced. Procedures cost no charge (calling is free on this board).
 - Save on this device: saved runs and the current program stay in localStorage; **Clear saved** removes them. Nothing about the student is stored.
 - Keyboard: palette, program lines (Up/Down, Enter to edit, Alt+Up/Down to move, Delete), then Step, Run. Visible focus. Screen readers hear each line as text ("Line 4, wait 600 seconds").
@@ -106,17 +107,22 @@ The last row is the trap the panel calls out: sleeping too long saves charge but
 - Neighbors: api-playground lemon #ffd75e (lime here is greener), simulation-studio orange, network-architect sky blue, sorting-showdown violet, capture-the-flag and ai-evaluator pinks; group siblings coral, cyan, orchid and light pages. The theme's mint `--ok` is kept for "Made it 30 days" with a check icon, never as the only signal.
 
 ## Art
-None. The greenhouse, board, valve and tray are drawn in code (SVG), including the wilting state.
+Local FLUX (`scripts/localart.py`), no people. One style: bright, tidy painted illustration of a hobby workbench project, soft daylight. Charts, the program editor, gauges, the charge bar, the drip line and the LCD text stay code.
+- cg-greenhouse: "A small backyard greenhouse of clear panels with a wooden potting bench inside, an empty spot on the bench and a green rain barrel just outside, soft daylight, painted illustration"; 16:10; cutout no; people no; the Device stage backdrop.
+- cg-parts (kit of 4, one cutout each, one prompt line): "A single {small green circuit board with a silver coin battery in a holder and a tiny blank dark screen and smooth plain chips | thin metal two-pronged soil moisture probe with a short cable | small black plastic water valve with two tube fittings and a short cable | green plastic rain barrel with a brass tap}, painted illustration, plain white background"; 1:1; cutout yes; people no; board, probe, valve, barrel. Sizing: each placed on the greenhouse at fixed spots (board on the bench at left, probe in the tray, valve on the tube between barrel and tray, barrel outside the right wall), tappable for its spec card; the board also shows at 96 px in the Program header.
+- cg-tray-healthy, cg-tray-wilted: "A black plastic seedling tray of 24 cells with {bright green upright seedlings in dark moist soil | drooping yellowing wilted seedlings in pale cracked dry soil}, seen from slightly above, painted illustration, plain white background"; 4:3; cutout yes; people no; on the bench in Device (healthy) and at the right of the Run chart (swaps as described).
+- cg-weather (kit of 3, one cutout each, one prompt line): "A single painted garden thermometer with a {low blue column and a frosty tip | middle yellow column | high red column and wavy heat lines around it}, centered, plain white background"; 1:1; cutout yes; people no; cool, warm, hot on the 30-day strip (28 px, with the word) and in the Device weather note.
+The preview.svg is code (the moisture chart with the healthy band and the result line).
 
 ## Voice
-Bank voice `friendly-dad` (Achird), style "Say in a relaxed, friendly way, like a kind dad helping with homework": a parent who built the greenhouse kit in the garage and handed you the board. Not used by a 9-12 CS tool or a group sibling (its users are grade 3-8 and 3-5 tools). Light narration:
-1. how, welcome (Device): "Tap each part to see what it costs. Then open Program and run the starter."
-2. event, first run ends in memory full: "Seven hours and the memory's full. Look at what it logs every minute."
-3. event, first run where the battery runs out: "Battery's gone. Check the breakdown: where's most of the charge going?"
-4. how, first time two lines are selected in Program: "Same lines in two places? Try Make procedure."
-5. event, first run that makes it 30 days: "Thirty days, and the seedlings never went dry. Save it and see how far you came."
-6. event, a 30-day run with stress hours (every time; stale if a new run starts): "It lasted, but the soil got too dry. Sleep a little less."
-Read speaks the hint. Program lines and numbers are on screen only.
+Bank voice `friendly-dad` (Achird), style "Say in a relaxed, friendly way, like a kind dad helping with homework": a parent who built the greenhouse kit in the garage and handed you the board. Not used by a 9-12 CS tool or a group sibling (its users are grade 3-8 and 3-5 tools). `Curio.voice`, `scope: () => state.mode`. Light narration; Read speaks the hint. Program lines and numbers are on screen only.
+1. wDevice (how; Device entered; stale when Start programming is pressed): "Tap each part to see what it costs. Then press Start programming and run the starter."
+2. memFull (event; first run that ends in memory full; stale when a new run starts): "Seven hours and the memory's full. Open Program and look at what it logs every minute."
+3. battery (event; first run where the battery runs out; stale when a new run starts): "Battery's gone. Check the breakdown for the biggest bar, then open Program and change that part."
+4. makeProc (how; first time two neighboring lines are selected in Program; stale when Make procedure is pressed or the selection clears): "Same lines in two places? Press Make procedure."
+5. made30 (event; first run that makes it 30 days with no stress hours; stale when a new run starts): "Thirty days, and the seedlings never went dry. Press Save run, then open Compare to see how far you came."
+6. tooDry (event; every 30-day run with stress hours; stale when a new run starts): "It lasted, but the soil got too dry. Open Program and make the loop sleep a little less."
+The memFull line's "seven hours" only plays on a memory-full run shorter than 8 hours; a later memory-full run plays it as: "The memory's full. Open Program and look at how often it logs." 
 
 ## Family engine
 None. The simulator, the editor and the two charts are this tool's own (`tools/coin-cell-greenhouse/sim.js` in the page).
@@ -126,16 +132,20 @@ None. The simulator, the editor and the two charts are this tool's own (`tools/c
 - Coin cell capacity, CR2032 about 225 to 235 mAh: Energizer CR2032 product datasheet, https://data.energizer.com/pdfs/cr2032.pdf ; Panasonic CR2032 datasheet, https://na.industrial.panasonic.com/products/batteries/primary-batteries/lineup/lithium-coin-batteries
 - Microcontroller sleep currents in the microamp range and awake currents in milliamps: Microchip ATmega328P datasheet, power-down and active supply current, https://www.microchip.com/en-us/product/ATmega328P
 - The Sprout-1 board, its latching valve pulse, its exact numbers, the drying rates and the weather month are made up so the math is clean; brands are not shown on screen.
+- Checks run (Python simulator written from the Content rules, 2026-10-29; the run stops at exactly 30 days, mid-block): the charge table (readSoil 0.0056, valve pulse 0.0043, log 0.00001, minute awake 0.05, minute asleep 0.00008, day awake 72, day asleep 0.12 mAh; awake to asleep 600 to 1); the starter's loop is 66.01 s and 0.0667 mAh, 75.0% of it awake waiting, logs at 54.5 per hour; 384 entries = 1,536 / 4 bytes. All 12 checked runs reproduced. Fixed: the starter's mAh per day is 87.3 (25.61 mAh over 7.04 h), not 87.5; the sleep(10800) and sleep(21600) runs use 5.22 and 4.52 mAh (the draft let the last sleep run past day 30, adding about 0.02); the stress note's example now matches the sleep(21600) run, which first drops below 25% on day 6 (hot), not day 14. 220 / 27.71 x 30 = 238 days. Waterings in the 30-day runs: 30 to 34.
 
 ## Done when
 1. Device lists every action's time, current and charge; one day awake reads 72 mAh, one day asleep 0.12 mAh.
-2. Run 30 days on the starter ends "Memory full after 7.04 hours" with 385 entries.
+2. Run 30 days on the starter ends "Memory full after 7.04 hours" with 385 entries and 87.3 mAh per day.
 3. Every row of the checked runs table reproduces (ending, mAh per day to two places, logs, driest soil).
 4. Make procedure on lines 4 to 6 offers to replace lines 8 to 10 too, and the program then shows two `water(...)` calls with 600 and 300.
 5. Switching `wait` to `sleep` inside the water procedure changes both calls at once.
 6. Step one loop on the starter (soil 60%, no watering) lists every executed line with its time and charge: 66.01 seconds and 0.0667 mAh per pass, 6 of those seconds reading the sensor three times.
 7. Compare shows saved runs and the edits between any two.
 8. Fits at 1366x768 with a 14-line program; Program works by keyboard alone.
+9. Focus: the program stack is the widest column in Program and the moisture chart the largest thing in Run, at 1366x768 and 680x425.
+10. Taps while a run plays: tapping a day tile jumps there at once; Run 30 days restarts; Save run works mid-play and saves the full result.
+11. Art: the greenhouse, four part cutouts, both trays and three weather icons load; each part opens its spec card; the tray wilts after a failed run.
 
 ## Open questions
 - [coin-cell-greenhouse] The board and its numbers are made up but sized like real parts. OK, or should it name a real chip's numbers in Sources only?

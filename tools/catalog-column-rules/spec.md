@@ -21,7 +21,7 @@ Write the data dictionary for a real public library's checkout records (what eac
 Header (kit): "Catalog Column Rules", small line "Say what good data looks like". Modes: **Describe** (first), **Check**, **Compare**. Motion, Sound, Read.
 
 ### Describe
-Stage top: the **real sample** (about 120 rows of Seattle Public Library checkout records, Content) in the engine's table, read-only, scrolling inside its box, with a source line and the date pulled. Stage below: the **dictionary**, one card per column (nine). Each card:
+Focus: the dictionary card being edited and its "Real rows that break this rule" strip; the sample table above is reference, shorter than the cards. Stage top: the **real sample** (about 120 rows of Seattle Public Library checkout records, Content) in the engine's table, read-only, scrolling inside its box, with a source line and the date pulled. Stage below: the **dictionary**, one card per column (nine). Each card:
 - **Meaning**: pick one of three or four plain descriptions (one right, the others plausible: for Checkouts, "how many times this title was checked out that month" vs "how many copies the library owns" vs "how many people borrowed it ever").
 - **Type**: whole number, decimal, text, year (4 digits), code from a list.
 - **Required**: yes or no.
@@ -32,14 +32,14 @@ Every change runs the dictionary on the real sample at once; each card shows a s
 Panel: "Columns described: 6 of 9", and **Check a new batch** (enabled once every card has a Meaning and a Type).
 
 ### Check
-Stage top: the **incoming batch**, 40 rows from the made-up Lakeside branch (Content), in the engine's table. Stage below: three method tabs, each run with one button:
+Focus: the batch table with the current method's marked cells. Stage top: the **incoming batch**, 40 rows from the made-up Lakeside branch (Content), in the engine's table. Stage below: three method tabs, each headed by its painted picture (art `cc-methods`) and run with its **Run** button:
 - **Rules at entry**: the clerk types each row and the form refuses a value that breaks a single-row rule (type, required, allowed, range, pattern, link rules within the row). Rows refused are shown with the cell and the message, as the clerk would see it ("Checkouts must be a whole number"). Cost line: "Adds about 5 seconds per row for the clerk: 3 min 20 s for 40 rows."
 - **Cleaning script**: runs overnight on the whole batch with the same rules plus the rules that need many rows (duplicates, and outliers by the 1.5 IQR rule on Checkouts). It can fix two kinds of problem by itself if allowed (switches): **Fix capital letters in codes** ("Book" to BOOK) and **Pull a year out of text** ("c2015." to 2015); fixed cells show the old and new value. Cost line: "Under 1 second to run, about 10 minutes for someone to read the flags."
 - **Librarian review**: a librarian reads 10 rows chosen at random from the batch (fixed seed for the class: rows 2, 5, 9, 14, 19, 23, 27, 33, 36, 39; **New sample** draws another set) and flags what looks wrong, by knowledge, not rules. Each flag has the librarian's note ("Douglass is the author; the title and author are swapped"). Cost line: "About 2 minutes per row: 20 minutes for 10."
 Each method's result: a list of flagged rows (row number, column, reason) and the batch table with those cells marked (icon plus tint).
 
 ### Compare
-Stage: the **catch grid**: 14 problem rows (revealed now, with what each problem is) down the side, three methods across, each cell caught (check icon), fixed (wrench), or missed (empty circle). Below: a bar chart from the engine (catches per method and all three together) and a histogram of the batch's Checkouts with the outlier marked. A **Reference dictionary** drawer shows the librarian's sheet beside the student's, column by column, with differences highlighted. Panel: **Which would you run?** (pick one, two or all three; the panel shows the combined catches and combined time) and **Copy my dictionary** (plain text, one block per column, plus notes).
+Focus: the catch grid, center stage. Stage: the **catch grid**: 14 problem rows (revealed now, with what each problem is) down the side, three methods across, each cell caught (check icon), fixed (wrench), or missed (empty circle). Below: a bar chart from the engine (catches per method and all three together) and a histogram of the batch's Checkouts with the outlier marked. A **Reference dictionary** drawer shows the librarian's sheet beside the student's, column by column, with differences highlighted. Panel: **Which would you run?** (pick one, two or all three; the panel shows the combined catches and combined time) and **Copy my dictionary** (plain text, one block per column, plus notes).
 
 ## Content
 **Real sample.** Seattle Public Library, "Checkouts by Title" (data.seattle.gov, dataset tmmm-ytt6), public domain. Pulled by a builder script (`scripts/spl_checkouts.py`, written at build time) into `tools/catalog-column-rules/data/spl-sample.json` with the date pulled: CheckoutYear 2025, CheckoutMonth 4, 30 rows for each MaterialType BOOK, EBOOK, AUDIOBOOK and VIDEODISC, taken in the API's row order from a fixed offset so the pull repeats. Columns kept: UsageClass, MaterialType, CheckoutYear, CheckoutMonth, Checkouts, Title, Creator, ISBN, PublicationYear. Dropped: CheckoutType (vendor names), Subjects and Publisher (long text). The dataset counts checkouts per title per month; it has no column about who borrowed, and the panel says so ("Libraries keep counts, not borrowers").
@@ -116,6 +116,7 @@ Reference results (checked with the reference dictionary):
 - Fix switches in the script change values only in the script's copy; the batch table shows both values.
 - Compare's combined line counts a problem once, whichever method caught it, and adds the times.
 - Engine: checks call `t.validate(dictionary)` (Family engine), which returns every violation with row, column and rule; Rules at entry filters to single-row rules.
+- Nothing plays on its own: Run shows each method's result at once (marks fade in over 300 ms, none with Motion off), and every control stays live.
 - Save on this device: the dictionary and notes stay in localStorage; **Clear saved** removes them. No student data.
 - Keyboard: modes, cards (Tab), chips and fields inside a card, tables (engine's keyboard table), method tabs, grid cells. Every marked cell is announced with its reason.
 - Sizes: at 1366x768 and 1280x720 Describe shows the sample table (8 rows visible) above two rows of cards with the panel; Check shows the batch and one method's results; at 760 wide cards stack; at 680x425 one card at a time with Previous and Next. Table text at least 13 px, cards 14 px.
@@ -127,16 +128,18 @@ Reference results (checked with the reference dictionary):
 - Neighbors: the dark 9-12 CS tools (pinks, violet, lemon, sky blue, orange) and data-policy-council's light navy page; group siblings: pull-request-review wine on grey-white, sprint-board blue on whiteboard, cloud-through-time teal on parchment. Purple on manila differs from each.
 
 ## Art
-None. Cards, table and a small drawn card-catalog drawer in the header are code.
+Local FLUX (`scripts/localart.py`), no people. One style: warm painted still life in a library, soft daylight. Tables, cards, chips, the grid and charts stay code (they are data and controls). The librarian is shown by her desk, not a portrait: the method is about human knowledge, and the desk and note slips say that without a face.
+- cc-drawer: "An open wooden library card catalog drawer full of blank index cards with a brass handle and a blank brass label frame, warm daylight, painted still life, plain cream background"; 4:3; cutout yes; people no; header mark beside the title (64 px) and the Describe intro card; the label frame's text is code.
+- cc-methods (kit of 3, one prompt line): "{A library checkout counter with a keyboard and a computer monitor with a blank glowing screen and a stack of new books | a small server box humming on a shelf in a dark library back office at night, a crescent moon in the window, tiny green lights | a wooden library desk with a stack of returned books, reading glasses, a red pencil and a pile of blank note slips under a green lamp}, warm painted still life"; 16:9; cutout no; people no; Rules at entry, Cleaning script, Librarian review; the banner atop each method tab (cropped to 4:1 at 1366x768) and the column heads of the Compare grid (48 px crops).
 
 ## Voice
-Bank voice `curious-librarian` (Aoede), style "Say curiously and warmly, like a friendly school librarian": the branch's catalog librarian who asked you to write the sheet. Not used by a 9-12 CS tool or a group sibling. Light narration:
-1. how, welcome (Describe): "Pick a column card. Say what it means and what values belong in it."
-2. event, first time a rule turns up real rows that break it: "The real catalog breaks your rule. Tighten it, loosen it, or add a note."
-3. how, welcome (Check): "Run each check. Watch what it catches and what slips by."
-4. event, first time all three checks have run: "Now open Compare. No single check caught everything."
-5. event, a combined pick in Compare reaches 14 of 14 (once): "All fourteen. Now look at what that costs in time."
-Read speaks the hint. Rows, values and reasons are on screen only.
+Bank voice `curious-librarian` (Aoede), style "Say curiously and warmly, like a friendly school librarian": the branch's catalog librarian who asked you to write the sheet. Not used by a 9-12 CS tool or a group sibling (data-table-builder uses knowing-guide). `Curio.voice`, `scope: () => state.mode`. Light narration; read speaks the hint. Rows, values and reasons are on screen only.
+1. wDescribe (how; Describe entered; stale when a card's Meaning is picked): "Pick a column card. Choose what it means and its type, then set what values belong in it."
+2. realBreaks (event; first time a rule turns up real rows that break it; stale when that card changes again): "The real catalog breaks your rule. Tighten it, loosen it, or pick a Note."
+3. wCheck (how; Check entered; stale when the first Run is pressed): "Pick a method tab and press Run. Watch what it catches and what slips by."
+4. allRun (event; first time all three methods have run; stale when Compare opens): "Now open Compare. No single check caught everything."
+5. allFourteen (event; a Which would you run? pick reaches 14 of 14, once per page load; stale when the pick changes): "All fourteen. Now look at what that costs in time."
+6. needCards (how; Check opened before every card has a Meaning and a Type; stale when the last card gets both): "Some column cards are still empty. Open Describe and give each one a Meaning and a Type."
 
 ## Family engine
 data-desk (`kit/data-desk.js`): DataTable for the sample and the batch, `renderTable` (read-only), `t.stats('Checkouts')` for the outlier rule, Chart bar (catches per method) and histogram (Checkouts with the outlier highlighted).
@@ -161,6 +164,7 @@ Dataset: Seattle Public Library checkouts, used by no other sibling.
 - Outlier rule, 1.5 times the interquartile range: NIST/SEMATECH e-Handbook of Statistical Methods, 7.1.6 "What are outliers in the data?": https://www.itl.nist.gov/div898/handbook/prc/section1/prc16.htm
 - Data dictionaries: USGS, "Data Dictionaries" (Data Management): https://www.usgs.gov/data-management/data-dictionaries
 - The Lakeside branch batch is made up; its titles are public domain classics.
+- Checks run (Python, 2026-10-29): every clean ISBN-13 in the batch has a valid check digit; row 26's has 12 digits, the only ISBN problem. Checkouts quartiles are 2 and 6 under every common quartile method (39 numeric values; "twelve" is text and left out), so the upper fence is 12 and the lower -4: 400 (row 36) is the only outlier and -2 (row 7) is not one, which is why only Rules at entry's minimum catches it. Rules at entry catches 11 (3, 7, 9, 12, 15, 18, 21, 23, 26, 38, 40); the script adds 30 and 36 (13); the fixed librarian sample (2, 5, 9, 14, 19, 23, 27, 33, 36, 39) holds 9, 23, 33 and 36 (4); the union of all three is 14 and script plus librarian is 14. Times: 40 x 5 s = 3 min 20 s; 10 x 2 min = 20 min.
 
 ## Done when
 1. Describe shows the real sample with source and date pulled, and nine cards; each change recounts "real rows that break this rule" at once.
@@ -171,6 +175,9 @@ Dataset: Seattle Public Library checkouts, used by no other sibling.
 6. Compare's grid shows all 14 problems; picking all three methods reads 14 of 14 with the summed time.
 7. `t.validate` is in the engine and in `data-desk.md`, and the other siblings' calls still work.
 8. Fits at 1366x768; every marked cell has an icon and a spoken reason.
+9. Focus: in Describe the open card and its breaking-rows strip are larger than the sample table; in Compare the catch grid is the central, largest thing.
+10. Taps during the 300 ms result fade: pressing another method's Run or switching mode shows the new result at once, with no old marks left behind.
+11. Art: the drawer header and the three method banners load; no image shows a person.
 
 ## Open questions
 - [catalog-column-rules] Adds `t.validate` to the shared data-desk engine (and its family doc). OK to grow the engine in this tool's build?

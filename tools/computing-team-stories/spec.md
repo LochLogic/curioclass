@@ -20,16 +20,16 @@ Five computing teams each cracked one stubborn problem because of who was in the
 Header (kit): "Computing Team Stories", small line "Five teams, five problems". Modes: **You** (first, can be skipped with **Skip to the teams**), **Teams**, **Next steps**. Motion, Sound, Read.
 
 ### You
-Stage: two chip clouds. **I'm into** (pick any): Art, Music, Games, Health, Sports, Nature and weather, News and writing, Building things, Math puzzles, Helping people, Languages, Military service, Business. **I want work that** (pick up to three): Helps my community, Makes things people use, Solves hard puzzles, Gets me outdoors sometimes, Pays well, Is steady, Is on a team, Is creative. Panel: "People like you" count, **Meet the teams**. Picks live in the page; Save is in Next steps.
+Focus: the two chip clouds, center stage. Stage: two chip clouds. **I'm into** (pick any): Art, Music, Games, Health, Sports, Nature and weather, News and writing, Building things, Math puzzles, Helping people, Languages, Military service, Business. **I want work that** (pick up to three): Helps my community, Makes things people use, Solves hard puzzles, Gets me outdoors sometimes, Pays well, Is steady, Is on a team, Is creative. Panel: "People like you" count, **Meet the teams**. Picks live in the page; Save is in Next steps.
 
 ### Teams
-Stage left: five team cards in a column (scene image, team name, one-line problem). Stage main, for the open team: the **story strip**, four beats side by side (stacked under 760 px): **Problem**, **Stuck**, **Turn**, **Shipped**, each two or three sentences. Under it the **team row**: five member badges (initials in a circle, a role icon, the role name). Badges of members who match two or more of the student's picks have a small "like you" ribbon.
-Tap a badge: the **member card** in the panel: name and role, "What I do on a normal day", "How I got here", "Tools I use", "What I brought to this problem", a **Career** line (career name, median pay with year and source, typical entry-level education, from the careers data) with **Open career sheet** (the shared careers sheet). At the bottom of the card, the switch **Take off the team**.
-Taking a member off: their badge greys with a dashed outline; the beats that depend on them rewrite to the "without" version, marked with a ⟲ and the line "Without [name]: ..."; beats that don't change stay and a note says "The team would miss [name]'s [skill], but this story ends the same way." **Put everyone back** restores the team. Only one member can be off at a time (taking another off puts the first back), so each change reads clearly.
+Focus: the story strip, the widest thing on the stage, with the team row right under it; when a member is off, the changed beats are where the eye lands (dashed orchid border, ⟲). Stage left: five team cards in a column (scene image, team name, one-line problem). Stage main, for the open team: the **story strip**, four beats side by side (stacked under 760 px): **Problem**, **Stuck**, **Turn**, **Shipped**, each two or three sentences. Under it the **team row**: five member badges (initials in a circle, a role icon, the role name). Badges of members who match two or more of the student's picks have a small "like you" ribbon.
+Tap a badge: the **member card** in the panel: name and role; for the ten story-changing members, a painted picture of what they brought (art `cts-brought`, Content) at the top of the card; "What I do on a normal day", "How I got here", "Tools I use", "What I brought to this problem", a **Career** line (career name, median pay with year and source, typical entry-level education, from the careers data) with **Open career sheet** (the shared careers sheet). At the bottom of the card, the switch **Take off the team**.
+Taking a member off: their badge greys with a dashed outline; the beats that depend on them rewrite to the "without" version, marked with a ⟲ and the line "Without [name]: ...", and their painted object greys out beside the Turn beat; beats that don't change stay and a note says "The team would miss [name]'s [skill], but this story ends the same way." **Put everyone back** restores the team. Only one member can be off at a time (taking another off puts the first back), so each change reads clearly.
 Panel footer: "These teams and people are made up. The kinds of work, careers and facts are real (Sources)."
 
 ### Next steps
-Stage: the **career shelf**: every career from the five teams as a card (name, median pay, education, the member who does it); cards for careers that match the student's picks come first. Below: **My next three steps**: twelve step cards (Content); pick up to three; they fill a "My path card" with the picked interests, goals, two careers the student stars on the shelf, and the three steps. Panel: **Copy my path card**, **Save on this device**, **Clear saved**.
+Focus: the career shelf, then the path card as it fills. Stage: the **career shelf**: every career from the five teams as a card (name, median pay, education, the member who does it); cards for careers that match the student's picks come first. Below: **My next three steps**: twelve step cards (Content); pick up to three; they fill a "My path card" with the picked interests, goals, two careers the student stars on the shelf, and the three steps. Panel: **Copy my path card**, **Save on this device**, **Clear saved**.
 
 ## Content
 Each team: problem; beats; five members (name, role, path, tools, what they brought, career id, interest and goal tags); the two "without" members and their rewritten beats. The other three members show the "ends the same way" note.
@@ -73,7 +73,7 @@ Next steps cards: Take AP Computer Science Principles or AP Computer Science A. 
 ## Interactions in detail
 - Every team is open from the start; order doesn't matter. Opening a team puts everyone back.
 - Matching: a member is "like you" when two or more of their tags are among the student's picks. With no picks, no ribbons and the shelf keeps its default order (team order). Nothing is scored.
-- Take off the team: the changed beats crossfade (no motion with Motion off); a screen reader hears "Story changed: Turn, Shipped".
+- Nothing plays on its own. Take off the team: the changed beats crossfade (300 ms); a tap on another badge, Put everyone back or another team during the fade shows the new state at once (no motion with Motion off); a screen reader hears "Story changed: Turn, Shipped".
 - Career sheet: the shared careers sheet (career-cluster-explorer's Family engine part), opened read-only.
 - Next steps: a fourth pick replaces the oldest with a note. Copy my path card copies plain text. Save on this device stores picks, stars and steps; Clear saved removes them. No names or free text anywhere.
 - Keyboard: modes, chips, team list, beats, badges (arrow keys), then the panel. Visible focus.
@@ -86,21 +86,24 @@ Next steps cards: Take AP Computer Science Principles or AP Computer Science A. 
 - Neighbors: capture-the-flag pink #ff7ac8 and ai-evaluator pink #f472b6 (orchid here is bluer and lighter), sorting-showdown violet #c39bff, api-playground lemon, network-architect sky blue, simulation-studio orange; group siblings coral, cyan, lime and light pages.
 
 ## Art
-Five scenes, Cloudflare FLUX.2 (`scripts/cfart.py`), 16:9, cutout no, people no; shown as the team card thumbnail (cropped) and a faint backdrop behind the story strip. Prompts describe empty workspaces with blank screens and blank surfaces:
-- cts-game-studio: "an empty indie game studio at dusk, two desks with dark blank monitors, sketchbooks with doodled creatures, a game controller, warm desk lamps, soft illustrated style"
-- cts-health-office: "an empty county health office, a large paper map of a town pinned to a corkboard with colored pins, a laptop with a dark blank screen, a clinic cooler box, daylight, soft illustrated style"
-- cts-river-lab: "an empty university lab, a tall server rack with small lights, a table model of a mountain river valley, stacks of old paper logbooks tied with string, soft illustrated style"
-- cts-newsroom: "an empty newsroom desk at night, three dark blank monitors, a police scanner, a coffee mug, a printed map with blank labels, soft illustrated style"
-- cts-limb-lab: "an empty workshop bench, a white 3D-printed robotic hand, a small 3D printer, calipers and wires, a sketch of a hand, soft illustrated style"
+Local FLUX (`scripts/localart.py`), no people. The five scenes already exist in `tools/computing-team-stories/art/` (local FLUX, review pending) and stay as specced. Members stay initials in a circle with a role icon (code): the story turns on what each person knew, and a painted object of what they brought says that without 25 generated portraits (see Open questions).
+- Scenes, 16:9, cutout no, people no; the team card thumbnail (cropped) and a faint backdrop behind the story strip. One style: "soft illustrated style, warm muted colors, gentle light, an empty room, every screen dark and blank, every surface blank":
+  - cts-game-studio: "An empty indie game studio at dusk: two desks with dark blank monitors, open sketchbooks with doodled creatures, a game controller, warm desk lamps."
+  - cts-health-office: "An empty county health office in daylight: a large paper map of a town pinned to a corkboard with colored pins, a laptop with a dark blank screen on a desk, a white clinic cooler box."
+  - cts-river-lab: "An empty university lab: a tall server rack with small lights, a table model of a mountain river valley, stacks of old paper logbooks tied with string."
+  - cts-newsroom: "An empty newsroom desk at night: three dark blank monitors, a police scanner, a coffee mug, a printed map with blank labels."
+  - cts-limb-lab: "An empty workshop bench: a white 3D-printed robotic hand, a small 3D printer, calipers and wires, a sketch of a hand."
+- cts-brought (kit of 10, one cutout each, one prompt line, same soft illustrated style): "A single {game controller panel with one red switch and one green switch side by side | handheld field audio recorder with a fuzzy windscreen and folded headphones | well-worn smartphone in a cracked case on a kitchen table beside a folded paper flyer with blank lines | laptop with a blank bright screen beside a smartphone with blank message bubbles | weathered wooden creek staff gauge post standing in a clear mountain creek | flatbed scanner with an open old handwritten logbook on its glass | smartphone with a dark blank screen resting on a porch rail in a pine canyon with smoke haze | sheet of paper with a short list of blank lines beside a pencil and a small printer | sleek black prosthetic arm and hand resting on a workbench beside a coffee mug | white prosthetic socket shell beside a plaster mold and a soft measuring tape}, plain white background"; 1:1; cutout yes; people no; Ollie, Priya, Luz, Ken, Ray, Joy, Ivy, Omar, Andre, Grace, in that order. Sizing: 120 px at the top of the member card, 56 px beside the Turn beat; greyed (50 percent, desaturated) while that member is off the team.
+The preview.svg is code (the Lantern Bay story strip with its team row).
 
 ## Voice
-Bank voice `smooth-narrator`, style "Say smoothly and warmly, like an audiobook narrator": the teams' stories told like short chapters. Not used by a 9-12 CS tool or a group sibling. Light narration:
-1. how, welcome (You): "Pick what you're into and what you want from work. Or skip ahead and meet the teams."
-2. how, first team opened: "Read the four beats. Then tap a person and try taking them off the team."
-3. event, a story-changing member is taken off (every time; stale if put back first): "Without [name], the story changes. Read the new ending."
-4. event, a member with no story change is taken off (every time; stale if put back): "The team would miss them, but this story ends the same way."
-5. how, welcome (Next steps): "Star two careers and pick three next steps. They make your path card."
-Line 3 has one recording per story-changing member (10). Read speaks the hint. Beats are read on screen, not spoken.
+Bank voice `smooth-narrator` (Algieba), style "Say smoothly and warmly, like an audiobook narrator": the teams' stories told like short chapters. Not used by a 9-12 CS tool or a group sibling. `Curio.voice`, `scope: () => state.mode + ':' + state.team`. Light narration; Read speaks the hint. Beats are read on screen, not spoken.
+1. wYou (how; You entered; stale when a chip is picked or Skip to the teams is pressed): "Tap what you're into and what you want from work. Then press Meet the teams, or Skip to the teams."
+2. firstTeam (how; first team opened; stale when a badge is tapped): "Read the four beats. Then tap a person and press Take off the team."
+3. changed (event; a story-changing member is taken off, every time; stale if they are put back or the team changes first): "Without [name], the story changes. Read the new ending."
+4. same (event; a member with no story change is taken off, every time; stale if put back or the team changes): "The team would miss them, but this story ends the same way. Try someone else."
+5. wNext (how; Next steps entered; stale when a career is starred): "Tap the star on two careers and pick three next steps. They make your path card."
+Line 3 has one recording per story-changing member (10).
 
 ## Family engine
 careers (from career-cluster-explorer's spec): the shared `careers.json` and its career sheet. This tool reads `name`, `pay`, `edu`, `ooh` and the source line, and asks the builder (`scripts/careers_data.py`) for the eleven careers listed in Content, with the same fields as the siblings. It adds no new fields.
@@ -113,6 +116,7 @@ careers (from career-cluster-explorer's spec): the shared `careers.json` and its
 - Diverse teams and lived experience in design: W3C Web Accessibility Initiative, "Involving Users in Web Projects for Better, Easier Accessibility": https://www.w3.org/WAI/planning/involving-users/
 - AP Computer Science Principles and AP Computer Science A: College Board, https://apstudents.collegeboard.org/courses
 - The teams, people and story outcomes are made up, inspired by real kinds of work.
+- Checks run (Python, 2026-10-29): with picks Games and Is creative, the members with two or more matching tags are Mara (Games, creative) and Priya (Games, creative) at Lantern Bay, and no one else there (Dev, Ollie and Teo match Games only); across all five teams no other member matches both. Each team has exactly two story-changing members (10 in all, one recording each). Careers: 7 existing ids plus 11 added = 18 on the shelf, and every member but Andre has one. 1 in 12 men is 8.3 percent and 1 in 200 women 0.5 percent (NEI).
 
 ## Done when
 1. You: picking Games and Is creative puts "like you" ribbons on Mara and Priya (two tag matches each) and on no one else at Lantern Bay.
@@ -123,7 +127,11 @@ careers (from career-cluster-explorer's spec): the shared `careers.json` and its
 6. Save, reload: picks return; Clear saved removes them.
 7. Beats and the team row fit beside the panel at 1366x768; at 680x425 one beat shows at a time.
 8. Voice: line 3 plays each time a story-changing member is taken off and is dropped if they are put back first.
+9. Focus: the story strip is the widest thing on the Teams stage at 1366x768, and a rewritten beat is marked so the eye goes to it.
+10. Taps during the 300 ms beat fade: taking another member off or pressing Put everyone back mid-fade shows the right beats at once.
+11. Art: the five scenes and ten brought-object cutouts load; each story-changing member's card shows their object, greyed while they are off; no image shows a person.
 
 ## Open questions
 - [computing-team-stories] Eleven careers are added to the shared careers.json through the builder. OK to extend it, as hospital-shift also asks?
+- [computing-team-stories] People are the point of this tool, yet members stay initials plus a painted object of what they brought (10 objects, no people). Want 25 member portraits instead (people, Gemini, each reviewed by you), or only the five Turn people?
 - [computing-team-stories] Team 3 includes a tribal nation's water manager and team 4 a copy editor named Ivy Two Rivers. Should a Native educator review those two portrayals before build?
