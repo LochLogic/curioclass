@@ -148,3 +148,12 @@
 ## R27
 - source-portfolio: Corroboration counts two sources on a claim even when they disagree; keep, rename "Cross-checked claims", or count only agreeing (leaves one full-marks set, no lake homeowner voice)?
 - Carried: enduring-questions title matches an NEH program, phones/cameras teacher note, "Who was left out" lines; fair-use-review real cases name real people, teacher toggle to hide Theo's call; source-portfolio made-up tribal government card review, social studies standards on a library tool.
+
+## R26
+- workplace-scenarios: CRP 2012 or 2024 framework? unkind group-chat choice keep or soften? object badges for the 6 characters OK?
+- startup-booth: class code box dropped (fixed schedule + New weeks) OK? title; $15-20/hr too rosy; valuation line on Seed Fund?
+- hospital-shift: add 9 roles to careers.json; health reviewer for scenes 2 and 10; paint the team later (people)?
+- path-planner: military route framing; p25 field in careers.json? paycheck-decoder: annualized brackets, not IRS 15-T, OK?
+- prototype-lab: 0.30 N tap target; 8-hour printer budget default on? interview-simulator: Resume lines mode enough? unsaved typing box OK?
+- compound-interest-head-start: stopped saver never catches up at savings rates, framing OK? covered-insurance-claims: title, made-up premiums OK?
+- the-credit-card-diaries: lender wording and possible cosigner ending; medical-debt-under-$500 rule or non-medical bill?
