@@ -30,7 +30,7 @@ Thirty projects for fourth graders on a school break. Your child reads each shee
 | 24 | Stranded on Couch Island | Pretend | 60-90 min | On your own |
 | 25 | Learn to Juggle Scarves | Move | 45-75 min | On your own |
 | 26 | Thank-You Note Blitz | Kindness | 60-90 min | On your own |
-| 27 | Rain Stick Storm Song | Music | 60-90 min | Nearby |
+| 27 | Squiggle Score Orchestra | Music | 60-90 min | Nearby |
 | 28 | Stuffed Animal Pet Hotel | Pretend | 60-90 min | On your own |
 | 29 | Fold-Over Mix-Up Monsters | Game | 45-75 min | On your own |
 | 30 | Egg Carton Seed Game | Game | 60-90 min | On your own |
@@ -1489,59 +1489,59 @@ This builds kind writing, details and gratitude. Help your child find addresses 
 
 ---
 
-## 27. Rain Stick Storm Song
+## 27. Squiggle Score Orchestra
 
 | Kind | Time | Where | Mess | Grown-up | Players |
 |---|---|---|---|---|---|
-| Music | 60-90 min | Indoors | Medium | Nearby | 1+ |
+| Music | 60-90 min | Indoors | Low | Nearby | 1+ |
 
-**Materials:** a long cardboard tube (paper towel or wrapping paper tube), foil (about 2 feet), dry rice or dry beans (about half a cup), paper, tape, scissors, markers
+**Materials:** 2 or 3 long strips of paper (or sheets taped end to end), markers or crayons in 4 colors, a pencil, sound makers from around the house (a paper bag, a comb, keys, a cereal box, a cup of dry rice in a closed container, your own voice and hands)
 
-**Nice to have:** colored paper, yarn, a second tube
+**Nice to have:** a ruler, a timer, a family member to play a second part
 
 ### The big idea
-Tip it up and hear the rain! A rain stick is an old instrument that sounds like a storm. Build one, then use it to play a song about a storm that starts small and gets wild.
+Most music is written with dots and lines. But some composers draw squiggles, zigzags and spirals instead! A graphic score is music written as pictures. Invent your own symbols, draw a song, and play it with sounds from around the house.
 
 ### Goals
-- You build a rain stick that makes a rain sound.
-- You play a "storm song" with a beginning, middle and end.
+- You invent at least 6 sound symbols and a key that explains them.
+- You draw a 1-minute graphic score and perform it.
 
 ### Objectives
-- I can build an instrument and change its sound.
-- I can play soft and loud, slow and fast.
-- I can plan a song with parts that change.
+- I can match a sound to a picture that shows how it moves.
+- I can show loud and soft, high and low, and long and short on paper.
+- I can read my score from left to right and keep a steady pace.
 
 ### Get ready
-Clear a table. Trace a tube end on paper twice. Cut two circles a little bigger than the end.
+Tape the paper strips into one long strip, about 3 feet long. Lay it on a table or the floor. Gather 5 or 6 sound makers on a towel.
 
 ### Steps
-1. Tape one paper circle over one end of the tube. Tape it all around, tightly.
-2. Crunch the foil into a long, twisty snake. Then coil it like a spring.
-3. Slide the foil spring into the tube. It slows down the falling rice.
-4. Pour in a handful of rice. Cover the open end with your hand. Tip it slowly. Listen!
-5. Add or remove rice until you like the sound. Then tape the second end on.
-6. Decorate. Wrap it in paper and draw stripes, raindrops or lightning.
-7. Write a storm song (15 minutes). Part 1: a few drops (tip slow). Part 2: a downpour (tip fast and shake). Part 3: it fades away.
-8. Add other sounds. Tap fingers for drops. Clap for thunder.
+1. Sound hunt (10 minutes). Try each sound maker. Crumple the bag. Run a fingernail along the comb. Jingle the keys. Hum high and low.
+2. Make a symbol for each sound. A zigzag for the comb. Dots for tapping. A wavy line for humming. Big shapes mean loud. Small shapes mean soft.
+3. Draw a key in the corner. Draw each symbol and write the sound next to it.
+4. Plan a shape for your piece. Maybe a quiet start, a loud middle and a slow fade. Or a story: a train leaving a city.
+5. Draw the score (20 minutes). Draw left to right. Higher on the page means a higher sound. A long line means a long sound.
+6. Mark time. Draw a small tick every 4 inches. Each tick is about 5 seconds.
+7. Rehearse. Slide your finger along the score and play what you see. Play it 3 times.
+8. Give your piece a title, like "Rush Hour on the Moon."
 
 ### Make it yours
-- Make a second rain stick with beans. Compare the sounds.
-- Write words for your storm song.
-- Make a family storm band: one person claps, one snaps, you play the rain stick.
+- Add a second row for a partner, so two sounds play at once.
+- Use colors for feelings: red for angry sounds, blue for sleepy ones.
+- Swap scores with someone. Can they play your music just from the pictures?
 
 ### Stuck?
-- Rice falls too fast: add more foil to slow it down.
-- The sound is too quiet: add a little more rice.
-- The ends pop off: use more tape, wrapped around the sides.
+- You lose your place: have someone slide a ruler along the score as you play.
+- It all sounds the same: add silence. Draw an empty gap where no one plays.
+- You run out of sound ideas: try your body. Snap, clap, pat your knees, and whistle.
 
 ### Show it off
-Turn off the lights. Play your storm song for the family.
+Hang the score on the wall like a painting. Perform it for the family, then ask them to guess which part is which.
 
 ### Clean up
-Sweep up spilled rice. Put leftover rice back in the bag.
+Put each sound maker back where it lives. Roll up the score and keep it.
 
 ### For the grown-up
-This builds music (dynamics, tempo and form) and simple sound science. Keep rice and beans away from small children who might choke. **Ask at dinner:** "How did you make your storm get louder?"
+This builds music ideas (dynamics, pitch, rhythm and form) and connects symbols to meaning, the same skill as reading. Real composers write graphic scores like this. Check that any container of rice or beans is closed tight. **Ask at dinner:** "Can you show me which squiggle was the loudest sound?"
 
 ---
 
