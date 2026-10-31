@@ -92,7 +92,16 @@ Night, Word check, closet search, Take home, words CSV. What is left, in order:
 4. **Print the module kit, and Sub Day lite.** One checklist on the module page that prints words, chart, game and
    Sub Day together, and a generic Sub Day for modules without a tool. Built together; waits to see how fast charts
    arrive.
-5. **The Map** (Phase F, last): regions, trails and a standards view. Research is done (docs/MAP-RESEARCH.md);
+5. **Break Box** (new 2026-10-31, Cory): a shelf of school-break activities for kids home while parents work. 30
+   one-to-two-hour, screen-free, fun-and-imagination projects per grade, K-12 (390 sheets), each a one-page sheet
+   like Sub Day: the idea, materials, goals, "I can" objectives, steps, twists, safety and a note for the grown-up.
+   Written to the child's reading level from grade 3; K-2 sheets are run by a grown-up. Detail and the sheet
+   framework: docs/BREAK-BOX-PLAN.md; drafts in docs/break-box/, checked by `scripts/check_breaks.py`.
+   - **Done:** the framework and the draft sheets for all 13 grades.
+   - **Next:** Cory reads the drafts (all K-2 and anything with heat, tools or going out; one in four of the rest).
+   - **Then:** move the sheets into `data/closet/breaks/`, build the shelf pages (`/closet/break-box/`), Spanish,
+     and the extras in the plan (a "pick for me" filter, a printable break-week pack).
+6. **The Map** (Phase F, last): regions, trails and a standards view. Research is done (docs/MAP-RESEARCH.md);
    drafting is next when its turn comes.
 
 **Still owed, any time:** a real-printer test of every print format, the Spanish native review, family game
