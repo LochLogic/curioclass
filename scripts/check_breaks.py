@@ -139,7 +139,7 @@ def main(args):
         p, titles = check_grade(g)
         problems += p
         for t in titles:
-            key = re.sub(r'[^a-z0-9]+', ' ', t.lower()).strip()
+            key = re.sub(r'[^a-z0-9]+', ' ', t.lower().replace("'s ", ' ').replace("'", '')).strip()
             if key in seen:
                 problems.append(f'title {t!r} in grade {g} repeats grade {seen[key]}')
             seen.setdefault(key, g)
